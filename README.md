@@ -290,5 +290,13 @@ Run the domain suites affected by the change, then commit at a green boundary.
 
 ## License
 
-This project is licensed under the [MIT License](LICENSE).
-Third-party materials retain their respective licenses and copyright notices.
+Except where otherwise noted, all original content in this repository is
+licensed under the [MIT License](LICENSE). This includes software,
+documentation, prompts, schematics, PCB layouts, mechanical CAD files,
+and generated design artifacts.
+
+Third-party materials remain subject to their respective copyright and
+license terms and are not relicensed by this repository.
+
+See [third-party notices](THIRD_PARTY_NOTICES.md) for material provenance and
+[contribution guidelines](CONTRIBUTING.md) for new submissions.

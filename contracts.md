@@ -32,6 +32,8 @@ via an explicit pattern (see the coverage rule below).
 |---|---|
 | `README.md` | what this repo is |
 | `LICENSE` | full MIT license text and copyright notice |
+| `THIRD_PARTY_NOTICES.md` | third-party material provenance and retained licensing terms |
+| `CONTRIBUTING.md` | contribution licensing and third-party import guidance |
 | `CLAUDE.md` | binding agent instructions |
 | `contracts.md` | this file |
 | `.gitignore` | build/cache exclusions |

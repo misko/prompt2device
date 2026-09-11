@@ -1,5 +1,6 @@
 {
   "name": "programmable-usb2-hub",
+  "license": "MIT",
   "main": "src/programmable_usb2_hub.tsx",
   "type": "module",
   "dependencies": { "tscircuit": "*" }

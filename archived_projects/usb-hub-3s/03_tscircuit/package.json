@@ -1,5 +1,6 @@
 {
   "name": "usb-hub-3s",
+  "license": "MIT",
   "main": "src/usb_hub_3s.tsx",
   "type": "module",
   "dependencies": { "tscircuit": "*" }
