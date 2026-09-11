@@ -287,3 +287,8 @@ python3 scripts/contracts_audit.py --walk --root skills/pcb-design
 ```
 
 Run the domain suites affected by the change, then commit at a green boundary.
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
+Third-party materials retain their respective licenses and copyright notices.
