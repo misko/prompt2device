@@ -1,0 +1,37 @@
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+FAIL P-LAND crow_audio_carrier_v1 U_ADC.14 net=ADC5P class=ANALOG_AUDIO floor=0.200 (rule ANALOG_AUDIO_width) landable=0.100 @ clearance 0.250 best_dir=90.0 deg — SHORT BY 0.100 mm
+FAIL P-LAND crow_audio_carrier_v1 U_ADC.15 net=ADC6N class=ANALOG_AUDIO floor=0.200 (rule ANALOG_AUDIO_width) landable=0.100 @ clearance 0.250 best_dir=90.0 deg — SHORT BY 0.100 mm
+FAIL P-LAND crow_audio_carrier_v1 U_ADC.16 net=ADC6P class=ANALOG_AUDIO floor=0.200 (rule ANALOG_AUDIO_width) landable=0.100 @ clearance 0.250 best_dir=90.0 deg — SHORT BY 0.100 mm
+FAIL P-LAND crow_audio_carrier_v1 U_ADC.19 net=ADC7N class=ANALOG_AUDIO floor=0.200 (rule ANALOG_AUDIO_width) landable=0.100 @ clearance 0.250 best_dir=90.0 deg — SHORT BY 0.100 mm
+FAIL P-LAND crow_audio_carrier_v1 U_ADC.20 net=ADC7P class=ANALOG_AUDIO floor=0.200 (rule ANALOG_AUDIO_width) landable=0.100 @ clearance 0.250 best_dir=90.0 deg — SHORT BY 0.100 mm
+FAIL P-LAND crow_audio_carrier_v1 U_ADC.21 net=ADC8N class=ANALOG_AUDIO floor=0.200 (rule ANALOG_AUDIO_width) landable=0.100 @ clearance 0.250 best_dir=90.0 deg — SHORT BY 0.100 mm
+FAIL P-LAND crow_audio_carrier_v1 U_ADC.22 net=ADC8P class=ANALOG_AUDIO floor=0.200 (rule ANALOG_AUDIO_width) landable=0.100 @ clearance 0.250 best_dir=90.0 deg — SHORT BY 0.100 mm
+FAIL P-LAND crow_audio_carrier_v1 U_ADC.39 net=ADC1N class=ANALOG_AUDIO floor=0.200 (rule ANALOG_AUDIO_width) landable=0.100 @ clearance 0.250 best_dir=90.0 deg — SHORT BY 0.100 mm
+FAIL P-LAND crow_audio_carrier_v1 U_ADC.40 net=ADC1P class=ANALOG_AUDIO floor=0.200 (rule ANALOG_AUDIO_width) landable=0.100 @ clearance 0.250 best_dir=90.0 deg — SHORT BY 0.100 mm
+FAIL P-LAND crow_audio_carrier_v1 U_ADC.41 net=ADC2N class=ANALOG_AUDIO floor=0.200 (rule ANALOG_AUDIO_width) landable=0.100 @ clearance 0.250 best_dir=90.0 deg — SHORT BY 0.100 mm
+FAIL P-LAND crow_audio_carrier_v1 U_ADC.45 net=ADC3N class=ANALOG_AUDIO floor=0.200 (rule ANALOG_AUDIO_width) landable=0.100 @ clearance 0.250 best_dir=90.0 deg — SHORT BY 0.100 mm
+FAIL P-LAND crow_audio_carrier_v1 U_ADC.46 net=ADC3P class=ANALOG_AUDIO floor=0.200 (rule ANALOG_AUDIO_width) landable=0.100 @ clearance 0.250 best_dir=90.0 deg — SHORT BY 0.100 mm
+FAIL P-LAND crow_audio_carrier_v1 U_ADC.47 net=ADC4N class=ANALOG_AUDIO floor=0.200 (rule ANALOG_AUDIO_width) landable=0.100 @ clearance 0.250 best_dir=90.0 deg — SHORT BY 0.100 mm
+FAIL P-LAND crow_audio_carrier_v1 U_BUCK.5 net=BUCK_SW class=POWER_TRANSIENT floor=1.200 (rule POWER_TRANSIENT_width) landable=0.800 @ clearance 0.250 best_dir=0.0 deg — SHORT BY 0.400 mm
+input: board = /home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/04_kicad/crow_audio_carrier_v1.kicad_pcb
+input: floors+relaxations = /home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/04_kicad/crow_audio_carrier_v1.kicad_dru (83 width/clearance rule(s))
+input: clearances = /home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/04_kicad/crow_audio_carrier_v1.kicad_pro
+input: model = 0.03 mm landing grid inside the land (<= 25 points) x 48 directions, reach 1.0 mm, other-net lands within 2.5 mm as obstacles, cap 2.0 mm
+P-LAND denominator crow_audio_carrier_v1: 677 graded / 940 copper pads (42 no declared width floor, 218 fed by a same-net POUR, 0 escaped by a VIA ON THE LAND, 3 no net, 0 UNREACHED); 68 graded against a SCOPED floor, 40 against a scoped clearance; 14 failing
+routed cross-check crow_audio_carrier_v1: 0 graded pad(s) already carry a same-net track, 0 of them WIDER than this model allows (0 = the model is not over-strict on real copper; an unrouted board reports 0/0)
+P-LAND FIX ORDER (measured on pluto-rx2-8way, 2026-07-30 — a launch that will not route is THREE questions):
+  1. ROUTER GRID, and it is free. At KRT `grid_step: 0.1` NOTHING routed that board's five boxed RF pads at ANY width (0.30/0.25/0.20 all fail): the land centres sit at odd multiples of 0.05 mm. At `grid_step: 0.05` + `clearance: 0.14` the same wave routes 11/11 at the FULL 0.36 mm.
+  2. A LAUNCH-LOCAL SCOPED CLEARANCE (a rule area over the land field). This gate reads `constraint clearance` rule-area relaxations if they exist.
+  3. WIDTH — a `scoped_floors:` taper bounded by a rule area, with the impedance/ampacity argument as its `why:` (pluto-cal-switch bounds its necks to lambda_g/61).
+  NOT A REMEDY: router NECK-DOWN. Measured `--neckdown-length 0.3` routes 11/11 and delivers 149.832 mm of RF copper at 0.25 mm and 0.000 mm at 0.36 — the re-widen pass only restores width where the narrow-planned path has wide clearance, which leaving a QFN it never has.
+  AND THIS GATE DOES NOT CLAIM WIDTH IS WHY A BOARD FAILED TO ROUTE. It states one geometric fact: this pad cannot emit its class width at the declared clearance.
+P-LAND FAIL: 1/1 board(s) graded, 14 problem(s)
+Command exited with non-zero status 1
+
+__TIME__ elapsed=23.41 rc=1
+argv: /usr/bin/python3 /tmp/pland-method-20260910T200736Z/escape_check-prefix.py --board projects/crow-audio-carrier-v1/04_kicad/crow_audio_carrier_v1.kicad_pcb --project projects/crow-audio-carrier-v1/04_kicad/crow_audio_carrier_v1.kicad_pro --dru projects/crow-audio-carrier-v1/04_kicad/crow_audio_carrier_v1.kicad_dru
+start: 2026-09-10T20:16:50Z
+end: 2026-09-10T20:17:14Z
+rc: 1

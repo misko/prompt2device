@@ -1,0 +1,347 @@
+{
+  "schema": 1,
+  "created_at": "2026-09-10T21:27:50.030481+00:00",
+  "source_commit": "beb3c3d8d01846fe72081046143637115904831d",
+  "tar_sha256": "94bde46519fbe62185e729a769f5e2ee8e9fc2410bdade7c0bc54633c1cd7f03",
+  "tar_size": 164903,
+  "count": 56,
+  "entries": [
+    {
+      "member": "author/002_packet_verify.log",
+      "original_path": "/tmp/pland-witness-author-20260910T210755Z/002_packet_verify.log",
+      "sha256": "e22163b46e2c30bb9aef2f9b27588da5ad8c61d5d41b234bcc227e52b1609dd5",
+      "size": 86
+    },
+    {
+      "member": "author/002_packet_verify.result.json",
+      "original_path": "/tmp/pland-witness-author-20260910T210755Z/002_packet_verify.result.json",
+      "sha256": "5809c383f26f9d2004ffa7ce91a21d465b32a8a5cdb7a834381023154bfb1e70",
+      "size": 515
+    },
+    {
+      "member": "author/002_packet_verify.start.json",
+      "original_path": "/tmp/pland-witness-author-20260910T210755Z/002_packet_verify.start.json",
+      "sha256": "92ae08501173ed8ef39cae1fc4a2652f9951c20ef409dcd8f3270d6ff1dd8f53",
+      "size": 376
+    },
+    {
+      "member": "author/003_packet_verify_exact_source.log",
+      "original_path": "/tmp/pland-witness-author-20260910T210755Z/003_packet_verify_exact_source.log",
+      "sha256": "d05a24db3cdaeb5b2c1fd8399bd195e52e2e971e727642dc03c5793fdf55d0dc",
+      "size": 44
+    },
+    {
+      "member": "author/003_packet_verify_exact_source.result.json",
+      "original_path": "/tmp/pland-witness-author-20260910T210755Z/003_packet_verify_exact_source.result.json",
+      "sha256": "d4f84765a8ae05c1176aa61cc4e2be6607cd7f8c7beec7520f0b9c9d7537e1d2",
+      "size": 515
+    },
+    {
+      "member": "author/003_packet_verify_exact_source.start.json",
+      "original_path": "/tmp/pland-witness-author-20260910T210755Z/003_packet_verify_exact_source.start.json",
+      "sha256": "59bbf0ece2586563b6b6d4a385c6e55fa443c5697d66f18191687d8ba80950cd",
+      "size": 376
+    },
+    {
+      "member": "author/004_public_path_red_cb0d0.log",
+      "original_path": "/tmp/pland-witness-author-20260910T210755Z/004_public_path_red_cb0d0.log",
+      "sha256": "c96aa6bc0e1e2ed7a3de1a5fe08361e6b9e9c3796d7d4143db5f681a5adb63e2",
+      "size": 13759
+    },
+    {
+      "member": "author/004_public_path_red_cb0d0.result.json",
+      "original_path": "/tmp/pland-witness-author-20260910T210755Z/004_public_path_red_cb0d0.result.json",
+      "sha256": "50e2f4c10dc75c7cb531bddf1d077c80c6bd9cb809680910cb2a89e51460f5f3",
+      "size": 551
+    },
+    {
+      "member": "author/004_public_path_red_cb0d0.start.json",
+      "original_path": "/tmp/pland-witness-author-20260910T210755Z/004_public_path_red_cb0d0.start.json",
+      "sha256": "67ae33f993eff288d73750b9093a1a0a743c6664efdc429528eac3628bf1cebb",
+      "size": 321
+    },
+    {
+      "member": "author/005_public_path_red_cb0d0_fixed_fixture.log",
+      "original_path": "/tmp/pland-witness-author-20260910T210755Z/005_public_path_red_cb0d0_fixed_fixture.log",
+      "sha256": "e346ecbceabea30856f129f24c71a6edc4af5ffae4f1ad061f1edd26d5351b37",
+      "size": 3135
+    },
+    {
+      "member": "author/005_public_path_red_cb0d0_fixed_fixture.result.json",
+      "original_path": "/tmp/pland-witness-author-20260910T210755Z/005_public_path_red_cb0d0_fixed_fixture.result.json",
+      "sha256": "3adeca65e962b8c01702abda606bcc501e4d53306c529854dcebea7f584f0cb1",
+      "size": 589
+    },
+    {
+      "member": "author/005_public_path_red_cb0d0_fixed_fixture.start.json",
+      "original_path": "/tmp/pland-witness-author-20260910T210755Z/005_public_path_red_cb0d0_fixed_fixture.start.json",
+      "sha256": "7c1047c1b05208acc3f17a8638bd17a3167625de592f1c73463ded55207417d4",
+      "size": 358
+    },
+    {
+      "member": "author/006_compact_handoff.log",
+      "original_path": "/tmp/pland-witness-author-20260910T210755Z/006_compact_handoff.log",
+      "sha256": "cd4a084c5f13fe2b09880fdc853b76c4d2f1ad3904523641be6afc387e18567a",
+      "size": 168
+    },
+    {
+      "member": "author/006_compact_handoff.result.json",
+      "original_path": "/tmp/pland-witness-author-20260910T210755Z/006_compact_handoff.result.json",
+      "sha256": "685b85fbeb1cc152faf565af8723098ef214cddb7209dccce1319f81a0426583",
+      "size": 889
+    },
+    {
+      "member": "author/006_compact_handoff.start.json",
+      "original_path": "/tmp/pland-witness-author-20260910T210755Z/006_compact_handoff.start.json",
+      "sha256": "cc812db785cfff6c988231ad5a84efd103352535d40f059b2e40f6d42b124251",
+      "size": 659
+    },
+    {
+      "member": "author/007_compact_handoff_validate.log",
+      "original_path": "/tmp/pland-witness-author-20260910T210755Z/007_compact_handoff_validate.log",
+      "sha256": "bfd8411bb72e208194c2bbcb2f811ac2f4f2da7ce7112b399ed1f8e9e3d3c27b",
+      "size": 160
+    },
+    {
+      "member": "author/007_compact_handoff_validate.result.json",
+      "original_path": "/tmp/pland-witness-author-20260910T210755Z/007_compact_handoff_validate.result.json",
+      "sha256": "757168a0dd382dafa5df5e23d04b9b558d6a7231ad73482adaa1ddbd07a4fdde",
+      "size": 618
+    },
+    {
+      "member": "author/007_compact_handoff_validate.start.json",
+      "original_path": "/tmp/pland-witness-author-20260910T210755Z/007_compact_handoff_validate.start.json",
+      "sha256": "1031a4cf431821bc6f9286eb69c17de70ed160dcbe5792e9b3a1fcb58f950975",
+      "size": 387
+    },
+    {
+      "member": "author/__pycache__/run_capture.cpython-312.pyc",
+      "original_path": "/tmp/pland-witness-author-20260910T210755Z/__pycache__/run_capture.cpython-312.pyc",
+      "sha256": "9ff064257b695a303d188dc30cb1b6fe91e08f35954bd7bdf980bf11c4ff5f5c",
+      "size": 3389
+    },
+    {
+      "member": "author/bootstrap-exception.md",
+      "original_path": "/tmp/pland-witness-author-20260910T210755Z/bootstrap-exception.md",
+      "sha256": "c85bcd74603966782e252e2596a359f82256526e9c503780f6b857cfd1726881",
+      "size": 718
+    },
+    {
+      "member": "author/project-result.interim-20260910T211623Z.md",
+      "original_path": "/tmp/pland-witness-author-20260910T210755Z/project-result.interim-20260910T211623Z.md",
+      "sha256": "411431cb08be03bfa981d2664686651de1c64152515d6d210175e714120dcc85",
+      "size": 1345
+    },
+    {
+      "member": "author/project-result.md",
+      "original_path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/06_build/verification/pland-witness-author-20260910T210755Z-result.md",
+      "sha256": "78a8f215ef3bfcfc726807c135bd141861780bb571a6885278ff9bf701d09f17",
+      "size": 3240
+    },
+    {
+      "member": "author/result.interim-20260910T211623Z.md",
+      "original_path": "/tmp/pland-witness-author-20260910T210755Z/result.interim-20260910T211623Z.md",
+      "sha256": "817d5737e26d4ee284e59c5c76b1a48603b7e6d135944c34c047ea879a5c1031",
+      "size": 2549
+    },
+    {
+      "member": "author/result.md",
+      "original_path": "/tmp/pland-witness-author-20260910T210755Z/result.md",
+      "sha256": "78a8f215ef3bfcfc726807c135bd141861780bb571a6885278ff9bf701d09f17",
+      "size": 3240
+    },
+    {
+      "member": "author/run_capture.py",
+      "original_path": "/tmp/pland-witness-author-20260910T210755Z/run_capture.py",
+      "sha256": "80e1654e59fa7b818cdc481124658e6485e8fbc7848ea32a225ecb00068e2d67",
+      "size": 1456
+    },
+    {
+      "member": "author/run_logged.py",
+      "original_path": "/tmp/pland-witness-author-20260910T210755Z/run_logged.py",
+      "sha256": "0eadf62d37d14be79ce397d130a5c80604c17ce5923f2df6a7f50597fd47f45b",
+      "size": 968
+    },
+    {
+      "member": "author/run_public_red.py",
+      "original_path": "/tmp/pland-witness-author-20260910T210755Z/run_public_red.py",
+      "sha256": "a8052396b982e5eb86621ca8c44e8c8d0452757a9706ab21db5c4c7e7136dbf7",
+      "size": 288
+    },
+    {
+      "member": "author/t1_escape_tier.log",
+      "original_path": "/tmp/pland-witness-author-20260910T210755Z/t1_escape_tier.log",
+      "sha256": "cfbc5d0811ea30b95ee25687db182440dea4cb08196b18f5218c07b9dcf2866e",
+      "size": 10210
+    },
+    {
+      "member": "author/verify_packet.py",
+      "original_path": "/tmp/pland-witness-author-20260910T210755Z/verify_packet.py",
+      "sha256": "c8c3b14f89b5ad31125d78e694a585f73cf213bff435ae32f09c3bc6be9bca85",
+      "size": 486
+    },
+    {
+      "member": "commission/TASK.md",
+      "original_path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/06_build/handoffs/pland-witness-author-20260910T210755Z/TASK.md",
+      "sha256": "2a4da075ed1d28f274d73a8aa66e6642ee0f403c736ea227708041bd65cdf4ef",
+      "size": 10657
+    },
+    {
+      "member": "commission/beacon.md",
+      "original_path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/06_build/handoffs/pland-witness-author-20260910T210755Z/beacon.md",
+      "sha256": "fd6b77f4d0b9fa2cd9db66abf61bc6a1ce0b1c3c09da35956d5b92dbf9bd0837",
+      "size": 493
+    },
+    {
+      "member": "commission/flow.yaml",
+      "original_path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/06_build/handoffs/pland-witness-author-20260910T210755Z/flow.yaml",
+      "sha256": "838a3cbae5a1c4cee85540529b525caa478904b61de521431b654b317bd17dca",
+      "size": 5553
+    },
+    {
+      "member": "commission/journal-tail.md",
+      "original_path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/06_build/handoffs/pland-witness-author-20260910T210755Z/journal-tail.md",
+      "sha256": "adae4fc5143b5b5256acd005745f67dcf36925a3012eaf08614287ffad70abad",
+      "size": 1871
+    },
+    {
+      "member": "commission/task-envelope.json",
+      "original_path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/06_build/handoffs/pland-witness-author-20260910T210755Z/task-envelope.json",
+      "sha256": "30eafbd595d8ee283ae2303a2047a0f8805d47eefcd70a7d877f9c7d670a0630",
+      "size": 127788
+    },
+    {
+      "member": "coordinator/author-all-wip.diff",
+      "original_path": "/tmp/carrier-pland-fixture-adoption-20260910.hnDKH2sk/author-all-wip.diff",
+      "sha256": "8aa92eedf2f4e11c0da99acfb4bf11eb3b4a3335fe6ba0961662d09b15e23df4",
+      "size": 9519
+    },
+    {
+      "member": "coordinator/author-wip-numstat.txt",
+      "original_path": "/tmp/carrier-pland-fixture-adoption-20260910.hnDKH2sk/author-wip-numstat.txt",
+      "sha256": "ab3e88d0a67cf4e0db20e241f29e15c467ffbdcc12b16eca59c7084caa28724d",
+      "size": 210
+    },
+    {
+      "member": "coordinator/preserve.py",
+      "original_path": "/tmp/carrier-pland-fixture-adoption-20260910.hnDKH2sk/preserve.py",
+      "sha256": "fa18776a1f712f2e83dd37b07ce691a2a683c7949436221b6d9af9057a2095ed",
+      "size": 5011
+    },
+    {
+      "member": "coordinator/process-snapshot.txt",
+      "original_path": "/tmp/carrier-pland-fixture-adoption-20260910.hnDKH2sk/process-snapshot.txt",
+      "sha256": "93faf4d56b1515e10ee44b4c8d28295ade3e4951755dd05aa30db8aa351c98fa",
+      "size": 57804
+    },
+    {
+      "member": "coordinator/root-input-audit.json",
+      "original_path": "/tmp/carrier-pland-fixture-adoption-20260910.hnDKH2sk/root-input-audit.json",
+      "sha256": "5c7b34e0390d9c24fbcc126a12bdf9893c99009a86f07cb2a2b8e5b39b3e6129",
+      "size": 975
+    },
+    {
+      "member": "coordinator/t1_escape_tier.py.wip",
+      "original_path": "/tmp/carrier-pland-fixture-adoption-20260910.hnDKH2sk/t1_escape_tier.py.wip",
+      "sha256": "b8c9d764fee930678e59505e12cc9061615027e85d4e1cfbf69ceec11ed5a0be",
+      "size": 77607
+    },
+    {
+      "member": "live-handback/projects/crow-audio-carrier-v1/01_docs/STATUS.md",
+      "original_path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/01_docs/STATUS.md",
+      "sha256": "b200db7e2b1f4a9db6d3da39e5e8da6257076317d11320bf06e2c3973013cd81",
+      "size": 483
+    },
+    {
+      "member": "live-handback/projects/crow-audio-carrier-v1/01_docs/journal/placement.md",
+      "original_path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/01_docs/journal/placement.md",
+      "sha256": "ed56b0972d0a7f5791005a7ee03af499fbfcea76def9a527e39ef0a4a7a26d36",
+      "size": 80043
+    },
+    {
+      "member": "live-handback/projects/crow-audio-carrier-v1/06_build/agent_handoff.yaml",
+      "original_path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/06_build/agent_handoff.yaml",
+      "sha256": "50b9db595293568884334fdd7381688529068857dbb2c3befcfa187802e75cdc",
+      "size": 5615
+    },
+    {
+      "member": "live-handback/tests/t1_escape_tier.py",
+      "original_path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/tests/t1_escape_tier.py",
+      "sha256": "b8c9d764fee930678e59505e12cc9061615027e85d4e1cfbf69ceec11ed5a0be",
+      "size": 77607
+    },
+    {
+      "member": "scratch/pland_witness_buor9qaj/witness.kicad_dru",
+      "original_path": "/tmp/pland_witness_buor9qaj/witness.kicad_dru",
+      "sha256": "249143e30305c693abee24b5741e6462b51ef3787d767e7dfdc0899122619677",
+      "size": 96
+    },
+    {
+      "member": "scratch/pland_witness_buor9qaj/witness.kicad_pcb",
+      "original_path": "/tmp/pland_witness_buor9qaj/witness.kicad_pcb",
+      "sha256": "bdf92fde380abffb79645ed1dc7250531427ad2397508919e59f6830a908e45b",
+      "size": 6228
+    },
+    {
+      "member": "scratch/pland_witness_buor9qaj/witness.kicad_prl",
+      "original_path": "/tmp/pland_witness_buor9qaj/witness.kicad_prl",
+      "sha256": "03925042ac16e50a5a0d56f94f3608c01cf07c9f1fb93af547ea91cb1f31528d",
+      "size": 2294
+    },
+    {
+      "member": "scratch/pland_witness_buor9qaj/witness.kicad_pro",
+      "original_path": "/tmp/pland_witness_buor9qaj/witness.kicad_pro",
+      "sha256": "35809e60c3793d7a6006049fa1dedb2a0660769a86157a037f7b31b6abd9d4e7",
+      "size": 177
+    },
+    {
+      "member": "scratch/pland_witness_c6rfmpgs/witness.kicad_dru",
+      "original_path": "/tmp/pland_witness_c6rfmpgs/witness.kicad_dru",
+      "sha256": "4227d7da8215194dc28f73997b9721437f75b2ef941dc0edf607e03ff2a49060",
+      "size": 98
+    },
+    {
+      "member": "scratch/pland_witness_c6rfmpgs/witness.kicad_pcb",
+      "original_path": "/tmp/pland_witness_c6rfmpgs/witness.kicad_pcb",
+      "sha256": "ad630bdd7b0683c1625383552c9638a33a81f7a85bf876ba91b69c9a7f68e121",
+      "size": 6228
+    },
+    {
+      "member": "scratch/pland_witness_c6rfmpgs/witness.kicad_prl",
+      "original_path": "/tmp/pland_witness_c6rfmpgs/witness.kicad_prl",
+      "sha256": "03925042ac16e50a5a0d56f94f3608c01cf07c9f1fb93af547ea91cb1f31528d",
+      "size": 2294
+    },
+    {
+      "member": "scratch/pland_witness_c6rfmpgs/witness.kicad_pro",
+      "original_path": "/tmp/pland_witness_c6rfmpgs/witness.kicad_pro",
+      "sha256": "35809e60c3793d7a6006049fa1dedb2a0660769a86157a037f7b31b6abd9d4e7",
+      "size": 177
+    },
+    {
+      "member": "scratch/pland_witness_mvyf2gld/witness.kicad_dru",
+      "original_path": "/tmp/pland_witness_mvyf2gld/witness.kicad_dru",
+      "sha256": "249143e30305c693abee24b5741e6462b51ef3787d767e7dfdc0899122619677",
+      "size": 96
+    },
+    {
+      "member": "scratch/pland_witness_mvyf2gld/witness.kicad_pcb",
+      "original_path": "/tmp/pland_witness_mvyf2gld/witness.kicad_pcb",
+      "sha256": "88133ef216c42dc33ad714f874133546b608e90c4d57720b6b4bcf6a2c5bece4",
+      "size": 6228
+    },
+    {
+      "member": "scratch/pland_witness_mvyf2gld/witness.kicad_prl",
+      "original_path": "/tmp/pland_witness_mvyf2gld/witness.kicad_prl",
+      "sha256": "03925042ac16e50a5a0d56f94f3608c01cf07c9f1fb93af547ea91cb1f31528d",
+      "size": 2294
+    },
+    {
+      "member": "scratch/pland_witness_mvyf2gld/witness.kicad_pro",
+      "original_path": "/tmp/pland_witness_mvyf2gld/witness.kicad_pro",
+      "sha256": "35809e60c3793d7a6006049fa1dedb2a0660769a86157a037f7b31b6abd9d4e7",
+      "size": 177
+    }
+  ],
+  "scope": "Rejected fixture-author attempt; no production method or placement acceptance."
+}

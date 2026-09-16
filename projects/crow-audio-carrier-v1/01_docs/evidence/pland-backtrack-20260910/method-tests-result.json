@@ -1,0 +1,12 @@
+{
+  "status": "INCOMPLETE",
+  "argv": ["/usr/bin/python3", "tests/t1_escape_tier.py"],
+  "started_at": "2026-09-10T20:12:29Z",
+  "ended_at": "2026-09-10T20:13:31Z",
+  "duration_seconds": 62.25,
+  "rc": 0,
+  "total_passed": 49,
+  "total_failed": 0,
+  "known_bad": 31,
+  "statement": "Executed before later reviewer-required WIP changes; stale and not current validation."
+}

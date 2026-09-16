@@ -1,0 +1,309 @@
+{
+  "created_at": "2026-09-11T03:57:39.989933+00:00",
+  "source_preimage_commit": "167bfa362e07451fae087ce669716f97c9ee9a08",
+  "members": {
+    "attempt/.closing": {
+      "original_path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/06_build/task_runs/native-kernel-integration-20260911T030619Z/.closing",
+      "sha256": "16fef517ae8f6086272c2c077e99df41d11ae26f4ee274183f1610edddf89edd",
+      "size": 27
+    },
+    "attempt/admission.json": {
+      "original_path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/06_build/task_runs/native-kernel-integration-20260911T030619Z/admission.json",
+      "sha256": "29dba3ab90351879c79e05f0c7a795880e6f5f4d21fa58d78b8bbcdc6d1e5729",
+      "size": 8921839
+    },
+    "attempt/attempt.json": {
+      "original_path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/06_build/task_runs/native-kernel-integration-20260911T030619Z/attempt.json",
+      "sha256": "33c28f52cfd74af8aa666035169cff3d0e038281e065f7c4d039d678369090ac",
+      "size": 2072
+    },
+    "attempt/envelope.json": {
+      "original_path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/06_build/task_runs/native-kernel-integration-20260911T030619Z/envelope.json",
+      "sha256": "5a898e6b5088d126b1bbc331ea42a57e687fd036c7973a1c1a658ef6cda66b71",
+      "size": 5763
+    },
+    "packet/887c61662cbdc291a68c03bdbfb4569d5c93eb830989f31393338c14a128b3db.tar.gz": {
+      "original_path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/06_build/tmp/native-kernel-integration-20260911T030619Z/887c61662cbdc291a68c03bdbfb4569d5c93eb830989f31393338c14a128b3db.tar.gz",
+      "sha256": "887c61662cbdc291a68c03bdbfb4569d5c93eb830989f31393338c14a128b3db",
+      "size": 457574
+    },
+    "packet/9ca5188d297ac806316e5955d3053bbf73be949c5a44e445dd14a51607b27160.tar.gz": {
+      "original_path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/06_build/tmp/native-kernel-integration-20260911T030619Z/9ca5188d297ac806316e5955d3053bbf73be949c5a44e445dd14a51607b27160.tar.gz",
+      "sha256": "9ca5188d297ac806316e5955d3053bbf73be949c5a44e445dd14a51607b27160",
+      "size": 4347327
+    },
+    "packet/TASK.md": {
+      "original_path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/06_build/tmp/native-kernel-integration-20260911T030619Z/TASK.md",
+      "sha256": "8b04591031b474af505223517682defc63c0056b8a512528f7d3d1c8e0fca92e",
+      "size": 9129
+    },
+    "packet/authority/CLAUDE.md": {
+      "original_path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/06_build/tmp/native-kernel-integration-20260911T030619Z/authority/CLAUDE.md",
+      "sha256": "0f3f61761a2cbe2e9ee7653cdf347f9894fffac485b544ba67bd76f4edb0e4a8",
+      "size": 6510
+    },
+    "packet/authority/skills/pcb-design/SKILL.md": {
+      "original_path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/06_build/tmp/native-kernel-integration-20260911T030619Z/authority/skills/pcb-design/SKILL.md",
+      "sha256": "d357b15b9759f4f048b244d4a8b5f7273a9318eb06d34271379caf8caf36c5b8",
+      "size": 16199
+    },
+    "packet/authority/skills/pcb-design/references/compute-tiers.md": {
+      "original_path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/06_build/tmp/native-kernel-integration-20260911T030619Z/authority/skills/pcb-design/references/compute-tiers.md",
+      "sha256": "8f19b8fcb548a2a48eb163016eb40c8bd705a4708b90c4760f02754ab898cf2f",
+      "size": 2238
+    },
+    "packet/authority/skills/pcb-design/references/execution-runtime.md": {
+      "original_path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/06_build/tmp/native-kernel-integration-20260911T030619Z/authority/skills/pcb-design/references/execution-runtime.md",
+      "sha256": "63bc6c053e99acfbeea931c3440bca7966bf923c2a62bdb5fd7da9bda5630abc",
+      "size": 18076
+    },
+    "packet/authority/skills/pcb-design/references/lifecycle-and-backtrack.md": {
+      "original_path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/06_build/tmp/native-kernel-integration-20260911T030619Z/authority/skills/pcb-design/references/lifecycle-and-backtrack.md",
+      "sha256": "a014c201a9ba62e628e1fe8c325354bf040b4bbf8b88c623cd035a542d5c2d98",
+      "size": 14725
+    },
+    "packet/c059998a1be87d940015dab5f0c02afd22484ce2b5d495e591b1259187e949d5.tar.gz": {
+      "original_path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/06_build/tmp/native-kernel-integration-20260911T030619Z/c059998a1be87d940015dab5f0c02afd22484ce2b5d495e591b1259187e949d5.tar.gz",
+      "sha256": "c059998a1be87d940015dab5f0c02afd22484ce2b5d495e591b1259187e949d5",
+      "size": 7683616
+    },
+    "packet/da81f0f730c19d4b77260fcf52ada0f35d2ed3d380463b455c463de8cb479048.tar.gz": {
+      "original_path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/06_build/tmp/native-kernel-integration-20260911T030619Z/da81f0f730c19d4b77260fcf52ada0f35d2ed3d380463b455c463de8cb479048.tar.gz",
+      "sha256": "da81f0f730c19d4b77260fcf52ada0f35d2ed3d380463b455c463de8cb479048",
+      "size": 3663151
+    },
+    "packet/evaluator-manifest.json": {
+      "original_path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/06_build/tmp/native-kernel-integration-20260911T030619Z/evaluator-manifest.json",
+      "sha256": "38650da5c12e9539c84a7f200526a1b5b005d9d01c9c5f38d4bd929c5019de7c",
+      "size": 43792
+    },
+    "packet/kernel-contract-interruption-manifest.json": {
+      "original_path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/06_build/tmp/native-kernel-integration-20260911T030619Z/kernel-contract-interruption-manifest.json",
+      "sha256": "33c0e64d9f6d7d54c4d50194d573e7734584f318cba830918d95e1b12abdf092",
+      "size": 800289
+    },
+    "packet/native-kernel-attempt-manifest.json": {
+      "original_path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/06_build/tmp/native-kernel-integration-20260911T030619Z/native-kernel-attempt-manifest.json",
+      "sha256": "fb63d502c35f17f5ccda91e492b20b7066244c324d9ac84a69fcd4de0d47b2b1",
+      "size": 395002
+    },
+    "packet/native-semantics-manifest.json": {
+      "original_path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/06_build/tmp/native-kernel-integration-20260911T030619Z/native-semantics-manifest.json",
+      "sha256": "c011352b9468add2fe2406ab1357b56199a1703c10826c3bd2ea73d84cd5e970",
+      "size": 46606
+    },
+    "packet/native-semantics-replacement-adoption.md": {
+      "original_path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/06_build/tmp/native-kernel-integration-20260911T030619Z/native-semantics-replacement-adoption.md",
+      "sha256": "7ece48c97a43c94f8ce90cdc9158e1106d8ac72c7d980eff86c9b780941e47f3",
+      "size": 8838
+    },
+    "packet/native-semantics-replacement-evidence.json": {
+      "original_path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/06_build/tmp/native-kernel-integration-20260911T030619Z/native-semantics-replacement-evidence.json",
+      "sha256": "91c0e6be45a4b594c89a778bc31168f0f74cd254b7b97700431cba202345b3ea",
+      "size": 17054
+    },
+    "packet/native-semantics-replacement-result.md": {
+      "original_path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/06_build/tmp/native-kernel-integration-20260911T030619Z/native-semantics-replacement-result.md",
+      "sha256": "2ce3d413250a59bdf28d7fc2ee4d8c985fb40c9f0b8ac319bff0af02addd10ee",
+      "size": 12739
+    },
+    "packet/preimage-manifest.json": {
+      "original_path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/06_build/tmp/native-kernel-integration-20260911T030619Z/preimage-manifest.json",
+      "sha256": "b67a94040dbd572ac3a8fc834428cc0c34bc551ae51f6b83601095bc3a5576ab",
+      "size": 210178
+    },
+    "packet/qualification.json": {
+      "original_path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/06_build/tmp/native-kernel-integration-20260911T030619Z/qualification.json",
+      "sha256": "f05c32cd69b706a1cb6361564510e5758843eb98d4a501d65660d26fb0d7c663",
+      "size": 48145
+    },
+    "packet/qualification.log": {
+      "original_path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/06_build/tmp/native-kernel-integration-20260911T030619Z/qualification.log",
+      "sha256": "b5e8e907e78a983f4290129089c8d50438fe089c0fe40e19d31602795a513db7",
+      "size": 591
+    },
+    "packet/root-preimage-reopening.json": {
+      "original_path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/06_build/tmp/native-kernel-integration-20260911T030619Z/root-preimage-reopening.json",
+      "sha256": "5f869f1ee21eec753c709625458739c354b9053ba78976eba9a040db22f20818",
+      "size": 2424
+    },
+    "packet/source-preimages.json": {
+      "original_path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/06_build/tmp/native-kernel-integration-20260911T030619Z/source-preimages.json",
+      "sha256": "6bfe0722aa1db74f0d5e6fb32e475afc1d13f226018f01660fec1ebb6a19094e",
+      "size": 2076
+    },
+    "restart-preimages/03_tscircuit/build/circuit.json": {
+      "original_path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/03_tscircuit/build/circuit.json",
+      "sha256": "e0f1275799fd2fa1529fb11e2275d26a2775a4e390987eedb7ea12dccdcaf55d",
+      "size": 5521071
+    },
+    "restart-preimages/03_tscircuit/build/schematic.pdf": {
+      "original_path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/03_tscircuit/build/schematic.pdf",
+      "sha256": "4455fc6170799bc597bcf6348c25473f814133e5ffb4146266b97ed13a3537f7",
+      "size": 834703
+    },
+    "restart-preimages/04_kicad/crow_audio_carrier_v1.kicad_dru": {
+      "original_path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/04_kicad/crow_audio_carrier_v1.kicad_dru",
+      "sha256": "94251d1c7cb043c66d402d55b5cf89bac74f7ae0927b012556113ae56d7a2471",
+      "size": 17123
+    },
+    "restart-preimages/04_kicad/crow_audio_carrier_v1.kicad_pcb": {
+      "original_path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/04_kicad/crow_audio_carrier_v1.kicad_pcb",
+      "sha256": "89d33bae8eaf67457fde887eae9db187d9284ea54be386f0d31e3d7dfe92bf2e",
+      "size": 1463999
+    },
+    "restart-preimages/04_kicad/crow_audio_carrier_v1.kicad_pro": {
+      "original_path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/04_kicad/crow_audio_carrier_v1.kicad_pro",
+      "sha256": "4a1040e34967d6610bd5032e46b3c2d0e24863370106f7e220d88d4dd633c61d",
+      "size": 28092
+    },
+    "restart-preimages/04_kicad/crow_audio_carrier_v1.kicad_sch": {
+      "original_path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/04_kicad/crow_audio_carrier_v1.kicad_sch",
+      "sha256": "b95cfca75a079b4b155a4fa24aa2c548fcaef779cd72271e5212a18529856674",
+      "size": 1156167
+    },
+    "restart-preimages/06_build/agent_handoff.yaml": {
+      "original_path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/06_build/agent_handoff.yaml",
+      "sha256": "53a1863d82c4ae61220b03b0b0ebb58b197fc6cfd5efebfffc8995c32a4eb7bc",
+      "size": 5607
+    },
+    "restart-preimages/06_build/build_provenance.json": {
+      "original_path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/06_build/build_provenance.json",
+      "sha256": "29f453ec9b5b5e9aad677f4e00d5add593f234dcd1393fa1b338684ab4f96003",
+      "size": 862
+    },
+    "restart-preimages/06_build/checkpoints/prelayout-inputs.json": {
+      "original_path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/06_build/checkpoints/prelayout-inputs.json",
+      "sha256": "28581244e7cca1837bd9aee131c428892c4f819fb02a57627e35cf52df6d133d",
+      "size": 90431
+    },
+    "restart-preimages/06_build/checkpoints/prelayout.json": {
+      "original_path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/06_build/checkpoints/prelayout.json",
+      "sha256": "5c1ec6b2198d53ff321b90bcab39f8140337a9319ace10025c65916f78769069",
+      "size": 1798
+    },
+    "restart-preimages/06_build/checkpoints/schematic.json": {
+      "original_path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/06_build/checkpoints/schematic.json",
+      "sha256": "f5327aaa478d864250983e5dd1c9b4d2bd5478b2d12ac51db36079e6d84f7dc1",
+      "size": 1169
+    },
+    "restart-preimages/06_build/netlists/crow_audio_carrier_v1.net": {
+      "original_path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/06_build/netlists/crow_audio_carrier_v1.net",
+      "sha256": "3364e97284060bace699f887900baf1fc8fcc8090355f5f6b2c35332901bdb44",
+      "size": 630493
+    },
+    "restart-preimages/06_build/sourcing/prelayout_request.json": {
+      "original_path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/06_build/sourcing/prelayout_request.json",
+      "sha256": "b201db0e4ea1f7384c061816f67d5b549ad010a5af31246c1d0c0bef7bd1c101",
+      "size": 14246
+    },
+    "restart-preimages/06_build/sourcing/prelayout_response.csv": {
+      "original_path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/06_build/sourcing/prelayout_response.csv",
+      "sha256": "2f7426cf5d959bd3fb9e4e0c944c03d7be3371ac2e64235fe36768ba8aa33d32",
+      "size": 1647
+    },
+    "restart-preimages/06_build/sourcing/public_catalog_probe.csv": {
+      "original_path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/06_build/sourcing/public_catalog_probe.csv",
+      "sha256": "8c0d738da0973ce6b6e206e2a27eca245a76866677b6d3b62dce70b556bb2098",
+      "size": 5355
+    },
+    "restart-preimages/06_build/sourcing/public_catalog_stock.json": {
+      "original_path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/06_build/sourcing/public_catalog_stock.json",
+      "sha256": "84b0349aa562cfd2052b094c809c43dc16d727b12aadf8df1e355cd79a27b81c",
+      "size": 16795
+    },
+    "restart-preimages/06_build/sourcing/public_catalog_stock.txt": {
+      "original_path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/06_build/sourcing/public_catalog_stock.txt",
+      "sha256": "425f3a48fa8b5a882014cf57ae49847268e1a3eab44e2dee700d9fa4f6b5d60e",
+      "size": 9229
+    },
+    "restart-preparation.json": {
+      "original_path": "/tmp/carrier-canonical-restart-preparation-20260911.json",
+      "sha256": "4e32d5d6859ae415a030da57469bb71ea216a4d49528552c2a70ebbc9e8ea1c2",
+      "size": 5721
+    },
+    "root-review/adopt.py": {
+      "original_path": "/tmp/carrier-native-integration-adoption-20260911/adopt.py",
+      "sha256": "8b779eb7e62ff099b5bbb54192a93a28d0d052521bcba82f4eb56853cdd51016",
+      "size": 9448
+    },
+    "root-review/archive-verification.json": {
+      "original_path": "/tmp/carrier-native-integration-adoption-20260911/archive-verification.json",
+      "sha256": "bbc59338473223321177b222fbdffe00ed65ce4ca063312083b6a08d6c068ecb",
+      "size": 373
+    },
+    "root-review/primary-new.binding.json": {
+      "original_path": "/tmp/carrier-native-integration-adoption-20260911/primary-new.binding.json",
+      "sha256": "88708810a59ad247f82339ba72839b883b327e62d47c0a98856d6c8c4a5833f3",
+      "size": 336
+    },
+    "root-review/primary-new.log": {
+      "original_path": "/tmp/carrier-native-integration-adoption-20260911/primary-new.log",
+      "sha256": "40d740cb4e5d47cb26a14b9891cadcd6893f04787fad39d2bdf35ba37f25b413",
+      "size": 323
+    },
+    "root-review/primary-new.result.json": {
+      "original_path": "/tmp/carrier-native-integration-adoption-20260911/primary-new.result.json",
+      "sha256": "6e3223e445f7fdf1041bac8a8fa5a3789ce3eb70e983c8deac485881d30cce24",
+      "size": 667
+    },
+    "root-review/primary-old.binding.json": {
+      "original_path": "/tmp/carrier-native-integration-adoption-20260911/primary-old.binding.json",
+      "sha256": "960ad9afe8e0a13e9113db14dd1747f27eb16159e2764f97bd8b2882fb5e7593",
+      "size": 336
+    },
+    "root-review/primary-old.log": {
+      "original_path": "/tmp/carrier-native-integration-adoption-20260911/primary-old.log",
+      "sha256": "565b4f7f4e85cad50c96155f573b7ef8f0accd96c917aae807d9fa719c9782a9",
+      "size": 2241
+    },
+    "root-review/primary-old.result.json": {
+      "original_path": "/tmp/carrier-native-integration-adoption-20260911/primary-old.result.json",
+      "sha256": "fa3c4a931c337c6e90789ae5c0b2bbb90930013951338d890535e55da7b07279",
+      "size": 696
+    },
+    "root-review/primary-replay.json": {
+      "original_path": "/tmp/carrier-native-integration-adoption-20260911/primary-replay.json",
+      "sha256": "1bcd92e78ca2177aacce8ab63826e2781bcaebffc0397a4d737460a78453698c",
+      "size": 2355
+    },
+    "root-review/replay_primary.py": {
+      "original_path": "/tmp/carrier-native-integration-adoption-20260911/replay_primary.py",
+      "sha256": "a03116f7b8386aeb828f349d2809ed93a5def5732bdb345bc185c41f7e458150",
+      "size": 1786
+    },
+    "root-review/verify-archive.log": {
+      "original_path": "/tmp/carrier-native-integration-adoption-20260911/verify-archive.log",
+      "sha256": "6c4f9a9355efa3f5d9abbd10fdbf60af0864a0be241433147d03912bb59f81fd",
+      "size": 355
+    },
+    "root-review/verify-archive.process.json": {
+      "original_path": "/tmp/carrier-native-integration-adoption-20260911/verify-archive.process.json",
+      "sha256": "e46bfefafa4a0b024d5e21f95c3c7b546398422c0d85e6ad1c31fccd21cd997e",
+      "size": 668
+    },
+    "root-review/verify_archive.py": {
+      "original_path": "/tmp/carrier-native-integration-adoption-20260911/verify_archive.py",
+      "sha256": "132de57f833708a208c8450994ef27627686a67984c4792774f6eb5d600acc89",
+      "size": 3108
+    }
+  },
+  "external_archive": {
+    "path": "146111ed2a54161ea86fa9fd8910692b487f83b6a191901ee430af0d9ca2b553.tar.gz",
+    "sha256": "146111ed2a54161ea86fa9fd8910692b487f83b6a191901ee430af0d9ca2b553",
+    "size": 43239886
+  },
+  "prelayout_removals_not_yet_executed": [
+    "06_build/checkpoints/prelayout-inputs.json",
+    "06_build/checkpoints/prelayout.json",
+    "06_build/checkpoints/schematic.json",
+    "06_build/sourcing/prelayout_request.json",
+    "06_build/sourcing/prelayout_response.csv",
+    "06_build/sourcing/prelayout_receipt.json"
+  ],
+  "archive": {
+    "path": "fbd7ea95714e2ab36034a95cc34ee9fdbcea9b4124896b02296725acb00d7a0f.tar.gz",
+    "sha256": "fbd7ea95714e2ab36034a95cc34ee9fdbcea9b4124896b02296725acb00d7a0f",
+    "size": 19935601
+  }
+}

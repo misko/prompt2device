@@ -1,0 +1,21 @@
+mpn: TCSD-06-D-04.50-01
+manufacturer: Samtec
+type: double_ended_female_idc_cable_assembly
+status: active_configured
+datasheet:
+  doc_id: TCSD-series-print
+  revision: BE
+  url: https://suddendocs.samtec.com/prints/tcsd-xx-x-xx.xx-01-x-xxx-xxx-mkt.pdf
+  local: TCSD-Series_RevBE.pdf
+  sha256: fa4643ec2ea321bf7bc186d20bf8c1b31a7fb0b3d335662c2ba8eba9007b108b
+  fetched: 2026-09-02
+  pages: 4
+  provenance: "Downloaded from Samtec's official drawing endpoint; the committed revision-BE series print matches the declared SHA-256. The adjacent Markdown file is the reviewed exact-configuration fact extraction."
+package: "2x6 2.00mm female IDC sockets, double-ended, 4.50in 28AWG ribbon"
+footprint: none_off_board
+limits: {circuits: 12, pitch_mm: 2.0, nominal_length_mm: 114.3, length_tolerance_mm: 3.175, socket_body_length_ref_mm: 16.0, socket_body_width_mm: "5.08 +/-0.254", mating_depth_ref_mm: 3.18}
+gotchas:
+  - "No keying or reverse-wire option is selected; label both assemblies end-to-end and continuity-prove 1-1 through 12-12 before connecting either board."
+  - "Samtec proves compatibility with the selected carrier TMM header family, but miniDSP does not publish its board-header MPN; measure and fit-prove the MCHStreamer sample."
+verified: "Exact orderable configuration and series geometry cited; physical MCHStreamer fit and installed cable routing are not passed."
+sourcing: {lcsc: null, alternates: [], note: "Two exact assemblies are required per carrier; allocation/stock not claimed."}

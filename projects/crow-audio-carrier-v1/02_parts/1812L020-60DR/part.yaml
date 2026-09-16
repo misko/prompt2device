@@ -1,0 +1,48 @@
+mpn: 1812L020/60DR
+manufacturer: Littelfuse
+type: resettable_pptc_fuse
+value: 1812L020/60DR
+status: rejected_candidate_hot_margin_and_drop
+note_dirname: "Filesystem-safe spelling of the exact orderable MPN, whose slash cannot be a directory character."
+datasheet:
+  doc_id: "1812L Series"
+  revision: "2021 series datasheet"
+  url: https://www.littelfuse.com/~/media/electronics/datasheets/resettable_ptcs/littelfuse_ptc_1812l_datasheet.pdf.pdf
+  local: null
+  sha256: 1748c160d212fda81345d107942386ca839de4ed7f9fba4b8c661c25d84155ea
+  fetched: 2026-09-01
+  pages: 8
+  provenance: "Exact Littelfuse manufacturer PDF retrieved through a mirror because the official Akamai endpoint returned HTTP 403 in this environment."
+package: "1812 / 4532 metric surface-mount PPTC"
+footprint: Fuse:Fuse_1812_4532Metric
+escape: {style: passive, pitch: 4.275, tier_required: jlc_2layer_default, checked: "Littelfuse 1812L dimensions/pad diagram and KiCad 1812 footprint reviewed 2026-09-01"}
+pins: {1: PTC1, 2: PTC2}
+limits:
+  hold_current_20c: 0.20A
+  trip_current_20c: 0.40A
+  voltage_max: 60VDC
+  fault_current_max: 40A
+  power_dissipation_typical: 0.8W
+  max_trip_time: "2.0s at 1.0A"
+  resistance_initial_min: 1.4Ohm
+  resistance_post_trip_max: 4.4Ohm
+  hold_current_70c: 0.12A
+  hold_current_85c: 0.10A
+gotchas:
+  - "Rejected for F1-F8: the 0.10A hold value at 85C has no hot-load margin and 4.4Ohm R1max exhausts the governed carrier-header voltage budget."
+  - "This is a thermally operated resettable protector, not a precision current limiter. Trip time, ambient, copper heat sinking, prior trip history, and airflow all matter."
+  - "Up to 4.4Ohm is permitted after trip; validate normal-path voltage drop and self-heating at the actual port current."
+  - "Re-fetch and compare the current official Littelfuse bytes before order because this pinned manufacturer document was obtained through a mirror."
+verified: "CITED: Littelfuse 1812L electrical table PDF p.2 fixes 1812L020/60 at 0.20A hold, 0.40A trip, 60V, 40A, 1A/2s, 1.4Ohm min and 4.4Ohm R1max; thermal derating table PDF p.3 fixes 0.12A at 70C and 0.10A at 85C; ordering table PDF p.8 fixes exact 1812L020/60DR; re-read 2026-09-01."
+layout:
+  source: "Littelfuse 1812L dimensions and recommended pad layout, PDF pp.6-7"
+  reviewed: 2026-09-01
+  notes:
+    - "Place in series at the protected branch origin with copper appropriate to the fault and steady-state current."
+    - "Keep it away from the buck converter and other heat sources; intentional copper area changes its thermal behavior and must be consistent across channels."
+layout_refs:
+  - {tier: 1, reached: true, artifact: "Littelfuse 1812L electrical, thermal-derating, dimensions, and pad-layout tables", why: "Manufacturer authority fixes the exact /60 electrical row, temperature derating, and package geometry."}
+sourcing:
+  lcsc: null
+  alternates: []
+  note: "No current JLC/LCSC allocation is proven. Assembly must record an exact allocation or manual/consign disposition; first articles must validate voltage drop and trip behavior."

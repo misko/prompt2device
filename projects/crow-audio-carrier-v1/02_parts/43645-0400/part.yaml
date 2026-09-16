@@ -1,0 +1,20 @@
+mpn: "43645-0400"
+manufacturer: Molex
+type: cable_receptacle_housing
+status: active
+datasheet: {doc_id: "436450400 sales drawing", revision: A1, url: "https://www.molex.com/content/dam/molex/molex-dot-com/products/automated/en-us/salesdrawingpdf/436/43645/436450400_sd.pdf", local: null, sha256: null, fetched: 2026-09-01}
+package: "Micro-Fit 3.0 four-position single-row receptacle housing"
+footprint: none_off_board
+mates: plug
+pins: {1: "+12V_POD", 2: GND, 3: "AUDIO+", 4: "AUDIO-"}
+limits: {positions: 4, pitch_mm: 3.0, housing_width_mm: 12.85, housing_length_mm: 14.0, mating_cycles: 30}
+gotchas: ["Use the exact manufacturer mating-face view when loading cavities; never infer numbering from the wire-side view."]
+verified: "Official Molex 436450400 revision A1 drawing inspected 2026-09-01; extracted facts are retained in primary-source-record.md and raw drawing bytes remain owed."
+layout:
+  source: "Molex 436450400 revision A1 housing and mating drawings"
+  reviewed: 2026-09-01
+  notes: "Load contacts from the exact mating-face cavity view; maintain latch access, cable straight run and bend radius outside the PCB edge."
+layout_refs:
+  - {tier: 1, reached: true, artifact: "Molex 436450400 revision A1 sales drawing", why: "Binds the exact supported housing, cavity view and mated outline."}
+  - {tier: 2, reached: false, artifact: "qualified carrier eight-cable service cell", why: "No physical all-eight service fixture exists for the custom carrier."}
+sourcing: {lcsc: null, alternates: []}

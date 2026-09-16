@@ -1,0 +1,7 @@
+schema: 2
+stages: []
+no_external_gate_drive_stages: >-
+  The selected AP63205 is an integrated synchronous buck; there is no external
+  switching-frequency MOSFET gate, shunt current-limit controller, or half
+  bridge. Q_IN is a static self-biased reverse-hookup PFET with a passive gate
+  pull-down and zener clamp, not a switching converter gate-drive stage.

@@ -1,0 +1,18 @@
+mpn: B340A-13-F
+manufacturer: Diodes Incorporated
+type: schottky_diode
+value: B340A-13-F
+status: active
+datasheet: {doc_id: 'B340A_DS30891_Rev19-2.pdf', revision: 'B340A_DS30891_Rev19-2.pdf', url: 'https://www.diodes.com/assets/Datasheets/B320A-B360A.pdf', local: 'B340A_DS30891_Rev19-2.pdf', sha256: 453cbd34d996482abd07ac694c4e2d812d26b1d679d05ee325acc5c3eeb79917, fetched: 2026-09-07, provenance: 'Direct manufacturer PDF; exact bytes verified.'}
+package: 'Diode_SMD:D_SMA'
+footprint: Diode_SMD:D_SMA
+escape: {style: leaded, pitch: 4.2, tier_required: jlc_2layer_default, checked: 'Primary exact pin orientation and stock land reviewed2026-09-07'}
+pins: {1: K, 2: A}
+limits: {reverse_max_V: 40, average_current_A: 3, vf_max_3A_25C_V: 0.5, reverse_leakage_max_100C_A: 0.020}
+verified: 'Primary exact ordering, pin assignment and electrical table reopened2026-09-07; catalog exact identity only, not allocation.'
+gotchas: ['Room-temperature maximum RDS or Vf must not be presented as full-temperature maximum; ADR0009 applies separate conservative engineering hot bounds and physical acceptance.']
+layout: {source: 'B340A_DS30891_Rev19-2.pdf', reviewed: 2026-09-07, notes: ['Keep pulse-current loop short and broad; preserve pin1 orientation and provide thermal spreading.']}
+layout_refs:
+  - {tier: 1, reached: true, artifact: 'B340A_DS30891_Rev19-2.pdf', why: 'Manufacturer exact package and pin authority.'}
+  - {tier: 2, reached: false, artifact: 'Exact editable carrier load-dump reference', why: 'No identical vendor application; hot pulse/rail qualification owed.'}
+sourcing: {lcsc: C85098, alternates: [], note: 'Public exact-MPN catalog query2026-09-07; no allocation.'}

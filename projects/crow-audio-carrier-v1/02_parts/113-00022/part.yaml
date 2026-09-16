@@ -1,0 +1,11 @@
+mpn: "113-00022"
+manufacturer: HellermannTyton
+type: screw_mount_cable_tie
+status: active
+datasheet: {doc_id: "113-00022 exact product record", revision: current, url: "https://www.hellermanntyton.com/products/cable-ties-with-fixing-elements/t18mr/113-00022", local: null, sha256: null, fetched: 2026-09-01}
+package: "T18MR heat-stabilized PA66 screw-mount cable tie, article 113-00022 / order alias T18MR0C2"
+footprint: none_off_board
+limits: {bundle_diameter_min_mm: 1.5, bundle_diameter_max_mm: 20.0, length_mm: 110, width_mm: 2.5, fixing_hole_mm: 3.1, fixing_screw: "number_4_or_M2.5", minimum_tensile_strength_n: 80}
+gotchas: ["Place only after at least 12.70 mm of unconstrained wire behind the J9 housing.", "The exact mounting point, screw stack, clamp load and installed lead bend remain physical qualification, not source facts."]
+verified: "Exact HellermannTyton article record inspected 2026-09-01; extracted facts are retained in primary-source-record.md."
+sourcing: {lcsc: null, alternates: []}

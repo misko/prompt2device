@@ -1,0 +1,54 @@
+mpn: TPS3839K33DBZR
+manufacturer: Texas Instruments
+type: voltage_supervisor
+value: TPS3839K33DBZR
+status: active
+datasheet:
+  doc_id: SBVS193
+  revision: SBVS193D
+  url: https://www.ti.com/lit/ds/symlink/tps3839.pdf
+  local: TPS3839_SBVS193D.pdf
+  sha256: 5f9a9581d1b8df7f0b2a480a71dac6993c9aba3b05767ad22641d151434f5dd3
+  fetched: 2026-09-02
+  pages: 35
+  provenance: "Downloaded directly from ti.com; the committed PDF matches the declared SHA-256 and includes the exact TPS3839K33DBZR order row and DBZ pin map."
+package: "DBZ SOT-23-3 P0.95mm"
+footprint: Package_TO_SOT_SMD:SOT-23
+escape: {style: leaded, pitch: 0.95, tier_required: jlc_2layer_default, checked: "TI SBVS193D DBZ top view and package drawing reviewed 2026-09-01"}
+pins: {1: GND, 2: "RESET#", 3: VDD}
+limits:
+  vdd_operating: "0.9V to 6.5V"
+  negative_threshold: "2.857V min, 2.93V typ, 2.974V max"
+  hysteresis_typical: 29mV
+  reset_delay: "120ms min, 200ms typ, 350ms max"
+  supply_current_max: 500nA
+gotchas:
+  - "K33 means a 2.93V nominal falling threshold, not a 3.3V threshold; the G33 option is a different orderable device."
+  - "RESET is an active-low push-pull output. The 120-350ms delay is guaranteed after VDD recovers; the VDD-falling propagation delay is a different parameter."
+verified: "CITED: TI SBVS193D DBZ package top view and pin table, PDF p.5, fix 1=GND, 2=RESET, 3=VDD; device-information/electrical tables, PDF pp.2 and 7, fix K33 threshold and delay; re-read 2026-09-01."
+layout:
+  source: TI SBVS193D Layout Guidelines, PDF p.15
+  reviewed: '2026-09-08'
+  notes:
+  - Route VDD from a low-impedance rail node and place an optional 0.1uF bypass immediately at pins 3 and 1.
+  - Keep RESET away from the switching node and other fast aggressors.
+  - 'Carrier local-placement source 2026-09-08: exact-ref/non-ground-net adjacency is a rotation-aware copper-bounding-box gap, NOT pad-center
+    distance or routed length. Rounded engineering ceilings below are not manufacturer numerical maxima. Ground pours are excluded by P-ADJ-PAIR;
+    local return/thermal/escape proof remains owed on the later saved PCB.'
+  - Source-only pin-center plan uses <=5mm local bypass/BST and <=10mm feedback ceilings, with separately named bulk/input/feed exceptions. See
+    01_docs/SOURCE-CORRECTION-20260908-local-placement.md for all 299 roles and exact source geometry; no current-board acceptance is inherited.
+  adjacency:
+  - refdes:
+    - U_RST1
+    - C_RST1
+    nets:
+    - 3V3_ADC
+    max_mm: 1.5
+    why: 'Engineering copper-gap ceiling: local-bypass; exact partner, selected non-poured net only.'
+layout_refs:
+  - {tier: 1, reached: true, artifact: "TI SBVS193D layout guidelines and DBZ package drawing", why: "Manufacturer authority fixes decoupling, supply impedance, output routing, and the physical pin view."}
+  - {tier: 2, reached: false, artifact: "exact TPS3839K33 routed evaluation design", why: "No exact editable reference board was identified; the simple supervisor circuit is fully covered by the manufacturer guidance."}
+sourcing:
+  lcsc: C96333
+  alternates: []
+  note: "Exact MPN/code match queried from the live JLC catalog 2026-09-01; order-time allocation remains separate."

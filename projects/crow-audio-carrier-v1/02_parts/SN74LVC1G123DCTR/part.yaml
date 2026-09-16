@@ -1,0 +1,97 @@
+mpn: SN74LVC1G123DCTR
+manufacturer: Texas Instruments
+type: single_retriggerable_monostable_multivibrator
+value: SN74LVC1G123DCTR
+status: active
+datasheet:
+  doc_id: SCES586
+  revision: SCES586E
+  url: https://www.ti.com/lit/ds/symlink/sn74lvc1g123.pdf
+  local: SN74LVC1G123_SCES586E.pdf
+  sha256: 7248ef0ff62af4d2da172bb2900f0f1f136a6ae90109a6485228e01269fa1c1d
+  fetched: 2026-09-02
+  pages: 32
+  provenance: "Downloaded directly from ti.com; the committed PDF matches the declared SHA-256 and includes the exact DCTR order row and DCT pin map."
+package: "DCT SSOP-8 2.95x2.8mm P0.65mm"
+footprint: Package_SO:SSOP-8_2.95x2.8mm_P0.65mm
+escape: {style: leaded, pitch: 0.65, tier_required: jlc_2layer_default, checked: "TI SCES586E DCT top view and package drawing reviewed 2026-09-01"}
+pins: {1: A, 2: B, 3: "CLR#", 4: GND, 5: Q, 6: Cext, 7: Rext/Cext, 8: VCC}
+limits:
+  vcc_operating: "1.65V to 5.5V"
+  rext_min_at_vcc_3v_or_more: 1kOhm
+  operating_temperature: "-40C to +125C"
+gotchas:
+  - "A is falling-edge sensitive and B is rising-edge sensitive; CLR is active low. The three trigger inputs are not interchangeable."
+  - "TI characterizes pulse width with example R/C values but does not guarantee a physical minimum for every arbitrary Rext/Cext choice. Validate the populated timeout at voltage and temperature on first articles."
+  - "Cext connects only to the external timing capacitor; Rext/Cext is the separate resistor/capacitor junction."
+verified: "CITED: TI SCES586E Figure 4-1 and Table 4-1, PDF p.3, independently fix DCT pins 1=A, 2=B, 3=CLR, 4=GND, 5=Q, 6=Cext, 7=Rext/Cext, 8=VCC; re-read 2026-09-01."
+layout:
+  source: TI SCES586E Sections 9-10 and Figure 10-1, PDF p.16
+  reviewed: '2026-09-08'
+  notes:
+  - Place the supply bypass at VCC/GND and keep the external timing R/C loop local to pins 6-7.
+  - Keep A, B, CLR, and Q traces short and away from the buck switch node.
+  - 'Carrier local-placement source 2026-09-08: exact-ref/non-ground-net adjacency is a rotation-aware copper-bounding-box gap, NOT pad-center
+    distance or routed length. Rounded engineering ceilings below are not manufacturer numerical maxima. Ground pours are excluded by P-ADJ-PAIR;
+    local return/thermal/escape proof remains owed on the later saved PCB.'
+  - Source-only pin-center plan uses <=5mm local bypass/BST and <=10mm feedback ceilings, with separately named bulk/input/feed exceptions. See
+    01_docs/SOURCE-CORRECTION-20260908-local-placement.md for all 299 roles and exact source geometry; no current-board acceptance is inherited.
+  adjacency:
+  - refdes:
+    - U_RST2
+    - C_RST2
+    nets:
+    - 3V3_ADC
+    max_mm: 1.5
+    why: 'Engineering copper-gap ceiling: local-bypass; exact partner, selected non-poured net only.'
+  - refdes:
+    - U_RST2
+    - C_RST_T
+    nets:
+    - RESET_C
+    - RESET_RC
+    max_mm: 2.5
+    why: 'Engineering copper-gap ceiling: local-timing; exact partner, selected non-poured net only.'
+  - refdes:
+    - U_RST2
+    - R_RST_T
+    nets:
+    - RESET_RC
+    max_mm: 4.5
+    why: 'Engineering copper-gap ceiling: local-timing; exact partner, selected non-poured net only.'
+  keep_short:
+  - net: 3V3_ADC
+    anchor_pins:
+    - '8'
+    partner_refs:
+    - C_RST2
+    max_span_mm: 5
+    why: 'Engineering physical-pin center ceiling: local-bypass; exact capacitor/support ref, unique owner footprint on this carrier.'
+  - net: RESET_C
+    anchor_pins:
+    - '6'
+    partner_refs:
+    - C_RST_T
+    max_span_mm: 5
+    why: 'Engineering physical-pin center ceiling: local-timing; exact capacitor/support ref, unique owner footprint on this carrier.'
+  - net: RESET_RC
+    anchor_pins:
+    - '7'
+    partner_refs:
+    - C_RST_T
+    max_span_mm: 5
+    why: 'Engineering physical-pin center ceiling: local-timing; exact capacitor/support ref, unique owner footprint on this carrier.'
+  - net: RESET_RC
+    anchor_pins:
+    - '7'
+    partner_refs:
+    - R_RST_T
+    max_span_mm: 5
+    why: 'Engineering physical-pin center ceiling: local-timing; exact capacitor/support ref, unique owner footprint on this carrier.'
+layout_refs:
+  - {tier: 1, reached: true, artifact: "TI SCES586E Sections 8-10 and layout example", why: "Manufacturer guidance fixes timing-network connections, bypassing, and input/output routing practice."}
+  - {tier: 2, reached: false, artifact: "exact SN74LVC1G123 editable reference layout", why: "No manufacturer routed design was identified; first-article timing validation remains explicit."}
+sourcing:
+  lcsc: C123302
+  alternates: []
+  note: "Exact MPN/code match queried from the live JLC catalog 2026-09-01; order-time allocation remains separate."

@@ -1,0 +1,43 @@
+mpn: 74LVC1G17GV,125
+manufacturer: Nexperia
+type: single_noninverting_schmitt_buffer_with_ioff
+value: 74LVC1G17GV,125
+status: active
+datasheet:
+  doc_id: 74LVC1G17
+  revision: Rev.16
+  url: https://assets.nexperia.com/documents/data-sheet/74LVC1G17.pdf
+  local: 74LVC1G17.pdf
+  sha256: 3db133d57486306950ba1140ac13a8a0ea95509dcefb88db36c08423a819b163
+  fetched: 2026-09-08
+  pages: 20
+  provenance: "Manufacturer-authored Rev16 dated12July2024, downloaded from ordinary LCSC C6076 datasheet link https://datasheet.lcsc.com/datasheet/pdf/e5cdf1cb78768e69ab44a00818904f4a.pdf?productCode=C6076 after direct Nexperia403. Official web Rev16.1 was read separately; these stored bytes are Rev16."
+package: SC-74A SOT753
+footprint: Package_TO_SOT_SMD:SOT-23-5
+pins: {1: NC, 2: A, 3: GND, 4: Y, 5: VCC}
+limits:
+  input_transition: "Unlimited input rise/fall times; not an output-slew number"
+  input_leakage_uA: 1
+  ioff_uA: 2
+  input_capacitance_typical_pF: 5
+  output_low_100uA_V: 0.1
+  output_high_100uA_drop_V: 0.1
+gotchas:
+  - "Noninverting Schmitt input accepts the slow high-to-Hi-Z pull-down release. Pin1 stays NC."
+  - "A 5pF typical input capacitance is not a guaranteed maximum. ADC Hi-Z leakage and loaded VOH/VOL need separate evidence."
+  - "Propagation delay is measured with specified fast input and load; never relabel it an output-slew maximum."
+verified: "CITED: exact local Rev16 p3 GV/SOT753 figure aaa-035749 and Table3 visually reopened2026-09-08:1NC,2A,3GND,4Y,5VCC. p4Table4 L-to-L/H-to-H; p1 unlimited input rise/fall; p5-6 full-temperature static limits and discrete thresholds; p8-9 timing test conditions. Physical source acceptance remains owed."
+escape: {style: leaded, pitch: 0.95, tier_required: jlc_2layer_default, checked: "Rev16 p3 GV figure aaa-035749 visually checked:1-3 opposite5-4. SOT753 p11 uses0.95mm pitch; standard SOT-23-5 numbered land topology, native source screen required."}
+layout:
+  source: "Nexperia 74LVC1G17 exact primary datasheet; pinout and supply connection"
+  reviewed: '2026-09-08'
+  notes:
+    - "Local noninverting conditioner only. No external cable or shunt capacitor on TDM_CLEAN; separate local100nF supply bypass."
+  adjacency:
+    - {refdes: [U_TDM_SCH, C_TDM_SCH], nets: [3V3_ADC], max_mm: 1.5, why: "Engineering local bypass copper-gap ceiling; native source-screen required, not routed acceptance."}
+    - {refdes: [U_TDM_SCH, R_TDM_PD], nets: [TDM_RAW], max_mm: 1.5, why: "Engineering bounded bias branch; native source-screen required, not manufacturer length."}
+    - {refdes: [U_TDM_SCH, U_TDM], nets: [TDM_CLEAN], max_mm: 5.0, why: "Short local push-pull connection without shunt RC or cable; source placement ceiling only."}
+layout_refs:
+  - {tier: 1, reached: true, artifact: "Nexperia74LVC1G17 primary datasheet", why: "Exact logic and package reference, not a routed reference board."}
+  - {tier: 2, reached: false, artifact: "Manufacturer editable CS5308P/TDM Schmitt conditioner board", why: "No exact editable reference identified; this project derives local geometry and retains physical qualification."}
+sourcing: {lcsc: C6076, alternates: [], note: "JLC public product page exact Nexperia74LVC1G17GV,125 identity reopened2026-09-08. Public catalog selection, not allocation or order authorization."}

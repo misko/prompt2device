@@ -1,0 +1,14 @@
+mpn: CRCW120622R0FKEAHP
+manufacturer: Vishay Draloric
+type: thick_film_resistor
+value: 22
+status: active
+datasheet: {doc_id: 20043, revision: 20260317, url: 'https://www.vishay.com/docs/20043/crcwhpe3.pdf', local: CRCW_HP_20043_20260317.pdf, sha256: 07214eb07fe16cbf2458623ecf67aa89c73e0665d59e60d83f54e97f0287e3a3, fetched: 2026-09-07}
+package: '1206'
+footprint: Resistor_SMD:R_1206_3216Metric
+escape: {style: passive, pitch: 3, tier_required: jlc_2layer_default, checked: 'Exact public MPN/package identity2026-09-07; standard passive lands.'}
+pins: {1: A, 2: B}
+limits: {resistance: 22Ohm, tolerance: 1pct, power: 750mW, temperature_coefficient: 100ppm_per_C}
+verified: 'Exact manufacturer/MPN/code/value/package identified from public catalog2026-09-07; public identity not allocation. Primary series evidence and applied deratings are stated in ADR0009.'
+gotchas: ['Temperature/lifecycle and capacitor charge-injection screens are engineering bounds, not substituted manufacturer guarantees.']
+sourcing: {lcsc: C844025, alternates: []}

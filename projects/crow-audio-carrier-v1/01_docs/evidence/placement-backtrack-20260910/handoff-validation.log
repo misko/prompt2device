@@ -1,0 +1,26 @@
+[
+  {
+    "argv": [
+      "/usr/bin/python3",
+      "skills/kicad-pcb/scripts/pcb_flow.py",
+      "handoff",
+      "projects/crow-audio-carrier-v1",
+      "--stage",
+      "placement",
+      "--blocker",
+      "MEASURED source commit 0a2ee381aca8d195d6c3f2c0ba70bd49a0bf72a5: full source 325/325 PASS; final staged source contracts 17/17 PASS; archive 540/540 members verified. Current PCB unregenerated/unaccepted and frozen checkpoints stale. Next fresh mechanical owner deliberately archives/reopens checkpoints and restarts canonical generation from committed source; no stale resume or routing admission."
+    ],
+    "returncode": 0,
+    "output": "handoff -> /home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/06_build/agent_handoff.yaml (5688 bytes, stage placement)\n"
+  },
+  {
+    "argv": [
+      "/usr/bin/python3",
+      "skills/kicad-pcb/scripts/pcb_flow.py",
+      "validate",
+      "projects/crow-audio-carrier-v1"
+    ],
+    "returncode": 0,
+    "output": "handoff valid: /home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/06_build/agent_handoff.yaml (stage placement)\n"
+  }
+]

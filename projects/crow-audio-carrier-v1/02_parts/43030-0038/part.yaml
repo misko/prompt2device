@@ -1,0 +1,11 @@
+mpn: "43030-0038"
+manufacturer: Molex
+type: female_crimp_terminal
+status: active
+datasheet: {doc_id: "43030-0038 exact product record", revision: current, url: "https://www.molex.com/en-us/products/part-detail/430300038", local: null, sha256: null, fetched: 2026-09-01}
+package: "Micro-Fit 3.0 female crimp terminal for 18 AWG wire"
+footprint: none_off_board
+limits: {wire_awg: [18], conductor_cross_section_mm2: 0.75, insulation_outer_diameter_max_mm: 1.85, current_max_a: 8.5}
+gotchas: ["J9 must use 43030-0038 on the selected 18 AWG leads; 43030-0007 is not an 18 AWG contact.", "The carrier selects factory-precrimped Molex leads, so no field crimp operation is authorized for J9."]
+verified: "Exact Molex product record inspected 2026-09-01; extracted facts are retained in primary-source-record.md."
+sourcing: {lcsc: null, alternates: []}

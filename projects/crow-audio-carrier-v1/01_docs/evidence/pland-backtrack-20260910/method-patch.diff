@@ -1,0 +1,368 @@
+diff --git a/skills/kicad-pcb/scripts/escape_check.py b/skills/kicad-pcb/scripts/escape_check.py
+index 5f2198d8..4aa9c3fe 100644
+--- a/skills/kicad-pcb/scripts/escape_check.py
++++ b/skills/kicad-pcb/scripts/escape_check.py
+@@ -482,7 +482,13 @@ def max_landable(pad, obstacles, clearance, dirs=DIRS, reach=REACH_MM,
+     """
+     import math
+     best, best_d = 0.0, None
+-    span = cap / 2.0 + clearance
++    # `clearance` is either a scalar (the old public helper contract) or a
++    # mapping keyed by obstacle identity.  Pair rules are not a property of a
++    # pad alone: each obstacle may resolve a different final rule.
++    def required(ob):
++        return clearance.get(id(ob), 0.0) if isinstance(clearance, dict) else clearance
++    span = cap / 2.0 + (0.5 if callable(clearance)
++                          else max([required(ob) for ob in obstacles], default=0.0))
+     if not obstacles:
+         return cap, True, None
+     rays = [(math.cos(2.0 * math.pi * k / dirs),
+@@ -495,12 +501,30 @@ def max_landable(pad, obstacles, clearance, dirs=DIRS, reach=REACH_MM,
+                                                     (lx, ly)))
+         for ux, uy in rays:
+             ex, ey = lx + reach * ux, ly + reach * uy
+-            d = span
+-            for ob in near:
+-                d = min(d, _poly_seg_dist(ob["poly"], (lx, ly), (ex, ey)))
+-                if 2.0 * (d - clearance) <= best:
++            limit = cap
++            # A clearance rule can test the candidate Track's actual capsule.
++            # Resolve against a provisional width until its area membership is
++            # stable; this is bounded because each pass chooses an existing
++            # rule value or the unchanged native baseline.
++            settled = False
++            for _ in range(4):
++                prior, limit = limit, cap
++                for ob in near:
++                    req = (clearance(ob, (lx, ly), (ex, ey), prior)
++                           if callable(clearance) else required(ob))
++                    d = _poly_seg_dist(ob["poly"], (lx, ly), (ex, ey))
++                    limit = min(limit, 2.0 * (d - req))
++                    if limit <= best:
++                        break
++                if abs(limit - prior) <= TOL_MM:
++                    settled = True
+                     break
+-            w = 2.0 * (d - clearance)
++            if not settled:
++                # Area membership can be non-monotone with capsule width.  A
++                # non-converged candidate is unproven, so fail closed instead
++                # of returning the last iteration as an invented maximum.
++                limit = 0.0
++            w = limit
+             if w > best:
+                 best, best_d = w, round(math.degrees(math.atan2(uy, ux)), 1)
+     return min(best, cap), best >= cap - TOL_MM, best_d
+@@ -510,20 +534,24 @@ def max_landable(pad, obstacles, clearance, dirs=DIRS, reach=REACH_MM,
+ _RULE_HEAD_RE = re.compile(r'\(rule\s+"?([^"\s)]+)"?')
+ _COND_RE = re.compile(r'\(condition\s+"(.*?)"\s*\)', re.S)
+ _CON_RE = re.compile(r'\(constraint\s+(\w+)\s*\(min\s+([0-9.]+)mm\s*\)')
+-_CLASS_RE = re.compile(r"A\.NetClass\s*==\s*'([^']+)'")
+-_AREA_RE = re.compile(r"A\.insideArea\('([^']+)'\)")
+-_NET_RE = re.compile(r"A\.NetName\s*==\s*'([^']+)'")
++_ATOM_RE = re.compile(
++    r"([AB])\.(NetClass|NetName|Type)\s*==\s*'([^']*)'"
++    r"|([AB])\.insideArea\('([^']+)'\)")
+ 
+ 
+ def read_dru_rules(path):
+-    """-> [{name, kind, constraint, min_mm, netclass|area, nets}] IN FILE ORDER.
++    return read_dru_rules_from_text(
++        Path(path).read_text(encoding="utf-8-sig") if Path(path).exists() else "")
+ 
+-    Only the two condition shapes this pipeline emits are understood; any
+-    other condition is returned with kind 'unparsed' so the caller can name
+-    it rather than silently ignore a rule that may relax a pad (M-COVER).
++
++def read_dru_rules_from_text(text):
++    """Parse supported KiCad conditions in file order.
++
++    P-LAND reads only NetClass, NetName, Type, insideArea and boolean
++    conjunction/disjunction.  Any other expression remains explicitly
++    unparsed; it is never weakened into a permissive partial match.
+     """
+     out = []
+-    text = Path(path).read_text(encoding="utf-8-sig") if Path(path).exists() else ""
+     for m in _RULE_HEAD_RE.finditer(text):
+         # brace-match the rule form: `.kicad_dru` closes its parens on the
+         # constraint line, so a line-anchored regex reads ZERO rules and the
+@@ -544,18 +572,9 @@ def read_dru_rules(path):
+         cm = _COND_RE.search(body)
+         cond = cm.group(1) if cm else ""
+         rec = {"name": name, "constraint": con.group(1),
+-               "min_mm": float(con.group(2)), "cond": cond,
+-               "netclass": None, "area": None, "nets": []}
+-        cls, area = _CLASS_RE.search(cond), _AREA_RE.search(cond)
+-        if area:
+-            rec["kind"] = "area"
+-            rec["area"] = area.group(1)
+-            rec["nets"] = _NET_RE.findall(cond)
+-        elif cls and "&&" not in cond:
+-            rec["kind"] = "class"
+-            rec["netclass"] = cls.group(1)
+-        else:
+-            rec["kind"] = "unparsed"
++               "min_mm": float(con.group(2)), "cond": cond}
++        reduced = _ATOM_RE.sub("T", cond).replace("&&", "&").replace("||", "|")
++        rec["kind"] = "condition" if re.fullmatch(r"[T&|()\s]*", reduced) else "unparsed"
+         out.append(rec)
+     return out
+ 
+@@ -570,19 +589,107 @@ def resolve_min(rules, constraint, pad, areas):
+     for r in rules:
+         if r["constraint"] != constraint or r["kind"] == "unparsed":
+             continue
+-        if r["kind"] == "class":
+-            if r["netclass"] == pad["cls"]:
+-                hit = (r["min_mm"], r["name"])
+-        else:
+-            if r["nets"] and pad["net"] not in r["nets"]:
+-                continue
+-            for poly, layers in areas.get(r["area"], []):
+-                if (layers & pad["layers"]) and _point_in_poly(pad["c"], poly):
+-                    hit = (r["min_mm"], r["name"])
+-                    break
++        if _condition_matches(r["cond"], pad, pad, areas):
++            hit = (r["min_mm"], r["name"])
+     return hit
+ 
+ 
++def resolve_pair_min(rules, constraint, a, b, areas):
++    """KiCad pair-rule resolution, including both A/B orderings.
++
++    A local relaxation applies only when its complete condition holds for the
++    candidate and this exact obstacle.  In particular, Pad/Pad rules cannot
++    turn into Track/Pad permissions and an area predicate applies to each
++    item named by the rule.
++    """
++    hit = (None, None)
++    for r in rules:
++        if r["constraint"] != constraint or r["kind"] == "unparsed":
++            continue
++        if (_condition_matches(r["cond"], a, b, areas)
++                or _condition_matches(r["cond"], b, a, areas)):
++            hit = (r["min_mm"], r["name"])
++    return hit
++
++
++def _condition_matches(cond, a, b, areas):
++    """Evaluate the intentionally small, supported DRU condition language.
++
++    KiCad's boolean operators have equal precedence.  Parse that explicitly
++    (left-to-right inside each parenthesised group) rather than using Python's
++    different ``and``/``or`` precedence.
++    """
++    items = {"A": a, "B": b}
++    tokens, pos = [], 0
++    while pos < len(cond):
++        if cond[pos].isspace():
++            pos += 1
++            continue
++        if cond.startswith("&&", pos) or cond.startswith("||", pos):
++            tokens.append(cond[pos:pos + 2]); pos += 2; continue
++        if cond[pos] in "()":
++            tokens.append(cond[pos]); pos += 1; continue
++        m = _ATOM_RE.match(cond, pos)
++        if not m:
++            return False
++        side, field, value, area_side, area = m.groups()
++        if side:
++            item = items[side]
++            key = {"NetClass": "cls", "NetName": "net", "Type": "type"}[field]
++            tokens.append(item.get(key, "Pad" if key == "type" else "") == value)
++        else:
++            tokens.append(_item_in_area(items[area_side], area, areas))
++        pos = m.end()
++    def primary(i):
++        if i >= len(tokens):
++            raise ValueError
++        if tokens[i] == "(":
++            value, i = group(i + 1)
++            if i >= len(tokens) or tokens[i] != ")":
++                raise ValueError
++            i += 1
++        elif isinstance(tokens[i], bool):
++            value, i = tokens[i], i + 1
++        else:
++            raise ValueError
++        return value, i
++    def group(i):
++        value, i = primary(i)
++        while i < len(tokens) and tokens[i] != ")":
++            op = tokens[i]
++            if op not in ("&&", "||"):
++                raise ValueError
++            rhs, i = primary(i + 1)
++            value = value and rhs if op == "&&" else value or rhs
++        return value, i
++    try:
++        value, end = group(0)
++        return end == len(tokens) and value
++    except ValueError:
++        return False
++
++
++def _item_in_area(item, name, areas):
++    for poly, layers in areas.get(name, []):
++        if not (layers & item["layers"]):
++            continue
++        shape = item.get("poly")
++        if shape and _polys_intersect(shape, poly):
++            return True
++        seg = item.get("seg")
++        if seg and (_point_in_poly(seg[0], poly) or _point_in_poly(seg[1], poly)
++                    or _poly_seg_dist(poly, *seg) <= item.get("width", 0.0) / 2.0):
++            return True
++    return False
++
++
++def _polys_intersect(a, b):
++    if any(_point_in_poly(p, b) for p in a) or any(_point_in_poly(p, a) for p in b):
++        return True
++    return any(_seg_seg_dist(a[i], a[(i + 1) % len(a)], b[j], b[(j + 1) % len(b)]) == 0
++               for i in range(len(a)) for j in range(len(b)))
++
++
+ def _point_in_poly(pt, poly):
+     x, y = pt
+     inside = False
+@@ -769,21 +876,51 @@ def check_board(board_path, pro_path=None, dru_path=None, dirs=DIRS,
+                abs(q["c"][1] - p["c"][1]) > NEIGHBOUR_R_MM:
+                 continue
+             obstacles.append(q)
+-        scoped_cl, crule = resolve_min(rules, "clearance", p, areas)
+-        if scoped_cl is not None:
+-            clear = scoped_cl
++        pair_rules = {}
++        # Most obstacles cannot satisfy the B-side area predicate of any
++        # local pair rule.  Exclude them before sampling every landing point;
++        # this preserves the bounded stage-5 checker rather than turning a
++        # 30-um grid into a whole-board DRU interpreter.
++        pair_candidates = [r for r in rules if r["constraint"] == "clearance"
++                           and r["kind"] != "unparsed"
++                           and ("B." in r["cond"] or ".insideArea(" in r["cond"])]
++        def near_area(area):
++            return any(min(x for x, _ in poly) - reach <= p["c"][0] <= max(x for x, _ in poly) + reach
++                       and min(y for _, y in poly) - reach <= p["c"][1] <= max(y for _, y in poly) + reach
++                       for poly, layers in areas.get(area, []) if layers & p["layers"])
++        active_rules = [r for r in pair_candidates
++                        if not re.findall(r"A\.insideArea\('([^']+)'\)", r["cond"])
++                        or any(near_area(a) for a in re.findall(r"A\.insideArea\('([^']+)'\)", r["cond"]))]
++        b_areas = set(a for r in active_rules for a in re.findall(
++            r"B\.insideArea\('([^']+)'\)", r["cond"]))
++        needs_all_obstacles = any("B.insideArea(" not in r["cond"] for r in active_rules)
++        candidate_obstacles = {id(q) for q in obstacles if needs_all_obstacles or not b_areas or any(
++            _item_in_area(q, area, areas) for area in b_areas)}
++        def pair_clearance(q, start, end, width):
++            baseline = max(min_clear, cls_clear.get(p["cls"], 0.0),
++                           cls_clear.get(q["cls"], 0.0))
++            if not active_rules or id(q) not in candidate_obstacles:
++                return baseline
++            candidate = {"net": p["net"], "cls": p["cls"], "type": "Track",
++                         "layers": p["layers"], "seg": (start, end), "width": width}
++            scoped_cl, crule = resolve_pair_min(active_rules, "clearance", candidate, q, areas)
++            if scoped_cl is not None:
++                pair_rules[id(q)] = crule
++                return scoped_cl
++            return baseline
++        w, capped, ang = max_landable(p, obstacles, pair_clearance, dirs, reach)
++        if pair_rules:
+             stats["scoped_clearance"] += 1
+-        else:
+-            crule = None
+-            clear = max([min_clear, cls_clear.get(p["cls"], 0.0)]
+-                        + [cls_clear.get(q["cls"], 0.0) for q in obstacles])
+-        w, capped, ang = max_landable(p, obstacles, clear, dirs, reach)
++        clear_values = [pair_clearance(q, p["c"], p["c"], w) for q in obstacles]
++        clear_label = (f"pairwise {min(clear_values):.3f}..{max(clear_values):.3f}"
++                       if clear_values else f"{min_clear:.3f}")
+         ok = w + TOL_MM >= floor
+         tag = ">=" if capped else "="
+         msg = (f"{name} {p['ref']}.{p['num']} net={p['net']} "
+                f"class={p['cls']} floor={floor:.3f} "
+                f"(rule {frule}) landable{tag}{w:.3f} @ clearance "
+-               f"{clear:.3f}" + (f" (rule {crule})" if crule else "")
++               f"{clear_label}" + (f" (pair rules {sorted(set(pair_rules.values()))})"
++                                    if pair_rules else "")
+                + (f" best_dir={ang} deg" if ang is not None else ""))
+         # G-VACUOUS / M1: on a ROUTED input, the copper that already left
+         # this land REFUTES the model if it is wider than the model says is
+@@ -801,7 +938,7 @@ def check_board(board_path, pro_path=None, dru_path=None, dirs=DIRS,
+                     f"MODEL-REFUTED P-LAND {name} {p['ref']}.{p['num']} "
+                     f"net={p['net']}: a {actual:.3f} mm track already leaves "
+                     f"this land, above the {w:.3f} mm this model allows at "
+-                    f"clearance {clear:.3f}. EXACTLY TWO READINGS and DRC "
++                    f"clearance {clear_label}. EXACTLY TWO READINGS and DRC "
+                     f"decides which: either the model is too strict (fix "
+                     f"the gate, not the board), or that copper does not "
+                     f"hold the DECLARED clearance and DRC will say so. "
+diff --git a/tests/t1_escape_tier.py b/tests/t1_escape_tier.py
+index ac799f56..6ccb632d 100644
+--- a/tests/t1_escape_tier.py
++++ b/tests/t1_escape_tier.py
+@@ -1314,6 +1314,65 @@ def t_land_honours_a_scoped_clearance():
+                      f"{pad} under a 0.14 mm scoped clearance")
+ 
+ 
++@test("P-LAND resolves pair-scoped clearance in either A/B order without "
++      "leaking pad-only rules to a track", kind="known_bad", gate="escape_check.py")
++def t_land_pair_scoped_clearance_is_pair_and_type_specific():
++    """The crow carrier's ADC_RESET_PITCH rule is a real B-side match: the
++    ADC launch is A and the adjacent reset pad is B.  The former reader only
++    considered A, then applied the largest nearby netclass clearance to every
++    obstacle, turning an unrelated remote 0.25 mm class into a false failure.
++
++    This is intentionally a small geometry fixture: it proves condition
++    semantics without making the checked board or generated source an input.
++    The same rule must also match in reversed order, require BOTH items in its
++    area, honour last-match precedence, and leave a Pad/Pad exception unable
++    to relax a Track/Pad pair.
++    """
++    sys.path.insert(0, str(SCRIPTS))
++    import escape_check as ec
++    rules = ec.read_dru_rules_from_text("""
++(rule "remote_class"
++  (condition "A.NetClass == 'HI'")
++  (constraint clearance (min 0.25mm)))
++(rule "reset_pair"
++  (condition "A.Type == 'Pad' && B.Type == 'Pad' && A.insideArea('PITCH') && B.insideArea('PITCH') && (A.NetName == 'RESET' || B.NetName == 'RESET')")
++  (constraint clearance (min 0.20mm)))
++(rule "last_pair"
++  (condition "A.Type == 'Pad' && B.Type == 'Pad' && A.insideArea('PITCH') && B.insideArea('PITCH') && (A.NetName == 'RESET' || B.NetName == 'RESET')")
++  (constraint clearance (min 0.18mm)))
++""")
++    square = [(0, 0), (2, 0), (2, 2), (0, 2)]
++    areas = {"PITCH": [(square, frozenset({0}))]}
++    def item(net, cls, xy, typ="Pad"):
++        x, y = xy
++        return {"net": net, "cls": cls, "type": typ, "layers": frozenset({0}),
++                "c": xy, "poly": [(x-.05,y-.05),(x+.05,y-.05),
++                                  (x+.05,y+.05),(x-.05,y+.05)]}
++    adc, reset = item("ADC", "LO", (0.5, 0.5)), item("RESET", "HI", (1, 0.5))
++    eq(ec.resolve_pair_min(rules, "clearance", adc, reset, areas),
++       (0.18, "last_pair"), "B-side reset match and last rule win")
++    eq(ec.resolve_pair_min(rules, "clearance", reset, adc, areas),
++       (0.18, "last_pair"), "reversed A/B order")
++    outside = item("RESET", "HI", (3, 0.5))
++    eq(ec.resolve_pair_min(rules, "clearance", adc, outside, areas),
++       (0.25, "remote_class"), "a remote high-class pair keeps its own rule")
++    track = item("RESET", "HI", (1, 0.5), "Track")
++    eq(ec.resolve_pair_min(rules, "clearance", adc, track, areas),
++       (0.25, "remote_class"), "Pad/Pad exception does not relax Track/Pad")
++    contained = {"net": "ADC", "cls": "LO", "type": "Track",
++                 "layers": frozenset({0}), "seg": ((.4, .4), (.6, .4)), "width": .20}
++    check(ec._item_in_area(contained, "PITCH", areas),
++          "a capsule wholly inside a rule area overlaps it")
++    contained["layers"] = frozenset({31})
++    check(not ec._item_in_area(contained, "PITCH", areas),
++          "a wrong-layer capsule is outside the rule area")
++    check(not ec._condition_matches("A.NetName == 'ADC' || A.NetName == 'NO' && B.NetName == 'RESET'",
++                                    adc, item("OTHER", "LO", (1, 1)), areas),
++          "equal-precedence KiCad boolean evaluation is left-to-right")
++
++
++
++
+ @test("P-LAND leaves POUR-fed and VIA-escaped pads out of scope, and says so")
+ def t_land_pour_and_via_are_out_of_scope():
+     """The sealed, DRC-clean crow-recorder-central-v2 escapes its XU316

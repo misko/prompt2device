@@ -1,0 +1,338 @@
+{
+  "failure": "C-ALLOW: placement-dback-20260910T180147Z has no allowed pattern; irreplaceable observations are forbidden in disposable build storage",
+  "governing_contract": "projects/crow-audio-carrier-v1/06_build/contracts.md",
+  "original_commit": "ea90042734b2182720c9662be76a50807fa9d13d",
+  "repair": "durable archive, exact directory contract, remove original 47 paths from index only after reopening every archive member",
+  "rows": [
+    {
+      "archive": "f451678d0ca60990de947a7898cbaea952f79f3deb5bb081fed2ab0ddf5a6883.tar.gz",
+      "disposition": "retained local bytes; remove from index",
+      "member": "diagnostic/projects/crow-audio-carrier-v1/06_build/placement-dback-20260910T180147Z/candidate-1-source.patch",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/placement-dback-20260910T180147Z/candidate-1-source.patch",
+      "sha256": "51c4a5e511f8bf6d7427848022888638ebcbaccb29697a427336432a17c5e1a9"
+    },
+    {
+      "archive": "f451678d0ca60990de947a7898cbaea952f79f3deb5bb081fed2ab0ddf5a6883.tar.gz",
+      "disposition": "retained local bytes; remove from index",
+      "member": "diagnostic/projects/crow-audio-carrier-v1/06_build/placement-dback-20260910T180147Z/candidate-1/04_kicad/crow_audio_carrier_v1.kicad_dru",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/placement-dback-20260910T180147Z/candidate-1/04_kicad/crow_audio_carrier_v1.kicad_dru",
+      "sha256": "94251d1c7cb043c66d402d55b5cf89bac74f7ae0927b012556113ae56d7a2471"
+    },
+    {
+      "archive": "f451678d0ca60990de947a7898cbaea952f79f3deb5bb081fed2ab0ddf5a6883.tar.gz",
+      "disposition": "retained local bytes; remove from index",
+      "member": "diagnostic/projects/crow-audio-carrier-v1/06_build/placement-dback-20260910T180147Z/candidate-1/04_kicad/crow_audio_carrier_v1.kicad_pcb",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/placement-dback-20260910T180147Z/candidate-1/04_kicad/crow_audio_carrier_v1.kicad_pcb",
+      "sha256": "89d33bae8eaf67457fde887eae9db187d9284ea54be386f0d31e3d7dfe92bf2e"
+    },
+    {
+      "archive": "f451678d0ca60990de947a7898cbaea952f79f3deb5bb081fed2ab0ddf5a6883.tar.gz",
+      "disposition": "retained local bytes; remove from index",
+      "member": "diagnostic/projects/crow-audio-carrier-v1/06_build/placement-dback-20260910T180147Z/candidate-1/04_kicad/crow_audio_carrier_v1.kicad_prl",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/placement-dback-20260910T180147Z/candidate-1/04_kicad/crow_audio_carrier_v1.kicad_prl",
+      "sha256": "b33727ea5b95a8a459eabfeeea9514a4632a046f822a6f0eb51ad13243af19fb"
+    },
+    {
+      "archive": "f451678d0ca60990de947a7898cbaea952f79f3deb5bb081fed2ab0ddf5a6883.tar.gz",
+      "disposition": "retained local bytes; remove from index",
+      "member": "diagnostic/projects/crow-audio-carrier-v1/06_build/placement-dback-20260910T180147Z/candidate-1/04_kicad/crow_audio_carrier_v1.kicad_pro",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/placement-dback-20260910T180147Z/candidate-1/04_kicad/crow_audio_carrier_v1.kicad_pro",
+      "sha256": "4a1040e34967d6610bd5032e46b3c2d0e24863370106f7e220d88d4dd633c61d"
+    },
+    {
+      "archive": "f451678d0ca60990de947a7898cbaea952f79f3deb5bb081fed2ab0ddf5a6883.tar.gz",
+      "disposition": "retained local bytes; remove from index",
+      "member": "diagnostic/projects/crow-audio-carrier-v1/06_build/placement-dback-20260910T180147Z/candidate-1/04_kicad/crow_audio_carrier_v1.kicad_sch",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/placement-dback-20260910T180147Z/candidate-1/04_kicad/crow_audio_carrier_v1.kicad_sch",
+      "sha256": "43eaaa45fb16a68ee45f910765976f443a4070aafd86d67c9039f3b02bf9a0ef"
+    },
+    {
+      "archive": "f451678d0ca60990de947a7898cbaea952f79f3deb5bb081fed2ab0ddf5a6883.tar.gz",
+      "disposition": "retained local bytes; remove from index",
+      "member": "diagnostic/projects/crow-audio-carrier-v1/06_build/placement-dback-20260910T180147Z/candidate-1/04_kicad/fp-lib-table",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/placement-dback-20260910T180147Z/candidate-1/04_kicad/fp-lib-table",
+      "sha256": "928da2c99199f0e776d5e94795ec42e603a4a6cc3f087d2258cfab2656351e52"
+    },
+    {
+      "archive": "f451678d0ca60990de947a7898cbaea952f79f3deb5bb081fed2ab0ddf5a6883.tar.gz",
+      "disposition": "retained local bytes; remove from index",
+      "member": "diagnostic/projects/crow-audio-carrier-v1/06_build/placement-dback-20260910T180147Z/candidate-1/attempt-notes.md",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/placement-dback-20260910T180147Z/candidate-1/attempt-notes.md",
+      "sha256": "d7712e14ce566bcfbde47031b6e19f36e9b0bf8fa3a97524d4eb51b8255010cd"
+    },
+    {
+      "archive": "f451678d0ca60990de947a7898cbaea952f79f3deb5bb081fed2ab0ddf5a6883.tar.gz",
+      "disposition": "retained local bytes; remove from index",
+      "member": "diagnostic/projects/crow-audio-carrier-v1/06_build/placement-dback-20260910T180147Z/candidate-1/config.yaml",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/placement-dback-20260910T180147Z/candidate-1/config.yaml",
+      "sha256": "6a7f94bf329a3d2dbccac45c267fb07e3376986c09e3c2a46d79043544afc4fa"
+    },
+    {
+      "archive": "f451678d0ca60990de947a7898cbaea952f79f3deb5bb081fed2ab0ddf5a6883.tar.gz",
+      "disposition": "retained local bytes; remove from index",
+      "member": "diagnostic/projects/crow-audio-carrier-v1/06_build/placement-dback-20260910T180147Z/candidate-1/drc-before-project-restore.json",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/placement-dback-20260910T180147Z/candidate-1/drc-before-project-restore.json",
+      "sha256": "7891cbc235cd5d4932a5fd1473b5ad822b47536da16ee5166c5cdae05e094865"
+    },
+    {
+      "archive": "f451678d0ca60990de947a7898cbaea952f79f3deb5bb081fed2ab0ddf5a6883.tar.gz",
+      "disposition": "retained local bytes; remove from index",
+      "member": "diagnostic/projects/crow-audio-carrier-v1/06_build/placement-dback-20260910T180147Z/candidate-1/drc-before-project-restore.log",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/placement-dback-20260910T180147Z/candidate-1/drc-before-project-restore.log",
+      "sha256": "0b3502b96ae0f8dd56b117b7ba57b3e545bbc9d3d1b9c1cacde925f8b34d368b"
+    },
+    {
+      "archive": "f451678d0ca60990de947a7898cbaea952f79f3deb5bb081fed2ab0ddf5a6883.tar.gz",
+      "disposition": "retained local bytes; remove from index",
+      "member": "diagnostic/projects/crow-audio-carrier-v1/06_build/placement-dback-20260910T180147Z/candidate-1/drc.json",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/placement-dback-20260910T180147Z/candidate-1/drc.json",
+      "sha256": "01c13b767607f6a65cb53ce1c86c0fa36f4b7d0851ba06791a26d79b952f9c90"
+    },
+    {
+      "archive": "f451678d0ca60990de947a7898cbaea952f79f3deb5bb081fed2ab0ddf5a6883.tar.gz",
+      "disposition": "retained local bytes; remove from index",
+      "member": "diagnostic/projects/crow-audio-carrier-v1/06_build/placement-dback-20260910T180147Z/candidate-1/drc.log",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/placement-dback-20260910T180147Z/candidate-1/drc.log",
+      "sha256": "20ac4114675662713388ffe70bfa620c814edc430043b205b97380852d07dfe9"
+    },
+    {
+      "archive": "f451678d0ca60990de947a7898cbaea952f79f3deb5bb081fed2ab0ddf5a6883.tar.gz",
+      "disposition": "retained local bytes; remove from index",
+      "member": "diagnostic/projects/crow-audio-carrier-v1/06_build/placement-dback-20260910T180147Z/candidate-1/generate.log",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/placement-dback-20260910T180147Z/candidate-1/generate.log",
+      "sha256": "8c4e7396f4d85febb3cec73633d12e82d1e29336c894c4273b66d97aa81b87c3"
+    },
+    {
+      "archive": "f451678d0ca60990de947a7898cbaea952f79f3deb5bb081fed2ab0ddf5a6883.tar.gz",
+      "disposition": "retained local bytes; remove from index",
+      "member": "diagnostic/projects/crow-audio-carrier-v1/06_build/placement-dback-20260910T180147Z/candidate-1/p-drc.log",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/placement-dback-20260910T180147Z/candidate-1/p-drc.log",
+      "sha256": "63beaa574f1e78b2b5852667b11c1dfd4591110b6120cf3708be64a1983750eb"
+    },
+    {
+      "archive": "f451678d0ca60990de947a7898cbaea952f79f3deb5bb081fed2ab0ddf5a6883.tar.gz",
+      "disposition": "retained local bytes; remove from index",
+      "member": "diagnostic/projects/crow-audio-carrier-v1/06_build/placement-dback-20260910T180147Z/candidate-1/proof.json",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/placement-dback-20260910T180147Z/candidate-1/proof.json",
+      "sha256": "d503bbe5042e157a289e4647d6e8c9a7e0c41d4d956959262e61cbd806fc1aeb"
+    },
+    {
+      "archive": "f451678d0ca60990de947a7898cbaea952f79f3deb5bb081fed2ab0ddf5a6883.tar.gz",
+      "disposition": "retained local bytes; remove from index",
+      "member": "diagnostic/projects/crow-audio-carrier-v1/06_build/placement-dback-20260910T180147Z/candidate-1/proof.log",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/placement-dback-20260910T180147Z/candidate-1/proof.log",
+      "sha256": "95a7ed8fb696d74aa64bb06352feb053f44c04ef89b80c6ebc1fec18458a9182"
+    },
+    {
+      "archive": "f451678d0ca60990de947a7898cbaea952f79f3deb5bb081fed2ab0ddf5a6883.tar.gz",
+      "disposition": "retained local bytes; remove from index",
+      "member": "diagnostic/projects/crow-audio-carrier-v1/06_build/placement-dback-20260910T180147Z/candidate-1/refdes_waiver.json",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/placement-dback-20260910T180147Z/candidate-1/refdes_waiver.json",
+      "sha256": "1e9621ad12f0e020f83ec3f9964d229cded2ea3f7f8786c9d0b85cbb565c06f1"
+    },
+    {
+      "archive": "f451678d0ca60990de947a7898cbaea952f79f3deb5bb081fed2ab0ddf5a6883.tar.gz",
+      "disposition": "retained local bytes; remove from index",
+      "member": "diagnostic/projects/crow-audio-carrier-v1/06_build/placement-dback-20260910T180147Z/candidate-1/regression-execution.json",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/placement-dback-20260910T180147Z/candidate-1/regression-execution.json",
+      "sha256": "81759ccd599642d68dd683d333f9daf386df2ea9f1ec146f21a6193fd55cf100"
+    },
+    {
+      "archive": "f451678d0ca60990de947a7898cbaea952f79f3deb5bb081fed2ab0ddf5a6883.tar.gz",
+      "disposition": "retained local bytes; remove from index",
+      "member": "diagnostic/projects/crow-audio-carrier-v1/06_build/placement-dback-20260910T180147Z/census.py",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/placement-dback-20260910T180147Z/census.py",
+      "sha256": "37a2c4e9c7ec72bfd108ed237153bf3c2cb6202782175c23cd00c2c09d6be2b1"
+    },
+    {
+      "archive": "f451678d0ca60990de947a7898cbaea952f79f3deb5bb081fed2ab0ddf5a6883.tar.gz",
+      "disposition": "retained local bytes; remove from index",
+      "member": "diagnostic/projects/crow-audio-carrier-v1/06_build/placement-dback-20260910T180147Z/classify.py",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/placement-dback-20260910T180147Z/classify.py",
+      "sha256": "2b0e0a62d9505a36a1916498522ef61760d1045a5f285ca26644096312b1cf52"
+    },
+    {
+      "archive": "f451678d0ca60990de947a7898cbaea952f79f3deb5bb081fed2ab0ddf5a6883.tar.gz",
+      "disposition": "retained local bytes; remove from index",
+      "member": "diagnostic/projects/crow-audio-carrier-v1/06_build/placement-dback-20260910T180147Z/connectivity.json",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/placement-dback-20260910T180147Z/connectivity.json",
+      "sha256": "629d2a9d5189f14e07af12704d4ce217ab72af726af4d630ef5df61b0db948db"
+    },
+    {
+      "archive": "f451678d0ca60990de947a7898cbaea952f79f3deb5bb081fed2ab0ddf5a6883.tar.gz",
+      "disposition": "retained local bytes; remove from index",
+      "member": "diagnostic/projects/crow-audio-carrier-v1/06_build/placement-dback-20260910T180147Z/field_assert.py",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/placement-dback-20260910T180147Z/field_assert.py",
+      "sha256": "ac0b0b70789cf3d6a1875abda92c2ebfa22f01943230d72d93d35d657aa98a16"
+    },
+    {
+      "archive": "f451678d0ca60990de947a7898cbaea952f79f3deb5bb081fed2ab0ddf5a6883.tar.gz",
+      "disposition": "retained local bytes; remove from index",
+      "member": "diagnostic/projects/crow-audio-carrier-v1/06_build/placement-dback-20260910T180147Z/fields.py",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/placement-dback-20260910T180147Z/fields.py",
+      "sha256": "7b755976abe0e677f9cafec1473c9abc2760d51e3b961aca8cb81ffceb0204de"
+    },
+    {
+      "archive": "f451678d0ca60990de947a7898cbaea952f79f3deb5bb081fed2ab0ddf5a6883.tar.gz",
+      "disposition": "retained local bytes; remove from index",
+      "member": "diagnostic/projects/crow-audio-carrier-v1/06_build/placement-dback-20260910T180147Z/floorplan.candidate.yaml",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/placement-dback-20260910T180147Z/floorplan.candidate.yaml",
+      "sha256": "9222b1d54568b9bd6b9e35cab94b77d99e8983d5ee5c07828a4637b80b3a519d"
+    },
+    {
+      "archive": "f451678d0ca60990de947a7898cbaea952f79f3deb5bb081fed2ab0ddf5a6883.tar.gz",
+      "disposition": "retained local bytes; remove from index",
+      "member": "diagnostic/projects/crow-audio-carrier-v1/06_build/placement-dback-20260910T180147Z/full-residual-classification.json",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/placement-dback-20260910T180147Z/full-residual-classification.json",
+      "sha256": "0238c1da871744612daf056cbed707fc2c771a727c1782bba9f8361bc150298b"
+    },
+    {
+      "archive": "f451678d0ca60990de947a7898cbaea952f79f3deb5bb081fed2ab0ddf5a6883.tar.gz",
+      "disposition": "retained local bytes; remove from index",
+      "member": "diagnostic/projects/crow-audio-carrier-v1/06_build/placement-dback-20260910T180147Z/generate_board_generic.candidate.py",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/placement-dback-20260910T180147Z/generate_board_generic.candidate.py",
+      "sha256": "fb6113b1d021ba812d400110a600ad6fa8a28615bbd8c7c7ec2cd9350950fe60"
+    },
+    {
+      "archive": "f451678d0ca60990de947a7898cbaea952f79f3deb5bb081fed2ab0ddf5a6883.tar.gz",
+      "disposition": "retained local bytes; remove from index",
+      "member": "diagnostic/projects/crow-audio-carrier-v1/06_build/placement-dback-20260910T180147Z/launch.json",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/placement-dback-20260910T180147Z/launch.json",
+      "sha256": "e6e77e43cc8c899f5fb1053796d7d897463dee8156801877b896ce6f044ce627"
+    },
+    {
+      "archive": "f451678d0ca60990de947a7898cbaea952f79f3deb5bb081fed2ab0ddf5a6883.tar.gz",
+      "disposition": "retained local bytes; remove from index",
+      "member": "diagnostic/projects/crow-audio-carrier-v1/06_build/placement-dback-20260910T180147Z/make_candidate.py",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/placement-dback-20260910T180147Z/make_candidate.py",
+      "sha256": "7d4f8c85be0a76d1924918319c16d76850b96b49657694b951015f0deabe9057"
+    },
+    {
+      "archive": "f451678d0ca60990de947a7898cbaea952f79f3deb5bb081fed2ab0ddf5a6883.tar.gz",
+      "disposition": "retained local bytes; remove from index",
+      "member": "diagnostic/projects/crow-audio-carrier-v1/06_build/placement-dback-20260910T180147Z/negative-original/04_kicad/crow_audio_carrier_v1.kicad_pcb",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/placement-dback-20260910T180147Z/negative-original/04_kicad/crow_audio_carrier_v1.kicad_pcb",
+      "sha256": "dd348351660637ec04671a764c2bda369896758bb362829ec7fe90cc7a6bb292"
+    },
+    {
+      "archive": "f451678d0ca60990de947a7898cbaea952f79f3deb5bb081fed2ab0ddf5a6883.tar.gz",
+      "disposition": "retained local bytes; remove from index",
+      "member": "diagnostic/projects/crow-audio-carrier-v1/06_build/placement-dback-20260910T180147Z/negative-original/04_kicad/crow_audio_carrier_v1.kicad_prl",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/placement-dback-20260910T180147Z/negative-original/04_kicad/crow_audio_carrier_v1.kicad_prl",
+      "sha256": "b33727ea5b95a8a459eabfeeea9514a4632a046f822a6f0eb51ad13243af19fb"
+    },
+    {
+      "archive": "f451678d0ca60990de947a7898cbaea952f79f3deb5bb081fed2ab0ddf5a6883.tar.gz",
+      "disposition": "retained local bytes; remove from index",
+      "member": "diagnostic/projects/crow-audio-carrier-v1/06_build/placement-dback-20260910T180147Z/negative-original/04_kicad/crow_audio_carrier_v1.kicad_pro",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/placement-dback-20260910T180147Z/negative-original/04_kicad/crow_audio_carrier_v1.kicad_pro",
+      "sha256": "d679205c674cc988c910a089d6c2a978221c9734c58b57c734daa2aa1eade0ac"
+    },
+    {
+      "archive": "f451678d0ca60990de947a7898cbaea952f79f3deb5bb081fed2ab0ddf5a6883.tar.gz",
+      "disposition": "retained local bytes; remove from index",
+      "member": "diagnostic/projects/crow-audio-carrier-v1/06_build/placement-dback-20260910T180147Z/negative-original/config.yaml",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/placement-dback-20260910T180147Z/negative-original/config.yaml",
+      "sha256": "5cbbfe4661fe6d064ed794afe571682c6a458926dd4994a6eaa45e4889e97764"
+    },
+    {
+      "archive": "f451678d0ca60990de947a7898cbaea952f79f3deb5bb081fed2ab0ddf5a6883.tar.gz",
+      "disposition": "retained local bytes; remove from index",
+      "member": "diagnostic/projects/crow-audio-carrier-v1/06_build/placement-dback-20260910T180147Z/negative-original/generate.log",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/placement-dback-20260910T180147Z/negative-original/generate.log",
+      "sha256": "243b1056ae2900cb1b04ce3203b5eab28731ca6972f96a71cd69d55a312a8b91"
+    },
+    {
+      "archive": "f451678d0ca60990de947a7898cbaea952f79f3deb5bb081fed2ab0ddf5a6883.tar.gz",
+      "disposition": "retained local bytes; remove from index",
+      "member": "diagnostic/projects/crow-audio-carrier-v1/06_build/placement-dback-20260910T180147Z/negative-original/refdes_waiver.json",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/placement-dback-20260910T180147Z/negative-original/refdes_waiver.json",
+      "sha256": "1e9621ad12f0e020f83ec3f9964d229cded2ea3f7f8786c9d0b85cbb565c06f1"
+    },
+    {
+      "archive": "f451678d0ca60990de947a7898cbaea952f79f3deb5bb081fed2ab0ddf5a6883.tar.gz",
+      "disposition": "retained local bytes; remove from index",
+      "member": "diagnostic/projects/crow-audio-carrier-v1/06_build/placement-dback-20260910T180147Z/output-manifest.json",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/placement-dback-20260910T180147Z/output-manifest.json",
+      "sha256": "da026f715027ee0a22d14d95fe093ab6be2582638fb05d56697a21ff0b0f6b04"
+    },
+    {
+      "archive": "f451678d0ca60990de947a7898cbaea952f79f3deb5bb081fed2ab0ddf5a6883.tar.gz",
+      "disposition": "retained local bytes; remove from index",
+      "member": "diagnostic/projects/crow-audio-carrier-v1/06_build/placement-dback-20260910T180147Z/parity-census.json",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/placement-dback-20260910T180147Z/parity-census.json",
+      "sha256": "964f5530f4d43bccb5a6aeb211760eb1c52ad99c84a3a9e2cc4775d4a8d4f432"
+    },
+    {
+      "archive": "f451678d0ca60990de947a7898cbaea952f79f3deb5bb081fed2ab0ddf5a6883.tar.gz",
+      "disposition": "retained local bytes; remove from index",
+      "member": "diagnostic/projects/crow-audio-carrier-v1/06_build/placement-dback-20260910T180147Z/physical-causes.json",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/placement-dback-20260910T180147Z/physical-causes.json",
+      "sha256": "b002c8f2f7eef436496cc76eb4c067d13e98f5f99c488ad7224b0bd859f4e665"
+    },
+    {
+      "archive": "f451678d0ca60990de947a7898cbaea952f79f3deb5bb081fed2ab0ddf5a6883.tar.gz",
+      "disposition": "retained local bytes; remove from index",
+      "member": "diagnostic/projects/crow-audio-carrier-v1/06_build/placement-dback-20260910T180147Z/physical.py",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/placement-dback-20260910T180147Z/physical.py",
+      "sha256": "06174d994481cad49051094c91807d601414afe6318d50b1d48b458875b56a4f"
+    },
+    {
+      "archive": "f451678d0ca60990de947a7898cbaea952f79f3deb5bb081fed2ab0ddf5a6883.tar.gz",
+      "disposition": "retained local bytes; remove from index",
+      "member": "diagnostic/projects/crow-audio-carrier-v1/06_build/placement-dback-20260910T180147Z/protected-before.json",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/placement-dback-20260910T180147Z/protected-before.json",
+      "sha256": "1b8c354b9f1f579d6f12ffb65f274d9629b0a0f8b884c41481337cc04f8a1c6a"
+    },
+    {
+      "archive": "f451678d0ca60990de947a7898cbaea952f79f3deb5bb081fed2ab0ddf5a6883.tar.gz",
+      "disposition": "retained local bytes; remove from index",
+      "member": "diagnostic/projects/crow-audio-carrier-v1/06_build/placement-dback-20260910T180147Z/protection-rehash.json",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/placement-dback-20260910T180147Z/protection-rehash.json",
+      "sha256": "b2d646eb9850bad56dfa219801a7b8b46c40b548eb2d9c8fe5741ed76bd44b58"
+    },
+    {
+      "archive": "f451678d0ca60990de947a7898cbaea952f79f3deb5bb081fed2ab0ddf5a6883.tar.gz",
+      "disposition": "retained local bytes; remove from index",
+      "member": "diagnostic/projects/crow-audio-carrier-v1/06_build/placement-dback-20260910T180147Z/refilled-baseline.kicad_pcb",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/placement-dback-20260910T180147Z/refilled-baseline.kicad_pcb",
+      "sha256": "1a3c068874e4e01e9e112d432aa3187689e709dacf8d97a33c37ec9e7e19ac47"
+    },
+    {
+      "archive": "f451678d0ca60990de947a7898cbaea952f79f3deb5bb081fed2ab0ddf5a6883.tar.gz",
+      "disposition": "retained local bytes; remove from index",
+      "member": "diagnostic/projects/crow-audio-carrier-v1/06_build/placement-dback-20260910T180147Z/refilled-baseline.kicad_pro",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/placement-dback-20260910T180147Z/refilled-baseline.kicad_pro",
+      "sha256": "f9e5b086de78ecb5923c78af343e05b363a497b2a142371c476812fca9f4dda0"
+    },
+    {
+      "archive": "f451678d0ca60990de947a7898cbaea952f79f3deb5bb081fed2ab0ddf5a6883.tar.gz",
+      "disposition": "retained local bytes; remove from index",
+      "member": "diagnostic/projects/crow-audio-carrier-v1/06_build/placement-dback-20260910T180147Z/rehash.py",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/placement-dback-20260910T180147Z/rehash.py",
+      "sha256": "472fb7ac76e5bf10f7c8ae53dfc4d174e1f0818fe71b009006c1f15707ef87fa"
+    },
+    {
+      "archive": "f451678d0ca60990de947a7898cbaea952f79f3deb5bb081fed2ab0ddf5a6883.tar.gz",
+      "disposition": "retained local bytes; remove from index",
+      "member": "diagnostic/projects/crow-audio-carrier-v1/06_build/placement-dback-20260910T180147Z/verify_candidate.py",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/placement-dback-20260910T180147Z/verify_candidate.py",
+      "sha256": "7a4c81c6282e3bc76c6c3e09a8ec1fdd924ddbb632e44966d39e55aea8bc6e7d"
+    },
+    {
+      "archive": "f451678d0ca60990de947a7898cbaea952f79f3deb5bb081fed2ab0ddf5a6883.tar.gz",
+      "disposition": "retained local bytes; remove from index",
+      "member": "diagnostic/projects/crow-audio-carrier-v1/06_build/placement-dback-20260910T180147Z/write_receipt.py",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/placement-dback-20260910T180147Z/write_receipt.py",
+      "sha256": "8a2b323c1a590537bc980821288fe4dc2922490bbec941afd75eff0859c1f76c"
+    },
+    {
+      "archive": "f451678d0ca60990de947a7898cbaea952f79f3deb5bb081fed2ab0ddf5a6883.tar.gz",
+      "disposition": "retained local bytes; remove from index",
+      "member": "diagnostic/projects/crow-audio-carrier-v1/06_build/placement-dback-20260910T180147Z/writer-scope.json",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/placement-dback-20260910T180147Z/writer-scope.json",
+      "sha256": "c0dd7d69858722edbde3c5fdeb99ada8c4a33b2c5deb63c3d499efb7ebf3be25"
+    }
+  ],
+  "schema": 1
+}

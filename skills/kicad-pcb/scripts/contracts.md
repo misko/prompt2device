@@ -16,6 +16,17 @@ BACKEND GAP to report, not a bespoke script to write here.
 
 ## Audit
 
+- `gate_contract_audit.py` inventories executable verdict gates. The imported
+  `native_representation.py` authority validator has no CLI or printed verdict;
+  its `jlc_twin.py` and `twin_overlay.py` consumers remain audited. A regression
+  checks that boundary and rejects a future CLI/verdict hidden as a library.
+
+- `pcb_flow.py qualify/task-run/task-repair/agent-open/agent-close` compose the
+  PCB design runtime's qualification and delivery contracts. Native fixture
+  mechanics live in `qualification_probe.py`; its children call the same shared
+  `pipeline_runtime.run_stage` seam to retain their full receipts. These commands
+  do not admit an engineering stage or replace native/domain reviews.
+
 - Each script's module docstring states purpose + usage; incident references
   cite board NAMES/commits as provenance, never `projects/...` paths
   (contracts_audit C-ISO).
@@ -34,8 +45,10 @@ BACKEND GAP to report, not a bespoke script to write here.
 - `placement_drc_check.py REPORT.json` is the fail-closed P-DRC boundary after
   a fresh KiCad `--refill-zones --schematic-parity` JSON report and before any
   human placement review. It observes unrouted items, permits only the fixed
-  preliminary `isolated_copper` class, and blocks every other violation plus
-  parity. There is deliberately no caller-supplied violation allowlist.
+  preliminary `isolated_copper` class, and explicitly defers `starved_thermal`
+  rows only while unrouted connections remain. It prints each exact deferred
+  finding; final routed DRC must regrade all pads with unchanged spoke limits.
+  Connected-board thermals, every other violation and parity still block. There is deliberately no caller-supplied violation allowlist.
 - `model_coverage_check.py BOARD [-o REPORT.json]` is P-MODEL, the independent
   saved-board gate before modeled placement review. Every fitted, non-DNP,
   non-board-only footprint must carry at least one non-empty model file that
@@ -53,6 +66,14 @@ BACKEND GAP to report, not a bespoke script to write here.
   render commands may silently omit stock bodies when those variables exist
   only in KiCad's user data tree. `--dry-run` emits the exact argv and coverage
   denominator without creating an image.
+- Route preparation/import synchronize global fabrication settings only when
+  `route.common.fab_overrides` supplies an explicit contract. A bare `fab_tier`
+  selects router capability and must preserve source Board Setup floors and
+  Default-netclass settings. Explicit synchronization still preserves named
+  netclasses, assignments, DRC severities, and the source Board Setup
+  hole-to-copper floor; KRT's fabrication-override schema has no independent
+  hole-clearance field, so its copper-clearance fallback may not lower that
+  separate safety constraint.
 - `promoted_route_check.py BOARD ROUTE.yaml` is P-ROUTEBASE: before placement
   review can be credited, route prep must be fresh and an existing explicitly
   selected promoted route must match the exact regenerated base's footprint
@@ -66,11 +87,20 @@ BACKEND GAP to report, not a bespoke script to write here.
   explicitly declares that geometric same-net membership cannot prove current
   crosses the boundary, so topology/path review and loaded testing remain
   independent obligations.
-- `route_ownership_preflight.py ROUTE.yaml` is the progressive O-* boundary:
+- `route_ownership_preflight.py ROUTE.yaml [--root PROJECT]` is the progressive O-* boundary:
   many-pad `pour_or_wide_track` nets must name one topology/owner before KRT,
   deterministic owners cannot also be complete generic waves, and explicitly
   shared corridors put constrained/no-via claimants first. Simple boards are
   N-A; the new-project route template enables enforcement.
+  The route driver propagates its resolved project root. Explicit roots admit
+  only configurations in that project's `03_src` or `06_build`, reject
+  conflicting source ancestry and external boards, and resolve build-copy
+  rules from `03_src/rules/nets.yaml`, never adjacent scratch rules. Without
+  that unambiguous source rules file, a build config is INCOMPLETE; resolved
+  config, board and rule paths cannot escape the explicit root via symlinks.
+  Without `--root`, source ancestry remains required; source-local ADR-0007 rules
+  retain their existing precedence. Location support grants no diagnostic
+  allowance and cannot reset an investigation or replace engineering review.
 - `route_candidate_workspace.py grade` is the sole authoritative candidate
   receipt producer. It materializes candidate PCB bytes under a fresh basename
   with exact prepared `.kicad_pro/.kicad_dru`, then runs P-ROUTEBASE, via delta,
@@ -79,6 +109,14 @@ BACKEND GAP to report, not a bespoke script to write here.
 - `route_progress_guard.py` bounds per-wave exploration by semantic novelty;
   output hashes and raw coordinates cannot reset a plateau. The route driver
   persists the decision beside route progress when opted in.
+- `pcb_flow.py run --investigation FINDING_ID` invokes the PCB design owner's
+  decision-progress guard before a named local experiment. It cannot bypass an
+  engineering gate. Handoffs with adopted investigations include a derived
+  compact view plus ledger/evaluator digests; validation reopens both, including
+  cited evidence. Handoffs without investigations retain their existing shape.
+  A named launch reserves an ID/source-bound ledger slot before dispatch;
+  pending assessment blocks another launch and completed assessment does not
+  double-count spend. No automatic scientific assessment or finding closure.
 - `route_experiment_store.py` gives each retained attempt exactly one terminal
   state and one content-addressed evidence set. The accepted pointer is
   exclusive and pruning is dry-run only.
@@ -367,6 +405,54 @@ BACKEND GAP to report, not a bespoke script to write here.
   bodies / pin lines / ground glyphs by the instance ROTATION — and reports a
   finding wherever TEXT lands on another drawn object. `policy_audit.py` imports
   it for the S-OCCL row; the ceiling `soccl_max` is 0 and no board overrides it.
+  Reference/Value rows must clear their own pin/glyph conductors as well as
+  foreign conductors. The own-body convention does not exempt pin shafts;
+  the direction-scoped label endpoint attachment rule remains separate.
+  The converter's property search applies the same obligation. Its native
+  shafts use authored port sides (including up/down facing aliases), with
+  coordinate inference only when side metadata is absent. Connection tips
+  remain at the authored electrical coordinates. The 2026-09-10 regression
+  contrasts eight own-pin crossings with eight clear controls; converter
+  fixtures independently measure property ink and body-edge termination in
+  KiCad exports. Pin-name/number text remains the declared blind spot below.
+  Layout-mode source pages are packed into bounded native columns by rigid
+  grid translations, never scaled to disguise an overflow. KiCad 10.0.4
+  silently clamps custom exports at 3048 mm; a declared paper dimension is
+  therefore not export evidence. The converter rejects an unplaceable source
+  page or final modeled extent explicitly, without writing a clipped output
+  or falling back to grid mode. Permanent tests measure actual SVG strokes
+  (including pin text and frame) and independently exported PDF page sizes,
+  contrast an unchanged small drawing, reject excessive width/height, and
+  preserve exact node identities and within-page scale. The runtime obstacle
+  bound retains its declared pin-text omission; exported-ink verification is
+  the independent check on that limitation.
+  Authored `capacitor_polarized...` semantics retain a visible positive cross
+  beside the source-positive pad in native layout mode. Polarity hints alone
+  do not polarize an ordinary capacitor, and ambiguous positive/negative pads
+  fail explicitly. Four orientations, swapped positive-pad identity, and a
+  nonpolar clear control are checked against actual KiCad drawing strokes.
+  The global GND power flag occupies a separate visible grounded wire stub;
+  its bounded placement search clears final drawing obstacles by 0.635 mm
+  and fails if no clear candidate exists. A grounded-capacitor regression
+  rejects the former flag/body intrusion while preserving exact node sets
+  and zero error-severity ERC. Grid-mode semantic emission is outside these
+  layout-mode repairs; no general readability acceptance follows from them.
+  Native component Values prefer an authored manufacturer MPN over purchasing
+  codes, while resistor/capacitor engineering values and supplier-only fallback
+  remain visible. Layout-mode hidden `Manufacturer Part Number` and JSON
+  `Supplier Part Numbers` fields preserve the exact source identity maps;
+  footprint/tie lookup still consumes all original sourcing identifiers.
+  Authored `schematic_sheet.display_name` captions appear in the native page
+  margin and participate in final export bounds. Function and engineering
+  annotations belong to that source; the shared converter infers no circuit
+  function from a reference or MPN. Permanent tests export actual KiCad glyphs
+  and netlists to check identity, passive controls, headings, and connectivity.
+  S-OCCL places only plain native free text at 0 degrees, square 1.27 mm font,
+  default vertical centering and absent/left/right horizontal justification.
+  Actual KiCad 10.0.4 SVG glyphs establish its -0.2500 mm vertical offset from
+  property text; other sizes, styles, rotations and unmeasured glyphs remain
+  UNPLACED failures. Independent rendered-ink calibration and clear/body/wire
+  controls exercise this class without changing the zero-occlusion threshold.
   WHY IT MOVED OUT OF `policy_audit.py`: the model inlined there built every
   plate as `if ang == 180: reach -x else: reach +x`. `justify` — which is what
   selects the SENSE — was read nowhere, the vertical axis did not exist (68 of
@@ -451,59 +537,57 @@ BACKEND GAP to report, not a bespoke script to write here.
   Pinned by `tests/t1_release_index.py` and `t1_audit.py`
   (`t_mrel_scopes_to_the_board_under_audit`, red-verified).
 
-- **LANDABLE WIDTH PER PAD (canon P-LAND, ADR-0007's M-ENTRY).**
-  `escape_check.py --board B.kicad_pcb [--project P] [--dru D] [--dirs N]
-  [--reach MM] [--verbose]` measures, for every copper pad whose net resolves
-  a DECLARED `track_width` floor, the widest straight track that can leave the
-  land — a 30 um landing grid inside the land x 48 directions x 1.0 mm reach,
-  every other-net land within 2.5 mm as an obstacle, `w = 2*(d - clearance)` —
-  and FAILS a pad that cannot emit its own floor. It runs at STAGE 5, on
-  placement alone: no router, no copper, no stackup.
-  **Floors AND relaxations are read from the board's `.kicad_dru` with KiCad's
-  last-match precedence**, never from the `nets.yaml` that generated them
-  (canon M1) — so a `scoped_floors:` taper, and a rule-area `clearance`
-  relaxation once one exists, are honoured exactly as DRC will honour them.
-  `A.NetClass == 'X'` and `A.insideArea('Z') [&& A.NetName == ...]` are the
-  two condition shapes modelled; any other condition is NAMED as unapplied,
-  never silently dropped.
-  Out of scope, counted in the denominator on every run and never silent: a
-  pad fed by a same-net POUR, a pad escaped by a VIA ON THE LAND, a pad with
-  no net, and a pad whose class declares no floor (the gate's declared
-  VACUITY). An unreadable land is UNREACHED, named, never passed.
-  **The model is falsifiable on routed input**: every graded pad already
-  carrying same-net copper is cross-checked against the width that actually
-  left it, and copper wider than the model allows prints `MODEL-REFUTED` with
-  both readings (the model is too strict, or that copper does not hold the
-  declared clearance and DRC will say so). Measured 0 of 540 on five sealed
-  boards.
-  WHY: two boards asked this question independently and no gate did (canon
-  M8). `pluto-rx2-8way`'s PE42482A-X land leaves 0.350 mm from the RF
-  centreline to a GND land edge where a 0.36 mm trace at 0.200 mm clearance
-  needs 0.380 — found only when 6 of 11 RF nets failed to route.
-  `pluto-cal-switch` had ELEVEN pads under their own class minimum, found BY
-  HAND, with `placement_gates` PASSED and `tier_preflight` 0 FAIL.
-  **The message ranks GRID, then CLEARANCE, then WIDTH and claims nothing
-  about why a board failed to route**: at `grid_step: 0.1` nothing routed rx2's
-  boxed RF pads at ANY width, and at 0.05 + 0.14 clearance the same wave routes
-  11/11 at the full 0.36 mm. Router NECK-DOWN is REFUTED as the remedy, not
-  merely unconfigured (149.832 mm at 0.25 and 0.000 mm at 0.36).
-  Day-one fleet: 7 boards, 2689 copper pads, 791 graded, 6 boards PASS; the
-  OWED set is `pluto-rx2-8way` alone (8 findings), 5 of which a rule-area
-  clearance of 0.14 mm clears outright. Pinned by `t1_escape_tier.py`.
-  **NOT WIRED INTO `policy_audit.py` at landing, deliberately** (the same
-  choice R-LEN made): one board is genuinely OWED, and a row that reds a
-  live board the day it appears is a row that gets commented out. It is run
-  from the stage-5 placement step and by the fleet census until rx2's
-  launches are relaxed or re-placed; wiring it in is the ratchet's next
-  notch, not this change.
-  **WHAT IT NEEDS FROM THE SCOPED-CLEARANCE WORK:** `scoped_floors:` emits
-  `track_width` only, so the relaxation that actually rescues an RF launch
-  cannot be declared today. The reader is already here — any rule with
-  `constraint clearance (min ...)` under `A.NetClass ==` or
-  `A.insideArea(...)` is resolved by the same last-match precedence — so the
-  emitter needs only to write that constraint (ideally on the SAME `zone:`
-  key, so one rule area carries both relaxations and P-LAND reports them
-  together).
+- **FINITE NATIVE PAD-LAUNCH WITNESSES (canon P-LAND, M-ENTRY).**
+  `escape_check.py --board B.kicad_pcb [--project B.kicad_pro]
+  [--dru D.kicad_dru] [--verbose]` delegates to library-only
+  `land_witness.py`. All three explicit files must exist; project overrides
+  must select the board companion. Entire version-1 rule syntax is admitted
+  before grading, including structurally valid diff_pair_gap constraints
+  reported outside launch scope. Unsupported syntax, physical constraints,
+  assignment/class gaps, geometry, or native configuration mismatch blocks.
+  Conditions support exact A/B NetName, NetClass and Type comparisons;
+  NetName star/question-mark patterns (brackets literal); negation and native
+  OR-before-AND precedence; native insideArea/intersectsArea; exact enabled
+  layer scopes. B-dependent widths are rejected before any folding.
+
+  Candidates are real constant-width native Tracks, resolved in original
+  rule order independently for width and Track–Pad clearance (both pair
+  orders). Native optional PAD/FP local-clearance precedence is preserved;
+  explicit custom clearance and width may be below board defaults. Complete
+  effective classes and native constituent membership are required. No-net
+  sources are excluded but their native Default-class pads remain obstacles.
+  Native shapes validate source starts and every relevant other-net pad on
+  the layer. Areas ClearArcs then Deflate once by native DRC epsilon with
+  ALLOW_ACUTE_CORNERS/ARC_LOW_DEF. Clearance uses native Collide at
+  max(0, required-epsilon); raw gap/margin is separate evidence.
+
+  The fixed deterministic policy is sorted positive declared widths <=2 mm;
+  bbox centre plus adaptive extent/0.03-mm proposals rounded to at most five
+  intervals on each axis (<=37 proposals, 1-IU edge inset); native source
+  admission; 48 directions; 1-mm reach; enabled source copper layers. No
+  distance pruning is applied. Invariant-only width rejection is recorded.
+  `VALIDATED_WITNESS` includes exact start/end/layer/width/rule and limiting
+  pair. `NO_VALIDATED_WITNESS` records complete finite coverage, without a
+  maximum-width, deficit, impossibility or routing-cause claim.
+
+  Every copper pad belongs to one priority bucket: unreadable, no net,
+  no declared floor, nominal same-net pour, native via on land, or graded.
+  Physical/copper/noncopper counts reconcile. Nominal pours and vias do not
+  prove connectivity. Actual incident same-net track geometry/width/UUIDs are
+  inventoried outside the finite search. Unsupported topology, net ties,
+  teardrops, non-normal padstacks and hole proxies block; present ordinary
+  THT/custom copper shapes remain supported. Drill/physical-hole checks are
+  downstream. Zero grading blocks. D-ESC/package/tier behavior is unchanged.
+
+  Maintained `t1_land_witness.py` freezes the native-clean five-pad base
+  (same positive public RED/GREEN, 2 graded/5 copper/3 floorless), exact
+  hostile UUID pairs, 36 matrix outcomes, ten precedence controls, area and
+  exact epsilon thresholds, no-net Default semantics, thirteen immutable ADC
+  witnesses and complete hostile native search coverage in bounded batches.
+  `t1_escape_tier.py` preserves CAL/RX2/CRC and QSPI contrasts. The helper is
+  part of pcb_flow tool identity, verified by a helper-only mutation that
+  makes a previously fresh handoff stale. This gate clears no downstream
+  source, placement, route, native DRC, connectivity or release gate.
 
 - **OBSERVED GRADING (canon GG-SHADOW / GG-RESOLVE) — M-COVER's observation
   arm.** `trace_audit.py --subject PROJECT_DIR` is the only gate here that
@@ -564,3 +648,33 @@ BACKEND GAP to report, not a bespoke script to write here.
 
 One file per tool; no package/`__init__.py` — scripts are invoked by path.
 `__pycache__/` is gitignored, never committed.
+
+- `critical_path_check.py BOARD --config POLICY --json REPORT` promotes the
+  common saved-copper short-path and branch-dominance mechanism to source
+  configuration. It grades nonempty denominators and exact layer/stack/endpoint
+  identities and rejects unrepresented physical contacts, zones and arcs.
+  Its admitted geometry is an endpoint graph of ordinary straight tracks,
+  ordinary vias and explicitly supported pad syntax. Full-file S-expression
+  parsing normalizes net, layer and direct-position fields into one analysis
+  representation before all inherited geometry readers run; equivalent quoted,
+  bare, numbered and whitespace variants retain their native meaning. Invalid
+  arity, conflicting identities and duplicate geometry fields are refused. The
+  shared land_witness tokenizer admits only native/JSON-common metadata escapes
+  (quote, backslash and b/f/n/r/t) by explicit opt-in. JSON-only unicode/slash
+  and other unsupported escape dialects refuse; native meanings are never
+  inferred from JSON-only decoding. Geometry identities and identity-dispatch
+  property keys additionally reject escapes in their original token spelling
+  and decoded control characters. Its default rule-language parser stays strict.
+  This admitted subset follows KiCad DSNLEXER escape semantics documented at
+  https://dev-docs.kicad.org/en/components/sexpr/; it is not a claim of support
+  for the complete native escape grammar. copper_length_audit
+  exposes the same reader for decoded analysis text without changing its file
+  API. Original board bytes are never rewritten. A separate serialized object
+  census refuses hidden primitives; all copper graphics, unknown pad
+  or via modifiers, unsupported intermediate-layer joins and ambiguous pad
+  anchors are refused. Rounded graph vertices may merge only physically
+  touching endpoint copper, with unchanged pad membership. These refusals
+  preserve graph fidelity and are not substitutes for native DRC or clearance.
+  Project conductors retain mandatory invocation; component ESD behavior remains
+  outside this geometric gate. Known-bad and declared-vacuity fixtures live in
+  `t1_critical_path_check.py`.

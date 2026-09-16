@@ -1,0 +1,14 @@
+mpn: RC0402FR-071RL
+manufacturer: YAGEO
+type: thick_film_resistor
+value: 1
+status: active
+datasheet: {doc_id: RC0402FR-series, revision: current, url: "https://www.lcsc.com/product-detail/C185446.html", sha256: null, fetched: 2026-09-01}
+package: "0402 (1005 metric)"
+footprint: Resistor_SMD:R_0402_1005Metric
+escape: {style: passive, pitch: 0.5, tier_required: jlc_2layer_default, checked: "exact YAGEO 0402 identity reviewed 2026-09-01"}
+pins: {1: A, 2: B}
+limits: {resistance: 1Ohm, tolerance: 1pct, power: 62.5mW, voltage: 50V}
+asserts: [{assert: value, equals: 1, why: "ADC reference-filter series resistance."}]
+verified: "Exact YAGEO MPN/code/value/package match selected 2026-09-01."
+sourcing: {lcsc: C185446, alternates: []}

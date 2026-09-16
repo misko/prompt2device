@@ -1,0 +1,216 @@
+schema: 1
+phase_policy_id: crow-audio-carrier-v1-physical-qualification
+source_deferrals:
+- assembly_id: factory-rj45-spoke-bank
+  target_kind: cable
+  target_id: cable
+  unknown_class: installed-cable-route-qualification
+  plan_source_ids:
+  - shared-spoke-contract
+  - spoke-cable-record
+  - first-article-plan
+  rationale: Qualify the exact factory cord installed route, bend, restraint and environmental suitability.
+    Nominal mate/grip geometry has its own cited manufacturer model; installed tolerances remain
+    unknown.
+- assembly_id: factory-rj45-spoke-bank
+  target_kind: interface
+  target_id: interface
+  unknown_class: realized-interface-fit
+  plan_source_ids:
+  - shared-spoke-contract
+  - realized-floorplan
+  - first-article-plan
+  rationale: Candidate axes exist; populated seating, exposure, and enclosure fit require realized
+    hardware.
+- assembly_id: factory-rj45-spoke-bank
+  target_kind: reaction
+  target_id: reaction
+  unknown_class: reaction-qualification
+  plan_source_ids:
+  - realized-floorplan
+  - first-article-plan
+  rationale: The selected reaction path must be exercised on the populated carrier or governed coupon.
+- assembly_id: factory-rj45-spoke-bank
+  target_kind: operation
+  target_id: mate
+  unknown_class: simultaneous-operation-qualification
+  plan_source_ids:
+  - shared-spoke-contract
+  - first-article-plan
+  rationale: All eight selected harnesses must be mated in the declared simultaneous state.
+- assembly_id: factory-rj45-spoke-bank
+  target_kind: operation
+  target_id: latch-pull-check
+  unknown_class: simultaneous-operation-qualification
+  plan_source_ids:
+  - spoke-header-dossier
+  - first-article-plan
+  rationale: Retention, polarity, and continuity require a populated physical operation.
+- assembly_id: factory-rj45-spoke-bank
+  target_kind: operation
+  target_id: unmate
+  unknown_class: simultaneous-operation-qualification
+  plan_source_ids:
+  - spoke-header-dossier
+  - first-article-plan
+  rationale: Latch release with all neighboring cables present requires a populated physical operation.
+- assembly_id: factory-rj45-spoke-bank
+  target_kind: tolerance
+  target_id: connector-enclosure-stack
+  unknown_class: installed-tolerance-qualification
+  plan_source_ids:
+  - shared-spoke-contract
+  - realized-floorplan
+  - first-article-plan
+  rationale: The installed PCB, solder seating, connector, and enclosure stack is measurable only
+    on realized geometry.
+- assembly_id: molex-micro-fit-power-input
+  target_kind: interface
+  target_id: interface
+  unknown_class: realized-interface-fit
+  plan_source_ids:
+  - power-header-record
+  - power-mate-record
+  - realized-floorplan
+  rationale: Candidate edge orientation exists; populated exposure and enclosure service fit require
+    realized hardware.
+- assembly_id: molex-micro-fit-power-input
+  target_kind: reaction
+  target_id: reaction
+  unknown_class: reaction-qualification
+  plan_source_ids:
+  - realized-floorplan
+  rationale: The selected input reaction path must be exercised on the populated carrier or governed
+    coupon.
+- assembly_id: molex-micro-fit-power-input
+  target_kind: cable
+  target_id: cable
+  unknown_class: installed-cable-route-qualification
+  plan_source_ids:
+  - power-contact-record
+  - power-positive-lead-record
+  - power-return-lead-record
+  - power-restraint-record
+  rationale: Exact 150 mm red/black 18 AWG precrimps, contacts, free-run rule and internal restraint
+    are selected; installed cross-section, bend, pigtail termination and enclosure route require
+    physical qualification.
+- assembly_id: molex-micro-fit-power-input
+  target_kind: operation
+  target_id: mate-and-polarity-check
+  unknown_class: simultaneous-operation-qualification
+  plan_source_ids:
+  - power-header-record
+  - power-mate-record
+  - power-positive-lead-record
+  - power-return-lead-record
+  rationale: Supply-off mating and polarity checking require the exact populated harness.
+- assembly_id: molex-micro-fit-power-input
+  target_kind: operation
+  target_id: unmate-supply-off
+  unknown_class: simultaneous-operation-qualification
+  plan_source_ids:
+  - power-mate-record
+  - power-restraint-record
+  rationale: Supply-off release with installed neighbors requires the exact populated harness.
+- assembly_id: molex-micro-fit-power-input
+  target_kind: tolerance
+  target_id: power-connector-enclosure-stack
+  unknown_class: installed-tolerance-qualification
+  plan_source_ids:
+  - power-header-record
+  - power-mate-record
+  - power-restraint-record
+  - realized-floorplan
+  rationale: The installed power-header, seating, strain-relief, and enclosure stack requires realized
+    geometry.
+- assembly_id: mchstreamer-dual-cable-interface
+  target_kind: interface
+  target_id: interface
+  unknown_class: realized-interface-fit
+  plan_source_ids:
+  - mch-header-dossier
+  - mch-manual-record
+  - realized-floorplan
+  rationale: Candidate vertical axes exist; module seating, installed height, and enclosure fit require
+    realized hardware.
+- assembly_id: mchstreamer-dual-cable-interface
+  target_kind: reaction
+  target_id: reaction
+  unknown_class: reaction-qualification
+  plan_source_ids:
+  - mch-boundary-adr
+  rationale: Both boards must be supported while the exact cable sockets are seated and removed.
+- assembly_id: mchstreamer-dual-cable-interface
+  target_kind: cable
+  target_id: cable
+  unknown_class: installed-cable-route-qualification
+  plan_source_ids:
+  - mch-cable-drawing
+  - mch-manual-record
+  - mch-boundary-adr
+  rationale: The exact cable assembly is selected; its installed straight run and bend remain physical
+    qualification.
+- assembly_id: mchstreamer-dual-cable-interface
+  target_kind: operation
+  target_id: seat-j10-j1-cable
+  unknown_class: simultaneous-operation-qualification
+  plan_source_ids:
+  - mch-boundary-adr
+  - mch-cable-drawing
+  - mch-manual-record
+  rationale: Pin-one orientation, continuity, and seating on MCHStreamer J1 require the exact populated
+    hardware.
+- assembly_id: mchstreamer-dual-cable-interface
+  target_kind: operation
+  target_id: seat-j11-j3-cable
+  unknown_class: simultaneous-operation-qualification
+  plan_source_ids:
+  - mch-boundary-adr
+  - mch-cable-drawing
+  - mch-manual-record
+  rationale: Distinct J11-to-J3 identity and simultaneous seating require the exact populated hardware.
+- assembly_id: mchstreamer-dual-cable-interface
+  target_kind: operation
+  target_id: remove-j11-j3-cable
+  unknown_class: simultaneous-operation-qualification
+  plan_source_ids:
+  - mch-boundary-adr
+  - mch-cable-drawing
+  rationale: J11 removal while J10 remains populated requires the exact physical assembly.
+- assembly_id: mchstreamer-dual-cable-interface
+  target_kind: operation
+  target_id: remove-j10-j1-cable
+  unknown_class: simultaneous-operation-qualification
+  plan_source_ids:
+  - mch-boundary-adr
+  - mch-cable-drawing
+  rationale: J10 removal and reaction support require the exact physical assembly.
+- assembly_id: mchstreamer-dual-cable-interface
+  target_kind: tolerance
+  target_id: mch-header-cable-enclosure-stack
+  unknown_class: installed-tolerance-qualification
+  plan_source_ids:
+  - mch-header-dossier
+  - realized-floorplan
+  rationale: Header seating, cable socket, board registration, and enclosure spacing require realized
+    geometry.
+- assembly_id: factory-rj45-spoke-bank
+  target_kind: tolerance
+  target_id: installed-plug-boot-radial
+  unknown_class: installed-tolerance-qualification
+  plan_source_ids:
+  - spoke-cable-record
+  - shared-spoke-contract
+  - first-article-plan
+  rationale: Qualify manufactured variation and installed service geometry on the exact assembly;
+    no numeric bound invented.
+- assembly_id: factory-rj45-spoke-bank
+  target_kind: tolerance
+  target_id: installed-plug-boot-axial
+  unknown_class: installed-tolerance-qualification
+  plan_source_ids:
+  - spoke-cable-record
+  - shared-spoke-contract
+  - first-article-plan
+  rationale: Qualify manufactured variation and installed service geometry on the exact assembly;
+    no numeric bound invented.

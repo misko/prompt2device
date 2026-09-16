@@ -1,0 +1,30 @@
+mpn: EEEFK1V4R7R
+manufacturer: Panasonic Industry
+type: aluminum_electrolytic_capacitor
+value: 4.7uF
+status: active
+datasheet:
+  doc_id: Panasonic FK series ABA0000C1181
+  revision: ABA0000C1181 2026-02-10
+  url: https://industrial.panasonic.com/cdbs/www-data/pdf/RDE0000/ABA0000C1181.pdf
+  local: Panasonic_FK_ABA0000C1181_20260210.pdf
+  sha256: b36857d089adaddf3042b33bf11d0f7d83bf70734e983f33b7827152e11854e3
+  fetched: '2026-09-08'
+  pages: 12
+  note: FK family document ABA0000C1181, not an EEEFK1A471P-only datasheet. p1 specifications/polarity and p2 dimensions; p4 exact EEEFK1V4R7R 35V, 4.7uF +/-20%, size B diameter4.0 x5.8mm row, 90mArms at100kHz/105C, 1.35ohm impedance at100kHz/20C and 2000/tape packaging. General leakage limit and polarity conditions remain applicable; application ripple/noise and physical assembly are not qualified.
+  provenance: Manufacturer-authored PDF independently inspected from exact captured bytes on 2026-09-08; copied unchanged into this carrier dossier. Previously captured original public URL https://industrial.panasonic.com/cdbs/www-data/pdf/RDE0000/ABA0000C1181.pdf; source file projects/crow-audio-carrier-v1/02_parts/EEEFK1A471P/Panasonic_FK_ABA0000C1181_20260210.pdf; independent carrier inspection, not adoption of another board review. Local binding is not independent pin/footprint review, sourcing allocation, approval sheet, physical qualification or order release.
+package: "SMD aluminum can, D4.0 x L5.8 mm"
+footprint: Capacitor_SMD:CP_Elec_4x5.8
+escape: {style: polarized_passive, pitch: 3.6, tier_required: jlc_2layer_default, checked: "KiCad CP_Elec_4x5.8 pad centers +/-1.8 mm and 2.6 x 1.6 mm lands reviewed 2026-09-01"}
+pins:
+  1: {name: POSITIVE, note: "KiCad CP_Elec pad 1 is positive and must connect to VMIDx_BUF."}
+  2: {name: NEGATIVE, note: "Negative terminal must connect to GND."}
+limits: {capacitance_f: 0.0000047, tolerance_pct: 20, voltage_v: 35, polarized: true, leakage_current_max_uA: 3}
+asserts:
+  - {assert: value, equals: 4.7u, tolerance_pct: 20, why: "Exact polarized buffered-VMID reservoir in the Cirrus output-isolation network."}
+verified: "CITED: official Panasonic exact EEEFK1V4R7R page reports 4.7uF +/-20%, 35V, 3uA maximum leakage, -55C to +105C and D4x5.8; pad 1 positive is governed by the KiCad CP_Elec convention; read 2026-09-02."
+gotchas:
+  - "C_VMID1_BUF and C_VMID2_BUF are polarized: pad 1 to VMIDx_BUF, pad 2 to GND. Reversal is an order-blocking assembly defect."
+  - "Catalog identity does not replace first-article leakage, DC bias, polarity, and installed-height inspection."
+  - "The 3uA leakage maximum is specified at20C, two minutes after reaching rated voltage (FK series p1). It is not an all-temperature bound, an immediate-startup bound, or proof of leakage at the installed low bias. Endurance/shelf tests return to20C before leakage measurement."
+sourcing: {lcsc: C401730, alternates: [], note: "Exact MPN/code match queried from the live JLC catalog 2026-09-02; observed catalog stock 5870 for 10 required, with authenticated PCBA allocation still owed."}

@@ -1,0 +1,159 @@
+schema: 1
+source_type: isolated_external_12V_supply
+source_voltage_boundary:
+  minimum_operating_V: 11.4
+  evidence: >-
+    First-article input boundary is a regulated isolated 12 V source at
+    11.4-13.2 V. The board does not create the safety isolation barrier.
+off_control: disconnect_J9_isolated_12V_input
+quiescent_ua: 1000
+input_trunk_class: POD_POWER
+ir_floor_mohm: 100
+upstream_delivery:
+  source_net: 12V_IN
+  destination_net: 12V_PROTECTED
+  source_min_V: 11.4
+  destination_floor_V: 11.16
+  load_current_A: 1.0
+  margin: 0.20
+  evidence: >-
+    The rounded 1.0 A trunk bound exceeds the executable 0.986 A conditional worst-case
+    load. Published post-trip/reflow maxima are used for F_IN; Q_IN uses its
+    room-temperature maximum, while hot four-wire common-path proof remains a
+    first-article hold. ADR0022 adds a local-only1.3V diode drop budget;
+    5V_BUCK vin_min is9.86V while the unchanged spoke floor remains11.16V.
+  rails: [5V_BUCK, 12V_POD1, 12V_POD2, 12V_POD3, 12V_POD4, 12V_POD5, 12V_POD6, 12V_POD7, 12V_POD8]
+  fixed_drop_components_mV:
+    no_fixed_semiconductor_drop: {value: 0, basis: topology, evidence: "The selected reverse-hookup element is a low-side-driven PFET, not a series diode; only resistance is charged."}
+  resistance_components_mohm:
+    input_pptc: {value: 75, basis: manufacturer_R1max, evidence: "Littelfuse 2920L260/33 published 0.075 ohm post-trip/reflow maximum."}
+    reverse_hookup_pfet: {value: 25, basis: manufacturer_maximum, evidence: "DMP6023LFG-13 published 25 milliohm maximum at the governed gate-drive condition."}
+    common_trunk_copper_vias_joints: {value: 100, basis: budgeted_max, evidence: "Conservative common-path allocation from J9 through F_IN and Q_IN to 12V_PROTECTED; hot four-wire realization is owed."}
+
+effective_capacitance_banks:
+  - name: AP63205 input capacitor
+    requirement_uF: 10
+    requirement_evidence: "Diodes AP63205 DS41326 Rev 3-2 Figure 1"
+    accepted_dielectrics: [ceramic]
+    contributors:
+      - {part: 12105C106K4Z2A, refs: [C_BUCK_IN, C_BUCK_IN2, C_BUCK_IN3], nominal_each_uF: 10, dielectric: ceramic, tolerance_minus_pct: 10, dc_bias_derating_pct: 40, temperature_derating_pct: 15, lifecycle_derating_pct: 0, basis: conservative_engineering_bound, evidence: "three exact 50 V X7R capacitors leave 13.77 uF under the declared tolerance/bias/temperature deratings; exact lot curve and board placement remain first-article holds"}
+  - name: AP63205 output capacitor
+    requirement_uF: 44
+    requirement_evidence: "Diodes AP63205 DS41326 Rev 3-2 Figure 1 uses 2x22uF"
+    accepted_dielectrics: [ceramic]
+    contributors:
+      - {part: GRM32ER71A476KE15L, refs: [C_BUCK_O1, C_BUCK_O2, C_BUCK_O3], nominal_each_uF: 47, dielectric: ceramic, tolerance_minus_pct: 10, dc_bias_derating_pct: 40, temperature_derating_pct: 15, lifecycle_derating_pct: 0, basis: conservative_engineering_bound, evidence: "three exact in-production 10 V X7R capacitors leave 64.72 uF under the declared tolerance/bias/temperature deratings; exact lot curve and placement remain first-article/source holds"}
+  - name: LT3041 input capacitor
+    requirement_uF: 10
+    requirement_evidence: "ADI LT3041 Rev.A input10uF local ceramic recommendation; selected47uF requires layout review"
+    accepted_dielectrics: [ceramic]
+    contributors:
+      - {part: GRM32ER71A476KE15L, refs: [C_LDO_IN], nominal_each_uF: 47, dielectric: ceramic, tolerance_minus_pct: 10, dc_bias_derating_pct: 50, temperature_derating_pct: 15, lifecycle_derating_pct: 0, basis: conservative_engineering_bound, evidence: "Exact selected 47 uF 10 V X7R part; declared 10% tolerance, 50% bias and 15% temperature losses leave 17.9775 uF here. The separate power-state model additionally charges 10% lifecycle loss. Installed effective capacitance and loop stability remain unmeasured prototype obligations."}
+  - name: LT3041 dual output capacitor
+    requirement_uF: 20
+    requirement_evidence: "ADI LT3041 Rev.A requires two10uF effective ceramic capacitors, each ESR below20mohm and ESL below2nH. Each selected47uF gives16.17975uF with lifecycle allowance; proximity/Kelvin stability evidence remains OPEN."
+    accepted_dielectrics: [ceramic]
+    contributors:
+      - {part: GRM32ER71A476KE15L, refs: [C_LDO_OUT, C_OPA_BULK], nominal_each_uF: 47, dielectric: ceramic, tolerance_minus_pct: 10, dc_bias_derating_pct: 50, temperature_derating_pct: 15, lifecycle_derating_pct: 0, basis: conservative_engineering_bound, evidence: "Exact selected 47 uF 10 V X7R part; declared 10% tolerance, 50% bias and 15% temperature losses leave 17.9775 uF here. The separate power-state model additionally charges 10% lifecycle loss. Installed effective capacitance and loop stability remain unmeasured prototype obligations."}
+  - name: CS5308P LDO_A_FILT
+    requirement_uF: 0.8
+    requirement_evidence: "Cirrus CS530x Schematic and Layout Guidelines, July 2025, section 1.6; official inner PDF SHA-256 a97e3cfbe311caf603bd56b7aeab189dd38727104168c26bb67dd24add07b62f"
+    accepted_dielectrics: [x7r]
+    contributors:
+      - {part: GRM188Z71C475KE21D, refs: [C_LDO_A], nominal_each_uF: 4.7, dielectric: x7r, tolerance_minus_pct: 10, dc_bias_derating_pct: 50, temperature_derating_pct: 15, lifecycle_derating_pct: 10, basis: conservative_all_corner_screen, evidence: "exact C389010/MPN identity; common 0.34425 factor leaves 1.618 uF and startup/stability remains a first-article hold"}
+  - name: CS5308P LDO_D_FILT
+    requirement_uF: 0.8
+    requirement_evidence: "Cirrus CS530x Schematic and Layout Guidelines, July 2025, section 1.7; official inner PDF SHA-256 a97e3cfbe311caf603bd56b7aeab189dd38727104168c26bb67dd24add07b62f"
+    accepted_dielectrics: [x7r]
+    contributors:
+      - {part: GRM188Z71C475KE21D, refs: [C_LDO_D], nominal_each_uF: 4.7, dielectric: x7r, tolerance_minus_pct: 10, dc_bias_derating_pct: 50, temperature_derating_pct: 15, lifecycle_derating_pct: 10, basis: conservative_all_corner_screen, evidence: "exact C389010/MPN identity; common 0.34425 factor leaves 1.618 uF and startup/stability remains a first-article hold"}
+  - name: CS5308P ADC_VMID1 high-frequency
+    requirement_uF: 0.1
+    requirement_evidence: "Cirrus CS530x Schematic and Layout Guidelines, July 2025, section 1.8; official inner PDF SHA-256 a97e3cfbe311caf603bd56b7aeab189dd38727104168c26bb67dd24add07b62f"
+    accepted_dielectrics: [x7r]
+    contributors:
+      - {part: CL10B474KA8NFNC, refs: [C_VMID1_470N], nominal_each_uF: 0.47, dielectric: x7r, tolerance_minus_pct: 10, dc_bias_derating_pct: 50, temperature_derating_pct: 15, lifecycle_derating_pct: 10, basis: conservative_all_corner_screen, evidence: "exact C318640/MPN identity; common 0.34425 factor leaves 0.1618 uF and VMID settling/ripple remains a first-article hold"}
+  - name: CS5308P ADC_VMID2 high-frequency
+    requirement_uF: 0.1
+    requirement_evidence: "Cirrus CS530x Schematic and Layout Guidelines, July 2025, section 1.8; official inner PDF SHA-256 a97e3cfbe311caf603bd56b7aeab189dd38727104168c26bb67dd24add07b62f"
+    accepted_dielectrics: [x7r]
+    contributors:
+      - {part: CL10B474KA8NFNC, refs: [C_VMID2_470N], nominal_each_uF: 0.47, dielectric: x7r, tolerance_minus_pct: 10, dc_bias_derating_pct: 50, temperature_derating_pct: 15, lifecycle_derating_pct: 10, basis: conservative_all_corner_screen, evidence: "exact C318640/MPN identity; common 0.34425 factor leaves 0.1618 uF and VMID settling/ripple remains a first-article hold"}
+  - name: CS5308P ADC_VMID1 bulk
+    requirement_uF: 1.0
+    requirement_evidence: "Cirrus CS530x Schematic and Layout Guidelines, July 2025, section 1.8; official inner PDF SHA-256 a97e3cfbe311caf603bd56b7aeab189dd38727104168c26bb67dd24add07b62f"
+    accepted_dielectrics: [x7r]
+    contributors:
+      - {part: GRM188Z71C475KE21D, refs: [C_VMID1_4U7], nominal_each_uF: 4.7, dielectric: x7r, tolerance_minus_pct: 10, dc_bias_derating_pct: 50, temperature_derating_pct: 15, lifecycle_derating_pct: 10, basis: conservative_all_corner_screen, evidence: "exact C389010/MPN identity; common 0.34425 factor leaves 1.618 uF and VMID settling/ripple remains a first-article hold"}
+  - name: CS5308P ADC_VMID2 bulk
+    requirement_uF: 1.0
+    requirement_evidence: "Cirrus CS530x Schematic and Layout Guidelines, July 2025, section 1.8; official inner PDF SHA-256 a97e3cfbe311caf603bd56b7aeab189dd38727104168c26bb67dd24add07b62f"
+    accepted_dielectrics: [x7r]
+    contributors:
+      - {part: GRM188Z71C475KE21D, refs: [C_VMID2_4U7], nominal_each_uF: 4.7, dielectric: x7r, tolerance_minus_pct: 10, dc_bias_derating_pct: 50, temperature_derating_pct: 15, lifecycle_derating_pct: 10, basis: conservative_all_corner_screen, evidence: "exact C389010/MPN identity; common 0.34425 factor leaves 1.618 uF and VMID settling/ripple remains a first-article hold"}
+  - name: CS5308P ADC_FILT1 high-frequency
+    requirement_uF: 0.22
+    requirement_evidence: "Cirrus CS530x Schematic and Layout Guidelines, July 2025, section 1.9; official inner PDF SHA-256 a97e3cfbe311caf603bd56b7aeab189dd38727104168c26bb67dd24add07b62f"
+    accepted_dielectrics: [x7r]
+    contributors:
+      - {part: C0603C105K4RACTU, refs: [C_FILT1_1U], nominal_each_uF: 1.0, dielectric: x7r, tolerance_minus_pct: 10, dc_bias_derating_pct: 50, temperature_derating_pct: 15, lifecycle_derating_pct: 10, basis: conservative_all_corner_screen, evidence: "exact C2167386/MPN identity; common 0.34425 factor leaves 0.3443 uF and reference ripple/THD remains a first-article hold"}
+  - name: CS5308P ADC_FILT2 high-frequency
+    requirement_uF: 0.22
+    requirement_evidence: "Cirrus CS530x Schematic and Layout Guidelines, July 2025, section 1.9; official inner PDF SHA-256 a97e3cfbe311caf603bd56b7aeab189dd38727104168c26bb67dd24add07b62f"
+    accepted_dielectrics: [x7r]
+    contributors:
+      - {part: C0603C105K4RACTU, refs: [C_FILT2_1U], nominal_each_uF: 1.0, dielectric: x7r, tolerance_minus_pct: 10, dc_bias_derating_pct: 50, temperature_derating_pct: 15, lifecycle_derating_pct: 10, basis: conservative_all_corner_screen, evidence: "exact C2167386/MPN identity; common 0.34425 factor leaves 0.3443 uF and reference ripple/THD remains a first-article hold"}
+  - name: CS5308P ADC_FILT1 bulk support
+    requirement_uF: 2.2
+    requirement_evidence: "Cirrus CS530x Schematic and Layout Guidelines, July 2025, section 1.9; official inner PDF SHA-256 a97e3cfbe311caf603bd56b7aeab189dd38727104168c26bb67dd24add07b62f"
+    accepted_dielectrics: [x7r]
+    contributors:
+      - {part: C0805C106K8RACTU, refs: [C_FILT1_10U], nominal_each_uF: 10.0, dielectric: x7r, tolerance_minus_pct: 10, dc_bias_derating_pct: 50, temperature_derating_pct: 15, lifecycle_derating_pct: 10, basis: conservative_all_corner_screen, evidence: "exact active C2167576/MPN identity; common 0.34425 factor leaves 3.4425 uF and reference ripple/THD remains a first-article hold"}
+  - name: CS5308P ADC_FILT2 bulk support
+    requirement_uF: 2.2
+    requirement_evidence: "Cirrus CS530x Schematic and Layout Guidelines, July 2025, section 1.9; official inner PDF SHA-256 a97e3cfbe311caf603bd56b7aeab189dd38727104168c26bb67dd24add07b62f"
+    accepted_dielectrics: [x7r]
+    contributors:
+      - {part: C0805C106K8RACTU, refs: [C_FILT2_10U], nominal_each_uF: 10.0, dielectric: x7r, tolerance_minus_pct: 10, dc_bias_derating_pct: 50, temperature_derating_pct: 15, lifecycle_derating_pct: 10, basis: conservative_all_corner_screen, evidence: "exact active C2167576/MPN identity; common 0.34425 factor leaves 3.4425 uF and reference ripple/THD remains a first-article hold"}
+
+rails:
+  # ADR0025: eight OPA2320 and ADC share3V3; local5V steady allocation remains0.30A.
+  # Old split-rail transient assumptions are retired, not inherited.
+  - {name: 5V_BUCK, vin_min: 9.86, vin_max: 13.2, vout_min: 4.85, vout_max: 5.15, iout_max_A: 0.30, converter: AP63205WU-7, external_output: false, eff: 0.85, note: "ADR0022 D_BUCK_IN US1B-13-F isolates VIN/EN and all three ceramics;1.3V engineering drop, not an all-temperature VF guarantee. Input bank remains13.77uF minimum."}
+  # Thermally adequate replacement; full power-state screen/steady-budget OPEN rows in ADR0009.
+  - {name: 3V3_ADC, vin_min: 4.10, vin_max: 5.15, vout_min: 3.23, vout_max: 3.35, iout_max_A: 0.23, converter: LT3041ADE#TRPBF, input_parent: 5V_BUCK, dropout_mv: 500, pdiss_max_mw: 702, external_output: false, eff: 0.65, note: "ADR0025 shared rail. Input remains5V_LDO_HOLD behind D_HOLD/R_PRE/Q_PRE. Reverse protected LT3041; up15mA reverse overshoot sink and25mA powered ground budget are not zero. source-only architecture checker owns current arithmetic; physical source and prototype qualification remain open."}
+
+  - &spoke
+    name: 12V_POD1
+    stage: distribution
+    vin_min: 11.16
+    vin_max: 13.2
+    vout_min: 11.16
+    vout_max: 13.2
+    iout_max_A: 0.10
+    external_output: true
+    claim_id: eight_analog_spokes
+    load_uv_threshold: 10.8
+    ir_budget_mohm: 2200
+    ir_budget_components_mohm:
+      protection_switch: {value: 1700, basis: maximum, evidence: "Littelfuse 1812L035/60MR published 1.700 ohm post-trip/reflow maximum; hot realized four-wire qualification owed"}
+      pcb_copper_vias_joints: {value: 400, basis: budgeted_max, evidence: "per-spoke path from 12V_PROTECTED through F1-F8 to J1-J8; common trunk copper is charged separately by upstream_delivery"}
+      connector_contacts: {value: 100, basis: budgeted_max, evidence: "RJ45 mated cord excluded; board-side paralleled power-contact allocation only"}
+    margin: 0.2
+    margin_basis: worst_case_delivery
+    margin_evidence: "The upstream 200 milliohm common path is charged at the rounded 1.0 A trunk current, then the 2.2 ohm branch/copper/header path is charged at 0.10 A; applying 20 percent to both leaves a calculated 10.896 V carrier-header floor, 96 mV above 10.8 V. Hot four-wire proof is still owed."
+    distribution: {series_devices: [1812L035/60MR], path_resistance_max_mohm: 2200, current_limit_min_A: 0.10, current_limit_max_A: 0.70, reverse_current_policy: "Upstream Q_IN blocks reversed J9 hookup only; no downstream reverse source is permitted, pods contain no source, and hot plug is forbidden"}
+  - <<: *spoke
+    name: 12V_POD2
+  - <<: *spoke
+    name: 12V_POD3
+  - <<: *spoke
+    name: 12V_POD4
+  - <<: *spoke
+    name: 12V_POD5
+  - <<: *spoke
+    name: 12V_POD6
+  - <<: *spoke
+    name: 12V_POD7
+  - <<: *spoke
+    name: 12V_POD8

@@ -1,0 +1,371 @@
+- lcsc: C53283916
+  refs:
+  - U_ISO1
+  - U_ISO2
+  - U_ISO3
+  - U_ISO4
+  - U_ISO5
+  - U_ISO6
+  - U_ISO7
+  - U_ISO8
+  render_model_source: native
+  native_representation:
+    reason: vendor_model_absent
+    mpn: TMUX2821DSGR
+    vendor_footprint_sha256: aac4957b19f2388b942cb7f7e5ea234120c087013ae6a2ded63c4ab8c6fbe089
+    model_sha256: 0efc4d267f4b25c433f509251759baab99611db311ca31b3f60ae180c3beb1fe
+    registration_group: ti-dsg0008a-native-package
+    authority:
+      path: 02_parts/TMUX2821DSGR/TMUX28xx_SCDS488.pdf
+      sha256: 493e5c0d4eb5ca55dea82dbcce59b1be9c353577e256c161821662c38bb9ac55
+      pages:
+      - 30
+      - 31
+      revision: DSG0008A drawing4218900/E08/2022
+    native_footprint:
+      path: 03_src/lib/crow_audio_carrier.pretty/TI_DSG0008A_Exact.kicad_mod
+      sha256: d451fc7671e11f5f664d86d3cca10f2b1ee7f78746fd10bd8c1c82349fad0d65
+    generator:
+      path: 03_src/build_package_models.py
+      sha256: 9b376ffc46c8a8746e06e5cddfc3d3b39656795a83754144077f86716c588019
+    provenance:
+      path: 03_src/lib/3dmodels/provenance.md
+      sha256: 50eb3a3f9319de6def5a5bf9bb9ba66e05d1e162d765c043d49fe30c9641a18d
+    reviewer: carrier_missing_cad_dback independent source judgment; journal5595edc7d5430a2d87247dad35c289e484bb164f6a8648b7ea45c0baf3c2ba36.tar.gz
+    reviewed_on: '2026-09-11'
+    limitations: Drawing-derived nominal visual body, not manufacturer CAD, worst-case
+      tolerance authority or manufacturing proof. Pad/rotation, signed registration,
+      same-camera overlay and every CPL-body obligation remain active.
+  why: Exact fetched catalog footprint has nine pads and no model clauses. Independent
+    TI drawing review supports the exact nominal native model; no failing status is
+    adjudicated by this representation choice.
+  evidence:
+  - claim: Independent interpretation of TI nominal package drawing supports an explicitly
+      limited native visual representation
+    grade: ESTIMATED
+    why_not_rerunnable: A numeric parser does not independently establish semantic
+      interpretation of the manufacturer drawing. The exact fresh source review is
+      preserved in journal5595edc7d5430a2d87247dad35c289e484bb164f6a8648b7ea45c0baf3c2ba36.tar.gz;
+      the producer separately enforces current source hashes, signed native registration
+      and delivered-body identity, with independent A-RENDER pixels.
+- lcsc: C85098
+  refs:
+  - D_HOLD
+  status: PAD-GEOM
+  why: '2026-09-11 independent measurement from Diodes Inc. B340A DS30891 Rev.19-2
+    p6: native 4.00 mm pitch, 2.50 x 1.80 mm lands match the 4.00 mm, 2.50 x 1.70
+    mm suggestion (+0.10 mm width), contain the full 0.880..2.795 mm one-side terminal-contact
+    tolerance union, and cover 100% of cached-model terminal metal; retain native
+    placement. Root independently reopened all review inputs and outputs; original
+    reviews and raw fit evidence preserved in journal5595edc7d5430a2d87247dad35c289e484bb164f6a8648b7ea45c0baf3c2ba36.tar.gz.
+    Current corner-aware terminal-containment command is an additional measured check;
+    full native board acceptance remains separate.'
+  evidence:
+  - claim: Minimum signed copper margin around the reviewed manufacturer terminal
+      envelope for D_HOLD, including native rounded corners
+    command: /usr/bin/python3 projects/crow-audio-carrier-v1/03_src/tests/check_native_terminal_envelope.py
+      D_HOLD
+    output: 0.045978
+    budget: '>= 0'
+    tolerance: 1.0e-06
+    tolerance_why: One micrometre allows printed precision and KiCad coordinate rounding
+      while remaining below the independently measured positive margin.
+    grade: CITED
+    requires:
+    - pcbnew
+    - projects/crow-audio-carrier-v1/04_kicad/crow_audio_carrier_v1.kicad_pcb
+- lcsc: C83846
+  refs:
+  - D_IN
+  status: PAD-GEOM
+  why: '2026-09-11 independent Littelfuse SMBJ v4 p5 measurement: native 2.50 x 2.30
+    mm lands and 1.80 mm gap satisfy J/L>=2.160, I>=2.260 and K<=2.740 mm, contain
+    the full 1.085..2.795 mm contact-tolerance union, and cover 100% of cached-model
+    terminal metal. Root independently reopened all review inputs and outputs; original
+    reviews and raw fit evidence preserved in journal5595edc7d5430a2d87247dad35c289e484bb164f6a8648b7ea45c0baf3c2ba36.tar.gz.
+    Current corner-aware terminal-containment command is an additional measured check;
+    full native board acceptance remains separate.'
+  evidence:
+  - claim: Minimum signed copper margin around the reviewed manufacturer terminal
+      envelope for D_IN, including native rounded corners
+    command: /usr/bin/python3 projects/crow-audio-carrier-v1/03_src/tests/check_native_terminal_envelope.py
+      D_IN
+    output: 0.039703
+    budget: '>= 0'
+    tolerance: 1.0e-06
+    tolerance_why: One micrometre allows printed precision and KiCad coordinate rounding
+      while remaining below the independently measured positive margin.
+    grade: CITED
+    requires:
+    - pcbnew
+    - projects/crow-audio-carrier-v1/04_kicad/crow_audio_carrier_v1.kicad_pcb
+- lcsc: C154439
+  refs:
+  - D_BUCK_IN
+  status: PAD-GEOM
+  why: '2026-09-11 independent Diodes Inc. US1B DS16008 Rev.11-2 p4 measurement: native
+    4.00 mm pitch and 2.50 x 1.80 mm lands match the 4.00 mm, 2.50 x 1.70 mm suggestion
+    (+0.10 mm width) and contain the full 0.880..2.795 mm terminal-contact tolerance
+    union; JLC''s 5.14 mm pitch is the discrepant land pattern. Root independently
+    reopened all review inputs and outputs; original reviews and raw fit evidence
+    preserved in journal5595edc7d5430a2d87247dad35c289e484bb164f6a8648b7ea45c0baf3c2ba36.tar.gz.
+    Current corner-aware terminal-containment command is an additional measured check;
+    full native board acceptance remains separate.'
+  evidence:
+  - claim: Minimum signed copper margin around the reviewed manufacturer terminal
+      envelope for D_BUCK_IN, including native rounded corners
+    command: /usr/bin/python3 projects/crow-audio-carrier-v1/03_src/tests/check_native_terminal_envelope.py
+      D_BUCK_IN
+    output: 0.045978
+    budget: '>= 0'
+    tolerance: 1.0e-06
+    tolerance_why: One micrometre allows printed precision and KiCad coordinate rounding
+      while remaining below the independently measured positive margin.
+    grade: CITED
+    requires:
+    - pcbnew
+    - projects/crow-audio-carrier-v1/04_kicad/crow_audio_carrier_v1.kicad_pcb
+- lcsc: C154439
+  refs:
+  - D_BUCK_IN
+  status: PAD-MISMATCH
+  why: '2026-09-11 WRL material-mesh measurement and pcbnew board coordinates: preserve
+    raw 0.570 mm numbered-pad fit failure, but cached-model terminals 1.400048..2.599944
+    mm have center 1.999996 mm versus native 2.000000 mm (0.000004 mm residual) and
+    1.199896 mm/100% overlap; zero-offset common-centroid mount is supported independently.
+    Root independently reopened all review inputs and outputs; original reviews and
+    raw fit evidence preserved in journal5595edc7d5430a2d87247dad35c289e484bb164f6a8648b7ea45c0baf3c2ba36.tar.gz.
+    Current corner-aware terminal-containment command is an additional measured check;
+    full native board acceptance remains separate.'
+  evidence:
+  - claim: Minimum signed copper margin around the reviewed manufacturer terminal
+      envelope for D_BUCK_IN, including native rounded corners
+    command: /usr/bin/python3 projects/crow-audio-carrier-v1/03_src/tests/check_native_terminal_envelope.py
+      D_BUCK_IN
+    output: 0.045978
+    budget: '>= 0'
+    tolerance: 1.0e-06
+    tolerance_why: One micrometre allows printed precision and KiCad coordinate rounding
+      while remaining below the independently measured positive margin.
+    grade: CITED
+    requires:
+    - pcbnew
+    - projects/crow-audio-carrier-v1/04_kicad/crow_audio_carrier_v1.kicad_pcb
+  - claim: US1B cached model terminal metal, zero-offset native mounting and cathode
+      band correspond despite discrepant catalog pad coordinates
+    grade: ESTIMATED
+    why_not_rerunnable: Naming a VRML material as the physical terminal or cathode
+      band requires the independent visual manufacturer/model judgment. Raw material-mesh
+      parser, numerical results and actual final top/bare crops are preserved verbatim
+      in the independent diodes review archive; this semantic correspondence is not
+      certified by the same numeric fit it overrides.
+- lcsc: C131093
+  refs:
+  - U_DUMP
+  - U_LDO_EN
+  - U_OE
+  status: PAD-GEOM
+  why: '2026-09-11 measured from board SHA-256 7765810d8f9734f0ff893f7411ae80628ccddf5e78a78ee920a3303e9d2a8631,
+    supplied JLC footprint SHA-256 9a59f5a320c2a6bfa4fd017c37da6150b7981982b4daa8cee1cd0fe482e29219,
+    and Nexperia 74LVC1G14 Rev.19 PDF SHA-256 b8f37c700d0fc8374de6d14f0e2caf310c34b480ffab9d63c69bb3b6defbebbf
+    pp.3,11: native pads contain the entire stated SOT753 terminal envelope (0.65..1.50
+    mm radial, ±0.20 mm lateral) with >=0.175/0.300/0.100 mm inner/outer/lateral margins;
+    180-degree numbered-pad fit max residual 0.195 mm and minimum JLC-pad overlap
+    88.991%. Root independently reopened all review inputs and outputs; original reviews
+    and raw fit evidence preserved in journal5595edc7d5430a2d87247dad35c289e484bb164f6a8648b7ea45c0baf3c2ba36.tar.gz.
+    Current corner-aware terminal-containment command is an additional measured check;
+    full native board acceptance remains separate.'
+  evidence:
+  - claim: Minimum signed copper margin around the reviewed manufacturer terminal
+      envelope for U_DUMP, including native rounded corners
+    command: /usr/bin/python3 projects/crow-audio-carrier-v1/03_src/tests/check_native_terminal_envelope.py
+      U_DUMP
+    output: 0.1
+    budget: '>= 0'
+    tolerance: 1.0e-06
+    tolerance_why: One micrometre allows printed precision and KiCad coordinate rounding
+      while remaining below the independently measured positive margin.
+    grade: CITED
+    requires:
+    - pcbnew
+    - projects/crow-audio-carrier-v1/04_kicad/crow_audio_carrier_v1.kicad_pcb
+  - claim: Minimum signed copper margin around the reviewed manufacturer terminal
+      envelope for U_LDO_EN, including native rounded corners
+    command: /usr/bin/python3 projects/crow-audio-carrier-v1/03_src/tests/check_native_terminal_envelope.py
+      U_LDO_EN
+    output: 0.1
+    budget: '>= 0'
+    tolerance: 1.0e-06
+    tolerance_why: One micrometre allows printed precision and KiCad coordinate rounding
+      while remaining below the independently measured positive margin.
+    grade: CITED
+    requires:
+    - pcbnew
+    - projects/crow-audio-carrier-v1/04_kicad/crow_audio_carrier_v1.kicad_pcb
+  - claim: Minimum signed copper margin around the reviewed manufacturer terminal
+      envelope for U_OE, including native rounded corners
+    command: /usr/bin/python3 projects/crow-audio-carrier-v1/03_src/tests/check_native_terminal_envelope.py
+      U_OE
+    output: 0.1
+    budget: '>= 0'
+    tolerance: 1.0e-06
+    tolerance_why: One micrometre allows printed precision and KiCad coordinate rounding
+      while remaining below the independently measured positive margin.
+    grade: CITED
+    requires:
+    - pcbnew
+    - projects/crow-audio-carrier-v1/04_kicad/crow_audio_carrier_v1.kicad_pcb
+- lcsc: C6076
+  refs:
+  - U_TDM_SCH
+  status: PAD-GEOM
+  why: '2026-09-11 measured from board SHA-256 7765810d8f9734f0ff893f7411ae80628ccddf5e78a78ee920a3303e9d2a8631,
+    supplied JLC footprint SHA-256 59bc357ad086289224fa9d585330f1765ea09924f9a4ed09bb78595e79a98415,
+    and Nexperia 74LVC1G17 Rev.16 PDF SHA-256 3db133d57486306950ba1140ac13a8a0ea95509dcefb88db36c08423a819b163
+    pp.3,11: native pads contain the entire stated SOT753 terminal envelope with >=0.175/0.300/0.100
+    mm inner/outer/lateral margins; 180-degree numbered-pad fit max residual 0.195
+    mm and minimum JLC-pad overlap 92.500%. Root independently reopened all review
+    inputs and outputs; original reviews and raw fit evidence preserved in journal5595edc7d5430a2d87247dad35c289e484bb164f6a8648b7ea45c0baf3c2ba36.tar.gz.
+    Current corner-aware terminal-containment command is an additional measured check;
+    full native board acceptance remains separate.'
+  evidence:
+  - claim: Minimum signed copper margin around the reviewed manufacturer terminal
+      envelope for U_TDM_SCH, including native rounded corners
+    command: /usr/bin/python3 projects/crow-audio-carrier-v1/03_src/tests/check_native_terminal_envelope.py
+      U_TDM_SCH
+    output: 0.1
+    budget: '>= 0'
+    tolerance: 1.0e-06
+    tolerance_why: One micrometre allows printed precision and KiCad coordinate rounding
+      while remaining below the independently measured positive margin.
+    grade: CITED
+    requires:
+    - pcbnew
+    - projects/crow-audio-carrier-v1/04_kicad/crow_audio_carrier_v1.kicad_pcb
+- lcsc: C15127
+  refs:
+  - Q_PRE
+  status: PAD-GEOM
+  why: 'Independent2026-09-11 AO3401A primary package review: AOS PO-00001N exact
+    SOT23 terminal envelope is contained by existing native copper, with0.050mm minimum
+    tangential margin,0.500inner radial and0.175outer radial margin. Generic Fab width1.30mm
+    is not authority for AOS nominal1.60mm body. Exact manufacturer/product-page chain
+    and review: journal d2ae8a6316df79e4ed257efc6212c9de35dcec8cc303e04c93951e8f8a17eddc.tar.gz.
+    No model, fetch, body, rotation or order-preview obligation waived. Root independently
+    reopened all review inputs and outputs; original reviews and raw fit evidence
+    preserved in journal5595edc7d5430a2d87247dad35c289e484bb164f6a8648b7ea45c0baf3c2ba36.tar.gz.
+    Current corner-aware terminal-containment command is an additional measured check;
+    full native board acceptance remains separate.'
+  evidence:
+  - claim: Minimum signed copper margin around the reviewed manufacturer terminal
+      envelope for Q_PRE, including native rounded corners
+    command: /usr/bin/python3 projects/crow-audio-carrier-v1/03_src/tests/check_native_terminal_envelope.py
+      Q_PRE
+    output: 0.05
+    budget: '>= 0'
+    tolerance: 1.0e-06
+    tolerance_why: One micrometre allows printed precision and KiCad coordinate rounding
+      while remaining below the independently measured positive margin.
+    grade: CITED
+    requires:
+    - pcbnew
+    - projects/crow-audio-carrier-v1/04_kicad/crow_audio_carrier_v1.kicad_pcb
+- lcsc: C3761431
+  refs:
+  - F1
+  - F2
+  - F3
+  - F4
+  - F5
+  - F6
+  - F7
+  - F8
+  render_model_source: native
+  native_representation:
+    reason: vendor_cad_absent
+    catalog_response_body_sha256: 2e5c07eb9432f630b1c0fbaf02bcf601e7e9ddd0d3df5008254d90298764c1f2
+    catalog_comparison: unavailable
+    absence_review: &id001
+      path: 08_reviews/2026-09-11_cad-absence-source-review_independent_source.md
+      sha256: 6b764845ee96faf395fa692e85f1ddb09934f1221e402814592ab346af1c3c48
+    reviewed_on: '2026-09-11'
+    mpn: 1812L035/60MR
+    model_sha256: edd6c3054b944bb9436d3943f1b5da78396621e59065dde98e828219fa62cde9
+    registration_group: littelfuse-1812l035-native-package
+    authority:
+      path: 02_parts/1812L035-60MR/Littelfuse_1812L_GD20240610_Megastar.pdf
+      sha256: a18b5ceec6d56cd31b20da55341ed1b35a48184f1f7fff8ca8bc6948cd8fb974
+      pages:
+      - 6
+      - 7
+      revision: GD06/10/24
+    native_footprint:
+      path: 03_src/lib/crow_audio_carrier.pretty/Littelfuse_1812L035_60_Exact.kicad_mod
+      sha256: 3b419dd3166ea043cc46dd4f7375d37b5dc594b9067189d49a47d5f844c8d9db
+    generator:
+      path: 03_src/build_package_models.py
+      sha256: 9b376ffc46c8a8746e06e5cddfc3d3b39656795a83754144077f86716c588019
+    provenance:
+      path: 03_src/lib/3dmodels/provenance.md
+      sha256: 50eb3a3f9319de6def5a5bf9bb9ba66e05d1e162d765c043d49fe30c9641a18d
+    pin_review:
+      path: 08_reviews/2026-09-11_fuse-land-pin-review_independent_source.md
+      sha256: 1ecf1899b16bc13d01ab8fb1e11eae330d73e003f5f30dff40a7e0ef1160f7bc
+    reviewer: fuse-land-pin-review with independent catalog-absence source review; see bound reports
+    limitations: Maximum-envelope drawing-derived body; visual terminal bands are illustrative. Exact
+      published lands and all 16 pins independently reviewed. Thermal trip, fault and manufacturing qualification
+      remain open. Catalog pad comparison unavailable. Every ordinary registration, body coverage, overlay,
+      placement and release gate remains active; DO-NOT-ORDER.
+  why: Explicit native visual representation after current catalog absence; no finding is waived. Initial
+    source findings resolved by exact revised footprint and independent land/pin review.
+  evidence:
+  - claim: Independent primary source interpretation supports this limited native body and land selection
+    grade: ESTIMATED
+    why_not_rerunnable: Human interpretation and reviewer independence cannot be proved by a hash. Bound
+      original source and subsequent pin review reports retain the evidence and limitations; current signed
+      registration is separately required.
+- lcsc: C861313
+  refs:
+  - R_PWR_TOP
+  render_model_source: native
+  native_representation:
+    reason: vendor_cad_absent
+    catalog_response_body_sha256: 2e5c07eb9432f630b1c0fbaf02bcf601e7e9ddd0d3df5008254d90298764c1f2
+    catalog_comparison: unavailable
+    absence_review: *id001
+    reviewed_on: '2026-09-11'
+    mpn: RT0603BRD0730K9L
+    model_sha256: 1875571c326d0d9e96f36b4efeb8094068ef7619f0a449c781caf0b49c2e5861
+    registration_group: yageo-rt0603-native-package
+    authority:
+      path: 02_parts/RT0603BRD0730K9L/Yageo_RT_v17_20260212.pdf
+      sha256: 00a9148c2958122200e8a93292e389392a795adcfe40562d6ca4f690d1e5d7d1
+      pages:
+      - 4
+      - 6
+      revision: V17 2026-02-12
+    native_footprint:
+      path: 03_src/lib/crow_audio_carrier.pretty/Yageo_RT0603_NominalBody.kicad_mod
+      sha256: 590a4231c40f8f2dbb1afba0f7f26ca656cfac101b98160429b6d9f9f3cf4b9a
+    generator:
+      path: 03_src/lib/3dmodels/kicad/RT0603-provenance.md
+      sha256: 8fefca9620923aa60d1c21a5ac0efee795ca24c431d6e4c6b4ab4cc3441afc95
+    provenance:
+      path: 03_src/lib/3dmodels/kicad/RT0603-provenance.md
+      sha256: 8fefca9620923aa60d1c21a5ac0efee795ca24c431d6e4c6b4ab4cc3441afc95
+    pin_review:
+      path: 08_reviews/2026-09-11_small-delta-pin-review_independent_source.md
+      sha256: 8ba08f5c10a4950dc037395b0fc9554d56100ef67c95ad3c16c16a282d024862
+    reviewer: small-delta-pin-review with independent catalog-absence source review; see bound reports
+    limitations: Nominal KiCad body, not maximum material condition; independent Yageo Mounting V10 review
+      supports land compatibility with actual 0.20mm rounded corners. Not universal metallization containment
+      or assembly-process qualification. Catalog pad comparison unavailable. Every ordinary registration,
+      body coverage, overlay, placement and release gate remains active; DO-NOT-ORDER.
+  why: Explicit native visual representation after current catalog absence; no finding is waived. Initial
+    source findings resolved by exact revised footprint and independent land/pin review.
+  evidence:
+  - claim: Independent primary source interpretation supports this limited native body and land selection
+    grade: ESTIMATED
+    why_not_rerunnable: Human interpretation and reviewer independence cannot be proved by a hash. Bound
+      original source and subsequent pin review reports retain the evidence and limitations; current signed
+      registration is separately required.

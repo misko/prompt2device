@@ -1,0 +1,11 @@
+{
+  "status": "INCOMPLETE",
+  "kind": "diagnostic-prefix-checker-red",
+  "argv": ["/usr/bin/python3", "/tmp/pland-method-20260910T200736Z/escape_check-prefix.py", "--board", "projects/crow-audio-carrier-v1/04_kicad/crow_audio_carrier_v1.kicad_pcb"],
+  "started_at": "2026-09-10T20:16:50Z",
+  "ended_at": "2026-09-10T20:17:14Z",
+  "duration_seconds": 23.41,
+  "rc": 1,
+  "finding_count": 14,
+  "statement": "This is a real old-public-checker diagnostic reproduction, not the required maintained-test RED proof."
+}

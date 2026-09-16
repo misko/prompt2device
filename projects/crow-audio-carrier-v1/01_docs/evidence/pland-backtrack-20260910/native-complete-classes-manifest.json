@@ -1,0 +1,24 @@
+{
+  "schema": 1,
+  "created_at": "2026-09-10T22:25:34.038252+00:00",
+  "tar_sha256": "3aa78234c2007b00d366a4af041ae7725bb0379682f07dd1d186d62703abe6b9",
+  "tar_size": 5119,
+  "count": 3,
+  "entries": [
+    {
+      "member": "census.py",
+      "sha256": "3a470c0418e76bc7741865e45f51bba603d62eb234b69ac61b24e5b46aa2e6d4",
+      "size": 2252
+    },
+    {
+      "member": "execute.py",
+      "sha256": "7295f927455552fa9505ca048375e221cbfce70e22933f498c910da4519ceefd",
+      "size": 5745
+    },
+    {
+      "member": "fixture.py",
+      "sha256": "772e6f11a66c3d8c67eeafe1537aed0205d171c3c1e42e4b725f38a7284fbca8",
+      "size": 5347
+    }
+  ]
+}

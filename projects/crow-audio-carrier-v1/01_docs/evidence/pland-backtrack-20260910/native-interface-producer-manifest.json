@@ -1,0 +1,28 @@
+{
+  "schema": 1,
+  "created_at": "2026-09-10T21:48:38.357302+00:00",
+  "tar_sha256": "06cf4fbec59d3357a39319af0d62b7a0635e8915e5dde27184b0601660b2aaa2",
+  "tar_size": 4909,
+  "count": 3,
+  "entries": [
+    {
+      "member": "census.py",
+      "sha256": "3a470c0418e76bc7741865e45f51bba603d62eb234b69ac61b24e5b46aa2e6d4",
+      "size": 2252,
+      "original_path": "/tmp/carrier-pland-fixture-adoption-20260910.hnDKH2sk/native-interface-producer/census.py"
+    },
+    {
+      "member": "execute.py",
+      "sha256": "ffa5736c0bd08ed783274f9dc23f539a9f3c3034ac15145207575d7b43650bbc",
+      "size": 5559,
+      "original_path": "/tmp/carrier-pland-fixture-adoption-20260910.hnDKH2sk/native-interface-producer/execute.py"
+    },
+    {
+      "member": "fixture.py",
+      "sha256": "de165a7c7035e48e69ba43f4f0a4ccfc6115af5e5c054124011599c8b283f162",
+      "size": 4858,
+      "original_path": "/tmp/carrier-pland-fixture-adoption-20260910.hnDKH2sk/native-interface-producer/fixture.py"
+    }
+  ],
+  "scope": "Frozen UNEXECUTED native scalar-interface producer; no passing claim"
+}

@@ -33,6 +33,30 @@ completion evidence.
 | IMP-240 | Enforce one canonical enclosure source/build/release/review layout | completed | pcb-enclosure layout contract, fleet auditor, known-bad path fixtures |
 | IMP-241 | Rebuild the USB debug-hub 2A enclosure against its current sealed PCB | accepted | current assembly STEP/interface, independent fasteners, exact collision and physical qualification |
 | IMP-242 | Make connector placement and enclosure access one executable assembly/service contract | implementing | shared compiler/rebuild hold, enclosure census/cap, evidence registries; PCB geometry and enclosure operation-solid consumers owed |
+| IMP-243 | Diagnose the complete repair scope, verify geometry evidence, and integrate one stable batch | proposed | existing PCB diagnostic and geometry checks, lifecycle workflow, maintained regression tests and forward canary |
+| IMP-244 | Prove pin-review packets are answerable before reviewer launch | implementing | `pin_audit.py`, typed dossier/readiness schema, exact-primary evidence lint, aggregate coverage gate and hostile fixtures |
+| IMP-245 | Canonicalize review archives at creation and verify regular members portably | proposed | shared evidence packager/validator, directory-entry normalization and cross-packager fixtures |
+| IMP-246 | Prove substitute compatibility through every downstream design assertion | proposed | typed part limits, dependency graph, substitution preflight and exact-candidate fixtures |
+| IMP-247 | Close transitive evidence dependencies before reviewer launch | proposed | claim/evidence dependency manifest, packet-closure preflight and missing-authority fixtures |
+| IMP-248 | Make every reviewed render reproducible from its exact native subject | proposed | render receipt, subject/output hashes, canonical producer and stale-image canaries |
+| IMP-249 | Separate router search controls from reviewed physical design semantics | implementing | semantic digest projection, route-candidate identity and focused search-knob fixtures |
+| IMP-250 | Turn post-route guard failures into source-owned repair packets | implementing | exact offender geometry, legal escape proposals, invalidation scope and replay command |
+| IMP-251 | Preserve copper ownership through cleanup and canonicalization | implementing | immutable source-edge identity, exact-chain repair and saved-board proof |
+| IMP-252 | Make prepared escape tips first-class router terminals | implementing | exact pad-shape attachment, free-tip endpoint selection and router-build candidate identity |
+| IMP-253 | Generate evidence-contract entries when archives are sealed | proposed | contract-ready archive metadata, pre-stage validation and repository-gate fixture |
+| IMP-254 | Prove bundle-level egress capacity after terminal preparation | proposed | peer-route occupancy preflight, independent escape corridors and minimal source repair packet |
+| IMP-255 | Prove relocated review packets are dependency-complete before launch | proposed | transitive path closure, in-root relocation replay and missing-dependency fixtures |
+| IMP-256 | Compile candidate rejection policies into router search constraints | implementing | policy-to-engine bridge, retained realized-board guards and reject-before-search fixtures |
+| IMP-257 | Require a realized bundle-route witness before pre-route acceptance | proposed | bounded all-peer escape proof, independent connectivity delta and exact follow-up ownership |
+| IMP-258 | Compile constrained route dependencies and escape cuts before global routing | proposed | authored subwaves, reserved crossover cells and inherited-connectivity manifests |
+| IMP-259 | Bind prepared DRC authority to the selected route fabrication contract | implementing | prep-time fab-floor synchronization, immutable netclass/severity witness and candidate-baseline regression |
+| IMP-260 | Prove every wide-rail terminal landing before global tree search | implemented for prepared/bare landing targets and no-neckdown cleanup; census gate remains | terminal landing census, prepared target-component routing and strict bare-terminal refusal |
+| IMP-261 | Compile wide-rail coexistence and outer-layer allocation before routing | proposed | prepared conflict graph, layer allocator and accepted-wave coexistence DRC |
+| IMP-262 | Make board/rules/prep regeneration one census-checked transaction | proposed | atomic regeneration command, semantic digest and derived source-test census |
+| IMP-263 | Classify wide-net trunks and low-current side branches before routing | proposed | per-terminal current roles, bounded side-branch owners and trunk-only width enforcement |
+| IMP-264 | Prepare strict-width layer transitions before global routing | proposed | source-owned full-width via landings, same-net-aware clearance checks and pre-route terminal-fit proof |
+| IMP-265 | Require fine-pitch source bundles to reach routable landings | implementing | complete local-bundle witness, fabrication-floor search grid and ordinary-route landing replay |
+| IMP-266 | Make source copper emitters consume compiled pair rules symmetrically | implementing | shared scoped copper/hole resolver, rule-order fixture and via-before/track-before known-bads |
 
 ## IMP-229 — executable PCB documentation and graph
 
@@ -250,7 +274,9 @@ completion evidence.
 
 ## IMP-242 — shared connector assembly and service authority
 
-- status: implementing
+- status: implemented for prepared-component targets, off-centre bare-pad
+  targets and end-to-end no-neckdown cleanup; the deterministic pre-route
+  terminal census remains proposed
 - observed: the fabricated Pluto RX2 eight-way v5 board is difficult to hand
   tighten: adjacent SMA coupling regions are too close for a good grip and the
   nominally flush mating faces provide no useful outboard exposure. The prior
@@ -295,6 +321,1128 @@ completion evidence.
 - recommendation: P0 before placement freeze or routing on the planned RF
   switch respin; do not choose a new SMA pitch or overhang from the failed v5
   report alone.
+
+## IMP-243 — diagnose once, repair coherently, integrate once
+
+- status: implementing
+- owner: `pcb-design`, coordinating the existing critical-path, model and via
+  check owners.
+- observed: Crow carrier/pod RJ45 placement recovery, 2026-09-12. Independent
+  review exposed 20 additional same-net contacts on two pod nets, one actual
+  drill/land overlap, and a synthetic model whose native geometry differed
+  from its intended geometry. First-refusal repair loops and renewal between
+  known related changes left the complete repair scope unclear.
+- detailed plan and retained evidence:
+  [2026-09-12 process convergence plan](projects/crow-audio-carrier-v1/01_docs/reports/2026-09-12-process-convergence-plan.md).
+- existing foundation: extend the complete-report pattern already implemented
+  by [IMP-109](#imp-109--preserve-every-actionable-finding-in-durable-gate-reports).
+  Procedural guidance landed in commit `590a6e18` in
+  [lifecycle and backtracking](skills/pcb-design/references/lifecycle-and-backtrack.md)
+  and the [routing procedure](skills/kicad-pcb/references/routing-pipeline.md).
+  The tooling and forward evaluation below remain proposed.
+
+Implement in three reviewable changes, in this order:
+
+1. **Complete diagnosis.** Extend
+   [critical_path_check.py](skills/kicad-pcb/scripts/critical_path_check.py)
+   with a bounded read-only diagnostic path reporting every declaration and
+   contact cause on affected nets, exact object identities and coverage
+   denominators. Distinguish physical defects, unsupported representations,
+   conservative screens and downstream work not yet built; use independent
+   native geometry to resolve contact questions. Reuse existing readers and
+   predicates, cache each net's diagnosis, and retain ordinary gate failures.
+   Acceptance: [critical-path tests](tests/t1_critical_path_check.py) expose all
+   independent causes in one run; removing the first cannot reveal an omitted
+   class. The frozen pod replay accounts for all 22 declarations and the full
+   retained contact set. Missing geometry, malformed inputs and incomplete
+   reporting remain explicitly ungraded.
+2. **Verified geometry.** Qualify new or changed model counterexamples against
+   independent native export, including transforms, units, mounting face and
+   body extent. Compare the previous checker, proposed checker and exact
+   product model; reuse unchanged qualified fixtures. Extend the existing
+   model and via/seed checks at their owning boundaries to distinguish via
+   centre clearance, annulus contact and drill/land overlap. Acceptance:
+   [model tests](tests/t1_model_registration.py) detect the fixture discrepancy
+   and still reject real-model inversion; maintained via tests reject an
+   ordinary centre-clear but drill-overlapping via at source/prep admission
+   and the existing router boundary while preserving explicitly reviewed
+   filled/capped treatment. New bug regressions go RED before the fix and
+   GREEN afterward. Record supported blind spots through the existing
+   G-VACUOUS mechanism without reclassifying required-fail controls.
+3. **Stable integration.** Extend the existing lifecycle procedure and
+   checkpoint dependency inventory: freeze the complete affected findings,
+   assign one bounded repair hypothesis and owner, complete known related
+   changes, then regenerate and renew required reviews on the stable result.
+   Use existing TaskEnvelope/TaskAttempt records and closure. Acceptance: a
+   canary with two known related changes receives one stable renewal; all
+   mandatory handoffs still execute, stale signatures fail, a later material
+   change invalidates dependent evidence, and renaming an exhausted campaign
+   cannot reset its budget.
+
+- completion evidence required: each change lands with its owning tests and
+  any affected contracts/templates. Replay the frozen carrier/pod evidence
+  in isolated scratch, then give a fresh evaluator the updated skill and a
+  realistic failure packet without the expected diagnosis. Require complete
+  diagnosis without lost defects or false acceptance. Compare time to complete
+  diagnosis, missed causes after the first repair, regeneration/review rounds
+  and owner transfers using existing runtime records; claim savings only when
+  measured. Run relevant geometry, skill-authority, documentation and contract
+  checks, retaining actual coverage and declared blind spots.
+- scope and stop condition: retain existing engineering, independence, timeout
+  and release gates. If complete source normalization requires repeated
+  contortions, reassess the representation owner. A general CAD parser,
+  finite-width graph replacement or parallel workflow framework requires new
+  evidence of necessity; it is outside this proposed implementation scope.
+
+Additional evidence from the 2026-09-13 return-mode repair:
+
+- The fifth carrier placement attempt generated the intended reservation but
+  failed the same thermal check. Independent inspection distinguished actual
+  pad isolation from KiCad's expanded thermal-test contour, and found that the
+  source consumer could not express the intended `none` connection mode. Add
+  actual consumer capability checks to the complete diagnosis before spending
+  another product candidate; a recognized field does not prove every declared
+  value has an effect.
+- A source author's test command used `--only PATTERN` while the existing
+  harness accepts only `--only=PATTERN`. The harness silently selected the whole
+  suite, including prohibited synthetic BOARD/Save/Load fixtures. Preserve this
+  as an execution defect, separate from later guarded consumer RED/GREEN and
+  from the product's cumulative candidate history.
+- Proposed small follow-up at [tests/harness.py](tests/harness.py): reject
+  unsupported arguments and empty selections before invoking any fixture, and
+  expose the exact selected test names for scope validation. For restricted
+  native work, install constructor/load/save/fill and subprocess guards before
+  the first test. Completion controls must prove malformed selection invokes
+  zero fixtures, a valid nonempty selection executes only its named fixtures,
+  and an attempted prohibited operation fails before it takes effect. This
+  follow-up is proposed; the current harness has not been changed or qualified.
+
+## IMP-244 — answerable pin-review packets before launch
+
+- status: implementing
+- owner: `kicad-pcb`, with `pcb-design` orchestration consuming the result.
+- observed: Crow carrier/pod top-only review, 2026-09-14. The pod D1 packet
+  contained an exact manufacturer PDF whose package drawing showed a band but
+  did not identify the band as cathode. The carrier J9 packet omitted the
+  retention-peg coordinate needed to distinguish Circuit 1 from Circuit 2 in
+  an otherwise collinear two-contact geometry. Both fresh reviewers correctly
+  returned QUESTION after launch; neither found a board defect. The missing
+  facts were discoverable mechanically before reviewer time was spent.
+  During the later S1M renewal, the pin dossier generator consumed the machine
+  assembly BOM, which intentionally omitted manually fitted J1. The requested
+  `pod-interface` group therefore silently shrank from J1+U3 to U3; its reviewer
+  honestly passed the one supplied ref. The opener asserted only that the
+  derived group was nonempty, rather than equality with its declared ref set.
+- general rule: a review packet is launchable only when it contains enough
+  exact-primary and native geometry to answer every mandatory protocol
+  question. Packet completeness is not engineering acceptance; it proves only
+  that an independent reviewer can reach PASS, FAIL, or a substantive design
+  QUESTION rather than a preventable missing-input QUESTION.
+
+Implement three reviewable changes:
+
+1. **Typed evidence readiness.** Add a fail-closed packet preflight that derives
+   required evidence classes from the part: pinout view and view direction,
+   pin-1 or terminal identity, polarity marking for polarized parts, exposed
+   pad identity, mounted side/frame, and connector keying/retention datums.
+   Each class binds an exact page/figure or a typed explicit absence. A drawing
+   that merely depicts a mark cannot satisfy a requirement to identify what
+   the mark means. Missing evidence stops before agent allocation and names the
+   part dossier or source authority that must change.
+2. **Complete native feature dossiers.** Extend `pin_audit.py` to emit every
+   numbered electrical pad and every unnumbered mechanical/retention feature
+   with type, shape, drill, component-top coordinate and native coordinate.
+   Connector dossiers must also bind the manufacturer datum used to orient the
+   contact pattern. The extractor reports denominator equality between saved
+   board features and dossier rows; prose such as “two mechanical pads exist”
+   without their geometry is incomplete.
+3. **Batch coverage before dispatch.** Build the group plan and whole-board
+   coverage matrix before spawning reviewers. Its population authority must
+   union machine-assembled, manually fitted and explicitly consigned parts;
+   a manufacturing BOM is not a complete pin-review census. Reject duplicate,
+   omitted, stale, silently narrowed or unanswerable groups, then launch only
+   compact ready groups. Every opener asserts equality between the requested
+   refs and emitted dossier refs before allocation. Aggregation
+   must prove exact coverage of the intended current references and preserve
+   each limited group verdict. An evidence failure reopens only its owning
+   part/group; unchanged groups retain their exact-subject results.
+
+- intended landing point: a versioned pin-dossier schema and
+  `pin_review_readiness.py`, called immediately after `pin_audit.py` and again
+  by the review opener; `pin_review_aggregate.py` consumes the same readiness
+  receipt and exact group plan. Update the fresh-context protocol and project
+  templates to name the receipt rather than relying on launch prose.
+- completion evidence required: clean IC, exposed-pad, polarized two-terminal,
+  keyed connector and symmetric passive fixtures; known-bads for an unlabeled
+  polarity band, a bottom-view figure presented as top view, a missing
+  retention peg, unnumbered-feature count without coordinates, stale PDF hash,
+  duplicate group, one omitted current ref, and a manual connector absent from
+  the assembly BOM but present in the declared review group. Replay the exact Crow D1 and J9
+  packets: both must refuse before reviewer allocation with one actionable
+  owner, while corrected packets launch and aggregate without broad
+  regeneration. Record avoided reviewer launches and elapsed time; claim a
+  process saving only from measured replay.
+- authority boundary: readiness cannot infer polarity from package convention,
+  substitute a neighboring-family PDF, accept a footprint, or soften a fresh
+  reviewer verdict. Exact manufacturer evidence and independent review remain
+  mandatory; first-article physical fit remains separate.
+
+- implementation progress: `pin_audit.py` now emits a complete, stably ordered
+  table for unnumbered features including type, shape, size, drill, layer mask,
+  component-top coordinates and native coordinates. A two-pin-plus-retention-peg
+  regression reproduces J9. Typed primary-evidence readiness and the batch
+  coverage/aggregate gate remain to land before this item can be completed.
+
+## IMP-245 — canonical review archives and portable member verification
+
+- status: implementing
+- observed: Crow carrier top-only pin review preservation, 2026-09-14. Two
+  otherwise complete SOUND deliveries used standard tar directory entries.
+  Their manifests correctly counted and hashed every regular evidence file,
+  while the owning preservation helper compared that count with every tar
+  header and rejected the archives. Ten sibling reviews packaged without those
+  harmless headers and passed. Engineering evidence was intact; packager
+  variation created a late administrative stop.
+- general rule: one shared packager should produce canonical archives, and all
+  validators should compare a normalized set of regular member paths against
+  the manifest. Directory entries may be ignored after checking that they are
+  safe directories; symlinks, devices, duplicate normalized paths, traversal,
+  undeclared regular files and missing regular files still fail closed.
+- intended landing point: move agent evidence packaging into a maintained
+  helper used by the task template and preservation path. Normalize leading
+  `./` only for comparison, sort members, set deterministic metadata, and make
+  the manifest denominator explicitly `regular_member_count`.
+- completion evidence: archives from Python `tarfile`, GNU tar and bsdtar with
+  and without directory headers all preserve to identical normalized member
+  inventories; hostile traversal, symlink, duplicate, undeclared and
+  case-collision fixtures fail. Replay the exact carrier supply and ESD
+  deliveries through the maintained validator without rewriting their bytes.
+- recommendation: P1. It removes avoidable closure work while preserving the
+  evidence-integrity boundary.
+
+## IMP-246 — downstream-complete substitute screening
+
+- status: proposed
+- observed: Crow pod D1 evidence repair, 2026-09-14. Diodes Inc.
+  `S1M-13-F` initially appeared drop-in compatible because package, 1 A
+  current, 1 kV reverse voltage, 1.1 V forward drop and 30 A surge all matched.
+  Exact-primary inspection then found 100 uA maximum reverse leakage at 125 C,
+  twice the current design bound. Through the existing 4.747 kohm worst-case
+  bleed, that would allow 0.4747 V reverse magnitude at the regulator input,
+  beyond its retained 0.3 V absolute limit. Vishay `S1M-E3/61T` retains the
+  required 50 uA hot-leakage limit and explicit cathode marking.
+- general rule: a proposed substitute is ready for source review only after
+  every changed datasheet parameter has been propagated through all design
+  equations, rules, tests and dependent component limits. Package and headline
+  ratings are necessary fields, not a compatibility verdict.
+- intended landing point: extend part dossiers with typed operating-corner
+  limits and a machine-readable dependency graph from each limit to consuming
+  equations/assertions. A substitution preflight compares old/new limits,
+  evaluates affected corners, and produces a complete PASS/FAIL/UNKNOWN matrix
+  before source mutation or reviewer allocation.
+- completion evidence: the Diodes `S1M-13-F` fixture fails specifically on hot
+  leakage and names the R14/U2 equation; Vishay `S1M-E3/61T` passes that matrix;
+  a package-only match with a missing temperature condition is UNKNOWN; a
+  tighter limit passes without manually restating unaffected assertions.
+- authority boundary: the preflight does not approve the part, infer missing
+  manufacturer limits or replace exact source, sourcing, native, fabrication
+  and first-article reviews. It prevents a known incompatible candidate from
+  reaching those expensive stages.
+- recommendation: P1 generally and P0 for protection, power, thermal and
+  safety-related substitutions.
+
+## IMP-247 — transitive evidence closure before reviewer launch
+
+- status: proposed
+- observed: Crow pod D1 source review, 2026-09-14. The first packet contained
+  the exact Vishay diode source and the downstream leakage calculation, but the
+  calculation compared against the TPS7A49 negative input absolute limit while
+  omitting TI's exact datasheet. The reviewer correctly returned INCOMPLETE;
+  adding the already-local TI PDF made the same bounded question independently
+  answerable without changing the candidate.
+- general rule: every factual leaf used by a review claim must resolve to exact
+  authority inside the frozen packet, including facts owned by unchanged
+  dependent parts. A claim is not packet-complete merely because the component
+  being changed has complete evidence.
+- intended landing point: review openers emit a machine-readable claim graph.
+  Each calculation input names its dossier field and exact authority member;
+  packet preflight walks the graph transitively, verifies hashes and page/figure
+  locators, and refuses allocation with the shortest missing dependency path.
+- completion evidence: replay the first D1 packet and report
+  `D1.hot_leakage -> U2.vin_absolute_min_v -> missing TI PDF`; the corrected
+  packet passes. Add fixtures for a present-but-wrong digest, an unchanged
+  dependent part omitted from the packet, a cyclic claim graph, and a complete
+  multi-part calculation. Prove the preflight never substitutes web access or
+  an unpinned neighboring-family document.
+- relation: IMP-244 owns pin-specific question readiness. IMP-246 owns whether
+  a substitute satisfies all downstream assertions. This item owns whether the
+  independent reviewer receives every exact source needed to verify those
+  assertions.
+- recommendation: P1, and P0 where the claim protects an absolute maximum,
+  power, thermal or safety boundary.
+
+## IMP-248 — reproducible exact-subject render evidence
+
+- status: proposed
+- observed: Crow audio carrier top-only placement review, 2026-09-14. The
+  current native board had all fitted SMD parts on `F.Cu`, and a fresh direct
+  KiCad bottom render correctly showed only pads, holes and connector
+  geometry. The canonical `approved_native_bottom.png` was stale and showed
+  fuse and ESD bodies on the underside, so an independent reviewer correctly
+  returned DEFECTIVE even though the board geometry was sound.
+- general rule: a reviewable image is a generated artifact with an owning
+  producer, exact native-subject hash, complete command/options, tool identity,
+  output hash and production time. A filename such as `approved_*` conveys no
+  authority. Review admission must reproduce or validate the receipt and
+  reject an image whose subject or producer cannot be proved.
+- intended landing point: add a canonical native-render producer that writes
+  image and receipt atomically. Assembly/locator generation invokes it instead
+  of copying images by convention. Review-packet preflight requires the exact
+  board hash, side, camera, model/library inputs, KiCad version, command/runtime
+  receipt and output hash; current pointers may reference only a receipt-valid
+  artifact.
+- completion evidence: replay this carrier's stale bottom image and reject it
+  before reviewer allocation; regenerate from the exact board and admit it.
+  Add canaries for a previous-board image at the current pathname, wrong side,
+  changed model transform, changed render options, absent receipt, altered PNG
+  bytes and a complete reproducible render. Preserve the last accepted image
+  when regeneration or validation fails.
+- relation: IMP-191 defines the stable semantic identity for connector human
+  approvals. This item governs pixel evidence used for whole-board placement,
+  model-side and assembly review. IMP-245 governs the archive that carries the
+  image and receipt to the reviewer.
+- recommendation: P0 for PCB placement and release reviews because stale
+  imagery can create both false defects and false acceptance.
+
+## IMP-249 — typed router search controls versus physical semantics
+
+- status: implementing
+- observed: Crow audio carrier top-only routing, 2026-09-14. Two exact clock
+  wave attempts reached the same six-net frontier and the exploration guard
+  stopped. Fresh diagnosis supported a new candidate changing only KRT grid
+  resolution from its 0.10 mm default to 0.05 mm while preserving layers,
+  0.36 mm width, 0.25 mm clearance, launch geometry and every acceptance
+  floor. The pre-route semantic digest nevertheless treated any new wave field
+  as a design-policy change, which would reopen schematic, pin, layout and
+  render judgments that do not depend on search resolution.
+- general rule: route configuration fields have typed roles. Physical design
+  semantics bind review identity; search/execution controls bind route-candidate
+  and runtime identity. Changing a search control creates a new bounded route
+  candidate and preserves its attempt ledger, but does not stale unrelated
+  electrical or placement reviews when every reviewed physical predicate is
+  unchanged.
+- intended landing point: maintain an explicit schema-owned classification for
+  every route field and derive the two identities from that classification.
+  Unknown fields fail closed. The release archive carries both identities and
+  the complete stopped-candidate lineage.
+- implementation progress: `grid_step`, `ordering`, `via_cost` and
+  `via_proximity_cost` are excluded from the
+  PR-REVIEW semantic projection while remaining present in the full
+  route/config candidate hash. The wrapper now exposes KRT's typed `via_cost`
+  control, so a post-route via-in-pad rejection can produce a stronger
+  no-via preference without an unrecorded command-line edit. Focused
+  regressions prove those search controls preserve the semantic digest,
+  changing `track_width` invalidates it, and every mapped flag exists in the
+  pinned router CLI.
+- completion evidence: add fixtures for ordering, iteration budget, random
+  seed and grid resolution as candidate-only controls; width, clearance,
+  layers, via geometry, topology and neckdown remain semantic. Prove an unknown
+  key refuses classification, a stopped candidate cannot be relabeled, and a
+  new search-only candidate retains the preceding attempt/archive lineage.
+- recommendation: P1 for the shared route schema; finish before another large
+  board uses iterative autorouting.
+
+## IMP-250 — guard-to-source repair packets
+
+- status: implementing
+- observed: Crow microphone pod S1M routing, 2026-09-14. Three candidates
+  connected every requested audio net but were rejected for two identical
+  via-in-pad sites. A maximum via penalty removed one site; ordering and
+  proximity controls left the remaining `OUTP_DRV` via at `R12.1` unchanged.
+  The guard named the offending via and pad, but the coordinator still had to
+  inspect pad geometry, infer a legal deterministic escape and determine which
+  reviews the source change invalidated.
+- follow-on evidence: the next power wave failed in the same way at
+  `MIC_BIAS` / `R3.2`. Replaying the candidate-only via penalty did not move
+  it. Recording that exhausted control, the pad centre and size, the proposed
+  `(66.0, 39.0)` via, the 0.275 mm annulus-to-pad gap and the exact three stale
+  review classes made the second repair mechanical and reviewable. The
+  prepared combined seed then passed the hard physical DRC set with zero
+  clearance, width, annular, hole, edge, short or via-in-pad findings.
+- general rule: a geometric route guard should emit a source-repair packet,
+  not only a failure. The packet binds the input board/config and records the
+  exact offender, nearby obstacles, at least one independently collision-checked
+  source-owned escape proposal, affected net/pin, candidate-only controls
+  already exhausted and the minimum review/gate scope invalidated by adoption.
+- intended landing point: extend via-in-pad and boxed-launch guards with an
+  optional read-only proposal mode. Feed its typed output to a route-source
+  adapter that can add a deterministic seed only after independent review;
+  retain the failed candidates and replay command in the accepted lineage.
+- simple regression cases: a movable via yields a legal off-pad proposal; a
+  boxed pad reports no proposal; a proposal colliding on an inner layer fails;
+  stale board/config hashes refuse adoption; and adopting a physical seed
+  reopens the exact configured review boundary before routing resumes.
+- recommendation: P1. This removes the manual diagnosis step without weakening
+  the via-in-pad or pre-route review gates.
+
+## IMP-251 — preserve copper ownership through cleanup and canonicalization
+
+- status: implementing
+- observed: Crow microphone pod S1M routing, 2026-09-14. KRT connected every
+  requested net and passed its physical checks, then its cycle/dead-end cleanup
+  deleted eight deterministic prepared-copper objects because the router model
+  treated reviewed source geometry and router-created alternatives alike.
+  Restoring those objects after the fact exposed another hidden class: short
+  grid zigzags whose adjacent centerlines joined, while nonadjacent copper caps
+  overlapped and made the critical-path dominance graph correctly refuse the
+  saved board. A broad proximity snap made the graph look simpler but created
+  new dangles and clearances.
+- general rule: every copper object entering routing has an immutable ownership
+  role. Source/prepared copper is retained exactly; router cleanup may remove
+  only router-owned alternatives. After routing, canonicalization must operate
+  on exact declared chains, preserve or improve connectivity, and prove on the
+  resulting saved board that native DRC, critical-path dominance, route length
+  and copper hygiene all remain green. Physical overlap is not permission to
+  infer a graph join or to move an unrelated endpoint.
+- intended landing point: carry source-object identities and ownership into
+  the router cleanup model, order source edges before alternatives, and refuse
+  any proposed deletion of an immutable edge. Add a declarative exact-chain
+  canonicalizer for unavoidable router micro-zigzags; each edit names its old
+  geometry, replacement geometry and owning reason, and is applied in a fresh
+  process so KiCad SWIG deletion cannot poison later reads.
+- completion evidence: reproduce the pod's eight deleted prepared objects and
+  prove they survive every wave without restoration; reproduce the AUDIO_P,
+  AUDIO_N and MIC_BIAS cap-overlap chains and reduce them without new opens,
+  dangles, clearances or length regressions. Known-bads must reject a stale old
+  chain, a protected-edge deletion, a broad proximity snap, a replacement that
+  crosses foreign copper and a second non-idempotent application.
+- recommendation: P0 before the next autorouted board. This removes a late
+  manual cleanup loop and makes the route candidate itself match the reviewed
+  source authority.
+
+## IMP-252 — make prepared escape tips first-class router terminals
+
+- status: implementing
+- observed: Crow audio carrier routing, 2026-09-14. Repeated clock-wave
+  candidates stopped at the same eight nets even after search resolution was
+  doubled. Two independent defects were hidden behind that frontier: the
+  prepared source omitted launches for `MCH_MCLK` and `BCLK_BUF`, while KRT
+  selected boxed package-pad centres instead of the free tips of six existing
+  reviewed escapes. Its pad-attachment test also used centre distance, so a
+  valid off-centre endpoint inside an elongated pad appeared detached. Router
+  code changed during diagnosis without changing the exploration subject.
+- general rule: prepared copper is part of the router's terminal model. Exact
+  native pad-shape contact attaches the pad to that copper, and the exposed
+  free tip is the route start. Interior vertices and attached pad ends are not
+  alternative terminals. Every requested partial net must have at least one
+  usable prepared or native terminal before an expensive wave begins. Route
+  candidate identity includes the exact router implementation as well as the
+  board and configuration.
+- intended landing point: perform a terminal-readiness preflight after route
+  preparation; use shape-distance attachment for round, rectangular, rotated
+  and custom pads; select free prepared tips for single-ended and multipoint
+  nets; and record a deterministic KRT source fingerprint in route progress,
+  exploration state and promotion evidence.
+- implementation progress: KRT now selects prepared free tips for
+  single-ended routing and uses exact pad-shape distance for attachment and
+  unconnected-pad detection. A focused off-centre elongated-pad regression
+  passes. The carrier source now declares the two missing clock launches and
+  its source geometry gate counts all ten prepared digital terminals. A fresh
+  reviewer then proved one new seed already completed its two-pad net while
+  the plan still called it partial; the source now excludes that net and the
+  improvement scope includes completion-versus-ownership reconciliation.
+- completion evidence: add centre and off-centre elongated-pad cases, rotated
+  and custom-pad cases, an interior-vertex rejection, a no-free-tip fallback,
+  a missing-terminal preflight failure and a test proving that a router source
+  change creates a new exploration subject while unchanged inputs resume the
+  existing subject.
+- recommendation: P0 before another large autoroute. It converts a late,
+  repeated search plateau into a cheap deterministic preparation failure.
+
+## IMP-253 — generate evidence-contract entries when archives are sealed
+
+- status: proposed
+- observed: Crow audio carrier pre-route acceptance, 2026-09-14. Four exact,
+  hash-named review archives were staged only after all engineering gates had
+  passed. The repository contract gate first rejected them as untracked
+  strays, then correctly rejected the staged files because their exact
+  allowlist rows had not been added to the append-only journal contract.
+  Discovering this at commit time added a packaging loop unrelated to the
+  review judgment.
+- general rule: sealing an evidence archive and admitting it to a governed
+  tree are one transaction. The packager emits the archive hash, byte size,
+  regular-member count, manifest identity, verdict scope and a contract-ready
+  stanza. A pre-stage check proves the stanza permits the exact artifact before
+  the repository-wide contract suite runs.
+- intended landing point: extend the shared evidence packager with a typed
+  `contract_entry` output and an append-only updater that refuses duplicate
+  hashes, mismatched sizes, unsafe members or broader wildcard permissions.
+  Make the review closeout command run the project contract check on its
+  proposed archive and stanza before returning success.
+- simple regression cases: a sealed archive plus its exact generated row
+  passes; omitting the row fails before staging; changing one byte, size or
+  member count fails; a wildcard row fails; an existing immutable row cannot
+  be rewritten; a rejected review remains retainable while conferring no
+  acceptance.
+- recommendation: P1. It removes a predictable late commit loop while keeping
+  the exact-artifact allowlist and repository debt ratchet fail-closed.
+
+## IMP-254 — prove bundle-level egress capacity after terminal preparation
+
+- status: proposed
+- observed: Crow audio carrier clock routing, 2026-09-14. Every requested
+  clock terminal had a native-DRC-clean prepared launch and the router could
+  route either `MCH_FSYNC` or `MCLK_BUF` alone. In the full wave, however, the
+  first completed net enclosed the neighboring launch; rip-up merely exchanged
+  which net failed. Extending the ordinary-width `MCH_FSYNC` exit by 1.4 mm
+  beyond the shared clock-buffer row gave the two nets independent egress and
+  the unchanged search completed 11/11 nets and 12/12 multipoint terminals at
+  the nominal 0.25 mm clearance.
+- general rule: terminal readiness is a bundle property as well as a per-net
+  property. A prepared tip is ready only when all terminals in its local
+  congestion bundle can leave their source region simultaneously under their
+  declared widths, clearances and layer policy. Routing each net alone does
+  not prove that capacity.
+- intended landing point: extend terminal-readiness preflight to identify
+  neighboring prepared tips whose clearance envelopes share the same finite
+  cut. Route a cheap local bundle model with every peer present before the
+  global wave. On failure, emit a source-owned repair packet naming the cut,
+  blocking peers and the smallest legal continuation or placement expansion;
+  do not start repeated global rip-up searches.
+- simple regression cases: two adjacent tips that each route alone but cannot
+  coexist fail; extending one ordinary-width exit beyond the shared cut passes;
+  a second routing layer without legal access does not count; changing width,
+  clearance, layer policy or a peer launch invalidates the preflight receipt.
+- recommendation: P0 alongside IMP-252 before another dense autoroute. It
+  catches the local-minimum pattern in a bounded source check and converts the
+  repair into a small deterministic geometry change.
+
+## IMP-255 — prove relocated review packets are dependency-complete before launch
+
+- status: proposed
+- observed: Crow audio carrier pre-route render review, 2026-09-14. The exact
+  isolated board packet initially omitted its `02_parts` authorities and
+  `03_src/lib` native model tree. Twin generation and overlay checks correctly
+  failed on missing or escaped paths, but only after the reviewer had launched
+  and attempted several builds. Copying the exact dependency closure into the
+  frozen packet made the same gates pass without changing the reviewed board.
+- general rule: a portable review packet is launchable only when every path
+  consumed by its declared commands resolves inside the packet and every
+  resolved file is hash-bound. A current primary artifact does not make a
+  packet self-contained when its library, registration, adjudication or tool
+  inputs still resolve through the producer checkout.
+- intended landing point: extend review-packet readiness with a transitive path
+  closure walk over native CAD libraries, part authorities, model transforms,
+  registration receipts and invoked configuration. Relocate the completed
+  packet to a clean temporary root, block access to the producer checkout, and
+  run each declared command in dry-run or validation mode before allocating a
+  reviewer.
+- simple regression cases: a packet missing one model tree or registration
+  receipt fails with the shortest dependency path; an absolute path escaping
+  the packet fails even when it exists; a present file with the wrong hash
+  fails; the exact closed packet launches and reproduces its validation after
+  relocation.
+- recommendation: P1 with IMP-247 and IMP-248. It turns reviewer-time setup
+  failures into a cheap producer-side readiness check and makes fresh-context
+  review reproducible without ambient checkout state.
+
+## IMP-256 — compile candidate rejection policies into router search constraints
+
+- status: implementing
+- observed: Crow audio carrier clock routing, 2026-09-14. The source already
+  declared `forbid_new_via_in_pad`, but that rule existed only as a post-wave
+  guard. KRT completed every clock net, then the guard rejected two vias inside
+  destination resistor pads. The search had spent its full effort producing a
+  candidate the pipeline could know in advance was inadmissible.
+- general rule: every deterministic candidate rejection policy that can be
+  expressed during search is both an engine constraint and an independent
+  realized-artifact guard. The constraint prevents known-invalid candidates;
+  the guard remains authoritative and catches incomplete engine wiring or a
+  different emitter.
+- landed in this iteration: the existing carrier policy now passes a
+  `--forbid-via-in-pad` constraint into each single-ended KRT wave. Exact SMD
+  pad shapes block new via centres while track endpoints, custom-pad voids,
+  through-hole transitions and pre-existing source vias remain available. The
+  original per-wave before/after guard is unchanged.
+- completion evidence: retain the shape-level KRT regression, the generic
+  command-line reachability check and the hostile router that ignores the
+  constraint but is still rejected by the realized-board guard. Extend the
+  same compile-and-guard pattern to other cheap deterministic route policies.
+- recommendation: P1. It removes avoidable late candidate failures without
+  weakening the independent postcondition.
+
+## IMP-257 — require a realized bundle-route witness before pre-route acceptance
+
+- status: proposed
+- observed: Crow audio carrier ADC routing, 2026-09-14. An apparent 8/8 bundle
+  witness became routable only after moving the sixteen common-mode capacitors
+  beside the isolators. The full source suite correctly rejected that witness:
+  those capacitors have explicit 2--5 mm ADC-terminal constraints, relocated
+  filter capacitors violated their ADC adjacency contracts, and their old
+  ground seeds became orphan copper. A routing-only witness was therefore
+  geometrically feasible but electrically inadmissible. A separate microvia
+  experiment exposed another false success: pre-existing same-net vias could
+  make the differential router report 8/8 success with zero new segments while
+  the single-ended endpoint pass still found every lane unresolved.
+  A later chained routing wave exposed a third false handoff: cleanup classified
+  32 inherited fine-copper segments as dead ends and removed them, reopening an
+  ADC terminal group that the preceding wave had connected. Both files remained
+  geometrically DRC-clean, so DRC alone could not detect the regression.
+- general rule: pre-route acceptance for a fine-pitch bundle requires one
+  bounded realized-copper witness containing every signal lane, adjacent
+  support pad, prepared stub, source via and applicable manufacturing rule.
+  Per-terminal readiness and isolated per-net success are necessary but do not
+  prove simultaneous escape capacity. Before a witness can alter source, an
+  admission preflight must replay the transitive placement and electrical
+  contracts for every moved item: adjacency, source-native geometry,
+  courtyard, fitted side, keepout, net class, current ownership and prepared
+  copper ownership. A router result is successful only when an independent
+  connectivity projection shows that previously disconnected endpoint groups
+  became connected; zero-segment success is invalid whenever the preflight
+  began with an open endpoint group.
+  Every wave must also preserve the terminal-component projection of all copper
+  it inherits. Cleanup may simplify copper only after proving that no previously
+  connected pad group splits and no pad loses its inherited copper reach. This
+  invariant applies to in-scope nets as well as untouched nets; a wave boundary
+  is an acceptance boundary, not permission to trust the prior route summary.
+- intended landing point: add a bundle declaration to route admission and run
+  the exact configured routing engines on a cropped or obstacle-equivalent
+  local witness before global routing or placement acceptance. Materialize the
+  witness in an isolated candidate, compute its exact dependency closure, and
+  run the same source, placement, DRC and connectivity gates required of the
+  release board before adopting any coordinates. Report terminal pitch, width
+  and clearance envelopes, legal via geometry, adjacent-pad occupancy,
+  realized copper count, before/after endpoint components and the smallest
+  blocking cut. A differential result that emits
+  `single_ended_followup_nets` remains incomplete until an authenticated
+  downstream pass owns those exact nets and the independent final connectivity
+  check closes them. Persist a before/after connectivity manifest at every wave,
+  reject the candidate on any inherited component split, and identify the exact
+  cleanup transformation and copper signatures responsible for a rejection.
+- simple regression cases: lanes that route individually but fail when all
+  peers are present reject placement; a candidate that routes but violates any
+  adjacency, fitted-side, keepout, class or current-owner contract rejects;
+  moved source copper cannot survive after its owning footprint moves; a
+  source-owned peel or admissible placement expansion that completes every
+  peer passes; pre-existing same-net vias cannot produce zero-segment success
+  on an open bundle; an omitted adjacent ground or filter pad invalidates the
+  witness; and incomplete differential legs cannot be counted as routed merely
+  because their paired search closed.
+  A pad-connected inherited branch misclassified as a dead end must survive;
+  a truly pad-free orphan may be removed; cleanup that splits an inherited
+  terminal component must fail even when geometric DRC remains clean; and a
+  later wave must independently re-prove every earlier bundle endpoint.
+- recommendation: P0 before another dense mixed differential bundle. It moves
+  the decisive feasibility test ahead of global search and turns a routing
+  plateau into a bounded placement or escape-cell correction.
+
+## IMP-259 — bind prepared DRC authority to the selected route fabrication contract
+
+- status: implementing
+- observed: Crow audio carrier canonical timers replay, 2026-09-14. Preparation
+  copied the source `.kicad_pro` into `r0`, then KRT routed under the explicitly
+  selected advanced fabrication tier and its reviewed override file. Candidate
+  grading correctly used immutable `r0` sidecars, but those sidecars still held
+  the older no-fee Board Setup via diameter and annular-ring floors. A fully
+  connected, route-clean timers candidate was consequently rejected by 40
+  authority-mismatch findings before its actual bounded clearance and width
+  exceptions could be judged. Per-wave KRT output sidecars could not repair
+  this because candidate grading intentionally overwrites them with the
+  prepared authority. The first prep-time correction also ran too early:
+  deterministic seed-copper emission performed a later pcbnew save that
+  silently restored the stale project settings. The authority mutation must be
+  the final prep operation, after every board save.
+- general rule: the prepared candidate baseline must encode the same effective
+  fabrication contract used by every route producer. Synchronize only global
+  manufacturing floors during preparation. Preserve named netclasses,
+  assignments and all DRC severities byte-for-structure; they remain design
+  specifications. Record the selected tier, override-file digest and resulting
+  project digest beside `r0`, and make candidate grading refuse a baseline
+  whose authority receipt does not match its route command.
+- intended landing point: make `route_and_stitch_generic.py prep` invoke the
+  pinned KRT DRC-settings synchronizer with `--no-clamp-netclasses` and every
+  `--keep-*` severity option whenever `route.common` selects a tier or override
+  file. Snapshot and compare named netclasses, assignments and severities
+  around that mutation, failing prep on any drift. Extend the prepared receipt
+  with the normalized effective fab tuple and override SHA-256, then have the
+  candidate workspace verify that receipt before native DRC. Assert that no
+  pcbnew save occurs after the authority receipt is sealed. Require every
+  source-owned rule area to exist on the prepared board before routing; changing
+  `floorplan.yaml` without regenerating the board must fail source/prep parity.
+- simple regression cases: advanced 0.30/0.20 mm prepared vias do not inherit a
+  stale 0.45 mm no-fee diameter floor; a fixer that clamps a 1.20 mm power
+  netclass or changes `annular_width` severity fails prep; changing the override
+  file after preparation invalidates the candidate baseline; and a project
+  without an explicit route fabrication contract remains unchanged. A new or
+  resized floorplan rule area absent from the live PCB fails prep before a
+  candidate can be graded under stale geometry.
+- recommendation: P0 for any router whose candidates are graded against copied
+  prepared sidecars. It removes a whole class of late false failures while
+  strengthening, rather than bypassing, the immutable grading boundary.
+
+## IMP-260 — prove every wide-rail terminal landing before global tree search
+
+- status: implementing
+- observed: Crow audio carrier `3V3_ADC` replay, 2026-09-14. The rail declares a
+  1.20 mm transient trunk but serves 54 physical terminals, including fine-pitch
+  ADC and small passive lands. Allowing the router's generic power fallback
+  connected all terminals, then immutable candidate grading correctly rejected
+  170 sub-class-width tracks. Prohibiting fallback exposed only 29/54 reachable
+  terminals when Phase 3 aimed at original pad centres. Teaching Phase 3 to use
+  the target terminal's own prepared copper component improved the same strict
+  replay to 41/54. A diagnostic second outer layer improved it to 47/54 but
+  violated the authored F.Cu-only rail contract and was discarded. Sampling
+  legal off-centre points on the real copper shape of bare pads raised the
+  strict F.Cu result to 49/54. Three bounded authored attachment escapes then
+  raised it to 53/54; extending the last `R_VMID1_TOP.1` escape to a genuinely
+  open attachment cell completed 54/54 with zero vias. Immutable grading then
+  caught two additional process defects before acceptance: a single rule-area
+  rectangle captured adjacent accepted 0.18 mm same-net feed copper, so the
+  width permission was split into electrically scoped entry and landing
+  rectangles; and cleanup ignored `no_power_tap_neckdown`, narrowing 57 wide
+  segments to 0.20 mm. Binding cleanup to the same policy removed all 58 width
+  findings. Routing the rail at its ordinary 0.25 mm clearance removed the last
+  two 0.2494 mm quantization-edge findings. The authenticated wave now passes
+  54/54 connectivity and authoritative DRC on F.Cu only.
+- general rule: a wide multipoint rail needs a terminal landing contract before
+  global routing. Classify every required pad as directly landable at the trunk
+  width, connected to a bounded authored escape that reaches a trunk-width
+  landing, or infeasible. Treat prepared copper as a first-class terminal on
+  both sides of every multipoint edge. A terminal with neither a legal direct
+  landing nor a reviewed escape is a source-design failure and must stop before
+  stochastic search.
+- intended landing point: add a pre-route terminal census that consumes the
+  prepared board, effective width/clearance rules and the wave's allowed layers.
+  Emit one row per physical terminal with its connected-component identity,
+  local minimum width, reachable trunk-width attachment points and owning
+  source bank. Require exact equality with the independent pad-net census.
+  Refuse wide-rail routing when any row is bare or when an escape terminates
+  without a trunk-width attachment cell. Have multipoint Phase 1 and Phase 3
+  select from the same component tap-point API and retain exact native
+  coordinates when emitting the join. Record why each routing layer is allowed;
+  for an outer-layer trunk, test both declared outer layers before declaring a
+  placement cut. Bind every no-neckdown request through route generation and
+  every cleanup pass; assert zero emitted segment falls below its effective
+  rail floor. When a geometric permission overlaps existing copper, require
+  both an electrical selector and a geometry census proving it captures only
+  the intended source items.
+- simple regression cases: a fine-pitch pad with a reviewed narrow escape and
+  open 1.20 mm tail routes to that tail without adding a narrow dynamic branch;
+  copper from another same-net island is never accepted as its target; a bare
+  pad boxed at 1.20 mm fails the census before A* starts; removing one of 54
+  terminals or one escape owner fails exact set reconciliation; and enabling
+  B.Cu cannot conceal a missing F.Cu pad-to-escape connection. A no-neckdown
+  fixture must remain wide after cleanup, and a scoped area that captures an
+  adjacent narrow same-net feed must fail before routing. Candidate DRC and an
+  independent saved-board pad audit remain authoritative after routing.
+- recommendation: P0 before any global power-tree wave. This converts a late
+  route/reject loop into a deterministic source checklist and reports the exact
+  pads that need local geometry while placement context is still available.
+
+## IMP-261 — compile wide-rail coexistence and outer-layer allocation before routing
+
+2026-09-15 follow-up: the full374-test sweep exposed physical adjacency and
+local-bypass defects hidden behind obsolete primitive-count assertions. Run
+each source checker to completion and persist its full finding set before
+asserting incidental counts. Test the source-owned paths as well as each
+router delta: excluded FSYNC_BUF copper exceeded the existing3mm narrow-length
+budget even though the routing wave passed. A source checkpoint must include
+all part-dossier adjacency pairs, thin-copper budgets, explicit bypass reach,
+and every physical drill/pad pair before any downstream global-route spend.
+A regression should retain a failing physical case behind an obsolete count
+and prove the diagnostic still reports both. Do not use passing early routing
+waves as evidence that prepared source geometry passed its separate gates.
+
+
+- status: proposed
+- observed: Crow audio carrier `5V_LDO_HOLD` and `3V3_ADC` replay,
+  2026-09-14. Strict terminal landing work made each 1.20 mm rail independently
+  routable, but order changes could not make them coexist on F.Cu. Routing HOLD
+  first produced 36/36 HOLD and 47/54 3V3 terminals; reversing the order
+  produced 54/54 3V3 and 20/36 HOLD. Overlaying the two independently accepted
+  F.Cu trees exposed 75 hard conflicts: 63 shorts and 12 clearances. Assigning
+  HOLD a B.Cu-preferred two-layer search, while keeping 3V3 F.Cu-only, then
+  produced accepted 36/36 and 54/54 waves in one authenticated chain. HOLD used
+  15 real F.Cu/B.Cu current-path transitions; each now has an explicit A-VIA
+  continuous-current contract. No component move or board growth was needed.
+- general rule: independently routable wide nets are not evidence that their
+  trees can coexist. Compile their shared-layer conflict graph before global
+  search. Use exact prepared copper and terminal witnesses, then allocate legal
+  outer layers and costs as a design decision. Changing wave order cannot solve
+  a physical overlap between complete accepted trees.
+- intended landing point: add a pre-route wide-net coexistence pass. Generate a
+  bounded candidate tree for every wide wave on each declared layer, overlay
+  the candidates in a scratch board, and report exact short/clearance
+  intersections. Build a conflict graph and select a legal layer assignment
+  before the authenticated route begins. When the assignment introduces layer
+  transfers, emit an A-VIA draft from the actual F.Cu/B.Cu boundary census and
+  require human current-path confirmation before adoption. Preserve per-net
+  hard restrictions such as the user-required zero-via digital paths. Treat
+  earlier power-layer allocations as revisable design decisions, not safety
+  constraints: on2026-09-15, keeping3V3 unnecessarily planar trapped19 pads;
+  rated outer-layer power transitions reduced the unresolved set to two while
+  leaving every digital path on F.Cu and preserving widths/clearances.
+- simple regression cases: two trees that each pass alone but intersect fail
+  coexistence preflight with a nonzero conflict census; swapping their order
+  does not count as resolution; assigning one legal B.Cu corridor produces a
+  zero-conflict witness; a B.Cu assignment fails if the class contract excludes
+  B.Cu; and a via contract cannot credit B.Cu-only dangling artifacts.
+- recommendation: P0 after terminal landing census and before the first wide
+  global wave. It replaces repeated route-order experiments with a finite
+  geometry and layer-allocation decision.
+
+### 2026-09-15 extension: include every constrained digital corridor
+
+The carrier clock-only wave passed, while its long source-owned MCH branches
+blocked the downstream 54-terminal 3V3 tree. A power-only diagnostic then
+passed 54/54 but enclosed the ADC_MCLK launch. Neither partial acceptance
+proved a feasible board. Freezing either diagnostic as an additional design
+constraint caused further local searches to optimize an incomplete solution.
+
+Expand the conflict graph to all zero-via digital chains, wide rails, local
+supply/ground attachments and their first passive boundaries. Distinguish
+immutable evidence bytes from geometry that engineering is free to redesign.
+Only the user/engineering contract freezes topology, widths and legal layers;
+a successful diagnostic does not freeze its incidental routing geometry.
+
+Test with two independently passing trees whose combined copper encloses a
+required third terminal. The joint preflight must fail and identify the
+closed region. A positive successor must connect every required terminal in
+the combined board and pass native DRC, width and zero-via checks. A corridor
+witness for one net must never be reported as acceptance of its whole bundle.
+
+Place shunt parts beside their owning IC when long branches partition shared
+routing space. Reserve complete non-crossing signal corridors first, then
+regrade the dependent power tree in the same authenticated chain. Stop order
+or grid retries when the reachable-region census is unchanged; reopen the
+source placement or route allocation that creates the cut.
+
+## IMP-262 — make board/rules/prep regeneration one census-checked transaction
+
+- status: proposed
+- observed: during the same carrier repair, regenerating the native board could
+  restore stale project netclass/fabrication settings, while later preparation
+  correctly refused the mismatch. Hand-maintained source tests also drifted
+  after new deterministic via banks were added: the expected specification
+  census lagged the route source even though the source itself was coherent.
+  Both failures were detected, but only after downstream work had started.
+- general rule: board generation, rules compilation and route preparation form
+  one semantic transaction. A successful partial step must not leave a board
+  that appears ready under stale sidecars. Exact inventory assertions should be
+  derived from the same parsed source graph and then reconciled against an
+  independently reopened board, rather than duplicated as unrelated literals.
+- intended landing point: provide one atomic command that writes the board and
+  sidecars to a staging directory, applies the selected fabrication authority
+  after the final pcbnew save, derives terminal/via/rule-area censuses, runs
+  source-to-native parity, and promotes the set only when every digest agrees.
+  Record a semantic source digest and the exact generated file hashes in the
+  prep receipt. Keep a small set of explicit design cardinalities, but compute
+  implementation-detail counts such as via-spec rows from the parsed banks.
+- simple regression cases: interrupting after board generation leaves the live
+  coherent set untouched; a later pcbnew save that restores stale netclasses
+  fails before promotion; changing `floorplan.yaml` without the matching board
+  fails parity; and adding an explicit via bank updates the derived census
+  without a hand-edited expected count while still changing the semantic
+  digest.
+- recommendation: P1 pipeline work. It shortens recovery after source edits and
+  makes the next reviewer see either the prior coherent state or the complete
+  new one.
+
+## IMP-263 — classify wide-net trunks and low-current side branches before routing
+
+- status: proposed
+- observed: Crow audio carrier `BUCK_SW` replay, 2026-09-14. The prepared
+  0.75/1.20 mm U_BUCK.5-to-L_BUCK.1 output path was already complete, but the
+  remaining C_BUCK_BST.2 bootstrap-return terminal inherited the whole net's
+  1.20 mm power width. That width could not exit the small capacitor pad between
+  adjacent BUCK_BST and ground copper, so the router stopped after only 7,948
+  iterations with a static-obstacle witness. A 2.50 mm, 0.20 mm source-owned
+  F.Cu branch closed the gate-charge return into the existing full-width switch
+  island. Clean replay then recognized BUCK_SW as fully connected and accepted
+  wave 8 without adding dynamic copper or a via.
+- general rule: one electrical net can contain conductors with different current
+  roles. A converter output trunk, feedback tap, monitor divider and bootstrap
+  return must not all inherit the maximum trunk width merely because they share
+  a net name. Assign the trunk width only to paths that carry the load-current
+  allocation, and give every lower-current branch an explicit bounded geometry,
+  current rationale and source owner before global routing.
+- intended landing point: extend the terminal census with `current_role` and
+  `required_width` fields. Build a trunk graph from source/load terminals, then
+  require every off-trunk terminal to name its attachment point, maximum branch
+  length, allowed layers and verification basis. The router's no-neckdown rule
+  applies to the trunk graph; it must refuse an unclassified terminal instead of
+  silently applying either the trunk width or a generic narrow fallback.
+- simple regression cases: a bootstrap-return capacitor reaches a full-width
+  switch island through its bounded 0.20 mm branch; removing its role fails
+  preflight; narrowing any U_BUCK-to-inductor trunk segment fails; extending the
+  branch outside its rule area fails; and relabeling a load terminal as a
+  low-current branch fails the independent source/load census.
+- recommendation: P0 with IMP-260. It prevents small legitimate side branches
+  from appearing as impossible trunk landings while preserving strict width on
+  every conductor that carries the declared high-current path.
+
+## IMP-264 — prepare strict-width layer transitions before global routing
+
+- status: proposed
+- observed: Crow audio carrier clock-wave replay, 2026-09-14. The router
+  connected all 11 clock nets, but its terminal-graze repair added two 0.3398 mm
+  MCLK_BUF pieces beside a 0.36 mm prepared launch. The total narrow length was
+  within budget, yet the fourth subnominal segment correctly exceeded the
+  three-segment realized-width contract. Adding one source-owned 0.36 mm F.Cu
+  landing and an exact 0.50/0.20 mm through via at the legal transition point
+  let a clean replay pass the original width contract.
+- general rule: if a signal has a strict realized-width budget and is expected
+  to change layers near a dense terminal, prepare the full-width landing and
+  transition before global search. The router may choose the rest of the path,
+  but should not have to synthesize terminal-fit necks after routing.
+- intended landing point: extend the terminal census with optional declared
+  full-width transition landings. Preflight proves pad reach, width, drill,
+  cross-net clearance, adjacent reference-plane availability and a viable
+  continuation cell. Clearance tests treat copper and plated holes on the same
+  net as one conductor while retaining every foreign-net check.
+- simple regression cases: the declared MCLK_BUF landing passes at 0.36 mm; a
+  narrow landing, missing via, blocked continuation or lost adjacent plane
+  fails before routing; same-net copper entering its own plated hole passes;
+  identical geometry assigned to another net fails clearance; and clean replay
+  stays within the unchanged realized-width segment and length budgets.
+- recommendation: P1 with IMP-250 and IMP-252. It converts a late realized-board
+  rejection into a cheap source preflight without weakening the width gate.
+
+## IMP-265 — require fine-pitch source bundles to reach routable landings
+
+- status: implementing on the Crow audio carrier ADC bundle
+- observed: Crow audio carrier ADC-wave replay, 2026-09-14. Sixteen independent
+  1.00 mm straight launches passed their native-shape source test, but the
+  canonical router could connect only 4 of 16 inputs through the complete
+  0.40 mm-pitch package and common-mode-capacitor field. A simultaneous local
+  search at the already declared 0.15 mm width, 0.127 mm clearance and
+  0.30/0.20 mm via floors closed all 16 package-to-capacitor bundles. That
+  first witness still left ADC2N ending in a pocket; the ordinary 0.20 mm
+  long-route stage closed 15 of 16 nets. Extending ADC2N through one off-pad
+  via to an open B.Cu landing at (93.00, 64.00) made the unchanged long-route
+  stage close the sixteenth net. Increasing the 154 x 100 mm outline would not
+  alter either local obstruction.
+- general rule: a fine-pitch source gate must prove the whole simultaneous
+  local bundle through its first passive or fanout boundary and expose a
+  terminal the next routing stage can actually enter. Per-pin launch clearance
+  and local connectivity are necessary, but they do not prove egress.
+- intended landing point: add a source-bundle preflight that routes every peer
+  at the declared fabrication floors on the production obstacle map, grades
+  off-pad vias and native shapes independently, then runs one ordinary-width
+  continuation probe from every exposed landing. Record the search grid as a
+  search parameter; it must not silently become a physical design rule.
+- simple regression cases: all 16 ADC package-to-capacitor bundles and the
+  ADC2N B.Cu landing pass together; deleting one interior segment fails local
+  reach; moving a via centre onto a component pad fails; reducing a segment
+  below 0.15 mm fails; restoring the old straight launches fails capacitor
+  reach; and a locally connected landing boxed by peer or supply copper fails
+  the ordinary-width continuation probe.
+- recommendation: P0 for dense packages. Run it before accepting placement or
+  starting global route waves, alongside IMP-254's peer-egress capacity check
+  and IMP-257's realized bundle witness.
+
+
+## IMP-266 — make source copper emitters consume compiled pair rules symmetrically
+
+- status: implementing in the generic seed-stub emitter
+- observed: Crow audio carrier ADC prep, 2026-09-15. The independent bundle
+  checker and generated DRU accepted two bounded 0.127 mm escape regions, but
+  `prep.seed_stubs` still used one global clearance and refused all sixteen
+  new banks. After scoped copper rules reached the emitter, seven refusals
+  remained because later overlapping 0.20 mm rules won by DRU order. Moving
+  the narrow rules to their intended last-match position exposed four real
+  drill-to-copper conflicts. The final symmetric probe also caught two cases
+  that depended on insertion order: a track added after a foreign via had not
+  been checked against that via's hole.
+- general rule: every source copper producer must consume the same ordered,
+  two-item rule projection as the native DRC authority. Copper-to-copper,
+  hole-to-copper and hole-to-hole constraints are separate pair properties;
+  all must be checked in both insertion orders. A rule-area match uses native
+  item-overlap semantics on both items and must preserve last-match priority.
+- intended landing point: compile `nets.yaml scoped_clearances` once into a
+  reusable pair-rule evaluator shared by rule generation, seed emitters and
+  source tests. Keep a maximum-clearance bound for fast spatial prefiltering,
+  then resolve the exact pair only after the bbox hit. Permit an evidence-backed
+  `hole_clearance` member in the same bounded rule so copper and drill scopes
+  cannot drift.
+- simple regression cases: a scoped pair passes while the same geometry just
+  outside the area refuses; reversing track/via insertion gives the same
+  verdict; a later overlapping rule wins; `pads_only` never licenses emitted
+  track or via copper; a sub-tier value refuses; and moving any one ADC via or
+  track back to its pre-fix position fails the complete-population witness.
+- recommendation: P0 before the next dense-package route. This turns a late
+  prep or DRC contradiction into a cheap deterministic source failure.
+
+## IMP-258 — compile constrained route dependencies and escape cuts before global routing
+
+- status: proposed
+- observed: Crow audio carrier power routing, 2026-09-14. A single multipoint
+  power wave was free to reorder eight nets and rip earlier copper. It routed
+  `3V3_ADC` early, then reopened smaller rails; reversing the list routed seven
+  smaller rails, but boxed eight terminals out of the final 54-pad `3V3_ADC`
+  tree. Repeated global retries could not answer whether order or geometry was
+  responsible. Explicit single-net waves reduced the problem to two real cuts:
+  the only outward escapes from `U_ISO5.2` and `U_ISO8.6` cross 0.20 mm
+  single-layer power leaves. Ripping every neighboring signal did not change
+  that result; straight joins crossed power, and local front/back detours
+  collided with the already occupied adjacent escape rows. Reserving those two
+  joins exposed a third symmetric cut at `U_ISO4.2`; reserving all three before
+  the analog wave made all 16 ADC nets and 64 terminals pass together with
+  zero route DRC violations. That success was still too narrow: early
+  `AUDIO_EN` dogbones later occupied five of the thirteen ADC attachment cells
+  that had not yet failed in isolation. The robust preparation is therefore a
+  geometry-derived census of all 16 ADC isolator-to-resistor joins, not a
+  hand-written list of the three failures observed so far. The later control
+  wave then proved that scarce
+  exits are not limited to the headline signal bundle: `AUDIO_EN`, `PWR_CT`,
+  `AUDIO_CT`, `PWR_EN` and `LDO_EN` were enclosed by accepted power or ADC
+  copper. Routing control before everything else closed those nets but consumed
+  the single-layer 3V3 corridor. A clean two-via local `LDO_EN` bridge and a
+  smaller early-closure set showed that local attachment obligations and
+  global control trees need different schedule positions. The clean replay
+  exposed the same class beyond the original census: two VMID divider pads,
+  overlapping same-net pads on `Q_IN`, and the `OPA_BLEED_A`, `ADC_SENSE` and
+  `RESET_PULSE_H` terminals each needed an explicit local join or escape before
+  their surrounding global wave. A connectivity-clean implicit `Q_IN` graze
+  adjustment also emitted 0.0762 mm track fragments, below the 0.15 mm
+  fabrication floor; an explicit legal dogbone avoided them. After those
+  obligations were reserved, every one of the board's 179 multi-pad nets
+  connected and route DRC was clean. The router's earlier success summary had
+  nevertheless left one `AUDIO_EN` pad isolated, which only the independent
+  whole-board pad-net audit detected.
+  The first canonical replay then rejected two feasibility-only assumptions
+  before routing: 0.127 mm search clearance was below the source-owned
+  0.20/0.25 mm netclass clearances, and a 0.25/0.15 mm ADC via exceeded the
+  10:1 through-hole aspect ratio on the explicitly cross-checked 1.5862 mm
+  stack. A stricter replay also found that `seed_stubs` rounded the authored
+  `R_PRE.2` centre from 49.3625 mm to 49.362 mm. KiCad still saw pad overlap,
+  while downstream route identities no longer matched the authored endpoint.
+  Preserving the native coordinate removed that representation defect, then
+  exposed the independent physical cut: routing `3V3_ADC` first enclosed the
+  prepared `5V_LDO_HOLD` island, while routing HOLD first enclosed eight
+  `3V3_ADC` terminals. Routing `5V_LDO_FEED` after those trunks similarly left
+  two precharge pads unreachable. This is a real cyclic dependency in the
+  accepted placement at 0.20 mm clearance, not another ordering search.
+  A later local-repair experiment exposed two further traps. A collision-clean
+  `R_PRE` bridge initially landed on an electrically same-net
+  `C_DUMP_LOGIC` island, so it added valid copper without joining the terminal
+  component that the successor wave needed. After that endpoint was corrected,
+  the bridge removed the HOLD/3V3 cut and made HOLD pass 36/36 terminals. Two
+  individually clean `5V_BUCK` bridges then appeared to repair the newly
+  exposed BUCK/HOLD cut, but merely preparing them changed the successor HOLD
+  result from 36/36 to 32/36 by isolating the ISO2 and ISO3 branches. Segment
+  clearance and same-net endpoint identity were therefore both necessary but
+  still insufficient promotion evidence. The search itself also spent minutes
+  re-indexing equivalent grid candidates before a frozen read-only obstacle
+  index and a small set of outward escape rays reduced it to a bounded exact
+  query.
+- general rule: compile route order from a physical dependency graph, not a net
+  list or one fanout heuristic. A fine-pitch terminal whose only legal escape
+  ray crosses a single-layer-only trunk creates a placement-stage cut: either
+  reserve an explicit crossover cell, move the trunk or endpoint, or authorize
+  a separately graded layer transition. Treat each dependency as its own
+  accepted wave. Successor waves may add local branches but may not rip an
+  accepted predecessor. After every wave, an independent checker must re-prove
+  the complete inherited terminal-component manifest, not only the net just
+  routed. Router group order is insufficient when an internal phase can sort,
+  rip or clean copper again. Build the dependency graph from an exhaustive
+  constrained-terminal census, including enable, sense, timing and local power
+  pins around the same package—not only nets named in the dense bundle. Split
+  a multipoint net into its early local-attachment obligation and its later
+  global-tree obligation when completing the whole net early would consume a
+  trunk corridor. Do not stop the census when the current route becomes green:
+  a later local escape can consume a latent symmetric cut that the current
+  obstacle set never exercised. Apply the census to every populated multi-pad
+  net and package-edge terminal, including references, sense nets and
+  overlapping same-net package pads. Connectivity success and manufacturable
+  geometry are separate predicates: reject any route-created track or via
+  below the declared fabrication floor even when all terminals connect. The
+  final acceptance audit must enumerate every multi-pad net from the saved
+  board; a router-reported group tally is diagnostic evidence, not acceptance.
+  Resolve the effective fabrication tier, source netclass floors, physical
+  stack and via aspect ratio before a route experiment starts. The experiment
+  may only choose parameters from that compiled legal set. Prepared attachment
+  emitters must preserve native board-grid coordinates; display-grid rounding
+  is never allowed between an authored pad centre and the router's terminal
+  identity. When both directions of a dependency edge fail, stop schedule
+  permutations and return the minimal cycle to placement or add independently
+  bounded crossover geometry. A crossover candidate must identify both
+  endpoint terminal components, prove that it merges the intended pair, and
+  preserve every inherited terminal component in a successor-wave replay.
+  Same-net membership alone does not identify a useful landing island. After
+  every accepted local repair, rebuild the dependency graph: removing one cut
+  can expose another net that was hidden behind the original strongly connected
+  component. Candidate enumeration should build one exact read-only obstacle
+  index, compile legal outward escape rays from the endpoint components, and
+  test only distinct component-pair joins rather than repeatedly scanning
+  equivalent free-space grid points.
+- intended landing point: extend the route schema with an ordered `subwaves`
+  form whose entries carry exact nets, width and clearance policy, allowed
+  layers, neck-down scope and `max_ripup: 0` predecessor protection. Compile a
+  connectivity manifest after each entry and reject immediately on any split.
+  Before placement acceptance, project each constrained endpoint's legal
+  outward escape cells against fixed pads, prepared copper, keepouts and
+  single-layer nets. Require at least one reserved path to the applicable route
+  bank; report the smallest blocking cut and its owning nets when none exists.
+  Then execute both plausible dependency directions on a bounded
+  obstacle-equivalent witness. Grade realized neck-down length, layer-transfer
+  current, resistance and thermal limits separately from mere connectivity
+  before promotion. Compile the schedule in four explicit phases: complete
+  unavoidable local bridges; reserve every scarce package-edge exit; route
+  constrained single-layer trunks; then grow bundle and residual global trees
+  from the reserved components. Each phase publishes exact copper signatures
+  and terminal components that successors must preserve. A dry-run scheduler
+  should test both sides of every inferred dependency and report the minimal
+  conflicting net set before launching the full-board route.
+  Add a cheap `route-parameter-contract` preflight before route preparation.
+  It should resolve every wave's effective width, clearance and via pair
+  against netclass, fabrication and stackup authority, print the resulting
+  legal tuple, and refuse the entire experiment if any value is infeasible.
+  Add a producer-boundary coordinate identity test using a half-micron pad
+  centre so future geometry emitters cannot silently restore millimetre-grid
+  quantization. Have the dry-run scheduler emit a strongly connected component
+  such as `{3V3_ADC, 5V_LDO_HOLD, 5V_LDO_FEED}` as one placement finding after
+  the two direction witnesses fail; do not spend more full-board route trials.
+  Add a `component_delta` record to every prepared crossover: source and
+  destination terminal-component signatures before insertion, the exact
+  component merge afterward, and the complete inherited manifest after one
+  bounded successor replay. Reject a candidate that lands on an unrelated
+  same-net island, merges more or fewer components than declared, or changes
+  any predecessor/successor terminal partition. Cache the exact obstacle index
+  for read-only candidate enumeration and deduplicate candidates by endpoint
+  component pair plus escape ray; invalidate that cache immediately when
+  geometry is accepted. Recompile and print the dependency SCC after each
+  accepted crossover so the next exposed cut becomes the next explicit work
+  item.
+- simple regression cases: a local filter escape before its shared backbone
+  passes; reversing that edge exposes a terminal cut; a package-edge signal
+  separated from its mate by a single-layer power leaf fails before placement
+  review unless a legal crossover is reserved; a later subwave that disconnects
+  any earlier terminal fails even when DRC is clean;
+  an engine that silently reorders subwaves fails its command/manifest receipt;
+  and a connected tree with an overlong or electrically unsupported neck-down
+  remains blocked from promotion. A symmetric third isolator escape omitted
+  from a hand-written reservation list fails the census; an `AUDIO_EN` pad on
+  any populated isolator without an early reachable component fails; completing
+  the entire control group early when it blocks `3V3_ADC` fails scheduling,
+  while reserving only its local attachments and completing its global tree
+  later passes. A candidate with only the three previously failing ADC joins
+  reserved must fail when the full populated-isolator census expects all 16;
+  adding an `AUDIO_EN` dogbone must preserve every one of those joins. A
+  reference-divider endpoint, overlapping power-device pad or residual control
+  terminal without an outward attachment fails the same preflight. An implicit
+  contact nudge below the fabrication floor fails despite connected endpoints;
+  replacing it with an explicit legal escape passes. A router summary that
+  reports success while one populated `AUDIO_EN` pad remains in a second
+  component fails the independent all-pad-net gate. A clearance-clean bridge
+  to the wrong same-net island fails its declared `component_delta`; a bridge
+  that merges its intended BUCK components but changes HOLD from 36/36 to 32/36
+  fails successor preservation; and two geometrically equivalent candidate
+  sites reached through repeated obstacle-index builds collapse to one cached
+  component-pair/ray query.
+- recommendation: P0 for dense power trees. It replaces stochastic whole-group
+  retries with a short, diagnosable sequence and makes the accepted prefix safe
+  to reuse.
 
 ## Index
 
@@ -7065,3 +8213,436 @@ the lifecycle/router and strengthen the owning KiCad, JLC and release tools.
   FDM and printable receipts must bind one exact generated subject.
 - recommendation: P0 for all new enclosure releases; grandfathered releases
   remain immutable and are regraded `LEGACY/INCOMPLETE`, not silently promoted.
+
+## IMP-193 — co-design adjacent pin-field escapes and replay the earliest affected wave
+
+- status: implementing
+- observed: crow audio carrier v1 routing, 2026-09-14
+- situation: a source-owned `AUDIO_EN` bridge around the TPS389001 monitor
+  passed its individual native pad, seed, annulus and drill-clearance screen.
+  That bridge crossed the only usable escape corridor for adjacent
+  `U_AUDIO.5/AUDIO_CT`. The later audio-enable wave therefore looked locally
+  repaired, but a fresh full replay stopped at the earlier timer wave with
+  `AUDIO_CT` connected to only one of its three pads. The board perimeter had
+  free space; the failure was caused by two independently designed nets in one
+  0.5 mm-pitch package neighborhood.
+- general rule: deterministic copper is admitted by a package-neighborhood
+  composition, not by one net at a time. The neighborhood contains every pad,
+  prepared track, via annulus, plated hole, keepout and already allocated
+  corridor that can interact with the changed geometry on either copper layer.
+  A change to any member invalidates every route receipt downstream of the
+  earliest wave that touches the neighborhood.
+- way to test it: build both proposed nets into one isolated native-shape
+  fixture and compare every full-width segment and round end against all
+  foreign pads and same-layer source copper at the effective scoped
+  clearance. Compare via annuli in both insertion orders, drills against pads
+  and tracks at the declared hole clearance, holes against holes, and reject
+  via-in-pad. Prove connectivity to every intended pad. A known-bad fixture
+  must restore the individually legal old `AUDIO_EN` bridge and fail because
+  it blocks or intersects the `AUDIO_CT` witness. After source preparation,
+  launch the actual router at the earliest affected wave and require the
+  complete multipoint terminal census before any later-wave credit.
+- ways to avoid it:
+  1. Derive local work units from physical package neighborhoods and corridor
+     overlap, even when the nets belong to different functional waves.
+  2. Reserve and grade all exits simultaneously before selecting vias or
+     source-owned bridges; prefer a complete deterministic local tree when a
+     multipoint timing net is trapped by the package.
+  3. Regenerate the canonical board and rules atomically after source changes,
+     discard stale wave receipts, and replay from the minimum affected wave
+     immediately rather than testing only the wave that originally failed.
+- landed in this iteration: the carrier source defines one bounded
+  `AUDIO_MONITOR_CONTROL_LOCAL` cell at the declared advanced-prototype
+  0.15 mm width, 0.127 mm copper-clearance and 0.20 mm hole-clearance floors.
+  `AUDIO_CT` is a complete front-copper tree with one deterministic owner;
+  `AUDIO_EN` uses two off-pad 0.30/0.20 mm transitions. Their regression
+  grades both nets together and reinstates the rejected bridge as a hostile
+  control.
+- recommendation: P0 for fine-pitch packages, mixed deterministic/stochastic
+  copper, and any source edit made after one or more routing waves have been
+  accepted.
+
+## IMP-194 — grade scoped-rule intersections with the native CAD item model
+
+- status: implementing
+- observed: crow audio carrier v1 authenticated route replay, 2026-09-15
+- situation: the first immutable candidate in a fresh 19-wave replay failed
+  native DRC even though the source route geometry met its intended local
+  0.127 mm copper floor. The narrow rule area also intersected neighbouring
+  0.18 mm same-net conductor items. KiCad therefore applied the rule area
+  0.60 mm minimum track width to those intersecting items, including portions
+  whose centreline lay outside the intended local escape. The source checker
+  reasoned about the drawn region and target net, while the promotion gate
+  correctly reasoned about native item intersection and rejected wave 1.
+- general rule: a scoped rule is a geometric operator on every native object
+  KiCad considers intersecting the area. Its admission proof must enumerate
+  those objects and evaluate every constraint the rule carries; net names,
+  segment centrelines and visual containment are insufficient substitutes.
+- way to test it: materialize the exact proposed rule area, nearby pads, vias
+  and full-width rounded track shapes in a native-board fixture. Enumerate the
+  objects KiCad assigns to the area and run native DRC before the first
+  immutable route wave. The hostile fixture places a legal 0.18 mm same-net
+  branch so only its copper envelope intersects a 0.60 mm-minimum rule area;
+  it must fail. A second fixture moves or splits the area so that only the
+  intended fine-pitch objects intersect and must pass. The test also asserts
+  the expected intersection census, so an empty or overbroad scope cannot pass
+  by accident.
+- ways to avoid it:
+  1. Generate scoped regions from complete package-neighbourhood geometry,
+     then print their native item-intersection census during route preparation.
+  2. Keep strict width, clearance and hole constraints in separate areas when
+     their physical scopes differ; use the smallest disjoint region that owns
+     each constraint.
+  3. Run native DRC on the prepared wave-zero board and again on immutable
+     wave 1 before accepting later routing work.
+  4. Prefer exterior branches or deterministic local copper when a narrow
+     pin-field scope cannot be isolated from adjacent ordinary traces.
+- landed in this iteration: carrier rule areas were corrected around the
+  AUDIO_CT/AUDIO_EN pin field, the wave-1 native rejection became the
+  regression witness, and the full authenticated replay was restarted from
+  its earliest affected wave.
+- recommendation: P0 for every generated rule area and every fine-pitch route
+  override.
+
+## IMP-195 — preflight volatile sourcing evidence before expensive physical gates
+
+- status: implementing
+- observed: crow audio carrier v1 release preparation, 2026-09-15
+- situation: exact LT3041 public availability changed after layout work, and
+  the existing public-evidence adapter admitted one distributor URL shape but
+  not an equally authoritative exact-part page from another authorized
+  distributor. The sourcing gate therefore risked forcing review and routing
+  work to be repeated for an evidence-format issue rather than a board change.
+- general rule: volatile commercial evidence has a short authenticated
+  lifetime and its parser is part of the release input. Validate both the
+  evidence horizon and provider adapter before schematic review, placement or
+  routing begins.
+- way to test it: run a source-only sourcing rehearsal using archived exact
+  part pages and timestamps. Require a positive fixture for each supported
+  authorized distributor, hostile wrong-host and wrong-part fixtures, stock
+  surplus calculation, and expiry at the declared horizon. The full carrier
+  public-prelayout readiness receipt must pass before physical review agents
+  are commissioned.
+- ways to avoid it:
+  1. Maintain provider-neutral policy contracts and small, allowlisted
+     adapters for exact authorized-distributor product pages.
+  2. Refresh stock once at the start of a release attempt and freeze the
+     evidence bundle until completion or expiry.
+  3. Fail before schematic regeneration if the exact part, adapter, surplus or
+     evidence horizon is unacceptable.
+- landed in this iteration: the exact Mouser LT3041 page is admitted by a
+  narrow tested adapter, hostile URL cases remain rejected, and carrier public
+  manufacturing readiness passes all four prelayout checks.
+- recommendation: P0 before any long routing or independent-review sequence.
+
+## IMP-196 — normalize configured paths once at the consuming command boundary
+
+- status: implementing
+- observed: crow audio carrier v1 route preparation, 2026-09-15
+- situation: route preparation interpreted a repository-relative fabrication
+  override as project-relative and prefixed the project path twice. The file
+  existed and was correctly configured, but a second resolution step made the
+  gate fail after schematic review.
+- general rule: a configured path is resolved exactly once against an explicit
+  dialect. Consumers may accept absolute, project-relative and
+  repository-relative forms only when they select one existing regular file
+  unambiguously; downstream commands receive the canonical absolute path.
+- way to test it: create a temporary repository and project with distinct
+  same-named files. Prove each supported dialect resolves to the intended
+  canonical file, a missing path fails, and two distinct valid interpretations
+  fail as ambiguous. Exercise the resolved path through the real route
+  preparation command rather than testing the helper alone.
+- ways to avoid it:
+  1. Store path dialect and base in the parsed configuration object.
+  2. Resolve at the command boundary and never join an already resolved path.
+  3. Print the canonical path in the gate receipt for review and replay.
+- landed in this iteration: route preparation now resolves the historical
+  repository-relative fabrication override once, rejects ambiguity, and
+  passes the exact carrier prep command.
+- recommendation: P1 for every project tool that forwards configured paths to
+  another checker.
+
+## IMP-197 — make every same-net copper contact an explicit graph node before post-route proof
+
+- status: implementing
+- observed: crow audio carrier v1 post-route acceptance, 2026-09-15
+- situation: all 19 immutable route waves passed their candidate gates, but the
+  first full post-route analog proof stopped on `AUDIO_P1`. KRT had continued
+  from exact off-grid protection vias on a 0.1 mm route grid. Across all 16
+  protected audio lines, the first routed segment began 0.0125–0.0500 mm from
+  the via centre, and several adjacent short segments also touched the annulus
+  only through their width. KiCad treated this as connected copper, while the
+  endpoint graph could not represent the hidden contact or prove clamp-prefix
+  dominance.
+- general rule: electrical overlap is not sufficient for a graph-graded path.
+  Every track/track, track/via and track/pad contact on a graded net must have a
+  serialized graph node at the physical junction. Grid conversion must preserve
+  exact terminal coordinates, or a deterministic post-route canonicalization
+  must replace the affected chain before any cleanup can split or delete it.
+- way to test it: after each immutable wave, enumerate same-net pairs using full
+  native shapes. For every track/via contact, require the via centre to equal a
+  segment endpoint; for every track crossing or T junction, require a shared
+  endpoint; and for every pad contact, require an endpoint proven inside the
+  supported land geometry. A hostile fixture routes from an off-grid 0.5 mm via
+  on a 0.1 mm grid and must fail when the route stops merely inside its annulus.
+  Its positive successor must apply the declared exact-chain replacement and
+  pass the critical-path dominance checker. Run this contact census before the
+  costly fill, native DRC and release-review stages.
+- ways to avoid it:
+  1. Carry original terminal coordinates through grid routing and emit the first
+     and last segment at those exact coordinates on the selected copper layer.
+  2. Declare exact, hash-bound chain replacements for deterministic router
+     micro-chains whose nearby geometry makes generic snapping ambiguous.
+  3. Put the critical-path contact/dominance audit in candidate grading for the
+     earliest wave that introduces a graded net, then repeat it after stitch.
+  4. Never delete a micro-fragment until the explicit-node census proves its two
+     physical contacts remain represented after deletion.
+- landed in this iteration: the carrier stitch recipe now owns 16 exact,
+  fail-closed `canonicalize_chains` replacements. They replace 24 KRT grid
+  segments with 16 direct protection-via-centred segments before any fragment
+  or dangling cleanup. A probe against the authenticated r19 board removed all
+  16 audio via-contact ambiguities and passed all 32 clamp-prefix copper rows.
+- recommendation: P0 for any board combining off-grid prepared copper with a
+  grid router, and for every route carrying ESD, surge or stability dominance
+  obligations.
+
+
+### 2026-09-15 — preflight both proximity metrics before schematic renewal
+
+- Situation (MEASURED): source screening passed all 353 pad-edge adjacency
+  rows, but the native P-ADJ gate rejected ADC8N's separate pad-center
+  keep_short span: 5.247418 mm against 5.0 mm. A 0.40 mm capacitor move brings
+  it to 4.977489 mm with unchanged limits; complete analog/digital copper and
+  moved-body checks pass. These results remain source screens, not routing
+  acceptance. Receipts: carrier938,941,943,945,947 in the Crow work log.
+- Test: the new 16-input capacitor pad-center regression fails on the old
+  source and passes after correction. Keep its old-position hostile example.
+  Pad-edge gap cannot stand in for pad-center distance or routed path length.
+- Avoid: before freezing source for fresh schematic review, run each applicable
+  proximity predicate with its own units, anchor definition and nonzero census.
+  Require native placement checks as early as their true dependencies allow.
+- Process proposal (not implemented authority): separate electrical/schematic
+  review identity from layout-only source identity so an unchanged electrical
+  graph and delivered PDF can retain valid acceptance after a capacitor move.
+  Prove dependency invalidation with hostile fixtures before changing any gate;
+  exact current placement/routing/clearance reviews must still be renewed.
+
+
+### 2026-09-15 — reserve usable exits before earlier power waves
+
+- Situation (MEASURED): the fresh carrier replay accepted waves 1–14, then
+  rejected wave 15 for two clearance rows at one FILTER4P via: 0.2025 mm
+  to ADC_BCLK against its 0.25 mm requirement. The analog wave had a global
+  0.20 mm search clearance. The mere existence of unrelated scoped 0.20 mm
+  rule areas did not legalize this location. An isolated stricter 0.25 mm
+  replay accepted all 79 wave-15 nets (carrier1124/1125).
+- The following ADC wave then connected 17/18 nets. ADC8P's prepared copper
+  was connected, including its via and back-layer end, but adjacent ADC8N,
+  reset and earlier 3V3_ADC routing enclosed its exit. Connectivity of a
+  seed is therefore insufficient evidence of a usable nominal-width exit.
+  A candidate relocates its 0.50/0.20 mm via beyond the neighboring analog
+  trace before the power waves run. Preparation accepts all 227 banks with
+  no refusal; native DRC finds no new clearance errors. Full replay is still
+  pending; this is not a solved final-route claim (carrier1127–1132).
+- Test proposal: freeze the rejected wave-15 receipt as a negative native-DRC
+  example; require effective clearance to the stricter foreign clock class.
+  For exit admission, run the earlier power wave and the downstream ADC wave
+  together from the same prepared board. Require every ADC terminal connected,
+  unchanged digital zero-via contracts, and all actual copper/length gates.
+  The original ADC8P exit must fail this test; a connected source stub alone
+  must not make it pass.
+- Avoid: allocate a full-width continuation corridor beyond each narrow local
+  escape before routing adjacent power copper. Review interacting waves as one
+  geometry unit; batch demonstrated source corrections before renewing reviews.
+  These are proposed process checks, not implemented gates or waivers.
+
+
+### 2026-09-16 — endpoint matching must consider branch order before adding length
+
+Situation: a routed differential filter met connectivity but the negative branch
+reached capacitor 2 before capacitor 1; the positive branch reached them in the
+opposite order. Repeated shared-trunk meanders improved the main path while
+leaving incompatible capacitor-path errors. Another filter had a 6.53 mm removable
+detour; increasing its partner length was the wrong first move.
+
+Test: derive the physical-edge incidence matrix for every declared endpoint path,
+record capacitor arrival order and signed P/N deficits, and solve whether legal
+edge additions can satisfy all unchanged ceilings together. Include a known-bad
+fixture with reversed capacitor order and a main-path-only fixture that must not
+count as complete matching. Validate generated meanders against actual foreign
+pad/track/via widths and native DRC: the candidate generator accepted a FILTER2P
+meander with 0.20 mm clearance against a 0.25 mm AUDIO_EN requirement.
+
+Avoidance: inspect branch topology and removable detours before amplitude sweeps;
+reserve matching corridors during joint routing; search for common and individual
+branch corrections together; keep exact source recipes and independent endpoint
+and native-clearance validation. These are process proposals, not newly enforced
+gates. Carrier attempts1165–1186 retain the failed and corrected diagnostic evidence.
+
+
+### 2026-09-16 — carry fabrication authority across import
+
+Situation: candidate routing used the declared advanced fabrication settings,
+while the regenerated import destination retained older Board Setup defaults.
+Diagnostic DRC consequently labelled 38 authored advanced-process vias undersized.
+Enlarging them to ordinary 0.50 mm geometry introduced 78 clearance findings.
+That normalization candidate is rejected; changing copper to satisfy stale rules
+is not a valid repair.
+
+Test and prevention: the public import now invokes the same declared-capability
+synchronizer as preparation, which rejects changed named netclasses, assignments,
+or error severities. A native import regression failed on the pre-fix code and
+passes after the fix. Compare prepared/imported/final fabrication authority before
+interpreting dimensional DRC findings; regenerate netclass rules last as before.
+This repairs authority transfer, not the authored limits. Full source replay and
+release checks are still required.
+
+
+### Candidate lesson: grade resistance alongside matching before full stitch
+
+Situation: the isolated Crow candidate passed155 endpoint paths, but matching
+meanders left both CH5 legs above the existing0.5ohm conditional screen after
+the unchanged2xreserve. A hole-repair nudge also moved one fine via away from
+its exact authored seed identity, correctly stopping the resistance checker.
+Test: run endpoint topology/length, exact fine-via source identity and the
+conditional width-weighted trace/barrel model on the same saved candidate before
+expensive final replay. Require native clearance validation after every width
+correction. Retain the failing candidate as evidence.
+Prevention: budget path length AND resistance during corridor/meander design;
+place source fine vias at their legal final positions rather than relying on
+implicit nudges. Encode monotonic width changes as exact atomic source recipes
+after topology cleanup, so seed replay cannot re-add duplicate narrow edges.
+This lesson does not authorize limit changes or substitute modeled resistance
+for physical first-article DCR.
+
+
+### Crow integration lesson — preserve geometry and electrical context across helpers (2026-09-16)
+
+Situation: a ground-return detour developed on an earlier candidate replaced
+mixed 0.33/0.15 mm ADC2N copper with uniformly 0.15 mm copper. Native clearance
+and length checks alone could miss the increased resistance. A second issue
+was legal pad-edge contact rejected by an endpoint-only connectivity screen.
+
+Test: before applying any patch, assert source net/layer/endpoints AND widths,
+then grade native connectivity/clearance, all branch lengths, actual copper
+resistance and via capacity together. Include a finite-width pad-edge contact
+positive and disjoint/opposite-layer negatives. Reject stale geometry before
+any mutation; use a fresh native process after destructive item removal.
+
+Prevention: hand back typed, exact, source-owned geometry transactions with
+explicit source-board identity and unchanged constraint budgets. Derive final
+fine-via accounting from executed seed/relocation recipes, never a separate
+allowlist. Compare integrated geometry against the newest candidate, not an
+older visually similar board. Use selective thermal angles before weakening
+spoke requirements; retain all widths, counts and gaps during experiments.
+
+### Crow candidate lesson — include plated-hole aspect in the cheap screen (2026-09-16)
+
+Situation: an integrated diagnostic candidate passed clearance, connectivity,
+matching, resistance, reference clearance and via ampacity, but an ADC_RESET_N
+control via used a 0.15 mm drill through the nominal 1.6 mm board. Its 10.67:1
+aspect exceeds the existing 10:1 fabrication limit. Low current does not exempt
+hole manufacturability. The unchanged source regression exposed this before
+routing replay/publication; the independent review correctly treats it as a defect.
+
+Test: run the existing realized_via_aspect_check.py on every candidate whenever
+any via diameter/drill changes, with the exact selected project tier and saved
+board thickness. Include all vias, including low-current controls and existing
+vias beside moved pads. Preserve the failing receipt and test; do not revise a
+limit to match a candidate. A diameter/drill minimum check alone is insufficient.
+
+Prevention: put aspect, annulus, clearance and via-to-pad intersection in the same
+cheap local feasibility screen before expensive integrated reviews/replays.
+A proposed repair enlarges the drill and relocates the local transition; only
+actual downstream receipts can qualify it. This records a process lesson, not
+a new acceptance claim or permission to omit other gates.
+
+### Crow candidate lesson — absolute checks before review dispatch (2026-09-16)
+
+A differential all-via/pad census reported no new center overlaps while carrying
+an inherited ADC3P via inside C_ADC_CM3P.1. Two complete source geometry tests and
+a fresh independent review rejected that absolute violation. Comparing against
+an already flawed baseline cannot establish validity. Two review packets became
+obsolete while source regressions were still being reconciled.
+
+Run the whole relevant source geometry suite before freezing a review packet.
+Use absolute ordinary-pad via prohibitions plus explicit source-owned exposed-pad
+permissions; retain differential results only as change diagnostics. Separate
+center-in-pad, drill-circle overlap and annulus overlap instead of conflating
+their meanings or inventing new blanket exceptions. Freeze source after this
+cheap qualification, then commission fresh review once. Preserve failed reviews
+and their complete-versus-curtailed coverage; they never grant acceptance.
+
+### Crow thermal-angle lesson — qualify both lifecycle states (2026-09-16)
+
+Post-route thermal angles that cleared the filled routed candidate produced five
+starved thermals in the canonical track-free placement. A placement-clean angle
+trial then starved three routed capacitor returns. Neither result qualifies the
+other state: intervening copper changes available spoke directions.
+
+The user authorized a leaner process after bounded angle and geometry trials.
+First determine whether a finding is applicable at the stage being graded:
+track-free placement deliberately lacks the copper that determines final thermal
+spokes. P-DRC now logs and defers exact starved_thermal rows only while native
+unconnected_items remain. Shorts, clearance, parity and other violations still
+block; connected-board thermals still block. Final native DRC must remain zero
+violations, zero unconnected and zero parity with unchanged two-spoke, width,
+gap and zone limits. A five-board quantity does not change those physical limits.
+
+Test stage applicability with the same native finding before and after routing,
+plus mixed-error and connected-board hostile controls. The regression went RED
+at carrier1316 and GREEN at1317 (9 cases); fresh Astra Medium independently
+verified 14 classifier cases and accepted the narrow change. Preserve diagnostic
+receipts, bound experiments, and stop geometry churn when it serves only an
+inapplicable intermediate test. Changes to a checker still require contract
+updates and independent review; they do not constitute final-board acceptance.
+
+When only a checking method changes, compare the complete input census before
+regenerating reviewed design artifacts. The exact three-file method/contract
+transition here preserved 614 other inputs and all seven schematic identities.
+A separately reviewed one-off checkpoint renewal used owning record/verify and
+normal resume gates, archived old checkpoints, and provided rollback. Do not
+turn this into a generic permission to rebind changed engineering inputs.
+
+### Crow final replay lesson — run deterministic prep before full review (2026-09-16)
+
+A routed diagnostic was clean while canonical prep refused a GND via because
+its hole-to-hole gap was 0.496419 mm against the prepared board's 0.500 mm floor.
+The message said foreign copper although the failing predicate was drill spacing.
+One 0.01 mm source move and its aliased trace endpoint raised the gap to
+0.505762 mm and passed all 230 seed banks; no fabrication floor changed.
+
+Run the exact deterministic source-to-prep path early, including its exact
+project/rules sidecars, before commissioning expensive reviews. Diagnostic
+post-route cleanliness is not proof of intermediate feasibility. On a refusal,
+identify copper, hole-to-copper, or hole-to-hole and exact conflicting objects
+before changing geometry. Future diagnostic improvements should return the
+owning predicate and measured gap instead of one generic collision message.
+Review renewals should establish an exact delta and unchanged coverage, using
+one integrated fresh fix-pass lens where the review procedure permits it.
+
+Follow-up from canonical1337: the 0.500 mm drill-spacing predicate was the
+preparation board setting before the existing fab-authority synchronization.
+The selected routing authority later sets 0.200 mm. Therefore this refusal was
+an intermediate conservative-rule mismatch, not proof of a fabricated-board
+spacing violation. The accepted 0.01 mm source correction satisfies both.
+Future source-to-prep work should synchronize exact declared constraints before
+checking seeds, with a regression proving before/after rule identity. Do not
+infer manufacturing failure from a preparatory predicate with different rules.
+This records an ordering improvement; no new gate relaxation was implemented.
+
+### Crow release lesson — run policy classifiers before final route review (2026-09-16)
+
+The final release audit classified two conditions only after routing was sealed:
+the intentionally track-routed high-current net family had no zone objects, and
+Q_IN.5 had no plane-via count because its 12V_FUSED net has no internal plane.
+Neither condition was a native DRC defect, but resolving the policy evidence late
+changed the rules digest and added avoidable review and release bookkeeping.
+
+Run the full R-POUR and R-THERM classifiers on the first representative routed
+candidate, before freezing final review packets. Require an explicit disposition:
+add the required copper/plane connection, or record a narrowly scoped waiver with
+measured current, resistance, dissipation, route-acceptance evidence and first-
+article obligations. Include known-bad fixtures that exceed the current or thermal
+assumptions. This moves classification earlier; it does not weaken final native
+DRC, ampacity, thermal, or first-article requirements.

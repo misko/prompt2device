@@ -1,0 +1,805 @@
+{
+  "schema": 1,
+  "kind": "pcb-decision-control-process-adoption",
+  "created_at": "2026-09-09T15:19:48.674919+00:00",
+  "base_commit": "6709d7560030e1a036f226e553ba9ca93ff970ef",
+  "subjects": {
+    "projects/crow-audio-carrier-v1/01_docs/STATUS.md": "a5abe6513b01557b612c333f0decdcd94a804986e087f2c0d6c57c992aabd6e3",
+    "projects/crow-audio-carrier-v1/01_docs/contracts.md": "a0eed7debceb227dbb5e708e4e98d1660730759ac888da279b1c0f17ef6321b7",
+    "projects/crow-audio-carrier-v1/01_docs/findings.yaml": "5f72b7c584d7500e008e1a2f3e96f893703d23c3ea200151a78eaa193ea66f9f",
+    "projects/crow-audio-carrier-v1/01_docs/journal/schematic.md": "d48f0c0b860ebd26660ec3ab9ea08ec4d66c838562be86c7539fc93d3bdd5fbb",
+    "projects/crow-audio-carrier-v1/01_docs/learnings/schematic.md": "6e05615ffac65a4e2a5245e36ce017a0a0f6e1ef4f783cc075a3e218d1bb31de",
+    "projects/crow-audio-carrier-v1/01_docs/research/2026-09-09-decision-control.md": "c85a9968ec53431e3eac990033b2edce2e98d98fb12c566ee7c3485ba21c2fe3",
+    "skills/kicad-pcb/references/design-policies.md": "34222787693560a5a21b44c635a976d8c8c3a0e95f490db94524c5afab344c25",
+    "skills/kicad-pcb/scripts/contracts.md": "fe7a98f475220f97e2e102fefd97c3dc86dbee901bf33f8a8b9fc485ad809e11",
+    "skills/kicad-pcb/scripts/pcb_flow.py": "2c773b80055bc10c40f3f727ccfe8abbfb48994cb776352803656e7e26096d4c",
+    "skills/pcb-design/SKILL.md": "887352326582089c89c7a2053af5d4eed225bbc2c0cff7c2dba416d76674542e",
+    "skills/pcb-design/contracts.md": "17d4fd9b4ad5d2012c44e0b636bab5533c9efb1bd99b0f15e9de03e05a3e3b9b",
+    "skills/pcb-design/references/commission-and-scope.md": "1e15a10a77a82432a3fed584fc478378f66bf2b1b5536b79216b9a8cab2e458a",
+    "skills/pcb-design/references/execution-runtime.md": "97d2c24ba4a6191bfdcda205eeae1a91a345e00492d5ce086b9f2dbb1fa1e67a",
+    "skills/pcb-design/references/lifecycle-and-backtrack.md": "f35b9fe6a21e6e40c24162933287d40780de109c95c659c71c472cb667ac31c7",
+    "skills/pcb-design/scripts/decision_progress.py": "44a6e6874468ee269383629b65163ff2296ee00f3e1bb6868874f01669390e49",
+    "skills/pcb-design/templates/contracts/01_docs/contracts.md": "38f7516b9d0f81d6b6a8ede1b01b576c30b0b3aad5bfc9eddc7f3bb164582d3a",
+    "tests/README.md": "b329fd58878cc9509b10481b77fc592518c2fccf35b218d2e5b9b529699afdbb",
+    "tests/run_tests.sh": "be9a93435a335966a3120b9d51b3ae18ea3a3740fb52d61c90f67572c238385b",
+    "tests/t1_decision_progress.py": "b82de519bf1b7a878e59f09d04ccc9130dd71c5ae29acbe4fe231d63bde16380",
+    "projects/crow-audio-carrier-v1/06_build/agent_handoff.yaml": "2ac05c41bdd11c9f7524c694fbe6bc65a3e33ed1f4e9e934c0ffb16c882347d3"
+  },
+  "attempts": [
+    {
+      "name": "decision-audit-delta-r1",
+      "record": {
+        "command": [
+          "python3",
+          "-B",
+          "-c",
+          "import hashlib,json,pathlib; p=pathlib.Path(\"/tmp/carrier-fresh-build-20260908.4RBsSy\"); a=(p/\"audio-contracts-r1.log\").read_text(); b=(p/\"decision-contract-audit-final-r1.log\").read_text(); af=[x for x in a.splitlines() if x.startswith(\"FAIL \")]; bf=[x for x in b.splitlines() if x.startswith(\"FAIL \")]; print(json.dumps({\"baseline_failure_lines\":len(af),\"current_failure_lines\":len(bf),\"exact_failure_lines_equal\":af==bf,\"new_findings\":sorted(set(bf)-set(af)),\"resolved_findings\":sorted(set(af)-set(bf)),\"failure_lines_sha256\":hashlib.sha256(\"\\n\".join(bf).encode()).hexdigest()})); assert af==bf"
+        ],
+        "cwd": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901",
+        "started_at": "2026-09-09T15:15:49.004057+00:00",
+        "finished_at": "2026-09-09T15:15:49.034453+00:00",
+        "returncode": 0,
+        "elapsed_s": 0.0290370830334723,
+        "timed_out": false,
+        "cancelled": false,
+        "log_sha256": "67fff55d830326f4817be80afcc6675c457da5d4801997bd4330bba8eff280e6"
+      },
+      "log": "{\"baseline_failure_lines\": 2894, \"current_failure_lines\": 2894, \"exact_failure_lines_equal\": true, \"new_findings\": [], \"resolved_findings\": [], \"failure_lines_sha256\": \"18052d05474fbe39fb55d140c79ab68f0be55062f523235e34872553193fd519\"}\n"
+    },
+    {
+      "name": "decision-authority-final-r1",
+      "record": {
+        "command": [
+          "python3",
+          "skills/pcb-design/scripts/skill_authority_check.py"
+        ],
+        "cwd": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901",
+        "started_at": "2026-09-09T15:15:49.129945+00:00",
+        "finished_at": "2026-09-09T15:15:49.191942+00:00",
+        "returncode": 0,
+        "elapsed_s": 0.06084506190381944,
+        "timed_out": false,
+        "cancelled": false,
+        "log_sha256": "4d778fb7d785ea5a8efaf49b5d22e871d06b0769be50c9a6fd9184a6c96d7894"
+      },
+      "log": "SKILL-AUTH PASS: core=281 lines/1754 words, domains=30, references=41, policies=111/109\n"
+    },
+    {
+      "name": "decision-authority-r1",
+      "record": {
+        "command": [
+          "/usr/bin/python3",
+          "-B",
+          "skills/pcb-design/scripts/skill_authority_check.py"
+        ],
+        "cwd": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901",
+        "started_at": "2026-09-09T14:58:26.872552+00:00",
+        "finished_at": "2026-09-09T14:58:26.935766+00:00",
+        "returncode": 0,
+        "elapsed_s": 0.06219728710129857,
+        "timed_out": false,
+        "cancelled": false,
+        "log_sha256": "4d778fb7d785ea5a8efaf49b5d22e871d06b0769be50c9a6fd9184a6c96d7894"
+      },
+      "log_retention": "local scratch only; identity retained, not a final passing witness"
+    },
+    {
+      "name": "decision-carrier-enforce-r1",
+      "record": {
+        "command": [
+          "python3",
+          "skills/pcb-design/scripts/decision_progress.py",
+          "projects/crow-audio-carrier-v1",
+          "--finding",
+          "CAR-F12-power-sequencing-decision"
+        ],
+        "cwd": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901",
+        "started_at": "2026-09-09T15:12:19.020093+00:00",
+        "finished_at": "2026-09-09T15:12:19.067334+00:00",
+        "returncode": 1,
+        "elapsed_s": 0.045622719917446375,
+        "timed_out": false,
+        "cancelled": false,
+        "log_sha256": "4b4647f5a44c6b098d4bf8f7179c7667406a4dfc8b38198b7182e3b6c4279ad8"
+      },
+      "log": "{\n  \"catalog_sha256\": \"33c4644abd41eaa1fd92aafcf531b32c644d786cb0cb2dd4993a916c9b310627\",\n  \"decision\": \"REASSESS\",\n  \"engineering_admitted\": false,\n  \"investigations\": [\n    {\n      \"attempts\": 3,\n      \"blocks_at_or_above\": \"DESIGN_CLEAN\",\n      \"closes_when\": \"Select and implement a coherent correction supported by the unchanged signal and spoke envelope, with decision-relevant margins and explicit model limits; demonstrate focused source regressions, regenerate, and obtain fresh independent schematic review. Realized copper and bench qualification remain separately owed, not substitutes for the source protection argument.\",\n      \"credited_milestones\": [\n        \"account_signed_input_energy\",\n        \"distinguish_nr_settling\",\n        \"exclude_divider_only\"\n      ],\n      \"decision\": \"REASSESS\",\n      \"due_stage\": \"KICAD-SCHEMATIC\",\n      \"engineering_admitted\": false,\n      \"finding_id\": \"CAR-F12-power-sequencing-decision\",\n      \"max_attempts\": 6,\n      \"max_nonimproving_attempts\": 3,\n      \"next\": {\n        \"action\": \"reassess\",\n        \"hypothesis\": \"Earlier input-loss detection/isolation or an amplifier/supply change can simplify the protection proof while retaining the accepted audio and spoke envelope.\",\n        \"on_reject\": \"Reject the unsupported arrangements and reopen the power architecture; identify the exact missing evidence or scope decision without continuing threshold-only refinement.\",\n        \"on_support\": \"Select the supported arrangement, document decision margins, then implement the source correction and focused protection/restart regressions before fresh native review.\",\n        \"uncertainty\": \"decision_limiting\"\n      },\n      \"nonimproving_attempts\": 0,\n      \"observations\": [\n        {\n          \"credited\": [\n            \"distinguish_nr_settling\"\n          ],\n          \"id\": \"nr-settling-7a1450f2\",\n          \"learning_only\": false,\n          \"model_domain\": \"not_applicable\"\n        },\n        {\n          \"credited\": [\n            \"account_signed_input_energy\"\n          ],\n          \"id\": \"isolated-energy-ea148a54\",\n          \"learning_only\": false,\n          \"model_domain\": \"within\"\n        },\n        {\n          \"credited\": [\n            \"exclude_divider_only\"\n          ],\n          \"id\": \"divider-screen-6709d756\",\n          \"learning_only\": false,\n          \"model_domain\": \"not_applicable\"\n        }\n      ],\n      \"owner\": \"electrical\",\n      \"pending_launches\": [],\n      \"question\": \"Which power-loss isolation or amplifier/supply arrangement provides defensible protection with credible margin and bounded verification effort?\",\n      \"reasons\": [\n        \"uncertainty prevents the proposed experiment deciding the choice\",\n        \"coordinator requests architecture/model reassessment\"\n      ],\n      \"stop_local_refinement\": true\n    }\n  ],\n  \"ledger_sha256\": \"5f72b7c584d7500e008e1a2f3e96f893703d23c3ea200151a78eaa193ea66f9f\",\n  \"mode\": \"enforce\",\n  \"schema\": 1\n}\n"
+    },
+    {
+      "name": "decision-carrier-shadow-final-r1",
+      "record": {
+        "command": [
+          "python3",
+          "skills/pcb-design/scripts/decision_progress.py",
+          "projects/crow-audio-carrier-v1",
+          "--shadow"
+        ],
+        "cwd": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901",
+        "started_at": "2026-09-09T15:16:35.518860+00:00",
+        "finished_at": "2026-09-09T15:16:35.568228+00:00",
+        "returncode": 0,
+        "elapsed_s": 0.04813569481484592,
+        "timed_out": false,
+        "cancelled": false,
+        "log_sha256": "04ca9d5ae81b9efa90520c7c303b6f49ecef1f6f7a01bfad96e455ddfa84b874"
+      },
+      "log": "{\n  \"catalog_sha256\": \"33c4644abd41eaa1fd92aafcf531b32c644d786cb0cb2dd4993a916c9b310627\",\n  \"decision\": \"REASSESS\",\n  \"engineering_admitted\": false,\n  \"investigations\": [\n    {\n      \"attempts\": 3,\n      \"blocks_at_or_above\": \"DESIGN_CLEAN\",\n      \"closes_when\": \"Select and implement a coherent correction supported by the unchanged signal and spoke envelope, with decision-relevant margins and explicit model limits; demonstrate focused source regressions, regenerate, and obtain fresh independent schematic review. Realized copper and bench qualification remain separately owed, not substitutes for the source protection argument.\",\n      \"credited_milestones\": [\n        \"account_signed_input_energy\",\n        \"distinguish_nr_settling\",\n        \"exclude_divider_only\"\n      ],\n      \"decision\": \"REASSESS\",\n      \"due_stage\": \"KICAD-SCHEMATIC\",\n      \"engineering_admitted\": false,\n      \"finding_id\": \"CAR-F12-power-sequencing-decision\",\n      \"max_attempts\": 6,\n      \"max_nonimproving_attempts\": 3,\n      \"next\": {\n        \"action\": \"reassess\",\n        \"hypothesis\": \"Earlier input-loss detection/isolation or an amplifier/supply change can simplify the protection proof while retaining the accepted audio and spoke envelope.\",\n        \"on_reject\": \"Reject the unsupported arrangements and reopen the power architecture; identify the exact missing evidence or scope decision without continuing threshold-only refinement.\",\n        \"on_support\": \"Select the supported arrangement, document decision margins, then implement the source correction and focused protection/restart regressions before fresh native review.\",\n        \"uncertainty\": \"decision_limiting\"\n      },\n      \"nonimproving_attempts\": 0,\n      \"observations\": [\n        {\n          \"credited\": [\n            \"distinguish_nr_settling\"\n          ],\n          \"id\": \"nr-settling-7a1450f2\",\n          \"learning_only\": false,\n          \"model_domain\": \"not_applicable\"\n        },\n        {\n          \"credited\": [\n            \"account_signed_input_energy\"\n          ],\n          \"id\": \"isolated-energy-ea148a54\",\n          \"learning_only\": false,\n          \"model_domain\": \"within\"\n        },\n        {\n          \"credited\": [\n            \"exclude_divider_only\"\n          ],\n          \"id\": \"divider-screen-6709d756\",\n          \"learning_only\": false,\n          \"model_domain\": \"not_applicable\"\n        }\n      ],\n      \"owner\": \"electrical\",\n      \"pending_launches\": [],\n      \"question\": \"Which power-loss isolation or amplifier/supply arrangement provides defensible protection with credible margin and bounded verification effort?\",\n      \"reasons\": [\n        \"uncertainty prevents the proposed experiment deciding the choice\",\n        \"coordinator requests architecture/model reassessment\"\n      ],\n      \"stop_local_refinement\": true\n    }\n  ],\n  \"ledger_sha256\": \"5f72b7c584d7500e008e1a2f3e96f893703d23c3ea200151a78eaa193ea66f9f\",\n  \"mode\": \"shadow\",\n  \"schema\": 1\n}\n"
+    },
+    {
+      "name": "decision-carrier-shadow-r1",
+      "record": {
+        "command": [
+          "/usr/bin/python3",
+          "-B",
+          "skills/pcb-design/scripts/decision_progress.py",
+          "projects/crow-audio-carrier-v1",
+          "--shadow"
+        ],
+        "cwd": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901",
+        "started_at": "2026-09-09T15:00:57.293936+00:00",
+        "finished_at": "2026-09-09T15:00:57.341055+00:00",
+        "returncode": 0,
+        "elapsed_s": 0.045867918990552425,
+        "timed_out": false,
+        "cancelled": false,
+        "log_sha256": "42032ca8d3e924200982106b7071cf74a5e55a10f3a8cb7b532fde7deb4107f7"
+      },
+      "log_retention": "local scratch only; identity retained, not a final passing witness"
+    },
+    {
+      "name": "decision-contract-audit-final-r1",
+      "record": {
+        "command": [
+          "python3",
+          "-B",
+          "scripts/contracts_audit.py",
+          "--present"
+        ],
+        "cwd": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901",
+        "started_at": "2026-09-09T15:15:06.544520+00:00",
+        "finished_at": "2026-09-09T15:15:06.877544+00:00",
+        "returncode": 1,
+        "elapsed_s": 0.3305600278545171,
+        "timed_out": false,
+        "cancelled": false,
+        "log_sha256": "7f822989c3a97d9b6dde091e6fb10acb2509cc2cf367dbee237e8f275633b6d1"
+      },
+      "log_retention": "local scratch only; identity retained, not a final passing witness"
+    },
+    {
+      "name": "decision-contract-tests-final-r1",
+      "record": {
+        "command": [
+          "python3",
+          "tests/t1_contracts.py"
+        ],
+        "cwd": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901",
+        "started_at": "2026-09-09T15:15:06.949992+00:00",
+        "finished_at": "2026-09-09T15:15:09.478427+00:00",
+        "returncode": 1,
+        "elapsed_s": 2.5270813677925617,
+        "timed_out": false,
+        "cancelled": false,
+        "log_sha256": "4f50e1f19c0be1901edab742f46bff0227bb4e0a23da3bbe437611f3d907017e"
+      },
+      "log": "  [clean    ] contracts_audit: the real repo (non-projects scope) is clean, and its verdict CARRIES ITS DENOMINATOR ... FAIL\n        File \"/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/tests/harness.py\", line 192, in main\n          t[\"fn\"]()\n        File \"/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/tests/t1_contracts.py\", line 76, in t_repo_clean\n          r = must_pass(run([KPY, AUDIT]), \"contracts_audit on the repo\")\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n        File \"/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/tests/harness.py\", line 108, in must_pass\n          check(r.rc == 0, f\"{what} should have exited 0, got {r.rc}\\n{r.out[-3000:]}\")\n        File \"/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/tests/harness.py\", line 67, in check\n          raise Failed(msg)\n      harness.Failed: contracts_audit on the repo should have exited 0, got 1\n      FAIL C-ISO    skills/pcb-design/scripts/tests/test_pcb_publication_scope.py: references 'projects/child-a' — skills must cite examples/, never a live project\n      contracts_audit: 561 files (561/16960 tracked; 16399 in projects/** and archived_projects/** NOT GRADED — rerun with --projects), 1 violations\n  [clean    ] contracts_audit passes a well-governed fixture tree ... ok\n  [known-bad] contracts_audit FAILS a stray file its contract never permitted ... ok\n  [known-bad] contracts_audit FAILS a governed subfolder that lost its contract ... ok\n  [known-bad] contracts_audit FAILS a tree with no contracts.md at all ... ok\n  [known-bad] contracts_audit FAILS a skill that references a concrete project path ... ok\n  [clean    ] contracts_audit does NOT flag the projects/<name> placeholder ... ok\n  [clean    ] a project seeded from the skill templates audits clean (template/contract coherence pinned) ... ok\n  [known-bad] contracts_audit reads a pattern cell whose pipes are ESCAPED — `*.c\\|*.h\\|*.rs\\|*.py` permits all four, not just the first ... ok\n  [known-bad] contracts_audit does not split a pattern cell on a pipe inside a BACKTICK code span either ... ok\n  [known-bad] the 05_firmware TEMPLATE permits a header and a src/ tree — the contract and the auditor now agree ... ok\n  [known-bad] the 01_docs contract's OWN prompt-hash command reproduces the digest a commission records — and refuses an altered prompt ... ok\n  [known-bad] skill<->contract sync: every emitted check-ID is in canon; no contract cites a check-ID that exists nowhere in the skill ... ok\n  [known-bad] --projects RAW EXIT CODE IS READ, and the per-unit debt ceiling is TIGHT ... FAIL\n      FAIL C-ALLOW  projects/usb-hub-3s-v3/07_releases/v1.9-2026-07-27/rotation_human_gate.txt: not permitted by projects/usb-hub-3s-v3/07_releases/contracts.md\n      FAIL C-ALLOW  projects/usb-hub-3s-v3/08_reviews/2026-07-26_v1.8_pin-review.md: not permitted by projects/usb-hub-3s-v3/08_reviews/contracts.md\n      FAIL C-ALLOW  projects/usb-hub-3s-v3/08_reviews/2026-07-26_v1.8_render-review.md: not permitted by projects/usb-hub-3s-v3/08_reviews/contracts.md\n      FAIL C-ALLOW  projects/usb-hub-3s-v3/08_reviews/2026-07-27_v1.9_pin-review.md: not permitted by projects/usb-hub-3s-v3/08_reviews/contracts.md\n      FAIL C-ALLOW  projects/usb-hub-3s-v3/08_reviews/2026-07-27_v1.9_render-review.md: not permitted by projects/usb-hub-3s-v3/08_reviews/contracts.md\n      FAIL C-ALLOW  projects/usb-hub-3s-v3/RESUME.md: not permitted by projects/contracts.md\n      FAIL C-ISO    skills/pcb-design/scripts/tests/test_pcb_publication_scope.py: references 'projects/child-a' — skills must cite examples/, never a live project\n      FAIL RATCHET  DEBT_CEILING: UNRATCHETED unit 'projects/crow-audio-carrier-v1' carries 16 violation(s) and has no row. Add `\"projects/crow-audio-carrier-v1\": 16,` to scripts/contracts_audit.py in the SAME change — an absent row is an unratcheted unit, and a map that may omit units is not a bound.\n      FAIL RATCHET  DEBT_CEILING: UNRATCHETED unit 'projects/crow-mic-pod-v3' carries 1 violation(s) and has no row. Add `\"projects/crow-mic-pod-v3\": 1,` to scripts/contracts_audit.py in the SAME change — an absent row is an unratcheted unit, and a map that may omit units is not a bound.\n      FAIL RATCHET  DEBT_CEILING: UNRATCHETED unit 'skills' carries 1 violation(s) and has no row. Add `\"skills\": 1,` to scripts/contracts_audit.py in the SAME change — an absent row is an unratcheted unit, and a map that may omit units is not a bound.\n      contracts_audit: 16960 files, 2891 violations\n      contracts_audit: RATCHET debt 2891 tracked violations over 29 units vs 2873 recorded over 26 — BREACHED\n  [known-bad] --present grades PRESENCE for untracked files, because a stray worktree is a governed tree and audits CLEAN ... FAIL\n      FAIL C-ALLOW  projects/usb-hub-3s-v3/08_reviews/2026-07-26_v1.8_pin-review.md: not permitted by projects/usb-hub-3s-v3/08_reviews/contracts.md\n      FAIL C-ALLOW  projects/usb-hub-3s-v3/08_reviews/2026-07-26_v1.8_render-review.md: not permitted by projects/usb-hub-3s-v3/08_reviews/contracts.md\n      FAIL C-ALLOW  projects/usb-hub-3s-v3/08_reviews/2026-07-27_v1.9_pin-review.md: not permitted by projects/usb-hub-3s-v3/08_reviews/contracts.md\n      FAIL C-ALLOW  projects/usb-hub-3s-v3/08_reviews/2026-07-27_v1.9_render-review.md: not permitted by projects/usb-hub-3s-v3/08_reviews/contracts.md\n      FAIL C-ALLOW  projects/usb-hub-3s-v3/RESUME.md: not permitted by projects/contracts.md\n      FAIL C-ISO    skills/pcb-design/scripts/tests/test_pcb_publication_scope.py: references 'projects/child-a' — skills must cite examples/, never a live project\n      FAIL RATCHET  DEBT_CEILING: UNRATCHETED unit 'projects/crow-audio-carrier-v1' carries 16 violation(s) and has no row. Add `\"projects/crow-audio-carrier-v1\": 16,` to scripts/contracts_audit.py in the SAME change — an absent row is an unratcheted unit, and a map that may omit units is not a bound.\n      FAIL RATCHET  DEBT_CEILING: UNRATCHETED unit 'projects/crow-mic-pod-v3' carries 1 violation(s) and has no row. Add `\"projects/crow-mic-pod-v3\": 1,` to scripts/contracts_audit.py in the SAME change — an absent row is an unratcheted unit, and a map that may omit units is not a bound.\n      FAIL RATCHET  DEBT_CEILING: UNRATCHETED unit 'skills' carries 1 violation(s) and has no row. Add `\"skills\": 1,` to scripts/contracts_audit.py in the SAME change — an absent row is an unratcheted unit, and a map that may omit units is not a bound.\n      contracts_audit: 16960 files, 2891 violations\n      contracts_audit: RATCHET debt 2891 tracked violations over 29 units vs 2873 recorded over 26 — BREACHED\n      contracts_audit: RATCHET stray 0 untracked-not-ignored files in 0 unit(s); 0 declared (population 16960 = tracked ∪ untracked-not-ignored)\n  [known-bad] a pattern cell listing several backticked patterns SEPARATED BY COMMAS is read as all of them — the pipe bug's twin ... ok\n  [known-bad] a DECLARED FIELD WITH NO CONSUMER is a defect — every field in a skills reference yaml is read by something, or its row says how many are not ... FAIL\n      Traceback (most recent call last):\n        File \"/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/tests/harness.py\", line 192, in main\n          t[\"fn\"]()\n        File \"/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/tests/t1_contracts.py\", line 903, in t_declared_field_has_a_consumer\n          eq(measured[f], ORPHAN_CEILING[f],\n        File \"/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/tests/harness.py\", line 71, in eq\n          check(got == want, f\"{what}: got {got!r}, want {want!r}\")\n        File \"/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/tests/harness.py\", line 67, in check\n          raise Failed(msg)\n      harness.Failed: skills/kicad-pcb/references/proven-parts.yaml: orphan fields ['gotchas'] vs its ORPHAN_CEILING row — it may only FALL, and the row is TIGHT so wiring one up must be recorded in the same change rather than banked as slack: got 1, want 2\n\n  13 passed, 4 failed\n  10 of those are KNOWN-BAD fixtures that made their checker fail as required\n"
+    },
+    {
+      "name": "decision-contract-tests-r1",
+      "record": {
+        "command": [
+          "/usr/bin/python3",
+          "-B",
+          "tests/t1_contracts.py"
+        ],
+        "cwd": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901",
+        "started_at": "2026-09-09T15:06:47.425368+00:00",
+        "finished_at": "2026-09-09T15:06:49.259520+00:00",
+        "returncode": 1,
+        "elapsed_s": 1.8328566709533334,
+        "timed_out": false,
+        "cancelled": false,
+        "log_sha256": "22877ff6289c4c42cd30a6b1ea2a7e3f7c2e1210a76f66e537815f66de2c2b9d"
+      },
+      "log_retention": "local scratch only; identity retained, not a final passing witness"
+    },
+    {
+      "name": "decision-disclosure-r1",
+      "record": {
+        "command": [
+          "/usr/bin/python3",
+          "-B",
+          "tests/t1_skill_progressive_disclosure.py"
+        ],
+        "cwd": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901",
+        "started_at": "2026-09-09T15:01:10.460838+00:00",
+        "finished_at": "2026-09-09T15:01:10.674033+00:00",
+        "returncode": 0,
+        "elapsed_s": 0.21191015583463013,
+        "timed_out": false,
+        "cancelled": false,
+        "log_sha256": "fba7790aa3bd58d94b50f9bd326daefe558f85e5cfd76278c38e2ecace904e0a"
+      },
+      "log": "  [clean    ] the real skill authority gate passes with the frozen legacy denominator ... ok\n  [clean    ] the four compatibility profiles resolve the exact normalized stage traces ... ok\n  [clean    ] ordinary, high-speed digital, and RF select distinct reference modules ... ok\n  [clean    ] stage-local disclosure for Pi routing loads no JLC, RF, or release procedure ... ok\n  [clean    ] placement discloses source-to-prep authority without routing mechanics ... ok\n  [clean    ] digital fabrication and first article disclose SI without RF stages ... ok\n  [clean    ] router labels disclosure selection without fabricating N-A evidence ... ok\n  [clean    ] router accepts the frozen applies spelling only as a disclosure alias ... ok\n  [clean    ] runtime documentation does not overclaim hermetic containment ... ok\n  [clean    ] an explicit firmware request creates only a handoff, never a PCB stage ... ok\n  [known-bad] a release without a registered assembly adapter fails closed ... ok\n  [known-bad] the authority gate catches duplicate policy ownership ... ok\n  [vacuity  ] the authority gate is lexical and cannot detect inverted policy prose ... ok\n  [vacuity  ] the CLI emits a typed plan with no board or project present ... ok\n\n  14 passed, 0 failed\n  2 of those are KNOWN-BAD fixtures that made their checker fail as required\n  2 DECLARED BLIND SPOT(S) reproduced: a gate passing on input whose graded fact is FALSE (G-VACUOUS)\n"
+    },
+    {
+      "name": "decision-documentation-r1",
+      "record": {
+        "command": [
+          "/usr/bin/python3",
+          "-B",
+          "tests/t1_pcb_documentation.py"
+        ],
+        "cwd": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901",
+        "started_at": "2026-09-09T15:01:10.416575+00:00",
+        "finished_at": "2026-09-09T15:01:10.823135+00:00",
+        "returncode": 0,
+        "elapsed_s": 0.40526800788939,
+        "timed_out": false,
+        "cancelled": false,
+        "log_sha256": "e7ba199d3c29931e9fdc9df05edf7427759187ac5174723f6309656d50c9f07f"
+      },
+      "log": "  [clean    ] root and skill quick-start commissioning commands execute in scratch roots ... ok\n  [clean    ] root quick start begins with an installed pcb-design brief ... ok\n  [clean    ] fabricated-example media retain exact source and display identities ... ok\n  [clean    ] prompt-to-device mission separates current artifacts from future streams ... ok\n  [clean    ] execution graph stage table exactly mirrors the ordered catalog ... ok\n  [clean    ] every routed authority reference exists and is linked directly by the skill ... ok\n  [clean    ] root contains only current docs and history has an exact indexed census ... ok\n  [clean    ] all local links in the forward PCB entry documents resolve ... ok\n  [clean    ] PCB documentation overhaul remains tracked as IMP-229 ... ok\n  [clean    ] forward DRC examples name the subject and fail on violations ... ok\n  [clean    ] commissioned project contract describes stop, adoption, and resume ... ok\n  [clean    ] release contract separates mutable staging from immutable sealing ... ok\n  [clean    ] forward TSX surfaces use exact-reference and project-local terminology ... ok\n  [known-bad] graph checker rejects a temporarily omitted catalog stage ... ok\n  [known-bad] link checker rejects a temporary broken local target ... ok\n\n  15 passed, 0 failed\n  2 of those are KNOWN-BAD fixtures that made their checker fail as required\n"
+    },
+    {
+      "name": "decision-execution-r1",
+      "record": {
+        "command": [
+          "/usr/bin/python3",
+          "-B",
+          "tests/t1_pipeline_execution.py"
+        ],
+        "cwd": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901",
+        "started_at": "2026-09-09T15:01:10.555306+00:00",
+        "finished_at": "2026-09-09T15:01:10.608763+00:00",
+        "returncode": 0,
+        "elapsed_s": 0.052078204927966,
+        "timed_out": false,
+        "cancelled": false,
+        "log_sha256": "232b02475db87232aef04177c30e5855ccf06395d603b9b802014718f1980066"
+      },
+      "log": "  [clean    ] TaskEnvelope round-trips a fresh content-addressed agent packet ... ok\n  [clean    ] subprocess envelope uses execution class without an agent role ... ok\n  [known-bad] fresh agent work requires an exact non-empty handoff packet ... ok\n  [known-bad] review work cannot inherit a prior context ... ok\n  [known-bad] agent role escalation is explicit and reasoned ... ok\n  [known-bad] writer scope is traversal-free, sorted and exclusive ... ok\n  [known-bad] writer-scope receipts expose every net change outside ownership ... ok\n  [clean    ] semantic boundaries and D-BACK require a fresh successor ... ok\n  [clean    ] context thresholds warn at 60 percent and stop at 70 percent ... ok\n  [clean    ] token telemetry preserves cached input and one accounting authority ... ok\n  [known-bad] missing or incomparable token telemetry is UNKNOWN, never zero ... ok\n  [known-bad] timeout and handoff attempts retain explicit unresolved work ... ok\n  [clean    ] replacement ceiling permits exactly the declared replacements ... ok\n  [known-bad] packet declarations are reopened and hash verified ... ok\n  [known-bad] replacement accounting is scoped to exact envelope and subject ... ok\n  [known-bad] elapsed duration must agree with timestamps ... ok\n\n  16 passed, 0 failed\n  10 of those are KNOWN-BAD fixtures that made their checker fail as required\n"
+    },
+    {
+      "name": "decision-final-flow-r1",
+      "record": {
+        "command": [
+          "python3",
+          "tests/t2_pcb_flow.py"
+        ],
+        "cwd": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901",
+        "started_at": "2026-09-09T15:12:17.800117+00:00",
+        "finished_at": "2026-09-09T15:12:22.236510+00:00",
+        "returncode": 0,
+        "elapsed_s": 4.43498084298335,
+        "timed_out": false,
+        "cancelled": false,
+        "log_sha256": "5e008ffd2a17583e5ff2fbb086367d7c71cb0d76ba631a814f0536bb9d18c99f"
+      },
+      "log_retention": "local scratch only; identity retained, not a final passing witness"
+    },
+    {
+      "name": "decision-flow-final-r2",
+      "record": {
+        "command": [
+          "python3",
+          "tests/t2_pcb_flow.py"
+        ],
+        "cwd": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901",
+        "started_at": "2026-09-09T15:16:53.601005+00:00",
+        "finished_at": "2026-09-09T15:16:57.997856+00:00",
+        "returncode": 0,
+        "elapsed_s": 4.395420999033377,
+        "timed_out": false,
+        "cancelled": false,
+        "log_sha256": "9b885cc983849e8f0522095287fdff4335cb77a8364a20dea7bbfbcd0e168f97"
+      },
+      "log": "  [clean    ] handoff is compact, binds all evidence, and validates current inputs ... ok\n  [known-bad] a clean but unwitnessed gate cannot claim layout_sealed ... ok\n  [clean    ] semantic source hash ignores YAML formatting-only rewrites ... ok\n  [known-bad] top-level tscircuit controls and KiCad sidecars stale handoffs ... ok\n  [known-bad] review archive bytes are part of the seal source witness ... ok\n  [known-bad] shared tool identity is independently content-addressed ... ok\n  [known-bad] handoff rejects source changes instead of handing stale context onward ... ok\n  [known-bad] handoff generation rejects DRC evidence older than its board ... ok\n  [known-bad] handoff validation binds the exact DRC gate ... ok\n  [known-bad] handoff rejects a changed generated board independently of source ... ok\n  [known-bad] dirty DRC cannot be labeled layout_sealed ... ok\n  [known-bad] one copper config path cannot have deterministic and stochastic owners ... ok\n  [clean    ] ownership may reserve a promoted board before the first route ... ok\n  [known-bad] missing non-board ownership paths remain configuration errors ... ok\n  [clean    ] legacy projects are explicit rather than mislabeled as routing ... ok\n  [clean    ] timed run records evidence and returns the distinct budget-regression exit ... ok\n  [clean    ] ad-hoc run inherits its stage budget and deadline from route config ... ok\n  [known-bad] ad-hoc run refuses a configured stage budget regression ... ok\n  [clean    ] router pass timing composes with the single-board flow log ... ok\n  [clean    ] layout-seal dry-run places P-LAND after the canonical rebuild ... ok\n  [clean    ] layout-seal passes declared checkpoint-resume arguments to rebuild ... ok\n  [known-bad] layout-seal rejects malformed rebuild arguments ... ok\n  [clean    ] reviewed-commit seal plan does not rebuild signed bytes ... ok\n  [clean    ] layout-seal never applies a track-free review to the routed artifact ... ok\n  [clean    ] reviewed-commit recovery is commit-, input-, and review-bound ... ok\n  [known-bad] reviewed-commit witness revalidates provenance, not only file hashes ... ok\n  [clean    ] adopted pcb-flow preflight runs P-MOD first; legacy remains explicit ... ok\n  [clean    ] pcb-flow RF adapter is local, bounded, and precedes schematic review ... ok\n  [clean    ] pcb-flow preflight places the authoritative P-ADJ policy phase before router spend ... ok\n  [clean    ] adopted pcb-flow runs early electrical design before every schematic, placement, and routing gate ... ok\n  [clean    ] pcb-flow preflight runs P-PINMAP as its first board-artifact gate ... ok\n  [clean    ] pcb-flow preflight makes both exact-artifact review boundaries blocking ... ok\n  [clean    ] pcb-flow direct preflight cannot bypass either exact pre-route review boundary ... ok\n  [clean    ] successful seal is transactional and every bound class can stale it ... handoff -> /tmp/t2flow_ytqj3lz1/06_build/agent_handoff.yaml (1035 bytes, stage layout_sealed)\nLAYOUT SEALED: fresh canonical rebuild + P-BODYCLR + R-PAIRMAP/R-CRITESC + P-LAND + P-PADSEP + placement review + DRC 0/0/0\nNOT RELEASE SEALED: run the jlcpcb-fab fabrication, assembly, stock, model, polarity, and staged-release gates before ordering\nhandoff valid: /tmp/t2flow_ytqj3lz1/06_build/agent_handoff.yaml (stage layout_sealed)\nSTALE handoff: source hash changed; DRC gate is stale\nok\n  [known-bad] handoff preparation failure cannot leave a layout witness ... ok\n  [clean    ] multi-board selection isolates inputs, packages, and state ... ok\n  [clean    ] multi-board router timing and grind evidence use the selected state path ... ok\n  [known-bad] multi-board configs must declare source and part scope ... ok\n  [known-bad] oversized handoff is rejected before publication ... ok\n  [clean    ] grind dry-run delegates to the bounded driver with an explicit cap ... ok\n\n  40 passed, 0 failed\n  17 of those are KNOWN-BAD fixtures that made their checker fail as required\n"
+    },
+    {
+      "name": "decision-flow-r1",
+      "record": {
+        "command": [
+          "/usr/bin/python3",
+          "-B",
+          "tests/t2_pcb_flow.py"
+        ],
+        "cwd": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901",
+        "started_at": "2026-09-09T15:01:10.507662+00:00",
+        "finished_at": "2026-09-09T15:01:14.751362+00:00",
+        "returncode": 0,
+        "elapsed_s": 4.242564010201022,
+        "timed_out": false,
+        "cancelled": false,
+        "log_sha256": "1f55a3c3bd2700c3b8af34b8c3cf71aea9bfcaaf603d5e34719667be8e846906"
+      },
+      "log_retention": "local scratch only; identity retained, not a final passing witness"
+    },
+    {
+      "name": "decision-flow-r2",
+      "record": {
+        "command": [
+          "/usr/bin/python3",
+          "-B",
+          "tests/t2_pcb_flow.py"
+        ],
+        "cwd": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901",
+        "started_at": "2026-09-09T15:05:31.711083+00:00",
+        "finished_at": "2026-09-09T15:05:35.936423+00:00",
+        "returncode": 0,
+        "elapsed_s": 4.223929955856875,
+        "timed_out": false,
+        "cancelled": false,
+        "log_sha256": "42c9651b96780b896fcb81e5c7f315a623f862a9a39535051a01684852fc1c08"
+      },
+      "log_retention": "local scratch only; identity retained, not a final passing witness"
+    },
+    {
+      "name": "decision-guard-final-r1",
+      "record": {
+        "command": [
+          "python3",
+          "tests/t1_decision_progress.py"
+        ],
+        "cwd": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901",
+        "started_at": "2026-09-09T15:15:05.274609+00:00",
+        "finished_at": "2026-09-09T15:15:06.495435+00:00",
+        "returncode": 0,
+        "elapsed_s": 1.219492306932807,
+        "timed_out": false,
+        "cancelled": false,
+        "log_sha256": "28a1fa567c3eb3cc8751bb56be362bb5088521be0d3564277b966a80e063e594"
+      },
+      "log": "  [clean    ] decision guard allows a bounded first experiment without granting engineering acceptance ... ok\n  [known-bad] decision guard stops report/model/subject churn across handoffs ... ok\n  [known-bad] decision guard credits a finite milestone once, not repeatedly ... ok\n  [known-bad] decision guard recognizes candidate elimination and preserves total budget ... ok\n  [known-bad] decision guard never credits out-of-domain or unknown model predictions ... ok\n  [known-bad] decision-limiting uncertainty stops refinement without calling hardware defective ... ok\n  [known-bad] decision guard rejects malformed, stale, missing and escaped evidence ... ok\n  [known-bad] decision history rejects duplicate events and unplanned progress ... ok\n  [clean    ] ordinary boards and deferred bench work retain their existing maturity ... ok\n  [known-bad] pcb flow handoff binds decision history and rejects a stale next action ... handoff -> /tmp/decision-progress-b3rvnn8m/06_build/agent_handoff.yaml (2068 bytes, stage schematic)\nhandoff valid: /tmp/decision-progress-b3rvnn8m/06_build/agent_handoff.yaml (stage schematic)\nSTALE handoff: decision ledger, history, next action or evaluator changed\nok\n  [known-bad] pcb flow refuses a blocked named investigation before its child starts ... ok\n  [known-bad] duplicate YAML cannot erase exhausted history ... ok\n  [known-bad] ordinary YAML merge defaults remain compatible while explicit duplicates fail ... ok\n  [known-bad] guarded dispatch reserves spend and prevents unreported repeat launches ... ok\n\n  14 passed, 0 failed\n  12 of those are KNOWN-BAD fixtures that made their checker fail as required\n"
+    },
+    {
+      "name": "decision-guard-green-r1",
+      "record": {
+        "command": [
+          "/usr/bin/python3",
+          "-B",
+          "tests/t1_decision_progress.py"
+        ],
+        "cwd": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901",
+        "started_at": "2026-09-09T14:56:17.027732+00:00",
+        "finished_at": "2026-09-09T14:56:17.857937+00:00",
+        "returncode": 0,
+        "elapsed_s": 0.8290844080038369,
+        "timed_out": false,
+        "cancelled": false,
+        "log_sha256": "d57e8351fd68fdc9bbc14d27960f85239d57f9bcede2ddf3f0721fc57be043a3"
+      },
+      "log_retention": "local scratch only; identity retained, not a final passing witness"
+    },
+    {
+      "name": "decision-guard-green-r2",
+      "record": {
+        "command": [
+          "/usr/bin/python3",
+          "-B",
+          "tests/t1_decision_progress.py"
+        ],
+        "cwd": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901",
+        "started_at": "2026-09-09T15:04:04.989609+00:00",
+        "finished_at": "2026-09-09T15:04:06.138272+00:00",
+        "returncode": 0,
+        "elapsed_s": 1.1472812900319695,
+        "timed_out": false,
+        "cancelled": false,
+        "log_sha256": "26a8967b3abf3ed2af727201818adffd906d002270262848b286ecb34a86ea96"
+      },
+      "log_retention": "local scratch only; identity retained, not a final passing witness"
+    },
+    {
+      "name": "decision-guard-green-r3",
+      "record": {
+        "command": [
+          "/usr/bin/python3",
+          "-B",
+          "tests/t1_decision_progress.py"
+        ],
+        "cwd": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901",
+        "started_at": "2026-09-09T15:06:46.233981+00:00",
+        "finished_at": "2026-09-09T15:06:47.379508+00:00",
+        "returncode": 0,
+        "elapsed_s": 1.1440011060331017,
+        "timed_out": false,
+        "cancelled": false,
+        "log_sha256": "eb69e4b5a130cbefb4544fca6a3eff417e9cf95222d69991852459538e419676"
+      },
+      "log_retention": "local scratch only; identity retained, not a final passing witness"
+    },
+    {
+      "name": "decision-guard-green-r4",
+      "record": {
+        "command": [
+          "python3",
+          "tests/t1_decision_progress.py"
+        ],
+        "cwd": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901",
+        "started_at": "2026-09-09T15:11:26.814392+00:00",
+        "finished_at": "2026-09-09T15:11:27.990404+00:00",
+        "returncode": 0,
+        "elapsed_s": 1.1746857829857618,
+        "timed_out": false,
+        "cancelled": false,
+        "log_sha256": "9d0af69ce9872b69801d1b7fbce85b83efa97158262b11dba025f9f316597ae6"
+      },
+      "log_retention": "local scratch only; identity retained, not a final passing witness"
+    },
+    {
+      "name": "decision-guard-red-r1",
+      "record": {
+        "command": [
+          "/usr/bin/python3",
+          "-B",
+          "tests/t1_decision_progress.py"
+        ],
+        "cwd": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901",
+        "started_at": "2026-09-09T14:55:03.224847+00:00",
+        "finished_at": "2026-09-09T14:55:04.006201+00:00",
+        "returncode": 1,
+        "elapsed_s": 0.7801590238232166,
+        "timed_out": false,
+        "cancelled": false,
+        "log_sha256": "f30d23dc442eaa33debc1ddc881ce8a4773795d14b9fdcdd9b547a0a1e2f91a2"
+      },
+      "log_retention": "local scratch only; identity retained, not a final passing witness"
+    },
+    {
+      "name": "decision-guard-red-r2",
+      "record": {
+        "command": [
+          "/usr/bin/python3",
+          "-B",
+          "tests/t1_decision_progress.py"
+        ],
+        "cwd": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901",
+        "started_at": "2026-09-09T14:55:16.378805+00:00",
+        "finished_at": "2026-09-09T14:55:17.181319+00:00",
+        "returncode": 1,
+        "elapsed_s": 0.8014768159482628,
+        "timed_out": false,
+        "cancelled": false,
+        "log_sha256": "c39a9385d4105e2127753d94e7b2800b10ce9f8916d964ceb346cb20705c045a"
+      },
+      "log_retention": "local scratch only; identity retained, not a final passing witness"
+    },
+    {
+      "name": "decision-guard-red-r3",
+      "record": {
+        "command": [
+          "/usr/bin/python3",
+          "-B",
+          "tests/t1_decision_progress.py"
+        ],
+        "cwd": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901",
+        "started_at": "2026-09-09T14:55:28.820414+00:00",
+        "finished_at": "2026-09-09T14:55:29.607692+00:00",
+        "returncode": 1,
+        "elapsed_s": 0.7861477320548147,
+        "timed_out": false,
+        "cancelled": false,
+        "log_sha256": "dcbef12f078da84f73e7b8aa75853bde6197f84ee65dd5c4959941b9486da611"
+      },
+      "log": "  [clean    ] decision guard allows a bounded first experiment without granting engineering acceptance ... ok\n  [known-bad] decision guard stops report/model/subject churn across handoffs ... ok\n  [known-bad] decision guard credits a finite milestone once, not repeatedly ... ok\n  [known-bad] decision guard recognizes candidate elimination and preserves total budget ... ok\n  [known-bad] decision guard never credits out-of-domain or unknown model predictions ... ok\n  [known-bad] decision-limiting uncertainty stops refinement without calling hardware defective ... ok\n  [known-bad] decision guard rejects malformed, stale, missing and escaped evidence ... ok\n  [known-bad] decision history rejects duplicate events and unplanned progress ... ok\n  [clean    ] ordinary boards and deferred bench work retain their existing maturity ... ok\n  [known-bad] pcb flow handoff binds decision history and rejects a stale next action ... handoff -> /tmp/decision-progress-w_gqinb6/06_build/agent_handoff.yaml (968 bytes, stage schematic)\nFAIL\n      Traceback (most recent call last):\n        File \"/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/tests/harness.py\", line 192, in main\n          t[\"fn\"]()\n        File \"/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/tests/t1_decision_progress.py\", line 202, in t_handoff\n          eq(doc['decision_progress']['decision'], 'REASSESS')\n             ~~~^^^^^^^^^^^^^^^^^^^^^\n      KeyError: 'decision_progress'\n  [known-bad] pcb flow refuses a blocked named investigation before its child starts ... FAIL\n        File \"/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/tests/t1_decision_progress.py\", line 216, in t_launch\n          must_fail(r, 'guarded child launch', 'REASSESS')\n        File \"/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/tests/harness.py\", line 117, in must_fail\n          contains(r.out, expect, f\"{what} failure output\")\n        File \"/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/tests/harness.py\", line 75, in contains\n          check(needle in hay, f\"{what} does not contain {needle!r}\\n--- got ---\\n\"\n        File \"/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/tests/harness.py\", line 67, in check\n          raise Failed(msg)\n      harness.Failed: guarded child launch failure output does not contain 'REASSESS'\n      --- got ---\n      usage: pcb_flow.py [-h] {preflight,validate,layout-seal,handoff,grind,run} ...\n      pcb_flow.py: error: unrecognized arguments: --investigation startup\n\n  9 passed, 2 failed\n  7 of those are KNOWN-BAD fixtures that made their checker fail as required\n"
+    },
+    {
+      "name": "decision-handoff-r1",
+      "record": {
+        "command": [
+          "python3",
+          "skills/kicad-pcb/scripts/pcb_flow.py",
+          "handoff",
+          "projects/crow-audio-carrier-v1",
+          "--stage",
+          "schematic",
+          "--blocker",
+          "Source250of250PASS-InheritedUnchanged503Inputs-NotEngineeringAdmission",
+          "--blocker",
+          "DecisionControlAdopted-CAR-F12-REASSESS-ArchitectureComparisonNext",
+          "--blocker",
+          "CorrelatedReferenceCTDumpNRRestart-FeedCurrentDuration-OPEN",
+          "--blocker",
+          "RemainingDossierPrimaryFamily-LayoutPrecedent-TDM-OrderPublicationHolds-OPEN",
+          "--blocker",
+          "CurrentWorkOrder-01_docs/research/2026-09-09-decision-control.md",
+          "--blocker",
+          "NativeGeneratedArtifactsAndReviewsSTALE-NoGenerationUntilSourceEngineeringClosure"
+        ],
+        "cwd": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901",
+        "started_at": "2026-09-09T15:15:49.279051+00:00",
+        "finished_at": "2026-09-09T15:15:50.361468+00:00",
+        "returncode": 0,
+        "elapsed_s": 1.081089949933812,
+        "timed_out": false,
+        "cancelled": false,
+        "log_sha256": "2b453c91c510ba35517cab51a6f9f0e5bf419e87535267bded01bf1ace530532"
+      },
+      "log": "handoff -> /home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/06_build/agent_handoff.yaml (4721 bytes, stage schematic)\n"
+    },
+    {
+      "name": "decision-handoff-validate-r1",
+      "record": {
+        "command": [
+          "python3",
+          "skills/kicad-pcb/scripts/pcb_flow.py",
+          "validate",
+          "projects/crow-audio-carrier-v1"
+        ],
+        "cwd": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901",
+        "started_at": "2026-09-09T15:16:34.339893+00:00",
+        "finished_at": "2026-09-09T15:16:35.442069+00:00",
+        "returncode": 0,
+        "elapsed_s": 1.100856119999662,
+        "timed_out": false,
+        "cancelled": false,
+        "log_sha256": "19e6c98afb8b36831707a49da56d0f2def636a919307ee1bbf4d4c021e6bf00d"
+      },
+      "log": "handoff valid: /home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/06_build/agent_handoff.yaml (stage schematic)\n"
+    },
+    {
+      "name": "decision-merge-independent-final-r1",
+      "record": {
+        "command": [
+          "python3",
+          "-B",
+          "/tmp/decision-retest-YttRxH/merge_recheck.py"
+        ],
+        "cwd": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901",
+        "started_at": "2026-09-09T15:16:53.429955+00:00",
+        "finished_at": "2026-09-09T15:16:53.473612+00:00",
+        "returncode": 0,
+        "elapsed_s": 0.04254538309760392,
+        "timed_out": false,
+        "cancelled": false,
+        "log_sha256": "93724ef5a70a2437582e786be2f5054dd105c4792696ceba3dc9832fa8c05a79"
+      },
+      "log": "PASS valid: explicit override\nPASS valid: merge list precedence\nPASS valid: merge list with override\nPASS valid: nested inherited defaults\nPASS valid: shared nested anchor reused\nPASS valid: repeated same merge source\nPASS valid: quoted merge-looking ordinary key\nPASS rejects: direct duplicate\nPASS rejects: duplicate alongside merge\nPASS rejects: duplicate inside inherited source\nPASS rejects: inherited duplicate explicitly overridden\nPASS rejects: duplicate within nested inherited source\nPASS rejects: duplicate within second merge-list source\nPASS rejects: quoted versus plain duplicate\nPASS rejects: equivalent typed keys\nPASS distinct merge directive and quoted literal << key\n"
+    },
+    {
+      "name": "decision-merge-literal-red-r1",
+      "record": {
+        "command": [
+          "python3",
+          "tests/t1_decision_progress.py"
+        ],
+        "cwd": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901",
+        "started_at": "2026-09-09T15:14:21.757285+00:00",
+        "finished_at": "2026-09-09T15:14:22.984333+00:00",
+        "returncode": 1,
+        "elapsed_s": 1.2258197600021958,
+        "timed_out": false,
+        "cancelled": false,
+        "log_sha256": "d01f3b1a23b67aed5c199daf7f17d2362a05786cfa05c23a2eb07a595848c34f"
+      },
+      "log": "  [clean    ] decision guard allows a bounded first experiment without granting engineering acceptance ... ok\n  [known-bad] decision guard stops report/model/subject churn across handoffs ... ok\n  [known-bad] decision guard credits a finite milestone once, not repeatedly ... ok\n  [known-bad] decision guard recognizes candidate elimination and preserves total budget ... ok\n  [known-bad] decision guard never credits out-of-domain or unknown model predictions ... ok\n  [known-bad] decision-limiting uncertainty stops refinement without calling hardware defective ... ok\n  [known-bad] decision guard rejects malformed, stale, missing and escaped evidence ... ok\n  [known-bad] decision history rejects duplicate events and unplanned progress ... ok\n  [clean    ] ordinary boards and deferred bench work retain their existing maturity ... ok\n  [known-bad] pcb flow handoff binds decision history and rejects a stale next action ... handoff -> /tmp/decision-progress-qeth7fb3/06_build/agent_handoff.yaml (2068 bytes, stage schematic)\nhandoff valid: /tmp/decision-progress-qeth7fb3/06_build/agent_handoff.yaml (stage schematic)\nSTALE handoff: decision ledger, history, next action or evaluator changed\nok\n  [known-bad] pcb flow refuses a blocked named investigation before its child starts ... ok\n  [known-bad] duplicate YAML cannot erase exhausted history ... ok\n  [known-bad] ordinary YAML merge defaults remain compatible while explicit duplicates fail ... FAIL\n          return self.construct_document(node)\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n        File \"/usr/lib/python3/dist-packages/yaml/constructor.py\", line 60, in construct_document\n          for dummy in generator:\n        File \"/usr/lib/python3/dist-packages/yaml/constructor.py\", line 413, in construct_yaml_map\n          value = self.construct_mapping(node)\n                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n        File \"/usr/lib/python3/dist-packages/yaml/constructor.py\", line 217, in construct_mapping\n          self.flatten_mapping(node)\n        File \"/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/skills/pcb-design/scripts/decision_progress.py\", line 45, in flatten_mapping\n          raise ValueError(f'duplicate YAML key: {key}')\n      ValueError: duplicate YAML key: <<\n  [known-bad] guarded dispatch reserves spend and prevents unreported repeat launches ... ok\n\n  13 passed, 1 failed\n  11 of those are KNOWN-BAD fixtures that made their checker fail as required\n"
+    },
+    {
+      "name": "decision-merge-red-r1",
+      "record": {
+        "command": [
+          "python3",
+          "tests/t1_decision_progress.py"
+        ],
+        "cwd": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901",
+        "started_at": "2026-09-09T15:11:02.069210+00:00",
+        "finished_at": "2026-09-09T15:11:03.252435+00:00",
+        "returncode": 1,
+        "elapsed_s": 1.1818442489020526,
+        "timed_out": false,
+        "cancelled": false,
+        "log_sha256": "0304ae793ed7fa253e6d02075ec796c4196f7c11cf7afc81906a9f20f4f46044"
+      },
+      "log": "  [clean    ] decision guard allows a bounded first experiment without granting engineering acceptance ... ok\n  [known-bad] decision guard stops report/model/subject churn across handoffs ... ok\n  [known-bad] decision guard credits a finite milestone once, not repeatedly ... ok\n  [known-bad] decision guard recognizes candidate elimination and preserves total budget ... ok\n  [known-bad] decision guard never credits out-of-domain or unknown model predictions ... ok\n  [known-bad] decision-limiting uncertainty stops refinement without calling hardware defective ... ok\n  [known-bad] decision guard rejects malformed, stale, missing and escaped evidence ... ok\n  [known-bad] decision history rejects duplicate events and unplanned progress ... ok\n  [clean    ] ordinary boards and deferred bench work retain their existing maturity ... ok\n  [known-bad] pcb flow handoff binds decision history and rejects a stale next action ... handoff -> /tmp/decision-progress-nkq5pb9k/06_build/agent_handoff.yaml (2068 bytes, stage schematic)\nhandoff valid: /tmp/decision-progress-nkq5pb9k/06_build/agent_handoff.yaml (stage schematic)\nSTALE handoff: decision ledger, history, next action or evaluator changed\nok\n  [known-bad] pcb flow refuses a blocked named investigation before its child starts ... ok\n  [known-bad] duplicate YAML cannot erase exhausted history ... ok\n  [known-bad] ordinary YAML merge defaults remain compatible while explicit duplicates fail ... FAIL\n      Traceback (most recent call last):\n        File \"/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/tests/harness.py\", line 192, in main\n          t[\"fn\"]()\n        File \"/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/tests/t1_decision_progress.py\", line 241, in t_yaml_merge\n          eq(json.loads(must_pass(cli(root), 'ordinary merge override').out)['decision'], 'NOT_APPLICABLE')\n                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n        File \"/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/tests/harness.py\", line 108, in must_pass\n          check(r.rc == 0, f\"{what} should have exited 0, got {r.rc}\\n{r.out[-3000:]}\")\n        File \"/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/tests/harness.py\", line 67, in check\n          raise Failed(msg)\n      harness.Failed: ordinary merge override should have exited 0, got 2\n      {\"decision\": \"INVALID\", \"error\": \"duplicate YAML key: id\", \"engineering_admitted\": false}\n  [known-bad] guarded dispatch reserves spend and prevents unreported repeat launches ... ok\n\n  13 passed, 1 failed\n  11 of those are KNOWN-BAD fixtures that made their checker fail as required\n"
+    },
+    {
+      "name": "decision-new-suite-wiring-r1",
+      "record": {
+        "command": [
+          "python3",
+          "-B",
+          "-c",
+          "import pathlib,subprocess,sys,json; sys.path.insert(0,\"tests\"); import t4_regressions as t; root=pathlib.Path.cwd(); own=root/\"tests/t1_decision_progress.py\"; measured=t.main_guard_exit_code(own); assert measured==(True,1); assert own.name in (root/\"tests/run_tests.sh\").read_text(); names=[\"t1_connector_orientation.py\",\"t1_crow_first_article_policy.py\",\"t1_crow_governance.py\",\"t1_crow_spoke_interface.py\",\"t1_reference_plane.py\"]; assert all(subprocess.check_output([\"git\",\"show\",\"HEAD:tests/\"+n])==(root/\"tests\"/n).read_bytes() for n in names); print(json.dumps({\"new_suite_exit_failure\":measured,\"new_suite_wired\":True,\"inherited_swallowed_exit_files_unchanged\":names}))"
+        ],
+        "cwd": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901",
+        "started_at": "2026-09-09T15:19:48.524652+00:00",
+        "finished_at": "2026-09-09T15:19:48.576360+00:00",
+        "returncode": 0,
+        "elapsed_s": 0.05030846502631903,
+        "timed_out": false,
+        "cancelled": false,
+        "log_sha256": "c43d07d79e8b359e06dde3dfbafc2d731321473540848196c388515324f143f0"
+      },
+      "log": "{\"new_suite_exit_failure\": [true, 1], \"new_suite_wired\": true, \"inherited_swallowed_exit_files_unchanged\": [\"t1_connector_orientation.py\", \"t1_crow_first_article_policy.py\", \"t1_crow_governance.py\", \"t1_crow_spoke_interface.py\", \"t1_reference_plane.py\"]}\n"
+    },
+    {
+      "name": "decision-preservation-r1",
+      "record": {
+        "command": [
+          "python3",
+          "-B",
+          "-c",
+          "import hashlib,json,pathlib,subprocess; r=pathlib.Path.cwd(); p=r/\"projects/crow-audio-carrier-v1/01_docs/SOURCE-CORRECTION-20260909-analog-load-outcome.json\"; refs=json.loads(p.read_text())[\"source_native_pod_inputs\"]; changed=[n for n,h in refs.items() if not (r/n).is_file() or hashlib.sha256((r/n).read_bytes()).hexdigest()!=h]; f=\"skills/pcb-design/scripts/connector_qualification_coupon.py\"; b=subprocess.check_output([\"git\",\"show\",\"HEAD:\"+f]); assert b==(r/f).read_bytes(); matches=[str(i)+\":\"+line for i,line in enumerate(b.decode().splitlines(),1) if chr(34)+\"maker\"+chr(34) in line]; print(json.dumps({\"baseline\":str(p.relative_to(r)),\"baseline_sha256\":hashlib.sha256(p.read_bytes()).hexdigest(),\"checked\":len(refs),\"changed\":changed,\"orphan_ceiling_failure_inherited\":{\"unchanged_baseline_file\":f,\"baseline_maker_literal_matches\":matches,\"explanation\":\"The broad lexical orphan scanner already sees maker in unrelated connector code at baseline; proven-parts ceiling remains 2 while only gotchas is absent. No ceiling adjusted.\"}})); assert not changed and len(matches)==2"
+        ],
+        "cwd": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901",
+        "started_at": "2026-09-09T15:16:34.143523+00:00",
+        "finished_at": "2026-09-09T15:16:34.261609+00:00",
+        "returncode": 0,
+        "elapsed_s": 0.11683536716736853,
+        "timed_out": false,
+        "cancelled": false,
+        "log_sha256": "047835eee8cc375692478eb41b1d37ce58b9edbfc7fa7736854372dfbe6f7e2b"
+      },
+      "log": "{\"baseline\": \"projects/crow-audio-carrier-v1/01_docs/SOURCE-CORRECTION-20260909-analog-load-outcome.json\", \"baseline_sha256\": \"ce0dc452d796360ededf0f78193eab5389db7f395e8535d0b1162226744e8932\", \"checked\": 503, \"changed\": [], \"orphan_ceiling_failure_inherited\": {\"unchanged_baseline_file\": \"skills/pcb-design/scripts/connector_qualification_coupon.py\", \"baseline_maker_literal_matches\": [\"1372:            \\\"instrument_id\\\", \\\"roles\\\", \\\"maker\\\", \\\"model\\\", \\\"serial\\\",\", \"1382:        for field in (\\\"maker\\\", \\\"model\\\", \\\"serial\\\", \\\"resolution\\\"):\"], \"explanation\": \"The broad lexical orphan scanner already sees maker in unrelated connector code at baseline; proven-parts ceiling remains 2 while only gotchas is absent. No ceiling adjusted.\"}}\n"
+    },
+    {
+      "name": "decision-runner-wiring-r1",
+      "record": {
+        "command": [
+          "python3",
+          "tests/t4_regressions.py",
+          "--only=every_suite_propagates"
+        ],
+        "cwd": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901",
+        "started_at": "2026-09-09T15:17:26.909752+00:00",
+        "finished_at": "2026-09-09T15:17:26.946176+00:00",
+        "returncode": 0,
+        "elapsed_s": 0.03521216404624283,
+        "timed_out": false,
+        "cancelled": false,
+        "log_sha256": "29b734a425aa541ea214d99f4ad91c62318a2b0670ebd9a20190ecad7502ab81"
+      },
+      "log_retention": "local scratch only; identity retained, not a final passing witness"
+    },
+    {
+      "name": "decision-runner-wiring-r2",
+      "record": {
+        "command": [
+          "python3",
+          "tests/t4_regressions.py",
+          "--only=EVERY suite"
+        ],
+        "cwd": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901",
+        "started_at": "2026-09-09T15:18:14.744515+00:00",
+        "finished_at": "2026-09-09T15:18:14.979058+00:00",
+        "returncode": 1,
+        "elapsed_s": 0.23323758598417044,
+        "timed_out": false,
+        "cancelled": false,
+        "log_sha256": "a269ed86a70ded8e3d59bcb965f506dce28a637c10ac7afb3c97eb1e3d2624e6"
+      },
+      "log": "  [clean    ] INCIDENT(2026-07-27 0dd56ab0, REINTRODUCED 2026-07-30 bcec2fd6): EVERY suite in tests/ propagates its exit code, and every suite is WIRED INTO run_tests.sh — a suite that exits 0 on red, or never runs at all, is a gate that cannot fail ... FAIL\n      Traceback (most recent call last):\n        File \"/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/tests/harness.py\", line 192, in main\n          t[\"fn\"]()\n        File \"/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/tests/t4_regressions.py\", line 1738, in t_every_suite_propagates_and_is_wired_in\n          eq(swallowed, [], \"suites that report a failure and exit 0 anyway\")\n        File \"/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/tests/harness.py\", line 71, in eq\n          check(got == want, f\"{what}: got {got!r}, want {want!r}\")\n        File \"/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/tests/harness.py\", line 67, in check\n          raise Failed(msg)\n      harness.Failed: suites that report a failure and exit 0 anyway: got ['t1_connector_orientation.py', 't1_crow_first_article_policy.py', 't1_crow_governance.py', 't1_crow_spoke_interface.py', 't1_reference_plane.py'], want []\n\n  0 passed, 1 failed, 36 skipped (use --slow)\n  0 of those are KNOWN-BAD fixtures that made their checker fail as required\n  NOTE: no known-bad fixture in this selection — on its own this suite proves nothing about whether the gates can fail\n"
+    },
+    {
+      "name": "decision-runtime-r1",
+      "record": {
+        "command": [
+          "/usr/bin/python3",
+          "-B",
+          "tests/t1_pipeline_runtime.py"
+        ],
+        "cwd": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901",
+        "started_at": "2026-09-09T15:05:32.906435+00:00",
+        "finished_at": "2026-09-09T15:05:37.112840+00:00",
+        "returncode": 0,
+        "elapsed_s": 4.204867158085108,
+        "timed_out": false,
+        "cancelled": false,
+        "log_sha256": "cd99061ae753683d28525a24e46f40740e0576842921228f96ccefd1e33f8123"
+      },
+      "log": "  [clean    ] runtime returns PASS telemetry and a schema-1 StageResult projection ... ok\n  [clean    ] quiet runtime emits heartbeats with deadline and work-class context ... ok\n  [clean    ] chatty runtime bounds console while retaining exact combined output ... ok\n  [clean    ] CRLF output is counted as one line while raw bytes stay unchanged ... ok\n  [known-bad] runtime timeout kills a spawned grandchild process group ... ok\n  [known-bad] outer deadline kills nested leaf despite sanitized inner env ... ok\n  [known-bad] inner nested timeout kills only its leaf and preserves its caller ... ok\n  [known-bad] nested successful leader cannot launder a DEVNULL leaf ... ok\n  [known-bad] spoofed nested marker cannot disable descendant cleanup ... ok\n  [known-bad] nested runtime refuses a host without process-table discovery ... ok\n  [known-bad] blocking event sink cannot stall watchdog or launder telemetry ... ok\n  [known-bad] observer exception becomes typed ERROR rather than escaping ... ok\n  [known-bad] blocking console cannot stall watchdog or launder telemetry ... ok\n  [known-bad] deadline also kills a pipe-holding grandchild after its parent exits ... ok\n  [known-bad] leader exit with a DEVNULL descendant is cleaned and rejected ... ok\n  [known-bad] legacy runner cannot launder a cleaned descendant into exit zero ... [compat-devnull] ERROR rc=0 elapsed=0.049s output=17B lines=1 suppressed=0 log=/tmp/pcb-process-runner-971z6y0l/run.log\nok\n  [known-bad] runtime enforces deadline after a live child closes its output pipes ... ok\n  [known-bad] escaped-session pipe cannot hold runtime past deadline and grace ... ok\n  [known-bad] attempt deadline cleans up a descendant after its leader exits ... ok\n  [known-bad] legacy runner shim cannot reintroduce the descendant-stdout hang ... [compat-descendant] HEARTBEAT work_class=local elapsed=0.050s remaining=0.250s pid=1123269\n[compat-descendant] HEARTBEAT work_class=local elapsed=0.100s remaining=0.200s pid=1123269\n[compat-descendant] HEARTBEAT work_class=local elapsed=0.150s remaining=0.150s pid=1123269\n[compat-descendant] HEARTBEAT work_class=local elapsed=0.200s remaining=0.100s pid=1123269\n[compat-descendant] HEARTBEAT work_class=local elapsed=0.250s remaining=0.050s pid=1123269\n[compat-descendant] TIMEOUT elapsed=0.300s limit=0.3s pid=1123269; terminating process scope\nok\n  [clean    ] legacy runner shim preserves running PID and heartbeat state ... [compat-live] HEARTBEAT work_class=local elapsed=0.040s remaining=1.960s pid=1123283\n[compat-live] HEARTBEAT work_class=local elapsed=0.080s remaining=1.920s pid=1123283\n[compat-live] HEARTBEAT work_class=local elapsed=0.120s remaining=1.880s pid=1123283\n[compat-live] HEARTBEAT work_class=local elapsed=0.160s remaining=1.840s pid=1123283\n[compat-live] HEARTBEAT work_class=local elapsed=0.201s remaining=1.799s pid=1123283\n[compat-live] HEARTBEAT work_class=local elapsed=0.241s remaining=1.759s pid=1123283\nok\n  [known-bad] late async live callback cannot overwrite terminal runner state ... [compat-terminal-latch] HEARTBEAT work_class=local elapsed=0.020s remaining=1.980s pid=1123287\n[compat-terminal-latch] HEARTBEAT work_class=local elapsed=0.040s remaining=1.960s pid=1123287\n[compat-terminal-latch] HEARTBEAT work_class=local elapsed=0.060s remaining=1.940s pid=1123287\n[compat-terminal-latch] HEARTBEAT work_class=local elapsed=0.081s remaining=1.919s pid=1123287\n[compat-terminal-latch] HEARTBEAT work_class=local elapsed=0.101s remaining=1.899s pid=1123287\n[compat-terminal-latch] ERROR rc=0 elapsed=0.187s output=0B lines=0 suppressed=0 log=/tmp/pcb-process-runner-yuw48g9h/run.log\nok\n  [known-bad] attempt refuses stale packet bytes before and after execution ... ok\n  [known-bad] attempt records and rejects writer-scope escapes ... ok\n  [known-bad] attempt output admits exactly one terminal record ... ok\n  [known-bad] nonzero child exit becomes a failed, nonpassing StageResult ... ok\n  [known-bad] runtime REFUSES an output absent from the StageSpec ... ok\n\n  27 passed, 0 failed\n  22 of those are KNOWN-BAD fixtures that made their checker fail as required\n"
+    }
+  ],
+  "supporting_scripts": {
+    "/tmp/carrier-fresh-build-20260908.4RBsSy/run.py": {
+      "sha256": "cfc9f1201d5963290d9186e7819dfec38179a3a3a544bd8c6c57ff019c691f51",
+      "source": "#!/usr/bin/python3\n\"\"\"Bounded capture of this regeneration's actual commands, not gate authority.\"\"\"\nimport datetime\nimport hashlib\nimport json\nimport os\nfrom pathlib import Path\nimport sys\n\nROOT = Path('/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901')\nHERE = Path(__file__).resolve().parent\nsys.path.insert(0, str(ROOT / 'skills/kicad-pcb/scripts'))\nfrom process_runner import run_bounded\n\nname, deadline, *argv = sys.argv[1:]\nassert name and '/' not in name and argv\nassert not (HERE / (name + '.result.json')).exists(), 'Never overwrite an attempt'\nstarted = datetime.datetime.now(datetime.timezone.utc).isoformat()\nresult = run_bounded(argv, cwd=ROOT,\n                     env={**os.environ, 'PYTHONDONTWRITEBYTECODE': '1'},\n                     timeout_s=float(deadline), heartbeat_s=10,\n                     label=name, state_path=HERE / (name + '.state.json'))\nlog = result.output.encode()\n(HERE / (name + '.log')).write_bytes(log)\nrecord = dict(command=argv, cwd=str(ROOT), started_at=started,\n              finished_at=datetime.datetime.now(datetime.timezone.utc).isoformat(),\n              returncode=result.returncode, elapsed_s=result.elapsed_s,\n              timed_out=result.timed_out, cancelled=result.cancelled,\n              log_sha256=hashlib.sha256(log).hexdigest())\n(HERE / (name + '.result.json')).write_text(json.dumps(record, indent=2) + '\\n')\nprint(json.dumps(record), flush=True)\nsys.exit(result.returncode)\n"
+    },
+    "/tmp/decision-independent-9aAhuF/check.py": {
+      "sha256": "44b57526a2585b44792ab4a734ffa25c38bdb8861e6264b4d42323f8cf5d8553",
+      "source": "import copy, hashlib, json, sys\nfrom pathlib import Path\nfrom unittest.mock import patch\n\nREPO = Path('/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901')\nsys.dont_write_bytecode = True\nsys.path[:0] = [str(REPO/'skills/pcb-design/scripts'), str(REPO/'skills/kicad-pcb/scripts')]\nimport decision_progress as dp\nimport pcb_flow as flow\n\nroot = Path(__file__).parent\nref = lambda name: {'path': name, 'sha256': hashlib.sha256((root/name).read_bytes()).hexdigest()}\ninv = {'schema': 1, 'requirement': {**ref('01_docs/authority.md'), 'locator': 'line 1'},\n       'due_stage': 'KICAD-SCHEMATIC', 'operating_states': ['startup'], 'question': 'A or B?',\n       'milestones': {'m1': 'Eliminate A', 'm2': 'Select B'},\n       'max_nonimproving_attempts': 2, 'max_attempts': 4, 'history': [],\n       'next': {'action': 'investigate', 'hypothesis': 'B meets requirement',\n                'on_support': 'Select B', 'on_reject': 'Consider C', 'uncertainty': 'bounded'}}\nfinding = {'id': 'F', 'owner': 'electrical', 'state': 'open', 'closes_when': 'Evidence sufficient',\n           'blocks_at_or_above': 'DESIGN_CLEAN', 'investigation': inv}\ndef obs(n, progress=(), domain='within'):\n    return {'id': str(n), 'subject_sha256': f'{n:064x}', 'origin': 'executed', 'hypothesis': 'Try B',\n            'result': 'Measured result', 'model_domain': domain, 'progress': list(progress),\n            'evidence': [ref('01_docs/result.md')]}\ndef case(label, history, decision, credited, nonimproving):\n    f = copy.deepcopy(finding); f['investigation']['history'] = history\n    r = dp.assess(root, f)\n    assert (r['decision'], r['credited_milestones'], r['nonimproving_attempts']) == (decision, credited, nonimproving), r\n    assert r['engineering_admitted'] is False\n    print('PASS', label)\ncase('first', [], 'CONTINUE_BOUNDED', [], 0)\ncase('churn', [obs(1), obs(2)], 'REASSESS', [], 2)\ncase('repeat credit', [obs(1, ['m1']), obs(2, ['m1']), obs(3, ['m1'])], 'REASSESS', ['m1'], 2)\ncase('new credit resets plateau', [obs(1), obs(2,['m1'])], 'CONTINUE_BOUNDED', ['m1'], 0)\ncase('cap never reset', [obs(1,['m1']), obs(2), obs(3), obs(4,['m2'])], 'REASSESS', ['m1','m2'], 0)\nfor domain in ['outside', 'unknown']:\n    case(domain, [obs(1,['m1'],domain), obs(2,['m1'],domain)], 'REASSESS', [], 2)\nfor label, change in [\n    ('stale', lambda i: i['requirement'].update(sha256='0'*64)),\n    ('missing', lambda i: i['requirement'].update(path='missing')),\n    ('traversal', lambda i: i['requirement'].update(path='../authority.md')),\n    ('absolute', lambda i: i['requirement'].update(path='/etc/passwd')),\n    ('bad model', lambda i: i.update(history=[obs(1,(), 'bogus')])),\n    ('malformed budget', lambda i: i.update(max_attempts=True))]:\n    f = copy.deepcopy(finding); change(f['investigation'])\n    try: dp.assess(root, f)\n    except ValueError: print('PASS rejects', label)\n    else: raise AssertionError(label)\n\noriginal_read = Path.read_bytes\ndata = {'schema':1, 'findings':[copy.deepcopy(finding)]}\ndef read_bytes(path):\n    return json.dumps(data).encode() if path == root/'01_docs/findings.yaml' else original_read(path)\nwith patch.object(Path, 'read_bytes', read_bytes):\n    ctx = flow.resolve_context(root)\n    flow.write_handoff(ctx, 'schematic', [])\n    assert flow.validate_handoff(ctx) == 0\n    data['findings'][0]['investigation']['next']['hypothesis'] += ' revised'\n    assert flow.validate_handoff(ctx) == 2\n    print('PASS handoff binds changed next action')\n    data['findings'][0]['investigation']['history'] = [obs(1), obs(2)]\n    assert flow.main(['run',str(root),'--stage','schematic','--investigation','F','--','/usr/bin/printf','CHILD_EXECUTED']) == 1\n    print('PASS blocked launch returns before command')\n    data['findings'][0]['investigation']['history'] = []\n    data['findings'][0]['investigation']['max_attempts'] = 2\n    for n in range(3):\n        assert flow.main(['run',str(root),'--stage','schematic','--investigation','F','--','/usr/bin/printf','CHILD_EXECUTED']) == 0\n    print('RISK unreported launches exceed cap: three launches, max_attempts=2, ledger attempts=', dp.evaluate(root)['investigations'][0]['attempts'])\n    data['findings'][0]['investigation']['due_stage'] = 'PCB-FIRST-ARTICLE'\n    data['findings'][0]['blocks_at_or_above'] = 'FIRST_ARTICLE_TESTED'\n    data['findings'][0]['investigation']['history'] = [obs(1),obs(2)]\n    assert dp.evaluate(root)['decision'] == 'REASSESS'\n    flow.write_handoff(ctx, 'schematic', [])\n    assert flow.validate_handoff(ctx) == 0\n    print('PASS deferred opted-in work advises REASSESS without preventing schematic handoff')\n    del data['findings'][0]['investigation']\n    assert dp.evaluate(root)['decision'] == 'NOT_APPLICABLE'\n    assert flow.decision_progress(ctx) is None\n    flow.write_handoff(ctx, 'schematic', [])\n    assert flow.validate_handoff(ctx) == 0\n    print('PASS ordinary no-investigation board compatibility')\n    data['findings'][0]['investigation'] = copy.deepcopy(inv)\n    data['findings'][0]['investigation']['due_stage'] = []\n    assert dp.main([str(root),'--shadow']) == 2\n    assert flow.main(['run',str(root),'--stage','schematic','--investigation','F','--','/usr/bin/printf','SHOULD_NOT_RUN']) == 1\n    print('PASS malformed types fail closed at CLI/launch integration')\n\n# Duplicate YAML/JSON mapping keys are malformed but safe_load silently keeps\n# the final value. Use actual ledger parser, with only ledger bytes substituted.\nf = copy.deepcopy(finding)\nf['investigation']['history'] = [obs(1), obs(2)]\nassert dp.assess(root, f)['decision'] == 'REASSESS'\ninvraw = json.dumps(f.pop('investigation'))[:-1] + ', \"history\": []}'\nraw = '{\"schema\":1,\"findings\":[' + json.dumps(f)[:-1] + ',\"investigation\":' + invraw + '}]}'\nwith patch.object(Path, 'read_bytes', lambda path: raw.encode() if path == root/'01_docs/findings.yaml' else original_read(path)):\n    result = dp.evaluate(root)\n    assert result['decision'] == 'CONTINUE_BOUNDED'\n    print('BUG duplicate history mapping key silently drops exhausted history:', result['investigations'][0]['attempts'])\n"
+    },
+    "/tmp/decision-retest-YttRxH/check.py": {
+      "sha256": "61df123c2dd7e83c1a9a8ae85bf9880516c64cf329ac63532bacf1c76158f3cc",
+      "source": "import concurrent.futures, copy, fcntl, hashlib, json, subprocess, sys\nfrom pathlib import Path\nfrom unittest.mock import patch\nimport yaml\nsys.dont_write_bytecode = True\nREPO = Path('/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901')\nsys.path[:0] = [str(REPO/'skills/pcb-design/scripts'), str(REPO/'skills/kicad-pcb/scripts')]\nimport decision_progress as dp\nROOT = Path(__file__).parent\nFLOW = REPO/'skills/kicad-pcb/scripts/pcb_flow.py'\ndef cli(*args):\n    return subprocess.run([sys.executable,'-B',str(REPO/'skills/pcb-design/scripts/decision_progress.py'),str(ROOT),*args],text=True,capture_output=True)\ndef launch(fid,cmd='/usr/bin/true'):\n    return subprocess.run([sys.executable,'-B',str(FLOW),'run',str(ROOT),'--stage','schematic','--investigation',fid,'--',cmd],text=True,capture_output=True)\ndef ledger(): return yaml.safe_load((ROOT/'01_docs/findings.yaml').read_bytes())\ndef files(): return {str(p): (p.stat().st_mtime_ns, p.read_bytes()) for p in ROOT.rglob('*') if p.is_file()}\n\nbefore = files()\nassert cli().returncode == 0\nassert cli('--shadow').returncode == 0\nassert files() == before\nprint('PASS read-only enforce and shadow: exact file bytes and mtimes unchanged')\n\nfor fid,command,expected in [('normal','/usr/bin/true',0), ('failure','/usr/bin/false',1)]:\n    r=launch(fid,command); assert r.returncode == expected, r\n    result=dp.evaluate(ROOT,fid)\n    assert result['decision']=='ASSESS_PENDING' and result['investigations'][0]['attempts']==1,result\n    r=launch(fid); assert r.returncode==1 and 'ASSESS_PENDING' in r.stderr,r\n    assert len(next(f for f in ledger()['findings'] if f['id']==fid)['investigation']['launches'])==1\n    print('PASS reservation persists; second launch blocked:',fid)\n\nbefore=files(); assert cli('--finding','normal').returncode==1\nassert cli('--finding','normal','--shadow').returncode==0\nassert files()==before\nprint('PASS pending enforce/shadow are still read-only')\n\nlockfile=ROOT/'06_build/tmp/decision_progress.lock'\nwith lockfile.open('r') as lock:\n    fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)\n    before=(ROOT/'01_docs/findings.yaml').read_bytes()\n    r=launch('locked'); assert r.returncode==1 and 'reservation refused' in r.stderr,r\n    assert (ROOT/'01_docs/findings.yaml').read_bytes()==before\nprint('PASS competing advisory lock refuses promptly without ledger change')\n\nwith concurrent.futures.ThreadPoolExecutor(2) as pool:\n    rs=list(pool.map(launch,['concurrent','concurrent']))\nassert sorted(r.returncode for r in rs)==[0,1],rs\nf=next(f for f in ledger()['findings'] if f['id']=='concurrent')\nassert len(f['investigation']['launches'])==1\nprint('PASS simultaneous processes dispatch exactly once')\n\nf=next(f for f in ledger()['findings'] if f['id']=='normal')\nreservation=f['investigation']['launches'][0]\nobs={**reservation,'origin':'executed','hypothesis':'A works','result':'Evidence received',\n     'model_domain':'within','progress':['m1'],'evidence':[{'path':'01_docs/result.md',\n     'sha256':hashlib.sha256((ROOT/'01_docs/result.md').read_bytes()).hexdigest()}]}\nf['investigation']['history']=[obs]\nr=dp.assess(ROOT,f)\nassert (r['decision'],r['attempts'],r['pending_launches'])==('CONTINUE_BOUNDED',1,[]),r\nprint('PASS matching assessment clears pending without double-counting')\nfor key,value in [('subject_sha256','0'*64),('origin','historical_assessment')]:\n    bad=copy.deepcopy(f); bad['investigation']['history'][0][key]=value\n    try:dp.assess(ROOT,bad)\n    except ValueError:pass\n    else:raise AssertionError(key)\nprint('PASS mismatched reservation subject/origin rejected')\nf['investigation']['launches'].append({'id':'second-reservation','subject_sha256':'1'*64})\nr=dp.assess(ROOT,f); assert r['attempts']==2 and r['decision']=='REASSESS',r\nprint('PASS union attempt cap includes next unassessed reservation')\n\ndata=ledger(); raw=json.dumps(data)[:-1]+',\"findings\":[]}'\nread=Path.read_bytes\nwith patch.object(Path,'read_bytes',lambda p:raw.encode() if p==ROOT/'01_docs/findings.yaml' else read(p)):\n    try: dp.evaluate(ROOT)\n    except ValueError as exc: assert 'duplicate YAML key' in str(exc),exc\n    else: raise AssertionError('duplicate key accepted')\nprint('PASS duplicate-key history-erasure class rejected')\n"
+    },
+    "/tmp/decision-retest-YttRxH/merge_recheck.py": {
+      "sha256": "d3899bc567b559a037b9dffc5f0a56da56b64f9d610090b273329fd96d470ab8",
+      "source": "import sys\nfrom pathlib import Path\nimport yaml\nsys.dont_write_bytecode=True\nsys.path.insert(0,'/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/skills/pcb-design/scripts')\nfrom decision_progress import UniqueLoader\n\nvalid={\n 'explicit override':'base: &b {owner: A, state: open}\\nrow: {<<: *b, owner: B}\\n',\n 'merge list precedence':'a: &a {x: 1, y: 1}\\nb: &b {x: 2, z: 2}\\nrow: {<<: [*a, *b]}\\n',\n 'merge list with override':'a: &a {x: 1}\\nb: &b {x: 2}\\nrow: {<<: [*a, *b], x: 3}\\n',\n 'nested inherited defaults':'a: &a {x: 1, y: 2}\\nb: &b {<<: *a, x: 3}\\nrow: {<<: *b, y: 4}\\n',\n 'shared nested anchor reused':'a: &a {x: 1}\\nb: &b {<<: *a, y: 2}\\nrows: [{<<: *b, x: 3}, {<<: *b, y: 4}]\\n',\n 'repeated same merge source':'base: &b {x: 1}\\nrow: {<<: [*b, *b]}\\n',\n 'quoted merge-looking ordinary key':'row: {\"<<\": data, x: 1}\\n',\n}\nfor name,raw in valid.items():\n    expected=yaml.safe_load(raw)\n    actual=yaml.load(raw,Loader=UniqueLoader)\n    assert actual==expected,(name,actual,expected)\n    print('PASS valid:',name)\n\ninvalid={\n 'direct duplicate':'row: {history: [old], history: []}\\n',\n 'duplicate alongside merge':'base: &b {x: 1}\\nrow: {<<: *b, history: [old], history: []}\\n',\n 'duplicate inside inherited source':'base: &b {history: [old], history: []}\\nrow: {<<: *b}\\n',\n 'inherited duplicate explicitly overridden':'base: &b {history: [old], history: []}\\nrow: {<<: *b, history: [new]}\\n',\n 'duplicate within nested inherited source':'a: &a {x: 1, x: 2}\\nb: &b {<<: *a}\\nrow: {<<: *b}\\n',\n 'duplicate within second merge-list source':'a: &a {x: 1}\\nb: &b {history: [old], history: []}\\nrow: {<<: [*a, *b]}\\n',\n 'quoted versus plain duplicate':'row: {history: [old], \"history\": []}\\n',\n 'equivalent typed keys':'row: {true: one, 1: two}\\n',\n}\nfor name,raw in invalid.items():\n    try: yaml.load(raw,Loader=UniqueLoader)\n    except ValueError as exc: assert 'duplicate YAML key' in str(exc),(name,exc)\n    else: raise AssertionError('duplicate bypass: '+name)\n    print('PASS rejects:',name)\n\nraw='base: &b {x: 1}\\nrow: {<<: *b, \"<<\": ordinary-data}\\n'\nassert yaml.safe_load(raw)['row']=={'x':1,'<<':'ordinary-data'}\ntry:yaml.load(raw,Loader=UniqueLoader)\nexcept ValueError as exc:print('EDGE false-positive: merge directive and quoted literal << key:',exc)\nelse:print('PASS distinct merge directive and quoted literal << key')\n"
+    }
+  },
+  "contract_audit": {
+    "baseline_record": {
+      "command": [
+        "/usr/bin/python3",
+        "-B",
+        "scripts/contracts_audit.py",
+        "--present"
+      ],
+      "cwd": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901",
+      "started_at": "2026-09-09T09:30:42.881076+00:00",
+      "finished_at": "2026-09-09T09:30:43.223559+00:00",
+      "returncode": 1,
+      "elapsed_s": 0.3403007029555738,
+      "timed_out": false,
+      "cancelled": false,
+      "log_sha256": "31b8415f8a9e162fae2e074401b7666762a1b8905813426ea3d3e27b31ff6607"
+    },
+    "baseline_log_encoding": "base64(zlib(utf8)); retained once, not repeated per attempt",
+    "baseline_log": "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",
+    "current_record": {
+      "command": [
+        "python3",
+        "-B",
+        "scripts/contracts_audit.py",
+        "--present"
+      ],
+      "cwd": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901",
+      "started_at": "2026-09-09T15:15:06.544520+00:00",
+      "finished_at": "2026-09-09T15:15:06.877544+00:00",
+      "returncode": 1,
+      "elapsed_s": 0.3305600278545171,
+      "timed_out": false,
+      "cancelled": false,
+      "log_sha256": "7f822989c3a97d9b6dde091e6fb10acb2509cc2cf367dbee237e8f275633b6d1"
+    },
+    "current_log_reconstruction": "baseline FAIL lines followed by current_summary, newline joined with final newline",
+    "current_summary": [
+      "contracts_audit: 16960 files, 2891 violations",
+      "contracts_audit: RATCHET debt 2891 tracked violations over 29 units vs 2873 recorded over 26 — BREACHED",
+      "contracts_audit: RATCHET stray 0 untracked-not-ignored files in 0 unit(s); 0 declared (population 16960 = tracked ∪ untracked-not-ignored)"
+    ],
+    "same_failure_lines": 2894,
+    "structural_findings": 2891,
+    "new_findings": 0
+  },
+  "source_native_pod_preservation": {
+    "path": "projects/crow-audio-carrier-v1/01_docs/SOURCE-CORRECTION-20260909-analog-load-outcome.json",
+    "sha256": "ce0dc452d796360ededf0f78193eab5389db7f395e8535d0b1162226744e8932",
+    "locator": "source_native_pod_inputs",
+    "checked": 503,
+    "changed": []
+  },
+  "source_circuit_changed": false,
+  "acceptance_limits_changed": false,
+  "engineering_admitted": false,
+  "native_regenerated": false,
+  "release_minted": false,
+  "pushed": false,
+  "public_sources_only": true,
+  "inherited_source_tests": {
+    "passed": 250,
+    "rerun": false
+  },
+  "limitations": [
+    "Guard is explicit opt-in; not an OS sandbox or tamper-proof journal.",
+    "Evidence identity does not prove scientific claims; coordinator assessment remains necessary.",
+    "Advisory lock covers cooperating reservation writers; power-loss durability untested.",
+    "Full contract suite remains 13 passed / 4 inherited failures; no ratchet ceilings changed.",
+    "The targeted runner-integrity sweep fails on five unchanged older suites with swallowed exit codes; the new suite passes direct propagation/registration checks.",
+    "Early red-r1/r2 runs had fixture defects; red-r3 is the missing-handoff regression.",
+    "Runner wiring r1 selected zero tests; it is not a coverage witness.",
+    "Non-final attempt logs kept in scratch are not claimed durable; exact records are retained."
+  ],
+  "independent_validation": {
+    "mode": "Independent agent forward testing; coordinator summary, not a TaskAttempt or engineering review",
+    "passed": [
+      "Failed child still reserves; unassessed repeat refused",
+      "Simultaneous actual processes dispatched exactly once",
+      "Held advisory lock refuses promptly without ledger change",
+      "Matching assessment clears pending without double-counting; wrong hash/origin refused",
+      "Enforce and shadow preserve exact bytes and mtimes",
+      "Explicit duplicate keys rejected; ordinary merge semantics preserved"
+    ],
+    "discovered_and_fixed": [
+      "Duplicate explicit YAML could erase history",
+      "Guarded launch initially did not reserve budget",
+      "Merge override compatibility, including distinct quoted literal <<"
+    ],
+    "remaining_limits": [
+      "First behavioral script is a historical failing reproduction against the initial implementation",
+      "Reservation behavioral script is first-run-only and leaves its scratch reservations in place",
+      "The main agent executed the final independent merge script after the last compatibility correction"
+    ]
+  }
+}

@@ -1,0 +1,2945 @@
+project:
+  name: crow_audio_carrier_v1
+  netlist: 06_build/netlists/crow_audio_carrier_v1.net
+  output: 04_kicad/crow_audio_carrier_v1.kicad_pcb
+  parts_dir: 02_parts
+board:
+  outline:
+    x0: 16.0
+    y0: 20.0
+    x1: 172.0
+    y1: 120.0
+  edge_width: 0.1
+  layers: 4
+  stackup:
+    nominal_thickness_mm: 1.6
+    thickness_tolerance_mm: 0.02
+    copper_finish: None
+    dielectric_constraints: true
+    mask_thickness_mm: 0.01524
+    copper_thickness_mm:
+    - 0.035
+    - 0.0152
+    - 0.0152
+    - 0.035
+    dielectrics:
+    - type: prepreg
+      thickness_mm: 0.2104
+      material: JLC04161H-7628 prepreg; SKU unallocated; Df assumed
+      epsilon_r: 4.4
+      loss_tangent: 0.02
+    - type: core
+      thickness_mm: 1.065
+      material: JLC04161H-7628 core; SKU unallocated; Df assumed
+      epsilon_r: 4.6
+      loss_tangent: 0.02
+    - type: prepreg
+      thickness_mm: 0.2104
+      material: JLC04161H-7628 prepreg; SKU unallocated; Df assumed
+      epsilon_r: 4.4
+      loss_tangent: 0.02
+  mounting_holes:
+    footprint: MountingHole:MountingHole_3.2mm_M3
+    at:
+    - - 21.0
+      - 25.0
+    - - 165.0
+      - 25.0
+    - - 21.0
+      - 115.0
+    - - 165.0
+      - 115.0
+  fiducials:
+    footprint: Fiducial:Fiducial_1mm_Mask2mm
+    at:
+    - - 25.0
+      - 33.0
+    - - 161.0
+      - 29.0
+    - - 29.0
+      - 111.0
+thermal_vias:
+  fields:
+  - ref: U_ADC
+    pad: '49'
+    size: 0.6
+    drill: 0.3
+    at:
+    - - -1
+      - -1
+    - - -1
+      - 0
+    - - -1
+      - 1
+    - - 0
+      - -1
+    - - 0
+      - 0
+    - - 0
+      - 1
+    - - 1
+      - -1
+    - - 1
+      - 0
+    - - 1
+      - 1
+    protection:
+      capping: true
+      filling: true
+  - ref: U_LDO
+    pad: '15'
+    size: 0.6
+    drill: 0.3
+    at:
+    - - 0
+      - -0.8
+    - - 0
+      - 0.8
+    protection:
+      capping: true
+      filling: true
+libraries:
+- lib: crow_audio_carrier
+  path: 03_src/lib/crow_audio_carrier.pretty
+- /usr/share/kicad/footprints
+placement:
+  sides: {}
+  require_anchor: true
+  anchors:
+    J1:
+    - 38.0
+    - 25.86
+    - 0
+    J2:
+    - 70.0
+    - 25.86
+    - 0
+    J3:
+    - 102.0
+    - 25.86
+    - 0
+    J4:
+    - 134.0
+    - 25.86
+    - 0
+    J5:
+    - 43.0
+    - 114.14
+    - 180
+    J6:
+    - 75.0
+    - 114.14
+    - 180
+    J7:
+    - 107.0
+    - 114.14
+    - 180
+    J8:
+    - 139.0
+    - 114.14
+    - 180
+    J9:
+    - 28.0
+    - 69.0
+    - 90
+    J10:
+    - 158.0
+    - 49.0
+    - 90
+    J11:
+    - 158.0
+    - 80.0
+    - 90
+    U_ADC:
+    - 96.0
+    - 70.0
+    - 0
+    C_LDO_A:
+    - 89.93
+    - 70.05
+    - 180
+    C_LDO_D:
+    - 102.34
+    - 67.92
+    - 0
+    C_VDDIO:
+    - 102
+    - 70.05
+    - 90
+    C_VDDA1_10N:
+    - 91
+    - 68.5
+    - 180
+    C_VDDA2_10N:
+    - 91
+    - 71.5
+    - 180
+    C_VDDA1_4U7:
+    - 87.45
+    - 68.4
+    - 180
+    C_VDDA2_4U7:
+    - 87.45
+    - 71.6
+    - 180
+    C_VMID1_470N:
+    - 90.6
+    - 65.7
+    - 180
+    C_VMID1_4U7:
+    - 90.7
+    - 63.9
+    - 180
+    C_VMID2_470N:
+    - 90.6
+    - 74.3
+    - 180
+    C_VMID2_4U7:
+    - 90.7
+    - 76.1
+    - 180
+    R_CFG1:
+    - 87.4
+    - 63.9
+    - 180
+    R_CFG2:
+    - 84.5
+    - 70.4
+    - 180
+    R_CFG4:
+    - 87.4
+    - 76.1
+    - 180
+    R_CFG5:
+    - 87.4
+    - 74.3
+    - 180
+    C_FILT1_1U:
+    - 96.6
+    - 64.6
+    - 0
+    C_FILT1_10U:
+    - 96.75
+    - 62.55
+    - 0
+    C_FILT2_1U:
+    - 96.6
+    - 75.4
+    - 0
+    C_FILT2_10U:
+    - 96.75
+    - 77.45
+    - 0
+    C_FILT1_470U:
+    - 88
+    - 55.3
+    - 180
+    C_FILT2_470U:
+    - 88
+    - 84.7
+    - 180
+    R_FILT1P:
+    - 88
+    - 61.3
+    - 0
+    R_FILT2P:
+    - 88
+    - 78.7
+    - 0
+    C_VMID1_EXT_1U:
+    - 72.5
+    - 72
+    - 180
+    C_VMID1_EXT_10U:
+    - 72.8
+    - 78.2
+    - 180
+    R_VMID1_TOP:
+    - 72
+    - 74.6
+    - 90
+    R_VMID1_BOT:
+    - 73.8
+    - 74.6
+    - 90
+    C_VMID2_EXT_1U:
+    - 83.5
+    - 73.2
+    - 0
+    C_VMID2_EXT_10U:
+    - 83.2
+    - 75.2
+    - 0
+    R_VMID2_TOP:
+    - 80.1
+    - 75.7
+    - 90
+    R_VMID2_BOT:
+    - 78.2
+    - 75.7
+    - 90
+    U_BUCK:
+    - 42
+    - 66
+    - 0
+    L_BUCK:
+    - 47
+    - 66
+    - 0
+    C_BUCK_BST:
+    - 44
+    - 62.95
+    - 0
+    D_BUCK_IN:
+    - 26
+    - 58
+    - 90
+    C_BUCK_IN:
+    - 37.3
+    - 66
+    - 180
+    C_BUCK_IN2:
+    - 37.3
+    - 62.5
+    - 180
+    C_BUCK_IN3:
+    - 37.3
+    - 69.5
+    - 180
+    C_BUCK_O1:
+    - 51.9
+    - 65.9
+    - 0
+    C_BUCK_O2:
+    - 51.9
+    - 69.4
+    - 0
+    C_BUCK_O3:
+    - 51.9
+    - 72.9
+    - 0
+    C_OPA_BULK:
+    - 69.5
+    - 66.1
+    - 0
+    R_OPA_BLEED1:
+    - 61.4
+    - 62.1
+    - 0
+    R_OPA_BLEED2:
+    - 63.9
+    - 61.7
+    - 0
+    F_IN:
+    - 32.5
+    - 77
+    - 0
+    Q_IN:
+    - 40
+    - 74.8
+    - 0
+    D_IN:
+    - 32.8
+    - 82.3
+    - 0
+    D_QIN_GS:
+    - 42.4
+    - 71
+    - 0
+    R_QIN_G:
+    - 40
+    - 79
+    - 90
+    D_HOLD:
+    - 50.4
+    - 58.1
+    - 0
+    Q_PRE:
+    - 44.02
+    - 58.1
+    - 180
+    Q_PRE_EN:
+    - 39.86
+    - 57.9
+    - 0
+    R_PRE:
+    - 47.9
+    - 61.7
+    - 0
+    R_PRE_G:
+    - 43.6
+    - 61
+    - 0
+    C_HOLD1:
+    - 59
+    - 83.9
+    - 0
+    C_HOLD2:
+    - 56
+    - 95
+    - 180
+    U_LDO:
+    - 64.5
+    - 70
+    - 0
+    R_LDO_SET:
+    - 68.8
+    - 74.6
+    - 0
+    C_LDO_IN:
+    - 60.6
+    - 65.4
+    - 180
+    C_LDO_OUT:
+    - 69.5
+    - 69.5
+    - 0
+    C_LDO_NR4:
+    - 68.8
+    - 72
+    - 0
+    C_LDO_NR5:
+    - 68.8
+    - 73.3
+    - 0
+    U_LDO_EN:
+    - 57.1
+    - 70.8
+    - 0
+    C_LDO_EN:
+    - 57.1
+    - 68.2
+    - 180
+    U_DUMP:
+    - 57.1
+    - 75.3
+    - 0
+    C_DUMP_LOGIC:
+    - 53.8
+    - 75.3
+    - 180
+    C_DUMP_TIME:
+    - 54
+    - 78.3
+    - 0
+    R_DUMP_TIME1:
+    - 60.4
+    - 77.9
+    - 90
+    R_DUMP_TIME2:
+    - 58.65
+    - 78.2
+    - 0
+    Q_DUMP:
+    - 65.9
+    - 76.9
+    - 0
+    R_DUMP:
+    - 69.55
+    - 78.5
+    - 90
+    R_DUMP_PD:
+    - 65.35
+    - 73.7
+    - 0
+    U_PWR:
+    - 33
+    - 56.7
+    - 0
+    C_PWR:
+    - 35.5
+    - 57.2
+    - 0
+    C_PWR_CT:
+    - 36
+    - 55.3
+    - 0
+    R_PWR_TOP:
+    - 30
+    - 54.9
+    - 180
+    R_PWR_BOT:
+    - 30
+    - 56.7
+    - 180
+    R_PWR_PU:
+    - 32.4
+    - 53.94
+    - 90
+    U_AUDIO:
+    - 33.3
+    - 61.1
+    - 0
+    C_AUDIO:
+    - 35.5
+    - 59.6
+    - 0
+    C_AUDIO_CT1:
+    - 30
+    - 59.3
+    - 180
+    C_AUDIO_CT2:
+    - 30
+    - 61.1
+    - 180
+    R_ADC_TOP:
+    - 32.7
+    - 64.5
+    - 90
+    R_ADC_BOT:
+    - 30.9
+    - 64.5
+    - 90
+    R_AUDIO_PU:
+    - 34.2
+    - 63.4
+    - 90
+    R_AUDIO_PD:
+    - 37.17
+    - 59.65
+    - 90
+    U_CLK:
+    - 160
+    - 58
+    - 0
+    C_CLK:
+    - 163.5
+    - 56.2
+    - 0
+    R_MCLK:
+    - 160.65
+    - 61.7
+    - 270
+    R_BCLK:
+    - 162.9
+    - 60.1
+    - 0
+    R_FSYNC:
+    - 155.1375
+    - 57.75
+    - 180
+    R_MCH_MCLK_PD:
+    - 159.5
+    - 55.5
+    - 270
+    R_MCH_BCLK_PD:
+    - 159.0
+    - 60.1
+    - 0
+    R_MCH_FSYNC_PD:
+    - 163
+    - 58.25
+    - 90
+    U_TDM:
+    - 154
+    - 54
+    - 0
+    U_TDM_SCH:
+    - 147.5
+    - 52
+    - 0
+    R_TDM_PD:
+    - 144.7
+    - 52
+    - 90
+    C_TDM_SCH:
+    - 150.75
+    - 51.05
+    - 0
+    C_TDM:
+    - 157.25
+    - 53
+    - 0
+    R_TDM:
+    - 157.3
+    - 55.3
+    - 0
+    U_OE:
+    - 149
+    - 65.5
+    - 0
+    C_OE:
+    - 152.25
+    - 64.55
+    - 0
+    R_MCH_SENSE:
+    - 145.7
+    - 65.5
+    - 180
+    R_MCH_SENSE_PD:
+    - 145.7
+    - 66.8
+    - 180
+    U_RST1:
+    - 110
+    - 68
+    - 0
+    C_RST1:
+    - 113.15
+    - 68
+    - 0
+    U_RST2:
+    - 118
+    - 72
+    - 0
+    C_RST2:
+    - 122
+    - 70.95
+    - 0
+    C_RST_T:
+    - 122.6
+    - 73.2
+    - 90
+    R_RST_T:
+    - 122.6
+    - 76
+    - 90
+    Q_RST1:
+    - 109.5
+    - 73.5
+    - 0
+    R_RESET_GPD:
+    - 106.3
+    - 72.55
+    - 180
+    R_RESET_PU:
+    - 109.5
+    - 76.5
+    - 90
+    C_ADC_CM4P:
+    - 102.35
+    - 66.6
+    - 0
+    C_ADC_CM5P:
+    - 93
+    - 77.35
+    - 270
+    C_ADC_CM4N:
+    - 102.35
+    - 65.3
+    - 0
+    C_ADC_CM5N:
+    - 94.45
+    - 77.35
+    - 270
+    C_ADC_CM3P:
+    - 99.4
+    - 64.8
+    - 90
+    C_ADC_CM6P:
+    - 93
+    - 75.2
+    - 270
+    C_ADC_CM3N:
+    - 100.65
+    - 64.8
+    - 90
+    C_ADC_CM6N:
+    - 94.25
+    - 75.2
+    - 270
+    C_ADC_CM2P:
+    - 93
+    - 64.8
+    - 90
+    C_ADC_CM7P:
+    - 99.4
+    - 75.2
+    - 270
+    C_ADC_CM2N:
+    - 94.25
+    - 64.8
+    - 90
+    C_ADC_CM7N:
+    - 100.65
+    - 75.2
+    - 270
+    C_ADC_CM1P:
+    - 93
+    - 62.65
+    - 90
+    C_ADC_CM8P:
+    - 101.9
+    - 75.2
+    - 270
+    C_ADC_CM1N:
+    - 94.25
+    - 62.65
+    - 90
+    C_ADC_CM8N:
+    - 100.25
+    - 77.2
+    - 270
+  repeat:
+  - name: north_analog
+    count: 4
+    index_from: 1
+    origin:
+    - 40.5
+    - 47
+    pitch:
+    - 32
+    - 0
+    members:
+      U_AFE{i}:
+        at:
+        - 0
+        - 0
+        rot: 0
+      F{i}:
+        at:
+        - -11.5
+        - -21.14
+        rot: 0
+      U_ESD{i}:
+        at:
+        - 0
+        - -12.25
+        rot: 180
+      C_A{i}P:
+        at:
+        - -4.5
+        - -10.6
+        rot: 270
+      C_A{i}N:
+        at:
+        - 4.5
+        - -10.6
+        rot: 270
+      C_OPA{i}:
+        at:
+        - 3
+        - -3.5
+        rot: 180
+      C_FB{i}P:
+        at:
+        - -4.55
+        - -1.25
+        rot: 90
+      C_FB{i}N:
+        at:
+        - 4.55
+        - 0
+        rot: 90
+      R_IN{i}P:
+        at:
+        - -4.95
+        - 1.15
+        rot: 0
+      R_IN{i}N:
+        at:
+        - 4.95
+        - 2
+        rot: 180
+      R_B{i}P:
+        at:
+        - -7.2
+        - 2.5
+        rot: 180
+      R_B{i}N:
+        at:
+        - 7.2
+        - 2.5
+        rot: 0
+      R_OUT{i}P:
+        at:
+        - -6.6
+        - -2
+        rot: 180
+      R_OUT{i}N:
+        at:
+        - 6.6
+        - -0.65
+        rot: 0
+      R_X{i}P:
+        at:
+        - -6.6
+        - -0.65
+        rot: 180
+      R_X{i}N:
+        at:
+        - 6.6
+        - 0.65
+        rot: 0
+      C_FILTER{i}P1:
+        at:
+        - -5.8
+        - 4.4
+        rot: 180
+      C_FILTER{i}P2:
+        at:
+        - -5.8
+        - 6.5
+        rot: 180
+      C_FILTER{i}N1:
+        at:
+        - 5.8
+        - 4.4
+        rot: 0
+      C_FILTER{i}N2:
+        at:
+        - 5.8
+        - 6.5
+        rot: 0
+      U_ISO{i}:
+        at:
+        - 0
+        - 7.1
+        rot: 0
+      C_ISO{i}:
+        at:
+        - 2.65
+        - 6.3
+        rot: 0
+      R_ADC_PD{i}P:
+        at:
+        - -2.75
+        - 6.7
+        rot: 180
+      R_ADC_PD{i}N:
+        at:
+        - 2.75
+        - 7.9
+        rot: 0
+    captions:
+    - text: F{i} PTC
+      at:
+      - -11.5
+      - -18.4
+      size: 0.5
+      nudge: false
+  - name: south_analog
+    count: 4
+    index_from: 5
+    origin:
+    - 40.5
+    - 93
+    pitch:
+    - 32
+    - 0
+    members:
+      U_AFE{i}:
+        at:
+        - 0
+        - 0
+        rot: 180
+      F{i}:
+        at:
+        - 11.5
+        - 21.14
+        rot: 180
+      U_ESD{i}:
+        at:
+        - 0
+        - 12.25
+        rot: 0
+      C_A{i}P:
+        at:
+        - 4.5
+        - 10.6
+        rot: 90
+      C_A{i}N:
+        at:
+        - -4.5
+        - 10.6
+        rot: 90
+      C_OPA{i}:
+        at:
+        - -3
+        - 3.5
+        rot: 0
+      C_FB{i}P:
+        at:
+        - 4.55
+        - 1.25
+        rot: 270
+      C_FB{i}N:
+        at:
+        - -4.55
+        - 0
+        rot: 270
+      R_IN{i}P:
+        at:
+        - 4.95
+        - -1.15
+        rot: 180
+      R_IN{i}N:
+        at:
+        - -4.95
+        - -2
+        rot: 0
+      R_B{i}P:
+        at:
+        - 7.2
+        - -2.5
+        rot: 0
+      R_B{i}N:
+        at:
+        - -7.2
+        - -2.5
+        rot: 180
+      R_OUT{i}P:
+        at:
+        - 6.6
+        - 2
+        rot: 0
+      R_OUT{i}N:
+        at:
+        - -6.6
+        - 0.65
+        rot: 180
+      R_X{i}P:
+        at:
+        - 6.6
+        - 0.65
+        rot: 0
+      R_X{i}N:
+        at:
+        - -6.6
+        - -0.65
+        rot: 180
+      C_FILTER{i}P1:
+        at:
+        - 5.8
+        - -4.4
+        rot: 0
+      C_FILTER{i}P2:
+        at:
+        - 5.8
+        - -6.5
+        rot: 0
+      C_FILTER{i}N1:
+        at:
+        - -5.8
+        - -4.4
+        rot: 180
+      C_FILTER{i}N2:
+        at:
+        - -5.8
+        - -6.5
+        rot: 180
+      U_ISO{i}:
+        at:
+        - 0
+        - -7.1
+        rot: 180
+      C_ISO{i}:
+        at:
+        - -2.65
+        - -6.3
+        rot: 180
+      R_ADC_PD{i}P:
+        at:
+        - 2.75
+        - -6.7
+        rot: 0
+      R_ADC_PD{i}N:
+        at:
+        - -2.75
+        - -7.9
+        rot: 180
+    captions:
+    - text: F{i} PTC
+      at:
+      - 11.5
+      - 18.4
+      size: 0.5
+      nudge: false
+  regions:
+    power:
+    - 30.0
+    - 53.0
+    - 65.0
+    - 85.0
+    analog_top:
+    - 29.0
+    - 36.0
+    - 145.0
+    - 58.0
+    analog_bottom:
+    - 29.0
+    - 82.0
+    - 145.0
+    - 104.0
+    adc:
+    - 67.0
+    - 57.0
+    - 122.0
+    - 83.0
+    digital:
+    - 125.0
+    - 50.0
+    - 157.0
+    - 86.0
+  patterns:
+  - match:
+    - D_HOLD
+    - Q_PRE*
+    - R_PRE*
+    - C_HOLD*
+    - C_PWR*
+    - U_PWR
+    - R_PWR*
+    - U_AUDIO
+    - C_AUDIO*
+    - R_AUDIO*
+    - R_ADC_TOP
+    - R_ADC_BOT
+    - U_DUMP
+    - U_LDO_EN
+    - R_LDO*
+    - R_DUMP*
+    - Q_DUMP
+    - C_DUMP*
+    region: power
+  - match:
+    - U_ISO*
+    - C_ISO*
+    - R_ADC_PD*
+    - C_ADC_CM*
+    region: adc
+  - match:
+    - D_BUCK_IN
+    - F_IN
+    - Q_IN
+    - D_IN
+    - D_QIN_GS
+    - R_QIN_G
+    - C_BUCK*
+    - C_OPA_BULK*
+    - R_OPA_BLEED*
+    - C_LDO_IN
+    - C_LDO_OUT
+    - C_LDO_NR4
+    - C_LDO_NR5
+    - C_LDO_EN
+    region: power
+  - match:
+    - U_RST*
+    - Q_RST1
+    - R_RST*
+    - C_RST*
+    - R_RESET*
+    - C_CLK
+    - R_MCLK
+    - R_BCLK
+    - R_FSYNC
+    - R_TDM*
+    - R_MCH*
+    - C_TDM
+    - C_OE
+    region: digital
+  - match:
+    - R_CFG*
+    - R_FILT*
+    - C_FILT*
+    - R_VMID*
+    - C_VMID*
+    - C_LDO_A
+    - C_LDO_D
+    - C_VDDA*
+    - C_VDDIO
+    region: adc
+  - match:
+    - F1
+    - F2
+    - F3
+    - F4
+    - U_ESD1
+    - U_ESD2
+    - U_ESD3
+    - U_ESD4
+    - C_A1*
+    - C_A2*
+    - C_A3*
+    - C_A4*
+    - R_B1*
+    - R_B2*
+    - R_B3*
+    - R_B4*
+    - R_X1*
+    - R_X2*
+    - R_X3*
+    - R_X4*
+    - C_FB1*
+    - C_FB2*
+    - C_FB3*
+    - C_FB4*
+    - R_OUT1*
+    - R_OUT2*
+    - R_OUT3*
+    - R_OUT4*
+    - C_FILTER1*
+    - C_FILTER2*
+    - C_FILTER3*
+    - C_FILTER4*
+    - C_OPA1
+    - C_OPA2
+    - C_OPA3
+    - C_OPA4
+    region: analog_top
+  - match:
+    - F5
+    - F6
+    - F7
+    - F8
+    - U_ESD5
+    - U_ESD6
+    - U_ESD7
+    - U_ESD8
+    - C_A5*
+    - C_A6*
+    - C_A7*
+    - C_A8*
+    - R_B5*
+    - R_B6*
+    - R_B7*
+    - R_B8*
+    - R_X5*
+    - R_X6*
+    - R_X7*
+    - R_X8*
+    - C_FB5*
+    - C_FB6*
+    - C_FB7*
+    - C_FB8*
+    - R_OUT5*
+    - R_OUT6*
+    - R_OUT7*
+    - R_OUT8*
+    - C_FILTER5*
+    - C_FILTER6*
+    - C_FILTER7*
+    - C_FILTER8*
+    - C_OPA5
+    - C_OPA6
+    - C_OPA7
+    - C_OPA8
+    region: analog_bottom
+  - match:
+    - C_A1P
+    - C_A1N
+    - C_A2P
+    - C_A2N
+    - C_A3P
+    - C_A3N
+    - C_A4P
+    - C_A4N
+    - C_A5P
+    - C_A5N
+    - C_A6P
+    - C_A6N
+    - C_A7P
+    - C_A7N
+    - C_A8P
+    - C_A8N
+    model_override: ${KIPRJMOD}/../03_src/lib/3dmodels/kicad/C_Rect_L7.2mm_W5.0mm_P5.00mm.step
+  - match:
+    - F1
+    - F2
+    - F3
+    - F4
+    - F5
+    - F6
+    - F7
+    - F8
+    model_override: ${KIPRJMOD}/../03_src/lib/3dmodels/derived/Littelfuse_1812L035_60_max-envelope.wrl
+  - match: F_IN
+    model_override: ${KIPRJMOD}/../03_src/lib/3dmodels/derived/Littelfuse_2920L260_33_max-envelope.wrl
+  - match:
+    - C_ADC_CM2N
+    - C_ADC_CM2P
+    - C_ADC_CM6N
+    - C_ADC_CM6P
+    - R_AUDIO_PD
+    - C_VMID1_EXT_1U
+    - R_ADC_PD1P
+    - C_ADC_CM4P
+    - C_ADC_CM4N
+    - C_ISO1
+    - C_ISO2
+    - C_ISO3
+    - C_ISO4
+    - C_ISO5
+    - C_ISO6
+    - C_ISO7
+    - C_ISO8
+    - C_VDDA1_10N
+    - C_VMID1_470N
+    - C_VMID2_470N
+    - R_MCH_FSYNC_PD
+    pad_overrides:
+    - pads:
+      - 2
+      on_net: GND
+      zone_connection: full
+  - match:
+    - U_OE
+    - U_TDM_SCH
+    - U_LDO_EN
+    pad_overrides:
+    - pads:
+      - 3
+      on_net: GND
+      zone_connection: full
+  - match:
+    - U_LDO
+    pad_overrides:
+    - pads:
+      - 15
+      on_net: GND
+      zone_connection: full
+  - match:
+    - U_ESD1
+    - U_ESD2
+    - U_ESD3
+    - U_ESD4
+    - U_ESD5
+    - U_ESD6
+    - U_ESD7
+    - U_ESD8
+    pad_overrides:
+    - pads:
+      - '4'
+      on_net: GND
+      zone_connection: full
+  - match:
+    - C_VDDA2_10N
+    pad_overrides:
+    - pads:
+      - '2'
+      on_net: GND
+      zone_connection: none
+  - match:
+    - C_A1N
+    - C_A1P
+    - C_A2N
+    - C_A2P
+    - C_A3N
+    - C_A3P
+    - C_A4N
+    - C_A4P
+    - C_A5N
+    - C_A5P
+    - C_A6N
+    - C_A6P
+    - C_A7N
+    - C_A7P
+    - C_A8N
+    - C_A8P
+    - C_FILT1_470U
+    - C_FILT2_470U
+    - C_HOLD1
+    - C_HOLD2
+    - F_IN
+    - J1
+    - J10
+    - J11
+    - J2
+    - J3
+    - J4
+    - J5
+    - J6
+    - J7
+    - J8
+    - J9
+    - U_ADC
+    attrs:
+    - exclude_from_pos_files
+  - match:
+    - U_RST2
+    pad_overrides:
+    - pads:
+      - '1'
+      on_net: GND
+      thermal_spoke_angle_deg: 45
+  - match:
+    - U_RST2
+    pad_overrides:
+    - pads:
+      - '4'
+      on_net: GND
+      thermal_spoke_angle_deg: 45
+  - match:
+    - C_ADC_CM1N
+    pad_overrides:
+    - pads:
+      - '2'
+      on_net: GND
+      thermal_spoke_angle_deg: 45
+  - match:
+    - C_FILTER2N1
+    pad_overrides:
+    - pads:
+      - '2'
+      on_net: GND
+      thermal_spoke_angle_deg: 0
+  - match:
+    - U_ISO4
+    pad_overrides:
+    - pads:
+      - '4'
+      on_net: GND
+      thermal_spoke_angle_deg: 45
+  - match:
+    - U_ISO4
+    pad_overrides:
+    - pads:
+      - '9'
+      on_net: GND
+      zone_connection: full
+  - match:
+    - C_FILTER2N2
+    pad_overrides:
+    - pads:
+      - '2'
+      on_net: GND
+      thermal_spoke_angle_deg: 30
+  - match:
+    - R_TDM_PD
+    pad_overrides:
+    - pads:
+      - '2'
+      on_net: GND
+      thermal_spoke_angle_deg: 45
+  - match:
+    - C_FILTER8P1
+    pad_overrides:
+    - pads:
+      - '2'
+      on_net: GND
+      thermal_spoke_angle_deg: 60
+  - match:
+    - C_PWR
+    pad_overrides:
+    - pads:
+      - '2'
+      on_net: GND
+      thermal_spoke_angle_deg: 45
+  - match:
+    - U_ISO3
+    pad_overrides:
+    - pads:
+      - '4'
+      on_net: GND
+      thermal_spoke_angle_deg: 45
+  - match:
+    - U_ISO3
+    pad_overrides:
+    - pads:
+      - '9'
+      on_net: GND
+      zone_connection: full
+  - match:
+    - C_FILTER5P1
+    pad_overrides:
+    - pads:
+      - '2'
+      on_net: GND
+      thermal_spoke_angle_deg: 45
+  - match:
+    - R_ADC_PD1N
+    pad_overrides:
+    - pads:
+      - '2'
+      on_net: GND
+      thermal_spoke_angle_deg: 60
+  - match:
+    - C_FILTER5P2
+    pad_overrides:
+    - pads:
+      - '2'
+      on_net: GND
+      thermal_spoke_angle_deg: 30
+  - match:
+    - Q_PRE_EN
+    pad_overrides:
+    - pads:
+      - '2'
+      on_net: GND
+      thermal_spoke_angle_deg: 15
+  - match:
+    - C_FILTER7N2
+    pad_overrides:
+    - pads:
+      - '2'
+      on_net: GND
+      thermal_spoke_angle_deg: 15
+  legalize:
+    enable: true
+    clearance: 0.3
+    edge_margin: 1.0
+    hole_keepout: 3.0
+    ring_max: 140
+design_rules:
+  track_min_width: 0.15
+  min_clearance: 0.127
+  via_min_annulus: 0.13
+  hole_clearance: 0.25
+  hole_to_hole: 0.5
+  copper_edge_clearance: 0.3
+  via_min_size: 0.45
+  min_through_drill: 0.2
+  solder_mask_min_width: 0.0
+  solder_mask_expansion: 0.0
+zones:
+- net: GND
+  layers:
+  - F.Cu
+  - In1.Cu
+  - In2.Cu
+  - B.Cu
+  priority: 0
+  min_thickness: 0.25
+  clearance: 0.25
+  connect: thermal
+keepouts:
+- name: AFE1_SUPPLY_LOCAL
+  layers:
+  - F.Cu
+  deny: []
+  rect:
+  - 43.6
+  - 43.1
+  - 45
+  - 45.5
+- name: AFE2_SUPPLY_LOCAL
+  layers:
+  - F.Cu
+  deny: []
+  rect:
+  - 75.6
+  - 43.1
+  - 77
+  - 45.5
+- name: AFE3_SUPPLY_LOCAL
+  layers:
+  - F.Cu
+  deny: []
+  rect:
+  - 107.6
+  - 43.1
+  - 109
+  - 45.5
+- name: AFE4_SUPPLY_LOCAL
+  layers:
+  - F.Cu
+  deny: []
+  rect:
+  - 139.6
+  - 43.1
+  - 141
+  - 45.5
+- name: AFE5_SUPPLY_LOCAL
+  layers:
+  - F.Cu
+  deny: []
+  rect:
+  - 36
+  - 94.5
+  - 37.4
+  - 96.9
+- name: AFE6_SUPPLY_LOCAL
+  layers:
+  - F.Cu
+  deny: []
+  rect:
+  - 68
+  - 94.5
+  - 69.4
+  - 96.9
+- name: AFE7_SUPPLY_LOCAL
+  layers:
+  - F.Cu
+  deny: []
+  rect:
+  - 100
+  - 94.5
+  - 101.4
+  - 96.9
+- name: AFE8_SUPPLY_LOCAL
+  layers:
+  - F.Cu
+  deny: []
+  rect:
+  - 132
+  - 94.5
+  - 133.4
+  - 96.9
+- name: ADC_GA_PADDLE_GAP
+  layers:
+  - F.Cu
+  deny:
+  - tracks
+  - vias
+  - pours
+  rect:
+  - 93.46
+  - 69.6
+  - 93.69
+  - 70.8
+- name: ADC_WEST_LOCAL
+  layers:
+  - F.Cu
+  deny: []
+  rect:
+  - 89.35
+  - 67.7
+  - 93.6
+  - 72.35
+- name: ADC_ANALOG_ESCAPE_NORTH
+  layers:
+  - F.Cu
+  - B.Cu
+  deny: []
+  rect:
+  - 92.3
+  - 62.95
+  - 102.05
+  - 67.2
+- name: ADC_ANALOG_ESCAPE_SOUTH
+  layers:
+  - F.Cu
+  - B.Cu
+  deny: []
+  rect:
+  - 92.0
+  - 72.8
+  - 102.05
+  - 78.5
+- name: CLK_WEST_DIGITAL
+  layers:
+  - F.Cu
+  deny: []
+  rect:
+  - 156.2
+  - 56.65
+  - 160.1
+  - 60.0
+- name: CLK_EAST_DIGITAL
+  layers:
+  - F.Cu
+  deny: []
+  rect:
+  - 160.35
+  - 55.6
+  - 163.4
+  - 61.3
+- name: ADC_BCLK_LAUNCH
+  layers:
+  - F.Cu
+  deny: []
+  rect:
+  - 98.75
+  - 70.05
+  - 100.4
+  - 71.4
+- name: ADC_MCLK_LAUNCH
+  layers:
+  - F.Cu
+  deny: []
+  rect:
+  - 98.75
+  - 68.05
+  - 101.3
+  - 69.15
+- name: ADC_FSYNC_CORNER
+  layers:
+  - F.Cu
+  deny: []
+  rect:
+  - 97.85
+  - 72.7
+  - 102.7
+  - 74.4
+- name: ADC_DOUT1_CORNER
+  layers:
+  - F.Cu
+  deny: []
+  rect:
+  - 98.9
+  - 71.85
+  - 99.9
+  - 73.1
+- name: TDM_SCHMITT_INPUT_LAUNCH
+  layers:
+  - F.Cu
+  deny: []
+  rect:
+  - 144.8
+  - 51.95
+  - 145.9
+  - 52.4
+- name: BUCK_SW_EXIT
+  layers:
+  - F.Cu
+  deny: []
+  rect:
+  - 43.2
+  - 65.6
+  - 44.9
+  - 66.4
+- name: BUCK_SW_BOOTSTRAP_RETURN
+  layers:
+  - F.Cu
+  deny: []
+  rect:
+  - 44.15
+  - 62.55
+  - 44.85
+  - 65.55
+- name: LT3041_INPUT_NECKS
+  layers:
+  - F.Cu
+  deny: []
+  rect:
+  - 61.6
+  - 68.3
+  - 63.25
+  - 69.7
+- name: LT3041_OUTPUT_NECKS
+  layers:
+  - F.Cu
+  deny: []
+  rect:
+  - 65.75
+  - 68.1
+  - 67.3
+  - 69.2
+- name: LT3041_OUTS_LOCAL
+  layers:
+  - F.Cu
+  deny: []
+  rect:
+  - 65.75
+  - 69.3
+  - 68.2
+  - 70.7
+- name: LT3041_PGFB_LOCAL
+  layers:
+  - F.Cu
+  deny: []
+  rect:
+  - 61.6
+  - 69.3
+  - 66.6
+  - 72.6
+- name: LT3041_GROUND_NECKS
+  layers:
+  - F.Cu
+  deny: []
+  rect:
+  - 62.85
+  - 69.8
+  - 66.15
+  - 71.7
+- name: LT3041_QUIET_COMPONENTS
+  layers:
+  - F.Cu
+  deny:
+  - vias
+  - pours
+  rect:
+  - 67.3
+  - 71.4
+  - 70.5
+  - 75.8
+- name: LT3041_QUIET_STEM
+  layers:
+  - F.Cu
+  deny:
+  - vias
+  - pours
+  rect:
+  - 69.7
+  - 70.2
+  - 70.5
+  - 72.4
+- name: LT3041_QUIET_JUNCTION
+  layers:
+  - F.Cu
+  deny:
+  - vias
+  - pours
+  rect:
+  - 69.7
+  - 70.2
+  - 71.25
+  - 70.8
+- name: ADC_EAST_SUPPLY_LOCAL
+  layers:
+  - F.Cu
+  deny: []
+  rect:
+  - 98.5
+  - 68.85
+  - 105.8
+  - 71.65
+- name: ADC_EAST_SUPPLY_PITCH
+  layers:
+  - F.Cu
+  deny: []
+  rect:
+  - 98.5
+  - 68.85
+  - 100.75
+  - 70.5
+- name: ADC_FILT_NORTH_LOCAL
+  layers:
+  - F.Cu
+  deny: []
+  rect:
+  - 94.8
+  - 60.8
+  - 96.15
+  - 67.3
+- name: ADC_FILT_SOUTH_LOCAL
+  layers:
+  - F.Cu
+  deny: []
+  rect:
+  - 94.8
+  - 72.7
+  - 96.15
+  - 79.2
+- name: ADC_FILT_NORTH_PITCH
+  layers:
+  - F.Cu
+  deny: []
+  rect:
+  - 94.8
+  - 65.5
+  - 96.15
+  - 67.3
+- name: ADC_FILT_SOUTH_PITCH
+  layers:
+  - F.Cu
+  deny: []
+  rect:
+  - 94.8
+  - 72.7
+  - 96.15
+  - 74.5
+- name: ADC_VMID_NORTH_PITCH
+  layers:
+  - F.Cu
+  deny: []
+  rect:
+  - 92.7
+  - 67.25
+  - 93.4
+  - 68.35
+- name: ADC_VMID_SOUTH_PITCH
+  layers:
+  - F.Cu
+  deny: []
+  rect:
+  - 92.7
+  - 71.65
+  - 93.4
+  - 72.75
+- name: ADC_CS_STRAP_LOCAL
+  layers:
+  - F.Cu
+  deny: []
+  rect:
+  - 97.6
+  - 65.75
+  - 104.5
+  - 67.25
+- name: ADC_CS_STRAP_PITCH
+  layers:
+  - F.Cu
+  deny: []
+  rect:
+  - 97.15
+  - 65.85
+  - 98.45
+  - 67.45
+- name: ADC_CFG_NORTH_LOCAL
+  layers:
+  - F.Cu
+  deny: []
+  rect:
+  - 90.4
+  - 66.8
+  - 93.5
+  - 68.85
+- name: ADC_CFG_SOUTH_LOCAL
+  layers:
+  - F.Cu
+  deny: []
+  rect:
+  - 90.4
+  - 71.15
+  - 93.5
+  - 73.2
+- name: ADC_CFG_NORTH_PITCH
+  layers:
+  - F.Cu
+  deny: []
+  rect:
+  - 90.2
+  - 67.05
+  - 93.4
+  - 69.0
+- name: ADC_CFG_SOUTH_PITCH
+  layers:
+  - F.Cu
+  deny: []
+  rect:
+  - 90.2
+  - 71.0
+  - 93.4
+  - 72.95
+- name: ADC_CFG3_GND_LOCAL
+  layers:
+  - F.Cu
+  deny: []
+  rect:
+  - 92.9
+  - 68.8
+  - 94.2
+  - 69.2
+- name: ADC_RESET_PITCH
+  layers:
+  - F.Cu
+  deny: []
+  rect:
+  - 97.4
+  - 72.5
+  - 98.2
+  - 74.2
+- name: ISO1_SUPPLY_LOCAL
+  layers:
+  - F.Cu
+  deny: []
+  rect:
+  - 41.25
+  - 52.2
+  - 43.0
+  - 54.05
+- name: ISO2_SUPPLY_LOCAL
+  layers:
+  - F.Cu
+  deny: []
+  rect:
+  - 73.25
+  - 52.2
+  - 75.0
+  - 54.05
+- name: ISO3_SUPPLY_LOCAL
+  layers:
+  - F.Cu
+  deny: []
+  rect:
+  - 105.25
+  - 52.2
+  - 107.0
+  - 54.05
+- name: ISO4_SUPPLY_LOCAL
+  layers:
+  - F.Cu
+  deny: []
+  rect:
+  - 137.25
+  - 52.2
+  - 139.0
+  - 54.05
+- name: ISO4_GROUND_RETURN_LOCAL
+  layers:
+  - F.Cu
+  deny: []
+  rect:
+  - 135.225
+  - 54.725
+  - 135.675
+  - 55.275
+- name: ISO5_SUPPLY_LOCAL
+  layers:
+  - F.Cu
+  deny: []
+  rect:
+  - 38.0
+  - 85.95
+  - 39.75
+  - 87.8
+- name: ISO6_SUPPLY_LOCAL
+  layers:
+  - F.Cu
+  deny: []
+  rect:
+  - 70.0
+  - 85.95
+  - 71.75
+  - 87.8
+- name: ISO7_SUPPLY_LOCAL
+  layers:
+  - F.Cu
+  deny: []
+  rect:
+  - 102.0
+  - 85.95
+  - 103.75
+  - 87.8
+- name: ISO8_SUPPLY_LOCAL
+  layers:
+  - F.Cu
+  deny: []
+  rect:
+  - 134.0
+  - 85.95
+  - 135.75
+  - 87.8
+- name: R_PRE_CROSSOVER_LOCAL
+  layers:
+  - F.Cu
+  deny: []
+  rect:
+  - 49.15
+  - 61.55
+  - 49.5
+  - 62.85
+- name: POWER_MONITOR_SUPPLY_LOCAL
+  layers:
+  - F.Cu
+  deny: []
+  rect:
+  - 32.2
+  - 57.0
+  - 35.2
+  - 57.45
+- name: AUDIO_MONITOR_SUPPLY_LOCAL
+  layers:
+  - F.Cu
+  deny: []
+  rect:
+  - 33.4
+  - 59.4
+  - 35.25
+  - 61.85
+- name: AUDIO_MONITOR_CONTROL_LOCAL
+  layers:
+  - F.Cu
+  - B.Cu
+  deny: []
+  rect:
+  - 30.6
+  - 59.1
+  - 34.95
+  - 63.05
+- name: DUMP_LOGIC_SUPPLY_LOCAL
+  layers:
+  - F.Cu
+  deny: []
+  rect:
+  - 53.95
+  - 72.65
+  - 55.2
+  - 75.65
+- name: CLOCK_SUPPLY_LOCAL
+  layers:
+  - F.Cu
+  deny: []
+  rect:
+  - 161.22
+  - 55.57
+  - 163.2
+  - 56.38
+- name: RESET_B_STRAP_LOCAL
+  layers:
+  - F.Cu
+  deny: []
+  rect:
+  - 114.3
+  - 71.45
+  - 116.5
+  - 71.9
+- name: RESET_SUPPLY_LOCAL
+  layers:
+  - F.Cu
+  deny: []
+  rect:
+  - 119.35
+  - 70.55
+  - 121.85
+  - 71.3
+- name: ADC_FEED_NORTH
+  layers:
+  - F.Cu
+  deny: []
+  rect:
+  - 90.3
+  - 62.2
+  - 91.7
+  - 68.65
+- name: ADC_FEED_CAP_GAP_NORTH
+  layers:
+  - F.Cu
+  deny: []
+  rect:
+  - 89.3
+  - 63.2
+  - 92.1
+  - 66.4
+- name: ADC_FEED_SOUTH
+  layers:
+  - F.Cu
+  deny: []
+  rect:
+  - 90.3
+  - 71.35
+  - 91.7
+  - 77.8
+- name: ADC_FEED_CAP_GAP_SOUTH
+  layers:
+  - F.Cu
+  deny: []
+  rect:
+  - 89.3
+  - 73.6
+  - 92.1
+  - 76.8
+- name: ADC_FEED_NORTH_TRUNK_ESCAPE
+  layers:
+  - F.Cu
+  deny: []
+  rect:
+  - 86.2
+  - 59.5
+  - 91.6
+  - 61.6
+- name: ADC_FEED_SOUTH_TRUNK_ESCAPE
+  layers:
+  - F.Cu
+  deny: []
+  rect:
+  - 86.2
+  - 78.4
+  - 91.6
+  - 80.5
+- name: VMID1_TOP_TRUNK_ESCAPE
+  layers:
+  - F.Cu
+  deny: []
+  rect:
+  - 71.7
+  - 75.1
+  - 76.3
+  - 76.7
+- name: BUCK_MONITOR_SENSE_TRUNK_ESCAPE
+  layers:
+  - F.Cu
+  deny: []
+  rect:
+  - 30.4
+  - 54.35
+  - 31.25
+  - 55.95
+- name: POWER_MONITOR_PULLUP_TRUNK_ESCAPE
+  layers:
+  - F.Cu
+  deny: []
+  rect:
+  - 30.63
+  - 53.07
+  - 32.7
+  - 54.75
+- name: POWER_MONITOR_SUPPLY_TRUNK_ESCAPE
+  layers:
+  - F.Cu
+  deny: []
+  rect:
+  - 34.54
+  - 56.9
+  - 35.32
+  - 57.93
+- name: AUDIO_MONITOR_SUPPLY_TRUNK_ESCAPE
+  layers:
+  - F.Cu
+  deny: []
+  rect:
+  - 34.72
+  - 59.3
+  - 35.71
+  - 60.83
+- name: PRECHARGE_TRUNK_ESCAPE
+  layers:
+  - F.Cu
+  deny: []
+  rect:
+  - 42.78
+  - 57.8
+  - 44.39
+  - 58.4
+- name: PKG_PAD_ESD1_2_3
+  layers:
+  - F.Cu
+  deny: []
+  rect:
+  - 40.865
+  - 34.07
+  - 41.56
+  - 34.93
+- name: PKG_PAD_ESD2_2_3
+  layers:
+  - F.Cu
+  deny: []
+  rect:
+  - 72.865
+  - 34.07
+  - 73.56
+  - 34.93
+- name: PKG_PAD_ESD3_2_3
+  layers:
+  - F.Cu
+  deny: []
+  rect:
+  - 104.865
+  - 34.07
+  - 105.56
+  - 34.93
+- name: PKG_PAD_ESD4_2_3
+  layers:
+  - F.Cu
+  deny: []
+  rect:
+  - 136.865
+  - 34.07
+  - 137.56
+  - 34.93
+- name: PKG_PAD_ESD5_2_3
+  layers:
+  - F.Cu
+  deny: []
+  rect:
+  - 39.44
+  - 105.07
+  - 40.135
+  - 105.93
+- name: PKG_PAD_ESD6_2_3
+  layers:
+  - F.Cu
+  deny: []
+  rect:
+  - 71.44
+  - 105.07
+  - 72.135
+  - 105.93
+- name: PKG_PAD_ESD7_2_3
+  layers:
+  - F.Cu
+  deny: []
+  rect:
+  - 103.44
+  - 105.07
+  - 104.135
+  - 105.93
+- name: PKG_PAD_ESD8_2_3
+  layers:
+  - F.Cu
+  deny: []
+  rect:
+  - 135.44
+  - 105.07
+  - 136.135
+  - 105.93
+- name: PKG_PAD_CLK_1_2
+  layers:
+  - F.Cu
+  deny: []
+  rect:
+  - 157.965
+  - 57.07
+  - 159.235
+  - 57.93
+- name: PKG_PAD_CLK_2_3
+  layers:
+  - F.Cu
+  deny: []
+  rect:
+  - 157.965
+  - 57.57
+  - 159.235
+  - 58.43
+- name: PKG_PAD_CLK_3_4
+  layers:
+  - F.Cu
+  deny: []
+  rect:
+  - 157.965
+  - 58.07
+  - 159.235
+  - 58.93
+- name: PKG_PAD_CLK_5_6
+  layers:
+  - F.Cu
+  deny: []
+  rect:
+  - 160.765
+  - 58.07
+  - 162.035
+  - 58.93
+- name: PKG_PAD_CLK_6_7
+  layers:
+  - F.Cu
+  deny: []
+  rect:
+  - 160.765
+  - 57.57
+  - 162.035
+  - 58.43
+- name: PKG_PAD_CLK_7_8
+  layers:
+  - F.Cu
+  deny: []
+  rect:
+  - 160.765
+  - 57.07
+  - 162.035
+  - 57.93
+- name: PKG_PAD_QIN_3_4
+  layers:
+  - F.Cu
+  deny: []
+  rect:
+  - 38.14
+  - 74.91
+  - 38.86
+  - 75.99
+- name: ADC_GD_PADDLE_GAP
+  layers:
+  - F.Cu
+  deny:
+  - tracks
+  - vias
+  - pours
+  rect:
+  - 98.31
+  - 70.0
+  - 98.54
+  - 70.4
+- name: ADC_FILT1N_PADDLE_GAP
+  layers:
+  - F.Cu
+  deny:
+  - tracks
+  - vias
+  - pours
+  rect:
+  - 95.2
+  - 67.46
+  - 95.6
+  - 67.69
+- name: ADC_FILT2N_PADDLE_GAP
+  layers:
+  - F.Cu
+  deny:
+  - tracks
+  - vias
+  - pours
+  rect:
+  - 95.2
+  - 72.31
+  - 95.6
+  - 72.54
+- name: ADC_VMID1_RETURN_POUR
+  layers:
+  - F.Cu
+  deny:
+  - pours
+  points:
+  - - 89.53
+    - 64.495
+  - - 89.53
+    - 65.105
+  - - 89.255
+    - 65.105
+  - - 89.255
+    - 65.51519
+  - - 89.20055
+    - 65.59668
+  - - 89.18
+    - 65.7
+  - - 89.18
+    - 68.7
+  - - 89.20055
+    - 68.80332
+  - - 89.24
+    - 68.86236
+  - - 89.24
+    - 69.17
+  - - 89.25599
+    - 69.25036
+  - - 89.30151
+    - 69.31849
+  - - 89.36964
+    - 69.36401
+  - - 89.45
+    - 69.38
+  - - 91.12456
+    - 69.38
+  - - 91.23301
+    - 69.46947
+  - - 91.23
+    - 69.5
+  - - 91.23711
+    - 69.57218
+  - - 91.25816
+    - 69.64159
+  - - 91.29236
+    - 69.70556
+  - - 91.33837
+    - 69.76163
+  - - 91.39444
+    - 69.80764
+  - - 91.45841
+    - 69.84184
+  - - 91.52782
+    - 69.86289
+  - - 91.6
+    - 69.87
+  - - 91.67218
+    - 69.86289
+  - - 91.74159
+    - 69.84184
+  - - 91.76511
+    - 69.82927
+  - - 92.04944
+    - 69.98436
+  - - 92.15
+    - 70.01
+  - - 92.53
+    - 70.01
+  - - 92.53
+    - 70.02
+  - - 93.57
+    - 70.02
+  - - 93.57
+    - 69.58
+  - - 92.53
+    - 69.58
+  - - 92.53
+    - 69.59
+  - - 92.20355
+    - 69.59
+  - - 91.96611
+    - 69.46049
+  - - 91.96289
+    - 69.42782
+  - - 91.94184
+    - 69.35841
+  - - 91.90764
+    - 69.29444
+  - - 91.86163
+    - 69.23837
+  - - 91.80556
+    - 69.19236
+  - - 91.74159
+    - 69.15816
+  - - 91.67218
+    - 69.13711
+  - - 91.6
+    - 69.13
+  - - 91.52782
+    - 69.13711
+  - - 91.50026
+    - 69.14547
+  - - 91.33364
+    - 69.00801
+  - - 91.271
+    - 68.97237
+  - - 91.2
+    - 68.96
+  - - 89.66
+    - 68.96
+  - - 89.66
+    - 68.86236
+  - - 89.69945
+    - 68.80332
+  - - 89.72
+    - 68.7
+  - - 89.72
+    - 66.295
+  - - 90.395
+    - 66.295
+  - - 90.395
+    - 65.105
+  - - 90.07
+    - 65.105
+  - - 90.07
+    - 64.495
+  - - 90.495
+    - 64.495
+  - - 90.495
+    - 63.305
+  - - 89.355
+    - 63.305
+  - - 89.355
+    - 64.495
+- name: ADC_VMID1_RETURN_VIAS_1
+  layers:
+  - F.Cu
+  deny:
+  - vias
+  points:
+  - - 89.53
+    - 65.105
+  - - 89.255
+    - 65.105
+  - - 89.255
+    - 65.51519
+  - - 89.20055
+    - 65.59668
+  - - 89.18
+    - 65.7
+  - - 89.18
+    - 68.7
+  - - 89.20055
+    - 68.80332
+  - - 89.24
+    - 68.86236
+  - - 89.24
+    - 69.17
+  - - 89.25599
+    - 69.25036
+  - - 89.30151
+    - 69.31849
+  - - 89.36964
+    - 69.36401
+  - - 89.45
+    - 69.38
+  - - 91.06442
+    - 69.38
+  - - 91.09187
+    - 69.28952
+  - - 91.14269
+    - 69.19444
+  - - 91.21109
+    - 69.11109
+  - - 91.29444
+    - 69.04269
+  - - 91.34374
+    - 69.01634
+  - - 91.33364
+    - 69.00801
+  - - 91.271
+    - 68.97237
+  - - 91.2
+    - 68.96
+  - - 89.66
+    - 68.96
+  - - 89.66
+    - 68.86236
+  - - 89.69945
+    - 68.80332
+  - - 89.72
+    - 68.7
+  - - 89.72
+    - 66.295
+  - - 90.395
+    - 66.295
+  - - 90.395
+    - 65.105
+  - - 90.07
+    - 65.105
+  - - 90.07
+    - 64.495
+  - - 90.495
+    - 64.495
+  - - 90.495
+    - 63.305
+  - - 89.355
+    - 63.305
+  - - 89.355
+    - 64.495
+  - - 89.53
+    - 64.495
+- name: ADC_VMID1_RETURN_VIAS_2
+  layers:
+  - F.Cu
+  deny:
+  - vias
+  points:
+  - - 92.04944
+    - 69.98436
+  - - 92.15
+    - 70.01
+  - - 92.53
+    - 70.01
+  - - 92.53
+    - 70.02
+  - - 93.57
+    - 70.02
+  - - 93.57
+    - 69.58
+  - - 92.53
+    - 69.58
+  - - 92.53
+    - 69.59
+  - - 92.20355
+    - 69.59
+  - - 92.14432
+    - 69.55769
+  - - 92.13943
+    - 69.6073
+  - - 92.10813
+    - 69.71048
+  - - 92.05731
+    - 69.80556
+  - - 91.98891
+    - 69.88891
+  - - 91.94321
+    - 69.92641
+- name: ADC_VMID2_RETURN_POUR
+  layers:
+  - F.Cu
+  deny:
+  - pours
+  points:
+  - - 92.53
+    - 70.39
+  - - 92.15
+    - 70.39
+  - - 92.11977
+    - 70.39219
+  - - 91.56977
+    - 70.47219
+  - - 91.53878
+    - 70.47912
+  - - 90.64333
+    - 70.75202
+  - - 90.60295
+    - 70.73524
+  - - 90.4976
+    - 70.73513
+  - - 90.40023
+    - 70.77535
+  - - 90.153257
+    - 70.94
+  - - 89.99
+    - 70.94
+  - - 89.99
+    - 71.048839
+  - - 89.85947
+    - 71.13586
+  - - 89.8
+    - 71.13
+  - - 89.72782
+    - 71.13711
+  - - 89.65841
+    - 71.15816
+  - - 89.59444
+    - 71.19236
+  - - 89.53837
+    - 71.23837
+  - - 89.49236
+    - 71.29444
+  - - 89.45816
+    - 71.35841
+  - - 89.43711
+    - 71.42782
+  - - 89.43
+    - 71.5
+  - - 89.43711
+    - 71.57218
+  - - 89.45816
+    - 71.64159
+  - - 89.49236
+    - 71.70556
+  - - 89.53
+    - 71.75143
+  - - 89.53
+    - 73.705
+  - - 89.255
+    - 73.705
+  - - 89.255
+    - 74.895
+  - - 89.53
+    - 74.895
+  - - 89.53
+    - 75.505
+  - - 89.355
+    - 75.505
+  - - 89.355
+    - 76.695
+  - - 90.495
+    - 76.695
+  - - 90.495
+    - 75.505
+  - - 90.07
+    - 75.505
+  - - 90.07
+    - 74.895
+  - - 90.395
+    - 74.895
+  - - 90.395
+    - 73.705
+  - - 90.07
+    - 73.705
+  - - 90.07
+    - 72.06
+  - - 91.05
+    - 72.06
+  - - 91.05
+    - 71.067152
+  - - 91.64599
+    - 70.88552
+  - - 92.16519
+    - 70.81
+  - - 92.53
+    - 70.81
+  - - 92.53
+    - 70.82
+  - - 93.57
+    - 70.82
+  - - 93.57
+    - 70.38
+  - - 92.53
+    - 70.38
+- name: ADC_VMID2_RETURN_VIAS_1
+  layers:
+  - F.Cu
+  deny:
+  - vias
+  points:
+  - - 92.15
+    - 70.39
+  - - 92.11977
+    - 70.39219
+  - - 91.56977
+    - 70.47219
+  - - 91.53878
+    - 70.47912
+  - - 90.64333
+    - 70.75202
+  - - 90.60295
+    - 70.73524
+  - - 90.4976
+    - 70.73513
+  - - 90.40023
+    - 70.77535
+  - - 90.04654
+    - 71.01114
+  - - 90.10556
+    - 71.04269
+  - - 90.18891
+    - 71.11109
+  - - 90.25731
+    - 71.19444
+  - - 90.30813
+    - 71.28952
+  - - 90.33943
+    - 71.3927
+  - - 90.3461
+    - 71.46043
+  - - 90.69977
+    - 71.22465
+  - - 90.773
+    - 71.15157
+  - - 91.64599
+    - 70.88552
+  - - 92.16519
+    - 70.81
+  - - 92.53
+    - 70.81
+  - - 92.53
+    - 70.82
+  - - 93.57
+    - 70.82
+  - - 93.57
+    - 70.38
+  - - 92.53
+    - 70.38
+  - - 92.53
+    - 70.39
+- name: ADC_VMID2_RETURN_VIAS_2
+  layers:
+  - F.Cu
+  deny:
+  - vias
+  points:
+  - - 89.53
+    - 73.705
+  - - 89.255
+    - 73.705
+  - - 89.255
+    - 74.895
+  - - 89.53
+    - 74.895
+  - - 89.53
+    - 75.505
+  - - 89.355
+    - 75.505
+  - - 89.355
+    - 76.695
+  - - 90.495
+    - 76.695
+  - - 90.495
+    - 75.505
+  - - 90.07
+    - 75.505
+  - - 90.07
+    - 74.895
+  - - 90.395
+    - 74.895
+  - - 90.395
+    - 73.705
+  - - 90.07
+    - 73.705
+  - - 90.07
+    - 71.97632
+  - - 90.01048
+    - 72.00813
+  - - 89.9073
+    - 72.03943
+  - - 89.8
+    - 72.05
+  - - 89.6927
+    - 72.03943
+  - - 89.58952
+    - 72.00813
+  - - 89.53
+    - 71.97632
+- name: RESET_PULLUP_SUPPLY_ESCAPE
+  layers:
+  - F.Cu
+  deny: []
+  rect:
+  - 109.19
+  - 76.7
+  - 110.81
+  - 77.32
+- name: RESET_TIMING_SUPPLY_ESCAPE
+  layers:
+  - F.Cu
+  deny: []
+  rect:
+  - 122.44
+  - 75.54
+  - 123.66
+  - 76.67
+silk:
+  min_text_height: 0.7
+  refdes:
+    size: 0.7
+    min_size: 0.55
+    fab_copy: true
+    clearance: 0.16
+    priority_prefixes: JUQF
+    preferred_offsets:
+      R_DUMP_TIME1:
+      - - 1.1
+        - -1.6
+      R_VMID2_TOP:
+      - - 1.5
+        - 4.1
+      R_X5P:
+      - - -6.0
+        - 5.6
+      U_ESD5:
+      - - 0.0
+        - -2.2
+  polarity_marks:
+  - ref: D_BUCK_IN
+    pad: 1
+    text: K
+  - ref: C_HOLD1
+    pad: 1
+    text: +
+  - ref: C_HOLD2
+    pad: 1
+    text: +
+  - ref: C_FILT1_470U
+    pad: 1
+    text: +
+  - ref: C_FILT2_470U
+    pad: 1
+    text: +
+  captions:
+  - text: CROW AUDIO CARRIER v1  FIRST ARTICLE / DO NOT ORDER
+    at:
+    - 22.0
+    - 44.8
+    size: 0.7
+    rot: 90
+    nudge: false
+  - text: POD AUDIO +12V / NOT ETHERNET OR POE
+    at:
+    - 168.0
+    - 63.5
+    size: 0.7
+    rot: 90
+    nudge: false
+  - text: J10=MCH J1 TDM   J11=MCH J3 SENSE   DO NOT SWAP
+    at:
+    - 137.0
+    - 82.0
+    size: 0.7
+    nudge: false
+  - text: 'J9: 12V ISOLATED INPUT; NO HOT PLUG'
+    at:
+    - 21.4
+    - 88.0
+    size: 0.7
+    rot: 90
+    nudge: false
+  - text: CH1
+    at:
+    - 40.5
+    - 38.5
+    size: 0.7
+    nudge: false
+  - text: CH2
+    at:
+    - 72.5
+    - 38.5
+    size: 0.7
+    nudge: false
+  - text: CH3
+    at:
+    - 104.5
+    - 38.5
+    size: 0.7
+    nudge: false
+  - text: CH4
+    at:
+    - 136.5
+    - 38.5
+    size: 0.7
+    nudge: false
+  - text: CH5
+    at:
+    - 40.5
+    - 101.5
+    size: 0.7
+    nudge: false
+  - text: CH6
+    at:
+    - 72.5
+    - 101.5
+    size: 0.7
+    nudge: false
+  - text: CH7
+    at:
+    - 104.5
+    - 101.5
+    size: 0.7
+    nudge: false
+  - text: CH8
+    at:
+    - 136.5
+    - 101.5
+    size: 0.7
+    nudge: false
+  - - 12V IN
+    - 31.0
+    - 69.0
+    - 0.55
+  - - MCH TDM
+    - 153.0
+    - 49.0
+    - 0.55
+  - - MCH SENSE
+    - 153.0
+    - 80.0
+    - 0.55
+  - text: MAIN
+    at:
+    - 32.5
+    - 73.3
+    size: 0.5
+    nudge: false
+asserts:
+  pad_net:
+  - ref: D_BUCK_IN
+    pad: 1
+    net: 12V_BUCK_IN
+  - ref: D_BUCK_IN
+    pad: 2
+    net: 12V_PROTECTED
+  - ref: J9
+    pad: 1
+    net: 12V_IN
+  - ref: J9
+    pad: 2
+    net: GND
+  - ref: Q_IN
+    pad: 4
+    net: Q_IN_GATE
+  - ref: D_QIN_GS
+    pad: 1
+    net: 12V_PROTECTED
+  - ref: D_QIN_GS
+    pad: 2
+    net: Q_IN_GATE
+  - ref: J10
+    pad: 2
+    net: ADC_TDM
+  - ref: J10
+    pad: 9
+    net: MCH_MCLK
+  - ref: J10
+    pad: 10
+    net: MCH_BCLK
+  - ref: J10
+    pad: 11
+    net: GND
+  - ref: J10
+    pad: 12
+    net: MCH_FSYNC
+  - ref: J11
+    pad: 1
+    net: GND
+  - ref: J11
+    pad: 2
+    net: MCH_3V3_SENSE
+  - ref: U_ADC
+    pad: 25
+    net: TDM_RAW
+  - ref: U_TDM
+    pad: 1
+    net: TDM_OE_N
+  - ref: U_TDM
+    pad: 4
+    net: TDM_BUFFERED
+  - ref: C_FILT1_470U
+    pad: 1
+    net: FILT1P
+  - ref: C_FILT1_470U
+    pad: 2
+    net: GND
+  - ref: C_FILT2_470U
+    pad: 1
+    net: FILT2P
+  - ref: C_FILT2_470U
+    pad: 2
+    net: GND
+  edge_faces:
+  - ref: J1
+    edge: y0
+    min_offset_mm: 0.5
+  - ref: J2
+    edge: y0
+    min_offset_mm: 0.5
+  - ref: J3
+    edge: y0
+    min_offset_mm: 0.5
+  - ref: J4
+    edge: y0
+    min_offset_mm: 0.5
+  - ref: J5
+    edge: y1
+    min_offset_mm: 0.5
+  - ref: J6
+    edge: y1
+    min_offset_mm: 0.5
+  - ref: J7
+    edge: y1
+    min_offset_mm: 0.5
+  - ref: J8
+    edge: y1
+    min_offset_mm: 0.5
+  - ref: J9
+    edge: x0
+    min_offset_mm: 0.5

@@ -1,0 +1,33 @@
+mpn: SMBJ15A
+manufacturer: Littelfuse
+type: unidirectional_tvs_diode
+value: SMBJ15A
+status: active
+datasheet:
+  doc_id: Littelfuse-SMBJ-series
+  revision: JC.07/04/25 v4
+  url: https://www.littelfuse.com/assetdocs/littelfuse_tvs_diode_smbj_datasheet.pdf
+  local: Littelfuse_SMBJ_v4_2025-07-04.pdf
+  sha256: d7df155be4b1f612085401e8c946f065e284d65a0e7de22b9225a7b73946e51b
+  fetched: '2026-09-08'
+  pages: 6
+  note: 'p2 exact unidirectional SMBJ15A row: VR15V, VBR16.7-18.5V at1mA, VC24.4V atIPP24.6A; p1 600W rating is a 10/1000us pulse rating, not continuous dissipation; p5 DO-214AA dimensions and cathode-band polarity. JC.07/04/25 v4. No board surge, thermal, or fuse-coordination qualification is claimed.'
+  provenance: Manufacturer-authored PDF independently inspected from exact captured bytes on 2026-09-08; copied unchanged into this carrier dossier. Previously captured original public URL https://www.littelfuse.com/assetdocs/littelfuse_tvs_diode_smbj_datasheet.pdf; source file projects/crow-mic-pod-v3/02_parts/SMBJ15A/Littelfuse_SMBJ_v4_2025-07-04.pdf; independent carrier inspection, not adoption of another board review. Local binding is not independent pin/footprint review, sourcing allocation, approval sheet, physical qualification or order release.
+package: "DO-214AA / SMB"
+footprint: crow_audio_carrier:Littelfuse_SMBJ15A_SMB_Exact
+escape: {style: passive, pitch: 4.3, tier_required: jlc_2layer_default, checked: "Littelfuse outline and project-local exact D_SMB land reviewed 2026-09-01"}
+pins: {1: K, 2: A}
+limits: {reverse_standoff_V: 15.0, breakdown_min_V: 16.7, breakdown_max_V: 18.5, breakdown_test_current_mA: 1, clamp_max_V: 24.4, peak_pulse_current_A: 24.6, peak_pulse_power_W: 600}
+asserts:
+  - {assert: pad1_net_polarity, pad: 1, polarity: positive, why: "Pad 1 is the cathode/band end and must connect to 12V_PROTECTED; reversing it creates a sustained forward crowbar."}
+gotchas:
+  - "The 24.4 V rating is at the specified 10/1000 us pulse current; it is not a sustained OVP or lightning-system claim."
+verified: "CITED: official Littelfuse SMBJ table exact SMBJ15A row gives 15.0V VR, 16.7-18.5V VBR at 1mA, 24.4V VC and 24.6A IPP; read 2026-09-01."
+layout:
+  source: "Littelfuse SMBJ series package outline and shunt-clamp topology"
+  reviewed: 2026-09-01
+  notes: ["Place directly after Q_IN with a short protected-rail path and a short, via-rich ground return."]
+layout_refs:
+  - {tier: 1, reached: true, artifact: "Littelfuse SMBJ series data sheet and DO-214AA package outline", why: "Manufacturer authority fixes polarity, outline and pulse limits."}
+  - {tier: 2, reached: false, artifact: "Littelfuse editable reference-board design for this appliance input", why: "No manufacturer editable board design for this generic shunt TVS was identified; realized loop geometry remains a board review."}
+sourcing: {lcsc: C83846, alternates: [], note: "Exact Littelfuse unidirectional MPN/code match queried from the live JLC catalog 2026-09-01; SMBJ15CA and same-MPN rows from other makers are not equivalent."}

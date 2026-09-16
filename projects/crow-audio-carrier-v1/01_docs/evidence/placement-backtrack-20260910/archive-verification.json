@@ -1,0 +1,14 @@
+{
+  "archive_sha256": "f451678d0ca60990de947a7898cbaea952f79f3deb5bb081fed2ab0ddf5a6883",
+  "archive_size": 73221110,
+  "archive_manifest_sha256": "accfeaa450ca3c9874cec4c0e6bbf0d4b2e95d92654fbbb6359f81c3433ce8ee",
+  "verified_regular_members": 540,
+  "verified_regular_bytes": 109852061,
+  "original_preimages_verified": 463,
+  "original_preimage_bytes": 94665796,
+  "original_preimage_manifest_sha256": "76c1b6e67c6889c1e8a39926a2d27bd066fa16a1f81b41a7e9f05315c26921fa",
+  "diagnostic_files_verified": 47,
+  "symlinks_in_archive": 0,
+  "symlink_facts_recorded": 2,
+  "method": "tarfile reopen; exact names, complete count, regular type, size and independent SHA256 for every extracted member; original preimage paths independently reopened first"
+}

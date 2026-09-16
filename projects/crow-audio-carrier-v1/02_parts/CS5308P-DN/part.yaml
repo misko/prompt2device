@@ -1,0 +1,653 @@
+mpn: CS5308P-DN
+manufacturer: Cirrus Logic
+type: precision_adc
+value: CS5308P-DN
+status: active
+datasheet:
+  doc_id: DS1314
+  revision: DS1314F1
+  url: https://statics.cirrus.com/pubs/proDatasheet/CS5308P_DS1314F1.pdf
+  local: CS5308P_DS1314F1.pdf
+  sha256: 6ca42cc09ac47ebdacacaee435f05e3f9c34b83d5692e52a2d8a26533e810e57
+  fetched: 2026-09-01
+  pages: 95
+  provenance: "Downloaded directly from statics.cirrus.com; title/footer identify CS5308P and DS1314F1."
+package: "QFN-48 6x6mm P0.4mm with 4.6mm exposed paddle"
+footprint: crow_audio_carrier:Cirrus_CS5308P_QFN48_6x6_P0.4_EP4.6
+escape:
+  style: qfn
+  pitch: 0.4
+  pins: 48
+  escapes_worst_side: 10
+  tier_required: jlc_4layer_advanced
+  checked: "Cirrus DS1314F1 package drawing and exact project-local footprint reviewed 2026-09-01"
+pins:
+  1: ADC_VMID1
+  2: CONFIG1
+  3: CONFIG2/HGC_SCK
+  4: CONFIG3/HGC_SDO
+  5: VDD_A1
+  6: GND_A
+  7: LDO_A_FILT
+  8: GND_A
+  9: VDD_A2
+  10: CONFIG4/HGC_CS
+  11: CONFIG5
+  12: ADC_VMID2
+  13: IN5N
+  14: IN5P
+  15: IN6N
+  16: IN6P
+  17: ADC_FILT2N
+  18: ADC_FILT2P
+  19: IN7N
+  20: IN7P
+  21: IN8N
+  22: IN8P
+  23: RESET
+  24: ASP_FSYNC
+  25: ASP_DOUT1
+  26: ASP_DOUT2
+  27: ASP_DOUT3
+  28: ASP_DOUT4
+  29: ASP_BCLK
+  30: GND_D
+  31: VDD_IO
+  32: LDO_D_FILT
+  33: VDD_D
+  34: MCLK
+  35: SPI_SDO/I2C_SCL
+  36: SPI_SCK
+  37: SPI_SDI/I2C_SDA
+  38: SPI_CS
+  39: IN1N
+  40: IN1P
+  41: IN2N
+  42: IN2P
+  43: ADC_FILT1P
+  44: ADC_FILT1N
+  45: IN3N
+  46: IN3P
+  47: IN4N
+  48: IN4P
+  49: {name: EP, tie: GND_A, note: "Exposed paddle; all grounds join a common ground plane per the manufacturer connection diagram."}
+limits:
+  vdd_a_nominal: 3.3V
+  vdd_io_operating: "1.8V to 3.3V"
+  input_full_scale_differential: 2Vrms
+  dynamic_range_typical: 123dB
+  thd_plus_n_typical: -110dB
+  asp_sample_rate_max: 768kHz
+  operating_temperature: "-40C to +85C"
+gotchas:
+  - "DS1314F1 section 4.5.6/p31 and Figure 2-2/p8 require external VMID in hardware/default mid-impedance mode. ADC_VMID1/2 retain local bypass only, not a connection to the external input-buffer bias circuit."
+  - "Figure 2-2 connects ADC_FILT1N/2N and the three capacitors per reference bank directly to GND; the one-ohm elements belong only in positive feeds."
+  - "Pad 49 is electrical ground authority, not a mechanical-only pad; it must be present in the netlist and tied to the low-impedance ground plane."
+  - "The 0.4mm-pitch QFN and analog input/filter perimeter require an advanced four-layer escape and an independent exact-footprint pin review."
+  - "Public E0 reference PCB/PADS/IPC study2026-09-08: stagger configuration drops outward before placing wide power elbows; route VMID around, not across, their exits. Re-derive against our0.50/0.20mm vias,0.15mm annulus and exact neighboring capacitors. The EVM's0.40/0.20mm via,4.8mm copper EP land and8-layer stack are not our footprint/process authority."
+  - "CONFIG/HGC and SPI/I2C multiplexing is strap/configuration dependent; firmware and population rules must agree before power-up."
+  - "Table 3-9 specifies ADC_VMIDn as 1.65V nominal only, with no minimum or maximum; an op-amp common-mode proof cannot silently treat the nominal as a production bound."
+verified: "CITED: Cirrus Logic DS1314F1 Figure 1-1 and Table 1-1, PDF pp.4-5, independently fix pins 1-48 and exposed paddle 49; re-read 2026-09-01."
+layout:
+  source: Cirrus DS1314F1 Figure 2-1 typical connection, PDF pp.7-8, and Section 5 input buffer, PDF p.47; Cirrus AN0556R1 Section 1.2/Figure
+    2, PDF p.4, locally hash-bound in notes.md
+  reviewed: '2026-09-08'
+  notes:
+  - Keep each differential microphone pair short, symmetric, and separated from clocks and the buck switch node.
+  - Place every analog, digital, VMID, LDO-filter, and ADC-filter capacitor at its owning pin group with a direct ground return.
+  - Use a continuous ground plane under the ADC and exposed paddle; do not split analog and digital return planes beneath the package.
+  - 'Carrier local-placement source 2026-09-08: exact-ref/non-ground-net adjacency is a rotation-aware copper-bounding-box gap, NOT pad-center
+    distance or routed length. Rounded engineering ceilings below are not manufacturer numerical maxima. Ground pours are excluded by P-ADJ-PAIR;
+    local return/thermal/escape proof remains owed on the later saved PCB.'
+  - Source-only pin-center plan uses <=5mm local bypass/BST and <=10mm feedback ceilings, with separately named bulk/input/feed exceptions. See
+    01_docs/SOURCE-CORRECTION-20260908-local-placement.md for all 299 roles and exact source geometry; no current-board acceptance is inherited.
+  - Each ADC supply/VMID/LDO/FILT ceramic is separately constrained to its physical pin and capacitor ref; VDD_A1 pin5 and VDD_A2 pin9 must not
+    satisfy one another. C_LDO_D owns both32/33. The sixteen C_ADC_CM capacitors belong at their ADC input terminals, while each15nF differential
+    filter stays in its AN0556 feedback cell ahead of isolation.
+  - 'Small FILT ceramics have priority over470uF reservoirs: 1uF then10uF then470uF, corresponding to the retained July2025 guidelines Fig9 priority
+    after DC-bias-aware value adoption. Reservoirs use15mm center ceilings; resistors feed the reservoir side. VMID returns need a deliberate
+    nearest GND_A connection; preserve common ground topology while route review reconciles the finite digital-side ground geometry, distinct
+    ground-pin vias and50-ohm digital requirement in those guidelines pp10-12.'
+  adjacency:
+  - refdes:
+    - U_ADC
+    - C_ADC_CM4P
+    nets:
+    - ADC4P
+    max_mm: 5
+    why: 'Engineering copper-gap ceiling: adc-input-common-mode; exact partner, selected non-poured net only.'
+  - refdes:
+    - U_ADC
+    - C_ADC_CM4N
+    nets:
+    - ADC4N
+    max_mm: 5
+    why: 'Engineering copper-gap ceiling: adc-input-common-mode; exact partner, selected non-poured net only.'
+  - refdes:
+    - U_ADC
+    - C_ADC_CM3P
+    nets:
+    - ADC3P
+    max_mm: 3.5
+    why: 'Engineering copper-gap ceiling: adc-input-common-mode; exact partner, selected non-poured net only.'
+  - refdes:
+    - U_ADC
+    - C_ADC_CM3N
+    nets:
+    - ADC3N
+    max_mm: 4.5
+    why: 'Engineering copper-gap ceiling: adc-input-common-mode; exact partner, selected non-poured net only.'
+  - refdes:
+    - U_ADC
+    - C_ADC_CM2P
+    nets:
+    - ADC2P
+    max_mm: 2.5
+    why: 'Engineering copper-gap ceiling: adc-input-common-mode; exact partner, selected non-poured net only.'
+  - refdes:
+    - U_ADC
+    - C_ADC_CM2N
+    nets:
+    - ADC2N
+    max_mm: 2.0
+    why: 'Engineering copper-gap ceiling: adc-input-common-mode; exact partner, selected non-poured net only.'
+  - refdes:
+    - U_ADC
+    - C_ADC_CM1P
+    nets:
+    - ADC1P
+    max_mm: 4.0
+    why: 'Engineering copper-gap ceiling: adc-input-common-mode; exact partner, selected non-poured net only.'
+  - refdes:
+    - U_ADC
+    - C_ADC_CM1N
+    nets:
+    - ADC1N
+    max_mm: 4.0
+    why: 'Engineering copper-gap ceiling: adc-input-common-mode; exact partner, selected non-poured net only.'
+  - refdes:
+    - U_ADC
+    - C_ADC_CM5P
+    nets:
+    - ADC5P
+    max_mm: 4.0
+    why: 'Engineering copper-gap ceiling: adc-input-common-mode; exact partner, selected non-poured net only.'
+  - refdes:
+    - U_ADC
+    - C_ADC_CM5N
+    nets:
+    - ADC5N
+    max_mm: 4.0
+    why: 'Engineering copper-gap ceiling: adc-input-common-mode; exact partner, selected non-poured net only.'
+  - refdes:
+    - U_ADC
+    - C_ADC_CM6P
+    nets:
+    - ADC6P
+    max_mm: 2.5
+    why: 'Engineering copper-gap ceiling: adc-input-common-mode; exact partner, selected non-poured net only.'
+  - refdes:
+    - U_ADC
+    - C_ADC_CM6N
+    nets:
+    - ADC6N
+    max_mm: 2.0
+    why: 'Engineering copper-gap ceiling: adc-input-common-mode; exact partner, selected non-poured net only.'
+  - refdes:
+    - U_ADC
+    - C_ADC_CM7P
+    nets:
+    - ADC7P
+    max_mm: 3.5
+    why: 'Engineering copper-gap ceiling: adc-input-common-mode; exact partner, selected non-poured net only.'
+  - refdes:
+    - U_ADC
+    - C_ADC_CM7N
+    nets:
+    - ADC7N
+    max_mm: 5
+    why: 'Engineering copper-gap ceiling: adc-input-common-mode; exact partner, selected non-poured net only.'
+  - refdes:
+    - U_ADC
+    - C_ADC_CM8P
+    nets:
+    - ADC8P
+    max_mm: 5
+    why: 'Engineering copper-gap ceiling: adc-input-common-mode; exact partner, selected non-poured net only.'
+  - refdes:
+    - U_ADC
+    - C_ADC_CM8N
+    nets:
+    - ADC8N
+    max_mm: 5
+    why: 'Engineering copper-gap ceiling: adc-input-common-mode; exact partner, selected non-poured net only.'
+  - refdes:
+    - U_ADC
+    - C_LDO_A
+    nets:
+    - LDO_A_FILT
+    max_mm: 1.5
+    why: 'Engineering copper-gap ceiling: adc-pin-bypass; exact partner, selected non-poured net only.'
+  - refdes:
+    - U_ADC
+    - C_LDO_D
+    nets:
+    - LDO_D_FILT
+    max_mm: 2.0
+    why: 'Engineering copper-gap ceiling: adc-pin-bypass; exact partner, selected non-poured net only.'
+  - refdes:
+    - U_ADC
+    - C_VDDIO
+    nets:
+    - 3V3_ADC
+    max_mm: 2.5
+    why: 'Engineering copper-gap ceiling: adc-pin-bypass; exact partner, selected non-poured net only.'
+  - refdes:
+    - U_ADC
+    - C_VDDA1_10N
+    nets:
+    - 3V3_ADC
+    max_mm: 2.0
+    why: 'Engineering copper-gap ceiling: adc-pin-bypass; exact partner, selected non-poured net only.'
+  - refdes:
+    - U_ADC
+    - C_VDDA1_4U7
+    nets:
+    - 3V3_ADC
+    max_mm: 5
+    why: 'Engineering copper-gap ceiling: adc-pin-bypass; exact partner, selected non-poured net only.'
+  - refdes:
+    - U_ADC
+    - C_VDDA2_10N
+    nets:
+    - 3V3_ADC
+    max_mm: 1.5
+    why: 'Engineering copper-gap ceiling: adc-pin-bypass; exact partner, selected non-poured net only.'
+  - refdes:
+    - U_ADC
+    - C_VDDA2_4U7
+    nets:
+    - 3V3_ADC
+    max_mm: 5
+    why: 'Engineering copper-gap ceiling: adc-pin-bypass; exact partner, selected non-poured net only.'
+  - refdes:
+    - U_ADC
+    - C_VMID1_470N
+    nets:
+    - VMID1
+    max_mm: 2.5
+    why: 'Engineering copper-gap ceiling: adc-pin-bypass; exact partner, selected non-poured net only.'
+  - refdes:
+    - U_ADC
+    - C_VMID1_4U7
+    nets:
+    - VMID1
+    max_mm: 4.0
+    why: 'Engineering copper-gap ceiling: adc-pin-bypass; exact partner, selected non-poured net only.'
+  - refdes:
+    - U_ADC
+    - C_VMID2_470N
+    nets:
+    - VMID2
+    max_mm: 2.5
+    why: 'Engineering copper-gap ceiling: adc-pin-bypass; exact partner, selected non-poured net only.'
+  - refdes:
+    - U_ADC
+    - C_VMID2_4U7
+    nets:
+    - VMID2
+    max_mm: 4.0
+    why: 'Engineering copper-gap ceiling: adc-pin-bypass; exact partner, selected non-poured net only.'
+  - refdes:
+    - U_ADC
+    - C_FILT1_1U
+    nets:
+    - FILT1P
+    max_mm: 2.5
+    why: 'Engineering copper-gap ceiling: adc-reference-ceramic; exact partner, selected non-poured net only.'
+  - refdes:
+    - U_ADC
+    - C_FILT1_10U
+    nets:
+    - FILT1P
+    max_mm: 4.0
+    why: 'Engineering copper-gap ceiling: adc-reference-ceramic; exact partner, selected non-poured net only.'
+  - refdes:
+    - U_ADC
+    - C_FILT1_470U
+    nets:
+    - FILT1P
+    max_mm: 11.5
+    why: 'Engineering copper-gap ceiling: reference-bulk-reservoir; exact partner, selected non-poured net only.'
+  - refdes:
+    - R_FILT1P
+    - C_FILT1_470U
+    nets:
+    - FILT1P
+    max_mm: 5.0
+    why: 'Engineering copper-gap ceiling: reference-bulk-feed; exact partner, selected non-poured net only.'
+  - refdes:
+    - U_ADC
+    - C_FILT2_1U
+    nets:
+    - FILT2P
+    max_mm: 2.5
+    why: 'Engineering copper-gap ceiling: adc-reference-ceramic; exact partner, selected non-poured net only.'
+  - refdes:
+    - U_ADC
+    - C_FILT2_10U
+    nets:
+    - FILT2P
+    max_mm: 4.0
+    why: 'Engineering copper-gap ceiling: adc-reference-ceramic; exact partner, selected non-poured net only.'
+  - refdes:
+    - U_ADC
+    - C_FILT2_470U
+    nets:
+    - FILT2P
+    max_mm: 11.5
+    why: 'Engineering copper-gap ceiling: reference-bulk-reservoir; exact partner, selected non-poured net only.'
+  - refdes:
+    - R_FILT2P
+    - C_FILT2_470U
+    nets:
+    - FILT2P
+    max_mm: 5.0
+    why: 'Engineering copper-gap ceiling: reference-bulk-feed; exact partner, selected non-poured net only.'
+  - refdes:
+    - U_ADC
+    - R_CFG1
+    nets:
+    - CFG1
+    max_mm: 6.5
+    why: 'Engineering copper-gap ceiling: adc-hardware-strap; exact partner, selected non-poured net only.'
+  - refdes:
+    - U_ADC
+    - R_CFG2
+    nets:
+    - CFG2
+    max_mm: 8.0
+    why: 'Engineering copper-gap ceiling: adc-hardware-strap; exact partner, selected non-poured net only.'
+  - refdes:
+    - U_ADC
+    - R_CFG4
+    nets:
+    - CFG4
+    max_mm: 7.0
+    why: 'Engineering copper-gap ceiling: adc-hardware-strap; exact partner, selected non-poured net only.'
+  - refdes:
+    - U_ADC
+    - R_CFG5
+    nets:
+    - CFG5
+    max_mm: 5.5
+    why: 'Engineering copper-gap ceiling: adc-hardware-strap; exact partner, selected non-poured net only.'
+  keep_short:
+  - net: ADC1P
+    anchor_pins:
+    - '48'
+    partner_refs:
+    - C_ADC_CM1P
+    max_span_mm: 5
+    why: 'Engineering physical-pin center ceiling: adc-input-common-mode; exact capacitor/support ref, unique owner footprint on this carrier.'
+  - net: ADC1N
+    anchor_pins:
+    - '47'
+    partner_refs:
+    - C_ADC_CM1N
+    max_span_mm: 5
+    why: 'Engineering physical-pin center ceiling: adc-input-common-mode; exact capacitor/support ref, unique owner footprint on this carrier.'
+  - net: ADC2P
+    anchor_pins:
+    - '46'
+    partner_refs:
+    - C_ADC_CM2P
+    max_span_mm: 5
+    why: 'Engineering physical-pin center ceiling: adc-input-common-mode; exact capacitor/support ref, unique owner footprint on this carrier.'
+  - net: ADC2N
+    anchor_pins:
+    - '45'
+    partner_refs:
+    - C_ADC_CM2N
+    max_span_mm: 5
+    why: 'Engineering physical-pin center ceiling: adc-input-common-mode; exact capacitor/support ref, unique owner footprint on this carrier.'
+  - net: ADC3P
+    anchor_pins:
+    - '42'
+    partner_refs:
+    - C_ADC_CM3P
+    max_span_mm: 5
+    why: 'Engineering physical-pin center ceiling: adc-input-common-mode; exact capacitor/support ref, unique owner footprint on this carrier.'
+  - net: ADC3N
+    anchor_pins:
+    - '41'
+    partner_refs:
+    - C_ADC_CM3N
+    max_span_mm: 5
+    why: 'Engineering physical-pin center ceiling: adc-input-common-mode; exact capacitor/support ref, unique owner footprint on this carrier.'
+  - net: ADC4P
+    anchor_pins:
+    - '40'
+    partner_refs:
+    - C_ADC_CM4P
+    max_span_mm: 5
+    why: 'Engineering physical-pin center ceiling: adc-input-common-mode; exact capacitor/support ref, unique owner footprint on this carrier.'
+  - net: ADC4N
+    anchor_pins:
+    - '39'
+    partner_refs:
+    - C_ADC_CM4N
+    max_span_mm: 5
+    why: 'Engineering physical-pin center ceiling: adc-input-common-mode; exact capacitor/support ref, unique owner footprint on this carrier.'
+  - net: ADC5P
+    anchor_pins:
+    - '14'
+    partner_refs:
+    - C_ADC_CM5P
+    max_span_mm: 5
+    why: 'Engineering physical-pin center ceiling: adc-input-common-mode; exact capacitor/support ref, unique owner footprint on this carrier.'
+  - net: ADC5N
+    anchor_pins:
+    - '13'
+    partner_refs:
+    - C_ADC_CM5N
+    max_span_mm: 5
+    why: 'Engineering physical-pin center ceiling: adc-input-common-mode; exact capacitor/support ref, unique owner footprint on this carrier.'
+  - net: ADC6P
+    anchor_pins:
+    - '16'
+    partner_refs:
+    - C_ADC_CM6P
+    max_span_mm: 5
+    why: 'Engineering physical-pin center ceiling: adc-input-common-mode; exact capacitor/support ref, unique owner footprint on this carrier.'
+  - net: ADC6N
+    anchor_pins:
+    - '15'
+    partner_refs:
+    - C_ADC_CM6N
+    max_span_mm: 5
+    why: 'Engineering physical-pin center ceiling: adc-input-common-mode; exact capacitor/support ref, unique owner footprint on this carrier.'
+  - net: ADC7P
+    anchor_pins:
+    - '20'
+    partner_refs:
+    - C_ADC_CM7P
+    max_span_mm: 5
+    why: 'Engineering physical-pin center ceiling: adc-input-common-mode; exact capacitor/support ref, unique owner footprint on this carrier.'
+  - net: ADC7N
+    anchor_pins:
+    - '19'
+    partner_refs:
+    - C_ADC_CM7N
+    max_span_mm: 5
+    why: 'Engineering physical-pin center ceiling: adc-input-common-mode; exact capacitor/support ref, unique owner footprint on this carrier.'
+  - net: ADC8P
+    anchor_pins:
+    - '22'
+    partner_refs:
+    - C_ADC_CM8P
+    max_span_mm: 5
+    why: 'Engineering physical-pin center ceiling: adc-input-common-mode; exact capacitor/support ref, unique owner footprint on this carrier.'
+  - net: ADC8N
+    anchor_pins:
+    - '21'
+    partner_refs:
+    - C_ADC_CM8N
+    max_span_mm: 5
+    why: 'Engineering physical-pin center ceiling: adc-input-common-mode; exact capacitor/support ref, unique owner footprint on this carrier.'
+  - net: LDO_A_FILT
+    anchor_pins:
+    - '7'
+    partner_refs:
+    - C_LDO_A
+    max_span_mm: 5
+    why: 'Engineering physical-pin center ceiling: adc-pin-bypass; exact capacitor/support ref, unique owner footprint on this carrier.'
+  - net: LDO_D_FILT
+    anchor_pins:
+    - '32'
+    - '33'
+    partner_refs:
+    - C_LDO_D
+    max_span_mm: 5
+    why: 'Engineering physical-pin center ceiling: adc-pin-bypass; exact capacitor/support ref, unique owner footprint on this carrier.'
+  - net: 3V3_ADC
+    anchor_pins:
+    - '31'
+    partner_refs:
+    - C_VDDIO
+    max_span_mm: 5
+    why: 'Engineering physical-pin center ceiling: adc-pin-bypass; exact capacitor/support ref, unique owner footprint on this carrier.'
+  - net: 3V3_ADC
+    anchor_pins:
+    - '5'
+    partner_refs:
+    - C_VDDA1_10N
+    max_span_mm: 5
+    why: 'Engineering physical-pin center ceiling: adc-pin-bypass; exact capacitor/support ref, unique owner footprint on this carrier.'
+  - net: 3V3_ADC
+    anchor_pins:
+    - '5'
+    partner_refs:
+    - C_VDDA1_4U7
+    max_span_mm: 5
+    why: 'Engineering physical-pin center ceiling: adc-pin-bypass; exact capacitor/support ref, unique owner footprint on this carrier.'
+  - net: 3V3_ADC
+    anchor_pins:
+    - '9'
+    partner_refs:
+    - C_VDDA2_10N
+    max_span_mm: 5
+    why: 'Engineering physical-pin center ceiling: adc-pin-bypass; exact capacitor/support ref, unique owner footprint on this carrier.'
+  - net: 3V3_ADC
+    anchor_pins:
+    - '9'
+    partner_refs:
+    - C_VDDA2_4U7
+    max_span_mm: 5
+    why: 'Engineering physical-pin center ceiling: adc-pin-bypass; exact capacitor/support ref, unique owner footprint on this carrier.'
+  - net: VMID1
+    anchor_pins:
+    - '1'
+    partner_refs:
+    - C_VMID1_470N
+    max_span_mm: 5
+    why: 'Engineering physical-pin center ceiling: adc-pin-bypass; exact capacitor/support ref, unique owner footprint on this carrier.'
+  - net: VMID1
+    anchor_pins:
+    - '1'
+    partner_refs:
+    - C_VMID1_4U7
+    max_span_mm: 5
+    why: 'Engineering physical-pin center ceiling: adc-pin-bypass; exact capacitor/support ref, unique owner footprint on this carrier.'
+  - net: VMID2
+    anchor_pins:
+    - '12'
+    partner_refs:
+    - C_VMID2_470N
+    max_span_mm: 5
+    why: 'Engineering physical-pin center ceiling: adc-pin-bypass; exact capacitor/support ref, unique owner footprint on this carrier.'
+  - net: VMID2
+    anchor_pins:
+    - '12'
+    partner_refs:
+    - C_VMID2_4U7
+    max_span_mm: 5
+    why: 'Engineering physical-pin center ceiling: adc-pin-bypass; exact capacitor/support ref, unique owner footprint on this carrier.'
+  - net: FILT1P
+    anchor_pins:
+    - '43'
+    partner_refs:
+    - C_FILT1_1U
+    max_span_mm: 5
+    why: 'Engineering physical-pin center ceiling: adc-reference-ceramic; exact capacitor/support ref, unique owner footprint on this carrier.'
+  - net: FILT1P
+    anchor_pins:
+    - '43'
+    partner_refs:
+    - C_FILT1_10U
+    max_span_mm: 5
+    why: 'Engineering physical-pin center ceiling: adc-reference-ceramic; exact capacitor/support ref, unique owner footprint on this carrier.'
+  - net: FILT1P
+    anchor_pins:
+    - '43'
+    partner_refs:
+    - C_FILT1_470U
+    max_span_mm: 15
+    why: 'Engineering physical-pin center ceiling: reference-bulk-reservoir; exact capacitor/support ref, unique owner footprint on this carrier.'
+  - net: FILT2P
+    anchor_pins:
+    - '18'
+    partner_refs:
+    - C_FILT2_1U
+    max_span_mm: 5
+    why: 'Engineering physical-pin center ceiling: adc-reference-ceramic; exact capacitor/support ref, unique owner footprint on this carrier.'
+  - net: FILT2P
+    anchor_pins:
+    - '18'
+    partner_refs:
+    - C_FILT2_10U
+    max_span_mm: 5
+    why: 'Engineering physical-pin center ceiling: adc-reference-ceramic; exact capacitor/support ref, unique owner footprint on this carrier.'
+  - net: FILT2P
+    anchor_pins:
+    - '18'
+    partner_refs:
+    - C_FILT2_470U
+    max_span_mm: 15
+    why: 'Engineering physical-pin center ceiling: reference-bulk-reservoir; exact capacitor/support ref, unique owner footprint on this carrier.'
+  - net: CFG1
+    anchor_pins:
+    - '2'
+    partner_refs:
+    - R_CFG1
+    max_span_mm: 10
+    why: 'Engineering physical-pin center ceiling: adc-hardware-strap; exact capacitor/support ref, unique owner footprint on this carrier.'
+  - net: CFG2
+    anchor_pins:
+    - '3'
+    partner_refs:
+    - R_CFG2
+    max_span_mm: 10
+    why: 'Engineering physical-pin center ceiling: adc-hardware-strap; exact capacitor/support ref, unique owner footprint on this carrier.'
+  - net: CFG4
+    anchor_pins:
+    - '10'
+    partner_refs:
+    - R_CFG4
+    max_span_mm: 10
+    why: 'Engineering physical-pin center ceiling: adc-hardware-strap; exact capacitor/support ref, unique owner footprint on this carrier.'
+  - net: CFG5
+    anchor_pins:
+    - '11'
+    partner_refs:
+    - R_CFG5
+    max_span_mm: 10
+    why: 'Engineering physical-pin center ceiling: adc-hardware-strap; exact capacitor/support ref, unique owner footprint on this carrier.'
+layout_refs:
+  - {tier: 1, reached: true, artifact: "Cirrus DS1314F1 Figure 2-1/Section 5 and local SHA-bound AN0556R1 Figure 2", why: "Manufacturer authorities fix the complete connection, per-channel buffer/filter skeleton, decoupling, and common-ground architecture."}
+  - {tier: 2, reached: true, artifact: "Cirrus DC5302P_4P_4S_8P_8S-ADC_Schematic_Layout.zip; E0 PCB PDF,240-11375-Z1 PADS ASCII/IPC/Gerbers and stackup, public statics.cirrus.com", why: "The same ZIP was already captured;2026-09-08 newly examined editable layout and artwork, with49/49 ASCII/IPC pad positions reconciled. Study staggered CFG drops and local capacitor/VMID ordering only. PADS descriptor is older CS5308P-CN/B0, not the selected DN; exact current-DN revision CAD is not established. Different8-layer stack,0.40/0.20mm vias and4.8mm copper EP land do not transfer. Primary DS1314F1 and project footprints remain unchanged; no vendor copper imported. See notes.md and ADR0013."}
+  - {tier: 2, reached: false, artifact: "Editable reference CAD explicitly identifying the selected CS5308P-DN revision", why: "The inspected public Cirrus PADS layout identifies older CS5308P-CN/B0, not this DN device. An exact current-DN editable reference has not been established; preserve DS1314F1 and the independently derived carrier footprint as authority. This names the known applicability ceiling, not a claim that no such design exists."}
+sourcing:
+  lcsc: null
+  alternates: []
+  note: "JLC/LCSC allocation is unproven. Treat as blocked and explicitly consign/manual-source the exact MPN unless assembly authority later proves an exact allocation."

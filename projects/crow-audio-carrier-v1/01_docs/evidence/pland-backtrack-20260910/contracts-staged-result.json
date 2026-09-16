@@ -1,0 +1,56 @@
+{
+  "attempts": [
+    {
+      "command": [
+        "/usr/bin/python3",
+        "tests/t1_contracts.py"
+      ],
+      "started_at": "2026-09-10T20:04:16.400846+00:00",
+      "duration_s": 3.769160368014127,
+      "returncode": 1
+    },
+    {
+      "command": [
+        "/usr/bin/python3",
+        "tests/t1_contracts.py"
+      ],
+      "started_at": "2026-09-10T20:05:10.981830+00:00",
+      "duration_s": 5.07557250186801,
+      "returncode": 0
+    },
+    {
+      "argv": [
+        "/usr/bin/python3",
+        "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/tests/t1_contracts.py"
+      ],
+      "start": "2026-09-10T20:30:52.768795+00:00",
+      "end": "2026-09-10T20:30:56.989683+00:00",
+      "rc": 0,
+      "duration_s": 4.220900617074221,
+      "scope": "root rejected method preservation/restored source",
+      "pass": 17,
+      "fail": 0,
+      "known_bad": 13
+    },
+    {
+      "argv": [
+        "/usr/bin/python3",
+        "tests/t1_contracts.py"
+      ],
+      "cwd": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901",
+      "start": "2026-09-10T21:04:51.471333+00:00",
+      "timeout_seconds": 120,
+      "rc": 0,
+      "timed_out": false,
+      "duration_seconds": 4.921908504096791,
+      "end": "2026-09-10T21:04:56.393317+00:00",
+      "pid": 1954736,
+      "scope": "root evaluator diagnosis preservation and architecture adjudication",
+      "passed": 17,
+      "failed": 0,
+      "known_bad": 13
+    }
+  ],
+  "first_failure_cause": "Capturing the first log directly in the live new evidence directory made that log untracked-not-ignored during the --present test. The failed log and actual returncode are retained. Staged completed files before this retry; captured retry output privately. No checker or debt ratchet changed.",
+  "latest_status": "PASS"
+}

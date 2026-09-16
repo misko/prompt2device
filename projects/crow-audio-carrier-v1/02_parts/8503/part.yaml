@@ -1,0 +1,19 @@
+mpn: '8503'
+manufacturer: Belden
+type: internal_pigtail_wire
+status: active
+datasheet:
+  doc_id: '8503'
+  local: 8503_techdata.pdf
+  sha256: 26398425e5a111f70b97064c8890bfe00afa0040e049d4167b30507f663449f6
+  fetched: '2026-09-12'
+package: off-board harness component
+footprint: none_off_board
+limits: {}
+gotchas:
+- Physical harness qualification remains OWED; see primary-source-record.md and shared
+  spoke contract.
+verified: Manufacturer facts inspected 2026-09-12; first article not measured.
+sourcing:
+  lcsc: null
+  alternates: []

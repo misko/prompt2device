@@ -1,0 +1,23 @@
+mpn: RC0402FR-07300RL
+manufacturer: YAGEO
+type: thick_film_resistor
+value: 300
+status: active
+datasheet:
+  doc_id: RC0402FR-series
+  revision: generated2026-09-08
+  url: https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-07300RL
+  local: Yageo_RC0402FR-07300RL_20260908.pdf
+  sha256: df728c32fc1a7a87bc63c5e3a9b1609759b09f7579f89a185e4be97a43b0c888
+  fetched: '2026-09-08'
+  pages: 1
+  note: p1 exact RC0402FR-07300RL identity and authored resistance value, +/-1%, 0402/1005 dimensions, nominal0.063W at70C (rounded display; retained1/16W limit is not increased), -55..155C, 50V and 178mm tape-and-reel. Generated09/08/2026. Application-suitability disclaimer remains. Nonfatal malformed optional Suspects metadata was observed; text and raster rendering succeeded and exact PDF bytes are preserved.
+  provenance: Manufacturer-authored PDF independently inspected from exact captured bytes on 2026-09-08; copied unchanged into this carrier dossier. Original public manufacturer endpoint https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-07300RL; immutable capture provenance retained in the 2026-09-08 authority-source packet. Local binding is not independent pin/footprint review, sourcing allocation, approval sheet, physical qualification or order release.
+package: "0402 (1005 metric)"
+footprint: Resistor_SMD:R_0402_1005Metric
+escape: {style: passive, pitch: 0.5, tier_required: jlc_2layer_default, checked: "exact YAGEO 0402 identity reviewed 2026-09-01"}
+pins: {1: A, 2: B}
+limits: {resistance: 300Ohm, tolerance: 1pct, power: 62.5mW, voltage: 50V}
+asserts: [{assert: value, equals: 300, why: "Cirrus same-leg local feedback resistance."}]
+verified: "Exact YAGEO MPN/code/value/package match selected 2026-09-01."
+sourcing: {lcsc: C138010, alternates: []}

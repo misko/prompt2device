@@ -1,0 +1,47 @@
+mpn: 1812L110/33MR
+manufacturer: Littelfuse
+type: resettable_pptc_fuse
+value: 1812L110/33MR
+status: active
+note_dirname: "Filesystem-safe spelling of the exact orderable MPN, whose slash cannot be a directory character."
+datasheet:
+  doc_id: "1812L Series"
+  revision: "2021 series datasheet"
+  url: https://www.littelfuse.com/~/media/electronics/datasheets/resettable_ptcs/littelfuse_ptc_1812l_datasheet.pdf.pdf
+  local: null
+  sha256: 1748c160d212fda81345d107942386ca839de4ed7f9fba4b8c661c25d84155ea
+  fetched: 2026-09-01
+  pages: 8
+  provenance: "Exact Littelfuse manufacturer PDF retrieved through a mirror because the official Akamai endpoint returned HTTP 403 in this environment."
+package: "1812 / 4532 metric surface-mount PPTC"
+footprint: Fuse:Fuse_1812_4532Metric
+escape: {style: passive, pitch: 4.275, tier_required: jlc_2layer_default, checked: "Littelfuse 1812L dimensions/pad diagram and KiCad 1812 footprint reviewed 2026-09-01"}
+pins: {1: PTC1, 2: PTC2}
+limits:
+  hold_current_20c: 1.10A
+  trip_current_20c: 1.95A
+  voltage_max: 33VDC
+  fault_current_max: 20A
+  power_dissipation_typical: 0.8W
+  max_trip_time: "0.5s at 8.0A"
+  resistance_initial_min: 0.06Ohm
+  resistance_post_trip_max: 0.20Ohm
+  hold_current_70c: 0.63A
+  hold_current_85c: 0.50A
+gotchas:
+  - "The exact orderable 33V/1.10A tape-and-reel part is 1812L110/33MR. The requested /33DR spelling is not present in Littelfuse's ordering table; DR and MR encode different reel quantities."
+  - "A PPTC is not an interrupting fuse or precision current limiter. Validate source fault current, trip energy, hot-ambient hold current, reset behavior, and interaction with the upstream supply."
+  - "At 70C the guaranteed table hold current is only 0.63A and at 85C it is 0.50A, well below the 1.10A room-temperature headline."
+verified: "CITED: Littelfuse 1812L electrical table PDF p.2 fixes 1812L110/33 at 1.10A hold, 1.95A trip, 33V, 20A, 8A/0.5s, 0.06Ohm min and 0.20Ohm R1max; thermal table PDF p.3 fixes 0.63A at 70C and 0.50A at 85C; ordering table PDF p.8 fixes exact orderable 1812L110/33MR and disproves /33DR; re-read 2026-09-01."
+layout:
+  source: "Littelfuse 1812L dimensions and recommended pad layout, PDF pp.6-7"
+  reviewed: 2026-09-01
+  notes:
+    - "Place at the 12V input entry before branch distribution, with copper sized for normal current and prospective fault energy."
+    - "Keep clear of hot power components; first-article thermal testing must use the realized copper and enclosure."
+layout_refs:
+  - {tier: 1, reached: true, artifact: "Littelfuse 1812L electrical, thermal-derating, dimensions, and ordering tables", why: "Manufacturer authority fixes the exact /33 electrical row and MR reel code, plus the severe hot-ambient derating."}
+sourcing:
+  lcsc: null
+  alternates: []
+  note: "No current JLC/LCSC allocation is proven. Treat sourcing as blocked/manual/consign until an exact 1812L110/33MR allocation and first-article fault/thermal qualification exist."

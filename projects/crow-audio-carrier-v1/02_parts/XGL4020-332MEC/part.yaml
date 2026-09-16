@@ -1,0 +1,35 @@
+mpn: XGL4020-332MEC
+manufacturer: Coilcraft
+type: shielded_power_inductor
+value: 3.3uH
+status: active
+datasheet:
+  doc_id: Coilcraft-Document-1529
+  revision: "Document 1529-1 through 1529-3, revised 02/19/26"
+  url: https://www.coilcraft.com/getmedia/76c9c081-4945-4c85-9129-9356e1ad6734/xgl4020.pdf
+  local: XGL4020_Document1529-3.pdf
+  sha256: 1e050d7e4f44f7e1f3ae3be38de87b15e4d72b2ef463c7b1f4edc292f83ad2c0
+  fetched: 2026-09-02
+  pages: 3
+  provenance: "Downloaded directly from coilcraft.com; the committed three-page PDF matches the declared SHA-256 and carries page identifiers Document 1529-1 through 1529-3, revised 02/19/26."
+package: "XGL4020, 4.0 x 4.0 x 2.1 mm maximum"
+footprint: crow_audio_carrier:Coilcraft_XGL4020_Exact
+escape: {style: inductor, pitch: 2.37, tier_required: jlc_2layer_default, checked: "Coilcraft Document 1529-3 recommended land, 2026-09-01"}
+pins: {1: SW_DOT, 2: OUT}
+limits: {inductance: 3.3uH, tolerance: 20pct, dcr_typ_mOhm: 30.8, dcr_max_mOhm: 34.0, isat_20pct_drop_A: 3.5, irms_40C_rise_A: 6.6, operating_voltage_V: 80}
+asserts:
+  - {assert: value, equals: 3.3u, tolerance_pct: 20, why: "AP63205 section 10 permits 2.2-10uH; at 10.8-13.2V input and 1.1MHz, 3.3uH gives 0.740-0.856A ripple (37.0-42.8% of 2A), inside the vendor's 30-50% design window."}
+gotchas:
+  - "Pin 1 is the marked start/short lead. Connect the high-dv/dt BUCK_SW node there for the lowest EMI, as the Coilcraft drawing states."
+  - "AP63205 Table 3 nominally recommends 4.7uH; this stocked 3.3uH alternative is admitted by section 10 only with the recorded ripple/peak-current calculation and first-article ripple, thermal, and EMI measurements."
+verified: "CITED: Coilcraft Document 1529-1 exact row gives 3.3uH +/-20%, 34.0mOhm maximum DCR, 3.5A at 20% inductance drop and 6.6A at 40C rise; Document 1529-3 fixes the unchanged 2.37mm pad pitch with 0.98 x 3.4mm lands. Worst-case calculated AP63205 ripple is 0.856A and peak current is 2.428A at a 2A load."
+layout:
+  source: "Coilcraft Document 1529-3 recommended land and AP63205 DS41326 Figure 25"
+  reviewed: 2026-09-01
+  keep_short: [{net: BUCK_SW, max_span_mm: 3.0, why: "Minimize the high-dv/dt switch-node loop."}]
+  notes: ["Orient marked pin 1 toward U_BUCK/SW and place output capacitors immediately at pin 2."]
+layout_refs:
+  - {tier: 1, reached: true, artifact: "Coilcraft Document 1529-1/3 and AP63205 DS41326 Figure 25", why: "Manufacturer authorities fix the inductor land/start lead and the converter hot-loop topology."}
+  - {tier: 2, reached: true, artifact: "AP63205WU-EVM Rev.2", why: "Converter-family evaluation layout was captured for placement precedent; its different inductor is not BOM authority."}
+  - {tier: 3, reached: false, artifact: "independently routed open design using exact XGL4020-332MEC with AP63205", why: "No stronger exact pair precedent was captured; board review and first-article switch-node measurements remain required."}
+sourcing: {lcsc: C6937839, alternates: [], note: "Exact MPN/code match queried from the live JLC catalog 2026-09-02; observed catalog stock 1517 for 5 required, with authenticated PCBA allocation still owed."}

@@ -1,0 +1,62 @@
+{
+  "kind": "source-author-coordinator-factual-outcome-not-TaskAttempt",
+  "status": "HANDOFF_REQUIRED",
+  "canonical_task_attempt_created": false,
+  "task_id": "crow-carrier-power-reference-20260907",
+  "source_baseline_commit": "f56479e2",
+  "planned_envelope_sha256": "b120c495416d50318f0b5fb55ec27c137ded828e6dd3673b746d590331fad5ad",
+  "timing": {
+    "root_dispatch_clock": "2026-09-07T20:47:43Z",
+    "author_start_clock": "2026-09-07T20:48:10Z",
+    "author_writes_frozen_clock": "2026-09-07T21:23:53Z",
+    "deadline_at": "2026-09-07T21:26:17Z",
+    "finished_before_deadline": true,
+    "canonical_host_execution_and_token_telemetry": "UNKNOWN",
+    "coordinator_followup": "Read-only verification plus first-article census and descriptive documentation corrections after author freeze; no generated electrical subject changed."
+  },
+  "subject": {
+    "circuit_json_sha256": "3b65ea653a57315304f33c31825a24316b6330354838b3bedc8da7b2f6823686",
+    "schematic_pdf_sha256": "9dee21f05f61275b90855f299125acb00468e5e3fe4945ba2a150d0aaaedf612",
+    "kicad_schematic_sha256": "a77530c414f2b5c314065d4aa4525fefea530b5134e763607692348a524b36d4",
+    "netlist_raw_sha256": "5481151faa87d2dfc55bb28023c7a3821a2ec494fbdb6b1b2a145303c474f788",
+    "netlist_semantic_sha256": "ea067e4950bb5b4bddcc1e6ef5b4035e73722c697fdf35f3590f25b42fd45ceb",
+    "unchanged_stale_pcb_sha256": "0f6e2e608e72c986e2fc5d559e63df4ed23de8728e6428698eb3eba9ad7d15d1",
+    "components": 212,
+    "pins": 615,
+    "pdf_pages": 6,
+    "independent_sound_review": false
+  },
+  "coordinator_measured": {
+    "project_tests": "39/39 PASS",
+    "electrical_invariants": "74/74 PASS",
+    "adr_invariant_coverage": "4/4 PASS",
+    "labels": "133/133 PASS",
+    "pin_maps": "201/201 PASS",
+    "analog_filter_topology": "PASS",
+    "first_power_plan_component_census": "212/212 exact; zero missing, extra or duplicate refdes",
+    "native_delta": "8 added, 2 removed, 10 common-pin net changes; zero common-component value changes",
+    "power_source": "exit 1 OPEN_SOURCE_FAILURE",
+    "power_topology": "exit 1; thermal 283.6875mW exceeds 238.379mW",
+    "live_charge_inventory_nominal_uF": 1018.68,
+    "initial_only_charge_inventory_upper_uF": 1227.5302,
+    "render_pages_inspected": 6,
+    "git_diff_check": "PASS"
+  },
+  "producer_log_observations": {
+    "run_id": "d20b9ca7cfef43ea8c831faee825b79e",
+    "freshness": "9/9 PASS",
+    "embedded_errors": 0,
+    "advisory_warnings": 1379,
+    "early_design": "4/4 PASS",
+    "stopped_at": "E-TOPO before board regeneration and new ERC/catalog/review acceptance"
+  },
+  "unresolved": [
+    "TPS7A24 thermal and effective output-capacitance source compatibility",
+    "Complete startup, discharge, reverse-current and lifecycle model",
+    "Analog-driver and input-clamp/back-power behavior under partial power and brownout",
+    "Exact new source/candidate part adoption and fresh public catalog",
+    "Independent source reviews, placement, routing, layout/fabrication/release gates",
+    "Prototype order authorization/allocation and later physical qualification"
+  ],
+  "boundary": "No source SOUND, route, seal, release, order or push; pod release and unrelated primary workspace unchanged."
+}

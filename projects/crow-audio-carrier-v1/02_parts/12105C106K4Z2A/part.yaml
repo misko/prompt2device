@@ -1,0 +1,23 @@
+mpn: 12105C106K4Z2A
+manufacturer: Kyocera AVX
+type: ceramic_capacitor
+value: 10uF
+status: active
+datasheet:
+  doc_id: 12105C106K4Z2A
+  revision: '2025-08-12'
+  url: https://spicat.kyocera-avx.com/datasheet/12105C106K4Z2A
+  local: Kyocera_AVX_12105C106K4Z2A_20260908.pdf
+  sha256: a0c8f8cbf9da904596c7e5423238ff21f926400eefe9bea7f454bae22a7ebd56
+  fetched: '2026-09-08'
+  pages: 3
+  note: p1 exact 1210 10uF +/-10%, 50V X7R FLEXITERM identity, dimensions and specified test conditions; pp1-2 plots are typical, not guaranteed effective capacitance. Updated 12.08.2025. Captured public product data identifies this as historical PN and names KAF32LR71H106KU; no substitution is authorized.
+  provenance: Manufacturer-authored PDF independently inspected from exact captured bytes on 2026-09-08; copied unchanged into this carrier dossier. Original public manufacturer endpoint https://spicat.kyocera-avx.com/datasheet/12105C106K4Z2A; immutable capture provenance retained in the 2026-09-08 authority-source packet. Local binding is not independent pin/footprint review, sourcing allocation, approval sheet, physical qualification or order release.
+package: "1210 (3225 metric) FLEXITERM"
+footprint: Capacitor_SMD:C_1210_3225Metric
+escape: {style: passive, pitch: 1.0, tier_required: jlc_2layer_default, checked: "exact 1210 identity reviewed 2026-09-01"}
+pins: {1: A, 2: B}
+limits: {capacitance_f: 0.00001, tolerance_pct: 10, voltage_v: 50, dielectric: X7R}
+asserts: [{assert: value, equals: 10u, tolerance_pct: 10, why: "Three exact capacitors form the derated AP63205 input bank."}]
+verified: "Exact Kyocera AVX MPN/code/package/value/voltage/dielectric match read from the LCSC exact-product record on 2026-09-01; effective capacitance remains governed by power_tree.yaml."
+sourcing: {lcsc: C597579, alternates: []}

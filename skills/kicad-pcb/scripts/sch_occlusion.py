@@ -607,8 +607,32 @@ def parse_sheet(stxt):
 
     for m in _RE_OTHER_LABEL.finditer(body):
         total += 1
-        unmodelled.append(f"{m.group(1)} {m.group(2)!r}: this model places "
-                          f"global_label only")
+        kind, caption = m.group(1), m.group(2)
+        # KiCad 10.0.4 SVG measurements: plain 1.27 mm free text is 0.2500 mm
+        # ABOVE the equivalent property anchor. Other sizes are unmodelled.
+        # Free schematic text uses the independently measured property glyph
+        # metrics when its angle/font/justification match that measured class.
+        if kind == "text":
+            block = _block(body[m.start():], "(text") or ""
+            at = re.search(r"\(at ([-\d.]+) ([-\d.]+) (\d+)\)", block)
+            font = re.search(r"\(font \(size ([\d.]+) ([\d.]+)\)", block)
+            jm = re.search(r"\(justify ([\w ]+)\)", block)
+            just = jm.group(1) if jm else None
+            effects = _block(block, "(effects") or ""
+            plain = re.fullmatch(r"\(effects\s+\(font\s+\(size [\d.]+ [\d.]+\)\)(?:\s+\(justify (?:left|right)\))?\)", effects)
+            if (plain and "(mirror" not in block and at and font
+                    and float(font.group(1)) == 1.27 and at.group(3) == "0"
+                    and font.group(1) == font.group(2)
+                    and just in (None, "left", "right")
+                    and not unmeasured(caption)):
+                box = prop_box(caption, float(at.group(1)),
+                               float(at.group(2)) - 0.25, 1.27, just)
+                texts.append((box, f"text {caption}", None, None))
+                continue
+            unmodelled.append(f"text {caption!r}: unsupported text geometry")
+        else:
+            unmodelled.append(f"{kind} {caption!r}: this model places "
+                              f"global_label only among label classes")
 
     for im in _RE_INST.finditer(body):
         total += 1
@@ -696,17 +720,15 @@ def occlusions(stxt):
             if boxes_overlap(tb, ob):
                 found.add((td, od))
         for (p, q), od, oowner in segs:
-            if towner is not None and towner == oowner:
-                continue
+            # Pin/glyph conductors occlude text even when the owner matches.
             # A LABEL'S OWN ATTACHMENT IS NOT AN OCCLUSION, and for a wire that
             # is a DIFFERENT geometry from the pin case above. A global_label
             # attaches at a wire END, and the plate starts at that same point,
             # so a wire arriving along the plate's axis lies on its BASE EDGE —
             # 1.27 mm of it on the shipped `label_sides_v` fixture, where the
             # pin case abuts at exactly 0 because the pin is perpendicular.
-            # This is the same exclusion `towner == oowner` makes for a symbol's
-            # own Reference, applied to the one other object a label is
-            # definitionally attached to.
+            # This endpoint attachment convention is specific to labels.
+            # A Reference/Value has no comparable conductor attachment.
             # THE ANCHOR MUST BE THE WIRE'S ENDPOINT, NOT MERELY ON IT: a plate
             # anchored MID-SPAN has its own conductor drawn straight through the
             # name from both sides, which is a real defect and is exactly the

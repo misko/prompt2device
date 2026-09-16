@@ -568,6 +568,11 @@ def read_copper(path):
     (x,y)). Lengths are CENTRELINE. Nothing here consults pcbnew.
     """
     text = Path(path).read_text(encoding="utf-8-sig", errors="replace")
+    return read_copper_text(text, path)
+
+
+def read_copper_text(text, path="<analysis>"):
+    """Same copper adapter for already-decoded text; no board-file mutation."""
     nets = {}
 
     def slot(n):
@@ -724,7 +729,9 @@ def read_pad_shapes(text):
                 "shape": head.group(3),
                 "x": fx + px * ca + py * sa,
                 "y": fy - px * sa + py * ca,
-                "angle": fa + pa,
+                # Native KiCad serializes pad orientation in board coordinates;
+                # adding footprint orientation again invents a false land axis.
+                "angle": pa,
                 "sx": float(sm.group(1)), "sy": float(sm.group(2)),
                 "layers": layers,
             })
@@ -1183,13 +1190,16 @@ def grade_declared_paths(gname, decl, row, nets, layer_order, pad_shapes,
 
     members = list(decl["members"])
     ids = [p["id"] for p in decl["paths"][members[0]]]
-    spreads, tol = [], decl.get("max_spread_mm", "report")
+    spreads, default_tol = [], decl.get("max_spread_mm", "report")
+    path_tols = decl.get("path_max_spread_mm") or {}
     for path_id in ids:
         vals = {m: next(p["length_mm"] for p in path_rows
                         if p["member"] == m and p["id"] == path_id)
                 for m in members}
         spread = max(vals.values()) - min(vals.values())
-        spreads.append({"id": path_id, "members": vals, "spread_mm": spread})
+        tol = path_tols.get(path_id, default_tol)
+        spreads.append({"id": path_id, "members": vals,
+                        "spread_mm": spread, "max_spread_mm": tol})
         if tol != "report" and spread > float(tol) + 1e-9:
             row["verdict"] = "FAIL"
             res["fails"].append(
@@ -1338,6 +1348,18 @@ def load_groups(proj):
                 raise AuditError(
                     f"{p}: length_match.{g}.paths must use identical ordered "
                     f"path ids for every member, got {ids_by_member}")
+            path_tols = d.get("path_max_spread_mm")
+            if path_tols is not None:
+                if not isinstance(path_tols, dict) or set(path_tols) != set(first):
+                    raise AuditError(
+                        f"{p}: length_match.{g}.path_max_spread_mm must name "
+                        f"exactly the declared path ids {first}")
+                for path_id, path_tol in path_tols.items():
+                    if path_tol != "report" and not isinstance(path_tol, (int, float)):
+                        raise AuditError(
+                            f"{p}: length_match.{g}.path_max_spread_mm."
+                            f"{path_id} must be a number or the literal `report`, "
+                            f"got {path_tol!r}")
         pin = d.get("pin")
         if pin is not None:
             if not isinstance(pin, dict) or "spread_mm" not in pin \
@@ -1365,33 +1387,41 @@ def find_board(proj, override=None):
 
 
 # ================================================== the octilinear floor check
-def route_recipe(proj):
-    """(has_length_match, path) for 03_src/route.yaml — does the ROUTE RECIPE
-    actually ask for length matching anywhere (common or any wave)?
+def route_recipe(proj, group_name):
+    """Return the executable length mechanism for ``group_name``, if any.
 
-    This is the only place this gate reads the route config, and it reads it
-    for exactly one reason: `elongation: meander` is a claim about the RECIPE,
-    and a claim whose mechanism is absent is decoration. Until 2026-07-29 the
-    mechanism could not be written down at all — `length_match_group` was not
-    in route_and_stitch_generic's `_KRT_FLAGMAP`, so a board that needed it
-    had to be routed by hand.
+    Router-native ``length_match_group`` remains supported. Endpoint-path
+    designs may instead declare exact, collision-screened canonical edits.
+    That declaration is accepted only when the named group has a tagged edit
+    and the canonical pass is active.
     """
     p = Path(proj) / "03_src" / "route.yaml"
     if not p.is_file():
-        return False, p
+        return None, p
     try:
         doc = yaml.safe_load(p.read_text(encoding="utf-8-sig")) or {}
     except Exception:
-        return False, p
-    r = doc.get("route") or {}
-    blocks = [r.get("common") or {}] + list(r.get("waves") or [])
-    for b in blocks:
-        if isinstance(b, dict) and b.get("length_match_group"):
-            return True, p
-    return False, p
+        return None, p
+    route = doc.get("route") or {}
+    blocks = [route.get("common") or {}] + list(route.get("waves") or [])
+    for block in blocks:
+        if isinstance(block, dict) and block.get("length_match_group"):
+            return "length_match_group", p
+    stitch = doc.get("stitch") or {}
+    exact = stitch.get("endpoint_length_matching") or {}
+    passes = stitch.get("passes") or []
+    edits = ((stitch.get("canonicalize_chains") or {}).get("edits") or [])
+    tagged = any(isinstance(edit, dict) and edit.get("group") == group_name
+                 for edit in edits)
+    if (exact.get("mechanism") == "canonicalize_chains"
+            and exact.get("verification") == "copper_length_audit"
+            and group_name in (exact.get("groups") or [])
+            and "canonicalize_chains" in passes and tagged):
+        return "endpoint_length_matching/canonicalize_chains", p
+    return None, p
 
 
-def grade_octilinear(gname, d, pads, recipe, row, res):
+def grade_octilinear(proj, gname, d, pads, row, res):
     """R-LEN-OCT: is the declared ceiling reachable by an OCTILINEAR router?
 
     Pads only — no copper, no stackup, no router run. See the module docstring
@@ -1449,19 +1479,20 @@ def grade_octilinear(gname, d, pads, recipe, row, res):
             f"03_src/route.yaml so short members are deliberately lengthened.")
         return
 
-    has_lm, rp = recipe
-    if not has_lm:
+    mechanism, rp = route_recipe(proj, gname)
+    if not mechanism:
         row["verdict"] = "FAIL"
         res["fails"].append(
             f"R-LEN-OCT-RECIPE [{gname}] {detail}, and the group declares "
             f"`elongation: meander` — but {rp} carries no "
-            f"`length_match_group` in route.common or any wave, so NOTHING "
+            f"executable `length_match_group` or tagged endpoint-length "
+            f"recipe, so NOTHING "
             f"lengthens the short members and the ceiling is unreachable "
             f"anyway. A claim about the recipe is worth the recipe behind it.")
         return
     row["oct_why"] = (
         f"{detail} — accepted because `elongation: meander` is declared and "
-        f"{rp.name} carries a length_match_group, so the short members are "
+        f"{rp.name} carries executable {mechanism}, so the short members are "
         f"deliberately lengthened. The realized spread below is the check "
         f"that the elongation actually happened.")
 
@@ -1561,8 +1592,6 @@ def grade(proj, board_override=None):
     pads = read_pads(text)
     pad_shapes = read_pad_shapes(text)
     plated_pads = read_plated_pads(text)
-    recipe = route_recipe(proj)
-
     for gname, d in groups.items():
         stack = d.get("stackup_mm")
         tol = d.get("max_spread_mm", "report")
@@ -1576,7 +1605,7 @@ def grade(proj, board_override=None):
         # the whole point (canon M-ENTRY: check the fact where it ENTERS).
         # It is deliberately ahead of every copper early-return below, so a
         # sub-floor ceiling FAILS on a board with no tracks at all.
-        grade_octilinear(gname, d, pads, recipe, row, res)
+        grade_octilinear(proj, gname, d, pads, row, res)
         ghosts = []
         for mname, chain in d["members"].items():
             res["n_member"] += 1

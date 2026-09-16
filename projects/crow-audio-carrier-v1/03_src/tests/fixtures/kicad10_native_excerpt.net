@@ -1,0 +1,66 @@
+(export
+  (version "E")
+  (design
+    (source "/fixture/crow_mic_pod_v3.kicad_sch")
+    (date "2026-09-01T18:41:32")
+    (tool "Eeschema 10.0.4-10.0.4~ubuntu24.04.1")
+  )
+  (components
+    (comp
+      (ref "J1")
+      (value "43650-0400")
+      (footprint "crow_mic_pod_v3:Molex_Micro-Fit_3.0_43650-0400_1x04_P3.00mm_Horizontal")
+      (fields
+        (field (name "Footprint") "crow_mic_pod_v3:Molex_Micro-Fit_3.0_43650-0400_1x04_P3.00mm_Horizontal")
+      )
+      (libsource (lib "elt") (part "SYM_J1") (description ""))
+      (property (name "Sheetname") (value "Root"))
+      (property (name "Sheetfile") (value "04_kicad/crow_mic_pod_v3.kicad_sch"))
+      (sheetpath (names "/") (tstamps "/"))
+      (tstamps "4646339c-998a-46b8-8829-788cd7203c35")
+      (units
+        (unit
+          (name "A")
+          (pins (pin (num "1")) (pin (num "2")) (pin (num "3")) (pin (num "4")))
+        )
+      )
+    )
+    (comp
+      (ref "R13")
+      (value "33R")
+      (footprint "Resistor_SMD:R_0402_1005Metric")
+      (fields (field (name "Footprint") "Resistor_SMD:R_0402_1005Metric"))
+      (libsource (lib "elt") (part "SYM_R13") (description ""))
+      (sheetpath (names "/") (tstamps "/"))
+      (tstamps "23d902e0-68c2-438d-b82e-e35994f449ff")
+    )
+  )
+  (nets
+    (net
+      (code "3")
+      (name "12V_POD")
+      (class "Default")
+      (node (ref "J1") (pin "1") (pinfunction "12V_POD_1") (pintype "passive"))
+    )
+    (net
+      (code "4")
+      (name "AUDIO_N")
+      (class "Default")
+      (node (ref "J1") (pin "4") (pinfunction "AUDIO_N_4") (pintype "passive"))
+      (node (ref "R13") (pin "2") (pintype "passive"))
+    )
+    (net
+      (code "5")
+      (name "AUDIO_P")
+      (class "Default")
+      (node (ref "J1") (pin "3") (pinfunction "AUDIO_P_3") (pintype "passive"))
+    )
+    (net
+      (code "6")
+      (name "GND")
+      (class "Default")
+      (node (ref "J1") (pin "2") (pinfunction "GND_2") (pintype "passive"))
+      (node (ref "R13") (pin "1") (pintype "passive"))
+    )
+  )
+)

@@ -1,0 +1,220 @@
+{
+  "schema": 1,
+  "status": "REJECTED-INCOMPLETE",
+  "source_commit": "817bc8745138a48f07890a2c254b744d208394c5",
+  "archive": "4d7a7644639236e0aa2bdfa2032354a4c5e8483b2db910bd499179fbd50a86d2.tar.gz",
+  "archive_sha256": "4d7a7644639236e0aa2bdfa2032354a4c5e8483b2db910bd499179fbd50a86d2",
+  "count": 35,
+  "members": [
+    {
+      "member": "author-final/agent_handoff.yaml",
+      "original_path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/06_build/agent_handoff.yaml",
+      "size": 5468,
+      "sha256": "05a35ac702bdaf596c988aa1b832a0e3cfaf3113114115ff3e7bdf54a31db913"
+    },
+    {
+      "member": "author-final/compact-handoff.log",
+      "original_path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/01_docs/evidence/pland-backtrack-20260910/compact-handoff.log",
+      "size": 332,
+      "sha256": "836e419f2db00a9ecdb2168ddb258d22cb32f0a279bc839a35b5585ce84c97aa"
+    },
+    {
+      "member": "author-final/compact-validate.log",
+      "original_path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/01_docs/evidence/pland-backtrack-20260910/compact-validate.log",
+      "size": 279,
+      "sha256": "274beea7e93558bad2a564ec7f4da9e46c3c8b2d1bcf249aadb2d30c2f51d36f"
+    },
+    {
+      "member": "author-final/current-board-incomplete.log",
+      "original_path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/01_docs/evidence/pland-backtrack-20260910/current-board-incomplete.log",
+      "size": 814,
+      "sha256": "56830e20727330d36935be933bb6a69f3ff3eb750274cd2f9711bc4469902bab"
+    },
+    {
+      "member": "author-final/method-author-result.md",
+      "original_path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/01_docs/evidence/pland-backtrack-20260910/method-author-result.md",
+      "size": 2071,
+      "sha256": "772d6ce9535ecf589a54e3e77e99faafa4429ef1d048fb7da43db54fede97517"
+    },
+    {
+      "member": "author-final/method-green-target-incomplete.log",
+      "original_path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/01_docs/evidence/pland-backtrack-20260910/method-green-target-incomplete.log",
+      "size": 295,
+      "sha256": "9d6f7d3fec7093c705ace6d8fb279269b891676407dcedcd172e9c6596b6bd0d"
+    },
+    {
+      "member": "author-final/method-patch.diff",
+      "original_path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/01_docs/evidence/pland-backtrack-20260910/method-patch.diff",
+      "size": 18203,
+      "sha256": "5e787532f270593bcef05a0c3ca9d32dc746835f0aa6b8dda928e29fb253667b"
+    },
+    {
+      "member": "author-final/method-red-result.json",
+      "original_path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/01_docs/evidence/pland-backtrack-20260910/method-red-result.json",
+      "size": 513,
+      "sha256": "b31025aa720f3e4ee4a9cade69336019538c5f36b5cc9ce492dfec09e65ef07b"
+    },
+    {
+      "member": "author-final/method-red.log",
+      "original_path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/01_docs/evidence/pland-backtrack-20260910/method-red.log",
+      "size": 5735,
+      "sha256": "f4ce01ea3804cb186c1221bfdaef5836c8e6f9b6348a4c6ae49365cee0477f3c"
+    },
+    {
+      "member": "author-final/method-tests-result.json",
+      "original_path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/01_docs/evidence/pland-backtrack-20260910/method-tests-result.json",
+      "size": 373,
+      "sha256": "c9617c5614e825d736d7861588a1de0680839cc771a5a3d0c6a2d36c910f56a1"
+    },
+    {
+      "member": "author-final/method-tests.log",
+      "original_path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/01_docs/evidence/pland-backtrack-20260910/method-tests.log",
+      "size": 9574,
+      "sha256": "31a27a5f773ea7c653bc6ee91fb9d9bff4789f0318b28c45704eeff0f9c37820"
+    },
+    {
+      "member": "author-private/compact-handoff.log",
+      "original_path": "/tmp/pland-method-20260910T200736Z/compact-handoff.log",
+      "size": 332,
+      "sha256": "836e419f2db00a9ecdb2168ddb258d22cb32f0a279bc839a35b5585ce84c97aa"
+    },
+    {
+      "member": "author-private/compact-validate.log",
+      "original_path": "/tmp/pland-method-20260910T200736Z/compact-validate.log",
+      "size": 279,
+      "sha256": "274beea7e93558bad2a564ec7f4da9e46c3c8b2d1bcf249aadb2d30c2f51d36f"
+    },
+    {
+      "member": "author-private/current-board.log",
+      "original_path": "/tmp/pland-method-20260910T200736Z/current-board.log",
+      "size": 814,
+      "sha256": "56830e20727330d36935be933bb6a69f3ff3eb750274cd2f9711bc4469902bab"
+    },
+    {
+      "member": "author-private/escape_check-prefix.py",
+      "original_path": "/tmp/pland-method-20260910T200736Z/escape_check-prefix.py",
+      "size": 47842,
+      "sha256": "cb0d0cf6cb593b5f231fa372920e7dc6adf10bce95c0d734fac0900d3fd3ddf3"
+    },
+    {
+      "member": "author-private/method-green-target.log",
+      "original_path": "/tmp/pland-method-20260910T200736Z/method-green-target.log",
+      "size": 295,
+      "sha256": "9d6f7d3fec7093c705ace6d8fb279269b891676407dcedcd172e9c6596b6bd0d"
+    },
+    {
+      "member": "author-private/method-red.log",
+      "original_path": "/tmp/pland-method-20260910T200736Z/method-red.log",
+      "size": 5735,
+      "sha256": "f4ce01ea3804cb186c1221bfdaef5836c8e6f9b6348a4c6ae49365cee0477f3c"
+    },
+    {
+      "member": "author-private/method-tests.log",
+      "original_path": "/tmp/pland-method-20260910T200736Z/method-tests.log",
+      "size": 9574,
+      "sha256": "31a27a5f773ea7c653bc6ee91fb9d9bff4789f0318b28c45704eeff0f9c37820"
+    },
+    {
+      "member": "commission/TASK.md",
+      "original_path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/06_build/handoffs/pland-method-20260910T200736Z/TASK.md",
+      "size": 9147,
+      "sha256": "b232225bd33d0b020c72da41f11421e7e84c970d84c685b3a533496d3264d37e"
+    },
+    {
+      "member": "commission/beacon.md",
+      "original_path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/06_build/handoffs/pland-method-20260910T200736Z/beacon.md",
+      "size": 523,
+      "sha256": "4a6677954d822e10688cc563b781ec0786c7153a6dc03a81b43c8ac220e6f7da"
+    },
+    {
+      "member": "commission/flow.yaml",
+      "original_path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/06_build/handoffs/pland-method-20260910T200736Z/flow.yaml",
+      "size": 5608,
+      "sha256": "0d583d6fffebca07926800ac9cfb1a10113cacc8fb6e189fc62222de14a48d37"
+    },
+    {
+      "member": "commission/journal-tail.md",
+      "original_path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/06_build/handoffs/pland-method-20260910T200736Z/journal-tail.md",
+      "size": 1029,
+      "sha256": "c20fb350c729e615f494d7e2e8476e2e77972037433d509cabc069283923d5a4"
+    },
+    {
+      "member": "commission/source-correction.md",
+      "original_path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/06_build/handoffs/pland-method-20260910T200736Z/source-correction.md",
+      "size": 2729,
+      "sha256": "66b29510f9fd381193c80055293f7b9f6231f8fcd77e09c2e65a07276573c052"
+    },
+    {
+      "member": "commission/task-envelope.json",
+      "original_path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/06_build/handoffs/pland-method-20260910T200736Z/task-envelope.json",
+      "size": 125153,
+      "sha256": "895d84b3f54acf632abc294526c3aaeb8cc0c19c91b566d8a1249af5a462f7c3"
+    },
+    {
+      "member": "coordinator/current-board.log",
+      "original_path": "/tmp/carrier-pland-method-adjudication-20260910/current-board.log",
+      "size": 814,
+      "sha256": "56830e20727330d36935be933bb6a69f3ff3eb750274cd2f9711bc4469902bab"
+    },
+    {
+      "member": "coordinator/escape_check-prefix.py",
+      "original_path": "/tmp/carrier-pland-method-adjudication-20260910/escape_check-prefix.py",
+      "size": 47842,
+      "sha256": "cb0d0cf6cb593b5f231fa372920e7dc6adf10bce95c0d734fac0900d3fd3ddf3"
+    },
+    {
+      "member": "coordinator/escape_check.py",
+      "original_path": "/tmp/carrier-pland-method-adjudication-20260910/escape_check.py",
+      "size": 54277,
+      "sha256": "ed65eade9ff89c8bf012b416e7d28ae7e27b6f0c3e9692553ad7e10e14db73b7"
+    },
+    {
+      "member": "coordinator/manifest.json",
+      "original_path": "/tmp/carrier-pland-method-adjudication-20260910/manifest.json",
+      "size": 1032,
+      "sha256": "6f5ba88bc0df10ef4dc66503b57cc2c327f7d7f186da20016ad914a54ac2299c"
+    },
+    {
+      "member": "coordinator/method-green-target.log",
+      "original_path": "/tmp/carrier-pland-method-adjudication-20260910/method-green-target.log",
+      "size": 295,
+      "sha256": "9d6f7d3fec7093c705ace6d8fb279269b891676407dcedcd172e9c6596b6bd0d"
+    },
+    {
+      "member": "coordinator/method-patch.diff",
+      "original_path": "/tmp/carrier-pland-method-adjudication-20260910/method-patch.diff",
+      "size": 18203,
+      "sha256": "5e787532f270593bcef05a0c3ca9d32dc746835f0aa6b8dda928e29fb253667b"
+    },
+    {
+      "member": "coordinator/method-red.log",
+      "original_path": "/tmp/carrier-pland-method-adjudication-20260910/method-red.log",
+      "size": 5735,
+      "sha256": "f4ce01ea3804cb186c1221bfdaef5836c8e6f9b6348a4c6ae49365cee0477f3c"
+    },
+    {
+      "member": "coordinator/method-tests.log",
+      "original_path": "/tmp/carrier-pland-method-adjudication-20260910/method-tests.log",
+      "size": 9574,
+      "sha256": "31a27a5f773ea7c653bc6ee91fb9d9bff4789f0318b28c45704eeff0f9c37820"
+    },
+    {
+      "member": "coordinator/root-adjudication.md",
+      "original_path": "/tmp/carrier-pland-method-adjudication-20260910/root-adjudication.md",
+      "size": 3160,
+      "sha256": "cb7f215b8152bc5dc4551f8369b833a8f94136c990cad13411afb9b9598392b5"
+    },
+    {
+      "member": "coordinator/root-mutation-audit.json",
+      "original_path": "/tmp/carrier-pland-method-adjudication-20260910/root-mutation-audit.json",
+      "size": 875,
+      "sha256": "0f223268e655b9e72d34af7715276d7b5549f15898fce3cfb56def7e899d9677"
+    },
+    {
+      "member": "coordinator/t1_escape_tier.py",
+      "original_path": "/tmp/carrier-pland-method-adjudication-20260910/t1_escape_tier.py",
+      "size": 77184,
+      "sha256": "9042234033d8d7dc3547dd35b0811bd48428f884a29672ee10ef5892c05ec9e1"
+    }
+  ]
+}

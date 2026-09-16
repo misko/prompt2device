@@ -1,0 +1,565 @@
+{
+  "kind": "source-backtrack-observations-not-acceptance",
+  "source_commit": "f04370b66f829ca85ae108009b0e678cf51f8358",
+  "commands": [
+    {
+      "id": "root-wslp-model-red-20260909-f04370b6-r1",
+      "result": {
+        "command": [
+          "/usr/bin/python3",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "projects/crow-audio-carrier-v1/03_src/tests",
+          "-p",
+          "test_package_models.py",
+          "-v"
+        ],
+        "cwd": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901",
+        "started_at": "2026-09-09T06:34:35.823950+00:00",
+        "finished_at": "2026-09-09T06:34:36.024232+00:00",
+        "returncode": 1,
+        "elapsed_s": 0.19907790701836348,
+        "timed_out": false,
+        "cancelled": false,
+        "log_sha256": "b387b24522e3e736bf5b70cc9c1bf829c80fdd760a3979a363b1180a0d634e45"
+      },
+      "log": "test_independent_body_dimensions (test_package_models.ModelTests.test_independent_body_dimensions) ... \n  test_independent_body_dimensions (test_package_models.ModelTests.test_independent_body_dimensions) (name='Vishay_WSLP1206_50m_nominal.wrl') ... ERROR\ntest_independent_terminal_geometry (test_package_models.ModelTests.test_independent_terminal_geometry) ... ok\ntest_kicad_library_reopen (test_package_models.ModelTests.test_kicad_library_reopen) ... ./kicad/include/properties/property.h(607): assert \"m_choices.GetCount() > 0\" failed in PROPERTY_ENUM(): No enum choices defined\n./kicad/include/properties/property.h(607): assert \"m_choices.GetCount() > 0\" failed in PROPERTY_ENUM(): No enum choices defined\n./kicad/include/properties/property.h(607): assert \"m_choices.GetCount() > 0\" failed in PROPERTY_ENUM(): No enum choices defined\n/usr/lib/python3/dist-packages/pcbnew.py:63: DeprecationWarning: The SWIG-based Python interface to the PCB editor is deprecated and will be removed in a future version of KiCad.  Please plan to move to the new IPC API and/or make use of the kicad-cli tool for your KiCad automation needs.\n  warnings.warn(\"The SWIG-based Python interface to the PCB editor is deprecated and will be removed \"\nFAIL\ntest_nonmodel_projection_rejects_pad_edit (test_package_models.ModelTests.test_nonmodel_projection_rejects_pad_edit) ... ok\ntest_reproducible (test_package_models.ModelTests.test_reproducible) ... FAIL\ntest_transform_known_bad_y_mirror_and_unit_scale (test_package_models.ModelTests.test_transform_known_bad_y_mirror_and_unit_scale) ... ok\ntest_wslp_model_attachment_is_identity_and_preserves_land (test_package_models.ModelTests.test_wslp_model_attachment_is_identity_and_preserves_land) ... FAIL\ntest_wslp_nominal_terminals_and_rotation_registration (test_package_models.ModelTests.test_wslp_nominal_terminals_and_rotation_registration) ... ERROR\n\n======================================================================\nERROR: test_independent_body_dimensions (test_package_models.ModelTests.test_independent_body_dimensions) (name='Vishay_WSLP1206_50m_nominal.wrl')\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/03_src/tests/test_package_models.py\", line 84, in test_independent_body_dimensions\n    actual=bounds([p for poly in solids(LIB/'derived'/name).values() for p in poly])\n                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/03_src/tests/test_package_models.py\", line 26, in solids\n    for name,body in re.findall(r'# solid (\\S+)\\n(.*?)(?=# solid |\\Z)',path.read_text(),re.S):\n                                                                       ^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/pathlib.py\", line 1029, in read_text\n    with self.open(mode='r', encoding=encoding, errors=errors) as f:\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/pathlib.py\", line 1015, in open\n    return io.open(self, mode, buffering, encoding, errors, newline)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nFileNotFoundError: [Errno 2] No such file or directory: '/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/derived/Vishay_WSLP1206_50m_nominal.wrl'\n\n======================================================================\nERROR: test_wslp_nominal_terminals_and_rotation_registration (test_package_models.ModelTests.test_wslp_nominal_terminals_and_rotation_registration)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/03_src/tests/test_package_models.py\", line 135, in test_wslp_nominal_terminals_and_rotation_registration\n    data=solids(LIB/'derived/Vishay_WSLP1206_50m_nominal.wrl')\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/03_src/tests/test_package_models.py\", line 26, in solids\n    for name,body in re.findall(r'# solid (\\S+)\\n(.*?)(?=# solid |\\Z)',path.read_text(),re.S):\n                                                                       ^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/pathlib.py\", line 1029, in read_text\n    with self.open(mode='r', encoding=encoding, errors=errors) as f:\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/pathlib.py\", line 1015, in open\n    return io.open(self, mode, buffering, encoding, errors, newline)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nFileNotFoundError: [Errno 2] No such file or directory: '/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/derived/Vishay_WSLP1206_50m_nominal.wrl'\n\n======================================================================\nFAIL: test_kicad_library_reopen (test_package_models.ModelTests.test_kicad_library_reopen)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/03_src/tests/test_package_models.py\", line 197, in test_kicad_library_reopen\n    self.assertIsNotNone(fp);self.assertEqual(len(list(fp.Models())),1)\n                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 0 != 1\n\n======================================================================\nFAIL: test_reproducible (test_package_models.ModelTests.test_reproducible)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/03_src/tests/test_package_models.py\", line 66, in test_reproducible\n    self.assertEqual(len(files),10)\nAssertionError: 9 != 10\n\n======================================================================\nFAIL: test_wslp_model_attachment_is_identity_and_preserves_land (test_package_models.ModelTests.test_wslp_model_attachment_is_identity_and_preserves_land)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/03_src/tests/test_package_models.py\", line 177, in test_wslp_model_attachment_is_identity_and_preserves_land\n    self.assertEqual(len(model),1)\nAssertionError: 0 != 1\n\n----------------------------------------------------------------------\nRan 8 tests in 0.150s\n\nFAILED (failures=3, errors=2)\n"
+    },
+    {
+      "id": "root-wslp-model-generate-20260909-f04370b6-r1",
+      "result": {
+        "command": [
+          "/usr/bin/python3",
+          "projects/crow-audio-carrier-v1/03_src/build_package_models.py"
+        ],
+        "cwd": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901",
+        "started_at": "2026-09-09T06:35:45.261582+00:00",
+        "finished_at": "2026-09-09T06:35:45.294358+00:00",
+        "returncode": 0,
+        "elapsed_s": 0.031589429127052426,
+        "timed_out": false,
+        "cancelled": false,
+        "log_sha256": "63f496071ac7bc9bb1b54aa07a997a2cf63d8e879c50c334929bf8a30f0d885f"
+      },
+      "log": "ab2e205855dcf71a0663cbd021ff2cddd284a980d338753ffb54dd726409c1ce TI_DSE0006A_nominal.wrl\n0efc4d267f4b25c433f509251759baab99611db311ca31b3f60ae180c3beb1fe TI_DSG0008A_nominal.wrl\n9d417d764c7852d0891bb22f6cdc2bdf9d6daa25efd481f9242bc271776e4d5e TI_DSK0010A_nominal.wrl\n524842aeb15f39c3fbefa14588adf985784f2df4d93fb0812d0779ae22f87135 Cirrus_CS5308P_QFN48_nominal.wrl\n7bad54018ac4dc4a88aefcfd22ea77252a562697b913a4b19abfe49bde13231d Coilcraft_XGL4020_nominal.wrl\nedd6c3054b944bb9436d3943f1b5da78396621e59065dde98e828219fa62cde9 Littelfuse_1812L035_60_max-envelope.wrl\n8e7369b50eb9d507764e7758dd2e03ece1e7c763da5872989afe98be15f1b37c Littelfuse_2920L260_33_max-envelope.wrl\n1898c19f8167f889fe72207b1bcb59b8e67031542f7d4436a25e229e36ac8995 Molex_43650-0400_conservative-envelope.wrl\n13bd6a14380cc05be57c8f88c38544ac5874d080fd964b6373bcf330e30d802a Molex_43650-0200_conservative-envelope.wrl\nb11845f0e20c69fec2b29a2b1a5f13ee76a6d37b32aefcc31be140f6edd96c6c Vishay_WSLP1206_50m_nominal.wrl\n"
+    },
+    {
+      "id": "root-wslp-model-green-20260909-f04370b6-r1",
+      "result": {
+        "command": [
+          "/usr/bin/python3",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "projects/crow-audio-carrier-v1/03_src/tests",
+          "-p",
+          "test_package_models.py",
+          "-v"
+        ],
+        "cwd": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901",
+        "started_at": "2026-09-09T06:35:45.326489+00:00",
+        "finished_at": "2026-09-09T06:35:45.551642+00:00",
+        "returncode": 0,
+        "elapsed_s": 0.22370424610562623,
+        "timed_out": false,
+        "cancelled": false,
+        "log_sha256": "086b15cc1dc1608d2bc2c658ca01ca47f9f7275a4552fe5717832d78fdfc2319"
+      },
+      "log": "test_independent_body_dimensions (test_package_models.ModelTests.test_independent_body_dimensions) ... ok\ntest_independent_terminal_geometry (test_package_models.ModelTests.test_independent_terminal_geometry) ... ok\ntest_kicad_library_reopen (test_package_models.ModelTests.test_kicad_library_reopen) ... ./kicad/include/properties/property.h(607): assert \"m_choices.GetCount() > 0\" failed in PROPERTY_ENUM(): No enum choices defined\n./kicad/include/properties/property.h(607): assert \"m_choices.GetCount() > 0\" failed in PROPERTY_ENUM(): No enum choices defined\n./kicad/include/properties/property.h(607): assert \"m_choices.GetCount() > 0\" failed in PROPERTY_ENUM(): No enum choices defined\n/usr/lib/python3/dist-packages/pcbnew.py:63: DeprecationWarning: The SWIG-based Python interface to the PCB editor is deprecated and will be removed in a future version of KiCad.  Please plan to move to the new IPC API and/or make use of the kicad-cli tool for your KiCad automation needs.\n  warnings.warn(\"The SWIG-based Python interface to the PCB editor is deprecated and will be removed \"\nok\ntest_nonmodel_projection_rejects_pad_edit (test_package_models.ModelTests.test_nonmodel_projection_rejects_pad_edit) ... ok\ntest_reproducible (test_package_models.ModelTests.test_reproducible) ... ok\ntest_transform_known_bad_y_mirror_and_unit_scale (test_package_models.ModelTests.test_transform_known_bad_y_mirror_and_unit_scale) ... ok\ntest_wslp_model_attachment_is_identity_and_preserves_land (test_package_models.ModelTests.test_wslp_model_attachment_is_identity_and_preserves_land) ... ok\ntest_wslp_nominal_terminals_and_rotation_registration (test_package_models.ModelTests.test_wslp_nominal_terminals_and_rotation_registration) ... ok\n\n----------------------------------------------------------------------\nRan 8 tests in 0.157s\n\nOK\n"
+    },
+    {
+      "id": "root-wslp-native-coupon-20260909-f04370b6-r1",
+      "result": {
+        "command": [
+          "/usr/bin/python3",
+          "-B",
+          "/tmp/carrier-power-model-20260909.t5FTA9/model_coupon.py"
+        ],
+        "cwd": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901",
+        "started_at": "2026-09-09T06:37:37.846732+00:00",
+        "finished_at": "2026-09-09T06:37:43.913914+00:00",
+        "returncode": 0,
+        "elapsed_s": 6.065884698182344,
+        "timed_out": false,
+        "cancelled": false,
+        "log_sha256": "4eacdd0ff97b385909e3d1d0870f942f33eba33b513320cb2445d7b71ee615a8"
+      },
+      "log": "./kicad/include/properties/property.h(607): assert \"m_choices.GetCount() > 0\" failed in PROPERTY_ENUM(): No enum choices defined\n./kicad/include/properties/property.h(607): assert \"m_choices.GetCount() > 0\" failed in PROPERTY_ENUM(): No enum choices defined\n./kicad/include/properties/property.h(607): assert \"m_choices.GetCount() > 0\" failed in PROPERTY_ENUM(): No enum choices defined\nLoading\u2026\nBuild board outline\n\nCreate layers\nCreate tracks and vias\nCreate zones\nBuild Tech layers\nBuild Tech layer 11\nBuild Tech layer 9\nBuild Tech layer 15\nBuild Tech layer 13\nBuild Tech layer 7\nBuild Tech layer 5\nBuild Tech layer 3\nBuild Tech layer 1\nBuild Tech layer 17\nBuild Tech layer 19\nBuild Tech layer 21\nBuild Tech layer 23\nBuild Tech layer 39\nBuild Tech layer 41\nBuild Tech layer 43\nBuild Tech layer 45\nBuild Tech layer 47\nBuild Tech layer 49\nBuild Tech layer 51\nBuild Tech layer 53\nBuild Tech layer 55\nBuild Tech layer 57\nBuild Tech layer 59\nBuild Tech layer 61\nBuild Tech layer 63\nBuild Tech layer 65\nBuild Tech layer 67\nBuild Tech layer 69\nBuild Tech layer 71\nBuild Tech layer 73\nBuild Tech layer 75\nBuild Tech layer 77\nBuild Tech layer 79\nBuild Tech layer 81\nBuild Tech layer 83\nBuild Tech layer 85\nBuild Tech layer 87\nBuild Tech layer 89\nBuild Tech layer 91\nBuild Tech layer 93\nBuild Tech layer 95\nBuild Tech layer 97\nBuild Tech layer 99\nBuild Tech layer 101\nBuild Tech layer 103\nBuild Tech layer 105\nBuild Tech layer 107\nBuild Tech layer 109\nBuild Tech layer 111\nBuild Tech layer 113\nBuild Tech layer 115\nBuild Tech layer 117\nBuild Tech layer 119\nBuild Tech layer 121\nBuild Tech layer 123\nBuild Tech layer 125\nBuild Tech layer 127\nSimplifying copper layer polygons\nCalculating plated copper\nSimplify holes contours\nBuild BVH for holes and vias\nLoad Raytracing: board\nLoad Raytracing: layers\nLoading 3D models...\nReload time 0.036 s\nRendering: 100 %\nRendering time 0.151 s\nSuccessfully created 3D render image\nLoading\u2026\nBuild board outline\n\nCreate layers\nCreate tracks and vias\nCreate zones\nBuild Tech layers\nBuild Tech layer 11\nBuild Tech layer 9\nBuild Tech layer 15\nBuild Tech layer 13\nBuild Tech layer 7\nBuild Tech layer 5\nBuild Tech layer 3\nBuild Tech layer 1\nBuild Tech layer 17\nBuild Tech layer 19\nBuild Tech layer 21\nBuild Tech layer 23\nBuild Tech layer 39\nBuild Tech layer 41\nBuild Tech layer 43\nBuild Tech layer 45\nBuild Tech layer 47\nBuild Tech layer 49\nBuild Tech layer 51\nBuild Tech layer 53\nBuild Tech layer 55\nBuild Tech layer 57\nBuild Tech layer 59\nBuild Tech layer 61\nBuild Tech layer 63\nBuild Tech layer 65\nBuild Tech layer 67\nBuild Tech layer 69\nBuild Tech layer 71\nBuild Tech layer 73\nBuild Tech layer 75\nBuild Tech layer 77\nBuild Tech layer 79\nBuild Tech layer 81\nBuild Tech layer 83\nBuild Tech layer 85\nBuild Tech layer 87\nBuild Tech layer 89\nBuild Tech layer 91\nBuild Tech layer 93\nBuild Tech layer 95\nBuild Tech layer 97\nBuild Tech layer 99\nBuild Tech layer 101\nBuild Tech layer 103\nBuild Tech layer 105\nBuild Tech layer 107\nBuild Tech layer 109\nBuild Tech layer 111\nBuild Tech layer 113\nBuild Tech layer 115\nBuild Tech layer 117\nBuild Tech layer 119\nBuild Tech layer 121\nBuild Tech layer 123\nBuild Tech layer 125\nBuild Tech layer 127\nSimplifying copper layer polygons\nCalculating plated copper\nSimplify holes contours\nBuild BVH for holes and vias\nLoad Raytracing: board\nLoad Raytracing: layers\nLoading 3D models...\nReload time 0.033 s\nRendering: 100 %\nRendering time 0.045 s\nSuccessfully created 3D render image\nLoading\u2026\nBuild board outline\n\nCreate layers\nCreate tracks and vias\nCreate zones\nBuild Tech layers\nBuild Tech layer 11\nBuild Tech layer 9\nBuild Tech layer 15\nBuild Tech layer 13\nBuild Tech layer 7\nBuild Tech layer 5\nBuild Tech layer 3\nBuild Tech layer 1\nBuild Tech layer 17\nBuild Tech layer 19\nBuild Tech layer 21\nBuild Tech layer 23\nBuild Tech layer 39\nBuild Tech layer 41\nBuild Tech layer 43\nBuild Tech layer 45\nBuild Tech layer 47\nBuild Tech layer 49\nBuild Tech layer 51\nBuild Tech layer 53\nBuild Tech layer 55\nBuild Tech layer 57\nBuild Tech layer 59\nBuild Tech layer 61\nBuild Tech layer 63\nBuild Tech layer 65\nBuild Tech layer 67\nBuild Tech layer 69\nBuild Tech layer 71\nBuild Tech layer 73\nBuild Tech layer 75\nBuild Tech layer 77\nBuild Tech layer 79\nBuild Tech layer 81\nBuild Tech layer 83\nBuild Tech layer 85\nBuild Tech layer 87\nBuild Tech layer 89\nBuild Tech layer 91\nBuild Tech layer 93\nBuild Tech layer 95\nBuild Tech layer 97\nBuild Tech layer 99\nBuild Tech layer 101\nBuild Tech layer 103\nBuild Tech layer 105\nBuild Tech layer 107\nBuild Tech layer 109\nBuild Tech layer 111\nBuild Tech layer 113\nBuild Tech layer 115\nBuild Tech layer 117\nBuild Tech layer 119\nBuild Tech layer 121\nBuild Tech layer 123\nBuild Tech layer 125\nBuild Tech layer 127\nSimplifying copper layer polygons\nCalculating plated copper\nSimplify holes contours\nBuild BVH for holes and vias\nLoad Raytracing: board\nLoad Raytracing: layers\nLoading 3D models...\nReload time 0.034 s\nRendering: 100 %\nRendering time 0.044 s\nSuccessfully created 3D render image\nLoading\u2026\nBuild board outline\n\nCreate layers\nCreate tracks and vias\nCreate zones\nBuild Tech layers\nBuild Tech layer 11\nBuild Tech layer 9\nBuild Tech layer 15\nBuild Tech layer 13\nBuild Tech layer 7\nBuild Tech layer 5\nBuild Tech layer 3\nBuild Tech layer 1\nBuild Tech layer 17\nBuild Tech layer 19\nBuild Tech layer 21\nBuild Tech layer 23\nBuild Tech layer 39\nBuild Tech layer 41\nBuild Tech layer 43\nBuild Tech layer 45\nBuild Tech layer 47\nBuild Tech layer 49\nBuild Tech layer 51\nBuild Tech layer 53\nBuild Tech layer 55\nBuild Tech layer 57\nBuild Tech layer 59\nBuild Tech layer 61\nBuild Tech layer 63\nBuild Tech layer 65\nBuild Tech layer 67\nBuild Tech layer 69\nBuild Tech layer 71\nBuild Tech layer 73\nBuild Tech layer 75\nBuild Tech layer 77\nBuild Tech layer 79\nBuild Tech layer 81\nBuild Tech layer 83\nBuild Tech layer 85\nBuild Tech layer 87\nBuild Tech layer 89\nBuild Tech layer 91\nBuild Tech layer 93\nBuild Tech layer 95\nBuild Tech layer 97\nBuild Tech layer 99\nBuild Tech layer 101\nBuild Tech layer 103\nBuild Tech layer 105\nBuild Tech layer 107\nBuild Tech layer 109\nBuild Tech layer 111\nBuild Tech layer 113\nBuild Tech layer 115\nBuild Tech layer 117\nBuild Tech layer 119\nBuild Tech layer 121\nBuild Tech layer 123\nBuild Tech layer 125\nBuild Tech layer 127\nSimplifying copper layer polygons\nCalculating plated copper\nSimplify holes contours\nBuild BVH for holes and vias\nLoad Raytracing: board\nLoad Raytracing: layers\nLoading 3D models...\nReload time 0.035 s\nRendering: 100 %\nRendering time 0.151 s\nSuccessfully created 3D render image\nLoading\u2026\nBuild board outline\n\nCreate layers\nCreate tracks and vias\nCreate zones\nBuild Tech layers\nBuild Tech layer 11\nBuild Tech layer 9\nBuild Tech layer 15\nBuild Tech layer 13\nBuild Tech layer 7\nBuild Tech layer 5\nBuild Tech layer 3\nBuild Tech layer 1\nBuild Tech layer 17\nBuild Tech layer 19\nBuild Tech layer 21\nBuild Tech layer 23\nBuild Tech layer 39\nBuild Tech layer 41\nBuild Tech layer 43\nBuild Tech layer 45\nBuild Tech layer 47\nBuild Tech layer 49\nBuild Tech layer 51\nBuild Tech layer 53\nBuild Tech layer 55\nBuild Tech layer 57\nBuild Tech layer 59\nBuild Tech layer 61\nBuild Tech layer 63\nBuild Tech layer 65\nBuild Tech layer 67\nBuild Tech layer 69\nBuild Tech layer 71\nBuild Tech layer 73\nBuild Tech layer 75\nBuild Tech layer 77\nBuild Tech layer 79\nBuild Tech layer 81\nBuild Tech layer 83\nBuild Tech layer 85\nBuild Tech layer 87\nBuild Tech layer 89\nBuild Tech layer 91\nBuild Tech layer 93\nBuild Tech layer 95\nBuild Tech layer 97\nBuild Tech layer 99\nBuild Tech layer 101\nBuild Tech layer 103\nBuild Tech layer 105\nBuild Tech layer 107\nBuild Tech layer 109\nBuild Tech layer 111\nBuild Tech layer 113\nBuild Tech layer 115\nBuild Tech layer 117\nBuild Tech layer 119\nBuild Tech layer 121\nBuild Tech layer 123\nBuild Tech layer 125\nBuild Tech layer 127\nSimplifying copper layer polygons\nCalculating plated copper\nSimplify holes contours\nBuild BVH for holes and vias\nLoad Raytracing: board\nLoad Raytracing: layers\nLoading 3D models...\nReload time 0.035 s\nRendering: 100 %\nRendering time 0.158 s\nSuccessfully created 3D render image\nLoading\u2026\nBuild board outline\n\nCreate layers\nCreate tracks and vias\nCreate zones\nBuild Tech layers\nBuild Tech layer 11\nBuild Tech layer 9\nBuild Tech layer 15\nBuild Tech layer 13\nBuild Tech layer 7\nBuild Tech layer 5\nBuild Tech layer 3\nBuild Tech layer 1\nBuild Tech layer 17\nBuild Tech layer 19\nBuild Tech layer 21\nBuild Tech layer 23\nBuild Tech layer 39\nBuild Tech layer 41\nBuild Tech layer 43\nBuild Tech layer 45\nBuild Tech layer 47\nBuild Tech layer 49\nBuild Tech layer 51\nBuild Tech layer 53\nBuild Tech layer 55\nBuild Tech layer 57\nBuild Tech layer 59\nBuild Tech layer 61\nBuild Tech layer 63\nBuild Tech layer 65\nBuild Tech layer 67\nBuild Tech layer 69\nBuild Tech layer 71\nBuild Tech layer 73\nBuild Tech layer 75\nBuild Tech layer 77\nBuild Tech layer 79\nBuild Tech layer 81\nBuild Tech layer 83\nBuild Tech layer 85\nBuild Tech layer 87\nBuild Tech layer 89\nBuild Tech layer 91\nBuild Tech layer 93\nBuild Tech layer 95\nBuild Tech layer 97\nBuild Tech layer 99\nBuild Tech layer 101\nBuild Tech layer 103\nBuild Tech layer 105\nBuild Tech layer 107\nBuild Tech layer 109\nBuild Tech layer 111\nBuild Tech layer 113\nBuild Tech layer 115\nBuild Tech layer 117\nBuild Tech layer 119\nBuild Tech layer 121\nBuild Tech layer 123\nBuild Tech layer 125\nBuild Tech layer 127\nSimplifying copper layer polygons\nCalculating plated copper\nSimplify holes contours\nBuild BVH for holes and vias\nLoad Raytracing: board\nLoad Raytracing: layers\nLoading 3D models...\nReload time 0.034 s\nRendering: 100 %\nRendering time 0.041 s\nSuccessfully created 3D render image\nLoading\u2026\nBuild board outline\n\nCreate layers\nCreate tracks and vias\nCreate zones\nBuild Tech layers\nBuild Tech layer 11\nBuild Tech layer 9\nBuild Tech layer 15\nBuild Tech layer 13\nBuild Tech layer 7\nBuild Tech layer 5\nBuild Tech layer 3\nBuild Tech layer 1\nBuild Tech layer 17\nBuild Tech layer 19\nBuild Tech layer 21\nBuild Tech layer 23\nBuild Tech layer 39\nBuild Tech layer 41\nBuild Tech layer 43\nBuild Tech layer 45\nBuild Tech layer 47\nBuild Tech layer 49\nBuild Tech layer 51\nBuild Tech layer 53\nBuild Tech layer 55\nBuild Tech layer 57\nBuild Tech layer 59\nBuild Tech layer 61\nBuild Tech layer 63\nBuild Tech layer 65\nBuild Tech layer 67\nBuild Tech layer 69\nBuild Tech layer 71\nBuild Tech layer 73\nBuild Tech layer 75\nBuild Tech layer 77\nBuild Tech layer 79\nBuild Tech layer 81\nBuild Tech layer 83\nBuild Tech layer 85\nBuild Tech layer 87\nBuild Tech layer 89\nBuild Tech layer 91\nBuild Tech layer 93\nBuild Tech layer 95\nBuild Tech layer 97\nBuild Tech layer 99\nBuild Tech layer 101\nBuild Tech layer 103\nBuild Tech layer 105\nBuild Tech layer 107\nBuild Tech layer 109\nBuild Tech layer 111\nBuild Tech layer 113\nBuild Tech layer 115\nBuild Tech layer 117\nBuild Tech layer 119\nBuild Tech layer 121\nBuild Tech layer 123\nBuild Tech layer 125\nBuild Tech layer 127\nSimplifying copper layer polygons\nCalculating plated copper\nSimplify holes contours\nBuild BVH for holes and vias\nLoad Raytracing: board\nLoad Raytracing: layers\nLoading 3D models...\nReload time 0.035 s\nRendering: 100 %\nRendering time 0.048 s\nSuccessfully created 3D render image\n{\n  \"scope\": \"source-model isolated coupon only; no carrier generation or P-MODEL-REG acceptance\",\n  \"model_sha256\": \"b11845f0e20c69fec2b29a2b1a5f13ee76a6d37b32aefcc31be140f6edd96c6c\",\n  \"source_footprint_sha256\": \"a269b08a4b67f0f9c859b99c3e6353030a640de9af6ffe6e7026e9f3e2a0ad76\",\n  \"nonmodel_source_unchanged\": true,\n  \"existing_models_byte_identical\": {\n    \"Cirrus_CS5308P_QFN48_nominal.wrl\": \"524842aeb15f39c3fbefa14588adf985784f2df4d93fb0812d0779ae22f87135\",\n    \"Coilcraft_XGL4020_nominal.wrl\": \"7bad54018ac4dc4a88aefcfd22ea77252a562697b913a4b19abfe49bde13231d\",\n    \"Littelfuse_1812L035_60_max-envelope.wrl\": \"edd6c3054b944bb9436d3943f1b5da78396621e59065dde98e828219fa62cde9\",\n    \"Littelfuse_2920L260_33_max-envelope.wrl\": \"8e7369b50eb9d507764e7758dd2e03ece1e7c763da5872989afe98be15f1b37c\",\n    \"Molex_43650-0200_conservative-envelope.wrl\": \"13bd6a14380cc05be57c8f88c38544ac5874d080fd964b6373bcf330e30d802a\",\n    \"Molex_43650-0400_conservative-envelope.wrl\": \"1898c19f8167f889fe72207b1bcb59b8e67031542f7d4436a25e229e36ac8995\",\n    \"TI_DSE0006A_nominal.wrl\": \"ab2e205855dcf71a0663cbd021ff2cddd284a980d338753ffb54dd726409c1ce\",\n    \"TI_DSG0008A_nominal.wrl\": \"0efc4d267f4b25c433f509251759baab99611db311ca31b3f60ae180c3beb1fe\",\n    \"TI_DSK0010A_nominal.wrl\": \"9d417d764c7852d0891bb22f6cdc2bdf9d6daa25efd481f9242bc271776e4d5e\"\n  },\n  \"rotations\": [\n    0,\n    90,\n    180,\n    270\n  ],\n  \"renders\": [\n    {\n      \"kind\": \"normal\",\n      \"side\": \"top\",\n      \"command\": [\n        \"kicad-cli\",\n        \"pcb\",\n        \"render\",\n        \"--width\",\n        \"1600\",\n        \"--height\",\n        \"1200\",\n        \"--quality\",\n        \"basic\",\n        \"--side\",\n        \"top\",\n        \"-o\",\n        \"/tmp/carrier-power-model-20260909.t5FTA9/coupons/normal/top.png\",\n        \"/tmp/carrier-power-model-20260909.t5FTA9/coupons/normal/coupon.kicad_pcb\"\n      ],\n      \"rc\": 0,\n      \"elapsed_s\": 0.44472809694707394,\n      \"log_sha256\": \"122da57afcd2d6bab4a212b1a1c743efd2c55af6cc812970c162777d834d201a\",\n      \"board_sha256\": \"54f2bd46e9cbbfd630d4d61e628c3e6f1880b4696e27cb9a42c7bffaf7d41a85\",\n      \"image_sha256\": \"8c7c38a3f2d2d1f2befef68dd2ae0043b64a6c4655a76aa9ce1e84049a755f57\"\n    },\n    {\n      \"kind\": \"normal\",\n      \"side\": \"front\",\n      \"command\": [\n        \"kicad-cli\",\n        \"pcb\",\n        \"render\",\n        \"--width\",\n        \"1600\",\n        \"--height\",\n        \"1200\",\n        \"--quality\",\n        \"basic\",\n        \"--side\",\n        \"front\",\n        \"-o\",\n        \"/tmp/carrier-power-model-20260909.t5FTA9/coupons/normal/front.png\",\n        \"/tmp/carrier-power-model-20260909.t5FTA9/coupons/normal/coupon.kicad_pcb\"\n      ],\n      \"rc\": 0,\n      \"elapsed_s\": 0.3428841351997107,\n      \"log_sha256\": \"7efa0fa075e4c7016909b8ce5ace55026aa6dab19d3524aee49d1b35db8db626\",\n      \"board_sha256\": \"54f2bd46e9cbbfd630d4d61e628c3e6f1880b4696e27cb9a42c7bffaf7d41a85\",\n      \"image_sha256\": \"db2d7a655120b80a4016e33d9ed611eae9579438cc0d52622c1890c5b0e672e6\"\n    },\n    {\n      \"kind\": \"normal\",\n      \"side\": \"right\",\n      \"command\": [\n        \"kicad-cli\",\n        \"pcb\",\n        \"render\",\n        \"--width\",\n        \"1600\",\n        \"--height\",\n        \"1200\",\n        \"--quality\",\n        \"basic\",\n        \"--side\",\n        \"right\",\n        \"-o\",\n        \"/tmp/carrier-power-model-20260909.t5FTA9/coupons/normal/right.png\",\n        \"/tmp/carrier-power-model-20260909.t5FTA9/coupons/normal/coupon.kicad_pcb\"\n      ],\n      \"rc\": 0,\n      \"elapsed_s\": 0.44539115601219237,\n      \"log_sha256\": \"90fc78c2a02113140f53f5abd34da9054ca010604ff8c779c08889fbd2355ac7\",\n      \"board_sha256\": \"54f2bd46e9cbbfd630d4d61e628c3e6f1880b4696e27cb9a42c7bffaf7d41a85\",\n      \"image_sha256\": \"cb0d3b4ff677bf6d11fb8503ec00323307a245e4fb44321ed571fcd86d028a1d\"\n    },\n    {\n      \"kind\": \"bare\",\n      \"side\": \"top\",\n      \"command\": [\n        \"kicad-cli\",\n        \"pcb\",\n        \"render\",\n        \"--width\",\n        \"1600\",\n        \"--height\",\n        \"1200\",\n        \"--quality\",\n        \"basic\",\n        \"--side\",\n        \"top\",\n        \"-o\",\n        \"/tmp/carrier-power-model-20260909.t5FTA9/coupons/bare/top.png\",\n        \"/tmp/carrier-power-model-20260909.t5FTA9/coupons/bare/coupon.kicad_pcb\"\n      ],\n      \"rc\": 0,\n      \"elapsed_s\": 0.4381277319043875,\n      \"log_sha256\": \"8f216ff6723baf02fac34f4d50fc843d30d898fa81f24c515e2da212689c330b\",\n      \"board_sha256\": \"757cedf12f5f4358dd0aa027c4fcb494a934cde647def832f765d58508966bf9\",\n      \"image_sha256\": \"7dfc5758a3d9dce213126a5d24960e47b609379d87bcef1e82dbd6821320992b\"\n    },\n    {\n      \"kind\": \"inverted\",\n      \"side\": \"top\",\n      \"command\": [\n        \"kicad-cli\",\n        \"pcb\",\n        \"render\",\n        \"--width\",\n        \"1600\",\n        \"--height\",\n        \"1200\",\n        \"--quality\",\n        \"basic\",\n        \"--side\",\n        \"top\",\n        \"-o\",\n        \"/tmp/carrier-power-model-20260909.t5FTA9/coupons/inverted/top.png\",\n        \"/tmp/carrier-power-model-20260909.t5FTA9/coupons/inverted/coupon.kicad_pcb\"\n      ],\n      \"rc\": 0,\n      \"elapsed_s\": 0.5557031889911741,\n      \"log_sha256\": \"771b672596898421e0fb6eb974985c13c4f391b484ad20e6c7e58107ca57cee6\",\n      \"board_sha256\": \"e5794419a4868160c23687b8b31884390b2662b20e05649c00e6665af6b9a00d\",\n      \"image_sha256\": \"7dfc5758a3d9dce213126a5d24960e47b609379d87bcef1e82dbd6821320992b\"\n    },\n    {\n      \"kind\": \"inverted\",\n      \"side\": \"front\",\n      \"command\": [\n        \"kicad-cli\",\n        \"pcb\",\n        \"render\",\n        \"--width\",\n        \"1600\",\n        \"--height\",\n        \"1200\",\n        \"--quality\",\n        \"basic\",\n        \"--side\",\n        \"front\",\n        \"-o\",\n        \"/tmp/carrier-power-model-20260909.t5FTA9/coupons/inverted/front.png\",\n        \"/tmp/carrier-power-model-20260909.t5FTA9/coupons/inverted/coupon.kicad_pcb\"\n      ],\n      \"rc\": 0,\n      \"elapsed_s\": 0.45876508904621005,\n      \"log_sha256\": \"ac872ec3bf71f81770d898299457dee90fbc6ba7d989e1eefc95093de71548cc\",\n      \"board_sha256\": \"e5794419a4868160c23687b8b31884390b2662b20e05649c00e6665af6b9a00d\",\n      \"image_sha256\": \"739679a8d5af145fe35521417e4d64da9951e964673a8240cb42ca3f045a476f\"\n    },\n    {\n      \"kind\": \"inverted\",\n      \"side\": \"right\",\n      \"command\": [\n        \"kicad-cli\",\n        \"pcb\",\n        \"render\",\n        \"--width\",\n        \"1600\",\n        \"--height\",\n        \"1200\",\n        \"--quality\",\n        \"basic\",\n        \"--side\",\n        \"right\",\n        \"-o\",\n        \"/tmp/carrier-power-model-20260909.t5FTA9/coupons/inverted/right.png\",\n        \"/tmp/carrier-power-model-20260909.t5FTA9/coupons/inverted/coupon.kicad_pcb\"\n      ],\n      \"rc\": 0,\n      \"elapsed_s\": 0.46143217012286186,\n      \"log_sha256\": \"df47a10a1085c677c600d6323617173f9b5b4f5d3e6d5c32f0b412238d528462\",\n      \"board_sha256\": \"e5794419a4868160c23687b8b31884390b2662b20e05649c00e6665af6b9a00d\",\n      \"image_sha256\": \"40e01c95380561ad2fa83d405193d9f70544665cbdebe7f76b902205ad0581b4\"\n    }\n  ],\n  \"signed_mount_side\": {\n    \"normal\": {\n      \"front_fraction\": 1.0,\n      \"measurements\": [\n        {\n          \"above\": 10672,\n          \"below\": 0,\n          \"strip_y\": [\n            544,\n            631\n          ]\n        },\n        {\n          \"above\": 13952,\n          \"below\": 0,\n          \"strip_y\": [\n            544,\n            631\n          ]\n        }\n      ]\n    },\n    \"inverted\": {\n      \"front_fraction\": 0.05511228099037591,\n      \"measurements\": [\n        {\n          \"above\": 556,\n          \"below\": 9892,\n          \"strip_y\": [\n            544,\n            631\n          ]\n        },\n        {\n          \"above\": 784,\n          \"below\": 13082,\n          \"strip_y\": [\n            544,\n            631\n          ]\n        }\n      ]\n    }\n  },\n  \"known_bad\": \"180deg model X rotation plus -1.6mm offset, fully below board\",\n  \"caveat\": \"all_pad_centres containment is not an applicable end-contact datum: pad centres+/-1.725mm intentionally exceed nominal body half-length1.600mm; physical terminal-to-pad registration is tested independently, no pads or model stretched to satisfy that predicate\"\n}\n"
+    },
+    {
+      "id": "root-wslp-pixel-registration-20260909-f04370b6-r1",
+      "result": {
+        "command": [
+          "/usr/bin/python3",
+          "-B",
+          "/tmp/carrier-power-model-20260909.t5FTA9/measure_coupon.py"
+        ],
+        "cwd": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901",
+        "started_at": "2026-09-09T06:38:51.962496+00:00",
+        "finished_at": "2026-09-09T06:38:52.717986+00:00",
+        "returncode": 0,
+        "elapsed_s": 0.754149730084464,
+        "timed_out": false,
+        "cancelled": false,
+        "log_sha256": "1f528891df4ff21f4a71f8cb1cf7c4dadf35b0de66affae90e16b0ff294b380f"
+      },
+      "log": "./kicad/include/properties/property.h(607): assert \"m_choices.GetCount() > 0\" failed in PROPERTY_ENUM(): No enum choices defined\n./kicad/include/properties/property.h(607): assert \"m_choices.GetCount() > 0\" failed in PROPERTY_ENUM(): No enum choices defined\n./kicad/include/properties/property.h(607): assert \"m_choices.GetCount() > 0\" failed in PROPERTY_ENUM(): No enum choices defined\n{\n  \"scope\": \"four-rotation isolated-coupon source-model diagnostic only\",\n  \"source_images\": {\n    \"top.png:normal\": \"8c7c38a3f2d2d1f2befef68dd2ae0043b64a6c4655a76aa9ce1e84049a755f57\",\n    \"top.png:bare\": \"7dfc5758a3d9dce213126a5d24960e47b609379d87bcef1e82dbd6821320992b\"\n  },\n  \"calibration_px_per_mm\": [\n    57.65586034912718,\n    57.65586034912718\n  ],\n  \"edge_tolerance_mm\": 0.06,\n  \"graded\": 4,\n  \"total\": 4,\n  \"measurements\": [\n    {\n      \"ref\": \"R0\",\n      \"expected_body_mm\": [\n        -6.6,\n        -5.8,\n        -3.4,\n        -4.2\n      ],\n      \"measured_body_mm\": [\n        -6.625519031141868,\n        -5.810337370242215,\n        -3.416825259515571,\n        -4.197318339100346\n      ],\n      \"pixels\": 15664,\n      \"max_edge_error_mm\": 0.02551903114186871\n    },\n    {\n      \"ref\": \"R90\",\n      \"expected_body_mm\": [\n        4.2,\n        -6.6,\n        5.8,\n        -3.4\n      ],\n      \"measured_body_mm\": [\n        4.197318339100345,\n        -6.608174740484429,\n        5.810337370242214,\n        -3.399480968858132\n      ],\n      \"pixels\": 15664,\n      \"max_edge_error_mm\": 0.010337370242214483\n    },\n    {\n      \"ref\": \"R180\",\n      \"expected_body_mm\": [\n        -6.6,\n        4.2,\n        -3.4,\n        5.8\n      ],\n      \"measured_body_mm\": [\n        -6.625519031141868,\n        4.214662629757786,\n        -3.416825259515571,\n        5.827681660899653\n      ],\n      \"pixels\": 15664,\n      \"max_edge_error_mm\": 0.027681660899653515\n    },\n    {\n      \"ref\": \"R270\",\n      \"expected_body_mm\": [\n        4.2,\n        3.4,\n        5.8,\n        6.6\n      ],\n      \"measured_body_mm\": [\n        4.197318339100345,\n        3.416825259515571,\n        5.810337370242214,\n        6.625519031141868\n      ],\n      \"pixels\": 15664,\n      \"max_edge_error_mm\": 0.02551903114186871\n    }\n  ],\n  \"board_placement_registration_accepted\": false\n}\n"
+    },
+    {
+      "id": "root-wslp-full-source-20260909-f04370b6-r1",
+      "result": {
+        "command": [
+          "/usr/bin/python3",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "projects/crow-audio-carrier-v1/03_src/tests",
+          "-p",
+          "test_*.py",
+          "-v"
+        ],
+        "cwd": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901",
+        "started_at": "2026-09-09T06:38:50.777151+00:00",
+        "finished_at": "2026-09-09T06:40:24.587758+00:00",
+        "returncode": 0,
+        "elapsed_s": 93.80916269985028,
+        "timed_out": false,
+        "cancelled": false,
+        "log_sha256": "72f641f6e1cd2ff75c348a0cd52adc394c6b90c33f47045d8bff04765af0140c"
+      },
+      "log": "./kicad/include/properties/property.h(607): assert \"m_choices.GetCount() > 0\" failed in PROPERTY_ENUM(): No enum choices defined\n./kicad/include/properties/property.h(607): assert \"m_choices.GetCount() > 0\" failed in PROPERTY_ENUM(): No enum choices defined\n./kicad/include/properties/property.h(607): assert \"m_choices.GetCount() > 0\" failed in PROPERTY_ENUM(): No enum choices defined\ntest_actual_old_filter_reset_geometry_blocks_seven_launches (test_adc_analog_fanout.AdcAnalogFanoutTests.test_actual_old_filter_reset_geometry_blocks_seven_launches) ... ok\ntest_all_sixteen_simultaneous_launches_clear_full_geometry (test_adc_analog_fanout.AdcAnalogFanoutTests.test_all_sixteen_simultaneous_launches_clear_full_geometry) ... ok\ntest_exact_five_old_bank_changes_and_sixteen_additions (test_adc_analog_fanout.AdcAnalogFanoutTests.test_exact_five_old_bank_changes_and_sixteen_additions) ... ok\ntest_filter_width_lengths_and_conditional_current_are_explicit (test_adc_analog_fanout.AdcAnalogFanoutTests.test_filter_width_lengths_and_conditional_current_are_explicit) ... ok\ntest_missing_and_crossed_launches_fail (test_adc_analog_fanout.AdcAnalogFanoutTests.test_missing_and_crossed_launches_fail) ... ok\ntest_partial_owners_and_separate_ground_drops_are_preserved (test_adc_analog_fanout.AdcAnalogFanoutTests.test_partial_owners_and_separate_ground_drops_are_preserved) ... ok\ntest_blind_east_shift_meets_adjacency_but_fails_ground_via (test_adc_bypass_placement.AdcBypassPlacementTests.test_blind_east_shift_meets_adjacency_but_fails_ground_via) ... ok\ntest_current_pose_meets_both_adjacency_and_coupled_clearances (test_adc_bypass_placement.AdcBypassPlacementTests.test_current_pose_meets_both_adjacency_and_coupled_clearances) ... ok\ntest_missing_filter_seed_is_not_credited_as_connected (test_adc_bypass_placement.AdcBypassPlacementTests.test_missing_filter_seed_is_not_credited_as_connected) ... ok\ntest_only_one_authored_pose_changes_from_generated_failure (test_adc_bypass_placement.AdcBypassPlacementTests.test_only_one_authored_pose_changes_from_generated_failure) ... ok\ntest_real_old_pose_fails_exact_gap_while_broad_center_test_passes (test_adc_bypass_placement.AdcBypassPlacementTests.test_real_old_pose_fails_exact_gap_while_broad_center_test_passes) ... ok\ntest_active_topology_decisions_remain_covered (test_adc_feed_invariants.AdcFeedInvariantTests.test_active_topology_decisions_remain_covered) ... ok\ntest_current_native_netlist_retains_electrical_intent (test_adc_feed_invariants.AdcFeedInvariantTests.test_current_native_netlist_retains_electrical_intent) ... ok\ntest_each_missing_supply_or_return_pin_is_rejected (test_adc_feed_invariants.AdcFeedInvariantTests.test_each_missing_supply_or_return_pin_is_rejected) ... ok\ntest_each_wrong_supply_or_return_net_is_rejected (test_adc_feed_invariants.AdcFeedInvariantTests.test_each_wrong_supply_or_return_net_is_rejected) ... ok\ntest_every_accepted_supply_and_return_pin_has_an_invariant (test_adc_feed_invariants.AdcFeedInvariantTests.test_every_accepted_supply_and_return_pin_has_an_invariant) ... ok\ntest_exact_seven_bank_delta_and_preserved_physical_authority (test_adc_feed_source.AdcFeedSourceTests.test_exact_seven_bank_delta_and_preserved_physical_authority) ... ok\ntest_explicit_local_clearance_is_necessary_and_not_global (test_adc_feed_source.AdcFeedSourceTests.test_explicit_local_clearance_is_necessary_and_not_global) ... ok\ntest_full_feeds_are_connected_to_real_adc_and_bypass_pads (test_adc_feed_source.AdcFeedSourceTests.test_full_feeds_are_connected_to_real_adc_and_bypass_pads) ... ok\ntest_ground_return_reaches_its_own_drop_and_rejects_old_site (test_adc_feed_source.AdcFeedSourceTests.test_ground_return_reaches_its_own_drop_and_rejects_old_site) ... ok\ntest_native_pad_gaps_and_trace_clearance_are_measured_not_assumed (test_adc_feed_source.AdcFeedSourceTests.test_native_pad_gaps_and_trace_clearance_are_measured_not_assumed) ... ok\ntest_nonwest_power_copper_retains_previous_subtotal (test_adc_feed_source.AdcFeedSourceTests.test_nonwest_power_copper_retains_previous_subtotal) ... ok\ntest_whole_feed_capsules_and_exact_additive_length (test_adc_feed_source.AdcFeedSourceTests.test_whole_feed_capsules_and_exact_additive_length) ... ok\ntest_complete_three_pad_owners_are_native_contact_graphs (test_adc_source.AdcSourceTests.test_complete_three_pad_owners_are_native_contact_graphs) ... ok\ntest_exact_per_net_budgets_and_wave_ceiling (test_adc_source.AdcSourceTests.test_exact_per_net_budgets_and_wave_ceiling) ... ok\ntest_native_complete_candidate (test_adc_source.AdcSourceTests.test_native_complete_candidate) ... ok\ntest_only_declared_west_banks_and_two_cap_poses_reopened (test_adc_source.AdcSourceTests.test_only_declared_west_banks_and_two_cap_poses_reopened) ... ok\ntest_own_ground_drops_do_not_invent_a_plane_edge (test_adc_source.AdcSourceTests.test_own_ground_drops_do_not_invent_a_plane_edge) ... ok\ntest_partial_controls_and_filter_feeds_remain_generic (test_adc_source.AdcSourceTests.test_partial_controls_and_filter_feeds_remain_generic) ... ok\ntest_whole_capsule_extents_and_hostile_long_leaf (test_adc_source.AdcSourceTests.test_whole_capsule_extents_and_hostile_long_leaf) ... ok\ntest_accepts_exact_vendor_topology (test_analog_filter_topology.AnalogFilterTopologyHostiles.test_accepts_exact_vendor_topology) ... ok\ntest_accepts_kicad_native_ohm_glyph_without_weakening_value (test_analog_filter_topology.AnalogFilterTopologyHostiles.test_accepts_kicad_native_ohm_glyph_without_weakening_value) ... ok\ntest_rejects_crossed_feedback_leg (test_analog_filter_topology.AnalogFilterTopologyHostiles.test_rejects_crossed_feedback_leg) ... ok\ntest_rejects_direct_vmid_feedback_tie (test_analog_filter_topology.AnalogFilterTopologyHostiles.test_rejects_direct_vmid_feedback_tie) ... ok\ntest_rejects_extra_feedback_channel (test_analog_filter_topology.AnalogFilterTopologyHostiles.test_rejects_extra_feedback_channel) ... ok\ntest_rejects_hardware_mode_internal_vmid_follower (test_analog_filter_topology.AnalogFilterTopologyHostiles.test_rejects_hardware_mode_internal_vmid_follower) ... ok\ntest_rejects_indirect_adc_vmid_loading (test_analog_filter_topology.AnalogFilterTopologyHostiles.test_rejects_indirect_adc_vmid_loading) ... ok\ntest_rejects_lost_raw_adc_vmid_bypass (test_analog_filter_topology.AnalogFilterTopologyHostiles.test_rejects_lost_raw_adc_vmid_bypass) ... ok\ntest_rejects_missing_vmid_isolation_resistor (test_analog_filter_topology.AnalogFilterTopologyHostiles.test_rejects_missing_vmid_isolation_resistor) ... ok\ntest_rejects_resistive_negative_returns_on_pin_or_cap (test_analog_filter_topology.AnalogFilterTopologyHostiles.test_rejects_resistive_negative_returns_on_pin_or_cap) ... ok\ntest_rejects_resurrected_ground_leg_resistor (test_analog_filter_topology.AnalogFilterTopologyHostiles.test_rejects_resurrected_ground_leg_resistor) ... ok\ntest_rejects_reversed_adc_filter_bulk_cap (test_analog_filter_topology.AnalogFilterTopologyHostiles.test_rejects_reversed_adc_filter_bulk_cap) ... ok\ntest_rejects_wrong_c0g_network_value (test_analog_filter_topology.AnalogFilterTopologyHostiles.test_rejects_wrong_c0g_network_value) ... ok\ntest_rejects_wrong_divider_supply_ratio_and_missing_bypass (test_analog_filter_topology.AnalogFilterTopologyHostiles.test_rejects_wrong_divider_supply_ratio_and_missing_bypass) ... ok\ntest_actual_pre_fix_rect_blocks_exact_eight_endpoints (test_analog_keepout_source.AnalogKeepoutSourceTests.test_actual_pre_fix_rect_blocks_exact_eight_endpoints) ... ok\ntest_blanket_delete_cannot_pass_on_empty_endpoint_hits (test_analog_keepout_source.AnalogKeepoutSourceTests.test_blanket_delete_cannot_pass_on_empty_endpoint_hits) ... ok\ntest_live_mask_frees_endpoints_and_retains_switching_exclusion (test_analog_keepout_source.AnalogKeepoutSourceTests.test_live_mask_frees_endpoints_and_retains_switching_exclusion) ... ok\ntest_no_other_route_authority_changes (test_analog_keepout_source.AnalogKeepoutSourceTests.test_no_other_route_authority_changes) ... ok\ntest_too_small_switching_halo_fails (test_analog_keepout_source.AnalogKeepoutSourceTests.test_too_small_switching_halo_fails) ... ok\ntest_top_edge_only_fix_still_boxes_quiet_supply (test_analog_keepout_source.AnalogKeepoutSourceTests.test_top_edge_only_fix_still_boxes_quiet_supply) ... ok\ntest_arc_via_and_layer_thickness_are_actually_priced (test_analog_paths.AnalogPathTests.test_arc_via_and_layer_thickness_are_actually_priced) ... ok\ntest_both_conductors_enforce_source_and_saved_copper (test_analog_paths.AnalogPathTests.test_both_conductors_enforce_source_and_saved_copper) ... ok\ntest_conditional_inventory_charges_all_three_nets_and_keeps_unknowns (test_analog_paths.AnalogPathTests.test_conditional_inventory_charges_all_three_nets_and_keeps_unknowns) ... ok\ntest_crossed_native_pin_and_ghost_leaf_are_rejected (test_analog_paths.AnalogPathTests.test_crossed_native_pin_and_ghost_leaf_are_rejected) ... ok\ntest_exact_source_delta_preserves_copper_rules_and_old_digital_contract (test_analog_paths.AnalogPathTests.test_exact_source_delta_preserves_copper_rules_and_old_digital_contract) ... ok\ntest_long_trace_and_extra_branch_inventory_fail_screen (test_analog_paths.AnalogPathTests.test_long_trace_and_extra_branch_inventory_fail_screen) ... ok\ntest_matching_recipe_is_real_krt_argv_and_cannot_be_omitted (test_analog_paths.AnalogPathTests.test_matching_recipe_is_real_krt_argv_and_cannot_be_omitted) ... ok\ntest_missing_nets_underwidth_inner_layer_and_nonfinite_fail (test_analog_paths.AnalogPathTests.test_missing_nets_underwidth_inner_layer_and_nonfinite_fail) ... ok\ntest_old_unmatched_source_and_missing_branch_are_rejected (test_analog_paths.AnalogPathTests.test_old_unmatched_source_and_missing_branch_are_rejected) ... ok\ntest_real_shared_loader_and_native_all_leaf_coverage (test_analog_paths.AnalogPathTests.test_real_shared_loader_and_native_all_leaf_coverage) ... ok\ntest_shared_endpoint_gate_rejects_real_path_skew_and_orphan (test_analog_paths.AnalogPathTests.test_shared_endpoint_gate_rejects_real_path_skew_and_orphan) ... ok\ntest_accepts_exact_eight (test_check_spoke_implementation.CarrierSpokeCheckerHostiles.test_accepts_exact_eight) ... ok\ntest_contract_digest_is_current_authored_authority (test_check_spoke_implementation.CarrierSpokeCheckerHostiles.test_contract_digest_is_current_authored_authority) ... ok\ntest_kicad_cli_timeout_is_bounded (test_check_spoke_implementation.CarrierSpokeCheckerHostiles.test_kicad_cli_timeout_is_bounded) ... ok\ntest_native_netlist_parser_rejects_duplicate_pin (test_check_spoke_implementation.CarrierSpokeCheckerHostiles.test_native_netlist_parser_rejects_duplicate_pin) ... /home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/skills/kicad-pcb/scripts/kicad_sch_parity.py:90: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmpm6obkvj5/hostile.net' mode='r' encoding='UTF-8'>\n  txt = open(path).read()\nResourceWarning: Enable tracemalloc to get the object allocation traceback\nok\ntest_parses_representative_kicad_10_native_netlist (test_check_spoke_implementation.CarrierSpokeCheckerHostiles.test_parses_representative_kicad_10_native_netlist) ... /home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/skills/kicad-pcb/scripts/kicad_sch_parity.py:90: ResourceWarning: unclosed file <_io.TextIOWrapper name='/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/03_src/tests/fixtures/kicad10_native_excerpt.net' mode='r' encoding='UTF-8'>\n  txt = open(path).read()\nResourceWarning: Enable tracemalloc to get the object allocation traceback\nok\ntest_rejects_extra_exact_connector (test_check_spoke_implementation.CarrierSpokeCheckerHostiles.test_rejects_extra_exact_connector) ... ok\ntest_rejects_legacy_xml_netlist (test_check_spoke_implementation.CarrierSpokeCheckerHostiles.test_rejects_legacy_xml_netlist) ... ok\ntest_rejects_missing_j8 (test_check_spoke_implementation.CarrierSpokeCheckerHostiles.test_rejects_missing_j8) ... ok\ntest_rejects_power_ground_swap (test_check_spoke_implementation.CarrierSpokeCheckerHostiles.test_rejects_power_ground_swap) ... ok\ntest_rejects_wrong_footprint_even_with_exact_mpn (test_check_spoke_implementation.CarrierSpokeCheckerHostiles.test_rejects_wrong_footprint_even_with_exact_mpn) ... ok\ntest_exact_additive_tdm_geometry_and_digital_path_census (test_clock_defaults.ClockDefaultsTests.test_exact_additive_tdm_geometry_and_digital_path_census) ... ok\ntest_exact_generated_pins_and_values (test_clock_defaults.ClockDefaultsTests.test_exact_generated_pins_and_values) ... ok\ntest_generated_tdm_bias_and_conditioning_endpoints (test_clock_defaults.ClockDefaultsTests.test_generated_tdm_bias_and_conditioning_endpoints) ... /home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/skills/kicad-pcb/scripts/kicad_sch_parity.py:90: ResourceWarning: unclosed file <_io.TextIOWrapper name='/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/06_build/netlists/crow_audio_carrier_v1.net' mode='r' encoding='UTF-8'>\n  txt = open(path).read()\nResourceWarning: Enable tracemalloc to get the object allocation traceback\nok\ntest_good_screen (test_clock_defaults.ClockDefaultsTests.test_good_screen) ... ok\ntest_legacy_rc_oe_and_adc_cs_ground_fail (test_clock_defaults.ClockDefaultsTests.test_legacy_rc_oe_and_adc_cs_ground_fail) ... ok\ntest_live_source_and_exact_dossiers (test_clock_defaults.ClockDefaultsTests.test_live_source_and_exact_dossiers) ... ok\ntest_missing_source_wrong_value_code_or_polarity_fail (test_clock_defaults.ClockDefaultsTests.test_missing_source_wrong_value_code_or_polarity_fail) ... ok\ntest_missing_tdm_bias_is_rejected_by_production_checker (test_clock_defaults.ClockDefaultsTests.test_missing_tdm_bias_is_rejected_by_production_checker) ... ok\ntest_new_bypass_is_charged_by_live_power_inventory (test_clock_defaults.ClockDefaultsTests.test_new_bypass_is_charged_by_live_power_inventory) ... /home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/skills/kicad-pcb/scripts/kicad_sch_parity.py:90: ResourceWarning: unclosed file <_io.TextIOWrapper name='/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/06_build/netlists/crow_audio_carrier_v1.net' mode='r' encoding='UTF-8'>\n  txt = open(path).read()\nResourceWarning: Enable tracemalloc to get the object allocation traceback\nok\ntest_old_clock_pulls_fail (test_clock_defaults.ClockDefaultsTests.test_old_clock_pulls_fail) ... ok\ntest_old_sense_divider_fails (test_clock_defaults.ClockDefaultsTests.test_old_sense_divider_fails) ... ok\ntest_overloaded_push_pull_oe_fails (test_clock_defaults.ClockDefaultsTests.test_overloaded_push_pull_oe_fails) ... ok\ntest_overstrong_clock_load_fails (test_clock_defaults.ClockDefaultsTests.test_overstrong_clock_load_fails) ... ok\ntest_tdm_allocation_corners_and_nonvacuous_hostiles (test_clock_defaults.ClockDefaultsTests.test_tdm_allocation_corners_and_nonvacuous_hostiles) ... ok\ntest_tdm_raw_has_bias_and_true_noninverting_conditioner (test_clock_defaults.ClockDefaultsTests.test_tdm_raw_has_bias_and_true_noninverting_conditioner) ... ok\ntest_tdm_wrong_conditioning_identity_net_bias_and_bypass_rejected (test_clock_defaults.ClockDefaultsTests.test_tdm_wrong_conditioning_identity_net_bias_and_bypass_rejected) ... ok\ntest_all_eight_target_banks_exist_without_narrowing_corners (test_digital_launch_source.DigitalLaunchSourceTests.test_all_eight_target_banks_exist_without_narrowing_corners) ... ok\ntest_all_twenty_two_other_endpoints_have_full_width_launch_witnesses (test_digital_launch_source.DigitalLaunchSourceTests.test_all_twenty_two_other_endpoints_have_full_width_launch_witnesses) ... ok\ntest_bulk_class_and_partial_owner_partition_stay_exact (test_digital_launch_source.DigitalLaunchSourceTests.test_bulk_class_and_partial_owner_partition_stay_exact) ... ok\ntest_existing_output_guard_declared_and_source_budget_hostiles (test_digital_launch_source.DigitalLaunchSourceTests.test_existing_output_guard_declared_and_source_budget_hostiles) ... ok\ntest_fsync_has_one_complete_owner_and_no_generic_wave (test_digital_launch_source.DigitalLaunchSourceTests.test_fsync_has_one_complete_owner_and_no_generic_wave) ... ok\ntest_full_new_geometry_and_declared_reach (test_digital_launch_source.DigitalLaunchSourceTests.test_full_new_geometry_and_declared_reach) ... ok\ntest_full_width_corner_entries_are_contained_and_not_floor_relaxed (test_digital_launch_source.DigitalLaunchSourceTests.test_full_width_corner_entries_are_contained_and_not_floor_relaxed) ... ok\ntest_old_clock_bulk_entries_are_rejected_by_native_shapes (test_digital_launch_source.DigitalLaunchSourceTests.test_old_clock_bulk_entries_are_rejected_by_native_shapes) ... ok\ntest_subnominal_items_are_wholly_contained_not_merely_overlapping (test_digital_launch_source.DigitalLaunchSourceTests.test_subnominal_items_are_wholly_contained_not_merely_overlapping) ... ok\ntest_whole_segment_screen_rejects_midspan_obstacle_and_lost_endpoint (test_digital_launch_source.DigitalLaunchSourceTests.test_whole_segment_screen_rejects_midspan_obstacle_and_lost_endpoint) ... ok\ntest_all_other_floorplan_authority_preserved (test_ground_connections.GroundConnectionTests.test_all_other_floorplan_authority_preserved) ... ok\ntest_exact_eight_source_owned_ground_pads (test_ground_connections.GroundConnectionTests.test_exact_eight_source_owned_ground_pads) ... ok\ntest_real_old_source_is_rejected (test_ground_connections.GroundConnectionTests.test_real_old_source_is_rejected) ... ok\ntest_route_rules_and_all_five_quiet_exclusions_preserved (test_ground_connections.GroundConnectionTests.test_route_rules_and_all_five_quiet_exclusions_preserved) ... ok\ntest_targets_are_real_top_smd_ground_lands (test_ground_connections.GroundConnectionTests.test_targets_are_real_top_smd_ground_lands) ... ok\ntest_wrong_net_broad_ref_and_extra_pad_are_rejected (test_ground_connections.GroundConnectionTests.test_wrong_net_broad_ref_and_extra_pad_are_rejected) ... ok\ntest_all_eight_identities_and_explicit_aliases (test_input_fused_identity.FusedIdentityTests.test_all_eight_identities_and_explicit_aliases) ... ok\ntest_original_five_pin_omission_rejected (test_input_fused_identity.FusedIdentityTests.test_original_five_pin_omission_rejected) ... ok\ntest_primary_bytes_remain_digest_bound (test_input_fused_identity.FusedIdentityTests.test_primary_bytes_remain_digest_bound) ... ok\ntest_unexplained_collapse_rejected (test_input_fused_identity.FusedIdentityTests.test_unexplained_collapse_rejected) ... ok\ntest_wrong_artifact_pin_rejected (test_input_fused_identity.FusedIdentityTests.test_wrong_artifact_pin_rejected) ... ok\ntest_whole_322_ref_first_match_delta (test_ldo_region_selection.LdoRegionSelectionTests.test_whole_322_ref_first_match_delta) ... ok\ntest_adc_capacitors_bind_each_physical_pin (test_local_placement_source.LocalPlacementSourceTests.test_adc_capacitors_bind_each_physical_pin) ... ok\ntest_all_129_caps_and_300_nonconnector_roles_are_covered (test_local_placement_source.LocalPlacementSourceTests.test_all_129_caps_and_300_nonconnector_roles_are_covered) ... ok\ntest_all_322_fitted_refs_are_uniquely_pinned (test_local_placement_source.LocalPlacementSourceTests.test_all_322_fitted_refs_are_uniquely_pinned) ... ok\ntest_each_pair_names_real_shared_nonpoured_nets (test_local_placement_source.LocalPlacementSourceTests.test_each_pair_names_real_shared_nonpoured_nets) ... ok\ntest_existing_consumer_rejects_distant_intended_cap_even_with_close_rail_neighbor (test_local_placement_source.LocalPlacementSourceTests.test_existing_consumer_rejects_distant_intended_cap_even_with_close_rail_neighbor) ... ok\ntest_external_datums_unchanged (test_local_placement_source.LocalPlacementSourceTests.test_external_datums_unchanged) ... ok\ntest_fuse_captions_have_one_local_owner (test_local_placement_source.LocalPlacementSourceTests.test_fuse_captions_have_one_local_owner) ... ok\ntest_model_overrides_remain_exact_and_after_region_patterns (test_local_placement_source.LocalPlacementSourceTests.test_model_overrides_remain_exact_and_after_region_patterns) ... ok\ntest_pin_specific_owner_footprints_are_unique (test_local_placement_source.LocalPlacementSourceTests.test_pin_specific_owner_footprints_are_unique) ... ok\ntest_repeated_bypasses_bind_exact_owner_not_nearest_family (test_local_placement_source.LocalPlacementSourceTests.test_repeated_bypasses_bind_exact_owner_not_nearest_family) ... ok\ntest_two_repeat_banks_are_exact_mirrors (test_local_placement_source.LocalPlacementSourceTests.test_two_repeat_banks_are_exact_mirrors) ... ok\ntest_actual_old_source_is_rejected (test_package_clearances.PackageClearanceTests.test_actual_old_source_is_rejected) ... ok\ntest_all_fifteen_exact_pad_pairs_are_bounded (test_package_clearances.PackageClearanceTests.test_all_fifteen_exact_pad_pairs_are_bounded) ... ok\ntest_all_other_source_authority_is_unchanged (test_package_clearances.PackageClearanceTests.test_all_other_source_authority_is_unchanged) ... ok\ntest_hostile_foreign_pad_area_is_rejected (test_package_clearances.PackageClearanceTests.test_hostile_foreign_pad_area_is_rejected) ... ok\ntest_hostile_widened_rules_are_rejected (test_package_clearances.PackageClearanceTests.test_hostile_widened_rules_are_rejected) ... ok\ntest_independent_body_dimensions (test_package_models.ModelTests.test_independent_body_dimensions) ... ok\ntest_independent_terminal_geometry (test_package_models.ModelTests.test_independent_terminal_geometry) ... ok\ntest_kicad_library_reopen (test_package_models.ModelTests.test_kicad_library_reopen) ... ok\ntest_nonmodel_projection_rejects_pad_edit (test_package_models.ModelTests.test_nonmodel_projection_rejects_pad_edit) ... ok\ntest_reproducible (test_package_models.ModelTests.test_reproducible) ... ok\ntest_transform_known_bad_y_mirror_and_unit_scale (test_package_models.ModelTests.test_transform_known_bad_y_mirror_and_unit_scale) ... ok\ntest_wslp_model_attachment_is_identity_and_preserves_land (test_package_models.ModelTests.test_wslp_model_attachment_is_identity_and_preserves_land) ... ok\ntest_wslp_nominal_terminals_and_rotation_registration (test_package_models.ModelTests.test_wslp_nominal_terminals_and_rotation_registration) ... ok\ntest_all_new_native_copper_and_contacts (test_power_landing_source.PowerLandingSourceTests.test_all_new_native_copper_and_contacts) ... ok\ntest_exact_new_and_whole_net_budgets (test_power_landing_source.PowerLandingSourceTests.test_exact_new_and_whole_net_budgets) ... ok\ntest_exact_supply_pins_reach_their_own_capacitors (test_power_landing_source.PowerLandingSourceTests.test_exact_supply_pins_reach_their_own_capacitors) ... ok\ntest_finite_entries_cover_every_power_group (test_power_landing_source.PowerLandingSourceTests.test_finite_entries_cover_every_power_group) ... ok\ntest_hostile_extent_and_layer_are_rejected (test_power_landing_source.PowerLandingSourceTests.test_hostile_extent_and_layer_are_rejected) ... ok\ntest_hostile_full_width_at_small_pad_is_rejected (test_power_landing_source.PowerLandingSourceTests.test_hostile_full_width_at_small_pad_is_rejected) ... ok\ntest_previous_banks_except_explicit_adc_feed_delta_are_preserved (test_power_landing_source.PowerLandingSourceTests.test_previous_banks_except_explicit_adc_feed_delta_are_preserved) ... ok\ntest_all_declared_conditional_screens (test_power_source.PowerSourceTests.test_all_declared_conditional_screens) ... ok\ntest_all_new_source_power_connections (test_power_source.PowerSourceTests.test_all_new_source_power_connections) ... ok\ntest_capacitance_inventory_keeps_internal_path_separate (test_power_source.PowerSourceTests.test_capacitance_inventory_keeps_internal_path_separate) ... ok\ntest_complete_cold_start_screen (test_power_source.PowerSourceTests.test_complete_cold_start_screen) ... ok\ntest_connected_cold_start_has_all_sixteen_input_limiters (test_power_source.PowerSourceTests.test_connected_cold_start_has_all_sixteen_input_limiters) ... ok\ntest_exact_native_power_topology (test_power_source.PowerSourceTests.test_exact_native_power_topology) ... ok\ntest_excessive_upstream_allocation_rejected (test_power_source.PowerSourceTests.test_excessive_upstream_allocation_rejected) ... ok\ntest_failed_cold_child_changes_both_exit_and_reported_status (test_power_source.PowerSourceTests.test_failed_cold_child_changes_both_exit_and_reported_status) ... ok\ntest_faster_buck_not_silently_qualified (test_power_source.PowerSourceTests.test_faster_buck_not_silently_qualified) ... ok\ntest_feed_stress_budget_is_not_minimum_buck_limit (test_power_source.PowerSourceTests.test_feed_stress_budget_is_not_minimum_buck_limit) ... ok\ntest_inventory_rejects_crossdomain (test_power_source.PowerSourceTests.test_inventory_rejects_crossdomain) ... ok\ntest_inventory_rejects_unparsed (test_power_source.PowerSourceTests.test_inventory_rejects_unparsed) ... ok\ntest_large_bank_can_fail_current_screen (test_power_source.PowerSourceTests.test_large_bank_can_fail_current_screen) ... ok\ntest_missing_nr_cap_rejected (test_power_source.PowerSourceTests.test_missing_nr_cap_rejected) ... ok\ntest_no_precharge_bypass_around_hold (test_power_source.PowerSourceTests.test_no_precharge_bypass_around_hold) ... ok\ntest_old250mA_allocation_fails_audio_demand (test_power_source.PowerSourceTests.test_old250mA_allocation_fails_audio_demand) ... ok\ntest_old_resistor_only_rail_still_fails (test_power_source.PowerSourceTests.test_old_resistor_only_rail_still_fails) ... ok\ntest_omitted_extra_cap_fails_shutdown (test_power_source.PowerSourceTests.test_omitted_extra_cap_fails_shutdown) ... ok\ntest_physical_vacuity_is_declared (test_power_source.PowerSourceTests.test_physical_vacuity_is_declared) ... ok\ntest_precharge_correct_linear_ramp_not_step_formula (test_power_source.PowerSourceTests.test_precharge_correct_linear_ramp_not_step_formula) ... ok\ntest_precharge_residual_includes_static_controls_and_leakage (test_power_source.PowerSourceTests.test_precharge_residual_includes_static_controls_and_leakage) ... ok\ntest_programmer_cannot_change_silently (test_power_source.PowerSourceTests.test_programmer_cannot_change_silently) ... ok\ntest_rated_life_drift_is_not_prototype_allowance (test_power_source.PowerSourceTests.test_rated_life_drift_is_not_prototype_allowance) ... ok\ntest_reversed_hold_diode (test_power_source.PowerSourceTests.test_reversed_hold_diode) ... ok\ntest_source_adapter_rejects_wired_or_absent_intended_nc (test_power_source.PowerSourceTests.test_source_adapter_rejects_wired_or_absent_intended_nc) ... ok\ntest_thermal_old_package_rejected (test_power_source.PowerSourceTests.test_thermal_old_package_rejected) ... ok\ntest_thermal_with_fixed150mA85C (test_power_source.PowerSourceTests.test_thermal_with_fixed150mA85C) ... ok\ntest_unbounded_feed_inductance_fails (test_power_source.PowerSourceTests.test_unbounded_feed_inductance_fails) ... ok\ntest_additive_total_retains_regulator_and_reopened_adc_subtotals (test_regulator_source.RegulatorSourceTests.test_additive_total_retains_regulator_and_reopened_adc_subtotals) ... ok\ntest_all_target_pins_and_simultaneous_native_geometry (test_regulator_source.RegulatorSourceTests.test_all_target_pins_and_simultaneous_native_geometry) ... ok\ntest_broad_input_cap_landing_and_local_adjacency (test_regulator_source.RegulatorSourceTests.test_broad_input_cap_landing_and_local_adjacency) ... ok\ntest_every_branch_reaches_its_real_native_destination (test_regulator_source.RegulatorSourceTests.test_every_branch_reaches_its_real_native_destination) ... ok\ntest_extended_width_scope_and_missing_ground_pin_rejected (test_regulator_source.RegulatorSourceTests.test_extended_width_scope_and_missing_ground_pin_rejected) ... ok\ntest_hostile_old_bulk_launches_collide (test_regulator_source.RegulatorSourceTests.test_hostile_old_bulk_launches_collide) ... ok\ntest_offcentre_pin_contact_is_native_not_an_origin_radius (test_regulator_source.RegulatorSourceTests.test_offcentre_pin_contact_is_native_not_an_origin_radius) ... ok\ntest_original_banks_except_two_adc_knees_and_other_poses_preserved (test_regulator_source.RegulatorSourceTests.test_original_banks_except_two_adc_knees_and_other_poses_preserved) ... ok\ntest_quiet_pour_bypass_and_via_short_are_rejected (test_regulator_source.RegulatorSourceTests.test_quiet_pour_bypass_and_via_short_are_rejected) ... ok\ntest_sw_bootstrap_branch_keeps_generic_owner (test_regulator_source.RegulatorSourceTests.test_sw_bootstrap_branch_keeps_generic_owner) ... ok\ntest_common_planes_and_only_explicit_bounded_launch_exceptions (test_route_source_contract.RouteSourceContractTests.test_common_planes_and_only_explicit_bounded_launch_exceptions) ... ok\ntest_declared_current_bound_is_not_lowered_to_fit (test_route_source_contract.RouteSourceContractTests.test_declared_current_bound_is_not_lowered_to_fit) ... ok\ntest_every_connected_net_has_one_exact_class (test_route_source_contract.RouteSourceContractTests.test_every_connected_net_has_one_exact_class) ... ok\ntest_every_generic_net_has_one_exact_wave (test_route_source_contract.RouteSourceContractTests.test_every_generic_net_has_one_exact_wave) ... ok\ntest_exact_seed_identity_scope_extent_and_no_high_current_vias (test_route_source_contract.RouteSourceContractTests.test_exact_seed_identity_scope_extent_and_no_high_current_vias) ... ok\ntest_existing_consumer_rejects_ghost_and_glob_groups (test_route_source_contract.RouteSourceContractTests.test_existing_consumer_rejects_ghost_and_glob_groups) ... ok\ntest_existing_length_consumer_accepts_exact_complete_digital_paths (test_route_source_contract.RouteSourceContractTests.test_existing_length_consumer_accepts_exact_complete_digital_paths) ... ok\ntest_existing_owner_consumer_and_known_bad_double_owner (test_route_source_contract.RouteSourceContractTests.test_existing_owner_consumer_and_known_bad_double_owner) ... ok\ntest_existing_width_consumer_reaches_all_159_wave_nets (test_route_source_contract.RouteSourceContractTests.test_existing_width_consumer_reaches_all_159_wave_nets) ... ok\ntest_existing_width_consumer_rejects_underfloor_power (test_route_source_contract.RouteSourceContractTests.test_existing_width_consumer_rejects_underfloor_power) ... ok\ntest_isolated_adopted_seed_geometry_and_three_pose_screen (test_route_source_contract.RouteSourceContractTests.test_isolated_adopted_seed_geometry_and_three_pose_screen) ... ok\ntest_native_census_includes_conditioner_and_its_intentional_nc (test_route_source_contract.RouteSourceContractTests.test_native_census_includes_conditioner_and_its_intentional_nc) ... ok\ntest_native_filter_negative_and_ground_pin_identities (test_route_source_contract.RouteSourceContractTests.test_native_filter_negative_and_ground_pin_identities) ... ok\ntest_rf_stays_disabled_without_denying_digital_impedance_intent (test_route_source_contract.RouteSourceContractTests.test_rf_stays_disabled_without_denying_digital_impedance_intent) ... ok\ntest_sense_control_preserves_clearance_and_bootstrap_is_not_quiet (test_route_source_contract.RouteSourceContractTests.test_sense_control_preserves_clearance_and_bootstrap_is_not_quiet) ... ok\ntest_shadow_compile_and_hostile_ownership_and_plane_rejection (test_route_source_contract.RouteSourceContractTests.test_shadow_compile_and_hostile_ownership_and_plane_rejection) ... ok\ntest_stack_public_dimensions_reconcile_both_source_consumers (test_route_source_contract.RouteSourceContractTests.test_stack_public_dimensions_reconcile_both_source_consumers) ... ok\ntest_transient_bulk_wave_cannot_intentionally_request_a_layer_transfer (test_route_source_contract.RouteSourceContractTests.test_transient_bulk_wave_cannot_intentionally_request_a_layer_transfer) ... ok\ntest_via_pair_not_independent_size_and_drill_floors (test_route_source_contract.RouteSourceContractTests.test_via_pair_not_independent_size_and_drill_floors) ... ok\ntest_delivered_circuit_ground_clearance (test_schematic_ground_clearance.GroundClearanceTests.test_delivered_circuit_ground_clearance) ... ok\ntest_fsync_output_has_no_unmarked_tail (test_schematic_ground_clearance.GroundClearanceTests.test_fsync_output_has_no_unmarked_tail) ... ok\ntest_good_clear_corridor (test_schematic_ground_clearance.GroundClearanceTests.test_good_clear_corridor) ... ok\ntest_hostile_foreign_downleg (test_schematic_ground_clearance.GroundClearanceTests.test_hostile_foreign_downleg) ... ok\ntest_hostile_foreign_label (test_schematic_ground_clearance.GroundClearanceTests.test_hostile_foreign_label) ... ok\ntest_segment_tangent_diagonal_and_clear (test_schematic_ground_clearance.GroundClearanceTests.test_segment_tangent_diagonal_and_clear) ... ok\ntest_complete_plate_not_cj_center (test_schematic_ink_clearance.InkGeometryTests.test_complete_plate_not_cj_center) ... ok\ntest_delivered_complete_ink (test_schematic_ink_clearance.InkGeometryTests.test_delivered_complete_ink) ... ok\ntest_delivered_supervisor_supply_plates_include_own_wires (test_schematic_ink_clearance.InkGeometryTests.test_delivered_supervisor_supply_plates_include_own_wires) ... ok\ntest_end_to_end_body_has_no_owner_exemption (test_schematic_ink_clearance.InkGeometryTests.test_end_to_end_body_has_no_owner_exemption) ... ok\ntest_end_to_end_nc_and_plate_pair (test_schematic_ink_clearance.InkGeometryTests.test_end_to_end_nc_and_plate_pair) ... ok\ntest_end_to_end_near_strokes_and_perpendicular_crossing (test_schematic_ink_clearance.InkGeometryTests.test_end_to_end_near_strokes_and_perpendicular_crossing) ... ok\ntest_end_to_end_plate_and_net_ownership (test_schematic_ink_clearance.InkGeometryTests.test_end_to_end_plate_and_net_ownership) ... ok\ntest_hostile_body_and_good_external_corridor (test_schematic_ink_clearance.InkGeometryTests.test_hostile_body_and_good_external_corridor) ... ok\ntest_hostile_parallel_and_good_crossing (test_schematic_ink_clearance.InkGeometryTests.test_hostile_parallel_and_good_crossing) ... ok\ntest_nc_and_plate_tangent (test_schematic_ink_clearance.InkGeometryTests.test_nc_and_plate_tangent) ... ok\ntest_same_net_label_attachment_is_direction_scoped (test_schematic_ink_clearance.InkGeometryTests.test_same_net_label_attachment_is_direction_scoped) ... ok\ntest_delivered_pdf_text_floor (test_schematic_presentation.PresentationTests.test_delivered_pdf_text_floor) ... ok\ntest_every_primary_wire_preserves_existing_net (test_schematic_presentation.PresentationTests.test_every_primary_wire_preserves_existing_net) ... ok\ntest_exact_component_ownership (test_schematic_presentation.PresentationTests.test_exact_component_ownership) ... ok\ntest_reject_cross_net_wire (test_schematic_presentation.PresentationTests.test_reject_cross_net_wire) ... ok\ntest_reject_cross_sheet_wire (test_schematic_presentation.PresentationTests.test_reject_cross_sheet_wire) ... ok\ntest_reject_missing_pin (test_schematic_presentation.PresentationTests.test_reject_missing_pin) ... ok\ntest_legend_messages_and_other_captions_survive (test_source_silkscreen.CaptionTests.test_legend_messages_and_other_captions_survive) ... ok\ntest_original_crowded_legends_are_rejected (test_source_silkscreen.CaptionTests.test_original_crowded_legends_are_rejected) ... ok\ntest_selected_source_legends_clear_pinned_component_geometry (test_source_silkscreen.CaptionTests.test_selected_source_legends_clear_pinned_component_geometry) ... ok\ntest_historical_clipping_is_rejected (test_source_silkscreen.SourceSilkTests.test_historical_clipping_is_rejected) ... ok\ntest_j9_graphics_stay_on_board_without_mating_pose_change (test_source_silkscreen.SourceSilkTests.test_j9_graphics_stay_on_board_without_mating_pose_change) ... ok\ntest_non_silk_authority_unchanged (test_source_silkscreen.SourceSilkTests.test_non_silk_authority_unchanged) ... ok\ntest_polarity_and_start_lead_marks_retained (test_source_silkscreen.SourceSilkTests.test_polarity_and_start_lead_marks_retained) ... ok\ntest_projection_rejects_pad_model_and_fab_drift (test_source_silkscreen.SourceSilkTests.test_projection_rejects_pad_model_and_fab_drift) ... ok\ntest_selected_library_graphics_clear_own_mask (test_source_silkscreen.SourceSilkTests.test_selected_library_graphics_clear_own_mask) ... ok\ntest_all_39_changed_instances_clear_full_foreign_native_geometry (test_startup_source.StartupSourceTests.test_all_39_changed_instances_clear_full_foreign_native_geometry) ... ok\ntest_exact_feed_loop_pad_edge_budgets_and_bad_old_pose (test_startup_source.StartupSourceTests.test_exact_feed_loop_pad_edge_budgets_and_bad_old_pose) ... ok\ntest_exact_live_topology_and_hostile_each_new_connection (test_startup_source.StartupSourceTests.test_exact_live_topology_and_hostile_each_new_connection) ... ok\ntest_opa_and_input_mask_coverage_cannot_be_dropped (test_startup_source.StartupSourceTests.test_opa_and_input_mask_coverage_cannot_be_dropped) ... ok\ntest_semantic_delta_projection_rejects_new_authority_drift (test_startup_source.StartupSourceTests.test_semantic_delta_projection_rejects_new_authority_drift) ... ok\ntest_absent_field_fails_actual_coverage (test_thermal_source.ThermalSourceTests.test_absent_field_fails_actual_coverage) ... ok\ntest_close_holes_fail_without_foreign_net (test_thermal_source.ThermalSourceTests.test_close_holes_fail_without_foreign_net) ... ok\ntest_existing_source_authority_is_preserved (test_thermal_source.ThermalSourceTests.test_existing_source_authority_is_preserved) ... ok\ntest_foreign_pad_site_fails_native_clearance_and_host (test_thermal_source.ThermalSourceTests.test_foreign_pad_site_fails_native_clearance_and_host) ... ok\ntest_full_native_geometry_and_exact_denominators (test_thermal_source.ThermalSourceTests.test_full_native_geometry_and_exact_denominators) ... ok\ntest_host_paste_and_nominal_geometry (test_thermal_source.ThermalSourceTests.test_host_paste_and_nominal_geometry) ... ok\ntest_unfilled_and_overlapping_processes_fail (test_thermal_source.ThermalSourceTests.test_unfilled_and_overlapping_processes_fail) ... ok\n\n----------------------------------------------------------------------\nRan 241 tests in 93.497s\n\nOK\n"
+    },
+    {
+      "id": "root-route-pulse-screen-20260909-f04370b6-r1",
+      "result": {
+        "command": [
+          "/usr/bin/python3",
+          "-B",
+          "/tmp/carrier-power-model-20260909.t5FTA9/route_pulse_screen.py"
+        ],
+        "cwd": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901",
+        "started_at": "2026-09-09T06:42:33.288074+00:00",
+        "finished_at": "2026-09-09T06:42:33.337266+00:00",
+        "returncode": 0,
+        "elapsed_s": 0.04782156995497644,
+        "timed_out": false,
+        "cancelled": false,
+        "log_sha256": "e533c4d962e939fd447ca6712b2b7c1a63492578f9bad412cf81205ee48d9b82"
+      },
+      "log": "{\n  \"scope\": \"conditional sensitivity only, not a release or physical current gate\",\n  \"source_sha256\": {\n    \"03_src/rules/nets.yaml\": \"7d1f5de2fdbf0e3eca43448d3c313379d7a01cb1ec438a5182679c4330a90991\",\n    \"03_src/route.yaml\": \"c5c5ce5446c31d599af234df8065be54a1998c0da1a290d86d7a26acb8a4085d\",\n    \"03_src/floorplan.yaml\": \"1e28e7e4e833c8937c9c6eb787d2a48541ea710f0b9ec276c2949a05ce8157c5\",\n    \"03_src/check_power_source.py\": \"8aa35398cf60f8ac91e21902ac984b5d47bbc8a75245320e7e7c577fcacc4504\",\n    \"02_parts/WSLP1206R0500FEA/part.yaml\": \"62c568eca46c246a6961b20e80c803185ccd8c636039017b5f9508d05fd2cf03\"\n  },\n  \"existing_helper_widths_mm\": {\n    \"0.3\": 0.057075994638425206,\n    \"2.5\": 1.0630368548812084,\n    \"3.1\": 1.430229785589359,\n    \"4\": 2.0327928532804505\n  },\n  \"selected_source_width_mm\": 1.2,\n  \"source_outer_nominal_copper_mm\": 0.035,\n  \"equation\": \"deltaT <= rho_max * integral(i^2 dt) / (Cv_min * minimum_area^2)\",\n  \"assumptions\": [\n    \"uniform conductor cross section; whole specified current flows in each assessed series segment\",\n    \"initial local copper temperature and rho/Cv bounds remain valid over pulse\",\n    \"adiabatic event rise only; no cooling credit, no long-term repeated thermal guarantee\",\n    \"rho<=3e-8ohm-m and Cv>=3e6J/m3K are engineering reserve assumptions, not measured product bounds\",\n    \"source1.2mm/.035mm is nominal; etching/plating/minimum necks/returns must be verified later\"\n  ],\n  \"excluded\": [\n    \"terminal/solder resistances\",\n    \"current crowding and RF skin/proximity effects\",\n    \"barrels\",\n    \"real plane spreading and minimum return corridors\",\n    \"resistor internal pulse rating\"\n  ],\n  \"sensitivities\": [\n    {\n      \"width_mm\": 1.2,\n      \"thickness_mm\": 0.035,\n      \"Kelvin_per_A2s\": 5.668934240362812,\n      \"delta_K_by_I2t\": {\n        \"0.0001\": 0.0005668934240362812,\n        \"0.001\": 0.005668934240362812,\n        \"0.01\": 0.056689342403628114,\n        \"0.016\": 0.09070294784580499\n      }\n    },\n    {\n      \"width_mm\": 1.2,\n      \"thickness_mm\": 0.0175,\n      \"Kelvin_per_A2s\": 22.675736961451246,\n      \"delta_K_by_I2t\": {\n        \"0.0001\": 0.0022675736961451248,\n        \"0.001\": 0.022675736961451247,\n        \"0.01\": 0.22675736961451246,\n        \"0.016\": 0.36281179138321995\n      }\n    },\n    {\n      \"width_mm\": 0.3,\n      \"thickness_mm\": 0.0152,\n      \"Kelvin_per_A2s\": 480.9172052939366,\n      \"delta_K_by_I2t\": {\n        \"0.0001\": 0.048091720529393665,\n        \"0.001\": 0.4809172052939366,\n        \"0.01\": 4.809172052939366,\n        \"0.016\": 7.694675284702986\n      }\n    }\n  ],\n  \"resistor_boundary\": \"Vishay public WSLP1206/.05ohm85C replay: .85Wcontinuous, .0636J single-pulse guidance only; no arbitrary repetitive credit\"\n}\n"
+    }
+  ],
+  "diagnostics": {
+    "model-coupon-result.json": {
+      "scope": "source-model isolated coupon only; no carrier generation or P-MODEL-REG acceptance",
+      "model_sha256": "b11845f0e20c69fec2b29a2b1a5f13ee76a6d37b32aefcc31be140f6edd96c6c",
+      "source_footprint_sha256": "a269b08a4b67f0f9c859b99c3e6353030a640de9af6ffe6e7026e9f3e2a0ad76",
+      "nonmodel_source_unchanged": true,
+      "existing_models_byte_identical": {
+        "Cirrus_CS5308P_QFN48_nominal.wrl": "524842aeb15f39c3fbefa14588adf985784f2df4d93fb0812d0779ae22f87135",
+        "Coilcraft_XGL4020_nominal.wrl": "7bad54018ac4dc4a88aefcfd22ea77252a562697b913a4b19abfe49bde13231d",
+        "Littelfuse_1812L035_60_max-envelope.wrl": "edd6c3054b944bb9436d3943f1b5da78396621e59065dde98e828219fa62cde9",
+        "Littelfuse_2920L260_33_max-envelope.wrl": "8e7369b50eb9d507764e7758dd2e03ece1e7c763da5872989afe98be15f1b37c",
+        "Molex_43650-0200_conservative-envelope.wrl": "13bd6a14380cc05be57c8f88c38544ac5874d080fd964b6373bcf330e30d802a",
+        "Molex_43650-0400_conservative-envelope.wrl": "1898c19f8167f889fe72207b1bcb59b8e67031542f7d4436a25e229e36ac8995",
+        "TI_DSE0006A_nominal.wrl": "ab2e205855dcf71a0663cbd021ff2cddd284a980d338753ffb54dd726409c1ce",
+        "TI_DSG0008A_nominal.wrl": "0efc4d267f4b25c433f509251759baab99611db311ca31b3f60ae180c3beb1fe",
+        "TI_DSK0010A_nominal.wrl": "9d417d764c7852d0891bb22f6cdc2bdf9d6daa25efd481f9242bc271776e4d5e"
+      },
+      "rotations": [
+        0,
+        90,
+        180,
+        270
+      ],
+      "renders": [
+        {
+          "kind": "normal",
+          "side": "top",
+          "command": [
+            "kicad-cli",
+            "pcb",
+            "render",
+            "--width",
+            "1600",
+            "--height",
+            "1200",
+            "--quality",
+            "basic",
+            "--side",
+            "top",
+            "-o",
+            "/tmp/carrier-power-model-20260909.t5FTA9/coupons/normal/top.png",
+            "/tmp/carrier-power-model-20260909.t5FTA9/coupons/normal/coupon.kicad_pcb"
+          ],
+          "rc": 0,
+          "elapsed_s": 0.44472809694707394,
+          "log_sha256": "122da57afcd2d6bab4a212b1a1c743efd2c55af6cc812970c162777d834d201a",
+          "board_sha256": "54f2bd46e9cbbfd630d4d61e628c3e6f1880b4696e27cb9a42c7bffaf7d41a85",
+          "image_sha256": "8c7c38a3f2d2d1f2befef68dd2ae0043b64a6c4655a76aa9ce1e84049a755f57"
+        },
+        {
+          "kind": "normal",
+          "side": "front",
+          "command": [
+            "kicad-cli",
+            "pcb",
+            "render",
+            "--width",
+            "1600",
+            "--height",
+            "1200",
+            "--quality",
+            "basic",
+            "--side",
+            "front",
+            "-o",
+            "/tmp/carrier-power-model-20260909.t5FTA9/coupons/normal/front.png",
+            "/tmp/carrier-power-model-20260909.t5FTA9/coupons/normal/coupon.kicad_pcb"
+          ],
+          "rc": 0,
+          "elapsed_s": 0.3428841351997107,
+          "log_sha256": "7efa0fa075e4c7016909b8ce5ace55026aa6dab19d3524aee49d1b35db8db626",
+          "board_sha256": "54f2bd46e9cbbfd630d4d61e628c3e6f1880b4696e27cb9a42c7bffaf7d41a85",
+          "image_sha256": "db2d7a655120b80a4016e33d9ed611eae9579438cc0d52622c1890c5b0e672e6"
+        },
+        {
+          "kind": "normal",
+          "side": "right",
+          "command": [
+            "kicad-cli",
+            "pcb",
+            "render",
+            "--width",
+            "1600",
+            "--height",
+            "1200",
+            "--quality",
+            "basic",
+            "--side",
+            "right",
+            "-o",
+            "/tmp/carrier-power-model-20260909.t5FTA9/coupons/normal/right.png",
+            "/tmp/carrier-power-model-20260909.t5FTA9/coupons/normal/coupon.kicad_pcb"
+          ],
+          "rc": 0,
+          "elapsed_s": 0.44539115601219237,
+          "log_sha256": "90fc78c2a02113140f53f5abd34da9054ca010604ff8c779c08889fbd2355ac7",
+          "board_sha256": "54f2bd46e9cbbfd630d4d61e628c3e6f1880b4696e27cb9a42c7bffaf7d41a85",
+          "image_sha256": "cb0d3b4ff677bf6d11fb8503ec00323307a245e4fb44321ed571fcd86d028a1d"
+        },
+        {
+          "kind": "bare",
+          "side": "top",
+          "command": [
+            "kicad-cli",
+            "pcb",
+            "render",
+            "--width",
+            "1600",
+            "--height",
+            "1200",
+            "--quality",
+            "basic",
+            "--side",
+            "top",
+            "-o",
+            "/tmp/carrier-power-model-20260909.t5FTA9/coupons/bare/top.png",
+            "/tmp/carrier-power-model-20260909.t5FTA9/coupons/bare/coupon.kicad_pcb"
+          ],
+          "rc": 0,
+          "elapsed_s": 0.4381277319043875,
+          "log_sha256": "8f216ff6723baf02fac34f4d50fc843d30d898fa81f24c515e2da212689c330b",
+          "board_sha256": "757cedf12f5f4358dd0aa027c4fcb494a934cde647def832f765d58508966bf9",
+          "image_sha256": "7dfc5758a3d9dce213126a5d24960e47b609379d87bcef1e82dbd6821320992b"
+        },
+        {
+          "kind": "inverted",
+          "side": "top",
+          "command": [
+            "kicad-cli",
+            "pcb",
+            "render",
+            "--width",
+            "1600",
+            "--height",
+            "1200",
+            "--quality",
+            "basic",
+            "--side",
+            "top",
+            "-o",
+            "/tmp/carrier-power-model-20260909.t5FTA9/coupons/inverted/top.png",
+            "/tmp/carrier-power-model-20260909.t5FTA9/coupons/inverted/coupon.kicad_pcb"
+          ],
+          "rc": 0,
+          "elapsed_s": 0.5557031889911741,
+          "log_sha256": "771b672596898421e0fb6eb974985c13c4f391b484ad20e6c7e58107ca57cee6",
+          "board_sha256": "e5794419a4868160c23687b8b31884390b2662b20e05649c00e6665af6b9a00d",
+          "image_sha256": "7dfc5758a3d9dce213126a5d24960e47b609379d87bcef1e82dbd6821320992b"
+        },
+        {
+          "kind": "inverted",
+          "side": "front",
+          "command": [
+            "kicad-cli",
+            "pcb",
+            "render",
+            "--width",
+            "1600",
+            "--height",
+            "1200",
+            "--quality",
+            "basic",
+            "--side",
+            "front",
+            "-o",
+            "/tmp/carrier-power-model-20260909.t5FTA9/coupons/inverted/front.png",
+            "/tmp/carrier-power-model-20260909.t5FTA9/coupons/inverted/coupon.kicad_pcb"
+          ],
+          "rc": 0,
+          "elapsed_s": 0.45876508904621005,
+          "log_sha256": "ac872ec3bf71f81770d898299457dee90fbc6ba7d989e1eefc95093de71548cc",
+          "board_sha256": "e5794419a4868160c23687b8b31884390b2662b20e05649c00e6665af6b9a00d",
+          "image_sha256": "739679a8d5af145fe35521417e4d64da9951e964673a8240cb42ca3f045a476f"
+        },
+        {
+          "kind": "inverted",
+          "side": "right",
+          "command": [
+            "kicad-cli",
+            "pcb",
+            "render",
+            "--width",
+            "1600",
+            "--height",
+            "1200",
+            "--quality",
+            "basic",
+            "--side",
+            "right",
+            "-o",
+            "/tmp/carrier-power-model-20260909.t5FTA9/coupons/inverted/right.png",
+            "/tmp/carrier-power-model-20260909.t5FTA9/coupons/inverted/coupon.kicad_pcb"
+          ],
+          "rc": 0,
+          "elapsed_s": 0.46143217012286186,
+          "log_sha256": "df47a10a1085c677c600d6323617173f9b5b4f5d3e6d5c32f0b412238d528462",
+          "board_sha256": "e5794419a4868160c23687b8b31884390b2662b20e05649c00e6665af6b9a00d",
+          "image_sha256": "40e01c95380561ad2fa83d405193d9f70544665cbdebe7f76b902205ad0581b4"
+        }
+      ],
+      "signed_mount_side": {
+        "normal": {
+          "front_fraction": 1.0,
+          "measurements": [
+            {
+              "above": 10672,
+              "below": 0,
+              "strip_y": [
+                544,
+                631
+              ]
+            },
+            {
+              "above": 13952,
+              "below": 0,
+              "strip_y": [
+                544,
+                631
+              ]
+            }
+          ]
+        },
+        "inverted": {
+          "front_fraction": 0.05511228099037591,
+          "measurements": [
+            {
+              "above": 556,
+              "below": 9892,
+              "strip_y": [
+                544,
+                631
+              ]
+            },
+            {
+              "above": 784,
+              "below": 13082,
+              "strip_y": [
+                544,
+                631
+              ]
+            }
+          ]
+        }
+      },
+      "known_bad": "180deg model X rotation plus -1.6mm offset, fully below board",
+      "caveat": "all_pad_centres containment is not an applicable end-contact datum: pad centres+/-1.725mm intentionally exceed nominal body half-length1.600mm; physical terminal-to-pad registration is tested independently, no pads or model stretched to satisfy that predicate"
+    },
+    "model-pixel-result.json": {
+      "scope": "four-rotation isolated-coupon source-model diagnostic only",
+      "source_images": {
+        "top.png:normal": "8c7c38a3f2d2d1f2befef68dd2ae0043b64a6c4655a76aa9ce1e84049a755f57",
+        "top.png:bare": "7dfc5758a3d9dce213126a5d24960e47b609379d87bcef1e82dbd6821320992b"
+      },
+      "calibration_px_per_mm": [
+        57.65586034912718,
+        57.65586034912718
+      ],
+      "edge_tolerance_mm": 0.06,
+      "graded": 4,
+      "total": 4,
+      "measurements": [
+        {
+          "ref": "R0",
+          "expected_body_mm": [
+            -6.6,
+            -5.8,
+            -3.4,
+            -4.2
+          ],
+          "measured_body_mm": [
+            -6.625519031141868,
+            -5.810337370242215,
+            -3.416825259515571,
+            -4.197318339100346
+          ],
+          "pixels": 15664,
+          "max_edge_error_mm": 0.02551903114186871
+        },
+        {
+          "ref": "R90",
+          "expected_body_mm": [
+            4.2,
+            -6.6,
+            5.8,
+            -3.4
+          ],
+          "measured_body_mm": [
+            4.197318339100345,
+            -6.608174740484429,
+            5.810337370242214,
+            -3.399480968858132
+          ],
+          "pixels": 15664,
+          "max_edge_error_mm": 0.010337370242214483
+        },
+        {
+          "ref": "R180",
+          "expected_body_mm": [
+            -6.6,
+            4.2,
+            -3.4,
+            5.8
+          ],
+          "measured_body_mm": [
+            -6.625519031141868,
+            4.214662629757786,
+            -3.416825259515571,
+            5.827681660899653
+          ],
+          "pixels": 15664,
+          "max_edge_error_mm": 0.027681660899653515
+        },
+        {
+          "ref": "R270",
+          "expected_body_mm": [
+            4.2,
+            3.4,
+            5.8,
+            6.6
+          ],
+          "measured_body_mm": [
+            4.197318339100345,
+            3.416825259515571,
+            5.810337370242214,
+            6.625519031141868
+          ],
+          "pixels": 15664,
+          "max_edge_error_mm": 0.02551903114186871
+        }
+      ],
+      "board_placement_registration_accepted": false
+    },
+    "route-pulse-screen.json": {
+      "scope": "conditional sensitivity only, not a release or physical current gate",
+      "source_sha256": {
+        "03_src/rules/nets.yaml": "7d1f5de2fdbf0e3eca43448d3c313379d7a01cb1ec438a5182679c4330a90991",
+        "03_src/route.yaml": "c5c5ce5446c31d599af234df8065be54a1998c0da1a290d86d7a26acb8a4085d",
+        "03_src/floorplan.yaml": "1e28e7e4e833c8937c9c6eb787d2a48541ea710f0b9ec276c2949a05ce8157c5",
+        "03_src/check_power_source.py": "8aa35398cf60f8ac91e21902ac984b5d47bbc8a75245320e7e7c577fcacc4504",
+        "02_parts/WSLP1206R0500FEA/part.yaml": "62c568eca46c246a6961b20e80c803185ccd8c636039017b5f9508d05fd2cf03"
+      },
+      "existing_helper_widths_mm": {
+        "0.3": 0.057075994638425206,
+        "2.5": 1.0630368548812084,
+        "3.1": 1.430229785589359,
+        "4": 2.0327928532804505
+      },
+      "selected_source_width_mm": 1.2,
+      "source_outer_nominal_copper_mm": 0.035,
+      "equation": "deltaT <= rho_max * integral(i^2 dt) / (Cv_min * minimum_area^2)",
+      "assumptions": [
+        "uniform conductor cross section; whole specified current flows in each assessed series segment",
+        "initial local copper temperature and rho/Cv bounds remain valid over pulse",
+        "adiabatic event rise only; no cooling credit, no long-term repeated thermal guarantee",
+        "rho<=3e-8ohm-m and Cv>=3e6J/m3K are engineering reserve assumptions, not measured product bounds",
+        "source1.2mm/.035mm is nominal; etching/plating/minimum necks/returns must be verified later"
+      ],
+      "excluded": [
+        "terminal/solder resistances",
+        "current crowding and RF skin/proximity effects",
+        "barrels",
+        "real plane spreading and minimum return corridors",
+        "resistor internal pulse rating"
+      ],
+      "sensitivities": [
+        {
+          "width_mm": 1.2,
+          "thickness_mm": 0.035,
+          "Kelvin_per_A2s": 5.668934240362812,
+          "delta_K_by_I2t": {
+            "0.0001": 0.0005668934240362812,
+            "0.001": 0.005668934240362812,
+            "0.01": 0.056689342403628114,
+            "0.016": 0.09070294784580499
+          }
+        },
+        {
+          "width_mm": 1.2,
+          "thickness_mm": 0.0175,
+          "Kelvin_per_A2s": 22.675736961451246,
+          "delta_K_by_I2t": {
+            "0.0001": 0.0022675736961451248,
+            "0.001": 0.022675736961451247,
+            "0.01": 0.22675736961451246,
+            "0.016": 0.36281179138321995
+          }
+        },
+        {
+          "width_mm": 0.3,
+          "thickness_mm": 0.0152,
+          "Kelvin_per_A2s": 480.9172052939366,
+          "delta_K_by_I2t": {
+            "0.0001": 0.048091720529393665,
+            "0.001": 0.4809172052939366,
+            "0.01": 4.809172052939366,
+            "0.016": 7.694675284702986
+          }
+        }
+      ],
+      "resistor_boundary": "Vishay public WSLP1206/.05ohm85C replay: .85Wcontinuous, .0636J single-pulse guidance only; no arbitrary repetitive credit"
+    }
+  },
+  "diagnostic_source": {
+    "model_coupon.py": "\"\"\"Disposable model-only coupon diagnostics, NOT carrier board generation.\"\"\"\nimport hashlib\nimport importlib.util\nimport json\nimport os\nfrom pathlib import Path\nimport shutil\nimport subprocess\nimport sys\n\nimport pcbnew\n\nROOT=Path('/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901')\nP=ROOT/'projects/crow-audio-carrier-v1'\nW=Path(__file__).parent\nsys.path.insert(0,str(ROOT/'skills/kicad-pcb/scripts'))\nsys.path.insert(0,str(ROOT/'skills/jlcpcb-fab/scripts'))\nfrom process_runner import run_bounded\nfrom native_model_registration import signed_mount_side_pixels\n\ndef digest(p):return hashlib.sha256(p.read_bytes()).hexdigest()\n\nspec=importlib.util.spec_from_file_location('model_tests',P/'03_src/tests/test_package_models.py')\ntests=importlib.util.module_from_spec(spec);spec.loader.exec_module(tests)\nsource=P/'03_src/lib/crow_audio_carrier.pretty/Vishay_WSLP1206_50m_Exact.kicad_mod'\nbaseline=subprocess.check_output(['git','show','f04370b6:'+str(source.relative_to(ROOT))],cwd=ROOT,timeout=30).decode()\nassert tests.nonmodel(baseline)==tests.nonmodel(source.read_text()),'Changed real land geometry'\nmodel=P/'03_src/lib/3dmodels/derived/Vishay_WSLP1206_50m_nominal.wrl'\nmanifest={}\nfor p in sorted((P/'03_src/lib/3dmodels/derived').glob('*.wrl')):\n    if p==model:continue\n    previous=subprocess.check_output(['git','show','f04370b6:'+str(p.relative_to(ROOT))],cwd=ROOT,timeout=30)\n    assert previous==p.read_bytes(),p\n    manifest[p.name]=digest(p)\nassert len(manifest)==9\n\ndef build(kind):\n    out=W/'coupons'/kind;out.mkdir(parents=True,exist_ok=False)\n    shutil.copy2(model,out/model.name)\n    board=pcbnew.BOARD()\n    for deg,(x,y) in zip((0,90,180,270),((-5,-5),(5,-5),(-5,5),(5,5))):\n        fp=pcbnew.FootprintLoad(str(source.parent),source.stem)\n        fp.SetReference('R'+str(deg));fp.SetValue(str(deg)+'deg')\n        fp.SetPosition(pcbnew.VECTOR2I_MM(x,y));fp.SetOrientationDegrees(deg)\n        m=fp.Models()[0];m.m_Filename='${KIPRJMOD}/'+model.name\n        if kind=='inverted':\n            m.m_Rotation.x=180\n            m.m_Offset.z=-1.6\n        fp.Models()[0]=m\n        if kind=='bare':fp.Models().clear()\n        board.Add(fp)\n    for a,b in (((-10,-10),(10,-10)),((10,-10),(10,10)),((10,10),(-10,10)),((-10,10),(-10,-10))):\n        edge=pcbnew.PCB_SHAPE(board);edge.SetShape(pcbnew.SHAPE_T_SEGMENT)\n        edge.SetLayer(pcbnew.Edge_Cuts);edge.SetStart(pcbnew.VECTOR2I_MM(*a));edge.SetEnd(pcbnew.VECTOR2I_MM(*b))\n        edge.SetWidth(pcbnew.FromMM(.05));board.Add(edge)\n    target=out/'coupon.kicad_pcb';pcbnew.SaveBoard(str(target),board)\n    return target\n\nboards={kind:build(kind) for kind in ('normal','bare','inverted')}\nresults=[];fractions={}\nfor kind,board in boards.items():\n    measurements=[]\n    for side in (('top',) if kind=='bare' else ('top','front','right')):\n        image=board.parent/(side+'.png')\n        argv=['kicad-cli','pcb','render','--width','1600','--height','1200','--quality','basic','--side',side,'-o',str(image),str(board)]\n        log=board.parent/(side+'.log')\n        result=run_bounded(argv,cwd=ROOT,env={**os.environ,'PYTHONDONTWRITEBYTECODE':'1'},timeout_s=90,heartbeat_s=10,label='wslp-'+kind+'-'+side,state_path=board.parent/(side+'.state.json'))\n        log.write_text(result.output)\n        row=dict(kind=kind,side=side,command=argv,rc=result.returncode,elapsed_s=result.elapsed_s,log_sha256=digest(log),board_sha256=digest(board))\n        if result.returncode==0:row['image_sha256']=digest(image)\n        results.append(row)\n        assert result.returncode==0,row\n        if side!='top':\n            measurement=signed_mount_side_pixels(image);measurements.append(measurement)\n    if measurements:\n        above=sum(m['above'] for m in measurements);below=sum(m['below'] for m in measurements)\n        fractions[kind]=dict(front_fraction=above/(above+below),measurements=measurements)\nassert fractions['normal']['front_fraction']>=.75,fractions\nassert fractions['inverted']['front_fraction']<.75,fractions\nreport=dict(scope='source-model isolated coupon only; no carrier generation or P-MODEL-REG acceptance',\n    model_sha256=digest(model),source_footprint_sha256=digest(source),nonmodel_source_unchanged=True,\n    existing_models_byte_identical=manifest,rotations=[0,90,180,270],renders=results,\n    signed_mount_side=fractions,known_bad='180deg model X rotation plus -1.6mm offset, fully below board',\n    caveat='all_pad_centres containment is not an applicable end-contact datum: pad centres+/-1.725mm intentionally exceed nominal body half-length1.600mm; physical terminal-to-pad registration is tested independently, no pads or model stretched to satisfy that predicate')\n(W/'model-coupon-result.json').write_text(json.dumps(report,indent=2)+'\\n')\nprint(json.dumps(report,indent=2))\n",
+    "measure_coupon.py": "\"\"\"Independent same-camera model-minus-bare envelope measurement; diagnostic.\"\"\"\nimport hashlib\nimport json\nfrom pathlib import Path\nimport sys\n\nfrom PIL import Image\nimport pcbnew\n\nROOT=Path('/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901')\nW=Path(__file__).parent\nsys.path.insert(0,str(ROOT/'skills/jlcpcb-fab/scripts'))\nfrom twin_overlay import board_extent_px, extract_body\nfrom native_model_registration import mm_box, px_box\n\nnormal=W/'coupons/normal/top.png';bare=W/'coupons/bare/top.png'\nimage=Image.open(normal).convert('RGB');empty=Image.open(bare).convert('RGB')\nassert image.size==empty.size\nboard=pcbnew.LoadBoard(str(W/'coupons/normal/coupon.kicad_pcb'))\nedge=mm_box(board.GetBoardEdgesBoundingBox())\nextent=board_extent_px(empty);assert extent\nx0,y0,x1,y1=extent\nsx=(x1-x0+1)/(edge[2]-edge[0]);sy=(y1-y0+1)/(edge[3]-edge[1])\nassert abs(sx/sy-1)<.02\nx_of=lambda v:x0+(v-edge[0])*sx\ny_of=lambda v:y0+(v-edge[1])*sy\nmmx=lambda v:edge[0]+(v-x0)/sx\nmmy=lambda v:edge[1]+(v-y0)/sy\n# Values rederived from the manufacturer3.20x1.60nominal outline; no\n# producer constants or F.Fab maximum envelope are the expected body here.\nexpected={'R0':(-6.6,-5.8,-3.4,-4.2),'R90':(4.2,-6.6,5.8,-3.4),\n          'R180':(-6.6,4.2,-3.4,5.8),'R270':(4.2,3.4,5.8,6.6)}\nboxes={r:px_box(e,x_of,y_of) for r,e in expected.items()}\nrows=[]\nfor ref,e in expected.items():\n    window=px_box((e[0]-.5,e[1]-.5,e[2]+.5,e[3]+.5),x_of,y_of)\n    centre=(round(x_of((e[0]+e[2])/2)),round(y_of((e[1]+e[3])/2)))\n    measured=extract_body(image.load(),image.size,window,centre,blocked=[b for r,b in boxes.items() if r!=ref],\n                          protect=boxes[ref],bare_px=empty.load(),union_components=True)\n    assert measured,ref\n    b,count,touched=measured;assert not touched,(ref,measured)\n    actual=(mmx(b[0]),mmy(b[1]),mmx(b[2]+1),mmy(b[3]+1))\n    error=max(abs(a-v) for a,v in zip(actual,e))\n    rows.append(dict(ref=ref,expected_body_mm=e,measured_body_mm=actual,pixels=count,max_edge_error_mm=error))\n    assert count>0 and error<=.06,rows[-1]\nreport=dict(scope='four-rotation isolated-coupon source-model diagnostic only',\n    source_images={p.name+':'+p.parent.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in (normal,bare)},\n    calibration_px_per_mm=[sx,sy],edge_tolerance_mm=.06,graded=4,total=4,measurements=rows,\n    board_placement_registration_accepted=False)\n(W/'model-pixel-result.json').write_text(json.dumps(report,indent=2)+'\\n')\nprint(json.dumps(report,indent=2))\n",
+    "route_pulse_screen.py": "\"\"\"Conditional route planning sensitivities; no physical/thermal acceptance.\"\"\"\nimport hashlib\nimport json\nfrom pathlib import Path\nimport sys\n\nR=Path('/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901')\nP=R/'projects/crow-audio-carrier-v1'\nsys.path.insert(0,str(R/'skills/kicad-pcb/scripts'))\nfrom rules_audit import required_width_mm\n\npaths=['03_src/rules/nets.yaml','03_src/route.yaml','03_src/floorplan.yaml',\n       '03_src/check_power_source.py','02_parts/WSLP1206R0500FEA/part.yaml']\n# Intentionally conservative illustrative material inputs, NOT a guaranteed\n# JLC finished-foil specification or characterization of an allocated PCB.\n# Copper Development Association physical-properties table gives room-temp\n# density8.92g/cm3 and c_p.386J/gK (~3.44MJ/m3K); published search extract was\n# visible but direct PDF fetch denied403, so no downloaded/PDF-inspected claim.\n# rho<=3e-8ohm-m and Cv>=3e6J/m3K below are explicit ENGINEERING assumptions.\nrho=3e-8;cv=3e6\nrows=[]\nfor width,thickness in ((1.2,.035),(1.2,.0175),(.3,.0152)):\n    area=width*thickness*1e-6\n    coefficient=rho/(cv*area*area)\n    rows.append(dict(width_mm=width,thickness_mm=thickness,\n                     Kelvin_per_A2s=coefficient,\n                     delta_K_by_I2t={str(v):coefficient*v for v in (.0001,.001,.01,.016)}))\nresult=dict(scope='conditional sensitivity only, not a release or physical current gate',\n    source_sha256={p:hashlib.sha256((P/p).read_bytes()).hexdigest() for p in paths},\n    existing_helper_widths_mm={str(i):required_width_mm(i) for i in (.3,2.5,3.1,4)},\n    selected_source_width_mm=1.2,source_outer_nominal_copper_mm=.035,\n    equation='deltaT <= rho_max * integral(i^2 dt) / (Cv_min * minimum_area^2)',\n    assumptions=['uniform conductor cross section; whole specified current flows in each assessed series segment',\n                 'initial local copper temperature and rho/Cv bounds remain valid over pulse',\n                 'adiabatic event rise only; no cooling credit, no long-term repeated thermal guarantee',\n                 'rho<=3e-8ohm-m and Cv>=3e6J/m3K are engineering reserve assumptions, not measured product bounds',\n                 'source1.2mm/.035mm is nominal; etching/plating/minimum necks/returns must be verified later'],\n    excluded=['terminal/solder resistances','current crowding and RF skin/proximity effects',\n              'barrels','real plane spreading and minimum return corridors','resistor internal pulse rating'],\n    sensitivities=rows,\n    resistor_boundary='Vishay public WSLP1206/.05ohm85C replay: .85Wcontinuous, .0636J single-pulse guidance only; no arbitrary repetitive credit')\nout=Path(__file__).with_name('route-pulse-screen.json');out.write_text(json.dumps(result,indent=2)+'\\n')\nprint(json.dumps(result,indent=2))\n"
+  },
+  "no_current_board_generation": true,
+  "source_engineering_accepted": false
+}

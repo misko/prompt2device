@@ -2,7 +2,9 @@
 """P-DRC: grade exact refill DRC before human placement review and routing.
 
 An unrouted board legitimately has ratsnest ``unconnected_items`` and may
-carry preliminary ``isolated_copper`` zone islands, but it must not reach human
+carry preliminary ``isolated_copper`` zone islands. While unrouted connections
+remain, ``starved_thermal`` findings are explicitly deferred to final routed
+DRC: tracks and return stitching change the available spokes. It must not reach human
 review with shorts, clearance errors, invalid library links, malformed holes,
 or schematic-parity defects. This checker grades KiCad's JSON report after a
 fresh ``--refill-zones --schematic-parity`` run and names both denominators.
@@ -10,7 +12,9 @@ fresh ``--refill-zones --schematic-parity`` run and names both denominators.
 The placement allowance is deliberately not configurable: exposing an
 arbitrary violation-type allowlist would let a caller suppress the very short
 or clearance class this boundary exists to catch. Final routed DRC still owns
-whether every preliminary island becomes connected copper.
+whether every preliminary island becomes connected copper and every thermal
+meets its unchanged spoke requirement. No thermal is deferred on a connected
+board; this placement-only verdict never grants final DRC acceptance.
 """
 from __future__ import annotations
 
@@ -42,11 +46,14 @@ def main(argv=None) -> int:
         return 3
 
     allowed_types = {"isolated_copper"}
+    deferred_types = {"starved_thermal"} if doc["unconnected_items"] else set()
+    deferred = [v for v in doc["violations"] if isinstance(v, dict)
+                and v.get("type") in deferred_types]
     types = Counter(str(v.get("type", "<missing>"))
                     for v in doc["violations"] if isinstance(v, dict))
     blocking = [v for v in doc["violations"]
                 if not isinstance(v, dict)
-                or str(v.get("type", "<missing>")) not in allowed_types]
+                or str(v.get("type", "<missing>")) not in allowed_types | deferred_types]
     parity = doc["schematic_parity"]
 
     print(f"input: report = {path.resolve()}")
@@ -56,6 +63,11 @@ def main(argv=None) -> int:
           f"{len(parity)} parity finding(s)")
     print(f"P-DRC types: {dict(types) or 'NONE'}; "
           f"allowed={sorted(allowed_types)}")
+    for row in deferred:
+        print("DEFER P-DRC [starved_thermal]: " + json.dumps(row, sort_keys=True))
+    if deferred:
+        print(f"P-DRC deferred: {len(deferred)} thermal finding(s); final routed DRC "
+              "must regrade every pad with unchanged spoke limits and zero violations")
     for row in blocking[:20]:
         if isinstance(row, dict):
             print(f"FAIL P-DRC [{row.get('type', '<missing>')}]: "
@@ -70,7 +82,7 @@ def main(argv=None) -> int:
         print("P-DRC FAIL: placement has non-ratsnest defects before review")
         return 1
     print("P-DRC PASS: exact refilled placement has no non-allowed DRC or "
-          "schematic-parity finding")
+          "schematic-parity finding; placement acceptance only")
     return 0
 
 

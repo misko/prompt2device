@@ -1,0 +1,802 @@
+schema: 1
+target: DRAFT
+gates:
+- id: CAR-commission-and-architecture
+  required_for: DESIGN_CLEAN
+  state: pending
+  owner: systems
+  closes_when: The user boundary, array interface, module split, architecture and
+    accepted engineering decisions are explicit and traceable.
+  evidence:
+  - 01_docs/BRIEF.md
+  - 01_docs/ARCHITECTURE.md
+  - 01_docs/decisions/0001-single-cs5308p-tdm8.md
+  - 01_docs/decisions/0002-hardware-reset-pulse.md
+  - 01_docs/decisions/0003-power-and-spoke-boundary.md
+  - 01_docs/decisions/0004-cirrus-input-buffer.md
+  - 01_docs/decisions/0005-mch-power-domain-boundary.md
+- id: CAR-exact-parts-and-prelayout
+  required_for: DESIGN_CLEAN
+  state: pending
+  owner: electrical
+  closes_when: Exact part/source policy passes and the frozen BOM passes either authenticated
+    pre-layout review or a fresh exact-code public catalog screen under ADR-0006;
+    allocation is an order boundary.
+  evidence:
+  - 06_build/checkpoints/prelayout-inputs.json
+  - 06_build/checkpoints/prelayout.json
+  - 06_build/sourcing/public_catalog_stock.json
+  - 01_docs/decisions/0006-public-catalog-prelayout-only.md
+  - 08_reviews/2026-09-10_2378791f_source_verification.md
+- id: CAR-schematic
+  required_for: DESIGN_CLEAN
+  state: pending
+  owner: electrical
+  closes_when: The exact generated schematic and netlist pass machine gates plus independent
+    topology and rendered-schematic reviews.
+  evidence:
+  - 08_reviews/2026-09-10_2378791f_delta_topology.md
+  - 08_reviews/2026-09-10_7e6f751b_integrated_schematic_render.md
+  - 08_reviews/2026-09-10_2378791f_source_verification.md
+  - 06_build/checkpoints/schematic.json
+  - 08_reviews/2026-09-12_cat-delta_7baeac34_topology.md
+  - 08_reviews/2026-09-12_cat-delta_7baeac34_schematic_render.md
+  - 08_reviews/2026-09-12_channel-map_131e0dda_topology.md
+  - 08_reviews/2026-09-12_channel-map_131e0dda_schematic_render.md
+  - 08_reviews/2026-09-12_thermal_9e00dcf2_topology.md
+  - 08_reviews/2026-09-12_thermal_9e00dcf2_schematic_render.md
+- id: CAR-placement-and-routing
+  required_for: DESIGN_CLEAN
+  state: pending
+  owner: layout
+  closes_when: The admitted-source placement and routed PCB pass exact geometry, connectivity,
+    power, differential-audio, DRC, render and fresh-context review gates under ADR-0006
+    and ADR-0007.
+- id: CAR-release-package
+  required_for: FIRST_ARTICLE_ORDERABLE
+  state: pending
+  owner: fabrication
+  closes_when: A fresh reviewed BOM, CPL and fabrication package passes final JLC
+    allocation, population, sourcing, release-rehearsal and immutable-seal gates with
+    every order hold closed.
+- id: CAR-first-article-test
+  required_for: FIRST_ARTICLE_TESTED
+  state: pending
+  owner: lab
+  closes_when: A fabricated carrier passes the controlled first-article test plan
+    with retained raw power, reset, TDM, analog, cable, fault and thermal evidence.
+- id: CAR-production-validation
+  required_for: PRODUCTION_RELEASED
+  state: pending
+  owner: manufacturing
+  closes_when: A controlled pilot lot and the complete roof-appliance integration,
+    environmental and production test processes are approved.
+findings:
+- id: CAR-RJ45-native-envelope
+  state: open
+  blocks_at_or_above: DESIGN_CLEAN
+  owner: model-adjudication
+  finding: Mirrors shared POD-RJ45-native-envelope; not a separate campaign. Exact
+    shared 12-file Fab feature source independently SOUND and adopted after actual
+    source-review closure 04:51:22Z. Both footprints add 18 manufacturer-native spring-finger
+    paths; nominal shell/courtyard/pads/physical models and extraction algorithm unchanged.
+    Fresh candidate registration carrier6/6,pod2/2; independent full9jack shell/attachment/extent
+    and hostile controls retained in review626c3bae. Root adopted-source15tests PASS,10knownbad/2vacuities;
+    full81carrier+2pod zone source/fill equality. Both original Fab candidates remain
+    spent, no reset of earlier fuse/model/camera/pod budgets. Normal source/checkpoint/schematic/placement
+    and final explicit orientation renewal still owed, so finding stays open.
+  closes_when: The exact shared source correction and supplemental geometry evidence
+    are independently accepted, both boards regenerate and pass current native model
+    registration and dependent reviews, and final orientation views receive explicit
+    user confirmation. Ordinary eroded-pixelPASS alone is insufficient for full extent.
+  evidence:
+  - ../crow-mic-pod-v3/01_docs/journal/626c3baedddcef7c7ff834a75b83e3d731d1339c9a3499a831543fa5a1d4bfae.tar.gz
+  - ../crow-mic-pod-v3/01_docs/journal/9e4d4171e8a5787c0cd2eaea062a51634aea595279d2b92cde03cdb6d4bc9be9.tar.gz
+  - ../crow-mic-pod-v3/01_docs/journal/e7194a6af44690583f6ffc63b7c96be6a23e1f12a043df198964338f0a903384.tar.gz
+  - ../crow-mic-pod-v3/01_docs/journal/d78066f1c50111cc3318fe06e439b7b54367847a09a54f84a82fc826e8d1766f.tar.gz
+- id: CAR-RJ45-orientation-visibility
+  state: open
+  blocks_at_or_above: DESIGN_CLEAN
+  owner: connector-orientation-evidence
+  finding: Exact combined seven-file camera/scene/receipt correction independently
+    SOUND in archive95e4f609 and adopted through exact source hashes. Stale-scene
+    subject relabel now refuses; independent12case reuse/producer controls pass, maintained19/19,
+    carrier native9/9machine11views. Root normal shared-input renewal and current
+    schematic/placement acceptance remain owed before explicit user orientation approval.
+    Original2camera variants, focused integrity correction and all failed setups retained.
+    Current PCBs have not been regenerated by source adoption.
+  closes_when: Supply exact current top/outside/inside views that visibly identify
+    each unique connector tuple, preserve all9instance machine checks and mounting/model
+    datum authority, and obtain explicit user confirmation through the owning approval
+    gate with every image hash bound. No silent image replacement, inside-view waiver
+    or routing admission.
+  evidence:
+  - 01_docs/journal/95e4f609ea9c9111d27de87679a705c0319eac5658910297756755e8ee1fb3c4.tar.gz
+  - 01_docs/journal/679ad339ce3b1f08320e1054abd31a53cf985b2970d0ec277e2f44775018c50c.tar.gz
+  - 01_docs/journal/38d09d5fe48cb59445bffc32ba0aa2926c811b13c1ae15ebd4913cebac0d7b0e.tar.gz
+  - 01_docs/journal/7dc55067217dc0014bcce19bf8d5709c789a6cb7942ccaa48b60a91194e24f1c.tar.gz
+  - 01_docs/journal/e838ee7844a7c705921a33c7b70c481ef6711ef37306c4f6f8748fc1115d0a7e.tar.gz
+  - 06_build/pre_route/orientation/orientation_receipt.json
+- id: CAR-bottom-model-registration
+  state: closed
+  blocks_at_or_above: DESIGN_CLEAN
+  owner: model-registration-source
+  finding: Closed after independently reviewed source adoption6a19815f, normal schematic
+    renewal and fresh2/2acceptance df8166d8, then mandatory fresh normal placement
+    continuation. Owning model registration passes6/6groups on unchanged current board9c30a147,
+    including8bottomfuses16pad overlaps. Maintained14tests/10knownbad and one declared
+    blindspot, exact full-solid evidence and original2method variants retained. No
+    tolerance/denominator relaxation or routing acceptance.
+  closes_when: Reconcile the existing fuse-group mounting declaration and actual-side
+    independent registration through minimal source/checker changes, prove front/back
+    and known-bad native regressions without relaxing tolerances or denominators,
+    independently review the patch, regenerate affected subjects and pass normal model
+    registration. No footprint/model relocation or routing admission is implied.
+  evidence:
+  - 01_docs/journal/e838ee7844a7c705921a33c7b70c481ef6711ef37306c4f6f8748fc1115d0a7e.tar.gz
+  - 01_docs/journal/e9e8420334a455c9aaca081f8866a33ee19b96273c4d936bc709cdf0f1a0786e.tar.gz
+  - 01_docs/journal/b009a4f76f9d80cd612381fa3b4553332868f3b94e1dbfddffe4931021f0db90.tar.gz
+  - 01_docs/journal/placement.md
+  - 01_docs/journal/fccba76a7910ab1f28da9c0cc7bb63c25dc3cf4582c2db8d453d52ee33adb858.tar.gz
+- id: CAR-RJ45-delivery-recovery
+  state: closed
+  blocks_at_or_above: DESIGN_CLEAN
+  owner: coordinator
+  finding: The user explicitly authorized one fresh validation per expired handoff.
+    Both current pod schematic reviews delivered timely SOUND and the owning gate
+    passes2/2. Fresh carrier source selection delivered timely SOUND; all430 inputs
+    and9 source postimages were verified before exact adoption. This closes the recovery
+    delivery hold only. All three original TIMED_OUT records and geometry spend remain
+    unchanged; downstream carrier schematic renewal, placement, routing and release
+    gates remain owed.
+  closes_when: The user-authorized one-time recovery obtains timely fresh delivery
+    and engineering acceptance through the owning gates. Authorization was explicit
+    on 2026-09-12; original failed attempts and geometry-investigation spend remain.
+    Do not restamp late evidence or infer review acceptance from preparation.
+  evidence:
+  - 01_docs/journal/schematic.md
+  - 01_docs/journal/f0ccf01d4e0557069e8e6ed53c68506dea96832269d5effee7f7412c164ef163.tar.gz
+- id: CAR-RJ45-interface-revision
+  state: open
+  blocks_at_or_above: DESIGN_CLEAN
+  owner: systems
+  finding: Exact factory RJ45 source adopted at8a2d3620; current native schematics
+    regenerated and both required topology/readability reviews adopted SOUND at2026-09-12T21:24Z.
+    Owning PR-REVIEW grades2/2PASS for each board. Existing PCBs and sealed releases
+    remain historical Micro-Fit; current RJ45 placement, routing, DRC, fabrication
+    and release acceptance remain owed. Physical SOURCE/FULL distinction and prior
+    investigation budgets remain unchanged.
+  closes_when: The parent and both boards share an accepted exact RJ45 contract; source
+    and known-bad checker tests pass; regenerated schematic, placement and routed
+    artifacts pass all affected current reviews and gates. Preserve historical investigation
+    spend and immutable releases.
+- id: CAR-F12-power-sequencing-decision
+  state: closed
+  blocks_at_or_above: DESIGN_CLEAN
+  owner: electrical
+  finding: ADR0025 implements the shared 3V3_ADC OPA2320/LT3041 supply, passive external
+    bias, input limiting, output isolation and coordinated bleed/hold architecture.
+    The complete bounded source argument and focused/hostile regressions are implemented;
+    current2378791f independent topology and integrated schematic witnesses are SOUND.
+    This closes the source decision only. Realized copper, physical power transitions,
+    filter stability, noise/distortion, current-duration, effective capacitance and
+    thermal qualification remain with CAR-F13 and CAR-F6 under the unchanged prototype
+    boundary.
+  closes_when: Select and implement a coherent correction supported by the unchanged
+    signal and spoke envelope, with decision-relevant margins and explicit model limits;
+    demonstrate focused source regressions, regenerate, and obtain fresh independent
+    schematic review. Realized copper and bench qualification remain separately owed,
+    not substitutes for the source protection argument.
+  investigation:
+    schema: 1
+    requirement:
+      path: 01_docs/evidence/pre-cat-brief-20260912.md
+      sha256: b02ab8fbeb87b7f068d9823cbd1031802917d9f2575d13792e80235e471823b0
+      locator: End goal G2/G3, A2/A5, T4, and D6 prototype acceptance boundary
+    due_stage: KICAD-SCHEMATIC
+    operating_states:
+    - cold_start
+    - normal_audio
+    - input_removal
+    - brownout
+    - rapid_restart
+    question: Which power-loss isolation or amplifier/supply arrangement provides
+      defensible protection with credible margin and bounded verification effort?
+    milestones:
+      distinguish_nr_settling: Correct the false full-ramp interpretation so restart
+        candidates cannot rely on an unsupported settling guarantee.
+      account_signed_input_energy: Include isolated VIN and buck-inductor energy so
+        the candidate comparison does not rely on an omitted reverse port.
+      exclude_divider_only: Establish whether a top-resistor-only correction can preserve
+        the declared linear-load proof under existing threshold corners.
+      choose_source_correction: Select a coherent protection arrangement with a bounded
+        all-relevant-state source argument; not native or physical acceptance.
+    max_nonimproving_attempts: 3
+    max_attempts: 6
+    launches:
+    - id: launch-63b0874a7160461b9708e682f7428fbe
+      subject_sha256: e944253bc4e2df2ebcd8a0d76db8701cd61c7cc2466ec8824cbe3fd6214d554a
+    history:
+    - id: nr-settling-7a1450f2
+      subject_sha256: b95f1b709d4b09829c2613d82883500729e3d1889397deaee199a4bffc0073cf
+      origin: historical_assessment
+      hypothesis: The prior NR charge-time calculation might establish complete settling.
+      result: The checker was corrected and 250 source tests passed; the settling
+        guarantee remains unknown. This retires a candidate premise, not the restart
+        obligation.
+      model_domain: not_applicable
+      progress:
+      - distinguish_nr_settling
+      evidence:
+      - path: 01_docs/research/2026-09-09-nr-settling-and-restart.md
+        sha256: ca6f2a2643bc7cd8548cc87d348c2b04ba41b8e8fb6e4a26e7bc74b40efb8c34
+    - id: isolated-energy-ea148a54
+      subject_sha256: b95f1b709d4b09829c2613d82883500729e3d1889397deaee199a4bffc0073cf
+      origin: historical_assessment
+      hypothesis: A signed-port storage account can remove the omitted-VIN premise
+        from the shutdown comparison.
+      result: Independent energy checks validate accounting within the assumed model;
+        dynamic loading and real controller behavior remain unresolved. Credit is
+        for this limited model correction, not hardware safety.
+      model_domain: within
+      progress:
+      - account_signed_input_energy
+      evidence:
+      - path: 01_docs/research/2026-09-09-isolated-input-energy.md
+        sha256: 3ac01278e6ef7d0aafc858e0e986d5ef308dcdb836c5aab79c8c1a63424ae352
+    - id: divider-screen-6709d756
+      subject_sha256: b95f1b709d4b09829c2613d82883500729e3d1889397deaee199a4bffc0073cf
+      origin: historical_assessment
+      hypothesis: Adjusting only the existing supervisor top resistor might preserve
+        the full-range linear-load proof.
+      result: The threshold-corner inequality excludes that narrow correction. The
+        separate coupled full-range trajectories leave common-mode range and receive
+        no safety credit; no hardware failure or new shutdown-audio requirement is
+        inferred.
+      model_domain: not_applicable
+      progress:
+      - exclude_divider_only
+      evidence:
+      - path: 01_docs/research/2026-09-09-analog-load-and-domain.md
+        sha256: d66662d9d818b8cb17b4376aa40da844aaba61ca0fd4a851934ac3f7c0e11317
+    - id: launch-63b0874a7160461b9708e682f7428fbe
+      subject_sha256: e944253bc4e2df2ebcd8a0d76db8701cd61c7cc2466ec8824cbe3fd6214d554a
+      origin: executed
+      hypothesis: A bounded OPA2320AIDR screen on the unchanged 5V_OPA rail can decide
+        whether its rail-to-rail input range removes the full-range shutdown model-domain
+        obstacle without another reservoir or a precision threshold change.
+      result: Four conditional delay cases and five negative controls support taking
+        this exact candidate to source-part/protection review. This is a scalar comparison,
+        not a fresh coupled trajectory or an all-state protection argument. No part
+        is adopted and choose_source_correction is not credited.
+      model_domain: not_applicable
+      progress: []
+      evidence:
+      - path: 01_docs/SOURCE-CORRECTION-20260909-architecture-options-outcome.json
+        sha256: db2c5b3e621f8158ea659fb21cc9c3f3155528b91a4fc96f90c94f817ce2f887
+    - id: source-correction-2378791f
+      subject_sha256: 78c7ffbf7defc297dfa6ca88d5b24e2ae9bd4e2de96931c0f8cb91ba1488bb3f
+      origin: historical_assessment
+      hypothesis: The ADR0025 shared-rail/input-limiting/output-isolation arrangement
+        can close the source protection decision across the declared operating states
+        without adding a guaranteed shutdown-audio requirement.
+      result: The complete8ddb source topology judgment and exact2378791f continuation
+        preserve all eight engineering rows and bounded allocation limits. Current
+        source325/325, native937-pin/178-net/42-NC identity, zero-error ERC and complete
+        integrated native/PDF SOUND establish source admission. choose_source_correction
+        is credited; no measured copper, component dynamic maximum, physical survival
+        or hardware qualification is inferred.
+      model_domain: within
+      progress:
+      - choose_source_correction
+      evidence:
+      - path: 01_docs/decisions/0025-shared-rail-protection-architecture.md
+        sha256: b723c7e18c5f64e6a25d7ddc059aab7404e2b2de7505aa90edb3570342f91262
+      - path: 08_reviews/2026-09-10_8ddb11a1_successor_topology.md
+        sha256: 7f0068e37bd761079c74d0445cdf34f92b900c1bac18e337ca22c8363c0d84e7
+      - path: 08_reviews/2026-09-10_2378791f_delta_topology.md
+        sha256: 33e4451b52879d421b7d0e6c8b396953a86291eb31903bc2ce8519e04ed1c202
+      - path: 08_reviews/2026-09-10_2378791f_integrated_schematic_render.md
+        sha256: 4d69f4f8e7952fa2134a19a139d59b5a0ed23d421e2f01f3cad57f4210fbc538
+      - path: 08_reviews/2026-09-10_2378791f_source_verification.md
+        sha256: 4395e97c3b193dde7aa0ce0e5d58241119bd14d30f02c9cf5a9b6858a8185f98
+    next:
+      action: reassess
+      hypothesis: D-BACK reopens the upstream amplifier/supply/isolation arrangement
+        because the same protection finding survives the bounded optical-control proposal
+        without source acceptance. A fresh architect should select a simpler coherent
+        arrangement from the actual source and unchanged brief, not inherit the optical
+        proposal as mandatory. See research/2026-09-09-protection-architecture-backtrack.md.
+        This is architecture reassessment, not a numerical launch or an assertion
+        of hardware failure.
+      on_support: Implement the supported source correction with exact primary identities,
+        explicit all-state protection and load arguments, and positive/hostile regressions.
+        Credit choose_source_correction only after the complete argument, including
+        filter and feed obligations, survives review; then regenerate and obtain fresh
+        exact schematic reviews. Preserve native and physical acceptance boundaries.
+      on_reject: Identify the discriminating violated bound or genuinely unavailable
+        authority and the minimal next upstream correction. Do not return only the
+        same checklist, reject a part solely for one missing guaranteed timing maximum,
+        widen user requirements, reopen an unrestricted catalogue, or reset cumulative
+        history. A decision-limiting experiment needs a separately reviewed reassessment
+        and guarded launch.
+      uncertainty: decision_limiting
+  evidence:
+  - 01_docs/decisions/0025-shared-rail-protection-architecture.md
+  - 08_reviews/2026-09-10_8ddb11a1_successor_topology.md
+  - 08_reviews/2026-09-10_2378791f_delta_topology.md
+  - 08_reviews/2026-09-10_2378791f_integrated_schematic_render.md
+  - 08_reviews/2026-09-10_2378791f_source_verification.md
+- id: CAR-F13-realized-power-transfer
+  state: open
+  blocks_at_or_above: DESIGN_CLEAN
+  owner: layout
+  finding: Feed current-duration and low-inductance targets require a credible source
+    budget first, then checks on actual generated and routed copper. Source adjacency
+    is not measured loop inductance, ampacity, return continuity or thermal qualification.
+  closes_when: After source admission, grade exact realized power and return paths
+    at placement/routing, retain the selected current-duration and loop budgets, and
+    carry actual thermal and transient captures into CAR-F6 first-article qualification.
+    Do not demand routed geometry as evidence before generating its candidate.
+- id: CAR-F1-live-jlc-prelayout
+  state: open
+  blocks_at_or_above: FIRST_ARTICLE_ORDERABLE
+  owner: fabrication
+  finding: The request bundle is prepared, but no fresh live JLCPCB pre-layout response
+    yet establishes assembly availability, method or cost for every exact line.
+  closes_when: The exact final BOM is accepted in the logged-in JLCPCB PCBA interface
+    with retained allocation and economics before ordering; ADR-0006 admits public-catalog
+    design work without fabricating this response.
+- id: CAR-F2-full-source-policy
+  state: open
+  blocks_at_or_above: DESIGN_CLEAN
+  owner: electrical
+  finding: Source-phase receipts do not replace a fresh zero-FAIL full policy audit
+    over the final exact dossiers and declared assembly decisions.
+  closes_when: The full policy audit is rerun on the final pre-placement source state
+    and retains zero FAIL with every HUMAN item explicitly reviewed.
+- id: CAR-F3-schematic-human-review
+  state: open
+  blocks_at_or_above: DESIGN_CLEAN
+  owner: electrical
+  finding: Current native RJ45 schematic topology/readability witnesses are adopted
+    SOUND and the owning gate grades2/2PASS. The prior stale-digest cause is closed.
+    Final clean-design disposition still retains the separate first-power card population
+    P2 and classified ERC advisory debt; do not represent schematic acceptance as
+    all-severity ERC-clean or release acceptance.
+  closes_when: Both required schematic review records exist, bind the current artifacts
+    and contain no unresolved finding.
+  evidence:
+  - 08_reviews/2026-09-10_2378791f_delta_topology.md
+  - 08_reviews/2026-09-10_2378791f_integrated_schematic_render.md
+  - 08_reviews/2026-09-10_2378791f_source_verification.md
+- id: CAR-F9-clock-pulldown-leakage
+  state: closed
+  blocks_at_or_above: DESIGN_CLEAN
+  owner: electrical
+  finding: Current2378791f exact digital-domain review confirms clock direction, Ioff/default
+    networks, leakage/load budgets and TDM active-low output-enable behavior. Physical
+    MCH timing, hot insertion and brownout qualification remain with CAR-F4/CAR-F6.
+  closes_when: Correct the clock default-state network using a documented worst-case
+    leakage and remote-driver load budget, update exact BOM/source and affected ADR,
+    regenerate with pin/net parity, and obtain independent SOUND electrical and rendered-schematic
+    reviews.
+  evidence:
+  - 08_reviews/2026-09-10_2378791f_delta_topology.md
+  - 08_reviews/2026-09-10_2378791f_integrated_schematic_render.md
+  - 08_reviews/2026-09-10_2378791f_source_verification.md
+- id: CAR-F4-mch-physical-boundary
+  state: open
+  blocks_at_or_above: FIRST_ARTICLE_TESTED
+  owner: systems
+  finding: miniDSP does not publish its module-side board-header MPN; post fit, pin-1
+    orientation, cable continuity, retention and hot-plug or power ordering remain
+    unproved.
+  closes_when: Purchased MCHStreamer hardware and both exact Samtec cables pass the
+    documented physical and electrical qualification with retained photographs and
+    continuity records.
+- id: CAR-F10-audio-esd-rating-authority
+  state: closed
+  blocks_at_or_above: DESIGN_CLEAN
+  owner: electrical
+  finding: Current exact independent source review retains waveform-specific authority
+    and explicitly unqualified prototype ESD behavior. Unsupported typical-to-guaranteed
+    surge claims are withdrawn; no physical surge survival is asserted. Cold-start
+    source protection is covered separately by CAR-F12 and physical testing by CAR-F6.
+  closes_when: Withdraw or replace every unsupported audio surge bound with exact
+    waveform-specific manufacturer or measured authority, retain explicit unqualified
+    prototype ESD limits without inventing a guarantee, regenerate affected source
+    evidence and obtain independent review.
+  evidence:
+  - 08_reviews/2026-09-10_2378791f_delta_topology.md
+  - 08_reviews/2026-09-10_2378791f_integrated_schematic_render.md
+  - 08_reviews/2026-09-10_2378791f_source_verification.md
+- id: CAR-F11-adc-unused-spi-select
+  state: closed
+  blocks_at_or_above: DESIGN_CLEAN
+  owner: electrical
+  finding: Current exact native/exported pin38 is3V3_ADC and the independent reviewer
+    rechecked the Cirrus primary strap tables. The historical grounded SPI_CS defect
+    is closed on this regenerated source; no physical ADC qualification is implied.
+  closes_when: Recheck the primary table, tie SPI_CS to 3V3_ADC in source with an
+    explicit pin invariant, regenerate and prove only the intended connectivity delta
+    before fresh review.
+  evidence:
+  - 08_reviews/2026-09-10_2378791f_delta_topology.md
+  - 08_reviews/2026-09-10_2378791f_integrated_schematic_render.md
+  - 08_reviews/2026-09-10_2378791f_source_verification.md
+- id: CAR-F5-authorized-tdm8-image
+  state: open
+  blocks_at_or_above: FIRST_ARTICLE_TESTED
+  owner: systems
+  finding: The exact miniDSP-authorized TDM8 image is purchaser/dealer supplied and
+    its original bytes, digest, updater identity, load evidence and module readback
+    are not yet locally retained.
+  closes_when: The purchaser obtains the authorized image, records its SHA-256 and
+    provenance, loads it unchanged with the authorized updater, and retains successful
+    module readback evidence.
+- id: CAR-F8-connector-physical-qualification
+  state: open
+  blocks_at_or_above: FIRST_ARTICLE_TESTED
+  owner: lab
+  finding: The connector base and FULL receipts retain 20 unmeasured installed fit,
+    reaction, cable, simultaneous-operation and tolerance facts across 3 assemblies
+    and 11 connectors; SOURCE admission is not physical qualification.
+  closes_when: The first assembled carrier or an optional matching coupon supplies
+    the complete physical evidence, the authored facts are updated from measurements,
+    and freshly compiled base and FULL receipts pass. Continuity and polarity are
+    checked before power under ADR-0007.
+- id: CAR-F6-no-hardware-evidence
+  state: open
+  blocks_at_or_above: FIRST_ARTICLE_TESTED
+  owner: lab
+  finding: No fabricated carrier has supplied measured first-power, reset, TDM, analog,
+    cable, fault-selectivity or thermal evidence.
+  closes_when: A serialized first article completes 01_docs/FIRST_ARTICLE_TEST_PLAN.md
+    and the structured authorization record plus hash-bound raw evidence are retained.
+- id: CAR-F7-roof-environment
+  state: open
+  blocks_at_or_above: PRODUCTION_RELEASED
+  owner: systems
+  finding: The board source does not establish enclosure weatherproofing, condensation
+    control, lightning or building-entry safety, or unattended roof reliability.
+  closes_when: The complete roof appliance passes the approved enclosure, environmental,
+    EMC and building-entry safety qualification at the admitted installation boundary.
+- id: LAYOUT-001-corridor-evidence
+  state: closed
+  blocks_at_or_above: DESIGN_CLEAN
+  owner: layout
+  finding: ADR0027 corrected the north logical-to-physical ADC association. Fresh
+    independent exact ef72 placement review is SOUND and explicitly resolves LAYOUT-001
+    at the placement boundary after native launch/order/reference-access inspection.
+    Owning PR-REVIEW passes4/4, including exact current pin/render/locator evidence.
+    The historical diagnostic campaign remains3/3spent with zero pending and zero
+    saved geometry; no credit or budget was restored. Saved routing, filled return
+    continuity, matching, current/Kelvin realization and full0/0/0DRC remain owed
+    at their existing routing gates.
+  closes_when: A fresh independent layout review of exact current placement plus the
+    exact isolated diagnostic candidate either accepts a simultaneous corridor with
+    all denominators and filled-return continuity proved, or records the evidenced
+    placement backtrack. This finding does not close merely because a router exits
+    successfully.
+  investigation:
+    schema: 1
+    requirement:
+      path: 01_docs/evidence/pre-channel-map-nets-20260912.yaml
+      sha256: 34dd314eaa4df341083ec5e03596e6f3f7e537d92691e1d46dc89dd407d411bb
+      locator: length_match ANALOG_CH1_ADC through ANALOG_CH4_ADC
+    due_stage: KICAD-PLACEMENT
+    operating_states:
+    - pre_route_placement
+    milestones:
+      reject_custom_probe_model: Preserve the independent D-BACK conclusion that the
+        two custom A-star runs had no saved geometry and cannot establish route impossibility.
+      decide_simultaneous_corridor: Produce decision-relevant evidence for or against
+        one simultaneous eight-net F.Cu/B.Cu corridor on the exact saved board, including
+        32 pads, 24 paths, four P/N groups, legal vias and filled-return continuity.
+    max_nonimproving_attempts: 3
+    max_attempts: 3
+    launches:
+    - id: launch-ece923e4057841aab71d02bfc16ec934
+      subject_sha256: e33919ff5670b2a72cfbdfc4af21bb4cdb714c73b678a0fd2fdfcf2c5f046875
+    history:
+    - id: custom-attempt-1
+      subject_sha256: a9e2bd600427043da1b0e304a42bd33acfc4d0afc8ea491fe2ac5a7d0db4c4b4
+      origin: historical_assessment
+      hypothesis: The first custom all-tree A-star probe could establish feasibility
+        or an impossible north ADC corridor.
+      result: The attempt stopped with no saved route geometry; its candidate was
+        byte-identical to prepared r0. It supplies zero geometric progress.
+      model_domain: outside
+      progress: []
+      evidence:
+      - path: 01_docs/journal/5595edc7d5430a2d87247dad35c289e484bb164f6a8648b7ea45c0baf3c2ba36.tar.gz
+        sha256: 5595edc7d5430a2d87247dad35c289e484bb164f6a8648b7ea45c0baf3c2ba36
+    - id: custom-attempt-2
+      subject_sha256: a9e2bd600427043da1b0e304a42bd33acfc4d0afc8ea491fe2ac5a7d0db4c4b4
+      origin: historical_assessment
+      hypothesis: The second custom point-to-point A-star probe could establish feasibility
+        or an impossible north ADC corridor.
+      result: The attempt failed on ADC4N's second tree leg with no saved route geometry;
+        its candidate was byte-identical to prepared r0. Independent D-BACK found
+        synthetic/snapped endpoints and non-native obstacle modeling, so it supplies
+        zero geometric progress.
+      model_domain: outside
+      progress: []
+      evidence:
+      - path: 01_docs/journal/5595edc7d5430a2d87247dad35c289e484bb164f6a8648b7ea45c0baf3c2ba36.tar.gz
+        sha256: 5595edc7d5430a2d87247dad35c289e484bb164f6a8648b7ea45c0baf3c2ba36
+      - path: 01_docs/journal/5122cd87132f39095b0a4a7f4ed6a51409a95ca6ac2452b618131dd7b0d8f5d9.tar.gz
+        sha256: 5122cd87132f39095b0a4a7f4ed6a51409a95ca6ac2452b618131dd7b0d8f5d9
+    - id: launch-ece923e4057841aab71d02bfc16ec934
+      subject_sha256: e33919ff5670b2a72cfbdfc4af21bb4cdb714c73b678a0fd2fdfcf2c5f046875
+      origin: executed
+      hypothesis: One owning KRT wave on the exact saved board can decide whether
+        a legal simultaneous corridor exists for all eight north ADC nets without
+        changing non-owned copper.
+      result: 'Native qualification4/4, exact typed diagnostic admission, native prep
+        and exactr0 identity passed. Owning route stopped at ROUTE-OWNERSHIP INCOMPLETE:
+        diagnostic config under06_build violates required03_src ancestry. Outer --root
+        was not forwarded by ownership API. KRT was not launched and no candidate
+        geometry was saved. This root runner setup error supplies no physical route
+        impossibility or geometric progress; third reserved attempt is spent.'
+      model_domain: outside
+      progress: []
+      evidence:
+      - path: 01_docs/journal/81cb18e6e073e88bbc35b6bc6a9081abe988fc73d1f2b77ce858432039a927a1.tar.gz
+        sha256: 81cb18e6e073e88bbc35b6bc6a9081abe988fc73d1f2b77ce858432039a927a1
+    next:
+      action: reassess
+      hypothesis: Independent upstream method/placement reassessment can identify
+        a compliant way to close the original simultaneous-corridor evidence gap without
+        replaying the exhausted diagnostic.
+      on_support: Implement the specifically justified upstream source/evidence plan
+        and renew affected owning gates and fresh exact layout review; no fourth diagnostic
+        launch under this exhausted investigation.
+      on_reject: Preserve unresolved LAYOUT-001 and escalate one owning boundary farther
+        upstream; never treat a configuration-path error as proof that copper cannot
+        route.
+      uncertainty: decision_limiting
+    question: Can one bounded owning KRT wave produce sufficient exact saved-board
+      evidence for the north ADC corridor, or must the current method/placement be
+      reassessed before routing?
+  evidence:
+  - 01_docs/decisions/0027-fixed-north-adc-channel-map.md
+  - 08_reviews/2026-09-12_ef72e6d2_current_layout.md
+  - 01_docs/journal/34efe23ed9cbc531019d63b0a110d47c1e8125f6d2f75f983afc1d7c839e8611.tar.gz
+- id: CAR-FIRST-POWER-CARD-POPULATION
+  state: open
+  blocks_at_or_above: DESIGN_CLEAN
+  owner: electrical
+  finding: Independent finaldocs topology review confirms fully-populated-first-power
+    lists316 of333 fitted references. Missing17 are D_BUCK_IN and R_IN1P/R_IN1N through
+    R_IN8P/R_IN8N. The devices are electrically present and correct; this is a source/card
+    completeness correction, not a new physical measurement prerequisite for prototype
+    progression.
+  closes_when: Reconcile the literal first-power population with the current fitted
+    source census, preserve intentional exclusions explicitly, and validate the owning
+    card and unchanged electrical source in the next source batch before release/first-power
+    acceptance. Keep current supply limits and all physical holds unless separately
+    justified.
+  evidence:
+  - 03_src/rules/first_article.yaml
+  - 08_reviews/pre-route_topology.md
+  - 01_docs/journal/00aa2ac1e34a87905fc5a4744b1a8178db89f9c6eb2437185f4da9895bb53dcf.tar.gz
+- id: CAR-TOP-ONLY-SMD
+  state: open
+  blocks_at_or_above: DESIGN_CLEAN
+  owner: layout-source
+  finding: 'Native6 exact independent review is overall INCOMPLETE with electrical realization SOUND: thermal resolved,
+    all306carrierSMDtop,234GND modes and434source primitives bind; return/cut graph has no protected shortcut. All1004rawrows
+    classified; two isolated GND pins and144analog paths remain routing work. Original custom visibility FAIL retained;23locator
+    identities bind but current atlas/render acceptance remains owed. Root permits only normal canonical unchanged-source
+    continuation after current schematic acceptance and fresh handoff. Six exploratory attempts remain spent,0pending;
+    no seventh exploration or geometry retry.'
+  closes_when: Independently accepted exact owning source and regenerated native boards show no fitted bottom SMD
+    on either board, complete supported legal clamp-first protection/ground/power topology, affected body/pad/hole/mount/silk/interface
+    clearance and current placement/assembly gates. Population-only proof or analytical reassessment does not close
+    this finding.
+  investigation:
+    schema: 1
+    requirement:
+      path: 01_docs/decisions/0029-top-only-smd-assembly.md
+      sha256: 5e7cba67fa114ec937a8fd37ef66d44367161528da357b8f0f0d52a4561ff57c
+      locator: 'Decision: all fitted SMD on bothboards shall mount on F.Cu; board growth authorized'
+    due_stage: KICAD-PLACEMENT
+    operating_states:
+    - pre_route_top_only_placement
+    - prepared_protection_and_power_paths
+    question: Can a source-owned signal-width/launch and geometry-dependency correction satisfy complete native
+      top-only protection and placement gates with the selected hardware and unchanged electrical/clearance floors,
+      or must the connector/protection architecture change?
+    milestones:
+      native_pod_top: Savedgeneratedpod independently demonstrates31fittedSMDtop/0bottom. This objective wasexplicitly
+        declaredbeforework in originaltop-onlysource commission.
+      native_both_top: Savedgeneratedcarrierandpod independently demonstrate all306/31fittedSMDtop/0bottom, with
+        no misplaced body/courtyard collision. Population objectivepredeclared by originalcommission.
+      native_protection_and_placement: Exactregenerated/prepared nativeboards pass complete affected pad/hole/seed/criticalpath
+        topology/geometry consumers andindependentplacementacceptance; no unresolved sourcegeometrydefect or waiver.
+    max_nonimproving_attempts: 3
+    max_attempts: 6
+    launches:
+    - id: launch-97510c398124407099ff928179829b8b
+      subject_sha256: 42f029dd7167620a3eef72afe8d93e0d14dd56022b8d6b90b38d8b10e2d732e4
+    - id: launch-fb97378427104b7baaf97c1f5f70b17b
+      subject_sha256: 2e3a0bf2bac194260b4056bf0b41736c6c85570ca51ed28cfc06a81305150935
+    - id: launch-b14c2b0d0d104bfdb73e5ca9c031347a
+      subject_sha256: 346fe9e1d56f3eadba9586acc6e0667ccb10637d69579db97f735788f6fce310
+    history:
+    - id: top-only-native1
+      subject_sha256: 5cf00eccdf51e782cf0b19bf7e1976dbc7f162c63dccd61f2617d2520b1a4858
+      origin: historical_assessment
+      hypothesis: An outside-body top clamp and side fuse cell can fit both boards while preserving the selected
+        RJ45 hardware.
+      result: First source proposal generated the pod but carrier had10 courtyard pairs; full native prepared clamp
+        qualification was not established. Exact firstsource is retained in the closed authorarchive. No routing
+        pilot.
+      model_domain: within
+      progress: []
+      evidence:
+      - path: 01_docs/journal/29d0494ac4a56e87f669bf45a42f44288b4503a28d18e2f74674096f209759f5.tar.gz
+        sha256: 29d0494ac4a56e87f669bf45a42f44288b4503a28d18e2f74674096f209759f5
+    - id: top-only-native2
+      subject_sha256: 177f23ba70f0a32f34fcc6f4e364896dfcc57096210d4b5bacf7a3e31a7226bf
+      origin: historical_assessment
+      hypothesis: 153x100 carrier with shifted banks/mounts and rounded rear clamp prefixes can meet the top-only
+        construction.
+      result: Pod31/31fittedSMDtop/0bottom independently confirmed; carrier stillF1/H1courtyardcollision. Bothsharedcriticalpath
+        controls refuse nativearcs. ClosedINCOMPLETE; two originalnativecandidates spent.
+      model_domain: within
+      progress:
+      - native_pod_top
+      evidence:
+      - path: 01_docs/journal/29d0494ac4a56e87f669bf45a42f44288b4503a28d18e2f74674096f209759f5.tar.gz
+        sha256: 29d0494ac4a56e87f669bf45a42f44288b4503a28d18e2f74674096f209759f5
+      - path: 01_docs/journal/279589bc33c078ec5298da65ea3de4d49e3f131ae9e260f47bda0df6e5681f41.tar.gz
+        sha256: 279589bc33c078ec5298da65ea3de4d49e3f131ae9e260f47bda0df6e5681f41
+    - id: top-only-native3
+      subject_sha256: b699d3530b5ff8fcf9730fd81aa1722addc53ad40c5c487f87de077e95d7bfaf
+      origin: historical_assessment
+      hypothesis: Independently reviewed154x100/x21mount boundary and supported45degree prefix representation will
+        permit a complete top-only native construction.
+      result: Root independently confirmed carrier306/pod31 fitted SMD top and zero bottom parts. Candidate3 was
+        admitted after independent changed-decision review, cumulative3. Actual carrier prep/DRC and pod critical-path
+        failures were recovered after provider ERROR. All17 changed source files remain unaccepted. No fourth native
+        candidate or routing pilot admitted.
+      model_domain: within
+      progress:
+      - native_both_top
+      evidence:
+      - path: 01_docs/journal/279589bc33c078ec5298da65ea3de4d49e3f131ae9e260f47bda0df6e5681f41.tar.gz
+        sha256: 279589bc33c078ec5298da65ea3de4d49e3f131ae9e260f47bda0df6e5681f41
+      - path: 01_docs/journal/7f3b62ac3590d3da699422c46fffcb40af2b3bb9420758f4a7a2a7b0b4af19be.tar.gz
+        sha256: 7f3b62ac3590d3da699422c46fffcb40af2b3bb9420758f4a7a2a7b0b4af19be
+      - path: 01_docs/journal/708f897a2d4b3d37f4bd5c10c039c23d5531ee03dd61ee1302f3d7421822923a.tar.gz
+        sha256: 708f897a2d4b3d37f4bd5c10c039c23d5531ee03dd61ee1302f3d7421822923a
+    - id: launch-97510c398124407099ff928179829b8b
+      subject_sha256: 42f029dd7167620a3eef72afe8d93e0d14dd56022b8d6b90b38d8b10e2d732e4
+      origin: executed
+      hypothesis: The independently reviewed carrier-only signal-width and nine rearward-launch decision plus complete
+        region/silk source dependency correction can close the known protection-source defects in one coherent native
+        candidate, combined with independently admitted ADC changes.
+      result: Actual guarded candidate4 completed193.218s exit1. Both generators/prep/fill succeed. Carrier60 dangling/445
+        opens/0parity; pod7 dangling/33 opens/0parity. No other physical DRC violations. Top-only, prepared protection
+        geometry, all ADC return controls and offpad R13 seed now measured. Full routing remains owed. Two separate
+        nongeometry locator/test corrections pass ordinary export and root52 tests on identical native bytes. Missing
+        release MANIFEST remains explicit. Exact independent source/native judgment and later placement acceptance
+        remain owed; no source adopted or candidate5 admitted.
+      model_domain: within
+      progress: []
+      evidence:
+      - path: 01_docs/journal/0f5be4bb58257e17f94e3f06c38914839a70eae93b5a024dcc3a3c26f43b9dd7.tar.gz
+        sha256: 0f5be4bb58257e17f94e3f06c38914839a70eae93b5a024dcc3a3c26f43b9dd7
+      - path: 01_docs/journal/48b249cb214fab88bd902e92b6d68581c9e41ed5884e291a86cb8717bbb8a1f3.tar.gz
+        sha256: 48b249cb214fab88bd902e92b6d68581c9e41ed5884e291a86cb8717bbb8a1f3
+      - path: 01_docs/journal/b3ff6c18b32104bc56ecea37efb61982a11ef3f31dd23f2744ca201139d0e075.tar.gz
+        sha256: b3ff6c18b32104bc56ecea37efb61982a11ef3f31dd23f2744ca201139d0e075
+    - id: launch-fb97378427104b7baaf97c1f5f70b17b
+      subject_sha256: 2e3a0bf2bac194260b4056bf0b41736c6c85570ca51ed28cfc06a81305150935
+      origin: executed
+      hypothesis: The reviewed ADC2 full bypass-pad-clearance return reservation and coherent ADC1 full-capsule
+        width-scope reconciliation can eliminate the ordinary placement thermal defect while retaining all designated
+        return topology in one cumulative fifth construction.
+      result: Guarded candidate5 driver9.762s/outer12.127s stopped at ordinary placement P-DRC before prep. Generated5c4174c313f3864ae242d75d50cfeae81f617aee8673f0dfef8454bccf906a16
+        has the corrected ADC2 fifty-vertex pour reservation and ADC1 west rectangle, but same C_VDDA2_10N.2 GND
+        actual1thermalspoke versusminimum2,499 individually bound opens,0parity. Generate/rules/nativeDRC ran; owningPDRCFAIL.
+        All prep/filled return/analog/critical/rules and later stages NOT_RUN. Geometry premise did not close ordinary
+        thermal failure. No live source/board adoption or candidate6.
+      model_domain: within
+      progress: []
+      evidence:
+      - path: 01_docs/journal/98247be38fc8aee17cf51e51ef69fae095efcb87b8a3d9d28d385f37143505d7.tar.gz
+        sha256: 98247be38fc8aee17cf51e51ef69fae095efcb87b8a3d9d28d385f37143505d7
+    - id: launch-b14c2b0d0d104bfdb73e5ca9c031347a
+      subject_sha256: 346fe9e1d56f3eadba9586acc6e0667ccb10637d69579db97f735788f6fce310
+      origin: executed
+      hypothesis: The independently accepted explicit NONE mode on C_VDDA2_10N.2 removes an inappropriate inherited
+        thermal contour test while preserving the designated ADC2 seed/drop path in one cumulative sixth native
+        construction.
+      result: Native6 driver97.232s/outer99.649s passes ordinary placement0violations/499opens/0parity and complete234GND
+        mode census. Prepared source434primitives/83regions/changed geometry/top-only allbind; fullDRC60source-owned
+        dangling warnings/445opens/0parity. Driver stops on its unconditional visibility assertion despite exact23hiddenrefs
+        matching locator/policy/generated list. Original FAIL retained. Remaining graph/analog/critical/spoke/rules
+        stages NOT_RUN. Fresh independent existing-artifact review and source-vs-proof diagnosis required; no seventh
+        native construction.
+      model_domain: within
+      progress: []
+      evidence:
+      - path: 01_docs/journal/586feddca62a8467444d7d24193730e3e52ab7613eb62dc51d56d11c8a7a0d0c.tar.gz
+        sha256: 586feddca62a8467444d7d24193730e3e52ab7613eb62dc51d56d11c8a7a0d0c
+    next:
+      action: reassess
+      hypothesis: Fresh independent exact existing-native review can distinguish the draft visibility assertion
+        from current locator obligations and assess the complete unchanged prepared return/protection paths without
+        another product construction.
+      on_support: Record the exact supported native/source conclusions and owed owning renewals. A read-only diagnostic
+        never retroactively changes the stopped driver verdict or admits another native candidate.
+      on_reject: Retain six spent candidates and return actionable complete causes upstream. No local native retry,
+        history reset, seventh construction or lowered floor.
+      uncertainty: decision_limiting
+  evidence:
+  - 01_docs/decisions/0029-top-only-smd-assembly.md
+  - 01_docs/journal/placement.md
+  - 01_docs/journal/7f3b62ac3590d3da699422c46fffcb40af2b3bb9420758f4a7a2a7b0b4af19be.tar.gz
+  - 01_docs/journal/9acc6b31e93e74dc6219b0625e12a9ebbe4ba177d28e0ee18a2acbb7775f6a3f.tar.gz
+  - 01_docs/journal/19d1da6eb5c704fc88460b87cce479eabba68ff40cf6165ca60663f3b2fbbf5c.tar.gz
+  - 01_docs/journal/278ad55df8ffa9f8dbbde849062620d57a0302b840d4f9cd59ec331de8a589b0.tar.gz
+  - 01_docs/journal/6725c28d52d929721385972084a3d864ea7d95535d376f71b95cf0f8eb0646a8.tar.gz
+  - 01_docs/journal/98247be38fc8aee17cf51e51ef69fae095efcb87b8a3d9d28d385f37143505d7.tar.gz
+  - 01_docs/journal/d92be7eb31ad89065fac7afe9f87c55fc735573dc9d56bbed26a15d29b643a8b.tar.gz
+  - 01_docs/journal/586feddca62a8467444d7d24193730e3e52ab7613eb62dc51d56d11c8a7a0d0c.tar.gz
+  - 01_docs/journal/127c30182250fb001b2ec627247e0452cd1e0f86a97e7067eaf1c529d9fd6531.tar.gz
+
+- id: CARRIER-TOPONLY-RULE-001
+  state: closed
+  blocks_at_or_above: DESIGN_CLEAN
+  owner: source
+  finding: Fresh top-only schematic topology review found exact23 locator exceptions
+    versus25 P-SILK-REF waiver refs/count, with stale R_ADC_PD1P and R_PWR_BOT. Electrical
+    graph independently SOUND; full preceding source integration DEFECTIVE. Exact
+    one-file source independently accepted and adopted23b35a34; fresh current topology/readability
+    SOUND, owning schematic2/2PASS20:50:12Z. Removes only those2visible refs and changes
+    expected output/budget to23. Current physical locator acceptance remains owed;
+    no geometry trial or cap reset.
+  closes_when: Independently accept exact policy metadata with native/source/locator
+    set equality and retained stale-visual rejection, adopt source, renew ordinary
+    schematic/checkpoints and affected reviews. Current visual waiver effectiveness
+    remains a later owning placement/assembly requirement.
+  evidence:
+  - 03_src/rules/policy_waivers.yaml
+  - 03_src/rules/assembly_locator.yaml
+  - 01_docs/journal/8207fa6eb366cd4d9b84d83e6f84c34c71f26cb3415e342d99464f6cf762cc56.tar.gz
+  - 01_docs/journal/a4b38a580add49f1ab2a6d05b7c0d7fa320ddb7a048573cfde5173973a4e53ee.tar.gz
+  - 01_docs/journal/1e0b1847044952ca47afecf6adc16f6d11ba1dd235748451451dad6eba3df3e4.tar.gz
+  - 01_docs/journal/schematic.md
+- id: CARRIER-ROUTE-SOURCE-BASELINE-001
+  state: closed
+  blocks_at_or_above: DESIGN_CLEAN
+  owner: source-contract
+  finding: Historical shadow class omission, stale route census and two ADC1 whole-capsule
+    scope failures are corrected in the exact five-file source composition adopted
+    2026-09-13T23:07:53Z. Independent source SOUND, final23 source methods PASS and
+    separate focused38 PASS, with genuine old-west and old-helper RED retained. ADC_WEST_LOCAL
+    xmin89.35 covers all20 narrow GND primitives while preserving numeric floors;
+    both width and paired-clearance permission changes are explicit. Source finding
+    closed only. Native candidate5 remains DEFECTIVE at the inherited one-spoke thermal;
+    source acceptance does not accept placement, routing or stale complete checkpoints.
+    Explicit per-pad NONE representation is the next separately commissioned source
+    decision, not another native admission.
+  closes_when: Reconcile the complete shadow class/source census and actual ADC supply
+    capsule scope against current accepted route and physical source, preserve every
+    electrical and clearance floor, independently review the exact correction, and
+    pass the unmodified normal route-source suite with meaningful known-bad controls.
+    Do not fix only the first assertion or convert diagnostic completion into test
+    acceptance.
+  evidence:
+  - 03_src/tests/test_route_source_contract.py
+  - 03_src/rules/stackup.yaml
+  - 03_src/rules/nets.yaml
+  - 03_src/route.yaml
+  - 01_docs/journal/b1e27c831636d6fc303c2b1786de829b9c6ca4980c60305d818844b1ff7253a7.tar.gz
+  - 01_docs/journal/665796988e536db4796576d2398104cfc002ef590248451658aa189afd3a756c.tar.gz
+  - 01_docs/journal/538c9f6fe69063e83f090ee94b31acfc6660a5e08097ee34a6be85075a99d376.tar.gz

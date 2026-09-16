@@ -1,0 +1,736 @@
+{
+  "archive": {
+    "members": 141,
+    "path": "85090f9f83b413dddfaf96e6aa86177d9cdbf9c76486702dfcb7ea045a56d890.tar.gz",
+    "sha256": "85090f9f83b413dddfaf96e6aa86177d9cdbf9c76486702dfcb7ea045a56d890",
+    "size": 1134264
+  },
+  "baseline_commit": "cfa87025",
+  "canary_limit": "Diagnostic copy only, no source promotion. GetTracks collection count 11 comprises 11 vias and zero track segments. The 210 native warnings are 199 library-footprint issues plus 11 dangling vias; copy omits original footprint-library context. 499 unconnected items and zero parity are retained as observed. This is not the canonical board gate.",
+  "independent_review_limit": "Evaluator completed before later campaign-claim and usability changes; later guards have focused regressions, not a repeated independent review.",
+  "kind": "workflow-implementation-evidence",
+  "members": [
+    {
+      "path": "carrier-complete-delivery/06_build/task_runs/carrier-canary/attempt.json",
+      "sha256": "8208335a59b59767f7667ecb6e676fc7358d830497ecec46c7197db0a8a6070f",
+      "size": 3223
+    },
+    {
+      "path": "carrier-complete-delivery/06_build/task_runs/carrier-canary/attempt.json.log",
+      "sha256": "94a7ec74761c14cdff36a4b345c65f2cf8c6778e9ffe8729fa8403df6e58a471",
+      "size": 542
+    },
+    {
+      "path": "carrier-complete-delivery/06_build/task_runs/carrier-canary/envelope.json",
+      "sha256": "c3449668a8d9d708de5f5439c45a21121a863035c151121fc0ba4a20a7e885e6",
+      "size": 1541
+    },
+    {
+      "path": "carrier-complete-delivery/06_build/task_runs/carrier-canary/outputs/census.json",
+      "sha256": "c0fffa617a3c6cc9a17904cbe92141767995d0806fc5e16bb9af71a66214c6af",
+      "size": 154
+    },
+    {
+      "path": "carrier-complete-delivery/06_build/task_runs/carrier-canary/outputs/drc.json",
+      "sha256": "a62d29c29ecc17e0258dd7c7950441daf378c1e78978efc8520d3ce24ab0bf9e",
+      "size": 507183
+    },
+    {
+      "path": "carrier-complete-delivery/06_build/task_runs/carrier-canary/outputs/result.json",
+      "sha256": "737ab126b3daac9b441ecf2d9c8168b5059c422931f140f1fb0876d09a07e6a1",
+      "size": 246
+    },
+    {
+      "path": "carrier-complete-delivery/06_build/task_runs/carrier-canary/scratch/native-runtime.json",
+      "sha256": "5d0506f0cdbd8cda0537c18b2743f6cdfb84ec4462e537172d39636d68b49cb2",
+      "size": 655
+    },
+    {
+      "path": "carrier-complete-delivery/06_build/task_runs/carrier-canary/scratch/native.log",
+      "sha256": "5c251e2a6b2eb0a6c21527645e70480fcff3e04bf7f191a59df574711b9d3580",
+      "size": 194
+    },
+    {
+      "path": "carrier-complete-delivery/comparison.json",
+      "sha256": "c4c13565ccb326623596b2b297acbbe57b25b021969128550c73c0caa1d9679e",
+      "size": 377
+    },
+    {
+      "path": "carrier-complete-delivery/crow_audio_carrier_v1.kicad_dru",
+      "sha256": "94251d1c7cb043c66d402d55b5cf89bac74f7ae0927b012556113ae56d7a2471",
+      "size": 17123
+    },
+    {
+      "path": "carrier-complete-delivery/crow_audio_carrier_v1.kicad_pcb",
+      "sha256": "89d33bae8eaf67457fde887eae9db187d9284ea54be386f0d31e3d7dfe92bf2e",
+      "size": 1463999
+    },
+    {
+      "path": "carrier-complete-delivery/crow_audio_carrier_v1.kicad_prl",
+      "sha256": "b33727ea5b95a8a459eabfeeea9514a4632a046f822a6f0eb51ad13243af19fb",
+      "size": 2308
+    },
+    {
+      "path": "carrier-complete-delivery/crow_audio_carrier_v1.kicad_pro",
+      "sha256": "4a1040e34967d6610bd5032e46b3c2d0e24863370106f7e220d88d4dd633c61d",
+      "size": 28092
+    },
+    {
+      "path": "carrier-complete-delivery/crow_audio_carrier_v1.kicad_sch",
+      "sha256": "b95cfca75a079b4b155a4fa24aa2c548fcaef779cd72271e5212a18529856674",
+      "size": 1156167
+    },
+    {
+      "path": "carrier-complete-delivery/producer.py",
+      "sha256": "9f701c9f4d904b33e00ca369c5b591c04705efea1a2cd87d875013f02bf36a59",
+      "size": 1541
+    },
+    {
+      "path": "carrier-initial-scope-failure/06_build/task_runs/carrier-canary/attempt.json",
+      "sha256": "f1689a7026510d65bbf80ff221dacf7cb2a874e2cef5bb79ee26e73ba4f71a2c",
+      "size": 3396
+    },
+    {
+      "path": "carrier-initial-scope-failure/06_build/task_runs/carrier-canary/attempt.json.log",
+      "sha256": "94a7ec74761c14cdff36a4b345c65f2cf8c6778e9ffe8729fa8403df6e58a471",
+      "size": 542
+    },
+    {
+      "path": "carrier-initial-scope-failure/06_build/task_runs/carrier-canary/envelope.json",
+      "sha256": "297640e6ea84d1f1ce84145c361177a3d8b0a80480d571097ac8a4bcdf80e77b",
+      "size": 1508
+    },
+    {
+      "path": "carrier-initial-scope-failure/06_build/task_runs/carrier-canary/outputs/census.json",
+      "sha256": "c0fffa617a3c6cc9a17904cbe92141767995d0806fc5e16bb9af71a66214c6af",
+      "size": 154
+    },
+    {
+      "path": "carrier-initial-scope-failure/06_build/task_runs/carrier-canary/outputs/drc.json",
+      "sha256": "a83cd8d5f7420f681c8451e5d327e381f5315d5c035ee7bdeef10149a6d13ff6",
+      "size": 507183
+    },
+    {
+      "path": "carrier-initial-scope-failure/06_build/task_runs/carrier-canary/outputs/result.json",
+      "sha256": "737ab126b3daac9b441ecf2d9c8168b5059c422931f140f1fb0876d09a07e6a1",
+      "size": 246
+    },
+    {
+      "path": "carrier-initial-scope-failure/06_build/task_runs/carrier-canary/scratch/native-runtime.json",
+      "sha256": "664e7f50be0d36af41cbd859a67ce017a681dbc455cdd48fb6cc86d41b8e3291",
+      "size": 655
+    },
+    {
+      "path": "carrier-initial-scope-failure/06_build/task_runs/carrier-canary/scratch/native.log",
+      "sha256": "b8a6d4047b1b75be146eef6e3082ca993a8d4acf3b9e25b10bdc776ecb9bf50d",
+      "size": 194
+    },
+    {
+      "path": "carrier-initial-scope-failure/crow_audio_carrier_v1.kicad_dru",
+      "sha256": "94251d1c7cb043c66d402d55b5cf89bac74f7ae0927b012556113ae56d7a2471",
+      "size": 17123
+    },
+    {
+      "path": "carrier-initial-scope-failure/crow_audio_carrier_v1.kicad_pcb",
+      "sha256": "89d33bae8eaf67457fde887eae9db187d9284ea54be386f0d31e3d7dfe92bf2e",
+      "size": 1463999
+    },
+    {
+      "path": "carrier-initial-scope-failure/crow_audio_carrier_v1.kicad_prl",
+      "sha256": "b33727ea5b95a8a459eabfeeea9514a4632a046f822a6f0eb51ad13243af19fb",
+      "size": 2308
+    },
+    {
+      "path": "carrier-initial-scope-failure/crow_audio_carrier_v1.kicad_pro",
+      "sha256": "4a1040e34967d6610bd5032e46b3c2d0e24863370106f7e220d88d4dd633c61d",
+      "size": 28092
+    },
+    {
+      "path": "carrier-initial-scope-failure/crow_audio_carrier_v1.kicad_sch",
+      "sha256": "b95cfca75a079b4b155a4fa24aa2c548fcaef779cd72271e5212a18529856674",
+      "size": 1156167
+    },
+    {
+      "path": "carrier-initial-scope-failure/producer.py",
+      "sha256": "9f701c9f4d904b33e00ca369c5b591c04705efea1a2cd87d875013f02bf36a59",
+      "size": 1541
+    },
+    {
+      "path": "implementation/skills/kicad-pcb/scripts/contracts.md",
+      "sha256": "45e1e3ab4bcdf7c33274a1a4c6063a85a347175ca7fa1439bdcc7ef425fab681",
+      "size": 44634
+    },
+    {
+      "path": "implementation/skills/kicad-pcb/scripts/pcb_flow.py",
+      "sha256": "52f706999f0199613c780aee071b958d2b799194d3342e25c09d517a1041eebe",
+      "size": 57016
+    },
+    {
+      "path": "implementation/skills/kicad-pcb/scripts/qualification_probe.py",
+      "sha256": "a8e94752bb6412e61d92ec4aa27eead92798d19a95ecca0a593a9919290c1dda",
+      "size": 7163
+    },
+    {
+      "path": "implementation/skills/pcb-design/SKILL.md",
+      "sha256": "d357b15b9759f4f048b244d4a8b5f7273a9318eb06d34271379caf8caf36c5b8",
+      "size": 16199
+    },
+    {
+      "path": "implementation/skills/pcb-design/contracts.md",
+      "sha256": "6873e4af1e5ffa3e339d081808fc5ed2413bccb5114166c90a94f190d6d66ef0",
+      "size": 5998
+    },
+    {
+      "path": "implementation/skills/pcb-design/references/execution-runtime.md",
+      "sha256": "63bc6c053e99acfbeea931c3440bca7966bf923c2a62bdb5fd7da9bda5630abc",
+      "size": 18076
+    },
+    {
+      "path": "implementation/skills/pcb-design/references/lifecycle-and-backtrack.md",
+      "sha256": "a014c201a9ba62e628e1fe8c325354bf040b4bbf8b88c623cd035a542d5c2d98",
+      "size": 14725
+    },
+    {
+      "path": "implementation/skills/pcb-design/scripts/pipeline_artifacts.py",
+      "sha256": "d3c698b2e3101d01983490e98d76baad705b7abb8cb3487da1426d533dbb146a",
+      "size": 27994
+    },
+    {
+      "path": "implementation/skills/pcb-design/scripts/pipeline_execution.py",
+      "sha256": "4687cd71466ebca8b2fd1536fca3f9e2a71617fa6ea9168acb1640fd49c64862",
+      "size": 37208
+    },
+    {
+      "path": "implementation/skills/pcb-design/scripts/pipeline_qualification.py",
+      "sha256": "a6de3f68a10c7b906c369cbb82851e0ec40a6af8cbe3e5957524cc78d289e6ff",
+      "size": 8478
+    },
+    {
+      "path": "implementation/skills/pcb-design/scripts/pipeline_runtime.py",
+      "sha256": "451d377791262b3792994e9ed2c0dcc787dd38b32b7a8263929cb591172b1fbe",
+      "size": 62992
+    },
+    {
+      "path": "implementation/skills/pcb-design/templates/contracts/06_build/contracts.md",
+      "sha256": "2e17cc220da8b09397758059db100b0fc16a0a18d5e7c649d25e833edd878976",
+      "size": 5713
+    },
+    {
+      "path": "implementation/tests/README.md",
+      "sha256": "a8419ea333d05502e64280f13118077433876e7d3486b86fb618ba5d0a5ac75a",
+      "size": 74962
+    },
+    {
+      "path": "implementation/tests/run_tests.sh",
+      "sha256": "929bcba6a2a02c7dba6c8946bbb3f1d1a478dadc88740bd5284eb90bf73c4053",
+      "size": 8202
+    },
+    {
+      "path": "implementation/tests/t1_pipeline_execution.py",
+      "sha256": "e39dab306a7c266f3da07f9cdc3de30380577b52af39a63269f821c83d316de1",
+      "size": 13070
+    },
+    {
+      "path": "implementation/tests/t1_pipeline_qualification.py",
+      "sha256": "d408806912f1bd54ce6af8d06a4f5c65ea536e56d9e535d65e60892597a870e9",
+      "size": 5275
+    },
+    {
+      "path": "implementation/tests/t1_pipeline_runtime.py",
+      "sha256": "68b020909f8a63545456ada8b8d5cb4a07835c3ece2e84de69b594fc0bfdd2b3",
+      "size": 46636
+    },
+    {
+      "path": "implementation/tests/t2_pcb_flow.py",
+      "sha256": "006022e0dfd6050a2518dbbd6b2a4f01df75b55e2f7b742aa11014f70185adff",
+      "size": 37910
+    },
+    {
+      "path": "independent-evaluation/01_docs/BRIEF.md",
+      "sha256": "9cc8ca38cb872f1335e32e84d50a30dfa53f65065c7cc508f6e0d7e9321982fa",
+      "size": 171
+    },
+    {
+      "path": "independent-evaluation/01_docs/reports/2026-09-10-forward-evaluation.md",
+      "sha256": "5c2a3b301c94df58fca0efbe9a1119c0290b0c127cc8047391f6280c9823de88",
+      "size": 10915
+    },
+    {
+      "path": "independent-evaluation/01_docs/reports/contracts.md",
+      "sha256": "c3d880ed7ad4b2d63b38f2ff3b91e40d26ace14bd86fbd0655d5dbb89706ff1c",
+      "size": 4087
+    },
+    {
+      "path": "independent-evaluation/06_build/cache/native-qualification.json",
+      "sha256": "6f6b998429c9dc937d2b31a5ae3e39057e5c9af1e4536145b94cabbe9edb1a4e",
+      "size": 5179
+    },
+    {
+      "path": "independent-evaluation/06_build/task_runs/qualify-ce9c8a2da5144b5b93ff53d1b858dec8-identify/attempt.json",
+      "sha256": "3855056bff7366ed63ddea91fd925fa89ae6ff8c8e702c775ba3bbf7a1325462",
+      "size": 3457
+    },
+    {
+      "path": "independent-evaluation/06_build/task_runs/qualify-ce9c8a2da5144b5b93ff53d1b858dec8-identify/attempt.json.log",
+      "sha256": "ecfdabc9a488fbdbeb42728b58080ecf903a12f0cabcb48d0622d8aa9f2d1a1e",
+      "size": 387
+    },
+    {
+      "path": "independent-evaluation/06_build/task_runs/qualify-ce9c8a2da5144b5b93ff53d1b858dec8-identify/envelope.json",
+      "sha256": "7950bc8a905e83c20dc2d3274e26c65dbc108573095aa99b7f14e5c5df3ec22d",
+      "size": 854
+    },
+    {
+      "path": "independent-evaluation/06_build/task_runs/qualify-ce9c8a2da5144b5b93ff53d1b858dec8-identify/outputs/identity.json",
+      "sha256": "bce9a0d52aeb71e69248c1a275daec1f36d385a5a0b9b4922c4d99f8d1aabc4e",
+      "size": 12548
+    },
+    {
+      "path": "independent-evaluation/06_build/task_runs/qualify-ce9c8a2da5144b5b93ff53d1b858dec8-identify/outputs/result.json",
+      "sha256": "adeb65aae251d570931c77aeefdbff7b561b9e32b5844ed13ff1305fb0456df4",
+      "size": 233
+    },
+    {
+      "path": "independent-evaluation/06_build/task_runs/qualify-ce9c8a2da5144b5b93ff53d1b858dec8-native/attempt.json",
+      "sha256": "3d7d55d3de2bd9c6a93c098178873c481549edf22e2fd2ee867a1cf00c6d649d",
+      "size": 3661
+    },
+    {
+      "path": "independent-evaluation/06_build/task_runs/qualify-ce9c8a2da5144b5b93ff53d1b858dec8-native/attempt.json.log",
+      "sha256": "929417c742ce85602b8dd209073126f91179a1964742aef4d9333f0b56acab2b",
+      "size": 1185
+    },
+    {
+      "path": "independent-evaluation/06_build/task_runs/qualify-ce9c8a2da5144b5b93ff53d1b858dec8-native/envelope.json",
+      "sha256": "48fb9121e31996f6e13afb69fccc941fe1161775b62dd07f4f85246261c123bb",
+      "size": 888
+    },
+    {
+      "path": "independent-evaluation/06_build/task_runs/qualify-ce9c8a2da5144b5b93ff53d1b858dec8-native/outputs/clean.json",
+      "sha256": "5d912b314109057c097a8f4221e550f634986dc6c21c6a1ef9bd3c3a8b16bfaa",
+      "size": 1083
+    },
+    {
+      "path": "independent-evaluation/06_build/task_runs/qualify-ce9c8a2da5144b5b93ff53d1b858dec8-native/outputs/hostile.json",
+      "sha256": "0d0e111d67e7983f55c8fea9e46cc63b9ffa9e741608f13878ef282fac4048aa",
+      "size": 1889
+    },
+    {
+      "path": "independent-evaluation/06_build/task_runs/qualify-ce9c8a2da5144b5b93ff53d1b858dec8-native/outputs/native.json",
+      "sha256": "8cf7f46674784f83a037f5a5f1eda070e30be56ca4f37052197972f922c7ddd0",
+      "size": 315
+    },
+    {
+      "path": "independent-evaluation/06_build/task_runs/qualify-ce9c8a2da5144b5b93ff53d1b858dec8-native/outputs/result.json",
+      "sha256": "68737bee26ae8f4a3ed9af968b0a367060386c7f01e7d9f3146018ee13547eb8",
+      "size": 245
+    },
+    {
+      "path": "independent-evaluation/06_build/task_runs/qualify-ce9c8a2da5144b5b93ff53d1b858dec8-native/scratch/clean-runtime.json",
+      "sha256": "2d00bf975ea7201a9da1028812076f7fe3358f2f890ed11beff22e6d218c3b90",
+      "size": 662
+    },
+    {
+      "path": "independent-evaluation/06_build/task_runs/qualify-ce9c8a2da5144b5b93ff53d1b858dec8-native/scratch/clean.kicad_pcb",
+      "sha256": "449f1da7d081b7f68f61c086843a1fd185251dd5792f5ca6b519338cd85e107e",
+      "size": 4267
+    },
+    {
+      "path": "independent-evaluation/06_build/task_runs/qualify-ce9c8a2da5144b5b93ff53d1b858dec8-native/scratch/clean.kicad_prl",
+      "sha256": "f50a6285316ddef59eeb3cdded74607297e14be3a6bce77a18c0e09d71696cee",
+      "size": 2292
+    },
+    {
+      "path": "independent-evaluation/06_build/task_runs/qualify-ce9c8a2da5144b5b93ff53d1b858dec8-native/scratch/clean.kicad_pro",
+      "sha256": "410277dca0278ee3f5ce21591aae6bbacfdec6e9e5e3b549acd657c53aedc094",
+      "size": 978
+    },
+    {
+      "path": "independent-evaluation/06_build/task_runs/qualify-ce9c8a2da5144b5b93ff53d1b858dec8-native/scratch/clean.log",
+      "sha256": "c9001eda9163eb73bbce0c76694b7485a055d3bb8964a12725a5ba11cbf6ecb8",
+      "size": 186
+    },
+    {
+      "path": "independent-evaluation/06_build/task_runs/qualify-ce9c8a2da5144b5b93ff53d1b858dec8-native/scratch/hostile-runtime.json",
+      "sha256": "745b3ec329563f1d036e60e8fe6c4cb4dab0665a1a0ae0e300cdadff2eb21c4d",
+      "size": 682
+    },
+    {
+      "path": "independent-evaluation/06_build/task_runs/qualify-ce9c8a2da5144b5b93ff53d1b858dec8-native/scratch/hostile.kicad_pcb",
+      "sha256": "de103a8508ea248300990e2c566864f2635f2d87f7b3343a89ea15d22bb8be21",
+      "size": 4267
+    },
+    {
+      "path": "independent-evaluation/06_build/task_runs/qualify-ce9c8a2da5144b5b93ff53d1b858dec8-native/scratch/hostile.kicad_prl",
+      "sha256": "16c9c8b512b73f6b4f2b7697526995422458d2d7c9f4fe54eaa76784fde97fec",
+      "size": 2294
+    },
+    {
+      "path": "independent-evaluation/06_build/task_runs/qualify-ce9c8a2da5144b5b93ff53d1b858dec8-native/scratch/hostile.kicad_pro",
+      "sha256": "410277dca0278ee3f5ce21591aae6bbacfdec6e9e5e3b549acd657c53aedc094",
+      "size": 978
+    },
+    {
+      "path": "independent-evaluation/06_build/task_runs/qualify-ce9c8a2da5144b5b93ff53d1b858dec8-native/scratch/hostile.log",
+      "sha256": "d05f430c2840b945ba8d510838577c53ace321feaba404e0af8821f330a4b221",
+      "size": 188
+    },
+    {
+      "path": "independent-evaluation/06_build/task_runs/qualify-ce9c8a2da5144b5b93ff53d1b858dec8-native/scratch/kicad-config/10.0/3d_viewer.json",
+      "sha256": "3dc0ebcb073ef8496323d4c2a835532d13e2bc7bf45890f602e6bbef1a3ba56f",
+      "size": 9273
+    },
+    {
+      "path": "independent-evaluation/06_build/task_runs/qualify-ce9c8a2da5144b5b93ff53d1b858dec8-native/scratch/kicad-config/10.0/cvpcb.json",
+      "sha256": "b93174a3b1470f1ce0e43c90268ce83976432c5210d906a3846ee7976ea9d272",
+      "size": 8413
+    },
+    {
+      "path": "independent-evaluation/06_build/task_runs/qualify-ce9c8a2da5144b5b93ff53d1b858dec8-native/scratch/kicad-config/10.0/eeschema.json",
+      "sha256": "380b16f032e527e9dbb104fa3fe473fecdf3ac5877df78935b9f4b174ae7775b",
+      "size": 12152
+    },
+    {
+      "path": "independent-evaluation/06_build/task_runs/qualify-ce9c8a2da5144b5b93ff53d1b858dec8-native/scratch/kicad-config/10.0/fpedit.json",
+      "sha256": "9e940a9a57528403a4e62739f3bd0813a6226c20528540ce0a7843dc5f86d947",
+      "size": 7200
+    },
+    {
+      "path": "independent-evaluation/06_build/task_runs/qualify-ce9c8a2da5144b5b93ff53d1b858dec8-native/scratch/kicad-config/10.0/kicad.json",
+      "sha256": "81182eeb64728ead083f55ccf7a44f2a257ec4328146743fb47425c959188359",
+      "size": 5714
+    },
+    {
+      "path": "independent-evaluation/06_build/task_runs/qualify-ce9c8a2da5144b5b93ff53d1b858dec8-native/scratch/kicad-config/10.0/kicad_common.json",
+      "sha256": "3bcbf055d390916a1fb24ab3def2d2243b4956cd838a879a1472c7f19759cf17",
+      "size": 2451
+    },
+    {
+      "path": "independent-evaluation/06_build/task_runs/qualify-ce9c8a2da5144b5b93ff53d1b858dec8-native/scratch/kicad-config/10.0/pcbnew.json",
+      "sha256": "86e6a78eed5b9e9ebddecf9851f39203b0f1716c0b85c4f554d92523c5d04744",
+      "size": 13755
+    },
+    {
+      "path": "independent-evaluation/06_build/task_runs/qualify-ce9c8a2da5144b5b93ff53d1b858dec8-native/scratch/kicad-config/10.0/symbol_editor.json",
+      "sha256": "96002a56c0827f71c82e74cfc24091095ba9fdfc1ffa1995eb6479f4bad576d7",
+      "size": 4251
+    },
+    {
+      "path": "independent-evaluation/06_build/task_runs/qualify-ce9c8a2da5144b5b93ff53d1b858dec8/authority.log",
+      "sha256": "c2eefd78f32d81727a79f78f09d348cefdf8b2dd9aa922e5fe4bcfe34632f474",
+      "size": 88
+    },
+    {
+      "path": "independent-evaluation/06_build/task_runs/qualify-ce9c8a2da5144b5b93ff53d1b858dec8/contracts.log",
+      "sha256": "fdedd8858fc978888eff56de00d98d5c6d03260b7fbbca3ab6a25c45cb0d6581",
+      "size": 145
+    },
+    {
+      "path": "independent-evaluation/06_build/task_runs/qualify-ce9c8a2da5144b5b93ff53d1b858dec8/qualification.json",
+      "sha256": "f77f58fd581ba1fe3aab45a43142c6b2ee5a55b890cdaad186f063bb8c234b14",
+      "size": 43307
+    },
+    {
+      "path": "independent-evaluation/06_build/task_runs/report-evaluation-5d99ef586800478e9e57a01cca7c3a28/.repair-claim.json",
+      "sha256": "298c1104da4cc176d70a4b091f5f9a33a49618a013edacd6a112c07e6d0cc112",
+      "size": 1197
+    },
+    {
+      "path": "independent-evaluation/06_build/task_runs/report-evaluation-5d99ef586800478e9e57a01cca7c3a28/attempt.json",
+      "sha256": "1e510954558db64ff0384022639c15ba8a80e808d42c1e7bdc8871d81e5f4652",
+      "size": 3247
+    },
+    {
+      "path": "independent-evaluation/06_build/task_runs/report-evaluation-5d99ef586800478e9e57a01cca7c3a28/attempt.json.log",
+      "sha256": "62ebdec2e54ae08ab97144b47e30680c10057af8c13855269b241b4108e667e9",
+      "size": 703
+    },
+    {
+      "path": "independent-evaluation/06_build/task_runs/report-evaluation-5d99ef586800478e9e57a01cca7c3a28/envelope.json",
+      "sha256": "161e2c8971247666f1b6a5d8af5da8a93e8f5b8936610d0b761788cc9521bbec",
+      "size": 1579
+    },
+    {
+      "path": "independent-evaluation/06_build/task_runs/report-evaluation-bd5da2f7a38a42a7a1f258ada352505e/attempt.json",
+      "sha256": "fc7a053be2ef027d877808cf96fb30dd5097362d421737954a2aee07de09fb91",
+      "size": 4436
+    },
+    {
+      "path": "independent-evaluation/06_build/task_runs/report-evaluation-bd5da2f7a38a42a7a1f258ada352505e/attempt.json.log",
+      "sha256": "a8a34ae19353d6d430069360ad4605d52ead17f85f9a53c9856958c775b0a8a0",
+      "size": 49
+    },
+    {
+      "path": "independent-evaluation/06_build/task_runs/report-evaluation-bd5da2f7a38a42a7a1f258ada352505e/envelope.json",
+      "sha256": "bd189097e07daab24eeb917716803472dab1b51edb6131f248719c2220044bc3",
+      "size": 1579
+    },
+    {
+      "path": "independent-evaluation/06_build/task_runs/report-evaluation-bd5da2f7a38a42a7a1f258ada352505e/outputs/report.md",
+      "sha256": "c0c5879607f73067336b48f024ebb129d8cc8e8c9f9e94f81160d40d5e7c9b34",
+      "size": 180
+    },
+    {
+      "path": "independent-evaluation/06_build/task_runs/report-evaluation-bd5da2f7a38a42a7a1f258ada352505e/outputs/result.json",
+      "sha256": "1399f831d921e64053dac16aabb55dc821026dbd556014f14d519fbb48722cd1",
+      "size": 240
+    },
+    {
+      "path": "independent-evaluation/chain-verification.json",
+      "sha256": "741f65318f68b7a8be95ecf756cc47c9e8594d39ab7e3e670def31d2cb76061c",
+      "size": 260
+    },
+    {
+      "path": "independent-evaluation/duplicate-repair-command.json",
+      "sha256": "15354a6268300a6d33e5b4b1de38f941f4aee963aa5dac920173e76e9b1c610f",
+      "size": 792
+    },
+    {
+      "path": "independent-evaluation/producer.py",
+      "sha256": "249e97cfd41a1443051af89726120564c6412fa2006ec6c4fd5c83cd327743d2",
+      "size": 657
+    },
+    {
+      "path": "independent-evaluation/qualify-console.log",
+      "sha256": "d5bf74c0830d21d7424f6c08b044a193451f533fa93f03d7051b67b6794fabcb",
+      "size": 252
+    },
+    {
+      "path": "independent-evaluation/repair-assessment-valid.json",
+      "sha256": "fc903d073862d94af6643295ba55013b17cfcd8038d2c468a8e64c5eac48d52b",
+      "size": 769
+    },
+    {
+      "path": "independent-evaluation/repair-assessment.json",
+      "sha256": "408ea34c717b33c64337f3983b6f48db1c55353fd477ee8bda67250c2a28f918",
+      "size": 769
+    },
+    {
+      "path": "independent-evaluation/repair-command.json",
+      "sha256": "6baa8838b5d9f322949ff8fe9a702ca0ccc0877353beaf8378efab26c2986f3a",
+      "size": 676
+    },
+    {
+      "path": "independent-evaluation/repair-valid-command.json",
+      "sha256": "b7cdc293fb35ab00e082883c0bd09a71fbe782d19e86eb68307087c3db4d91d3",
+      "size": 1218
+    },
+    {
+      "path": "independent-evaluation/report-audit.log",
+      "sha256": "6e3593ac836d4a8a623efda3b4a46b61c1ea68fe097f3df1d98614008ba7e45c",
+      "size": 88
+    },
+    {
+      "path": "independent-evaluation/selected-input.txt",
+      "sha256": "8c1d0655f9de7d2486ac546b5439bb53b89e883deb4f42847d67e7292607d501",
+      "size": 78
+    },
+    {
+      "path": "independent-evaluation/setup_evaluation.py",
+      "sha256": "3acf83e7034bf2c76fbfddb50aba9f0d0da5f9084ee7c839b6070c2d9a74ac31",
+      "size": 3032
+    },
+    {
+      "path": "independent-evaluation/source-provenance.json",
+      "sha256": "0a54bf5523af605ac10c6c57203887ffecc10da5067fdfdf70a5bc4749c9210e",
+      "size": 260
+    },
+    {
+      "path": "independent-evaluation/subject.json",
+      "sha256": "443cb485526b71bba65c78971f52c7942a5d680bf807c1b96dce550509166875",
+      "size": 169
+    },
+    {
+      "path": "independent-evaluation/task-envelope.json",
+      "sha256": "8051add8bb2deb3a701dedbfbe71cade04c8eddec0627cc9e5b82a3fd7cd70a8",
+      "size": 1545
+    },
+    {
+      "path": "pre-fix/022af552/pipeline_runtime.py",
+      "sha256": "0ee7e1d45ed64cff4a39c4800ec23744de50b44d8a61c194965b955868c7b610",
+      "size": 58385
+    },
+    {
+      "path": "pre-fix/cfa87025/pipeline_runtime.py",
+      "sha256": "a87ea14c956fff0a0412595d58c045efa57a3080c9571c4fea335dc9ca2ec5be",
+      "size": 49746
+    },
+    {
+      "path": "root-checks/pcb-workflow-artifacts-final.log",
+      "sha256": "9a11273455e27f1d1d0c4d0e5c2e3f3a48a1415adfa6f858d6b66b7cf2cd7e82",
+      "size": 1458
+    },
+    {
+      "path": "root-checks/pcb-workflow-artifacts.log",
+      "sha256": "9a11273455e27f1d1d0c4d0e5c2e3f3a48a1415adfa6f858d6b66b7cf2cd7e82",
+      "size": 1458
+    },
+    {
+      "path": "root-checks/pcb-workflow-authority-final.log",
+      "sha256": "c2eefd78f32d81727a79f78f09d348cefdf8b2dd9aa922e5fe4bcfe34632f474",
+      "size": 88
+    },
+    {
+      "path": "root-checks/pcb-workflow-carrier-canary.log",
+      "sha256": "f4f75df5e1e103e0ce256656ce360029abc1382743441587228b63d597479b98",
+      "size": 172
+    },
+    {
+      "path": "root-checks/pcb-workflow-carrier-canary2.log",
+      "sha256": "3e46aec779cffc0944aabdf061320329e06c41a2e3cd7aa22a0b6e6f517e6773",
+      "size": 377
+    },
+    {
+      "path": "root-checks/pcb-workflow-contracts-final.log",
+      "sha256": "4eedddbcfec8afb507da0c6ffe18ac8a1ba036b93c6653d117f8192b0e03110a",
+      "size": 2028
+    },
+    {
+      "path": "root-checks/pcb-workflow-contracts2.log",
+      "sha256": "4eedddbcfec8afb507da0c6ffe18ac8a1ba036b93c6653d117f8192b0e03110a",
+      "size": 2028
+    },
+    {
+      "path": "root-checks/pcb-workflow-decision-final.log",
+      "sha256": "2c0e2e61d02a9eeb7847bfd92a780a4dc80dce5df8bf2f739e3e80d5574ea390",
+      "size": 1953
+    },
+    {
+      "path": "root-checks/pcb-workflow-decision3.log",
+      "sha256": "2e03db6db6e30df3f71ebf4c5f2b8844d0b092467b5e046aa963667421f93c1f",
+      "size": 1953
+    },
+    {
+      "path": "root-checks/pcb-workflow-disclosure-final.log",
+      "sha256": "fba7790aa3bd58d94b50f9bd326daefe558f85e5cfd76278c38e2ecace904e0a",
+      "size": 1445
+    },
+    {
+      "path": "root-checks/pcb-workflow-disclosure2.log",
+      "sha256": "fba7790aa3bd58d94b50f9bd326daefe558f85e5cfd76278c38e2ecace904e0a",
+      "size": 1445
+    },
+    {
+      "path": "root-checks/pcb-workflow-docs-final.log",
+      "sha256": "e7ba199d3c29931e9fdc9df05edf7427759187ac5174723f6309656d50c9f07f",
+      "size": 1391
+    },
+    {
+      "path": "root-checks/pcb-workflow-docs2.log",
+      "sha256": "e7ba199d3c29931e9fdc9df05edf7427759187ac5174723f6309656d50c9f07f",
+      "size": 1391
+    },
+    {
+      "path": "root-checks/pcb-workflow-execution-final.log",
+      "sha256": "037d6bea4a3bd6556521c8e17f07c35f32c6263f7a7f9dc7a98fbb751ca51175",
+      "size": 1451
+    },
+    {
+      "path": "root-checks/pcb-workflow-execution3.log",
+      "sha256": "232b02475db87232aef04177c30e5855ccf06395d603b9b802014718f1980066",
+      "size": 1361
+    },
+    {
+      "path": "root-checks/pcb-workflow-flow-final.log",
+      "sha256": "af576750c6e1ae94eca3b0f9b6de476ed7f3a074c79d0e61957cee64f2e059d7",
+      "size": 4064
+    },
+    {
+      "path": "root-checks/pcb-workflow-flow.log",
+      "sha256": "5268bd0a88ea05884beb2af3a0398588b279b8541b70a27b772fc864a8e4ff6a",
+      "size": 3984
+    },
+    {
+      "path": "root-checks/pcb-workflow-flow3.log",
+      "sha256": "b86fdf2c0230d3a4fff70f3a89ba0e93d8ecabde3b6e5f8af02295a49e439f87",
+      "size": 3984
+    },
+    {
+      "path": "root-checks/pcb-workflow-gate-audit.log",
+      "sha256": "970caca8bb8a0249c8e51c331859cc38af62c2822ef75a07264e57ff59a726de",
+      "size": 6926
+    },
+    {
+      "path": "root-checks/pcb-workflow-gate-final.log",
+      "sha256": "dd49b7d8cacf585f9d47996b1dd0dca8c5f1535ad4693efd13a63343f3ddef77",
+      "size": 4245
+    },
+    {
+      "path": "root-checks/pcb-workflow-gate3.log",
+      "sha256": "300f0a3803aa0f18a130f1d4699d3aeb2fcbdd3e508d1ff1b6a753aa7b9d484a",
+      "size": 5953
+    },
+    {
+      "path": "root-checks/pcb-workflow-gate4.log",
+      "sha256": "dd49b7d8cacf585f9d47996b1dd0dca8c5f1535ad4693efd13a63343f3ddef77",
+      "size": 4245
+    },
+    {
+      "path": "root-checks/pcb-workflow-qualification-final.log",
+      "sha256": "3904c983ac6f4e5787fabee6e742f8e4aae4e947ee78ad8da36a64297090740c",
+      "size": 1572
+    },
+    {
+      "path": "root-checks/pcb-workflow-qualification3.log",
+      "sha256": "b3dfc08ab9fc4f03458378be141b9543879561257fb4cb7f8429153dd4bd2baf",
+      "size": 447
+    },
+    {
+      "path": "root-checks/pcb-workflow-red-deleted-log.log",
+      "sha256": "69b695697e8029c92a2b2858c8b323632d5bd341616ada083bd0fdf050aea7ad",
+      "size": 1146
+    },
+    {
+      "path": "root-checks/pcb-workflow-red-initial-replay.log",
+      "sha256": "2f7adeccacd6a2f61c87ea7c1d42fda66e58ad7ccfba89736d47f4c0135b4ba1",
+      "size": 844
+    },
+    {
+      "path": "root-checks/pcb-workflow-red-missing-output.log",
+      "sha256": "75d281edc936f3922674309aa045bb64514da25ab5e6adc199c70de230b75f56",
+      "size": 1135
+    },
+    {
+      "path": "root-checks/pcb-workflow-runtime-final.log",
+      "sha256": "19da70ea303867506e2d96790c5a18efda3bfccaed5106126961eb050cf79b72",
+      "size": 5045
+    },
+    {
+      "path": "root-checks/pcb-workflow-runtime.log",
+      "sha256": "45d27873a6ea9719ddfa82631b6c8054089f8d817e02dc7335bd9fae00ec7512",
+      "size": 4549
+    },
+    {
+      "path": "root-checks/pcb-workflow-runtime3.log",
+      "sha256": "335d98b863e2135839a55799fd776be6bd22fbcbb1f60015a406ca2d58f216ae",
+      "size": 4820
+    },
+    {
+      "path": "root-checks/pcb_workflow_canary.py",
+      "sha256": "1f6b5b4d2a54bb07354fcd8195e4b5068a01c1db444d953b7f89a9466257e234",
+      "size": 4034
+    },
+    {
+      "path": "root-checks/pcb_workflow_red.py",
+      "sha256": "f56301aeba059a222fb4696953b3d76326e943ef2a0c70bbb451612b3a2fe2ad",
+      "size": 753
+    }
+  ],
+  "red_controls": {
+    "deleted_log": "022af552 runtime falsely PASS",
+    "initial_replay": "022af552 runtime allows fresh launch reset",
+    "missing_output": "cfa87025 runtime falsely PASS"
+  },
+  "schema": 1,
+  "scope": "regular evidence files; scratch .git and Python bytecode excluded",
+  "supplemental_logs": {
+    "final-contract-failure.log": {
+      "sha256": "b9b7cdca1704e690ae1198d4c1adc3a7e88f7d85c09139b9943c338f4d7be654",
+      "size": 6395
+    },
+    "final-contract-pass.log": {
+      "sha256": "4eedddbcfec8afb507da0c6ffe18ac8a1ba036b93c6653d117f8192b0e03110a",
+      "size": 2028
+    }
+  }
+}

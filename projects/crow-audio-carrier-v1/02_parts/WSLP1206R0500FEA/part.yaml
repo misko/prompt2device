@@ -1,0 +1,29 @@
+mpn: WSLP1206R0500FEA
+manufacturer: Vishay Dale
+type: metal_strip_resistor
+value: '0.05'
+status: superseded
+datasheet:
+  doc_id: '30122'
+  revision: 09-Sep-2024
+  url: https://www.vishay.com/docs/30122/wslp.pdf
+  local: WSLP_30122_20240909.pdf
+  sha256: 36e35aeb3d41f110442de6690ef220a8a20c720118a40abb0fa8eedbf7308edb
+  fetched: '2026-09-09'
+  pages: 5
+  provenance: Direct public manufacturer PDF; pp1-3 identity, ratings, pad drawing and endurance conditions inspected.
+package: '1206; body3.20+/-0.254 x1.60+/-0.254mm; H0.635+/-0.254mm'
+footprint: crow_audio_carrier:Vishay_WSLP1206_50m_Exact
+escape: {style: passive, pitch: 3.45, tier_required: jlc_2layer_default, checked: 'Manufacturer30122 p2 exact50mOhm land row:1.65x1.93 pads,1.80 innergap'}
+pins: {1: A, 2: B}
+limits: {resistance_ohm: 0.05, tolerance_pct: 1, power_W_at_70C: 1, temperature_coefficient_ppm_C: 75, inductance_nH_max: 5}
+verified: 'CITED:30122 pp1-2 exact WSLP1206 range includes50mOhm,F=1%,EA=lead-free tape/reel; two nonpolar pads. No Kelvin-pin identities invented.'
+sourcing: {lcsc: C844912, alternates: []}
+gotchas:
+  - 'Power derates linearly1W@70C to0@170C; working voltage sqrt(P*R). Use0.85W at85C.'
+  - '5% resistance reserve combines initial/TCR/load-life/solder allowance for prototype analysis, not an unlimited-life guarantee.'
+  - 'Replace unbounded ferrite transfer with explicit resistive feed. Complete feed loop L<=10nH is a layout/measurement budget, including<=5nH part; no measured PCB impedance claim.'
+layout:
+  # ADR0025: historical part only. Current board bindings retired; see Git history.
+  source: '30122 p2 land-pattern dimensions; ADR0021 local feed-loop engineering budgets'
+  reviewed: '2026-09-09'

@@ -1,0 +1,38 @@
+mpn: EEEFK1A471P
+manufacturer: Panasonic
+type: aluminum_electrolytic_capacitor
+value: 470uF
+status: active
+datasheet:
+  doc_id: ABA0000C1181
+  revision: 2026-02-10
+  url: https://industrial.panasonic.com/cdbs/www-data/pdf/RDE0000/ABA0000C1181.pdf
+  local: Panasonic_FK_ABA0000C1181_20260210.pdf
+  sha256: b36857d089adaddf3042b33bf11d0f7d83bf70734e983f33b7827152e11854e3
+  fetched: 2026-09-07
+  provenance: "Official Panasonic FK catalog, 10-Feb-2026; exact standard-P row, size-F dimensions and standard land table rechecked; immutable primary PDF retained."
+package: "Panasonic standard FK size F, SMD aluminum can, D8.0 x L10.2 mm (10.5 mm max from tolerance)"
+footprint: crow_audio_carrier:Panasonic_EEEFK1A471P_8x10.2_Exact
+escape: {style: polarized_passive, pitch: 7.1, tier_required: jlc_2layer_default, checked: "Official Panasonic standard-product land a=3.1, b=4.0, c=2.0 mm; pad centers +/-3.55 mm; reviewed 2026-09-01"}
+pins:
+  1: {name: POSITIVE, note: "Positive terminal; C_FILT1/2 pad 1 must be on ADC_FILTxP."}
+  2: {name: NEGATIVE, note: "Negative terminal; C_FILT1/2 pad 2 must be direct GND per ADR0008, never a series negative-return resistor."}
+limits:
+  capacitance_f: 0.00047
+  tolerance_pct: 20
+  voltage_v: 10
+  polarized: true
+  leakage_current_max_uA: 47
+  impedance_max_mohm_at_100khz: 160
+  ripple_current_ma_at_100khz_105c: 600
+  operating_temperature: "-55C to +105C"
+asserts:
+  - {assert: value, equals: 470u, tolerance_pct: 20, why: "CS5308P ADC reference-filter bulk capacitor."}
+  - {assert: pad1_net_polarity, pad: 1, polarity: positive, why: "Panasonic identifies this as polar; pad 1 must be the ADC_FILTxP side and the project topology checker pins both instances."}
+  - {assert: not_on_assembly_bom, why: "No exact JLC allocation/process is accepted; both instances are governed manual-fit parts."}
+verified: "CITED: official Panasonic FK catalog exact standard-product row EEEFK1A471P gives 470uF +/-20%, 10V, 8.0x10.2 mm size F, 47uA leakage, 160mohm maximum impedance and 600mArms ripple; standard land a=3.1, b=4.0, c=2.0 mm; reviewed 2026-09-01."
+gotchas:
+  - "This is a deliberate non-eval substitution for zero-stock vibration-proof EEEFK1A471V; capacitance/voltage/series/case are retained, but the standard-P land is different."
+  - "Do not restore nonexistent EEH-ZK1A471P or reuse a ZC/ZK-series document."
+  - "Manual fit and polarity inspection are mandatory; pad 1 is positive on FILTxP."
+sourcing: {lcsc: null, alternates: [], note: "Active exact Panasonic standard-P part; manual/consign only until exact assembly allocation is proven. The zero-stock eval V suffix is not authorized as an implicit substitute."}

@@ -1,0 +1,22 @@
+mpn: CL10A475KO8NQNC
+manufacturer: Samsung Electro-Mechanics
+type: ceramic_capacitor
+value: 4.7uF
+status: active
+datasheet:
+  doc_id: CL10A475KO8NQN
+  revision: current-2026-09-01
+  url: https://product.samsungsem.com/mlcc/CL10A475KO8NQN.do
+  local: null
+  sha256: null
+  provenance: "Official Samsung Electro-Mechanics exact-family product page; downloadable local specification bytes remain OWED."
+package: "0603 (1608 metric), 0.8 mm nominal thickness"
+footprint: Capacitor_SMD:C_0603_1608Metric
+escape: {style: passive, pitch: 0.8, tier_required: jlc_2layer_default, checked: "Samsung exact dimensions reviewed 2026-09-01"}
+pins: {1: A, 2: B}
+limits: {capacitance: 4.7uF, tolerance: 10pct, rated_voltage: 16V, dielectric: X5R, operating_temperature: "-55C to +85C"}
+asserts:
+  - {assert: value, equals: 4.7u, tolerance_pct: 10, why: "TPS7A24 input and output capacitors retain margin above its 1uF minimum effective requirement."}
+gotchas: ["Use the mass-production NQN revision; CL10A475KO8NNNC is NRND and is not an authorized substitute."]
+verified: "CITED: Samsung official page reports CL10A475KO8NQNC mass production, 4.7uF +/-10%, 16V, X5R and EIA 0603; read 2026-09-01."
+sourcing: {lcsc: null, alternates: [], note: "Exact JLC allocation remains unproven."}

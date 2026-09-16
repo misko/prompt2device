@@ -5,6 +5,7 @@ Clean cases: parts land where the config says. Must-fail cases: a missing
 FPID is a HARD ERROR (the defect that matters most — a silently un-placed
 part is an electrically-wrong board that still passes DRC).
 """
+import json
 import re
 import shutil
 import sys
@@ -40,6 +41,158 @@ def scratch_config(mutate, name="fp.yaml"):
     p = d / name
     p.write_text(yaml.safe_dump(cfg))
     return d, p
+
+
+def archived_config(project, scratch):
+    """Recreate disposable netlist input from the committed native schematic.
+
+    These real-board geometry fixtures must run in a clean checkout where
+    archived 06_build/netlists is absent. Export into private scratch and
+    retain every placement/rule value from the committed floorplan.
+    """
+    import yaml
+    cfg = yaml.safe_load((project / '03_src/floorplan.yaml').read_text())
+    stem = cfg['project']['name']
+    netlist = scratch / f'{stem}.net'
+    must_pass(run(['kicad-cli', 'sch', 'export', 'netlist', '-o', netlist,
+                   project / '04_kicad' / f'{stem}.kicad_sch']),
+              'export archived geometry fixture netlist')
+    cfg['project']['netlist'] = str(netlist)
+    cfg['project']['parts_dir'] = str(project / cfg['project']['parts_dir'])
+    for index, entry in enumerate(cfg.get('libraries', [])):
+        if isinstance(entry, dict):
+            entry['path'] = str(project / entry['path'])
+        else:
+            cfg['libraries'][index] = str(project / entry)
+    path = scratch / 'floorplan.yaml'
+    path.write_text(yaml.safe_dump(cfg))
+    return path
+
+
+def _isolated_pad_consumer(patterns, *, sides=None):
+    """Call the real place_parts consumer with native pads, without a BOARD.
+
+    The fake container owns Add/GetFootprints only. No BoardBuilder constructor,
+    fill, save or routing is involved. Native getters are the independent oracle.
+    Bottom-side Flip requires a native BOARD and is deliberately not exercised.
+    """
+    import pcbnew
+    sys.path.insert(0, str(SCRIPTS))
+    import generate_board_generic as g
+    from types import SimpleNamespace
+    from unittest.mock import patch
+
+    class Container:
+        def __init__(self): self.footprints = []
+        def Add(self, fp): self.footprints.append(fp)
+        def GetFootprints(self): return self.footprints
+
+    def load(ref, fpid, val):
+        fp = pcbnew.FootprintLoad(
+            '/usr/share/kicad/footprints/Capacitor_SMD.pretty', 'C_0402_1005Metric')
+        check(fp is not None, 'isolated native footprint available')
+        return fp
+
+    builder = object.__new__(g.BoardBuilder)
+    builder.place_cfg = {'patterns': patterns,
+                         'anchors': {r: [10, 20, 90] for r in ('C1', 'C2', 'R1')},
+                         'sides': sides or {}}
+    builder.comps = {r: ('fixture:native', 'fixture') for r in ('C1', 'C2', 'R1')}
+    builder.identity_fields = {}
+    builder.res = SimpleNamespace(load=load)
+    builder.board = Container()
+    builder.pad_net = {(r, n): ('GND' if n == '2' else 'OTHER')
+                       for r in builder.comps for n in ('1', '2')}
+    builder.netmap = {'GND': pcbnew.NETINFO_ITEM(None, 'GND', 1),
+                      'OTHER': pcbnew.NETINFO_ITEM(None, 'OTHER', 2)}
+    builder.say = lambda message: None
+    with patch.object(pcbnew, 'BOARD', side_effect=AssertionError('BOARD forbidden')), \
+         patch.object(pcbnew, 'LoadBoard', side_effect=AssertionError('LoadBoard forbidden')), \
+         patch.object(pcbnew, 'SaveBoard', side_effect=AssertionError('SaveBoard forbidden')):
+        eq(builder.place_parts(), 3, 'actual consumer placement count')
+    return builder
+
+
+def _isolated_modes(builder):
+    return {(fp.GetReference(), p.GetNumber()): p.GetLocalZoneConnection()
+            for fp in builder.board.GetFootprints() for p in fp.Pads()}
+
+
+@test('pad override consumer maps all three explicit modes on native pads')
+def t_pad_override_native_modes():
+    """RED against pre-fix consumer: NONE remained native INHERITED."""
+    import pcbnew
+    for mode, expected in [('full', pcbnew.ZONE_CONNECTION_FULL),
+                           ('thermal', pcbnew.ZONE_CONNECTION_THERMAL),
+                           ('none', pcbnew.ZONE_CONNECTION_NONE)]:
+        b = _isolated_pad_consumer([{'match': ['C1'], 'pad_overrides': [
+            {'pads': ['2'], 'on_net': 'GND', 'zone_connection': mode}]}])
+        observed = _isolated_modes(b)
+        eq(observed[('C1', '2')], expected, mode + ' native getter')
+        for key, value in observed.items():
+            if key != ('C1', '2'):
+                eq(value, pcbnew.ZONE_CONNECTION_INHERITED, str(key))
+        fp = b.fps['C1']
+        eq(fp.GetLayer(), pcbnew.F_Cu, 'top-side unchanged')
+        eq(fp.GetOrientationDegrees(), 90, 'rotation unchanged')
+        eq(fp.GetPosition(), pcbnew.VECTOR2I_MM(10, 20), 'anchor unchanged')
+        eq({p.GetNumber(): p.GetNetname() for p in fp.Pads()},
+           {'1': 'OTHER', '2': 'GND'}, 'native net assignment precedes mode')
+
+
+@test('pad override consumer preserves absent mode and clearance-only inheritance')
+def t_pad_override_native_inheritance():
+    import pcbnew
+    for patterns in [[], [{'match': 'C*', 'pad_overrides': [{}]}],
+                     [{'match': ['C1'], 'pad_overrides': [{'pads': ['2'], 'clearance': .3}]}]]:
+        b = _isolated_pad_consumer(patterns)
+        check(all(v == pcbnew.ZONE_CONNECTION_INHERITED for v in _isolated_modes(b).values()),
+              'absent mode inherits')
+    pad = next(p for p in b.fps['C1'].Pads() if p.GetNumber() == '2')
+    eq(pad.GetLocalClearance(), pcbnew.FromMM(.3), 'clearance-only still applies')
+    # A later clearance-only row must retain an earlier explicit mode.
+    b = _isolated_pad_consumer([{'match': 'C1', 'pad_overrides': [
+        {'zone_connection': 'full'}, {'clearance': .3}]}])
+    eq(_isolated_modes(b)[('C1', '2')], pcbnew.ZONE_CONNECTION_FULL, 'later absence preserves full')
+
+
+@test('pad override consumer retains generic glob, scalar, list, pad and net selectors')
+def t_pad_override_native_generic_selectors():
+    import pcbnew
+    cases = [
+        ({'match': 'C*', 'pad_overrides': [{'on_net': 'GND', 'zone_connection': 'full'}]},
+         {('C1', '2'), ('C2', '2')}),
+        ({'match': ['C?', 'R1'], 'pad_overrides': [{'pads': [1], 'zone_connection': 'full'}]},
+         {('C1', '1'), ('C2', '1'), ('R1', '1')}),
+        ({'match': '*', 'pad_overrides': [{'zone_connection': 'full'}]},
+         {(r, n) for r in ('C1', 'C2', 'R1') for n in ('1', '2')}),
+        ({'match': ['C1'], 'pad_overrides': [{'pads': ['1'], 'on_net': 'GND', 'zone_connection': 'full'}]}, set()),
+        ({'match': ['ABSENT'], 'pad_overrides': [{'zone_connection': 'full'}]}, set()),
+    ]
+    for pattern, wanted in cases:
+        modes = _isolated_modes(_isolated_pad_consumer([pattern]))
+        eq({k for k, v in modes.items() if v == pcbnew.ZONE_CONNECTION_FULL}, wanted,
+           'generic selector population')
+        check(all(v == pcbnew.ZONE_CONNECTION_INHERITED for k, v in modes.items() if k not in wanted),
+              'filtered native pads still inherit')
+
+
+@test('pad override consumer rejects malformed modes even behind nonmatching selectors', kind='known_bad')
+def t_pad_override_native_invalid_modes():
+    """RED against pre-fix: typo accepted instead of FloorplanError."""
+    sys.path.insert(0, str(SCRIPTS))
+    import generate_board_generic as g
+    for value in ['typo', 'FULL', ' none ', '', None, False, 0, 1, [], {}, ['none']]:
+        for match, extra in [('C1', {}), ('ABSENT', {}), ('C1', {'pads': ['9']}),
+                             ('C1', {'on_net': 'ABSENT'})]:
+            try:
+                _isolated_pad_consumer([{'match': match, 'pad_overrides': [
+                    {'zone_connection': value, **extra}]}])
+            except g.FloorplanError as error:
+                contains(str(error), 'zone_connection', 'closed mode diagnostic')
+                contains(str(error), 'full|thermal|none', 'valid enum diagnostic')
+            else:
+                check(False, f'invalid mode accepted: {value!r}, {match!r}, {extra!r}')
 
 
 @test("generate_board_generic places every netlist part per the config")
@@ -163,6 +316,77 @@ def t_fab_copy():
     r = must_pass(run([KPY, "-c", code, out]), "count F.Fab")
     n = int(r.out.split("@@")[1].strip())
     check(n >= 33, f"expected >=33 F.Fab refdes copies (29 parts + 4 holes), got {n}")
+
+
+@test("source identity fields survive generated-board save/reopen, decode escaped "
+      "supplier JSON, and do not become required for legacy parts")
+def t_source_identity_fields_round_trip():
+    """Electrical source metadata wins over footprint-library defaults.
+
+    The fixture adds authoritative identity fields only to U1.  It uses an
+    escaped JSON supplier payload, then reads the SAVED board with pcbnew;
+    the adjacent legacy J1 control proves omitted fields stay omitted.
+    Before parse_identity_fields(), U1 had neither source value after the
+    generated-board save/reopen, so this test failed while placement/parity
+    remained green.
+    """
+    d = tmpdir("gbg_identity_")
+    net = (LC / "06_build" / "netlists" / "cook_loadcell.net").read_text()
+    match = re.search(r'(\(comp\s+\(ref\s+"U1"\).*?)(?=\(comp\s+\(ref|\(libparts)',
+                      net, re.S)
+    check(match is not None, "U1 fixture component was not found")
+    component = match.group(1)
+    supplier = '{"LCSC":"C12345","note":"quoted \\"source\\" value"}'
+    fields = (f'\n(property (name {json.dumps("Manufacturer Part Number")}) '
+              f'(value {json.dumps("SOURCE-MPN-42")}))'
+              f'\n(property (name {json.dumps("Supplier Part Numbers")}) '
+              f'(value {json.dumps(supplier)}))')
+    value = re.search(r'\(value "(?:\\.|[^"\\])*"\)', component)
+    check(value is not None, "U1 fixture has no value property")
+    component = component[:value.end()] + fields + component[value.end():]
+    identity_net = d / "identity.net"
+    identity_net.write_text(net[:match.start()] + component + net[match.end():])
+    import yaml
+    cfg = yaml.safe_load((LC / "03_src" / "floorplan.yaml").read_text())
+    cfg["project"]["netlist"] = str(identity_net)
+    cfg["project"]["parts_dir"] = str(LC / cfg["project"]["parts_dir"])
+    # Put an explicitly stale identity field in a private U1 footprint.  The
+    # emitted board must take its MPN from the native netlist instead.
+    stale_lib = d / "stale-footprints" / "Package_SO.pretty"
+    stale_lib.mkdir(parents=True)
+    source_mod = Path("/usr/share/kicad/footprints/Package_SO.pretty/"
+                      "SOIC-16_3.9x9.9mm_P1.27mm.kicad_mod")
+    stale_mod = stale_lib / source_mod.name
+    stale_text = source_mod.read_text()
+    stale_field = ('\n\t(property "Manufacturer Part Number" "STALE-LIBRARY-MPN"\n'
+                   '\t\t(at 0 0 0)\n\t\t(layer "F.Fab")\n\t\t(hide yes)\n'
+                   '\t\t(effects (font (size 1 1) (thickness 0.15)))\n\t)\n')
+    stale_mod.write_text(stale_text.rstrip()[:-1] + stale_field + ')\n')
+    cfg["libraries"] = [str(d / "stale-footprints"), "/usr/share/kicad/footprints"]
+    floorplan = d / "floorplan.yaml"
+    floorplan.write_text(yaml.safe_dump(cfg))
+    board = d / "identity.kicad_pcb"
+    gen(floorplan, board)
+    # Saving via pcbnew first catches fields that exist only in generator
+    # memory, rather than serialising into a KiCad board consumers can reopen.
+    saved = d / "identity-saved.kicad_pcb"
+    probe = (
+        "import pcbnew,sys,json\n"
+        "b=pcbnew.LoadBoard(sys.argv[1]); pcbnew.SaveBoard(sys.argv[2],b)\n"
+        "b=pcbnew.LoadBoard(sys.argv[2])\n"
+        "def fields(ref):\n"
+        " return {f.GetName():f.GetText() for f in b.FindFootprintByReference(ref).GetFields()}\n"
+        "print('@@'+json.dumps({'u1':fields('U1'),'j1':fields('J1')},sort_keys=True))\n")
+    result = must_pass(run([KPY, "-c", probe, board, saved]),
+                       "identity save/reopen probe")
+    observed = json.loads(result.out.split("@@", 1)[1])
+    eq(observed["u1"].get("Manufacturer Part Number"), "SOURCE-MPN-42",
+       "source MPN overrides any stale library identity")
+    eq(observed["u1"].get("Supplier Part Numbers"), supplier,
+       "escaped supplier JSON survives source -> board -> reopen")
+    check("Manufacturer Part Number" not in observed["j1"] and
+          "Supplier Part Numbers" not in observed["j1"],
+          "legacy part with no source identity fields was made to require them")
 
 
 @test("MISSING FPID is a hard error, not a silent skip", kind="known_bad")
@@ -1001,7 +1225,7 @@ def t_corridor_bad_side():
 def t_collide_clean():
     d = tmpdir("gbg_")
     r = gen(LC / "03_src" / "floorplan.yaml", d / "b.kicad_pcb")
-    contains(r.out, "P-COLLIDE: 0 inter-footprint pad overlaps/shorts, 0 anchored courtyard overlap",
+    contains(r.out, "P-COLLIDE: 0 inter-footprint pad overlaps/shorts, 0 fixed courtyard overlap",
              "generator stdout")
 
 
@@ -1049,6 +1273,44 @@ def t_collide_pinned_lap_fails():
     contains(r.out, "FAIL P-COLLIDE PINNED-LAP", "generator stdout")
 
 
+@test("P-COLLIDE treats mounting holes as fixed placement datums",
+      kind="known_bad")
+def t_collide_mounting_hole_lap_fails():
+    """Holes are emitted before component anchors and are not legalizer
+    inputs.  A connector courtyard grazing a mounting-hole courtyard used to
+    disappear from P-COLLIDE entirely and survive until KiCad DRC."""
+    def mutate(c):
+        # J1's courtyard starts at x=27.205.  The M3 courtyard at x=24.0
+        # reaches x=27.495, while its copper-free NPTH stops well short of
+        # J1's pads.  This isolates the fixed-courtyard predicate.
+        c["board"]["mounting_holes"]["at"][0] = [24.0, 24.2]
+    d, cfg = scratch_config(mutate)
+    r = gen(cfg, d / "b.kicad_pcb", expect_ok=False)
+    must_fail(r, "mounting-hole/anchor courtyard overlap", "P-COLLIDE")
+    contains(r.out, "PINNED-LAP", "fixed mounting-hole report")
+    contains(r.out, "J1", "fixed mounting-hole report")
+    contains(r.out, "H1", "fixed mounting-hole report")
+
+
+@test("P-COLLIDE treats fiducials as fixed placement datums",
+      kind="known_bad")
+def t_collide_fiducial_lap_fails():
+    """Fiducials are board-only fixed footprints too; their courtyard must
+    not be allowed beneath an anchored connector body."""
+    def mutate(c):
+        c["board"].pop("mounting_holes", None)
+        c["board"]["fiducials"] = {
+            "footprint": "Fiducial:Fiducial_1mm_Mask2mm",
+            "at": [[26.1, 24.2], [72.0, 30.0], [72.0, 50.0]],
+        }
+    d, cfg = scratch_config(mutate)
+    r = gen(cfg, d / "b.kicad_pcb", expect_ok=False)
+    must_fail(r, "fiducial/anchor courtyard overlap", "P-COLLIDE")
+    contains(r.out, "PINNED-LAP", "fixed fiducial report")
+    contains(r.out, "J1", "fixed fiducial report")
+    contains(r.out, "FID1", "fixed fiducial report")
+
+
 @test("P-COLLIDE uses rotated courtyard polygons, not intersecting bboxes")
 def t_rotated_courtyard_bbox_is_not_overlap():
     """The Pluto RX2 radial SMA ring has six rotated-jack pairs, plus its
@@ -1059,10 +1321,10 @@ def t_rotated_courtyard_bbox_is_not_overlap():
     """
     d = tmpdir("gbg_pluto_rotated_")
     out = d / "pluto_rx2_8way.kicad_pcb"
-    r = gen(PLUTO_RX2 / "03_src" / "floorplan.yaml", out,
+    r = gen(archived_config(PLUTO_RX2, d), out,
             cwd=PLUTO_RX2)
     contains(r.out,
-             "P-COLLIDE: 0 inter-footprint pad overlaps/shorts, 0 anchored courtyard overlap",
+             "P-COLLIDE: 0 inter-footprint pad overlaps/shorts, 0 fixed courtyard overlap",
              "rotated-courtyard generator result")
     code = (
         "import pcbnew,sys\n"
@@ -1259,7 +1521,7 @@ def t_kb_via_protection_value():
 def t_promote_heatsink_pads_to_vias():
     d = tmpdir("gbg_thermal_")
     out = d / "usb_hub_3s_v4.kicad_pcb"
-    r = gen(HUB4 / "03_src" / "floorplan.yaml", out, cwd=HUB4)
+    r = gen(archived_config(HUB4, d), out, cwd=HUB4)
     contains(r.out, "thermal vias: emitted 48 explicit + promoted 0 marked "
              "heatsink pad(s) across 8 footprint(s)", "promotion coverage")
     code = (
@@ -1415,6 +1677,176 @@ def t_uuid_determinism():
     check(n > 100, f"probe saw only {n} objects — the board did not build")
     eq(uniq, n, "UUID set size vs object count (a collision means two "
                 "objects share one identity)")
+
+
+
+# ------------------------------------------------ exact refdes priority
+_PRIORITY_PROBE = r"""
+import json, sys, pcbnew
+sys.dont_write_bytecode = True
+sys.path.insert(0, sys.argv[1])
+from generate_board_generic import BoardBuilder, FloorplanError
+from pathlib import Path
+
+def build(options, name, blocked=False):
+    # Two distinct native footprint positions compete for a narrow label
+    # strip. Restrict the fixture's offset search, not the collision/ownership
+    # predicates or the native text shape. Far-away refs expose fallback order.
+    b = BoardBuilder.__new__(BoardBuilder)
+    b.board = pcbnew.BOARD(); b.silk_cfg = {'refdes': dict(
+        size=0.7, min_size=0.7, fab_copy=True, priority_prefixes='J', **options)}
+    b.fps = {}; b.hole_refs = {'H1'}; b.tier = None
+    b.waived = []; b.log = []; b.X0=b.Y0=0; b.X1=b.Y1=100
+    b.OFF = [(0,-2)]
+    for ref,x,y in [('R_FIRST',10,10),('R_LAST',10.1,10),
+                    ('J1',30,30),('C1',50,50),('TP1',70,70),('H1',80,80)]:
+        fp=pcbnew.FOOTPRINT(b.board); fp.SetReference(ref)
+        fp.SetPosition(pcbnew.VECTOR2I_MM(x,y)); b.board.Add(fp); b.fps[ref]=fp
+        pad=pcbnew.PAD(fp); pad.SetNumber('1'); pad.SetShape(pcbnew.PAD_SHAPE_RECT)
+        pad.SetSize(pcbnew.VECTOR2I_MM(0.02,0.02)); pad.SetPosition(fp.GetPosition())
+        fp.Add(pad)
+    if blocked:
+        # A real copper pad covers the only proposed label strip. Priority
+        # must never turn collision rejection into force-placement.
+        pad=pcbnew.PAD(b.fps['R_LAST']); pad.SetNumber('2')
+        pad.SetShape(pcbnew.PAD_SHAPE_RECT); pad.SetSize(pcbnew.VECTOR2I_MM(15,3))
+        pad.SetPosition(pcbnew.VECTOR2I_MM(10,8)); b.fps['R_LAST'].Add(pad)
+    def geometry(board):
+        return sorted((f.GetReference(),f.GetPosition().x,f.GetPosition().y,
+                       f.GetOrientationDegrees(), sorted((p.GetNumber(),
+                       p.GetPosition().x,p.GetPosition().y,p.GetSize().x,
+                       p.GetSize().y,p.GetNetname()) for p in f.Pads()))
+                      for f in board.GetFootprints())
+    before=geometry(b.board); order=[]; place=b._place_owned
+    def recording(*args, **kwargs):
+        if args[5]=='refdes': order.append(args[4])
+        return place(*args, **kwargs)
+    b._place_owned=recording
+    try: b.add_silk()
+    except FloorplanError as e: return {'error':str(e)}
+    out=Path(sys.argv[2])/(name+'.kicad_pcb'); pcbnew.SaveBoard(str(out),b.board)
+    saved=pcbnew.LoadBoard(str(out))
+    return {'order':order, 'degraded':[row[1] for row in b.own_deg], 'hidden':sorted(f.GetReference() for f in saved.GetFootprints()
+                if not f.Reference().IsVisible()), 'geometry_equal':before==geometry(saved),
+            'fields':sorted((f.GetReference(),f.Reference().IsVisible(),
+                f.Reference().GetPosition().x,f.Reference().GetPosition().y,
+                f.Reference().GetTextAngleDegrees(),f.Reference().GetTextSize().x,
+                f.Reference().GetTextThickness()) for f in saved.GetFootprints())}
+
+results={'default':build({},'default'), 'empty':build({'priority_refs':[]},'empty'),
+    'priority':build({'priority_refs':['R_LAST','C1']},'priority'),
+    'blocked':build({'priority_refs':['R_LAST']},'blocked',True),
+    'invalid':[build({'priority_refs':v},'bad'+str(i)) for i,v in enumerate(
+        [None,'R_LAST',{},[3],[''],['R_LAST','R_LAST'],['R_*'],['UNKNOWN'],['H1']])]}
+results.update({
+    'offset':build({'preferred_offsets':{'R_LAST':[[1.5,1]]}},'offset'),
+    'empty_offsets':build({'preferred_offsets':{}},'empty_offsets'),
+    'blocked_offset':build({'preferred_offsets':{'R_LAST':[[0,-2]]}},'blocked_offset'),
+    'degraded_offset':build({'preferred_offsets':{'R_LAST':[[-1.5,1]]}},'degraded_offset'),
+    'invalid_offsets':[build({'preferred_offsets':v},'bad_offset'+str(i)) for i,v in enumerate([
+        None, [], {'UNKNOWN':[[0,1]]}, {'H1':[[0,1]]}, {'R_*':[[0,1]]},
+        {'R_LAST':[]}, {'R_LAST':'0,1'}, {'R_LAST':[[1]]}, {'R_LAST':[[1,2,3]]},
+        {'R_LAST':[[True,1]]}, {'R_LAST':[['1',1]]}, {'R_LAST':[[float('nan'),1]]},
+        {'R_LAST':[[float('inf'),1]]}, {'R_LAST':[[0,3]]},
+        {'R_LAST':[[0,1],[0,1]]}, {'R_LAST':[[0,1],[1,0]]}])]})
+print('@@'+json.dumps(results))
+"""
+
+
+def _priority_probe():
+    d=tmpdir('gbg_priority_')
+    rr=must_pass(run([KPY, '-B', '-c', _PRIORITY_PROBE, SCRIPTS, d]),
+                 'native refdes priority fixture')
+    return json.loads(rr.out.split('@@',1)[1])
+
+
+@test('exact silk priority changes the contested native label winner and preserves geometry')
+def t_silk_exact_priority():
+    # Run RED against the actual pre-feature producer before implementation;
+    # the unrecognized field leaves R_LAST hidden while the default passes.
+    p=_priority_probe()
+    eq(p['default']['order'], ['J1','TP1','C1','R_FIRST','R_LAST'], 'legacy order')
+    eq(p['priority']['order'], ['R_LAST','C1','J1','TP1','R_FIRST'], 'explicit order then fallback')
+    check('R_LAST' in p['default']['hidden'], 'fixture has no contested label')
+    check('R_LAST' not in p['priority']['hidden'] and
+          'R_FIRST' in p['priority']['hidden'], 'priority did not change saved native winner')
+    check(all(p[k]['geometry_equal'] for k in ['default','empty','priority','blocked']),
+          'silk ordering changed physical geometry')
+
+
+@test('omitted and empty silk priority preserve native fields; prioritized labels still collide', kind='known_bad')
+def t_silk_exact_priority_preserves_checks():
+    p=_priority_probe()
+    eq(p['default']['fields'],p['empty']['fields'],'empty priority changes native fields')
+    check('R_LAST' in p['blocked']['hidden'] and 'R_FIRST' in p['blocked']['hidden'],
+          'explicit priority forced a label through copper')
+
+
+@test('exact silk priority rejects malformed duplicate unknown wildcard and hole refs', kind='known_bad')
+def t_silk_exact_priority_invalid():
+    p=_priority_probe()
+    eq(len(p['invalid']),9,'hostile denominator')
+    for i,r in enumerate(p['invalid']):
+        check('error' in r and 'silk.refdes.priority_refs' in r['error'],
+              f'bad priority case {i} was accepted: {r}')
+
+
+
+
+@test('preferred silk offsets recover a native label without moving the visible winner')
+def t_silk_preferred_offsets():
+    # Executed against the real pre-feature producer before implementation.
+    p=_priority_probe()
+    check('R_LAST' in p['default']['hidden'], 'fixture was not contested')
+    eq(p['offset']['hidden'],['H1'],'preferred offset did not recover saved native label')
+    eq(p['offset']['order'],p['default']['order'],'offset changed label order')
+    a={r[0]:r for r in p['default']['fields']};b={r[0]:r for r in p['offset']['fields']}
+    eq({r:v for r,v in a.items() if r!='R_LAST'},
+       {r:v for r,v in b.items() if r!='R_LAST'},'other native text fields moved')
+    check(p['offset']['geometry_equal'],'preferred label moved physical pads')
+
+
+@test('preferred silk offsets retain collision rejection and explicit phase2 degradation',kind='known_bad')
+def t_silk_preferred_offset_checks():
+    p=_priority_probe()
+    eq(p['empty_offsets']['fields'],p['default']['fields'],'empty offset mapping changed fields')
+    check('R_LAST' in p['blocked_offset']['hidden'],'preferred offset forced a colliding label')
+    check('R_LAST' not in p['degraded_offset']['hidden'] and
+          'R_LAST' in p['degraded_offset']['degraded'],
+          'phase2 fallback was silently changed or its ownership warning lost')
+    check(p['degraded_offset']['geometry_equal'],'phase2 changed physical geometry')
+
+
+@test('preferred silk offsets reject malformed unknown nonfinite and out-of-budget targets',kind='known_bad')
+def t_silk_preferred_offsets_invalid():
+    p=_priority_probe()
+    eq(len(p['invalid_offsets']),16,'hostile offset denominator')
+    for i,r in enumerate(p['invalid_offsets']):
+        check('error' in r and 'silk.refdes.preferred_offsets' in r['error'],
+              f'bad preferred offset {i} accepted: {r}')
+
+
+@test('thermal spoke angles are exact selected-pad geometry with closed numeric bounds')
+def t_pad_thermal_angle():
+    import pcbnew
+    sys.path.insert(0, str(SCRIPTS))
+    import generate_board_generic as g
+    b = _isolated_pad_consumer([{'match': ['C1'], 'pad_overrides': [
+        {'pads': ['2'], 'on_net': 'GND', 'thermal_spoke_angle_deg': 45}]}])
+    pads = {(fp.GetReference(), p.GetNumber()): p
+            for fp in b.board.GetFootprints() for p in fp.Pads()}
+    eq(pads['C1', '2'].GetThermalSpokeAngleDegrees(), 45, 'selected native angle')
+    for key, pad in pads.items():
+        if key != ('C1', '2'):
+            eq(pad.GetThermalSpokeAngleDegrees(), 90, 'other pad unchanged')
+    for bad in [-1, 360, True, '45', float('nan'), float('inf')]:
+        try:
+            _isolated_pad_consumer([{'match': ['ABSENT'], 'pad_overrides': [
+                {'thermal_spoke_angle_deg': bad}]}])
+        except g.FloorplanError:
+            pass
+        else:
+            check(False, f'invalid angle accepted under nonmatching selector: {bad!r}')
 
 
 if __name__ == "__main__":

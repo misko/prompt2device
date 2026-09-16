@@ -1,0 +1,12 @@
+schema: 1
+rf:
+  enabled: false
+  rationale: >-
+    There is no intentional RF interface. The twelve exact ADC_CLOCK nets are
+    single-ended high-speed digital interconnect sections governed by Cirrus's
+    50 ohm layout intent, the public JLC04161H-7628 prototype stack and ADR0010.
+    MCH_3V3_SENSE, TDM_SENSE_G and TDM_OE_N are DC/control nets, not additional
+    transmission-line sections. Keep the high_speed_digital profile selected.
+    A nominal width is not an impedance solve; source launch and realized
+    signal-integrity closure remain blocked. This is not an RF claim, an
+    authenticated impedance order, or first-article qualification.

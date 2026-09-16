@@ -1,0 +1,745 @@
+{
+  "authority": {
+    "base_semantic_sha256": "588deea30e2fe30ff7b839983aa44412f4bbc385471c5d379a827debe722d0ee",
+    "base_subject_sha256": "f7361b98d301c9dc04ce187f5134efb745c89c25f4eeacba2b211f2a55948953",
+    "source_phase_subject_sha256": "0172d7e9513d66a783c5fad4ad6f6d63dec4f1a26bb08511a0ff0da67f50b549"
+  },
+  "coupon_id": "crow-audio-carrier-v1-connector-coupon",
+  "findings": [
+    {
+      "code": "HARDWARE-CENSUS",
+      "message": "required target hardware identity is absent",
+      "path": "target_hardware:('mchstreamer-dual-cable-interface', 'mchstreamer-module')"
+    },
+    {
+      "code": "INSTRUMENT-CENSUS",
+      "message": "missing instrument roles ['continuity', 'crimp-height', 'dimensional', 'pull-force']",
+      "path": "instruments"
+    },
+    {
+      "code": "SAMPLE-CENSUS",
+      "message": "0/2 required samples represented",
+      "path": "samples:mchstreamer-dual-cable-interface"
+    },
+    {
+      "code": "SAMPLE-CENSUS",
+      "message": "0/1 required samples represented",
+      "path": "samples:molex-micro-fit-power-input"
+    },
+    {
+      "code": "SAMPLE-CENSUS",
+      "message": "0/8 required samples represented",
+      "path": "samples:molex-micro-fit-spoke-bank"
+    },
+    {
+      "code": "TARGET-UNOBSERVED",
+      "message": "physical target has not been observed",
+      "path": "target:('mchstreamer-dual-cable-interface', 'cable', 'cable')"
+    },
+    {
+      "code": "TARGET-UNOBSERVED",
+      "message": "physical target has not been observed",
+      "path": "target:('mchstreamer-dual-cable-interface', 'interface', 'interface')"
+    },
+    {
+      "code": "TARGET-UNOBSERVED",
+      "message": "physical target has not been observed",
+      "path": "target:('mchstreamer-dual-cable-interface', 'operation', 'remove-j10-j1-cable')"
+    },
+    {
+      "code": "TARGET-UNOBSERVED",
+      "message": "physical target has not been observed",
+      "path": "target:('mchstreamer-dual-cable-interface', 'operation', 'remove-j11-j3-cable')"
+    },
+    {
+      "code": "TARGET-UNOBSERVED",
+      "message": "physical target has not been observed",
+      "path": "target:('mchstreamer-dual-cable-interface', 'operation', 'seat-j10-j1-cable')"
+    },
+    {
+      "code": "TARGET-UNOBSERVED",
+      "message": "physical target has not been observed",
+      "path": "target:('mchstreamer-dual-cable-interface', 'operation', 'seat-j11-j3-cable')"
+    },
+    {
+      "code": "TARGET-UNOBSERVED",
+      "message": "physical target has not been observed",
+      "path": "target:('mchstreamer-dual-cable-interface', 'reaction', 'reaction')"
+    },
+    {
+      "code": "TARGET-UNOBSERVED",
+      "message": "physical target has not been observed",
+      "path": "target:('mchstreamer-dual-cable-interface', 'tolerance', 'mch-header-cable-enclosure-stack')"
+    },
+    {
+      "code": "TARGET-UNOBSERVED",
+      "message": "physical target has not been observed",
+      "path": "target:('molex-micro-fit-power-input', 'cable', 'cable')"
+    },
+    {
+      "code": "TARGET-UNOBSERVED",
+      "message": "physical target has not been observed",
+      "path": "target:('molex-micro-fit-power-input', 'interface', 'interface')"
+    },
+    {
+      "code": "TARGET-UNOBSERVED",
+      "message": "physical target has not been observed",
+      "path": "target:('molex-micro-fit-power-input', 'operation', 'mate-and-polarity-check')"
+    },
+    {
+      "code": "TARGET-UNOBSERVED",
+      "message": "physical target has not been observed",
+      "path": "target:('molex-micro-fit-power-input', 'operation', 'unmate-supply-off')"
+    },
+    {
+      "code": "TARGET-UNOBSERVED",
+      "message": "physical target has not been observed",
+      "path": "target:('molex-micro-fit-power-input', 'reaction', 'reaction')"
+    },
+    {
+      "code": "TARGET-UNOBSERVED",
+      "message": "physical target has not been observed",
+      "path": "target:('molex-micro-fit-power-input', 'tolerance', 'power-connector-enclosure-stack')"
+    },
+    {
+      "code": "TARGET-UNOBSERVED",
+      "message": "physical target has not been observed",
+      "path": "target:('molex-micro-fit-spoke-bank', 'interface', 'interface')"
+    },
+    {
+      "code": "TARGET-UNOBSERVED",
+      "message": "physical target has not been observed",
+      "path": "target:('molex-micro-fit-spoke-bank', 'operation', 'latch-pull-check')"
+    },
+    {
+      "code": "TARGET-UNOBSERVED",
+      "message": "physical target has not been observed",
+      "path": "target:('molex-micro-fit-spoke-bank', 'operation', 'mate')"
+    },
+    {
+      "code": "TARGET-UNOBSERVED",
+      "message": "physical target has not been observed",
+      "path": "target:('molex-micro-fit-spoke-bank', 'operation', 'unmate')"
+    },
+    {
+      "code": "TARGET-UNOBSERVED",
+      "message": "physical target has not been observed",
+      "path": "target:('molex-micro-fit-spoke-bank', 'reaction', 'reaction')"
+    },
+    {
+      "code": "TARGET-UNOBSERVED",
+      "message": "physical target has not been observed",
+      "path": "target:('molex-micro-fit-spoke-bank', 'tolerance', 'connector-enclosure-stack')"
+    }
+  ],
+  "inputs": {
+    "coupon_board": {
+      "path": "06_build/connector_qualification_coupon/current/crow-audio-carrier-v1-connector-coupon.kicad_pcb",
+      "sha256": "93e01e71556659112f3c40c45328cdc266b235d5d394ff1247485a61f45f71a2",
+      "size": 91382
+    },
+    "evidence_files": [],
+    "producer_verifier": {
+      "path": "skills/pcb-design/scripts/connector_qualification_coupon.py",
+      "sha256": "6aa4ad711fbc0cb18856fe13c02bb3647a0b63daef0bae85132f7dddfeb295a1",
+      "size": 81832
+    },
+    "request": {
+      "path": "06_build/connector_qualification_coupon/current/request.json",
+      "sha256": "c840f3cc2d6025fae9f4a7069954d180a782cf5926ec41bced3fdb0b28d4f10d",
+      "size": 155010
+    },
+    "response": {
+      "path": "06_build/connector_qualification_coupon/current/physical-response.yaml",
+      "sha256": "53fd0cd5885c34ff8d11e7f34d57beda380537e2ca7f33c6351b44d616c462f9",
+      "size": 8020
+    }
+  },
+  "instruments": [],
+  "kind": "connector-qualification-coupon-receipt",
+  "observations": [
+    {
+      "assembly_id": "mchstreamer-dual-cable-interface",
+      "evidence": [],
+      "measurements": [
+        {
+          "name": "installed-straight-run",
+          "unit": "mm",
+          "values": []
+        },
+        {
+          "name": "minimum-route-clearance",
+          "unit": "mm",
+          "values": []
+        },
+        {
+          "name": "realized-minimum-bend-radius",
+          "unit": "mm",
+          "values": []
+        }
+      ],
+      "notes": "",
+      "result": "UNOBSERVED",
+      "target_id": "cable",
+      "target_kind": "cable",
+      "tested_refs": []
+    },
+    {
+      "assembly_id": "mchstreamer-dual-cable-interface",
+      "evidence": [],
+      "measurements": [
+        {
+          "name": "installed-cable-height",
+          "unit": "mm",
+          "values": []
+        },
+        {
+          "name": "installed-seating-gap",
+          "unit": "mm",
+          "values": []
+        },
+        {
+          "name": "minimum-service-clearance",
+          "unit": "mm",
+          "values": []
+        },
+        {
+          "name": "module-header-column-pitch",
+          "unit": "mm",
+          "values": []
+        },
+        {
+          "name": "module-header-exposed-post-length",
+          "unit": "mm",
+          "values": []
+        },
+        {
+          "name": "module-header-post-width-x",
+          "unit": "mm",
+          "values": []
+        },
+        {
+          "name": "module-header-post-width-y",
+          "unit": "mm",
+          "values": []
+        },
+        {
+          "name": "module-header-row-pitch",
+          "unit": "mm",
+          "values": []
+        }
+      ],
+      "notes": "",
+      "result": "UNOBSERVED",
+      "target_id": "interface",
+      "target_kind": "interface",
+      "tested_refs": []
+    },
+    {
+      "assembly_id": "mchstreamer-dual-cable-interface",
+      "evidence": [],
+      "measurements": [
+        {
+          "name": "connector-damage-count",
+          "unit": "count",
+          "values": []
+        },
+        {
+          "name": "exercised-cycles",
+          "unit": "count",
+          "values": []
+        }
+      ],
+      "notes": "",
+      "result": "UNOBSERVED",
+      "target_id": "remove-j10-j1-cable",
+      "target_kind": "operation",
+      "tested_refs": []
+    },
+    {
+      "assembly_id": "mchstreamer-dual-cable-interface",
+      "evidence": [],
+      "measurements": [
+        {
+          "name": "connector-damage-count",
+          "unit": "count",
+          "values": []
+        },
+        {
+          "name": "exercised-cycles",
+          "unit": "count",
+          "values": []
+        }
+      ],
+      "notes": "",
+      "result": "UNOBSERVED",
+      "target_id": "remove-j11-j3-cable",
+      "target_kind": "operation",
+      "tested_refs": []
+    },
+    {
+      "assembly_id": "mchstreamer-dual-cable-interface",
+      "evidence": [],
+      "measurements": [
+        {
+          "name": "continuity-cross-short-count",
+          "unit": "count",
+          "values": []
+        },
+        {
+          "name": "continuity-open-count",
+          "unit": "count",
+          "values": []
+        },
+        {
+          "name": "exercised-cycles",
+          "unit": "count",
+          "values": []
+        },
+        {
+          "name": "pin-one-error-count",
+          "unit": "count",
+          "values": []
+        }
+      ],
+      "notes": "",
+      "result": "UNOBSERVED",
+      "target_id": "seat-j10-j1-cable",
+      "target_kind": "operation",
+      "tested_refs": []
+    },
+    {
+      "assembly_id": "mchstreamer-dual-cable-interface",
+      "evidence": [],
+      "measurements": [
+        {
+          "name": "continuity-cross-short-count",
+          "unit": "count",
+          "values": []
+        },
+        {
+          "name": "continuity-open-count",
+          "unit": "count",
+          "values": []
+        },
+        {
+          "name": "exercised-cycles",
+          "unit": "count",
+          "values": []
+        },
+        {
+          "name": "pin-one-error-count",
+          "unit": "count",
+          "values": []
+        }
+      ],
+      "notes": "",
+      "result": "UNOBSERVED",
+      "target_id": "seat-j11-j3-cable",
+      "target_kind": "operation",
+      "tested_refs": []
+    },
+    {
+      "assembly_id": "mchstreamer-dual-cable-interface",
+      "evidence": [],
+      "measurements": [
+        {
+          "name": "exercised-cycles",
+          "unit": "count",
+          "values": []
+        },
+        {
+          "name": "maximum-connector-rotation",
+          "unit": "deg",
+          "values": []
+        },
+        {
+          "name": "maximum-pcb-flex",
+          "unit": "mm",
+          "values": []
+        }
+      ],
+      "notes": "",
+      "result": "UNOBSERVED",
+      "target_id": "reaction",
+      "target_kind": "reaction",
+      "tested_refs": []
+    },
+    {
+      "assembly_id": "mchstreamer-dual-cable-interface",
+      "evidence": [],
+      "measurements": [
+        {
+          "name": "realized-minus",
+          "unit": "mm",
+          "values": []
+        },
+        {
+          "name": "realized-plus",
+          "unit": "mm",
+          "values": []
+        },
+        {
+          "name": "worst-case-clearance",
+          "unit": "mm",
+          "values": []
+        }
+      ],
+      "notes": "",
+      "result": "UNOBSERVED",
+      "target_id": "mch-header-cable-enclosure-stack",
+      "target_kind": "tolerance",
+      "tested_refs": []
+    },
+    {
+      "assembly_id": "molex-micro-fit-power-input",
+      "evidence": [],
+      "measurements": [
+        {
+          "name": "installed-outer-diameter",
+          "unit": "mm",
+          "values": []
+        },
+        {
+          "name": "installed-straight-run",
+          "unit": "mm",
+          "values": []
+        },
+        {
+          "name": "minimum-route-clearance",
+          "unit": "mm",
+          "values": []
+        },
+        {
+          "name": "realized-minimum-bend-radius",
+          "unit": "mm",
+          "values": []
+        }
+      ],
+      "notes": "",
+      "result": "UNOBSERVED",
+      "target_id": "cable",
+      "target_kind": "cable",
+      "tested_refs": []
+    },
+    {
+      "assembly_id": "molex-micro-fit-power-input",
+      "evidence": [],
+      "measurements": [
+        {
+          "name": "installed-seating-gap",
+          "unit": "mm",
+          "values": []
+        },
+        {
+          "name": "mating-plane-offset",
+          "unit": "mm",
+          "values": []
+        },
+        {
+          "name": "minimum-exposure",
+          "unit": "mm",
+          "values": []
+        },
+        {
+          "name": "minimum-service-clearance",
+          "unit": "mm",
+          "values": []
+        }
+      ],
+      "notes": "",
+      "result": "UNOBSERVED",
+      "target_id": "interface",
+      "target_kind": "interface",
+      "tested_refs": []
+    },
+    {
+      "assembly_id": "molex-micro-fit-power-input",
+      "evidence": [],
+      "measurements": [
+        {
+          "name": "continuity-cross-short-count",
+          "unit": "count",
+          "values": []
+        },
+        {
+          "name": "continuity-open-count",
+          "unit": "count",
+          "values": []
+        },
+        {
+          "name": "exercised-cycles",
+          "unit": "count",
+          "values": []
+        },
+        {
+          "name": "polarity-error-count",
+          "unit": "count",
+          "values": []
+        }
+      ],
+      "notes": "",
+      "result": "UNOBSERVED",
+      "target_id": "mate-and-polarity-check",
+      "target_kind": "operation",
+      "tested_refs": []
+    },
+    {
+      "assembly_id": "molex-micro-fit-power-input",
+      "evidence": [],
+      "measurements": [
+        {
+          "name": "exercised-cycles",
+          "unit": "count",
+          "values": []
+        },
+        {
+          "name": "latch-damage-count",
+          "unit": "count",
+          "values": []
+        }
+      ],
+      "notes": "",
+      "result": "UNOBSERVED",
+      "target_id": "unmate-supply-off",
+      "target_kind": "operation",
+      "tested_refs": []
+    },
+    {
+      "assembly_id": "molex-micro-fit-power-input",
+      "evidence": [],
+      "measurements": [
+        {
+          "name": "exercised-cycles",
+          "unit": "count",
+          "values": []
+        },
+        {
+          "name": "maximum-connector-rotation",
+          "unit": "deg",
+          "values": []
+        },
+        {
+          "name": "maximum-pcb-flex",
+          "unit": "mm",
+          "values": []
+        }
+      ],
+      "notes": "",
+      "result": "UNOBSERVED",
+      "target_id": "reaction",
+      "target_kind": "reaction",
+      "tested_refs": []
+    },
+    {
+      "assembly_id": "molex-micro-fit-power-input",
+      "evidence": [],
+      "measurements": [
+        {
+          "name": "realized-minus",
+          "unit": "mm",
+          "values": []
+        },
+        {
+          "name": "realized-plus",
+          "unit": "mm",
+          "values": []
+        },
+        {
+          "name": "worst-case-clearance",
+          "unit": "mm",
+          "values": []
+        }
+      ],
+      "notes": "",
+      "result": "UNOBSERVED",
+      "target_id": "power-connector-enclosure-stack",
+      "target_kind": "tolerance",
+      "tested_refs": []
+    },
+    {
+      "assembly_id": "molex-micro-fit-spoke-bank",
+      "evidence": [],
+      "measurements": [
+        {
+          "name": "installed-seating-gap",
+          "unit": "mm",
+          "values": []
+        },
+        {
+          "name": "mating-plane-offset",
+          "unit": "mm",
+          "values": []
+        },
+        {
+          "name": "minimum-exposure",
+          "unit": "mm",
+          "values": []
+        },
+        {
+          "name": "minimum-service-clearance",
+          "unit": "mm",
+          "values": []
+        }
+      ],
+      "notes": "",
+      "result": "UNOBSERVED",
+      "target_id": "interface",
+      "target_kind": "interface",
+      "tested_refs": []
+    },
+    {
+      "assembly_id": "molex-micro-fit-spoke-bank",
+      "evidence": [],
+      "measurements": [
+        {
+          "name": "conductor-crimp-height",
+          "unit": "mm",
+          "values": []
+        },
+        {
+          "name": "continuity-cross-short-count",
+          "unit": "count",
+          "values": []
+        },
+        {
+          "name": "continuity-open-count",
+          "unit": "count",
+          "values": []
+        },
+        {
+          "name": "pull-force",
+          "unit": "N",
+          "values": []
+        },
+        {
+          "name": "strip-length",
+          "unit": "mm",
+          "values": []
+        }
+      ],
+      "notes": "",
+      "result": "UNOBSERVED",
+      "target_id": "latch-pull-check",
+      "target_kind": "operation",
+      "tested_refs": []
+    },
+    {
+      "assembly_id": "molex-micro-fit-spoke-bank",
+      "evidence": [],
+      "measurements": [
+        {
+          "name": "continuity-cross-short-count",
+          "unit": "count",
+          "values": []
+        },
+        {
+          "name": "continuity-open-count",
+          "unit": "count",
+          "values": []
+        },
+        {
+          "name": "exercised-cycles",
+          "unit": "count",
+          "values": []
+        }
+      ],
+      "notes": "",
+      "result": "UNOBSERVED",
+      "target_id": "mate",
+      "target_kind": "operation",
+      "tested_refs": []
+    },
+    {
+      "assembly_id": "molex-micro-fit-spoke-bank",
+      "evidence": [],
+      "measurements": [
+        {
+          "name": "exercised-cycles",
+          "unit": "count",
+          "values": []
+        },
+        {
+          "name": "latch-damage-count",
+          "unit": "count",
+          "values": []
+        }
+      ],
+      "notes": "",
+      "result": "UNOBSERVED",
+      "target_id": "unmate",
+      "target_kind": "operation",
+      "tested_refs": []
+    },
+    {
+      "assembly_id": "molex-micro-fit-spoke-bank",
+      "evidence": [],
+      "measurements": [
+        {
+          "name": "exercised-cycles",
+          "unit": "count",
+          "values": []
+        },
+        {
+          "name": "maximum-connector-rotation",
+          "unit": "deg",
+          "values": []
+        },
+        {
+          "name": "maximum-pcb-flex",
+          "unit": "mm",
+          "values": []
+        }
+      ],
+      "notes": "",
+      "result": "UNOBSERVED",
+      "target_id": "reaction",
+      "target_kind": "reaction",
+      "tested_refs": []
+    },
+    {
+      "assembly_id": "molex-micro-fit-spoke-bank",
+      "evidence": [],
+      "measurements": [
+        {
+          "name": "realized-minus",
+          "unit": "mm",
+          "values": []
+        },
+        {
+          "name": "realized-plus",
+          "unit": "mm",
+          "values": []
+        },
+        {
+          "name": "worst-case-clearance",
+          "unit": "mm",
+          "values": []
+        }
+      ],
+      "notes": "",
+      "result": "UNOBSERVED",
+      "target_id": "connector-enclosure-stack",
+      "target_kind": "tolerance",
+      "tested_refs": []
+    }
+  ],
+  "samples": [],
+  "schema": 1,
+  "semantic_sha256": "581d5da921392f89654c857e8b80ed1186fa9bafd76816cae64b35143b7e2d2b",
+  "status": "INCOMPLETE",
+  "subject_sha256": "0ab282729cf320f6c62276de1bbf84adfa38804788da84f161a46faef768a02a",
+  "summary": {
+    "assembly_count": 3,
+    "connector_count": 11,
+    "evidence_file_count": 0,
+    "fail_target_count": 0,
+    "finding_count": 25,
+    "instrument_count": 0,
+    "pass_target_count": 0,
+    "physical_target_count": 20,
+    "sample_count": 0,
+    "unobserved_target_count": 20
+  },
+  "target_hardware": []
+}

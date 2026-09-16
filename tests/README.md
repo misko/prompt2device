@@ -10,7 +10,77 @@ build scratch trees under `/tmp` and read the real projects only.
 
 ---
 
+`t1_pipeline_qualification.py` runs an isolated native clean/hostile control
+pair and checks missing tools, unsupported reporting and stale cache rejection.
+
+Same-owner dispatch tests exercise a real wrong-directory failure followed by
+a successful correction, plus changed premises, mandatory boundaries and
+relabeling/branching at an exhausted cumulative allowance. The initial-launch
+replay test was RED against the 022af552 runtime, then GREEN with the durable
+campaign claim.
+
+Schema-2 delivery tests in `t1_pipeline_runtime.py` reproduce exit-zero with
+missing handback as RED against the cfa87025 runtime, then GREEN with output
+validation. They also exercise stale subjects, unresolved reports, retained
+partial evidence, provider failure, unknown cleanup and late terminal callbacks.
+Schema-1 execution and artifact transaction tests remain compatibility controls.
+
+`t1_connector_orientation.py` binds full native scene/model dependencies and
+explicit resolver propagation, rejects missing nonconnector models, and checks
+that occluder geometry/transforms/model bytes, visibility and camera semantics
+stale both approval schemas. Pure routing additions remain reusable. Strict
+schema-1 image hash/key rejection and schema-2 unchanged-semantic pixel
+regeneration are separate controls. Approval/continuation must reuse the exact
+verified user-viewed bundle; absent, stale or tampered bundles cannot be signed
+by the approval flag. The regressions were RED against the exact pre-fix gate,
+then GREEN after correction. The first missing-model fixture mistakenly edited
+a copy returned by `Models()`; its result was discarded, the fixture was fixed
+to assign back to the native model vector, and native RED was rerun.
+Opposing-row camera recipes use full-frame top/board-rotation 300 or 60 degrees;
+a declared vacuity fixture preserves the fact that machine axis/edge correctness
+does not prove rear visibility through an occluder. Actual native elevated
+images still require independent target attribution and explicit human review.
+
+`t_receipt_integrity_native` additionally generates a real native USB scene,
+adds a physical `U_OCCLUDER`, then relabels only the old receipt subject while
+forbidding rendering. This was RED against candidate-two (false strict
+approval of stale pixels), then GREEN with complete cached semantic/machine
+and producer validation. It retains exact-reuse and physical routing-only
+positive controls, closed-schema missing/extra/duplicate/malformed fields,
+contradictory metadata and rehashed contradictory native commands, and changed
+producer/observation/image/log bytes. The prior eighteen controls, including
+schema-2 unchanged-semantic pixel compatibility and the visibility blind spot,
+remain in this suite. Synthetic approvals are confined to disposable fixtures.
+
+`t2_route_stitch.py` checks that importing a route into a regenerated board
+retains the declared fabrication capability rather than stale Board Setup
+via defaults. The public native-import regression was RED before import
+synchronization (0.45 mm remained instead of the fixture's 0.30 mm contract),
+then GREEN with named power width, assignments, and error severities preserved.
+The focused prepared-authority suite separately rejects named-netclass mutation.
+It also proves bare standard/advanced tier selection preserves conservative
+source Board Setup floors. The live pre-fix driver failed both tier cases; the
+corrected driver passes all four focused tests. Initial scratch-import test
+runs were discarded and repeated with portable repository imports.
+
 ## The principle: test the CHECKERS, not just with them
+
+CLI coverage regressions in `t1_pcb_commission.py`, `t1_project_reports.py` and
+`t1_enclosure_layout.py` are RED against 18c96c58: missing denominators, plus
+false success over an empty enclosure index. Scaffold counts are checked against
+actual files, enclosure counts against all project paths including a misplaced
+mesh. `t1_pcba_availability.py` exercises real CLI acceptance and insufficient
+stock rejection; these CLI tests satisfy the existing G-RED contract.
+
+`t1_decision_progress.py` covers cumulative investigation budgets, once-only
+milestone credit, invalid-model non-credit, stale evidence and handoffs,
+pre-launch refusal, and unchanged maturity for ordinary/deferred-work fixtures.
+Duplicate YAML history is rejected and real guarded launches reserve durable
+spend, block unreported repeats, and avoid charging the later assessment twice.
+Ordinary YAML merge overrides retain their meaning; the compatibility fixture
+was RED against the first duplicate-key loader and GREEN after its correction.
+These tests grade workflow decisions, not electrical correctness. The handoff
+regression is RED against pre-integration `pcb_flow.py` (missing decision view).
 
 A gate that cannot fail is worthless. This is not hypothetical — two gates
 in this repo were shipping green on real defects when the suite was written:
@@ -148,7 +218,8 @@ inputs. See `fixtures/t0/README.md`.
 |---|---|---|
 | `t1_converter.py` | unique lib_symbol per refdes, pins keyed to KiCad pad name, annotated, ERC 0, 41-pin regression, rail canonicalisation, FPID resolution. **LABEL PLATE DIRECTION (2026-07-31)**: a 2-pin part placed horizontally AND vertically has both plates reaching OUTWARD, clear of the body and each other; the `(angle, justify) -> direction` table is RE-MEASURED every run from `kicad-cli sch export svg` INK on a probe sheet (canon M1 — the emitter must not grade its own angles), and every `GND_ANG` rotation is proven to point the ground symbol away from the body; the two fixtures are asserted DISCRIMINATING (plate reach > body span, so the defect is placement-independent) | **a wire root carrying two different LABEL NAMES falls back to `--mode grid`** — the merge happens on LABELS, not pins, and a MID-SEGMENT label was a singleton in the union-find so no guard could see it (smc0985-cooksense: `3V3_ANALOG` mid-segment on a `3V3` wire, 3 segs dropped, SUCCESS declared, 191 nets and no `3V3_ANALOG`; caught only by S-NETMERGE at 161/162). Carries the adjacent-property check that a net's OWN mid-segment label still imports, or every board goes to grid mode; pin-count assertion has teeth, sheet/board parity rejects a mismatch, empty circuit cannot pass parity. **THE LABEL-DIRECTION DEFECT, re-measured every run**: the pre-fix side derivation (`anchor_side` fed straight into the table) fires BOTH plates of a horizontal part across the body, and the LOWER plate of a vertical one — while the UPPER one is correct only by CANCELLATION between that inversion and a `(270, 'left')` table row that renders UP, which is why the two fixes had to land together. Each known-bad asserts INLINE that the defective sheet's netlist is node-for-node identical to the fixed one and its ERC is 0 — the blindness proof, and the reason every connectivity-keyed gate reported green on it. GIT-SWAP RED-VERIFIED against the real pre-fix file: **19 passed / 5 failed**, exactly the five new fixtures; restored **24 / 0 / 8**. **PROPERTY TEXT vs THE GROUND GLYPH OF ITS OWN PIN (2026-07-31)**: the `Reference`/`Value` rows were a BLIND offset from the body edge (`iy -/+ h/2 -/+ 2.2`), so on a VERTICALLY placed 2-pin passive the Value was written into the exact strip the bottom pin's ground triangle occupies — 160 of the fleet's 341 S-OCCL findings and 7 of the 11 blocking pluto-rx2-8way-v2. All four (orientation x grounded pin) cases are FALSIFIED IN RENDERED INK, not against a model: KiCad renders the fixture and no graphic stroke may pass through a property's glyph run. The known-bad re-runs the pre-fix rows every run and reports HONESTLY that only the two VERTICAL cases go red — the horizontal pair is the ADJACENT PROPERTY (a sideways triangle spans +-1.00 mm across its axis against a >= 2.797 mm Value offset, a gap no box height can close), and 0 of 166 grounded horizontal passives in the real fleet move. `sym_xf` and `glyph_box` are re-measured from `kicad-cli sch export svg` INK every run with an ASYMMETRIC probe rect (canon M1) — that measurement is also what caught three shapes of KiCad ink a `<path d=` matcher silently drops, one of them the ground triangle itself. GIT-SWAP RED-VERIFIED against `2914dcad`: **25 passed / 3 failed**, restored **28 / 0 / 9**. **LABEL DE-COLLISION (2026-07-31, canon S11)**: after the direction and property fixes, ALL 182 remaining S-OCCL findings on the fleet had a `global_label` as one member (77 label-vs-pin, 42 label-vs-Reference, 32 label-vs-label, 16 label-vs-glyph, 8 label-vs-body, 7 label-vs-Value, nothing else) — plates were emitted where tscircuit's anchor put them and never checked against what they landed on. Two labels colliding are separated on BOTH axes, each asserted in RENDERED INK on the GLYPH RUNS a human actually reads (not on plate rectangles, and not on coordinates); the RED side holds `place_labels` off, which is exactly the pre-pass converter. **The plate model had to be re-measured first and it is the THIRD inherited constant found wrong**: the shipped `(len + 2) * CH_W` treats every character as 1.05 mm wide while KiCad's stroke font is PROPORTIONAL — 95 characters measured out of rendered ink give an exact k/21 of the font size, k from 8 (`` ` ``) to 28 (`m`), so the flat model runs 0.77 mm too WIDE for `IIII` and **6.48 mm too NARROW** for a 20-character name of capitals. Too narrow is the dangerous direction: a search built on it places plates it calls clear and KiCad draws through their neighbours. `PLATE_BASE` (1.3341 mm) and `PLATE_CROSS` (2.5408 mm) both measure with ZERO spread and are asserted as SETS so the zero spread cannot be averaged away, and the model is asserted an UPPER bound on ink for every one of the 190 probe plates. The contact threshold is measured too, not copied: every plate-vs-anything overlap over the six layout sheets is 108 at exactly zero, 205 at exactly 0.0004/0.0008 mm (the 2.5408 mm plate against the 2.540 mm pin pitch — arithmetic, not crowding), then NOTHING until 0.0677 mm, so the threshold sits in the empty two-decade gap. **THE ADJACENT-PROPERTY CONTROL FOUND A SHIPPED FIXTURE DIRTY**: `label_sides_h` and `two_resistors` come out byte-identical (UUID-normalised) with the pass on and off, but `label_sides_v` MOVES — its two vertical plates run through its own Reference and Value, which are centred on the same x, and `t_label_sides_vertical` never saw it because that test grades plate-vs-body and plate-vs-plate only. It is now asserted in ink in both directions, and `sch_occlusion.py` (which this suite does not own) independently reads that fixture 2 -> 0. **The hard-error case** proves an unplaceable label exits **3** naming the label, with `LABEL PLACEMENT FAILED`, writing no sheet and NOT falling back to `--mode grid` — plus the adjacent property that removing the one blocking component makes the same label placeable. **The interaction fixture is the uncomfortable one**: run the pass over the PRE-FIX direction defect and it HIDES it — the sheet comes out with zero collisions while every plate still points at the wrong pin — so a green S-OCCL is not evidence that labels point the right way, and the two PRE-FIX direction fixtures hold the pass off deliberately. GIT-SWAP RED-VERIFIED against `HEAD`: **28 passed / 8 failed**, exactly the eight new fixtures and nothing else; restored **36 / 0 / 13** |
 | `t1_occlusion.py` | S-OCCL geometry (`sch_occlusion.py`). **THE WHOLE KiCad TABLE IS RE-MEASURED FROM RENDERED INK EVERY RUN** (canon M1): all 8 `(angle, justify)` plate directions plus the 4 no-`justify` defaults, the symbol rotation transform checked with an ASYMMETRIC probe rectangle so a wrong handedness cannot pass, all 4 `elt:GND` rotations, and the plate's CROSS extent against the model's constant. Findings are FALSIFIED against KiCad's own render — a label's plate is a 6-point polyline, a property a `stroked-text` run — so a reported pair must really overlap in ink. Attachment is not occlusion (a plate ending on the pin tip it hangs off passes; the same plate laid ALONG the pin fails). The fleet is graded with a full denominator and the two `--mode grid` boards must stay at 0 | **FOUR AXES IN TWO SHAPES EACH, and the RED side is the REAL PRE-FIX BYTES**: `prefix()` extracts the `if ang == 180: … else: +x` block from `git show 948ef54d:policy_audit.py` and RUNS it on every fixture, every run. A plate fired LEFT / RIGHT / UP / DOWN into a symbol body FAILS while the pre-fix model returns `[]` for all four (it had no bodies at all); and two plates overlapping along each of the four axes FAIL **with no symbol on the sheet**, so that half turns purely on DIRECTION — the pre-fix model misses those because it points the plate the wrong way (`(0,'right')` reaches LEFT, `(90|270, *)` are the whole vertical axis, and it read `justify` nowhere). Plus: an object the model cannot PLACE is a FAIL naming it, never a pass (an unmodelled label angle, a local label). **1 declared vacuity**: pin NAME/NUMBER text is not placed, and the fixture RENDERS the sheet to prove KiCad's pin-number ink really sits inside the plate box it just passed, then FAILS the same plate moved onto the pin LINE |
-| `t1_generate_board.py` | parts land per config, anchors unmoved, F.Fab copies, parity 0, board-level via capping/filling survives a pcbnew save round-trip | **missing FPID = hard error**, unknown footprint, violated polarity assert, over-subscribed floorplan, unknown zone net, invalid via-protection value |
+| `t1_generate_board.py` | parts land per config, anchors unmoved, F.Fab copies, parity 0, source identity fields (including escaped supplier JSON) survive a generated-board save/reopen while legacy parts retain absent fields, board-level via capping/filling survives a pcbnew save round-trip | **missing FPID = hard error**, unknown footprint, violated polarity assert, over-subscribed floorplan, unknown zone net, invalid via-protection value |
+| `t1_connector_qualification_coupon.py` | the exact carrier source produces a connector-only, full-outline, same-layer-count/thickness coupon with 11 connector refs, 7 board datums, zero connected pads, clean fabrication exports, and a 20/20 evidence response regrades and reopens PASS | an unfilled response remains typed INCOMPLETE, and moving one connector fails normalized geometry even after the changed board byte bindings are refreshed |
 | `t1_audit.py` | audit_template / audit_board / parity pass a clean board, policy_audit P-SILK-REF passes, M-REL grades a per-board-named release and sorts v1.10 above v1.9 | **courtyard overlap FAILS**, **refdes-on-F.Fab-only FAILS**, pad off-board, missing GND pour, stranded decoupler, renamed net, deleted part, **policy_audit P-SILK-REF FAILS** on an F.Fab-only board, **M-REL reaches into the SIBLING BOARD's release series** (the cooksense/interposer shape — pre-fix it demands `SUPERSEDED.md` on the LIVE cooksense-v1.4), **an UNATTRIBUTABLE release set is a FAIL naming the directory, and M-BOM/A-POP/A-BODY fail with it** (pre-fix: `| M-REL | PASS |` over a release it could not attribute) |
 | `t1_placement_gates.py` | the three current boards pass as placed, synthetic two-cluster board with a wide corridor passes, P-CAP waiver with evidence, P-OUT `out_ok` ref waiver | **P-OUT fails a pad outside an L-shaped outline that audit_template I1's RECTANGLE check provably cannot see**, **P-CAP fails a pinched 1.2mm corridor (10 nets vs ~6 slots; red-verified inline with the keepout blockage disabled)**, **the HISTORICAL cooksense pre-REDO board (18392f2, the 13h D-BACK) fails both gates**, waiver without evidence, missing Edge.Cuts is a FAIL not a skip |
 | `t1_release_index.py` | numeric-per-component version order, both shipped name shapes parse (incl. a board whose own name ends in `-v2`), `04_kicad` underscores and release-dir hyphens are one board, **the REAL cooksense tree resolves to cooksense-v1.4 and not the last directory**, all 9 projects resolve with a denominator | **THE PRE-FIX SELECTOR, run against the real sealed tree, returns `interposer-v1.0` while the board graded is `cooksense` — the red side is MEASURED on every run, not asserted in a docstring** (4 SUPERSEDED demands pre-fix incl. the live release, 3 post-fix, all 3 of which have the file); 'the latest' with no board named on a two-board project REFUSES; a prefix naming a board the project does not build REFUSES; a bare `v1.0-<date>` in a two-board project REFUSES; a directory that is not a release at all REFUSES |
@@ -164,7 +235,7 @@ inputs. See `fixtures/t0/README.md`.
 | `t1_via_ampacity.py` | A-VIA credits named tight series-transition banks from an explicit finished-hole current table; absence is explicit N-A | insufficient parallel barrels fail; declared vacuity fixture proves a geometrically counted same-net via need not carry the series current |
 | `t1_via_process.py` | exact-board V-FLAGS/V-SELECT census accepts drill-disjoint protected Type-VII and ordinary via families and reproduces the generated order note | malformed/mixed process selections and incomplete order instructions fail |
 | `t1_rebuild_templates.py` | rebuild_reuse.sh template: bash -n, DRC gate carries all three flags on one invocation, generate_rules before import AND last after stitch, pinned sch copied before DRC, no tsci, board name derived from config. **M-FRESH (canon, 2026-07-30)**: every `circuit.json` `rebuild_all.sh` GRADES is one it WRITES from `dist/`, and the driver STAMPS before `tsci build` and VERIFIES between the build and the converter; `build_provenance.py` passes when the converter input IS the builder's output. **The `rebuild_all.sh` ERC gate blocks on ERRORS** (`--severity-error --exit-code-violations`) **while still recording the full-severity baseline**, and **the per-board `audit_board.py` call is GUARDED with a speaking `else`** | **ordering assertion rejects rules-before-stitch**, **DRC-flag assertion rejects a dropped --schematic-parity**; **the PRE-FIX TEMPLATE (`git show e50be3f`) is rejected by the wiring check** (measured: 17 passed / 3 failed, `consumed=['03_tscircuit/build/circuit.json'] produced=[]`); **THE INCIDENT ITSELF — `build/circuit.json` holds an obsolete pad-numbering scheme, `tsci build` writes the corrected one to `dist/src/<TSX>/`, the converter is handed `build/`** and F-PATH fires, with the fixture asserting inline that the stale bytes are VALID json (which is why nine parser-shaped checkers passed them); **a `touch` on the stale file cannot forge freshness** — and that fixture is the only one that catches the plausible wrong implementation (measured: swapping the sha256 equality for `artifact newer than producer` leaves the incident test PASSING at 19/1); F-VOID on a build that wrote nothing, **F-KNOB on the `BOARD=power3s` shape caught at `stamp`, i.e. BEFORE the build**, F-NORUN on a board whose driver never completed a run, F-STALE once the tscircuit sources move past the last verified build, the audit's UNREACHED/OWED/FAIL trichotomy never rendering as a pass (M-COVER), and F-KNOB still biting on a driver that never adopted the stamp (the ratchet is not an amnesty). Five mutations RED-VERIFIED, each isolating exactly one fixture. **Two TEMPLATE defects the board fixed only in its own copy, 2026-07-30**: the ERC line gated on WARNINGS (`--severity-all --exit-code-violations`) — MEASURED, pluto-rx2-8way-v2 failed its own driver at **exit 5 on 220 cosmetic findings with 0 errors** — and `03_src/audit_board.py` was called UNCONDITIONALLY, aborting every zero-bespoke-Python board at `set -e`. Both are refused in BOTH directions: a non-blocking ERC stage and a dropped full-severity baseline are rejected alongside the warning-gate, and a bare `if [ -f ]` with no speaking `else` is rejected alongside the unconditional call (a board that LOST its audit script must not read as one that passed it — M-COVER in a driver). GIT-SWAP RED-VERIFIED against the real pre-fix template (`git show 982858d8`): **20 passed / 4 failed**, exactly the four new fixtures and nothing else; restored **24 / 0** |
-| `t1_jlc_twin.py` | affirmative NO-CAD does not block, cache replays without the network, empty BOM announces it checked nothing, **`xform()` reproduces pcbnew's OWN pad placement exactly** (and the fixture is required to be able to tell the two handednesses apart), `--assembly` reads the coded not-assembled/consigned pairs from the declared home (`--also` still works) | **HTTP 403 = FETCH-FAILED + exit 1**, fetcher crash blocks, timeout blocks, nonzero exit is never NO-CAD, **the fitted `jlc_offset` has the correct handedness (both directions; RED-verified — the pre-fix form returns every 90/270 part 180° off)** |
+| `t1_jlc_twin.py` | affirmative NO-CAD does not block, cache replays without the network, empty BOM announces it checked nothing, **`xform()` reproduces pcbnew's OWN pad placement exactly** (and the fixture is required to be able to tell the two handednesses apart), `--assembly` reads the coded not-assembled/consigned pairs from the declared home (`--also` still works) | **HTTP 403 = FETCH-FAILED + exit 1**, fetcher crash blocks, timeout blocks, nonzero importer exit alone is never NO-CAD (only an exact fresh independently recorded catalog absence response can establish absence afterward), **the fitted `jlc_offset` has the correct handedness (both directions; RED-verified — the pre-fix form returns every 90/270 part 180° off)** |
 | `t1_assembly_gates.py` | A-POP passes a fully declared release; **the pcbnew-free board reader agrees with pcbnew on a real sealed board, 195/195, 0 mismatches** (the canon-M1 independence claim is MEASURED, not asserted); A-STOCK passes a parseable PASS verdict, honours the `--json` sidecar, lets a `sourcing_plan` entry clear a line, and says out loud when there is nothing to grade | **cooksense v1.1 FAILS naming all 13 blank-LCSC refs on its CPL**, the interposer v1.0 FAILS (uncoded on CPL + no assembly.yaml + no MANIFEST line), crow-rv2 v1.3 FAILS (its PLACED consigned U1 declared not_assembled), **one extra `exclude_from_pos_files` FAILS naming only that ref**, entry without evidence, reason outside the vocabulary, consign-as-unpopulated, declared-but-not-excluded, MANIFEST drift; **crow-rv2 v1.3 FAILS A-STOCK (its own CPU at `LOW_STOCK(0)`)**, **cooksense v1.1 FAILS with a DISTINCT no-parseable-verdict finding**, **deleting the verdict from PASSING evidence still FAILS**, ungraded line, no evidence at all, verdict-less `--json`, incomplete `sourcing_plan` |
 | `t1_net_label_survival.py` | label survival passes an intact netlist, pin_map with `{n}` substitution, evidenced exemption, template rebuild_all wires the semantic battery in canonical order (tsx_preflight BEFORE tsci build; battery right after netlist export) | **the P5VA_4→AUDIO4M merged-label netlist FAILS (LABEL-LOST)**, **a misplanted port pin FAILS (PIN-MAP)**, wired NC pin, exemption without `why:` = config error, zero-net netlist = hard error, **the template battery aborts on a violated invariant with its named GATE FAILED line** |
 | `t1_import_provenance.py` | the REAL pluto-cal-switch `mates.yaml` graded against the REAL `external_hardware/plutoplus_hardware/` record (15/15 facts, both disagreeing units consumed), the explicit registry-root override, a clean synthetic tree, a board that mates to nothing **saying NOTHING TO GRADE instead of PASS**, a BRIEF that declines to mate, and the gate obeying G-INPUT/G-COVER/G-RED | **the PRE-CALIPER PlutoPlus span as the headline: 35.60 mm ESTIMATED with no bar, spent on a dimension (M-BAR), and the same number graded MEASURED because three extractions agreed to 0.003 mm (M-PROXY)** — both RED-verified by neutering the check (18/2 and 19/1); plus an unparseable bar, a missing grade, an invented grade, an unknown id, **facts.yaml DRIFTED from the record it indexes**, a missing device folder, the retired `spf/` authority path, unparseable yaml, an OWED fact spent dimensionally, OWED with no route, a board RESTATING a value, a consumption with no site, a BRIEF lock with no yaml, and an empty `consumes:` (M-COVER) |
@@ -200,7 +271,7 @@ order, node sets, exit codes — never bytes.
 
 | suite | clean cases | known-bad cases |
 |---|---|---|
-| `t2_route_stitch.py` | prep writes a track-free r0 with per-layer keepouts + wave lists, the KRT command line carries geometry/keepout/per-wave overrides, waves are chained rN→rN+1, a wave with no track_width derives it from the netclass floor, `quick` passes a routed board with the routed/deferred split, stitch runs the configured pass order, stitch preserves connectivity, two runs agree on connectivity, a removal pass triggers a SWIG barrier, `fresh_reload` unconditionally rebuilds post-fill connectivity, verified A* supports one/two reviewed layers and propagates strict hole-to-copper checks, heal_islands bridges a split same-net pour (2 groups → 1, net-class width, kicad-cli-DRC-verified), heal_islands via-hops through a shared plane when every same-layer gap is blocked, heal_islands never bridges different nets (red-verified with the net guard disabled), heal_islands is idempotent (red-verified with island-seating disabled), **`stitch_grid` honours a FRACTIONAL pitch** — asserted as a LATTICE property, not a via count, since collision survival is board-dependent (RED-verified against the `range(int(...))` stepper: **128 of 144 vias off the declared 1.5 mm lattice**; blast radius measured over all 13 repo configs first — 0 fractional, 0 lattices moved, so the mid-seal cooksense was provably untouched) | **tracked route input rejected**, **netclass-less project rejected (canon R1)**, **unknown wave net**, **a wave below its class floor fails prep**, **quick catches a planted open + a planted sub-floor track**, **KRT nonzero exit blocks**, **KRT silent no-output caught**, **double-import rejected**, **missing chain file**, **unknown stitch pass**, **no-`fill` pass list**, **unknown KRT flag**, **stitch-grid minimum bites**, **a NON-POSITIVE stitch pitch is a hard error** (pre-fix `range(a,b,-2)` yielded nothing and the run printed `stitch grid: 0 vias` / `filled 2 zones` / `gate: clean` — a board with NO return-path stitching, gated green, from a config that asked for a grid), **pad-rescue `require:all` bites**, **power-stitch minimum bites**, **a failed gate leaves no stale resume marker**, **a heal with NO legal bridge is a hard error, never a violating bridge (red-verified with the collision check disabled)**, **heal_islands refuses to run before fill** |
+| `t2_route_stitch.py` | prep writes a track-free r0 with per-layer keepouts + wave lists, the KRT command line carries geometry/keepout/per-wave overrides, waves are chained rN→rN+1, a wave with no track_width derives it from the netclass floor, `quick` passes a routed board with the routed/deferred split, stitch runs the configured pass order, stitch preserves connectivity, two runs agree on connectivity, a removal pass triggers a SWIG barrier, `fresh_reload` unconditionally rebuilds post-fill connectivity, verified A* supports one/two reviewed layers and propagates strict hole-to-copper checks, heal_islands bridges a split same-net pour (2 groups → 1, net-class width, kicad-cli-DRC-verified), heal_islands via-hops through a shared plane when every same-layer gap is blocked, heal_islands never bridges different nets (red-verified with the net guard disabled), heal_islands is idempotent (red-verified with island-seating disabled), island seating uses exact via-ring and flashed-pad copper overlap at a fill boundary (both centre-only regressions RED-verified while distant copper remains unseated), **`stitch_grid` honours a FRACTIONAL pitch** — asserted as a LATTICE property, not a via count, since collision survival is board-dependent (RED-verified against the `range(int(...))` stepper: **128 of 144 vias off the declared 1.5 mm lattice**; blast radius measured over all 13 repo configs first — 0 fractional, 0 lattices moved, so the mid-seal cooksense was provably untouched) | **tracked route input rejected**, **netclass-less project rejected (canon R1)**, **unknown wave net**, **a wave below its class floor fails prep**, **quick catches a planted open + a planted sub-floor track**, **KRT nonzero exit blocks**, **KRT silent no-output caught**, **double-import rejected**, **missing chain file**, **unknown stitch pass**, **no-`fill` pass list**, **unknown KRT flag**, **stitch-grid minimum bites**, **a NON-POSITIVE stitch pitch is a hard error** (pre-fix `range(a,b,-2)` yielded nothing and the run printed `stitch grid: 0 vias` / `filled 2 zones` / `gate: clean` — a board with NO return-path stitching, gated green, from a config that asked for a grid), **pad-rescue `require:all` bites**, **power-stitch minimum bites**, **a failed gate leaves no stale resume marker**, **a heal with NO legal bridge is a hard error, never a violating bridge (red-verified with the collision check disabled)**, **heal_islands refuses to run before fill** |
 | `t2_grind.py` | grind_driver auto-fixes a batch class to 0/0/0 with M9 journal entries per cycle, same-net zone<->zone splits classify as the auto `unconnected_zone_islands` (heal_islands rerun) while pad<->zone stays escalate | **a never-improving board escalates D-BACK within 3 cycles (the driver is UNABLE to loop forever)**, **a novel class escalates immediately with no fix attempt**, **table-escalate classes stop the loop with the compact report**, **--max-cycles caps even an improving run** |
 | `t2_pcb_flow.py` | compact schema-2 handoff binds source/board/tool/gate evidence, YAML formatting does not perturb semantic hashes, legacy state is explicit, timed commands preserve command-vs-budget status, fresh-board P-LAND follows rebuild, successful seal is transactional, multi-board inputs/packages/state remain isolated | **changed source, board, tool, and gate independently stale the handoff**, **a gate older than its board cannot be published**, **dirty/unwitnessed DRC cannot claim layout_sealed**, **handoff failure leaves no seal**, **ambiguous/unscoped multi-board config and oversized handoffs fail**, **deterministic/stochastic ownership cannot overlap**, **budget regression returns exit 6 while preserving command result** |
 
@@ -477,3 +548,134 @@ regressions:** `06_build/` is gitignored, so `t1_electrical_invariants` (6) and
 netlists/cooksense.net` or the pluto-cal-switch netlists their real-bytes
 fixtures require. Full run in this worktree: **861 passed, 8 failed, 512
 known-bad**, every failure that one cause.
+
+## Native finite launch contract
+
+`t1_land_witness.py` maintains complete-class public RED/GREEN acceptance and
+exact UUID-bound native Track–Pad controls using `pipeline_runtime.run_stage`.
+Fixture children are bounded to 60 seconds; full suites to 300 seconds. All
+raw triples, native JSON, exact argv/PID/times/exit and full output persist in
+TMPDIR. No transient source/evidence paths are used. Native fixture membership
+is explicit, including 36 matrix outcomes, ten local precedence cases, exact
+tolerance boundaries (including native epsilon zero), no-net Default classes,
+and thirteen ADC witnesses on immutable subject bytes. Full hostile search
+is independently covered in bounded native batches to avoid report caps.
+The primary neutral public assertion was RED on cb0d0cf6 (X1.1 false rejection,
+2 graded/5 copper/3 floorless), then GREEN on the native implementation.
+`t2_pcb_flow.py` records a separate helper-only handoff mutation RED/GREEN.
+`t1_escape_tier.py` preserves exact CAL eleven identities/floors, RX2 five
+clearance contrasts, CRC census/incident inventory and QSPI/zero/unreadable
+controls; historical maximum-width assertions have become finite witness
+assertions, with no lowered known-bad counts.
+
+The catalog absence classifier also accepts one fresh, recorded exact public API `Component not found` response after importer failure. Transport/authentication failures, redirects and ambiguous JSON still fail closed. The extended-SMD registration fixture proves actual rendered-body overlap, full pad counts, cache reopening, detached-pad and inverted-body rejection; analytic area, tangent, rounded-corner and rotated-pad controls exercise native copper intersection.
+
+Fab envelope regression: footprint labels formerly inflated native expected-body bounds. The test is RED against the pre-fix collector and GREEN with geometric shapes only, covering both board sides, four rotations, and text-only absence. Authored drawing stroke remains part of the geometric envelope.
+
+`t1_assembly_locator.py` is the default-runner entry for the assembly locator.
+It exercises the actual public CLI with complete and missing-page fixtures and
+runs the native identity, HTML behavior, PDF/page and owning-consumer controls.
+The visual-acceptance regression overwrites a visible page ID while preserving
+PNG identity metadata, rebuilds the PDF and refreshes file hashes. Structural
+checking still passes, but the exact independent render review must stale at
+both placement and release. The two acceptance controls were RED against the
+original checker and GREEN after binding the existing review to the manifest
+and exact reviewed-reference set. No alternate approval artifact is created.
+
+`t1_model_registration.py` checks mounted-side native Fab/courtyard ownership with opposite-side decoys, mixed-side refusal, and asymmetric real flipped bodies at 0/90/270 degrees. Actual front/back coupon renders must pass; incorrect declarations, displaced/inverted/rotated models and a deliberately unmirrored bottom pixel projection must fail. Side and geometry changes invalidate tuple/cache acceptance while failed attempts preserve accepted bundles. The mounted-side tests were run RED against the frozen pre-fix native engine (SHA256 `998dc6971ffec1ff0ded358631b10e167bdff371c8221f6f747324ad6852c5d8`) by actual source swap, then GREEN after restoration.
+
+`t1_model_registration.py` also pins the native signed-side visibility blind
+spot through G-VACUOUS: first reproduce the inverted 1 mm nested-transform
+body false PASS, then require a signed-side FAIL when only height changes to
+3 mm with translation h/2. This is visible-pixel evidence, not full-volume
+board exclusion; independent exact-model geometry remains separately required.
+
+
+Native plan extraction also has a thin-feature sampling limitation. Two
+3x3 erosions can delete actual exterior features before the surviving-pixel
+union is measured, and restoring two pixels does not recover them. A PASS
+therefore does not establish complete occupied extent at every coupon scale.
+The bound G-VACUOUS fixture first requires a false PASS for an actual thin
+exterior feature beyond courtyard, then requires FAIL for a thicker feature
+at the same extent. Where this property matters, supplement ordinary
+P-MODEL-REG with independent exact-model native full-extent/courtyard evidence
+and original un-eroded images; an actual exterior feature outside courtyard
+must fail or remain incomplete even if the eroded-pixel gate passes. Fab is a
+union of geometric marks, so exterior-feature detail changes its bbox datum
+and does not separately recognize a retained nominal-shell rectangle. Preserve
+independent primary-drawing shell and attachment-datum evidence. Nominal CAD
+containment is not a manufacturing-tolerance or physical-fit guarantee.
+
+The assembly locator native suite additionally proves mixed-side context using
+real flipped asymmetric bodies/pads at 0/90/270 degrees and opposite-side Fab
+decoys. Mounted-side visibility preserves the top exception set. The new
+property tests were RED on the frozen top-only generator (R3 rejected) and
+checker (native frame mutation accepted), then GREEN on the correction.
+Known-bad controls reject wrong side/body, absent owned Fab, unmirrored bottom
+HTML, wrong bottom CPL side, frame and convention changes. The shipped UI
+script is exercised over every reference, side, crosshair and unknown-query
+transition. The original 25 identity/packaging/consumer controls remain.
+
+
+Pin-audit mounted-frame regressions use native asymmetric front/back footprints under both flip axes and six rotations; prove a deliberate physical-pin mirror retains wrong winding, preserve native positions/nets and declared aliases, and require mounted-side/component-top/native-board-coordinate dossier fields. RED against c4acef1e; GREEN after mounted-frame extraction.
+
+
+Locator startup regression: each URL case executes the shipped script in a
+fresh DOM, before any valid selection can initialize its mounted-side filter.
+Empty/default, explicit top/bottom, unknown and malformed percent-encoded
+fragments are checked separately. Invalid startup shows no component geometry,
+clears identity/crosshair/hash, and leaves search and side controls functional.
+This regression was RED against reviewed candidate1 (unknown showed both sides;
+malformed decoding threw), then GREEN with fail-closed initialization. Existing
+unknown-after-valid, all-reference, side-switch and empty-side controls remain.
+
+Assembly-side coverage regressions in `t1_assembly_gates.py` exercise the public
+CLI against independently authored board/CPL bytes. Four known-bad families
+(bottom SMD, manual bottom SMD, false/empty CPL sides and malformed allowed
+sides) were RED against the pre-fix checker on 2026-09-13, which exited zero.
+The corrected gate passes these plus top-only/two-side and nonpopulation/THT
+controls. This verifies declared mounting sides, not assembly clearance or
+physical solderability.
+
+Independent assembly-side review found that a duplicate DNP declaration could
+erase an explicit manual fit. Both row orders and a test-point variant are
+regressed: RED against the first side-check candidate, GREEN after duplicate
+dispositions fail while their SMD remains in the population denominator.
+
+Exact segment widening has a native positive/idempotence fixture and six hostile
+controls (narrowing, stale endpoint/width, unknown key, duplicate row), proving
+whole-batch validation precedes mutation. It was RED before the emitter existed.
+
+Seed-pad contact regression was RED at carrier1251 before native copper-shape
+intersection replaced endpoint-only contact, then GREEN at1252 with disjoint
+and opposite-layer controls. Seed netclass-pair regression was RED at1259
+before source floors were consumed and GREEN at1260: a lower search minimum
+cannot undercut either netclass, and hole-clearance semantics remain separate.
+Thermal-angle source selection was RED at1255 before the emitter and GREEN
+at1258 with selected-pad preservation and six malformed/nonfinite controls;
+1256/1257 exposed test exception/import wiring errors and are not green evidence.
+
+Exact via relocation was RED at carrier1263 before the emitter, then GREEN at
+1264 with native identity/idempotence and eight hostile controls. Fine-via
+source binding was RED at1265 and GREEN at1266/1270: enabled typed relocations
+transform source seeds; unbound nonordinary origins, duplicates, mismatches,
+unsupported layers and nonfinite coordinates fail. No resistance formula or
+limit changed. Broader route/stitch1262-independent suite1272:138 passed,
+56 known-bad controls, two explicit slow omissions. Generator1268:70 passed.
+
+Crow source regression reconciliation (2026-09-16) retains exact digital no-via,
+10:1 aspect, finite copper clearance and ordinary-pad via prohibitions. The
+integrated source was RED for a .15mm reset drill and an ADC3P via inside an
+ordinary capacitor land; both required geometry corrections. Stale baseline
+expectations now reflect the co-designed supervisor launches, CFG timer bundle,
+54 actual current-transfer banks and explicit thermal angles. The angle census
+adds missing/duplicate/invalid/changed-value hostile controls, and the ground
+capsule census includes stitch seeds without admitting undeclared narrow copper.
+
+Placement thermal applicability regression was RED at carrier1316 and GREEN at
+1317: 9 cases, including 7 known-bad controls. Only native starved_thermal rows
+on an unrouted board are deferred, with exact row identities emitted. Connected
+thermals, mixed shorts/clearances/hole/library/unknown errors and parity fail.
+Shared rebuild templates1318:67 passed; contracts1320:17 passed after staging
+five intended Crow source/review files (1319 had correctly rejected untracked
+project membership). Final native DRC and release gates are unchanged.

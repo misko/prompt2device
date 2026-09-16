@@ -1,0 +1,23 @@
+mpn: RT0603BRD071KL
+manufacturer: YAGEO
+type: resistor
+value: 1k
+status: active
+package: '0603'
+footprint: Resistor_SMD:R_0603_1608Metric
+pins: {1: A, 2: B}
+datasheet: {doc_id: RT0603BRD071KL, revision: 'Exact generated specsheet 2026-09-09', url: 'https://www.yageogroup.com/component-documentation/download/specsheet/RT0603BRD071KL', local: RT0603BRD071KL_primary.pdf, sha256: 33278a8f9ad31a36ed06ca3844dfc5fdb5871a6c1537a47d2de0b09a666b7bdf, fetched: 2026-09-09, provenance: Direct public manufacturer exact-MPN PDF; complete single page read.}
+limits: {resistance_ohm: 1000, tolerance: 0.1pct, tcr_ppm_C: 25, power_W_at_70C: 0.1, voltage_V: 75, temperature_C: [-55, 155]}
+sourcing: {lcsc: C110776, note: '2026-09-09 https://www.lcsc.com/product-detail/C110776.html exact MPN/value/package/0.1pct identity; advisory stock only, no PCBA availability/allocation', alternates: []}
+verified: Exact manufacturer specification and public catalog identity; unchanged0603 footprint from prior10k reference divider. Source only, not installed drift/noise qualification.
+layout:
+  source: 'Exact YAGEO specification; ADR0025 passive reference-divider ownership'
+  reviewed: '2026-09-09 board-specific engineering allocation'
+  notes: ['Keep each passive divider and its bypass capacitors local. Quiet reference returns must avoid the filter-shunt and load-current return paths. No buffered VMID node remains.']
+  adjacency:
+    - {refdes: [R_VMID1_TOP, R_VMID1_BOT], nets: [VMID1_EXT], max_mm: 3, why: 'Exact passive divider midpoint; engineering copper-gap budget.'}
+    - {refdes: [R_VMID1_TOP, C_VMID1_EXT_1U], nets: [VMID1_EXT], max_mm: 4, why: 'Exact local reference bypass; not nearest unrelated ground capacitor.'}
+    - {refdes: [R_VMID1_TOP, C_VMID1_EXT_10U], nets: [VMID1_EXT], max_mm: 4, why: 'Exact reference reservoir; passive divider replaces U_AFE9.'}
+    - {refdes: [R_VMID2_TOP, R_VMID2_BOT], nets: [VMID2_EXT], max_mm: 3, why: 'Exact second passive divider midpoint; engineering copper-gap budget.'}
+    - {refdes: [R_VMID2_TOP, C_VMID2_EXT_1U], nets: [VMID2_EXT], max_mm: 4, why: 'Exact local reference bypass; no buffered reference inferred.'}
+    - {refdes: [R_VMID2_TOP, C_VMID2_EXT_10U], nets: [VMID2_EXT], max_mm: 4, why: 'Exact second reference reservoir; independent bank ownership.'}

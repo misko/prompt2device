@@ -1,0 +1,36 @@
+mpn: TPS7A9201DSKR
+manufacturer: Texas Instruments
+type: linear_ldo_regulator
+value: TPS7A9201DSKR
+status: superseded
+datasheet: {doc_id: SBVS318B, revision: SBVS318B, url: 'https://www.ti.com/lit/ds/symlink/tps7a92.pdf', local: TPS7A92_SBVS318B.pdf, sha256: e0c0a695e933d9656a7c6fefad654c5129d76a22ac8398d26eacfb844dd4532e, fetched: 2026-09-07, provenance: 'Direct TI primary PDF; exact bytes and package drawings independently reopened by source author.'}
+package: 'TI_DSK0010A_Exact'
+footprint: crow_audio_carrier:TI_DSK0010A_Exact
+escape: {style: dfn, pitch: 0.5, tier_required: jlc_4layer_advanced, checked: 'Exact TI land drawing visually inspected2026-09-07; pad1 upper left in PCB top view.'}
+pins: {1: OUT, 2: OUT, 3: FB, 4: GND, 5: PG, 6: SS_CTRL, 7: EN, 8: NR_SS, 9: IN, 10: IN, 11: GND}
+dropout_mv: 400
+pdiss_max_mw: 702
+limits: {vin_max_V: 6.5, output_current_A: 2, accuracy_pct: 1, theta_JA_C_W: 56.9, tj_max_C: 125, ground_current_max_A: 0.004}
+gotchas: ['702mW is (125-85)/56.9 reference-board thermal screen, not achieved copper performance.', 'No reverse-current protection. Input hold and controlled output discharge are mandatory.', 'SS_CTRL=GND slow NR charge: 4..9uA specified at NR=0 only; 250ohm internal discharge is typical only.', 'Exposed pad11 must be soldered. Source candidate, startup/stability/hot-board tests OWED.', 'SBVS318B pp22-23: quiet NR/lower-feedback returns and GND4 go directly to EP; top GND copper must not bypass that return. Local IN/OUT capacitor power return remains separate. ADR0012 reserves top pour/via exclusions only; common inner GND stays unsplit and final filled connectivity/thermal measurements remain owed.', 'TPS7A91 family EVM is a 1A precedent, not qualification of this TPS7A92 carrier at its unchanged 2.5A transient source bound; two off-pad EP vias do not establish thermal resistance or finished plating.']
+verified: 'Primary pin-function table and exact orderable suffix; package land drawing visually inspected2026-09-07. See ADR0009 for modeled versus measured distinction.'
+layout:
+  # ADR0025: historical part only. Current board bindings retired; see Git history.
+  source: SBVS318B exact package land drawing and layout section
+  reviewed: '2026-09-08'
+  notes:
+  - Local100nF bypass to uninterrupted ground plane; preserve exact thermal-pad and pin1 identity.
+  - 'Carrier local-placement source 2026-09-08: exact-ref/non-ground-net adjacency is a rotation-aware copper-bounding-box gap, NOT pad-center
+    distance or routed length. Rounded engineering ceilings below are not manufacturer numerical maxima. Ground pours are excluded by P-ADJ-PAIR;
+    local return/thermal/escape proof remains owed on the later saved PCB.'
+  - Source-only pin-center plan uses <=5mm local bypass/BST and <=10mm feedback ceilings, with separately named bulk/input/feed exceptions. See
+    01_docs/SOURCE-CORRECTION-20260908-local-placement.md for all 299 roles and exact source geometry; no current-board acceptance is inherited.
+  - C_LDO_IN and C_LDO_OUT are pin-owned local47uF ceramics; C_HOLD1/2 are low-frequency hold reservoirs with20mm feeder-center ceilings, not
+    substitutes for local input decoupling. NR capacitors and lower feedback resistor require the quiet component-side ground return to EP; IN/OUT
+    capacitor power returns and thermal egress are separate physical obligations. Do not auto-insert via-in-paste.
+layout_refs:
+  - {tier: 1, reached: true, artifact: 'SBVS318B exact land drawing', why: 'Manufacturer dimensional and pin authority.'}
+  - {tier: 1, reached: true, artifact: 'SBVS318B pin table p3 and layout pp22-23', why: 'Re-read2026-09-08: GND4 directly to EP, separate quiet NR/lower-divider return, component-side local power-cap ground and thermal-via obligations; positive divider sense must retain load-side intent.'}
+  - {tier: 2, reached: true, artifact: 'TPS7A91EVM-831 SBVU036, layout p7; evidence regulator-source-20260908/TPS7A91EVM-SBVU036.pdf, sha256 7dca0dbd0cf49c887faf3e453378125f03e6b9c6346e3f3e2d14821879257de6', url: 'https://www.ti.com/lit/pdf/sbvu036', fetched: 2026-09-08, why: 'Manufacturer family EVM visually inspected for short local IN/OUT paths and ground copper. 1A EVM, not exact carrier current/thermal proof; no copper imported.'}
+  - {tier: 2, reached: false, artifact: 'Public editable TPS7A92/TPS7A91 EVM CAD/Gerber files', url: 'https://www.ti.com/tool/TPS7A91EVM-831', why: 'Public manufacturer page/search2026-09-08 exposed guide/certificate but no editable CAD download in inspected results. Report search ceiling, not proof such files do not exist; no account or vendor contact.'}
+  - {tier: 3, reached: false, artifact: 'Independently verified exact production layout', why: 'No third-party production-file precedent adopted; manufacturer geometry/layout is the authority and first-article qualification remains open.'}
+sourcing: {lcsc: C882405, alternates: [], note: 'Public exact-MPN identity checked2026-09-07; no order-time allocation or purchase claimed.'}

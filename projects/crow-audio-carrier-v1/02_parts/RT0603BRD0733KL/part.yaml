@@ -1,0 +1,16 @@
+mpn: RT0603BRD0733KL
+manufacturer: YAGEO
+type: resistor
+value: 33k
+status: active
+package: '0603'
+footprint: Resistor_SMD:R_0603_1608Metric
+pins: {1: A, 2: B}
+datasheet: {doc_id: RT0603BRD0733KL, revision: 'Exact generated specsheet 2026-09-09', url: 'https://www.yageogroup.com/component-documentation/download/specsheet/RT0603BRD0733KL', local: RT0603BRD0733KL_primary.pdf, sha256: 7f76e25770bc9439215477d276c8e445b29507853e43272dd026dc521bc2aaf8, fetched: 2026-09-09, provenance: Direct public manufacturer exact-MPN PDF; complete single page read.}
+limits: {resistance_ohm: 33000, tolerance: 0.1pct, tcr_ppm_C: 25, power_W_at_70C: 0.1, voltage_V: 75, temperature_C: [-55, 155]}
+sourcing: {lcsc: C705768, note: '2026-09-09 https://www.lcsc.com/product-detail/C705768.html exact MPN/value/package/0.1pct identity; advisory catalog only, no PCBA availability/allocation', alternates: []}
+verified: Exact manufacturer specification and public catalog identity; local Kelvin SET return placement remains unreviewed.
+layout:
+  source: 'Exact YAGEO specification and LT3041 Rev.A p22; ADR0025'
+  reviewed: '2026-09-09 source ownership only'
+  notes: ['The exact U_LDO SET9 to R_LDO_SET adjacency and pin-center bound live in the LT3041 dossier. The resistor ground must Kelvin-connect to the output-capacitor return.']

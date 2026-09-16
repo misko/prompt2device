@@ -1,0 +1,118 @@
+{
+  "schema": 1,
+  "created_at": "2026-09-10T21:54:46.915676+00:00",
+  "source_commit": "80789b403e252f44492094ec2f47bd3988577d64",
+  "tar_sha256": "71ba9e0af07ff616a2893bdc744ba98eeefaf33ce53420ee0a85af2646fdfe51",
+  "tar_size": 88653,
+  "count": 18,
+  "entries": [
+    {
+      "member": "commission/TASK.md",
+      "original_path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/06_build/handoffs/pland-native-interface-20260910T215034Z/TASK.md",
+      "sha256": "0271999621a96abbcc02ffecc88ea37b6e7a068cd04f5db0df3086db13c4a808",
+      "size": 3704
+    },
+    {
+      "member": "commission/beacon.md",
+      "original_path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/06_build/handoffs/pland-native-interface-20260910T215034Z/beacon.md",
+      "sha256": "a8b1d669c5c2c8c7ca69c6a5da718da790e9d27fdbcaa106176af3f6b9865f3e",
+      "size": 478
+    },
+    {
+      "member": "commission/flow.yaml",
+      "original_path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/06_build/handoffs/pland-native-interface-20260910T215034Z/flow.yaml",
+      "sha256": "7bc7ece00756b2799236b593b7fb3059ff8652f93ccc7c369c0b1f1632871fa7",
+      "size": 5594
+    },
+    {
+      "member": "commission/journal-tail.md",
+      "original_path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/06_build/handoffs/pland-native-interface-20260910T215034Z/journal-tail.md",
+      "sha256": "e44fc3969e0faf65380501ce9133f55750cf5cada30065bdae40d525722d21f6",
+      "size": 1074
+    },
+    {
+      "member": "commission/task-envelope.json",
+      "original_path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/06_build/handoffs/pland-native-interface-20260910T215034Z/task-envelope.json",
+      "sha256": "6bbd771f65c528c0cbe081eaaa47eec7f715cabd0aba03540d71189651570fb3",
+      "size": 129944
+    },
+    {
+      "member": "coordinator/interface-failure-root-audit.json",
+      "original_path": "/tmp/carrier-pland-fixture-adoption-20260910.hnDKH2sk/interface-failure-root-audit.json",
+      "sha256": "1385328152b32eda97ff56a7fc9fc4adb10786d07d1e6e6e93f8aae859a3ee60",
+      "size": 446
+    },
+    {
+      "member": "coordinator/preserve_interface_failure.py",
+      "original_path": "/tmp/carrier-pland-fixture-adoption-20260910.hnDKH2sk/preserve_interface_failure.py",
+      "sha256": "ee8d471bdc4e38ab955f1ddf654b0da71c0046b8de9f3d816f32a592e46edd1b",
+      "size": 4137
+    },
+    {
+      "member": "worker/command.json",
+      "original_path": "/tmp/pland-native-interface-20260910T215034Z/command.json",
+      "sha256": "0d0a81e8d3318c4dc16d17d1f5f739c9dac53b702994989a3c2a3de1c31feff2",
+      "size": 537
+    },
+    {
+      "member": "worker/command.stderr",
+      "original_path": "/tmp/pland-native-interface-20260910T215034Z/command.stderr",
+      "sha256": "9b128933e717f3b7649b55cbd4c76f1398bb5b16618e5055dd73ecffd7400a7f",
+      "size": 352
+    },
+    {
+      "member": "worker/command.stdout",
+      "original_path": "/tmp/pland-native-interface-20260910T215034Z/command.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "member": "worker/output-manifest.json",
+      "original_path": "/tmp/pland-native-interface-20260910T215034Z/output-manifest.json",
+      "sha256": "b0facdc080797eeaf1d306c7ecfec30c9f9deddbd1eb03cca41f89f364a07a6b",
+      "size": 1273
+    },
+    {
+      "member": "worker/packet-audit.json",
+      "original_path": "/tmp/pland-native-interface-20260910T215034Z/packet-audit.json",
+      "sha256": "46db1e8d37880de4b12c2253152aa90c23aca2481e5aa2c495391bc8beb082a3",
+      "size": 146005
+    },
+    {
+      "member": "worker/process-cessation.json",
+      "original_path": "/tmp/pland-native-interface-20260910T215034Z/process-cessation.json",
+      "sha256": "e2bf10de664262377795f9f6e46a174d4640b85cef49a892b48898d587247bf2",
+      "size": 202
+    },
+    {
+      "member": "worker/producer/census.py",
+      "original_path": "/tmp/pland-native-interface-20260910T215034Z/producer/census.py",
+      "sha256": "3a470c0418e76bc7741865e45f51bba603d62eb234b69ac61b24e5b46aa2e6d4",
+      "size": 2252
+    },
+    {
+      "member": "worker/producer/execute.py",
+      "original_path": "/tmp/pland-native-interface-20260910T215034Z/producer/execute.py",
+      "sha256": "ffa5736c0bd08ed783274f9dc23f539a9f3c3034ac15145207575d7b43650bbc",
+      "size": 5559
+    },
+    {
+      "member": "worker/producer/fixture.py",
+      "original_path": "/tmp/pland-native-interface-20260910T215034Z/producer/fixture.py",
+      "sha256": "de165a7c7035e48e69ba43f4f0a4ccfc6115af5e5c054124011599c8b283f162",
+      "size": 4858
+    },
+    {
+      "member": "worker/result.initial.md",
+      "original_path": "/tmp/pland-native-interface-20260910T215034Z/result.initial.md",
+      "sha256": "00f623301d3e4f604fa7189d89cfb4823add3e9bd9ff9ab26e365f8d39d41c7d",
+      "size": 2362
+    },
+    {
+      "member": "worker/result.md",
+      "original_path": "/tmp/pland-native-interface-20260910T215034Z/result.md",
+      "sha256": "0d95282e7572259d5bbe0ed58bd9b3d64a2bb3fa3ceae27797e5d4cdf76e1f08",
+      "size": 2726
+    }
+  ]
+}

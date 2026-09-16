@@ -1,0 +1,78 @@
+{
+  "kind": "source-author-factual-outcome-not-TaskAttempt",
+  "task_id": "crow-carrier-source-backtrack-20260907",
+  "status": "HANDOFF_REQUIRED",
+  "canonical_task_attempt_created": false,
+  "timing": {
+    "exact_dispatch_at": null,
+    "exact_full_attempt_duration_s": null,
+    "unknown_reason": "Neither author nor coordinator has precise dispatch telemetry. Earlier reading/work predates the first retained clock observation; no start time or runtime containment has been invented.",
+    "first_retained_clock_observation_at": "2026-09-07T20:10:28Z",
+    "authoring_finish_observed_at": "2026-09-07T20:34:00Z",
+    "author_reported_all_writes_frozen_at": "2026-09-07T20:35:24Z",
+    "deadline_at": "2026-09-07T20:42:05Z",
+    "authoring_finished_before_deadline_observed": true
+  },
+  "planned_envelope_sha256": "dcfb385265be78ce7159067a0187fe528c395c7ab9dab162ed89f0fdb24ad3ec",
+  "frozen_input_packet_verified_at_finish": true,
+  "live_flow_status": "STALE after intentional source/tool changes; old handoff is not current acceptance",
+  "subject": {
+    "circuit_json_sha256": "816900b829a750eb3d7e1da6ed7118934b8aaf300fec324ee09c5a1b1ccfac7a",
+    "schematic_pdf_sha256": "ef71de43cb2ad798f3583c4f76a5a9227934a91e80c99e29c384133cf5e2e7eb",
+    "kicad_schematic_sha256": "6d228bca3818e27cbcb080a402f27fabec5baaadb9cae88e8c19d7bcfaa132af",
+    "netlist_raw_sha256": "6fe02cda1bd075055a44081bf0f0004587a22fafa06c10afe6e8db432c69af46",
+    "netlist_semantic_sha256_independently_reported_by_root": "fd3e1660ae21b04d3c7cf0c330e60c11427c0f7298aa18059038d545e2f67f2b",
+    "components": 206,
+    "pins": 603,
+    "pdf_pages": 6,
+    "independent_sound_review": false
+  },
+  "changes": [
+    "U_ADC.38 SPI_CS GND to3V3_ADC perDS1314F1 Table1-2; exact source/intent regression",
+    "Q_TDM_EN andR_TDM_OE_PU replaced by genuineNexperia74LVC1G14GV,125 C131093 U_OE and100nF C_OE; exact localRev19PDF hash and NC handling",
+    "Shared E-SURGE schema2 explicitly distinguishes bounded_transient and unqualified_prototype_esd; normal24parts/8arrays checked, board survivalUNQUALIFIED, fakeclamp/absolute bounds rejected",
+    "Power entry drain-left/source-right/gate-bottom, separated source components and4x2 fuse grid inTSX",
+    "False400mW LDO budget corrected to238mW reference thermal budget;150mA and85C retained, existingE-TOPO nowfails",
+    "Reproducible failing power-source screen plus3hostile/arithmetic tests and source-finding report",
+    "Shared renderer and its tests were separately authored byroot; no concurrent project-source writer"
+  ],
+  "authorized_scope_extension": [
+    "skills/kicad-pcb/scripts/early_design_check.py",
+    "tests/t1_early_design.py",
+    "skills/pcb-design/templates/contracts/03_src/rules/contracts.md"
+  ],
+  "verification": {
+    "project_tests": "30/30 PASS",
+    "shared_early_design_tests": "42/42 PASS;31known-bad fixtures",
+    "source_schema_audit": "830/830 PASS;0orphan",
+    "adr_bound_audit": "PASS",
+    "source_policy": "PASS2",
+    "source_dossiers_preflight": "63/63 PASS",
+    "producer": "2runs; finalexit1 atgenuineE-TOPO284mW>238mW;0hardCircuitJSONerrors/1347advisorywarnings",
+    "freshness": "9/9 PASS",
+    "electrical_invariants": "66/66 PASS",
+    "label_survival": "133/133 labels;185/185 pinmaps",
+    "logic_screen": "9/9 PASS",
+    "power_source_screen": "exit1 OPEN_SOURCE_FAILURE",
+    "packet": "verified true with0issues afterallchanges",
+    "git_diff_check": "PASS"
+  },
+  "preservation_root": "/tmp/carrier-dback-source-20260907.aOuRpq",
+  "recoverably_withdrawn": [
+    "06_build/sourcing/prelayout_request.json",
+    "06_build/sourcing/prelayout_response.csv",
+    "06_build/checkpoints/prelayout.json",
+    "06_build/checkpoints/prelayout-inputs.json"
+  ],
+  "unresolved": [
+    "LDO thermal budget/source package fails retained150mA/85C requirement",
+    "2x470uF bank compatibility withTPS7A24 effectiveCout recommendation, startup/stability and reverse-current handling",
+    "CS5308P0.01..10ms supply rise AND fall not proven",
+    "DS1314F1 section4.5.6 requires externalVMID in hardware/defaultmid-Z; currentADC_VMID follower is wrong",
+    "FILT1N/2N source1ohm ground legs differ from primarydirectGND returns; rederive withreference correction",
+    "Existinganalogtopologychecker validates the oldwrongVMID source; updatewithsourcefix",
+    "ESDboardtransientsurvival andpower/hotplug physicalqualification remainunqualified",
+    "New source acceptance,publiccatalog checkpoint,ERC acceptance,independentreviews,placement,routingandrelease remainowed"
+  ],
+  "preserved_boundaries": "No priorreviewverdict changed toSOUND; no podrelease orprimaryworkspace mutation; no purchase,push,seal,route orreviewcommission bythisauthor"
+}

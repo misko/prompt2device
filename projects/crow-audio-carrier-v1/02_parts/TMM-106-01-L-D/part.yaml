@@ -1,0 +1,30 @@
+mpn: TMM-106-01-L-D
+manufacturer: Samtec
+type: dual_row_vertical_header
+value: TMM-106-01-L-D
+status: active
+datasheet:
+  doc_id: TMM-series-print
+  revision: AS
+  url: https://suddendocs.samtec.com/prints/tmm-mkt.pdf
+  local: TMM-Series_RevAS.pdf
+  sha256: 66d9ffaa15ef8ff9b1614640d81fd2d1c2c6629b522df0cddc64acac3e73efc3
+  fetched: 2026-09-02
+  pages: 1
+  provenance: "Downloaded from Samtec's official drawing endpoint; the committed revision-AS series print matches the declared SHA-256. The adjacent Markdown file is the reviewed fact extraction."
+package: "2x6 vertical through-hole, 2.00mm pitch, 0.50mm square post"
+footprint: crow_audio_carrier:Samtec_TMM-106-01-L-D_2x06_P2.00mm_Vertical
+escape: {style: connector, pitch: 2.0, tier_required: jlc_2layer_default, checked: "project-local 2x6 pad/body authority reviewed 2026-09-01"}
+pins: {1: ROW1_COL1, 2: ROW1_COL2, 3: ROW2_COL1, 4: ROW2_COL2, 5: ROW3_COL1, 6: ROW3_COL2, 7: ROW4_COL1, 8: ROW4_COL2, 9: ROW5_COL1, 10: ROW5_COL2, 11: ROW6_COL1, 12: ROW6_COL2}
+gotchas:
+  - "This unshrouded header has no inherent keying; pin-1 orientation and the selected TCSD cable assembly must be physically proved before use."
+  - "J10 is the MCHStreamer J1 TDM cable and J11 is the J3 presence-sense cable; they are not interchangeable."
+verified: "CITED exact order code, pitch/post/body facts and drawing SHA in primary-source-record.md; cable insertion depth, module-side fit, retention and labeling are physical evidence holds."
+layout:
+  source: "Samtec TMM revision-AS series print and miniDSP MCHStreamer manual"
+  reviewed: 2026-09-01
+  notes: ["Give J10 and J11 distinct silkscreen names and enough finger/strain-relief clearance for simultaneous use."]
+layout_refs:
+  - {tier: 1, reached: true, artifact: "Samtec TMM series print", why: "Manufacturer authority fixes pitch, rows, post and lead style."}
+  - {tier: 2, reached: false, artifact: "physically qualified TMM/TCSD/MCHStreamer dual-cable assembly", why: "The exact TCSD cable is selected, but miniDSP does not publish its board-header MPN and no simultaneous service sample is qualified."}
+sourcing: {lcsc: null, alternates: [], note: "Exact allocation and physical TCSD-to-MCHStreamer fit remain blocked."}

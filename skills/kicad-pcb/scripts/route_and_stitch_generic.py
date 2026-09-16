@@ -318,7 +318,21 @@ def net_class_floors(cfg):
     return cfg["_class_floors"]
 
 
-def wave_track_width(cfg, wname, nets, explicit):
+def _power_width_overrides(opts, where):
+    nets = list(opts.get("power_nets") or [])
+    widths = list(opts.get("power_nets_widths") or [])
+    if not nets and not widths:
+        return {}
+    if len(nets) != len(widths):
+        die(f"{where}: power_nets and power_nets_widths must have equal "
+            f"lengths, got {len(nets)} and {len(widths)}")
+    try:
+        return {str(net): float(width) for net, width in zip(nets, widths)}
+    except (TypeError, ValueError):
+        die(f"{where}: power_nets_widths must contain numeric widths")
+
+
+def wave_track_width(cfg, wname, nets, explicit, power_widths=None):
     """The track width a wave must route at, derived from its member nets'
     netclass floors. Returns the width to pass to KRT, or None (no floor and
     no explicit width — KRT's default is fine for classless nets).
@@ -335,14 +349,25 @@ def wave_track_width(cfg, wname, nets, explicit):
         if f and (need is None or f[1] > need[0]):
             need = (f[1], f[0], n)
     if explicit is not None:
-        if need and float(explicit) < need[0] - 1e-9:
+        explicit = float(explicit)
+        power_widths = power_widths or {}
+        uncovered = []
+        for net in nets:
+            floor = net_class_floors(cfg).get(net)
+            if not floor or explicit >= floor[1] - 1e-9:
+                continue
+            if power_widths.get(net, 0.0) < floor[1] - 1e-9:
+                uncovered.append((net, floor))
+        if uncovered:
+            bad_net, bad_floor = max(uncovered, key=lambda item: item[1][1])
             die(f"route wave {wname!r} track_width {explicit} is below "
-                f"netclass {need[1]!r} min_width {need[0]} (member net "
-                f"{need[2]!r}) — the wave would route the class under its "
+                f"netclass {bad_floor[0]!r} min_width {bad_floor[1]} "
+                f"(member net {bad_net!r}) — the wave would route the class under its "
                 f"ampacity floor and every segment becomes a track_width "
                 f"DRC finding (157 of them on the v4 usb-hub-3s board, "
-                f"2026-07-21). Raise the wave width, or re-class the net")
-        return float(explicit)
+                f"2026-07-21). Raise the wave width, declare a sufficient "
+                f"per-net power_nets_widths override, or re-class the net")
+        return explicit
     return need[0] if need else None
 
 
@@ -355,8 +380,11 @@ def check_wave_widths(cfg, groups):
         nets = wv.get("nets")
         if nets is None:
             nets = groups.get(wv.get("group", name)) or []
-        wave_track_width(cfg, name, list(nets),
-                         wv.get("track_width", common_tw))
+        opts = dict(get(cfg, "route.common", {}) or {})
+        opts.update(wv)
+        wave_track_width(
+            cfg, name, list(nets), wv.get("track_width", common_tw),
+            _power_width_overrides(opts, f"route wave {name!r}"))
 
 
 # config key -> the fab_tiers.yaml floor it must respect
@@ -445,6 +473,126 @@ def _rules_ride_along(cfg, src_pcb, out_pcb):
         shutil.copy(dru, out_pcb.with_suffix(".kicad_dru"))
     print(f"canon R1: rules ride along ({len(classes)} netclasses, "
           f"{len(pats)} patterns)")
+
+
+def _resolve_route_input_path(cfg, value, label):
+    """Resolve absolute, project-relative, or repository-relative input.
+
+    Historical route configs use both relative dialects.  Resolve only an
+    existing regular file and reject distinct multiple matches so the working
+    directory can never silently select different authority bytes.
+    """
+    candidate = Path(os.path.expanduser(str(value)))
+    if candidate.is_absolute():
+        return candidate.resolve()
+    root = Path(cfg["_root"]).resolve()
+    repo = next((p for p in (root, *root.parents) if (p / ".git").exists()),
+                None)
+    choices = [Path.cwd() / candidate, root / candidate]
+    if repo is not None:
+        choices.append(repo / candidate)
+    matches = []
+    for path in choices:
+        resolved = path.resolve()
+        if resolved.is_file() and resolved not in matches:
+            matches.append(resolved)
+    if len(matches) > 1:
+        die(f"prepared DRC authority: ambiguous {label}: " +
+            ", ".join(map(str, matches)))
+    if matches:
+        return matches[0]
+    die(f"prepared DRC authority: {label} not found: "
+        f"{(root / candidate).resolve()}")
+
+
+def _prepared_drc_authority_command(cfg, out_pcb):
+    """Build the command that makes r0's Board Setup match KRT's fab input.
+
+    Candidate grading deliberately uses r0's sidecars as its immutable rule
+    authority.  A fab tier selects router capabilities; it does not authorize
+    replacing conservative source Board Setup floors with tier defaults.
+    Only an explicit fab-overrides contract opts into synchronization.  Named
+    netclasses and violation severities must survive that synchronization.
+    """
+    common = dict(get(cfg, "route.common", {}) or {})
+    tier = common.get("fab_tier")
+    overrides = common.get("fab_overrides")
+    if overrides is None:
+        return None
+    krt = Path(os.path.expanduser(get(
+        cfg, "route.krt", "~/gits/KiCadRoutingTools")))
+    py = Path(os.path.expanduser(
+        get(cfg, "route.python") or str(krt / ".venv/bin/python")))
+    fixer = krt / "fix_kicad_drc_settings.py"
+    if not py.is_file():
+        die(f"prepared DRC authority: KRT Python not found: {py}")
+    if not fixer.is_file():
+        die(f"prepared DRC authority: fixer not found: {fixer}")
+    cmd = [str(py), str(fixer), str(out_pcb)]
+    if tier is not None:
+        cmd += ["--fab-tier", str(tier)]
+    if overrides is not None:
+        override_path = _resolve_route_input_path(
+            cfg, overrides, "fab overrides")
+        if not override_path.is_file():
+            die(f"prepared DRC authority: fab overrides not found: "
+                f"{override_path}")
+        cmd += ["--fab-overrides", str(override_path)]
+    # KRT's fixer defaults hole/copper clearance to its copper-clearance
+    # target when --hole-clearance is absent.  That silently lowers an
+    # independently authored Board Setup hole floor even though the fab-tier
+    # override schema has no hole-clearance key.  Carry the source project
+    # value explicitly so size floors can synchronize without weakening this
+    # separate safety constraint.
+    pro = Path(out_pcb).with_suffix(".kicad_pro")
+    try:
+        project = json.loads(pro.read_text(encoding="utf-8-sig"))
+        hole_clearance = float((((project.get("board") or {}).get(
+            "design_settings") or {}).get("rules") or {}).get(
+                "min_hole_clearance"))
+    except (OSError, TypeError, ValueError, json.JSONDecodeError):
+        hole_clearance = 0.0
+    if hole_clearance > 0:
+        cmd += ["--hole-clearance", f"{hole_clearance:g}"]
+    cmd += ["--no-clamp-netclasses", "--keep-courtyards", "--keep-mask",
+            "--keep-footprint", "--keep-thermal"]
+    return cmd
+
+
+def _sync_prepared_drc_authority(cfg, out_pcb):
+    """Synchronize r0's global fab floors and prove specs were preserved."""
+    cmd = _prepared_drc_authority_command(cfg, out_pcb)
+    if cmd is None:
+        print("prepared DRC authority: retaining source Board Setup "
+              "(no explicit fab overrides)")
+        return
+    pro = Path(out_pcb).with_suffix(".kicad_pro")
+    before = json.loads(pro.read_text(encoding="utf-8-sig"))
+    before_netclasses = [c for c in
+                         ((before.get("net_settings") or {}).get("classes")
+                          or []) if c.get("name") != "Default"]
+    before_patterns = (before.get("net_settings") or {}).get(
+        "netclass_patterns")
+    before_severities = (before.get("board") or {}).get("drc_severities")
+    result = run_bounded(
+        cmd, timeout_s=_timeout_s(cfg, "route_preflight", 180),
+        heartbeat_s=_heartbeat_s(cfg), label="prepared-drc-authority",
+        state_path=rel(cfg, get(cfg, "project.build_dir", "06_build/route")) /
+        "prepared_drc_authority_state.json")
+    if result.returncode:
+        die("prepared DRC authority synchronization failed")
+    after = json.loads(pro.read_text(encoding="utf-8-sig"))
+    after_netclasses = [c for c in
+                        ((after.get("net_settings") or {}).get("classes")
+                         or []) if c.get("name") != "Default"]
+    if (after_netclasses != before_netclasses
+            or (after.get("net_settings") or {}).get("netclass_patterns")
+            != before_patterns):
+        die("prepared DRC authority changed named netclasses or assignments")
+    if (after.get("board") or {}).get("drc_severities") != before_severities:
+        die("prepared DRC authority changed DRC severities")
+    print("prepared DRC authority: fab floors synchronized; named "
+          "netclasses, assignments, and severities preserved")
 
 
 def _critical_route_gate(cfg, require_connected=False, board=None):
@@ -629,6 +777,11 @@ def cmd_prep(cfg):
         print(f"prep pad_rescue: {added} copper items placed before KRT; "
               f"{len(ctx.pending)} pad(s) left for the post-route fallback")
 
+    # pcbnew saves can rewrite the sibling project. Synchronize only after the
+    # final deterministic prep mutation so r0's immutable grading sidecar is
+    # the authority that actually survives into the route boundary.
+    _sync_prepared_drc_authority(cfg, out)
+
     groups = wave_nets(cfg, board_nets(b))
     # wave widths vs netclass floors, HERE — a sub-floor wave must fail
     # prep, not surface as a track_width batch after the KRT cycle is spent
@@ -727,6 +880,8 @@ _KRT_FLAGMAP = {
     "track_width": ("--track-width", "val"),
     "via_size": ("--via-size", "val"),
     "via_drill": ("--via-drill", "val"),
+    "via_cost": ("--via-cost", "val"),
+    "via_proximity_cost": ("--via-proximity-cost", "val"),
     "fab_tier": ("--fab-tier", "val"),
     "fab_overrides": ("--fab-overrides", "val"),
     "keepout_layer": ("--keepout-layer", "val"),
@@ -787,6 +942,83 @@ def _krt_args(d, extra_flags=None):
     return out
 
 
+def _restore_prepared_copper(prepared, candidate):
+    """Restore exact source-owned copper removed by router cleanup.
+
+    This pass is deliberately additive.  Router-created alternatives are
+    canonicalized later by an exact declared stitch pass; proximity snapping
+    here would blur ownership and can create new clearances or dangles.
+    """
+    import pcbnew
+
+    prepared, candidate = Path(prepared), Path(candidate)
+    source = pcbnew.LoadBoard(str(prepared))
+    board = pcbnew.LoadBoard(str(candidate))
+
+    def ends(item):
+        a = (item.GetStart().x, item.GetStart().y)
+        b = (item.GetEnd().x, item.GetEnd().y)
+        return (a, b) if a <= b else (b, a)
+
+    def segment_identity(item):
+        return (item.GetClass(), item.GetNetname(), item.GetLayer(), *ends(item),
+                item.GetWidth())
+
+    source_items = list(source.GetTracks())
+    candidate_items = list(board.GetTracks())
+    present_segments = {segment_identity(item) for item in candidate_items
+                        if item.GetClass() != "PCB_VIA"}
+    present_vias = {(item.GetNetname(), item.GetPosition().x,
+                     item.GetPosition().y, item.GetWidth(pcbnew.F_Cu),
+                     item.GetDrill(), item.TopLayer(), item.BottomLayer())
+                    for item in candidate_items
+                    if item.GetClass() == "PCB_VIA"}
+    missing_segments = sorted(
+        (item for item in source_items if item.GetClass() != "PCB_VIA"
+         and segment_identity(item) not in present_segments),
+        key=segment_identity)
+    missing_vias = sorted(
+        (item for item in source_items if item.GetClass() == "PCB_VIA"
+         and (item.GetNetname(), item.GetPosition().x, item.GetPosition().y,
+              item.GetWidth(pcbnew.F_Cu), item.GetDrill(), item.TopLayer(),
+              item.BottomLayer()) not in present_vias),
+        key=lambda item: (item.GetNetname(), item.GetPosition().x,
+                          item.GetPosition().y))
+    if not missing_segments and not missing_vias:
+        return 0, 0
+
+    seed = zlib.crc32(
+        f"{_sha256(prepared)}:{candidate.name}:restore-prepared".encode())
+    pcbnew.KIID.SeedGenerator(seed)
+    for item in missing_segments:
+        restored = (pcbnew.PCB_ARC(board) if item.GetClass() == "PCB_ARC"
+                    else pcbnew.PCB_TRACK(board))
+        if item.GetClass() == "PCB_ARC":
+            restored.SetMid(item.GetMid())
+        restored.SetStart(item.GetStart())
+        restored.SetEnd(item.GetEnd())
+        restored.SetWidth(item.GetWidth())
+        restored.SetLayer(item.GetLayer())
+        restored.SetNet(board.FindNet(item.GetNetname()))
+        board.Add(restored)
+    for item in missing_vias:
+        restored = pcbnew.PCB_VIA(board)
+        restored.SetPosition(item.GetPosition())
+        restored.SetWidth(item.GetWidth(pcbnew.F_Cu))
+        restored.SetDrill(item.GetDrill())
+        restored.SetLayerPair(item.TopLayer(), item.BottomLayer())
+        restored.SetNet(board.FindNet(item.GetNetname()))
+        restored.SetCappingMode(item.GetCappingMode())
+        restored.SetFillingMode(item.GetFillingMode())
+        board.Add(restored)
+
+    tmp = candidate.with_name(candidate.name + ".restore-prepared.tmp")
+    pcbnew.SaveBoard(str(tmp), board)
+    os.replace(tmp, candidate)
+    print(f"restored source-owned prepared copper: "
+          f"{len(missing_segments)} segment(s), {len(missing_vias)} via(s)")
+    return len(missing_segments), len(missing_vias)
+
 def _wave_chain(cfg, py, krt, waves, tier, common, workdir, cur, env=None,
                 tag="", start_wave=1, stop_wave=None, progress=None,
                 cancel_event=None, prepared=None):
@@ -816,11 +1048,16 @@ def _wave_chain(cfg, py, krt, waves, tier, common, workdir, cur, env=None,
         opts = dict(common)
         opts.update({k: v for k, v in wv.items()
                      if k not in ("name", "nets", "group")})
+        if opts.get("fab_overrides") is not None:
+            opts["fab_overrides"] = str(_resolve_route_input_path(
+                cfg, opts["fab_overrides"], "fab overrides"))
         tier_geometry(opts, tier, f"route.waves[{name}]", derive=False)
         # track width DERIVES from the wave's netclass floors when absent;
         # an explicit sub-floor width died at prep, and dies again here in
         # case route ran on a stale prep.
-        tw = wave_track_width(cfg, name, list(nets), opts.get("track_width"))
+        tw = wave_track_width(
+            cfg, name, list(nets), opts.get("track_width"),
+            _power_width_overrides(opts, f"route wave {name!r}"))
         if tw is not None:
             opts["track_width"] = tw
         # Wrapper-owned postcondition: do not pass this to KRT.  The command
@@ -873,12 +1110,24 @@ def _wave_chain(cfg, py, krt, waves, tier, common, workdir, cur, env=None,
         # route.py intentionally does not share.  Keep those flags here rather
         # than in _KRT_FLAGMAP so the flagmap-vs-route.py contract remains
         # exact and a single-ended wave cannot accidentally request them.
-        diff_flags = ({
+        engine_flags = ({
             "diff_pair_gap": ("--diff-pair-gap", "val"),
             "diff_pair_intra_match": ("--diff-pair-intra-match", "flag"),
-        } if engine == "diff" else None)
+            "forbid_via_in_pad": ("--forbid-via-in-pad", "flag"),
+        } if engine == "diff" else {
+            # Derived from route.forbid_new_via_in_pad below. It is not a
+            # user-facing common/wave key and therefore stays outside the
+            # generic KRT option registry while an isolated KRT revision is
+            # qualified for adoption.
+            "forbid_via_in_pad": ("--forbid-via-in-pad", "flag"),
+        })
+        if get(cfg, "route.forbid_new_via_in_pad", False):
+            # Make the declared postcondition a search constraint as well. The
+            # realized-board guard below remains authoritative and catches any
+            # implementation drift or non-A* emitter.
+            opts["forbid_via_in_pad"] = True
         cmd = ([py, str(krt / router_script), str(cur), "--output", str(nxt)]
-               + _krt_args(opts, diff_flags) + ["--nets"] + list(nets))
+               + _krt_args(opts, engine_flags) + ["--nets"] + list(nets))
         print(f"\n=== {tag}wave {name} ({engine}): {len(nets)} nets ===\n  "
               + " ".join(cmd[:2] + ["..."] + cmd[-min(6, len(nets) + 1):]))
         result = run_bounded(
@@ -898,6 +1147,10 @@ def _wave_chain(cfg, py, krt, waves, tier, common, workdir, cur, env=None,
             die(f"KRT wave {name!r} exited {result.returncode}")
         if not nxt.is_file():
             die(f"KRT wave {name!r} produced no {nxt}")
+        # Always reconcile against r0. Boards without deterministic prep
+        # copper make this a cheap no-op; boards with reviewed launches retain
+        # them even when KRT's dead-end/cycle cleanup calls them redundant.
+        _restore_prepared_copper(prepared, nxt)
         summaries = [line.split("JSON_SUMMARY:", 1)[1].strip()
                      for line in result.output.splitlines()
                      if "JSON_SUMMARY:" in line]
@@ -1057,6 +1310,25 @@ def _sha256(path):
     return h.hexdigest()
 
 
+def _router_source_fingerprint(krt):
+    """Hash executable KRT Python sources without virtualenv/cache churn."""
+    root = Path(krt).resolve()
+    files = sorted(path for path in root.rglob("*.py")
+                   if not ({".git", ".venv", "__pycache__"} &
+                           set(path.relative_to(root).parts)))
+    if not files:
+        die(f"KRT source fingerprint found no Python files under {root}")
+    digest = hashlib.sha256()
+    for path in files:
+        name = path.relative_to(root).as_posix().encode()
+        payload = path.read_bytes()
+        digest.update(len(name).to_bytes(8, "big"))
+        digest.update(name)
+        digest.update(len(payload).to_bytes(8, "big"))
+        digest.update(payload)
+    return digest.hexdigest()
+
+
 def _seed_uuid_stream(pcbnew, board_stem, phase):
     """Seed KiCad object identities for one deterministic pipeline phase.
 
@@ -1189,7 +1461,7 @@ def _route_ownership_gate(cfg, build):
     report = Path(build) / "route_ownership.json"
     checked = run_bounded(
         [get(cfg, "route.kicad_python", "/usr/bin/python3"), str(script),
-         str(cfg["_path"]), "--json", str(report)],
+         str(cfg["_path"]), "--root", str(cfg["_root"]), "--json", str(report)],
         timeout_s=_timeout_s(cfg, "route_preflight", 180),
         heartbeat_s=_heartbeat_s(cfg), label="route:ownership-preflight",
         state_path=Path(build) / "route_ownership_state.json", echo=False)
@@ -1218,6 +1490,7 @@ def _route_progress_observe(cfg, workdir, wave_index, wave_name, unresolved,
                     if progress.is_file() else {})
     subject = (f"{progress_doc.get('r0_sha256', 'unknown')}:"
                f"{progress_doc.get('config_sha256', _sha256(cfg['_path']))}:"
+               f"{progress_doc.get('router_source_sha256', 'unknown')}:"
                f"{wave_index}:{wave_name}")
     observation = {
         "subject": subject,
@@ -1403,11 +1676,13 @@ def _race_candidate(cfg, py, krt, waves, tier, common, build, i, results,
         results[i] = {"error": str(e)}
 
 
-def _new_route_progress(cfg, r0, prefix=None):
+def _new_route_progress(cfg, r0, krt, prefix=None):
     progress = {
         "schema": 1, "config": str(cfg["_path"]),
         "config_sha256": _sha256(cfg["_path"]),
-        "r0_sha256": _sha256(r0), "waves": [],
+        "r0_sha256": _sha256(r0),
+        "router_source_sha256": _router_source_fingerprint(krt),
+        "waves": [],
     }
     if prefix is not None:
         progress["prefix"] = dict(prefix)
@@ -1502,7 +1777,7 @@ def _route_prefix(cfg, build, waves, r0):
     return through, staged, receipt
 
 
-def _resume_route(cfg, build, waves, r0, prefix_index=0, prefix_board=None,
+def _resume_route(cfg, build, waves, r0, krt, prefix_index=0, prefix_board=None,
                   prefix_receipt=None):
     """Return (next wave index, current board, progress), fail closed on drift."""
     path = build / "route_progress.json"
@@ -1519,6 +1794,8 @@ def _resume_route(cfg, build, waves, r0, prefix_index=0, prefix_board=None,
         die("cannot resume: route.yaml changed since the recorded waves")
     if progress.get("r0_sha256") != _sha256(r0):
         die("cannot resume: prep r0 changed since the recorded waves")
+    if progress.get("router_source_sha256") != _router_source_fingerprint(krt):
+        die("cannot resume: KRT source changed since the recorded waves")
     recorded_prefix = progress.get("prefix")
     if recorded_prefix != prefix_receipt:
         die("cannot resume: reviewed route.prefix provenance changed")
@@ -1626,7 +1903,7 @@ def cmd_route(cfg, race=None, skip_preflight=False, resume=False,
 
     if resume:
         start_wave, cur, progress = _resume_route(
-            cfg, build, waves, cur, prefix_index, prefix_board,
+            cfg, build, waves, cur, krt, prefix_index, prefix_board,
             prefix_receipt)
         print(f"resume: {start_wave - 1}/{len(waves)} authenticated wave(s); "
               f"continuing from {cur}")
@@ -1634,7 +1911,7 @@ def cmd_route(cfg, race=None, skip_preflight=False, resume=False,
         cur = prefix_board
         start_wave = prefix_index + 1
         progress = _new_route_progress(cfg, build / get(
-            cfg, "prep.out", "r0.kicad_pcb"), prefix_receipt)
+            cfg, "prep.out", "r0.kicad_pcb"), krt, prefix_receipt)
         _atomic_json(build / "route_progress.json", progress)
     cur = _wave_chain(cfg, py, krt, waves, tier, common, build, cur,
                       start_wave=start_wave, stop_wave=stop_wave,
@@ -1863,6 +2140,11 @@ def cmd_import(cfg, route_source=None, target_board=None):
                     Path(str(target) + ".import_state.json")))
     if r.returncode != 0:
         die(f"import_krt exited {r.returncode}")
+    # The regenerated destination can still carry KiCad's default Board Setup
+    # floors even though the authenticated route was graded with the declared
+    # fabrication capability. Keep that authority across the import boundary;
+    # the synchronizer refuses changes to named netclasses or severities.
+    _sync_prepared_drc_authority(cfg, target)
     receipt = {
         "schema": 1, "selected_source": route_source,
         "chain": os.path.relpath(chain, cfg["_root"]),
@@ -2551,6 +2833,552 @@ def _ends_mm(t):
             (t.GetEnd().x / 1e6, t.GetEnd().y / 1e6))
 
 
+@stitch_pass("canonicalize_chains")
+def p_canonicalize_chains(ctx, c):
+    """Apply reviewed, exact replacements for router micro-chains.
+
+    This is intentionally declarative and grid-exact.  It does not search
+    nearby copper: every old segment must match uniquely by net/layer/width and
+    endpoints on the independent path audit's 1 um identity grid, or an
+    already-applied replacement must be wholly present.  The grid absorbs only
+    sub-micrometre serializer jitter; a stale candidate still fails closed.
+    """
+    pcbnew = ctx.pcbnew
+    if set(c) != {"edits"} or not isinstance(c["edits"], list):
+        die("canonicalize_chains requires exactly one list key: edits")
+
+    def point(value, where):
+        if (not isinstance(value, list) or len(value) != 2
+                or any(isinstance(v, bool) or not isinstance(v, (int, float))
+                       for v in value)):
+            die(f"canonicalize_chains {where}: point must be [x, y]")
+        return tuple(int(round(float(v) * 1e6)) for v in value)
+
+    def exact_spec(value, where):
+        if not isinstance(value, list) or len(value) != 2:
+            die(f"canonicalize_chains {where}: segment must be [[x1,y1],[x2,y2]]")
+        a, b = point(value[0], where), point(value[1], where)
+        if a == b:
+            die(f"canonicalize_chains {where}: zero-length segment")
+        return tuple(sorted((a, b)))
+
+    def grid_spec(value, where):
+        return tuple(sorted(tuple(int(round(v / 1000)) for v in p)
+                            for p in exact_spec(value, where)))
+
+    tracks = [t for t in ctx.board.GetTracks()
+              if t.GetClass() == "PCB_TRACK"]
+    inventory = {}
+    for t in tracks:
+        ident = (t.GetNetname(), t.GetLayerName(), t.GetWidth(),
+                 tuple(sorted(((int(round(t.GetStart().x / 1000)),
+                                int(round(t.GetStart().y / 1000))),
+                               (int(round(t.GetEnd().x / 1000)),
+                                int(round(t.GetEnd().y / 1000)))))))
+        inventory.setdefault(ident, []).append(t)
+
+    remove_items, additions = [], []
+    for i, edit in enumerate(c["edits"]):
+        required = {"net", "layer", "width", "reason", "remove", "add"}
+        recipe_tags = {"group", "member", "paths"}
+        keys = set(edit) if isinstance(edit, dict) else set()
+        unknown = keys - required - recipe_tags
+        missing = required - keys
+        partial_tags = keys & recipe_tags
+        if unknown or missing or (partial_tags and partial_tags != recipe_tags):
+            die(f"canonicalize_chains edits[{i}] requires "
+                f"{sorted(required)} with optional all-or-none "
+                f"{sorted(recipe_tags)}; missing={sorted(missing)}, "
+                f"unknown={sorted(unknown)}, partial_tags={sorted(partial_tags)}")
+        if partial_tags:
+            group, member, paths = (edit["group"], edit["member"],
+                                    edit["paths"])
+            if (not isinstance(group, str) or not group
+                    or not isinstance(member, str) or not member
+                    or not isinstance(paths, list) or not paths
+                    or any(not isinstance(v, str) or not v for v in paths)
+                    or len(set(paths)) != len(paths)):
+                die(f"canonicalize_chains edits[{i}]: group/member must be "
+                    "nonempty strings and paths a nonempty unique string list")
+        net, layer = edit["net"], edit["layer"]
+        width = int(round(float(edit["width"]) * 1e6))
+        if not isinstance(net, str) or not net or not isinstance(layer, str):
+            die(f"canonicalize_chains edits[{i}]: invalid net/layer")
+        if width <= 0 or not isinstance(edit["reason"], str) or not edit["reason"]:
+            die(f"canonicalize_chains edits[{i}]: invalid width/reason")
+        old = [grid_spec(v, f"edits[{i}].remove") for v in edit["remove"]]
+        new = [grid_spec(v, f"edits[{i}].add") for v in edit["add"]]
+        if not old or not new or len(set(old)) != len(old) or len(set(new)) != len(new):
+            die(f"canonicalize_chains edits[{i}]: remove/add must be nonempty "
+                "and contain no duplicate geometry")
+        old_hits = [inventory.get((net, layer, width, geom), [])
+                    for geom in old]
+        new_hits = [inventory.get((net, layer, width, geom), [])
+                    for geom in new]
+        if all(len(v) == 0 for v in old_hits) and all(len(v) == 1 for v in new_hits):
+            continue
+        if any(len(v) != 1 for v in old_hits):
+            die(f"canonicalize_chains edits[{i}]: stale old geometry; "
+                f"match counts={[len(v) for v in old_hits]}")
+        if any(len(v) != 0 for v in new_hits):
+            die(f"canonicalize_chains edits[{i}]: replacement already/partly "
+                f"present; match counts={[len(v) for v in new_hits]}")
+        remove_items.extend(v[0] for v in old_hits)
+        additions.extend((net, layer, width,
+                          exact_spec(v, f"edits[{i}].add"))
+                         for v in edit["add"])
+
+    for net, layer, width, (a, b) in additions:
+        t = pcbnew.PCB_TRACK(ctx.board)
+        t.SetStart(pcbnew.VECTOR2I(*a))
+        t.SetEnd(pcbnew.VECTOR2I(*b))
+        t.SetWidth(width)
+        t.SetLayer(ctx.board.GetLayerID(layer))
+        t.SetNet(ctx.net(net))
+        ctx.board.Add(t)
+    for t in remove_items:
+        ctx.remove(t)
+    ctx.bump("chains_canonicalized", len(remove_items))
+    print(f"canonicalized {len(remove_items)} old segment(s) into "
+          f"{len(additions)} exact segment(s)")
+
+
+@stitch_pass("add_exact_segments")
+def p_add_exact_segments(ctx, c):
+    """Add reviewed graph joins by exact endpoint, idempotently.
+
+    Router output may stop a centreline a few micrometres inside overlapping
+    same-net copper. KiCad treats the copper as connected, while a path audit
+    correctly requires an explicit graph node. These joins are declarative;
+    this pass never searches for nearby copper or changes a supplied point.
+    """
+    rows = c.get("segments") if isinstance(c, dict) else None
+    if set(c or {}) != {"segments"} or not isinstance(rows, list):
+        die("add_exact_segments requires exactly one list key: segments")
+    inventory = set()
+    for t in ctx.board.GetTracks():
+        if t.GetClass() != "PCB_TRACK":
+            continue
+        inventory.add((t.GetNetname(), t.GetLayerName(), t.GetWidth(),
+                       tuple(sorted(((int(round(t.GetStart().x / 1000)),
+                                      int(round(t.GetStart().y / 1000))),
+                                     (int(round(t.GetEnd().x / 1000)),
+                                      int(round(t.GetEnd().y / 1000))))))))
+    added = 0
+    for i, row in enumerate(rows):
+        required = {"net", "layer", "width", "start", "end", "reason"}
+        if not isinstance(row, dict) or set(row) != required:
+            die(f"add_exact_segments segments[{i}] keys must be exactly "
+                f"{sorted(required)}")
+        if not isinstance(row["reason"], str) or not row["reason"]:
+            die(f"add_exact_segments segments[{i}] needs a reason")
+        try:
+            a = tuple(int(round(float(x) * 1e6)) for x in row["start"])
+            b = tuple(int(round(float(x) * 1e6)) for x in row["end"])
+            width = int(round(float(row["width"]) * 1e6))
+        except (TypeError, ValueError):
+            die(f"add_exact_segments segments[{i}] has invalid geometry")
+        if len(a) != 2 or len(b) != 2 or a == b or width <= 0:
+            die(f"add_exact_segments segments[{i}] has invalid geometry")
+        ident = (row["net"], row["layer"], width,
+                 tuple(sorted(tuple(int(round(v / 1000)) for v in p)
+                              for p in (a, b))))
+        if ident in inventory:
+            continue
+        t = ctx.pcbnew.PCB_TRACK(ctx.board)
+        t.SetStart(ctx.pcbnew.VECTOR2I(*a)); t.SetEnd(ctx.pcbnew.VECTOR2I(*b))
+        t.SetWidth(width); t.SetLayer(ctx.board.GetLayerID(row["layer"]))
+        t.SetNet(ctx.net(row["net"])); ctx.board.Add(t)
+        inventory.add(ident); added += 1
+    ctx.bump("exact_segments_added", added)
+    print(f"added {added} exact declared-path graph join(s)")
+
+
+@stitch_pass("drop_exact_segments")
+def p_drop_exact_segments(ctx, c):
+    """Remove exact reviewed router edges, idempotently, without proximity."""
+    rows = c.get("segments") if isinstance(c, dict) else None
+    if set(c or {}) != {"segments"} or not isinstance(rows, list):
+        die("drop_exact_segments requires exactly one list key: segments")
+    tracks = [t for t in ctx.board.GetTracks() if t.GetClass() == "PCB_TRACK"]
+    removed = []
+    for i, row in enumerate(rows):
+        required = {"net", "layer", "width", "start", "end", "reason"}
+        if not isinstance(row, dict) or set(row) != required:
+            die(f"drop_exact_segments segments[{i}] keys must be exactly "
+                f"{sorted(required)}")
+        if not isinstance(row["reason"], str) or not row["reason"]:
+            die(f"drop_exact_segments segments[{i}] needs a reason")
+        try:
+            a = tuple(int(round(float(x) * 1e6)) for x in row["start"])
+            b = tuple(int(round(float(x) * 1e6)) for x in row["end"])
+            width = int(round(float(row["width"]) * 1e6))
+        except (TypeError, ValueError):
+            die(f"drop_exact_segments segments[{i}] has invalid geometry")
+        if len(a) != 2 or len(b) != 2 or a == b or width <= 0:
+            die(f"drop_exact_segments segments[{i}] has invalid geometry")
+        hits = [t for t in tracks if t.GetNetname() == row["net"]
+                and t.GetLayerName() == row["layer"] and t.GetWidth() == width
+                and tuple(sorted(((int(round(t.GetStart().x / 1000)),
+                                   int(round(t.GetStart().y / 1000))),
+                                  (int(round(t.GetEnd().x / 1000)),
+                                   int(round(t.GetEnd().y / 1000)))))) ==
+                    tuple(sorted(tuple(int(round(v / 1000)) for v in p)
+                                 for p in (a, b)))]
+        if len(hits) > 1:
+            die(f"drop_exact_segments segments[{i}] is duplicated")
+        if hits:
+            removed.append(hits[0])
+    for t in removed:
+        ctx.remove(t)
+    ctx.bump("exact_segments_removed", len(removed))
+    print(f"removed {len(removed)} exact reviewed segment(s)")
+
+
+@stitch_pass("relocate_exact_vias")
+def p_relocate_exact_vias(ctx, c):
+    """Apply exact source-owned through-via replacements, without UUID authority.
+
+    Whole-transaction validation precedes mutation. Geometry, net and layer
+    identity must match exactly on the shared micrometre lattice; only an
+    already-complete target is idempotent. Independent native and electrical
+    gates own acceptance of the resulting copper and incident tracks.
+    """
+    import pcbnew
+    if not isinstance(c, dict) or set(c) != {"edits"} or not isinstance(c["edits"], list) or not c["edits"]:
+        die("relocate_exact_vias requires a nonempty edits list")
+
+    def geometry(spec):
+        if not isinstance(spec, dict) or set(spec) != {"at", "size", "drill", "layers"}:
+            die("relocate_exact_vias: invalid geometry keys")
+        if spec["layers"] != ["F.Cu", "B.Cu"]:
+            die("relocate_exact_vias: only F.Cu/B.Cu through vias supported")
+        try:
+            vals = list(spec["at"]) + [spec["size"], spec["drill"]]
+            if len(vals) != 4 or any(isinstance(v, bool) or not isinstance(v, (int, float)) or not math.isfinite(v) for v in vals):
+                raise ValueError()
+            x, y, size, drill = vals
+            if not 0 < drill < size:
+                raise ValueError()
+        except (ValueError, TypeError):
+            die("relocate_exact_vias: invalid finite via geometry")
+        _stub_tier_via(ctx.cfg, {"size": size, "drill": drill})
+        return (round(x * 1000), round(y * 1000), round(size * 1e6), round(drill * 1e6))
+
+    inventory = {}
+    for via in ctx.board.GetTracks():
+        if via.GetClass() != "PCB_VIA" or via.GetViaType() != pcbnew.VIATYPE_THROUGH:
+            continue
+        if via.TopLayer() != pcbnew.F_Cu or via.BottomLayer() != pcbnew.B_Cu:
+            continue
+        p = via.GetPosition()
+        key = (via.GetNetname(), round(p.x / 1000), round(p.y / 1000),
+               via.GetWidth(0), via.GetDrillValue())
+        inventory.setdefault(key, []).append(via)
+    planned, claimed, targets = [], set(), set()
+    for i, row in enumerate(c["edits"]):
+        if not isinstance(row, dict) or set(row) != {"net", "reason", "from", "to"}:
+            die(f"relocate_exact_vias edits[{i}]: invalid keys")
+        if any(not isinstance(row[k], str) or not row[k].strip() for k in ("net", "reason")):
+            die(f"relocate_exact_vias edits[{i}]: net and reason required")
+        old = (row["net"],) + geometry(row["from"])
+        new = (row["net"],) + geometry(row["to"])
+        if old == new or old in claimed or new in targets or new in claimed or old in targets:
+            die(f"relocate_exact_vias edits[{i}]: duplicate or overlapping identity")
+        claimed.add(old); targets.add(new)
+        before, after = inventory.get(old, []), inventory.get(new, [])
+        if not before and len(after) == 1:
+            continue
+        if len(before) != 1 or after:
+            die(f"relocate_exact_vias edits[{i}]: stale or ambiguous geometry")
+        # A different-size barrel at the target is not a valid empty site.
+        if any(k[:3] == new[:3] and k != old for k in inventory):
+            die(f"relocate_exact_vias edits[{i}]: target occupied")
+        planned.append((before[0], row["to"]))
+    for via, target in planned:
+        via.SetPosition(pcbnew.VECTOR2I(*(round(x * 1e6) for x in target["at"])))
+        via.SetWidth(round(target["size"] * 1e6))
+        via.SetDrill(round(target["drill"] * 1e6))
+    ctx.bump("exact_vias_relocated", len(planned))
+    print(f"relocated {len(planned)} exact reviewed via(s)")
+
+
+@stitch_pass("restore_exact_geometry")
+def p_restore_exact_geometry(ctx, c):
+    """Atomically restore a reviewed via and its incident exact tracks.
+
+    Late cleanup passes can legally rebuild a connection at an earlier router
+    grid point.  A via-only relocation would leave stale incident endpoints,
+    so this transaction accepts exactly one complete old state or one complete
+    already-restored state and rejects every mixed/partial state.
+    """
+    import pcbnew
+    required = {"net", "reason", "via", "remove_segments", "add_segments"}
+    if not isinstance(c, dict) or set(c) != {"transactions"}:
+        die("restore_exact_geometry requires exactly one transactions list")
+    rows = c["transactions"]
+    if not isinstance(rows, list) or not rows:
+        die("restore_exact_geometry requires a nonempty transactions list")
+
+    def via_ident(net, spec, where):
+        if (not isinstance(spec, dict)
+                or set(spec) != {"at", "size", "drill", "layers"}
+                or spec["layers"] != ["F.Cu", "B.Cu"]):
+            die(f"restore_exact_geometry {where}: invalid through-via geometry")
+        try:
+            vals = list(spec["at"]) + [spec["size"], spec["drill"]]
+            if (len(vals) != 4 or any(isinstance(v, bool)
+                    or not isinstance(v, (int, float)) or not math.isfinite(v)
+                    for v in vals)):
+                raise ValueError()
+            x, y, size, drill = vals
+            if not 0 < drill < size:
+                raise ValueError()
+        except (TypeError, ValueError):
+            die(f"restore_exact_geometry {where}: invalid finite via geometry")
+        _stub_tier_via(ctx.cfg, {"size": size, "drill": drill})
+        return (net, round(x * 1000), round(y * 1000),
+                round(size * 1e6), round(drill * 1e6))
+
+    def seg_ident(net, spec, where):
+        if (not isinstance(spec, dict)
+                or set(spec) != {"layer", "width", "start", "end"}):
+            die(f"restore_exact_geometry {where}: invalid segment geometry")
+        try:
+            pts = [tuple(float(v) for v in spec[k]) for k in ("start", "end")]
+            if (any(len(p) != 2 or any(not math.isfinite(v) for v in p)
+                    for p in pts) or pts[0] == pts[1]):
+                raise ValueError()
+            width = float(spec["width"])
+            if not math.isfinite(width) or width <= 0:
+                raise ValueError()
+        except (TypeError, ValueError):
+            die(f"restore_exact_geometry {where}: invalid finite segment geometry")
+        geom = tuple(sorted(tuple(round(v * 1000) for v in p) for p in pts))
+        return (net, spec["layer"], round(width * 1e6), geom), pts
+
+    vias, tracks = {}, {}
+    for item in ctx.board.GetTracks():
+        if item.GetClass() == "PCB_VIA" and item.GetViaType() == pcbnew.VIATYPE_THROUGH:
+            if item.TopLayer() == pcbnew.F_Cu and item.BottomLayer() == pcbnew.B_Cu:
+                p = item.GetPosition()
+                ident = (item.GetNetname(), round(p.x / 1000), round(p.y / 1000),
+                         item.GetWidth(0), item.GetDrillValue())
+                vias.setdefault(ident, []).append(item)
+        elif item.GetClass() == "PCB_TRACK":
+            ident = (item.GetNetname(), item.GetLayerName(), item.GetWidth(),
+                     tuple(sorted(((round(item.GetStart().x / 1000),
+                                    round(item.GetStart().y / 1000)),
+                                   (round(item.GetEnd().x / 1000),
+                                    round(item.GetEnd().y / 1000))))))
+            tracks.setdefault(ident, []).append(item)
+
+    planned = []
+    claimed_vias, claimed_segments = set(), set()
+    for i, row in enumerate(rows):
+        if not isinstance(row, dict) or set(row) != required:
+            die(f"restore_exact_geometry transactions[{i}]: invalid keys")
+        if (not isinstance(row["net"], str) or not row["net"].strip()
+                or not isinstance(row["reason"], str) or not row["reason"].strip()
+                or not isinstance(row["via"], dict)
+                or set(row["via"]) != {"from", "to"}
+                or not isinstance(row["remove_segments"], list)
+                or not isinstance(row["add_segments"], list)
+                or not row["remove_segments"] or not row["add_segments"]):
+            die(f"restore_exact_geometry transactions[{i}]: incomplete transaction")
+        old_v = via_ident(row["net"], row["via"]["from"], f"transactions[{i}].via.from")
+        new_v = via_ident(row["net"], row["via"]["to"], f"transactions[{i}].via.to")
+        if old_v == new_v or old_v in claimed_vias or new_v in claimed_vias:
+            die(f"restore_exact_geometry transactions[{i}]: overlapping via identity")
+        claimed_vias.update((old_v, new_v))
+        old_s = [seg_ident(row["net"], spec,
+                           f"transactions[{i}].remove_segments")[0]
+                 for spec in row["remove_segments"]]
+        new_specs = [seg_ident(row["net"], spec,
+                              f"transactions[{i}].add_segments")
+                     for spec in row["add_segments"]]
+        new_s = [x[0] for x in new_specs]
+        if (len(set(old_s)) != len(old_s) or len(set(new_s)) != len(new_s)
+                or set(old_s) & set(new_s)
+                or any(x in claimed_segments for x in old_s + new_s)):
+            die(f"restore_exact_geometry transactions[{i}]: overlapping segment identity")
+        claimed_segments.update(old_s + new_s)
+        old_counts = [len(vias.get(old_v, []))] + [len(tracks.get(x, [])) for x in old_s]
+        new_counts = [len(vias.get(new_v, []))] + [len(tracks.get(x, [])) for x in new_s]
+        if all(x == 0 for x in old_counts) and all(x == 1 for x in new_counts):
+            continue
+        if not (all(x == 1 for x in old_counts) and all(x == 0 for x in new_counts)):
+            die(f"restore_exact_geometry transactions[{i}]: mixed or stale geometry; "
+                f"old counts={old_counts}, new counts={new_counts}")
+        if any(k[:3] == new_v[:3] and k != old_v for k in vias):
+            die(f"restore_exact_geometry transactions[{i}]: target occupied")
+        planned.append((vias[old_v][0], row["via"]["to"],
+                        [tracks[x][0] for x in old_s], new_specs, row["net"]))
+
+    for via, target, removals, additions, net in planned:
+        via.SetPosition(pcbnew.VECTOR2I(*(round(x * 1e6) for x in target["at"])))
+        via.SetWidth(round(target["size"] * 1e6))
+        via.SetDrill(round(target["drill"] * 1e6))
+        for track in removals:
+            ctx.remove(track)
+        for ident, pts in additions:
+            track = pcbnew.PCB_TRACK(ctx.board)
+            track.SetStart(pcbnew.VECTOR2I(*(round(v * 1e6) for v in pts[0])))
+            track.SetEnd(pcbnew.VECTOR2I(*(round(v * 1e6) for v in pts[1])))
+            track.SetWidth(ident[2]); track.SetLayer(ctx.board.GetLayerID(ident[1]))
+            track.SetNet(ctx.net(net)); ctx.board.Add(track)
+    ctx.bump("exact_geometry_restored", len(planned))
+    print(f"restored {len(planned)} exact via/incident-track transaction(s)")
+
+
+@stitch_pass("widen_exact_segments")
+def p_widen_exact_segments(ctx, c):
+    """Widen exact reviewed tracks without changing endpoints or topology.
+
+    Validate the entire transaction before mutation. The old or already-applied
+    width must match; arbitrary narrowing, stale edges and duplicate rows fail.
+    Independent saved-board clearance and resistance gates remain mandatory.
+    """
+    import math
+    if not isinstance(c, dict) or set(c) != {"segments"} or not isinstance(c["segments"], list) or not c["segments"]:
+        die("widen_exact_segments requires one non-empty segments list")
+    tracks = [t for t in ctx.board.GetTracks() if t.GetClass() == "PCB_TRACK"]
+    planned, seen = [], set()
+    for i, row in enumerate(c["segments"]):
+        required = {"net", "layer", "start", "end", "from_width", "to_width", "reason"}
+        if not isinstance(row, dict) or set(row) != required:
+            die(f"widen_exact_segments row {i}: invalid keys")
+        if not all(isinstance(row[k], str) and row[k].strip() for k in ("net", "layer", "reason")):
+            die(f"widen_exact_segments row {i}: net/layer/reason required")
+        try:
+            pts = [tuple(float(v) for v in row[k]) for k in ("start", "end")]
+            old, new = float(row["from_width"]), float(row["to_width"])
+            if any(len(p) != 2 for p in pts) or not all(math.isfinite(v) for p in pts for v in p) or not math.isfinite(old) or not math.isfinite(new) or not 0 < old < new:
+                raise ValueError()
+            ends = tuple(sorted(tuple(round(v * 1000) for v in p) for p in pts))
+            if ends[0] == ends[1]:
+                raise ValueError()
+        except (ValueError, TypeError, OverflowError):
+            die(f"widen_exact_segments row {i}: invalid or narrowing geometry")
+        ident = (row["net"], row["layer"], ends)
+        if ident in seen:
+            die(f"widen_exact_segments row {i}: duplicate edge")
+        seen.add(ident)
+        hits = [t for t in tracks if t.GetNetname() == row["net"] and t.GetLayerName() == row["layer"] and tuple(sorted((tuple(round(v * 1000) for v in p) for p in _ends_mm(t)))) == ends]
+        if len(hits) != 1 or hits[0].GetWidth() not in (round(old * 1e6), round(new * 1e6)):
+            die(f"widen_exact_segments row {i}: stale or ambiguous edge")
+        planned.append((hits[0], round(new * 1e6)))
+    changed = 0
+    for track, width in planned:
+        if track.GetWidth() != width:
+            track.SetWidth(width)
+            changed += 1
+    ctx.bump("exact_segments_widened", changed)
+    print(f"widened {changed} exact reviewed segment(s)")
+
+
+@stitch_pass("prune_declared_path_offcuts")
+def p_prune_declared_path_offcuts(ctx, c):
+    """Remove physical copper edges unused by any declared endpoint path.
+
+    This uses the independent, pcbnew-free R-LEN graph as the authority. It
+    cannot turn a compensating stub into length credit: all declared paths are
+    first resolved, their physical edge union is retained, and only the exact
+    complement is removed. Any unused plated-pad barrel is a hard error.
+    """
+    allowed = {"require_groups", "require_electrical_paths", "maximum_removed"}
+    if not isinstance(c, dict) or set(c) - allowed:
+        die("prune_declared_path_offcuts has unknown keys")
+    import importlib.util
+    audit_path = Path(__file__).resolve().parent / "copper_length_audit.py"
+    spec = importlib.util.spec_from_file_location("_copper_length_audit", audit_path)
+    audit = importlib.util.module_from_spec(spec); spec.loader.exec_module(audit)
+    groups, _ = audit.load_groups(ctx.cfg["_root"])
+    nets, layers, text = audit.read_copper(ctx.path)
+    pads = audit.read_pad_shapes(text); plated = audit.read_plated_pads(text)
+    path_groups = {name: d for name, d in groups.items() if d.get("paths")}
+    if c.get("require_groups") is not None and len(path_groups) != int(c["require_groups"]):
+        die(f"prune_declared_path_offcuts expected {c['require_groups']} groups, "
+            f"found {len(path_groups)}")
+    used_by_net, graph_by_net, path_count = {}, {}, 0
+    for gname, decl in path_groups.items():
+        graphs = {}
+        for member, paths in decl["paths"].items():
+            path_count += len(paths)
+            for path in paths:
+                for seg in path["segments"]:
+                    net = seg["net"]
+                    if net not in graphs:
+                        graph, why = audit._path_graph(
+                            nets[net], layers, decl.get("stackup_mm"),
+                            pads.get(net, ()), plated.get(net, ()))
+                        if why:
+                            die(f"prune_declared_path_offcuts [{gname}/{net}]: {why}")
+                        graphs[net] = graph
+                        graph_by_net.setdefault(net, graph)
+                    _ln, used, why = audit._shortest_declared_path(
+                        graphs[net], seg["from"], seg["to"])
+                    if why:
+                        die(f"prune_declared_path_offcuts [{gname}/{net}]: {why}")
+                    used_by_net.setdefault(net, set()).update(used)
+    if c.get("require_electrical_paths") is not None and path_count != int(c["require_electrical_paths"]):
+        die(f"prune_declared_path_offcuts expected "
+            f"{c['require_electrical_paths']} electrical paths, found {path_count}")
+
+    exact = {}
+    vias = {}
+    def micron_xy(point):
+        """Normalize pcbnew nanometres to the audit graph's micrometre lattice."""
+        return (int(round(point.x / 1000)), int(round(point.y / 1000)))
+    for item in ctx.board.GetTracks():
+        if item.GetClass() == "PCB_TRACK":
+            key = (item.GetNetname(), item.GetLayerName(),
+                   tuple(sorted((micron_xy(item.GetStart()),
+                                 micron_xy(item.GetEnd())))))
+            exact.setdefault(key, []).append(item)
+        elif item.GetClass() == "PCB_VIA":
+            key = (item.GetNetname(), *micron_xy(item.GetPosition()))
+            vias.setdefault(key, []).append(item)
+    remove = []
+    for net, used in used_by_net.items():
+        entry = nets[net]
+        for edge_id, (layer, a, b, _length) in enumerate(entry["segs"]):
+            if edge_id in used:
+                continue
+            key = (net, layer, tuple(sorted((audit._path_node(a, layer)[:2],
+                                             audit._path_node(b, layer)[:2]))))
+            hits = exact.get(key, [])
+            if len(hits) != 1:
+                die(f"prune_declared_path_offcuts cannot identify {net} {layer} "
+                    f"{a}->{b}: matches={len(hits)}")
+            remove.append(hits[0])
+        base = len(entry["segs"])
+        for j, (_la, _lb, at) in enumerate(entry["vias"]):
+            if base + j in used:
+                continue
+            key = (net, int(round(at[0] * 1000)), int(round(at[1] * 1000)))
+            hits = vias.get(key, [])
+            if len(hits) != 1:
+                die(f"prune_declared_path_offcuts cannot identify {net} via "
+                    f"at {at}: matches={len(hits)}")
+            remove.append(hits[0])
+        graph = graph_by_net[net]
+        if graph is not None:
+            nonremovable = set(graph["physical"]) - used
+            if any(e >= len(entry["segs"]) + len(entry["vias"])
+                   for e in nonremovable):
+                die(f"prune_declared_path_offcuts [{net}] has an unused "
+                    "plated-pad barrel; repair or declare the path")
+    if len(remove) > int(c.get("maximum_removed", 10000)):
+        die(f"prune_declared_path_offcuts would remove {len(remove)} items, "
+            f"above maximum_removed {c['maximum_removed']}")
+    for item in remove:
+        ctx.remove(item)
+    ctx.bump("declared_path_offcuts_removed", len(remove))
+    print(f"pruned {len(remove)} segment/via offcut(s) after resolving "
+          f"{path_count} declared electrical paths")
+
+
 @stitch_pass("dedupe_vias")
 def p_dedupe_vias(ctx, c):
     """KRT pass-chaining re-emits the same via in each output; importing the
@@ -2941,10 +3769,34 @@ def p_split_t(ctx, c):
     pcbnew = ctx.pcbnew
     tol = float(c.get("tol", 0.05))
     segs, vias, pads = _track_context(ctx)
+    def on_pad(code, x, y):
+        for pad, pad_code in pads:
+            if pad_code != code:
+                continue
+            bb = pad.GetBoundingBox()
+            bb.Inflate(int(tol * 1e6))
+            if bb.Contains(pcbnew.VECTOR2I_MM(x, y)):
+                return True
+        return False
+
     splits = {}
     for t in segs:
         for (ex, ey) in _ends_mm(t):
-            if _end_anchored(ctx, t, ex, ey, segs, vias, pads, tol):
+            # Skip only represented graph anchors.  The former call to
+            # _end_anchored also returned true for endpoint-on-track-BODY,
+            # which is exactly the T-junction this pass must split.
+            if any(o.m_Uuid.AsString() != t.m_Uuid.AsString()
+                   and o.GetNetCode() == t.GetNetCode()
+                   and o.GetLayer() == t.GetLayer()
+                   and any(math.hypot(ex - x, ey - y) <= 0.001
+                           for x, y in _ends_mm(o))
+                   for o in segs):
+                continue
+            if any(vc == t.GetNetCode()
+                   and math.hypot(ex - vx, ey - vy) <= 0.001
+                   for vx, vy, vc in vias):
+                continue
+            if on_pad(t.GetNetCode(), ex, ey):
                 continue
             best = None
             for o in segs:
@@ -2960,7 +3812,11 @@ def p_split_t(ctx, c):
                 if not (0.01 < u < 0.99):
                     continue
                 d = math.hypot(ex - ox - u * dx, ey - oy - u * dy)
-                if d <= tol + o.GetWidth() / 2e6 and (best is None or d < best[0]):
+                # Splitting represents an endpoint on the other track's
+                # centerline.  Copper-cap overlap outside this tolerance is
+                # not a graph junction; those candidate-specific offsets
+                # belong in canonicalize_chains with exact geometry.
+                if d <= tol and (best is None or d < best[0]):
                     best = (d, o, u, ox + u * dx, oy + u * dy)
             if best:
                 _, o, u, fx, fy = best
@@ -3249,7 +4105,17 @@ def p_hole_to_hole(ctx, c):
                 for ang in range(0, 360, int(c.get("angle_step", 45))):
                     nx = round(mx + r * math.cos(math.radians(ang)), 2)
                     ny = round(my + r * math.sin(math.radians(ang)), 2)
-                    if any(math.hypot(nx - ox, ny - oy) < 0.85
+                    # Reject candidate drill centres against the declared
+                    # edge-to-edge floor.  A former fixed 0.85 mm centre
+                    # radius happened to fit one 0.35 mm drill recipe, but
+                    # over-constrained smaller drills and made a legal local
+                    # 0.05 mm repair impossible (crow carrier ADC1P/AUDIO_EN,
+                    # 0.20 mm drills: required centre distance is 0.70 mm).
+                    # Use each via's actual drill so this prefilter agrees
+                    # with both the pass verdict and KiCad's H2H rule.
+                    moving_drill = vm.GetDrill() / 1e6
+                    if any(math.hypot(nx - ox, ny - oy)
+                           < floor + (moving_drill + ov.GetDrill() / 1e6) / 2
                            for ov in vlist if ov is not vm
                            for ox, oy in [vxy(ov)]):
                         continue
@@ -4791,14 +5657,20 @@ def _island_holds(ctx, isl, item):
         r = item.GetWidth() // 2
         return any(_copper_reaches(o, p, r) for p in (s, e, mid))
     if cls == "PAD":
-        # A pad's centre-in-poly is kept deliberately strict: broadening it to
-        # the pad's circular bounding radius would over-reach a rect pad's real
-        # copper and risk merging a GENUINE orphan that merely sits near a pad
-        # (weakening the flag). The reported false-positive class is via-ring /
-        # track overlap, so only those two seating tests move to copper-touch.
-        if item.GetDrillSize().x <= 0 and not item.IsOnLayer(lay):
+        # Pad CENTRES can lie exactly outside a pinched pour while the realized
+        # rectangular/roundrect land still overlaps it.  Use the exact flashed
+        # pad shape: a bounding-circle approximation would over-reach corners
+        # and could merge a genuine orphan.  Keep the fast centre-in-polygon
+        # case, then test boundary crossing and the inverse containment case.
+        if item.GetDrillSize().x <= 0 and not item.FlashLayer(lay):
             return False
-        return o.PointInside(item.GetPosition())
+        if o.PointInside(item.GetPosition()):
+            return True
+        shape = item.GetEffectiveShape(lay)
+        if shape.Collide(o, 0):
+            return True
+        return any(shape.Collide(o.CPoint(i), 0)
+                   for i in range(o.PointCount()))
     return False
 
 
@@ -5249,38 +6121,28 @@ def _same_via_exists(ctx, x, y, code, tol=0.05):
 
 
 def _pin_touched(ctx, px, py, code, tol=0.16, pad=None):
-    """Is the pin pad touched by same-net track copper or a via — i.e. did
-    the seed stub actually reach it?
+    """Prove same-net finite copper overlaps the pad on a shared copper layer.
 
-    THE PROOF IS THE PAD SHAPE, not a radius around the pad ORIGIN
-    (cooksense v1.2, 2026-07-25). The old test only accepted copper within
-    `tol` of (px,py). That is fine for an 0402 (0.54x0.64) but WRONG for
-    anything larger: a via-in-pad landing legitimately on the far end of an
-    0603 GND pad — the only site with clearance, MEASURED — was declared
-    "connects nothing" and hard-errored the stitch, while the same via
-    0.15mm from the origin passed. A via-in-pad is proven by LANDING ON THE
-    PAD'S COPPER; the radius stays as the fallback when the caller has no
-    pad handle (and for THT pads, whose plated barrel bonds anywhere)."""
-    def hits(x, y):
-        if math.hypot(x - px, y - py) <= tol:
-            return True
-        if pad is None:
-            return False
-        try:
-            pt = ctx.pcbnew.VECTOR2I_MM(round(x, 4), round(y, 4))
-            return pad.GetEffectiveShape(pad.GetLayer()).Collide(pt)
-        except Exception:
-            return False
-    for t in ctx.board.GetTracks():
-        if t.GetNetCode() != code:
+    Centerline endpoints need not lie inside a pad: a legal rounded track cap
+    may enter its edge. Conversely, proximity or an opposite-layer projection
+    cannot connect an SMD pad. Keep the legacy radius fallback only for callers
+    which supply no physical pad handle.
+    """
+    for item in ctx.board.GetTracks():
+        if item.GetNetCode() != code:
             continue
-        if t.GetClass() == "PCB_VIA":
-            if hits(t.GetPosition().x / 1e6, t.GetPosition().y / 1e6):
-                return True
-        else:
-            for e in _ends_mm(t):
-                if hits(e[0], e[1]):
+        if pad is not None:
+            for layer in pad.GetLayerSet().Seq():
+                if not ctx.pcbnew.IsCopperLayer(layer) or not item.IsOnLayer(layer):
+                    continue
+                if pad.GetEffectiveShape(layer).Collide(item.GetEffectiveShape()):
                     return True
+        elif item.GetClass() == "PCB_VIA":
+            at = item.GetPosition()
+            if math.hypot(at.x / 1e6 - px, at.y / 1e6 - py) <= tol:
+                return True
+        elif any(math.hypot(x - px, y - py) <= tol for x, y in _ends_mm(item)):
+            return True
     return False
 
 
@@ -5318,6 +6180,98 @@ def _copper_item_identity(item):
                 f"({b.x / 1e6:.3f},{b.y / 1e6:.3f})")
     except Exception:
         return f"{kind}[{net}]"
+
+
+def _seed_scoped_pair_resolver(ctx, common_clearance, field):
+    """Return a net-bound pair-clearance resolver for ``seed_stubs``.
+
+    The rule generator makes ``nets.yaml scoped_clearances`` authoritative
+    with a two-sided ``insideArea`` condition.  Seed insertion must consume
+    that same authority or it can refuse copper which the generated DRU and
+    the independent source checker both accept.  Rule-area effective shapes
+    preserve KiCad's actual overlap semantics, including pads and vias; the
+    last matching source entry wins, matching generated DRU precedence.
+    Package-land-only entries are deliberately ineligible for emitted copper.
+    """
+    p = ctx.cfg["_root"] / "03_src" / "rules" / "nets.yaml"
+    if not p.is_file():
+        return lambda _net: None
+    rules = yaml.safe_load(p.read_text(encoding="utf-8-sig")) or {}
+    # Search minimum is not permission to undercut a declared pair floor.
+    # Scoped DRU entries below retain their existing last-match precedence.
+    class_clearances = {}
+    default_clearance = common_clearance
+    if field == "clearance":
+        def source_mm(value):
+            try:
+                result = float(str(value).lower().replace("mm", "").strip())
+            except (TypeError, ValueError):
+                die(f"seed_stubs: malformed source netclass clearance {value!r}")
+            if not math.isfinite(result) or result < 0:
+                die(f"seed_stubs: malformed source netclass clearance {value!r}")
+            return result
+        default_clearance = source_mm(rules.get("default_clearance", common_clearance))
+        for definition in (rules.get("classes") or {}).values():
+            value = source_mm(definition.get("clearance", default_clearance))
+            for net in definition.get("nets") or []:
+                class_clearances[str(net)] = max(
+                    value, class_clearances.get(str(net), 0))
+    areas = {z.GetZoneName(): z for z in ctx.board.Zones()
+             if z.GetIsRuleArea() and z.GetZoneName()}
+    scopes = []
+    for sc in rules.get("scoped_clearances") or []:
+        sc = sc or {}
+        if sc.get("pads_only", False):
+            continue
+        zone = areas.get(str(sc.get("zone") or ""))
+        if zone is None or sc.get(field) is None:
+            continue                    # the rule emitter owns malformed input
+        legacy = {str(n) for n in sc.get("nets") or []}
+        nets_a = {str(n) for n in sc.get("nets_a") or []}
+        nets_b = {str(n) for n in sc.get("nets_b") or []}
+        value = float(str(sc[field]).lower().replace("mm", "").strip())
+        scopes.append((zone, value, legacy, nets_a, nets_b))
+
+    def bind(candidate_net):
+        if not scopes and not class_clearances and default_clearance <= common_clearance:
+            return None
+
+        def resolve(candidate_shape, item, layer):
+            other_net = str(item.GetNetname())
+            value = max(common_clearance,
+                        class_clearances.get(candidate_net, default_clearance),
+                        class_clearances.get(other_net, default_clearance))
+            for zone, scoped, legacy, nets_a, nets_b in scopes:
+                if not zone.GetLayerSet().Contains(layer):
+                    continue
+                pair_matches = ((candidate_net in nets_a and other_net in nets_b)
+                                or (candidate_net in nets_b and other_net in nets_a))
+                if not ((legacy and
+                         (candidate_net in legacy or other_net in legacy))
+                        or pair_matches):
+                    continue
+                area_shape = zone.GetEffectiveShape(layer)
+                if not candidate_shape.Collide(area_shape, 0):
+                    continue
+                if item.GetClass() in ("PCB_TRACK", "PCB_ARC", "PCB_VIA"):
+                    other_shape = item.GetEffectiveShape()
+                else:
+                    if not item.FlashLayer(layer):
+                        continue
+                    other_shape = item.GetEffectiveShape(layer)
+                if other_shape.Collide(area_shape, 0):
+                    value = scoped
+            return value
+
+        resolve.maximum_mm = max(
+            [common_clearance, default_clearance] + list(class_clearances.values()) + [scoped for _, scoped, _, _, _ in scopes])
+        return resolve
+
+    return bind
+
+
+def _seed_scoped_clearance_resolver(ctx, common_clearance):
+    return _seed_scoped_pair_resolver(ctx, common_clearance, "clearance")
 
 
 @stitch_pass("seed_stubs")
@@ -5368,9 +6322,26 @@ def p_seed_stubs(ctx, c):
     via = dict(c.get("via", {}) or {})
     _stub_tier_via(ctx.cfg, via)
     vs, vd = float(via.get("size", 0.25)), float(via.get("drill", 0.15))
-    tk = ctx.Toolkit(ctx.board, float(c.get("clearance", 0.13)))
-    served = refused = placed = skipped = 0
+    common_clearance = float(c.get("clearance", 0.13))
+    tk = ctx.Toolkit(ctx.board, common_clearance)
+    clearance_resolver = _seed_scoped_clearance_resolver(
+        ctx, common_clearance)
+    hole_common = ctx.pcbnew.ToMM(
+        ctx.board.GetDesignSettings().m_HoleClearance)
+    hole_clearance_resolver = _seed_scoped_pair_resolver(
+        ctx, hole_common, "hole_clearance")
+    occurrence = ctx.counts.get("seed_stubs_invocations", 0) + 1
+    ctx.bump("seed_stubs_invocations")
+    served = refused = placed = skipped = deferred = 0
     for i, stub in enumerate(stubs):
+        defer_until = stub.get("defer_until_occurrence", 1)
+        if isinstance(defer_until, bool) or not isinstance(defer_until, int) \
+                or defer_until < 1:
+            die(f"seed_stubs.stubs[{i}].defer_until_occurrence must be "
+                "an integer >= 1")
+        if occurrence < defer_until:
+            deferred += 1
+            continue
         netname = stub.get("net") or die(f"seed_stubs.stubs[{i}]: no `net`")
         net = ctx.net(netname)
         code = net.GetNetCode()
@@ -5409,8 +6380,18 @@ def p_seed_stubs(ctx, c):
             w = float(seg["width"])
             pts = seg["pts"]
             for (ax, ay), (bx, by) in zip(pts, pts[1:]):
-                ax, ay, bx, by = (round(v, 3) for v in (ax, ay, bx, by))
-                hit = tk.collides(ax, ay, bx, by, w, code, lid)
+                # Preserve the authored native-grid attachment. Rounding to
+                # 0.001 mm moved half-micron pad centres off their exact KRT
+                # terminal identity even though KiCad still saw copper overlap.
+                # KiCad stores nanometre integer coordinates, so six decimal
+                # places lose no representable board geometry.
+                ax, ay, bx, by = (round(float(v), 6)
+                                  for v in (ax, ay, bx, by))
+                hit = tk.collides(
+                    ax, ay, bx, by, w, code, lid,
+                    clearance_resolver=clearance_resolver(netname),
+                    hole_clearance_resolver=
+                    hole_clearance_resolver(netname))
                 if hit is not None:
                     conflict = (f"seg ({ax},{ay})->({bx},{by}) "
                                 f"{seg['layer']} against "
@@ -5424,9 +6405,9 @@ def p_seed_stubs(ctx, c):
                 lid = _layer_id(pcbnew, arc["layer"])
                 w = float(arc["width"])
                 try:
-                    start = tuple(round(float(v), 3) for v in arc["start"])
-                    mid = tuple(round(float(v), 3) for v in arc["mid"])
-                    end = tuple(round(float(v), 3) for v in arc["end"])
+                    start = tuple(round(float(v), 6) for v in arc["start"])
+                    mid = tuple(round(float(v), 6) for v in arc["mid"])
+                    end = tuple(round(float(v), 6) for v in arc["end"])
                 except (KeyError, TypeError, ValueError) as exc:
                     die(f"seed_stubs.stubs[{i}].arcs needs numeric "
                         f"start/mid/end coordinate pairs: {exc}")
@@ -5434,7 +6415,11 @@ def p_seed_stubs(ctx, c):
                     die(f"seed_stubs.stubs[{i}].arcs start/mid/end must be "
                         "two-coordinate points")
                 candidate = tk.make_arc(start, mid, end, net, lid, w)
-                hit = tk.collides_item(candidate, code, lid)
+                hit = tk.collides_item(
+                    candidate, code, lid,
+                    clearance_resolver=clearance_resolver(netname),
+                    hole_clearance_resolver=
+                    hole_clearance_resolver(netname))
                 if hit is not None:
                     conflict = (f"arc {start}->{mid}->{end} "
                                 f"{arc['layer']} against "
@@ -5443,11 +6428,15 @@ def p_seed_stubs(ctx, c):
                 prims.append(("arc", start, mid, end, w, lid))
         if conflict is None:
             for (vx, vy) in stub.get("vias", []) or []:
-                vx, vy = round(vx, 3), round(vy, 3)
+                vx, vy = round(float(vx), 6), round(float(vy), 6)
                 if (not _same_via_exists(ctx, vx, vy, code)
                         and not tk.via_site_ok(vx, vy, code,
                                               size=stub_vs,
-                                              drill=stub_vd)):
+                                              drill=stub_vd,
+                                              clearance_resolver=
+                                              clearance_resolver(netname),
+                                              hole_clearance_resolver=
+                                              hole_clearance_resolver(netname))):
                     conflict = f"via ({vx},{vy})"
                     break
                 prims.append(("via", vx, vy, stub_vs, stub_vd))
@@ -5490,7 +6479,8 @@ def p_seed_stubs(ctx, c):
         served += 1
     ctx.bump("seed_stubs", placed)
     print(f"seed_stubs: {served} bank(s) served ({placed} primitives/vias "
-          f"placed, {skipped} idempotent-skip), {refused} refused")
+          f"placed, {skipped} idempotent-skip), {refused} refused, "
+          f"{deferred} deferred at occurrence {occurrence}")
 
 
 # ------------------------------------------ same-net zone priority unify ------

@@ -1,0 +1,130 @@
+{
+    "$schema": "https://schemas.kicad.org/drc.v1.json",
+    "coordinate_units": "mm",
+    "date": "2026-09-06T20:50:57",
+    "ignored_checks": [
+        {
+            "description": "Footprint has no courtyard defined",
+            "key": "missing_courtyard"
+        },
+        {
+            "description": "Track endpoint not centered on via",
+            "key": "track_not_centered_on_via"
+        },
+        {
+            "description": "Tuning profile track geometries",
+            "key": "tuning_profile_track_geometries"
+        },
+        {
+            "description": "Footprint doesn't match symbol's footprint filters",
+            "key": "footprint_filters_mismatch"
+        },
+        {
+            "description": "Footprint component type doesn't match footprint pads",
+            "key": "footprint_type_mismatch"
+        }
+    ],
+    "included_severities": [
+        "error",
+        "warning",
+        "exclusion"
+    ],
+    "kicad_version": "10.0.4",
+    "schematic_parity": [],
+    "source": "crow-audio-carrier-v1-connector-coupon.kicad_pcb",
+    "unconnected_items": [],
+    "violations": [
+        {
+            "description": "Silkscreen clipped by board edge",
+            "items": [
+                {
+                    "description": "Segment on Edge.Cuts",
+                    "pos": {
+                        "x": 20.0,
+                        "y": 20.0
+                    },
+                    "uuid": "e6680f47-0095-4239-9a8f-d40dc529d60a"
+                },
+                {
+                    "description": "Segment of J9 on F.Silkscreen",
+                    "pos": {
+                        "x": 18.97,
+                        "y": 63.565
+                    },
+                    "uuid": "4cc5d8a5-d456-4f44-98a0-88526e3cb866"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_edge_clearance"
+        },
+        {
+            "description": "Silkscreen clipped by board edge",
+            "items": [
+                {
+                    "description": "Segment on Edge.Cuts",
+                    "pos": {
+                        "x": 20.0,
+                        "y": 20.0
+                    },
+                    "uuid": "e6680f47-0095-4239-9a8f-d40dc529d60a"
+                },
+                {
+                    "description": "Segment of J9 on F.Silkscreen",
+                    "pos": {
+                        "x": 19.97,
+                        "y": 62.565
+                    },
+                    "uuid": "63baf48f-7599-4c7c-8946-0bd6429d0fdc"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_edge_clearance"
+        },
+        {
+            "description": "Silkscreen clipped by board edge",
+            "items": [
+                {
+                    "description": "Segment on Edge.Cuts",
+                    "pos": {
+                        "x": 20.0,
+                        "y": 20.0
+                    },
+                    "uuid": "e6680f47-0095-4239-9a8f-d40dc529d60a"
+                },
+                {
+                    "description": "Segment of J9 on F.Silkscreen",
+                    "pos": {
+                        "x": 19.97,
+                        "y": 72.435
+                    },
+                    "uuid": "f5cb5d85-fa2b-417c-9c8e-4f76e300d5ee"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_edge_clearance"
+        },
+        {
+            "description": "Silkscreen clipped by board edge",
+            "items": [
+                {
+                    "description": "Segment on Edge.Cuts",
+                    "pos": {
+                        "x": 20.0,
+                        "y": 20.0
+                    },
+                    "uuid": "e6680f47-0095-4239-9a8f-d40dc529d60a"
+                },
+                {
+                    "description": "Segment of J9 on F.Silkscreen",
+                    "pos": {
+                        "x": 29.09,
+                        "y": 72.435
+                    },
+                    "uuid": "e177723a-97c9-4216-9325-9bd9e20c203f"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_edge_clearance"
+        }
+    ]
+}

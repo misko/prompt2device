@@ -1,0 +1,994 @@
+fab_tier: jlc_4layer_advanced
+default_clearance: 0.15mm
+default_track_width: 0.18mm
+
+classes:
+  CHASSIS_SHIELD:
+    intent: "RJ45 shell continuity, isolated from signal GND; each jack bonds locally to the panel through its EMI fingers. No normal DC load or protective-earth current rating."
+    nets: [CHASSIS]
+    current: signal
+    min_width: 0.60mm
+    clearance: 0.25mm
+    routing: "outer-layer shell interconnect; never use either inner GND reference plane"
+    verify: "native shell net census, zero-unconnected DRC, and first-article shell/panel continuity and signal-GND isolation"
+  POD_POWER:
+    intent: "protected 12 V trunk and eight 100 mA continuous spoke branches"
+    nets: [12V_IN, 12V_FUSED, 12V_PROTECTED, 12V_BUCK_IN, 12V_POD1, 12V_POD2, 12V_POD3, 12V_POD4, 12V_POD5, 12V_POD6, 12V_POD7, 12V_POD8]
+    current: "1.0 A trunk design bound (0.986 A conditional worst case including ADR0022 input diode); each branch 0.10 A"
+    min_width: 0.60mm
+    clearance: 0.25mm
+    routing: "short wide top/bottom trunk, individual PTC branch, no audio-pair crossings"
+    verify: "four-wire branch drop at 0.10 A each and all-eight loaded thermal test"
+
+  POWER_TRANSIENT:
+    # OPEN ADR0021: retained2.5A/1.20mm legacy planning case below is NOT a
+    # maximum-current guarantee. AP63205 HS max3.1A/LS valley max3.9A do not
+    # bound reservoir equalization. The proposed4A feed budget has no qualified
+    # waveform/duration;1.20mm entries do not prove4A ampacity. Prototype
+    # routing is admitted with explicit continuous-via screening; current-
+    # duration/thermal authority remains a first-article gate.
+    intent: "Local buck/hold/LDO charging and discharge pulse paths; not a raised steady allocation"
+    nets: [5V_BUCK, 5V_LDO_FEED, 5V_LDO_HOLD, 3V3_ADC, FILT1P, FILT2P, ADC_DUMP, BUCK_SW]
+    current: "2.5 A transient design bound; 0.30 A steady allocation; dated coordinator amendment ADR0009"
+    min_width: 1.20mm
+    clearance: 0.20mm
+    routing: "wide outer-layer bulk paths; 3V3_ADC may cross the fixed F.Cu zero-via digital trees using individually rated outer-layer transitions; 5V_LDO_HOLD prefers B.Cu. 1.20 mm exceeds the existing 1 oz/10 C 2.5 A helper floor of 1.06304 mm. Fine-pitch taps stay bounded and every realized layer transition needs explicit continuous-current screening; no blanket neck-down or pour-fed exemption."
+    verify: "A-VIA at the 0.30 A steady allocation plus scoped startup/current-limit, reverse-current, discharge and temperature captures per ADR0009; 2.5 A transient via adequacy remains a first-article measurement"
+  POWER_CONTROL:
+    intent: "Analog-isolation, supervisor, precharge and delayed-dump interlocks"
+    nets: [OPA_BLEED_A, AUDIO_EN, PWR_EN, LDO_EN, LDO_NR, PRE_GATE, PWR_SENSE, ADC_SENSE, PWR_CT, AUDIO_CT, DUMP_RC, DUMP_GATE, ADC_RESET_N, CFG1, CFG2, CFG4, CFG5, POR_N, Q_IN_GATE, RESET_C, RESET_PULSE_H, RESET_RC, MCH_3V3_SENSE, TDM_SENSE_G, TDM_OE_N]
+    current: "signal"
+    min_width: 0.20mm
+    clearance: 0.25mm
+    routing: "local quiet signals, separated from buck switching"
+    verify: "native exact-pin interlock audit and scoped cold-start/brownout captures"
+  BOOTSTRAP:
+    intent: "High-dv/dt buck bootstrap capacitor loop, not a quiet control or load-distribution rail"
+    nets: [BUCK_BST]
+    current: "signal: local switched bootstrap gate-charge loop; no added steady load allocation"
+    min_width: 0.20mm
+    clearance: 0.25mm
+    routing: "short F.Cu U_BUCK.6 to C_BUCK_BST.1; close the loop through C_BUCK_BST.2/BUCK_SW/U_BUCK.5; separate from analog and quiet control"
+    verify: "exact local loop and switch-node coupling review, scope with a suitable differential probe"
+  QUIET_POWER:
+    intent: "ADC internal reference outputs, passive external bias dividers and internal ADC LDO filter pins; not the shared3V3_ADC bulk rail"
+    nets: [VMID1, VMID2, VMID1_EXT, VMID2_EXT, LDO_A_FILT, LDO_D_FILT]
+    current: "0.30 A steady local allocation; 3V3 charge pulse is separately governed"
+    min_width: 0.35mm
+    clearance: 0.20mm
+    routing: "star from converter/filter; local decoupling; keep buck switch loop in southwest corner"
+    verify: "startup, loaded DC, ripple and idle-spectrum tests"
+
+  ANALOG_AUDIO:
+    intent: "eight phase-preserving active-balanced audio pairs into one CS5308P"
+    nets:
+      - AUDIO_P1
+      - AUDIO_N1
+      - AUDIO_P2
+      - AUDIO_N2
+      - AUDIO_P3
+      - AUDIO_N3
+      - AUDIO_P4
+      - AUDIO_N4
+      - AUDIO_P5
+      - AUDIO_N5
+      - AUDIO_P6
+      - AUDIO_N6
+      - AUDIO_P7
+      - AUDIO_N7
+      - AUDIO_P8
+      - AUDIO_N8
+      - BIAS_P1
+      - BIAS_N1
+      - BIAS_P2
+      - BIAS_N2
+      - BIAS_P3
+      - BIAS_N3
+      - BIAS_P4
+      - BIAS_N4
+      - BIAS_P5
+      - BIAS_N5
+      - BIAS_P6
+      - BIAS_N6
+      - BIAS_P7
+      - BIAS_N7
+      - BIAS_P8
+      - BIAS_N8
+      - AIN_P1
+      - AIN_N1
+      - AIN_P2
+      - AIN_N2
+      - AIN_P3
+      - AIN_N3
+      - AIN_P4
+      - AIN_N4
+      - AIN_P5
+      - AIN_N5
+      - AIN_P6
+      - AIN_N6
+      - AIN_P7
+      - AIN_N7
+      - AIN_P8
+      - AIN_N8
+      - OPA_P1
+      - OPA_N1
+      - OPA_P2
+      - OPA_N2
+      - OPA_P3
+      - OPA_N3
+      - OPA_P4
+      - OPA_N4
+      - OPA_P5
+      - OPA_N5
+      - OPA_P6
+      - OPA_N6
+      - OPA_P7
+      - OPA_N7
+      - OPA_P8
+      - OPA_N8
+      - FB_P1
+      - FB_N1
+      - FB_P2
+      - FB_N2
+      - FB_P3
+      - FB_N3
+      - FB_P4
+      - FB_N4
+      - FB_P5
+      - FB_N5
+      - FB_P6
+      - FB_N6
+      - FB_P7
+      - FB_N7
+      - FB_P8
+      - FB_N8
+      - FILTER1P
+      - FILTER1N
+      - FILTER2P
+      - FILTER2N
+      - FILTER3P
+      - FILTER3N
+      - FILTER4P
+      - FILTER4N
+      - FILTER5P
+      - FILTER5N
+      - FILTER6P
+      - FILTER6N
+      - FILTER7P
+      - FILTER7N
+      - FILTER8P
+      - FILTER8N
+      - ADC1P
+      - ADC1N
+      - ADC2P
+      - ADC2N
+      - ADC3P
+      - ADC3N
+      - ADC4P
+      - ADC4N
+      - ADC5P
+      - ADC5N
+      - ADC6P
+      - ADC6N
+      - ADC7P
+      - ADC7N
+      - ADC8P
+      - ADC8N
+    current: "signal only"
+    min_width: 0.20mm
+    clearance: 0.20mm
+    routing: "pair-symmetric, short ADC legs, no clock or switch-node adjacency; each ADC input path below 0.5 ohm DCR"
+    verify: "channel gain/phase, crosstalk, polarity-target and noise-floor measurements"
+
+  ADC_CLOCK:
+    intent: "MCHStreamer-master 24.576 MHz MCLK, 12.288 MHz BCLK, 48 kHz FSYNC and TDM return"
+    nets: [MCH_MCLK, MCH_BCLK, MCH_FSYNC, MCLK_BUF, BCLK_BUF, FSYNC_BUF, ADC_MCLK, ADC_BCLK, ADC_FSYNC, TDM_RAW, TDM_CLEAN, TDM_BUFFERED, ADC_TDM]
+    current: "signal only; 3.3 V CMOS logic"
+    min_width: 0.36mm
+    clearance: 0.25mm
+    routing: "F.Cu/B.Cu over the adjacent continuous In1.Cu/In2.Cu GND planes; only ordinary through vias may change outer layers. The public JLC04161H-7628 prototype stack and nominal0.36 mm bulk remain an unsolved Cirrus50 ohm hypothesis. ADR0011 keeps every subnominal launch in an exact small named F.Cu rule area; ordinary-width terminal continuations clear the package rows before generic routing. FSYNC_BUF and BCLK_BUF are deterministic complete seeds; other digital nets retain one wave owner. Field solve and realized return/width/extent remain BLOCKED. Preserve source resistors and all three MCH pull-down branches; no invented termination on TDM_RAW."
+    verify: "post-route prove every segment uses F.Cu/B.Cu with its declared adjacent GND plane, every layer transition is an ordinary through via across the same two continuous GND planes, and the final stitch result keeps both planes on one GND component; then scope at source and ADC, logic-analyzer edge/slot/sign/order qualification, and all independent-power-state current/logic tests"
+
+  GROUND:
+    intent: "continuous analog/digital return with local Cirrus layout discipline"
+    nets: [GND]
+    current: "return for power and signals; aggregate current follows the source and branch budgets"
+    min_width: 0.30mm
+    clearance: 0.18mm
+    pour_fed: "common GND reference planes on In1.Cu and In2.Cu plus top/bottom pours; never split either inner plane beneath audio or clocks"
+    routing: "direct exposed-pad and decoupling vias; buck high-di/dt return isolated by placement"
+    verify: "plane continuity, return-path review and DRC"
+
+scoped_floors:
+  - {zone: ADC_FSYNC_CORNER, nets: [ADC_FSYNC], min_width: 0.18mm, why: "Exact F.Cu ADC_FSYNC pin-field continuation uses2.827201mm/two0.18mm items before ordinary0.36mm; no digital vias. Whole-capsule scope and unchanged3mm/3-item realized-width guard apply."}
+  - {"zone":"AFE1_SUPPLY_LOCAL","nets":["3V3_ADC"],"min_width":"0.60mm","why":"ADR0025 U_AFE1.8 full1.20mm entry plus short0.60mm leaf to its own C_OPA1.1. No vias or long neckdowns; all eight cells independently collision-screened. Not current/thermal qualification."}
+  - {"zone":"AFE2_SUPPLY_LOCAL","nets":["3V3_ADC"],"min_width":"0.60mm","why":"ADR0025 U_AFE2.8 full1.20mm entry plus short0.60mm leaf to its own C_OPA2.1. No vias or long neckdowns; all eight cells independently collision-screened. Not current/thermal qualification."}
+  - {"zone":"AFE3_SUPPLY_LOCAL","nets":["3V3_ADC"],"min_width":"0.60mm","why":"ADR0025 U_AFE3.8 full1.20mm entry plus short0.60mm leaf to its own C_OPA3.1. No vias or long neckdowns; all eight cells independently collision-screened. Not current/thermal qualification."}
+  - {"zone":"AFE4_SUPPLY_LOCAL","nets":["3V3_ADC"],"min_width":"0.60mm","why":"ADR0025 U_AFE4.8 full1.20mm entry plus short0.60mm leaf to its own C_OPA4.1. No vias or long neckdowns; all eight cells independently collision-screened. Not current/thermal qualification."}
+  - {"zone":"AFE5_SUPPLY_LOCAL","nets":["3V3_ADC"],"min_width":"0.60mm","why":"ADR0025 U_AFE5.8 full1.20mm entry plus short0.60mm leaf to its own C_OPA5.1. No vias or long neckdowns; all eight cells independently collision-screened. Not current/thermal qualification."}
+  - {"zone":"AFE6_SUPPLY_LOCAL","nets":["3V3_ADC"],"min_width":"0.60mm","why":"ADR0025 U_AFE6.8 full1.20mm entry plus short0.60mm leaf to its own C_OPA6.1. No vias or long neckdowns; all eight cells independently collision-screened. Not current/thermal qualification."}
+  - {"zone":"AFE7_SUPPLY_LOCAL","nets":["3V3_ADC"],"min_width":"0.60mm","why":"ADR0025 U_AFE7.8 full1.20mm entry plus short0.60mm leaf to its own C_OPA7.1. No vias or long neckdowns; all eight cells independently collision-screened. Not current/thermal qualification."}
+  - {"zone":"AFE8_SUPPLY_LOCAL","nets":["3V3_ADC"],"min_width":"0.60mm","why":"ADR0025 U_AFE8.8 full1.20mm entry plus short0.60mm leaf to its own C_OPA8.1. No vias or long neckdowns; all eight cells independently collision-screened. Not current/thermal qualification."}
+  - {zone: LT3041_INPUT_NECKS, nets: [5V_LDO_HOLD], min_width: 0.25mm, why: "ADR0025 exact IN1/2/3 package exits to local1.20mm input bus; source geometry only, no equal-current-sharing or fault/thermal qualification."}
+  - {zone: LT3041_OUTPUT_NECKS, nets: [3V3_ADC], min_width: 0.25mm, why: "ADR0025 exact OUT13/14 short branches to paired47uF ceramics and1.20mm bus. Full-branch current accounting remains owed; OUTS12 is separate."}
+  - {zone: LT3041_OUTS_LOCAL, nets: [3V3_ADC], min_width: 0.20mm, why: "ADR0025 low-current OUTS12 Kelvin sense lead only; meets load copper at C_LDO_OUT.1, never a distribution trunk. Realized contact topology must be regraded."}
+  - {zone: LT3041_PGFB_LOCAL, nets: [5V_LDO_HOLD], min_width: 0.20mm, why: "ADR0025 PGFB8 high strap to IN bus, not an input-current feed. Local source/native pin identity and whole-capsule extent are mandatory."}
+  - {zone: R_PRE_CROSSOVER_LOCAL, nets: [5V_LDO_HOLD], min_width: 0.20mm, why: "Exact 1.00mm F.Cu launch from R_PRE.2 to the graded crossover via. R_PRE=22ohm bounds this precharge-control branch; the B.Cu continuation remains full1.20mm. This is not a distribution-trunk relaxation."}
+  - {zone: LT3041_GROUND_NECKS, nets: [GND], min_width: 0.20mm, why: "ADR0025 exact ILIM7/GND10/11 short bonds to EP15. Not capacitor load-return branches or a generic ground neckdown."}
+  - zone: ADC_WEST_LOCAL
+    nets: [3V3_ADC, LDO_A_FILT, GND]
+    min_width: 0.18mm
+    why: "ADR0015 west pin-to-cap subtotal3.698251072771mm/four0.18mm items; north knee retained, south knee moved0.05mm. Superseded0.60mm cap nubs retired in favor of full feed entries. GND_A8 bend/drop relocated with native VMID2 return connectivity preserved; all other ground banks unchanged. Normal ADC leaf allocation<=0.15A; retained2.5A conditional branch accounting is not a thermal/fault PASS. Whole-capsule extents and exact additive budgets prohibit unbounded neck-down. ADR0030 scope reconciliation preserves the accepted north return column: its two0.18mm GND capsules reach xmin89.36mm,0.14mm outside the old89.5mm edge. The reviewed rect:[89.35,67.7,93.6,72.35] adds0.6975mm2 and0.01mm source slack while retaining full-capsule containment. This expands both the0.18mm width and paired0.20mm clearance geography for the same three nets; both clearance items overlap and either authorized net qualifies. Independent complete-population review finds current membership unchanged:26 width-eligible source tracks and1290 distinct-net clearance pairs, with no newly overlapping pad/track/via/area. Existing numeric floors, return copper and reservations remain unchanged; future geometric permission is larger. These are source predicates, not native, thermal, return-cut, assembly or order qualification."
+  - {zone: ADC_ANALOG_ESCAPE_NORTH, nets: [ADC1P, ADC1N, ADC2P, ADC2N, ADC3P, ADC3N, ADC4P, ADC4N], min_width: 0.15mm, why: "Exact CS5308P north analog-input bundle from all eight 0.4mm-pitch package pads through their common-mode capacitors, plus the ADC2N B.Cu router landing. All capsules remain inside this bounded source area; ordinary 0.20mm width resumes at the landing. No generic long thin route or board-wide floor reduction."}
+  - {zone: ADC_ANALOG_ESCAPE_SOUTH, nets: [ADC5P, ADC5N, ADC6P, ADC6N, ADC7P, ADC7N, ADC8P, ADC8N], min_width: 0.15mm, why: "Exact independently routed CS5308P south analog-input bundle from all eight 0.4mm-pitch package pads through their common-mode capacitors. All capsules remain inside this bounded source area; ordinary 0.20mm routing resumes beyond it. No generic long thin route or board-wide floor reduction."}
+  - {zone: CLK_WEST_DIGITAL, nets: [MCH_MCLK, FSYNC_BUF, MCH_BCLK], min_width: 0.18mm, why: "ADR0011 exact U_CLK.1/.2/.3 source launches. The bounded F.Cu area wholly contains each 0.18mm pad-row escape including the new 1.265685mm/two-item MCH_MCLK elbow; 0.36mm resumes at its reviewed southwest exit. FSYNC remains complete and excluded while MCH_MCLK/MCH_BCLK remain partial. No long thin route or actual50 ohm claim."}
+  - {zone: CLOCK_SUPPLY_LOCAL, nets: [3V3_ADC], min_width: 0.35mm, why: "Exact co-designed VCC8-to-C_CLK continuation1.866032mm/two0.35mm items. The short0.18mm package launch retains CLK_EAST_DIGITAL precedence at the shared join; all supply lengths and full1.20mm distribution remain independently graded. No SI or release claim."}
+  - {zone: CLK_EAST_DIGITAL, nets: [BCLK_BUF, MCH_FSYNC, MCLK_BUF, 3V3_ADC], min_width: 0.18mm, why: "ADR0011 exact U_CLK.5/.6/.7/.8 source launches. The bounded F.Cu area contains only the short 0.18mm pad-row escapes needed by the native 0.5mm-pitch package; each signal resumes at ordinary 0.36mm and U_CLK.8 resumes at 0.35mm before the 1.20mm distribution tree. No long thin route or impedance claim."}
+  - {zone: ADC_BCLK_LAUNCH, nets: [ADC_BCLK], min_width: 0.18mm, why: "ADR0011 exact U_ADC.29 escape: one0.90 mm local item, with full round ends contained; an ordinary0.36mm north/east continuation clears the adjacent reviewed GND escape before generic routing. Ordinary class floor stays0.36 mm and width/extent is bounded independently of item overlap."}
+  - {zone: ADC_MCLK_LAUNCH, nets: [ADC_MCLK], min_width: 0.18mm, why: "Exact U_ADC.34 launch co-designed with C_LDO_D: three0.18mm items under3mm, with full round ends contained;0.36mm resumes at(101.2,68.85). No digital vias, class relaxation, solved impedance or physical acceptance."}
+  - {zone: TDM_SCHMITT_INPUT_LAUNCH, nets: [TDM_RAW], min_width: 0.18mm, why: "Exact 0.675mm F.Cu landing into U_TDM_SCH.2 at the retained small-package terminal; ordinary0.36mm width resumes before the package row. The clock absolute0.18mm floor, three-item/3.0mm realized guard and zero-via section contract remain unchanged."}
+  - {zone: BUCK_SW_EXIT, nets: [BUCK_SW], min_width: 0.75mm, why: "ADR0012 one0.90mm by0.75mm off-centre SW5 exit, full2.5A accounting, then1.20mm to L_BUCK.1. Native full-copper clearance0.25mm. The separate C_BUCK_BST.2 gate-charge return has an exact bounded source owner; no thermal PASS is claimed."}
+  - {zone: BUCK_SW_BOOTSTRAP_RETURN, nets: [BUCK_SW], min_width: 0.20mm, why: "Exact short F.Cu C_BUCK_BST.2 bootstrap return to the prepared full-width switch-node island. This branch carries gate-charge pulse current rather than converter output current; its bounded geometry closes the local high-dv/dt loop without relaxing the U_BUCK.5-to-L_BUCK.1 path."}
+  - {zone: ADC_EAST_SUPPLY_LOCAL, nets: [3V3_ADC, GND], min_width: 0.18mm, why: "ADR0013 exact ADC31/GND30 and C_VDDIO leaf capsules. VDDIO stays F.Cu;0.60mm cap entry joins an explicit1.20mm segment. No power-layer transfer or full-current barrel assumption."}
+  - {zone: ADC_FILT_NORTH_LOCAL, nets: [FILT1P, GND], min_width: 0.18mm, why: "ADR0013 ADC43 short0.18mm exit then0.35mm to1uF/10uF ceramics; independent ADC44 GND drop. The exact C_FILT1_10U.1 continuation reaches one off-pad F.Cu/B.Cu transition before the full1.20mm B.Cu landing; it preserves the strict-width distribution path and gives the router a source outside the local analog bundle. Exact per-net length/count and transition guards apply; reservoir/resistor feeds remain generic and thermal/fault qualification is owed."}
+  - {zone: ADC_FILT_SOUTH_LOCAL, nets: [FILT2P, GND], min_width: 0.18mm, why: "ADR0013 independently screened south filter bank and exact C_FILT2_10U.1 off-pad F.Cu/B.Cu transition. The full1.20mm B.Cu landing clears the completed south analog bundle and preserves the same bounded width/current obligations as north; this is not filled-return or transient-current acceptance."}
+  - {zone: ADC_CS_STRAP_LOCAL, nets: [3V3_ADC], min_width: 0.18mm, why: "ADR0013 fixed SPI_CS hardware-high strap, not a load-distribution trunk. Exact four narrow items join1.20mm F.Cu entry. Unchanged2.5A conditional resistance and unknown fault duration remain separate from ordinary logic operation."}
+  - {zone: ADC_CFG_NORTH_LOCAL, nets: [CFG1, CFG2], min_width: 0.18mm, why: "ADR0013 static configuration leaves, three exact short items per net to off-pad0.50/0.20mm drops; no power-current allocation. Ordinary0.20mm control routing resumes on legal F/B layers; whole-capsule and output length/count limits apply."}
+  - {zone: ADC_CFG_SOUTH_LOCAL, nets: [CFG4, CFG5], min_width: 0.18mm, why: "ADR0013 south configuration leaves, independently native-screened at unchanged clearance and drill floors. Not a permission for long thin control routing."}
+  - {zone: ADC_CFG3_GND_LOCAL, nets: [GND], min_width: 0.18mm, why: "ADR0013 CONFIG3 ground strap intentionally reaches EP; it is not GND_A6/8 or GND_D30 and cannot substitute for their separate return drops."}
+  - {zone: ISO1_SUPPLY_LOCAL, nets: [5V_LDO_HOLD], min_width: 0.30mm, why: "ADR0014 exact pin8-to-own100nF branch,0.30/0.60mm then explicit1.20mm F.Cu entry;2.017283739mm/two narrowed items. Ordinary0.25mm clearance and full2.5A conditional accounting; no thermal/fault PASS."}
+  - {zone: ISO2_SUPPLY_LOCAL, nets: [5V_LDO_HOLD], min_width: 0.30mm, why: "ADR0014 independently native-screened second cell; same bounded geometry/current obligations as ISO1, no shared-current assumption."}
+  - {zone: ISO3_SUPPLY_LOCAL, nets: [5V_LDO_HOLD], min_width: 0.30mm, why: "ADR0014 independently native-screened third cell; same bounded geometry/current obligations as ISO1."}
+  - {zone: ISO4_SUPPLY_LOCAL, nets: [5V_LDO_HOLD], min_width: 0.30mm, why: "ADR0014 independently native-screened fourth cell; same bounded geometry/current obligations as ISO1."}
+  - {zone: ISO4_GROUND_RETURN_LOCAL, nets: [GND], min_width: 0.25mm, why: "Exact U_ISO4.4 ground-pad escape to its own 0.50/0.20mm reference-plane via. The 0.25mm neck is limited to the complete 0.3606mm F.Cu capsule between adjacent 0.50mm-pitch pins; ordinary 0.30mm GND width resumes at the via and no clearance reduction is granted."}
+  - {zone: ISO5_SUPPLY_LOCAL, nets: [5V_LDO_HOLD], min_width: 0.30mm, why: "ADR0014 independently screened south rotation; exact own pin8/capacitor/entry, not inferred from north clearance."}
+  - {zone: ISO6_SUPPLY_LOCAL, nets: [5V_LDO_HOLD], min_width: 0.30mm, why: "ADR0014 independent sixth-cell native screen; whole capsules and exact additive HOLD budget apply."}
+  - {zone: ISO7_SUPPLY_LOCAL, nets: [5V_LDO_HOLD], min_width: 0.30mm, why: "ADR0014 independent seventh-cell native screen; whole capsules and exact additive HOLD budget apply."}
+  - {zone: ISO8_SUPPLY_LOCAL, nets: [5V_LDO_HOLD], min_width: 0.30mm, why: "ADR0014 independent eighth-cell native screen; whole capsules and exact additive HOLD budget apply."}
+  - {zone: POWER_MONITOR_SUPPLY_LOCAL, nets: [5V_LDO_HOLD], min_width: 0.30mm, why: "ADR0014 exact VDD4-to-C_PWR branch1.420563269mm and separate MR3 high strap1.20mm. Same electrical rail does not interchange the two pin roles. No generic long neckdown."}
+  - {zone: AUDIO_MONITOR_SUPPLY_LOCAL, nets: [5V_LDO_HOLD], min_width: 0.30mm, why: "ADR0014 exact VDD4-to-C_AUDIO branch3.151086444mm/three items; all native copper clears0.25mm. Actual ground-loop/thermal/first-power checks remain owed."}
+  - {zone: AUDIO_MONITOR_CONTROL_LOCAL, nets: [AUDIO_CT, AUDIO_EN], min_width: 0.15mm, why: "Exact co-designed TPS389001 monitor pin field. The complete three-pad AUDIO_CT tree and the U_AUDIO.6-to-R_AUDIO_PU.2 AUDIO_EN bridge use only bounded low-current control copper at the declared advanced-prototype 0.15mm width floor. Ordinary long routing resumes at0.20mm; no power, ground, thermal or generic neckdown permission."}
+  - {zone: DUMP_LOGIC_SUPPLY_LOCAL, nets: [5V_LDO_HOLD], min_width: 0.60mm, why: "ADR0014 cap-side feed2.387301431mm/two items then explicit1.20mm entry. Local capacitor entry alone is not a completed U_DUMP supply/ground loop."}
+  - {zone: RESET_B_STRAP_LOCAL, nets: [3V3_ADC], min_width: 0.35mm, why: "ADR0014 B2 fixed-high trigger input leaf1.80mm/one item then explicit1.20mm entry. Not the VCC8 bypass and not a distribution trunk."}
+  - {zone: RESET_SUPPLY_LOCAL, nets: [3V3_ADC], min_width: 0.60mm, why: "ADR0014 VCC8-to-C_RST2 branch1.820439508mm/one item, ordinary0.25mm clearance; VCC and B trigger roles remain distinct."}
+  - {zone: ADC_FEED_NORTH, nets: [3V3_ADC], min_width: 0.18mm, why: "ADR0015 exact6.938221894mm/six-item capacitor-to-entry feed. Full round capsules confined; explicit1.20mm resumes outside the cap field. Conditional full2.5A accounting is not fault-duration or thermal acceptance."}
+  - {zone: ADC_FEED_SOUTH, nets: [3V3_ADC], min_width: 0.18mm, why: "ADR0015 independently screened south6.938221894mm/six-item feed; same current/extent limits, no power vias or layer swaps."}
+  - {zone: ADC_FEED_NORTH_TRUNK_ESCAPE, nets: [3V3_ADC], min_width: 0.60mm, why: "Exact bounded F.Cu branch from the north ADC feed trunk around the outside of the FILT resistor to its 3V3_ADC pad. Its complete capsule is disjoint from the adjacent 0.18mm ADC feed, so KiCad insideArea cannot apply this floor to narrow copper."}
+  - {zone: ADC_FEED_SOUTH_TRUNK_ESCAPE, nets: [3V3_ADC], min_width: 0.60mm, why: "Independent south F.Cu branch around the outside of the FILT resistor to its 3V3_ADC pad. Its complete capsule is disjoint from the adjacent 0.18mm ADC feed; the global trunk remains1.20mm."}
+  - {zone: VMID1_TOP_TRUNK_ESCAPE, nets: [3V3_ADC], min_width: 0.60mm, why: "Bounded low-current R_VMID1_TOP.1 leaf around the VMID1_EXT obstacle to an open F.Cu trunk attachment cell. This is not a distribution-trunk relaxation."}
+  - {zone: BUCK_MONITOR_SENSE_TRUNK_ESCAPE, nets: [5V_BUCK], min_width: 0.30mm, why: "Exact bounded R_PWR_TOP.1 high-impedance divider leaf to one0.50/0.20mm via and a1.20mm B.Cu landing. This branch carries monitor current, not converter output current; the via has an exact A-VIA owner and no generic neckdown."}
+  - {zone: POWER_MONITOR_PULLUP_TRUNK_ESCAPE, nets: [5V_LDO_HOLD], min_width: 0.60mm, why: "Exact bounded R_PWR_PU.1 F.Cu leaf to a full-width attachment cell. The routed tree may transfer this low-current pull-up to B.Cu under the exact A-VIA contract; no generic neckdown."}
+  - {zone: POWER_MONITOR_SUPPLY_TRUNK_ESCAPE, nets: [5V_LDO_HOLD], min_width: 0.30mm, why: "Exact bounded continuation from the existing0.30mm U_PWR.3/.4-to-C_PWR.1 island through a0.60mm F.Cu leaf and one0.50/0.20mm via into the1.20mm B.Cu distribution tree. The via has an exact A-VIA owner; no generic neckdown."}
+  - {zone: AUDIO_MONITOR_SUPPLY_TRUNK_ESCAPE, nets: [5V_LDO_HOLD], min_width: 0.30mm, why: "Exact bounded continuation from the existing0.30mm U_AUDIO.4-to-C_AUDIO.1 island through a0.60mm F.Cu leaf and one0.50/0.20mm via into the1.20mm B.Cu distribution tree. The via has an exact A-VIA owner; no generic neckdown."}
+  - {zone: PRECHARGE_TRUNK_ESCAPE, nets: [5V_LDO_HOLD], min_width: 0.60mm, why: "Exact bounded Q_PRE.3 F.Cu leaf through one0.50/0.20mm via to the existing1.20mm B.Cu precharge bridge. This control branch is not a distribution trunk; the via has an exact A-VIA owner and no generic neckdown."}
+  - {zone: RESET_PULLUP_SUPPLY_ESCAPE, nets: [3V3_ADC], min_width: 0.60mm, why: "Exact1.00mm high-impedance reset pullup leaf to off-pad0.50/0.20mm via. Full1.20mm B.Cu trunk and conservative0.30A A-VIA screening remain required."}
+  - {zone: RESET_TIMING_SUPPLY_ESCAPE, nets: [3V3_ADC], min_width: 0.30mm, why: "Exact two-item timing-resistor supply leaf to off-pad0.50/0.20mm via; this resistor leaf is not a distribution trunk. Native0.25mm clearance, full1.20mm B.Cu and0.30A A-VIA screening remain required."}
+
+scoped_clearances:
+  - zone: ADC_WEST_LOCAL
+    nets: [3V3_ADC, LDO_A_FILT, GND]
+    clearance: 0.20mm
+    why: "ADR0010 exact 0.4 mm ADC pad-row launches:0.18 mm source stubs retain>=0.21 mm foreign-pad gap and>=0.20 mm between named seeds. Both items must overlap this bounded F.Cu area. Preserve global fab floors,0.25 mm ordinary route/stitch clearance and0.25 mm via/VMID wide-return geometry; no global isolation waiver. ADR0030 scope reconciliation preserves the accepted north return column: its two0.18mm GND capsules reach xmin89.36mm,0.14mm outside the old89.5mm edge. The reviewed rect:[89.35,67.7,93.6,72.35] adds0.6975mm2 and0.01mm source slack while retaining full-capsule containment. This expands both the0.18mm width and paired0.20mm clearance geography for the same three nets; both clearance items overlap and either authorized net qualifies. Independent complete-population review finds current membership unchanged:26 width-eligible source tracks and1290 distinct-net clearance pairs, with no newly overlapping pad/track/via/area. Existing numeric floors, return copper and reservations remain unchanged; future geometric permission is larger. These are source predicates, not native, thermal, return-cut, assembly or order qualification."
+  - {zone: CLK_WEST_DIGITAL, nets: [MCH_MCLK, FSYNC_BUF, MCH_BCLK], clearance: 0.20mm, why: "ADR0011 native0.5mm U_CLK.1/.2/.3 row geometry: exact 0.18mm launches retain at least0.235mm foreign-pad gap inside the bounded F.Cu area. Each widened exit is independently screened at ordinary0.25mm; the area grants no other net or layer an isolation waiver."}
+  - {zone: CLK_EAST_DIGITAL, nets: [BCLK_BUF, MCH_FSYNC, MCLK_BUF, 3V3_ADC], clearance: 0.20mm, why: "ADR0011 native 0.5mm U_CLK.5/.6/.7/.8 row geometry: exact 0.18mm launches retain at least 0.235mm foreign-pad gap inside the bounded F.Cu area. Widened signal and supply exits beyond the row retain ordinary 0.25mm clearance."}
+  - {zone: ADC_BCLK_LAUNCH, nets: [ADC_BCLK], clearance: 0.20mm, why: "ADR0011 native U_ADC.29 row escape retains0.210 mm minimum gap. Only this small F.Cu area and exact digital net qualify; the 0.36mm north/east continuation around the adjacent GND via is independently screened at ordinary0.25mm."}
+  - {zone: ADC_MCLK_LAUNCH, nets: [ADC_MCLK], clearance: 0.20mm, why: "ADR0011 native U_ADC.34 row escape retains0.210 mm minimum gap. Only this small F.Cu area and exact digital net qualify; the full0.36 mm exit is independently screened at0.25 mm."}
+  - {zone: ADC_FSYNC_CORNER, nets: [ADC_FSYNC, ADC8N, ADC8P], clearance: 0.20mm, why: "ADR0011 U_ADC.24 is bulk-landable at an off-centre in-pad start: retain0.36 mm through the corner. A final bounded0.18mm neck reaches a 0.30/0.20mm F.Cu/B.Cu transition centered between the adopted ADC8N and ADC8P escapes. Exact native shapes retain0.20mm scoped copper clearance; all copper beyond this local area retains ordinary0.25mm clearance."}
+  - {zone: ADC_DOUT1_CORNER, nets: [TDM_RAW], clearance: 0.20mm, why: "ADR0011 U_ADC.25 is bulk-landable at an off-centre in-pad start: retain0.36 mm, not a thin stub. Only its exact first corner item needs0.20 mm against unused physical pad26; measured minimum0.210 mm. NC identity remains unchanged and subsequent full-width exit clears0.25 mm."}
+
+  - {zone: ADC_EAST_SUPPLY_PITCH, nets: [3V3_ADC, LDO_D_FILT, GND], clearance: 0.20mm, why: "ADR0013 exact digital-side supply row only; widened clock entries and all vias independently retain0.25mm. No general clearance relaxation."}
+  - {zone: ADC_FILT_NORTH_PITCH, nets: [FILT1P, GND], clearance: 0.20mm, why: "ADR0013 adjacent0.4mm-pitch filter pins, bounded source capsules; ceramic-side routing remains ordinary clearance."}
+  - {zone: ADC_FILT_SOUTH_PITCH, nets: [FILT2P, GND], clearance: 0.20mm, why: "ADR0013 independent south filter pin-row screen; preserve common inner GND planes."}
+  - {zone: ADC_VMID_NORTH_PITCH, nets: [VMID1], clearance: 0.20mm, why: "ADR0013 full0.35mm VMID corner entry, then outward/north routing clears the two configuration exits. Exact native shapes, no copied EVM geometry."}
+  - {zone: ADC_VMID_SOUTH_PITCH, nets: [VMID2], clearance: 0.20mm, why: "ADR0013 independently screened full-width south VMID corner; local0.20mm gap only, no external buffer-bias connection."}
+  - {zone: ADC_CS_STRAP_PITCH, nets: [3V3_ADC], clearance: 0.20mm, why: "ADR0013 hardware-high pin38 exit between neighboring pin37/39 lands. Long strap section was separately screened at ordinary0.25mm."}
+  - {zone: ADC_CFG_NORTH_PITCH, nets: [CFG1, CFG2], clearance: 0.20mm, why: "ADR0013 staggered CONFIG1/2 exits against actual0.8mm-long pin lands and nearby10nF pad; keep0.18mm widths and ordinary0.25mm via clearance."}
+  - {zone: ADC_CFG_SOUTH_PITCH, nets: [CFG4, CFG5], clearance: 0.20mm, why: "ADR0013 independent CONFIG4/5 screen, including asymmetric power pin9 and all current source banks."}
+  - {zone: ADC_RESET_PITCH, nets: [ADC_RESET_N], clearance: 0.20mm, why: "ADR0013 full0.20mm RESET exit to a local off-pad via before the common-mode capacitor row. Generic continuation is not yet routed."}
+  - {zone: ADC_FEED_CAP_GAP_NORTH, nets: [3V3_ADC], clearance: 0.23mm, why: "ADR0015 measured native0603 lands0.900mm on1.550mm centers:0.650mm gap minus0.180mm trace leaves0.235mm each side. Explicit bounded0.230mm requirement; unchanged0.127mm fabrication floor and ordinary0.25mm full-width entries. No global isolation waiver."}
+  - {zone: ADC_FEED_CAP_GAP_SOUTH, nets: [3V3_ADC], clearance: 0.23mm, why: "ADR0015 independently measured south0603 gaps0.650mm and actual0.235mm trace-to-pad clearance. Same bounded0.230mm rule, unchanged global class/fabrication limits."}
+  - {zone: ISO1_SUPPLY_LOCAL, nets: [5V_LDO_HOLD, AUDIO_EN], clearance: 0.20mm, why: "Exact U_ISO1 AUDIO_EN crossover cell and adjacent HOLD supply branch. Native minimum is0.213mm; both complete item shapes must remain inside this expanded local area. No other net, layer, or route segment qualifies."}
+  - {zone: ISO2_SUPPLY_LOCAL, nets: [5V_LDO_HOLD, AUDIO_EN], clearance: 0.20mm, why: "Exact U_ISO2 AUDIO_EN crossover cell and adjacent HOLD supply branch; same independently bounded0.213mm native minimum and item containment as ISO1."}
+  - {zone: ISO3_SUPPLY_LOCAL, nets: [5V_LDO_HOLD, AUDIO_EN], clearance: 0.20mm, why: "Exact U_ISO3 AUDIO_EN crossover cell and adjacent HOLD supply branch; independently bounded to this cell."}
+  - {zone: ISO4_SUPPLY_LOCAL, nets: [5V_LDO_HOLD, AUDIO_EN], clearance: 0.20mm, why: "Exact U_ISO4 AUDIO_EN crossover cell and adjacent HOLD supply branch; independently bounded to this cell."}
+  - {zone: ISO5_SUPPLY_LOCAL, nets: [5V_LDO_HOLD, AUDIO_EN], clearance: 0.20mm, why: "Exact south-rotated U_ISO5 AUDIO_EN crossover cell and adjacent HOLD supply branch; independently bounded to this cell."}
+  - {zone: ISO6_SUPPLY_LOCAL, nets: [5V_LDO_HOLD, AUDIO_EN], clearance: 0.20mm, why: "Exact south-rotated U_ISO6 AUDIO_EN crossover cell and adjacent HOLD supply branch; independently bounded to this cell."}
+  - {zone: ISO7_SUPPLY_LOCAL, nets: [5V_LDO_HOLD, AUDIO_EN], clearance: 0.20mm, why: "Exact south-rotated U_ISO7 AUDIO_EN crossover cell and adjacent HOLD supply branch; independently bounded to this cell."}
+  - {zone: ISO8_SUPPLY_LOCAL, nets: [5V_LDO_HOLD, AUDIO_EN], clearance: 0.20mm, why: "Exact south-rotated U_ISO8 AUDIO_EN crossover cell and adjacent HOLD supply branch; independently bounded to this cell."}
+  - {zone: AUDIO_MONITOR_CONTROL_LOCAL, nets: [AUDIO_CT, AUDIO_EN], clearance: 0.127mm, hole_clearance: 0.20mm, why: "Exact simultaneous TPS389001 timer/enable escape at the declared advanced-prototype fabrication floor. The complete AUDIO_CT front-copper tree is co-screened with the two-transition AUDIO_EN bridge, all adjacent native pads, power copper and plated holes. The 0.25/0.15mm AUDIO_EN vias are off-pad; ordinary0.25mm control clearance resumes outside this bounded cell."}
+
+# Existing output-board projection consumer; NOT filled-plane continuity,
+  # ADR0020 pad-to-pad only; these do not license narrower route clearances.
+  - {zone: ADC_ANALOG_ESCAPE_NORTH, nets: [ADC1P, ADC1N, ADC2P, ADC2N, ADC3P, ADC3N, ADC4P, ADC4N], clearance: 0.127mm, hole_clearance: 0.20mm, why: "Exact simultaneous north analog-input source bundle at the declared advanced-prototype fabrication floor. Every track, off-pad 0.30/0.20mm via and foreign native shape is independently screened; ordinary 0.20mm route clearance resumes outside this bounded area."}
+  - {zone: ADC_ANALOG_ESCAPE_SOUTH, nets: [ADC5P, ADC5N, ADC6P, ADC6N, ADC7P, ADC7N, ADC8P, ADC8N], clearance: 0.127mm, hole_clearance: 0.20mm, why: "Exact simultaneous south analog-input source bundle at the declared advanced-prototype fabrication floor. Every track, off-pad 0.30/0.20mm via and foreign native shape is independently screened; ordinary 0.20mm route clearance resumes outside this bounded area."}
+  - {zone: PKG_PAD_ESD1_2_3, nets_a: ["unconnected-(U_ESD1-NC2-Pad2)"], nets_b: ["AUDIO_P1"], clearance: 0.15mm, pads_only: true, why: "ADR0020 TI SLLSEG9C DRL identity; retained KiCad SOT-553 0.500mm pitch/0.350mm land gives measured0.150mm gap (not TI's0.300mm-wide example). Exactly NC2/IO1 pads only; no track/via/pour or global-floor relaxation."}
+  - {zone: PKG_PAD_ESD2_2_3, nets_a: ["unconnected-(U_ESD2-NC2-Pad2)"], nets_b: ["AUDIO_P2"], clearance: 0.15mm, pads_only: true, why: "ADR0020 TI SLLSEG9C DRL identity; retained KiCad SOT-553 0.500mm pitch/0.350mm land gives measured0.150mm gap (not TI's0.300mm-wide example). Exactly NC2/IO1 pads only; no track/via/pour or global-floor relaxation."}
+  - {zone: PKG_PAD_ESD3_2_3, nets_a: ["unconnected-(U_ESD3-NC2-Pad2)"], nets_b: ["AUDIO_P3"], clearance: 0.15mm, pads_only: true, why: "ADR0020 TI SLLSEG9C DRL identity; retained KiCad SOT-553 0.500mm pitch/0.350mm land gives measured0.150mm gap (not TI's0.300mm-wide example). Exactly NC2/IO1 pads only; no track/via/pour or global-floor relaxation."}
+  - {zone: PKG_PAD_ESD4_2_3, nets_a: ["unconnected-(U_ESD4-NC2-Pad2)"], nets_b: ["AUDIO_P4"], clearance: 0.15mm, pads_only: true, why: "ADR0020 TI SLLSEG9C DRL identity; retained KiCad SOT-553 0.500mm pitch/0.350mm land gives measured0.150mm gap (not TI's0.300mm-wide example). Exactly NC2/IO1 pads only; no track/via/pour or global-floor relaxation."}
+  - {zone: PKG_PAD_ESD5_2_3, nets_a: ["unconnected-(U_ESD5-NC2-Pad2)"], nets_b: ["AUDIO_P5"], clearance: 0.15mm, pads_only: true, why: "ADR0020 TI SLLSEG9C DRL identity; retained KiCad SOT-553 0.500mm pitch/0.350mm land gives measured0.150mm gap (not TI's0.300mm-wide example). Exactly NC2/IO1 pads only; no track/via/pour or global-floor relaxation."}
+  - {zone: PKG_PAD_ESD6_2_3, nets_a: ["unconnected-(U_ESD6-NC2-Pad2)"], nets_b: ["AUDIO_P6"], clearance: 0.15mm, pads_only: true, why: "ADR0020 TI SLLSEG9C DRL identity; retained KiCad SOT-553 0.500mm pitch/0.350mm land gives measured0.150mm gap (not TI's0.300mm-wide example). Exactly NC2/IO1 pads only; no track/via/pour or global-floor relaxation."}
+  - {zone: PKG_PAD_ESD7_2_3, nets_a: ["unconnected-(U_ESD7-NC2-Pad2)"], nets_b: ["AUDIO_P7"], clearance: 0.15mm, pads_only: true, why: "ADR0020 TI SLLSEG9C DRL identity; retained KiCad SOT-553 0.500mm pitch/0.350mm land gives measured0.150mm gap (not TI's0.300mm-wide example). Exactly NC2/IO1 pads only; no track/via/pour or global-floor relaxation."}
+  - {zone: PKG_PAD_ESD8_2_3, nets_a: ["unconnected-(U_ESD8-NC2-Pad2)"], nets_b: ["AUDIO_P8"], clearance: 0.15mm, pads_only: true, why: "ADR0020 TI SLLSEG9C DRL identity; retained KiCad SOT-553 0.500mm pitch/0.350mm land gives measured0.150mm gap (not TI's0.300mm-wide example). Exactly NC2/IO1 pads only; no track/via/pour or global-floor relaxation."}
+  - {zone: PKG_PAD_CLK_1_2, nets_a: ["MCH_MCLK"], nets_b: ["FSYNC_BUF"], clearance: 0.15mm, pads_only: true, why: "ADR0020 TI SCES366L DCU identity; retained KiCad VSSOP-8 0.500mm pitch/0.350mm land gives measured0.150mm gap (not TI's0.300mm-wide example). Exactly this adjacent pad/net pair; existing launch isolation and all width floors remain."}
+  - {zone: PKG_PAD_CLK_2_3, nets_a: ["FSYNC_BUF"], nets_b: ["MCH_BCLK"], clearance: 0.15mm, pads_only: true, why: "ADR0020 TI SCES366L DCU identity; retained KiCad VSSOP-8 0.500mm pitch/0.350mm land gives measured0.150mm gap (not TI's0.300mm-wide example). Exactly this adjacent pad/net pair; existing launch isolation and all width floors remain."}
+  - {zone: PKG_PAD_CLK_3_4, nets_a: ["MCH_BCLK"], nets_b: ["GND"], clearance: 0.15mm, pads_only: true, why: "ADR0020 TI SCES366L DCU identity; retained KiCad VSSOP-8 0.500mm pitch/0.350mm land gives measured0.150mm gap (not TI's0.300mm-wide example). Exactly this adjacent pad/net pair; existing launch isolation and all width floors remain."}
+  - {zone: PKG_PAD_CLK_5_6, nets_a: ["BCLK_BUF"], nets_b: ["MCH_FSYNC"], clearance: 0.15mm, pads_only: true, why: "ADR0020 TI SCES366L DCU identity; retained KiCad VSSOP-8 0.500mm pitch/0.350mm land gives measured0.150mm gap (not TI's0.300mm-wide example). Exactly this adjacent pad/net pair; existing launch isolation and all width floors remain."}
+  - {zone: PKG_PAD_CLK_6_7, nets_a: ["MCH_FSYNC"], nets_b: ["MCLK_BUF"], clearance: 0.15mm, pads_only: true, why: "ADR0020 TI SCES366L DCU identity; retained KiCad VSSOP-8 0.500mm pitch/0.350mm land gives measured0.150mm gap (not TI's0.300mm-wide example). Exactly this adjacent pad/net pair; existing launch isolation and all width floors remain."}
+  - {zone: PKG_PAD_CLK_7_8, nets_a: ["MCLK_BUF"], nets_b: ["3V3_ADC"], clearance: 0.15mm, pads_only: true, why: "ADR0020 TI SCES366L DCU identity; retained KiCad VSSOP-8 0.500mm pitch/0.350mm land gives measured0.150mm gap (not TI's0.300mm-wide example). Exactly this adjacent pad/net pair; existing launch isolation and all width floors remain."}
+  - {zone: PKG_PAD_QIN_3_4, nets_a: ["12V_PROTECTED"], nets_b: ["Q_IN_GATE"], clearance: 0.23mm, pads_only: true, why: "ADR0020 Diodes DS37204 Rev2-2 p.5 C0.650/X2=0.420/G0.230mm land drawing, measured native source3/gate4 gap0.230mm. Pad-pair-only exception; preserve0.250mm power-control routing, clamp and all current/voltage requirements."}
+
+# Existing output-board projection consumer; NOT filled-plane continuity,
+# per-net reach coverage, pad/hole/antipad clearance or an impedance solver.
+# All13 governed digital nets are source-owned F.Cu/zero-via paths. The
+# realized digital path/census gates enforce that restriction independently;
+# a B.Cu projection declaration with zero governed tracks would be vacuous.
+reference_plane_checks:
+  ADC_DIGITAL_RETURN:
+    signal_layer: F.Cu
+    reference_layer: In1.Cu
+    reference_net: GND
+    signal_nets: [MCH_MCLK, MCH_BCLK, MCH_FSYNC, MCLK_BUF, BCLK_BUF, FSYNC_BUF, ADC_MCLK, ADC_BCLK, ADC_FSYNC, TDM_RAW, TDM_CLEAN, TDM_BUFFERED, ADC_TDM]
+    min_track_clearance_mm: 0.25
+    min_via_clearance_mm: 0.50
+
+# Existing realized-copper consumer: report ordered endpoint paths and reject
+# layer transitions on these single-layer digital sections. Do not invent an equal-length/skew
+# requirement for dissimilar clocks; device/package delays and unmeasured
+# pad-entry copper do not cancel.
+length_match:
+  MCH_INPUT_SECTIONS:
+    adr: 0010-route-stack-and-current-paths
+    intent: "Report biased digital paths: each MCH clock input and the complete ADC-to-MCH TDM return, each with its real pull-down leaf. No equal-length claim; all branches and active-stage delays remain distinct."
+    members:
+      MCLK: [MCH_MCLK]
+      BCLK: [MCH_BCLK]
+      FSYNC: [MCH_FSYNC]
+      TDM: [TDM_RAW, TDM_CLEAN, TDM_BUFFERED, ADC_TDM]
+    topology: tree
+    congruent_pads: false
+    no_vias: true
+    max_spread_mm: report
+    stackup_mm: [0.2104, 1.065, 0.2104]
+    octilinear_endpoints:
+      MCLK: [J10.9, U_CLK.1]
+      BCLK: [J10.10, U_CLK.3]
+      FSYNC: [J10.12, U_CLK.6]
+      TDM: [U_ADC.25, J10.2]
+    paths:
+      MCLK:
+        - {id: main, segments: [{net: MCH_MCLK, from: J10.9, to: U_CLK.1}]}
+        - {id: pull_down, segments: [{net: MCH_MCLK, from: U_CLK.1, to: R_MCH_MCLK_PD.1}]}
+      BCLK:
+        - {id: main, segments: [{net: MCH_BCLK, from: J10.10, to: U_CLK.3}]}
+        - {id: pull_down, segments: [{net: MCH_BCLK, from: U_CLK.3, to: R_MCH_BCLK_PD.1}]}
+      FSYNC:
+        - {id: main, segments: [{net: MCH_FSYNC, from: J10.12, to: U_CLK.6}]}
+        - {id: pull_down, segments: [{net: MCH_FSYNC, from: U_CLK.6, to: R_MCH_FSYNC_PD.1}]}
+      TDM:
+        - id: main
+          segments:
+            - {net: TDM_RAW, from: U_ADC.25, to: U_TDM_SCH.2}
+            - {net: TDM_CLEAN, from: U_TDM_SCH.4, to: U_TDM.2}
+            - {net: TDM_BUFFERED, from: U_TDM.4, to: R_TDM.1}
+            - {net: ADC_TDM, from: R_TDM.2, to: J10.2}
+        - id: pull_down
+          segments:
+            - {net: TDM_RAW, from: U_TDM_SCH.2, to: R_TDM_PD.1}
+  BUFFERED_DIGITAL_SECTIONS:
+    adr: 0010-route-stack-and-current-paths
+    intent: "Report unbranched buffered clock sections; biased TDM is grouped above with the other real pull-down trees. No equal-length claim or active-delay cancellation."
+    members:
+      MCLK: [MCLK_BUF, ADC_MCLK]
+      BCLK: [BCLK_BUF, ADC_BCLK]
+      FSYNC: [FSYNC_BUF, ADC_FSYNC]
+    topology: chain
+    congruent_pads: false
+    no_vias: true
+    max_spread_mm: report
+    stackup_mm: [0.2104, 1.065, 0.2104]
+    octilinear_endpoints:
+      MCLK: [U_CLK.7, U_ADC.34]
+      BCLK: [U_CLK.5, U_ADC.29]
+      FSYNC: [U_CLK.2, U_ADC.24]
+    paths:
+      MCLK:
+        - id: main
+          segments:
+            - {net: MCLK_BUF, from: U_CLK.7, to: R_MCLK.1}
+            - {net: ADC_MCLK, from: R_MCLK.2, to: U_ADC.34}
+      BCLK:
+        - id: main
+          segments:
+            - {net: BCLK_BUF, from: U_CLK.5, to: R_BCLK.1}
+            - {net: ADC_BCLK, from: R_BCLK.2, to: U_ADC.29}
+      FSYNC:
+        - id: main
+          segments:
+            - {net: FSYNC_BUF, from: U_CLK.2, to: R_FSYNC.1}
+            - {net: ADC_FSYNC, from: R_FSYNC.2, to: U_ADC.24}
+  # ADR0019: matched P/N copper paths, including every branch after the buffers.
+  # 1 mm per section is our engineering tolerance, not a Cirrus numeric limit.
+  ANALOG_CH1_OUTPUT:
+    adr: 0019-analog-path-matching
+    intent: "Match channel 1 output P/N endpoint paths within 1 mm, with every real shunt/feedback leaf accounted. Not a controlled-impedance or component-delay claim."
+    members: {P: [OPA_P1], N: [OPA_N1]}
+    topology: tree
+    congruent_pads: false
+    no_vias: false
+    max_spread_mm: 1.0
+    router_moves: octilinear
+    elongation: meander
+    stackup_mm: [0.2104, 1.065, 0.2104]
+    octilinear_endpoints:
+      P: [U_AFE1.1, R_OUT1P.1]
+      N: [U_AFE1.7, R_OUT1N.1]
+    paths:
+      P:
+        - {id: main, segments: [{net: OPA_P1, from: U_AFE1.1, to: R_OUT1P.1}]}
+        - {id: feedback, segments: [{net: OPA_P1, from: U_AFE1.1, to: C_FB1P.2}]}
+      N:
+        - {id: main, segments: [{net: OPA_N1, from: U_AFE1.7, to: R_OUT1N.1}]}
+        - {id: feedback, segments: [{net: OPA_N1, from: U_AFE1.7, to: C_FB1N.2}]}
+  ANALOG_CH1_FILTER:
+    adr: 0019-analog-path-matching
+    intent: "Match channel 1 filter P/N endpoint paths within 1 mm, with every real shunt/feedback leaf accounted. Not a controlled-impedance or component-delay claim."
+    members: {P: [FILTER1P], N: [FILTER1N]}
+    topology: tree
+    congruent_pads: false
+    no_vias: false
+    max_spread_mm: 1.0
+    router_moves: octilinear
+    elongation: meander
+    stackup_mm: [0.2104, 1.065, 0.2104]
+    octilinear_endpoints:
+      P: [R_OUT1P.2, U_ISO1.1]
+      N: [R_OUT1N.2, U_ISO1.5]
+    paths:
+      P:
+        - {id: main, segments: [{net: FILTER1P, from: R_OUT1P.2, to: U_ISO1.1}]}
+        - {id: feedback, segments: [{net: FILTER1P, from: R_OUT1P.2, to: R_X1P.2}]}
+        - {id: shunt1, segments: [{net: FILTER1P, from: R_OUT1P.2, to: C_FILTER1P1.1}]}
+        - {id: shunt2, segments: [{net: FILTER1P, from: R_OUT1P.2, to: C_FILTER1P2.1}]}
+      N:
+        - {id: main, segments: [{net: FILTER1N, from: R_OUT1N.2, to: U_ISO1.5}]}
+        - {id: feedback, segments: [{net: FILTER1N, from: R_OUT1N.2, to: R_X1N.2}]}
+        - {id: shunt1, segments: [{net: FILTER1N, from: R_OUT1N.2, to: C_FILTER1N1.1}]}
+        - {id: shunt2, segments: [{net: FILTER1N, from: R_OUT1N.2, to: C_FILTER1N2.1}]}
+  ANALOG_CH1_ADC:
+    adr: 0019-analog-path-matching
+    intent: "Match channel 1 ADC P/N main and bias endpoint paths within 1 mm; bound the local common-mode capacitor arrival spread to 12 mm while accounting for every physical leaf. The capacitor is a low-frequency shunt and may lie inline with the main trunk, so its arrival length is not a main-path phase target. At 20 kHz, 12 mm of FR-4 propagation is below 0.001 degree using the declared 6.1 ps/mm estimate. Not a controlled-impedance or component-delay claim."
+    members: {P: [ADC1P], N: [ADC1N]}
+    topology: tree
+    congruent_pads: false
+    no_vias: false
+    max_spread_mm: 1.0
+    path_max_spread_mm:
+      main: 1.0
+      common_mode: 12.0
+      bias: 1.0
+    router_moves: octilinear
+    elongation: meander
+    stackup_mm: [0.2104, 1.065, 0.2104]
+    octilinear_endpoints:
+      P: [U_ISO1.2, U_ADC.48]
+      N: [U_ISO1.6, U_ADC.47]
+    paths:
+      P:
+        - {id: main, segments: [{net: ADC1P, from: U_ISO1.2, to: U_ADC.48}]}
+        - {id: common_mode, segments: [{net: ADC1P, from: U_ISO1.2, to: C_ADC_CM1P.1}]}
+        - {id: bias, segments: [{net: ADC1P, from: U_ISO1.2, to: R_ADC_PD1P.1}]}
+      N:
+        - {id: main, segments: [{net: ADC1N, from: U_ISO1.6, to: U_ADC.47}]}
+        - {id: common_mode, segments: [{net: ADC1N, from: U_ISO1.6, to: C_ADC_CM1N.1}]}
+        - {id: bias, segments: [{net: ADC1N, from: U_ISO1.6, to: R_ADC_PD1N.1}]}
+  ANALOG_CH2_OUTPUT:
+    adr: 0019-analog-path-matching
+    intent: "Match channel 2 output P/N endpoint paths within 1 mm, with every real shunt/feedback leaf accounted. Not a controlled-impedance or component-delay claim."
+    members: {P: [OPA_P2], N: [OPA_N2]}
+    topology: tree
+    congruent_pads: false
+    no_vias: false
+    max_spread_mm: 1.0
+    router_moves: octilinear
+    elongation: meander
+    stackup_mm: [0.2104, 1.065, 0.2104]
+    octilinear_endpoints:
+      P: [U_AFE2.1, R_OUT2P.1]
+      N: [U_AFE2.7, R_OUT2N.1]
+    paths:
+      P:
+        - {id: main, segments: [{net: OPA_P2, from: U_AFE2.1, to: R_OUT2P.1}]}
+        - {id: feedback, segments: [{net: OPA_P2, from: U_AFE2.1, to: C_FB2P.2}]}
+      N:
+        - {id: main, segments: [{net: OPA_N2, from: U_AFE2.7, to: R_OUT2N.1}]}
+        - {id: feedback, segments: [{net: OPA_N2, from: U_AFE2.7, to: C_FB2N.2}]}
+  ANALOG_CH2_FILTER:
+    adr: 0019-analog-path-matching
+    intent: "Match channel 2 filter P/N endpoint paths within 1 mm, with every real shunt/feedback leaf accounted. Not a controlled-impedance or component-delay claim."
+    members: {P: [FILTER2P], N: [FILTER2N]}
+    topology: tree
+    congruent_pads: false
+    no_vias: false
+    max_spread_mm: 1.0
+    router_moves: octilinear
+    elongation: meander
+    stackup_mm: [0.2104, 1.065, 0.2104]
+    octilinear_endpoints:
+      P: [R_OUT2P.2, U_ISO2.1]
+      N: [R_OUT2N.2, U_ISO2.5]
+    paths:
+      P:
+        - {id: main, segments: [{net: FILTER2P, from: R_OUT2P.2, to: U_ISO2.1}]}
+        - {id: feedback, segments: [{net: FILTER2P, from: R_OUT2P.2, to: R_X2P.2}]}
+        - {id: shunt1, segments: [{net: FILTER2P, from: R_OUT2P.2, to: C_FILTER2P1.1}]}
+        - {id: shunt2, segments: [{net: FILTER2P, from: R_OUT2P.2, to: C_FILTER2P2.1}]}
+      N:
+        - {id: main, segments: [{net: FILTER2N, from: R_OUT2N.2, to: U_ISO2.5}]}
+        - {id: feedback, segments: [{net: FILTER2N, from: R_OUT2N.2, to: R_X2N.2}]}
+        - {id: shunt1, segments: [{net: FILTER2N, from: R_OUT2N.2, to: C_FILTER2N1.1}]}
+        - {id: shunt2, segments: [{net: FILTER2N, from: R_OUT2N.2, to: C_FILTER2N2.1}]}
+  ANALOG_CH2_ADC:
+    adr: 0019-analog-path-matching
+    intent: "Match channel 2 ADC P/N main and bias endpoint paths within 1 mm; bound the local common-mode capacitor arrival spread to 12 mm while accounting for every physical leaf. The capacitor is a low-frequency shunt and may lie inline with the main trunk, so its arrival length is not a main-path phase target. At 20 kHz, 12 mm of FR-4 propagation is below 0.001 degree using the declared 6.1 ps/mm estimate. Not a controlled-impedance or component-delay claim."
+    members: {P: [ADC2P], N: [ADC2N]}
+    topology: tree
+    congruent_pads: false
+    no_vias: false
+    max_spread_mm: 1.0
+    path_max_spread_mm:
+      main: 1.0
+      common_mode: 12.0
+      bias: 1.0
+    router_moves: octilinear
+    elongation: meander
+    stackup_mm: [0.2104, 1.065, 0.2104]
+    octilinear_endpoints:
+      P: [U_ISO2.2, U_ADC.46]
+      N: [U_ISO2.6, U_ADC.45]
+    paths:
+      P:
+        - {id: main, segments: [{net: ADC2P, from: U_ISO2.2, to: U_ADC.46}]}
+        - {id: common_mode, segments: [{net: ADC2P, from: U_ISO2.2, to: C_ADC_CM2P.1}]}
+        - {id: bias, segments: [{net: ADC2P, from: U_ISO2.2, to: R_ADC_PD2P.1}]}
+      N:
+        - {id: main, segments: [{net: ADC2N, from: U_ISO2.6, to: U_ADC.45}]}
+        - {id: common_mode, segments: [{net: ADC2N, from: U_ISO2.6, to: C_ADC_CM2N.1}]}
+        - {id: bias, segments: [{net: ADC2N, from: U_ISO2.6, to: R_ADC_PD2N.1}]}
+  ANALOG_CH3_OUTPUT:
+    adr: 0019-analog-path-matching
+    intent: "Match channel 3 output P/N endpoint paths within 1 mm, with every real shunt/feedback leaf accounted. Not a controlled-impedance or component-delay claim."
+    members: {P: [OPA_P3], N: [OPA_N3]}
+    topology: tree
+    congruent_pads: false
+    no_vias: false
+    max_spread_mm: 1.0
+    router_moves: octilinear
+    elongation: meander
+    stackup_mm: [0.2104, 1.065, 0.2104]
+    octilinear_endpoints:
+      P: [U_AFE3.1, R_OUT3P.1]
+      N: [U_AFE3.7, R_OUT3N.1]
+    paths:
+      P:
+        - {id: main, segments: [{net: OPA_P3, from: U_AFE3.1, to: R_OUT3P.1}]}
+        - {id: feedback, segments: [{net: OPA_P3, from: U_AFE3.1, to: C_FB3P.2}]}
+      N:
+        - {id: main, segments: [{net: OPA_N3, from: U_AFE3.7, to: R_OUT3N.1}]}
+        - {id: feedback, segments: [{net: OPA_N3, from: U_AFE3.7, to: C_FB3N.2}]}
+  ANALOG_CH3_FILTER:
+    adr: 0019-analog-path-matching
+    intent: "Match channel 3 filter P/N endpoint paths within 1 mm, with every real shunt/feedback leaf accounted. Not a controlled-impedance or component-delay claim."
+    members: {P: [FILTER3P], N: [FILTER3N]}
+    topology: tree
+    congruent_pads: false
+    no_vias: false
+    max_spread_mm: 1.0
+    router_moves: octilinear
+    elongation: meander
+    stackup_mm: [0.2104, 1.065, 0.2104]
+    octilinear_endpoints:
+      P: [R_OUT3P.2, U_ISO3.1]
+      N: [R_OUT3N.2, U_ISO3.5]
+    paths:
+      P:
+        - {id: main, segments: [{net: FILTER3P, from: R_OUT3P.2, to: U_ISO3.1}]}
+        - {id: feedback, segments: [{net: FILTER3P, from: R_OUT3P.2, to: R_X3P.2}]}
+        - {id: shunt1, segments: [{net: FILTER3P, from: R_OUT3P.2, to: C_FILTER3P1.1}]}
+        - {id: shunt2, segments: [{net: FILTER3P, from: R_OUT3P.2, to: C_FILTER3P2.1}]}
+      N:
+        - {id: main, segments: [{net: FILTER3N, from: R_OUT3N.2, to: U_ISO3.5}]}
+        - {id: feedback, segments: [{net: FILTER3N, from: R_OUT3N.2, to: R_X3N.2}]}
+        - {id: shunt1, segments: [{net: FILTER3N, from: R_OUT3N.2, to: C_FILTER3N1.1}]}
+        - {id: shunt2, segments: [{net: FILTER3N, from: R_OUT3N.2, to: C_FILTER3N2.1}]}
+  ANALOG_CH3_ADC:
+    adr: 0019-analog-path-matching
+    intent: "Match channel 3 ADC P/N main and bias endpoint paths within 1 mm; bound the local common-mode capacitor arrival spread to 12 mm while accounting for every physical leaf. The capacitor is a low-frequency shunt and may lie inline with the main trunk, so its arrival length is not a main-path phase target. At 20 kHz, 12 mm of FR-4 propagation is below 0.001 degree using the declared 6.1 ps/mm estimate. Not a controlled-impedance or component-delay claim."
+    members: {P: [ADC3P], N: [ADC3N]}
+    topology: tree
+    congruent_pads: false
+    no_vias: false
+    max_spread_mm: 1.0
+    path_max_spread_mm:
+      main: 1.0
+      common_mode: 12.0
+      bias: 1.0
+    router_moves: octilinear
+    elongation: meander
+    stackup_mm: [0.2104, 1.065, 0.2104]
+    octilinear_endpoints:
+      P: [U_ISO3.2, U_ADC.42]
+      N: [U_ISO3.6, U_ADC.41]
+    paths:
+      P:
+        - {id: main, segments: [{net: ADC3P, from: U_ISO3.2, to: U_ADC.42}]}
+        - {id: common_mode, segments: [{net: ADC3P, from: U_ISO3.2, to: C_ADC_CM3P.1}]}
+        - {id: bias, segments: [{net: ADC3P, from: U_ISO3.2, to: R_ADC_PD3P.1}]}
+      N:
+        - {id: main, segments: [{net: ADC3N, from: U_ISO3.6, to: U_ADC.41}]}
+        - {id: common_mode, segments: [{net: ADC3N, from: U_ISO3.6, to: C_ADC_CM3N.1}]}
+        - {id: bias, segments: [{net: ADC3N, from: U_ISO3.6, to: R_ADC_PD3N.1}]}
+  ANALOG_CH4_OUTPUT:
+    adr: 0019-analog-path-matching
+    intent: "Match channel 4 output P/N endpoint paths within 1 mm, with every real shunt/feedback leaf accounted. Not a controlled-impedance or component-delay claim."
+    members: {P: [OPA_P4], N: [OPA_N4]}
+    topology: tree
+    congruent_pads: false
+    no_vias: false
+    max_spread_mm: 1.0
+    router_moves: octilinear
+    elongation: meander
+    stackup_mm: [0.2104, 1.065, 0.2104]
+    octilinear_endpoints:
+      P: [U_AFE4.1, R_OUT4P.1]
+      N: [U_AFE4.7, R_OUT4N.1]
+    paths:
+      P:
+        - {id: main, segments: [{net: OPA_P4, from: U_AFE4.1, to: R_OUT4P.1}]}
+        - {id: feedback, segments: [{net: OPA_P4, from: U_AFE4.1, to: C_FB4P.2}]}
+      N:
+        - {id: main, segments: [{net: OPA_N4, from: U_AFE4.7, to: R_OUT4N.1}]}
+        - {id: feedback, segments: [{net: OPA_N4, from: U_AFE4.7, to: C_FB4N.2}]}
+  ANALOG_CH4_FILTER:
+    adr: 0019-analog-path-matching
+    intent: "Match channel 4 filter P/N endpoint paths within 1 mm, with every real shunt/feedback leaf accounted. Not a controlled-impedance or component-delay claim."
+    members: {P: [FILTER4P], N: [FILTER4N]}
+    topology: tree
+    congruent_pads: false
+    no_vias: false
+    max_spread_mm: 1.0
+    router_moves: octilinear
+    elongation: meander
+    stackup_mm: [0.2104, 1.065, 0.2104]
+    octilinear_endpoints:
+      P: [R_OUT4P.2, U_ISO4.1]
+      N: [R_OUT4N.2, U_ISO4.5]
+    paths:
+      P:
+        - {id: main, segments: [{net: FILTER4P, from: R_OUT4P.2, to: U_ISO4.1}]}
+        - {id: feedback, segments: [{net: FILTER4P, from: R_OUT4P.2, to: R_X4P.2}]}
+        - {id: shunt1, segments: [{net: FILTER4P, from: R_OUT4P.2, to: C_FILTER4P1.1}]}
+        - {id: shunt2, segments: [{net: FILTER4P, from: R_OUT4P.2, to: C_FILTER4P2.1}]}
+      N:
+        - {id: main, segments: [{net: FILTER4N, from: R_OUT4N.2, to: U_ISO4.5}]}
+        - {id: feedback, segments: [{net: FILTER4N, from: R_OUT4N.2, to: R_X4N.2}]}
+        - {id: shunt1, segments: [{net: FILTER4N, from: R_OUT4N.2, to: C_FILTER4N1.1}]}
+        - {id: shunt2, segments: [{net: FILTER4N, from: R_OUT4N.2, to: C_FILTER4N2.1}]}
+  ANALOG_CH4_ADC:
+    adr: 0019-analog-path-matching
+    intent: "Match channel 4 ADC P/N main and bias endpoint paths within 1 mm; bound the local common-mode capacitor arrival spread to 12 mm while accounting for every physical leaf. The capacitor is a low-frequency shunt and may lie inline with the main trunk, so its arrival length is not a main-path phase target. At 20 kHz, 12 mm of FR-4 propagation is below 0.001 degree using the declared 6.1 ps/mm estimate. Not a controlled-impedance or component-delay claim."
+    members: {P: [ADC4P], N: [ADC4N]}
+    topology: tree
+    congruent_pads: false
+    no_vias: false
+    max_spread_mm: 1.0
+    path_max_spread_mm:
+      main: 1.0
+      common_mode: 12.0
+      bias: 1.0
+    router_moves: octilinear
+    elongation: meander
+    stackup_mm: [0.2104, 1.065, 0.2104]
+    octilinear_endpoints:
+      P: [U_ISO4.2, U_ADC.40]
+      N: [U_ISO4.6, U_ADC.39]
+    paths:
+      P:
+        - {id: main, segments: [{net: ADC4P, from: U_ISO4.2, to: U_ADC.40}]}
+        - {id: common_mode, segments: [{net: ADC4P, from: U_ISO4.2, to: C_ADC_CM4P.1}]}
+        - {id: bias, segments: [{net: ADC4P, from: U_ISO4.2, to: R_ADC_PD4P.1}]}
+      N:
+        - {id: main, segments: [{net: ADC4N, from: U_ISO4.6, to: U_ADC.39}]}
+        - {id: common_mode, segments: [{net: ADC4N, from: U_ISO4.6, to: C_ADC_CM4N.1}]}
+        - {id: bias, segments: [{net: ADC4N, from: U_ISO4.6, to: R_ADC_PD4N.1}]}
+  ANALOG_CH5_OUTPUT:
+    adr: 0019-analog-path-matching
+    intent: "Match channel 5 output P/N endpoint paths within 1 mm, with every real shunt/feedback leaf accounted. Not a controlled-impedance or component-delay claim."
+    members: {P: [OPA_P5], N: [OPA_N5]}
+    topology: tree
+    congruent_pads: false
+    no_vias: false
+    max_spread_mm: 1.0
+    router_moves: octilinear
+    elongation: meander
+    stackup_mm: [0.2104, 1.065, 0.2104]
+    octilinear_endpoints:
+      P: [U_AFE5.1, R_OUT5P.1]
+      N: [U_AFE5.7, R_OUT5N.1]
+    paths:
+      P:
+        - {id: main, segments: [{net: OPA_P5, from: U_AFE5.1, to: R_OUT5P.1}]}
+        - {id: feedback, segments: [{net: OPA_P5, from: U_AFE5.1, to: C_FB5P.2}]}
+      N:
+        - {id: main, segments: [{net: OPA_N5, from: U_AFE5.7, to: R_OUT5N.1}]}
+        - {id: feedback, segments: [{net: OPA_N5, from: U_AFE5.7, to: C_FB5N.2}]}
+  ANALOG_CH5_FILTER:
+    adr: 0019-analog-path-matching
+    intent: "Match channel 5 filter P/N endpoint paths within 1 mm, with every real shunt/feedback leaf accounted. Not a controlled-impedance or component-delay claim."
+    members: {P: [FILTER5P], N: [FILTER5N]}
+    topology: tree
+    congruent_pads: false
+    no_vias: false
+    max_spread_mm: 1.0
+    router_moves: octilinear
+    elongation: meander
+    stackup_mm: [0.2104, 1.065, 0.2104]
+    octilinear_endpoints:
+      P: [R_OUT5P.2, U_ISO5.1]
+      N: [R_OUT5N.2, U_ISO5.5]
+    paths:
+      P:
+        - {id: main, segments: [{net: FILTER5P, from: R_OUT5P.2, to: U_ISO5.1}]}
+        - {id: feedback, segments: [{net: FILTER5P, from: R_OUT5P.2, to: R_X5P.2}]}
+        - {id: shunt1, segments: [{net: FILTER5P, from: R_OUT5P.2, to: C_FILTER5P1.1}]}
+        - {id: shunt2, segments: [{net: FILTER5P, from: R_OUT5P.2, to: C_FILTER5P2.1}]}
+      N:
+        - {id: main, segments: [{net: FILTER5N, from: R_OUT5N.2, to: U_ISO5.5}]}
+        - {id: feedback, segments: [{net: FILTER5N, from: R_OUT5N.2, to: R_X5N.2}]}
+        - {id: shunt1, segments: [{net: FILTER5N, from: R_OUT5N.2, to: C_FILTER5N1.1}]}
+        - {id: shunt2, segments: [{net: FILTER5N, from: R_OUT5N.2, to: C_FILTER5N2.1}]}
+  ANALOG_CH5_ADC:
+    adr: 0019-analog-path-matching
+    intent: "Match channel 5 ADC P/N main and bias endpoint paths within 1 mm; bound the local common-mode capacitor arrival spread to 12 mm while accounting for every physical leaf. The capacitor is a low-frequency shunt and may lie inline with the main trunk, so its arrival length is not a main-path phase target. At 20 kHz, 12 mm of FR-4 propagation is below 0.001 degree using the declared 6.1 ps/mm estimate. Not a controlled-impedance or component-delay claim."
+    members: {P: [ADC5P], N: [ADC5N]}
+    topology: tree
+    congruent_pads: false
+    no_vias: false
+    max_spread_mm: 1.0
+    path_max_spread_mm:
+      main: 1.0
+      common_mode: 12.0
+      bias: 1.0
+    router_moves: octilinear
+    elongation: meander
+    stackup_mm: [0.2104, 1.065, 0.2104]
+    octilinear_endpoints:
+      P: [U_ISO5.2, U_ADC.14]
+      N: [U_ISO5.6, U_ADC.13]
+    paths:
+      P:
+        - {id: main, segments: [{net: ADC5P, from: U_ISO5.2, to: U_ADC.14}]}
+        - {id: common_mode, segments: [{net: ADC5P, from: U_ISO5.2, to: C_ADC_CM5P.1}]}
+        - {id: bias, segments: [{net: ADC5P, from: U_ISO5.2, to: R_ADC_PD5P.1}]}
+      N:
+        - {id: main, segments: [{net: ADC5N, from: U_ISO5.6, to: U_ADC.13}]}
+        - {id: common_mode, segments: [{net: ADC5N, from: U_ISO5.6, to: C_ADC_CM5N.1}]}
+        - {id: bias, segments: [{net: ADC5N, from: U_ISO5.6, to: R_ADC_PD5N.1}]}
+  ANALOG_CH6_OUTPUT:
+    adr: 0019-analog-path-matching
+    intent: "Match channel 6 output P/N endpoint paths within 1 mm, with every real shunt/feedback leaf accounted. Not a controlled-impedance or component-delay claim."
+    members: {P: [OPA_P6], N: [OPA_N6]}
+    topology: tree
+    congruent_pads: false
+    no_vias: false
+    max_spread_mm: 1.0
+    router_moves: octilinear
+    elongation: meander
+    stackup_mm: [0.2104, 1.065, 0.2104]
+    octilinear_endpoints:
+      P: [U_AFE6.1, R_OUT6P.1]
+      N: [U_AFE6.7, R_OUT6N.1]
+    paths:
+      P:
+        - {id: main, segments: [{net: OPA_P6, from: U_AFE6.1, to: R_OUT6P.1}]}
+        - {id: feedback, segments: [{net: OPA_P6, from: U_AFE6.1, to: C_FB6P.2}]}
+      N:
+        - {id: main, segments: [{net: OPA_N6, from: U_AFE6.7, to: R_OUT6N.1}]}
+        - {id: feedback, segments: [{net: OPA_N6, from: U_AFE6.7, to: C_FB6N.2}]}
+  ANALOG_CH6_FILTER:
+    adr: 0019-analog-path-matching
+    intent: "Match channel 6 filter P/N endpoint paths within 1 mm, with every real shunt/feedback leaf accounted. Not a controlled-impedance or component-delay claim."
+    members: {P: [FILTER6P], N: [FILTER6N]}
+    topology: tree
+    congruent_pads: false
+    no_vias: false
+    max_spread_mm: 1.0
+    router_moves: octilinear
+    elongation: meander
+    stackup_mm: [0.2104, 1.065, 0.2104]
+    octilinear_endpoints:
+      P: [R_OUT6P.2, U_ISO6.1]
+      N: [R_OUT6N.2, U_ISO6.5]
+    paths:
+      P:
+        - {id: main, segments: [{net: FILTER6P, from: R_OUT6P.2, to: U_ISO6.1}]}
+        - {id: feedback, segments: [{net: FILTER6P, from: R_OUT6P.2, to: R_X6P.2}]}
+        - {id: shunt1, segments: [{net: FILTER6P, from: R_OUT6P.2, to: C_FILTER6P1.1}]}
+        - {id: shunt2, segments: [{net: FILTER6P, from: R_OUT6P.2, to: C_FILTER6P2.1}]}
+      N:
+        - {id: main, segments: [{net: FILTER6N, from: R_OUT6N.2, to: U_ISO6.5}]}
+        - {id: feedback, segments: [{net: FILTER6N, from: R_OUT6N.2, to: R_X6N.2}]}
+        - {id: shunt1, segments: [{net: FILTER6N, from: R_OUT6N.2, to: C_FILTER6N1.1}]}
+        - {id: shunt2, segments: [{net: FILTER6N, from: R_OUT6N.2, to: C_FILTER6N2.1}]}
+  ANALOG_CH6_ADC:
+    adr: 0019-analog-path-matching
+    intent: "Match channel 6 ADC P/N main and bias endpoint paths within 1 mm; bound the local common-mode capacitor arrival spread to 12 mm while accounting for every physical leaf. The capacitor is a low-frequency shunt and may lie inline with the main trunk, so its arrival length is not a main-path phase target. At 20 kHz, 12 mm of FR-4 propagation is below 0.001 degree using the declared 6.1 ps/mm estimate. Not a controlled-impedance or component-delay claim."
+    members: {P: [ADC6P], N: [ADC6N]}
+    topology: tree
+    congruent_pads: false
+    no_vias: false
+    max_spread_mm: 1.0
+    path_max_spread_mm:
+      main: 1.0
+      common_mode: 12.0
+      bias: 1.0
+    router_moves: octilinear
+    elongation: meander
+    stackup_mm: [0.2104, 1.065, 0.2104]
+    octilinear_endpoints:
+      P: [U_ISO6.2, U_ADC.16]
+      N: [U_ISO6.6, U_ADC.15]
+    paths:
+      P:
+        - {id: main, segments: [{net: ADC6P, from: U_ISO6.2, to: U_ADC.16}]}
+        - {id: common_mode, segments: [{net: ADC6P, from: U_ISO6.2, to: C_ADC_CM6P.1}]}
+        - {id: bias, segments: [{net: ADC6P, from: U_ISO6.2, to: R_ADC_PD6P.1}]}
+      N:
+        - {id: main, segments: [{net: ADC6N, from: U_ISO6.6, to: U_ADC.15}]}
+        - {id: common_mode, segments: [{net: ADC6N, from: U_ISO6.6, to: C_ADC_CM6N.1}]}
+        - {id: bias, segments: [{net: ADC6N, from: U_ISO6.6, to: R_ADC_PD6N.1}]}
+  ANALOG_CH7_OUTPUT:
+    adr: 0019-analog-path-matching
+    intent: "Match channel 7 output P/N endpoint paths within 1 mm, with every real shunt/feedback leaf accounted. Not a controlled-impedance or component-delay claim."
+    members: {P: [OPA_P7], N: [OPA_N7]}
+    topology: tree
+    congruent_pads: false
+    no_vias: false
+    max_spread_mm: 1.0
+    router_moves: octilinear
+    elongation: meander
+    stackup_mm: [0.2104, 1.065, 0.2104]
+    octilinear_endpoints:
+      P: [U_AFE7.1, R_OUT7P.1]
+      N: [U_AFE7.7, R_OUT7N.1]
+    paths:
+      P:
+        - {id: main, segments: [{net: OPA_P7, from: U_AFE7.1, to: R_OUT7P.1}]}
+        - {id: feedback, segments: [{net: OPA_P7, from: U_AFE7.1, to: C_FB7P.2}]}
+      N:
+        - {id: main, segments: [{net: OPA_N7, from: U_AFE7.7, to: R_OUT7N.1}]}
+        - {id: feedback, segments: [{net: OPA_N7, from: U_AFE7.7, to: C_FB7N.2}]}
+  ANALOG_CH7_FILTER:
+    adr: 0019-analog-path-matching
+    intent: "Match channel 7 filter P/N endpoint paths within 1 mm, with every real shunt/feedback leaf accounted. Not a controlled-impedance or component-delay claim."
+    members: {P: [FILTER7P], N: [FILTER7N]}
+    topology: tree
+    congruent_pads: false
+    no_vias: false
+    max_spread_mm: 1.0
+    router_moves: octilinear
+    elongation: meander
+    stackup_mm: [0.2104, 1.065, 0.2104]
+    octilinear_endpoints:
+      P: [R_OUT7P.2, U_ISO7.1]
+      N: [R_OUT7N.2, U_ISO7.5]
+    paths:
+      P:
+        - {id: main, segments: [{net: FILTER7P, from: R_OUT7P.2, to: U_ISO7.1}]}
+        - {id: feedback, segments: [{net: FILTER7P, from: R_OUT7P.2, to: R_X7P.2}]}
+        - {id: shunt1, segments: [{net: FILTER7P, from: R_OUT7P.2, to: C_FILTER7P1.1}]}
+        - {id: shunt2, segments: [{net: FILTER7P, from: R_OUT7P.2, to: C_FILTER7P2.1}]}
+      N:
+        - {id: main, segments: [{net: FILTER7N, from: R_OUT7N.2, to: U_ISO7.5}]}
+        - {id: feedback, segments: [{net: FILTER7N, from: R_OUT7N.2, to: R_X7N.2}]}
+        - {id: shunt1, segments: [{net: FILTER7N, from: R_OUT7N.2, to: C_FILTER7N1.1}]}
+        - {id: shunt2, segments: [{net: FILTER7N, from: R_OUT7N.2, to: C_FILTER7N2.1}]}
+  ANALOG_CH7_ADC:
+    adr: 0019-analog-path-matching
+    intent: "Match channel 7 ADC P/N main and bias endpoint paths within 1 mm; bound the local common-mode capacitor arrival spread to 12 mm while accounting for every physical leaf. The capacitor is a low-frequency shunt and may lie inline with the main trunk, so its arrival length is not a main-path phase target. At 20 kHz, 12 mm of FR-4 propagation is below 0.001 degree using the declared 6.1 ps/mm estimate. Not a controlled-impedance or component-delay claim."
+    members: {P: [ADC7P], N: [ADC7N]}
+    topology: tree
+    congruent_pads: false
+    no_vias: false
+    max_spread_mm: 1.0
+    path_max_spread_mm:
+      main: 1.0
+      common_mode: 12.0
+      bias: 1.0
+    router_moves: octilinear
+    elongation: meander
+    stackup_mm: [0.2104, 1.065, 0.2104]
+    octilinear_endpoints:
+      P: [U_ISO7.2, U_ADC.20]
+      N: [U_ISO7.6, U_ADC.19]
+    paths:
+      P:
+        - {id: main, segments: [{net: ADC7P, from: U_ISO7.2, to: U_ADC.20}]}
+        - {id: common_mode, segments: [{net: ADC7P, from: U_ISO7.2, to: C_ADC_CM7P.1}]}
+        - {id: bias, segments: [{net: ADC7P, from: U_ISO7.2, to: R_ADC_PD7P.1}]}
+      N:
+        - {id: main, segments: [{net: ADC7N, from: U_ISO7.6, to: U_ADC.19}]}
+        - {id: common_mode, segments: [{net: ADC7N, from: U_ISO7.6, to: C_ADC_CM7N.1}]}
+        - {id: bias, segments: [{net: ADC7N, from: U_ISO7.6, to: R_ADC_PD7N.1}]}
+  ANALOG_CH8_OUTPUT:
+    adr: 0019-analog-path-matching
+    intent: "Match channel 8 output P/N endpoint paths within 1 mm, with every real shunt/feedback leaf accounted. Not a controlled-impedance or component-delay claim."
+    members: {P: [OPA_P8], N: [OPA_N8]}
+    topology: tree
+    congruent_pads: false
+    no_vias: false
+    max_spread_mm: 1.0
+    router_moves: octilinear
+    elongation: meander
+    stackup_mm: [0.2104, 1.065, 0.2104]
+    octilinear_endpoints:
+      P: [U_AFE8.1, R_OUT8P.1]
+      N: [U_AFE8.7, R_OUT8N.1]
+    paths:
+      P:
+        - {id: main, segments: [{net: OPA_P8, from: U_AFE8.1, to: R_OUT8P.1}]}
+        - {id: feedback, segments: [{net: OPA_P8, from: U_AFE8.1, to: C_FB8P.2}]}
+      N:
+        - {id: main, segments: [{net: OPA_N8, from: U_AFE8.7, to: R_OUT8N.1}]}
+        - {id: feedback, segments: [{net: OPA_N8, from: U_AFE8.7, to: C_FB8N.2}]}
+  ANALOG_CH8_FILTER:
+    adr: 0019-analog-path-matching
+    intent: "Match channel 8 filter P/N endpoint paths within 1 mm, with every real shunt/feedback leaf accounted. Not a controlled-impedance or component-delay claim."
+    members: {P: [FILTER8P], N: [FILTER8N]}
+    topology: tree
+    congruent_pads: false
+    no_vias: false
+    max_spread_mm: 1.0
+    router_moves: octilinear
+    elongation: meander
+    stackup_mm: [0.2104, 1.065, 0.2104]
+    octilinear_endpoints:
+      P: [R_OUT8P.2, U_ISO8.1]
+      N: [R_OUT8N.2, U_ISO8.5]
+    paths:
+      P:
+        - {id: main, segments: [{net: FILTER8P, from: R_OUT8P.2, to: U_ISO8.1}]}
+        - {id: feedback, segments: [{net: FILTER8P, from: R_OUT8P.2, to: R_X8P.2}]}
+        - {id: shunt1, segments: [{net: FILTER8P, from: R_OUT8P.2, to: C_FILTER8P1.1}]}
+        - {id: shunt2, segments: [{net: FILTER8P, from: R_OUT8P.2, to: C_FILTER8P2.1}]}
+      N:
+        - {id: main, segments: [{net: FILTER8N, from: R_OUT8N.2, to: U_ISO8.5}]}
+        - {id: feedback, segments: [{net: FILTER8N, from: R_OUT8N.2, to: R_X8N.2}]}
+        - {id: shunt1, segments: [{net: FILTER8N, from: R_OUT8N.2, to: C_FILTER8N1.1}]}
+        - {id: shunt2, segments: [{net: FILTER8N, from: R_OUT8N.2, to: C_FILTER8N2.1}]}
+  ANALOG_CH8_ADC:
+    adr: 0019-analog-path-matching
+    intent: "Match channel 8 ADC P/N main and bias endpoint paths within 1 mm; bound the local common-mode capacitor arrival spread to 12 mm while accounting for every physical leaf. The capacitor is a low-frequency shunt and may lie inline with the main trunk, so its arrival length is not a main-path phase target. At 20 kHz, 12 mm of FR-4 propagation is below 0.001 degree using the declared 6.1 ps/mm estimate. Not a controlled-impedance or component-delay claim."
+    members: {P: [ADC8P], N: [ADC8N]}
+    topology: tree
+    congruent_pads: false
+    no_vias: false
+    max_spread_mm: 1.0
+    path_max_spread_mm:
+      main: 1.0
+      common_mode: 12.0
+      bias: 1.0
+    router_moves: octilinear
+    elongation: meander
+    stackup_mm: [0.2104, 1.065, 0.2104]
+    octilinear_endpoints:
+      P: [U_ISO8.2, U_ADC.22]
+      N: [U_ISO8.6, U_ADC.21]
+    paths:
+      P:
+        - {id: main, segments: [{net: ADC8P, from: U_ISO8.2, to: U_ADC.22}]}
+        - {id: common_mode, segments: [{net: ADC8P, from: U_ISO8.2, to: C_ADC_CM8P.1}]}
+        - {id: bias, segments: [{net: ADC8P, from: U_ISO8.2, to: R_ADC_PD8P.1}]}
+      N:
+        - {id: main, segments: [{net: ADC8N, from: U_ISO8.6, to: U_ADC.21}]}
+        - {id: common_mode, segments: [{net: ADC8N, from: U_ISO8.6, to: C_ADC_CM8N.1}]}
+        - {id: bias, segments: [{net: ADC8N, from: U_ISO8.6, to: R_ADC_PD8N.1}]}

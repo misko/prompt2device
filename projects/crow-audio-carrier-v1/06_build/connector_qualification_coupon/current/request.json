@@ -1,0 +1,6145 @@
+{
+  "artifacts": [
+    {
+      "path": "06_build/connector_qualification_coupon/current/README.md",
+      "sha256": "5774a94a1612f572d17e2a9b358e7137af40f394bea194abccdc0fc8fa65b8b1",
+      "size": 1097
+    },
+    {
+      "path": "06_build/connector_qualification_coupon/current/connector-population.csv",
+      "sha256": "4a39fc5dfe8588b82d9b8e8d9c9c3baab35456febc1e1f6bceb89338d89e6244",
+      "size": 440
+    },
+    {
+      "path": "06_build/connector_qualification_coupon/current/crow-audio-carrier-v1-connector-coupon.kicad_pcb",
+      "sha256": "93e01e71556659112f3c40c45328cdc266b235d5d394ff1247485a61f45f71a2",
+      "size": 91382
+    },
+    {
+      "path": "06_build/connector_qualification_coupon/current/crow-audio-carrier-v1-connector-coupon.kicad_pro",
+      "sha256": "d679205c674cc988c910a089d6c2a978221c9734c58b57c734daa2aa1eade0ac",
+      "size": 9604
+    },
+    {
+      "path": "06_build/connector_qualification_coupon/current/crow-audio-carrier-v1-connector-coupon_gerbers.zip",
+      "sha256": "82dbfeaad54f07ac89207ab437aa15a6480da575c29e761692fe9e6956200d20",
+      "size": 13052
+    },
+    {
+      "path": "06_build/connector_qualification_coupon/current/drc.json",
+      "sha256": "5aa59dc45028ca769b58c28cecefc6c61bb0d8678bbe29c5ee15acb83f00eafc",
+      "size": 4232
+    },
+    {
+      "path": "06_build/connector_qualification_coupon/current/fab/crow-audio-carrier-v1-connector-coupon-B_Cu.gbl",
+      "sha256": "9d57de4c38760d209844052f00286d41c3f4c6b470e6d0336f804902d0735a64",
+      "size": 3316
+    },
+    {
+      "path": "06_build/connector_qualification_coupon/current/fab/crow-audio-carrier-v1-connector-coupon-B_Mask.gbs",
+      "sha256": "76f74fc1f19b73ee5ef68c61b54a1cbee5887ebd57e6fa0272a15272a5654a7d",
+      "size": 3673
+    },
+    {
+      "path": "06_build/connector_qualification_coupon/current/fab/crow-audio-carrier-v1-connector-coupon-B_Silkscreen.gbo",
+      "sha256": "7cfafaea8a2b94296d3bc734b9c8b65798fa5455a5b8644a386b9bc71b24ebae",
+      "size": 526
+    },
+    {
+      "path": "06_build/connector_qualification_coupon/current/fab/crow-audio-carrier-v1-connector-coupon-Edge_Cuts.gm1",
+      "sha256": "b811f23d3304c3998efb002e6000ff6dcda2accb0e05ad242603407ca19e5b58",
+      "size": 755
+    },
+    {
+      "path": "06_build/connector_qualification_coupon/current/fab/crow-audio-carrier-v1-connector-coupon-F_Cu.gtl",
+      "sha256": "1c58bd3b0c293dfd2e5fd0589a0918ca4c9655a145ee8c17e78d98dca3a76b71",
+      "size": 3457
+    },
+    {
+      "path": "06_build/connector_qualification_coupon/current/fab/crow-audio-carrier-v1-connector-coupon-F_Mask.gts",
+      "sha256": "31529a64630141b22237a65553dd04201e2fd10503b7b82736a60e621cc33680",
+      "size": 3776
+    },
+    {
+      "path": "06_build/connector_qualification_coupon/current/fab/crow-audio-carrier-v1-connector-coupon-F_Silkscreen.gto",
+      "sha256": "df47573fbda75b992b2c7e456d2ed32db913882ef0302cfd69723ce895150dd4",
+      "size": 16268
+    },
+    {
+      "path": "06_build/connector_qualification_coupon/current/fab/crow-audio-carrier-v1-connector-coupon-In1_Cu.g1",
+      "sha256": "1ea3315652c1b5fd937b5f6b82d89607bcf89f4c94fccda1ed70c0aef41a8227",
+      "size": 3316
+    },
+    {
+      "path": "06_build/connector_qualification_coupon/current/fab/crow-audio-carrier-v1-connector-coupon-In2_Cu.g2",
+      "sha256": "5058d6d14e25d88b493b3dd6b4343f629093bba067d9f4f85326181ecc3ee723",
+      "size": 3316
+    },
+    {
+      "path": "06_build/connector_qualification_coupon/current/fab/crow-audio-carrier-v1-connector-coupon-NPTH.drl",
+      "sha256": "f93603903bc1c2473386e96369c886975df506a3afd2c1e8277ca3354c29105d",
+      "size": 739
+    },
+    {
+      "path": "06_build/connector_qualification_coupon/current/fab/crow-audio-carrier-v1-connector-coupon-PTH.drl",
+      "sha256": "ddb57bb82e4eda857f6f11506232895dc0346368a1c444fbf757c491ffdd211d",
+      "size": 1174
+    },
+    {
+      "path": "06_build/connector_qualification_coupon/current/fab/crow-audio-carrier-v1-connector-coupon-job.gbrjob",
+      "sha256": "d7cd059995ffe42ef913d6203d9814cabd98818ec83fbcce3354c9ffca6235a8",
+      "size": 3577
+    },
+    {
+      "path": "06_build/connector_qualification_coupon/current/fp-lib-table",
+      "sha256": "39cf52a8f449297dfe7927a231975cddd7c66a19a321952057aa176a2593ab6a",
+      "size": 385
+    },
+    {
+      "path": "06_build/connector_qualification_coupon/current/libraries/crow_audio_carrier.pretty/Cirrus_CS5308P_QFN48_6x6_P0.4_EP4.6.kicad_mod",
+      "sha256": "3b4488a5d5251cff1f4c5a1cbc7355e90d478598e7de57dd9e0e03139b8bcaee",
+      "size": 12020
+    },
+    {
+      "path": "06_build/connector_qualification_coupon/current/libraries/crow_audio_carrier.pretty/Coilcraft_XGL4020_Exact.kicad_mod",
+      "sha256": "baaf428ff3254d6af8bf0721a1812b54e58760419bcdd2821354109f8ad6e6f3",
+      "size": 1390
+    },
+    {
+      "path": "06_build/connector_qualification_coupon/current/libraries/crow_audio_carrier.pretty/Littelfuse_SMBJ15A_SMB_Exact.kicad_mod",
+      "sha256": "63dee0873b808ac7598ebc60e3f32e22b322d87edf7e9d9e9aadd90a8a9ee7dd",
+      "size": 1259
+    },
+    {
+      "path": "06_build/connector_qualification_coupon/current/libraries/crow_audio_carrier.pretty/Molex_43650-0200_RA_Exact.kicad_mod",
+      "sha256": "80ce662b23a6fa57b22b1db345c1e86cdac68dcfa7d9f1a9becaae7cddace94f",
+      "size": 2810
+    },
+    {
+      "path": "06_build/connector_qualification_coupon/current/libraries/crow_audio_carrier.pretty/Molex_43650-0400_RA_Exact.kicad_mod",
+      "sha256": "fa8877b1c3d305e884b95425f71714a3fb8bfbb6de6a08eb5707748f90c16fb7",
+      "size": 4882
+    },
+    {
+      "path": "06_build/connector_qualification_coupon/current/libraries/crow_audio_carrier.pretty/Panasonic_EEEFK1A471P_8x10.2_Exact.kicad_mod",
+      "sha256": "63fc06c20177564eb58d1befaf432e427c2cfdb49565a7e8cb1c983a66845294",
+      "size": 2169
+    },
+    {
+      "path": "06_build/connector_qualification_coupon/current/libraries/crow_audio_carrier.pretty/Samtec_TMM-106-01-L-D_2x06_P2.00mm_Vertical.kicad_mod",
+      "sha256": "43053a5fb3a69bbf33366a5df001c4ce228d7d01883aa4b81ef5e389d2789cdb",
+      "size": 3159
+    },
+    {
+      "path": "06_build/connector_qualification_coupon/current/qualification-hardware.csv",
+      "sha256": "950ec44e96b31d9934e3d145ac8a80bd0be82ebde0278d48f43c9d492a8583b6",
+      "size": 955
+    },
+    {
+      "path": "06_build/connector_qualification_coupon/current/render-back.png",
+      "sha256": "d3488341e6a0f070c04dbb831fbe88f06f48fca5665fd010f328982adb281bb6",
+      "size": 9204
+    },
+    {
+      "path": "06_build/connector_qualification_coupon/current/render-front.png",
+      "sha256": "61f5311ebdde238cc2035c944fc09713f8eddd8e63c8d26f2f7af809698ce0d6",
+      "size": 9313
+    },
+    {
+      "path": "06_build/connector_qualification_coupon/current/render-top.png",
+      "sha256": "a5fe9f84523a0330ba7a7fd9de319c65a270598d3039fca42cb83fda34c5822e",
+      "size": 53415
+    }
+  ],
+  "assemblies": [
+    {
+      "assembly_id": "mchstreamer-dual-cable-interface",
+      "cable": {
+        "kind": "two_selected_2x6_2mm_pitch_idc_ribbon_cables",
+        "manufacturer": "Samtec",
+        "mpn": "TCSD-06-D-04.50-01"
+      },
+      "mate": {
+        "manufacturer": "Samtec",
+        "mpn": "TCSD-06-D-04.50-01",
+        "part_kind": "selected_double_ended_2x6_2mm_female_idc_cable_assembly"
+      },
+      "receptacle": {
+        "manufacturer": "Samtec",
+        "mounting_method": "vertical_through_hole",
+        "mpn": "TMM-106-01-L-D"
+      },
+      "refs": [
+        "J10",
+        "J11"
+      ],
+      "tool": {
+        "identifier": null,
+        "kind": "none"
+      }
+    },
+    {
+      "assembly_id": "molex-micro-fit-power-input",
+      "cable": {
+        "kind": "paired_color_coded_18awg_factory_precrimped_pigtails_with_internal_screw_mount_restraint",
+        "manufacturer": "Molex_with_HellermannTyton_restraint",
+        "mpn": "214761-2122_PLUS_214761-1122_WITH_113-00022"
+      },
+      "mate": {
+        "manufacturer": "Molex",
+        "mpn": "43645-0200",
+        "part_kind": "two_position_power_cable_housing_with_factory_precrimped_43030-0038_contacts"
+      },
+      "receptacle": {
+        "manufacturer": "Molex",
+        "mounting_method": "right_angle_through_hole",
+        "mpn": "43650-0200"
+      },
+      "refs": [
+        "J9"
+      ],
+      "tool": {
+        "identifier": null,
+        "kind": "none"
+      }
+    },
+    {
+      "assembly_id": "molex-micro-fit-spoke-bank",
+      "cable": {
+        "kind": "two_individually_shielded_twisted_pairs",
+        "manufacturer": "Belden",
+        "mpn": "6541PA"
+      },
+      "mate": {
+        "manufacturer": "Molex",
+        "mpn": "43645-0400",
+        "part_kind": "cable_housing_with_43030-0007_contacts"
+      },
+      "receptacle": {
+        "manufacturer": "Molex",
+        "mounting_method": "right_angle_through_hole",
+        "mpn": "43650-0400"
+      },
+      "refs": [
+        "J1",
+        "J2",
+        "J3",
+        "J4",
+        "J5",
+        "J6",
+        "J7",
+        "J8"
+      ],
+      "tool": {
+        "identifier": null,
+        "kind": "none"
+      }
+    }
+  ],
+  "authority": {
+    "base_semantic_sha256": "588deea30e2fe30ff7b839983aa44412f4bbc385471c5d379a827debe722d0ee",
+    "base_subject_sha256": "f7361b98d301c9dc04ce187f5134efb745c89c25f4eeacba2b211f2a55948953",
+    "source_phase_subject_sha256": "0172d7e9513d66a783c5fad4ad6f6d63dec4f1a26bb08511a0ff0da67f50b549"
+  },
+  "board": {
+    "board_only_refs": [
+      "FID1",
+      "FID2",
+      "FID3",
+      "H1",
+      "H2",
+      "H3",
+      "H4"
+    ],
+    "connector_refs": [
+      "J1",
+      "J2",
+      "J3",
+      "J4",
+      "J5",
+      "J6",
+      "J7",
+      "J8",
+      "J9",
+      "J10",
+      "J11"
+    ],
+    "coupon": {
+      "path": "06_build/connector_qualification_coupon/current/crow-audio-carrier-v1-connector-coupon.kicad_pcb",
+      "sha256": "93e01e71556659112f3c40c45328cdc266b235d5d394ff1247485a61f45f71a2",
+      "size": 91382
+    },
+    "coupon_geometry_sha256": "ea83a5c7e0b5fab54323b6984c0dff13e1e3963e5f39084b8dc116d254523d24",
+    "geometry": {
+      "connector_pair_vectors": [
+        {
+          "anchor_vector_nm": [
+            32000000,
+            0
+          ],
+          "refs": [
+            "J1",
+            "J2"
+          ]
+        },
+        {
+          "anchor_vector_nm": [
+            64000000,
+            0
+          ],
+          "refs": [
+            "J1",
+            "J3"
+          ]
+        },
+        {
+          "anchor_vector_nm": [
+            96000000,
+            0
+          ],
+          "refs": [
+            "J1",
+            "J4"
+          ]
+        },
+        {
+          "anchor_vector_nm": [
+            9000000,
+            78000000
+          ],
+          "refs": [
+            "J1",
+            "J5"
+          ]
+        },
+        {
+          "anchor_vector_nm": [
+            41000000,
+            78000000
+          ],
+          "refs": [
+            "J1",
+            "J6"
+          ]
+        },
+        {
+          "anchor_vector_nm": [
+            73000000,
+            78000000
+          ],
+          "refs": [
+            "J1",
+            "J7"
+          ]
+        },
+        {
+          "anchor_vector_nm": [
+            105000000,
+            78000000
+          ],
+          "refs": [
+            "J1",
+            "J8"
+          ]
+        },
+        {
+          "anchor_vector_nm": [
+            -8000000,
+            38000000
+          ],
+          "refs": [
+            "J1",
+            "J9"
+          ]
+        },
+        {
+          "anchor_vector_nm": [
+            122000000,
+            18000000
+          ],
+          "refs": [
+            "J1",
+            "J10"
+          ]
+        },
+        {
+          "anchor_vector_nm": [
+            122000000,
+            49000000
+          ],
+          "refs": [
+            "J1",
+            "J11"
+          ]
+        },
+        {
+          "anchor_vector_nm": [
+            32000000,
+            0
+          ],
+          "refs": [
+            "J2",
+            "J3"
+          ]
+        },
+        {
+          "anchor_vector_nm": [
+            64000000,
+            0
+          ],
+          "refs": [
+            "J2",
+            "J4"
+          ]
+        },
+        {
+          "anchor_vector_nm": [
+            -23000000,
+            78000000
+          ],
+          "refs": [
+            "J2",
+            "J5"
+          ]
+        },
+        {
+          "anchor_vector_nm": [
+            9000000,
+            78000000
+          ],
+          "refs": [
+            "J2",
+            "J6"
+          ]
+        },
+        {
+          "anchor_vector_nm": [
+            41000000,
+            78000000
+          ],
+          "refs": [
+            "J2",
+            "J7"
+          ]
+        },
+        {
+          "anchor_vector_nm": [
+            73000000,
+            78000000
+          ],
+          "refs": [
+            "J2",
+            "J8"
+          ]
+        },
+        {
+          "anchor_vector_nm": [
+            -40000000,
+            38000000
+          ],
+          "refs": [
+            "J2",
+            "J9"
+          ]
+        },
+        {
+          "anchor_vector_nm": [
+            90000000,
+            18000000
+          ],
+          "refs": [
+            "J2",
+            "J10"
+          ]
+        },
+        {
+          "anchor_vector_nm": [
+            90000000,
+            49000000
+          ],
+          "refs": [
+            "J2",
+            "J11"
+          ]
+        },
+        {
+          "anchor_vector_nm": [
+            32000000,
+            0
+          ],
+          "refs": [
+            "J3",
+            "J4"
+          ]
+        },
+        {
+          "anchor_vector_nm": [
+            -55000000,
+            78000000
+          ],
+          "refs": [
+            "J3",
+            "J5"
+          ]
+        },
+        {
+          "anchor_vector_nm": [
+            -23000000,
+            78000000
+          ],
+          "refs": [
+            "J3",
+            "J6"
+          ]
+        },
+        {
+          "anchor_vector_nm": [
+            9000000,
+            78000000
+          ],
+          "refs": [
+            "J3",
+            "J7"
+          ]
+        },
+        {
+          "anchor_vector_nm": [
+            41000000,
+            78000000
+          ],
+          "refs": [
+            "J3",
+            "J8"
+          ]
+        },
+        {
+          "anchor_vector_nm": [
+            -72000000,
+            38000000
+          ],
+          "refs": [
+            "J3",
+            "J9"
+          ]
+        },
+        {
+          "anchor_vector_nm": [
+            58000000,
+            18000000
+          ],
+          "refs": [
+            "J3",
+            "J10"
+          ]
+        },
+        {
+          "anchor_vector_nm": [
+            58000000,
+            49000000
+          ],
+          "refs": [
+            "J3",
+            "J11"
+          ]
+        },
+        {
+          "anchor_vector_nm": [
+            -87000000,
+            78000000
+          ],
+          "refs": [
+            "J4",
+            "J5"
+          ]
+        },
+        {
+          "anchor_vector_nm": [
+            -55000000,
+            78000000
+          ],
+          "refs": [
+            "J4",
+            "J6"
+          ]
+        },
+        {
+          "anchor_vector_nm": [
+            -23000000,
+            78000000
+          ],
+          "refs": [
+            "J4",
+            "J7"
+          ]
+        },
+        {
+          "anchor_vector_nm": [
+            9000000,
+            78000000
+          ],
+          "refs": [
+            "J4",
+            "J8"
+          ]
+        },
+        {
+          "anchor_vector_nm": [
+            -104000000,
+            38000000
+          ],
+          "refs": [
+            "J4",
+            "J9"
+          ]
+        },
+        {
+          "anchor_vector_nm": [
+            26000000,
+            18000000
+          ],
+          "refs": [
+            "J4",
+            "J10"
+          ]
+        },
+        {
+          "anchor_vector_nm": [
+            26000000,
+            49000000
+          ],
+          "refs": [
+            "J4",
+            "J11"
+          ]
+        },
+        {
+          "anchor_vector_nm": [
+            32000000,
+            0
+          ],
+          "refs": [
+            "J5",
+            "J6"
+          ]
+        },
+        {
+          "anchor_vector_nm": [
+            64000000,
+            0
+          ],
+          "refs": [
+            "J5",
+            "J7"
+          ]
+        },
+        {
+          "anchor_vector_nm": [
+            96000000,
+            0
+          ],
+          "refs": [
+            "J5",
+            "J8"
+          ]
+        },
+        {
+          "anchor_vector_nm": [
+            -17000000,
+            -40000000
+          ],
+          "refs": [
+            "J5",
+            "J9"
+          ]
+        },
+        {
+          "anchor_vector_nm": [
+            113000000,
+            -60000000
+          ],
+          "refs": [
+            "J5",
+            "J10"
+          ]
+        },
+        {
+          "anchor_vector_nm": [
+            113000000,
+            -29000000
+          ],
+          "refs": [
+            "J5",
+            "J11"
+          ]
+        },
+        {
+          "anchor_vector_nm": [
+            32000000,
+            0
+          ],
+          "refs": [
+            "J6",
+            "J7"
+          ]
+        },
+        {
+          "anchor_vector_nm": [
+            64000000,
+            0
+          ],
+          "refs": [
+            "J6",
+            "J8"
+          ]
+        },
+        {
+          "anchor_vector_nm": [
+            -49000000,
+            -40000000
+          ],
+          "refs": [
+            "J6",
+            "J9"
+          ]
+        },
+        {
+          "anchor_vector_nm": [
+            81000000,
+            -60000000
+          ],
+          "refs": [
+            "J6",
+            "J10"
+          ]
+        },
+        {
+          "anchor_vector_nm": [
+            81000000,
+            -29000000
+          ],
+          "refs": [
+            "J6",
+            "J11"
+          ]
+        },
+        {
+          "anchor_vector_nm": [
+            32000000,
+            0
+          ],
+          "refs": [
+            "J7",
+            "J8"
+          ]
+        },
+        {
+          "anchor_vector_nm": [
+            -81000000,
+            -40000000
+          ],
+          "refs": [
+            "J7",
+            "J9"
+          ]
+        },
+        {
+          "anchor_vector_nm": [
+            49000000,
+            -60000000
+          ],
+          "refs": [
+            "J7",
+            "J10"
+          ]
+        },
+        {
+          "anchor_vector_nm": [
+            49000000,
+            -29000000
+          ],
+          "refs": [
+            "J7",
+            "J11"
+          ]
+        },
+        {
+          "anchor_vector_nm": [
+            -113000000,
+            -40000000
+          ],
+          "refs": [
+            "J8",
+            "J9"
+          ]
+        },
+        {
+          "anchor_vector_nm": [
+            17000000,
+            -60000000
+          ],
+          "refs": [
+            "J8",
+            "J10"
+          ]
+        },
+        {
+          "anchor_vector_nm": [
+            17000000,
+            -29000000
+          ],
+          "refs": [
+            "J8",
+            "J11"
+          ]
+        },
+        {
+          "anchor_vector_nm": [
+            130000000,
+            -20000000
+          ],
+          "refs": [
+            "J9",
+            "J10"
+          ]
+        },
+        {
+          "anchor_vector_nm": [
+            130000000,
+            11000000
+          ],
+          "refs": [
+            "J9",
+            "J11"
+          ]
+        },
+        {
+          "anchor_vector_nm": [
+            0,
+            31000000
+          ],
+          "refs": [
+            "J10",
+            "J11"
+          ]
+        }
+      ],
+      "copper_layers": 4,
+      "footprints": [
+        {
+          "attributes": 30,
+          "body_bbox_nm": [
+            27725000,
+            27725000,
+            30275000,
+            30275000
+          ],
+          "courtyard": [
+            [
+              [
+                27752494,
+                29000000
+              ],
+              [
+                27772542,
+                28777249
+              ],
+              [
+                27832041,
+                28561657
+              ],
+              [
+                27929080,
+                28360154
+              ],
+              [
+                28060539,
+                28179217
+              ],
+              [
+                28222192,
+                28024660
+              ],
+              [
+                28408843,
+                27901452
+              ],
+              [
+                28614498,
+                27813552
+              ],
+              [
+                28832545,
+                27763784
+              ],
+              [
+                29055967,
+                27753750
+              ],
+              [
+                29277598,
+                27783771
+              ],
+              [
+                29490300,
+                27852883
+              ],
+              [
+                29687248,
+                27958865
+              ],
+              [
+                29862103,
+                28098308
+              ],
+              [
+                30009253,
+                28266734
+              ],
+              [
+                30123964,
+                28458728
+              ],
+              [
+                30202548,
+                28668114
+              ],
+              [
+                30242493,
+                28888230
+              ],
+              [
+                30244998,
+                29000000
+              ],
+              [
+                30242493,
+                29111769
+              ],
+              [
+                30202548,
+                29331885
+              ],
+              [
+                30123964,
+                29541271
+              ],
+              [
+                30009253,
+                29733265
+              ],
+              [
+                29862103,
+                29901691
+              ],
+              [
+                29687248,
+                30041134
+              ],
+              [
+                29490300,
+                30147116
+              ],
+              [
+                29277598,
+                30216228
+              ],
+              [
+                29055967,
+                30246249
+              ],
+              [
+                28832545,
+                30236215
+              ],
+              [
+                28614498,
+                30186447
+              ],
+              [
+                28408843,
+                30098547
+              ],
+              [
+                28222192,
+                29975339
+              ],
+              [
+                28060539,
+                29820782
+              ],
+              [
+                27929080,
+                29639845
+              ],
+              [
+                27832041,
+                29438342
+              ],
+              [
+                27772542,
+                29222750
+              ]
+            ]
+          ],
+          "flipped": false,
+          "fpid": "Fiducial:Fiducial_1mm_Mask2mm",
+          "models": [],
+          "orientation_microdegrees": 0,
+          "pads": [
+            {
+              "attribute": 1,
+              "drill_nm": [
+                0,
+                0
+              ],
+              "drill_shape": 1,
+              "layers": "00000000_00000000_00000000_00000003",
+              "number": "",
+              "offset_nm": [
+                0,
+                0
+              ],
+              "orientation_microdegrees": 0,
+              "position_nm": [
+                29000000,
+                29000000
+              ],
+              "shape": 0,
+              "size_nm": [
+                1000000,
+                1000000
+              ]
+            }
+          ],
+          "position_nm": [
+            29000000,
+            29000000
+          ],
+          "ref": "FID1",
+          "value": "Fiducial_1mm_Mask2mm"
+        },
+        {
+          "attributes": 30,
+          "body_bbox_nm": [
+            159725000,
+            27725000,
+            162275000,
+            30275000
+          ],
+          "courtyard": [
+            [
+              [
+                159752494,
+                29000000
+              ],
+              [
+                159772542,
+                28777249
+              ],
+              [
+                159832041,
+                28561657
+              ],
+              [
+                159929080,
+                28360154
+              ],
+              [
+                160060539,
+                28179217
+              ],
+              [
+                160222192,
+                28024660
+              ],
+              [
+                160408843,
+                27901452
+              ],
+              [
+                160614498,
+                27813552
+              ],
+              [
+                160832545,
+                27763784
+              ],
+              [
+                161055967,
+                27753750
+              ],
+              [
+                161277598,
+                27783771
+              ],
+              [
+                161490300,
+                27852883
+              ],
+              [
+                161687248,
+                27958865
+              ],
+              [
+                161862103,
+                28098308
+              ],
+              [
+                162009253,
+                28266734
+              ],
+              [
+                162123964,
+                28458728
+              ],
+              [
+                162202548,
+                28668114
+              ],
+              [
+                162242493,
+                28888230
+              ],
+              [
+                162244998,
+                29000000
+              ],
+              [
+                162242493,
+                29111769
+              ],
+              [
+                162202548,
+                29331885
+              ],
+              [
+                162123964,
+                29541271
+              ],
+              [
+                162009253,
+                29733265
+              ],
+              [
+                161862103,
+                29901691
+              ],
+              [
+                161687248,
+                30041134
+              ],
+              [
+                161490300,
+                30147116
+              ],
+              [
+                161277598,
+                30216228
+              ],
+              [
+                161055967,
+                30246249
+              ],
+              [
+                160832545,
+                30236215
+              ],
+              [
+                160614498,
+                30186447
+              ],
+              [
+                160408843,
+                30098547
+              ],
+              [
+                160222192,
+                29975339
+              ],
+              [
+                160060539,
+                29820782
+              ],
+              [
+                159929080,
+                29639845
+              ],
+              [
+                159832041,
+                29438342
+              ],
+              [
+                159772542,
+                29222750
+              ]
+            ]
+          ],
+          "flipped": false,
+          "fpid": "Fiducial:Fiducial_1mm_Mask2mm",
+          "models": [],
+          "orientation_microdegrees": 0,
+          "pads": [
+            {
+              "attribute": 1,
+              "drill_nm": [
+                0,
+                0
+              ],
+              "drill_shape": 1,
+              "layers": "00000000_00000000_00000000_00000003",
+              "number": "",
+              "offset_nm": [
+                0,
+                0
+              ],
+              "orientation_microdegrees": 0,
+              "position_nm": [
+                161000000,
+                29000000
+              ],
+              "shape": 0,
+              "size_nm": [
+                1000000,
+                1000000
+              ]
+            }
+          ],
+          "position_nm": [
+            161000000,
+            29000000
+          ],
+          "ref": "FID2",
+          "value": "Fiducial_1mm_Mask2mm"
+        },
+        {
+          "attributes": 30,
+          "body_bbox_nm": [
+            27725000,
+            109725000,
+            30275000,
+            112275000
+          ],
+          "courtyard": [
+            [
+              [
+                27752494,
+                111000000
+              ],
+              [
+                27772542,
+                110777249
+              ],
+              [
+                27832041,
+                110561657
+              ],
+              [
+                27929080,
+                110360154
+              ],
+              [
+                28060539,
+                110179217
+              ],
+              [
+                28222192,
+                110024660
+              ],
+              [
+                28408843,
+                109901452
+              ],
+              [
+                28614498,
+                109813552
+              ],
+              [
+                28832545,
+                109763784
+              ],
+              [
+                29055967,
+                109753750
+              ],
+              [
+                29277598,
+                109783771
+              ],
+              [
+                29490300,
+                109852883
+              ],
+              [
+                29687248,
+                109958865
+              ],
+              [
+                29862103,
+                110098308
+              ],
+              [
+                30009253,
+                110266734
+              ],
+              [
+                30123964,
+                110458728
+              ],
+              [
+                30202548,
+                110668114
+              ],
+              [
+                30242493,
+                110888230
+              ],
+              [
+                30244998,
+                111000000
+              ],
+              [
+                30242493,
+                111111769
+              ],
+              [
+                30202548,
+                111331885
+              ],
+              [
+                30123964,
+                111541271
+              ],
+              [
+                30009253,
+                111733265
+              ],
+              [
+                29862103,
+                111901691
+              ],
+              [
+                29687248,
+                112041134
+              ],
+              [
+                29490300,
+                112147116
+              ],
+              [
+                29277598,
+                112216228
+              ],
+              [
+                29055967,
+                112246249
+              ],
+              [
+                28832545,
+                112236215
+              ],
+              [
+                28614498,
+                112186447
+              ],
+              [
+                28408843,
+                112098547
+              ],
+              [
+                28222192,
+                111975339
+              ],
+              [
+                28060539,
+                111820782
+              ],
+              [
+                27929080,
+                111639845
+              ],
+              [
+                27832041,
+                111438342
+              ],
+              [
+                27772542,
+                111222750
+              ]
+            ]
+          ],
+          "flipped": false,
+          "fpid": "Fiducial:Fiducial_1mm_Mask2mm",
+          "models": [],
+          "orientation_microdegrees": 0,
+          "pads": [
+            {
+              "attribute": 1,
+              "drill_nm": [
+                0,
+                0
+              ],
+              "drill_shape": 1,
+              "layers": "00000000_00000000_00000000_00000003",
+              "number": "",
+              "offset_nm": [
+                0,
+                0
+              ],
+              "orientation_microdegrees": 0,
+              "position_nm": [
+                29000000,
+                111000000
+              ],
+              "shape": 0,
+              "size_nm": [
+                1000000,
+                1000000
+              ]
+            }
+          ],
+          "position_nm": [
+            29000000,
+            111000000
+          ],
+          "ref": "FID3",
+          "value": "Fiducial_1mm_Mask2mm"
+        },
+        {
+          "attributes": 28,
+          "body_bbox_nm": [
+            21525000,
+            21525000,
+            28475000,
+            28475000
+          ],
+          "courtyard": [
+            [
+              [
+                21557530,
+                24813358
+              ],
+              [
+                21557530,
+                25186641
+              ],
+              [
+                21597890,
+                25557751
+              ],
+              [
+                21678135,
+                25922311
+              ],
+              [
+                21797328,
+                26276060
+              ],
+              [
+                21954069,
+                26614850
+              ],
+              [
+                22146521,
+                26934708
+              ],
+              [
+                22372426,
+                27231881
+              ],
+              [
+                22629135,
+                27502885
+              ],
+              [
+                22913650,
+                27744554
+              ],
+              [
+                23222609,
+                27954034
+              ],
+              [
+                23552422,
+                28128890
+              ],
+              [
+                23899198,
+                28267058
+              ],
+              [
+                24258887,
+                28366925
+              ],
+              [
+                24627252,
+                28427316
+              ],
+              [
+                25000000,
+                28447526
+              ],
+              [
+                25372747,
+                28427316
+              ],
+              [
+                25741112,
+                28366925
+              ],
+              [
+                26100801,
+                28267058
+              ],
+              [
+                26447577,
+                28128890
+              ],
+              [
+                26777390,
+                27954034
+              ],
+              [
+                27086349,
+                27744554
+              ],
+              [
+                27370864,
+                27502885
+              ],
+              [
+                27627573,
+                27231881
+              ],
+              [
+                27853478,
+                26934708
+              ],
+              [
+                28045930,
+                26614850
+              ],
+              [
+                28202671,
+                26276060
+              ],
+              [
+                28321864,
+                25922311
+              ],
+              [
+                28402109,
+                25557751
+              ],
+              [
+                28442473,
+                25186612
+              ],
+              [
+                28444999,
+                25000000
+              ],
+              [
+                28442473,
+                24813387
+              ],
+              [
+                28402109,
+                24442248
+              ],
+              [
+                28321864,
+                24077688
+              ],
+              [
+                28202671,
+                23723939
+              ],
+              [
+                28045930,
+                23385149
+              ],
+              [
+                27853478,
+                23065291
+              ],
+              [
+                27627573,
+                22768118
+              ],
+              [
+                27370864,
+                22497114
+              ],
+              [
+                27086349,
+                22255445
+              ],
+              [
+                26777390,
+                22045965
+              ],
+              [
+                26447577,
+                21871109
+              ],
+              [
+                26100801,
+                21732941
+              ],
+              [
+                25741112,
+                21633074
+              ],
+              [
+                25372747,
+                21572683
+              ],
+              [
+                25000000,
+                21552474
+              ],
+              [
+                24627252,
+                21572683
+              ],
+              [
+                24258887,
+                21633074
+              ],
+              [
+                23899198,
+                21732941
+              ],
+              [
+                23552422,
+                21871109
+              ],
+              [
+                23222609,
+                22045965
+              ],
+              [
+                22913650,
+                22255445
+              ],
+              [
+                22629135,
+                22497114
+              ],
+              [
+                22372426,
+                22768118
+              ],
+              [
+                22146521,
+                23065291
+              ],
+              [
+                21954069,
+                23385149
+              ],
+              [
+                21797328,
+                23723939
+              ],
+              [
+                21678135,
+                24077688
+              ],
+              [
+                21597890,
+                24442248
+              ]
+            ]
+          ],
+          "flipped": false,
+          "fpid": "MountingHole:MountingHole_3.2mm_M3",
+          "models": [],
+          "orientation_microdegrees": 0,
+          "pads": [
+            {
+              "attribute": 3,
+              "drill_nm": [
+                3200000,
+                3200000
+              ],
+              "drill_shape": 1,
+              "layers": "00000000_00000000_55555555_5555555f",
+              "number": "",
+              "offset_nm": [
+                0,
+                0
+              ],
+              "orientation_microdegrees": 0,
+              "position_nm": [
+                25000000,
+                25000000
+              ],
+              "shape": 0,
+              "size_nm": [
+                3200000,
+                3200000
+              ]
+            }
+          ],
+          "position_nm": [
+            25000000,
+            25000000
+          ],
+          "ref": "H1",
+          "value": "MountingHole_3.2mm_M3"
+        },
+        {
+          "attributes": 28,
+          "body_bbox_nm": [
+            161525000,
+            21525000,
+            168475000,
+            28475000
+          ],
+          "courtyard": [
+            [
+              [
+                161557530,
+                24813358
+              ],
+              [
+                161557530,
+                25186641
+              ],
+              [
+                161597890,
+                25557751
+              ],
+              [
+                161678135,
+                25922311
+              ],
+              [
+                161797328,
+                26276060
+              ],
+              [
+                161954069,
+                26614850
+              ],
+              [
+                162146521,
+                26934708
+              ],
+              [
+                162372426,
+                27231881
+              ],
+              [
+                162629135,
+                27502885
+              ],
+              [
+                162913650,
+                27744554
+              ],
+              [
+                163222609,
+                27954034
+              ],
+              [
+                163552422,
+                28128890
+              ],
+              [
+                163899198,
+                28267058
+              ],
+              [
+                164258887,
+                28366925
+              ],
+              [
+                164627252,
+                28427316
+              ],
+              [
+                165000000,
+                28447526
+              ],
+              [
+                165372747,
+                28427316
+              ],
+              [
+                165741112,
+                28366925
+              ],
+              [
+                166100801,
+                28267058
+              ],
+              [
+                166447577,
+                28128890
+              ],
+              [
+                166777390,
+                27954034
+              ],
+              [
+                167086349,
+                27744554
+              ],
+              [
+                167370864,
+                27502885
+              ],
+              [
+                167627573,
+                27231881
+              ],
+              [
+                167853478,
+                26934708
+              ],
+              [
+                168045930,
+                26614850
+              ],
+              [
+                168202671,
+                26276060
+              ],
+              [
+                168321864,
+                25922311
+              ],
+              [
+                168402109,
+                25557751
+              ],
+              [
+                168442473,
+                25186612
+              ],
+              [
+                168444999,
+                25000000
+              ],
+              [
+                168442473,
+                24813387
+              ],
+              [
+                168402109,
+                24442248
+              ],
+              [
+                168321864,
+                24077688
+              ],
+              [
+                168202671,
+                23723939
+              ],
+              [
+                168045930,
+                23385149
+              ],
+              [
+                167853478,
+                23065291
+              ],
+              [
+                167627573,
+                22768118
+              ],
+              [
+                167370864,
+                22497114
+              ],
+              [
+                167086349,
+                22255445
+              ],
+              [
+                166777390,
+                22045965
+              ],
+              [
+                166447577,
+                21871109
+              ],
+              [
+                166100801,
+                21732941
+              ],
+              [
+                165741112,
+                21633074
+              ],
+              [
+                165372747,
+                21572683
+              ],
+              [
+                165000000,
+                21552474
+              ],
+              [
+                164627252,
+                21572683
+              ],
+              [
+                164258887,
+                21633074
+              ],
+              [
+                163899198,
+                21732941
+              ],
+              [
+                163552422,
+                21871109
+              ],
+              [
+                163222609,
+                22045965
+              ],
+              [
+                162913650,
+                22255445
+              ],
+              [
+                162629135,
+                22497114
+              ],
+              [
+                162372426,
+                22768118
+              ],
+              [
+                162146521,
+                23065291
+              ],
+              [
+                161954069,
+                23385149
+              ],
+              [
+                161797328,
+                23723939
+              ],
+              [
+                161678135,
+                24077688
+              ],
+              [
+                161597890,
+                24442248
+              ]
+            ]
+          ],
+          "flipped": false,
+          "fpid": "MountingHole:MountingHole_3.2mm_M3",
+          "models": [],
+          "orientation_microdegrees": 0,
+          "pads": [
+            {
+              "attribute": 3,
+              "drill_nm": [
+                3200000,
+                3200000
+              ],
+              "drill_shape": 1,
+              "layers": "00000000_00000000_55555555_5555555f",
+              "number": "",
+              "offset_nm": [
+                0,
+                0
+              ],
+              "orientation_microdegrees": 0,
+              "position_nm": [
+                165000000,
+                25000000
+              ],
+              "shape": 0,
+              "size_nm": [
+                3200000,
+                3200000
+              ]
+            }
+          ],
+          "position_nm": [
+            165000000,
+            25000000
+          ],
+          "ref": "H2",
+          "value": "MountingHole_3.2mm_M3"
+        },
+        {
+          "attributes": 28,
+          "body_bbox_nm": [
+            21525000,
+            111525000,
+            28475000,
+            118475000
+          ],
+          "courtyard": [
+            [
+              [
+                21557530,
+                114813358
+              ],
+              [
+                21557530,
+                115186641
+              ],
+              [
+                21597890,
+                115557751
+              ],
+              [
+                21678135,
+                115922311
+              ],
+              [
+                21797328,
+                116276060
+              ],
+              [
+                21954069,
+                116614850
+              ],
+              [
+                22146521,
+                116934708
+              ],
+              [
+                22372426,
+                117231881
+              ],
+              [
+                22629135,
+                117502885
+              ],
+              [
+                22913650,
+                117744554
+              ],
+              [
+                23222609,
+                117954034
+              ],
+              [
+                23552422,
+                118128890
+              ],
+              [
+                23899198,
+                118267058
+              ],
+              [
+                24258887,
+                118366925
+              ],
+              [
+                24627252,
+                118427316
+              ],
+              [
+                25000000,
+                118447526
+              ],
+              [
+                25372747,
+                118427316
+              ],
+              [
+                25741112,
+                118366925
+              ],
+              [
+                26100801,
+                118267058
+              ],
+              [
+                26447577,
+                118128890
+              ],
+              [
+                26777390,
+                117954034
+              ],
+              [
+                27086349,
+                117744554
+              ],
+              [
+                27370864,
+                117502885
+              ],
+              [
+                27627573,
+                117231881
+              ],
+              [
+                27853478,
+                116934708
+              ],
+              [
+                28045930,
+                116614850
+              ],
+              [
+                28202671,
+                116276060
+              ],
+              [
+                28321864,
+                115922311
+              ],
+              [
+                28402109,
+                115557751
+              ],
+              [
+                28442473,
+                115186612
+              ],
+              [
+                28444999,
+                115000000
+              ],
+              [
+                28442473,
+                114813387
+              ],
+              [
+                28402109,
+                114442248
+              ],
+              [
+                28321864,
+                114077688
+              ],
+              [
+                28202671,
+                113723939
+              ],
+              [
+                28045930,
+                113385149
+              ],
+              [
+                27853478,
+                113065291
+              ],
+              [
+                27627573,
+                112768118
+              ],
+              [
+                27370864,
+                112497114
+              ],
+              [
+                27086349,
+                112255445
+              ],
+              [
+                26777390,
+                112045965
+              ],
+              [
+                26447577,
+                111871109
+              ],
+              [
+                26100801,
+                111732941
+              ],
+              [
+                25741112,
+                111633074
+              ],
+              [
+                25372747,
+                111572683
+              ],
+              [
+                25000000,
+                111552474
+              ],
+              [
+                24627252,
+                111572683
+              ],
+              [
+                24258887,
+                111633074
+              ],
+              [
+                23899198,
+                111732941
+              ],
+              [
+                23552422,
+                111871109
+              ],
+              [
+                23222609,
+                112045965
+              ],
+              [
+                22913650,
+                112255445
+              ],
+              [
+                22629135,
+                112497114
+              ],
+              [
+                22372426,
+                112768118
+              ],
+              [
+                22146521,
+                113065291
+              ],
+              [
+                21954069,
+                113385149
+              ],
+              [
+                21797328,
+                113723939
+              ],
+              [
+                21678135,
+                114077688
+              ],
+              [
+                21597890,
+                114442248
+              ]
+            ]
+          ],
+          "flipped": false,
+          "fpid": "MountingHole:MountingHole_3.2mm_M3",
+          "models": [],
+          "orientation_microdegrees": 0,
+          "pads": [
+            {
+              "attribute": 3,
+              "drill_nm": [
+                3200000,
+                3200000
+              ],
+              "drill_shape": 1,
+              "layers": "00000000_00000000_55555555_5555555f",
+              "number": "",
+              "offset_nm": [
+                0,
+                0
+              ],
+              "orientation_microdegrees": 0,
+              "position_nm": [
+                25000000,
+                115000000
+              ],
+              "shape": 0,
+              "size_nm": [
+                3200000,
+                3200000
+              ]
+            }
+          ],
+          "position_nm": [
+            25000000,
+            115000000
+          ],
+          "ref": "H3",
+          "value": "MountingHole_3.2mm_M3"
+        },
+        {
+          "attributes": 28,
+          "body_bbox_nm": [
+            161525000,
+            111525000,
+            168475000,
+            118475000
+          ],
+          "courtyard": [
+            [
+              [
+                161557530,
+                114813358
+              ],
+              [
+                161557530,
+                115186641
+              ],
+              [
+                161597890,
+                115557751
+              ],
+              [
+                161678135,
+                115922311
+              ],
+              [
+                161797328,
+                116276060
+              ],
+              [
+                161954069,
+                116614850
+              ],
+              [
+                162146521,
+                116934708
+              ],
+              [
+                162372426,
+                117231881
+              ],
+              [
+                162629135,
+                117502885
+              ],
+              [
+                162913650,
+                117744554
+              ],
+              [
+                163222609,
+                117954034
+              ],
+              [
+                163552422,
+                118128890
+              ],
+              [
+                163899198,
+                118267058
+              ],
+              [
+                164258887,
+                118366925
+              ],
+              [
+                164627252,
+                118427316
+              ],
+              [
+                165000000,
+                118447526
+              ],
+              [
+                165372747,
+                118427316
+              ],
+              [
+                165741112,
+                118366925
+              ],
+              [
+                166100801,
+                118267058
+              ],
+              [
+                166447577,
+                118128890
+              ],
+              [
+                166777390,
+                117954034
+              ],
+              [
+                167086349,
+                117744554
+              ],
+              [
+                167370864,
+                117502885
+              ],
+              [
+                167627573,
+                117231881
+              ],
+              [
+                167853478,
+                116934708
+              ],
+              [
+                168045930,
+                116614850
+              ],
+              [
+                168202671,
+                116276060
+              ],
+              [
+                168321864,
+                115922311
+              ],
+              [
+                168402109,
+                115557751
+              ],
+              [
+                168442473,
+                115186612
+              ],
+              [
+                168444999,
+                115000000
+              ],
+              [
+                168442473,
+                114813387
+              ],
+              [
+                168402109,
+                114442248
+              ],
+              [
+                168321864,
+                114077688
+              ],
+              [
+                168202671,
+                113723939
+              ],
+              [
+                168045930,
+                113385149
+              ],
+              [
+                167853478,
+                113065291
+              ],
+              [
+                167627573,
+                112768118
+              ],
+              [
+                167370864,
+                112497114
+              ],
+              [
+                167086349,
+                112255445
+              ],
+              [
+                166777390,
+                112045965
+              ],
+              [
+                166447577,
+                111871109
+              ],
+              [
+                166100801,
+                111732941
+              ],
+              [
+                165741112,
+                111633074
+              ],
+              [
+                165372747,
+                111572683
+              ],
+              [
+                165000000,
+                111552474
+              ],
+              [
+                164627252,
+                111572683
+              ],
+              [
+                164258887,
+                111633074
+              ],
+              [
+                163899198,
+                111732941
+              ],
+              [
+                163552422,
+                111871109
+              ],
+              [
+                163222609,
+                112045965
+              ],
+              [
+                162913650,
+                112255445
+              ],
+              [
+                162629135,
+                112497114
+              ],
+              [
+                162372426,
+                112768118
+              ],
+              [
+                162146521,
+                113065291
+              ],
+              [
+                161954069,
+                113385149
+              ],
+              [
+                161797328,
+                113723939
+              ],
+              [
+                161678135,
+                114077688
+              ],
+              [
+                161597890,
+                114442248
+              ]
+            ]
+          ],
+          "flipped": false,
+          "fpid": "MountingHole:MountingHole_3.2mm_M3",
+          "models": [],
+          "orientation_microdegrees": 0,
+          "pads": [
+            {
+              "attribute": 3,
+              "drill_nm": [
+                3200000,
+                3200000
+              ],
+              "drill_shape": 1,
+              "layers": "00000000_00000000_55555555_5555555f",
+              "number": "",
+              "offset_nm": [
+                0,
+                0
+              ],
+              "orientation_microdegrees": 0,
+              "position_nm": [
+                165000000,
+                115000000
+              ],
+              "shape": 0,
+              "size_nm": [
+                3200000,
+                3200000
+              ]
+            }
+          ],
+          "position_nm": [
+            165000000,
+            115000000
+          ],
+          "ref": "H4",
+          "value": "MountingHole_3.2mm_M3"
+        },
+        {
+          "attributes": 1,
+          "body_bbox_nm": [
+            32145000,
+            21555000,
+            48855000,
+            32515000
+          ],
+          "courtyard": [
+            [
+              [
+                32175000,
+                21585000
+              ],
+              [
+                32175000,
+                32485000
+              ],
+              [
+                48825000,
+                32485000
+              ],
+              [
+                48825000,
+                21585000
+              ]
+            ]
+          ],
+          "flipped": false,
+          "fpid": "crow_audio_carrier:Molex_43650-0400_RA_Exact",
+          "models": [
+            {
+              "file": "${KICAD10_3DMODEL_DIR}/Connector_Molex.3dshapes/Molex_Micro-Fit_3.0_43650-0400_1x04_P3.00mm_Horizontal.step",
+              "offset": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "scale": [
+                1.0,
+                1.0,
+                1.0
+              ]
+            }
+          ],
+          "orientation_microdegrees": 0,
+          "pads": [
+            {
+              "attribute": 3,
+              "drill_nm": [
+                3000000,
+                3000000
+              ],
+              "drill_shape": 1,
+              "layers": "00000000_00000000_55555555_5555555f",
+              "number": "",
+              "offset_nm": [
+                0,
+                0
+              ],
+              "orientation_microdegrees": 0,
+              "position_nm": [
+                38150000,
+                26680000
+              ],
+              "shape": 0,
+              "size_nm": [
+                3000000,
+                3000000
+              ]
+            },
+            {
+              "attribute": 3,
+              "drill_nm": [
+                3000000,
+                3000000
+              ],
+              "drill_shape": 1,
+              "layers": "00000000_00000000_55555555_5555555f",
+              "number": "",
+              "offset_nm": [
+                0,
+                0
+              ],
+              "orientation_microdegrees": 0,
+              "position_nm": [
+                42850000,
+                26680000
+              ],
+              "shape": 0,
+              "size_nm": [
+                3000000,
+                3000000
+              ]
+            },
+            {
+              "attribute": 0,
+              "drill_nm": [
+                1020000,
+                1020000
+              ],
+              "drill_shape": 1,
+              "layers": "00000000_00000000_55555555_5555555f",
+              "number": "1",
+              "offset_nm": [
+                0,
+                0
+              ],
+              "orientation_microdegrees": 0,
+              "position_nm": [
+                36000000,
+                31000000
+              ],
+              "shape": 4,
+              "size_nm": [
+                1500000,
+                2020000
+              ]
+            },
+            {
+              "attribute": 0,
+              "drill_nm": [
+                1020000,
+                1020000
+              ],
+              "drill_shape": 1,
+              "layers": "00000000_00000000_55555555_5555555f",
+              "number": "2",
+              "offset_nm": [
+                0,
+                0
+              ],
+              "orientation_microdegrees": 0,
+              "position_nm": [
+                39000000,
+                31000000
+              ],
+              "shape": 2,
+              "size_nm": [
+                1500000,
+                2020000
+              ]
+            },
+            {
+              "attribute": 0,
+              "drill_nm": [
+                1020000,
+                1020000
+              ],
+              "drill_shape": 1,
+              "layers": "00000000_00000000_55555555_5555555f",
+              "number": "3",
+              "offset_nm": [
+                0,
+                0
+              ],
+              "orientation_microdegrees": 0,
+              "position_nm": [
+                42000000,
+                31000000
+              ],
+              "shape": 2,
+              "size_nm": [
+                1500000,
+                2020000
+              ]
+            },
+            {
+              "attribute": 0,
+              "drill_nm": [
+                1020000,
+                1020000
+              ],
+              "drill_shape": 1,
+              "layers": "00000000_00000000_55555555_5555555f",
+              "number": "4",
+              "offset_nm": [
+                0,
+                0
+              ],
+              "orientation_microdegrees": 0,
+              "position_nm": [
+                45000000,
+                31000000
+              ],
+              "shape": 2,
+              "size_nm": [
+                1500000,
+                2020000
+              ]
+            }
+          ],
+          "position_nm": [
+            36000000,
+            31000000
+          ],
+          "ref": "J1",
+          "value": "43650-0400"
+        },
+        {
+          "attributes": 1,
+          "body_bbox_nm": [
+            64145000,
+            21555000,
+            80855000,
+            32515000
+          ],
+          "courtyard": [
+            [
+              [
+                64175000,
+                21585000
+              ],
+              [
+                64175000,
+                32485000
+              ],
+              [
+                80825000,
+                32485000
+              ],
+              [
+                80825000,
+                21585000
+              ]
+            ]
+          ],
+          "flipped": false,
+          "fpid": "crow_audio_carrier:Molex_43650-0400_RA_Exact",
+          "models": [
+            {
+              "file": "${KICAD10_3DMODEL_DIR}/Connector_Molex.3dshapes/Molex_Micro-Fit_3.0_43650-0400_1x04_P3.00mm_Horizontal.step",
+              "offset": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "scale": [
+                1.0,
+                1.0,
+                1.0
+              ]
+            }
+          ],
+          "orientation_microdegrees": 0,
+          "pads": [
+            {
+              "attribute": 3,
+              "drill_nm": [
+                3000000,
+                3000000
+              ],
+              "drill_shape": 1,
+              "layers": "00000000_00000000_55555555_5555555f",
+              "number": "",
+              "offset_nm": [
+                0,
+                0
+              ],
+              "orientation_microdegrees": 0,
+              "position_nm": [
+                70150000,
+                26680000
+              ],
+              "shape": 0,
+              "size_nm": [
+                3000000,
+                3000000
+              ]
+            },
+            {
+              "attribute": 3,
+              "drill_nm": [
+                3000000,
+                3000000
+              ],
+              "drill_shape": 1,
+              "layers": "00000000_00000000_55555555_5555555f",
+              "number": "",
+              "offset_nm": [
+                0,
+                0
+              ],
+              "orientation_microdegrees": 0,
+              "position_nm": [
+                74850000,
+                26680000
+              ],
+              "shape": 0,
+              "size_nm": [
+                3000000,
+                3000000
+              ]
+            },
+            {
+              "attribute": 0,
+              "drill_nm": [
+                1020000,
+                1020000
+              ],
+              "drill_shape": 1,
+              "layers": "00000000_00000000_55555555_5555555f",
+              "number": "1",
+              "offset_nm": [
+                0,
+                0
+              ],
+              "orientation_microdegrees": 0,
+              "position_nm": [
+                68000000,
+                31000000
+              ],
+              "shape": 4,
+              "size_nm": [
+                1500000,
+                2020000
+              ]
+            },
+            {
+              "attribute": 0,
+              "drill_nm": [
+                1020000,
+                1020000
+              ],
+              "drill_shape": 1,
+              "layers": "00000000_00000000_55555555_5555555f",
+              "number": "2",
+              "offset_nm": [
+                0,
+                0
+              ],
+              "orientation_microdegrees": 0,
+              "position_nm": [
+                71000000,
+                31000000
+              ],
+              "shape": 2,
+              "size_nm": [
+                1500000,
+                2020000
+              ]
+            },
+            {
+              "attribute": 0,
+              "drill_nm": [
+                1020000,
+                1020000
+              ],
+              "drill_shape": 1,
+              "layers": "00000000_00000000_55555555_5555555f",
+              "number": "3",
+              "offset_nm": [
+                0,
+                0
+              ],
+              "orientation_microdegrees": 0,
+              "position_nm": [
+                74000000,
+                31000000
+              ],
+              "shape": 2,
+              "size_nm": [
+                1500000,
+                2020000
+              ]
+            },
+            {
+              "attribute": 0,
+              "drill_nm": [
+                1020000,
+                1020000
+              ],
+              "drill_shape": 1,
+              "layers": "00000000_00000000_55555555_5555555f",
+              "number": "4",
+              "offset_nm": [
+                0,
+                0
+              ],
+              "orientation_microdegrees": 0,
+              "position_nm": [
+                77000000,
+                31000000
+              ],
+              "shape": 2,
+              "size_nm": [
+                1500000,
+                2020000
+              ]
+            }
+          ],
+          "position_nm": [
+            68000000,
+            31000000
+          ],
+          "ref": "J2",
+          "value": "43650-0400"
+        },
+        {
+          "attributes": 1,
+          "body_bbox_nm": [
+            96145000,
+            21555000,
+            112855000,
+            32515000
+          ],
+          "courtyard": [
+            [
+              [
+                96175000,
+                21585000
+              ],
+              [
+                96175000,
+                32485000
+              ],
+              [
+                112825000,
+                32485000
+              ],
+              [
+                112825000,
+                21585000
+              ]
+            ]
+          ],
+          "flipped": false,
+          "fpid": "crow_audio_carrier:Molex_43650-0400_RA_Exact",
+          "models": [
+            {
+              "file": "${KICAD10_3DMODEL_DIR}/Connector_Molex.3dshapes/Molex_Micro-Fit_3.0_43650-0400_1x04_P3.00mm_Horizontal.step",
+              "offset": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "scale": [
+                1.0,
+                1.0,
+                1.0
+              ]
+            }
+          ],
+          "orientation_microdegrees": 0,
+          "pads": [
+            {
+              "attribute": 3,
+              "drill_nm": [
+                3000000,
+                3000000
+              ],
+              "drill_shape": 1,
+              "layers": "00000000_00000000_55555555_5555555f",
+              "number": "",
+              "offset_nm": [
+                0,
+                0
+              ],
+              "orientation_microdegrees": 0,
+              "position_nm": [
+                102150000,
+                26680000
+              ],
+              "shape": 0,
+              "size_nm": [
+                3000000,
+                3000000
+              ]
+            },
+            {
+              "attribute": 3,
+              "drill_nm": [
+                3000000,
+                3000000
+              ],
+              "drill_shape": 1,
+              "layers": "00000000_00000000_55555555_5555555f",
+              "number": "",
+              "offset_nm": [
+                0,
+                0
+              ],
+              "orientation_microdegrees": 0,
+              "position_nm": [
+                106850000,
+                26680000
+              ],
+              "shape": 0,
+              "size_nm": [
+                3000000,
+                3000000
+              ]
+            },
+            {
+              "attribute": 0,
+              "drill_nm": [
+                1020000,
+                1020000
+              ],
+              "drill_shape": 1,
+              "layers": "00000000_00000000_55555555_5555555f",
+              "number": "1",
+              "offset_nm": [
+                0,
+                0
+              ],
+              "orientation_microdegrees": 0,
+              "position_nm": [
+                100000000,
+                31000000
+              ],
+              "shape": 4,
+              "size_nm": [
+                1500000,
+                2020000
+              ]
+            },
+            {
+              "attribute": 0,
+              "drill_nm": [
+                1020000,
+                1020000
+              ],
+              "drill_shape": 1,
+              "layers": "00000000_00000000_55555555_5555555f",
+              "number": "2",
+              "offset_nm": [
+                0,
+                0
+              ],
+              "orientation_microdegrees": 0,
+              "position_nm": [
+                103000000,
+                31000000
+              ],
+              "shape": 2,
+              "size_nm": [
+                1500000,
+                2020000
+              ]
+            },
+            {
+              "attribute": 0,
+              "drill_nm": [
+                1020000,
+                1020000
+              ],
+              "drill_shape": 1,
+              "layers": "00000000_00000000_55555555_5555555f",
+              "number": "3",
+              "offset_nm": [
+                0,
+                0
+              ],
+              "orientation_microdegrees": 0,
+              "position_nm": [
+                106000000,
+                31000000
+              ],
+              "shape": 2,
+              "size_nm": [
+                1500000,
+                2020000
+              ]
+            },
+            {
+              "attribute": 0,
+              "drill_nm": [
+                1020000,
+                1020000
+              ],
+              "drill_shape": 1,
+              "layers": "00000000_00000000_55555555_5555555f",
+              "number": "4",
+              "offset_nm": [
+                0,
+                0
+              ],
+              "orientation_microdegrees": 0,
+              "position_nm": [
+                109000000,
+                31000000
+              ],
+              "shape": 2,
+              "size_nm": [
+                1500000,
+                2020000
+              ]
+            }
+          ],
+          "position_nm": [
+            100000000,
+            31000000
+          ],
+          "ref": "J3",
+          "value": "43650-0400"
+        },
+        {
+          "attributes": 1,
+          "body_bbox_nm": [
+            128145000,
+            21555000,
+            144855000,
+            32515000
+          ],
+          "courtyard": [
+            [
+              [
+                128175000,
+                21585000
+              ],
+              [
+                128175000,
+                32485000
+              ],
+              [
+                144825000,
+                32485000
+              ],
+              [
+                144825000,
+                21585000
+              ]
+            ]
+          ],
+          "flipped": false,
+          "fpid": "crow_audio_carrier:Molex_43650-0400_RA_Exact",
+          "models": [
+            {
+              "file": "${KICAD10_3DMODEL_DIR}/Connector_Molex.3dshapes/Molex_Micro-Fit_3.0_43650-0400_1x04_P3.00mm_Horizontal.step",
+              "offset": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "scale": [
+                1.0,
+                1.0,
+                1.0
+              ]
+            }
+          ],
+          "orientation_microdegrees": 0,
+          "pads": [
+            {
+              "attribute": 3,
+              "drill_nm": [
+                3000000,
+                3000000
+              ],
+              "drill_shape": 1,
+              "layers": "00000000_00000000_55555555_5555555f",
+              "number": "",
+              "offset_nm": [
+                0,
+                0
+              ],
+              "orientation_microdegrees": 0,
+              "position_nm": [
+                134150000,
+                26680000
+              ],
+              "shape": 0,
+              "size_nm": [
+                3000000,
+                3000000
+              ]
+            },
+            {
+              "attribute": 3,
+              "drill_nm": [
+                3000000,
+                3000000
+              ],
+              "drill_shape": 1,
+              "layers": "00000000_00000000_55555555_5555555f",
+              "number": "",
+              "offset_nm": [
+                0,
+                0
+              ],
+              "orientation_microdegrees": 0,
+              "position_nm": [
+                138850000,
+                26680000
+              ],
+              "shape": 0,
+              "size_nm": [
+                3000000,
+                3000000
+              ]
+            },
+            {
+              "attribute": 0,
+              "drill_nm": [
+                1020000,
+                1020000
+              ],
+              "drill_shape": 1,
+              "layers": "00000000_00000000_55555555_5555555f",
+              "number": "1",
+              "offset_nm": [
+                0,
+                0
+              ],
+              "orientation_microdegrees": 0,
+              "position_nm": [
+                132000000,
+                31000000
+              ],
+              "shape": 4,
+              "size_nm": [
+                1500000,
+                2020000
+              ]
+            },
+            {
+              "attribute": 0,
+              "drill_nm": [
+                1020000,
+                1020000
+              ],
+              "drill_shape": 1,
+              "layers": "00000000_00000000_55555555_5555555f",
+              "number": "2",
+              "offset_nm": [
+                0,
+                0
+              ],
+              "orientation_microdegrees": 0,
+              "position_nm": [
+                135000000,
+                31000000
+              ],
+              "shape": 2,
+              "size_nm": [
+                1500000,
+                2020000
+              ]
+            },
+            {
+              "attribute": 0,
+              "drill_nm": [
+                1020000,
+                1020000
+              ],
+              "drill_shape": 1,
+              "layers": "00000000_00000000_55555555_5555555f",
+              "number": "3",
+              "offset_nm": [
+                0,
+                0
+              ],
+              "orientation_microdegrees": 0,
+              "position_nm": [
+                138000000,
+                31000000
+              ],
+              "shape": 2,
+              "size_nm": [
+                1500000,
+                2020000
+              ]
+            },
+            {
+              "attribute": 0,
+              "drill_nm": [
+                1020000,
+                1020000
+              ],
+              "drill_shape": 1,
+              "layers": "00000000_00000000_55555555_5555555f",
+              "number": "4",
+              "offset_nm": [
+                0,
+                0
+              ],
+              "orientation_microdegrees": 0,
+              "position_nm": [
+                141000000,
+                31000000
+              ],
+              "shape": 2,
+              "size_nm": [
+                1500000,
+                2020000
+              ]
+            }
+          ],
+          "position_nm": [
+            132000000,
+            31000000
+          ],
+          "ref": "J4",
+          "value": "43650-0400"
+        },
+        {
+          "attributes": 1,
+          "body_bbox_nm": [
+            32145000,
+            107485000,
+            48855000,
+            118445000
+          ],
+          "courtyard": [
+            [
+              [
+                32175000,
+                107515000
+              ],
+              [
+                32175000,
+                118415000
+              ],
+              [
+                48825000,
+                118415000
+              ],
+              [
+                48825000,
+                107515000
+              ]
+            ]
+          ],
+          "flipped": false,
+          "fpid": "crow_audio_carrier:Molex_43650-0400_RA_Exact",
+          "models": [
+            {
+              "file": "${KICAD10_3DMODEL_DIR}/Connector_Molex.3dshapes/Molex_Micro-Fit_3.0_43650-0400_1x04_P3.00mm_Horizontal.step",
+              "offset": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "scale": [
+                1.0,
+                1.0,
+                1.0
+              ]
+            }
+          ],
+          "orientation_microdegrees": 180000000,
+          "pads": [
+            {
+              "attribute": 3,
+              "drill_nm": [
+                3000000,
+                3000000
+              ],
+              "drill_shape": 1,
+              "layers": "00000000_00000000_55555555_5555555f",
+              "number": "",
+              "offset_nm": [
+                0,
+                0
+              ],
+              "orientation_microdegrees": 180000000,
+              "position_nm": [
+                38150000,
+                113320000
+              ],
+              "shape": 0,
+              "size_nm": [
+                3000000,
+                3000000
+              ]
+            },
+            {
+              "attribute": 3,
+              "drill_nm": [
+                3000000,
+                3000000
+              ],
+              "drill_shape": 1,
+              "layers": "00000000_00000000_55555555_5555555f",
+              "number": "",
+              "offset_nm": [
+                0,
+                0
+              ],
+              "orientation_microdegrees": 180000000,
+              "position_nm": [
+                42850000,
+                113320000
+              ],
+              "shape": 0,
+              "size_nm": [
+                3000000,
+                3000000
+              ]
+            },
+            {
+              "attribute": 0,
+              "drill_nm": [
+                1020000,
+                1020000
+              ],
+              "drill_shape": 1,
+              "layers": "00000000_00000000_55555555_5555555f",
+              "number": "1",
+              "offset_nm": [
+                0,
+                0
+              ],
+              "orientation_microdegrees": 180000000,
+              "position_nm": [
+                45000000,
+                109000000
+              ],
+              "shape": 4,
+              "size_nm": [
+                1500000,
+                2020000
+              ]
+            },
+            {
+              "attribute": 0,
+              "drill_nm": [
+                1020000,
+                1020000
+              ],
+              "drill_shape": 1,
+              "layers": "00000000_00000000_55555555_5555555f",
+              "number": "2",
+              "offset_nm": [
+                0,
+                0
+              ],
+              "orientation_microdegrees": 180000000,
+              "position_nm": [
+                42000000,
+                109000000
+              ],
+              "shape": 2,
+              "size_nm": [
+                1500000,
+                2020000
+              ]
+            },
+            {
+              "attribute": 0,
+              "drill_nm": [
+                1020000,
+                1020000
+              ],
+              "drill_shape": 1,
+              "layers": "00000000_00000000_55555555_5555555f",
+              "number": "3",
+              "offset_nm": [
+                0,
+                0
+              ],
+              "orientation_microdegrees": 180000000,
+              "position_nm": [
+                39000000,
+                109000000
+              ],
+              "shape": 2,
+              "size_nm": [
+                1500000,
+                2020000
+              ]
+            },
+            {
+              "attribute": 0,
+              "drill_nm": [
+                1020000,
+                1020000
+              ],
+              "drill_shape": 1,
+              "layers": "00000000_00000000_55555555_5555555f",
+              "number": "4",
+              "offset_nm": [
+                0,
+                0
+              ],
+              "orientation_microdegrees": 180000000,
+              "position_nm": [
+                36000000,
+                109000000
+              ],
+              "shape": 2,
+              "size_nm": [
+                1500000,
+                2020000
+              ]
+            }
+          ],
+          "position_nm": [
+            45000000,
+            109000000
+          ],
+          "ref": "J5",
+          "value": "43650-0400"
+        },
+        {
+          "attributes": 1,
+          "body_bbox_nm": [
+            64145000,
+            107485000,
+            80855000,
+            118445000
+          ],
+          "courtyard": [
+            [
+              [
+                64175000,
+                107515000
+              ],
+              [
+                64175000,
+                118415000
+              ],
+              [
+                80825000,
+                118415000
+              ],
+              [
+                80825000,
+                107515000
+              ]
+            ]
+          ],
+          "flipped": false,
+          "fpid": "crow_audio_carrier:Molex_43650-0400_RA_Exact",
+          "models": [
+            {
+              "file": "${KICAD10_3DMODEL_DIR}/Connector_Molex.3dshapes/Molex_Micro-Fit_3.0_43650-0400_1x04_P3.00mm_Horizontal.step",
+              "offset": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "scale": [
+                1.0,
+                1.0,
+                1.0
+              ]
+            }
+          ],
+          "orientation_microdegrees": 180000000,
+          "pads": [
+            {
+              "attribute": 3,
+              "drill_nm": [
+                3000000,
+                3000000
+              ],
+              "drill_shape": 1,
+              "layers": "00000000_00000000_55555555_5555555f",
+              "number": "",
+              "offset_nm": [
+                0,
+                0
+              ],
+              "orientation_microdegrees": 180000000,
+              "position_nm": [
+                70150000,
+                113320000
+              ],
+              "shape": 0,
+              "size_nm": [
+                3000000,
+                3000000
+              ]
+            },
+            {
+              "attribute": 3,
+              "drill_nm": [
+                3000000,
+                3000000
+              ],
+              "drill_shape": 1,
+              "layers": "00000000_00000000_55555555_5555555f",
+              "number": "",
+              "offset_nm": [
+                0,
+                0
+              ],
+              "orientation_microdegrees": 180000000,
+              "position_nm": [
+                74850000,
+                113320000
+              ],
+              "shape": 0,
+              "size_nm": [
+                3000000,
+                3000000
+              ]
+            },
+            {
+              "attribute": 0,
+              "drill_nm": [
+                1020000,
+                1020000
+              ],
+              "drill_shape": 1,
+              "layers": "00000000_00000000_55555555_5555555f",
+              "number": "1",
+              "offset_nm": [
+                0,
+                0
+              ],
+              "orientation_microdegrees": 180000000,
+              "position_nm": [
+                77000000,
+                109000000
+              ],
+              "shape": 4,
+              "size_nm": [
+                1500000,
+                2020000
+              ]
+            },
+            {
+              "attribute": 0,
+              "drill_nm": [
+                1020000,
+                1020000
+              ],
+              "drill_shape": 1,
+              "layers": "00000000_00000000_55555555_5555555f",
+              "number": "2",
+              "offset_nm": [
+                0,
+                0
+              ],
+              "orientation_microdegrees": 180000000,
+              "position_nm": [
+                74000000,
+                109000000
+              ],
+              "shape": 2,
+              "size_nm": [
+                1500000,
+                2020000
+              ]
+            },
+            {
+              "attribute": 0,
+              "drill_nm": [
+                1020000,
+                1020000
+              ],
+              "drill_shape": 1,
+              "layers": "00000000_00000000_55555555_5555555f",
+              "number": "3",
+              "offset_nm": [
+                0,
+                0
+              ],
+              "orientation_microdegrees": 180000000,
+              "position_nm": [
+                71000000,
+                109000000
+              ],
+              "shape": 2,
+              "size_nm": [
+                1500000,
+                2020000
+              ]
+            },
+            {
+              "attribute": 0,
+              "drill_nm": [
+                1020000,
+                1020000
+              ],
+              "drill_shape": 1,
+              "layers": "00000000_00000000_55555555_5555555f",
+              "number": "4",
+              "offset_nm": [
+                0,
+                0
+              ],
+              "orientation_microdegrees": 180000000,
+              "position_nm": [
+                68000000,
+                109000000
+              ],
+              "shape": 2,
+              "size_nm": [
+                1500000,
+                2020000
+              ]
+            }
+          ],
+          "position_nm": [
+            77000000,
+            109000000
+          ],
+          "ref": "J6",
+          "value": "43650-0400"
+        },
+        {
+          "attributes": 1,
+          "body_bbox_nm": [
+            96145000,
+            107485000,
+            112855000,
+            118445000
+          ],
+          "courtyard": [
+            [
+              [
+                96175000,
+                107515000
+              ],
+              [
+                96175000,
+                118415000
+              ],
+              [
+                112825000,
+                118415000
+              ],
+              [
+                112825000,
+                107515000
+              ]
+            ]
+          ],
+          "flipped": false,
+          "fpid": "crow_audio_carrier:Molex_43650-0400_RA_Exact",
+          "models": [
+            {
+              "file": "${KICAD10_3DMODEL_DIR}/Connector_Molex.3dshapes/Molex_Micro-Fit_3.0_43650-0400_1x04_P3.00mm_Horizontal.step",
+              "offset": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "scale": [
+                1.0,
+                1.0,
+                1.0
+              ]
+            }
+          ],
+          "orientation_microdegrees": 180000000,
+          "pads": [
+            {
+              "attribute": 3,
+              "drill_nm": [
+                3000000,
+                3000000
+              ],
+              "drill_shape": 1,
+              "layers": "00000000_00000000_55555555_5555555f",
+              "number": "",
+              "offset_nm": [
+                0,
+                0
+              ],
+              "orientation_microdegrees": 180000000,
+              "position_nm": [
+                102150000,
+                113320000
+              ],
+              "shape": 0,
+              "size_nm": [
+                3000000,
+                3000000
+              ]
+            },
+            {
+              "attribute": 3,
+              "drill_nm": [
+                3000000,
+                3000000
+              ],
+              "drill_shape": 1,
+              "layers": "00000000_00000000_55555555_5555555f",
+              "number": "",
+              "offset_nm": [
+                0,
+                0
+              ],
+              "orientation_microdegrees": 180000000,
+              "position_nm": [
+                106850000,
+                113320000
+              ],
+              "shape": 0,
+              "size_nm": [
+                3000000,
+                3000000
+              ]
+            },
+            {
+              "attribute": 0,
+              "drill_nm": [
+                1020000,
+                1020000
+              ],
+              "drill_shape": 1,
+              "layers": "00000000_00000000_55555555_5555555f",
+              "number": "1",
+              "offset_nm": [
+                0,
+                0
+              ],
+              "orientation_microdegrees": 180000000,
+              "position_nm": [
+                109000000,
+                109000000
+              ],
+              "shape": 4,
+              "size_nm": [
+                1500000,
+                2020000
+              ]
+            },
+            {
+              "attribute": 0,
+              "drill_nm": [
+                1020000,
+                1020000
+              ],
+              "drill_shape": 1,
+              "layers": "00000000_00000000_55555555_5555555f",
+              "number": "2",
+              "offset_nm": [
+                0,
+                0
+              ],
+              "orientation_microdegrees": 180000000,
+              "position_nm": [
+                106000000,
+                109000000
+              ],
+              "shape": 2,
+              "size_nm": [
+                1500000,
+                2020000
+              ]
+            },
+            {
+              "attribute": 0,
+              "drill_nm": [
+                1020000,
+                1020000
+              ],
+              "drill_shape": 1,
+              "layers": "00000000_00000000_55555555_5555555f",
+              "number": "3",
+              "offset_nm": [
+                0,
+                0
+              ],
+              "orientation_microdegrees": 180000000,
+              "position_nm": [
+                103000000,
+                109000000
+              ],
+              "shape": 2,
+              "size_nm": [
+                1500000,
+                2020000
+              ]
+            },
+            {
+              "attribute": 0,
+              "drill_nm": [
+                1020000,
+                1020000
+              ],
+              "drill_shape": 1,
+              "layers": "00000000_00000000_55555555_5555555f",
+              "number": "4",
+              "offset_nm": [
+                0,
+                0
+              ],
+              "orientation_microdegrees": 180000000,
+              "position_nm": [
+                100000000,
+                109000000
+              ],
+              "shape": 2,
+              "size_nm": [
+                1500000,
+                2020000
+              ]
+            }
+          ],
+          "position_nm": [
+            109000000,
+            109000000
+          ],
+          "ref": "J7",
+          "value": "43650-0400"
+        },
+        {
+          "attributes": 1,
+          "body_bbox_nm": [
+            128145000,
+            107485000,
+            144855000,
+            118445000
+          ],
+          "courtyard": [
+            [
+              [
+                128175000,
+                107515000
+              ],
+              [
+                128175000,
+                118415000
+              ],
+              [
+                144825000,
+                118415000
+              ],
+              [
+                144825000,
+                107515000
+              ]
+            ]
+          ],
+          "flipped": false,
+          "fpid": "crow_audio_carrier:Molex_43650-0400_RA_Exact",
+          "models": [
+            {
+              "file": "${KICAD10_3DMODEL_DIR}/Connector_Molex.3dshapes/Molex_Micro-Fit_3.0_43650-0400_1x04_P3.00mm_Horizontal.step",
+              "offset": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "scale": [
+                1.0,
+                1.0,
+                1.0
+              ]
+            }
+          ],
+          "orientation_microdegrees": 180000000,
+          "pads": [
+            {
+              "attribute": 3,
+              "drill_nm": [
+                3000000,
+                3000000
+              ],
+              "drill_shape": 1,
+              "layers": "00000000_00000000_55555555_5555555f",
+              "number": "",
+              "offset_nm": [
+                0,
+                0
+              ],
+              "orientation_microdegrees": 180000000,
+              "position_nm": [
+                134150000,
+                113320000
+              ],
+              "shape": 0,
+              "size_nm": [
+                3000000,
+                3000000
+              ]
+            },
+            {
+              "attribute": 3,
+              "drill_nm": [
+                3000000,
+                3000000
+              ],
+              "drill_shape": 1,
+              "layers": "00000000_00000000_55555555_5555555f",
+              "number": "",
+              "offset_nm": [
+                0,
+                0
+              ],
+              "orientation_microdegrees": 180000000,
+              "position_nm": [
+                138850000,
+                113320000
+              ],
+              "shape": 0,
+              "size_nm": [
+                3000000,
+                3000000
+              ]
+            },
+            {
+              "attribute": 0,
+              "drill_nm": [
+                1020000,
+                1020000
+              ],
+              "drill_shape": 1,
+              "layers": "00000000_00000000_55555555_5555555f",
+              "number": "1",
+              "offset_nm": [
+                0,
+                0
+              ],
+              "orientation_microdegrees": 180000000,
+              "position_nm": [
+                141000000,
+                109000000
+              ],
+              "shape": 4,
+              "size_nm": [
+                1500000,
+                2020000
+              ]
+            },
+            {
+              "attribute": 0,
+              "drill_nm": [
+                1020000,
+                1020000
+              ],
+              "drill_shape": 1,
+              "layers": "00000000_00000000_55555555_5555555f",
+              "number": "2",
+              "offset_nm": [
+                0,
+                0
+              ],
+              "orientation_microdegrees": 180000000,
+              "position_nm": [
+                138000000,
+                109000000
+              ],
+              "shape": 2,
+              "size_nm": [
+                1500000,
+                2020000
+              ]
+            },
+            {
+              "attribute": 0,
+              "drill_nm": [
+                1020000,
+                1020000
+              ],
+              "drill_shape": 1,
+              "layers": "00000000_00000000_55555555_5555555f",
+              "number": "3",
+              "offset_nm": [
+                0,
+                0
+              ],
+              "orientation_microdegrees": 180000000,
+              "position_nm": [
+                135000000,
+                109000000
+              ],
+              "shape": 2,
+              "size_nm": [
+                1500000,
+                2020000
+              ]
+            },
+            {
+              "attribute": 0,
+              "drill_nm": [
+                1020000,
+                1020000
+              ],
+              "drill_shape": 1,
+              "layers": "00000000_00000000_55555555_5555555f",
+              "number": "4",
+              "offset_nm": [
+                0,
+                0
+              ],
+              "orientation_microdegrees": 180000000,
+              "position_nm": [
+                132000000,
+                109000000
+              ],
+              "shape": 2,
+              "size_nm": [
+                1500000,
+                2020000
+              ]
+            }
+          ],
+          "position_nm": [
+            141000000,
+            109000000
+          ],
+          "ref": "J8",
+          "value": "43650-0400"
+        },
+        {
+          "attributes": 1,
+          "body_bbox_nm": [
+            18555000,
+            62145000,
+            29515000,
+            72855000
+          ],
+          "courtyard": [
+            [
+              [
+                18585000,
+                62175000
+              ],
+              [
+                18585000,
+                72825000
+              ],
+              [
+                29485000,
+                72825000
+              ],
+              [
+                29485000,
+                62175000
+              ]
+            ]
+          ],
+          "flipped": false,
+          "fpid": "crow_audio_carrier:Molex_43650-0200_RA_Exact",
+          "models": [
+            {
+              "file": "${KICAD10_3DMODEL_DIR}/Connector_Molex.3dshapes/Molex_Micro-Fit_3.0_43650-0200_1x02_P3.00mm_Horizontal.step",
+              "offset": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "scale": [
+                1.0,
+                1.0,
+                1.0
+              ]
+            }
+          ],
+          "orientation_microdegrees": 90000000,
+          "pads": [
+            {
+              "attribute": 3,
+              "drill_nm": [
+                3000000,
+                3000000
+              ],
+              "drill_shape": 1,
+              "layers": "00000000_00000000_55555555_5555555f",
+              "number": "",
+              "offset_nm": [
+                0,
+                0
+              ],
+              "orientation_microdegrees": 90000000,
+              "position_nm": [
+                23680000,
+                67500000
+              ],
+              "shape": 0,
+              "size_nm": [
+                3000000,
+                3000000
+              ]
+            },
+            {
+              "attribute": 0,
+              "drill_nm": [
+                1020000,
+                1020000
+              ],
+              "drill_shape": 1,
+              "layers": "00000000_00000000_55555555_5555555f",
+              "number": "1",
+              "offset_nm": [
+                0,
+                0
+              ],
+              "orientation_microdegrees": 90000000,
+              "position_nm": [
+                28000000,
+                69000000
+              ],
+              "shape": 4,
+              "size_nm": [
+                1500000,
+                2020000
+              ]
+            },
+            {
+              "attribute": 0,
+              "drill_nm": [
+                1020000,
+                1020000
+              ],
+              "drill_shape": 1,
+              "layers": "00000000_00000000_55555555_5555555f",
+              "number": "2",
+              "offset_nm": [
+                0,
+                0
+              ],
+              "orientation_microdegrees": 90000000,
+              "position_nm": [
+                28000000,
+                66000000
+              ],
+              "shape": 2,
+              "size_nm": [
+                1500000,
+                2020000
+              ]
+            }
+          ],
+          "position_nm": [
+            28000000,
+            69000000
+          ],
+          "ref": "J9",
+          "value": "43650-0200"
+        },
+        {
+          "attributes": 1,
+          "body_bbox_nm": [
+            156475000,
+            45475000,
+            169525000,
+            50525000
+          ],
+          "courtyard": [
+            [
+              [
+                156505000,
+                45505000
+              ],
+              [
+                156505000,
+                50495000
+              ],
+              [
+                169495000,
+                50495000
+              ],
+              [
+                169495000,
+                45505000
+              ]
+            ]
+          ],
+          "flipped": false,
+          "fpid": "crow_audio_carrier:Samtec_TMM-106-01-L-D_2x06_P2.00mm_Vertical",
+          "models": [
+            {
+              "file": "${KICAD10_3DMODEL_DIR}/Connector_PinHeader_2.00mm.3dshapes/PinHeader_2x06_P2.00mm_Vertical.step",
+              "offset": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "scale": [
+                1.0,
+                1.0,
+                1.0
+              ]
+            }
+          ],
+          "orientation_microdegrees": 90000000,
+          "pads": [
+            {
+              "attribute": 0,
+              "drill_nm": [
+                800000,
+                800000
+              ],
+              "drill_shape": 1,
+              "layers": "00000000_00000000_55555555_5555555f",
+              "number": "1",
+              "offset_nm": [
+                0,
+                0
+              ],
+              "orientation_microdegrees": 90000000,
+              "position_nm": [
+                158000000,
+                49000000
+              ],
+              "shape": 1,
+              "size_nm": [
+                1350000,
+                1350000
+              ]
+            },
+            {
+              "attribute": 0,
+              "drill_nm": [
+                800000,
+                800000
+              ],
+              "drill_shape": 1,
+              "layers": "00000000_00000000_55555555_5555555f",
+              "number": "2",
+              "offset_nm": [
+                0,
+                0
+              ],
+              "orientation_microdegrees": 90000000,
+              "position_nm": [
+                158000000,
+                47000000
+              ],
+              "shape": 0,
+              "size_nm": [
+                1350000,
+                1350000
+              ]
+            },
+            {
+              "attribute": 0,
+              "drill_nm": [
+                800000,
+                800000
+              ],
+              "drill_shape": 1,
+              "layers": "00000000_00000000_55555555_5555555f",
+              "number": "3",
+              "offset_nm": [
+                0,
+                0
+              ],
+              "orientation_microdegrees": 90000000,
+              "position_nm": [
+                160000000,
+                49000000
+              ],
+              "shape": 0,
+              "size_nm": [
+                1350000,
+                1350000
+              ]
+            },
+            {
+              "attribute": 0,
+              "drill_nm": [
+                800000,
+                800000
+              ],
+              "drill_shape": 1,
+              "layers": "00000000_00000000_55555555_5555555f",
+              "number": "4",
+              "offset_nm": [
+                0,
+                0
+              ],
+              "orientation_microdegrees": 90000000,
+              "position_nm": [
+                160000000,
+                47000000
+              ],
+              "shape": 0,
+              "size_nm": [
+                1350000,
+                1350000
+              ]
+            },
+            {
+              "attribute": 0,
+              "drill_nm": [
+                800000,
+                800000
+              ],
+              "drill_shape": 1,
+              "layers": "00000000_00000000_55555555_5555555f",
+              "number": "5",
+              "offset_nm": [
+                0,
+                0
+              ],
+              "orientation_microdegrees": 90000000,
+              "position_nm": [
+                162000000,
+                49000000
+              ],
+              "shape": 0,
+              "size_nm": [
+                1350000,
+                1350000
+              ]
+            },
+            {
+              "attribute": 0,
+              "drill_nm": [
+                800000,
+                800000
+              ],
+              "drill_shape": 1,
+              "layers": "00000000_00000000_55555555_5555555f",
+              "number": "6",
+              "offset_nm": [
+                0,
+                0
+              ],
+              "orientation_microdegrees": 90000000,
+              "position_nm": [
+                162000000,
+                47000000
+              ],
+              "shape": 0,
+              "size_nm": [
+                1350000,
+                1350000
+              ]
+            },
+            {
+              "attribute": 0,
+              "drill_nm": [
+                800000,
+                800000
+              ],
+              "drill_shape": 1,
+              "layers": "00000000_00000000_55555555_5555555f",
+              "number": "7",
+              "offset_nm": [
+                0,
+                0
+              ],
+              "orientation_microdegrees": 90000000,
+              "position_nm": [
+                164000000,
+                49000000
+              ],
+              "shape": 0,
+              "size_nm": [
+                1350000,
+                1350000
+              ]
+            },
+            {
+              "attribute": 0,
+              "drill_nm": [
+                800000,
+                800000
+              ],
+              "drill_shape": 1,
+              "layers": "00000000_00000000_55555555_5555555f",
+              "number": "8",
+              "offset_nm": [
+                0,
+                0
+              ],
+              "orientation_microdegrees": 90000000,
+              "position_nm": [
+                164000000,
+                47000000
+              ],
+              "shape": 0,
+              "size_nm": [
+                1350000,
+                1350000
+              ]
+            },
+            {
+              "attribute": 0,
+              "drill_nm": [
+                800000,
+                800000
+              ],
+              "drill_shape": 1,
+              "layers": "00000000_00000000_55555555_5555555f",
+              "number": "9",
+              "offset_nm": [
+                0,
+                0
+              ],
+              "orientation_microdegrees": 90000000,
+              "position_nm": [
+                166000000,
+                49000000
+              ],
+              "shape": 0,
+              "size_nm": [
+                1350000,
+                1350000
+              ]
+            },
+            {
+              "attribute": 0,
+              "drill_nm": [
+                800000,
+                800000
+              ],
+              "drill_shape": 1,
+              "layers": "00000000_00000000_55555555_5555555f",
+              "number": "10",
+              "offset_nm": [
+                0,
+                0
+              ],
+              "orientation_microdegrees": 90000000,
+              "position_nm": [
+                166000000,
+                47000000
+              ],
+              "shape": 0,
+              "size_nm": [
+                1350000,
+                1350000
+              ]
+            },
+            {
+              "attribute": 0,
+              "drill_nm": [
+                800000,
+                800000
+              ],
+              "drill_shape": 1,
+              "layers": "00000000_00000000_55555555_5555555f",
+              "number": "11",
+              "offset_nm": [
+                0,
+                0
+              ],
+              "orientation_microdegrees": 90000000,
+              "position_nm": [
+                168000000,
+                49000000
+              ],
+              "shape": 0,
+              "size_nm": [
+                1350000,
+                1350000
+              ]
+            },
+            {
+              "attribute": 0,
+              "drill_nm": [
+                800000,
+                800000
+              ],
+              "drill_shape": 1,
+              "layers": "00000000_00000000_55555555_5555555f",
+              "number": "12",
+              "offset_nm": [
+                0,
+                0
+              ],
+              "orientation_microdegrees": 90000000,
+              "position_nm": [
+                168000000,
+                47000000
+              ],
+              "shape": 0,
+              "size_nm": [
+                1350000,
+                1350000
+              ]
+            }
+          ],
+          "position_nm": [
+            158000000,
+            49000000
+          ],
+          "ref": "J10",
+          "value": "TMM-106-01-L-D"
+        },
+        {
+          "attributes": 1,
+          "body_bbox_nm": [
+            156475000,
+            76475000,
+            169525000,
+            81525000
+          ],
+          "courtyard": [
+            [
+              [
+                156505000,
+                76505000
+              ],
+              [
+                156505000,
+                81495000
+              ],
+              [
+                169495000,
+                81495000
+              ],
+              [
+                169495000,
+                76505000
+              ]
+            ]
+          ],
+          "flipped": false,
+          "fpid": "crow_audio_carrier:Samtec_TMM-106-01-L-D_2x06_P2.00mm_Vertical",
+          "models": [
+            {
+              "file": "${KICAD10_3DMODEL_DIR}/Connector_PinHeader_2.00mm.3dshapes/PinHeader_2x06_P2.00mm_Vertical.step",
+              "offset": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "scale": [
+                1.0,
+                1.0,
+                1.0
+              ]
+            }
+          ],
+          "orientation_microdegrees": 90000000,
+          "pads": [
+            {
+              "attribute": 0,
+              "drill_nm": [
+                800000,
+                800000
+              ],
+              "drill_shape": 1,
+              "layers": "00000000_00000000_55555555_5555555f",
+              "number": "1",
+              "offset_nm": [
+                0,
+                0
+              ],
+              "orientation_microdegrees": 90000000,
+              "position_nm": [
+                158000000,
+                80000000
+              ],
+              "shape": 1,
+              "size_nm": [
+                1350000,
+                1350000
+              ]
+            },
+            {
+              "attribute": 0,
+              "drill_nm": [
+                800000,
+                800000
+              ],
+              "drill_shape": 1,
+              "layers": "00000000_00000000_55555555_5555555f",
+              "number": "2",
+              "offset_nm": [
+                0,
+                0
+              ],
+              "orientation_microdegrees": 90000000,
+              "position_nm": [
+                158000000,
+                78000000
+              ],
+              "shape": 0,
+              "size_nm": [
+                1350000,
+                1350000
+              ]
+            },
+            {
+              "attribute": 0,
+              "drill_nm": [
+                800000,
+                800000
+              ],
+              "drill_shape": 1,
+              "layers": "00000000_00000000_55555555_5555555f",
+              "number": "3",
+              "offset_nm": [
+                0,
+                0
+              ],
+              "orientation_microdegrees": 90000000,
+              "position_nm": [
+                160000000,
+                80000000
+              ],
+              "shape": 0,
+              "size_nm": [
+                1350000,
+                1350000
+              ]
+            },
+            {
+              "attribute": 0,
+              "drill_nm": [
+                800000,
+                800000
+              ],
+              "drill_shape": 1,
+              "layers": "00000000_00000000_55555555_5555555f",
+              "number": "4",
+              "offset_nm": [
+                0,
+                0
+              ],
+              "orientation_microdegrees": 90000000,
+              "position_nm": [
+                160000000,
+                78000000
+              ],
+              "shape": 0,
+              "size_nm": [
+                1350000,
+                1350000
+              ]
+            },
+            {
+              "attribute": 0,
+              "drill_nm": [
+                800000,
+                800000
+              ],
+              "drill_shape": 1,
+              "layers": "00000000_00000000_55555555_5555555f",
+              "number": "5",
+              "offset_nm": [
+                0,
+                0
+              ],
+              "orientation_microdegrees": 90000000,
+              "position_nm": [
+                162000000,
+                80000000
+              ],
+              "shape": 0,
+              "size_nm": [
+                1350000,
+                1350000
+              ]
+            },
+            {
+              "attribute": 0,
+              "drill_nm": [
+                800000,
+                800000
+              ],
+              "drill_shape": 1,
+              "layers": "00000000_00000000_55555555_5555555f",
+              "number": "6",
+              "offset_nm": [
+                0,
+                0
+              ],
+              "orientation_microdegrees": 90000000,
+              "position_nm": [
+                162000000,
+                78000000
+              ],
+              "shape": 0,
+              "size_nm": [
+                1350000,
+                1350000
+              ]
+            },
+            {
+              "attribute": 0,
+              "drill_nm": [
+                800000,
+                800000
+              ],
+              "drill_shape": 1,
+              "layers": "00000000_00000000_55555555_5555555f",
+              "number": "7",
+              "offset_nm": [
+                0,
+                0
+              ],
+              "orientation_microdegrees": 90000000,
+              "position_nm": [
+                164000000,
+                80000000
+              ],
+              "shape": 0,
+              "size_nm": [
+                1350000,
+                1350000
+              ]
+            },
+            {
+              "attribute": 0,
+              "drill_nm": [
+                800000,
+                800000
+              ],
+              "drill_shape": 1,
+              "layers": "00000000_00000000_55555555_5555555f",
+              "number": "8",
+              "offset_nm": [
+                0,
+                0
+              ],
+              "orientation_microdegrees": 90000000,
+              "position_nm": [
+                164000000,
+                78000000
+              ],
+              "shape": 0,
+              "size_nm": [
+                1350000,
+                1350000
+              ]
+            },
+            {
+              "attribute": 0,
+              "drill_nm": [
+                800000,
+                800000
+              ],
+              "drill_shape": 1,
+              "layers": "00000000_00000000_55555555_5555555f",
+              "number": "9",
+              "offset_nm": [
+                0,
+                0
+              ],
+              "orientation_microdegrees": 90000000,
+              "position_nm": [
+                166000000,
+                80000000
+              ],
+              "shape": 0,
+              "size_nm": [
+                1350000,
+                1350000
+              ]
+            },
+            {
+              "attribute": 0,
+              "drill_nm": [
+                800000,
+                800000
+              ],
+              "drill_shape": 1,
+              "layers": "00000000_00000000_55555555_5555555f",
+              "number": "10",
+              "offset_nm": [
+                0,
+                0
+              ],
+              "orientation_microdegrees": 90000000,
+              "position_nm": [
+                166000000,
+                78000000
+              ],
+              "shape": 0,
+              "size_nm": [
+                1350000,
+                1350000
+              ]
+            },
+            {
+              "attribute": 0,
+              "drill_nm": [
+                800000,
+                800000
+              ],
+              "drill_shape": 1,
+              "layers": "00000000_00000000_55555555_5555555f",
+              "number": "11",
+              "offset_nm": [
+                0,
+                0
+              ],
+              "orientation_microdegrees": 90000000,
+              "position_nm": [
+                168000000,
+                80000000
+              ],
+              "shape": 0,
+              "size_nm": [
+                1350000,
+                1350000
+              ]
+            },
+            {
+              "attribute": 0,
+              "drill_nm": [
+                800000,
+                800000
+              ],
+              "drill_shape": 1,
+              "layers": "00000000_00000000_55555555_5555555f",
+              "number": "12",
+              "offset_nm": [
+                0,
+                0
+              ],
+              "orientation_microdegrees": 90000000,
+              "position_nm": [
+                168000000,
+                78000000
+              ],
+              "shape": 0,
+              "size_nm": [
+                1350000,
+                1350000
+              ]
+            }
+          ],
+          "position_nm": [
+            158000000,
+            80000000
+          ],
+          "ref": "J11",
+          "value": "TMM-106-01-L-D"
+        }
+      ],
+      "outline": [
+        [
+          [
+            20000000,
+            20000000
+          ],
+          [
+            20000000,
+            120000000
+          ],
+          [
+            170000000,
+            120000000
+          ],
+          [
+            170000000,
+            20000000
+          ]
+        ]
+      ],
+      "outline_bbox_nm": [
+        20000000,
+        20000000,
+        170000000,
+        120000000
+      ],
+      "pcb_thickness_nm": 1600000
+    },
+    "source": {
+      "path": "04_kicad/crow_audio_carrier_v1.kicad_pcb",
+      "sha256": "0f6e2e608e72c986e2fc5d559e63df4ed23de8728e6428698eb3eba9ad7d15d1",
+      "size": 844382
+    },
+    "source_geometry_sha256": "ea83a5c7e0b5fab54323b6984c0dff13e1e3963e5f39084b8dc116d254523d24"
+  },
+  "commands": {
+    "grade": "/usr/bin/python3 skills/pcb-design/scripts/connector_qualification_coupon.py grade --project projects/crow-audio-carrier-v1 --request 06_build/connector_qualification_coupon/current/request.json --response 06_build/connector_qualification_coupon/current/physical-response.yaml --output 06_build/connector_qualification_coupon/current/qualification-receipt.json"
+  },
+  "coupon_id": "crow-audio-carrier-v1-connector-coupon",
+  "drc": {
+    "accepted_warning_types": [
+      "silk_edge_clearance"
+    ],
+    "error_count": 0,
+    "mechanical_finding_count": 0,
+    "unconnected_count": 0,
+    "violation_count": 4,
+    "warning_types": [
+      "silk_edge_clearance"
+    ]
+  },
+  "fabrication": {
+    "accepted_drc_warning_types": [
+      "silk_edge_clearance"
+    ],
+    "copper_layers": 4,
+    "pcb_thickness_mm": 1.6,
+    "population_method": "hand solder exact connector lots",
+    "silkscreen": "white",
+    "soldermask": "green",
+    "surface_finish": "lead-free HASL"
+  },
+  "inputs": {
+    "base_inputs": {
+      "compiler": {
+        "path": "skills/pcb-design/scripts/connector_assembly_contract.py",
+        "sha256": "db0dd73eeb47ebed4d03594b6d945b3f1b1e4d48d5b5b43ab536b1de1117c0f4",
+        "size": 65046
+      },
+      "contract": {
+        "path": "03_src/rules/connector_assemblies.yaml",
+        "sha256": "625ffc4b45e50adcd995c339f72139612bd2761953a1a489aabd2330ca86de4e",
+        "size": 21451
+      },
+      "evidence_files": [
+        {
+          "id": "contact-tool-record",
+          "kind": "manufacturer-assembly-process",
+          "path": "02_parts/43030-0007/primary-source-record.md",
+          "sha256": "6e48c762a061495a209fcb52c1f1a3be3796cb3459af528d989d10332e37c576",
+          "size": 1591
+        },
+        {
+          "id": "mch-boundary-adr",
+          "kind": "interface-contract",
+          "path": "01_docs/decisions/0005-mch-power-domain-boundary.md",
+          "sha256": "c0ab9bf50ba3d2bbb3f7e38ec362dfce4b7408e9d953828ed823b3c5f7d9c7f5",
+          "size": 3106
+        },
+        {
+          "id": "mch-cable-drawing",
+          "kind": "manufacturer-drawing-record",
+          "path": "02_parts/TCSD-06-D-04.50-01/primary-source-record.md",
+          "sha256": "2dd3fe805fdb9f7b5169c34036e34f30fe60f1bbf2d2a1a7c5fe24606f1caaed",
+          "size": 1997
+        },
+        {
+          "id": "mch-header-dossier",
+          "kind": "interface-contract",
+          "path": "02_parts/TMM-106-01-L-D/part.yaml",
+          "sha256": "84705e4bd5dc35ccdd7a656ce6c3aaeaf5938cb0d36bb1896c4467ac45e348aa",
+          "size": 2225
+        },
+        {
+          "id": "mch-header-drawing",
+          "kind": "manufacturer-drawing-record",
+          "path": "02_parts/TMM-106-01-L-D/primary-source-record.md",
+          "sha256": "3feb27215b40d0399950c058ca7225e5a98edb5a6eb1971c862a71553aaef40f",
+          "size": 1600
+        },
+        {
+          "id": "mch-manual-record",
+          "kind": "manufacturer-manual-record",
+          "path": "01_docs/evidence/mchstreamer-user-manual-record.md",
+          "sha256": "e0ab8ec1992d001d3e3eb0d845265d6bc4c35dcb6d305b735ee156264375a428",
+          "size": 2647
+        },
+        {
+          "id": "power-contact-record",
+          "kind": "manufacturer-datasheet-record",
+          "path": "02_parts/43030-0038/primary-source-record.md",
+          "sha256": "7714385f0e495ff3918a5e1d97a9ad48f7eb29705b4dcba79b56a0478221e217",
+          "size": 845
+        },
+        {
+          "id": "power-header-dossier",
+          "kind": "interface-contract",
+          "path": "02_parts/43650-0200/part.yaml",
+          "sha256": "a6eea99dc06e8085f8cbf9a9db952d1992a3192c4ca92a4427f665cce6465216",
+          "size": 1978
+        },
+        {
+          "id": "power-header-record",
+          "kind": "manufacturer-drawing-record",
+          "path": "02_parts/43650-0200/primary-source-record.md",
+          "sha256": "3879626912d69c7d3d72ec097a74d6cfd051b616b31d1e4b8bdc8da06cb88a43",
+          "size": 1684
+        },
+        {
+          "id": "power-mate-record",
+          "kind": "manufacturer-drawing-record",
+          "path": "02_parts/43645-0200/primary-source-record.md",
+          "sha256": "119f3927267d18a3387fbb3d380ed62773c205aeb9f96478127ad439842afdc1",
+          "size": 1538
+        },
+        {
+          "id": "power-positive-lead-record",
+          "kind": "manufacturer-datasheet-record",
+          "path": "02_parts/214761-2122/primary-source-record.md",
+          "sha256": "d834e5fd92b5975b30d4ee1c80b1bf8b0b0f5722b95853a29790eeade30c5b17",
+          "size": 793
+        },
+        {
+          "id": "power-restraint-record",
+          "kind": "manufacturer-datasheet-record",
+          "path": "02_parts/113-00022/primary-source-record.md",
+          "sha256": "7b584c835767382567a92465d1340f745ee77c994605de3dbb77d86c64d0d464",
+          "size": 1076
+        },
+        {
+          "id": "power-return-lead-record",
+          "kind": "manufacturer-datasheet-record",
+          "path": "02_parts/214761-1122/primary-source-record.md",
+          "sha256": "0affa944b8fc0fd904c2dc4249af4bbd1881d636d5ef6fc2e575b99715774fb1",
+          "size": 791
+        },
+        {
+          "id": "realized-floorplan",
+          "kind": "placement-contract",
+          "path": "03_src/floorplan.yaml",
+          "sha256": "c3207fe71448d0dce3e69d66e7908ab8f18728498bc215f4ceff413cf7058692",
+          "size": 8697
+        },
+        {
+          "id": "shared-spoke-contract",
+          "kind": "interface-contract",
+          "path": "03_src/rules/spoke_interface.yaml",
+          "sha256": "eacc850df2f2c1375e182d921745c74a7fb9def3133109e7c2dda105f7f453e7",
+          "size": 3549
+        },
+        {
+          "id": "spoke-cable-record",
+          "kind": "manufacturer-datasheet-record",
+          "path": "02_parts/6541PA/primary-source-record.md",
+          "sha256": "e6093cd8142b0d7fe909ca774b5a8d35836e8a6dbf096b4135f750d24eed637f",
+          "size": 1371
+        },
+        {
+          "id": "spoke-header-dossier",
+          "kind": "interface-contract",
+          "path": "02_parts/43650-0400/part.yaml",
+          "sha256": "ed53658b582f50e3644f5d573e7e1fd20ad3323af114084e95ccf996dad5305d",
+          "size": 2152
+        },
+        {
+          "id": "spoke-header-drawing",
+          "kind": "manufacturer-drawing-record",
+          "path": "02_parts/43650-0400/primary-source-record.md",
+          "sha256": "650a993f64b3411e2bb239bbaaaed013e668188c04c5bf0eab9c798bf354d40f",
+          "size": 1276
+        },
+        {
+          "id": "spoke-mate-drawing",
+          "kind": "manufacturer-drawing-record",
+          "path": "02_parts/43645-0400/primary-source-record.md",
+          "sha256": "936bdf72390465a1a5ed06e02c775473a1852e7ff32397b21410c44ba1fb1d87",
+          "size": 1199
+        }
+      ]
+    },
+    "base_receipt": {
+      "path": "06_build/verification/connector_assembly_contract.json",
+      "sha256": "f8d941dda0d73bb9e41862c9b9e76b9eda430f0b51b73c96eac114e0e173f7c2",
+      "size": 38447
+    },
+    "config": {
+      "path": "03_src/connector_qualification_coupon.yaml",
+      "sha256": "0adae4650c94e42ae9c0798e991941ad7a36f83afa548540d05a230b5ab550e5",
+      "size": 10418
+    },
+    "local_footprint_libraries": [
+      {
+        "files": [
+          {
+            "path": "03_src/lib/crow_audio_carrier.pretty/Cirrus_CS5308P_QFN48_6x6_P0.4_EP4.6.kicad_mod",
+            "sha256": "3b4488a5d5251cff1f4c5a1cbc7355e90d478598e7de57dd9e0e03139b8bcaee",
+            "size": 12020
+          },
+          {
+            "path": "03_src/lib/crow_audio_carrier.pretty/Coilcraft_XGL4020_Exact.kicad_mod",
+            "sha256": "baaf428ff3254d6af8bf0721a1812b54e58760419bcdd2821354109f8ad6e6f3",
+            "size": 1390
+          },
+          {
+            "path": "03_src/lib/crow_audio_carrier.pretty/Littelfuse_SMBJ15A_SMB_Exact.kicad_mod",
+            "sha256": "63dee0873b808ac7598ebc60e3f32e22b322d87edf7e9d9e9aadd90a8a9ee7dd",
+            "size": 1259
+          },
+          {
+            "path": "03_src/lib/crow_audio_carrier.pretty/Molex_43650-0200_RA_Exact.kicad_mod",
+            "sha256": "80ce662b23a6fa57b22b1db345c1e86cdac68dcfa7d9f1a9becaae7cddace94f",
+            "size": 2810
+          },
+          {
+            "path": "03_src/lib/crow_audio_carrier.pretty/Molex_43650-0400_RA_Exact.kicad_mod",
+            "sha256": "fa8877b1c3d305e884b95425f71714a3fb8bfbb6de6a08eb5707748f90c16fb7",
+            "size": 4882
+          },
+          {
+            "path": "03_src/lib/crow_audio_carrier.pretty/Panasonic_EEEFK1A471P_8x10.2_Exact.kicad_mod",
+            "sha256": "63fc06c20177564eb58d1befaf432e427c2cfdb49565a7e8cb1c983a66845294",
+            "size": 2169
+          },
+          {
+            "path": "03_src/lib/crow_audio_carrier.pretty/Samtec_TMM-106-01-L-D_2x06_P2.00mm_Vertical.kicad_mod",
+            "sha256": "43053a5fb3a69bbf33366a5df001c4ce228d7d01883aa4b81ef5e389d2789cdb",
+            "size": 3159
+          }
+        ],
+        "name": "crow_audio_carrier",
+        "path": "03_src/lib/crow_audio_carrier.pretty"
+      }
+    ],
+    "phase_gate": {
+      "path": "skills/pcb-design/scripts/connector_assembly_phase_gate.py",
+      "sha256": "35a6a19844515a2f40d80b0426250feef93857b2744de1ce5a28c4686c62b92f",
+      "size": 35248
+    },
+    "phase_policy": {
+      "path": "03_src/rules/connector_assembly_phases.yaml",
+      "sha256": "2cd581e06c7ad882d17b9c3a996e5481e24b6d65fe10a3980a70c5a3fae84653",
+      "size": 6804
+    },
+    "producer_verifier": {
+      "path": "skills/pcb-design/scripts/connector_qualification_coupon.py",
+      "sha256": "6aa4ad711fbc0cb18856fe13c02bb3647a0b63daef0bae85132f7dddfeb295a1",
+      "size": 81832
+    },
+    "source_board": {
+      "path": "04_kicad/crow_audio_carrier_v1.kicad_pcb",
+      "sha256": "0f6e2e608e72c986e2fc5d559e63df4ed23de8728e6428698eb3eba9ad7d15d1",
+      "size": 844382
+    },
+    "source_kicad_project": {
+      "path": "04_kicad/crow_audio_carrier_v1.kicad_pro",
+      "sha256": "d679205c674cc988c910a089d6c2a978221c9734c58b57c734daa2aa1eade0ac",
+      "size": 9604
+    }
+  },
+  "kind": "connector-qualification-coupon-request",
+  "qualification": {
+    "minimum_samples": {
+      "mchstreamer-dual-cable-interface": 2,
+      "molex-micro-fit-power-input": 1,
+      "molex-micro-fit-spoke-bank": 8
+    },
+    "required_instrument_roles": [
+      "continuity",
+      "crimp-height",
+      "dimensional",
+      "pull-force"
+    ],
+    "required_sample_evidence_kinds": [
+      "lot_label",
+      "photo"
+    ],
+    "target_hardware": [
+      {
+        "assembly_id": "mchstreamer-dual-cable-interface",
+        "manufacturer": "miniDSP",
+        "product": "MCHStreamer",
+        "role": "mchstreamer-module"
+      }
+    ],
+    "targets": [
+      {
+        "assembly_id": "mchstreamer-dual-cable-interface",
+        "path": "assemblies[2].cable.evidence",
+        "rationale": "Exact 114.30 +/-3.175 mm cable identity and 28 AWG construction are selected, but the connector schema requires a justified installed straight run and minimum bend radius that the TCSD drawing does not publish.",
+        "required_evidence_kinds": [
+          "measurement_sheet",
+          "photo"
+        ],
+        "required_measurements": [
+          {
+            "maximum": null,
+            "minimum": 0.0,
+            "name": "installed-straight-run",
+            "unit": "mm"
+          },
+          {
+            "maximum": null,
+            "minimum": 0.5,
+            "name": "minimum-route-clearance",
+            "unit": "mm"
+          },
+          {
+            "maximum": null,
+            "minimum": 0.0,
+            "name": "realized-minimum-bend-radius",
+            "unit": "mm"
+          }
+        ],
+        "required_refs": [
+          "J10",
+          "J11"
+        ],
+        "target_id": "cable",
+        "target_kind": "cable",
+        "unknown_class": "installed-cable-route-qualification"
+      },
+      {
+        "assembly_id": "mchstreamer-dual-cable-interface",
+        "path": "assemblies[2].interface.evidence",
+        "rationale": "Vertical source axes and both exact carrier-side parts exist; module-header fit, installed cable height, enclosure spacing and seating stack are OWED.",
+        "required_evidence_kinds": [
+          "measurement_sheet",
+          "photo"
+        ],
+        "required_measurements": [
+          {
+            "maximum": null,
+            "minimum": 0.0,
+            "name": "installed-cable-height",
+            "unit": "mm"
+          },
+          {
+            "maximum": 0.5,
+            "minimum": 0.0,
+            "name": "installed-seating-gap",
+            "unit": "mm"
+          },
+          {
+            "maximum": null,
+            "minimum": 0.5,
+            "name": "minimum-service-clearance",
+            "unit": "mm"
+          },
+          {
+            "maximum": null,
+            "minimum": null,
+            "name": "module-header-column-pitch",
+            "unit": "mm"
+          },
+          {
+            "maximum": null,
+            "minimum": 4.0,
+            "name": "module-header-exposed-post-length",
+            "unit": "mm"
+          },
+          {
+            "maximum": 0.55,
+            "minimum": 0.4,
+            "name": "module-header-post-width-x",
+            "unit": "mm"
+          },
+          {
+            "maximum": 0.55,
+            "minimum": 0.4,
+            "name": "module-header-post-width-y",
+            "unit": "mm"
+          },
+          {
+            "maximum": 2.05,
+            "minimum": 1.95,
+            "name": "module-header-row-pitch",
+            "unit": "mm"
+          }
+        ],
+        "required_refs": [
+          "J10",
+          "J11"
+        ],
+        "target_id": "interface",
+        "target_kind": "interface",
+        "unknown_class": "realized-interface-fit"
+      },
+      {
+        "assembly_id": "mchstreamer-dual-cable-interface",
+        "path": "assemblies[2].operations[3].evidence",
+        "rationale": "J10 removal and connector reaction are not physically demonstrated.",
+        "required_evidence_kinds": [
+          "photo",
+          "video"
+        ],
+        "required_measurements": [
+          {
+            "maximum": 0.0,
+            "minimum": 0.0,
+            "name": "connector-damage-count",
+            "unit": "count"
+          },
+          {
+            "maximum": null,
+            "minimum": 3.0,
+            "name": "exercised-cycles",
+            "unit": "count"
+          }
+        ],
+        "required_refs": [
+          "J10",
+          "J11"
+        ],
+        "target_id": "remove-j10-j1-cable",
+        "target_kind": "operation",
+        "unknown_class": "simultaneous-operation-qualification"
+      },
+      {
+        "assembly_id": "mchstreamer-dual-cable-interface",
+        "path": "assemblies[2].operations[2].evidence",
+        "rationale": "J11 removal with J10 populated and supported reaction has not been physically demonstrated.",
+        "required_evidence_kinds": [
+          "photo",
+          "video"
+        ],
+        "required_measurements": [
+          {
+            "maximum": 0.0,
+            "minimum": 0.0,
+            "name": "connector-damage-count",
+            "unit": "count"
+          },
+          {
+            "maximum": null,
+            "minimum": 3.0,
+            "name": "exercised-cycles",
+            "unit": "count"
+          }
+        ],
+        "required_refs": [
+          "J10",
+          "J11"
+        ],
+        "target_id": "remove-j11-j3-cable",
+        "target_kind": "operation",
+        "unknown_class": "simultaneous-operation-qualification"
+      },
+      {
+        "assembly_id": "mchstreamer-dual-cable-interface",
+        "path": "assemblies[2].operations[0].evidence",
+        "rationale": "TCSD identity is exact, but its socket rotation, one-to-one continuity and seating on the unidentified MCH J1 header have not been physically demonstrated.",
+        "required_evidence_kinds": [
+          "continuity_log",
+          "photo",
+          "video"
+        ],
+        "required_measurements": [
+          {
+            "maximum": 0.0,
+            "minimum": 0.0,
+            "name": "continuity-cross-short-count",
+            "unit": "count"
+          },
+          {
+            "maximum": 0.0,
+            "minimum": 0.0,
+            "name": "continuity-open-count",
+            "unit": "count"
+          },
+          {
+            "maximum": null,
+            "minimum": 3.0,
+            "name": "exercised-cycles",
+            "unit": "count"
+          },
+          {
+            "maximum": 0.0,
+            "minimum": 0.0,
+            "name": "pin-one-error-count",
+            "unit": "count"
+          }
+        ],
+        "required_refs": [
+          "J10",
+          "J11"
+        ],
+        "target_id": "seat-j10-j1-cable",
+        "target_kind": "operation",
+        "unknown_class": "simultaneous-operation-qualification"
+      },
+      {
+        "assembly_id": "mchstreamer-dual-cable-interface",
+        "path": "assemblies[2].operations[1].evidence",
+        "rationale": "J11/J3 distinct labeling, continuity and simultaneous seating have not been physically demonstrated.",
+        "required_evidence_kinds": [
+          "continuity_log",
+          "photo",
+          "video"
+        ],
+        "required_measurements": [
+          {
+            "maximum": 0.0,
+            "minimum": 0.0,
+            "name": "continuity-cross-short-count",
+            "unit": "count"
+          },
+          {
+            "maximum": 0.0,
+            "minimum": 0.0,
+            "name": "continuity-open-count",
+            "unit": "count"
+          },
+          {
+            "maximum": null,
+            "minimum": 3.0,
+            "name": "exercised-cycles",
+            "unit": "count"
+          },
+          {
+            "maximum": 0.0,
+            "minimum": 0.0,
+            "name": "pin-one-error-count",
+            "unit": "count"
+          }
+        ],
+        "required_refs": [
+          "J10",
+          "J11"
+        ],
+        "target_id": "seat-j11-j3-cable",
+        "target_kind": "operation",
+        "unknown_class": "simultaneous-operation-qualification"
+      },
+      {
+        "assembly_id": "mchstreamer-dual-cable-interface",
+        "path": "assemblies[2].reaction.evidence",
+        "rationale": "Reaction support with both boards installed is not demonstrated.",
+        "required_evidence_kinds": [
+          "measurement_sheet",
+          "video"
+        ],
+        "required_measurements": [
+          {
+            "maximum": null,
+            "minimum": 3.0,
+            "name": "exercised-cycles",
+            "unit": "count"
+          },
+          {
+            "maximum": 2.0,
+            "minimum": 0.0,
+            "name": "maximum-connector-rotation",
+            "unit": "deg"
+          },
+          {
+            "maximum": 0.5,
+            "minimum": 0.0,
+            "name": "maximum-pcb-flex",
+            "unit": "mm"
+          }
+        ],
+        "required_refs": [
+          "J10",
+          "J11"
+        ],
+        "target_id": "reaction",
+        "target_kind": "reaction",
+        "unknown_class": "reaction-qualification"
+      },
+      {
+        "assembly_id": "mchstreamer-dual-cable-interface",
+        "path": "assemblies[2].tolerances[1].evidence",
+        "rationale": "Header seating, socket, cable and enclosure tolerance stack is not closed.",
+        "required_evidence_kinds": [
+          "measurement_sheet",
+          "photo"
+        ],
+        "required_measurements": [
+          {
+            "maximum": null,
+            "minimum": 0.0,
+            "name": "realized-minus",
+            "unit": "mm"
+          },
+          {
+            "maximum": null,
+            "minimum": 0.0,
+            "name": "realized-plus",
+            "unit": "mm"
+          },
+          {
+            "maximum": null,
+            "minimum": 0.5,
+            "name": "worst-case-clearance",
+            "unit": "mm"
+          }
+        ],
+        "required_refs": [
+          "J10",
+          "J11"
+        ],
+        "target_id": "mch-header-cable-enclosure-stack",
+        "target_kind": "tolerance",
+        "unknown_class": "installed-tolerance-qualification"
+      },
+      {
+        "assembly_id": "molex-micro-fit-power-input",
+        "path": "assemblies[1].cable.evidence",
+        "rationale": "Exact 150 mm red/black 18 AWG precrimp identities and 43030-0038 contacts are selected. The 3.70 mm figure conservatively bounds two side-by-side leads at the 1.85 mm contact insulation limit, and the first 12.70 mm remains unconstrained before restraint 113-00022; installed cross-section, bend, route, restraint and tinned-pigtail appliance termination require physical qualification.",
+        "required_evidence_kinds": [
+          "measurement_sheet",
+          "photo"
+        ],
+        "required_measurements": [
+          {
+            "maximum": 3.7,
+            "minimum": 0.0,
+            "name": "installed-outer-diameter",
+            "unit": "mm"
+          },
+          {
+            "maximum": null,
+            "minimum": 12.7,
+            "name": "installed-straight-run",
+            "unit": "mm"
+          },
+          {
+            "maximum": null,
+            "minimum": 0.5,
+            "name": "minimum-route-clearance",
+            "unit": "mm"
+          },
+          {
+            "maximum": null,
+            "minimum": 0.0,
+            "name": "realized-minimum-bend-radius",
+            "unit": "mm"
+          }
+        ],
+        "required_refs": [
+          "J9"
+        ],
+        "target_id": "cable",
+        "target_kind": "cable",
+        "unknown_class": "installed-cable-route-qualification"
+      },
+      {
+        "assembly_id": "molex-micro-fit-power-input",
+        "path": "assemblies[1].interface.evidence",
+        "rationale": "West-edge source orientation and exact interface identities exist; installed seating, enclosure exposure and service clearance do not.",
+        "required_evidence_kinds": [
+          "measurement_sheet",
+          "photo"
+        ],
+        "required_measurements": [
+          {
+            "maximum": 0.5,
+            "minimum": 0.0,
+            "name": "installed-seating-gap",
+            "unit": "mm"
+          },
+          {
+            "maximum": null,
+            "minimum": null,
+            "name": "mating-plane-offset",
+            "unit": "mm"
+          },
+          {
+            "maximum": null,
+            "minimum": 0.0,
+            "name": "minimum-exposure",
+            "unit": "mm"
+          },
+          {
+            "maximum": null,
+            "minimum": 0.5,
+            "name": "minimum-service-clearance",
+            "unit": "mm"
+          }
+        ],
+        "required_refs": [
+          "J9"
+        ],
+        "target_id": "interface",
+        "target_kind": "interface",
+        "unknown_class": "realized-interface-fit"
+      },
+      {
+        "assembly_id": "molex-micro-fit-power-input",
+        "path": "assemblies[1].operations[0].evidence",
+        "rationale": "The exact red-cavity-1/black-cavity-2 harness is selected, but supply-off mating, latch, continuity and polarity checking have not been demonstrated.",
+        "required_evidence_kinds": [
+          "continuity_log",
+          "photo",
+          "video"
+        ],
+        "required_measurements": [
+          {
+            "maximum": 0.0,
+            "minimum": 0.0,
+            "name": "continuity-cross-short-count",
+            "unit": "count"
+          },
+          {
+            "maximum": 0.0,
+            "minimum": 0.0,
+            "name": "continuity-open-count",
+            "unit": "count"
+          },
+          {
+            "maximum": null,
+            "minimum": 3.0,
+            "name": "exercised-cycles",
+            "unit": "count"
+          },
+          {
+            "maximum": 0.0,
+            "minimum": 0.0,
+            "name": "polarity-error-count",
+            "unit": "count"
+          }
+        ],
+        "required_refs": [
+          "J9"
+        ],
+        "target_id": "mate-and-polarity-check",
+        "target_kind": "operation",
+        "unknown_class": "simultaneous-operation-qualification"
+      },
+      {
+        "assembly_id": "molex-micro-fit-power-input",
+        "path": "assemblies[1].operations[1].evidence",
+        "rationale": "Supply-off latch release with the exact installed restraint and neighboring cables is unproved.",
+        "required_evidence_kinds": [
+          "photo",
+          "video"
+        ],
+        "required_measurements": [
+          {
+            "maximum": null,
+            "minimum": 3.0,
+            "name": "exercised-cycles",
+            "unit": "count"
+          },
+          {
+            "maximum": 0.0,
+            "minimum": 0.0,
+            "name": "latch-damage-count",
+            "unit": "count"
+          }
+        ],
+        "required_refs": [
+          "J9"
+        ],
+        "target_id": "unmate-supply-off",
+        "target_kind": "operation",
+        "unknown_class": "simultaneous-operation-qualification"
+      },
+      {
+        "assembly_id": "molex-micro-fit-power-input",
+        "path": "assemblies[1].reaction.evidence",
+        "rationale": "The selected support/restraint method is explicit, but input mating force and installed restraint reaction are not demonstrated.",
+        "required_evidence_kinds": [
+          "measurement_sheet",
+          "video"
+        ],
+        "required_measurements": [
+          {
+            "maximum": null,
+            "minimum": 3.0,
+            "name": "exercised-cycles",
+            "unit": "count"
+          },
+          {
+            "maximum": 2.0,
+            "minimum": 0.0,
+            "name": "maximum-connector-rotation",
+            "unit": "deg"
+          },
+          {
+            "maximum": 0.5,
+            "minimum": 0.0,
+            "name": "maximum-pcb-flex",
+            "unit": "mm"
+          }
+        ],
+        "required_refs": [
+          "J9"
+        ],
+        "target_id": "reaction",
+        "target_kind": "reaction",
+        "unknown_class": "reaction-qualification"
+      },
+      {
+        "assembly_id": "molex-micro-fit-power-input",
+        "path": "assemblies[1].tolerances[1].evidence",
+        "rationale": "Header/housing seating, enclosure, 12.70 mm free lead, restraint and pigtail-route tolerance stack is not closed.",
+        "required_evidence_kinds": [
+          "measurement_sheet",
+          "photo"
+        ],
+        "required_measurements": [
+          {
+            "maximum": null,
+            "minimum": 0.0,
+            "name": "realized-minus",
+            "unit": "mm"
+          },
+          {
+            "maximum": null,
+            "minimum": 0.0,
+            "name": "realized-plus",
+            "unit": "mm"
+          },
+          {
+            "maximum": null,
+            "minimum": 0.5,
+            "name": "worst-case-clearance",
+            "unit": "mm"
+          }
+        ],
+        "required_refs": [
+          "J9"
+        ],
+        "target_id": "power-connector-enclosure-stack",
+        "target_kind": "tolerance",
+        "unknown_class": "installed-tolerance-qualification"
+      },
+      {
+        "assembly_id": "molex-micro-fit-spoke-bank",
+        "path": "assemblies[0].interface.evidence",
+        "rationale": "Source axes are selected but realized placement, enclosure and seating tolerance stacks do not exist.",
+        "required_evidence_kinds": [
+          "measurement_sheet",
+          "photo"
+        ],
+        "required_measurements": [
+          {
+            "maximum": 0.5,
+            "minimum": 0.0,
+            "name": "installed-seating-gap",
+            "unit": "mm"
+          },
+          {
+            "maximum": null,
+            "minimum": null,
+            "name": "mating-plane-offset",
+            "unit": "mm"
+          },
+          {
+            "maximum": null,
+            "minimum": 0.0,
+            "name": "minimum-exposure",
+            "unit": "mm"
+          },
+          {
+            "maximum": null,
+            "minimum": 0.5,
+            "name": "minimum-service-clearance",
+            "unit": "mm"
+          }
+        ],
+        "required_refs": [
+          "J1",
+          "J2",
+          "J3",
+          "J4",
+          "J5",
+          "J6",
+          "J7",
+          "J8"
+        ],
+        "target_id": "interface",
+        "target_kind": "interface",
+        "unknown_class": "realized-interface-fit"
+      },
+      {
+        "assembly_id": "molex-micro-fit-spoke-bank",
+        "path": "assemblies[0].operations[1].evidence",
+        "rationale": "Retention/polarity/continuity procedure is not physically qualified.",
+        "required_evidence_kinds": [
+          "continuity_log",
+          "measurement_sheet",
+          "photo"
+        ],
+        "required_measurements": [
+          {
+            "maximum": 0.93,
+            "minimum": 0.83,
+            "name": "conductor-crimp-height",
+            "unit": "mm"
+          },
+          {
+            "maximum": 0.0,
+            "minimum": 0.0,
+            "name": "continuity-cross-short-count",
+            "unit": "count"
+          },
+          {
+            "maximum": 0.0,
+            "minimum": 0.0,
+            "name": "continuity-open-count",
+            "unit": "count"
+          },
+          {
+            "maximum": null,
+            "minimum": 35.6,
+            "name": "pull-force",
+            "unit": "N"
+          },
+          {
+            "maximum": 2.92,
+            "minimum": 2.54,
+            "name": "strip-length",
+            "unit": "mm"
+          }
+        ],
+        "required_refs": [
+          "J1",
+          "J2",
+          "J3",
+          "J4",
+          "J5",
+          "J6",
+          "J7",
+          "J8"
+        ],
+        "target_id": "latch-pull-check",
+        "target_kind": "operation",
+        "unknown_class": "simultaneous-operation-qualification"
+      },
+      {
+        "assembly_id": "molex-micro-fit-spoke-bank",
+        "path": "assemblies[0].operations[0].evidence",
+        "rationale": "All-eight mating has not been demonstrated.",
+        "required_evidence_kinds": [
+          "continuity_log",
+          "photo",
+          "video"
+        ],
+        "required_measurements": [
+          {
+            "maximum": 0.0,
+            "minimum": 0.0,
+            "name": "continuity-cross-short-count",
+            "unit": "count"
+          },
+          {
+            "maximum": 0.0,
+            "minimum": 0.0,
+            "name": "continuity-open-count",
+            "unit": "count"
+          },
+          {
+            "maximum": null,
+            "minimum": 3.0,
+            "name": "exercised-cycles",
+            "unit": "count"
+          }
+        ],
+        "required_refs": [
+          "J1",
+          "J2",
+          "J3",
+          "J4",
+          "J5",
+          "J6",
+          "J7",
+          "J8"
+        ],
+        "target_id": "mate",
+        "target_kind": "operation",
+        "unknown_class": "simultaneous-operation-qualification"
+      },
+      {
+        "assembly_id": "molex-micro-fit-spoke-bank",
+        "path": "assemblies[0].operations[2].evidence",
+        "rationale": "Latch release with all neighbors populated has not been demonstrated.",
+        "required_evidence_kinds": [
+          "photo",
+          "video"
+        ],
+        "required_measurements": [
+          {
+            "maximum": null,
+            "minimum": 3.0,
+            "name": "exercised-cycles",
+            "unit": "count"
+          },
+          {
+            "maximum": 0.0,
+            "minimum": 0.0,
+            "name": "latch-damage-count",
+            "unit": "count"
+          }
+        ],
+        "required_refs": [
+          "J1",
+          "J2",
+          "J3",
+          "J4",
+          "J5",
+          "J6",
+          "J7",
+          "J8"
+        ],
+        "target_id": "unmate",
+        "target_kind": "operation",
+        "unknown_class": "simultaneous-operation-qualification"
+      },
+      {
+        "assembly_id": "molex-micro-fit-spoke-bank",
+        "path": "assemblies[0].reaction.evidence",
+        "rationale": "Insertion/extraction reaction load and enclosure support are not demonstrated.",
+        "required_evidence_kinds": [
+          "measurement_sheet",
+          "video"
+        ],
+        "required_measurements": [
+          {
+            "maximum": null,
+            "minimum": 3.0,
+            "name": "exercised-cycles",
+            "unit": "count"
+          },
+          {
+            "maximum": 2.0,
+            "minimum": 0.0,
+            "name": "maximum-connector-rotation",
+            "unit": "deg"
+          },
+          {
+            "maximum": 0.5,
+            "minimum": 0.0,
+            "name": "maximum-pcb-flex",
+            "unit": "mm"
+          }
+        ],
+        "required_refs": [
+          "J1",
+          "J2",
+          "J3",
+          "J4",
+          "J5",
+          "J6",
+          "J7",
+          "J8"
+        ],
+        "target_id": "reaction",
+        "target_kind": "reaction",
+        "unknown_class": "reaction-qualification"
+      },
+      {
+        "assembly_id": "molex-micro-fit-spoke-bank",
+        "path": "assemblies[0].tolerances[1].evidence",
+        "rationale": "Drawing, PCB, solder seating and enclosure tolerance stack is not closed.",
+        "required_evidence_kinds": [
+          "measurement_sheet",
+          "photo"
+        ],
+        "required_measurements": [
+          {
+            "maximum": null,
+            "minimum": 0.0,
+            "name": "realized-minus",
+            "unit": "mm"
+          },
+          {
+            "maximum": null,
+            "minimum": 0.0,
+            "name": "realized-plus",
+            "unit": "mm"
+          },
+          {
+            "maximum": null,
+            "minimum": 0.5,
+            "name": "worst-case-clearance",
+            "unit": "mm"
+          }
+        ],
+        "required_refs": [
+          "J1",
+          "J2",
+          "J3",
+          "J4",
+          "J5",
+          "J6",
+          "J7",
+          "J8"
+        ],
+        "target_id": "connector-enclosure-stack",
+        "target_kind": "tolerance",
+        "unknown_class": "installed-tolerance-qualification"
+      }
+    ]
+  },
+  "schema": 1,
+  "status": "READY_FOR_FABRICATION",
+  "summary": {
+    "artifact_count": 30,
+    "assembly_count": 3,
+    "board_only_datum_count": 7,
+    "connector_count": 11,
+    "gerber_or_drill_count": 13,
+    "physical_target_count": 20,
+    "review_artifact_count": 4
+  }
+}

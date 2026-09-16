@@ -1,0 +1,778 @@
+schema: 1
+contract_id: crow-audio-carrier-v1-connector-service
+evidence_sources:
+- id: shared-spoke-contract
+  kind: interface-contract
+  path: 03_src/rules/spoke_interface.yaml
+- id: realized-floorplan
+  kind: placement-contract
+  path: 03_src/floorplan.yaml
+- id: spoke-header-dossier
+  kind: interface-contract
+  path: 02_parts/615008160221/part.yaml
+- id: spoke-header-drawing
+  kind: manufacturer-drawing-record
+  path: 02_parts/615008160221/primary-source-record.md
+- id: spoke-header-model
+  kind: manufacturer-3d-model
+  path: 03_src/lib/3dmodels/wurth/J_Wurth_WR-MJ_615008160221.step
+- id: spoke-cable-record
+  kind: manufacturer-drawing-record
+  path: 02_parts/8909650150/primary-source-record.md
+- id: power-header-dossier
+  kind: interface-contract
+  path: 02_parts/43650-0200/part.yaml
+- id: power-header-record
+  kind: manufacturer-drawing-record
+  path: 02_parts/43650-0200/primary-source-record.md
+- id: power-mate-record
+  kind: manufacturer-drawing-record
+  path: 02_parts/43645-0200/primary-source-record.md
+- id: power-contact-record
+  kind: manufacturer-datasheet-record
+  path: 02_parts/43030-0038/primary-source-record.md
+- id: power-positive-lead-record
+  kind: manufacturer-datasheet-record
+  path: 02_parts/214761-2122/primary-source-record.md
+- id: power-return-lead-record
+  kind: manufacturer-datasheet-record
+  path: 02_parts/214761-1122/primary-source-record.md
+- id: power-restraint-record
+  kind: manufacturer-datasheet-record
+  path: 02_parts/113-00022/primary-source-record.md
+- id: mch-header-dossier
+  kind: interface-contract
+  path: 02_parts/TMM-106-01-L-D/part.yaml
+- id: mch-header-drawing
+  kind: manufacturer-drawing-record
+  path: 02_parts/TMM-106-01-L-D/primary-source-record.md
+- id: mch-cable-drawing
+  kind: manufacturer-drawing-record
+  path: 02_parts/TCSD-06-D-04.50-01/primary-source-record.md
+- id: mch-manual-record
+  kind: manufacturer-manual-record
+  path: 01_docs/evidence/mchstreamer-user-manual-record.md
+- id: mch-boundary-adr
+  kind: interface-contract
+  path: 01_docs/decisions/0005-mch-power-domain-boundary.md
+- id: spoke-cable-model
+  kind: manufacturer-3d-model
+  path: 03_src/lib/3dmodels/weidmueller/8909650150.step
+- id: spoke-cable-nominal-review
+  kind: independent-geometry-review
+  path: 02_parts/8909650150/notes.md
+- id: first-article-plan
+  kind: qualification-plan
+  path: 01_docs/FIRST_ARTICLE_TEST_PLAN.md
+assemblies:
+- id: factory-rj45-spoke-bank
+  instances:
+  - ref: J1
+    mating_axis_board:
+    - 0.0
+    - -1.0
+    - 0.0
+    simultaneous_group_ids:
+    - all-spokes-connected
+  - ref: J2
+    mating_axis_board:
+    - 0.0
+    - -1.0
+    - 0.0
+    simultaneous_group_ids:
+    - all-spokes-connected
+  - ref: J3
+    mating_axis_board:
+    - 0.0
+    - -1.0
+    - 0.0
+    simultaneous_group_ids:
+    - all-spokes-connected
+  - ref: J4
+    mating_axis_board:
+    - 0.0
+    - -1.0
+    - 0.0
+    simultaneous_group_ids:
+    - all-spokes-connected
+  - ref: J5
+    mating_axis_board:
+    - 0.0
+    - 1.0
+    - 0.0
+    simultaneous_group_ids:
+    - all-spokes-connected
+  - ref: J6
+    mating_axis_board:
+    - 0.0
+    - 1.0
+    - 0.0
+    simultaneous_group_ids:
+    - all-spokes-connected
+  - ref: J7
+    mating_axis_board:
+    - 0.0
+    - 1.0
+    - 0.0
+    simultaneous_group_ids:
+    - all-spokes-connected
+  - ref: J8
+    mating_axis_board:
+    - 0.0
+    - 1.0
+    - 0.0
+    simultaneous_group_ids:
+    - all-spokes-connected
+  receptacle:
+    manufacturer: Wurth Elektronik
+    mpn: '615008160221'
+    mounting_method: right_angle_through_hole_shielded_nonmagnetic_8P8C
+    model_source_id: spoke-header-model
+    body_envelope_mm: null
+    evidence:
+      grade: exact
+      source_ids:
+      - spoke-header-dossier
+      - spoke-header-drawing
+      - spoke-header-model
+      rationale: The exact manufacturer native STEP supplies nominal receptacle geometry, including
+        free EMI fingers. This is source identity and geometry, not installed tolerances, soldering
+        or mated fit.
+  mate:
+    manufacturer: Weidmuller
+    mpn: '8909650150'
+    part_kind: factory_15m_shielded_Cat6A_PUR_RJ45_patch_cord
+    model_source_id: spoke-cable-model
+    body_envelope_mm: null
+    evidence:
+      grade: exact
+      source_ids:
+      - spoke-cable-record
+      - spoke-cable-model
+      rationale: Exact-product-linked manufacturer model establishes selected nominal mate geometry.
+        Internal family and shortened cable are documented; installed fit and tolerances remain unknown.
+  interface:
+    mating_plane_offset_mm: null
+    minimum_exposure_mm: null
+    exposure_setback_allowance_mm: null
+    minimum_service_clearance_mm: null
+    orientation_source_id: realized-floorplan
+    evidence:
+      grade: unknown
+      source_ids:
+      - shared-spoke-contract
+      - realized-floorplan
+      - first-article-plan
+      rationale: Source axes are selected but realized placement, enclosure and seating tolerance
+        stacks do not exist.
+  grip:
+    kind: integral_latch_boot
+    across_flats_mm: null
+    outer_diameter_mm: 22.986
+    axial_length_mm: 57.98
+    evidence:
+      grade: conservative
+      source_ids:
+      - spoke-cable-model
+      - spoke-cable-nominal-review
+      rationale: Contains complete nominal modeled first end including latch and rear sleeve, model
+        Z0..57.98. Independent native BREP subtraction verifies containment about cable axis X6.85,Y7.38
+        at radius11.4928164600mm; outward-rounded diameter22.986mm. No manufacturing allowance, hand
+        clearance, latch sweep or installed tolerance is included or assumed zero.
+  fastening:
+    method: integral_latch
+    thread_designation: null
+    final_tightening: latch_click_and_pull_check
+    evidence:
+      grade: exact
+      source_ids:
+      - spoke-cable-record
+      rationale: The selected factory plug uses an integral RJ45 latch, not a threaded coupling.
+        Physical mating and release remain unknown operations.
+  tool:
+    kind: none
+    identifier: null
+    model_source_id: null
+    head_envelope_mm: null
+    approach: none
+    effective_sweep_radius_mm: null
+    counter_tool_required: false
+    evidence:
+      grade: exact
+      source_ids:
+      - spoke-cable-record
+      rationale: Final RJ45 mating is by hand. The factory patch cord requires no field termination
+        or crimp tool.
+  torque:
+    required: false
+    minimum_nm: null
+    maximum_nm: null
+    evidence:
+      grade: exact
+      source_ids:
+      - spoke-cable-record
+      rationale: An integral latch has no threaded joint or final torque operation.
+  reaction:
+    method: support_board_or_enclosure_while_latching
+    load_path: housing_to_header_solder_joints_and_board_mounts
+    evidence:
+      grade: unknown
+      source_ids:
+      - realized-floorplan
+      - first-article-plan
+      rationale: Insertion/extraction reaction load and enclosure support are not demonstrated.
+  cable:
+    kind: factory_shielded_Cat6A_straight_through_patch_cord
+    manufacturer: Weidmuller
+    mpn: '8909650150'
+    outer_diameter_mm: null
+    straight_run_mm: null
+    minimum_bend_radius_mm: null
+    exit: along_mating_axis
+    evidence:
+      grade: unknown
+      source_ids:
+      - shared-spoke-contract
+      - spoke-cable-record
+      - first-article-plan
+      rationale: Exact factory cord selected. Manufacturer OD6.1..6.5mm and repetitive bend10D require65mm
+        at maximum OD; retain project67mm planning minimum. Installed straight run, routing, restraint
+        and dry enclosure entry remain unqualified. UV/environmental qualification remains owed before
+        outdoor deployment.
+  operations:
+  - id: mate
+    sequence: 1
+    kind: mate
+    required: true
+    with_neighbors_populated: true
+    start_state: all_spokes_unmated
+    end_state: all_spokes_mated
+    evidence:
+      grade: unknown
+      source_ids:
+      - shared-spoke-contract
+      - first-article-plan
+      rationale: All-eight mating has not been demonstrated.
+  - id: latch-pull-check
+    sequence: 2
+    kind: service
+    required: true
+    with_neighbors_populated: true
+    start_state: all_spokes_mated
+    end_state: all_spokes_checked
+    evidence:
+      grade: unknown
+      source_ids:
+      - spoke-header-dossier
+      - first-article-plan
+      rationale: Retention/polarity/continuity procedure is not physically qualified.
+  - id: unmate
+    sequence: 3
+    kind: unmate
+    required: true
+    with_neighbors_populated: true
+    start_state: all_spokes_checked
+    end_state: all_spokes_unmated
+    evidence:
+      grade: unknown
+      source_ids:
+      - spoke-header-dossier
+      - first-article-plan
+      rationale: Latch release with all neighbors populated has not been demonstrated.
+  tolerances:
+  - id: wurth-body-axial-drawing
+    applies_to: drawing-controlled receptacle axial body dimension
+    effect: exposure_setback
+    minus_mm: 0.15
+    plus_mm: 0.15
+    evidence:
+      grade: exact
+      source_ids:
+      - spoke-header-drawing
+      rationale: The manufacturer drawing specifies 13.45 +/- 0.15 mm axial body depth. This row
+        is only that dimension, not the full contact-to-mouth or installed tolerance stack.
+  - id: connector-enclosure-stack
+    applies_to: installed_mating_plane_and_latch_service_cell
+    effect: exposure_setback
+    minus_mm: null
+    plus_mm: null
+    evidence:
+      grade: unknown
+      source_ids:
+      - shared-spoke-contract
+      - realized-floorplan
+      - first-article-plan
+      rationale: Drawing, PCB, solder seating and enclosure tolerance stack is not closed.
+  - id: installed-plug-boot-radial
+    applies_to: installed_plug_boot_latch_sleeve_radial_variation
+    effect: service_radial_growth
+    minus_mm: null
+    plus_mm: null
+    evidence:
+      grade: unknown
+      source_ids:
+      - spoke-cable-record
+      - shared-spoke-contract
+      - first-article-plan
+      rationale: Qualify selected manufactured plug/boot/latch/sleeve variation and installed service
+        stack; nominal CAD is not a manufacturing bound.
+  - id: installed-plug-boot-axial
+    applies_to: installed_plug_boot_latch_sleeve_axial_variation
+    effect: service_axial_growth
+    minus_mm: null
+    plus_mm: null
+    evidence:
+      grade: unknown
+      source_ids:
+      - spoke-cable-record
+      - shared-spoke-contract
+      - first-article-plan
+      rationale: Qualify selected manufactured plug/boot/latch/sleeve variation and installed service
+        stack; nominal CAD is not a manufacturing bound.
+- id: molex-micro-fit-power-input
+  instances:
+  - ref: J9
+    mating_axis_board:
+    - -1.0
+    - 0.0
+    - 0.0
+    simultaneous_group_ids:
+    - power-input-connected
+  receptacle:
+    manufacturer: Molex
+    mpn: 43650-0200
+    mounting_method: right_angle_through_hole
+    model_source_id: null
+    body_envelope_mm:
+      x: 9.9
+      y: 9.65
+      z: 11.56
+    evidence:
+      grade: conservative
+      source_ids:
+      - power-header-dossier
+      - power-header-record
+      rationale: The exact 43650-0200 product/drawing record and project footprint bind the two-position
+        header; this box conservatively contains the drawing body, while installed seating remains
+        an interface hold.
+  mate:
+    manufacturer: Molex
+    mpn: 43645-0200
+    part_kind: two_position_power_cable_housing_with_factory_precrimped_43030-0038_contacts
+    model_source_id: null
+    body_envelope_mm:
+      x: 17.56
+      y: 9.65
+      z: 8.28
+    evidence:
+      grade: conservative
+      source_ids:
+      - power-mate-record
+      - power-contact-record
+      - power-positive-lead-record
+      - power-return-lead-record
+      rationale: The exact 43645-0200 housing and factory-precrimped 18 AWG/43030-0038 leads are
+        selected; the box includes the documented mated length and a conservative lateral header
+        width without claiming installed seating.
+  interface:
+    mating_plane_offset_mm: null
+    minimum_exposure_mm: null
+    exposure_setback_allowance_mm: null
+    minimum_service_clearance_mm: null
+    orientation_source_id: realized-floorplan
+    evidence:
+      grade: unknown
+      source_ids:
+      - power-header-record
+      - power-mate-record
+      - realized-floorplan
+      rationale: West-edge source orientation and exact interface identities exist; installed seating,
+        enclosure exposure and service clearance do not.
+  grip:
+    kind: latch_housing
+    across_flats_mm: 6.85
+    outer_diameter_mm: null
+    axial_length_mm: 14.0
+    evidence:
+      grade: conservative
+      source_ids:
+      - power-mate-record
+      rationale: The exact two-position drawing width and axial body length bound the non-rotating
+        latch housing; installed finger access remains an operation/interface hold.
+  fastening:
+    method: integral_latch
+    thread_designation: null
+    final_tightening: latch_click_polarity_and_pull_check
+    evidence:
+      grade: exact
+      source_ids:
+      - power-header-record
+      - power-mate-record
+      rationale: The exact selected pair is shrouded, polarized and has an integral positive mating
+        lock; Molex explicitly reports no keying to the mating part. The physical polarity operation
+        remains a first-article hold.
+  tool:
+    kind: none
+    identifier: null
+    model_source_id: null
+    head_envelope_mm: null
+    approach: none
+    effective_sweep_radius_mm: null
+    counter_tool_required: false
+    evidence:
+      grade: exact
+      source_ids:
+      - power-mate-record
+      - power-positive-lead-record
+      - power-return-lead-record
+      rationale: Final mating and contact insertion are by hand, and the selected leads arrive factory-precrimped.
+        No field J9 crimp operation or installed service tool is authorized.
+  torque:
+    required: false
+    minimum_nm: null
+    maximum_nm: null
+    evidence:
+      grade: exact
+      source_ids:
+      - power-header-record
+      - power-mate-record
+      rationale: The selected connector pair has no threaded joint or torque step.
+  reaction:
+    method: support_carrier_while_latching_and_restrain_pigtails_after_12_70mm_free_run
+    load_path: mating_force_housing_to_header_and_supported_carrier;_cable_load_pigtails_to_113-00022_to_enclosure
+    evidence:
+      grade: unknown
+      source_ids:
+      - power-restraint-record
+      - realized-floorplan
+      rationale: The selected support/restraint method is explicit, but input mating force and installed
+        restraint reaction are not demonstrated.
+  cable:
+    kind: paired_color_coded_18awg_factory_precrimped_pigtails_with_internal_screw_mount_restraint
+    manufacturer: Molex_with_HellermannTyton_restraint
+    mpn: 214761-2122_PLUS_214761-1122_WITH_113-00022
+    outer_diameter_mm: 3.7
+    straight_run_mm: 12.7
+    minimum_bend_radius_mm: null
+    exit: opposite_mating_axis
+    evidence:
+      grade: unknown
+      source_ids:
+      - power-contact-record
+      - power-positive-lead-record
+      - power-return-lead-record
+      - power-restraint-record
+      rationale: Exact 150 mm red/black 18 AWG precrimp identities and 43030-0038 contacts are selected.
+        The 3.70 mm figure conservatively bounds two side-by-side leads at the 1.85 mm contact insulation
+        limit, and the first 12.70 mm remains unconstrained before restraint 113-00022; installed
+        cross-section, bend, route, restraint and tinned-pigtail appliance termination require physical
+        qualification.
+  operations:
+  - id: mate-and-polarity-check
+    sequence: 1
+    kind: mate
+    required: true
+    with_neighbors_populated: true
+    start_state: input_unmated_and_supply_off
+    end_state: input_mated_supply_off_checked
+    evidence:
+      grade: unknown
+      source_ids:
+      - power-header-record
+      - power-mate-record
+      - power-positive-lead-record
+      - power-return-lead-record
+      rationale: The exact red-cavity-1/black-cavity-2 harness is selected, but supply-off mating,
+        latch, continuity and polarity checking have not been demonstrated.
+  - id: unmate-supply-off
+    sequence: 2
+    kind: unmate
+    required: true
+    with_neighbors_populated: true
+    start_state: input_mated_supply_off_checked
+    end_state: input_unmated_and_supply_off
+    evidence:
+      grade: unknown
+      source_ids:
+      - power-mate-record
+      - power-restraint-record
+      rationale: Supply-off latch release with the exact installed restraint and neighboring cables
+        is unproved.
+  tolerances:
+  - id: power-family-drawing-two-place
+    applies_to: drawing-controlled Micro-Fit body dimensions
+    effect: exposure_setback
+    minus_mm: 0.25
+    plus_mm: 0.25
+    evidence:
+      grade: exact
+      source_ids:
+      - power-header-record
+      - power-mate-record
+      rationale: The exact 43650/43645 family drawings use +/-0.25 mm general tolerance for two-place
+        metric dimensions.
+  - id: power-connector-enclosure-stack
+    applies_to: installed_power_mating_plane_restraint_and_service_cell
+    effect: exposure_setback
+    minus_mm: null
+    plus_mm: null
+    evidence:
+      grade: unknown
+      source_ids:
+      - power-header-record
+      - power-mate-record
+      - power-restraint-record
+      - realized-floorplan
+      rationale: Header/housing seating, enclosure, 12.70 mm free lead, restraint and pigtail-route
+        tolerance stack is not closed.
+- id: mchstreamer-dual-cable-interface
+  instances:
+  - ref: J10
+    mating_axis_board:
+    - 0.0
+    - 0.0
+    - 1.0
+    simultaneous_group_ids:
+    - mch-both-cables-connected
+  - ref: J11
+    mating_axis_board:
+    - 0.0
+    - 0.0
+    - 1.0
+    simultaneous_group_ids:
+    - mch-both-cables-connected
+  receptacle:
+    manufacturer: Samtec
+    mpn: TMM-106-01-L-D
+    mounting_method: vertical_through_hole
+    model_source_id: null
+    body_envelope_mm:
+      x: 4.95
+      y: 12.0
+      z: 4.95
+    evidence:
+      grade: conservative
+      source_ids:
+      - mch-header-dossier
+      - mch-header-drawing
+      rationale: The box contains the revision-AS 12.00 mm body, 3.94 mm double-row width and 4.70
+        mm above-board insulator-plus-post stack with drawing allowance; solder seating remains an
+        interface hold.
+  mate:
+    manufacturer: Samtec
+    mpn: TCSD-06-D-04.50-01
+    part_kind: selected_double_ended_2x6_2mm_female_idc_cable_assembly
+    model_source_id: null
+    body_envelope_mm:
+      x: 3.5
+      y: 16.3
+      z: 5.34
+    evidence:
+      grade: conservative
+      source_ids:
+      - mch-cable-drawing
+      - mch-header-drawing
+      - mch-manual-record
+      rationale: The exact selected TCSD assembly and conservative socket box are drawing-backed
+        and Samtec lists TMM compatibility. miniDSP does not identify its module header MPN, so module
+        seating remains an interface/operation hold.
+  interface:
+    mating_plane_offset_mm: null
+    minimum_exposure_mm: null
+    exposure_setback_allowance_mm: null
+    minimum_service_clearance_mm: null
+    orientation_source_id: realized-floorplan
+    evidence:
+      grade: unknown
+      source_ids:
+      - mch-header-dossier
+      - mch-manual-record
+      - realized-floorplan
+      rationale: Vertical source axes and both exact carrier-side parts exist; module-header fit,
+        installed cable height, enclosure spacing and seating stack are OWED.
+  grip:
+    kind: unshrouded_cable_socket_body
+    across_flats_mm: 16.3
+    outer_diameter_mm: null
+    axial_length_mm: 3.5
+    evidence:
+      grade: conservative
+      source_ids:
+      - mch-cable-drawing
+      rationale: The selected socket drawing bounds the hand-grip width and mating depth; access
+        with both sockets populated remains an operation hold.
+  fastening:
+    method: friction_socket_on_unshrouded_header
+    thread_designation: null
+    final_tightening: fully_seat_then_visual_pin1_and_label_check
+    evidence:
+      grade: conservative
+      source_ids:
+      - mch-header-drawing
+      - mch-cable-drawing
+      rationale: The exact selected pair is a friction socket/header with first-position indicators
+        and no threaded fastener; achieved seating and retention remain physical holds.
+  tool:
+    kind: none
+    identifier: null
+    model_source_id: null
+    head_envelope_mm: null
+    approach: none
+    effective_sweep_radius_mm: null
+    counter_tool_required: false
+    evidence:
+      grade: exact
+      source_ids:
+      - mch-header-drawing
+      - mch-cable-drawing
+      rationale: The selected TCSD socket mates by hand to an unthreaded TMM header; no installation
+        tool is specified.
+  torque:
+    required: false
+    minimum_nm: null
+    maximum_nm: null
+    evidence:
+      grade: exact
+      source_ids:
+      - mch-header-drawing
+      - mch-cable-drawing
+      rationale: The exact socket/header interface has no threaded joint and no torque step.
+  reaction:
+    method: support_carrier_and_mchstreamer_while_seating_each_cable
+    load_path: cable_socket_to_header_solder_joints_and_each_board_mounts
+    evidence:
+      grade: unknown
+      source_ids:
+      - mch-boundary-adr
+      rationale: Reaction support with both boards installed is not demonstrated.
+  cable:
+    kind: two_selected_2x6_2mm_pitch_idc_ribbon_cables
+    manufacturer: Samtec
+    mpn: TCSD-06-D-04.50-01
+    outer_diameter_mm: null
+    straight_run_mm: null
+    minimum_bend_radius_mm: null
+    exit: along_mating_axis
+    evidence:
+      grade: unknown
+      source_ids:
+      - mch-cable-drawing
+      - mch-manual-record
+      - mch-boundary-adr
+      rationale: Exact 114.30 +/-3.175 mm cable identity and 28 AWG construction are selected, but
+        the connector schema requires a justified installed straight run and minimum bend radius
+        that the TCSD drawing does not publish.
+  operations:
+  - id: seat-j10-j1-cable
+    sequence: 1
+    kind: mate
+    required: true
+    with_neighbors_populated: true
+    start_state: both_mch_cables_unmated
+    end_state: j10_j1_cable_mated_j11_unmated
+    evidence:
+      grade: unknown
+      source_ids:
+      - mch-boundary-adr
+      - mch-cable-drawing
+      - mch-manual-record
+      rationale: TCSD identity is exact, but its socket rotation, one-to-one continuity and seating
+        on the unidentified MCH J1 header have not been physically demonstrated.
+  - id: seat-j11-j3-cable
+    sequence: 2
+    kind: mate
+    required: true
+    with_neighbors_populated: true
+    start_state: j10_j1_cable_mated_j11_unmated
+    end_state: both_mch_cables_mated_and_checked
+    evidence:
+      grade: unknown
+      source_ids:
+      - mch-boundary-adr
+      - mch-cable-drawing
+      - mch-manual-record
+      rationale: J11/J3 distinct labeling, continuity and simultaneous seating have not been physically
+        demonstrated.
+  - id: remove-j11-j3-cable
+    sequence: 3
+    kind: unmate
+    required: true
+    with_neighbors_populated: true
+    start_state: both_mch_cables_mated_and_checked
+    end_state: j10_j1_cable_mated_j11_unmated
+    evidence:
+      grade: unknown
+      source_ids:
+      - mch-boundary-adr
+      - mch-cable-drawing
+      rationale: J11 removal with J10 populated and supported reaction has not been physically demonstrated.
+  - id: remove-j10-j1-cable
+    sequence: 4
+    kind: unmate
+    required: true
+    with_neighbors_populated: true
+    start_state: j10_j1_cable_mated_j11_unmated
+    end_state: both_mch_cables_unmated
+    evidence:
+      grade: unknown
+      source_ids:
+      - mch-boundary-adr
+      - mch-cable-drawing
+      rationale: J10 removal and connector reaction are not physically demonstrated.
+  tolerances:
+  - id: tcsd-socket-width-drawing
+    applies_to: selected TCSD socket transverse service envelope
+    effect: service_radial_growth
+    minus_mm: 0.254
+    plus_mm: 0.254
+    evidence:
+      grade: exact
+      source_ids:
+      - mch-cable-drawing
+      rationale: The Samtec series print gives 5.08 +/-0.254 mm for the base socket width.
+  - id: mch-header-cable-enclosure-stack
+    applies_to: installed_dual_vertical_header_socket_and_cable_service_cell
+    effect: exposure_setback
+    minus_mm: null
+    plus_mm: null
+    evidence:
+      grade: unknown
+      source_ids:
+      - mch-header-dossier
+      - realized-floorplan
+      rationale: Header seating, socket, cable and enclosure tolerance stack is not closed.
+simultaneous_groups:
+- id: all-spokes-connected
+  members:
+  - J1
+  - J2
+  - J3
+  - J4
+  - J5
+  - J6
+  - J7
+  - J8
+  required_state: all_connected
+  serviceable_member_refs:
+  - J1
+  - J2
+  - J3
+  - J4
+  - J5
+  - J6
+  - J7
+  - J8
+- id: power-input-connected
+  members:
+  - J9
+  required_state: all_connected
+  serviceable_member_refs:
+  - J9
+- id: mch-both-cables-connected
+  members:
+  - J10
+  - J11
+  required_state: all_connected
+  serviceable_member_refs:
+  - J10
+  - J11

@@ -1,0 +1,55 @@
+mpn: 2920L260/33DR
+manufacturer: Littelfuse
+type: resettable_pptc_fuse
+value: 2920L260/33DR
+status: active
+note_dirname: "Filesystem-safe spelling of the exact MPN."
+datasheet:
+  doc_id: 2920L-Series
+  revision: GD02/13/25
+  url: https://cdn.promelec.ru/upload/items/2025/09/04/LF/datasheets/2920L-Datasheet-Update.pdf
+  local: Littelfuse_2920L_Promelec.pdf
+  sha256: e475d42720b26ca785d54a72ad608748af40b8a55fa3d311e6577f485ca4b121
+  fetched: '2026-09-08'
+  pages: 6
+  note: 'p1 exact 2920L260/33 electrical row: 2.60A hold, 5.00A trip, 33V, 40A fault, 0.020/0.075 ohm; p2 70C/85C hold 1.60/1.27A are reference rerating data; p4 package dimensions; p5 exact ordering number 2920L260/33DR, tape-and-reel quantity 1500. This corrects the unsupported MR ordering suffix without changing family electrical limits, pins or footprint. Typical 3W tripped dissipation and average trip curves do not prove enclosure thermal or TVS coordination performance.'
+  provenance: Manufacturer-authored PDF independently inspected from exact captured bytes on 2026-09-08; copied unchanged into this carrier dossier. Public distributor mirror https://cdn.promelec.ru/upload/items/2025/09/04/LF/datasheets/2920L-Datasheet-Update.pdf; original manufacturer endpoint https://www.littelfuse.com/assetdocs/resettable-ptcs-2920l-datasheet?assetguid=f237e8c2-1ed9-4c13-a738-dbe0738b3d2c had access failures in capture history. No access restriction was bypassed. Local binding is not independent pin/footprint review, sourcing allocation, approval sheet, physical qualification or order release.
+package: "2920 / 7451 metric surface-mount PPTC"
+footprint: Fuse:Fuse_2920_7451Metric
+escape: {style: passive, pitch: 6.875, tier_required: jlc_2layer_default, checked: "Littelfuse dimensions and stock KiCad 2920 footprint reviewed 2026-09-01"}
+pins: {1: PTC1, 2: PTC2}
+limits:
+  hold_current_20c: 2.60A
+  trip_current_20c: 5.00A
+  voltage_max: 33VDC
+  fault_current_max: 40A
+  resistance_initial_min: 0.020Ohm
+  resistance_post_trip_max: 0.075Ohm
+  hold_current_70c: 1.60A
+  hold_current_85c: 1.27A
+gotchas:
+  - "The replaced 1812L110/33 holds only 0.63A at 70C and cannot carry eight 0.10A spokes plus carrier load."
+  - "Temperature rerating is reference data and the realized enclosure/copper still requires a loaded hot test."
+  - "A PPTC is not a precision current limit or guaranteed TVS coordination element."
+verified: "CITED: Littelfuse 2025 electrical row and thermal table fix the numeric limits above; assembly suffix allocation remains OWED."
+layout:
+  source: Littelfuse 2920L datasheet
+  reviewed: '2026-09-08'
+  notes:
+  - Keep away from buck heat and provide wide copper between J9, F_IN and Q_IN.
+  - 'Carrier local-placement source 2026-09-08: exact-ref/non-ground-net adjacency is a rotation-aware copper-bounding-box gap, NOT pad-center
+    distance or routed length. Rounded engineering ceilings below are not manufacturer numerical maxima. Ground pours are excluded by P-ADJ-PAIR;
+    local return/thermal/escape proof remains owed on the later saved PCB.'
+  - Source-only pin-center plan uses <=5mm local bypass/BST and <=10mm feedback ceilings, with separately named bulk/input/feed exceptions. See
+    01_docs/SOURCE-CORRECTION-20260908-local-placement.md for all 299 roles and exact source geometry; no current-board acceptance is inherited.
+  adjacency:
+  - refdes:
+    - F_IN
+    - J9
+    nets:
+    - 12V_IN
+    max_mm: 5.5
+    why: 'Engineering copper-gap ceiling: power-entry-feed; exact partner, selected non-poured net only.'
+layout_refs:
+  - {tier: 1, reached: true, artifact: "Littelfuse 2920L 2025 datasheet", why: "Manufacturer authority fixes electrical, hot-hold and package data."}
+sourcing: {lcsc: null, alternates: [], note: "Exact DR manufacturer ordering identity is bound. Public C22870534 is only a catalog candidate; no JLC allocation is claimed. Keep manual/consign exclusion, empty authored supplier lists and hot loaded behavior hold."}

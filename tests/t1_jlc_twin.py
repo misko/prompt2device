@@ -992,6 +992,30 @@ def set_fixture_ref_model(board, ref, model=None):
     must_pass(run(args), "prepare manual-body fixture")
 
 
+def check_manual_bundle_relocation(d, ref, original_model):
+    """Remove the source and move the bundle: path existence here is evidence.
+
+    RED against ee2b5485: both manual-body CLI fixtures retain absolute source
+    paths instead of a self-contained model. This is separate from pose truth.
+    """
+    from jlc_twin import no_body_pass
+    original_bytes = original_model.read_bytes()
+    old = d / "twin"
+    mount = read_mount(old / "twin.kicad_pcb", ref)[0]
+    check(mount["f"].startswith("${KIPRJMOD}/"),
+          "manual body still depends on its external source directory")
+    moved = d / "relocated-twin"
+    shutil.move(str(old), str(moved))
+    original_model.unlink()
+    model = moved / mount["f"].removeprefix("${KIPRJMOD}/")
+    eq(model.read_bytes(), original_bytes, "relocation preserves source model bytes")
+    board_path = moved / "twin.kicad_pcb"
+    mounted, missing = no_body_pass(pcbnew.LoadBoard(str(board_path)),
+                                    [ref], board_path)
+    eq(mounted, [ref], "relocated manual body independently resolves")
+    eq(missing, [], "no hidden original-directory dependency")
+
+
 @test("REGRESSION: a manual connector absent from the CPL is injected from "
       "assembly twin_body and counted by NO-BODY", kind="known_bad")
 def t_manual_connector_body_not_dropped_by_cpl_denominator():
@@ -1038,7 +1062,7 @@ def t_manual_connector_body_not_dropped_by_cpl_denominator():
     contains(mm, "manual bodies mounted: 1/1", "separate manual denominator")
     mounts = read_mount(d / "twin" / "twin.kicad_pcb", "J3")
     eq(len(mounts), 1, "J3 model count")
-    eq(Path(mounts[0]["f"]), body.resolve(), "J3 project model")
+    check_manual_bundle_relocation(d, "J3", body)
 
 
 @test("REGRESSION: F1 board body overrides a catalog near-match and keeps "
@@ -1093,7 +1117,6 @@ def t_board_body_suppresses_wrong_catalog_twin():
           "the forbidden loose-clip catalog body was fetched")
     after = read_mount(d / "twin" / "twin.kicad_pcb", "F1")
     eq(len(after), 1, "F1 model count")
-    eq(Path(after[0]["f"]), holder.resolve(), "resolved F1 model path")
     eq({k: v for k, v in after[0].items() if k != "f"},
        {k: v for k, v in before[0].items() if k != "f"},
        "F1 scale, offset, and rotation")
@@ -1101,6 +1124,7 @@ def t_board_body_suppresses_wrong_catalog_twin():
     contains(report, "JLC CAD replacement suppressed", "local-body semantics")
     not_contains(report, "C_WRONG_LOOSE_CLIP", "false catalog identity")
     not_contains(report, "MOUNT-FALLBACK", "wrong catalog registration")
+    check_manual_bundle_relocation(d, "F1", holder)
 
 
 @test("INVARIANT: a mounted body's pose is JLC's pose turned by the fitted "
@@ -1366,6 +1390,54 @@ def t_no_body_blocks():
     check(r3.rc == 0,
           "an explicit NO-BODY adjudication should clear it:\n%s"
           % r3.out[-1500:])
+
+
+@test("a ref-scoped native body is retained when the catalog footprint has "
+      "no model clause")
+def t_native_body_survives_vendor_model_absence():
+    """The native-retention branch used to sit after ``if not jmodels``.
+    A valid fetched footprint with zero models therefore skipped the requested
+    source body and failed NO-BODY.  Exercise the actual CLI/control flow."""
+    d = tmpdir("native_without_vendor_model_")
+    code = "C900020"
+    native = d / "native.wrl"
+    bar_wrl(native)
+    vendor = jlc_mod(d, code, str(native))
+    text = vendor.read_text()
+    vendor.write_text(text[:text.index("  (model")] + ")\n")
+    board, _ = synth_board(d, 0)
+    attach = (
+        "import pcbnew,sys\n"
+        "b=pcbnew.LoadBoard(sys.argv[1])\n"
+        "f=b.FindFootprintByReference('U9')\n"
+        "m=pcbnew.FP_3DMODEL();m.m_Filename=sys.argv[2]\n"
+        "m.m_Offset.x=1.25;m.m_Rotation.z=270\n"
+        "f.Models().push_back(m);b.Save(sys.argv[1])\n")
+    must_pass(run([KPY, "-c", attach, str(board), str(native)]),
+              "attach exact native model")
+    bom = d / "bom.csv"
+    bom.write_text("Comment,Designator,Footprint,MPN,LCSC\n"
+                   "synthetic,U9,SYNTH,,%s\n" % code)
+    cpl = d / "cpl.csv"
+    cpl.write_text("Designator,Val,Package,Mid X,Mid Y,Layer,Rotation\n"
+                   "U9,synthetic,SYNTH,30.0,-25.0,top,0.0\n")
+    adj = d / "adj.yaml"
+    adj.write_text("- {lcsc: %s, refs: [U9], render_model_source: native}\n"
+                   % code)
+    e2k = stub_e2k(d, stderr="NETWORK WAS CALLED\n", rc=1)
+    r = run([KPY, TWIN, board, bom, d / "twin", "--no-render",
+             "--cpl", str(cpl), "--adjudications", str(adj)],
+            cwd=d, env={"EASYEDA2KICAD": str(e2k),
+                        "JLC_TWIN_FETCH_ATTEMPTS": "1"})
+    must_pass(r, "native retention with absent catalog model")
+    contains(r.out, "catalog model absent", "new branch exercised")
+    contains(r.out, "bodies mounted: 1/1", "body coverage")
+    mounted = read_mount(d / "twin" / "twin.kicad_pcb")
+    eq(len(mounted), 1, "one retained body")
+    contains(mounted[0]["f"], "${KIPRJMOD}/native_models/",
+             "bundle-local portable body")
+    eq(mounted[0]["ox"], 1.25, "native offset retained")
+    eq(mounted[0]["rz"], 270, "native rotation retained")
 
 
 @test("MODEL-REG is BLOCKING: a body mounted off its own courtyard fails the "
@@ -1866,6 +1938,51 @@ def t_mount_anchor_duplicate_ground_numbers():
     check(abs(ms[0]["ox"]) < 1e-6 and abs(ms[0]["oy"]) < 1e-6,
           "unique pad-1 datum should produce model offset (0,0), got "
           "(%+.6f,%+.6f)" % (ms[0]["ox"], ms[0]["oy"]))
+
+
+@test("catalog absence requires the exact current HTTP response; generic fetch errors stay blocking", kind="known_bad")
+def t_catalog_absence_response():
+    """RED on db865861: the actual 200/application-404 remains transient.
+    The positive case also proves one attempt suffices; hostile transport,
+    redirect and response shapes cannot turn an unchecked part into NO-CAD.
+    No real network is used.
+    """
+    import json
+    import subprocess
+    from unittest.mock import patch
+    import jlc_twin
+    body = b'{"success":false,"code":404,"message":"Component not found"}'
+    for status, payload, redirect, expected in [
+            (200, body, False, "nocad"),
+            (403, body, False, "transient"),
+            (200, body, True, "transient"),
+            (200, b'{"success":false,"code":429,"message":"Component not found"}', False, "transient"),
+            (200, b'{"success":false,"code":404,"message":"Component not found","result":{}}', False, "transient"),
+            (200, b'<html>Component not found</html>', False, "transient")]:
+        d = tmpdir("catalog_absence_")
+        class Response:
+            headers = {"Content-Type": "application/json"}
+            def __enter__(self): return self
+            def __exit__(self, *args): pass
+            def read(self, *args): return payload
+            def geturl(self):
+                return "https://example.invalid/login" if redirect else f"https://easyeda.com/api/products/{CODE}/components"
+        response = Response()
+        response.status = status
+        child = subprocess.CompletedProcess([], 1, "", "Failed to fetch component")
+        with patch.object(jlc_twin, "easyeda2kicad_command", return_value=["python", str(E2K_COMPAT)]), \
+                patch.object(jlc_twin, "run_fetch_command", return_value=child) as fetcher, \
+                patch("urllib.request.urlopen", return_value=response) as request, \
+                patch("time.sleep"):
+            result = jlc_twin.fetch(CODE, d, attempts=2)
+        eq(result[2], expected, "response disposition")
+        eq(fetcher.call_count, 1 if expected == "nocad" else 2, "bounded fetch attempts")
+        eq(request.call_count, 1, "one diagnostic request per code/run")
+        receipt = json.loads((d / CODE / "catalog-response.json").read_text())
+        eq(receipt["lcsc"], CODE, "exact observed code")
+        eq(receipt["status"], status, "transport status retained")
+        eq((d / CODE / "catalog-response.body").read_bytes(), payload, "raw body retained")
+        eq(receipt["classification"], "absent" if expected == "nocad" else "unrecognized", "receipt classification")
 
 
 if __name__ == "__main__":

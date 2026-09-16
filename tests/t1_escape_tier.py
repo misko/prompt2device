@@ -123,6 +123,44 @@ def t_through_hole_style():
     contains(r.out, "tier_required: jlc_2layer_default", "header tier")
 
 
+def dfn_ring_part(style="dfn", tier="jlc_4layer_advanced", pitch=0.5):
+    pins = ", ".join(f"{n}: PIN{n}" for n in range(1, 16))
+    return ("mpn: EXAMPLE-DFN14\nmanufacturer: Example\ntype: regulator\n"
+            "package: DFN-14-1EP_3x4mm_P0.5mm\n"
+            "footprint: Package_DFN_QFN:DFN-14-1EP_3x4mm_P0.5mm_EP1.7x3.3mm\n"
+            f"pins: {{{pins}}}\nverified: package drawing page 1\n"
+            f"escape: {{style: {style}, pitch: {pitch}, tier_required: {tier}, "
+            "checked: independently dimensioned package}\n")
+
+
+@test("P-ESC accepts a DFN declaration within the shared QFN/DFN ring model")
+def t_dfn_ring_family():
+    # RED on the pre-fix checker: its token inference calls a physical DFN
+    # 'qfn' while its geometry model explicitly accepts both ring spellings.
+    d = scratch_project({"EXAMPLE-DFN14": dfn_ring_part()},
+                        fab_tier="jlc_4layer_advanced")
+    r = must_pass(run([KPY, ESC, d / "02_parts/EXAMPLE-DFN14/part.yaml"]),
+                  "physical DFN with the computed advanced tier")
+    contains(r.out, "1/1", "nonzero package coverage")
+    rows = audit_rows(d)
+    eq(rows["P-ESC"][0], "PASS", "composed policy accepts the same package")
+
+
+@test("P-ESC still rejects a DFN with an unsupported tier, leaded style, or wrong pitch",
+      kind="known_bad", gate="escape_check.py")
+def t_dfn_ring_guards():
+    for label, part, message in (
+            ("cheap tier", dfn_ring_part(tier="jlc_4layer_standard"),
+             "math says 'jlc_4layer_advanced'"),
+            ("leaded", dfn_ring_part(style="leaded", tier="jlc_2layer_default"),
+             "contradicts package/footprint"),
+            ("pitch", dfn_ring_part(pitch=0.95, tier="jlc_2layer_default"),
+             "contradicts footprint text")):
+        d = scratch_project({"EXAMPLE-DFN14": part})
+        must_fail(run([KPY, ESC, d / "02_parts/EXAMPLE-DFN14/part.yaml"]),
+                  f"DFN {label}", message)
+
+
 @test("an unknown dossier escape style is a classified failure, not a traceback",
       kind="known_bad")
 def t_kb_unknown_style_classified():
@@ -512,6 +550,23 @@ def t_esc_missing():
     g, det = rows.get("P-ESC", ("MISSING", ""))
     check(g == "FAIL", f"report has no FAIL row for P-ESC (got {g})")
     contains(det, "NO escape block", "P-ESC detail")
+
+
+@test("P-ESC does not invent PCB escape geometry for an explicit off-board housing")
+def t_esc_off_board_housing():
+    part = """mpn: 43645-0400
+manufacturer: Molex
+type: cable_receptacle_housing
+package: Micro-Fit 3.0 four-position cable housing
+footprint: none_off_board
+mates: plug
+pins: {1: PWR, 2: GND, 3: AUDIO_P, 4: AUDIO_N}
+verified: "manufacturer mating-face drawing"
+"""
+    d = scratch_project({"43645-0400": part})
+    rows = audit_rows(d)
+    g, det = rows.get("P-ESC", ("MISSING", ""))
+    check(g == "PASS", f"explicit off-board housing should not need a PCB escape block (got {g}: {det})")
 
 
 @test("P-TIER FAILS an unknown fab_tier name (typo cannot pass as a tier)",
@@ -1072,8 +1127,6 @@ def t_padj_pair_prose_entry_does_not_crash():
 #       crow-recorder-central-v2 goes RED with 17 failures, 16 of them on a
 #       TQFP-128 power ring that carries no track at all.
 CAL_KICAD = ROOT / "archived_projects" / "pluto-cal-switch" / "04_kicad"
-CAL_R0 = (ROOT / "archived_projects" / "pluto-cal-switch" / "06_build" /
-          "route" / "r0.kicad_pcb")
 RX2_KICAD = ROOT / "archived_projects" / "pluto-rx2-8way" / "04_kicad"
 CRC_KICAD = (ROOT / "archived_projects" / "crow-recorder-central-v2" /
              "04_kicad")
@@ -1089,15 +1142,27 @@ CAL_ELEVEN = [("U_SW1.5", "0.360", "0.250"), ("U_SW2.5", "0.360", "0.250"),
 
 
 def board_copy(kicad_dir, drop_rules=(), extra_dru="", keep_rules=None,
-               board_source=None):
+               unrouted=False):
     """A scratch copy of a real 04_kicad board triple, optionally with its
-    .kicad_dru edited. The BOARD bytes are never touched — only the rule file
-    the gate reads its floors and relaxations from."""
+    .kicad_dru edited. An unrouted fixture removes tracks/vias from the COPY
+    of committed geometry; it never depends on an absent gitignored r0.
+    Pads, placement and zones retain the independently measured eleven-pad
+    case. Every live and archived source file remains unchanged."""
     import shutil
     d = tmpdir("land_")
     stem = sorted(Path(kicad_dir).glob("*.kicad_pcb"))[0].stem
-    shutil.copy(board_source or (Path(kicad_dir) / f"{stem}.kicad_pcb"),
+    shutil.copy(Path(kicad_dir) / f"{stem}.kicad_pcb",
                 d / f"{stem}.kicad_pcb")
+    if unrouted:
+        import pcbnew
+        candidate = d / f"{stem}.kicad_pcb"
+        board = pcbnew.LoadBoard(str(candidate))
+        for track in list(board.GetTracks()):
+            board.Delete(track)
+        pcbnew.SaveBoard(str(candidate), board)
+        eq(len(list(pcbnew.LoadBoard(str(candidate)).GetTracks())), 0,
+           "unrouted fixture has no track/via exemptions")
+    # Copy the project AFTER pcbnew saves: saves may replace netclasses.
     for ext in ("kicad_pro", "kicad_dru"):
         shutil.copy(Path(kicad_dir) / f"{stem}.{ext}", d / f"{stem}.{ext}")
     dru = d / f"{stem}.kicad_dru"
@@ -1115,13 +1180,31 @@ def board_copy(kicad_dir, drop_rules=(), extra_dru="", keep_rules=None,
 
 
 def land(board, *args):
-    return run([KPY, ESC, "--board", str(board), *args])
+    """Persist exact public inputs and full output under the bounded adapter."""
+    import json
+    import os
+    import shutil
+    from types import SimpleNamespace
+    sys.path.insert(0, str(ROOT / "skills/pcb-design/scripts"))
+    from pipeline_runtime import run_stage
+    folder = tmpdir("land_public_")
+    target = folder / Path(board).name
+    for ext in (".kicad_pcb", ".kicad_pro", ".kicad_dru"):
+        source = Path(board).with_suffix(ext)
+        if source.exists(): shutil.copyfile(source, target.with_suffix(ext))
+    argv = [KPY, str(ESC), "--board", str(target), *map(str,args)]
+    result = run_stage({"id":"public-land", "work_class":"local", "timeout_s":60},
+                       argv, log_path=folder/"full.log", cwd=ROOT,
+                       env=dict(os.environ), console=None).to_mapping()
+    result["argv"] = argv
+    (folder/"process.json").write_text(json.dumps(result, indent=2))
+    return SimpleNamespace(rc=result["returncode"], out=(folder/"full.log").read_text())
 
 
 def denominator(out):
     m = re.search(r"P-LAND denominator \S+: (\d+) graded / (\d+) copper pads "
-                  r"\((\d+) no declared width floor, (\d+) fed by a same-net "
-                  r"POUR, (\d+) escaped by a VIA ON THE LAND, (\d+) no net, "
+                  r"\((\d+) no declared width floor, (\d+) nominal same-net "
+                  r"POUR, (\d+) native VIA ON THE LAND, (\d+) no net, "
                   r"(\d+) UNREACHED\); (\d+) graded against a SCOPED floor, "
                   r"(\d+) against a scoped clearance; (\d+) failing", out)
     check(m is not None, f"no P-LAND denominator line in:\n{out[-2000:]}")
@@ -1152,6 +1235,20 @@ def t_land_passes_the_relaxed_board():
     contains(r.out, "input: floors+relaxations = ",
              "G-INPUT names the rule file the verdict depends on")
 
+    sys.path.insert(0, str(SCRIPTS))
+    from land_witness import BoardContext
+    import json
+    context = BoardContext(CAL_KICAD / "pluto_cal_switch.kicad_pcb")
+    witnesses = []
+    for number in ("1", "3"):
+        pad = next(p for p in context.pads if p["ref"] == "U_SW1" and p["num"] == number)
+        witness = context.search(pad)
+        check(witness["valid"], "noncentral CAL corner witness")
+        center = pad["native"].GetPosition()
+        check(witness["start_iu"] != [center.x, center.y], "noncentral source start is necessary")
+        witnesses.append({"pad": "U_SW1." + number, "witness": witness})
+    (tmpdir("land_noncentral_") / "witnesses.json").write_text(json.dumps(witnesses, indent=2))
+
 
 @test("P-LAND FAILS the ELEVEN pads when the relaxations are stripped",
       kind="known_bad")
@@ -1165,7 +1262,7 @@ def t_land_fails_the_eleven():
 
     Pre-fix (HEAD~1) there is no `--board` flag at all: nothing in the
     pipeline asked this question, which is why it was found by hand."""
-    b = board_copy(CAL_KICAD, drop_rules=("scoped_",), board_source=CAL_R0)
+    b = board_copy(CAL_KICAD, drop_rules=("scoped_",), unrouted=True)
     r = must_fail(land(b), "P-LAND with the scoped_floors stripped")
     d = denominator(r.out)
     eq(d["failing"], 11, "pads under their own class floor")
@@ -1173,10 +1270,9 @@ def t_land_fails_the_eleven():
     for pad, floor, landable in CAL_ELEVEN:
         contains(r.out, f"{pad} ", f"the finding names {pad}")
         m = re.search(rf"FAIL P-LAND \S+ {re.escape(pad)} .*?floor="
-                      rf"([0-9.]+) .*?landable=([0-9.]+)", r.out)
+                      rf"([0-9.]+) .*?NO_VALIDATED_WITNESS", r.out)
         check(m is not None, f"{pad} has no FAIL line")
-        eq((m.group(1), m.group(2)), (floor, landable),
-           f"{pad} floor/landable vs the hand measurement")
+        eq(m.group(1), floor, f"{pad} declared floor")
 
 
 @test("P-LAND does not blame WIDTH for a routing failure")
@@ -1249,6 +1345,31 @@ def t_land_honours_a_scoped_clearance():
                      f"{pad} under a 0.14 mm scoped clearance")
 
 
+@test("P-LAND admits a valid hole-clearance rule only with explicit downstream ownership")
+def t_land_validates_hole_clearance_scope():
+    """A launch witness creates tracks, not holes. It must still parse and
+    validate every physical rule, then say that native DRC owns drill geometry.
+    This keeps the rule visible without inventing a hole witness."""
+    b = board_copy(CAL_KICAD, extra_dru=(
+        '(rule "scoped_test_hole_clearance"\n'
+        '  (constraint hole_clearance (min 0.20mm)))\n'))
+    r = must_pass(land(b), "P-LAND with a valid physical hole clearance")
+    contains(r.out, "scoped_test_hole_clearance: hole_clearance validated; "
+             "physical-hole geometry owned by downstream native DRC",
+             "the physical constraint has one named downstream owner")
+
+
+@test("P-LAND rejects a zero hole-clearance rule instead of hiding it",
+      kind="known_bad")
+def t_land_rejects_zero_hole_clearance():
+    b = board_copy(CAL_KICAD, extra_dru=(
+        '(rule "scoped_bad_hole_clearance"\n'
+        '  (constraint hole_clearance (min 0.00mm)))\n'))
+    r = must_fail(land(b), "P-LAND with an invalid zero hole clearance")
+    contains(r.out, "hole_clearance outside (0, 2] mm",
+             "the rejected physical minimum is named")
+
+
 @test("P-LAND leaves POUR-fed and VIA-escaped pads out of scope, and says so")
 def t_land_pour_and_via_are_out_of_scope():
     """The sealed, DRC-clean crow-recorder-central-v2 escapes its XU316
@@ -1270,21 +1391,20 @@ def t_land_pour_and_via_are_out_of_scope():
        + d["unreached"], d["pads"], "the denominator accounts for every pad")
 
 
-@test("P-LAND cross-checks its own model against routed copper")
-def t_land_model_is_falsifiable_on_routed_copper():
-    """canon M1/G-VACUOUS: a prediction nothing can contradict is not a
-    prediction. On a routed board every graded pad already carrying same-net
-    copper is compared against the width that ACTUALLY left it. 0 of 540
-    over five sealed boards — and the 5 that fire on pluto-rx2-8way are its
-    RF star routed at 0.36 mm on a clearance the .kicad_dru never declares,
-    which is the same board's 49 DRC findings."""
+@test("P-LAND inventories actual incident same-net copper")
+def t_land_actual_incident_track_inventory():
+    """Actual geometry and widths are inventoried outside finite launch policy.
+
+    CRC must retain more than 100 graded pads with incident real tracks; a
+    finite witness supplies no maximum against which to compare that copper.
+    """
     r = must_pass(land(CRC_KICAD / "crow_recorder_central_v2.kicad_pcb"),
                   "P-LAND on the sealed crow-recorder-central-v2")
-    m = re.search(r"routed cross-check \S+: (\d+) graded pad\(s\) already "
-                  r"carry a same-net track, (\d+) of them WIDER", r.out)
+    m = re.search(r"routed inventory \S+: (\d+) graded pad\(s\) already "
+                  r"carry a same-net track;", r.out)
     check(m is not None, f"no routed cross-check line:\n{r.out[-1500:]}")
     check(int(m.group(1)) > 100, "the cross-check reached real copper")
-    eq(int(m.group(2)), 0, "pads where routed copper refutes the model")
+    contains(r.out, "outside finite witness policy", "actual incident-track inventory scope")
 
 
 @test("P-LAND FAILS a board with no declared width floor at all",
@@ -1322,14 +1442,14 @@ def t_land_unreached_pad_is_named():
         "import sys\n"
         f"sys.path.insert(0, {str(SCRIPTS)!r})\n"
         "import escape_check as ec\n"
-        "real = ec.read_board\n"
-        "def fake(p):\n"
-        "    pads, un, areas, pours, vias, tracks = real(p)\n"
-        "    bad = pads.pop()\n"
-        "    bad['why_unreached'] = 'pad outline unreadable (injected)'\n"
-        "    un.append(bad)\n"
-        "    return pads, un, areas, pours, vias, tracks\n"
-        "ec.read_board = fake\n"
+        "import land_witness as lw\n"
+        "real = lw.BoardContext.__init__\n"
+        "def fake(self, *args, **kwargs):\n"
+        "    real(self, *args, **kwargs)\n"
+        "    bad = self.pads.pop()\n"
+        "    bad['why'] = 'pad outline unreadable (injected)'\n"
+        "    self.unreadable.append(bad)\n"
+        "lw.BoardContext.__init__ = fake\n"
         "sys.argv = ['escape_check', '--board', sys.argv[1]]\n"
         "ec.main()\n")
     r = run([KPY, drv, CAL_KICAD / "pluto_cal_switch.kicad_pcb"])
@@ -1359,7 +1479,7 @@ def t_vacuity_P_LAND_passes_a_pad_whose_class_declares_no_width_floor():
     # keep ONE floor (QSPI, whose 13 pads are all comfortable) so the run is
     # not the zero-denominator FAIL — the blind spot is a PARTIAL
     # denominator that reads as a clean board.
-    b = board_copy(CAL_KICAD, keep_rules={"QSPI_width"}, board_source=CAL_R0)
+    b = board_copy(CAL_KICAD, keep_rules={"QSPI_width"}, unrouted=True)
     r = must_pass(land(b),
                   "P-LAND on a board that declares no width floor for the "
                   "classes whose pads cannot take one")
@@ -1369,7 +1489,7 @@ def t_vacuity_P_LAND_passes_a_pad_whose_class_declares_no_width_floor():
     check(d["no_floor"] > 250, f"only {d['no_floor']} pads out of scope")
     # CONTRAST: the same geometry, with the class floors back = eleven.
     hard = must_fail(land(board_copy(CAL_KICAD, drop_rules=("scoped_",),
-                                     board_source=CAL_R0)),
+                                     unrouted=True)),
                      "the same pads with their class floors declared")
     eq(denominator(hard.out)["failing"], 11, "the findings the vacuity hides")
 

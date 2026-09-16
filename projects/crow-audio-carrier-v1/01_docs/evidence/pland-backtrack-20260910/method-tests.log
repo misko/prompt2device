@@ -1,0 +1,122 @@
+  [clean    ] escape_check calibration matches every shipped ground truth ... ok
+  [clean    ] through-hole headers are an outward-escape style, not a checker crash ... ok
+  [clean    ] P-ESC accepts a DFN declaration within the shared QFN/DFN ring model ... ok
+  [known-bad] P-ESC still rejects a DFN with an unsupported tier, leaded style, or wrong pitch ... ok
+  [known-bad] an unknown dossier escape style is a classified failure, not a traceback ... ok
+  [clean    ] P-ESC + P-TIER PASS a part whose block agrees and fits the tier ... ok
+  [clean    ] v2 CALIBRATION TABLE: conditional verdicts reproduce every paid-for outcome (SY8368 both ways, LM5145, LM5116, IP6559, plain leaded) ... ok
+  [clean    ] P-ESC + P-TIER PASS the SY8368 SHIPPED configuration: conditional standard tier with the conditions RECORDED ... ok
+  [clean    ] P-ESC PASSES the dense-leaded LM5116 at standard tier when the escape-corridor condition is recorded ... ok
+  [known-bad] P-ESC FAILS a conditional tier whose conditions are NOT recorded in the part.yaml ... ok
+  [known-bad] P-ESC FAILS recorded conditions that do not match the math ... ok
+  [known-bad] P-ESC FAILS stale conditions on an unconditionally-feasible tier ... ok
+  [known-bad] P-ESC FAILS an unknown condition token (no invented vocabulary) ... ok
+  [known-bad] P-LAYOUT FAILS an IC part.yaml with no layout: block ... ok
+  [clean    ] P-LAYOUT PASSes an IC that carries a layout: block with source + budget ... ok
+  [clean    ] proven-parts ledger parses, every escape block is schema-valid, and every cross-reference RESOLVES ... ok
+  [known-bad] the proven-parts validator BITES: each way of corrupting a ledger entry produces its own finding ... ok
+  [known-bad] P-TIER FAILS the incident: 0.5mm QFN vs a standard-tier board ... ok
+  [known-bad] P-ESC FAILS a tampered/copied block that contradicts the math ... ok
+  [known-bad] P-ESC FAILS a declared style that contradicts the footprint text ... ok
+  [known-bad] P-ESC FAILS a multi-pin part with no escape block at all ... ok
+  [clean    ] P-ESC does not invent PCB escape geometry for an explicit off-board housing ... ok
+  [known-bad] P-TIER FAILS an unknown fab_tier name (typo cannot pass as a tier) ... ok
+  [known-bad] escape_check refuses a package no tier can escape (0.5mm BGA) ... ok
+  [known-bad] escape_check FAILS when it is handed NO part.yaml at all ... ok
+  [known-bad] escape_check FAILS a part.yaml path that does not exist ... ok
+  [clean    ] escape_check reports its denominator and names the tier table ... ok
+  [known-bad] S-VER FAILS a weak citation that an earlier `verified:` in a COMMENT was hiding ... ok
+  [known-bad] S-VER FAILS a weak citation the 300-char WINDOW rescued from a later key — `Itrip 4A` is not `page 4` ... ok
+  [known-bad] P-ADJ-UNREACHED FAILS a keep_short budget whose net has fewer than 2 pads — declared, and graded by NOTHING ... ok
+  [clean    ] P-ADJ-UNREACHED PASSES when every budget resolves, and P-ADJ still FAILS an exceeded span — the two are independent ... ok
+  [known-bad] placement policy phase runs P-ADJ before routing, rejects an exceeded budget, and cannot clobber the full release report ... ok
+  [known-bad] P-ADJ grades the ANCHOR PIN to its nearest partner, not the whole net's worst pad pair — a correctly-placed bulk cap must not make a budget WORSE ... ok
+  [known-bad] P-ADJ reports UNREACHED when the DECLARING PART has no pad on the budgeted net — it must not grade off two other parts' pads ... ok
+  [known-bad] P-ADJ-PAIR grades layout.adjacency refdes pairs — a schema field no gate read at all ... ok
+  [known-bad] P-ADJ-PAIR may scope a physical requirement to named shared nets and fails closed on unknown names ... ok
+  [known-bad] P-ADJ failure reports enumerate every actionable finding instead of truncating the iteration set ... ok
+  [known-bad] a PROSE adjacency entry is UNREACHED, not a CRASH — the string form is the fleet's COMMON one ... ok
+  [clean    ] P-LAND passes the board that ALREADY FIXED the problem ... ok
+  [known-bad] P-LAND FAILS the ELEVEN pads when the relaxations are stripped ... ./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+13:12:42: Debug: Adding duplicate image handler for 'PNG file'
+13:12:42: Debug: Adding duplicate image handler for 'JPEG file'
+13:12:42: Debug: Adding duplicate image handler for 'TIFF file'
+13:12:42: Debug: Adding duplicate image handler for 'GIF file'
+13:12:42: Debug: Adding duplicate image handler for 'PNM file'
+13:12:42: Debug: Adding duplicate image handler for 'PCX file'
+13:12:42: Debug: Adding duplicate image handler for 'IFF file'
+13:12:42: Debug: Adding duplicate image handler for 'Windows icon file'
+13:12:42: Debug: Adding duplicate image handler for 'Windows cursor file'
+13:12:42: Debug: Adding duplicate image handler for 'Windows animated cursor file'
+13:12:42: Debug: Adding duplicate image handler for 'TGA file'
+13:12:42: Debug: Adding duplicate image handler for 'XPM file'
+ok
+  [clean    ] P-LAND does not blame WIDTH for a routing failure ... ok
+  [clean    ] P-LAND honours a rule-area CLEARANCE relaxation ... ok
+  [known-bad] P-LAND resolves pair-scoped clearance in either A/B order without leaking pad-only rules to a track ... ok
+  [clean    ] P-LAND leaves POUR-fed and VIA-escaped pads out of scope, and says so ... ok
+  [clean    ] P-LAND cross-checks its own model against routed copper ... ok
+  [known-bad] P-LAND FAILS a board with no declared width floor at all ... ok
+  [known-bad] P-LAND FAILS a board path that does not exist ... ok
+  [known-bad] P-LAND reports an UNREADABLE land as UNREACHED, never as a pass ... ok
+  [vacuity  ] P-LAND passes a pad whose class declares NO width floor ... 13:13:26: Debug: Adding duplicate image handler for 'PNG file'
+13:13:26: Debug: Adding duplicate image handler for 'JPEG file'
+13:13:26: Debug: Adding duplicate image handler for 'TIFF file'
+13:13:26: Debug: Adding duplicate image handler for 'GIF file'
+13:13:26: Debug: Adding duplicate image handler for 'PNM file'
+13:13:26: Debug: Adding duplicate image handler for 'PCX file'
+13:13:26: Debug: Adding duplicate image handler for 'IFF file'
+13:13:26: Debug: Adding duplicate image handler for 'Windows icon file'
+13:13:26: Debug: Adding duplicate image handler for 'Windows cursor file'
+13:13:26: Debug: Adding duplicate image handler for 'Windows animated cursor file'
+13:13:26: Debug: Adding duplicate image handler for 'TGA file'
+13:13:26: Debug: Adding duplicate image handler for 'XPM file'
+13:13:26: Debug: Adding duplicate image handler for 'PNG file'
+13:13:26: Debug: Adding duplicate image handler for 'JPEG file'
+13:13:26: Debug: Adding duplicate image handler for 'TIFF file'
+13:13:26: Debug: Adding duplicate image handler for 'GIF file'
+13:13:26: Debug: Adding duplicate image handler for 'PNM file'
+13:13:26: Debug: Adding duplicate image handler for 'PCX file'
+13:13:26: Debug: Adding duplicate image handler for 'IFF file'
+13:13:26: Debug: Adding duplicate image handler for 'Windows icon file'
+13:13:26: Debug: Adding duplicate image handler for 'Windows cursor file'
+13:13:26: Debug: Adding duplicate image handler for 'Windows animated cursor file'
+13:13:26: Debug: Adding duplicate image handler for 'TGA file'
+13:13:26: Debug: Adding duplicate image handler for 'XPM file'
+13:13:27: Debug: Adding duplicate image handler for 'PNG file'
+13:13:27: Debug: Adding duplicate image handler for 'JPEG file'
+13:13:27: Debug: Adding duplicate image handler for 'TIFF file'
+13:13:27: Debug: Adding duplicate image handler for 'GIF file'
+13:13:27: Debug: Adding duplicate image handler for 'PNM file'
+13:13:27: Debug: Adding duplicate image handler for 'PCX file'
+13:13:27: Debug: Adding duplicate image handler for 'IFF file'
+13:13:27: Debug: Adding duplicate image handler for 'Windows icon file'
+13:13:27: Debug: Adding duplicate image handler for 'Windows cursor file'
+13:13:27: Debug: Adding duplicate image handler for 'Windows animated cursor file'
+13:13:27: Debug: Adding duplicate image handler for 'TGA file'
+13:13:27: Debug: Adding duplicate image handler for 'XPM file'
+13:13:27: Debug: Adding duplicate image handler for 'PNG file'
+13:13:27: Debug: Adding duplicate image handler for 'JPEG file'
+13:13:27: Debug: Adding duplicate image handler for 'TIFF file'
+13:13:27: Debug: Adding duplicate image handler for 'GIF file'
+13:13:27: Debug: Adding duplicate image handler for 'PNM file'
+13:13:27: Debug: Adding duplicate image handler for 'PCX file'
+13:13:27: Debug: Adding duplicate image handler for 'IFF file'
+13:13:27: Debug: Adding duplicate image handler for 'Windows icon file'
+13:13:27: Debug: Adding duplicate image handler for 'Windows cursor file'
+13:13:27: Debug: Adding duplicate image handler for 'Windows animated cursor file'
+13:13:27: Debug: Adding duplicate image handler for 'TGA file'
+13:13:27: Debug: Adding duplicate image handler for 'XPM file'
+ok
+
+  49 passed, 0 failed
+  31 of those are KNOWN-BAD fixtures that made their checker fail as required
+  1 DECLARED BLIND SPOT(S) reproduced: a gate passing on input whose graded fact is FALSE (G-VACUOUS)
+
+__TIME__ elapsed=62.25 rc=0
+argv: /usr/bin/python3 tests/t1_escape_tier.py
+start: 2026-09-10T20:12:29Z
+end: 2026-09-10T20:13:31Z
+rc: 0

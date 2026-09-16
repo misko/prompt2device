@@ -1,0 +1,54 @@
+  [clean    ] contracts_audit: the real repo (non-projects scope) is clean, and its verdict CARRIES ITS DENOMINATOR ... FAIL
+      Traceback (most recent call last):
+        File "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/tests/harness.py", line 192, in main
+          t["fn"]()
+        File "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/tests/t1_contracts.py", line 102, in t_repo_clean
+          eq(w.rc, 0, "the --projects RAW exit code")
+        File "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/tests/harness.py", line 71, in eq
+          check(got == want, f"{what}: got {got!r}, want {want!r}")
+        File "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/tests/harness.py", line 67, in check
+          raise Failed(msg)
+      harness.Failed: the --projects RAW exit code: got 1, want 0
+  [clean    ] contracts_audit passes a well-governed fixture tree ... ok
+  [known-bad] contracts_audit FAILS a stray file its contract never permitted ... ok
+  [known-bad] contracts_audit FAILS a governed subfolder that lost its contract ... ok
+  [known-bad] contracts_audit FAILS a tree with no contracts.md at all ... ok
+  [known-bad] contracts_audit FAILS a skill that references a concrete project path ... ok
+  [clean    ] contracts_audit does NOT flag the projects/<name> placeholder ... ok
+  [clean    ] a project seeded from the skill templates audits clean (template/contract coherence pinned) ... ok
+  [known-bad] contracts_audit reads a pattern cell whose pipes are ESCAPED — `*.c\|*.h\|*.rs\|*.py` permits all four, not just the first ... ok
+  [known-bad] contracts_audit does not split a pattern cell on a pipe inside a BACKTICK code span either ... ok
+  [known-bad] the 05_firmware TEMPLATE permits a header and a src/ tree — the contract and the auditor now agree ... ok
+  [known-bad] the 01_docs contract's OWN prompt-hash command reproduces the digest a commission records — and refuses an altered prompt ... ok
+  [known-bad] skill<->contract sync: every emitted check-ID is in canon; no contract cites a check-ID that exists nowhere in the skill ... ok
+  [known-bad] --projects RAW EXIT CODE IS READ, and the per-unit debt ceiling is TIGHT ... FAIL
+      FAIL C-ALLOW  projects/usb-hub-3s-v3/07_releases/v1.6-2026-07-26/rotation_human_gate.txt: not permitted by projects/usb-hub-3s-v3/07_releases/contracts.md
+      FAIL C-ALLOW  projects/usb-hub-3s-v3/07_releases/v1.7-2026-07-26/rotation_human_gate.txt: not permitted by projects/usb-hub-3s-v3/07_releases/contracts.md
+      FAIL C-ALLOW  projects/usb-hub-3s-v3/07_releases/v1.8-2026-07-26/rotation_human_gate.txt: not permitted by projects/usb-hub-3s-v3/07_releases/contracts.md
+      FAIL C-ALLOW  projects/usb-hub-3s-v3/07_releases/v1.9-2026-07-27/rotation_human_gate.txt: not permitted by projects/usb-hub-3s-v3/07_releases/contracts.md
+      FAIL C-ALLOW  projects/usb-hub-3s-v3/08_reviews/2026-07-26_v1.8_pin-review.md: not permitted by projects/usb-hub-3s-v3/08_reviews/contracts.md
+      FAIL C-ALLOW  projects/usb-hub-3s-v3/08_reviews/2026-07-26_v1.8_render-review.md: not permitted by projects/usb-hub-3s-v3/08_reviews/contracts.md
+      FAIL C-ALLOW  projects/usb-hub-3s-v3/08_reviews/2026-07-27_v1.9_pin-review.md: not permitted by projects/usb-hub-3s-v3/08_reviews/contracts.md
+      FAIL C-ALLOW  projects/usb-hub-3s-v3/08_reviews/2026-07-27_v1.9_render-review.md: not permitted by projects/usb-hub-3s-v3/08_reviews/contracts.md
+      FAIL C-ALLOW  projects/usb-hub-3s-v3/RESUME.md: not permitted by projects/contracts.md
+      FAIL RATCHET  DEBT_CEILING: UNRATCHETED unit 'projects/crow-audio-carrier-v1' carries 2 violation(s) and has no row. Add `"projects/crow-audio-carrier-v1": 2,` to scripts/contracts_audit.py in the SAME change — an absent row is an unratcheted unit, and a map that may omit units is not a bound.
+      contracts_audit: 17204 files, 2875 violations
+      contracts_audit: RATCHET debt 2875 tracked violations over 27 units vs 2873 recorded over 26 — BREACHED
+  [known-bad] --present grades PRESENCE for untracked files, because a stray worktree is a governed tree and audits CLEAN ... FAIL
+      FAIL C-ALLOW  projects/usb-hub-3s-v3/07_releases/v1.7-2026-07-26/rotation_human_gate.txt: not permitted by projects/usb-hub-3s-v3/07_releases/contracts.md
+      FAIL C-ALLOW  projects/usb-hub-3s-v3/07_releases/v1.8-2026-07-26/rotation_human_gate.txt: not permitted by projects/usb-hub-3s-v3/07_releases/contracts.md
+      FAIL C-ALLOW  projects/usb-hub-3s-v3/07_releases/v1.9-2026-07-27/rotation_human_gate.txt: not permitted by projects/usb-hub-3s-v3/07_releases/contracts.md
+      FAIL C-ALLOW  projects/usb-hub-3s-v3/08_reviews/2026-07-26_v1.8_pin-review.md: not permitted by projects/usb-hub-3s-v3/08_reviews/contracts.md
+      FAIL C-ALLOW  projects/usb-hub-3s-v3/08_reviews/2026-07-26_v1.8_render-review.md: not permitted by projects/usb-hub-3s-v3/08_reviews/contracts.md
+      FAIL C-ALLOW  projects/usb-hub-3s-v3/08_reviews/2026-07-27_v1.9_pin-review.md: not permitted by projects/usb-hub-3s-v3/08_reviews/contracts.md
+      FAIL C-ALLOW  projects/usb-hub-3s-v3/08_reviews/2026-07-27_v1.9_render-review.md: not permitted by projects/usb-hub-3s-v3/08_reviews/contracts.md
+      FAIL C-ALLOW  projects/usb-hub-3s-v3/RESUME.md: not permitted by projects/contracts.md
+      FAIL RATCHET  DEBT_CEILING: UNRATCHETED unit 'projects/crow-audio-carrier-v1' carries 2 violation(s) and has no row. Add `"projects/crow-audio-carrier-v1": 2,` to scripts/contracts_audit.py in the SAME change — an absent row is an unratcheted unit, and a map that may omit units is not a bound.
+      contracts_audit: 17204 files, 2875 violations
+      contracts_audit: RATCHET debt 2875 tracked violations over 27 units vs 2873 recorded over 26 — BREACHED
+      contracts_audit: RATCHET stray 0 untracked-not-ignored files in 0 unit(s); 0 declared (population 17204 = tracked ∪ untracked-not-ignored)
+  [known-bad] a pattern cell listing several backticked patterns SEPARATED BY COMMAS is read as all of them — the pipe bug's twin ... ok
+  [known-bad] a DECLARED FIELD WITH NO CONSUMER is a defect — every field in a skills reference yaml is read by something, or its row says how many are not ... ok
+
+  14 passed, 3 failed
+  11 of those are KNOWN-BAD fixtures that made their checker fail as required

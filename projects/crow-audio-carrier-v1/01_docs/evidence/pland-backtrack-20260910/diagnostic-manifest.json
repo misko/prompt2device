@@ -1,0 +1,658 @@
+{
+  "schema": 1,
+  "created_at": "2026-09-10T20:02:08.186479+00:00",
+  "source_commit": "127f13d69f84bc2806f47d7df7ed9d9372abd089",
+  "tar_sha256": "068e9bf97c73688855b9027e4d298540726574a84c3c829b705b0302b85381c7",
+  "tar_size": 3595967,
+  "count": 108,
+  "entries": [
+    {
+      "member": "projects/crow-audio-carrier-v1/06_build/handoffs/pland-dback-20260910T193834Z/TASK.md",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/handoffs/pland-dback-20260910T193834Z/TASK.md",
+      "size": 5960,
+      "sha256": "175e75fce1082b0af62bb047c38144b89df8be5e6855b9c3b1a15b1f0a1a8bf3"
+    },
+    {
+      "member": "projects/crow-audio-carrier-v1/06_build/handoffs/pland-dback-20260910T193834Z/beacon.md",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/handoffs/pland-dback-20260910T193834Z/beacon.md",
+      "size": 521,
+      "sha256": "c268a59edb141c37751d5e7e4bd14738829ce62ed15a7cdaa197ed6cf4ea3cb9"
+    },
+    {
+      "member": "projects/crow-audio-carrier-v1/06_build/handoffs/pland-dback-20260910T193834Z/flow.yaml",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/handoffs/pland-dback-20260910T193834Z/flow.yaml",
+      "size": 5486,
+      "sha256": "2696a852b8f7f0a9007ca52ee4ddef32cafecb336ff49d131736731a7a835b27"
+    },
+    {
+      "member": "projects/crow-audio-carrier-v1/06_build/handoffs/pland-dback-20260910T193834Z/journal-tail.md",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/handoffs/pland-dback-20260910T193834Z/journal-tail.md",
+      "size": 4261,
+      "sha256": "dc886e0910d9d689d974e79172164d66f5fa40f1646404c2f79b6cf42f0739bf"
+    },
+    {
+      "member": "projects/crow-audio-carrier-v1/06_build/handoffs/pland-dback-20260910T193834Z/task-envelope.json",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/handoffs/pland-dback-20260910T193834Z/task-envelope.json",
+      "size": 97763,
+      "sha256": "94cc2512e555af829afec7dd8215ea7013cfad69be2444189b8ec647677e0486"
+    },
+    {
+      "member": "projects/crow-audio-carrier-v1/06_build/verification/placement-post-review-mutations.json",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/verification/placement-post-review-mutations.json",
+      "size": 524,
+      "sha256": "6f0eab9671a68166b98b4d83c8c7c2cdb905b8a9b741a067c8355bce149e5f5b"
+    },
+    {
+      "member": "projects/crow-audio-carrier-v1/06_build/verification/placement-post-review-result.md",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/verification/placement-post-review-result.md",
+      "size": 2330,
+      "sha256": "64bcafe72f41bacca050b265da23aa23bfaa516c3893f1a4227d2b6bfdcfb151"
+    },
+    {
+      "member": "projects/crow-audio-carrier-v1/06_build/verification/placement-post-review-root-census.json",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/verification/placement-post-review-root-census.json",
+      "size": 395456,
+      "sha256": "dab0a0da5ff3a03b6b10aaa323b37051cadc7371be46729027d761ea5f307c95"
+    },
+    {
+      "member": "projects/crow-audio-carrier-v1/06_build/verification/placement-post-review-root-census.log",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/verification/placement-post-review-root-census.log",
+      "size": 511,
+      "sha256": "3fddfed12fc48953ea8f5406e6b811fb13f8d430eed879fa6702f288de870150"
+    },
+    {
+      "member": "projects/crow-audio-carrier-v1/06_build/verification/placement-post-review-root-census.py",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/verification/placement-post-review-root-census.py",
+      "size": 2338,
+      "sha256": "3a101587f14e9f6fcb33952ab62155bc1ea9a8d3072407c9b41f1c069ba8b291"
+    },
+    {
+      "member": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/build-report.receipt.json",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/build-report.receipt.json",
+      "size": 343,
+      "sha256": "34e21a79684fb4d9c04e2f78ed6cdb51690e99bc3a63be2828b76a2cd975e309"
+    },
+    {
+      "member": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/build-report.stdout.log",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/build-report.stdout.log",
+      "size": 2145,
+      "sha256": "01be09766dddeb6e2a30736d3eb34d5160dd122f25162f84768bda28937d81c7"
+    },
+    {
+      "member": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/build_report.py",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/build_report.py",
+      "size": 19798,
+      "sha256": "687e1eebba3b0a73e8785210dd0da2d9447a7c77fac64405b9cb9f5b82dbc047"
+    },
+    {
+      "member": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/ceased-processes.json",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/ceased-processes.json",
+      "size": 181,
+      "sha256": "df6c54c802ccba4e33b21c28ea99065300a2c027fb6a82801bfef6ef97f420a9"
+    },
+    {
+      "member": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/commands.json",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/commands.json",
+      "size": 9511,
+      "sha256": "9bf64d06b8af4264aa5b3b5b4b510e24f1a79d79a91effc452994c199395f9a9"
+    },
+    {
+      "member": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/compact-handoff.receipt.json",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/compact-handoff.receipt.json",
+      "size": 600,
+      "sha256": "631c238362fff282f732abad4196148d69e2a43dc4326d921e5bcc6518313587"
+    },
+    {
+      "member": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/compact-handoff.stdout.log",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/compact-handoff.stdout.log",
+      "size": 168,
+      "sha256": "bc9c17e139c7daa1fa1517e8b8fc5dddd85dfa9dc16d5e4ef2002c7504338099"
+    },
+    {
+      "member": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/compact-validate.receipt.json",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/compact-validate.receipt.json",
+      "size": 291,
+      "sha256": "df4a9f572882bf893f505be0d5f51c6486ca546de21ac85f3991f7e2fa8749b4"
+    },
+    {
+      "member": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/compact-validate.stdout.log",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/compact-validate.stdout.log",
+      "size": 160,
+      "sha256": "bfd8411bb72e208194c2bbcb2f811ac2f4f2da7ce7112b399ed1f8e9e3d3c27b"
+    },
+    {
+      "member": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/complete-connectivity-ownership.json",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/complete-connectivity-ownership.json",
+      "size": 1287759,
+      "sha256": "42a8fd21b9910d0d4423918e29fa5aaade93a3ed6e077782d86c6b30cdd724bc"
+    },
+    {
+      "member": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/complete-pad-denominator.json",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/complete-pad-denominator.json",
+      "size": 605276,
+      "sha256": "853c0262cc9fc8ffc604818351bbe306dc3516884fc4ea55e74adb1d7b6b98db"
+    },
+    {
+      "member": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/context-repair.json",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/context-repair.json",
+      "size": 21187,
+      "sha256": "9eafe64da56baf00fc3326334d462003fcc2d7f33c0f75b2f92589a7cab13370"
+    },
+    {
+      "member": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/control/crow_audio_carrier_v1.kicad_dru",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/control/crow_audio_carrier_v1.kicad_dru",
+      "size": 17123,
+      "sha256": "94251d1c7cb043c66d402d55b5cf89bac74f7ae0927b012556113ae56d7a2471"
+    },
+    {
+      "member": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/control/crow_audio_carrier_v1.kicad_pcb",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/control/crow_audio_carrier_v1.kicad_pcb",
+      "size": 1481293,
+      "sha256": "37fa62911312a2de915120e7bd8278cde2a80803f0c74f8f1a4742afa9dba321"
+    },
+    {
+      "member": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/control/crow_audio_carrier_v1.kicad_prl",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/control/crow_audio_carrier_v1.kicad_prl",
+      "size": 2308,
+      "sha256": "b33727ea5b95a8a459eabfeeea9514a4632a046f822a6f0eb51ad13243af19fb"
+    },
+    {
+      "member": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/control/crow_audio_carrier_v1.kicad_pro",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/control/crow_audio_carrier_v1.kicad_pro",
+      "size": 28092,
+      "sha256": "4a1040e34967d6610bd5032e46b3c2d0e24863370106f7e220d88d4dd633c61d"
+    },
+    {
+      "member": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/control/crow_audio_carrier_v1.kicad_sch",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/control/crow_audio_carrier_v1.kicad_sch",
+      "size": 1156167,
+      "sha256": "b95cfca75a079b4b155a4fa24aa2c548fcaef779cd72271e5212a18529856674"
+    },
+    {
+      "member": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/control/fp-lib-table",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/control/fp-lib-table",
+      "size": 1946,
+      "sha256": "ac843ab87fb15d4dce7d991d410a510eae6f8a2c41bd6e2150b4ac95c1cf0f4a"
+    },
+    {
+      "member": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/control-added-copper.json",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/control-added-copper.json",
+      "size": 5093,
+      "sha256": "341c553ce763b806b74f859e3a349017b27671a6ac1c837b8803f81a5cc8e657"
+    },
+    {
+      "member": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/control-complete-endpoints.json",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/control-complete-endpoints.json",
+      "size": 812229,
+      "sha256": "5e300719e29740aef15d035758395155626a42a17c4014fcfb38ad6cc2b9cb2b"
+    },
+    {
+      "member": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/control-connectivity.json",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/control-connectivity.json",
+      "size": 354494,
+      "sha256": "6ae4149995180df7c27d6c2a3d61b0133a36db1463efbfc6a20dc664dad85478"
+    },
+    {
+      "member": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/control-context-drc.json",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/control-context-drc.json",
+      "size": 409635,
+      "sha256": "02559db007aec9d2b4cb798174cd5b54aed4d3178e12bcdc8eeb19422e27458e"
+    },
+    {
+      "member": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/control-context-drc.receipt.json",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/control-context-drc.receipt.json",
+      "size": 742,
+      "sha256": "0b671474cb90b96cac8faeb364a504d87359f02c9023d543c20a2402f1ff2d8a"
+    },
+    {
+      "member": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/control-context-drc.stdout.log",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/control-context-drc.stdout.log",
+      "size": 287,
+      "sha256": "eb58e1396fa6d931dba9745f41c2f8c94b5bf35d6eca93732a37831daac36e0b"
+    },
+    {
+      "member": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/control-drc.json",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/control-drc.json",
+      "size": 514964,
+      "sha256": "cc06ac039166d3995f2f002f1537806b54712c9fc42dfbeb0b2b71c85299c748"
+    },
+    {
+      "member": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/control-drc.receipt.json",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/control-drc.receipt.json",
+      "size": 726,
+      "sha256": "dd60db017207344897a351740f2a5f8d4bc03e8bd6ca35659e52dcebfe0eb8f8"
+    },
+    {
+      "member": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/control-drc.stdout.log",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/control-drc.stdout.log",
+      "size": 280,
+      "sha256": "c9b5bb3639e6817bf58ab2619e734b284119f7a45566c7a350ecb6e50e6cf855"
+    },
+    {
+      "member": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/control-filled-zone-islands.json",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/control-filled-zone-islands.json",
+      "size": 4059205,
+      "sha256": "0ec836381e613a148a857547ca0403c3931e0d8277e4810454c0bc2dc51ca4e2"
+    },
+    {
+      "member": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/control-raw-endpoints.json",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/control-raw-endpoints.json",
+      "size": 954665,
+      "sha256": "7cc748db61d95cb808b408d5b2f33321bde7945cc756d1a3ed45eb1802c0e82b"
+    },
+    {
+      "member": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/coupon/crow_audio_carrier_v1.kicad_dru",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/coupon/crow_audio_carrier_v1.kicad_dru",
+      "size": 17123,
+      "sha256": "94251d1c7cb043c66d402d55b5cf89bac74f7ae0927b012556113ae56d7a2471"
+    },
+    {
+      "member": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/coupon/crow_audio_carrier_v1.kicad_pcb",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/coupon/crow_audio_carrier_v1.kicad_pcb",
+      "size": 1481294,
+      "sha256": "72bf72e28bf9d3026648c3dd582db9461c98edcb5fb166c889b809701390ca1a"
+    },
+    {
+      "member": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/coupon/crow_audio_carrier_v1.kicad_prl",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/coupon/crow_audio_carrier_v1.kicad_prl",
+      "size": 2308,
+      "sha256": "b33727ea5b95a8a459eabfeeea9514a4632a046f822a6f0eb51ad13243af19fb"
+    },
+    {
+      "member": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/coupon/crow_audio_carrier_v1.kicad_pro",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/coupon/crow_audio_carrier_v1.kicad_pro",
+      "size": 28092,
+      "sha256": "4a1040e34967d6610bd5032e46b3c2d0e24863370106f7e220d88d4dd633c61d"
+    },
+    {
+      "member": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/coupon/crow_audio_carrier_v1.kicad_sch",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/coupon/crow_audio_carrier_v1.kicad_sch",
+      "size": 1156167,
+      "sha256": "b95cfca75a079b4b155a4fa24aa2c548fcaef779cd72271e5212a18529856674"
+    },
+    {
+      "member": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/coupon/fp-lib-table",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/coupon/fp-lib-table",
+      "size": 1946,
+      "sha256": "ac843ab87fb15d4dce7d991d410a510eae6f8a2c41bd6e2150b4ac95c1cf0f4a"
+    },
+    {
+      "member": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/coupon-added-copper.json",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/coupon-added-copper.json",
+      "size": 5094,
+      "sha256": "9689904ff47eb05f014e579a806c2570413bbf210b8022937dd5e1b39148aa81"
+    },
+    {
+      "member": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/coupon-complete-endpoints.json",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/coupon-complete-endpoints.json",
+      "size": 810299,
+      "sha256": "65480598412b78d0c3ade48dc21b5036b65083ab38b36b34f5083ff5340fc4f7"
+    },
+    {
+      "member": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/coupon-connectivity.json",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/coupon-connectivity.json",
+      "size": 354494,
+      "sha256": "77fcc419e6f3f2f2fac989579f78bc17cacdc43ee6d9f1eb3d31e6452496bfc4"
+    },
+    {
+      "member": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/coupon-context-drc.json",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/coupon-context-drc.json",
+      "size": 407111,
+      "sha256": "0cb1ec8a70360dd9528de9f43f168a98f233dd8cdeb30d910d6bd6fdb9661e95"
+    },
+    {
+      "member": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/coupon-context-drc.receipt.json",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/coupon-context-drc.receipt.json",
+      "size": 737,
+      "sha256": "5f1829e5028a78f81fdfb9fd9c7650e915b221942baaaf9eaad69338f3aab31e"
+    },
+    {
+      "member": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/coupon-context-drc.stdout.log",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/coupon-context-drc.stdout.log",
+      "size": 286,
+      "sha256": "b5622925c40b8f937303a60b36377e7bd1fb9d05c34ae62ed9b699aae2bf4f74"
+    },
+    {
+      "member": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/coupon-drc.json",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/coupon-drc.json",
+      "size": 512440,
+      "sha256": "cfc4bcfa98b44d25f2d34d80277567add9e1ee4addc051f1d3f622351749cd23"
+    },
+    {
+      "member": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/coupon-drc.receipt.json",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/coupon-drc.receipt.json",
+      "size": 723,
+      "sha256": "95bb7336351c30a3ef8dccf241b8e2475820ade9850ca6dd395e0c5eb505b045"
+    },
+    {
+      "member": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/coupon-drc.stdout.log",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/coupon-drc.stdout.log",
+      "size": 279,
+      "sha256": "59f9a8b3e8a2548a5decc534ad6de3c2bb9a768a424858f0dc2ea335a8144355"
+    },
+    {
+      "member": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/coupon-filled-zone-islands.json",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/coupon-filled-zone-islands.json",
+      "size": 4059611,
+      "sha256": "ec62e51eaa314ae0d889dd18912357beb573fcd5da4c4ed5832b2d1b4418839c"
+    },
+    {
+      "member": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/coupon-pland-original.receipt.json",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/coupon-pland-original.receipt.json",
+      "size": 554,
+      "sha256": "10f76444aed9a02b2c3af3f8c76519aa352e70b84e2961f8299a13ad6d399458"
+    },
+    {
+      "member": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/coupon-pland-original.stdout.log",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/coupon-pland-original.stdout.log",
+      "size": 122311,
+      "sha256": "ad8a3846219338513cdd9564b67f778d3060104c2b1fe54852c7129584f07966"
+    },
+    {
+      "member": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/coupon-raw-endpoints.json",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/coupon-raw-endpoints.json",
+      "size": 952735,
+      "sha256": "936a466862e24e67011ff6f59888d290017afd6979581eff4d7c9125fa5ac207"
+    },
+    {
+      "member": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/coverage-regressions.receipt.json",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/coverage-regressions.receipt.json",
+      "size": 279,
+      "sha256": "df34fc984ae61c97b5eb90e5e01efac6e5fb6ae27d0921193b121b0627afabfc"
+    },
+    {
+      "member": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/coverage-regressions.stdout.log",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/coverage-regressions.stdout.log",
+      "size": 1683,
+      "sha256": "41792271bf15704eab03c2d032c87402c7c1cbb2d510ffedc255b715846a0165"
+    },
+    {
+      "member": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/coverage_and_regressions.py",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/coverage_and_regressions.py",
+      "size": 6720,
+      "sha256": "fb776e5a66461483a49c09839a4f89ed869df1c9b877fd59754f5c3130f9392d"
+    },
+    {
+      "member": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/delivery.json",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/delivery.json",
+      "size": 584,
+      "sha256": "ce45d9880602a651005de23bb0e9bbd6516d35106bb9d5039fac3735480a6877"
+    },
+    {
+      "member": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/exact/04_kicad/crow_audio_carrier_v1.kicad_dru",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/exact/04_kicad/crow_audio_carrier_v1.kicad_dru",
+      "size": 17123,
+      "sha256": "94251d1c7cb043c66d402d55b5cf89bac74f7ae0927b012556113ae56d7a2471"
+    },
+    {
+      "member": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/exact/04_kicad/crow_audio_carrier_v1.kicad_pcb",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/exact/04_kicad/crow_audio_carrier_v1.kicad_pcb",
+      "size": 1463999,
+      "sha256": "89d33bae8eaf67457fde887eae9db187d9284ea54be386f0d31e3d7dfe92bf2e"
+    },
+    {
+      "member": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/exact/04_kicad/crow_audio_carrier_v1.kicad_prl",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/exact/04_kicad/crow_audio_carrier_v1.kicad_prl",
+      "size": 2308,
+      "sha256": "b33727ea5b95a8a459eabfeeea9514a4632a046f822a6f0eb51ad13243af19fb"
+    },
+    {
+      "member": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/exact/04_kicad/crow_audio_carrier_v1.kicad_pro",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/exact/04_kicad/crow_audio_carrier_v1.kicad_pro",
+      "size": 28092,
+      "sha256": "4a1040e34967d6610bd5032e46b3c2d0e24863370106f7e220d88d4dd633c61d"
+    },
+    {
+      "member": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/exact/04_kicad/crow_audio_carrier_v1.kicad_sch",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/exact/04_kicad/crow_audio_carrier_v1.kicad_sch",
+      "size": 1156167,
+      "sha256": "b95cfca75a079b4b155a4fa24aa2c548fcaef779cd72271e5212a18529856674"
+    },
+    {
+      "member": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/exact/04_kicad/fp-lib-table",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/exact/04_kicad/fp-lib-table",
+      "size": 1946,
+      "sha256": "ac843ab87fb15d4dce7d991d410a510eae6f8a2c41bd6e2150b4ac95c1cf0f4a"
+    },
+    {
+      "member": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/exact-complete-endpoints.json",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/exact-complete-endpoints.json",
+      "size": 806108,
+      "sha256": "dec52fcac5359453eafde9d0950a60b7bb1fee78923dfb852196034cb22249ef"
+    },
+    {
+      "member": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/exact-connectivity.json",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/exact-connectivity.json",
+      "size": 350551,
+      "sha256": "c5390fcc0e75fc20b09de0f541d9ff0fd94fa80b07703852b282950218e9181f"
+    },
+    {
+      "member": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/exact-context-drc.json",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/exact-context-drc.json",
+      "size": 397406,
+      "sha256": "8ffd8ca1beee485cdef7f2d1b08de0b338806c9a8d068cc139af3d6694077fa3"
+    },
+    {
+      "member": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/exact-context-drc.receipt.json",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/exact-context-drc.receipt.json",
+      "size": 745,
+      "sha256": "abcf65b80ca6bcd092fb5eea0d7af7f001f9bf3d7dc5f21105716d3a1ee1bfec"
+    },
+    {
+      "member": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/exact-context-drc.stdout.log",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/exact-context-drc.stdout.log",
+      "size": 284,
+      "sha256": "574889d2f71c845c006e11f4f287334a51ce8615a96f1dc9fefc1934576c8219"
+    },
+    {
+      "member": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/exact-drc.json",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/exact-drc.json",
+      "size": 502739,
+      "sha256": "72f663bf32c670df92e705d63c93b7a3ce4b92e943c74bc8c5a3c1b88bdbf6cb"
+    },
+    {
+      "member": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/exact-drc.receipt.json",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/exact-drc.receipt.json",
+      "size": 729,
+      "sha256": "bf901a283018b901b3d07691143ce47447d14784972e57363e8e9d6adbb9ba35"
+    },
+    {
+      "member": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/exact-drc.stdout.log",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/exact-drc.stdout.log",
+      "size": 278,
+      "sha256": "c87f738f95941132d2c315afdfe26b84ee04f36e50b97a20a07aa12679d7a6c9"
+    },
+    {
+      "member": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/exact-filled-zone-islands.json",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/exact-filled-zone-islands.json",
+      "size": 4064954,
+      "sha256": "a69dca6752ab1586bcfcffdad8f437b5bd6c408cef05db3086ef57034f8a74cd"
+    },
+    {
+      "member": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/exact-raw-endpoints.json",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/exact-raw-endpoints.json",
+      "size": 948571,
+      "sha256": "a23e70e27f0788d2b2c1129f5fbb3b9532301b6b4f89b6a6e02d659bbbdd32a9"
+    },
+    {
+      "member": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/final-identity-bindings.json",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/final-identity-bindings.json",
+      "size": 66357,
+      "sha256": "f9b07889c3b00cd39a844a3e33eff0ef0b22871c45146e121f65eada427f41b0"
+    },
+    {
+      "member": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/fourteen-ground-components.json",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/fourteen-ground-components.json",
+      "size": 17815,
+      "sha256": "fb6dacfae9b87ba8bd1c0a45b4521d1837e8b842779abb67f2b772d68184aa0b"
+    },
+    {
+      "member": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/fourteen-native-launches.json",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/fourteen-native-launches.json",
+      "size": 218015,
+      "sha256": "472d95474f8ec028de0ef9ae4f09eccdaf1f7b5e1735008c9fe6fc23eb3e6ae4"
+    },
+    {
+      "member": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/fourteen-pair-rule-classification.json",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/fourteen-pair-rule-classification.json",
+      "size": 304298,
+      "sha256": "210e3e0da90e4569062cf6e53d98f7a3ee2f32a9338fbe2fe1a3d41db150ac3c"
+    },
+    {
+      "member": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/launch-verification.json",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/launch-verification.json",
+      "size": 203,
+      "sha256": "eef0c42dd700f8b4670d8ef007e5db59abb780ca1aabca2261878f54ff6e8370"
+    },
+    {
+      "member": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/mutation-inventory.json",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/mutation-inventory.json",
+      "size": 30343,
+      "sha256": "d8ba7f8b487d01f1a2e7403d440cf0d3a0dfc330b729d15c7cc8ae9934ec0524"
+    },
+    {
+      "member": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/native-board-facts.json",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/native-board-facts.json",
+      "size": 1761836,
+      "sha256": "a17d47eaa3cb3d5eeef2daf4b9604c053ee77437c59a6ad1aba58fbcd7fbf774"
+    },
+    {
+      "member": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/native-diagnosis-attempt1.receipt.json",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/native-diagnosis-attempt1.receipt.json",
+      "size": 446,
+      "sha256": "97e32801dd61e1c3c90ee4e08a291b94826824bfa971c0df4b1e172e94bb6b13"
+    },
+    {
+      "member": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/native-diagnosis-attempt1.stdout.log",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/native-diagnosis-attempt1.stdout.log",
+      "size": 1393,
+      "sha256": "8822e051fc7dc3edcaf0d6be8fb127764b085c3d5a94ce39b380e511340fe574"
+    },
+    {
+      "member": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/native-diagnosis.receipt.json",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/native-diagnosis.receipt.json",
+      "size": 269,
+      "sha256": "7f188eed94f6be7ea49b4d073cd5bde0f9daebc875f725864157044f36ae037e"
+    },
+    {
+      "member": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/native-diagnosis.stdout.log",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/native-diagnosis.stdout.log",
+      "size": 5864,
+      "sha256": "ae805639c742b422e6055121eba56983b3e96f554857366bfd539a1f0881339c"
+    },
+    {
+      "member": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/native_diagnosis.py",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/native_diagnosis.py",
+      "size": 11026,
+      "sha256": "f874eb5a27c289e5b9e10a18e9d7b3db1d05af5e75c01c59c6b1c9d2615db9ef"
+    },
+    {
+      "member": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/pair-rules.receipt.json",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/pair-rules.receipt.json",
+      "size": 273,
+      "sha256": "b45dec78adc77a61c44695470492f61df92a46ca14e0740521db0e9edaf4555f"
+    },
+    {
+      "member": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/pair-rules.stdout.log",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/pair-rules.stdout.log",
+      "size": 2272,
+      "sha256": "7fed4833652693fcdbb667b4a1b40be9051e2f2724e851f4999047a2894def4b"
+    },
+    {
+      "member": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/pair_rule_evidence.py",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/pair_rule_evidence.py",
+      "size": 4570,
+      "sha256": "6faeb37a86fe6743431a415d17600c8627ebe82c1409923c557c4887e5ad1753"
+    },
+    {
+      "member": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/physical-vias.json",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/physical-vias.json",
+      "size": 1928,
+      "sha256": "9a5cdb441891f9b73e21d5ac504f835aa88e0187123542d441d39595e855b14b"
+    },
+    {
+      "member": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/pland-reproduction.receipt.json",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/pland-reproduction.receipt.json",
+      "size": 423,
+      "sha256": "ac8b98fcd53a87f83132c5977eef61a37aa300d1d8e6c3a1c4345d8151f2e05e"
+    },
+    {
+      "member": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/pland-reproduction.stdout.log",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/pland-reproduction.stdout.log",
+      "size": 115235,
+      "sha256": "851dd3824f8a203ba154bcfdbbc12a7ccc1ee67cc9288030c4a6840cdd0740a0"
+    },
+    {
+      "member": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/private-regression-result.json",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/private-regression-result.json",
+      "size": 19824,
+      "sha256": "d218776808063ca25ba7d4eeb6048695678f8cecce653e57f1d06e3added3cdf"
+    },
+    {
+      "member": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/protected-inputs-final.json",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/protected-inputs-final.json",
+      "size": 200814,
+      "sha256": "30c2aff24f7f241f0e2c9270c059dd6da0a3ab0e68b85468a603a9a6ffb33294"
+    },
+    {
+      "member": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/refine-evidence-attempt1.receipt.json",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/refine-evidence-attempt1.receipt.json",
+      "size": 271,
+      "sha256": "e67bfaa3f952c1183e1f74d11bc16528faa9f2694b731fee55cf9b7cd18ba85e"
+    },
+    {
+      "member": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/refine-evidence-attempt1.stdout.log",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/refine-evidence-attempt1.stdout.log",
+      "size": 1030,
+      "sha256": "38c9c56817c2d428b7d053591fc68e12b034f45282df1628556d9b8e24ba438a"
+    },
+    {
+      "member": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/refine-evidence.receipt.json",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/refine-evidence.receipt.json",
+      "size": 269,
+      "sha256": "9bb9d5a2895e25c5e2cbe1d1b9e5a2221414a4f592a2ebcbec9c60d24b48b72d"
+    },
+    {
+      "member": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/refine-evidence.stdout.log",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/refine-evidence.stdout.log",
+      "size": 7361,
+      "sha256": "35ed12ab0f6c4eebf94008741a793bd13039f70c1dc36beb0247d0e4154140cc"
+    },
+    {
+      "member": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/refine_evidence.py",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/refine_evidence.py",
+      "size": 8475,
+      "sha256": "9dfb5c3e5a5aef1fe0b17afcf18d7aa9006891cba702e2a105ea9ca4d835eddb"
+    },
+    {
+      "member": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/root-census-crosscheck.json",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/root-census-crosscheck.json",
+      "size": 91,
+      "sha256": "de4645987c4b4e28c90942b7a84a223df63a5bd82f36ee7d62481845230eba3e"
+    },
+    {
+      "member": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/saved-complete-endpoints.json",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/saved-complete-endpoints.json",
+      "size": 806288,
+      "sha256": "f09c084614a0c3a67188146c97f8cd0cc9316827e32280aac86ac6129adce68d"
+    },
+    {
+      "member": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/saved-raw-endpoints.json",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/saved-raw-endpoints.json",
+      "size": 866722,
+      "sha256": "ae810f386dd5308cb853800702416b73b3a412e77d2b1ee56728b9c216f19aba"
+    },
+    {
+      "member": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/source-bindings.json",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback/pland-dback-20260910T193834Z/source-bindings.json",
+      "size": 59414,
+      "sha256": "83dd57f7fcec0a8329e19592913109035655af2c219de00a1195a95048cea509"
+    },
+    {
+      "member": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback-result.md",
+      "original_path": "projects/crow-audio-carrier-v1/06_build/verification/pland-dback-result.md",
+      "size": 19773,
+      "sha256": "8f9661d888dfc3991a4e22054f7fb3b6d5d5ca8b6b873544561d9ff2b5b30037"
+    }
+  ]
+}

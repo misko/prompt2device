@@ -1,0 +1,42 @@
+mpn: AO3400A
+manufacturer: Alpha and Omega Semiconductor
+type: n_channel_mosfet
+value: AO3400A
+status: active
+datasheet: {doc_id: 'AO3400A_Rev3.1.pdf', revision: 'AO3400A_Rev3.1.pdf', url: 'https://www.aosmd.com/sites/default/files/res/datasheets/AO3400A.pdf', local: 'AO3400A_Rev3.1.pdf', sha256: 9c60d0b6c1ddc7609a4b788a91181468d8ffe6c3e9ba425c3d8ffc5ba88c5033, fetched: 2026-09-07, provenance: 'Direct manufacturer PDF; exact bytes verified.'}
+package: 'Package_TO_SOT_SMD:SOT-23'
+footprint: Package_TO_SOT_SMD:SOT-23
+escape: {style: leaded, pitch: 0.95, tier_required: jlc_2layer_default, checked: 'Primary exact pin orientation and stock land reviewed2026-09-07'}
+pins: {1: G, 2: S, 3: D}
+limits: {vds_max_V: 30, vgs_max_V: 12, rds_on_max_2V5_25C_ohm: 0.048}
+verified: 'AO3400A Rev3.1 page1 SOT23 Top View/Bottom View drawings: marked gate-side lead=G1, other paired lead=S2, single opposite lead=D3; page2 Electrical Characteristics table. Reopened exact retained PDF2026-09-10; pin/value mapping unchanged. Catalog identity is not allocation.'
+gotchas: ['Room-temperature maximum RDS or Vf must not be presented as full-temperature maximum; ADR0009 applies separate conservative engineering hot bounds and physical acceptance.']
+layout:
+  source: AO3400A_Rev3.1.pdf
+  reviewed: '2026-09-08'
+  notes:
+  - Keep pulse-current loop short and broad; preserve pin1 orientation and provide thermal spreading.
+  - 'Carrier local-placement source 2026-09-08: exact-ref/non-ground-net adjacency is a rotation-aware copper-bounding-box gap, NOT pad-center
+    distance or routed length. Rounded engineering ceilings below are not manufacturer numerical maxima. Ground pours are excluded by P-ADJ-PAIR;
+    local return/thermal/escape proof remains owed on the later saved PCB.'
+  - Source-only pin-center plan uses <=5mm local bypass/BST and <=10mm feedback ceilings, with separately named bulk/input/feed exceptions. See
+    01_docs/SOURCE-CORRECTION-20260908-local-placement.md for all 299 roles and exact source geometry; no current-board acceptance is inherited.
+  adjacency:
+  - refdes:
+    - Q_DUMP
+    - R_DUMP
+    nets:
+    - ADC_DUMP
+    max_mm: 2.0
+    why: 'Engineering copper-gap ceiling: local-control; exact partner, selected non-poured net only.'
+  - refdes:
+    - Q_DUMP
+    - R_DUMP_PD
+    nets:
+    - DUMP_GATE
+    max_mm: 2.5
+    why: 'Engineering copper-gap ceiling: local-control; exact partner, selected non-poured net only.'
+layout_refs:
+  - {tier: 1, reached: true, artifact: 'AO3400A_Rev3.1.pdf', why: 'Manufacturer exact package and pin authority.'}
+  - {tier: 2, reached: false, artifact: 'Exact editable carrier load-dump reference', why: 'No identical vendor application; hot pulse/rail qualification owed.'}
+sourcing: {lcsc: C20917, alternates: [], note: 'Public exact-MPN catalog query2026-09-07; no allocation.'}

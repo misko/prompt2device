@@ -21,6 +21,7 @@ import time
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any
+from urllib.parse import urlsplit
 
 import yaml
 
@@ -38,6 +39,7 @@ from pipeline_stage_evidence import (  # noqa: E402
     require_safe_output_layout, write_shadow_stage_result,
 )
 from process_runner import run_bounded  # noqa: E402
+from jlc_pcba_availability import verify_receipt  # noqa: E402
 
 
 def _record(path: Path) -> dict[str, Any]:
@@ -73,18 +75,31 @@ def _pcba_check(receipt: Path | None, *, phase: str,
         return {"status": "INCOMPLETE",
                 "detail": f"{phase} requires --pcba-receipt",
                 "output": "catalog stock is not JLCPCB assembly authority"}
-    command = ["/usr/bin/python3", str(SCRIPTS / "jlc_pcba_availability.py"),
-               "verify", str(receipt), "--phase", phase]
-    if bom is not None:
-        command += ["--bom", str(bom)]
-    checked = _run("JLCPCB PCBA receipt", command, Path.cwd())
-    if checked["status"] != "PASS":
-        return checked
+    if bom is None:
+        return {
+            "status": "INCOMPLETE",
+            "detail": f"{phase} receipt verification requires the current circuit/BOM",
+            "output": "a PCBA receipt may not be verified without its current subject",
+        }
     try:
-        data = json.loads(receipt.read_text(encoding="utf-8-sig"))
+        receipt_identity = _record(receipt)
+    except OSError as exc:
+        return {"status": "INCOMPLETE", "detail": f"receipt unreadable: {exc}",
+                "output": ""}
+    try:
+        valid, failures, data = verify_receipt(
+            receipt, bom=bom, required_phase=phase)
     except Exception as exc:
         return {"status": "INCOMPLETE", "detail": f"receipt unreadable: {exc}",
-                "output": checked.get("output", "")}
+                "output": ""}
+    checked = {
+        "status": "PASS" if valid else "FAIL",
+        "detail": "JLCPCB PCBA receipt verified" if valid else
+                  "JLCPCB PCBA receipt rejected",
+        "output": "\n".join(failures),
+    }
+    if not valid:
+        return checked
     if predicate == "availability":
         verdict = data.get("availability_verdict", data.get("verdict"))
     elif predicate == "economics":
@@ -98,6 +113,19 @@ def _pcba_check(receipt: Path | None, *, phase: str,
     else:
         return {"status": "INCOMPLETE", "detail": f"unknown predicate {predicate}",
                 "output": ""}
+    try:
+        if _record(receipt) != receipt_identity:
+            return {
+                "status": "FAIL",
+                "detail": "JLCPCB PCBA receipt changed during verification",
+                "output": "the verified receipt bytes were replaced before consumption",
+            }
+    except OSError as exc:
+        return {
+            "status": "FAIL",
+            "detail": "JLCPCB PCBA receipt changed during verification",
+            "output": f"receipt disappeared before consumption: {exc}",
+        }
     if verdict != "ACCEPTED":
         checked["status"] = "FAIL" if verdict == "REJECTED" else "INCOMPLETE"
         checked["detail"] = f"JLCPCB PCBA {predicate} verdict {verdict}"
@@ -106,9 +134,136 @@ def _pcba_check(receipt: Path | None, *, phase: str,
     return checked
 
 
+def _distributor_prelayout_rows(project: Path, request: dict[str, Any],
+                                policy_path: Path, quotes_path: Path,
+                                exact_rows: list[dict[str, Any]], *,
+                                allow_blocked_sourcing: bool = False) -> tuple[dict, dict]:
+    """Grade explicitly approved exact-part observations, not JLC allocation.
+
+    Observations are human-read public product pages. Hashes preserve what was
+    recorded; they do not independently prove the observer copied a page
+    correctly or that stock remains reserved. No procurement is authorized.
+    """
+    project = project.resolve()
+
+    def local(path: Path) -> Path:
+        absolute = Path(os.path.abspath(path if path.is_absolute() else project / path))
+        try:
+            relative = absolute.relative_to(project)
+        except ValueError as exc:
+            raise ValueError('distributor authority escapes project') from exc
+        current = project
+        for part in relative.parts:
+            current /= part
+            if current.is_symlink():
+                raise ValueError('symlink distributor authority')
+        if not absolute.is_file():
+            raise ValueError(f'missing distributor authority: {absolute}')
+        return absolute
+
+    # CLI paths follow the other grade arguments (cwd-relative); references
+    # inside the policy remain project-relative. Keep symlink checks intact.
+    policy_path = local(Path(os.path.abspath(policy_path)))
+    quotes_path = local(Path(os.path.abspath(quotes_path)))
+    policy = yaml.safe_load(policy_path.read_text())
+    quotes = yaml.safe_load(quotes_path.read_text())
+    if (not isinstance(policy, dict) or policy.get('schema') != 1 or
+            policy.get('scope') != 'prelayout-only' or
+            policy.get('order_authorized') is not False):
+        raise ValueError('distributor policy must be schema1 prelayout-only, no order authority')
+    directive = policy.get('directive')
+    if not isinstance(directive, str) or not directive.strip():
+        raise ValueError('distributor policy has no explicit directive')
+    brief = local(Path(policy.get('brief') or ''))
+    decision = local(Path(policy.get('decision') or ''))
+    decision_text = decision.read_text()
+    if directive not in brief.read_text() or directive not in decision_text:
+        raise ValueError('distributor directive is absent from brief/decision')
+    if not all(term in decision_text for term in ('public-catalog', 'pre-layout', 'DO-NOT-ORDER')):
+        raise ValueError('distributor decision lacks design-only boundary')
+    rules = policy.get('rows')
+    observations = quotes.get('quotes') if isinstance(quotes, dict) else None
+    if not isinstance(rules, list) or not rules or not isinstance(observations, list):
+        raise ValueError('distributor policy/quote denominator is empty or malformed')
+    wanted = {row['requested_lcsc']: row for row in request.get('rows') or []}
+    approved = {}
+    for row in rules:
+        code = row.get('lcsc')
+        if not re.fullmatch(r'C\d+', str(code)) or code not in wanted or code in approved:
+            raise ValueError('unknown or duplicate distributor policy code')
+        identity_keys = ('mpn', 'manufacturer', 'footprint', 'distributor', 'url', 'packaging')
+        if any(not isinstance(row.get(key), str) or not row[key].strip() for key in identity_keys):
+            raise ValueError(f'{code}: incomplete distributor identity')
+        refs = row.get('designators')
+        if (not isinstance(refs, list) or not refs or len(set(refs)) != len(refs) or
+                sorted(refs) != sorted(wanted[code]['designators'])):
+            raise ValueError(f'{code}: distributor policy designators differ from request')
+        source = [item for item in exact_rows if code in item.get('jlc_codes', [])]
+        if sorted(item['ref'] for item in source) != sorted(refs):
+            raise ValueError(f'{code}: distributor source population differs')
+        for item in source:
+            dossier = yaml.safe_load(local(Path(item.get('dossier') or '')).read_text())
+            if (item.get('mpn') != row['mpn'] or item.get('footprint') != row['footprint'] or
+                    any(dossier.get(key) != row[key] for key in ('mpn', 'manufacturer', 'footprint'))):
+                raise ValueError(f'{code}: distributor identity differs from exact source/dossier')
+        url = urlsplit(row['url'])
+        # Each admitted provider has a narrow, tested public product-page
+        # shape. Exact row/quote equality below binds the observed page.
+        provider_paths = {
+            'digikey': ('www.digikey.com', '/en/products/detail/'),
+            'mouser': ('www.mouser.com', '/en/ProductDetail/'),
+        }
+        provider = provider_paths.get(row['distributor'])
+        if (provider is None or url.scheme != 'https' or
+                url.netloc != provider[0] or not url.path.startswith(provider[1]) or
+                url.path == provider[1] or url.query or url.fragment):
+            raise ValueError(f'{code}: unsupported distributor product URL')
+        found = [q for q in observations if isinstance(q, dict) and
+                 q.get('mpn') == row['mpn'] and q.get('distributor') == row['distributor']]
+        if len(found) != 1:
+            raise ValueError(f'{code}: missing or ambiguous exact distributor quote')
+        quote = found[0]
+        if (any(quote.get(key) != row[key] for key in
+                ('mpn', 'manufacturer', 'distributor', 'url', 'packaging')) or
+                quote.get('source') != 'product_page' or quote.get('lifecycle') != 'Active' or
+                not isinstance(quote.get('dpn'), str) or not quote['dpn'].strip()):
+            raise ValueError(f'{code}: non-product-page or mismatched distributor observation')
+        try:
+            checked = datetime.fromisoformat(str(quote.get('checked_at') or '').replace('Z', '+00:00'))
+            if checked.tzinfo is None:
+                raise ValueError('timezone missing')
+            age = datetime.now(timezone.utc) - checked.astimezone(timezone.utc)
+            if age < timedelta(0) or age > timedelta(hours=24):
+                raise ValueError('observation outside24h window')
+        except ValueError as exc:
+            raise ValueError(f'{code}: invalid distributor observation time: {exc}') from exc
+        quantities = [quote.get(key) for key in ('stock', 'min', 'mult')]
+        if (type(quantities[0]) is not int or quantities[0] < 0 or
+                any(type(value) is not int or value <= 0 for value in quantities[1:])):
+            raise ValueError(f'{code}: stock must be a nonnegative integer and minimum/multiple must be positive integers')
+        stock, minimum, multiple = quantities
+        required = wanted[code].get('required_qty')
+        if type(required) is not int or required <= 0:
+            raise ValueError(f'{code}: invalid requested quantity')
+        purchase_quantity = ((max(required, minimum) + multiple - 1) // multiple) * multiple
+        blocked = stock < purchase_quantity
+        if blocked and not allow_blocked_sourcing:
+            raise ValueError(f'{code}: distributor stock below actual minimum/multiple quantity')
+        approved[code] = dict(stock=stock, required_qty=required, mpn=row['mpn'],
+                              distributor=row['distributor'], url=row['url'],
+                              checked_at=quote['checked_at'], order_authorized=False,
+                              sourcing_state=('BLOCKED-SOURCING' if blocked else 'AVAILABLE'))
+    inputs = {name: _record(path) for name, path in (
+        ('distributor_policy', policy_path), ('distributor_quotes', quotes_path),
+        ('distributor_decision', decision), ('distributor_brief', brief))}
+    return approved, inputs
+
+
 def _catalog_prelayout_check(request_path: Path | None,
                              evidence_path: Path | None,
-                             decision_path: Path | None) -> dict[str, Any]:
+                             decision_path: Path | None, *,
+                             distributors: dict | None = None,
+                             allow_blocked_sourcing: bool = False) -> dict[str, Any]:
     """Verify a user-accepted public-catalog pre-layout negative filter.
 
     This deliberately cannot be used for the order phase.  It proves only
@@ -127,9 +282,29 @@ def _catalog_prelayout_check(request_path: Path | None,
         return {"status": "INCOMPLETE", "detail": f"catalog evidence unreadable: {exc}",
                 "output": ""}
     failures = []
+    distributors = distributors or {}
+    # Preserve and grade the original failed JLC rows. Only an independently
+    # validated, explicitly approved distributor observation can cover a
+    # LOW_STOCK row. Network errors/missing codes/other failures still block.
+    replaced = {row.get('lcsc') for row in evidence.get('lines') or []
+                if row.get('lcsc') in distributors and
+                str(row.get('status', '')).startswith('LOW_STOCK(')}
+    blocked_catalog = {row.get('lcsc') for row in evidence.get('lines') or []
+                       if allow_blocked_sourcing and row.get('lcsc') not in replaced and
+                       str(row.get('status', '')).startswith('LOW_STOCK(')}
+    blocked = ({code for code in replaced
+                if distributors[code].get('sourcing_state') == 'BLOCKED-SOURCING'} |
+               blocked_catalog)
+    if blocked and not allow_blocked_sourcing:
+        failures.append('blocked distributor stock requires explicit blocked-sourcing continuation')
     if request.get("phase") != "prelayout" or request.get("schema") != 2:
         failures.append("request is not a schema-v2 prelayout request")
-    if evidence.get("verdict") != "PASS":
+    if evidence.get("tool") != "jlc_stock_check.py":
+        failures.append("catalog evidence was not emitted by jlc_stock_check.py")
+    if evidence.get("stock_source") != "lcsc_catalog_stockCount":
+        failures.append("catalog evidence does not identify the public LCSC catalog stock field")
+    covered_failures = replaced | blocked_catalog
+    if evidence.get("verdict") != ("FAIL" if covered_failures else "PASS"):
         failures.append(f"catalog verdict is {evidence.get('verdict')!r}, not PASS")
     if evidence.get("predicts_jlc_assembly_allocation") is not False:
         failures.append("catalog evidence does not preserve its non-allocation scope")
@@ -142,24 +317,68 @@ def _catalog_prelayout_check(request_path: Path | None,
             failures.append("catalog evidence is future-dated or older than 24 hours")
     except ValueError as exc:
         failures.append(f"catalog generated_at is invalid: {exc}")
-    wanted = {row.get("requested_lcsc"): row for row in request.get("rows") or []}
-    observed = {row.get("lcsc"): row for row in evidence.get("lines") or []}
+    request_rows = request.get("rows") or []
+    evidence_rows = evidence.get("lines") or []
+    wanted = {row.get("requested_lcsc"): row for row in request_rows}
+    observed = {row.get("lcsc"): row for row in evidence_rows}
+    if len(wanted) != len(request_rows) or None in wanted or "" in wanted:
+        failures.append("request contains duplicate or empty LCSC identities")
+    if len(observed) != len(evidence_rows) or None in observed or "" in observed:
+        failures.append("catalog evidence contains duplicate or empty LCSC identities")
     if not wanted or set(wanted) != set(observed):
         failures.append("catalog code set does not exactly match the request")
+    try:
+        build_quantity = int(request.get("build_quantity"))
+        if build_quantity <= 0:
+            raise ValueError
+    except (TypeError, ValueError):
+        build_quantity = -1
+        failures.append("request build_quantity is not a positive integer")
+    try:
+        if int(evidence.get("min_stock_per_board")) != build_quantity:
+            failures.append("catalog build quantity does not match the request")
+    except (TypeError, ValueError):
+        failures.append("catalog min_stock_per_board is not integral")
+    expected_count = len(request_rows)
+    for field, expected in (("graded_lines", expected_count),
+                            ("total_lines", expected_count),
+                            ("failures", len(covered_failures)), ("uncoded_lines", 0)):
+        try:
+            if int(evidence.get(field)) != expected:
+                failures.append(f"catalog {field} is not {expected}")
+        except (TypeError, ValueError):
+            failures.append(f"catalog {field} is not integral")
     for code, row in wanted.items():
         got = observed.get(code) or {}
-        if got.get("status") != "OK":
+        if got.get("status") != "OK" and code not in covered_failures:
             failures.append(f"{code}: catalog status {got.get('status')!r}")
             continue
         try:
             per_board = int(got.get("qty"))
+            required = int(got.get("required_qty"))
+            threshold = int(got.get("stock_threshold"))
+            surplus = int(got.get("absolute_surplus"))
             stock = int(got.get("stock"))
         except (TypeError, ValueError):
-            failures.append(f"{code}: qty/stock is not integral")
+            failures.append(f"{code}: qty/required/threshold/surplus/stock is not integral")
             continue
         if per_board != int(row.get("per_board_qty") or -1):
             failures.append(f"{code}: per-board quantity disagrees with request")
-        if stock < int(row.get("required_qty") or 0):
+        request_required = int(row.get("required_qty") or -1)
+        if required != request_required or threshold != request_required:
+            failures.append(f"{code}: catalog required quantity disagrees with request")
+        expected_designators = sorted(str(ref) for ref in row.get("designators") or [])
+        observed_designators = sorted(
+            ref.strip() for ref in str(got.get("designators") or "").split(",")
+            if ref.strip())
+        if observed_designators != expected_designators:
+            failures.append(f"{code}: catalog designators disagree with request")
+        if surplus != stock - request_required:
+            failures.append(f"{code}: catalog surplus arithmetic is inconsistent")
+        if code in covered_failures and (got.get('status') != f'LOW_STOCK({stock})' or
+                                         stock < 0 or stock >= request_required):
+            failures.append(f'{code}: inconsistent original JLC low-stock observation')
+        if stock < request_required and code not in covered_failures:
             failures.append(f"{code}: catalog stock {stock} below required quantity")
     required_decision_terms = ("public-catalog", "pre-layout", "DO-NOT-ORDER")
     if any(term not in decision for term in required_decision_terms):
@@ -167,9 +386,12 @@ def _catalog_prelayout_check(request_path: Path | None,
     return {
         "status": "FAIL" if failures else "PASS",
         "detail": ("; ".join(failures) if failures else
-                   f"{len(wanted)}/{len(wanted)} exact public-catalog lines cover the build; "
-                   "user accepted for pre-layout only"),
-        "output": "public catalog negative filter only; final JLC uploader allocation and economics remain mandatory",
+                   f"{len(wanted)}/{len(wanted)} exact public-source lines are current "
+                   f"({len(replaced)} approved distributor observation(s), "
+                   f"{len(blocked)} blocked); user accepted for pre-layout only"),
+        "output": "public stock design screen only; original JLC observations retained; final JLC uploader allocation and economics remain mandatory",
+        "distributor_rows": {code: distributors[code] for code in sorted(replaced)},
+        "sourcing_state": "BLOCKED-SOURCING" if blocked else "AVAILABLE",
     }
 
 
@@ -264,7 +486,19 @@ def grade(project: Path, *, phase: str, release: Path | None = None,
           pcba_receipt: Path | None = None,
           catalog_request: Path | None = None,
           catalog_evidence: Path | None = None,
-          catalog_decision: Path | None = None) -> dict[str, Any]:
+          catalog_decision: Path | None = None,
+          distributor_policy: Path | None = None,
+          distributor_quotes: Path | None = None,
+          allow_blocked_sourcing: bool = False) -> dict[str, Any]:
+    if allow_blocked_sourcing and (phase != 'prelayout' or
+                                   distributor_policy is None or
+                                   distributor_quotes is None):
+        raise ValueError('blocked sourcing requires explicit public prelayout distributor evidence')
+    if distributor_policy is not None or distributor_quotes is not None:
+        if (phase != 'prelayout' or pcba_receipt is not None or
+                distributor_policy is None or distributor_quotes is None or
+                catalog_request is None):
+            raise ValueError('distributor evidence requires explicit public prelayout mode and both inputs')
     project = project.resolve()
     circuit = _find_circuit(project)
     assembly = project / "03_src/rules/assembly.yaml"
@@ -290,12 +524,23 @@ def grade(project: Path, *, phase: str, release: Path | None = None,
     if phase == "prelayout":
         if pcba_receipt is not None:
             checks["jlc_pcba_availability"] = _pcba_check(
-                pcba_receipt, phase="prelayout", predicate="availability")
+                pcba_receipt, phase="prelayout", bom=circuit,
+                predicate="availability")
             checks["procurement_exposure"] = _pcba_check(
-                pcba_receipt, phase="prelayout", predicate="economics")
+                pcba_receipt, phase="prelayout", bom=circuit,
+                predicate="economics")
         else:
+            distributors = {}
+            if distributor_policy is not None:
+                distributors, distributor_inputs = _distributor_prelayout_rows(
+                    project, json.loads(catalog_request.read_text()),
+                    distributor_policy, distributor_quotes, exact['rows'],
+                    allow_blocked_sourcing=allow_blocked_sourcing)
+                inputs.update(distributor_inputs)
             checks["public_catalog_prelayout"] = _catalog_prelayout_check(
-                catalog_request, catalog_evidence, catalog_decision)
+                catalog_request, catalog_evidence, catalog_decision,
+                distributors=distributors,
+                allow_blocked_sourcing=allow_blocked_sourcing)
             checks["procurement_exposure"] = {
                 "status": checks["public_catalog_prelayout"]["status"],
                 "detail": ("deferred to final JLC uploader under explicit user decision"
@@ -342,6 +587,18 @@ def grade(project: Path, *, phase: str, release: Path | None = None,
              "--sourcing-authority", "jlc-pcba", "--pcba-evidence",
              str(pcba_receipt or "")],
             project)
+
+    if pcba_receipt is not None and "pcba_receipt" in inputs:
+        try:
+            receipt_stable = _record(pcba_receipt) == inputs["pcba_receipt"]
+        except OSError:
+            receipt_stable = False
+        if not receipt_stable:
+            checks["pcba_receipt_stability"] = {
+                "status": "FAIL",
+                "detail": "PCBA receipt changed during readiness composition",
+                "output": "the final receipt identity differs from the input census",
+            }
 
     statuses = {row["status"] for row in checks.values()}
     verdict = ("INCOMPLETE" if "INCOMPLETE" in statuses else
@@ -419,6 +676,10 @@ def main(argv: list[str] | None = None) -> int:
     grade_parser.add_argument("--catalog-request", type=Path)
     grade_parser.add_argument("--catalog-evidence", type=Path)
     grade_parser.add_argument("--catalog-decision", type=Path)
+    grade_parser.add_argument("--distributor-policy", type=Path)
+    grade_parser.add_argument("--distributor-quotes", type=Path)
+    grade_parser.add_argument("--allow-blocked-sourcing", action="store_true",
+                              help="prelayout design continuation only; keep exact sourcing as a loud order hold")
     grade_parser.add_argument("--json", type=Path, required=True)
     grade_parser.add_argument("--stage-bundle", type=Path)
     grade_parser.add_argument("--stage-result", type=Path)
@@ -453,7 +714,10 @@ def main(argv: list[str] | None = None) -> int:
                        pcba_receipt=args.pcba_receipt,
                        catalog_request=args.catalog_request,
                        catalog_evidence=args.catalog_evidence,
-                       catalog_decision=args.catalog_decision)
+                       catalog_decision=args.catalog_decision,
+                       distributor_policy=args.distributor_policy,
+                       distributor_quotes=args.distributor_quotes,
+                       allow_blocked_sourcing=args.allow_blocked_sourcing)
     except Exception as exc:
         print(f"MANUFACTURING-READINESS INCOMPLETE: {exc}")
         return 2

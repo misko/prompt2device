@@ -1,0 +1,11 @@
+mpn: "43030-0007"
+manufacturer: Molex
+type: female_crimp_terminal
+status: active
+datasheet: {doc_id: "43030-0007 product and ATS-638190000 records", revision: current, url: "https://www.molex.com/en-us/products/part-detail/430300007", local: null, sha256: null, fetched: 2026-09-01}
+package: "Micro-Fit 3.0 female crimp terminal, 20/22/24 AWG"
+footprint: none_off_board
+limits: {wire_awg: [20, 22, 24], insulation_outer_diameter_max_mm: 1.85, mating_cycles: 30, current_max_a: 7}
+gotchas: ["Crimp height and pull force depend on exact AWG; inspect conductor and insulation crimps and perform destructive sample pull tests before field harness assembly."]
+verified: "Exact Molex product record and ATS-638190000 hand-tool instructions inspected 2026-09-01; extracted process facts are retained in primary-source-record.md."
+sourcing: {lcsc: null, alternates: []}

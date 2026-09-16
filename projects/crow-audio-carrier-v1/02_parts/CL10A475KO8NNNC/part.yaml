@@ -1,0 +1,23 @@
+mpn: CL10A475KO8NNNC
+manufacturer: Samsung Electro-Mechanics
+type: ceramic_capacitor
+value: 4.7uF
+datasheet:
+  doc_id: CL10A475KO8NNNC
+  revision: '2024-05-09'
+  url: https://product.samsungsem.com/part/download.do
+  local: Samsung_CL10A475KO8NNN_specsheet.pdf
+  sha256: b2081b0b0d43033ef3aca53f8c56f782c170ac3913a91aa847b74e5f7e6557a9
+  fetched: '2026-09-08'
+  pages: 38
+  note: 'p1 exact CL10A475KO8NNNC C-suffix identity, dimensions and packaging: 4.7uF, 16V, X5R, 0603, 4000/reel, +/-10%; p2 specified test conditions. Manufacturer Reference Sheet, not an order-specific approval or guaranteed effective-capacitance curve. Existing engineering screening allocations remain engineering assumptions. Public POST masterKey=CL10A475KO8NNN&type=specsheet. Captured official product page marks NRND; no KO8NQN substitution or active-life assertion is authorized.'
+  product_page: https://product.samsungsem.com/mlcc/CL10A475KO8NNN.do
+  provenance: Manufacturer-authored PDF independently inspected from exact captured bytes on 2026-09-08; copied unchanged into this carrier dossier. Original public manufacturer endpoint https://product.samsungsem.com/part/download.do; immutable capture provenance retained in the 2026-09-08 authority-source packet. Local binding is not independent pin/footprint review, sourcing allocation, approval sheet, physical qualification or order release.
+package: "0603 (1608 metric)"
+footprint: Capacitor_SMD:C_0603_1608Metric
+escape: {style: passive, pitch: 0.8, tier_required: jlc_2layer_default, checked: "standard 0603 land, 2026-09-01"}
+pins: {1: A, 2: B}
+limits: {capacitance_f: 0.0000047, tolerance_pct: 10, voltage_v: 16, dielectric: X5R}
+asserts: [{assert: value, equals: 4.7u, tolerance_pct: 10, why: "LDO/reference/VMID support capacitor."}]
+verified: "Exact MPN/code/value/package match selected 2026-09-01; effective capacitance remains governed where it is a regulator minimum."
+sourcing: {lcsc: C19666, alternates: []}

@@ -1,0 +1,353 @@
+{
+  "schema": 1,
+  "decision": "GO_BOUNDED_IMPLEMENTATION_CONTRACT",
+  "envelope_canonical_sha256": "1280b3341baf778eff9c53cee4e9f22a0e12d6ed7d8df01e6d118f09a7ece8e6",
+  "subject": {
+    "raw_sha256": "62290ce41480a6ee27455c4723025e76d87009ce9634a2a349fee9b8beb344e9",
+    "semantic_sha256": "dd0d131483d1575b7e6ec69a63d5c07c0f34360f1e098398136ba773c7d40854"
+  },
+  "verification": {
+    "inputs_verified": 27,
+    "archives_verified": 4,
+    "regular_members_verified": 3596,
+    "archive_counts": {
+      "matrix": 161,
+      "kernel": 1266,
+      "controls": 2058,
+      "new": 111
+    },
+    "verification_method": "Independently compared every input SHA256 and size; every archive member against supplied manifest SHA256/size; prohibited nonregular, absolute and parent-traversal members; extracted only after complete archive verification.",
+    "all_pass": true
+  },
+  "findings": {
+    "grammar": {
+      "finding": "Complete preflight required; official OR precedence exceeds AND; unsupported syntax cannot be dropped.",
+      "sources": [
+        {
+          "archive_sha256": "c059998a1be87d940015dab5f0c02afd22484ce2b5d495e591b1259187e949d5",
+          "member": "reviewer/authority/common__libeval_compiler__grammar.lemon",
+          "sha256": "bfb2ae589abf5afa9cccdb815ecad44185e539888d44734bc7e3ac370bf582db",
+          "size": 4649
+        },
+        {
+          "archive_sha256": "c059998a1be87d940015dab5f0c02afd22484ce2b5d495e591b1259187e949d5",
+          "member": "reviewer/authority/pcbnew__drc__drc_rule_parser.cpp",
+          "sha256": "05715700a3d1cf92015be3e61ef236f90120c3cd8f138ac2a69a586ffbcfb17a",
+          "size": 30635
+        }
+      ]
+    },
+    "strings": {
+      "finding": "Native literal equality is case-insensitive; wildcard and NetClass constituent behavior are property-specific.",
+      "sources": [
+        {
+          "archive_sha256": "c059998a1be87d940015dab5f0c02afd22484ce2b5d495e591b1259187e949d5",
+          "member": "reviewer/authority/common__libeval_compiler__libeval_compiler.cpp",
+          "sha256": "f172e94183578c4b348050ec2868ac93233304985936ff3617c840af54c829cd",
+          "size": 37379
+        },
+        {
+          "archive_sha256": "c059998a1be87d940015dab5f0c02afd22484ce2b5d495e591b1259187e949d5",
+          "member": "reviewer/authority/pcbnew__pcbexpr_evaluator.cpp",
+          "sha256": "eac57c43606f300026a938e777b2dc3a9d4ba7d3fa3d94a284c1778983f1d9cb",
+          "size": 25915
+        }
+      ]
+    },
+    "corpus": {
+      "finding": "Current 1002/940; CAL 324/300; RX2 291/272; CRC 786/755 physical/copper; supported demand includes custom shapes/THT and CRC valid diff_pair_gap min/opt.",
+      "sources": [
+        {
+          "archive_sha256": "c059998a1be87d940015dab5f0c02afd22484ce2b5d495e591b1259187e949d5",
+          "member": "reviewer/corpus-census.json",
+          "sha256": "e6070894f3bf245d9176b15673f43cc2501c02ac02f0ea1738591228990d1ac4",
+          "size": 20099
+        }
+      ]
+    },
+    "rejected": {
+      "finding": "Unaccepted source drops irrelevant rules before validating conditions, uses fnmatch, folds before B rejection and uses raw area shapes; not suitable for adoption unchanged.",
+      "sources": [
+        {
+          "archive_sha256": "da81f0f730c19d4b77260fcf52ada0f35d2ed3d380463b455c463de8cb479048",
+          "member": "unadopted-live/skills/kicad-pcb/scripts/land_witness.py",
+          "sha256": "eac679bd7b640b789bcba1a9fb7c5777b0658bf7d0a13c18511ecf01bb089882",
+          "size": 19974
+        },
+        {
+          "input_path": "06_build/tmp/native-semantics-replacement-20260911T025123Z/native-kernel-adoption.md",
+          "sha256": "2e5314605dc7c8adb3fcb12259267df1a84765b34ce968864236c5a5cb6d50cb",
+          "size": 10380
+        }
+      ]
+    },
+    "classes": {
+      "finding": "Resolved native composites and effective clearances differ from naive single class lookup.",
+      "sources": [
+        {
+          "archive_sha256": "887c61662cbdc291a68c03bdbfb4569d5c93eb830989f31393338c14a128b3db",
+          "member": "reviewer/native-class-geometry.json",
+          "sha256": "6a73bf7d01650552f7f19a43f3ecbfcbee631e3051fc6aef844b9c18ab4796ec",
+          "size": 835
+        }
+      ]
+    },
+    "ordering": {
+      "finding": "Condition EvaluateFor tries A/B and B/A; ordered constraints allow explicit below-board result without final universal clamp.",
+      "sources": [
+        {
+          "archive_sha256": "9ca5188d297ac806316e5955d3053bbf73be949c5a44e445dd14a51607b27160",
+          "member": "review/scratch/drc_rule_condition-10.0.4.cpp",
+          "sha256": "19deef0909fdc88ad5ddd99901f3d6cb72623d34c746afda2406f92bb041455c",
+          "size": 4005
+        },
+        {
+          "archive_sha256": "c059998a1be87d940015dab5f0c02afd22484ce2b5d495e591b1259187e949d5",
+          "member": "reviewer/extracted/fixture/coordinator/drc_engine-10.0.4.cpp",
+          "sha256": "13c132eef0c31f85af88cf26ac6fde90020e905ba6fa2d65d04ad7428bb5b64a",
+          "size": 120293
+        }
+      ]
+    },
+    "precedence": {
+      "finding": "Ten native cases distinguish absent/zero/nonzero PAD/FP, board clamp for nonzero local and below-board custom; all property_pass true.",
+      "sources": [
+        {
+          "archive_sha256": "c059998a1be87d940015dab5f0c02afd22484ce2b5d495e591b1259187e949d5",
+          "member": "reviewer/native-controls.json",
+          "sha256": "49d6e8fd74c3298c59265691c981207597c72766e050cf5594baeb9280fa7678",
+          "size": 14501
+        },
+        {
+          "archive_sha256": "c059998a1be87d940015dab5f0c02afd22484ce2b5d495e591b1259187e949d5",
+          "member": "reviewer/extracted/fixture/coordinator/pad-10.0.4.cpp",
+          "sha256": "a47dccba1be1f063075118e9d76fd8ed6d9929d1a1d203559161ed867bf68765",
+          "size": 131769
+        },
+        {
+          "archive_sha256": "c059998a1be87d940015dab5f0c02afd22484ce2b5d495e591b1259187e949d5",
+          "member": "reviewer/extracted/fixture/coordinator/drc_engine-10.0.4.cpp",
+          "sha256": "13c132eef0c31f85af88cf26ac6fde90020e905ba6fa2d65d04ad7428bb5b64a",
+          "size": 120293
+        }
+      ]
+    },
+    "geometry": {
+      "finding": "Native shapes required; circle gap is 220000 IU. Polygon approximation is insufficient authority.",
+      "sources": [
+        {
+          "archive_sha256": "887c61662cbdc291a68c03bdbfb4569d5c93eb830989f31393338c14a128b3db",
+          "member": "reviewer/native-class-geometry.json",
+          "sha256": "6a73bf7d01650552f7f19a43f3ecbfcbee631e3051fc6aef844b9c18ab4796ec",
+          "size": 835
+        },
+        {
+          "input_path": "06_build/tmp/native-semantics-replacement-20260911T025123Z/evaluator-adoption.md",
+          "sha256": "30582dd38b340334661193429f34585e854686534537a508e462888372d5c94a",
+          "size": 7422
+        }
+      ]
+    },
+    "areas": {
+      "finding": "insideArea is intersectsArea; deflate by board epsilon with native corner/arc policy and layer context.",
+      "sources": [
+        {
+          "archive_sha256": "c059998a1be87d940015dab5f0c02afd22484ce2b5d495e591b1259187e949d5",
+          "member": "reviewer/authority/pcbnew__pcbexpr_functions.cpp",
+          "sha256": "81b01849468ea37693d5f713be8ce851ae29b65a77c868f1229a37cb3ed07428",
+          "size": 51215
+        }
+      ]
+    },
+    "semantics": {
+      "finding": "Native case-insensitive target finding; bracket literal no finding; mixed Boolean no finding; touch and 1-IU overlap false, 2-um overlap true at epsilon 500 IU.",
+      "sources": [
+        {
+          "archive_sha256": "c059998a1be87d940015dab5f0c02afd22484ce2b5d495e591b1259187e949d5",
+          "member": "reviewer/semantics-controls.json",
+          "sha256": "3b78b7420f718bd590e5204f697f4ba93983b570b7ec6a45d44497e982fee282",
+          "size": 5280
+        }
+      ]
+    },
+    "focused": {
+      "finding": "Width below board allowed at 0.05 and rejected at 0.10 for 0.075 Track; 1-IU area relaxation does not erase 0.4 width rule on 0.2 Track. All opens zero.",
+      "sources": [
+        {
+          "archive_sha256": "9ca5188d297ac806316e5955d3053bbf73be949c5a44e445dd14a51607b27160",
+          "member": "review/scratch/focused/observations.json",
+          "sha256": "b3b85365a4eaead7d5eb5a942d2d0507115652c33cb7af0a05943f706b5509eb",
+          "size": 7758
+        },
+        {
+          "archive_sha256": "9ca5188d297ac806316e5955d3053bbf73be949c5a44e445dd14a51607b27160",
+          "member": "review/scratch/focused/width_below_board_allowed/drc.json",
+          "sha256": "79a76f66fe1ed660b25d7244538bf785bb02c295fb5e708c2b8755293967f886",
+          "size": 1084
+        },
+        {
+          "archive_sha256": "9ca5188d297ac806316e5955d3053bbf73be949c5a44e445dd14a51607b27160",
+          "member": "review/scratch/focused/width_below_board_rejected/drc.json",
+          "sha256": "398929d0f3dfb6e1a1d718ce1b80580168c97cee4a1574d440faf8eb2c5d14fc",
+          "size": 1617
+        },
+        {
+          "archive_sha256": "9ca5188d297ac806316e5955d3053bbf73be949c5a44e445dd14a51607b27160",
+          "member": "review/scratch/focused/area_relax_1iu/drc.json",
+          "sha256": "dff9fe4503139a9f3ad30b47632feb66e38f2b979297d6528141dbb3bd5c2e80",
+          "size": 1622
+        }
+      ]
+    },
+    "policy": {
+      "finding": "Existing adaptive generator has up to 37 proposals, capped five intervals, requested 0.03 scale, edge inset 1e-6 mm; native admission still required.",
+      "sources": [
+        {
+          "input_path": "06_build/tmp/native-semantics-replacement-20260911T025123Z/source/skills/kicad-pcb/scripts/escape_check.py",
+          "sha256": "cb0d0cf6cb593b5f231fa372920e7dc6adf10bce95c0d734fac0900d3fd3ddf3",
+          "size": 47842
+        },
+        {
+          "input_path": "06_build/tmp/native-semantics-replacement-20260911T025123Z/evaluator-adoption.md",
+          "sha256": "30582dd38b340334661193429f34585e854686534537a508e462888372d5c94a",
+          "size": 7422
+        }
+      ]
+    },
+    "matrix": {
+      "finding": "18 native stations: base zero findings/zero opens; hostile 18 findings/zero opens. Raw candidate identities retained.",
+      "sources": [
+        {
+          "archive_sha256": "887c61662cbdc291a68c03bdbfb4569d5c93eb830989f31393338c14a128b3db",
+          "member": "reviewer/base/cases.json",
+          "sha256": "fd2ebefa7089a3a4614a75495f471836bfb58b84212ebcf396e5a004c669dc26",
+          "size": 6720
+        },
+        {
+          "archive_sha256": "887c61662cbdc291a68c03bdbfb4569d5c93eb830989f31393338c14a128b3db",
+          "member": "reviewer/base/drc.json",
+          "sha256": "1a810419ba964502b68b96681fcf4c145a570dc2af30f117e3c0be25e7115eef",
+          "size": 1084
+        },
+        {
+          "archive_sha256": "887c61662cbdc291a68c03bdbfb4569d5c93eb830989f31393338c14a128b3db",
+          "member": "reviewer/hostile/drc.json",
+          "sha256": "9fe54fab0380359f310aa6ee8b36ab088b96eb9ecd44b42acb648e95bcd8784b",
+          "size": 12983
+        }
+      ]
+    },
+    "original_public": {
+      "finding": "Original public complete-class X1.1 false rejection: floor 0.200/landable 0.120; 2 graded/5 copper. Diagnostic is not maintained RED.",
+      "sources": [
+        {
+          "archive_sha256": "9ca5188d297ac806316e5955d3053bbf73be949c5a44e445dd14a51607b27160",
+          "member": "review/scratch/original-complete-class-full.log",
+          "sha256": "cd335100b79db990b79f88ffcccdf2ff37d2f54e9094e2937ec0f45c9524cdfd",
+          "size": 3932
+        },
+        {
+          "archive_sha256": "9ca5188d297ac806316e5955d3053bbf73be949c5a44e445dd14a51607b27160",
+          "member": "review/scratch/original-complete-class-process.json",
+          "sha256": "79eb80b0399d7185351451d856f2ea0913ccc17330a9b7a54c974f69696b072d",
+          "size": 1616
+        }
+      ]
+    },
+    "maintained_tests": {
+      "finding": "Preserve exact CAL eleven IDs/floors, RX2 five 0.14 contrasts, CRC bucket/inventory minima, QSPI 13/>250, no-net/unreadable/zero denominator while migrating obsolete maximum assertions.",
+      "sources": [
+        {
+          "input_path": "06_build/tmp/native-semantics-replacement-20260911T025123Z/source/tests/t1_escape_tier.py",
+          "sha256": "424d6dd38567c99fb5ee457f01e1f2b0b071bed48c4b92d4a49b02e04816856c",
+          "size": 73925
+        }
+      ]
+    },
+    "ring": {
+      "finding": "Public hostile PASS ignores hostile condition; native base 2 findings/3 opens, native hostile 241/3 with 48 target track UUIDs; contaminated diagnostic only.",
+      "sources": [
+        {
+          "archive_sha256": "9ca5188d297ac806316e5955d3053bbf73be949c5a44e445dd14a51607b27160",
+          "member": "review/scratch/public-red-v3/observations.json",
+          "sha256": "9320e682df01edf259f927aad074b2783b66893433c2772dcd7e29eb0b6fc726",
+          "size": 12405
+        },
+        {
+          "archive_sha256": "9ca5188d297ac806316e5955d3053bbf73be949c5a44e445dd14a51607b27160",
+          "member": "review/scratch/public-red-v3/native_base/drc.json",
+          "sha256": "b1a42a0bfe9f47910cd5b6f725abe490ae293ccd46f59bc039acad35617a859b",
+          "size": 4392
+        },
+        {
+          "archive_sha256": "9ca5188d297ac806316e5955d3053bbf73be949c5a44e445dd14a51607b27160",
+          "member": "review/scratch/public-red-v3/native_hostile_48/drc.json",
+          "sha256": "6f930e28b58d6b06f27e0538dc4070f9f8943848a5021607573ef811a75cecb4",
+          "size": 184698
+        }
+      ]
+    },
+    "tolerance": {
+      "finding": "Native copper-clearance provider computes max(0, clearance - DRC epsilon) and calls native Collide. Exact collision-boundary parity tests remain required; retain 13 zero-modeled-margin ADC witnesses.",
+      "sources": [
+        {
+          "archive_sha256": "c059998a1be87d940015dab5f0c02afd22484ce2b5d495e591b1259187e949d5",
+          "member": "reviewer/extracted/fixture/coordinator/drc_test_provider_copper_clearance-10.0.4.cpp",
+          "sha256": "d8b917810fa91172ac72c46ae3be9a507e62b2943bee2dfd5d401c804446f9ae",
+          "size": 55067
+        },
+        {
+          "input_path": "06_build/tmp/native-semantics-replacement-20260911T025123Z/evaluator-adoption.md",
+          "sha256": "30582dd38b340334661193429f34585e854686534537a508e462888372d5c94a",
+          "size": 7422
+        }
+      ]
+    },
+    "complete": {
+      "finding": "Five-pad complete-class native fresh base zero findings/zero opens, hostile exactly two target clearance findings/zero opens. Old hostile drc.json reports one; fresh all-track-errors is authoritative for pair census. Specified centre Track is not all-start proof.",
+      "sources": [
+        {
+          "archive_sha256": "da81f0f730c19d4b77260fcf52ada0f35d2ed3d380463b455c463de8cb479048",
+          "member": "persistent-fixtures/land_complete_lb1ru2xz/worker/native-interface-run-u2jowhbt/specimens/base/fresh-drc.json",
+          "sha256": "cdc586667f4e56f3972f1823563ed78459d19584e58bb05f89fd41112de7a34f",
+          "size": 1084
+        },
+        {
+          "archive_sha256": "da81f0f730c19d4b77260fcf52ada0f35d2ed3d380463b455c463de8cb479048",
+          "member": "persistent-fixtures/land_complete_lb1ru2xz/worker/native-interface-run-u2jowhbt/specimens/hostile/fresh-drc.json",
+          "sha256": "41b42dcb7e4a02022140ca09cf44cd63680720b8140c343fa71fcb0653166037",
+          "size": 2706
+        },
+        {
+          "archive_sha256": "da81f0f730c19d4b77260fcf52ada0f35d2ed3d380463b455c463de8cb479048",
+          "member": "persistent-fixtures/land_complete_lb1ru2xz/worker/native-interface-run-u2jowhbt/specimens/base/expected-assignments.json",
+          "sha256": "d9811ef9ef3aad17716f7f5e3182de5249f2532105e509960a2c8aae5a45eccf",
+          "size": 77
+        },
+        {
+          "archive_sha256": "da81f0f730c19d4b77260fcf52ada0f35d2ed3d380463b455c463de8cb479048",
+          "member": "persistent-fixtures/land_complete_lb1ru2xz/worker/native-interface-run-u2jowhbt/specimens/hostile/expected-assignments.json",
+          "sha256": "b177582e7b4aad25721667f6bf522b66a260e7660dd549e68c4944f5529da31a",
+          "size": 79
+        },
+        {
+          "archive_sha256": "da81f0f730c19d4b77260fcf52ada0f35d2ed3d380463b455c463de8cb479048",
+          "member": "persistent-fixtures/land_complete_lb1ru2xz/worker/native-interface-run-u2jowhbt/specimens/hostile/fresh-drc.result.json",
+          "sha256": "c607be6e14ea97d11e458bbe03cab4bfab82e64820b77213524ab43134fa7d09",
+          "size": 342
+        }
+      ]
+    }
+  },
+  "process_closure": {
+    "closed": true,
+    "statement": "Only synchronous read/hash/extract/output helpers launched. All returned; no native experiments, network, agents, detached jobs or lingering sessions. Initial python command failed because unavailable; python3 verification completed successfully. No production edits."
+  },
+  "boundaries": {
+    "prior_reviewer_judgments_read": false,
+    "implemented": false,
+    "maintained_red_or_green_claimed": false,
+    "downstream_gates_cleared": false
+  },
+  "written_at": "2026-09-11T02:58:42.587449+00:00"
+}

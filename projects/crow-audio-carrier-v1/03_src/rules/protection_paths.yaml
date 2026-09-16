@@ -1,0 +1,65 @@
+schema: 2
+paths:
+  - name: isolated_12V_input
+    qualification_mode: bounded_transient
+    source_operating_max_V: 13.2
+    source_tolerance_included: true
+    source_boundary_evidence: >-
+      Regulated isolated 12 V source boundary is 11.4-13.2 V; the isolation
+      device itself is external and must already be safety approved.
+    voltage_margin_pct: 20
+    admitted_transient:
+      claim: "SMBJ15A is a shunt transient clamp after the input PPTC and reverse-hookup PFET; it is not sustained-overvoltage cutoff"
+      series_fault_element: "F_IN 2920L260/33DR before Q_IN and the protected rail"
+    tvs:
+      part: SMBJ15A
+      standoff_V: 15.0
+      clamp_max_V: 24.4
+      waveform_duration_ms: 1.0
+      waveform: 10/1000us
+      peak_current_max_A: 24.6
+      peak_power_max_W: 600
+      evidence: "Littelfuse SMBJ series datasheet exact SMBJ15A row; pin polarity and source impedance remain first-article checks"
+    exposed:
+      - {ref: F_IN, part: 2920L260/33DR, domain: series_input_path, bounded_max_V: 29.28, recommended_max_V: 33, absolute_max_V: 33}
+      - {ref: Q_IN, part: DMP6023LFG-13, domain: series_reverse_hookup_path, bounded_max_V: 29.28, recommended_max_V: 60, absolute_max_V: 60}
+      - {ref: D_BUCK_IN, part: US1B-13-F, domain: local_vin_reverse_isolation, bounded_max_V: 29.28, recommended_max_V: 100, absolute_max_V: 100}
+      - {ref: U_BUCK, part: AP63205WU-7, domain: tvs_clamped_protected_rail, bounded_max_V: 29.28, recommended_max_V: 32, absolute_max_V: 32}
+      - {ref: C_BUCK_IN, part: 12105C106K4Z2A, domain: tvs_clamped_protected_rail, bounded_max_V: 29.28, recommended_max_V: 50, absolute_max_V: 50}
+      - {ref: C_BUCK_IN2, part: 12105C106K4Z2A, domain: tvs_clamped_protected_rail, bounded_max_V: 29.28, recommended_max_V: 50, absolute_max_V: 50}
+      - {ref: C_BUCK_IN3, part: 12105C106K4Z2A, domain: tvs_clamped_protected_rail, bounded_max_V: 29.28, recommended_max_V: 50, absolute_max_V: 50}
+
+  - name: eight_balanced_audio_inputs
+    qualification_mode: unqualified_prototype_esd
+    source_operating_min_V: 1.45
+    source_operating_max_V: 3.50
+    source_tolerance_included: true
+    source_boundary_evidence: >-
+      Shared spoke contract limits common mode to 2.65 V and output to
+      1.2 Vrms differential; 3.50 V conservatively rounds up the per-leg
+      normal maximum of 2.65 V + (1.2 V RMS * sqrt(2) / 2) = 3.499 V.
+    tvs:
+      part: TPD2E2U06DRLR
+      standoff_V: 5.5
+      recommended_min_V: 0
+      recommended_max_V: 5.5
+      iec_contact_kV: 25
+      iec_air_kV: 30
+      evidence: "TI SLLSEG9C pp.3-4: VIO 0..5.5 V recommended; IEC 61000-4-2 component contact +/-25 kV / air +/-30 kV. The 12.4 V at 5 A is TYPICAL 100 ns TLP, not a guaranteed 8/20-us clamp. No 14 V semiconductor absolute maximum is stated."
+    exposed:
+      - refs: [U_ESD1, U_ESD2, U_ESD3, U_ESD4, U_ESD5, U_ESD6, U_ESD7, U_ESD8]
+        part: TPD2E2U06DRLR
+        recommended_min_V: 0
+        recommended_max_V: 5.5
+        evidence: "TI SLLSEG9C recommended VIO table p.4; two protected lines per array, sixteen exposed audio conductors total"
+      - refs: [C_A1P, C_A1N, C_A2P, C_A2N, C_A3P, C_A3N, C_A4P, C_A4N, C_A5P, C_A5N, C_A6P, C_A6N, C_A7P, C_A7N, C_A8P, C_A8N]
+        part: R82DC4100DQ60J
+        recommended_min_V: -63
+        recommended_max_V: 63
+        evidence: "KEMET R82 exact 63 VDC film-capacitor row; normal-operation selection only, not ADC transient protection proof"
+    qualification:
+      status: UNQUALIFIED
+      board_survival_claim: false
+      installation_restriction: "Physically unqualified laboratory prototype only; no outdoor/cable-surge/lightning survival claim, no field installation or ordering authorization. Connector-to-ADC transient survival remains an open engineering item."
+      authorization: 01_docs/decisions/0007-prototype-before-physical-qualification.md
+      test_plan: 01_docs/FIRST_ARTICLE_TEST_PLAN.md

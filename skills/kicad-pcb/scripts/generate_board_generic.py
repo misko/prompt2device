@@ -61,7 +61,7 @@ NOT read another project's config). Top-level keys:
               areas; `ref` derives a package-local area from realised copper
               pads plus optional `margin_mm`, so it follows placement changes.
               ONE zone spans all its layers via an LSET.
-  silk:       captions[], refdes {size, min_size, fab_copy, clearance},
+  silk:       captions[], refdes {size, min_size, fab_copy, clearance, priority_prefixes, priority_refs, preferred_offsets},
               labels {match, from: value|net} for functional captions
   asserts:    pad_net[] {ref, pad, net}, pad_order[] {ref, pads, axis},
               pad_bank_faces[] {ref, pads, toward_ref, toward_pads,
@@ -185,6 +185,29 @@ def parse_netlist(path):
     if not nets:
         die(f"parsed 0 nets from {path}")
     return comps, pad_net, nets
+
+
+def parse_identity_fields(path):
+    """Preserve source identity fields carried by the exported native netlist.
+
+    Quoted values are decoded as strings, including escaped supplier JSON;
+    the component and property boundaries are independent of line wrapping.
+    Missing fields stay absent. Library defaults cannot override source fields.
+    """
+    text = Path(path).read_text(encoding="utf-8-sig")
+    quoted = r'"(?:\\.|[^"\\])*"'
+    component = rf'\(comp\s+\(ref\s+({quoted})\)(.*?)(?=\(comp\s+\(ref|\(libparts)'
+    prop = rf'\(property\s+\(name\s+({quoted})\)\s+\(value\s+({quoted})\)\s*\)'
+    result = {}
+    for match in re.finditer(component, text, re.S):
+        ref = json.loads(match.group(1))
+        fields = {}
+        for name, value in re.findall(prop, match.group(2), re.S):
+            name = json.loads(name)
+            if name in {"Manufacturer Part Number", "Supplier Part Numbers"}:
+                fields[name] = json.loads(value)
+        result[ref] = fields
+    return result
 
 
 # ------------------------------------------------------- footprint loading
@@ -362,6 +385,12 @@ class BoardBuilder:
         except FabTierError as e:
             die(str(e))
         self.holes = []
+        # Board-only mechanical/assembly datums are just as immovable as
+        # placement anchors, but they are created before place_parts() and do
+        # not belong in the component legalizer's ``self.pinned`` set.  Keep a
+        # distinct set so P-COLLIDE can still police their courtyards without
+        # changing legalization semantics.
+        self.fixed_board_refs = set()
         self.log = []
         self.waived = []
 
@@ -492,6 +521,7 @@ class BoardBuilder:
     def build(self):
         comps, pad_net, nets = parse_netlist(self.netlist)
         self.comps, self.pad_net = comps, pad_net
+        self.identity_fields = parse_identity_fields(self.netlist)
         self.seed_uuids()
         self.board = pcbnew.BOARD()
         self.board.SetCopperLayerCount(int(self.board_cfg.get("layers", 2)))
@@ -855,6 +885,7 @@ class BoardBuilder:
                              | pcbnew.FP_BOARD_ONLY | pcbnew.FP_EXCLUDE_FROM_BOM)
             fp.SetPosition(pcbnew.VECTOR2I_MM(float(hx), float(hy)))
             self.board.Add(fp)
+            self.fixed_board_refs.add(ref)
             self.holes.append((float(hx), float(hy)))
 
     def add_fiducials(self):
@@ -906,6 +937,7 @@ class BoardBuilder:
                              | pcbnew.FP_EXCLUDE_FROM_POS_FILES)
             fp.SetPosition(pcbnew.VECTOR2I_MM(fx, fy))
             self.board.Add(fp)
+            self.fixed_board_refs.add(ref)
         self.say(f"fiducials: {len(pts)} placed ({fpid})")
 
     # -------------------------------------------------------- placement
@@ -973,6 +1005,26 @@ class BoardBuilder:
         return (self.X0 + self.X1) / 2, (self.Y0 + self.Y1) / 2, 0.0, False
 
     def place_parts(self):
+        # Validate every declared mode before filtering refs/pads/nets: a typo
+        # must not become valid merely because its selector currently misses.
+        zone_connections = {
+            "full": pcbnew.ZONE_CONNECTION_FULL,
+            "thermal": pcbnew.ZONE_CONNECTION_THERMAL,
+            "none": pcbnew.ZONE_CONNECTION_NONE,
+        }
+        for index, pat in enumerate(self.place_cfg.get("patterns") or []):
+            for ov in pat.get("pad_overrides") or []:
+                if "thermal_spoke_angle_deg" in ov:
+                    angle = ov["thermal_spoke_angle_deg"]
+                    if (isinstance(angle, bool) or not isinstance(angle, (int, float))
+                            or not math.isfinite(angle) or not 0 <= angle < 360):
+                        die(f"placement.patterns[{index}].pad_overrides: "
+                            f"thermal_spoke_angle_deg requires a finite number in [0, 360), got {angle!r}")
+                if "zone_connection" in ov:
+                    mode = ov["zone_connection"]
+                    if not isinstance(mode, str) or mode not in zone_connections:
+                        die(f"placement.patterns[{index}].pad_overrides: "
+                            f"zone_connection accepts only full|thermal|none, got {mode!r}")
         self.pinned = set()
         placed = 0
         model_overrides = 0
@@ -992,6 +1044,9 @@ class BoardBuilder:
             fp = self.res.load(ref, fpid, val)
             fp.SetReference(ref)
             fp.SetValue(val)
+            for name, value in self.identity_fields.get(ref, {}).items():
+                fp.SetField(name, value)
+                fp.GetField(name).SetVisible(False)
             # A library footprint may carry a static hidden ``LCSC Part``
             # field.  The electrical source's per-refdes C-code is the
             # authority; leaving the library default untouched can make a
@@ -1041,10 +1096,10 @@ class BoardBuilder:
                             continue
                         if onnet and self.pad_net.get(key) != onnet:
                             continue
-                        if ov.get("zone_connection") == "full":
-                            pad.SetLocalZoneConnection(pcbnew.ZONE_CONNECTION_FULL)
-                        elif ov.get("zone_connection") == "thermal":
-                            pad.SetLocalZoneConnection(pcbnew.ZONE_CONNECTION_THERMAL)
+                        if "zone_connection" in ov:
+                            pad.SetLocalZoneConnection(zone_connections[ov["zone_connection"]])
+                        if "thermal_spoke_angle_deg" in ov:
+                            pad.SetThermalSpokeAngleDegrees(float(ov["thermal_spoke_angle_deg"]))
                         if "clearance" in ov:
                             pad.SetLocalClearance(pcbnew.FromMM(float(ov["clearance"])))
             self.board.Add(fp)
@@ -1378,18 +1433,19 @@ class BoardBuilder:
                               geometry. Same-footprint composite pads remain
                               legal. The post-build P-PADSEP gate additionally
                               enforces the fab-tier positive-gap floor + paste.
-          * PINNED-LAP (FATAL) — two ANCHORED footprints' courtyards overlap
-                              or touch. Zero assembly distance is not a valid
-                              placement; move the anchors before routing.
+          * PINNED-LAP (FATAL) — two FIXED footprints' courtyards overlap or
+                              touch. Fixed means a component anchor or a
+                              board-only mounting/fiducial datum. Zero assembly
+                              distance is not a valid placement; move the
+                              relevant floorplan coordinate before routing.
                               The legalizer cannot resolve this one, so it is a
                               source defect in floorplan.yaml rather than a
-                              density accident, and naming the two ANCHORS is
-                              diagnosis that DRC's `courtyards_overlap` does not
-                              give you. This used to warn and defer to final
-                              DRC; programmable-usb2-hub then reached render
-                              review with resistors against module lands. New
-                              and materially revised boards fail here. Archived
-                              boards are not regenerated to preserve history.
+                              density accident. This used to warn and defer to
+                              final DRC; programmable-usb2-hub then reached
+                              render review with resistors against module
+                              lands. New and materially revised boards fail
+                              here. Archived boards are not regenerated to
+                              preserve history.
         Floating-vs-anything courtyard overlap is NOT reported at all: resolving
         that is the legalizer's job and it is allowed to leave tight packing."""
         pads = []
@@ -1422,8 +1478,9 @@ class BoardBuilder:
                                      min(x1, x2) - max(l1, l2),
                                      min(b1, b2) - max(t1, t2)))
         laps = []
+        fixed_refs = self.pinned | self.fixed_board_refs
         pin = [f for f in self.board.GetFootprints()
-               if f.GetReference() in self.pinned]
+               if f.GetReference() in fixed_refs]
         for i, fa in enumerate(pin):
             a_bottom = fa.IsFlipped()
             a_layer = pcbnew.B_CrtYd if a_bottom else pcbnew.F_CrtYd
@@ -1457,8 +1514,8 @@ class BoardBuilder:
         for a, b, ox, oy in sorted(laps):
             print(f"FAIL P-COLLIDE PINNED-LAP {a} <-> {b}: courtyard polygons "
                   f"overlap/touch (bbox window {ox:.3f} x {oy:.3f} mm) — "
-                  f"both are ANCHORED, so the "
-                  f"legalizer cannot fix it; fix placement.anchors "
+                  f"both are FIXED, so the legalizer cannot fix it; fix the "
+                  f"placement anchor or board datum "
                   f"(full-severity DRC will fail this as courtyards_overlap)")
         if overlaps or laps:
             msg = ["P-COLLIDE: this placement has inter-footprint pad overlap."]
@@ -1469,12 +1526,12 @@ class BoardBuilder:
             for a, b, ox, oy in sorted(laps):
                 msg.append(f"  PINNED-LAP {a} <-> {b}  courtyard polygons "
                            f"overlap/touch (bbox window {ox:.3f} x {oy:.3f} "
-                           f"mm) — both are ANCHORED, so the "
-                           f"legalizer cannot fix it: fix placement.anchors")
+                           f"mm) — both are FIXED, so the legalizer cannot "
+                           f"fix it: fix the placement anchor or board datum")
             die("\n".join(msg))
         self.say(f"P-COLLIDE: 0 inter-footprint pad overlaps/shorts, "
-                 f"{len(laps)} anchored courtyard "
-                 f"overlap(s) ({len(pads)} copper pads, {len(pin)} anchored "
+                 f"{len(laps)} fixed courtyard "
+                 f"overlap(s) ({len(pads)} copper pads, {len(pin)} fixed "
                  f"parts)")
 
     def check_pads_present(self):
@@ -2363,10 +2420,53 @@ class BoardBuilder:
         small = self.silk_h(rc.get("min_size"), 0.45, "refdes min_size")
         fab_copy = bool(rc.get("fab_copy", True))
         prio_first = rc.get("priority_prefixes", "UJDBQ")
+        priority_refs = rc.get("priority_refs", [])
+        if not isinstance(priority_refs, list) or any(
+                not isinstance(r, str) or not r for r in priority_refs):
+            die("silk.refdes.priority_refs must be an ordered list of exact refdes")
+        if len(set(priority_refs)) != len(priority_refs):
+            die("silk.refdes.priority_refs contains duplicate refdes")
+        eligible = {fp.GetReference() for fp in self.board.GetFootprints()} - set(self.hole_refs)
+        unknown = sorted(set(priority_refs) - eligible)
+        if unknown:
+            die(f"silk.refdes.priority_refs names unknown or hole refdes: {unknown}")
+        priority_rank = {r: i for i, r in enumerate(priority_refs)}
+
+        preferred = rc.get("preferred_offsets", {})
+        if not isinstance(preferred, dict) or any(
+                not isinstance(r, str) or not r for r in preferred):
+            die("silk.refdes.preferred_offsets must map exact refdes to offset lists")
+        unknown = sorted(set(preferred) - eligible)
+        if unknown:
+            die(f"silk.refdes.preferred_offsets names unknown or hole refdes: {unknown}")
+        offsets_by_ref = {}
+        max_distance = max(math.hypot(dx, dy) for dx, dy in self.OFF)
+        for r, offsets in preferred.items():
+            label = f"silk.refdes.preferred_offsets[{r}]"
+            if not isinstance(offsets, list) or not 1 <= len(offsets) <= len(self.OFF):
+                die(f"{label} requires 1..{len(self.OFF)} preferred offsets")
+            pairs = []
+            for offset in offsets:
+                if not isinstance(offset, list) or len(offset) != 2 or any(
+                        isinstance(v, bool) or not isinstance(v, (int, float))
+                        or not math.isfinite(v) for v in offset):
+                    die(f"{label} requires finite numeric [dx, dy] pairs")
+                pair = tuple(float(v) for v in offset)
+                if math.hypot(*pair) > max_distance + 1e-9:
+                    die(f"{label} exceeds the existing {max_distance:g}mm search radius")
+                pairs.append(pair)
+            if len(set(pairs)) != len(pairs):
+                die(f"{label} contains duplicate offsets")
+            # Extend each existing pose's search. Both owned-first placement
+            # and the explicit smallest-deficit fallback remain unchanged.
+            offsets_by_ref[r] = pairs + self.OFF
 
         def prio(fp):
             r = fp.GetReference()
-            return (0 if r[0] in prio_first or r.startswith("TP") else 1, r)
+            if r in priority_rank:
+                return (0, priority_rank[r], r)
+            # Empty/absent exact priority preserves the prior ordering.
+            return (1, 0 if r[0] in prio_first or r.startswith("TP") else 1, r)
 
         for fp in sorted(self.board.GetFootprints(), key=prio):
             r = fp.GetReference()
@@ -2404,7 +2504,8 @@ class BoardBuilder:
 
             poses = [mkpose(rot, sz) for rot in (0, 90)
                      for sz in (size, small)]
-            ok, cand = self._place_owned(ref, fx, fy, self.OFF, r, "refdes",
+            ok, cand = self._place_owned(ref, fx, fy,
+                                        offsets_by_ref.get(r, self.OFF), r, "refdes",
                                         r, pad_obst, silk_obst, poses=poses)
             if ok:
                 silk_obst.append(cand)

@@ -1,0 +1,47 @@
+# SHADOW source-to-prep contract only. Do not promote the compiler receipt
+# to execution authority. The physical dielectric emitter is independently
+# owned by floorplan.board.stackup; ADR0010 binds and tests both homes.
+schema: stackup-v1
+copper:
+  - {name: F.Cu, thickness_um: 35, role: signal}
+  - {name: In1.Cu, thickness_um: 15.2, role: reference_plane, plane_net: GND}
+  - {name: In2.Cu, thickness_um: 15.2, role: reference_plane, plane_net: GND}
+  - {name: B.Cu, thickness_um: 35, role: signal}
+routing_classes:
+  CHASSIS_SHIELD:
+    # Existing outer-layer shell interconnect; no required shield plane.
+    # The shadow resolver may report adjacent GND planes as metadata only:
+    # this neither bonds CHASSIS to GND nor permits inner-plane routing.
+    allowed_layers: [F.Cu, B.Cu]
+    references: {}
+    reference_required: false
+  ADC_CLOCK:
+    allowed_layers: [F.Cu, B.Cu]
+    references: {F.Cu: In1.Cu, B.Cu: In2.Cu}
+    reference_required: true
+  ANALOG_AUDIO:
+    allowed_layers: [F.Cu, B.Cu]
+    references: {F.Cu: In1.Cu, B.Cu: In2.Cu}
+    reference_required: true
+  POWER_TRANSIENT:
+    allowed_layers: [F.Cu]
+    references: {F.Cu: In1.Cu}
+    reference_required: true
+  POD_POWER:
+    allowed_layers: [F.Cu, B.Cu]
+    references: {F.Cu: In1.Cu, B.Cu: In2.Cu}
+    reference_required: true
+  QUIET_POWER:
+    allowed_layers: [F.Cu, B.Cu]
+    references: {F.Cu: In1.Cu, B.Cu: In2.Cu}
+    reference_required: true
+  POWER_CONTROL:
+    allowed_layers: [F.Cu, B.Cu]
+    references: {F.Cu: In1.Cu, B.Cu: In2.Cu}
+    reference_required: true
+  BOOTSTRAP:
+    allowed_layers: [F.Cu]
+    references: {F.Cu: In1.Cu}
+    reference_required: true
+via_families:
+  ordinary_through: {from_layer: F.Cu, to_layer: B.Cu, kind: through}

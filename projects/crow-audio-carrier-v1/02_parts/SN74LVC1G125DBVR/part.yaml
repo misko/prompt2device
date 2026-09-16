@@ -1,0 +1,50 @@
+mpn: SN74LVC1G125DBVR
+manufacturer: Texas Instruments
+type: single_tristate_buffer_with_ioff
+value: SN74LVC1G125DBVR
+status: active
+datasheet:
+  doc_id: SCES223
+  revision: SCES223U
+  url: https://www.ti.com/lit/ds/symlink/sn74lvc1g125.pdf
+  local: SN74LVC1G125_SCES223U.pdf
+  sha256: 65afa3f9d879b37cb8be507caf84804b24bceeb2e0782ba449fff72160994e4c
+  fetched: 2026-09-02
+  pages: 52
+  provenance: "Downloaded directly from ti.com; title/footer identify SCES223U (revised August 2026), and the exact DBVR order row and DBV pin map are included."
+package: "DBV SOT-23-5"
+footprint: Package_TO_SOT_SMD:SOT-23-5
+escape: {style: leaded, pitch: 0.95, tier_required: jlc_2layer_default, checked: "TI DBV pinout and stock KiCad footprint reviewed 2026-09-01"}
+pins: {1: OE_N, 2: A, 3: GND, 4: Y, 5: VCC}
+limits: {vcc_operating: "1.65V to 5.5V", partial_power_down: "Ioff supports live insertion and back-drive protection"}
+gotchas: ["OE is active low and requires10ns/V maximum input transition at3.3V. Source now uses a genuine Schmitt inverter push-pull driver; do not restore a direct RC/NMOS enable node or claim guaranteed ramp behavior."]
+verified: "CITED: TI SCES223U DBV top-view drawing and Pin Functions table, PDF p.3, fix pins 1=OE, 2=A, 3=GND, 4=Y and 5=VCC; Features, PDF p.1, and the Electrical Characteristics table, PDF p.6, fix Ioff partial-power-down/back-drive behavior. Physical behavior remains a first-article power-state test."
+layout:
+  source: TI SN74LVC1G125 datasheet
+  reviewed: '2026-09-08'
+  notes:
+  - Place at J10 with VCC bypass, short push-pull U_OE-to-OE connection, and the33-ohm source resistor on Y.
+  - 'Carrier local-placement source 2026-09-08: exact-ref/non-ground-net adjacency is a rotation-aware copper-bounding-box gap, NOT pad-center
+    distance or routed length. Rounded engineering ceilings below are not manufacturer numerical maxima. Ground pours are excluded by P-ADJ-PAIR;
+    local return/thermal/escape proof remains owed on the later saved PCB.'
+  - Source-only pin-center plan uses <=5mm local bypass/BST and <=10mm feedback ceilings, with separately named bulk/input/feed exceptions. See
+    01_docs/SOURCE-CORRECTION-20260908-local-placement.md for all 299 roles and exact source geometry; no current-board acceptance is inherited.
+  adjacency:
+  - refdes:
+    - U_TDM
+    - C_TDM
+    nets:
+    - 3V3_ADC
+    max_mm: 1.5
+    why: 'Engineering copper-gap ceiling: local-bypass; exact partner, selected non-poured net only.'
+  - refdes:
+    - U_TDM
+    - R_TDM
+    nets:
+    - TDM_BUFFERED
+    max_mm: 1.5
+    why: 'Engineering copper-gap ceiling: local-control; exact partner, selected non-poured net only.'
+layout_refs:
+  - {tier: 1, reached: true, artifact: "TI SN74LVC1G125 datasheet", why: "Manufacturer authority fixes Ioff, pinout and OE truth table."}
+  - {tier: 2, reached: false, artifact: "TI editable TDM partial-power reference design using exact DBV buffer", why: "No manufacturer editable board for this simple logic boundary was identified; power-state behavior remains a first-article test."}
+sourcing: {lcsc: C23654, alternates: [], note: "Exact MPN/code match queried from the live JLC catalog 2026-09-01; the duplicate zero-stock catalog row is not selected."}

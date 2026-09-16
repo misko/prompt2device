@@ -1,0 +1,22 @@
+device: minidsp_mchstreamer
+why: >-
+  The carrier is cable-connected to an external MCHStreamer. Its TDM8 pinout,
+  3.3 V levels, clock-master role, J3 presence supply, exact vendor firmware
+  image and physical 2x6 cable orientation are foreign facts; Raspberry Pi,
+  USB and Ethernet do not touch this PCB.
+consumes:
+  - fact: tdm8_header_pinout
+    use: informational
+    where: "J10 pins 2, 9, 10, 11 and 12; ADR-0001 and generated netlist"
+  - fact: tdm8_clock_master_48k
+    use: informational
+    where: "U_CLK and CS5308P secondary-mode straps"
+  - fact: header_key_and_pin1_orientation
+    use: owed
+    where: "J10/J11 footprints, selected TCSD-06-D-04.50-01 cables and first-article orientation/continuity hold"
+  - fact: j3_presence_supply
+    use: informational
+    where: "J11 pin 1 GND and pin 2 MCH_3V3_SENSE; presence sense only per ADR-0005"
+  - fact: tdm8_firmware_image_identity
+    use: owed
+    where: "G2 and the first-article TDM clock/framing/channel-order/readback qualification; no project-authored firmware"

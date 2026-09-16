@@ -1,0 +1,7 @@
+# Exact first-article routing floors. These keep every router-created contact
+# fragment within the manufacturing contract used by post-route DRC.
+clearance = 0.127
+track_width = 0.15
+via_diameter = 0.25
+via_drill = 0.15
+hole_to_hole = 0.20

@@ -1,0 +1,11 @@
+mpn: "214761-2122"
+manufacturer: Molex
+type: factory_precrimped_lead
+status: active
+datasheet: {doc_id: "214761-2122 exact product record", revision: current, url: "https://www.molex.com/en-us/products/part-detail/2147612122", local: null, sha256: null, fetched: 2026-09-01}
+package: "Micro-Fit 3.0 female-to-pigtail lead, red, 150 mm, 18 AWG"
+footprint: none_off_board
+limits: {length_mm: 150, wire_awg: 18, color: red, current_max_a: 8.5, contact_mpn: "43030-0038"}
+gotchas: ["Install only in J9 housing cavity 1 for +12V_IN and continuity/polarity-test before energizing.", "Retain at least 12.70 mm of unconstrained wire behind the housing before the selected internal restraint."]
+verified: "Exact Molex product record inspected 2026-09-01; extracted facts are retained in primary-source-record.md."
+sourcing: {lcsc: null, alternates: []}

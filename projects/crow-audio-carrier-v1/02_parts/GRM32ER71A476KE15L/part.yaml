@@ -1,0 +1,25 @@
+mpn: GRM32ER71A476KE15L
+manufacturer: Murata Electronics
+type: ceramic_capacitor
+value: 47uF
+status: active
+datasheet:
+  doc_id: GRM32ER71A476KE15L
+  revision: 04CA-EN / 2026-06-26
+  url: https://pim.murata.com/asset/pim4/ceramicCapacitorSMD/GRM32ER71A476KE15-04CA-EN_PDF_CERAMICCAPACITORSMD?lastModifiedDatetime=20260730173643
+  local: Murata_GRM32ER71A476KE15-04CA-EN.pdf
+  sha256: fd44194fdabc476650301c34e6e10eeb64d0c7cba90253b20af2371a07fd5ea8
+  fetched: '2026-09-08'
+  pages: 33
+  note: 'p2 GRM32ER71A476KE15-04CA exact family plus L packaging: 47uF +/-10%, DC10V X7R, 1210/3225, nominal3.2x2.5x2.5mm, L plastic W8P4 1000/reel. Specifications as of Jun.26,2026. Reference sheet requires approval sheet before ordering; typical characteristics do not guarantee effective capacitance or transient performance.'
+  provenance: Manufacturer-authored PDF independently inspected from exact captured bytes on 2026-09-08; copied unchanged into this carrier dossier. Original public manufacturer endpoint https://pim.murata.com/asset/pim4/ceramicCapacitorSMD/GRM32ER71A476KE15-04CA-EN_PDF_CERAMICCAPACITORSMD?lastModifiedDatetime=20260730173643; immutable capture provenance retained in the 2026-09-08 authority-source packet. Local binding is not independent pin/footprint review, sourcing allocation, approval sheet, physical qualification or order release.
+package: "1210 (3225 metric), 2.5 mm nominal thickness"
+footprint: Capacitor_SMD:C_1210_3225Metric
+escape: {style: passive, pitch: 1.0, tier_required: jlc_2layer_default, checked: "Murata exact 3.2 x 2.5 x 2.5 mm body and 1210 land reviewed 2026-09-02"}
+pins: {1: A, 2: B}
+limits: {capacitance: 47uF, tolerance: 10pct, rated_voltage: 10V, dielectric: X7R, operating_temperature: "-55C to +125C"}
+asserts:
+  - {assert: value, equals: 47u, tolerance_pct: 10, why: "Three parts provide the derated AP63205 output bank; a fourth is the post-bead op-amp bulk capacitor."}
+gotchas: ["Use exact active KE15L; the older GRM32ER61A476ME20L selection is NRND and is not an authorized substitute."]
+verified: "CITED: official Murata exact page reports in-production GRM32ER71A476KE15L, 47uF +/-10%, 10V, X7R, -55C to +125C and EIA 1210; read 2026-09-02."
+sourcing: {lcsc: C84494, alternates: [], note: "Exact MPN/code match queried from the live JLC catalog 2026-09-02; observed catalog stock 50205 for 20 required, with authenticated PCBA allocation still owed."}

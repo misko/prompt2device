@@ -1,0 +1,32 @@
+mpn: 43650-0400
+manufacturer: Molex
+type: right_angle_wire_to_board_header
+value: 43650-0400
+status: active
+datasheet:
+  doc_id: SD-43650-001 / 436501000_sd
+  revision: D8
+  url: https://www.molex.com/content/dam/molex/molex-dot-com/products/automated/en-us/salesdrawingpdf/436/43650/436501000_sd.pdf
+  local: Molex_436501000_SD_revD8.pdf
+  sha256: b8942b95bc3fe4c02171de9e714d99b2688055e249ba1524e3c2a8c3cf78eaa3
+  fetched: '2026-09-08'
+  pages: 1
+  note: 'p1 SD-43650-001 D8 released 2024-11-05: exact Finish A 04-circuit 43650-0400 row, 3.00mm pitch, 4-12-circuit component-side PCB layout with locating holes, circuit-1 identification and board-edge note 6. Drawing capture closes local-byte availability only; mating hardware, latch/service access, tooling and physical seating remain independent holds.'
+  provenance: Manufacturer-authored PDF independently inspected from exact captured bytes on 2026-09-08; copied unchanged into this carrier dossier. Previously captured original public URL https://www.molex.com/content/dam/molex/molex-dot-com/products/automated/en-us/salesdrawingpdf/436/43650/436501000_sd.pdf; source file projects/crow-mic-pod-v3/02_parts/43650-0400/Molex_436501000_SD_revD8.pdf; independent carrier inspection, not adoption of another board review. Local binding is not independent pin/footprint review, sourcing allocation, approval sheet, physical qualification or order release.
+package: "Micro-Fit 3.0 1x4 right-angle through-hole, two locating holes"
+footprint: crow_audio_carrier:Molex_43650-0400_RA_Exact
+escape: {style: connector, pitch: 3.0, tier_required: jlc_2layer_default, checked: "project-local pad/hole/body authority reviewed 2026-09-01"}
+pins: {1: +12V_POD, 2: GND, 3: AUDIO+, 4: AUDIO-}
+gotchas:
+  - "No compatible-alternative MPN is authorized by this dossier even when a library footprint advertises alternatives."
+  - "Assembly set is 43645-0400 housing with 43030-0007 contacts for 20/22/24 AWG; hand tool 63819-0000 (ATS-638190000), extraction tool 11-03-0043 (HT60923A)."
+  - "Physical latch access, cable bend, cavity numbering and all-eight service remain evidence holds."
+verified: "CITED manufacturer identity, geometry, mating set and tools retained in primary-source-record.md; exact D8 drawing bytes are now locally SHA-bound; first-article fit remains OWED."
+layout:
+  source: "Molex 436501000 sales drawing and project-local footprint"
+  reviewed: 2026-09-01
+  notes: ["Keep mating face at the board edge and preserve latch/finger access with all neighboring cables populated."]
+layout_refs:
+  - {tier: 1, reached: true, artifact: "Molex 436501000 sales drawing", why: "Manufacturer authority fixes the connector family geometry."}
+  - {tier: 2, reached: false, artifact: "Molex editable carrier reference design using 43650-0400 at an appliance board edge", why: "No manufacturer editable board design was identified; mouth clearance and mated service geometry remain physical first-article evidence."}
+sourcing: {lcsc: null, alternates: [], note: "Exact allocation and physical assembly remain blocked."}

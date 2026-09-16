@@ -7,6 +7,7 @@ stock, twin).
 
 | Pattern | What |
 |---|---|
+| `assembly_locator.html` | Offline locator template; selected by the shared generator and executable/geometry-checked by the independent checker |
 | `*.py` | tools — network access mocked in tests via `$EASYEDA2KICAD` seam |
 | `*.sh` | drivers |
 | `*.csv` | data tables: `jlc_lcsc_rotations.csv` — the ONLY rotation AUTHORITY, `LCSC,rotation,evidence,polarity` (canon A-ROT); and `jlc_rotations_db.csv` — the footprint-NAME DB, kept loaded as an ADVISORY cross-check and never obeyed |
@@ -15,10 +16,58 @@ stock, twin).
 
 ## Audit
 
+- `connector_orientation_gate.py` binds all declared native scene dependencies
+  through the maintained model resolver, explicitly supplies them to native
+  rendering, and refuses missing required bodies. Isolated configuration and
+  exact native commands are retained. Opposing north/south inside views use
+  deterministic elevated full frames; camera choice does not prove rear
+  visibility. Machine geometry and human acceptance remain separate. The
+  existing review bundle's closed metadata schema and complete freshly derived
+  semantic/machine payload must agree; the subject label alone is insufficient.
+  All review/native image, log and command keys/hashes are checked. Native
+  commands bind current recipes/options/substitutions and subject/tool identity
+  to original rendered-board bytes; separate observed-board bytes bind the
+  latest routing-only observation. Missing/extra/duplicate/contradictory fields
+  refuse reuse without silently repairing metadata. This is consistency
+  evidence, not a signature. The exact review key/hash census is verified before reuse or
+  explicit strict schema-1 approval; absent/stale/tampered evidence cannot be
+  signed. Schema-2 unchanged-semantic pixel regeneration remains supported.
+  `tests/t1_connector_orientation.py` owns RED/GREEN regression and the
+  declared opposing-body visibility blind spot.
+
+- `jlc_twin.py` may diagnose a real importer's generic failure with one bounded
+  public component API read per code/run. Only the exact HTTP-200/application-404
+  absence shape at the requested URL becomes `NO-CAD`; other responses retain
+  `FETCH-FAILED`. Per-code `catalog-response.json` binds URL, code, observation
+  time, transport status, classification and raw `catalog-response.body`
+  digest/size. Never reuse that receipt as a fresh observation or a CAD fit.
+  No body or assembly denominator is removed. The mocked HTTP clean/hostile
+  regression was RED before this diagnosis existed; arbitrary executable test
+  stubs still require no network.
+
+- `manufacturing_readiness.py` optionally composes explicit exact-part public
+  distributor observations into prelayout design admission only. Inputs follow
+  the `01_docs/sourcing/contracts.md` template's public-distributor schema.
+  It binds policy, quotes, brief, decision and current dossier/source identities;
+  refuses stale/future observations, wrong identity/URL/packaging, insufficient
+  minimum/multiple-expanded stock, and selection/order/authenticated-receipt use.
+  Original JLC low-stock data stays unchanged and all other exact rows remain
+  graded. Script-local `test_public_distributor_prelayout.py` exercises clean
+  composition plus hostile inputs; observation authenticity/reservation is a
+  separate order boundary. `--allow-blocked-sourcing` is valid only for the
+  public prelayout design path: it still requires a fresh exact product-page
+  observation and preserves the failed catalog row, but records
+  `BLOCKED-SOURCING` instead of claiming availability. It cannot be used for
+  selection or order readiness.
+  documented human boundary, not something a local hash proves.
+
 - Checkers: clean + known-bad tests in `tests/` (t1_jlc_twin.py,
   t1_bom_source.py, t1_release_freshness.py, t1_assembly_gates.py,
   t1_fab_payload.py, t1_bom_legibility.py,
   t1_sealed_dependency.py).
+- `tests/t1_pcba_availability.py` invokes the actual availability CLI on a
+  complete two-code response and the same response with one insufficient row,
+  preserving the two-row denominator and checking the rejection exit code.
 - `first_article_check.py` owns staged first-power authorization after boards
   arrive. Missing exposed-pad confirmation, population drift, missing units or
   probe names, a too-high current limit, or an out-of-range reading is HOLD.
@@ -384,3 +433,44 @@ stock, twin).
   skip. Measured after: crow-recorder-central-v2 v1.5 leg C 13/25 -> 25/25;
   usb-hub-3s-v3 v1.8 23/26 -> 25/26, with RS1/RS2 now surfacing as
   UNVERIFIABLE-VALUE (C127692 needs a ledger entry) instead of vanishing.
+
+`native_model_registration.py` supports explicit `all_smd_pad_overlap` registration for extended SMD lands: every effective copper polygon must intersect the independently measured model plan envelope with positive area. Its tuple includes copper outlines and holes; the receipt counts overlaps. Fab, courtyard and signed-side checks remain mandatory. This datum does not establish terminal metallization or assembly-process qualification.
+
+`twin_overlay.py` derives native expected Fab envelopes from geometric drawing shapes only; footprint text and properties are excluded. The geometric drawing stroke remains included. Text-only Fab is missing body authority, not a physical envelope.
+
+- A-LOCATOR (`assembly_locator.py` / `assembly_locator_check.py`) supports
+  explicit top-side1–4pad silkscreen exceptions with source-bound identities,
+  with complete mixed-side board context. Mounted F/B Fab and silkscreen own
+  body/omission evidence. HTML switches to the selected mounted side; bottom
+  geometry reflects X about the native board-frame centre (viewed from below,
+  flipped left-to-right; native Y down). Labels and native coordinate/rotation
+  values remain readable and unreflected. Top exception atlas pages show only
+  top components and direct bottom context to the interactive map. Closed
+  source schema1 and the exact top exception set remain unchanged. The existing
+  schema1 data `side` and `view` fields declare this capability; tool hashes
+  invalidate old generated bundles. Independent native-frame, asymmetric
+  0/90/270-degree bottom, opposite-side decoy, CPL-side, unmirrored-SVG and
+  all-reference UI transition controls exercise projection and side identity.
+  The exporter owns generation and its indexed artifact set; PR-REVIEW and
+  release freshness own placement/seal blocking. The checker does not import
+  rendering methods. Native tuples, source waiver sets, all CSV datums, HTML
+  geometry/executable code, PNG metadata and PDF page images/transforms are
+  independently reopened. `tests/test_assembly_locator.py` supplies hostile
+  artifacts and composed-gate controls; `tests/locator_ui_control.js` exercises
+  valid-to-unknown selection against the actual shipped script.
+
+The existing independent render review binds the exact locator manifest and
+complete reviewed-ref set; `project` and `release` commands enforce that binding.
+The normal top-level `tests/t1_assembly_locator.py` suite runs public CLI controls
+and the full script-local native/hostile suite, including rehashed visible-page
+tampering against placement and sealed-release acceptance.
+
+`native_model_registration.py` grades the native mounted side: F.Cu owns F.Fab/F.CrtYd and B.Cu owns B.Fab/B.CrtYd. Opposite-side decoys never satisfy missing geometry; inconsistent declared mounting sides and mixed-side groups fail. The coupon retains native flips; same-camera populated/bare plan views use top or bottom with bottom X reflection and ordered inverse boxes. The tuple includes mounted side and owned datums and remains sensitive to model, contract and tool changes. Existing v1 `native_top*.png` bundle names are compatibility names; the report explicitly records `plan_camera` and `plan_projection`.
+
+Signed-side registration measures visible exterior pixels and does not prove
+full model-volume exclusion from the board. The native engine declares this
+G-VACUOUS limitation and binds a subject-first executable fixture: an inverted
+1 mm nested-transform body falsely passes, while the height-only 3 mm contrast
+fails the unchanged signed-side predicate. When full-volume exclusion matters,
+require independent exact-model native geometry evidence in addition to the
+registration receipt. Existing required-fail controls remain mandatory.

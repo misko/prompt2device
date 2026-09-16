@@ -1,0 +1,19 @@
+mpn: "43645-0200"
+manufacturer: Molex
+type: cable_receptacle_housing
+status: active
+datasheet: {doc_id: "43645-0200 product record and 43645 family sales drawing", revision: current, url: "https://www.molex.com/en-us/products/part-detail/436450200", local: null, sha256: null, fetched: 2026-09-01}
+package: "Micro-Fit 3.0 two-position single-row receptacle housing"
+footprint: none_off_board
+mates: plug
+limits: {positions: 2, pitch_mm: 3.0, housing_width_mm: 6.85, housing_length_mm: 14.0, mated_length_mm: 17.56, mating_cycles: 30}
+gotchas: ["Molex specifies polarization and a positive mating lock but reports no keying to the mating part; use the exact mating-face cavity view and do not call this interface keyed.", "Load only the selected red and black 18 AWG factory-precrimped leads with 43030-0038 contacts."]
+verified: "Official exact product record and family drawing inspected 2026-09-01; extracted facts are retained in primary-source-record.md and raw drawing bytes remain owed."
+layout:
+  source: "Molex 43645 exact product record and family sales drawing"
+  reviewed: 2026-09-01
+  notes: "Preserve latch/finger access and at least 12.70 mm of unconstrained lead behind the housing before the internal restraint."
+layout_refs:
+  - {tier: 1, reached: true, artifact: "Molex 43645 family sales drawing", why: "Binds the exact supported housing, cavity view, body and mated outline."}
+  - {tier: 2, reached: false, artifact: "populated carrier input service cell", why: "No physical J9 service fixture exists yet."}
+sourcing: {lcsc: null, alternates: []}

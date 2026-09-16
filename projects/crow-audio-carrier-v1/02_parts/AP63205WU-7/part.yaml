@@ -1,0 +1,161 @@
+mpn: AP63205WU-7
+manufacturer: Diodes Incorporated
+type: synchronous_buck_controller_with_integrated_mosfets
+value: AP63205WU-7
+status: active
+datasheet:
+  doc_id: DS41326
+  revision: "Rev. 3-2"
+  url: https://www.diodes.com/assets/Datasheets/AP63200-AP63201-AP63203-AP63205.pdf
+  local: AP63205_DS41326_Rev3-2.pdf
+  sha256: ef99daa3789d835bc025dfcb4c605c5c2e6d3e7223e86d40b33e6b497ea5a722
+  fetched: 2026-09-02
+  pages: 18
+  provenance: "Downloaded directly from diodes.com; the committed PDF matches the declared SHA-256 and includes the exact AP63205WU-7 ordering row and TSOT26 pin map."
+package: "WU TSOT26 P0.95mm"
+footprint: Package_TO_SOT_SMD:TSOT-23-6
+escape: {style: leaded, pitch: 0.95, tier_required: jlc_2layer_default, checked: "Diodes DS41326 Rev. 3-2 TSOT26 pin and package drawings reviewed 2026-09-01"}
+pins: {1: FB, 2: EN, 3: VIN, 4: GND, 5: SW, 6: BST}
+limits:
+  vin_operating: "3.8V to 32V"
+  vin_absolute_max: "35V DC, 40V for 400ms"
+  vout_fixed: 5V
+  output_current_max: 2A
+  switching_frequency_typical: 1.1MHz
+  recommended_inductance: 4.7uH
+  inductor_allowed_range: "2.2uH to 10uH"
+  inductor_current_min: 2.7A
+  inductor_dcr_max: 100mOhm
+gotchas:
+  - "DS41326 Rev.3-2 p15 recommends 2oz top/bottom copper for the 2A thermal design; this carrier nominal35um outer copper cannot inherit that thermal result. ADR0012 SW5 source exit retains full2.5A transient screening, not a qualified operating-current increase; bootstrap SW branch remains generic and mandatory."
+  - "AP63205 is the fixed 5V, PWM/PFM, 1.1MHz member. AP63200/1/3 and Q-qualified suffixes are not the exact orderable device."
+  - "For the fixed-output device, connect FB to the regulated output as shown in the manufacturer circuit; do not install the adjustable-version divider by habit."
+  - "Table 3 recommends 4.7uH. The selected stocked 3.3uH XGL4020-332MEC remains within section 10's 2.2-10uH range and produces 37.0-42.8% ripple across 10.8-13.2V at 1.1MHz; it must still meet the >=2.7A DC-current and <100mOhm DCR conditions and pass first-article ripple/thermal/EMI tests."
+verified: "CITED: Diodes DS41326 Rev. 3-2 Pin Descriptions, PDF p.2, fix 1=FB, 2=EN, 3=VIN, 4=GND, 5=SW, 6=BST; Table 3, Section 10, and ordering table, PDF pp.12-16, fix the 5V network, inductor constraints, and AP63205WU-7 identity; re-read 2026-09-01."
+layout:
+  source: Diodes DS41326 Rev. 3-2 Layout Considerations and Figure 25, PDF p.15; AP63205WU-EVM Rev.2 and AP63205QWU-EVM Rev.1 comparison
+  reviewed: '2026-09-08'
+  notes:
+  - Make the VIN-capacitor-GND and SW-inductor-output-capacitor loops compact; keep SW copper no larger than needed.
+  - Place the 100nF BST capacitor directly between BST and SW.
+  - Route FB from the quiet output-capacitor node and shield it from SW and the inductor.
+  - Use an unbroken ground plane and manufacturer-recommended thermal vias/copper.
+  - 'Carrier local-placement source 2026-09-08: exact-ref/non-ground-net adjacency is a rotation-aware copper-bounding-box gap, NOT pad-center
+    distance or routed length. Rounded engineering ceilings below are not manufacturer numerical maxima. Ground pours are excluded by P-ADJ-PAIR;
+    local return/thermal/escape proof remains owed on the later saved PCB.'
+  - Source-only pin-center plan uses <=5mm local bypass/BST and <=10mm feedback ceilings, with separately named bulk/input/feed exceptions. See
+    01_docs/SOURCE-CORRECTION-20260908-local-placement.md for all 299 roles and exact source geometry; no current-board acceptance is inherited.
+  - The three VIN ceramics explicitly own pin3, not the electrically shared EN pin2. BST owns pin6 and SW pin5; existing XGL switch-pad3mm rule
+    is unchanged. First output ceramic is local at inductor OUT; additional ceramics and RAW_HOLD are separate10/15mm bulk roles. Fixed-output
+    sense pin1 must take the quiet output-capacitor node around, not through, SW copper.
+  adjacency:
+  - refdes:
+    - U_BUCK
+    - C_BUCK_IN
+    nets:
+    - 12V_BUCK_IN
+    max_mm: 1.5
+    why: 'Engineering copper-gap ceiling: buck-vin-bypass; exact partner, selected non-poured net only.'
+  - refdes:
+    - U_BUCK
+    - C_BUCK_IN2
+    nets:
+    - 12V_BUCK_IN
+    max_mm: 3.5
+    why: 'Engineering copper-gap ceiling: buck-vin-bypass; exact partner, selected non-poured net only.'
+  - refdes:
+    - U_BUCK
+    - C_BUCK_IN3
+    nets:
+    - 12V_BUCK_IN
+    max_mm: 2.0
+    why: 'Engineering copper-gap ceiling: buck-vin-bypass; exact partner, selected non-poured net only.'
+  - refdes:
+    - U_BUCK
+    - C_BUCK_BST
+    nets:
+    - BUCK_BST
+    - BUCK_SW
+    max_mm: 3.0
+    why: 'Engineering copper-gap ceiling: bootstrap; exact partner, selected non-poured net only.'
+  - refdes:
+    - L_BUCK
+    - C_BUCK_O1
+    nets:
+    - 5V_BUCK
+    max_mm: 2.0
+    why: 'Engineering copper-gap ceiling: buck-output-local; exact partner, selected non-poured net only.'
+  - refdes:
+    - L_BUCK
+    - C_BUCK_O2
+    nets:
+    - 5V_BUCK
+    max_mm: 2.0
+    why: 'Engineering copper-gap ceiling: buck-output-bulk; exact partner, selected non-poured net only.'
+  - refdes:
+    - L_BUCK
+    - C_BUCK_O3
+    nets:
+    - 5V_BUCK
+    max_mm: 5.0
+    why: 'Engineering copper-gap ceiling: buck-output-bulk; exact partner, selected non-poured net only.'
+  - refdes:
+    - U_BUCK
+    - C_BUCK_O1
+    nets:
+    - 5V_BUCK
+    max_mm: 9.0
+    why: 'Engineering copper-gap ceiling: fixed-output-sense; exact partner, selected non-poured net only.'
+  keep_short:
+  - net: 12V_BUCK_IN
+    anchor_pins:
+    - '3'
+    partner_refs:
+    - C_BUCK_IN
+    max_span_mm: 5
+    why: 'Engineering physical-pin center ceiling: buck-vin-bypass; exact capacitor/support ref, unique owner footprint on this carrier.'
+  - net: 12V_BUCK_IN
+    anchor_pins:
+    - '3'
+    partner_refs:
+    - C_BUCK_IN2
+    max_span_mm: 5
+    why: 'Engineering physical-pin center ceiling: buck-vin-bypass; exact capacitor/support ref, unique owner footprint on this carrier.'
+  - net: 12V_BUCK_IN
+    anchor_pins:
+    - '3'
+    partner_refs:
+    - C_BUCK_IN3
+    max_span_mm: 5
+    why: 'Engineering physical-pin center ceiling: buck-vin-bypass; exact capacitor/support ref, unique owner footprint on this carrier.'
+  - net: BUCK_BST
+    anchor_pins:
+    - '6'
+    partner_refs:
+    - C_BUCK_BST
+    max_span_mm: 5
+    why: 'Engineering physical-pin center ceiling: bootstrap; exact capacitor/support ref, unique owner footprint on this carrier.'
+  - net: BUCK_SW
+    anchor_pins:
+    - '5'
+    partner_refs:
+    - C_BUCK_BST
+    max_span_mm: 5
+    why: 'Engineering physical-pin center ceiling: bootstrap; exact capacitor/support ref, unique owner footprint on this carrier.'
+  - net: 5V_BUCK
+    anchor_pins:
+    - '1'
+    partner_refs:
+    - C_BUCK_O1
+    max_span_mm: 10
+    why: 'Engineering physical-pin center ceiling: fixed-output-sense; exact capacitor/support ref, unique owner footprint on this carrier.'
+layout_refs:
+  - {tier: 1, reached: true, artifact: "Diodes DS41326 Rev. 3-2 Figure 25, PDF p.15", why: "Manufacturer authority fixes the critical hot-loop, feedback, capacitor, inductor, and ground-plane placement."}
+  - {tier: 2, reached: true, artifact: "AP63205WU-EVM Rev.2, evidence regulator-source-20260908/AP63205WU-EVM.pdf, sha256 dcb7c2e65078bc042341adbc9c634daa65191a4b4be29fabc666fbd3dd14f8a3", url: "https://www.diodes.com/assets/Evaluation-Boards/AP63205WU-EVM-User-Guide.pdf", fetched: 2026-09-08, note: "Exact non-Q guide freshly downloaded and inspected; board photo/schematic are precedent, not editable copper. Same previously declared PDF bytes, although prior dossier-local file was absent. Uses a 6.8uH Wurth inductor, not authority to replace the selected BOM."}
+  - {tier: 2, reached: false, artifact: "Public editable exact AP63205WU EVM CAD/Gerber files", url: "https://www.diodes.com/part/view/AP63205", why: "Manufacturer page/search2026-09-08 exposed public EVM/EVB guides and calculator, no editable layout in inspected results. Additional information on request is outside this task; no vendor contact/account. Published PDF geometry ceiling remains explicit."}
+  - {tier: 2, reached: true, artifact: "AP63205QWU-EVM Rev.1, local AP63205QWU-EVM_Rev1.pdf, sha256 9105da3bd1d6d7bedee31ab4e2def7827125a8aebfb2879bfa4c1fe4a0c053a7", url: "https://www.diodes.com/assets/Evaluation-Boards/AP63205QWU-EVM-User-Guide.pdf", fetched: 2026-09-01, note: "Same converter family and exact 5V network; BOM explicitly uses Panasonic ETQP3M4R7KVP 4.7uH. Q-qualified IC is not substituted for this dossier MPN."}
+  - {tier: 3, reached: false, artifact: "independently authored open hardware using exact AP63205WU-7 production files", why: "Manufacturer data sheet and two evaluation designs are stronger than an unverified third-party layout; no exact open design was adopted."}
+sourcing:
+  lcsc: C2071056
+  alternates: []
+  note: "Exact MPN/code match queried from the live JLC catalog 2026-09-01; order-time allocation remains separate."

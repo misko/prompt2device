@@ -1,0 +1,28 @@
+mpn: BZT52C12-7-F
+manufacturer: Diodes Incorporated
+type: zener_diode
+value: BZT52C12-7-F
+status: active
+datasheet:
+  doc_id: BZT52C2V0-BZT52C51
+  revision: "DS18004 Rev. 38-2"
+  url: https://www.diodes.com/assets/Datasheets/ds18004.pdf
+  local: BZT52_DS18004_Rev38-2.pdf
+  sha256: 0fbd7d137524820f0160594065cbceb8c6b3188757c328416d08fceb7418202f
+  fetched: 2026-09-02
+  pages: 5
+  provenance: "Downloaded directly from diodes.com; the committed PDF footer identifies DS18004 Rev. 38-2 and its ordering table covers BZT52C12-7-F."
+package: "SOD-123"
+footprint: Diode_SMD:D_SOD-123
+escape: {style: passive, pitch: 3.9, tier_required: jlc_2layer_default, checked: "SOD-123 polarity and stock footprint reviewed 2026-09-01"}
+pins: {1: K, 2: A}
+limits: {zener_nominal: 12V, power_dissipation: 500mW}
+gotchas: ["Cathode must connect to Q_IN source/12V_PROTECTED and anode to Q_IN_GATE."]
+verified: "CITED part identity and polarity; exact clamp spread/current is retained as first-article screening."
+layout:
+  source: "Diodes BZT52C series datasheet"
+  reviewed: 2026-09-01
+  notes: ["Place directly across Q_IN source and gate."]
+layout_refs:
+  - {tier: 1, reached: true, artifact: "Diodes BZT52C series datasheet", why: "Manufacturer authority fixes polarity and 12V selection."}
+sourcing: {lcsc: C124196, alternates: [], note: "Exact MPN/code match queried from the live JLC catalog 2026-09-01; order-time allocation remains separate."}

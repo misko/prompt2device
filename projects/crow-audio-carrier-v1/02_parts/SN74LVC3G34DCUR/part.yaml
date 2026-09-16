@@ -1,0 +1,144 @@
+mpn: SN74LVC3G34DCUR
+manufacturer: Texas Instruments
+type: triple_noninverting_buffer
+value: SN74LVC3G34DCUR
+status: active
+datasheet:
+  doc_id: SCES366
+  revision: SCES366L
+  url: https://www.ti.com/lit/ds/symlink/sn74lvc3g34.pdf
+  local: SN74LVC3G34_SCES366L.pdf
+  sha256: d541afbccf6270522f5ba33b86ca31da0ec6bbf497c0d1f8ba265e9ac2e1faec
+  fetched: 2026-09-02
+  pages: 25
+  provenance: "Downloaded directly from ti.com; the committed PDF matches the declared SHA-256 and includes the exact DCUR order row and DCU pin map."
+package: "DCU VSSOP-8 2.3x2.0mm P0.5mm"
+footprint: Package_SO:VSSOP-8_2.3x2mm_P0.5mm
+escape: {style: leaded, pitch: 0.5, tier_required: jlc_2layer_default, checked: "TI SCES366L DCU top view and package drawing reviewed 2026-09-01"}
+pins: {1: 1A, 2: 3Y, 3: 2A, 4: GND, 5: 2Y, 6: 3A, 7: 1Y, 8: VCC}
+limits:
+  vcc_operating: "1.65V to 5.5V"
+  propagation_delay_max_at_3v3: 4.1ns
+  operating_temperature: "-40C to +125C"
+gotchas:
+  - "The DCU top-view pin order is deliberately non-sequential by channel: pin 2 is 3Y and pin 6 is 3A."
+  - "Do not leave any LVC input floating, including an unused buffer channel."
+verified: "CITED: TI SCES366L DCU top view and pin-functions table, PDF p.3, independently fix 1=1A, 2=3Y, 3=2A, 4=GND, 5=2Y, 6=3A, 7=1Y, 8=VCC; re-read 2026-09-01."
+layout:
+  source: TI SCES366L Sections 10-11 and Figure 11-1, PDF p.10
+  reviewed: '2026-09-08'
+  notes:
+  - Place a 0.1uF bypass immediately between VCC and GND.
+  - Keep clock/control inputs and outputs short, avoid stubs, and keep them away from analog inputs and the buck SW node.
+  - 'Carrier local-placement source 2026-09-08: exact-ref/non-ground-net adjacency is a rotation-aware copper-bounding-box gap, NOT pad-center
+    distance or routed length. Rounded engineering ceilings below are not manufacturer numerical maxima. Ground pours are excluded by P-ADJ-PAIR;
+    local return/thermal/escape proof remains owed on the later saved PCB.'
+  - Source-only pin-center plan uses <=5mm local bypass/BST and <=10mm feedback ceilings, with separately named bulk/input/feed exceptions. See
+    01_docs/SOURCE-CORRECTION-20260908-local-placement.md for all 299 roles and exact source geometry; no current-board acceptance is inherited.
+  adjacency:
+  - refdes:
+    - U_CLK
+    - C_CLK
+    nets:
+    - 3V3_ADC
+    max_mm: 1.5
+    why: 'Engineering copper-gap ceiling: local-bypass; exact partner, selected non-poured net only.'
+  - refdes:
+    - U_CLK
+    - R_MCLK
+    nets:
+    - MCLK_BUF
+    max_mm: 3.0
+    why: 'Engineering copper-gap ceiling: local-control; exact partner, selected non-poured net only.'
+  - refdes:
+    - U_CLK
+    - R_BCLK
+    nets:
+    - BCLK_BUF
+    max_mm: 1.5
+    why: 'Engineering copper-gap ceiling: local-control; exact partner, selected non-poured net only.'
+  - refdes:
+    - U_CLK
+    - R_FSYNC
+    nets:
+    - FSYNC_BUF
+    max_mm: 1.5
+    why: 'Engineering copper-gap ceiling: local-control; exact partner, selected non-poured net only.'
+  - refdes:
+    - U_CLK
+    - R_MCH_MCLK_PD
+    nets:
+    - MCH_MCLK
+    max_mm: 2.5
+    why: 'Engineering copper-gap ceiling: local-control; exact partner, selected non-poured net only.'
+  - refdes:
+    - U_CLK
+    - R_MCH_BCLK_PD
+    nets:
+    - MCH_BCLK
+    max_mm: 1.5
+    why: 'Engineering copper-gap ceiling: local-control; exact partner, selected non-poured net only.'
+  - refdes:
+    - U_CLK
+    - R_MCH_FSYNC_PD
+    nets:
+    - MCH_FSYNC
+    max_mm: 3.0
+    why: 'Engineering copper-gap ceiling: local-control; exact partner, selected non-poured net only.'
+  keep_short:
+  - net: 3V3_ADC
+    anchor_pins:
+    - '8'
+    partner_refs:
+    - C_CLK
+    max_span_mm: 5
+    why: 'Engineering physical-pin center ceiling: local-bypass; exact capacitor/support ref, unique owner footprint on this carrier.'
+  - net: MCLK_BUF
+    anchor_pins:
+    - '7'
+    partner_refs:
+    - R_MCLK
+    max_span_mm: 5
+    why: 'Engineering physical-pin center ceiling: local-control; exact capacitor/support ref, unique owner footprint on this carrier.'
+  - net: BCLK_BUF
+    anchor_pins:
+    - '5'
+    partner_refs:
+    - R_BCLK
+    max_span_mm: 5
+    why: 'Engineering physical-pin center ceiling: local-control; exact capacitor/support ref, unique owner footprint on this carrier.'
+  - net: FSYNC_BUF
+    anchor_pins:
+    - '2'
+    partner_refs:
+    - R_FSYNC
+    max_span_mm: 5
+    why: 'Engineering physical-pin center ceiling: local-control; exact capacitor/support ref, unique owner footprint on this carrier.'
+  - net: MCH_MCLK
+    anchor_pins:
+    - '1'
+    partner_refs:
+    - R_MCH_MCLK_PD
+    max_span_mm: 5
+    why: 'Engineering physical-pin center ceiling: local-control; exact capacitor/support ref, unique owner footprint on this carrier.'
+  - net: MCH_BCLK
+    anchor_pins:
+    - '3'
+    partner_refs:
+    - R_MCH_BCLK_PD
+    max_span_mm: 5
+    why: 'Engineering physical-pin center ceiling: local-control; exact capacitor/support ref, unique owner footprint on this carrier.'
+  - net: MCH_FSYNC
+    anchor_pins:
+    - '6'
+    partner_refs:
+    - R_MCH_FSYNC_PD
+    max_span_mm: 5
+    why: 'Engineering physical-pin center ceiling: local-control; exact capacitor/support ref, unique owner footprint on this carrier.'
+layout_refs:
+  - {tier: 1, reached: true, artifact: "TI SCES366L layout guidelines and DCU package drawing", why: "Manufacturer authority fixes bypassing, signal routing, unused-input behavior, and physical pin identity."}
+  - {tier: 2, reached: false, artifact: "exact SN74LVC3G34 editable routed reference", why: "No exact manufacturer reference-board CAD was identified for this local logic buffer."}
+sourcing:
+  lcsc: C130024
+  alternates: []
+  note: "Exact MPN/code match queried from the live JLC catalog 2026-09-01; order-time allocation remains separate."

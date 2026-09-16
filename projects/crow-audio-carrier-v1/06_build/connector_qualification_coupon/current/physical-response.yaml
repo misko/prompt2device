@@ -1,0 +1,375 @@
+schema: 1
+kind: connector-qualification-coupon-response
+request_sha256: c840f3cc2d6025fae9f4a7069954d180a782cf5926ec41bced3fdb0b28d4f10d
+coupon_id: crow-audio-carrier-v1-connector-coupon
+target_hardware: []
+samples: []
+instruments: []
+observations:
+- assembly_id: mchstreamer-dual-cable-interface
+  target_kind: cable
+  target_id: cable
+  result: UNOBSERVED
+  tested_refs: []
+  measurements:
+  - name: installed-straight-run
+    unit: mm
+    values: []
+  - name: minimum-route-clearance
+    unit: mm
+    values: []
+  - name: realized-minimum-bend-radius
+    unit: mm
+    values: []
+  evidence: []
+  notes: ''
+- assembly_id: mchstreamer-dual-cable-interface
+  target_kind: interface
+  target_id: interface
+  result: UNOBSERVED
+  tested_refs: []
+  measurements:
+  - name: installed-cable-height
+    unit: mm
+    values: []
+  - name: installed-seating-gap
+    unit: mm
+    values: []
+  - name: minimum-service-clearance
+    unit: mm
+    values: []
+  - name: module-header-column-pitch
+    unit: mm
+    values: []
+  - name: module-header-exposed-post-length
+    unit: mm
+    values: []
+  - name: module-header-post-width-x
+    unit: mm
+    values: []
+  - name: module-header-post-width-y
+    unit: mm
+    values: []
+  - name: module-header-row-pitch
+    unit: mm
+    values: []
+  evidence: []
+  notes: ''
+- assembly_id: mchstreamer-dual-cable-interface
+  target_kind: operation
+  target_id: remove-j10-j1-cable
+  result: UNOBSERVED
+  tested_refs: []
+  measurements:
+  - name: connector-damage-count
+    unit: count
+    values: []
+  - name: exercised-cycles
+    unit: count
+    values: []
+  evidence: []
+  notes: ''
+- assembly_id: mchstreamer-dual-cable-interface
+  target_kind: operation
+  target_id: remove-j11-j3-cable
+  result: UNOBSERVED
+  tested_refs: []
+  measurements:
+  - name: connector-damage-count
+    unit: count
+    values: []
+  - name: exercised-cycles
+    unit: count
+    values: []
+  evidence: []
+  notes: ''
+- assembly_id: mchstreamer-dual-cable-interface
+  target_kind: operation
+  target_id: seat-j10-j1-cable
+  result: UNOBSERVED
+  tested_refs: []
+  measurements:
+  - name: continuity-cross-short-count
+    unit: count
+    values: []
+  - name: continuity-open-count
+    unit: count
+    values: []
+  - name: exercised-cycles
+    unit: count
+    values: []
+  - name: pin-one-error-count
+    unit: count
+    values: []
+  evidence: []
+  notes: ''
+- assembly_id: mchstreamer-dual-cable-interface
+  target_kind: operation
+  target_id: seat-j11-j3-cable
+  result: UNOBSERVED
+  tested_refs: []
+  measurements:
+  - name: continuity-cross-short-count
+    unit: count
+    values: []
+  - name: continuity-open-count
+    unit: count
+    values: []
+  - name: exercised-cycles
+    unit: count
+    values: []
+  - name: pin-one-error-count
+    unit: count
+    values: []
+  evidence: []
+  notes: ''
+- assembly_id: mchstreamer-dual-cable-interface
+  target_kind: reaction
+  target_id: reaction
+  result: UNOBSERVED
+  tested_refs: []
+  measurements:
+  - name: exercised-cycles
+    unit: count
+    values: []
+  - name: maximum-connector-rotation
+    unit: deg
+    values: []
+  - name: maximum-pcb-flex
+    unit: mm
+    values: []
+  evidence: []
+  notes: ''
+- assembly_id: mchstreamer-dual-cable-interface
+  target_kind: tolerance
+  target_id: mch-header-cable-enclosure-stack
+  result: UNOBSERVED
+  tested_refs: []
+  measurements:
+  - name: realized-minus
+    unit: mm
+    values: []
+  - name: realized-plus
+    unit: mm
+    values: []
+  - name: worst-case-clearance
+    unit: mm
+    values: []
+  evidence: []
+  notes: ''
+- assembly_id: molex-micro-fit-power-input
+  target_kind: cable
+  target_id: cable
+  result: UNOBSERVED
+  tested_refs: []
+  measurements:
+  - name: installed-outer-diameter
+    unit: mm
+    values: []
+  - name: installed-straight-run
+    unit: mm
+    values: []
+  - name: minimum-route-clearance
+    unit: mm
+    values: []
+  - name: realized-minimum-bend-radius
+    unit: mm
+    values: []
+  evidence: []
+  notes: ''
+- assembly_id: molex-micro-fit-power-input
+  target_kind: interface
+  target_id: interface
+  result: UNOBSERVED
+  tested_refs: []
+  measurements:
+  - name: installed-seating-gap
+    unit: mm
+    values: []
+  - name: mating-plane-offset
+    unit: mm
+    values: []
+  - name: minimum-exposure
+    unit: mm
+    values: []
+  - name: minimum-service-clearance
+    unit: mm
+    values: []
+  evidence: []
+  notes: ''
+- assembly_id: molex-micro-fit-power-input
+  target_kind: operation
+  target_id: mate-and-polarity-check
+  result: UNOBSERVED
+  tested_refs: []
+  measurements:
+  - name: continuity-cross-short-count
+    unit: count
+    values: []
+  - name: continuity-open-count
+    unit: count
+    values: []
+  - name: exercised-cycles
+    unit: count
+    values: []
+  - name: polarity-error-count
+    unit: count
+    values: []
+  evidence: []
+  notes: ''
+- assembly_id: molex-micro-fit-power-input
+  target_kind: operation
+  target_id: unmate-supply-off
+  result: UNOBSERVED
+  tested_refs: []
+  measurements:
+  - name: exercised-cycles
+    unit: count
+    values: []
+  - name: latch-damage-count
+    unit: count
+    values: []
+  evidence: []
+  notes: ''
+- assembly_id: molex-micro-fit-power-input
+  target_kind: reaction
+  target_id: reaction
+  result: UNOBSERVED
+  tested_refs: []
+  measurements:
+  - name: exercised-cycles
+    unit: count
+    values: []
+  - name: maximum-connector-rotation
+    unit: deg
+    values: []
+  - name: maximum-pcb-flex
+    unit: mm
+    values: []
+  evidence: []
+  notes: ''
+- assembly_id: molex-micro-fit-power-input
+  target_kind: tolerance
+  target_id: power-connector-enclosure-stack
+  result: UNOBSERVED
+  tested_refs: []
+  measurements:
+  - name: realized-minus
+    unit: mm
+    values: []
+  - name: realized-plus
+    unit: mm
+    values: []
+  - name: worst-case-clearance
+    unit: mm
+    values: []
+  evidence: []
+  notes: ''
+- assembly_id: molex-micro-fit-spoke-bank
+  target_kind: interface
+  target_id: interface
+  result: UNOBSERVED
+  tested_refs: []
+  measurements:
+  - name: installed-seating-gap
+    unit: mm
+    values: []
+  - name: mating-plane-offset
+    unit: mm
+    values: []
+  - name: minimum-exposure
+    unit: mm
+    values: []
+  - name: minimum-service-clearance
+    unit: mm
+    values: []
+  evidence: []
+  notes: ''
+- assembly_id: molex-micro-fit-spoke-bank
+  target_kind: operation
+  target_id: latch-pull-check
+  result: UNOBSERVED
+  tested_refs: []
+  measurements:
+  - name: conductor-crimp-height
+    unit: mm
+    values: []
+  - name: continuity-cross-short-count
+    unit: count
+    values: []
+  - name: continuity-open-count
+    unit: count
+    values: []
+  - name: pull-force
+    unit: N
+    values: []
+  - name: strip-length
+    unit: mm
+    values: []
+  evidence: []
+  notes: ''
+- assembly_id: molex-micro-fit-spoke-bank
+  target_kind: operation
+  target_id: mate
+  result: UNOBSERVED
+  tested_refs: []
+  measurements:
+  - name: continuity-cross-short-count
+    unit: count
+    values: []
+  - name: continuity-open-count
+    unit: count
+    values: []
+  - name: exercised-cycles
+    unit: count
+    values: []
+  evidence: []
+  notes: ''
+- assembly_id: molex-micro-fit-spoke-bank
+  target_kind: operation
+  target_id: unmate
+  result: UNOBSERVED
+  tested_refs: []
+  measurements:
+  - name: exercised-cycles
+    unit: count
+    values: []
+  - name: latch-damage-count
+    unit: count
+    values: []
+  evidence: []
+  notes: ''
+- assembly_id: molex-micro-fit-spoke-bank
+  target_kind: reaction
+  target_id: reaction
+  result: UNOBSERVED
+  tested_refs: []
+  measurements:
+  - name: exercised-cycles
+    unit: count
+    values: []
+  - name: maximum-connector-rotation
+    unit: deg
+    values: []
+  - name: maximum-pcb-flex
+    unit: mm
+    values: []
+  evidence: []
+  notes: ''
+- assembly_id: molex-micro-fit-spoke-bank
+  target_kind: tolerance
+  target_id: connector-enclosure-stack
+  result: UNOBSERVED
+  tested_refs: []
+  measurements:
+  - name: realized-minus
+    unit: mm
+    values: []
+  - name: realized-plus
+    unit: mm
+    values: []
+  - name: worst-case-clearance
+    unit: mm
+    values: []
+  evidence: []
+  notes: ''

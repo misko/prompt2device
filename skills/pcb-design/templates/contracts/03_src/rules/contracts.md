@@ -11,18 +11,22 @@ belongs here.
 
 | File | What |
 |---|---|
+| `critical_paths.yaml` | Optional nonempty schema-1 short-path and clamp-dominance contract. Exact endpoints, length/pad-span ceilings, via-free layer, and downstream targets; the independent shared saved-copper checker refuses unsupported topology. Required when a project conductor declares this gate. |
+| `assembly_locator.yaml` | Optional A-LOCATOR schema1 for independently reviewed silkscreen omissions: title, owner, orientation and exact exception identities. Shared exporter generates the exact-board viewer/data/atlas; placement/release gates require the source waiver set and all artifact identities to agree. No automatic waiver or order authority. |
 | `integration.yaml` | P-MOD module-first architecture record. REQUIRED on newly commissioned/adopted projects: every complex subsystem selects a real module or carries an evidenced D-MOD bare-IC exception ADR; absence is UNMIGRATED, never PASS |
 | `rf.yaml` | RF applicability and exact-artifact review contract, schema 1. REQUIRED on new projects even when `rf.enabled: false` (with rationale). When true it declares risk basis, ports/bands/Z0, solved cross-sections, numeric performance claims, first-article measurements/acceptance, and non-empty requirement-ID sets plus artifact/review paths for the independent RF schematic, PCB, and plotted-fab phases. Graded by `rf_contract_check.py`; zero/partial review coverage and stale artifact hashes fail. |
-| `model_registration.yaml` | Optional schema-1 native 3D-model physical-registration contract. Each group binds refs to one exact model SHA and numeric F.Fab/courtyard/attachment-field tolerances. Edge-facing groups add one `orientation` block; all realised `J*` refs are declared or explicitly exempted. Graded before placement review by `model_registration_gate.py` then `connector_orientation_gate.py`; independent of catalog-twin renderer fidelity. |
+| `model_registration.yaml` | Optional schema-1 native 3D-model physical-registration contract. Each group binds refs to one exact model SHA and numeric mounted-side Fab/courtyard/attachment-field tolerances. Optional group-level `mount_side: front|back` requests signed-side registration for any package without inventing connector orientation; if both declarations exist they must agree. The declared mounting side must agree with the native footprint side; only that side’s Fab/courtyard datums qualify. Mixed-side groups are refused. Coupons retain native flips, use the mounted-side plan camera and account for bottom X reflection; side and owned datums participate in cache identity. Edge-facing groups add one `orientation` block; all realised `J*` refs are declared or explicitly exempted. Graded before placement review by `model_registration_gate.py` then `connector_orientation_gate.py`; independent of catalog-twin renderer fidelity. |
 | `connector_assemblies.yaml` | REQUIRED on newly commissioned projects. Operated designs carry typed receptacle/mate/grip/fastening/tool/torque/reaction/cable evidence, a known realized-orientation source, contiguous operations, simultaneous groups, and tolerance sources. A no-operated design instead carries exact typed `applicability` evidence and empty populations, producing applicability-only `N-A`, never geometry PASS. Both rebuild drivers compile it; represented unknowns are `INCOMPLETE`. The current enclosure adapter binds its canonical receipt but stays `INCOMPLETE`; realized-board PCB geometry and enclosure operation-solid PASS consumers remain owed. Current enclosure schema-v1 inline candidates are migration-only and cannot become shared service authority. |
+| `connector_assembly_phases.yaml` | REQUIRED additive phase policy. Source deferrals use stable connector target IDs, one compiler-owned physical-qualification class, nonempty plan-source IDs already cited by the target, and a rationale. The policy never changes the base receipt; full, enclosure, and release still require base `PASS`/zero unknowns. |
 | `nets.yaml` | net classes: nets, current, intent, min_width, routing strategy, verify, scoped exemptions; `fab_tier` (capability floors for the generic backend); `scoped_floors` (insideArea width relaxations, `why` REQUIRED); `scoped_clearances` (insideArea ISOLATION relaxations, `nets` + `why` REQUIRED, bounded on BOTH sides of the pair); **`length_match`** (canon R-LEN: REALIZED-COPPER matched groups, the ONE machine-readable home for "these paths must have the same length and here is why" — see `## Structure: nets.yaml length_match` below) |
+| `route_fab_overrides.txt` | Optional KRT `fix_kicad_drc_settings.py --fab-overrides` source: exact key/value manufacturing floors used to synchronize the prepared route board with an advanced first-article process. The route config names this file; the tier preflight and post-route native DRC remain the acceptance boundaries. |
 | `electrical_invariants.yaml` | design-INTENT assertions the netlist must satisfy (canon E-INV): `pin_on_net`, `series_chain`, `net_has_part`, **`part_value`**, **`node_level`**. Each REQUIRES `adr:` (the ADR that emitted it) + `why:`. **`adr:` MUST BE QUOTED — `adr: "0011"`, or unpadded `adr: 11`.** A bare zero-padded reference is a YAML 1.1 OCTAL literal and the loader REJECTS it: `adr: 0011` becomes the integer 9 and re-pads to `"0009"`, `adr: 0012` -> `"0010"`, `adr: 0010` -> `"0008"`, `adr: 0020` -> `"0016"`, while `adr: 0008`/`0009` survive as strings only because 8 and 9 are not octal digits. That is not a SKIP — the invariant silently satisfies the WRONG ADR and E-ADR credits a document that emitted nothing. The rejection is written at the width of the class (canon M-WIDTH): every unquoted zero-padded `adr:` is refused, including the ones that happen to survive, because which are safe is a fact about the digits and not about the schema. It is a REJECTION rather than a coercion because coercion is impossible after the fact — by the time `yaml.safe_load()` returns, `adr: 0011` and `adr: 9` are the same object and the padding is gone; the check runs on the composed NODE, which still carries the scalar's quoting style. Measured 2026-07-27: this template itself and the board seeded from it both wrote `adr: 0011` and both resolved it to `0009`. **`part_value` `{part, min\|max\|equals (+tolerance_pct), adr, why}` pins a PARAMETER, which the other three cannot** — they pin TOPOLOGY, and an invariant that pins a component's EXISTENCE does not pin its VALUE. smc0985-cooksense 2026-07-25: the WD_PET safety fix landed a 100k watchdog pull-down where TI SLVS165O bounds it at 5.2k (I_IL 190uA max x R < V_IL 0.99V), silently disabling the supervisor on a cooking-contactor interlock — and ALL THREE assertions that shipped with that fix (one `net_has_part`, two `pin_on_net`) PASS on the 100k netlist, because the resistor does exist, on the right nets. Values are read from the netlist's own `(comp (value ...))` and decoded as SI, so `1k`/`1kOhm`/`1kΩ`/`4k7`/`0R1` are one number — note `m` is MILLI and `M` is MEGA, and an UNDECODABLE value is a FAIL, never a skip. At least one bound is REQUIRED: an assertion naming a part and bounding nothing is the exact gap this kind closes. **`node_level` `{net, receiver: REF.PIN, driver_state: released\|contended, must_be: logic_high\|logic_low, adr, why}` pins the OUTCOME, which `part_value` still cannot** — a value that is RIGHT can leave the node DEAD. smc0985-cooksense v1.7 2026-07-29: a divider taking `U_EXP.1` off a 5 V node was sized as if `EFUSE_FLT_N` were a stiff 5 V source; it is OPEN-DRAIN behind `R_PG` 100k, so the chain is 100k+10k over 22k and the pin sat at **0.833 V against a 2.640 V threshold** — the fault readback was dead, and **E-INV passed 136/136** because the assertions said the resistors EXISTED at the right values. Resolves the DC path through RESISTORS ONLY (a first run crossed a 220uF cap and printed a confident wrong 2.500 V); needs a top-level `supplies: {NET: volts}` map and an `electrical:` block on the RECEIVER's `02_parts` dossier. **Every net named in `supplies:` MUST EXIST in the netlist and the loader REJECTS one that does not, naming the near-miss.** cooksense 2026-07-29: `supplies: {N3V3: 3.3}` declared the tsx AUTHOR-PREFIX form of a net the netlist calls `3V3`, the grader filters supplies to nets it can see, and so the 3V3 rail was INVISIBLE to every `node_level` grade on the board. A misnamed rail does not announce itself — it either downgrades the verdict to UNREACHED for the WRONG REASON (the pre-fix message read "no supply rail voltages declared — add `supplies:`" on a board that had declared it, sending the author to write a block they had already written), or, when a second rail does resolve, lets that one win the shortest-path search and reports a CONFIDENT WRONG VOLTAGE with nothing in the output to distinguish it from a correct board. Graded whenever `supplies:` is present at all, not only when a grade comes up short (canon M-WIDTH); no path to GND means PULLED TO THE RAIL, no path to a rail is UNREACHED, a receiver with no thresholds is UNREACHED — never a default (M-COVER). Emitted by protection/topology ADRs; graded by `electrical_invariants.py`. OPTIONAL top-level `label_survival:` block (canon S-NETMERGE, graded by `net_label_survival.py` — the schematic net-merge gate; the generic every-global-label-survives-to-the-netlist check is ALWAYS ON with or without this block): `exempt:` labels allowed to be absent, each REQUIRES `why:` evidence (canon M4); `pin_map:` board-specific pin-for-pin net assertions `{refs, n_start, pins: {pin: pattern-with-{n}}, unconnected}` — the crow-recorder net-merge class (P5VA_4→AUDIO4M, MID2P→5V: two DO-NOT-ORDER defects, every self-consistent gate green, 2026-07-23) |
 | `control_protocol.yaml` | OPTIONAL timing-coded state protocol. `control_protocol_check.py` derives active windows, merged observable marker duration, cycle time and minimum guaranteed capture from one atomic schedule; it rejects overlapping windows, handwritten derived-value drift, a marker body adjacent to the same-state guard but counted separately, and decoders that do not return `unknown` for absent/ambiguous/incomplete observations. Run source-only before firmware, TSX or downstream decoder work. |
 | `power_tree.yaml` | per-rail voltage ENVELOPES + converter selection, graded by `power_topology.py` for E-TOPO / E-MARGIN / E-OFF. REQUIRED per rail: `{name, vin_min, vin_max, vout_min, vout_max, iout_max_A, converter, eff}` — topology DERIVED from Vin-vs-Vout (buck/boost/buck_boost) asserted against the converter part.yaml `type:`, over-capable = over-engineering FAIL (E-TOPO). **THIS FILE IS NOT OPTIONAL WHEN THE BOARD HAS A CONVERTER.** E-TOPO takes its N-A only when `02_parts` declares NO buck/boost/buck_boost/linear part — an independent artifact written by a different stage (canon M1), because until 2026-07-27 the gate asked the power tree whether there was anything to grade and believed it. An ABSENT file, or `rails: []`, with a converter present is `0/N converters graded` and a FAIL; a rails list that omits SOME of `02_parts`' converters is reported as `UNGRADED CONVERTERS: k of N` and fails too. Measured on landing: usb-hub-3s — the board whose IP6559 buck-boost MOTIVATED E-TOPO — had no power_tree.yaml and had never been graded by it. **LINEAR CONVERTERS.** A linear regulator (part.yaml `type:` matching `ldo`/`linear`/`low-dropout`) is NOT a fourth topology; it is one IMPLEMENTATION of a step-down requirement, so the derivation is unchanged: required BUCK is MET, required BOOST or BUCK_BOOST is a cannot-meet FAIL (it cannot step up, and an overlapping Vin envelope means it drops out somewhere in the range). It is then graded on the two failure modes the derivation cannot see — `vin_min - vout_max >= dropout_mv` and `(vin_max - vout_min) * iout_max_A <= pdiss_max_mw`, both REQUIRED from the converter's part.yaml (see the 02_parts contract) or overridden per rail as OPTIONAL `dropout_mv:` / `pdiss_max_mw:`. A linear rail's INPUT CURRENT is `iout`, not `Pout/eff/Vin`: the pass element is in series with the load, so `eff` does not enter the trunk-current sum for it. OPTIONAL per rail: `load_uv_threshold`, `ir_budget_mohm`, `margin`, and `feedback:`. Feedback always declares divider values/tolerances and uses exactly one reference form: symmetric `{vref, vref_tol_pct}` or exact asymmetric `{vref_min, vref_max}`; optional `{fb_bias_current_min_nA, fb_bias_current_max_nA}` adds the datasheet input-bias corners. The checker computes `Vout=Vref*(1+Rtop/Rbottom)+Ibias*Rtop`, rejects understated declared windows, and grades E-MARGIN from computed worst-low. OPTIONAL top-level: `source_type` / `off_control` / `quiescent_ua` / `pack_capacity_mah`, `ir_floor_mohm`. |
 | `requirements.yaml` | D-SPEC/E-PATH external-output contract: connector count, simultaneous load, current, voltage window, duty, measurement plane, included/excluded path elements, and linked `power_tree.yaml` claim. Empty boards explicitly state `no_external_power_outputs`. Graded by `early_design_check.py` before schematic review. |
 | `power_stages.yaml` | E-SWDRV switching-stage compatibility: controller minimum gate-drive capability, bias, frequency, MOSFET population, maximum/qualified-maximum gate charge, and schema-2 worst-case cycle-by-cycle current-limit/ripple/path-rating proof. Empty boards explicitly state `no_external_gate_drive_stages`. Graded before layout. |
 | `protection_paths.yaml` | E-SURGE source/TVS/downstream coordination: normal maximum, TVS standoff and clamp, downstream recommended/absolute limits, margin, and measured/cited transient qualification where needed. Empty boards explicitly state `no_surge_exposed_paths`. Graded before layout. |
-| `assembly.yaml` | ASSEMBLY intent — the ONE machine-readable home for "who gets placed, and why not" (canon A-POP + A-POS + A-STOCK, and the planned A-ROT, held 2026-07-25; PCBA is the default deliverable). REQUIRED top-level: `service`, `sides`, `fiducials` (`none` is allowed but SILENCE is not), `build_quantity`. `not_assembled:` entries REQUIRE `{refs, reason, evidence, disposition}` where `reason` is the CLOSED vocabulary `not_in_catalog\|consign\|user_supplied\|dnp_by_design\|mechanical\|test_point\|process_incompatible` (`process_incompatible` added 2026-07-25: a part that IS catalogued, stocked and wanted but that the ORDERED process cannot place — the classic case being a true THT part on a `sides: [top]` SMT-only order, whose pads carry no F.Paste so it cannot be intrusive-reflowed. crow-recorder-central-v2 v1.4 shipped exactly that as J1 and the nearest existing reason would have been `not_in_catalog`, which is FALSE: a closed vocabulary with no true option forces a lie into the decision record) and `evidence` is a DATED measurement (the catalog query + its result), not a rationale — every ref listed must ALSO carry `FP_EXCLUDE_FROM_POS_FILES` on the board, and a declared-unpopulated ref still on the CPL is a FAIL. `board_attr_plan:` `{refs, measured_on, plan}` is the ONLY way to defer that board attribute, exactly parallel to `sourcing_plan:` for stock — it exists because the attribute lives in the `.kicad_pcb`, so on a board whose gerbers are sealed and correct the only way to satisfy the check used to be regenerating the board, which churns every UUID (MEASURED 81626 diff lines on a semantically identical rebuild) and turns a data-only CPL fix into a full respin. The DECISION is never deferred: the ref must still be off the shipped CPL, which `DECLARED-BUT-PLACED` enforces and which is NOT deferrable, and the exporter honours `not_assembled:` directly so the declaration is itself a mechanism. `consigned:` parts are POPULATED (they stay ON the CPL): `{refs, lcsc, msl, evidence, disposition}`, `msl` REQUIRED for consigned parts and any exposed-pad package. OPTIONAL per `not_assembled:` entry: `lcsc:` — the code of a catalogued part deliberately not placed, read by `jlc_twin --assembly` so its body still renders and its land pattern is still checked (this replaces hand-typed `--also REF=LCSC`, which was a second home for the population set). `sourcing_plan:` `{lcsc, measured_stock, measured_on, plan}` is the ONLY way to seal past a non-OK stock line (canon A-STOCK, graded by `release_freshness_check.py` check (e); `build_quantity` is the multiplier). `exempt_prefixes:` declares refdes classes whose CPL absence needs no entry — DECLARED, never hardcoded in the checker. The release MANIFEST `not_assembled:` line is GENERATED from this file, never hand-written twice (cooksense v1.1: 13 blank-LCSC CPL rows vs a MANIFEST declaring 12 of them not_assembled — the two drifted because nothing read either) |
+| `assembly.yaml` | ASSEMBLY intent — the ONE machine-readable home for "who gets placed, and why not" (canon A-POP + A-POS + A-STOCK, and the planned A-ROT, held 2026-07-25; PCBA is the default deliverable). `sides` is a non-empty list of distinct `top`/`bottom` values, enforced against every fitted SMD mounting layer including manual/consigned population; CPL side must independently match the native board. Every `not_assembled` reference occurs exactly once; duplicate or contradictory dispositions fail and cannot erase fitted population. DNP/test-point nonpopulation and THT joints do not imply second-side SMD assembly. Missing legacy side policy is explicitly ungraded. REQUIRED top-level: `service`, `sides`, `fiducials` (`none` is allowed but SILENCE is not), `build_quantity`. `not_assembled:` entries REQUIRE `{refs, reason, evidence, disposition}` where `reason` is the CLOSED vocabulary `not_in_catalog\|consign\|user_supplied\|dnp_by_design\|mechanical\|test_point\|process_incompatible` (`process_incompatible` added 2026-07-25: a part that IS catalogued, stocked and wanted but that the ORDERED process cannot place — the classic case being a true THT part on a `sides: [top]` SMT-only order, whose pads carry no F.Paste so it cannot be intrusive-reflowed. crow-recorder-central-v2 v1.4 shipped exactly that as J1 and the nearest existing reason would have been `not_in_catalog`, which is FALSE: a closed vocabulary with no true option forces a lie into the decision record) and `evidence` is a DATED measurement (the catalog query + its result), not a rationale — every ref listed must ALSO carry `FP_EXCLUDE_FROM_POS_FILES` on the board, and a declared-unpopulated ref still on the CPL is a FAIL. `board_attr_plan:` `{refs, measured_on, plan}` is the ONLY way to defer that board attribute, exactly parallel to `sourcing_plan:` for stock — it exists because the attribute lives in the `.kicad_pcb`, so on a board whose gerbers are sealed and correct the only way to satisfy the check used to be regenerating the board, which churns every UUID (MEASURED 81626 diff lines on a semantically identical rebuild) and turns a data-only CPL fix into a full respin. The DECISION is never deferred: the ref must still be off the shipped CPL, which `DECLARED-BUT-PLACED` enforces and which is NOT deferrable, and the exporter honours `not_assembled:` directly so the declaration is itself a mechanism. `consigned:` parts are POPULATED (they stay ON the CPL): `{refs, lcsc, msl, evidence, disposition}`, `msl` REQUIRED for consigned parts and any exposed-pad package. OPTIONAL per `not_assembled:` entry: `lcsc:` — the code of a catalogued part deliberately not placed, read by `jlc_twin --assembly` so its body still renders and its land pattern is still checked (this replaces hand-typed `--also REF=LCSC`, which was a second home for the population set). `sourcing_plan:` `{lcsc, measured_stock, measured_on, plan}` is the ONLY way to seal past a non-OK stock line (canon A-STOCK, graded by `release_freshness_check.py` check (e); `build_quantity` is the multiplier). `exempt_prefixes:` declares refdes classes whose CPL absence needs no entry — DECLARED, never hardcoded in the checker. The release MANIFEST `not_assembled:` line is GENERATED from this file, never hand-written twice (cooksense v1.1: 13 blank-LCSC CPL rows vs a MANIFEST declaring 12 of them not_assembled — the two drifted because nothing read either) |
 | `mates.yaml` | **CONDITIONAL — present ONLY when the board mates to hardware this repo did not design** (canon D-MATE / M-IMPORT, ADR-0005/0009). The machine copy of the BRIEF's `## Mating fact-lock`: `device:` (the `external_hardware/<device>/` folder that holds the facts), `why:`, and `consumes:` entries `{fact, use, where}`. `use` is the CLOSED vocabulary `dimensional\|informational\|owed`; `where` is REQUIRED — a fact spent nowhere in particular cannot be reviewed at the point of USE, which is where M-IMPORT grades it. **IT HOLDS NO NUMBERS.** `value` / `grade` / `method` / `units` / `error_bar` / `quote` inside a `consumes:` entry are M-RESTATE FAILs: the fact's single home is `external_hardware/<device>/facts.yaml` (indexed against the `README.md` record by a VERBATIM quote, so the two cannot drift silently). Same rule, same reason, as `assembly.yaml` being the single home for "who gets placed" — cooksense v1.1 shipped 13 CPL rows contradicting its own MANIFEST because two files held one fact. Graded by `import_provenance_check.py PROJECT_DIR` (also `--root REPO` fleet-wide): **M-EXIST** the id and its quoted line exist in the device record; **M-GRADE** MEASURED/CITED/ESTIMATED/OWED, absent or unknown is a FAIL never a skip; **M-BAR** ESTIMATED + `dimensional` requires a PARSEABLE error bar; **M-PROXY** the grade must match the method (a number off a rendered plot is not MEASURED however reproducibly it was extracted); **M-OWED** a fact nobody has may not be spent dimensionally, and must say how to obtain it; **M-RESTATE**; **D-MATE** every consumption names its site, and a BRIEF declaring a Mating fact-lock must have this file. An EMPTY `consumes:` is an M-COVER FAIL — delete the file rather than ship governance that grades nothing. pluto-cal-switch 2026-07-27: an SMA span extracted from an undimensioned vector assembly plot read 35.60 mm with three independent extractions agreeing to 0.003 mm, and a caliper on two physical units then read 35.04 and 34.72 mm — 10-18x a ±0.05 mm mating window, and no gate in this repo could see it because the number never came from an artifact any gate reads |
 | `stackup.yaml` | layer count, what each layer is for, fab tier (optional) |
 | `twin_adjudications.yaml` | reviewed jlc_twin findings accepted WITH evidence (see jlcpcb-fab skill) |
@@ -139,7 +143,9 @@ last-match `.kicad_dru` rule after the netclass floors. `why` is REQUIRED
 Top-level `scoped_clearances:` is its CLEARANCE twin (2026-07-30, added because
 pluto-rx2-8way sat routed and promoted on 49 DRC findings that were ONE missing
 capability): `{zone, nets, clearance, why}`, emitted as a last-match
-`.kicad_dru` `clearance` constraint. **A SEPARATE LIST, NOT A FIELD ON
+`.kicad_dru` `clearance` constraint. Optional `hole_clearance` emits the matching
+drill-to-copper floor in that same bounded rule; it must also clear the fab
+tier's `min_space`. **A SEPARATE LIST, NOT A FIELD ON
 `scoped_floors`** — the two validate against different tier floors (`min_track`
 vs `min_space`), emit different constraints, and mean different things, and
 merging them would make every required key conditional ("`min_width` required
@@ -159,6 +165,14 @@ tier's `min_space`. **THE VALUE MUST NOT SIT ABOVE THE ROUTER'S OWN BUDGET** in
 `route.waves[].clearance`): a DRC floor above what KRT was allowed to pack to
 re-creates the mismatch `tier_preflight` PF-ROUTE-CLR exists to catch, one
 level down.
+
+For intrinsic package-land gaps, optional `pads_only: true` additionally
+requires `A.Type == 'Pad' && B.Type == 'Pad'`. It does not relax track, via,
+or zone clearance, including long items overlapping the area. The value must
+be a YAML boolean; absent/false retains existing all-item behavior. Use exact
+`nets_a`/`nets_b` pairs and tightly bounded areas, independently enumerate the
+native pad members, and retain land-pattern evidence in `why`. Pad-only
+entries never qualify a router-clearance downgrade in `tier_preflight.py`.
 
 Top-level `fab_tier:` is also the SINGLE SOURCE of capability floors for
 the generic backend (`fab_tier_util.py`): class widths, route/stitch/tap
@@ -436,6 +450,20 @@ TWO ORPHANS THIS FOLDER'S OWN PROSE HAD HIDDEN, both found by the first run:
   an Rds(on)/ESR drop" is checkable arithmetic that nothing checks. `name:` IS
   graded (E-NETREF K6, advisory); the numbers are OWED.
 
+### keys: 03_src/rules/connector_assembly_phases.yaml
+
+| key | reader | why |
+|---|---|---|
+| `schema` | `connector_assembly_phase_gate.py` | exact additive policy schema; only schema 1 is accepted |
+| `phase_policy_id` | `connector_assembly_phase_gate.py` | stable authored policy identity bound into the phase receipt |
+| `source_deferrals` | `connector_assembly_phase_gate.py` | complete explicit set of physical unknowns that source may consider |
+| `source_deferrals[].assembly_id` | `connector_assembly_phase_gate.py` | stable base connector assembly identity; list indexes are never authority |
+| `source_deferrals[].target_kind` | `connector_assembly_phase_gate.py` | closed physical target vocabulary with one compiler-owned class mapping |
+| `source_deferrals[].target_id` | `connector_assembly_phase_gate.py` | stable section, operation, or tolerance identity resolved against the base contract |
+| `source_deferrals[].unknown_class` | `connector_assembly_phase_gate.py` | exact physical-qualification class; class/path mismatches fail |
+| `source_deferrals[].plan_source_ids` | `connector_assembly_phase_gate.py` | nonempty evidence IDs already cited by the target and bound by the base receipt |
+| `source_deferrals[].rationale` | `connector_assembly_phase_gate.py` | nonempty project-specific physical qualification plan |
+
 ### keys: 03_src/rules/integration.yaml
 
 | key | reader | why |
@@ -499,10 +527,17 @@ TWO ORPHANS THIS FOLDER'S OWN PROSE HAD HIDDEN, both found by the first run:
 | `scoped_clearances[].nets_a` | `generate_rules_generic.py, tier_preflight.py` | first side of an explicitly pair-scoped isolation rule; accepted only with `nets_b` and never mixed with legacy `nets` |
 | `scoped_clearances[].nets_b` | `generate_rules_generic.py, tier_preflight.py` | second side of an explicitly pair-scoped isolation rule; accepted only with `nets_a` and never mixed with legacy `nets` |
 | `scoped_clearances[].clearance` | `generate_rules_generic.py` | the relaxed gap; must still clear the tier's `min_space` |
+| `scoped_clearances[].hole_clearance` | `generate_rules_generic.py, route_and_stitch_generic.py` | optional drill-to-copper gap emitted and consumed under the same ordered, symmetric area/net predicate as `clearance`; must still clear the tier's `min_space` |
+| `scoped_clearances[].pads_only` | `generate_rules_generic.py, tier_preflight.py` | optional strict boolean; true restricts BOTH items to pads and cannot authorize reduced route clearance; absent/false preserves legacy all-item behavior |
 | `scoped_clearances[].why` | `generate_rules_generic.py` | REQUIRED evidence (canon M4) — for a STRONGER reason than the width case: a width relaxation is bounded below by ampacity, which A-AMP grades independently from `current:`, while an isolation relaxation has NO downstream grader at all (DRC simply stops reporting what the rule permits) |
 | `length_match.<G>.adr` | `copper_length_audit.py` | R-LEN: the ADR that emitted the intent |
 | `length_match.<G>.intent` | `copper_length_audit.py` | R-LEN group intent |
 | `length_match.<G>.members.<M>` | `copper_length_audit.py, net_reference_audit.py` | the ORDERED net chain measured (E-NETREF K12) |
+| `length_match.<G>.paths.<M>[].id` | `copper_length_audit.py` | electrical-path identity matched across members; duplicate or unequal ID sets fail |
+| `length_match.<G>.paths.<M>[].segments[].net` | `copper_length_audit.py` | ordered copper segment net; must belong to the declared member chain |
+| `length_match.<G>.paths.<M>[].segments[].from` | `copper_length_audit.py` | physical REF.PAD source terminal measured on the saved board |
+| `length_match.<G>.paths.<M>[].segments[].to` | `copper_length_audit.py` | physical REF.PAD destination terminal; missing or disconnected endpoints are UNREACHED |
+| `length_match.<G>.path_max_spread_mm.*` | `copper_length_audit.py` | exact electrical-path ID to nonnegative tolerance or report; validated against declared path identities and independently applied to each realized endpoint-path spread, with group ceiling as fallback |
 | `length_match.<G>.max_spread_mm` | `copper_length_audit.py` | R-LEN drift ceiling |
 | `length_match.<G>.topology` | `copper_length_audit.py` | chain vs tree |
 | `length_match.<G>.router_moves` | `copper_length_audit.py` | closed `octilinear|any` router-move model controlling whether the pre-route 45-degree reachability floor is graded |
@@ -718,10 +753,12 @@ TWO ORPHANS THIS FOLDER'S OWN PROSE HAD HIDDEN, both found by the first run:
 | `schema` | `model_registration_gate.py` | closed schema version; malformed contracts fail before rendering |
 | `groups[].id` | `model_registration_gate.py` | unique filesystem-safe receipt identity |
 | `groups[].refs` | `model_registration_gate.py, native_model_registration.py` | non-empty exact footprint-instance denominator |
-| `groups[].authority` | ADVISORY | human statement naming the native CAD/drawing authority behind F.Fab and courtyard |
+| `groups[].authority` | ADVISORY | human statement naming the native CAD/drawing authority behind mounted-side Fab and courtyard |
 | `groups[].model_sha256` | `model_registration_gate.py, native_model_registration.py` | exact native model identity checked on every declared ref |
-| `groups[].registration_datum` | `model_registration_gate.py, native_model_registration.py` | closed `drilled_centres` (default connector attachment field) or `all_pad_centres` (SMD package field) selection; the chosen non-empty denominator is tuple-bound and measured inside the native body |
-| `groups[].fit_tolerance_mm` | `model_registration_gate.py, native_model_registration.py` | maximum measured-pixel versus independent F.Fab centre/outward error |
+| `groups[].registration_datum` | `model_registration_gate.py, native_model_registration.py` | closed `drilled_centres` (default), `all_pad_centres` (center containment), or `all_smd_pad_overlap` (positive effective-copper overlap with measured body plan) selection; every selected attachment is tuple-bound and graded; terminal/process qualification is separate |
+| `groups[].fit_tolerance_mm` | `model_registration_gate.py, native_model_registration.py` | maximum measured-pixel versus independent mounted-side Fab centre/outward error |
+| `groups[].mount_side` | `model_registration_gate.py` | Optional front/back signed-side authority independent of connector edge orientation; conflicts with orientation.mount_side fail. |
+| `groups[].mount_side_min_fraction` | `model_registration_gate.py` | minimum native side-profile body fraction on the declared mounting side; validated within [0.5, 1.0] and passed to the native registration producer |
 | `groups[].courtyard_containment_tolerance_mm` | `model_registration_gate.py, native_model_registration.py` | default body-within-courtyard tolerance; prevents renderer self-consistency from passing a displaced body |
 | `groups[].search_margin_mm` | `model_registration_gate.py, native_model_registration.py` | bounded diagnostic search window large enough to expose a displaced model |
 | `groups[].render_width` | `model_registration_gate.py, native_model_registration.py` | exact orthographic raster width used by the measurement receipt |
@@ -729,8 +766,8 @@ TWO ORPHANS THIS FOLDER'S OWN PROSE HAD HIDDEN, both found by the first run:
 | `groups[].orientation.authority` | `connector_orientation_gate.py` | non-empty manufacturer drawing/STEP authority for the semantic mouth axis and mating plane |
 | `groups[].orientation.mount_side` | `connector_orientation_gate.py` | closed `front` or `back` mounted-side expectation |
 | `groups[].orientation.footprint_access_axis_local` | `connector_orientation_gate.py` | finite nonzero footprint-local mouth/cable axis |
-| `groups[].orientation.model_access_axis_local` | `connector_orientation_gate.py` | finite nonzero exact-model-local mouth/cable axis, transformed independently |
-| `groups[].orientation.model_up_axis_local` | `connector_orientation_gate.py` | finite nonzero exact-model-local up axis; catches roll/inversion |
+| `groups[].orientation.model_access_axis_local` | `connector_orientation_gate.py` | finite nonzero exact-model-local Y-up mouth/cable axis, transformed through KiCad's scale, negative stored rotations, and front/back basis reflection |
+| `groups[].orientation.model_up_axis_local` | `connector_orientation_gate.py` | finite nonzero exact-model-local Y-up axis transformed through the same native model matrix; catches roll/inversion |
 | `groups[].orientation.mating_plane_offset_mm` | `connector_orientation_gate.py` | positive manufacturer-derived footprint-origin-to-mating-plane distance along the mouth axis |
 | `groups[].orientation.edge_offset_range_mm` | `connector_orientation_gate.py` | allowed signed mating-plane offset from the realised `Edge.Cuts`; positive is outboard |
 | `groups[].orientation.key_pad` | `connector_orientation_gate.py` | exactly one physical pad that prevents a vacuous/symmetric identity claim |
@@ -837,8 +874,8 @@ TWO ORPHANS THIS FOLDER'S OWN PROSE HAD HIDDEN, both found by the first run:
 | key | reader | why |
 |---|---|---|
 | `stages[].name` | `first_article_check.py` | exact staged population identity selected by the physical record |
-| `stages[].installed` | `first_article_check.py` | complete installed refdes set; missing and extra parts both HOLD |
-| `stages[].exposed_pads` | `first_article_check.py` | refdes whose hidden thermal/ground pad needs explicit solder confirmation before power |
+| `stages[].installed` | `first_article_check.py` | complete literal installed-refdes set; ranges and pin names are rejected, and missing/extra parts both HOLD |
+| `stages[].exposed_pads` | `first_article_check.py` | subset of installed refdes whose hidden thermal/ground pad needs explicit solder confirmation before power; nets and probe pads belong in measurement probes |
 | `rails[].name` | `first_article_check.py` | stable rail identity joining design-time limits to physical measurements |
 | `rails[].resistance` | `first_article_check.py` | unpowered probe point and acceptable ohmic band |
 | `rails[].resistance.probe` | `first_article_check.py` | exact unpowered measurement points |
@@ -878,7 +915,7 @@ TWO ORPHANS THIS FOLDER'S OWN PROSE HAD HIDDEN, both found by the first run:
 | `not_assembled[].lcsc` | ADVISORY | catalog identity retained for human DNP evidence; fitted-code identity excludes these refs from the CPL |
 | `not_assembled[].msl` | ADVISORY | human handling note for a part not placed by JLC; downstream manual-assembly procedure owns execution |
 | `not_assembled[].on_bom` | `export_jlc_package.py` | explicit assembly-BOM inclusion decision, never inferred from the DNP reason |
-| `not_assembled[].twin_body.*` | `jlc_twin.py` | alternate exact body/model authority for a deliberately unplaced part |
+| `not_assembled[].twin_body.*` | `jlc_twin.py` | alternate exact body/model authority for a deliberately unplaced part; delivered model bytes are copied into the relocatable twin with the source transform retained, and unresolved bodies fail NO-BODY |
 | `exempt_prefixes` | `assembly_coverage.py` | board-feature prefixes excluded from the component population denominator |
 | `through_hole.process` | `assembly_coverage.py` | substantive purchased THT process declaration |
 | `through_hole.refs` | `assembly_coverage.py` | exact drilled parts covered by the purchased THT process |
@@ -914,10 +951,41 @@ TWO ORPHANS THIS FOLDER'S OWN PROSE HAD HIDDEN, both found by the first run:
 
 | key | reader | why |
 |---|---|---|
-| `schema` | `early_design_check.py` | E-SURGE schema version |
+| `schema` | `early_design_check.py` | E-SURGE version 1 retains bounded survival checks; version 2 requires an explicit qualification mode on every path |
 | `paths` | `early_design_check.py` | complete set of surge-exposed input paths |
 | `paths[].*` | `early_design_check.py` | source maximum, suppressor ratings, downstream limits, margin, and transient qualification |
 | `no_surge_exposed_paths` | `early_design_check.py` | explicit evidenced applicability decision when no paths exist |
+
+Schema 2 `paths[].qualification_mode` is exactly `bounded_transient` or
+`unqualified_prototype_esd`; missing/unknown modes fail. Schema 1 rejects this
+key rather than silently applying a new interpretation. `bounded_transient`
+retains every existing normal, clamp-margin, downstream absolute/duration and
+gate-bias check. It is not weakened by another path's prototype admission.
+It rejects a path-level prototype `qualification` block as ambiguous.
+
+`unqualified_prototype_esd` validates only a component selection for an explicitly
+unqualified prototype. It is not a transient-survival pass or an N-A path.
+Its exact path keys are `name`, `qualification_mode`, `source_operating_min_V`,
+`source_operating_max_V`, `source_tolerance_included` (true),
+`source_boundary_evidence`, `tvs`, `exposed`, and `qualification`.
+All voltages must be finite; normal minimum must not exceed maximum.
+`tvs` requires exactly `part`, `standoff_V`, `recommended_min_V`,
+`recommended_max_V`, positive `iec_contact_kV` and `iec_air_kV`, and `evidence`.
+The normal range must fit both recommended VIO and standoff. IEC amplitudes
+are cited component ratings, never a board-level test claim.
+Each nonempty `exposed` row requires exactly `refs` (nonempty unique literal
+designators, no globs/ranges), `part`, `recommended_min_V`,
+`recommended_max_V`, and `evidence`. At least one actual suppressor instance
+must be covered; all exposed normal ranges are checked. Dossier identities
+must resolve. This schema does not independently infer the complete connector
+population: source/netlist invariants and review must verify census completeness.
+`qualification` requires exactly `status: UNQUALIFIED`,
+`board_survival_claim: false`, nonempty `installation_restriction`, and
+`authorization` / `test_plan` paths naming nonempty in-project documents.
+Invented `clamp_max_V`, absolute ratings, transient durations or qualification
+claims are rejected in this mode. Output prints normal-selection PASS and a
+separate UNQUALIFIED board-survival line. The final gate-family PASS validates
+the authored contract, not physical qualification, release or ordering authority.
 
 ### keys: 03_src/rules/critical_parts.yaml
 
@@ -964,3 +1032,110 @@ TWO ORPHANS THIS FOLDER'S OWN PROSE HAD HIDDEN, both found by the first run:
 | `consumes[].fact` | `import_provenance_check.py` | fact id that must exist and remain quote-bound in the selected SPF record |
 | `consumes[].use` | `import_provenance_check.py` | closed dimensional/informational/owed use class driving M-BAR and M-OWED |
 | `consumes[].where` | `import_provenance_check.py` | exact design site where the foreign fact is spent; absence is D-MATE |
+
+
+### Native representation for absent vendor models or CAD
+
+`twin_adjudications.yaml` may select `render_model_source: native` with a
+`native_representation` record for exact, successfully fetched vendor footprint
+bytes containing zero models. This selects a body; it does not adjudicate any
+failing status. `native_representation.py` rejects unknown fields, duplicate or
+wildcard refs, changed code/MPN/vendor footprint, new vendor models, changed
+source/model evidence and missing or stale signed physical registration.
+`jlc_twin.py` copies the native file and complete accepted registration bundle,
+preserves its transform and writes `native_representation_receipt.json`.
+`twin_overlay.py` reopens this receipt and bundle, derives expectation from
+independent mounted-side Fab and measures populated-minus-bare pixels. Fetch failure is
+never evidence of model absence. The full CPL denominator remains active.
+
+| Knob | Consumed by | Contract |
+|---|---|---|
+| `[].native_representation.reason` | `native_representation.py` | vendor_model_absent or vendor_cad_absent; closed reason-specific schema, explicit native selection and exact refs |
+| `[].native_representation.mpn` | `jlc_twin.py` | Exact staged BOM MPN; code remains the row lcsc |
+| `[].native_representation.vendor_footprint_sha256` | `native_representation.py` | Exact successfully fetched footprint; zero model clauses required |
+| `[].native_representation.model_sha256` | `jlc_twin.py`, `twin_overlay.py` | Exact source and delivered native-model bytes |
+| `[].native_representation.registration_group` | `jlc_twin.py` | Exact-ref all_pad_centres or all_smd_pad_overlap group with front/back mount_side; current tuple and every accepted output reopened |
+| `[].native_representation.authority` | `native_representation.py` | Closed path/sha256/pages/revision primary drawing record |
+| `[].native_representation.native_footprint` | `native_representation.py`, `jlc_twin.py` | Closed path/sha256 source land authority, footprint identity must agree |
+| `[].native_representation.generator` | `native_representation.py` | Closed path/sha256 drawing-derived model producer or verbatim immutable CAD import recipe |
+| `[].native_representation.provenance` | `native_representation.py` | Closed path/sha256 representation provenance |
+| `[].native_representation.reviewer` | `native_representation.py` | Named independent source reviewer; identity authenticity remains a review obligation |
+| `[].native_representation.reviewed_on` | `native_representation.py` | ISO review date |
+| `[].native_representation.limitations` | `native_representation.py` | Explicit representation limits; nominal visual geometry does not become worst-case package authority |
+
+For `vendor_cad_absent`, omit `vendor_footprint_sha256` and require all four
+fields below. Reopen a newly captured per-code exact HTTP200/application404
+response no older than24hours at production; reject future/unzoned observations,
+redirect/auth/rate-limit/unknown responses, changed body bytes, and any newly
+available footprint. This is an unavailable catalog comparison, never a pad or
+rotation fit. Both reasons copy every source authority file and the accepted
+signed registration bundle into the twin. The receipt binds all copies,
+source/twin board hashes, model transform and production time. Offline overlay
+reopens the exact dated production evidence, not an imaginary current query.
+Review authenticity/competence remains an independent human obligation; hashing
+review text does not prove its judgment. Full PR-REVIEW and NO-BODY still apply.
+
+| Knob | Consumed by | Contract |
+|---|---|---|
+| `[].native_representation.catalog_response_body_sha256` | `native_representation.py` | Exact independently reviewed absence body; current transport receipt must agree |
+| `[].native_representation.absence_review` | `native_representation.py` | Closed path/sha256 independent catalog-absence source review |
+| `[].native_representation.pin_review` | `native_representation.py` | Closed path/sha256 dedicated exact-ref independent physical pin/land review |
+| `[].native_representation.catalog_comparison` | `native_representation.py` | Exactly unavailable; no vendor footprint/residual/rotation PASS may be fabricated |
+
+
+### Extended SMD land registration
+
+`registration_datum: all_smd_pad_overlap` requires every SMD attachment to have positive-area native effective-copper intersection with the independently measured model plan envelope. Rounded/custom/rotated copper and holes are retained in the tuple; zero area and missing pads fail. It retains the Fab center, body extent, courtyard and signed-side checks. Receipts use `attachment_overlaps_graded`/`attachment_overlaps_total`, never center counts. This is a deliberately limited registration test; primary pin, termination and land-pattern review remains necessary. It does not qualify solder joints or assembly processes. Existing drilled/center modes retain their semantics.
+
+
+### keys: 03_src/rules/assembly_locator.yaml
+
+| key | reader | why |
+|---|---|---|
+| `schema` | `assembly_locator.py, assembly_locator_check.py` | exact closed schema1 |
+| `title` | `assembly_locator.py` | viewer title, escaped as text |
+| `owner` | `assembly_locator.py, assembly_locator_check.py` | nonempty responsible owner, bound into manifest |
+| `orientation` | `assembly_locator.py` | explicit top-side orientation on viewer and each top exception atlas page; independent visual review grades its truth |
+| `exceptions` | `assembly_locator.py, assembly_locator_check.py` | nonempty unique full-reference records; exact equality with native omissions, policy waiver refs, data and pages |
+| `exceptions[].ref` | `assembly_locator.py, assembly_locator_check.py` | full native reference, no display alias |
+| `exceptions[].value` | `assembly_locator.py, assembly_locator_check.py` | exact native value |
+| `exceptions[].mpn` | `assembly_locator.py, assembly_locator_check.py` | exact BOM manufacturer part number |
+| `exceptions[].lcsc` | `assembly_locator.py, assembly_locator_check.py` | exact BOM supplier identity |
+| `exceptions[].x` | `assembly_locator.py, assembly_locator_check.py` | native X millimetres, additionally checked against CPL datum |
+| `exceptions[].y` | `assembly_locator.py, assembly_locator_check.py` | native Y millimetres, additionally checked against inverted CPL Y |
+| `exceptions[].rotation` | `assembly_locator.py, assembly_locator_check.py` | native degrees and exact CPL rotation; differing supplier datums are unsupported, never inferred |
+| `exceptions[].side` | `assembly_locator.py, assembly_locator_check.py` | exceptions remain top-side only; full native board context covers both mounted sides, with bottom X reflected about native frame centre and Y down in the viewer; displayed coordinates/rotations remain native |
+| `exceptions[].pads` | `assembly_locator.py, assembly_locator_check.py` | exact1–4pad identity list per omitted part; larger atlas layouts are unsupported |
+| `exceptions[].pads[].number` | `assembly_locator.py, assembly_locator_check.py` | exact native pad number |
+| `exceptions[].pads[].net` | `assembly_locator.py, assembly_locator_check.py` | exact native net, including explicit empty names |
+
+The source records carry stable physical identities. The generated manifest binds
+those records to the exact PCB/BOM/CPL and tool hashes plus every HTML/JSON/PDF/PNG
+member. Keeping generated artifact hashes out of design-rule source avoids a
+self-referential board/rules hash cycle. A policy waiver must reference the
+read-only `assembly_locator_check.py project <project>` command; acceptance also
+requires an independent exact-artifact usability review.
+
+### keys: 03_src/rules/critical_paths.yaml
+
+| key | reader | why |
+|---|---|---|
+| `schema` | `critical_path_check.py` | exact schema 1; unknown/duplicate keys refused |
+| `layers` | `critical_path_check.py` | exact ordered native copper layer census |
+| `stackup_mm` | `critical_path_check.py` | positive inter-layer distances, one fewer than layers |
+| `short_paths` | `critical_path_check.py` | nonempty, unique exact endpoint pairs |
+| `short_paths[].from` | `critical_path_check.py` | exact source pad identity |
+| `short_paths[].to` | `critical_path_check.py` | exact destination pad identity |
+| `short_paths[].max_length_mm` | `critical_path_check.py` | positive saved-copper length ceiling |
+| `short_paths[].layer` | `critical_path_check.py` | single required routing layer; no vias |
+| `short_paths[].max_pad_centre_mm` | `critical_path_check.py` | positive placement span ceiling or null when not asserted |
+| `short_paths[].why` | `critical_path_check.py` | required reason carried in the graded row |
+| `prefixes` | `critical_path_check.py` | explicit downstream order obligations, may be empty for ordinary short paths |
+| `prefixes[].from` | `critical_path_check.py` | same source as an existing short path |
+| `prefixes[].through` | `critical_path_check.py` | short-path clamp endpoint |
+| `prefixes[].targets` | `critical_path_check.py` | nonempty unique downstream pad identities; every physical prefix edge must dominate each target |
+| `prefixes[].why` | `critical_path_check.py` | required protection-order rationale carried in the graded row |
+
+This graph proof requires explicit supported copper contacts. Graded-net zones,
+arcs, unsplit intersections and width-only contacts are refused. A saved-board
+PASS does not measure clamp function or environmental/transient survival.

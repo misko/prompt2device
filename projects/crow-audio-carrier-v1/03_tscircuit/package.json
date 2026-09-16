@@ -1,0 +1,6 @@
+{
+  "name": "crow-audio-carrier-v1",
+  "main": "src/crow_audio_carrier_v1.tsx",
+  "type": "module",
+  "dependencies": { "tscircuit": "0.0.2351" }
+}

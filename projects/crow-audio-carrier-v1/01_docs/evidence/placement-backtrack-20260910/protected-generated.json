@@ -1,0 +1,134 @@
+{
+  "projects/crow-audio-carrier-v1/03_tscircuit/build/circuit.json": {
+    "sha256": "78c7ffbf7defc297dfa6ca88d5b24e2ae9bd4e2de96931c0f8cb91ba1488bb3f",
+    "size": 5517900
+  },
+  "projects/crow-audio-carrier-v1/03_tscircuit/build/schematic.pdf": {
+    "sha256": "194529d5a49eda59bfeeb7f028acda030c8916f670518ca241c12e440a282a8e",
+    "size": 837879
+  },
+  "projects/crow-audio-carrier-v1/03_tscircuit/bun.lock": {
+    "sha256": "ec4d9604ff7f7f165c515e4ecac75d4ec3a9d2b6f7fb1be33030f6223218828f",
+    "size": 78403
+  },
+  "projects/crow-audio-carrier-v1/03_tscircuit/contracts.md": {
+    "sha256": "7ce45cb2b09e89c49a34bafadad503aa3883033002eb527395811cab99c81379",
+    "size": 23079
+  },
+  "projects/crow-audio-carrier-v1/03_tscircuit/kicad/crow_audio_carrier_v1.kicad_sch": {
+    "sha256": "43eaaa45fb16a68ee45f910765976f443a4070aafd86d67c9039f3b02bf9a0ef",
+    "size": 1156167
+  },
+  "projects/crow-audio-carrier-v1/03_tscircuit/manifest.yaml": {
+    "sha256": "3af1dbfa7630f329bfed20ee4b8965fecd99617cbdb58eb199c0cac1ef379ba2",
+    "size": 4325
+  },
+  "projects/crow-audio-carrier-v1/03_tscircuit/net_aliases.txt": {
+    "sha256": "311a411fce5e0f054be9f387ac634871c45b15f6b5411b4ab09f8d337ff2dd0f",
+    "size": 270
+  },
+  "projects/crow-audio-carrier-v1/03_tscircuit/package.json": {
+    "sha256": "27c670885b6bb15d4ecc917d6ee1601cc352f79114ae3888910d3de21b4c55da",
+    "size": 148
+  },
+  "projects/crow-audio-carrier-v1/03_tscircuit/parity_padmap.txt": {
+    "sha256": "3c50042368cc904ddd03ee71abe6a17af9835f8db095beeb052e026c281cd2d5",
+    "size": 226
+  },
+  "projects/crow-audio-carrier-v1/03_tscircuit/src/crow_audio_carrier_v1.tsx": {
+    "sha256": "96c0efc60c634a9c0a5ac2ed9cec58b0cab4b6170476da46fc4210ba0aa9196f",
+    "size": 49584
+  },
+  "projects/crow-audio-carrier-v1/03_tscircuit/src/schematic_presentation.tsx": {
+    "sha256": "4c62912af9260086c5fd110f2f85b3d512e1f3ca806284e75c29e2f02bebdaf7",
+    "size": 18755
+  },
+  "projects/crow-audio-carrier-v1/04_kicad/crow_audio_carrier_v1.kicad_dru": {
+    "sha256": "94251d1c7cb043c66d402d55b5cf89bac74f7ae0927b012556113ae56d7a2471",
+    "size": 17123
+  },
+  "projects/crow-audio-carrier-v1/04_kicad/crow_audio_carrier_v1.kicad_pcb": {
+    "sha256": "dd348351660637ec04671a764c2bda369896758bb362829ec7fe90cc7a6bb292",
+    "size": 1318213
+  },
+  "projects/crow-audio-carrier-v1/04_kicad/crow_audio_carrier_v1.kicad_pro": {
+    "sha256": "4a1040e34967d6610bd5032e46b3c2d0e24863370106f7e220d88d4dd633c61d",
+    "size": 28092
+  },
+  "projects/crow-audio-carrier-v1/04_kicad/crow_audio_carrier_v1.kicad_sch": {
+    "sha256": "43eaaa45fb16a68ee45f910765976f443a4070aafd86d67c9039f3b02bf9a0ef",
+    "size": 1156167
+  },
+  "projects/crow-audio-carrier-v1/04_kicad/fp-lib-table": {
+    "sha256": "74d263c3fd8c21dcd597750eee4aea45b00f7b7ef7d5fdd73d81da6043abe50d",
+    "size": 1445
+  },
+  "projects/crow-audio-carrier-v1/04_kicad/refdes_waiver.json": {
+    "sha256": "1e9621ad12f0e020f83ec3f9964d229cded2ea3f7f8786c9d0b85cbb565c06f1",
+    "size": 346
+  },
+  "projects/crow-audio-carrier-v1/06_build/checkpoints/prelayout-inputs.json": {
+    "sha256": "9a24686299cd11f0703f86bd0813030c8f8537d8428b674d9808bf59bc568b25",
+    "size": 87008
+  },
+  "projects/crow-audio-carrier-v1/06_build/checkpoints/prelayout.json": {
+    "sha256": "30b51954763fe85f5cf4945cf819245d39019dad2581d7e86b78ee1a9e7e84a7",
+    "size": 1798
+  },
+  "projects/crow-audio-carrier-v1/06_build/checkpoints/schematic.json": {
+    "sha256": "a856acc5eb47d4d394ce6758bb27531d0debc210c7f581b0ea0d7d8a7cdef0cb",
+    "size": 1169
+  },
+  "projects/crow-audio-carrier-v1/06_build/placement-dback-20260910T180147Z/candidate-1/04_kicad/crow_audio_carrier_v1.kicad_dru": {
+    "sha256": "94251d1c7cb043c66d402d55b5cf89bac74f7ae0927b012556113ae56d7a2471",
+    "size": 17123
+  },
+  "projects/crow-audio-carrier-v1/06_build/placement-dback-20260910T180147Z/candidate-1/04_kicad/crow_audio_carrier_v1.kicad_pcb": {
+    "sha256": "89d33bae8eaf67457fde887eae9db187d9284ea54be386f0d31e3d7dfe92bf2e",
+    "size": 1463999
+  },
+  "projects/crow-audio-carrier-v1/06_build/placement-dback-20260910T180147Z/candidate-1/04_kicad/crow_audio_carrier_v1.kicad_prl": {
+    "sha256": "b33727ea5b95a8a459eabfeeea9514a4632a046f822a6f0eb51ad13243af19fb",
+    "size": 2308
+  },
+  "projects/crow-audio-carrier-v1/06_build/placement-dback-20260910T180147Z/candidate-1/04_kicad/crow_audio_carrier_v1.kicad_pro": {
+    "sha256": "4a1040e34967d6610bd5032e46b3c2d0e24863370106f7e220d88d4dd633c61d",
+    "size": 28092
+  },
+  "projects/crow-audio-carrier-v1/06_build/placement-dback-20260910T180147Z/candidate-1/04_kicad/crow_audio_carrier_v1.kicad_sch": {
+    "sha256": "43eaaa45fb16a68ee45f910765976f443a4070aafd86d67c9039f3b02bf9a0ef",
+    "size": 1156167
+  },
+  "projects/crow-audio-carrier-v1/06_build/placement-dback-20260910T180147Z/candidate-1/04_kicad/fp-lib-table": {
+    "sha256": "928da2c99199f0e776d5e94795ec42e603a4a6cc3f087d2258cfab2656351e52",
+    "size": 1454
+  },
+  "projects/crow-audio-carrier-v1/06_build/placement-dback-20260910T180147Z/negative-original/04_kicad/crow_audio_carrier_v1.kicad_pcb": {
+    "sha256": "dd348351660637ec04671a764c2bda369896758bb362829ec7fe90cc7a6bb292",
+    "size": 1318213
+  },
+  "projects/crow-audio-carrier-v1/06_build/placement-dback-20260910T180147Z/negative-original/04_kicad/crow_audio_carrier_v1.kicad_prl": {
+    "sha256": "b33727ea5b95a8a459eabfeeea9514a4632a046f822a6f0eb51ad13243af19fb",
+    "size": 2308
+  },
+  "projects/crow-audio-carrier-v1/06_build/placement-dback-20260910T180147Z/negative-original/04_kicad/crow_audio_carrier_v1.kicad_pro": {
+    "sha256": "d679205c674cc988c910a089d6c2a978221c9734c58b57c734daa2aa1eade0ac",
+    "size": 9604
+  },
+  "projects/crow-audio-carrier-v1/06_build/sourcing/prelayout_request.json": {
+    "sha256": "c78db993b7d9bb7e34d41960dcf6c6a08c061b425947aa2b363a1dfda099b0c4",
+    "size": 14246
+  },
+  "projects/crow-audio-carrier-v1/06_build/sourcing/prelayout_response.csv": {
+    "sha256": "2f7426cf5d959bd3fb9e4e0c944c03d7be3371ac2e64235fe36768ba8aa33d32",
+    "size": 1647
+  },
+  "projects/crow-audio-carrier-v1/06_build/sourcing/public_catalog_stock.json": {
+    "sha256": "84b0349aa562cfd2052b094c809c43dc16d727b12aadf8df1e355cd79a27b81c",
+    "size": 16795
+  },
+  "skills/pcb-design/templates/contracts/04_kicad/contracts.md": {
+    "sha256": "28c1ace226b6806d482fd3e2243b1c27ee010ee3dcb3c97503fb5a1d19174764",
+    "size": 5123
+  }
+}

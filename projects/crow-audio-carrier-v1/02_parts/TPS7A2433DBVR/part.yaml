@@ -1,0 +1,46 @@
+mpn: TPS7A2433DBVR
+manufacturer: Texas Instruments
+type: linear_ldo_regulator
+value: TPS7A2433DBVR
+status: active
+dropout_mv: 250
+pdiss_max_mw: 238
+datasheet:
+  doc_id: SBVS386
+  revision: SBVS386E
+  url: https://www.ti.com/lit/ds/symlink/tps7a24.pdf
+  local: TPS7A24_SBVS386E.pdf
+  sha256: 5cfbb6f17e5be0a018664b90f0bca99f9ad84b7d06c072bffcd36e693ffd70d0
+  fetched: 2026-09-02
+  pages: 31
+  provenance: "Downloaded directly from ti.com; the committed PDF matches the declared SHA-256 and includes the exact TPS7A2433DBVR fixed-output row and DBV pin map."
+package: "DBV SOT-23-5 P0.95mm"
+footprint: Package_TO_SOT_SMD:SOT-23-5
+escape: {style: leaded, pitch: 0.95, tier_required: jlc_2layer_default, checked: "TI SBVS386E fixed DBV top view and package drawing reviewed 2026-09-01"}
+pins: {1: IN, 2: GND, 3: EN, 4: NC, 5: OUT}
+limits:
+  vin_operating: "2.4V to 18V"
+  vin_absolute_max: 20V
+  vout_nominal: 3.3V
+  output_current_max: 200mA
+  dropout_max_at_200ma: 250mV
+  output_accuracy: "+/-1.25%"
+  operating_temperature: "-40C to +125C"
+gotchas:
+  - "Pin 4 is NC on this fixed-output variant. TI permits it to float and notes that tying it to GND improves thermal performance; it is FB on the adjustable variant."
+  - "The 238mW dossier limit is a conservative board-design derivation for 85C ambient: (125C-85C)/167.8C/W. It is not a package nameplate rating and must be revisited for the realized copper and ambient."
+  - "The 250mV dropout is the maximum at the rated 200mA output current; lower-current typical plots are not a guaranteed replacement."
+verified: "CITED: TI SBVS386E Figure 5-2 and Table 5-1, PDF p.3, independently fix fixed-DBV pins 1=IN, 2=GND, 3=EN, 4=NC, 5=OUT; electrical/thermal tables PDF pp.5-7 fix the conservative limits; re-read 2026-09-01."
+layout:
+  source: "TI SBVS386E Section 8.4 Layout, PDF p.20"
+  reviewed: 2026-09-01
+  notes:
+    - "Place input and output capacitors directly at IN/GND and OUT/GND, respectively."
+    - "Use a short, broad ground return and copper area for heat spreading; keep EN away from the buck SW node."
+layout_refs:
+  - {tier: 1, reached: true, artifact: "TI SBVS386E Section 8.4 and DBV layout example", why: "Manufacturer authority fixes capacitor placement, return geometry, and thermal copper priorities."}
+  - {tier: 2, reached: false, artifact: "exact TPS7A2433 routed evaluation design", why: "No exact editable manufacturer reference was captured; the data-sheet layout and first-article thermal check remain binding."}
+sourcing:
+  lcsc: C2866134
+  alternates: []
+  note: "Exact MPN/code match queried from the live JLC catalog 2026-09-01; order-time allocation remains separate."

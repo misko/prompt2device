@@ -1,0 +1,23 @@
+mpn: RC0402FR-071KL
+manufacturer: YAGEO
+type: thick_film_resistor
+value: 1k
+status: active
+datasheet:
+  doc_id: RC0402FR-series
+  revision: generated2026-09-09
+  url: https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-071KL
+  local: Yageo_RC0402FR-071KL_20260909.pdf
+  sha256: 752a9a27314a8a72d9aa75e5af2ce5f758b1c6daf1f5fe7c9e85e5f123628e46
+  fetched: '2026-09-09'
+  pages: 1
+  note: "Exact1k +/-1percent,0402/1005,0.063W rounded at70C (retain1/16W),50V subject to power rating,-55..155C,TCR+/-100ppm/C,178mm tape-and-reel,tin terminations. Manufacturer application-suitability disclaimer retained."
+  provenance: "Downloaded from exact public manufacturer endpoint and visually inspected as a full-page raster2026-09-09; unchanged captured bytes. Not a native footprint review or reserved supply."
+package: "0402 (1005 metric)"
+footprint: Resistor_SMD:R_0402_1005Metric
+escape: {style: passive, pitch: 0.5, tier_required: jlc_2layer_default, checked: "Exact YAGEO0402 dimensions and nonpolar terminals read2026-09-09; actual land/paste review owed."}
+pins: {1: A, 2: B}
+limits: {resistance: 1kOhm, tolerance: 1pct, power: 62.5mW, voltage: 50V}
+asserts: [{assert: value, equals: 1k, why: "ADR0023 limits retained VMID buffer-reservoir return current; feedback remains before the isolator."}]
+verified: "CITED exact manufacturer part sheet p1; RC_L_20251114.pdf provides series land-pattern and derating context. Engineering prototype uses5percent resistance reserve, not a new part tolerance."
+sourcing: {lcsc: C106235, alternates: []}

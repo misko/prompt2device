@@ -1,0 +1,62 @@
+# Dated public product-page observations only; stale before ordering.
+quotes:
+- mpn: LT3041ADE#TRPBF
+  manufacturer: Analog Devices
+  distributor: mouser
+  dpn: 584-LT3041ADE#TRPBF
+  source: product_page
+  url: https://www.mouser.com/en/ProductDetail/Analog-Devices/LT3041ADETRPBF
+  read_on: '2026-09-16'
+  checked_at: '2026-09-16T05:53:16+00:00'
+  lifecycle: Active
+  packaging: Cut Tape
+  stock: 0
+  min: 1
+  mult: 1
+  price_breaks: []
+  note: "CITED exact public Mouser product page reopened 2026-09-16T05:53:16+00:00: Analog Devices Inc., exact A-grade MPN LT3041ADE#TRPBF, active listing, DFN-14, stock0 with backorder only. Cut Tape minimum1/multiple1 remains listed; no current unit price was presented on the US page. The tray LT3041ADE#PBF listing was also stock0. This is a fresh BLOCKED-SOURCING observation for design continuation only, with no reservation, JLC allocation, landed quote, Q-2SOURCE PASS or purchase authority. ADR0026 design-only scope; prior positive observations remain preserved in Git."
+
+- mpn: OPA2320AIDR
+  manufacturer: Texas Instruments
+  distributor: digikey
+  dpn: 296-29885-1-ND
+  source: product_page
+  url: https://www.digikey.com/en/products/detail/texas-instruments/OPA2320AIDR/2782284
+  read_on: '2026-09-09'
+  lifecycle: Active
+  stock: 1086
+  min: 1
+  mult: 1
+  price_breaks:
+  - qty: 1
+    usd: 4.27
+  - qty: 10
+    usd: 3.227
+  - qty: 25
+    usd: 2.9656
+  - qty: 100
+    usd: 2.6785
+  note: Exact manufacturer/MPN, Active, stock and cut-tape ladder read from opened
+    public product page. Five carriers need45; reel MOQ2500 does not apply to this
+    cut-tape line. Freight, taxes, tariffs and allocation not quoted or authorized.
+- mpn: RC0402FR-071KL
+  manufacturer: YAGEO
+  distributor: digikey
+  dpn: 311-1.00KLRCT-ND
+  source: product_page
+  url: https://www.digikey.com/en/products/detail/yageo/RC0402FR-071KL/729460
+  read_on: '2026-09-09'
+  lifecycle: Active
+  stock: 6348432
+  min: 1
+  mult: 1
+  price_breaks:
+  - qty: 1
+    usd: 0.1
+  - qty: 10
+    usd: 0.021
+  - qty: 25
+    usd: 0.0152
+  note: Exact manufacturer/MPN, Active, stock and cut-tape ladder read from opened
+    public product page, not differing search snippet. Five boards need10; freight,
+    taxes, tariffs and allocation not quoted or authorized.

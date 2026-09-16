@@ -1,0 +1,11 @@
+mpn: 6541PA
+manufacturer: Belden
+type: analog_audio_cable
+status: active
+datasheet: {doc_id: 6541PA, revision: "0.544 / 2025-09-07", url: "https://catalog.belden.com/techdata/EN/6541PA_techdata.pdf", local: null, sha256: null, fetched: 2026-09-01}
+package: "two individually Beldfoil-shielded 22 AWG twisted pairs, PVDF jacket"
+footprint: none_off_board
+limits: {outer_diameter_nominal_mm: 5.44, minimum_bend_radius_mm: 53, conductor_dcr_ohm_per_km_nominal: 53.8, capacitance_conductor_to_conductor_pf_per_m: 90.2, current_per_conductor_a_at_25c: 2.2}
+gotchas: ["The 53 mm minimum bend radius is a planning and qualification bound; exact gland, boot and strain relief remain owed.", "Fifteen metres is a design/qualification reference, not a qualified maximum."]
+verified: "Belden exact product technical-data payload inspected 2026-09-01; source hashes are recorded in primary-source-record.md."
+sourcing: {lcsc: null, alternates: []}

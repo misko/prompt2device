@@ -1,0 +1,13 @@
+mpn: CL10A225KP8NNNC
+manufacturer: Samsung Electro-Mechanics
+type: ceramic_capacitor
+value: 2.2uF
+datasheet: {doc_id: CL10A225KP8NNNC, revision: current, url: "https://www.lcsc.com/product-detail/C1607.html", sha256: null, fetched: 2026-09-01}
+package: "0603 (1608 metric)"
+footprint: Capacitor_SMD:C_0603_1608Metric
+escape: {style: passive, pitch: 0.8, tier_required: jlc_2layer_default, checked: "standard 0603 land, 2026-09-01"}
+pins: {1: A, 2: B}
+limits: {capacitance_f: 0.0000022, tolerance_pct: 10, voltage_v: 10, dielectric: X5R}
+asserts: [{assert: value, equals: 2.2u, tolerance_pct: 10, why: "ADC VMID decoupling network."}]
+verified: "Exact MPN/code/value/package match selected 2026-09-01; order-time availability remains separate."
+sourcing: {lcsc: C1607, alternates: []}

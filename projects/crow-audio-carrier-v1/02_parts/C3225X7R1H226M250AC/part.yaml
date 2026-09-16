@@ -1,0 +1,23 @@
+mpn: C3225X7R1H226M250AC
+manufacturer: TDK
+type: ceramic_capacitor
+value: 22uF
+status: active
+datasheet:
+  doc_id: C3225X7R1H226M250AC
+  revision: current-2026-09-01
+  url: https://product.tdk.com/en/search/capacitor/ceramic/mlcc/info?part_no=C3225X7R1H226M250AC
+  local: null
+  sha256: null
+  provenance: "Official TDK Product Center exact-order-code page; downloadable local specification bytes remain OWED."
+package: "1210 (3225 metric), 2.5 mm nominal thickness"
+footprint: Capacitor_SMD:C_1210_3225Metric
+escape: {style: passive, pitch: 1.0, tier_required: jlc_2layer_default, checked: "TDK exact dimensions and recommended-land ranges reviewed 2026-09-01"}
+pins: {1: A, 2: B}
+limits: {capacitance: 22uF, tolerance: 20pct, rated_voltage: 50V, dielectric: X7R, operating_temperature: "-55C to +125C"}
+asserts:
+  - {assert: value, equals: 22u, tolerance_pct: 20, why: "Two exact capacitors retain more than the AP63205 10uF input requirement under the declared effective-capacitance deratings."}
+gotchas:
+  - "C_BUCK_IN and C_BUCK_IN2 are both required; one alone does not satisfy the conservative tolerance, DC-bias and temperature effective-capacitance budget."
+verified: "CITED: official TDK Product Center exact page reports production status, 22uF +/-20%, 50V, X7R and EIA 1210; read 2026-09-01."
+sourcing: {lcsc: null, alternates: [], note: "Exact JLC allocation is unproven; do not substitute a 25V look-alike."}

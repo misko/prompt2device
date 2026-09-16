@@ -1,0 +1,386 @@
+# Post-power capture identity is a separate machine-checked source contract:
+# ../adc_channel_map.json capture_requirements, consumed by check_analog_paths.py.
+# This file remains the first-power population/rail card. Neither source card
+# claims the eight-channel impulse/stream test has passed.
+stages:
+  # The card's rail measurements are global, so the only honest first-power
+  # population is the exact fully assembled board.  Literal refdes keep the
+  # record auditable; ranges would silently turn into fictional components.
+  - name: fully-populated-first-power
+    installed:
+      - J1
+      - J2
+      - J3
+      - J4
+      - J5
+      - J6
+      - J7
+      - J8
+      - D_BUCK_IN
+      - F1
+      - F2
+      - F3
+      - F4
+      - F5
+      - F6
+      - F7
+      - F8
+      - U_ESD1
+      - U_ESD2
+      - U_ESD3
+      - U_ESD4
+      - U_ESD5
+      - U_ESD6
+      - U_ESD7
+      - U_ESD8
+      - C_A1P
+      - C_A1N
+      - R_IN1P
+      - R_IN1N
+      - R_B1P
+      - R_B1N
+      - U_AFE1
+      - R_X1P
+      - R_X1N
+      - C_FB1P
+      - C_FB1N
+      - R_OUT1P
+      - R_OUT1N
+      - C_FILTER1P1
+      - C_FILTER1P2
+      - C_FILTER1N1
+      - C_FILTER1N2
+      - C_OPA1
+      - C_A2P
+      - C_A2N
+      - R_IN2P
+      - R_IN2N
+      - R_B2P
+      - R_B2N
+      - U_AFE2
+      - R_X2P
+      - R_X2N
+      - C_FB2P
+      - C_FB2N
+      - R_OUT2P
+      - R_OUT2N
+      - C_FILTER2P1
+      - C_FILTER2P2
+      - C_FILTER2N1
+      - C_FILTER2N2
+      - C_OPA2
+      - C_A3P
+      - C_A3N
+      - R_IN3P
+      - R_IN3N
+      - R_B3P
+      - R_B3N
+      - U_AFE3
+      - R_X3P
+      - R_X3N
+      - C_FB3P
+      - C_FB3N
+      - R_OUT3P
+      - R_OUT3N
+      - C_FILTER3P1
+      - C_FILTER3P2
+      - C_FILTER3N1
+      - C_FILTER3N2
+      - C_OPA3
+      - C_A4P
+      - C_A4N
+      - R_IN4P
+      - R_IN4N
+      - R_B4P
+      - R_B4N
+      - U_AFE4
+      - R_X4P
+      - R_X4N
+      - C_FB4P
+      - C_FB4N
+      - R_OUT4P
+      - R_OUT4N
+      - C_FILTER4P1
+      - C_FILTER4P2
+      - C_FILTER4N1
+      - C_FILTER4N2
+      - C_OPA4
+      - C_A5P
+      - C_A5N
+      - R_IN5P
+      - R_IN5N
+      - R_B5P
+      - R_B5N
+      - U_AFE5
+      - R_X5P
+      - R_X5N
+      - C_FB5P
+      - C_FB5N
+      - R_OUT5P
+      - R_OUT5N
+      - C_FILTER5P1
+      - C_FILTER5P2
+      - C_FILTER5N1
+      - C_FILTER5N2
+      - C_OPA5
+      - C_A6P
+      - C_A6N
+      - R_IN6P
+      - R_IN6N
+      - R_B6P
+      - R_B6N
+      - U_AFE6
+      - R_X6P
+      - R_X6N
+      - C_FB6P
+      - C_FB6N
+      - R_OUT6P
+      - R_OUT6N
+      - C_FILTER6P1
+      - C_FILTER6P2
+      - C_FILTER6N1
+      - C_FILTER6N2
+      - C_OPA6
+      - C_A7P
+      - C_A7N
+      - R_IN7P
+      - R_IN7N
+      - R_B7P
+      - R_B7N
+      - U_AFE7
+      - R_X7P
+      - R_X7N
+      - C_FB7P
+      - C_FB7N
+      - R_OUT7P
+      - R_OUT7N
+      - C_FILTER7P1
+      - C_FILTER7P2
+      - C_FILTER7N1
+      - C_FILTER7N2
+      - C_OPA7
+      - C_A8P
+      - C_A8N
+      - R_IN8P
+      - R_IN8N
+      - R_B8P
+      - R_B8N
+      - U_AFE8
+      - R_X8P
+      - R_X8N
+      - C_FB8P
+      - C_FB8N
+      - R_OUT8P
+      - R_OUT8N
+      - C_FILTER8P1
+      - C_FILTER8P2
+      - C_FILTER8N1
+      - C_FILTER8N2
+      - C_OPA8
+      - J9
+      - F_IN
+      - Q_IN
+      - R_QIN_G
+      - D_QIN_GS
+      - D_IN
+      - C_BUCK_IN
+      - C_BUCK_IN2
+      - C_BUCK_IN3
+      - U_BUCK
+      - C_BUCK_BST
+      - L_BUCK
+      - C_BUCK_O1
+      - C_BUCK_O2
+      - C_BUCK_O3
+      - R_OPA_BLEED1
+      - R_OPA_BLEED2
+      - C_OPA_BULK
+      - U_LDO
+      - R_LDO_SET
+      - C_LDO_IN
+      - C_LDO_OUT
+      - R_VMID1_TOP
+      - R_VMID1_BOT
+      - R_VMID2_TOP
+      - R_VMID2_BOT
+      - C_VMID1_EXT_10U
+      - C_VMID1_EXT_1U
+      - C_VMID2_EXT_10U
+      - C_VMID2_EXT_1U
+      - U_ADC
+      - R_CFG1
+      - R_CFG2
+      - R_CFG4
+      - R_CFG5
+      - R_FILT1P
+      - R_FILT2P
+      - C_FILT1_470U
+      - C_FILT1_10U
+      - C_FILT1_1U
+      - C_FILT2_470U
+      - C_FILT2_10U
+      - C_FILT2_1U
+      - C_VMID1_4U7
+      - C_VMID1_470N
+      - C_VMID2_4U7
+      - C_VMID2_470N
+      - C_LDO_A
+      - C_LDO_D
+      - C_VDDA1_4U7
+      - C_VDDA1_10N
+      - C_VDDA2_4U7
+      - C_VDDA2_10N
+      - C_VDDIO
+      - J10
+      - J11
+      - U_CLK
+      - C_CLK
+      - R_MCH_MCLK_PD
+      - R_MCH_BCLK_PD
+      - R_MCH_FSYNC_PD
+      - R_MCLK
+      - R_BCLK
+      - R_FSYNC
+      - U_TDM
+      - U_TDM_SCH
+      - R_TDM_PD
+      - C_TDM_SCH
+      - C_TDM
+      - U_OE
+      - C_OE
+      - R_MCH_SENSE
+      - R_MCH_SENSE_PD
+      - R_TDM
+      - U_RST1
+      - C_RST1
+      - U_RST2
+      - R_RST_T
+      - C_RST_T
+      - C_RST2
+      - Q_RST1
+      - R_RESET_PU
+      - R_RESET_GPD
+      - D_HOLD
+      - Q_PRE
+      - Q_PRE_EN
+      - R_PRE
+      - R_PRE_G
+      - C_HOLD1
+      - C_HOLD2
+      - C_LDO_NR4
+      - C_LDO_NR5
+      - U_PWR
+      - C_PWR_CT
+      - C_PWR
+      - R_PWR_PU
+      - U_AUDIO
+      - C_AUDIO_CT1
+      - C_AUDIO_CT2
+      - C_AUDIO
+      - R_AUDIO_PU
+      - R_PWR_TOP
+      - R_PWR_BOT
+      - R_ADC_TOP
+      - R_ADC_BOT
+      - U_DUMP
+      - C_DUMP_LOGIC
+      - U_LDO_EN
+      - C_LDO_EN
+      - R_DUMP_TIME1
+      - R_DUMP_TIME2
+      - C_DUMP_TIME
+      - Q_DUMP
+      - R_DUMP
+      - R_DUMP_PD
+      - R_AUDIO_PD
+      - U_ISO1
+      - R_ADC_PD1P
+      - R_ADC_PD1N
+      - C_ADC_CM1P
+      - C_ADC_CM1N
+      - C_ISO1
+      - U_ISO2
+      - R_ADC_PD2P
+      - R_ADC_PD2N
+      - C_ADC_CM2P
+      - C_ADC_CM2N
+      - C_ISO2
+      - U_ISO3
+      - R_ADC_PD3P
+      - R_ADC_PD3N
+      - C_ADC_CM3P
+      - C_ADC_CM3N
+      - C_ISO3
+      - U_ISO4
+      - R_ADC_PD4P
+      - R_ADC_PD4N
+      - C_ADC_CM4P
+      - C_ADC_CM4N
+      - C_ISO4
+      - U_ISO5
+      - R_ADC_PD5P
+      - R_ADC_PD5N
+      - C_ADC_CM5P
+      - C_ADC_CM5N
+      - C_ISO5
+      - U_ISO6
+      - R_ADC_PD6P
+      - R_ADC_PD6N
+      - C_ADC_CM6P
+      - C_ADC_CM6N
+      - C_ISO6
+      - U_ISO7
+      - R_ADC_PD7P
+      - R_ADC_PD7N
+      - C_ADC_CM7P
+      - C_ADC_CM7N
+      - C_ISO7
+      - U_ISO8
+      - R_ADC_PD8P
+      - R_ADC_PD8N
+      - C_ADC_CM8P
+      - C_ADC_CM8N
+      - C_ISO8
+    exposed_pads:
+      - U_LDO
+      - U_ISO1
+      - U_ISO2
+      - U_ISO3
+      - U_ISO4
+      - U_ISO5
+      - U_ISO6
+      - U_ISO7
+      - U_ISO8
+      - Q_IN
+      - U_ADC
+
+rails:
+  # Every no_load_current row observes the same fully populated carrier at the
+  # bench supply after startup, with all spoke loads disconnected.  The rows
+  # therefore share one conservative input-current ceiling; they are not
+  # per-rail load budgets.  Inrush is captured separately by the test plan.
+  - name: 12V_PROTECTED
+    resistance: {probe: J9.1_to_12V_PROTECTED, min_ohm: 0, max_ohm: 2.5}
+    voltage: {probe: TP_12V, min_v: 11.16, max_v: 13.2}
+    no_load_current: {probe: bench_supply, min_a: 0, max_a: 0.120}
+    supply: {probe: bench_supply, min_v: 11.4, max_v: 13.2, max_current_limit_a: 0.20}
+  - name: 5V_BUCK
+    resistance: {probe: TP_5V_to_GND, min_ohm: 50, max_ohm: 1000000}
+    voltage: {probe: TP_5V, min_v: 4.85, max_v: 5.15}
+    no_load_current: {probe: bench_supply, min_a: 0, max_a: 0.120}
+    supply: {probe: bench_supply, min_v: 11.4, max_v: 12.0, max_current_limit_a: 0.20}
+  - name: 3V3_ADC
+    resistance: {probe: TP_3V3_to_GND, min_ohm: 20, max_ohm: 1000000}
+    voltage: {probe: TP_3V3, min_v: 3.23, max_v: 3.35}
+    no_load_current: {probe: bench_supply, min_a: 0, max_a: 0.120}
+    supply: {probe: bench_supply, min_v: 11.4, max_v: 12.0, max_current_limit_a: 0.30}
+  - name: VMID1_EXT
+    resistance: {probe: VMID1_EXT_to_GND, min_ohm: 400, max_ohm: 1200}
+    voltage: {probe: VMID1_EXT_to_GND, min_v: 1.60, max_v: 1.70}
+    no_load_current: {probe: bench_supply, min_a: 0, max_a: 0.120}
+    supply: {probe: bench_supply, min_v: 11.4, max_v: 12.0, max_current_limit_a: 0.30}
+  - name: VMID2_EXT
+    resistance: {probe: VMID2_EXT_to_GND, min_ohm: 400, max_ohm: 1200}
+    voltage: {probe: VMID2_EXT_to_GND, min_v: 1.60, max_v: 1.70}
+    no_load_current: {probe: bench_supply, min_a: 0, max_a: 0.120}
+    supply: {probe: bench_supply, min_v: 11.4, max_v: 12.0, max_current_limit_a: 0.30}

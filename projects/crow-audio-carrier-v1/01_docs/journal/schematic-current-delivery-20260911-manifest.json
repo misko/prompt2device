@@ -1,0 +1,100 @@
+{
+  "schema": 1,
+  "status": "FORENSIC_ONLY_INCOMPLETE",
+  "source_commit": "bad6b2db7ad063a2955e8bb2b1f7741160ed29ff",
+  "archive": {
+    "path": "65e1f7530a5060c221d4f2b486ef01b524e34f5e2488a5fa1d3369a73558e9a8.tar.gz",
+    "sha256": "65e1f7530a5060c221d4f2b486ef01b524e34f5e2488a5fa1d3369a73558e9a8",
+    "size": 26800380
+  },
+  "members": {
+    "attempt/.closing": {
+      "sha256": "c96d8294c1c598bee078454b8deed545c7db4fc384f428ca422801e67e8222c8",
+      "size": 27
+    },
+    "attempt/admission.json": {
+      "sha256": "b8cf82e2381a8c7602b3128bc4f9cf922099c27068188397258091e0c3605423",
+      "size": 41175
+    },
+    "attempt/attempt.json": {
+      "sha256": "53f40d66369bb2ac0d6626eca906157b143f4b8a605e76c34ae92ef74584fd05",
+      "size": 1458
+    },
+    "attempt/envelope.json": {
+      "sha256": "84e9eedbad9f2f4661b3eec5ab0989e50c218911973e22206b7359fb5b5585cf",
+      "size": 45120
+    },
+    "outputs/evidence-manifest.json": {
+      "sha256": "1f4b9faf69815d763984ffc61f34d370a1774058a7e617d36af9d4127595ffc8",
+      "size": 16697
+    },
+    "outputs/evidence.json": {
+      "sha256": "87b23fe5e4539c71519fd591a72ef42d10bf41b9f83b6f111f17c1b60ce0bb6e",
+      "size": 26242
+    },
+    "outputs/evidence.tar.gz": {
+      "sha256": "4d77e94e2364ace2eef149559ef0fed9fcbcd596996c458670737ca046fc70d7",
+      "size": 27728362
+    },
+    "outputs/report.md": {
+      "sha256": "bc01053fb5111e0b96d286e2b400924b52b1df2901bd5d0a6427e5255b0f15ab",
+      "size": 8206
+    },
+    "outputs/result.json": {
+      "sha256": "c892152f4a32c89662e9d915d3b99f3fd6af14d64279f6b9a59b51eb9abbac2f",
+      "size": 705
+    },
+    "packet/TASK.md": {
+      "sha256": "a9ee13d67239c1c76e1fd1566bcf6985fb509a3af9b5339753f6451eb79f8222",
+      "size": 4779
+    },
+    "packet/bindings.json": {
+      "sha256": "4795ed6267347683a527d287766f1782c71e2a7367e0dd0b490038b3cb131e5e",
+      "size": 775
+    },
+    "packet/render-result.json": {
+      "sha256": "72789824c4fc1a641a358ea1a6d83c6f3b66465a346ae2768f3e7e686ed52b0c",
+      "size": 658
+    },
+    "packet/render.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "packet/subject-manifest.json": {
+      "sha256": "a548798e2cefac19d0168e62e13356e75f953640380338164ddcac989b8eaa45",
+      "size": 40273
+    },
+    "root-diagnosis/diagnose.py": {
+      "sha256": "7f8ea10c81d7bdb33af8bef7acb5a3c54ac1c4ab84620993da3a625066236593",
+      "size": 2876
+    },
+    "root-diagnosis/diagnosis-runtime.json": {
+      "sha256": "3171fd70e6978ee4d50f805cb9ddd76f3438265b436d37106eda03cb04c8a710",
+      "size": 673
+    },
+    "root-diagnosis/diagnosis.json": {
+      "sha256": "3ab7223cf916409b09cf2fef409fef9dcbaf5bae87ec44eee478aaed1a45618e",
+      "size": 1592
+    },
+    "root-diagnosis/diagnosis.log": {
+      "sha256": "d5afc7062b1e9f4f15ec4f3eeca0c93026775e112f2f898601f0be6c71f7153c",
+      "size": 1096
+    },
+    "root-diagnosis/hypothetical-result.json": {
+      "sha256": "0cfd48cf457715c9880a60345cb90812c94afb02f998d722d11a9dce8e3893b9",
+      "size": 331
+    },
+    "root-diagnosis/run.py": {
+      "sha256": "d9df0570f97f535dca2b00120faf6a7b80bc740e045fd3d3a2314ba05d45a160",
+      "size": 651
+    }
+  },
+  "subject_archive": {
+    "path": "5a6fe2908e1e9b545c5002b12d4234888eb7c4c50eb2fada6bba10c547fd461d.tar.gz",
+    "sha256": "5a6fe2908e1e9b545c5002b12d4234888eb7c4c50eb2fada6bba10c547fd461d",
+    "size": 68797073
+  },
+  "subject_manifest_member": "packet/subject-manifest.json",
+  "original_attempt": "attempt/attempt.json",
+  "adoption": false
+}

@@ -1,0 +1,252 @@
+{
+  "recorded_at": "2026-09-11T04:05:58.632423+00:00",
+  "terminal_status": "INCOMPLETE",
+  "reason": "Coordinator omitted generated03_tscircuit/dist output scope. No attempt adoption.",
+  "members": {
+    "attempt/.closing": {
+      "sha256": "481ddca8ff4d15dc85ad48b5091a467b1cd72300f37ae071c57862895870f7b9",
+      "size": 27
+    },
+    "attempt/admission.json": {
+      "sha256": "fd01586bbd7105f8982c431149514143ae0eab08e526d9f9f673af3826a126b2",
+      "size": 13335739
+    },
+    "attempt/attempt.json": {
+      "sha256": "c402b1764d0cf58151780945fb17f111caac58e24067d64e8340bfe0a93da2f8",
+      "size": 2889
+    },
+    "attempt/conductor.log": {
+      "sha256": "a336f85b8bbf298004bdb00eaeee36e9152322c2ca2cfd069b7583524322f850",
+      "size": 262694
+    },
+    "attempt/envelope.json": {
+      "sha256": "5407fc453063ef95146920faadb77a1acc85d3aa127a849ce8f40b146860e9ee",
+      "size": 3631
+    },
+    "attempt/outer-result.json": {
+      "sha256": "7f14679686566db43a5793936dbf058da8482b8255910f52479b1394f34b8a14",
+      "size": 821
+    },
+    "attempt/outputs/changes.json": {
+      "sha256": "0ab7310d27a5bcc29355d3ced4d2ea11f5f1b95d3c7d731dac9ea21b5e655c5c",
+      "size": 142
+    },
+    "attempt/outputs/conductor.log": {
+      "sha256": "a336f85b8bbf298004bdb00eaeee36e9152322c2ca2cfd069b7583524322f850",
+      "size": 262694
+    },
+    "attempt/outputs/process.json": {
+      "sha256": "c99354b845cf19358ca98e84dae2e1fa539dedf99584c2136029b3df1bb074d1",
+      "size": 1138
+    },
+    "attempt/outputs/report.md": {
+      "sha256": "f553d782a2aaa426b9f07bd30064a30ba0e35ec7d8ca94b33fe79c6d3faa529b",
+      "size": 445
+    },
+    "attempt/outputs/result.json": {
+      "sha256": "c40711e6ffbfc6d529c74ef4c1be0de688a3fe9d8c28e56634ec1a719acada0b",
+      "size": 607
+    },
+    "observed/03_tscircuit/build/circuit.json": {
+      "sha256": "bd627e1736fd3e55b6db0587b45483e5d30177c08a956db82f534b88cb0ebe30",
+      "size": 5517961
+    },
+    "observed/03_tscircuit/build/schematic.pdf": {
+      "sha256": "ee4f51f8deab9eb89376e0fccc5639c893a6aff080babbe105df6f3ce7f8937f",
+      "size": 837440
+    },
+    "observed/03_tscircuit/dist/src/crow_audio_carrier_v1/circuit.json": {
+      "sha256": "bd627e1736fd3e55b6db0587b45483e5d30177c08a956db82f534b88cb0ebe30",
+      "size": 5517961
+    },
+    "observed/04_kicad/crow_audio_carrier_v1.kicad_sch": {
+      "sha256": "02e0421b71d98e6bfd91cd03cdbcb5550bcdd326ff405d4ffa8d4ac249d29c0d",
+      "size": 1156167
+    },
+    "observed/06_build/build_provenance.json": {
+      "sha256": "4767efe1b932a4e7a13ac3d81af292168942f7c370a272fd87b19b934fcbe066",
+      "size": 862
+    },
+    "observed/06_build/checkpoints/prelayout-inputs.json": {
+      "sha256": "1ce604b939a0ac04104749bf95abd3b38a254ce6e9b5ddf7c940527290892bb8",
+      "size": 111831
+    },
+    "observed/06_build/checkpoints/prelayout.json": {
+      "sha256": "8e1cb1f32f23ab3640949670f10e1fdba00ed5513db86aafc4388b42de922e19",
+      "size": 1799
+    },
+    "observed/06_build/netlists/crow_audio_carrier_v1.net": {
+      "sha256": "3fe2d4906d7761db63ebab89a595200f228407422d5ca684191915669305ea3a",
+      "size": 630493
+    },
+    "observed/06_build/performance.json": {
+      "sha256": "1eb0579d9f92f69c027dc2d47620a10e4611f7921be6e04ce2d07723d9a93634",
+      "size": 72410
+    },
+    "observed/06_build/pipeline_state/adr_bound_governance.json": {
+      "sha256": "eb2124d2da77a0fe17f22592ec4fb1db89db03f21555d684ae2d4d776f4fd440",
+      "size": 615
+    },
+    "observed/06_build/pipeline_state/placement_canonical_restart.json": {
+      "sha256": "b4fea64ea6fa4d36e8b78823806760774d8a631c0c6d853a51d1bdc3cb82d9e7",
+      "size": 420
+    },
+    "observed/06_build/pipeline_state/rf_context.json": {
+      "sha256": "6541a3f1fa1888c1573c072c7b4304f7d4931ff7e2fc119bdc9d46aa030b80df",
+      "size": 410
+    },
+    "observed/06_build/pipeline_state/rf_solver.json": {
+      "sha256": "0361d74767b5230205b6c1acedff3d51985fda30a733bbaf87fd816fcae19088",
+      "size": 407
+    },
+    "observed/06_build/pipeline_state/rf_source.json": {
+      "sha256": "40ed928721d1c334ab20e47392e183717ad27d7195dd5b5c18bf122803aa58aa",
+      "size": 421
+    },
+    "observed/06_build/pipeline_state/source_schema_governance.json": {
+      "sha256": "8c326d9a4b552e01a23e8679a40aa0abc4f97b53f890f5217507665bfb90c2ef",
+      "size": 511
+    },
+    "observed/06_build/pipeline_state/tscircuit_build.json": {
+      "sha256": "9dc81b3793e570f2939f4215067db7987c4bc7f1e9d6c442c6d649903f4da240",
+      "size": 390
+    },
+    "observed/06_build/pipeline_state/tscircuit_deps.json": {
+      "sha256": "f1ab4925faa434a551f71d75cdf802cf094a2ec4109fbb2e3846583ea5f158d6",
+      "size": 380
+    },
+    "observed/06_build/sourcing/prelayout_request.json": {
+      "sha256": "42d4d0686ff2f4aebda2bd36a52cff8caff07efdf0d02375af403eaea8bc3041",
+      "size": 14246
+    },
+    "observed/06_build/sourcing/prelayout_response.csv": {
+      "sha256": "2f7426cf5d959bd3fb9e4e0c944c03d7be3371ac2e64235fe36768ba8aa33d32",
+      "size": 1647
+    },
+    "observed/06_build/task_runs/canonical-restart-20260911T040041Z/conductor.log": {
+      "sha256": "a336f85b8bbf298004bdb00eaeee36e9152322c2ca2cfd069b7583524322f850",
+      "size": 262694
+    },
+    "observed/06_build/task_runs/canonical-restart-20260911T040041Z/outer-result.json": {
+      "sha256": "7f14679686566db43a5793936dbf058da8482b8255910f52479b1394f34b8a14",
+      "size": 821
+    },
+    "observed/06_build/verification/analog_path_source.json": {
+      "sha256": "decd22a37b17f695a8219ed00b9e86b74b9517221c3f88a46a77aea81167575b",
+      "size": 948
+    },
+    "observed/06_build/verification/clock_defaults.json": {
+      "sha256": "4caacc4632b420379fc61a9338e0261dd94d007668cfb4f951800db9d8cbf0b2",
+      "size": 2225
+    },
+    "observed/06_build/verification/manufacturing_readiness_selection.json": {
+      "sha256": "c6ef1226231b9cf59ec6905fdbf7926c5eb14278bb84704dc04528924584c8c1",
+      "size": 159449
+    },
+    "observed/06_build/verification/pipeline/E-CLOSURE.stage.json": {
+      "sha256": "f20aac33bddb79eadf3eb1684135dff2cd3d3ae8799442f65aa0ba0d410fc140",
+      "size": 763
+    },
+    "observed/06_build/verification/pipeline/electrical_closure.json": {
+      "sha256": "89f20c138ae0eb313276db7976c1a1b61dd05e69e7500e18a5c8c4c481998811",
+      "size": 44233
+    },
+    "packet/01_docs/STATUS.md": {
+      "sha256": "82da1766d81170ef966b4e25a04916a0cf60380f406cd07089ab86c66dc7b7d5",
+      "size": 535
+    },
+    "packet/01_docs/journal/canonical.md": {
+      "sha256": "443608c1de0fe349b3fdeec9c31f2fcc9708888de98eee2fd797811ea5f8e717",
+      "size": 1649
+    },
+    "packet/03_src/rebuild_all.sh": {
+      "sha256": "694fe0bc8945ed5c9a617a32d8ae3ecf5dc770ecb365a3df455e215ee9f3dfe1",
+      "size": 42005
+    },
+    "packet/06_build/agent_handoff.yaml": {
+      "sha256": "15beb9e0cd91a81053b626f837f78a465850d4b2a7bffbdf3d4e3765f4a81ca1",
+      "size": 5539
+    },
+    "packet/06_build/task_runs/qualify-0f91091a3256465e8970d337f384b715/qualification.json": {
+      "sha256": "9aa3f7a1252912c1f4c6a1330227d5e3cafd01f14b0e4ba777ea7f719bebeae9",
+      "size": 48757
+    },
+    "packet/CLAUDE.md": {
+      "sha256": "0f3f61761a2cbe2e9ee7653cdf347f9894fffac485b544ba67bd76f4edb0e4a8",
+      "size": 6510
+    },
+    "packet/TASK.md": {
+      "sha256": "f2c4a90a91314532871225e0e82c0c97c1b7fb12f3ee4d98be784c657907017d",
+      "size": 3023
+    },
+    "packet/skills/pcb-design/SKILL.md": {
+      "sha256": "d357b15b9759f4f048b244d4a8b5f7273a9318eb06d34271379caf8caf36c5b8",
+      "size": 16199
+    },
+    "packet/skills/pcb-design/references/compute-tiers.md": {
+      "sha256": "8f19b8fcb548a2a48eb163016eb40c8bd705a4708b90c4760f02754ab898cf2f",
+      "size": 2238
+    },
+    "packet/skills/pcb-design/references/execution-graph.md": {
+      "sha256": "8a026b9f7435af04370894475feeb057234ce764b0c9290975a02846e6e02798",
+      "size": 14308
+    },
+    "packet/skills/pcb-design/references/execution-runtime.md": {
+      "sha256": "63bc6c053e99acfbeea931c3440bca7966bf923c2a62bdb5fd7da9bda5630abc",
+      "size": 18076
+    },
+    "packet/skills/pcb-design/references/lifecycle-and-backtrack.md": {
+      "sha256": "a014c201a9ba62e628e1fe8c325354bf040b4bbf8b88c623cd035a542d5c2d98",
+      "size": 14725
+    },
+    "packet/source-manifest.json": {
+      "sha256": "fb7f983fa28590326722894e5f22592aa2a43e5f82bd4c3a118a588f8e04388f",
+      "size": 149299
+    },
+    "pre-refresh/manual_quotes.yaml": {
+      "sha256": "1d1af2ae1d2ccb1116f8836f94311a9b34b60f867588c3d4fce525475638b168",
+      "size": 2346
+    },
+    "public-refresh/catalog-refresh.log": {
+      "sha256": "c3f9d8724231d43ff0d6d268082760adf2e543f8169ed11c6e3036ce8ed5fd7b",
+      "size": 5468
+    },
+    "public-refresh/catalog-refresh.result.json": {
+      "sha256": "87c66ece071919118deabf591fafc6c7327e7eac036b1b0f2408bb0011efe41d",
+      "size": 1105
+    },
+    "public-refresh/digikey-observation.json": {
+      "sha256": "7851d2b45f49c763ca8f5f2b8f5ec4bc0bb07540794a4670da1f95e5d3bf2cb5",
+      "size": 805
+    },
+    "public-refresh/probe-binding.json": {
+      "sha256": "0da72894bea2a3c1c2bc427ea4803c5a4e8f1967454c328f939a4f61920c2f7b",
+      "size": 256
+    },
+    "public-refresh/probe.csv": {
+      "sha256": "8c0d738da0973ce6b6e206e2a27eca245a76866677b6d3b62dce70b556bb2098",
+      "size": 5355
+    },
+    "public-refresh/public_catalog_stock.json": {
+      "sha256": "9dff2a3b62eee1174d7be5d993a2042308d216458706f1f8374ae2f08d206a4e",
+      "size": 16766
+    },
+    "public-refresh/public_catalog_stock.txt": {
+      "sha256": "35b078b467db245efc48acafeb23bb84b336396914bd47fb7eb3c1ba4f6c1a71",
+      "size": 9229
+    },
+    "public-refresh/root-first-run-changes.json": {
+      "sha256": "764523ed287a549b2286060fd7a85554d3290d93e99f96a8de88a283d95fb28e",
+      "size": 1040
+    },
+    "public-refresh/stock-request-match.json": {
+      "sha256": "4b812e81a90cb1eb82b737da761aaf242629f4e0ca0705d91257ec8274c76fd6",
+      "size": 155
+    }
+  },
+  "archive": {
+    "path": "d48527d68fd86323142d7bd2bd33a94246a5653fba38f9d2a09180f8d09c3101.tar.gz",
+    "sha256": "d48527d68fd86323142d7bd2bd33a94246a5653fba38f9d2a09180f8d09c3101",
+    "size": 4230196
+  }
+}

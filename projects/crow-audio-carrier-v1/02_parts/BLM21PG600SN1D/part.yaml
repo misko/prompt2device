@@ -1,0 +1,25 @@
+mpn: BLM21PG600SN1D
+manufacturer: Murata Electronics
+type: ferrite_bead
+value: "60ohm@100MHz"
+status: active
+datasheet: {doc_id: JENF243A-0005X-01, revision: JENF243A-0005X-01, url: "https://datasheet.lcsc.com/datasheet/pdf/295b188fd76b4477a40d2f6b2706fde5.pdf?productCode=C18305", local: BLM21_JENF243A-0005X-01.pdf, sha256: ed810278a82d0bcb2818f7fec9f9660deb9b832fe81e62cbe93aee1fc733439b, fetched: 2026-09-07, provenance: "Manufacturer-authored PDF obtained from public LCSC datasheet link; exact p1 row60ohm,3.5A85C,0.02ohm initial/0.04ohm aftertests. Manufacturer-host download unavailable."}
+package: "0805 (2012 metric)"
+footprint: Inductor_SMD:L_0805_2012Metric_Pad1.05x1.20mm_HandSolder
+escape: {style: passive, pitch: 1.0, tier_required: jlc_2layer_default, checked: "exact Murata 0805 identity reviewed 2026-09-01"}
+pins: {1: input, 2: output}
+limits: {impedance_100mhz_ohm: 60, rated_current_A: 3.5, dcr_max_ohm: 0.04}
+asserts: [{assert: value, equals: 60, why: "Power-line bead isolates the op-amp analog supply from the buck rail."}]
+verified: "Exact Murata MPN/code/package match queried from the live JLC catalog 2026-09-01; electrical limits retained from the Murata series record. KiCad 10's installed 0805 hand-solder land uses 1.05 x 1.20 mm pads and supersedes the unavailable legacy 1.15 x 1.40 mm library name."
+layout:
+  source: Carrier exact native circuit/footprint authority; local engineering placement relationships, not manufacturer numerical distance limits
+  notes:
+  - 'Carrier local-placement source 2026-09-08: exact-ref/non-ground-net adjacency is a rotation-aware copper-bounding-box gap, NOT pad-center
+    distance or routed length. Rounded engineering ceilings below are not manufacturer numerical maxima. Ground pours are excluded by P-ADJ-PAIR;
+    local return/thermal/escape proof remains owed on the later saved PCB.'
+  - Source-only pin-center plan uses <=5mm local bypass/BST and <=10mm feedback ceilings, with separately named bulk/input/feed exceptions. See
+    01_docs/SOURCE-CORRECTION-20260908-local-placement.md for all 299 roles and exact source geometry; no current-board acceptance is inherited.
+  reviewed: '2026-09-08'
+  adjacency: []
+  # ADR0021: retired bead dossier retained as historical provenance, not fitted.
+sourcing: {lcsc: C18305, alternates: []}

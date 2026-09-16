@@ -1,0 +1,778 @@
+{
+  "schema": 1,
+  "created_at": "2026-09-10T21:43:38.531499+00:00",
+  "source_commit": "54097a19f83f9448da7c8019a5712f876fa83772",
+  "tar_sha256": "54425eabb555ce98d481454683edcdac086efcaf4c6b076c3c34e13be713cfb0",
+  "tar_size": 449432,
+  "count": 128,
+  "entries": [
+    {
+      "member": "commission/TASK.md",
+      "original_path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/06_build/handoffs/pland-fixture-dback-20260910T213128Z/TASK.md",
+      "sha256": "7e2068697b45e1ff064b5a9230690b61c856de5522196937dbffbda9963d058d",
+      "size": 7015
+    },
+    {
+      "member": "commission/beacon.md",
+      "original_path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/06_build/handoffs/pland-fixture-dback-20260910T213128Z/beacon.md",
+      "sha256": "13746b7f9b65bfd45474e210e17744cdb9749562496e1564c070ac3142ab57cc",
+      "size": 544
+    },
+    {
+      "member": "commission/flow.yaml",
+      "original_path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/06_build/handoffs/pland-fixture-dback-20260910T213128Z/flow.yaml",
+      "sha256": "24e327469148a49a46e49aab9ec49105c17a7a38a681d2cb632bcaf06bf9b748",
+      "size": 5584
+    },
+    {
+      "member": "commission/journal-tail.md",
+      "original_path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/06_build/handoffs/pland-fixture-dback-20260910T213128Z/journal-tail.md",
+      "sha256": "85de61d2b1c39014e3d02e83367c9e4e9f64b81a9e1f43c31ad9d1b06cd26afa",
+      "size": 1383
+    },
+    {
+      "member": "commission/task-envelope.json",
+      "original_path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/06_build/handoffs/pland-fixture-dback-20260910T213128Z/task-envelope.json",
+      "sha256": "1a78e1b8712872d4c402e354d38621aa76ca73a1a64c9f6eda1731a51f23100e",
+      "size": 128266
+    },
+    {
+      "member": "coordinator/authority-board_connected_item-10.0.4-fetch.log",
+      "original_path": "/tmp/carrier-pland-fixture-adoption-20260910.hnDKH2sk/authority-board_connected_item-10.0.4-fetch.log",
+      "sha256": "bba5d6c291461ce8bb5ff016bc253c2c1b144bd29813117f23fe6fcdd5919650",
+      "size": 317
+    },
+    {
+      "member": "coordinator/authority-board_connected_item-10.0.4-fetch.result.json",
+      "original_path": "/tmp/carrier-pland-fixture-adoption-20260910.hnDKH2sk/authority-board_connected_item-10.0.4-fetch.result.json",
+      "sha256": "57c59abcb26fca9511857dad0e73bfb2d48a003c18f661320675848d22cbacba",
+      "size": 583
+    },
+    {
+      "member": "coordinator/authority-board_connected_item-10.0.4-fetch.start.json",
+      "original_path": "/tmp/carrier-pland-fixture-adoption-20260910.hnDKH2sk/authority-board_connected_item-10.0.4-fetch.start.json",
+      "sha256": "7aaad77b9ce80e1eecdd53434e7878d618ebaa90c665baa74d7f68d24f5863c0",
+      "size": 444
+    },
+    {
+      "member": "coordinator/authority-directory-fetch.log",
+      "original_path": "/tmp/carrier-pland-fixture-adoption-20260910.hnDKH2sk/authority-directory-fetch.log",
+      "sha256": "702397d338f764ae4a212864cc61aba956e8b84932c88170e5b7ba1228a0531e",
+      "size": 476
+    },
+    {
+      "member": "coordinator/authority-directory-fetch.result.json",
+      "original_path": "/tmp/carrier-pland-fixture-adoption-20260910.hnDKH2sk/authority-directory-fetch.result.json",
+      "sha256": "d322245c06008062263076e95ea170ec9532454299e8fecd8eff6aa7f3eb92bd",
+      "size": 563
+    },
+    {
+      "member": "coordinator/authority-directory-fetch.start.json",
+      "original_path": "/tmp/carrier-pland-fixture-adoption-20260910.hnDKH2sk/authority-directory-fetch.start.json",
+      "sha256": "e1baf25c46b3e377d5776044db5c7008db5da018095de762a870de547ae51c3f",
+      "size": 425
+    },
+    {
+      "member": "coordinator/authority-drc_engine-10.0.4-fetch.log",
+      "original_path": "/tmp/carrier-pland-fixture-adoption-20260910.hnDKH2sk/authority-drc_engine-10.0.4-fetch.log",
+      "sha256": "f7bb81420c4f12a17d6151a7360c75253c02cbe4bee79d402205bf8e94df1d92",
+      "size": 317
+    },
+    {
+      "member": "coordinator/authority-drc_engine-10.0.4-fetch.result.json",
+      "original_path": "/tmp/carrier-pland-fixture-adoption-20260910.hnDKH2sk/authority-drc_engine-10.0.4-fetch.result.json",
+      "sha256": "33209d00ce342dfd6bf1fd444abbe235672d103a866a8c29b80a662d3a12751d",
+      "size": 566
+    },
+    {
+      "member": "coordinator/authority-drc_engine-10.0.4-fetch.start.json",
+      "original_path": "/tmp/carrier-pland-fixture-adoption-20260910.hnDKH2sk/authority-drc_engine-10.0.4-fetch.start.json",
+      "sha256": "5c938f03eb9b9f90ecea182df51fd12001cc6bda0d91d3ecf31c045dd766d79d",
+      "size": 428
+    },
+    {
+      "member": "coordinator/authority-drc_test_provider_clearance-10.0.4-fetch.log",
+      "original_path": "/tmp/carrier-pland-fixture-adoption-20260910.hnDKH2sk/authority-drc_test_provider_clearance-10.0.4-fetch.log",
+      "sha256": "e0e90965c362149991240fef61671349dac1a00706450cebe5208b2ae4277392",
+      "size": 366
+    },
+    {
+      "member": "coordinator/authority-drc_test_provider_clearance-10.0.4-fetch.result.json",
+      "original_path": "/tmp/carrier-pland-fixture-adoption-20260910.hnDKH2sk/authority-drc_test_provider_clearance-10.0.4-fetch.result.json",
+      "sha256": "6476f4217ca93cb895fe68e00b91649b431f848d17305cc9474c8f1c5403b072",
+      "size": 601
+    },
+    {
+      "member": "coordinator/authority-drc_test_provider_clearance-10.0.4-fetch.start.json",
+      "original_path": "/tmp/carrier-pland-fixture-adoption-20260910.hnDKH2sk/authority-drc_test_provider_clearance-10.0.4-fetch.start.json",
+      "sha256": "9851ecfd1c573a6f90c59599cbc111bdca9c5c236473c90aa1a05a5cf0795182",
+      "size": 462
+    },
+    {
+      "member": "coordinator/authority-drc_test_provider_clearance_base-10.0.4-fetch.log",
+      "original_path": "/tmp/carrier-pland-fixture-adoption-20260910.hnDKH2sk/authority-drc_test_provider_clearance_base-10.0.4-fetch.log",
+      "sha256": "e0e90965c362149991240fef61671349dac1a00706450cebe5208b2ae4277392",
+      "size": 366
+    },
+    {
+      "member": "coordinator/authority-drc_test_provider_clearance_base-10.0.4-fetch.result.json",
+      "original_path": "/tmp/carrier-pland-fixture-adoption-20260910.hnDKH2sk/authority-drc_test_provider_clearance_base-10.0.4-fetch.result.json",
+      "sha256": "22392c791325f5c10dee695958e23cf03317da66f06b58c716ce17f76b0d3897",
+      "size": 612
+    },
+    {
+      "member": "coordinator/authority-drc_test_provider_clearance_base-10.0.4-fetch.start.json",
+      "original_path": "/tmp/carrier-pland-fixture-adoption-20260910.hnDKH2sk/authority-drc_test_provider_clearance_base-10.0.4-fetch.start.json",
+      "sha256": "875d9692bc422c13b44714e858f61c2edda2051e3a36bfe391ae951cd0d2d8bc",
+      "size": 472
+    },
+    {
+      "member": "coordinator/authority-drc_test_provider_copper_clearance-10.0.4-fetch.log",
+      "original_path": "/tmp/carrier-pland-fixture-adoption-20260910.hnDKH2sk/authority-drc_test_provider_copper_clearance-10.0.4-fetch.log",
+      "sha256": "57d58d563142711f05013609b6e0a2ed90c04304fb399399af6be4a461a6888b",
+      "size": 317
+    },
+    {
+      "member": "coordinator/authority-drc_test_provider_copper_clearance-10.0.4-fetch.result.json",
+      "original_path": "/tmp/carrier-pland-fixture-adoption-20260910.hnDKH2sk/authority-drc_test_provider_copper_clearance-10.0.4-fetch.result.json",
+      "sha256": "c2a1c0d754bc7a7308ba7e3754c471453d24e2826b8d0f341f45e1c546bedb76",
+      "size": 614
+    },
+    {
+      "member": "coordinator/authority-drc_test_provider_copper_clearance-10.0.4-fetch.start.json",
+      "original_path": "/tmp/carrier-pland-fixture-adoption-20260910.hnDKH2sk/authority-drc_test_provider_copper_clearance-10.0.4-fetch.start.json",
+      "sha256": "b4f7c0fb653a423691081eed5743f78ab324c0ca003eae0ce9bdea6ea0c1acc4",
+      "size": 476
+    },
+    {
+      "member": "coordinator/authority-drc_test_provider_track_width-10.0.4-fetch.log",
+      "original_path": "/tmp/carrier-pland-fixture-adoption-20260910.hnDKH2sk/authority-drc_test_provider_track_width-10.0.4-fetch.log",
+      "sha256": "47d4e441a89c280706cf47bff95503bf5681036f95ea5e481ef7dd9c87acbe65",
+      "size": 317
+    },
+    {
+      "member": "coordinator/authority-drc_test_provider_track_width-10.0.4-fetch.result.json",
+      "original_path": "/tmp/carrier-pland-fixture-adoption-20260910.hnDKH2sk/authority-drc_test_provider_track_width-10.0.4-fetch.result.json",
+      "sha256": "17cdcb7599526d47455ffb13bb856b9ce18557a9f7960a618d4a112e240acde1",
+      "size": 604
+    },
+    {
+      "member": "coordinator/authority-drc_test_provider_track_width-10.0.4-fetch.start.json",
+      "original_path": "/tmp/carrier-pland-fixture-adoption-20260910.hnDKH2sk/authority-drc_test_provider_track_width-10.0.4-fetch.start.json",
+      "sha256": "b505352c3e54fbd2f6f99e22fb1944e3aa125a44baf1fa680f2bc4280fd6038f",
+      "size": 466
+    },
+    {
+      "member": "coordinator/authority-engine-fetch.log",
+      "original_path": "/tmp/carrier-pland-fixture-adoption-20260910.hnDKH2sk/authority-engine-fetch.log",
+      "sha256": "0128f75aeea9e42450b86cf67f37a881ada113007e0387481888b3458ac3a789",
+      "size": 396
+    },
+    {
+      "member": "coordinator/authority-engine-fetch.result.json",
+      "original_path": "/tmp/carrier-pland-fixture-adoption-20260910.hnDKH2sk/authority-engine-fetch.result.json",
+      "sha256": "c826b5b87f554e0b2f4db855dd9b17f45f65c2bb432ad7442f5df633d8970aa8",
+      "size": 562
+    },
+    {
+      "member": "coordinator/authority-engine-fetch.start.json",
+      "original_path": "/tmp/carrier-pland-fixture-adoption-20260910.hnDKH2sk/authority-engine-fetch.start.json",
+      "sha256": "d84e2dc474d0a9680a071ff24b3b0c6482850e3690d5fec97a4a078303866c42",
+      "size": 424
+    },
+    {
+      "member": "coordinator/authority-pad-10.0.4-fetch.log",
+      "original_path": "/tmp/carrier-pland-fixture-adoption-20260910.hnDKH2sk/authority-pad-10.0.4-fetch.log",
+      "sha256": "b1a2a7bbbf870811dbc952dbd82956a71c49ce33f2de2b90a93c16eb24a3a1ad",
+      "size": 317
+    },
+    {
+      "member": "coordinator/authority-pad-10.0.4-fetch.result.json",
+      "original_path": "/tmp/carrier-pland-fixture-adoption-20260910.hnDKH2sk/authority-pad-10.0.4-fetch.result.json",
+      "sha256": "3cf2c1184c400f6cb19ecc7a3a4175b16573103a54da5b238a9e815832f67e19",
+      "size": 548
+    },
+    {
+      "member": "coordinator/authority-pad-10.0.4-fetch.start.json",
+      "original_path": "/tmp/carrier-pland-fixture-adoption-20260910.hnDKH2sk/authority-pad-10.0.4-fetch.start.json",
+      "sha256": "9b144d170d1c0a6df318c4eac2874db36b2553d7d58c0c1b2b80350082cd066c",
+      "size": 410
+    },
+    {
+      "member": "coordinator/board_connected_item-10.0.4.cpp",
+      "original_path": "/tmp/carrier-pland-fixture-adoption-20260910.hnDKH2sk/board_connected_item-10.0.4.cpp",
+      "sha256": "0a004dffddb178c1da44b82e4b832724b9a83a0143a2ddbaab518cf1a77b17b9",
+      "size": 13738
+    },
+    {
+      "member": "coordinator/drc-directory-10.0.4.json",
+      "original_path": "/tmp/carrier-pland-fixture-adoption-20260910.hnDKH2sk/drc-directory-10.0.4.json",
+      "sha256": "7126d564c134b67ab833b848bba4beccf369d5d5b5b2dd7cbfe7995d943d365d",
+      "size": 54183
+    },
+    {
+      "member": "coordinator/drc_engine-10.0.4.cpp",
+      "original_path": "/tmp/carrier-pland-fixture-adoption-20260910.hnDKH2sk/drc_engine-10.0.4.cpp",
+      "sha256": "13c132eef0c31f85af88cf26ac6fde90020e905ba6fa2d65d04ad7428bb5b64a",
+      "size": 120293
+    },
+    {
+      "member": "coordinator/drc_engine-10.0.cpp",
+      "original_path": "/tmp/carrier-pland-fixture-adoption-20260910.hnDKH2sk/drc_engine-10.0.cpp",
+      "sha256": "90779fc011abf0fbbd2ea7fa1a28077da24fce9a9617bb21b9c91d5bdeddf798",
+      "size": 124253
+    },
+    {
+      "member": "coordinator/drc_test_provider_copper_clearance-10.0.4.cpp",
+      "original_path": "/tmp/carrier-pland-fixture-adoption-20260910.hnDKH2sk/drc_test_provider_copper_clearance-10.0.4.cpp",
+      "sha256": "d8b917810fa91172ac72c46ae3be9a507e62b2943bee2dfd5d401c804446f9ae",
+      "size": 55067
+    },
+    {
+      "member": "coordinator/drc_test_provider_track_width-10.0.4.cpp",
+      "original_path": "/tmp/carrier-pland-fixture-adoption-20260910.hnDKH2sk/drc_test_provider_track_width-10.0.4.cpp",
+      "sha256": "63ccb7f0826f006dc7472230b7661bb6d75c857e5b2315003eddcdbb62980b10",
+      "size": 5819
+    },
+    {
+      "member": "coordinator/fixture-root-audit.json",
+      "original_path": "/tmp/carrier-pland-fixture-adoption-20260910.hnDKH2sk/fixture-root-audit.json",
+      "sha256": "6ad7fb56439aabc2ed451e43144eab42562deccc433abe8caf552c3794659c17",
+      "size": 290
+    },
+    {
+      "member": "coordinator/pad-10.0.4.cpp",
+      "original_path": "/tmp/carrier-pland-fixture-adoption-20260910.hnDKH2sk/pad-10.0.4.cpp",
+      "sha256": "a47dccba1be1f063075118e9d76fd8ed6d9929d1a1d203559161ed867bf68765",
+      "size": 131769
+    },
+    {
+      "member": "coordinator/preserve_fixture_dback.py",
+      "original_path": "/tmp/carrier-pland-fixture-adoption-20260910.hnDKH2sk/preserve_fixture_dback.py",
+      "sha256": "b731e9720eaffe358c76756451a60845ad62cf9f150efbb64aef261cadb87e28",
+      "size": 4385
+    },
+    {
+      "member": "coordinator/scalar-fixture-proposal.py",
+      "original_path": "/tmp/carrier-pland-fixture-adoption-20260910.hnDKH2sk/scalar-fixture-proposal.py",
+      "sha256": "cd20ed2add11ea2e356d64db967ddeb9991e77df2c0d70745b9799a1336bab38",
+      "size": 4834
+    },
+    {
+      "member": "coordinator/source-interface-decision-draft.md",
+      "original_path": "/tmp/carrier-pland-fixture-adoption-20260910.hnDKH2sk/source-interface-decision-draft.md",
+      "sha256": "768f0aef8d812e9d86e8678060e83bcbd6b5f787689726b86ec91962e182cf9a",
+      "size": 5533
+    },
+    {
+      "member": "diagnosis/001_archived_native_census.result.json",
+      "original_path": "/tmp/pland-fixture-dback-20260910T213128Z/001_archived_native_census.result.json",
+      "sha256": "7f09d91ea538e2d85d311332575593e5e006fa68eee5899dd221c13d3f21ec04",
+      "size": 986
+    },
+    {
+      "member": "diagnosis/001_archived_native_census.start.json",
+      "original_path": "/tmp/pland-fixture-dback-20260910T213128Z/001_archived_native_census.start.json",
+      "sha256": "a18ac809880622ed91392c15f5e132c85cf62ebac693ed5956320387bcfca10b",
+      "size": 746
+    },
+    {
+      "member": "diagnosis/001_archived_native_census.stderr.log",
+      "original_path": "/tmp/pland-fixture-dback-20260910T213128Z/001_archived_native_census.stderr.log",
+      "sha256": "616bd8350ff60d0033c96984ab7d623d98df9a006f46cec1432a0fba5fa83fcc",
+      "size": 1446
+    },
+    {
+      "member": "diagnosis/001_archived_native_census.stdout.log",
+      "original_path": "/tmp/pland-fixture-dback-20260910T213128Z/001_archived_native_census.stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "member": "diagnosis/002_archived_native_census.result.json",
+      "original_path": "/tmp/pland-fixture-dback-20260910T213128Z/002_archived_native_census.result.json",
+      "sha256": "5520453512b289dfcd3bb83fad079c3f001ccdada14f9c81da0439d220309cc1",
+      "size": 986
+    },
+    {
+      "member": "diagnosis/002_archived_native_census.start.json",
+      "original_path": "/tmp/pland-fixture-dback-20260910T213128Z/002_archived_native_census.start.json",
+      "sha256": "ac98fe12528676788c6904833aabc2e01bdbf9302ac8166c1ba962d43dee02f9",
+      "size": 746
+    },
+    {
+      "member": "diagnosis/002_archived_native_census.stderr.log",
+      "original_path": "/tmp/pland-fixture-dback-20260910T213128Z/002_archived_native_census.stderr.log",
+      "sha256": "29767e72cacc578b1b9671d670a5b635529a3540d20baf4c3dec79ba5640ad6c",
+      "size": 2163
+    },
+    {
+      "member": "diagnosis/002_archived_native_census.stdout.log",
+      "original_path": "/tmp/pland-fixture-dback-20260910T213128Z/002_archived_native_census.stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "member": "diagnosis/003_archived_native_census.result.json",
+      "original_path": "/tmp/pland-fixture-dback-20260910T213128Z/003_archived_native_census.result.json",
+      "sha256": "2148ddb7df815656036e30a9228edcc2e1ba43784c70f1c365f635040da43188",
+      "size": 987
+    },
+    {
+      "member": "diagnosis/003_archived_native_census.start.json",
+      "original_path": "/tmp/pland-fixture-dback-20260910T213128Z/003_archived_native_census.start.json",
+      "sha256": "c7ef4350fe582350ebb89b4075c352debff06b89fc65af49cb9928c585a600e7",
+      "size": 746
+    },
+    {
+      "member": "diagnosis/003_archived_native_census.stderr.log",
+      "original_path": "/tmp/pland-fixture-dback-20260910T213128Z/003_archived_native_census.stderr.log",
+      "sha256": "6006d8b5461df8c8c75d14e312ee08e6b7c99fad2db9abcb134d430dd3c7cd2c",
+      "size": 1602
+    },
+    {
+      "member": "diagnosis/003_archived_native_census.stdout.log",
+      "original_path": "/tmp/pland-fixture-dback-20260910T213128Z/003_archived_native_census.stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "member": "diagnosis/TASK.md",
+      "original_path": "/tmp/pland-fixture-dback-20260910T213128Z/TASK.md",
+      "sha256": "7e2068697b45e1ff064b5a9230690b61c856de5522196937dbffbda9963d058d",
+      "size": 7015
+    },
+    {
+      "member": "diagnosis/archive-audit-after.json",
+      "original_path": "/tmp/pland-fixture-dback-20260910T213128Z/archive-audit-after.json",
+      "sha256": "a4c75ba2c57d032d08980bc5c34ae286083d388f8a83ce00ca65123c3121f054",
+      "size": 11298
+    },
+    {
+      "member": "diagnosis/archive-audit.json",
+      "original_path": "/tmp/pland-fixture-dback-20260910T213128Z/archive-audit.json",
+      "sha256": "2792a105f2c8ad3995070b82b0de9d5b7b79436c04853cd7c7f2b1ee627c35a6",
+      "size": 11236
+    },
+    {
+      "member": "diagnosis/archive/author/002_packet_verify.log",
+      "original_path": "/tmp/pland-fixture-dback-20260910T213128Z/archive/author/002_packet_verify.log",
+      "sha256": "e22163b46e2c30bb9aef2f9b27588da5ad8c61d5d41b234bcc227e52b1609dd5",
+      "size": 86
+    },
+    {
+      "member": "diagnosis/archive/author/002_packet_verify.result.json",
+      "original_path": "/tmp/pland-fixture-dback-20260910T213128Z/archive/author/002_packet_verify.result.json",
+      "sha256": "5809c383f26f9d2004ffa7ce91a21d465b32a8a5cdb7a834381023154bfb1e70",
+      "size": 515
+    },
+    {
+      "member": "diagnosis/archive/author/002_packet_verify.start.json",
+      "original_path": "/tmp/pland-fixture-dback-20260910T213128Z/archive/author/002_packet_verify.start.json",
+      "sha256": "92ae08501173ed8ef39cae1fc4a2652f9951c20ef409dcd8f3270d6ff1dd8f53",
+      "size": 376
+    },
+    {
+      "member": "diagnosis/archive/author/003_packet_verify_exact_source.log",
+      "original_path": "/tmp/pland-fixture-dback-20260910T213128Z/archive/author/003_packet_verify_exact_source.log",
+      "sha256": "d05a24db3cdaeb5b2c1fd8399bd195e52e2e971e727642dc03c5793fdf55d0dc",
+      "size": 44
+    },
+    {
+      "member": "diagnosis/archive/author/003_packet_verify_exact_source.result.json",
+      "original_path": "/tmp/pland-fixture-dback-20260910T213128Z/archive/author/003_packet_verify_exact_source.result.json",
+      "sha256": "d4f84765a8ae05c1176aa61cc4e2be6607cd7f8c7beec7520f0b9c9d7537e1d2",
+      "size": 515
+    },
+    {
+      "member": "diagnosis/archive/author/003_packet_verify_exact_source.start.json",
+      "original_path": "/tmp/pland-fixture-dback-20260910T213128Z/archive/author/003_packet_verify_exact_source.start.json",
+      "sha256": "59bbf0ece2586563b6b6d4a385c6e55fa443c5697d66f18191687d8ba80950cd",
+      "size": 376
+    },
+    {
+      "member": "diagnosis/archive/author/004_public_path_red_cb0d0.log",
+      "original_path": "/tmp/pland-fixture-dback-20260910T213128Z/archive/author/004_public_path_red_cb0d0.log",
+      "sha256": "c96aa6bc0e1e2ed7a3de1a5fe08361e6b9e9c3796d7d4143db5f681a5adb63e2",
+      "size": 13759
+    },
+    {
+      "member": "diagnosis/archive/author/004_public_path_red_cb0d0.result.json",
+      "original_path": "/tmp/pland-fixture-dback-20260910T213128Z/archive/author/004_public_path_red_cb0d0.result.json",
+      "sha256": "50e2f4c10dc75c7cb531bddf1d077c80c6bd9cb809680910cb2a89e51460f5f3",
+      "size": 551
+    },
+    {
+      "member": "diagnosis/archive/author/004_public_path_red_cb0d0.start.json",
+      "original_path": "/tmp/pland-fixture-dback-20260910T213128Z/archive/author/004_public_path_red_cb0d0.start.json",
+      "sha256": "67ae33f993eff288d73750b9093a1a0a743c6664efdc429528eac3628bf1cebb",
+      "size": 321
+    },
+    {
+      "member": "diagnosis/archive/author/005_public_path_red_cb0d0_fixed_fixture.log",
+      "original_path": "/tmp/pland-fixture-dback-20260910T213128Z/archive/author/005_public_path_red_cb0d0_fixed_fixture.log",
+      "sha256": "e346ecbceabea30856f129f24c71a6edc4af5ffae4f1ad061f1edd26d5351b37",
+      "size": 3135
+    },
+    {
+      "member": "diagnosis/archive/author/005_public_path_red_cb0d0_fixed_fixture.result.json",
+      "original_path": "/tmp/pland-fixture-dback-20260910T213128Z/archive/author/005_public_path_red_cb0d0_fixed_fixture.result.json",
+      "sha256": "3adeca65e962b8c01702abda606bcc501e4d53306c529854dcebea7f584f0cb1",
+      "size": 589
+    },
+    {
+      "member": "diagnosis/archive/author/005_public_path_red_cb0d0_fixed_fixture.start.json",
+      "original_path": "/tmp/pland-fixture-dback-20260910T213128Z/archive/author/005_public_path_red_cb0d0_fixed_fixture.start.json",
+      "sha256": "7c1047c1b05208acc3f17a8638bd17a3167625de592f1c73463ded55207417d4",
+      "size": 358
+    },
+    {
+      "member": "diagnosis/archive/author/006_compact_handoff.log",
+      "original_path": "/tmp/pland-fixture-dback-20260910T213128Z/archive/author/006_compact_handoff.log",
+      "sha256": "cd4a084c5f13fe2b09880fdc853b76c4d2f1ad3904523641be6afc387e18567a",
+      "size": 168
+    },
+    {
+      "member": "diagnosis/archive/author/006_compact_handoff.result.json",
+      "original_path": "/tmp/pland-fixture-dback-20260910T213128Z/archive/author/006_compact_handoff.result.json",
+      "sha256": "685b85fbeb1cc152faf565af8723098ef214cddb7209dccce1319f81a0426583",
+      "size": 889
+    },
+    {
+      "member": "diagnosis/archive/author/006_compact_handoff.start.json",
+      "original_path": "/tmp/pland-fixture-dback-20260910T213128Z/archive/author/006_compact_handoff.start.json",
+      "sha256": "cc812db785cfff6c988231ad5a84efd103352535d40f059b2e40f6d42b124251",
+      "size": 659
+    },
+    {
+      "member": "diagnosis/archive/author/007_compact_handoff_validate.log",
+      "original_path": "/tmp/pland-fixture-dback-20260910T213128Z/archive/author/007_compact_handoff_validate.log",
+      "sha256": "bfd8411bb72e208194c2bbcb2f811ac2f4f2da7ce7112b399ed1f8e9e3d3c27b",
+      "size": 160
+    },
+    {
+      "member": "diagnosis/archive/author/007_compact_handoff_validate.result.json",
+      "original_path": "/tmp/pland-fixture-dback-20260910T213128Z/archive/author/007_compact_handoff_validate.result.json",
+      "sha256": "757168a0dd382dafa5df5e23d04b9b558d6a7231ad73482adaa1ddbd07a4fdde",
+      "size": 618
+    },
+    {
+      "member": "diagnosis/archive/author/007_compact_handoff_validate.start.json",
+      "original_path": "/tmp/pland-fixture-dback-20260910T213128Z/archive/author/007_compact_handoff_validate.start.json",
+      "sha256": "1031a4cf431821bc6f9286eb69c17de70ed160dcbe5792e9b3a1fcb58f950975",
+      "size": 387
+    },
+    {
+      "member": "diagnosis/archive/author/__pycache__/run_capture.cpython-312.pyc",
+      "original_path": "/tmp/pland-fixture-dback-20260910T213128Z/archive/author/__pycache__/run_capture.cpython-312.pyc",
+      "sha256": "9ff064257b695a303d188dc30cb1b6fe91e08f35954bd7bdf980bf11c4ff5f5c",
+      "size": 3389
+    },
+    {
+      "member": "diagnosis/archive/author/bootstrap-exception.md",
+      "original_path": "/tmp/pland-fixture-dback-20260910T213128Z/archive/author/bootstrap-exception.md",
+      "sha256": "c85bcd74603966782e252e2596a359f82256526e9c503780f6b857cfd1726881",
+      "size": 718
+    },
+    {
+      "member": "diagnosis/archive/author/project-result.interim-20260910T211623Z.md",
+      "original_path": "/tmp/pland-fixture-dback-20260910T213128Z/archive/author/project-result.interim-20260910T211623Z.md",
+      "sha256": "411431cb08be03bfa981d2664686651de1c64152515d6d210175e714120dcc85",
+      "size": 1345
+    },
+    {
+      "member": "diagnosis/archive/author/project-result.md",
+      "original_path": "/tmp/pland-fixture-dback-20260910T213128Z/archive/author/project-result.md",
+      "sha256": "78a8f215ef3bfcfc726807c135bd141861780bb571a6885278ff9bf701d09f17",
+      "size": 3240
+    },
+    {
+      "member": "diagnosis/archive/author/result.interim-20260910T211623Z.md",
+      "original_path": "/tmp/pland-fixture-dback-20260910T213128Z/archive/author/result.interim-20260910T211623Z.md",
+      "sha256": "817d5737e26d4ee284e59c5c76b1a48603b7e6d135944c34c047ea879a5c1031",
+      "size": 2549
+    },
+    {
+      "member": "diagnosis/archive/author/result.md",
+      "original_path": "/tmp/pland-fixture-dback-20260910T213128Z/archive/author/result.md",
+      "sha256": "78a8f215ef3bfcfc726807c135bd141861780bb571a6885278ff9bf701d09f17",
+      "size": 3240
+    },
+    {
+      "member": "diagnosis/archive/author/run_capture.py",
+      "original_path": "/tmp/pland-fixture-dback-20260910T213128Z/archive/author/run_capture.py",
+      "sha256": "80e1654e59fa7b818cdc481124658e6485e8fbc7848ea32a225ecb00068e2d67",
+      "size": 1456
+    },
+    {
+      "member": "diagnosis/archive/author/run_logged.py",
+      "original_path": "/tmp/pland-fixture-dback-20260910T213128Z/archive/author/run_logged.py",
+      "sha256": "0eadf62d37d14be79ce397d130a5c80604c17ce5923f2df6a7f50597fd47f45b",
+      "size": 968
+    },
+    {
+      "member": "diagnosis/archive/author/run_public_red.py",
+      "original_path": "/tmp/pland-fixture-dback-20260910T213128Z/archive/author/run_public_red.py",
+      "sha256": "a8052396b982e5eb86621ca8c44e8c8d0452757a9706ab21db5c4c7e7136dbf7",
+      "size": 288
+    },
+    {
+      "member": "diagnosis/archive/author/t1_escape_tier.log",
+      "original_path": "/tmp/pland-fixture-dback-20260910T213128Z/archive/author/t1_escape_tier.log",
+      "sha256": "cfbc5d0811ea30b95ee25687db182440dea4cb08196b18f5218c07b9dcf2866e",
+      "size": 10210
+    },
+    {
+      "member": "diagnosis/archive/author/verify_packet.py",
+      "original_path": "/tmp/pland-fixture-dback-20260910T213128Z/archive/author/verify_packet.py",
+      "sha256": "c8c3b14f89b5ad31125d78e694a585f73cf213bff435ae32f09c3bc6be9bca85",
+      "size": 486
+    },
+    {
+      "member": "diagnosis/archive/commission/TASK.md",
+      "original_path": "/tmp/pland-fixture-dback-20260910T213128Z/archive/commission/TASK.md",
+      "sha256": "2a4da075ed1d28f274d73a8aa66e6642ee0f403c736ea227708041bd65cdf4ef",
+      "size": 10657
+    },
+    {
+      "member": "diagnosis/archive/commission/beacon.md",
+      "original_path": "/tmp/pland-fixture-dback-20260910T213128Z/archive/commission/beacon.md",
+      "sha256": "fd6b77f4d0b9fa2cd9db66abf61bc6a1ce0b1c3c09da35956d5b92dbf9bd0837",
+      "size": 493
+    },
+    {
+      "member": "diagnosis/archive/commission/flow.yaml",
+      "original_path": "/tmp/pland-fixture-dback-20260910T213128Z/archive/commission/flow.yaml",
+      "sha256": "838a3cbae5a1c4cee85540529b525caa478904b61de521431b654b317bd17dca",
+      "size": 5553
+    },
+    {
+      "member": "diagnosis/archive/commission/journal-tail.md",
+      "original_path": "/tmp/pland-fixture-dback-20260910T213128Z/archive/commission/journal-tail.md",
+      "sha256": "adae4fc5143b5b5256acd005745f67dcf36925a3012eaf08614287ffad70abad",
+      "size": 1871
+    },
+    {
+      "member": "diagnosis/archive/commission/task-envelope.json",
+      "original_path": "/tmp/pland-fixture-dback-20260910T213128Z/archive/commission/task-envelope.json",
+      "sha256": "30eafbd595d8ee283ae2303a2047a0f8805d47eefcd70a7d877f9c7d670a0630",
+      "size": 127788
+    },
+    {
+      "member": "diagnosis/archive/coordinator/author-all-wip.diff",
+      "original_path": "/tmp/pland-fixture-dback-20260910T213128Z/archive/coordinator/author-all-wip.diff",
+      "sha256": "8aa92eedf2f4e11c0da99acfb4bf11eb3b4a3335fe6ba0961662d09b15e23df4",
+      "size": 9519
+    },
+    {
+      "member": "diagnosis/archive/coordinator/author-wip-numstat.txt",
+      "original_path": "/tmp/pland-fixture-dback-20260910T213128Z/archive/coordinator/author-wip-numstat.txt",
+      "sha256": "ab3e88d0a67cf4e0db20e241f29e15c467ffbdcc12b16eca59c7084caa28724d",
+      "size": 210
+    },
+    {
+      "member": "diagnosis/archive/coordinator/preserve.py",
+      "original_path": "/tmp/pland-fixture-dback-20260910T213128Z/archive/coordinator/preserve.py",
+      "sha256": "fa18776a1f712f2e83dd37b07ce691a2a683c7949436221b6d9af9057a2095ed",
+      "size": 5011
+    },
+    {
+      "member": "diagnosis/archive/coordinator/process-snapshot.txt",
+      "original_path": "/tmp/pland-fixture-dback-20260910T213128Z/archive/coordinator/process-snapshot.txt",
+      "sha256": "93faf4d56b1515e10ee44b4c8d28295ade3e4951755dd05aa30db8aa351c98fa",
+      "size": 57804
+    },
+    {
+      "member": "diagnosis/archive/coordinator/root-input-audit.json",
+      "original_path": "/tmp/pland-fixture-dback-20260910T213128Z/archive/coordinator/root-input-audit.json",
+      "sha256": "5c7b34e0390d9c24fbcc126a12bdf9893c99009a86f07cb2a2b8e5b39b3e6129",
+      "size": 975
+    },
+    {
+      "member": "diagnosis/archive/coordinator/t1_escape_tier.py.wip",
+      "original_path": "/tmp/pland-fixture-dback-20260910T213128Z/archive/coordinator/t1_escape_tier.py.wip",
+      "sha256": "b8c9d764fee930678e59505e12cc9061615027e85d4e1cfbf69ceec11ed5a0be",
+      "size": 77607
+    },
+    {
+      "member": "diagnosis/archive/live-handback/projects/crow-audio-carrier-v1/01_docs/STATUS.md",
+      "original_path": "/tmp/pland-fixture-dback-20260910T213128Z/archive/live-handback/projects/crow-audio-carrier-v1/01_docs/STATUS.md",
+      "sha256": "b200db7e2b1f4a9db6d3da39e5e8da6257076317d11320bf06e2c3973013cd81",
+      "size": 483
+    },
+    {
+      "member": "diagnosis/archive/live-handback/projects/crow-audio-carrier-v1/01_docs/journal/placement.md",
+      "original_path": "/tmp/pland-fixture-dback-20260910T213128Z/archive/live-handback/projects/crow-audio-carrier-v1/01_docs/journal/placement.md",
+      "sha256": "ed56b0972d0a7f5791005a7ee03af499fbfcea76def9a527e39ef0a4a7a26d36",
+      "size": 80043
+    },
+    {
+      "member": "diagnosis/archive/live-handback/projects/crow-audio-carrier-v1/06_build/agent_handoff.yaml",
+      "original_path": "/tmp/pland-fixture-dback-20260910T213128Z/archive/live-handback/projects/crow-audio-carrier-v1/06_build/agent_handoff.yaml",
+      "sha256": "50b9db595293568884334fdd7381688529068857dbb2c3befcfa187802e75cdc",
+      "size": 5615
+    },
+    {
+      "member": "diagnosis/archive/live-handback/tests/t1_escape_tier.py",
+      "original_path": "/tmp/pland-fixture-dback-20260910T213128Z/archive/live-handback/tests/t1_escape_tier.py",
+      "sha256": "b8c9d764fee930678e59505e12cc9061615027e85d4e1cfbf69ceec11ed5a0be",
+      "size": 77607
+    },
+    {
+      "member": "diagnosis/archive/scratch/pland_witness_buor9qaj/witness.kicad_dru",
+      "original_path": "/tmp/pland-fixture-dback-20260910T213128Z/archive/scratch/pland_witness_buor9qaj/witness.kicad_dru",
+      "sha256": "249143e30305c693abee24b5741e6462b51ef3787d767e7dfdc0899122619677",
+      "size": 96
+    },
+    {
+      "member": "diagnosis/archive/scratch/pland_witness_buor9qaj/witness.kicad_pcb",
+      "original_path": "/tmp/pland-fixture-dback-20260910T213128Z/archive/scratch/pland_witness_buor9qaj/witness.kicad_pcb",
+      "sha256": "bdf92fde380abffb79645ed1dc7250531427ad2397508919e59f6830a908e45b",
+      "size": 6228
+    },
+    {
+      "member": "diagnosis/archive/scratch/pland_witness_buor9qaj/witness.kicad_prl",
+      "original_path": "/tmp/pland-fixture-dback-20260910T213128Z/archive/scratch/pland_witness_buor9qaj/witness.kicad_prl",
+      "sha256": "03925042ac16e50a5a0d56f94f3608c01cf07c9f1fb93af547ea91cb1f31528d",
+      "size": 2294
+    },
+    {
+      "member": "diagnosis/archive/scratch/pland_witness_buor9qaj/witness.kicad_pro",
+      "original_path": "/tmp/pland-fixture-dback-20260910T213128Z/archive/scratch/pland_witness_buor9qaj/witness.kicad_pro",
+      "sha256": "35809e60c3793d7a6006049fa1dedb2a0660769a86157a037f7b31b6abd9d4e7",
+      "size": 177
+    },
+    {
+      "member": "diagnosis/archive/scratch/pland_witness_c6rfmpgs/witness.kicad_dru",
+      "original_path": "/tmp/pland-fixture-dback-20260910T213128Z/archive/scratch/pland_witness_c6rfmpgs/witness.kicad_dru",
+      "sha256": "4227d7da8215194dc28f73997b9721437f75b2ef941dc0edf607e03ff2a49060",
+      "size": 98
+    },
+    {
+      "member": "diagnosis/archive/scratch/pland_witness_c6rfmpgs/witness.kicad_pcb",
+      "original_path": "/tmp/pland-fixture-dback-20260910T213128Z/archive/scratch/pland_witness_c6rfmpgs/witness.kicad_pcb",
+      "sha256": "ad630bdd7b0683c1625383552c9638a33a81f7a85bf876ba91b69c9a7f68e121",
+      "size": 6228
+    },
+    {
+      "member": "diagnosis/archive/scratch/pland_witness_c6rfmpgs/witness.kicad_prl",
+      "original_path": "/tmp/pland-fixture-dback-20260910T213128Z/archive/scratch/pland_witness_c6rfmpgs/witness.kicad_prl",
+      "sha256": "03925042ac16e50a5a0d56f94f3608c01cf07c9f1fb93af547ea91cb1f31528d",
+      "size": 2294
+    },
+    {
+      "member": "diagnosis/archive/scratch/pland_witness_c6rfmpgs/witness.kicad_pro",
+      "original_path": "/tmp/pland-fixture-dback-20260910T213128Z/archive/scratch/pland_witness_c6rfmpgs/witness.kicad_pro",
+      "sha256": "35809e60c3793d7a6006049fa1dedb2a0660769a86157a037f7b31b6abd9d4e7",
+      "size": 177
+    },
+    {
+      "member": "diagnosis/archive/scratch/pland_witness_mvyf2gld/witness.kicad_dru",
+      "original_path": "/tmp/pland-fixture-dback-20260910T213128Z/archive/scratch/pland_witness_mvyf2gld/witness.kicad_dru",
+      "sha256": "249143e30305c693abee24b5741e6462b51ef3787d767e7dfdc0899122619677",
+      "size": 96
+    },
+    {
+      "member": "diagnosis/archive/scratch/pland_witness_mvyf2gld/witness.kicad_pcb",
+      "original_path": "/tmp/pland-fixture-dback-20260910T213128Z/archive/scratch/pland_witness_mvyf2gld/witness.kicad_pcb",
+      "sha256": "88133ef216c42dc33ad714f874133546b608e90c4d57720b6b4bcf6a2c5bece4",
+      "size": 6228
+    },
+    {
+      "member": "diagnosis/archive/scratch/pland_witness_mvyf2gld/witness.kicad_prl",
+      "original_path": "/tmp/pland-fixture-dback-20260910T213128Z/archive/scratch/pland_witness_mvyf2gld/witness.kicad_prl",
+      "sha256": "03925042ac16e50a5a0d56f94f3608c01cf07c9f1fb93af547ea91cb1f31528d",
+      "size": 2294
+    },
+    {
+      "member": "diagnosis/archive/scratch/pland_witness_mvyf2gld/witness.kicad_pro",
+      "original_path": "/tmp/pland-fixture-dback-20260910T213128Z/archive/scratch/pland_witness_mvyf2gld/witness.kicad_pro",
+      "sha256": "35809e60c3793d7a6006049fa1dedb2a0660769a86157a037f7b31b6abd9d4e7",
+      "size": 177
+    },
+    {
+      "member": "diagnosis/bootstrap-reads.md",
+      "original_path": "/tmp/pland-fixture-dback-20260910T213128Z/bootstrap-reads.md",
+      "sha256": "0b5d7f88283790b13f274f27edbaf77f90f2583f2f410bb43b6f5fa926839025",
+      "size": 546
+    },
+    {
+      "member": "diagnosis/census-attempt-001.py",
+      "original_path": "/tmp/pland-fixture-dback-20260910T213128Z/census-attempt-001.py",
+      "sha256": "a3595491d5df70a8130720c26565e7547d74eec1dc7ace5d47fe9bc41c14e38f",
+      "size": 2147
+    },
+    {
+      "member": "diagnosis/census-attempt-002.py",
+      "original_path": "/tmp/pland-fixture-dback-20260910T213128Z/census-attempt-002.py",
+      "sha256": "f2d93db89c7ea55c2e36ed8d85b9d636698c6961c924c391572456795b092ed1",
+      "size": 2156
+    },
+    {
+      "member": "diagnosis/census-attempt-003.py",
+      "original_path": "/tmp/pland-fixture-dback-20260910T213128Z/census-attempt-003.py",
+      "sha256": "ce457dac99198a30a062e6ac88b609fe449db8a183df858c2f933ae63aa65b18",
+      "size": 2469
+    },
+    {
+      "member": "diagnosis/census.py",
+      "original_path": "/tmp/pland-fixture-dback-20260910T213128Z/census.py",
+      "sha256": "ce457dac99198a30a062e6ac88b609fe449db8a183df858c2f933ae63aa65b18",
+      "size": 2469
+    },
+    {
+      "member": "diagnosis/input-audit-after.json",
+      "original_path": "/tmp/pland-fixture-dback-20260910T213128Z/input-audit-after.json",
+      "sha256": "ef31b3e67f68300985d2844ba1336360bd9889ed78eccf713363ae49209f599e",
+      "size": 246535
+    },
+    {
+      "member": "diagnosis/input-audit-before.json",
+      "original_path": "/tmp/pland-fixture-dback-20260910T213128Z/input-audit-before.json",
+      "sha256": "3bcd8bf1a8bf5f30c614ad20becf7df0ed2c24df17f7cb2fca7bee2aa27d2f38",
+      "size": 245635
+    },
+    {
+      "member": "diagnosis/output-manifest.json",
+      "original_path": "/tmp/pland-fixture-dback-20260910T213128Z/output-manifest.json",
+      "sha256": "844b78950dcdf3744862524304f31df288d97b983925f2902139eb8e1e169170",
+      "size": 14615
+    },
+    {
+      "member": "diagnosis/output-manifest.sha256",
+      "original_path": "/tmp/pland-fixture-dback-20260910T213128Z/output-manifest.sha256",
+      "sha256": "b8e8861632bdf19b79ef970632c3086e9f56150c9690cffd07883b4e21c89d75",
+      "size": 87
+    },
+    {
+      "member": "diagnosis/process-audit.json",
+      "original_path": "/tmp/pland-fixture-dback-20260910T213128Z/process-audit.json",
+      "sha256": "14db17fa0e14afc0af4ca8f5fe37855db5a1797c2f27bfe393a48df933553887",
+      "size": 606
+    },
+    {
+      "member": "diagnosis/result.md",
+      "original_path": "/tmp/pland-fixture-dback-20260910T213128Z/result.md",
+      "sha256": "b64d4724f96f0fd29acdf99fe8843af915bd5b01b32da9934345756a23db9ec4",
+      "size": 12010
+    },
+    {
+      "member": "diagnosis/run_capture-original.py",
+      "original_path": "/tmp/pland-fixture-dback-20260910T213128Z/run_capture-original.py",
+      "sha256": "055208c15a53e482c148152d22e38e082ee1fe875cbd133a5bd557fdf395c44a",
+      "size": 1369
+    },
+    {
+      "member": "diagnosis/run_capture.py",
+      "original_path": "/tmp/pland-fixture-dback-20260910T213128Z/run_capture.py",
+      "sha256": "41a9996b4413fda1d21483a6c3f7fc5944e6f0284799bcb5ef6b9504158ca3ff",
+      "size": 1917
+    },
+    {
+      "member": "diagnosis/task-envelope.json",
+      "original_path": "/tmp/pland-fixture-dback-20260910T213128Z/task-envelope.json",
+      "sha256": "1a78e1b8712872d4c402e354d38621aa76ca73a1a64c9f6eda1731a51f23100e",
+      "size": 128266
+    }
+  ]
+}

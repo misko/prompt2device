@@ -87,6 +87,10 @@ def stub_krt(d, exit_code=0, write_output=True, json_summary=None):
         + f"sys.exit({exit_code})\n")
     (k / "route.py").write_text(body)
     (k / "route_diff.py").write_text(body)
+    # Route preparation synchronizes the board's native DRC authority before
+    # launching KRT.  The router stub must therefore provide the companion
+    # command too; a no-op preserves this fixture's existing project rules.
+    (k / "fix_kicad_drc_settings.py").write_text("import sys\n")
     return k
 
 
@@ -106,6 +110,7 @@ def stub_krt_via_in_pad(d):
         "b.Add(v); b.Save(out)\n")
     (k / "route.py").write_text(body)
     (k / "route_diff.py").write_text(body)
+    (k / "fix_kicad_drc_settings.py").write_text("import sys\n")
     return k
 
 
@@ -307,6 +312,25 @@ def t_krt_diff_engine():
     contains(r.out, "wave an (diff)", "diff engine report")
 
 
+@test("the no-via-in-pad search constraint reaches differential waves")
+def t_krt_diff_forbid_via_in_pad_reaches_argv():
+    """The realized-board guard grades every engine, so its matching search
+    constraint must reach every engine too.  Otherwise a differential search
+    can spend its run producing a candidate that the next gate must reject."""
+    def mutate(cfg, d):
+        use_stub(cfg, d)
+        cfg["route"]["forbid_new_via_in_pad"] = True
+        cfg["route"]["waves"][0]["engine"] = "diff"
+        cfg["route"]["waves"][0]["diff_pair_gap"] = 0.17
+
+    d, p = scratch(mutate)
+    must_pass(prep(p), "prep")
+    must_pass(run([sys.executable, RS, "route", p]), "guarded diff route")
+    calls = krt_calls(d / "krt")
+    check("--forbid-via-in-pad" in calls[0],
+          "the declared no-via-in-pad policy did not constrain route_diff.py")
+
+
 @test("a differential wave cannot authenticate or promote skipped fanouts",
       kind="known_bad")
 def t_kb_diff_skipped_fanout_is_hard_failure():
@@ -423,6 +447,9 @@ def t_route_via_in_pad_guard_clean():
     r = must_pass(run([sys.executable, RS, "route", p]),
                   "clean route with per-wave via-in-pad guard")
     contains(r.out, "waves done", "clean guarded route")
+    calls = krt_calls(d / "krt")
+    check(calls and all("--forbid-via-in-pad" in call for call in calls),
+          "the realized-board via-in-pad policy did not constrain KRT search")
     for i in range(1, 4):
         report = json.loads(
             (d / "06_build" / "route" / f"wave_{i}_via_in_pad.json").read_text())
@@ -960,6 +987,25 @@ def t_import_in3_in4_layers():
              "both inner-layer segments must import")
 
 
+@test("route inputs resolve historical repository-relative paths from a project root")
+def t_repository_relative_route_input_resolution():
+    """The conductor runs from the project root, while older configs name
+    `projects/<project>/...`.  That dialect must resolve at the worktree root
+    without duplicating the project prefix."""
+    d = tmpdir("route_input_repo_")
+    (d / ".git").write_text("gitdir: fixture\n")
+    project = d / "projects" / "board"
+    target = project / "03_src" / "rules" / "fab.txt"
+    target.parent.mkdir(parents=True)
+    target.write_text("min_clearance=0.09\n")
+    sys.path.insert(0, str(SCRIPTS))
+    from route_and_stitch_generic import _resolve_route_input_path
+    got = _resolve_route_input_path(
+        {"_root": project}, "projects/board/03_src/rules/fab.txt",
+        "fab overrides")
+    eq(got, target.resolve(), "repository-relative route authority")
+
+
 @test("a fab_overrides route option reaches KRT as --fab-overrides on every "
       "wave")
 def t_krt_fab_overrides():
@@ -971,7 +1017,9 @@ def t_krt_fab_overrides():
     proves bites — 2026-07-23."""
     def mutate(cfg, d):
         use_stub(cfg, d)
-        cfg["route"]["common"]["fab_overrides"] = "jlc_2layer_6mil"
+        override = d / "jlc_2layer_6mil"
+        override.write_text("min_clearance=0.09\n")
+        cfg["route"]["common"]["fab_overrides"] = override.name
     d, p = scratch(mutate)
     must_pass(prep(p), "prep")
     must_pass(run([sys.executable, RS, "route", p]), "route (stub KRT)")
@@ -979,7 +1027,8 @@ def t_krt_fab_overrides():
     check(len(calls) >= 1, "no KRT waves were invoked")
     for c in calls:
         check("--fab-overrides" in c, f"wave missing --fab-overrides: {c}")
-        eq(c[c.index("--fab-overrides") + 1], "jlc_2layer_6mil",
+        eq(c[c.index("--fab-overrides") + 1],
+           str((d / "jlc_2layer_6mil").resolve()),
            "the fab_overrides value did not reach KRT")
 
 
@@ -1594,6 +1643,44 @@ def t_kb_wave_width_below_class():
     contains(r.out, "min_width 0.4", "the failure must cite the floor")
 
 
+@test("a power-net override may carry the class floor while track_width names "
+      "the legal terminal neckdown")
+def t_wave_width_power_override():
+    """Dense power pins need a short legal neckdown while their trunks retain
+    the class ampacity width.  The explicit per-net override is the trunk
+    authority; rejecting the smaller base width makes this route recipe
+    impossible to express and pushes it into an unreviewable manual command."""
+    def mutate(cfg, d):
+        use_stub(cfg, d)
+        declare_classes(d)
+        for wv in cfg["route"]["waves"]:
+            if wv["name"] == "pwr":
+                wv["track_width"] = 0.2
+                wv["power_nets"] = ["5V", "3V3"]
+                wv["power_nets_widths"] = [0.4, 0.4]
+    d, p = scratch(mutate)
+    must_pass(prep(p), "prep with class-width power overrides")
+    must_pass(run([sys.executable, RS, "route", p]), "route (stub KRT)")
+    call = krt_calls(d / "krt")[1]
+    eq(call[call.index("--track-width") + 1], "0.2",
+       "terminal neckdown width did not reach KRT")
+    eq(call[call.index("--power-nets-widths") + 1:][:2], ["0.4", "0.4"],
+       "class-width trunk overrides did not reach KRT")
+
+
+@test("a sub-floor power override still fails prep", kind="known_bad")
+def t_kb_wave_width_power_override_below_class():
+    def mutate(cfg, d):
+        declare_classes(d)
+        for wv in cfg["route"]["waves"]:
+            if wv["name"] == "pwr":
+                wv["track_width"] = 0.2
+                wv["power_nets"] = ["5V", "3V3"]
+                wv["power_nets_widths"] = [0.39, 0.4]
+    d, p = scratch(mutate)
+    must_fail(prep(p), "prep with sub-floor power override", "min_width 0.4")
+
+
 # ======================================= ROUTE RACE (stochastic router) ==
 def stub_krt_race(d):
     """A stub router with per-candidate QUALITY: candidate 1 'routes' by
@@ -1627,6 +1714,7 @@ def stub_krt_race(d):
         "            'b.Save(sys.argv[1])\\n')\n"
         f"    subprocess.run(['{KPY}', '-c', code, out], check=True)\n"
         "sys.exit(0)\n")
+    (k / "fix_kicad_drc_settings.py").write_text("import sys\n")
     return k
 
 
@@ -1763,6 +1851,33 @@ def t_route_through_wave_pause_and_resume():
        "resume should run only the uncompleted suffix")
     check((d / "06_build" / "route" / "FINAL").is_file(),
           "the completed resumed chain must become promotable")
+
+
+@test("route --resume rejects changed router source and records its identity",
+      kind="known_bad")
+def t_route_resume_rejects_router_source_drift():
+    import yaml
+
+    def mutate(cfg, d):
+        use_stub(cfg, d)
+        cfg["route"]["race"] = 1
+    d, p = scratch(mutate)
+    must_pass(prep(p), "prep")
+    waves = yaml.safe_load(p.read_text())["route"]["waves"]
+    first = waves[0].get("name", "w1")
+    must_pass(run([sys.executable, RS, "route", p,
+                   "--through-wave", first]), "bounded first wave")
+    progress = json.loads(
+        (d / "06_build" / "route" / "route_progress.json").read_text())
+    check(len(progress.get("router_source_sha256", "")) == 64,
+          "route progress omitted the router implementation fingerprint")
+    router = d / "krt" / "route.py"
+    router.write_bytes(router.read_bytes() + b"\n# planted router drift\n")
+    before = len(krt_calls(d / "krt"))
+    must_fail(run([sys.executable, RS, "route", p, "--resume"]),
+              "resume after router implementation drift", "KRT source changed")
+    eq(len(krt_calls(d / "krt")), before,
+       "KRT ran before its changed implementation was rejected")
 
 
 @test("route --resume rejects a mutated intermediate instead of trusting rN",
@@ -3110,6 +3225,15 @@ isl = {"chain": sq(10.0, 8.0, 13.0, 11.0), "layer": pcbnew.F_Cu}
 v_ring = via(9.85, 9.5)     # ring overlaps: 0.15mm outside, ring reaches 0.3mm
 v_far = via(5.0, 5.0)       # >5mm away, ring nowhere near
 
+fp = pcbnew.FOOTPRINT(b); b.Add(fp)
+def pad(x, y, sx=0.4, sy=0.4):
+    p = pcbnew.PAD(fp); p.SetShape(pcbnew.PAD_SHAPE_RECT)
+    p.SetSize(pcbnew.VECTOR2I_MM(sx, sy)); p.SetAttribute(pcbnew.PAD_ATTRIB_SMD)
+    p.SetLayerSet(pcbnew.PAD.SMDMask()); p.SetPosition(pcbnew.VECTOR2I_MM(x, y))
+    p.SetNet(gnd); fp.Add(p); return p
+p_edge = pad(9.85, 9.0)     # centre outside; exact rectangular land crosses edge
+p_far = pad(5.0, 5.0)       # exact land nowhere near the island
+
 # The pre-fix predicate, reproduced inline to prove the fixture is RED against it.
 def old_holds(o, item):
     return o.PointInside(item.GetPosition())
@@ -3118,6 +3242,9 @@ o = isl["chain"]
 print("OLD_RING_SEATED", old_holds(o, v_ring))     # the bug: False (missed)
 print("NEW_RING_SEATED", R._island_holds(ctx, isl, v_ring))   # fixed: True
 print("NEW_FAR_SEATED", R._island_holds(ctx, isl, v_far))     # still: False
+print("OLD_PAD_SEATED", old_holds(o, p_edge))       # boundary-overlap bug: False
+print("NEW_PAD_SEATED", R._island_holds(ctx, isl, p_edge))    # fixed: True
+print("NEW_FAR_PAD_SEATED", R._island_holds(ctx, isl, p_far)) # still: False
 # _copper_reaches is exact at the boundary: ring radius == edge distance -> touch
 edge = o.NearestPoint(v_ring.GetPosition())
 d = math.hypot(edge.x - v_ring.GetPosition().x,
@@ -3153,6 +3280,13 @@ def t_heal_island_ring_overlap_seated():
     contains(r.out, "NEW_FAR_SEATED False",
              "copper out of ring reach must stay UNSEATED — the fix must not "
              "weaken orphan detection into never-flagging")
+    contains(r.out, "OLD_PAD_SEATED False",
+             "the pre-fix pad-centre test must MISS a rectangular land whose "
+             "copper crosses the island boundary")
+    contains(r.out, "NEW_PAD_SEATED True",
+             "exact flashed-pad overlap must seat the boundary-crossing land")
+    contains(r.out, "NEW_FAR_PAD_SEATED False",
+             "a distant pad must remain unseated")
     # the via CENTRE sits OUTSIDE the island (edge distance > 0, and
     # OLD_RING_SEATED False confirms it), but by LESS than the 0.30mm ring
     # radius, so the ring genuinely overlaps the fill — not an interior point
@@ -3189,6 +3323,7 @@ def zone(net, prio, pts):
     z.Outline().NewOutline()
     for x,y in pts: z.Outline().Append(pcbnew.VECTOR2I_MM(float(x),float(y)))
     b.Add(z)
+    return z
 def pad(ref, net, x, y):
     fp=pcbnew.FOOTPRINT(b); fp.SetReference(ref); fp.SetPosition(pcbnew.VECTOR2I_MM(x,y))
     p=pcbnew.PAD(fp); p.SetShape(pcbnew.PAD_SHAPE_RECT); p.SetAttribute(pcbnew.PAD_ATTRIB_SMD)
@@ -3196,9 +3331,16 @@ def pad(ref, net, x, y):
     p.SetPosition(pcbnew.VECTOR2I_MM(x,y)); p.SetNumber("1"); p.SetNet(nets[net])
     fp.Add(p); b.Add(fp)
 # two overlapping F.Cu zones, SAME priority 0 -> zones_intersect
-zone(nets["PWR"], 0, [(2,2),(18,2),(18,18),(2,18)])
+z1=zone(nets["PWR"], 0, [(2,2),(18,2),(18,18),(2,18)])
 if cfg["mode"] == "cross":
-    zone(nets["SIG"], 0, [(12,5),(28,5),(28,15),(12,15)])
+    z2=zone(nets["SIG"], 0, [(12,5),(28,5),(28,15),(12,15)])
+    # Plant an impossible saved-state defect: each foreign-net zone carries
+    # its full outline as filled copper, so their shared area is a real short.
+    # A normal joint refill clips foreign zones apart and cannot construct the
+    # defect this known-bad needs to prove the pre-refill refusal.
+    for z in (z1,z2):
+        z.SetFilledPolysList(pcbnew.F_Cu,pcbnew.SHAPE_POLY_SET(z.Outline()))
+        z.SetIsFilled(True)
     pad("U1","PWR",7,10); pad("U2","SIG",23,10)
 else:
     zone(nets["PWR"], 0, [(12,5),(28,5),(28,15),(12,15)])
@@ -3276,7 +3418,8 @@ def t_kb_unify_cross_net():
     the netcode split in _zone_overlap_pairs): the broken pass bumped a
     priority and 'cleared' the intersection, shipping the short — this test
     then failed because stitch exited 0."""
-    d, p, board = zint_scratch("cross")
+    d, p, board = zint_scratch(
+        "cross", passes=("unify_zone_priorities", "fill", "gate"))
     r = must_fail(stitch(p), "stitch on a cross-net zone overlap",
                   "DIFFERENT nets")
     contains(r.out, "SHORT", "the refusal must call it a short")
@@ -3381,6 +3524,43 @@ def t_seed_stubs_idempotent():
         passes=("seed_stubs", "seed_stubs", "fill", "gate"))
     r = must_pass(stitch(p), "stitch with two seed_stubs passes")
     contains(r.out, "1 idempotent-skip", "the second pass must skip its copper")
+
+
+@test("seed_stubs can defer one bank to a later declared occurrence")
+def t_seed_stubs_deferred_occurrence():
+    """A seed blocked by router offcuts may be admitted only after the
+    configured prune pass. Other banks still run in the early occurrence;
+    no transient refusal is recorded and the deferred bank is emitted once."""
+    d, p, board = seed_scratch(
+        [{"net": "PWR", "pin": "U1.1", "vias": [[15, 10]],
+          "defer_until_occurrence": 2}],
+        passes=("seed_stubs", "seed_stubs", "fill", "gate"))
+    r = must_pass(stitch(p), "stitch with a deferred seed bank")
+    contains(r.out, "1 deferred at occurrence 1", "first pass did not defer")
+    contains(r.out, "1 bank(s) served", "second pass did not emit the bank")
+    eq(drc_counts(board)["unconnected"], 0,
+       "the deferred seed did not bond the pour-fed pin")
+
+
+@test("seed_stubs preserves authored sub-micron endpoint identity")
+def t_seed_stubs_preserves_native_grid_endpoint():
+    """Prepared copper can start on a half-micron package-pad centre.
+    Quantizing it to a 0.001 mm drawing grid leaves physical overlap but makes
+    KRT's exact terminal-component model report the pin as disconnected."""
+    d, p, board = seed_scratch(
+        [{"net": "PWR", "pin": "U1.1",
+          "segments": [{"layer": "F.Cu", "width": 0.2,
+                        "pts": [[15.0005, 10], [17.0005, 10]]}]}],
+        passes=("seed_stubs", "fill"))
+    must_pass(stitch(p), "stitch with a half-micron seed endpoint")
+    code = ("import pcbnew,sys\n"
+            "b=pcbnew.LoadBoard(sys.argv[1])\n"
+            "t=next(t for t in b.GetTracks() if t.GetClass()=='PCB_TRACK')\n"
+            "print('@@'+repr((t.GetStart().x,t.GetEnd().x)))\n")
+    got = must_pass(run([KPY, "-c", code, board]),
+                    "inspect half-micron seed endpoint")
+    eq(eval(got.out.split("@@", 1)[1].strip()), (15000500, 17000500),
+       "seed_stubs quantized an authored native-grid endpoint")
 
 
 @test("seed_stubs emits a native RF arc and reruns idempotently")
@@ -3525,6 +3705,51 @@ def t_import_source_is_explicit():
     eq(receipt["selected_source"], "promoted", "selected route lineage")
     eq(receipt["chain_sha256"], __import__("hashlib").sha256(
         promoted.read_bytes()).hexdigest(), "receipt chain hash")
+
+
+@test("route import retains declared fabrication authority instead of stale Board Setup defaults")
+def t_import_fabrication_authority():
+    """RED against pre-fix import: successful import leaves .45/.13 defaults.
+    Native copper import plus a hermetic capability adapter exercises the public
+    command; saved named classes and severities must remain unchanged.
+    """
+    import yaml
+    d, p, board, _chain, _pristine = seed_pipeline([])
+    krt = d / "krt"
+    krt.mkdir()
+    (krt / "fix_kicad_drc_settings.py").write_text(
+        "import json,sys,pathlib\n"
+        "assert all(v in sys.argv for v in ('--no-clamp-netclasses','--keep-courtyards','--keep-mask','--keep-footprint','--keep-thermal'))\n"
+        "p=pathlib.Path(sys.argv[1]).with_suffix('.kicad_pro')\n"
+        "d=json.loads(p.read_text())\n"
+        "d['board']['design_settings']['rules'].update(min_via_diameter=.3,min_via_annular_width=.05)\n"
+        "p.write_text(json.dumps(d))\n")
+    overrides = d / "fab.txt"
+    overrides.write_text("via_diameter=.3\nvia_drill=.2\n")
+    cfg = yaml.safe_load(p.read_text())
+    cfg['route'].update(krt=str(krt), python=str(KPY),
+                        common={'fab_tier': 'advanced', 'fab_overrides': str(overrides)})
+    p.write_text(yaml.safe_dump(cfg))
+    pro = board.with_suffix('.kicad_pro')
+    before = {'board': {'design_settings': {'rules': {
+        'min_via_diameter': .45, 'min_via_annular_width': .13}},
+        'drc_severities': {'clearance': 'error', 'starved_thermal': 'error'}},
+        'net_settings': {'classes': [{'name': 'POWER', 'track_width': 1.2}],
+                         'netclass_patterns': [{'pattern': '5V', 'netclass': 'POWER'}]}}
+    pro.write_text(json.dumps(before))
+    must_pass(run([KPY, RS, "import", p, "--route-source", "promoted"]),
+              "native import with declared capability settings")
+    after = json.loads(pro.read_text())
+    eq(after['board']['design_settings']['rules']['min_via_diameter'], .3,
+       "imported board carries declared via diameter, not stale default")
+    eq(after['board']['design_settings']['rules']['min_via_annular_width'], .05,
+       "imported board carries declared annular floor")
+    power = next(c for c in after['net_settings']['classes'] if c['name'] == 'POWER')
+    eq(power['track_width'], 1.2, "named power width retained through native serialization")
+    eq(after['net_settings']['netclass_patterns'], before['net_settings']['netclass_patterns'],
+       "named copper assignments retained")
+    for rule, severity in before['board']['drc_severities'].items():
+        eq(after['board']['drc_severities'][rule], severity, "error severity retained")
 
 
 def _uuid_blind(b):
@@ -4098,6 +4323,186 @@ def t_e2e_cook_loadcell():
 def t_e2e_crow_array_pod():
     _e2e("crow-array-pod", "crow_array_pod", 3, skip_preflight=True)
 
+
+@test("declared-path pruning compares pcbnew and audit endpoints on one micrometre lattice")
+def t_prune_declared_path_offcuts_coordinate_lattice():
+    source = RS.read_text()
+    contains(source, "int(round(point.x / 1000))",
+             "pcbnew nanometres are normalized to audit micrometres")
+    contains(source, "int(round(at[0] * 1000))",
+             "audit via millimetres are normalized to audit micrometres")
+    # The carrier regression was 145.700994 mm: pcbnew stores 145700994 nm,
+    # while copper_length_audit's path node is 145701 um.  Direct nanometre
+    # equality failed on the exact same physical endpoint before this rule.
+    eq(round(145700994 / 1000), round(145.700994 * 1000),
+       "sub-micrometre serialization residue resolves to one endpoint")
+
+
+@test("exact segment widening preserves topology and rejects stale or narrowing recipes atomically")
+def t_exact_segment_widening():
+    d = tmpdir("t2_exact_width_")
+    script = d / "probe.py"
+    script.write_text(f"import sys\nsys.path.insert(0, {str(SCRIPTS)!r})\n" + r'''
+import copy, pcbnew
+import route_and_stitch_generic as rs
+b=pcbnew.BOARD();n=pcbnew.NETINFO_ITEM(b,"SIG");b.Add(n)
+t=pcbnew.PCB_TRACK(b);t.SetNet(n);t.SetStart(pcbnew.VECTOR2I(10000000,10000000));t.SetEnd(pcbnew.VECTOR2I(20000000,10000000));t.SetWidth(200000);t.SetLayer(pcbnew.F_Cu);b.Add(t)
+class C: pass
+c=C();c.board=b;c.bump=lambda *a:None
+row=dict(net="SIG",layer="F.Cu",start=[10,10],end=[20,10],from_width=.2,to_width=.4,reason="independently checked resistance geometry")
+assert "widen_exact_segments" in rs.PASSES
+rs.p_widen_exact_segments(c,dict(segments=[row]));assert t.GetWidth()==400000
+assert (t.GetStart().x,t.GetEnd().x,t.GetNetname(),t.GetLayer())==(10000000,20000000,"SIG",pcbnew.F_Cu)
+rs.p_widen_exact_segments(c,dict(segments=[row]));assert len(list(b.GetTracks()))==1
+for defect in [dict(to_width=.1),dict(start=[11,10]),dict(extra=True),dict(from_width=.3,to_width=.5)]:
+ t.SetWidth(200000);bad=dict(row,**defect)
+ try: rs.p_widen_exact_segments(c,dict(segments=[bad]))
+ except rs.RouteConfigError: pass
+ else: raise AssertionError("known bad recipe accepted")
+ assert t.GetWidth()==200000, "partial mutation before validation"
+t.SetWidth(200000)
+try: rs.p_widen_exact_segments(c,dict(segments=[row,dict(row,start=[11,10])]))
+except rs.RouteConfigError: pass
+else: raise AssertionError("late stale row accepted")
+assert t.GetWidth()==200000, "first row mutated before later rejection"
+try: rs.p_widen_exact_segments(c,dict(segments=[row,row]))
+except rs.RouteConfigError: pass
+else: raise AssertionError("duplicate accepted")
+assert t.GetWidth()==200000
+print("exact-widen positive and six hostile controls PASS")
+''')
+    must_pass(run([KPY, script]), "exact widening native positive and hostile controls")
+
+
+@test("seed pin contact uses copper overlap and rejects disjoint or opposite-layer tracks")
+def t_seed_pin_copper_contact():
+    d = tmpdir("t2_pin_copper_")
+    script = d / "probe.py"
+    script.write_text(f"import sys\nsys.path.insert(0, {str(SCRIPTS)!r})\n" + r'''
+import pcbnew
+import route_and_stitch_generic as rs
+b=pcbnew.BOARD();n=pcbnew.NETINFO_ITEM(b,"GND");b.Add(n)
+f=pcbnew.FOOTPRINT(b);f.SetReference("U1");b.Add(f)
+p=pcbnew.PAD(f);p.SetNumber("1");p.SetAttribute(pcbnew.PAD_ATTRIB_SMD);p.SetShape(pcbnew.PAD_SHAPE_RECT);p.SetSize(pcbnew.VECTOR2I(500000,250000));p.SetPosition(pcbnew.VECTOR2I(10000000,10000000));p.SetLayerSet(pcbnew.PAD.SMDMask());p.SetNet(n);f.Add(p)
+t=pcbnew.PCB_TRACK(b);t.SetNet(n);t.SetLayer(pcbnew.F_Cu);t.SetWidth(300000);t.SetStart(pcbnew.VECTOR2I(9700000,10050000));t.SetEnd(pcbnew.VECTOR2I(9500000,10200000));b.Add(t)
+class C: pass
+c=C();c.board=b;c.pcbnew=pcbnew
+# Neither centerline endpoint is in the pad; the finite copper overlaps its edge.
+assert rs._pin_touched(c,10,10,n.GetNetCode(),pad=p), "legal finite-copper edge contact rejected"
+t.SetLayer(pcbnew.B_Cu)
+assert not rs._pin_touched(c,10,10,n.GetNetCode(),pad=p), "opposite-layer projection credited"
+t.SetLayer(pcbnew.F_Cu);t.SetStart(pcbnew.VECTOR2I(9000000,10000000));t.SetEnd(pcbnew.VECTOR2I(9200000,10000000))
+assert not rs._pin_touched(c,10,10,n.GetNetCode(),pad=p), "disconnected track credited"
+t.SetStart(pcbnew.VECTOR2I(10000000,10000000));t.SetEnd(pcbnew.VECTOR2I(10000000,10500000));t.SetLayer(pcbnew.B_Cu)
+assert not rs._pin_touched(c,10,10,n.GetNetCode(),pad=p), "opposite-layer center proximity credited"
+print("native copper contact positive and three hostile controls PASS")
+''')
+    must_pass(run([KPY, script]), "native seed copper contact")
+
+
+
+@test("seed pair clearance retains declared netclass floors above its search minimum", kind="known_bad")
+def t_seed_netclass_clearance():
+    d = tmpdir("t2_seed_classes_")
+    script = d / "probe.py"
+    script.write_text(f"import sys\nsys.path.insert(0, {str(SCRIPTS)!r})\n" + r'''
+import pcbnew, yaml
+from pathlib import Path
+from types import SimpleNamespace
+import route_and_stitch_generic as rs
+root=Path(__file__).parent
+p=root/'03_src/rules/nets.yaml';p.parent.mkdir(parents=True)
+p.write_text(yaml.safe_dump(dict(default_clearance='0.15mm',classes={
+ 'G':dict(nets=['GND'],clearance='0.18mm'),
+ 'P':dict(nets=['POWER'],clearance='0.20mm'),
+ 'S':dict(nets=['SIGNAL'],clearance='0.25mm')})))
+b=pcbnew.BOARD();ctx=SimpleNamespace(cfg={'_root':root},board=b)
+f=rs._seed_scoped_pair_resolver(ctx,.18,'clearance')('GND')
+assert callable(f), 'declared class floors were not applied'
+for net,want in [('POWER',.20),('SIGNAL',.25),('GND',.18),('UNCLASSIFIED',.18)]:
+ item=SimpleNamespace(GetNetname=lambda:net)
+ assert abs(f(None,item,pcbnew.F_Cu)-want)<1e-12,(net,want)
+assert f.maximum_mm>=.25, 'broad-phase search can miss high-clearance copper'
+g=rs._seed_scoped_pair_resolver(ctx,.30,'clearance')('GND')
+assert g(None,SimpleNamespace(GetNetname=lambda:'SIGNAL'),pcbnew.F_Cu)==.30
+assert rs._seed_scoped_pair_resolver(ctx,.18,'hole_clearance')('GND') is None
+print('netclass floor controls PASS')
+''')
+    must_pass(run([KPY, script]), "seed netclass pair floors")
+
+
+@test("exact via relocation preserves barrel identity and rejects stale recipes atomically", kind="known_bad")
+def t_relocate_exact_vias():
+    d = tmpdir("t2_via_relocate_")
+    script = d / "probe.py"
+    script.write_text(f"import sys\nsys.path.insert(0, {str(SCRIPTS)!r})\n" + r'''
+import pcbnew, copy
+from types import SimpleNamespace
+import route_and_stitch_generic as rs
+b=pcbnew.BOARD();n=pcbnew.NETINFO_ITEM(b,'N');b.Add(n)
+v=pcbnew.PCB_VIA(b);v.SetNet(n);v.SetPosition(pcbnew.VECTOR2I_MM(10,10));v.SetWidth(500000);v.SetDrill(200000);v.SetViaType(pcbnew.VIATYPE_THROUGH);v.SetLayerPair(pcbnew.F_Cu,pcbnew.B_Cu);b.Add(v)
+c=SimpleNamespace(board=b,cfg={'_tier':None},bump=lambda *a:None)
+old=dict(at=[10,10],size=.5,drill=.2,layers=['F.Cu','B.Cu'])
+new=dict(at=[11,10],size=.3,drill=.2,layers=['F.Cu','B.Cu'])
+row={'net':'N','reason':'qualified relocation','from':old,'to':new}
+f=rs.p_relocate_exact_vias
+uid=v.m_Uuid.AsString();f(c,dict(edits=[row]));f(c,dict(edits=[row]))
+assert v.GetPosition()==pcbnew.VECTOR2I_MM(11,10) and v.GetWidth(0)==300000
+assert v.GetDrillValue()==200000 and v.m_Uuid.AsString()==uid
+assert len(list(b.GetTracks()))==1
+v.SetPosition(pcbnew.VECTOR2I_MM(10,10));v.SetWidth(500000)
+for kind in ['stale','wrong_net','layer','diameter','duplicate','nonfinite','extra']:
+ r=copy.deepcopy(row)
+ if kind=='stale':r['from']['at']=[15,15]
+ if kind=='wrong_net':r['net']='OTHER'
+ if kind=='layer':r['to']['layers']=['F.Cu','In1.Cu']
+ if kind=='diameter':r['to']['size']=.1
+ if kind=='nonfinite':r['to']['at']=[float('nan'),10]
+ if kind=='extra':r['to']['unused']=1
+ rows=[row,r] if kind=='duplicate' else [r]
+ try:f(c,dict(edits=rows))
+ except rs.RouteConfigError:pass
+ else:raise AssertionError(kind+' accepted')
+ assert v.GetPosition()==pcbnew.VECTOR2I_MM(10,10) and v.GetWidth(0)==500000
+bad=copy.deepcopy(row);bad['from']['at']=[15,15];bad['to']['at']=[16,15]
+try:f(c,dict(edits=[row,bad]))
+except rs.RouteConfigError:pass
+else:raise AssertionError('late stale row accepted')
+assert v.GetPosition()==pcbnew.VECTOR2I_MM(10,10), 'partial mutation before rejection'
+print('native exact via relocation positive/idempotent and eight hostile controls PASS')
+''')
+    must_pass(run([KPY, script]), "native exact via relocation")
+
+
+@test("late exact geometry restoration is atomic, idempotent, and rejects partial state", kind="known_bad")
+def t_restore_exact_geometry():
+    d = tmpdir("t2_geometry_restore_")
+    script = d / "probe.py"
+    script.write_text(f"import sys\nsys.path.insert(0, {str(SCRIPTS)!r})\n" + r'''
+import pcbnew
+from types import SimpleNamespace
+import route_and_stitch_generic as rs
+b=pcbnew.BOARD();n=pcbnew.NETINFO_ITEM(b,'N');b.Add(n)
+v=pcbnew.PCB_VIA(b);v.SetNet(n);v.SetPosition(pcbnew.VECTOR2I_MM(10,10));v.SetWidth(300000);v.SetDrill(200000);v.SetViaType(pcbnew.VIATYPE_THROUGH);v.SetLayerPair(pcbnew.F_Cu,pcbnew.B_Cu);b.Add(v)
+def seg(a,z,layer):
+ t=pcbnew.PCB_TRACK(b);t.SetNet(n);t.SetStart(pcbnew.VECTOR2I_MM(*a));t.SetEnd(pcbnew.VECTOR2I_MM(*z));t.SetWidth(150000);t.SetLayer(layer);b.Add(t);return t
+seg((10,10),(9,10),pcbnew.B_Cu)
+c=SimpleNamespace(board=b,cfg={'_tier':None},pcbnew=pcbnew,bump=lambda *a:None,remove=lambda x:b.Remove(x),net=lambda name:n)
+vg=lambda at:dict(at=at,size=.3,drill=.2,layers=['F.Cu','B.Cu'])
+sg=lambda layer,a,z:dict(layer=layer,width=.15,start=a,end=z)
+row={'net':'N','reason':'late cleanup restoration','via':{'from':vg([10,10]),'to':vg([11,10])},'remove_segments':[sg('B.Cu',[10,10],[9,10])],'add_segments':[sg('B.Cu',[11,10],[9,10]),sg('F.Cu',[8,10],[11,10])]}
+f=rs.p_restore_exact_geometry;uid=v.m_Uuid.AsString();f(c,{'transactions':[row]});f(c,{'transactions':[row]})
+assert v.GetPosition()==pcbnew.VECTOR2I_MM(11,10) and v.m_Uuid.AsString()==uid
+assert len(list(b.GetTracks()))==3
+added=[t for t in b.GetTracks() if t.GetClass()=='PCB_TRACK' and t.GetLayer()==pcbnew.F_Cu][0];b.Remove(added)
+before=[(t.GetClass(),t.m_Uuid.AsString()) for t in b.GetTracks()]
+try:f(c,{'transactions':[row]})
+except rs.RouteConfigError:pass
+else:raise AssertionError('partial restored state accepted')
+assert [(t.GetClass(),t.m_Uuid.AsString()) for t in b.GetTracks()]==before
+print('late exact geometry positive/idempotent and partial-state rejection PASS')
+''')
+    must_pass(run([KPY, script]), "native late exact geometry restoration")
 
 if __name__ == "__main__":
     sys.exit(main())

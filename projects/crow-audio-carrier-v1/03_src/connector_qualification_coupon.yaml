@@ -1,0 +1,488 @@
+schema: 1
+coupon_id: crow-audio-carrier-v1-connector-coupon
+source_board: 04_kicad/crow_audio_carrier_v1.kicad_pcb
+connector_contract: 03_src/rules/connector_assemblies.yaml
+phase_policy: 03_src/rules/connector_assembly_phases.yaml
+base_receipt: 06_build/verification/connector_assembly_contract.json
+board_only_refs:
+- H1
+- H2
+- H3
+- H4
+- FID1
+- FID2
+- FID3
+local_footprint_libraries:
+  crow_audio_carrier: 03_src/lib/crow_audio_carrier.pretty
+fabrication:
+  copper_layers: 4
+  pcb_thickness_mm: 1.6
+  surface_finish: lead-free HASL
+  soldermask: green
+  silkscreen: white
+  population_method: hand solder exact connector lots
+  accepted_drc_warning_types:
+  - silk_edge_clearance
+qualification:
+  minimum_samples:
+    molex-micro-fit-power-input: 1
+    mchstreamer-dual-cable-interface: 2
+    factory-rj45-spoke-bank: 8
+  required_sample_evidence_kinds:
+  - photo
+  - lot_label
+  required_instrument_roles:
+  - dimensional
+  - continuity
+  - crimp-height
+  - pull-force
+  target_hardware:
+  - assembly_id: mchstreamer-dual-cable-interface
+    role: mchstreamer-module
+    manufacturer: miniDSP
+    product: MCHStreamer
+  targets:
+  - assembly_id: factory-rj45-spoke-bank
+    target_kind: interface
+    target_id: interface
+    required_measurements:
+    - name: mating-plane-offset
+      unit: mm
+      minimum: null
+      maximum: null
+    - name: minimum-exposure
+      unit: mm
+      minimum: 0.0
+      maximum: null
+    - name: minimum-service-clearance
+      unit: mm
+      minimum: 0.5
+      maximum: null
+    - name: installed-seating-gap
+      unit: mm
+      minimum: 0.0
+      maximum: 0.5
+    required_evidence_kinds:
+    - photo
+    - measurement_sheet
+  - assembly_id: factory-rj45-spoke-bank
+    target_kind: reaction
+    target_id: reaction
+    required_measurements:
+    - name: maximum-pcb-flex
+      unit: mm
+      minimum: 0.0
+      maximum: 0.5
+    - name: maximum-connector-rotation
+      unit: deg
+      minimum: 0.0
+      maximum: 2.0
+    - name: exercised-cycles
+      unit: count
+      minimum: 3
+      maximum: null
+    required_evidence_kinds:
+    - video
+    - measurement_sheet
+  - assembly_id: factory-rj45-spoke-bank
+    target_kind: operation
+    target_id: mate
+    required_measurements:
+    - name: exercised-cycles
+      unit: count
+      minimum: 3
+      maximum: null
+    - name: continuity-open-count
+      unit: count
+      minimum: 0
+      maximum: 0
+    - name: continuity-cross-short-count
+      unit: count
+      minimum: 0
+      maximum: 0
+    required_evidence_kinds:
+    - photo
+    - video
+    - continuity_log
+  - assembly_id: factory-rj45-spoke-bank
+    target_kind: operation
+    target_id: latch-pull-check
+    required_measurements:
+    - name: continuity-open-count
+      unit: count
+      minimum: 0
+      maximum: 0
+    - name: continuity-cross-short-count
+      unit: count
+      minimum: 0
+      maximum: 0
+    - name: exercised-cycles
+      unit: count
+      minimum: 3
+      maximum: null
+    - name: latch-damage-count
+      unit: count
+      minimum: 0
+      maximum: 0
+    - name: finished-hot-loop-resistance
+      unit: ohm
+      minimum: 0.0
+      maximum: 2.2
+    required_evidence_kinds:
+    - photo
+    - measurement_sheet
+    - continuity_log
+  - assembly_id: factory-rj45-spoke-bank
+    target_kind: operation
+    target_id: unmate
+    required_measurements:
+    - name: exercised-cycles
+      unit: count
+      minimum: 3
+      maximum: null
+    - name: latch-damage-count
+      unit: count
+      minimum: 0
+      maximum: 0
+    required_evidence_kinds:
+    - photo
+    - video
+  - assembly_id: factory-rj45-spoke-bank
+    target_kind: tolerance
+    target_id: connector-enclosure-stack
+    required_measurements:
+    - name: realized-minus
+      unit: mm
+      minimum: 0.0
+      maximum: null
+    - name: realized-plus
+      unit: mm
+      minimum: 0.0
+      maximum: null
+    - name: worst-case-clearance
+      unit: mm
+      minimum: 0.5
+      maximum: null
+    required_evidence_kinds:
+    - photo
+    - measurement_sheet
+  - assembly_id: molex-micro-fit-power-input
+    target_kind: interface
+    target_id: interface
+    required_measurements:
+    - name: mating-plane-offset
+      unit: mm
+      minimum: null
+      maximum: null
+    - name: minimum-exposure
+      unit: mm
+      minimum: 0.0
+      maximum: null
+    - name: minimum-service-clearance
+      unit: mm
+      minimum: 0.5
+      maximum: null
+    - name: installed-seating-gap
+      unit: mm
+      minimum: 0.0
+      maximum: 0.5
+    required_evidence_kinds:
+    - photo
+    - measurement_sheet
+  - assembly_id: molex-micro-fit-power-input
+    target_kind: reaction
+    target_id: reaction
+    required_measurements:
+    - name: maximum-pcb-flex
+      unit: mm
+      minimum: 0.0
+      maximum: 0.5
+    - name: maximum-connector-rotation
+      unit: deg
+      minimum: 0.0
+      maximum: 2.0
+    - name: exercised-cycles
+      unit: count
+      minimum: 3
+      maximum: null
+    required_evidence_kinds:
+    - video
+    - measurement_sheet
+  - assembly_id: molex-micro-fit-power-input
+    target_kind: cable
+    target_id: cable
+    required_measurements:
+    - name: installed-outer-diameter
+      unit: mm
+      minimum: 0.0
+      maximum: 3.7
+    - name: installed-straight-run
+      unit: mm
+      minimum: 12.7
+      maximum: null
+    - name: realized-minimum-bend-radius
+      unit: mm
+      minimum: 0.0
+      maximum: null
+    - name: minimum-route-clearance
+      unit: mm
+      minimum: 0.5
+      maximum: null
+    required_evidence_kinds:
+    - photo
+    - measurement_sheet
+  - assembly_id: molex-micro-fit-power-input
+    target_kind: operation
+    target_id: mate-and-polarity-check
+    required_measurements:
+    - name: exercised-cycles
+      unit: count
+      minimum: 3
+      maximum: null
+    - name: continuity-open-count
+      unit: count
+      minimum: 0
+      maximum: 0
+    - name: continuity-cross-short-count
+      unit: count
+      minimum: 0
+      maximum: 0
+    - name: polarity-error-count
+      unit: count
+      minimum: 0
+      maximum: 0
+    required_evidence_kinds:
+    - photo
+    - video
+    - continuity_log
+  - assembly_id: molex-micro-fit-power-input
+    target_kind: operation
+    target_id: unmate-supply-off
+    required_measurements:
+    - name: exercised-cycles
+      unit: count
+      minimum: 3
+      maximum: null
+    - name: latch-damage-count
+      unit: count
+      minimum: 0
+      maximum: 0
+    required_evidence_kinds:
+    - photo
+    - video
+  - assembly_id: molex-micro-fit-power-input
+    target_kind: tolerance
+    target_id: power-connector-enclosure-stack
+    required_measurements:
+    - name: realized-minus
+      unit: mm
+      minimum: 0.0
+      maximum: null
+    - name: realized-plus
+      unit: mm
+      minimum: 0.0
+      maximum: null
+    - name: worst-case-clearance
+      unit: mm
+      minimum: 0.5
+      maximum: null
+    required_evidence_kinds:
+    - photo
+    - measurement_sheet
+  - assembly_id: mchstreamer-dual-cable-interface
+    target_kind: interface
+    target_id: interface
+    required_measurements:
+    - name: module-header-row-pitch
+      unit: mm
+      minimum: 1.95
+      maximum: 2.05
+    - name: module-header-column-pitch
+      unit: mm
+      minimum: null
+      maximum: null
+    - name: module-header-post-width-x
+      unit: mm
+      minimum: 0.4
+      maximum: 0.55
+    - name: module-header-post-width-y
+      unit: mm
+      minimum: 0.4
+      maximum: 0.55
+    - name: module-header-exposed-post-length
+      unit: mm
+      minimum: 4.0
+      maximum: null
+    - name: installed-seating-gap
+      unit: mm
+      minimum: 0.0
+      maximum: 0.5
+    - name: installed-cable-height
+      unit: mm
+      minimum: 0.0
+      maximum: null
+    - name: minimum-service-clearance
+      unit: mm
+      minimum: 0.5
+      maximum: null
+    required_evidence_kinds:
+    - photo
+    - measurement_sheet
+  - assembly_id: mchstreamer-dual-cable-interface
+    target_kind: reaction
+    target_id: reaction
+    required_measurements:
+    - name: maximum-pcb-flex
+      unit: mm
+      minimum: 0.0
+      maximum: 0.5
+    - name: maximum-connector-rotation
+      unit: deg
+      minimum: 0.0
+      maximum: 2.0
+    - name: exercised-cycles
+      unit: count
+      minimum: 3
+      maximum: null
+    required_evidence_kinds:
+    - video
+    - measurement_sheet
+  - assembly_id: mchstreamer-dual-cable-interface
+    target_kind: cable
+    target_id: cable
+    required_measurements:
+    - name: installed-straight-run
+      unit: mm
+      minimum: 0.0
+      maximum: null
+    - name: realized-minimum-bend-radius
+      unit: mm
+      minimum: 0.0
+      maximum: null
+    - name: minimum-route-clearance
+      unit: mm
+      minimum: 0.5
+      maximum: null
+    required_evidence_kinds:
+    - photo
+    - measurement_sheet
+  - assembly_id: mchstreamer-dual-cable-interface
+    target_kind: operation
+    target_id: seat-j10-j1-cable
+    required_measurements:
+    - name: exercised-cycles
+      unit: count
+      minimum: 3
+      maximum: null
+    - name: continuity-open-count
+      unit: count
+      minimum: 0
+      maximum: 0
+    - name: continuity-cross-short-count
+      unit: count
+      minimum: 0
+      maximum: 0
+    - name: pin-one-error-count
+      unit: count
+      minimum: 0
+      maximum: 0
+    required_evidence_kinds:
+    - photo
+    - video
+    - continuity_log
+  - assembly_id: mchstreamer-dual-cable-interface
+    target_kind: operation
+    target_id: seat-j11-j3-cable
+    required_measurements:
+    - name: exercised-cycles
+      unit: count
+      minimum: 3
+      maximum: null
+    - name: continuity-open-count
+      unit: count
+      minimum: 0
+      maximum: 0
+    - name: continuity-cross-short-count
+      unit: count
+      minimum: 0
+      maximum: 0
+    - name: pin-one-error-count
+      unit: count
+      minimum: 0
+      maximum: 0
+    required_evidence_kinds:
+    - photo
+    - video
+    - continuity_log
+  - assembly_id: mchstreamer-dual-cable-interface
+    target_kind: operation
+    target_id: remove-j11-j3-cable
+    required_measurements:
+    - name: exercised-cycles
+      unit: count
+      minimum: 3
+      maximum: null
+    - name: connector-damage-count
+      unit: count
+      minimum: 0
+      maximum: 0
+    required_evidence_kinds:
+    - photo
+    - video
+  - assembly_id: mchstreamer-dual-cable-interface
+    target_kind: operation
+    target_id: remove-j10-j1-cable
+    required_measurements:
+    - name: exercised-cycles
+      unit: count
+      minimum: 3
+      maximum: null
+    - name: connector-damage-count
+      unit: count
+      minimum: 0
+      maximum: 0
+    required_evidence_kinds:
+    - photo
+    - video
+  - assembly_id: mchstreamer-dual-cable-interface
+    target_kind: tolerance
+    target_id: mch-header-cable-enclosure-stack
+    required_measurements:
+    - name: realized-minus
+      unit: mm
+      minimum: 0.0
+      maximum: null
+    - name: realized-plus
+      unit: mm
+      minimum: 0.0
+      maximum: null
+    - name: worst-case-clearance
+      unit: mm
+      minimum: 0.5
+      maximum: null
+    required_evidence_kinds:
+    - photo
+    - measurement_sheet
+  - assembly_id: factory-rj45-spoke-bank
+    target_kind: cable
+    target_id: cable
+    required_measurements:
+    - name: installed-outer-diameter
+      unit: mm
+      minimum: 0.0
+      maximum: null
+    - name: installed-straight-run
+      unit: mm
+      minimum: 0.0
+      maximum: null
+    - name: realized-minimum-bend-radius
+      unit: mm
+      minimum: 0.0
+      maximum: null
+    - name: minimum-route-clearance
+      unit: mm
+      minimum: 0.5
+      maximum: null
+    required_evidence_kinds:
+    - photo
+    - measurement_sheet

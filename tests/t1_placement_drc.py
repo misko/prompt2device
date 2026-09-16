@@ -69,5 +69,33 @@ def t_ungraded():
         raise AssertionError(f"expected graded-nothing exit 3, got {r.rc}: {r.out}")
 
 
+@test("P-DRC defers only thermal-spoke findings on an unrouted placement")
+def t_unrouted_thermal():
+    # RED against pre-fix checker: final-fill-dependent thermal blocked placement.
+    p = report([{"type":"starved_thermal", "description":"two required, one present",
+                 "items":[{"description":"Pad 2 GND C1","uuid":"pad-1"}]}],
+               [{"description":"unrouted"}])
+    r = must_pass(run([KPY,GATE,p]), "unrouted thermal deferral")
+    contains(r.out, "DEFER P-DRC [starved_thermal]", "explicit deferral")
+    contains(r.out, "pad-1", "exact finding identity")
+    contains(r.out, "final routed DRC", "owning later gate")
+
+
+@test("P-DRC never defers thermals on a connected board", kind="known_bad")
+def t_connected_thermal():
+    p=report([{"type":"starved_thermal","description":"real final defect"}])
+    must_fail(run([KPY,GATE,p]), "connected thermal", "starved_thermal")
+
+
+@test("P-DRC thermal deferral cannot hide shorts clearances holes or parity", kind="known_bad")
+def t_thermal_mixed_defects():
+    for kind in ('clearance','shorting_items','hole_clearance','lib_footprint_mismatch',None):
+        p=report([{"type":"starved_thermal"},{"type":kind}], [{"description":"unrouted"}])
+        must_fail(run([KPY,GATE,p]), "mixed placement defect", "P-DRC FAIL")
+    p=report([{"type":"starved_thermal"}], [{"description":"unrouted"}],
+             [{"description":"missing native node"}])
+    must_fail(run([KPY,GATE,p]), "thermal plus parity", "schematic-parity")
+
+
 if __name__ == "__main__":
     sys.exit(main())

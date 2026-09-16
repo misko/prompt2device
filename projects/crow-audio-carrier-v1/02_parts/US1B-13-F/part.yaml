@@ -1,0 +1,47 @@
+mpn: US1B-13-F
+manufacturer: Diodes Incorporated
+type: ultrafast_rectifier
+value: US1B-13-F
+status: active
+datasheet:
+  doc_id: DS16008
+  revision: Rev.11-2
+  url: https://www.diodes.com/datasheet/download/US1A.pdf
+  local: Diodes_US1A_US1M_DS16008_Rev11-2.pdf
+  sha256: d50b2773c0300d97a77f5125419098c8130ecaf967202a44be2b182de8a15c1f
+  fetched: 2026-09-09
+  pages: 5
+  provenance: Direct manufacturer family PDF; exact US1B ordering/column, electrical table and SMA drawing reviewed.
+package: SMA
+footprint: Diode_SMD:D_SMA
+escape: {style: leaded, pitch: 4.0, tier_required: jlc_2layer_default, checked: 'DS16008 p4 land drawing: centres +/-2.0mm, 2.5x1.7mm pads; stock D_SMA has reviewed 2.5x1.8mm lands, extra 0.05mm per width edge, unchanged 1.5mm gap and 6.5mm span.'}
+pins: {1: K, 2: A}
+limits:
+  reverse_max_V: 100
+  average_current_A_at_terminal_75C: 1
+  capacitive_load_derating_pct: 20
+  vf_max_1A_25C_V: 1.0
+  reverse_leakage_max_25C_A: 0.000005
+  reverse_leakage_max_100C_A: 0.000100
+  reverse_recovery_max_ns_at_specified_25C_test: 50
+  surge_A_single_8p3ms_half_sine: 30
+  theta_JT_C_per_W: 30
+verified: 'Primary exact US1B-13-F identity, cathode band, package and limits re-read 2026-09-09. Public exact C154439 identity only; not allocation or order acceptance.'
+gotchas:
+  - 'VF1.0V and trr50ns are table test conditions at25C; neither is an all-temperature application waveform guarantee. No Qrr limit is published.'
+  - 'trr test IF0.5A, IR1A, Irr0.25A. Do not manufacture Qrr from trr times a current in another waveform.'
+  - 'ADR0022 budgets1.3V forward drop and100uA leakage for prototype screens. Capture cold/hot recovery, initial capacitor inrush, repetitive current and terminal temperature before acceptance.'
+  - 'IFSM30A single8.3ms half-sine does not qualify arbitrary hot or repetitive inrush. A source path resistance maximum is not a minimum inrush-limiting resistance.'
+layout:
+  source: DS16008 Rev.11-2 pp1,4; KiCad stock Diode_SMD:D_SMA
+  reviewed: 2026-09-09
+  notes:
+    - 'Band/pad1 cathode faces12V_BUCK_IN; anode/pad2 faces12V_PROTECTED. All three VIN ceramics and VIN/EN are downstream.'
+    - 'Stock SMA copper is0.1mm wider than suggested; keep package/courtyard and stock model. Authored rectangular TSX pads provide same span; native parity/land review remains required.'
+    - 'Keep charging loop broad; do not remove existing VIN-cap to pin3 proximity obligations. Route local input trunk at1.2mm engineering intent where possible; no reduction in existing class floor.'
+  adjacency:
+    - {refdes: [D_BUCK_IN, C_BUCK_IN2], nets: [12V_BUCK_IN], max_mm: 12.0, why: 'ADR0022 left-side input-isolator to bank engineering copper-gap ceiling; local buck switching bypass loops are unchanged; no ground-pour credit.'}
+layout_refs:
+  - {tier: 1, reached: true, artifact: Diodes_US1A_US1M_DS16008_Rev11-2.pdf, why: Exact manufacturer rating and land authority.}
+  - {tier: 2, reached: false, artifact: Exact AP63205 reverse-isolated carrier reference, why: No identical vendor application; application current/recovery remains prototype qualification.}
+sourcing: {lcsc: C154439, alternates: [], note: 'Public JLC exact US1B-13-F/C154439 observation2026-09-09 retained in reverse-port evidence. No account, allocation, orderability or reservation claim.'}

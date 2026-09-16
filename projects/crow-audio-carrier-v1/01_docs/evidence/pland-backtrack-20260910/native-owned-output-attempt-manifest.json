@@ -1,0 +1,262 @@
+{
+  "schema": 1,
+  "created_at": "2026-09-10T22:03:05.021426+00:00",
+  "source_commit": "9ac03c1ad7cf97b5626ecd7a216a6774264df519",
+  "tar_sha256": "e43378bbee4fbcc86abb922c657252a2147aa1d3746a08ba90378215252282a3",
+  "tar_size": 62864,
+  "count": 42,
+  "entries": [
+    {
+      "member": "commission/TASK.md",
+      "original_path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/06_build/handoffs/pland-native-owned-output-20260910T215831Z/TASK.md",
+      "sha256": "36ac868f17c6bf80839636ed0f60d5eb799892f36d6d6f5a10107be99cdaf769",
+      "size": 4130
+    },
+    {
+      "member": "commission/beacon.md",
+      "original_path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/06_build/handoffs/pland-native-owned-output-20260910T215831Z/beacon.md",
+      "sha256": "f341e62a6db097673ca4ead7733b104a6996f648ff78328b0acb6c6c62b3938f",
+      "size": 511
+    },
+    {
+      "member": "commission/flow.yaml",
+      "original_path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/06_build/handoffs/pland-native-owned-output-20260910T215831Z/flow.yaml",
+      "sha256": "8b6bd8c0eec5177c1c410c8ed11e33bf9ab2e15b3fe1397e6cd4821283bef5c2",
+      "size": 5626
+    },
+    {
+      "member": "commission/journal-tail.md",
+      "original_path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/06_build/handoffs/pland-native-owned-output-20260910T215831Z/journal-tail.md",
+      "sha256": "cd5da293fa3bc349c4e70da724bd37f50e088256496492d9e6531cf35bed00da",
+      "size": 767
+    },
+    {
+      "member": "commission/task-envelope.json",
+      "original_path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/06_build/handoffs/pland-native-owned-output-20260910T215831Z/task-envelope.json",
+      "sha256": "776ef035b042ca141ba31514ec0fde754c62180fb4b9252328563dab3c0498bf",
+      "size": 131661
+    },
+    {
+      "member": "coordinator/preserve.py",
+      "original_path": "/tmp/carrier-pland-fixture-adoption-20260910.hnDKH2sk/preserve_owned_output_failure.py",
+      "sha256": "1b16b18e931a28592e3f5dac157e6a7febe8dddcf5ae797eb9223454e97968e9",
+      "size": 4771
+    },
+    {
+      "member": "coordinator/root-audit.json",
+      "original_path": "/tmp/carrier-pland-fixture-adoption-20260910.hnDKH2sk/owned-output-root-audit.json",
+      "sha256": "6093f0d178517bce2b3f8ef460f35668cdd61cda4f0219913ecb9216acb9aa84",
+      "size": 2160
+    },
+    {
+      "member": "worker/admin/command-result.json",
+      "original_path": "/tmp/pland-native-owned-output-20260910T215831Z/admin/command-result.json",
+      "sha256": "80b7b0d2cf801478c3a9e1492cd5a5db88dfc6e69821fafc32187ff7a4d322c4",
+      "size": 539
+    },
+    {
+      "member": "worker/admin/command-start.json",
+      "original_path": "/tmp/pland-native-owned-output-20260910T215831Z/admin/command-start.json",
+      "sha256": "1c4680938d5915b653ac41f00763fa98b3fc5279b73f3e2f8faa8931dcbce27e",
+      "size": 419
+    },
+    {
+      "member": "worker/admin/stderr.txt",
+      "original_path": "/tmp/pland-native-owned-output-20260910T215831Z/admin/stderr.txt",
+      "sha256": "4fc307f44b78e57b13e8234ac95c2aff0bfb20d402a50ff2d6e2288a181c7c80",
+      "size": 2765
+    },
+    {
+      "member": "worker/admin/stdout.txt",
+      "original_path": "/tmp/pland-native-owned-output-20260910T215831Z/admin/stdout.txt",
+      "sha256": "d26b581ccc5723d5f8579b3dceeb6399e3de835378bcd8533072e054ce4e1d8b",
+      "size": 1893
+    },
+    {
+      "member": "worker/input-audit.json",
+      "original_path": "/tmp/pland-native-owned-output-20260910T215831Z/input-audit.json",
+      "sha256": "06fd6025a157e9599c1f3ca1590074ca8a4f8a1a8328923369320108ba6c11d8",
+      "size": 676
+    },
+    {
+      "member": "worker/native-interface-run-jp3a0oer/001_build.log",
+      "original_path": "/tmp/pland-native-owned-output-20260910T215831Z/native-interface-run-jp3a0oer/001_build.log",
+      "sha256": "ce901db2905c6ebb3ec9d3a3e4b097495d913cf50105fe29f11f31ca1957076b",
+      "size": 2318
+    },
+    {
+      "member": "worker/native-interface-run-jp3a0oer/001_build.result.json",
+      "original_path": "/tmp/pland-native-owned-output-20260910T215831Z/native-interface-run-jp3a0oer/001_build.result.json",
+      "sha256": "17ba50d366f5377f46e4f5b9df84a2f0fab8b3bb6266c84a3c3a92e6818eacd9",
+      "size": 719
+    },
+    {
+      "member": "worker/native-interface-run-jp3a0oer/001_build.start.json",
+      "original_path": "/tmp/pland-native-owned-output-20260910T215831Z/native-interface-run-jp3a0oer/001_build.start.json",
+      "sha256": "9228c1e0c0062ab9963e623e46018a1437c62dbb515347a89a421f4e687f1e6d",
+      "size": 460
+    },
+    {
+      "member": "worker/native-interface-run-jp3a0oer/002_census.log",
+      "original_path": "/tmp/pland-native-owned-output-20260910T215831Z/native-interface-run-jp3a0oer/002_census.log",
+      "sha256": "8a87b6bc13016653b98a66d94c61bf5b3e87dfb4052c88a77b7b6feed5aa2a31",
+      "size": 31449
+    },
+    {
+      "member": "worker/native-interface-run-jp3a0oer/002_census.result.json",
+      "original_path": "/tmp/pland-native-owned-output-20260910T215831Z/native-interface-run-jp3a0oer/002_census.result.json",
+      "sha256": "e2dea825f9a4096285deec5f0bac91820d34279ca36624281ef60b3241686f46",
+      "size": 1172
+    },
+    {
+      "member": "worker/native-interface-run-jp3a0oer/002_census.start.json",
+      "original_path": "/tmp/pland-native-owned-output-20260910T215831Z/native-interface-run-jp3a0oer/002_census.start.json",
+      "sha256": "eeafd68dde96d7d4fddea70a21b3715b8cb8c1810861bad8a0ac2be9c8336f70",
+      "size": 913
+    },
+    {
+      "member": "worker/native-interface-run-jp3a0oer/specimens/base/expected-assignments.json",
+      "original_path": "/tmp/pland-native-owned-output-20260910T215831Z/native-interface-run-jp3a0oer/specimens/base/expected-assignments.json",
+      "sha256": "d9811ef9ef3aad17716f7f5e3182de5249f2532105e509960a2c8aae5a45eccf",
+      "size": 77
+    },
+    {
+      "member": "worker/native-interface-run-jp3a0oer/specimens/base/hypothesis.json",
+      "original_path": "/tmp/pland-native-owned-output-20260910T215831Z/native-interface-run-jp3a0oer/specimens/base/hypothesis.json",
+      "sha256": "293c930dc9169a87131faa633b9519b69f511998d9ffa6de7399a006eaca4e01",
+      "size": 746
+    },
+    {
+      "member": "worker/native-interface-run-jp3a0oer/specimens/base/oracle.kicad_dru",
+      "original_path": "/tmp/pland-native-owned-output-20260910T215831Z/native-interface-run-jp3a0oer/specimens/base/oracle.kicad_dru",
+      "sha256": "58bf9f91cdbb79c5e7902fce14c7619bc09d89f7b6ca886d179f1200676669c1",
+      "size": 102
+    },
+    {
+      "member": "worker/native-interface-run-jp3a0oer/specimens/base/oracle.kicad_pcb",
+      "original_path": "/tmp/pland-native-owned-output-20260910T215831Z/native-interface-run-jp3a0oer/specimens/base/oracle.kicad_pcb",
+      "sha256": "1f5a32ec0fe538b45de4cc81693afb068fc61a9a87b3071c043fefbea491cf2b",
+      "size": 5300
+    },
+    {
+      "member": "worker/native-interface-run-jp3a0oer/specimens/base/oracle.kicad_pro",
+      "original_path": "/tmp/pland-native-owned-output-20260910T215831Z/native-interface-run-jp3a0oer/specimens/base/oracle.kicad_pro",
+      "sha256": "7a199897f572c54348ff34b601f8b4187c359242d9a821cd9b25e153df63163f",
+      "size": 1240
+    },
+    {
+      "member": "worker/native-interface-run-jp3a0oer/specimens/base/public.kicad_dru",
+      "original_path": "/tmp/pland-native-owned-output-20260910T215831Z/native-interface-run-jp3a0oer/specimens/base/public.kicad_dru",
+      "sha256": "58bf9f91cdbb79c5e7902fce14c7619bc09d89f7b6ca886d179f1200676669c1",
+      "size": 102
+    },
+    {
+      "member": "worker/native-interface-run-jp3a0oer/specimens/base/public.kicad_pcb",
+      "original_path": "/tmp/pland-native-owned-output-20260910T215831Z/native-interface-run-jp3a0oer/specimens/base/public.kicad_pcb",
+      "sha256": "01887a816ba3805602e8bde83d6ab742e03230eb8a6d0c779824c02c1d70b130",
+      "size": 5161
+    },
+    {
+      "member": "worker/native-interface-run-jp3a0oer/specimens/base/public.kicad_prl",
+      "original_path": "/tmp/pland-native-owned-output-20260910T215831Z/native-interface-run-jp3a0oer/specimens/base/public.kicad_prl",
+      "sha256": "5b015c464d826445b9cb7e97007977caa0c316bbf96eb545e7c8688624291506",
+      "size": 2293
+    },
+    {
+      "member": "worker/native-interface-run-jp3a0oer/specimens/base/public.kicad_pro",
+      "original_path": "/tmp/pland-native-owned-output-20260910T215831Z/native-interface-run-jp3a0oer/specimens/base/public.kicad_pro",
+      "sha256": "64d6ca5d0801fa824a26efa8b153356a64fa7eaacddd4b570663d0da7fa48503",
+      "size": 1240
+    },
+    {
+      "member": "worker/native-interface-run-jp3a0oer/specimens/hostile/expected-assignments.json",
+      "original_path": "/tmp/pland-native-owned-output-20260910T215831Z/native-interface-run-jp3a0oer/specimens/hostile/expected-assignments.json",
+      "sha256": "b177582e7b4aad25721667f6bf522b66a260e7660dd549e68c4944f5529da31a",
+      "size": 79
+    },
+    {
+      "member": "worker/native-interface-run-jp3a0oer/specimens/hostile/hypothesis.json",
+      "original_path": "/tmp/pland-native-owned-output-20260910T215831Z/native-interface-run-jp3a0oer/specimens/hostile/hypothesis.json",
+      "sha256": "293c930dc9169a87131faa633b9519b69f511998d9ffa6de7399a006eaca4e01",
+      "size": 746
+    },
+    {
+      "member": "worker/native-interface-run-jp3a0oer/specimens/hostile/oracle.kicad_dru",
+      "original_path": "/tmp/pland-native-owned-output-20260910T215831Z/native-interface-run-jp3a0oer/specimens/hostile/oracle.kicad_dru",
+      "sha256": "58bf9f91cdbb79c5e7902fce14c7619bc09d89f7b6ca886d179f1200676669c1",
+      "size": 102
+    },
+    {
+      "member": "worker/native-interface-run-jp3a0oer/specimens/hostile/oracle.kicad_pcb",
+      "original_path": "/tmp/pland-native-owned-output-20260910T215831Z/native-interface-run-jp3a0oer/specimens/hostile/oracle.kicad_pcb",
+      "sha256": "56c0b870085f1ac27f4e4e7e61dac9030477a99d33243b3d30c2494520d10622",
+      "size": 5300
+    },
+    {
+      "member": "worker/native-interface-run-jp3a0oer/specimens/hostile/oracle.kicad_pro",
+      "original_path": "/tmp/pland-native-owned-output-20260910T215831Z/native-interface-run-jp3a0oer/specimens/hostile/oracle.kicad_pro",
+      "sha256": "99261e94ee3e7ac05d0bf3ee6407b43fec1b1451a38c3022f12139e22cf8730a",
+      "size": 1242
+    },
+    {
+      "member": "worker/native-interface-run-jp3a0oer/specimens/hostile/public.kicad_dru",
+      "original_path": "/tmp/pland-native-owned-output-20260910T215831Z/native-interface-run-jp3a0oer/specimens/hostile/public.kicad_dru",
+      "sha256": "58bf9f91cdbb79c5e7902fce14c7619bc09d89f7b6ca886d179f1200676669c1",
+      "size": 102
+    },
+    {
+      "member": "worker/native-interface-run-jp3a0oer/specimens/hostile/public.kicad_pcb",
+      "original_path": "/tmp/pland-native-owned-output-20260910T215831Z/native-interface-run-jp3a0oer/specimens/hostile/public.kicad_pcb",
+      "sha256": "81f368bd1ce4ec20343c89237f5515b79875a8237d62587d7e94f540d31af19b",
+      "size": 5161
+    },
+    {
+      "member": "worker/native-interface-run-jp3a0oer/specimens/hostile/public.kicad_prl",
+      "original_path": "/tmp/pland-native-owned-output-20260910T215831Z/native-interface-run-jp3a0oer/specimens/hostile/public.kicad_prl",
+      "sha256": "5b015c464d826445b9cb7e97007977caa0c316bbf96eb545e7c8688624291506",
+      "size": 2293
+    },
+    {
+      "member": "worker/native-interface-run-jp3a0oer/specimens/hostile/public.kicad_pro",
+      "original_path": "/tmp/pland-native-owned-output-20260910T215831Z/native-interface-run-jp3a0oer/specimens/hostile/public.kicad_pro",
+      "sha256": "a26dd0128bcbf0378cd0646ce1c26d1726a295f7fff72dbde2077426b42b5877",
+      "size": 1242
+    },
+    {
+      "member": "worker/output-manifest.json",
+      "original_path": "/tmp/pland-native-owned-output-20260910T215831Z/output-manifest.json",
+      "sha256": "fefe8ce203305cf6b1d70d85cc8738825c691577a8f1aa3e29546325c7104dfa",
+      "size": 6256
+    },
+    {
+      "member": "worker/process-audit.json",
+      "original_path": "/tmp/pland-native-owned-output-20260910T215831Z/process-audit.json",
+      "sha256": "2f0c1159aa0de7bb30b3b9a53ca52864774eafa552e5e85de3b24dd616d8673d",
+      "size": 286
+    },
+    {
+      "member": "worker/producer/census.py",
+      "original_path": "/tmp/pland-native-owned-output-20260910T215831Z/producer/census.py",
+      "sha256": "3a470c0418e76bc7741865e45f51bba603d62eb234b69ac61b24e5b46aa2e6d4",
+      "size": 2252
+    },
+    {
+      "member": "worker/producer/execute.py",
+      "original_path": "/tmp/pland-native-owned-output-20260910T215831Z/producer/execute.py",
+      "sha256": "7295f927455552fa9505ca048375e221cbfce70e22933f498c910da4519ceefd",
+      "size": 5745
+    },
+    {
+      "member": "worker/producer/fixture.py",
+      "original_path": "/tmp/pland-native-owned-output-20260910T215831Z/producer/fixture.py",
+      "sha256": "de165a7c7035e48e69ba43f4f0a4ccfc6115af5e5c054124011599c8b283f162",
+      "size": 4858
+    },
+    {
+      "member": "worker/result.md",
+      "original_path": "/tmp/pland-native-owned-output-20260910T215831Z/result.md",
+      "sha256": "9db4155978c1e8731a95e1048305e6ebe7bc3f4d3101994d556a1be530ceb471",
+      "size": 2053
+    }
+  ]
+}

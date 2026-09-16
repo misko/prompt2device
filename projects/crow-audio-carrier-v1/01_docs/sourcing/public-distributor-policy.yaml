@@ -1,0 +1,15 @@
+schema: 1
+scope: prelayout-only
+order_authorized: false
+directive: please verify public stock and contunue
+brief: 01_docs/BRIEF.md
+decision: 01_docs/decisions/0026-exact-distributor-design-only.md
+rows:
+  - lcsc: C7452883
+    mpn: LT3041ADE#TRPBF
+    manufacturer: Analog Devices
+    footprint: Package_DFN_QFN:DFN-14-1EP_3x4mm_P0.5mm_EP1.7x3.3mm
+    designators: [U_LDO]
+    distributor: mouser
+    url: https://www.mouser.com/en/ProductDetail/Analog-Devices/LT3041ADETRPBF
+    packaging: Cut Tape

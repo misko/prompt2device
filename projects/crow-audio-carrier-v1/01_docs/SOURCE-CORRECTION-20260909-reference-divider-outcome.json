@@ -1,0 +1,628 @@
+{
+  "acceptance_limits_changed": false,
+  "attempts": {
+    "reference-divider-adr-bound-20260909": {
+      "cancelled": false,
+      "command": [
+        "python3",
+        "skills/kicad-pcb/scripts/adr_bound_provenance.py",
+        ".",
+        "--timeout",
+        "30"
+      ],
+      "cwd": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901",
+      "elapsed_s": 23.66602470097132,
+      "finished_at": "2026-09-09T21:42:36.192781+00:00",
+      "log_sha256": "9f87ab145f3f10e9ee850bf7fea0e5994b7be68e43dbea551625aa29f898e87c",
+      "raw_log": "input: root = /home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901  (191 ADR file(s) under docs/decisions + */01_docs/decisions, governed active + frozen view)\ninput: regeneration ON, cwd for commands = /tmp/adr-bound-fleet-83k_u5jv, per-command timeout 30s\ninput: 13 ADR(s) declare a `<!-- bound -->` block (18 block(s)); 38 OWED; 163 inequality bound(s) appear in prose across all 191\n  CITED       pluto-rx2-8way-v2/0003-one-stackup-one-constant-set.md [VIA_FENCE_PITCH]: regenerated 1.3693 vs published 1.3693 (delta 0 <= 1e-09); corner nominal: the bound value 1.3693 evaluates to 20.0007 at 1.3693, on its budget edge >= 20.0; nearest standard value 1.35 (series explicit) evaluates to 20.2867, inside >= 20.0\n  CITED       pluto-rx2-8way-v2/0004-the-arms-are-coplanar-and-the-fence-shorts-a-different-mode.md [GCPW_GROUND_STITCH_PITCH]: regenerated 1.191 vs published 1.191 (delta 0 <= 1e-09); corner nominal: the bound value 1.191 evaluates to 20.0001 at 1.191, on its budget edge >= 20.0; nearest standard value 1.15 (series explicit) evaluates to 20.7131, inside >= 20.0\n  CITED       pluto-rx2-8way-v2/0005-the-exception-criterion-for-an-isolated-fence-aperture.md [ISOLATED_FENCE_APERTURE_MAX]: regenerated 1.985 vs published 1.985 (delta 0 <= 1e-09); corner nominal: the bound value 1.985 evaluates to 12.0001 at 1.985, on its budget edge >= 12.0; nearest standard value 1.95 (series explicit) evaluates to 12.2154, inside >= 12.0\n  CITED       smc0985-cooksense/0026-the-ldo-budget-is-a-sum-and-the-ceiling-has-an-ambient.md [LDO_IOUT_MAX]: regenerated 0.24295049075429753 vs published 0.2429 (delta 5.049e-05 <= 0.0001); corner worst_case: the bound value 0.2429 evaluates to 124.97224800000001 at 0.2428, on its budget edge <= 125.0; nearest standard value 0.2 (series explicit) evaluates to 117.0795, inside <= 125.0\n  CITED       smc0985-cooksense/0027-the-dropout-margin-counts-the-boards-own-copper.md [LDO_DROPOUT_IBOARD_MAX]: regenerated 0.4910935989911408 vs published 0.491 (delta 9.36e-05 <= 0.0001); corner worst_case: the bound value 0.491 evaluates to 1300.0635569999997 at 0.4909, on its budget edge >= 1300.0\n  CITED       smc0985-cooksense/0028-the-3v3-rail-has-two-margins-and-they-bind-at-different-places.md [LDO_TJ_WORKED_EXAMPLE]: regenerated 117.0795 vs published 117.08 (delta 0.0005 <= 0.01); corner worst_case: the bound value 117.08 evaluates to 7.930000000000007 at 117.07, on its budget edge >= 0.0\n  CITED       smc0985-cooksense/0028-the-3v3-rail-has-two-margins-and-they-bind-at-different-places.md [LDO_TA_MAX_CITED]: regenerated 82.9205 vs published 82.92 (delta 0.0005 <= 0.01); corner worst_case: the bound value 82.92 evaluates to 124.98949999999999 at 82.91, on its budget edge <= 125.0\n  CITED       smc0985-cooksense/0028-the-3v3-rail-has-two-margins-and-they-bind-at-different-places.md [COIL_PULLIN_BUDGET]: regenerated 0.491 vs published 0.491 (delta 0 <= 0.0005); corner worst_case: the bound value 0.491 evaluates to 4.2005 at 0.4905, on its budget edge >= 4.2\n  CITED       smc0985-cooksense/0029-the-declared-ambient-is-65c-and-the-bench-hour-is-mandatory.md [LDO_TJ_DECLARED_AMBIENT]: regenerated 107.0795 vs published 107.08 (delta 0.0005 <= 0.01); corner worst_case: the bound value 107.08 evaluates to 17.930000000000007 at 107.07, on its budget edge >= 0.0\n  CITED       usb-hub-3s-v4/0006-stage5-electrical-corner-closures.md [U1_EFFECTIVE_CERAMIC_MIN]: regenerated 80.784 vs published 80.784 (delta 0 <= 0.0005); corner worst_case: the bound value 80.784 evaluates to 80.78450000000001 at 80.7845, on its budget edge >= 75.0\n  CITED       usb-hub-3s-v4/0007-pre-route-boundary-and-fault-closures.md [ITIMER_STARTUP_CAP_MAX]: regenerated 80.260703 vs published 80.26 (delta 0.000703 <= 0.001); corner worst_case: the bound value 80.26 evaluates to 0.0017033316641175134 at 80.259, on its budget edge >= 0.0\n  CITED       usb-hub-3s-v4/0009-type-c-divider-and-delivery-qualification.md [TYPEC_COMPLETE_INTERCONNECT_MAX]: regenerated 39.0 vs published 39.0 (delta 0 <= 0.0005); corner worst_case: the bound value 39.0 evaluates to 0.0005000000000023874 at 38.9995, on its budget edge >= 0.0\n  CITED       crow-roof-array-v1-20260901/0007-claims-become-checks.md [BOARD_SILK_PUBLISHED_STROKE_HEIGHT]: regenerated 0.9375 vs published 0.9375 (delta 0 <= 1e-09); corner nominal: the bound value 0.9375 evaluates to 0.15000000016 at 0.9375, on its budget edge >= 0.15; nearest standard value 0.95 (series explicit) evaluates to 0.152, inside >= 0.15\n  CITED       crow-audio-carrier-v1/0005-mch-power-domain-boundary.md [TDM_BIAS_MAX]: regenerated 18492.834026814613 vs published 18492.83402681461 (delta 3.638e-12 <= 1e-09); corner worst_case: the bound value 18492.83402681461 evaluates to 0.3999999999999783 at 18492.8, on its budget edge <= 0.4; nearest standard value 10000.0 (series explicit) evaluates to 0.2163, inside <= 0.4\n  CITED       crow-audio-carrier-v1/0005-mch-power-domain-boundary.md [TDM_BIAS_MIN]: regenerated 9301.604526780871 vs published 9301.604526780871 (delta 0 <= 1e-09); corner worst_case: the bound value 9301.604526780871 evaluates to 0.00039999999999995703 at 9301.6, on its budget edge <= 0.0004; nearest standard value 10000.0 (series explicit) evaluates to 0.00037213402061855676, inside <= 0.0004\n  ESTIMATED   crow-audio-carrier-v1/0013-adc-source-exits.md [ADC_LOCAL_PIN_SPAN]: corner nominal: the bound value 5.0 evaluates to 0.5583153232042682 at 5, on its budget edge <= 1.0; nearest standard value 5.0 (series explicit) evaluates to 0.5583153230926052, inside <= 1.0\n  ESTIMATED   crow-audio-carrier-v1/0013-adc-source-exits.md [ADC_LDO_D_COPPER_GAP]: corner nominal: the bound value 2.0 evaluates to 0.8494483508263246 at 2, on its budget edge <= 1.0; nearest standard value 2.0 (series explicit) evaluates to 0.8494483504016004, inside <= 1.0\n  ESTIMATED   crow-audio-carrier-v1/0013-adc-source-exits.md [ADC_VDDIO_COPPER_GAP]: corner nominal: the bound value 2.5 evaluates to 0.8169798042387368 at 2.5, on its budget edge <= 1.0; nearest standard value 2.5 (series explicit) evaluates to 0.8169798039119449, inside <= 1.0\n  OWED       crow-audio-carrier-v1/0021-connected-start-input-current-limits.md \u2014 publishes 7 numeric inequality bound(s) in prose and declares no `<!-- bound -->` block\n  OWED       crow-mic-pod-v2/0002-active-balanced-driver.md \u2014 publishes 1 numeric inequality bound(s) in prose and declares no `<!-- bound -->` block\n  OWED       crow-recorder-central-v2/0001-input-protection.md \u2014 publishes 2 numeric inequality bound(s) in prose and declares no `<!-- bound -->` block\n  OWED       crow-roof-array-v1-20260901/0001-tscircuit-authoring-boundary.md \u2014 publishes 5 numeric inequality bound(s) in prose and declares no `<!-- bound -->` block\n  OWED       pluto-cal-switch/0004-attenuation-value-and-placement.md \u2014 publishes 2 numeric inequality bound(s) in prose and declares no `<!-- bound -->` block\n  OWED       pluto-cal-switch/0007-sma-antenna-connector-and-launch.md \u2014 publishes 5 numeric inequality bound(s) in prose and declares no `<!-- bound -->` block\n  OWED       pluto-cal-switch/0009-input-protection-posture.md \u2014 publishes 1 numeric inequality bound(s) in prose and declares no `<!-- bound -->` block\n  OWED       pluto-cal-switch/0010-stackup-and-fab-tier.md \u2014 publishes 2 numeric inequality bound(s) in prose and declares no `<!-- bound -->` block\n  OWED       pluto-cal-switch/0011-length-match-is-a-published-artifact.md \u2014 publishes 1 numeric inequality bound(s) in prose and declares no `<!-- bound -->` block\n  OWED       pluto-cal-switch/0012-mcu-selection-rp2040.md \u2014 publishes 4 numeric inequality bound(s) in prose and declares no `<!-- bound -->` block\n  OWED       pluto-cal-switch/0013-spec-tension-30db-is-a-curve.md \u2014 publishes 1 numeric inequality bound(s) in prose and declares no `<!-- bound -->` block\n  OWED       pluto-cal-switch/0015-sma-cables-not-direct-mount.md \u2014 publishes 1 numeric inequality bound(s) in prose and declares no `<!-- bound -->` block\n  OWED       pluto-cal-switch/0016-40db-minimum-across-the-band.md \u2014 publishes 9 numeric inequality bound(s) in prose and declares no `<!-- bound -->` block\n  OWED       pluto-rx2-8way/0002-spec-tension-pickoff-not-coupler.md \u2014 publishes 1 numeric inequality bound(s) in prose and declares no `<!-- bound -->` block\n  OWED       pluto-rx2-8way/0003-stackup-and-fab-tier.md \u2014 publishes 2 numeric inequality bound(s) in prose and declares no `<!-- bound -->` block\n  OWED       pluto-rx2-8way/0004-input-protection-posture.md \u2014 publishes 5 numeric inequality bound(s) in prose and declares no `<!-- bound -->` block\n  OWED       pluto-rx2-8way/0005-control-plane-and-power-on-default.md \u2014 publishes 3 numeric inequality bound(s) in prose and declares no `<!-- bound -->` block\n  OWED       pluto-rx2-8way/0006-path-deltas-are-a-published-measurement.md \u2014 publishes 2 numeric inequality bound(s) in prose and declares no `<!-- bound -->` block\n  OWED       pluto-rx2-8way/0007-radial-star-floorplan.md \u2014 publishes 5 numeric inequality bound(s) in prose and declares no `<!-- bound -->` block\n  OWED       smc0985-cooksense/0001-system-decomposition-phase1.md \u2014 publishes 1 numeric inequality bound(s) in prose and declares no `<!-- bound -->` block\n  OWED       smc0985-cooksense/0002-no-mcu-pi-direct-hardware-bounds.md \u2014 publishes 1 numeric inequality bound(s) in prose and declares no `<!-- bound -->` block\n  OWED       smc0985-cooksense/0005-cn1-latched-tail-geometry-strategy.md \u2014 publishes 1 numeric inequality bound(s) in prose and declares no `<!-- bound -->` block\n  OWED       smc0985-cooksense/0006-relay-technology-rkey.md \u2014 publishes 1 numeric inequality bound(s) in prose and declares no `<!-- bound -->` block\n  OWED       smc0985-cooksense/0008-cn1-is-jst-10fdz-bt-zif.md \u2014 publishes 1 numeric inequality bound(s) in prose and declares no `<!-- bound -->` block\n  OWED       smc0985-cooksense/0009-interposer-path-a-rigid-plus-flex-jumper.md \u2014 publishes 1 numeric inequality bound(s) in prose and declares no `<!-- bound -->` block\n  OWED       smc0985-cooksense/0011-safety-chain-corrections-v12.md \u2014 publishes 2 numeric inequality bound(s) in prose and declares no `<!-- bound -->` block\n  OWED       smc0985-cooksense/0012-non-conductive-enclosure-is-load-bearing.md \u2014 publishes 4 numeric inequality bound(s) in prose and declares no `<!-- bound -->` block\n  OWED       smc0985-cooksense/0015-creepage-is-not-clearance-and-k-stop-is-load-bearing.md \u2014 publishes 2 numeric inequality bound(s) in prose and declares no `<!-- bound -->` block\n  OWED       smc0985-cooksense/0018-jmode-keyed-off-the-gh-family-and-coil-en-hardened.md \u2014 publishes 6 numeric inequality bound(s) in prose and declares no `<!-- bound -->` block\n  OWED       smc0985-cooksense/0020-rearm-edge-detect-and-a-driver-for-the-expander-reset.md \u2014 publishes 3 numeric inequality bound(s) in prose and declares no `<!-- bound -->` block\n  OWED       smc0985-cooksense/0021-the-supply-is-a-specification-and-the-ov-cutoff-follows-from-it.md \u2014 publishes 6 numeric inequality bound(s) in prose and declares no `<!-- bound -->` block\n  OWED       smc0985-cooksense/0022-the-efuse-flag-lives-on-3v3.md \u2014 publishes 2 numeric inequality bound(s) in prose and declares no `<!-- bound -->` block\n  OWED       smc0985-cooksense/0023-the-coil-driver-is-a-dmos-array.md \u2014 publishes 10 numeric inequality bound(s) in prose and declares no `<!-- bound -->` block\n  OWED       smc0985-cooksense/0024-pod-mateable-safety-inputs-are-hardened-at-the-pinout.md \u2014 publishes 6 numeric inequality bound(s) in prose and declares no `<!-- bound -->` block\n  OWED       smc0985-cooksense/0025-jdoor-and-jestop-are-not-installed-and-the-and-chain-goes-inert.md \u2014 publishes 3 numeric inequality bound(s) in prose and declares no `<!-- bound -->` block\n  OWED       usb-hub-3s-v3/0002-discrete-vbus-protection.md \u2014 publishes 1 numeric inequality bound(s) in prose and declares no `<!-- bound -->` block\n  OWED       usb-hub-3s-v3/0003-status-leds-and-clamp-ordering.md \u2014 publishes 5 numeric inequality bound(s) in prose and declares no `<!-- bound -->` block\n  OWED       usb-hub-3s-v4/0005-input-protection-and-shutdown.md \u2014 publishes 1 numeric inequality bound(s) in prose and declares no `<!-- bound -->` block\nFAIL  B-FLOOR: 38 OWED ADR(s) publishing a bound with no `<!-- bound -->` block, above the committed ceiling of 37 \u2014 a NEW ADR published a typed bound. Declare it, or raise the ceiling in the same commit and name the run. The ceiling may only be edited DOWN\nBOUND COVERAGE: 15 CITED / 3 ESTIMATED / 0 UNVERIFIED across 18 declared block(s) in 13 ADR(s); 38 of 51 bound-publishing ADR(s) OWED (floors: CITED >= 13, OWED <= 37)\nADR BOUND PROVENANCE: FAIL (1 fails) \u2014 51/191 ADR(s) publish an inequality bound, 13 declare one\n",
+      "returncode": 1,
+      "started_at": "2026-09-09T21:42:12.524964+00:00",
+      "timed_out": false
+    },
+    "reference-divider-contracts-20260909": {
+      "cancelled": false,
+      "command": [
+        "python3",
+        "scripts/contracts_audit.py",
+        "--present"
+      ],
+      "cwd": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901",
+      "elapsed_s": 0.3510740059427917,
+      "finished_at": "2026-09-09T21:43:07.449459+00:00",
+      "log_sha256": "0d9f0bd973ff2e5742cc8779d1d7e71d8f01756a3ffd26e73d247fe90a8eb321",
+      "returncode": 1,
+      "started_at": "2026-09-09T21:43:07.096128+00:00",
+      "timed_out": false
+    },
+    "reference-divider-focused-20260909-r1": {
+      "cancelled": false,
+      "command": [
+        "/usr/bin/python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "projects/crow-audio-carrier-v1/03_src/tests",
+        "-p",
+        "test_reference_protection.py"
+      ],
+      "cwd": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901",
+      "elapsed_s": 7.02100745216012,
+      "finished_at": "2026-09-09T21:34:51.554065+00:00",
+      "log_sha256": "34244586b408e6ad6bf42c30bcc9e9a40e85cfea42a3462a3fe6062fbfab0754",
+      "raw_log": "./kicad/include/properties/property.h(607): assert \"m_choices.GetCount() > 0\" failed in PROPERTY_ENUM(): No enum choices defined\n./kicad/include/properties/property.h(607): assert \"m_choices.GetCount() > 0\" failed in PROPERTY_ENUM(): No enum choices defined\n./kicad/include/properties/property.h(607): assert \"m_choices.GetCount() > 0\" failed in PROPERTY_ENUM(): No enum choices defined\n.................\n----------------------------------------------------------------------\nRan 17 tests in 6.834s\n\nOK\n",
+      "returncode": 0,
+      "started_at": "2026-09-09T21:34:44.531786+00:00",
+      "timed_out": false
+    },
+    "reference-divider-public-stock-20260909": {
+      "cancelled": false,
+      "command": [
+        "python3",
+        "skills/jlcpcb-fab/scripts/jlc_stock_check.py",
+        "/tmp/carrier-source-acceptance-20260909.TPGm6x/reference-divider-candidate.csv",
+        "--min-stock",
+        "5",
+        "--json",
+        "/tmp/carrier-source-acceptance-20260909.TPGm6x/reference-divider-stock.json",
+        "--out",
+        "/tmp/carrier-source-acceptance-20260909.TPGm6x/reference-divider-stock.md"
+      ],
+      "cwd": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901",
+      "elapsed_s": 2.0435469921212643,
+      "finished_at": "2026-09-09T21:33:34.593017+00:00",
+      "log_sha256": "b2a61cda0250f2a5bb8950bf911d38e88279e24621629f67bbcb94ca1befdb24",
+      "raw_log": "input: bom = /tmp/carrier-source-acceptance-20260909.TPGm6x/reference-divider-candidate.csv\n1 BOM lines: 1 with LCSC, 0 without\n\n  OK               C95204     x6   10k                                    expand stock=1960049\n\nreport -> /tmp/carrier-source-acceptance-20260909.TPGm6x/reference-divider-stock.md\njson -> /tmp/carrier-source-acceptance-20260909.TPGm6x/reference-divider-stock.json\n\nPASS: 1/1 coded BOM lines have stock >= 5 x qty + 0 absolute surplus (0 with problems); 0/1 lines carry NO LCSC and were NOT graded by this tool\n  SCOPE: graded against LCSC CATALOG stock (stockCount). JLC's assembly uploader\n  allocates from a DIFFERENT pool, so a PASS here does NOT mean the line will\n  clear at order time. A FAIL is real; a PASS is necessary and not sufficient.\n  The only instrument that answers 'will it clear' is the uploader itself \u2014 F-ECHO.\n",
+      "returncode": 0,
+      "started_at": "2026-09-09T21:33:32.548108+00:00",
+      "timed_out": false
+    },
+    "reference-divider-red-8e8a2910": {
+      "cancelled": false,
+      "command": [
+        "/usr/bin/python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "projects/crow-audio-carrier-v1/03_src/tests",
+        "-p",
+        "test_reference_protection.py"
+      ],
+      "cwd": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901",
+      "elapsed_s": 7.14351343899034,
+      "finished_at": "2026-09-09T21:32:40.134372+00:00",
+      "log_sha256": "bfd043a83c253f4e622e189f4bb274a885ee664a1cfcda03a2a234ba60b5884a",
+      "raw_log": "./kicad/include/properties/property.h(607): assert \"m_choices.GetCount() > 0\" failed in PROPERTY_ENUM(): No enum choices defined\n./kicad/include/properties/property.h(607): assert \"m_choices.GetCount() > 0\" failed in PROPERTY_ENUM(): No enum choices defined\n./kicad/include/properties/property.h(607): assert \"m_choices.GetCount() > 0\" failed in PROPERTY_ENUM(): No enum choices defined\n..FFFFFF.............\n======================================================================\nFAIL: test_exact_precision_reference_dividers (test_reference_protection.ReferenceProtectionTests.test_exact_precision_reference_dividers) (ref='R_VMID1_TOP')\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/03_src/tests/test_reference_protection.py\", line 32, in test_exact_precision_reference_dividers\n    self.assertEqual(row['manufacturerPartNumber'], 'RT0603BRD0710KL')\nAssertionError: 'RC0402FR-0710KL' != 'RT0603BRD0710KL'\n- RC0402FR-0710KL\n+ RT0603BRD0710KL\n\n\n======================================================================\nFAIL: test_exact_precision_reference_dividers (test_reference_protection.ReferenceProtectionTests.test_exact_precision_reference_dividers) (ref='R_VMID1_BOT')\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/03_src/tests/test_reference_protection.py\", line 32, in test_exact_precision_reference_dividers\n    self.assertEqual(row['manufacturerPartNumber'], 'RT0603BRD0710KL')\nAssertionError: 'RC0402FR-0710KL' != 'RT0603BRD0710KL'\n- RC0402FR-0710KL\n+ RT0603BRD0710KL\n\n\n======================================================================\nFAIL: test_exact_precision_reference_dividers (test_reference_protection.ReferenceProtectionTests.test_exact_precision_reference_dividers) (ref='R_VMID2_TOP')\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/03_src/tests/test_reference_protection.py\", line 32, in test_exact_precision_reference_dividers\n    self.assertEqual(row['manufacturerPartNumber'], 'RT0603BRD0710KL')\nAssertionError: 'RC0402FR-0710KL' != 'RT0603BRD0710KL'\n- RC0402FR-0710KL\n+ RT0603BRD0710KL\n\n\n======================================================================\nFAIL: test_exact_precision_reference_dividers (test_reference_protection.ReferenceProtectionTests.test_exact_precision_reference_dividers) (ref='R_VMID2_BOT')\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/03_src/tests/test_reference_protection.py\", line 32, in test_exact_precision_reference_dividers\n    self.assertEqual(row['manufacturerPartNumber'], 'RT0603BRD0710KL')\nAssertionError: 'RC0402FR-0710KL' != 'RT0603BRD0710KL'\n- RC0402FR-0710KL\n+ RT0603BRD0710KL\n\n\n======================================================================\nFAIL: test_initial_reference_dc_screen_preserves_acceptance_window (test_reference_protection.ReferenceProtectionTests.test_initial_reference_dc_screen_preserves_acceptance_window) (bank=1)\nIndependent nodal DC arithmetic; not hot/lifetime/startup proof.\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/03_src/tests/test_reference_protection.py\", line 67, in test_initial_reference_dc_screen_preserves_acceptance_window\n    self.assertGreaterEqual(low, 1.60)\nAssertionError: 1.5947563184887634 not greater than or equal to 1.6\n\n======================================================================\nFAIL: test_initial_reference_dc_screen_preserves_acceptance_window (test_reference_protection.ReferenceProtectionTests.test_initial_reference_dc_screen_preserves_acceptance_window) (bank=2)\nIndependent nodal DC arithmetic; not hot/lifetime/startup proof.\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/03_src/tests/test_reference_protection.py\", line 67, in test_initial_reference_dc_screen_preserves_acceptance_window\n    self.assertGreaterEqual(low, 1.60)\nAssertionError: 1.5947563184887634 not greater than or equal to 1.6\n\n----------------------------------------------------------------------\nRan 17 tests in 6.845s\n\nFAILED (failures=6)\n",
+      "returncode": 1,
+      "started_at": "2026-09-09T21:32:32.989395+00:00",
+      "timed_out": false
+    },
+    "reference-divider-source-suite-20260909-r1": {
+      "cancelled": false,
+      "command": [
+        "/usr/bin/python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "projects/crow-audio-carrier-v1/03_src/tests"
+      ],
+      "cwd": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901",
+      "elapsed_s": 112.70245021092705,
+      "finished_at": "2026-09-09T21:38:10.216498+00:00",
+      "log_sha256": "8d2877c2453ce1406ea4348c6889eba1a63e58907975143e47bffa237dfd3460",
+      "raw_log": "./kicad/include/properties/property.h(607): assert \"m_choices.GetCount() > 0\" failed in PROPERTY_ENUM(): No enum choices defined\n./kicad/include/properties/property.h(607): assert \"m_choices.GetCount() > 0\" failed in PROPERTY_ENUM(): No enum choices defined\n./kicad/include/properties/property.h(607): assert \"m_choices.GetCount() > 0\" failed in PROPERTY_ENUM(): No enum choices defined\n...................................................................../home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/skills/kicad-pcb/scripts/kicad_sch_parity.py:90: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmp90ocb722/hostile.net' mode='r' encoding='UTF-8'>\n  txt = open(path).read()\nResourceWarning: Enable tracemalloc to get the object allocation traceback\n./home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/skills/kicad-pcb/scripts/kicad_sch_parity.py:90: ResourceWarning: unclosed file <_io.TextIOWrapper name='/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/03_src/tests/fixtures/kicad10_native_excerpt.net' mode='r' encoding='UTF-8'>\n  txt = open(path).read()\nResourceWarning: Enable tracemalloc to get the object allocation traceback\n......../home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/skills/kicad-pcb/scripts/kicad_sch_parity.py:90: ResourceWarning: unclosed file <_io.TextIOWrapper name='/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/06_build/netlists/crow_audio_carrier_v1.net' mode='r' encoding='UTF-8'>\n  txt = open(path).read()\nResourceWarning: Enable tracemalloc to get the object allocation traceback\n....../home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/skills/kicad-pcb/scripts/kicad_sch_parity.py:90: ResourceWarning: unclosed file <_io.TextIOWrapper name='/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/06_build/netlists/crow_audio_carrier_v1.net' mode='r' encoding='UTF-8'>\n  txt = open(path).read()\nResourceWarning: Enable tracemalloc to get the object allocation traceback\n.......................................................................................................................................................................................\n----------------------------------------------------------------------\nRan 267 tests in 112.275s\n\nOK\n",
+      "returncode": 0,
+      "started_at": "2026-09-09T21:36:17.512069+00:00",
+      "timed_out": false
+    }
+  },
+  "base_commit": "8e8a2910fa62e499f8f4387d9b3558464143ec8c",
+  "census": {
+    "components": 325,
+    "nets_including_nc": 228,
+    "physical_pin_occurrences": 923
+  },
+  "conditional_dc_screen": {
+    "acceptance": [
+      1.6,
+      1.7
+    ],
+    "corrected_high": 1.6718548854,
+    "corrected_low": 1.6092832417,
+    "grade": "software arithmetic, conditional initial room-temperature screen, not hardware or hot/lifetime proof",
+    "old_high": 1.6868848854,
+    "old_low": 1.5947563185,
+    "unit": "V"
+  },
+  "created_at": "2026-09-09T21:54:38.623584+00:00",
+  "current_source_hashes": {
+    "01_docs/BRIEF.md": "c77beb6f23779074128aaf657d1e07f53c568f95fddae28206503486a128b367",
+    "01_docs/decisions/0024-precision-reference-dividers.md": "f9fa9589a1c05e479785bfbdaf9b88c2da9e843200f65f294e568cf2eda90463",
+    "01_docs/findings.yaml": "22f64bd2df9ce74e3f38f228ec19284d9b47c8389e14e29ffa4d80de366916af",
+    "01_docs/research/2026-09-09-isolation-source-reassessment.md": "fa203312fdf250b251c39a9eaeceabdd42ddc126b10a51c36815cdfb2471e4ba",
+    "01_docs/research/2026-09-09-reference-loading-and-model-authority.md": "f704023972cea011b67f455439118ae50a1af0ce900570b157124585b69291d3",
+    "02_parts/EEEFK1V4R7R/part.yaml": "2ee908b854a6d974277c409afb7ff42dcab5fe8bce07538e7057898885519417",
+    "02_parts/RT0603BRD0710KL/part.yaml": "a0f81b22668f5f7c09f900a53f5e2c6149b73c2049a43d0e650cc65fa73cd771",
+    "03_src/floorplan.yaml": "8738e828ea5355f138b139d402cf54535da2b6221f005a53bf20d0ad6334c934",
+    "03_src/rules/electrical_invariants.yaml": "0baa4a18629129de7232f90564f1ef12efdcf3b448eca7cc525278c92539a6fc",
+    "03_src/rules/first_article.yaml": "5105561e24d072aacbf8bb50289371ebd3ea33935be8b60c9363f153d8e0d6c6",
+    "03_src/rules/spoke_interface.yaml": "eacc850df2f2c1375e182d921745c74a7fb9def3133109e7c2dda105f7f453e7",
+    "03_src/tests/test_reference_protection.py": "c265bbd05326891817613d9fcfb6e1836dfb7596c0dc130708ec9d4b4b4c5fed",
+    "03_tscircuit/src/crow_audio_carrier_v1.tsx": "527c825e91023717782f9f7b55e0993ce831e9da941418541575b45b2aae5bbf"
+  },
+  "fresh_review_summary": {
+    "context_mode": "FRESH",
+    "coordinator_packet_reverified_at": "2026-09-09T21:54:38.623584+00:00",
+    "coordinator_packet_valid": true,
+    "covers_later_precision_divider_correction": false,
+    "deadline_at": "2026-09-09T21:47:48.943587Z",
+    "findings": [
+      {
+        "authority": "TI SCDS488 pp5-7 and section7.3.3; Cirrus DS1314F1 p9",
+        "classification": "unresolved source argument",
+        "id": "PARTIAL-TMUX",
+        "limit": "VDD=0 protection does not bound 0<VDD<1.8V; pod reference ramp prevents claiming immediate full-amplitude cold-start output",
+        "next": "Explicit interval authority or fail-open isolation replacement; stronger SEL pulldown alone is insufficient",
+        "path": "5V_BUCK/R_OPA_FEED energizes OPA while D_HOLD/R_PRE charges held TMUX supply with ADC off"
+      },
+      {
+        "authority": "TI SBOS513F section6.1 p6 and section7.3.2 p17",
+        "classification": "unresolved source argument",
+        "id": "REFERENCE-BACKDRIVE",
+        "limit": "Input clamp-current and powered short-circuit data are not output-injection authority; normal VMID band is not all-state bound",
+        "next": "Exact bounded output authority or fail-open dual reference disconnect before OPA undervoltage; retain separate channel-filter charge paths",
+        "path": "VMID_BUF reservoir and eight bias legs ->1k -> U_AFE9 OUT/-IN"
+      },
+      {
+        "authority": "TPS3890 section8.3.1; TPS7A92 sections7.3.6/8.1.2.2; Nexperia 74LVC1G14 Rev19 pp5-7",
+        "classification": "source envelope owed; physical timing later",
+        "id": "CORRELATED-RESTART",
+        "limit": "Do not compare only nominal delay or choose rail, CT, NR and dump charge independently; typical CT discharge is not guaranteed instant reset",
+        "path": "PWR_EN -> U_AUDIO.MR; delayed DUMP_GATE -> Q_DUMP and LDO disable"
+      },
+      {
+        "authority": "AP63205 DS41326 pp5/10; WSLP document30122 p1; OPA SBOS513F",
+        "classification": "source pulse envelope owed; realized copper/thermal later",
+        "id": "FEED-DURATION",
+        "limit": "Converter soft-start/current limit is not every redistribution waveform. No resistor-rating defect was demonstrated; include actual pulse duration/energy and correlated restart",
+        "path": "R_OPA_FEED 0.05ohm with approximately565uF nominal downstream"
+      }
+    ],
+    "native_review_witness": false,
+    "recommendation": "Keep OPA2320; narrowly reopen isolation selection for fail-open/UVLO behavior and reference-reservoir backdrive. No choose_source_correction credit.",
+    "record_kind": "coordinator condensation of actual collaboration final, not verbatim witness or TaskAttempt",
+    "reviewer_reported_final_verification_utc": "2026-09-09T21:43:53Z",
+    "reviewer_reported_pre_and_post": "38/38 packet SHA256/size pairs match; zero mismatches",
+    "reviewer_task": "/root/implemented_power_review_8e8a2910",
+    "simulation_or_sweep_run_by_reviewer": false,
+    "source_commit": "8e8a2910fa62e499f8f4387d9b3558464143ec8c",
+    "source_raw_sha256": "67914756d1a58f4a70551041fa6a103915b1b26fcb8f9bfce1f018057f9c0022",
+    "supplement_is_separate_from_38_file_packet": true,
+    "supplemental_spoke_sha256": "eacc850df2f2c1375e182d921745c74a7fb9def3133109e7c2dda105f7f453e7",
+    "verdict": "INCOMPLETE source protection argument, not a demonstrated protection failure",
+    "writer_scope": "READ_ONLY"
+  },
+  "frozen_review_envelope": {
+    "agent_role": "judgment",
+    "context_mode": "FRESH",
+    "deadline_at": "2026-09-09T21:47:48.943587Z",
+    "execution_class": "local",
+    "executor": "agent",
+    "input_handoff_id": "sha256:8c429d1c68298320714ad97d43930edf28d299ed1dca48d2063a463a8e238e84",
+    "input_packet": [
+      {
+        "name": "input_000",
+        "path": "projects/crow-audio-carrier-v1/06_build/verification/source-power-review-20260909-8e8a2910/snapshot/01_docs/BRIEF.md",
+        "sha256": "acef2103a9256eb9bc2468889ee1308bbddd6746468126b6d67d1e278cc81fc4",
+        "size": 15814
+      },
+      {
+        "name": "input_001",
+        "path": "projects/crow-audio-carrier-v1/06_build/verification/source-power-review-20260909-8e8a2910/snapshot/01_docs/STATUS.md",
+        "sha256": "cea670b5c3a34325bc3705825eb633cd1baebca02d79e88d02ce94292f66c7a5",
+        "size": 999
+      },
+      {
+        "name": "input_002",
+        "path": "projects/crow-audio-carrier-v1/06_build/verification/source-power-review-20260909-8e8a2910/snapshot/01_docs/findings.yaml",
+        "sha256": "6376ba65e6c509babcf8f34cc2d0ece2b22fb42aaa37db8c60728427a3cff364",
+        "size": 15866
+      },
+      {
+        "name": "input_003",
+        "path": "projects/crow-audio-carrier-v1/06_build/verification/source-power-review-20260909-8e8a2910/snapshot/02_parts/74LVC1G14GV,125/74LVC1G14_Rev19.pdf",
+        "sha256": "b8f37c700d0fc8374de6d14f0e2caf310c34b480ffab9d63c69bb3b6defbebbf",
+        "size": 320891
+      },
+      {
+        "name": "input_004",
+        "path": "projects/crow-audio-carrier-v1/06_build/verification/source-power-review-20260909-8e8a2910/snapshot/02_parts/74LVC1G14GV,125/part.yaml",
+        "sha256": "82f27c9a0b37a0958356135074ea4316424e85b761e4968327fea5ee8f9122c9",
+        "size": 5288
+      },
+      {
+        "name": "input_005",
+        "path": "projects/crow-audio-carrier-v1/06_build/verification/source-power-review-20260909-8e8a2910/snapshot/02_parts/AO3400A/AO3400A_Rev3.1.pdf",
+        "sha256": "9c60d0b6c1ddc7609a4b788a91181468d8ffe6c3e9ba425c3d8ffc5ba88c5033",
+        "size": 317848
+      },
+      {
+        "name": "input_006",
+        "path": "projects/crow-audio-carrier-v1/06_build/verification/source-power-review-20260909-8e8a2910/snapshot/02_parts/AO3400A/part.yaml",
+        "sha256": "785e440da5c7516cb1e96c59535165d91925e0741799d1b936e9db1eedc86191",
+        "size": 2691
+      },
+      {
+        "name": "input_007",
+        "path": "projects/crow-audio-carrier-v1/06_build/verification/source-power-review-20260909-8e8a2910/snapshot/02_parts/AO3401A/AO3401A_Rev3.1.pdf",
+        "sha256": "0d8e3261ae280e007b5837fff60c55142f2d92af71edc4d02aee6f7a760a785c",
+        "size": 326568
+      },
+      {
+        "name": "input_008",
+        "path": "projects/crow-audio-carrier-v1/06_build/verification/source-power-review-20260909-8e8a2910/snapshot/02_parts/AO3401A/part.yaml",
+        "sha256": "fc1e503650724d5060aab92990bae48ddd207f9490489a27c65ad7dd3324361c",
+        "size": 3070
+      },
+      {
+        "name": "input_009",
+        "path": "projects/crow-audio-carrier-v1/06_build/verification/source-power-review-20260909-8e8a2910/snapshot/02_parts/AP63205WU-7/AP63205_DS41326_Rev3-2.pdf",
+        "sha256": "ef99daa3789d835bc025dfcb4c605c5c2e6d3e7223e86d40b33e6b497ea5a722",
+        "size": 1226090
+      },
+      {
+        "name": "input_010",
+        "path": "projects/crow-audio-carrier-v1/06_build/verification/source-power-review-20260909-8e8a2910/snapshot/02_parts/AP63205WU-7/part.yaml",
+        "sha256": "03bf086ea5ce25f0f30a4e512334479785f9e65053371d000ec3b9c6e7f3e5f0",
+        "size": 8891
+      },
+      {
+        "name": "input_011",
+        "path": "projects/crow-audio-carrier-v1/06_build/verification/source-power-review-20260909-8e8a2910/snapshot/02_parts/CS5308P-DN/CS5308P_DS1314F1.pdf",
+        "sha256": "6ca42cc09ac47ebdacacaee435f05e3f9c34b83d5692e52a2d8a26533e810e57",
+        "size": 4623200
+      },
+      {
+        "name": "input_012",
+        "path": "projects/crow-audio-carrier-v1/06_build/verification/source-power-review-20260909-8e8a2910/snapshot/02_parts/CS5308P-DN/CS530x_Input_Buffer_Filter_Circuits_AN0556R1.pdf",
+        "sha256": "14ae45dfdc660456c225eb103b0ea9b62b6d605944d98fe78180d6cc6f62b244",
+        "size": 392770
+      },
+      {
+        "name": "input_013",
+        "path": "projects/crow-audio-carrier-v1/06_build/verification/source-power-review-20260909-8e8a2910/snapshot/02_parts/CS5308P-DN/CS530x_Schematic_Layout_Guidelines_202507.pdf",
+        "sha256": "a97e3cfbe311caf603bd56b7aeab189dd38727104168c26bb67dd24add07b62f",
+        "size": 968800
+      },
+      {
+        "name": "input_014",
+        "path": "projects/crow-audio-carrier-v1/06_build/verification/source-power-review-20260909-8e8a2910/snapshot/02_parts/CS5308P-DN/DC5308P_8S_ADC_SCH_REV_E0.pdf",
+        "sha256": "fce5684d95855422693ada480b59c165f95cf710b85b0e55a07cd6e26a3b3d28",
+        "size": 4097334
+      },
+      {
+        "name": "input_015",
+        "path": "projects/crow-audio-carrier-v1/06_build/verification/source-power-review-20260909-8e8a2910/snapshot/02_parts/CS5308P-DN/part.yaml",
+        "sha256": "cb13b93e650dd0a2bb3984a3d7fc5538b26dd1a25f923f479b5fe043523839fb",
+        "size": 23295
+      },
+      {
+        "name": "input_016",
+        "path": "projects/crow-audio-carrier-v1/06_build/verification/source-power-review-20260909-8e8a2910/snapshot/02_parts/EEEFK1V4R7R/Panasonic_FK_ABA0000C1181_20260210.pdf",
+        "sha256": "b36857d089adaddf3042b33bf11d0f7d83bf70734e983f33b7827152e11854e3",
+        "size": 1062715
+      },
+      {
+        "name": "input_017",
+        "path": "projects/crow-audio-carrier-v1/06_build/verification/source-power-review-20260909-8e8a2910/snapshot/02_parts/EEEFK1V4R7R/part.yaml",
+        "sha256": "d7125a9b2f0ab83113092268efc9a7ee28ccf3c77b18b95326747dc801944099",
+        "size": 2795
+      },
+      {
+        "name": "input_018",
+        "path": "projects/crow-audio-carrier-v1/06_build/verification/source-power-review-20260909-8e8a2910/snapshot/02_parts/OPA2320AIDR/OPA2320_SBOS513F.pdf",
+        "sha256": "1d13d91bc220d3f37e814e29599ce23e086bd661227618104dcae5482c8144fc",
+        "size": 2852198
+      },
+      {
+        "name": "input_019",
+        "path": "projects/crow-audio-carrier-v1/06_build/verification/source-power-review-20260909-8e8a2910/snapshot/02_parts/OPA2320AIDR/part.yaml",
+        "sha256": "fb218a8c5cace8f5b30a6bbe9f78975d67db42823f65db594b192143e7512314",
+        "size": 31887
+      },
+      {
+        "name": "input_020",
+        "path": "projects/crow-audio-carrier-v1/06_build/verification/source-power-review-20260909-8e8a2910/snapshot/02_parts/TMUX2821DSGR/TMUX28xx_SCDS488.pdf",
+        "sha256": "493e5c0d4eb5ca55dea82dbcce59b1be9c353577e256c161821662c38bb9ac55",
+        "size": 2473523
+      },
+      {
+        "name": "input_021",
+        "path": "projects/crow-audio-carrier-v1/06_build/verification/source-power-review-20260909-8e8a2910/snapshot/02_parts/TMUX2821DSGR/part.yaml",
+        "sha256": "5f852d29e9cb7d666e04d8c999181f0a7acb0e172c44dd4dd0c4b7d5c24f113e",
+        "size": 9127
+      },
+      {
+        "name": "input_022",
+        "path": "projects/crow-audio-carrier-v1/06_build/verification/source-power-review-20260909-8e8a2910/snapshot/02_parts/TPS389001DSER/TPS3890_SLVSD65A.pdf",
+        "sha256": "ee79599730e7606ba9718d9820b411020e3dcd9ff7d44572f8ee63fead15b9d0",
+        "size": 1203677
+      },
+      {
+        "name": "input_023",
+        "path": "projects/crow-audio-carrier-v1/06_build/verification/source-power-review-20260909-8e8a2910/snapshot/02_parts/TPS389001DSER/part.yaml",
+        "sha256": "1558d257879778c45392246fd5863557bec768541edf0460a41fd44cccf9b39f",
+        "size": 5252
+      },
+      {
+        "name": "input_024",
+        "path": "projects/crow-audio-carrier-v1/06_build/verification/source-power-review-20260909-8e8a2910/snapshot/02_parts/TPS7A9201DSKR/TPS7A92_SBVS318B.pdf",
+        "sha256": "e0c0a695e933d9656a7c6fefad654c5129d76a22ac8398d26eacfb844dd4532e",
+        "size": 2624456
+      },
+      {
+        "name": "input_025",
+        "path": "projects/crow-audio-carrier-v1/06_build/verification/source-power-review-20260909-8e8a2910/snapshot/02_parts/TPS7A9201DSKR/part.yaml",
+        "sha256": "0eee7e985a89871227e7beafc6d8289176de8605e6d67fb0369ae2f22cb75c6a",
+        "size": 9149
+      },
+      {
+        "name": "input_026",
+        "path": "projects/crow-audio-carrier-v1/06_build/verification/source-power-review-20260909-8e8a2910/snapshot/02_parts/US1B-13-F/Diodes_US1A_US1M_DS16008_Rev11-2.pdf",
+        "sha256": "d50b2773c0300d97a77f5125419098c8130ecaf967202a44be2b182de8a15c1f",
+        "size": 176802
+      },
+      {
+        "name": "input_027",
+        "path": "projects/crow-audio-carrier-v1/06_build/verification/source-power-review-20260909-8e8a2910/snapshot/02_parts/US1B-13-F/part.yaml",
+        "sha256": "f03b0b5b483dc8282e72e25e34ad258521c138a1f15404693d2c0d3afb275d45",
+        "size": 3298
+      },
+      {
+        "name": "input_028",
+        "path": "projects/crow-audio-carrier-v1/06_build/verification/source-power-review-20260909-8e8a2910/snapshot/02_parts/WSLP1206R0500FEA/WSLP_30122_20240909.pdf",
+        "sha256": "36e35aeb3d41f110442de6690ef220a8a20c720118a40abb0fa8eedbf7308edb",
+        "size": 146445
+      },
+      {
+        "name": "input_029",
+        "path": "projects/crow-audio-carrier-v1/06_build/verification/source-power-review-20260909-8e8a2910/snapshot/02_parts/WSLP1206R0500FEA/part.yaml",
+        "sha256": "62c568eca46c246a6961b20e80c803185ccd8c636039017b5f9508d05fd2cf03",
+        "size": 2723
+      },
+      {
+        "name": "input_030",
+        "path": "projects/crow-audio-carrier-v1/06_build/verification/source-power-review-20260909-8e8a2910/snapshot/03_src/rules/first_article.yaml",
+        "sha256": "5105561e24d072aacbf8bb50289371ebd3ea33935be8b60c9363f153d8e0d6c6",
+        "size": 7313
+      },
+      {
+        "name": "input_031",
+        "path": "projects/crow-audio-carrier-v1/06_build/verification/source-power-review-20260909-8e8a2910/snapshot/03_tscircuit/src/crow_audio_carrier_v1.tsx",
+        "sha256": "67914756d1a58f4a70551041fa6a103915b1b26fcb8f9bfce1f018057f9c0022",
+        "size": 51779
+      },
+      {
+        "name": "input_032",
+        "path": "projects/crow-audio-carrier-v1/06_build/verification/source-power-review-20260909-8e8a2910/snapshot/06_build/agent_handoff.yaml",
+        "sha256": "8c429d1c68298320714ad97d43930edf28d299ed1dca48d2063a463a8e238e84",
+        "size": 5418
+      },
+      {
+        "name": "input_033",
+        "path": "projects/crow-audio-carrier-v1/06_build/verification/source-power-review-20260909-8e8a2910/snapshot/TASK.md",
+        "sha256": "5d2b3972687256ca9d19af6664d78a8ccd1baaef52e464646d3150f1db8ccda9",
+        "size": 2587
+      },
+      {
+        "name": "input_034",
+        "path": "projects/crow-audio-carrier-v1/06_build/verification/source-power-review-20260909-8e8a2910/snapshot/journal-tail.md",
+        "sha256": "f50206c01e4230e40c9223aa98ece57a27caf4e07d8001683eeaf7f47c8b6521",
+        "size": 1689
+      },
+      {
+        "name": "input_035",
+        "path": "projects/crow-audio-carrier-v1/06_build/verification/source-power-review-20260909-8e8a2910/snapshot/unchanged-pod/02_parts/OPA1679IDR/opa1679.pdf",
+        "sha256": "4072daad4ebc4ec9a74ba6547d721b05db8d0cfc12924bda79e828271aeaec3b",
+        "size": 3853065
+      },
+      {
+        "name": "input_036",
+        "path": "projects/crow-audio-carrier-v1/06_build/verification/source-power-review-20260909-8e8a2910/snapshot/unchanged-pod/02_parts/TPS7A4901DGNR/tps7a49.pdf",
+        "sha256": "0a5e198966ab05ebb39f4512355352c0946af5f52e1fbd2e9ec554041123a126",
+        "size": 1816923
+      },
+      {
+        "name": "input_037",
+        "path": "projects/crow-audio-carrier-v1/06_build/verification/source-power-review-20260909-8e8a2910/snapshot/unchanged-pod/03_tscircuit/src/crow_mic_pod_v3.tsx",
+        "sha256": "39ba1a8367a28a93447334d46526254d570e471d3d1eb9142994353d6d3d50ca",
+        "size": 16539
+      }
+    ],
+    "max_nonimproving_attempts": 3,
+    "output_path": "projects/crow-audio-carrier-v1/06_build/verification/source-power-review-20260909-8e8a2910/review-result.json",
+    "recommended_agent_role": "judgment",
+    "replacement_limit": 1,
+    "role_escalation_reason": null,
+    "run_id": "carrier-source-power-8e8a2910",
+    "schema": 1,
+    "stage_id": "KICAD-SCHEMATIC",
+    "subject": {
+      "raw_sha256": "67914756d1a58f4a70551041fa6a103915b1b26fcb8f9bfce1f018057f9c0022",
+      "semantic_sha256": "6054adb0655535a6b13bf038bcc965ae1939eb770b6fc23f02b7de6af41fecc5"
+    },
+    "task_id": "CARRIER-IMPLEMENTED-POWER-REVIEW-20260909",
+    "writer_scope": {
+      "mode": "READ_ONLY",
+      "paths": []
+    }
+  },
+  "frozen_review_envelope_sha256": "fca45b8cad138ff6031da1c1531b92f0bf48295a28013c4c13a14ceb49dd5d64",
+  "investigation_budget_reset": false,
+  "investigation_max_attempts": 6,
+  "investigation_spend": 4,
+  "kind": "coordinator-reference-divider-source-correction-observations",
+  "limitations": [
+    "No isolated-switch replacement adopted",
+    "No numerical experiment or model simulation performed",
+    "No whole-source acceptance, native regeneration, route, release, order or push",
+    "Disposable cached vendor models and stock can be refetched; exact hashes and dated observations are retained",
+    "This record is coordinator evidence, not a canonical TaskAttempt or independent native review"
+  ],
+  "native_board_sha256": "66003462ab2221377fd8ad54fdeabe3097983e496f1fe7b22c345fd7843c3060",
+  "native_regenerated": false,
+  "native_review_admitted": false,
+  "pod_source_unchanged": true,
+  "public_sources_only": true,
+  "published": false,
+  "release_minted": false,
+  "requirement_rebind": {
+    "after": "c77beb6f23779074128aaf657d1e07f53c568f95fddae28206503486a128b367",
+    "before": "acef2103a9256eb9bc2468889ee1308bbddd6746468126b6d67d1e278cc81fc4",
+    "reason": "ADR0024 register row only"
+  },
+  "retained_disposable_files": {
+    "06_build/verification/reference-divider-20260909/OPAx320.LIB": "a3ecb23eb81d73b9d03cc4d44ef0e06ffdaadc995301bad1cb4882ba8a0f3b8c",
+    "06_build/verification/reference-divider-20260909/SBOM437.zip": "04060dbd12c8a07601290ad22b6de2865132619860741c5577956c2f79232bd6",
+    "06_build/verification/reference-divider-20260909/SBOM438.zip": "d0478194a9914fe1813eb9675623a3127e0fc0c9ee2fe82e4988de710c12deaf",
+    "06_build/verification/reference-divider-20260909/reference-divider-adr-bound-20260909.log": "9f87ab145f3f10e9ee850bf7fea0e5994b7be68e43dbea551625aa29f898e87c",
+    "06_build/verification/reference-divider-20260909/reference-divider-adr-bound-20260909.result.json": "79aceff82b55a037ebf9ccc24aceed27ce057186810bfcc0ee7a4cced7327b05",
+    "06_build/verification/reference-divider-20260909/reference-divider-candidate.csv": "665c49e6cbeb2367ddccbb0c467d685c0aa054324c9600c1bed8ef23a12f66a1",
+    "06_build/verification/reference-divider-20260909/reference-divider-contracts-20260909.log": "0d9f0bd973ff2e5742cc8779d1d7e71d8f01756a3ffd26e73d247fe90a8eb321",
+    "06_build/verification/reference-divider-20260909/reference-divider-contracts-20260909.result.json": "c307fb74ba962af41bcd89dab87c8d0b9201f8d6c4198e314f458d26f14439d7",
+    "06_build/verification/reference-divider-20260909/reference-divider-focused-20260909-r1.log": "34244586b408e6ad6bf42c30bcc9e9a40e85cfea42a3462a3fe6062fbfab0754",
+    "06_build/verification/reference-divider-20260909/reference-divider-focused-20260909-r1.result.json": "242bde1da1fcba06c6e52a5bfebc4fa25dc79c9eda84c5ab4bdb25214c152022",
+    "06_build/verification/reference-divider-20260909/reference-divider-public-stock-20260909.log": "b2a61cda0250f2a5bb8950bf911d38e88279e24621629f67bbcb94ca1befdb24",
+    "06_build/verification/reference-divider-20260909/reference-divider-public-stock-20260909.result.json": "5f1c36a6eff0fed429cdcfa883d15328148710deeb91c58517a888a3fad2e178",
+    "06_build/verification/reference-divider-20260909/reference-divider-red-8e8a2910.log": "bfd043a83c253f4e622e189f4bb274a885ee664a1cfcda03a2a234ba60b5884a",
+    "06_build/verification/reference-divider-20260909/reference-divider-red-8e8a2910.result.json": "d384882c94caf42edfb036e62c0b8da06f6a61b01e3ca2b4e43cf7c1f83fad09",
+    "06_build/verification/reference-divider-20260909/reference-divider-source-suite-20260909-r1.log": "8d2877c2453ce1406ea4348c6889eba1a63e58907975143e47bffa237dfd3460",
+    "06_build/verification/reference-divider-20260909/reference-divider-source-suite-20260909-r1.result.json": "9232d93b5c0a45bd5a7ec86f29573ef183604ae43d35bc3a0a1c29ca8db0361b",
+    "06_build/verification/reference-divider-20260909/reference-divider-stock.json": "af1bc92ba1c13f4f86646e0e76637a2a9206de1975bf400b7f2eb888f3558782"
+  },
+  "schema": 1,
+  "source_circuit_changed": true,
+  "source_delta": {
+    "only_mpn_code_and_footprint_changed_in_tsx": true,
+    "physical_dividers_changed": 4,
+    "selected_rows": {
+      "R_VMID1_BOT": {
+        "connections": {
+          "pin1": "net.VMID1_EXT",
+          "pin2": "net.GND"
+        },
+        "footprint": "0603",
+        "manufacturerPartNumber": "RT0603BRD0710KL",
+        "name": "R_VMID1_BOT",
+        "pcbX": "2884mm",
+        "pcbY": "60mm",
+        "resistance": "10k",
+        "schRotation": -90,
+        "schSectionName": "vmid",
+        "schSheetName": "vmid",
+        "schX": -9,
+        "schY": 1.5,
+        "supplierPartNumbers": {
+          "jlcpcb": [
+            "C95204"
+          ]
+        },
+        "type": "resistor"
+      },
+      "R_VMID1_TOP": {
+        "connections": {
+          "pin1": "net.N3V3_ADC",
+          "pin2": "net.VMID1_EXT"
+        },
+        "footprint": "0603",
+        "manufacturerPartNumber": "RT0603BRD0710KL",
+        "name": "R_VMID1_TOP",
+        "pcbX": "2840mm",
+        "pcbY": "60mm",
+        "resistance": "10k",
+        "schRotation": -90,
+        "schSectionName": "vmid",
+        "schSheetName": "vmid",
+        "schX": -9,
+        "schY": 3.5,
+        "supplierPartNumbers": {
+          "jlcpcb": [
+            "C95204"
+          ]
+        },
+        "type": "resistor"
+      },
+      "R_VMID2_BOT": {
+        "connections": {
+          "pin1": "net.VMID2_EXT",
+          "pin2": "net.GND"
+        },
+        "footprint": "0603",
+        "manufacturerPartNumber": "RT0603BRD0710KL",
+        "name": "R_VMID2_BOT",
+        "pcbX": "2884mm",
+        "pcbY": "12mm",
+        "resistance": "10k",
+        "schRotation": -90,
+        "schSectionName": "vmid",
+        "schSheetName": "vmid",
+        "schX": -9,
+        "schY": -3.5,
+        "supplierPartNumbers": {
+          "jlcpcb": [
+            "C95204"
+          ]
+        },
+        "type": "resistor"
+      },
+      "R_VMID2_TOP": {
+        "connections": {
+          "pin1": "net.N3V3_ADC",
+          "pin2": "net.VMID2_EXT"
+        },
+        "footprint": "0603",
+        "manufacturerPartNumber": "RT0603BRD0710KL",
+        "name": "R_VMID2_TOP",
+        "pcbX": "2840mm",
+        "pcbY": "12mm",
+        "resistance": "10k",
+        "schRotation": -90,
+        "schSectionName": "vmid",
+        "schSheetName": "vmid",
+        "schX": -9,
+        "schY": -1.5,
+        "supplierPartNumbers": {
+          "jlcpcb": [
+            "C95204"
+          ]
+        },
+        "type": "resistor"
+      }
+    },
+    "template_rows_changed": 2,
+    "values_and_connections_unchanged": true
+  },
+  "source_engineering_accepted": false,
+  "source_regressions": {
+    "focused_passed": 17,
+    "focused_total": 17,
+    "full_passed": 267,
+    "full_total": 267,
+    "old_source_red_failed_subtests": 6,
+    "test_docstring_only_changed_after_full_run": true
+  },
+  "sourcing_scope": "dated one-part quantity screen; not new Q-2SOURCE composition or PCBA allocation",
+  "structure_audit": {
+    "added_exact_FAIL_lines": [],
+    "baseline_log_sha256": "20d1c8de7b4678085ece99bd4e6d4ada7f2ed3ff1c38b0a1907f4ee88a4cd379",
+    "current_log_sha256": "0d9f0bd973ff2e5742cc8779d1d7e71d8f01756a3ffd26e73d247fe90a8eb321",
+    "existing_violations": 2891,
+    "floors_or_waivers_changed": false,
+    "global_ADR_OWED": 38,
+    "global_ADR_ceiling": 37,
+    "removed_exact_FAIL_lines": [],
+    "still_failing": true
+  }
+}

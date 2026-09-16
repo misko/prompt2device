@@ -228,6 +228,57 @@ def run_fetch_command(cmd, timeout_s, heartbeat_s, heartbeat):
             heartbeat(round(time.monotonic() - started, 1))
 
 
+def probe_catalog_absence(lcsc, directory, timeout_s):
+    """Preserve one public API observation hidden by the upstream fetcher.
+
+    Only the exact HTTP-200/application-404 response is affirmative absence.
+    This is no CAD fit or body acceptance. Never reuse an old observation as
+    a new fetch result; successful CAD cache lookup still takes precedence.
+    """
+    from datetime import datetime, timezone
+    import hashlib
+    import urllib.error
+    import urllib.request
+    if not re.fullmatch(r"C[0-9]+", lcsc) or timeout_s <= 0:
+        return False
+    url = f"https://easyeda.com/api/products/{lcsc}/components"
+    record = {"schema": 1, "lcsc": lcsc, "url": url,
+              "observed_at": datetime.now(timezone.utc).isoformat(),
+              "status": None, "response_url": None, "headers": {},
+              "classification": "unrecognized"}
+    request = urllib.request.Request(url, headers={
+        "User-Agent": os.environ.get("JLC_TWIN_USER_AGENT",
+            "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "
+            "(KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36"),
+        "Accept": "application/json", "Accept-Encoding": "identity",
+        "Referer": "https://easyeda.com/"})
+    body = b""
+    try:
+        try:
+            response = urllib.request.urlopen(request, timeout=min(timeout_s, 30))
+        except urllib.error.HTTPError as exc:
+            response = exc
+        with response:
+            record.update(status=response.status, response_url=response.geturl(),
+                          headers=dict(response.headers))
+            body = response.read(1_000_001)
+        parsed = json.loads(body) if len(body) <= 1_000_000 else None
+        record["parsed"] = parsed
+        if (record["status"] == 200 and record["response_url"] == url and
+                isinstance(parsed, dict) and set(parsed) == {"success", "code", "message"} and
+                parsed["success"] is False and type(parsed["code"]) is int and
+                parsed["code"] == 404 and parsed["message"] == "Component not found"):
+            record["classification"] = "absent"
+    except (OSError, ValueError) as exc:
+        record["error"] = str(exc)
+    directory = Path(directory)
+    directory.mkdir(parents=True, exist_ok=True)
+    (directory / "catalog-response.body").write_bytes(body)
+    record.update(body_sha256=hashlib.sha256(body).hexdigest(), body_size=len(body))
+    (directory / "catalog-response.json").write_text(json.dumps(record, indent=2) + "\n")
+    return record["classification"] == "absent"
+
+
 def fetch(lcsc, cachedir, attempts=None, progress=None, deadline=None):
     """easyeda2kicad --full into a per-code dir.
     Returns (fp_path, None, None) on success, else (None, reason, kind) where
@@ -245,6 +296,7 @@ def fetch(lcsc, cachedir, attempts=None, progress=None, deadline=None):
         progress(state="cached", attempt=0, max_attempts=attempts)
         return mods[0], None, None
     r = None
+    probed_absence = False
     for attempt in range(attempts):
         if mods:
             return mods[0], None, None
@@ -269,6 +321,19 @@ def fetch(lcsc, cachedir, attempts=None, progress=None, deadline=None):
                 state="running", attempt=attempt + 1,
                 max_attempts=attempts, child_elapsed_s=child_elapsed))
         mods = glob.glob(str(d / "jlc.pretty" / "*.kicad_mod"))
+        # The real importer collapses application-level 404 into its generic
+        # failure message. One bounded direct observation can avoid useless
+        # retries, while auth/rate-limit/unknown responses stay blocking.
+        # Arbitrary executable stubs remain a hermetic test seam.
+        if not mods and not probed_absence and len(easyeda2kicad_command(E2K)) > 1:
+            probed_absence = True
+            remaining = (min(child_timeout, deadline - time.monotonic())
+                         if deadline is not None else child_timeout)
+            progress(state="diagnosing-absence", attempt=attempt + 1,
+                     max_attempts=attempts)
+            if probe_catalog_absence(lcsc, d, remaining):
+                return None, ["Exact public API HTTP 200/application 404: Component not found; "
+                              "catalog comparison unavailable; see catalog-response.json"], "nocad"
         if not mods and attempt < attempts - 1:
             backoff = 4 * (attempt + 1)   # 4s, 8s, 12s … EasyEDA rate-limits bursts
             left = float(backoff)
@@ -825,6 +890,69 @@ def file_sha256(path):
     return digest.hexdigest()
 
 
+def retain_absent_vendor_body(board_path, fp, spec, vendor_path, vendor_models,
+                              code, mpn, out):
+    """Retain only an explicitly reviewed, physically registered native body."""
+    import yaml
+    import native_representation as selection
+    import model_registration_gate as registration
+    catalog_sha = selection.check_vendor(spec, code, vendor_path, len(vendor_models),
+                                         out / "easyeda" / code)
+    if mpn != spec["mpn"]:
+        raise ValueError("native representation exact BOM MPN differs")
+    project = Path(board_path).resolve().parent.parent
+    selection.check_source_files(project, spec)
+    source_files = {}
+    for key in selection.source_keys(spec):
+        original_file = selection.safe_file(project, spec[key]["path"])
+        copied_file = out / "native_authority" / spec["registration_group"] / (key + "-" + original_file.name)
+        copied_file.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(original_file, copied_file)
+        source_files[key] = copied_file.relative_to(out).as_posix()
+    if str(fp.GetFPID().GetLibItemName()) != Path(spec["native_footprint"]["path"]).stem:
+        raise ValueError("native representation source footprint identity differs")
+    models = list(fp.Models())
+    resolved = (resolve_model(models[0].m_Filename, kicad_env(board_path), board_path)
+                if len(models) == 1 else None)
+    if not resolved or selection.sha(resolved) != spec["model_sha256"]:
+        raise ValueError("native representation source model identity differs")
+    config = yaml.safe_load((project / "03_src/rules/model_registration.yaml").read_text())
+    matches = [g for g in config["groups"] if g.get("id") == spec["registration_group"]]
+    if len(matches) != 1:
+        raise ValueError("native representation registration group missing/ambiguous")
+    values = registration.normalized_group(spec["registration_group"], matches[0])
+    if (set(values["refs"]) != set(spec["refs"]) or
+            values["model_sha256"] != spec["model_sha256"] or
+            values["registration_datum"] not in ("all_pad_centres", "all_smd_pad_overlap") or
+            values["mount_side"] not in ("front", "back")):
+        raise ValueError("native representation needs exact-ref signed package registration")
+    tuple_value, rows = registration.tuple_for(Path(board_path), values)
+    source = project / "06_build/pre_route/native_registration" / spec["registration_group"]
+    outputs = registration.declared_outputs(values["refs"], rows[0]["model"].suffix,
+                                            values["mount_side"])
+    if not registration.accepted_cache_valid(source, tuple_value, values["refs"], outputs, values["registration_datum"]):
+        raise ValueError("native representation physical registration is missing/stale")
+    evidence = out / "native_registration" / spec["registration_group"]
+    shutil.copytree(source, evidence, dirs_exist_ok=True)
+    model = Path(resolved)
+    copied = out / "native_models" / f"{selection.sha(model)}-{model.name}"
+    copied.parent.mkdir(parents=True, exist_ok=True)
+    shutil.copy2(model, copied)
+    original = models[0]
+    original.m_Filename = portable_twin_model_path(copied, out)
+    fp.Models().clear()
+    fp.Models().push_back(original)
+    return {"ref": fp.GetReference(), "declaration": spec,
+            "source_files": source_files,
+            "catalog_comparison": "unavailable" if catalog_sha else "vendor-footprint",
+            "catalog_response_sha256": catalog_sha,
+            "model": copied.relative_to(out).as_posix(),
+            "transform": {k: [getattr(getattr(original, k), a) for a in ("x", "y", "z")]
+                          for k in ("m_Scale", "m_Rotation", "m_Offset")},
+            "registration_manifest": (evidence / "bundle.json").relative_to(out).as_posix(),
+            "registration_manifest_sha256": selection.sha(evidence / "bundle.json")}
+
+
 def grade_connector_representation(fp, model_bbox, model, ang, jc, oc,
                                    contract, native_actual_sha):
     """Grade the mating-side support of one substituted connector model."""
@@ -997,7 +1125,8 @@ def declared_twin_bodies(assembly, assembly_path=""):
     return bodies
 
 
-def install_declared_twin_bodies(board, bodies, assembly_path, board_path):
+def install_declared_twin_bodies(board, bodies, assembly_path, board_path,
+                                bundle_dir=None):
     """Apply manual-install body policy and return auditable report rows."""
     rows = []
     base = Path(assembly_path).resolve().parent
@@ -1046,6 +1175,28 @@ def install_declared_twin_bodies(board, bodies, assembly_path, board_path):
             detail = ("source=board; JLC CAD replacement suppressed; "
                       f"resolved paths={resolved_count}/{len(old_models)}; "
                       "scale/offset/rotation retained")
+        if bundle_dir is not None:
+            # Manual bodies are part of the delivered twin just like catalog
+            # bodies. Retain the exact source bytes and transform, but remove
+            # the dependency on the author's checkout or KiCad installation.
+            # Unresolved/empty models remain unresolved for NO-BODY to reject.
+            bundled = 0
+            models = list(fp.Models())
+            fp.Models().clear()
+            for model in models:
+                path = Path(model.m_Filename)
+                if not path.is_file() or path.stat().st_size == 0:
+                    fp.Models().push_back(model)
+                    continue
+                target = (Path(bundle_dir) / "native_models" /
+                          f"{file_sha256(path)}-{path.name}")
+                target.parent.mkdir(parents=True, exist_ok=True)
+                if path.resolve() != target.resolve():
+                    shutil.copy2(path, target)
+                model.m_Filename = portable_twin_model_path(target, bundle_dir)
+                fp.Models().push_back(model)
+                bundled += 1
+            detail += f"; bundle-local bodies={bundled}/{len(fp.Models())}"
         provenance = "; ".join(x for x in (
             f"identity={identity}",
             f"authority={authority}" if authority else "",
@@ -1164,6 +1315,8 @@ def main():
     }
     try:
         model_source_by_ref = render_source_overrides(adjudicated)
+        import native_representation as native_selection
+        native_absence = native_selection.declarations(adjudicated)
     except ValueError as exc:
         raise SystemExit(f"render model source schema: {exc}")
     model_xy_override = {a["lcsc"]: (float(a.get("model_dx", 0)),
@@ -1288,6 +1441,13 @@ def main():
     for _r in lines:
         for _d in _r["Designator"].split(","):
             ref_lcsc.setdefault(_d.strip(), _r["LCSC"])
+    ref_mpn = {d.strip(): r.get("MPN", "") for r in lines
+               for d in r["Designator"].split(",")}
+    for ref, spec in native_absence.items():
+        if ref_lcsc.get(ref) != spec["lcsc"]:
+            raise SystemExit(f"native representation ref/code not in assembly: {ref}")
+    native_receipt_rows = []
+    cad_absent_refs = set()
     fetch_failed = set()
     import time as _time
     fetch_started = _time.monotonic()
@@ -1342,6 +1502,10 @@ def main():
             if kind == "transient":
                 fetch_failed.add(lcsc)
                 criticals.extend(d.strip() for d in r["Designator"].split(","))
+            else:
+                cad_absent_refs.update(ref for ref in
+                    (d.strip() for d in r["Designator"].split(","))
+                    if native_absence.get(ref, {}).get("reason") == "vendor_cad_absent")
             continue
         jfp = pcbnew.FootprintLoad(str(Path(fp_path).parent),
                                    Path(fp_path).stem)
@@ -1604,10 +1768,24 @@ def main():
             twin[ref] = (jfp, ang, oc, _jca, lcsc)
 
     # ---- twin render: JLC models mounted on OUR board
-    if twin or local_bodies:
+    if twin or local_bodies or cad_absent_refs:
         tb = pcbnew.LoadBoard(args.board)
         findings.extend(install_declared_twin_bodies(
-            tb, local_bodies, args.assembly, args.board))
+            tb, local_bodies, args.assembly, args.board, bundle_dir=out))
+        for ref in sorted(cad_absent_refs):
+            spec = native_absence[ref]
+            code = spec["lcsc"]
+            fp = tb.FindFootprintByReference(ref)
+            try:
+                if (not fp or code in model_xy_override or code in board_xy_override or
+                        code in model_rot_override or code in model_extension_override):
+                    raise ValueError("catalog absence forbids missing footprint or model nudges/overrides")
+                native_receipt_rows.append(retain_absent_vendor_body(
+                    args.board, fp, spec, None, [], code, ref_mpn.get(ref), out))
+            except (ValueError, OSError, KeyError) as exc:
+                raise SystemExit(f"native representation FAIL {ref}: {exc}")
+            findings.append((code, ref, "NATIVE-REPRESENTATION-OK",
+                             "reviewed native body; catalog comparison unavailable; signed registration retained"))
         mrotz = {}
         for ref, (jfp, ang, oc, jc_common, lcsc) in twin.items():
             if lcsc in model_rot_override:
@@ -1633,7 +1811,57 @@ def main():
                       f"[rot {fp.GetOrientationDegrees():.0f}]")
             oc = (oc[0] + dx, oc[1] + dy)
             jmodels = list(jfp.Models())
-            if not fp or not jmodels:
+            if fp and ref in native_absence:
+                try:
+                    if dx or dy or lcsc in model_rot_override or lcsc in model_extension_override:
+                        raise ValueError("native absence selection forbids model nudges/overrides")
+                    native_receipt_rows.append(retain_absent_vendor_body(
+                        args.board, fp, native_absence[ref], fetch_results[lcsc][0],
+                        jmodels, lcsc, ref_mpn.get(ref), out))
+                except (ValueError, OSError, KeyError) as exc:
+                    raise SystemExit(f"native representation FAIL {ref}: {exc}")
+                findings.append((lcsc, ref, "NATIVE-REPRESENTATION-OK",
+                                 "explicit vendor_model_absent; signed native registration retained"))
+                continue
+            if not fp:
+                continue
+            # A ref-scoped native representation is also valid when the
+            # fetched catalog footprint has no model clause.  This branch
+            # must precede the vendor-model early return: otherwise the
+            # requested native body is never copied and NO-BODY fails even
+            # though the exact source model resolves.  Vendor pad/rotation
+            # fitting above remains mandatory and unchanged.
+            if not jmodels and model_source_by_ref.get(ref) == "native":
+                native_models = list(by_ref[ref].Models())
+                native_resolved = (resolve_model(
+                    native_models[0].m_Filename, kicad_env(args.board),
+                    args.board) if len(native_models) == 1 else None)
+                native_path = Path(native_resolved) if native_resolved else None
+                if (len(native_models) != 1 or not native_path
+                        or not native_path.is_file()):
+                    findings.append((lcsc, ref, "P-MATE-REG",
+                                     "approved native body could not be resolved "
+                                     "for retained rendering"))
+                    criticals.append(ref)
+                    mate_reg_failed_refs.add(ref)
+                    continue
+                native_dir = out / "native_models"
+                native_dir.mkdir(parents=True, exist_ok=True)
+                native_copy = native_dir / (
+                    f"{file_sha256(native_path)[:16]}-{native_path.name}")
+                shutil.copy2(native_path, native_copy)
+                original = native_models[0]
+                fp.Models().clear()
+                retained = pcbnew.FP_3DMODEL()
+                retained.m_Filename = portable_twin_model_path(native_copy, out)
+                retained.m_Scale = original.m_Scale
+                retained.m_Rotation = original.m_Rotation
+                retained.m_Offset = original.m_Offset
+                fp.Models().push_back(retained)
+                print(f"RETAIN-NATIVE {ref} ({lcsc}): {native_copy.name} "
+                      "(catalog model absent)")
+                continue
+            if not jmodels:
                 continue
             jc = jc_common  # common-pad centroid captured at fit time
             # --- model-registration invariant: mounted body bbox must sit on
@@ -2000,6 +2228,16 @@ def main():
         print(f"\n{bodies_line}  ->  {out / 'missing_models.txt'}")
 
         tb.Save(str(out / "twin.kicad_pcb"))
+        if native_absence:
+            from datetime import datetime, timezone
+            if {r["ref"] for r in native_receipt_rows} != set(native_absence):
+                raise SystemExit("native representation FAIL: incomplete declared coverage")
+            (out / "native_representation_receipt.json").write_text(json.dumps({
+                "schema": 1, "created_at": datetime.now(timezone.utc).isoformat(),
+                "source_board_sha256": file_sha256(args.board),
+                "twin_board_sha256": file_sha256(out / "twin.kicad_pcb"),
+                "rows": sorted(native_receipt_rows, key=lambda r: r["ref"]),
+            }, indent=2) + "\n")
         missing_connector_refs = sorted(
             set(connector_contracts) -
             {row["ref"] for row in connector_receipt_rows})

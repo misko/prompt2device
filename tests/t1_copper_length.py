@@ -218,13 +218,15 @@ def straight(net, y, length, x0=0.0, layer="F.Cu"):
     return (net, (x0, y), (x0 + length, y), layer)
 
 
-def endpoint_decl(members, paths, tol=0.5, topology="chain"):
+def endpoint_decl(members, paths, tol=0.5, topology="chain", path_tols=None):
     """Build the explicit endpoint-path schema used by the path fixtures."""
     import yaml
     doc = {"classes": {}, "length_match": {"USB": {
         "adr": "0099", "intent": "grade endpoint paths, never inventory",
         "members": members, "topology": topology, "congruent_pads": True,
         "max_spread_mm": tol, "router_moves": "any", "paths": paths}}}
+    if path_tols is not None:
+        doc["length_match"]["USB"]["path_max_spread_mm"] = path_tols
     return yaml.safe_dump(doc, sort_keys=False)
 
 
@@ -744,6 +746,34 @@ def write_route_yaml(d, length_match_group=None):
     (d / "03_src" / "route.yaml").write_text("\n".join(body) + "\n")
 
 
+def write_endpoint_route_yaml(d, group="RF_RADIAL_STAR", tagged=True):
+    """Write the exact endpoint-path alternative to router-native matching."""
+    tag = f"\n      group: {group}" if tagged else ""
+    body = f"""project:
+  name: fix
+  board: 04_kicad/fix.kicad_pcb
+route:
+  common:
+    layers: [F.Cu]
+  waves:
+  - {{name: rf, nets: [ANT1]}}
+stitch:
+  passes: [canonicalize_chains]
+  endpoint_length_matching:
+    mechanism: canonicalize_chains
+    groups: [{group}]
+    verification: copper_length_audit
+  canonicalize_chains:
+    edits:
+    - net: ANT1{tag}
+      layer: F.Cu
+      width: 0.2
+      remove: [[[0, 0], [1, 0]]]
+      add: [[[0, 0], [0.5, 0.5]], [[0.5, 0.5], [1, 0]]]
+"""
+    (d / "03_src" / "route.yaml").write_text(body)
+
+
 @test("R-LEN-OCT REFUSES a ceiling the ROUTER'S MOVE SET excludes, from PADS "
       "ALONE on a TRACK-FREE board — the rx2 star's 1.0 mm vs its 1.4966 mm "
       "octilinear floor", kind="known_bad")
@@ -859,7 +889,7 @@ def t_oct_elongation_without_recipe_fails():
     write_route_yaml(d)                       # no length_match_group
     r = must_fail(run([KPY, LEN, d]), "elongation claimed, recipe empty",
                   "R-LEN-OCT-RECIPE")
-    contains(r.out, "carries no `length_match_group`", "the missing mechanism")
+    contains(r.out, "carries no executable", "the missing mechanism")
     contains(r.out, "NOTHING lengthens the short members", "and what it costs")
 
 
@@ -879,6 +909,27 @@ def t_oct_elongation_with_recipe_accepted():
              "and it says why it was accepted")
     contains(r.out, "OCTILINEAR FLOOR", "the floor is still published")
     contains(r.out, "UNREACHED R-LEN", "realized copper is still ungraded")
+
+
+@test("tagged endpoint-path canonical edits are an executable meander recipe")
+def t_oct_endpoint_recipe_accepted():
+    d = scratch(star_decl(tol=1.0, extra=["    elongation: meander"]),
+                pads=star_pads())
+    write_endpoint_route_yaml(d)
+    r = must_pass(run([KPY, LEN, d]), "endpoint-path exact recipe")
+    not_contains(r.out, "FAIL R-LEN-OCT", "the exact recipe is accepted")
+    contains(r.out, "endpoint_length_matching/canonicalize_chains",
+             "the accepted executable mechanism is named")
+
+
+@test("endpoint-path declarations without a group-tagged edit are rejected")
+def t_oct_endpoint_recipe_requires_tagged_edit():
+    d = scratch(star_decl(tol=1.0, extra=["    elongation: meander"]),
+                pads=star_pads())
+    write_endpoint_route_yaml(d, tagged=False)
+    r = must_fail(run([KPY, LEN, d]), "untagged endpoint recipe",
+                  "R-LEN-OCT-RECIPE")
+    contains(r.out, "carries no executable", "declaration alone is insufficient")
 
 
 @test("`router_moves: any` disables the bound, and a typo'd move set is "
@@ -979,6 +1030,29 @@ def t_endpoint_path_reversible_tree():
     r = must_pass(run([KPY, LEN, d, "--strict"]), "reversible tree")
     contains(r.out, "PATH-SPREAD A        0.0000 mm", "A row is graded")
     contains(r.out, "PATH-SPREAD B        0.0000 mm", "B row is graded")
+
+
+@test("explicit endpoint paths may carry separate complete per-path tolerances")
+def t_endpoint_path_specific_tolerances():
+    members = {"P": ["P"], "N": ["N"]}
+    paths = {
+        "P": [{"id": "main", "segments": [{"net": "P", "from": "J.P", "to": "H.P"}]},
+              {"id": "shunt", "segments": [{"net": "P", "from": "J.P", "to": "S.P"}]}],
+        "N": [{"id": "main", "segments": [{"net": "N", "from": "J.N", "to": "H.N"}]},
+              {"id": "shunt", "segments": [{"net": "N", "from": "J.N", "to": "S.N"}]}],
+    }
+    pads = [one_pad("J", "P", "P", 0, 0), one_pad("H", "P", "P", 10, 0),
+            one_pad("S", "P", "P", 5, 1), one_pad("J", "N", "N", 0, 4),
+            one_pad("H", "N", "N", 10.5, 4), one_pad("S", "N", "N", 7, 5)]
+    segs = [("P", (0, 0), (5, 0), "F.Cu"), ("P", (5, 0), (10, 0), "F.Cu"),
+            ("P", (5, 0), (5, 1), "F.Cu"), ("N", (0, 4), (7, 4), "F.Cu"),
+            ("N", (7, 4), (10.5, 4), "F.Cu"), ("N", (7, 4), (7, 5), "F.Cu")]
+    d = scratch(endpoint_decl(members, paths, tol=0.25,
+                              path_tols={"main": 1.0, "shunt": 3.0},
+                              topology="tree"), pads=pads, segs=segs)
+    r = must_pass(run([KPY, LEN, d, "--strict"]), "per-path tolerances")
+    contains(r.out, "PATH-SPREAD main", "main remains independently graded")
+    contains(r.out, "PATH-SPREAD shunt", "shunt remains independently graded")
 
 
 @test("a compensating stub cannot improve endpoint skew", kind="known_bad")

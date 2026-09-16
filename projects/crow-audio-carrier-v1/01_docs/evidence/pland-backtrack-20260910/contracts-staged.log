@@ -1,0 +1,102 @@
+  [clean    ] contracts_audit: the real repo (non-projects scope) is clean, and its verdict CARRIES ITS DENOMINATOR ... ok
+  [clean    ] contracts_audit passes a well-governed fixture tree ... ok
+  [known-bad] contracts_audit FAILS a stray file its contract never permitted ... ok
+  [known-bad] contracts_audit FAILS a governed subfolder that lost its contract ... ok
+  [known-bad] contracts_audit FAILS a tree with no contracts.md at all ... ok
+  [known-bad] contracts_audit FAILS a skill that references a concrete project path ... ok
+  [clean    ] contracts_audit does NOT flag the projects/<name> placeholder ... ok
+  [clean    ] a project seeded from the skill templates audits clean (template/contract coherence pinned) ... ok
+  [known-bad] contracts_audit reads a pattern cell whose pipes are ESCAPED — `*.c\|*.h\|*.rs\|*.py` permits all four, not just the first ... ok
+  [known-bad] contracts_audit does not split a pattern cell on a pipe inside a BACKTICK code span either ... ok
+  [known-bad] the 05_firmware TEMPLATE permits a header and a src/ tree — the contract and the auditor now agree ... ok
+  [known-bad] the 01_docs contract's OWN prompt-hash command reproduces the digest a commission records — and refuses an altered prompt ... ok
+  [known-bad] skill<->contract sync: every emitted check-ID is in canon; no contract cites a check-ID that exists nowhere in the skill ... ok
+  [known-bad] --projects RAW EXIT CODE IS READ, and the per-unit debt ceiling is TIGHT ... ok
+  [known-bad] --present grades PRESENCE for untracked files, because a stray worktree is a governed tree and audits CLEAN ... FAIL
+      FAIL C-ALLOW  projects/usb-hub-3s-v3/07_releases/v1.7-2026-07-26/rotation_human_gate.txt: not permitted by projects/usb-hub-3s-v3/07_releases/contracts.md
+      FAIL C-ALLOW  projects/usb-hub-3s-v3/07_releases/v1.8-2026-07-26/rotation_human_gate.txt: not permitted by projects/usb-hub-3s-v3/07_releases/contracts.md
+      FAIL C-ALLOW  projects/usb-hub-3s-v3/07_releases/v1.9-2026-07-27/rotation_human_gate.txt: not permitted by projects/usb-hub-3s-v3/07_releases/contracts.md
+      FAIL C-ALLOW  projects/usb-hub-3s-v3/08_reviews/2026-07-26_v1.8_pin-review.md: not permitted by projects/usb-hub-3s-v3/08_reviews/contracts.md
+      FAIL C-ALLOW  projects/usb-hub-3s-v3/08_reviews/2026-07-26_v1.8_render-review.md: not permitted by projects/usb-hub-3s-v3/08_reviews/contracts.md
+      FAIL C-ALLOW  projects/usb-hub-3s-v3/08_reviews/2026-07-27_v1.9_pin-review.md: not permitted by projects/usb-hub-3s-v3/08_reviews/contracts.md
+      FAIL C-ALLOW  projects/usb-hub-3s-v3/08_reviews/2026-07-27_v1.9_render-review.md: not permitted by projects/usb-hub-3s-v3/08_reviews/contracts.md
+      FAIL C-ALLOW  projects/usb-hub-3s-v3/RESUME.md: not permitted by projects/contracts.md
+      FAIL RATCHET  STRAY_UNITS: 'projects/crow-audio-carrier-v1' holds UNTRACKED-NOT-IGNORED files. Commit them, gitignore them, or delete them. If it is genuinely in-flight, add `"projects/crow-audio-carrier-v1": "<evidence>",` to STRAY_UNITS in scripts/contracts_audit.py.
+      contracts_audit: 17094 files, 2873 violations
+      contracts_audit: RATCHET debt 2873 tracked violations over 26 units vs 2873 recorded over 26 — BREACHED
+      contracts_audit: RATCHET stray 1 untracked-not-ignored files in 1 unit(s); 0 declared (population 17094 = tracked ∪ untracked-not-ignored)
+  [known-bad] a pattern cell listing several backticked patterns SEPARATED BY COMMAS is read as all of them — the pipe bug's twin ... ok
+  [known-bad] a DECLARED FIELD WITH NO CONSUMER is a defect — every field in a skills reference yaml is read by something, or its row says how many are not ... ok
+
+  16 passed, 1 failed
+  12 of those are KNOWN-BAD fixtures that made their checker fail as required
+
+
+SECOND ACTUAL EXECUTION — stable staged file set; private output capture
+  [clean    ] contracts_audit: the real repo (non-projects scope) is clean, and its verdict CARRIES ITS DENOMINATOR ... ok
+  [clean    ] contracts_audit passes a well-governed fixture tree ... ok
+  [known-bad] contracts_audit FAILS a stray file its contract never permitted ... ok
+  [known-bad] contracts_audit FAILS a governed subfolder that lost its contract ... ok
+  [known-bad] contracts_audit FAILS a tree with no contracts.md at all ... ok
+  [known-bad] contracts_audit FAILS a skill that references a concrete project path ... ok
+  [clean    ] contracts_audit does NOT flag the projects/<name> placeholder ... ok
+  [clean    ] a project seeded from the skill templates audits clean (template/contract coherence pinned) ... ok
+  [known-bad] contracts_audit reads a pattern cell whose pipes are ESCAPED — `*.c\|*.h\|*.rs\|*.py` permits all four, not just the first ... ok
+  [known-bad] contracts_audit does not split a pattern cell on a pipe inside a BACKTICK code span either ... ok
+  [known-bad] the 05_firmware TEMPLATE permits a header and a src/ tree — the contract and the auditor now agree ... ok
+  [known-bad] the 01_docs contract's OWN prompt-hash command reproduces the digest a commission records — and refuses an altered prompt ... ok
+  [known-bad] skill<->contract sync: every emitted check-ID is in canon; no contract cites a check-ID that exists nowhere in the skill ... ok
+  [known-bad] --projects RAW EXIT CODE IS READ, and the per-unit debt ceiling is TIGHT ... ok
+  [known-bad] --present grades PRESENCE for untracked files, because a stray worktree is a governed tree and audits CLEAN ... ok
+  [known-bad] a pattern cell listing several backticked patterns SEPARATED BY COMMAS is read as all of them — the pipe bug's twin ... ok
+  [known-bad] a DECLARED FIELD WITH NO CONSUMER is a defect — every field in a skills reference yaml is read by something, or its row says how many are not ... ok
+
+  17 passed, 0 failed
+  13 of those are KNOWN-BAD fixtures that made their checker fail as required
+
+
+# Root rejected-method preservation, restored source; actual staged validation
+{"argv": ["/usr/bin/python3", "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/tests/t1_contracts.py"], "start": "2026-09-10T20:30:52.768795+00:00", "end": "2026-09-10T20:30:56.989683+00:00", "rc": 0, "duration_s": 4.220900617074221, "scope": "root rejected method preservation/restored source", "pass": 17, "fail": 0, "known_bad": 13}
+  [clean    ] contracts_audit: the real repo (non-projects scope) is clean, and its verdict CARRIES ITS DENOMINATOR ... ok
+  [clean    ] contracts_audit passes a well-governed fixture tree ... ok
+  [known-bad] contracts_audit FAILS a stray file its contract never permitted ... ok
+  [known-bad] contracts_audit FAILS a governed subfolder that lost its contract ... ok
+  [known-bad] contracts_audit FAILS a tree with no contracts.md at all ... ok
+  [known-bad] contracts_audit FAILS a skill that references a concrete project path ... ok
+  [clean    ] contracts_audit does NOT flag the projects/<name> placeholder ... ok
+  [clean    ] a project seeded from the skill templates audits clean (template/contract coherence pinned) ... ok
+  [known-bad] contracts_audit reads a pattern cell whose pipes are ESCAPED — `*.c\|*.h\|*.rs\|*.py` permits all four, not just the first ... ok
+  [known-bad] contracts_audit does not split a pattern cell on a pipe inside a BACKTICK code span either ... ok
+  [known-bad] the 05_firmware TEMPLATE permits a header and a src/ tree — the contract and the auditor now agree ... ok
+  [known-bad] the 01_docs contract's OWN prompt-hash command reproduces the digest a commission records — and refuses an altered prompt ... ok
+  [known-bad] skill<->contract sync: every emitted check-ID is in canon; no contract cites a check-ID that exists nowhere in the skill ... ok
+  [known-bad] --projects RAW EXIT CODE IS READ, and the per-unit debt ceiling is TIGHT ... ok
+  [known-bad] --present grades PRESENCE for untracked files, because a stray worktree is a governed tree and audits CLEAN ... ok
+  [known-bad] a pattern cell listing several backticked patterns SEPARATED BY COMMAS is read as all of them — the pipe bug's twin ... ok
+  [known-bad] a DECLARED FIELD WITH NO CONSUMER is a defect — every field in a skills reference yaml is read by something, or its row says how many are not ... ok
+
+  17 passed, 0 failed
+  13 of those are KNOWN-BAD fixtures that made their checker fail as required
+
+
+Actual evaluator-adoption contract validation 2026-09-10T21:04:51.471333+00:00
+  [clean    ] contracts_audit: the real repo (non-projects scope) is clean, and its verdict CARRIES ITS DENOMINATOR ... ok
+  [clean    ] contracts_audit passes a well-governed fixture tree ... ok
+  [known-bad] contracts_audit FAILS a stray file its contract never permitted ... ok
+  [known-bad] contracts_audit FAILS a governed subfolder that lost its contract ... ok
+  [known-bad] contracts_audit FAILS a tree with no contracts.md at all ... ok
+  [known-bad] contracts_audit FAILS a skill that references a concrete project path ... ok
+  [clean    ] contracts_audit does NOT flag the projects/<name> placeholder ... ok
+  [clean    ] a project seeded from the skill templates audits clean (template/contract coherence pinned) ... ok
+  [known-bad] contracts_audit reads a pattern cell whose pipes are ESCAPED — `*.c\|*.h\|*.rs\|*.py` permits all four, not just the first ... ok
+  [known-bad] contracts_audit does not split a pattern cell on a pipe inside a BACKTICK code span either ... ok
+  [known-bad] the 05_firmware TEMPLATE permits a header and a src/ tree — the contract and the auditor now agree ... ok
+  [known-bad] the 01_docs contract's OWN prompt-hash command reproduces the digest a commission records — and refuses an altered prompt ... ok
+  [known-bad] skill<->contract sync: every emitted check-ID is in canon; no contract cites a check-ID that exists nowhere in the skill ... ok
+  [known-bad] --projects RAW EXIT CODE IS READ, and the per-unit debt ceiling is TIGHT ... ok
+  [known-bad] --present grades PRESENCE for untracked files, because a stray worktree is a governed tree and audits CLEAN ... ok
+  [known-bad] a pattern cell listing several backticked patterns SEPARATED BY COMMAS is read as all of them — the pipe bug's twin ... ok
+  [known-bad] a DECLARED FIELD WITH NO CONSUMER is a defect — every field in a skills reference yaml is read by something, or its row says how many are not ... ok
+
+  17 passed, 0 failed
+  13 of those are KNOWN-BAD fixtures that made their checker fail as required

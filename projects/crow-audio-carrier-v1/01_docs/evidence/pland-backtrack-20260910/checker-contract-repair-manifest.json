@@ -1,0 +1,338 @@
+{
+  "schema": 1,
+  "tar_sha256": "9cb9fc1cc99958bb2b2a8c4e3a4c9e031d51148ec1bd55a2639480e2dccd3bf8",
+  "tar_size": 161261,
+  "count": 55,
+  "entries": [
+    {
+      "member": "coordinator/add_governance_tests.py",
+      "original_path": "/tmp/carrier-pland-fixture-adoption-20260910.hnDKH2sk/add_governance_tests.py",
+      "sha256": "d4e8bffcdc3c137e1817e6ba0af0514fd07a773ff526f6b35bcf4388567e9f96",
+      "size": 5148
+    },
+    {
+      "member": "coordinator/governance-process-audit.json",
+      "original_path": "/tmp/carrier-pland-fixture-adoption-20260910.hnDKH2sk/governance-process-audit.json",
+      "sha256": "efed838d83358d5db97ce39990cb37a37f296054b2b719e2068fa4bb24a0296a",
+      "size": 4846
+    },
+    {
+      "member": "coordinator/preserve_governance.py",
+      "original_path": "/tmp/carrier-pland-fixture-adoption-20260910.hnDKH2sk/preserve_governance.py",
+      "sha256": "1789b8072c8c42bbd34e668f2239450f206b0480bd3df783999e355ab3e37229",
+      "size": 7891
+    },
+    {
+      "member": "execution/gca-final-commission.log",
+      "original_path": "/tmp/carrier-pland-fixture-adoption-20260910.hnDKH2sk/gca-final-commission.log",
+      "sha256": "73fc7a13723e627042d7233c1c83c490c22a8bdbde07374c48e73c5ef7b541d9",
+      "size": 765
+    },
+    {
+      "member": "execution/gca-final-commission.result.json",
+      "original_path": "/tmp/carrier-pland-fixture-adoption-20260910.hnDKH2sk/gca-final-commission.result.json",
+      "sha256": "68ff1d414134ffb8b409848cdb310f51ecf729fc79c6d4415f7a7af0aa3b3252",
+      "size": 368
+    },
+    {
+      "member": "execution/gca-final-commission.start.json",
+      "original_path": "/tmp/carrier-pland-fixture-adoption-20260910.hnDKH2sk/gca-final-commission.start.json",
+      "sha256": "f41aef0a6498afbccb080837e35e91cd93af927c6cff3dcc729d1814317aa32c",
+      "size": 230
+    },
+    {
+      "member": "execution/gca-final-contracts.log",
+      "original_path": "/tmp/carrier-pland-fixture-adoption-20260910.hnDKH2sk/gca-final-contracts.log",
+      "sha256": "4eedddbcfec8afb507da0c6ffe18ac8a1ba036b93c6653d117f8192b0e03110a",
+      "size": 2028
+    },
+    {
+      "member": "execution/gca-final-contracts.result.json",
+      "original_path": "/tmp/carrier-pland-fixture-adoption-20260910.hnDKH2sk/gca-final-contracts.result.json",
+      "sha256": "30eb163d1c97d37214ab6a126f3f7ce2130f1b18828efec332f7393536e4964d",
+      "size": 362
+    },
+    {
+      "member": "execution/gca-final-contracts.start.json",
+      "original_path": "/tmp/carrier-pland-fixture-adoption-20260910.hnDKH2sk/gca-final-contracts.start.json",
+      "sha256": "8650a9ada48681f7fe3e47c1c63348a84aea507d63c157fa5d2a0bf2b10dfe7c",
+      "size": 225
+    },
+    {
+      "member": "execution/gca-final-gate-contract.log",
+      "original_path": "/tmp/carrier-pland-fixture-adoption-20260910.hnDKH2sk/gca-final-gate-contract.log",
+      "sha256": "dd49b7d8cacf585f9d47996b1dd0dca8c5f1535ad4693efd13a63343f3ddef77",
+      "size": 4245
+    },
+    {
+      "member": "execution/gca-final-gate-contract.result.json",
+      "original_path": "/tmp/carrier-pland-fixture-adoption-20260910.hnDKH2sk/gca-final-gate-contract.result.json",
+      "sha256": "8ba8f772657979a4bfbe1f4b8b883f57aae49ab7d4711700eac541cfd7c6bcf2",
+      "size": 367
+    },
+    {
+      "member": "execution/gca-final-gate-contract.start.json",
+      "original_path": "/tmp/carrier-pland-fixture-adoption-20260910.hnDKH2sk/gca-final-gate-contract.start.json",
+      "sha256": "944cbfadce14f41299a6f7fa5b627abaa2171cf86970b7cdf08176b85b463cd1",
+      "size": 229
+    },
+    {
+      "member": "execution/gca-final-layout.log",
+      "original_path": "/tmp/carrier-pland-fixture-adoption-20260910.hnDKH2sk/gca-final-layout.log",
+      "sha256": "10b395406ee74f114152c5b61c66ad5ab2edd1cd5ff80032d750b0ff0f854af2",
+      "size": 980
+    },
+    {
+      "member": "execution/gca-final-layout.result.json",
+      "original_path": "/tmp/carrier-pland-fixture-adoption-20260910.hnDKH2sk/gca-final-layout.result.json",
+      "sha256": "e8395afe4bd58291ec7967c1b6a0de1d9fa0ce5d057d7dbf5133f57e4e636e49",
+      "size": 370
+    },
+    {
+      "member": "execution/gca-final-layout.start.json",
+      "original_path": "/tmp/carrier-pland-fixture-adoption-20260910.hnDKH2sk/gca-final-layout.start.json",
+      "sha256": "45028ff98549a83bdfceb5116949a4f375546eafde00e953e6345c97cd578221",
+      "size": 232
+    },
+    {
+      "member": "execution/gca-final-pcba.log",
+      "original_path": "/tmp/carrier-pland-fixture-adoption-20260910.hnDKH2sk/gca-final-pcba.log",
+      "sha256": "9b06db76a7af4332f0e0b021169d6d4f4fb833b8dc67eb648bd64860c3edbaa2",
+      "size": 3811
+    },
+    {
+      "member": "execution/gca-final-pcba.result.json",
+      "original_path": "/tmp/carrier-pland-fixture-adoption-20260910.hnDKH2sk/gca-final-pcba.result.json",
+      "sha256": "b03bc15bce6ccfadae2d8e5ae912712e6ebf5de0a447f81197d3ac1f755b1d14",
+      "size": 372
+    },
+    {
+      "member": "execution/gca-final-pcba.start.json",
+      "original_path": "/tmp/carrier-pland-fixture-adoption-20260910.hnDKH2sk/gca-final-pcba.start.json",
+      "sha256": "22b74abdf8ca8eac9da28578bc4411e4a04a79effa7bdadf0c9406f82ed17942",
+      "size": 233
+    },
+    {
+      "member": "execution/gca-final-reports.log",
+      "original_path": "/tmp/carrier-pland-fixture-adoption-20260910.hnDKH2sk/gca-final-reports.log",
+      "sha256": "02baa00ca3b543cade9d45571e64fcc2d99b19028a1850484d61b503f60c85a3",
+      "size": 547
+    },
+    {
+      "member": "execution/gca-final-reports.result.json",
+      "original_path": "/tmp/carrier-pland-fixture-adoption-20260910.hnDKH2sk/gca-final-reports.result.json",
+      "sha256": "559fbfef8a03b14f7148b362063972ef5bb430d94f0288d27212e8c2308374e6",
+      "size": 370
+    },
+    {
+      "member": "execution/gca-final-reports.start.json",
+      "original_path": "/tmp/carrier-pland-fixture-adoption-20260910.hnDKH2sk/gca-final-reports.start.json",
+      "sha256": "f62b1cc733ced50bbf85426653ae6bce03ef54aff045a85a00bbe96d06b98b9f",
+      "size": 231
+    },
+    {
+      "member": "execution/gca-pcba-cli-existing.log",
+      "original_path": "/tmp/carrier-pland-fixture-adoption-20260910.hnDKH2sk/gca-pcba-cli-existing.log",
+      "sha256": "2f67e404e25d9d770a568fdb2b60372a1cb68bf5084ec1e103870a9a21e91845",
+      "size": 213
+    },
+    {
+      "member": "execution/gca-pcba-cli-existing.result.json",
+      "original_path": "/tmp/carrier-pland-fixture-adoption-20260910.hnDKH2sk/gca-pcba-cli-existing.result.json",
+      "sha256": "cf0e73e87d9e03669a9853eeda32baad14be6b5050d46692ec6e52c6a7d7923a",
+      "size": 395
+    },
+    {
+      "member": "execution/gca-pcba-cli-existing.start.json",
+      "original_path": "/tmp/carrier-pland-fixture-adoption-20260910.hnDKH2sk/gca-pcba-cli-existing.start.json",
+      "sha256": "4a4b6d88e8ea94c330a43294c574cac991a5f58637234abdf09717c787e39a15",
+      "size": 256
+    },
+    {
+      "member": "execution/gca-red-commission.log",
+      "original_path": "/tmp/carrier-pland-fixture-adoption-20260910.hnDKH2sk/gca-red-commission.log",
+      "sha256": "474bfbff4e5fb35955988a60690337d43c39b90597c9db6fdeca1ee699c136b0",
+      "size": 1343
+    },
+    {
+      "member": "execution/gca-red-commission.result.json",
+      "original_path": "/tmp/carrier-pland-fixture-adoption-20260910.hnDKH2sk/gca-red-commission.result.json",
+      "sha256": "35b68b7181125890afe78519c2eadbe36e4afec0c5e4af909736f9bef2e9c175",
+      "size": 392
+    },
+    {
+      "member": "execution/gca-red-commission.start.json",
+      "original_path": "/tmp/carrier-pland-fixture-adoption-20260910.hnDKH2sk/gca-red-commission.start.json",
+      "sha256": "c4dbf39f976820539c0d75f8b666718928a4fae928086fd320889feee8c13ba1",
+      "size": 253
+    },
+    {
+      "member": "execution/gca-red-layout.log",
+      "original_path": "/tmp/carrier-pland-fixture-adoption-20260910.hnDKH2sk/gca-red-layout.log",
+      "sha256": "e2ef50dcf47b8a845af87efd1ff95af490f23e6e7b85f4466f70d3017eef89a7",
+      "size": 2480
+    },
+    {
+      "member": "execution/gca-red-layout.result.json",
+      "original_path": "/tmp/carrier-pland-fixture-adoption-20260910.hnDKH2sk/gca-red-layout.result.json",
+      "sha256": "a589779f2d8fb20657196b40cc6f4140ff5839173bec1e2e54b7182421c1741f",
+      "size": 410
+    },
+    {
+      "member": "execution/gca-red-layout.start.json",
+      "original_path": "/tmp/carrier-pland-fixture-adoption-20260910.hnDKH2sk/gca-red-layout.start.json",
+      "sha256": "9616691a59eb467ceefdf86f0a63d256a53a3d4b58b07c8a718b5c31c4a7b45a",
+      "size": 271
+    },
+    {
+      "member": "execution/gca-red-reports.log",
+      "original_path": "/tmp/carrier-pland-fixture-adoption-20260910.hnDKH2sk/gca-red-reports.log",
+      "sha256": "99c4286789f9da5d34c00672054f017ffc1b1d05079cc8a731b8bd9e1e82043d",
+      "size": 1258
+    },
+    {
+      "member": "execution/gca-red-reports.result.json",
+      "original_path": "/tmp/carrier-pland-fixture-adoption-20260910.hnDKH2sk/gca-red-reports.result.json",
+      "sha256": "ea5cc6e62e8717bd84927c2feed1956f38fe174325bcb2595cec4bb34ff8c376",
+      "size": 393
+    },
+    {
+      "member": "execution/gca-red-reports.start.json",
+      "original_path": "/tmp/carrier-pland-fixture-adoption-20260910.hnDKH2sk/gca-red-reports.start.json",
+      "sha256": "6edf25afd7cc17484273dca12ab185fe5fe56966c668b67f11274510ea05cf87",
+      "size": 254
+    },
+    {
+      "member": "preimage/skills/jlcpcb-fab/scripts/contracts.md",
+      "original_path": "/tmp/carrier-pland-fixture-adoption-20260910.hnDKH2sk/governance-preimages/skills/jlcpcb-fab/scripts/contracts.md",
+      "sha256": "fcb7e2c03e6b5f9187548b93fd03035aa4202628c1b6a5df4d7ffdab553ed7ab",
+      "size": 28482
+    },
+    {
+      "member": "preimage/skills/pcb-design/contracts.md",
+      "original_path": "/tmp/carrier-pland-fixture-adoption-20260910.hnDKH2sk/governance-preimages/skills/pcb-design/contracts.md",
+      "sha256": "17d4fd9b4ad5d2012c44e0b636bab5533c9efb1bd99b0f15e9de03e05a3e3b9b",
+      "size": 4359
+    },
+    {
+      "member": "preimage/skills/pcb-design/scripts/commission_project.py",
+      "original_path": "/tmp/carrier-pland-fixture-adoption-20260910.hnDKH2sk/governance-preimages/skills/pcb-design/scripts/commission_project.py",
+      "sha256": "35e9831060f157a07f29762b9075cac805d9acca02bd6b4da4b1ec67c3e3115d",
+      "size": 18983
+    },
+    {
+      "member": "preimage/skills/pcb-design/scripts/project_report_audit.py",
+      "original_path": "/tmp/carrier-pland-fixture-adoption-20260910.hnDKH2sk/governance-preimages/skills/pcb-design/scripts/project_report_audit.py",
+      "sha256": "f84f9e0985a392b5338f36409c1b14c657c6fc1917939cf27d2f27c2936880ec",
+      "size": 10317
+    },
+    {
+      "member": "preimage/skills/pcb-enclosure/contracts.md",
+      "original_path": "/tmp/carrier-pland-fixture-adoption-20260910.hnDKH2sk/governance-preimages/skills/pcb-enclosure/contracts.md",
+      "sha256": "d0984db68d4c7381292b4930a17e6274e866156cf25474ae76d2fd57300864b0",
+      "size": 4637
+    },
+    {
+      "member": "preimage/skills/pcb-enclosure/scripts/enclosure_layout_audit.py",
+      "original_path": "/tmp/carrier-pland-fixture-adoption-20260910.hnDKH2sk/governance-preimages/skills/pcb-enclosure/scripts/enclosure_layout_audit.py",
+      "sha256": "9a34ec6e270131a0b7cdfa7704ed07acfbf8990b864b3c4e7af914a826b010e8",
+      "size": 8756
+    },
+    {
+      "member": "preimage/tests/README.md",
+      "original_path": "/tmp/carrier-pland-fixture-adoption-20260910.hnDKH2sk/governance-preimages/tests/README.md",
+      "sha256": "f091c9fd5976cada30c10b4bb0054cdd286b069d928f2bc319535849b761377b",
+      "size": 73619
+    },
+    {
+      "member": "preimage/tests/t1_enclosure_layout.py",
+      "original_path": "/tmp/carrier-pland-fixture-adoption-20260910.hnDKH2sk/governance-preimages/tests/t1_enclosure_layout.py",
+      "sha256": "fdf6dba2cce9838df39c63d23f13e2c35fa9e4402272fa7b8882b23dee992cd6",
+      "size": 9464
+    },
+    {
+      "member": "preimage/tests/t1_pcb_commission.py",
+      "original_path": "/tmp/carrier-pland-fixture-adoption-20260910.hnDKH2sk/governance-preimages/tests/t1_pcb_commission.py",
+      "sha256": "1d7e779e3b7d530ef686a9e899d234fc2bbd12f0edff1ec03e51ab796d70ad02",
+      "size": 15193
+    },
+    {
+      "member": "preimage/tests/t1_pcba_availability.py",
+      "original_path": "/tmp/carrier-pland-fixture-adoption-20260910.hnDKH2sk/governance-preimages/tests/t1_pcba_availability.py",
+      "sha256": "e9ba92863c5725b214823d31b259e567fb08b0d0bc51a70677433284a5cf18d9",
+      "size": 42869
+    },
+    {
+      "member": "preimage/tests/t1_project_reports.py",
+      "original_path": "/tmp/carrier-pland-fixture-adoption-20260910.hnDKH2sk/governance-preimages/tests/t1_project_reports.py",
+      "sha256": "20667010375616d4c66d56bc05ed856d017bc84c6fd25c6eaaa7767cf499871d",
+      "size": 5265
+    },
+    {
+      "member": "tested-source/skills/jlcpcb-fab/scripts/contracts.md",
+      "original_path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/skills/jlcpcb-fab/scripts/contracts.md",
+      "sha256": "12fd28058251170d4d65b7c589603591c4e56d512db3f9904bb0064047504400",
+      "size": 28710
+    },
+    {
+      "member": "tested-source/skills/pcb-design/contracts.md",
+      "original_path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/skills/pcb-design/contracts.md",
+      "sha256": "e98014ac2c6afa1c1a38d073d693af7a7b112d493a699b03a0b4586fada756a2",
+      "size": 4616
+    },
+    {
+      "member": "tested-source/skills/pcb-design/scripts/commission_project.py",
+      "original_path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/skills/pcb-design/scripts/commission_project.py",
+      "sha256": "40c1e2465c4e49d9268cb607f4e4b9013d8b3663016cfc969e2a6d443889f70e",
+      "size": 19053
+    },
+    {
+      "member": "tested-source/skills/pcb-design/scripts/project_report_audit.py",
+      "original_path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/skills/pcb-design/scripts/project_report_audit.py",
+      "sha256": "347684df465d6fca6d2ad5e61e5665070eba18128073a90cb6f7713441aa6a92",
+      "size": 10337
+    },
+    {
+      "member": "tested-source/skills/pcb-enclosure/contracts.md",
+      "original_path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/skills/pcb-enclosure/contracts.md",
+      "sha256": "cfe2b35401529b609bb19d84b0b159c6f118d8e66b9f837d5dc6305e9bc0d9f3",
+      "size": 4867
+    },
+    {
+      "member": "tested-source/skills/pcb-enclosure/scripts/enclosure_layout_audit.py",
+      "original_path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/skills/pcb-enclosure/scripts/enclosure_layout_audit.py",
+      "sha256": "76c2907d0530219d735d28a9b3f3651a1ffd635ff0377f219554c82fdb1b6420",
+      "size": 9495
+    },
+    {
+      "member": "tested-source/tests/README.md",
+      "original_path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/tests/README.md",
+      "sha256": "b97757a13142f7ee7026282e1e94dfc29db57dbe4eab4752e4d2d06ae78813ff",
+      "size": 74087
+    },
+    {
+      "member": "tested-source/tests/t1_enclosure_layout.py",
+      "original_path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/tests/t1_enclosure_layout.py",
+      "sha256": "a9e4515018fc6b9d8ac92a7c42dfffbb05f6cb44e2e0760e7fd26106468f27f4",
+      "size": 11028
+    },
+    {
+      "member": "tested-source/tests/t1_pcb_commission.py",
+      "original_path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/tests/t1_pcb_commission.py",
+      "sha256": "2c63787d28fc14cd15c75d3ae0c5f95bbe683d1b490c64504af5299505a6f9fb",
+      "size": 15908
+    },
+    {
+      "member": "tested-source/tests/t1_pcba_availability.py",
+      "original_path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/tests/t1_pcba_availability.py",
+      "sha256": "9ddf188505645051ee53afaaf3dda0b0405d0f2ca43d5c0ac2b5f7b4e7bd85a4",
+      "size": 44338
+    },
+    {
+      "member": "tested-source/tests/t1_project_reports.py",
+      "original_path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/tests/t1_project_reports.py",
+      "sha256": "5dca402861d6f6c72f09dfea3b71c95afa38f0dbc54dcfdd0170cd8a9bb99a5a",
+      "size": 5605
+    }
+  ]
+}

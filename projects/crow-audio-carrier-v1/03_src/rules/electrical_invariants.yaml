@@ -1,0 +1,274 @@
+invariants:
+  - {assert: pin_on_net, pin: D_BUCK_IN.1, net: 12V_BUCK_IN, adr: "0022", why: "VIN isolation diode cathode faces all local input energy"}
+  - {assert: pin_on_net, pin: D_BUCK_IN.2, net: 12V_PROTECTED, adr: "0022", why: "VIN isolation diode anode faces shared eight-spoke bus"}
+  - {assert: pin_on_net, pin: U_BUCK.3, net: 12V_BUCK_IN, adr: "0022", why: "Buck reverse port cannot continuously source the spoke bus"}
+  - {assert: pin_on_net, pin: U_BUCK.2, net: 12V_BUCK_IN, adr: "0022", why: "EN follows local VIN, not an alternate shared-bus path"}
+  - {assert: pin_on_net, pin: C_BUCK_IN.1, net: 12V_BUCK_IN, adr: "0022", why: "All three VIN ceramics remain local to pin3"}
+  - {assert: pin_on_net, pin: C_BUCK_IN2.1, net: 12V_BUCK_IN, adr: "0022", why: "Second VIN ceramic stays behind the blocker"}
+  - {assert: pin_on_net, pin: C_BUCK_IN3.1, net: 12V_BUCK_IN, adr: "0022", why: "Third VIN ceramic stays behind the blocker"}
+  - {assert: pin_on_net, pin: J9.1, net: 12V_IN, adr: "0003", why: "the isolated positive input enters the upstream protection chain"}
+  - {assert: pin_on_net, pin: J9.2, net: GND, adr: "0003", why: "the isolated supply return is the carrier reference"}
+  - {assert: series_chain, chain: [12V_IN, F_IN, 12V_FUSED], adr: "0003", why: "all local and spoke load current passes through the hot-rated input resettable fuse"}
+  - {assert: pin_on_net, pin: Q_IN.4, net: Q_IN_GATE, adr: "0003", why: "the reverse-hookup PFET gate is an explicit protected control node"}
+  - {assert: pin_on_net, pin: Q_IN.5, net: 12V_FUSED, adr: "0003", why: "the PFET common drain faces the fused input so its body diode has the reviewed polarity"}
+  - {assert: pin_on_net, pin: Q_IN.1, net: 12V_PROTECTED, adr: "0003", why: "the PFET source faces the protected load rail"}
+  - {assert: pin_on_net, pin: D_QIN_GS.1, net: 12V_PROTECTED, adr: "0003", why: "the 12V gate clamp cathode is at PFET source"}
+  - {assert: pin_on_net, pin: D_QIN_GS.2, net: Q_IN_GATE, adr: "0003", why: "the 12V gate clamp anode is at PFET gate"}
+  - {assert: pin_on_net, pin: D_IN.1, net: 12V_PROTECTED, adr: "0003", why: "SMBJ15A cathode faces the protected positive rail"}
+  - {assert: pin_on_net, pin: D_IN.2, net: GND, adr: "0003", why: "SMBJ15A anode returns directly to the plane"}
+  - {assert: pin_on_net, pin: U_ADC.2, net: CFG1, adr: "0001", why: "CONFIG1 reaches its explicit 4.7k pull-down rather than an unreviewed direct strap"}
+  - {assert: pin_on_net, pin: U_ADC.3, net: CFG2, adr: "0001", why: "CONFIG2 reaches its explicit zero-ohm pull-up for minimum-slot mode"}
+  - {assert: pin_on_net, pin: U_ADC.4, net: GND, adr: "0001", why: "CONFIG3 is grounded in minimum-slot hardware mode"}
+  - {assert: pin_on_net, pin: U_ADC.10, net: CFG4, adr: "0001", why: "CONFIG4 reaches its explicit 4.7k pull-up for channel 1 through 8 order"}
+  - {assert: pin_on_net, pin: U_ADC.11, net: CFG5, adr: "0001", why: "CONFIG5 reaches its explicit 100k pull-down for linear-phase fast-rolloff and 1 Hz HPF"}
+  - {assert: pin_on_net, pin: U_ADC.23, net: ADC_RESET_N, adr: "0002", why: "the ADC reset pin is owned by the hardware high-low-high sequencer"}
+  - {assert: pin_on_net, pin: U_ADC.24, net: ADC_FSYNC, adr: "0001", why: "MCHStreamer owns the 48 kHz one-BCLK FSYNC"}
+  - {assert: pin_on_net, pin: U_ADC.25, net: TDM_RAW, adr: "0001", why: "DOUT1 reaches the power-state interlocked output buffer before the MCH cable"}
+  - {assert: pin_on_net, pin: U_ADC.29, net: ADC_BCLK, adr: "0001", why: "MCHStreamer owns the 12.288 MHz bit clock"}
+  - {assert: pin_on_net, pin: U_ADC.34, net: ADC_MCLK, adr: "0001", why: "MCHStreamer owns the 24.576 MHz master clock"}
+  - {assert: part_value, part: R_RST_T, equals: 100k, tolerance_pct: 1, adr: "0002", why: "one-shot timing resistor is the reviewed 100 kohm value"}
+  - {assert: part_value, part: C_RST_T, equals: 220nF, tolerance_pct: 10, adr: "0002", why: "one-shot timing capacitor gives a nominal 22 ms pulse with wide first-article margin"}
+  - {assert: part_value, part: R_RESET_PU, equals: 10k, tolerance_pct: 1, adr: "0002", why: "ADC reset is high except while Q_RST1 sinks it"}
+  - {assert: part_value, part: R_CFG1, equals: 4.7k, tolerance_pct: 1, adr: "0001", why: "CONFIG1 pull-down value selects the documented secondary 48 kHz-family mode"}
+  - {assert: part_value, part: R_CFG2, equals: 0, tolerance_pct: 0, adr: "0001", why: "CONFIG2 is a deterministic high strap through a replaceable zero-ohm link"}
+  - {assert: part_value, part: R_CFG4, equals: 4.7k, tolerance_pct: 1, adr: "0001", why: "CONFIG4 pull-up value preserves the default slot order"}
+  - {assert: part_value, part: R_CFG5, equals: 100k, tolerance_pct: 1, adr: "0001", why: "CONFIG5 pull-down value selects the phase-preserving filter/HPF choice"}
+  - {assert: part_value, part: C_FILT1_10U, equals: 10uF, tolerance_pct: 10, adr: "0004", why: "ADC reference bank 1 uses 10uF nominal so the conservative all-corner effective value remains above 2.2uF"}
+  - {assert: part_value, part: C_FILT2_10U, equals: 10uF, tolerance_pct: 10, adr: "0004", why: "ADC reference bank 2 uses 10uF nominal so the conservative all-corner effective value remains above 2.2uF"}
+  - {assert: part_value, part: C_FILT1_1U, equals: 1uF, tolerance_pct: 10, adr: "0004", why: "ADC reference bank 1 uses 1uF nominal so the conservative all-corner effective value remains above 220nF"}
+  - {assert: part_value, part: C_FILT2_1U, equals: 1uF, tolerance_pct: 10, adr: "0004", why: "ADC reference bank 2 uses 1uF nominal so the conservative all-corner effective value remains above 220nF"}
+  - {assert: part_value, part: C_VMID1_4U7, equals: 4.7uF, tolerance_pct: 10, adr: "0004", why: "raw VMID1 uses 4.7uF nominal so the conservative all-corner effective value remains above 1.0uF"}
+  - {assert: part_value, part: C_VMID2_4U7, equals: 4.7uF, tolerance_pct: 10, adr: "0004", why: "raw VMID2 uses 4.7uF nominal so the conservative all-corner effective value remains above 1.0uF"}
+  - {assert: part_value, part: C_VMID1_470N, equals: 470nF, tolerance_pct: 10, adr: "0004", why: "raw VMID1 uses 470nF nominal so the conservative all-corner effective value remains above 100nF"}
+  - {assert: part_value, part: C_VMID2_470N, equals: 470nF, tolerance_pct: 10, adr: "0004", why: "raw VMID2 uses 470nF nominal so the conservative all-corner effective value remains above 100nF"}
+  - {assert: part_value, part: C_LDO_A, equals: 4.7uF, tolerance_pct: 10, adr: "0004", why: "the ADC analog LDO filter uses 4.7uF nominal so the conservative all-corner effective value remains above 0.8uF"}
+  - {assert: part_value, part: C_LDO_D, equals: 4.7uF, tolerance_pct: 10, adr: "0004", why: "the ADC digital LDO filter uses 4.7uF nominal so the conservative all-corner effective value remains above 0.8uF"}
+  - {assert: pin_on_net, pin: C_FILT1_470U.1, net: FILT1P, adr: "0004", why: "polarized Panasonic ADC filter bulk pad 1 is the positive FILT1P side"}
+  - {assert: pin_on_net, pin: C_FILT1_470U.2, net: GND, adr: "0008", why: "DS1314F1 Figure 2-2 requires direct ground at the negative reference bank"}
+  - {assert: pin_on_net, pin: C_FILT2_470U.1, net: FILT2P, adr: "0004", why: "polarized Panasonic ADC filter bulk pad 1 is the positive FILT2P side"}
+  - {assert: pin_on_net, pin: C_FILT2_470U.2, net: GND, adr: "0008", why: "DS1314F1 Figure 2-2 requires direct ground at the negative reference bank"}
+  - {assert: pin_on_net, pin: U_ADC.17, net: GND, adr: "0008", why: "ADC_FILT2N returns directly to ground without a resistor"}
+  - {assert: pin_on_net, pin: U_ADC.44, net: GND, adr: "0008", why: "ADC_FILT1N returns directly to ground without a resistor"}
+  - {assert: part_value, part: R_VMID1_TOP, equals: 1k, tolerance_pct: 0.1, adr: "0025", why: "Passive1k equal divider; initial DC window retained and hot-life drift remains qualification"}
+  - {assert: part_value, part: R_VMID1_BOT, equals: 1k, tolerance_pct: 0.1, adr: "0025", why: "Passive1k equal divider; initial DC window retained and hot-life drift remains qualification"}
+  - {assert: part_value, part: R_VMID2_TOP, equals: 1k, tolerance_pct: 0.1, adr: "0025", why: "Passive1k equal divider; initial DC window retained and hot-life drift remains qualification"}
+  - {assert: part_value, part: R_VMID2_BOT, equals: 1k, tolerance_pct: 0.1, adr: "0025", why: "Passive1k equal divider; initial DC window retained and hot-life drift remains qualification"}
+  - {assert: pin_on_net, pin: J10.2, net: ADC_TDM, adr: "0005", why: "MCHStreamer J1 pin 2 is the official TDM8 input"}
+  - {assert: pin_on_net, pin: J10.9, net: MCH_MCLK, adr: "0005", why: "MCHStreamer J1 pin 9 is MCLK output"}
+  - {assert: pin_on_net, pin: J10.10, net: MCH_BCLK, adr: "0005", why: "MCHStreamer J1 pin 10 is BCLK output"}
+  - {assert: pin_on_net, pin: J10.11, net: GND, adr: "0005", why: "MCHStreamer J1 pin 11 is ground"}
+  - {assert: pin_on_net, pin: J10.12, net: MCH_FSYNC, adr: "0005", why: "MCHStreamer J1 pin 12 is FSYNC output"}
+  - {assert: pin_on_net, pin: J11.1, net: GND, adr: "0005", why: "MCHStreamer J3 pin 1 is ground in the official table"}
+  - {assert: pin_on_net, pin: J11.2, net: MCH_3V3_SENSE, adr: "0005", why: "MCHStreamer J3 pin 2 3.3V is presence sense only"}
+  - {assert: pin_on_net, pin: U_TDM.1, net: TDM_OE_N, adr: "0005", why: "the active-low tri-state enable is fail-high from local VCC"}
+  - {assert: pin_on_net, pin: U_TDM.2, net: TDM_CLEAN, adr: "0005", why: "only the noninverting Schmitt push-pull output drives this ordinary CMOS input"}
+  - {assert: pin_on_net, pin: U_TDM_SCH.2, net: TDM_RAW, adr: "0005", why: "the ADC high-to-Hi-Z decay terminates on a genuine unlimited-input-slew Schmitt input"}
+  - {assert: pin_on_net, pin: U_TDM_SCH.4, net: TDM_CLEAN, adr: "0005", why: "noninverting conditioning preserves TDM data polarity"}
+  - {assert: pin_on_net, pin: U_TDM_SCH.3, net: GND, adr: "0005", why: "conditioner shares ADC local ground"}
+  - {assert: pin_on_net, pin: U_TDM_SCH.5, net: 3V3_ADC, adr: "0005", why: "conditioner is powered in the ADC domain, not from remote sense"}
+  - {assert: pin_on_net, pin: R_TDM_PD.1, net: TDM_RAW, adr: "0005", why: "ADC released output has an explicit low-state bias branch"}
+  - {assert: pin_on_net, pin: R_TDM_PD.2, net: GND, adr: "0005", why: "bias pulls down, never into a remote supply"}
+  - {assert: part_value, part: R_TDM_PD, equals: 10k, tolerance_pct: 1, adr: "0005", why: "ADC load and leakage allocations are jointly screened by check_clock_defaults.py"}
+  - {assert: pin_on_net, pin: C_TDM_SCH.1, net: 3V3_ADC, adr: "0005", why: "local bypass positive follows conditioner supply"}
+  - {assert: pin_on_net, pin: C_TDM_SCH.2, net: GND, adr: "0005", why: "local bypass never loads a data signal"}
+  - {assert: part_value, part: C_TDM_SCH, equals: 100nF, tolerance_pct: 10, adr: "0005", why: "the exact local supply bypass is mandatory"}
+  - {assert: pin_on_net, pin: U_TDM.4, net: TDM_BUFFERED, adr: "0005", why: "only the Ioff-capable buffer drives the MCH input cable"}
+  - {assert: pin_on_net, pin: U_ADC.38, net: 3V3_ADC, adr: "0001", why: "DS1314F1 Table 1-2 requires unused SPI_CS high at VDD_IO in hardware mode"}
+  - {assert: pin_on_net, pin: U_OE.2, net: TDM_SENSE_G, adr: "0005", why: "only the genuine Schmitt input accepts slow J3 presence ramps"}
+  - {assert: pin_on_net, pin: U_OE.4, net: TDM_OE_N, adr: "0005", why: "push-pull inverter drives OE; no RC node or low-VGS MOSFET drive assumption"}
+  - {assert: pin_on_net, pin: U_OE.5, net: 3V3_ADC, adr: "0005", why: "OE inverter uses the same local supply as the tri-state buffer"}
+  - {assert: part_value, part: R_MCH_SENSE, equals: 300, tolerance_pct: 1, adr: "0005", why: "the J3 sense divider budgets Schmitt input leakage and module/cable allowance"}
+  - {assert: part_value, part: R_MCH_SENSE_PD, equals: 10k, tolerance_pct: 1, adr: "0005", why: "the stronger gate pull-down prevents the old 1 Mohm leakage-budget failure"}
+  - {assert: part_value, part: R_MCH_MCLK_PD, equals: 10k, tolerance_pct: 1, adr: "0005", why: "MCLK low-state and remote-driver load budgets are executable in check_clock_defaults.py"}
+  - {assert: part_value, part: R_MCH_BCLK_PD, equals: 10k, tolerance_pct: 1, adr: "0005", why: "BCLK low-state and remote-driver load budgets are executable in check_clock_defaults.py"}
+  - {assert: part_value, part: R_MCH_FSYNC_PD, equals: 10k, tolerance_pct: 1, adr: "0005", why: "FSYNC low-state and remote-driver load budgets are executable in check_clock_defaults.py"}
+  - {assert: net_has_part, net: 3V3_ADC, part_type: capacitor, min: 8, adr: "0001", why: "ADC/reference/clock/reset rails require the cited local decoupling network"}
+
+  - {assert: pin_on_net, pin: D_HOLD.1, net: 5V_LDO_FEED, adr: "0009", why: "Schottky cathode faces held energy"}
+  - {assert: pin_on_net, pin: Q_DUMP.3, net: ADC_DUMP, adr: "0009", why: "Pulse-limited output dump is separate from ground until enabled"}
+  - {assert: part_value, part: R_PRE, equals: 22, adr: "0009", why: "Capacitor precharge must be limited before bypass"}
+  - {assert: part_value, part: R_DUMP, equals: 1, adr: "0009", why: "Both FILT banks must discharge inside the scoped rail-ramp screen"}
+  - {assert: part_value, part: R_ADC_TOP, equals: 17.4k, adr: "0009", why: "Audio-enable rising corner must fit lowest valid LDO output"}
+  # ADR0015 electrical identity only. Native feed/contact/clearance tests and
+  # realized-board gates own geometry; common GND names do not prove its route.
+  - {assert: pin_on_net, pin: U_ADC.5, net: 3V3_ADC, adr: "0015", why: "the north bounded feed supplies VDD_A1, not a VMID or raw rail"}
+  - {assert: pin_on_net, pin: U_ADC.9, net: 3V3_ADC, adr: "0015", why: "the south bounded feed supplies VDD_A2, not a VMID or raw rail"}
+  - {assert: pin_on_net, pin: U_ADC.6, net: GND, adr: "0015", why: "GND_A1 retains common electrical ground; nearest-plane-drop geometry is graded separately"}
+  - {assert: pin_on_net, pin: U_ADC.8, net: GND, adr: "0015", why: "relocating the GND_A2 via must not change its electrical return domain"}
+  - {assert: pin_on_net, pin: C_VDDA1_4U7.1, net: 3V3_ADC, adr: "0015", why: "north bulk bypass remains across the analog supply and ground"}
+  - {assert: pin_on_net, pin: C_VDDA1_4U7.2, net: GND, adr: "0015", why: "north bulk bypass must not return to a reference or supply net"}
+  - {assert: pin_on_net, pin: C_VDDA1_10N.1, net: 3V3_ADC, adr: "0015", why: "north local high-frequency bypass remains on VDD_A1 supply"}
+  - {assert: pin_on_net, pin: C_VDDA1_10N.2, net: GND, adr: "0015", why: "north local high-frequency bypass retains its ground return"}
+  - {assert: pin_on_net, pin: C_VDDA2_4U7.1, net: 3V3_ADC, adr: "0015", why: "south bulk bypass remains across the analog supply and ground"}
+  - {assert: pin_on_net, pin: C_VDDA2_4U7.2, net: GND, adr: "0015", why: "south bulk bypass must not return to a reference or supply net"}
+  - {assert: pin_on_net, pin: C_VDDA2_10N.1, net: 3V3_ADC, adr: "0015", why: "south local high-frequency bypass remains on VDD_A2 supply"}
+  - {assert: pin_on_net, pin: C_VDDA2_10N.2, net: GND, adr: "0015", why: "the moved GND_A2 drop preserves the south bypass return domain"}
+  - {assert: pin_on_net, pin: U_ADC.1, net: VMID1, adr: "0015", why: "the north feed corridor must not merge the ADC VMID1 output with its supply"}
+  - {assert: pin_on_net, pin: U_ADC.12, net: VMID2, adr: "0015", why: "the south feed corridor must not merge the ADC VMID2 output with its supply"}
+  - {assert: pin_on_net, pin: C_VMID1_470N.1, net: VMID1, adr: "0015", why: "VMID1 local bypass positive remains on the ADC midpoint output"}
+  - {assert: pin_on_net, pin: C_VMID1_470N.2, net: GND, adr: "0015", why: "VMID1 local bypass retains common ground; physical GND_A1 path is separately graded"}
+  - {assert: pin_on_net, pin: C_VMID1_4U7.1, net: VMID1, adr: "0015", why: "VMID1 reservoir remains separate from the west supply feed"}
+  - {assert: pin_on_net, pin: C_VMID1_4U7.2, net: GND, adr: "0015", why: "VMID1 reservoir retains its ground return"}
+  - {assert: pin_on_net, pin: C_VMID2_470N.1, net: VMID2, adr: "0015", why: "VMID2 local bypass positive remains on the ADC midpoint output"}
+  - {assert: pin_on_net, pin: C_VMID2_470N.2, net: GND, adr: "0015", why: "VMID2 local bypass retains common ground after the GND_A2 via relocation"}
+  - {assert: pin_on_net, pin: C_VMID2_4U7.1, net: VMID2, adr: "0015", why: "VMID2 reservoir remains separate from the west supply feed"}
+  - {assert: pin_on_net, pin: C_VMID2_4U7.2, net: GND, adr: "0015", why: "VMID2 reservoir retains its ground return without claiming a filled copper path"}
+  # ADR0021 source candidate: topology/value invariants do not admit generation.
+  - {assert: part_value, part: R_IN1P, equals: 10k, tolerance_pct: 1, adr: "0021", why: "Post-tee input current limiter; source topology and hostile coverage separately enforce the isolated AIN node"}
+  - {assert: pin_on_net, pin: R_IN1P.1, net: BIAS_P1, adr: "0021", why: "Limiter is after the cable-side bias tee and before the opamp input"}
+  - {assert: pin_on_net, pin: R_IN1P.2, net: AIN_P1, adr: "0021", why: "Limiter is after the cable-side bias tee and before the opamp input"}
+  - {assert: pin_on_net, pin: U_AFE1.3, net: AIN_P1, adr: "0021", why: "Limiter is after the cable-side bias tee and before the opamp input"}
+  - {assert: part_value, part: R_IN1N, equals: 10k, tolerance_pct: 1, adr: "0021", why: "Post-tee input current limiter; source topology and hostile coverage separately enforce the isolated AIN node"}
+  - {assert: pin_on_net, pin: R_IN1N.1, net: BIAS_N1, adr: "0021", why: "Limiter is after the cable-side bias tee and before the opamp input"}
+  - {assert: pin_on_net, pin: R_IN1N.2, net: AIN_N1, adr: "0021", why: "Limiter is after the cable-side bias tee and before the opamp input"}
+  - {assert: pin_on_net, pin: U_AFE1.5, net: AIN_N1, adr: "0021", why: "Limiter is after the cable-side bias tee and before the opamp input"}
+  - {assert: part_value, part: R_IN2P, equals: 10k, tolerance_pct: 1, adr: "0021", why: "Post-tee input current limiter; source topology and hostile coverage separately enforce the isolated AIN node"}
+  - {assert: pin_on_net, pin: R_IN2P.1, net: BIAS_P2, adr: "0021", why: "Limiter is after the cable-side bias tee and before the opamp input"}
+  - {assert: pin_on_net, pin: R_IN2P.2, net: AIN_P2, adr: "0021", why: "Limiter is after the cable-side bias tee and before the opamp input"}
+  - {assert: pin_on_net, pin: U_AFE2.3, net: AIN_P2, adr: "0021", why: "Limiter is after the cable-side bias tee and before the opamp input"}
+  - {assert: part_value, part: R_IN2N, equals: 10k, tolerance_pct: 1, adr: "0021", why: "Post-tee input current limiter; source topology and hostile coverage separately enforce the isolated AIN node"}
+  - {assert: pin_on_net, pin: R_IN2N.1, net: BIAS_N2, adr: "0021", why: "Limiter is after the cable-side bias tee and before the opamp input"}
+  - {assert: pin_on_net, pin: R_IN2N.2, net: AIN_N2, adr: "0021", why: "Limiter is after the cable-side bias tee and before the opamp input"}
+  - {assert: pin_on_net, pin: U_AFE2.5, net: AIN_N2, adr: "0021", why: "Limiter is after the cable-side bias tee and before the opamp input"}
+  - {assert: part_value, part: R_IN3P, equals: 10k, tolerance_pct: 1, adr: "0021", why: "Post-tee input current limiter; source topology and hostile coverage separately enforce the isolated AIN node"}
+  - {assert: pin_on_net, pin: R_IN3P.1, net: BIAS_P3, adr: "0021", why: "Limiter is after the cable-side bias tee and before the opamp input"}
+  - {assert: pin_on_net, pin: R_IN3P.2, net: AIN_P3, adr: "0021", why: "Limiter is after the cable-side bias tee and before the opamp input"}
+  - {assert: pin_on_net, pin: U_AFE3.3, net: AIN_P3, adr: "0021", why: "Limiter is after the cable-side bias tee and before the opamp input"}
+  - {assert: part_value, part: R_IN3N, equals: 10k, tolerance_pct: 1, adr: "0021", why: "Post-tee input current limiter; source topology and hostile coverage separately enforce the isolated AIN node"}
+  - {assert: pin_on_net, pin: R_IN3N.1, net: BIAS_N3, adr: "0021", why: "Limiter is after the cable-side bias tee and before the opamp input"}
+  - {assert: pin_on_net, pin: R_IN3N.2, net: AIN_N3, adr: "0021", why: "Limiter is after the cable-side bias tee and before the opamp input"}
+  - {assert: pin_on_net, pin: U_AFE3.5, net: AIN_N3, adr: "0021", why: "Limiter is after the cable-side bias tee and before the opamp input"}
+  - {assert: part_value, part: R_IN4P, equals: 10k, tolerance_pct: 1, adr: "0021", why: "Post-tee input current limiter; source topology and hostile coverage separately enforce the isolated AIN node"}
+  - {assert: pin_on_net, pin: R_IN4P.1, net: BIAS_P4, adr: "0021", why: "Limiter is after the cable-side bias tee and before the opamp input"}
+  - {assert: pin_on_net, pin: R_IN4P.2, net: AIN_P4, adr: "0021", why: "Limiter is after the cable-side bias tee and before the opamp input"}
+  - {assert: pin_on_net, pin: U_AFE4.3, net: AIN_P4, adr: "0021", why: "Limiter is after the cable-side bias tee and before the opamp input"}
+  - {assert: part_value, part: R_IN4N, equals: 10k, tolerance_pct: 1, adr: "0021", why: "Post-tee input current limiter; source topology and hostile coverage separately enforce the isolated AIN node"}
+  - {assert: pin_on_net, pin: R_IN4N.1, net: BIAS_N4, adr: "0021", why: "Limiter is after the cable-side bias tee and before the opamp input"}
+  - {assert: pin_on_net, pin: R_IN4N.2, net: AIN_N4, adr: "0021", why: "Limiter is after the cable-side bias tee and before the opamp input"}
+  - {assert: pin_on_net, pin: U_AFE4.5, net: AIN_N4, adr: "0021", why: "Limiter is after the cable-side bias tee and before the opamp input"}
+  - {assert: part_value, part: R_IN5P, equals: 10k, tolerance_pct: 1, adr: "0021", why: "Post-tee input current limiter; source topology and hostile coverage separately enforce the isolated AIN node"}
+  - {assert: pin_on_net, pin: R_IN5P.1, net: BIAS_P5, adr: "0021", why: "Limiter is after the cable-side bias tee and before the opamp input"}
+  - {assert: pin_on_net, pin: R_IN5P.2, net: AIN_P5, adr: "0021", why: "Limiter is after the cable-side bias tee and before the opamp input"}
+  - {assert: pin_on_net, pin: U_AFE5.3, net: AIN_P5, adr: "0021", why: "Limiter is after the cable-side bias tee and before the opamp input"}
+  - {assert: part_value, part: R_IN5N, equals: 10k, tolerance_pct: 1, adr: "0021", why: "Post-tee input current limiter; source topology and hostile coverage separately enforce the isolated AIN node"}
+  - {assert: pin_on_net, pin: R_IN5N.1, net: BIAS_N5, adr: "0021", why: "Limiter is after the cable-side bias tee and before the opamp input"}
+  - {assert: pin_on_net, pin: R_IN5N.2, net: AIN_N5, adr: "0021", why: "Limiter is after the cable-side bias tee and before the opamp input"}
+  - {assert: pin_on_net, pin: U_AFE5.5, net: AIN_N5, adr: "0021", why: "Limiter is after the cable-side bias tee and before the opamp input"}
+  - {assert: part_value, part: R_IN6P, equals: 10k, tolerance_pct: 1, adr: "0021", why: "Post-tee input current limiter; source topology and hostile coverage separately enforce the isolated AIN node"}
+  - {assert: pin_on_net, pin: R_IN6P.1, net: BIAS_P6, adr: "0021", why: "Limiter is after the cable-side bias tee and before the opamp input"}
+  - {assert: pin_on_net, pin: R_IN6P.2, net: AIN_P6, adr: "0021", why: "Limiter is after the cable-side bias tee and before the opamp input"}
+  - {assert: pin_on_net, pin: U_AFE6.3, net: AIN_P6, adr: "0021", why: "Limiter is after the cable-side bias tee and before the opamp input"}
+  - {assert: part_value, part: R_IN6N, equals: 10k, tolerance_pct: 1, adr: "0021", why: "Post-tee input current limiter; source topology and hostile coverage separately enforce the isolated AIN node"}
+  - {assert: pin_on_net, pin: R_IN6N.1, net: BIAS_N6, adr: "0021", why: "Limiter is after the cable-side bias tee and before the opamp input"}
+  - {assert: pin_on_net, pin: R_IN6N.2, net: AIN_N6, adr: "0021", why: "Limiter is after the cable-side bias tee and before the opamp input"}
+  - {assert: pin_on_net, pin: U_AFE6.5, net: AIN_N6, adr: "0021", why: "Limiter is after the cable-side bias tee and before the opamp input"}
+  - {assert: part_value, part: R_IN7P, equals: 10k, tolerance_pct: 1, adr: "0021", why: "Post-tee input current limiter; source topology and hostile coverage separately enforce the isolated AIN node"}
+  - {assert: pin_on_net, pin: R_IN7P.1, net: BIAS_P7, adr: "0021", why: "Limiter is after the cable-side bias tee and before the opamp input"}
+  - {assert: pin_on_net, pin: R_IN7P.2, net: AIN_P7, adr: "0021", why: "Limiter is after the cable-side bias tee and before the opamp input"}
+  - {assert: pin_on_net, pin: U_AFE7.3, net: AIN_P7, adr: "0021", why: "Limiter is after the cable-side bias tee and before the opamp input"}
+  - {assert: part_value, part: R_IN7N, equals: 10k, tolerance_pct: 1, adr: "0021", why: "Post-tee input current limiter; source topology and hostile coverage separately enforce the isolated AIN node"}
+  - {assert: pin_on_net, pin: R_IN7N.1, net: BIAS_N7, adr: "0021", why: "Limiter is after the cable-side bias tee and before the opamp input"}
+  - {assert: pin_on_net, pin: R_IN7N.2, net: AIN_N7, adr: "0021", why: "Limiter is after the cable-side bias tee and before the opamp input"}
+  - {assert: pin_on_net, pin: U_AFE7.5, net: AIN_N7, adr: "0021", why: "Limiter is after the cable-side bias tee and before the opamp input"}
+  - {assert: part_value, part: R_IN8P, equals: 10k, tolerance_pct: 1, adr: "0021", why: "Post-tee input current limiter; source topology and hostile coverage separately enforce the isolated AIN node"}
+  - {assert: pin_on_net, pin: R_IN8P.1, net: BIAS_P8, adr: "0021", why: "Limiter is after the cable-side bias tee and before the opamp input"}
+  - {assert: pin_on_net, pin: R_IN8P.2, net: AIN_P8, adr: "0021", why: "Limiter is after the cable-side bias tee and before the opamp input"}
+  - {assert: pin_on_net, pin: U_AFE8.3, net: AIN_P8, adr: "0021", why: "Limiter is after the cable-side bias tee and before the opamp input"}
+  - {assert: part_value, part: R_IN8N, equals: 10k, tolerance_pct: 1, adr: "0021", why: "Post-tee input current limiter; source topology and hostile coverage separately enforce the isolated AIN node"}
+  - {assert: pin_on_net, pin: R_IN8N.1, net: BIAS_N8, adr: "0021", why: "Limiter is after the cable-side bias tee and before the opamp input"}
+  - {assert: pin_on_net, pin: R_IN8N.2, net: AIN_N8, adr: "0021", why: "Limiter is after the cable-side bias tee and before the opamp input"}
+  - {assert: pin_on_net, pin: U_AFE8.5, net: AIN_N8, adr: "0021", why: "Limiter is after the cable-side bias tee and before the opamp input"}
+  - {assert: pin_on_net, pin: C_OPA_BULK.2, net: GND, adr: "0021", why: "Exact damped OPA feed, local reservoir and series bleed domain"}
+  - {assert: pin_on_net, pin: R_OPA_BLEED1.2, net: OPA_BLEED_A, adr: "0021", why: "Exact damped OPA feed, local reservoir and series bleed domain"}
+  - {assert: pin_on_net, pin: R_OPA_BLEED2.1, net: OPA_BLEED_A, adr: "0021", why: "Exact damped OPA feed, local reservoir and series bleed domain"}
+  - {assert: pin_on_net, pin: R_OPA_BLEED2.2, net: GND, adr: "0021", why: "Exact damped OPA feed, local reservoir and series bleed domain"}
+  - {assert: part_value, part: C_OPA_BULK, equals: 47uF, adr: "0021", why: "Selected damped-start component value; physical qualification remains open"}
+  - {assert: part_value, part: R_OPA_BLEED1, equals: 100, adr: "0021", why: "Selected damped-start component value; physical qualification remains open"}
+  - {assert: part_value, part: R_OPA_BLEED2, equals: 100, adr: "0021", why: "Selected damped-start component value; physical qualification remains open"}
+  - {assert: pin_on_net, pin: U_LDO.1, net: 5V_LDO_HOLD, adr: "0025", why: "Exact Rev.A LT3041 pin contract; no TPS pin inheritance"}
+  - {assert: pin_on_net, pin: U_LDO.2, net: 5V_LDO_HOLD, adr: "0025", why: "Exact Rev.A LT3041 pin contract; no TPS pin inheritance"}
+  - {assert: pin_on_net, pin: U_LDO.3, net: 5V_LDO_HOLD, adr: "0025", why: "Exact Rev.A LT3041 pin contract; no TPS pin inheritance"}
+  - {assert: pin_on_net, pin: U_LDO.5, net: LDO_EN, adr: "0025", why: "Exact Rev.A LT3041 pin contract; no TPS pin inheritance"}
+  - {assert: pin_on_net, pin: U_LDO.7, net: GND, adr: "0025", why: "Exact Rev.A LT3041 pin contract; no TPS pin inheritance"}
+  - {assert: pin_on_net, pin: U_LDO.8, net: 5V_LDO_HOLD, adr: "0025", why: "Exact Rev.A LT3041 pin contract; no TPS pin inheritance"}
+  - {assert: pin_on_net, pin: U_LDO.9, net: LDO_NR, adr: "0025", why: "Exact Rev.A LT3041 pin contract; no TPS pin inheritance"}
+  - {assert: pin_on_net, pin: U_LDO.10, net: GND, adr: "0025", why: "Exact Rev.A LT3041 pin contract; no TPS pin inheritance"}
+  - {assert: pin_on_net, pin: U_LDO.11, net: GND, adr: "0025", why: "Exact Rev.A LT3041 pin contract; no TPS pin inheritance"}
+  - {assert: pin_on_net, pin: U_LDO.12, net: 3V3_ADC, adr: "0025", why: "Exact Rev.A LT3041 pin contract; no TPS pin inheritance"}
+  - {assert: pin_on_net, pin: U_LDO.13, net: 3V3_ADC, adr: "0025", why: "Exact Rev.A LT3041 pin contract; no TPS pin inheritance"}
+  - {assert: pin_on_net, pin: U_LDO.14, net: 3V3_ADC, adr: "0025", why: "Exact Rev.A LT3041 pin contract; no TPS pin inheritance"}
+  - {assert: pin_on_net, pin: U_LDO.15, net: GND, adr: "0025", why: "Exact Rev.A LT3041 pin contract; no TPS pin inheritance"}
+  - {assert: pin_on_net, pin: U_AFE1.8, net: 3V3_ADC, adr: "0025", why: "Amplifier and ADC share the voltage barrier"}
+  - {assert: pin_on_net, pin: U_AFE2.8, net: 3V3_ADC, adr: "0025", why: "Amplifier and ADC share the voltage barrier"}
+  - {assert: pin_on_net, pin: U_AFE3.8, net: 3V3_ADC, adr: "0025", why: "Amplifier and ADC share the voltage barrier"}
+  - {assert: pin_on_net, pin: U_AFE4.8, net: 3V3_ADC, adr: "0025", why: "Amplifier and ADC share the voltage barrier"}
+  - {assert: pin_on_net, pin: U_AFE5.8, net: 3V3_ADC, adr: "0025", why: "Amplifier and ADC share the voltage barrier"}
+  - {assert: pin_on_net, pin: U_AFE6.8, net: 3V3_ADC, adr: "0025", why: "Amplifier and ADC share the voltage barrier"}
+  - {assert: pin_on_net, pin: U_AFE7.8, net: 3V3_ADC, adr: "0025", why: "Amplifier and ADC share the voltage barrier"}
+  - {assert: pin_on_net, pin: U_AFE8.8, net: 3V3_ADC, adr: "0025", why: "Amplifier and ADC share the voltage barrier"}
+  - {assert: part_value, part: R_LDO_SET, equals: 33k, adr: "0025", why: "100uA SET reference with no fast-start boost"}
+  - {assert: pin_on_net, pin: R_OPA_BLEED1.1, net: 3V3_ADC, adr: "0025", why: "200ohm total rail injection sink"}
+
+label_survival:
+  pin_map:
+    - refs: [C_A1P, C_A2P, C_A3P, C_A4P, C_A5P, C_A6P, C_A7P, C_A8P]
+      n_start: 1
+      pins: {"1": "AUDIO_P{n}", "2": "BIAS_P{n}"}
+    - refs: [C_A1N, C_A2N, C_A3N, C_A4N, C_A5N, C_A6N, C_A7N, C_A8N]
+      n_start: 1
+      pins: {"1": "AUDIO_N{n}", "2": "BIAS_N{n}"}
+    - refs: [R_X1P, R_X2P, R_X3P, R_X4P, R_X5P, R_X6P, R_X7P, R_X8P]
+      n_start: 1
+      pins: {"1": "FB_P{n}", "2": "FILTER{n}P"}
+    - refs: [R_X1N, R_X2N, R_X3N, R_X4N, R_X5N, R_X6N, R_X7N, R_X8N]
+      n_start: 1
+      pins: {"1": "FB_N{n}", "2": "FILTER{n}N"}
+    - refs: [R_VMID1_TOP, R_VMID2_TOP]
+      n_start: 1
+      pins: {"1": 3V3_ADC, "2": "VMID{n}_EXT"}
+    - refs: [R_VMID1_BOT, R_VMID2_BOT]
+      n_start: 1
+      pins: {"1": "VMID{n}_EXT", "2": GND}
+    - refs: [C_VMID1_EXT_10U, C_VMID2_EXT_10U]
+      n_start: 1
+      pins: {"1": "VMID{n}_EXT", "2": GND}
+    - refs: [C_VMID1_EXT_1U, C_VMID2_EXT_1U]
+      n_start: 1
+      pins: {"1": "VMID{n}_EXT", "2": GND}
+    - refs: [C_FILT1_470U]
+      pins: {"1": FILT1P, "2": GND}
+    - refs: [C_FILT2_470U]
+      pins: {"1": FILT2P, "2": GND}
+    - refs: [J1, J2, J3, J4, J5, J6, J7, J8]
+      n_start: 1
+      pins: {"1": "12V_POD{n}", "2": GND, "3": "12V_POD{n}", "4": "AUDIO_N{n}", "5": "AUDIO_P{n}", "6": GND, "7": "12V_POD{n}", "8": GND, "9": CHASSIS, "10": CHASSIS}
+    - refs: [J9]
+      pins: {"1": 12V_IN, "2": GND}
+    - refs: [J10]
+      pins: {"2": ADC_TDM, "9": MCH_MCLK, "10": MCH_BCLK, "11": GND, "12": MCH_FSYNC}
+      unconnected: ["1", "3", "4", "5", "6", "7", "8"]
+    - refs: [J11]
+      pins: {"1": GND, "2": MCH_3V3_SENSE}
+      unconnected: ["3", "4", "5", "6", "7", "8", "9", "10", "11", "12"]
+    - refs: [U_TDM]
+      pins: {"1": TDM_OE_N, "2": TDM_CLEAN, "3": GND, "4": TDM_BUFFERED, "5": 3V3_ADC}
+    - refs: [U_TDM_SCH]
+      pins: {"2": TDM_RAW, "3": GND, "4": TDM_CLEAN, "5": 3V3_ADC}
+    - refs: [R_TDM_PD]
+      pins: {"1": TDM_RAW, "2": GND}
+    - refs: [C_TDM_SCH]
+      pins: {"1": 3V3_ADC, "2": GND}
+    - refs: [U_OE]
+      pins: {"2": TDM_SENSE_G, "3": GND, "4": TDM_OE_N, "5": 3V3_ADC}
+      unconnected: ["1"]
+    - refs: [F1, F2, F3, F4, F5, F6, F7, F8]
+      n_start: 1
+      pins: {"1": 12V_PROTECTED, "2": "12V_POD{n}"}
+    - refs: [U_ESD1, U_ESD2, U_ESD3, U_ESD4, U_ESD5, U_ESD6, U_ESD7, U_ESD8]
+      n_start: 1
+      pins: {"3": "AUDIO_P{n}", "4": GND, "5": "AUDIO_N{n}"}
+      unconnected: ["1", "2"]
+    - refs: [U_RST1]
+      pins: {"1": GND, "2": POR_N, "3": 3V3_ADC}
+    - refs: [U_RST2]
+      pins: {"1": GND, "2": 3V3_ADC, "3": POR_N, "4": GND, "5": RESET_PULSE_H, "6": RESET_C, "7": RESET_RC, "8": 3V3_ADC}
