@@ -1,5 +1,16 @@
 # Changelog
 
+## v0.1.5 — public-sourcing classification successor — 2026-09-16
+
+- Recognize exact surplus-backed public observations as the release-time
+  sourcing authority for projects without an authenticated JLCPCB order API.
+- Grade all 51 coded and placed BOM lines `SOURCING: CLEAR`; retain uploader
+  mappings, substitutions, fees and capability as manual order-time checks.
+- Preserve every physical and fabrication byte from v0.1.4. Exact rehearsal
+  passes 4/4; physical qualification remains FIRST-ARTICLE-ONLY / DO-NOT-ORDER.
+
+Released: v0.1.5-2026-09-16
+
 ## v0.1.4 — authorized public-stock successor — 2026-09-16
 
 - Enforce the configured 150-unit surplus for public distributor and

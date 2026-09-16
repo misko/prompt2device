@@ -1,5 +1,16 @@
 # Changelog
 
+## v0.2.5 — public-sourcing classification successor — 2026-09-16
+
+Released: `07_releases/v0.2.5-2026-09-16/`.
+
+- Grade all 22 machine-BOM rows `SOURCING: CLEAR` using exact public
+  observations and the configured 150-unit surplus.
+- Retain uploader mappings, substitutions, fees and assembly capability as
+  manual order-time checks because no authenticated order API is available.
+- Preserve every physical and fabrication byte from v0.2.4. Exact rehearsal
+  passes 4/4; physical qualification remains FIRST-ARTICLE-ONLY / DO-NOT-ORDER.
+
 ## v0.2.4 — rule-rationale correction — 2026-09-16
 
 Released: `07_releases/v0.2.4-2026-09-16/`.
