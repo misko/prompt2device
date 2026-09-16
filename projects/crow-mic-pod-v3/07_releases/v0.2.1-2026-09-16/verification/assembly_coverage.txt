@@ -1,0 +1,6 @@
+== A-POP assembly_coverage: v0.2.0-2026-09-15 ==
+  board=44 footprints, cpl=31 placements, unpopulated=13 (declared=9, consigned=0, exempt_prefixes=['FID', 'H', 'MH', 'TP'])
+  placement histogram: top=31
+  A-POS assembly sides: GRADED; 31 fitted SMD, 31 CPL sides graded; native SMD population={'top': 31}
+  A-POS datum: 31 CPL row(s) graded against the pad-array centre, worst = 0.00000mm (U3), tolerance 0.05mm
+A-POP: PASS (every unpopulated part is declared with evidence)

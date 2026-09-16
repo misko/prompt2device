@@ -1,0 +1,19 @@
+mpn: 221-415
+manufacturer: WAGO
+type: internal_wire_splice
+status: active
+datasheet:
+  doc_id: 221-415
+  local: null
+  sha256: null
+  fetched: '2026-09-12'
+package: off-board harness component
+footprint: none_off_board
+limits: {}
+gotchas:
+- Physical harness qualification remains OWED; see primary-source-record.md and shared
+  spoke contract.
+verified: Manufacturer facts inspected 2026-09-12; first article not measured.
+sourcing:
+  lcsc: null
+  alternates: []

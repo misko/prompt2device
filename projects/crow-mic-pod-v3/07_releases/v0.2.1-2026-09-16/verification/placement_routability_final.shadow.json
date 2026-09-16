@@ -1,0 +1,29 @@
+{
+  "authority": "SHADOW",
+  "checks": {
+    "functional_cells": {
+      "authority": "SHADOW",
+      "detail": "no shadow contract selected",
+      "status": "N-A"
+    },
+    "source_prep_authority": {
+      "authority": "SHADOW",
+      "detail": "no shadow contract selected",
+      "status": "N-A"
+    }
+  },
+  "kind": "placement-routability-shadow-v1",
+  "requested_paths": {
+    "functional_cell_observations": null,
+    "functional_cells": null,
+    "route_plan_authority": null,
+    "stack_authority": null,
+    "topology_migration": null
+  },
+  "schema": 1,
+  "subject": {
+    "path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-mic-pod-v3/04_kicad/crow_mic_pod_v3.kicad_pcb",
+    "sha256": "2685281fdb8dac636e16334c2d4eca679300bfa5322a368ac2685b59f48e3dd1",
+    "size": 359690
+  }
+}

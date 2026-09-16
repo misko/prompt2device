@@ -1,0 +1,166 @@
+schema: 1
+target: DRAFT
+
+gates:
+  - id: POD-commission-and-architecture
+    required_for: DESIGN_CLEAN
+    state: pending
+    owner: systems
+    closes_when: The user boundary, shared spoke interface, pod architecture and accepted engineering decisions are explicit and traceable.
+    evidence:
+      - 01_docs/BRIEF.md
+      - 01_docs/ARCHITECTURE.md
+      - 01_docs/decisions/0001-four-wire-analog-spoke.md
+      - 01_docs/decisions/0002-protected-quiet-five-volt-rail.md
+      - 01_docs/decisions/0003-active-balanced-audio.md
+      - 01_docs/decisions/0004-bare-ic-exceptions.md
+      - 01_docs/decisions/0005-first-article-only-release.md
+
+  - id: POD-exact-parts-and-prelayout
+    required_for: DESIGN_CLEAN
+    state: pending
+    owner: electrical
+    closes_when: Exact part/source policy passes in full and the governed exact-code public-catalog screen admits design progression; authenticated JLCPCB allocation remains a separate order-readiness gate.
+    evidence:
+      - 01_docs/decisions/0006-public-catalog-prelayout-only.md
+      - 06_build/policy_audit.md
+      - 06_build/sourcing/public_catalog_stock.json
+
+  - id: POD-schematic
+    required_for: DESIGN_CLEAN
+    state: pending
+    owner: electrical
+    closes_when: The exact generated schematic and netlist pass machine gates plus independent topology and rendered-schematic reviews.
+    evidence:
+      - 06_build/checkpoints/schematic.json
+      - 08_reviews/pre-route_topology.md
+      - 08_reviews/pre-route_schematic_render.md
+
+  - id: POD-placement-and-routing
+    required_for: DESIGN_CLEAN
+    state: pending
+    owner: layout
+    closes_when: The governed placement and routed PCB pass exact geometry, connectivity, analog-return, realized-path, DRC, render and fresh-context review gates under the public-catalog design-progression policy.
+    evidence:
+      - 04_kicad/crow_mic_pod_v3.kicad_pcb
+      - 06_build/verification/realized_route_receipt.json
+      - 06_build/verification/route_acceptance_receipt.json
+      - 08_reviews/pre-route_pin.md
+      - 08_reviews/pre-route_layout.md
+      - 08_reviews/pre-route_render.md
+
+  - id: POD-release-package
+    required_for: FIRST_ARTICLE_ORDERABLE
+    state: pending
+    owner: fabrication
+    closes_when: A fresh reviewed BOM, CPL and fabrication package passes final JLC allocation, population, sourcing, release-rehearsal and immutable-seal gates with every order hold closed.
+
+  - id: POD-first-article-test
+    required_for: FIRST_ARTICLE_TESTED
+    state: pending
+    owner: lab
+    closes_when: Fabricated pods pass the controlled first-article test plan with retained raw power, analog, cable, acoustic, thermal and assembly evidence.
+
+  - id: POD-production-validation
+    required_for: PRODUCTION_RELEASED
+    state: pending
+    owner: manufacturing
+    closes_when: A controlled pilot lot and the complete roof enclosure, harness, environmental and production test processes are approved.
+
+findings:
+  - id: POD-RJ45-native-envelope
+    state: open
+    blocks_at_or_above: DESIGN_CLEAN
+    owner: model-adjudication
+    finding: "Exact shared 12-file Fab feature source independently SOUND and adopted after actual source-review closure 04:51:22Z. Both footprints add 18 manufacturer-native spring-finger paths; nominal shell/courtyard/pads/physical models and extraction algorithm unchanged. Fresh candidate registration carrier6/6,pod2/2; independent full9jack shell/attachment/extent and hostile controls retained in review626c3bae. Root adopted-source15tests PASS,10knownbad/2vacuities; full81carrier+2pod zone source/fill equality. Both original Fab candidates remain spent, no reset of earlier fuse/model/camera/pod budgets. Normal source/checkpoint/schematic/placement and final explicit orientation renewal still owed, so finding stays open."
+    closes_when: Independently reconcile actual manufacturer/native body features and footprint datums with the measured envelopes, correct only the proven owning source through independent acceptance if needed, and pass normal model registration with unchanged engineering floors before orientation and placement review. No prior carrier PASS is inherited as pod physical proof.
+    evidence:
+      - 01_docs/journal/626c3baedddcef7c7ff834a75b83e3d731d1339c9a3499a831543fa5a1d4bfae.tar.gz
+      - 01_docs/journal/9e4d4171e8a5787c0cd2eaea062a51634aea595279d2b92cde03cdb6d4bc9be9.tar.gz
+      - 01_docs/journal/e7194a6af44690583f6ffc63b7c96be6a23e1f12a043df198964338f0a903384.tar.gz
+      - 01_docs/journal/0db38f2d0f35d9005f1c416cbaca8707ef32a5949b8c40fa924ad6ab81ce4c23.tar.gz
+  - id: POD-seed-ground-and-contact
+    state: open
+    blocks_at_or_above: DESIGN_CLEAN
+    owner: layout-source
+    finding: "Exact combined candidate4 source independently reviewed SOUND and adopted after actualFINALclosure01:43:06Z. Stock saved86primitives and native gap0.159439mm; full141contact/8500foreign/728via-land census clear, unchanged owning16/22scopePASS with6unfinishedaudio. FullDRC4dangling/33unconnected/0parity remains unfinished routing. Original4candidates stay spent, candidate3REJECTED. Normal full regeneration/current schematic and placement renewal owed; finding stays open until its normal source/prep/geometry consumers pass."
+    closes_when: Correct owning deterministic source without moving parts, relaxing widths/clearances/thermal rules or changing the accepted three clamp prefixes; prove native thermal closure and complete represented protected-rail branch topology through unchanged consumers, preserve all negative controls and renew affected authority normally. Final routing remains separate.
+    evidence:
+      - 01_docs/journal/d5d535e47e653742250b416b31bb663f63cf41a170cde75d586115cf12ac6be2.tar.gz
+      - 01_docs/journal/1ff9e95626c965b26e494affde23ef6ebd9ba0ea65f752fe5d29f96073a3892c.tar.gz
+      - 01_docs/journal/99be496e08c284c23bf85e4c96e07d41a95070de122ef905c6756a03f3616c73.tar.gz
+      - 01_docs/journal/fedaf7e8d5d2f64e44d0af17975e7c00daee78feed6e960a0022848c60d722e3.tar.gz
+      - 01_docs/journal/983cb94f44cdddfb496e7ecaeb3cb73d59acd2265b46e7784deedc310768d448.tar.gz
+      - 01_docs/journal/80628f614adb171338049ef0a74eb019b36ae37be7974c313f58ac6f12c4fc78.tar.gz
+      - 01_docs/journal/eea4687b8abad52c8754dcaf5d408badbc8e6a076d8df7d7f7da85cf5e656eba.tar.gz
+      - 01_docs/journal/1cbf73e6ef1f0abde0fef48b356539ae83ae974dc32b1e6a871a064f170d7e76.tar.gz
+  - id: POD-RJ45-clamp-seed-identities
+    state: open
+    blocks_at_or_above: DESIGN_CLEAN
+    owner: layout-source
+    finding: "Normal reviewed-schematic continuation generated the current RJ45 board and passed placement DRC at0violations/58unconnected/0parity, then route preparation refused three source segments. The U3.4 GND start lands on U3.1 NC1; AUDIO_P ends on U3.5 AUDIO_N and AUDIO_N ends on U3.3 AUDIO_P. Authored coordinates disagree with the realized bottom-side pad map. No seed copper was saved and no routing/import ran. Current status: Exact three corrected source point lists adopted after timely author delivery and independent root geometry review. Candidate stock prep12banks/97primitives/0refusals, audio3.537339mm and3.584934mm B.Cu/0vias. Normal checkpoint and review renewal remains owed, so this finding stays open."
+    closes_when: Correct only the three source-owned seed paths against independently measured native pad/net identities, retain all declared widths, clearance, layer, length and clamp-first restrictions, prove the old source rejected and the candidate accepted through unchanged prep/native consumers, then renew affected checkpoints/reviews normally. No placement or package change is implied.
+    evidence:
+      - 01_docs/journal/placement.md
+      - 06_build/task_runs/rj45-pod-placement-after-recovery1/outputs/evidence.json
+      - 01_docs/journal/eea4687b8abad52c8754dcaf5d408badbc8e6a076d8df7d7f7da85cf5e656eba.tar.gz
+  - id: POD-RJ45-interface-revision
+    state: open
+    blocks_at_or_above: DESIGN_CLEAN
+    owner: systems
+    finding: Exact factory RJ45 source adopted at8a2d3620; current native schematics regenerated and both required topology/readability reviews adopted SOUND at2026-09-12T21:24Z. Owning PR-REVIEW grades2/2PASS for each board. Existing PCBs and sealed releases remain historical Micro-Fit; current RJ45 placement, routing, DRC, fabrication and release acceptance remain owed. Physical SOURCE/FULL distinction and prior investigation budgets remain unchanged.
+    closes_when: Exact source and parent/carrier/pod contracts agree; regenerated schematic, board and routes pass all affected machine and independent review gates. Preserve the prior sealed release and issue a new release after acceptance.
+  - id: POD-F1-live-jlc-prelayout
+    state: open
+    blocks_at_or_above: FIRST_ARTICLE_ORDERABLE
+    owner: fabrication
+    finding: The exact-code public screen admits design progression, but no authenticated JLCPCB response establishes assembly allocation, method or economics for every exact line; the design remains DO-NOT-ORDER.
+    closes_when: The exact fabrication BOM is checked in the logged-in JLCPCB PCBA/BOM interface, provider exports or screenshots are retained, the resolved facts are transcribed without reinterpretation, and every row is accepted or deliberately changed before ordering.
+
+  - id: POD-F2-full-source-policy
+    state: closed
+    blocks_at_or_above: DESIGN_CLEAN
+    owner: electrical
+    finding: The final exact dossiers and assembly selections pass the full source policy with zero FAIL; HUMAN and governed waiver dispositions remain explicit rather than being treated as supplier allocation.
+    closes_when: The full policy audit is rerun on the final pre-placement source state and retains zero FAIL with every HUMAN item explicitly reviewed.
+    evidence:
+      - 06_build/policy_audit.md
+      - 06_build/source_policy_audit.md
+
+  - id: POD-F3-schematic-human-review
+    state: closed
+    blocks_at_or_above: DESIGN_CLEAN
+    owner: electrical
+    finding: Independent topology and rendered-schematic reviews are signed against the exact generated schematic and netlist with no unresolved P0/P1/P2 finding.
+    closes_when: Both required schematic review records exist, bind the current artifacts and contain no unresolved finding.
+    evidence:
+      - 08_reviews/pre-route_topology.md
+      - 08_reviews/pre-route_schematic_render.md
+
+  - id: POD-F4-capsule-and-enclosure-mechanics
+    state: open
+    blocks_at_or_above: FIRST_ARTICLE_ORDERABLE
+    owner: mechanical
+    finding: The off-board capsule landing avoids inventing terminal pitch, but capsule mounting, wire dress, strain relief, acoustic port, windscreen, drainage and connector registration remain unqualified.
+    closes_when: The exact capsule, cable and enclosure assembly are physically reviewed and the assembly process retains fit, polarity, strain-relief and acoustic-path evidence.
+
+  - id: POD-F5-cable-and-audio-performance
+    state: open
+    blocks_at_or_above: FIRST_ARTICLE_TESTED
+    owner: lab
+    finding: Gain, phase, common mode, self-noise, clipping, stability, polarity, CMRR and crosstalk have not been measured through exact 4 m and 15 m harnesses into the carrier receiver.
+    closes_when: The serialized pod and carrier fixtures pass the signed cable/audio acceptance matrix with retained raw waveforms and audio data.
+
+  - id: POD-F6-no-hardware-evidence
+    state: open
+    blocks_at_or_above: FIRST_ARTICLE_TESTED
+    owner: lab
+    finding: No fabricated pod has supplied measured first-power, rail-noise, protection, thermal, acoustic or ESD/EMC evidence.
+    closes_when: A serialized first article completes 01_docs/FIRST_ARTICLE_TEST_PLAN.md and the structured authorization record plus hash-bound raw evidence are retained.
+
+  - id: POD-F7-roof-environment
+    state: open
+    blocks_at_or_above: PRODUCTION_RELEASED
+    owner: systems
+    finding: The PCB source does not establish weatherproofing, condensation control, lightning or building-entry safety, or unattended roof reliability.
+    closes_when: The complete pod enclosure and installed harness pass the approved wind, rain, condensation, thermal, EMC and building-entry safety qualification.

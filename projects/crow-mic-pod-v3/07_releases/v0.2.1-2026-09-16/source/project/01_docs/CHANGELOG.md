@@ -1,26 +1,5 @@
 # Changelog
 
-## v0.2.1 — transport-safe publication successor — 2026-09-16
-
-Released: `07_releases/v0.2.1-2026-09-16/`.
-
-- Rebound the byte-identical pod fabrication, source, STEP, schematic, and
-  connector-view payload to clean source commit `2f162256` after GitHub
-  rejected the aggregate development-history pack.
-- Fresh independent fix-pass reports rebind all four release lenses to the
-  same board hash. Exact rehearsal 3/3 PASS; all sourcing and first-article
-  holds remain.
-
-## v0.2.0 — 2026-09-16
-
-Released: `07_releases/v0.2.0-2026-09-15/` (candidate directory retained from initial staging).
-
-- Replace the former Micro-Fit interface with the exact manually fitted Würth 615008160221 RJ45 and straight-through Cat6 Crow power/audio pin assignment; NOT ETHERNET /NOT POE.
-- Keep every fitted SMD on top:31 automated placements on a60×40mm board.
-- Complete protected power/audio routing,22/22 critical paths and native/standalone DRC0/0/0.
-- Ship32/32 modeled bodies, reviewed source/fab/PDFs and four independent final SOUND reviews.
-- Required release rehearsal3/3 PASS; exact JLC allocation and all physical first-article tests remain unverified. FIRST-ARTICLE-ONLY /DO-NOT-ORDER.
-
 ## v0.1.0 — 2026-09-03
 
 - Commissioned a fresh crow microphone pod v3 design.

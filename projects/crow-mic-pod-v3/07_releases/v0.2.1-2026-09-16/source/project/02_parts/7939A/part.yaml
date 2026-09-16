@@ -1,0 +1,19 @@
+mpn: 7939A
+manufacturer: Belden
+type: shielded_cat5e_cable
+status: active
+datasheet:
+  doc_id: 7939A
+  local: 7939A_techdata.pdf
+  sha256: 06df851ddeed21d56abef2b733e09e5a0557eec53511a95c01b6ed0b9863b713
+  fetched: '2026-09-12'
+package: off-board harness component
+footprint: none_off_board
+limits: {}
+gotchas:
+- Physical harness qualification remains OWED; see primary-source-record.md and shared
+  spoke contract.
+verified: Manufacturer facts inspected 2026-09-12; first article not measured.
+sourcing:
+  lcsc: null
+  alternates: []
