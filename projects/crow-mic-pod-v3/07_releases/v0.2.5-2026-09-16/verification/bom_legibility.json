@@ -1,0 +1,39 @@
+{
+  "bom": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-mic-pod-v3/07_releases/v0.2.0-2026-09-15/fab/bom.csv",
+  "authority": "26 code(s) from /home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-mic-pod-v3/07_releases/v0.2.0-2026-09-15/source/project/02_parts + 267 from the vetted passives ledger + NOTHING from the release itself (no verification/stock_check.csv)",
+  "fails": [],
+  "oks": [
+    "F-ENCODE bom.csv: UTF-8 byte-order-mark present \u2014 the reader is told",
+    "F-MPN row 1 (F1): C194142 = 0ZCJ0010FF2E (02_parts/0ZCJ0010FF2E)",
+    "F-MPN row 2 (R2,R5): C25741 = 0402WGF1003TCE (02_parts/0402WGF1003TCE)",
+    "F-MPN row 3 (C2): C131394 = CC0402KRX7R9BB104 (02_parts/CC0402KRX7R9BB104)",
+    "F-MPN row 4 (C10,C6): C1525 = CL05B104KO5NNNC (02_parts/CL05B104KO5NNNC)",
+    "F-MPN row 5 (C7): C84455 = GRM32ER61A107ME20L (02_parts/GRM32ER61A107ME20L)",
+    "F-MPN row 6 (R12,R13): C17408 = 0805W8F1000T5E (02_parts/0805W8F1000T5E)",
+    "F-MPN row 7 (R10,R11): C60490 = RC0402FR-0710KL (02_parts/RC0402FR-0710KL)",
+    "F-MPN row 8 (C3,C4): C15195 = CL05B103KB5NNNC (02_parts/CL05B103KB5NNNC)",
+    "F-MPN row 9 (C11,C5,C9): C15850 = CL21A106KAYNNNE (02_parts/CL21A106KAYNNNE)",
+    "F-MPN row 10 (C1): C77102 = GRM32ER71H106KA12L (02_parts/GRM32ER71H106KA12L)",
+    "F-MPN row 11 (R9): C25762 = 0402WGF1802TCE (02_parts/0402WGF1802TCE)",
+    "F-MPN row 12 (C8): C15849 = CL10A105KB8NNNC (02_parts/CL10A105KB8NNNC)",
+    "F-MPN row 13 (R4): C25879 = 0402WGF2201TCE (02_parts/0402WGF2201TCE)",
+    "F-MPN row 14 (R6,R7,R8): C25768 = 0402WGF2202TCE (02_parts/0402WGF2202TCE)",
+    "F-MPN row 15 (R3): C17614 = 0805W8F3901T5E (02_parts/0805W8F3901T5E)",
+    "F-MPN row 16 (R1): C113480 = 0402WGF3243TCE (02_parts/0402WGF3243TCE)",
+    "F-MPN row 17 (R14): C17936 = 1206W4F4701T5E (02_parts/1206W4F4701T5E)",
+    "F-MPN row 18 (U1): C2878631 = OPA1679IDR (02_parts/OPA1679IDR)",
+    "F-MPN row 19 (D1): C144860 = S1M-E3/61T (02_parts/S1M-E3-61T)",
+    "F-MPN row 20 (D2): C83846 = SMBJ15A (02_parts/SMBJ15A)",
+    "F-MPN row 21 (U3): C1972959 = TPD2E2U06DRLR (02_parts/TPD2E2U06DRLR)",
+    "F-MPN row 22 (U2): C16430 = TPS7A4901DGNR (02_parts/TPS7A4901DGNR)",
+    "F-WORDS all 22 Comment(s) human-readable"
+  ],
+  "coverage": {
+    "F-ENCODE": "1/1 file decoded (1240 bytes)",
+    "F-MPN": "22/22 coded rows cross-checked against a HAND-VERIFIED authority; 0 not re-derivable from the shipped bytes (0 corroborated by the release's own sealed verification/stock_check.csv, 0 ungradeable) (22 BOM rows total)",
+    "F-WORDS": "22/22 rows legible"
+  },
+  "ungraded": [],
+  "sealed": true,
+  "target_kind": "sealed release"
+}

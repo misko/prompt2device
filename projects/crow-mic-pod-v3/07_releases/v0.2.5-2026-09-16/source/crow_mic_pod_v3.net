@@ -1,0 +1,4518 @@
+(export
+	(version "E")
+	(design
+		(source "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-mic-pod-v3/04_kicad/crow_mic_pod_v3.kicad_sch")
+		(date "2026-09-16T08:34:26")
+		(tool "Eeschema 10.0.4-10.0.4~ubuntu24.04.1")
+		(sheet
+			(number "1")
+			(name "/")
+			(tstamps "/")
+			(title_block
+				(title "crow_mic_pod_v3")
+				(company)
+				(rev "dev")
+				(date "2026-09-16")
+				(source "crow_mic_pod_v3.kicad_sch")
+				(comment
+					(number "1")
+					(value "")
+				)
+				(comment
+					(number "2")
+					(value "")
+				)
+				(comment
+					(number "3")
+					(value "")
+				)
+				(comment
+					(number "4")
+					(value "")
+				)
+				(comment
+					(number "5")
+					(value "")
+				)
+				(comment
+					(number "6")
+					(value "")
+				)
+				(comment
+					(number "7")
+					(value "")
+				)
+				(comment
+					(number "8")
+					(value "")
+				)
+				(comment
+					(number "9")
+					(value "")
+				)
+			)
+		)
+	)
+	(components
+		(comp
+			(ref "C1")
+			(value "10uF")
+			(footprint "Capacitor_SMD:C_1210_3225Metric")
+			(fields
+				(field
+					(name "Manufacturer Part Number") "GRM32ER71H106KA12L")
+				(field
+					(name "Supplier Part Numbers") "{\"jlcpcb\": [\"C77102\"]}")
+				(field
+					(name "Footprint") "Capacitor_SMD:C_1210_3225Metric")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "elt")
+				(part "SYM_C1")
+				(description "")
+			)
+			(property
+				(name "Manufacturer Part Number")
+				(value "GRM32ER71H106KA12L")
+			)
+			(property
+				(name "Supplier Part Numbers")
+				(value "{\"jlcpcb\": [\"C77102\"]}")
+			)
+			(property
+				(name "Sheetname")
+				(value "crow_mic_pod_v3")
+			)
+			(property
+				(name "Sheetfile")
+				(value "crow_mic_pod_v3.kicad_sch")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "01ae02ed-77f7-4206-9d49-4107e1aa579c")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "C2")
+			(value "100nF")
+			(footprint "Capacitor_SMD:C_0402_1005Metric")
+			(fields
+				(field
+					(name "Manufacturer Part Number") "CC0402KRX7R9BB104")
+				(field
+					(name "Supplier Part Numbers") "{\"jlcpcb\": [\"C131394\"]}")
+				(field
+					(name "Footprint") "Capacitor_SMD:C_0402_1005Metric")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "elt")
+				(part "SYM_C2")
+				(description "")
+			)
+			(property
+				(name "Manufacturer Part Number")
+				(value "CC0402KRX7R9BB104")
+			)
+			(property
+				(name "Supplier Part Numbers")
+				(value "{\"jlcpcb\": [\"C131394\"]}")
+			)
+			(property
+				(name "Sheetname")
+				(value "crow_mic_pod_v3")
+			)
+			(property
+				(name "Sheetfile")
+				(value "crow_mic_pod_v3.kicad_sch")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "b1d44f3b-e299-44b3-83e4-c41999272ea3")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "C3")
+			(value "10nF")
+			(footprint "Capacitor_SMD:C_0402_1005Metric")
+			(fields
+				(field
+					(name "Manufacturer Part Number") "CL05B103KB5NNNC")
+				(field
+					(name "Supplier Part Numbers") "{\"jlcpcb\": [\"C15195\"]}")
+				(field
+					(name "Footprint") "Capacitor_SMD:C_0402_1005Metric")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "elt")
+				(part "SYM_C3")
+				(description "")
+			)
+			(property
+				(name "Manufacturer Part Number")
+				(value "CL05B103KB5NNNC")
+			)
+			(property
+				(name "Supplier Part Numbers")
+				(value "{\"jlcpcb\": [\"C15195\"]}")
+			)
+			(property
+				(name "Sheetname")
+				(value "crow_mic_pod_v3")
+			)
+			(property
+				(name "Sheetfile")
+				(value "crow_mic_pod_v3.kicad_sch")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "db998007-e0f9-4e47-abd0-10bb29b8070b")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "C4")
+			(value "10nF")
+			(footprint "Capacitor_SMD:C_0402_1005Metric")
+			(fields
+				(field
+					(name "Manufacturer Part Number") "CL05B103KB5NNNC")
+				(field
+					(name "Supplier Part Numbers") "{\"jlcpcb\": [\"C15195\"]}")
+				(field
+					(name "Footprint") "Capacitor_SMD:C_0402_1005Metric")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "elt")
+				(part "SYM_C4")
+				(description "")
+			)
+			(property
+				(name "Manufacturer Part Number")
+				(value "CL05B103KB5NNNC")
+			)
+			(property
+				(name "Supplier Part Numbers")
+				(value "{\"jlcpcb\": [\"C15195\"]}")
+			)
+			(property
+				(name "Sheetname")
+				(value "crow_mic_pod_v3")
+			)
+			(property
+				(name "Sheetfile")
+				(value "crow_mic_pod_v3.kicad_sch")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "bdf3bfc5-ca3e-488d-8c6f-36138e010663")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "C5")
+			(value "10uF")
+			(footprint "Capacitor_SMD:C_0805_2012Metric")
+			(fields
+				(field
+					(name "Manufacturer Part Number") "CL21A106KAYNNNE")
+				(field
+					(name "Supplier Part Numbers") "{\"jlcpcb\": [\"C15850\"]}")
+				(field
+					(name "Footprint") "Capacitor_SMD:C_0805_2012Metric")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "elt")
+				(part "SYM_C5")
+				(description "")
+			)
+			(property
+				(name "Manufacturer Part Number")
+				(value "CL21A106KAYNNNE")
+			)
+			(property
+				(name "Supplier Part Numbers")
+				(value "{\"jlcpcb\": [\"C15850\"]}")
+			)
+			(property
+				(name "Sheetname")
+				(value "crow_mic_pod_v3")
+			)
+			(property
+				(name "Sheetfile")
+				(value "crow_mic_pod_v3.kicad_sch")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "7af8bef2-a543-4ca2-9aa0-d5b3f4d1b7d6")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "C6")
+			(value "100nF")
+			(footprint "Capacitor_SMD:C_0402_1005Metric")
+			(fields
+				(field
+					(name "Manufacturer Part Number") "CL05B104KO5NNNC")
+				(field
+					(name "Supplier Part Numbers") "{\"jlcpcb\": [\"C1525\"]}")
+				(field
+					(name "Footprint") "Capacitor_SMD:C_0402_1005Metric")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "elt")
+				(part "SYM_C6")
+				(description "")
+			)
+			(property
+				(name "Manufacturer Part Number")
+				(value "CL05B104KO5NNNC")
+			)
+			(property
+				(name "Supplier Part Numbers")
+				(value "{\"jlcpcb\": [\"C1525\"]}")
+			)
+			(property
+				(name "Sheetname")
+				(value "crow_mic_pod_v3")
+			)
+			(property
+				(name "Sheetfile")
+				(value "crow_mic_pod_v3.kicad_sch")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "fe61d3c7-d52f-412c-83ca-08c34bb954cc")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "C7")
+			(value "100uF")
+			(footprint "Capacitor_SMD:C_1210_3225Metric")
+			(fields
+				(field
+					(name "Manufacturer Part Number") "GRM32ER61A107ME20L")
+				(field
+					(name "Supplier Part Numbers") "{\"jlcpcb\": [\"C84455\"]}")
+				(field
+					(name "Footprint") "Capacitor_SMD:C_1210_3225Metric")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "elt")
+				(part "SYM_C7")
+				(description "")
+			)
+			(property
+				(name "Manufacturer Part Number")
+				(value "GRM32ER61A107ME20L")
+			)
+			(property
+				(name "Supplier Part Numbers")
+				(value "{\"jlcpcb\": [\"C84455\"]}")
+			)
+			(property
+				(name "Sheetname")
+				(value "crow_mic_pod_v3")
+			)
+			(property
+				(name "Sheetfile")
+				(value "crow_mic_pod_v3.kicad_sch")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "8629bad5-6e8a-488c-86d2-4e9db81cca9f")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "C8")
+			(value "1uF")
+			(footprint "Capacitor_SMD:C_0603_1608Metric")
+			(fields
+				(field
+					(name "Manufacturer Part Number") "CL10A105KB8NNNC")
+				(field
+					(name "Supplier Part Numbers") "{\"jlcpcb\": [\"C15849\"]}")
+				(field
+					(name "Footprint") "Capacitor_SMD:C_0603_1608Metric")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "elt")
+				(part "SYM_C8")
+				(description "")
+			)
+			(property
+				(name "Manufacturer Part Number")
+				(value "CL10A105KB8NNNC")
+			)
+			(property
+				(name "Supplier Part Numbers")
+				(value "{\"jlcpcb\": [\"C15849\"]}")
+			)
+			(property
+				(name "Sheetname")
+				(value "crow_mic_pod_v3")
+			)
+			(property
+				(name "Sheetfile")
+				(value "crow_mic_pod_v3.kicad_sch")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "da83ad79-e1cf-4774-a06c-c88b1ecca537")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "C9")
+			(value "10uF")
+			(footprint "Capacitor_SMD:C_0805_2012Metric")
+			(fields
+				(field
+					(name "Manufacturer Part Number") "CL21A106KAYNNNE")
+				(field
+					(name "Supplier Part Numbers") "{\"jlcpcb\": [\"C15850\"]}")
+				(field
+					(name "Footprint") "Capacitor_SMD:C_0805_2012Metric")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "elt")
+				(part "SYM_C9")
+				(description "")
+			)
+			(property
+				(name "Manufacturer Part Number")
+				(value "CL21A106KAYNNNE")
+			)
+			(property
+				(name "Supplier Part Numbers")
+				(value "{\"jlcpcb\": [\"C15850\"]}")
+			)
+			(property
+				(name "Sheetname")
+				(value "crow_mic_pod_v3")
+			)
+			(property
+				(name "Sheetfile")
+				(value "crow_mic_pod_v3.kicad_sch")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "5700a983-4e89-49a9-91c9-36af669d332d")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "C10")
+			(value "100nF")
+			(footprint "Capacitor_SMD:C_0402_1005Metric")
+			(fields
+				(field
+					(name "Manufacturer Part Number") "CL05B104KO5NNNC")
+				(field
+					(name "Supplier Part Numbers") "{\"jlcpcb\": [\"C1525\"]}")
+				(field
+					(name "Footprint") "Capacitor_SMD:C_0402_1005Metric")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "elt")
+				(part "SYM_C10")
+				(description "")
+			)
+			(property
+				(name "Manufacturer Part Number")
+				(value "CL05B104KO5NNNC")
+			)
+			(property
+				(name "Supplier Part Numbers")
+				(value "{\"jlcpcb\": [\"C1525\"]}")
+			)
+			(property
+				(name "Sheetname")
+				(value "crow_mic_pod_v3")
+			)
+			(property
+				(name "Sheetfile")
+				(value "crow_mic_pod_v3.kicad_sch")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "12051adf-0c34-4fa7-ac65-0479d0658592")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "C11")
+			(value "10uF")
+			(footprint "Capacitor_SMD:C_0805_2012Metric")
+			(fields
+				(field
+					(name "Manufacturer Part Number") "CL21A106KAYNNNE")
+				(field
+					(name "Supplier Part Numbers") "{\"jlcpcb\": [\"C15850\"]}")
+				(field
+					(name "Footprint") "Capacitor_SMD:C_0805_2012Metric")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "elt")
+				(part "SYM_C11")
+				(description "")
+			)
+			(property
+				(name "Manufacturer Part Number")
+				(value "CL21A106KAYNNNE")
+			)
+			(property
+				(name "Supplier Part Numbers")
+				(value "{\"jlcpcb\": [\"C15850\"]}")
+			)
+			(property
+				(name "Sheetname")
+				(value "crow_mic_pod_v3")
+			)
+			(property
+				(name "Sheetfile")
+				(value "crow_mic_pod_v3.kicad_sch")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "df6a026a-0975-4ca9-9173-8a40a89ae12f")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "D1")
+			(value "S1M-E3/61T")
+			(footprint "crow_mic_pod_v3:Vishay_S1M_SMA")
+			(fields
+				(field
+					(name "Manufacturer Part Number") "S1M-E3/61T")
+				(field
+					(name "Supplier Part Numbers") "{\"jlcpcb\": [\"C144860\"]}")
+				(field
+					(name "Footprint") "crow_mic_pod_v3:Vishay_S1M_SMA")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "elt")
+				(part "SYM_D1")
+				(description "")
+			)
+			(property
+				(name "Manufacturer Part Number")
+				(value "S1M-E3/61T")
+			)
+			(property
+				(name "Supplier Part Numbers")
+				(value "{\"jlcpcb\": [\"C144860\"]}")
+			)
+			(property
+				(name "Sheetname")
+				(value "crow_mic_pod_v3")
+			)
+			(property
+				(name "Sheetfile")
+				(value "crow_mic_pod_v3.kicad_sch")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "4f151ffb-080f-402a-84dd-84b21e02c33e")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "D2")
+			(value "SMBJ15A")
+			(footprint "crow_mic_pod_v3:Littelfuse_SMBJ15A_SMB")
+			(fields
+				(field
+					(name "Manufacturer Part Number") "SMBJ15A")
+				(field
+					(name "Supplier Part Numbers") "{\"jlcpcb\": [\"C83846\"]}")
+				(field
+					(name "Footprint") "crow_mic_pod_v3:Littelfuse_SMBJ15A_SMB")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "elt")
+				(part "SYM_D2")
+				(description "")
+			)
+			(property
+				(name "Manufacturer Part Number")
+				(value "SMBJ15A")
+			)
+			(property
+				(name "Supplier Part Numbers")
+				(value "{\"jlcpcb\": [\"C83846\"]}")
+			)
+			(property
+				(name "Sheetname")
+				(value "crow_mic_pod_v3")
+			)
+			(property
+				(name "Sheetfile")
+				(value "crow_mic_pod_v3.kicad_sch")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "21712003-02a3-4bc5-b892-fb3ab5169504")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "F1")
+			(value "0ZCJ0010FF2E")
+			(footprint "Fuse:Fuse_1206_3216Metric")
+			(fields
+				(field
+					(name "Manufacturer Part Number") "0ZCJ0010FF2E")
+				(field
+					(name "Supplier Part Numbers") "{\"jlcpcb\": [\"C194142\"]}")
+				(field
+					(name "Footprint") "Fuse:Fuse_1206_3216Metric")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "elt")
+				(part "SYM_F1")
+				(description "")
+			)
+			(property
+				(name "Manufacturer Part Number")
+				(value "0ZCJ0010FF2E")
+			)
+			(property
+				(name "Supplier Part Numbers")
+				(value "{\"jlcpcb\": [\"C194142\"]}")
+			)
+			(property
+				(name "Sheetname")
+				(value "crow_mic_pod_v3")
+			)
+			(property
+				(name "Sheetfile")
+				(value "crow_mic_pod_v3.kicad_sch")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "12823680-e04e-4db7-8b2b-cd3a781b4c6b")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "J1")
+			(value "615008160221")
+			(footprint "crow_mic_pod_v3:Wurth_615008160221_RJ45")
+			(fields
+				(field
+					(name "Manufacturer Part Number") "615008160221")
+				(field
+					(name "Supplier Part Numbers") "{}")
+				(field
+					(name "Footprint") "crow_mic_pod_v3:Wurth_615008160221_RJ45")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "elt")
+				(part "SYM_J1")
+				(description "")
+			)
+			(property
+				(name "Manufacturer Part Number")
+				(value "615008160221")
+			)
+			(property
+				(name "Supplier Part Numbers")
+				(value "{}")
+			)
+			(property
+				(name "Sheetname")
+				(value "crow_mic_pod_v3")
+			)
+			(property
+				(name "Sheetfile")
+				(value "crow_mic_pod_v3.kicad_sch")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "f2f20750-d910-47db-b386-dc8892b51c00")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "3")
+						)
+						(pin
+							(num "7")
+						)
+						(pin
+							(num "2")
+						)
+						(pin
+							(num "6")
+						)
+						(pin
+							(num "8")
+						)
+						(pin
+							(num "5")
+						)
+						(pin
+							(num "4")
+						)
+						(pin
+							(num "9")
+						)
+						(pin
+							(num "10")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "MK1")
+			(value "AOM-5024L-HD-R")
+			(footprint "crow_mic_pod_v3:Mic_Wire_Pads_P5.00mm")
+			(fields
+				(field
+					(name "Manufacturer Part Number") "AOM-5024L-HD-R")
+				(field
+					(name "Supplier Part Numbers") "{}")
+				(field
+					(name "Footprint") "crow_mic_pod_v3:Mic_Wire_Pads_P5.00mm")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "elt")
+				(part "SYM_MK1")
+				(description "")
+			)
+			(property
+				(name "Manufacturer Part Number")
+				(value "AOM-5024L-HD-R")
+			)
+			(property
+				(name "Supplier Part Numbers")
+				(value "{}")
+			)
+			(property
+				(name "Sheetname")
+				(value "crow_mic_pod_v3")
+			)
+			(property
+				(name "Sheetfile")
+				(value "crow_mic_pod_v3.kicad_sch")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "fb146f26-0917-4ff4-8311-d0c5f1483ba0")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "R1")
+			(value "324kΩ")
+			(footprint "Resistor_SMD:R_0402_1005Metric")
+			(fields
+				(field
+					(name "Manufacturer Part Number") "0402WGF3243TCE")
+				(field
+					(name "Supplier Part Numbers") "{\"jlcpcb\": [\"C113480\"]}")
+				(field
+					(name "Footprint") "Resistor_SMD:R_0402_1005Metric")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "elt")
+				(part "SYM_R1")
+				(description "")
+			)
+			(property
+				(name "Manufacturer Part Number")
+				(value "0402WGF3243TCE")
+			)
+			(property
+				(name "Supplier Part Numbers")
+				(value "{\"jlcpcb\": [\"C113480\"]}")
+			)
+			(property
+				(name "Sheetname")
+				(value "crow_mic_pod_v3")
+			)
+			(property
+				(name "Sheetfile")
+				(value "crow_mic_pod_v3.kicad_sch")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "567e9a55-e687-4f07-90a0-3aebfb0d937c")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "R2")
+			(value "100kΩ")
+			(footprint "Resistor_SMD:R_0402_1005Metric")
+			(fields
+				(field
+					(name "Manufacturer Part Number") "0402WGF1003TCE")
+				(field
+					(name "Supplier Part Numbers") "{\"jlcpcb\": [\"C25741\"]}")
+				(field
+					(name "Footprint") "Resistor_SMD:R_0402_1005Metric")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "elt")
+				(part "SYM_R2")
+				(description "")
+			)
+			(property
+				(name "Manufacturer Part Number")
+				(value "0402WGF1003TCE")
+			)
+			(property
+				(name "Supplier Part Numbers")
+				(value "{\"jlcpcb\": [\"C25741\"]}")
+			)
+			(property
+				(name "Sheetname")
+				(value "crow_mic_pod_v3")
+			)
+			(property
+				(name "Sheetfile")
+				(value "crow_mic_pod_v3.kicad_sch")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "6318db7f-eefc-4e36-ab43-99889b0b64af")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "R3")
+			(value "3.9kΩ")
+			(footprint "Resistor_SMD:R_0805_2012Metric")
+			(fields
+				(field
+					(name "Manufacturer Part Number") "0805W8F3901T5E")
+				(field
+					(name "Supplier Part Numbers") "{\"jlcpcb\": [\"C17614\"]}")
+				(field
+					(name "Footprint") "Resistor_SMD:R_0805_2012Metric")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "elt")
+				(part "SYM_R3")
+				(description "")
+			)
+			(property
+				(name "Manufacturer Part Number")
+				(value "0805W8F3901T5E")
+			)
+			(property
+				(name "Supplier Part Numbers")
+				(value "{\"jlcpcb\": [\"C17614\"]}")
+			)
+			(property
+				(name "Sheetname")
+				(value "crow_mic_pod_v3")
+			)
+			(property
+				(name "Sheetfile")
+				(value "crow_mic_pod_v3.kicad_sch")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "1707eeec-8b25-497f-ab44-60e25399cc5f")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "R4")
+			(value "2.2kΩ")
+			(footprint "Resistor_SMD:R_0402_1005Metric")
+			(fields
+				(field
+					(name "Manufacturer Part Number") "0402WGF2201TCE")
+				(field
+					(name "Supplier Part Numbers") "{\"jlcpcb\": [\"C25879\"]}")
+				(field
+					(name "Footprint") "Resistor_SMD:R_0402_1005Metric")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "elt")
+				(part "SYM_R4")
+				(description "")
+			)
+			(property
+				(name "Manufacturer Part Number")
+				(value "0402WGF2201TCE")
+			)
+			(property
+				(name "Supplier Part Numbers")
+				(value "{\"jlcpcb\": [\"C25879\"]}")
+			)
+			(property
+				(name "Sheetname")
+				(value "crow_mic_pod_v3")
+			)
+			(property
+				(name "Sheetfile")
+				(value "crow_mic_pod_v3.kicad_sch")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "ac0a1c57-3c77-4071-983a-6403269e471c")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "R5")
+			(value "100kΩ")
+			(footprint "Resistor_SMD:R_0402_1005Metric")
+			(fields
+				(field
+					(name "Manufacturer Part Number") "0402WGF1003TCE")
+				(field
+					(name "Supplier Part Numbers") "{\"jlcpcb\": [\"C25741\"]}")
+				(field
+					(name "Footprint") "Resistor_SMD:R_0402_1005Metric")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "elt")
+				(part "SYM_R5")
+				(description "")
+			)
+			(property
+				(name "Manufacturer Part Number")
+				(value "0402WGF1003TCE")
+			)
+			(property
+				(name "Supplier Part Numbers")
+				(value "{\"jlcpcb\": [\"C25741\"]}")
+			)
+			(property
+				(name "Sheetname")
+				(value "crow_mic_pod_v3")
+			)
+			(property
+				(name "Sheetfile")
+				(value "crow_mic_pod_v3.kicad_sch")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "5f1335c8-4b64-42ca-9818-8c64b7292c39")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "R6")
+			(value "22kΩ")
+			(footprint "Resistor_SMD:R_0402_1005Metric")
+			(fields
+				(field
+					(name "Manufacturer Part Number") "0402WGF2202TCE")
+				(field
+					(name "Supplier Part Numbers") "{\"jlcpcb\": [\"C25768\"]}")
+				(field
+					(name "Footprint") "Resistor_SMD:R_0402_1005Metric")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "elt")
+				(part "SYM_R6")
+				(description "")
+			)
+			(property
+				(name "Manufacturer Part Number")
+				(value "0402WGF2202TCE")
+			)
+			(property
+				(name "Supplier Part Numbers")
+				(value "{\"jlcpcb\": [\"C25768\"]}")
+			)
+			(property
+				(name "Sheetname")
+				(value "crow_mic_pod_v3")
+			)
+			(property
+				(name "Sheetfile")
+				(value "crow_mic_pod_v3.kicad_sch")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "bbb18145-1f8d-4358-8456-fc7d4056685b")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "R7")
+			(value "22kΩ")
+			(footprint "Resistor_SMD:R_0402_1005Metric")
+			(fields
+				(field
+					(name "Manufacturer Part Number") "0402WGF2202TCE")
+				(field
+					(name "Supplier Part Numbers") "{\"jlcpcb\": [\"C25768\"]}")
+				(field
+					(name "Footprint") "Resistor_SMD:R_0402_1005Metric")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "elt")
+				(part "SYM_R7")
+				(description "")
+			)
+			(property
+				(name "Manufacturer Part Number")
+				(value "0402WGF2202TCE")
+			)
+			(property
+				(name "Supplier Part Numbers")
+				(value "{\"jlcpcb\": [\"C25768\"]}")
+			)
+			(property
+				(name "Sheetname")
+				(value "crow_mic_pod_v3")
+			)
+			(property
+				(name "Sheetfile")
+				(value "crow_mic_pod_v3.kicad_sch")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "095f825e-8960-4fc6-a07f-42170736c4e1")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "R8")
+			(value "22kΩ")
+			(footprint "Resistor_SMD:R_0402_1005Metric")
+			(fields
+				(field
+					(name "Manufacturer Part Number") "0402WGF2202TCE")
+				(field
+					(name "Supplier Part Numbers") "{\"jlcpcb\": [\"C25768\"]}")
+				(field
+					(name "Footprint") "Resistor_SMD:R_0402_1005Metric")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "elt")
+				(part "SYM_R8")
+				(description "")
+			)
+			(property
+				(name "Manufacturer Part Number")
+				(value "0402WGF2202TCE")
+			)
+			(property
+				(name "Supplier Part Numbers")
+				(value "{\"jlcpcb\": [\"C25768\"]}")
+			)
+			(property
+				(name "Sheetname")
+				(value "crow_mic_pod_v3")
+			)
+			(property
+				(name "Sheetfile")
+				(value "crow_mic_pod_v3.kicad_sch")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "2379bba8-133f-48b2-84cb-b2afbfe37d2b")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "R9")
+			(value "18kΩ")
+			(footprint "Resistor_SMD:R_0402_1005Metric")
+			(fields
+				(field
+					(name "Manufacturer Part Number") "0402WGF1802TCE")
+				(field
+					(name "Supplier Part Numbers") "{\"jlcpcb\": [\"C25762\"]}")
+				(field
+					(name "Footprint") "Resistor_SMD:R_0402_1005Metric")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "elt")
+				(part "SYM_R9")
+				(description "")
+			)
+			(property
+				(name "Manufacturer Part Number")
+				(value "0402WGF1802TCE")
+			)
+			(property
+				(name "Supplier Part Numbers")
+				(value "{\"jlcpcb\": [\"C25762\"]}")
+			)
+			(property
+				(name "Sheetname")
+				(value "crow_mic_pod_v3")
+			)
+			(property
+				(name "Sheetfile")
+				(value "crow_mic_pod_v3.kicad_sch")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "093652e9-8a22-4b4c-94b1-2aa6188b8d37")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "R10")
+			(value "10kΩ")
+			(footprint "Resistor_SMD:R_0402_1005Metric")
+			(fields
+				(field
+					(name "Manufacturer Part Number") "RC0402FR-0710KL")
+				(field
+					(name "Supplier Part Numbers") "{\"jlcpcb\": [\"C60490\"]}")
+				(field
+					(name "Footprint") "Resistor_SMD:R_0402_1005Metric")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "elt")
+				(part "SYM_R10")
+				(description "")
+			)
+			(property
+				(name "Manufacturer Part Number")
+				(value "RC0402FR-0710KL")
+			)
+			(property
+				(name "Supplier Part Numbers")
+				(value "{\"jlcpcb\": [\"C60490\"]}")
+			)
+			(property
+				(name "Sheetname")
+				(value "crow_mic_pod_v3")
+			)
+			(property
+				(name "Sheetfile")
+				(value "crow_mic_pod_v3.kicad_sch")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "8f9ce1dd-aaba-42cf-a3d3-a01a90ec8e9a")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "R11")
+			(value "10kΩ")
+			(footprint "Resistor_SMD:R_0402_1005Metric")
+			(fields
+				(field
+					(name "Manufacturer Part Number") "RC0402FR-0710KL")
+				(field
+					(name "Supplier Part Numbers") "{\"jlcpcb\": [\"C60490\"]}")
+				(field
+					(name "Footprint") "Resistor_SMD:R_0402_1005Metric")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "elt")
+				(part "SYM_R11")
+				(description "")
+			)
+			(property
+				(name "Manufacturer Part Number")
+				(value "RC0402FR-0710KL")
+			)
+			(property
+				(name "Supplier Part Numbers")
+				(value "{\"jlcpcb\": [\"C60490\"]}")
+			)
+			(property
+				(name "Sheetname")
+				(value "crow_mic_pod_v3")
+			)
+			(property
+				(name "Sheetfile")
+				(value "crow_mic_pod_v3.kicad_sch")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "315dee83-1404-4bdd-bfec-72a0b7fa0344")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "R12")
+			(value "100Ω")
+			(footprint "Resistor_SMD:R_0805_2012Metric")
+			(fields
+				(field
+					(name "Manufacturer Part Number") "0805W8F1000T5E")
+				(field
+					(name "Supplier Part Numbers") "{\"jlcpcb\": [\"C17408\"]}")
+				(field
+					(name "Footprint") "Resistor_SMD:R_0805_2012Metric")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "elt")
+				(part "SYM_R12")
+				(description "")
+			)
+			(property
+				(name "Manufacturer Part Number")
+				(value "0805W8F1000T5E")
+			)
+			(property
+				(name "Supplier Part Numbers")
+				(value "{\"jlcpcb\": [\"C17408\"]}")
+			)
+			(property
+				(name "Sheetname")
+				(value "crow_mic_pod_v3")
+			)
+			(property
+				(name "Sheetfile")
+				(value "crow_mic_pod_v3.kicad_sch")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "dba5a996-51ba-4a57-93e4-0209560ce917")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "R13")
+			(value "100Ω")
+			(footprint "Resistor_SMD:R_0805_2012Metric")
+			(fields
+				(field
+					(name "Manufacturer Part Number") "0805W8F1000T5E")
+				(field
+					(name "Supplier Part Numbers") "{\"jlcpcb\": [\"C17408\"]}")
+				(field
+					(name "Footprint") "Resistor_SMD:R_0805_2012Metric")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "elt")
+				(part "SYM_R13")
+				(description "")
+			)
+			(property
+				(name "Manufacturer Part Number")
+				(value "0805W8F1000T5E")
+			)
+			(property
+				(name "Supplier Part Numbers")
+				(value "{\"jlcpcb\": [\"C17408\"]}")
+			)
+			(property
+				(name "Sheetname")
+				(value "crow_mic_pod_v3")
+			)
+			(property
+				(name "Sheetfile")
+				(value "crow_mic_pod_v3.kicad_sch")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "a34f1301-373a-40bc-a330-471a7930ee28")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "R14")
+			(value "4.7kΩ")
+			(footprint "Resistor_SMD:R_1206_3216Metric")
+			(fields
+				(field
+					(name "Manufacturer Part Number") "1206W4F4701T5E")
+				(field
+					(name "Supplier Part Numbers") "{\"jlcpcb\": [\"C17936\"]}")
+				(field
+					(name "Footprint") "Resistor_SMD:R_1206_3216Metric")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "elt")
+				(part "SYM_R14")
+				(description "")
+			)
+			(property
+				(name "Manufacturer Part Number")
+				(value "1206W4F4701T5E")
+			)
+			(property
+				(name "Supplier Part Numbers")
+				(value "{\"jlcpcb\": [\"C17936\"]}")
+			)
+			(property
+				(name "Sheetname")
+				(value "crow_mic_pod_v3")
+			)
+			(property
+				(name "Sheetfile")
+				(value "crow_mic_pod_v3.kicad_sch")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "0897f4a8-8fb0-499c-8306-02d0ebebd989")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "TP1")
+			(value "TP")
+			(footprint "TestPoint:TestPoint_Pad_D1.5mm")
+			(fields
+				(field
+					(name "Manufacturer Part Number")
+				)
+				(field
+					(name "Supplier Part Numbers") "{}")
+				(field
+					(name "Footprint") "TestPoint:TestPoint_Pad_D1.5mm")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "elt")
+				(part "SYM_TP1")
+				(description "")
+			)
+			(property
+				(name "Manufacturer Part Number")
+				(value "")
+			)
+			(property
+				(name "Supplier Part Numbers")
+				(value "{}")
+			)
+			(property
+				(name "Sheetname")
+				(value "crow_mic_pod_v3")
+			)
+			(property
+				(name "Sheetfile")
+				(value "crow_mic_pod_v3.kicad_sch")
+			)
+			(property
+				(name "exclude_from_bom")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "09f1ef01-1b5b-448d-8450-89b9e5c878b0")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "TP2")
+			(value "TP")
+			(footprint "TestPoint:TestPoint_Pad_D1.5mm")
+			(fields
+				(field
+					(name "Manufacturer Part Number")
+				)
+				(field
+					(name "Supplier Part Numbers") "{}")
+				(field
+					(name "Footprint") "TestPoint:TestPoint_Pad_D1.5mm")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "elt")
+				(part "SYM_TP2")
+				(description "")
+			)
+			(property
+				(name "Manufacturer Part Number")
+				(value "")
+			)
+			(property
+				(name "Supplier Part Numbers")
+				(value "{}")
+			)
+			(property
+				(name "Sheetname")
+				(value "crow_mic_pod_v3")
+			)
+			(property
+				(name "Sheetfile")
+				(value "crow_mic_pod_v3.kicad_sch")
+			)
+			(property
+				(name "exclude_from_bom")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "862b4257-32f0-4cd2-877e-ce9f6a777ce1")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "TP3")
+			(value "TP")
+			(footprint "TestPoint:TestPoint_Pad_D1.5mm")
+			(fields
+				(field
+					(name "Manufacturer Part Number")
+				)
+				(field
+					(name "Supplier Part Numbers") "{}")
+				(field
+					(name "Footprint") "TestPoint:TestPoint_Pad_D1.5mm")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "elt")
+				(part "SYM_TP3")
+				(description "")
+			)
+			(property
+				(name "Manufacturer Part Number")
+				(value "")
+			)
+			(property
+				(name "Supplier Part Numbers")
+				(value "{}")
+			)
+			(property
+				(name "Sheetname")
+				(value "crow_mic_pod_v3")
+			)
+			(property
+				(name "Sheetfile")
+				(value "crow_mic_pod_v3.kicad_sch")
+			)
+			(property
+				(name "exclude_from_bom")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "0e451fa0-e21b-41df-92f5-c3435285aa73")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "TP4")
+			(value "TP")
+			(footprint "TestPoint:TestPoint_Pad_D1.5mm")
+			(fields
+				(field
+					(name "Manufacturer Part Number")
+				)
+				(field
+					(name "Supplier Part Numbers") "{}")
+				(field
+					(name "Footprint") "TestPoint:TestPoint_Pad_D1.5mm")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "elt")
+				(part "SYM_TP4")
+				(description "")
+			)
+			(property
+				(name "Manufacturer Part Number")
+				(value "")
+			)
+			(property
+				(name "Supplier Part Numbers")
+				(value "{}")
+			)
+			(property
+				(name "Sheetname")
+				(value "crow_mic_pod_v3")
+			)
+			(property
+				(name "Sheetfile")
+				(value "crow_mic_pod_v3.kicad_sch")
+			)
+			(property
+				(name "exclude_from_bom")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "3019edef-f75a-431c-9c1c-49a543f40e03")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "TP5")
+			(value "TP")
+			(footprint "TestPoint:TestPoint_Pad_D1.5mm")
+			(fields
+				(field
+					(name "Manufacturer Part Number")
+				)
+				(field
+					(name "Supplier Part Numbers") "{}")
+				(field
+					(name "Footprint") "TestPoint:TestPoint_Pad_D1.5mm")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "elt")
+				(part "SYM_TP5")
+				(description "")
+			)
+			(property
+				(name "Manufacturer Part Number")
+				(value "")
+			)
+			(property
+				(name "Supplier Part Numbers")
+				(value "{}")
+			)
+			(property
+				(name "Sheetname")
+				(value "crow_mic_pod_v3")
+			)
+			(property
+				(name "Sheetfile")
+				(value "crow_mic_pod_v3.kicad_sch")
+			)
+			(property
+				(name "exclude_from_bom")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "bf259ee2-00d2-4591-9c64-bfe21283923c")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "TP6")
+			(value "TP")
+			(footprint "TestPoint:TestPoint_Pad_D1.5mm")
+			(fields
+				(field
+					(name "Manufacturer Part Number")
+				)
+				(field
+					(name "Supplier Part Numbers") "{}")
+				(field
+					(name "Footprint") "TestPoint:TestPoint_Pad_D1.5mm")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "elt")
+				(part "SYM_TP6")
+				(description "")
+			)
+			(property
+				(name "Manufacturer Part Number")
+				(value "")
+			)
+			(property
+				(name "Supplier Part Numbers")
+				(value "{}")
+			)
+			(property
+				(name "Sheetname")
+				(value "crow_mic_pod_v3")
+			)
+			(property
+				(name "Sheetfile")
+				(value "crow_mic_pod_v3.kicad_sch")
+			)
+			(property
+				(name "exclude_from_bom")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "8109282b-54fd-4a75-b4f4-c5fa54c424ad")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "TP7")
+			(value "TP")
+			(footprint "TestPoint:TestPoint_Pad_D1.5mm")
+			(fields
+				(field
+					(name "Manufacturer Part Number")
+				)
+				(field
+					(name "Supplier Part Numbers") "{}")
+				(field
+					(name "Footprint") "TestPoint:TestPoint_Pad_D1.5mm")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "elt")
+				(part "SYM_TP7")
+				(description "")
+			)
+			(property
+				(name "Manufacturer Part Number")
+				(value "")
+			)
+			(property
+				(name "Supplier Part Numbers")
+				(value "{}")
+			)
+			(property
+				(name "Sheetname")
+				(value "crow_mic_pod_v3")
+			)
+			(property
+				(name "Sheetfile")
+				(value "crow_mic_pod_v3.kicad_sch")
+			)
+			(property
+				(name "exclude_from_bom")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "74a57f8b-a737-4ef0-8c10-09eca8cde388")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "U1")
+			(value "OPA1679IDR")
+			(footprint "crow_mic_pod_v3:TI_OPA1679_SOIC-14_D")
+			(fields
+				(field
+					(name "Manufacturer Part Number") "OPA1679IDR")
+				(field
+					(name "Supplier Part Numbers") "{\"jlcpcb\": [\"C2878631\"]}")
+				(field
+					(name "Footprint") "crow_mic_pod_v3:TI_OPA1679_SOIC-14_D")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "elt")
+				(part "SYM_U1")
+				(description "")
+			)
+			(property
+				(name "Manufacturer Part Number")
+				(value "OPA1679IDR")
+			)
+			(property
+				(name "Supplier Part Numbers")
+				(value "{\"jlcpcb\": [\"C2878631\"]}")
+			)
+			(property
+				(name "Sheetname")
+				(value "crow_mic_pod_v3")
+			)
+			(property
+				(name "Sheetfile")
+				(value "crow_mic_pod_v3.kicad_sch")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "11ebb4ad-1d5a-4b1f-bbaa-b746d109a0ab")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "3")
+						)
+						(pin
+							(num "2")
+						)
+						(pin
+							(num "5")
+						)
+						(pin
+							(num "6")
+						)
+						(pin
+							(num "10")
+						)
+						(pin
+							(num "9")
+						)
+						(pin
+							(num "12")
+						)
+						(pin
+							(num "13")
+						)
+						(pin
+							(num "11")
+						)
+						(pin
+							(num "4")
+						)
+						(pin
+							(num "14")
+						)
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "7")
+						)
+						(pin
+							(num "8")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "U2")
+			(value "TPS7A4901DGNR")
+			(footprint "crow_mic_pod_v3:TI_TPS7A4901_DGN0008D")
+			(fields
+				(field
+					(name "Manufacturer Part Number") "TPS7A4901DGNR")
+				(field
+					(name "Supplier Part Numbers") "{\"jlcpcb\": [\"C16430\"]}")
+				(field
+					(name "Footprint") "crow_mic_pod_v3:TI_TPS7A4901_DGN0008D")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "elt")
+				(part "SYM_U2")
+				(description "")
+			)
+			(property
+				(name "Manufacturer Part Number")
+				(value "TPS7A4901DGNR")
+			)
+			(property
+				(name "Supplier Part Numbers")
+				(value "{\"jlcpcb\": [\"C16430\"]}")
+			)
+			(property
+				(name "Sheetname")
+				(value "crow_mic_pod_v3")
+			)
+			(property
+				(name "Sheetfile")
+				(value "crow_mic_pod_v3.kicad_sch")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "dfa1c9aa-e771-4265-a675-723be0c8d943")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "8")
+						)
+						(pin
+							(num "5")
+						)
+						(pin
+							(num "6")
+						)
+						(pin
+							(num "3")
+						)
+						(pin
+							(num "4")
+						)
+						(pin
+							(num "7")
+						)
+						(pin
+							(num "9")
+						)
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "U3")
+			(value "TPD2E2U06DRLR")
+			(footprint "crow_mic_pod_v3:TI_TPD2E2U06_DRL")
+			(fields
+				(field
+					(name "Manufacturer Part Number") "TPD2E2U06DRLR")
+				(field
+					(name "Supplier Part Numbers") "{\"jlcpcb\": [\"C1972959\"]}")
+				(field
+					(name "Footprint") "crow_mic_pod_v3:TI_TPD2E2U06_DRL")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "elt")
+				(part "SYM_U3")
+				(description "")
+			)
+			(property
+				(name "Manufacturer Part Number")
+				(value "TPD2E2U06DRLR")
+			)
+			(property
+				(name "Supplier Part Numbers")
+				(value "{\"jlcpcb\": [\"C1972959\"]}")
+			)
+			(property
+				(name "Sheetname")
+				(value "crow_mic_pod_v3")
+			)
+			(property
+				(name "Sheetfile")
+				(value "crow_mic_pod_v3.kicad_sch")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "4fdc7641-9e31-4857-89dd-cb2704a63918")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+						(pin
+							(num "3")
+						)
+						(pin
+							(num "5")
+						)
+						(pin
+							(num "4")
+						)
+					)
+				)
+			)
+		)
+	)
+	(groups)
+	(variants)
+	(libparts
+		(libpart
+			(lib "elt")
+			(part "SYM_C1")
+			(fields
+				(field
+					(name "Reference") "C")
+				(field
+					(name "Value") "SYM_C1")
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "")
+					(type "passive")
+				)
+				(pin
+					(num "2")
+					(name "")
+					(type "passive")
+				)
+			)
+		)
+		(libpart
+			(lib "elt")
+			(part "SYM_C10")
+			(fields
+				(field
+					(name "Reference") "C")
+				(field
+					(name "Value") "SYM_C10")
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "")
+					(type "passive")
+				)
+				(pin
+					(num "2")
+					(name "")
+					(type "passive")
+				)
+			)
+		)
+		(libpart
+			(lib "elt")
+			(part "SYM_C11")
+			(fields
+				(field
+					(name "Reference") "C")
+				(field
+					(name "Value") "SYM_C11")
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "")
+					(type "passive")
+				)
+				(pin
+					(num "2")
+					(name "")
+					(type "passive")
+				)
+			)
+		)
+		(libpart
+			(lib "elt")
+			(part "SYM_C2")
+			(fields
+				(field
+					(name "Reference") "C")
+				(field
+					(name "Value") "SYM_C2")
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "")
+					(type "passive")
+				)
+				(pin
+					(num "2")
+					(name "")
+					(type "passive")
+				)
+			)
+		)
+		(libpart
+			(lib "elt")
+			(part "SYM_C3")
+			(fields
+				(field
+					(name "Reference") "C")
+				(field
+					(name "Value") "SYM_C3")
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "")
+					(type "passive")
+				)
+				(pin
+					(num "2")
+					(name "")
+					(type "passive")
+				)
+			)
+		)
+		(libpart
+			(lib "elt")
+			(part "SYM_C4")
+			(fields
+				(field
+					(name "Reference") "C")
+				(field
+					(name "Value") "SYM_C4")
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "")
+					(type "passive")
+				)
+				(pin
+					(num "2")
+					(name "")
+					(type "passive")
+				)
+			)
+		)
+		(libpart
+			(lib "elt")
+			(part "SYM_C5")
+			(fields
+				(field
+					(name "Reference") "C")
+				(field
+					(name "Value") "SYM_C5")
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "")
+					(type "passive")
+				)
+				(pin
+					(num "2")
+					(name "")
+					(type "passive")
+				)
+			)
+		)
+		(libpart
+			(lib "elt")
+			(part "SYM_C6")
+			(fields
+				(field
+					(name "Reference") "C")
+				(field
+					(name "Value") "SYM_C6")
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "")
+					(type "passive")
+				)
+				(pin
+					(num "2")
+					(name "")
+					(type "passive")
+				)
+			)
+		)
+		(libpart
+			(lib "elt")
+			(part "SYM_C7")
+			(fields
+				(field
+					(name "Reference") "C")
+				(field
+					(name "Value") "SYM_C7")
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "")
+					(type "passive")
+				)
+				(pin
+					(num "2")
+					(name "")
+					(type "passive")
+				)
+			)
+		)
+		(libpart
+			(lib "elt")
+			(part "SYM_C8")
+			(fields
+				(field
+					(name "Reference") "C")
+				(field
+					(name "Value") "SYM_C8")
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "")
+					(type "passive")
+				)
+				(pin
+					(num "2")
+					(name "")
+					(type "passive")
+				)
+			)
+		)
+		(libpart
+			(lib "elt")
+			(part "SYM_C9")
+			(fields
+				(field
+					(name "Reference") "C")
+				(field
+					(name "Value") "SYM_C9")
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "")
+					(type "passive")
+				)
+				(pin
+					(num "2")
+					(name "")
+					(type "passive")
+				)
+			)
+		)
+		(libpart
+			(lib "elt")
+			(part "SYM_D1")
+			(fields
+				(field
+					(name "Reference") "D")
+				(field
+					(name "Value") "SYM_D1")
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "K")
+					(type "passive")
+				)
+				(pin
+					(num "2")
+					(name "A")
+					(type "passive")
+				)
+			)
+		)
+		(libpart
+			(lib "elt")
+			(part "SYM_D2")
+			(fields
+				(field
+					(name "Reference") "D")
+				(field
+					(name "Value") "SYM_D2")
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "K")
+					(type "passive")
+				)
+				(pin
+					(num "2")
+					(name "A")
+					(type "passive")
+				)
+			)
+		)
+		(libpart
+			(lib "elt")
+			(part "SYM_F1")
+			(fields
+				(field
+					(name "Reference") "F")
+				(field
+					(name "Value") "SYM_F1")
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "IN")
+					(type "passive")
+				)
+				(pin
+					(num "2")
+					(name "OUT")
+					(type "passive")
+				)
+			)
+		)
+		(libpart
+			(lib "elt")
+			(part "SYM_J1")
+			(fields
+				(field
+					(name "Reference") "J")
+				(field
+					(name "Value") "SYM_J1")
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "12V_1")
+					(type "passive")
+				)
+				(pin
+					(num "2")
+					(name "GND_1")
+					(type "passive")
+				)
+				(pin
+					(num "3")
+					(name "12V_2")
+					(type "passive")
+				)
+				(pin
+					(num "4")
+					(name "AUDIO_N")
+					(type "passive")
+				)
+				(pin
+					(num "5")
+					(name "AUDIO_P")
+					(type "passive")
+				)
+				(pin
+					(num "6")
+					(name "GND_2")
+					(type "passive")
+				)
+				(pin
+					(num "7")
+					(name "12V_3")
+					(type "passive")
+				)
+				(pin
+					(num "8")
+					(name "GND_3")
+					(type "passive")
+				)
+				(pin
+					(num "9")
+					(name "SHIELD_S1")
+					(type "passive")
+				)
+				(pin
+					(num "10")
+					(name "SHIELD_S2")
+					(type "passive")
+				)
+			)
+		)
+		(libpart
+			(lib "elt")
+			(part "SYM_MK1")
+			(fields
+				(field
+					(name "Reference") "M")
+				(field
+					(name "Value") "SYM_MK1")
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "CAPSULE_POS")
+					(type "passive")
+				)
+				(pin
+					(num "2")
+					(name "CAPSULE_NEG")
+					(type "passive")
+				)
+			)
+		)
+		(libpart
+			(lib "elt")
+			(part "SYM_R1")
+			(fields
+				(field
+					(name "Reference") "R")
+				(field
+					(name "Value") "SYM_R1")
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "")
+					(type "passive")
+				)
+				(pin
+					(num "2")
+					(name "")
+					(type "passive")
+				)
+			)
+		)
+		(libpart
+			(lib "elt")
+			(part "SYM_R10")
+			(fields
+				(field
+					(name "Reference") "R")
+				(field
+					(name "Value") "SYM_R10")
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "")
+					(type "passive")
+				)
+				(pin
+					(num "2")
+					(name "")
+					(type "passive")
+				)
+			)
+		)
+		(libpart
+			(lib "elt")
+			(part "SYM_R11")
+			(fields
+				(field
+					(name "Reference") "R")
+				(field
+					(name "Value") "SYM_R11")
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "")
+					(type "passive")
+				)
+				(pin
+					(num "2")
+					(name "")
+					(type "passive")
+				)
+			)
+		)
+		(libpart
+			(lib "elt")
+			(part "SYM_R12")
+			(fields
+				(field
+					(name "Reference") "R")
+				(field
+					(name "Value") "SYM_R12")
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "")
+					(type "passive")
+				)
+				(pin
+					(num "2")
+					(name "")
+					(type "passive")
+				)
+			)
+		)
+		(libpart
+			(lib "elt")
+			(part "SYM_R13")
+			(fields
+				(field
+					(name "Reference") "R")
+				(field
+					(name "Value") "SYM_R13")
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "")
+					(type "passive")
+				)
+				(pin
+					(num "2")
+					(name "")
+					(type "passive")
+				)
+			)
+		)
+		(libpart
+			(lib "elt")
+			(part "SYM_R14")
+			(fields
+				(field
+					(name "Reference") "R")
+				(field
+					(name "Value") "SYM_R14")
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "")
+					(type "passive")
+				)
+				(pin
+					(num "2")
+					(name "")
+					(type "passive")
+				)
+			)
+		)
+		(libpart
+			(lib "elt")
+			(part "SYM_R2")
+			(fields
+				(field
+					(name "Reference") "R")
+				(field
+					(name "Value") "SYM_R2")
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "")
+					(type "passive")
+				)
+				(pin
+					(num "2")
+					(name "")
+					(type "passive")
+				)
+			)
+		)
+		(libpart
+			(lib "elt")
+			(part "SYM_R3")
+			(fields
+				(field
+					(name "Reference") "R")
+				(field
+					(name "Value") "SYM_R3")
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "")
+					(type "passive")
+				)
+				(pin
+					(num "2")
+					(name "")
+					(type "passive")
+				)
+			)
+		)
+		(libpart
+			(lib "elt")
+			(part "SYM_R4")
+			(fields
+				(field
+					(name "Reference") "R")
+				(field
+					(name "Value") "SYM_R4")
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "")
+					(type "passive")
+				)
+				(pin
+					(num "2")
+					(name "")
+					(type "passive")
+				)
+			)
+		)
+		(libpart
+			(lib "elt")
+			(part "SYM_R5")
+			(fields
+				(field
+					(name "Reference") "R")
+				(field
+					(name "Value") "SYM_R5")
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "")
+					(type "passive")
+				)
+				(pin
+					(num "2")
+					(name "")
+					(type "passive")
+				)
+			)
+		)
+		(libpart
+			(lib "elt")
+			(part "SYM_R6")
+			(fields
+				(field
+					(name "Reference") "R")
+				(field
+					(name "Value") "SYM_R6")
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "")
+					(type "passive")
+				)
+				(pin
+					(num "2")
+					(name "")
+					(type "passive")
+				)
+			)
+		)
+		(libpart
+			(lib "elt")
+			(part "SYM_R7")
+			(fields
+				(field
+					(name "Reference") "R")
+				(field
+					(name "Value") "SYM_R7")
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "")
+					(type "passive")
+				)
+				(pin
+					(num "2")
+					(name "")
+					(type "passive")
+				)
+			)
+		)
+		(libpart
+			(lib "elt")
+			(part "SYM_R8")
+			(fields
+				(field
+					(name "Reference") "R")
+				(field
+					(name "Value") "SYM_R8")
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "")
+					(type "passive")
+				)
+				(pin
+					(num "2")
+					(name "")
+					(type "passive")
+				)
+			)
+		)
+		(libpart
+			(lib "elt")
+			(part "SYM_R9")
+			(fields
+				(field
+					(name "Reference") "R")
+				(field
+					(name "Value") "SYM_R9")
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "")
+					(type "passive")
+				)
+				(pin
+					(num "2")
+					(name "")
+					(type "passive")
+				)
+			)
+		)
+		(libpart
+			(lib "elt")
+			(part "SYM_TP1")
+			(fields
+				(field
+					(name "Reference") "T")
+				(field
+					(name "Value") "SYM_TP1")
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "")
+					(type "passive")
+				)
+			)
+		)
+		(libpart
+			(lib "elt")
+			(part "SYM_TP2")
+			(fields
+				(field
+					(name "Reference") "T")
+				(field
+					(name "Value") "SYM_TP2")
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "")
+					(type "passive")
+				)
+			)
+		)
+		(libpart
+			(lib "elt")
+			(part "SYM_TP3")
+			(fields
+				(field
+					(name "Reference") "T")
+				(field
+					(name "Value") "SYM_TP3")
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "")
+					(type "passive")
+				)
+			)
+		)
+		(libpart
+			(lib "elt")
+			(part "SYM_TP4")
+			(fields
+				(field
+					(name "Reference") "T")
+				(field
+					(name "Value") "SYM_TP4")
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "")
+					(type "passive")
+				)
+			)
+		)
+		(libpart
+			(lib "elt")
+			(part "SYM_TP5")
+			(fields
+				(field
+					(name "Reference") "T")
+				(field
+					(name "Value") "SYM_TP5")
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "")
+					(type "passive")
+				)
+			)
+		)
+		(libpart
+			(lib "elt")
+			(part "SYM_TP6")
+			(fields
+				(field
+					(name "Reference") "T")
+				(field
+					(name "Value") "SYM_TP6")
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "")
+					(type "passive")
+				)
+			)
+		)
+		(libpart
+			(lib "elt")
+			(part "SYM_TP7")
+			(fields
+				(field
+					(name "Reference") "T")
+				(field
+					(name "Value") "SYM_TP7")
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "")
+					(type "passive")
+				)
+			)
+		)
+		(libpart
+			(lib "elt")
+			(part "SYM_U1")
+			(fields
+				(field
+					(name "Reference") "U")
+				(field
+					(name "Value") "SYM_U1")
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "OUTA_VREF")
+					(type "passive")
+				)
+				(pin
+					(num "2")
+					(name "INA_NEG")
+					(type "passive")
+				)
+				(pin
+					(num "3")
+					(name "INA_POS")
+					(type "passive")
+				)
+				(pin
+					(num "4")
+					(name "VPLUS")
+					(type "passive")
+				)
+				(pin
+					(num "5")
+					(name "INB_POS")
+					(type "passive")
+				)
+				(pin
+					(num "6")
+					(name "INB_NEG")
+					(type "passive")
+				)
+				(pin
+					(num "7")
+					(name "OUTB_PRE")
+					(type "passive")
+				)
+				(pin
+					(num "8")
+					(name "OUTC")
+					(type "passive")
+				)
+				(pin
+					(num "9")
+					(name "INC_NEG")
+					(type "passive")
+				)
+				(pin
+					(num "10")
+					(name "INC_POS")
+					(type "passive")
+				)
+				(pin
+					(num "11")
+					(name "VMINUS")
+					(type "passive")
+				)
+				(pin
+					(num "12")
+					(name "IND_POS")
+					(type "passive")
+				)
+				(pin
+					(num "13")
+					(name "IND_NEG")
+					(type "passive")
+				)
+				(pin
+					(num "14")
+					(name "OUTD")
+					(type "passive")
+				)
+			)
+		)
+		(libpart
+			(lib "elt")
+			(part "SYM_U2")
+			(fields
+				(field
+					(name "Reference") "U")
+				(field
+					(name "Value") "SYM_U2")
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "OUT")
+					(type "passive")
+				)
+				(pin
+					(num "2")
+					(name "FB")
+					(type "passive")
+				)
+				(pin
+					(num "3")
+					(name "NC")
+					(type "passive")
+				)
+				(pin
+					(num "4")
+					(name "GND")
+					(type "passive")
+				)
+				(pin
+					(num "5")
+					(name "EN")
+					(type "passive")
+				)
+				(pin
+					(num "6")
+					(name "NR_SS")
+					(type "passive")
+				)
+				(pin
+					(num "7")
+					(name "DNC")
+					(type "passive")
+				)
+				(pin
+					(num "8")
+					(name "IN")
+					(type "passive")
+				)
+				(pin
+					(num "9")
+					(name "EP_GND")
+					(type "passive")
+				)
+			)
+		)
+		(libpart
+			(lib "elt")
+			(part "SYM_U3")
+			(fields
+				(field
+					(name "Reference") "U")
+				(field
+					(name "Value") "SYM_U3")
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "NC1")
+					(type "passive")
+				)
+				(pin
+					(num "2")
+					(name "NC2")
+					(type "passive")
+				)
+				(pin
+					(num "3")
+					(name "IO1_AUDIO_P")
+					(type "passive")
+				)
+				(pin
+					(num "4")
+					(name "GND")
+					(type "passive")
+				)
+				(pin
+					(num "5")
+					(name "IO2_AUDIO_N")
+					(type "passive")
+				)
+			)
+		)
+	)
+	(libraries)
+	(nets
+		(net
+			(code "1")
+			(name "5V_QUIET")
+			(class "QUIET_POWER")
+			(node
+				(ref "C10")
+				(pin "1")
+				(pintype "passive")
+			)
+			(node
+				(ref "C11")
+				(pin "1")
+				(pintype "passive")
+			)
+			(node
+				(ref "C3")
+				(pin "1")
+				(pintype "passive")
+			)
+			(node
+				(ref "C5")
+				(pin "1")
+				(pintype "passive")
+			)
+			(node
+				(ref "C6")
+				(pin "1")
+				(pintype "passive")
+			)
+			(node
+				(ref "R1")
+				(pin "1")
+				(pintype "passive")
+			)
+			(node
+				(ref "R3")
+				(pin "1")
+				(pintype "passive")
+			)
+			(node
+				(ref "R6")
+				(pin "1")
+				(pintype "passive")
+			)
+			(node
+				(ref "TP3")
+				(pin "1")
+				(pintype "passive")
+			)
+			(node
+				(ref "U1")
+				(pin "4")
+				(pinfunction "VPLUS_4")
+				(pintype "passive")
+			)
+			(node
+				(ref "U2")
+				(pin "1")
+				(pinfunction "OUT_1")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "2")
+			(name "12V_FUSED")
+			(class "POD_INPUT")
+			(node
+				(ref "D1")
+				(pin "2")
+				(pinfunction "A_2")
+				(pintype "passive")
+			)
+			(node
+				(ref "F1")
+				(pin "2")
+				(pinfunction "OUT_2")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "3")
+			(name "12V_POD")
+			(class "POD_INPUT")
+			(node
+				(ref "F1")
+				(pin "1")
+				(pinfunction "IN_1")
+				(pintype "passive")
+			)
+			(node
+				(ref "J1")
+				(pin "1")
+				(pinfunction "12V_1_1")
+				(pintype "passive")
+			)
+			(node
+				(ref "J1")
+				(pin "3")
+				(pinfunction "12V_2_3")
+				(pintype "passive")
+			)
+			(node
+				(ref "J1")
+				(pin "7")
+				(pinfunction "12V_3_7")
+				(pintype "passive")
+			)
+			(node
+				(ref "TP1")
+				(pin "1")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "4")
+			(name "AUDIO_N")
+			(class "BALANCED_AUDIO")
+			(node
+				(ref "J1")
+				(pin "4")
+				(pinfunction "AUDIO_N_4")
+				(pintype "passive")
+			)
+			(node
+				(ref "R13")
+				(pin "2")
+				(pintype "passive")
+			)
+			(node
+				(ref "TP6")
+				(pin "1")
+				(pintype "passive")
+			)
+			(node
+				(ref "U3")
+				(pin "5")
+				(pinfunction "IO2_AUDIO_N_5")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "5")
+			(name "AUDIO_P")
+			(class "BALANCED_AUDIO")
+			(node
+				(ref "J1")
+				(pin "5")
+				(pinfunction "AUDIO_P_5")
+				(pintype "passive")
+			)
+			(node
+				(ref "R12")
+				(pin "2")
+				(pintype "passive")
+			)
+			(node
+				(ref "TP5")
+				(pin "1")
+				(pintype "passive")
+			)
+			(node
+				(ref "U3")
+				(pin "3")
+				(pinfunction "IO1_AUDIO_P_3")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "6")
+			(name "GND")
+			(class "Default")
+			(node
+				(ref "C1")
+				(pin "2")
+				(pintype "passive")
+			)
+			(node
+				(ref "C10")
+				(pin "2")
+				(pintype "passive")
+			)
+			(node
+				(ref "C11")
+				(pin "2")
+				(pintype "passive")
+			)
+			(node
+				(ref "C2")
+				(pin "2")
+				(pintype "passive")
+			)
+			(node
+				(ref "C4")
+				(pin "2")
+				(pintype "passive")
+			)
+			(node
+				(ref "C5")
+				(pin "2")
+				(pintype "passive")
+			)
+			(node
+				(ref "C6")
+				(pin "2")
+				(pintype "passive")
+			)
+			(node
+				(ref "C7")
+				(pin "2")
+				(pintype "passive")
+			)
+			(node
+				(ref "C9")
+				(pin "2")
+				(pintype "passive")
+			)
+			(node
+				(ref "D2")
+				(pin "2")
+				(pinfunction "A_2")
+				(pintype "passive")
+			)
+			(node
+				(ref "J1")
+				(pin "2")
+				(pinfunction "GND_1_2")
+				(pintype "passive")
+			)
+			(node
+				(ref "J1")
+				(pin "6")
+				(pinfunction "GND_2_6")
+				(pintype "passive")
+			)
+			(node
+				(ref "J1")
+				(pin "8")
+				(pinfunction "GND_3_8")
+				(pintype "passive")
+			)
+			(node
+				(ref "MK1")
+				(pin "2")
+				(pinfunction "CAPSULE_NEG_2")
+				(pintype "passive")
+			)
+			(node
+				(ref "R14")
+				(pin "2")
+				(pintype "passive")
+			)
+			(node
+				(ref "R2")
+				(pin "2")
+				(pintype "passive")
+			)
+			(node
+				(ref "R7")
+				(pin "2")
+				(pintype "passive")
+			)
+			(node
+				(ref "TP7")
+				(pin "1")
+				(pintype "passive")
+			)
+			(node
+				(ref "U1")
+				(pin "11")
+				(pinfunction "VMINUS_11")
+				(pintype "passive")
+			)
+			(node
+				(ref "U2")
+				(pin "4")
+				(pinfunction "GND_4")
+				(pintype "passive")
+			)
+			(node
+				(ref "U2")
+				(pin "9")
+				(pinfunction "EP_GND_9")
+				(pintype "passive")
+			)
+			(node
+				(ref "U3")
+				(pin "4")
+				(pinfunction "GND_4")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "7")
+			(name "LDO_FB")
+			(class "Default")
+			(node
+				(ref "C3")
+				(pin "2")
+				(pintype "passive")
+			)
+			(node
+				(ref "R1")
+				(pin "2")
+				(pintype "passive")
+			)
+			(node
+				(ref "R2")
+				(pin "1")
+				(pintype "passive")
+			)
+			(node
+				(ref "U2")
+				(pin "2")
+				(pinfunction "FB_2")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "8")
+			(name "LDO_NR")
+			(class "Default")
+			(node
+				(ref "C4")
+				(pin "1")
+				(pintype "passive")
+			)
+			(node
+				(ref "U2")
+				(pin "6")
+				(pinfunction "NR_SS_6")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "9")
+			(name "MIC_AC")
+			(class "QUIET_ANALOG")
+			(node
+				(ref "C8")
+				(pin "2")
+				(pintype "passive")
+			)
+			(node
+				(ref "R5")
+				(pin "1")
+				(pintype "passive")
+			)
+			(node
+				(ref "R8")
+				(pin "1")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "10")
+			(name "MIC_BIAS")
+			(class "QUIET_POWER")
+			(node
+				(ref "C7")
+				(pin "1")
+				(pintype "passive")
+			)
+			(node
+				(ref "R3")
+				(pin "2")
+				(pintype "passive")
+			)
+			(node
+				(ref "R4")
+				(pin "1")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "11")
+			(name "MIC_RAW")
+			(class "QUIET_ANALOG")
+			(node
+				(ref "C8")
+				(pin "1")
+				(pintype "passive")
+			)
+			(node
+				(ref "MK1")
+				(pin "1")
+				(pinfunction "CAPSULE_POS_1")
+				(pintype "passive")
+			)
+			(node
+				(ref "R4")
+				(pin "2")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "12")
+			(name "OUTP_DRV")
+			(class "BALANCED_AUDIO")
+			(node
+				(ref "R11")
+				(pin "1")
+				(pintype "passive")
+			)
+			(node
+				(ref "R12")
+				(pin "1")
+				(pintype "passive")
+			)
+			(node
+				(ref "U1")
+				(pin "8")
+				(pinfunction "OUTC_8")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "13")
+			(name "OUTP_FB")
+			(class "QUIET_ANALOG")
+			(node
+				(ref "R10")
+				(pin "2")
+				(pintype "passive")
+			)
+			(node
+				(ref "R11")
+				(pin "2")
+				(pintype "passive")
+			)
+			(node
+				(ref "U1")
+				(pin "9")
+				(pinfunction "INC_NEG_9")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "14")
+			(name "POD_SHIELD")
+			(class "Default")
+			(node
+				(ref "J1")
+				(pin "10")
+				(pinfunction "SHIELD_S2_10")
+				(pintype "passive")
+			)
+			(node
+				(ref "J1")
+				(pin "9")
+				(pinfunction "SHIELD_S1_9")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "15")
+			(name "PRE_FB")
+			(class "QUIET_ANALOG")
+			(node
+				(ref "R8")
+				(pin "2")
+				(pintype "passive")
+			)
+			(node
+				(ref "R9")
+				(pin "2")
+				(pintype "passive")
+			)
+			(node
+				(ref "U1")
+				(pin "6")
+				(pinfunction "INB_NEG_6")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "16")
+			(name "PRE_OUT")
+			(class "QUIET_ANALOG")
+			(node
+				(ref "R10")
+				(pin "1")
+				(pintype "passive")
+			)
+			(node
+				(ref "R13")
+				(pin "1")
+				(pintype "passive")
+			)
+			(node
+				(ref "R9")
+				(pin "1")
+				(pintype "passive")
+			)
+			(node
+				(ref "U1")
+				(pin "7")
+				(pinfunction "OUTB_PRE_7")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "17")
+			(name "SPARE_BUF")
+			(class "QUIET_ANALOG")
+			(node
+				(ref "U1")
+				(pin "13")
+				(pinfunction "IND_NEG_13")
+				(pintype "passive")
+			)
+			(node
+				(ref "U1")
+				(pin "14")
+				(pinfunction "OUTD_14")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "18")
+			(name "VIN_PROTECTED")
+			(class "POD_INPUT")
+			(node
+				(ref "C1")
+				(pin "1")
+				(pintype "passive")
+			)
+			(node
+				(ref "C2")
+				(pin "1")
+				(pintype "passive")
+			)
+			(node
+				(ref "D1")
+				(pin "1")
+				(pinfunction "K_1")
+				(pintype "passive")
+			)
+			(node
+				(ref "D2")
+				(pin "1")
+				(pinfunction "K_1")
+				(pintype "passive")
+			)
+			(node
+				(ref "R14")
+				(pin "1")
+				(pintype "passive")
+			)
+			(node
+				(ref "TP2")
+				(pin "1")
+				(pintype "passive")
+			)
+			(node
+				(ref "U2")
+				(pin "5")
+				(pinfunction "EN_5")
+				(pintype "passive")
+			)
+			(node
+				(ref "U2")
+				(pin "8")
+				(pinfunction "IN_8")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "19")
+			(name "VREF")
+			(class "QUIET_ANALOG")
+			(node
+				(ref "R5")
+				(pin "2")
+				(pintype "passive")
+			)
+			(node
+				(ref "TP4")
+				(pin "1")
+				(pintype "passive")
+			)
+			(node
+				(ref "U1")
+				(pin "1")
+				(pinfunction "OUTA_VREF_1")
+				(pintype "passive")
+			)
+			(node
+				(ref "U1")
+				(pin "10")
+				(pinfunction "INC_POS_10")
+				(pintype "passive")
+			)
+			(node
+				(ref "U1")
+				(pin "12")
+				(pinfunction "IND_POS_12")
+				(pintype "passive")
+			)
+			(node
+				(ref "U1")
+				(pin "2")
+				(pinfunction "INA_NEG_2")
+				(pintype "passive")
+			)
+			(node
+				(ref "U1")
+				(pin "5")
+				(pinfunction "INB_POS_5")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "20")
+			(name "VREF_RAW")
+			(class "QUIET_ANALOG")
+			(node
+				(ref "C9")
+				(pin "1")
+				(pintype "passive")
+			)
+			(node
+				(ref "R6")
+				(pin "2")
+				(pintype "passive")
+			)
+			(node
+				(ref "R7")
+				(pin "1")
+				(pintype "passive")
+			)
+			(node
+				(ref "U1")
+				(pin "3")
+				(pinfunction "INA_POS_3")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "21")
+			(name "unconnected-(U2-DNC-Pad7)")
+			(class "Default")
+			(node
+				(ref "U2")
+				(pin "7")
+				(pinfunction "DNC_7")
+				(pintype "passive+no_connect")
+			)
+		)
+		(net
+			(code "22")
+			(name "unconnected-(U2-NC-Pad3)")
+			(class "Default")
+			(node
+				(ref "U2")
+				(pin "3")
+				(pinfunction "NC_3")
+				(pintype "passive+no_connect")
+			)
+		)
+		(net
+			(code "23")
+			(name "unconnected-(U3-NC1-Pad1)")
+			(class "Default")
+			(node
+				(ref "U3")
+				(pin "1")
+				(pinfunction "NC1_1")
+				(pintype "passive+no_connect")
+			)
+		)
+		(net
+			(code "24")
+			(name "unconnected-(U3-NC2-Pad2)")
+			(class "Default")
+			(node
+				(ref "U3")
+				(pin "2")
+				(pinfunction "NC2_2")
+				(pintype "passive+no_connect")
+			)
+		)
+	)
+)

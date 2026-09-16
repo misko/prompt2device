@@ -1,0 +1,69 @@
+mpn: TPD2E2U06DRLR
+manufacturer: Texas Instruments
+type: dual_channel_esd_protection
+status: active
+datasheet:
+  doc_id: SLLSEG9
+  revision: C
+  url: https://www.ti.com/lit/ds/symlink/tpd2e2u06.pdf
+  local: tpd2e2u06.pdf
+  sha256: a133b86ea3d3c3d34667339b92d3b5e98d541d10e9775d63e7cdfa153794f4ed
+  fetched: 2026-09-01
+package: DRL SOT-553, 0.5 mm pitch
+footprint: crow_mic_pod_v3:TI_TPD2E2U06_DRL
+escape:
+  style: leaded
+  pitch: 0.5
+  tier_required: jlc_2layer_default
+  checked: TI DRL package and project-vendored KiCad SOT-553 land pattern, 2026-09-01
+pins:
+  1: NC
+  2: NC
+  3: IO1
+  4: GND
+  5: IO2
+limits:
+  working_voltage_v: 5.5
+  breakdown_min_v: 6.5
+  clamp_v_at_5a_tlp: 12.4
+  peak_pulse_a_8_20us: 5.5
+  capacitance_typ_pf: 1.5
+gotchas:
+- Pins 1/2 are internal NC and stay open.
+- Place immediately behind J1 with direct pin-4 ground return.
+verified: TI SLLSEG9C DRL-package Pin Functions table on PDF page 3 inspected for the physical pin map on 2026-09-02; connector-first
+  routing Figure 12 on PDF page 12 was also checked.
+layout:
+  source: TI SLLSEG9C section 10
+  reviewed: 2026-09-01
+  notes:
+  - Route J1 AUDIO_P/AUDIO_N to pins 3/5 before branching; shortest ground return from pin 4.
+  - 'PROPOSED ADR0009: top rear cell; preserve no-stub IO, ordinary 45-degree connector prefixes and short 0.50mm GND launch to dedicated
+    nearby through via. Independent engineering acceptance owed.'
+  keep_short:
+  - net: AUDIO_P
+    max_span_mm: 8.6
+    anchor_pins:
+    - '3'
+    partner_refs:
+    - J1
+    why: PROPOSED ADR0009; native padcenter budget; no universal manufacturer distance rating.
+  - net: AUDIO_N
+    max_span_mm: 5.7
+    anchor_pins:
+    - '5'
+    partner_refs:
+    - J1
+    why: PROPOSED ADR0009; native padcenter budget; no universal manufacturer distance rating.
+layout_refs:
+- tier: 1
+  reached: true
+  artifact: TI SLLSEG9C connector-first layout figure
+  why: Binds clamp adjacency and ground-return intent.
+- tier: 2
+  reached: false
+  artifact: qualified enclosure ESD test
+  why: Component selection is not a system ESD qualification.
+sourcing:
+  lcsc: C1972959
+  alternates: []

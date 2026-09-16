@@ -1,0 +1,785 @@
+project:
+  name: crow_mic_pod_v3
+  board: 04_kicad/crow_mic_pod_v3.kicad_pcb
+  build_dir: 06_build/route
+flow:
+  heartbeat_s: 10
+  rebuild_args:
+  - --resume-after-schematic-review
+  pre_route_reviews:
+    board: 04_kicad/crow_mic_pod_v3.kicad_pcb
+    netlist: 06_build/netlists/crow_mic_pod_v3.net
+    topology: 08_reviews/pre-route_topology.md
+    schematic_pdf: 03_tscircuit/build/schematic.pdf
+    schematic_render: 08_reviews/pre-route_schematic_render.md
+    pin: 08_reviews/pre-route_pin.md
+    layout: 08_reviews/pre-route_layout.md
+    render: 08_reviews/pre-route_render.md
+    a_render: 06_build/pre_route/model_registration.md
+  owner:
+    stage: routing
+    files:
+    - 03_src/route.yaml
+    - 03_src/floorplan.yaml
+  copper:
+    deterministic:
+    - prep.seed_stubs
+    - taps.connections
+    - stitch.seed_stubs
+    stochastic:
+    - route.waves
+  budgets_s:
+    tscircuit_deps: 30
+    tscircuit_build: 60
+    escape_packages: 30
+    escape_lands: 120
+    tier_preflight: 15
+    grind: 900
+    rebuild: 1200
+    layout_drc: 120
+  timeouts_s:
+    default: 600
+    source_schema_governance: 60
+    adr_bound_governance: 60
+    tscircuit_deps: 120
+    tscircuit_build: 180
+    route_wave: 900
+    route_race: 2400
+    route_evaluate: 180
+    route_import: 300
+    stitch: 900
+    rebuild: 1500
+    layout_drc: 180
+  blockers:
+  - 'PROPOSED coherent candidate4: reviewed top-only carrier154x100/x21 mounts, exact carrier0.20/pod0.26 signals, rearward
+    N launches and ordinary45-degree prefixes; complete source dependency correction with ADC returns. Fresh exact-source/native
+    acceptance and normal owning gates remain owed; historical top-only candidates1..3 and ADC candidates1..2 remain spent.'
+prep:
+  out: r0.kicad_pcb
+  keepouts:
+    layers:
+    - User.2
+    mounting_holes:
+      radius: 3.0
+      refdes_prefix: H
+    npth_pads:
+      margin: 0.6
+    edge_band: 0.5
+    rects:
+    - x0: 30.0
+      y0: 45.8
+      x1: 33.1
+      y1: 51.1
+      layer: User.2
+  seed_stubs:
+    clearance: 0.15
+    via:
+      size: 0.6
+      drill: 0.3
+    stubs:
+    - net: LDO_FB
+      pin: U2.2
+      segments:
+      - layer: F.Cu
+        width: 0.26
+        pts:
+        - - 34.675
+          - 47.15
+        - - 34.675
+          - 47.7
+        - - 35.08
+          - 49.2
+      - layer: F.Cu
+        width: 0.26
+        pts:
+        - - 35.08
+          - 49.2
+        - - 36.2
+          - 49.49
+        - - 36.9
+          - 49.49
+        - - 37.4
+          - 50.51
+        - - 38.0
+          - 50.51
+    - net: LDO_NR
+      pin: U2.6
+      segments:
+      - layer: F.Cu
+        width: 0.26
+        pts:
+        - - 35.325
+          - 42.85
+        - - 35.3
+          - 40.98
+    - net: VIN_PROTECTED
+      pin: D1.1
+      segments:
+      - layer: F.Cu
+        width: 0.5
+        pts:
+        - - 37.5
+          - 35.6
+        - - 36.8
+          - 35.85
+        - - 27.3
+          - 35.85
+      - layer: F.Cu
+        width: 0.5
+        pts:
+        - - 27.3
+          - 35.85
+        - - 25.2
+          - 37.0
+        - - 24.0
+          - 40.0
+        - - 24.0
+          - 43.0
+        - - 29.5
+          - 42.8
+        - - 31.5
+          - 42.675
+      - layer: F.Cu
+        width: 0.5
+        pts:
+        - - 34.025
+          - 42.85
+        - - 33.48
+          - 42.85
+      - layer: F.Cu
+        width: 0.5
+        pts:
+        - - 33.48
+          - 42.85
+        - - 31.5
+          - 42.675
+      - layer: F.Cu
+        width: 0.5
+        pts:
+        - - 33.48
+          - 42.85
+        - - 32.48
+          - 44.2
+      - layer: F.Cu
+        width: 0.5
+        pts:
+        - - 35.975
+          - 42.85
+        - - 37.0
+          - 42.85
+      - layer: B.Cu
+        width: 0.5
+        pts:
+        - - 37.0
+          - 42.85
+        - - 37.0
+          - 38.0
+        - - 30.0
+          - 38.0
+        - - 29.5
+          - 42.8
+      - layer: F.Cu
+        width: 0.5
+        pts:
+        - - 29.5
+          - 42.8
+        - - 30.0
+          - 45.5
+        - - 28.0
+          - 47.4625
+      vias:
+      - - 37.0
+        - 42.85
+      - - 29.5
+        - 42.8
+    - net: OUTP_FB
+      pin: R11.2
+      segments:
+      - layer: F.Cu
+        width: 0.26
+        pts:
+        - - 64.0
+          - 53.49
+        - - 65.0
+          - 53.49
+    - net: OUTP_DRV
+      pin: R12.1
+      segments:
+      - layer: F.Cu
+        width: 0.26
+        pts:
+        - - 56.0875
+          - 36.0
+        - - 55.0
+          - 36.0
+      via:
+        size: 0.6
+        drill: 0.3
+      vias:
+      - - 55.0
+        - 36.0
+    - net: MIC_BIAS
+      pin: R3.2
+      segments:
+      - layer: F.Cu
+        width: 0.5
+        pts:
+        - - 64.9125
+          - 39.0
+        - - 66.0
+          - 39.0
+      via:
+        size: 0.6
+        drill: 0.3
+      vias:
+      - - 66.0
+        - 39.0
+    - net: VREF_RAW
+      pin: R7.1
+      segments:
+      - layer: F.Cu
+        width: 0.26
+        pts:
+        - - 46.0
+          - 44.49
+        - - 44.5
+          - 44.49
+        - - 44.5
+          - 48.51
+        - - 46.0
+          - 48.51
+        - - 47.0
+          - 48.51
+        - - 47.0
+          - 47.45
+        - - 49.0
+          - 47.45
+        - - 52.0
+          - 47.73
+        - - 55.025
+          - 47.73
+    - net: VREF
+      pin: U1.2
+      segments:
+      - layer: F.Cu
+        width: 0.26
+        pts:
+        - - 55.025
+          - 46.46
+        - - 53.5
+          - 46.46
+    - net: 5V_QUIET
+      pin: U2.1
+      segments:
+      - layer: F.Cu
+        width: 0.5
+        pts:
+        - - 34.025
+          - 47.15
+        - - 32.48
+          - 47.0
+      - layer: F.Cu
+        width: 0.5
+        pts:
+        - - 34.025
+          - 47.15
+        - - 34.025
+          - 47.85
+      - layer: F.Cu
+        width: 0.5
+        pts:
+        - - 34.025
+          - 47.85
+        - - 32.6
+          - 49.5
+      - layer: F.Cu
+        width: 0.5
+        pts:
+        - - 34.025
+          - 47.85
+        - - 34.12
+          - 49.2
+      - layer: F.Cu
+        width: 0.4
+        pts:
+        - - 34.12
+          - 49.2
+        - - 34.12
+          - 49.43
+        - - 35.2
+          - 50.51
+        - - 36.2
+          - 50.51
+      - layer: F.Cu
+        width: 0.4
+        pts:
+        - - 36.2
+          - 50.51
+        - - 37.0
+          - 51.5
+      - layer: F.Cu
+        width: 0.5
+        pts:
+        - - 32.6
+          - 49.5
+        - - 33.0
+          - 51.1
+        - - 28.1
+          - 51.1
+        - - 24.0
+          - 47.0
+      - layer: B.Cu
+        width: 0.5
+        pts:
+        - - 37.0
+          - 51.5
+        - - 39.0
+          - 49.2
+      - layer: F.Cu
+        width: 0.5
+        pts:
+        - - 39.0
+          - 49.2
+        - - 44.3
+          - 43.7
+        - - 46.5
+          - 43.7
+        - - 46.9
+          - 44.1
+        - - 46.9
+          - 44.8
+      - layer: F.Cu
+        width: 0.5
+        pts:
+        - - 46.9
+          - 44.8
+        - - 46.0
+          - 45.51
+      - layer: F.Cu
+        width: 0.5
+        pts:
+        - - 46.9
+          - 44.8
+        - - 47.4
+          - 45.3
+        - - 48.2
+          - 44.5
+        - - 50.5
+          - 44.5
+        - - 52.5
+          - 46.5
+      - layer: B.Cu
+        width: 0.5
+        pts:
+        - - 52.5
+          - 46.5
+        - - 53.7
+          - 49.0
+      - layer: F.Cu
+        width: 0.5
+        pts:
+        - - 55.025
+          - 49.0
+        - - 53.7
+          - 49.0
+        - - 53.08
+          - 49.0
+      - layer: F.Cu
+        width: 0.5
+        pts:
+        - - 52.5
+          - 46.5
+        - - 53.5
+          - 45.4
+        - - 53.5
+          - 44.8
+        - - 55.3
+          - 43.0
+        - - 55.3
+          - 42.1
+      - layer: B.Cu
+        width: 0.5
+        pts:
+        - - 55.3
+          - 42.1
+        - - 56.9
+          - 42.1
+      - layer: F.Cu
+        width: 0.5
+        pts:
+        - - 56.9
+          - 42.1
+        - - 58.0
+          - 41.0
+        - - 58.05
+          - 41.0
+      - layer: F.Cu
+        width: 0.5
+        pts:
+        - - 58.0
+          - 41.0
+        - - 60.0
+          - 39.0
+        - - 63.0875
+          - 39.0
+      vias:
+      - - 37.0
+        - 51.5
+      - - 39.0
+        - 49.2
+      - - 52.5
+        - 46.5
+      - - 53.7
+        - 49.0
+      - - 55.3
+        - 42.1
+      - - 56.9
+        - 42.1
+    - net: MIC_AC
+      pin: R5.1
+      segments:
+      - layer: F.Cu
+        width: 0.26
+        pts:
+        - - 64.5
+          - 43.51
+        - - 65.25
+          - 43.51
+    - net: AUDIO_P
+      pin: J1.5
+      segments:
+      - layer: F.Cu
+        width: 0.26
+        pts:
+        - - 49.58
+          - 25.86
+        - - 49.58
+          - 31.5
+        - - 48.7125
+          - 32.3675
+        - - 48.7125
+          - 34.25
+    - net: AUDIO_P
+      pin: U3.3
+      segments:
+      - layer: F.Cu
+        width: 0.26
+        pts:
+        - - 48.7125
+          - 34.25
+        - - 49.6
+          - 34.25
+      vias:
+      - - 49.6
+        - 34.25
+    - net: AUDIO_N
+      pin: J1.4
+      segments:
+      - layer: F.Cu
+        width: 0.26
+        pts:
+        - - 48.56
+          - 29.86
+        - - 48.56
+          - 30.7
+        - - 46.4
+          - 32.86
+        - - 46.4
+          - 34.9
+        - - 46.75
+          - 35.25
+        - - 47.2875
+          - 35.25
+    - net: AUDIO_N
+      pin: U3.5
+      segments:
+      - layer: F.Cu
+        width: 0.26
+        pts:
+        - - 47.2875
+          - 35.25
+        - - 47.2875
+          - 36.25
+      vias:
+      - - 47.2875
+        - 36.25
+    - net: GND
+      pin: U3.4
+      segments:
+      - layer: F.Cu
+        width: 0.5
+        pts:
+        - - 47.2875
+          - 34.25
+        - - 47.2875
+          - 33.4
+      vias:
+      - - 47.2875
+        - 33.4
+    - net: AUDIO_N
+      pin: R13.2
+      segments:
+      - layer: F.Cu
+        width: 0.26
+        pts:
+        - - 62.913
+          - 36.0
+        - - 62.913
+          - 34.7
+      via:
+        size: 0.6
+        drill: 0.3
+      vias:
+      - - 62.913
+        - 34.7
+  waves:
+    exclude:
+    - GND
+    - unconnected-*
+    groups:
+      audio:
+      - AUDIO_P
+      - AUDIO_N
+      - OUTP_DRV
+      - OUTP_FB
+      - PRE_OUT
+      - PRE_FB
+      - MIC_AC
+      - MIC_RAW
+      - VREF
+      - VREF_RAW
+      - SPARE_BUF
+      power:
+      - 12V_POD
+      - 12V_FUSED
+      - VIN_PROTECTED
+      - 5V_QUIET
+      - MIC_BIAS
+      aux: rest
+route:
+  final: 03_src/route/final_chain.kicad_pcb
+  import_source: promoted
+  krt: /home/mouse9911/gits/KiCadRoutingTools-worktrees/cccv-5a1bdc4
+  ownership_preflight:
+    mode: enforce
+  candidate_grade:
+    mode: enforce
+  wave_drc: true
+  forbid_new_via_in_pad: true
+  exploration_guard:
+    mode: enforce
+    plateau_attempts: 2
+    max_attempts: 5
+    max_novel_signatures: 3
+    max_operation_amplification: 8
+  preflight_critical_pairs: []
+  no_critical_routes: All signals are ordinary audio or DC below 20 kHz and therefore have no controlled-impedance differential-pair
+    timing contract. Connector-first clamp order, regulator bypass proximity and probe-stub limits are governed separately
+    by the pod realized-route checker.
+  common:
+    layers:
+    - F.Cu
+    - B.Cu
+    via_size: 0.6
+    via_drill: 0.3
+    fab_tier: standard
+    no_stub_layer_swap: true
+    no_power_tap_neckdown: true
+    keepout: true
+    keepout_layer: User.2
+    clearance: 0.2
+  race: 3
+  kicad_python: /usr/bin/python3
+  waves:
+  - name: audio
+    group: audio
+    track_width: 0.26
+    via_cost: 1000
+    max_iterations: 800000
+    max_probe_iterations: 60000
+    max_ripup: 30
+  - name: power
+    group: power
+    track_width: 0.5
+    via_cost: 1000
+    max_iterations: 500000
+  - name: aux
+    group: aux
+    track_width: 0.26
+    max_iterations: 500000
+stitch:
+  clearance: 0.15
+  via:
+    size: 0.6
+    drill: 0.3
+    spacing: 0.85
+    pth_margin: 0.3
+    tiers:
+    - size: 0.6
+      drill: 0.3
+      hole_to_copper: 0.255
+  keepin:
+    inset: 0.8
+  passes:
+  - canonicalize_chains
+  - via_janitor
+  - dedupe_vias
+  - normalize_vias
+  - drop_micro_fragments
+  - drop_dangling
+  - split_t_junctions
+  - reload
+  - hole_to_hole
+  - pad_rescue
+  - stub_fallback
+  - astar_fallback
+  - seed_stubs
+  - stitch_grid
+  - fill
+  - island_rescue
+  - fill
+  - unify_zone_priorities
+  - heal_islands
+  - gate
+  canonicalize_chains:
+    edits:
+    - net: AUDIO_P
+      layer: F.Cu
+      width: 0.26
+      reason: Retain the reviewed U3 launch and remove the router's overlapping replacement.
+      remove:
+      - [[48.712, 32.366999], [48.712, 34.241]]
+      - [[48.712, 34.241], [49.6, 34.25]]
+      - [[49.6, 34.2], [51.4, 36.0]]
+      add:
+      - [[49.6, 34.25], [51.4, 36.0]]
+    - net: AUDIO_N
+      layer: F.Cu
+      width: 0.26
+      reason: Represent the router's cap-only joints and micro-zigzag with exact shared vertices.
+      remove:
+      - [[47.3, 36.2], [47.8, 35.7]]
+      - [[60.2, 35.6], [60.1, 35.5]]
+      - [[60.2, 36.8], [60.2, 36.6]]
+      - [[60.2, 35.4], [60.2, 35.2]]
+      - [[60.1, 36.5], [60.2, 36.4]]
+      - [[60.2, 36.4], [60.2, 35.6]]
+      - [[60.1, 35.5], [60.2, 35.4]]
+      - [[60.2, 36.6], [60.1, 36.5]]
+      - [[62.9, 35.8], [62.9, 34.7]]
+      add:
+      - [[47.288, 36.25], [47.8, 35.7]]
+      - [[60.2, 35.2], [60.2, 36.8]]
+      - [[62.9, 35.8], [62.913, 34.7]]
+    - net: OUTP_DRV
+      layer: F.Cu
+      width: 0.26
+      reason: Collapse two cap-only joints into exact shared route vertices.
+      remove:
+      - [[52.2, 25.0], [52.3, 25.0]]
+      - [[52.3, 25.0], [53.7, 26.4]]
+      - [[46.6, 26.3], [46.5, 26.2]]
+      - [[46.6, 26.6], [46.6, 26.3]]
+      add:
+      - [[52.2, 25.0], [53.7, 26.4]]
+      - [[46.6, 26.6], [46.5, 26.2]]
+    - net: MIC_BIAS
+      layer: F.Cu
+      width: 0.5
+      reason: Replace a self-overlapping sub-width zigzag while retaining clearance to R4.
+      remove:
+      - [[68.1, 39.2], [68.2, 39.3]]
+      - [[68.2, 39.0], [68.2, 39.1]]
+      - [[68.2, 39.3], [68.2, 39.5]]
+      - [[68.2, 39.1], [68.1, 39.2]]
+      add:
+      - [[68.2, 39.0], [68.2, 39.5]]
+  unify_zone_priorities:
+    min_bbox: 0.8
+  dedupe_vias:
+    radius: 0.5
+    metric: box
+  normalize_vias:
+    below_width: 0.449
+    size: 0.6
+    drill: 0.3
+  drop_micro_fragments:
+    max_length: 0.12
+    require_free_end: true
+  drop_dangling:
+    max_length: 1.0
+    tol: 0.05
+    sweeps: 4
+  split_t_junctions:
+    tol: 0.05
+  hole_to_hole:
+    min_gap: 0.5
+    mode: nudge
+    prefer_keep:
+    - GND
+  pad_rescue:
+    net: GND
+    via_in_pad: false
+    served_within: 1.6
+    rings:
+    - 0.75
+    - 0.95
+    - 1.2
+    - 1.6
+    - 2.1
+    - 2.7
+    stub_width: 0.3
+    require: none
+  stub_fallback:
+    net: GND
+    min_dist: 0.2
+    max_dist: 8.0
+    width: 0.3
+  astar_fallback:
+    net: GND
+    width: 0.25
+    window: 3.0
+    attempts: 3
+  seed_stubs:
+    clearance: 0.15
+    via:
+      size: 0.6
+      drill: 0.3
+    stubs:
+    - net: GND
+      pin: C5.2
+      segments:
+      - layer: F.Cu
+        width: 0.25
+        pts:
+        - - 30.51
+          - 49.0
+        - - 29.31
+          - 48.0
+      vias:
+      - - 29.31
+        - 48.0
+  stitch_grid:
+    net: GND
+    x:
+    - 23
+    - 77
+    - 7
+    y:
+    - 23
+    - 57
+    - 7
+    avoid:
+    - x0: 41.5
+      y0: 20.0
+      x1: 58.5
+      y1: 30.5
+      margin: 0.8
+  island_rescue:
+    min_bbox: 0.8
+    layers:
+    - F.Cu
+    - B.Cu
+    require: all
+  heal_islands:
+    min_bbox: 0.8

@@ -1,0 +1,13 @@
+mpn: RC0402FR-0710KL
+manufacturer: Yageo
+type: thick_film_resistor
+value: 10k
+datasheet: {doc_id: RC0402FR-0710KL, revision: "generated 2026-09-02", url: "https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-0710KL", local: Yageo_RC0402FR-0710KL_2026-09-02.pdf, sha256: 03762edecb5e7f896bb080727b0a90162cff3c72fea3a1205add0899243314b5, fetched: 2026-09-02}
+package: "0402 (1005 metric)"
+footprint: Resistor_SMD:R_0402_1005Metric
+escape: {style: passive, pitch: 0.5, tier_required: jlc_2layer_default, checked: "exact Yageo dimensions, 2026-08-13"}
+pins: {1: A, 2: B}
+limits: {resistance_ohm: 10000, tolerance_pct: 1, power_mw: 62.5, voltage_v: 50}
+asserts: [{assert: value, equals: 10k, tolerance_pct: 1, why: "Matched polarity-restoring inverter pair."}]
+verified: "Exact Yageo generated specification PDF page 1 inspected for MPN, value, tolerance, rating and 0402 dimensions on 2026-09-02."
+sourcing: {lcsc: C60490, alternates: []}

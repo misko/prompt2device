@@ -1,0 +1,30 @@
+{
+ "target": "projects/crow-audio-carrier-v1",
+ "summary": {
+  "board": 340,
+  "cpl": 300,
+  "datum_max_mm": 0.0005,
+  "datum_max_ref": "Q_IN",
+  "datum_graded": 300,
+  "unpopulated": 40,
+  "declared": 33,
+  "consigned": 0,
+  "exempt_prefixes": [
+   "FID",
+   "H",
+   "MH",
+   "TP"
+  ],
+  "sides": {
+   "top": 300
+  },
+  "unexplained": [],
+  "smd_population_sides": {
+   "top": 306
+  },
+  "smd_side_graded": 306,
+  "assembly_sides_status": "GRADED",
+  "cpl_side_graded": 300
+ },
+ "fails": []
+}

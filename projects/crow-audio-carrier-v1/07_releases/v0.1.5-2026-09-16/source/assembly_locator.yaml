@@ -1,0 +1,305 @@
+schema: 1
+title: Crow audio carrier v1
+owner: Carrier board design owner
+orientation: "Component side up. J1\u2013J4 along the upper edge; J5\u2013J8 along\
+  \ the lower edge; J9 on the left."
+exceptions:
+- ref: C_FILT1_10U
+  value: 10uF
+  mpn: C0805C106K8RACTU
+  lcsc: C2167576
+  x: 96.75
+  y: 62.55
+  rotation: 0.0
+  side: top
+  pads:
+  - number: '1'
+    net: FILT1P
+  - number: '2'
+    net: GND
+- ref: C_FILT2_10U
+  value: 10uF
+  mpn: C0805C106K8RACTU
+  lcsc: C2167576
+  x: 96.75
+  y: 77.45
+  rotation: 0.0
+  side: top
+  pads:
+  - number: '1'
+    net: FILT2P
+  - number: '2'
+    net: GND
+- ref: C_PWR_CT
+  value: 1uF
+  mpn: C0603C105K4RACTU
+  lcsc: C2167386
+  x: 36.0
+  y: 55.3
+  rotation: 0.0
+  side: top
+  pads:
+  - number: '1'
+    net: PWR_CT
+  - number: '2'
+    net: GND
+- ref: C_VDDA2_10N
+  value: 10nF
+  mpn: CL05B103KB5NNNC
+  lcsc: C15195
+  x: 91.0
+  y: 71.5
+  rotation: 180.0
+  side: top
+  pads:
+  - number: '1'
+    net: 3V3_ADC
+  - number: '2'
+    net: GND
+- ref: C_VMID1_470N
+  value: 470nF
+  mpn: CL10B474KA8NFNC
+  lcsc: C318640
+  x: 90.6
+  y: 65.7
+  rotation: 180.0
+  side: top
+  pads:
+  - number: '1'
+    net: VMID1
+  - number: '2'
+    net: GND
+- ref: C_VMID1_4U7
+  value: 4.7uF
+  mpn: GRM188Z71C475KE21D
+  lcsc: C389010
+  x: 90.7
+  y: 63.9
+  rotation: 180.0
+  side: top
+  pads:
+  - number: '1'
+    net: VMID1
+  - number: '2'
+    net: GND
+- ref: C_VMID2_470N
+  value: 470nF
+  mpn: CL10B474KA8NFNC
+  lcsc: C318640
+  x: 90.6
+  y: 74.3
+  rotation: 180.0
+  side: top
+  pads:
+  - number: '1'
+    net: VMID2
+  - number: '2'
+    net: GND
+- ref: C_VMID2_4U7
+  value: 4.7uF
+  mpn: GRM188Z71C475KE21D
+  lcsc: C389010
+  x: 90.7
+  y: 76.1
+  rotation: 180.0
+  side: top
+  pads:
+  - number: '1'
+    net: VMID2
+  - number: '2'
+    net: GND
+- ref: R_ADC_BOT
+  value: "10k\u03A9"
+  mpn: RT0603BRD0710KL
+  lcsc: C95204
+  x: 30.9
+  y: 64.5
+  rotation: 90.0
+  side: top
+  pads:
+  - number: '1'
+    net: ADC_SENSE
+  - number: '2'
+    net: GND
+- ref: R_ADC_PD6N
+  value: "10k\u03A9"
+  mpn: RC0402FR-0710KL
+  lcsc: C60490
+  x: 69.75
+  y: 85.1
+  rotation: 180.0
+  side: top
+  pads:
+  - number: '1'
+    net: ADC6N
+  - number: '2'
+    net: GND
+- ref: R_ADC_TOP
+  value: "17.4k\u03A9"
+  mpn: RT0603BRD0717K4L
+  lcsc: C861167
+  x: 32.7
+  y: 64.5
+  rotation: 90.0
+  side: top
+  pads:
+  - number: '1'
+    net: 3V3_ADC
+  - number: '2'
+    net: ADC_SENSE
+- ref: R_AUDIO_PD
+  value: "100k\u03A9"
+  mpn: RC0402FR-07100KL
+  lcsc: C60491
+  x: 37.17
+  y: 59.65
+  rotation: 90.0
+  side: top
+  pads:
+  - number: '1'
+    net: AUDIO_EN
+  - number: '2'
+    net: GND
+- ref: R_AUDIO_PU
+  value: "10k\u03A9"
+  mpn: RC0402FR-0710KL
+  lcsc: C60490
+  x: 34.2
+  y: 63.4
+  rotation: 90.0
+  side: top
+  pads:
+  - number: '1'
+    net: 5V_LDO_HOLD
+  - number: '2'
+    net: AUDIO_EN
+- ref: R_DUMP_TIME2
+  value: "100k\u03A9"
+  mpn: RC0402FR-07100KL
+  lcsc: C60491
+  x: 58.65
+  y: 78.2
+  rotation: 0.0
+  side: top
+  pads:
+  - number: '1'
+    net: PWR_EN
+  - number: '2'
+    net: DUMP_RC
+- ref: R_FILT1P
+  value: "1\u03A9"
+  mpn: CRCW12061R00FKEAHP
+  lcsc: C844653
+  x: 88.0
+  y: 61.3
+  rotation: 0.0
+  side: top
+  pads:
+  - number: '1'
+    net: 3V3_ADC
+  - number: '2'
+    net: FILT1P
+- ref: R_IN6N
+  value: "10k\u03A9"
+  mpn: RC0402FR-0710KL
+  lcsc: C60490
+  x: 67.55
+  y: 91.0
+  rotation: 0.0
+  side: top
+  pads:
+  - number: '1'
+    net: BIAS_N6
+  - number: '2'
+    net: AIN_N6
+- ref: R_PRE_G
+  value: "100k\u03A9"
+  mpn: RC0402FR-07100KL
+  lcsc: C60491
+  x: 43.6
+  y: 61.0
+  rotation: 0.0
+  side: top
+  pads:
+  - number: '1'
+    net: PRE_GATE
+  - number: '2'
+    net: 5V_LDO_FEED
+- ref: R_PWR_BOT
+  value: "10k\u03A9"
+  mpn: RT0603BRD0710KL
+  lcsc: C95204
+  x: 30.0
+  y: 56.7
+  rotation: 180.0
+  side: top
+  pads:
+  - number: '1'
+    net: PWR_SENSE
+  - number: '2'
+    net: GND
+- ref: R_PWR_TOP
+  value: "30.9k\u03A9"
+  mpn: RT0603BRD0730K9L
+  lcsc: C861313
+  x: 30.0
+  y: 54.9
+  rotation: 180.0
+  side: top
+  pads:
+  - number: '1'
+    net: 5V_BUCK
+  - number: '2'
+    net: PWR_SENSE
+- ref: R_VMID1_BOT
+  value: "1k\u03A9"
+  mpn: RT0603BRD071KL
+  lcsc: C110776
+  x: 73.8
+  y: 74.6
+  rotation: 90.0
+  side: top
+  pads:
+  - number: '1'
+    net: VMID1_EXT
+  - number: '2'
+    net: GND
+- ref: R_VMID1_TOP
+  value: "1k\u03A9"
+  mpn: RT0603BRD071KL
+  lcsc: C110776
+  x: 72.0
+  y: 74.6
+  rotation: 90.0
+  side: top
+  pads:
+  - number: '1'
+    net: 3V3_ADC
+  - number: '2'
+    net: VMID1_EXT
+- ref: R_VMID2_BOT
+  value: "1k\u03A9"
+  mpn: RT0603BRD071KL
+  lcsc: C110776
+  x: 78.2
+  y: 75.7
+  rotation: 90.0
+  side: top
+  pads:
+  - number: '1'
+    net: VMID2_EXT
+  - number: '2'
+    net: GND
+- ref: R_X6N
+  value: "300\u03A9"
+  mpn: RC0402FR-07300RL
+  lcsc: C138010
+  x: 65.9
+  y: 92.35
+  rotation: 180.0
+  side: top
+  pads:
+  - number: '1'
+    net: FB_N6
+  - number: '2'
+    net: FILTER6N

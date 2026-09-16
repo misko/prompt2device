@@ -1,0 +1,48 @@
+schema: 1
+groups:
+  - id: j1_wurth_615008160221_official_step
+    refs: [J1]
+    authority: >-
+      Official Wurth 615008160221 STEP registered to the manufacturer-derived
+      project footprint. Model registration does not prove mated-cord fit.
+    model_sha256: 3f902b89d4bd756b121be056782deff312efb127c9c48f2c798ebd6db0e59f49
+    registration_datum: drilled_centres
+    fit_tolerance_mm: 0.50
+    courtyard_containment_tolerance_mm: 0.25
+    search_margin_mm: 10.0
+    render_width: 2400
+    render_height: 1600
+    orientation:
+      authority: >-
+        Official Wurth drawing, footprint and STEP. Footprint local -Y and
+        model local +Y point toward the mouth; physical cord/enclosure fit is
+        retained as a first-article hold.
+      mount_side: front
+      footprint_access_axis_local: [0, -1, 0]
+      model_access_axis_local: [0, 1, 0]
+      model_up_axis_local: [0, 0, 1]
+      mating_plane_offset_mm: 6.36
+      # Ten-micrometre numerical band around the 0.50 mm CAD target; this is
+      # not a fabricated-edge or enclosure-fit tolerance claim.
+      edge_offset_range_mm: [0.49, 0.51]
+      key_pad: "1"
+      model_z_offset_range_mm: [-0.01, 0.01]
+
+  - id: u2_ti_dgn0008g_official_step
+    refs: [U2]
+    authority: >-
+      Official TI WEBENCH DGN0008G STEP registered to the project-owned exact
+      DGN0008D footprint. This proves package-to-land registration only.
+    model_sha256: 9751a8fa8744b8d50553223b504f942a373396d134eccee1f86c69b545fffc10
+    registration_datum: all_pad_centres
+    mount_side: front
+    mount_side_min_fraction: 0.85
+    # The official STEP includes gull-wing leads outside the 3 x 3 mm F.Fab
+    # body; the measured model remains fully inside the exact courtyard.
+    fit_tolerance_mm: 1.00
+    courtyard_containment_tolerance_mm: 0.25
+    search_margin_mm: 5.0
+    render_width: 1800
+    render_height: 1200
+
+orientation_exemptions: []

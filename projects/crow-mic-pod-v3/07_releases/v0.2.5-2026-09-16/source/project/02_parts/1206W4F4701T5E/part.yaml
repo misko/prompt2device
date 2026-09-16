@@ -1,0 +1,14 @@
+mpn: 1206W4F4701T5E
+manufacturer: UNI-ROYAL
+type: thick_film_resistor
+value: 4.7k
+status: active
+datasheet: {doc_id: UNI-ROYAL-chip-series, revision: "2019-02-12 v3", url: "https://datasheet.lcsc.com/datasheet/pdf/0a975aaa49b7c97f38a963127be4a823.pdf", local: UNI_ROYAL_Chip_Series_2019_v3.pdf, sha256: 11cd644d5d8a34a6d12775afb80bf58d8fc11f0c3b700dbd0f7a59942ceaa5ef, fetched: 2026-09-03, pages: 9}
+package: "1206 (3216 metric)"
+footprint: Resistor_SMD:R_1206_3216Metric
+escape: {style: passive, pitch: 1.6, tier_required: jlc_2layer_default, checked: "UNI-ROYAL 1206 series dimensions and stock KiCad land, 2026-09-03"}
+pins: {1: A, 2: B}
+limits: {resistance_ohm: 4700, tolerance_pct: 1, power_mw_at_70c: 250, voltage_v: 200}
+asserts: [{assert: value, equals: 4.7k, tolerance_pct: 1, why: "Hot reverse-hookup leakage from D1 stays below the TPS7A49 negative absolute limit."}]
+verified: "Public LCSC C17936 identifies the exact MPN/value/package; retained UNI-ROYAL v3 PDF page 2 specifies 1206 W4 as 1/4 W and page 7 specifies its rated voltage, inspected and hash-verified 2026-09-03."
+sourcing: {lcsc: C17936, alternates: []}

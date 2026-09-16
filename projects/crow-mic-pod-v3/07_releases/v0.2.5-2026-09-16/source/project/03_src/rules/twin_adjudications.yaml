@@ -1,0 +1,120 @@
+- lcsc: C144860
+  refs:
+  - D1
+  status: PAD-GEOM
+  why: 'Vishay88711 revision07-May-2024 p3: mounting pad length>=1.52mm, width>=1.68mm
+    and gap<=1.88mm. Actual native lands2.50x1.80mm, gap1.50mm meet these bounds.
+    Contact tolerance union=(4.93/2-1.52)..(5.28/2)=0.945..2.640mm and lateral +/-0.825mm
+    is contained including actual0.25mm rounded corners. This does not claim the5.28mm
+    reference total span is an exact required native span.'
+  evidence:
+  - claim: Minimum signed native rounded-copper margin around exact primary terminal
+      dimensional envelope at nominal registration; not assembly-process qualification
+    command: /usr/bin/python3 projects/crow-mic-pod-v3/03_src/tests/check_native_terminal_envelope.py
+      D1
+    output: 0.066561
+    budget: '>= 0'
+    tolerance: 1.0e-06
+    tolerance_why: Printed micrometre precision only, well below positive measured
+      margin.
+    grade: CITED
+    requires:
+    - pcbnew
+    - projects/crow-mic-pod-v3/04_kicad/crow_mic_pod_v3.kicad_pcb
+- lcsc: C83846
+  refs:
+  - D2
+  status: PAD-GEOM
+  why: 'Littelfuse SMBJ v4 JC.07/04/25 p5: J/L>=2.160mm,I>=2.260mm,K<=2.740mm. Actual
+    native2.50x2.30mm lands and1.80mm gap comply. G/2-E full contact tolerance union1.085..2.795mm
+    and lateral +/-1.100mm fits actual rounded copper.'
+  evidence:
+  - claim: Minimum signed native rounded-copper margin around exact primary terminal
+      dimensional envelope at nominal registration; not assembly-process qualification
+    command: /usr/bin/python3 projects/crow-mic-pod-v3/03_src/tests/check_native_terminal_envelope.py
+      D2
+    output: 0.039703
+    budget: '>= 0'
+    tolerance: 1.0e-06
+    tolerance_why: Printed micrometre precision only, well below positive measured
+      margin.
+    grade: CITED
+    requires:
+    - pcbnew
+    - projects/crow-mic-pod-v3/04_kicad/crow_mic_pod_v3.kicad_pcb
+- lcsc: C144860
+  refs:
+  - D1
+  status: PAD-MISMATCH
+  why: Raw numbered-pad residual0.570mm remains true against catalog pitch5.14mm.
+    Independent cached VRML terminal metal is centered on native +/-2.0mm lands, and
+    manufacturer contact envelope is contained; zero-offset catalog common-centroid
+    mount preserves terminal placement and cathode-band side. Native copper is not
+    changed. Body coverage, polarity, registration and same-camera overlay remain
+    mandatory.
+  evidence:
+  - claim: Minimum signed native rounded-copper margin around exact primary terminal
+      dimensional envelope at nominal registration; not assembly-process qualification
+    command: /usr/bin/python3 projects/crow-mic-pod-v3/03_src/tests/check_native_terminal_envelope.py
+      D1
+    output: 0.066561
+    budget: '>= 0'
+    tolerance: 1.0e-06
+    tolerance_why: Printed micrometre precision only, well below positive measured
+      margin.
+    grade: CITED
+    requires:
+    - pcbnew
+    - projects/crow-mic-pod-v3/04_kicad/crow_mic_pod_v3.kicad_pcb
+  - claim: Cached model terminal metal and cathode-band semantic correspondence support
+      zero-offset mount despite discrepant catalog pad centers
+    grade: ESTIMATED
+    why_not_rerunnable: Material semantics and manufacturer cathode-band interpretation
+      require independent judgment; raw meshes, exact primary figures and board measurements
+      preserved in 01_docs/journal/091c610ab942b73e5caa19ce6a4ff82801e23fe41efd9964cc0f3b0ca53b8531.tar.gz.
+      No fresh render approval is claimed.
+- lcsc: C16430
+  refs:
+  - U2
+  render_model_source: native
+  native_representation:
+    reason: vendor_model_absent
+    mpn: TPS7A4901DGNR
+    vendor_footprint_sha256: 89faf406a20a9a9b03fd6a033706c01ae2ab0d41ecb758fba627e04767dc31c3
+    model_sha256: 9751a8fa8744b8d50553223b504f942a373396d134eccee1f86c69b545fffc10
+    registration_group: u2_ti_dgn0008g_official_step
+    authority:
+      path: 02_parts/TPS7A4901DGNR/tps7a49.pdf
+      sha256: 0a5e198966ab05ebb39f4512355352c0946af5f52e1fbd2e9ec554041123a126
+      pages:
+      - 33
+      - 34
+      - 35
+      revision: SBVS121E; TI DGN0008D package drawing 4225481/A
+    native_footprint:
+      path: 03_src/lib/crow_mic_pod_v3.pretty/TI_TPS7A4901_DGN0008D.kicad_mod
+      sha256: 91eb6873b082e819ce587a0ac0ddb3bf22cd8d5844fffe590110cb3907873fa4
+    generator:
+      path: 03_src/lib/3dmodels/README.md
+      sha256: 84f380ddb2cd648294de7c7887d83d11928b71364c6dd66095b9f35c3a98ba6d
+    provenance:
+      path: 03_src/lib/3dmodels/README.md
+      sha256: 84f380ddb2cd648294de7c7887d83d11928b71364c6dd66095b9f35c3a98ba6d
+    reviewer: pod_twin_source_review
+    reviewed_on: '2026-09-16'
+    limitations: Unmodified official TI WEBENCH DGN0008G package model for nominal
+      visual registration of TPS7A4901DGNR. It does not establish worst-case package,
+      solder-joint, thermal, assembly-process or first-article performance. Catalog
+      pad/rotation checks, signed native registration, same-camera overlay, body coverage
+      and order-preview pin-1 orientation remain active.
+  why: The exact fetched C16430 footprint has nine pads and zero model clauses. The
+    project retains the exact official TI DGN0008G STEP already bound to U2's exact
+    DGN0008D footprint and model-registration group. This selects a render representation
+    only and adjudicates no failing status.
+  evidence:
+  - claim: Independent review of the TI package drawing, exact native footprint, official
+      STEP provenance and signed registration supports this limited U2 visual representation.
+    grade: ESTIMATED
+    why_not_rerunnable: 'Manufacturer drawing/model correspondence requires independent
+      judgment. Source review: 01_docs/reports/2026-09-16-pod-twin-source-review.md.
+      Numeric signed registration and A-RENDER remain separately required.'

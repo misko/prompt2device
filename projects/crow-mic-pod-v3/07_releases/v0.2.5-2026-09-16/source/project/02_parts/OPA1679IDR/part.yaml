@@ -1,0 +1,22 @@
+mpn: OPA1679IDR
+manufacturer: Texas Instruments
+type: quad_audio_operational_amplifier
+status: active
+datasheet: {doc_id: SBOS855, revision: SBOS855E, url: "https://www.ti.com/lit/ds/symlink/opa1679.pdf", local: opa1679.pdf, sha256: 4072daad4ebc4ec9a74ba6547d721b05db8d0cfc12924bda79e828271aeaec3b, fetched: 2026-09-01}
+package: "SOIC-14 D, 1.27 mm pitch"
+footprint: crow_mic_pod_v3:TI_OPA1679_SOIC-14_D
+escape: {style: leaded, pitch: 1.27, tier_required: jlc_2layer_default, checked: "TI D package and project-vendored KiCad SOIC-14 land pattern, 2026-09-01"}
+pins: {1: OUTA, 2: IN_A_NEG, 3: IN_A_POS, 4: V_PLUS, 5: IN_B_POS, 6: IN_B_NEG, 7: OUTB, 8: OUTC, 9: IN_C_NEG, 10: IN_C_POS, 11: V_MINUS, 12: IN_D_POS, 13: IN_D_NEG, 14: OUTD}
+limits: {supply_v: "4.5-36", supply_current_typ_ma_per_channel: 2, supply_current_max_ma_per_channel_25c: 2.5, supply_current_max_ma_per_channel_full_temperature: 2.8, voltage_noise_nv_rt_hz_at_1khz: 4.5, input_common_mode_linear_single_supply_v: "Vminus+0.5 to Vplus-2", output_swing_v: "Vminus+0.8 to Vplus-0.8", unity_gain_stable: true}
+gotchas:
+  - "OPA1679 is not rail-to-rail input; the preamp is inverting so both input pins remain near VREF."
+  - "Long-cable capacitive-load stability and 2.35-2.65 V common mode require first-article measurement."
+verified: "TI SBOS855E Figure 5-5 and Pin Functions: OPA1679 table on PDF page 5 inspected for the D-package physical pin map on 2026-09-02; supply, common-mode, output-swing and noise tables were also checked."
+layout:
+  source: "TI OPA1679 supply-bypass and audio layout guidance"
+  reviewed: 2026-09-01
+  notes: "Decouple pin 4 to pin 11 locally; keep MIC_AC/VREF/preamp loop short; route matched output cells together."
+layout_refs:
+  - {tier: 1, reached: true, artifact: "TI OPA1679 exact datasheet", why: "Binds pin map and analog operating envelope."}
+  - {tier: 2, reached: false, artifact: "qualified 15 m balanced-line first article", why: "No realized board/cable stability result exists."}
+sourcing: {lcsc: C2878631, alternates: []}

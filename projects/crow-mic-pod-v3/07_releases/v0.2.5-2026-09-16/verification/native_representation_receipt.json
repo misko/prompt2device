@@ -1,0 +1,75 @@
+{
+  "schema": 1,
+  "created_at": "2026-09-16T15:09:11.046372+00:00",
+  "source_board_sha256": "2685281fdb8dac636e16334c2d4eca679300bfa5322a368ac2685b59f48e3dd1",
+  "twin_board_sha256": "9665c9bec996fcc4e93dd4d71d324c62a9d883369fd4a6f374369f92c51d6c27",
+  "rows": [
+    {
+      "ref": "U2",
+      "declaration": {
+        "reason": "vendor_model_absent",
+        "mpn": "TPS7A4901DGNR",
+        "vendor_footprint_sha256": "89faf406a20a9a9b03fd6a033706c01ae2ab0d41ecb758fba627e04767dc31c3",
+        "model_sha256": "9751a8fa8744b8d50553223b504f942a373396d134eccee1f86c69b545fffc10",
+        "registration_group": "u2_ti_dgn0008g_official_step",
+        "authority": {
+          "path": "02_parts/TPS7A4901DGNR/tps7a49.pdf",
+          "sha256": "0a5e198966ab05ebb39f4512355352c0946af5f52e1fbd2e9ec554041123a126",
+          "pages": [
+            33,
+            34,
+            35
+          ],
+          "revision": "SBVS121E; TI DGN0008D package drawing 4225481/A"
+        },
+        "native_footprint": {
+          "path": "03_src/lib/crow_mic_pod_v3.pretty/TI_TPS7A4901_DGN0008D.kicad_mod",
+          "sha256": "91eb6873b082e819ce587a0ac0ddb3bf22cd8d5844fffe590110cb3907873fa4"
+        },
+        "generator": {
+          "path": "03_src/lib/3dmodels/README.md",
+          "sha256": "84f380ddb2cd648294de7c7887d83d11928b71364c6dd66095b9f35c3a98ba6d"
+        },
+        "provenance": {
+          "path": "03_src/lib/3dmodels/README.md",
+          "sha256": "84f380ddb2cd648294de7c7887d83d11928b71364c6dd66095b9f35c3a98ba6d"
+        },
+        "reviewer": "pod_twin_source_review",
+        "reviewed_on": "2026-09-16",
+        "limitations": "Unmodified official TI WEBENCH DGN0008G package model for nominal visual registration of TPS7A4901DGNR. It does not establish worst-case package, solder-joint, thermal, assembly-process or first-article performance. Catalog pad/rotation checks, signed native registration, same-camera overlay, body coverage and order-preview pin-1 orientation remain active.",
+        "lcsc": "C16430",
+        "refs": [
+          "U2"
+        ]
+      },
+      "source_files": {
+        "authority": "native_authority/u2_ti_dgn0008g_official_step/authority-tps7a49.pdf",
+        "native_footprint": "native_authority/u2_ti_dgn0008g_official_step/native_footprint-TI_TPS7A4901_DGN0008D.kicad_mod",
+        "generator": "native_authority/u2_ti_dgn0008g_official_step/generator-README.md",
+        "provenance": "native_authority/u2_ti_dgn0008g_official_step/provenance-README.md"
+      },
+      "catalog_comparison": "vendor-footprint",
+      "catalog_response_sha256": null,
+      "model": "native_models/9751a8fa8744b8d50553223b504f942a373396d134eccee1f86c69b545fffc10-TI_DGN0008G.stp",
+      "transform": {
+        "m_Scale": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "m_Rotation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "m_Offset": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "registration_manifest": "native_registration/u2_ti_dgn0008g_official_step/bundle.json",
+      "registration_manifest_sha256": "3ed2c29e95f50597d2e9bc7b728bca8120c296a2c948fee7349068d20e4eb514"
+    }
+  ]
+}
