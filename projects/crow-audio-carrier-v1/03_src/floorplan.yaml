@@ -1227,11 +1227,6 @@ placement:
     - C_A7P
     - C_A8N
     - C_A8P
-    - C_FILT1_470U
-    - C_FILT2_470U
-    - C_HOLD1
-    - C_HOLD2
-    - F_IN
     - J1
     - J10
     - J11
@@ -1243,7 +1238,6 @@ placement:
     - J7
     - J8
     - J9
-    - U_ADC
     attrs:
     - exclude_from_pos_files
   - match:

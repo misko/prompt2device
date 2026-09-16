@@ -1863,6 +1863,46 @@ def main():
                 continue
             if not jmodels:
                 continue
+            # A reviewed native representation is independent of the vendor
+            # model's file format.  The old replacement lived inside the WRL
+            # bbox branch below, so a catalog STEP body silently kept the
+            # source board's project-relative model path.  After the twin was
+            # relocated that path no longer resolved and NO-BODY failed even
+            # though the exact native body had already been hash-authorized.
+            # Vendor pad/rotation fitting above remains mandatory; this only
+            # selects the body used for rendering.  Connector bodies retain
+            # their additional mating-datum grading in the branch below.
+            if (model_source_by_ref.get(ref) == "native"
+                    and ref not in connector_contracts):
+                native_models = list(by_ref[ref].Models())
+                native_resolved = (resolve_model(
+                    native_models[0].m_Filename, kicad_env(args.board),
+                    args.board) if len(native_models) == 1 else None)
+                native_path = Path(native_resolved) if native_resolved else None
+                if (len(native_models) != 1 or not native_path
+                        or not native_path.is_file()):
+                    findings.append((lcsc, ref, "P-MATE-REG",
+                                     "approved native body could not be resolved "
+                                     "for retained rendering"))
+                    criticals.append(ref)
+                    mate_reg_failed_refs.add(ref)
+                    continue
+                native_dir = out / "native_models"
+                native_dir.mkdir(parents=True, exist_ok=True)
+                native_copy = native_dir / (
+                    f"{file_sha256(native_path)[:16]}-{native_path.name}")
+                shutil.copy2(native_path, native_copy)
+                original = native_models[0]
+                fp.Models().clear()
+                retained = pcbnew.FP_3DMODEL()
+                retained.m_Filename = portable_twin_model_path(native_copy, out)
+                retained.m_Scale = original.m_Scale
+                retained.m_Rotation = original.m_Rotation
+                retained.m_Offset = original.m_Offset
+                fp.Models().push_back(retained)
+                print(f"RETAIN-NATIVE {ref} ({lcsc}): {native_copy.name} "
+                      "(explicit representation selection)")
+                continue
             jc = jc_common  # common-pad centroid captured at fit time
             # --- model-registration invariant: mounted body bbox must sit on
             # OUR courtyard (catches flipped/shifted/wrong JLC models AND our

@@ -13,6 +13,14 @@ datasheet:
   provenance: "Official Panasonic FK catalog, 10-Feb-2026; exact standard-P row, size-F dimensions and standard land table rechecked; immutable primary PDF retained."
 package: "Panasonic standard FK size F, SMD aluminum can, D8.0 x L10.2 mm (10.5 mm max from tolerance)"
 footprint: crow_audio_carrier:Panasonic_EEEFK1A471P_8x10.2_Exact
+layout:
+  source: "Panasonic FK ABA0000C1181 pp.2-3"
+  reviewed: 2026-09-16
+  footprint_adjudication: >-
+    Manufacturer standard size-F land uses a=3.1 mm inner gap, b=4.0 mm pad
+    length and c=2.0 mm pad width, hence 7.10 mm pitch. The cached C178530
+    EasyEDA land is a discrepant generic 6.54 mm-pitch supplier footprint;
+    retain the exact manufacturer land and keep uploader polarity review.
 escape: {style: polarized_passive, pitch: 7.1, tier_required: jlc_2layer_default, checked: "Official Panasonic standard-product land a=3.1, b=4.0, c=2.0 mm; pad centers +/-3.55 mm; reviewed 2026-09-01"}
 pins:
   1: {name: POSITIVE, note: "Positive terminal; C_FILT1/2 pad 1 must be on ADC_FILTxP."}

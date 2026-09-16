@@ -8766,3 +8766,31 @@ Situation: the public catalog producer correctly represented a five-board need a
 Tests: the public-distributor suite now covers stock that satisfies the build quantity but falls below `required_qty + 150`, requiring an honest `BLOCKED-SOURCING` result rather than either acceptance or a schema error. The pre-route review suite now proves quoted and unquoted YAML dates produce the same semantic digest. Arbitrary unserializable objects remain rejected.
 
 Avoidance: represent build demand, volatility surplus, and order allocation as three separate facts. The request owns build demand, public evidence owns the configured threshold, and only the authenticated uploader owns allocation. Every producer/consumer pair must share a fixture at the policy boundary, including the configured nonzero surplus. Canonical semantic hashing must normalize YAML timestamp scalars before JSON serialization. Run these focused contract tests before recording a source checkpoint so a method correction does not force repeated full source replays.
+
+## JLC population and native-model parity — corrected 2026-09-16
+
+Situation: the carrier assembly policy assigned 306 SMD parts to JLCPCB, but
+six of those refs still inherited KiCad's `exclude_from_pos_files` attribute
+from an older manual-assembly floorplan rule. The generated CPL therefore had
+300 rows and silently omitted U_ADC, F_IN, C_FILT1_470U, C_FILT2_470U,
+C_HOLD1 and C_HOLD2 even though the sourcing and assembly declarations called
+them JLC-placed. A separate twin defect applied an approved native body only
+when the supplier model was WRL; a catalog STEP model bypassed the selection
+and produced a relocated unresolved model path.
+
+Tests: require the board's complete position-exclusion ref set to equal the
+manual refs declared by `assembly.yaml`, and assert every mandatory JLC SMD ref
+is absent from that exclusion set. After every manual-to-JLC reassignment,
+export the real BOM/CPL immediately and compare its exact ref census with the
+policy: this carrier must have 306 top-side CPL rows and must contain all six
+refs above. The twin regression uses a supplier STEP representation plus a
+hash-authorized native body and requires the bundled native body to resolve.
+
+Avoidance: treat population policy, KiCad position-file attributes, and actual
+CPL membership as three independently checked representations. Run their
+census before placement review and routing replay, while corrections are still
+cheap. Apply ref-scoped native-model selection independently of supplier file
+format; retain connector-specific mating-datum grading and all pad, rotation,
+polarity, allocation and uploader checks. A supplier-CAD land discrepancy may
+be adjudicated only against exact manufacturer land dimensions and immutable
+source hashes; it does not authorize a substitution or waive uploader review.

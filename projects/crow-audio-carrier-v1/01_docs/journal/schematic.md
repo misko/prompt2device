@@ -5517,3 +5517,22 @@ PR-REVIEW correctly rejects the prior topology/readability witnesses because
 the current netlist, parts, rules and PDF hashes changed. Fresh independent
 SOUND reviews are the next design gate; no release or order authorization is
 claimed.
+
+## 2026-09-16 — JLC population/CPL mismatch corrected before replay
+
+The canonical assembly export exposed a policy-to-artifact mismatch: source
+declared 306 JLC-placed SMDs, while the CPL contained only 300. U_ADC, F_IN,
+C_FILT1_470U, C_FILT2_470U, C_HOLD1 and C_HOLD2 still inherited
+`exclude_from_pos_files` from the former manual-population rule. Authoritative
+floorplan source now excludes only the 27 declared manual through-hole refs;
+project regressions require exact equality between that set and assembly.yaml.
+The full carrier source suite passes 384 tests.
+
+The twin reached 327/327 body coverage after fixing format-dependent native
+model selection. Independent review bound Panasonic's exact EEEFK1A471P size-F
+land (7.10 mm pitch, 4.0 x 2.0 mm pads) to the retained native footprint and
+classified the cached generic C178530 EasyEDA land as discrepant. The narrow
+PAD-GEOM adjudication keeps exact-MPN allocation, CPL membership, rotation,
+polarity, body registration and uploader checks active. Current generated
+placement bytes are preparatory only; the normal authenticated prelayout
+renewal, fresh review and all downstream route/release gates remain owed.

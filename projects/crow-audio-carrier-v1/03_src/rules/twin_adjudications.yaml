@@ -270,6 +270,18 @@
     requires:
     - pcbnew
     - projects/crow-audio-carrier-v1/04_kicad/crow_audio_carrier_v1.kicad_pcb
+- lcsc: C178530
+  refs:
+  - C_FILT1_470U
+  - C_FILT2_470U
+  - C_HOLD1
+  - C_HOLD2
+  status: PAD-GEOM
+  why: 'Independent 2026-09-16 Panasonic FK catalog ABA0000C1181 (SHA-256 b36857d089adaddf3042b33bf11d0f7d83bf70734e983f33b7827152e11854e3, PDF pp.2-3): exact standard-product EEEFK1A471P is size F (8.0 x 10.2 mm); standard land a=3.1 mm inner gap, b=4.0 mm pad length, c=2.0 mm pad width, hence 7.10 mm center pitch. Native footprint SHA-256 63fc06c20177564eb58d1befaf432e427c2cfdb49565a7e8cb1c983a66845294 implements +/-3.55 mm / 4.0 x 2.0 mm exactly. Cached EasyEDA footprint SHA-256 738d68b55cebd6913878bb0473f332d11b9061af6be2254ea4d1be31f039cc80 uses +/-3.27 mm / 4.2 x 1.4 mm and is the discrepant generic supplier land. Retain the manufacturer land. This adjudicates PAD-GEOM only; exact-MPN allocation, CPL inclusion, rotation, pad-1 positive polarity, model registration, and final JLC uploader preview remain active.'
+  evidence:
+  - claim: Exact standard-product land dimensions and part-number identity
+    grade: ESTIMATED
+    why_not_rerunnable: Human interpretation binds the manufacturer table diagram to the exact standard-P ordering row; the independent review retains the source hashes, page identities, polarity distinction and supplier-CAD comparison.
 - lcsc: C3761431
   refs:
   - F1

@@ -1440,6 +1440,57 @@ def t_native_body_survives_vendor_model_absence():
     eq(mounted[0]["rz"], 270, "native rotation retained")
 
 
+@test("a ref-scoped native body replaces a catalog STEP representation")
+def t_native_body_replaces_vendor_step():
+    """Explicit native selection must not depend on the vendor body being WRL.
+
+    The replacement used to live inside the WRL bbox-registration branch.  A
+    catalog STEP therefore retained the source board's project-relative model
+    path in the relocated twin and NO-BODY failed despite a hash-authorized
+    native representation.
+    """
+    d = tmpdir("native_over_vendor_step_")
+    code = "C900021"
+    native = d / "native.wrl"
+    bar_wrl(native)
+    vendor_step = d / "vendor.step"
+    vendor_step.write_text("ISO-10303-21;\nHEADER;ENDSEC;\nDATA;ENDSEC;\nEND-ISO-10303-21;\n")
+    jlc_mod(d, code, str(vendor_step))
+    board, _ = synth_board(d, 0)
+    attach = (
+        "import pcbnew,sys\n"
+        "b=pcbnew.LoadBoard(sys.argv[1])\n"
+        "f=b.FindFootprintByReference('U9')\n"
+        "m=pcbnew.FP_3DMODEL();m.m_Filename=sys.argv[2]\n"
+        "m.m_Offset.x=1.25;m.m_Rotation.z=270\n"
+        "f.Models().push_back(m);b.Save(sys.argv[1])\n")
+    must_pass(run([KPY, "-c", attach, str(board), str(native)]),
+              "attach exact native model")
+    bom = d / "bom.csv"
+    bom.write_text("Comment,Designator,Footprint,MPN,LCSC\n"
+                   "synthetic,U9,SYNTH,,%s\n" % code)
+    cpl = d / "cpl.csv"
+    cpl.write_text("Designator,Val,Package,Mid X,Mid Y,Layer,Rotation\n"
+                   "U9,synthetic,SYNTH,30.0,-25.0,top,0.0\n")
+    adj = d / "adj.yaml"
+    adj.write_text("- {lcsc: %s, refs: [U9], render_model_source: native}\n"
+                   % code)
+    e2k = stub_e2k(d, stderr="NETWORK WAS CALLED\n", rc=1)
+    r = run([KPY, TWIN, board, bom, d / "twin", "--no-render",
+             "--cpl", str(cpl), "--adjudications", str(adj)],
+            cwd=d, env={"EASYEDA2KICAD": str(e2k),
+                        "JLC_TWIN_FETCH_ATTEMPTS": "1"})
+    must_pass(r, "native retention over catalog STEP")
+    contains(r.out, "explicit representation selection", "format-independent branch")
+    contains(r.out, "bodies mounted: 1/1", "body coverage")
+    mounted = read_mount(d / "twin" / "twin.kicad_pcb")
+    eq(len(mounted), 1, "one retained body")
+    contains(mounted[0]["f"], "${KIPRJMOD}/native_models/",
+             "bundle-local portable body")
+    eq(mounted[0]["ox"], 1.25, "native offset retained")
+    eq(mounted[0]["rz"], 270, "native rotation retained")
+
+
 @test("MODEL-REG is BLOCKING: a body mounted off its own courtyard fails the "
       "run instead of printing a comment", kind="known_bad")
 def t_model_reg_blocks():
