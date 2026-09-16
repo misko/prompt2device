@@ -1,0 +1,41 @@
+mpn: TPS7A4901DGNR
+manufacturer: Texas Instruments
+type: linear_ldo_regulator
+status: active
+dropout_mv: 600
+pdiss_max_mw: 300
+datasheet: {doc_id: SBVS121, revision: SBVS121E, url: "https://www.ti.com/lit/ds/symlink/tps7a49.pdf", local: tps7a49.pdf, sha256: 0a5e198966ab05ebb39f4512355352c0946af5f52e1fbd2e9ec554041123a126, fetched: 2026-09-01}
+package: "HVSSOP-8 DGN with exposed PowerPAD"
+footprint: crow_mic_pod_v3:TI_TPS7A4901_DGN0008D
+escape: {style: leaded, pitch: 0.65, tier_required: jlc_2layer_default, checked: "TI drawing 4225481/A and project-vendored 1.57 x 1.89 mm PowerPAD land pattern, 2026-09-01"}
+pins:
+  1: OUT
+  2: FB
+  3: NC
+  4: GND
+  5: EN
+  6: NR_SS
+  7: DNC
+  8: IN
+  9: {name: POWERPAD, tie: GND}
+limits: {vin_operating_v: "3-35", vin_absolute_min_v: -0.3, vin_absolute_max_v: 36, vout_adjustable_v: "1.194-33", iout_max_ma: 150, vref_nominal_v: 1.185, vref_accuracy_pct: 2.5, dropout_max_at_150ma_mv: 600, ground_current_max_ua_at_zero_load: 100, ground_current_typ_ua_at_100ma: 800, feedback_current_max_na: 100, feedback_current_direction: out_of_device, output_capacitance_min_uf: 2.2}
+gotchas:
+  - "Pin 7 is DNC and must remain electrically open; pin 3 is NC."
+  - "Tie EN to protected input for always-on operation and ground the PowerPAD."
+  - "Input/output capacitor effective value and layout are part of loop stability."
+  - "The placement model is TI's public WEBENCH DGN0008G STEP, retained unmodified with its SHA-256 under 03_src/lib/3dmodels; package rendering is not solder-joint or thermal proof."
+  - "pdiss_max_mw is a conservative project/board limit, not a fixed TI package rating: SBVS121E gives DGN RthetaJA = 63.4 C/W; 0.300 W therefore predicts a 19.02 C junction rise and about 124.0 C junction at a deliberately conservative 105 C calculation point, 35 C above the project's admitted +70 C powered boundary. First-article thermal measurement remains mandatory because actual enclosure copper and airflow determine RthetaJA."
+verified: "TI SBVS121E DGN Pin Configuration and Pin Functions table on PDF page 4 inspected for pads 1-8 and the PowerPAD on 2026-09-02; the -0.3 V to 36 V IN-to-GND absolute range on PDF page 5, capacitor guidance and layout Figure 37 on PDF page 21 were also checked."
+layout:
+  source: "TI TPS7A49 layout/application guidance"
+  reviewed: 2026-09-01
+  notes: "Input/output ceramics at pins 8/1 with short ground return; feedback and NR network isolated from input boundary."
+  keep_short:
+    - {net: VIN_PROTECTED, max_span_mm: 3.0, anchor_pins: ["8"], partner_refs: [C1], why: "TI >=2.2 uF input-stability capacitor guidance; bulk partner is graded independently."}
+    - {net: VIN_PROTECTED, max_span_mm: 3.0, anchor_pins: ["8"], partner_refs: [C2], why: "TI input high-frequency bypass guidance; HF partner is graded independently."}
+    - {net: 5V_QUIET, max_span_mm: 3.0, anchor_pins: ["1"], partner_refs: [C5], why: "TI >=2.2 uF output-stability capacitor guidance; bulk partner is graded independently."}
+    - {net: 5V_QUIET, max_span_mm: 3.0, anchor_pins: ["1"], partner_refs: [C6], why: "TI output high-frequency bypass guidance; HF partner is graded independently."}
+layout_refs:
+  - {tier: 1, reached: true, artifact: "TI TPS7A49 datasheet application/layout guidance", why: "Binds bypass, feedback and thermal intent."}
+  - {tier: 2, reached: false, artifact: "official editable TPS7A49 DGN evaluation-board copper", why: "No editable reference copper was captured; layout remains first-article candidate."}
+sourcing: {lcsc: C16430, alternates: []}

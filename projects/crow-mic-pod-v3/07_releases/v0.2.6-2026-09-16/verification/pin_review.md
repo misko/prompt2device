@@ -1,0 +1,33 @@
+subject: crow-mic-pod-v3/v0.2.5-2026-09-16
+source_commit: a97e3e1ca8a5e99423ffaddc15efdb9080924f1f
+board_sha256: 2685281fdb8dac636e16334c2d4eca679300bfa5322a368ac2685b59f48e3dd1
+review_stage: release
+review_kind: pin
+reviewer_identity: /root/public_sourcing_delta_review
+context: PUBLIC-SOURCING CLASSIFICATION FIX-PASS; PHYSICAL SUBJECT UNCHANGED
+design_verdict: SOUND
+order_verdict: FIRST-ARTICLE-ONLY
+qualification: FIRST-ARTICLE-ONLY
+inherited_report: verification/inherited/v0.2.0/pin_review.md
+inherited_report_sha256: 3338906db41085f256c07eddad0eb93b65623440b71ade3bdea8be194612df99
+inherited_report_subject: crow-mic-pod-v3 v0.2.0-2026-09-15
+inherited_report_source_commit: 3fe3beb3fb221d73ea825644cdd5f2f5506dc6a2
+
+# Assembly-policy successor pin review
+
+I verified that the native board, fab payload, 3D and PDFs remain unchanged from v0.2.1. The native board hashes to `2685281fdb8dac636e16334c2d4eca679300bfa5322a368ac2685b59f48e3dd1`. The source delta is assembly policy and project documentation, with refreshed stock/review evidence. The complete inherited v0.2.0 pin report is now preserved at the non-self-referential path above and matches SHA-256 `3338906db41085f256c07eddad0eb93b65623440b71ade3bdea8be194612df99`.
+
+The inherited pin lens remains exact. J1 contacts 1/3/7 carry `12V_POD`, 2/6/8 carry `GND`, 4 carries `AUDIO_N`, 5 carries `AUDIO_P`, and shield contacts 9/10 remain on isolated `POD_SHIELD`. D1 remains cathode pin 1 on `VIN_PROTECTED` and anode pin 2 on `12V_FUSED`; D2 remains cathode pin 1 on `VIN_PROTECTED` and anode pin 2 on `GND`. U2 retains the reviewed TPS7A4901 terminal map, including exposed pad 9 on GND, and U3 retains signal inputs on pins 3/5, GND on pin 4, and its two declared NC pins.
+
+The unchanged evidence still reports 99 connected endpoints matching across source and native representations, with only the four declared U2.3, U2.7, U3.1, and U3.2 NC/DNC opens. Its 39/39 electrical invariants, positive D1/D2 terminal-envelope margins, 22 exact-code BOM rows, and 31 top-side automated placements therefore apply to this exact successor board. J1 and MK1 remain intentional manual exclusions rather than silent CPL omissions.
+
+I find no pin, polarity, package-identity, or population-binding defect introduced by this assembly-policy successor. SOUND is limited to the nominal exact-board pin and assembly bindings. Supplier uploader interpretation, substitutions, manufactured polarity, solder fillets, U2 exposed-pad voiding, cable continuity, capsule polarity, and manual J1/MK1 workmanship remain unproved. The authenticated PCBA receipt remains incomplete. FIRST-ARTICLE-ONLY and DO-NOT-ORDER remain mandatory.
+
+
+## v0.2.5 rule-prose fix-pass
+
+The exact board, schematic, normalized netlist, fabrication payload, BOM, CPL, STEP and connector views are unchanged from v0.2.3. The source delta changes only two `why` strings from the retired 1N4007 name to the actual S1M rectifier. Independent parsed comparison removes every `why` field and finds the invariant documents semantically identical. No pin, net, value, ADR, topology, placement or copper changed. Existing physical and order holds remain.
+
+## Public-sourcing authority judgment
+
+Exact public observations clear every coded and placed BOM line at the build quantity plus the configured 150-unit surplus. The team has no authenticated JLCPCB order API; uploader allocation, mappings, substitutions, fees and assembly acceptance are therefore manual order-time checks rather than release-time sourcing evidence. The physical subject is unchanged. Public sourcing is CLEAR; physical qualification remains FIRST-ARTICLE-ONLY / DO-NOT-ORDER.

@@ -1,0 +1,13 @@
+mpn: 0805W8F3901T5E
+manufacturer: UNI-ROYAL
+type: thick_film_resistor
+value: 3.9k
+datasheet: {doc_id: UNI-ROYAL-0805-series, revision: current, url: "https://www.lcsc.com/product-detail/C17614.html", sha256: null, fetched: null}
+package: "0805 (2012 metric)"
+footprint: Resistor_SMD:R_0805_2012Metric
+escape: {style: passive, pitch: 1.0, tier_required: jlc_2layer_default, checked: "standard 0805 land, 2026-09-01"}
+pins: {1: A, 2: B}
+limits: {resistance_ohm: 3900, tolerance_pct: 1}
+asserts: [{assert: value, equals: 3.9k, tolerance_pct: 1, why: "With C7, derives the filtered nominal 3 V supply plane for the 2.2k-loaded capsule."}]
+verified: "Exact MPN/code/value selected 2026-09-01; digest-selected UNI-ROYAL manufacturer PDF bytes are OWED. Nominal R3 drop is 1.95 V at the PUI 0.5 mA characterized condition; actual capsule current and rail ripple remain bench-qualified."
+sourcing: {lcsc: C17614, alternates: []}

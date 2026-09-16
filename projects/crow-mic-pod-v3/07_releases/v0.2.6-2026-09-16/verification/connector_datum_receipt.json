@@ -1,0 +1,60 @@
+{
+  "applicability": "APPLICABLE",
+  "board_sha256": "9665c9bec996fcc4e93dd4d71d324c62a9d883369fd4a6f374369f92c51d6c27",
+  "contract": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-mic-pod-v3/03_src/rules/model_registration.yaml",
+  "contract_sha256": "c54b1068479a3cec655e8ea2233ac58dd68489188a908ca8a46b1556d92ad55f",
+  "kind": "connector-datum-receipt-v1",
+  "measurements": [
+    {
+      "access_axis_local": [
+        0.0,
+        -1.0
+      ],
+      "authority": "Official Wurth drawing, footprint and STEP. Footprint local -Y and model local +Y point toward the mouth; physical cord/enclosure fit is retained as a first-article hold.",
+      "catalog_to_source_footprint_transform": null,
+      "fab_bbox_local_mm": [
+        -5.108081,
+        -6.41,
+        12.268081,
+        7.14
+      ],
+      "fab_mating_support_mm": 6.41,
+      "group": "j1_wurth_615008160221_official_step",
+      "mating_plane_offset_mm": 6.36,
+      "mating_support_delta_mm": 0.0,
+      "native_model_actual_sha256": "3f902b89d4bd756b121be056782deff312efb127c9c48f2c798ebd6db0e59f49",
+      "native_model_sha256": "3f902b89d4bd756b121be056782deff312efb127c9c48f2c798ebd6db0e59f49",
+      "ref": "J1",
+      "representation_source": "native-manual",
+      "tolerance_mm": 0.5,
+      "vendor_bbox_local_mm": null,
+      "vendor_model_sha256": null,
+      "vendor_model_transform": {
+        "offset": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rotation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "verdict": "PASS"
+    }
+  ],
+  "refs_declared": [
+    "J1"
+  ],
+  "refs_graded": [
+    "J1"
+  ],
+  "schema": 1,
+  "verdict": "PASS"
+}

@@ -1,0 +1,15 @@
+mpn: "1N4007(M7)SMA"
+manufacturer: Shenzhen Jinkaisheng Electronics
+type: general_purpose_rectifier
+status: active
+datasheet: {doc_id: "JKSEMI 1N4007(M7)SMA", revision: "2021-10-21 rev C", url: "https://datasheet.lcsc.com/datasheet/pdf/0be8fa1ed5c38f6716b7934696706010.pdf?productCode=C2972759", local: JKSEMI_1N4007_M7_C2972759.pdf, sha256: f893d8385c6fee5af85b9053653bd8e93547c335c031cbab9ecb592c0bb5eddd, fetched: 2026-09-03, pages: 3}
+package: "SMA DO-214AC"
+footprint: crow_mic_pod_v3:JKSEMI_1N4007_M7_SMA
+escape: {style: passive, pitch: 4.0, tier_required: jlc_2layer_default, checked: "JKSEMI SMA drawing and project-vendored KiCad D_SMA land pattern, 2026-09-03"}
+pins: {1: K, 2: A}
+limits: {reverse_voltage_v: 1000, average_current_a: 1, forward_voltage_max_v_at_1a: 1.1, reverse_current_max_ua_at_25c: 5, reverse_current_max_ua_at_125c: 50, surge_current_a_8_3ms: 30}
+gotchas:
+  - "Pad 2/anode is 12V_FUSED; pad 1/cathode is VIN_PROTECTED so correct-polarity current flows into the board."
+  - "R14 is required: at the published 50 uA hot reverse-leakage maximum its +1% 4.747 kohm pull-down corner bounds VIN_PROTECTED to -0.23735 V, inside the TPS7A49 -0.3 V absolute minimum."
+verified: "The retained exact public LCSC C2972759/JKSEMI 2021-10-21 rev-C PDF table specifies 1.1 V maximum at 1 A, 5 uA maximum reverse current at 25 C, 50 uA at 125 C, and 30 A for 8.3 ms; hash and page count verified 2026-09-03."
+sourcing: {lcsc: C2972759, alternates: []}

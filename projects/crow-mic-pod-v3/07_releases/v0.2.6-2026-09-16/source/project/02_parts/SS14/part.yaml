@@ -1,0 +1,13 @@
+mpn: SS14
+manufacturer: MDD Microdiode Semiconductor
+type: schottky_rectifier
+status: active
+datasheet: {doc_id: "SS12 through SS1200", revision: 2025A5, url: "https://datasheet.lcsc.com/datasheet/pdf/9977bb85cd7e349115b7bcb7054cfa0d.pdf?productCode=C2482", local: ss12-ss1200.pdf, sha256: 1c2e8ca38c0a1afef95e4e329afc215094264244d161999f40765f5ef79d5720, fetched: 2026-09-01}
+package: "SMA DO-214AC"
+footprint: crow_mic_pod_v3:MDD_SS14_SMA
+escape: {style: passive, pitch: 4.0, tier_required: jlc_2layer_default, checked: "MDD SMA outline and project-vendored KiCad D_SMA land pattern, 2026-09-01"}
+pins: {1: K, 2: A}
+limits: {reverse_voltage_v: 40, average_current_a: 1, forward_voltage_max_v_at_1a: 0.55, surge_current_a: 25}
+gotchas: ["Pad 2/anode is 12V_FUSED; pad 1/cathode is VIN_PROTECTED so correct-polarity current flows into the board."]
+verified: "MDD family datasheet exact SS14 electrical row and polarity/package inspected 2026-09-01."
+sourcing: {lcsc: C2480, alternates: []}

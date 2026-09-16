@@ -104,3 +104,13 @@ Released: `07_releases/v0.2.0-2026-09-15/` (candidate directory retained from in
   preview remain mandatory before payment.
 
 Released: `v0.1.0-2026-09-03` — DESIGN PASS / SOURCING BLOCKED
+
+
+## v0.2.6 — 2026-09-16
+
+- Authorize ten supervised pod first articles under ADR0010.
+- Preserve every v0.2.5 fabrication, source, PDF, 3D, BOM, CPL, render and review byte.
+- Add exact top-side population, U1/U2 rotation, no-substitution, and J1/MK1 manual-fit stop conditions to the immutable order README.
+- Keep live uploader evidence and all physical qualification as explicit holds.
+
+Released: `v0.2.6-2026-09-16` — DESIGN PASS / FIRST-ARTICLE ORDER AUTHORIZED

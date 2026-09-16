@@ -1,0 +1,13 @@
+mpn: 0402WGF2202TCE
+manufacturer: UNI-ROYAL
+type: thick_film_resistor
+value: 22k
+datasheet: {doc_id: UNI-ROYAL-0402-series, revision: current, url: "https://www.lcsc.com/product-detail/C25768.html", sha256: null, fetched: null}
+package: "0402 (1005 metric)"
+footprint: Resistor_SMD:R_0402_1005Metric
+escape: {style: passive, pitch: 0.5, tier_required: jlc_2layer_default, checked: "standard 0402 land, 2026-09-01"}
+pins: {1: A, 2: B}
+limits: {resistance_ohm: 22000, tolerance_pct: 1}
+asserts: [{assert: value, equals: 22k, tolerance_pct: 1, why: "Matched VREF divider and preamp input value."}]
+verified: "Exact MPN/code/value selected 2026-09-01; digest-selected UNI-ROYAL manufacturer PDF bytes are OWED, and order-time availability remains owed."
+sourcing: {lcsc: C25768, alternates: []}

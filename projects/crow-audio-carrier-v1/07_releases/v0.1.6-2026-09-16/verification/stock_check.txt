@@ -1,0 +1,7 @@
+A-CATALOG verdict: FAIL
+graded: 51/51
+failures: 2
+policy: required quantity + 150 absolute surplus per aggregated LCSC line
+C7452883 LOW_STOCK(0) required=5 threshold=155 stock=0 LT3041ADE#TRPBF
+C53283916 LOW_STOCK(16) required=40 threshold=190 stock=16 TMUX2821DSGR
+scope: public LCSC catalog observation only; not JLCPCB assembly allocation

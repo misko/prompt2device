@@ -1,0 +1,3753 @@
+{
+  "config_sha256": "c54b1068479a3cec655e8ea2233ac58dd68489188a908ca8a46b1556d92ad55f",
+  "evidence": {
+    "views/J1_inside.png": "f6ed78bd39d4a157282961b867a754ef242eaa1a03bc5f690f409ead120d9050",
+    "views/J1_outside.png": "7a644adb212c5c6fc61c03be68e540fff787853a655331728af4d84ab300efb7",
+    "views/J1_profile_a.png": "182c4a2b6bf94a403d9bf6e0682dac3dd433245c1dcc81fe3634b4339837e40f",
+    "views/J1_profile_b.png": "70ffdd8088405eab2d3e78163d0530dd5b730c6890371d8beb213ccddce0cb81",
+    "views/J1_top.png": "66481c606a614ecf4d1e04ecc117c7915b2088a5a339ae193f6ad28001624a4b"
+  },
+  "failures": [],
+  "floorplan_sha256": "1dffbcc67a29aacaf10c7cc60018c5f2e592ebe3bab873591ef19e18794965a5",
+  "inside_recipes": {
+    "J1": {
+      "framing": "cardinal-window",
+      "projection": "orthographic",
+      "rotate": "0,0,0",
+      "side": "front"
+    }
+  },
+  "kind": "connector-orientation-receipt-v1",
+  "measurements": [
+    {
+      "access_axis_board": [
+        0.0,
+        -1.0,
+        0.0
+      ],
+      "board_axis_alignment": 1.0,
+      "edge": "north",
+      "edge_distance_mm": 5.86,
+      "edge_face": {
+        "edge": "y0",
+        "min_offset_mm": 0.5
+      },
+      "expected_access_axis_board": [
+        0.0,
+        -1.0,
+        0.0
+      ],
+      "failures": [],
+      "key_pad": "1",
+      "mating_plane_edge_offset_mm": 0.5,
+      "model_axis_alignment": 1.0,
+      "model_up_alignment": 1.0,
+      "ref": "J1"
+    }
+  ],
+  "notes": [],
+  "observed_board_sha256": "af9bb3c0dcf5e9be20239d725d10dd4d4c1bf95cc0b7518badc3e27bd6523938",
+  "producer_evidence": {
+    "renders/populated_back.command.json": "b0fa268eff8344f70aef28eab241df03fb22078621ea22abde648c31d09b439b",
+    "renders/populated_back.log": "2147efba16cdb2435a548e6f3d782ba7c30fcc6d6118fd2042effa56c473fc7f",
+    "renders/populated_back.png": "e3839f6b3e61c488f7584078fd6735dd28c88c82bb3e592baa197f201e8ab788",
+    "renders/populated_front.command.json": "96879a7f39b50b728dcb5feaef70db089f9aea7ad79585a2f466e8823bf8e5d8",
+    "renders/populated_front.log": "1c0dc6b899cde6ee7dea6db0bf44e9b429811ec23496a9b818e72934e6f745cc",
+    "renders/populated_front.png": "4b50b990a60400a1a8a62b94fc51cfbe062ff3eeb4d3f836800c1aff010c1749",
+    "renders/populated_left.command.json": "9ab76f6730cee29cf67c650ab9168857f4ad43a6a18f16aaf2c20265528bd1ed",
+    "renders/populated_left.log": "0c198d0c4eaf8e5eeb722c951af9a9f1ceccad1417557e57775c7ff5740ffb26",
+    "renders/populated_left.png": "71cc0d8628d8beecb60b683a363353c9c08ce7a3c74c78e318d88730644f1ce3",
+    "renders/populated_right.command.json": "257dfafc554b4502b103e24e9d3420e1a367ede10370957afceea0fcc52e4ad9",
+    "renders/populated_right.log": "f31efb43570167a90c8dce107ea2a2af1709f665fa43d8d9bce4ded8897c30c1",
+    "renders/populated_right.png": "ca0deaef429a463fe96f1514b43f7b8826b01a3c0f4dc664f75c6defdcd74d26",
+    "renders/populated_top.command.json": "19909fc98b98050981a7f231518b551981d3dc67da071c008a21631edbca7123",
+    "renders/populated_top.log": "6f29a9a60d7cb73b13b89a94b180c2b1819006dddf294cea2413601842b2c07c",
+    "renders/populated_top.png": "1a9ffc1696647ccfb9b08be5b3789d21f4a41bae9b3682c0b0b26180e02a1688",
+    "renders/rendered_board.kicad_pcb": "2685281fdb8dac636e16334c2d4eca679300bfa5322a368ac2685b59f48e3dd1"
+  },
+  "refs": [
+    "J1"
+  ],
+  "render_size": [
+    2400,
+    1600
+  ],
+  "rendered_board_sha256": "2685281fdb8dac636e16334c2d4eca679300bfa5322a368ac2685b59f48e3dd1",
+  "review_groups": [
+    {
+      "refs": [
+        "J1"
+      ],
+      "representative": "J1",
+      "signature_sha256": "121c209ce888313d0a95a24ee78451104969a7c7ec48f9b9641ab0cf9374c4e4"
+    }
+  ],
+  "scene": {
+    "board_drawings": [
+      "05e8dd5c1d433ec1bc9fd89b0f671dda9b8b1b5fba1e95bad73910d8a4fe28fc",
+      "0a59c7e712bb2f17cc9a003b5e87a77f3c3e0ba3d0a74f72c83ec39b5fc6ae64",
+      "0a74053c5bcb272a5529101ec62fca515780aeaeaf9daa1a2d725ea9b74d1f16",
+      "0b0dc5ef809b37077840855c377649be022a6d3395e0f7ad34e68303b151eb73",
+      "14d3e5d97bff611733b477064dea7734c56357e125dcfbdc60c3fa7f75007cfc",
+      "1d107cb7ee52e3f8e827cb35c6389b26ca8c7b9bbc501502f9ce8bd48df4a21e",
+      "1d1e0fbac4fd012eab86009fcef9fd34466f3b4a1ca1e1b3769e111de58b3aac",
+      "1fb795671234b645022307f2544d5046184fdff738316ef680ede903e3530399",
+      "2240c448ea02b2763e1ad9ea35e47673e02c98f6871656173108ef509c7d483f",
+      "2705b297320233a8328593ea1ec32b63bdd5c6953de0530dd39065bbc6063af4",
+      "2b9dbfd002473de87cb7c1947e3529539051f448e0ba443cb506d74122205f99",
+      "2bf1a2d5b539d5a5d1839a2888cf9c529cf760788f64d3fa09dcb3a67dbfd7bf",
+      "2ed3bf5a78899df71fbc69dda42510ce12fdde0a3aab38987a484586311ef32f",
+      "39fd9b96dc06adead7370516753f7165a5dc930a64f1163b5adb8af66bc99daa",
+      "3aaa38a57a79d55ba6b690941cfb36d692d1c9b657b6f929058ec3d8926641cc",
+      "3fc486489605309907e58a8a3dc71c61abaf2f98904932de5767f2bb2b26f677",
+      "417164c533aa7547bb1f732e1bf8fa1344d9cdd128684eca651141e16555b97d",
+      "4460df7f8c1511dea92918d614c27b77153ec7873e205472e7bce25233d5f0f8",
+      "44e5765b4d8a28599363f20bb6534f149d3f34c24d737b50caeb4ec4e6295fcf",
+      "4c0753bf1bdde3da4314a52150f084a9136733906985f860f210b68bd1e79e23",
+      "4c394c8936b7c09165e241aee6e12c6c3ed823bfe7c3455516b92c8030a7769c",
+      "4cbe88b4194d9780c8fdd8124ad125dd3071dfd7fc80eca95bebbebeab56af7b",
+      "50e1eb1f952ccf8c25e62d8ee23a438c4197c0d7c143762261c7571c2068f849",
+      "5ea9cfa742485b81b8ad0974fec23e939ae1c9c2c53a00cb48c4aa218ae0bb81",
+      "60c7384f9a94270b64cc4df99384543ac6e3d9ee1302c2e50fd85156966e31a5",
+      "6d30584448ad16d2a678e53e802b78f151a9838319c0d2973cf7368a44e14679",
+      "6f7f15bb7edcc77628ab81072be3feb6c9aa1dbe235e90b5b791637fcf654195",
+      "754d3bde1223808afa6d978b6a0d7a87cd77844d9cee4a49b895be42775eabfb",
+      "7823f36863f08a52203bc78213c62f6257ecd1de9530da3aa1ede54602d325e2",
+      "7922512811c84c5796c03b06e8a1294fbdd25abf774eb2ff84e5ef3dc803d686",
+      "7a374893a15425041aae724b285e8fb13307eb6fb4d98ca42a680a54b43b7329",
+      "964492ab61e209b70d018faec7d8abf57fd839d76d06c7dc0cebb481f98ba11e",
+      "97accc822d3c08acc53afa7bc49188f3eeeda5412a3e8f14f40b0611a757a2e8",
+      "a35f3f1ec841349e90effe5be261c943bb9d68da78e0d8b009018fde252f753a",
+      "a47072e50df32dec831a09a57e7e66239ff8d9bf3103a7577ca874317cf49c5d",
+      "a573ed2c0757ee660e16b597fbccc43f2a659d4bb6f8a8a45fa3d7a5b14fe5a8",
+      "a619b9a766400a846f004048f3db710c0a85aea8fdc04e5edeca93ad01cf6899",
+      "a874a08a58708cafccae3ab191359719e991260dceb1bd1e8614a811625de94b",
+      "b26a87886a1288ade4db631041c0c2de6f7be8dab6d872f846cc386d13f9b626",
+      "b68659fbd8416a37c963d176f1e5d79eb589e203b9e47e745d01682f7a28ecd6",
+      "b988657cd09a15ae10b8cad4d76f59d162226aaa5c19ebe49869a25b804d820f",
+      "bb633a460e7963c60d2cb229b4c76d18191ada1db7edb4fc2ee40ee40db77e70",
+      "bdb9f8d3dfebbefeeb61f3f6139539ec6eacbe9a44b7739fd7d48f2e14a3cb18",
+      "c03e2a74916c06f087219a2bda9c5b07926db235abb05cf52a76ea8de628a6cb",
+      "c05eb6cd86182e262f4d585d2cf10dff437e3064f31557c216d898922863145b",
+      "c65025943886f0d1dba3cfa535cc3728af1c8b38fb7db2a4c0d413afb49b1292",
+      "c7b40d188f9638554370cb05e32741e716987625115ecdb7da7db5c25d3f0f12",
+      "c9ce96c96bba8ce5c3b5c8a43b7f6dcb1b610385fcb64b08a63d4a8e8d07d67e",
+      "cc4c85093a5ffcda33c50fd22883fb97caee2a1f98013eb21990880660ebca18",
+      "d33f7b95ce7f75250a7f229f88a2cfd40af787333cc91988f1b220f3e440ad7d",
+      "d3bc522a6d5474cc0153f9a8a0bf0bdc86418aef10b43dbda6e53383a1cb1e66",
+      "df0d495fed35c02960adde5b97fb793950c6b893b531e08e71dd3f1ad16d1346",
+      "ec9056a8347c3dbb5841577ca7e8cefcf5ceec206b1cadbd95569e9da9b60a7a",
+      "eff0b3c82e4a21e1c15be4396ef3fc653046f3314a61bc1ffafe1cb9c8d6abb8",
+      "f1c6d6a774e09730687cf89a54009d706fd0ae09cbd578f2a60081000ee7ea8a",
+      "f4a4ac34cc6cd220f7f51f8a6986b691287bc2298d536540d914e439c53010bf",
+      "f840a58417b963e45c5c2ae413c6d40cf8619aea538b74c34d3bd255349e2656",
+      "f86b0a4aad4058d67e93e3a5b41ce682766edf93cff4660e3bd54e6091c2b1be",
+      "fb39c679e8c9ba8eab5556fec4a008fb78f6de88ecdea2ba841ffae49e3717d4",
+      "fefec4859f4368e6ee76a5d59b127c497da917fbc02b336b7490159bee78ecd7"
+    ],
+    "board_setup": [
+      [
+        "general",
+        [
+          "thickness",
+          "1.6"
+        ],
+        [
+          "legacy_teardrops",
+          "no"
+        ]
+      ],
+      [
+        "layers",
+        [
+          "0",
+          "F.Cu",
+          "signal"
+        ],
+        [
+          "2",
+          "B.Cu",
+          "signal"
+        ],
+        [
+          "9",
+          "F.Adhes",
+          "user",
+          "F.Adhesive"
+        ],
+        [
+          "11",
+          "B.Adhes",
+          "user",
+          "B.Adhesive"
+        ],
+        [
+          "13",
+          "F.Paste",
+          "user"
+        ],
+        [
+          "15",
+          "B.Paste",
+          "user"
+        ],
+        [
+          "5",
+          "F.SilkS",
+          "user",
+          "F.Silkscreen"
+        ],
+        [
+          "7",
+          "B.SilkS",
+          "user",
+          "B.Silkscreen"
+        ],
+        [
+          "1",
+          "F.Mask",
+          "user"
+        ],
+        [
+          "3",
+          "B.Mask",
+          "user"
+        ],
+        [
+          "17",
+          "Dwgs.User",
+          "user",
+          "User.Drawings"
+        ],
+        [
+          "19",
+          "Cmts.User",
+          "user",
+          "User.Comments"
+        ],
+        [
+          "21",
+          "Eco1.User",
+          "user",
+          "User.Eco1"
+        ],
+        [
+          "23",
+          "Eco2.User",
+          "user",
+          "User.Eco2"
+        ],
+        [
+          "25",
+          "Edge.Cuts",
+          "user"
+        ],
+        [
+          "27",
+          "Margin",
+          "user"
+        ],
+        [
+          "31",
+          "F.CrtYd",
+          "user",
+          "F.Courtyard"
+        ],
+        [
+          "29",
+          "B.CrtYd",
+          "user",
+          "B.Courtyard"
+        ],
+        [
+          "35",
+          "F.Fab",
+          "user"
+        ],
+        [
+          "33",
+          "B.Fab",
+          "user"
+        ],
+        [
+          "39",
+          "User.1",
+          "user"
+        ],
+        [
+          "41",
+          "User.2",
+          "user"
+        ],
+        [
+          "43",
+          "User.3",
+          "user"
+        ],
+        [
+          "45",
+          "User.4",
+          "user"
+        ]
+      ],
+      [
+        "setup",
+        [
+          "pad_to_mask_clearance",
+          "0"
+        ],
+        [
+          "allow_soldermask_bridges_in_footprints",
+          "no"
+        ],
+        [
+          "tenting",
+          [
+            "front",
+            "yes"
+          ],
+          [
+            "back",
+            "yes"
+          ]
+        ],
+        [
+          "covering",
+          [
+            "front",
+            "no"
+          ],
+          [
+            "back",
+            "no"
+          ]
+        ],
+        [
+          "plugging",
+          [
+            "front",
+            "no"
+          ],
+          [
+            "back",
+            "no"
+          ]
+        ],
+        [
+          "capping",
+          "no"
+        ],
+        [
+          "filling",
+          "no"
+        ],
+        [
+          "pcbplotparams",
+          [
+            "layerselection",
+            "0x00000000_00000000_55555555_5755f5ff"
+          ],
+          [
+            "plot_on_all_layers_selection",
+            "0x00000000_00000000_00000000_00000000"
+          ],
+          [
+            "disableapertmacros",
+            "no"
+          ],
+          [
+            "usegerberextensions",
+            "no"
+          ],
+          [
+            "usegerberattributes",
+            "yes"
+          ],
+          [
+            "usegerberadvancedattributes",
+            "yes"
+          ],
+          [
+            "creategerberjobfile",
+            "yes"
+          ],
+          [
+            "dashed_line_dash_ratio",
+            "12"
+          ],
+          [
+            "dashed_line_gap_ratio",
+            "3"
+          ],
+          [
+            "svgprecision",
+            "4"
+          ],
+          [
+            "plotframeref",
+            "no"
+          ],
+          [
+            "mode",
+            "1"
+          ],
+          [
+            "useauxorigin",
+            "no"
+          ],
+          [
+            "pdf_front_fp_property_popups",
+            "yes"
+          ],
+          [
+            "pdf_back_fp_property_popups",
+            "yes"
+          ],
+          [
+            "pdf_metadata",
+            "yes"
+          ],
+          [
+            "pdf_single_document",
+            "no"
+          ],
+          [
+            "dxfpolygonmode",
+            "yes"
+          ],
+          [
+            "dxfimperialunits",
+            "yes"
+          ],
+          [
+            "dxfusepcbnewfont",
+            "yes"
+          ],
+          [
+            "psnegative",
+            "no"
+          ],
+          [
+            "psa4output",
+            "no"
+          ],
+          [
+            "plot_black_and_white",
+            "yes"
+          ],
+          [
+            "sketchpadsonfab",
+            "no"
+          ],
+          [
+            "plotpadnumbers",
+            "no"
+          ],
+          [
+            "hidednponfab",
+            "no"
+          ],
+          [
+            "sketchdnponfab",
+            "yes"
+          ],
+          [
+            "crossoutdnponfab",
+            "yes"
+          ],
+          [
+            "subtractmaskfromsilk",
+            "no"
+          ],
+          [
+            "outputformat",
+            "1"
+          ],
+          [
+            "mirror",
+            "no"
+          ],
+          [
+            "drillshape",
+            "1"
+          ],
+          [
+            "scaleselection",
+            "1"
+          ],
+          [
+            "outputdirectory",
+            ""
+          ]
+        ]
+      ]
+    ],
+    "board_thickness_mm": 1.6,
+    "outline_mm": [
+      [
+        80.0,
+        60.0
+      ],
+      [
+        20.0,
+        60.0
+      ],
+      [
+        20.0,
+        20.0
+      ],
+      [
+        80.0,
+        20.0
+      ]
+    ],
+    "placements": [
+      {
+        "attributes": 2,
+        "dnp": false,
+        "models": [
+          {
+            "filename": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_1210_3225Metric.step",
+            "offset": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "opacity": 1.0,
+            "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_1210_3225Metric.step",
+            "rotation": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "scale": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "sha256": "f8510481c5044113cf49b0fa6dd54ddab9224508bd6808e1afab8ef0cefdefc9",
+            "show": true
+          }
+        ],
+        "native_geometry_sha256": "9226060d147a3ede97a30a6e0f75126297c2c68f162316d992895b75558084b7",
+        "position_mm": [
+          31.5,
+          41.2
+        ],
+        "ref": "C1",
+        "rotation_deg": 90.0,
+        "side": "front"
+      },
+      {
+        "attributes": 2,
+        "dnp": false,
+        "models": [
+          {
+            "filename": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+            "offset": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "opacity": 1.0,
+            "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+            "rotation": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "scale": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "sha256": "03e44c4b2b727b8d4b6b1fd598cbd12dd5e614f1dfeefa96a92a07e3a3b312a2",
+            "show": true
+          }
+        ],
+        "native_geometry_sha256": "5a01df13825190b1d270640ef55711d73f42c01b4e01f841e9a1099c1b2a5913",
+        "position_mm": [
+          52.6,
+          49.0
+        ],
+        "ref": "C10",
+        "rotation_deg": 180.0,
+        "side": "front"
+      },
+      {
+        "attributes": 2,
+        "dnp": false,
+        "models": [
+          {
+            "filename": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0805_2012Metric.step",
+            "offset": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "opacity": 1.0,
+            "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0805_2012Metric.step",
+            "rotation": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "scale": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "sha256": "9a669c1a2f1ea25b88b401acef6efeaa80a067bd7da9db6993de719a7fbe155c",
+            "show": true
+          }
+        ],
+        "native_geometry_sha256": "c7f8b26216bf5b6808f670ae6b1b58d17b19555eac5e6cee66e7bedadbab8eb4",
+        "position_mm": [
+          59.0,
+          41.0
+        ],
+        "ref": "C11",
+        "rotation_deg": 0.0,
+        "side": "front"
+      },
+      {
+        "attributes": 2,
+        "dnp": false,
+        "models": [
+          {
+            "filename": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+            "offset": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "opacity": 1.0,
+            "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+            "rotation": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "scale": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "sha256": "03e44c4b2b727b8d4b6b1fd598cbd12dd5e614f1dfeefa96a92a07e3a3b312a2",
+            "show": true
+          }
+        ],
+        "native_geometry_sha256": "a5cd61bf9e2c045f3544abcdef179b5fc8c85d40d1e7559dceb4c816a0b6b3d6",
+        "position_mm": [
+          32.0,
+          44.2
+        ],
+        "ref": "C2",
+        "rotation_deg": 180.0,
+        "side": "front"
+      },
+      {
+        "attributes": 2,
+        "dnp": false,
+        "models": [
+          {
+            "filename": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+            "offset": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "opacity": 1.0,
+            "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+            "rotation": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "scale": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "sha256": "03e44c4b2b727b8d4b6b1fd598cbd12dd5e614f1dfeefa96a92a07e3a3b312a2",
+            "show": true
+          }
+        ],
+        "native_geometry_sha256": "9b144e7d79eb837d4202adf339f1f6011aa6ba22b935ce1a2c0f446e34f718a8",
+        "position_mm": [
+          34.6,
+          49.2
+        ],
+        "ref": "C3",
+        "rotation_deg": 0.0,
+        "side": "front"
+      },
+      {
+        "attributes": 2,
+        "dnp": false,
+        "models": [
+          {
+            "filename": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+            "offset": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "opacity": 1.0,
+            "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+            "rotation": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "scale": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "sha256": "03e44c4b2b727b8d4b6b1fd598cbd12dd5e614f1dfeefa96a92a07e3a3b312a2",
+            "show": true
+          }
+        ],
+        "native_geometry_sha256": "b95dee11a93e4ecb11d423cc65cd52c435f48e885f1df41eb588e176366a7637",
+        "position_mm": [
+          35.3,
+          40.5
+        ],
+        "ref": "C4",
+        "rotation_deg": 90.0,
+        "side": "front"
+      },
+      {
+        "attributes": 2,
+        "dnp": false,
+        "models": [
+          {
+            "filename": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0805_2012Metric.step",
+            "offset": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "opacity": 1.0,
+            "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0805_2012Metric.step",
+            "rotation": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "scale": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "sha256": "9a669c1a2f1ea25b88b401acef6efeaa80a067bd7da9db6993de719a7fbe155c",
+            "show": true
+          }
+        ],
+        "native_geometry_sha256": "dde28ca20094cf08be294a6f56a90195bb90b3f0ee127f8d78ce365a6eb70c20",
+        "position_mm": [
+          31.65,
+          49.5
+        ],
+        "ref": "C5",
+        "rotation_deg": 180.0,
+        "side": "front"
+      },
+      {
+        "attributes": 2,
+        "dnp": false,
+        "models": [
+          {
+            "filename": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+            "offset": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "opacity": 1.0,
+            "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+            "rotation": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "scale": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "sha256": "03e44c4b2b727b8d4b6b1fd598cbd12dd5e614f1dfeefa96a92a07e3a3b312a2",
+            "show": true
+          }
+        ],
+        "native_geometry_sha256": "01bd3cbed6ca0e5bb2d20ffdb54bb52d9f31ce74cbd05b4a88954ceee4030d09",
+        "position_mm": [
+          32.0,
+          47.0
+        ],
+        "ref": "C6",
+        "rotation_deg": 180.0,
+        "side": "front"
+      },
+      {
+        "attributes": 2,
+        "dnp": false,
+        "models": [
+          {
+            "filename": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_1210_3225Metric.step",
+            "offset": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "opacity": 1.0,
+            "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_1210_3225Metric.step",
+            "rotation": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "scale": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "sha256": "f8510481c5044113cf49b0fa6dd54ddab9224508bd6808e1afab8ef0cefdefc9",
+            "show": true
+          }
+        ],
+        "native_geometry_sha256": "458812cece765555582b8512b00766f120c30e2683cf63729e0c505fbf7d048f",
+        "position_mm": [
+          69.0,
+          34.0
+        ],
+        "ref": "C7",
+        "rotation_deg": 0.0,
+        "side": "front"
+      },
+      {
+        "attributes": 2,
+        "dnp": false,
+        "models": [
+          {
+            "filename": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0603_1608Metric.step",
+            "offset": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "opacity": 1.0,
+            "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0603_1608Metric.step",
+            "rotation": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "scale": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "sha256": "4857b3dc717675bf1fb22edda622ac3b3ae03cf44d81eefaf3fa3ba3a86d84c1",
+            "show": true
+          }
+        ],
+        "native_geometry_sha256": "27b0af4824273fdc7226a4c5e6170bf14c184c3821a0cb7c21b13c3e92c83c09",
+        "position_mm": [
+          67.5,
+          43.0
+        ],
+        "ref": "C8",
+        "rotation_deg": 90.0,
+        "side": "front"
+      },
+      {
+        "attributes": 2,
+        "dnp": false,
+        "models": [
+          {
+            "filename": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0805_2012Metric.step",
+            "offset": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "opacity": 1.0,
+            "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0805_2012Metric.step",
+            "rotation": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "scale": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "sha256": "9a669c1a2f1ea25b88b401acef6efeaa80a067bd7da9db6993de719a7fbe155c",
+            "show": true
+          }
+        ],
+        "native_geometry_sha256": "69687e7f8091db4f0dd6f3c7b5c6e502d2e9761bc0432bd4babeb4c4862f4462",
+        "position_mm": [
+          49.0,
+          46.5
+        ],
+        "ref": "C9",
+        "rotation_deg": 90.0,
+        "side": "front"
+      },
+      {
+        "attributes": 2,
+        "dnp": false,
+        "models": [
+          {
+            "filename": "${KICAD10_3DMODEL_DIR}/Diode_SMD.3dshapes/D_SMA.step",
+            "offset": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "opacity": 1.0,
+            "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Diode_SMD.3dshapes/D_SMA.step",
+            "rotation": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "scale": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "sha256": "1cfddd4e3b1bf22b8fc6ee3258c2aade882ed7b85b528e23b9db42437775a1db",
+            "show": true
+          }
+        ],
+        "native_geometry_sha256": "b9b3492001279b7493a6554190bbd7e66c1633dbe161bf701314e201b0a2c85c",
+        "position_mm": [
+          39.5,
+          35.6
+        ],
+        "ref": "D1",
+        "rotation_deg": 0.0,
+        "side": "front"
+      },
+      {
+        "attributes": 2,
+        "dnp": false,
+        "models": [
+          {
+            "filename": "${KICAD10_3DMODEL_DIR}/Diode_SMD.3dshapes/D_SMB.step",
+            "offset": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "opacity": 1.0,
+            "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Diode_SMD.3dshapes/D_SMB.step",
+            "rotation": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "scale": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "sha256": "029466277d91e9f5492556be93e46611049e07115c7913880c547afa96058ed4",
+            "show": true
+          }
+        ],
+        "native_geometry_sha256": "2bfc300531ab41620cca936a99778bed16c0bdcface2f3b8d63e1edb54664390",
+        "position_mm": [
+          27.3,
+          38.0
+        ],
+        "ref": "D2",
+        "rotation_deg": -90.0,
+        "side": "front"
+      },
+      {
+        "attributes": 2,
+        "dnp": false,
+        "models": [
+          {
+            "filename": "${KICAD10_3DMODEL_DIR}/Fuse.3dshapes/Fuse_1206_3216Metric.step",
+            "offset": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "opacity": 1.0,
+            "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Fuse.3dshapes/Fuse_1206_3216Metric.step",
+            "rotation": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "scale": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "sha256": "5e6dcbe286696143d35a8ea37d91eef4b54ff3d1bd7c2c2b4dedda83d3f8e203",
+            "show": true
+          }
+        ],
+        "native_geometry_sha256": "d864a79c5f28d31a27682d5d510f14deb90bf64975a3728ea04c8b3930950e87",
+        "position_mm": [
+          33.5,
+          33.5
+        ],
+        "ref": "F1",
+        "rotation_deg": 0.0,
+        "side": "front"
+      },
+      {
+        "attributes": 28,
+        "dnp": false,
+        "models": [],
+        "native_geometry_sha256": "0f80dab6d076edf89527e922eaef386a93e0f8337f848c1b399b6b2480c14bff",
+        "position_mm": [
+          24.0,
+          24.0
+        ],
+        "ref": "H1",
+        "rotation_deg": 0.0,
+        "side": "front"
+      },
+      {
+        "attributes": 28,
+        "dnp": false,
+        "models": [],
+        "native_geometry_sha256": "0f3c55c16fd43017d5fed8aedbad5612fb1d2dcb4dff731ff789c3a6e70382e2",
+        "position_mm": [
+          76.0,
+          24.0
+        ],
+        "ref": "H2",
+        "rotation_deg": 0.0,
+        "side": "front"
+      },
+      {
+        "attributes": 28,
+        "dnp": false,
+        "models": [],
+        "native_geometry_sha256": "798594c7de7ce523736c553d1a13490391f4c7cb4b48e64ce4b703338ef02dc9",
+        "position_mm": [
+          24.0,
+          56.0
+        ],
+        "ref": "H3",
+        "rotation_deg": 0.0,
+        "side": "front"
+      },
+      {
+        "attributes": 28,
+        "dnp": false,
+        "models": [],
+        "native_geometry_sha256": "f4287f8446049fa3232bf0a65a5cb396d3f332577952a008c8bdf6edf301b284",
+        "position_mm": [
+          76.0,
+          56.0
+        ],
+        "ref": "H4",
+        "rotation_deg": 0.0,
+        "side": "front"
+      },
+      {
+        "attributes": 5,
+        "dnp": false,
+        "models": [
+          {
+            "filename": "${KIPRJMOD}/../03_src/lib/3dmodels/wurth/J_Wurth_WR-MJ_615008160221.step",
+            "offset": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "opacity": 1.0,
+            "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-mic-pod-v3/03_src/lib/3dmodels/wurth/J_Wurth_WR-MJ_615008160221.step",
+            "rotation": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "scale": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "sha256": "3f902b89d4bd756b121be056782deff312efb127c9c48f2c798ebd6db0e59f49",
+            "show": true
+          }
+        ],
+        "native_geometry_sha256": "febac6eaadbb17665cbc3cb434d60934b4192e866b621c3d55208205f2aec5e0",
+        "position_mm": [
+          45.5,
+          25.86
+        ],
+        "ref": "J1",
+        "rotation_deg": 0.0,
+        "side": "front"
+      },
+      {
+        "attributes": 21,
+        "dnp": false,
+        "models": [],
+        "native_geometry_sha256": "d56fd8fd4aa7a0dcb15aebd692f79eac6a9ef4e74e9a510c13ebf06b4033afed",
+        "position_mm": [
+          73.0,
+          42.5
+        ],
+        "ref": "MK1",
+        "rotation_deg": 90.0,
+        "side": "front"
+      },
+      {
+        "attributes": 2,
+        "dnp": false,
+        "models": [
+          {
+            "filename": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+            "offset": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "opacity": 1.0,
+            "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+            "rotation": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "scale": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb",
+            "show": true
+          }
+        ],
+        "native_geometry_sha256": "392e7b5fd7d59874a1e24372dff1a3d1a078fc79895871e7bd2a37818c588597",
+        "position_mm": [
+          36.2,
+          50.0
+        ],
+        "ref": "R1",
+        "rotation_deg": 90.0,
+        "side": "front"
+      },
+      {
+        "attributes": 2,
+        "dnp": false,
+        "models": [
+          {
+            "filename": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+            "offset": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "opacity": 1.0,
+            "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+            "rotation": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "scale": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb",
+            "show": true
+          }
+        ],
+        "native_geometry_sha256": "3b97b32b83a54f403f8625b5644dd7838b37e2fbdeea4748d65b90c860fa3cf5",
+        "position_mm": [
+          64.0,
+          51.0
+        ],
+        "ref": "R10",
+        "rotation_deg": 90.0,
+        "side": "front"
+      },
+      {
+        "attributes": 2,
+        "dnp": false,
+        "models": [
+          {
+            "filename": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+            "offset": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "opacity": 1.0,
+            "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+            "rotation": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "scale": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb",
+            "show": true
+          }
+        ],
+        "native_geometry_sha256": "5b16134873eab5233c43030d0ea24b83db5da7918a5acfa4bc5e9ad00d030c23",
+        "position_mm": [
+          64.0,
+          54.0
+        ],
+        "ref": "R11",
+        "rotation_deg": 90.0,
+        "side": "front"
+      },
+      {
+        "attributes": 2,
+        "dnp": false,
+        "models": [
+          {
+            "filename": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0805_2012Metric.step",
+            "offset": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "opacity": 1.0,
+            "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0805_2012Metric.step",
+            "rotation": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "scale": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "sha256": "ded342cdb394fb45395227beaaa75cc390613cf2581b29cd6d22c12abd6103b2",
+            "show": true
+          }
+        ],
+        "native_geometry_sha256": "2fcbfa6a98882858fda68a24d516d920186eefc76ac5be5bed93195139bdcee5",
+        "position_mm": [
+          57.0,
+          36.0
+        ],
+        "ref": "R12",
+        "rotation_deg": 0.0,
+        "side": "front"
+      },
+      {
+        "attributes": 2,
+        "dnp": false,
+        "models": [
+          {
+            "filename": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0805_2012Metric.step",
+            "offset": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "opacity": 1.0,
+            "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0805_2012Metric.step",
+            "rotation": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "scale": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "sha256": "ded342cdb394fb45395227beaaa75cc390613cf2581b29cd6d22c12abd6103b2",
+            "show": true
+          }
+        ],
+        "native_geometry_sha256": "f812b6b4b1597a4896014700a247e9fd4554b34a5fe44c076f16df51efd6d597",
+        "position_mm": [
+          62.0,
+          36.0
+        ],
+        "ref": "R13",
+        "rotation_deg": 0.0,
+        "side": "front"
+      },
+      {
+        "attributes": 2,
+        "dnp": false,
+        "models": [
+          {
+            "filename": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_1206_3216Metric.step",
+            "offset": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "opacity": 1.0,
+            "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_1206_3216Metric.step",
+            "rotation": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "scale": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "sha256": "f5d1ea5c47935091292bd1c6c698e0df88d3d4bbf92bf66b4c97e49df5be9ebc",
+            "show": true
+          }
+        ],
+        "native_geometry_sha256": "cea922f90539dfffebfacb9a376af937ba90210645a70b4368a9ab15cddf8a84",
+        "position_mm": [
+          28.0,
+          46.0
+        ],
+        "ref": "R14",
+        "rotation_deg": 90.0,
+        "side": "front"
+      },
+      {
+        "attributes": 2,
+        "dnp": false,
+        "models": [
+          {
+            "filename": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+            "offset": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "opacity": 1.0,
+            "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+            "rotation": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "scale": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb",
+            "show": true
+          }
+        ],
+        "native_geometry_sha256": "f6029eac39724afffed33b63f6e0d8d490cab830ce13d08b2cd4b27a3e66d476",
+        "position_mm": [
+          38.0,
+          50.0
+        ],
+        "ref": "R2",
+        "rotation_deg": 90.0,
+        "side": "front"
+      },
+      {
+        "attributes": 2,
+        "dnp": false,
+        "models": [
+          {
+            "filename": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0805_2012Metric.step",
+            "offset": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "opacity": 1.0,
+            "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0805_2012Metric.step",
+            "rotation": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "scale": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "sha256": "ded342cdb394fb45395227beaaa75cc390613cf2581b29cd6d22c12abd6103b2",
+            "show": true
+          }
+        ],
+        "native_geometry_sha256": "903c0b77b50cd08368d7f4a01b766ee3c4512ba20aa5d0bfc618687884abc0b3",
+        "position_mm": [
+          64.0,
+          39.0
+        ],
+        "ref": "R3",
+        "rotation_deg": 0.0,
+        "side": "front"
+      },
+      {
+        "attributes": 2,
+        "dnp": false,
+        "models": [
+          {
+            "filename": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+            "offset": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "opacity": 1.0,
+            "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+            "rotation": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "scale": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb",
+            "show": true
+          }
+        ],
+        "native_geometry_sha256": "087eb929281ade4bda61877070b1b19f38485b194f391609f115f004c7ab9223",
+        "position_mm": [
+          69.0,
+          39.5
+        ],
+        "ref": "R4",
+        "rotation_deg": 90.0,
+        "side": "front"
+      },
+      {
+        "attributes": 2,
+        "dnp": false,
+        "models": [
+          {
+            "filename": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+            "offset": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "opacity": 1.0,
+            "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+            "rotation": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "scale": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb",
+            "show": true
+          }
+        ],
+        "native_geometry_sha256": "c7891eca9f3061ddb5ce745e04c34430bc9bc83e0298f5b9fc3c265950cc0849",
+        "position_mm": [
+          64.5,
+          43.0
+        ],
+        "ref": "R5",
+        "rotation_deg": 90.0,
+        "side": "front"
+      },
+      {
+        "attributes": 2,
+        "dnp": false,
+        "models": [
+          {
+            "filename": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+            "offset": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "opacity": 1.0,
+            "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+            "rotation": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "scale": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb",
+            "show": true
+          }
+        ],
+        "native_geometry_sha256": "0237cd8fd8a73764abffb144e43a2b30c88a3bfa51c9605044d0fb9755bc55aa",
+        "position_mm": [
+          46.0,
+          45.0
+        ],
+        "ref": "R6",
+        "rotation_deg": 90.0,
+        "side": "front"
+      },
+      {
+        "attributes": 2,
+        "dnp": false,
+        "models": [
+          {
+            "filename": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+            "offset": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "opacity": 1.0,
+            "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+            "rotation": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "scale": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb",
+            "show": true
+          }
+        ],
+        "native_geometry_sha256": "8b3fb915a203b8a7fd709b3a2eab2e7d289411c65e913f200e3fe4678fbc6cf9",
+        "position_mm": [
+          46.0,
+          48.0
+        ],
+        "ref": "R7",
+        "rotation_deg": 90.0,
+        "side": "front"
+      },
+      {
+        "attributes": 2,
+        "dnp": false,
+        "models": [
+          {
+            "filename": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+            "offset": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "opacity": 1.0,
+            "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+            "rotation": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "scale": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb",
+            "show": true
+          }
+        ],
+        "native_geometry_sha256": "44e956668f23532b816cbc82c208689092b8daf1a00b165cc95211232aae63de",
+        "position_mm": [
+          51.0,
+          51.0
+        ],
+        "ref": "R8",
+        "rotation_deg": 90.0,
+        "side": "front"
+      },
+      {
+        "attributes": 2,
+        "dnp": false,
+        "models": [
+          {
+            "filename": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+            "offset": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "opacity": 1.0,
+            "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+            "rotation": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "scale": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb",
+            "show": true
+          }
+        ],
+        "native_geometry_sha256": "a09146947d1426737b9965eee35ef720ea5088503f0512e90b730366d3319b33",
+        "position_mm": [
+          51.0,
+          54.0
+        ],
+        "ref": "R9",
+        "rotation_deg": 90.0,
+        "side": "front"
+      },
+      {
+        "attributes": 28,
+        "dnp": false,
+        "models": [],
+        "native_geometry_sha256": "5fd1b425bdc65c9758604584ef026d04c88222d974a8cb68bf076660196440eb",
+        "position_mm": [
+          23.5,
+          31.0
+        ],
+        "ref": "TP1",
+        "rotation_deg": 0.0,
+        "side": "front"
+      },
+      {
+        "attributes": 28,
+        "dnp": false,
+        "models": [],
+        "native_geometry_sha256": "1211cb53a7f1e4bf7f9b53be6d5ffa9211cf426564027fd2e47a1130c1b8c05d",
+        "position_mm": [
+          24.0,
+          43.0
+        ],
+        "ref": "TP2",
+        "rotation_deg": 0.0,
+        "side": "front"
+      },
+      {
+        "attributes": 28,
+        "dnp": false,
+        "models": [],
+        "native_geometry_sha256": "2984fe0c774e8c53930bffb17d96cb4d932a4e5189a86db0ad05c95c7c3cfb3e",
+        "position_mm": [
+          24.0,
+          47.0
+        ],
+        "ref": "TP3",
+        "rotation_deg": 0.0,
+        "side": "front"
+      },
+      {
+        "attributes": 28,
+        "dnp": false,
+        "models": [],
+        "native_geometry_sha256": "3dd6ca7ea82e1e78eb28bc12c865603c04a75aed1280e7757b93e8e4646eee27",
+        "position_mm": [
+          24.0,
+          51.0
+        ],
+        "ref": "TP4",
+        "rotation_deg": 0.0,
+        "side": "front"
+      },
+      {
+        "attributes": 28,
+        "dnp": false,
+        "models": [],
+        "native_geometry_sha256": "6cb705506eb5f7ddd9175626c4366b5b22f9bad4eeae9fa3535d17c0447e08d7",
+        "position_mm": [
+          59.7,
+          32.5
+        ],
+        "ref": "TP5",
+        "rotation_deg": 0.0,
+        "side": "front"
+      },
+      {
+        "attributes": 28,
+        "dnp": false,
+        "models": [],
+        "native_geometry_sha256": "197f88e8059d6dad06b2935314a3495a56b1d1843b62fac4b34d49022d567778",
+        "position_mm": [
+          62.9,
+          32.5
+        ],
+        "ref": "TP6",
+        "rotation_deg": 0.0,
+        "side": "front"
+      },
+      {
+        "attributes": 28,
+        "dnp": false,
+        "models": [],
+        "native_geometry_sha256": "7f68e5dc334d73a666ff9b0bfb8ee2d9c134adc1dcaf8b832a3874c93449d1b8",
+        "position_mm": [
+          45.0,
+          56.0
+        ],
+        "ref": "TP7",
+        "rotation_deg": 0.0,
+        "side": "front"
+      },
+      {
+        "attributes": 2,
+        "dnp": false,
+        "models": [
+          {
+            "filename": "${KICAD10_3DMODEL_DIR}/Package_SO.3dshapes/SOIC-14_3.9x8.7mm_P1.27mm.step",
+            "offset": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "opacity": 1.0,
+            "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Package_SO.3dshapes/SOIC-14_3.9x8.7mm_P1.27mm.step",
+            "rotation": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "scale": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "sha256": "3b9a775da256c8afcc28dcddfbc2eb3f266107fe61ce8446d96f2c52b6f44a70",
+            "show": true
+          }
+        ],
+        "native_geometry_sha256": "4c3720cac6567291e9cf3d6ae97a4d8d0f822143b759bce7a4699b0473f45bb9",
+        "position_mm": [
+          57.5,
+          49.0
+        ],
+        "ref": "U1",
+        "rotation_deg": 0.0,
+        "side": "front"
+      },
+      {
+        "attributes": 2,
+        "dnp": false,
+        "models": [
+          {
+            "filename": "${KIPRJMOD}/../03_src/lib/3dmodels/TI_DGN0008G.stp",
+            "offset": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "opacity": 1.0,
+            "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-mic-pod-v3/03_src/lib/3dmodels/TI_DGN0008G.stp",
+            "rotation": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "scale": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "sha256": "9751a8fa8744b8d50553223b504f942a373396d134eccee1f86c69b545fffc10",
+            "show": true
+          }
+        ],
+        "native_geometry_sha256": "1d7bc045db318b60ed8231d511f94b11b34144be2eb944195866fe6e0e0ec164",
+        "position_mm": [
+          35.0,
+          45.0
+        ],
+        "ref": "U2",
+        "rotation_deg": 90.0,
+        "side": "front"
+      },
+      {
+        "attributes": 2,
+        "dnp": false,
+        "models": [
+          {
+            "filename": "${KICAD10_3DMODEL_DIR}/Package_TO_SOT_SMD.3dshapes/SOT-553.step",
+            "offset": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "opacity": 1.0,
+            "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Package_TO_SOT_SMD.3dshapes/SOT-553.step",
+            "rotation": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "scale": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "sha256": "2219d28dc74f980a4614180a52f390c2a095740e92ee987e4ac96f80edf01c52",
+            "show": true
+          }
+        ],
+        "native_geometry_sha256": "f1e57344710be52541fef32c8da1cd4780cafd12ef7faf7dedcfbfd3dec2e621",
+        "position_mm": [
+          48.0,
+          34.75
+        ],
+        "ref": "U3",
+        "rotation_deg": 180.0,
+        "side": "front"
+      }
+    ],
+    "population_policy": "all declared models; includes DNP; native per-model show/opacity retained",
+    "renderer_config": {
+      "meta": {
+        "version": 4
+      },
+      "render": {
+        "material_mode": 0,
+        "show_board_body": true,
+        "show_footprints_dnp": true,
+        "show_footprints_insert": true,
+        "show_footprints_normal": true,
+        "show_footprints_not_in_posfile": true,
+        "show_footprints_virtual": true
+      }
+    },
+    "renderer_options": [
+      "--quality",
+      "high",
+      "--background",
+      "opaque",
+      "--preset",
+      "",
+      "--zoom",
+      "1",
+      "--pan",
+      "0,0,0",
+      "--pivot",
+      "0,0,0",
+      "--light-top",
+      "0.8",
+      "--light-bottom",
+      "0.2",
+      "--light-side",
+      "0.6",
+      "--light-camera",
+      "0.8",
+      "--light-side-elevation",
+      "60"
+    ],
+    "substitutions": {
+      "KICAD10_3DMODEL_DIR": "/home/mouse9911/.local/share/kicad/10.0/3dmodels",
+      "KICAD8_3DMODEL_DIR": "/usr/share/kicad/3dmodels",
+      "KICAD9_3DMODEL_DIR": "/usr/share/kicad/3dmodels",
+      "KIPRJMOD": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-mic-pod-v3/04_kicad",
+      "KISYS3DMOD": "/home/mouse9911/.local/share/kicad/10.0/3dmodels"
+    }
+  },
+  "schema": 1,
+  "subject": {
+    "contract": [
+      {
+        "id": "j1_wurth_615008160221_official_step",
+        "model_sha256": "3f902b89d4bd756b121be056782deff312efb127c9c48f2c798ebd6db0e59f49",
+        "orientation": {
+          "angular_tolerance_deg": 1.0,
+          "authority": "Official Wurth drawing, footprint and STEP. Footprint local -Y and model local +Y point toward the mouth; physical cord/enclosure fit is retained as a first-article hold.",
+          "edge_offset_range_mm": [
+            0.49,
+            0.51
+          ],
+          "footprint_access_axis_local": [
+            0.0,
+            -1.0,
+            0.0
+          ],
+          "key_pad": "1",
+          "mating_plane_offset_mm": 6.36,
+          "model_access_axis_local": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "model_up_axis_local": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "model_z_offset_range_mm": [
+            -0.01,
+            0.01
+          ],
+          "mount_side": "front"
+        },
+        "refs": [
+          "J1"
+        ]
+      }
+    ],
+    "edge_faces": {
+      "J1": {
+        "edge": "y0",
+        "min_offset_mm": 0.5
+      }
+    },
+    "inside_recipes": {
+      "J1": {
+        "framing": "cardinal-window",
+        "projection": "orthographic",
+        "rotate": "0,0,0",
+        "side": "front"
+      }
+    },
+    "placement": {
+      "outline_mm": [
+        [
+          80.0,
+          60.0
+        ],
+        [
+          20.0,
+          60.0
+        ],
+        [
+          20.0,
+          20.0
+        ],
+        [
+          80.0,
+          20.0
+        ]
+      ],
+      "placements": [
+        {
+          "models": [
+            {
+              "filename": "${KIPRJMOD}/../03_src/lib/3dmodels/wurth/J_Wurth_WR-MJ_615008160221.step",
+              "offset": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "scale": [
+                1.0,
+                1.0,
+                1.0
+              ]
+            }
+          ],
+          "position_mm": [
+            45.5,
+            25.86
+          ],
+          "ref": "J1",
+          "rotation_deg": 0.0,
+          "side": "front"
+        }
+      ]
+    },
+    "render_size": [
+      2400,
+      1600
+    ],
+    "scene": {
+      "board_drawings": [
+        "05e8dd5c1d433ec1bc9fd89b0f671dda9b8b1b5fba1e95bad73910d8a4fe28fc",
+        "0a59c7e712bb2f17cc9a003b5e87a77f3c3e0ba3d0a74f72c83ec39b5fc6ae64",
+        "0a74053c5bcb272a5529101ec62fca515780aeaeaf9daa1a2d725ea9b74d1f16",
+        "0b0dc5ef809b37077840855c377649be022a6d3395e0f7ad34e68303b151eb73",
+        "14d3e5d97bff611733b477064dea7734c56357e125dcfbdc60c3fa7f75007cfc",
+        "1d107cb7ee52e3f8e827cb35c6389b26ca8c7b9bbc501502f9ce8bd48df4a21e",
+        "1d1e0fbac4fd012eab86009fcef9fd34466f3b4a1ca1e1b3769e111de58b3aac",
+        "1fb795671234b645022307f2544d5046184fdff738316ef680ede903e3530399",
+        "2240c448ea02b2763e1ad9ea35e47673e02c98f6871656173108ef509c7d483f",
+        "2705b297320233a8328593ea1ec32b63bdd5c6953de0530dd39065bbc6063af4",
+        "2b9dbfd002473de87cb7c1947e3529539051f448e0ba443cb506d74122205f99",
+        "2bf1a2d5b539d5a5d1839a2888cf9c529cf760788f64d3fa09dcb3a67dbfd7bf",
+        "2ed3bf5a78899df71fbc69dda42510ce12fdde0a3aab38987a484586311ef32f",
+        "39fd9b96dc06adead7370516753f7165a5dc930a64f1163b5adb8af66bc99daa",
+        "3aaa38a57a79d55ba6b690941cfb36d692d1c9b657b6f929058ec3d8926641cc",
+        "3fc486489605309907e58a8a3dc71c61abaf2f98904932de5767f2bb2b26f677",
+        "417164c533aa7547bb1f732e1bf8fa1344d9cdd128684eca651141e16555b97d",
+        "4460df7f8c1511dea92918d614c27b77153ec7873e205472e7bce25233d5f0f8",
+        "44e5765b4d8a28599363f20bb6534f149d3f34c24d737b50caeb4ec4e6295fcf",
+        "4c0753bf1bdde3da4314a52150f084a9136733906985f860f210b68bd1e79e23",
+        "4c394c8936b7c09165e241aee6e12c6c3ed823bfe7c3455516b92c8030a7769c",
+        "4cbe88b4194d9780c8fdd8124ad125dd3071dfd7fc80eca95bebbebeab56af7b",
+        "50e1eb1f952ccf8c25e62d8ee23a438c4197c0d7c143762261c7571c2068f849",
+        "5ea9cfa742485b81b8ad0974fec23e939ae1c9c2c53a00cb48c4aa218ae0bb81",
+        "60c7384f9a94270b64cc4df99384543ac6e3d9ee1302c2e50fd85156966e31a5",
+        "6d30584448ad16d2a678e53e802b78f151a9838319c0d2973cf7368a44e14679",
+        "6f7f15bb7edcc77628ab81072be3feb6c9aa1dbe235e90b5b791637fcf654195",
+        "754d3bde1223808afa6d978b6a0d7a87cd77844d9cee4a49b895be42775eabfb",
+        "7823f36863f08a52203bc78213c62f6257ecd1de9530da3aa1ede54602d325e2",
+        "7922512811c84c5796c03b06e8a1294fbdd25abf774eb2ff84e5ef3dc803d686",
+        "7a374893a15425041aae724b285e8fb13307eb6fb4d98ca42a680a54b43b7329",
+        "964492ab61e209b70d018faec7d8abf57fd839d76d06c7dc0cebb481f98ba11e",
+        "97accc822d3c08acc53afa7bc49188f3eeeda5412a3e8f14f40b0611a757a2e8",
+        "a35f3f1ec841349e90effe5be261c943bb9d68da78e0d8b009018fde252f753a",
+        "a47072e50df32dec831a09a57e7e66239ff8d9bf3103a7577ca874317cf49c5d",
+        "a573ed2c0757ee660e16b597fbccc43f2a659d4bb6f8a8a45fa3d7a5b14fe5a8",
+        "a619b9a766400a846f004048f3db710c0a85aea8fdc04e5edeca93ad01cf6899",
+        "a874a08a58708cafccae3ab191359719e991260dceb1bd1e8614a811625de94b",
+        "b26a87886a1288ade4db631041c0c2de6f7be8dab6d872f846cc386d13f9b626",
+        "b68659fbd8416a37c963d176f1e5d79eb589e203b9e47e745d01682f7a28ecd6",
+        "b988657cd09a15ae10b8cad4d76f59d162226aaa5c19ebe49869a25b804d820f",
+        "bb633a460e7963c60d2cb229b4c76d18191ada1db7edb4fc2ee40ee40db77e70",
+        "bdb9f8d3dfebbefeeb61f3f6139539ec6eacbe9a44b7739fd7d48f2e14a3cb18",
+        "c03e2a74916c06f087219a2bda9c5b07926db235abb05cf52a76ea8de628a6cb",
+        "c05eb6cd86182e262f4d585d2cf10dff437e3064f31557c216d898922863145b",
+        "c65025943886f0d1dba3cfa535cc3728af1c8b38fb7db2a4c0d413afb49b1292",
+        "c7b40d188f9638554370cb05e32741e716987625115ecdb7da7db5c25d3f0f12",
+        "c9ce96c96bba8ce5c3b5c8a43b7f6dcb1b610385fcb64b08a63d4a8e8d07d67e",
+        "cc4c85093a5ffcda33c50fd22883fb97caee2a1f98013eb21990880660ebca18",
+        "d33f7b95ce7f75250a7f229f88a2cfd40af787333cc91988f1b220f3e440ad7d",
+        "d3bc522a6d5474cc0153f9a8a0bf0bdc86418aef10b43dbda6e53383a1cb1e66",
+        "df0d495fed35c02960adde5b97fb793950c6b893b531e08e71dd3f1ad16d1346",
+        "ec9056a8347c3dbb5841577ca7e8cefcf5ceec206b1cadbd95569e9da9b60a7a",
+        "eff0b3c82e4a21e1c15be4396ef3fc653046f3314a61bc1ffafe1cb9c8d6abb8",
+        "f1c6d6a774e09730687cf89a54009d706fd0ae09cbd578f2a60081000ee7ea8a",
+        "f4a4ac34cc6cd220f7f51f8a6986b691287bc2298d536540d914e439c53010bf",
+        "f840a58417b963e45c5c2ae413c6d40cf8619aea538b74c34d3bd255349e2656",
+        "f86b0a4aad4058d67e93e3a5b41ce682766edf93cff4660e3bd54e6091c2b1be",
+        "fb39c679e8c9ba8eab5556fec4a008fb78f6de88ecdea2ba841ffae49e3717d4",
+        "fefec4859f4368e6ee76a5d59b127c497da917fbc02b336b7490159bee78ecd7"
+      ],
+      "board_setup": [
+        [
+          "general",
+          [
+            "thickness",
+            "1.6"
+          ],
+          [
+            "legacy_teardrops",
+            "no"
+          ]
+        ],
+        [
+          "layers",
+          [
+            "0",
+            "F.Cu",
+            "signal"
+          ],
+          [
+            "2",
+            "B.Cu",
+            "signal"
+          ],
+          [
+            "9",
+            "F.Adhes",
+            "user",
+            "F.Adhesive"
+          ],
+          [
+            "11",
+            "B.Adhes",
+            "user",
+            "B.Adhesive"
+          ],
+          [
+            "13",
+            "F.Paste",
+            "user"
+          ],
+          [
+            "15",
+            "B.Paste",
+            "user"
+          ],
+          [
+            "5",
+            "F.SilkS",
+            "user",
+            "F.Silkscreen"
+          ],
+          [
+            "7",
+            "B.SilkS",
+            "user",
+            "B.Silkscreen"
+          ],
+          [
+            "1",
+            "F.Mask",
+            "user"
+          ],
+          [
+            "3",
+            "B.Mask",
+            "user"
+          ],
+          [
+            "17",
+            "Dwgs.User",
+            "user",
+            "User.Drawings"
+          ],
+          [
+            "19",
+            "Cmts.User",
+            "user",
+            "User.Comments"
+          ],
+          [
+            "21",
+            "Eco1.User",
+            "user",
+            "User.Eco1"
+          ],
+          [
+            "23",
+            "Eco2.User",
+            "user",
+            "User.Eco2"
+          ],
+          [
+            "25",
+            "Edge.Cuts",
+            "user"
+          ],
+          [
+            "27",
+            "Margin",
+            "user"
+          ],
+          [
+            "31",
+            "F.CrtYd",
+            "user",
+            "F.Courtyard"
+          ],
+          [
+            "29",
+            "B.CrtYd",
+            "user",
+            "B.Courtyard"
+          ],
+          [
+            "35",
+            "F.Fab",
+            "user"
+          ],
+          [
+            "33",
+            "B.Fab",
+            "user"
+          ],
+          [
+            "39",
+            "User.1",
+            "user"
+          ],
+          [
+            "41",
+            "User.2",
+            "user"
+          ],
+          [
+            "43",
+            "User.3",
+            "user"
+          ],
+          [
+            "45",
+            "User.4",
+            "user"
+          ]
+        ],
+        [
+          "setup",
+          [
+            "pad_to_mask_clearance",
+            "0"
+          ],
+          [
+            "allow_soldermask_bridges_in_footprints",
+            "no"
+          ],
+          [
+            "tenting",
+            [
+              "front",
+              "yes"
+            ],
+            [
+              "back",
+              "yes"
+            ]
+          ],
+          [
+            "covering",
+            [
+              "front",
+              "no"
+            ],
+            [
+              "back",
+              "no"
+            ]
+          ],
+          [
+            "plugging",
+            [
+              "front",
+              "no"
+            ],
+            [
+              "back",
+              "no"
+            ]
+          ],
+          [
+            "capping",
+            "no"
+          ],
+          [
+            "filling",
+            "no"
+          ],
+          [
+            "pcbplotparams",
+            [
+              "layerselection",
+              "0x00000000_00000000_55555555_5755f5ff"
+            ],
+            [
+              "plot_on_all_layers_selection",
+              "0x00000000_00000000_00000000_00000000"
+            ],
+            [
+              "disableapertmacros",
+              "no"
+            ],
+            [
+              "usegerberextensions",
+              "no"
+            ],
+            [
+              "usegerberattributes",
+              "yes"
+            ],
+            [
+              "usegerberadvancedattributes",
+              "yes"
+            ],
+            [
+              "creategerberjobfile",
+              "yes"
+            ],
+            [
+              "dashed_line_dash_ratio",
+              "12"
+            ],
+            [
+              "dashed_line_gap_ratio",
+              "3"
+            ],
+            [
+              "svgprecision",
+              "4"
+            ],
+            [
+              "plotframeref",
+              "no"
+            ],
+            [
+              "mode",
+              "1"
+            ],
+            [
+              "useauxorigin",
+              "no"
+            ],
+            [
+              "pdf_front_fp_property_popups",
+              "yes"
+            ],
+            [
+              "pdf_back_fp_property_popups",
+              "yes"
+            ],
+            [
+              "pdf_metadata",
+              "yes"
+            ],
+            [
+              "pdf_single_document",
+              "no"
+            ],
+            [
+              "dxfpolygonmode",
+              "yes"
+            ],
+            [
+              "dxfimperialunits",
+              "yes"
+            ],
+            [
+              "dxfusepcbnewfont",
+              "yes"
+            ],
+            [
+              "psnegative",
+              "no"
+            ],
+            [
+              "psa4output",
+              "no"
+            ],
+            [
+              "plot_black_and_white",
+              "yes"
+            ],
+            [
+              "sketchpadsonfab",
+              "no"
+            ],
+            [
+              "plotpadnumbers",
+              "no"
+            ],
+            [
+              "hidednponfab",
+              "no"
+            ],
+            [
+              "sketchdnponfab",
+              "yes"
+            ],
+            [
+              "crossoutdnponfab",
+              "yes"
+            ],
+            [
+              "subtractmaskfromsilk",
+              "no"
+            ],
+            [
+              "outputformat",
+              "1"
+            ],
+            [
+              "mirror",
+              "no"
+            ],
+            [
+              "drillshape",
+              "1"
+            ],
+            [
+              "scaleselection",
+              "1"
+            ],
+            [
+              "outputdirectory",
+              ""
+            ]
+          ]
+        ]
+      ],
+      "board_thickness_mm": 1.6,
+      "outline_mm": [
+        [
+          80.0,
+          60.0
+        ],
+        [
+          20.0,
+          60.0
+        ],
+        [
+          20.0,
+          20.0
+        ],
+        [
+          80.0,
+          20.0
+        ]
+      ],
+      "placements": [
+        {
+          "attributes": 2,
+          "dnp": false,
+          "models": [
+            {
+              "filename": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_1210_3225Metric.step",
+              "offset": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "opacity": 1.0,
+              "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_1210_3225Metric.step",
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "scale": [
+                1.0,
+                1.0,
+                1.0
+              ],
+              "sha256": "f8510481c5044113cf49b0fa6dd54ddab9224508bd6808e1afab8ef0cefdefc9",
+              "show": true
+            }
+          ],
+          "native_geometry_sha256": "9226060d147a3ede97a30a6e0f75126297c2c68f162316d992895b75558084b7",
+          "position_mm": [
+            31.5,
+            41.2
+          ],
+          "ref": "C1",
+          "rotation_deg": 90.0,
+          "side": "front"
+        },
+        {
+          "attributes": 2,
+          "dnp": false,
+          "models": [
+            {
+              "filename": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+              "offset": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "opacity": 1.0,
+              "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "scale": [
+                1.0,
+                1.0,
+                1.0
+              ],
+              "sha256": "03e44c4b2b727b8d4b6b1fd598cbd12dd5e614f1dfeefa96a92a07e3a3b312a2",
+              "show": true
+            }
+          ],
+          "native_geometry_sha256": "5a01df13825190b1d270640ef55711d73f42c01b4e01f841e9a1099c1b2a5913",
+          "position_mm": [
+            52.6,
+            49.0
+          ],
+          "ref": "C10",
+          "rotation_deg": 180.0,
+          "side": "front"
+        },
+        {
+          "attributes": 2,
+          "dnp": false,
+          "models": [
+            {
+              "filename": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0805_2012Metric.step",
+              "offset": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "opacity": 1.0,
+              "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0805_2012Metric.step",
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "scale": [
+                1.0,
+                1.0,
+                1.0
+              ],
+              "sha256": "9a669c1a2f1ea25b88b401acef6efeaa80a067bd7da9db6993de719a7fbe155c",
+              "show": true
+            }
+          ],
+          "native_geometry_sha256": "c7f8b26216bf5b6808f670ae6b1b58d17b19555eac5e6cee66e7bedadbab8eb4",
+          "position_mm": [
+            59.0,
+            41.0
+          ],
+          "ref": "C11",
+          "rotation_deg": 0.0,
+          "side": "front"
+        },
+        {
+          "attributes": 2,
+          "dnp": false,
+          "models": [
+            {
+              "filename": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+              "offset": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "opacity": 1.0,
+              "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "scale": [
+                1.0,
+                1.0,
+                1.0
+              ],
+              "sha256": "03e44c4b2b727b8d4b6b1fd598cbd12dd5e614f1dfeefa96a92a07e3a3b312a2",
+              "show": true
+            }
+          ],
+          "native_geometry_sha256": "a5cd61bf9e2c045f3544abcdef179b5fc8c85d40d1e7559dceb4c816a0b6b3d6",
+          "position_mm": [
+            32.0,
+            44.2
+          ],
+          "ref": "C2",
+          "rotation_deg": 180.0,
+          "side": "front"
+        },
+        {
+          "attributes": 2,
+          "dnp": false,
+          "models": [
+            {
+              "filename": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+              "offset": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "opacity": 1.0,
+              "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "scale": [
+                1.0,
+                1.0,
+                1.0
+              ],
+              "sha256": "03e44c4b2b727b8d4b6b1fd598cbd12dd5e614f1dfeefa96a92a07e3a3b312a2",
+              "show": true
+            }
+          ],
+          "native_geometry_sha256": "9b144e7d79eb837d4202adf339f1f6011aa6ba22b935ce1a2c0f446e34f718a8",
+          "position_mm": [
+            34.6,
+            49.2
+          ],
+          "ref": "C3",
+          "rotation_deg": 0.0,
+          "side": "front"
+        },
+        {
+          "attributes": 2,
+          "dnp": false,
+          "models": [
+            {
+              "filename": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+              "offset": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "opacity": 1.0,
+              "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "scale": [
+                1.0,
+                1.0,
+                1.0
+              ],
+              "sha256": "03e44c4b2b727b8d4b6b1fd598cbd12dd5e614f1dfeefa96a92a07e3a3b312a2",
+              "show": true
+            }
+          ],
+          "native_geometry_sha256": "b95dee11a93e4ecb11d423cc65cd52c435f48e885f1df41eb588e176366a7637",
+          "position_mm": [
+            35.3,
+            40.5
+          ],
+          "ref": "C4",
+          "rotation_deg": 90.0,
+          "side": "front"
+        },
+        {
+          "attributes": 2,
+          "dnp": false,
+          "models": [
+            {
+              "filename": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0805_2012Metric.step",
+              "offset": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "opacity": 1.0,
+              "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0805_2012Metric.step",
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "scale": [
+                1.0,
+                1.0,
+                1.0
+              ],
+              "sha256": "9a669c1a2f1ea25b88b401acef6efeaa80a067bd7da9db6993de719a7fbe155c",
+              "show": true
+            }
+          ],
+          "native_geometry_sha256": "dde28ca20094cf08be294a6f56a90195bb90b3f0ee127f8d78ce365a6eb70c20",
+          "position_mm": [
+            31.65,
+            49.5
+          ],
+          "ref": "C5",
+          "rotation_deg": 180.0,
+          "side": "front"
+        },
+        {
+          "attributes": 2,
+          "dnp": false,
+          "models": [
+            {
+              "filename": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+              "offset": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "opacity": 1.0,
+              "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "scale": [
+                1.0,
+                1.0,
+                1.0
+              ],
+              "sha256": "03e44c4b2b727b8d4b6b1fd598cbd12dd5e614f1dfeefa96a92a07e3a3b312a2",
+              "show": true
+            }
+          ],
+          "native_geometry_sha256": "01bd3cbed6ca0e5bb2d20ffdb54bb52d9f31ce74cbd05b4a88954ceee4030d09",
+          "position_mm": [
+            32.0,
+            47.0
+          ],
+          "ref": "C6",
+          "rotation_deg": 180.0,
+          "side": "front"
+        },
+        {
+          "attributes": 2,
+          "dnp": false,
+          "models": [
+            {
+              "filename": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_1210_3225Metric.step",
+              "offset": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "opacity": 1.0,
+              "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_1210_3225Metric.step",
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "scale": [
+                1.0,
+                1.0,
+                1.0
+              ],
+              "sha256": "f8510481c5044113cf49b0fa6dd54ddab9224508bd6808e1afab8ef0cefdefc9",
+              "show": true
+            }
+          ],
+          "native_geometry_sha256": "458812cece765555582b8512b00766f120c30e2683cf63729e0c505fbf7d048f",
+          "position_mm": [
+            69.0,
+            34.0
+          ],
+          "ref": "C7",
+          "rotation_deg": 0.0,
+          "side": "front"
+        },
+        {
+          "attributes": 2,
+          "dnp": false,
+          "models": [
+            {
+              "filename": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0603_1608Metric.step",
+              "offset": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "opacity": 1.0,
+              "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0603_1608Metric.step",
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "scale": [
+                1.0,
+                1.0,
+                1.0
+              ],
+              "sha256": "4857b3dc717675bf1fb22edda622ac3b3ae03cf44d81eefaf3fa3ba3a86d84c1",
+              "show": true
+            }
+          ],
+          "native_geometry_sha256": "27b0af4824273fdc7226a4c5e6170bf14c184c3821a0cb7c21b13c3e92c83c09",
+          "position_mm": [
+            67.5,
+            43.0
+          ],
+          "ref": "C8",
+          "rotation_deg": 90.0,
+          "side": "front"
+        },
+        {
+          "attributes": 2,
+          "dnp": false,
+          "models": [
+            {
+              "filename": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0805_2012Metric.step",
+              "offset": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "opacity": 1.0,
+              "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0805_2012Metric.step",
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "scale": [
+                1.0,
+                1.0,
+                1.0
+              ],
+              "sha256": "9a669c1a2f1ea25b88b401acef6efeaa80a067bd7da9db6993de719a7fbe155c",
+              "show": true
+            }
+          ],
+          "native_geometry_sha256": "69687e7f8091db4f0dd6f3c7b5c6e502d2e9761bc0432bd4babeb4c4862f4462",
+          "position_mm": [
+            49.0,
+            46.5
+          ],
+          "ref": "C9",
+          "rotation_deg": 90.0,
+          "side": "front"
+        },
+        {
+          "attributes": 2,
+          "dnp": false,
+          "models": [
+            {
+              "filename": "${KICAD10_3DMODEL_DIR}/Diode_SMD.3dshapes/D_SMA.step",
+              "offset": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "opacity": 1.0,
+              "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Diode_SMD.3dshapes/D_SMA.step",
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "scale": [
+                1.0,
+                1.0,
+                1.0
+              ],
+              "sha256": "1cfddd4e3b1bf22b8fc6ee3258c2aade882ed7b85b528e23b9db42437775a1db",
+              "show": true
+            }
+          ],
+          "native_geometry_sha256": "b9b3492001279b7493a6554190bbd7e66c1633dbe161bf701314e201b0a2c85c",
+          "position_mm": [
+            39.5,
+            35.6
+          ],
+          "ref": "D1",
+          "rotation_deg": 0.0,
+          "side": "front"
+        },
+        {
+          "attributes": 2,
+          "dnp": false,
+          "models": [
+            {
+              "filename": "${KICAD10_3DMODEL_DIR}/Diode_SMD.3dshapes/D_SMB.step",
+              "offset": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "opacity": 1.0,
+              "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Diode_SMD.3dshapes/D_SMB.step",
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "scale": [
+                1.0,
+                1.0,
+                1.0
+              ],
+              "sha256": "029466277d91e9f5492556be93e46611049e07115c7913880c547afa96058ed4",
+              "show": true
+            }
+          ],
+          "native_geometry_sha256": "2bfc300531ab41620cca936a99778bed16c0bdcface2f3b8d63e1edb54664390",
+          "position_mm": [
+            27.3,
+            38.0
+          ],
+          "ref": "D2",
+          "rotation_deg": -90.0,
+          "side": "front"
+        },
+        {
+          "attributes": 2,
+          "dnp": false,
+          "models": [
+            {
+              "filename": "${KICAD10_3DMODEL_DIR}/Fuse.3dshapes/Fuse_1206_3216Metric.step",
+              "offset": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "opacity": 1.0,
+              "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Fuse.3dshapes/Fuse_1206_3216Metric.step",
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "scale": [
+                1.0,
+                1.0,
+                1.0
+              ],
+              "sha256": "5e6dcbe286696143d35a8ea37d91eef4b54ff3d1bd7c2c2b4dedda83d3f8e203",
+              "show": true
+            }
+          ],
+          "native_geometry_sha256": "d864a79c5f28d31a27682d5d510f14deb90bf64975a3728ea04c8b3930950e87",
+          "position_mm": [
+            33.5,
+            33.5
+          ],
+          "ref": "F1",
+          "rotation_deg": 0.0,
+          "side": "front"
+        },
+        {
+          "attributes": 28,
+          "dnp": false,
+          "models": [],
+          "native_geometry_sha256": "0f80dab6d076edf89527e922eaef386a93e0f8337f848c1b399b6b2480c14bff",
+          "position_mm": [
+            24.0,
+            24.0
+          ],
+          "ref": "H1",
+          "rotation_deg": 0.0,
+          "side": "front"
+        },
+        {
+          "attributes": 28,
+          "dnp": false,
+          "models": [],
+          "native_geometry_sha256": "0f3c55c16fd43017d5fed8aedbad5612fb1d2dcb4dff731ff789c3a6e70382e2",
+          "position_mm": [
+            76.0,
+            24.0
+          ],
+          "ref": "H2",
+          "rotation_deg": 0.0,
+          "side": "front"
+        },
+        {
+          "attributes": 28,
+          "dnp": false,
+          "models": [],
+          "native_geometry_sha256": "798594c7de7ce523736c553d1a13490391f4c7cb4b48e64ce4b703338ef02dc9",
+          "position_mm": [
+            24.0,
+            56.0
+          ],
+          "ref": "H3",
+          "rotation_deg": 0.0,
+          "side": "front"
+        },
+        {
+          "attributes": 28,
+          "dnp": false,
+          "models": [],
+          "native_geometry_sha256": "f4287f8446049fa3232bf0a65a5cb396d3f332577952a008c8bdf6edf301b284",
+          "position_mm": [
+            76.0,
+            56.0
+          ],
+          "ref": "H4",
+          "rotation_deg": 0.0,
+          "side": "front"
+        },
+        {
+          "attributes": 5,
+          "dnp": false,
+          "models": [
+            {
+              "filename": "${KIPRJMOD}/../03_src/lib/3dmodels/wurth/J_Wurth_WR-MJ_615008160221.step",
+              "offset": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "opacity": 1.0,
+              "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-mic-pod-v3/03_src/lib/3dmodels/wurth/J_Wurth_WR-MJ_615008160221.step",
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "scale": [
+                1.0,
+                1.0,
+                1.0
+              ],
+              "sha256": "3f902b89d4bd756b121be056782deff312efb127c9c48f2c798ebd6db0e59f49",
+              "show": true
+            }
+          ],
+          "native_geometry_sha256": "febac6eaadbb17665cbc3cb434d60934b4192e866b621c3d55208205f2aec5e0",
+          "position_mm": [
+            45.5,
+            25.86
+          ],
+          "ref": "J1",
+          "rotation_deg": 0.0,
+          "side": "front"
+        },
+        {
+          "attributes": 21,
+          "dnp": false,
+          "models": [],
+          "native_geometry_sha256": "d56fd8fd4aa7a0dcb15aebd692f79eac6a9ef4e74e9a510c13ebf06b4033afed",
+          "position_mm": [
+            73.0,
+            42.5
+          ],
+          "ref": "MK1",
+          "rotation_deg": 90.0,
+          "side": "front"
+        },
+        {
+          "attributes": 2,
+          "dnp": false,
+          "models": [
+            {
+              "filename": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+              "offset": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "opacity": 1.0,
+              "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "scale": [
+                1.0,
+                1.0,
+                1.0
+              ],
+              "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb",
+              "show": true
+            }
+          ],
+          "native_geometry_sha256": "392e7b5fd7d59874a1e24372dff1a3d1a078fc79895871e7bd2a37818c588597",
+          "position_mm": [
+            36.2,
+            50.0
+          ],
+          "ref": "R1",
+          "rotation_deg": 90.0,
+          "side": "front"
+        },
+        {
+          "attributes": 2,
+          "dnp": false,
+          "models": [
+            {
+              "filename": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+              "offset": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "opacity": 1.0,
+              "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "scale": [
+                1.0,
+                1.0,
+                1.0
+              ],
+              "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb",
+              "show": true
+            }
+          ],
+          "native_geometry_sha256": "3b97b32b83a54f403f8625b5644dd7838b37e2fbdeea4748d65b90c860fa3cf5",
+          "position_mm": [
+            64.0,
+            51.0
+          ],
+          "ref": "R10",
+          "rotation_deg": 90.0,
+          "side": "front"
+        },
+        {
+          "attributes": 2,
+          "dnp": false,
+          "models": [
+            {
+              "filename": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+              "offset": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "opacity": 1.0,
+              "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "scale": [
+                1.0,
+                1.0,
+                1.0
+              ],
+              "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb",
+              "show": true
+            }
+          ],
+          "native_geometry_sha256": "5b16134873eab5233c43030d0ea24b83db5da7918a5acfa4bc5e9ad00d030c23",
+          "position_mm": [
+            64.0,
+            54.0
+          ],
+          "ref": "R11",
+          "rotation_deg": 90.0,
+          "side": "front"
+        },
+        {
+          "attributes": 2,
+          "dnp": false,
+          "models": [
+            {
+              "filename": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0805_2012Metric.step",
+              "offset": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "opacity": 1.0,
+              "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0805_2012Metric.step",
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "scale": [
+                1.0,
+                1.0,
+                1.0
+              ],
+              "sha256": "ded342cdb394fb45395227beaaa75cc390613cf2581b29cd6d22c12abd6103b2",
+              "show": true
+            }
+          ],
+          "native_geometry_sha256": "2fcbfa6a98882858fda68a24d516d920186eefc76ac5be5bed93195139bdcee5",
+          "position_mm": [
+            57.0,
+            36.0
+          ],
+          "ref": "R12",
+          "rotation_deg": 0.0,
+          "side": "front"
+        },
+        {
+          "attributes": 2,
+          "dnp": false,
+          "models": [
+            {
+              "filename": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0805_2012Metric.step",
+              "offset": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "opacity": 1.0,
+              "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0805_2012Metric.step",
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "scale": [
+                1.0,
+                1.0,
+                1.0
+              ],
+              "sha256": "ded342cdb394fb45395227beaaa75cc390613cf2581b29cd6d22c12abd6103b2",
+              "show": true
+            }
+          ],
+          "native_geometry_sha256": "f812b6b4b1597a4896014700a247e9fd4554b34a5fe44c076f16df51efd6d597",
+          "position_mm": [
+            62.0,
+            36.0
+          ],
+          "ref": "R13",
+          "rotation_deg": 0.0,
+          "side": "front"
+        },
+        {
+          "attributes": 2,
+          "dnp": false,
+          "models": [
+            {
+              "filename": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_1206_3216Metric.step",
+              "offset": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "opacity": 1.0,
+              "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_1206_3216Metric.step",
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "scale": [
+                1.0,
+                1.0,
+                1.0
+              ],
+              "sha256": "f5d1ea5c47935091292bd1c6c698e0df88d3d4bbf92bf66b4c97e49df5be9ebc",
+              "show": true
+            }
+          ],
+          "native_geometry_sha256": "cea922f90539dfffebfacb9a376af937ba90210645a70b4368a9ab15cddf8a84",
+          "position_mm": [
+            28.0,
+            46.0
+          ],
+          "ref": "R14",
+          "rotation_deg": 90.0,
+          "side": "front"
+        },
+        {
+          "attributes": 2,
+          "dnp": false,
+          "models": [
+            {
+              "filename": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+              "offset": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "opacity": 1.0,
+              "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "scale": [
+                1.0,
+                1.0,
+                1.0
+              ],
+              "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb",
+              "show": true
+            }
+          ],
+          "native_geometry_sha256": "f6029eac39724afffed33b63f6e0d8d490cab830ce13d08b2cd4b27a3e66d476",
+          "position_mm": [
+            38.0,
+            50.0
+          ],
+          "ref": "R2",
+          "rotation_deg": 90.0,
+          "side": "front"
+        },
+        {
+          "attributes": 2,
+          "dnp": false,
+          "models": [
+            {
+              "filename": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0805_2012Metric.step",
+              "offset": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "opacity": 1.0,
+              "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0805_2012Metric.step",
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "scale": [
+                1.0,
+                1.0,
+                1.0
+              ],
+              "sha256": "ded342cdb394fb45395227beaaa75cc390613cf2581b29cd6d22c12abd6103b2",
+              "show": true
+            }
+          ],
+          "native_geometry_sha256": "903c0b77b50cd08368d7f4a01b766ee3c4512ba20aa5d0bfc618687884abc0b3",
+          "position_mm": [
+            64.0,
+            39.0
+          ],
+          "ref": "R3",
+          "rotation_deg": 0.0,
+          "side": "front"
+        },
+        {
+          "attributes": 2,
+          "dnp": false,
+          "models": [
+            {
+              "filename": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+              "offset": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "opacity": 1.0,
+              "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "scale": [
+                1.0,
+                1.0,
+                1.0
+              ],
+              "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb",
+              "show": true
+            }
+          ],
+          "native_geometry_sha256": "087eb929281ade4bda61877070b1b19f38485b194f391609f115f004c7ab9223",
+          "position_mm": [
+            69.0,
+            39.5
+          ],
+          "ref": "R4",
+          "rotation_deg": 90.0,
+          "side": "front"
+        },
+        {
+          "attributes": 2,
+          "dnp": false,
+          "models": [
+            {
+              "filename": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+              "offset": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "opacity": 1.0,
+              "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "scale": [
+                1.0,
+                1.0,
+                1.0
+              ],
+              "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb",
+              "show": true
+            }
+          ],
+          "native_geometry_sha256": "c7891eca9f3061ddb5ce745e04c34430bc9bc83e0298f5b9fc3c265950cc0849",
+          "position_mm": [
+            64.5,
+            43.0
+          ],
+          "ref": "R5",
+          "rotation_deg": 90.0,
+          "side": "front"
+        },
+        {
+          "attributes": 2,
+          "dnp": false,
+          "models": [
+            {
+              "filename": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+              "offset": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "opacity": 1.0,
+              "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "scale": [
+                1.0,
+                1.0,
+                1.0
+              ],
+              "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb",
+              "show": true
+            }
+          ],
+          "native_geometry_sha256": "0237cd8fd8a73764abffb144e43a2b30c88a3bfa51c9605044d0fb9755bc55aa",
+          "position_mm": [
+            46.0,
+            45.0
+          ],
+          "ref": "R6",
+          "rotation_deg": 90.0,
+          "side": "front"
+        },
+        {
+          "attributes": 2,
+          "dnp": false,
+          "models": [
+            {
+              "filename": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+              "offset": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "opacity": 1.0,
+              "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "scale": [
+                1.0,
+                1.0,
+                1.0
+              ],
+              "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb",
+              "show": true
+            }
+          ],
+          "native_geometry_sha256": "8b3fb915a203b8a7fd709b3a2eab2e7d289411c65e913f200e3fe4678fbc6cf9",
+          "position_mm": [
+            46.0,
+            48.0
+          ],
+          "ref": "R7",
+          "rotation_deg": 90.0,
+          "side": "front"
+        },
+        {
+          "attributes": 2,
+          "dnp": false,
+          "models": [
+            {
+              "filename": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+              "offset": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "opacity": 1.0,
+              "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "scale": [
+                1.0,
+                1.0,
+                1.0
+              ],
+              "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb",
+              "show": true
+            }
+          ],
+          "native_geometry_sha256": "44e956668f23532b816cbc82c208689092b8daf1a00b165cc95211232aae63de",
+          "position_mm": [
+            51.0,
+            51.0
+          ],
+          "ref": "R8",
+          "rotation_deg": 90.0,
+          "side": "front"
+        },
+        {
+          "attributes": 2,
+          "dnp": false,
+          "models": [
+            {
+              "filename": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+              "offset": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "opacity": 1.0,
+              "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "scale": [
+                1.0,
+                1.0,
+                1.0
+              ],
+              "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb",
+              "show": true
+            }
+          ],
+          "native_geometry_sha256": "a09146947d1426737b9965eee35ef720ea5088503f0512e90b730366d3319b33",
+          "position_mm": [
+            51.0,
+            54.0
+          ],
+          "ref": "R9",
+          "rotation_deg": 90.0,
+          "side": "front"
+        },
+        {
+          "attributes": 28,
+          "dnp": false,
+          "models": [],
+          "native_geometry_sha256": "5fd1b425bdc65c9758604584ef026d04c88222d974a8cb68bf076660196440eb",
+          "position_mm": [
+            23.5,
+            31.0
+          ],
+          "ref": "TP1",
+          "rotation_deg": 0.0,
+          "side": "front"
+        },
+        {
+          "attributes": 28,
+          "dnp": false,
+          "models": [],
+          "native_geometry_sha256": "1211cb53a7f1e4bf7f9b53be6d5ffa9211cf426564027fd2e47a1130c1b8c05d",
+          "position_mm": [
+            24.0,
+            43.0
+          ],
+          "ref": "TP2",
+          "rotation_deg": 0.0,
+          "side": "front"
+        },
+        {
+          "attributes": 28,
+          "dnp": false,
+          "models": [],
+          "native_geometry_sha256": "2984fe0c774e8c53930bffb17d96cb4d932a4e5189a86db0ad05c95c7c3cfb3e",
+          "position_mm": [
+            24.0,
+            47.0
+          ],
+          "ref": "TP3",
+          "rotation_deg": 0.0,
+          "side": "front"
+        },
+        {
+          "attributes": 28,
+          "dnp": false,
+          "models": [],
+          "native_geometry_sha256": "3dd6ca7ea82e1e78eb28bc12c865603c04a75aed1280e7757b93e8e4646eee27",
+          "position_mm": [
+            24.0,
+            51.0
+          ],
+          "ref": "TP4",
+          "rotation_deg": 0.0,
+          "side": "front"
+        },
+        {
+          "attributes": 28,
+          "dnp": false,
+          "models": [],
+          "native_geometry_sha256": "6cb705506eb5f7ddd9175626c4366b5b22f9bad4eeae9fa3535d17c0447e08d7",
+          "position_mm": [
+            59.7,
+            32.5
+          ],
+          "ref": "TP5",
+          "rotation_deg": 0.0,
+          "side": "front"
+        },
+        {
+          "attributes": 28,
+          "dnp": false,
+          "models": [],
+          "native_geometry_sha256": "197f88e8059d6dad06b2935314a3495a56b1d1843b62fac4b34d49022d567778",
+          "position_mm": [
+            62.9,
+            32.5
+          ],
+          "ref": "TP6",
+          "rotation_deg": 0.0,
+          "side": "front"
+        },
+        {
+          "attributes": 28,
+          "dnp": false,
+          "models": [],
+          "native_geometry_sha256": "7f68e5dc334d73a666ff9b0bfb8ee2d9c134adc1dcaf8b832a3874c93449d1b8",
+          "position_mm": [
+            45.0,
+            56.0
+          ],
+          "ref": "TP7",
+          "rotation_deg": 0.0,
+          "side": "front"
+        },
+        {
+          "attributes": 2,
+          "dnp": false,
+          "models": [
+            {
+              "filename": "${KICAD10_3DMODEL_DIR}/Package_SO.3dshapes/SOIC-14_3.9x8.7mm_P1.27mm.step",
+              "offset": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "opacity": 1.0,
+              "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Package_SO.3dshapes/SOIC-14_3.9x8.7mm_P1.27mm.step",
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "scale": [
+                1.0,
+                1.0,
+                1.0
+              ],
+              "sha256": "3b9a775da256c8afcc28dcddfbc2eb3f266107fe61ce8446d96f2c52b6f44a70",
+              "show": true
+            }
+          ],
+          "native_geometry_sha256": "4c3720cac6567291e9cf3d6ae97a4d8d0f822143b759bce7a4699b0473f45bb9",
+          "position_mm": [
+            57.5,
+            49.0
+          ],
+          "ref": "U1",
+          "rotation_deg": 0.0,
+          "side": "front"
+        },
+        {
+          "attributes": 2,
+          "dnp": false,
+          "models": [
+            {
+              "filename": "${KIPRJMOD}/../03_src/lib/3dmodels/TI_DGN0008G.stp",
+              "offset": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "opacity": 1.0,
+              "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-mic-pod-v3/03_src/lib/3dmodels/TI_DGN0008G.stp",
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "scale": [
+                1.0,
+                1.0,
+                1.0
+              ],
+              "sha256": "9751a8fa8744b8d50553223b504f942a373396d134eccee1f86c69b545fffc10",
+              "show": true
+            }
+          ],
+          "native_geometry_sha256": "1d7bc045db318b60ed8231d511f94b11b34144be2eb944195866fe6e0e0ec164",
+          "position_mm": [
+            35.0,
+            45.0
+          ],
+          "ref": "U2",
+          "rotation_deg": 90.0,
+          "side": "front"
+        },
+        {
+          "attributes": 2,
+          "dnp": false,
+          "models": [
+            {
+              "filename": "${KICAD10_3DMODEL_DIR}/Package_TO_SOT_SMD.3dshapes/SOT-553.step",
+              "offset": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "opacity": 1.0,
+              "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Package_TO_SOT_SMD.3dshapes/SOT-553.step",
+              "rotation": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "scale": [
+                1.0,
+                1.0,
+                1.0
+              ],
+              "sha256": "2219d28dc74f980a4614180a52f390c2a095740e92ee987e4ac96f80edf01c52",
+              "show": true
+            }
+          ],
+          "native_geometry_sha256": "f1e57344710be52541fef32c8da1cd4780cafd12ef7faf7dedcfbfd3dec2e621",
+          "position_mm": [
+            48.0,
+            34.75
+          ],
+          "ref": "U3",
+          "rotation_deg": 180.0,
+          "side": "front"
+        }
+      ],
+      "population_policy": "all declared models; includes DNP; native per-model show/opacity retained",
+      "renderer_config": {
+        "meta": {
+          "version": 4
+        },
+        "render": {
+          "material_mode": 0,
+          "show_board_body": true,
+          "show_footprints_dnp": true,
+          "show_footprints_insert": true,
+          "show_footprints_normal": true,
+          "show_footprints_not_in_posfile": true,
+          "show_footprints_virtual": true
+        }
+      },
+      "renderer_options": [
+        "--quality",
+        "high",
+        "--background",
+        "opaque",
+        "--preset",
+        "",
+        "--zoom",
+        "1",
+        "--pan",
+        "0,0,0",
+        "--pivot",
+        "0,0,0",
+        "--light-top",
+        "0.8",
+        "--light-bottom",
+        "0.2",
+        "--light-side",
+        "0.6",
+        "--light-camera",
+        "0.8",
+        "--light-side-elevation",
+        "60"
+      ],
+      "substitutions": {
+        "KICAD10_3DMODEL_DIR": "/home/mouse9911/.local/share/kicad/10.0/3dmodels",
+        "KICAD8_3DMODEL_DIR": "/usr/share/kicad/3dmodels",
+        "KICAD9_3DMODEL_DIR": "/usr/share/kicad/3dmodels",
+        "KIPRJMOD": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-mic-pod-v3/04_kicad",
+        "KISYS3DMOD": "/home/mouse9911/.local/share/kicad/10.0/3dmodels"
+      }
+    },
+    "schema": 1,
+    "tool_identity": "connector-orientation-gate-v1:5c143413bf487561322c9a8df21ea09bb12fa8f601fc4183c9e7f085a24ac4fe"
+  },
+  "subject_sha256": "ee066f412899580aff6d669d2dafa1adacd3b8479eb226cbe631b0e65d045c62",
+  "tool_identity": "connector-orientation-gate-v1:5c143413bf487561322c9a8df21ea09bb12fa8f601fc4183c9e7f085a24ac4fe",
+  "verdict": "PASS"
+}

@@ -229,3 +229,13 @@ Released: no
 - Refreshed the public JLC/LCSC catalog screen: 39/39 exact codes meet build quantity 5; authenticated assembly allocation remains outstanding.
 - Added a source-bound connector coupon producer/verifier and generated the exact full-outline, connector-only fabrication/evidence handoff. Coupon geometry and DRC pass; the blank physical receipt remains deliberately INCOMPLETE at 0/20 observations.
 - Confirmed from current public JLCPCB manufacturer documentation that the coupon's exact 4-layer FR-4, 150 x 100 mm, 1.6 mm, green/white, lead-free-HASL selections are offered; no upload, quote, CAM acceptance, allocation, or order is implied.
+
+
+## v0.1.6 — 2026-09-16
+
+- Authorize five supervised first-article carrier boards under ADR0032.
+- Preserve every v0.1.5 fabrication, source, PDF, 3D, BOM, CPL, render and review byte.
+- Add exact population, 21-placement rotation, excluded-SMD stencil, and selective 12-of-601 filled/capped-via stop conditions to the immutable order README.
+- Keep live uploader evidence and all physical qualification as explicit holds.
+
+Released: `v0.1.6-2026-09-16` — DESIGN PASS / FIRST-ARTICLE ORDER AUTHORIZED

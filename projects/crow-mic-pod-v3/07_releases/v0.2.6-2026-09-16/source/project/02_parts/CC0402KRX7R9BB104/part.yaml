@@ -1,0 +1,25 @@
+mpn: CC0402KRX7R9BB104
+manufacturer: Yageo
+type: ceramic_capacitor
+status: active
+value: 100nF
+package: "0402 (1005 metric)"
+footprint: Capacitor_SMD:C_0402_1005Metric
+pins: {1: A, 2: B}
+limits: {capacitance: 100nF, tolerance: 10pct, rated_voltage: 50V, dielectric: X7R}
+datasheet:
+  doc_id: Yageo CC X7R series
+  revision: catalog identity
+  url: "https://www.yageo.com/upload/media/product/productsearch/datasheet/mlcc/UPY-GPHC_X7R_4V-to-50V_18.pdf"
+  sha256: null
+  fetched: null
+verified: >-
+  Exact JLC code C131394 and exact MPN/value/rating were independently used by
+  the existing governed USB debug-hub design and rechecked there on
+  2026-08-18. Digest-selected exact Yageo manufacturer PDF bytes are OWED
+  before order.
+sourcing: {lcsc: C131394, alternates: []}
+layout:
+  source: "TPS7A4901 input-bypass guidance and 50 V protection coordination"
+  reviewed: 2026-09-01
+  notes: "Place directly between VIN_PROTECTED and the local ground return at U2."

@@ -1,0 +1,13 @@
+mpn: CL21A106KAYNNNE
+manufacturer: Samsung Electro-Mechanics
+type: ceramic_capacitor
+value: 10uF
+datasheet: {doc_id: CL21A106KAYNNNE-SPEC, revision: "Samsung generated specification", url: "https://product.samsungsem.com/mlcc/CL21A106KAYNNN.do", local: CL21A106KAYNNNE-spec.pdf, sha256: f0fc85a253cc95f38950a4406c88834f52c4b7697226692cafbb98fbb7c5727a, fetched: 2026-09-02}
+package: "0805 (2012 metric)"
+footprint: Capacitor_SMD:C_0805_2012Metric
+escape: {style: passive, pitch: 1.0, tier_required: jlc_2layer_default, checked: "standard 0805 land, 2026-09-01"}
+pins: {1: A, 2: B}
+limits: {capacitance_f: 0.00001, tolerance_pct: 10, voltage_v: 25, dielectric: X5R}
+asserts: [{assert: value, equals: 10u, tolerance_pct: 10, why: "Quiet rail and VREF local bulk."}]
+verified: "Exact Samsung generated specification PDF page 1 inspected for MPN, 10 uF, 25 V, X5R, +/-10% and 0805 dimensions on 2026-09-02; effective capacitance is first-article evidence."
+sourcing: {lcsc: C15850, alternates: []}
