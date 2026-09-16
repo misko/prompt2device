@@ -1,6 +1,6 @@
 # Crow daughter-pod release deficiencies
 
-Current immutable release: v0.2.3-2026-09-16. Updated 2026-09-16.
+Current immutable release candidate: v0.2.5-2026-09-16. Updated 2026-09-16.
 
 ## Fix before release
 
@@ -28,4 +28,4 @@ None.
 
 ## Separate holds
 
-Exact JLC allocation, manual RJ45/capsule assembly, physical cable fit, rail/noise/gain/clipping, thermal and environmental measurements remain first-article/order holds under ADR0005 and assembly.yaml. No production or order-ready claim follows from design release.
+JLC uploader fulfillment is an order-time check. Manual RJ45/capsule assembly, physical cable fit, rail/noise/gain/clipping, thermal and environmental measurements remain first-article/order holds under ADR0005 and assembly.yaml. No production or order-ready claim follows from design release.

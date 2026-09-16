@@ -14,13 +14,13 @@ Closed on 2026-09-16: the authenticated 19-wave replay and layout seal pass at
 locator plus three RJ45 oblique views passed review with the user's connector
 approval retained.
 Fabrication export, release rehearsal, and publication admission passed for the
-unchanged board; `v0.1.3-2026-09-16` is the current immutable release.
+unchanged board; `v0.1.5-2026-09-16` is the current immutable release candidate.
 
 ## Explicit prototype and order-time deficiencies
 
 | Deficiency | Disposition |
 | --- | --- |
-| Exact-part allocation | RESOLVED for design-time public availability: current authorized-channel evidence reports 1,965 exact LT3041ADE#TRPBF and DigiKey reports 2,449 exact TMUX2821DSGR, clearing the configured 155 and 190 thresholds. Order-time JLC allocation or acquired exact-part consignment remains owed and keeps the release `DO-NOT-ORDER`. |
+| Exact-part allocation | RESOLVED for design-time public availability: current authorized-channel evidence reports 1,965 exact LT3041ADE#TRPBF and DigiKey reports 2,449 exact TMUX2821DSGR, clearing the configured 155 and 190 thresholds. JLC uploader fulfillment remains a manual order-time check. The release remains `DO-NOT-ORDER` for first-article qualification, not for public availability. |
 | First-article electrical captures | Rail startup, shutdown, reset, TDM timing, analog-path performance, fault behavior, and thermal measurements remain owed by the controlled first-article plan. No production qualification is claimed. |
 | Physical copper and barrel validation | Calculated DCR, current, and via-capacity checks pass the design model; physical DCR and temperature-rise measurements remain first-article obligations. |
 | Silkscreen locator fallbacks | Crowded references that cannot remain legible on F.SilkS are carried by the assembly locator/F.Fab evidence. This affects assembly convenience, not connectivity or fabrication geometry. |
