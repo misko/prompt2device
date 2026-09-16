@@ -5492,3 +5492,28 @@ checker. No release payload or engineering source byte changed. Because the
 original local seal commits cannot be ancestors of a transport-safe history,
 new docs-only successors must bind the identical board payloads to the clean
 source commit; existing local seals remain immutable and preserved.
+
+## 2026-09-16 — all SMD assigned to JLC; fresh review and uploader evidence owed
+
+Carrier source now classifies 306/333 components as JLC-placed SMD and only
+27/333 as manual through-hole: J1-J11 and the sixteen C_AxP/C_AxN film
+capacitors. U_ADC is exact C42457798, F_IN is C22870534, and C_FILT1_470U,
+C_FILT2_470U, C_HOLD1 and C_HOLD2 are exact C178530. The regenerated
+prelayout request covers 54/54 exact catalog codes; manufacturing readiness
+passes 4/4 under the explicit blocked-sourcing continuation.
+
+Fresh public evidence measures 50/54 lines above the five-board quantity plus
+the configured 150-unit buffer. C42457798 and C7452883 show zero public LCSC
+catalog stock; C22870534 shows 28 and C53283916 shows 16. This remains
+BLOCKED-SOURCING / DO-NOT-ORDER because public catalog stock is not JLC's
+assembly allocation pool. Logged-in uploader evidence must confirm exact
+identity, availability, price, polarity and rotation, especially U_ADC.
+
+Two process defects found during the replay are corrected with regressions:
+public readiness now compares `stock_threshold` with build requirement plus
+the configured surplus, and pre-route semantic hashing canonicalizes YAML date
+scalars. Focused suites pass. The source replay and 19-page render pass, but
+PR-REVIEW correctly rejects the prior topology/readability witnesses because
+the current netlist, parts, rules and PDF hashes changed. Fresh independent
+SOUND reviews are the next design gate; no release or order authorization is
+claimed.

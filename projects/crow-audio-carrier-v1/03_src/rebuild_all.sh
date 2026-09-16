@@ -75,9 +75,10 @@ case "${1:-}" in
     "") ;;
     --resume-after-prelayout) RESUME_AFTER_PRELAYOUT=true ;;
     --resume-after-public-prelayout) RESUME_AFTER_PRELAYOUT=true; ALLOW_PUBLIC_CATALOG=true ;;
+    --resume-after-public-blocked-prelayout) RESUME_AFTER_PRELAYOUT=true; ALLOW_PUBLIC_CATALOG=true; ALLOW_BLOCKED_SOURCING=true ;;
     --resume-after-blocked-sourcing) RESUME_AFTER_SCHEMATIC_REVIEW=true; ALLOW_PUBLIC_CATALOG=true; ALLOW_BLOCKED_SOURCING=true ;;
     --resume-after-schematic-review) RESUME_AFTER_SCHEMATIC_REVIEW=true ;;
-    *) echo "usage: $0 [--resume-after-prelayout|--resume-after-public-prelayout|--resume-after-schematic-review|--resume-after-blocked-sourcing]"; exit 2 ;;
+    *) echo "usage: $0 [--resume-after-prelayout|--resume-after-public-prelayout|--resume-after-public-blocked-prelayout|--resume-after-schematic-review|--resume-after-blocked-sourcing]"; exit 2 ;;
 esac
 CJ=03_tscircuit/build/circuit.json
 SCHPDF=03_tscircuit/build/schematic.pdf
@@ -402,6 +403,7 @@ if [ "$RESUME_AFTER_PRELAYOUT" = false ]; then
     echo "  $PY $FS/jlc_pcba_availability.py grade $PCBA_REQUEST $PCBA_RESPONSE --out $PCBA_RECEIPT"
     echo "  $0 --resume-after-prelayout"
     echo "  Public-only alternative: retain a fresh public_catalog_stock.json plus ADR-0006, then run $0 --resume-after-public-prelayout"
+    echo "  If exact public rows are low-stock, keep the order hold explicit with $0 --resume-after-public-blocked-prelayout"
     exit 2
 fi
 

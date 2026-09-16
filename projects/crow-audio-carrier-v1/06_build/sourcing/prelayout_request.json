@@ -1,14 +1,14 @@
 {
   "assembly": {
     "path": "../../03_src/rules/assembly.yaml",
-    "sha256": "2f6ad4f2a50d799a1e6601239a039aa3ef1f8357a5a67391397c46100391ba11",
-    "size": 6102
+    "sha256": "0b8b7b936dfd473772f1213156fe284d427ee20bde9fc71bdbe0bf8f5618634d",
+    "size": 5760
   },
   "authority_required": "jlcpcb_pcba_interface",
   "build_quantity": 5,
   "coverage": {
-    "graded": 51,
-    "total": 51
+    "graded": 54,
+    "total": 54
   },
   "excluded_refs": [
     "C_A1N",
@@ -27,11 +27,6 @@
     "C_A7P",
     "C_A8N",
     "C_A8P",
-    "C_FILT1_470U",
-    "C_FILT2_470U",
-    "C_HOLD1",
-    "C_HOLD2",
-    "F_IN",
     "J1",
     "J10",
     "J11",
@@ -42,10 +37,9 @@
     "J6",
     "J7",
     "J8",
-    "J9",
-    "U_ADC"
+    "J9"
   ],
-  "generated_at": "2026-09-16T09:05:17.928318+00:00",
+  "generated_at": "2026-09-16T22:32:12.245077+00:00",
   "kind": "jlc-pcba-availability-request-v2",
   "phase": "prelayout",
   "procurement_policy": {
@@ -298,6 +292,17 @@
     },
     {
       "designators": [
+        "C_FILT1_470U",
+        "C_FILT2_470U",
+        "C_HOLD1",
+        "C_HOLD2"
+      ],
+      "per_board_qty": 4,
+      "requested_lcsc": "C178530",
+      "required_qty": 20
+    },
+    {
+      "designators": [
         "C_VDDA1_4U7",
         "C_VDDA2_4U7"
       ],
@@ -371,6 +376,14 @@
     },
     {
       "designators": [
+        "F_IN"
+      ],
+      "per_board_qty": 1,
+      "requested_lcsc": "C22870534",
+      "required_qty": 5
+    },
+    {
+      "designators": [
         "U_TDM"
       ],
       "per_board_qty": 1,
@@ -426,6 +439,14 @@
       "per_board_qty": 4,
       "requested_lcsc": "C389010",
       "required_qty": 20
+    },
+    {
+      "designators": [
+        "U_ADC"
+      ],
+      "per_board_qty": 1,
+      "requested_lcsc": "C42457798",
+      "required_qty": 5
     },
     {
       "designators": [
@@ -730,8 +751,8 @@
   "schema": 2,
   "subject": {
     "path": "../../03_tscircuit/build/circuit.json",
-    "sha256": "0b0890eee9d5af1e9698e9d0ee5e91dd58f335eff6c9e8994c3179202d0355d9",
-    "size": 5736072
+    "sha256": "d524421f517ca6876ded176145cfb48ebbfa43e37f34864c6da5988f33505c36",
+    "size": 5743743
   },
   "subject_role": "circuit"
 }

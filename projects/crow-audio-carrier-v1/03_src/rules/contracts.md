@@ -929,6 +929,9 @@ TWO ORPHANS THIS FOLDER'S OWN PROSE HAD HIDDEN, both found by the first run:
 | `sourcing_plan[].measured_stock` | `release_freshness_check.py` | measured stock compared with BOM quantity times build quantity |
 | `sourcing_plan[].measured_on` | `release_freshness_check.py` | observation date for mutable stock evidence |
 | `sourcing_plan[].order_status` | `release_freshness_check.py` | closed PLANNED/BLOCKED disposition when measured stock is insufficient |
+| `sourcing_plan[].evidence_kind` | ADVISORY | human classification of the mutable stock source; measured stock/date and the final allocation receipt own the executable decision |
+| `sourcing_plan[].evidence_provider` | ADVISORY | human-readable stock-source provider retained for review; no gate treats the provider name as an allocation receipt |
+| `sourcing_plan[].evidence_url` | ADVISORY | retrieval provenance for the public stock observation; the URL is mutable and cannot prove final JLC allocation |
 | `sourcing_plan[].plan` | ADVISORY | human fulfillment plan; measured stock/date and the closed order status own the release verdict |
 | `sourcing_plan[].function` | ADVISORY | human-readable function label; exact BOM/CPL ref and code identity are graded elsewhere |
 | `sourcing_plan[].part` | ADVISORY | human-readable MPN label; exact BOM/dossier identity is graded elsewhere |

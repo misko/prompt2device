@@ -25,8 +25,8 @@
       "size": 15875
     },
     "repo:projects/crow-audio-carrier-v1/01_docs/BRIEF.md": {
-      "sha256": "578127e924246c193b51f004774c1b8ef88142d59b67f1fab7c40ad05e97e2b7",
-      "size": 22377
+      "sha256": "bbe37d2b52b509e97dbffab457eaae5b3a05ce6545482a32e22f7474c2838a51",
+      "size": 23698
     },
     "repo:projects/crow-audio-carrier-v1/01_docs/DETAIL_DESIGN.md": {
       "sha256": "d120e99dc11a68e5eac2c7c2c5ba20ab328cdcd7e63c9c99570037e427dcc273",
@@ -155,6 +155,18 @@
     "repo:projects/crow-audio-carrier-v1/01_docs/decisions/0030-proposed-top-side-rj45-protection-geometry.md": {
       "sha256": "4def970620203b6b420921ff8a79908ed5c9f528fa4cfe03e7bdb031d1244d7a",
       "size": 11660
+    },
+    "repo:projects/crow-audio-carrier-v1/01_docs/decisions/0031-authorized-public-stock-surplus.md": {
+      "sha256": "8a23fadcf68a9d3b7637c8f900c1d28c84d9ea668b01c1a178b40960b8e7b7f6",
+      "size": 1702
+    },
+    "repo:projects/crow-audio-carrier-v1/01_docs/decisions/0032-first-article-order-profile.md": {
+      "sha256": "09e7c261c5c1784ad7a8ddafd7b662fd3556a69b68830d2da632840b5825427e",
+      "size": 2605
+    },
+    "repo:projects/crow-audio-carrier-v1/01_docs/decisions/0033-jlc-all-smd-placement.md": {
+      "sha256": "a0a1f1e465c67cf95c36bad0a0c7201b8c589bf822658d1f804d5e9c71ea84a4",
+      "size": 2163
     },
     "repo:projects/crow-audio-carrier-v1/01_docs/decisions/contracts.md": {
       "sha256": "54e33e3f0782d2b1eedf31ad30f217517949dfdd6489817a44c1fcd29e5c48d5",
@@ -609,12 +621,12 @@
       "size": 30190
     },
     "repo:projects/crow-audio-carrier-v1/01_docs/sourcing/contracts.md": {
-      "sha256": "fdfecbbdd631137bdac84df311e5264e216cf2c34c13d59f29a6d24cc10d8e6b",
-      "size": 6818
+      "sha256": "8597fb3d431c453ceec1b19400fdff3f481d431a88d95f42f9bb63033dd91361",
+      "size": 7223
     },
     "repo:projects/crow-audio-carrier-v1/01_docs/sourcing/manual_quotes.yaml": {
-      "sha256": "13a0c00afa4a37dad6d61904b76c0ad05f9526e558a0ab22cc2ba0cb045e4cd4",
-      "size": 2275
+      "sha256": "633657970bd65f173d14a9c8512663a9054de1a9d841aa43483cb364014cc7d2",
+      "size": 3020
     },
     "repo:projects/crow-audio-carrier-v1/01_docs/sourcing/parts-selection-2026-09-09.md": {
       "sha256": "de34989bf3d67c5389ad0c750dd1d7750bd6ab42854491bea3ae9ce21cebc367",
@@ -625,8 +637,8 @@
       "size": 531
     },
     "repo:projects/crow-audio-carrier-v1/01_docs/sourcing/public-distributor-policy.yaml": {
-      "sha256": "94a28bf6de06f0b8bfbdfc69bb2527afb1ab7cd172b0e321120a01a7116d11d1",
-      "size": 499
+      "sha256": "8d59b3ef8c32b4fc1d631b5a65f8bedaa55aad92de7940febd205cc184f289bb",
+      "size": 853
     },
     "repo:projects/crow-audio-carrier-v1/02_parts/113-00022/part.yaml": {
       "sha256": "7b9b502b72cfad5abba5639c0f754f8d8f90efe52c2ca16ba1d267e64485d5b3",
@@ -693,8 +705,8 @@
       "size": 442112
     },
     "repo:projects/crow-audio-carrier-v1/02_parts/2920L260-33DR/part.yaml": {
-      "sha256": "25d47fa07b9288cf1a2a602c1767c84a3f356828626d1ce31aff171d68de3e5f",
-      "size": 3959
+      "sha256": "cec4865ff6b38e18083388e5d8543699c152b668283371a66831e61f1dd64ae8",
+      "size": 3906
     },
     "repo:projects/crow-audio-carrier-v1/02_parts/2N7002K-7/2N7002K_DS30896_Rev20-2.pdf": {
       "sha256": "669e5d68d6458e0879d7396416bdcdb3ef9966ea60f054773d4c891d735aa818",
@@ -997,8 +1009,8 @@
       "size": 5653
     },
     "repo:projects/crow-audio-carrier-v1/02_parts/CS5308P-DN/part.yaml": {
-      "sha256": "4b536a26ecbe4a1fe16b04ecf7969a0ff79ce47f87757b1381118df278d2333c",
-      "size": 23295
+      "sha256": "0d602c877bb02031151010e45c6584386ffa4f6f2a79a57de8c2c61a0037dccc",
+      "size": 23433
     },
     "repo:projects/crow-audio-carrier-v1/02_parts/DMP6023LFG-13/DMP6023LFG_DS37204_Rev2-2.pdf": {
       "sha256": "1ea244be5e0fe4195ad20cb2da0960ac622b6efc19cf9e579c9eb8ef5777fa27",
@@ -1013,8 +1025,8 @@
       "size": 1062715
     },
     "repo:projects/crow-audio-carrier-v1/02_parts/EEEFK1A471P/part.yaml": {
-      "sha256": "071f19532a1f70974a2f147356723021ceb1a3eae380d52596c753bc44f26c24",
-      "size": 2667
+      "sha256": "5a0341a67ae4557dfe8d0d0b8f132fd44add5f677f9da48550a336377c5dc38c",
+      "size": 2599
     },
     "repo:projects/crow-audio-carrier-v1/02_parts/EEEFK1V4R7R/Panasonic_FK_ABA0000C1181_20260210.pdf": {
       "sha256": "b36857d089adaddf3042b33bf11d0f7d83bf70734e983f33b7827152e11854e3",
@@ -1197,8 +1209,8 @@
       "size": 1803
     },
     "repo:projects/crow-audio-carrier-v1/02_parts/README.md": {
-      "sha256": "ff04578a1efe68c3c5b3a23d0df132153cd951a00e0c1fd2370ed9aecff4f379",
-      "size": 6931
+      "sha256": "52e3636a82dd21b4c043841e75d88373437a54fee452e6fa812c75a129f62ba1",
+      "size": 7149
     },
     "repo:projects/crow-audio-carrier-v1/02_parts/RT0603BRD0710KL/Yageo_RT_v17_20260212.pdf": {
       "sha256": "00a9148c2958122200e8a93292e389392a795adcfe40562d6ca4f690d1e5d7d1",
@@ -1617,8 +1629,8 @@
       "size": 1840
     },
     "repo:projects/crow-audio-carrier-v1/03_src/rebuild_all.sh": {
-      "sha256": "b156b47881bed26f6be9f00a8e1386b9a678eecb7e7d72ea91b5cbf515c4ae03",
-      "size": 42298
+      "sha256": "d4ed2d6f4e8996faaf9a5f7a83c4b6b68412362c7ebbc470dc7ead4f05ef8f4f",
+      "size": 42596
     },
     "repo:projects/crow-audio-carrier-v1/03_src/rebuild_reuse.sh": {
       "sha256": "05d693b60f7fcc93f3fdaf36c33e9e5f66e79a47d4d0109d7ebaead4ccd0d7bb",
@@ -1633,8 +1645,8 @@
       "size": 2060386
     },
     "repo:projects/crow-audio-carrier-v1/03_src/rules/assembly.yaml": {
-      "sha256": "2f6ad4f2a50d799a1e6601239a039aa3ef1f8357a5a67391397c46100391ba11",
-      "size": 6102
+      "sha256": "0b8b7b936dfd473772f1213156fe284d427ee20bde9fc71bdbe0bf8f5618634d",
+      "size": 5760
     },
     "repo:projects/crow-audio-carrier-v1/03_src/rules/assembly_locator.yaml": {
       "sha256": "145ffb452ac628c862444341fc33fa5ac22e4326c1adac173e42c3a1e5ef4820",
@@ -1649,8 +1661,8 @@
       "size": 8031
     },
     "repo:projects/crow-audio-carrier-v1/03_src/rules/contracts.md": {
-      "sha256": "e07c1e8834d79521e01167c8a2a96c013be29591f55e68f06d0591a6199424d0",
-      "size": 122583
+      "sha256": "f697a8243ccbeeb06436cdbd876d96b3a35304497c776c1418c2093f5f84ec22",
+      "size": 123273
     },
     "repo:projects/crow-audio-carrier-v1/03_src/rules/critical_paths.yaml": {
       "sha256": "0587c20f6ca75820b4c29fd301dbfa880fd12f886599913ad72dbe397d273ffc",
@@ -1681,8 +1693,8 @@
       "size": 72834
     },
     "repo:projects/crow-audio-carrier-v1/03_src/rules/policy_waivers.yaml": {
-      "sha256": "8a7976ef9add19d222a4043d6836ee5f42b403dea374c2538dabe60f34c60011",
-      "size": 1769
+      "sha256": "3291542505c14a728ddcc73b267a01ccd6183a03de026c2212cbd6056e8869d5",
+      "size": 6842
     },
     "repo:projects/crow-audio-carrier-v1/03_src/rules/power_stages.yaml": {
       "sha256": "cff51923df3d189cfd906445a66a193cacdc73bb3d6feb31ff51d2e97134f243",
@@ -1721,12 +1733,12 @@
       "size": 19316
     },
     "repo:projects/crow-audio-carrier-v1/03_tscircuit/build/circuit.json": {
-      "sha256": "0b0890eee9d5af1e9698e9d0ee5e91dd58f335eff6c9e8994c3179202d0355d9",
-      "size": 5736072
+      "sha256": "d524421f517ca6876ded176145cfb48ebbfa43e37f34864c6da5988f33505c36",
+      "size": 5743743
     },
     "repo:projects/crow-audio-carrier-v1/03_tscircuit/build/schematic.pdf": {
-      "sha256": "afe137194becaadbea9689f81eea54ec5dd3c6bcb6766e5091c06d518ea5344d",
-      "size": 843565
+      "sha256": "19e772f3a18015e52c558e6ffcff6757e4302863b5c76cb84f829c6154dd0ae0",
+      "size": 841067
     },
     "repo:projects/crow-audio-carrier-v1/03_tscircuit/bun.lock": {
       "sha256": "ec4d9604ff7f7f165c515e4ecac75d4ec3a9d2b6f7fb1be33030f6223218828f",
@@ -1753,28 +1765,28 @@
       "size": 226
     },
     "repo:projects/crow-audio-carrier-v1/03_tscircuit/src/crow_audio_carrier_v1.tsx": {
-      "sha256": "60eac14922106bf523cbeb84b34fc5d98efd9d3c014641292dce6ed491b4a649",
-      "size": 52615
+      "sha256": "8889c32b759a716dc5178b44e4069e65a96914b9f4cfa70b7f5045aa845cd8a8",
+      "size": 52661
     },
     "repo:projects/crow-audio-carrier-v1/03_tscircuit/src/schematic_presentation.tsx": {
       "sha256": "116fa3be786c68febac2e44d0fbc8a9ca75c081d4c03968c1888adafb8d884b3",
       "size": 19053
     },
     "repo:projects/crow-audio-carrier-v1/04_kicad/crow_audio_carrier_v1.kicad_sch": {
-      "sha256": "6e869037ca0aaeb77a762d8e0a7e6ae099617544be9aa213c9dcf39251d429a5",
-      "size": 1193332
+      "sha256": "a83d90aa2d84bd59356f4ed0d99470cbf9cd0e8a0a664c57f872d15591bec9c0",
+      "size": 1193402
     },
     "repo:projects/crow-audio-carrier-v1/06_build/build_provenance.json": {
-      "sha256": "823471eeca0634df353aecbab176f43062e79c0e1cd293b90d18688a16fed4b6",
+      "sha256": "d48c52b0e5b60a529c968a0f864fd07f37ff866929a9c3d462674bd59b90afe2",
       "size": 862
     },
     "repo:projects/crow-audio-carrier-v1/06_build/netlists/crow_audio_carrier_v1.net": {
-      "sha256": "a130038dc0f097ddc9ad9a160d27809a60f5c5b97f2509789ba4750238103908",
-      "size": 640968
+      "sha256": "61ebfafbd7196d43c3cfdb670a8896cb41854b5dcc68c45379f78fddd73b21db",
+      "size": 641116
     },
     "repo:projects/crow-audio-carrier-v1/06_build/sourcing/prelayout_request.json": {
-      "sha256": "6dea1aeab85cc9fb4fbad45cc00ee231fc871231d1050cd0d621c919c3663133",
-      "size": 14247
+      "sha256": "6e2febe45ee707a96a79cf3fabcb8385bf8a6360a0e886e5db313cffc79a2878",
+      "size": 14663
     },
     "repo:projects/crow-roof-array-v1/03_src/check_spoke_interface.py": {
       "sha256": "76a5e07047bb8988ab2b56c987151afc66a57ab4e6a3feb087f6443414b6be36",
@@ -1805,8 +1817,8 @@
       "size": 13732
     },
     "repo:skills/jlcpcb-fab/scripts/assembly_locator_check.py": {
-      "sha256": "d93ae9bfd47912f8a871126d8a35afaf6e2af5b80ffdfffb274ce7145a1b0c5e",
-      "size": 21192
+      "sha256": "6bb922032ad3239b6464565943e0277b54753a4ac69d47c0d6956630a5ce5624",
+      "size": 26823
     },
     "repo:skills/jlcpcb-fab/scripts/bom_legibility_check.py": {
       "sha256": "57f0308ad971226a1769bb32165358bc9ad35bbd45c18eb0acdc8ddd27e16d9b",
@@ -1845,8 +1857,8 @@
       "size": 6859
     },
     "repo:skills/jlcpcb-fab/scripts/jlc_lcsc_rotations.csv": {
-      "sha256": "1b36abd3500f557f0b0f89e3b63397f9d0c7a32ebdeb53519b69cd4eb19f3e97",
-      "size": 113028
+      "sha256": "3680e511329b224ef039819a3c98afc797523cd94f771177bf55030630391892",
+      "size": 114211
     },
     "repo:skills/jlcpcb-fab/scripts/jlc_pcba_availability.py": {
       "sha256": "aaaefba1feaefb55e20085e67e86ccee8050daaa5105b05f719bc99c2823e0c0",
@@ -1869,16 +1881,16 @@
       "size": 2171
     },
     "repo:skills/jlcpcb-fab/scripts/jlc_stock_check.py": {
-      "sha256": "46da3bfefbddd3f59a26d2c359176bf9b86c103a866b6956ea922a5bd3541cb1",
-      "size": 14536
+      "sha256": "4c1a70a0f4b28948959e2cdb10de9859df5ee22ed4dd378a955e553f862bbcd6",
+      "size": 14616
     },
     "repo:skills/jlcpcb-fab/scripts/jlc_twin.py": {
       "sha256": "06b62f7eff2e3a2bfa3d6b2dbd3b72df476b523ea0286e6b006504a5ed1e6f2e",
       "size": 127291
     },
     "repo:skills/jlcpcb-fab/scripts/manufacturing_readiness.py": {
-      "sha256": "f597742a7f8047a1804ef26564c28e8417d7432bdb9d907c6624417d65769a1f",
-      "size": 39365
+      "sha256": "21d135035f2966206c87ae370bb9b7df90c94a5f8562ff2a5d935eec50618bad",
+      "size": 41776
     },
     "repo:skills/jlcpcb-fab/scripts/model_registration_gate.py": {
       "sha256": "9baebff2d8f1e78ca9ec328e8c3217985816017dc27c74d8edbd2d70c991a5c7",
@@ -1897,8 +1909,8 @@
       "size": 34487
     },
     "repo:skills/jlcpcb-fab/scripts/release_freshness_check.py": {
-      "sha256": "0f93842bc803f814524f83af42a762799551b8fe6d595b373c166a6336c4b998",
-      "size": 143951
+      "sha256": "0cc31cc5ce1bf8d63ad3339a1ffad95a0bec7059d6095ee2277777941a0f1d49",
+      "size": 153884
     },
     "repo:skills/jlcpcb-fab/scripts/release_index.py": {
       "sha256": "ec8e8294549984cc37efa48563244ffcf8e64b4289fd8aa84901915dd918e1dc",
@@ -1933,8 +1945,8 @@
       "size": 1652
     },
     "repo:skills/jlcpcb-fab/scripts/tests/test_public_distributor_prelayout.py": {
-      "sha256": "8f7be04002b501b8dae993a767dd9a6fa982c8a35cd0e637a1d35c3df843ca97",
-      "size": 12178
+      "sha256": "bd98837ae88fbb37b5647a84932a2cec69f21364880297e3acf4cf776977a93a",
+      "size": 15201
     },
     "repo:skills/jlcpcb-fab/scripts/twin_overlay.py": {
       "sha256": "6dc407f30c5f6ba9f5d4a3995745c598e1665aa65c4730b63a09cfb3aac23bb5",
@@ -2057,7 +2069,7 @@
       "size": 20214
     },
     "repo:skills/kicad-pcb/scripts/gate_contract_audit.py": {
-      "sha256": "ec1b96490b34ee6cb7c7800518160fa1658eff83510308052a04b62813f1784c",
+      "sha256": "2985348b50dd5abe37cc54b3c13d87af72304e1f399762601a4143fbe04a0ff5",
       "size": 52933
     },
     "repo:skills/kicad-pcb/scripts/gen_tscircuit.sh": {
@@ -2153,7 +2165,7 @@
       "size": 46652
     },
     "repo:skills/kicad-pcb/scripts/policy_audit.py": {
-      "sha256": "e94e1871e4d4f34c8a290a1f386cd0fb3574786960130b67826f38f79bac40b4",
+      "sha256": "e719cea02a655e1b5af94ef08b7dc696f3f1a3b3650fe08a63156be6d2663536",
       "size": 123180
     },
     "repo:skills/kicad-pcb/scripts/power_topology.py": {
@@ -2161,8 +2173,8 @@
       "size": 83185
     },
     "repo:skills/kicad-pcb/scripts/pre_route_review_check.py": {
-      "sha256": "30f1441b357764f6064d41edd2001364cfeaffd9ba6ae6fc7762be9307d0eded",
-      "size": 14415
+      "sha256": "b02a6d97feef2436ba71053e676d87e04c726b1ceec92cd92cf8a4b5d25c6b4e",
+      "size": 14765
     },
     "repo:skills/kicad-pcb/scripts/process_runner.py": {
       "sha256": "3af7c48b1f7c7583f8a76d2cf4752ab37400a27048f693570dde36d0059d8cf9",
@@ -2265,7 +2277,7 @@
       "size": 50758
     },
     "repo:skills/kicad-pcb/scripts/schema_reader_audit.py": {
-      "sha256": "7cd54cc0537a2117bbe15c51dfc34b18bad285fe9c6af9ff5d2c983f85d1d262",
+      "sha256": "df680c6f84e400b0b1a40cde56cc26d8cb5bc568d4e9daeaf3a18fbd7178de3f",
       "size": 54759
     },
     "repo:skills/kicad-pcb/scripts/schwriter2.py": {
@@ -2301,8 +2313,8 @@
       "size": 2035
     },
     "repo:skills/kicad-pcb/scripts/tests/test_pre_route_review_check.py": {
-      "sha256": "8a774acde8bdbc7211212b1744824974f3e30140a1b930541d857ca8ab6dd00e",
-      "size": 3280
+      "sha256": "cdd7f2f560a716f73035728849096415e15f11eaec4bf8c1aef1719b971bb77e",
+      "size": 3929
     },
     "repo:skills/kicad-pcb/scripts/tests/test_prepared_drc_authority.py": {
       "sha256": "f8e1804d9208ba0cf569ffe0983ccb6edc0ae81937e6bdeb687d92b1070f049c",
@@ -2389,8 +2401,8 @@
       "size": 6861
     },
     "repo:skills/pcb-design/scripts/pcb_publication_gate.py": {
-      "sha256": "d8d3f90d731fd3af92027c5ddfedca07ed67130e7b8c2b79b67e85911f7e373d",
-      "size": 44499
+      "sha256": "8efc5a915e4ddba165f2779bbccb62c902e411eecc1eba842afb8ebf671868a6",
+      "size": 47809
     },
     "repo:skills/pcb-design/scripts/pipeline_applicability.py": {
       "sha256": "0f498d74ac8eb0b3055401ee99ba7203a35ee139281ed19d6a5778d3b7491999",
@@ -2460,9 +2472,13 @@
       "sha256": "347684df465d6fca6d2ad5e61e5665070eba18128073a90cb6f7713441aa6a92",
       "size": 10337
     },
+    "repo:skills/pcb-design/scripts/publication_transport_gate.py": {
+      "sha256": "8269e1637e6c114234b4947e3ed11d953b53cefa08d38958e22beb6d99a9fe8f",
+      "size": 4362
+    },
     "repo:skills/pcb-design/scripts/release_rehearsal.py": {
-      "sha256": "8ce3851d8b1c9ff07c43d43c8cf20cf15ef617af2611cb17a2f4f5e578132fee",
-      "size": 13528
+      "sha256": "34842ad768f5601bcc1396722ec8fb76b6c27f65cca2a57b46ce423ec8530df2",
+      "size": 15523
     },
     "repo:skills/pcb-design/scripts/skill_authority_check.py": {
       "sha256": "c39cd1a00c4246fe1d3a3378ad3667c0ff17a6c6763f21ae602a901936c7fb98",

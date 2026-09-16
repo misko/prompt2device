@@ -5,44 +5,44 @@
       "size": 531
     },
     "03_src/rebuild_all.sh": {
-      "sha256": "b156b47881bed26f6be9f00a8e1386b9a678eecb7e7d72ea91b5cbf515c4ae03",
-      "size": 42298
+      "sha256": "d4ed2d6f4e8996faaf9a5f7a83c4b6b68412362c7ebbc470dc7ead4f05ef8f4f",
+      "size": 42596
     },
     "03_src/rules/assembly.yaml": {
-      "sha256": "2f6ad4f2a50d799a1e6601239a039aa3ef1f8357a5a67391397c46100391ba11",
-      "size": 6102
+      "sha256": "0b8b7b936dfd473772f1213156fe284d427ee20bde9fc71bdbe0bf8f5618634d",
+      "size": 5760
     },
     "03_tscircuit/build/circuit.json": {
-      "sha256": "0b0890eee9d5af1e9698e9d0ee5e91dd58f335eff6c9e8994c3179202d0355d9",
-      "size": 5736072
+      "sha256": "d524421f517ca6876ded176145cfb48ebbfa43e37f34864c6da5988f33505c36",
+      "size": 5743743
     },
     "03_tscircuit/build/schematic.pdf": {
-      "sha256": "afe137194becaadbea9689f81eea54ec5dd3c6bcb6766e5091c06d518ea5344d",
-      "size": 843565
+      "sha256": "19e772f3a18015e52c558e6ffcff6757e4302863b5c76cb84f829c6154dd0ae0",
+      "size": 841067
     },
     "03_tscircuit/manifest.yaml": {
       "sha256": "3af1dbfa7630f329bfed20ee4b8965fecd99617cbdb58eb199c0cac1ef379ba2",
       "size": 4325
     },
     "04_kicad/crow_audio_carrier_v1.kicad_sch": {
-      "sha256": "6e869037ca0aaeb77a762d8e0a7e6ae099617544be9aa213c9dcf39251d429a5",
-      "size": 1193332
+      "sha256": "a83d90aa2d84bd59356f4ed0d99470cbf9cd0e8a0a664c57f872d15591bec9c0",
+      "size": 1193402
     },
     "06_build/build_provenance.json": {
-      "sha256": "823471eeca0634df353aecbab176f43062e79c0e1cd293b90d18688a16fed4b6",
+      "sha256": "d48c52b0e5b60a529c968a0f864fd07f37ff866929a9c3d462674bd59b90afe2",
       "size": 862
     },
     "06_build/checkpoints/prelayout-inputs.json": {
-      "sha256": "868138834bcea19accbf38275747f5a394bb9525384bb92e921219442807ccdd",
-      "size": 123164
+      "sha256": "269f0c43d7f26bc92c55aaa733ea994d917bed1aaf78101c4bff6318fa618666",
+      "size": 123969
     },
     "06_build/netlists/crow_audio_carrier_v1.net": {
-      "sha256": "a130038dc0f097ddc9ad9a160d27809a60f5c5b97f2509789ba4750238103908",
-      "size": 640968
+      "sha256": "61ebfafbd7196d43c3cfdb670a8896cb41854b5dcc68c45379f78fddd73b21db",
+      "size": 641116
     },
     "06_build/sourcing/prelayout_request.json": {
-      "sha256": "6dea1aeab85cc9fb4fbad45cc00ee231fc871231d1050cd0d621c919c3663133",
-      "size": 14247
+      "sha256": "6e2febe45ee707a96a79cf3fabcb8385bf8a6360a0e886e5db313cffc79a2878",
+      "size": 14663
     }
   },
   "name": "prelayout",

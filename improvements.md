@@ -8758,3 +8758,11 @@ actively blocks `pcbnew` import and proves both clean acceptance and corrupt
 member rejection. Future archive-only release consumers must lazy-load native
 CAD dependencies and carry the same missing-dependency regression before they
 are added to the publication workflow.
+
+## Public-stock continuation arithmetic and review hashing — corrected 2026-09-16
+
+Situation: the public catalog producer correctly represented a five-board need and the configured 150-unit volatility buffer as separate `required_qty` and `stock_threshold` fields. The manufacturing-readiness consumer incorrectly demanded that both equal the build request. This rejected every line and made the documented blocked-sourcing continuation unusable. After that was corrected, an unquoted YAML evidence date became a native `date` object and crashed the pre-route semantic digest.
+
+Tests: the public-distributor suite now covers stock that satisfies the build quantity but falls below `required_qty + 150`, requiring an honest `BLOCKED-SOURCING` result rather than either acceptance or a schema error. The pre-route review suite now proves quoted and unquoted YAML dates produce the same semantic digest. Arbitrary unserializable objects remain rejected.
+
+Avoidance: represent build demand, volatility surplus, and order allocation as three separate facts. The request owns build demand, public evidence owns the configured threshold, and only the authenticated uploader owns allocation. Every producer/consumer pair must share a fixture at the policy boundary, including the configured nonzero surplus. Canonical semantic hashing must normalize YAML timestamp scalars before JSON serialization. Run these focused contract tests before recording a source checkpoint so a method correction does not force repeated full source replays.

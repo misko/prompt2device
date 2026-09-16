@@ -26,6 +26,7 @@ import hashlib
 import json
 import re
 import sys
+from datetime import date, datetime
 from pathlib import Path
 
 try:
@@ -39,6 +40,14 @@ FIELD = re.compile(r"^[>\s*#`-]*([a-z][a-z0-9_-]*)\s*:\s*(.*?)\s*$", re.I)
 
 def digest(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def _yaml_json_default(value):
+    """Canonicalize YAML timestamps without accepting arbitrary objects."""
+    if isinstance(value, (date, datetime)):
+        return value.isoformat()
+    raise TypeError(
+        f"Object of type {value.__class__.__name__} is not JSON serializable")
 
 
 def netlist_digest(path: Path) -> str:
@@ -144,7 +153,7 @@ def design_rules_digest(project: Path) -> str | None:
                         "value": projection})
     payload = json.dumps(
         {"schema": 1, "entries": entries}, sort_keys=True,
-        separators=(",", ":"), ensure_ascii=False,
+        separators=(",", ":"), ensure_ascii=False, default=_yaml_json_default,
     ).encode()
     return hashlib.sha256(payload).hexdigest()
 

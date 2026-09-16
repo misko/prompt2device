@@ -89,6 +89,21 @@ class DesignRulesDigestTest(unittest.TestCase):
         self.assertEqual(digests[0], digests[1])
         self.assertNotEqual(digests[0], digests[2])
 
+    def test_yaml_date_scalars_have_a_stable_semantic_digest(self) -> None:
+        unquoted_tmp, unquoted = self.project("route: {}\n")
+        quoted_tmp, quoted = self.project("route: {}\n")
+        try:
+            (unquoted / "03_src/rules/evidence.yaml").write_text(
+                "checked_at: 2026-09-16\n")
+            (quoted / "03_src/rules/evidence.yaml").write_text(
+                "checked_at: '2026-09-16'\n")
+            self.assertEqual(
+                MODULE.design_rules_digest(unquoted),
+                MODULE.design_rules_digest(quoted))
+        finally:
+            unquoted_tmp.cleanup()
+            quoted_tmp.cleanup()
+
 
 if __name__ == "__main__":
     unittest.main()

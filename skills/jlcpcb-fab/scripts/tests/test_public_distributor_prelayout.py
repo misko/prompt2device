@@ -71,6 +71,7 @@ class DistributorPrelayoutTests(unittest.TestCase):
         evidence.write_text(json.dumps(dict(
             tool='jlc_stock_check.py', stock_source='lcsc_catalog_stockCount',
             generated_at=datetime.now(timezone.utc).isoformat(), min_stock_per_board=5,
+            min_absolute_surplus=0,
             verdict='FAIL', predicts_jlc_assembly_allocation=False,
             graded_lines=1, total_lines=1, failures=1, uncoded_lines=0,
             lines=[dict(lcsc='C123', designators='U1', qty=1, required_qty=5,
@@ -86,6 +87,22 @@ class DistributorPrelayoutTests(unittest.TestCase):
             allow_blocked_sourcing=True)
         self.assertEqual('PASS', catalog_only['status'])
         self.assertEqual('BLOCKED-SOURCING', catalog_only['sourcing_state'])
+
+        # A line may cover the five-board build and still fail the configured
+        # volatility buffer.  The request records build quantity; the catalog
+        # evidence records that same quantity plus the separate surplus.
+        buffered = json.loads(evidence.read_text())
+        buffered['min_absolute_surplus'] = 150
+        buffered['lines'][0].update(
+            stock=28, status='LOW_STOCK(28)', required_qty=5,
+            stock_threshold=155, absolute_surplus=23)
+        evidence.write_text(json.dumps(buffered))
+        buffered_result = mr._catalog_prelayout_check(
+            request, evidence, self.project / 'decision.md', distributors={},
+            allow_blocked_sourcing=True, expected_min_surplus=150)
+        self.assertEqual('PASS', buffered_result['status'])
+        self.assertEqual('BLOCKED-SOURCING', buffered_result['sourcing_state'])
+
         hostile = json.loads(evidence.read_text())
         hostile['lines'][0]['status'] = 'QUERY_FAILED'
         evidence.write_text(json.dumps(hostile))
@@ -220,7 +237,8 @@ class DistributorPrelayoutTests(unittest.TestCase):
         request.write_text(json.dumps(dict(self.request, schema=2, phase='prelayout', build_quantity=5)))
         raw = dict(tool='jlc_stock_check.py', stock_source='lcsc_catalog_stockCount',
                    generated_at=datetime.now(timezone.utc).isoformat(),
-                   min_stock_per_board=5, verdict='FAIL', predicts_jlc_assembly_allocation=False,
+                   min_stock_per_board=5, min_absolute_surplus=0,
+                   verdict='FAIL', predicts_jlc_assembly_allocation=False,
                    graded_lines=1, total_lines=1, failures=1, uncoded_lines=0,
                    lines=[dict(lcsc='C123', designators='U1', qty=1, required_qty=5,
                                stock_threshold=5, absolute_surplus=-5, stock=0,
