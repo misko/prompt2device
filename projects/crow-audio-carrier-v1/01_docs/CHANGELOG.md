@@ -1,5 +1,15 @@
 # Changelog
 
+## v0.1.2 — transport-safe publication successor — 2026-09-16
+
+- Rebound the byte-identical carrier fabrication, source, STEP, schematic,
+  render, and review payload to clean source commit `2f162256` after GitHub
+  rejected the aggregate development-history pack.
+- Fresh independent docs-only review: SOUND / DO-NOT-ORDER. Exact rehearsal
+  3/3 PASS; all sourcing and physical-validation holds remain.
+
+Released: v0.1.2-2026-09-16
+
 ## v0.1.1 — manifest packaging correction — 2026-09-16
 
 - Removed the phantom manifest entry for an ignored KiCad session file absent from the published archive. All actual fabrication, source, STEP, schematic and connector render bytes are unchanged.
