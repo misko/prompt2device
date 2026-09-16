@@ -47,6 +47,16 @@ why they are not machine sourced/placed.
 7. Run population, rotation, stock, twin, render, via-process, and payload
    coverage gates before sealing.
 
+The public-catalog screen requires `qty per board x build_quantity` plus the
+project's `assembly.yaml` `public_stock_surplus` on every coded BOM line. New
+projects configure 150 units. Invoke `jlc_stock_check.py --min-stock N
+--min-surplus S` with those exact values and ship its JSON sidecar; release
+freshness rejects a sidecar whose recorded surplus or line arithmetic differs
+from the project authority. This is one absolute buffer per aggregated LCSC
+BOM line, not per reference. A shortage may be classified explicitly for a
+design-sound, sourcing-blocked release, but it cannot pass part selection or
+be described as order-ready.
+
 The exporter writes `artifact_index.json` last with exact board identity and
 role-keyed hashes for the Gerber archive, BOM, CPL, drill family and optional
 via-order note. Downstream review/release automation resolves roles through

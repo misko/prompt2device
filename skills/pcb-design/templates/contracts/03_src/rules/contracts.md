@@ -903,6 +903,7 @@ TWO ORPHANS THIS FOLDER'S OWN PROSE HAD HIDDEN, both found by the first run:
 | `service` | `assembly_coverage.py` | ordered assembly service used when grading whether CPL parts are process-placeable |
 | `sides` | `assembly_coverage.py` | ordered population side set used by the process-placeability gate |
 | `build_quantity` | jlc_pcba_availability.py, release_freshness_check.py | quantity multiplier bound into prelayout availability and final allocation receipts; legacy catalog grading also reads it |
+| `public_stock_surplus` | jlc_stock_check.py, release_freshness_check.py | non-negative absolute public-catalog buffer added once per aggregated LCSC BOM line; new projects configure 150 |
 | `not_assembled[].refs` | `assembly_coverage.py` | non-empty exact DNP population set, compared with board and CPL |
 | `not_assembled[].reason` | `assembly_coverage.py` | closed DNP reason vocabulary |
 | `not_assembled[].evidence` | `assembly_coverage.py` | substantive dated evidence for the population decision |

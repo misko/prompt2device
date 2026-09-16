@@ -1,7 +1,7 @@
 """Check a JLC-format BOM against the JLCPCB parts library.
 
     python3 jlc_stock_check.py bom.csv [--search-missing] [--min-stock 5]
-                               [--min-surplus 200]
+                               [--min-surplus 150]
                                [--out report.csv] [--json report.json]
                                [--candidates 3]
 
@@ -38,6 +38,7 @@ from datetime import datetime, timezone
 
 URL = ("https://jlcpcb.com/api/overseas-pcb-order/v1/"
        "shoppingCart/smtGood/selectSmtComponentList")
+DEFAULT_MIN_ABSOLUTE_SURPLUS = 150
 
 
 def query(keyword, page_size=10, retries=2):
@@ -112,9 +113,10 @@ ap.add_argument("bom")
 ap.add_argument("--search-missing", action="store_true")
 ap.add_argument("--min-stock", type=int, default=5,
                 help="fail if stock < this many x qty (default 5 boards)")
-ap.add_argument("--min-surplus", type=int, default=0,
+ap.add_argument("--min-surplus", type=int,
+                default=DEFAULT_MIN_ABSOLUTE_SURPLUS,
                 help=("also require this many catalog units beyond "
-                      "min-stock x aggregate line qty (default 0)"))
+                      "min-stock x aggregate line qty (default 150)"))
 ap.add_argument("--candidates", type=int, default=3)
 ap.add_argument("--out", default="")
 ap.add_argument("--json", default="",

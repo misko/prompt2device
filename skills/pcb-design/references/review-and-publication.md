@@ -128,6 +128,14 @@ For a docs-only successor, pass `--docs-only-supersede <prior-release-dir>`
 to rehearsal; it forwards the strict unchanged-fab/source/3d assertion and
 records that mode without suppressing failures.
 
+For a source-owned stock/population-policy successor, pass
+`--assembly-policy-supersede <prior-release-dir>`. It requires byte-identical
+fab and 3D payloads, confines the source delta to exactly one `assembly.yaml`
+plus its optional rules-contract documentation and project documentation,
+requires the verification copy to match it, and permits refreshed stock and
+review evidence. It cannot carry a board, copper, BOM, CPL, or unrelated
+engineering-source change.
+
 Rehearsal composes required-release content, design/sourcing freshness and the
 publication contract using `pcb_publication_gate.py --release`. Its receipt is
 stored outside staging to avoid a self-referential manifest. Seal admission

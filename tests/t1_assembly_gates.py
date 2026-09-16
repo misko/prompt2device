@@ -1312,5 +1312,36 @@ def t_jlc_stock_absolute_surplus_boundary():
        "absolute surplus is added once per BOM line, not once per reference")
 
 
+@test("the JLC catalog probe defaults to the configured 150-unit absolute "
+      "surplus")
+def t_jlc_stock_default_surplus():
+    source = (FAB_SCRIPTS / "jlc_stock_check.py").read_text()
+    tree = ast.parse(source)
+    assignment = next((node for node in tree.body
+                       if isinstance(node, ast.Assign)
+                       and any(isinstance(target, ast.Name)
+                               and target.id == "DEFAULT_MIN_ABSOLUTE_SURPLUS"
+                               for target in node.targets)), None)
+    check(assignment is not None,
+          "jlc_stock_check must own a visible default surplus")
+    eq(ast.literal_eval(assignment.value), 150,
+       "the process default is the user-configured 150 units")
+
+
+@test("release freshness rejects stock evidence produced with less than the "
+      "project-configured public-stock surplus", kind="known_bad")
+def t_stock_configured_surplus_mismatch():
+    import json
+    asm = CLEAN_ASSEMBLY + "\npublic_stock_surplus: 150\n"
+    rel, _ = rel_tree(CROW13, assembly=asm)
+    (rel / "verification" / "stock_check.json").write_text(json.dumps({
+        "verdict": "PASS", "min_absolute_surplus": 0, "lines": []}))
+    (rel / "ORDER_README.md").write_text("# ORDER README\n\nFinal.\n")
+    (rel / "verification" / "policy_audit.md").write_text(
+        "| ID | Grade |\n|---|---|\n| M-BOM | PASS |\n\nSummary: FAIL=0\n")
+    must_fail(run([KPY, FRESH, rel]), "wrong stock surplus",
+              "STOCK-SURPLUS-MISMATCH")
+
+
 if __name__ == "__main__":
     sys.exit(main())

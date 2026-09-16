@@ -42,6 +42,7 @@ fiducials: none            # `none` + the fab's own statement, or a count/type.
                            # job and cannot be added later. Silence is not allowed:
                            # state `none` deliberately or declare what you placed.
 build_quantity: 5          # quantity-expanded JLC PCBA checks bind to this
+public_stock_surplus: 150  # absolute catalog buffer per aggregated LCSC line
 
 # ---- SELECTIVE VIA-IN-PAD PROCESS (required when any via centre is in an SMT
 # land, or any board via carries native fill/cap flags) ----------------------

@@ -16,7 +16,9 @@ or publication procedure.
 - Keep BOM/CPL outside the Gerber zip.
 - Bind every coded BOM row to exact per-refdes LCSC and MPN authority.
 - Prove every population exception through one assembly-policy source.
-- Treat catalog stock as advisory; require JLCPCB PCBA availability/allocation
+- Treat catalog stock as advisory. Screen every coded BOM line against the
+  quantity-expanded build plus the configured absolute surplus (150 units in
+  the current template), then require JLCPCB PCBA availability/allocation
   receipts at their lifecycle boundaries.
 - Bind those receipts to explicit procurement limits and grade preorder cash,
   gross MOQ surplus cost, and nonrecoverable assembly excess cost.

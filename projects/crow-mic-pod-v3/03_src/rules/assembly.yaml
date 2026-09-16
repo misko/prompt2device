@@ -3,6 +3,7 @@ service: JLCPCB_PCBA
 sides: [top]
 fiducials: none
 build_quantity: 10
+public_stock_surplus: 150
 
 # J1, MK1 and the seven bare test pads are intentionally absent from both
 # machine placement and the JLC assembly BOM. J1 is fitted after PCBA; MK1 is

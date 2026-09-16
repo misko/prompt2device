@@ -499,6 +499,16 @@ nothing). The audit/manifest-agreement and draft-marker checks still run.
 Never waive fab-identical files one-by-one for this case — the mode
 asserts the identity instead of flagging it.
 
+**ASSEMBLY-POLICY supersede mode.** When the physical board and upload payload
+remain unchanged but source-owned population or public-stock policy changes,
+gate with `--assembly-policy-supersede <prior-release-dir>`. Fab and 3D must be
+byte-identical; source may add or change exactly one recognized `assembly.yaml`
+authority, its optional rules-contract documentation, and project
+documentation; and
+`verification/assembly.yaml` must match it byte-for-byte.
+README, MANIFEST, stock evidence and reviews may be refreshed. Any board,
+copper, BOM, CPL or unrelated engineering-source delta fails this mode.
+
 **BOM-only supersede mode.** The one case docs-only mode correctly refuses:
 the copper is untouched but the ASSEMBLY BOM must lose rows, because canon
 A-POP requires an unplaced part to LEAVE the BOM rather than sit on it

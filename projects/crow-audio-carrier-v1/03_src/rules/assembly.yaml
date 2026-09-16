@@ -3,6 +3,7 @@ service: JLCPCB_PCBA
 sides: [top]
 fiducials: {global_top: 3, local_required_for_0_4mm_QFN: true}
 build_quantity: 5
+public_stock_surplus: 150
 
 # ADR0016: design requirement from public JLC capability, not an order receipt.
 # Per-via KiCad flags alone cannot communicate a selective Gerber process.
@@ -88,7 +89,29 @@ assembly_scope:
   bottom_population: "none; all fitted SMD, including manual and consigned parts, must be on top"
   connectors: "all populated manually before electrical qualification"
 
-sourcing_plan: []
+sourcing_plan:
+  - lcsc: C7452883
+    measured_stock: 0
+    measured_on: 2026-09-16
+    order_status: BLOCKED
+    function: low-noise analog regulator
+    part: LT3041ADE#TRPBF
+    refs: [U_LDO]
+    plan: >-
+      Retain the exact part and footprint. Obtain authenticated JLC allocation
+      or consign exact packaged parts before ordering; do not substitute during
+      a catalog-stock fluctuation.
+  - lcsc: C53283916
+    measured_stock: 16
+    measured_on: 2026-09-16
+    order_status: BLOCKED
+    function: eight-channel analog isolation switches
+    part: TMUX2821DSGR
+    refs: [U_ISO1, U_ISO2, U_ISO3, U_ISO4, U_ISO5, U_ISO6, U_ISO7, U_ISO8]
+    plan: >-
+      The 150-unit catalog surplus threshold requires 190 units for the
+      five-board lot. Retain the exact MPN and obtain authenticated allocation
+      or an approved exact-part consignment before ordering.
 order_time_requirements:
   - verify all fitted SMD on top, including U_ESD1-U_ESD8 and F1-F8; qualify top stencil, paste, rotation, THT body/tail separation and rework access before PCBA
   - qualify Wurth manual solder profile; no manufacturer iron-process approval is inferred

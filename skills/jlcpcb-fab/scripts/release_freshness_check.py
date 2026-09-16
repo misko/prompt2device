@@ -1365,7 +1365,8 @@ def check_cpl_delta(release_dir, prior_dir):
 
 def check_docs_only(release_dir, prior_dir, bom_only=False,
                     cpl_only=False, legible_bom=False, sourcing=False,
-                    value_change=False, representation=False):
+                    value_change=False, representation=False,
+                    assembly_policy=False):
     """Assert the docs-only-supersede contract against the DECLARED prior
     release: fab/source/3d byte-identical (any deviation = FAIL), order
     README + MANIFEST byte-DIFFERENT (identical docs supersede nothing).
@@ -1392,12 +1393,26 @@ def check_docs_only(release_dir, prior_dir, bom_only=False,
     files you expected NOT to change."""
     fails, notes = [], []
     exempt = set()
-    if representation:
+    assembly_paths = {
+        "assembly.yaml", "03_src/rules/assembly.yaml",
+        "project/03_src/rules/assembly.yaml",
+    }
+    assembly_contract_paths = {
+        "03_src/rules/contracts.md", "project/03_src/rules/contracts.md",
+    }
+    if assembly_policy:
+        exempt = {("source", rel) for rel in
+                  assembly_paths | assembly_contract_paths}
+    elif representation:
         exempt = {("source", "03_src/rules/twin_adjudications.yaml")}
     elif bom_only or legible_bom:
         exempt = {("fab", "bom.csv")}
     elif cpl_only:
         exempt = {("fab", "cpl.csv")}
+    def is_exempt(sub, rel):
+        return ((sub, rel) in exempt or
+                (assembly_policy and sub == "source" and
+                 rel.startswith("project/01_docs/")))
     for sub in _DOCS_ONLY_IDENTICAL_DIRS:
         cur = _tree_files(release_dir / sub)
         old = _tree_files(prior_dir / sub)
@@ -1415,6 +1430,8 @@ def check_docs_only(release_dir, prior_dir, bom_only=False,
             exempt |= {("fab", rel) for rel in cur
                        if sub == "fab" and rel.lower().endswith(_REPLOTTABLE)}
         for rel in sorted(set(cur) - set(old)):
+            if is_exempt(sub, rel):
+                continue
             fails.append(
                 f"  DOCS-ONLY DEVIATION: {sub}/{rel} exists here but not in "
                 f"{prior_dir.name} — a docs-only supersede must not ADD "
@@ -1426,7 +1443,7 @@ def check_docs_only(release_dir, prior_dir, bom_only=False,
                 f"must carry the prior release's {sub}/ unchanged")
         same = 0
         for rel in sorted(set(cur) & set(old)):
-            if (sub, rel) in exempt:
+            if is_exempt(sub, rel):
                 continue                      # asserted by check_bom_delta()
             if _sha256(cur[rel]) != _sha256(old[rel]):
                 fails.append(
@@ -1437,13 +1454,39 @@ def check_docs_only(release_dir, prior_dir, bom_only=False,
             else:
                 same += 1
         if same:
-            _label = ("representation" if representation
+            _label = ("assembly-policy" if assembly_policy
+                      else "representation" if representation
                       else "bom-only" if bom_only else "cpl-only" if cpl_only
                       else "legible-bom" if legible_bom
                       else "sourcing" if sourcing
                       else "value-change" if value_change else "docs-only")
             notes.append(f"  note: {sub}/ byte-identical to {prior_dir.name} "
                          f"({same} file(s)) — ASSERTED by {_label} mode")
+    if assembly_policy:
+        current = [release_dir / "source" / rel for rel in assembly_paths
+                   if (release_dir / "source" / rel).is_file()]
+        prior = {rel: prior_dir / "source" / rel for rel in assembly_paths
+                 if (prior_dir / "source" / rel).is_file()}
+        changed = [path for path in current
+                   if path.relative_to(release_dir / "source").as_posix()
+                   not in prior or _sha256(path) != _sha256(prior[
+                       path.relative_to(release_dir / "source").as_posix()])]
+        if len(changed) != 1:
+            fails.append(
+                "  ASSEMBLY-POLICY: expected exactly one added or changed "
+                "source assembly.yaml authority, found " + str(len(changed)))
+        else:
+            verified = release_dir / "verification" / "assembly.yaml"
+            if not verified.is_file() or _sha256(changed[0]) != _sha256(verified):
+                fails.append(
+                    "  ASSEMBLY-POLICY: verification/assembly.yaml must be "
+                    "byte-identical to the changed source authority")
+            else:
+                notes.append(
+                    "  note: source delta is confined to "
+                    f"{changed[0].relative_to(release_dir).as_posix()}, with "
+                    "byte-identical verification/assembly.yaml; fab/ and 3d/ "
+                    "are unchanged — ASSERTED by assembly-policy mode")
     if representation:
         rel = Path("source/03_src/rules/twin_adjudications.yaml")
         cur, old = release_dir / rel, prior_dir / rel
@@ -1864,6 +1907,17 @@ def check_stock(release_dir, assembly, evidence_override=None):
     if not assembly.get("build_quantity"):
         notes.append("  note: A-STOCK: no assembly.yaml build_quantity — "
                      "grading against the 5-board default")
+    configured_surplus = assembly.get("public_stock_surplus")
+    if configured_surplus is not None:
+        try:
+            configured_surplus = int(configured_surplus)
+            if configured_surplus < 0:
+                raise ValueError
+        except (TypeError, ValueError):
+            fails.append(
+                "  STOCK-SURPLUS-INVALID: assembly.yaml public_stock_surplus "
+                "must be a non-negative integer")
+            configured_surplus = None
     plan = {}
     for e in (assembly.get("sourcing_plan") or []):
         code = str(e.get("lcsc") or "").strip()
@@ -1906,6 +1960,31 @@ def check_stock(release_dir, assembly, evidence_override=None):
             f"({'/'.join(_STOCK_EVIDENCE)}) — a release with unverified "
             f"sourcing is not orderable")
         return fails, notes, _ungraded_sourcing("no stock evidence shipped")
+    raw_stock_lines = {}
+    if configured_surplus is not None:
+        if ev.suffix != ".json":
+            fails.append(
+                "  STOCK-SURPLUS-UNBOUND: assembly.yaml configures "
+                f"public_stock_surplus={configured_surplus}, but "
+                f"verification/{ev.name} cannot bind the applied surplus; "
+                "ship the JSON stock sidecar")
+        else:
+            try:
+                stock_doc = json.loads(ev.read_text(encoding="utf-8-sig"))
+                observed_surplus = int(stock_doc.get("min_absolute_surplus"))
+                raw_stock_lines = {
+                    str(row.get("lcsc") or "").strip(): row
+                    for row in stock_doc.get("lines") or []
+                    if str(row.get("lcsc") or "").strip()
+                }
+            except (OSError, ValueError, TypeError, json.JSONDecodeError):
+                observed_surplus = None
+            if observed_surplus != configured_surplus:
+                fails.append(
+                    "  STOCK-SURPLUS-MISMATCH: assembly.yaml requires "
+                    f"public_stock_surplus={configured_surplus}, but "
+                    f"verification/{ev.name} records "
+                    f"min_absolute_surplus={observed_surplus!r}")
     verdict, lines = _parse_stock_evidence(ev)
     notes.append(f"  note: A-STOCK: grading verification/{ev.name} "
                  f"({len(lines)} graded line(s), verdict={verdict}) against "
@@ -1943,6 +2022,24 @@ def check_stock(release_dir, assembly, evidence_override=None):
     planned, blocked, plan_dates, unclassified = [], [], [], []
     for code, qty in sorted(want.items()):
         need = qty * qty_mult
+        threshold = need + (configured_surplus or 0)
+        raw = raw_stock_lines.get(code)
+        if configured_surplus is not None and raw is not None:
+            try:
+                raw_required = int(raw.get("required_qty"))
+                raw_threshold = int(raw.get("stock_threshold"))
+                raw_surplus = int(raw.get("absolute_surplus"))
+                raw_stock = int(raw.get("stock"))
+            except (TypeError, ValueError):
+                fails.append(
+                    f"  STOCK-SURPLUS-LINE: {code} does not carry integral "
+                    "required_qty/stock_threshold/absolute_surplus/stock")
+            else:
+                if (raw_required != need or raw_threshold != threshold or
+                        raw_surplus != raw_stock - need):
+                    fails.append(
+                        f"  STOCK-SURPLUS-LINE: {code} evidence arithmetic "
+                        f"does not bind required={need}, threshold={threshold}")
         e = plan.get(code)
         if e is not None:
             try:
@@ -1950,15 +2047,16 @@ def check_stock(release_dir, assembly, evidence_override=None):
             except (TypeError, ValueError):
                 measured = None
             st = str(e.get("order_status") or "").strip().upper()
-            if measured is not None and measured >= need:
+            if measured is not None and measured >= threshold:
                 # The plan's own number COVERS the build: the line is cleared
                 # by evidence, and may not simultaneously claim otherwise.
                 if st in _ORDER_STATUS_VOCAB:
                     fails.append(
                         f"  ORDER-PLAN-OVERCLAIM: sourcing_plan entry for "
                         f"{code} declares order_status {st} while its own "
-                        f"measured_stock {measured} covers {qty} x {qty_mult} "
-                        f"= {need} — a release may not invent a blocked line "
+                        f"measured_stock {measured} covers threshold "
+                        f"{qty} x {qty_mult} + {configured_surplus or 0} = "
+                        f"{threshold} — a release may not invent a blocked line "
                         f"any more than it may hide one")
                 continue
             # THE SHORTFALL CASE. Until 2026-07-30 this fell through
@@ -1967,8 +2065,9 @@ def check_stock(release_dir, assembly, evidence_override=None):
             if st not in _ORDER_STATUS_VOCAB:
                 fails.append(
                     f"  ORDER-PLAN-UNCLASSIFIED: sourcing_plan entry for "
-                    f"{code} measures stock {measured} against {qty} x "
-                    f"{qty_mult} = {need} and states no `order_status:` "
+                    f"{code} measures stock {measured} against threshold "
+                    f"{qty} x {qty_mult} + {configured_surplus or 0} = "
+                    f"{threshold} and states no `order_status:` "
                     f"({'|'.join(_ORDER_STATUS_VOCAB)}) — a plan whose OWN "
                     f"number does not cover the build used to clear the line "
                     f"silently, which is how a release could seal unbuyable "
@@ -1985,10 +2084,11 @@ def check_stock(release_dir, assembly, evidence_override=None):
                 f"evidence was never sourced, only assumed")
             continue
         st, stock = lines[code]
-        if stock is not None and stock < need:
+        if stock is not None and stock < threshold:
             fails.append(
                 f"  STOCK-INSUFFICIENT: {code} stock={stock} < {qty} x "
-                f"{qty_mult} boards = {need} (status {st}) and no "
+                f"{qty_mult} boards + {configured_surplus or 0} surplus = "
+                f"{threshold} (status {st}) and no "
                 f"assembly.yaml sourcing_plan entry names a measured "
                 f"alternative")
         elif stock is None and any(b in st for b in _STOCK_BAD):
@@ -2473,6 +2573,14 @@ def main(argv=None):
                          "change, and allow regenerated verification/twin "
                          "evidence. Copper, BOM, CPL and order payload may "
                          "not move")
+    ap.add_argument("--assembly-policy-supersede",
+                    metavar="PRIOR_RELEASE_DIR", default=None,
+                    help="assembly-policy successor: ASSERT fab/ and 3d/ "
+                         "byte-identical, source/ byte-identical except for "
+                         "exactly one assembly.yaml authority, require its "
+                         "verification/assembly.yaml twin plus changed "
+                         "README/MANIFEST, and allow refreshed stock/review "
+                         "evidence. Board, copper, BOM and CPL may not move")
     ap.add_argument("--cpl-only-supersede", metavar="PRIOR_RELEASE_DIR",
                     default=None,
                     help="CPL-only supersede mode: docs-only, PLUS the one "
@@ -2616,18 +2724,22 @@ def main(argv=None):
     sourcing = bool(args.sourcing_supersede)
     value_change = bool(args.value_change_supersede)
     representation = bool(args.representation_supersede)
+    assembly_policy = bool(args.assembly_policy_supersede)
     _modes = [args.docs_only_supersede, args.representation_supersede,
+              args.assembly_policy_supersede,
               args.bom_only_supersede,
               args.cpl_only_supersede, args.legible_bom_supersede,
               args.sourcing_supersede, args.value_change_supersede]
     if sum(1 for m in _modes if m) > 1:
         print("FATAL: pass at most ONE of --docs-only-supersede / "
               "--representation-supersede / "
+              "--assembly-policy-supersede / "
               "--bom-only-supersede / --cpl-only-supersede / "
               "--legible-bom-supersede / --sourcing-supersede / "
               "--value-change-supersede", file=sys.stderr)
         return 2
-    _mode = ("representation" if representation
+    _mode = ("assembly-policy" if assembly_policy
+             else "representation" if representation
              else "bom-only" if bom_only else "cpl-only" if cpl_only
              else "legible-bom" if legible_bom
              else "sourcing" if sourcing
@@ -2648,6 +2760,7 @@ def main(argv=None):
     if any(_modes):
         prior_dir = Path(args.docs_only_supersede
                          or args.representation_supersede
+                         or args.assembly_policy_supersede
                          or args.bom_only_supersede
                          or args.cpl_only_supersede
                          or args.legible_bom_supersede
@@ -2694,7 +2807,8 @@ def main(argv=None):
                                      legible_bom=legible_bom,
                                      sourcing=sourcing,
                                      value_change=value_change,
-                                     representation=representation)
+                                     representation=representation,
+                                     assembly_policy=assembly_policy)
             fails += df
             notes += dn
             if value_change:
