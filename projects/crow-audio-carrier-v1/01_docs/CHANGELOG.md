@@ -1,5 +1,17 @@
 # Changelog
 
+## v0.1.3 — configured stock-surplus successor — 2026-09-16
+
+- Set the source-owned public catalog stock surplus to 150 units and ship
+  fresh line-by-line evidence against the five-board build quantity.
+- Classify C7452883 and C53283916 as measured sourcing blocks while preserving
+  the exact v0.1.2 board, fabrication payload, STEP, schematic, renders and
+  routing evidence byte-for-byte.
+- Exact assembly-policy rehearsal: 3/3 seal-required checks PASS. The release
+  remains FIRST-ARTICLE-ONLY / DO-NOT-ORDER.
+
+Released: v0.1.3-2026-09-16
+
 ## v0.1.2 — transport-safe publication successor — 2026-09-16
 
 - Rebound the byte-identical carrier fabrication, source, STEP, schematic,

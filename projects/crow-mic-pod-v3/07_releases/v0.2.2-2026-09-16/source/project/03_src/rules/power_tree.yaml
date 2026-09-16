@@ -1,0 +1,50 @@
+schema: 1
+source_type: external isolated DC supply
+off_control: "unplug or de-energize the carrier's external 12 V supply; the pod stores no energy source"
+quiescent_ua: 0
+
+rails:
+  - name: QUIET_5V
+    vin_min: 10.5
+    vin_max: 13.2
+    vout_min: 4.79
+    vout_max: 5.23
+    iout_max_A: 0.020
+    converter: TPS7A4901DGNR
+    eff: 0.38
+    external_output: false
+    feedback:
+      vref: 1.185
+      vref_tol_pct: 2.5
+      r_top_ohm: 324000
+      r_top_tol_pct: 1.0
+      r_bottom_ohm: 100000
+      r_bottom_tol_pct: 1.0
+      fb_bias_current_min_nA: -100
+      fb_bias_current_max_nA: 0
+      fb_bias_current_basis: manufacturer_maximum
+      fb_bias_current_evidence: "TI SBVS121E section 6.5 specifies IFB up to 100 nA and note 3 says positive current flows out of the device; the checker sign is therefore -100 to 0 nA."
+
+effective_capacitance_banks:
+  - name: tps7a4901-output-stability
+    requirement_uF: 2.2
+    requirement_evidence: "TI SBVS121 TPS7A49 output-capacitance minimum"
+    accepted_dielectrics: [x5r, x7r]
+    contributors:
+      - part: CL21A106KAYNNNE
+        refs: [C5]
+        nominal_each_uF: 10.0
+        dielectric: x5r
+        tolerance_minus_pct: 10
+        dc_bias_derating_pct: 50
+        temperature_derating_pct: 15
+        lifecycle_derating_pct: 0
+        basis: >-
+          Conservative first-article floor at approximately 5 V; exact
+          vendor DC-bias curve remains a sourcing hold.
+        evidence: "Samsung exact MPN dossier plus TI minimum; measured effective capacitance remains OWED"
+
+no_fault_envelope_requirements: >-
+  The pod has no independently programmed downstream current-limit tree or
+  aggregate electronic breaker. F1 is a local PTC and the carrier owns the
+  one-faulted-spoke coordination requirement.

@@ -1,0 +1,34 @@
+mpn: '8909650150'
+manufacturer: Weidmuller
+type: factory_preassembled_shielded_rj45_cord
+status: active_catalog
+datasheet:
+  doc_id: '8909650150'
+  revision: 2026-02-18 manufacturer generated datasheet
+  url: https://datasheet.weidmueller.com/pdf/en/8909650150/scope/2/
+  local: null
+  sha256: null
+  fetched: '2026-09-12'
+package: off_board_15m_shielded_RJ45_male_male_Cat6A_PUR
+footprint: none_off_board
+limits:
+  length_m: 15
+  loop_dcr_ohm_per_km: 290
+  cable_od_min_mm: 6.1
+  cable_od_max_mm: 6.5
+  temperature_min_c: -40
+  temperature_max_c: 80
+  installation_temperature_min_c: -15
+  installation_temperature_max_c: 60
+gotchas:
+- Nominal model and exact factory identity are source facts; physical service and
+  tolerances remain unknown.
+- UV rating not found in exact primary datasheet; outdoor qualification remains owed.
+- No published separate plug or bulk BOM identity; buy exact factory assembly.
+- IP20 plugs inside protected dry enclosures; analog/DC pinout, de-energized mating
+  only.
+verified: Primary specifications and wiring inspected; native model exact-product
+  binding retained. Independent source review pending.
+sourcing:
+  lcsc: null
+  alternates: []

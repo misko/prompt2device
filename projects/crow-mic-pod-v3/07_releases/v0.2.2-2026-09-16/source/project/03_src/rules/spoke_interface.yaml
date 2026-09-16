@@ -1,0 +1,221 @@
+schema: 1
+kind: crow_roof_array_analog_spoke
+connector:
+  manufacturer: Wurth Elektronik
+  family: WR-MJ
+  pcb_header_mpn: '615008160221'
+  positions: 8
+  electrical_pads: 10
+  orientation: right_angle
+  mounting: through_hole
+  category: Cat6
+  shielded: true
+  rows: 2
+  row_spacing_mm: 4.0
+  same_row_pitch_mm: 2.04
+  x_stagger_mm: 1.02
+  footprint_carrier: crow_audio_carrier:Wurth_615008160221_RJ45
+  footprint_pod: crow_mic_pod_v3:Wurth_615008160221_RJ45
+  contact_rating_a: 1.5
+  contact_rating_qualification_status: MANUFACTURER_JACK_RATING_ONLY
+  contact_resistance_max_mohm: 20.0
+pins:
+- number: 1
+  signal: +12V_POD
+  canonical_net: 12V_POD
+  direction: carrier_to_pod
+  function: power
+- number: 2
+  signal: GND
+  canonical_net: GND
+  direction: return_to_carrier
+  function: power_return
+- number: 3
+  signal: +12V_POD
+  canonical_net: 12V_POD
+  direction: carrier_to_pod
+  function: power
+- number: 4
+  signal: "AUDIO\u2212"
+  canonical_net: AUDIO_N
+  direction: pod_to_carrier
+  function: active_balanced_negative
+- number: 5
+  signal: AUDIO+
+  canonical_net: AUDIO_P
+  direction: pod_to_carrier
+  function: active_balanced_positive
+- number: 6
+  signal: GND
+  canonical_net: GND
+  direction: return_to_carrier
+  function: power_return
+- number: 7
+  signal: +12V_POD
+  canonical_net: 12V_POD
+  direction: carrier_to_pod
+  function: power
+- number: 8
+  signal: GND
+  canonical_net: GND
+  direction: return_to_carrier
+  function: power_return
+shell_pads:
+- number: 9
+  carrier_net: CHASSIS
+  pod_net: POD_SHIELD
+- number: 10
+  carrier_net: CHASSIS
+  pod_net: POD_SHIELD
+cable:
+  manufacturer: Weidmuller
+  assembly_mpn: '8909650150'
+  assembly_order_code: '8909650150'
+  exact_assembly_source: https://eshop.weidmueller.com/en/ie-c6es8ug0150a40a40-e/p/8909650150
+  bulk_cable_mpn: null
+  bulk_cable_source: null
+  construction:
+    pairs: 4
+    conductor_awg: 26
+    stranding: 7
+    conductor_material: tinned_copper
+    jacket: PUR
+    jacket_color: green
+    shield: S/FTP
+    uv_resistant: null
+    oil_resistant: true
+    operating_temperature_min_c: -40.0
+    operating_temperature_max_c: 80.0
+    maximum_loop_dcr_ohm_per_km_at_20c: 290.0
+    copper_clad_aluminum_permitted: false
+  length_m: 15.0
+  nominal_array_radius_m: 4.0
+  installed_length_per_port_status: OWED
+  qualification_reference_length_m: 15.0
+  maximum_design_length_m: 15.0
+  qualified_maximum_length_m: null
+  length_qualification_status: OWED
+  termination: factory_male_to_male_8p8c_t568b_both_ends
+  plug_bom_mpn: null
+  plug_quantity_per_cord: 2
+  cable_bom_mpn: null
+  straight_pin_identity: true
+  cavity_numbering_view: primary_manufacturer_drawing
+  topology: four_twisted_pairs_sftp
+  outer_diameter_nominal_mm: null
+  outer_diameter_min_mm: 6.1
+  outer_diameter_max_mm: 6.5
+  full_boot_length_approx_mm: null
+  full_boot_length_guaranteed_max_mm: null
+  plug_width_mm: 13.7
+  plug_height_mm: 18.456687
+  manufacturer_bend_radius_singular_d: 5.0
+  manufacturer_bend_radius_repeated_d: 10.0
+  bend_radius_singular_nominal_mm: null
+  bend_radius_repeated_nominal_mm: null
+  project_minimum_bend_radius_mm: 67.0
+  project_bend_basis: retained_67mm_planning_floor_exceeds_manufacturer_10D_times_6.5mm_maximum_OD_65mm_installed_fit_still_owed
+  ingress_rating: IP20
+  enclosure_constraint: plugs_and_connections_inside_dry_zones
+  pair_allocation:
+    orange:
+    - 1
+    - 2
+    green:
+    - 3
+    - 6
+    blue:
+    - 4
+    - 5
+    brown:
+    - 7
+    - 8
+  conductor_map:
+  - cavity: 1
+    signal: +12V_POD
+    pair: orange
+    color: white_orange
+  - cavity: 2
+    signal: GND
+    pair: orange
+    color: orange
+  - cavity: 3
+    signal: +12V_POD
+    pair: green
+    color: white_green
+  - cavity: 4
+    signal: "AUDIO\u2212"
+    pair: blue
+    color: blue
+  - cavity: 5
+    signal: AUDIO+
+    pair: blue
+    color: white_blue
+  - cavity: 6
+    signal: GND
+    pair: green
+    color: green
+  - cavity: 7
+    signal: +12V_POD
+    pair: brown
+    color: white_brown
+  - cavity: 8
+    signal: GND
+    pair: brown
+    color: brown
+  continuity_test: unpowered straight-through1-1 through8-8 and shield continuity; no cross-short;
+    finished-cord DC loop resistance <=2.2 ohm at maximum service temperature
+  shield_continuous: true
+  shield_bonding: carrier_EMI_fingers_to_grounded_metal_panel; pod_local_island_POD_SHIELD_isolated_from_signal_GND
+  pcb_power_fanout: three_distinct_contacts_per_rail_paralleled_on_each_PCB_no_joined_wires
+  power_budget:
+    reference_temperature_c: 20.0
+    hot_resistance_multiplier: 1.25
+    parallel_balanced_power_pairs: 3
+    loop_contact_allocation_ohm: 0.3
+    allocation_status: DESIGN_ALLOCATION_MEASUREMENT_OWED
+    computed_hot_loop_ohm: 2.1125
+    computed_drop_v_at_max_current: 0.21125
+    computed_pod_min_v: 10.58875
+    maximum_service_temperature_c: 75.0
+  plug_contact_rating_a: null
+  plug_contact_resistance_max_ohm: null
+  plug_contact_qualification_status: OWED
+  uv_qualification_status: OWED_BEFORE_OUTDOOR_DEPLOYMENT
+  nominal_model_end_length_mm: 57.98
+  nominal_model_grip_diameter_mm: 22.986
+  mechanical_tolerances_status: OWED
+  factory_assembly_identity_authority: exact_orderable_cord_no_separate_bulk_or_plug_order_code_claim
+electrical:
+  supply_nominal_v: 12.0
+  carrier_header_supply_min_v: 10.8
+  carrier_header_supply_max_v: 13.2
+  maximum_cable_and_contact_loop_resistance_ohm: 2.2
+  pod_header_supply_min_v_at_max_current_and_length: 10.5
+  maximum_continuous_pod_current_a: 0.1
+  nominal_current_per_parallel_contact_a: 0.03333333333333333
+  hot_plug_permitted: false
+  pod_input_capacitance_max_uf: 47.0
+  inrush_qualification_status: OWED
+  carrier_protection_hold_min_a_at_70c: 0.1
+  carrier_protection_trip_max_a_at_25c: 0.7
+  fault_clearing_requirement: carrier_limits_cable_and_pre_pod_faults_while_pod_protection_limits_downstream_board_faults_and_one_faulted_spoke_does_not_reset_other_seven
+  audio_interface: active_balanced_analog
+  pod_output_coupling: dc_coupled
+  pod_audio_common_mode_nominal_v: 2.5
+  pod_audio_common_mode_min_v: 2.35
+  pod_audio_common_mode_max_v: 2.65
+  pod_source_impedance_nominal_ohm_each_leg: 100.0
+  pod_source_impedance_maximum_mismatch_ohm: 2.0
+  pod_maximum_output_differential_vrms: 1.2
+  carrier_input_coupling: ac_coupled_each_leg
+  carrier_input_coupling_capacitance_uf_each_leg: 1.0
+  carrier_input_bias_resistance_ohm_each_leg: 100000
+  receiver_full_scale_differential_vrms: 2.0
+  acoustic_polarity_target: "positive_pressure_drives_AUDIO+_positive_relative_to_AUDIO\u2212"
+  acoustic_polarity_qualification_status: OWED
+  ethernet: false
+  poe: false
+  supply_plane: carrier_RJ45_parallel_contacts_1_3_7_to_2_6_8
+physical_qualification_status: OWED
+straight_through: true

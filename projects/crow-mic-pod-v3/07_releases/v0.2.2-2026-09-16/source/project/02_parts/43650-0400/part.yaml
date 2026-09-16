@@ -1,0 +1,24 @@
+mpn: "43650-0400"
+manufacturer: Molex
+type: wire_to_board_header
+status: active
+datasheet: {doc_id: "436501000 sales drawing", revision: D8, url: "https://www.molex.com/content/dam/molex/molex-dot-com/products/automated/en-us/salesdrawingpdf/436/43650/436501000_sd.pdf", local: Molex_436501000_SD_revD8.pdf, sha256: b8942b95bc3fe4c02171de9e714d99b2688055e249ba1524e3c2a8c3cf78eaa3, fetched: 2026-09-03}
+package: "Micro-Fit 3.0 right-angle single-row 4-position THT header"
+footprint: crow_mic_pod_v3:Molex_Micro-Fit_3.0_43650-0400_1x04_P3.00mm_Horizontal
+mates: receptacle
+escape: {style: connector, pitch: 3.0, tier_required: jlc_2layer_default, checked: "KiCad standard exact-MPN footprint and Molex product record, 2026-09-01"}
+pins: {1: "+12V_POD", 2: GND, 3: "AUDIO+", 4: "AUDIO-"}
+limits: {positions: 4, pitch_mm: 3.0, signal_hole_mm: "1.02 +/-0.05", rows: 1, mounting: through_hole, orientation: right_angle, voltage_max_v: 600, mating_cycles: 30}
+gotchas:
+  - "The official component-side layout is rotationally aligned to the project footprint: rotating the drawing 180 degrees to put its peg/body axis on the project's -Y side puts circuit 1 at project pad 1; this is rotation, not reflection. Physical mate continuity remains first-article evidence."
+  - "Place within the manufacturer edge relationship; connector service/enclosure tolerances remain unqualified."
+  - "The local WRL is an explicitly labeled drawing-derived housing envelope because the publicly linked Molex STEP archive was not retrievable here; it is not manufacturer CAD or physical-fit evidence."
+verified: "Official Molex 436501000 revision D8 drawing and exact product record inspected 2026-09-03; the one-page manufacturer PDF is retained and SHA-256 bound locally. The component-side contact/peg geometry was independently reconciled to the project footprint by a legal 180-degree rotation, with circuit 1 at project pad 1."
+layout:
+  source: "Molex exact product record; project-vendored KiCad exact-MPN horizontal footprint"
+  reviewed: 2026-09-01
+  notes: "North-edge anchor, mating axis -Y, pad 1 marked on silk."
+layout_refs:
+  - {tier: 1, reached: true, artifact: "Molex 43650-0400 exact product record", why: "Binds right-angle THT 4-position identity."}
+  - {tier: 2, reached: false, artifact: "qualified enclosure connector cell", why: "No enclosure, mate and cable service geometry is yet bound."}
+sourcing: {lcsc: null, alternates: []}

@@ -1,0 +1,11 @@
+STEP-TRANSPORT PASS
+source_sha256: 3d1bde1a4fcbc0cd0263e640a2952355c5672746f73a7d40069eb77bc77e7871
+release_sha256: e7fde7b8815a0c46a7d79d0907b6618ea8244989c4f20983ba79242842fac991
+source_bytes: 106987630
+release_bytes: 102660352
+normalization: removed 2163639 optional ASCII whitespace tokens around entity assignment equals signs
+entity_records: 2163639 before / 2163639 after
+exchange_header: ISO-10303-21 present
+exchange_footer: END-ISO-10303-21 present
+geometry_semantics: unchanged STEP tokens; whitespace-only serialization normalization
+transport_limit: 102660352 < 104857600 bytes

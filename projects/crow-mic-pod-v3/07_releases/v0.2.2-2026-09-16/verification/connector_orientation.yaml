@@ -1,0 +1,15 @@
+schema: 1
+kind: connector-orientation-approval-v1
+verdict: APPROVED
+subject_sha256: ee066f412899580aff6d669d2dafa1adacd3b8479eb226cbe631b0e65d045c62
+refs:
+- J1
+reviewer: "User: Confirmed\u2014connector views are correct; regenerated pod J1 views\
+  \ ee066f412899580a explicitly approved 2026-09-16"
+confirmed_at: '2026-09-16T15:09:29Z'
+evidence_sha256:
+  views/J1_inside.png: f6ed78bd39d4a157282961b867a754ef242eaa1a03bc5f690f409ead120d9050
+  views/J1_outside.png: 7a644adb212c5c6fc61c03be68e540fff787853a655331728af4d84ab300efb7
+  views/J1_profile_a.png: 182c4a2b6bf94a403d9bf6e0682dac3dd433245c1dcc81fe3634b4339837e40f
+  views/J1_profile_b.png: 70ffdd8088405eab2d3e78163d0530dd5b730c6890371d8beb213ccddce0cb81
+  views/J1_top.png: 66481c606a614ecf4d1e04ecc117c7915b2088a5a339ae193f6ad28001624a4b

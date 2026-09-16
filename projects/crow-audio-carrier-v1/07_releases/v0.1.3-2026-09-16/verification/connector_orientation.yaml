@@ -1,0 +1,30 @@
+schema: 1
+kind: connector-orientation-approval-v1
+verdict: APPROVED
+subject_sha256: 6f9e58b568098fd39b3cdcb11637e70ae4313ecc5c556a6f3c6e2ef2b5687c03
+refs:
+- J1
+- J2
+- J3
+- J4
+- J5
+- J6
+- J7
+- J8
+- J9
+reviewer: User approval carried from explicit connector confirmation; exact connector
+  placements, models, mouths, mounting sides, keying, and cable approaches unchanged;
+  current machine gate 9/9 PASS; recorded by /root 2026-09-16
+confirmed_at: '2026-09-16T06:17:42Z'
+evidence_sha256:
+  views/J1_inside.png: 173102b9d3d2b3fddd7e0288d1b9af1801375a363c45f123d070a018b50c6f62
+  views/J1_outside.png: 5e1d1a1f177ceba0e7ff389bf633ab11421644934143dcb550d7cf52afb84483
+  views/J1_top.png: d0afb31c9c5de1b7538f99aa5a0a5a3107d5c37e046980859981cc22b9843b30
+  views/J5_inside.png: b88e0428958d211f0520531fb6a46818021ee3b50a334ffb55235bdc196ea5fe
+  views/J5_outside.png: b5bf1c6632584eafe0722da5fcba0c22ab190b24c31ed2723581a53f5e392185
+  views/J5_top.png: 3aca60187a2829734b01ba35c38b3729a8222c04853857c9fbc4026a5c2de059
+  views/J9_inside.png: 181fd24ad902d29000da1af7bf42a71ed2a0a530c5e985d3d094c8540ce1ae9c
+  views/J9_outside.png: 15fb34d4b6b59bda73635d1897a631172f891020bc256c9bf9333266915b077b
+  views/J9_profile_a.png: 518c867d2f2e4b467d29009cb6518d906b64a9c8eeccc317e6266703f7e5ec5c
+  views/J9_profile_b.png: 5e26b34df6c7f782bd979cc4e461da386af17551901593f081db9b9bf90cb31a
+  views/J9_top.png: 064bdad3dcad93df537200c76b925759c22d8f3ddeab86e8d1e06dbbb85268e6

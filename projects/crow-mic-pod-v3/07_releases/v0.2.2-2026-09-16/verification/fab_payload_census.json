@@ -1,0 +1,14 @@
+{
+  "release": "projects/crow-mic-pod-v3/07_releases/v0.2.0-2026-09-15",
+  "fails": [],
+  "oks": [
+    "F-POUR B.Cu 1 zone(s) -> 1 G36 region(s)",
+    "F-POUR F.Cu 1 zone(s) -> 12 G36 region(s)",
+    "F-IDENT 2 copper gerbers all distinct"
+  ],
+  "coverage": {
+    "F-POUR": "2/2 zone-bearing copper layers",
+    "F-IDENT": "2/2 copper gerbers compared"
+  },
+  "na": null
+}

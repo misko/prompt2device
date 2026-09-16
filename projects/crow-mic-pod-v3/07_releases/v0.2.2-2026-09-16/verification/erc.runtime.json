@@ -1,0 +1,23 @@
+{
+  "command": [
+    "kicad-cli",
+    "sch",
+    "erc",
+    "--severity-all",
+    "--format",
+    "json",
+    "-o",
+    "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-mic-pod-v3/07_releases/v0.2.0-2026-09-15/verification/erc.json",
+    "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-mic-pod-v3/07_releases/v0.2.0-2026-09-15/source/crow_mic_pod_v3.kicad_sch"
+  ],
+  "elapsed_s": 0.261,
+  "finished_at": 1789531330.743806,
+  "heartbeat_s": 10.0,
+  "label": "erc",
+  "pid": 2405359,
+  "returncode": 0,
+  "schema": 1,
+  "started_at": 1789531330.4817126,
+  "status": "finished",
+  "timeout_s": 180.0
+}

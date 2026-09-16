@@ -1,5 +1,17 @@
 # Changelog
 
+## v0.2.2 — configured stock-surplus successor — 2026-09-16
+
+Released: `07_releases/v0.2.2-2026-09-16/`.
+
+- Set the source-owned public catalog stock surplus to 150 units. Fresh
+  evidence clears all 22 coded machine-BOM rows for ten boards plus surplus.
+- Preserve the exact v0.2.1 board, fabrication payload, STEP, schematic,
+  connector views and routing evidence byte-for-byte; bind refreshed release
+  reviews and deficiency records to the successor archive.
+- Exact assembly-policy rehearsal: 3/3 seal-required checks PASS. Authenticated
+  JLCPCB allocation and physical first-article work remain DO-NOT-ORDER holds.
+
 ## v0.2.1 — transport-safe publication successor — 2026-09-16
 
 Released: `07_releases/v0.2.1-2026-09-16/`.
