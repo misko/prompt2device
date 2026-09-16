@@ -5536,3 +5536,13 @@ PAD-GEOM adjudication keeps exact-MPN allocation, CPL membership, rotation,
 polarity, body registration and uploader checks active. Current generated
 placement bytes are preparatory only; the normal authenticated prelayout
 renewal, fresh review and all downstream route/release gates remain owed.
+
+The renewed placement export then failed closed before leaving an uploadable
+BOM/CPL because exact U_ADC code C42457798 lacked measured rotation authority.
+Independent PCBNew geometry over pins 1-48 selects JLC offset 270 degrees at
+0.0500 mm RMS versus 4.6385 mm next best; every mirrored fit is 4.6385 mm.
+Fresh independent review is SOUND. The QFN pad cloud is rotationally symmetric,
+so this remains single-channel: final JLC preview must confirm physical pin 1
+on native pad 1 and the resolved 270-degree offset before payment. Adding the
+measured table row changes a checkpointed method input and therefore requires
+another normal authenticated prelayout renewal; no checkpoint will be restamped.

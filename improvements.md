@@ -8794,3 +8794,13 @@ format; retain connector-specific mating-datum grading and all pad, rotation,
 polarity, allocation and uploader checks. A supplier-CAD land discrepancy may
 be adjudicated only against exact manufacturer land dimensions and immutable
 source hashes; it does not authorize a substitution or waive uploader review.
+
+The first corrected CPL export then stopped on an unsourced U_ADC rotation,
+after the renewed prelayout checkpoint had already been recorded. Add a cheap
+assembly preflight before checkpointing whenever population ownership or an
+LCSC code changes: generate a disposable board/CPL subject and require every
+non-symmetric placed code to resolve through the measured per-LCSC rotation
+table. A missing row must be measured with the PCBNew-verified operator and
+independently reviewed before the expensive source/review replay. This is an
+ordering improvement only; the final export, twin, placement reviews and
+uploader preview remain mandatory on exact final bytes.
