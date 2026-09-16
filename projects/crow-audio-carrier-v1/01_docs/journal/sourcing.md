@@ -1,5 +1,16 @@
 # Sourcing journal
 
+## 2026-09-16T22:00Z — all six SMD exclusions moved into JLC placement scope
+
+User accepts local installation of all 27 THT references but requires zero
+manual SMD placement. Authoritative TSX now binds F_IN to exact C22870534, the
+four EEEFK1A471P cans to exact C178530 and U_ADC to C42457798 with an explicit
+resolved-row CS5308P-DN identity stop. assembly.yaml now declares only the 27
+THT references not assembled and requires all 306 top-side SMD references on
+the JLC BOM/CPL. Public source observations identify exact MPNs; they do not
+constitute authenticated JLC allocation. Fresh rotation, regenerated native
+population, assembly/twin gates and a successor immutable release are owed.
+
 ## 2026-09-08T04:11:15Z — authority/source batch complete, no allocation
 
 Fresh request-derived public screen PASS51/51 codes for265refs/build5;

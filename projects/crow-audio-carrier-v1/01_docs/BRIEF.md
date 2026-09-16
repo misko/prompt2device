@@ -280,3 +280,11 @@ Implementation and regenerated layout acceptance remain pending.
 User follow-up: please commit and push the newest Crow board files and the latest board rendering to the prompt2device remote main branch. Verify the intended Crow project files, preserve unrelated work, and report the commit hash and push result here.
 
 Additional user request: include and push angled perspective renderings of the Crow board that clearly show the Ethernet/RJ45 connectors. Prefer useful front-left/front-right oblique views (and rear oblique if needed for connector visibility), use the latest exact board state, keep renders reproducible and board-bound, and include them in the same reviewed origin/main publication if all gates pass.
+
+## 2026-09-16 — JLC placement of every SMD part
+
+User clarified that the 27 carrier through-hole components and pod through-hole
+work may be assembled locally, but no carrier SMD component should require
+manual placement. User then directed: “lets do it! lets make sure these are
+mounted by JLCPCB”. ADR0033 records the resulting 306-reference top-side JLC
+placement requirement and retains the separate 27-reference THT work package.

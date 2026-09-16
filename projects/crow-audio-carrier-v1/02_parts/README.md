@@ -15,10 +15,13 @@ This includes the exact manufacturer-supported F_IN ordering correction to
 2920L260/33DR; it does not claim independent P-AUTH acceptance. The CS5308P
 dossier also retains Cirrus AN0556R1 as a separate
 SHA-bound supporting application note; it does not replace the component
-datasheet binding. Every JLC/LCSC allocation remains unresolved independently.
-The assembly owner must choose and record either a proven JLC allocation or an
-explicit manual/consign disposition before manufacture. Nothing here claims
-turnkey availability, current stock, price, or order readiness.
+datasheet binding. The six formerly manual SMD references now carry exact
+public catalog bindings: C22870534 for F_IN, C178530 for the four EEEFK1A471P
+cans, and C42457798 for U_ADC. JLC placement is mandatory. Allocation, exact
+uploader resolution, rotation, stock and price remain order-time evidence;
+C42457798 must resolve to the DS1314F1 Table 12-1 CS5308P-DN device or the
+exact DN part must be consigned for JLC placement. Nothing here claims order
+readiness.
 
 ## Deviations and open closure
 
@@ -57,8 +60,9 @@ turnkey availability, current stock, price, or order readiness.
   access-failure provenance retained. The 1812L binding explicitly replaces
   the old unavailable digest with newly inspected bytes. The 2920L GD02/13/25
   p5 identifies DR/1500-per-reel, not the former unsupported MR suffix.
-  Public C22870534 is only a candidate: F_IN remains manually fitted/consigned,
-  excluded from turnkey assembly with an empty authored supplier list.
+  Public C22870534 is now bound to the exact 2920L260/33DR identity and F_IN is
+  required on the JLC BOM/CPL. Final allocation and the loaded hot test remain
+  separate order/first-article evidence.
 - Molex SD-43650-001 D8 and Littelfuse SMBJ v4 are copied unchanged into the
   carrier from captured official PDFs and independently inspected here.
   Related 43645, 43030 and harness documentation/physical service evidence

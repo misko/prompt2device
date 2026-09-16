@@ -435,7 +435,7 @@ export default () => (
     <Chip name="J9" manufacturerPartNumber="43650-0200" jlc=""
       schSectionName="Input and spoke power" schSheetName="spoke_power" schX="-24mm" schY="15mm"
       pinLabels={{ pin1: "12V_IN", pin2: "GND" }} connections={{ pin1: N("12V_IN"), pin2: N("GND") }} footprint={<MicroFit2 />} />
-    <Chip name="F_IN" manufacturerPartNumber="2920L260/33DR" jlc=""
+    <Chip name="F_IN" manufacturerPartNumber="2920L260/33DR" jlc="C22870534"
       schSectionName="Input and spoke power" schSheetName="spoke_power" schX="-17mm" schY="15mm"
       pinLabels={{ pin1: "IN", pin2: "OUT" }} connections={{ pin1: N("12V_IN"), pin2: N("12V_FUSED") }} footprint={<Pptc2920 />} />
     <Chip name="Q_IN" manufacturerPartNumber="DMP6023LFG-13" jlc="C780842"
@@ -488,8 +488,8 @@ export default () => (
       pinLabels={{pin1:"G",pin2:"S",pin3:"D"}} connections={{pin1:N("PWR_EN"),pin2:N("GND"),pin3:N("PRE_GATE")}} footprint={<Diodes2N7002K />} />
     <R2 name="R_PRE" value="22" a="5V_LDO_FEED" b="5V_LDO_HOLD" mpn="CRCW120622R0FKEAHP" jlc="C844025" footprint="1206" section="Input and spoke power" schX="-16mm" schY="-8mm" />
     <R2 name="R_PRE_G" value="100k" a="PRE_GATE" b="5V_LDO_FEED" mpn="RC0402FR-07100KL" jlc="C60491" footprint="0402" section="Input and spoke power" schX="-16mm" schY="-17mm" />
-    <C2 name="C_HOLD1" value="470uF" a="5V_LDO_HOLD" b="GND" mpn="EEEFK1A471P" jlc="" footprint={<PanasonicFkF />} polarized section="Input and spoke power" schX="-16mm" schY="-25mm" />
-    <C2 name="C_HOLD2" value="470uF" a="5V_LDO_HOLD" b="GND" mpn="EEEFK1A471P" jlc="" footprint={<PanasonicFkF />} polarized section="Input and spoke power" schX="-8mm" schY="-25mm" />
+    <C2 name="C_HOLD1" value="470uF" a="5V_LDO_HOLD" b="GND" mpn="EEEFK1A471P" jlc="C178530" footprint={<PanasonicFkF />} polarized section="Input and spoke power" schX="-16mm" schY="-25mm" />
+    <C2 name="C_HOLD2" value="470uF" a="5V_LDO_HOLD" b="GND" mpn="EEEFK1A471P" jlc="C178530" footprint={<PanasonicFkF />} polarized section="Input and spoke power" schX="-8mm" schY="-25mm" />
     <C2 name="C_LDO_IN" value="47uF" a="5V_LDO_HOLD" b="GND" mpn="GRM32ER71A476KE15L" jlc="C84494" footprint="1210" section="Input and spoke power" schX="0mm" schY="-20mm" />
     <C2 name="C_LDO_OUT" value="47uF" a="3V3_ADC" b="GND" mpn="GRM32ER71A476KE15L" jlc="C84494" footprint="1210" section="Input and spoke power" schX="22mm" schY="-20mm" />
     <C2 name="C_LDO_NR4" value="1nF" a="LDO_NR" b="GND" mpn="GRM1555C1H102JA01D" jlc="C76947" section="Input and spoke power" schX="26mm" schY="-26mm" />
@@ -540,7 +540,7 @@ export default () => (
       <C2 name={`C_VMID${n}_EXT_1U`} value="1uF" a={`VMID${n}_EXT`} b="GND" jlc="C2167386" mpn="C0603C105K4RACTU" footprint="0603" section="Reference buffers and filters" schX="-29mm" schY={`${22 - n * 12}mm`} />
     </group>)}
 
-    <Chip name="U_ADC" manufacturerPartNumber="CS5308P-DN" jlc=""
+    <Chip name="U_ADC" manufacturerPartNumber="CS5308P-DN" jlc="C42457798"
       schSectionName="ADC references and mode" schSheetName="adc" schX="0mm" schY="0mm" schPinStyle={spacedPins(49)} schWidth="5mm"
       pinLabels={{
         pin1: "ADC_VMID1", pin2: "CONFIG1", pin3: "CONFIG2", pin4: "CONFIG3", pin5: "VDD_A1", pin6: "GND_A1", pin7: "LDO_A_FILT", pin8: "GND_A2", pin9: "VDD_A2", pin10: "CONFIG4", pin11: "CONFIG5", pin12: "ADC_VMID2",
@@ -557,10 +557,10 @@ export default () => (
     <R2 name="R_CFG5" value="100k" a="CFG5" b="GND" jlc="C60491" mpn="RC0402FR-07100KL" section="ADC references and mode" schX="16mm" schY="-16mm" />
     <R2 name="R_FILT1P" value="1" a="3V3_ADC" b="FILT1P" footprint="1206" jlc="C844653" mpn="CRCW12061R00FKEAHP" section="Reference buffers and filters" schX="-18mm" schY="-11mm" />
     <R2 name="R_FILT2P" value="1" a="3V3_ADC" b="FILT2P" footprint="1206" jlc="C844653" mpn="CRCW12061R00FKEAHP" section="Reference buffers and filters" schX="7mm" schY="-11mm" />
-    <C2 name="C_FILT1_470U" value="470uF" a="FILT1P" b="GND" jlc="" mpn="EEEFK1A471P" footprint={<PanasonicFkF />} polarized section="Reference buffers and filters" schX="-8mm" schY="-11mm" />
+    <C2 name="C_FILT1_470U" value="470uF" a="FILT1P" b="GND" jlc="C178530" mpn="EEEFK1A471P" footprint={<PanasonicFkF />} polarized section="Reference buffers and filters" schX="-8mm" schY="-11mm" />
     <C2 name="C_FILT1_10U" value="10uF" a="FILT1P" b="GND" jlc="C2167576" mpn="C0805C106K8RACTU" footprint="0805" section="Reference buffers and filters" schX="-8mm" schY="-15mm" />
     <C2 name="C_FILT1_1U" value="1uF" a="FILT1P" b="GND" jlc="C2167386" mpn="C0603C105K4RACTU" footprint="0603" section="Reference buffers and filters" schX="-8mm" schY="-19mm" />
-    <C2 name="C_FILT2_470U" value="470uF" a="FILT2P" b="GND" jlc="" mpn="EEEFK1A471P" footprint={<PanasonicFkF />} polarized section="Reference buffers and filters" schX="17mm" schY="-11mm" />
+    <C2 name="C_FILT2_470U" value="470uF" a="FILT2P" b="GND" jlc="C178530" mpn="EEEFK1A471P" footprint={<PanasonicFkF />} polarized section="Reference buffers and filters" schX="17mm" schY="-11mm" />
     <C2 name="C_FILT2_10U" value="10uF" a="FILT2P" b="GND" jlc="C2167576" mpn="C0805C106K8RACTU" footprint="0805" section="Reference buffers and filters" schX="17mm" schY="-15mm" />
     <C2 name="C_FILT2_1U" value="1uF" a="FILT2P" b="GND" jlc="C2167386" mpn="C0603C105K4RACTU" footprint="0603" section="Reference buffers and filters" schX="17mm" schY="-19mm" />
     <C2 name="C_VMID1_4U7" value="4.7uF" a="VMID1" b="GND" jlc="C389010" mpn="GRM188Z71C475KE21D" footprint="0603" section="Reference buffers and filters" schX="-18mm" schY="14mm" />

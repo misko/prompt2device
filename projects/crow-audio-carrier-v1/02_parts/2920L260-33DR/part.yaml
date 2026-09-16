@@ -52,4 +52,4 @@ layout:
     why: 'Engineering copper-gap ceiling: power-entry-feed; exact partner, selected non-poured net only.'
 layout_refs:
   - {tier: 1, reached: true, artifact: "Littelfuse 2920L 2025 datasheet", why: "Manufacturer authority fixes electrical, hot-hold and package data."}
-sourcing: {lcsc: null, alternates: [], note: "Exact DR manufacturer ordering identity is bound. Public C22870534 is only a catalog candidate; no JLC allocation is claimed. Keep manual/consign exclusion, empty authored supplier lists and hot loaded behavior hold."}
+sourcing: {lcsc: C22870534, alternates: [], note: "Exact public LCSC identity for Littelfuse 2920L260/33DR. JLC placement is required; final allocation and hot loaded behavior remain order/first-article holds."}

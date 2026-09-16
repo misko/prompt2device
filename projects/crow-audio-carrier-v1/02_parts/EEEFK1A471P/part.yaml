@@ -29,10 +29,9 @@ limits:
 asserts:
   - {assert: value, equals: 470u, tolerance_pct: 20, why: "CS5308P ADC reference-filter bulk capacitor."}
   - {assert: pad1_net_polarity, pad: 1, polarity: positive, why: "Panasonic identifies this as polar; pad 1 must be the ADC_FILTxP side and the project topology checker pins both instances."}
-  - {assert: not_on_assembly_bom, why: "No exact JLC allocation/process is accepted; both instances are governed manual-fit parts."}
 verified: "CITED: official Panasonic FK catalog exact standard-product row EEEFK1A471P gives 470uF +/-20%, 10V, 8.0x10.2 mm size F, 47uA leakage, 160mohm maximum impedance and 600mArms ripple; standard land a=3.1, b=4.0, c=2.0 mm; reviewed 2026-09-01."
 gotchas:
   - "This is a deliberate non-eval substitution for zero-stock vibration-proof EEEFK1A471V; capacitance/voltage/series/case are retained, but the standard-P land is different."
   - "Do not restore nonexistent EEH-ZK1A471P or reuse a ZC/ZK-series document."
-  - "Manual fit and polarity inspection are mandatory; pad 1 is positive on FILTxP."
-sourcing: {lcsc: null, alternates: [], note: "Active exact Panasonic standard-P part; manual/consign only until exact assembly allocation is proven. The zero-stock eval V suffix is not authorized as an implicit substitute."}
+  - "JLC placement and uploader polarity inspection are mandatory; pad 1 is positive on FILTxP or the declared positive hold rail."
+sourcing: {lcsc: C178530, alternates: [], note: "Exact Panasonic EEEFK1A471P public catalog identity. Final order still requires allocation and uploader confirmation; the zero-stock eval V suffix is not authorized as an implicit substitute."}

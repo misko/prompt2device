@@ -648,6 +648,6 @@ layout_refs:
   - {tier: 2, reached: true, artifact: "Cirrus DC5302P_4P_4S_8P_8S-ADC_Schematic_Layout.zip; E0 PCB PDF,240-11375-Z1 PADS ASCII/IPC/Gerbers and stackup, public statics.cirrus.com", why: "The same ZIP was already captured;2026-09-08 newly examined editable layout and artwork, with49/49 ASCII/IPC pad positions reconciled. Study staggered CFG drops and local capacitor/VMID ordering only. PADS descriptor is older CS5308P-CN/B0, not the selected DN; exact current-DN revision CAD is not established. Different8-layer stack,0.40/0.20mm vias and4.8mm copper EP land do not transfer. Primary DS1314F1 and project footprints remain unchanged; no vendor copper imported. See notes.md and ADR0013."}
   - {tier: 2, reached: false, artifact: "Editable reference CAD explicitly identifying the selected CS5308P-DN revision", why: "The inspected public Cirrus PADS layout identifies older CS5308P-CN/B0, not this DN device. An exact current-DN editable reference has not been established; preserve DS1314F1 and the independently derived carrier footprint as authority. This names the known applicability ceiling, not a claim that no such design exists."}
 sourcing:
-  lcsc: null
+  lcsc: C42457798
   alternates: []
-  note: "JLC/LCSC allocation is unproven. Treat as blocked and explicitly consign/manual-source the exact MPN unless assembly authority later proves an exact allocation."
+  note: "Public JLC identity C42457798 names CS5308P in QFN48. Cirrus DS1314F1 Table 12-1 identifies the tray orderable device as CS5308P-DN. JLC placement is mandatory, but the resolved uploader row must confirm the exact DN device before payment; otherwise consign exact CS5308P-DN for JLC placement."
