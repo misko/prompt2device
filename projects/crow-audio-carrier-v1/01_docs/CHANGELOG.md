@@ -1,5 +1,22 @@
 # Changelog
 
+## v0.1.0 — initial routed engineering release — 2026-09-16
+
+- Completed the authenticated 19-wave route and final stitch on the four-layer
+  carrier. Native DRC is 0 violations / 0 unconnected / 0 parity findings;
+  analog copper is 155/155 and all required route-acceptance checks pass.
+- Preserved the two single-layer digital contracts with zero vias. Qualified
+  601/601 realized vias, including 12 explicitly filled and copper-capped
+  via-in-pad sites and 54/54 declared current-transfer banks.
+- Exported the exact Gerber, drill, BOM, CPL, drawings, STEP model and final
+  RJ45 oblique views. All 300 assembled SMD placements are top-side.
+- Sealed as FIRST-ARTICLE-ONLY / DO-NOT-ORDER. Current catalog evidence blocks
+  C7452883 (LT3041ADE#TRPBF, stock 0) and C53283916 (TMUX2821DSGR, stock 16
+  versus 40 required for five boards); physical and order-time checks remain
+  in `DEFICIENCIES.md` and the first-article plan.
+
+Released: v0.1.0-2026-09-16
+
 ## Unreleased current-topology source checkpoint — 2026-09-09
 
 - Full carrier source suite passes 309/309, zero failures/errors. Current
