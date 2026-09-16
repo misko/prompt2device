@@ -576,9 +576,6 @@ Fab envelope regression: footprint labels formerly inflated native expected-body
 `t1_assembly_locator.py` is the default-runner entry for the assembly locator.
 It exercises the actual public CLI with complete and missing-page fixtures and
 runs the native identity, HTML behavior, PDF/page and owning-consumer controls.
-Its publication-portability pair removes both `pcbnew` and Pillow at import
-time, requires a valid sealed archive to pass from hashes and frozen identity,
-and requires a missing hashed member to fail.
 The visual-acceptance regression overwrites a visible page ID while preserving
 PNG identity metadata, rebuilds the PDF and refreshes file hashes. Structural
 checking still passes, but the exact independent render review must stale at
@@ -619,6 +616,11 @@ Known-bad controls reject wrong side/body, absent owned Fab, unmirrored bottom
 HTML, wrong bottom CPL side, frame and convention changes. The shipped UI
 script is exercised over every reference, side, crosshair and unknown-query
 transition. The original 25 identity/packaging/consumer controls remain.
+
+`t1_locator_publication.py` is the dependency-free publication companion. It
+removes both `pcbnew` and Pillow at import time, requires the actual sealed Crow
+carrier archive to pass from hashes and frozen identity, and requires a missing
+hashed member to fail. CI runs it before publication admission.
 
 
 Pin-audit mounted-frame regressions use native asymmetric front/back footprints under both flip axes and six rotations; prove a deliberate physical-pin mirror retains wrong winding, preserve native positions/nets and declared aliases, and require mounted-side/component-top/native-board-coordinate dossier fields. RED against c4acef1e; GREEN after mounted-frame extraction.

@@ -136,6 +136,7 @@ SUITES=(
   t1_publication_gate.py
   t1_assembly_gates.py
   t1_assembly_locator.py
+  t1_locator_publication.py
   t1_status.py
   t1_jlc_twin.py
   t1_twin_overlay.py
