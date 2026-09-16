@@ -38,7 +38,7 @@ copper-capped vias and apply it only to the twelve 0.60/0.30 mm sites named in
 production-file confirmation.
 
 Upload only the Gerber ZIP, BOM and CPL from immutable release
-`v0.1.5-2026-09-16`. JLC places its 300 CPL references on the top side. The
+`v0.1.6-2026-09-16`. JLC places its 300 CPL references on the top side. The
 33 declared exclusions remain outside automated assembly and are fitted from
 the exact manual-parts list. Any redirected code, substituted MPN, wrong side,
 unapproved rotation or different via interpretation stops payment.

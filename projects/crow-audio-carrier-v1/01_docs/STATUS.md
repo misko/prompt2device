@@ -1,9 +1,9 @@
 # STATUS beacon — crow-audio-carrier-v1
 
-stage: sealed v0.1.5-2026-09-16
-step: Immutable Crow audio carrier v0.1.5-2026-09-16 published to origin/main and tag verified
-measure: Public sourcing CLEAR 51/51;surplus150;LT3041 1965>=155;TMUX 2449>=190;byte-identical engineering payload;rehearsal4/4PASS;P-PUBLISH PASS
+stage: sealed v0.1.6-2026-09-16
+step: Immutable Crow audio carrier v0.1.6-2026-09-16 sealed with first-article order controls
+measure: DESIGN PASS;strict docs-only freshness PASS;rehearsal4/4PASS;quantity5;top300;manual33;rotation21;via12filled/589ordinary
 state: done
-next: Confirm assembly fulfillment manually in the uploader; keep FIRST-ARTICLE-ONLY / DO-NOT-ORDER until physical qualification
+next: Complete live JLC uploader BOM, placement, stencil and CAM checks; then execute physical first-article qualification
 op_pid: null
-updated: 2026-09-16T12:32:00-07:00
+updated: 2026-09-16T13:44:42
