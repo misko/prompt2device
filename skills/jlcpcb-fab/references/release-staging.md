@@ -71,9 +71,11 @@ Run against the staged archive:
 Every gate reports graded/total coverage. Zero denominator fails unless the
 contract explicitly proves non-applicability.
 
-Keep design and order conclusions distinct. A correct design may remain
-`BLOCKED-SOURCING`, `FIRST-ARTICLE-ONLY`, or `DO-NOT-ORDER` because JLC stackup,
-stock, uploader mappings, or operator previews are unresolved.
+Keep public sourcing, assembly fulfillment, qualification and order conclusions
+distinct. With `public-observations`, exact public stock may clear sourcing
+while JLC stackup, uploader mappings, pricing and operator previews remain
+explicit `ORDER-TIME CHECK` items. A correct, publicly sourceable design may
+still be `FIRST-ARTICLE-ONLY` or `DO-NOT-ORDER` for qualification reasons.
 
 When rehearsing such a package, use `release_rehearsal.py rehearse
 --allow-blocked-sourcing` only after both MANIFEST and the first screen of

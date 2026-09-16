@@ -16,12 +16,16 @@ or publication procedure.
 - Keep BOM/CPL outside the Gerber zip.
 - Bind every coded BOM row to exact per-refdes LCSC and MPN authority.
 - Prove every population exception through one assembly-policy source.
-- Treat catalog stock as advisory. Screen every coded BOM line against the
+- Treat exact public stock as the pre-order sourcing authority when the project
+  declares `sourcing_authority: public-observations` because no authenticated
+  order API is available. Screen every coded BOM line against the
   quantity-expanded build plus the configured absolute surplus (150 units in
   the current template). Apply the same configured surplus to exact-part
   public distributor or authorized-channel aggregate observations; those
-  observations remain design-only and never replace JLCPCB PCBA
-  availability/allocation receipts at their lifecycle boundaries.
+  observations may clear release-time public sourcing, but never claim JLCPCB
+  uploader allocation, pricing, substitutions, or assembly acceptance. Record
+  those as `ASSEMBLY FULFILLMENT: ORDER-TIME CHECK` and verify them manually
+  during the eventual uploader session.
 - Bind those receipts to explicit procurement limits and grade preorder cash,
   gross MOQ surplus cost, and nonrecoverable assembly excess cost.
 - Enforce measured per-LCSC rotation authority before CPL export (`A-ROT`).
@@ -112,9 +116,13 @@ stackup, impedance option, via-fill/cap choice, BOM mapping, rotations, and THT
 assembly previews. Public capability tables do not prove the final uploader
 selection.
 
-Require an `order`-phase receipt whose exact final-BOM rows are all
-`ALLOCATED`. An earlier `AVAILABLE` receipt and any catalog PASS remain
-insufficient for `ORDER`.
+When an authenticated order API or saved uploader receipt exists, require an
+`order`-phase receipt whose exact final-BOM rows are all `ALLOCATED`. When it
+does not exist, a project may use `public-observations`: exact public evidence
+must clear the build quantity plus configured surplus, and the release must
+state `ASSEMBLY FULFILLMENT: ORDER-TIME CHECK`. The manual uploader session
+must still confirm mappings, substitutions, quantities, fees, rotations and
+assembly capability before payment.
 
 Return exact staged-bundle identity, gate denominators, unresolved operator
 items, and design/order evidence to `pcb-design`. Do not call a design

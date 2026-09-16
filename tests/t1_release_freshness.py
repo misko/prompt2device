@@ -2026,6 +2026,18 @@ order_verdict: BLOCKED-SOURCING
 The board is right and cannot be bought today. That is two facts, not one.
 """
 
+_LENS_SOUND_FIRST_ARTICLE = """subject: demo v1.0
+date: 2026-07-30
+reviewer: redteam-agent (opus, {lens} lens)
+context-given: release-archive-only
+design_verdict: SOUND
+order_verdict: FIRST-ARTICLE-ONLY
+
+## Findings
+
+Public sourcing clears; physical qualification remains owed.
+"""
+
 _LENS_LEGACY_ORDER = """subject: demo v1.0
 date: 2026-07-30
 reviewer: redteam-agent (opus, {lens} lens)
@@ -2110,6 +2122,8 @@ def claims_release(*, plan=None, stock_c265111=5, verdict="FAIL",
 
 BOTH_SOUND = {"topology": _LENS_SOUND_ORDER, "layout": _LENS_SOUND_ORDER}
 BOTH_BLOCKED = {"topology": _LENS_SOUND_BLOCKED, "layout": _LENS_SOUND_BLOCKED}
+BOTH_FIRST_ARTICLE = {"topology": _LENS_SOUND_FIRST_ARTICLE,
+                      "layout": _LENS_SOUND_FIRST_ARTICLE}
 
 _BLOCKED_PLAN = """sourcing_plan:
   - lcsc: C265111
@@ -2130,6 +2144,25 @@ def t_claims_clear_release_seals():
     contains(r.out, "DESIGN: PASS", "the design claim is printed")
     contains(r.out, "SOURCING: CLEAR", "the sourcing claim is printed")
     contains(r.out, "2 graded /", "M-REV states its coverage denominator")
+
+
+@test("public observations clear sourcing while FIRST-ARTICLE-ONLY preserves qualification hold")
+def t_public_observations_clear_first_article_release():
+    d = claims_release(stock_c265111=90000, verdict="PASS",
+                       lenses=BOTH_FIRST_ARTICLE)
+    r = must_pass(gate(d, "--sourcing-authority", "public-observations"),
+                  "public evidence with surplus should clear sourcing")
+    contains(r.out, "SOURCING: CLEAR", "public sourcing is measured clear")
+
+
+@test("FIRST-ARTICLE-ONLY cannot hide blocked public sourcing", kind="known_bad")
+def t_public_observations_block_first_article_contradiction():
+    d = claims_release(plan=_BLOCKED_PLAN, manifest_sourcing=_DECL,
+                       readme_sourcing="> " + _DECL,
+                       lenses=BOTH_FIRST_ARTICLE)
+    must_fail(gate(d, "--sourcing-authority", "public-observations"),
+              "qualification hold must not hide a sourcing block",
+              expect="REVIEW-FIRST-ARTICLE-CONTRADICTS-EVIDENCE")
 
 
 @test("A-BUY: a release measured BLOCKED-1 SEALS when both MANIFEST and the "

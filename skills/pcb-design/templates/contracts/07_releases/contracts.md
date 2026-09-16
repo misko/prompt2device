@@ -1,6 +1,6 @@
 # contract: 07_releases/
 
-sourcing_authority: jlc-pcba
+sourcing_authority: public-observations
 
 **Purpose** — one immutable directory per **reviewed PCB release candidate**.
 It answers, forever: *what exact design and fabrication payload was sealed,

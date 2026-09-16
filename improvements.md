@@ -57,6 +57,25 @@ completion evidence.
 | IMP-264 | Prepare strict-width layer transitions before global routing | proposed | source-owned full-width via landings, same-net-aware clearance checks and pre-route terminal-fit proof |
 | IMP-265 | Require fine-pitch source bundles to reach routable landings | implementing | complete local-bundle witness, fabrication-floor search grid and ordinary-route landing replay |
 | IMP-266 | Make source copper emitters consume compiled pair rules symmetrically | implementing | shared scoped copper/hole resolver, rule-order fixture and via-before/track-before known-bads |
+| IMP-267 | Separate public sourcing from manual assembler fulfillment | completed | `public-observations` authority, FIRST-ARTICLE review verdict, surplus and contradiction fixtures |
+
+## IMP-267 — public sourcing without an order API
+
+- status: completed
+- observed: projects without JLCPCB API access could prove abundant exact-part
+  public stock, including the configured 150-unit surplus, but the release
+  process still labeled sourcing blocked because it required an unavailable
+  allocation receipt.
+- landing point: `public-observations` is a first-class sourcing authority.
+  It grades exact public catalog, distributor, or authorized-channel evidence
+  against build quantity plus surplus. JLC uploader mappings, substitutions,
+  fees and assembly acceptance remain a manual `ORDER-TIME CHECK`.
+- completion evidence: `tests/t1_release_freshness.py` proves public evidence
+  can clear sourcing under `FIRST-ARTICLE-ONLY` and that the same verdict cannot
+  hide an actual public-stock block.
+- authority boundary: public observations can support sourcing clearance and a
+  first-article candidate; only an authenticated order event can support
+  `ORDER`, and physical qualification remains independent.
 
 ## IMP-229 — executable PCB documentation and graph
 

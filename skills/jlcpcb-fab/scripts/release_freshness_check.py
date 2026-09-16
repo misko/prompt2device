@@ -151,7 +151,7 @@ A SEAL MAKES TWO CLAIMS AND THIS GATE USED TO HAVE ONE FIELD FOR BOTH
       prose (that is the R-LEN word-credit defect):
 
           design_verdict: SOUND | DEFECTIVE          -> the DESIGN claim
-          order_verdict:  ORDER | DO-NOT-ORDER | BLOCKED-SOURCING
+          order_verdict:  ORDER | FIRST-ARTICLE-ONLY | DO-NOT-ORDER | BLOCKED-SOURCING
 
       A legacy single `verdict:` maps CONSERVATIVELY — `DO-NOT-ORDER`/`FAIL`
       become DEFECTIVE, so no existing review is retroactively converted into
@@ -2440,7 +2440,8 @@ def check_order_declaration(release_dir, sourcing):
 _REVIEW_LENS_FILES = ("redteam_topology.md", "redteam_layout.md")
 _REVIEW_HEADER_LINES = 40
 _DESIGN_VERDICT_VOCAB = ("SOUND", "DEFECTIVE")
-_ORDER_VERDICT_VOCAB = ("ORDER", "DO-NOT-ORDER", "BLOCKED-SOURCING")
+_ORDER_VERDICT_VOCAB = ("ORDER", "FIRST-ARTICLE-ONLY", "DO-NOT-ORDER",
+                        "BLOCKED-SOURCING")
 
 #: A single legacy `verdict:` maps CONSERVATIVELY. A refusal stays a refusal:
 #: the split gives the NEXT reviewer a vocabulary, it does not re-adjudicate
@@ -2569,6 +2570,12 @@ def check_reviews(release_dir, sourcing):
                 f"evidence measures BLOCKED-{len(sourcing['blocked'])} "
                 f"({', '.join(sourcing['blocked'])}) — a lens may not certify "
                 f"an order the archive it graded cannot place")
+        if order == "FIRST-ARTICLE-ONLY" and sourcing["status"] == "BLOCKED":
+            sfails.append(
+                f"  REVIEW-FIRST-ARTICLE-CONTRADICTS-EVIDENCE: "
+                f"verification/{name} grades this release FIRST-ARTICLE-ONLY "
+                f"while its public sourcing evidence measures BLOCKED — use "
+                f"BLOCKED-SOURCING until exact-part availability clears")
         if order == "BLOCKED-SOURCING" and sourcing["status"] == "CLEAR":
             sfails.append(
                 f"  REVIEW-ORDER-CONTRADICTS-EVIDENCE: verification/{name} "
@@ -2742,11 +2749,14 @@ def main(argv=None):
                          "later is from outside it. Pair with "
                          "--claim sourcing")
     ap.add_argument("--sourcing-authority",
-                    choices=("auto", "catalog-legacy", "jlc-pcba"),
+                    choices=("auto", "catalog-legacy", "public-observations",
+                             "jlc-pcba"),
                     default="auto",
-                    help="order-readiness authority. catalog-legacy preserves "
-                         "historical releases; auto reads the project release "
-                         "contract; new contracts declare jlc-pcba")
+                    help="sourcing authority. public-observations grades exact "
+                         "public evidence against build quantity plus surplus "
+                         "and leaves JLC fulfillment to the manual order-time "
+                         "check; catalog-legacy preserves historical releases; "
+                         "auto reads the project release contract")
     ap.add_argument("--pcba-evidence", default=None, metavar="RECEIPT.json",
                     help="hash-bound order-phase JLCPCB PCBA allocation "
                          "receipt; required with --sourcing-authority jlc-pcba")
@@ -2910,7 +2920,7 @@ def main(argv=None):
         kf, kn, srcstate = check_stock(
             release_dir, _load_assembly(release_dir, args.assembly),
             evidence_override=args.stock_evidence)
-        if args.sourcing_authority == "catalog-legacy":
+        if args.sourcing_authority in ("catalog-legacy", "public-observations"):
             sfails += kf
         else:
             notes += ["  note: A-CATALOG advisory only: " + finding.strip()

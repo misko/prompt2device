@@ -103,9 +103,13 @@ design_verdict: SOUND | DEFECTIVE | INCOMPLETE
 order_verdict: ORDER | FIRST-ARTICLE-ONLY | DO-NOT-ORDER | BLOCKED-SOURCING
 ```
 
-The seal reads `design_verdict`; order paperwork reads `order_verdict` and
-cross-checks it against a fresh, exact-BOM JLCPCB `ALLOCATED` receipt. Catalog
-stock is advisory and cannot support `ORDER`. Prose is not a verdict.
+The seal reads `design_verdict`; sourcing checks read `order_verdict`. A
+project with authenticated order evidence cross-checks it against an exact-BOM
+JLCPCB `ALLOCATED` receipt. A project without that API may declare
+`public-observations`, which can support `FIRST-ARTICLE-ONLY` after exact public
+stock clears quantity plus surplus, while assembly fulfillment remains a
+manual order-time check. Public observations never support `ORDER`. Prose is
+not a verdict.
 Archive accepted witnesses verbatim under `08_reviews/` with subject hashes and
 copy the contract-named witnesses into staged verification.
 
