@@ -795,3 +795,13 @@ Audit: SHA-256 equals filename; every regular member reopened.
 | `8c7dcf6914a3c410e9f87643d378b1cbf2f2e899149a4027b9c162c23c9e3e47.tar.gz` | Exact 296-file release rehearsal3/3PASS plus declared informational sourcing failure and owning seal-admission receipt |
 
 Audit: SHA-256 equals filename; receipt inputs name the immutable release.
+
+## Carrier and pod transport-successor review
+
+| Pattern | What |
+|---|---|
+| `82b7d9b16e70f0fbba3dbce578eecf7465f1f61dd2a2fa002854e9bcb2eba664.tar.gz` | Fresh independent docs-only transport review, two release hash censuses, four pod canonical review rebindings, transport RED/GREEN evidence, remote refs and final result |
+
+Audit: SHA-256 equals filename; packet inputs and outputs reopen against the
+materialized releases. The archive contains hash censuses rather than duplicate
+release payloads; the releases remain the byte authority.

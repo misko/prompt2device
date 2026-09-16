@@ -2907,3 +2907,13 @@ Audit: SHA-256 equals filename; reopen members and envelope hashes. Engineering 
 | `c456e61990a36e96d595a269fa3642d9f9a47cc43f28f9cac217b3c2ff768df7.tar.gz` | Exact 3/3 rehearsal, seal admission, unchanged-design policy regrade and gate regression logs |
 
 Audit: filename is SHA-256; re-open receipt input hashes against immutable release. Policy regrade skips DRC; original unchanged engineering release retains full native DRC evidence.
+
+## Carrier and pod transport-successor review
+
+| Pattern | What |
+|---|---|
+| `82b7d9b16e70f0fbba3dbce578eecf7465f1f61dd2a2fa002854e9bcb2eba664.tar.gz` | Fresh independent docs-only transport review, two release hash censuses, four pod canonical review rebindings, transport RED/GREEN evidence, remote refs and final result |
+
+Audit: SHA-256 equals filename; packet inputs and outputs reopen against the
+materialized releases. The archive contains hash censuses rather than duplicate
+release payloads; the releases remain the byte authority.
