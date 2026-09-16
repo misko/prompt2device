@@ -1,0 +1,13 @@
+mpn: SMBJ15A
+manufacturer: Littelfuse
+type: unidirectional_tvs_diode
+status: active
+datasheet: {doc_id: "Littelfuse SMBJ series", revision: "JC.07/04/25 v4", url: "https://www.littelfuse.com/assetdocs/littelfuse_tvs_diode_smbj_datasheet.pdf", local: Littelfuse_SMBJ_v4_2025-07-04.pdf, sha256: d7df155be4b1f612085401e8c946f065e284d65a0e7de22b9225a7b73946e51b, fetched: 2026-08-12}
+package: "DO-214AA SMB"
+footprint: crow_mic_pod_v3:Littelfuse_SMBJ15A_SMB
+escape: {style: passive, pitch: 4.3, tier_required: jlc_2layer_default, checked: "Littelfuse package and project-vendored KiCad D_SMB land pattern, 2026-09-01"}
+pins: {1: K, 2: A}
+limits: {reverse_standoff_v: 15.0, breakdown_v_at_1ma: "16.7-18.5", clamp_v_at_24_6a_10_1000us: 24.4, peak_pulse_power_w: 600}
+gotchas: ["Pad 1/cathode is VIN_PROTECTED and pad 2/anode is GND.", "No lightning/system surge claim follows from the component waveform."]
+verified: "Exact SMBJ15A row in the Electrical Characteristics table on PDF page 2, plus cathode-band polarity and DO-214AA dimensions on PDF pages 5-6 of the pinned Littelfuse v4 sheet, inspected 2026-09-02."
+sourcing: {lcsc: C83846, alternates: []}

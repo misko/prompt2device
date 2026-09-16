@@ -1,0 +1,4043 @@
+{
+  "checks": {
+    "exact_code_identity": {
+      "coverage": {
+        "graded": 333,
+        "total": 333
+      },
+      "detail": "333/333 source component(s) graded",
+      "findings": [],
+      "manual_refs": [
+        "C_A1N",
+        "C_A1P",
+        "C_A2N",
+        "C_A2P",
+        "C_A3N",
+        "C_A3P",
+        "C_A4N",
+        "C_A4P",
+        "C_A5N",
+        "C_A5P",
+        "C_A6N",
+        "C_A6P",
+        "C_A7N",
+        "C_A7P",
+        "C_A8N",
+        "C_A8P",
+        "C_FILT1_470U",
+        "C_FILT2_470U",
+        "C_HOLD1",
+        "C_HOLD2",
+        "F_IN",
+        "J1",
+        "J10",
+        "J11",
+        "J2",
+        "J3",
+        "J4",
+        "J5",
+        "J6",
+        "J7",
+        "J8",
+        "J9",
+        "U_ADC"
+      ],
+      "rows": [
+        {
+          "disposition": "manual",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/615008160221/part.yaml",
+          "footprint": "crow_audio_carrier:Wurth_615008160221_RJ45",
+          "jlc_codes": [],
+          "mpn": "615008160221",
+          "ref": "J1",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/1812L035-60MR/part.yaml",
+          "footprint": "crow_audio_carrier:Littelfuse_1812L035_60_Exact",
+          "jlc_codes": [
+            "C3761431"
+          ],
+          "mpn": "1812L035/60MR",
+          "ref": "F1",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/TPD2E2U06DRLR/part.yaml",
+          "footprint": "Package_TO_SOT_SMD:SOT-553",
+          "jlc_codes": [
+            "C1972959"
+          ],
+          "mpn": "TPD2E2U06DRLR",
+          "ref": "U_ESD1",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "manual",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/615008160221/part.yaml",
+          "footprint": "crow_audio_carrier:Wurth_615008160221_RJ45",
+          "jlc_codes": [],
+          "mpn": "615008160221",
+          "ref": "J2",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/1812L035-60MR/part.yaml",
+          "footprint": "crow_audio_carrier:Littelfuse_1812L035_60_Exact",
+          "jlc_codes": [
+            "C3761431"
+          ],
+          "mpn": "1812L035/60MR",
+          "ref": "F2",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/TPD2E2U06DRLR/part.yaml",
+          "footprint": "Package_TO_SOT_SMD:SOT-553",
+          "jlc_codes": [
+            "C1972959"
+          ],
+          "mpn": "TPD2E2U06DRLR",
+          "ref": "U_ESD2",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "manual",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/615008160221/part.yaml",
+          "footprint": "crow_audio_carrier:Wurth_615008160221_RJ45",
+          "jlc_codes": [],
+          "mpn": "615008160221",
+          "ref": "J3",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/1812L035-60MR/part.yaml",
+          "footprint": "crow_audio_carrier:Littelfuse_1812L035_60_Exact",
+          "jlc_codes": [
+            "C3761431"
+          ],
+          "mpn": "1812L035/60MR",
+          "ref": "F3",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/TPD2E2U06DRLR/part.yaml",
+          "footprint": "Package_TO_SOT_SMD:SOT-553",
+          "jlc_codes": [
+            "C1972959"
+          ],
+          "mpn": "TPD2E2U06DRLR",
+          "ref": "U_ESD3",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "manual",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/615008160221/part.yaml",
+          "footprint": "crow_audio_carrier:Wurth_615008160221_RJ45",
+          "jlc_codes": [],
+          "mpn": "615008160221",
+          "ref": "J4",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/1812L035-60MR/part.yaml",
+          "footprint": "crow_audio_carrier:Littelfuse_1812L035_60_Exact",
+          "jlc_codes": [
+            "C3761431"
+          ],
+          "mpn": "1812L035/60MR",
+          "ref": "F4",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/TPD2E2U06DRLR/part.yaml",
+          "footprint": "Package_TO_SOT_SMD:SOT-553",
+          "jlc_codes": [
+            "C1972959"
+          ],
+          "mpn": "TPD2E2U06DRLR",
+          "ref": "U_ESD4",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "manual",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/615008160221/part.yaml",
+          "footprint": "crow_audio_carrier:Wurth_615008160221_RJ45",
+          "jlc_codes": [],
+          "mpn": "615008160221",
+          "ref": "J5",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/1812L035-60MR/part.yaml",
+          "footprint": "crow_audio_carrier:Littelfuse_1812L035_60_Exact",
+          "jlc_codes": [
+            "C3761431"
+          ],
+          "mpn": "1812L035/60MR",
+          "ref": "F5",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/TPD2E2U06DRLR/part.yaml",
+          "footprint": "Package_TO_SOT_SMD:SOT-553",
+          "jlc_codes": [
+            "C1972959"
+          ],
+          "mpn": "TPD2E2U06DRLR",
+          "ref": "U_ESD5",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "manual",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/615008160221/part.yaml",
+          "footprint": "crow_audio_carrier:Wurth_615008160221_RJ45",
+          "jlc_codes": [],
+          "mpn": "615008160221",
+          "ref": "J6",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/1812L035-60MR/part.yaml",
+          "footprint": "crow_audio_carrier:Littelfuse_1812L035_60_Exact",
+          "jlc_codes": [
+            "C3761431"
+          ],
+          "mpn": "1812L035/60MR",
+          "ref": "F6",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/TPD2E2U06DRLR/part.yaml",
+          "footprint": "Package_TO_SOT_SMD:SOT-553",
+          "jlc_codes": [
+            "C1972959"
+          ],
+          "mpn": "TPD2E2U06DRLR",
+          "ref": "U_ESD6",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "manual",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/615008160221/part.yaml",
+          "footprint": "crow_audio_carrier:Wurth_615008160221_RJ45",
+          "jlc_codes": [],
+          "mpn": "615008160221",
+          "ref": "J7",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/1812L035-60MR/part.yaml",
+          "footprint": "crow_audio_carrier:Littelfuse_1812L035_60_Exact",
+          "jlc_codes": [
+            "C3761431"
+          ],
+          "mpn": "1812L035/60MR",
+          "ref": "F7",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/TPD2E2U06DRLR/part.yaml",
+          "footprint": "Package_TO_SOT_SMD:SOT-553",
+          "jlc_codes": [
+            "C1972959"
+          ],
+          "mpn": "TPD2E2U06DRLR",
+          "ref": "U_ESD7",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "manual",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/615008160221/part.yaml",
+          "footprint": "crow_audio_carrier:Wurth_615008160221_RJ45",
+          "jlc_codes": [],
+          "mpn": "615008160221",
+          "ref": "J8",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/1812L035-60MR/part.yaml",
+          "footprint": "crow_audio_carrier:Littelfuse_1812L035_60_Exact",
+          "jlc_codes": [
+            "C3761431"
+          ],
+          "mpn": "1812L035/60MR",
+          "ref": "F8",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/TPD2E2U06DRLR/part.yaml",
+          "footprint": "Package_TO_SOT_SMD:SOT-553",
+          "jlc_codes": [
+            "C1972959"
+          ],
+          "mpn": "TPD2E2U06DRLR",
+          "ref": "U_ESD8",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "manual",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/R82DC4100DQ60J/part.yaml",
+          "footprint": "Capacitor_THT:C_Rect_L7.2mm_W5.0mm_P5.00mm",
+          "jlc_codes": [],
+          "mpn": "R82DC4100DQ60J",
+          "ref": "C_A1P",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "manual",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/R82DC4100DQ60J/part.yaml",
+          "footprint": "Capacitor_THT:C_Rect_L7.2mm_W5.0mm_P5.00mm",
+          "jlc_codes": [],
+          "mpn": "R82DC4100DQ60J",
+          "ref": "C_A1N",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-07100KL/part.yaml",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "jlc_codes": [
+            "C60491"
+          ],
+          "mpn": "RC0402FR-07100KL",
+          "ref": "R_B1P",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-07100KL/part.yaml",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "jlc_codes": [
+            "C60491"
+          ],
+          "mpn": "RC0402FR-07100KL",
+          "ref": "R_B1N",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-0710KL/part.yaml",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "jlc_codes": [
+            "C60490"
+          ],
+          "mpn": "RC0402FR-0710KL",
+          "ref": "R_IN1P",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-0710KL/part.yaml",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "jlc_codes": [
+            "C60490"
+          ],
+          "mpn": "RC0402FR-0710KL",
+          "ref": "R_IN1N",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/OPA2320AIDR/part.yaml",
+          "footprint": "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm",
+          "jlc_codes": [
+            "C2863402"
+          ],
+          "mpn": "OPA2320AIDR",
+          "ref": "U_AFE1",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-07300RL/part.yaml",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "jlc_codes": [
+            "C138010"
+          ],
+          "mpn": "RC0402FR-07300RL",
+          "ref": "R_X1P",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-07300RL/part.yaml",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "jlc_codes": [
+            "C138010"
+          ],
+          "mpn": "RC0402FR-07300RL",
+          "ref": "R_X1N",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/GCM1555C1H681JA16D/part.yaml",
+          "footprint": "Capacitor_SMD:C_0402_1005Metric",
+          "jlc_codes": [
+            "C126514"
+          ],
+          "mpn": "GCM1555C1H681JA16D",
+          "ref": "C_FB1P",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/GCM1555C1H681JA16D/part.yaml",
+          "footprint": "Capacitor_SMD:C_0402_1005Metric",
+          "jlc_codes": [
+            "C126514"
+          ],
+          "mpn": "GCM1555C1H681JA16D",
+          "ref": "C_FB1N",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-0710RL/part.yaml",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "jlc_codes": [
+            "C138066"
+          ],
+          "mpn": "RC0402FR-0710RL",
+          "ref": "R_OUT1P",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-0710RL/part.yaml",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "jlc_codes": [
+            "C138066"
+          ],
+          "mpn": "RC0402FR-0710RL",
+          "ref": "R_OUT1N",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/GRM2195C1H153JA01D/part.yaml",
+          "footprint": "Capacitor_SMD:C_0805_2012Metric",
+          "jlc_codes": [
+            "C97907"
+          ],
+          "mpn": "GRM2195C1H153JA01D",
+          "ref": "C_FILTER1P1",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/GRM2195C1H153JA01D/part.yaml",
+          "footprint": "Capacitor_SMD:C_0805_2012Metric",
+          "jlc_codes": [
+            "C97907"
+          ],
+          "mpn": "GRM2195C1H153JA01D",
+          "ref": "C_FILTER1P2",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/GRM2195C1H153JA01D/part.yaml",
+          "footprint": "Capacitor_SMD:C_0805_2012Metric",
+          "jlc_codes": [
+            "C97907"
+          ],
+          "mpn": "GRM2195C1H153JA01D",
+          "ref": "C_FILTER1N1",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/GRM2195C1H153JA01D/part.yaml",
+          "footprint": "Capacitor_SMD:C_0805_2012Metric",
+          "jlc_codes": [
+            "C97907"
+          ],
+          "mpn": "GRM2195C1H153JA01D",
+          "ref": "C_FILTER1N2",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/TMUX2821DSGR/part.yaml",
+          "footprint": "crow_audio_carrier:TI_DSG0008A_Exact",
+          "jlc_codes": [
+            "C53283916"
+          ],
+          "mpn": "TMUX2821DSGR",
+          "ref": "U_ISO1",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-0710KL/part.yaml",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "jlc_codes": [
+            "C60490"
+          ],
+          "mpn": "RC0402FR-0710KL",
+          "ref": "R_ADC_PD1P",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/GRM1555C1H102JA01D/part.yaml",
+          "footprint": "Capacitor_SMD:C_0402_1005Metric",
+          "jlc_codes": [
+            "C76947"
+          ],
+          "mpn": "GRM1555C1H102JA01D",
+          "ref": "C_ADC_CM1P",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-0710KL/part.yaml",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "jlc_codes": [
+            "C60490"
+          ],
+          "mpn": "RC0402FR-0710KL",
+          "ref": "R_ADC_PD1N",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/GRM1555C1H102JA01D/part.yaml",
+          "footprint": "Capacitor_SMD:C_0402_1005Metric",
+          "jlc_codes": [
+            "C76947"
+          ],
+          "mpn": "GRM1555C1H102JA01D",
+          "ref": "C_ADC_CM1N",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/CL05B104KO5NNNC/part.yaml",
+          "footprint": "Capacitor_SMD:C_0402_1005Metric",
+          "jlc_codes": [
+            "C1525"
+          ],
+          "mpn": "CL05B104KO5NNNC",
+          "ref": "C_ISO1",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/CL05B104KO5NNNC/part.yaml",
+          "footprint": "Capacitor_SMD:C_0402_1005Metric",
+          "jlc_codes": [
+            "C1525"
+          ],
+          "mpn": "CL05B104KO5NNNC",
+          "ref": "C_OPA1",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "manual",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/R82DC4100DQ60J/part.yaml",
+          "footprint": "Capacitor_THT:C_Rect_L7.2mm_W5.0mm_P5.00mm",
+          "jlc_codes": [],
+          "mpn": "R82DC4100DQ60J",
+          "ref": "C_A2P",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "manual",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/R82DC4100DQ60J/part.yaml",
+          "footprint": "Capacitor_THT:C_Rect_L7.2mm_W5.0mm_P5.00mm",
+          "jlc_codes": [],
+          "mpn": "R82DC4100DQ60J",
+          "ref": "C_A2N",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-07100KL/part.yaml",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "jlc_codes": [
+            "C60491"
+          ],
+          "mpn": "RC0402FR-07100KL",
+          "ref": "R_B2P",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-07100KL/part.yaml",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "jlc_codes": [
+            "C60491"
+          ],
+          "mpn": "RC0402FR-07100KL",
+          "ref": "R_B2N",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-0710KL/part.yaml",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "jlc_codes": [
+            "C60490"
+          ],
+          "mpn": "RC0402FR-0710KL",
+          "ref": "R_IN2P",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-0710KL/part.yaml",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "jlc_codes": [
+            "C60490"
+          ],
+          "mpn": "RC0402FR-0710KL",
+          "ref": "R_IN2N",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/OPA2320AIDR/part.yaml",
+          "footprint": "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm",
+          "jlc_codes": [
+            "C2863402"
+          ],
+          "mpn": "OPA2320AIDR",
+          "ref": "U_AFE2",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-07300RL/part.yaml",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "jlc_codes": [
+            "C138010"
+          ],
+          "mpn": "RC0402FR-07300RL",
+          "ref": "R_X2P",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-07300RL/part.yaml",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "jlc_codes": [
+            "C138010"
+          ],
+          "mpn": "RC0402FR-07300RL",
+          "ref": "R_X2N",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/GCM1555C1H681JA16D/part.yaml",
+          "footprint": "Capacitor_SMD:C_0402_1005Metric",
+          "jlc_codes": [
+            "C126514"
+          ],
+          "mpn": "GCM1555C1H681JA16D",
+          "ref": "C_FB2P",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/GCM1555C1H681JA16D/part.yaml",
+          "footprint": "Capacitor_SMD:C_0402_1005Metric",
+          "jlc_codes": [
+            "C126514"
+          ],
+          "mpn": "GCM1555C1H681JA16D",
+          "ref": "C_FB2N",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-0710RL/part.yaml",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "jlc_codes": [
+            "C138066"
+          ],
+          "mpn": "RC0402FR-0710RL",
+          "ref": "R_OUT2P",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-0710RL/part.yaml",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "jlc_codes": [
+            "C138066"
+          ],
+          "mpn": "RC0402FR-0710RL",
+          "ref": "R_OUT2N",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/GRM2195C1H153JA01D/part.yaml",
+          "footprint": "Capacitor_SMD:C_0805_2012Metric",
+          "jlc_codes": [
+            "C97907"
+          ],
+          "mpn": "GRM2195C1H153JA01D",
+          "ref": "C_FILTER2P1",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/GRM2195C1H153JA01D/part.yaml",
+          "footprint": "Capacitor_SMD:C_0805_2012Metric",
+          "jlc_codes": [
+            "C97907"
+          ],
+          "mpn": "GRM2195C1H153JA01D",
+          "ref": "C_FILTER2P2",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/GRM2195C1H153JA01D/part.yaml",
+          "footprint": "Capacitor_SMD:C_0805_2012Metric",
+          "jlc_codes": [
+            "C97907"
+          ],
+          "mpn": "GRM2195C1H153JA01D",
+          "ref": "C_FILTER2N1",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/GRM2195C1H153JA01D/part.yaml",
+          "footprint": "Capacitor_SMD:C_0805_2012Metric",
+          "jlc_codes": [
+            "C97907"
+          ],
+          "mpn": "GRM2195C1H153JA01D",
+          "ref": "C_FILTER2N2",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/TMUX2821DSGR/part.yaml",
+          "footprint": "crow_audio_carrier:TI_DSG0008A_Exact",
+          "jlc_codes": [
+            "C53283916"
+          ],
+          "mpn": "TMUX2821DSGR",
+          "ref": "U_ISO2",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-0710KL/part.yaml",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "jlc_codes": [
+            "C60490"
+          ],
+          "mpn": "RC0402FR-0710KL",
+          "ref": "R_ADC_PD2P",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/GRM1555C1H102JA01D/part.yaml",
+          "footprint": "Capacitor_SMD:C_0402_1005Metric",
+          "jlc_codes": [
+            "C76947"
+          ],
+          "mpn": "GRM1555C1H102JA01D",
+          "ref": "C_ADC_CM2P",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-0710KL/part.yaml",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "jlc_codes": [
+            "C60490"
+          ],
+          "mpn": "RC0402FR-0710KL",
+          "ref": "R_ADC_PD2N",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/GRM1555C1H102JA01D/part.yaml",
+          "footprint": "Capacitor_SMD:C_0402_1005Metric",
+          "jlc_codes": [
+            "C76947"
+          ],
+          "mpn": "GRM1555C1H102JA01D",
+          "ref": "C_ADC_CM2N",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/CL05B104KO5NNNC/part.yaml",
+          "footprint": "Capacitor_SMD:C_0402_1005Metric",
+          "jlc_codes": [
+            "C1525"
+          ],
+          "mpn": "CL05B104KO5NNNC",
+          "ref": "C_ISO2",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/CL05B104KO5NNNC/part.yaml",
+          "footprint": "Capacitor_SMD:C_0402_1005Metric",
+          "jlc_codes": [
+            "C1525"
+          ],
+          "mpn": "CL05B104KO5NNNC",
+          "ref": "C_OPA2",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "manual",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/R82DC4100DQ60J/part.yaml",
+          "footprint": "Capacitor_THT:C_Rect_L7.2mm_W5.0mm_P5.00mm",
+          "jlc_codes": [],
+          "mpn": "R82DC4100DQ60J",
+          "ref": "C_A3P",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "manual",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/R82DC4100DQ60J/part.yaml",
+          "footprint": "Capacitor_THT:C_Rect_L7.2mm_W5.0mm_P5.00mm",
+          "jlc_codes": [],
+          "mpn": "R82DC4100DQ60J",
+          "ref": "C_A3N",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-07100KL/part.yaml",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "jlc_codes": [
+            "C60491"
+          ],
+          "mpn": "RC0402FR-07100KL",
+          "ref": "R_B3P",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-07100KL/part.yaml",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "jlc_codes": [
+            "C60491"
+          ],
+          "mpn": "RC0402FR-07100KL",
+          "ref": "R_B3N",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-0710KL/part.yaml",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "jlc_codes": [
+            "C60490"
+          ],
+          "mpn": "RC0402FR-0710KL",
+          "ref": "R_IN3P",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-0710KL/part.yaml",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "jlc_codes": [
+            "C60490"
+          ],
+          "mpn": "RC0402FR-0710KL",
+          "ref": "R_IN3N",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/OPA2320AIDR/part.yaml",
+          "footprint": "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm",
+          "jlc_codes": [
+            "C2863402"
+          ],
+          "mpn": "OPA2320AIDR",
+          "ref": "U_AFE3",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-07300RL/part.yaml",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "jlc_codes": [
+            "C138010"
+          ],
+          "mpn": "RC0402FR-07300RL",
+          "ref": "R_X3P",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-07300RL/part.yaml",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "jlc_codes": [
+            "C138010"
+          ],
+          "mpn": "RC0402FR-07300RL",
+          "ref": "R_X3N",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/GCM1555C1H681JA16D/part.yaml",
+          "footprint": "Capacitor_SMD:C_0402_1005Metric",
+          "jlc_codes": [
+            "C126514"
+          ],
+          "mpn": "GCM1555C1H681JA16D",
+          "ref": "C_FB3P",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/GCM1555C1H681JA16D/part.yaml",
+          "footprint": "Capacitor_SMD:C_0402_1005Metric",
+          "jlc_codes": [
+            "C126514"
+          ],
+          "mpn": "GCM1555C1H681JA16D",
+          "ref": "C_FB3N",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-0710RL/part.yaml",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "jlc_codes": [
+            "C138066"
+          ],
+          "mpn": "RC0402FR-0710RL",
+          "ref": "R_OUT3P",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-0710RL/part.yaml",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "jlc_codes": [
+            "C138066"
+          ],
+          "mpn": "RC0402FR-0710RL",
+          "ref": "R_OUT3N",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/GRM2195C1H153JA01D/part.yaml",
+          "footprint": "Capacitor_SMD:C_0805_2012Metric",
+          "jlc_codes": [
+            "C97907"
+          ],
+          "mpn": "GRM2195C1H153JA01D",
+          "ref": "C_FILTER3P1",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/GRM2195C1H153JA01D/part.yaml",
+          "footprint": "Capacitor_SMD:C_0805_2012Metric",
+          "jlc_codes": [
+            "C97907"
+          ],
+          "mpn": "GRM2195C1H153JA01D",
+          "ref": "C_FILTER3P2",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/GRM2195C1H153JA01D/part.yaml",
+          "footprint": "Capacitor_SMD:C_0805_2012Metric",
+          "jlc_codes": [
+            "C97907"
+          ],
+          "mpn": "GRM2195C1H153JA01D",
+          "ref": "C_FILTER3N1",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/GRM2195C1H153JA01D/part.yaml",
+          "footprint": "Capacitor_SMD:C_0805_2012Metric",
+          "jlc_codes": [
+            "C97907"
+          ],
+          "mpn": "GRM2195C1H153JA01D",
+          "ref": "C_FILTER3N2",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/TMUX2821DSGR/part.yaml",
+          "footprint": "crow_audio_carrier:TI_DSG0008A_Exact",
+          "jlc_codes": [
+            "C53283916"
+          ],
+          "mpn": "TMUX2821DSGR",
+          "ref": "U_ISO3",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-0710KL/part.yaml",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "jlc_codes": [
+            "C60490"
+          ],
+          "mpn": "RC0402FR-0710KL",
+          "ref": "R_ADC_PD3P",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/GRM1555C1H102JA01D/part.yaml",
+          "footprint": "Capacitor_SMD:C_0402_1005Metric",
+          "jlc_codes": [
+            "C76947"
+          ],
+          "mpn": "GRM1555C1H102JA01D",
+          "ref": "C_ADC_CM3P",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-0710KL/part.yaml",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "jlc_codes": [
+            "C60490"
+          ],
+          "mpn": "RC0402FR-0710KL",
+          "ref": "R_ADC_PD3N",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/GRM1555C1H102JA01D/part.yaml",
+          "footprint": "Capacitor_SMD:C_0402_1005Metric",
+          "jlc_codes": [
+            "C76947"
+          ],
+          "mpn": "GRM1555C1H102JA01D",
+          "ref": "C_ADC_CM3N",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/CL05B104KO5NNNC/part.yaml",
+          "footprint": "Capacitor_SMD:C_0402_1005Metric",
+          "jlc_codes": [
+            "C1525"
+          ],
+          "mpn": "CL05B104KO5NNNC",
+          "ref": "C_ISO3",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/CL05B104KO5NNNC/part.yaml",
+          "footprint": "Capacitor_SMD:C_0402_1005Metric",
+          "jlc_codes": [
+            "C1525"
+          ],
+          "mpn": "CL05B104KO5NNNC",
+          "ref": "C_OPA3",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "manual",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/R82DC4100DQ60J/part.yaml",
+          "footprint": "Capacitor_THT:C_Rect_L7.2mm_W5.0mm_P5.00mm",
+          "jlc_codes": [],
+          "mpn": "R82DC4100DQ60J",
+          "ref": "C_A4P",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "manual",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/R82DC4100DQ60J/part.yaml",
+          "footprint": "Capacitor_THT:C_Rect_L7.2mm_W5.0mm_P5.00mm",
+          "jlc_codes": [],
+          "mpn": "R82DC4100DQ60J",
+          "ref": "C_A4N",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-07100KL/part.yaml",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "jlc_codes": [
+            "C60491"
+          ],
+          "mpn": "RC0402FR-07100KL",
+          "ref": "R_B4P",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-07100KL/part.yaml",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "jlc_codes": [
+            "C60491"
+          ],
+          "mpn": "RC0402FR-07100KL",
+          "ref": "R_B4N",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-0710KL/part.yaml",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "jlc_codes": [
+            "C60490"
+          ],
+          "mpn": "RC0402FR-0710KL",
+          "ref": "R_IN4P",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-0710KL/part.yaml",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "jlc_codes": [
+            "C60490"
+          ],
+          "mpn": "RC0402FR-0710KL",
+          "ref": "R_IN4N",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/OPA2320AIDR/part.yaml",
+          "footprint": "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm",
+          "jlc_codes": [
+            "C2863402"
+          ],
+          "mpn": "OPA2320AIDR",
+          "ref": "U_AFE4",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-07300RL/part.yaml",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "jlc_codes": [
+            "C138010"
+          ],
+          "mpn": "RC0402FR-07300RL",
+          "ref": "R_X4P",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-07300RL/part.yaml",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "jlc_codes": [
+            "C138010"
+          ],
+          "mpn": "RC0402FR-07300RL",
+          "ref": "R_X4N",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/GCM1555C1H681JA16D/part.yaml",
+          "footprint": "Capacitor_SMD:C_0402_1005Metric",
+          "jlc_codes": [
+            "C126514"
+          ],
+          "mpn": "GCM1555C1H681JA16D",
+          "ref": "C_FB4P",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/GCM1555C1H681JA16D/part.yaml",
+          "footprint": "Capacitor_SMD:C_0402_1005Metric",
+          "jlc_codes": [
+            "C126514"
+          ],
+          "mpn": "GCM1555C1H681JA16D",
+          "ref": "C_FB4N",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-0710RL/part.yaml",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "jlc_codes": [
+            "C138066"
+          ],
+          "mpn": "RC0402FR-0710RL",
+          "ref": "R_OUT4P",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-0710RL/part.yaml",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "jlc_codes": [
+            "C138066"
+          ],
+          "mpn": "RC0402FR-0710RL",
+          "ref": "R_OUT4N",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/GRM2195C1H153JA01D/part.yaml",
+          "footprint": "Capacitor_SMD:C_0805_2012Metric",
+          "jlc_codes": [
+            "C97907"
+          ],
+          "mpn": "GRM2195C1H153JA01D",
+          "ref": "C_FILTER4P1",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/GRM2195C1H153JA01D/part.yaml",
+          "footprint": "Capacitor_SMD:C_0805_2012Metric",
+          "jlc_codes": [
+            "C97907"
+          ],
+          "mpn": "GRM2195C1H153JA01D",
+          "ref": "C_FILTER4P2",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/GRM2195C1H153JA01D/part.yaml",
+          "footprint": "Capacitor_SMD:C_0805_2012Metric",
+          "jlc_codes": [
+            "C97907"
+          ],
+          "mpn": "GRM2195C1H153JA01D",
+          "ref": "C_FILTER4N1",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/GRM2195C1H153JA01D/part.yaml",
+          "footprint": "Capacitor_SMD:C_0805_2012Metric",
+          "jlc_codes": [
+            "C97907"
+          ],
+          "mpn": "GRM2195C1H153JA01D",
+          "ref": "C_FILTER4N2",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/TMUX2821DSGR/part.yaml",
+          "footprint": "crow_audio_carrier:TI_DSG0008A_Exact",
+          "jlc_codes": [
+            "C53283916"
+          ],
+          "mpn": "TMUX2821DSGR",
+          "ref": "U_ISO4",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-0710KL/part.yaml",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "jlc_codes": [
+            "C60490"
+          ],
+          "mpn": "RC0402FR-0710KL",
+          "ref": "R_ADC_PD4P",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/GRM1555C1H102JA01D/part.yaml",
+          "footprint": "Capacitor_SMD:C_0402_1005Metric",
+          "jlc_codes": [
+            "C76947"
+          ],
+          "mpn": "GRM1555C1H102JA01D",
+          "ref": "C_ADC_CM4P",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-0710KL/part.yaml",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "jlc_codes": [
+            "C60490"
+          ],
+          "mpn": "RC0402FR-0710KL",
+          "ref": "R_ADC_PD4N",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/GRM1555C1H102JA01D/part.yaml",
+          "footprint": "Capacitor_SMD:C_0402_1005Metric",
+          "jlc_codes": [
+            "C76947"
+          ],
+          "mpn": "GRM1555C1H102JA01D",
+          "ref": "C_ADC_CM4N",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/CL05B104KO5NNNC/part.yaml",
+          "footprint": "Capacitor_SMD:C_0402_1005Metric",
+          "jlc_codes": [
+            "C1525"
+          ],
+          "mpn": "CL05B104KO5NNNC",
+          "ref": "C_ISO4",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/CL05B104KO5NNNC/part.yaml",
+          "footprint": "Capacitor_SMD:C_0402_1005Metric",
+          "jlc_codes": [
+            "C1525"
+          ],
+          "mpn": "CL05B104KO5NNNC",
+          "ref": "C_OPA4",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "manual",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/R82DC4100DQ60J/part.yaml",
+          "footprint": "Capacitor_THT:C_Rect_L7.2mm_W5.0mm_P5.00mm",
+          "jlc_codes": [],
+          "mpn": "R82DC4100DQ60J",
+          "ref": "C_A5P",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "manual",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/R82DC4100DQ60J/part.yaml",
+          "footprint": "Capacitor_THT:C_Rect_L7.2mm_W5.0mm_P5.00mm",
+          "jlc_codes": [],
+          "mpn": "R82DC4100DQ60J",
+          "ref": "C_A5N",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-07100KL/part.yaml",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "jlc_codes": [
+            "C60491"
+          ],
+          "mpn": "RC0402FR-07100KL",
+          "ref": "R_B5P",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-07100KL/part.yaml",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "jlc_codes": [
+            "C60491"
+          ],
+          "mpn": "RC0402FR-07100KL",
+          "ref": "R_B5N",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-0710KL/part.yaml",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "jlc_codes": [
+            "C60490"
+          ],
+          "mpn": "RC0402FR-0710KL",
+          "ref": "R_IN5P",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-0710KL/part.yaml",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "jlc_codes": [
+            "C60490"
+          ],
+          "mpn": "RC0402FR-0710KL",
+          "ref": "R_IN5N",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/OPA2320AIDR/part.yaml",
+          "footprint": "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm",
+          "jlc_codes": [
+            "C2863402"
+          ],
+          "mpn": "OPA2320AIDR",
+          "ref": "U_AFE5",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-07300RL/part.yaml",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "jlc_codes": [
+            "C138010"
+          ],
+          "mpn": "RC0402FR-07300RL",
+          "ref": "R_X5P",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-07300RL/part.yaml",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "jlc_codes": [
+            "C138010"
+          ],
+          "mpn": "RC0402FR-07300RL",
+          "ref": "R_X5N",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/GCM1555C1H681JA16D/part.yaml",
+          "footprint": "Capacitor_SMD:C_0402_1005Metric",
+          "jlc_codes": [
+            "C126514"
+          ],
+          "mpn": "GCM1555C1H681JA16D",
+          "ref": "C_FB5P",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/GCM1555C1H681JA16D/part.yaml",
+          "footprint": "Capacitor_SMD:C_0402_1005Metric",
+          "jlc_codes": [
+            "C126514"
+          ],
+          "mpn": "GCM1555C1H681JA16D",
+          "ref": "C_FB5N",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-0710RL/part.yaml",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "jlc_codes": [
+            "C138066"
+          ],
+          "mpn": "RC0402FR-0710RL",
+          "ref": "R_OUT5P",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-0710RL/part.yaml",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "jlc_codes": [
+            "C138066"
+          ],
+          "mpn": "RC0402FR-0710RL",
+          "ref": "R_OUT5N",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/GRM2195C1H153JA01D/part.yaml",
+          "footprint": "Capacitor_SMD:C_0805_2012Metric",
+          "jlc_codes": [
+            "C97907"
+          ],
+          "mpn": "GRM2195C1H153JA01D",
+          "ref": "C_FILTER5P1",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/GRM2195C1H153JA01D/part.yaml",
+          "footprint": "Capacitor_SMD:C_0805_2012Metric",
+          "jlc_codes": [
+            "C97907"
+          ],
+          "mpn": "GRM2195C1H153JA01D",
+          "ref": "C_FILTER5P2",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/GRM2195C1H153JA01D/part.yaml",
+          "footprint": "Capacitor_SMD:C_0805_2012Metric",
+          "jlc_codes": [
+            "C97907"
+          ],
+          "mpn": "GRM2195C1H153JA01D",
+          "ref": "C_FILTER5N1",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/GRM2195C1H153JA01D/part.yaml",
+          "footprint": "Capacitor_SMD:C_0805_2012Metric",
+          "jlc_codes": [
+            "C97907"
+          ],
+          "mpn": "GRM2195C1H153JA01D",
+          "ref": "C_FILTER5N2",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/TMUX2821DSGR/part.yaml",
+          "footprint": "crow_audio_carrier:TI_DSG0008A_Exact",
+          "jlc_codes": [
+            "C53283916"
+          ],
+          "mpn": "TMUX2821DSGR",
+          "ref": "U_ISO5",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-0710KL/part.yaml",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "jlc_codes": [
+            "C60490"
+          ],
+          "mpn": "RC0402FR-0710KL",
+          "ref": "R_ADC_PD5P",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/GRM1555C1H102JA01D/part.yaml",
+          "footprint": "Capacitor_SMD:C_0402_1005Metric",
+          "jlc_codes": [
+            "C76947"
+          ],
+          "mpn": "GRM1555C1H102JA01D",
+          "ref": "C_ADC_CM5P",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-0710KL/part.yaml",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "jlc_codes": [
+            "C60490"
+          ],
+          "mpn": "RC0402FR-0710KL",
+          "ref": "R_ADC_PD5N",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/GRM1555C1H102JA01D/part.yaml",
+          "footprint": "Capacitor_SMD:C_0402_1005Metric",
+          "jlc_codes": [
+            "C76947"
+          ],
+          "mpn": "GRM1555C1H102JA01D",
+          "ref": "C_ADC_CM5N",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/CL05B104KO5NNNC/part.yaml",
+          "footprint": "Capacitor_SMD:C_0402_1005Metric",
+          "jlc_codes": [
+            "C1525"
+          ],
+          "mpn": "CL05B104KO5NNNC",
+          "ref": "C_ISO5",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/CL05B104KO5NNNC/part.yaml",
+          "footprint": "Capacitor_SMD:C_0402_1005Metric",
+          "jlc_codes": [
+            "C1525"
+          ],
+          "mpn": "CL05B104KO5NNNC",
+          "ref": "C_OPA5",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "manual",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/R82DC4100DQ60J/part.yaml",
+          "footprint": "Capacitor_THT:C_Rect_L7.2mm_W5.0mm_P5.00mm",
+          "jlc_codes": [],
+          "mpn": "R82DC4100DQ60J",
+          "ref": "C_A6P",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "manual",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/R82DC4100DQ60J/part.yaml",
+          "footprint": "Capacitor_THT:C_Rect_L7.2mm_W5.0mm_P5.00mm",
+          "jlc_codes": [],
+          "mpn": "R82DC4100DQ60J",
+          "ref": "C_A6N",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-07100KL/part.yaml",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "jlc_codes": [
+            "C60491"
+          ],
+          "mpn": "RC0402FR-07100KL",
+          "ref": "R_B6P",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-07100KL/part.yaml",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "jlc_codes": [
+            "C60491"
+          ],
+          "mpn": "RC0402FR-07100KL",
+          "ref": "R_B6N",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-0710KL/part.yaml",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "jlc_codes": [
+            "C60490"
+          ],
+          "mpn": "RC0402FR-0710KL",
+          "ref": "R_IN6P",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-0710KL/part.yaml",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "jlc_codes": [
+            "C60490"
+          ],
+          "mpn": "RC0402FR-0710KL",
+          "ref": "R_IN6N",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/OPA2320AIDR/part.yaml",
+          "footprint": "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm",
+          "jlc_codes": [
+            "C2863402"
+          ],
+          "mpn": "OPA2320AIDR",
+          "ref": "U_AFE6",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-07300RL/part.yaml",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "jlc_codes": [
+            "C138010"
+          ],
+          "mpn": "RC0402FR-07300RL",
+          "ref": "R_X6P",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-07300RL/part.yaml",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "jlc_codes": [
+            "C138010"
+          ],
+          "mpn": "RC0402FR-07300RL",
+          "ref": "R_X6N",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/GCM1555C1H681JA16D/part.yaml",
+          "footprint": "Capacitor_SMD:C_0402_1005Metric",
+          "jlc_codes": [
+            "C126514"
+          ],
+          "mpn": "GCM1555C1H681JA16D",
+          "ref": "C_FB6P",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/GCM1555C1H681JA16D/part.yaml",
+          "footprint": "Capacitor_SMD:C_0402_1005Metric",
+          "jlc_codes": [
+            "C126514"
+          ],
+          "mpn": "GCM1555C1H681JA16D",
+          "ref": "C_FB6N",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-0710RL/part.yaml",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "jlc_codes": [
+            "C138066"
+          ],
+          "mpn": "RC0402FR-0710RL",
+          "ref": "R_OUT6P",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-0710RL/part.yaml",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "jlc_codes": [
+            "C138066"
+          ],
+          "mpn": "RC0402FR-0710RL",
+          "ref": "R_OUT6N",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/GRM2195C1H153JA01D/part.yaml",
+          "footprint": "Capacitor_SMD:C_0805_2012Metric",
+          "jlc_codes": [
+            "C97907"
+          ],
+          "mpn": "GRM2195C1H153JA01D",
+          "ref": "C_FILTER6P1",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/GRM2195C1H153JA01D/part.yaml",
+          "footprint": "Capacitor_SMD:C_0805_2012Metric",
+          "jlc_codes": [
+            "C97907"
+          ],
+          "mpn": "GRM2195C1H153JA01D",
+          "ref": "C_FILTER6P2",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/GRM2195C1H153JA01D/part.yaml",
+          "footprint": "Capacitor_SMD:C_0805_2012Metric",
+          "jlc_codes": [
+            "C97907"
+          ],
+          "mpn": "GRM2195C1H153JA01D",
+          "ref": "C_FILTER6N1",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/GRM2195C1H153JA01D/part.yaml",
+          "footprint": "Capacitor_SMD:C_0805_2012Metric",
+          "jlc_codes": [
+            "C97907"
+          ],
+          "mpn": "GRM2195C1H153JA01D",
+          "ref": "C_FILTER6N2",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/TMUX2821DSGR/part.yaml",
+          "footprint": "crow_audio_carrier:TI_DSG0008A_Exact",
+          "jlc_codes": [
+            "C53283916"
+          ],
+          "mpn": "TMUX2821DSGR",
+          "ref": "U_ISO6",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-0710KL/part.yaml",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "jlc_codes": [
+            "C60490"
+          ],
+          "mpn": "RC0402FR-0710KL",
+          "ref": "R_ADC_PD6P",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/GRM1555C1H102JA01D/part.yaml",
+          "footprint": "Capacitor_SMD:C_0402_1005Metric",
+          "jlc_codes": [
+            "C76947"
+          ],
+          "mpn": "GRM1555C1H102JA01D",
+          "ref": "C_ADC_CM6P",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-0710KL/part.yaml",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "jlc_codes": [
+            "C60490"
+          ],
+          "mpn": "RC0402FR-0710KL",
+          "ref": "R_ADC_PD6N",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/GRM1555C1H102JA01D/part.yaml",
+          "footprint": "Capacitor_SMD:C_0402_1005Metric",
+          "jlc_codes": [
+            "C76947"
+          ],
+          "mpn": "GRM1555C1H102JA01D",
+          "ref": "C_ADC_CM6N",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/CL05B104KO5NNNC/part.yaml",
+          "footprint": "Capacitor_SMD:C_0402_1005Metric",
+          "jlc_codes": [
+            "C1525"
+          ],
+          "mpn": "CL05B104KO5NNNC",
+          "ref": "C_ISO6",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/CL05B104KO5NNNC/part.yaml",
+          "footprint": "Capacitor_SMD:C_0402_1005Metric",
+          "jlc_codes": [
+            "C1525"
+          ],
+          "mpn": "CL05B104KO5NNNC",
+          "ref": "C_OPA6",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "manual",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/R82DC4100DQ60J/part.yaml",
+          "footprint": "Capacitor_THT:C_Rect_L7.2mm_W5.0mm_P5.00mm",
+          "jlc_codes": [],
+          "mpn": "R82DC4100DQ60J",
+          "ref": "C_A7P",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "manual",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/R82DC4100DQ60J/part.yaml",
+          "footprint": "Capacitor_THT:C_Rect_L7.2mm_W5.0mm_P5.00mm",
+          "jlc_codes": [],
+          "mpn": "R82DC4100DQ60J",
+          "ref": "C_A7N",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-07100KL/part.yaml",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "jlc_codes": [
+            "C60491"
+          ],
+          "mpn": "RC0402FR-07100KL",
+          "ref": "R_B7P",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-07100KL/part.yaml",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "jlc_codes": [
+            "C60491"
+          ],
+          "mpn": "RC0402FR-07100KL",
+          "ref": "R_B7N",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-0710KL/part.yaml",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "jlc_codes": [
+            "C60490"
+          ],
+          "mpn": "RC0402FR-0710KL",
+          "ref": "R_IN7P",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-0710KL/part.yaml",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "jlc_codes": [
+            "C60490"
+          ],
+          "mpn": "RC0402FR-0710KL",
+          "ref": "R_IN7N",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/OPA2320AIDR/part.yaml",
+          "footprint": "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm",
+          "jlc_codes": [
+            "C2863402"
+          ],
+          "mpn": "OPA2320AIDR",
+          "ref": "U_AFE7",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-07300RL/part.yaml",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "jlc_codes": [
+            "C138010"
+          ],
+          "mpn": "RC0402FR-07300RL",
+          "ref": "R_X7P",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-07300RL/part.yaml",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "jlc_codes": [
+            "C138010"
+          ],
+          "mpn": "RC0402FR-07300RL",
+          "ref": "R_X7N",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/GCM1555C1H681JA16D/part.yaml",
+          "footprint": "Capacitor_SMD:C_0402_1005Metric",
+          "jlc_codes": [
+            "C126514"
+          ],
+          "mpn": "GCM1555C1H681JA16D",
+          "ref": "C_FB7P",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/GCM1555C1H681JA16D/part.yaml",
+          "footprint": "Capacitor_SMD:C_0402_1005Metric",
+          "jlc_codes": [
+            "C126514"
+          ],
+          "mpn": "GCM1555C1H681JA16D",
+          "ref": "C_FB7N",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-0710RL/part.yaml",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "jlc_codes": [
+            "C138066"
+          ],
+          "mpn": "RC0402FR-0710RL",
+          "ref": "R_OUT7P",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-0710RL/part.yaml",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "jlc_codes": [
+            "C138066"
+          ],
+          "mpn": "RC0402FR-0710RL",
+          "ref": "R_OUT7N",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/GRM2195C1H153JA01D/part.yaml",
+          "footprint": "Capacitor_SMD:C_0805_2012Metric",
+          "jlc_codes": [
+            "C97907"
+          ],
+          "mpn": "GRM2195C1H153JA01D",
+          "ref": "C_FILTER7P1",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/GRM2195C1H153JA01D/part.yaml",
+          "footprint": "Capacitor_SMD:C_0805_2012Metric",
+          "jlc_codes": [
+            "C97907"
+          ],
+          "mpn": "GRM2195C1H153JA01D",
+          "ref": "C_FILTER7P2",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/GRM2195C1H153JA01D/part.yaml",
+          "footprint": "Capacitor_SMD:C_0805_2012Metric",
+          "jlc_codes": [
+            "C97907"
+          ],
+          "mpn": "GRM2195C1H153JA01D",
+          "ref": "C_FILTER7N1",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/GRM2195C1H153JA01D/part.yaml",
+          "footprint": "Capacitor_SMD:C_0805_2012Metric",
+          "jlc_codes": [
+            "C97907"
+          ],
+          "mpn": "GRM2195C1H153JA01D",
+          "ref": "C_FILTER7N2",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/TMUX2821DSGR/part.yaml",
+          "footprint": "crow_audio_carrier:TI_DSG0008A_Exact",
+          "jlc_codes": [
+            "C53283916"
+          ],
+          "mpn": "TMUX2821DSGR",
+          "ref": "U_ISO7",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-0710KL/part.yaml",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "jlc_codes": [
+            "C60490"
+          ],
+          "mpn": "RC0402FR-0710KL",
+          "ref": "R_ADC_PD7P",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/GRM1555C1H102JA01D/part.yaml",
+          "footprint": "Capacitor_SMD:C_0402_1005Metric",
+          "jlc_codes": [
+            "C76947"
+          ],
+          "mpn": "GRM1555C1H102JA01D",
+          "ref": "C_ADC_CM7P",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-0710KL/part.yaml",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "jlc_codes": [
+            "C60490"
+          ],
+          "mpn": "RC0402FR-0710KL",
+          "ref": "R_ADC_PD7N",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/GRM1555C1H102JA01D/part.yaml",
+          "footprint": "Capacitor_SMD:C_0402_1005Metric",
+          "jlc_codes": [
+            "C76947"
+          ],
+          "mpn": "GRM1555C1H102JA01D",
+          "ref": "C_ADC_CM7N",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/CL05B104KO5NNNC/part.yaml",
+          "footprint": "Capacitor_SMD:C_0402_1005Metric",
+          "jlc_codes": [
+            "C1525"
+          ],
+          "mpn": "CL05B104KO5NNNC",
+          "ref": "C_ISO7",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/CL05B104KO5NNNC/part.yaml",
+          "footprint": "Capacitor_SMD:C_0402_1005Metric",
+          "jlc_codes": [
+            "C1525"
+          ],
+          "mpn": "CL05B104KO5NNNC",
+          "ref": "C_OPA7",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "manual",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/R82DC4100DQ60J/part.yaml",
+          "footprint": "Capacitor_THT:C_Rect_L7.2mm_W5.0mm_P5.00mm",
+          "jlc_codes": [],
+          "mpn": "R82DC4100DQ60J",
+          "ref": "C_A8P",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "manual",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/R82DC4100DQ60J/part.yaml",
+          "footprint": "Capacitor_THT:C_Rect_L7.2mm_W5.0mm_P5.00mm",
+          "jlc_codes": [],
+          "mpn": "R82DC4100DQ60J",
+          "ref": "C_A8N",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-07100KL/part.yaml",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "jlc_codes": [
+            "C60491"
+          ],
+          "mpn": "RC0402FR-07100KL",
+          "ref": "R_B8P",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-07100KL/part.yaml",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "jlc_codes": [
+            "C60491"
+          ],
+          "mpn": "RC0402FR-07100KL",
+          "ref": "R_B8N",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-0710KL/part.yaml",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "jlc_codes": [
+            "C60490"
+          ],
+          "mpn": "RC0402FR-0710KL",
+          "ref": "R_IN8P",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-0710KL/part.yaml",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "jlc_codes": [
+            "C60490"
+          ],
+          "mpn": "RC0402FR-0710KL",
+          "ref": "R_IN8N",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/OPA2320AIDR/part.yaml",
+          "footprint": "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm",
+          "jlc_codes": [
+            "C2863402"
+          ],
+          "mpn": "OPA2320AIDR",
+          "ref": "U_AFE8",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-07300RL/part.yaml",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "jlc_codes": [
+            "C138010"
+          ],
+          "mpn": "RC0402FR-07300RL",
+          "ref": "R_X8P",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-07300RL/part.yaml",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "jlc_codes": [
+            "C138010"
+          ],
+          "mpn": "RC0402FR-07300RL",
+          "ref": "R_X8N",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/GCM1555C1H681JA16D/part.yaml",
+          "footprint": "Capacitor_SMD:C_0402_1005Metric",
+          "jlc_codes": [
+            "C126514"
+          ],
+          "mpn": "GCM1555C1H681JA16D",
+          "ref": "C_FB8P",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/GCM1555C1H681JA16D/part.yaml",
+          "footprint": "Capacitor_SMD:C_0402_1005Metric",
+          "jlc_codes": [
+            "C126514"
+          ],
+          "mpn": "GCM1555C1H681JA16D",
+          "ref": "C_FB8N",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-0710RL/part.yaml",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "jlc_codes": [
+            "C138066"
+          ],
+          "mpn": "RC0402FR-0710RL",
+          "ref": "R_OUT8P",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-0710RL/part.yaml",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "jlc_codes": [
+            "C138066"
+          ],
+          "mpn": "RC0402FR-0710RL",
+          "ref": "R_OUT8N",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/GRM2195C1H153JA01D/part.yaml",
+          "footprint": "Capacitor_SMD:C_0805_2012Metric",
+          "jlc_codes": [
+            "C97907"
+          ],
+          "mpn": "GRM2195C1H153JA01D",
+          "ref": "C_FILTER8P1",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/GRM2195C1H153JA01D/part.yaml",
+          "footprint": "Capacitor_SMD:C_0805_2012Metric",
+          "jlc_codes": [
+            "C97907"
+          ],
+          "mpn": "GRM2195C1H153JA01D",
+          "ref": "C_FILTER8P2",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/GRM2195C1H153JA01D/part.yaml",
+          "footprint": "Capacitor_SMD:C_0805_2012Metric",
+          "jlc_codes": [
+            "C97907"
+          ],
+          "mpn": "GRM2195C1H153JA01D",
+          "ref": "C_FILTER8N1",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/GRM2195C1H153JA01D/part.yaml",
+          "footprint": "Capacitor_SMD:C_0805_2012Metric",
+          "jlc_codes": [
+            "C97907"
+          ],
+          "mpn": "GRM2195C1H153JA01D",
+          "ref": "C_FILTER8N2",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/TMUX2821DSGR/part.yaml",
+          "footprint": "crow_audio_carrier:TI_DSG0008A_Exact",
+          "jlc_codes": [
+            "C53283916"
+          ],
+          "mpn": "TMUX2821DSGR",
+          "ref": "U_ISO8",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-0710KL/part.yaml",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "jlc_codes": [
+            "C60490"
+          ],
+          "mpn": "RC0402FR-0710KL",
+          "ref": "R_ADC_PD8P",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/GRM1555C1H102JA01D/part.yaml",
+          "footprint": "Capacitor_SMD:C_0402_1005Metric",
+          "jlc_codes": [
+            "C76947"
+          ],
+          "mpn": "GRM1555C1H102JA01D",
+          "ref": "C_ADC_CM8P",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-0710KL/part.yaml",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "jlc_codes": [
+            "C60490"
+          ],
+          "mpn": "RC0402FR-0710KL",
+          "ref": "R_ADC_PD8N",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/GRM1555C1H102JA01D/part.yaml",
+          "footprint": "Capacitor_SMD:C_0402_1005Metric",
+          "jlc_codes": [
+            "C76947"
+          ],
+          "mpn": "GRM1555C1H102JA01D",
+          "ref": "C_ADC_CM8N",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/CL05B104KO5NNNC/part.yaml",
+          "footprint": "Capacitor_SMD:C_0402_1005Metric",
+          "jlc_codes": [
+            "C1525"
+          ],
+          "mpn": "CL05B104KO5NNNC",
+          "ref": "C_ISO8",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/CL05B104KO5NNNC/part.yaml",
+          "footprint": "Capacitor_SMD:C_0402_1005Metric",
+          "jlc_codes": [
+            "C1525"
+          ],
+          "mpn": "CL05B104KO5NNNC",
+          "ref": "C_OPA8",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "manual",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/43650-0200/part.yaml",
+          "footprint": "crow_audio_carrier:Molex_43650-0200_RA_Exact",
+          "jlc_codes": [],
+          "mpn": "43650-0200",
+          "ref": "J9",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "manual",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/2920L260-33DR/part.yaml",
+          "footprint": "Fuse:Fuse_2920_7451Metric",
+          "jlc_codes": [],
+          "mpn": "2920L260/33DR",
+          "ref": "F_IN",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/DMP6023LFG-13/part.yaml",
+          "footprint": "Package_SON:Diodes_PowerDI3333-8",
+          "jlc_codes": [
+            "C780842"
+          ],
+          "mpn": "DMP6023LFG-13",
+          "ref": "Q_IN",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-07100KL/part.yaml",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "jlc_codes": [
+            "C60491"
+          ],
+          "mpn": "RC0402FR-07100KL",
+          "ref": "R_QIN_G",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/BZT52C12-7-F/part.yaml",
+          "footprint": "Diode_SMD:D_SOD-123",
+          "jlc_codes": [
+            "C124196"
+          ],
+          "mpn": "BZT52C12-7-F",
+          "ref": "D_QIN_GS",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/SMBJ15A/part.yaml",
+          "footprint": "crow_audio_carrier:Littelfuse_SMBJ15A_SMB_Exact",
+          "jlc_codes": [
+            "C83846"
+          ],
+          "mpn": "SMBJ15A",
+          "ref": "D_IN",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/US1B-13-F/part.yaml",
+          "footprint": "Diode_SMD:D_SMA",
+          "jlc_codes": [
+            "C154439"
+          ],
+          "mpn": "US1B-13-F",
+          "ref": "D_BUCK_IN",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/12105C106K4Z2A/part.yaml",
+          "footprint": "Capacitor_SMD:C_1210_3225Metric",
+          "jlc_codes": [
+            "C597579"
+          ],
+          "mpn": "12105C106K4Z2A",
+          "ref": "C_BUCK_IN",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/12105C106K4Z2A/part.yaml",
+          "footprint": "Capacitor_SMD:C_1210_3225Metric",
+          "jlc_codes": [
+            "C597579"
+          ],
+          "mpn": "12105C106K4Z2A",
+          "ref": "C_BUCK_IN2",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/12105C106K4Z2A/part.yaml",
+          "footprint": "Capacitor_SMD:C_1210_3225Metric",
+          "jlc_codes": [
+            "C597579"
+          ],
+          "mpn": "12105C106K4Z2A",
+          "ref": "C_BUCK_IN3",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/AP63205WU-7/part.yaml",
+          "footprint": "Package_TO_SOT_SMD:TSOT-23-6",
+          "jlc_codes": [
+            "C2071056"
+          ],
+          "mpn": "AP63205WU-7",
+          "ref": "U_BUCK",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/CL05B104KO5NNNC/part.yaml",
+          "footprint": "Capacitor_SMD:C_0402_1005Metric",
+          "jlc_codes": [
+            "C1525"
+          ],
+          "mpn": "CL05B104KO5NNNC",
+          "ref": "C_BUCK_BST",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/XGL4020-332MEC/part.yaml",
+          "footprint": "crow_audio_carrier:Coilcraft_XGL4020_Exact",
+          "jlc_codes": [
+            "C6937839"
+          ],
+          "mpn": "XGL4020-332MEC",
+          "ref": "L_BUCK",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/GRM32ER71A476KE15L/part.yaml",
+          "footprint": "Capacitor_SMD:C_1210_3225Metric",
+          "jlc_codes": [
+            "C84494"
+          ],
+          "mpn": "GRM32ER71A476KE15L",
+          "ref": "C_BUCK_O1",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/GRM32ER71A476KE15L/part.yaml",
+          "footprint": "Capacitor_SMD:C_1210_3225Metric",
+          "jlc_codes": [
+            "C84494"
+          ],
+          "mpn": "GRM32ER71A476KE15L",
+          "ref": "C_BUCK_O2",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/GRM32ER71A476KE15L/part.yaml",
+          "footprint": "Capacitor_SMD:C_1210_3225Metric",
+          "jlc_codes": [
+            "C84494"
+          ],
+          "mpn": "GRM32ER71A476KE15L",
+          "ref": "C_BUCK_O3",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/GRM32ER71A476KE15L/part.yaml",
+          "footprint": "Capacitor_SMD:C_1210_3225Metric",
+          "jlc_codes": [
+            "C84494"
+          ],
+          "mpn": "GRM32ER71A476KE15L",
+          "ref": "C_OPA_BULK",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-07100RL/part.yaml",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "jlc_codes": [
+            "C106232"
+          ],
+          "mpn": "RC0402FR-07100RL",
+          "ref": "R_OPA_BLEED1",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-07100RL/part.yaml",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "jlc_codes": [
+            "C106232"
+          ],
+          "mpn": "RC0402FR-07100RL",
+          "ref": "R_OPA_BLEED2",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/LT3041ADE-TRPBF/part.yaml",
+          "footprint": "Package_DFN_QFN:DFN-14-1EP_3x4mm_P0.5mm_EP1.7x3.3mm",
+          "jlc_codes": [
+            "C7452883"
+          ],
+          "mpn": "LT3041ADE#TRPBF",
+          "ref": "U_LDO",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/B340A-13-F/part.yaml",
+          "footprint": "Diode_SMD:D_SMA",
+          "jlc_codes": [
+            "C85098"
+          ],
+          "mpn": "B340A-13-F",
+          "ref": "D_HOLD",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/AO3401A/part.yaml",
+          "footprint": "Package_TO_SOT_SMD:SOT-23",
+          "jlc_codes": [
+            "C15127"
+          ],
+          "mpn": "AO3401A",
+          "ref": "Q_PRE",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/2N7002K-7/part.yaml",
+          "footprint": "crow_audio_carrier:Diodes_2N7002K_SOT23_Exact",
+          "jlc_codes": [
+            "C85047"
+          ],
+          "mpn": "2N7002K-7",
+          "ref": "Q_PRE_EN",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/CRCW120622R0FKEAHP/part.yaml",
+          "footprint": "Resistor_SMD:R_1206_3216Metric",
+          "jlc_codes": [
+            "C844025"
+          ],
+          "mpn": "CRCW120622R0FKEAHP",
+          "ref": "R_PRE",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-07100KL/part.yaml",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "jlc_codes": [
+            "C60491"
+          ],
+          "mpn": "RC0402FR-07100KL",
+          "ref": "R_PRE_G",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "manual",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/EEEFK1A471P/part.yaml",
+          "footprint": "crow_audio_carrier:Panasonic_EEEFK1A471P_8x10.2_Exact",
+          "jlc_codes": [],
+          "mpn": "EEEFK1A471P",
+          "ref": "C_HOLD1",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "manual",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/EEEFK1A471P/part.yaml",
+          "footprint": "crow_audio_carrier:Panasonic_EEEFK1A471P_8x10.2_Exact",
+          "jlc_codes": [],
+          "mpn": "EEEFK1A471P",
+          "ref": "C_HOLD2",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/GRM32ER71A476KE15L/part.yaml",
+          "footprint": "Capacitor_SMD:C_1210_3225Metric",
+          "jlc_codes": [
+            "C84494"
+          ],
+          "mpn": "GRM32ER71A476KE15L",
+          "ref": "C_LDO_IN",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/GRM32ER71A476KE15L/part.yaml",
+          "footprint": "Capacitor_SMD:C_1210_3225Metric",
+          "jlc_codes": [
+            "C84494"
+          ],
+          "mpn": "GRM32ER71A476KE15L",
+          "ref": "C_LDO_OUT",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/GRM1555C1H102JA01D/part.yaml",
+          "footprint": "Capacitor_SMD:C_0402_1005Metric",
+          "jlc_codes": [
+            "C76947"
+          ],
+          "mpn": "GRM1555C1H102JA01D",
+          "ref": "C_LDO_NR4",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/GRM1555C1H102JA01D/part.yaml",
+          "footprint": "Capacitor_SMD:C_0402_1005Metric",
+          "jlc_codes": [
+            "C76947"
+          ],
+          "mpn": "GRM1555C1H102JA01D",
+          "ref": "C_LDO_NR5",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RT0603BRD0733KL/part.yaml",
+          "footprint": "Resistor_SMD:R_0603_1608Metric",
+          "jlc_codes": [
+            "C705768"
+          ],
+          "mpn": "RT0603BRD0733KL",
+          "ref": "R_LDO_SET",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/TPS389001DSER/part.yaml",
+          "footprint": "crow_audio_carrier:TI_DSE0006A_GNDToe018",
+          "jlc_codes": [
+            "C1509297"
+          ],
+          "mpn": "TPS389001DSER",
+          "ref": "U_PWR",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/C0603C105K4RACTU/part.yaml",
+          "footprint": "Capacitor_SMD:C_0603_1608Metric",
+          "jlc_codes": [
+            "C2167386"
+          ],
+          "mpn": "C0603C105K4RACTU",
+          "ref": "C_PWR_CT",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/CL05B104KO5NNNC/part.yaml",
+          "footprint": "Capacitor_SMD:C_0402_1005Metric",
+          "jlc_codes": [
+            "C1525"
+          ],
+          "mpn": "CL05B104KO5NNNC",
+          "ref": "C_PWR",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-0710KL/part.yaml",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "jlc_codes": [
+            "C60490"
+          ],
+          "mpn": "RC0402FR-0710KL",
+          "ref": "R_PWR_PU",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/TPS389001DSER/part.yaml",
+          "footprint": "crow_audio_carrier:TI_DSE0006A_GNDToe018",
+          "jlc_codes": [
+            "C1509297"
+          ],
+          "mpn": "TPS389001DSER",
+          "ref": "U_AUDIO",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/C0603C105K4RACTU/part.yaml",
+          "footprint": "Capacitor_SMD:C_0603_1608Metric",
+          "jlc_codes": [
+            "C2167386"
+          ],
+          "mpn": "C0603C105K4RACTU",
+          "ref": "C_AUDIO_CT1",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/CL05B104KO5NNNC/part.yaml",
+          "footprint": "Capacitor_SMD:C_0402_1005Metric",
+          "jlc_codes": [
+            "C1525"
+          ],
+          "mpn": "CL05B104KO5NNNC",
+          "ref": "C_AUDIO",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-0710KL/part.yaml",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "jlc_codes": [
+            "C60490"
+          ],
+          "mpn": "RC0402FR-0710KL",
+          "ref": "R_AUDIO_PU",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/C0603C105K4RACTU/part.yaml",
+          "footprint": "Capacitor_SMD:C_0603_1608Metric",
+          "jlc_codes": [
+            "C2167386"
+          ],
+          "mpn": "C0603C105K4RACTU",
+          "ref": "C_AUDIO_CT2",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RT0603BRD0730K9L/part.yaml",
+          "footprint": "crow_audio_carrier:Yageo_RT0603_NominalBody",
+          "jlc_codes": [
+            "C861313"
+          ],
+          "mpn": "RT0603BRD0730K9L",
+          "ref": "R_PWR_TOP",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RT0603BRD0710KL/part.yaml",
+          "footprint": "Resistor_SMD:R_0603_1608Metric",
+          "jlc_codes": [
+            "C95204"
+          ],
+          "mpn": "RT0603BRD0710KL",
+          "ref": "R_PWR_BOT",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RT0603BRD0717K4L/part.yaml",
+          "footprint": "Resistor_SMD:R_0603_1608Metric",
+          "jlc_codes": [
+            "C861167"
+          ],
+          "mpn": "RT0603BRD0717K4L",
+          "ref": "R_ADC_TOP",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RT0603BRD0710KL/part.yaml",
+          "footprint": "Resistor_SMD:R_0603_1608Metric",
+          "jlc_codes": [
+            "C95204"
+          ],
+          "mpn": "RT0603BRD0710KL",
+          "ref": "R_ADC_BOT",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/74LVC1G14GV,125/part.yaml",
+          "footprint": "Package_TO_SOT_SMD:SOT-23-5",
+          "jlc_codes": [
+            "C131093"
+          ],
+          "mpn": "74LVC1G14GV,125",
+          "ref": "U_DUMP",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/CL05B104KO5NNNC/part.yaml",
+          "footprint": "Capacitor_SMD:C_0402_1005Metric",
+          "jlc_codes": [
+            "C1525"
+          ],
+          "mpn": "CL05B104KO5NNNC",
+          "ref": "C_DUMP_LOGIC",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/74LVC1G14GV,125/part.yaml",
+          "footprint": "Package_TO_SOT_SMD:SOT-23-5",
+          "jlc_codes": [
+            "C131093"
+          ],
+          "mpn": "74LVC1G14GV,125",
+          "ref": "U_LDO_EN",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/CL05B104KO5NNNC/part.yaml",
+          "footprint": "Capacitor_SMD:C_0402_1005Metric",
+          "jlc_codes": [
+            "C1525"
+          ],
+          "mpn": "CL05B104KO5NNNC",
+          "ref": "C_LDO_EN",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-07100KL/part.yaml",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "jlc_codes": [
+            "C60491"
+          ],
+          "mpn": "RC0402FR-07100KL",
+          "ref": "R_DUMP_TIME1",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-07100KL/part.yaml",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "jlc_codes": [
+            "C60491"
+          ],
+          "mpn": "RC0402FR-07100KL",
+          "ref": "R_DUMP_TIME2",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/GRM2195C1H153JA01D/part.yaml",
+          "footprint": "Capacitor_SMD:C_0805_2012Metric",
+          "jlc_codes": [
+            "C97907"
+          ],
+          "mpn": "GRM2195C1H153JA01D",
+          "ref": "C_DUMP_TIME",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/AO3400A/part.yaml",
+          "footprint": "Package_TO_SOT_SMD:SOT-23",
+          "jlc_codes": [
+            "C20917"
+          ],
+          "mpn": "AO3400A",
+          "ref": "Q_DUMP",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/CRCW12061R00FKEAHP/part.yaml",
+          "footprint": "Resistor_SMD:R_1206_3216Metric",
+          "jlc_codes": [
+            "C844653"
+          ],
+          "mpn": "CRCW12061R00FKEAHP",
+          "ref": "R_DUMP",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-07100KL/part.yaml",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "jlc_codes": [
+            "C60491"
+          ],
+          "mpn": "RC0402FR-07100KL",
+          "ref": "R_DUMP_PD",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-07100KL/part.yaml",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "jlc_codes": [
+            "C60491"
+          ],
+          "mpn": "RC0402FR-07100KL",
+          "ref": "R_AUDIO_PD",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RT0603BRD071KL/part.yaml",
+          "footprint": "Resistor_SMD:R_0603_1608Metric",
+          "jlc_codes": [
+            "C110776"
+          ],
+          "mpn": "RT0603BRD071KL",
+          "ref": "R_VMID1_TOP",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RT0603BRD071KL/part.yaml",
+          "footprint": "Resistor_SMD:R_0603_1608Metric",
+          "jlc_codes": [
+            "C110776"
+          ],
+          "mpn": "RT0603BRD071KL",
+          "ref": "R_VMID1_BOT",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/C0805C106K8RACTU/part.yaml",
+          "footprint": "Capacitor_SMD:C_0805_2012Metric",
+          "jlc_codes": [
+            "C2167576"
+          ],
+          "mpn": "C0805C106K8RACTU",
+          "ref": "C_VMID1_EXT_10U",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/C0603C105K4RACTU/part.yaml",
+          "footprint": "Capacitor_SMD:C_0603_1608Metric",
+          "jlc_codes": [
+            "C2167386"
+          ],
+          "mpn": "C0603C105K4RACTU",
+          "ref": "C_VMID1_EXT_1U",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RT0603BRD071KL/part.yaml",
+          "footprint": "Resistor_SMD:R_0603_1608Metric",
+          "jlc_codes": [
+            "C110776"
+          ],
+          "mpn": "RT0603BRD071KL",
+          "ref": "R_VMID2_TOP",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RT0603BRD071KL/part.yaml",
+          "footprint": "Resistor_SMD:R_0603_1608Metric",
+          "jlc_codes": [
+            "C110776"
+          ],
+          "mpn": "RT0603BRD071KL",
+          "ref": "R_VMID2_BOT",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/C0805C106K8RACTU/part.yaml",
+          "footprint": "Capacitor_SMD:C_0805_2012Metric",
+          "jlc_codes": [
+            "C2167576"
+          ],
+          "mpn": "C0805C106K8RACTU",
+          "ref": "C_VMID2_EXT_10U",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/C0603C105K4RACTU/part.yaml",
+          "footprint": "Capacitor_SMD:C_0603_1608Metric",
+          "jlc_codes": [
+            "C2167386"
+          ],
+          "mpn": "C0603C105K4RACTU",
+          "ref": "C_VMID2_EXT_1U",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "manual",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/CS5308P-DN/part.yaml",
+          "footprint": "crow_audio_carrier:Cirrus_CS5308P_QFN48_6x6_P0.4_EP4.6",
+          "jlc_codes": [],
+          "mpn": "CS5308P-DN",
+          "ref": "U_ADC",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-074K7L/part.yaml",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "jlc_codes": [
+            "C105871"
+          ],
+          "mpn": "RC0402FR-074K7L",
+          "ref": "R_CFG1",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-070RL/part.yaml",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "jlc_codes": [
+            "C106231"
+          ],
+          "mpn": "RC0402FR-070RL",
+          "ref": "R_CFG2",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-074K7L/part.yaml",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "jlc_codes": [
+            "C105871"
+          ],
+          "mpn": "RC0402FR-074K7L",
+          "ref": "R_CFG4",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-07100KL/part.yaml",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "jlc_codes": [
+            "C60491"
+          ],
+          "mpn": "RC0402FR-07100KL",
+          "ref": "R_CFG5",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/CRCW12061R00FKEAHP/part.yaml",
+          "footprint": "Resistor_SMD:R_1206_3216Metric",
+          "jlc_codes": [
+            "C844653"
+          ],
+          "mpn": "CRCW12061R00FKEAHP",
+          "ref": "R_FILT1P",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/CRCW12061R00FKEAHP/part.yaml",
+          "footprint": "Resistor_SMD:R_1206_3216Metric",
+          "jlc_codes": [
+            "C844653"
+          ],
+          "mpn": "CRCW12061R00FKEAHP",
+          "ref": "R_FILT2P",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "manual",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/EEEFK1A471P/part.yaml",
+          "footprint": "crow_audio_carrier:Panasonic_EEEFK1A471P_8x10.2_Exact",
+          "jlc_codes": [],
+          "mpn": "EEEFK1A471P",
+          "ref": "C_FILT1_470U",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/C0805C106K8RACTU/part.yaml",
+          "footprint": "Capacitor_SMD:C_0805_2012Metric",
+          "jlc_codes": [
+            "C2167576"
+          ],
+          "mpn": "C0805C106K8RACTU",
+          "ref": "C_FILT1_10U",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/C0603C105K4RACTU/part.yaml",
+          "footprint": "Capacitor_SMD:C_0603_1608Metric",
+          "jlc_codes": [
+            "C2167386"
+          ],
+          "mpn": "C0603C105K4RACTU",
+          "ref": "C_FILT1_1U",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "manual",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/EEEFK1A471P/part.yaml",
+          "footprint": "crow_audio_carrier:Panasonic_EEEFK1A471P_8x10.2_Exact",
+          "jlc_codes": [],
+          "mpn": "EEEFK1A471P",
+          "ref": "C_FILT2_470U",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/C0805C106K8RACTU/part.yaml",
+          "footprint": "Capacitor_SMD:C_0805_2012Metric",
+          "jlc_codes": [
+            "C2167576"
+          ],
+          "mpn": "C0805C106K8RACTU",
+          "ref": "C_FILT2_10U",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/C0603C105K4RACTU/part.yaml",
+          "footprint": "Capacitor_SMD:C_0603_1608Metric",
+          "jlc_codes": [
+            "C2167386"
+          ],
+          "mpn": "C0603C105K4RACTU",
+          "ref": "C_FILT2_1U",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/GRM188Z71C475KE21D/part.yaml",
+          "footprint": "Capacitor_SMD:C_0603_1608Metric",
+          "jlc_codes": [
+            "C389010"
+          ],
+          "mpn": "GRM188Z71C475KE21D",
+          "ref": "C_VMID1_4U7",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/CL10B474KA8NFNC/part.yaml",
+          "footprint": "Capacitor_SMD:C_0603_1608Metric",
+          "jlc_codes": [
+            "C318640"
+          ],
+          "mpn": "CL10B474KA8NFNC",
+          "ref": "C_VMID1_470N",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/GRM188Z71C475KE21D/part.yaml",
+          "footprint": "Capacitor_SMD:C_0603_1608Metric",
+          "jlc_codes": [
+            "C389010"
+          ],
+          "mpn": "GRM188Z71C475KE21D",
+          "ref": "C_VMID2_4U7",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/CL10B474KA8NFNC/part.yaml",
+          "footprint": "Capacitor_SMD:C_0603_1608Metric",
+          "jlc_codes": [
+            "C318640"
+          ],
+          "mpn": "CL10B474KA8NFNC",
+          "ref": "C_VMID2_470N",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/GRM188Z71C475KE21D/part.yaml",
+          "footprint": "Capacitor_SMD:C_0603_1608Metric",
+          "jlc_codes": [
+            "C389010"
+          ],
+          "mpn": "GRM188Z71C475KE21D",
+          "ref": "C_LDO_A",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/GRM188Z71C475KE21D/part.yaml",
+          "footprint": "Capacitor_SMD:C_0603_1608Metric",
+          "jlc_codes": [
+            "C389010"
+          ],
+          "mpn": "GRM188Z71C475KE21D",
+          "ref": "C_LDO_D",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/CL10A475KO8NNNC/part.yaml",
+          "footprint": "Capacitor_SMD:C_0603_1608Metric",
+          "jlc_codes": [
+            "C19666"
+          ],
+          "mpn": "CL10A475KO8NNNC",
+          "ref": "C_VDDA1_4U7",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/CL05B103KB5NNNC/part.yaml",
+          "footprint": "Capacitor_SMD:C_0402_1005Metric",
+          "jlc_codes": [
+            "C15195"
+          ],
+          "mpn": "CL05B103KB5NNNC",
+          "ref": "C_VDDA1_10N",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/CL10A475KO8NNNC/part.yaml",
+          "footprint": "Capacitor_SMD:C_0603_1608Metric",
+          "jlc_codes": [
+            "C19666"
+          ],
+          "mpn": "CL10A475KO8NNNC",
+          "ref": "C_VDDA2_4U7",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/CL05B103KB5NNNC/part.yaml",
+          "footprint": "Capacitor_SMD:C_0402_1005Metric",
+          "jlc_codes": [
+            "C15195"
+          ],
+          "mpn": "CL05B103KB5NNNC",
+          "ref": "C_VDDA2_10N",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/CL05B104KO5NNNC/part.yaml",
+          "footprint": "Capacitor_SMD:C_0402_1005Metric",
+          "jlc_codes": [
+            "C1525"
+          ],
+          "mpn": "CL05B104KO5NNNC",
+          "ref": "C_VDDIO",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "manual",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/TMM-106-01-L-D/part.yaml",
+          "footprint": "crow_audio_carrier:Samtec_TMM-106-01-L-D_2x06_P2.00mm_Vertical",
+          "jlc_codes": [],
+          "mpn": "TMM-106-01-L-D",
+          "ref": "J10",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "manual",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/TMM-106-01-L-D/part.yaml",
+          "footprint": "crow_audio_carrier:Samtec_TMM-106-01-L-D_2x06_P2.00mm_Vertical",
+          "jlc_codes": [],
+          "mpn": "TMM-106-01-L-D",
+          "ref": "J11",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/SN74LVC3G34DCUR/part.yaml",
+          "footprint": "Package_SO:VSSOP-8_2.3x2mm_P0.5mm",
+          "jlc_codes": [
+            "C130024"
+          ],
+          "mpn": "SN74LVC3G34DCUR",
+          "ref": "U_CLK",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/CL05B104KO5NNNC/part.yaml",
+          "footprint": "Capacitor_SMD:C_0402_1005Metric",
+          "jlc_codes": [
+            "C1525"
+          ],
+          "mpn": "CL05B104KO5NNNC",
+          "ref": "C_CLK",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-0710KL/part.yaml",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "jlc_codes": [
+            "C60490"
+          ],
+          "mpn": "RC0402FR-0710KL",
+          "ref": "R_MCH_MCLK_PD",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-0710KL/part.yaml",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "jlc_codes": [
+            "C60490"
+          ],
+          "mpn": "RC0402FR-0710KL",
+          "ref": "R_MCH_BCLK_PD",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-0710KL/part.yaml",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "jlc_codes": [
+            "C60490"
+          ],
+          "mpn": "RC0402FR-0710KL",
+          "ref": "R_MCH_FSYNC_PD",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-0722RL/part.yaml",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "jlc_codes": [
+            "C114765"
+          ],
+          "mpn": "RC0402FR-0722RL",
+          "ref": "R_MCLK",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-0722RL/part.yaml",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "jlc_codes": [
+            "C114765"
+          ],
+          "mpn": "RC0402FR-0722RL",
+          "ref": "R_BCLK",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/CRCW120622R0FKEAHP/part.yaml",
+          "footprint": "Resistor_SMD:R_1206_3216Metric",
+          "jlc_codes": [
+            "C844025"
+          ],
+          "mpn": "CRCW120622R0FKEAHP",
+          "ref": "R_FSYNC",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-0710KL/part.yaml",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "jlc_codes": [
+            "C60490"
+          ],
+          "mpn": "RC0402FR-0710KL",
+          "ref": "R_TDM_PD",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/74LVC1G17GV,125/part.yaml",
+          "footprint": "Package_TO_SOT_SMD:SOT-23-5",
+          "jlc_codes": [
+            "C6076"
+          ],
+          "mpn": "74LVC1G17GV,125",
+          "ref": "U_TDM_SCH",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/CL05B104KO5NNNC/part.yaml",
+          "footprint": "Capacitor_SMD:C_0402_1005Metric",
+          "jlc_codes": [
+            "C1525"
+          ],
+          "mpn": "CL05B104KO5NNNC",
+          "ref": "C_TDM_SCH",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/SN74LVC1G125DBVR/part.yaml",
+          "footprint": "Package_TO_SOT_SMD:SOT-23-5",
+          "jlc_codes": [
+            "C23654"
+          ],
+          "mpn": "SN74LVC1G125DBVR",
+          "ref": "U_TDM",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/CL05B104KO5NNNC/part.yaml",
+          "footprint": "Capacitor_SMD:C_0402_1005Metric",
+          "jlc_codes": [
+            "C1525"
+          ],
+          "mpn": "CL05B104KO5NNNC",
+          "ref": "C_TDM",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/74LVC1G14GV,125/part.yaml",
+          "footprint": "Package_TO_SOT_SMD:SOT-23-5",
+          "jlc_codes": [
+            "C131093"
+          ],
+          "mpn": "74LVC1G14GV,125",
+          "ref": "U_OE",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/CL05B104KO5NNNC/part.yaml",
+          "footprint": "Capacitor_SMD:C_0402_1005Metric",
+          "jlc_codes": [
+            "C1525"
+          ],
+          "mpn": "CL05B104KO5NNNC",
+          "ref": "C_OE",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-07300RL/part.yaml",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "jlc_codes": [
+            "C138010"
+          ],
+          "mpn": "RC0402FR-07300RL",
+          "ref": "R_MCH_SENSE",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-0710KL/part.yaml",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "jlc_codes": [
+            "C60490"
+          ],
+          "mpn": "RC0402FR-0710KL",
+          "ref": "R_MCH_SENSE_PD",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-0733RL/part.yaml",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "jlc_codes": [
+            "C138002"
+          ],
+          "mpn": "RC0402FR-0733RL",
+          "ref": "R_TDM",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/TPS3839K33DBZR/part.yaml",
+          "footprint": "Package_TO_SOT_SMD:SOT-23",
+          "jlc_codes": [
+            "C96333"
+          ],
+          "mpn": "TPS3839K33DBZR",
+          "ref": "U_RST1",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/CL05B104KO5NNNC/part.yaml",
+          "footprint": "Capacitor_SMD:C_0402_1005Metric",
+          "jlc_codes": [
+            "C1525"
+          ],
+          "mpn": "CL05B104KO5NNNC",
+          "ref": "C_RST1",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/SN74LVC1G123DCTR/part.yaml",
+          "footprint": "Package_SO:SSOP-8_2.95x2.8mm_P0.65mm",
+          "jlc_codes": [
+            "C123302"
+          ],
+          "mpn": "SN74LVC1G123DCTR",
+          "ref": "U_RST2",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-07100KL/part.yaml",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "jlc_codes": [
+            "C60491"
+          ],
+          "mpn": "RC0402FR-07100KL",
+          "ref": "R_RST_T",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/CL10B224KA8NNNC/part.yaml",
+          "footprint": "Capacitor_SMD:C_0603_1608Metric",
+          "jlc_codes": [
+            "C21120"
+          ],
+          "mpn": "CL10B224KA8NNNC",
+          "ref": "C_RST_T",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/CL05B104KO5NNNC/part.yaml",
+          "footprint": "Capacitor_SMD:C_0402_1005Metric",
+          "jlc_codes": [
+            "C1525"
+          ],
+          "mpn": "CL05B104KO5NNNC",
+          "ref": "C_RST2",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/2N7002K-7/part.yaml",
+          "footprint": "crow_audio_carrier:Diodes_2N7002K_SOT23_Exact",
+          "jlc_codes": [
+            "C85047"
+          ],
+          "mpn": "2N7002K-7",
+          "ref": "Q_RST1",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-0710KL/part.yaml",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "jlc_codes": [
+            "C60490"
+          ],
+          "mpn": "RC0402FR-0710KL",
+          "ref": "R_RESET_PU",
+          "supplier_handles": []
+        },
+        {
+          "disposition": "jlc",
+          "dossier": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-07100KL/part.yaml",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "jlc_codes": [
+            "C60491"
+          ],
+          "mpn": "RC0402FR-07100KL",
+          "ref": "R_RESET_GPD",
+          "supplier_handles": []
+        }
+      ],
+      "status": "PASS"
+    },
+    "procurement_exposure": {
+      "detail": "deferred to final JLC uploader under explicit user decision",
+      "output": "no preorder, MOQ, allocation, or payment is authorized by this pre-layout result",
+      "status": "PASS"
+    },
+    "public_catalog_prelayout": {
+      "detail": "51/51 exact public-source lines are current (2 approved distributor observation(s), 0 blocked); user accepted for pre-layout only",
+      "distributor_rows": {
+        "C53283916": {
+          "checked_at": "2026-09-16T18:44:40+00:00",
+          "distributor": "digikey",
+          "mpn": "TMUX2821DSGR",
+          "order_authorized": false,
+          "public_stock_surplus": 150,
+          "public_stock_threshold": 190,
+          "purchase_quantity": 190,
+          "required_qty": 40,
+          "sourcing_state": "AVAILABLE",
+          "stock": 2449,
+          "url": "https://www.digikey.com/en/products/detail/texas-instruments/TMUX2821DSGR/28738833"
+        },
+        "C7452883": {
+          "checked_at": "2026-09-16T18:44:40+00:00",
+          "distributor": "trustedparts",
+          "mpn": "LT3041ADE#TRPBF",
+          "order_authorized": false,
+          "public_stock_surplus": 150,
+          "public_stock_threshold": 155,
+          "purchase_quantity": 155,
+          "required_qty": 5,
+          "sourcing_state": "AVAILABLE",
+          "stock": 1965,
+          "url": "https://www.trustedparts.com/en/manufacturers/analog/LT3041"
+        }
+      },
+      "output": "public stock design screen only; original JLC observations retained; final JLC uploader allocation and economics remain mandatory",
+      "sourcing_state": "AVAILABLE",
+      "status": "PASS"
+    },
+    "source_value_identity": {
+      "detail": "exit 0",
+      "elapsed_s": 0.286596,
+      "output": "circuit-only value check: /home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/03_tscircuit/build/circuit.json; vendored: 65 part.yaml codes; ledger: 267 vetted passive codes\nCIRCUIT VALUE CHECK: PASS (every coded R/C catalog value == its tsx value prop)\n",
+      "status": "PASS"
+    }
+  },
+  "coverage": {
+    "passing": 4,
+    "total": 4
+  },
+  "inputs": {
+    "assembly": {
+      "path": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/03_src/rules/assembly.yaml",
+      "sha256": "1d526bb31a7227469fa11987b187c8fa62adf8dca33ad96954d247227a748398",
+      "size": 7317
+    },
+    "catalog_decision": {
+      "path": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/01_docs/decisions/0031-authorized-public-stock-surplus.md",
+      "sha256": "8a23fadcf68a9d3b7637c8f900c1d28c84d9ea668b01c1a178b40960b8e7b7f6",
+      "size": 1702
+    },
+    "catalog_evidence": {
+      "path": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/06_build/sourcing/public_catalog_stock.json",
+      "sha256": "7ca1777943981d1c8b1b889923c81777124ae9b34cb776952b57be472108315a",
+      "size": 16803
+    },
+    "catalog_request": {
+      "path": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/06_build/sourcing/prelayout_request.json",
+      "sha256": "6dea1aeab85cc9fb4fbad45cc00ee231fc871231d1050cd0d621c919c3663133",
+      "size": 14247
+    },
+    "circuit": {
+      "path": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/03_tscircuit/build/circuit.json",
+      "sha256": "0b0890eee9d5af1e9698e9d0ee5e91dd58f335eff6c9e8994c3179202d0355d9",
+      "size": 5736072
+    },
+    "distributor_assembly": {
+      "path": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/03_src/rules/assembly.yaml",
+      "sha256": "1d526bb31a7227469fa11987b187c8fa62adf8dca33ad96954d247227a748398",
+      "size": 7317
+    },
+    "distributor_brief": {
+      "path": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/01_docs/BRIEF.md",
+      "sha256": "578127e924246c193b51f004774c1b8ef88142d59b67f1fab7c40ad05e97e2b7",
+      "size": 22377
+    },
+    "distributor_decision": {
+      "path": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/01_docs/decisions/0031-authorized-public-stock-surplus.md",
+      "sha256": "8a23fadcf68a9d3b7637c8f900c1d28c84d9ea668b01c1a178b40960b8e7b7f6",
+      "size": 1702
+    },
+    "distributor_policy": {
+      "path": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/01_docs/sourcing/public-distributor-policy.yaml",
+      "sha256": "8d59b3ef8c32b4fc1d631b5a65f8bedaa55aad92de7940febd205cc184f289bb",
+      "size": 853
+    },
+    "distributor_quotes": {
+      "path": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/01_docs/sourcing/manual_quotes.yaml",
+      "sha256": "633657970bd65f173d14a9c8512663a9054de1a9d841aa43483cb364014cc7d2",
+      "size": 3020
+    },
+    "part_000": {
+      "path": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/12105C106K4Z2A/part.yaml",
+      "sha256": "700dd2e85d9226906e9681029a9f41060a86a216c7c94c5eb98aec5f63a39f83",
+      "size": 1817
+    },
+    "part_001": {
+      "path": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/1812L035-60MR/part.yaml",
+      "sha256": "2dfdb312b2de69d6b3b0f7ae8992e468a565ca636a82343f6f02801cf7d87a25",
+      "size": 6549
+    },
+    "part_002": {
+      "path": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/2920L260-33DR/part.yaml",
+      "sha256": "25d47fa07b9288cf1a2a602c1767c84a3f356828626d1ce31aff171d68de3e5f",
+      "size": 3959
+    },
+    "part_003": {
+      "path": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/2N7002K-7/part.yaml",
+      "sha256": "4629d35fe514dee07194c5e32b10e2225e808c263c2b5562ef5af0e2b94bf140",
+      "size": 3569
+    },
+    "part_004": {
+      "path": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/43650-0200/part.yaml",
+      "sha256": "b4e7fab8944d51856eb1788fadb1a415ab641bb943c41460878b1d76c57d7515",
+      "size": 2864
+    },
+    "part_005": {
+      "path": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/615008160221/part.yaml",
+      "sha256": "d108bf5e19baac17eb58e6757f6ab264a3a599a473156606d3eba9b420559818",
+      "size": 3574
+    },
+    "part_006": {
+      "path": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/74LVC1G14GV,125/part.yaml",
+      "sha256": "82f27c9a0b37a0958356135074ea4316424e85b761e4968327fea5ee8f9122c9",
+      "size": 5288
+    },
+    "part_007": {
+      "path": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/74LVC1G17GV,125/part.yaml",
+      "sha256": "733542c7d6415b19c12f60b2b3a8a0a936c8935e95b2b7e1b606d4cb49c6bfa1",
+      "size": 3282
+    },
+    "part_008": {
+      "path": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/AO3400A/part.yaml",
+      "sha256": "59f8ca0ead8e9eb16fe3240f924ae83438a4c107ad0b875197472c36bd312a40",
+      "size": 2841
+    },
+    "part_009": {
+      "path": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/AO3401A/part.yaml",
+      "sha256": "e0c54337aba11c6bc5e8014458922803bb09147b0c652751b7208f65ad55dedc",
+      "size": 3727
+    },
+    "part_010": {
+      "path": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/AP63205WU-7/part.yaml",
+      "sha256": "4c8c3631ef2c3ac2c849984a616c0a5263d10791bec863465004805fcdfcf9db",
+      "size": 8916
+    },
+    "part_011": {
+      "path": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/B340A-13-F/part.yaml",
+      "sha256": "4c5b2095e525254c689fd0059661eb8048e0e1ce52f3e47b006f62abdc37f2be",
+      "size": 1681
+    },
+    "part_012": {
+      "path": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/BZT52C12-7-F/part.yaml",
+      "sha256": "ad853aab5a020f05a6d3d055c8c315cda2fe7c49b9ae1a6e6302c906b6403645",
+      "size": 1436
+    },
+    "part_013": {
+      "path": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/C0603C105K4RACTU/part.yaml",
+      "sha256": "18f305566f39b58c1c3ca21a54ad9d34a533a733be18125c535f8179ccb4a550",
+      "size": 1311
+    },
+    "part_014": {
+      "path": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/C0805C106K8RACTU/part.yaml",
+      "sha256": "82c0cee6bf7e5e3661e7d062197e1f1a6f94873866f2db4dd71286759ffd138a",
+      "size": 1585
+    },
+    "part_015": {
+      "path": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/CL05B103KB5NNNC/part.yaml",
+      "sha256": "aea7a1de0becf24225945c4b848314759534231aee4cfddbd8560600f6186e8a",
+      "size": 1814
+    },
+    "part_016": {
+      "path": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/CL05B104KO5NNNC/part.yaml",
+      "sha256": "3d60d3bfaa793b4aad56bc6efb5db7d5266cd45ca989924f11e46a0dbe0f71ad",
+      "size": 1817
+    },
+    "part_017": {
+      "path": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/CL10A475KO8NNNC/part.yaml",
+      "sha256": "d4e9197a7d7348574d40237d4868da34e3a1be813898b5d043ca6c4302e84470",
+      "size": 1962
+    },
+    "part_018": {
+      "path": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/CL10B224KA8NNNC/part.yaml",
+      "sha256": "79eb8a83dbb4895df03dcef1cdd8d5cf7b75d5a2724977cbf6c4d18eeca13d96",
+      "size": 2161
+    },
+    "part_019": {
+      "path": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/CL10B474KA8NFNC/part.yaml",
+      "sha256": "df925cb3ec368f13cf17f3266b0a0fcf47bf405e70b2f30f71d54ef91ba48e49",
+      "size": 2123
+    },
+    "part_020": {
+      "path": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/CRCW12061R00FKEAHP/part.yaml",
+      "sha256": "e6730e1705fafaa9de0f25d8bb0f523ed569909ffb0252096fe24bcbaaa60e60",
+      "size": 1429
+    },
+    "part_021": {
+      "path": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/CRCW120622R0FKEAHP/part.yaml",
+      "sha256": "b653f9e0a01cf37e1e33864e73abd0ca7760d602132ea0191706e605ada0224d",
+      "size": 1041
+    },
+    "part_022": {
+      "path": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/CS5308P-DN/part.yaml",
+      "sha256": "4b536a26ecbe4a1fe16b04ecf7969a0ff79ce47f87757b1381118df278d2333c",
+      "size": 23295
+    },
+    "part_023": {
+      "path": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/DMP6023LFG-13/part.yaml",
+      "sha256": "3fb28c4b93f369eb7bfc01c228f6404c8c02cfc1cb68bbe1f111507502bd8b88",
+      "size": 5426
+    },
+    "part_024": {
+      "path": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/EEEFK1A471P/part.yaml",
+      "sha256": "071f19532a1f70974a2f147356723021ceb1a3eae380d52596c753bc44f26c24",
+      "size": 2667
+    },
+    "part_025": {
+      "path": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/GCM1555C1H681JA16D/part.yaml",
+      "sha256": "d9307ef3af6fb6aaf19030317e4074c809c9f25bedb71cfaf5c817597953c59a",
+      "size": 1948
+    },
+    "part_026": {
+      "path": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/GRM1555C1H102JA01D/part.yaml",
+      "sha256": "eaffeaaab052f27fb4f0ffedc1a7fa3b968a18c3c4c87e364743539472bf1572",
+      "size": 1147
+    },
+    "part_027": {
+      "path": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/GRM188Z71C475KE21D/part.yaml",
+      "sha256": "5ba8508b874535600f2519f715eaa42cccc7e2dde36675aaf1812063f4ddc4b6",
+      "size": 2152
+    },
+    "part_028": {
+      "path": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/GRM2195C1H153JA01D/part.yaml",
+      "sha256": "cf395b46264551cc87f537807fb641273692d45177206266599bdb7641a37aa8",
+      "size": 1927
+    },
+    "part_029": {
+      "path": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/GRM32ER71A476KE15L/part.yaml",
+      "sha256": "dd434869595999113b213be184e0deb5dca387af205dc1101243e026c1398ed9",
+      "size": 2411
+    },
+    "part_030": {
+      "path": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/LT3041ADE-TRPBF/part.yaml",
+      "sha256": "8c4057cd7cfa7085b4e86dac63cfb764bf8524bc4e7bac22c3f278cc6e8974d9",
+      "size": 8955
+    },
+    "part_031": {
+      "path": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/OPA2320AIDR/part.yaml",
+      "sha256": "4270d40d738ca8698d2eb6ab0bb1afd174daf1c8fca448b74eae86fa526c28ac",
+      "size": 38917
+    },
+    "part_032": {
+      "path": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/R82DC4100DQ60J/part.yaml",
+      "sha256": "59b6e271140bda3938ed0c5d46f726173138d4345e3e1bb3b3d0700ae0c6a128",
+      "size": 2176
+    },
+    "part_033": {
+      "path": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-070RL/part.yaml",
+      "sha256": "e5a665f45975d8fd9852cf90dd0bdebc5b70d4c4f6eaeefd8338446a2ac0f13a",
+      "size": 1970
+    },
+    "part_034": {
+      "path": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-07100KL/part.yaml",
+      "sha256": "1277d92468691451f69313cdc36ec8596b6bb7b38f2d55cb89f3b9763276cbc4",
+      "size": 1805
+    },
+    "part_035": {
+      "path": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-07100RL/part.yaml",
+      "sha256": "5911262217e1b4859aefc415613c284f3284cf3959ffaeec8c267106b32ecb8c",
+      "size": 1925
+    },
+    "part_036": {
+      "path": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-0710KL/part.yaml",
+      "sha256": "ea57b341c7f101245e0fc500830bd48dc93bc4ae9186cf5761660f658da08217",
+      "size": 1878
+    },
+    "part_037": {
+      "path": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-0710RL/part.yaml",
+      "sha256": "177a407a5ee8cb4f35cea4ce6fec625ca8c8e68c5c83c4755cb6bcd947f77188",
+      "size": 1800
+    },
+    "part_038": {
+      "path": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-0722RL/part.yaml",
+      "sha256": "c1063c89448f3e58f5f3581ca517b511d6cd55b13ceb76c5d4ca008541d0bdb6",
+      "size": 1791
+    },
+    "part_039": {
+      "path": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-07300RL/part.yaml",
+      "sha256": "dbbbf9c0364d8db38d460c452f2d7adc78f94ded330c9c78b7d8d5182c4666e6",
+      "size": 1812
+    },
+    "part_040": {
+      "path": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-0733RL/part.yaml",
+      "sha256": "7469624654d068b77491a66b64402f6bc775b8af32ef279c7747c0fb8682ae84",
+      "size": 1792
+    },
+    "part_041": {
+      "path": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RC0402FR-074K7L/part.yaml",
+      "sha256": "e273c0ea33d0a4f8c26db9ea4979aaebc9c949769f730ced4500d8f516590957",
+      "size": 1803
+    },
+    "part_042": {
+      "path": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RT0603BRD0710KL/part.yaml",
+      "sha256": "a0f81b22668f5f7c09f900a53f5e2c6149b73c2049a43d0e650cc65fa73cd771",
+      "size": 1472
+    },
+    "part_043": {
+      "path": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RT0603BRD0717K4L/part.yaml",
+      "sha256": "0613eb360c7c12193001449db81f8831d1cec7eed38991b04a82802d8aefbdc5",
+      "size": 1206
+    },
+    "part_044": {
+      "path": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RT0603BRD071KL/part.yaml",
+      "sha256": "1682044b0746f94b96573464d9d8742c5bd0a2afc3d22a401bdbe6f1e373b697",
+      "size": 2304
+    },
+    "part_045": {
+      "path": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RT0603BRD0730K9L/part.yaml",
+      "sha256": "03ca55af15eb4af677385a816c85994849580275f36b49c8bc19310caa7f7dfa",
+      "size": 2579
+    },
+    "part_046": {
+      "path": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/RT0603BRD0733KL/part.yaml",
+      "sha256": "4dc88e9a5f14292456bbc82f7b77217dc94ec8c682deb6ff0d83049e939281cb",
+      "size": 1316
+    },
+    "part_047": {
+      "path": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/SMBJ15A/part.yaml",
+      "sha256": "1fd0b10998a9b6e5b1ebf131b439923fa3f05be4bec78623a14905113b70ed39",
+      "size": 3050
+    },
+    "part_048": {
+      "path": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/SN74LVC1G123DCTR/part.yaml",
+      "sha256": "64b14bd7d36df27fe1b3ab0daabbc136a207f63baa5f9161e9747aa843a03d3f",
+      "size": 4620
+    },
+    "part_049": {
+      "path": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/SN74LVC1G125DBVR/part.yaml",
+      "sha256": "c2509d152e5787c1f7eb2a9660a691e56c19451d6dfad27dab421fa1364e5f17",
+      "size": 3233
+    },
+    "part_050": {
+      "path": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/SN74LVC3G34DCUR/part.yaml",
+      "sha256": "e897364056d68d39ce1027bef397a2d5deb3c7acc25b25587e4c78b6c29a78d5",
+      "size": 5760
+    },
+    "part_051": {
+      "path": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/TMM-106-01-L-D/part.yaml",
+      "sha256": "84705e4bd5dc35ccdd7a656ce6c3aaeaf5938cb0d36bb1896c4467ac45e348aa",
+      "size": 2225
+    },
+    "part_052": {
+      "path": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/TMUX2821DSGR/part.yaml",
+      "sha256": "ce4676593ec725aef9c33589b6b5382bfc4c66763b05894d0a6c7bb39f675215",
+      "size": 15177
+    },
+    "part_053": {
+      "path": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/TPD2E2U06DRLR/part.yaml",
+      "sha256": "bdba638536450d513a0a7714ec13c225886e761c79712d991c2a9639e826d4c7",
+      "size": 5204
+    },
+    "part_054": {
+      "path": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/TPS3839K33DBZR/part.yaml",
+      "sha256": "1cbddd2535bceac73f1aeb1951ee0db9e333db9d39df2517aede094c4561b972",
+      "size": 3187
+    },
+    "part_055": {
+      "path": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/TPS389001DSER/part.yaml",
+      "sha256": "4328d6948dce686082572888b284c0f3f8f7b289bfd40cd50e62f928811204ea",
+      "size": 5691
+    },
+    "part_056": {
+      "path": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/US1B-13-F/part.yaml",
+      "sha256": "f03b0b5b483dc8282e72e25e34ad258521c138a1f15404693d2c0d3afb275d45",
+      "size": 3298
+    },
+    "part_057": {
+      "path": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/02_parts/XGL4020-332MEC/part.yaml",
+      "sha256": "1edc204b6dc3cf299a12706a6ae24d12bc06f64a40917f61b790af1864ec6938",
+      "size": 3149
+    }
+  },
+  "kind": "manufacturing-readiness-receipt-v1",
+  "phase": "prelayout",
+  "project": "crow-audio-carrier-v1",
+  "schema": 1,
+  "verdict": "ACCEPTED"
+}

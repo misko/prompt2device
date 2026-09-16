@@ -1,0 +1,26 @@
+#VRML V2.0 utf8
+# Source-owned placement envelope for Molex 43650-0400.
+# Dimensions and registration are derived from the official Molex 43650
+# right-angle header sales drawing and the matching project footprint.
+# This is deliberately an envelope, not a claim of manufacturer CAD identity.
+
+Transform {
+  # Footprint F.Fab bounds are x=-3.325..12.325 mm and y=-8.92..0.98 mm.
+  # KiCad VRML units are 2.54 mm; body height uses the public 5.57 mm value.
+  # KiCad maps VRML Y opposite to footprint Y, so the positive model-space
+  # translation below registers the housing over the negative-Y mating body.
+  translation 1.771654 1.562992 1.096457
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.035 0.035 0.035
+          specularColor 0.12 0.12 0.12
+          ambientIntensity 0.30
+          shininess 0.18
+        }
+      }
+      geometry Box { size 6.161417 3.897638 2.192913 }
+    }
+  ]
+}

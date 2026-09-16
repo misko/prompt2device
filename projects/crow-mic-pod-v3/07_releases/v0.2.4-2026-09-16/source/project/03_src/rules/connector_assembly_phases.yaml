@@ -1,0 +1,87 @@
+schema: 1
+phase_policy_id: crow-mic-pod-v3-factory-rj45-cord-qualification
+source_deferrals:
+- assembly_id: factory-rj45-spoke
+  target_kind: cable
+  target_id: cable
+  unknown_class: installed-cable-route-qualification
+  plan_source_ids:
+  - shared-spoke-contract
+  - spoke-cable-record
+  - first-article-plan
+  rationale: Qualify the exact factory cord installed route, bend, restraint and environmental suitability.
+    Nominal mate/grip geometry has its own cited manufacturer model; installed tolerances remain
+    unknown.
+- assembly_id: factory-rj45-spoke
+  target_kind: interface
+  target_id: interface
+  unknown_class: realized-interface-fit
+  plan_source_ids:
+  - shared-spoke-contract
+  - realized-floorplan
+  - first-article-plan
+  rationale: Candidate axes exist; populated seating, exposure, and enclosure fit require realized
+    hardware.
+- assembly_id: factory-rj45-spoke
+  target_kind: reaction
+  target_id: reaction
+  unknown_class: reaction-qualification
+  plan_source_ids:
+  - realized-floorplan
+  - first-article-plan
+  rationale: The selected reaction path must be exercised on the populated pod or governed coupon.
+- assembly_id: factory-rj45-spoke
+  target_kind: operation
+  target_id: mate
+  unknown_class: simultaneous-operation-qualification
+  plan_source_ids:
+  - shared-spoke-contract
+  - first-article-plan
+  rationale: The selected factory cord must be mated in the declared simultaneous state.
+- assembly_id: factory-rj45-spoke
+  target_kind: operation
+  target_id: latch-pull-check
+  unknown_class: simultaneous-operation-qualification
+  plan_source_ids:
+  - spoke-header-dossier
+  - first-article-plan
+  rationale: Retention, polarity, and continuity require a populated physical operation.
+- assembly_id: factory-rj45-spoke
+  target_kind: operation
+  target_id: unmate
+  unknown_class: simultaneous-operation-qualification
+  plan_source_ids:
+  - spoke-header-dossier
+  - first-article-plan
+  rationale: Latch release with populated enclosure neighbors present requires a populated physical
+    operation.
+- assembly_id: factory-rj45-spoke
+  target_kind: tolerance
+  target_id: connector-enclosure-stack
+  unknown_class: installed-tolerance-qualification
+  plan_source_ids:
+  - shared-spoke-contract
+  - realized-floorplan
+  - first-article-plan
+  rationale: The installed PCB, solder seating, connector, and enclosure stack is measurable only
+    on realized geometry.
+- assembly_id: factory-rj45-spoke
+  target_kind: tolerance
+  target_id: installed-plug-boot-radial
+  unknown_class: installed-tolerance-qualification
+  plan_source_ids:
+  - spoke-cable-record
+  - shared-spoke-contract
+  - first-article-plan
+  rationale: Qualify manufactured variation and installed service geometry on the exact assembly;
+    no numeric bound invented.
+- assembly_id: factory-rj45-spoke
+  target_kind: tolerance
+  target_id: installed-plug-boot-axial
+  unknown_class: installed-tolerance-qualification
+  plan_source_ids:
+  - spoke-cable-record
+  - shared-spoke-contract
+  - first-article-plan
+  rationale: Qualify manufactured variation and installed service geometry on the exact assembly;
+    no numeric bound invented.

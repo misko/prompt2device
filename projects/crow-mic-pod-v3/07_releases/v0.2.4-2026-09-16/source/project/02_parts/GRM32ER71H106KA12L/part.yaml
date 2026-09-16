@@ -1,0 +1,13 @@
+mpn: GRM32ER71H106KA12L
+manufacturer: Murata
+type: ceramic_capacitor
+value: 10uF
+datasheet: {doc_id: GRM32ER71H106KA12-04A, revision: "specifications as of 2017-11-22", url: "https://search.murata.co.jp/Ceramy/image/img/A01X/G101/ENG/GRM32ER71H106KA12-04A.pdf", sha256: null, fetched: null}
+package: "1210 (3225 metric)"
+footprint: Capacitor_SMD:C_1210_3225Metric
+escape: {style: passive, pitch: 1.0, tier_required: jlc_2layer_default, checked: "standard 1210 land, 2026-09-01"}
+pins: {1: A, 2: B}
+limits: {capacitance_f: 0.00001, tolerance_pct: 10, voltage_v: 50, dielectric: X7R}
+asserts: [{assert: value, equals: 10u, tolerance_pct: 10, why: "Connector-side input capacitance stays far below frozen 47 uF maximum."}]
+verified: "Official Murata GRM32ER71H106KA12-04A reference-sheet identity and rated-value row were inspected through the manufacturer index on 2026-09-02; digest-selected PDF bytes are OWED. Exact code/package remain frozen; 10 uF nominal plus 0.1 uF HF is the input-capacitance declaration."
+sourcing: {lcsc: C77102, alternates: []}
