@@ -2917,3 +2917,12 @@ Audit: filename is SHA-256; re-open receipt input hashes against immutable relea
 Audit: SHA-256 equals filename; packet inputs and outputs reopen against the
 materialized releases. The archive contains hash censuses rather than duplicate
 release payloads; the releases remain the byte authority.
+
+## Transport-successor seal admission
+
+| Pattern | What |
+|---|---|
+| `4931d60e30b2730fdf6ea7d7fb0ef5c4cd8e2089c8db9c7f3931816bb296260b.tar.gz` | Carrier v0.1.2 and pod v0.2.1 exact 3/3 rehearsals, seal admissions, policy regrades and transport/publication regression results |
+
+Audit: SHA-256 equals filename; both rehearsal receipts reopen final candidate
+bytes and preserve sourcing as a declared informational failure.
