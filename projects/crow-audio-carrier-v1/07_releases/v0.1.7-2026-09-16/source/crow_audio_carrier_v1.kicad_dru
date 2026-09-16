@@ -1,0 +1,343 @@
+(version 1)
+(rule "CHASSIS_SHIELD_width"
+  (condition "A.NetClass == 'CHASSIS_SHIELD'")
+  (constraint track_width (min 0.6mm)))
+(rule "POD_POWER_width"
+  (condition "A.NetClass == 'POD_POWER'")
+  (constraint track_width (min 0.6mm)))
+(rule "POWER_TRANSIENT_width"
+  (condition "A.NetClass == 'POWER_TRANSIENT'")
+  (constraint track_width (min 1.2mm)))
+(rule "POWER_CONTROL_width"
+  (condition "A.NetClass == 'POWER_CONTROL'")
+  (constraint track_width (min 0.2mm)))
+(rule "BOOTSTRAP_width"
+  (condition "A.NetClass == 'BOOTSTRAP'")
+  (constraint track_width (min 0.2mm)))
+(rule "QUIET_POWER_width"
+  (condition "A.NetClass == 'QUIET_POWER'")
+  (constraint track_width (min 0.35mm)))
+(rule "ANALOG_AUDIO_width"
+  (condition "A.NetClass == 'ANALOG_AUDIO'")
+  (constraint track_width (min 0.2mm)))
+(rule "ADC_CLOCK_width"
+  (condition "A.NetClass == 'ADC_CLOCK'")
+  (constraint track_width (min 0.36mm)))
+(rule "GROUND_width"
+  (condition "A.NetClass == 'GROUND'")
+  (constraint track_width (min 0.3mm)))
+(rule "scoped_ADC_FSYNC_CORNER"
+  (condition "A.insideArea('ADC_FSYNC_CORNER') && (A.NetName == 'ADC_FSYNC')")
+  (constraint track_width (min 0.18mm)))
+(rule "scoped_AFE1_SUPPLY_LOCAL"
+  (condition "A.insideArea('AFE1_SUPPLY_LOCAL') && (A.NetName == '3V3_ADC')")
+  (constraint track_width (min 0.6mm)))
+(rule "scoped_AFE2_SUPPLY_LOCAL"
+  (condition "A.insideArea('AFE2_SUPPLY_LOCAL') && (A.NetName == '3V3_ADC')")
+  (constraint track_width (min 0.6mm)))
+(rule "scoped_AFE3_SUPPLY_LOCAL"
+  (condition "A.insideArea('AFE3_SUPPLY_LOCAL') && (A.NetName == '3V3_ADC')")
+  (constraint track_width (min 0.6mm)))
+(rule "scoped_AFE4_SUPPLY_LOCAL"
+  (condition "A.insideArea('AFE4_SUPPLY_LOCAL') && (A.NetName == '3V3_ADC')")
+  (constraint track_width (min 0.6mm)))
+(rule "scoped_AFE5_SUPPLY_LOCAL"
+  (condition "A.insideArea('AFE5_SUPPLY_LOCAL') && (A.NetName == '3V3_ADC')")
+  (constraint track_width (min 0.6mm)))
+(rule "scoped_AFE6_SUPPLY_LOCAL"
+  (condition "A.insideArea('AFE6_SUPPLY_LOCAL') && (A.NetName == '3V3_ADC')")
+  (constraint track_width (min 0.6mm)))
+(rule "scoped_AFE7_SUPPLY_LOCAL"
+  (condition "A.insideArea('AFE7_SUPPLY_LOCAL') && (A.NetName == '3V3_ADC')")
+  (constraint track_width (min 0.6mm)))
+(rule "scoped_AFE8_SUPPLY_LOCAL"
+  (condition "A.insideArea('AFE8_SUPPLY_LOCAL') && (A.NetName == '3V3_ADC')")
+  (constraint track_width (min 0.6mm)))
+(rule "scoped_LT3041_INPUT_NECKS"
+  (condition "A.insideArea('LT3041_INPUT_NECKS') && (A.NetName == '5V_LDO_HOLD')")
+  (constraint track_width (min 0.25mm)))
+(rule "scoped_LT3041_OUTPUT_NECKS"
+  (condition "A.insideArea('LT3041_OUTPUT_NECKS') && (A.NetName == '3V3_ADC')")
+  (constraint track_width (min 0.25mm)))
+(rule "scoped_LT3041_OUTS_LOCAL"
+  (condition "A.insideArea('LT3041_OUTS_LOCAL') && (A.NetName == '3V3_ADC')")
+  (constraint track_width (min 0.2mm)))
+(rule "scoped_LT3041_PGFB_LOCAL"
+  (condition "A.insideArea('LT3041_PGFB_LOCAL') && (A.NetName == '5V_LDO_HOLD')")
+  (constraint track_width (min 0.2mm)))
+(rule "scoped_R_PRE_CROSSOVER_LOCAL"
+  (condition "A.insideArea('R_PRE_CROSSOVER_LOCAL') && (A.NetName == '5V_LDO_HOLD')")
+  (constraint track_width (min 0.2mm)))
+(rule "scoped_LT3041_GROUND_NECKS"
+  (condition "A.insideArea('LT3041_GROUND_NECKS') && (A.NetName == 'GND')")
+  (constraint track_width (min 0.2mm)))
+(rule "scoped_ADC_WEST_LOCAL"
+  (condition "A.insideArea('ADC_WEST_LOCAL') && (A.NetName == '3V3_ADC' || A.NetName == 'LDO_A_FILT' || A.NetName == 'GND')")
+  (constraint track_width (min 0.18mm)))
+(rule "scoped_ADC_ANALOG_ESCAPE_NORTH"
+  (condition "A.insideArea('ADC_ANALOG_ESCAPE_NORTH') && (A.NetName == 'ADC1P' || A.NetName == 'ADC1N' || A.NetName == 'ADC2P' || A.NetName == 'ADC2N' || A.NetName == 'ADC3P' || A.NetName == 'ADC3N' || A.NetName == 'ADC4P' || A.NetName == 'ADC4N')")
+  (constraint track_width (min 0.15mm)))
+(rule "scoped_ADC_ANALOG_ESCAPE_SOUTH"
+  (condition "A.insideArea('ADC_ANALOG_ESCAPE_SOUTH') && (A.NetName == 'ADC5P' || A.NetName == 'ADC5N' || A.NetName == 'ADC6P' || A.NetName == 'ADC6N' || A.NetName == 'ADC7P' || A.NetName == 'ADC7N' || A.NetName == 'ADC8P' || A.NetName == 'ADC8N')")
+  (constraint track_width (min 0.15mm)))
+(rule "scoped_CLK_WEST_DIGITAL"
+  (condition "A.insideArea('CLK_WEST_DIGITAL') && (A.NetName == 'MCH_MCLK' || A.NetName == 'FSYNC_BUF' || A.NetName == 'MCH_BCLK')")
+  (constraint track_width (min 0.18mm)))
+(rule "scoped_CLOCK_SUPPLY_LOCAL"
+  (condition "A.insideArea('CLOCK_SUPPLY_LOCAL') && (A.NetName == '3V3_ADC')")
+  (constraint track_width (min 0.35mm)))
+(rule "scoped_CLK_EAST_DIGITAL"
+  (condition "A.insideArea('CLK_EAST_DIGITAL') && (A.NetName == 'BCLK_BUF' || A.NetName == 'MCH_FSYNC' || A.NetName == 'MCLK_BUF' || A.NetName == '3V3_ADC')")
+  (constraint track_width (min 0.18mm)))
+(rule "scoped_ADC_BCLK_LAUNCH"
+  (condition "A.insideArea('ADC_BCLK_LAUNCH') && (A.NetName == 'ADC_BCLK')")
+  (constraint track_width (min 0.18mm)))
+(rule "scoped_ADC_MCLK_LAUNCH"
+  (condition "A.insideArea('ADC_MCLK_LAUNCH') && (A.NetName == 'ADC_MCLK')")
+  (constraint track_width (min 0.18mm)))
+(rule "scoped_TDM_SCHMITT_INPUT_LAUNCH"
+  (condition "A.insideArea('TDM_SCHMITT_INPUT_LAUNCH') && (A.NetName == 'TDM_RAW')")
+  (constraint track_width (min 0.18mm)))
+(rule "scoped_BUCK_SW_EXIT"
+  (condition "A.insideArea('BUCK_SW_EXIT') && (A.NetName == 'BUCK_SW')")
+  (constraint track_width (min 0.75mm)))
+(rule "scoped_BUCK_SW_BOOTSTRAP_RETURN"
+  (condition "A.insideArea('BUCK_SW_BOOTSTRAP_RETURN') && (A.NetName == 'BUCK_SW')")
+  (constraint track_width (min 0.2mm)))
+(rule "scoped_ADC_EAST_SUPPLY_LOCAL"
+  (condition "A.insideArea('ADC_EAST_SUPPLY_LOCAL') && (A.NetName == '3V3_ADC' || A.NetName == 'GND')")
+  (constraint track_width (min 0.18mm)))
+(rule "scoped_ADC_FILT_NORTH_LOCAL"
+  (condition "A.insideArea('ADC_FILT_NORTH_LOCAL') && (A.NetName == 'FILT1P' || A.NetName == 'GND')")
+  (constraint track_width (min 0.18mm)))
+(rule "scoped_ADC_FILT_SOUTH_LOCAL"
+  (condition "A.insideArea('ADC_FILT_SOUTH_LOCAL') && (A.NetName == 'FILT2P' || A.NetName == 'GND')")
+  (constraint track_width (min 0.18mm)))
+(rule "scoped_ADC_CS_STRAP_LOCAL"
+  (condition "A.insideArea('ADC_CS_STRAP_LOCAL') && (A.NetName == '3V3_ADC')")
+  (constraint track_width (min 0.18mm)))
+(rule "scoped_ADC_CFG_NORTH_LOCAL"
+  (condition "A.insideArea('ADC_CFG_NORTH_LOCAL') && (A.NetName == 'CFG1' || A.NetName == 'CFG2')")
+  (constraint track_width (min 0.18mm)))
+(rule "scoped_ADC_CFG_SOUTH_LOCAL"
+  (condition "A.insideArea('ADC_CFG_SOUTH_LOCAL') && (A.NetName == 'CFG4' || A.NetName == 'CFG5')")
+  (constraint track_width (min 0.18mm)))
+(rule "scoped_ADC_CFG3_GND_LOCAL"
+  (condition "A.insideArea('ADC_CFG3_GND_LOCAL') && (A.NetName == 'GND')")
+  (constraint track_width (min 0.18mm)))
+(rule "scoped_ISO1_SUPPLY_LOCAL"
+  (condition "A.insideArea('ISO1_SUPPLY_LOCAL') && (A.NetName == '5V_LDO_HOLD')")
+  (constraint track_width (min 0.3mm)))
+(rule "scoped_ISO2_SUPPLY_LOCAL"
+  (condition "A.insideArea('ISO2_SUPPLY_LOCAL') && (A.NetName == '5V_LDO_HOLD')")
+  (constraint track_width (min 0.3mm)))
+(rule "scoped_ISO3_SUPPLY_LOCAL"
+  (condition "A.insideArea('ISO3_SUPPLY_LOCAL') && (A.NetName == '5V_LDO_HOLD')")
+  (constraint track_width (min 0.3mm)))
+(rule "scoped_ISO4_SUPPLY_LOCAL"
+  (condition "A.insideArea('ISO4_SUPPLY_LOCAL') && (A.NetName == '5V_LDO_HOLD')")
+  (constraint track_width (min 0.3mm)))
+(rule "scoped_ISO4_GROUND_RETURN_LOCAL"
+  (condition "A.insideArea('ISO4_GROUND_RETURN_LOCAL') && (A.NetName == 'GND')")
+  (constraint track_width (min 0.25mm)))
+(rule "scoped_ISO5_SUPPLY_LOCAL"
+  (condition "A.insideArea('ISO5_SUPPLY_LOCAL') && (A.NetName == '5V_LDO_HOLD')")
+  (constraint track_width (min 0.3mm)))
+(rule "scoped_ISO6_SUPPLY_LOCAL"
+  (condition "A.insideArea('ISO6_SUPPLY_LOCAL') && (A.NetName == '5V_LDO_HOLD')")
+  (constraint track_width (min 0.3mm)))
+(rule "scoped_ISO7_SUPPLY_LOCAL"
+  (condition "A.insideArea('ISO7_SUPPLY_LOCAL') && (A.NetName == '5V_LDO_HOLD')")
+  (constraint track_width (min 0.3mm)))
+(rule "scoped_ISO8_SUPPLY_LOCAL"
+  (condition "A.insideArea('ISO8_SUPPLY_LOCAL') && (A.NetName == '5V_LDO_HOLD')")
+  (constraint track_width (min 0.3mm)))
+(rule "scoped_POWER_MONITOR_SUPPLY_LOCAL"
+  (condition "A.insideArea('POWER_MONITOR_SUPPLY_LOCAL') && (A.NetName == '5V_LDO_HOLD')")
+  (constraint track_width (min 0.3mm)))
+(rule "scoped_AUDIO_MONITOR_SUPPLY_LOCAL"
+  (condition "A.insideArea('AUDIO_MONITOR_SUPPLY_LOCAL') && (A.NetName == '5V_LDO_HOLD')")
+  (constraint track_width (min 0.3mm)))
+(rule "scoped_AUDIO_MONITOR_CONTROL_LOCAL"
+  (condition "A.insideArea('AUDIO_MONITOR_CONTROL_LOCAL') && (A.NetName == 'AUDIO_CT' || A.NetName == 'AUDIO_EN')")
+  (constraint track_width (min 0.15mm)))
+(rule "scoped_DUMP_LOGIC_SUPPLY_LOCAL"
+  (condition "A.insideArea('DUMP_LOGIC_SUPPLY_LOCAL') && (A.NetName == '5V_LDO_HOLD')")
+  (constraint track_width (min 0.6mm)))
+(rule "scoped_RESET_B_STRAP_LOCAL"
+  (condition "A.insideArea('RESET_B_STRAP_LOCAL') && (A.NetName == '3V3_ADC')")
+  (constraint track_width (min 0.35mm)))
+(rule "scoped_RESET_SUPPLY_LOCAL"
+  (condition "A.insideArea('RESET_SUPPLY_LOCAL') && (A.NetName == '3V3_ADC')")
+  (constraint track_width (min 0.6mm)))
+(rule "scoped_ADC_FEED_NORTH"
+  (condition "A.insideArea('ADC_FEED_NORTH') && (A.NetName == '3V3_ADC')")
+  (constraint track_width (min 0.18mm)))
+(rule "scoped_ADC_FEED_SOUTH"
+  (condition "A.insideArea('ADC_FEED_SOUTH') && (A.NetName == '3V3_ADC')")
+  (constraint track_width (min 0.18mm)))
+(rule "scoped_ADC_FEED_NORTH_TRUNK_ESCAPE"
+  (condition "A.insideArea('ADC_FEED_NORTH_TRUNK_ESCAPE') && (A.NetName == '3V3_ADC')")
+  (constraint track_width (min 0.6mm)))
+(rule "scoped_ADC_FEED_SOUTH_TRUNK_ESCAPE"
+  (condition "A.insideArea('ADC_FEED_SOUTH_TRUNK_ESCAPE') && (A.NetName == '3V3_ADC')")
+  (constraint track_width (min 0.6mm)))
+(rule "scoped_VMID1_TOP_TRUNK_ESCAPE"
+  (condition "A.insideArea('VMID1_TOP_TRUNK_ESCAPE') && (A.NetName == '3V3_ADC')")
+  (constraint track_width (min 0.6mm)))
+(rule "scoped_BUCK_MONITOR_SENSE_TRUNK_ESCAPE"
+  (condition "A.insideArea('BUCK_MONITOR_SENSE_TRUNK_ESCAPE') && (A.NetName == '5V_BUCK')")
+  (constraint track_width (min 0.3mm)))
+(rule "scoped_POWER_MONITOR_PULLUP_TRUNK_ESCAPE"
+  (condition "A.insideArea('POWER_MONITOR_PULLUP_TRUNK_ESCAPE') && (A.NetName == '5V_LDO_HOLD')")
+  (constraint track_width (min 0.6mm)))
+(rule "scoped_POWER_MONITOR_SUPPLY_TRUNK_ESCAPE"
+  (condition "A.insideArea('POWER_MONITOR_SUPPLY_TRUNK_ESCAPE') && (A.NetName == '5V_LDO_HOLD')")
+  (constraint track_width (min 0.3mm)))
+(rule "scoped_AUDIO_MONITOR_SUPPLY_TRUNK_ESCAPE"
+  (condition "A.insideArea('AUDIO_MONITOR_SUPPLY_TRUNK_ESCAPE') && (A.NetName == '5V_LDO_HOLD')")
+  (constraint track_width (min 0.3mm)))
+(rule "scoped_PRECHARGE_TRUNK_ESCAPE"
+  (condition "A.insideArea('PRECHARGE_TRUNK_ESCAPE') && (A.NetName == '5V_LDO_HOLD')")
+  (constraint track_width (min 0.6mm)))
+(rule "scoped_RESET_PULLUP_SUPPLY_ESCAPE"
+  (condition "A.insideArea('RESET_PULLUP_SUPPLY_ESCAPE') && (A.NetName == '3V3_ADC')")
+  (constraint track_width (min 0.6mm)))
+(rule "scoped_RESET_TIMING_SUPPLY_ESCAPE"
+  (condition "A.insideArea('RESET_TIMING_SUPPLY_ESCAPE') && (A.NetName == '3V3_ADC')")
+  (constraint track_width (min 0.3mm)))
+(rule "scoped_clr_ADC_WEST_LOCAL"
+  (condition "A.insideArea('ADC_WEST_LOCAL') && B.insideArea('ADC_WEST_LOCAL') && (A.NetName == '3V3_ADC' || B.NetName == '3V3_ADC' || A.NetName == 'LDO_A_FILT' || B.NetName == 'LDO_A_FILT' || A.NetName == 'GND' || B.NetName == 'GND')")
+  (constraint clearance (min 0.2mm)))
+(rule "scoped_clr_CLK_WEST_DIGITAL"
+  (condition "A.insideArea('CLK_WEST_DIGITAL') && B.insideArea('CLK_WEST_DIGITAL') && (A.NetName == 'MCH_MCLK' || B.NetName == 'MCH_MCLK' || A.NetName == 'FSYNC_BUF' || B.NetName == 'FSYNC_BUF' || A.NetName == 'MCH_BCLK' || B.NetName == 'MCH_BCLK')")
+  (constraint clearance (min 0.2mm)))
+(rule "scoped_clr_CLK_EAST_DIGITAL"
+  (condition "A.insideArea('CLK_EAST_DIGITAL') && B.insideArea('CLK_EAST_DIGITAL') && (A.NetName == 'BCLK_BUF' || B.NetName == 'BCLK_BUF' || A.NetName == 'MCH_FSYNC' || B.NetName == 'MCH_FSYNC' || A.NetName == 'MCLK_BUF' || B.NetName == 'MCLK_BUF' || A.NetName == '3V3_ADC' || B.NetName == '3V3_ADC')")
+  (constraint clearance (min 0.2mm)))
+(rule "scoped_clr_ADC_BCLK_LAUNCH"
+  (condition "A.insideArea('ADC_BCLK_LAUNCH') && B.insideArea('ADC_BCLK_LAUNCH') && (A.NetName == 'ADC_BCLK' || B.NetName == 'ADC_BCLK')")
+  (constraint clearance (min 0.2mm)))
+(rule "scoped_clr_ADC_MCLK_LAUNCH"
+  (condition "A.insideArea('ADC_MCLK_LAUNCH') && B.insideArea('ADC_MCLK_LAUNCH') && (A.NetName == 'ADC_MCLK' || B.NetName == 'ADC_MCLK')")
+  (constraint clearance (min 0.2mm)))
+(rule "scoped_clr_ADC_FSYNC_CORNER"
+  (condition "A.insideArea('ADC_FSYNC_CORNER') && B.insideArea('ADC_FSYNC_CORNER') && (A.NetName == 'ADC_FSYNC' || B.NetName == 'ADC_FSYNC' || A.NetName == 'ADC8N' || B.NetName == 'ADC8N' || A.NetName == 'ADC8P' || B.NetName == 'ADC8P')")
+  (constraint clearance (min 0.2mm)))
+(rule "scoped_clr_ADC_DOUT1_CORNER"
+  (condition "A.insideArea('ADC_DOUT1_CORNER') && B.insideArea('ADC_DOUT1_CORNER') && (A.NetName == 'TDM_RAW' || B.NetName == 'TDM_RAW')")
+  (constraint clearance (min 0.2mm)))
+(rule "scoped_clr_ADC_EAST_SUPPLY_PITCH"
+  (condition "A.insideArea('ADC_EAST_SUPPLY_PITCH') && B.insideArea('ADC_EAST_SUPPLY_PITCH') && (A.NetName == '3V3_ADC' || B.NetName == '3V3_ADC' || A.NetName == 'LDO_D_FILT' || B.NetName == 'LDO_D_FILT' || A.NetName == 'GND' || B.NetName == 'GND')")
+  (constraint clearance (min 0.2mm)))
+(rule "scoped_clr_ADC_FILT_NORTH_PITCH"
+  (condition "A.insideArea('ADC_FILT_NORTH_PITCH') && B.insideArea('ADC_FILT_NORTH_PITCH') && (A.NetName == 'FILT1P' || B.NetName == 'FILT1P' || A.NetName == 'GND' || B.NetName == 'GND')")
+  (constraint clearance (min 0.2mm)))
+(rule "scoped_clr_ADC_FILT_SOUTH_PITCH"
+  (condition "A.insideArea('ADC_FILT_SOUTH_PITCH') && B.insideArea('ADC_FILT_SOUTH_PITCH') && (A.NetName == 'FILT2P' || B.NetName == 'FILT2P' || A.NetName == 'GND' || B.NetName == 'GND')")
+  (constraint clearance (min 0.2mm)))
+(rule "scoped_clr_ADC_VMID_NORTH_PITCH"
+  (condition "A.insideArea('ADC_VMID_NORTH_PITCH') && B.insideArea('ADC_VMID_NORTH_PITCH') && (A.NetName == 'VMID1' || B.NetName == 'VMID1')")
+  (constraint clearance (min 0.2mm)))
+(rule "scoped_clr_ADC_VMID_SOUTH_PITCH"
+  (condition "A.insideArea('ADC_VMID_SOUTH_PITCH') && B.insideArea('ADC_VMID_SOUTH_PITCH') && (A.NetName == 'VMID2' || B.NetName == 'VMID2')")
+  (constraint clearance (min 0.2mm)))
+(rule "scoped_clr_ADC_CS_STRAP_PITCH"
+  (condition "A.insideArea('ADC_CS_STRAP_PITCH') && B.insideArea('ADC_CS_STRAP_PITCH') && (A.NetName == '3V3_ADC' || B.NetName == '3V3_ADC')")
+  (constraint clearance (min 0.2mm)))
+(rule "scoped_clr_ADC_CFG_NORTH_PITCH"
+  (condition "A.insideArea('ADC_CFG_NORTH_PITCH') && B.insideArea('ADC_CFG_NORTH_PITCH') && (A.NetName == 'CFG1' || B.NetName == 'CFG1' || A.NetName == 'CFG2' || B.NetName == 'CFG2')")
+  (constraint clearance (min 0.2mm)))
+(rule "scoped_clr_ADC_CFG_SOUTH_PITCH"
+  (condition "A.insideArea('ADC_CFG_SOUTH_PITCH') && B.insideArea('ADC_CFG_SOUTH_PITCH') && (A.NetName == 'CFG4' || B.NetName == 'CFG4' || A.NetName == 'CFG5' || B.NetName == 'CFG5')")
+  (constraint clearance (min 0.2mm)))
+(rule "scoped_clr_ADC_RESET_PITCH"
+  (condition "A.insideArea('ADC_RESET_PITCH') && B.insideArea('ADC_RESET_PITCH') && (A.NetName == 'ADC_RESET_N' || B.NetName == 'ADC_RESET_N')")
+  (constraint clearance (min 0.2mm)))
+(rule "scoped_clr_ADC_FEED_CAP_GAP_NORTH"
+  (condition "A.insideArea('ADC_FEED_CAP_GAP_NORTH') && B.insideArea('ADC_FEED_CAP_GAP_NORTH') && (A.NetName == '3V3_ADC' || B.NetName == '3V3_ADC')")
+  (constraint clearance (min 0.23mm)))
+(rule "scoped_clr_ADC_FEED_CAP_GAP_SOUTH"
+  (condition "A.insideArea('ADC_FEED_CAP_GAP_SOUTH') && B.insideArea('ADC_FEED_CAP_GAP_SOUTH') && (A.NetName == '3V3_ADC' || B.NetName == '3V3_ADC')")
+  (constraint clearance (min 0.23mm)))
+(rule "scoped_clr_ISO1_SUPPLY_LOCAL"
+  (condition "A.insideArea('ISO1_SUPPLY_LOCAL') && B.insideArea('ISO1_SUPPLY_LOCAL') && (A.NetName == '5V_LDO_HOLD' || B.NetName == '5V_LDO_HOLD' || A.NetName == 'AUDIO_EN' || B.NetName == 'AUDIO_EN')")
+  (constraint clearance (min 0.2mm)))
+(rule "scoped_clr_ISO2_SUPPLY_LOCAL"
+  (condition "A.insideArea('ISO2_SUPPLY_LOCAL') && B.insideArea('ISO2_SUPPLY_LOCAL') && (A.NetName == '5V_LDO_HOLD' || B.NetName == '5V_LDO_HOLD' || A.NetName == 'AUDIO_EN' || B.NetName == 'AUDIO_EN')")
+  (constraint clearance (min 0.2mm)))
+(rule "scoped_clr_ISO3_SUPPLY_LOCAL"
+  (condition "A.insideArea('ISO3_SUPPLY_LOCAL') && B.insideArea('ISO3_SUPPLY_LOCAL') && (A.NetName == '5V_LDO_HOLD' || B.NetName == '5V_LDO_HOLD' || A.NetName == 'AUDIO_EN' || B.NetName == 'AUDIO_EN')")
+  (constraint clearance (min 0.2mm)))
+(rule "scoped_clr_ISO4_SUPPLY_LOCAL"
+  (condition "A.insideArea('ISO4_SUPPLY_LOCAL') && B.insideArea('ISO4_SUPPLY_LOCAL') && (A.NetName == '5V_LDO_HOLD' || B.NetName == '5V_LDO_HOLD' || A.NetName == 'AUDIO_EN' || B.NetName == 'AUDIO_EN')")
+  (constraint clearance (min 0.2mm)))
+(rule "scoped_clr_ISO5_SUPPLY_LOCAL"
+  (condition "A.insideArea('ISO5_SUPPLY_LOCAL') && B.insideArea('ISO5_SUPPLY_LOCAL') && (A.NetName == '5V_LDO_HOLD' || B.NetName == '5V_LDO_HOLD' || A.NetName == 'AUDIO_EN' || B.NetName == 'AUDIO_EN')")
+  (constraint clearance (min 0.2mm)))
+(rule "scoped_clr_ISO6_SUPPLY_LOCAL"
+  (condition "A.insideArea('ISO6_SUPPLY_LOCAL') && B.insideArea('ISO6_SUPPLY_LOCAL') && (A.NetName == '5V_LDO_HOLD' || B.NetName == '5V_LDO_HOLD' || A.NetName == 'AUDIO_EN' || B.NetName == 'AUDIO_EN')")
+  (constraint clearance (min 0.2mm)))
+(rule "scoped_clr_ISO7_SUPPLY_LOCAL"
+  (condition "A.insideArea('ISO7_SUPPLY_LOCAL') && B.insideArea('ISO7_SUPPLY_LOCAL') && (A.NetName == '5V_LDO_HOLD' || B.NetName == '5V_LDO_HOLD' || A.NetName == 'AUDIO_EN' || B.NetName == 'AUDIO_EN')")
+  (constraint clearance (min 0.2mm)))
+(rule "scoped_clr_ISO8_SUPPLY_LOCAL"
+  (condition "A.insideArea('ISO8_SUPPLY_LOCAL') && B.insideArea('ISO8_SUPPLY_LOCAL') && (A.NetName == '5V_LDO_HOLD' || B.NetName == '5V_LDO_HOLD' || A.NetName == 'AUDIO_EN' || B.NetName == 'AUDIO_EN')")
+  (constraint clearance (min 0.2mm)))
+(rule "scoped_clr_AUDIO_MONITOR_CONTROL_LOCAL"
+  (condition "A.insideArea('AUDIO_MONITOR_CONTROL_LOCAL') && B.insideArea('AUDIO_MONITOR_CONTROL_LOCAL') && (A.NetName == 'AUDIO_CT' || B.NetName == 'AUDIO_CT' || A.NetName == 'AUDIO_EN' || B.NetName == 'AUDIO_EN')")
+  (constraint clearance (min 0.127mm))
+  (constraint hole_clearance (min 0.2mm)))
+(rule "scoped_clr_ADC_ANALOG_ESCAPE_NORTH"
+  (condition "A.insideArea('ADC_ANALOG_ESCAPE_NORTH') && B.insideArea('ADC_ANALOG_ESCAPE_NORTH') && (A.NetName == 'ADC1P' || B.NetName == 'ADC1P' || A.NetName == 'ADC1N' || B.NetName == 'ADC1N' || A.NetName == 'ADC2P' || B.NetName == 'ADC2P' || A.NetName == 'ADC2N' || B.NetName == 'ADC2N' || A.NetName == 'ADC3P' || B.NetName == 'ADC3P' || A.NetName == 'ADC3N' || B.NetName == 'ADC3N' || A.NetName == 'ADC4P' || B.NetName == 'ADC4P' || A.NetName == 'ADC4N' || B.NetName == 'ADC4N')")
+  (constraint clearance (min 0.127mm))
+  (constraint hole_clearance (min 0.2mm)))
+(rule "scoped_clr_ADC_ANALOG_ESCAPE_SOUTH"
+  (condition "A.insideArea('ADC_ANALOG_ESCAPE_SOUTH') && B.insideArea('ADC_ANALOG_ESCAPE_SOUTH') && (A.NetName == 'ADC5P' || B.NetName == 'ADC5P' || A.NetName == 'ADC5N' || B.NetName == 'ADC5N' || A.NetName == 'ADC6P' || B.NetName == 'ADC6P' || A.NetName == 'ADC6N' || B.NetName == 'ADC6N' || A.NetName == 'ADC7P' || B.NetName == 'ADC7P' || A.NetName == 'ADC7N' || B.NetName == 'ADC7N' || A.NetName == 'ADC8P' || B.NetName == 'ADC8P' || A.NetName == 'ADC8N' || B.NetName == 'ADC8N')")
+  (constraint clearance (min 0.127mm))
+  (constraint hole_clearance (min 0.2mm)))
+(rule "scoped_clr_PKG_PAD_ESD1_2_3"
+  (condition "A.Type == 'Pad' && B.Type == 'Pad' && A.insideArea('PKG_PAD_ESD1_2_3') && B.insideArea('PKG_PAD_ESD1_2_3') && (((A.NetName == 'unconnected-(U_ESD1-NC2-Pad2)') && (B.NetName == 'AUDIO_P1')) || ((A.NetName == 'AUDIO_P1') && (B.NetName == 'unconnected-(U_ESD1-NC2-Pad2)')))")
+  (constraint clearance (min 0.15mm)))
+(rule "scoped_clr_PKG_PAD_ESD2_2_3"
+  (condition "A.Type == 'Pad' && B.Type == 'Pad' && A.insideArea('PKG_PAD_ESD2_2_3') && B.insideArea('PKG_PAD_ESD2_2_3') && (((A.NetName == 'unconnected-(U_ESD2-NC2-Pad2)') && (B.NetName == 'AUDIO_P2')) || ((A.NetName == 'AUDIO_P2') && (B.NetName == 'unconnected-(U_ESD2-NC2-Pad2)')))")
+  (constraint clearance (min 0.15mm)))
+(rule "scoped_clr_PKG_PAD_ESD3_2_3"
+  (condition "A.Type == 'Pad' && B.Type == 'Pad' && A.insideArea('PKG_PAD_ESD3_2_3') && B.insideArea('PKG_PAD_ESD3_2_3') && (((A.NetName == 'unconnected-(U_ESD3-NC2-Pad2)') && (B.NetName == 'AUDIO_P3')) || ((A.NetName == 'AUDIO_P3') && (B.NetName == 'unconnected-(U_ESD3-NC2-Pad2)')))")
+  (constraint clearance (min 0.15mm)))
+(rule "scoped_clr_PKG_PAD_ESD4_2_3"
+  (condition "A.Type == 'Pad' && B.Type == 'Pad' && A.insideArea('PKG_PAD_ESD4_2_3') && B.insideArea('PKG_PAD_ESD4_2_3') && (((A.NetName == 'unconnected-(U_ESD4-NC2-Pad2)') && (B.NetName == 'AUDIO_P4')) || ((A.NetName == 'AUDIO_P4') && (B.NetName == 'unconnected-(U_ESD4-NC2-Pad2)')))")
+  (constraint clearance (min 0.15mm)))
+(rule "scoped_clr_PKG_PAD_ESD5_2_3"
+  (condition "A.Type == 'Pad' && B.Type == 'Pad' && A.insideArea('PKG_PAD_ESD5_2_3') && B.insideArea('PKG_PAD_ESD5_2_3') && (((A.NetName == 'unconnected-(U_ESD5-NC2-Pad2)') && (B.NetName == 'AUDIO_P5')) || ((A.NetName == 'AUDIO_P5') && (B.NetName == 'unconnected-(U_ESD5-NC2-Pad2)')))")
+  (constraint clearance (min 0.15mm)))
+(rule "scoped_clr_PKG_PAD_ESD6_2_3"
+  (condition "A.Type == 'Pad' && B.Type == 'Pad' && A.insideArea('PKG_PAD_ESD6_2_3') && B.insideArea('PKG_PAD_ESD6_2_3') && (((A.NetName == 'unconnected-(U_ESD6-NC2-Pad2)') && (B.NetName == 'AUDIO_P6')) || ((A.NetName == 'AUDIO_P6') && (B.NetName == 'unconnected-(U_ESD6-NC2-Pad2)')))")
+  (constraint clearance (min 0.15mm)))
+(rule "scoped_clr_PKG_PAD_ESD7_2_3"
+  (condition "A.Type == 'Pad' && B.Type == 'Pad' && A.insideArea('PKG_PAD_ESD7_2_3') && B.insideArea('PKG_PAD_ESD7_2_3') && (((A.NetName == 'unconnected-(U_ESD7-NC2-Pad2)') && (B.NetName == 'AUDIO_P7')) || ((A.NetName == 'AUDIO_P7') && (B.NetName == 'unconnected-(U_ESD7-NC2-Pad2)')))")
+  (constraint clearance (min 0.15mm)))
+(rule "scoped_clr_PKG_PAD_ESD8_2_3"
+  (condition "A.Type == 'Pad' && B.Type == 'Pad' && A.insideArea('PKG_PAD_ESD8_2_3') && B.insideArea('PKG_PAD_ESD8_2_3') && (((A.NetName == 'unconnected-(U_ESD8-NC2-Pad2)') && (B.NetName == 'AUDIO_P8')) || ((A.NetName == 'AUDIO_P8') && (B.NetName == 'unconnected-(U_ESD8-NC2-Pad2)')))")
+  (constraint clearance (min 0.15mm)))
+(rule "scoped_clr_PKG_PAD_CLK_1_2"
+  (condition "A.Type == 'Pad' && B.Type == 'Pad' && A.insideArea('PKG_PAD_CLK_1_2') && B.insideArea('PKG_PAD_CLK_1_2') && (((A.NetName == 'MCH_MCLK') && (B.NetName == 'FSYNC_BUF')) || ((A.NetName == 'FSYNC_BUF') && (B.NetName == 'MCH_MCLK')))")
+  (constraint clearance (min 0.15mm)))
+(rule "scoped_clr_PKG_PAD_CLK_2_3"
+  (condition "A.Type == 'Pad' && B.Type == 'Pad' && A.insideArea('PKG_PAD_CLK_2_3') && B.insideArea('PKG_PAD_CLK_2_3') && (((A.NetName == 'FSYNC_BUF') && (B.NetName == 'MCH_BCLK')) || ((A.NetName == 'MCH_BCLK') && (B.NetName == 'FSYNC_BUF')))")
+  (constraint clearance (min 0.15mm)))
+(rule "scoped_clr_PKG_PAD_CLK_3_4"
+  (condition "A.Type == 'Pad' && B.Type == 'Pad' && A.insideArea('PKG_PAD_CLK_3_4') && B.insideArea('PKG_PAD_CLK_3_4') && (((A.NetName == 'MCH_BCLK') && (B.NetName == 'GND')) || ((A.NetName == 'GND') && (B.NetName == 'MCH_BCLK')))")
+  (constraint clearance (min 0.15mm)))
+(rule "scoped_clr_PKG_PAD_CLK_5_6"
+  (condition "A.Type == 'Pad' && B.Type == 'Pad' && A.insideArea('PKG_PAD_CLK_5_6') && B.insideArea('PKG_PAD_CLK_5_6') && (((A.NetName == 'BCLK_BUF') && (B.NetName == 'MCH_FSYNC')) || ((A.NetName == 'MCH_FSYNC') && (B.NetName == 'BCLK_BUF')))")
+  (constraint clearance (min 0.15mm)))
+(rule "scoped_clr_PKG_PAD_CLK_6_7"
+  (condition "A.Type == 'Pad' && B.Type == 'Pad' && A.insideArea('PKG_PAD_CLK_6_7') && B.insideArea('PKG_PAD_CLK_6_7') && (((A.NetName == 'MCH_FSYNC') && (B.NetName == 'MCLK_BUF')) || ((A.NetName == 'MCLK_BUF') && (B.NetName == 'MCH_FSYNC')))")
+  (constraint clearance (min 0.15mm)))
+(rule "scoped_clr_PKG_PAD_CLK_7_8"
+  (condition "A.Type == 'Pad' && B.Type == 'Pad' && A.insideArea('PKG_PAD_CLK_7_8') && B.insideArea('PKG_PAD_CLK_7_8') && (((A.NetName == 'MCLK_BUF') && (B.NetName == '3V3_ADC')) || ((A.NetName == '3V3_ADC') && (B.NetName == 'MCLK_BUF')))")
+  (constraint clearance (min 0.15mm)))
+(rule "scoped_clr_PKG_PAD_QIN_3_4"
+  (condition "A.Type == 'Pad' && B.Type == 'Pad' && A.insideArea('PKG_PAD_QIN_3_4') && B.insideArea('PKG_PAD_QIN_3_4') && (((A.NetName == '12V_PROTECTED') && (B.NetName == 'Q_IN_GATE')) || ((A.NetName == 'Q_IN_GATE') && (B.NetName == '12V_PROTECTED')))")
+  (constraint clearance (min 0.23mm)))

@@ -1,0 +1,32 @@
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+08:36:59: Debug: Adding duplicate image handler for 'PNG file'
+08:36:59: Debug: Adding duplicate image handler for 'JPEG file'
+08:36:59: Debug: Adding duplicate image handler for 'TIFF file'
+08:36:59: Debug: Adding duplicate image handler for 'GIF file'
+08:36:59: Debug: Adding duplicate image handler for 'PNM file'
+08:36:59: Debug: Adding duplicate image handler for 'PCX file'
+08:36:59: Debug: Adding duplicate image handler for 'IFF file'
+08:36:59: Debug: Adding duplicate image handler for 'Windows icon file'
+08:36:59: Debug: Adding duplicate image handler for 'Windows cursor file'
+08:36:59: Debug: Adding duplicate image handler for 'Windows animated cursor file'
+08:36:59: Debug: Adding duplicate image handler for 'TGA file'
+08:36:59: Debug: Adding duplicate image handler for 'XPM file'
+08:36:59: Debug: Adding duplicate image handler for 'PNG file'
+08:36:59: Debug: Adding duplicate image handler for 'JPEG file'
+08:36:59: Debug: Adding duplicate image handler for 'TIFF file'
+08:36:59: Debug: Adding duplicate image handler for 'GIF file'
+08:36:59: Debug: Adding duplicate image handler for 'PNM file'
+08:36:59: Debug: Adding duplicate image handler for 'PCX file'
+08:36:59: Debug: Adding duplicate image handler for 'IFF file'
+08:36:59: Debug: Adding duplicate image handler for 'Windows icon file'
+08:36:59: Debug: Adding duplicate image handler for 'Windows cursor file'
+08:36:59: Debug: Adding duplicate image handler for 'Windows animated cursor file'
+08:36:59: Debug: Adding duplicate image handler for 'TGA file'
+08:36:59: Debug: Adding duplicate image handler for 'XPM file'
+PLACEMENT-ROUTABILITY ACCEPTED: 7/7 checks passing or N-A; receipt=/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-mic-pod-v3/07_releases/v0.2.0-2026-09-15/verification/placement_routability_final.json
+
+P-PADSEP coverage: 109 copper pad(s) on 44 footprint(s); 5654 inter-footprint pad pair(s) across 946 footprint pair(s); 8642 paste-to-foreign-copper pair(s)
+P-PADSEP floor: 0.127 mm (fab tier jlc_2layer_default)
+P-PADSEP PASS: different-footprint lands are positively separated and paste does not intrude on foreign copper

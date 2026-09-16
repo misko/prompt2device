@@ -1,0 +1,131 @@
+schema: 1
+service: JLCPCB_PCBA
+sides: [top]
+fiducials: {global_top: 3, local_required_for_0_4mm_QFN: true}
+build_quantity: 5
+public_stock_surplus: 150
+
+# ADR0016: design requirement from public JLC capability, not an order receipt.
+# Per-via KiCad flags alone cannot communicate a selective Gerber process.
+via_process:
+  protected_geometry: {via_diameter_mm: 0.60, drill_mm: 0.30}
+  fabricator_selector:
+    kind: drill_family
+    protected_drill_mm: 0.30
+    ordinary_drill_mm: [0.20]
+  order_remark: >-
+    Epoxy fill and copper cap every 0.30 mm drill via (0.60 mm copper diameter):
+    the 3x3 field under U_ADC exposed pad 49, both vias under U_LDO exposed pad
+    15, and the trapped GND return in C_ADC_CM6P pad 2. Keep every 0.20 mm drill
+    via ordinary, unfilled and uncapped. Confirm the selected process and drill
+    families in production files before manufacture; do not plug component lead
+    holes.
+  uploader_confirmation_required: true
+
+# This is a design candidate, not an allocation record. Parts without a
+# verified JLC/LCSC code remain sourcing-blocked; no placeholder code is used.
+not_assembled:
+  - refs: [J1, J2, J3, J4, J5, J6, J7, J8, J9, J10, J11]
+    reason: user_supplied
+    on_bom: false
+    twin_body: {source: board}
+    evidence: >-
+      2026-09-01 design state: exact THT connector identities are frozen but
+      JLC through-hole allocation and cable-side process are not yet evidenced.
+    disposition: "fit and inspect manually on first article; never delete rows from a generated release by hand"
+  - refs: [C_FILT1_470U, C_FILT2_470U, C_HOLD1, C_HOLD2]
+    reason: not_in_catalog
+    on_bom: false
+    twin_body: {source: board}
+    evidence: >-
+      Active Panasonic EEEFK1A471P is the governed standard-terminal
+      non-eval substitution on its exact project-local size-F land. It has no
+      verified exact-MPN JLC allocation; the authored helper emits an empty
+      supplier list rather than permitting a value-only resolver substitution.
+    disposition: "fit exact EEEFK1A471P manually; inspect pad 1 positive on FILTxP or the declared raw/held5V rail, size-F seating, case clearance and solder fillets before first power"
+  - refs: [F_IN]
+    reason: user_supplied
+    on_bom: false
+    twin_body: {source: board}
+    evidence: >-
+      2026-09-08 manufacturer GD 02/13/25 p5 positively identifies
+      2920L260/33DR, 1500/reel. Public C22870534 is a catalog candidate only,
+      not JLC allocation or process approval. Retain the manual/consign
+      disposition and empty authored supplier list; no catalog-absence claim
+      is made for the corrected DR part.
+    disposition: "consign or manually fit exact 2920L260/33DR; retain first-article protection and hot loaded inspection holds"
+  - refs: [U_ADC]
+    reason: not_in_catalog
+    on_bom: false
+    twin_body: {source: board}
+    evidence: >-
+      Exact-MPN JLC component-library queries on 2026-09-01 returned no exact
+      CS5308P-DN allocation. The authored Chip helper emits an empty supplier
+      list for this ref rather than selecting by value or package.
+    disposition: "consign or manually fit the exact MPNs; retain first-article exposed-pad and protection inspection holds"
+  - refs: [C_A1P, C_A1N, C_A2P, C_A2N, C_A3P, C_A3N, C_A4P, C_A4N, C_A5P, C_A5N, C_A6P, C_A6N, C_A7P, C_A7N, C_A8P, C_A8N]
+    reason: user_supplied
+    on_bom: false
+    twin_body: {source: board}
+    evidence: >-
+      Exact R82DC4100DQ60J/C183545 stable-dielectric input capacitors are
+      selected, but no JLC THT process/allocation response has accepted these
+      sixteen radial parts. Catalog availability is not assembly evidence.
+    disposition: "manually fit exact KEMET R82DC4100DQ60J after inspecting 5.00 mm pitch, body clearance, lead form, and solder joints"
+consigned: []
+exempt_prefixes: [FID, H, MH, TP]
+
+through_hole:
+  process: "manual first-article soldering only; production process OWED"
+  refs: [J1, J2, J3, J4, J5, J6, J7, J8, J9, J10, J11, C_A1P, C_A1N, C_A2P, C_A2N, C_A3P, C_A3N, C_A4P, C_A4N, C_A5P, C_A5N, C_A6P, C_A6N, C_A7P, C_A7N, C_A8P, C_A8N]
+  evidence: >-
+    Wurth615008160221 RJ45 jacks, Molex43650-0200 power header, both MCH J1/J3 headers, and the sixteen KEMET R82
+    coupling capacitors are paste-free THT; no JLC wave/manual allocation
+    response has been received.
+
+assembly_scope:
+  smt: "candidate JLC turnkey/consign mix; F_IN, U_ADC, C_FILT1_470U and C_FILT2_470U are explicit consign/manual-fit parts"
+  tht: "manual first article: eleven connectors plus sixteen exact KEMET R82 film capacitors"
+  bottom_population: "none; all fitted SMD, including manual and consigned parts, must be on top"
+  connectors: "all populated manually before electrical qualification"
+
+sourcing_plan:
+  - lcsc: C7452883
+    measured_stock: 1965
+    measured_on: 2026-09-16
+    evidence_kind: authorized_inventory_aggregator
+    evidence_provider: ECIA_TrustedParts
+    evidence_url: https://www.trustedparts.com/en/manufacturers/analog/LT3041
+    function: low-noise analog regulator
+    part: LT3041ADE#TRPBF
+    refs: [U_LDO]
+    plan: >-
+      Exact authorized-channel public stock clears 5 + 150 units. Retain the
+      exact part and footprint. Obtain authenticated JLC allocation or procure
+      and consign exact packaged parts before ordering; do not substitute.
+  - lcsc: C53283916
+    measured_stock: 2449
+    measured_on: 2026-09-16
+    evidence_kind: distributor_product_page
+    evidence_provider: DigiKey
+    evidence_url: https://www.digikey.com/en/products/detail/texas-instruments/TMUX2821DSGR/28738833
+    function: eight-channel analog isolation switches
+    part: TMUX2821DSGR
+    refs: [U_ISO1, U_ISO2, U_ISO3, U_ISO4, U_ISO5, U_ISO6, U_ISO7, U_ISO8]
+    plan: >-
+      Exact public distributor stock clears the 40 + 150 unit threshold.
+      Retain the exact MPN and obtain authenticated JLC allocation or procure
+      and consign exact packaged parts before ordering.
+order_time_requirements:
+  - verify all fitted SMD on top, including U_ESD1-U_ESD8 and F1-F8; qualify top stencil, paste, rotation, THT body/tail separation and rework access before PCBA
+  - qualify Wurth manual solder profile; no manufacturer iron-process approval is inferred
+  - verify all eight shell-to-chassis panel contacts and CHASSIS-to-GND isolation
+  - stop until every placed SMT line has an exact JLC code or approved consignment plan
+  - manually fit and polarity-inspect exact Panasonic EEEFK1A471P at C_FILT1_470U and C_FILT2_470U; do not substitute the nonexistent ZK identity or vibration-proof V-suffix land
+  - consign or manually fit exact 2920L260/33DR and CS5308P-DN; never approve package/value substitutes
+  - manually fit all sixteen exact R82DC4100DQ60J input capacitors and inspect body clearance, 5.00 mm pitch, lead form and solder fillets
+  - stop until CS5308P QFN-48 MSL/profile and exposed-pad paste are accepted
+  - stop until J1-J8 Wurth RJ45 and J9/J10/J11 hand-solder process is approved
+  - inspect D_IN, D_QIN_GS, Q_IN, U_ADC, U_TDM, U_RST1, U_RST2, Q_RST1 and all polarized bulk capacitors
+  - inspect exact LT3041 orientation, EP15 solder/fill/cap, OUTS12 Kelvin sense and SET return; no retired TPS pin numbering or reference-buffer cans
+  - keep DO-NOT-ORDER until first-article timing, noise, gain, crosstalk and fault tests pass

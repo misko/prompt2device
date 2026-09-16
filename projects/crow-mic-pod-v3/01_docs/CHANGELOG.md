@@ -114,3 +114,11 @@ Released: `v0.1.0-2026-09-03` — DESIGN PASS / SOURCING BLOCKED
 - Keep live uploader evidence and all physical qualification as explicit holds.
 
 Released: `v0.2.6-2026-09-16` — DESIGN PASS / FIRST-ARTICLE ORDER AUTHORIZED
+
+
+## v0.2.7 — 2026-09-16
+
+- Supersede the local v0.2.6 candidate after publication census found its hashed KiCad preference file was ignored by Git.
+- Retain the identical order-authorized fabrication and assembly payload while binding the final source-document commit and tracking every manifested archive member.
+
+Released: `v0.2.7-2026-09-16` — DESIGN PASS / FIRST-ARTICLE ORDER AUTHORIZED

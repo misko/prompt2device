@@ -1,0 +1,100 @@
+{
+  "checks": {
+    "connector_lane_order": {
+      "detail": "no connector lane rows declared",
+      "findings": [],
+      "rows": [],
+      "status": "N-A"
+    },
+    "critical_route_contract": {
+      "detail": "0 critical pair(s) contracted",
+      "notes": [
+        "no critical routes: All signals are ordinary audio or DC below 20 kHz and therefore have no controlled-impedance differential-pair timing contract. Connector-first clamp order, regulator bypass proximity and probe-stub limits are governed separately by the pod realized-route checker."
+      ],
+      "status": "PASS"
+    },
+    "endpoint_topology": {
+      "detail": "no topology rows declared",
+      "findings": [],
+      "rows": [],
+      "status": "N-A"
+    },
+    "layer_eligibility": {
+      "detail": "no executable layer roles declared",
+      "findings": [],
+      "status": "N-A"
+    },
+    "physical_placement": {
+      "detail": "0 failure(s), 0 warning(s)",
+      "report": {
+        "board": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-mic-pod-v3/04_kicad/crow_mic_pod_v3.kicad_pcb",
+        "coverage": {
+          "graded": 3,
+          "total": 3
+        },
+        "failures": [],
+        "notes": [
+          "P-OUT tightest pad-to-outline margin 2.26mm (J1.9) [min 0.15]",
+          "P-CAP worst cut x=54.5mm: demand 6 nets vs capacity 121 tracks (2 layers, pitch 0.45mm) \u2014 ratio 0.05 [fail > 0.5]",
+          "P-BODYCLR minimum reported courtyard gap >=0.100 mm (R1<->R9; search ceiling 0.100 mm)",
+          "P-BODYCLR denominator 32 assembled footprint envelopes; 0 close/overlapping pair(s), 0 envelope-to-foreign-pad finding(s)"
+        ],
+        "schema": 1,
+        "verdict": "PASS",
+        "warnings": []
+      },
+      "status": "PASS"
+    },
+    "route_ownership": {
+      "detail": "0 finding(s)",
+      "report": {
+        "coverage": {
+          "board_nets": 24,
+          "constrained_waves": [],
+          "declared_corridors": 0,
+          "declared_net_owners": 0
+        },
+        "findings": [],
+        "notes": [],
+        "schema": 1,
+        "verdict": "N-A"
+      },
+      "status": "N-A"
+    },
+    "series_power_paths": {
+      "detail": "no series power paths declared",
+      "findings": [],
+      "rows": [],
+      "status": "N-A"
+    }
+  },
+  "coverage": {
+    "passing": 7,
+    "total": 7
+  },
+  "inputs": {
+    "board": {
+      "path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-mic-pod-v3/04_kicad/crow_mic_pod_v3.kicad_pcb",
+      "sha256": "af9bb3c0dcf5e9be20239d725d10dd4d4c1bf95cc0b7518badc3e27bd6523938",
+      "size": 161497
+    },
+    "nets": {
+      "path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-mic-pod-v3/03_src/rules/nets.yaml",
+      "sha256": "e86252c55bba30e277530f90dd5ca212400c6d302396a07b1576804e4a31b982",
+      "size": 2277
+    },
+    "route": {
+      "path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-mic-pod-v3/03_src/route.yaml",
+      "sha256": "6f68de5dccc097c713fd4f0709048fbc07e07405cefb35b802629b57612c158e",
+      "size": 15270
+    }
+  },
+  "kind": "placement-routability-receipt-v1",
+  "schema": 1,
+  "subject": {
+    "path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-mic-pod-v3/04_kicad/crow_mic_pod_v3.kicad_pcb",
+    "sha256": "af9bb3c0dcf5e9be20239d725d10dd4d4c1bf95cc0b7518badc3e27bd6523938",
+    "size": 161497
+  },
+  "verdict": "ACCEPTED"
+}

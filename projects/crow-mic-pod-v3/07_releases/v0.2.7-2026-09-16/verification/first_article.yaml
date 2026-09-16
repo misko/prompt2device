@@ -1,0 +1,54 @@
+stages:
+  - name: fully-populated-first-power
+    installed:
+      - J1
+      - F1
+      - D1
+      - D2
+      - R14
+      - U1
+      - U2
+      - U3
+      - MK1
+      - C1
+      - C2
+      - C3
+      - C4
+      - C5
+      - C6
+      - C7
+      - C8
+      - C9
+      - C10
+      - C11
+      - R1
+      - R2
+      - R3
+      - R4
+      - R5
+      - R6
+      - R7
+      - R8
+      - R9
+      - R10
+      - R11
+      - R12
+      - R13
+    exposed_pads: [U2]
+
+rails:
+  - name: VIN_PROTECTED
+    resistance: {probe: J1.1_to_F1.2, min_ohm: 1.0, max_ohm: 20.0}
+    voltage: {probe: TP2_to_TP7, min_v: 9.0, max_v: 13.2}
+    no_load_current: {probe: bench_supply, min_a: 0, max_a: 0.020}
+    supply: {probe: J1.1_to_J1.2, min_v: 10.5, max_v: 13.2, max_current_limit_a: 0.03}
+  - name: 5V_QUIET
+    resistance: {probe: TP3_to_TP7, min_ohm: 20, max_ohm: 1000000}
+    voltage: {probe: TP3_to_TP7, min_v: 4.79, max_v: 5.23}
+    no_load_current: {probe: bench_supply, min_a: 0, max_a: 0.020}
+    supply: {probe: J1.1_to_J1.2, min_v: 10.5, max_v: 13.2, max_current_limit_a: 0.03}
+  - name: VREF
+    resistance: {probe: TP4_to_TP7, min_ohm: 1000, max_ohm: 1000000}
+    voltage: {probe: TP4_to_TP7, min_v: 2.35, max_v: 2.65}
+    no_load_current: {probe: bench_supply, min_a: 0, max_a: 0.020}
+    supply: {probe: J1.1_to_J1.2, min_v: 10.5, max_v: 13.2, max_current_limit_a: 0.03}

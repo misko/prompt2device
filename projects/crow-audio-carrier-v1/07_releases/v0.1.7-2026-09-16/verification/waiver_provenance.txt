@@ -1,0 +1,17 @@
+input: root = /home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects  (6 project dir(s))
+input: looked for 03_src/rules/policy_waivers.yaml, 03_src/<board>/rules/policy_waivers.yaml
+input:   read crow-audio-carrier-v1/03_src/rules/policy_waivers.yaml   [single-board layout]
+input: 5 project(s) carry waivers, 9 waiver(s) total; grading 1: crow-audio-carrier-v1
+input: evidence regeneration ON, cwd for commands = /home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901, per-command timeout 180s
+input: 3 entry(ies) declare `evidence:` (6 item(s)); 0 OWED
+  ok   W-COPY/crow-audio-carrier-v1: 3 waivers, all independently reasoned
+  CITED       crow-audio-carrier-v1 [R-POUR] evidence[0] 'the complete no-pour high-current-class population remains e': regenerated 21.0 vs typed 21.0 (delta 0 <= 1e-09)
+  CITED       crow-audio-carrier-v1 [R-POUR] evidence[1] 'atomic route acceptance retains zero failing checks': regenerated 0.0 vs typed 0.0 (delta 0 <= 1e-09)
+  CITED       crow-audio-carrier-v1 [R-POUR] evidence[2] 'all 54 declared current-transfer banks retain zero ampacity ': regenerated 0.0 vs typed 0.0 (delta 0 <= 1e-09)
+  CITED       crow-audio-carrier-v1 [R-THERM] evidence[0] 'Q_IN pad 5 remains on 12V_FUSED and that net has zero zone o': regenerated 0.0 vs typed 0.0 (delta 0 <= 1e-09)
+  CITED       crow-audio-carrier-v1 [R-THERM] evidence[1] 'Q_IN worst-case governed conduction loss remains at or below': regenerated 25.0 vs typed 25.0 (delta 0 <= 1e-09)
+  UNVERIFIED  crow-audio-carrier-v1 [P-SILK-REF] evidence[0] 'Complete native/source/policy/locator/atlas set equality and': exit 1: ENUM(): No enum choices defined
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+EVIDENCE COVERAGE: 5 CITED / 0 ESTIMATED / 1 UNVERIFIED across 3 declaring entr(ies); 0 of 3 entr(ies) OWED (floors: CITED >= 0, OWED <= 22)
+MACHINE WAIVERS: 23/23 refdes in 04_kicad/refdes_waiver.json carry a project-side evidenced entry; 0 UNBACKED (ceiling 9, STRICT — failing)
+WAIVER PROVENANCE: PASS (0 fails, 1 ok) — 3/9 waiver(s) graded across 1/5 project(s) carrying waivers

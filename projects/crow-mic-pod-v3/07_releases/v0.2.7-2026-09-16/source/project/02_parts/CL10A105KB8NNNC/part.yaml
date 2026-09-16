@@ -1,0 +1,13 @@
+mpn: CL10A105KB8NNNC
+manufacturer: Samsung Electro-Mechanics
+type: ceramic_capacitor
+value: 1uF
+datasheet: {doc_id: CL10A105KB8NNNC-SPEC, revision: "Samsung generated specification", url: "https://product.samsungsem.com/mlcc/CL10A105KB8NNN.do", local: CL10A105KB8NNNC-spec.pdf, sha256: c745b341e901949e768bf9faa23b5a3b496bdd63221d88472aa08a9022e163cf, fetched: 2026-09-02}
+package: "0603 (1608 metric)"
+footprint: Capacitor_SMD:C_0603_1608Metric
+escape: {style: passive, pitch: 0.8, tier_required: jlc_2layer_default, checked: "standard 0603 land, 2026-09-01"}
+pins: {1: A, 2: B}
+limits: {capacitance_f: 0.000001, tolerance_pct: 10, voltage_v: 50, dielectric: X5R}
+asserts: [{assert: value, equals: 1u, tolerance_pct: 10, why: "Only pod-side audio AC coupling, between capsule and preamp."}]
+verified: "Exact Samsung generated specification PDF page 1 inspected for MPN, 1 uF, 50 V, X5R, +/-10% and 0603 dimensions on 2026-09-02; effective capacitance remains a bench input-response item."
+sourcing: {lcsc: C15849, alternates: []}
