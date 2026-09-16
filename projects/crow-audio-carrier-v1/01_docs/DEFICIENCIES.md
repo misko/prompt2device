@@ -7,14 +7,14 @@ checks remain authoritative.
 
 ## Must close before release
 
-| Item | Exit condition |
-| --- | --- |
-| Fabrication and publication | Export and inspect the fabrication/BOM/CPL package, pass release rehearsal and publication gates, create the immutable release, then merge, tag, push, and verify the remote commit and tag. |
+None. The design-side release gates are closed.
 
 Closed on 2026-09-16: the authenticated 19-wave replay and layout seal pass at
 0 native DRC violations / 0 unconnected / 0 parity findings, and the exact-board
 locator plus three RJ45 oblique views passed review with the user's connector
 approval retained.
+Fabrication export, release rehearsal, and publication admission also passed;
+the immutable engineering release is `v0.1.0-2026-09-16`.
 
 ## Explicit prototype and order-time deficiencies
 
