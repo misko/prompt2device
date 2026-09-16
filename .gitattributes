@@ -1,0 +1,24 @@
+*.pdf binary
+*.csv whitespace=cr-at-eol
+*.stp binary
+*.step binary
+**/public_catalog_stock.txt whitespace=cr-at-eol
+
+# Oversized immutable Crow review packets retained through Git LFS. New review
+# packets must remain compact; publication_transport_gate.py rejects any future
+# ordinary Git blob at or above GitHub's 100 MiB limit.
+projects/crow-audio-carrier-v1/01_docs/journal/03425bd69a3d46d1151ccfac4688122020b25114bea3030d4fae0980ffd0d6d4.tar.gz filter=lfs diff=lfs merge=lfs -text
+projects/crow-audio-carrier-v1/01_docs/journal/0f5be4bb58257e17f94e3f06c38914839a70eae93b5a024dcc3a3c26f43b9dd7.tar.gz filter=lfs diff=lfs merge=lfs -text
+projects/crow-audio-carrier-v1/01_docs/journal/1c79a98afdb261e42d9f90a53b4fca8910a245bc3595d9164263e37bdccd2a14.tar.gz filter=lfs diff=lfs merge=lfs -text
+projects/crow-audio-carrier-v1/01_docs/journal/242494760416463bbbe12d9185dbf727a65a3d4988b0f022763ea87e4d73a2d8.tar.gz filter=lfs diff=lfs merge=lfs -text
+projects/crow-audio-carrier-v1/01_docs/journal/29d0494ac4a56e87f669bf45a42f44288b4503a28d18e2f74674096f209759f5.tar.gz filter=lfs diff=lfs merge=lfs -text
+projects/crow-audio-carrier-v1/01_docs/journal/2fe3d6466a783543b7d58f25553c8d279007f92d8fc0c5006ddd0a88fd74ba42.tar.gz filter=lfs diff=lfs merge=lfs -text
+projects/crow-audio-carrier-v1/01_docs/journal/5595edc7d5430a2d87247dad35c289e484bb164f6a8648b7ea45c0baf3c2ba36.tar.gz filter=lfs diff=lfs merge=lfs -text
+projects/crow-audio-carrier-v1/01_docs/journal/6096a20189a8e26f61716f5aafdb276eb2e60c8ec9ec4d4d37036d9631d82c17.tar.gz filter=lfs diff=lfs merge=lfs -text
+projects/crow-audio-carrier-v1/01_docs/journal/62c6af4c5ae768eda0f15c047405ab81c30a36c55870b09dba4cc32fdc58e884.tar.gz filter=lfs diff=lfs merge=lfs -text
+projects/crow-audio-carrier-v1/01_docs/journal/8dfaed09eeddde360bb4d430d2f6034e2ca841a2e10b0471187f40943018b860.tar.gz filter=lfs diff=lfs merge=lfs -text
+projects/crow-audio-carrier-v1/01_docs/journal/ae0599ccdfc50e5952efb655a6d3039640b83ab8e37e646bf6a7600a3b1627e9.tar.gz filter=lfs diff=lfs merge=lfs -text
+projects/crow-audio-carrier-v1/01_docs/journal/d7b8b8b63574e331473104b6703a873febb03958d298ff3b4a2b2eae818f8d9a.tar.gz filter=lfs diff=lfs merge=lfs -text
+projects/crow-audio-carrier-v1/01_docs/journal/eea96e126c7d3bc720d2b3f3dd0eaa7cc935da493c4b37f001b07d2bd002f698.tar.gz filter=lfs diff=lfs merge=lfs -text
+projects/crow-audio-carrier-v1/01_docs/journal/fac1c1d8d65d4e74cde722cf173dbae2e790057277e128886074a59ad8c51d42.tar.gz filter=lfs diff=lfs merge=lfs -text
+projects/crow-audio-carrier-v1/01_docs/journal/fbed61c94b1e18fd385831459d81d209975c7fcca1fd3cf7cfe5f3251006d48c.tar.gz filter=lfs diff=lfs merge=lfs -text
