@@ -8701,7 +8701,7 @@ Test: keep a valid board hash and accepted supporting predicates, delete an auxi
 
 Avoidance: remove disposable session files before final manifest generation; verify the Git-staged archive census as well as worktree files; run publication admission after the seal commit. Preserve the historical release; mint a docs-only successor with unchanged actual fab/source/3D bytes and a truthful manifest. Never retro-fill the missing session file into a sealed release.
 
-## Publication transport preflight — 2026-09-16, open
+## Publication transport preflight — corrected 2026-09-16
 
 Situation: both Crow boards passed exact final P-PUBLISH (2/2), but the atomic GitHub push of candidate 719f7cbad27b8af2faadb79dc1251c4af52abd0d and two release tags was rejected: `remote: fatal: pack exceeds maximum allowed size (2.00 GiB)`. Main remained 2b32184a9e1d343a0b13b459d101ef04c7f902bf; neither new tag exists remotely. The inherited unpushed history includes multi-hundred-MB compressed review archives (largest observed 493288311 bytes), plus an older over-100-MiB STEP blob. Deleting files in a later commit cannot remove their ancestor blobs from the push.
 
@@ -8720,3 +8720,10 @@ batches at 1.5 GiB. Its two hostile fixtures failed against the no-gate
 behavior and pass with the checker. New reviews should archive outputs,
 envelope/input hashes and host receipts; they should not recursively duplicate
 frozen inputs already preserved by a release or content-addressed store.
+
+Result: all 15 oversized packets uploaded through LFS, seven bounded ordinary
+evidence batches and the integrated source commit reached a temporary staging
+ref, and final T-PUBLISH measured only 759511 raw bytes still absent remotely.
+The atomic main/tag push succeeded at `c7276176`; both successor tags peeled to
+their seal commits. The temporary staging ref is deleted after final status
+publication and remote verification.
