@@ -1,5 +1,16 @@
 # Changelog
 
+## v0.2.4 — rule-rationale correction — 2026-09-16
+
+Released: `07_releases/v0.2.4-2026-09-16/`.
+
+- Correct the D1 invariant rationale to name the realized S1M part while
+  proving every executable invariant field is unchanged.
+- Preserve the v0.2.3 board, fabrication payload, STEP, schematic, connector
+  views and routing evidence byte-for-byte.
+- Exact rule-prose rehearsal passes 3/3. Authenticated JLC allocation and
+  physical first-article work remain BLOCKED-SOURCING / DO-NOT-ORDER.
+
 ## v0.2.3 — manifest packaging correction — 2026-09-16
 
 Released: `07_releases/v0.2.3-2026-09-16/`.

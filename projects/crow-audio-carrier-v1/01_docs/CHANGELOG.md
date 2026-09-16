@@ -1,5 +1,17 @@
 # Changelog
 
+## v0.1.4 — authorized public-stock successor — 2026-09-16
+
+- Enforce the configured 150-unit surplus for public distributor and
+  authorized-inventory evidence, including exact-part quantity arithmetic.
+- Record 1,965 authorized-channel LT3041ADE#TRPBF units against a threshold of
+  155 and 2,449 DigiKey TMUX2821DSGR units against a threshold of 190.
+- Preserve the v0.1.3 board, fabrication payload, STEP, schematic, renders and
+  routing evidence byte-for-byte. Exact rehearsal passes 3/3; authenticated
+  JLC allocation or exact-part consignment remains BLOCKED-SOURCING.
+
+Released: v0.1.4-2026-09-16
+
 ## v0.1.3 — configured stock-surplus successor — 2026-09-16
 
 - Set the source-owned public catalog stock surplus to 150 units and ship
