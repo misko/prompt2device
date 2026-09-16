@@ -2,7 +2,7 @@
 
 status: in-progress
 prompt_sha256: a6fcb7d5b8465bc23415c7d5f9381b368f12d69455da135d8b6b0b1cb89965b3
-current_release: 07_releases/v0.1.6-2026-09-16
+current_release: 07_releases/v0.1.7-2026-09-16
 order_status: FIRST-ARTICLE ORDER AUTHORIZED — UPLOADER CHECK REQUIRED
 
 ## Original prompt

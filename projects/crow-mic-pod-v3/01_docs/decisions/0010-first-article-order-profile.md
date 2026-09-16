@@ -8,7 +8,7 @@ status: accepted
 ## Context
 
 ADR0005 correctly prevented an unreviewed design from being ordered, but the
-pod now has immutable release `v0.2.6-2026-09-16`, DRC 0/0/0, accepted
+pod now has immutable release `v0.2.7-2026-09-16`, DRC 0/0/0, accepted
 connector orientation, top-only SMD placement and surplus-backed public
 sourcing. User directive D7 authorizes ordering ten first articles after the
 remaining live uploader checks. Measurements cannot precede fabrication of the
@@ -30,7 +30,7 @@ layers, 1.6 mm finished thickness, 1 oz finished copper, green solder mask,
 white silkscreen and ENIG 1 microinch. Use the standard two-layer construction,
 no controlled-impedance service and ordinary tented vias. Enable production-file
 confirmation and stop if the interpreted outline, drills or copper differ from
-immutable release `v0.2.6-2026-09-16`.
+immutable release `v0.2.7-2026-09-16`.
 
 JLC places the 31 CPL references on the top side. J1 remains a manually fitted
 exact Würth 615008160221 jack, MK1 remains the off-board exact

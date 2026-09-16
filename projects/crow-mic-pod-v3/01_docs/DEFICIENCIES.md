@@ -1,6 +1,6 @@
 # Crow daughter-pod release deficiencies
 
-Current immutable first-article order release: v0.2.6-2026-09-16. Updated 2026-09-16.
+Current immutable first-article order release: v0.2.7-2026-09-16. Updated 2026-09-16.
 
 ## Fix before release
 

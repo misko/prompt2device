@@ -14,7 +14,7 @@ Closed on 2026-09-16: the authenticated 19-wave replay and layout seal pass at
 locator plus three RJ45 oblique views passed review with the user's connector
 approval retained.
 Fabrication export, release rehearsal, and publication admission passed for the
-unchanged board; `v0.1.6-2026-09-16` is the current immutable first-article order release.
+unchanged board; `v0.1.7-2026-09-16` is the current immutable first-article order release.
 
 ## Explicit prototype and order-time deficiencies
 
