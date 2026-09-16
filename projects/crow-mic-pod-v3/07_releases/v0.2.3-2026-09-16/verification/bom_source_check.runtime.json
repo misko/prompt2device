@@ -1,0 +1,25 @@
+{
+  "command": [
+    "/usr/bin/python3",
+    "-B",
+    "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/skills/jlcpcb-fab/scripts/bom_source_check.py",
+    "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-mic-pod-v3/07_releases/v0.2.0-2026-09-15/fab/bom.csv",
+    "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-mic-pod-v3/03_tscircuit/build/circuit.json",
+    "--parts",
+    "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-mic-pod-v3/02_parts",
+    "--assembly",
+    "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-mic-pod-v3/03_src/rules/assembly.yaml",
+    "--board",
+    "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-mic-pod-v3/07_releases/v0.2.0-2026-09-15/source/crow_mic_pod_v3.kicad_pcb"
+  ],
+  "elapsed_s": 0.11,
+  "finished_at": 1789531330.3747659,
+  "heartbeat_s": 10.0,
+  "label": "bom_source_check",
+  "pid": 2405351,
+  "returncode": 0,
+  "schema": 1,
+  "started_at": 1789531330.2637014,
+  "status": "finished",
+  "timeout_s": 180.0
+}

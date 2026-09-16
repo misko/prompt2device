@@ -1,0 +1,30 @@
+{
+ "target": "projects/crow-mic-pod-v3/07_releases/v0.2.0-2026-09-15",
+ "summary": {
+  "board": 44,
+  "cpl": 31,
+  "datum_max_mm": 0.0,
+  "datum_max_ref": "U3",
+  "datum_graded": 31,
+  "unpopulated": 13,
+  "declared": 9,
+  "consigned": 0,
+  "exempt_prefixes": [
+   "FID",
+   "H",
+   "MH",
+   "TP"
+  ],
+  "sides": {
+   "top": 31
+  },
+  "unexplained": [],
+  "smd_population_sides": {
+   "top": 31
+  },
+  "smd_side_graded": 31,
+  "assembly_sides_status": "GRADED",
+  "cpl_side_graded": 31
+ },
+ "fails": []
+}

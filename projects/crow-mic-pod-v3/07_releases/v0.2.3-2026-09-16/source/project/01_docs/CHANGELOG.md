@@ -1,49 +1,5 @@
 # Changelog
 
-## v0.2.3 — manifest packaging correction — 2026-09-16
-
-Released: `07_releases/v0.2.3-2026-09-16/`.
-
-- Removed a phantom manifest entry for an ignored KiCad session file that was
-  never present in the Git release tree.
-- Preserved every engineering, fabrication, source, STEP, schematic, render,
-  review and stock-evidence payload from v0.2.2 byte-for-byte.
-- Exact docs-only rehearsal: 3/3 seal-required checks PASS. All allocation,
-  physical first-article and DO-NOT-ORDER holds remain.
-
-## v0.2.2 — configured stock-surplus successor — 2026-09-16
-
-Released: `07_releases/v0.2.2-2026-09-16/`.
-
-- Set the source-owned public catalog stock surplus to 150 units. Fresh
-  evidence clears all 22 coded machine-BOM rows for ten boards plus surplus.
-- Preserve the exact v0.2.1 board, fabrication payload, STEP, schematic,
-  connector views and routing evidence byte-for-byte; bind refreshed release
-  reviews and deficiency records to the successor archive.
-- Exact assembly-policy rehearsal: 3/3 seal-required checks PASS. Authenticated
-  JLCPCB allocation and physical first-article work remain DO-NOT-ORDER holds.
-
-## v0.2.1 — transport-safe publication successor — 2026-09-16
-
-Released: `07_releases/v0.2.1-2026-09-16/`.
-
-- Rebound the byte-identical pod fabrication, source, STEP, schematic, and
-  connector-view payload to clean source commit `2f162256` after GitHub
-  rejected the aggregate development-history pack.
-- Fresh independent fix-pass reports rebind all four release lenses to the
-  same board hash. Exact rehearsal 3/3 PASS; all sourcing and first-article
-  holds remain.
-
-## v0.2.0 — 2026-09-16
-
-Released: `07_releases/v0.2.0-2026-09-15/` (candidate directory retained from initial staging).
-
-- Replace the former Micro-Fit interface with the exact manually fitted Würth 615008160221 RJ45 and straight-through Cat6 Crow power/audio pin assignment; NOT ETHERNET /NOT POE.
-- Keep every fitted SMD on top:31 automated placements on a60×40mm board.
-- Complete protected power/audio routing,22/22 critical paths and native/standalone DRC0/0/0.
-- Ship32/32 modeled bodies, reviewed source/fab/PDFs and four independent final SOUND reviews.
-- Required release rehearsal3/3 PASS; exact JLC allocation and all physical first-article tests remain unverified. FIRST-ARTICLE-ONLY /DO-NOT-ORDER.
-
 ## v0.1.0 — 2026-09-03
 
 - Commissioned a fresh crow microphone pod v3 design.

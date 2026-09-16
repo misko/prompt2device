@@ -1,0 +1,542 @@
+M-FRESH audit: 1/1 knobbed board(s) adopted (0 OWED, 0 UNREACHED — all named below; none is a silent skip)
+  ok   crow-mic-pod-v3: board=crow_mic_pod_v3 tsx=crow_mic_pod_v3
+M-FRESH PASS: 1/1 knobbed board(s) carry a verified, current build provenance record (0 OWED, floor 0)
+CHECKPOINT PASS (verify): 11/11 reviewed-stage file(s) are byte-identical
+PRELAYOUT-INPUT PASS (verify): 318/318 authored, generated and foreign-authority input(s) are byte-identical
+CHECKPOINT PASS (verify): 7/7 reviewed-stage file(s) are byte-identical
+JLC-PCBA REQUEST PASS: phase=prelayout
+MANUFACTURING-READINESS ACCEPTED: 4/4 checks pass; phase=prelayout; receipt=/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-mic-pod-v3/06_build/verification/manufacturing_readiness_prelayout.json
+PRELAYOUT-RESUME PASS [resume-schematic]: checkpoint, complete input census, exact request, fresh public-catalog negative filter, and readiness reverified
+CONNECTOR-CONTRACT INCOMPLETE assemblies=1 instances=1 coverage=7/16 unknown=9 ceiling=UNKNOWN output=/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-mic-pod-v3/06_build/verification/connector_assembly_contract.json
+CONNECTOR-PHASE SOURCE PASS assemblies=1 instances=1 base_unknown=9 source_admitted=9 findings=0 output=/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-mic-pod-v3/06_build/verification/connector_assembly_source_gate.json
+CONNECTOR-PHASE FULL INCOMPLETE assemblies=1 instances=1 base_unknown=9 source_admitted=9 findings=9 output=/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-mic-pod-v3/06_build/verification/connector_assembly_full_gate.json
+[connector] CONNECTOR-FULL INCOMPLETE: 01_docs/decisions/0005-first-article-only-release.md admits prototype design only. Physical fit/service remains owed. FIRST-ARTICLE-ONLY / DO-NOT-ORDER.
+[resume] exact schematic/prelayout checkpoints and governed prelayout authority were verified before generated writes
+PR-REVIEW coverage: 2/2 required review artifact(s) graded
+PR-REVIEW PASS (schematic): exact pre-route evidence is SOUND and current
+M-PROV BEGIN pcb_layout: 3/3 inputs fingerprinted; outputs=['04_kicad/crow_mic_pod_v3.kicad_pcb', '04_kicad/crow_mic_pod_v3.kicad_pro', '04_kicad/crow_mic_pod_v3.kicad_dru', '06_build/drc/gate.json']; witness=/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-mic-pod-v3/06_build/provenance/pcb_layout.pending.json
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+UUID generator seeded: crc32('crow_mic_pod_v3') = 1207421116 (M-REPRO: identical source now yields byte-identical output)
+placed 40 footprints (40 anchored)
+3D model overrides: 2 footprints source-bound to resolvable files
+asserts: 28 passed
+legalized 0 floating parts
+P-COLLIDE: 0 inter-footprint pad overlaps/shorts, 0 fixed courtyard overlap(s) (109 copper pads, 44 fixed parts)
+normalized 2 footprint-internal silk text item(s) to the 'jlc_2layer_default' floors (0.45mm / 0.1125mm stroke)
+refdes on silk: 32/32 placed, 0 waived to F.Fab: []; 0 functional labels, 0 crowded captions
+silk ownership: 32/32 owned labels sit nearer their own part than any other; 0 degraded, 0 unplaced
+wrote fp-lib-table: 6 libraries
+saved crow_mic_pod_v3.kicad_pcb: 40 parts, 4 holes
+input: project = /home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-mic-pod-v3
+input: board        = /home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-mic-pod-v3/04_kicad/crow_mic_pod_v3.kicad_pcb  (40 refdes)
+input: circuit.json = /home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-mic-pod-v3/03_tscircuit/build/circuit.json  (40 refdes)
+input: kicad_sch    = /home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-mic-pod-v3/04_kicad/crow_mic_pod_v3.kicad_sch  (40 refdes)
+input: manifest     = /home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-mic-pod-v3/03_tscircuit/manifest.yaml  (40 refdes)
+input: netlist      = /home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-mic-pod-v3/06_build/netlists/crow_mic_pod_v3.net  (40 refdes)
+ok   board == manifest (40/40 components)
+ok   circuit.json == manifest (40/40 components)
+ok   kicad_sch == manifest (40/40 components)
+ok   netlist == manifest (40/40 components)
+S-COUNT PASS: 4/4 source pair(s) agree with manifest over 40 refdes
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+P-PINMAP input project: /home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-mic-pod-v3
+P-PINMAP input board: /home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-mic-pod-v3/04_kicad/crow_mic_pod_v3.kicad_pcb
+P-PINMAP input circuit: /home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-mic-pod-v3/03_tscircuit/build/circuit.json
+P-PINMAP input parts: /home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-mic-pod-v3/02_parts
+P-PINMAP coverage: 4 multi-pin ref(s), 38 declared physical pin identities graded
+P-PINMAP PASS: every declared physical pin reaches the schematic and footprint, with every collapse explicit and evidenced
+[3b] no critical_parts.yaml — no selective catastrophic part facts declared
+[4] no 03_src/audit_board.py (generic-backend board) — shared placement gates below
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+08:28:41: Debug: Adding duplicate image handler for 'PNG file'
+08:28:41: Debug: Adding duplicate image handler for 'JPEG file'
+08:28:41: Debug: Adding duplicate image handler for 'TIFF file'
+08:28:41: Debug: Adding duplicate image handler for 'GIF file'
+08:28:41: Debug: Adding duplicate image handler for 'PNM file'
+08:28:41: Debug: Adding duplicate image handler for 'PCX file'
+08:28:41: Debug: Adding duplicate image handler for 'IFF file'
+08:28:41: Debug: Adding duplicate image handler for 'Windows icon file'
+08:28:41: Debug: Adding duplicate image handler for 'Windows cursor file'
+08:28:41: Debug: Adding duplicate image handler for 'Windows animated cursor file'
+08:28:41: Debug: Adding duplicate image handler for 'TGA file'
+08:28:41: Debug: Adding duplicate image handler for 'XPM file'
+08:28:41: Debug: Adding duplicate image handler for 'PNG file'
+08:28:41: Debug: Adding duplicate image handler for 'JPEG file'
+08:28:41: Debug: Adding duplicate image handler for 'TIFF file'
+08:28:41: Debug: Adding duplicate image handler for 'GIF file'
+08:28:41: Debug: Adding duplicate image handler for 'PNM file'
+08:28:41: Debug: Adding duplicate image handler for 'PCX file'
+08:28:41: Debug: Adding duplicate image handler for 'IFF file'
+08:28:41: Debug: Adding duplicate image handler for 'Windows icon file'
+08:28:41: Debug: Adding duplicate image handler for 'Windows cursor file'
+08:28:41: Debug: Adding duplicate image handler for 'Windows animated cursor file'
+08:28:41: Debug: Adding duplicate image handler for 'TGA file'
+08:28:41: Debug: Adding duplicate image handler for 'XPM file'
+PLACEMENT-ROUTABILITY ACCEPTED: 7/7 checks passing or N-A; receipt=/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-mic-pod-v3/06_build/verification/placement_routability_receipt.json
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+MODEL-COVERAGE input: /home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-mic-pod-v3/04_kicad/crow_mic_pod_v3.kicad_pcb
+PASS MODEL-COVERAGE: 32/32 fitted footprints have a renderer-resolvable 3D body
+RF-SOURCE input: /home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-mic-pod-v3/03_src/route.yaml
+RF-SOURCE coverage: 1/1 applicability
+RF-SOURCE PASS: N-A -> /home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-mic-pod-v3/06_build/rf/placement
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+P-PADSEP coverage: 109 copper pad(s) on 44 footprint(s); 5654 inter-footprint pad pair(s) across 946 footprint pair(s); 8642 paste-to-foreign-copper pair(s)
+P-PADSEP floor: 0.127 mm (fab tier jlc_2layer_default)
+P-PADSEP PASS: different-footprint lands are positively separated and paste does not intrude on foreign copper
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+crow-mic-pod-v3: N-A=1, PASS=4
+generate_rules_generic: 4 netclasses + 16 patterns -> crow_mic_pod_v3.kicad_pro; 4 width rules -> crow_mic_pod_v3.kicad_dru
+Found 0 violations
+Found 58 unconnected items
+Found 0 schematic parity issues
+Saved DRC Report to 06_build/drc/pre_route.json
+input: report = /home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-mic-pod-v3/06_build/drc/pre_route.json
+P-DRC coverage: 0/0 violation(s) classified; 58 unrouted connection(s) observed; 0 parity finding(s)
+P-DRC types: NONE; allowed=['isolated_copper']
+P-DRC PASS: exact refilled placement has no non-allowed DRC or schematic-parity finding; placement acceptance only
+generate_rules_generic: 4 netclasses + 16 patterns -> crow_mic_pod_v3.kicad_pro; 4 width rules -> crow_mic_pod_v3.kicad_dru
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+input: board = /home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-mic-pod-v3/04_kicad/crow_mic_pod_v3.kicad_pcb
+input: floors+relaxations = /home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-mic-pod-v3/04_kicad/crow_mic_pod_v3.kicad_dru (4 width/clearance rule(s))
+input: clearances = /home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-mic-pod-v3/04_kicad/crow_mic_pod_v3.kicad_pro
+input: native configuration = /home/mouse9911/.config/kicad/10.0/kicad_advanced (DRC epsilon 500 IU)
+input: model = finite declared widths <=2 mm; adaptive bbox starts (0.03 mm requested scale, five intervals per axis, <=37 proposals, 1 IU edge inset and native admission); 48 directions; 1 mm reach; all other-net/no-net pads on enabled copper layers; native clearance tolerance
+P-LAND physical census: 113 physical / 103 copper / 10 noncopper
+P-LAND denominator crow_mic_pod_v3: 69 graded / 103 copper pads (34 no declared width floor, 0 nominal same-net POUR, 0 native VIA ON THE LAND, 0 no net, 0 UNREACHED); 0 graded against a SCOPED floor, 0 against a scoped clearance; 0 failing
+routed inventory crow_mic_pod_v3: 0 graded pad(s) already carry a same-net track; actual geometry/width inventoried outside finite witness policy; nominal pours establish no connectivity
+P-LAND PASS: 1/1 board(s) graded, 0 problem(s)
+tier preflight: crow-mic-pod-v3  tier=jlc_2layer_default (via 0.6/0.3, space 0.127, h2h 0.5)
+  input: route config <- 03_src/route.yaml (single-board layout)
+  input: netclasses   <- 03_src/rules/nets.yaml (single-board layout)
+  PF-LEGALIZE     WARN floorplan placement.legalize.clearance: 0.25 < 0.8 (tier via drill 0.3 + 2*hole_clearance 0.25) — part gaps may be too tight for any legal rescue via (crow-rv2 2026-07-23: 0.25 left pour fragments with zero legal 0.30mm sites; 0.35 measurably helped)
+                       fix: placement.legalize.clearance: 0.8
+tier preflight: 0 FAIL / 1 WARN — config is tier-consistent
+[route_prep] $ /usr/bin/python3 /home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/skills/kicad-pcb/scripts/route_and_stitch_generic.py prep 03_src/route.yaml
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+  PASS no critical routes: All signals are ordinary audio or DC below 20 kHz and therefore have no controlled-impedance differential-pair timing contract. Connector-first clamp order, regulator bypass proximity and probe-stub limits are governed separately by the pod realized-route checker.
+R-PAIRMAP/R-CRITESC PASS: 0 critical pair(s) contracted
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+UUID generator seeded: crc32('crow_mic_pod_v3:route-prep') = 3592983294 (M-REPRO r0)
+unfilled 0 zones
+keepouts: 15 rects on ['User.2']
+canon R1: rules ride along (4 netclasses, 16 patterns)
+08:28:44: Debug: Adding duplicate image handler for 'PNG file'
+08:28:44: Debug: Adding duplicate image handler for 'JPEG file'
+08:28:44: Debug: Adding duplicate image handler for 'TIFF file'
+08:28:44: Debug: Adding duplicate image handler for 'GIF file'
+08:28:44: Debug: Adding duplicate image handler for 'PNM file'
+08:28:44: Debug: Adding duplicate image handler for 'PCX file'
+08:28:44: Debug: Adding duplicate image handler for 'IFF file'
+08:28:44: Debug: Adding duplicate image handler for 'Windows icon file'
+08:28:44: Debug: Adding duplicate image handler for 'Windows cursor file'
+08:28:44: Debug: Adding duplicate image handler for 'Windows animated cursor file'
+08:28:44: Debug: Adding duplicate image handler for 'TGA file'
+08:28:44: Debug: Adding duplicate image handler for 'XPM file'
+seed_stubs: 16 bank(s) served (95 primitives/vias placed, 0 idempotent-skip), 0 refused, 0 deferred at occurrence 1
+prep seed_stubs: 95 segments/vias placed before KRT
+prepared DRC authority: retaining source Board Setup (no explicit fab overrides)
+wrote /home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-mic-pod-v3/06_build/route/r0.kicad_pcb + audio(11), power(5), aux(3)
+[route_prep] rc=0, 0.581s / timeout 600s
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+08:28:45: Debug: Adding duplicate image handler for 'PNG file'
+08:28:45: Debug: Adding duplicate image handler for 'JPEG file'
+08:28:45: Debug: Adding duplicate image handler for 'TIFF file'
+08:28:45: Debug: Adding duplicate image handler for 'GIF file'
+08:28:45: Debug: Adding duplicate image handler for 'PNM file'
+08:28:45: Debug: Adding duplicate image handler for 'PCX file'
+08:28:45: Debug: Adding duplicate image handler for 'IFF file'
+08:28:45: Debug: Adding duplicate image handler for 'Windows icon file'
+08:28:45: Debug: Adding duplicate image handler for 'Windows cursor file'
+08:28:45: Debug: Adding duplicate image handler for 'Windows animated cursor file'
+08:28:45: Debug: Adding duplicate image handler for 'TGA file'
+08:28:45: Debug: Adding duplicate image handler for 'XPM file'
+P-MODEL-REG CACHE-HIT: j1_wurth_615008160221_official_step 180dabc794bc224db68a28e2d9931f3a4b88ddafce1ff5213de7c1b9a167d91a
+P-MODEL-REG CACHE-HIT: u2_ti_dgn0008g_official_step c6a530d5fdd8b8e30dbd678573c3281110494f7b09de3d7288b39944c06273a6
+P-MODEL-REG accepted aggregate -> /home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-mic-pod-v3/06_build/pre_route/model_registration_bundle
+P-MODEL-REG PASS: 2/2 group(s) graded -> /home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-mic-pod-v3/06_build/pre_route/model_registration.md
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+P-ORIENT reused verified review bundle; no images regenerated
+P-ORIENT PASS: machine 1/1, human 1/1
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+08:28:45: Debug: Adding duplicate image handler for 'PNG file'
+08:28:45: Debug: Adding duplicate image handler for 'JPEG file'
+08:28:45: Debug: Adding duplicate image handler for 'TIFF file'
+08:28:45: Debug: Adding duplicate image handler for 'GIF file'
+08:28:45: Debug: Adding duplicate image handler for 'PNM file'
+08:28:45: Debug: Adding duplicate image handler for 'PCX file'
+08:28:45: Debug: Adding duplicate image handler for 'IFF file'
+08:28:45: Debug: Adding duplicate image handler for 'Windows icon file'
+08:28:45: Debug: Adding duplicate image handler for 'Windows cursor file'
+08:28:45: Debug: Adding duplicate image handler for 'Windows animated cursor file'
+08:28:45: Debug: Adding duplicate image handler for 'TGA file'
+08:28:45: Debug: Adding duplicate image handler for 'XPM file'
+08:28:46: Debug: Adding duplicate image handler for 'PNG file'
+08:28:46: Debug: Adding duplicate image handler for 'JPEG file'
+08:28:46: Debug: Adding duplicate image handler for 'TIFF file'
+08:28:46: Debug: Adding duplicate image handler for 'GIF file'
+08:28:46: Debug: Adding duplicate image handler for 'PNM file'
+08:28:46: Debug: Adding duplicate image handler for 'PCX file'
+08:28:46: Debug: Adding duplicate image handler for 'IFF file'
+08:28:46: Debug: Adding duplicate image handler for 'Windows icon file'
+08:28:46: Debug: Adding duplicate image handler for 'Windows cursor file'
+08:28:46: Debug: Adding duplicate image handler for 'Windows animated cursor file'
+08:28:46: Debug: Adding duplicate image handler for 'TGA file'
+08:28:46: Debug: Adding duplicate image handler for 'XPM file'
+08:28:46: Debug: Adding duplicate image handler for 'PNG file'
+08:28:46: Debug: Adding duplicate image handler for 'JPEG file'
+08:28:46: Debug: Adding duplicate image handler for 'TIFF file'
+08:28:46: Debug: Adding duplicate image handler for 'GIF file'
+08:28:46: Debug: Adding duplicate image handler for 'PNM file'
+08:28:46: Debug: Adding duplicate image handler for 'PCX file'
+08:28:46: Debug: Adding duplicate image handler for 'IFF file'
+08:28:46: Debug: Adding duplicate image handler for 'Windows icon file'
+08:28:46: Debug: Adding duplicate image handler for 'Windows cursor file'
+08:28:46: Debug: Adding duplicate image handler for 'Windows animated cursor file'
+08:28:46: Debug: Adding duplicate image handler for 'TGA file'
+08:28:46: Debug: Adding duplicate image handler for 'XPM file'
+P-ROUTEBASE coverage: 44 footprints / 14 base/prepared vias / 81 prepared segments compared
+PR-REVIEW coverage: 4/4 required review artifact(s) graded
+PR-REVIEW PASS (placement): exact pre-route evidence is SOUND and current
+[route_import] $ /usr/bin/python3 /home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/skills/kicad-pcb/scripts/route_and_stitch_generic.py import 03_src/route.yaml
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+  PASS no critical routes: All signals are ordinary audio or DC below 20 kHz and therefore have no controlled-impedance differential-pair timing contract. Connector-first clamp order, regulator bypass proximity and probe-stub limits are governed separately by the pod realized-route checker.
+R-PAIRMAP/R-CRITESC PASS: 0 critical pair(s) contracted
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+import: --no-fill (the stitch plan places explicit copper before its `fill` — see _import_may_fill)
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+UUID generator seeded: crc32('crow_mic_pod_v3:route-import') = 693257277 (M-REPRO import)
+imported 307 segments, 24 vias -> /home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-mic-pod-v3/04_kicad/crow_mic_pod_v3.kicad_pcb
+next: classified_drc.py + your audit gate
+prepared DRC authority: retaining source Board Setup (no explicit fab overrides)
+import provenance -> /home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-mic-pod-v3/06_build/route/import_provenance.json (source=promoted, sha256=bc8fa889a68a)
+[route_import] rc=0, 0.814s / timeout 300s
+[route_taps] $ /usr/bin/python3 /home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/skills/kicad-pcb/scripts/route_and_stitch_generic.py taps 03_src/route.yaml
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+taps: none configured
+[route_taps] rc=0, 0.335s / timeout 600s
+[stitch] $ /usr/bin/python3 /home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/skills/kicad-pcb/scripts/route_and_stitch_generic.py stitch 03_src/route.yaml
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+UUID generator seeded: crc32('crow_mic_pod_v3:route-stitch-0') = 2369713929 (M-REPRO route-stitch-0)
+
+-- canonicalize_chains --
+canonicalized 20 old segment(s) into 7 exact segment(s)
+   SWIG barrier (after canonicalize_chains): saved, re-execing into a fresh interpreter at pass 1/20
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+UUID generator seeded: crc32('crow_mic_pod_v3:route-stitch-1') = 4198090655 (M-REPRO route-stitch-1)
+
+-- via_janitor --
+via janitor removed 3 single-layer vias
+   SWIG barrier (after via_janitor): saved, re-execing into a fresh interpreter at pass 2/20
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+UUID generator seeded: crc32('crow_mic_pod_v3:route-stitch-2') = 1664128549 (M-REPRO route-stitch-2)
+
+-- dedupe_vias --
+deduped 0 twin vias
+
+-- normalize_vias --
+normalized 0 sub-spec vias to 0.6/0.3
+
+-- drop_micro_fragments --
+removed 0 dangling micro-fragments
+
+-- drop_dangling --
+removed 0 dangling stubs (<= 1.0mm, one end unserved)
+
+-- split_t_junctions --
+split 5 segments at T-junctions (5 junction points)
+   SWIG barrier (after split_t_junctions): saved, re-execing into a fresh interpreter at pass 7/20
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+UUID generator seeded: crc32('crow_mic_pod_v3:route-stitch-7') = 324690602 (M-REPRO route-stitch-7)
+
+-- reload --
+   nothing removed since the last barrier — no-op
+
+-- hole_to_hole --
+hole-to-hole repair (nudge): 0 vias
+
+-- pad_rescue --
+GND pad rescue: 18/18 SMD pads served
+stub floor scoped: rule area 'pad_rescue_stubs' over 17 plane-drop stub(s), track_width min 0.3mm on ['F.Cu', 'B.Cu'], nets ['GND']
+
+-- stub_fallback --
+stub fallback: recovered 0, 0 left
+
+-- astar_fallback --
+A* fallback: recovered 0, 0 left; elapsed=0.001s/30.000s
+
+-- seed_stubs --
+seed_stubs: 1 bank(s) served (2 primitives/vias placed, 0 idempotent-skip), 0 refused, 0 deferred at occurrence 1
+
+-- stitch_grid --
+stitch grid: 17 vias added; 19/40 declared sites served by realized same-net plated returns
+
+-- fill --
+filled 19 zones
+
+-- island_rescue --
+island stitch vias: 0
+
+-- fill --
+filled 19 zones
+
+-- unify_zone_priorities --
+unify_zone_priorities: no same-net same-priority zone overlap — nothing to unify (0 bumps)
+
+-- heal_islands --
+heal_islands: no same-net zone split — nothing to heal (0 bridges)
+
+-- gate --
+gate: clean
+
+saved /home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-mic-pod-v3/04_kicad/crow_mic_pod_v3.kicad_pcb
+  read-back: 2 pour zone(s) in the SAVED file, 13 filled_polygon block(s)
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+  PASS no critical routes: All signals are ordinary audio or DC below 20 kHz and therefore have no controlled-impedance differential-pair timing contract. Connector-first clamp order, regulator bypass proximity and probe-stub limits are governed separately by the pod realized-route checker.
+R-PAIRMAP/R-CRITESC PASS: 0 critical pair(s) connected
+NEXT: run your rules generator LAST — this save did not touch .kicad_pro, but any pcbnew save in the chain clobbers netclasses.
+[stitch] rc=0, 1.716s / timeout 900s
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+  PASS no critical routes: All signals are ordinary audio or DC below 20 kHz and therefore have no controlled-impedance differential-pair timing contract. Connector-first clamp order, regulator bypass proximity and probe-stub limits are governed separately by the pod realized-route checker.
+R-PAIRMAP/R-CRITESC PASS: 0 critical pair(s) connected
+PASS D1.1->D2.1 9.500000mm vias=0 layers=F.Cu
+PASS J1.5->U3.3 8.749831mm vias=0 layers=F.Cu
+PASS J1.4->U3.5 6.967676mm vias=0 layers=F.Cu
+PASS U2.8->C1.1 2.532719mm vias=0 layers=F.Cu
+PASS U2.8->C2.1 2.225031mm vias=0 layers=F.Cu
+PASS U2.1->C5.1 2.145435mm vias=0 layers=F.Cu
+PASS U2.1->C6.1 1.552265mm vias=0 layers=F.Cu
+PASS U2.6->C4.1 1.870167mm vias=0 layers=F.Cu
+PASS U2.2->C3.2 1.553713mm vias=0 layers=F.Cu
+PASS U2.1->C3.1 1.348860mm vias=0 layers=F.Cu
+PASS U1.4->C10.1 1.945000mm vias=0 layers=F.Cu
+PASS R12.2->TP5.1 4.949747mm vias=0 layers=F.Cu
+PASS R13.2->TP6.1 8.781118mm vias=0 layers=F.Cu
+PASS D1.1->D2.1 before C1.1
+PASS D1.1->D2.1 before C2.1
+PASS D1.1->D2.1 before U2.8
+PASS D1.1->D2.1 before U2.5
+PASS D1.1->D2.1 before R14.1
+PASS J1.5->U3.3 before TP5.1
+PASS J1.5->U3.3 before R12.2
+PASS J1.4->U3.5 before TP6.1
+PASS J1.4->U3.5 before R13.2
+R-CRITICAL-PATH PASS: 22 graded, 0 findings
+generate_rules_generic: preserved foreign rule 'pad_rescue_stubs' — 34 board item(s) still match it, kept
+generate_rules_generic: 4 netclasses + 16 patterns -> crow_mic_pod_v3.kicad_pro; 4 width rules + 1 preserved foreign rules -> crow_mic_pod_v3.kicad_dru
+  ok   A-CLASS POD_INPUT present (track_width 0.5mm)
+  ok   A-AGREE POD_INPUT pro/dru agree at 0.5mm
+  ok   A-AMP POD_INPUT 0.1A ok at 0.5mm (need 0.013mm)
+  ok   A-CLASS QUIET_POWER present (track_width 0.4mm)
+  ok   A-AGREE QUIET_POWER pro/dru agree at 0.4mm
+  ok   A-AMP QUIET_POWER 0.02A ok at 0.4mm (need 0.001mm)
+  ok   A-CLASS BALANCED_AUDIO present (track_width 0.25mm)
+  ok   A-AGREE BALANCED_AUDIO pro/dru agree at 0.25mm
+  ok   A-AMP BALANCED_AUDIO exempt by declaration ('signal current below 20 mA')
+  ok   A-CLASS QUIET_ANALOG present (track_width 0.25mm)
+  ok   A-AGREE QUIET_ANALOG pro/dru agree at 0.25mm
+  ok   A-AMP QUIET_ANALOG exempt by declaration ('signal; no ampacity obligation')
+  ok   A-FIRE all 5 crow_mic_pod_v3.kicad_dru rule(s) can fire
+  ok   A-ORDER generate_rules runs last before the DRC gate
+  coverage A-AMP: 4/4 net-class current declarations graded
+RULES AUDIT: PASS (0 fails, 14 checks)
+[rf_realized] $ /usr/bin/python3 /home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/skills/kicad-pcb/scripts/rf_check.py realized . --board 04_kicad/crow_mic_pod_v3.kicad_pcb
+RF-REALIZED input: /home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-mic-pod-v3/03_src/rules/rf.yaml
+RF-REALIZED coverage: 1/1 applicability
+RF-REALIZED PASS: N-A -> /home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-mic-pod-v3/06_build/rf/realized
+[rf_realized] rc=0, 0.053s / timeout 600s
+[route_acceptance] $ /usr/bin/python3 /home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/skills/kicad-pcb/scripts/route_acceptance_gate.py grade . --board 04_kicad/crow_mic_pod_v3.kicad_pcb --mode full --drc-json 06_build/drc/gate.json --json 06_build/verification/route_acceptance_receipt.json
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+08:28:50: Debug: Adding duplicate image handler for 'PNG file'
+08:28:50: Debug: Adding duplicate image handler for 'JPEG file'
+08:28:50: Debug: Adding duplicate image handler for 'TIFF file'
+08:28:50: Debug: Adding duplicate image handler for 'GIF file'
+08:28:50: Debug: Adding duplicate image handler for 'PNM file'
+08:28:50: Debug: Adding duplicate image handler for 'PCX file'
+08:28:50: Debug: Adding duplicate image handler for 'IFF file'
+08:28:50: Debug: Adding duplicate image handler for 'Windows icon file'
+08:28:50: Debug: Adding duplicate image handler for 'Windows cursor file'
+08:28:50: Debug: Adding duplicate image handler for 'Windows animated cursor file'
+08:28:50: Debug: Adding duplicate image handler for 'TGA file'
+08:28:50: Debug: Adding duplicate image handler for 'XPM file'
+08:28:50: Debug: Adding duplicate image handler for 'PNG file'
+08:28:50: Debug: Adding duplicate image handler for 'JPEG file'
+08:28:50: Debug: Adding duplicate image handler for 'TIFF file'
+08:28:50: Debug: Adding duplicate image handler for 'GIF file'
+08:28:50: Debug: Adding duplicate image handler for 'PNM file'
+08:28:50: Debug: Adding duplicate image handler for 'PCX file'
+08:28:50: Debug: Adding duplicate image handler for 'IFF file'
+08:28:50: Debug: Adding duplicate image handler for 'Windows icon file'
+08:28:50: Debug: Adding duplicate image handler for 'Windows cursor file'
+08:28:50: Debug: Adding duplicate image handler for 'Windows animated cursor file'
+08:28:50: Debug: Adding duplicate image handler for 'TGA file'
+08:28:50: Debug: Adding duplicate image handler for 'XPM file'
+ROUTE-ACCEPTANCE ACCEPTED: 3 PASS / 6 N-A / 0 FAIL / 0 INCOMPLETE; required 2/2 PASS; receipt=/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-mic-pod-v3/06_build/verification/route_acceptance_receipt.json
+[route_acceptance] rc=0, 1.074s / timeout 600s
+M-PROV PASS: 4/4 artifacts verified for pcb_layout; manifest=/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-mic-pod-v3/06_build/artifact_provenance.json
+  GG canary: 2 finding(s) over 3 hand-written gate(s) in tests/fixtures/gg_canary/
+    clean_gate.py: (nothing)
+    resolve_gate.py: GG-RESOLVE
+    shadow_gate.py: GG-SHADOW
+  GG sandbox: the battery runs against a COPY of projects/crow-mic-pod-v3 placed at `<tmp>/repo/projects/crow-mic-pod-v3`, with every other top-level repo entry SYMLINKED beside it so a repo-relative walk-up resolves; the subject is not written to. (--in-place to disable.)
+  GG battery: 41 project-scoped verdict-printing gate(s), DERIVED not listed — a file read by a gate you did not run is not an unread file
+  GG coverage: 41/41 battery gate(s) OBSERVED (a gate that left no trace is excluded, never counted as clean)
+  GG observation gap: 3 path-level channel(s) this tracer KNOWS it cannot see (a non-python child, pcbnew's C++ object model, an fd-inherited open). NOT summed into any number above.
+  FAIL GG-SHADOW  projects/crow-mic-pod-v3/03_src/rules/nets.yaml
+    opened this one; 8 file(s) of the same name exist under the subject root and were NEVER opened: projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/03_src/rules/nets.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-orientation1/context/projects/crow-mic-pod-v3/03_src/rules/nets.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-routing1/context/projects/crow-mic-pod-v3/03_src/rules/nets.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-mixedside1/context/projects/crow-mic-pod-v3/03_src/rules/nets.yaml
+  FAIL GG-SHADOW  projects/crow-mic-pod-v3/03_tscircuit/manifest.yaml
+    opened this one; 8 file(s) of the same name exist under the subject root and were NEVER opened: projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/03_tscircuit/manifest.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-orientation1/context/projects/crow-mic-pod-v3/03_tscircuit/manifest.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-routing1/context/projects/crow-mic-pod-v3/03_tscircuit/manifest.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-mixedside1/context/projects/crow-mic-pod-v3/03_tscircuit/manifest.yaml
+  FAIL GG-SHADOW  projects/crow-mic-pod-v3/03_src/rules/power_tree.yaml
+    opened this one; 8 file(s) of the same name exist under the subject root and were NEVER opened: projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/03_src/rules/power_tree.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-orientation1/context/projects/crow-mic-pod-v3/03_src/rules/power_tree.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-routing1/context/projects/crow-mic-pod-v3/03_src/rules/power_tree.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-mixedside1/context/projects/crow-mic-pod-v3/03_src/rules/power_tree.yaml
+  FAIL GG-SHADOW  projects/crow-mic-pod-v3/03_src/rules/requirements.yaml
+    opened this one; 8 file(s) of the same name exist under the subject root and were NEVER opened: projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/03_src/rules/requirements.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-orientation1/context/projects/crow-mic-pod-v3/03_src/rules/requirements.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-routing1/context/projects/crow-mic-pod-v3/03_src/rules/requirements.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-mixedside1/context/projects/crow-mic-pod-v3/03_src/rules/requirements.yaml
+  FAIL GG-SHADOW  projects/crow-mic-pod-v3/03_src/rules/power_stages.yaml
+    opened this one; 8 file(s) of the same name exist under the subject root and were NEVER opened: projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/03_src/rules/power_stages.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-orientation1/context/projects/crow-mic-pod-v3/03_src/rules/power_stages.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-routing1/context/projects/crow-mic-pod-v3/03_src/rules/power_stages.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-mixedside1/context/projects/crow-mic-pod-v3/03_src/rules/power_stages.yaml
+  FAIL GG-SHADOW  projects/crow-mic-pod-v3/02_parts/0805W8F1000T5E/part.yaml
+    opened this one; 272 file(s) of the same name exist under the subject root and were NEVER opened: projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/0805W8F1000T5E/part.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/0402WGF2201TCE/part.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/221-415/part.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/GRM32ER61A107ME20L/part.yaml
+  FAIL GG-SHADOW  projects/crow-mic-pod-v3/02_parts/0402WGF2201TCE/part.yaml
+    opened this one; 272 file(s) of the same name exist under the subject root and were NEVER opened: projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/0805W8F1000T5E/part.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/0402WGF2201TCE/part.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/221-415/part.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/GRM32ER61A107ME20L/part.yaml
+  FAIL GG-SHADOW  projects/crow-mic-pod-v3/02_parts/221-415/part.yaml
+    opened this one; 272 file(s) of the same name exist under the subject root and were NEVER opened: projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/0805W8F1000T5E/part.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/0402WGF2201TCE/part.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/221-415/part.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/GRM32ER61A107ME20L/part.yaml
+  FAIL GG-SHADOW  projects/crow-mic-pod-v3/02_parts/GRM32ER61A107ME20L/part.yaml
+    opened this one; 272 file(s) of the same name exist under the subject root and were NEVER opened: projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/0805W8F1000T5E/part.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/0402WGF2201TCE/part.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/221-415/part.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/GRM32ER61A107ME20L/part.yaml
+  FAIL GG-SHADOW  projects/crow-mic-pod-v3/02_parts/TPD2E2U06DRLR/part.yaml
+    opened this one; 272 file(s) of the same name exist under the subject root and were NEVER opened: projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/0805W8F1000T5E/part.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/0402WGF2201TCE/part.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/221-415/part.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/GRM32ER61A107ME20L/part.yaml
+  FAIL GG-SHADOW  projects/crow-mic-pod-v3/02_parts/6541PA/part.yaml
+    opened this one; 272 file(s) of the same name exist under the subject root and were NEVER opened: projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/0805W8F1000T5E/part.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/0402WGF2201TCE/part.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/221-415/part.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/GRM32ER61A107ME20L/part.yaml
+  FAIL GG-SHADOW  projects/crow-mic-pod-v3/02_parts/SMBJ15A/part.yaml
+    opened this one; 272 file(s) of the same name exist under the subject root and were NEVER opened: projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/0805W8F1000T5E/part.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/0402WGF2201TCE/part.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/221-415/part.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/GRM32ER61A107ME20L/part.yaml
+  FAIL GG-SHADOW  projects/crow-mic-pod-v3/02_parts/AOM-5024L-HD-R/part.yaml
+    opened this one; 272 file(s) of the same name exist under the subject root and were NEVER opened: projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/0805W8F1000T5E/part.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/0402WGF2201TCE/part.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/221-415/part.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/GRM32ER61A107ME20L/part.yaml
+  FAIL GG-SHADOW  projects/crow-mic-pod-v3/02_parts/TPS7A4901DGNR/part.yaml
+    opened this one; 272 file(s) of the same name exist under the subject root and were NEVER opened: projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/0805W8F1000T5E/part.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/0402WGF2201TCE/part.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/221-415/part.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/GRM32ER61A107ME20L/part.yaml
+  FAIL GG-SHADOW  projects/crow-mic-pod-v3/02_parts/CL05B104KO5NNNC/part.yaml
+    opened this one; 272 file(s) of the same name exist under the subject root and were NEVER opened: projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/0805W8F1000T5E/part.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/0402WGF2201TCE/part.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/221-415/part.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/GRM32ER61A107ME20L/part.yaml
+  FAIL GG-SHADOW  projects/crow-mic-pod-v3/02_parts/CC0402KRX7R9BB104/part.yaml
+    opened this one; 272 file(s) of the same name exist under the subject root and were NEVER opened: projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/0805W8F1000T5E/part.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/0402WGF2201TCE/part.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/221-415/part.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/GRM32ER61A107ME20L/part.yaml
+  FAIL GG-SHADOW  projects/crow-mic-pod-v3/02_parts/8909650150/part.yaml
+    opened this one; 272 file(s) of the same name exist under the subject root and were NEVER opened: projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/0805W8F1000T5E/part.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/0402WGF2201TCE/part.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/221-415/part.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/GRM32ER61A107ME20L/part.yaml
+  FAIL GG-SHADOW  projects/crow-mic-pod-v3/02_parts/CL05B103KB5NNNC/part.yaml
+    opened this one; 272 file(s) of the same name exist under the subject root and were NEVER opened: projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/0805W8F1000T5E/part.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/0402WGF2201TCE/part.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/221-415/part.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/GRM32ER61A107ME20L/part.yaml
+  FAIL GG-SHADOW  projects/crow-mic-pod-v3/02_parts/0402WGF1000TCE/part.yaml
+    opened this one; 272 file(s) of the same name exist under the subject root and were NEVER opened: projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/0805W8F1000T5E/part.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/0402WGF2201TCE/part.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/221-415/part.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/GRM32ER61A107ME20L/part.yaml
+  FAIL GG-SHADOW  projects/crow-mic-pod-v3/02_parts/GRM32ER71H106KA12L/part.yaml
+    opened this one; 272 file(s) of the same name exist under the subject root and were NEVER opened: projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/0805W8F1000T5E/part.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/0402WGF2201TCE/part.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/221-415/part.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/GRM32ER61A107ME20L/part.yaml
+  FAIL GG-SHADOW  projects/crow-mic-pod-v3/02_parts/43650-0400/part.yaml
+    opened this one; 272 file(s) of the same name exist under the subject root and were NEVER opened: projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/0805W8F1000T5E/part.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/0402WGF2201TCE/part.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/221-415/part.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/GRM32ER61A107ME20L/part.yaml
+  FAIL GG-SHADOW  projects/crow-mic-pod-v3/02_parts/1206W4F4701T5E/part.yaml
+    opened this one; 272 file(s) of the same name exist under the subject root and were NEVER opened: projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/0805W8F1000T5E/part.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/0402WGF2201TCE/part.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/221-415/part.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/GRM32ER61A107ME20L/part.yaml
+  FAIL GG-SHADOW  projects/crow-mic-pod-v3/02_parts/CL10A105KB8NNNC/part.yaml
+    opened this one; 272 file(s) of the same name exist under the subject root and were NEVER opened: projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/0805W8F1000T5E/part.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/0402WGF2201TCE/part.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/221-415/part.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/GRM32ER61A107ME20L/part.yaml
+  FAIL GG-SHADOW  projects/crow-mic-pod-v3/02_parts/CL21A106KAYNNNE/part.yaml
+    opened this one; 272 file(s) of the same name exist under the subject root and were NEVER opened: projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/0805W8F1000T5E/part.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/0402WGF2201TCE/part.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/221-415/part.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/GRM32ER61A107ME20L/part.yaml
+  FAIL GG-SHADOW  projects/crow-mic-pod-v3/02_parts/7939A/part.yaml
+    opened this one; 272 file(s) of the same name exist under the subject root and were NEVER opened: projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/0805W8F1000T5E/part.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/0402WGF2201TCE/part.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/221-415/part.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/GRM32ER61A107ME20L/part.yaml
+  FAIL GG-SHADOW  projects/crow-mic-pod-v3/02_parts/43645-0400/part.yaml
+    opened this one; 272 file(s) of the same name exist under the subject root and were NEVER opened: projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/0805W8F1000T5E/part.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/0402WGF2201TCE/part.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/221-415/part.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/GRM32ER61A107ME20L/part.yaml
+  FAIL GG-SHADOW  projects/crow-mic-pod-v3/02_parts/43030-0007/part.yaml
+    opened this one; 272 file(s) of the same name exist under the subject root and were NEVER opened: projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/0805W8F1000T5E/part.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/0402WGF2201TCE/part.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/221-415/part.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/GRM32ER61A107ME20L/part.yaml
+  FAIL GG-SHADOW  projects/crow-mic-pod-v3/02_parts/0ZCJ0010FF2E/part.yaml
+    opened this one; 272 file(s) of the same name exist under the subject root and were NEVER opened: projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/0805W8F1000T5E/part.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/0402WGF2201TCE/part.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/221-415/part.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/GRM32ER61A107ME20L/part.yaml
+  FAIL GG-SHADOW  projects/crow-mic-pod-v3/02_parts/615008160221/part.yaml
+    opened this one; 272 file(s) of the same name exist under the subject root and were NEVER opened: projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/0805W8F1000T5E/part.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/0402WGF2201TCE/part.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/221-415/part.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/GRM32ER61A107ME20L/part.yaml
+  FAIL GG-SHADOW  projects/crow-mic-pod-v3/02_parts/0402WGF2202TCE/part.yaml
+    opened this one; 272 file(s) of the same name exist under the subject root and were NEVER opened: projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/0805W8F1000T5E/part.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/0402WGF2201TCE/part.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/221-415/part.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/GRM32ER61A107ME20L/part.yaml
+  FAIL GG-SHADOW  projects/crow-mic-pod-v3/02_parts/1N4007(M7)SMA/part.yaml
+    opened this one; 272 file(s) of the same name exist under the subject root and were NEVER opened: projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/0805W8F1000T5E/part.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/0402WGF2201TCE/part.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/221-415/part.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/GRM32ER61A107ME20L/part.yaml
+  FAIL GG-SHADOW  projects/crow-mic-pod-v3/02_parts/OPA1679IDR/part.yaml
+    opened this one; 272 file(s) of the same name exist under the subject root and were NEVER opened: projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/0805W8F1000T5E/part.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/0402WGF2201TCE/part.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/221-415/part.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/GRM32ER61A107ME20L/part.yaml
+  FAIL GG-SHADOW  projects/crow-mic-pod-v3/02_parts/0805W8F3901T5E/part.yaml
+    opened this one; 272 file(s) of the same name exist under the subject root and were NEVER opened: projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/0805W8F1000T5E/part.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/0402WGF2201TCE/part.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/221-415/part.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/GRM32ER61A107ME20L/part.yaml
+  FAIL GG-SHADOW  projects/crow-mic-pod-v3/02_parts/0402WGF1003TCE/part.yaml
+    opened this one; 272 file(s) of the same name exist under the subject root and were NEVER opened: projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/0805W8F1000T5E/part.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/0402WGF2201TCE/part.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/221-415/part.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/GRM32ER61A107ME20L/part.yaml
+  FAIL GG-SHADOW  projects/crow-mic-pod-v3/02_parts/8503/part.yaml
+    opened this one; 272 file(s) of the same name exist under the subject root and were NEVER opened: projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/0805W8F1000T5E/part.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/0402WGF2201TCE/part.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/221-415/part.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/GRM32ER61A107ME20L/part.yaml
+  FAIL GG-SHADOW  projects/crow-mic-pod-v3/02_parts/S1M-E3-61T/part.yaml
+    opened this one; 272 file(s) of the same name exist under the subject root and were NEVER opened: projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/0805W8F1000T5E/part.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/0402WGF2201TCE/part.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/221-415/part.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/GRM32ER61A107ME20L/part.yaml
+  FAIL GG-SHADOW  projects/crow-mic-pod-v3/02_parts/SS14/part.yaml
+    opened this one; 272 file(s) of the same name exist under the subject root and were NEVER opened: projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/0805W8F1000T5E/part.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/0402WGF2201TCE/part.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/221-415/part.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/GRM32ER61A107ME20L/part.yaml
+  FAIL GG-SHADOW  projects/crow-mic-pod-v3/02_parts/0402WGF3243TCE/part.yaml
+    opened this one; 272 file(s) of the same name exist under the subject root and were NEVER opened: projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/0805W8F1000T5E/part.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/0402WGF2201TCE/part.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/221-415/part.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/GRM32ER61A107ME20L/part.yaml
+  FAIL GG-SHADOW  projects/crow-mic-pod-v3/02_parts/RC0402FR-0710KL/part.yaml
+    opened this one; 272 file(s) of the same name exist under the subject root and were NEVER opened: projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/0805W8F1000T5E/part.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/0402WGF2201TCE/part.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/221-415/part.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/GRM32ER61A107ME20L/part.yaml
+  FAIL GG-SHADOW  projects/crow-mic-pod-v3/02_parts/0402WGF1802TCE/part.yaml
+    opened this one; 272 file(s) of the same name exist under the subject root and were NEVER opened: projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/0805W8F1000T5E/part.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/0402WGF2201TCE/part.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/221-415/part.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/02_parts/GRM32ER61A107ME20L/part.yaml
+  FAIL GG-SHADOW  projects/crow-mic-pod-v3/03_src/rules/protection_paths.yaml
+    opened this one; 8 file(s) of the same name exist under the subject root and were NEVER opened: projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/03_src/rules/protection_paths.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-orientation1/context/projects/crow-mic-pod-v3/03_src/rules/protection_paths.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-routing1/context/projects/crow-mic-pod-v3/03_src/rules/protection_paths.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-mixedside1/context/projects/crow-mic-pod-v3/03_src/rules/protection_paths.yaml
+  FAIL GG-SHADOW  projects/crow-mic-pod-v3/03_src/rules/electrical_invariants.yaml
+    opened this one; 8 file(s) of the same name exist under the subject root and were NEVER opened: projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/03_src/rules/electrical_invariants.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-orientation1/context/projects/crow-mic-pod-v3/03_src/rules/electrical_invariants.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-routing1/context/projects/crow-mic-pod-v3/03_src/rules/electrical_invariants.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-mixedside1/context/projects/crow-mic-pod-v3/03_src/rules/electrical_invariants.yaml
+  FAIL GG-SHADOW  projects/crow-mic-pod-v3/03_src/rules/integration.yaml
+    opened this one; 8 file(s) of the same name exist under the subject root and were NEVER opened: projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/03_src/rules/integration.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-orientation1/context/projects/crow-mic-pod-v3/03_src/rules/integration.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-routing1/context/projects/crow-mic-pod-v3/03_src/rules/integration.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-mixedside1/context/projects/crow-mic-pod-v3/03_src/rules/integration.yaml
+  FAIL GG-SHADOW  projects/crow-mic-pod-v3/03_tscircuit/src/crow_mic_pod_v3.tsx
+    opened this one; 8 file(s) of the same name exist under the subject root and were NEVER opened: projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/03_tscircuit/src/crow_mic_pod_v3.tsx, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-orientation1/context/projects/crow-mic-pod-v3/03_tscircuit/src/crow_mic_pod_v3.tsx, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-routing1/context/projects/crow-mic-pod-v3/03_tscircuit/src/crow_mic_pod_v3.tsx, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-mixedside1/context/projects/crow-mic-pod-v3/03_tscircuit/src/crow_mic_pod_v3.tsx
+  FAIL GG-SHADOW  projects/crow-mic-pod-v3/03_src/floorplan.yaml
+    opened this one; 8 file(s) of the same name exist under the subject root and were NEVER opened: projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/03_src/floorplan.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-orientation1/context/projects/crow-mic-pod-v3/03_src/floorplan.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-routing1/context/projects/crow-mic-pod-v3/03_src/floorplan.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-mixedside1/context/projects/crow-mic-pod-v3/03_src/floorplan.yaml
+  FAIL GG-SHADOW  projects/crow-mic-pod-v3/03_src/rules/policy_waivers.yaml
+    opened this one; 8 file(s) of the same name exist under the subject root and were NEVER opened: projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/03_src/rules/policy_waivers.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-orientation1/context/projects/crow-mic-pod-v3/03_src/rules/policy_waivers.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-routing1/context/projects/crow-mic-pod-v3/03_src/rules/policy_waivers.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-mixedside1/context/projects/crow-mic-pod-v3/03_src/rules/policy_waivers.yaml
+  FAIL GG-SHADOW  projects/crow-mic-pod-v3/03_src/route.yaml
+    opened this one; 8 file(s) of the same name exist under the subject root and were NEVER opened: projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/03_src/route.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-orientation1/context/projects/crow-mic-pod-v3/03_src/route.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-routing1/context/projects/crow-mic-pod-v3/03_src/route.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-mixedside1/context/projects/crow-mic-pod-v3/03_src/route.yaml
+  FAIL GG-SHADOW  projects/crow-mic-pod-v3/03_src/rebuild_all.sh
+    opened this one; 8 file(s) of the same name exist under the subject root and were NEVER opened: projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/03_src/rebuild_all.sh, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-orientation1/context/projects/crow-mic-pod-v3/03_src/rebuild_all.sh, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-routing1/context/projects/crow-mic-pod-v3/03_src/rebuild_all.sh, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-mixedside1/context/projects/crow-mic-pod-v3/03_src/rebuild_all.sh
+  FAIL GG-SHADOW  projects/crow-mic-pod-v3/03_src/rules/assembly.yaml
+    opened this one; 8 file(s) of the same name exist under the subject root and were NEVER opened: projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/03_src/rules/assembly.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-orientation1/context/projects/crow-mic-pod-v3/03_src/rules/assembly.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-routing1/context/projects/crow-mic-pod-v3/03_src/rules/assembly.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-mixedside1/context/projects/crow-mic-pod-v3/03_src/rules/assembly.yaml
+  FAIL GG-SHADOW  projects/crow-mic-pod-v3/01_docs/findings.yaml
+    opened this one; 8 file(s) of the same name exist under the subject root and were NEVER opened: projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/01_docs/findings.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-orientation1/context/projects/crow-mic-pod-v3/01_docs/findings.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-routing1/context/projects/crow-mic-pod-v3/01_docs/findings.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-mixedside1/context/projects/crow-mic-pod-v3/01_docs/findings.yaml
+  FAIL GG-SHADOW  projects/crow-mic-pod-v3/03_src/rules/rf.yaml
+    opened this one; 8 file(s) of the same name exist under the subject root and were NEVER opened: projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/03_src/rules/rf.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-orientation1/context/projects/crow-mic-pod-v3/03_src/rules/rf.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-routing1/context/projects/crow-mic-pod-v3/03_src/rules/rf.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-mixedside1/context/projects/crow-mic-pod-v3/03_src/rules/rf.yaml
+  FAIL GG-SHADOW  projects/crow-mic-pod-v3/03_src/rules/connector_assembly_phases.yaml
+    opened this one; 8 file(s) of the same name exist under the subject root and were NEVER opened: projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/03_src/rules/connector_assembly_phases.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-orientation1/context/projects/crow-mic-pod-v3/03_src/rules/connector_assembly_phases.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-routing1/context/projects/crow-mic-pod-v3/03_src/rules/connector_assembly_phases.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-mixedside1/context/projects/crow-mic-pod-v3/03_src/rules/connector_assembly_phases.yaml
+  FAIL GG-SHADOW  projects/crow-mic-pod-v3/03_src/rules/critical_paths.yaml
+    opened this one; 8 file(s) of the same name exist under the subject root and were NEVER opened: projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/03_src/rules/critical_paths.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-orientation1/context/projects/crow-mic-pod-v3/03_src/rules/critical_paths.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-routing1/context/projects/crow-mic-pod-v3/03_src/rules/critical_paths.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-mixedside1/context/projects/crow-mic-pod-v3/03_src/rules/critical_paths.yaml
+  FAIL GG-SHADOW  projects/crow-mic-pod-v3/03_src/rules/first_article.yaml
+    opened this one; 8 file(s) of the same name exist under the subject root and were NEVER opened: projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/03_src/rules/first_article.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-orientation1/context/projects/crow-mic-pod-v3/03_src/rules/first_article.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-routing1/context/projects/crow-mic-pod-v3/03_src/rules/first_article.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-mixedside1/context/projects/crow-mic-pod-v3/03_src/rules/first_article.yaml
+  FAIL GG-SHADOW  projects/crow-mic-pod-v3/03_src/rules/model_registration.yaml
+    opened this one; 8 file(s) of the same name exist under the subject root and were NEVER opened: projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-none1/context/projects/crow-mic-pod-v3/03_src/rules/model_registration.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-orientation1/context/projects/crow-mic-pod-v3/03_src/rules/model_registration.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-routing1/context/projects/crow-mic-pod-v3/03_src/rules/model_registration.yaml, projects/crow-mic-pod-v3/06_build/handoffs/rj45-pod-placement-after-mixedside1/context/projects/crow-mic-pod-v3/03_src/rules/model_registration.yaml
+  GG read count [SUPERSET]: 97 pre-existing file(s) under the subject root OPENED FOR READING, 475 path(s) merely PROBED (stat family, own channel, never summed), 2 path(s) WRITTEN and subtracted. THIS IS A RAW READ COUNT, NOT A PROOF OF OBSERVATION: it counts ANY PRE-EXISTING FILE ANY GATE HAPPENS TO OPEN. A battery gate's OWN OUTPUT is the WORST case, not the boundary — MEASURED, three lines of PROSE in 01_docs/BRIEF.md, which is nobody's output and is graded by nothing, lift a genuinely-blind board from exit 3 to exit 0 exactly as 06_build/policy_audit.md does. The write-set is a METHOD test and the pre-run snapshot is an EXISTENCE test; NEITHER IS AN IDENTITY TEST, and subtracting the battery's declared OUTPUTS would not close the prose arm because BRIEF.md is not one. Only the ZERO carries a verdict (exit 3).
+GG FINDINGS: 55 GG-SHADOW finding(s) over 41/41 observed battery gate(s)
+M-STATE PASS: 0/1 controls satisfied; authority=legacy-findings-ledger; ledger=/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-mic-pod-v3/01_docs/findings.yaml; derived=DRAFT

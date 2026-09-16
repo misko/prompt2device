@@ -1,0 +1,15 @@
+mpn: 0ZCJ0010FF2E
+manufacturer: Bel Fuse
+type: resettable_ptc_fuse
+status: active
+datasheet: {doc_id: "Bel 0ZCJ series", revision: "0ZCJ Sep2025", url: "https://www.belfuse.com/resources/datasheets/circuitprotection/ds-cp-0zcj-series.pdf", local: Bel_0ZCJ_Sep2025.pdf, sha256: 907b94c3649e5394b2287886f16dc783d499803fd072276604d70a5bb5b1dce6, fetched: 2026-09-02}
+package: "1206 surface mount"
+footprint: Fuse:Fuse_1206_3216Metric
+escape: {style: passive, pitch: 2.0, tier_required: jlc_2layer_default, checked: "Bel 1206 dimensions and KiCad footprint, 2026-09-01"}
+pins: {1: IN, 2: OUT}
+limits: {voltage_max_v: 60, hold_current_a_at_23c: 0.10, trip_current_a_at_23c: 0.25, maximum_fault_current_a: 10, initial_resistance_min_ohm: 1.6, post_trip_resistance_max_ohm: 15}
+gotchas:
+  - "Local PTC is secondary to carrier per-spoke protection; thermal derating means it does not independently prove a 0.10 A hold at roof temperature."
+  - "Expected pod current is below 20 mA; test nuisance-trip margin over temperature."
+verified: "Exact 0ZCJ0010FF2E electrical row on PDF page 1 and 1206 dimensions on PDF page 3 of the official Bel 0ZCJ Sep2025 series sheet inspected 2026-09-02."
+sourcing: {lcsc: C194142, alternates: []}

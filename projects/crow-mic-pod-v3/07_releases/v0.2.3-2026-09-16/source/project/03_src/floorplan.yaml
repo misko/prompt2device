@@ -1,0 +1,446 @@
+project:
+  name: crow_mic_pod_v3
+  netlist: 06_build/netlists/crow_mic_pod_v3.net
+  output: 04_kicad/crow_mic_pod_v3.kicad_pcb
+  parts_dir: 02_parts
+board:
+  outline:
+    x0: 20.0
+    y0: 20.0
+    x1: 80.0
+    y1: 60.0
+  edge_width: 0.1
+  layers: 2
+  mounting_holes:
+    footprint: MountingHole:MountingHole_3.2mm_M3
+    at:
+    - - 24.0
+      - 24.0
+    - - 76.0
+      - 24.0
+    - - 24.0
+      - 56.0
+    - - 76.0
+      - 56.0
+libraries:
+- /usr/share/kicad/footprints
+- lib: crow_mic_pod_v3
+  path: 03_src/lib/crow_mic_pod_v3.pretty
+placement:
+  sides: {}
+  anchors:
+    J1:
+    - 45.5
+    - 25.86
+    - 0
+    F1:
+    - 33.5
+    - 33.5
+    - 0
+    D1:
+    - 39.5
+    - 35.6
+    - 0
+    D2:
+    - 27.3
+    - 38.0
+    - 270
+    R14:
+    - 28.0
+    - 46.0
+    - 90
+    C1:
+    - 31.5
+    - 41.2
+    - 90
+    C2:
+    - 32.0
+    - 44.2
+    - 180
+    U2:
+    - 35.0
+    - 45.0
+    - 90
+    R1:
+    - 36.2
+    - 50.0
+    - 90
+    R2:
+    - 38.0
+    - 50.0
+    - 90
+    C3:
+    - 34.6
+    - 49.2
+    - 0
+    C4:
+    - 35.3
+    - 40.5
+    - 90
+    C5:
+    - 31.65
+    - 49.5
+    - 180
+    C6:
+    - 32.0
+    - 47.0
+    - 180
+    U3:
+    - 48.0
+    - 34.75
+    - 180
+    R12:
+    - 57.0
+    - 36.0
+    - 0
+    R13:
+    - 62.0
+    - 36.0
+    - 0
+    MK1:
+    - 73.0
+    - 42.5
+    - 90
+    R4:
+    - 69.0
+    - 39.5
+    - 90
+    C8:
+    - 67.5
+    - 43.0
+    - 90
+    R5:
+    - 64.5
+    - 43.0
+    - 90
+    R3:
+    - 64.0
+    - 39.0
+    - 0
+    C7:
+    - 69.0
+    - 34.0
+    - 0
+    U1:
+    - 57.5
+    - 49.0
+    - 0
+    R6:
+    - 46.0
+    - 45.0
+    - 90
+    R7:
+    - 46.0
+    - 48.0
+    - 90
+    C9:
+    - 49.0
+    - 46.5
+    - 90
+    R8:
+    - 51.0
+    - 51.0
+    - 90
+    R9:
+    - 51.0
+    - 54.0
+    - 90
+    R10:
+    - 64.0
+    - 51.0
+    - 90
+    R11:
+    - 64.0
+    - 54.0
+    - 90
+    C10:
+    - 52.6
+    - 49.0
+    - 180
+    C11:
+    - 59.0
+    - 41.0
+    - 0
+    TP1:
+    - 23.5
+    - 31.0
+    - 0
+    TP2:
+    - 24.0
+    - 43.0
+    - 0
+    TP3:
+    - 24.0
+    - 47.0
+    - 0
+    TP4:
+    - 24.0
+    - 51.0
+    - 0
+    TP5:
+    - 59.7
+    - 32.5
+    - 0
+    TP6:
+    - 62.9
+    - 32.5
+    - 0
+    TP7:
+    - 45.0
+    - 56.0
+    - 0
+  patterns:
+  - match: J1
+    attrs:
+    - exclude_from_pos_files
+    model_override:
+      file: ${KIPRJMOD}/../03_src/lib/3dmodels/wurth/J_Wurth_WR-MJ_615008160221.step
+      offset:
+      - 0
+      - 0
+      - 0
+      rotate:
+      - 0
+      - 0
+      - 0
+  - match: MK1
+    attrs:
+    - board_only
+    - exclude_from_pos_files
+  - match: TP*
+    attrs:
+    - board_only
+    - exclude_from_bom
+    - exclude_from_pos_files
+  - match: J1
+    pad_overrides:
+    - pads:
+      - 2
+      - 6
+      - 8
+      zone_connection: full
+  - match: U2
+    model_override:
+      file: ${KIPRJMOD}/../03_src/lib/3dmodels/TI_DGN0008G.stp
+      offset:
+      - 0
+      - 0
+      - 0
+      rotate:
+      - 0
+      - 0
+      - 0
+    pad_overrides:
+    - pads:
+      - 9
+      zone_connection: full
+  - match: U3
+    pad_overrides:
+    - pads:
+      - 4
+      zone_connection: full
+  - match: D2
+    pad_overrides:
+    - pads:
+      - 2
+      zone_connection: full
+  - match: C2
+    pad_overrides:
+    - pads:
+      - 2
+      zone_connection: full
+  - match: C9
+    pad_overrides:
+    - pads:
+      - 2
+      zone_connection: full
+  - match: C4
+    pad_overrides:
+    - pads:
+      - 2
+      zone_connection: full
+  - match: C6
+    pad_overrides:
+    - pads:
+      - 2
+      zone_connection: full
+  - match: R2
+    pad_overrides:
+    - pads:
+      - 2
+      zone_connection: full
+  - match: R7
+    pad_overrides:
+    - pads:
+      - 2
+      zone_connection: full
+  legalize:
+    enable: true
+    clearance: 0.25
+    edge_margin: 1.0
+    hole_keepout: 2.6
+    ring_max: 40
+design_rules:
+  track_min_width: 0.127
+  min_clearance: 0.127
+  via_min_annulus: 0.15
+  hole_clearance: 0.25
+  hole_to_hole: 0.5
+  copper_edge_clearance: 0.3
+  via_min_size: 0.6
+  min_through_drill: 0.3
+  solder_mask_min_width: 0.0
+  solder_mask_expansion: 0.0
+zones:
+- net: GND
+  layers:
+  - F.Cu
+  - B.Cu
+  priority: 0
+  min_thickness: 0.25
+  clearance: 0.3
+  connect: thermal
+silk:
+  min_text_height: 0.45
+  refdes:
+    size: 0.6
+    min_size: 0.45
+    fab_copy: true
+    clearance: 0.16
+    priority_prefixes: UJD
+  captions:
+  - - CROW POD V3
+    - 30.0
+    - 21.5
+    - 0.6
+  - - J1 RJ45 1/3/7:12V 2/6/8:G 5:+ 4:-
+    - 45.5
+    - 38.0
+    - 0.45
+  - - NOT ETHERNET / NOT POE
+    - 67.0
+    - 29.0
+    - 0.65
+  - - MK1 WIRE LANDING + / -
+    - 69.0
+    - 47.5
+    - 0.6
+  - - PTC
+    - 31.5
+    - 34.0
+    - 0.45
+  - - 12V
+    - 25.5
+    - 31.0
+    - 0.45
+  - - PROT
+    - 26.0
+    - 43.0
+    - 0.45
+  - - 5V
+    - 26.0
+    - 47.0
+    - 0.45
+  - - VREF
+    - 26.0
+    - 51.0
+    - 0.45
+  - - A+
+    - 59.7
+    - 31.8
+    - 0.45
+  - - A-
+    - 62.9
+    - 31.8
+    - 0.45
+  - - GND
+    - 45.0
+    - 58.0
+    - 0.45
+asserts:
+  edge_faces:
+  - ref: J1
+    edge: y0
+    min_offset_mm: 0.5
+  pad_net:
+  - ref: J1
+    pad: 1
+    net: 12V_POD
+  - ref: J1
+    pad: 2
+    net: GND
+  - ref: J1
+    pad: 3
+    net: 12V_POD
+  - ref: J1
+    pad: 4
+    net: AUDIO_N
+  - ref: J1
+    pad: 5
+    net: AUDIO_P
+  - ref: J1
+    pad: 6
+    net: GND
+  - ref: J1
+    pad: 7
+    net: 12V_POD
+  - ref: J1
+    pad: 8
+    net: GND
+  - ref: J1
+    pad: 9
+    net: POD_SHIELD
+  - ref: J1
+    pad: 10
+    net: POD_SHIELD
+  - ref: D1
+    pad: 1
+    net: VIN_PROTECTED
+  - ref: D1
+    pad: 2
+    net: 12V_FUSED
+  - ref: D2
+    pad: 1
+    net: VIN_PROTECTED
+  - ref: D2
+    pad: 2
+    net: GND
+  - ref: R14
+    pad: 1
+    net: VIN_PROTECTED
+  - ref: R14
+    pad: 2
+    net: GND
+  - ref: U2
+    pad: 1
+    net: 5V_QUIET
+  - ref: U2
+    pad: 5
+    net: VIN_PROTECTED
+  - ref: U2
+    pad: 8
+    net: VIN_PROTECTED
+  - ref: U2
+    pad: 9
+    net: GND
+  - ref: U1
+    pad: 4
+    net: 5V_QUIET
+  - ref: U1
+    pad: 11
+    net: GND
+  - ref: U3
+    pad: 3
+    net: AUDIO_P
+  - ref: U3
+    pad: 4
+    net: GND
+  - ref: U3
+    pad: 5
+    net: AUDIO_N
+  - ref: MK1
+    pad: 1
+    net: MIC_RAW
+  - ref: MK1
+    pad: 2
+    net: GND

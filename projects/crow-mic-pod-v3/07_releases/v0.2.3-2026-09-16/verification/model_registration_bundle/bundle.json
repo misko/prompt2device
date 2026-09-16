@@ -1,0 +1,65 @@
+{
+  "finished_at": "2026-09-16T15:29:22.008607Z",
+  "inputs": {
+    "contract/model_registration.yaml": {
+      "sha256": "c54b1068479a3cec655e8ea2233ac58dd68489188a908ca8a46b1556d92ad55f",
+      "size": 1901
+    },
+    "groups/j1_wurth_615008160221_official_step/bundle.json": {
+      "sha256": "7e3b657873b795eacc00d3351a23b2d0cd3f5a0c416e4e0915ce68d075f175f3",
+      "size": 2886
+    },
+    "groups/j1_wurth_615008160221_official_step/model_registration_receipt.json": {
+      "sha256": "cb504fe3e73ffe9aba19434b99588c5dc8e62e47f2affd0e87a9141a23252664",
+      "size": 1015
+    },
+    "groups/u2_ti_dgn0008g_official_step/bundle.json": {
+      "sha256": "3ed2c29e95f50597d2e9bc7b728bca8120c296a2c948fee7349068d20e4eb514",
+      "size": 2880
+    },
+    "groups/u2_ti_dgn0008g_official_step/model_registration_receipt.json": {
+      "sha256": "4f3defcf19be233c41f0d3b39d471a97284af3370bd105cb630641e37eac5768",
+      "size": 1015
+    },
+    "legacy/model_registration.md": {
+      "sha256": "df0d6445bf71b3e06c09f9d28854c9cbe13ed7640a8832a3fd965751f917a0da",
+      "size": 1232
+    },
+    "source/board.kicad_pcb": {
+      "sha256": "af9bb3c0dcf5e9be20239d725d10dd4d4c1bf95cc0b7518badc3e27bd6523938",
+      "size": 161497
+    },
+    "tool/model_registration_gate.py": {
+      "sha256": "9baebff2d8f1e78ca9ec328e8c3217985816017dc27c74d8edbd2d70c991a5c7",
+      "size": 28618
+    },
+    "tool/native_model_registration.py": {
+      "sha256": "388ed9fe2c6f86a9e556211f7911d469cf65e8fb650eae6c59fd7fa8c34889aa",
+      "size": 36469
+    },
+    "tool/twin_overlay.py": {
+      "sha256": "6dc407f30c5f6ba9f5d4a3995745c598e1665aa65c4730b63a09cfb3aac23bb5",
+      "size": 64385
+    }
+  },
+  "outputs": {
+    "model_registration.md": {
+      "sha256": "df0d6445bf71b3e06c09f9d28854c9cbe13ed7640a8832a3fd965751f917a0da",
+      "size": 1232
+    },
+    "model_registration_index.json": {
+      "sha256": "6ab282ba6407514a8bc8036c94292c1d68ae7e73fb720a8764c67a82f794f6ab",
+      "size": 2233
+    }
+  },
+  "producer": "model-registration-aggregate",
+  "producer_version": "model-registration-index-v1:9baebff2d8f1e78ca9ec328e8c3217985816017dc27c74d8edbd2d70c991a5c7",
+  "run_id": "20260916T152921Z-d6c3752bbbc9",
+  "schema": 1,
+  "started_at": "2026-09-16T15:29:21.945747Z",
+  "status": "PASS",
+  "subject": {
+    "raw_sha256": "45abb947b64ac5e24e745147f02308124c70ab2157a83bb29bcb41b780d40c6d",
+    "semantic_sha256": "dcdc9faa61eca53d99678d7e4180fa076dfa6ceaa308dd2a5a3dbefa5677583b"
+  }
+}

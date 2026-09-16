@@ -1,0 +1,253 @@
+schema: 1
+contract_id: crow-mic-pod-v3-j1-service
+evidence_sources:
+- id: shared-spoke-contract
+  kind: interface-contract
+  path: 03_src/rules/spoke_interface.yaml
+- id: realized-floorplan
+  kind: placement-contract
+  path: 03_src/floorplan.yaml
+- id: spoke-header-dossier
+  kind: interface-contract
+  path: 02_parts/615008160221/part.yaml
+- id: spoke-header-drawing
+  kind: manufacturer-drawing-record
+  path: 02_parts/615008160221/primary-source-record.md
+- id: spoke-header-model
+  kind: manufacturer-3d-model
+  path: 03_src/lib/3dmodels/wurth/J_Wurth_WR-MJ_615008160221.step
+- id: spoke-cable-record
+  kind: manufacturer-drawing-record
+  path: 02_parts/8909650150/primary-source-record.md
+- id: spoke-cable-model
+  kind: manufacturer-3d-model
+  path: 03_src/lib/3dmodels/weidmueller/8909650150.step
+- id: spoke-cable-nominal-review
+  kind: independent-geometry-review
+  path: 02_parts/8909650150/notes.md
+- id: first-article-plan
+  kind: qualification-plan
+  path: 01_docs/FIRST_ARTICLE_TEST_PLAN.md
+assemblies:
+- id: factory-rj45-spoke
+  instances:
+  - ref: J1
+    mating_axis_board:
+    - 0.0
+    - -1.0
+    - 0.0
+    simultaneous_group_ids:
+    - spoke-cable-installed
+  receptacle:
+    manufacturer: Wurth Elektronik
+    mpn: '615008160221'
+    mounting_method: right_angle_through_hole_shielded_nonmagnetic_8P8C
+    model_source_id: spoke-header-model
+    body_envelope_mm: null
+    evidence:
+      grade: exact
+      source_ids:
+      - spoke-header-dossier
+      - spoke-header-drawing
+      - spoke-header-model
+      rationale: The exact manufacturer native STEP supplies nominal receptacle geometry, including
+        free EMI fingers. This is source identity and geometry, not installed tolerances, soldering
+        or mated fit.
+  mate:
+    manufacturer: Weidmuller
+    mpn: '8909650150'
+    part_kind: factory_15m_shielded_Cat6A_PUR_RJ45_patch_cord
+    model_source_id: spoke-cable-model
+    body_envelope_mm: null
+    evidence:
+      grade: exact
+      source_ids:
+      - spoke-cable-record
+      - spoke-cable-model
+      rationale: Exact-product-linked manufacturer model establishes selected nominal mate geometry.
+        Internal family and shortened cable are documented; installed fit and tolerances remain unknown.
+  interface:
+    mating_plane_offset_mm: null
+    minimum_exposure_mm: null
+    exposure_setback_allowance_mm: null
+    minimum_service_clearance_mm: null
+    orientation_source_id: realized-floorplan
+    evidence:
+      grade: unknown
+      source_ids:
+      - shared-spoke-contract
+      - realized-floorplan
+      - first-article-plan
+      rationale: Source axes are selected but realized placement, enclosure and seating tolerance
+        stacks do not exist.
+  grip:
+    kind: integral_latch_boot
+    across_flats_mm: null
+    outer_diameter_mm: 22.986
+    axial_length_mm: 57.98
+    evidence:
+      grade: conservative
+      source_ids:
+      - spoke-cable-model
+      - spoke-cable-nominal-review
+      rationale: Contains complete nominal modeled first end including latch and rear sleeve, model
+        Z0..57.98. Independent native BREP subtraction verifies containment about cable axis X6.85,Y7.38
+        at radius11.4928164600mm; outward-rounded diameter22.986mm. No manufacturing allowance, hand
+        clearance, latch sweep or installed tolerance is included or assumed zero.
+  fastening:
+    method: integral_latch
+    thread_designation: null
+    final_tightening: latch_click_and_pull_check
+    evidence:
+      grade: exact
+      source_ids:
+      - spoke-cable-record
+      rationale: The selected factory plug uses an integral RJ45 latch, not a threaded coupling.
+        Physical mating and release remain unknown operations.
+  tool:
+    kind: none
+    identifier: null
+    model_source_id: null
+    head_envelope_mm: null
+    approach: none
+    effective_sweep_radius_mm: null
+    counter_tool_required: false
+    evidence:
+      grade: exact
+      source_ids:
+      - spoke-cable-record
+      rationale: Final RJ45 mating is by hand. The factory patch cord requires no field termination
+        or crimp tool.
+  torque:
+    required: false
+    minimum_nm: null
+    maximum_nm: null
+    evidence:
+      grade: exact
+      source_ids:
+      - spoke-cable-record
+      rationale: An integral latch has no threaded joint or final torque operation.
+  reaction:
+    method: support_board_or_enclosure_while_latching
+    load_path: housing_to_header_solder_joints_and_board_mounts
+    evidence:
+      grade: unknown
+      source_ids:
+      - realized-floorplan
+      - first-article-plan
+      rationale: Insertion/extraction reaction load and enclosure support are not demonstrated.
+  cable:
+    kind: factory_shielded_Cat6A_straight_through_patch_cord
+    manufacturer: Weidmuller
+    mpn: '8909650150'
+    outer_diameter_mm: null
+    straight_run_mm: null
+    minimum_bend_radius_mm: null
+    exit: along_mating_axis
+    evidence:
+      grade: unknown
+      source_ids:
+      - shared-spoke-contract
+      - spoke-cable-record
+      - first-article-plan
+      rationale: Exact factory cord selected. Manufacturer OD6.1..6.5mm and repetitive bend10D require65mm
+        at maximum OD; retain project67mm planning minimum. Installed straight run, routing, restraint
+        and dry enclosure entry remain unqualified. UV/environmental qualification remains owed before
+        outdoor deployment.
+  operations:
+  - id: mate
+    sequence: 1
+    kind: mate
+    required: true
+    with_neighbors_populated: true
+    start_state: spoke_unmated
+    end_state: spoke_mated
+    evidence:
+      grade: unknown
+      source_ids:
+      - shared-spoke-contract
+      - first-article-plan
+      rationale: All-eight mating has not been demonstrated.
+  - id: latch-pull-check
+    sequence: 2
+    kind: service
+    required: true
+    with_neighbors_populated: true
+    start_state: spoke_mated
+    end_state: spoke_checked
+    evidence:
+      grade: unknown
+      source_ids:
+      - spoke-header-dossier
+      - first-article-plan
+      rationale: Retention/polarity/continuity procedure is not physically qualified.
+  - id: unmate
+    sequence: 3
+    kind: unmate
+    required: true
+    with_neighbors_populated: true
+    start_state: spoke_checked
+    end_state: spoke_unmated
+    evidence:
+      grade: unknown
+      source_ids:
+      - spoke-header-dossier
+      - first-article-plan
+      rationale: Latch release with all neighbors populated has not been demonstrated.
+  tolerances:
+  - id: wurth-body-axial-drawing
+    applies_to: drawing-controlled receptacle axial body dimension
+    effect: exposure_setback
+    minus_mm: 0.15
+    plus_mm: 0.15
+    evidence:
+      grade: exact
+      source_ids:
+      - spoke-header-drawing
+      rationale: The manufacturer drawing specifies 13.45 +/- 0.15 mm axial body depth. This row
+        is only that dimension, not the full contact-to-mouth or installed tolerance stack.
+  - id: connector-enclosure-stack
+    applies_to: installed_mating_plane_and_latch_service_cell
+    effect: exposure_setback
+    minus_mm: null
+    plus_mm: null
+    evidence:
+      grade: unknown
+      source_ids:
+      - shared-spoke-contract
+      - realized-floorplan
+      - first-article-plan
+      rationale: Drawing, PCB, solder seating and enclosure tolerance stack is not closed.
+  - id: installed-plug-boot-radial
+    applies_to: installed_plug_boot_latch_sleeve_radial_variation
+    effect: service_radial_growth
+    minus_mm: null
+    plus_mm: null
+    evidence:
+      grade: unknown
+      source_ids:
+      - spoke-cable-record
+      - shared-spoke-contract
+      - first-article-plan
+      rationale: Qualify selected manufactured plug/boot/latch/sleeve variation and installed service
+        stack; nominal CAD is not a manufacturing bound.
+  - id: installed-plug-boot-axial
+    applies_to: installed_plug_boot_latch_sleeve_axial_variation
+    effect: service_axial_growth
+    minus_mm: null
+    plus_mm: null
+    evidence:
+      grade: unknown
+      source_ids:
+      - spoke-cable-record
+      - shared-spoke-contract
+      - first-article-plan
+      rationale: Qualify selected manufactured plug/boot/latch/sleeve variation and installed service
+        stack; nominal CAD is not a manufacturing bound.
+simultaneous_groups:
+- id: spoke-cable-installed
+  members:
+  - J1
+  required_state: all_connected
+  serviceable_member_refs:
+  - J1
