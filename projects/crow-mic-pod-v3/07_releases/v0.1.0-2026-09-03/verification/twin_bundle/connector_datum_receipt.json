@@ -1,0 +1,75 @@
+{
+  "applicability": "APPLICABLE",
+  "board_sha256": "5e01aaf65b2e9064df4f4d08490460ca5534cf874c1144709b76c1156603ff67",
+  "contract": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-mic-pod-v3/03_src/rules/model_registration.yaml",
+  "contract_sha256": "f7459aba016bbe6e314b0d42d901fa9a02e7c32671d6bb68d78786c3d540dd18",
+  "kind": "connector-datum-receipt-v1",
+  "measurements": [
+    {
+      "access_axis_local": [
+        0.0,
+        -1.0
+      ],
+      "authority": "Official Molex 43650-series sales drawing and the project-owned exact footprint: local -Y runs from pad-row origin to the horizontal mating mouth at 8.92 mm. Physical mate, latch, cable and enclosure service fit remain first-article holds.",
+      "catalog_to_source_footprint_transform": {
+        "catalog_pad_centroid_mm": [
+          0.0,
+          0.0
+        ],
+        "rotation_deg": 180,
+        "source_pad_centroid_mm": [
+          4.5,
+          0.0
+        ]
+      },
+      "fab_bbox_local_mm": [
+        -3.375,
+        -8.97,
+        12.375,
+        1.03
+      ],
+      "fab_mating_support_mm": 8.97,
+      "group": "j1_molex_43650_0400_drawing_envelope",
+      "mating_plane_offset_mm": 8.92,
+      "mating_support_delta_mm": -0.019999999999999574,
+      "native_model_actual_sha256": "534efe82d9d8fef2026009ab820b661019bc027d6dde3be1b8771a10e07612bb",
+      "native_model_sha256": "534efe82d9d8fef2026009ab820b661019bc027d6dde3be1b8771a10e07612bb",
+      "ref": "J1",
+      "representation_source": "vendor",
+      "tolerance_mm": 0.5,
+      "vendor_bbox_local_mm": [
+        -3.325,
+        -8.9,
+        12.325,
+        1.0
+      ],
+      "vendor_model_sha256": "83be6010abc057434296512f28ff6d5168984a1879aa4bf7e7f9e80f193689a1",
+      "vendor_model_transform": {
+        "offset": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rotation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "verdict": "PASS"
+    }
+  ],
+  "refs_declared": [
+    "J1"
+  ],
+  "refs_graded": [
+    "J1"
+  ],
+  "schema": 1,
+  "verdict": "PASS"
+}

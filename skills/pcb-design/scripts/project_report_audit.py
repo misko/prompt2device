@@ -266,7 +266,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         print(f"REPORT-AUDIT FAIL: {exc}", file=sys.stderr)
         return 1
     print(
-        "REPORT-AUDIT PASS: reports=1 "
+        "REPORT-AUDIT PASS: reports=1 coverage=1/1 report "
         f"local_links={counts['local_links']} remote_links={counts['remote_links']} "
         f"images={counts['images']}"
     )

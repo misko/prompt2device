@@ -1,0 +1,73 @@
+{
+  "status": "PASS",
+  "normalization": "creation timestamp/generator comment lines only; no plotted geometry normalized",
+  "graded": 11,
+  "files": [
+    {
+      "file": "crow_mic_pod_v3-B_Cu.gbl",
+      "equal_after_creation_metadata_normalization": true,
+      "replot_sha256": "73de3ec7a5384be67568a94c4bff243a1d9425745e5e61b050f4af9fdc92c2a3",
+      "fab_sha256": "43017b1400df32a32612466805c15d2cbf337fc662bd12a69d400a03835698c2"
+    },
+    {
+      "file": "crow_mic_pod_v3-B_Mask.gbs",
+      "equal_after_creation_metadata_normalization": true,
+      "replot_sha256": "87a6b7106e4efc00fd8ca2bfcfd285174bafafb28b3dcaf155665d78e6bfdadb",
+      "fab_sha256": "742ed8ad27af6c0d8dd03f9be5e62f0f2872a162155e2edea1018da8c75b6815"
+    },
+    {
+      "file": "crow_mic_pod_v3-B_Paste.gbp",
+      "equal_after_creation_metadata_normalization": true,
+      "replot_sha256": "866a6f7368f4c1bca58feefa6a0e1b21bf5e42fbb9c89da002088de4ffb081a4",
+      "fab_sha256": "ce79ddb0fe66dc3c68277929632fe55250f42affe8fce3c048cfd029a0560ab1"
+    },
+    {
+      "file": "crow_mic_pod_v3-B_Silkscreen.gbo",
+      "equal_after_creation_metadata_normalization": true,
+      "replot_sha256": "e8cbbcb8219407242f0be74a959b4bc44512dca3698991208ba45f1e6a3a9be9",
+      "fab_sha256": "671584c1fc6c87713c7af7172c3bcbdd17fa0a6a2c533318d499e99ced1fe9bd"
+    },
+    {
+      "file": "crow_mic_pod_v3-Edge_Cuts.gm1",
+      "equal_after_creation_metadata_normalization": true,
+      "replot_sha256": "e00091ee9bbcc247bdb84cf83bb851819d914669c9b0b7286a258bcb0b5112f6",
+      "fab_sha256": "bcbba95e939dbf05091cd9bd23cdd09137c55445ffce55f7bba4b6bfa03b9e0b"
+    },
+    {
+      "file": "crow_mic_pod_v3-F_Cu.gtl",
+      "equal_after_creation_metadata_normalization": true,
+      "replot_sha256": "be103da9799e28848e71aa58501eced642f9874597c5f9cfdaa328fa67ac5c11",
+      "fab_sha256": "b82096efbc47d1b061db061143e005a595f6246bf09c1b624e8546640d4b4f90"
+    },
+    {
+      "file": "crow_mic_pod_v3-F_Mask.gts",
+      "equal_after_creation_metadata_normalization": true,
+      "replot_sha256": "6d32761ec6a6a85e8af1be2b3bbea45f7030b3e00c3878824f1eea7ed6114b73",
+      "fab_sha256": "5f0002f6daee8dc36342b82d1a58db9d6b16d702215bfbf87498be20a84175eb"
+    },
+    {
+      "file": "crow_mic_pod_v3-F_Paste.gtp",
+      "equal_after_creation_metadata_normalization": true,
+      "replot_sha256": "cd2dc6c675a2ff335a751603e3fb104863cf27b9ccfeffd6afb5a9abb646c6ec",
+      "fab_sha256": "1942ee6e91300eeb56217e04362ed96503049d6d857bd1330138154bdc2a0b4a"
+    },
+    {
+      "file": "crow_mic_pod_v3-F_Silkscreen.gto",
+      "equal_after_creation_metadata_normalization": true,
+      "replot_sha256": "618c1b6761ee47b72b981d0e2008cf69b3a43d1b34db4e94df61b38395f0ed53",
+      "fab_sha256": "a10362006d3a59ceb06d6546d38c8eabc041e254bd075f8df8af3b2de34d50d2"
+    },
+    {
+      "file": "crow_mic_pod_v3-NPTH.drl",
+      "equal_after_creation_metadata_normalization": true,
+      "replot_sha256": "5b88da0ba0fe28d528fb34b5f79f6fd2b9fef07dbfaf4b97704143208913644e",
+      "fab_sha256": "c5437207f0e566251ff0d55969afcd73b2e6cec36cd46084fd46832d0f6d4fa2"
+    },
+    {
+      "file": "crow_mic_pod_v3-PTH.drl",
+      "equal_after_creation_metadata_normalization": true,
+      "replot_sha256": "d2c2ce0f8f3f07a01188c583a600e19649fd80144e6800f8ed5cc165a7f560fb",
+      "fab_sha256": "f335e473b90a5d05ed615fb0d66b56058a0968b0ab6afd566de2360aa2901684"
+    }
+  ]
+}

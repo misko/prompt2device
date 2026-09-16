@@ -287,5 +287,21 @@ def t_elapsed_consistency():
             "disagrees with timestamps")
 
 
+@test("documented schema-2 envelope constructs exact current input bindings")
+def t_documented_envelope():
+    import subprocess
+    text = (ROOT / "skills/pcb-design/references/execution-runtime.md").read_text()
+    code = text.split("<!-- executable-task-example -->", 1)[1].split("```python", 1)[1].split("```", 1)[0]
+    with tempfile.TemporaryDirectory() as directory:
+        root = Path(directory); (root / "input.txt").write_text("fixture input")
+        subprocess.run([sys.executable, "-c", code, str(root)], cwd=ROOT, check=True)
+        envelope = TaskEnvelope.from_json((root / "task-envelope.json").read_text())
+        eq(envelope.schema, 2, "new envelope schema")
+        eq(TaskEnvelope.from_json(envelope.to_json()).to_mapping(), envelope.to_mapping(), "round trip")
+        eq(verify_input_packet(envelope, root)[0], True, "exact actual fixture bytes")
+        (root / "input.txt").write_text("changed input")
+        eq(verify_input_packet(envelope, root)[0], False, "example does not permit stale subject")
+
+
 if __name__ == "__main__":
     sys.exit(main())

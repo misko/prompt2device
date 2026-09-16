@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Focused red/green fixtures for projected reference-plane interruptions."""
+import sys
 import importlib.util
 from pathlib import Path
 
@@ -83,4 +84,4 @@ def t_gate_accepts_clearance():
 
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())

@@ -156,6 +156,9 @@ SKIP_BASENAMES = {
     # gates that wrap them.
     "board_authority.py", "copper_graph.py", "placement_cell_checks.py",
     "route_acceptance_core.py", "pipeline_execution.py", "process_runner.py",
+    # Imported authority validator, with no CLI or printed verdict. Its
+    # executable consumers jlc_twin and twin_overlay remain audited gates.
+    "native_representation.py",
 }
 
 
@@ -517,7 +520,7 @@ VACUITY_RE = re.compile(r"^[ \t]*VACUITY:", re.M)
 #: landed with declarations and executable fixtures. The router composes a
 #: profile without proving a board exists; the authority audit proves lexical
 #: reachability without understanding whether prose reversed a policy.
-VACUITY_FLOOR = 17
+VACUITY_FLOOR = 20
 
 
 def vacuity_declaration(text):

@@ -117,6 +117,29 @@ late reviewer, materialize every unfinished checklist row as unresolved, and
 allow at most one fresh replacement on the same exact subject. User approval
 advances only the stage explicitly under review.
 
+### Routine repairs under one implementation owner
+
+For new bounded subprocess work, the coordinator may pre-admit a schema-2
+same-owner repair allowance using the execution runtime. A wrong cwd, missing
+directory/executable or missing output can be corrected by that owner inside
+the original scope and deadline. Each execution remains a charged, retained
+TaskAttempt; setup repairs receive no engineering progress credit.
+
+Use `pcb_flow.py task-repair` with the previous allocated envelope and a
+coordinator assessment bound to real evidence. The dispatcher preserves the
+deadline, owner, hypothesis, scope, cumulative cap and predecessor chain. It
+reserves one successor before launch; changing labels or branching from an old
+attempt cannot reclaim that slot. Declared recurring investigations also reserve
+through the existing findings ledger, including the initial execution. Assess
+those reservations there before another experiment. Neither path resets the other.
+
+A changed premise, scope, unsupported method or plateau still requires fresh
+D-BACK judgment. Accepted schematic, placement/pilot and layout-seal boundaries
+remain mandatory. Provider failure, unknown cleanup, deadline exhaustion and
+context pressure do not authorize an automatic replacement. Older envelopes
+without an explicit allowance retain their stricter behavior. Scripts run the
+mechanical iterations; the implementation owner need not change for each one.
+
 ## 5. D-BACK diagnosis
 
 Stop local iteration after three consecutive attempts with no measured
@@ -135,6 +158,104 @@ Before moving upstream:
 Triage findings under section 8 first. Resolve cheap independent blockers
 before escalating the surviving hard group; leave deferred improvements out
 of the current repair loop.
+
+When a checker stops at its first refusal, that refusal is not the complete
+repair scope. For repeated failures in a shared source representation, use one
+bounded, read-only census of the affected population before the next repair.
+Distinguish an incorrect design, valid geometry the checker cannot represent,
+and unfinished work belonging to a later stage. Keep the original gate result;
+the diagnostic census cannot advance the pipeline. Choose a coherent repair
+from the complete causes rather than commissioning one repair per reported row.
+
+Before changing a checker because a synthetic fixture behaves unexpectedly,
+verify what its real consumer constructed. For native CAD, inspect the exported
+geometry and transforms, not only the fixture's intended dimensions. Compare
+the original checker, proposed checker and exact product artifact to distinguish
+a regression from an existing limitation. A documented limitation still needs
+the canon's evidence and cannot discharge an affected product requirement.
+
+### Decision progress for recurring engineering investigations
+
+Use the existing `01_docs/findings.yaml`, not another blocker ledger. Before
+repeated analysis, give the finding a requirement citation, relevant operating
+states, objective closure condition, owning stage and a decision question.
+Separate a demonstrated defect, an unresolved protection argument, a realized
+layout check, a first-article measurement and order-time sourcing. Their existing
+acceptance boundaries remain authoritative; moving a hold needs explicit cited
+scope authority, not a convenient label. A model-validity premise is not a new
+product requirement. Invalid model predictions establish neither hardware
+failure nor safety. Known defects and unresolved safety arguments remain open.
+
+Add the optional `investigation` schema below only to recurring investigations.
+Routine work and boards without it keep the existing flow. Before and after
+each such attempt, run `decision_progress.py PROJECT --finding FINDING_ID` from
+this skill's `scripts/`. Use `--shadow` for historical observation before first
+adoption. It reopens evidence and emits only continuation/reassessment advice,
+never an engineering verdict. A malformed record is invalid even in shadow.
+Use `pcb_flow.py run PROJECT --stage STAGE --investigation FINDING_ID -- CMD`
+for subsequent bounded local experiments. `REASSESS` stops that launch, not
+the entire project. Architecture comparison remains useful bounded work.
+
+The closed schema-1 mapping lives inside the finding:
+
+| Field | Meaning |
+|---|---|
+| `schema` | `1` |
+| `requirement` | `{path, sha256, locator}` citing project authority |
+| `due_stage` | Existing lifecycle stage ID; not permission to move a hold |
+| `operating_states` | Nonempty relevant-state list, not a universal state catalogue |
+| `question` | The design decision to resolve |
+| `milestones` | Finite ID-to-closure-condition mapping, declared before the work |
+| `max_nonimproving_attempts`, `max_attempts` | Positive cumulative limits; normally three non-improving attempts, plus a justified total budget |
+| `launches` | Ordered `{id, subject_sha256}` reservations written before guarded dispatch |
+| `history` | Ordered durable coordinator observations, appended rather than rewritten |
+| `next` | `{action, hypothesis, on_support, on_reject, uncertainty}` |
+
+Each history observation is exactly `{id, subject_sha256, origin, hypothesis,
+result, model_domain, progress, evidence}`. `origin` is `executed` or
+`historical_assessment`; retrospective classification never invents execution
+timestamps or a TaskAttempt. `model_domain` is `within`, `outside`, `unknown`
+or `not_applicable`; `progress` is a list of milestone IDs. Evidence is a
+nonempty list of `{path, sha256}` project-relative bindings. The source hash
+names the studied subject, not necessarily today's revised circuit.
+
+Credit each evidenced milestone once: candidate elimination, a source
+correction, or uncertainty reduction sufficient to change a decision can count.
+More samples, precision, reports, new hashes, and repeated GREEN tests do not.
+Outside/unknown-domain predictions receive no milestone credit. A coordinator
+must assess the content: hash verification cannot prove a scientific claim.
+The total cap applies even if every attempt reports novel progress.
+
+`next.action` is `investigate` or `reassess`; the two outcome branches must
+name distinct decisions. `uncertainty` is `bounded` or `decision_limiting`.
+If uncertainty prevents the experiment deciding between options, reassess the
+model, obtain better authority, or compare architectures with credible margin.
+Prefer fewer interacting assumptions and lower total verification effort when
+they satisfy the brief; do not mandate a particular topology or numeric margin.
+
+History follows the stable finding ID across source revisions and handoffs.
+Do not reset it by renaming a finding, deleting history, enlarging budgets, or
+claiming a fresh context. A changed decision/requirement requires a reviewed,
+evidence-backed reassessment preserving the prior history and cumulative spend;
+the read-only guard is not a tamper-proof journal or a scientific reviewer.
+Do not automatically close a finding after a milestone or a budget exhaustion.
+
+The evaluator CLI is read-only. The explicit `pcb_flow.py run --investigation`
+dispatch seam first reserves a slot in the same ledger, using a nonblocking
+Linux advisory lock and a byte-change check. A reservation is not a completed
+execution claim; even a failed dispatch must be assessed before continuing.
+Append the actual assessment under the reservation's ID/source hash with
+`origin: executed`, citing the real outcome including a failed dispatch.
+The union of reservation and assessment IDs determines spend, so a completion
+does not count twice. `ASSESS_PENDING` refuses another launch until the result
+is accounted for. Duplicate explicit YAML keys, which could hide history, are
+invalid; ordinary merge-default overrides retain their existing YAML meaning.
+Reservation writes preserve semantic fields, not hand-formatting/comments.
+
+The compact PCB handoff derives its decision view from this ledger and pins
+both ledger and evaluator. Store raw results once and reference them; do not
+copy full models into every handoff. Append the assessment before handing off;
+a pending/unreported attempt must be accounted for before another experiment.
 
 ## 6. Backtrack destinations
 

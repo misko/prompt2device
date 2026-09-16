@@ -4,8 +4,35 @@
 This is deliberately separate from ``twin_overlay.py``.  The twin overlay
 answers whether rendered pixels agree with the mounted catalog mesh.  This
 gate answers whether a provenance-bound native model agrees with the
-footprint's F.Fab body, courtyard, and an explicitly selected physical datum:
+footprint's mounted-side Fab body, courtyard, and an explicitly selected physical datum:
 drilled attachment centres for connectors or all pad centres for SMD packages.
+
+VACUITY: Signed-side fractions measure visible exterior pixels, not full
+model volume. A 1 mm nested-Transform Box with a 180-degree model-X
+inversion can PASS on a 1.6 mm PCB while most native-imported solid lies
+inside the board. In the pinned native consumer, about 0.30315 mm remains
+outside the declared side and about 0.69685 mm is inside the nominal
+stack; the measured intended-side fraction is 1.0. The original front
+checker shares this failure. The bound fixture asserts this false PASS
+first, then requires a signed-side FAIL when only height h changes from
+1 to 3 mm with translation h/2. This gate does not establish full-volume
+board exclusion; exact-model independent geometry evidence is required
+when that property is load-bearing.
+
+VACUITY: Native plan extraction also has a thin-feature sampling limitation. Two
+3x3 erosions can delete actual exterior features before the surviving-pixel
+union is measured, and restoring two pixels does not recover them. A PASS
+therefore does not establish complete occupied extent at every coupon scale.
+The bound G-VACUOUS fixture first requires a false PASS for an actual thin
+exterior feature beyond courtyard, then requires FAIL for a thicker feature
+at the same extent. Where this property matters, supplement ordinary
+P-MODEL-REG with independent exact-model native full-extent/courtyard evidence
+and original un-eroded images; an actual exterior feature outside courtyard
+must fail or remain incomplete even if the eroded-pixel gate passes. Fab is a
+union of geometric marks, so exterior-feature detail changes its bbox datum
+and does not separately recognize a retained nominal-shell rectangle. Preserve
+independent primary-drawing shell and attachment-datum evidence. Nominal CAD
+containment is not a manufacturing-tolerance or physical-fit guarantee.
 """
 
 from __future__ import annotations
@@ -34,7 +61,32 @@ CYAN = (0, 255, 255)
 BLUE = (0, 150, 255)
 WHITE = (255, 255, 255)
 RECEIPT_KIND = "model-registration-receipt-v1"
-REGISTRATION_DATUMS = {"drilled_centres", "all_pad_centres"}
+REGISTRATION_DATUMS = {"drilled_centres", "all_pad_centres", "all_smd_pad_overlap"}
+
+
+def smd_pad_polygon(pad):
+    if pad.GetAttribute() != pcbnew.PAD_ATTRIB_SMD:
+        raise ValueError("all_smd_pad_overlap requires every attachment to be SMD")
+    layer = pcbnew.F_Cu if pad.IsOnLayer(pcbnew.F_Cu) else pcbnew.B_Cu
+    if not pad.IsOnLayer(layer):
+        raise ValueError("all_smd_pad_overlap requires copper on every pad")
+    return pcbnew.SHAPE_POLY_SET(pad.GetEffectivePolygon(layer))
+
+
+def smd_pad_plan_overlap_mm2(pad, body):
+    """Positive native-polygon area against the measured model plan envelope.
+
+    This is registration only, not solder-terminal or process qualification.
+    Rounded/custom/rotated pad geometry is never replaced by its bounding box.
+    """
+    polygon = smd_pad_polygon(pad)
+    rectangle = pcbnew.SHAPE_POLY_SET()
+    rectangle.NewOutline()
+    for x, y in ((body[0], body[1]), (body[2], body[1]),
+                 (body[2], body[3]), (body[0], body[3])):
+        rectangle.Append(round(x * 1e6), round(y * 1e6))
+    polygon.BooleanIntersection(rectangle)
+    return abs(polygon.Area()) / 1e12
 
 
 def sha256(path: Path) -> str:
@@ -77,17 +129,35 @@ def union_boxes(boxes):
     )
 
 
+def mounted_side(fp):
+    if fp.GetLayer() == pcbnew.F_Cu:
+        return "front"
+    if fp.GetLayer() == pcbnew.B_Cu:
+        return "back"
+    raise ValueError(f"{fp.GetReference()}: footprint must mount on F.Cu or B.Cu")
+
+
+def datum_layers(fp):
+    return ((pcbnew.F_Fab, pcbnew.F_CrtYd) if mounted_side(fp) == "front"
+            else (pcbnew.B_Fab, pcbnew.B_CrtYd))
+
+
+def datum_names(fp):
+    prefix = "F" if mounted_side(fp) == "front" else "B"
+    return f"{prefix}.Fab", f"{prefix}.CrtYd"
+
+
 def fab_bbox(fp):
     boxes = [
         mm_box(item.GetBoundingBox())
         for item in fp.GraphicalItems()
-        if item.GetLayer() == pcbnew.F_Fab and item.GetClass() != "PCB_TEXT"
+        if item.GetLayer() == datum_layers(fp)[0] and item.GetClass() != "PCB_TEXT"
     ]
     return union_boxes(boxes) if boxes else None
 
 
 def courtyard_bbox(fp):
-    courtyard = fp.GetCourtyard(pcbnew.F_CrtYd)
+    courtyard = fp.GetCourtyard(datum_layers(fp)[1])
     return mm_box(courtyard.BBox()) if courtyard.OutlineCount() else None
 
 
@@ -120,6 +190,18 @@ def registration_pads(fp, registration_datum):
                                _rounded(pad.GetDrillSizeY() / 1e6)]
         else:
             row["copper_bbox_mm"] = _rounded_box(mm_box(pad.GetBoundingBox()))
+            if registration_datum == "all_smd_pad_overlap":
+                polygon = smd_pad_polygon(pad)
+                row["copper_outlines_mm"] = [
+                    [[_rounded(poly.CPoint(i).x / 1e6), _rounded(poly.CPoint(i).y / 1e6)]
+                     for i in range(poly.PointCount())]
+                    for poly in (polygon.Outline(j) for j in range(polygon.OutlineCount()))]
+                row["copper_holes_mm"] = [
+                    [[[_rounded(poly.CPoint(i).x / 1e6), _rounded(poly.CPoint(i).y / 1e6)]
+                      for i in range(poly.PointCount())]
+                     for poly in (polygon.CHole(j, k)
+                                  for k in range(polygon.HoleCount(j)))]
+                    for j in range(polygon.OutlineCount())]
         rows.append(row)
     return rows
 
@@ -129,7 +211,7 @@ def normalized_footprint_projection(fp, registration_datum="drilled_centres"):
 
     Board position, board rotation, refdes, UUID and unrelated graphics are
     intentionally absent.  Moving an instance therefore reuses the same
-    physical-registration receipt, while any F.Fab, courtyard or selected
+    physical-registration receipt, while any mounted-side Fab, courtyard or selected
     registration-field change invalidates it.
     """
     clone = pcbnew.Cast_to_FOOTPRINT(fp.Duplicate(False))
@@ -137,7 +219,7 @@ def normalized_footprint_projection(fp, registration_datum="drilled_centres"):
     clone.SetPosition(pcbnew.VECTOR2I(0, 0))
     fab_items = []
     for item in clone.GraphicalItems():
-        if item.GetLayer() != pcbnew.F_Fab or item.GetClass() == "PCB_TEXT":
+        if item.GetLayer() != datum_layers(clone)[0] or item.GetClass() == "PCB_TEXT":
             continue
         fab_items.append({
             "class": item.GetClass(),
@@ -147,9 +229,9 @@ def normalized_footprint_projection(fp, registration_datum="drilled_centres"):
     courtyard = courtyard_bbox(clone)
     if not fab_items or courtyard is None or not pads:
         raise ValueError(
-            f"F.Fab, F.CrtYd and {registration_datum} are required")
+            f"{datum_names(fp)[0]}, {datum_names(fp)[1]} and {registration_datum} are required")
     return {
-        "side": "front" if fp.GetLayer() == pcbnew.F_Cu else "back",
+        "side": mounted_side(fp),
         "registration_datum": registration_datum,
         "fab": sorted(fab_items, key=lambda item: canonical_sha(item)),
         "courtyard_bbox_mm": _rounded_box(courtyard),
@@ -186,6 +268,12 @@ def registration_contract(refs, args):
 
 
 def registration_tuple(rows, refs, args):
+    sides = {mounted_side(row["fp"]) for row in rows}
+    if len(sides) != 1:
+        raise ValueError("mixed mounted-side registration groups are not supported")
+    side = next(iter(sides))
+    if args.mount_side is not None and args.mount_side != side:
+        raise ValueError(f"declared mount_side {args.mount_side} differs from actual {side} footprint side")
     footprint_hashes = {
         canonical_sha(normalized_footprint_projection(
             row["fp"], args.registration_datum))
@@ -305,7 +393,7 @@ def collect_source_rows(board_path: Path, refs, wanted_model_sha: str,
         fab = fab_bbox(fp)
         courtyard = courtyard_bbox(fp)
         if fab is None or courtyard is None:
-            raise ValueError(f"{ref}: F.Fab body and F.CrtYd are both required")
+            raise ValueError(f"{ref}: {datum_names(fp)[0]} body and {datum_names(fp)[1]} are both required")
         pad_rows = registration_pads(fp, registration_datum)
         pads = [(row["number"], *row["position_mm"]) for row in pad_rows]
         if not pads:
@@ -387,14 +475,15 @@ def signed_mount_side_pixels(path: Path):
 
 
 def px_box(box, x_of, y_of):
-    return (
-        round(x_of(box[0])), round(y_of(box[1])),
-        round(x_of(box[2])), round(y_of(box[3])),
-    )
+    xs = sorted((round(x_of(box[0])), round(x_of(box[2]))))
+    ys = sorted((round(y_of(box[1])), round(y_of(box[3]))))
+    return xs[0], ys[0], xs[1], ys[1]
 
 
 def measured_mm(box, mm_x, mm_y):
-    return (mm_x(box[0]), mm_y(box[1]), mm_x(box[2]), mm_y(box[3]))
+    xs = sorted((mm_x(box[0]), mm_x(box[2])))
+    ys = sorted((mm_y(box[1]), mm_y(box[3])))
+    return xs[0], ys[0], xs[1], ys[1]
 
 
 def centre_delta(a, b):
@@ -516,15 +605,20 @@ def main(argv=None) -> int:
     rows = coupon_rows
     edge = mm_box(board.GetBoardEdgesBoundingBox())
 
+    actual_side = mounted_side(rows[0]["fp"])
+    plan_camera = "top" if actual_side == "front" else "bottom"
+    fab_name, courtyard_name = datum_names(rows[0]["fp"])
+    # Historical filenames are retained by the v1 bundle contract; the report
+    # names the actual camera. Both populated and bare use that same camera.
     populated_png = outdir / "native_top.png"
     bare_board = outdir / "native_bare.kicad_pcb"
     bare_png = outdir / "native_bare_top.png"
-    render(coupon_board, populated_png, args.width, args.height)
+    render(coupon_board, populated_png, args.width, args.height, side=plan_camera)
     bare = pcbnew.LoadBoard(str(coupon_board))
     for fp in bare.GetFootprints():
         fp.Models().clear()
     bare.Save(str(bare_board))
-    render(bare_board, bare_png, args.width, args.height)
+    render(bare_board, bare_png, args.width, args.height, side=plan_camera)
     side_measurements = []
     mount_side_fraction = None
     if args.mount_side:
@@ -552,9 +646,12 @@ def main(argv=None) -> int:
     anisotropy = scale_x / scale_y
     if abs(anisotropy - 1.0) > 0.02:
         raise SystemExit(f"render anisotropy {anisotropy:.4f} exceeds 0.02")
-    x_of = lambda value: min_x + (value - edge[0]) * scale_x
+    # KiCad's bottom camera mirrors board X. Keep all native datums and
+    # measured copper intersections in board coordinates, with ordered boxes.
+    mirror = plan_camera == "bottom"
+    x_of = lambda value: min_x + ((edge[2] - value) if mirror else (value - edge[0])) * scale_x
     y_of = lambda value: min_y + (value - edge[1]) * scale_y
-    mm_x = lambda value: edge[0] + (value - min_x) / scale_x
+    mm_x = lambda value: edge[2] - (value - min_x) / scale_x if mirror else edge[0] + (value - min_x) / scale_x
     mm_y = lambda value: edge[1] + (value - min_y) / scale_y
 
     expected_px = {row["ref"]: px_box(row["fab"], x_of, y_of) for row in rows}
@@ -598,24 +695,29 @@ def main(argv=None) -> int:
         body_outward = outward(body, expected)
         courtyard_outward = excursion(body, courtyard)
         pad_results = []
-        for number, x, y in row["pads"]:
+        for index, (number, x, y) in enumerate(row["pads"]):
             inside = body[0] <= x <= body[2] and body[1] <= y <= body[3]
             margin_to_body = min(x - body[0], y - body[1], body[2] - x, body[3] - y)
+            if args.registration_datum == "all_smd_pad_overlap":
+                margin_to_body = smd_pad_plan_overlap_mm2(list(row["fp"].Pads())[index], body)
+                inside = margin_to_body > 0
             pad_results.append((number, inside, margin_to_body, x, y))
         if delta > args.fit_tol_mm:
-            failures.append(f"{row['ref']}: body/F.Fab centre delta {delta:.3f} mm")
+            failures.append(f"{row['ref']}: body/{fab_name} centre delta {delta:.3f} mm")
         if body_outward > args.fit_tol_mm:
-            failures.append(f"{row['ref']}: body exceeds F.Fab by {body_outward:.3f} mm")
+            failures.append(f"{row['ref']}: body exceeds {fab_name} by {body_outward:.3f} mm")
         if courtyard_outward > args.courtyard_tol_mm:
             failures.append(
-                f"{row['ref']}: body exceeds F.CrtYd by {courtyard_outward:.3f} mm"
+                f"{row['ref']}: body exceeds {courtyard_name} by {courtyard_outward:.3f} mm"
             )
         if touched:
             failures.append(f"{row['ref']}: body measurement touched search window")
         missed = [number for number, inside, *_ in pad_results if not inside]
         if missed:
             failures.append(
-                f"{row['ref']}: {args.registration_datum} outside body: {missed}")
+                f"{row['ref']}: {args.registration_datum} "
+                + ("no positive model-plan overlap" if args.registration_datum == "all_smd_pad_overlap"
+                   else "outside body") + f": {missed}")
         row.update({
             "body": body, "body_px": measured_px, "pixels": pixel_count,
             "centre_delta": delta, "body_outward": body_outward,
@@ -641,7 +743,7 @@ def main(argv=None) -> int:
         overlay.crop(crop_box).save(outdir / f"native_overlay_{row['ref']}.png")
 
     legend = (
-        "Native model registration: ORANGE F.CrtYd | GREEN F.Fab expected | "
+        f"Native model registration: ORANGE {courtyard_name} | GREEN {fab_name} expected | "
         f"PINK measured native-model pixels | CYAN {args.registration_datum} | BLUE PCB edge"
     )
     draw.rectangle((12, 12, min(image.width-12, 1420), 58), fill=(0, 0, 0))
@@ -669,17 +771,22 @@ def main(argv=None) -> int:
         f"courtyard_containment_tolerance_mm: {args.courtyard_tol_mm:.3f}",
         f"registration_datum: {args.registration_datum}",
         f"mount_side: {args.mount_side or 'not-graded'}",
+        f"actual_footprint_side: {actual_side}",
+        f"plan_camera: {plan_camera}",
+        f"plan_projection: {'X-MIRRORED' if mirror else 'board XY'}",
         f"mount_side_min_fraction: {args.mount_side_min_fraction:.3f}",
         "mount_side_measured_fraction: " + (
             f"{mount_side_fraction:.6f}" if mount_side_fraction is not None else "N/A"),
         f"overlay: {overlay_path.name}",
         "",
-        "Orange is F.CrtYd; green is the independent F.Fab body envelope; "
+        f"Orange is {courtyard_name}; green is the independent {fab_name} body envelope; "
         "pink is the populated-minus-bare native-model pixel envelope; cyan "
         f"is the selected {args.registration_datum} field. Pink/green agreement alone is not "
         "enough: both must also register to the footprint and courtyard.",
         "",
-        "| ref | centre delta mm | measured beyond F.Fab mm | measured beyond courtyard mm | registration centres inside | min pad margin mm |",
+        (f"| ref | centre delta mm | measured beyond {fab_name} mm | measured beyond courtyard mm | SMD pads overlapping model plan | minimum overlap mm2 |"
+         if args.registration_datum == "all_smd_pad_overlap" else
+         f"| ref | centre delta mm | measured beyond {fab_name} mm | measured beyond courtyard mm | registration centres inside | min pad margin mm |"),
         "|---|---:|---:|---:|---:|---:|",
     ]
     for row in rows:
@@ -708,11 +815,12 @@ def main(argv=None) -> int:
     measurements = []
     for row in sorted(rows, key=lambda item: ref_sort_key(item["ref"])):
         pad_results = row.get("pad_results", [])
+        overlap_mode = args.registration_datum == "all_smd_pad_overlap"
         measurements.append({
             "ref": row["ref"],
-            "attachment_centres_graded": sum(
+            ("attachment_overlaps_graded" if overlap_mode else "attachment_centres_graded"): sum(
                 1 for _number, inside, *_rest in pad_results if inside),
-            "attachment_centres_total": len(row["pads"]),
+            ("attachment_overlaps_total" if overlap_mode else "attachment_centres_total"): len(row["pads"]),
             "centre_delta_mm": (_rounded(row["centre_delta"])
                                 if "centre_delta" in row else None),
             "fab_outward_mm": (_rounded(row["body_outward"])

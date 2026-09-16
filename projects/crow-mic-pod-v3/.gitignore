@@ -1,0 +1,41 @@
+06_build/*
+!06_build/contracts.md
+!06_build/checkpoints/
+!06_build/checkpoints/*.json
+!06_build/build_provenance.json
+!06_build/netlists/
+06_build/netlists/*
+!06_build/netlists/crow_mic_pod_v3.net
+!06_build/sourcing/
+06_build/sourcing/*
+!06_build/sourcing/prelayout_request.json
+!06_build/sourcing/prelayout_response.csv
+!06_build/sourcing/prelayout_receipt.json
+!06_build/sourcing/public_catalog_probe.csv
+!06_build/sourcing/public_catalog_stock.json
+!06_build/sourcing/public_catalog_stock.txt
+
+*.kicad_pcb-bak
+*.kicad_sch-bak
+*-backups/
+_autosave-*
+fp-info-cache
+
+__pycache__/
+*.kicad_prl
+
+# Local tscircuit dependency and resolver caches are reproducible inputs to no
+# design claim.  Keep only authored source, package metadata, and explicit
+# build artifacts governed elsewhere in this project.
+03_tscircuit/.tscircuit/
+03_tscircuit/node_modules/
+03_tscircuit/dist/
+03_tscircuit/build/
+03_tscircuit/tsx_build/
+
+# The exact nondeterministic TSX subjects frozen at J-PCBA prelayout are
+# durable checkpoint inputs. Everything else in build/ remains disposable.
+!03_tscircuit/build/
+03_tscircuit/build/*
+!03_tscircuit/build/circuit.json
+!03_tscircuit/build/schematic.pdf

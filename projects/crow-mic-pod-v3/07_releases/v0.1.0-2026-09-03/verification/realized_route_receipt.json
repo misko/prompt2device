@@ -1,0 +1,301 @@
+{
+  "schema": 1,
+  "kind": "crow-pod-realized-route-audit-v1",
+  "verdict": "PASS",
+  "graded": 22,
+  "rows": [
+    {
+      "kind": "short_path",
+      "start": "D1.1",
+      "end": "D2.1",
+      "net": "VIN_PROTECTED",
+      "length_mm": 11.020691,
+      "maximum_mm": 12.0,
+      "via_count": 0,
+      "layers": [
+        "F.Cu"
+      ],
+      "why": "reverse diode to input TVS",
+      "verdict": "PASS"
+    },
+    {
+      "kind": "short_path",
+      "start": "J1.3",
+      "end": "U3.3",
+      "net": "AUDIO_P",
+      "length_mm": 4.097307,
+      "maximum_mm": 4.2,
+      "via_count": 0,
+      "layers": [
+        "F.Cu"
+      ],
+      "why": "AUDIO+ connector to ESD clamp",
+      "verdict": "PASS"
+    },
+    {
+      "kind": "short_path",
+      "start": "J1.4",
+      "end": "U3.5",
+      "net": "AUDIO_N",
+      "length_mm": 2.908677,
+      "maximum_mm": 4.2,
+      "via_count": 0,
+      "layers": [
+        "F.Cu"
+      ],
+      "why": "AUDIO- connector to ESD clamp",
+      "verdict": "PASS"
+    },
+    {
+      "kind": "short_path",
+      "start": "U2.8",
+      "end": "C1.1",
+      "net": "VIN_PROTECTED",
+      "length_mm": 1.908042,
+      "maximum_mm": 3.0,
+      "via_count": 0,
+      "layers": [
+        "F.Cu"
+      ],
+      "why": "LDO input bulk capacitor",
+      "verdict": "PASS"
+    },
+    {
+      "kind": "short_path",
+      "start": "U2.8",
+      "end": "C2.1",
+      "net": "VIN_PROTECTED",
+      "length_mm": 1.633677,
+      "maximum_mm": 3.0,
+      "via_count": 0,
+      "layers": [
+        "F.Cu"
+      ],
+      "why": "LDO input HF capacitor",
+      "verdict": "PASS"
+    },
+    {
+      "kind": "short_path",
+      "start": "U2.1",
+      "end": "C5.1",
+      "net": "5V_QUIET",
+      "length_mm": 2.753105,
+      "maximum_mm": 3.0,
+      "via_count": 0,
+      "layers": [
+        "F.Cu"
+      ],
+      "why": "LDO output bulk capacitor",
+      "verdict": "PASS"
+    },
+    {
+      "kind": "short_path",
+      "start": "U2.1",
+      "end": "C6.1",
+      "net": "5V_QUIET",
+      "length_mm": 1.552265,
+      "maximum_mm": 3.0,
+      "via_count": 0,
+      "layers": [
+        "F.Cu"
+      ],
+      "why": "LDO output HF capacitor",
+      "verdict": "PASS"
+    },
+    {
+      "kind": "short_path",
+      "start": "U2.6",
+      "end": "C4.1",
+      "net": "LDO_NR",
+      "length_mm": 1.870167,
+      "maximum_mm": 3.0,
+      "via_count": 0,
+      "layers": [
+        "F.Cu"
+      ],
+      "why": "LDO noise-reduction capacitor",
+      "verdict": "PASS"
+    },
+    {
+      "kind": "short_path",
+      "start": "U2.2",
+      "end": "C3.2",
+      "net": "LDO_FB",
+      "length_mm": 2.116501,
+      "maximum_mm": 3.0,
+      "via_count": 0,
+      "layers": [
+        "F.Cu"
+      ],
+      "why": "LDO feed-forward FB side",
+      "verdict": "PASS"
+    },
+    {
+      "kind": "short_path",
+      "start": "U2.1",
+      "end": "C3.1",
+      "net": "5V_QUIET",
+      "length_mm": 2.172763,
+      "maximum_mm": 3.0,
+      "via_count": 0,
+      "layers": [
+        "F.Cu"
+      ],
+      "why": "LDO feed-forward OUT side",
+      "verdict": "PASS"
+    },
+    {
+      "kind": "short_path",
+      "start": "U1.4",
+      "end": "C10.1",
+      "net": "5V_QUIET",
+      "length_mm": 1.945,
+      "maximum_mm": 3.0,
+      "via_count": 0,
+      "layers": [
+        "F.Cu"
+      ],
+      "why": "OPA1679 local bypass",
+      "verdict": "PASS"
+    },
+    {
+      "kind": "short_path",
+      "start": "R12.2",
+      "end": "TP5.1",
+      "net": "AUDIO_P",
+      "length_mm": 3.500024,
+      "maximum_mm": 5.0,
+      "via_count": 0,
+      "layers": [
+        "F.Cu"
+      ],
+      "why": "AUDIO+ probe branch",
+      "verdict": "PASS"
+    },
+    {
+      "kind": "short_path",
+      "start": "R13.2",
+      "end": "TP6.1",
+      "net": "AUDIO_N",
+      "length_mm": 3.500024,
+      "maximum_mm": 5.0,
+      "via_count": 0,
+      "layers": [
+        "F.Cu"
+      ],
+      "why": "AUDIO- probe branch",
+      "verdict": "PASS"
+    },
+    {
+      "kind": "branch_after_clamp",
+      "start": "D1.1",
+      "clamp": "D2.1",
+      "target": "C1.1",
+      "net": "VIN_PROTECTED",
+      "prefix_edge_count": 2,
+      "missing_prefix_edge_count": 0,
+      "bypassed_prefix_edge_count": 0,
+      "why": "the TVS must be first after the reverse diode",
+      "verdict": "PASS"
+    },
+    {
+      "kind": "branch_after_clamp",
+      "start": "D1.1",
+      "clamp": "D2.1",
+      "target": "C2.1",
+      "net": "VIN_PROTECTED",
+      "prefix_edge_count": 2,
+      "missing_prefix_edge_count": 0,
+      "bypassed_prefix_edge_count": 0,
+      "why": "the TVS must be first after the reverse diode",
+      "verdict": "PASS"
+    },
+    {
+      "kind": "branch_after_clamp",
+      "start": "D1.1",
+      "clamp": "D2.1",
+      "target": "U2.8",
+      "net": "VIN_PROTECTED",
+      "prefix_edge_count": 2,
+      "missing_prefix_edge_count": 0,
+      "bypassed_prefix_edge_count": 0,
+      "why": "the TVS must be first after the reverse diode",
+      "verdict": "PASS"
+    },
+    {
+      "kind": "branch_after_clamp",
+      "start": "D1.1",
+      "clamp": "D2.1",
+      "target": "U2.5",
+      "net": "VIN_PROTECTED",
+      "prefix_edge_count": 2,
+      "missing_prefix_edge_count": 0,
+      "bypassed_prefix_edge_count": 0,
+      "why": "the TVS must be first after the reverse diode",
+      "verdict": "PASS"
+    },
+    {
+      "kind": "branch_after_clamp",
+      "start": "D1.1",
+      "clamp": "D2.1",
+      "target": "R14.1",
+      "net": "VIN_PROTECTED",
+      "prefix_edge_count": 2,
+      "missing_prefix_edge_count": 0,
+      "bypassed_prefix_edge_count": 0,
+      "why": "the TVS must be first after the reverse diode",
+      "verdict": "PASS"
+    },
+    {
+      "kind": "branch_after_clamp",
+      "start": "J1.3",
+      "clamp": "U3.3",
+      "target": "TP5.1",
+      "net": "AUDIO_P",
+      "prefix_edge_count": 3,
+      "missing_prefix_edge_count": 0,
+      "bypassed_prefix_edge_count": 0,
+      "why": "AUDIO+ must reach U3 before any probe/output branch",
+      "verdict": "PASS"
+    },
+    {
+      "kind": "branch_after_clamp",
+      "start": "J1.3",
+      "clamp": "U3.3",
+      "target": "R12.2",
+      "net": "AUDIO_P",
+      "prefix_edge_count": 3,
+      "missing_prefix_edge_count": 0,
+      "bypassed_prefix_edge_count": 0,
+      "why": "AUDIO+ must reach U3 before any probe/output branch",
+      "verdict": "PASS"
+    },
+    {
+      "kind": "branch_after_clamp",
+      "start": "J1.4",
+      "clamp": "U3.5",
+      "target": "TP6.1",
+      "net": "AUDIO_N",
+      "prefix_edge_count": 2,
+      "missing_prefix_edge_count": 0,
+      "bypassed_prefix_edge_count": 0,
+      "why": "AUDIO- must reach U3 before any probe/output branch",
+      "verdict": "PASS"
+    },
+    {
+      "kind": "branch_after_clamp",
+      "start": "J1.4",
+      "clamp": "U3.5",
+      "target": "R13.2",
+      "net": "AUDIO_N",
+      "prefix_edge_count": 2,
+      "missing_prefix_edge_count": 0,
+      "bypassed_prefix_edge_count": 0,
+      "why": "AUDIO- must reach U3 before any probe/output branch",
+      "verdict": "PASS"
+    }
+  ],
+  "findings": [],
+  "board": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-mic-pod-v3/04_kicad/crow_mic_pod_v3.kicad_pcb",
+  "board_sha256": "a932200e0976418383fae0c131dfe2a5768c00ef261b611762ccd3507f05ca8f"
+}

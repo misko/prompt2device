@@ -538,6 +538,20 @@ def t_scoped_clearance_above_budget():
              "the fix matches the two values up")
 
 
+@test("pads_only clearance never licenses sub-floor routing", kind="known_bad")
+def t_scoped_clearance_pads_only_not_route_authority():
+    """Run RED against 06d3bd3e: old preflight incorrectly downgrades to WARN."""
+    import yaml
+    for value in (True, "true", None):
+        d = _wave_clearance_scratch()
+        p = d / "03_src" / "rules" / "nets.yaml"
+        n = yaml.safe_load(p.read_text())
+        n["scoped_clearances"] = [dict(SC, pads_only=value)]
+        p.write_text(yaml.safe_dump(n))
+        must_fail(preflight(d), "pad-only or malformed scope cannot cover tracks",
+                  "PF-ROUTE-CLR")
+
+
 @test("tier_preflight FAILS the frozen crow-array-pod archive "
       "(PF-RULES-CLR latent mismatch — the reason its e2e run uses "
       "--skip-preflight)", kind="known_bad")

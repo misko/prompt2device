@@ -1,0 +1,13 @@
+mpn: 0402WGF3243TCE
+manufacturer: UNI-ROYAL
+type: thick_film_resistor
+value: 324k
+datasheet: {doc_id: UNI-ROYAL-0402-series, revision: current, url: "https://www.lcsc.com/product-detail/C113480.html", local: null, sha256: null, fetched: 2026-09-02}
+package: "0402 (1005 metric)"
+footprint: Resistor_SMD:R_0402_1005Metric
+escape: {style: passive, pitch: 0.5, tier_required: jlc_2layer_default, checked: "standard 0402 land, 2026-09-01"}
+pins: {1: A, 2: B}
+limits: {resistance_ohm: 324000, tolerance_pct: 1}
+asserts: [{assert: value, equals: 324k, tolerance_pct: 1, why: "TPS7A4901 feedback top resistor sets the reviewed 5 V window."}]
+verified: "Exact 0402WGF3243TCE/C113480 identity is the 324k +/-1% member of the same UNI-ROYAL 0402WGF family already used by the pod; selected from the live JLC catalog on 2026-09-02, with immutable manufacturer PDF bytes and authenticated PCBA allocation still owed."
+sourcing: {lcsc: C113480, alternates: [], note: "Observed catalog stock 51904 for 10 required on 2026-09-02."}

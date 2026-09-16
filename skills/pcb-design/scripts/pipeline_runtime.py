@@ -436,6 +436,7 @@ class RuntimeOutcome:
         """Return runtime telemetry; this is not an artifact-bundle manifest."""
         return {
             "schema": 1,
+            "pid": self.pid,
             "stage_id": self.stage_id,
             "run_id": self.run_id,
             "status": self.status,
@@ -677,7 +678,7 @@ def _publish_attempt(path: Path, attempt: object) -> None:
             stream.write(encoded)
             stream.flush()
             os.fsync(stream.fileno())
-        os.replace(temporary, path)
+        os.link(temporary, path)
     finally:
         try:
             temporary.unlink()
@@ -1044,7 +1045,8 @@ def execute_attempt(
         replacement_index: int = 0, heartbeat_s: float = 10.0,
         console: TextIO | None = sys.stdout,
         cancel_event: threading.Event | None = None,
-        terminate_grace_s: float = 2.0) -> "TaskAttempt":
+        terminate_grace_s: float = 2.0,
+        _continuation: Mapping[str, Any] | None = None) -> "TaskAttempt":
     """Execute and persist exactly one terminal ``TaskAttempt``.
 
     ``cwd`` is also the project root for packet and writer-scope paths.  Both
@@ -1083,12 +1085,34 @@ def execute_attempt(
 
     digest = envelope_sha256(envelope)
     output_path = _project_path(root, envelope.output_path, "output_path")
+    if envelope.schema == 2 and envelope.repair and _continuation is None:
+        campaign = {"stage": envelope.stage_id, "subject": envelope.subject.semantic_sha256,
+                    "hypothesis": envelope.repair["hypothesis_sha256"],
+                    "finding": envelope.repair["finding_id"]}
+        campaign_id = hashlib.sha256(json.dumps(campaign, sort_keys=True).encode()).hexdigest()
+        campaign_root = _project_path(root, "06_build/task_runs", "task claim")
+        campaign_root.mkdir(parents=True, exist_ok=True)
+        with (campaign_root / f".task-{campaign_id}.json").open("x") as stream:
+            json.dump({"envelope_sha256": digest, "output_path": envelope.output_path}, stream)
+            stream.flush(); os.fsync(stream.fileno())
+    if envelope.schema == 2:
+        output_path.parent.mkdir(parents=True, exist_ok=False)
+        for name in ("outputs", "scratch"):
+            (output_path.parent / name).mkdir()
+        (output_path.parent / "envelope.json").write_text(envelope.to_json() + "\n")
+        explicit_env["PCB_TASK_SUBJECT_JSON"] = json.dumps(envelope.subject.to_mapping(), sort_keys=True)
+        explicit_env["PCB_TASK_OUTPUT_DIR"] = str(output_path.parent / "outputs")
+        explicit_env["PCB_TASK_SCRATCH_DIR"] = str(output_path.parent / "scratch")
     log_path = output_path.with_name(output_path.name + ".log")
     output_relative = output_path.relative_to(root).as_posix()
     log_relative = log_path.relative_to(root).as_posix()
     claim = _claim_attempt(output_path, digest)
     claim_relative = claim.relative_to(root).as_posix()
 
+    ignored = {log_relative}
+    if envelope.schema == 2:
+        ignored.update((output_path.parent / name).relative_to(root).as_posix()
+                       for name in ("outputs", "scratch"))
     started_at = _utc_now()
     runtime: RuntimeOutcome | None = None
     status = "ERROR"
@@ -1102,6 +1126,13 @@ def execute_attempt(
     enforcement_errors.extend(scope_preflight)
 
     try:
+        if envelope.schema == 2 and envelope.repair and _continuation is None:
+            if attempt_index != 0:
+                raise ValueError("initial task attempt index must be zero")
+            if envelope.repair["finding_id"] is not None:
+                from decision_progress import reserve_launch
+                _continuation = {"nonimproving": 0, "investigation_reservation": reserve_launch(
+                    root, envelope.repair["finding_id"], envelope.subject.semantic_sha256)}
         before_valid, before_failures = verify_input_packet(envelope, root)
         if not before_valid:
             enforcement_errors.extend(
@@ -1109,7 +1140,7 @@ def execute_attempt(
                 for row in before_failures)
         try:
             before_snapshot = _tree_snapshot(
-                root, ignored=frozenset({log_relative}))
+                root, ignored=frozenset(ignored))
         except (OSError, UnicodeError) as exc:
             enforcement_errors.append(
                 f"could not snapshot writer scope before execution: "
@@ -1151,7 +1182,7 @@ def execute_attempt(
             f"{type(exc).__name__}: {exc}")
     try:
         after_snapshot = _tree_snapshot(
-            root, ignored=frozenset({log_relative}))
+            root, ignored=frozenset(ignored))
     except (OSError, UnicodeError) as exc:
         enforcement_errors.append(
             f"could not snapshot writer scope after execution: "
@@ -1198,10 +1229,49 @@ def execute_attempt(
             "detail": "attempt was cancelled before completion",
         })
 
+    completion = None
+    if envelope.schema == 2:
+        from pipeline_artifacts import validate_task_outputs
+        try:
+            completion = validate_task_outputs(
+                output_path.parent / "outputs", envelope.completion["outputs"],
+                subject=envelope.subject.to_mapping(), checks=envelope.completion["checks"])
+        except Exception as exc:
+            unresolved.append({"check": "task handback", "status": "INCOMPLETE",
+                               "detail": f"{type(exc).__name__}: {exc}"})
+            if status == "PASS":
+                status = "INCOMPLETE"
+    if envelope.schema == 2 and status == "PASS" and _deadline_remaining(envelope.deadline_at) <= 0:
+        status = "TIMED_OUT"
+        unresolved.append({"check": "complete delivery deadline", "status": "INCOMPLETE",
+                           "detail": "validation finished after original deadline"})
+    if status != "PASS" and not unresolved:
+        unresolved.append({"check": "task execution", "status": "INCOMPLETE",
+                           "detail": "; ".join(enforcement_errors or
+                               (list(runtime.findings) if runtime else ["no execution"]))})
+    log_record = None
+    if log_path.is_file():
+        log_record = {"path": log_relative, "size": log_path.stat().st_size,
+                      "sha256": _file_sha256(log_path), "streams": "combined stdout/stderr"}
+        if runtime and runtime.status == "PASS" and log_record["size"] != runtime.output_bytes:
+            status = "INCOMPLETE"
+            unresolved.append({"check": "output capture", "status": "INCOMPLETE",
+                               "detail": "log byte census differs from runtime"})
+    elif runtime is not None:
+        if status == "PASS":
+            status = "INCOMPLETE"
+        unresolved.append({"check": "output capture", "status": "INCOMPLETE",
+                           "detail": "child log is missing after execution"})
     finished_at = _utc_now()
     attempt_output = {
         "schema": 1,
         "runtime": None if runtime is None else runtime.to_mapping(),
+        "command": argv, "cwd": str(root),
+        "environment": {key: explicit_env[key] for key in
+                        ("PATH", "LANG", "LC_ALL", "PCB_TASK_OUTPUT_DIR", "PCB_TASK_SCRATCH_DIR")
+                        if key in explicit_env},
+        "log": log_record, "completion": completion,
+        "continuation": dict(_continuation or {}),
         "input_packet": {
             "before": {"status": "PASS" if before_valid else "FAIL",
                        "failures": before_failures},
@@ -1226,3 +1296,151 @@ def execute_attempt(
         except FileNotFoundError:
             pass
     return attempt
+
+
+def open_agent_attempt(envelope: "TaskEnvelope", *, cwd: str | Path) -> dict[str, Any]:
+    """Prepare evidence before the coordinator launches through its host tools.
+
+    This adapter never launches an agent or claims host containment. The caller
+    delivers the exact envelope and allocated paths, then closes with an observed
+    host event. A process session cannot be reconstructed from an old PID.
+    """
+    from pipeline_execution import envelope_sha256, verify_input_packet
+    if envelope.schema != 2 or envelope.executor not in {"agent", "reviewer"}:
+        raise ValueError("agent adapter requires a schema-2 agent/reviewer envelope")
+    root = Path(cwd).resolve(strict=True)
+    valid, failures = verify_input_packet(envelope, root)
+    if not valid or _deadline_remaining(envelope.deadline_at) <= 0:
+        raise ValueError(f"agent admission refused: packet={failures}; deadline must be live")
+    path = _project_path(root, envelope.output_path, "agent output")
+    path.parent.mkdir(parents=True, exist_ok=False)
+    for name in ("outputs", "scratch"):
+        (path.parent / name).mkdir()
+    (path.parent / "envelope.json").write_text(envelope.to_json() + "\n")
+    claim = _claim_attempt(path, envelope_sha256(envelope))
+    ignored = frozenset((path.parent / name).relative_to(root).as_posix()
+                        for name in ("outputs", "scratch", "admission.json", ".closing"))
+    admission = {"schema": 1, "envelope_sha256": envelope_sha256(envelope),
+                 "started_at": _utc_now(), "root": str(root),
+                 "before": _tree_snapshot(root, ignored=ignored),
+                 "ignored": sorted(ignored), "claim": claim.relative_to(root).as_posix()}
+    (path.parent / "admission.json").write_text(json.dumps(admission, sort_keys=True) + "\n")
+    return {"attempt": str(path), "envelope_sha256": admission["envelope_sha256"],
+            "output_dir": str(path.parent / "outputs"),
+            "scratch_dir": str(path.parent / "scratch"), "deadline_at": envelope.deadline_at}
+
+
+def close_agent_attempt(envelope: "TaskEnvelope", *, cwd: str | Path,
+                        event: Mapping[str, Any]) -> "TaskAttempt":
+    """Close once from a coordinator-observed host event, never from agent prose.
+
+    Event keys are host, agent_id, state, envelope_sha256, cleanup and detail.
+    state is completed/error/running/unknown; cleanup is confirmed/unknown.
+    Host event authenticity remains the coordinator's responsibility, just as
+    independent judgment remains the domain reviewer's responsibility.
+    """
+    from pipeline_execution import TaskAttempt, envelope_sha256, verify_input_packet, writer_scope_receipt
+    from pipeline_artifacts import validate_task_outputs
+    if envelope.schema != 2 or envelope.executor not in {"agent", "reviewer"}:
+        raise ValueError("agent close requires a schema-2 agent/reviewer envelope")
+    root = Path(cwd).resolve(strict=True)
+    path = _project_path(root, envelope.output_path, "agent output")
+    admission = json.loads((path.parent / "admission.json").read_text())
+    digest = envelope_sha256(envelope)
+    if admission["envelope_sha256"] != digest or admission["root"] != str(root):
+        raise ValueError("agent admission identity mismatch")
+    # Keep the latch after closure; crashes cannot authorize a second completion.
+    with (path.parent / ".closing").open("x") as stream:
+        stream.write(_utc_now())
+    unresolved = []
+    status = "INCOMPLETE"
+    completion = scope = None
+    try:
+        required = {"host", "agent_id", "state", "envelope_sha256", "cleanup", "detail"}
+        if (not isinstance(event, Mapping) or set(event) != required or
+                any(not isinstance(v, str) for v in event.values()) or
+                not event["host"] or not event["agent_id"] or
+                event["envelope_sha256"] != digest or
+                event["state"] not in {"completed", "error", "running", "unknown"} or
+                event["cleanup"] not in {"confirmed", "unknown"}):
+            raise ValueError("malformed or stale host observation")
+        if _deadline_remaining(envelope.deadline_at) <= 0:
+            status = "TIMED_OUT"
+            raise ValueError("agent delivery deadline elapsed")
+        if event["state"] == "error":
+            status = "ERROR"
+        if event["state"] != "completed" or event["cleanup"] != "confirmed":
+            raise ValueError("host completion or cleanup is not confirmed: " + event["detail"])
+        valid, failures = verify_input_packet(envelope, root)
+        if not valid:
+            raise ValueError(f"agent input packet is stale: {failures}")
+        after = _tree_snapshot(root, ignored=frozenset(admission["ignored"]))
+        scope = writer_scope_receipt(envelope.writer_scope,
+                    _changed_paths(admission["before"], after),
+                    before_sha256=_snapshot_sha256(admission["before"]),
+                    after_sha256=_snapshot_sha256(after),
+                    protected_paths=tuple(sorted((envelope.output_path, admission["claim"]))))
+        if scope["status"] != "PASS":
+            raise ValueError(f"agent writer scope violation: {scope['violations']}")
+        completion = validate_task_outputs(path.parent / "outputs", envelope.completion["outputs"],
+                    subject=envelope.subject.to_mapping(), checks=envelope.completion["checks"])
+        status = "PASS"
+    except Exception as exc:
+        unresolved.append({"check": "agent delivery", "status": "INCOMPLETE", "detail": str(exc)})
+    finished = _utc_now()
+    attempt = TaskAttempt(task_id=envelope.task_id, envelope_sha256=digest,
+        attempt_index=0, replacement_index=0, subject=envelope.subject,
+        started_at=admission["started_at"], finished_at=finished,
+        elapsed_s=_elapsed_between(admission["started_at"], finished), status=status,
+        unresolved=unresolved, output={"host_observation": dict(event), "runtime": None,
+            "token_telemetry": "UNKNOWN", "completion": completion, "writer_scope": scope})
+    try:
+        _publish_attempt(path, attempt)
+    finally:
+        (root / admission["claim"]).unlink(missing_ok=True)
+    return attempt
+
+
+
+def execute_repair(envelope: "TaskEnvelope", command: Sequence[str], *, cwd: str | Path,
+                   env: Mapping[str, str], assessment: Mapping[str, Any],
+                   console: TextIO | None = sys.stdout) -> "TaskAttempt":
+    """Reserve one same-owner continuation before dispatch; no automatic loop.
+
+    The previous attempt and exact allocated envelope are authoritative inputs.
+    Each predecessor can have only one successor, including a failed dispatch.
+    Investigation reservations use the existing findings ledger when declared.
+    """
+    from dataclasses import replace
+    from pipeline_execution import TaskAttempt, repair_decision
+    root = Path(cwd).resolve(strict=True)
+    previous_path = _project_path(root, envelope.output_path, "previous attempt")
+    previous = TaskAttempt.from_json(previous_path.read_text())
+    admission = repair_decision(envelope, previous, assessment)
+    for item in assessment["evidence"]:
+        path = _project_path(root, item["path"], "repair evidence")
+        if path.is_symlink() or path.stat().st_size != item["size"] or _file_sha256(path) != item["sha256"]:
+            raise ValueError(f"stale repair evidence: {item['path']}")
+    original_sha = _file_sha256(previous_path)
+    successor = replace(envelope,
+        output_path=f"06_build/task_runs/{envelope.run_id}-{uuid.uuid4().hex}/attempt.json")
+    admission.update(previous_path=envelope.output_path, previous_sha256=original_sha,
+                     attempt_path=successor.output_path)
+    # A durable exclusive claim prevents branches/relabeling from restoring spend.
+    claim = previous_path.parent / ".repair-claim.json"
+    try:
+        with claim.open("x") as stream:
+            json.dump({"successor": successor.output_path, "admission": admission}, stream, sort_keys=True)
+            stream.flush(); os.fsync(stream.fileno())
+    except FileExistsError as exc:
+        recorded = json.loads(claim.read_text()).get("successor", "UNKNOWN")
+        raise FileExistsError(f"predecessor already claimed; inspect successor {recorded}; "
+                              f"reservation: {claim}") from exc
+    if envelope.repair["finding_id"] is not None:
+        from decision_progress import reserve_launch
+        admission["investigation_reservation"] = reserve_launch(
+            root, envelope.repair["finding_id"], envelope.subject.semantic_sha256)
+    if _file_sha256(previous_path) != original_sha:
+        raise ValueError("previous attempt changed during repair reservation")
+    return execute_attempt(successor, command, cwd=root, env=env, console=console,
+        attempt_index=admission["attempt_index"], _continuation=admission)

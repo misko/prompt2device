@@ -1,0 +1,994 @@
+{
+  "checks": {
+    "critical_connectivity": {
+      "detail": "0 critical net(s) connected",
+      "notes": [
+        "no critical routes: All signals are ordinary audio or DC below 20 kHz and therefore have no controlled-impedance differential-pair timing contract. Connector-first clamp order, regulator bypass proximity and probe-stub limits are governed separately by the pod realized-route checker."
+      ],
+      "status": "PASS"
+    },
+    "critical_copper_length": {
+      "detail": "0/0 member path(s) measured",
+      "report": {
+        "board": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-mic-pod-v3/04_kicad/crow_mic_pod_v3.kicad_pcb",
+        "declaration": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-mic-pod-v3/03_src/rules/nets.yaml",
+        "fails": [],
+        "groups": [],
+        "n_electrical_declared": 0,
+        "n_electrical_measured": 0,
+        "n_group": 0,
+        "n_measured": 0,
+        "n_member": 0,
+        "project": "crow-mic-pod-v3",
+        "unreached": []
+      },
+      "status": "N-A"
+    },
+    "native_drc": {
+      "binding": {
+        "algorithm": "sha256",
+        "kind": "native-drc-subject-binding-v1",
+        "sha256": "c99d4754e136fb4bd8ef19714a87519e8748f0faf6d32452246a1b8af4bcbd86"
+      },
+      "command": [
+        "kicad-cli",
+        "pcb",
+        "drc",
+        "--severity-all",
+        "--refill-zones",
+        "--schematic-parity",
+        "--format",
+        "json",
+        "-o",
+        "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-mic-pod-v3/06_build/drc/gate.json",
+        "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-mic-pod-v3/04_kicad/crow_mic_pod_v3.kicad_pcb"
+      ],
+      "comparison": {
+        "mode": "absolute"
+      },
+      "counts": {
+        "schematic_parity": 0,
+        "unconnected": 0,
+        "violations": 0
+      },
+      "detail": "0/0/0 absolute",
+      "evidence": {
+        "complete": true,
+        "fresh": true,
+        "path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-mic-pod-v3/06_build/drc/gate.json",
+        "sha256": "52666334dc34f19355f0167dcea12fdf76e7da208ea153f9b49efd2cf9220d19",
+        "size": 1093
+      },
+      "finding_signatures": {
+        "schematic_parity": [],
+        "unconnected_items": [],
+        "violations": []
+      },
+      "findings": [],
+      "finished_at_ns": 1788462630560328461,
+      "kind": "native-drc-result-v1",
+      "output": "Found 0 violations\nFound 0 unconnected items\nFound 0 schematic parity issues\nSaved DRC Report to /home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-mic-pod-v3/06_build/drc/gate.json\n",
+      "process_exit": 0,
+      "profile": "final",
+      "reasons": [],
+      "schema": 1,
+      "started_at_ns": 1788462629749943205,
+      "status": "PASS",
+      "subject": {
+        "path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-mic-pod-v3/04_kicad/crow_mic_pod_v3.kicad_pcb",
+        "sha256": "a932200e0976418383fae0c131dfe2a5768c00ef261b611762ccd3507f05ca8f",
+        "size": 323320
+      }
+    },
+    "realized_via_aspect": {
+      "detail": "57/57 via(s) graded",
+      "report": {
+        "census": {
+          "0.600/0.300": 57
+        },
+        "coverage": {
+          "graded": 57,
+          "total": 57
+        },
+        "failures": [],
+        "kind": "realized-via-aspect-v1",
+        "max_pth_aspect_ratio": 10.0,
+        "schema": 1,
+        "subject": {
+          "path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-mic-pod-v3/04_kicad/crow_mic_pod_v3.kicad_pcb",
+          "sha256": "a932200e0976418383fae0c131dfe2a5768c00ef261b611762ccd3507f05ca8f",
+          "size": 323320
+        },
+        "thickness_mm": 1.6,
+        "tier": "jlc_2layer_default",
+        "tier_source": "03_src/rules/nets.yaml (single-board layout)",
+        "verdict": "PASS",
+        "vias": [
+          {
+            "aspect_ratio": 5.333333,
+            "at_mm": [
+              51.0,
+              44.0
+            ],
+            "diameter_mm": 0.6,
+            "drill_mm": 0.3,
+            "limit": 10.0,
+            "net": "GND",
+            "span_basis": "conservative whole-board thickness",
+            "span_mm": 1.6,
+            "uuid": "02127c98-4f0b-424a-bdb4-83cca71797a8"
+          },
+          {
+            "aspect_ratio": 5.333333,
+            "at_mm": [
+              71.8,
+              34.0
+            ],
+            "diameter_mm": 0.6,
+            "drill_mm": 0.3,
+            "limit": 10.0,
+            "net": "GND",
+            "span_basis": "conservative whole-board thickness",
+            "span_mm": 1.6,
+            "uuid": "0a72192e-bf52-405e-b494-6adf3584c872"
+          },
+          {
+            "aspect_ratio": 5.333333,
+            "at_mm": [
+              29.62,
+              50.24
+            ],
+            "diameter_mm": 0.6,
+            "drill_mm": 0.3,
+            "limit": 10.0,
+            "net": "GND",
+            "span_basis": "conservative whole-board thickness",
+            "span_mm": 1.6,
+            "uuid": "0bb0c708-2aa4-4be0-86a6-d6e5af7a43ec"
+          },
+          {
+            "aspect_ratio": 5.333333,
+            "at_mm": [
+              61.2,
+              41.0
+            ],
+            "diameter_mm": 0.6,
+            "drill_mm": 0.3,
+            "limit": 10.0,
+            "net": "GND",
+            "span_basis": "conservative whole-board thickness",
+            "span_mm": 1.6,
+            "uuid": "0d3d4fb3-4e6a-4381-b1a5-54554651b4df"
+          },
+          {
+            "aspect_ratio": 5.333333,
+            "at_mm": [
+              50.48,
+              45.55
+            ],
+            "diameter_mm": 0.6,
+            "drill_mm": 0.3,
+            "limit": 10.0,
+            "net": "GND",
+            "span_basis": "conservative whole-board thickness",
+            "span_mm": 1.6,
+            "uuid": "1127726c-482b-4953-8d92-bfc1360736ab"
+          },
+          {
+            "aspect_ratio": 5.333333,
+            "at_mm": [
+              33.6,
+              39.73
+            ],
+            "diameter_mm": 0.6,
+            "drill_mm": 0.3,
+            "limit": 10.0,
+            "net": "GND",
+            "span_basis": "conservative whole-board thickness",
+            "span_mm": 1.6,
+            "uuid": "1a3e77e0-758f-46b5-aeef-d63c156ca151"
+          },
+          {
+            "aspect_ratio": 5.333333,
+            "at_mm": [
+              52.63,
+              49.92
+            ],
+            "diameter_mm": 0.6,
+            "drill_mm": 0.3,
+            "limit": 10.0,
+            "net": "GND",
+            "span_basis": "conservative whole-board thickness",
+            "span_mm": 1.6,
+            "uuid": "24e775f2-0525-4e2e-a669-6d3c709dfc69"
+          },
+          {
+            "aspect_ratio": 5.333333,
+            "at_mm": [
+              65.0,
+              30.0
+            ],
+            "diameter_mm": 0.6,
+            "drill_mm": 0.3,
+            "limit": 10.0,
+            "net": "GND",
+            "span_basis": "conservative whole-board thickness",
+            "span_mm": 1.6,
+            "uuid": "29286ef4-e8fb-4b99-8596-bea8cb7c190b"
+          },
+          {
+            "aspect_ratio": 5.333333,
+            "at_mm": [
+              44.0,
+              51.0
+            ],
+            "diameter_mm": 0.6,
+            "drill_mm": 0.3,
+            "limit": 10.0,
+            "net": "GND",
+            "span_basis": "conservative whole-board thickness",
+            "span_mm": 1.6,
+            "uuid": "2de476fc-d0b6-4ae8-a514-4adb2860c14a"
+          },
+          {
+            "aspect_ratio": 5.333333,
+            "at_mm": [
+              29.31,
+              48.0
+            ],
+            "diameter_mm": 0.6,
+            "drill_mm": 0.3,
+            "limit": 10.0,
+            "net": "GND",
+            "span_basis": "conservative whole-board thickness",
+            "span_mm": 1.6,
+            "uuid": "2e7f2b20-a46f-4636-9e46-0961570c4507"
+          },
+          {
+            "aspect_ratio": 5.333333,
+            "at_mm": [
+              36.98,
+              47.15
+            ],
+            "diameter_mm": 0.6,
+            "drill_mm": 0.3,
+            "limit": 10.0,
+            "net": "GND",
+            "span_basis": "conservative whole-board thickness",
+            "span_mm": 1.6,
+            "uuid": "325d72ff-d55f-494b-bbf4-04e9930a023a"
+          },
+          {
+            "aspect_ratio": 5.333333,
+            "at_mm": [
+              37.0,
+              30.0
+            ],
+            "diameter_mm": 0.6,
+            "drill_mm": 0.3,
+            "limit": 10.0,
+            "net": "GND",
+            "span_basis": "conservative whole-board thickness",
+            "span_mm": 1.6,
+            "uuid": "35f4d940-8f8c-4bfc-bff1-73e07b7fb4d7"
+          },
+          {
+            "aspect_ratio": 5.333333,
+            "at_mm": [
+              44.0,
+              37.0
+            ],
+            "diameter_mm": 0.6,
+            "drill_mm": 0.3,
+            "limit": 10.0,
+            "net": "GND",
+            "span_basis": "conservative whole-board thickness",
+            "span_mm": 1.6,
+            "uuid": "436c565d-520e-4cbc-8633-c26090f1acc5"
+          },
+          {
+            "aspect_ratio": 5.333333,
+            "at_mm": [
+              30.0,
+              30.0
+            ],
+            "diameter_mm": 0.6,
+            "drill_mm": 0.3,
+            "limit": 10.0,
+            "net": "GND",
+            "span_basis": "conservative whole-board thickness",
+            "span_mm": 1.6,
+            "uuid": "43761e3a-a08e-44b9-ab11-b2097ce40eab"
+          },
+          {
+            "aspect_ratio": 5.333333,
+            "at_mm": [
+              28.81,
+              45.67
+            ],
+            "diameter_mm": 0.6,
+            "drill_mm": 0.3,
+            "limit": 10.0,
+            "net": "GND",
+            "span_basis": "conservative whole-board thickness",
+            "span_mm": 1.6,
+            "uuid": "43a61fe7-085c-400b-bafa-0cc55a2971dd"
+          },
+          {
+            "aspect_ratio": 5.333333,
+            "at_mm": [
+              46.5,
+              56.0
+            ],
+            "diameter_mm": 0.6,
+            "drill_mm": 0.3,
+            "limit": 10.0,
+            "net": "GND",
+            "span_basis": "conservative whole-board thickness",
+            "span_mm": 1.6,
+            "uuid": "4dfe8eee-8bd3-4d9f-98c3-7023f8d93cc2"
+          },
+          {
+            "aspect_ratio": 5.333333,
+            "at_mm": [
+              37.46,
+              48.61
+            ],
+            "diameter_mm": 0.6,
+            "drill_mm": 0.3,
+            "limit": 10.0,
+            "net": "GND",
+            "span_basis": "conservative whole-board thickness",
+            "span_mm": 1.6,
+            "uuid": "500bae6c-6932-4cae-9231-ff2d78f3d6d9"
+          },
+          {
+            "aspect_ratio": 5.333333,
+            "at_mm": [
+              54.05,
+              32.11
+            ],
+            "diameter_mm": 0.6,
+            "drill_mm": 0.3,
+            "limit": 10.0,
+            "net": "GND",
+            "span_basis": "conservative whole-board thickness",
+            "span_mm": 1.6,
+            "uuid": "56492bbb-392f-46db-9670-595418b7417e"
+          },
+          {
+            "aspect_ratio": 5.333333,
+            "at_mm": [
+              72.0,
+              51.0
+            ],
+            "diameter_mm": 0.6,
+            "drill_mm": 0.3,
+            "limit": 10.0,
+            "net": "GND",
+            "span_basis": "conservative whole-board thickness",
+            "span_mm": 1.6,
+            "uuid": "6ddddcfc-cee0-4adb-92a6-750d9511b04d"
+          },
+          {
+            "aspect_ratio": 5.333333,
+            "at_mm": [
+              61.7,
+              49.0
+            ],
+            "diameter_mm": 0.6,
+            "drill_mm": 0.3,
+            "limit": 10.0,
+            "net": "GND",
+            "span_basis": "conservative whole-board thickness",
+            "span_mm": 1.6,
+            "uuid": "70770237-2076-49de-9220-83ece893d53b"
+          },
+          {
+            "aspect_ratio": 5.333333,
+            "at_mm": [
+              65.0,
+              37.0
+            ],
+            "diameter_mm": 0.6,
+            "drill_mm": 0.3,
+            "limit": 10.0,
+            "net": "GND",
+            "span_basis": "conservative whole-board thickness",
+            "span_mm": 1.6,
+            "uuid": "711dfd48-1d7e-4985-8994-eb2ec4254e26"
+          },
+          {
+            "aspect_ratio": 5.333333,
+            "at_mm": [
+              65.0,
+              23.0
+            ],
+            "diameter_mm": 0.6,
+            "drill_mm": 0.3,
+            "limit": 10.0,
+            "net": "GND",
+            "span_basis": "conservative whole-board thickness",
+            "span_mm": 1.6,
+            "uuid": "72c0d91f-7812-478e-84ad-f6ca7b3cd843"
+          },
+          {
+            "aspect_ratio": 5.333333,
+            "at_mm": [
+              36.7,
+              45.0
+            ],
+            "diameter_mm": 0.6,
+            "drill_mm": 0.3,
+            "limit": 10.0,
+            "net": "GND",
+            "span_basis": "conservative whole-board thickness",
+            "span_mm": 1.6,
+            "uuid": "74d057b0-5c0c-4363-9c4e-949df069575d"
+          },
+          {
+            "aspect_ratio": 5.333333,
+            "at_mm": [
+              37.0,
+              37.0
+            ],
+            "diameter_mm": 0.6,
+            "drill_mm": 0.3,
+            "limit": 10.0,
+            "net": "GND",
+            "span_basis": "conservative whole-board thickness",
+            "span_mm": 1.6,
+            "uuid": "793ad7e4-990b-4f62-83e6-c7b23d541d59"
+          },
+          {
+            "aspect_ratio": 5.333333,
+            "at_mm": [
+              51.0,
+              37.0
+            ],
+            "diameter_mm": 0.6,
+            "drill_mm": 0.3,
+            "limit": 10.0,
+            "net": "GND",
+            "span_basis": "conservative whole-board thickness",
+            "span_mm": 1.6,
+            "uuid": "79972c90-5d45-42d2-a702-be625f047137"
+          },
+          {
+            "aspect_ratio": 5.333333,
+            "at_mm": [
+              72.0,
+              37.0
+            ],
+            "diameter_mm": 0.6,
+            "drill_mm": 0.3,
+            "limit": 10.0,
+            "net": "GND",
+            "span_basis": "conservative whole-board thickness",
+            "span_mm": 1.6,
+            "uuid": "83734899-9421-433f-a63a-630c4535bff8"
+          },
+          {
+            "aspect_ratio": 5.333333,
+            "at_mm": [
+              29.2,
+              40.15
+            ],
+            "diameter_mm": 0.6,
+            "drill_mm": 0.3,
+            "limit": 10.0,
+            "net": "GND",
+            "span_basis": "conservative whole-board thickness",
+            "span_mm": 1.6,
+            "uuid": "88c7bca6-fc11-46c1-bc13-0a74901a2578"
+          },
+          {
+            "aspect_ratio": 5.333333,
+            "at_mm": [
+              23.0,
+              44.0
+            ],
+            "diameter_mm": 0.6,
+            "drill_mm": 0.3,
+            "limit": 10.0,
+            "net": "GND",
+            "span_basis": "conservative whole-board thickness",
+            "span_mm": 1.6,
+            "uuid": "8b3b4020-0ec6-451b-a364-486db4eb955e"
+          },
+          {
+            "aspect_ratio": 5.333333,
+            "at_mm": [
+              30.0,
+              23.0
+            ],
+            "diameter_mm": 0.6,
+            "drill_mm": 0.3,
+            "limit": 10.0,
+            "net": "GND",
+            "span_basis": "conservative whole-board thickness",
+            "span_mm": 1.6,
+            "uuid": "92e3776e-7518-4f55-967b-7c1b86534f04"
+          },
+          {
+            "aspect_ratio": 5.333333,
+            "at_mm": [
+              37.0,
+              44.0
+            ],
+            "diameter_mm": 0.6,
+            "drill_mm": 0.3,
+            "limit": 10.0,
+            "net": "GND",
+            "span_basis": "conservative whole-board thickness",
+            "span_mm": 1.6,
+            "uuid": "9f76b162-4fa2-4b05-b969-1d825cd487da"
+          },
+          {
+            "aspect_ratio": 5.333333,
+            "at_mm": [
+              32.03,
+              47.92
+            ],
+            "diameter_mm": 0.6,
+            "drill_mm": 0.3,
+            "limit": 10.0,
+            "net": "GND",
+            "span_basis": "conservative whole-board thickness",
+            "span_mm": 1.6,
+            "uuid": "ba6395a6-0543-46c8-947e-358197ca772f"
+          },
+          {
+            "aspect_ratio": 5.333333,
+            "at_mm": [
+              72.0,
+              30.0
+            ],
+            "diameter_mm": 0.6,
+            "drill_mm": 0.3,
+            "limit": 10.0,
+            "net": "GND",
+            "span_basis": "conservative whole-board thickness",
+            "span_mm": 1.6,
+            "uuid": "bf111c43-5225-46d2-9cac-3c1a199133b2"
+          },
+          {
+            "aspect_ratio": 5.333333,
+            "at_mm": [
+              37.0,
+              23.0
+            ],
+            "diameter_mm": 0.6,
+            "drill_mm": 0.3,
+            "limit": 10.0,
+            "net": "GND",
+            "span_basis": "conservative whole-board thickness",
+            "span_mm": 1.6,
+            "uuid": "c60f0716-c0d9-4452-8ff5-e2dc27f1ec33"
+          },
+          {
+            "aspect_ratio": 5.333333,
+            "at_mm": [
+              30.0,
+              37.0
+            ],
+            "diameter_mm": 0.6,
+            "drill_mm": 0.3,
+            "limit": 10.0,
+            "net": "GND",
+            "span_basis": "conservative whole-board thickness",
+            "span_mm": 1.6,
+            "uuid": "cdb009b1-723c-4704-b0b6-183dea45d4e1"
+          },
+          {
+            "aspect_ratio": 5.333333,
+            "at_mm": [
+              36.22,
+              40.54
+            ],
+            "diameter_mm": 0.6,
+            "drill_mm": 0.3,
+            "limit": 10.0,
+            "net": "GND",
+            "span_basis": "conservative whole-board thickness",
+            "span_mm": 1.6,
+            "uuid": "d178e6b3-6170-416c-a07e-0dadcc002cb2"
+          },
+          {
+            "aspect_ratio": 5.333333,
+            "at_mm": [
+              32.03,
+              45.12
+            ],
+            "diameter_mm": 0.6,
+            "drill_mm": 0.3,
+            "limit": 10.0,
+            "net": "GND",
+            "span_basis": "conservative whole-board thickness",
+            "span_mm": 1.6,
+            "uuid": "dc7a4048-14aa-433e-8abe-f2b35ca3d69e"
+          },
+          {
+            "aspect_ratio": 5.333333,
+            "at_mm": [
+              72.0,
+              23.0
+            ],
+            "diameter_mm": 0.6,
+            "drill_mm": 0.3,
+            "limit": 10.0,
+            "net": "GND",
+            "span_basis": "conservative whole-board thickness",
+            "span_mm": 1.6,
+            "uuid": "e44f62f0-7055-46ae-aff9-5c363ff15de0"
+          },
+          {
+            "aspect_ratio": 5.333333,
+            "at_mm": [
+              23.0,
+              37.0
+            ],
+            "diameter_mm": 0.6,
+            "drill_mm": 0.3,
+            "limit": 10.0,
+            "net": "GND",
+            "span_basis": "conservative whole-board thickness",
+            "span_mm": 1.6,
+            "uuid": "e68d329b-7d6e-4605-ad54-1abcd66b16f3"
+          },
+          {
+            "aspect_ratio": 5.333333,
+            "at_mm": [
+              45.46,
+              46.61
+            ],
+            "diameter_mm": 0.6,
+            "drill_mm": 0.3,
+            "limit": 10.0,
+            "net": "GND",
+            "span_basis": "conservative whole-board thickness",
+            "span_mm": 1.6,
+            "uuid": "f6bdc999-8471-4d46-ba96-3747dd32e98d"
+          },
+          {
+            "aspect_ratio": 5.333333,
+            "at_mm": [
+              37.0,
+              42.85
+            ],
+            "diameter_mm": 0.6,
+            "drill_mm": 0.3,
+            "limit": 10.0,
+            "net": "VIN_PROTECTED",
+            "span_basis": "conservative whole-board thickness",
+            "span_mm": 1.6,
+            "uuid": "7fa10a9f-a7cb-4941-9e98-4eccb41c3747"
+          },
+          {
+            "aspect_ratio": 5.333333,
+            "at_mm": [
+              30.0,
+              42.783
+            ],
+            "diameter_mm": 0.6,
+            "drill_mm": 0.3,
+            "limit": 10.0,
+            "net": "VIN_PROTECTED",
+            "span_basis": "conservative whole-board thickness",
+            "span_mm": 1.6,
+            "uuid": "a7833a7b-c754-4e15-af81-c6edde31b5bc"
+          },
+          {
+            "aspect_ratio": 5.333333,
+            "at_mm": [
+              65.099999,
+              43.4
+            ],
+            "diameter_mm": 0.6,
+            "drill_mm": 0.3,
+            "limit": 10.0,
+            "net": "MIC_AC",
+            "span_basis": "conservative whole-board thickness",
+            "span_mm": 1.6,
+            "uuid": "0e803a85-1588-415d-b1b0-e821e2977542"
+          },
+          {
+            "aspect_ratio": 5.333333,
+            "at_mm": [
+              66.5,
+              43.2
+            ],
+            "diameter_mm": 0.6,
+            "drill_mm": 0.3,
+            "limit": 10.0,
+            "net": "MIC_AC",
+            "span_basis": "conservative whole-board thickness",
+            "span_mm": 1.6,
+            "uuid": "996a7752-33af-4c48-afb3-22882abf60af"
+          },
+          {
+            "aspect_ratio": 5.333333,
+            "at_mm": [
+              61.6,
+              45.9
+            ],
+            "diameter_mm": 0.6,
+            "drill_mm": 0.3,
+            "limit": 10.0,
+            "net": "VREF",
+            "span_basis": "conservative whole-board thickness",
+            "span_mm": 1.6,
+            "uuid": "073c81bb-9586-4b53-bf9d-8df397c6a370"
+          },
+          {
+            "aspect_ratio": 5.333333,
+            "at_mm": [
+              56.3,
+              50.3
+            ],
+            "diameter_mm": 0.6,
+            "drill_mm": 0.3,
+            "limit": 10.0,
+            "net": "VREF",
+            "span_basis": "conservative whole-board thickness",
+            "span_mm": 1.6,
+            "uuid": "210ea96a-f811-4b6e-8f45-aa5f6cf7f7fe"
+          },
+          {
+            "aspect_ratio": 5.333333,
+            "at_mm": [
+              58.2,
+              50.3
+            ],
+            "diameter_mm": 0.6,
+            "drill_mm": 0.3,
+            "limit": 10.0,
+            "net": "VREF",
+            "span_basis": "conservative whole-board thickness",
+            "span_mm": 1.6,
+            "uuid": "e2783ed9-1754-422d-b01e-c5a0666ed4de"
+          },
+          {
+            "aspect_ratio": 5.333333,
+            "at_mm": [
+              62.5,
+              45.0
+            ],
+            "diameter_mm": 0.6,
+            "drill_mm": 0.3,
+            "limit": 10.0,
+            "net": "VREF",
+            "span_basis": "conservative whole-board thickness",
+            "span_mm": 1.6,
+            "uuid": "eea132fb-6406-4b09-b1d1-920616b0f0a3"
+          },
+          {
+            "aspect_ratio": 5.333333,
+            "at_mm": [
+              54.5,
+              48.6
+            ],
+            "diameter_mm": 0.6,
+            "drill_mm": 0.3,
+            "limit": 10.0,
+            "net": "5V_QUIET",
+            "span_basis": "conservative whole-board thickness",
+            "span_mm": 1.6,
+            "uuid": "72a32501-02f8-4aa8-b74d-85c2e8a37aee"
+          },
+          {
+            "aspect_ratio": 5.333333,
+            "at_mm": [
+              37.0,
+              51.5
+            ],
+            "diameter_mm": 0.6,
+            "drill_mm": 0.3,
+            "limit": 10.0,
+            "net": "5V_QUIET",
+            "span_basis": "conservative whole-board thickness",
+            "span_mm": 1.6,
+            "uuid": "75240691-261e-4d7c-be76-9c523eb190f8"
+          },
+          {
+            "aspect_ratio": 5.333333,
+            "at_mm": [
+              56.9,
+              42.1
+            ],
+            "diameter_mm": 0.6,
+            "drill_mm": 0.3,
+            "limit": 10.0,
+            "net": "5V_QUIET",
+            "span_basis": "conservative whole-board thickness",
+            "span_mm": 1.6,
+            "uuid": "848b2810-e876-46c0-af7d-91e3e613a44b"
+          },
+          {
+            "aspect_ratio": 5.333333,
+            "at_mm": [
+              55.3,
+              42.1
+            ],
+            "diameter_mm": 0.6,
+            "drill_mm": 0.3,
+            "limit": 10.0,
+            "net": "5V_QUIET",
+            "span_basis": "conservative whole-board thickness",
+            "span_mm": 1.6,
+            "uuid": "94826c3f-44ab-4bbf-89a8-70e8259e0ecd"
+          },
+          {
+            "aspect_ratio": 5.333333,
+            "at_mm": [
+              39.0,
+              49.2
+            ],
+            "diameter_mm": 0.6,
+            "drill_mm": 0.3,
+            "limit": 10.0,
+            "net": "5V_QUIET",
+            "span_basis": "conservative whole-board thickness",
+            "span_mm": 1.6,
+            "uuid": "b01067b7-dcd1-4370-97b5-4f2ea441e64a"
+          },
+          {
+            "aspect_ratio": 5.333333,
+            "at_mm": [
+              52.8,
+              46.9
+            ],
+            "diameter_mm": 0.6,
+            "drill_mm": 0.3,
+            "limit": 10.0,
+            "net": "5V_QUIET",
+            "span_basis": "conservative whole-board thickness",
+            "span_mm": 1.6,
+            "uuid": "cda630c2-a34a-4ae3-b4c0-37d1cf9647b4"
+          },
+          {
+            "aspect_ratio": 5.333333,
+            "at_mm": [
+              53.8,
+              53.1
+            ],
+            "diameter_mm": 0.6,
+            "drill_mm": 0.3,
+            "limit": 10.0,
+            "net": "PRE_OUT",
+            "span_basis": "conservative whole-board thickness",
+            "span_mm": 1.6,
+            "uuid": "06c5dcc9-b902-4da9-bb4e-22714076c5f1"
+          },
+          {
+            "aspect_ratio": 5.333333,
+            "at_mm": [
+              53.8,
+              54.5
+            ],
+            "diameter_mm": 0.6,
+            "drill_mm": 0.3,
+            "limit": 10.0,
+            "net": "PRE_OUT",
+            "span_basis": "conservative whole-board thickness",
+            "span_mm": 1.6,
+            "uuid": "0ed2be96-4eca-4741-a7e5-534903343829"
+          },
+          {
+            "aspect_ratio": 5.333333,
+            "at_mm": [
+              57.7,
+              45.7
+            ],
+            "diameter_mm": 0.6,
+            "drill_mm": 0.3,
+            "limit": 10.0,
+            "net": "OUTP_DRV",
+            "span_basis": "conservative whole-board thickness",
+            "span_mm": 1.6,
+            "uuid": "3cda5647-1032-481b-bc65-816c94faa65e"
+          },
+          {
+            "aspect_ratio": 5.333333,
+            "at_mm": [
+              56.8,
+              44.8
+            ],
+            "diameter_mm": 0.6,
+            "drill_mm": 0.3,
+            "limit": 10.0,
+            "net": "OUTP_DRV",
+            "span_basis": "conservative whole-board thickness",
+            "span_mm": 1.6,
+            "uuid": "b72a1888-cd73-4648-8905-e4c1a4247667"
+          }
+        ]
+      },
+      "status": "PASS"
+    },
+    "reference_plane": {
+      "detail": "0 reference-plane declaration(s)",
+      "report": {
+        "board": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-mic-pod-v3/04_kicad/crow_mic_pod_v3.kicad_pcb",
+        "checks": {},
+        "config": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-mic-pod-v3/03_src/rules/nets.yaml",
+        "reason": "reference_plane_checks not declared",
+        "schema": 1,
+        "scope": "projected foreign tracks/vias; not a field solve or full zone proof",
+        "verdict": "N-A"
+      },
+      "status": "N-A"
+    },
+    "route_base": {
+      "detail": "no prepared-board inheritance subject supplied",
+      "status": "N-A"
+    },
+    "route_ownership": {
+      "detail": "0 ownership finding(s)",
+      "report": {
+        "coverage": {
+          "board_nets": 23,
+          "constrained_waves": [],
+          "declared_corridors": 0,
+          "declared_net_owners": 0
+        },
+        "findings": [],
+        "notes": [],
+        "schema": 1,
+        "verdict": "N-A"
+      },
+      "status": "N-A"
+    },
+    "simple_conductor": {
+      "detail": "no critical nets declared",
+      "nets": [],
+      "status": "N-A"
+    },
+    "via_ampacity": {
+      "detail": "A-VIA N-A: route contract declares no via_ampacity block",
+      "report": {},
+      "status": "N-A"
+    }
+  },
+  "coverage": {
+    "fail": 0,
+    "incomplete": 0,
+    "non_applicable": 6,
+    "pass": 3,
+    "passing": 3,
+    "required": 2,
+    "required_pass": 2,
+    "total": 9
+  },
+  "inputs": {
+    "board": {
+      "path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-mic-pod-v3/04_kicad/crow_mic_pod_v3.kicad_pcb",
+      "sha256": "a932200e0976418383fae0c131dfe2a5768c00ef261b611762ccd3507f05ca8f",
+      "size": 323320
+    },
+    "nets": {
+      "path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-mic-pod-v3/03_src/rules/nets.yaml",
+      "sha256": "26af3bac9506cd3e9231216fd37390f103be436a1856becf8543d05d6ba3fe12",
+      "size": 2080
+    },
+    "route": {
+      "path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-mic-pod-v3/03_src/route.yaml",
+      "sha256": "bbc146dcd6b1aa64d660981ce14734d66af3921abe312e5015a7387b4f60f056",
+      "size": 15420
+    }
+  },
+  "kind": "route-acceptance-receipt-v1",
+  "mode": "full",
+  "required_checks": [
+    "native_drc",
+    "realized_via_aspect"
+  ],
+  "required_not_pass": [],
+  "schema": 1,
+  "subject": {
+    "path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-mic-pod-v3/04_kicad/crow_mic_pod_v3.kicad_pcb",
+    "sha256": "a932200e0976418383fae0c131dfe2a5768c00ef261b611762ccd3507f05ca8f",
+    "size": 323320
+  },
+  "verdict": "ACCEPTED"
+}

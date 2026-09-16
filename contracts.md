@@ -37,6 +37,7 @@ via an explicit pattern (see the coverage rule below).
 | `CLAUDE.md` | binding agent instructions |
 | `contracts.md` | this file |
 | `.gitignore` | build/cache exclusions |
+| `.gitattributes` | repository-wide Git content classification, including binary evidence files |
 | `.github/` | repository automation and publication checks (own contract) |
 | `improvements.md` | repository-wide pipeline/process improvement ledger harvested from project stages | entries remain visible until completed or rejected with evidence |
 | `skills/` | the product: pcb-design, kicad-pcb, jlcpcb-fab, pcb-enclosure, shopping-list (own contract) |

@@ -41,3 +41,12 @@ python3 skills/jlcpcb-fab/scripts/first_article_check.py PROJECT \
 Missing evidence or an abnormal value is HOLD. Do not continue powering a
 failed board to gather more evidence. Firmware is not generated or required by
 this gate unless the project explicitly requests a separate firmware task.
+
+Every `installed` item is one literal reference designator. Ranges such as
+`R5-R13`, connector pins such as `J1.1`, and net names are not expanded and are
+rejected. `exposed_pads` is the subset of those installed component refdes
+whose hidden solder lands need confirmation; ordinary probe pads and nets
+belong in the measurement `probe` fields instead. The current schema applies
+every declared rail measurement to every population stage, so each stage must
+be independently measurable under the complete rail card. Use one explicit
+fully populated stage when a partial stage cannot satisfy that contract.

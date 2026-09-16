@@ -100,6 +100,14 @@ blockers → direct/L/Z join scan → verified A* → re-route ripped nets.
 Every added segment/via must pass the exact-collide check; re-run the
 green check after every edit including your own fixes.
 
+For vias near component lands, inspect both the annulus and drill against the
+actual pad shape. A via centre outside a land does not establish that its hole
+clears the land, and a same-net copper clearance check does not answer that
+manufacturing question. Apply the declared via-in-pad/process policy to the
+physical overlap. During seed diagnosis, distinguish such overlap from an
+electrically valid same-net contact that an endpoint-only path graph refuses;
+the latter still needs represented topology before path or clamp-order claims.
+
 Constrain A* to the one or two reviewed copper layers that can actually
 carry the repair (`astar_fallback.layers`). This reduces the state space and
 prevents an apparently convenient layer change from consuming an unrelated

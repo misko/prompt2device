@@ -172,7 +172,7 @@
       "id": "jlc_assembly_order",
       "owner": "jlcpcb-fab",
       "references": ["skills/jlcpcb-fab/references/assembly-and-order.md"],
-      "policy_ids": ["A-BUY", "A-POL", "A-POP", "A-POS", "A-ROT", "A-STOCK", "F-ECHO", "F-ENCODE", "F-LEGIBLE", "F-MPN", "F-WORDS", "M-PROV", "POLARITY-CHECK", "POLARITY-FIT", "ROT-DB-SUGGEST"]
+      "policy_ids": ["A-BUY", "A-LOCATOR", "A-POL", "A-POP", "A-POS", "A-ROT", "A-STOCK", "F-ECHO", "F-ENCODE", "F-LEGIBLE", "F-MPN", "F-WORDS", "M-PROV", "POLARITY-CHECK", "POLARITY-FIT", "ROT-DB-SUGGEST"]
     },
     {
       "id": "jlc_twin",

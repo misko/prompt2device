@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import sys
 from pathlib import Path
 from typing import Any
@@ -22,6 +23,30 @@ def _names(value: Any, where: str) -> list[str]:
                                                for item in value):
         raise ValueError(f"{where} must be a list of non-empty strings")
     return value
+
+
+_EXACT_REFDES = re.compile(r"^[A-Za-z][A-Za-z0-9_]*$")
+
+
+def _refdes(value: Any, where: str) -> list[str]:
+    """Return a closed list of literal reference designators.
+
+    Population cards are executable evidence, not prose.  A token such as
+    ``R5-R13`` is one literal string to the old checker, so a record repeating
+    that token could authorize a board without ever naming R5 through R13.
+    Likewise, ``exposed_pads`` means component refdes with hidden solder lands,
+    not probe names, nets, pins, or ranges.
+    """
+    names = _names(value, where)
+    if len(names) != len(set(names)):
+        raise ValueError(f"{where} must not contain duplicate refdes")
+    malformed = [name for name in names if not _EXACT_REFDES.fullmatch(name)]
+    if malformed:
+        raise ValueError(
+            f"{where} must contain literal refdes only; ranges/pins are not "
+            f"expanded: {malformed!r}"
+        )
+    return names
 
 
 def _measurement(measurements: dict[str, Any], rail: str, kind: str,
@@ -53,14 +78,31 @@ def check(card: dict[str, Any], record: dict[str, Any]) -> dict[str, Any]:
     stages = card.get("stages") or []
     if not isinstance(stages, list) or not stages:
         raise ValueError("card.stages must be a non-empty list")
+    validated_stages: dict[str, tuple[dict[str, Any], list[str], list[str]]] = {}
+    for index, row in enumerate(stages):
+        if not isinstance(row, dict) or not isinstance(row.get("name"), str) \
+                or not row["name"]:
+            raise ValueError(f"card.stages[{index}] must be a named mapping")
+        name = row["name"]
+        if name in validated_stages:
+            raise ValueError(f"card.stages repeats name {name!r}")
+        installed = _refdes(row.get("installed"),
+                            f"stage {name}.installed")
+        exposed = _refdes(row.get("exposed_pads", []),
+                          f"stage {name}.exposed_pads")
+        not_installed = sorted(set(exposed) - set(installed))
+        if not_installed:
+            raise ValueError(
+                f"stage {name}.exposed_pads names refdes not installed in "
+                f"that stage: {not_installed!r}"
+            )
+        validated_stages[name] = (row, installed, exposed)
     stage_name = str(record.get("stage") or "")
-    matches = [row for row in stages if isinstance(row, dict)
-               and str(row.get("name")) == stage_name]
-    if len(matches) != 1:
+    if stage_name not in validated_stages:
         raise ValueError(f"record.stage {stage_name!r} must select one card stage")
-    stage = matches[0]
-    expected = set(_names(stage.get("installed"), f"stage {stage_name}.installed"))
-    actual = set(_names(record.get("installed"), "record.installed"))
+    stage, installed, exposed = validated_stages[stage_name]
+    expected = set(installed)
+    actual = set(_refdes(record.get("installed"), "record.installed"))
     if actual != expected:
         findings.append({"code": "FA-POP", "subject": stage_name,
                          "message": f"installed mismatch missing={sorted(expected-actual)} "
@@ -69,8 +111,7 @@ def check(card: dict[str, Any], record: dict[str, Any]) -> dict[str, Any]:
     assembly = record.get("assembly_confirmations") or {}
     if not isinstance(assembly, dict):
         raise ValueError("record.assembly_confirmations must be a mapping")
-    for ref in _names(stage.get("exposed_pads", []),
-                      f"stage {stage_name}.exposed_pads"):
+    for ref in exposed:
         if assembly.get(f"{ref}.exposed_pad") is not True:
             findings.append({"code": "FA-EP", "subject": ref,
                              "message": "exposed ground/thermal pad is not confirmed soldered"})

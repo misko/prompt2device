@@ -1,0 +1,115 @@
+{
+  "board": {
+    "path": "crow_mic_pod_v3.kicad_pcb",
+    "sha256": "a932200e0976418383fae0c131dfe2a5768c00ef261b611762ccd3507f05ca8f",
+    "size": 323320
+  },
+  "kind": "jlc-artifact-index-v1",
+  "roles": {
+    "bom": [
+      {
+        "path": "bom.csv",
+        "sha256": "905e78de505fa93aebf2c092371a62bedeb59b8cab9adc484108397f8089e49c",
+        "size": 1253
+      }
+    ],
+    "bom_echo_worklist": [
+      {
+        "path": "bom_echo_gate.txt",
+        "sha256": "9f5c616bc2f89777df818b51ffb738881ba41cb355a8632c6331e7824b2fd2ac",
+        "size": 796
+      }
+    ],
+    "cpl": [
+      {
+        "path": "cpl.csv",
+        "sha256": "c310bc5e94e5689507a29849372d7103426253ad8b532c1729ace9c59eb3199e",
+        "size": 1572
+      }
+    ],
+    "drill": [
+      {
+        "path": "crow_mic_pod_v3-NPTH.drl",
+        "sha256": "f57f5207a55b5be976fc736bf4f0b383b42f6eff2dbe4009e0cae0847598e2e4",
+        "size": 508
+      },
+      {
+        "path": "crow_mic_pod_v3-PTH.drl",
+        "sha256": "2e95043ce42a984ec7d1445fd3d44fc3dd21ac531756e65c4d4a878caae2cab0",
+        "size": 1264
+      }
+    ],
+    "fabrication_files": [
+      {
+        "path": "crow_mic_pod_v3-B_Cu.gbl",
+        "sha256": "678413a6ac0822583ad21e69e15fcaff8a2bcb8fcbc9b79e28ef0b4f6c2d05f3",
+        "size": 39728
+      },
+      {
+        "path": "crow_mic_pod_v3-B_Mask.gbs",
+        "sha256": "d288efa4d52bfa9f69035ad41f81d62988d1285155fe695416cfa77467a0de5e",
+        "size": 2008
+      },
+      {
+        "path": "crow_mic_pod_v3-B_Paste.gbp",
+        "sha256": "8d16b1f2f40895ef108d2fc07251680cfb0f5cec89aca29dccad4546823a6f11",
+        "size": 502
+      },
+      {
+        "path": "crow_mic_pod_v3-B_Silkscreen.gbo",
+        "sha256": "5f329bdf9d4083a5f0d865806619b49c82fd609f77e7b1ce69e4aa7a48444ca6",
+        "size": 1706
+      },
+      {
+        "path": "crow_mic_pod_v3-Edge_Cuts.gm1",
+        "sha256": "870cd401f8b9820746df7544fb3c11ac6ff20ac5813d65e69b80c7dd2134588e",
+        "size": 724
+      },
+      {
+        "path": "crow_mic_pod_v3-F_Cu.gtl",
+        "sha256": "29b7200bb89eeded29c7e86d8df7bc4310f33b81ce7e0c86e0f7c097c2d895d6",
+        "size": 113614
+      },
+      {
+        "path": "crow_mic_pod_v3-F_Mask.gts",
+        "sha256": "6e43e06464a2200ea71a18175b20dd524203b487525b66c1bb59346a1f0a70ff",
+        "size": 6969
+      },
+      {
+        "path": "crow_mic_pod_v3-F_Paste.gtp",
+        "sha256": "56fe32c4b974587c2dae827daab59e9536b5a31382d6930f7157726b40ea142a",
+        "size": 5809
+      },
+      {
+        "path": "crow_mic_pod_v3-F_Silkscreen.gto",
+        "sha256": "a642ab7317c2053711e4928f81fdb36e54b19a8c5dd420cc678718630c491ca6",
+        "size": 77760
+      },
+      {
+        "path": "crow_mic_pod_v3-NPTH.drl",
+        "sha256": "f57f5207a55b5be976fc736bf4f0b383b42f6eff2dbe4009e0cae0847598e2e4",
+        "size": 508
+      },
+      {
+        "path": "crow_mic_pod_v3-PTH.drl",
+        "sha256": "2e95043ce42a984ec7d1445fd3d44fc3dd21ac531756e65c4d4a878caae2cab0",
+        "size": 1264
+      }
+    ],
+    "gerber_archive": [
+      {
+        "path": "crow_mic_pod_v3_gerbers.zip",
+        "sha256": "1f9708f0014b2036c31d85bf87c3b2e2a801b83084dd13e47d1ed39046b01010",
+        "size": 60820
+      }
+    ],
+    "rotation_worklist": [
+      {
+        "path": "rotation_human_gate.txt",
+        "sha256": "d532d9e2cdc20072b18df376e60f4fd7d8bc944be47d47c7db15480144c709e1",
+        "size": 403
+      }
+    ]
+  },
+  "schema": 1
+}

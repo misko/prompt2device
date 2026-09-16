@@ -25,7 +25,7 @@ from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path, PurePosixPath
 from types import MappingProxyType
-from typing import Any, Callable, Mapping
+from typing import Any, Callable, Mapping, Sequence
 
 
 _HASH_RE = re.compile(r"[0-9a-f]{64}")
@@ -631,3 +631,46 @@ __all__ = [
     "OutputSpec",
     "PublishedBundle",
 ]
+
+
+def validate_task_outputs(directory: Path, declarations: Sequence[str], *,
+                          subject: Mapping[str, Any], checks: Sequence[str]) -> dict[str, Any]:
+    """Reopen a task handback without promoting it or grading engineering truth.
+
+    The producer supplies result.json with exact subject, a check-ID/status map,
+    and explicit unresolved rows. Output bytes use the transaction's parsers and
+    manifest records. No missing, extra, symlink or special file can pass.
+    """
+    directory = Path(directory)
+    if directory.is_symlink() or not directory.is_dir():
+        raise ArtifactValidationError("handback directory is missing or is a symlink")
+    expected = set(declarations) | {"result.json"}
+    actual = set()
+    for path in directory.rglob("*"):
+        if path.is_symlink():
+            raise ArtifactValidationError(f"symlink in handback: {path}")
+        if not path.is_dir():
+            actual.add(path.relative_to(directory).as_posix())
+    if actual != expected:
+        raise ArtifactValidationError(
+            f"handback membership: missing={sorted(expected-actual)}, extra={sorted(actual-expected)}")
+    records = {}
+    for name in sorted(expected):
+        _safe_manifest_path(name, "task output")
+        path = directory / name
+        records[name] = _file_record(path, name, non_empty=True)
+        try:
+            _default_parser(path)(path)
+        except Exception as exc:
+            raise ArtifactValidationError(f"unparsable task output {name}: {exc}") from exc
+    report = _parse_json(directory / "result.json")
+    if not isinstance(report, dict) or set(report) != {"subject", "checks", "unresolved"}:
+        raise ArtifactValidationError("result.json needs exactly subject, checks, unresolved")
+    if report["subject"] != dict(subject):
+        raise ArtifactValidationError("handback subject differs from envelope")
+    if not isinstance(report["checks"], dict) or set(report["checks"]) != set(checks):
+        raise ArtifactValidationError("handback check census differs from commission")
+    if report["unresolved"] != [] or any(v != "PASS" for v in report["checks"].values()):
+        raise ArtifactValidationError("handback has incomplete or failed checks")
+    return {"schema": 1, "outputs": records, "checks": report["checks"],
+            "graded": len(checks), "total": len(checks)}

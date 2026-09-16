@@ -1,0 +1,193 @@
+schema: 1
+contract_id: crow-mic-pod-v3-j1-service
+
+evidence_sources:
+  - {id: j1-drawing-record, kind: manufacturer-drawing-record, path: 02_parts/43650-0400/primary-source-record.md}
+  - {id: mate-drawing-record, kind: manufacturer-drawing-record, path: 02_parts/43645-0400/primary-source-record.md}
+  - {id: contact-tool-record, kind: manufacturer-assembly-process, path: 02_parts/43030-0007/primary-source-record.md}
+  - {id: cable-datasheet, kind: manufacturer-datasheet, path: 02_parts/6541PA/6541PA_techdata.pdf}
+  - {id: j1-placement, kind: placement-contract, path: 03_src/floorplan.yaml}
+  - {id: manual-assembly, kind: assembly-process-record, path: 03_src/rules/assembly.yaml}
+
+assemblies:
+  - id: micro-fit-four-wire-spoke
+    instances:
+      - ref: J1
+        mating_axis_board: [0.0, -1.0, 0.0]
+        simultaneous_group_ids: [spoke-cable-installed]
+
+    receptacle:
+      manufacturer: Molex
+      mpn: "43650-0400"
+      mounting_method: through-hole right-angle header with two locating pegs
+      model_source_id: null
+      body_envelope_mm: {x: 9.90, y: 15.65, z: 11.56}
+      evidence:
+        grade: conservative
+        source_ids: [j1-drawing-record]
+        rationale: >-
+          The envelope deliberately contains the exact four-position drawing
+          dimensions; it is a planning bound, not a realized enclosure fit.
+
+    mate:
+      manufacturer: Molex
+      mpn: "43645-0400"
+      part_kind: four-position single-row crimp receptacle housing loaded with 43030-0007 contacts
+      model_source_id: null
+      body_envelope_mm: {x: 17.56, y: 12.85, z: 8.28}
+      evidence:
+        grade: conservative
+        source_ids: [mate-drawing-record, contact-tool-record]
+        rationale: >-
+          The axial bound uses the complete drawing mated length, so it
+          intentionally contains rather than understates the housing body.
+
+    interface:
+      mating_plane_offset_mm: 8.92
+      minimum_exposure_mm: 0.0
+      exposure_setback_allowance_mm: 0.50
+      minimum_service_clearance_mm: 3.0
+      orientation_source_id: j1-placement
+      evidence:
+        grade: conservative
+        source_ids: [j1-drawing-record, j1-placement, manual-assembly]
+        rationale: >-
+          Offset follows the exact footprint body to the north-facing mouth;
+          0.50 mm is the explicit drawing-plus-PCB one-sided setback stack and
+          3.0 mm is reserved around the latch housing for hand service.
+
+    grip:
+      kind: finger-gripped latching housing
+      across_flats_mm: 12.85
+      outer_diameter_mm: null
+      axial_length_mm: 14.0
+      evidence:
+        grade: conservative
+        source_ids: [mate-drawing-record]
+        rationale: >-
+          The complete housing width and length conservatively bound the
+          non-rotating hand-grip object; no coupling nut is present.
+
+    fastening:
+      method: integral positive latch
+      thread_designation: null
+      final_tightening: push the keyed housing until the latch is fully engaged, then tug-check the housing
+      evidence:
+        grade: exact
+        source_ids: [mate-drawing-record, manual-assembly]
+        rationale: The selected Micro-Fit pair is latched and has no threaded final-fastening step.
+
+    tool:
+      kind: none
+      identifier: null
+      model_source_id: null
+      head_envelope_mm: null
+      approach: none
+      effective_sweep_radius_mm: null
+      counter_tool_required: false
+      evidence:
+        grade: exact
+        source_ids: [mate-drawing-record, manual-assembly]
+        rationale: Final mating and unlatching are hand operations; the crimp tool is used before connector service, not at J1.
+
+    torque:
+      required: false
+      minimum_nm: null
+      maximum_nm: null
+      evidence:
+        grade: exact
+        source_ids: [mate-drawing-record]
+        rationale: The integral latch has no torque specification or threaded joint.
+
+    reaction:
+      method: support the housing and enclosure-supported PCB during mate and unmate
+      load_path: hand to housing and enclosure-supported PCB; never through cable conductors or solder joints alone
+      evidence:
+        grade: conservative
+        source_ids: [manual-assembly, mate-drawing-record]
+        rationale: This first-article handling rule contains the insertion and extraction reaction path pending physical qualification.
+
+    cable:
+      kind: two individually shielded twisted pairs in one round jacket
+      manufacturer: Belden
+      mpn: 6541PA
+      outer_diameter_mm: 5.44
+      straight_run_mm: 53.0
+      minimum_bend_radius_mm: 53.0
+      exit: along_mating_axis
+      evidence:
+        grade: conservative
+        source_ids: [cable-datasheet, mate-drawing-record]
+        rationale: >-
+          The exact nominal OD and published bend radius are used, and one
+          full bend radius is reserved as straight service run outside J1.
+
+    operations:
+      - id: mate-keyed-housing
+        sequence: 1
+        kind: mate
+        required: true
+        with_neighbors_populated: true
+        start_state: disconnected-supported
+        end_state: mated-latched
+        evidence:
+          grade: exact
+          source_ids: [mate-drawing-record, manual-assembly]
+          rationale: Align the key, support both halves, push to full latch engagement and tug-check the housing.
+      - id: verify-installed-cable
+        sequence: 2
+        kind: service
+        required: true
+        with_neighbors_populated: true
+        start_state: mated-latched
+        end_state: mated-latched-verified
+        evidence:
+          grade: exact
+          source_ids: [contact-tool-record, manual-assembly]
+          rationale: Verify 1-1 through 4-4 continuity, no cross-short, latch engagement and bend-radius compliance.
+      - id: unmate-supported-housing
+        sequence: 3
+        kind: unmate
+        required: true
+        with_neighbors_populated: true
+        start_state: mated-latched-verified
+        end_state: disconnected-supported
+        evidence:
+          grade: conservative
+          source_ids: [mate-drawing-record, manual-assembly]
+          rationale: Depress the latch while supporting both housings; pull only on the housing and inspect before reuse.
+
+    tolerances:
+      - id: drawing-two-place-setback
+        applies_to: 43650 body and mating-plane two-place drawing dimensions
+        effect: exposure_setback
+        minus_mm: 0.25
+        plus_mm: 0.25
+        evidence:
+          grade: exact
+          source_ids: [j1-drawing-record]
+          rationale: Molex drawing general tolerance for two-place metric dimensions.
+      - id: pcb-edge-placement-allocation
+        applies_to: nominal footprint-to-PCB-edge placement and board-edge fabrication
+        effect: exposure_setback
+        minus_mm: 0.25
+        plus_mm: 0.25
+        evidence:
+          grade: conservative
+          source_ids: [j1-placement]
+          rationale: Explicit first-article allocation added to the drawing tolerance; realized edge registration remains a physical inspection.
+      - id: cable-service-radial-growth
+        applies_to: cable bend and hand access outside the housing
+        effect: service_radial_growth
+        minus_mm: 0.0
+        plus_mm: 53.0
+        evidence:
+          grade: conservative
+          source_ids: [cable-datasheet]
+          rationale: One full published minimum bend radius contains the planned cable service turn.
+
+simultaneous_groups:
+  - id: spoke-cable-installed
+    members: [J1]
+    required_state: all_mated
+    serviceable_member_refs: [J1]

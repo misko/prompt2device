@@ -25,6 +25,10 @@ why).
 - `scripts/commission_project.py` owns the exact scaffold manifest;
   `templates/README.md` summarizes it. A new project must pass
   `contracts_audit.py --walk --root <proj>` with zero violations before design.
+- Scaffold CLI coverage counts every file written from the complete plan; it
+  does not admit PCB-COMMISSION. The report auditor names its one-report
+  denominator. CLI coverage is tested in `tests/t1_pcb_commission.py` and
+  `tests/t1_project_reports.py`.
 - Template drift is the failure mode this layout kills: there is exactly ONE
   copy of each stage contract (here), so nothing can silently diverge.
 - `references/lifecycle-and-backtrack.md` owns deficiency triage. Commission
@@ -37,17 +41,66 @@ why).
 - `scripts/pause_state.py` owns the single current pause manifest and generated
   STATUS/RESUME views. Project prose may explain history but may not compete
   with its checkpoint/receipt hashes or semantic state id.
+- `scripts/decision_progress.py` reads optional investigation history inside
+  the existing findings ledger. It owns cumulative decision-progress accounting,
+  evidence identity and continuation/reassessment output, never engineering
+  acceptance. Its closed schema is documented in `references/lifecycle-and-backtrack.md`
+  and the 01_docs contract template. Historical observations are author
+  assessments, not reconstructed TaskAttempt telemetry. Validate with
+  `tests/t1_decision_progress.py`; ordinary unadopted boards remain unchanged.
+  Its explicit `reserve_launch` API, called only by named `pcb_flow.py run`
+  dispatch, appends a reservation to the same ledger before execution; the
+  read-only evaluator refuses further dispatch while an assessment is owed.
 - `scripts/connector_assembly_contract.py` owns the exact shared connector
-  schema and deterministic receipt. Canonical rebuilds compile it as a
-  pre-placement fact lock; exact typed no-operated evidence yields
-  applicability-only `N-A`. The current enclosure adapter revalidates operated
-  profiles and remains capped `INCOMPLETE`. A realized-board PCB geometry
-  consumer is still owed. New mappings may not copy connector dimensions; current enclosure
+  schema and deterministic base receipt. `scripts/connector_assembly_phase_gate.py`
+  owns an additive source/full wrapper bound to that exact receipt, all compiler
+  inputs, and `rules/connector_assembly_phases.yaml`. Source admits only closed,
+  stable-ID physical-qualification classes; full still requires the unchanged
+  base `PASS` with zero unknowns. Exact typed no-operated evidence yields
+  applicability-only `N-A`. The current enclosure adapter and all release
+  consumers continue to revalidate the base receipt at their existing bar; a
+  source wrapper is not service authority. New mappings may not copy connector dimensions; current enclosure
   schema-v1 inline candidates remain a declared migration gap and cannot become
   shared service authority.
+
+- `pipeline_execution.py` preserves schema-1 records and adds explicit schema-2
+  completion declarations. `pipeline_runtime.py` owns fresh task allocation,
+  bounded process receipts and the coordinator-observed agent open/close adapter;
+  `pipeline_artifacts.py` reopens exact declared output sets without promotion.
+  Validate with execution, runtime and artifact suites. Host events are observed
+  evidence, not authenticated process telemetry or engineering verdicts.
+
+- `pipeline_qualification.py` composes startup checks, with native fixture
+  mechanics in `kicad-pcb/scripts/qualification_probe.py`. Stable cache identity
+  covers executed tools, loaded libraries and probe sources; live reviewer
+  availability is separately observed and never promised by that cache.
+  `tests/t1_pipeline_qualification.py` covers both native polarities, missing
+  reporting support, changed identities and preserved failed attempts.
+
+- Schema-2 same-owner repair allowances are immutable task declarations.
+  Runtime dispatch records predecessor identity, coordinator assessment and
+  cumulative spend in TaskAttempt output, with one reserved successor per
+  predecessor. Named investigations also use the existing findings ledger;
+  neither accounting path resets the other. Runtime tests cover admitted
+  local repairs, changed premises, semantic handoffs and exhausted/branched tasks.
+
+- `scripts/publication_transport_gate.py` owns the pre-push object census. It
+  rejects ordinary Git blobs at GitHub's 100 MiB limit and conservatively
+  bounded aggregate batches before the semantic publication gate. Oversized
+  durable evidence uses explicit Git LFS paths; new reviews remain compact and
+  may not recursively bundle prior frozen inputs.
 
 ## Structure
 
 `templates/contracts/<stage>/[<sub>/]contracts.md` mirrors where each file
 lands in a project. Schema YAMLs carry their provenance board in a header
 comment; the KEYS are the contract, the values are placeholders.
+
+- `scripts/connector_prototype_admission.sh PY CS STAGE ADR [--compile-base]`
+  shares mechanics formerly in a single project's admission helper. Call only
+  from a project with an independently accepted prototype decision. SOURCE
+  must pass against exact current bytes. FULL is always graded and remains
+  INCOMPLETE when physical unknowns remain; only exact rc2 after SOURCE success
+  can continue, labeled FIRST-ARTICLE-ONLY / DO-NOT-ORDER. Invalid, stale and
+  unclassified authority is fatal. This creates no release/order authorization.
+  Clean and hostile cases are in `t1_connector_assembly_phase_gate.py`.

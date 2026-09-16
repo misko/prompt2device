@@ -800,9 +800,12 @@ ORPHAN_CEILING = {
     # by a human, not by the driver. OWED: either the driver executes them or
     # the file says in its own header that it is a playbook, not config.
     "skills/kicad-pcb/references/grind_fixes.yaml": 6,
-    # `gotchas` and `maker`: declared per proven part, never read by
-    # bom_source_check.py, the file's only loader.
-    "skills/kicad-pcb/references/proven-parts.yaml": 2,
+    # `gotchas` remains lexically unmatched. The shared `maker` spelling
+    # now occurs in connector_qualification_coupon.py's instrument reader.
+    # Tighten this lexical ceiling to the measured 1; that unrelated reader
+    # does NOT establish consumption of the proven-parts maker field.
+    # This name-only scan cannot prove a key's dataflow from its YAML owner.
+    "skills/kicad-pcb/references/proven-parts.yaml": 1,
 }
 
 

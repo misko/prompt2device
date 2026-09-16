@@ -1,0 +1,100 @@
+schema: 1
+kind: crow_roof_array_analog_spoke
+connector:
+  manufacturer: Molex
+  family: "Micro-Fit 3.0"
+  pcb_header_mpn: "43650-0400"
+  positions: 4
+  pitch_mm: 3.0
+  orientation: right_angle
+  mounting: through_hole
+  rows: 1
+mate:
+  manufacturer: Molex
+  housing_mpn: "43645-0400"
+  quantity_per_cable: 2
+terminals:
+  manufacturer: Molex
+  contact_mpn: "43030-0007"
+  quantity_per_end: 4
+  quantity_per_cable: 8
+pins:
+  - number: 1
+    signal: "+12V_POD"
+    canonical_net: 12V_POD
+    direction: carrier_to_pod
+    function: power
+  - number: 2
+    signal: GND
+    canonical_net: GND
+    direction: return_to_carrier
+    function: power_return
+  - number: 3
+    signal: "AUDIO+"
+    canonical_net: AUDIO_P
+    direction: pod_to_carrier
+    function: active_balanced_positive
+  - number: 4
+    signal: "AUDIO−"
+    canonical_net: AUDIO_N
+    direction: pod_to_carrier
+    function: active_balanced_negative
+cable:
+  manufacturer: Belden
+  mpn: 6541PA
+  nominal_array_radius_m: 4.0
+  installed_length_per_port_status: OWED
+  qualification_reference_length_m: 15.0
+  maximum_design_length_m: 15.0
+  qualified_maximum_length_m: null
+  length_qualification_status: OWED
+  topology: two_individually_shielded_twisted_pairs
+  outer_diameter_nominal_mm: 5.44
+  minimum_bend_radius_mm: 53.0
+  pair_allocation:
+    power: ["+12V_POD", GND]
+    audio: ["AUDIO+", "AUDIO−"]
+  conductor_map:
+    - {cavity: 1, signal: "+12V_POD", pair: red_black, color: red}
+    - {cavity: 2, signal: GND, pair: red_black, color: black_with_red}
+    - {cavity: 3, signal: "AUDIO+", pair: white_black, color: white}
+    - {cavity: 4, signal: "AUDIO−", pair: white_black, color: black_with_white}
+  end_housing_mpn: "43645-0400"
+  straight_pin_identity: true
+  end_a: {role: carrier, mating_face_cavity_order: [1, 2, 3, 4]}
+  end_b: {role: pod, mating_face_cavity_order: [1, 2, 3, 4]}
+  cavity_numbering_drawing_status: OWED
+  crimp_tool_and_strip_process_status: OWED
+  continuity_test: "1-1; 2-2; 3-3; 4-4; no cross-short; shields isolated from all cavities"
+  shield_drains: "carrier_chassis_at_enclosure_entry_before_pcb_header; insulated_at_pod; not_present_in_micro_fit"
+electrical:
+  supply_nominal_v: 12.0
+  supply_plane: carrier_header_pin_1_to_pin_2
+  carrier_header_supply_min_v: 10.8
+  carrier_header_supply_max_v: 13.2
+  maximum_cable_and_contact_loop_resistance_ohm: 2.2
+  pod_header_supply_min_v_at_max_current_and_length: 10.5
+  hot_plug_permitted: false
+  pod_input_capacitance_max_uf: 47.0
+  inrush_qualification_status: OWED
+  maximum_continuous_pod_current_a: 0.10
+  carrier_protection_hold_min_a_at_70c: 0.10
+  carrier_protection_trip_max_a_at_25c: 0.70
+  fault_clearing_requirement: "carrier_limits_cable_and_pre_pod_faults_while_pod_protection_limits_downstream_board_faults_and_one_faulted_spoke_does_not_reset_other_seven"
+  audio_interface: active_balanced_analog
+  pod_output_coupling: dc_coupled
+  pod_audio_common_mode_nominal_v: 2.5
+  pod_audio_common_mode_min_v: 2.35
+  pod_audio_common_mode_max_v: 2.65
+  pod_source_impedance_nominal_ohm_each_leg: 100.0
+  pod_source_impedance_maximum_mismatch_ohm: 2.0
+  pod_maximum_output_differential_vrms: 1.2
+  carrier_input_coupling: ac_coupled_each_leg
+  carrier_input_coupling_capacitance_uf_each_leg: 1.0
+  carrier_input_bias_resistance_ohm_each_leg: 100000
+  receiver_full_scale_differential_vrms: 2.0
+  acoustic_polarity_target: "positive_pressure_drives_AUDIO+_positive_relative_to_AUDIO−"
+  acoustic_polarity_qualification_status: OWED
+  ethernet: false
+  poe: false
+straight_through: true

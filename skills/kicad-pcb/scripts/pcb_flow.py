@@ -53,10 +53,10 @@ STAGES = (
 )
 DEFAULT_SOURCE_ROOTS = ("02_parts", "03_src", "03_tscircuit")
 SOURCE_IGNORES = {
-    ".DS_Store", "__pycache__", "node_modules", "dist", "build",
+    ".DS_Store", ".tscircuit", "__pycache__", "node_modules", "dist", "build",
 }
 DEFAULT_TOOL_FILES = (
-    "pcb_flow.py", "module_first_check.py", "escape_check.py",
+    "pcb_flow.py", "module_first_check.py", "escape_check.py", "land_witness.py",
     "tier_preflight.py", "pad_separation.py", "pin_map_check.py",
     "model_coverage_check.py",
     "pre_route_review_check.py", "promoted_route_check.py", "early_design_check.py",
@@ -69,6 +69,9 @@ DEFAULT_TOOL_FILES = (
     "generate_board_generic.py", "generate_rules_generic.py",
     "route_and_stitch_generic.py", "circuit_json_to_kicad_sch.py",
     "build_provenance.py", "process_runner.py", "artifact_provenance.py",
+    "../../pcb-design/scripts/pipeline_runtime.py",
+    "../../pcb-design/scripts/pipeline_execution.py",
+    "../../pcb-design/scripts/pipeline_artifacts.py",
     "critical_part_facts.py", "project_state.py",
 )
 DEFAULT_FAB_TOOL_FILES = ("via_process_check.py",)
@@ -835,6 +838,27 @@ def _selector_args(ctx: FlowContext) -> str:
     return f" --board {shlex.quote(ctx.board_id)}" if ctx.nested else ""
 
 
+def decision_progress(ctx: FlowContext, finding_id: str | None = None) -> dict[str, Any] | None:
+    """Optional coordinator guard; never an engineering acceptance predicate."""
+    design_scripts = SCRIPTS.parent.parent / "pcb-design" / "scripts"
+    if str(design_scripts) not in sys.path:
+        sys.path.insert(0, str(design_scripts))
+    from decision_progress import evaluate
+    try:
+        result = evaluate(ctx.root, finding_id)
+    except (OSError, ValueError, TypeError, KeyError, yaml.YAMLError) as exc:
+        raise FlowError(f"invalid decision progress: {exc}") from exc
+    if not result['investigations']:
+        return None
+    # Compact view, not a second copy of the history or its evidence. Pin the
+    # evaluator too: flow.inputs.tools may deliberately override default tools.
+    result['tool_sha256'] = hashlib.sha256(
+        (design_scripts / 'decision_progress.py').read_bytes()).hexdigest()
+    for row in result['investigations']:
+        row.pop('observations')
+    return result
+
+
 def handoff_document(ctx: FlowContext, stage: str | None, blockers: list[str],
                      pending_seal: dict[str, Any] | None = None) -> dict[str, Any]:
     flow = flow_cfg(ctx.cfg, ctx.root)
@@ -865,6 +889,7 @@ def handoff_document(ctx: FlowContext, stage: str | None, blockers: list[str],
     inputs["board_path"] = (ctx.board.relative_to(ctx.root).as_posix()
                             if ctx.board.is_relative_to(ctx.root) else str(ctx.board))
     select = _selector_args(ctx)
+    progress = decision_progress(ctx)
     return {
         "schema": SCHEMA,
         "generated_at": utc_now(),
@@ -884,6 +909,7 @@ def handoff_document(ctx: FlowContext, stage: str | None, blockers: list[str],
             "layout_seal": f"{KPY} skills/kicad-pcb/scripts/pcb_flow.py layout-seal {ctx.root}{select}",
         },
         "scope": "PCB layout only; fabrication/PCBA release gates are not sealed",
+        **({"decision_progress": progress} if progress is not None else {}),
     }
 
 
@@ -933,6 +959,11 @@ def validate_handoff(ctx: FlowContext) -> int:
         problems.append("DRC gate is stale")
     if doc.get("board_id") != ctx.board_id:
         problems.append("board selection changed")
+    try:
+        if doc.get('decision_progress') != decision_progress(ctx):
+            problems.append('decision ledger, history, next action or evaluator changed')
+    except FlowError as exc:
+        problems.append(str(exc))
     if problems:
         print("STALE handoff: " + "; ".join(problems))
         return EXIT_STALE
@@ -1014,9 +1045,16 @@ def cmd_layout_seal(ctx: FlowContext, dry_run: bool,
             "--contract", str(ctx.route_path.parent / "rules" / "rf.yaml"),
             "--require-applicability",
             "--require-review", "schematic", "--require-review", "pcb"]),
-        ("layout_drc", ["kicad-cli", "pcb", "drc", "--severity-all",
-                        "--refill-zones", "--schematic-parity", "--format",
-                        "json", "-o", str(ctx.gate), str(ctx.board)]),
+        # The canonical rebuild's route-acceptance compositor already runs and
+        # hash-binds the final native DRC/parity result. Running DRC again here
+        # rewrites its timestamped JSON after that receipt is issued, leaving a
+        # nominally sealed layout whose atomic copper receipt immediately
+        # fails verification. Reopen the receipt instead: this simultaneously
+        # proves the exact routed board, its native DRC evidence and every
+        # other required route predicate without creating a second subject.
+        ("route_acceptance_verify", [
+            KPY, str(SCRIPTS / "route_acceptance_gate.py"), "verify",
+            str(ctx.root / "06_build/verification/route_acceptance_receipt.json")]),
     ]
     if dry_run:
         for stage, command in commands:
@@ -1090,24 +1128,85 @@ def parser() -> argparse.ArgumentParser:
     common(p)
     p.add_argument("--max-cycles", type=int, default=12)
     p.add_argument("--dry-run", action="store_true")
+    p = sub.add_parser("qualify")
+    common(p)
+    p.add_argument("--python", default=KPY)
+    p.add_argument("--kicad-cli", default="kicad-cli")
+    p.add_argument("--timeout-s", type=float, default=120)
+    for name in ("task-run", "task-repair", "agent-open", "agent-close"):
+        p = sub.add_parser(name)
+        common(p)
+        if name in {"task-run", "task-repair"}:
+            p.epilog = "Append -- COMMAND [ARG ...], for example: -- /usr/bin/python3 producer.py"
+        p.add_argument("--envelope", required=True,
+                       help="schema-2 TaskEnvelope JSON; open allocates a fresh output path")
+        if name == "task-repair":
+            p.add_argument("--assessment", required=True, help="coordinator repair assessment JSON")
+        if name == "agent-close":
+            p.add_argument("--host-event", required=True, help="coordinator-observed host event JSON")
     p = sub.add_parser("run")
     common(p)
     p.add_argument("--stage", required=True)
     p.add_argument("--budget-s", type=float)
     p.add_argument("--timeout-s", type=float,
                    help="hard deadline; kills the command's process group")
+    p.add_argument("--investigation", metavar="FINDING_ID",
+                   help="enforce the named findings-ledger investigation before launching")
     return ap
 
 
 def main(argv: list[str] | None = None) -> int:
     argv = list(sys.argv[1:] if argv is None else argv)
     remainder: list[str] = []
-    if argv and argv[0] == "run" and "--" in argv:
+    if argv and argv[0] in {"run", "task-run", "task-repair"} and "--" in argv:
         cut = argv.index("--")
         remainder, argv = argv[cut + 1:], argv[:cut]
     args = parser().parse_args(argv)
     root = Path(args.project).resolve()
     try:
+        if args.command == "qualify":
+            from pipeline_qualification import qualify
+            try:
+                result, path = qualify(root, python=args.python, cli=args.kicad_cli,
+                                       timeout_s=args.timeout_s)
+            except (OSError, ValueError) as exc:
+                raise FlowError(str(exc)) from exc
+            print(json.dumps({"status": result["status"], "receipt": str(path),
+                "failures": result["failures"], "reviewer": result["reviewer"]}, sort_keys=True))
+            return 0 if result["status"] == "PASS" else 2
+        if args.command in {"task-run", "task-repair", "agent-open", "agent-close"}:
+            from pipeline_execution import TaskEnvelope
+            from pipeline_runtime import execute_attempt, execute_repair, open_agent_attempt, close_agent_attempt
+            from dataclasses import replace
+            import uuid
+            try:
+                envelope = TaskEnvelope.from_json(Path(args.envelope).read_text())
+                if envelope.schema != 2:
+                    raise ValueError("task workflow requires schema 2")
+                if args.command not in {"agent-close", "task-repair"}:
+                    envelope = replace(envelope, output_path=(
+                        f"06_build/task_runs/{envelope.run_id}-{uuid.uuid4().hex}/attempt.json"))
+                if args.command == "agent-open":
+                    result = open_agent_attempt(envelope, cwd=root)
+                    result["envelope"] = str(root / Path(envelope.output_path).parent / "envelope.json")
+                    print(json.dumps(result, sort_keys=True))
+                    return 0
+                if args.command == "agent-close":
+                    result = close_agent_attempt(envelope, cwd=root,
+                        event=json.loads(Path(args.host_event).read_text()))
+                else:
+                    if not remainder:
+                        raise ValueError("task-run needs a command after --")
+                    executor = execute_repair if args.command == "task-repair" else execute_attempt
+                    options = ({"assessment": json.loads(Path(args.assessment).read_text())}
+                               if args.command == "task-repair" else {})
+                    result = executor(envelope, remainder, cwd=root, **options,
+                        env={key: os.environ[key] for key in ("PATH", "LANG", "LC_ALL", "HOME") if key in os.environ})
+                actual = (result.output or {}).get("continuation", {}).get("attempt_path", envelope.output_path)
+                print(f"task {result.status}: {root / actual}")
+                return 0 if result.status == "PASS" else 2
+            except (OSError, ValueError, TypeError, KeyError) as exc:
+                raise FlowError(str(exc)) from exc
         ctx = resolve_context(root, args.board, args.route_config)
         if args.command == "preflight":
             return cmd_preflight(ctx, args.dry_run)
@@ -1124,6 +1223,19 @@ def main(argv: list[str] | None = None) -> int:
             return cmd_layout_seal(ctx, args.dry_run, args.reviewed_commit)
         if not remainder:
             raise FlowError("run needs a command after --")
+        if args.investigation:
+            progress = decision_progress(ctx, args.investigation)
+            if progress is None or progress['decision'] != 'CONTINUE_BOUNDED':
+                raise FlowError(f"{progress['decision'] if progress else 'INVALID'}: "
+                                'named investigation cannot launch another local '
+                                'refinement; reopen its decision and evidence')
+            from decision_progress import reserve_launch
+            try:
+                reservation = reserve_launch(ctx.root, args.investigation,
+                                             tree_hash(ctx).removeprefix('sha256:'))
+            except (OSError, ValueError, TypeError, KeyError, yaml.YAMLError) as exc:
+                raise FlowError(f'investigation reservation refused: {exc}') from exc
+            print(f'investigation reservation: {reservation}; assessment owed', flush=True)
         budget_s = (args.budget_s if args.budget_s is not None
                     else configured_budget(ctx.cfg, args.stage))
         return run_timed(ctx, args.stage, remainder, budget_s,

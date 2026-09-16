@@ -389,3 +389,21 @@ C326568: {mpn: CC0402KRX5R8BB105, value: "1uF", verified: "2026-08-18 LCSC exact
 C55530: {mpn: CL32B226KOJNNNE, value: "22uF", verified: "2026-08-18 LCSC exact-code product page: Samsung 22uF, 16V, X7R, +/-10%, 1210. MPN field 226 independently decodes to 22uF; effective-capacitance validation remains bound to the existing conservative design model."}
 C342849: {mpn: C1608C0G1H332JT000N, value: "3.3nF", verified: "2026-08-18 LCSC exact-code product page: TDK 3.3nF, 50V, C0G, +/-5%, 0603. MPN field 332 independently decodes to 3.3nF; exact timing dielectric and tolerance are retained."}
 C482193: {mpn: CRCW04024K70FKED, value: "4.7k", verified: "2026-08-18 LCSC exact-code product page: Vishay 4.7kOhm +/-1%, 63mW, 50V, 0402. MPN field 4K70 independently agrees."}
+
+# --- crow audio carrier v1 analog/power passives, 2026-09-01 -------------
+# Exact LCSC product records were matched to the manufacturer order codes and
+# independently checked against exact manufacturer specifications. Values are
+# catalog facts; volatile stock and PCBA allocation are deliberately excluded.
+C183545: {mpn: R82DC4100DQ60J, value: "1uF", verified: "2026-09-01 LCSC exact-code product record and KEMET exact R82DC4100DQ60J specification independently agree: 1.0uF +/-5%, 63V metallized stacked PET film, radial THT, 5.00mm pitch."}
+C597579: {mpn: 12105C106K4Z2A, value: "10uF", verified: "2026-09-01 LCSC exact-code product record and Kyocera AVX exact-order product data independently agree: 10uF +/-10%, 50V X7R FLEXITERM, 1210."}
+C445250: {mpn: UUD1V4R7MCL1GS, value: "4.7uF", verified: "2026-09-01 LCSC exact-code product record and Nichicon exact UUD order-code data independently agree: 4.7uF +/-20%, 35V polarized aluminum electrolytic, D4x5.8 SMD can."}
+C401730: {mpn: EEEFK1V4R7R, value: "4.7uF", verified: "2026-09-02 LCSC exact-code product record and Panasonic exact-order-code product data independently agree: 4.7uF +/-20%, 35V polarized aluminum electrolytic, D4x5.8 SMD can."}
+C2167576: {mpn: C0805C106K8RACTU, value: "10uF", verified: "2026-09-01 LCSC exact-code product record and KEMET exact C0805C106K8RACTU specification independently agree: 10uF +/-10%, 10V X7R, 0805."}
+C2167386: {mpn: C0603C105K4RACTU, value: "1uF", verified: "2026-09-01 LCSC exact-code product record and KEMET exact C0603C105K4RACTU specification independently agree: 1uF +/-10%, 16V X7R, 0603."}
+
+# Carrier power-source precision dividers; coordinator-authorized four-row addition.
+C861380: {mpn: RT0603BRD073K57L, value: "3.57k", verified: "2026-09-07T21:55:47Z public JLC selectSmtComponentList exact componentCode/model/describe: YAGEO RT0603BRD073K57L, 3.57kOhm,100mW,75V,0.1%,25ppm/C,0603. Raw catalog records captured independently of carrier labels; https://www.lcsc.com/product-detail/C861380.html. Public identity only, no allocation."}
+C861192: {mpn: RT0603BRD071K15L, value: "1.15k", verified: "2026-09-07T21:55:50Z public JLC selectSmtComponentList exact componentCode/model/describe: YAGEO RT0603BRD071K15L, 1.15kOhm,100mW,75V,0.1%,25ppm/C,0603. Raw catalog records captured independently of carrier labels; https://www.lcsc.com/product-detail/C861192.html. Public identity only, no allocation."}
+C861313: {mpn: RT0603BRD0730K9L, value: "30.9k", verified: "2026-09-07T21:55:36Z public JLC selectSmtComponentList exact componentCode/model/describe: YAGEO RT0603BRD0730K9L, 30.9kOhm,100mW,75V,0.1%,25ppm/C,0603. Raw catalog records captured independently of carrier labels; https://www.lcsc.com/product-detail/C861313.html. Public identity only, no allocation."}
+C861167: {mpn: RT0603BRD0717K4L, value: "17.4k", verified: "2026-09-07T22:03:59Z public JLC selectSmtComponentList exact componentCode/model/describe: YAGEO RT0603BRD0717K4L, 17.4kOhm,100mW,75V,0.1%,25ppm/C,0603. Raw catalog records captured independently of carrier labels; https://www.lcsc.com/product-detail/C861167.html. Public identity only, no allocation."}
+C705768: {mpn: RT0603BRD0733KL, value: "33k", verified: "2026-09-10 public JLCPCB exact-code product page https://jlcpcb.com/partdetail/YAGEO-RT0603BRD0733KL/C705768: YAGEO RT0603BRD0733KL, resistance33kOhm,100mW,75V,+/-0.1%,+/-25ppm/C,0603. Catalog identity/value read independently of source labels; no stock or PCBA allocation claim."}

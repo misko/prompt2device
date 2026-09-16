@@ -107,6 +107,60 @@ class FakeBoard:
         return self.footprints
 
 
+def analog_topology_fixture():
+    project = tmpdir("analog_topology_")
+    dossier = project / "02_parts/EXACT-CLAMP/part.yaml"
+    dossier.parent.mkdir(parents=True)
+    dossier.write_text(yaml.safe_dump({"mpn": "EXACT-CLAMP", "layout": {
+        "route_topology": {"kind": "shunt", "signal_pads": ["3", "5"],
+                           "return_pads": ["4"]}}}))
+    row = {"ref": "U1", "part_mpn": "EXACT-CLAMP", "kind": "shunt",
+           "signal_pads": ["3", "5"], "return_pads": ["4"],
+           "signal_nets": ["AUDIO_P1", "AUDIO_N1"], "why": "analog cable clamp"}
+    cfg = {"route": {"preflight_critical_pairs": [], "routability": {
+        "require_topology": True, "topology": [row]}}}
+    board = FakeBoard([FakeFootprint("U1", [("3", "AUDIO_P1"), ("4", "GND"),
+                                             ("5", "AUDIO_N1")])])
+    return project, row, cfg, board
+
+
+@test("analog shunt topology binds exact non-critical nets and dossier pins")
+def t_analog_topology_clean():
+    project, row, cfg, board = analog_topology_fixture()
+    result = placement_routability_preflight._topology(cfg, board, project)
+    eq(result["status"], "PASS", "analog topology")
+    eq(len(result["rows"]), 1, "nonzero analog coverage")
+
+
+@test("analog topology rejects wrong nets, malformed names and pair bypasses",
+      kind="known_bad")
+def t_analog_topology_bad():
+    for bad in (["WRONG", "AUDIO_N1"], [], ["AUDIO_P1", "AUDIO_P1"],
+                "AUDIO_P1", ["AUDIO_P1", {}]):
+        project, row, cfg, board = analog_topology_fixture()
+        row["signal_nets"] = bad
+        eq(placement_routability_preflight._topology(cfg, board, project)["status"],
+           "FAIL", f"bad analog names {bad!r}")
+    for simultaneous in (False, True):
+        project, row, cfg, board = analog_topology_fixture()
+        if simultaneous:
+            row["pairs"] = []
+        else:
+            cfg["route"]["preflight_critical_pairs"] = [
+                {"name": "HIGH_SPEED", "p": "AUDIO_P1", "n": "AUDIO_N1"}]
+        eq(placement_routability_preflight._topology(cfg, board, project)["status"],
+           "FAIL", "critical pair cannot use analog escape hatch")
+
+
+@test("analog shunt still rejects mismatched manufacturer pin topology",
+      kind="known_bad")
+def t_analog_topology_dossier_mismatch():
+    project, row, cfg, board = analog_topology_fixture()
+    row["return_pads"] = ["3"]
+    eq(placement_routability_preflight._topology(cfg, board, project)["status"],
+       "FAIL", "dossier pin mismatch")
+
+
 @test("source-prep authority compiles from board-observed facts in shadow")
 def t_source_prep_authority_shadow():
     root = tmpdir("source_authority_")
@@ -654,6 +708,34 @@ def t_rehearsal_stale():
           f"stale rehearsal was not rejected: {failures}")
     must_fail(run([KPY, PCB / "release_rehearsal.py", "verify", receipt]),
               "stale release-rehearsal CLI", expect="RECEIPT FAIL")
+
+
+@test("docs-only rehearsal forwards strict delta assertion and preserves failures", kind="known_bad")
+def t_rehearsal_docs_only_mode():
+    release, _, _ = rehearsal_tree()
+    (release / "ORDER_README.md").write_text("DO-NOT-ORDER")
+    commands = []
+    def child(name, command):
+        commands.append(command)
+        return {"status": "FAIL" if name == "design-freshness" else "PASS"}
+    with mock.patch.object(release_rehearsal, "_run", side_effect=child):
+        result = release_rehearsal.rehearse(
+            release, release.parent, docs_only_supersede="prior")
+    eq(result["verdict"], "REJECTED", "docs-only freshness failure was suppressed")
+    for command in commands:
+        if "--claim" in command:
+            check(command[-2:] == ["--docs-only-supersede", "prior"],
+                  "rehearsal omitted strict docs-only assertion")
+    eq(result["freshness_mode"], {"kind": "docs-only-supersede", "prior": "prior"},
+       "receipt misstates asserted mode")
+    try:
+        release_rehearsal.rehearse(release, release.parent,
+                                  representation_supersede="prior",
+                                  docs_only_supersede="prior")
+    except ValueError:
+        pass
+    else:
+        raise AssertionError("conflicting delta assertions accepted")
 
 
 @test("accepted blocked-sourcing receipts retain a failing informational check")

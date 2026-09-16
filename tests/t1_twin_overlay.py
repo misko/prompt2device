@@ -61,6 +61,41 @@ TWIN_REPORT = REL / "verification/twin_report.csv"
 EDGE = (9.95, 9.95, 180.05, 130.05)
 
 
+@test("native Fab body authority excludes text for every board orientation", kind="known_bad")
+def t_fab_text_is_not_body():
+    # RED against the pre-fix collector: an unrelated Fab label widens the body.
+    import pcbnew
+    import importlib.util
+    spec = importlib.util.spec_from_file_location("overlay_fab_fixture", OVL)
+    overlay = importlib.util.module_from_spec(spec); spec.loader.exec_module(overlay)
+    b = pcbnew.BOARD(); fp = pcbnew.FOOTPRINT(b); b.Add(fp)
+    fp.SetReference("R1"); fp.SetPosition(pcbnew.VECTOR2I(10000000, 10000000))
+    shape = pcbnew.PCB_SHAPE(fp); shape.SetShape(pcbnew.SHAPE_T_RECT)
+    shape.SetStart(pcbnew.VECTOR2I(9200000, 9600000))
+    shape.SetEnd(pcbnew.VECTOR2I(10800000, 10400000))
+    shape.SetWidth(100000); shape.SetLayer(pcbnew.F_Fab); fp.Add(shape)
+    # Nominal 1.60x0.80 body plus the explicitly authored 0.10mm drawing stroke.
+    first = overlay.collect(b, "top")[0][0]["fab"]
+    eq(tuple(round(v, 6) for v in first), (9.15, 9.55, 10.85, 10.45),
+       "geometric Fab envelope preserves drawing stroke")
+    label = pcbnew.PCB_TEXT(fp); label.SetText("THIS IS NOT A BODY")
+    label.SetPosition(pcbnew.VECTOR2I(50000000, 30000000))
+    label.SetLayer(pcbnew.F_Fab); fp.Add(label)
+    fp.Value().SetText("LARGE VALUE"); fp.Value().SetLayer(pcbnew.F_Fab)
+    for side in ("top", "bottom"):
+        if side == "bottom": fp.Flip(fp.GetPosition(), False)
+        for angle in (0, 90, 180, 270):
+            fp.SetOrientationDegrees(angle)
+            got = overlay.collect(b, side)[0][0]["fab"]
+            box = shape.GetBoundingBox()
+            want = (box.GetLeft()/1e6, box.GetTop()/1e6,
+                    box.GetRight()/1e6, box.GetBottom()/1e6)
+            eq(got, want, f"{side}/{angle}: labels cannot enlarge physical authority")
+    fp.Remove(shape)
+    eq(overlay.collect(b, "bottom")[0][0]["fab"], None,
+       "text-only Fab provides no physical body datum")
+
+
 def gate(*extra, out=None, png=TOP, board=BOARD, side="top", bom=BOM,
          bare=None, adjudications=None):
     d = out or tmpdir("ovl_")

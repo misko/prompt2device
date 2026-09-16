@@ -1,0 +1,13 @@
+mpn: CL05B103KB5NNNC
+manufacturer: Samsung Electro-Mechanics
+type: ceramic_capacitor
+value: 10nF
+datasheet: {doc_id: CL05B103KB5NNNC-SPEC, revision: "Samsung generated specification", url: "https://product.samsungsem.com/mlcc/CL05B103KB5NNN.do", local: CL05B103KB5NNNC-spec.pdf, sha256: dd7aeac014da7235d687bc41a30cc1bf1366e0b03c81ee46135de1202cb06008, fetched: 2026-09-02}
+package: "0402 (1005 metric)"
+footprint: Capacitor_SMD:C_0402_1005Metric
+escape: {style: passive, pitch: 0.5, tier_required: jlc_2layer_default, checked: "standard 0402 land, 2026-09-01"}
+pins: {1: A, 2: B}
+limits: {capacitance_f: 0.00000001, tolerance_pct: 10, voltage_v: 50, dielectric: X7R}
+asserts: [{assert: value, equals: 10n, tolerance_pct: 10, why: "LDO feed-forward and NR/SS network."}]
+verified: "Exact Samsung generated specification PDF page 1 inspected for MPN, 10 nF, 50 V, X7R, +/-10% and 0402 dimensions on 2026-09-02; order-time availability remains owed."
+sourcing: {lcsc: C15195, alternates: []}

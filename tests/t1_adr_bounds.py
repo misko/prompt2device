@@ -673,6 +673,32 @@ def t_an_unparseable_block_is_refused():
 # THE RATCHET, the coverage denominator, and the real fleet
 # ===========================================================================
 
+@test("the canonical direct repo invocation preserves frozen bounds after "
+      "project archival")
+def t_direct_repo_invocation_preserves_the_frozen_bound_fleet():
+    """The PCB conductor invokes the shipped gate directly on ``ROOT``.
+
+    The 2026-08-26 archive move retained a private test-only symlink view but
+    left that production invocation scanning active projects alone: it saw one
+    CITED declaration against a floor of thirteen and stopped every new board.
+    The shipped gate now owns the same read-only active+frozen view, so the
+    production command—not merely its test helper—must pass.
+    """
+    r = must_pass(run([KPY, GATE, str(ROOT), "--repo-root", str(ROOT),
+                       "--timeout", "30"]),
+                  "canonical direct M-BOUND invocation")
+    contains(r.out, "governed active + frozen view",
+             "the archived denominator is explicit")
+    sys.path.insert(0, str(SCRIPTS))
+    import adr_bound_provenance as abp
+    coverage = re.search(r"BOUND COVERAGE: (\d+) CITED / (\d+) ESTIMATED / (\d+) UNVERIFIED", r.out)
+    check(coverage is not None, "actual bound population must be reported")
+    check(int(coverage[1]) >= abp.CITED_FLOOR,
+          "the committed floor remains earned after new active declarations")
+    eq(int(coverage[3]), 0, "new active declarations must not be unverified")
+    eq(tuple(GOVERNED_PROJECTS), tuple(abp.FROZEN_GOVERNED_PROJECTS),
+       "the independent frozen-fleet fixture and production view agree")
+
 @test("the REAL fleet passes with every OWED ADR named — 37 of 45 owed, "
       "10 cited")
 def t_the_real_fleet_passes_with_every_owed_adr_named():
@@ -873,7 +899,11 @@ def t_red_no_pre_existing_gate_reads_a_number_out_of_an_adr():
         if p.name == GATE.name:
             continue
         t = p.read_text(errors="replace")
-        if re.search(r"decisions[/\"']", t) and re.search(
+        # `decisions` is also a common JSON receipt key. Requiring the
+        # repository's `01_docs/.../decisions` path shape avoids counting
+        # unrelated receipt compilers merely because they call read_text().
+        if re.search(r"(?:01_docs.{0,120}decisions|"
+                     r"decisions.{0,120}01_docs)", t, re.S) and re.search(
                 r"read_text|open\(|glob\(", t):
             readers.append(p.name)
     eq(readers, ["electrical_invariants.py", "module_first_check.py",

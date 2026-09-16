@@ -93,6 +93,32 @@ classes:
               "unowned many-pad power", "O-PWR")
 
 
+    # The build-copy interface must use the same native board and source rules.
+    # The owning entry lacked --root before the fix; positive and propagation
+    # controls were RED against the actual previous implementation.
+    build = project / "06_build/probe"
+    build.mkdir(parents=True)
+    copied = build / "route.yaml"
+    copied.write_bytes((project / "03_src/route.yaml").read_bytes())
+    must_fail(run([KPY, OWNERSHIP, copied]), "build copy without root",
+              "route config must live below 03_src")
+    must_fail(run([KPY, OWNERSHIP, copied, "--root", project]),
+              "build copy retains source power rules", "O-PWR")
+    cfg = yaml.safe_load(copied.read_text())
+    cfg["route"]["ownership"] = {"nets": {"P5V": {
+        "topology": "wide_trunk", "owner": "route.wave",
+        "allow_generic_router": True, "why": "explicit fixture trunk"}}}
+    copied.write_text(yaml.safe_dump(cfg))
+    must_pass(run([KPY, OWNERSHIP, copied, "--root", project]),
+              "owned build copy with explicit root")
+
+
+@test("route ownership project-root boundary and driver propagation controls")
+def t_ownership_root_controls():
+    must_pass(run([KPY, SCRIPTS / "tests/test_route_ownership_preflight.py"]),
+              "source/build roots, shadow rules, escape rejection, driver propagation")
+
+
 @test("route_candidate_workspace.py detects receipt artifact tampering", kind="known_bad")
 def t_candidate_receipt_tamper():
     directory = tmpdir("candidate-red-")
@@ -162,6 +188,32 @@ rails:
     (project / "01_docs/journal/first_article.json").write_text(json.dumps(record))
     must_fail(run([sys.executable, FIRST_ARTICLE, project]),
               "unconfirmed exposed pad", "FA-EP")
+
+
+@test("first_article_check.py rejects population ranges as fabricated exact census",
+      kind="known_bad")
+def t_first_article_population_range():
+    project = tmpdir("first-article-range-red-")
+    (project / "03_src/rules").mkdir(parents=True)
+    (project / "01_docs/journal").mkdir(parents=True)
+    (project / "03_src/rules/first_article.yaml").write_text("""
+stages:
+  - {name: assembled, installed: [U2, R5-R13], exposed_pads: [U2]}
+rails:
+  - name: 5VA
+    resistance: {probe: C17, min_ohm: 1000, max_ohm: 2500}
+    voltage: {probe: C17, min_v: 5.0, max_v: 5.3}
+    no_load_current: {probe: bench_supply, max_a: 0.03}
+    supply: {probe: bench_supply, min_v: 9.5, max_v: 12.2,
+             max_current_limit_a: 0.05}
+""")
+    (project / "01_docs/journal/first_article.json").write_text(json.dumps({
+        "stage": "assembled", "installed": ["U2", "R5-R13"],
+        "assembly_confirmations": {"U2.exposed_pad": True},
+        "measurements": {},
+    }))
+    must_fail(run([sys.executable, FIRST_ARTICLE, project]),
+              "literal range greenwash", "ranges/pins are not expanded")
 
 
 @test("realized_track_width_guard.py refuses sub-floor copper", kind="known_bad")

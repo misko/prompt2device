@@ -1,0 +1,63 @@
+schema: 1
+service: JLCPCB_PCBA
+sides: [top]
+fiducials: none
+build_quantity: 10
+
+# J1, MK1 and the seven bare test pads are intentionally absent from both
+# machine placement and the JLC assembly BOM. J1 is fitted after PCBA; MK1 is
+# not a board-mounted component at all—the board receives two capsule wires at
+# a dedicated landing—and TP1–TP7 are copper features with no physical part.
+not_assembled:
+  - refs: [J1]
+    reason: user_supplied
+    on_bom: false
+    evidence: >-
+      2026-09-01 exact 43650-0400 THT header selected; no JLC through-hole
+      allocation response exists for this first article.
+    disposition: >-
+      Hand-solder the exact header after SMT assembly, inspect all four joints
+      and locating pegs, then perform the connector continuity/pin-map test.
+  - refs: [MK1]
+    reason: user_supplied
+    on_bom: false
+    evidence: >-
+      2026-09-01 PUI drawing does not dimension terminal pitch; MK1 on this PCB
+      is only the governed Mic_Wire_Pads_P5.00mm landing and has no supplier
+      placement code.
+    disposition: >-
+      Fit the exact capsule off board in the enclosure, strain-relieve its two
+      wires, hand-solder them to the marked landing, and verify polarity.
+  - refs: [TP1, TP2, TP3, TP4, TP5, TP6, TP7]
+    reason: test_point
+    on_bom: false
+    evidence: >-
+      2026-09-01 source and generated schematic census identify TP1–TP7 as
+      1.5 mm bare probe pads with no manufacturer part or placement body.
+    disposition: >-
+      Retain the seven unpopulated copper pads for first-article probing; they
+      must remain absent from both the assembly BOM and pick-and-place file.
+
+consigned: []
+exempt_prefixes: [FID, H, MH, TP]
+
+through_hole:
+  process: "manual first-article soldering only; production process OWED"
+  refs: [J1, MK1]
+  evidence: >-
+    J1 is a paste-free THT header and MK1 represents two wire landings. Neither
+    is a valid JLC pick-and-place operation.
+
+assembly_scope:
+  smt: "candidate JLC turnkey assembly; exact live allocation remains OWED"
+  tht: "manual first article"
+  bottom_population: none
+  connectors: "J1 and capsule wires fitted manually before qualification"
+
+sourcing_plan: []
+order_time_requirements:
+  - stop until every machine-placed SMT line has a live accepted JLC code or an approved consignment plan
+  - stop until J1 manual soldering, exact harness crimp process and cavity continuity are inspected
+  - stop until MK1 enclosure mounting, strain relief, drainage and acoustic polarity are qualified
+  - inspect D1, D2, U1, U2, U3 and all polarized/manual parts against exact pin-1 authority
+  - keep DO-NOT-ORDER until rail, noise, gain, clipping, cable, EMC and roof-environment tests pass

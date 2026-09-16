@@ -28,10 +28,18 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          lfs: true
       - name: Regression tests
         run: |
           python3 tests/t1_release_freshness.py --only='review coverage'
           python3 tests/t1_publication_gate.py
+          python3 tests/t1_publication_transport.py
+      - name: Grade pull-request transport boundary
+        if: github.event_name == 'pull_request'
+        run: >-
+          python3 skills/pcb-design/scripts/publication_transport_gate.py
+          --base '${{ github.event.pull_request.base.sha }}'
+          --head '${{ github.event.pull_request.head.sha }}'
       - name: Grade pull-request publication boundary
         if: github.event_name == 'pull_request'
         run: >-

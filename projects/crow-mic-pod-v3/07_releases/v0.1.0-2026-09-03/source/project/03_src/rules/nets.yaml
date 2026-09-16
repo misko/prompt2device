@@ -1,0 +1,48 @@
+fab_tier: jlc_2layer_default
+default_clearance: 0.15mm
+
+classes:
+  POD_INPUT:
+    intent: >-
+      10.5-13.2 V spoke power through the connector, PTC, series diode and LDO
+      input. Width is a robustness and fault-current path choice, not a claim
+      that the pod normally draws 0.10 A.
+    nets: [12V_POD, 12V_FUSED, VIN_PROTECTED]
+    current: "0.10 A maximum continuous allocation; carrier fault limit is upstream"
+    min_width: 0.5mm
+    clearance: 0.15mm
+    routing: "short boundary chain on top copper; GND return is the continuous plane"
+    verify: "DRC width floor plus first-article voltage-drop and fault test"
+
+  QUIET_POWER:
+    intent: "Low-current 5 V rail and filtered microphone bias with local decoupling."
+    nets: [5V_QUIET, MIC_BIAS]
+    current: "less than 0.020 A expected first article"
+    min_width: 0.4mm
+    clearance: 0.15mm
+    routing: "short local trunks; keep away from MIC_RAW and MIC_AC"
+    verify: "DRC width floor plus rail-noise measurement"
+
+  BALANCED_AUDIO:
+    intent: >-
+      Complementary low-impedance audio outputs. Route compactly together from
+      the two 100 ohm source resistors through U3 to J1, without intentional
+      stubs or asymmetry; these are not controlled-impedance nets.
+    nets: [AUDIO_P, AUDIO_N, OUTP_DRV]
+    current: "signal current below 20 mA"
+    min_width: 0.25mm
+    clearance: 0.15mm
+    routing: "paired visual corridor on F.Cu where practical; no delay target"
+    verify: "DRC plus gain/common-mode/cable sweep"
+
+  QUIET_ANALOG:
+    intent: "High-impedance microphone, VREF and feedback nodes stay inside the quiet analog cell."
+    nets: [MIC_RAW, MIC_AC, VREF_RAW, VREF, PRE_FB, PRE_OUT, OUTP_FB, SPARE_BUF]
+    current: "signal; no ampacity obligation"
+    min_width: 0.25mm
+    clearance: 0.15mm
+    routing: "short direct traces over uninterrupted ground; no connector-power crossing"
+    verify: "DRC plus schematic/layout review and noise measurement"
+
+# LDO_FB, LDO_NR and GND use the default class; GND is owned by both-layer
+# zones and stitch vias rather than by the autorouter.

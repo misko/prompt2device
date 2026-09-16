@@ -22,6 +22,7 @@ part selections.
 |---|---|
 | `README.md` | registry purpose, authority boundary, and consumer entry point |
 | `plutoplus_hardware/**` | ADALM-PlutoPlus SDR — SMA port geometry, port map, enclosure, two physical units measured |
+| `minidsp_mchstreamer/**` | miniDSP MCHStreamer — manufacturer-manual TDM/J3 facts and explicitly owed physical header identity/orientation |
 | `contracts.md` | this file |
 
 Inside a device folder, two names are FIXED because machines read them:

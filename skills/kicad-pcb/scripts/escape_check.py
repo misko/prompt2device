@@ -51,92 +51,30 @@ EARNED per board, never inherited by copy.
 usage:
   escape_check.py <part.yaml> [...]      # grade part.yaml escape blocks
   escape_check.py --style qfn --pitch 0.5 [--escapes-worst-side N] [--pins N]
-  escape_check.py --board B.kicad_pcb    # P-LAND: landable width per pad
+  escape_check.py --board B.kicad_pcb    # P-LAND: finite declared-width witness per pad
 Prints per-tier verdicts + the minimum tier; exits 1 on any infeasible-
 everywhere part or any part.yaml whose declared block contradicts the math.
 
-===========================================================================
-P-LAND — THE WIDEST TRACK THAT CAN ACTUALLY LEAVE A PAD (canon M-ENTRY)
-===========================================================================
-D-ESC above asks whether a PACKAGE can be escaped at a fab tier. It never
-asks the other half: whether the track the NETCLASS demands can physically
-leave the land it must terminate on. Two boards asked that question
-independently (canon M8's two strike), and neither was asked it by a gate:
+P-LAND — finite declared-width native launch witnesses (canon M-ENTRY).
 
-- `pluto-rx2-8way` — PE42482A-X's vendor land is 0.60 x 0.30 mm on 0.50 mm
-  pitch, leaving 0.350 mm from the RF centreline to a GND land edge. A
-  0.36 mm trace at the declared 0.200 mm clearance needs 0.180 + 0.200 =
-  0.380 mm: DEFICIT 0.030 mm. Landable maximum 0.300 mm = 55.3 ohm against
-  a 50 ohm RF50 floor. It surfaced only when 6 of 11 RF nets failed to
-  route, three hours in.
-- `pluto-cal-switch` — ELEVEN pads that cannot accept their own class
-  minimum (U_SW1.5/U_SW2.5 need 0.350, take 0.250; U_MCU.46/.47 need
-  0.330, take 0.300; U_MCU.10/.22/.26/.33 and .23/.45/.50 need 0.400, take
-  0.300). Found BY HAND at the top of stage 6. placement_gates PASSED and
-  tier_preflight was 0 FAIL.
-
-The measure needs no router, no copper, no stackup and no fab tier: it is
-computable the moment parts are PLACED, which is canon M-ENTRY (ADR-0007)
-— grade a fact where it enters, not where it shows.
-
-WHAT IS MEASURED, EXACTLY. For each pad: a straight track `--reach` mm
-long, launched from a 30 um grid of landing points INSIDE the land, in each
-of `--dirs` directions. Its widest legal width from point L in direction t
-is w = 2 * (d - clearance), where d is the distance from the track
-CENTRELINE to the nearest other-net copper land; the pad's landable maximum
-is the best w over all (L, t). It is a LAUNCH measure, not a route: a track
-may turn once it is clear of the land field, and a track wider than the
-land it lands on is legal.
-
-THE LANDING POINT IS A FREE VARIABLE AND IT MATTERS. A centre-only model
-(which is how both boards published their headline arithmetic — "0.350 mm
-from the RF centreline", "the neighbouring land's copper edge sits 0.275 mm
-from the centre") agrees on the hemmed pads and is WRONG on the corner
-ones: measured, it fails six pads of pluto-cal-switch's SHIPPED, DRC-clean
-copper, the same six the board's own hand measurement cleared at 0.460 mm.
-
-WHAT THIS GATE DOES *NOT* CLAIM, AND THE CORRECTION IS THE VALUABLE HALF.
-It does NOT say width is why a board failed to route. Measured on
-`pluto-rx2-8way` 2026-07-30: at KRT's default `grid_step: 0.1` NOTHING
-routes the five boxed RF pads at ANY width — 0.30, 0.25 and 0.20 all fail
-— because the RF land centres sit at odd multiples of 0.05 mm and a
-0.1 mm grid cannot put a centreline on them. With `grid_step: 0.05` and
-`clearance: 0.14` the wave routes 11/11 at the FULL 0.36 mm. So the ranked
-causes of a launch that will not route are GRID, then CLEARANCE, then
-WIDTH, and the fix-line says so on every failing run.
-
-NECK-DOWN IS REFUTED AS THE REMEDY, not merely unconfigured. Measured:
-`--neckdown-length 0.3` routes 11/11 and delivers 149.832 mm of RF copper
-at 0.25 mm and 0.000 mm at 0.36, because KRT's re-widen pass only restores
-width where the NARROW-PLANNED path has wide clearance — which, on a
-radial star leaving a QFN, it never does.
+The library land_witness.py admits the entire board/project/rules context,
+then searches positive declared widths up to 2 mm, native-admitted adaptive
+starts, 48 directions and 1 mm reach on enabled copper layers. A witness
+records actual Track geometry, width rule and limiting Track–Pad pair.
+NO_VALIDATED_WITNESS describes that finite policy, not a width maximum,
+deficit, routing diagnosis or impossibility. Native DRC and connectivity
+remain separate downstream gates. Actual incident tracks are inventoried at
+their native geometry outside this finite policy. Nominal pour and native
+via-on-land buckets are explicit inventory scope, not connectivity proof.
 
 VACUITY: (canon G-VACUOUS. Fixtured by `t1_escape_tier.py`
 `t_vacuity_P_LAND_passes_a_pad_whose_class_declares_no_width_floor`.)
-
-P-LAND grades a pad against a DECLARED floor, so a pad whose netclass
-declares no `track_width` minimum is out of scope and CANNOT fail — the
-gate passes while the fact it grades ("this pad can emit the width its net
-needs") is false, because the need was never written down. Measured on the
-fleet 2026-07-30 (7 boards, 2689 copper pads): 1440 sit on a class with no
-declared width floor, and on `pluto-cal-switch` deleting three lines from
-`nets.yaml` would turn all ELEVEN findings into silence.
-
-This is deliberate and it is bounded, not hidden: the count prints on every
-run as `N no declared width floor` inside the denominator, so the blind
-spot is enumerated on every board. It is not closed by grading pads against
-a netclass DEFAULT width — that would invent a requirement the board never
-made, and the fleet's Default class alone would red every board on day one.
-The real closure is R1's other half (every routed class declares its floor),
-which belongs to `rules_audit`, not here.
-
-RELAXATIONS ARE READ, NOT IGNORED. `pluto-cal-switch` already SOLVED its
-eleven pads, with three permissive rule areas plus `scoped_floors:` bounded
-to lambda_g/61. A gate that reported eleven failures on that board would be
-switched off inside a week. The floors and the relaxations are both read
-from the SHIPPED `.kicad_dru` (last-match precedence, exactly as KiCad
-resolves them), never from the YAML that generated it — the generator and
-this checker share no input (canon M1).
+A pad whose class declares no width floor is counted outside this model.
+Thus an undeclared electrical width requirement cannot make this gate fail.
+The maintained QSPI-only contrast preserves 13 graded pads and more than
+250 floorless pads, then restores the eleven CAL findings with their
+explicit floors. Board default widths do not invent declared requirements.
+A zero graded denominator and unsupported/unreadable inputs block.
 """
 import argparse
 import re
@@ -273,6 +211,13 @@ def check_part(part_yaml, tiers):
     mates = y.get("mates")
     if mates is not None and mates not in ("plug", "receptacle"):
         probs.append(f"{mpn}: mates: '{mates}' is not plug|receptacle")
+    # Harness housings, loose contacts, and other explicitly off-board parts
+    # can legitimately expose several numbered circuits without owning any
+    # PCB copper.  Requiring a fabricated-board escape tier for those parts
+    # would force a false footprint/land claim.  Their cavity/service geometry
+    # remains governed by the connector-assembly and pin-review contracts.
+    if y.get("footprint") == "none_off_board":
+        return probs
     if npins <= 2:
         return probs
     esc = y.get("escape")
@@ -288,7 +233,12 @@ def check_part(part_yaml, tiers):
                         f"(known: {sorted(known_styles)})"]
     g_style, g_pitch = infer_from_strings(y.get("package", ""),
                                           y.get("footprint", ""))
-    if g_style and g_style != style and not (
+    # Package strings normalize DFN/SON and QFN to one bottom-terminated
+    # ring family. Both declared spellings use the identical grade_tier
+    # operator; that normalization is not a package contradiction. Pitch,
+    # escape budget, conditions and the computed tier still grade below.
+    same_family = g_style in RING_STYLES and style in RING_STYLES
+    if g_style and g_style != style and not same_family and not (
             g_style == "leaded" and style in ("connector", "module")):
         probs.append(f"{mpn}: declared style '{style}' contradicts "
                      f"package/footprint text ('{g_style}')")
@@ -346,26 +296,9 @@ def check_part(part_yaml, tiers):
     return probs
 
 
-# ===========================================================================
-# P-LAND — landable width per pad vs the netclass width floor
-# ===========================================================================
-# Defaults. REACH_MM is how far the straight launch must hold its width: a
-# track can turn after it clears the land field, so a long reach would grade
-# the ROUTE and not the LAUNCH. 1.0 mm is ~2.5 fine pitches — past every
-# neighbouring land in the two motivating cases and short of any trunk.
-# DIRS 48 = 7.5 deg steps, the same sampling pluto-cal-switch's hand
-# measurement used. CAP_MM bounds the reported number where a direction is
-# simply open (an unbounded "landable width" is not a fact about the pad).
+# P-LAND's policy is fixed; caller-selected weaker limits are rejected.
 REACH_MM = 1.0
 DIRS = 48
-CAP_MM = 2.0
-NEIGHBOUR_R_MM = 2.5          # obstacle search radius, as measured by hand
-TOL_MM = 1e-4                 # 0.1 um: float noise, never a real deficit
-LAUNCH_STEP_MM = 0.03         # the hand measurement's 30 um landing grid
-MAX_LAUNCH_PTS = 25           # bounds a 2 mm thermal land to 6x6 samples;
-# the optimum sits at an extreme point of the land (a corner pad measures
-# 0.250 mm from its centre and 0.450 mm from its own corner), and the grid
-# always includes the bbox extremes, so a finer grid moved no fleet number.
 
 LAND_FIX_ORDER = (
     "P-LAND FIX ORDER (measured on pluto-rx2-8way, 2026-07-30 — a launch "
@@ -387,439 +320,61 @@ LAND_FIX_ORDER = (
     "narrow-planned path has wide clearance, which leaving a QFN it never "
     "has.\n"
     "  AND THIS GATE DOES NOT CLAIM WIDTH IS WHY A BOARD FAILED TO ROUTE. "
-    "It states one geometric fact: this pad cannot emit its class width at "
-    "the declared clearance.")
+    "The prescribed finite search did not validate a declared-width witness.")
 
 
-def _seg_pt_dist(ax, ay, bx, by, px, py):
-    """Distance from point p to segment ab."""
-    dx, dy = bx - ax, by - ay
-    L2 = dx * dx + dy * dy
-    t = 0.0 if L2 == 0 else ((px - ax) * dx + (py - ay) * dy) / L2
-    t = max(0.0, min(1.0, t))
-    return ((px - ax - t * dx) ** 2 + (py - ay - t * dy) ** 2) ** 0.5
-
-
-def _seg_seg_dist(a, b, c, d):
-    """Distance between segments ab and cd (0 if they cross)."""
-    (ax, ay), (bx, by), (cx, cy), (dx, dy) = a, b, c, d
-    d1x, d1y = bx - ax, by - ay
-    d2x, d2y = dx - cx, dy - cy
-    den = d1x * d2y - d1y * d2x
-    if den != 0:
-        t = ((cx - ax) * d2y - (cy - ay) * d2x) / den
-        u = ((cx - ax) * d1y - (cy - ay) * d1x) / den
-        if 0.0 <= t <= 1.0 and 0.0 <= u <= 1.0:
-            return 0.0
-    return min(_seg_pt_dist(ax, ay, bx, by, cx, cy),
-               _seg_pt_dist(ax, ay, bx, by, dx, dy),
-               _seg_pt_dist(cx, cy, dx, dy, ax, ay),
-               _seg_pt_dist(cx, cy, dx, dy, bx, by))
-
-
-def _poly_seg_dist(poly, a, b):
-    """Distance from polygon (list of (x, y)) to segment ab. 0 if it hits."""
-    best = float("inf")
-    for i in range(len(poly)):
-        best = min(best, _seg_seg_dist(poly[i], poly[(i + 1) % len(poly)], a, b))
-        if best == 0.0:
-            return 0.0
-    return best
-
-
-def launch_points(poly, step=LAUNCH_STEP_MM, max_pts=MAX_LAUNCH_PTS):
-    """Landing points INSIDE the land: a grid, plus the centroid.
-
-    The launch point is a free variable and it MATTERS: a corner pad of a
-    2x3 land field measures 0.250 mm from its centre and 0.450 mm from its
-    own corner, and `pluto-cal-switch`'s hand measurement (48 directions x a
-    30 um grid of landing points) reported 0.460 mm for exactly those pads
-    and routed them at 0.35 mm. A centre-only model FAILS six pads on that
-    board's SHIPPED, DRC-clean copper — measured, which is why this samples
-    the land.
-    """
-    xs = [p[0] for p in poly]
-    ys = [p[1] for p in poly]
-    x0, x1, y0, y1 = min(xs), max(xs), min(ys), max(ys)
-    cx, cy = (x0 + x1) / 2.0, (y0 + y1) / 2.0
-    nx = max(1, min(int(round((x1 - x0) / step)), int(max_pts ** 0.5)))
-    ny = max(1, min(int(round((y1 - y0) / step)), int(max_pts ** 0.5)))
-    eps = 1e-6
-    pts = [(cx, cy)]
-    for i in range(nx + 1):
-        for j in range(ny + 1):
-            p = (x0 + (x1 - x0) * i / nx if nx else cx,
-                 y0 + (y1 - y0) * j / ny if ny else cy)
-            p = (min(max(p[0], x0 + eps), x1 - eps),
-                 min(max(p[1], y0 + eps), y1 - eps))
-            if _point_in_poly(p, poly):
-                pts.append(p)
-    return pts
-
-
-def max_landable(pad, obstacles, clearance, dirs=DIRS, reach=REACH_MM,
-                 cap=CAP_MM):
-    """Widest track that can leave `pad` -> (width_mm, capped, angle).
-
-    pad/obstacles are dicts with 'c' (centre (x, y) mm) and 'poly'. The
-    width is maximised over landing points inside the land x `dirs` straight
-    launch directions; in direction t from point L the widest legal track is
-    2 * (d - clearance) where d is the distance from the centreline to the
-    nearest other-net land. A direction with no obstacle inside `reach` is
-    reported AT THE CAP, never at infinity.
-    """
-    import math
-    best, best_d = 0.0, None
-    span = cap / 2.0 + clearance
-    if not obstacles:
-        return cap, True, None
-    rays = [(math.cos(2.0 * math.pi * k / dirs),
-             math.sin(2.0 * math.pi * k / dirs)) for k in range(dirs)]
-    for lx, ly in launch_points(pad["poly"]):
-        # near-obstacle ordering + an early exit: the first obstacle that
-        # cannot beat the incumbent ends the direction.
-        near = sorted(obstacles,
-                      key=lambda ob: _poly_seg_dist(ob["poly"], (lx, ly),
-                                                    (lx, ly)))
-        for ux, uy in rays:
-            ex, ey = lx + reach * ux, ly + reach * uy
-            d = span
-            for ob in near:
-                d = min(d, _poly_seg_dist(ob["poly"], (lx, ly), (ex, ey)))
-                if 2.0 * (d - clearance) <= best:
-                    break
-            w = 2.0 * (d - clearance)
-            if w > best:
-                best, best_d = w, round(math.degrees(math.atan2(uy, ux)), 1)
-    return min(best, cap), best >= cap - TOL_MM, best_d
-
-
-# --- .kicad_dru: the floors and the relaxations, as KiCad resolves them ---
-_RULE_HEAD_RE = re.compile(r'\(rule\s+"?([^"\s)]+)"?')
-_COND_RE = re.compile(r'\(condition\s+"(.*?)"\s*\)', re.S)
-_CON_RE = re.compile(r'\(constraint\s+(\w+)\s*\(min\s+([0-9.]+)mm\s*\)')
-_CLASS_RE = re.compile(r"A\.NetClass\s*==\s*'([^']+)'")
-_AREA_RE = re.compile(r"A\.insideArea\('([^']+)'\)")
-_NET_RE = re.compile(r"A\.NetName\s*==\s*'([^']+)'")
-
-
-def read_dru_rules(path):
-    """-> [{name, kind, constraint, min_mm, netclass|area, nets}] IN FILE ORDER.
-
-    Only the two condition shapes this pipeline emits are understood; any
-    other condition is returned with kind 'unparsed' so the caller can name
-    it rather than silently ignore a rule that may relax a pad (M-COVER).
-    """
-    out = []
-    text = Path(path).read_text(encoding="utf-8-sig") if Path(path).exists() else ""
-    for m in _RULE_HEAD_RE.finditer(text):
-        # brace-match the rule form: `.kicad_dru` closes its parens on the
-        # constraint line, so a line-anchored regex reads ZERO rules and the
-        # gate would grade every pad as floorless (measured: 300/300).
-        depth, i = 0, m.start()
-        while i < len(text):
-            if text[i] == "(":
-                depth += 1
-            elif text[i] == ")":
-                depth -= 1
-                if depth == 0:
-                    break
-            i += 1
-        name, body = m.group(1), text[m.end():i]
-        con = _CON_RE.search(body)
-        if not con or con.group(1) not in ("track_width", "clearance"):
-            continue
-        cm = _COND_RE.search(body)
-        cond = cm.group(1) if cm else ""
-        rec = {"name": name, "constraint": con.group(1),
-               "min_mm": float(con.group(2)), "cond": cond,
-               "netclass": None, "area": None, "nets": []}
-        cls, area = _CLASS_RE.search(cond), _AREA_RE.search(cond)
-        if area:
-            rec["kind"] = "area"
-            rec["area"] = area.group(1)
-            rec["nets"] = _NET_RE.findall(cond)
-        elif cls and "&&" not in cond:
-            rec["kind"] = "class"
-            rec["netclass"] = cls.group(1)
-        else:
-            rec["kind"] = "unparsed"
-        out.append(rec)
-    return out
-
-
-def resolve_min(rules, constraint, pad, areas):
-    """LAST-MATCH-WINS resolution, exactly as KiCad orders .kicad_dru rules.
-
-    -> (min_mm | None, rule_name | None). `areas` maps area name -> list of
-    (polygon, layer-set) for the board's RULE AREAS.
-    """
-    hit = (None, None)
-    for r in rules:
-        if r["constraint"] != constraint or r["kind"] == "unparsed":
-            continue
-        if r["kind"] == "class":
-            if r["netclass"] == pad["cls"]:
-                hit = (r["min_mm"], r["name"])
-        else:
-            if r["nets"] and pad["net"] not in r["nets"]:
-                continue
-            for poly, layers in areas.get(r["area"], []):
-                if (layers & pad["layers"]) and _point_in_poly(pad["c"], poly):
-                    hit = (r["min_mm"], r["name"])
-                    break
-    return hit
-
-
-def _point_in_poly(pt, poly):
-    x, y = pt
-    inside = False
-    n = len(poly)
-    for i in range(n):
-        x1, y1 = poly[i]
-        x2, y2 = poly[(i + 1) % n]
-        if (y1 > y) != (y2 > y):
-            xx = x1 + (y - y1) * (x2 - x1) / (y2 - y1)
-            if x < xx:
-                inside = not inside
-    return inside
-
-
-def read_board(board_path):
-    """-> (pads, areas, board_name) via pcbnew. Requires /usr/bin/python3.
-
-    A pad is {ref, num, net, cls, c, poly, layers}. `poly` is KiCad's OWN
-    effective pad polygon, so roundrect/oval/custom lands are graded as
-    drawn rather than as a bounding box (a bbox would MANUFACTURE deficits).
-    """
-    import pcbnew
-    b = pcbnew.LoadBoard(str(board_path))
-    scale = 1e6
-    pads, unreached = [], []
-    for fp in b.GetFootprints():
-        ref = fp.GetReference()
-        for p in fp.Pads():
-            if not p.IsOnCopperLayer():
-                continue
-            layers = frozenset(p.GetLayerSet().CuStack())
-            pos = p.GetPosition()
-            rec = {"ref": ref, "num": p.GetNumber(), "net": p.GetNetname(),
-                   "cls": p.GetNetClassName(), "layers": layers,
-                   "c": (pos.x / scale, pos.y / scale), "poly": None}
-            try:
-                sps = p.GetEffectivePolygon(sorted(layers)[0])
-                o = sps.Outline(0)
-                rec["poly"] = [(o.CPoint(i).x / scale, o.CPoint(i).y / scale)
-                               for i in range(o.PointCount())]
-            except Exception as e:                      # noqa: BLE001
-                rec["why_unreached"] = f"pad outline unreadable ({e})"
-                unreached.append(rec)
-                continue
-            if len(rec["poly"]) < 3:
-                rec["why_unreached"] = "pad outline has < 3 points"
-                unreached.append(rec)
-                continue
-            pads.append(rec)
-    # Routed input only (empty at stage 5, which is where this gate is
-    # meant to run): the vias and tracks already touching a land. Vias give
-    # the VIA-ON-PAD escape class; tracks give the routed cross-check that
-    # keeps the model from being silently over-strict.
-    vias, tracks = [], []
-    for t in b.GetTracks():
-        s, e = t.GetStart(), t.GetEnd()
-        if t.GetClass() == "PCB_VIA":
-            # deliberately NOT GetWidth(): a via's width is per-layer in
-            # KiCad 10 and the no-layer overload spews a wx assert per call.
-            # Only the via's CENTRE is used (is it on this land?).
-            vias.append((t.GetNetname(), (s.x / scale, s.y / scale), None))
-        else:
-            tracks.append((t.GetNetname(), t.GetWidth() / scale,
-                           (s.x / scale, s.y / scale),
-                           (e.x / scale, e.y / scale)))
-    areas, pours = {}, []
-    for z in b.Zones():
-        if not z.GetIsRuleArea():
-            # A COPPER POUR is an escape: a pad sitting inside a same-net
-            # zone is fed by the pour and no track has to leave it at all.
-            # Measured — without this, 17 pads on the SEALED, DRC-clean
-            # crow-recorder-central-v2 FAIL, and 16 of them (the XU316
-            # TQFP-128 power ring) carry NO TRACK AT ALL: they are pour-fed.
-            lay = frozenset(z.GetLayerSet().CuStack())
-            out = z.Outline()
-            for i in range(out.OutlineCount()):
-                o = out.Outline(i)
-                pours.append((z.GetNetname(), lay,
-                              [(o.CPoint(j).x / scale, o.CPoint(j).y / scale)
-                               for j in range(o.PointCount())]))
-            continue
-        name = z.GetZoneName()
-        lay = frozenset(z.GetLayerSet().CuStack())
-        out = z.Outline()
-        for i in range(out.OutlineCount()):
-            o = out.Outline(i)
-            poly = [(o.CPoint(j).x / scale, o.CPoint(j).y / scale)
-                    for j in range(o.PointCount())]
-            areas.setdefault(name, []).append((poly, lay))
-    return pads, unreached, areas, pours, vias, tracks
-
-
-def read_class_clearance(pro_path):
-    """-> {netclass: clearance_mm}, plus the board's min_clearance floor."""
+def check_board(board_path, pro_path=None, dru_path=None, dirs=48, reach=1.0, verbose=False):
+    """Public census with one explicit eligibility bucket for every copper pad."""
     import json
-    y = json.loads(Path(pro_path).read_text(encoding="utf-8-sig"))
-    cl = {c["name"]: float(c.get("clearance", 0.0))
-          for c in (y.get("net_settings") or {}).get("classes", [])}
-    floor = float(((y.get("board") or {}).get("design_settings") or {})
-                  .get("rules", {}).get("min_clearance", 0.0) or 0.0)
-    return cl, floor
-
-
-def check_board(board_path, pro_path=None, dru_path=None, dirs=DIRS,
-                reach=REACH_MM, verbose=False):
-    """Grade every pad's landable width against its declared width floor.
-
-    -> (lines, stats). SCOPE, and the defence of it:
-      * IN SCOPE: every copper pad whose NET's resolved width floor is
-        DECLARED — i.e. some `.kicad_dru` `track_width (min ...)` rule
-        matches it. Not "signal pads only": 7 of pluto-cal-switch's 11
-        findings are PWR pads on the RP2040, and a signal-only gate would
-        have found 4 of 11. Not "one footprint's pads": DRC clearance is a
-        function of net + layer, never of which footprint a land belongs
-        to, so the neighbour set is EVERY other-net pad within
-        NEIGHBOUR_R_MM (canon M-WIDTH — the rule is written at the width
-        of its class, not of the incident, where every neighbour happened
-        to be a sibling pad).
-      * OUT OF SCOPE, counted and reported: a pad with NO net (mechanical /
-        NPTH — nothing is ever routed to it), and a pad whose class has no
-        declared width floor (nothing demanded a width of it; grading it
-        against a netclass DEFAULT would invent a requirement the board
-        never made).
-      * UNREACHED, named, never passed: a pad whose land geometry cannot be
-        resolved. A pad that cannot be read is not a pad that passed.
-    """
-    pads, unreached, areas, pours, vias, tracks = read_board(board_path)
-    name = Path(board_path).stem
-    pro_path = pro_path or Path(board_path).with_suffix(".kicad_pro")
-    dru_path = dru_path or Path(board_path).with_suffix(".kicad_dru")
-    cls_clear, min_clear = ({}, 0.0)
-    if Path(pro_path).exists():
-        cls_clear, min_clear = read_class_clearance(pro_path)
-    rules = read_dru_rules(dru_path)
-    unparsed = [r["name"] for r in rules if r["kind"] == "unparsed"]
-
-    lines, fails = [], []
-    stats = {"copper_pads": len(pads) + len(unreached), "graded": 0,
-             "failed": 0, "unreached": len(unreached), "no_net": 0,
-             "no_floor": 0, "relaxed": 0, "scoped_clearance": 0,
-             "pour_fed": 0, "via_on_pad": 0, "xcheck": 0, "xcheck_over": 0}
-    for u in unreached:
-        lines.append(f"UNREACHED {name} {u['ref']}.{u['num']} "
-                     f"net={u['net'] or '-'}: {u['why_unreached']}")
-
-    by_layer = {}
-    for p in pads:
-        for L in p["layers"]:
-            by_layer.setdefault(L, []).append(p)
-
-    for p in pads:
-        if not p["net"]:
-            stats["no_net"] += 1
-            continue
-        floor, frule = resolve_min(rules, "track_width", p, areas)
-        if floor is None:
-            stats["no_floor"] += 1
-            continue
-        if any(net == p["net"] and (lay & p["layers"])
-               and _point_in_poly(p["c"], poly) for net, lay, poly in pours):
-            stats["pour_fed"] += 1
-            continue
-        # VIA ON THE LAND: the escape leaves DOWNWARD and no track has to
-        # emit at all. Measured — this is how the sealed, DRC-clean
-        # crow-recorder-central-v2 escapes its XU316 TQFP-128 power ring
-        # (U1.10 carries no track, only a 0.3 mm via at 82.850, 99.400 on a
-        # 1.475 x 0.250 mm land). Empty on an unrouted board, which is where
-        # this gate is meant to run.
-        if any(net == p["net"] and _point_in_poly((vx, vy), p["poly"])
-               for net, (vx, vy), _r in vias):
-            stats["via_on_pad"] += 1
-            continue
-        stats["graded"] += 1
-        if frule and frule.startswith("scoped_"):
-            stats["relaxed"] += 1
-        # clearance: KiCad takes the LARGER of the two netclass clearances,
-        # never below the board floor; a rule-area `clearance` relaxation
-        # (the sibling's scoped-clearance work) wins by last-match if present.
-        obstacles = []
-        for q in by_layer_pads(by_layer, p):
-            if q["net"] == p["net"] or q is p:
-                continue
-            if abs(q["c"][0] - p["c"][0]) > NEIGHBOUR_R_MM or \
-               abs(q["c"][1] - p["c"][1]) > NEIGHBOUR_R_MM:
-                continue
-            obstacles.append(q)
-        scoped_cl, crule = resolve_min(rules, "clearance", p, areas)
-        if scoped_cl is not None:
-            clear = scoped_cl
-            stats["scoped_clearance"] += 1
+    from land_witness import BoardContext, Unsupported
+    if dirs != 48 or reach != 1.0:
+        raise Unsupported('P-LAND requires the fixed 48 directions / 1.0 mm policy')
+    c = BoardContext(board_path, pro_path, dru_path)
+    stats = dict(copper_pads=len(c.pads)+len(c.unreadable), physical_pads=c.physical,
+                 noncopper_pads=c.noncopper, graded=0, failed=0, unreached=len(c.unreadable),
+                 no_net=0, no_floor=0, relaxed=0, scoped_clearance=0, pour_fed=0,
+                 via_on_pad=0, xcheck=0, xcheck_over=0)
+    lines = []; results = {}
+    name = c.path.stem
+    for p in c.unreadable:
+        lines.append(f"UNREACHED {name} {p['ref']}.{p['num']} net={p['net'] or '-'}: {p['why']}")
+    for p in c.pads:
+        if not p['net']:
+            stats['no_net'] += 1; continue
+        if not c.declared(p):
+            stats['no_floor'] += 1; continue
+        center = p['native'].GetPosition()
+        if any(net == p['net'] and bool(layers & p['layers']) and poly.Contains(center) for net, layers, poly in c.pours):
+            stats['pour_fed'] += 1; continue
+        if any(v.GetNetname() == p['net'] and any(layer in set(v.GetLayerSet().CuStack()) and p['shapes'][layer].Collide(v.GetPosition(), 0) for layer in p['layers']) for v in c.vias):
+            stats['via_on_pad'] += 1; continue
+        stats['graded'] += 1
+        # Inventory actual same-net incident tracks at native geometry. They
+        # remain outside the finite policy; no inferred maximum comparison.
+        incident = [t for t in c.tracks if t.GetNetname() == p['net'] and t.GetLayer() in p['layers'] and (p['shapes'][t.GetLayer()].Collide(t.GetStart(), 0) or p['shapes'][t.GetLayer()].Collide(t.GetEnd(), 0))]
+        stats['xcheck'] += bool(incident)
+        try:
+            result = c.search(p)
+        except Unsupported as e:
+            result = {'valid': False, 'status': 'UNSUPPORTED', 'reason': str(e)}
+        result['incident_tracks_outside_policy'] = [{'uuid': t.m_Uuid.AsString(), 'start_iu': [t.GetStart().x,t.GetStart().y], 'end_iu': [t.GetEnd().x,t.GetEnd().y], 'width_iu': t.GetWidth(), 'layer': c.board.GetLayerName(t.GetLayer())} for t in incident]
+        key = p['ref']+'.'+p['num']; results[key] = result
+        layer = min(p['layers'])
+        diagnostic = c.track(p, (center.x,center.y), (center.x+1000000,center.y), 200000, layer)
+        floor, rule = c.resolve('track_width', diagnostic, None, layer)
+        if result['valid']:
+            floor = result['floor_iu']; rule = result['width_rule']
+        stats['relaxed'] += bool(rule and rule.startswith('scoped_'))
+        pair = result.get('limiting_pair') or (result.get('last_rejection') or {}).get('limiting_pair') or {}
+        stats['scoped_clearance'] += bool(pair.get('rule') and pair['rule'] not in ('native effective classes / board', 'local override'))
+        detail = f"{name} {key} net={p['net']} class={p['cls']} floor={floor/1e6:.3f}" if floor is not None else f"{name} {key} net={p['net']} class={p['cls']} floor=candidate-dependent"
+        if result['valid']:
+            if verbose: lines.append('ok   P-LAND ' + detail + ' ' + json.dumps(result, sort_keys=True))
         else:
-            crule = None
-            clear = max([min_clear, cls_clear.get(p["cls"], 0.0)]
-                        + [cls_clear.get(q["cls"], 0.0) for q in obstacles])
-        w, capped, ang = max_landable(p, obstacles, clear, dirs, reach)
-        ok = w + TOL_MM >= floor
-        tag = ">=" if capped else "="
-        msg = (f"{name} {p['ref']}.{p['num']} net={p['net']} "
-               f"class={p['cls']} floor={floor:.3f} "
-               f"(rule {frule}) landable{tag}{w:.3f} @ clearance "
-               f"{clear:.3f}" + (f" (rule {crule})" if crule else "")
-               + (f" best_dir={ang} deg" if ang is not None else ""))
-        # G-VACUOUS / M1: on a ROUTED input, the copper that already left
-        # this land REFUTES the model if it is wider than the model says is
-        # possible. A prediction nothing can contradict is not a prediction,
-        # so the contradiction is printed, never swallowed.
-        actual = max([tw for tn, tw, s, e in tracks
-                      if tn == p["net"] and (_point_in_poly(s, p["poly"])
-                                             or _point_in_poly(e, p["poly"]))],
-                     default=None)
-        if actual is not None:
-            stats["xcheck"] += 1
-            if actual > w + 0.001 and not capped:
-                stats["xcheck_over"] += 1
-                lines.append(
-                    f"MODEL-REFUTED P-LAND {name} {p['ref']}.{p['num']} "
-                    f"net={p['net']}: a {actual:.3f} mm track already leaves "
-                    f"this land, above the {w:.3f} mm this model allows at "
-                    f"clearance {clear:.3f}. EXACTLY TWO READINGS and DRC "
-                    f"decides which: either the model is too strict (fix "
-                    f"the gate, not the board), or that copper does not "
-                    f"hold the DECLARED clearance and DRC will say so. "
-                    f"Measured on pluto-rx2-8way 2026-07-30 it is the "
-                    f"second: the RF star is routed at 0.36 mm on a 0.14 mm "
-                    f"clearance the .kicad_dru never declares, and it costs "
-                    f"49 DRC findings that are ONE missing constraint")
-        if ok:
-            if verbose:
-                lines.append("ok   P-LAND " + msg)
-        else:
-            stats["failed"] += 1
-            fails.append(f"FAIL P-LAND {msg} — SHORT BY {floor - w:.3f} mm")
-    lines.extend(fails)
-    if unparsed:
-        lines.append(f"note: {len(unparsed)} .kicad_dru rule(s) have a "
-                     f"condition this gate does not model and were NOT "
-                     f"applied: {sorted(set(unparsed))}")
-    return lines, stats, {"pro": pro_path, "dru": dru_path,
-                          "rules": len(rules)}
-
-
-def by_layer_pads(by_layer, p):
-    seen, out = set(), []
-    for L in p["layers"]:
-        for q in by_layer.get(L, []):
-            if id(q) not in seen:
-                seen.add(id(q))
-                out.append(q)
-    return out
+            stats['failed'] += 1
+            lines.append('FAIL P-LAND ' + detail + ' ' + json.dumps(result, sort_keys=True))
+    for note in c.outside: lines.append('scope: ' + note)
+    return lines, stats, {'pro': c.pro, 'dru': c.dru, 'rules': len(c.rules), 'results': results, 'native_config': c.native_config, 'epsilon_iu': c.epsilon}
 
 
 def run_land(args):
@@ -831,8 +386,13 @@ def run_land(args):
                   f"be read is not a board that passed")
             total_bad += 1
             continue
-        lines, st, inp = check_board(bp, args.project, args.dru,
-                                     args.dirs, args.reach, args.verbose)
+        try:
+            lines, st, inp = check_board(bp, args.project, args.dru,
+                                         args.dirs, args.reach, args.verbose)
+        except (ValueError, OSError, RuntimeError) as e:
+            print(f"FAIL P-LAND UNSUPPORTED {bp}: {e}")
+            total_bad += 1
+            continue
         graded_boards += 1
         for L in lines:
             print(L)
@@ -841,25 +401,26 @@ def run_land(args):
         print(f"input: floors+relaxations = {Path(inp['dru']).resolve()} "
               f"({inp['rules']} width/clearance rule(s))")
         print(f"input: clearances = {Path(inp['pro']).resolve()}")
-        print(f"input: model = {LAUNCH_STEP_MM} mm landing grid inside the "
-              f"land (<= {MAX_LAUNCH_PTS} points) x {args.dirs} directions, "
-              f"reach {args.reach} mm, other-net lands within "
-              f"{NEIGHBOUR_R_MM} mm as obstacles, cap {CAP_MM} mm")
+        print(f"input: native configuration = {inp['native_config']} (DRC epsilon {inp['epsilon_iu']} IU)")
+        print("input: model = finite declared widths <=2 mm; adaptive bbox starts "
+              "(0.03 mm requested scale, five intervals per axis, <=37 proposals, "
+              "1 IU edge inset and native admission); 48 directions; 1 mm reach; "
+              "all other-net/no-net pads on enabled copper layers; native clearance tolerance")
+        print(f"P-LAND physical census: {st['physical_pads']} physical / "
+              f"{st['copper_pads']} copper / {st['noncopper_pads']} noncopper")
         # M-COVER: the denominator, every bucket named.
         print(f"P-LAND denominator {Path(bp).stem}: {st['graded']} graded / "
               f"{st['copper_pads']} copper pads "
               f"({st['no_floor']} no declared width floor, "
-              f"{st['pour_fed']} fed by a same-net POUR, "
-              f"{st['via_on_pad']} escaped by a VIA ON THE LAND, "
+              f"{st['pour_fed']} nominal same-net POUR, "
+              f"{st['via_on_pad']} native VIA ON THE LAND, "
               f"{st['no_net']} no net, {st['unreached']} UNREACHED); "
               f"{st['relaxed']} graded against a SCOPED floor, "
               f"{st['scoped_clearance']} against a scoped clearance; "
               f"{st['failed']} failing")
-        print(f"routed cross-check {Path(bp).stem}: {st['xcheck']} graded "
-              f"pad(s) already carry a same-net track, "
-              f"{st['xcheck_over']} of them WIDER than this model allows "
-              f"(0 = the model is not over-strict on real copper; "
-              f"an unrouted board reports 0/0)")
+        print(f"routed inventory {Path(bp).stem}: {st['xcheck']} graded pad(s) "
+              "already carry a same-net track; actual geometry/width inventoried "
+              "outside finite witness policy; nominal pours establish no connectivity")
         bad = st["failed"] + st["unreached"]
         if st["graded"] == 0:
             print(f"FAIL P-LAND {Path(bp).stem}: 0 pads graded — no pad on "
@@ -881,7 +442,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("parts", nargs="*", help="part.yaml paths")
     ap.add_argument("--board", action="append", default=[],
-                    help="P-LAND: grade landable width per pad on a "
+                    help="P-LAND: validate finite launch witnesses on a "
                          ".kicad_pcb (repeatable)")
     ap.add_argument("--project", help="P-LAND: .kicad_pro (default: the "
                                       "board's own stem)")

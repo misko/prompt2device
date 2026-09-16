@@ -124,6 +124,10 @@ release_rehearsal.py seal 06_build/release_rehearsal/<release>.json \
   --output 06_build/release_rehearsal/<release>-seal-admission.json
 ```
 
+For a docs-only successor, pass `--docs-only-supersede <prior-release-dir>`
+to rehearsal; it forwards the strict unchanged-fab/source/3d assertion and
+records that mode without suppressing failures.
+
 Rehearsal composes required-release content, design/sourcing freshness and the
 publication contract using `pcb_publication_gate.py --release`. Its receipt is
 stored outside staging to avoid a self-referential manifest. Seal admission
@@ -155,14 +159,30 @@ publication branch.
 Immediately before a publication-branch push or merge, run:
 
 ```text
+python3 skills/pcb-design/scripts/publication_transport_gate.py \
+  --base <every-server-known-staging-ref> --head <candidate-head-sha>
 python3 skills/pcb-design/scripts/pcb_publication_gate.py \
   --base <publication-base-sha> --head <candidate-head-sha>
 ```
 
-Require `P-PUBLISH PASS`. The gate must find every materially changed project,
+Require `T-PUBLISH PASS` and `P-PUBLISH PASS`. T-PUBLISH inventories all
+objects the server does not yet have, refuses ordinary blobs at the hosting
+limit, and keeps each staged push conservatively below the aggregate pack
+limit. Large durable review evidence uses explicit Git LFS pointers, while
+the content-addressed filename continues to bind the materialized bytes.
+Reopen every manifest payload hash and both directions of the file census after staging to Git; ignored KiCad session files must not survive as phantom manifest entries. The gate must find every materially changed project,
 its latest complete sealed release, existing gates, exact live/sealed board
 identity, no material drift after the manifest source commit, and all required
 accepted reviews. Zero required reviews is zero coverage and fails.
+
+A deliberately boardless system-integration parent must carry the exact
+tracked `01_docs/project-scope.json` declaration. The gate accepts that scope
+only when the parent owned no live PCB at either side of the publication diff,
+the declaration names at least two sorted unique direct child projects, and
+every child owns exactly one tracked board at the head. It replaces the parent
+with all declared children in the release denominator; it does not grant a
+zero-board waiver. A missing/malformed child, a former parent board, or any
+unsealed child fails publication.
 
 Repository protection should require this check and a pull request. A workflow
 that runs only after an unprotected push can report a violation but cannot undo

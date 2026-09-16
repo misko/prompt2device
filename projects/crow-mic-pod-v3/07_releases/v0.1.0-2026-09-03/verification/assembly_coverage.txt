@@ -1,0 +1,11 @@
+== A-POP assembly_coverage: v0.1.0-2026-09-03 ==
+board=44 footprints; CPL=31 top-side placements.
+unpopulated=13: 9 explicitly declared by assembly.yaml and 4 mounting-hole
+footprints covered by the H-prefix board-feature exemption.
+Declared no-machine-assembly set: J1,MK1,TP1,TP2,TP3,TP4,TP5,TP6,TP7.
+A-POS datum: 31/31 CPL rows graded against pad-array centers; worst offset
+0.00000 mm at U3, tolerance 0.05 mm.
+A-POP: PASS — every unpopulated part is declared or a governed board feature;
+the exact placed set is top=31, bottom=0.
+
+Machine-readable evidence: assembly_coverage.json.

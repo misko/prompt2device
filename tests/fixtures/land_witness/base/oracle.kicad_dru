@@ -1,0 +1,2 @@
+(version 1)
+(rule "ADC_width" (condition "A.NetClass == 'ADC'") (constraint track_width (min 0.2mm)))

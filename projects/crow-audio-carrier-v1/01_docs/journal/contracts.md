@@ -2891,3 +2891,19 @@ Audit: SHA-256 equals filename; 1479185bytes/16regular outer members including M
 | `8dfaed09eeddde360bb4d430d2f6034e2ca841a2e10b0471187f40943018b860.tar.gz` | Original SOUND source review, exact frozen subject, full evidence archive and final delivery/runtime closure; no later-byte or native acceptance |
 
 Audit: SHA-256 equals filename; 117594292bytes/22regular outer members including MANIFEST, all reopened; inner1099members reverified against review manifest. CLOSEOUT retains domain verdict separately from actual delivery status; TIMED_OUT is not admissible review acceptance.
+
+## Carrier docs-only successor review delivery
+
+| Pattern | What |
+|---|---|
+| `e7aa8d53eee7b06de53b786d6e318f4ea29f75eb01a3d899b9c13db00e40d4a7.tar.gz` | Completed independent docs-only review outputs, host close receipt, envelope and 265-input hash census; not a full input-payload archive |
+
+Audit: SHA-256 equals filename; reopen members and envelope hashes. Engineering payloads remain byte-identical in predecessor/successor releases.
+
+## Carrier v0.1.1 seal admission
+
+| Pattern | What |
+|---|---|
+| `c456e61990a36e96d595a269fa3642d9f9a47cc43f28f9cac217b3c2ff768df7.tar.gz` | Exact 3/3 rehearsal, seal admission, unchanged-design policy regrade and gate regression logs |
+
+Audit: filename is SHA-256; re-open receipt input hashes against immutable release. Policy regrade skips DRC; original unchanged engineering release retains full native DRC evidence.

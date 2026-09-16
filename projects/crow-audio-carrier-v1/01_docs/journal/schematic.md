@@ -5471,3 +5471,24 @@ J1manualbodyinclusion,U2modelresolution then affectedgates regraded.
 No gate relaxed, no new immutable release, commit, merge, tag or push.
 Resume after reviewer-provider authentication is restored; do not restart
 accepted schematic/pin/layout research or rerender approved connectors.
+
+## 2026-09-16 — packaging successor before combined publication
+
+Pod v0.2.0 sealed at e314d8ff; final publication census caught the previously published carrier manifest listing an ignored, absent KiCad session .kicad_prl. Stopped atomic push before remote mutation. New carrier v0.1.1 preserves all source/fab/3d bytes and corrects README/MANIFEST. Independent fresh docs-only reviewer completed SOUND/DO-NOT-ORDER; owning delivery PASS; archive e7aa8d53eee7b06de53b786d6e318f4ea29f75eb01a3d899b9c13db00e40d4a7.tar.gz records delivery and input census. Publication now grades all payload hashes against both filesystem census and exact Git tree. Actual pre-fix regression RED, final publication32PASS/19knownbad; rehearsal docs-only regression RED then37PASS/17knownbad. Existing sourcing/physical holds remain; no engineering floor weakened.
+
+## 2026-09-16 — external publication transport rejection
+
+Both carrier v0.1.1 (seal69b39fef17ce621a7730e9659c25d88d962be1c3) and pod v0.2.0 (seale314d8ff791f679609de2fbcc0b0a0c6c677766d) are locally sealed. Exact combined P-PUBLISH passed2/2 at719f7cbad27b8af2faadb79dc1251c4af52abd0d. Atomic push rejected by GitHub: `pack exceeds maximum allowed size (2.00 GiB)`; main and both tags rejected. Remote rechecked: main2b32184a9e1d343a0b13b459d101ef04c7f902bf; neither newtagpresent. Engineering acceptance is complete; publication is NOT complete. Preserve immutable local releases and root worktree. Recovery requires outgoing-history/evidence transport migration with all source/review provenance revalidated; see improvements.md. Do not retry the same oversized pack or force-push published history.
+
+## 2026-09-16 — bounded transport recovery in progress
+
+The rejected development branch remains preserved. A clean fast-forward line
+from remote main now carries all 15 over-100-MiB review packets as explicit
+Git LFS objects (3.43 GB uploaded), with content-addressed filenames unchanged.
+The other 360 review packets were committed and pushed in seven transport-gated
+batches, each at or below 549 MB raw. T-PUBLISH hostile single-blob and
+aggregate controls failed against no-gate behavior and pass under the new
+checker. No release payload or engineering source byte changed. Because the
+original local seal commits cannot be ancestors of a transport-safe history,
+new docs-only successors must bind the identical board payloads to the clean
+source commit; existing local seals remain immutable and preserved.

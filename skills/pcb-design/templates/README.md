@@ -40,7 +40,8 @@ The normal commission creates:
 - sourcing policy and decision/journal/learning skeletons;
 - `03_src/floorplan.yaml`, `route.yaml`, both canonical rebuild drivers, and
   the complete current rule-schema set, including the held
-  `rules/connector_assemblies.yaml` connector/mate/tool/cable contract;
+  `rules/connector_assemblies.yaml` connector/mate/tool/cable contract and
+  `rules/connector_assembly_phases.yaml` additive physical-deferral policy;
 - empty governed homes for parts, TSX source, generated KiCad, firmware, build,
   PCB releases, and independent reviews.
 
@@ -49,10 +50,13 @@ schema; they do not become adopted design facts until commission replaces them
 and the owning gate accepts them.
 
 Both rebuild conductors compile `rules/connector_assemblies.yaml` before
-producer or placement spend. Represented unknown mate/tool/cable/operation or
-tolerance evidence exits `INCOMPLETE`; exact typed no-operated-connectors
-evidence exits `N-A`. Neither fact-lock result is a realized-board
-service-geometry pass; IMP-242 tracks the independent placement consumer.
+producer spend and preserve its explicit rc=2. The additive source gate admits
+only stable-ID, policy-bound physical qualification; selected connector/mate
+identity and census cannot be deferred. After candidate-board generation and
+before placement approval/routing, full requires the unchanged base `PASS`
+with zero unknowns. Exact typed no-operated-connectors evidence exits `N-A`.
+Neither phase is a realized-board service-geometry pass; enclosure and release
+consumers retain their existing base/full bar.
 
 ## Conditional seed
 

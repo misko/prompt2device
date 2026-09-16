@@ -155,7 +155,13 @@ def board_identity_records(board_path):
 
 
 def board_identity_findings(records, refdes_code):
-    """Find PCB Value/hidden-field contradictions against source C-codes."""
+    """Find PCB supplier-field contradictions against source C-codes.
+
+    A normal KiCad footprint Value is the electrical value or MPN (``10uF``,
+    ``OPA1679IDR``), not an LCSC code.  Treat Value as supplier identity only
+    when it actually has the ``C<digits>`` shape.  A hidden ``LCSC Part``
+    field, when present, is always supplier identity and must match exactly.
+    """
     findings = []
     for ref, source_code in sorted(refdes_code.items()):
         if not source_code:
@@ -167,7 +173,7 @@ def board_identity_findings(records, refdes_code):
                 "board has no such footprint")
             continue
         value = str(row.get("value") or "").strip()
-        if value != source_code:
+        if re.fullmatch(r"C\d+", value) and value != source_code:
             findings.append(
                 f"PCB-VALUE-MISMATCH {ref}: board Value is "
                 f"{value or 'blank'} but source says {source_code}")
@@ -742,9 +748,10 @@ def main():
                          "assembly BOM, so leg B does not report their codes "
                          "as DROPPED (canon A-POP)")
     ap.add_argument("--board", default="",
-                    help="optional KiCad PCB: compare each coded source refdes "
-                         "against the footprint Value and every hidden "
-                         "'LCSC Part' field")
+                    help="optional KiCad PCB: require each coded source refdes "
+                         "and reject contradictory C-code Value or hidden "
+                         "'LCSC Part' fields (ordinary electrical Values are "
+                         "not supplier codes)")
     ap.add_argument("--circuit-only", action="store_true",
                     help="AUTHORING-stage leg C: no fab BOM — decoded catalog "
                          "value vs the tsx value prop, straight off circuit.json"
@@ -773,7 +780,7 @@ def main():
             sys.exit(1)
         print("CIRCUIT VALUE CHECK: PASS (every coded R/C catalog value == "
               "its tsx value prop"
-              + ("; PCB Value/LCSC fields == source" if args.board else "")
+              + ("; PCB coded identity fields == source" if args.board else "")
               + ")")
         sys.exit(0)
 

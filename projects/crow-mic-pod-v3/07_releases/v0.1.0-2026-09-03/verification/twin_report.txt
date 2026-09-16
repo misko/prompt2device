@@ -1,0 +1,18 @@
+JLC digital-twin verification — crow_mic_pod_v3 v0.1.0
+
+Public catalog representations queried: 23 exact LCSC codes, including the
+manual-install Molex J1 representation C277684.
+Rotation-fitted references: 32.
+CPL bodies mounted: 31/31.
+Manual connector representation: J1 P-MATE-REG-OK, mating-side support delta
+-0.020 mm against the drawing-derived native datum, within +/-0.500 mm.
+D1/C2972759 and D2/C83846 PAD-GEOM differences are explicitly adjudicated in
+twin_adjudications.yaml against retained manufacturer/package evidence.
+All remaining placed rows are OK or MODEL-REG-OK. Full per-reference results
+are in twin_report.csv; exact catalog bodies and the reproducible twin boards
+are retained in twin_bundle/.
+
+JLC-TWIN: PASS for design representation.
+ORDER: BLOCKED-SOURCING — public catalog CAD is not authenticated JLCPCB
+assembly allocation, and U1/U2/D1 plus all connector/polarity facts still
+require the JLC ORDER-PREVIEW HUMAN GATE before any order.

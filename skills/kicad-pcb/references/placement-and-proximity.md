@@ -100,6 +100,12 @@ early; structural reopening does not independently regrade its predicates, so
 it cannot authorize P-FEAS promotion or claim that a global route exists. Dense
 ECOs that need bounded candidate route probes remain governed by IMP-148.
 
+For a non-critical analog shunt, use `signal_nets: [AUDIO_P1, AUDIO_N1]`
+instead of `pairs`. The exact observed signal-pad nets must match, and the
+selected dossier still supplies the pin topology. These net names must be
+unique, cannot overlap any declared critical pair, and cannot coexist with
+`pairs`; high-speed pair inventory and routing obligations are unchanged.
+
 ## Functional-cell shadow checks
 
 Scalar distance and body clearance can both pass while a repeated power or

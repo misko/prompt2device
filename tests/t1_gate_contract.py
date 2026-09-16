@@ -113,11 +113,26 @@ def parse_status(value):
         "placement_cell_checks.py",
         "process_runner.py",
         "route_acceptance_core.py",
+        "native_representation.py",
     )})
     r = must_pass(run([KPY, TOOL, "--root", d]),
                   "typed pipeline library inventory")
     contains(r.out, "0/0 verdict-printing scripts audited",
              "library exclusion denominator")
+    # The real native module must remain a library. Adding a command or a
+    # printed verdict invalidates this classification instead of hiding a gate.
+    import ast
+    import gate_contract_audit as gca
+    native = ROOT / "skills/jlcpcb-fab/scripts/native_representation.py"
+    tree = ast.parse(native.read_text())
+    check(not any(isinstance(node, ast.Call) and isinstance(node.func, ast.Name)
+                  and node.func.id == "print" for node in ast.walk(tree)),
+          "native authority library must not print a gate verdict")
+    check(not any(isinstance(node, ast.Constant) and node.value == "__main__"
+                  for node in ast.walk(tree)), "native authority must not expose a CLI")
+    gates = {Path(row["script"]).name for row in gca.audit(ROOT)["gates"]}
+    check({"jlc_twin.py", "twin_overlay.py"} <= gates,
+          "both executable native-authority consumers remain audited")
 
 
 @test("gca_unnamed_input_is_flagged", kind="known_bad")

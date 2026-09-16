@@ -2667,6 +2667,19 @@ def main(argv=None):
     # above check (e) grades an artifact we control, so it is design-side.
     fails, sfails, notes = [], [], []
 
+    # Selected locator evidence is a design-side obligation of the sealed
+    # archive. Read only its source and fab payload, never the mutable project.
+    if ((release_dir / "source/assembly_locator.yaml").exists()
+            or list((release_dir / "fab").glob("assembly_locator*"))
+            or (release_dir / "source/policy_waivers.yaml").exists()):
+        from assembly_locator_check import release_check as check_locator
+        try:
+            locator_result = check_locator(release_dir)
+            if locator_result is not None:
+                notes.append("  A-LOCATOR PASS: " + json.dumps(locator_result, sort_keys=True))
+        except (OSError, KeyError, TypeError, ValueError, AttributeError) as exc:
+            fails.append(f"  A-LOCATOR FAIL: {exc}")
+
     if bad_exceptions:
         fails += [f"  BAD EXCEPTION: freshness_exceptions.txt lists {rel!r} "
                   f"with no reason — a waiver needs evidence"

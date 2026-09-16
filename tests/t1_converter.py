@@ -73,6 +73,26 @@ def pins_per_ref(sheet):
 
 
 # ------------------------------------------------------------ clean cases
+@test("converter: producer junctions cannot keep a pinless wire island alive")
+def t_pinless_junction_island():
+    source = json.loads((T0 / 'two_resistors/circuit.json').read_text())
+    net = next(e for e in source if e.get('type') == 'source_net' and e.get('name') == 'MID')
+    points = [{'x':20,'y':20}, {'x':20,'y':21}, {'x':22,'y':21}]
+    source.append({'type':'schematic_trace', 'schematic_trace_id':'orphan_island',
+        'source_trace_id':'orphan_island',
+        'subcircuit_connectivity_map_key':net['subcircuit_connectivity_map_key'],
+        'edges':[{'from':points[0],'to':points[1]}, {'from':points[1],'to':points[2]}],
+        'junctions':[points[0],points[2]]})
+    source_path = tmpdir('pinless_input_') / 'circuit.json'
+    source_path.write_text(json.dumps(source))
+    directory, sheet = _convert_json(source_path, 'pinless_junction_island')
+    result = run(['kicad-cli','sch','erc','--severity-error','--exit-code-violations',
+                  '-o',directory/'strict-erc.rpt',sheet])
+    must_pass(result, 'pinless island must not survive as an ERC error')
+    nodes = netlist_of(sheet)
+    eq(len(nodes), 4, 'all original pin entries retained')
+    eq(sorted(set(nodes.values())), ['GND','MID','VIN'], 'original named nets retained')
+
 @test("converter: two_resistors exports an annotated, wired sheet")
 def t_two_resistors():
     d, sheet, r = convert("two_resistors")
@@ -2402,6 +2422,496 @@ def t_prop_move_never_drifts_to_a_neighbour():
           f"so the guarded assertion above proves nothing")
     check(loose != guarded,
           "the guard changed nothing on this bench — it is untested")
+
+
+@test('converter: Reference and Value clear their own pin shafts in rendered ink')
+def t_properties_clear_own_pin_shafts():
+    """RED against 547ad801: both rows remained on their own conductors.
+
+    Native ink from KiCad, not the converter's obstacle model, grades the
+    returned placement. Each fixed row must clear its original shaft.
+    """
+    C = _C_MOD()
+    comp = dict(refdes='U1', value='TEST', inst=(50., 50.), w=10., h=10.,
+                is_tp=False, pins=[('1', 'TOP', 'TOP'), ('2', 'BOT', 'BOT')],
+                pins_geo=[('1', 'TOP', 0., 10., 270, 5.),
+                          ('2', 'BOT', 0., -10., 90, 5.)],
+                tips={'1': (50., 40.), '2': (50., 60.)},
+                sides={'1': 'top', '2': 'bottom'})
+    anchors, _ = C.place_props([comp], {'U1': ((50., 42.5), (50., 57.5))},
+                               None, {'U1': comp}, [])
+    # One shaft per rendered probe isolates the property being measured.
+    for prop, label, anchor, tip, end in (
+        ('Reference', 'U1', anchors['U1'][0], (50., 40.), (50., 45.)),
+        ('Value', 'TEST', anchors['U1'][1], (50., 60.), (50., 55.)),
+    ):
+        pin_y, pin_angle = (10, 270) if prop == 'Reference' else (-10, 90)
+        p = tmpdir('own_pin_ink_') / 'probe.kicad_sch'
+        p.write_text(f'''(kicad_sch (version 20250114) (generator eeschema)
+          (uuid "00000000-0000-0000-0000-000000000001") (paper "A4")
+          (lib_symbols (symbol "test:U"
+            (symbol "U_0_1" (rectangle (start -5 5) (end 5 -5)
+              (stroke (width 0.254) (type default)) (fill (type none))))
+            (symbol "U_1_1" (pin passive line (at 0 {pin_y} {pin_angle})
+              (length 5) (name "P" (effects (font (size 1.27 1.27))))
+              (number "1" (effects (font (size 1.27 1.27))))))
+          ))
+          (symbol (lib_id "test:U") (at 50 50 0) (unit 1)
+            (property "{prop}" "{label}" (at {anchor[0]} {anchor[1]} 0)
+              (effects (font (size 1.27 1.27))))
+          ))''')
+        runs, _ = _svg_ink(p, exclude_sheet=True)
+        eq(len(runs[label]), 1, f'{prop}: rendered population')
+        eq(_seg_in_box(tip, end, runs[label][0]), 0.,
+           f'{prop}: own pin through rendered property ink')
+
+
+@test('converter: authored corner pin sides terminate on their body with unchanged nets')
+def t_declared_corner_pin_sides():
+    """RED against 547ad801: dominant-coordinate inference detaches shafts.
+
+    Tall left/right and wide top/bottom probes exercise explicit side and
+    facing-direction aliases. Native geometry is independently read by the
+    checker and its shafts must also exist in KiCad's rendered graphics.
+    """
+    sys.path.insert(0, str(SCRIPTS))
+    import sch_occlusion as SO
+    for vertical in (False, True):
+        source = json.loads((T0 / 'two_resistors/circuit.json').read_text())
+        source = [e for e in source if e.get('type') not in
+                  ('schematic_trace', 'schematic_net_label')]
+        for e in source:
+            if e.get('type') == 'schematic_component':
+                if e['source_component_id'].endswith('R1'):
+                    e['size'] = dict(width=4 if vertical else 2,
+                                     height=2 if vertical else 4)
+                else:
+                    e['center']['x'] += 8
+            if e.get('type') == 'schematic_port':
+                if e['schematic_component_id'].endswith('R2'):
+                    e['center']['x'] += 8
+                else:
+                    sign = -1 if e['pin_number'] == 1 else 1
+                    e['center'] = dict(x=sign * (1.7 if vertical else 1.5),
+                                       y=-sign * (1.5 if vertical else 1.7))
+                    if vertical:
+                        e.pop('side_of_component', None)
+                        e['facing_direction'] = 'up' if sign < 0 else 'down'
+                    else:
+                        e['side_of_component'] = 'left' if sign < 0 else 'right'
+        cj = tmpdir('corner_pin_') / 'circuit.json'
+        cj.write_text(json.dumps(source))
+        _, p = _convert_json(cj, 'corner_pin')
+        eq(netlist_of(p), {('R1', '1'): 'VIN', ('R1', '2'): 'MID',
+                           ('R2', '1'): 'MID', ('R2', '2'): 'GND'},
+           'corner pin exact node identities')
+        _, boxes, segs, unmodelled, _ = SO.parse_sheet(p.read_text())
+        eq(unmodelled, [], 'corner pin parse coverage')
+        body = next(box for box, desc, _ in boxes if desc == 'body R1')
+        pins = [seg for seg, desc, _ in segs if desc.startswith('pin R1.')]
+        eq(len(pins), 2, 'corner pin shaft population')
+        _, graphics = _svg_ink(p, exclude_sheet=True)
+        for tip, end in pins:
+            check(any(abs(end[0] - x) < .001 for x in (body[0], body[2]))
+                  if not vertical else
+                  any(abs(end[1] - y) < .001 for y in (body[1], body[3])),
+                  f'corner pin does not reach declared body edge: {tip}, {end}, {body}')
+            eq(tip[0] if vertical else tip[1],
+               end[0] if vertical else end[1], 'declared shaft axis')
+            check(any(all(abs(a[i] - u[i]) < .001 and abs(b[i] - v[i]) < .001
+                          for i in (0, 1)) for a, b in graphics
+                      for u, v in ((tip, end), (end, tip))),
+                  f'native shaft absent from rendered ink: {tip}, {end}')
+
+
+def _exported_stroke_bounds(sheet):
+    """Measure actual KiCad SVG strokes and confirm PDF's exported page.
+
+    Native paper declarations above 3048 mm were silently clamped while reset
+    glyphs remained outside the page. Inspect every visible primitive, including
+    pin text and drawing frame; fail unsupported geometry instead of dropping it.
+    """
+    import math
+    import xml.etree.ElementTree as ET
+    out = sheet.parent / 'extent_export'
+    out.mkdir(exist_ok=True)
+    must_pass(run(['kicad-cli', 'sch', 'export', 'svg', '-o', out, sheet]),
+              'native SVG extent export')
+    must_pass(run(['kicad-cli', 'sch', 'export', 'pdf', '-o', out / 'native.pdf', sheet]),
+              'native PDF extent export')
+    info = must_pass(run(['pdfinfo', out / 'native.pdf']), 'PDF page dimensions').out
+    match = re.search(r'Page size:\s+([\d.]+) x ([\d.]+) pts', info)
+    check(match, 'missing independently exported PDF dimensions')
+    root = ET.parse(out / (sheet.stem + '.svg')).getroot()
+    width, height = (float(root.get(k).removesuffix('mm')) for k in ('width', 'height'))
+    check(all(abs(float(match.group(i + 1)) * 25.4 / 72 - size) < .02
+              for i, size in enumerate((width, height))), 'PDF/SVG page mismatch')
+    points, counts = [], {}
+
+    def walk(element, inherited, transforms):
+        style = dict(inherited)
+        style.update({k: element.get(k) for k in ('stroke', 'stroke-width', 'visibility')
+                      if element.get(k) is not None})
+        style.update(dict(re.findall(r'([\w-]+)\s*:\s*([^;]+)', element.get('style', ''))))
+        if style.get('visibility') == 'hidden':
+            return
+        transforms = transforms + [element.get('transform', '')]
+        tag, local = element.tag.split('}')[-1], []
+        if tag == 'path':
+            data = element.get('d', '')
+            eq(set(re.findall('[A-Za-z]', data)) - set('MLZ'), set(), 'SVG path commands')
+            # M may be followed by several implicit line-to coordinate pairs.
+            values = list(map(float, re.findall(r'[-+]?(?:\d*\.\d+|\d+)', data)))
+            eq(len(values) % 2, 0, 'SVG coordinate pairs')
+            local = list(zip(values[::2], values[1::2]))
+        elif tag in ('polyline', 'polygon'):
+            values = list(map(float, re.findall(r'[-\d.]+', element.get('points', ''))))
+            local = list(zip(values[::2], values[1::2]))
+        elif tag in ('rect', 'circle'):
+            if tag == 'rect':
+                x, y, w, h = (float(element.get(k, 0)) for k in ('x', 'y', 'width', 'height'))
+                # KiCad's page-background rectangle is not drawing ink.
+                if x == y == 0 and abs(w - width) < .01 and abs(h - height) < .01:
+                    return
+            else:
+                cx, cy, radius = (float(element.get(k, 0)) for k in ('cx', 'cy', 'r'))
+                x, y, w, h = cx - radius, cy - radius, 2 * radius, 2 * radius
+            local = [(x, y), (x + w, y), (x + w, y + h), (x, y + h)]
+        elif tag == 'line':
+            local = [(float(element.get('x1', 0)), float(element.get('y1', 0))),
+                     (float(element.get('x2', 0)), float(element.get('y2', 0)))]
+        else:
+            check(tag in ('svg', 'g', 'defs', 'desc', 'title', 'metadata', 'text'),
+                  f'ungraded SVG element {tag}')
+        if local:
+            counts[tag] = counts.get(tag, 0) + 1
+            for x, y in local:
+                scale_bound = 1.
+                for transform in reversed(transforms):
+                    for operation, raw in reversed(re.findall(r'(\w+)\(([^)]+)\)', transform)):
+                        args = list(map(float, re.findall(r'[-\d.]+', raw)))
+                        if operation == 'translate':
+                            x += args[0]
+                            y += args[1] if len(args) > 1 else 0
+                        elif operation == 'scale':
+                            sx, sy = args[0], args[1] if len(args) > 1 else args[0]
+                            x, y = x * sx, y * sy
+                            scale_bound *= max(abs(sx), abs(sy))
+                        elif operation == 'rotate':
+                            angle = math.radians(args[0])
+                            cx, cy = args[1:] if len(args) > 1 else (0., 0.)
+                            dx, dy = x - cx, y - cy
+                            x, y = (cx + dx * math.cos(angle) - dy * math.sin(angle),
+                                    cy + dx * math.sin(angle) + dy * math.cos(angle))
+                        else:
+                            check(False, f'ungraded SVG transform {operation}')
+                pen = (float(style.get('stroke-width', 0)) * scale_bound / 2
+                       if style.get('stroke', 'none') != 'none' else 0.)
+                points.extend(((x - pen, y - pen), (x + pen, y + pen)))
+        for child in element:
+            walk(child, style, transforms)
+
+    walk(root, {}, [])
+    check(counts.get('path', 0) > 100 and counts.get('rect', 0) > 0,
+          f'native foreground measurement is vacuous: {counts}')
+    xs, ys = zip(*points)
+    bounds = (min(xs), min(ys), max(xs), max(ys))
+    return (width, height), bounds
+
+
+def _tall_multisheet_fixture():
+    """Three internally sparse pages; stacking them clips the final page."""
+    import copy
+    base = json.loads((T0 / 'two_resistors/circuit.json').read_text())
+    base = [e for e in base if e.get('type') not in ('schematic_trace', 'schematic_net_label')]
+    result = []
+    for index in range(3):
+        identifiers = {v: v + f'_page{index}' for e in base for k, v in e.items()
+                       if (k.endswith('_id') or k == 'subcircuit_connectivity_map_key')
+                       and isinstance(v, str)}
+
+        def remap(value):
+            if isinstance(value, str):
+                return identifiers.get(value, value)
+            if isinstance(value, list):
+                return [remap(v) for v in value]
+            if isinstance(value, dict):
+                return {k: remap(v) for k, v in value.items()}
+            return value
+
+        page = remap(copy.deepcopy(base))
+        sid = f'sheet_{index}'
+        for e in page:
+            if e.get('type') == 'source_component':
+                e['name'] += f'_{index}'
+            elif e.get('type') == 'source_net' and e['name'] != 'GND':
+                e['name'] += f'_{index}'
+            elif e.get('type') in ('schematic_component', 'schematic_port'):
+                e['schematic_sheet_id'] = sid
+                if '_R2' in (e.get('source_component_id', '') + e.get('schematic_component_id', '')):
+                    e['center']['y'] += 100
+        result.extend(page)
+        result.append(dict(type='schematic_sheet', schematic_sheet_id=sid,
+                           name=sid, sheet_index=index))
+    path = tmpdir('tall_native_') / 'circuit.json'
+    path.write_text(json.dumps(result))
+    return path
+
+
+@test('converter: every native stroke fits the actual SVG and PDF after multisheet packing')
+def t_native_page_export_contains_all_ink():
+    """RED on 5d1d0175: native paper was clamped and later pages were clipped."""
+    _, sheet = _convert_json(_tall_multisheet_fixture(), 'tall_native')
+    page, bounds = _exported_stroke_bounds(sheet)
+    check(bounds[0] >= 0 and bounds[1] >= 0 and bounds[2] <= page[0]
+          and bounds[3] <= page[1], f'native drawing clipped: {bounds} on {page}')
+    expected = {(f'R{ref}_{i}', str(pin)): net if net == 'GND' else f'{net}_{i}'
+                for i in range(3) for ref, pin, net in
+                ((1, 1, 'VIN'), (1, 2, 'MID'), (2, 1, 'MID'), (2, 2, 'GND'))}
+    eq(netlist_of(sheet), expected, 'packed native exact electrical identities')
+    sys.path.insert(0, str(SCRIPTS))
+    import sch_occlusion as SO
+    _, boxes, _, unknown, _ = SO.parse_sheet(sheet.read_text())
+    eq(unknown, [], 'packed native parse population')
+    bodies = {desc.removeprefix('body '): box for box, desc, _ in boxes if desc.startswith('body ')}
+    eq(len(bodies), 6, 'all six native bodies retained')
+    for i in range(3):
+        a, b = bodies[f'R1_{i}'], bodies[f'R2_{i}']
+        check(abs(abs(a[1] - b[1]) - 1270.) < .001, 'packing changed authored scale')
+
+
+@test('converter: small native export remains fully contained')
+def t_native_page_clear_control():
+    _, sheet, _ = convert('two_resistors')
+    page, bounds = _exported_stroke_bounds(sheet)
+    check(bounds[0] >= 0 and bounds[1] >= 0 and bounds[2] <= page[0]
+          and bounds[3] <= page[1], f'clear native control clipped: {bounds} on {page}')
+
+
+@test('converter: unplaceable native source dimensions fail explicitly without output', kind='known_bad')
+def t_native_page_oversize_refuses():
+    base = json.loads((T0 / 'two_resistors/circuit.json').read_text())
+    base = [e for e in base if '_R2' not in json.dumps(e)
+            and e.get('type') not in ('schematic_trace', 'schematic_net_label')]
+    for dimension in ('width', 'height'):
+        source = json.loads(json.dumps(base))
+        for e in source:
+            if e.get('type') == 'schematic_component':
+                e['size'][dimension] = 300
+            if dimension == 'width' and e.get('type') == 'schematic_port':
+                e['center']['x'] = -150 if e['pin_number'] == 1 else 150
+        directory = tmpdir('oversized_native_')
+        cj, output = directory / 'circuit.json', directory / 'bad.kicad_sch'
+        cj.write_text(json.dumps(source))
+        must_fail(run([PY, CONV, cj, '-o', output, '--project', 'oversize']),
+                  'oversized native source page', 'native page')
+        check(not output.exists(), 'unplaceable native source wrote output')
+
+
+def _native_polarity_fixture(angle=0, positive_pad=1, polarized=True):
+    import math
+    source = json.loads((T0 / 'polarized/circuit.json').read_text())
+    source = [e for e in source if e['type'] != 'schematic_net_label']
+    for e in source:
+        if e['type'] == 'schematic_component' and e['source_component_id'].endswith('_C1'):
+            if polarized:
+                e['symbol_name'] = 'capacitor_polarized_test'
+            e['rotation'] = angle
+            if angle % 180:
+                e['size'] = dict(width=1., height=.4)
+        elif e['type'] == 'source_port' and e['source_component_id'].endswith('_C1'):
+            e['name'] = 'pin' + str(e['pin_number'])
+            e['port_hints'] = ['plus' if e['pin_number'] == positive_pad else 'minus']
+        elif e['type'] == 'schematic_port' and e['schematic_component_id'].endswith('_C1'):
+            x, y, a = e['center']['x'] + 2, e['center']['y'], math.radians(angle)
+            x, y = round(x * math.cos(a) - y * math.sin(a), 6), round(x * math.sin(a) + y * math.cos(a), 6)
+            e['center'] = dict(x=x - 2, y=y)
+            e['side_of_component'] = e['facing_direction'] = (
+                ('right' if x > 0 else 'left') if abs(x) > abs(y)
+                else ('top' if y > 0 else 'bottom'))
+    path = tmpdir('native_polarity_') / 'circuit.json'
+    path.write_text(json.dumps(source))
+    return path
+
+
+def _native_semantic_geometry(sheet):
+    sys.path.insert(0, str(SCRIPTS))
+    import sch_occlusion as SO
+    _, boxes, segs, unknown, _ = SO.parse_sheet(sheet.read_text())
+    eq(unknown, [], 'native semantic parse population')
+    return SO, boxes, segs
+
+
+def _assert_rendered_native_segments(sheet, segments):
+    """Use actual KiCad path ink; these exports use absolute path coordinates."""
+    import xml.etree.ElementTree as ET
+    out = sheet.parent / 'semantic_svg'
+    must_pass(run(['kicad-cli', 'sch', 'export', 'svg', '-o', out, sheet]), 'semantic SVG export')
+    root = ET.parse(out / (sheet.stem + '.svg')).getroot()
+    rendered = []
+    def walk(element, transforms):
+        transforms = transforms + [element.get('transform', '')]
+        if element.tag.split('}')[-1] == 'path':
+            check(all(not t or t.replace(' ', '') == 'translate(0,0)' for t in transforms),
+                  f'ungraded semantic path transform: {transforms}')
+            data = element.get('d', '')
+            eq(set(re.findall('[A-Za-z]', data)) - set('MLZ'), set(), 'semantic path commands')
+            nums = list(map(float, re.findall(r'[-+]?(?:\d*\.\d+|\d+)', data)))
+            points = list(zip(nums[::2], nums[1::2]))
+            rendered.extend(zip(points, points[1:]))
+        for child in element:
+            walk(child, transforms)
+    walk(root, [])
+    for a, b in segments:
+        check(any(max(abs(a[i] - u[i]), abs(b[i] - v[i])) < .0002
+                  and max(abs(a[1-i] - u[1-i]), abs(b[1-i] - v[1-i])) < .0002
+                  for c, d in rendered for u, v in ((c, d), (d, c)) for i in (0,)),
+              f'native semantic stroke absent from actual render: {a}, {b}')
+
+
+@test('converter: native polarity follows the authored positive pad in all four orientations')
+def t_native_polarity_orientations():
+    """RED on 5d1d0175: all visible polarity information was discarded."""
+    import math
+    for angle, positive in ((0, 1), (90, 1), (180, 1), (270, 1), (0, 2)):
+        _, sheet = _convert_json(_native_polarity_fixture(angle, positive), 'polarity')
+        _, _, segs = _native_semantic_geometry(sheet)
+        marks = [s for s, d, _ in segs if d == 'glyph C1']
+        eq(len(marks), 2, 'positive cross has two visible strokes')
+        a, b = marks
+        center = tuple(sum(p[i] for s in marks for p in s) / 4 for i in (0, 1))
+        check(abs(a[0][0] - a[1][0]) < .001 and abs(b[0][1] - b[1][1]) < .001
+              or abs(b[0][0] - b[1][0]) < .001 and abs(a[0][1] - a[1][1]) < .001,
+              'polarity strokes do not form an axis-aligned cross')
+        for stroke in marks:
+            check(math.dist(center, tuple((stroke[0][i] + stroke[1][i]) / 2 for i in (0, 1))) < .001,
+                  'polarity strokes do not intersect at their centers')
+        pins = {d: s[0] for s, d, _ in segs if d.startswith('pin C1.')}
+        check(math.dist(center, pins[f'pin C1.{positive}']) < math.dist(center, pins[f'pin C1.{3-positive}']),
+              'polarity mark indicates the wrong source pad')
+        _assert_rendered_native_segments(sheet, marks)
+        eq(netlist_of(sheet), {('D1','1'):'OUT', ('D1','2'):'VIN',
+                              ('C1','1'):'VIN', ('C1','2'):'GND'}, 'polarity exact node identities')
+
+
+@test('converter: nonpolar semantic clear control stays unmarked despite pos/neg port hints')
+def t_native_nonpolar_clear_control():
+    _, sheet = _convert_json(_native_polarity_fixture(polarized=False), 'nonpolar')
+    _, _, segs = _native_semantic_geometry(sheet)
+    eq([s for s, d, _ in segs if d == 'glyph C1'], [], 'nonpolar mark population')
+
+
+@test('converter: ambiguous native capacitor polarity fails explicitly', kind='known_bad')
+def t_native_polarity_ambiguous_refuses():
+    """RED on 5d1d0175: missing polarity metadata was silently accepted."""
+    path = _native_polarity_fixture()
+    source = json.loads(path.read_text())
+    for e in source:
+        if e['type'] == 'source_port' and e['source_component_id'].endswith('_C1'):
+            e['port_hints'] = ['plus']
+    path.write_text(json.dumps(source))
+    output = path.parent / 'bad.kicad_sch'
+    must_fail(run([PY, CONV, path, '-o', output, '--project', 'bad_polarity']),
+              'ambiguous native polarity', 'lacks distinct positive/negative source pads')
+    check(not output.exists(), 'ambiguous polarity wrote native output')
+
+
+@test('converter: native ground power flag clears every body and retains the ground driver')
+def t_native_power_flag_external():
+    """RED on 5d1d0175: first GND pin put five flag strokes inside C1."""
+    _, sheet = _convert_json(_native_polarity_fixture(polarized=False), 'flag')
+    SO, boxes, segs = _native_semantic_geometry(sheet)
+    flags = [s for s, d, _ in segs if d == 'glyph #FLG01']
+    eq(len(flags), 5, 'visible native power-flag population')
+    contacts = [d for box, d, _ in boxes if d.startswith('body ')
+                and any(SO.seg_len_in_box(a, b, box) > .06 for a, b in flags)]
+    eq(contacts, [], 'power flag contacts a component body')
+    _assert_rendered_native_segments(sheet, flags)
+    eq(netlist_of(sheet), {('D1','1'):'OUT', ('D1','2'):'VIN',
+                          ('C1','1'):'VIN', ('C1','2'):'GND'}, 'flag exact node identities')
+    must_pass(run(['kicad-cli','sch','erc','--severity-error','--exit-code-violations',
+                   '-o',sheet.with_suffix('.erc.rpt'),sheet]), 'native GND driver ERC')
+
+
+@test('converter: native component identity displays manufacturer MPN before purchasing code')
+def t_native_manufacturer_identity():
+    """RED on 74fd38dd: valid manufacturer identity became opaque C2128."""
+    source = json.loads((T0 / 'polarized/circuit.json').read_text())
+    component = next(e for e in source if e.get('type') == 'source_component'
+                     and e.get('name') == 'D1')
+    component['manufacturer_part_number'] = 'B5819W'
+    component['supplier_part_numbers']['vendor_test'] = ['SKU A', 'SKU "B"']
+    path = tmpdir('native_identity_') / 'circuit.json'
+    path.write_text(json.dumps(source))
+    _, sheet = _convert_json(path, 'identity')
+    runs, _ = _svg_ink(sheet, exclude_sheet=True)
+    eq(len(set(runs.get('B5819W', []))), 1, 'visible native manufacturer identity')
+    eq(runs.get('C2128', []), [], 'supplier code must not replace visible identity')
+    eq(netlist_of(sheet), {('D1','1'):'OUT', ('D1','2'):'VIN',
+                          ('C1','1'):'VIN', ('C1','2'):'GND'}, 'identity exact node sets')
+    text = sheet.with_suffix('.net').read_text()
+    contains(text, '(value "B5819W")', 'native exported manufacturer value')
+    contains(text, '(footprint "Diode_SMD:D_SOD-123")', 'supplier-compatible footprint lookup')
+    # Read the fields through KiCad's independent XML exporter, including
+    # multiple vendors/codes and escaping inside the retained purchasing map.
+    import xml.etree.ElementTree as ET
+    xml_path = sheet.with_suffix('.xml')
+    must_pass(run(['kicad-cli', 'sch', 'export', 'netlist', '--format',
+                   'kicadxml', '-o', xml_path, sheet]), 'native identity XML export')
+    diode = ET.parse(xml_path).find('.//components/comp[@ref="D1"]')
+    fields = {e.get('name'): e.text for e in diode.findall('./fields/field')}
+    eq(fields.get('Manufacturer Part Number'), 'B5819W', 'retained manufacturer identity')
+    eq(json.loads(fields.get('Supplier Part Numbers', '{}')),
+       component['supplier_part_numbers'], 'complete purchasing identity map')
+
+
+@test('converter: passive values and supplier-only legacy identity remain visible clear controls')
+def t_native_identity_clear_controls():
+    source = json.loads((T0 / 'polarized/circuit.json').read_text())
+    component = next(e for e in source if e.get('type') == 'source_component'
+                     and e.get('name') == 'C1')
+    component['manufacturer_part_number'] = 'CL21A106KAYNNNE'
+    component['supplier_part_numbers'] = {'jlcpcb': ['C15850']}
+    path = tmpdir('native_identity_clear_') / 'circuit.json'
+    path.write_text(json.dumps(source))
+    _, sheet = _convert_json(path, 'identity_clear')
+    runs, _ = _svg_ink(sheet, exclude_sheet=True)
+    # KiCad can repeat a text draw at the same position; measure ink locations.
+    eq(len(set(runs.get('10uF', []))), 1, 'passive display value is retained')
+    eq(len(runs.get('C2128', [])), 1, 'legacy supplier-only identity is retained')
+    eq(runs.get('CL21A106KAYNNNE', []), [], 'MPN must not replace passive value')
+
+
+@test('converter: native drawing retains authored page function and engineering annotations')
+def t_native_authored_page_annotations():
+    """RED on 74fd38dd: native conversion silently dropped all source headings."""
+    source = json.loads((T0 / 'two_resistors/circuit.json').read_text())
+    title = 'CONTROL / U1 INVERTING SCHMITT / L1 3.3 uH'
+    for e in source:
+        if e['type'] in ('schematic_component', 'schematic_port'):
+            e['schematic_sheet_id'] = 'authored_sheet'
+    source.append(dict(type='schematic_sheet', schematic_sheet_id='authored_sheet',
+                       display_name=title, name='control', sheet_index=0))
+    path = tmpdir('native_heading_') / 'circuit.json'
+    path.write_text(json.dumps(source))
+    _, sheet = _convert_json(path, 'heading')
+    runs, graphics = _svg_ink(sheet, exclude_sheet=True)
+    eq(len(set(runs.get(title, []))), 1, 'authored annotation visible in native ink')
+    box = runs[title][0]
+    eq(max(_seg_in_box(a, b, box) for a, b in graphics), 0.,
+       'authored native annotation intersects graphic ink')
+    for text, boxes in runs.items():
+        if text == title:
+            continue
+        for other in boxes:
+            check(box[2] <= other[0] or box[0] >= other[2] or
+                  box[3] <= other[1] or box[1] >= other[3],
+                  f'authored native annotation overlaps {text}')
+    eq(netlist_of(sheet), {('R1','1'):'VIN', ('R1','2'):'MID',
+                          ('R2','1'):'MID', ('R2','2'):'GND'}, 'heading exact node sets')
+    page, bounds = _exported_stroke_bounds(sheet)
+    check(bounds[0] >= 0 and bounds[1] >= 0 and bounds[2] <= page[0]
+          and bounds[3] <= page[1], f'authored annotation export clipped: {bounds}, {page}')
 
 
 if __name__ == "__main__":

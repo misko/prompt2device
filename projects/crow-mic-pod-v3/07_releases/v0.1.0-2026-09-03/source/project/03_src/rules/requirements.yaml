@@ -1,0 +1,5 @@
+schema: 1
+power_claims: []
+no_external_power_outputs: >-
+  The pod consumes one protected spoke input and exposes no downstream power
+  output. AUDIO_P/AUDIO_N are signal outputs, not power-delivery rails.

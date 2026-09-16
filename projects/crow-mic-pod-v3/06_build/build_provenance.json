@@ -1,0 +1,21 @@
+{
+  "artifact": "03_tscircuit/build/circuit.json",
+  "artifact_sha256": "05e07265ce6757d371299c43bb5bf1148968e06fa6bc34c7f9add5ecb7b4eded",
+  "board": "crow_mic_pod_v3",
+  "driver": "03_src/rebuild_all.sh",
+  "phase": "verified",
+  "producer": "03_tscircuit/dist/src/crow_mic_pod_v3/circuit.json",
+  "project": "crow-mic-pod-v3",
+  "render": "03_tscircuit/build/schematic.pdf",
+  "render_sha256": "bd164975e792d44f4cc1783125b3d4231ea0d0db795c1387e81a287040491ed3",
+  "run_id": "4049b59590c341628a4bca8bd0df6e47",
+  "src_files": [
+    "bun.lock",
+    "package.json",
+    "src/crow_mic_pod_v3.tsx"
+  ],
+  "src_fingerprint": "10aa21ed07f485e361b1722bd69332d44e195716b937461b5c7be76bb7897d17",
+  "started_ns": 1789572862110628240,
+  "tsx": "crow_mic_pod_v3",
+  "verified_ns": 1789572865906911827
+}

@@ -254,6 +254,7 @@ import argparse
 import re
 import subprocess
 import sys
+import tempfile
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -288,6 +289,20 @@ ADR_GLOBS = ("docs/decisions/[0-9]*.md", "*/01_docs/decisions/[0-9]*.md",
              "projects/*/01_docs/decisions/[0-9]*.md")
 EXCLUDE_PARTS = ("archived_projects", ".claude", "node_modules", "07_releases",
                  "06_build")
+
+# Archiving a project must not erase credit for a bound that still regenerates.
+# These are the projects in the ratcheted fleet when inactive projects moved
+# from `projects/` to `archived_projects/` on 2026-08-26.  Every currently
+# active project is added automatically; this tuple preserves only the frozen
+# half of the original denominator.
+FROZEN_GOVERNED_PROJECTS = (
+    "crow-mic-pod-v2", "crow-recorder-central-v2", "pi-usb-port-switch",
+    "pluto-cal-switch", "pluto-rx2-8way", "pluto-rx2-8way-v2",
+    "pluto-rx2-8way-v4", "pluto-rx2-8way-v5", "programmable-usb2-hub",
+    "smc0985-cooksense", "usb-controlled-debug-hub-2a-v1",
+    "usb-controlled-debug-hub-v1", "usb-controlled-debug-hub-v2",
+    "usb-hub-3s-v3", "usb-hub-3s-v4",
+)
 
 BOUND_KEYS = {"id", "claim", "relation", "value", "unit", "corner", "command",
               "corner_commands", "governs", "standard_value", "chosen",
@@ -422,6 +437,52 @@ def find_adrs(root, include_archived=False):
             continue
         keep.append(p)
     return keep
+
+
+def governed_fleet_view(root):
+    """Return ``(TemporaryDirectory, view)`` for active + frozen projects.
+
+    Bound commands published before the archive move use stable
+    ``projects/<slug>`` paths.  Scanning ``archived_projects`` in place would
+    therefore degrade valid CITED evidence to UNVERIFIED, while scanning only
+    ``projects`` silently loses twelve declarations and breaks the monotone
+    floor.  A read-only symlink view preserves the published command paths,
+    includes every active project, and adds only the frozen members of the
+    ratcheted pre-archive fleet.
+    """
+    root = Path(root).resolve()
+    active_root = root / "projects"
+    archived_root = root / "archived_projects"
+    if not active_root.is_dir() or not archived_root.is_dir():
+        raise ValueError("governed fleet needs both projects/ and "
+                         "archived_projects/")
+
+    holder = tempfile.TemporaryDirectory(prefix="adr-bound-fleet-")
+    view = Path(holder.name)
+    for entry in root.iterdir():
+        if entry.name in {".git", "projects", "archived_projects"}:
+            continue
+        (view / entry.name).symlink_to(entry.resolve(),
+                                      target_is_directory=entry.is_dir())
+
+    project_view = view / "projects"
+    project_view.mkdir()
+    for entry in sorted(active_root.iterdir(), key=lambda p: p.name):
+        (project_view / entry.name).symlink_to(
+            entry.resolve(), target_is_directory=entry.is_dir())
+
+    for name in FROZEN_GOVERNED_PROJECTS:
+        active = active_root / name
+        archived = archived_root / name
+        if active.is_dir() == archived.is_dir():
+            holder.cleanup()
+            raise ValueError(
+                f"{name}: expected in exactly one of projects/ or "
+                "archived_projects/")
+        if not active.is_dir():
+            (project_view / name).symlink_to(archived.resolve(),
+                                             target_is_directory=True)
+    return holder, view
 
 
 def parse_blocks(text, where):
@@ -784,9 +845,28 @@ def main(argv=None):
     if not root.is_dir():
         print(f"FAIL B-SRC: no such directory {root}")
         return 1
-    repo_root = Path(a.repo_root).resolve() if a.repo_root else root.resolve()
+    root = root.resolve()
+    here = Path(__file__).resolve().parents
+    own_tree = len(here) > 3 and root == here[3]
 
-    adrs = find_adrs(root, a.include_archived)
+    fleet_holder = None
+    scan_root = root
+    governed_view = False
+    if own_tree and not a.include_archived:
+        try:
+            fleet_holder, scan_root = governed_fleet_view(root)
+        except ValueError as e:
+            print(f"FAIL B-SRC: {e}")
+            return 1
+        # Historical evidence commands name projects/<slug>; the governed view
+        # is their immutable path authority after a project is archived.
+        repo_root = scan_root
+        governed_view = True
+    else:
+        repo_root = (Path(a.repo_root).resolve()
+                     if a.repo_root else root)
+
+    adrs = find_adrs(scan_root, a.include_archived or governed_view)
     if a.adr:
         adrs = [p for p in adrs if a.adr in str(p)]
 
@@ -824,8 +904,9 @@ def main(argv=None):
 
     # G-INPUT: name the tree and the documents actually read. A coverage number
     # is only meaningful next to the universe it was taken over.
-    print(f"input: root = {root.resolve()}  ({len(adrs)} ADR file(s) under "
+    print(f"input: root = {root}  ({len(adrs)} ADR file(s) under "
           f"docs/decisions + */01_docs/decisions"
+          f"{', governed active + frozen view' if governed_view else ''}"
           f"{', including archived' if a.include_archived else ''})")
     print(f"input: regeneration {'OFF (--no-regen)' if a.no_regen else 'ON'}, "
           f"cwd for commands = {repo_root}, per-command timeout {a.timeout}s")
@@ -858,8 +939,6 @@ def main(argv=None):
     # measured counts separately by t1_adr_bounds.py, which always runs against
     # the real ROOT. (The parent walk is guarded: a copy of this gate can live
     # anywhere, and an IndexError there would be a crash instead of a verdict.)
-    here = Path(__file__).resolve().parents
-    own_tree = len(here) > 3 and root.resolve() == here[3]
     count_fails = []
     if own_tree and n_cited < a.cited_floor:
         count_fails.append(
@@ -892,6 +971,8 @@ def main(argv=None):
               f"never a pass (canon M-COVER); if this tree genuinely has no "
               f"ADRs, that is a fact worth stating out loud rather than a green "
               f"verdict")
+        if fleet_holder is not None:
+            fleet_holder.cleanup()
         return 1
     corpus = (f"{len(owed) + len(declaring)}/{len(adrs)} ADR(s) publish an "
               f"inequality bound, {len(declaring)} declare one")
@@ -901,7 +982,10 @@ def main(argv=None):
                    "regenerating half of this gate graded nothing")
     print("ADR BOUND PROVENANCE:", "FAIL" if fails else "PASS",
           f"({len(set(fails))} fails) — {corpus}")
-    return 1 if fails else 0
+    rc = 1 if fails else 0
+    if fleet_holder is not None:
+        fleet_holder.cleanup()
+    return rc
 
 
 if __name__ == "__main__":

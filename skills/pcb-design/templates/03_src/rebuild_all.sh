@@ -35,12 +35,29 @@ CS="$SKROOT/pcb-design/scripts"
     || { echo "GATE FAILED [PCB-TOOLCHAIN]: resolved circuits checkout '$REPO_ROOT' does not contain skills/kicad-pcb; export CIRCUITS_ROOT=/absolute/path/to/circuits" >&2; exit 2; }
 [ -f "$CS/connector_assembly_contract.py" ] \
     || { echo "GATE FAILED [PCB-TOOLCHAIN]: resolved circuits checkout '$REPO_ROOT' does not contain the pcb-design connector compiler" >&2; exit 2; }
+[ -f "$CS/connector_assembly_phase_gate.py" ] \
+    || { echo "GATE FAILED [PCB-TOOLCHAIN]: resolved circuits checkout '$REPO_ROOT' does not contain the pcb-design connector phase gate" >&2; exit 2; }
 FS="$SKROOT/jlcpcb-fab/scripts"                # fab-skill checkers (bom_source_check)
 export PATH="$HOME/.nvm/versions/node/v22.12.0/bin:$HOME/.bun/bin:$PATH"
 
 run_stage() {
     local stage="$1"; shift
     "$PY" "$S/pcb_flow.py" run . --stage "$stage" -- "$@"
+}
+
+compile_connector_base() {
+    local gate="$1"
+    local rc=0
+    $PY "$CS/connector_assembly_contract.py" --project . \
+        --contract 03_src/rules/connector_assemblies.yaml \
+        --output 06_build/verification/connector_assembly_contract.json \
+        || rc=$?
+    if [ "$rc" -eq 2 ]; then
+        echo "$gate CONNECTOR-CONTRACT INCOMPLETE: forwarding the explicit base rc=2 to the typed phase gate" >&2
+    elif [ "$rc" -ne 0 ]; then
+        echo "GATE FAILED $gate CONNECTOR-CONTRACT: repair the canonical connector assembly contract and its evidence bindings" >&2
+        exit "$rc"
+    fi
 }
 
 RESUME_AFTER_SCHEMATIC_REVIEW=false
@@ -54,14 +71,17 @@ SCHPDF=03_tscircuit/build/schematic.pdf
 PIPELINE_EVIDENCE=06_build/verification/pipeline
 mkdir -p "$PIPELINE_EVIDENCE/bundles"
 
-# [0g] Connector facts are a pre-placement lock, not a render inference.
-# Unknown mate/tool/cable/torque/tolerance/operation evidence stops here before
-# schematic or layout spend. The receipt does not yet claim realized-board
-# service geometry; that consumer remains an explicit IMP-242 obligation.
-$PY "$CS/connector_assembly_contract.py" --project . \
+# [0g] Compile the unchanged base fact lock first. Its explicit rc=2 is handed
+# only to the additive source-phase classifier; it is never relabeled or
+# swallowed. Source may defer closed, policy-bound physical qualification
+# classes, while connector/mate identity and the complete census stay closed.
+compile_connector_base "[0g]"
+$PY "$CS/connector_assembly_phase_gate.py" --project . --phase source \
     --contract 03_src/rules/connector_assemblies.yaml \
-    --output 06_build/verification/connector_assembly_contract.json \
-    || { rc=$?; if [ "$rc" -eq 2 ]; then echo "GATE INCOMPLETE [0g] CONNECTOR-CONTRACT: select exact mates, tools, cables, operations, and tolerance sources" >&2; else echo "GATE FAILED [0g] CONNECTOR-CONTRACT: repair the canonical connector assembly contract and its evidence bindings" >&2; fi; exit "$rc"; }
+    --policy 03_src/rules/connector_assembly_phases.yaml \
+    --base-receipt 06_build/verification/connector_assembly_contract.json \
+    --output 06_build/verification/connector_assembly_source_gate.json \
+    || { rc=$?; if [ "$rc" -eq 2 ]; then echo "GATE INCOMPLETE [0g] CONNECTOR-SOURCE: close connector identities/census or classify only governed physical qualification work" >&2; else echo "GATE FAILED [0g] CONNECTOR-SOURCE: repair stale, malformed, or mismatched connector phase authority" >&2; fi; exit "$rc"; }
 
 if [ "$RESUME_AFTER_SCHEMATIC_REVIEW" = false ]; then
 
@@ -364,6 +384,19 @@ if [ -f 03_src/rules/critical_parts.yaml ]; then
 else
     echo "[3b] no critical_parts.yaml — no selective catastrophic part facts declared"
 fi
+
+# [3c] The candidate PCB now exists, but no placement approval or routing has
+# occurred. Recompile the base and require its original PASS/zero-unknown bar.
+# A source-phase receipt is deliberately insufficient here. This pause leaves
+# the generated placement available to a separately governed connector coupon;
+# coupon evidence must flow back through the base contract before FULL passes.
+compile_connector_base "[3c]"
+$PY "$CS/connector_assembly_phase_gate.py" --project . --phase full \
+    --contract 03_src/rules/connector_assemblies.yaml \
+    --policy 03_src/rules/connector_assembly_phases.yaml \
+    --base-receipt 06_build/verification/connector_assembly_contract.json \
+    --output 06_build/verification/connector_assembly_full_gate.json \
+    || { rc=$?; if [ "$rc" -eq 2 ]; then echo "GATE INCOMPLETE [3c] CONNECTOR-FULL: qualify every physical operation/fit/tolerance on the exact candidate or governed coupon before placement approval/routing" >&2; else echo "GATE FAILED [3c] CONNECTOR-FULL: repair stale, malformed, or substituted connector phase authority" >&2; fi; exit "$rc"; }
 
 # [4] placement/pad invariants  [per-board gate + SHARED placement gates]
 # `03_src/audit_board.py` is the ONLY per-board emitter this pipeline still

@@ -1,0 +1,46 @@
+{
+  "groups": [
+    {
+      "id": "j1_wurth_615008160221_official_step",
+      "manifest": "06_build/pre_route/native_registration/j1_wurth_615008160221_official_step/bundle.json",
+      "manifest_sha256": "7e3b657873b795eacc00d3351a23b2d0cd3f5a0c416e4e0915ce68d075f175f3",
+      "manifest_size": 2886,
+      "refs": [
+        "J1"
+      ],
+      "tuple": {
+        "contract_sha256": "2d7d2625e89b37698d6153068116fe43d237f4423f0a3ef004357768fd11d227",
+        "footprint_sha256": "bf684887b4d2dd7028c9147a3f4081c88a6a1d1c08cfdb9c6a202a548d24baca",
+        "model_sha256": "3f902b89d4bd756b121be056782deff312efb127c9c48f2c798ebd6db0e59f49",
+        "tool_identity": "native-model-registration-v4:a8ff77b120ac3edb46260d5374ed79b69be8bd33f6d8ae82ce908c8a0076a2d8",
+        "transform_sha256": "6cf53f0e2e5e9c07c31120b0a7392007f28e50daeb9d9b4fabcff69a71234dd2"
+      },
+      "tuple_cache_key": "180dabc794bc224db68a28e2d9931f3a4b88ddafce1ff5213de7c1b9a167d91a"
+    },
+    {
+      "id": "u2_ti_dgn0008g_official_step",
+      "manifest": "06_build/pre_route/native_registration/u2_ti_dgn0008g_official_step/bundle.json",
+      "manifest_sha256": "3ed2c29e95f50597d2e9bc7b728bca8120c296a2c948fee7349068d20e4eb514",
+      "manifest_size": 2880,
+      "refs": [
+        "U2"
+      ],
+      "tuple": {
+        "contract_sha256": "a95842319a361564e1bd9c410cdff24c1c77f0fd1c182082ee1280bbd16399aa",
+        "footprint_sha256": "806db3636fa65398bdd0342a37a0a3efa67331ef2eb472fe2e6efd58cdc3a96b",
+        "model_sha256": "9751a8fa8744b8d50553223b504f942a373396d134eccee1f86c69b545fffc10",
+        "tool_identity": "native-model-registration-v4:a8ff77b120ac3edb46260d5374ed79b69be8bd33f6d8ae82ce908c8a0076a2d8",
+        "transform_sha256": "6cf53f0e2e5e9c07c31120b0a7392007f28e50daeb9d9b4fabcff69a71234dd2"
+      },
+      "tuple_cache_key": "c6a530d5fdd8b8e30dbd678573c3281110494f7b09de3d7288b39944c06273a6"
+    }
+  ],
+  "kind": "model-registration-index-v1",
+  "run_id": "20260916T152921Z-d6c3752bbbc9",
+  "schema": 1,
+  "stage_id": "P-MODEL-REG",
+  "subject": {
+    "raw_sha256": "45abb947b64ac5e24e745147f02308124c70ab2157a83bb29bcb41b780d40c6d",
+    "semantic_sha256": "dcdc9faa61eca53d99678d7e4180fa076dfa6ceaa308dd2a5a3dbefa5677583b"
+  }
+}

@@ -1,0 +1,241 @@
+{
+  "assembly": {
+    "path": "../../../03_src/rules/assembly.yaml",
+    "sha256": "f7db1baca39a8af7511173de67ff8c90aed1e3f2a06173e7a733bdb219866b07",
+    "size": 3271
+  },
+  "authority_required": "jlcpcb_order_interface",
+  "build_quantity": 10,
+  "coverage": {
+    "graded": 22,
+    "total": 22
+  },
+  "excluded_refs": [
+    "J1",
+    "MK1",
+    "TP1",
+    "TP2",
+    "TP3",
+    "TP4",
+    "TP5",
+    "TP6",
+    "TP7"
+  ],
+  "generated_at": "2026-09-16T15:34:21.580494+00:00",
+  "kind": "jlc-pcba-availability-request-v2",
+  "phase": "order",
+  "procurement_policy": {
+    "path": "../../../01_docs/sourcing/procurement-policy.yaml",
+    "sha256": "2385b85a974ab1ccc3204e5c3a50dca0d7250c3252276d4d8ffc132ea06723a0",
+    "size": 531
+  },
+  "procurement_policy_value": {
+    "currency": "USD",
+    "limits": {
+      "max_line_preorder_cash": "0.000000",
+      "max_line_surplus_cost": "0.000000",
+      "max_total_assembly_excess_cost": "0.000000",
+      "max_total_preorder_cash": "0.000000",
+      "max_total_surplus_cost": "0.000000"
+    },
+    "schema": 1,
+    "warnings": {
+      "surplus_ratio": "20.000000"
+    }
+  },
+  "required_status": "ALLOCATED",
+  "rows": [
+    {
+      "designators": [
+        "R1"
+      ],
+      "per_board_qty": 1,
+      "requested_lcsc": "C113480",
+      "required_qty": 10
+    },
+    {
+      "designators": [
+        "C2"
+      ],
+      "per_board_qty": 1,
+      "requested_lcsc": "C131394",
+      "required_qty": 10
+    },
+    {
+      "designators": [
+        "D1"
+      ],
+      "per_board_qty": 1,
+      "requested_lcsc": "C144860",
+      "required_qty": 10
+    },
+    {
+      "designators": [
+        "C3",
+        "C4"
+      ],
+      "per_board_qty": 2,
+      "requested_lcsc": "C15195",
+      "required_qty": 20
+    },
+    {
+      "designators": [
+        "C10",
+        "C6"
+      ],
+      "per_board_qty": 2,
+      "requested_lcsc": "C1525",
+      "required_qty": 20
+    },
+    {
+      "designators": [
+        "C8"
+      ],
+      "per_board_qty": 1,
+      "requested_lcsc": "C15849",
+      "required_qty": 10
+    },
+    {
+      "designators": [
+        "C11",
+        "C5",
+        "C9"
+      ],
+      "per_board_qty": 3,
+      "requested_lcsc": "C15850",
+      "required_qty": 30
+    },
+    {
+      "designators": [
+        "U2"
+      ],
+      "per_board_qty": 1,
+      "requested_lcsc": "C16430",
+      "required_qty": 10
+    },
+    {
+      "designators": [
+        "R12",
+        "R13"
+      ],
+      "per_board_qty": 2,
+      "requested_lcsc": "C17408",
+      "required_qty": 20
+    },
+    {
+      "designators": [
+        "R3"
+      ],
+      "per_board_qty": 1,
+      "requested_lcsc": "C17614",
+      "required_qty": 10
+    },
+    {
+      "designators": [
+        "R14"
+      ],
+      "per_board_qty": 1,
+      "requested_lcsc": "C17936",
+      "required_qty": 10
+    },
+    {
+      "designators": [
+        "F1"
+      ],
+      "per_board_qty": 1,
+      "requested_lcsc": "C194142",
+      "required_qty": 10
+    },
+    {
+      "designators": [
+        "U3"
+      ],
+      "per_board_qty": 1,
+      "requested_lcsc": "C1972959",
+      "required_qty": 10
+    },
+    {
+      "designators": [
+        "R2",
+        "R5"
+      ],
+      "per_board_qty": 2,
+      "requested_lcsc": "C25741",
+      "required_qty": 20
+    },
+    {
+      "designators": [
+        "R9"
+      ],
+      "per_board_qty": 1,
+      "requested_lcsc": "C25762",
+      "required_qty": 10
+    },
+    {
+      "designators": [
+        "R6",
+        "R7",
+        "R8"
+      ],
+      "per_board_qty": 3,
+      "requested_lcsc": "C25768",
+      "required_qty": 30
+    },
+    {
+      "designators": [
+        "R4"
+      ],
+      "per_board_qty": 1,
+      "requested_lcsc": "C25879",
+      "required_qty": 10
+    },
+    {
+      "designators": [
+        "U1"
+      ],
+      "per_board_qty": 1,
+      "requested_lcsc": "C2878631",
+      "required_qty": 10
+    },
+    {
+      "designators": [
+        "R10",
+        "R11"
+      ],
+      "per_board_qty": 2,
+      "requested_lcsc": "C60490",
+      "required_qty": 20
+    },
+    {
+      "designators": [
+        "C1"
+      ],
+      "per_board_qty": 1,
+      "requested_lcsc": "C77102",
+      "required_qty": 10
+    },
+    {
+      "designators": [
+        "D2"
+      ],
+      "per_board_qty": 1,
+      "requested_lcsc": "C83846",
+      "required_qty": 10
+    },
+    {
+      "designators": [
+        "C7"
+      ],
+      "per_board_qty": 1,
+      "requested_lcsc": "C84455",
+      "required_qty": 10
+    }
+  ],
+  "schema": 2,
+  "subject": {
+    "path": "../fab/bom.csv",
+    "sha256": "7dd5c9f9ae55591115be334a711bcb08bcf050dbcf880e8a1f44efa2bd737046",
+    "size": 1240
+  },
+  "subject_role": "bom"
+}

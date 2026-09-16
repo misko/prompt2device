@@ -8,6 +8,12 @@ authored once from the manufacturer drawing/STEP, transformed through the
 model and footprint frames, checked against Edge.Cuts, and then presented in
 fixed exact-board cameras with coordinate-selected crops for explicit human
 approval. Image differences never select or grade the target connector.
+
+VACUITY: Machine axis/edge checks can pass when an intervening body hides the
+required rear face. Elevated camera selection is not an automated occlusion
+oracle. Human review of every mandatory view remains required; a syntactically
+valid approval cannot prove that its reviewer correctly identified the target.
+Fixture: t_machine_direction_not_visibility in t1_connector_orientation.py.
 """
 
 from __future__ import annotations
@@ -22,6 +28,7 @@ from pathlib import Path
 import shutil
 import subprocess
 import sys
+import tempfile
 
 from PIL import Image, ImageDraw, ImageFont
 import pcbnew
@@ -29,18 +36,17 @@ import yaml
 
 from twin_overlay import board_extent_px
 
+sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "kicad-pcb/scripts"))
+from model_coverage_check import kicad_env, resolve_model as coverage_resolve_model, fitted
+from land_witness import sexpressions, atom
+
 KIND = "connector-orientation-receipt-v1"
 APPROVAL_KIND = "connector-orientation-approval-v1"
 TOOL_VERSION = "connector-orientation-gate-v1"
-# Identity of the geometry/measurement engine, deliberately independent of
-# approval-file and report-rendering mechanics.  The previous implementation
-# hashed this entire script, so even a wording or approval-schema change made
-# an otherwise identical connector subject stale.  Bump this digest whenever
-# geometry, transforms, measurements, camera selection, or model validation
-# semantics change.  It is initialized to the last whole-script digest so
-# already approved v1 subjects remain stable across this policy-only refactor.
+# Bump when geometry, native scene dependency or camera semantics change.
+# Approval serialization/report wording alone does not change this engine.
 SEMANTIC_ENGINE_SHA256 = (
-    "39bbab14aa85e8f6c9e1e5f2eb21dc47dc9de57538d4bb8e7adf72774c8d6cae"
+    "a6daa74f4143a527fb7b972203c187f6d1d01e5c0358c8b394b561be4251f8ea0"
 )
 CAMERAS = ("top", "left", "right", "front", "back")
 CARDINAL_CAMERA = {
@@ -81,7 +87,7 @@ def tool_identity() -> str:
             check=True).stdout.strip()
     except (OSError, subprocess.CalledProcessError):
         version = "kicad-cli-unavailable"
-    return f"{TOOL_VERSION}:{canonical_sha({'script': SEMANTIC_ENGINE_SHA256, 'kicad': version})}"
+    return f"{TOOL_VERSION}:{canonical_sha({'script': SEMANTIC_ENGINE_SHA256, 'kicad': version, 'executable': digest(Path(shutil.which('kicad-cli'))) if shutil.which('kicad-cli') else None, 'resolver': digest(Path(sys.modules['model_coverage_check'].__file__)), 'native_reader': digest(Path(sys.modules['land_witness'].__file__))})}"
 
 
 def vec3(value, where: str):
@@ -100,12 +106,24 @@ def dot(a, b) -> float:
     return sum(x * y for x, y in zip(a, b))
 
 
-def rotate_xyz(vector, rotation_deg, scale=(1.0, 1.0, 1.0)):
+def model_to_footprint(vector, rotation_deg, scale, mount_side):
+    """Apply KiCad's exact native-model to footprint-local direction transform.
+
+    ``create_scene.cpp`` builds the model matrix as
+    ``Rz(-z) * Ry(-y) * Rx(-x) * Scale``.  Its render space is Y-up while
+    footprint coordinates are Y-down.  On B.Cu, KiCad's subsequent footprint
+    flip changes that final basis conversion from Y reflection to X reflection.
+    Translation is intentionally absent because this transforms directions.
+    """
     x, y, z = (vector[index] * scale[index] for index in range(3))
-    rx, ry, rz = (math.radians(float(value)) for value in rotation_deg)
+    rx, ry, rz = (-math.radians(float(value)) for value in rotation_deg)
     y, z = y * math.cos(rx) - z * math.sin(rx), y * math.sin(rx) + z * math.cos(rx)
     x, z = x * math.cos(ry) + z * math.sin(ry), -x * math.sin(ry) + z * math.cos(ry)
     x, y = x * math.cos(rz) - y * math.sin(rz), x * math.sin(rz) + y * math.cos(rz)
+    if mount_side == "front":
+        y = -y
+    else:
+        x = -x
     length = math.sqrt(x*x + y*y + z*z)
     if length <= 1e-9:
         raise ValueError("model transform collapses an orientation axis")
@@ -196,10 +214,88 @@ def edge_name(point, polygon, tolerance=0.35):
 
 
 def resolve_model(board_path: Path, filename: str) -> Path:
-    value = filename.replace("${KIPRJMOD}", str(board_path.parent))
-    for key, replacement in os.environ.items():
-        value = value.replace("${" + key + "}", replacement)
-    return Path(os.path.expandvars(os.path.expanduser(value))).resolve()
+    resolved = coverage_resolve_model(filename, kicad_env(board_path), board_path.parent)
+    if resolved is None:
+        raise ValueError(f"required native scene model is unresolved: {filename}")
+    return Path(resolved)
+
+
+# CLI's empty appearance preset forces all footprint classes, including DNP.
+# Use an isolated configuration, never the user's current visibility/materials.
+RENDER_CONFIG = {
+    "meta": {"version": 4},
+    "render": {"show_board_body": True, "material_mode": 0,
+               "show_footprints_dnp": True, "show_footprints_insert": True,
+               "show_footprints_normal": True, "show_footprints_virtual": True,
+               "show_footprints_not_in_posfile": True},
+}
+RENDER_OPTIONS = [
+    "--quality", "high", "--background", "opaque", "--preset", "",
+    "--zoom", "1",
+    "--pan", "0,0,0", "--pivot", "0,0,0",
+    "--light-top", "0.8", "--light-bottom", "0.2",
+    "--light-side", "0.6", "--light-camera", "0.8",
+    "--light-side-elevation", "60",
+]
+
+
+def native_item_sha(item):
+    """Bind native geometry with KiCad's serializer, not another CAD parser."""
+    formatter = pcbnew.STRING_FORMATTER()
+    writer = pcbnew.PCB_IO_KICAD_SEXPR()
+    writer.SetOutputFormatter(formatter)
+    writer.Format(item)
+    return hashlib.sha256(formatter.GetString().encode()).hexdigest()
+
+
+def scene_dependencies(board, board_path, substitutions):
+    """Declared scene inputs, not a count of bodies proven visible in pixels."""
+    rows = placement_projection(board, sorted(
+        fp.GetReference() for fp in board.GetFootprints()), board_outline(board))
+    hashes = {}
+    for row in rows["placements"]:
+        fp = board.FindFootprintByReference(row["ref"])
+        row["native_geometry_sha256"] = native_item_sha(fp)
+        row["attributes"] = fp.GetAttributes()
+        row["dnp"] = bool(fp.IsDNP())
+        if fitted(fp) and not row["models"]:
+            raise ValueError(f"{row['ref']}: fitted footprint has no native scene model")
+        for model, entry in zip(fp.Models(), row["models"]):
+            entry["show"] = bool(model.m_Show)
+            entry["opacity"] = float(model.m_Opacity)
+            resolved = coverage_resolve_model(model.m_Filename, substitutions, board_path.parent)
+            if resolved is None:
+                raise ValueError(f"{row['ref']}: required native scene model is unresolved: {model.m_Filename}")
+            if resolved not in hashes:
+                hashes[resolved] = digest(Path(resolved))
+            entry["resolved"] = resolved
+            entry["sha256"] = hashes[resolved]
+    # Read setup/stackup with the maintained native S-expression reader.
+    # Preserve the CLI's default stackup colors: its explicit boolean value
+    # crashes KiCad 10.0's parser. Routing segments/zones remain excluded.
+    tree = sexpressions(board_path.read_text(), allow_escaped_strings=True)
+    setup = [item for item in tree[0] if isinstance(item, list) and atom(item[0]) in ("setup", "general", "layers")]
+    def values(node):
+        return [values(item) for item in node] if isinstance(node, list) else atom(node)
+    rows["board_setup"] = values(setup)
+    rows["board_thickness_mm"] = board.GetDesignSettings().GetBoardThickness() / 1e6
+    rows["board_drawings"] = sorted(native_item_sha(item) for item in board.GetDrawings())
+    rows["substitutions"] = dict(sorted(substitutions.items()))
+    rows["renderer_config"] = RENDER_CONFIG
+    rows["renderer_options"] = RENDER_OPTIONS
+    rows["population_policy"] = "all declared models; includes DNP; native per-model show/opacity retained"
+    return rows
+
+
+def inside_recipe(edge, edge_faces):
+    """Fixed measured elevated recipe for opposing N/S rows; no visibility oracle."""
+    opposite = {"y0": "y1", "y1": "y0"}.get(edge)
+    if opposite and any(row["edge"] == opposite for row in edge_faces.values()):
+        return {"side": "top", "rotate": "300,0,0" if edge == "y0" else "60,0,0",
+                "projection": "orthographic", "framing": "full-frame"}
+    camera = {"x0": "right", "x1": "left", "y0": "front", "y1": "back"}[edge]
+    return {"side": camera, "rotate": "0,0,0", "projection": "orthographic",
+            "framing": "cardinal-window"}
 
 
 def normalized_orientation(group):
@@ -299,8 +395,10 @@ def grade_ref(fp, board_path: Path, orientation, edge_face, model_sha, polygon):
 
     rotation = (model.m_Rotation.x, model.m_Rotation.y, model.m_Rotation.z)
     scale = (model.m_Scale.x, model.m_Scale.y, model.m_Scale.z)
-    model_access = rotate_xyz(orientation["model_access_axis_local"], rotation, scale)
-    model_up = rotate_xyz(orientation["model_up_axis_local"], rotation, scale)
+    model_access = model_to_footprint(
+        orientation["model_access_axis_local"], rotation, scale, side)
+    model_up = model_to_footprint(
+        orientation["model_up_axis_local"], rotation, scale, side)
     footprint_access = orientation["footprint_access_axis_local"]
     cosine = math.cos(math.radians(orientation["angular_tolerance_deg"]))
     model_alignment = dot(model_access, footprint_access)
@@ -371,14 +469,37 @@ def grade_ref(fp, board_path: Path, orientation, edge_face, model_sha, polygon):
     }
 
 
-def render(board: Path, output: Path, camera: str, width: int, height: int):
-    result = subprocess.run([
-        "kicad-cli", "pcb", "render", "--output", str(output),
-        "--width", str(width), "--height", str(height), "--side", camera,
-        "--quality", "basic", "--background", "opaque", str(board),
-    ], text=True, capture_output=True)
-    if result.returncode:
-        raise ValueError(f"3D render failed for {camera}: {result.stderr or result.stdout}")
+def render(board: Path, output: Path, camera: str, width: int, height: int,
+           *, substitutions=None, rotation="0,0,0", subject_sha=None, identity=None):
+    substitutions = kicad_env(board) if substitutions is None else substitutions
+    command = ["kicad-cli", "pcb", "render", "--output", str(output),
+               "--width", str(width), "--height", str(height), "--side", camera,
+               "--rotate", rotation, *RENDER_OPTIONS]
+    for key, value in sorted(substitutions.items()):
+        command += ["--define-var", f"{key}={value}"]
+    command.append(str(board))
+    output.parent.mkdir(parents=True, exist_ok=True)
+    with tempfile.TemporaryDirectory(prefix="orientation-config-", dir=output.parent) as config_dir:
+        config = Path(config_dir)
+        write_json(config / "3d_viewer.json", RENDER_CONFIG)
+        env = dict(os.environ)
+        env.update(substitutions)
+        env["KICAD_CONFIG_HOME"] = str(config)
+        evidence = {"command": command, "cwd": str(board.parent.resolve()),
+                    "environment_substitutions": substitutions,
+                    "KICAD_CONFIG_HOME": str(config), "config": RENDER_CONFIG,
+                    "projection": "orthographic", "board_rotation_deg": rotation,
+                    "observed_board_sha256": digest(board),
+                    "subject_sha256": subject_sha, "tool_identity": identity}
+        write_json(output.with_suffix(".command.json"), evidence)
+        result = subprocess.run(command, text=True, capture_output=True,
+                                cwd=board.parent, env=env, timeout=240)
+        output.with_suffix(".log").write_text(result.stdout + result.stderr)
+        if result.returncode:
+            raise ValueError(f"3D render failed for {camera}: {result.stderr or result.stdout}")
+        if digest(board) != evidence["observed_board_sha256"]:
+            raise ValueError("board changed during native orientation render")
+    return evidence
 
 
 def top_geometry_bbox(populated: Path, fp, polygon):
@@ -419,7 +540,7 @@ def side_board_span(image):
             # low blue channel therefore made the inside crop disappear even
             # though the strip was continuous.  Keep the background rejection
             # on all three channels, but admit either rendered board face.
-            if r < 145 and g < 145 and b < 145 and g > r - 20:
+            if r < 160 and g < 160 and b < 160 and g > r - 20:
                 xs.append(x)
         if len(xs) < 30:
             continue
@@ -472,7 +593,7 @@ def font(size: int):
 
 def focused_view(populated: Path, output: Path, ref: str, label: str,
                  metadata: str, detail: str, geometry_box, axis=None,
-                 draw_box=True):
+                 draw_box=True, renderer=""):
     image = Image.open(populated).convert("RGB")
     box = geometry_box
     if box is None:
@@ -483,15 +604,16 @@ def focused_view(populated: Path, output: Path, ref: str, label: str,
     crop_box = (max(0, box[0] - margin), max(0, box[1] - margin),
                 min(image.width, box[2] + margin), min(image.height, box[3] + margin))
     crop = image.crop(crop_box)
-    header = 112
-    canvas_width = max(1000, crop.width)
+    header = 142
+    canvas_width = max(1400, crop.width)
     crop_x = (canvas_width - crop.width) // 2
     canvas = Image.new("RGB", (canvas_width, crop.height + header), (12, 12, 12))
     canvas.paste(crop, (crop_x, header))
     draw = ImageDraw.Draw(canvas)
     draw.text((18, 12), f"{ref} — {label}", fill=(255, 255, 255), font=font(30))
-    draw.text((18, 51), metadata, fill=(180, 220, 255), font=font(16))
-    draw.text((18, 78), detail, fill=(210, 210, 210), font=font(15))
+    draw.text((18, 51), metadata, fill=(180, 220, 255), font=font(12))
+    draw.text((18, 78), detail, fill=(210, 210, 210), font=font(12))
+    draw.text((18, 105), f"RENDERER={renderer}", fill=(180, 220, 255), font=font(12))
     local = (box[0] - crop_box[0] + crop_x, box[1] - crop_box[1] + header,
              box[2] - crop_box[0] + crop_x, box[3] - crop_box[1] + header)
     if draw_box:
@@ -605,6 +727,122 @@ def promote_output(work: Path, outdir: Path) -> None:
             shutil.copytree(outdir, preserved)
         shutil.rmtree(outdir)
     work.replace(outdir)
+
+
+def review_notes(review_groups, inside_recipes):
+    notes = []
+    for group in review_groups:
+        ref = group["representative"]
+        if len(group["refs"]) != 1:
+            notes.append(f"{ref}: orthogonal profiles omitted for repeated tuple "
+                         f"{group['refs']} because edge-row instances can occlude one another")
+        if inside_recipes[ref]["framing"] == "full-frame":
+            notes.append(f"{ref}: elevated rear evidence preserves full scene; lower rear may remain occluded; human review required")
+    return notes
+
+
+def native_recipes(inside_recipes):
+    recipes = {camera: (camera, "0,0,0") for camera in CAMERAS}
+    for recipe in inside_recipes.values():
+        if recipe["framing"] == "full-frame":
+            rotation = recipe["rotate"]
+            recipes["top_" + rotation.replace(",", "_")] = ("top", rotation)
+    return recipes
+
+
+def read_review_json(path):
+    def unique(pairs):
+        result = {}
+        for key, value in pairs:
+            if key in result:
+                raise ValueError("duplicate review field")
+            result[key] = value
+        return result
+    if path.is_symlink() or not path.is_file():
+        raise ValueError("review metadata is not a regular file")
+    return json.loads(path.read_text(), object_pairs_hook=unique)
+
+
+def valid_sha(value):
+    return isinstance(value, str) and len(value) == 64 and set(value) <= set("0123456789abcdef")
+
+
+def existing_review(outdir, subject_sha, refs, review_groups, *, expected_receipt, board_path):
+    """Check current semantics and retained native producer before signing pixels.
+
+    These are consistency/integrity checks, not a signature or proof of human
+    judgment. The receipt label alone authenticates none of its other fields.
+    """
+    expected = set()
+    for group in review_groups:
+        suffixes = ["top", "outside", "inside"]
+        if len(group["refs"]) == 1:
+            suffixes += ["profile_a", "profile_b"]
+        expected.update(f"views/{group['representative']}_{suffix}.png" for suffix in suffixes)
+    try:
+        receipt = read_review_json(outdir / "orientation_receipt.json")
+        dynamic = {"observed_board_sha256", "rendered_board_sha256", "evidence", "producer_evidence"}
+        if not isinstance(receipt, dict) or set(receipt) != set(expected_receipt) | dynamic:
+            return None
+        # Canonical comparison also distinguishes JSON bools from numbers and
+        # rejects nonfinite numbers, including deep inside machine/scene rows.
+        if canonical_sha({key: receipt[key] for key in expected_receipt}) != canonical_sha(expected_receipt):
+            return None
+        if canonical_sha(receipt["subject"]) != subject_sha:
+            return None
+        if not all(valid_sha(receipt[key]) for key in ("observed_board_sha256", "rendered_board_sha256")):
+            return None
+        recipes = native_recipes(expected_receipt["inside_recipes"])
+        producer_paths = {f"renders/populated_{camera}{suffix}" for camera in recipes
+                          for suffix in (".command.json", ".png", ".log")}
+        producer_paths.add("renders/rendered_board.kicad_pcb")
+        observed = outdir / "observed_board.kicad_pcb"
+        if observed.is_symlink() or not observed.is_file() or digest(observed) != receipt["observed_board_sha256"]:
+            return None
+        for field, names, directory in (("evidence", expected, "views"),
+                                        ("producer_evidence", producer_paths, "renders")):
+            hashes = receipt[field]
+            folder = outdir / directory
+            if (not isinstance(hashes, dict) or set(hashes) != names or folder.is_symlink()
+                    or {p.relative_to(outdir).as_posix() for p in folder.iterdir()} != names):
+                return None
+            for name in names:
+                path = outdir / name
+                if not valid_sha(hashes[name]) or path.is_symlink() or not path.is_file() or digest(path) != hashes[name]:
+                    return None
+        if digest(outdir / "renders/rendered_board.kicad_pcb") != receipt["rendered_board_sha256"]:
+            return None
+        # Native command records retain the original producer board hash even
+        # after routing-only current-byte churn. Validate every command against
+        # current fixed recipes/options and the claimed semantic/tool identity.
+        work = outdir.with_name(outdir.name + ".work")
+        substitutions = expected_receipt["scene"]["substitutions"]
+        width, height = expected_receipt["render_size"]
+        for name, (side, rotation) in recipes.items():
+            command = read_review_json(outdir / f"renders/populated_{name}.command.json")
+            config_home = command.get("KICAD_CONFIG_HOME") if isinstance(command, dict) else None
+            if not isinstance(config_home, str):
+                return None
+            config_path = Path(config_home)
+            if config_path.parent != work / "renders" or not config_path.name.startswith("orientation-config-"):
+                return None
+            argv = ["kicad-cli", "pcb", "render", "--output", str(work / f"renders/populated_{name}.png"),
+                    "--width", str(width), "--height", str(height), "--side", side,
+                    "--rotate", rotation, *RENDER_OPTIONS]
+            for key, value in sorted(substitutions.items()):
+                argv += ["--define-var", f"{key}={value}"]
+            argv.append(str(board_path))
+            expected_command = {"command": argv, "cwd": str(board_path.parent.resolve()),
+                                "environment_substitutions": substitutions,
+                                "KICAD_CONFIG_HOME": config_home, "config": RENDER_CONFIG,
+                                "projection": "orthographic", "board_rotation_deg": rotation,
+                                "observed_board_sha256": receipt["rendered_board_sha256"],
+                                "subject_sha256": subject_sha, "tool_identity": expected_receipt["tool_identity"]}
+            if canonical_sha(command) != canonical_sha(expected_command):
+                return None
+        return receipt
+    except (OSError, ValueError, TypeError, KeyError):
+        return None
 
 
 def main(argv=None) -> int:
@@ -738,141 +976,191 @@ def main(argv=None) -> int:
                                                  key=lambda item: item[1][0])
         ]
         identity = tool_identity()
+        substitutions = kicad_env(board_path)
+        scene = scene_dependencies(board, board_path, substitutions)
+        inside_recipes = {ref: inside_recipe(edge_faces[ref]["edge"], edge_faces) for ref in refs}
         subject_value = {
             "schema": 1,
             "tool_identity": identity,
             "placement": placement_projection(board, refs, polygon),
+            "scene": scene,
+            "inside_recipes": inside_recipes,
+            "render_size": [args.width, args.height],
             "contract": contracts,
             "edge_faces": {ref: edge_faces[ref] for ref in refs},
         }
         subject_sha = canonical_sha(subject_value)
         observed_board_sha = digest(board_path)
 
-        work = outdir.with_name(outdir.name + ".work")
-        if work.exists():
-            shutil.rmtree(work)
-        if failures:
-            work.mkdir(parents=True)
+        notes = review_notes(review_groups, inside_recipes)
+        expected_receipt = {
+            "schema": 1, "kind": KIND, "verdict": "PASS", "subject_sha256": subject_sha,
+            "subject": subject_value, "tool_identity": identity, "refs": refs,
+            "config_sha256": digest(config_path), "floorplan_sha256": digest(floorplan_path),
+            "review_groups": review_groups, "measurements": measurements,
+            "failures": [], "notes": notes, "scene": scene,
+            "inside_recipes": inside_recipes, "render_size": [args.width, args.height],
+        }
+        reusable = None if failures else existing_review(
+            outdir, subject_sha, refs, review_groups,
+            expected_receipt=expected_receipt, board_path=board_path)
+        if args.approve_reviewer and (reusable is None or not args.approve_reviewer.strip()):
+            raise ValueError("review bundle is absent, stale, or tampered; generate and review a fresh bundle before explicit approval")
+        if reusable is not None:
+            receipt = reusable
+            shutil.copyfile(board_path, outdir / "observed_board.kicad_pcb")
+            if digest(outdir / "observed_board.kicad_pcb") != observed_board_sha:
+                raise ValueError("board changed during orientation observation")
+            receipt["observed_board_sha256"] = observed_board_sha
+            write_json(outdir / "orientation_receipt.json", receipt)
+            print("P-ORIENT reused verified review bundle; no images regenerated", flush=True)
+        else:
+            work = outdir.with_name(outdir.name + ".work")
+            if work.exists():
+                shutil.rmtree(work)
+            if failures:
+                work.mkdir(parents=True)
+                receipt = {
+                    "schema": 1, "kind": KIND, "verdict": "FAIL",
+                    "subject_sha256": subject_sha,
+                    "observed_board_sha256": observed_board_sha,
+                    "config_sha256": digest(config_path),
+                    "floorplan_sha256": digest(floorplan_path),
+                    "tool_identity": identity, "refs": refs,
+                    "review_groups": review_groups, "measurements": measurements,
+                    "failures": failures, "notes": notes, "evidence": {},
+                }
+                write_json(work / "orientation_receipt.json", receipt)
+                (work / "orientation_review.md").write_text(
+                    orientation_report("FAIL", subject_sha, observed_board_sha,
+                                       measurements, review_groups, failures, notes),
+                    encoding="utf-8")
+                promote_output(work, outdir)
+                for finding in failures:
+                    print(f"P-ORIENT finding: {finding}")
+                print(f"P-ORIENT FAIL: {len(measurements)}/{len(refs)} refs measured, "
+                      f"{len(failures)} geometry finding(s); rendering skipped; see "
+                      f"{outdir / 'orientation_review.md'}")
+                return 1
+            views = work / "views"
+            renders = work / "renders"
+            for directory in (views, renders):
+                directory.mkdir(parents=True, exist_ok=True)
+            shutil.copyfile(board_path, renders / "rendered_board.kicad_pcb")
+            shutil.copyfile(board_path, work / "observed_board.kicad_pcb")
+            if any(digest(path) != observed_board_sha for path in (
+                    renders / "rendered_board.kicad_pcb", work / "observed_board.kicad_pcb")):
+                raise ValueError("board changed while retaining orientation producer input")
+            populated = {}
+            elevated = {recipe["rotate"] for recipe in inside_recipes.values() if recipe["framing"] == "full-frame"}
+            total_renders = len(CAMERAS) + len(elevated)
+            render_index = 0
+            for camera in CAMERAS:
+                path = renders / f"populated_{camera}.png"
+                render_index += 1
+                print(f"P-ORIENT render {render_index}/{total_renders}: populated {camera}",
+                      flush=True)
+                render(board_path, path, camera, args.width, args.height, substitutions=substitutions,
+                       subject_sha=subject_sha, identity=identity)
+                populated[camera] = path
+
+            for rotation in sorted(elevated):
+                camera = "top_" + rotation.replace(",", "_")
+                path = renders / f"populated_{camera}.png"
+                render_index += 1
+                print(f"P-ORIENT render {render_index}/{total_renders}: side=top board-rotate={rotation}", flush=True)
+                render(board_path, path, "top", args.width, args.height,
+                       substitutions=substitutions, rotation=rotation, subject_sha=subject_sha, identity=identity)
+                populated[camera] = path
+            view_paths = []
+            measurements_by_ref = {row["ref"]: row for row in measurements}
+            for review_group in review_groups:
+                ref = review_group["representative"]
+                measurement = measurements_by_ref[ref]
+                axis = measurement["access_axis_board"]
+                edge = measurement["edge_face"]["edge"]
+                source_fp = board.FindFootprintByReference(ref)
+                top_box = top_geometry_bbox(populated["top"], source_fp, polygon)
+                cardinal = (int(round(axis[0])), int(round(axis[1])))
+                outside = CARDINAL_CAMERA.get(cardinal)
+                if outside is None:
+                    failures.append(f"{ref}: access axis is not cardinal enough to select cameras")
+                    continue
+                inside = {"left":"right", "right":"left", "front":"back", "back":"front"}[outside]
+                recipe = inside_recipes[ref]
+                if recipe["framing"] == "full-frame":
+                    inside = "top_" + recipe["rotate"].replace(",", "_")
+                profiles = ("front", "back") if outside in ("left", "right") else ("left", "right")
+                selections = [
+                    ("top", "top", "TOP — green arrow is authored access direction",
+                     (axis[0], axis[1]), True),
+                    ("outside", outside, f"OUTSIDE / CABLE — camera={outside}",
+                     None, False),
+                    ("inside", inside, f"INSIDE / REAR — camera={inside}",
+                     None, False),
+                ]
+                if len(review_group["refs"]) == 1:
+                    selections += [
+                        ("profile_a", profiles[0], f"PROFILE A — camera={profiles[0]}",
+                         None, False),
+                        ("profile_b", profiles[1], f"PROFILE B — camera={profiles[1]}",
+                         None, False),
+                    ]
+                for suffix, camera, label, arrow, draw_box in selections:
+                    output = views / f"{ref}_{suffix}.png"
+                    try:
+                        full_frame = camera.startswith("top_")
+                        if full_frame:
+                            with Image.open(populated[camera]) as native:
+                                geometry = (0, 0, native.width, native.height)
+                        else:
+                            geometry = top_box if camera == "top" else \
+                                side_geometry_window(populated[camera], source_fp, polygon, camera)
+                        detail = (
+                            "Exact-board 3D; magenta box is exact footprint geometry "
+                            "(P-MODEL-REG owns body bbox)" if camera == "top" else
+                            "Exact-board 3D; crop is board-coordinate selected; no "
+                            "pixel-derived body box")
+                        rotation = recipe["rotate"] if full_frame else "0,0,0"
+                        true_camera = "top" if full_frame else camera
+                        if full_frame:
+                            peers = sorted(review_group["refs"], key=lambda item: board.FindFootprintByReference(item).GetPosition().x)
+                            pos = source_fp.GetPosition()
+                            detail = (f"TARGET {ref} at X={pos.x/1e6:g},Y={pos.y/1e6:g} mm; "
+                                      f"#{peers.index(ref)+1} from west in edge {edge} tuple; "
+                                      "full native frame; inspect rear shell; occlusion requires human judgment")
+                            label = "INSIDE / REAR — elevated full-board context"
+                        focused_view(populated[camera], output, ref, label,
+                                     f"EDGE={edge} CAMERA={true_camera} BOARD_ROTATE={rotation} PROJECTION=orthographic SUBJECT={subject_sha[:16]} REFS={','.join(review_group['refs'])}",
+                                     detail, geometry, arrow, draw_box, renderer=identity)
+                        view_paths.append(output)
+                    except ValueError as exc:
+                        failures.append(str(exc))
+
+            if failures:
+                verdict = "FAIL"
+            else:
+                verdict = "PASS"
             receipt = {
-                "schema": 1, "kind": KIND, "verdict": "FAIL",
-                "subject_sha256": subject_sha,
+                **expected_receipt, "verdict": verdict, "failures": failures,
                 "observed_board_sha256": observed_board_sha,
-                "config_sha256": digest(config_path),
-                "floorplan_sha256": digest(floorplan_path),
-                "tool_identity": identity, "refs": refs,
-                "review_groups": review_groups, "measurements": measurements,
-                "failures": failures, "notes": notes, "evidence": {},
+                "rendered_board_sha256": observed_board_sha,
+                "evidence": {},
+                "producer_evidence": {path.relative_to(work).as_posix(): digest(path)
+                                      for path in sorted(renders.iterdir())},
             }
+            if scene_dependencies(board, board_path, substitutions) != scene or digest(board_path) != observed_board_sha:
+                raise ValueError("native scene changed during orientation rendering")
+            for path in sorted(view_paths):
+                relative = path.relative_to(work).as_posix()
+                receipt["evidence"][relative] = digest(path)
             write_json(work / "orientation_receipt.json", receipt)
             (work / "orientation_review.md").write_text(
-                orientation_report("FAIL", subject_sha, observed_board_sha,
+                orientation_report(verdict, subject_sha, observed_board_sha,
                                    measurements, review_groups, failures, notes),
                 encoding="utf-8")
             promote_output(work, outdir)
-            for finding in failures:
-                print(f"P-ORIENT finding: {finding}")
-            print(f"P-ORIENT FAIL: {len(measurements)}/{len(refs)} refs measured, "
-                  f"{len(failures)} geometry finding(s); rendering skipped; see "
-                  f"{outdir / 'orientation_review.md'}")
-            return 1
-        views = work / "views"
-        renders = work / "renders"
-        for directory in (views, renders):
-            directory.mkdir(parents=True, exist_ok=True)
-        populated = {}
-        total_renders = len(CAMERAS)
-        render_index = 0
-        for camera in CAMERAS:
-            path = renders / f"populated_{camera}.png"
-            render_index += 1
-            print(f"P-ORIENT render {render_index}/{total_renders}: populated {camera}",
-                  flush=True)
-            render(board_path, path, camera, args.width, args.height)
-            populated[camera] = path
-
-        view_paths = []
-        measurements_by_ref = {row["ref"]: row for row in measurements}
-        for review_group in review_groups:
-            ref = review_group["representative"]
-            measurement = measurements_by_ref[ref]
-            axis = measurement["access_axis_board"]
-            edge = measurement["edge_face"]["edge"]
-            source_fp = board.FindFootprintByReference(ref)
-            top_box = top_geometry_bbox(populated["top"], source_fp, polygon)
-            cardinal = (int(round(axis[0])), int(round(axis[1])))
-            outside = CARDINAL_CAMERA.get(cardinal)
-            if outside is None:
-                failures.append(f"{ref}: access axis is not cardinal enough to select cameras")
-                continue
-            inside = {"left":"right", "right":"left", "front":"back", "back":"front"}[outside]
-            profiles = ("front", "back") if outside in ("left", "right") else ("left", "right")
-            selections = [
-                ("top", "top", "TOP — green arrow is authored access direction",
-                 (axis[0], axis[1]), True),
-                ("outside", outside, f"OUTSIDE / CABLE — camera={outside}",
-                 None, False),
-                ("inside", inside, f"INSIDE / REAR — camera={inside}",
-                 None, False),
-            ]
-            if len(review_group["refs"]) == 1:
-                selections += [
-                    ("profile_a", profiles[0], f"PROFILE A — camera={profiles[0]}",
-                     None, False),
-                    ("profile_b", profiles[1], f"PROFILE B — camera={profiles[1]}",
-                     None, False),
-                ]
-            else:
-                notes.append(
-                    f"{ref}: orthogonal profiles omitted for repeated tuple "
-                    f"{review_group['refs']} because edge-row instances can occlude one another")
-            for suffix, camera, label, arrow, draw_box in selections:
-                output = views / f"{ref}_{suffix}.png"
-                try:
-                    geometry = top_box if camera == "top" else \
-                        side_geometry_window(populated[camera], source_fp,
-                                             polygon, camera)
-                    detail = (
-                        "Exact-board 3D; magenta box is exact footprint geometry "
-                        "(P-MODEL-REG owns body bbox)" if camera == "top" else
-                        "Exact-board 3D; crop is board-coordinate selected; no "
-                        "pixel-derived body box")
-                    focused_view(populated[camera], output, ref, label,
-                                 f"EDGE={edge}  CAMERA={camera}  SUBJECT={subject_sha[:16]}",
-                                 detail, geometry, arrow, draw_box)
-                    view_paths.append(output)
-                except ValueError as exc:
-                    failures.append(str(exc))
-
-        if failures:
-            verdict = "FAIL"
-        else:
-            verdict = "PASS"
-        receipt = {
-            "schema": 1,
-            "kind": KIND,
-            "verdict": verdict,
-            "subject_sha256": subject_sha,
-            "observed_board_sha256": observed_board_sha,
-            "config_sha256": digest(config_path),
-            "floorplan_sha256": digest(floorplan_path),
-            "tool_identity": identity,
-            "refs": refs,
-            "review_groups": review_groups,
-            "measurements": measurements,
-            "failures": failures,
-            "notes": notes,
-            "evidence": {},
-        }
-        for path in sorted(view_paths):
-            relative = path.relative_to(work).as_posix()
-            receipt["evidence"][relative] = digest(path)
-        write_json(work / "orientation_receipt.json", receipt)
-        (work / "orientation_review.md").write_text(
-            orientation_report(verdict, subject_sha, observed_board_sha,
-                               measurements, review_groups, failures, notes),
-            encoding="utf-8")
-        promote_output(work, outdir)
-    except (OSError, ValueError, yaml.YAMLError) as exc:
+    except (OSError, ValueError, subprocess.TimeoutExpired, yaml.YAMLError) as exc:
         print(f"P-ORIENT FAIL: {exc}")
         return 1
 

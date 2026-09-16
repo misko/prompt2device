@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.1.1 — manifest packaging correction — 2026-09-16
+
+- Removed the phantom manifest entry for an ignored KiCad session file absent from the published archive. All actual fabrication, source, STEP, schematic and connector render bytes are unchanged.
+- Fresh independent docs-only review: SOUND / DO-NOT-ORDER. Exact docs-only rehearsal: 3/3 required checks PASS; sourcing remains declared blocked.
+- Retains FIRST-ARTICLE-ONLY, both sourcing shortages and all physical/order holds. Supersedes v0.1.0-2026-09-16 without editing its existing payloads.
+
+Released: v0.1.1-2026-09-16
+
 ## v0.1.0 — initial routed engineering release — 2026-09-16
 
 - Completed the authenticated 19-wave route and final stitch on the four-layer

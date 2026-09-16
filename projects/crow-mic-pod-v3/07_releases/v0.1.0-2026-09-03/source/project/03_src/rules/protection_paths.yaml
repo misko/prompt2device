@@ -1,0 +1,44 @@
+schema: 1
+paths:
+  - name: spoke-12v-input
+    source_operating_max_V: 13.2
+    source_tolerance_included: true
+    source_boundary_evidence: >-
+      Frozen spoke contract at pod J1 includes carrier regulation and harness
+      drop; 13.2 V is the maximum normal pod-header voltage.
+    voltage_margin_pct: 10
+    admitted_transient:
+      claim: >-
+        SMBJ15A is a component-level 10/1000 us clamp only. No lightning,
+        building-wiring, or enclosure-level surge qualification is claimed.
+        The powered/transient ambient is limited to -30..+70 C by the exact
+        capsule specification; hotter enclosure operation is not admitted.
+      input_damping: "carrier source impedance, 15 m cable maximum and F1/D1 series impedance; measure the first article waveform"
+    tvs:
+      part: SMBJ15A
+      standoff_V: 15.0
+      clamp_max_V: 24.4
+      waveform_duration_ms: 1.0
+      waveform: 10/1000 us
+      peak_current_max_A: 10.0
+      peak_power_max_W: 244
+      evidence: >-
+        The public SMBJ15A row provides the 24.4 V clamp at its 24.6 A
+        component test point and a 600 W 25 C rating. Littelfuse Figure 3
+        linearly derates peak pulse power above 25 C; at the admitted +70 C
+        ceiling the conservative available rating is about 384 W, above this
+        project's 244 W envelope. This project admits no more than 10 A
+        because F1 is rated for at most 10 A prospective fault current; the
+        exact carrier/COTS source bound is still OWED and keeps the release
+        FIRST-ARTICLE-ONLY.
+    exposed:
+      - {ref: J1, part: "43650-0400", domain: cable_input, bounded_max_V: 24.4, recommended_max_V: 600, absolute_max_V: 600}
+      - {ref: F1, part: 0ZCJ0010FF2E, domain: series_input, bounded_max_V: 24.4, recommended_max_V: 60, absolute_max_V: 60}
+      - {ref: D1, part: "1N4007(M7)SMA", domain: series_input, bounded_max_V: 24.4, recommended_max_V: 1000, absolute_max_V: 1000}
+      - {ref: U2, part: TPS7A4901DGNR, domain: directly_tvs_clamped_input, bounded_max_V: 24.4, recommended_max_V: 35, absolute_max_V: 36}
+      - {ref: C1, part: GRM32ER71H106KA12L, domain: directly_tvs_clamped_input, bounded_max_V: 24.4, recommended_max_V: 50, absolute_max_V: 50}
+      - {ref: C2, part: CC0402KRX7R9BB104, domain: directly_tvs_clamped_input, bounded_max_V: 24.4, recommended_max_V: 50, absolute_max_V: 50}
+
+no_surge_exposed_paths: >-
+  AUDIO_P/AUDIO_N are low-energy signal lines clamped by U3 and are qualified
+  under ESD/EMC first-article testing; there is no other cable power input.

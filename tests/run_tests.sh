@@ -46,6 +46,15 @@ esac
 # has already paid for.
 SUITES=(
   t1_converter.py
+  t1_control_protocol.py
+  t1_crow_first_article_policy.py
+  t1_crow_governance.py
+  t1_crow_prelayout_resume.py
+  t1_crow_spoke_interface.py
+  t1_pipeline_stage_evidence.py
+  t1_reference_plane.py
+  t1_render_board.py
+  t1_route_residual_budget.py
   t1_occlusion.py
   t1_generate_board.py
   t1_audit.py
@@ -72,12 +81,16 @@ SUITES=(
   t1_pipeline_foundation.py
   t1_pipeline_contract.py
   t1_pipeline_execution.py
+  t1_decision_progress.py
   t1_pcb_commission.py
   t1_connector_assembly_contract.py
+  t1_connector_assembly_phase_gate.py
+  t1_connector_qualification_coupon.py
   t1_pcb_documentation.py
   t1_project_reports.py
   t1_skill_progressive_disclosure.py
   t1_pipeline_registry.py
+  t1_pipeline_qualification.py
   t1_pipeline_runtime.py
   t1_pipeline_artifacts.py
   t1_pipeline_acceptance.py
@@ -97,6 +110,7 @@ SUITES=(
   t1_counting.py
   t1_module_first.py
   t1_escape_tier.py
+  t1_land_witness.py
   t1_layout_precedent.py
   t1_rules_bom.py
   t1_rebuild_templates.py
@@ -112,6 +126,7 @@ SUITES=(
   t1_adr_bounds.py
   t1_schema_reader.py
   t1_copper_length.py
+  t1_critical_path_check.py
   t1_power_topology.py
   t1_critical_route.py
   t1_release_git_dirty.py
@@ -120,6 +135,7 @@ SUITES=(
   t1_release_required.py
   t1_publication_gate.py
   t1_assembly_gates.py
+  t1_assembly_locator.py
   t1_status.py
   t1_jlc_twin.py
   t1_twin_overlay.py
@@ -140,6 +156,7 @@ SUITES=(
   t1_import_provenance.py
   t1_shopping_list.py
   t2_route_stitch.py
+  t2_scoped_pad_clearance.py
   t2_tier_preflight.py
   t2_grind.py
   t2_pcb_flow.py

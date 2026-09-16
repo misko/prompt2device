@@ -151,6 +151,10 @@ time.
 
 Protection analysis must compare the worst protected-rail waveform—not nominal
 input—with every directly exposed component's recommended and absolute maximum.
+For interacting power domains or stored energy, review the relevant startup,
+normal, shutdown, brownout and restart transitions before detailed placement.
+Identify exposed inputs and sequencing dependencies early; scope the states to
+the brief, with design arguments and later physical qualification kept distinct.
 Gate-drive analysis must use maximum or qualified-maximum gate charge, all
 simultaneously driven FETs, minimum drive capability, switching frequency, and
 thermal assumptions. Threshold and feedback math must include component and IC

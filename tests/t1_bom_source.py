@@ -141,6 +141,28 @@ def t_nonC_supplier_handle_blanked():
     eq(codes["U1"], "C192421", "a real C-code must be kept verbatim")
 
 
+@test("board identity accepts electrical Values and still rejects stale supplier fields")
+def t_board_identity_fields():
+    source = {"C1": "C77102", "R1": "C113480", "U1": "C192421"}
+    clean = {
+        "C1": {"value": "10uF", "lcsc_fields": []},
+        "R1": {"value": "324kΩ", "lcsc_fields": ["C113480"]},
+        "U1": {"value": "OPA1679IDR", "lcsc_fields": []},
+    }
+    eq(bsc.board_identity_findings(clean, source), [],
+       "electrical Value/MPN text is not an LCSC identity field")
+
+    stale_hidden = {**clean, "C1": {"value": "10uF", "lcsc_fields": ["C77100"]}}
+    findings = bsc.board_identity_findings(stale_hidden, source)
+    check(any("PCB-LCSC-MISMATCH C1" in row for row in findings),
+          f"stale hidden LCSC field was not rejected: {findings}")
+
+    stale_value = {**clean, "C1": {"value": "C77100", "lcsc_fields": []}}
+    findings = bsc.board_identity_findings(stale_value, source)
+    check(any("PCB-VALUE-MISMATCH C1" in row for row in findings),
+          f"a Value explicitly used as the wrong C-code was not rejected: {findings}")
+
+
 # ------------------------------------------------------------ known-bad cases
 @test("gate FAILS a MERGED row: two source codes collapsed onto one line "
       "(the v1.1 defect)", kind="known_bad")
@@ -754,6 +776,21 @@ def t_legc_ledger_cross_check():
                    f"{len(bad)}/{checked} rows: {bad[:6]}")
     check(checked >= 60, f"only {checked} ledger rows were decodable at all — "
                          f"this cross-check has lost its denominator")
+
+
+@test("exact C705768 catalog value resolves 33k and rejects a changed label",
+      kind="known_bad")
+def t_precision_33k_catalog_identity():
+    """RED before the 2026-09-10 public-catalog ledger addition, not a decoder change."""
+    good = [bsc.BomRow(["R_SET"], "C705768", "33kΩ", "", "R_0603_1608Metric")]
+    check(not bsc.value_findings(good, None), "catalog-vetted 33k row must resolve")
+    missing = bsc.value_findings(good, None, ledger={})
+    check(any("UNVERIFIABLE-VALUE" in f for f in missing),
+          "empty authority must remain unverified")
+    bad = [bsc.BomRow(["R_SET"], "C705768", "34kΩ", "", "R_0603_1608Metric")]
+    findings = bsc.value_findings(bad, None)
+    check(any("VALUE-MISMATCH" in f and "33k" in f for f in findings),
+          f"catalog value must reject changed label: {findings}")
 
 
 if __name__ == "__main__":

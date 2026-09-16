@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
-"""Fail closed when tracked project enclosure files cross canonical paths."""
+"""Fail closed when tracked project enclosure files cross canonical paths.
+
+Coverage is every tracked path inside a project, including files without an
+enclosure extension. Repository-level entries are counted as unscoped. An
+empty project-path population is incomplete, never a successful audit.
+"""
 from __future__ import annotations
 
 import argparse
@@ -106,6 +111,8 @@ def audit(root: Path) -> tuple[list[str], dict[str, int]]:
         key = project_key(relative)
         if key:
             by_project[key].append(relative)
+    metrics["project_paths"] = sum(len(paths) for paths in by_project.values())
+    metrics["unscoped_entries"] = len(files) - metrics["project_paths"]
 
     for key, project_files in sorted(by_project.items()):
         src = source_prefix(key)
@@ -130,6 +137,7 @@ def audit(root: Path) -> tuple[list[str], dict[str, int]]:
 
         bindings = source_bindings(root, key, project_files)
         for path in project_files:
+            metrics["graded_paths"] += 1
             suffix = path.suffix.lower()
             lower = path.as_posix().lower()
             in_source = under(path, src)
@@ -203,6 +211,13 @@ def main() -> int:
     except (EnclosureError, OSError, ValueError) as exc:
         print(f"ENCLOSURE LAYOUT FAIL: {exc}", file=sys.stderr)
         return 1
+    print(
+        f"ENCLOSURE LAYOUT coverage={metrics.get('graded_paths', 0)}/"
+        f"{metrics['project_paths']} project paths; "
+        f"unscoped_entries={metrics['unscoped_entries']}; root={root}")
+    if not metrics["project_paths"]:
+        print("ENCLOSURE LAYOUT INCOMPLETE: NOTHING GRADED")
+        return 2
     if findings:
         for finding in findings:
             print(f"FAIL {finding}")

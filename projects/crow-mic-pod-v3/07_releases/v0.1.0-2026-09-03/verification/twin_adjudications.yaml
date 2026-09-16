@@ -1,0 +1,35 @@
+# Release-local JLC digital-twin dispositions for crow-mic-pod-v3 v0.1.0.
+#
+# These entries accept two catalog-CAD land-extent differences using retained
+# manufacturer/package evidence. They do not waive pin identity, polarity,
+# placement rotation, model coverage, or the mandatory JLC order-preview gate.
+
+- lcsc: C2972759
+  refs: [D1]
+  status: PAD-GEOM
+  why: >
+    C2972759 is the exact JKSEMI 1N4007(M7)SMA in DO-214AC/SMA. The retained
+    manufacturer PDF (SHA-256
+    f893d8385c6fee5af85b9053653bd8e93547c335c031cbab9ecb592c0bb5eddd)
+    identifies the exact package and polarity. The project land uses two
+    2.50 x 1.80 mm end-cap pads at 4.00 mm centers; JLC's EasyEDA land uses a
+    4.88 mm center span. Both overlap the same package terminal regions; the
+    reported 0.88 mm delta is a solder-fillet/land-extent preference, not a
+    pin-order or reflection mismatch. The project footprint remains the
+    reviewed board authority. D1 is separately rotation-sourced and remains
+    mandatory in the JLC ORDER-PREVIEW HUMAN GATE before any order.
+
+- lcsc: C83846
+  refs: [D2]
+  status: PAD-GEOM
+  why: >
+    C83846 is the exact Littelfuse SMBJ15A unidirectional TVS in DO-214AA/SMB.
+    The retained Littelfuse v4 sheet (SHA-256
+    d7df155be4b1f612085401e8c946f065e284d65a0e7de22b9225a7b73946e51b)
+    specifies solder-pad dimensions I at least 2.260 mm, J and L at least
+    2.160 mm, and gap K at most 2.740 mm. The project land uses 2.50 x 2.30 mm
+    pads with a 1.80 mm gap and therefore satisfies those manufacturer bounds.
+    JLC's 4.72 mm pad-center span differs from the project's 4.30 mm by
+    0.42 mm, a known land-extent preference on the same two end caps. Pad 1 is
+    independently verified as cathode on VIN_PROTECTED and pad 2 as anode on
+    GND; the order preview must preserve that polarity.

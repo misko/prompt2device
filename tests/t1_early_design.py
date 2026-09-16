@@ -2,6 +2,7 @@
 """T1: fail-closed commission/parts/schematic design contracts."""
 import sys
 from pathlib import Path
+import yaml
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from harness import (ROOT, check, contains, main, must_fail, must_pass, run,  # noqa: E402
@@ -401,6 +402,85 @@ def t_gate_bias_leakage():
                         "gate_leakage_abs_uA: 100")
     must_fail(run([sys.executable, ED, project(surge=bad), "--surge"]),
               "under-driven gate corner", "worst-low |VGS|")
+
+
+def prototype_esd_project(mutate=None):
+    """CAR-F10: typical TLP clamp was misrepresented as a guaranteed 8/20 bound."""
+    doc = yaml.safe_load(SURGE)
+    doc["schema"] = 2
+    doc["paths"][0]["qualification_mode"] = "bounded_transient"
+    doc["paths"].append({
+        "name": "audio", "qualification_mode": "unqualified_prototype_esd",
+        "source_operating_min_V": 1.45, "source_operating_max_V": 3.5,
+        "source_tolerance_included": True, "source_boundary_evidence": "fixture normal audio envelope",
+        "tvs": {"part": "TVS24", "standoff_V": 5.5, "recommended_min_V": 0,
+                "recommended_max_V": 5.5, "iec_contact_kV": 25, "iec_air_kV": 30,
+                "evidence": "component IEC table; typical TLP is not a guaranteed clamp"},
+        "exposed": [{"refs": ["U1", "U2"], "part": "TVS24", "recommended_min_V": 0,
+                     "recommended_max_V": 5.5, "evidence": "normal VIO table"}],
+        "qualification": {"status": "UNQUALIFIED", "board_survival_claim": False,
+                          "installation_restriction": "laboratory prototype only, no outdoor installation",
+                          "authorization": "prototype.md", "test_plan": "test-plan.md"},
+    })
+    if mutate:
+        mutate(doc)
+    d = project(surge=yaml.safe_dump(doc))
+    (d / "prototype.md").write_text("Prototype design authorized; no board transient survival claim.\n")
+    (d / "test-plan.md").write_text("Qualify actual connector-to-load ESD before installation.\n")
+    return d
+
+
+@test("E-SURGE prototype mode separates normal/component selection from unqualified board survival")
+def t_prototype_esd_selection():
+    r = must_pass(run([sys.executable, ED, prototype_esd_project(), "--surge"]), "honest prototype selection")
+    contains(r.out, "2 exposed parts / 2 suppressors", "nonzero denominator")
+    contains(r.out, "UNQUALIFIED E-SURGE audio", "board survival remains open")
+    check("PASS UNQUALIFIED" not in r.out, "unqualified survival is never prefixed PASS")
+    contains(r.out, "input/Q1 gate", "genuine input gate-stress proof retained")
+
+
+@test("E-SURGE prototype mode rejects invented maxima and survival claims", kind="known_bad")
+def t_prototype_esd_claim_laundering():
+    edits = [
+        lambda p: p["tvs"].update(clamp_max_V=12.4),
+        lambda p: p["exposed"][0].update(absolute_max_V=14),
+        lambda p: p["qualification"].update(board_survival_claim=True),
+        lambda p: p["qualification"].update(status="PASS"),
+        lambda p: p["qualification"].update(test_plan="../outside.md"),
+        lambda p: p.update(source_operating_max_V=5.6),
+        lambda p: p.update(source_operating_min_V=-0.1),
+        lambda p: p["tvs"].update(iec_air_kV=0),
+    ]
+    for edit in edits:
+        d = prototype_esd_project(lambda doc: edit(doc["paths"][1]))
+        must_fail(run([sys.executable, ED, d, "--surge"]), "invented/unqualified survival", "E-SURGE")
+
+
+@test("E-SURGE prototype mode rejects vacuous populations and ambiguous qualification modes", kind="known_bad")
+def t_prototype_esd_mode_and_population():
+    edits = [
+        lambda p: p.pop("qualification_mode"),
+        lambda p: p.update(qualification_mode="maybe"),
+        lambda p: p.update(qualification_mode=[]),
+        lambda p: p.update(qualification_mode="bounded_transient"),
+        lambda p: p.update(exposed=[]),
+        lambda p: p["exposed"][0].update(refs=[]),
+        lambda p: p["exposed"][0].update(refs=["U1-U8"]),
+        lambda p: p["exposed"][0].update(refs=["U1", "U1"]),
+        lambda p: p["exposed"][0].update(part="LOAD"),
+        lambda p: p.pop("qualification"),
+    ]
+    for edit in edits:
+        d = prototype_esd_project(lambda doc: edit(doc["paths"][1]))
+        must_fail(run([sys.executable, ED, d, "--surge"]), "mode/population fail closed", "E-SURGE")
+
+
+@test("E-SURGE prototype admission cannot weaken a bounded input-surge path", kind="known_bad")
+def t_prototype_esd_preserves_input_survival():
+    d = prototype_esd_project(lambda doc: doc["paths"][0]["exposed"][0].update(absolute_max_V=38))
+    must_fail(run([sys.executable, ED, d, "--surge"]), "bounded input still fails", "exceeds absolute maximum")
+    d = prototype_esd_project(lambda doc: doc.update(schema=1))
+    must_fail(run([sys.executable, ED, d, "--surge"]), "legacy schema cannot reinterpret modes", "requires schema 2")
 
 
 @test("E-CAP applies tolerance, DC-bias, temperature and lifecycle derating")

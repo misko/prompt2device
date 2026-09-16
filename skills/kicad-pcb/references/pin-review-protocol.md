@@ -14,7 +14,8 @@ artifacts against each other; this review compares them against the world.
   the cheapest possible stage.
 - The reviewer is a NEW agent with no context from the design session, no
   access to the authors' reasoning, and no stake in the answer.
-- Input per part: the `pin_audit.py` dossier (pad positions, sides, computed
+- Input per part: the `pin_audit.py` dossier (mounted side, coordinate-frame
+  conversion, component-top and native board pad positions, sides, computed
   winding, part.yaml functions, actual board nets, declared aliases) + the
   datasheet PDF selected by the `part.yaml` SHA-256. A neighboring-family or
   non-automotive PDF beside it is not an acceptable substitute.
@@ -28,8 +29,21 @@ artifacts against each other; this review compares them against the world.
    configuration figure (`pdftoppm -png -r 80 -f <page> -l <page>`), and
    read off: which corner is pin 1, which way do the numbers wind (top
    view), how many pins per side. Compare against the dossier's computed
-   winding and the pad table's sides. The dossier's frame may be any
-   ROTATION of the figure — rotation is fine, MIRROR is a dead board.
+   winding and the pad table's sides. First require an explicit mounted side
+   and coordinate convention; a legacy dossier without these is a QUESTION
+   and must be regenerated. COMPONENT-TOP looks at the component from its
+   mounted side, with board translation/rotation undone and +x right/+y down.
+   For a back mount the extractor reflects native KiCad relative y -> -y;
+   front mounting requires no reflection. The native board-coordinate column
+   remains the board-front projection and is not the pinout comparison frame.
+   Compare a manufacturer TOP VIEW to the component-top table by ROTATION
+   only. Do not apply another mirror to excuse a winding mismatch. If the
+   manufacturer figure is a BOTTOM VIEW, explicitly convert that figure to
+   TOP VIEW first and record the conversion. Rotation is fine; a remaining
+   MIRROR is a dead board. Mount conversion is not evidence of correct pin
+   numbering or electrical function. Collinear surviving pins establish no
+   winding; use the manufacturer figure and individual physical identities,
+   and keep QUESTION when the dossier cannot resolve the geometry.
 2. **Pin count and exposed pad.** Every datasheet pin exists as a pad; the
    EP is present and on the net the datasheet demands (usually GND or a
    specific plane). One physical copper land may represent several pins only

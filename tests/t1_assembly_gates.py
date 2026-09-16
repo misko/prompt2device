@@ -760,6 +760,136 @@ board_attr_plan:
               "undated/unevidenced defer", "DECLARED-NOT-EXCLUDED")
 
 
+
+# Assembly-side regressions run the public CLI on independently authored board
+# and CSV bytes. RED verified against the pre-fix checker on 2026-09-13; these
+# are manufacturing constraints, not proof of solderability/body clearance.
+def side_fixture(*, board_side="B.Cu", cpl_side="bottom", manual=False,
+                 reason="user_supplied", sides="[top]", tht=False):
+    d = tmpdir("assembly_side_")
+    board = d / "board.kicad_pcb"
+    layer = "B" if board_side == "B.Cu" else "F"
+    attrs = "through_hole" if tht else "smd"
+    if manual:
+        attrs += " exclude_from_pos_files"
+    pad = (f'(pad "1" thru_hole circle (at 0 0) (size 2 2) '
+           f'(drill 1) (layers "*.Cu" "*.Mask"))' if tht else
+           f'(pad "1" smd rect (at 0 0) (size 1 1) '
+           f'(layers "{layer}.Cu" "{layer}.Paste" "{layer}.Mask"))')
+    board.write_text(f'''(kicad_pcb
+ (footprint "Fixture:Part" (layer "{board_side}") (at 10 10)
+  (attr {attrs}) (property "Reference" "U1") {pad}))''')
+    (d / "cpl.csv").write_text(
+        "Designator,Mid X,Mid Y,Layer,Rotation\n" +
+        ("" if manual else f"U1,10,-10,{cpl_side},0\n"))
+    (d / "bom.csv").write_text("Designator,LCSC\n" +
+                                ("" if manual else "U1,C123\n"))
+    (d / "assembly.yaml").write_text(f'''schema: 1
+service: JLCPCB_PCBA
+sides: {sides}
+fiducials: none
+build_quantity: 1
+''' + (f'''not_assembled:
+  - refs: [U1]
+    reason: {reason}
+    evidence: "2026-09-13 fixture declares this precise assembly disposition"
+    disposition: "Manual fit or deliberate nonpopulation as declared by reason"
+''' if manual else "not_assembled: []\n"))
+    (d / "MANIFEST.txt").write_text("not_assembled: " + ("U1" if manual else "") + "\n")
+    return [KPY, COV, d, "--board", board, "--cpl", d / "cpl.csv",
+            "--bom", d / "bom.csv", "--assembly", d / "assembly.yaml",
+            "--manifest", d / "MANIFEST.txt", "--json", d / "coverage.json"]
+
+
+@test("A-POS assembly sides reject an actual bottom SMD on a top-only order",
+      kind="known_bad")
+def t_assembly_sides_bottom_smd():
+    r = must_fail(run(side_fixture()), "bottom SMD violates top-only", "SMD-SIDE-NOT-ALLOWED")
+    contains(r.out, "U1", "offending native reference is named")
+
+
+@test("A-POS assembly sides also include manually fitted SMD off the CPL",
+      kind="known_bad")
+def t_assembly_sides_manual_bottom():
+    for reason in ["user_supplied", "not_in_catalog", "process_incompatible", "mechanical"]:
+        must_fail(run(side_fixture(manual=True, reason=reason)),
+                  "manual disposition cannot move assembly to the underside",
+                  "SMD-SIDE-NOT-ALLOWED")
+
+
+@test("A-POS assembly sides reject a forged or missing CPL side even on a two-side order",
+      kind="known_bad")
+def t_assembly_sides_cpl_native_mismatch():
+    for side in ["top", "", "backwards"]:
+        must_fail(run(side_fixture(cpl_side=side, sides="[top, bottom]")),
+                  "CPL mounted side must equal native board side", "CPL-SIDE-MISMATCH")
+
+
+@test("A-POS assembly sides reject malformed or vacuous allowed-side declarations",
+      kind="known_bad")
+def t_assembly_sides_invalid_policy():
+    for sides in ["[]", "top", "[left]", "null", "[top, top]"]:
+        must_fail(run(side_fixture(board_side="F.Cu", cpl_side="top", sides=sides)),
+                  "invalid declaration cannot disable assembly side enforcement",
+                  "ASSEMBLY-SIDES-INVALID")
+
+
+@test("A-POS assembly sides accept declared top-only and intentional two-side assembly")
+def t_assembly_sides_clean():
+    for kwargs in [dict(board_side="F.Cu", cpl_side="top"),
+                   dict(sides="[top, bottom]"),
+                   dict(board_side="F.Cu", manual=True)]:
+        cmd = side_fixture(**kwargs)
+        must_pass(run(cmd), "declared side and native population agree")
+        summary = json.loads(Path(cmd[-1]).read_text())["summary"]
+        eq(summary["smd_side_graded"], 1, "manual and automated SMD both graded")
+
+
+@test("A-POS assembly sides distinguish unpopulated test/DNP copper and manual THT")
+def t_assembly_sides_nonpopulation():
+    for kwargs in [dict(manual=True, reason="test_point"),
+                   dict(manual=True, reason="dnp_by_design"),
+                   dict(manual=True, tht=True)]:
+        cmd = side_fixture(**kwargs)
+        must_pass(run(cmd), "non-SMD population does not create second-side SMT")
+        summary = json.loads(Path(cmd[-1]).read_text())["summary"]
+        eq(summary["smd_side_graded"], 0, "zero fitted SMD declared explicitly")
+
+
+@test("A-POS assembly sides count numbered copper independently of the SMD attribute")
+def t_assembly_sides_land_census():
+    cmd = side_fixture(board_side="F.Cu", cpl_side="top")
+    board = Path(cmd[cmd.index("--board") + 1])
+    board.write_text(board.read_text().replace("(attr smd)", ""))
+    must_pass(run(cmd), "manual/library omission of attr smd keeps the land in scope")
+    eq(json.loads(Path(cmd[-1]).read_text())["summary"]["smd_side_graded"], 1)
+    cmd = side_fixture(manual=True, reason="mechanical")
+    board = Path(cmd[cmd.index("--board") + 1])
+    board.write_text(board.read_text().replace('(pad "1" smd', '(pad "" smd'))
+    must_pass(run(cmd), "unnumbered fiducial copper is not a fitted SMD")
+    eq(json.loads(Path(cmd[-1]).read_text())["summary"]["smd_side_graded"], 0)
+
+
+@test("A-POS assembly sides reject conflicting manual and DNP declarations in either order",
+      kind="known_bad")
+def t_assembly_sides_conflicting_population():
+    for first, second in [("user_supplied", "dnp_by_design"),
+                          ("dnp_by_design", "user_supplied"),
+                          ("user_supplied", "test_point")]:
+        cmd = side_fixture(manual=True, reason=first)
+        assembly = Path(cmd[cmd.index("--assembly") + 1])
+        with assembly.open("a") as f:
+            f.write(f'''  - refs: [U1]
+    reason: {second}
+    evidence: "2026-09-13 contradictory fixture population declaration"
+    disposition: "Second declaration must not erase the explicit manual fit"
+''')
+        must_fail(run(cmd), "DNP cannot override explicit fitting",
+                  "ASSEMBLY-POPULATION-DUPLICATE")
+        summary = json.loads(Path(cmd[-1]).read_text())["summary"]
+        eq(summary["smd_side_graded"], 1, "ambiguous population stays in the denominator")
+
+
 # ========================================================== A-STOCK cases
 PASS_STOCK = """49 BOM lines: 47 with LCSC, 2 without
 

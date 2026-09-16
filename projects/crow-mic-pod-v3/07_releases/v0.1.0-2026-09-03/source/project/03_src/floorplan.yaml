@@ -1,0 +1,211 @@
+# Crow microphone pod v3 governed floorplan. 60 x 40 mm, two layers.
+# North is board -Y. J1's horizontal mating mouth and cable axis face north;
+# the protection boundary stays immediately inboard, the quiet microphone
+# landing occupies the east edge, and the active-balanced cell stays central.
+
+project:
+  name: crow_mic_pod_v3
+  netlist: 06_build/netlists/crow_mic_pod_v3.net
+  output: 04_kicad/crow_mic_pod_v3.kicad_pcb
+  parts_dir: 02_parts
+
+board:
+  outline: {x0: 20.0, y0: 20.0, x1: 80.0, y1: 60.0}
+  edge_width: 0.1
+  layers: 2
+  mounting_holes:
+    footprint: MountingHole:MountingHole_3.2mm_M3
+    at: [[24.0, 24.0], [76.0, 24.0], [24.0, 56.0], [76.0, 56.0]]
+
+libraries:
+  - /usr/share/kicad/footprints
+  - {lib: crow_mic_pod_v3, path: 03_src/lib/crow_mic_pod_v3.pretty}
+
+placement:
+  anchors:
+    # Exact Micro-Fit footprint origin is pad 1; body reaches 8.92 mm toward
+    # -Y. This anchor places the nominal mating plane 0.50 mm outboard so the
+    # declared +/-0.50 mm service setback still guarantees zero exposure.
+    J1: [45.5, 28.42, 0]
+    F1: [33.5, 33.5, 0]
+    D1: [39.5, 34.5, 0]
+    # D2 is the first copper destination after D1.1. Rotating the TVS 270
+    # degrees puts its protected pad beside D1 while its ground pad faces the
+    # local plane; downstream VIN branches leave only from the clamped node.
+    D2: [27.3, 38.0, 270]
+    # R14 converts D1's published 50 uA hot reverse-leakage ceiling into a
+    # bounded -0.23735 V protected node at R14's +1% corner during a hot
+    # wrong-polarity hookup.
+    # Keep the reverse-leakage shunt below the connector-first D2-to-C1
+    # corridor.  Its protected land remains easy to reach from C2 without
+    # forcing exposed input copper to branch before the TVS.
+    R14: [28.0, 46.0, 90]
+    # Keep the independently graded bulk and HF input capacitors directly at
+    # U2 pin 8. Both routes are source-owned, same-side and via-free.
+    C1: [31.5, 41.2, 90]
+    # Face C2's VIN land toward U2 so its required short route does not cross
+    # the grounded second pad.
+    C2: [32.0, 44.2, 180]
+
+    U2: [35.0, 45.0, 90]
+    # The feedback, feed-forward and NR parts surround U2 instead of reaching
+    # the regulator through long or via-bearing traces.
+    R1: [36.2, 50.0, 90]
+    R2: [38.0, 50.0, 90]
+    # Put C3's two lands side-by-side beneath the matching U2 OUT and FB pins;
+    # both short routes can then run in parallel without crossing either pad.
+    C3: [34.6, 49.2, 0]
+    C4: [35.3, 40.5, 90]
+    # C6 is the first output destination and C5 is immediately downstream.
+    # Both are same-side and via-free from U2.1; C6 is the local high-frequency
+    # bypass and C5 supplies the required stable bulk output capacitance.
+    C5: [31.65, 49.5, 180]
+    C6: [32.0, 47.0, 180]
+
+    # U3 sits behind J1 audio pads before either leg branches. At 0 degrees,
+    # pins 3 and 5 admit the two connector traces from above/left while their
+    # independent downstream launches leave below/right; no trace must cross
+    # the other channel or share a pre-clamp segment.
+    U3: [52.4, 31.15, 0]
+    R12: [57.0, 36.0, 0]
+    R13: [62.0, 36.0, 0]
+
+    MK1: [73.0, 42.5, 90]
+    R4: [69.0, 39.5, 90]
+    C8: [67.5, 43.0, 90]
+    R5: [64.5, 43.0, 90]
+    R3: [64.0, 39.0, 0]
+    C7: [69.0, 34.0, 0]
+
+    U1: [57.5, 49.0, 0]
+    R6: [46.0, 45.0, 90]
+    R7: [46.0, 48.0, 90]
+    C9: [49.0, 46.5, 90]
+    R8: [51.0, 51.0, 90]
+    R9: [51.0, 54.0, 90]
+    R10: [64.0, 51.0, 90]
+    R11: [64.0, 54.0, 90]
+    # Put the 100 nF op-amp bypass immediately west of U1 pin 4. The 180-degree
+    # orientation faces its 5 V land toward the supply pin and keeps ground on
+    # the plane side.
+    C10: [52.6, 49.0, 180]
+    C11: [59.0, 41.0, 0]
+
+    TP1: [23.5, 31.0, 0]
+    TP2: [24.0, 43.0, 0]
+    TP3: [24.0, 47.0, 0]
+    TP4: [24.0, 51.0, 0]
+    # Output probes live beside the post-resistor corridors instead of forming
+    # long antenna-like branches across the board.
+    TP5: [57.9, 32.5, 0]
+    TP6: [62.9, 32.5, 0]
+    TP7: [45.0, 56.0, 0]
+  patterns:
+    # The connector and microphone/capsule wire landing are manual operations,
+    # never machine-placement instructions. They stay electrically present.
+    - match: "J1"
+      attrs: [exclude_from_pos_files]
+      model_override:
+        file: "${KIPRJMOD}/../03_src/lib/3dmodels/Molex_43650-0400_drawing-envelope.wrl"
+        offset: [0, 0, 0]
+        rotate: [0, 0, 0]
+    # MK1 is not a body fitted to this PCB. It is the two governed wire
+    # landings for an enclosure-mounted capsule, so exclude this copper-only
+    # object from BOM, position and fitted-body coverage.
+    - {match: "MK1", attrs: [board_only, exclude_from_pos_files]}
+    - {match: "TP*", attrs: [board_only, exclude_from_bom, exclude_from_pos_files]}
+    - match: "J1"
+      pad_overrides:
+        - {pads: [2], zone_connection: full}
+    - match: "U2"
+      model_override:
+        file: "${KIPRJMOD}/../03_src/lib/3dmodels/TI_DGN0008G.stp"
+        offset: [0, 0, 0]
+        rotate: [0, 0, 0]
+      pad_overrides:
+        - {pads: [9], zone_connection: full}
+    - match: "U3"
+      pad_overrides:
+        - {pads: [4], zone_connection: full}
+    - match: "D2"
+      pad_overrides:
+        - {pads: [2], zone_connection: full}
+    # These four small ground lands were either isolated or left with one
+    # thermal spoke after the complete signal/power route. A solid F.Cu plane
+    # bond is electrically preferable for the LDO noise/bypass and bias
+    # returns, and removes a physically impossible 0.6-mm rescue-via demand at
+    # the two 0402 pads. The board's distributed GND stitch fence still bonds
+    # the front and back planes.
+    - match: "C4"
+      pad_overrides:
+        - {pads: [2], zone_connection: full}
+    - match: "C6"
+      pad_overrides:
+        - {pads: [2], zone_connection: full}
+    - match: "R2"
+      pad_overrides:
+        - {pads: [2], zone_connection: full}
+    - match: "R7"
+      pad_overrides:
+        - {pads: [2], zone_connection: full}
+  legalize: {enable: true, clearance: 0.25, edge_margin: 1.0, hole_keepout: 2.6, ring_max: 40}
+
+design_rules:
+  track_min_width: 0.127
+  min_clearance: 0.127
+  via_min_annulus: 0.15
+  hole_clearance: 0.25
+  hole_to_hole: 0.5
+  copper_edge_clearance: 0.3
+  via_min_size: 0.6
+  min_through_drill: 0.3
+  solder_mask_min_width: 0.0
+  solder_mask_expansion: 0.0
+
+zones:
+  - {net: GND, layers: [F.Cu, B.Cu], priority: 0, min_thickness: 0.25, clearance: 0.3, connect: thermal}
+
+silk:
+  min_text_height: 0.45
+  refdes: {size: 0.6, min_size: 0.45, fab_copy: true, clearance: 0.16, priority_prefixes: "UJD"}
+  captions:
+    - ["CROW POD V3", 30.0, 21.5, 0.60]
+    - ["J1 1:12V 2:G 3:+ 4:-", 45.5, 29.5, 0.50]
+    - ["NOT ETHERNET / NOT POE", 67.0, 29.0, 0.65]
+    - ["MK1 WIRE LANDING + / -", 69.0, 47.5, 0.60]
+    # Dedicated F1 service text prevents TP2's PROT label from being
+    # interpreted as the fuse's nearest functional legend.
+    - ["PTC", 31.5, 34.0, 0.45]
+    - ["12V", 25.5, 31.0, 0.45]
+    - ["PROT", 26.0, 43.0, 0.45]
+    - ["5V", 26.0, 47.0, 0.45]
+    - ["VREF", 26.0, 51.0, 0.45]
+    - ["A+", 57.9, 31.8, 0.45]
+    - ["A-", 62.9, 31.8, 0.45]
+    - ["GND", 45.0, 58.0, 0.45]
+
+asserts:
+  edge_faces:
+    - {ref: J1, edge: y0, min_offset_mm: 0.5}
+  pad_net:
+    - {ref: J1, pad: 1, net: 12V_POD}
+    - {ref: J1, pad: 2, net: GND}
+    - {ref: J1, pad: 3, net: AUDIO_P}
+    - {ref: J1, pad: 4, net: AUDIO_N}
+    - {ref: D1, pad: 1, net: VIN_PROTECTED}
+    - {ref: D1, pad: 2, net: 12V_FUSED}
+    - {ref: D2, pad: 1, net: VIN_PROTECTED}
+    - {ref: D2, pad: 2, net: GND}
+    - {ref: R14, pad: 1, net: VIN_PROTECTED}
+    - {ref: R14, pad: 2, net: GND}
+    - {ref: U2, pad: 1, net: 5V_QUIET}
+    - {ref: U2, pad: 5, net: VIN_PROTECTED}
+    - {ref: U2, pad: 8, net: VIN_PROTECTED}
+    - {ref: U2, pad: 9, net: GND}
+    - {ref: U1, pad: 4, net: 5V_QUIET}
+    - {ref: U1, pad: 11, net: GND}
+    - {ref: U3, pad: 3, net: AUDIO_P}
+    - {ref: U3, pad: 4, net: GND}
+    - {ref: U3, pad: 5, net: AUDIO_N}
+    - {ref: MK1, pad: 1, net: MIC_RAW}
+    - {ref: MK1, pad: 2, net: GND}

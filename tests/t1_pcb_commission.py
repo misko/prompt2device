@@ -347,5 +347,20 @@ def t_template_census():
           "campaign coordinator state leaked into one board")
 
 
+@test("scaffold CLI coverage matches the complete written file population")
+def t_cli_coverage():
+    """RED against 18c96c58: scaffold success only printed an isolated count."""
+    root = tmpdir("commission-coverage-")
+    brief = root / "brief.txt"
+    brief.write_text("A simple two-layer board.\n")
+    destination = root / "projects"
+    destination.mkdir()
+    result = must_pass(invoke(destination, brief), "scaffold coverage")
+    written = sum(path.is_file() for path in (destination / "fresh-board").rglob("*"))
+    check(written > 0, "empty scaffold population")
+    contains(result.out, f"coverage={written}/{written} scaffold files written",
+             "filesystem-measured scaffold denominator")
+
+
 if __name__ == "__main__":
     sys.exit(main())

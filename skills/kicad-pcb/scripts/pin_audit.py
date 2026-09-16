@@ -4,8 +4,11 @@ verify one part's pins against the datasheet and electrical intent - and
 nothing of the authors' conclusions.
 
 Per part it emits <ref>.md containing:
-  - the pad table straight from the BOARD: pad number, footprint-local
-    position (rotation-0 frame), side, size, and the NET actually connected
+  - the pad table straight from the BOARD: pad number, component-top local
+    position, native board position, side, size, and the NET actually connected
+  - every unnumbered paste/mechanical feature: stable dossier identity, pad
+    type, shape, drill, layer mask, component-top and native board coordinates
+  - mounted side and the explicit rotation/reflection used for the local frame
   - the computed pin-1 corner and winding direction (CW/CCW, top view)
   - the pin-function map from 02_parts/<MPN>/part.yaml (datasheet-sourced)
   - the datasheet path, so the reviewer can check the pinout figure directly
@@ -38,24 +41,56 @@ except ImportError:
     yaml = None
 
 
+PAD_ATTRIBUTES = {
+    pcbnew.PAD_ATTRIB_PTH: "PTH",
+    pcbnew.PAD_ATTRIB_SMD: "SMD",
+    pcbnew.PAD_ATTRIB_CONN: "connector",
+    pcbnew.PAD_ATTRIB_NPTH: "NPTH",
+}
+
+PAD_SHAPES = {
+    pcbnew.PAD_SHAPE_CIRCLE: "circle",
+    pcbnew.PAD_SHAPE_RECT: "rectangle",
+    pcbnew.PAD_SHAPE_OVAL: "oval",
+    pcbnew.PAD_SHAPE_TRAPEZOID: "trapezoid",
+    pcbnew.PAD_SHAPE_ROUNDRECT: "roundrect",
+    pcbnew.PAD_SHAPE_CHAMFERED_RECT: "chamfered-rectangle",
+    pcbnew.PAD_SHAPE_CUSTOM: "custom",
+}
+
+
 def local_pads(fp):
-    """Pads in the footprint's own frame (board rotation undone)."""
-    rot = fp.GetOrientationDegrees()
-    fp.SetOrientationDegrees(0)
-    ox, oy = fp.GetPosition().x / 1e6, fp.GetPosition().y / 1e6
+    """Component-top coordinates, +x right/+y down, without editing the board.
+
+    KiCad's native relative position undoes board translation and rotation,
+    but retains the back-mounted footprint's reflection about local x. Undo
+    that y reflection ONLY when native IsFlipped() is true. This is a change
+    of observation side, never a correction based on an expected pin winding;
+    a physically mirrored footprint remains mirrored on either mounted side.
+    """
+    y_sign = -1 if fp.IsFlipped() else 1
     out = []
     for p in fp.Pads():
         n = str(p.GetNumber())
+        local = p.GetFPRelativePosition()
+        board_pos = p.GetPosition()
+        drill = p.GetDrillSize()
         out.append({
             "num": n,
-            "x": round(p.GetPosition().x / 1e6 - ox, 3),
-            "y": round(p.GetPosition().y / 1e6 - oy, 3),
+            "x": local.x / 1e6,
+            "y": y_sign * local.y / 1e6,
+            "board_x": board_pos.x / 1e6,
+            "board_y": board_pos.y / 1e6,
             "w": round(p.GetSize(pcbnew.F_Cu).x / 1e6, 2),
             "h": round(p.GetSize(pcbnew.F_Cu).y / 1e6, 2),
             "net": p.GetNetname() or "(no net)",
-            "tht": p.GetDrillSize().x > 0,
+            "tht": drill.x > 0,
+            "kind": PAD_ATTRIBUTES.get(p.GetAttribute(), f"unknown-{p.GetAttribute()}"),
+            "shape": PAD_SHAPES.get(p.GetShape(), f"unknown-{p.GetShape()}"),
+            "drill_w": round(drill.x / 1e6, 2),
+            "drill_h": round(drill.y / 1e6, 2),
+            "layers": p.GetLayerSet().FmtHex(),
         })
-    fp.SetOrientationDegrees(rot)
     return out
 
 
@@ -78,6 +113,18 @@ def winding(pads):
                  key=lambda p: int(p["num"]))
     if len(seq) < 3:
         return "n/a (too few perimeter pins)"
+    # Aliased composite lands are omitted upstream. The surviving pins can
+    # therefore occupy one straight row, which has no winding. In that case
+    # atan2's +/-pi tie would otherwise invent a direction around the row's
+    # centroid. Do not infer the missing physical terminal positions.
+    origin = seq[0]
+    farthest = max(seq, key=lambda p: (p["x"] - origin["x"]) ** 2
+                   + (p["y"] - origin["y"]) ** 2)
+    dx, dy = farthest["x"] - origin["x"], farthest["y"] - origin["y"]
+    tolerance = 1e-9 * max(1.0, dx * dx + dy * dy)
+    if all(abs(dx * (p["y"] - origin["y"])
+               - dy * (p["x"] - origin["x"])) <= tolerance for p in seq):
+        return "n/a (collinear perimeter pins)"
     xs = [p["x"] for p in seq]
     ys = [p["y"] for p in seq]
     cx, cy = sum(xs) / len(xs), sum(ys) / len(ys)
@@ -215,16 +262,22 @@ def main():
             f"# pin dossier: {ref}  ({mpn or 'MPN unknown'})",
             "",
             f"- footprint: {fp.GetFPID().GetUniStringLibId()}",
-            f"- board position: ({fp.GetPosition().x/1e6:.1f}, {fp.GetPosition().y/1e6:.1f}) rot {fp.GetOrientationDegrees():.0f}",
+            f"- board position: ({fp.GetPosition().x/1e6:.6f}, {fp.GetPosition().y/1e6:.6f}) rot {fp.GetOrientationDegrees():.6f} degrees (native KiCad)",
+            f"- mounted side: {'back (B.Cu)' if fp.IsFlipped() else 'front (F.Cu)'}",
             f"- computed winding of pins 1..N: **{winding(winding_pads)}**",
             f"- datasheet: {ds}",
             f"- part.yaml verification note: {verified or '(none)'}",
             "",
-            "Coordinates are FOOTPRINT-LOCAL mm, rotation undone; +y is DOWN",
-            "(so this table reads like the top view of the part on the board).",
+            "Local coordinates are COMPONENT-TOP mm: looking at the component from its mounted side,",
+            "with board translation and rotation undone; +x is RIGHT, +y is DOWN.",
+            ("Back mount: native KiCad relative coordinates are reflected y -> -y after undoing rotation."
+             if fp.IsFlipped() else "Front mount: native KiCad relative coordinates need no reflection."),
+            "Winding and N/S/E/W sides use this component-top frame; compare a manufacturer TOP VIEW by rotation only.",
+            "The native board coordinates retain the board-front projection, +x right/+y down, without any transform.",
+            "Frame conversion does not validate the footprint or electrical connections.",
             "",
-            "| pad | local (x,y) | side | size | function (part.yaml) | NET on board |",
-            "|---|---|---|---|---|---|",
+            "| pad | local (x,y) | side | size | function (part.yaml) | NET on board | native board (x,y) |",
+            "|---|---|---|---|---|---|---|",
         ]
         seen = set()
         for p in sorted(numbered, key=lambda q: (len(q["num"]), q["num"])):
@@ -235,8 +288,9 @@ def main():
             for semantic, spec in aliases.items():
                 if isinstance(spec, dict) and str(spec.get("footprint", "")) == p["num"]:
                     semantic_seen.add(semantic)
-            lines.append(f"| {p['num']} | ({p['x']:+.2f},{p['y']:+.2f}) | {p['side']} "
-                         f"| {p['w']}x{p['h']}{' THT' if p['tht'] else ''} | {fn} | {p['net']} |")
+            lines.append(f"| {p['num']} | ({p['x']:+.6f},{p['y']:+.6f}) | {p['side']} "
+                         f"| {p['w']}x{p['h']}{' THT' if p['tht'] else ''} | {fn} | {p['net']} "
+                         f"| ({p['board_x']:+.6f},{p['board_y']:+.6f}) |")
         if aliases:
             lines += ["", "Declared pin aliases (review these against the manufacturer drawing):"]
             for semantic, spec in sorted(aliases.items()):
@@ -250,9 +304,28 @@ def main():
         missing = [k for k in ymap if k not in seen and k not in semantic_seen]
         if missing:
             lines += ["", f"part.yaml pins with NO pad on the footprint: {missing}"]
-        anon = sum(1 for p in pads if not p["num"])
-        if anon:
-            lines += ["", f"({anon} unnumbered paste/mechanical pads not shown)"]
+        anonymous = sorted(
+            (p for p in pads if not p["num"]),
+            key=lambda p: (p["x"], p["y"], p["kind"], p["shape"],
+                           p["w"], p["h"], p["layers"]),
+        )
+        if anonymous:
+            lines += [
+                "",
+                "Native unnumbered paste/mechanical features (complete footprint inventory):",
+                "",
+                "| feature | type | shape | local (x,y) | size | drill | layer mask | native board (x,y) |",
+                "|---|---|---|---|---|---|---|---|",
+            ]
+            for index, p in enumerate(anonymous, 1):
+                drill = (f"{p['drill_w']}x{p['drill_h']}"
+                         if p["drill_w"] or p["drill_h"] else "none")
+                lines.append(
+                    f"| anonymous-{index} | {p['kind']} | {p['shape']} "
+                    f"| ({p['x']:+.6f},{p['y']:+.6f}) | {p['w']}x{p['h']} "
+                    f"| {drill} | `{p['layers']}` "
+                    f"| ({p['board_x']:+.6f},{p['board_y']:+.6f}) |"
+                )
         (out / f"{ref}.md").write_text("\n".join(lines) + "\n")
         made.append(ref)
     print(f"dossiers: {len(made)} -> {out}  ({', '.join(made)})")

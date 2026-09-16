@@ -1,0 +1,55 @@
+device: "miniDSP MCHStreamer"
+record: README.md
+
+facts:
+  - id: tdm8_header_pinout
+    what: TDM8 signal assignment on MCHStreamer J1
+    grade: CITED
+    method: >-
+      Read from the miniDSP MCHStreamer User Manual, section 2.5.2,
+      Figure 1, Table 1 and TDM firmware Table 12; inspected 2026-09-01.
+    quote: "**TDM8 header pinout: J1 pin 1 is data output, pin 2 is data input, pin 9 is MCLK, pin 10 is BCLK, pin 11 is GND, and pin 12 is FSYNC.**"
+
+  - id: tdm8_clock_master_48k
+    what: MCHStreamer TDM8 clock-master frequencies and logic level at 48 kHz
+    value: "48 kHz"
+    units: sample-rate
+    grade: CITED
+    method: >-
+      Read from the miniDSP MCHStreamer User Manual, sections 2.5.1 and
+      2.5.2 and the TDM firmware table; inspected 2026-09-01.
+    quote: "**At 48 kHz TDM8, the MCHStreamer is clock master and supplies 24.576 MHz MCLK, 12.288 MHz BCLK, and 48 kHz FSYNC at 3.3 V logic levels.**"
+
+  - id: header_key_and_pin1_orientation
+    what: exact physical MCHStreamer J1/J3 header identity, keying and installed cable orientation
+    grade: OWED
+    how_to_obtain: >-
+      Inspect a named MCHStreamer hardware revision and sample, identify or
+      measure both male headers, and continuity-check the exact selected
+      TCSD-06-D-04.50-01 assemblies through seating, polarity, collision and
+      retention operations. Capture photographs and measurement evidence in a
+      typed connector qualification receipt before the full connector gate.
+    quote: "**Physical J1/J3 male-header keying, exact manufacturer part number, post dimensions, exposed contact length, and the installed pin-1/cable orientation are OWED.**"
+
+  - id: j3_presence_supply
+    what: MCHStreamer J3 presence-supply pinout and current limit
+    value: "3.3 V"
+    units: V
+    grade: CITED
+    method: >-
+      Read from the miniDSP MCHStreamer User Manual, section 2.4 and Table 1;
+      inspected 2026-09-01.
+    quote: "**J3 pin 1 is GND and J3 pin 2 supplies 3.3 V, with at most 200 mA available to an external load.**"
+
+  - id: tdm8_firmware_image_identity
+    what: exact authorized miniDSP TDM8 image, updater package, image digest and module readback
+    grade: OWED
+    how_to_obtain: >-
+      Acquire the MCHStreamer from miniDSP or an authorized dealer, obtain the
+      manufacturer-provided software package through the authenticated User
+      Downloads or support workflow, retain the original package and TDM8
+      image, record their SHA-256 digests and versions, load the image with the
+      vendor updater, and capture module/readback plus 48 kHz TDM8 clock,
+      framing, channel-order and power-cycle verification. Do not substitute a
+      filename or binary obtained from a community post.
+    quote: "**The exact authorized TDM8 image, updater/package version, image SHA-256, and module readback are OWED.**"

@@ -55,5 +55,40 @@ class NetlistDigestTest(unittest.TestCase):
         self.assertNotEqual(first, changed)
 
 
+class DesignRulesDigestTest(unittest.TestCase):
+    def project(self, route: str) -> tuple[tempfile.TemporaryDirectory, Path]:
+        temporary = tempfile.TemporaryDirectory()
+        project = Path(temporary.name)
+        rules = project / "03_src" / "rules"
+        rules.mkdir(parents=True)
+        (rules / "requirements.yaml").write_text("schema: 1\n")
+        (project / "03_src" / "route.yaml").write_text(route)
+        return temporary, project
+
+    def test_search_controls_are_nonsemantic_but_width_remains_semantic(self) -> None:
+        base = '''route:
+  waves:
+  - name: clocks
+    group: clocks
+    layers: [F.Cu]
+    track_width: 0.36
+    clearance: 0.25
+'''
+        with_grid = base.replace(
+            "    track_width",
+            "    grid_step: 0.05\n    ordering: original\n"
+            "    via_cost: 1000\n    via_proximity_cost: 0\n"
+            "    track_width")
+        narrower = base.replace("track_width: 0.36", "track_width: 0.20")
+        fixtures = [self.project(text) for text in (base, with_grid, narrower)]
+        try:
+            digests = [MODULE.design_rules_digest(project) for _, project in fixtures]
+        finally:
+            for temporary, _ in fixtures:
+                temporary.cleanup()
+        self.assertEqual(digests[0], digests[1])
+        self.assertNotEqual(digests[0], digests[2])
+
+
 if __name__ == "__main__":
     unittest.main()

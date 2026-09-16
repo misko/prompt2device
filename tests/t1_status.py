@@ -360,10 +360,11 @@ def t_beacon_fleet_denominator():
     PASS/FAIL here would encode the thing under observation."""
     r = run([KPY, BEACON_GATE, "--root", str(ROOT)])   # the real fleet
     active = sorted(p.name for p in PROJECTS.glob("*") if p.is_dir())
-    eq(active, ["pluto-rx2-8way-v5", "usb-controlled-debug-hub-2a-v1",
+    eq(active, ["crow-audio-carrier-v1", "crow-mic-pod-v3", "crow-roof-array-v1",
+                "pluto-rx2-8way-v5", "usb-controlled-debug-hub-2a-v1",
                 "usb-hub-3s-v3"], "the intentional active-project inventory")
     n = len(sorted(PROJECTS.glob("*/01_docs/STATUS*.md")))
-    eq(n, 3, "one status beacon for each retained active project")
+    eq(n, 6, "one status beacon for each retained active project")
     contains(r.out, f"coverage: {n}/{n} beacons graded", "full denominator")
     for b in sorted(PROJECTS.glob("*/01_docs/STATUS*.md")):
         contains(r.out, str(b), f"names the artifact it graded ({b.name})")

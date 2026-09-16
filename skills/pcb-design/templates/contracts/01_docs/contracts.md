@@ -245,6 +245,39 @@ binding exception unless the commission locked a production-cost or size cap.
 | `findings[].finding` | ADVISORY | concise human description; maturity derives from state and boundary, not prose interpretation |
 | `findings[].closes_when` | `project_state.py` | objective closure condition required on every row |
 | `findings[].evidence` | `project_state.py` | existing evidence paths required for closed or waived findings |
+| `findings[].investigation` | `decision_progress.py` | optional closed schema-1 decision-control record; no change to maturity or engineering predicates |
+| `findings[].investigation.schema` | `decision_progress.py` | exact version 1 |
+| `findings[].investigation.requirement` | `decision_progress.py` | exact path/sha256/locator authority binding; identity, not semantic proof |
+| `findings[].investigation.requirement.path` | `decision_progress.py` | existing project-relative authority path; traversal and missing files rejected |
+| `findings[].investigation.requirement.sha256` | `decision_progress.py` | SHA256 verified against the actual authority bytes |
+| `findings[].investigation.requirement.locator` | `decision_progress.py` | nonempty requirement locator; hash identity does not prove the cited interpretation |
+| `findings[].investigation.due_stage` | `decision_progress.py` | existing lifecycle owner stage; cannot reclassify an acceptance hold |
+| `findings[].investigation.operating_states` | `decision_progress.py` | nonempty applicable-state list |
+| `findings[].investigation.question` | `decision_progress.py` | stable design decision named in the compact handoff |
+| `findings[].investigation.milestones` | `decision_progress.py` | finite mapping of milestone IDs to decision-relevant closure conditions |
+| `findings[].investigation.milestones.<ID>` | `decision_progress.py` | dynamic milestone name mapped to one nonempty closure-condition string; not an ungraded subtree |
+| `findings[].investigation.max_nonimproving_attempts` | `decision_progress.py` | cumulative consecutive non-improvement ceiling |
+| `findings[].investigation.max_attempts` | `decision_progress.py` | total ceiling, even across novel results and changed subjects |
+| `findings[].investigation.history` | `decision_progress.py` | ordered append-only observations; unique IDs, subject hashes, executed/historical origin, hypothesis/result, model domain, progress IDs and hash-bound evidence |
+| `findings[].investigation.history[].id` | `decision_progress.py` | unique observation identity joined to any existing reservation without double-counting spend |
+| `findings[].investigation.history[].subject_sha256` | `decision_progress.py` | exact studied-subject digest; reserved launches require the same subject |
+| `findings[].investigation.history[].origin` | `decision_progress.py` | closed executed/historical-assessment vocabulary; a reservation requires an executed assessment |
+| `findings[].investigation.history[].hypothesis` | `decision_progress.py` | required nonempty hypothesis; scientific judgment remains with the coordinator |
+| `findings[].investigation.history[].result` | `decision_progress.py` | required nonempty observed result; no automatic engineering acceptance |
+| `findings[].investigation.history[].model_domain` | `decision_progress.py` | closed model-domain vocabulary; outside/unknown predictions cannot earn milestone credit |
+| `findings[].investigation.history[].progress` | `decision_progress.py` | unique declared milestone IDs, credited at most once across the full history |
+| `findings[].investigation.history[].evidence` | `decision_progress.py` | nonempty evidence list, every member reopened before assessment |
+| `findings[].investigation.history[].evidence[].path` | `decision_progress.py` | existing project-relative evidence path with traversal and escape checks |
+| `findings[].investigation.history[].evidence[].sha256` | `decision_progress.py` | exact evidence-byte identity; not validation of the scientific claim |
+| `findings[].investigation.launches` | `decision_progress.py, pcb_flow.py` | durable ID/source-hash reservations before named dispatch; pending assessment blocks further experiments and completion shares the same budget slot |
+| `findings[].investigation.launches[].id` | `decision_progress.py` | unique reserved attempt ID used to detect unassessed launches |
+| `findings[].investigation.launches[].subject_sha256` | `decision_progress.py` | reserved subject digest matched by the later assessment |
+| `findings[].investigation.next` | `decision_progress.py` | action, hypothesis, distinct support/reject decisions and bounded/decision-limiting uncertainty |
+| `findings[].investigation.next.action` | `decision_progress.py` | investigate/reassess control; reassess stops another numerical launch |
+| `findings[].investigation.next.hypothesis` | `decision_progress.py` | nonempty hypothesis for the next decision |
+| `findings[].investigation.next.on_support` | `decision_progress.py` | nonempty support outcome, required to differ from the reject outcome |
+| `findings[].investigation.next.on_reject` | `decision_progress.py` | nonempty reject outcome, required to differ from the support outcome |
+| `findings[].investigation.next.uncertainty` | `decision_progress.py` | bounded/decision-limiting vocabulary; unresolved decision-limiting uncertainty stops refinement |
 - A requirement found in ARCHITECTURE/code with no P/D/Q/A trace → someone
   invented it. Add an `A#` entry declaring it retroactively and flag it for
   the user, or remove the feature.

@@ -1,0 +1,5 @@
+schema: 2
+stages: []
+no_external_gate_drive_stages: >-
+  TPS7A4901 is a linear pass regulator with no external MOSFET or switching
+  gate-drive stage. The remaining protection parts are passive.

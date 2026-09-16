@@ -1,0 +1,34 @@
+input: bom = projects/crow-mic-pod-v3/07_releases/v0.2.0-2026-09-15/fab/bom.csv
+22 BOM lines: 22 with LCSC, 0 without
+
+  OK               C194142    x1   0ZCJ0010FF2E                           expand stock=24799
+  OK               C25741     x2   100kΩ                                  base   stock=11303132
+  OK               C131394    x1   100nF                                  expand stock=7741100
+  OK               C1525      x2   100nF                                  base   stock=31075377
+  OK               C84455     x1   100uF                                  expand stock=23652
+  OK               C17408     x2   100Ω                                   base   stock=10063499
+  OK               C60490     x2   10kΩ                                   expand stock=7961036
+  OK               C15195     x2   10nF                                   base   stock=5699822
+  OK               C15850     x3   10uF                                   base   stock=6615137
+  OK               C77102     x1   10uF                                   expand stock=107086
+  OK               C25762     x1   18kΩ                                   expand stock=642623
+  OK               C15849     x1   1uF                                    base   stock=7676092
+  OK               C25879     x1   2.2kΩ                                  base   stock=1232545
+  OK               C25768     x3   22kΩ                                   base   stock=853954
+  OK               C17614     x1   3.9kΩ                                  base   stock=297278
+  OK               C113480    x1   324kΩ                                  expand stock=48102
+  OK               C17936     x1   4.7kΩ                                  base   stock=3593450
+  OK               C2878631   x1   OPA1679IDR                             expand stock=2647
+  OK               C144860    x1   S1M-E3/61T                             expand stock=200000
+  OK               C83846     x1   SMBJ15A                                expand stock=18548
+  OK               C1972959   x1   TPD2E2U06DRLR                          expand stock=8973
+  OK               C16430     x1   TPS7A4901DGNR                          expand stock=13033
+
+report -> projects/crow-mic-pod-v3/07_releases/v0.2.0-2026-09-15/verification/stock_check.csv
+json -> projects/crow-mic-pod-v3/07_releases/v0.2.0-2026-09-15/verification/stock_check.json
+
+PASS: 22/22 coded BOM lines have stock >= 10 x qty + 0 absolute surplus (0 with problems); 0/22 lines carry NO LCSC and were NOT graded by this tool
+  SCOPE: graded against LCSC CATALOG stock (stockCount). JLC's assembly uploader
+  allocates from a DIFFERENT pool, so a PASS here does NOT mean the line will
+  clear at order time. A FAIL is real; a PASS is necessary and not sufficient.
+  The only instrument that answers 'will it clear' is the uploader itself — F-ECHO.

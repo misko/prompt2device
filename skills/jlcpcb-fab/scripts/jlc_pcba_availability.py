@@ -104,9 +104,172 @@ def _sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
-def _record(path: Path) -> dict[str, Any]:
-    return {"path": str(path.resolve()), "sha256": _sha256(path),
+def _record(path: Path, *, relative_to: Path | None = None) -> dict[str, Any]:
+    """Bind one file without making new evidence depend on a checkout path.
+
+    Historical records used absolute paths and remain supported.  New CLI
+    requests and receipts pass the directory containing the durable JSON as
+    ``relative_to`` so their path labels survive a clone/worktree relocation;
+    SHA-256 and size remain the identity authority in either representation.
+    """
+    resolved = path.resolve()
+    label = (Path(os.path.relpath(resolved, relative_to.resolve())).as_posix()
+             if relative_to is not None else str(resolved))
+    return {"path": label, "sha256": _sha256(path),
             "size": path.stat().st_size}
+
+
+def _record_candidates(record: dict[str, Any], *, base: Path) -> list[Path]:
+    """Resolve a portable record, with the old basename fallback for history."""
+    raw = str(record.get("path") or "")
+    if not raw:
+        return []
+    recorded = Path(raw)
+    if recorded.is_absolute():
+        # Keep the historical fallback: archived evidence was sometimes moved
+        # as a request/response/receipt trio into one directory.
+        return [recorded, base.resolve() / recorded.name]
+    return [(base.resolve() / recorded).resolve()]
+
+
+def _saved_record_base(saved: dict[str, Any], request_path: Path) -> Path | None:
+    """Select legacy-absolute or portable-relative reproduction semantics."""
+    modes = set()
+    for name in ("subject", "assembly", "procurement_policy"):
+        record = saved.get(name)
+        if record is None:
+            continue
+        if not isinstance(record, dict) or not str(record.get("path") or ""):
+            raise ValueError(f"request {name} path record is invalid")
+        modes.add("absolute" if Path(str(record["path"])).is_absolute()
+                  else "relative")
+    if len(modes) > 1:
+        raise ValueError("request mixes absolute and relative path records")
+    return request_path.resolve().parent if modes == {"relative"} else None
+
+
+def _portable_root_from_base(base: Path) -> Path:
+    """Return the checkout-local boundary for portable request inputs.
+
+    Project requests live below a root carrying ``01_docs`` and ``03_src``.
+    Standalone callers have no such marker, so their request directory is the
+    portable boundary.  In either case a relative record cannot silently turn
+    into a dependency on an identical file outside the durable bundle.
+    """
+    base = base.resolve()
+    for candidate in (base, *base.parents):
+        if (candidate / "01_docs").is_dir() and \
+                (candidate / "03_src").is_dir():
+            return candidate.resolve()
+    return base
+
+
+def _portable_request_root(request_path: Path) -> Path:
+    return _portable_root_from_base(request_path.resolve().parent)
+
+
+def _contained(path: Path, root: Path) -> bool:
+    try:
+        path.resolve().relative_to(root.resolve())
+    except ValueError:
+        return False
+    return True
+
+
+def _bound_record_path(record: Any, *, label: str, base: Path,
+                       portable_root: Path | None = None
+                       ) -> tuple[Path, bool]:
+    """Resolve one exact record and report use of legacy basename fallback."""
+    if not isinstance(record, dict):
+        raise ValueError(f"{label} record is invalid")
+    raw_path = str(record.get("path") or "")
+    if not raw_path:
+        raise ValueError(f"{label} path is invalid")
+    digest = str(record.get("sha256") or "")
+    size = record.get("size")
+    if not re.fullmatch(r"[0-9a-f]{64}", digest) or \
+            not isinstance(size, int) or isinstance(size, bool) or size < 0:
+        raise ValueError(f"{label} identity is invalid")
+    candidates = _record_candidates(record, base=base)
+    matches = [candidate.resolve() for candidate in candidates
+               if candidate.is_file() and candidate.stat().st_size == size
+               and _sha256(candidate) == digest]
+    if not matches:
+        raise ValueError(f"{label} moved or changed")
+    chosen = matches[0]
+    recorded = Path(raw_path)
+    if not recorded.is_absolute():
+        if portable_root is None or not _contained(chosen, portable_root):
+            raise ValueError(f"{label} escapes its portable evidence root")
+        if _record(chosen, relative_to=base) != record:
+            raise ValueError(f"{label} relative path is not canonical")
+        return chosen, False
+
+    original = recorded.resolve()
+    used_fallback = chosen != original
+    return chosen, used_fallback
+
+
+def _reproduce_saved_request(request_path: Path,
+                             saved: dict[str, Any]) -> tuple[Path, Path | None,
+                                                            Path]:
+    """Rebuild every schema-v2 request claim from its hash-bound inputs."""
+    record_base = _saved_record_base(saved, request_path)
+    lookup_base = request_path.resolve().parent
+    portable_root = (_portable_request_root(request_path)
+                     if record_base is not None else None)
+    subject, subject_fallback = _bound_record_path(
+        saved.get("subject"), label="request subject", base=lookup_base,
+        portable_root=portable_root)
+    assembly_record = saved.get("assembly")
+    assembly_result = (_bound_record_path(
+        assembly_record, label="request assembly", base=lookup_base,
+        portable_root=portable_root)
+        if assembly_record is not None else (None, False))
+    assembly, assembly_fallback = assembly_result
+    policy, policy_fallback = _bound_record_path(
+        saved.get("procurement_policy"),
+        label="request procurement policy", base=lookup_base,
+        portable_root=portable_root)
+    generated_at = _timestamp(str(saved.get("generated_at") or ""))
+    current = prepare(
+        subject, build_quantity=saved.get("build_quantity"),
+        phase=saved.get("phase"), assembly=assembly,
+        procurement_policy=policy, generated_at=generated_at,
+        record_base=record_base)
+
+    # Legacy absolute records promised a same-directory basename fallback for
+    # archived evidence.  A fallback file has a new absolute location but the
+    # same checked identity. Preserve the historical labels solely for the
+    # exact semantic comparison; hash/size were independently reopened above.
+    fallback_by_name = {
+        "subject": subject_fallback,
+        "assembly": assembly_fallback,
+        "procurement_policy": policy_fallback,
+    }
+    for name, used_fallback in fallback_by_name.items():
+        if used_fallback:
+            current[name]["path"] = saved[name]["path"]
+    if current != saved:
+        changed = [key for key in sorted(set(saved) | set(current))
+                   if saved.get(key) != current.get(key)]
+        raise ValueError(
+            "saved request is stale or changed: " + ", ".join(changed))
+
+    # Close the read window: a replacement after the first identity check may
+    # not become the file later receipt logic assumes was reproduced.
+    for record, candidate, label in (
+        (saved["subject"], subject, "subject"),
+        (saved.get("assembly"), assembly, "assembly"),
+        (saved["procurement_policy"], policy, "procurement policy"),
+    ):
+        if record is None:
+            continue
+        if (not candidate.is_file() or
+                candidate.stat().st_size != record.get("size") or
+                _sha256(candidate) != record.get("sha256")):
+            raise ValueError(f"request {label} changed during reproduction")
+    return subject, assembly, policy
 
 
 def _atomic_json(path: Path, value: dict[str, Any]) -> None:
@@ -165,7 +328,8 @@ def _excluded_refs(assembly: Path | None) -> set[str]:
 def prepare(bom: Path, *, build_quantity: int, phase: str,
             assembly: Path | None = None,
             procurement_policy: Path | None = None,
-            generated_at: datetime | None = None) -> dict[str, Any]:
+            generated_at: datetime | None = None,
+            record_base: Path | None = None) -> dict[str, Any]:
     if build_quantity <= 0:
         raise ValueError("build quantity must be positive")
     if phase not in PHASES:
@@ -174,6 +338,16 @@ def prepare(bom: Path, *, build_quantity: int, phase: str,
         raise ValueError(
             "schema-v2 request requires --procurement-policy; financial "
             "limits may not be inferred")
+    if record_base is not None:
+        portable_root = _portable_root_from_base(record_base)
+        for source, label in (
+            (bom, "request subject"),
+            (assembly, "request assembly"),
+            (procurement_policy, "request procurement policy"),
+        ):
+            if source is not None and not _contained(source, portable_root):
+                raise ValueError(
+                    f"{label} escapes its portable evidence root")
     policy = _load_policy(procurement_policy)
     rows = _source_rows(bom)
     if not rows:
@@ -216,10 +390,12 @@ def prepare(bom: Path, *, build_quantity: int, phase: str,
                                else "jlcpcb_pcba_interface"),
         "required_status": "ALLOCATED" if phase == "order" else "AVAILABLE",
         "generated_at": when.isoformat(), "build_quantity": build_quantity,
-        "subject": _record(bom),
+        "subject": _record(bom, relative_to=record_base),
         "subject_role": "circuit" if bom.suffix.lower() == ".json" else "bom",
-        "assembly": _record(assembly) if assembly is not None else None,
-        "procurement_policy": _record(procurement_policy),
+        "assembly": (_record(assembly, relative_to=record_base)
+                     if assembly is not None else None),
+        "procurement_policy": _record(procurement_policy,
+                                      relative_to=record_base),
         "procurement_policy_value": policy,
         "excluded_refs": sorted(excluded),
         "coverage": {"graded": len(output_rows),
@@ -283,10 +459,11 @@ def verify_request(path: Path, *, bom: Path, build_quantity: int, phase: str,
         return False, ["request is not a JSON object"], {}
     try:
         generated_at = _timestamp(str(saved.get("generated_at") or ""))
+        record_base = _saved_record_base(saved, path)
         current = prepare(
             bom, build_quantity=build_quantity, phase=phase,
             assembly=assembly, procurement_policy=procurement_policy,
-            generated_at=generated_at)
+            generated_at=generated_at, record_base=record_base)
     except Exception as exc:
         return False, [f"request cannot be reproduced: {exc}"], saved
     if saved != current:
@@ -307,29 +484,32 @@ def _read_response(path: Path, fields: tuple[str, ...]) -> list[dict[str, str]]:
 
 
 def grade(request_path: Path, response_path: Path, *, max_age_hours: float,
-          now: datetime | None = None) -> dict[str, Any]:
+          now: datetime | None = None,
+          evidence_base: Path | None = None) -> dict[str, Any]:
     if max_age_hours <= 0:
         raise ValueError("max age must be positive")
+    if evidence_base is not None:
+        for evidence, label in ((request_path, "request evidence"),
+                                (response_path, "response evidence")):
+            if not _contained(evidence, evidence_base):
+                raise ValueError(
+                    f"{label} escapes its portable evidence root")
     request = json.loads(request_path.read_text(encoding="utf-8-sig"))
     schema = request.get("schema")
     supported = ((schema == 1 and request.get("kind") == REQUEST_KIND_V1) or
                  (schema == 2 and request.get("kind") == REQUEST_KIND))
     if not supported:
         raise ValueError("unsupported request schema/kind")
+    bound_policy = None
+    if schema == 2:
+        # Reopen and reproduce the exact request before reading one operator
+        # row. This closes both path-model mixing and forged/stale row sets.
+        _, _, bound_policy = _reproduce_saved_request(request_path, request)
     policy = request.get("procurement_policy_value") if schema == 2 else None
     if schema == 2:
         if not isinstance(policy, dict):
             raise ValueError("schema-v2 request has no procurement policy value")
-        policy_record = request.get("procurement_policy") or {}
-        policy_path = Path(str(policy_record.get("path") or ""))
-        candidates = [policy_path, request_path.resolve().parent / policy_path.name]
-        matched_policies = [
-            path for path in candidates
-            if path.is_file() and _sha256(path) == policy_record.get("sha256")
-            and path.stat().st_size == policy_record.get("size")]
-        if not matched_policies:
-            raise ValueError("procurement policy moved or changed")
-        if _load_policy(matched_policies[0]) != policy:
+        if _load_policy(bound_policy) != policy:
             raise ValueError("embedded procurement policy disagrees with saved policy")
     expected = {row["requested_lcsc"]: row for row in request.get("rows") or []}
     if not expected:
@@ -615,8 +795,9 @@ def grade(request_path: Path, response_path: Path, *, max_age_hours: float,
         "valid_until": valid_until.isoformat(),
         "build_quantity": request["build_quantity"],
         "subject": request["subject"], "subject_role": request["subject_role"],
-        "assembly": request.get("assembly"), "request": _record(request_path),
-        "response": _record(response_path),
+        "assembly": request.get("assembly"),
+        "request": _record(request_path, relative_to=evidence_base),
+        "response": _record(response_path, relative_to=evidence_base),
         "coverage": {"passing": passed, "graded": len(graded_rows),
                      "total": len(expected)},
         "rows": graded_rows, "findings": findings,
@@ -662,21 +843,32 @@ def verify_receipt(path: Path, *, bom: Path | None = None,
     if receipt.get("authority") != expected_authority:
         failures.append("receipt authority does not match its phase")
     evidence_paths: dict[str, Path] = {}
+    evidence_fallbacks: dict[str, bool] = {}
+    evidence_modes = set()
     for name in ("request", "response"):
         record = receipt.get(name) or {}
-        recorded = Path(str(record.get("path") or ""))
-        candidates = [recorded, path.resolve().parent / recorded.name]
-        matched = any(candidate.is_file()
-                      and candidate.stat().st_size == record.get("size")
-                      and _sha256(candidate) == record.get("sha256")
-                      for candidate in candidates)
-        if not matched:
-            failures.append(f"{name} evidence moved or changed")
-        else:
-            evidence_paths[name] = next(
-                candidate for candidate in candidates if candidate.is_file()
-                and candidate.stat().st_size == record.get("size")
-                and _sha256(candidate) == record.get("sha256"))
+        raw_path = str(record.get("path") or "") if isinstance(record, dict) else ""
+        if not raw_path:
+            failures.append(f"{name} evidence path is invalid")
+            continue
+        evidence_modes.add("absolute" if Path(raw_path).is_absolute()
+                           else "relative")
+    if len(evidence_modes) > 1:
+        failures.append("receipt mixes absolute and relative evidence paths")
+    if not failures:
+        relative_evidence = evidence_modes == {"relative"}
+        for name in ("request", "response"):
+            try:
+                chosen, used_fallback = _bound_record_path(
+                    receipt.get(name), label=f"{name} evidence",
+                    base=path.resolve().parent,
+                    portable_root=(path.resolve().parent
+                                   if relative_evidence else None))
+            except ValueError as exc:
+                failures.append(str(exc))
+            else:
+                evidence_paths[name] = chosen
+                evidence_fallbacks[name] = used_fallback
     if bom is not None:
         if not bom.is_file() or _sha256(bom) != (receipt.get("subject") or {}).get("sha256"):
             failures.append("receipt is not bound to the current subject/BOM")
@@ -695,6 +887,10 @@ def verify_receipt(path: Path, *, bom: Path | None = None,
     if verdict == "ACCEPTED" and any(row.get("status") != "PASS" for row in rows):
         failures.append("accepted receipt contains a non-passing row")
     if schema == 2:
+        try:
+            _saved_record_base(receipt, path)
+        except ValueError as exc:
+            failures.append(f"receipt request path model is invalid: {exc}")
         for name in ("availability_verdict", "economics_verdict"):
             if receipt.get(name) not in {"ACCEPTED", "REJECTED", "INCOMPLETE"}:
                 failures.append(f"receipt {name} is invalid")
@@ -702,14 +898,20 @@ def verify_receipt(path: Path, *, bom: Path | None = None,
             failures.append("accepted receipt has non-accepted economics")
     if not failures and set(evidence_paths) == {"request", "response"}:
         try:
+            evidence_base = (path.resolve().parent
+                             if evidence_modes == {"relative"} else None)
             regenerated = grade(
                 evidence_paths["request"], evidence_paths["response"],
                 max_age_hours=float(receipt.get("max_age_hours")),
-                now=_timestamp(str(receipt.get("generated_at") or "")))
+                now=_timestamp(str(receipt.get("generated_at") or "")),
+                evidence_base=evidence_base)
+            for name, used_fallback in evidence_fallbacks.items():
+                if used_fallback:
+                    regenerated[name]["path"] = receipt[name]["path"]
             stable = ("schema", "kind", "phase", "authority", "verdict", "generated_at",
                       "max_age_hours", "valid_until", "build_quantity",
                       "subject", "subject_role", "assembly", "coverage",
-                      "rows", "findings", "scope")
+                      "request", "response", "rows", "findings", "scope")
             if schema == 2:
                 stable += ("procurement_policy", "procurement_policy_value",
                            "availability_verdict", "economics_verdict",
@@ -765,7 +967,8 @@ def main(argv: list[str] | None = None) -> int:
                     + ", ".join(str(path) for path in occupied))
             result = prepare(args.bom, build_quantity=args.build_quantity,
                              phase=args.phase, assembly=args.assembly,
-                             procurement_policy=args.procurement_policy)
+                             procurement_policy=args.procurement_policy,
+                             record_base=args.out.resolve().parent)
             _atomic_json(args.out, result)
             if args.response_template:
                 write_response_template(args.response_template, result)
@@ -776,7 +979,8 @@ def main(argv: list[str] | None = None) -> int:
             if args.out.exists():
                 raise ValueError(f"refusing to overwrite existing receipt: {args.out}")
             result = grade(args.request, args.response,
-                           max_age_hours=args.max_age_hours)
+                           max_age_hours=args.max_age_hours,
+                           evidence_base=args.out.resolve().parent)
             _atomic_json(args.out, result)
             count = result["coverage"]
             print(f"JLC-PCBA {result['verdict']}: {count['passing']}/"

@@ -356,8 +356,10 @@ def t_adr_uncited_adr_prefix():
 # The fixture is the REAL cooksense netlist, broken in exactly one way: the
 # value string of R_WDPETPD alone is put back to 100k. Everything else — every
 # net, every node, every other component — is the shipped board.
-COOK_NET = (ROOT / "archived_projects" / "smc0985-cooksense" / "06_build" /
-            "netlists" / "cooksense.net")
+# The immutable v1.7 release carries the shipped 1k watchdog value.
+# Ignored 06_build/netlists is not an authority in a clean checkout.
+COOK_NET = (ROOT / "archived_projects" / "smc0985-cooksense" / "07_releases" /
+            "cooksense-v1.7-2026-07-30" / "source" / "cooksense.net")
 
 # the three assertions that shipped WITH the defective fix, verbatim in shape
 WD_TOPOLOGY_INV = """\

@@ -148,5 +148,13 @@ def t_measured_overclaim_fails():
               "measured report overclaim", expect="still contains PROPOSED or OWED")
 
 
+@test("report CLI coverage names the one report actually graded")
+def t_cli_coverage():
+    """RED against 18c96c58: successful audit had no coverage denominator."""
+    _, report = fixture()
+    result = must_pass(run([KPY, AUDIT, report]), "report coverage")
+    contains(result.out, "coverage=1/1 report", "actual report denominator")
+
+
 if __name__ == "__main__":
     sys.exit(main())

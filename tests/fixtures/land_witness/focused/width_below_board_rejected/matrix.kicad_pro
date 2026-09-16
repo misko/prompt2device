@@ -1,0 +1,190 @@
+{
+  "board": {
+    "design_settings": {
+      "rules": {
+        "min_clearance": 0.1,
+        "min_track_width": 0.1
+      },
+      "drc_exclusions": []
+    }
+  },
+  "net_settings": {
+    "classes": [
+      {
+        "name": "Default",
+        "clearance": 0.2,
+        "track_width": 0.2,
+        "via_diameter": 0.6,
+        "via_drill": 0.3
+      },
+      {
+        "name": "Low",
+        "clearance": 0.2,
+        "track_width": 0.2,
+        "via_diameter": 0.6,
+        "via_drill": 0.3
+      },
+      {
+        "name": "High",
+        "clearance": 0.25,
+        "track_width": 0.2,
+        "via_diameter": 0.6,
+        "via_drill": 0.3
+      }
+    ],
+    "netclass_patterns": [
+      {
+        "netclass": "Low",
+        "pattern": "remote_high_T"
+      },
+      {
+        "netclass": "Low",
+        "pattern": "remote_high_B"
+      },
+      {
+        "netclass": "High",
+        "pattern": "remote_high_REMOTE"
+      },
+      {
+        "netclass": "Low",
+        "pattern": "b_side_T"
+      },
+      {
+        "netclass": "Low",
+        "pattern": "b_side_B"
+      },
+      {
+        "netclass": "Low",
+        "pattern": "reversal_T"
+      },
+      {
+        "netclass": "Low",
+        "pattern": "reversal_B"
+      },
+      {
+        "netclass": "Low",
+        "pattern": "both_area_T"
+      },
+      {
+        "netclass": "Low",
+        "pattern": "both_area_B"
+      },
+      {
+        "netclass": "Low",
+        "pattern": "offcenter_T"
+      },
+      {
+        "netclass": "Low",
+        "pattern": "offcenter_B"
+      },
+      {
+        "netclass": "Low",
+        "pattern": "contained_T"
+      },
+      {
+        "netclass": "Low",
+        "pattern": "contained_B"
+      },
+      {
+        "netclass": "Low",
+        "pattern": "padpad_guard_T"
+      },
+      {
+        "netclass": "Low",
+        "pattern": "padpad_guard_B"
+      },
+      {
+        "netclass": "Low",
+        "pattern": "track_width_T"
+      },
+      {
+        "netclass": "Low",
+        "pattern": "track_width_B"
+      },
+      {
+        "netclass": "Low",
+        "pattern": "area_layer_T"
+      },
+      {
+        "netclass": "Low",
+        "pattern": "area_layer_B"
+      },
+      {
+        "netclass": "Low",
+        "pattern": "last_match_T"
+      },
+      {
+        "netclass": "Low",
+        "pattern": "last_match_B"
+      },
+      {
+        "netclass": "Low",
+        "pattern": "boolean_left_T"
+      },
+      {
+        "netclass": "Low",
+        "pattern": "boolean_left_B"
+      },
+      {
+        "netclass": "Low",
+        "pattern": "negation_T"
+      },
+      {
+        "netclass": "Low",
+        "pattern": "negation_B"
+      },
+      {
+        "netclass": "Low",
+        "pattern": "wildcard_T"
+      },
+      {
+        "netclass": "Low",
+        "pattern": "wildcard_B"
+      },
+      {
+        "netclass": "Low",
+        "pattern": "multi_constraint_T"
+      },
+      {
+        "netclass": "Low",
+        "pattern": "multi_constraint_B"
+      },
+      {
+        "netclass": "Low",
+        "pattern": "rule_layer_T"
+      },
+      {
+        "netclass": "Low",
+        "pattern": "rule_layer_B"
+      },
+      {
+        "netclass": "Low",
+        "pattern": "width_transition_T"
+      },
+      {
+        "netclass": "Low",
+        "pattern": "width_transition_B"
+      },
+      {
+        "netclass": "Low",
+        "pattern": "oscillation_T"
+      },
+      {
+        "netclass": "Low",
+        "pattern": "oscillation_B"
+      },
+      {
+        "netclass": "Low",
+        "pattern": "one_sided_T"
+      },
+      {
+        "netclass": "Low",
+        "pattern": "one_sided_B"
+      }
+    ]
+  },
+  "meta": {
+    "filename": "matrix.kicad_pro",
+    "version": 1
+  }
+}

@@ -20,6 +20,8 @@ explicit stage-checkpoint certificates.
 | `proof/**` | regenerated candidate boards for comparison against the selected exact/current `04_kicad` reference (never written back) | regenerate |
 | `twin/**` | jlc_twin fetch/compare workspace | regenerate |
 | `mechanical/**` | generated PCB-interface snapshots, CAD/mesh exports, fit coupons, renders, verification reports and hash-bound candidate packages | regenerate from `03_src/mechanical/` plus the exact bound PCB subject |
+| `connector_qualification_coupon/**` | optional generated connector-only board, bare-board fabrication package, exact source/geometry request, physical-response template and typed grade receipt from `connector_qualification_coupon.py`; never product-board or order authority | regenerate while blank; move real response/receipt/evidence into governed project evidence before durable use |
+| `task_runs/**` | fresh schema-2 task envelopes, attempt receipts, combined child logs, scratch and declared outputs; preserve needed failed-run evidence in durable docs before deleting | regenerate |
 | `tmp/**` | scratch workspace for in-flight stage work | regenerate |
 | `pin_review/**` `pin_audit/**` | fresh-context pin-review dossiers + verdicts (either spelling; boards have used both) | regenerate |
 | `verification/**` | **the SEAL STAGING AREA** — every gate's evidence, written here and COPIED into `07_releases/<ver>/verification/` at seal time. It had no row until 2026-07-31 despite being live on a shipping board (smc0985-cooksense carries 27 files here), because `--projects`' exit code was never read. Same names as the sealed copy, so the seal COPIES and never renames — see the `fab/**` row for what a rename costs | regenerate |

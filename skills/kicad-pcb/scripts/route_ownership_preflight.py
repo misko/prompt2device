@@ -241,6 +241,8 @@ def _load_board_facts(board_path: Path) -> tuple[set[str], dict[str, int]]:
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("route_config", type=Path)
+    parser.add_argument("--root", type=Path,
+                        help="project root for a source or in-project build config")
     parser.add_argument("--board", type=Path)
     parser.add_argument("--json", type=Path)
     args = parser.parse_args(argv)
@@ -248,19 +250,41 @@ def main(argv: list[str] | None = None) -> int:
         route_path = args.route_config.resolve()
         cfg = yaml.safe_load(route_path.read_text(encoding="utf-8-sig")) or {}
         stage = next((path for path in route_path.parents if path.name == "03_src"), None)
-        if stage is None:
+        if args.root is not None:
+            project = args.root.resolve(strict=True)
+            source = project / "03_src"
+            if not source.is_dir():
+                raise ValueError("explicit project root has no 03_src directory")
+            if not route_path.is_relative_to(project):
+                raise ValueError("route config is outside the explicit project root")
+            if not (route_path.is_relative_to(source.resolve()) or
+                    route_path.is_relative_to((project / "06_build").resolve())):
+                raise ValueError("route config is outside the explicit project's source/build directories")
+            if stage is not None and stage.parent != project:
+                raise ValueError("route config ancestry disagrees with explicit project root")
+        elif stage is None:
             raise ValueError("route config must live below 03_src")
-        project = stage.parent
+        else:
+            project = stage.parent
         board_value = args.board or Path((cfg.get("project") or {}).get("board", ""))
         board_path = (board_value if board_value.is_absolute()
                       else project / board_value).resolve()
+        if args.root is not None and not board_path.is_relative_to(project):
+            raise ValueError("board is outside the explicit project root")
         if not board_path.is_file():
             raise ValueError(f"board not found: {board_path}")
         # ADR-0007 boards keep route.yaml and rules below 03_src/<board>/;
         # single-board projects keep both directly below 03_src/. Prefer the
         # route-local authority and fall back only for the flat form.
         local_nets = route_path.parent / "rules" / "nets.yaml"
-        nets_path = local_nets if local_nets.is_file() else stage / "rules" / "nets.yaml"
+        # Build scratch never supplies rule authority. Source configs retain
+        # ADR-0007's board-local rules; build copies use the project's source.
+        nets_path = (local_nets if stage is not None and local_nets.is_file()
+                     else project / "03_src/rules/nets.yaml")
+        if args.root is not None and not nets_path.resolve().is_relative_to(project):
+            raise ValueError("rules are outside the explicit project root")
+        if stage is None and not nets_path.is_file():
+            raise ValueError("build config requires unambiguous project 03_src/rules/nets.yaml")
         nets_cfg = (yaml.safe_load(nets_path.read_text(encoding="utf-8-sig")) or {}
                     if nets_path.is_file() else {})
         board_nets, pad_counts = _load_board_facts(board_path)

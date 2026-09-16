@@ -60,6 +60,9 @@ an independent `subprocess.run` or `Popen` path.
 - `tests/t1_enclosure_layout.py` proves project enclosure sources, reference
   STLs, generated artifacts, physical reviews, and releases cannot cross their
   canonical filesystem boundaries.
+  Its CLI counts every tracked project path, names excluded repository-level
+  entries, and refuses an empty population as INCOMPLETE. Clean and misplaced
+  artifact fixtures retain their complete denominators on both exit paths.
 - `tests/t1_pcb_enclosure_fdm.py` covers clean reinforced and Pluto-style
   shallow-root fixtures, rigid orientation, nonvacuous structural probes,
   stale bindings, post-publication regrade, v2/helper replay closure, and the

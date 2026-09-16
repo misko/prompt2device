@@ -1,0 +1,46 @@
+# Exact, board-specific policy dispositions. Every numeric claim is regenerated
+# from the current routed board by waiver_provenance.py before layout seal.
+
+- id: R-POUR
+  refs:
+    - 03_src/route.yaml
+    - 03_src/route/final_chain.kicad_pcb
+    - 03_src/rules/nets.yaml
+    - 03_src/rules/power_tree.yaml
+    - 04_kicad/crow_mic_pod_v3.kicad_pcb
+  why: >-
+    This disposition is limited to 12V_POD, 12V_FUSED and VIN_PROTECTED. They
+    form the short, point-to-point input chain from J1 through F1 and D1 to the
+    TPS7A4901 input and local bypass parts. The 0.50 mm class floor was chosen
+    for mechanical robustness and fault-path margin; it is not evidence of a
+    high operating load. The complete pod is allocated at most 0.10 A and its
+    modeled quiet-rail load is at most 0.020 A. On the exact routed board, the
+    conservative sum of every segment resistance across all three nets is
+    0.08570 ohm at 35 um copper, or 8.570 mV even at the full 0.10 A allocation.
+    Local pours would consume quiet analog routing area without removing the
+    connector, fuse, diode or regulator-pad bottlenecks. This analytic screen
+    does not credit plating, solder joints, temperature or PTC/diode drop; the
+    first article must still pass the retained end-to-end voltage-drop, rail
+    noise, fault and thermal tests before any production or roof use.
+  evidence:
+    - claim: the complete no-pour population remains exactly the three reviewed input-chain nets
+      command: >-
+        KICAD_PY=/usr/lib/python3/dist-packages /usr/bin/python3 -c "import pcbnew; b=pcbnew.LoadBoard('projects/crow-mic-pod-v3/04_kicad/crow_mic_pod_v3.kicad_pcb'); z={x.GetNetname() for x in b.Zones()}; n={'12V_POD','12V_FUSED','VIN_PROTECTED'}; print(len(n-z))"
+      output: "3"
+      budget: "<= 3"
+      requires: [projects/crow-mic-pod-v3/04_kicad/crow_mic_pod_v3.kicad_pcb]
+      grade: CITED
+    - claim: the authored maximum continuous allocation for the input class remains at or below 0.10 A
+      command: >-
+        python3 -c "import re,yaml; y=yaml.safe_load(open('projects/crow-mic-pod-v3/03_src/rules/nets.yaml')); print(float(re.search(r'([0-9.]+) A',y['classes']['POD_INPUT']['current']).group(1)))"
+      output: "0.1"
+      budget: "<= 0.1"
+      requires: [projects/crow-mic-pod-v3/03_src/rules/nets.yaml]
+      grade: CITED
+    - claim: the conservative sum of ideal 35 um copper resistance over every segment on all three input-chain nets remains at or below 0.086 ohm
+      command: >-
+        KICAD_PY=/usr/lib/python3/dist-packages /usr/bin/python3 -c "import pcbnew; b=pcbnew.LoadBoard('projects/crow-mic-pod-v3/04_kicad/crow_mic_pod_v3.kicad_pcb'); ns=['12V_POD','12V_FUSED','VIN_PROTECTED']; rho=1.724e-8; th=35e-6; print(round(sum(rho*(t.GetLength()/1e9)/(t.GetWidth()/1e9*th) for t in b.GetTracks() if t.GetClass()!='PCB_VIA' and t.GetNetname() in ns),5))"
+      output: "0.0857"
+      budget: "<= 0.086"
+      requires: [projects/crow-mic-pod-v3/04_kicad/crow_mic_pod_v3.kicad_pcb]
+      grade: CITED

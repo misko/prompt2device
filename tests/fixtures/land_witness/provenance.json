@@ -1,0 +1,497 @@
+{
+  "archive_sha256": "c059998a1be87d940015dab5f0c02afd22484ce2b5d495e591b1259187e949d5",
+  "files": [
+    {
+      "path": "base/oracle.kicad_pcb",
+      "sha256": "55925591081f28baa3338400f05a0e0a131827418009fa3b43a5762f3c762f86",
+      "archive_member": "reviewer/extracted/complete/worker/native-interface-run-u2jowhbt/specimens/base/oracle.kicad_pcb",
+      "size": 5300
+    },
+    {
+      "path": "base/oracle.kicad_pro",
+      "sha256": "8f8dc6fb71dae9e6bce718134970c03ce35723c31bae6a552864d4af9c74ffd4",
+      "archive_member": "reviewer/extracted/complete/worker/native-interface-run-u2jowhbt/specimens/base/oracle.kicad_pro",
+      "size": 2576
+    },
+    {
+      "path": "base/public.kicad_pcb",
+      "sha256": "a4c2419ef372bcdd1cd5f8b38e179c9baa92abbf4d08e5b96cb35855700fdd06",
+      "archive_member": "reviewer/extracted/complete/worker/native-interface-run-u2jowhbt/specimens/base/public.kicad_pcb",
+      "size": 5161
+    },
+    {
+      "path": "base/public.kicad_pro",
+      "sha256": "2f60a474eba40abd79b336a385d1ebdaba8ccb9fb40e8d600489b9330cac4249",
+      "archive_member": "reviewer/extracted/complete/worker/native-interface-run-u2jowhbt/specimens/base/public.kicad_pro",
+      "size": 2576
+    },
+    {
+      "path": "base/oracle.kicad_dru",
+      "sha256": "58bf9f91cdbb79c5e7902fce14c7619bc09d89f7b6ca886d179f1200676669c1",
+      "archive_member": "reviewer/extracted/complete/worker/native-interface-run-u2jowhbt/specimens/base/oracle.kicad_dru",
+      "size": 102
+    },
+    {
+      "path": "base/public.kicad_dru",
+      "sha256": "58bf9f91cdbb79c5e7902fce14c7619bc09d89f7b6ca886d179f1200676669c1",
+      "archive_member": "reviewer/extracted/complete/worker/native-interface-run-u2jowhbt/specimens/base/public.kicad_dru",
+      "size": 102
+    },
+    {
+      "path": "hostile/oracle.kicad_pcb",
+      "sha256": "7bd441fd74e0fcf45f1b572b884d24c6af6edef763d02c90840b693584c081b9",
+      "archive_member": "reviewer/extracted/complete/worker/native-interface-run-u2jowhbt/specimens/hostile/oracle.kicad_pcb",
+      "size": 5300
+    },
+    {
+      "path": "hostile/oracle.kicad_pro",
+      "sha256": "cafa3da9d469170eca2ccf44ed869ba549a7ca32ac3e09b0142e2e5f74e08bed",
+      "archive_member": "reviewer/extracted/complete/worker/native-interface-run-u2jowhbt/specimens/hostile/oracle.kicad_pro",
+      "size": 2578
+    },
+    {
+      "path": "hostile/public.kicad_pcb",
+      "sha256": "97f8887919fa5b52beb963c65f9998609b8ab6cdd5fb5c45334a8a1d2b62cb85",
+      "archive_member": "reviewer/extracted/complete/worker/native-interface-run-u2jowhbt/specimens/hostile/public.kicad_pcb",
+      "size": 5161
+    },
+    {
+      "path": "hostile/public.kicad_pro",
+      "sha256": "bb6a0dd11ce95edb635b89bbf1d832eea7a09d76e0e8de05700fd7f914e451ea",
+      "archive_member": "reviewer/extracted/complete/worker/native-interface-run-u2jowhbt/specimens/hostile/public.kicad_pro",
+      "size": 2578
+    },
+    {
+      "path": "hostile/oracle.kicad_dru",
+      "sha256": "58bf9f91cdbb79c5e7902fce14c7619bc09d89f7b6ca886d179f1200676669c1",
+      "archive_member": "reviewer/extracted/complete/worker/native-interface-run-u2jowhbt/specimens/hostile/oracle.kicad_dru",
+      "size": 102
+    },
+    {
+      "path": "hostile/public.kicad_dru",
+      "sha256": "58bf9f91cdbb79c5e7902fce14c7619bc09d89f7b6ca886d179f1200676669c1",
+      "archive_member": "reviewer/extracted/complete/worker/native-interface-run-u2jowhbt/specimens/hostile/public.kicad_dru",
+      "size": 102
+    },
+    {
+      "path": "matrix/base/cases.json",
+      "sha256": "fd2ebefa7089a3a4614a75495f471836bfb58b84212ebcf396e5a004c669dc26",
+      "archive_member": "evaluator/reviewer/base/cases.json",
+      "size": 6720
+    },
+    {
+      "path": "matrix/base/matrix.kicad_pro",
+      "sha256": "a0d700cd4f82bf5be7bc4a423a89ede8f188178fcaa72de0b53d76af2444a0c0",
+      "archive_member": "evaluator/reviewer/base/matrix.kicad_pro",
+      "size": 3668
+    },
+    {
+      "path": "matrix/base/matrix.kicad_pcb",
+      "sha256": "a5565e99d3fcf7fc68bf977c3dc823a3b9df0a7a55f4f88e70113a6cb9d9dc3d",
+      "archive_member": "evaluator/reviewer/base/matrix.kicad_pcb",
+      "size": 46062
+    },
+    {
+      "path": "matrix/base/matrix.kicad_dru",
+      "sha256": "a9d3d79324d832fb49f48f15f6a30cf1d943626db68948ebc13fd382253029a6",
+      "archive_member": "evaluator/reviewer/base/matrix.kicad_dru",
+      "size": 4849
+    },
+    {
+      "path": "matrix/hostile/cases.json",
+      "sha256": "4356d9fc4e6a67cd74f1ad8b301b8caae96fa063073d2ce257926d320572f37b",
+      "archive_member": "evaluator/reviewer/hostile/cases.json",
+      "size": 6880
+    },
+    {
+      "path": "matrix/hostile/matrix.kicad_pro",
+      "sha256": "80e5743870aa3b291cef553947b4f5f77f84c2f6163f257172f10761dbbceb02",
+      "archive_member": "evaluator/reviewer/hostile/matrix.kicad_pro",
+      "size": 3680
+    },
+    {
+      "path": "matrix/hostile/matrix.kicad_pcb",
+      "sha256": "ad66ef3be1e15ce7b97ef8f19930692763edddb57f4fb809b94dfa36933e7552",
+      "archive_member": "evaluator/reviewer/hostile/matrix.kicad_pcb",
+      "size": 46072
+    },
+    {
+      "path": "matrix/hostile/matrix.kicad_dru",
+      "sha256": "3a936bd1738f7e8e1e1e6ecb99ea4d7d466f84e6c248b26b93b2eb7ef8a87ab2",
+      "archive_member": "evaluator/reviewer/hostile/matrix.kicad_dru",
+      "size": 4842
+    },
+    {
+      "path": "native-controls/pad_masks_fp/matrix.kicad_pro",
+      "sha256": "a0d700cd4f82bf5be7bc4a423a89ede8f188178fcaa72de0b53d76af2444a0c0",
+      "archive_member": "kernel-contract-interruption/reviewer/native-controls/pad_masks_fp/matrix.kicad_pro",
+      "size": 3668
+    },
+    {
+      "path": "native-controls/pad_masks_fp/matrix.kicad_pcb",
+      "sha256": "37bc8a41d22184c8244416385cdacbbc0cfd697294d3861551c7c9d948837114",
+      "archive_member": "kernel-contract-interruption/reviewer/native-controls/pad_masks_fp/matrix.kicad_pcb",
+      "size": 46100
+    },
+    {
+      "path": "native-controls/pad_masks_fp/matrix.kicad_dru",
+      "sha256": "0f3736824323cb5c1815af2b1ddd502991152ee7b2eba19c86cae4d6c584c874",
+      "archive_member": "kernel-contract-interruption/reviewer/native-controls/pad_masks_fp/matrix.kicad_dru",
+      "size": 4952
+    },
+    {
+      "path": "native-controls/custom_below_board/matrix.kicad_pro",
+      "sha256": "a0d700cd4f82bf5be7bc4a423a89ede8f188178fcaa72de0b53d76af2444a0c0",
+      "archive_member": "kernel-contract-interruption/reviewer/native-controls/custom_below_board/matrix.kicad_pro",
+      "size": 3668
+    },
+    {
+      "path": "native-controls/custom_below_board/matrix.kicad_pcb",
+      "sha256": "c4a525b6fa80974bb30dc8f505a06769ad538cee4c3631efae5013516f8f070b",
+      "archive_member": "kernel-contract-interruption/reviewer/native-controls/custom_below_board/matrix.kicad_pcb",
+      "size": 46063
+    },
+    {
+      "path": "native-controls/custom_below_board/matrix.kicad_dru",
+      "sha256": "417133007462d7043aa2e30c7db76426083e7ffecbe58646f06ddd9de6a8c34e",
+      "archive_member": "kernel-contract-interruption/reviewer/native-controls/custom_below_board/matrix.kicad_dru",
+      "size": 4953
+    },
+    {
+      "path": "native-controls/fp_nonzero_wins/matrix.kicad_pro",
+      "sha256": "a0d700cd4f82bf5be7bc4a423a89ede8f188178fcaa72de0b53d76af2444a0c0",
+      "archive_member": "kernel-contract-interruption/reviewer/native-controls/fp_nonzero_wins/matrix.kicad_pro",
+      "size": 3668
+    },
+    {
+      "path": "native-controls/fp_nonzero_wins/matrix.kicad_pcb",
+      "sha256": "909e8e161179db470c1bece38d5e106ce79cd5e8a380c066a23fcd942bd129e2",
+      "archive_member": "kernel-contract-interruption/reviewer/native-controls/fp_nonzero_wins/matrix.kicad_pcb",
+      "size": 46080
+    },
+    {
+      "path": "native-controls/fp_nonzero_wins/matrix.kicad_dru",
+      "sha256": "238aad020d152d2216856ddf674c271f668c95af053f52f62ee35862e8f40c2d",
+      "archive_member": "kernel-contract-interruption/reviewer/native-controls/fp_nonzero_wins/matrix.kicad_dru",
+      "size": 4953
+    },
+    {
+      "path": "native-controls/pad_zero_then_custom/matrix.kicad_pro",
+      "sha256": "a0d700cd4f82bf5be7bc4a423a89ede8f188178fcaa72de0b53d76af2444a0c0",
+      "archive_member": "kernel-contract-interruption/reviewer/native-controls/pad_zero_then_custom/matrix.kicad_pro",
+      "size": 3668
+    },
+    {
+      "path": "native-controls/pad_zero_then_custom/matrix.kicad_pcb",
+      "sha256": "94e239724d96ca1961cbe49d2e59d53a9fcb936f80c334890e62e94b75b3c021",
+      "archive_member": "kernel-contract-interruption/reviewer/native-controls/pad_zero_then_custom/matrix.kicad_pcb",
+      "size": 46079
+    },
+    {
+      "path": "native-controls/pad_zero_then_custom/matrix.kicad_dru",
+      "sha256": "0f3736824323cb5c1815af2b1ddd502991152ee7b2eba19c86cae4d6c584c874",
+      "archive_member": "kernel-contract-interruption/reviewer/native-controls/pad_zero_then_custom/matrix.kicad_dru",
+      "size": 4952
+    },
+    {
+      "path": "native-controls/zero_below_board/matrix.kicad_pro",
+      "sha256": "a0d700cd4f82bf5be7bc4a423a89ede8f188178fcaa72de0b53d76af2444a0c0",
+      "archive_member": "kernel-contract-interruption/reviewer/native-controls/zero_below_board/matrix.kicad_pro",
+      "size": 3668
+    },
+    {
+      "path": "native-controls/zero_below_board/matrix.kicad_pcb",
+      "sha256": "330015c85624b511ada4637241c3eb49f6b3b2d06f4dbe505a95bf40bd97fc1a",
+      "archive_member": "kernel-contract-interruption/reviewer/native-controls/zero_below_board/matrix.kicad_pcb",
+      "size": 46098
+    },
+    {
+      "path": "native-controls/zero_below_board/matrix.kicad_dru",
+      "sha256": "417133007462d7043aa2e30c7db76426083e7ffecbe58646f06ddd9de6a8c34e",
+      "archive_member": "kernel-contract-interruption/reviewer/native-controls/zero_below_board/matrix.kicad_dru",
+      "size": 4953
+    },
+    {
+      "path": "native-controls/pad_zero_masks_fp/matrix.kicad_pro",
+      "sha256": "a0d700cd4f82bf5be7bc4a423a89ede8f188178fcaa72de0b53d76af2444a0c0",
+      "archive_member": "kernel-contract-interruption/reviewer/native-controls/pad_zero_masks_fp/matrix.kicad_pro",
+      "size": 3668
+    },
+    {
+      "path": "native-controls/pad_zero_masks_fp/matrix.kicad_pcb",
+      "sha256": "917b70323c6d579a6e09bd54e87762ac9f2100a61cb2fd333437b714e925b756",
+      "archive_member": "kernel-contract-interruption/reviewer/native-controls/pad_zero_masks_fp/matrix.kicad_pcb",
+      "size": 46097
+    },
+    {
+      "path": "native-controls/pad_zero_masks_fp/matrix.kicad_dru",
+      "sha256": "238aad020d152d2216856ddf674c271f668c95af053f52f62ee35862e8f40c2d",
+      "archive_member": "kernel-contract-interruption/reviewer/native-controls/pad_zero_masks_fp/matrix.kicad_dru",
+      "size": 4953
+    },
+    {
+      "path": "native-controls/zero_without_custom/matrix.kicad_pro",
+      "sha256": "a0d700cd4f82bf5be7bc4a423a89ede8f188178fcaa72de0b53d76af2444a0c0",
+      "archive_member": "kernel-contract-interruption/reviewer/native-controls/zero_without_custom/matrix.kicad_pro",
+      "size": 3668
+    },
+    {
+      "path": "native-controls/zero_without_custom/matrix.kicad_pcb",
+      "sha256": "330015c85624b511ada4637241c3eb49f6b3b2d06f4dbe505a95bf40bd97fc1a",
+      "archive_member": "kernel-contract-interruption/reviewer/native-controls/zero_without_custom/matrix.kicad_pcb",
+      "size": 46098
+    },
+    {
+      "path": "native-controls/zero_without_custom/matrix.kicad_dru",
+      "sha256": "a9d3d79324d832fb49f48f15f6a30cf1d943626db68948ebc13fd382253029a6",
+      "archive_member": "kernel-contract-interruption/reviewer/native-controls/zero_without_custom/matrix.kicad_dru",
+      "size": 4849
+    },
+    {
+      "path": "native-controls/fp_zero_then_custom/matrix.kicad_pro",
+      "sha256": "a0d700cd4f82bf5be7bc4a423a89ede8f188178fcaa72de0b53d76af2444a0c0",
+      "archive_member": "kernel-contract-interruption/reviewer/native-controls/fp_zero_then_custom/matrix.kicad_pro",
+      "size": 3668
+    },
+    {
+      "path": "native-controls/fp_zero_then_custom/matrix.kicad_pcb",
+      "sha256": "3b1a6b48693efc3796b872f9848899f2519873bf167e55b906f33be9050eb98b",
+      "archive_member": "kernel-contract-interruption/reviewer/native-controls/fp_zero_then_custom/matrix.kicad_pcb",
+      "size": 46078
+    },
+    {
+      "path": "native-controls/fp_zero_then_custom/matrix.kicad_dru",
+      "sha256": "0f3736824323cb5c1815af2b1ddd502991152ee7b2eba19c86cae4d6c584c874",
+      "archive_member": "kernel-contract-interruption/reviewer/native-controls/fp_zero_then_custom/matrix.kicad_dru",
+      "size": 4952
+    },
+    {
+      "path": "native-controls/local_below_board/matrix.kicad_pro",
+      "sha256": "a0d700cd4f82bf5be7bc4a423a89ede8f188178fcaa72de0b53d76af2444a0c0",
+      "archive_member": "kernel-contract-interruption/reviewer/native-controls/local_below_board/matrix.kicad_pro",
+      "size": 3668
+    },
+    {
+      "path": "native-controls/local_below_board/matrix.kicad_pcb",
+      "sha256": "35e15eb2ea0477b1fc4d37540ae92c090b8e7fb99505321a5e6b4f2b7bfc2eb8",
+      "archive_member": "kernel-contract-interruption/reviewer/native-controls/local_below_board/matrix.kicad_pcb",
+      "size": 46083
+    },
+    {
+      "path": "native-controls/local_below_board/matrix.kicad_dru",
+      "sha256": "417133007462d7043aa2e30c7db76426083e7ffecbe58646f06ddd9de6a8c34e",
+      "archive_member": "kernel-contract-interruption/reviewer/native-controls/local_below_board/matrix.kicad_dru",
+      "size": 4953
+    },
+    {
+      "path": "native-controls/pad_nonzero_wins/matrix.kicad_pro",
+      "sha256": "a0d700cd4f82bf5be7bc4a423a89ede8f188178fcaa72de0b53d76af2444a0c0",
+      "archive_member": "kernel-contract-interruption/reviewer/native-controls/pad_nonzero_wins/matrix.kicad_pro",
+      "size": 3668
+    },
+    {
+      "path": "native-controls/pad_nonzero_wins/matrix.kicad_pcb",
+      "sha256": "844abda9d59adda783f5d46abb1913b468082b4c7db85234b0ab60455858a4b2",
+      "archive_member": "kernel-contract-interruption/reviewer/native-controls/pad_nonzero_wins/matrix.kicad_pcb",
+      "size": 46082
+    },
+    {
+      "path": "native-controls/pad_nonzero_wins/matrix.kicad_dru",
+      "sha256": "0f3736824323cb5c1815af2b1ddd502991152ee7b2eba19c86cae4d6c584c874",
+      "archive_member": "kernel-contract-interruption/reviewer/native-controls/pad_nonzero_wins/matrix.kicad_dru",
+      "size": 4952
+    },
+    {
+      "path": "semantics-controls/case_insensitive/matrix.kicad_pro",
+      "sha256": "a0d700cd4f82bf5be7bc4a423a89ede8f188178fcaa72de0b53d76af2444a0c0",
+      "archive_member": "kernel-contract-interruption/reviewer/semantics-controls/case_insensitive/matrix.kicad_pro",
+      "size": 3668
+    },
+    {
+      "path": "semantics-controls/case_insensitive/matrix.kicad_pcb",
+      "sha256": "4b5c20b5e18678fd45140d39bb4c20a38d2dd0fce3448ec823637e011171585a",
+      "archive_member": "kernel-contract-interruption/reviewer/semantics-controls/case_insensitive/matrix.kicad_pcb",
+      "size": 46062
+    },
+    {
+      "path": "semantics-controls/case_insensitive/matrix.kicad_dru",
+      "sha256": "0598b62685383202e68cf6297648f3196a182bb7c929b16473dff4d8c893fcf2",
+      "archive_member": "kernel-contract-interruption/reviewer/semantics-controls/case_insensitive/matrix.kicad_dru",
+      "size": 4958
+    },
+    {
+      "path": "semantics-controls/area_touch/matrix.kicad_pro",
+      "sha256": "a0d700cd4f82bf5be7bc4a423a89ede8f188178fcaa72de0b53d76af2444a0c0",
+      "archive_member": "kernel-contract-interruption/reviewer/semantics-controls/area_touch/matrix.kicad_pro",
+      "size": 3668
+    },
+    {
+      "path": "semantics-controls/area_touch/matrix.kicad_pcb",
+      "sha256": "940e071b716a87e045ef7fbfa2eb3e1ac2706e5f4f066c50d13266aedc90c318",
+      "archive_member": "kernel-contract-interruption/reviewer/semantics-controls/area_touch/matrix.kicad_pcb",
+      "size": 46594
+    },
+    {
+      "path": "semantics-controls/area_touch/matrix.kicad_dru",
+      "sha256": "e369cb3256c43023476a106cec2ff90ca2e9087e0106893964d3519ab38d6c5a",
+      "archive_member": "kernel-contract-interruption/reviewer/semantics-controls/area_touch/matrix.kicad_dru",
+      "size": 4992
+    },
+    {
+      "path": "semantics-controls/bracket_literal/matrix.kicad_pro",
+      "sha256": "a0d700cd4f82bf5be7bc4a423a89ede8f188178fcaa72de0b53d76af2444a0c0",
+      "archive_member": "kernel-contract-interruption/reviewer/semantics-controls/bracket_literal/matrix.kicad_pro",
+      "size": 3668
+    },
+    {
+      "path": "semantics-controls/bracket_literal/matrix.kicad_pcb",
+      "sha256": "4b5c20b5e18678fd45140d39bb4c20a38d2dd0fce3448ec823637e011171585a",
+      "archive_member": "kernel-contract-interruption/reviewer/semantics-controls/bracket_literal/matrix.kicad_pcb",
+      "size": 46062
+    },
+    {
+      "path": "semantics-controls/bracket_literal/matrix.kicad_dru",
+      "sha256": "c6669cd44f4e9c1e37ad35f03ac79694f59503a9e9af47b2dca687ade8eb977a",
+      "archive_member": "kernel-contract-interruption/reviewer/semantics-controls/bracket_literal/matrix.kicad_dru",
+      "size": 4960
+    },
+    {
+      "path": "semantics-controls/mixed_and_or/matrix.kicad_pro",
+      "sha256": "a0d700cd4f82bf5be7bc4a423a89ede8f188178fcaa72de0b53d76af2444a0c0",
+      "archive_member": "kernel-contract-interruption/reviewer/semantics-controls/mixed_and_or/matrix.kicad_pro",
+      "size": 3668
+    },
+    {
+      "path": "semantics-controls/mixed_and_or/matrix.kicad_pcb",
+      "sha256": "4b5c20b5e18678fd45140d39bb4c20a38d2dd0fce3448ec823637e011171585a",
+      "archive_member": "kernel-contract-interruption/reviewer/semantics-controls/mixed_and_or/matrix.kicad_pcb",
+      "size": 46062
+    },
+    {
+      "path": "semantics-controls/mixed_and_or/matrix.kicad_dru",
+      "sha256": "ef01164fe9896fc801c5f5bde1341861f78c30433a2dc41ed5bfcfa324eb684e",
+      "archive_member": "kernel-contract-interruption/reviewer/semantics-controls/mixed_and_or/matrix.kicad_dru",
+      "size": 5003
+    },
+    {
+      "path": "semantics-controls/area_overlap_2um/matrix.kicad_pro",
+      "sha256": "a0d700cd4f82bf5be7bc4a423a89ede8f188178fcaa72de0b53d76af2444a0c0",
+      "archive_member": "kernel-contract-interruption/reviewer/semantics-controls/area_overlap_2um/matrix.kicad_pro",
+      "size": 3668
+    },
+    {
+      "path": "semantics-controls/area_overlap_2um/matrix.kicad_pcb",
+      "sha256": "79fc0e8572884f3db60368b1fb2ba1e7ec0b22bce300071f1992e2d9f5444929",
+      "archive_member": "kernel-contract-interruption/reviewer/semantics-controls/area_overlap_2um/matrix.kicad_pcb",
+      "size": 46598
+    },
+    {
+      "path": "semantics-controls/area_overlap_2um/matrix.kicad_dru",
+      "sha256": "e369cb3256c43023476a106cec2ff90ca2e9087e0106893964d3519ab38d6c5a",
+      "archive_member": "kernel-contract-interruption/reviewer/semantics-controls/area_overlap_2um/matrix.kicad_dru",
+      "size": 4992
+    },
+    {
+      "path": "semantics-controls/area_overlap_1iu/matrix.kicad_pro",
+      "sha256": "a0d700cd4f82bf5be7bc4a423a89ede8f188178fcaa72de0b53d76af2444a0c0",
+      "archive_member": "kernel-contract-interruption/reviewer/semantics-controls/area_overlap_1iu/matrix.kicad_pro",
+      "size": 3668
+    },
+    {
+      "path": "semantics-controls/area_overlap_1iu/matrix.kicad_pcb",
+      "sha256": "7721ed1ef19fe21d766dff2f9bb918af9239837a40da9a3969c8930273b14512",
+      "archive_member": "kernel-contract-interruption/reviewer/semantics-controls/area_overlap_1iu/matrix.kicad_pcb",
+      "size": 46604
+    },
+    {
+      "path": "semantics-controls/area_overlap_1iu/matrix.kicad_dru",
+      "sha256": "e369cb3256c43023476a106cec2ff90ca2e9087e0106893964d3519ab38d6c5a",
+      "archive_member": "kernel-contract-interruption/reviewer/semantics-controls/area_overlap_1iu/matrix.kicad_dru",
+      "size": 4992
+    },
+    {
+      "path": "focused/width_below_board_rejected/matrix.kicad_pro",
+      "sha256": "a0d700cd4f82bf5be7bc4a423a89ede8f188178fcaa72de0b53d76af2444a0c0",
+      "archive_member": "native-semantics/review/scratch/focused/width_below_board_rejected/matrix.kicad_pro",
+      "size": 3668
+    },
+    {
+      "path": "focused/width_below_board_rejected/matrix.kicad_pcb",
+      "sha256": "1096c92580b90df49cdc2ff1de74d8f1c68387cf797324dbae20b533c556dfa0",
+      "archive_member": "native-semantics/review/scratch/focused/width_below_board_rejected/matrix.kicad_pcb",
+      "size": 46064
+    },
+    {
+      "path": "focused/width_below_board_rejected/matrix.kicad_dru",
+      "sha256": "196bc8a0b5cbd4a973a74eaf289d197ce9277d6b702b9a9322dd81e0bcbbb5f9",
+      "archive_member": "native-semantics/review/scratch/focused/width_below_board_rejected/matrix.kicad_dru",
+      "size": 4941
+    },
+    {
+      "path": "focused/width_below_board_allowed/matrix.kicad_pro",
+      "sha256": "a0d700cd4f82bf5be7bc4a423a89ede8f188178fcaa72de0b53d76af2444a0c0",
+      "archive_member": "native-semantics/review/scratch/focused/width_below_board_allowed/matrix.kicad_pro",
+      "size": 3668
+    },
+    {
+      "path": "focused/width_below_board_allowed/matrix.kicad_pcb",
+      "sha256": "1096c92580b90df49cdc2ff1de74d8f1c68387cf797324dbae20b533c556dfa0",
+      "archive_member": "native-semantics/review/scratch/focused/width_below_board_allowed/matrix.kicad_pcb",
+      "size": 46064
+    },
+    {
+      "path": "focused/width_below_board_allowed/matrix.kicad_dru",
+      "sha256": "17bd7f43bb8afce2f9adf9315b84a843ab082991a0e351ae3c9e06e4bae42412",
+      "archive_member": "native-semantics/review/scratch/focused/width_below_board_allowed/matrix.kicad_dru",
+      "size": 4942
+    },
+    {
+      "path": "focused/area_relax_1iu/matrix.kicad_pro",
+      "sha256": "a0d700cd4f82bf5be7bc4a423a89ede8f188178fcaa72de0b53d76af2444a0c0",
+      "archive_member": "native-semantics/review/scratch/focused/area_relax_1iu/matrix.kicad_pro",
+      "size": 3668
+    },
+    {
+      "path": "focused/area_relax_1iu/matrix.kicad_pcb",
+      "sha256": "7721ed1ef19fe21d766dff2f9bb918af9239837a40da9a3969c8930273b14512",
+      "archive_member": "native-semantics/review/scratch/focused/area_relax_1iu/matrix.kicad_pcb",
+      "size": 46604
+    },
+    {
+      "path": "focused/area_relax_1iu/matrix.kicad_dru",
+      "sha256": "81726e469cf8e4184e66e5e27cba4ce5c0ceb206e2a2477035f445c87878db2c",
+      "archive_member": "native-semantics/review/scratch/focused/area_relax_1iu/matrix.kicad_dru",
+      "size": 5071
+    },
+    {
+      "path": "adc/crow_audio_carrier_v1.kicad_dru",
+      "size": 17123,
+      "sha256": "94251d1c7cb043c66d402d55b5cf89bac74f7ae0927b012556113ae56d7a2471",
+      "archive_member": "native-semantics/packet/current_board/crow_audio_carrier_v1.kicad_dru"
+    },
+    {
+      "path": "adc/crow_audio_carrier_v1.kicad_pcb",
+      "size": 1463999,
+      "sha256": "89d33bae8eaf67457fde887eae9db187d9284ea54be386f0d31e3d7dfe92bf2e",
+      "archive_member": "native-semantics/packet/current_board/crow_audio_carrier_v1.kicad_pcb"
+    },
+    {
+      "path": "adc/crow_audio_carrier_v1.kicad_pro",
+      "size": 28092,
+      "sha256": "4a1040e34967d6610bd5032e46b3c2d0e24863370106f7e220d88d4dd633c61d",
+      "archive_member": "native-semantics/packet/current_board/crow_audio_carrier_v1.kicad_pro"
+    },
+    {
+      "path": "adc-zero-margin.json",
+      "size": 9664,
+      "sha256": "dd40b38b522bf363b0ff3908a13539a9faad482b7508d253113c4a5d250ac139",
+      "derived_from": "evaluator/reviewer/fourteen-witnesses.json",
+      "selection": "exact U_ADC rows; retained numerical witness fields unchanged"
+    }
+  ],
+  "archives": {
+    "evaluator": "887c61662cbdc291a68c03bdbfb4569d5c93eb830989f31393338c14a128b3db",
+    "kernel-contract-interruption": "c059998a1be87d940015dab5f0c02afd22484ce2b5d495e591b1259187e949d5",
+    "native-semantics": "9ca5188d297ac806316e5955d3053bbf73be949c5a44e445dd14a51607b27160"
+  }
+}

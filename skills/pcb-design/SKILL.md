@@ -119,6 +119,13 @@ fabrication stages; it does not select RF-named stages. Firmware is a separate
 explicit handoff and never appears because a board merely contains a
 programmable part.
 
+For new native work, run the startup qualification described in
+[execution-runtime.md](references/execution-runtime.md). Use its validated task
+delivery path for bounded work with declared outputs. Keep one implementation
+owner through pre-admitted routine repairs; scripts handle mechanical loops.
+Independent review still starts with a fresh live reviewer qualification and
+retains every semantic handoff boundary.
+
 At each selected stage:
 
 ```text
@@ -248,6 +255,8 @@ the exact base/head pair.
 
 After three non-improving iterations, stop local repair. Record the repeated
 finding set, verify the causal artifact, and use `D-BACK` to reopen its owner.
+For recurring engineering investigations, apply the decision-progress protocol
+in `references/lifecycle-and-backtrack.md`; a new model or handoff is not a reset.
 A fresh agent resumes from committed source, the live beacon, journal, and
 content-addressed handoff—not from hidden conversation history.
 

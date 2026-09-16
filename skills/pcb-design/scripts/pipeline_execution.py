@@ -237,10 +237,34 @@ class TaskEnvelope:
     writer_scope: WriterScope | Mapping[str, Any]
     output_path: str
     schema: int = SCHEMA
+    completion: Optional[Mapping[str, Any]] = None
+    repair: Optional[Mapping[str, Any]] = None
 
     def __post_init__(self) -> None:
-        if self.schema != SCHEMA or isinstance(self.schema, bool):
-            _fail(f"schema: only schema {SCHEMA} is supported")
+        if self.schema not in (1, 2) or isinstance(self.schema, bool):
+            _fail("schema: TaskEnvelope supports 1 and 2")
+        if self.schema == 1 and (self.completion is not None or self.repair is not None):
+            _fail("schema 1 cannot carry completion or repair")
+        if self.schema == 2:
+            _exact_fields(self.completion, {"outputs", "checks"}, "completion")
+            for key in ("outputs", "checks"):
+                rows = self.completion[key]
+                if (not isinstance(rows, (list, tuple)) or not rows or
+                        any(not isinstance(row, str) for row in rows) or
+                        list(rows) != sorted(set(rows))):
+                    _fail(f"completion.{key}: expected nonempty sorted unique strings")
+                for row in rows:
+                    (_relative_path if key == "outputs" else _token)(row, key)
+            if "result.json" in self.completion["outputs"]:
+                _fail("result.json is reserved for the completion report")
+            if Path(self.output_path).name != "attempt.json":
+                _fail("schema 2 output_path must end in attempt.json")
+            if not self.output_path.startswith("06_build/task_runs/"):
+                _fail("schema 2 output_path must be below 06_build/task_runs")
+            if self.repair is not None:
+                validate_repair_policy(self.repair)
+                if self.executor != "subprocess":
+                    _fail("repair allowance covers same-owner subprocess work; agent replacement requires separate admission")
         _token(self.task_id, "task_id")
         _stage_id(self.stage_id)
         _token(self.run_id, "run_id")
@@ -317,6 +341,8 @@ class TaskEnvelope:
             "max_nonimproving_attempts", "replacement_limit", "writer_scope",
             "output_path",
         }
+        if isinstance(value, Mapping) and value.get("schema") == 2:
+            fields |= {"completion", "repair"}
         _exact_fields(value, fields, "TaskEnvelope")
         return cls(**{name: value[name] for name in fields})
 
@@ -329,7 +355,7 @@ class TaskEnvelope:
         return cls.from_mapping(value)
 
     def to_mapping(self) -> dict[str, Any]:
-        return {
+        result = {
             "schema": self.schema, "task_id": self.task_id,
             "stage_id": self.stage_id, "run_id": self.run_id,
             "subject": self.subject.to_mapping(), "executor": self.executor,
@@ -346,6 +372,10 @@ class TaskEnvelope:
             "writer_scope": self.writer_scope.to_mapping(),
             "output_path": self.output_path,
         }
+
+        if self.schema == 2:
+            result.update(completion=self.completion, repair=self.repair)
+        return result
 
     def to_json(self) -> str:
         return json.dumps(self.to_mapping(), sort_keys=True,
@@ -687,3 +717,81 @@ __all__ = [
     "context_handoff_decision", "envelope_sha256", "replacement_admissible",
     "verify_input_packet", "writer_scope_receipt",
 ]
+
+
+def validate_repair_policy(value):
+    _exact_fields(value, {"owner_id", "hypothesis_sha256", "max_attempts",
+                          "setup_remedies", "finding_id"}, "repair")
+    _token(value["owner_id"], "repair.owner_id")
+    if not isinstance(value["hypothesis_sha256"], str) or not SHA256_RE.fullmatch(value["hypothesis_sha256"]):
+        _fail("repair.hypothesis_sha256: expected SHA-256")
+    if (not isinstance(value["max_attempts"], int) or isinstance(value["max_attempts"], bool)
+            or value["max_attempts"] < 1):
+        _fail("repair.max_attempts: expected positive integer including initial attempt")
+    remedies = value["setup_remedies"]
+    allowed = {"wrong_cwd", "missing_directory", "missing_executable", "missing_output"}
+    if (not isinstance(remedies, (list, tuple)) or any(not isinstance(x, str) for x in remedies)
+            or list(remedies) != sorted(set(remedies)) or not set(remedies) <= allowed):
+        _fail("repair.setup_remedies: expected sorted known remedies")
+    if value["finding_id"] is not None:
+        _token(value["finding_id"], "repair.finding_id")
+
+
+def repair_decision(envelope: TaskEnvelope, previous: TaskAttempt,
+                    assessment: Mapping[str, Any]) -> dict[str, Any]:
+    """Evaluate coordinator evidence; never retry or reset cumulative spend."""
+    if envelope.schema != 2 or envelope.repair is None:
+        _fail("same-owner repair was not admitted in the original envelope")
+    if (previous.task_id != envelope.task_id or previous.subject != envelope.subject or
+            previous.envelope_sha256 != envelope_sha256(envelope)):
+        _fail("repair previous attempt does not bind this exact envelope")
+    fields = {"owner_id", "hypothesis_sha256", "classification", "remedy", "improved",
+              "boundary", "d_back", "context_used_pct", "reason", "evidence"}
+    _exact_fields(assessment, fields, "repair assessment")
+    if assessment["owner_id"] != envelope.repair["owner_id"]:
+        _fail("repair owner differs; fresh ownership is not a budget reset")
+    if assessment["hypothesis_sha256"] != envelope.repair["hypothesis_sha256"]:
+        _fail("changed hypothesis requires fresh D-BACK judgment")
+    if not isinstance(assessment["improved"], bool) or not isinstance(assessment["d_back"], bool):
+        _fail("improved and d_back must be booleans")
+    decision = context_handoff_decision(context_used_pct=assessment["context_used_pct"],
+        boundary=assessment["boundary"], d_back=assessment["d_back"])
+    if decision["decision"] == "HANDOFF_REQUIRED":
+        _fail(decision["reason"])
+    if not isinstance(assessment["reason"], str) or not assessment["reason"].strip():
+        _fail("repair needs coordinator reasoning and bound evidence")
+    if not isinstance(assessment["evidence"], list) or not assessment["evidence"]:
+        _fail("repair needs nonempty evidence bindings")
+    for row in assessment["evidence"]:
+        PacketItem.from_mapping(row)
+    _, deadline = _timestamp(envelope.deadline_at, "deadline_at")
+    if deadline <= datetime.now(timezone.utc):
+        _fail("original repair deadline exhausted")
+    if previous.status not in {"FAIL", "INCOMPLETE", "ERROR"}:
+        _fail("completed, timed-out or handed-off tasks cannot repair locally")
+    output = previous.output or {}
+    runtime = output.get("runtime")
+    if (not runtime or runtime["status"] in {"TIMED_OUT", "INCOMPLETE"} or
+            output.get("enforcement_errors")):
+        _fail("provider failure, unknown cleanup or envelope violation requires diagnosis")
+    if previous.status == "ERROR" and not (
+            runtime.get("pid") is None and assessment["remedy"] == "missing_executable"):
+        _fail("runtime failure is not an admitted setup repair")
+    classification = assessment["classification"]
+    if classification == "setup":
+        if assessment["remedy"] not in envelope.repair["setup_remedies"] or assessment["improved"]:
+            _fail("setup remedy not admitted, or setup incorrectly credited as engineering progress")
+    elif classification == "engineering":
+        if assessment["remedy"] is not None:
+            _fail("engineering assessment cannot relabel a setup remedy")
+    else:
+        _fail("classification must be setup or engineering")
+    index = previous.attempt_index + 1
+    if index >= envelope.repair["max_attempts"]:
+        _fail("original total attempt allowance exhausted")
+    nonimproving = output.get("continuation", {}).get("nonimproving", 0)
+    nonimproving = 0 if assessment["improved"] else nonimproving + 1
+    if nonimproving >= envelope.max_nonimproving_attempts:
+        _fail("non-improving allowance exhausted; fresh D-BACK judgment required")
+    return {"attempt_index": index, "nonimproving": nonimproving,
+            "classification": classification, "assessment": dict(assessment)}

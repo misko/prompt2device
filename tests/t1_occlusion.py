@@ -1602,5 +1602,132 @@ def t_fleet_wire_ambiguity_is_bounded():
     check(seen >= 6, f"only {seen} fleet sheets scanned")
 
 
+def own_pin_property_fixture(axis, prop, clear):
+    """Hand-authored shafts: a property crosses its OWN pin, or clears it.
+
+    Carrier native review 2026-09-10 found four Reference/VCC ink contacts.
+    The checker parsed the shafts but exempted matching owners. These eight
+    bad cases are RED against 547ad801; clear controls pass both versions.
+    """
+    (px, py, pa), bad, good = (
+        ((0, 10, 270), (50, 42.5), (55, 42.5)),
+        ((10, 0, 180), (57.5, 50), (57.5, 55)),
+        ((0, -10, 90), (50, 57.5), (55, 57.5)),
+        ((-10, 0, 0), (42.5, 50), (42.5, 55)),
+    )[axis]
+    lib = BOX_LIB.replace('(at -12.0 -4.0 0) (length 7.0)',
+                          f'(at {px} {py} {pa}) (length 5.0)')
+    p = sheet(symbols=[('elt:BOX', 50, 50, 0, 'U1', 'TEST')], libs=[lib])
+    x, y = good if clear else bad
+    other = 'Value' if prop == 'Reference' else 'Reference'
+    text = re.sub(rf'(\(property "{prop}" "[^"]+" \(at )[^)]+',
+                  rf'\g<1>{x} {y} 0', p.read_text())
+    text = re.sub(rf'(\(property "{other}" "[^"]+" \(at )[^)]+',
+                  r'\g<1>75 75 0', text)
+    p.write_text(text)
+    return p
+
+
+@test('S-OCCL rejects Reference and Value crossing their own pin in four directions',
+      kind='known_bad')
+def t_own_pin_property_crossings():
+    for axis in range(4):
+        for prop in ('Reference', 'Value'):
+            p = own_pin_property_fixture(axis, prop, False)
+            bad, unmodelled, graded, total = counts(p)
+            eq(unmodelled, [], 'own-pin fixture placement')
+            eq(graded, total, 'own-pin fixture coverage')
+            eq(len(bad), 1, f'{axis}/{prop}: exactly the own-pin contact')
+            check(any('pin U1.1' in str(row) for row in bad), str(bad))
+            must_fail(run([KPY, TOOL, p]), 'own-pin property contact', 'S-OCCL')
+
+
+@test('S-OCCL keeps Reference and Value clear of their own pin clean in four directions')
+def t_own_pin_property_clear_controls():
+    for axis in range(4):
+        for prop in ('Reference', 'Value'):
+            p = own_pin_property_fixture(axis, prop, True)
+            bad, unmodelled, graded, total = counts(p)
+            eq((bad, unmodelled), ([], []), f'{axis}/{prop}: clear control')
+            eq(graded, total, 'clear fixture coverage')
+            must_pass(run([KPY, TOOL, p]), 'clear own-pin property')
+
+
+def free_text_fixture(obstacle=None, clear=False, angle=0, font='(size 1.27 1.27)', justify='left'):
+    p = sheet(symbols=BOX_AT if obstacle == 'body' else (),
+              wires=[(101, 95, 101, 105)] if obstacle == 'wire' else ())
+    x = 130 if clear else 100
+    just = f' (justify {justify})' if justify else ''
+    form = (f'  (text "ANNOTATION" (at {x} 100 {angle})'
+            f' (effects (font {font}){just})'
+            ' (uuid "00000000-0000-0000-0000-000000001111"))\n')
+    text = p.read_text()
+    p.write_text(text[:text.rfind(')')] + form + ')\n')
+    return p
+
+
+@test('S-OCCL grades native free-text body and wire collisions', kind='known_bad')
+def t_native_free_text_collisions():
+    """RED on 74fd38dd: headings were unmodelled, not collision-graded."""
+    for obstacle in ('body', 'wire'):
+        p = free_text_fixture(obstacle)
+        bad, unknown, graded, total = counts(p)
+        eq(unknown, [], 'supported native free-text parse coverage')
+        eq(graded, total, 'supported native free-text population')
+        eq(len(bad), 1, f'exact free-text/{obstacle} collision')
+        check('ANNOTATION' in str(bad) and obstacle in str(bad), str(bad))
+        must_fail(run([KPY, TOOL, p]), 'native free-text collision', 'S-OCCL')
+
+
+@test('S-OCCL keeps native free-text clear of bodies and wires')
+def t_native_free_text_clear_controls():
+    for obstacle in ('body', 'wire'):
+        p = free_text_fixture(obstacle, clear=True)
+        bad, unknown, graded, total = counts(p)
+        eq((bad, unknown), ([], []), 'native free-text clear control')
+        eq(graded, total, 'native clear text is counted')
+        must_pass(run([KPY, TOOL, p]), 'clear native free text')
+
+
+@test('S-OCCL refuses unsupported native free-text effects and rotation', kind='known_bad')
+def t_native_free_text_unsupported_refuses():
+    for extra in (dict(angle=90), dict(font='(size 1.27 1.27) bold'),
+                  dict(font='(size 1.27 1.27) italic'), dict(justify='left top'),
+                  dict(font='(size 1.27 2.0)'), dict(font='(size 2 2)')):
+        p = free_text_fixture(clear=True, **extra)
+        _, unknown, graded, total = counts(p)
+        eq(len(unknown), 1, f'unsupported free-text shape: {extra}')
+        eq(total - graded, 1, 'unmodelled text remains in coverage denominator')
+        must_fail(run([KPY, TOOL, p]), 'unsupported native text', 'UNPLACED')
+
+
+@test('native free-text geometry is bounded by independently rendered glyphs')
+def t_native_free_text_ink_calibration():
+    """Free text and Reference/Value anchors differ in actual KiCad exports."""
+    title = 'gYp / U1 INV / 3.3 uH'
+    measured = 0
+    for size in (1.27,):
+        for justify in (None, 'left', 'right'):
+            p = free_text_fixture(clear=True, font=f'(size {size} {size})', justify=justify)
+            p.write_text(p.read_text().replace('ANNOTATION', title))
+            texts, _, _, unknown, total = SO.parse_sheet(p.read_text())
+            eq(unknown, [], 'calibrated free-text parse coverage')
+            eq(len(texts), 1, 'one modeled native text')
+            eq(total, 1, 'one actual native text')
+            model = texts[0][0]
+            runs = drawn_runs(svg_of(p, p.parent / 'svg'))
+            eq(len(runs.get(title, [])), 1, 'one independently rendered native text')
+            ink = runs[title][0]
+            check(model[0] <= ink[0] + .0003 and model[1] <= ink[1] + .0003
+                  and model[2] >= ink[2] - .0003 and model[3] >= ink[3] - .0003,
+                  f'native free-text envelope misses actual ink: {size}/{justify}: {model}, {ink}')
+            # Prevent an arbitrarily inflated box from satisfying containment.
+            check(model[2] - model[0] < ink[2] - ink[0] + 2 * size
+                  and model[3] - model[1] < ink[3] - ink[1] + size,
+                  f'native free-text model is not a useful bound: {model}, {ink}')
+            measured += 1
+    eq(measured, 3, 'supported font/justification calibration denominator')
+
+
 if __name__ == "__main__":
     sys.exit(main())

@@ -33,6 +33,7 @@
 # ---- SERVICE DECLARATION (required; declaration-only until the capability
 # reference is fetched — do NOT gate on numbers written from memory) ----------
 service: standard          # JLC assembly service tier, as ORDERED
+# Allowed mounting sides for all fitted SMD, including manual/consigned parts.
 sides: [top]               # sides that carry placed parts. Adding `bottom` is a
                            # COST and process decision, not a layout convenience.
 fiducials: none            # `none` + the fab's own statement, or a count/type.

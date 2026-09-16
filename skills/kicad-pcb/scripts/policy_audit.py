@@ -276,20 +276,13 @@ GRADES = ("PASS", "FAIL", "WAIVED", "HUMAN", "N-A", "UNGRADED")
 # never been measured cannot have regressed — and picks up a bound the first
 # time someone records one. That declared gap is the honest price of never
 # failing a board for existing.
-PREC_GRADED_FLOOR = 86   # in-scope parts carrying a TIER-GRADED precedent
-                         # record, FLEET-WIDE. Raised 46 -> 86 on 2026-08-21
-                         # after the debug-hub dossiers entered the governed
-                         # fleet: the read-only sweep measures 86 graded / 216 in
-                         # scope. A numerator advance raises this floor in the
-                         # same change; it may never be lowered.
-#
-# PER-BOARD owed ceilings: in-scope parts with NO tier-graded record. Each may
-# only FALL, and each is TIGHT (the test asserts equality, so a board that
-# improves must lower its own row in the same commit and cannot bank slack).
-# RE-MEASURED 2026-08-26 across the retained 15-board regression corpus:
-# 215 in scope, 86 GRADED and 129 OWED. The per-board rows below are exact;
-# `tests/t1_layout_precedent.py` independently recomputes every denominator.
+PREC_GRADED_FLOOR = 116  # tier-graded precedents; may only RISE.
+# Re-measured 2026-09-10 over the retained 17-board corpus: 243 in scope,
+# 114 GRADED and 129 OWED. New carrier and mic-pod-v3 rows both owe zero;
+# every pre-existing board ceiling remains exact and unchanged.
 PREC_OWED_CEILING = {
+    "crow-audio-carrier-v1": 0,
+    "crow-mic-pod-v3": 0,
     "crow-mic-pod-v2": 4,
     "crow-recorder-central-v2": 17,
     "pi-usb-port-switch": 11,

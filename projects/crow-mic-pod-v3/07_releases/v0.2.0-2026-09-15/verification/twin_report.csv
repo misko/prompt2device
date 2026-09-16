@@ -1,0 +1,68 @@
+LCSC,Ref,Status,Detail
+C194142,F1,OK,fit=0.05mm jlc_offset=0 db=0.0 src=name-DB
+C25741,R2,OK,fit=0.08mm jlc_offset=0 db=0.0 src=name-DB
+C25741,R5,OK,fit=0.08mm jlc_offset=0 db=0.0 src=name-DB
+C131394,C2,OK,fit=0.06mm jlc_offset=0 db=0.0 src=name-DB
+C1525,C10,OK,fit=0.06mm jlc_offset=0 db=0.0 src=lcsc
+C1525,C6,OK,fit=0.06mm jlc_offset=0 db=0.0 src=lcsc
+C84455,C7,OK,fit=0.05mm jlc_offset=0 db=0.0 src=name-DB
+C17408,R12,OK,fit=0.09mm jlc_offset=0 db=0.0 src=name-DB
+C17408,R13,OK,fit=0.09mm jlc_offset=0 db=0.0 src=name-DB
+C60490,R10,OK,fit=0.08mm jlc_offset=0 db=0.0 src=lcsc
+C60490,R11,OK,fit=0.08mm jlc_offset=0 db=0.0 src=lcsc
+C15195,C3,OK,fit=0.06mm jlc_offset=0 db=0.0 src=name-DB
+C15195,C4,OK,fit=0.06mm jlc_offset=0 db=0.0 src=name-DB
+C15850,C11,OK,fit=0.05mm jlc_offset=0 db=0.0 src=name-DB
+C15850,C5,OK,fit=0.05mm jlc_offset=0 db=0.0 src=name-DB
+C15850,C9,OK,fit=0.05mm jlc_offset=0 db=0.0 src=name-DB
+C77102,C1,OK,fit=0.05mm jlc_offset=0 db=0.0 src=name-DB
+C25762,R9,OK,fit=0.08mm jlc_offset=0 db=0.0 src=name-DB
+C15849,C8,OK,fit=0.07mm jlc_offset=0 db=0.0 src=name-DB
+C25879,R4,OK,fit=0.08mm jlc_offset=0 db=0.0 src=name-DB
+C25768,R6,OK,fit=0.08mm jlc_offset=0 db=0.0 src=name-DB
+C25768,R7,OK,fit=0.08mm jlc_offset=0 db=0.0 src=name-DB
+C25768,R8,OK,fit=0.08mm jlc_offset=0 db=0.0 src=name-DB
+C17614,R3,OK,fit=0.09mm jlc_offset=0 db=0.0 src=name-DB
+C113480,R1,OK,fit=0.08mm jlc_offset=0 db=0.0 src=name-DB
+C17936,R14,OK,fit=0.02mm jlc_offset=0 db=0.0 src=name-DB
+C2878631,U1,OK,fit=0.14mm jlc_offset=270 db=270.0 src=lcsc
+C144860,D1,ADJUDICATED-PAD-GEOM,"Vishay88711 revision07-May-2024 p3: mounting pad length>=1.52mm, width>=1.68mm and gap<=1.88mm. Actual native lands2.50x1.80mm, gap1.50mm meet these bounds. Contact tolerance union=(4.93/2-1.52)..(5.28/2)=0.945..2.640mm and lateral +/-0.825mm is contained including actual0.25mm rounded corners. This does not claim the5.28mm reference total span is an exact required native span."
+C144860,D1,ADJUDICATED-PAD-MISMATCH,"Raw numbered-pad residual0.570mm remains true against catalog pitch5.14mm. Independent cached VRML terminal metal is centered on native +/-2.0mm lands, and manufacturer contact envelope is contained; zero-offset catalog common-centroid mount preserves terminal placement and cathode-band side. Native copper is not changed. Body coverage, polarity, registration and same-camera overlay remain mandatory."
+C144860,D1,MOUNT-FALLBACK,"best 0.57mm at 0deg, over 0.5mm — body mounted at JLC's OWN footprint transform (offset 0, their model rot_z), NOT at the failed fit. The render is therefore what JLC's own CAD says, and is gated as such by twin_overlay"
+C83846,D2,ADJUDICATED-PAD-GEOM,"Littelfuse SMBJ v4 JC.07/04/25 p5: J/L>=2.160mm,I>=2.260mm,K<=2.740mm. Actual native2.50x2.30mm lands and1.80mm gap comply. G/2-E full contact tolerance union1.085..2.795mm and lateral +/-1.100mm fits actual rounded copper."
+C83846,D2,OK,fit=0.21mm jlc_offset=0 db=0.0 src=lcsc
+C1972959,U3,OK,fit=0.01mm jlc_offset=0 db=0.0 src=lcsc
+C16430,U2,OK,fit=0.05mm jlc_offset=270 db=270.0 src=lcsc
+,J1,LOCAL-BODY,"source=board; JLC CAD replacement suppressed; resolved paths=1/1; scale/offset/rotation retained; bundle-local bodies=1/1; identity=Wurth 615008160221 manually installed RJ45; authority=Official Wurth STEP, SHA256 3f902b89d4bd756b121be056782deff312efb127c9c48f2c798ebd6db0e59f49; existing j1_wurth_615008160221_official_step registration and connector datum contract.; limitation=Representation of the manually installed exact part only; soldering, cable fit and assembly qualification remain first-article holds."
+C194142,F1,MODEL-REG-OK,body on courtyard (0.00mm)
+C25741,R2,MODEL-REG-OK,body on courtyard (0.00mm)
+C25741,R5,MODEL-REG-OK,body on courtyard (0.00mm)
+C131394,C2,MODEL-REG-OK,body on courtyard (0.00mm)
+C1525,C10,MODEL-REG-OK,body on courtyard (0.00mm)
+C1525,C6,MODEL-REG-OK,body on courtyard (0.00mm)
+C84455,C7,MODEL-REG-OK,body on courtyard (0.00mm)
+C17408,R12,MODEL-REG-OK,body on courtyard (0.00mm)
+C17408,R13,MODEL-REG-OK,body on courtyard (0.00mm)
+C60490,R10,MODEL-REG-OK,body on courtyard (0.00mm)
+C60490,R11,MODEL-REG-OK,body on courtyard (0.00mm)
+C15195,C3,MODEL-REG-OK,body on courtyard (0.00mm)
+C15195,C4,MODEL-REG-OK,body on courtyard (0.00mm)
+C15850,C11,MODEL-REG-OK,body on courtyard (0.00mm)
+C15850,C5,MODEL-REG-OK,body on courtyard (0.00mm)
+C15850,C9,MODEL-REG-OK,body on courtyard (0.00mm)
+C77102,C1,MODEL-REG-OK,body on courtyard (0.00mm)
+C25762,R9,MODEL-REG-OK,body on courtyard (0.00mm)
+C15849,C8,MODEL-REG-OK,body on courtyard (0.00mm)
+C25879,R4,MODEL-REG-OK,body on courtyard (0.00mm)
+C25768,R6,MODEL-REG-OK,body on courtyard (0.00mm)
+C25768,R7,MODEL-REG-OK,body on courtyard (0.00mm)
+C25768,R8,MODEL-REG-OK,body on courtyard (0.00mm)
+C17614,R3,MODEL-REG-OK,body on courtyard (0.00mm)
+C113480,R1,MODEL-REG-OK,body on courtyard (0.00mm)
+C17936,R14,MODEL-REG-OK,body on courtyard (0.00mm)
+C2878631,U1,MODEL-REG-OK,body on courtyard (0.00mm)
+C144860,D1,MODEL-REG-OK,body on courtyard (0.00mm)
+C83846,D2,MODEL-REG-OK,body on courtyard (0.00mm)
+C1972959,U3,MODEL-REG-OK,body on courtyard (0.00mm)
+C16430,U2,NATIVE-REPRESENTATION-OK,explicit vendor_model_absent; signed native registration retained
+,J1,P-MATE-REG-OK,approved exact native connector body retained for manual installation; catalog substitution not used

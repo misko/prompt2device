@@ -226,5 +226,34 @@ def t_config_in_build():
              "config path diagnostic")
 
 
+@test("enclosure layout CLI coverage includes every project path and names root exclusions")
+def t_cli_coverage():
+    """RED against 18c96c58: neither clean nor failing scan printed coverage."""
+    from harness import KPY, must_pass, must_fail, run as run_cli
+    root = fixture()
+    args = [KPY, AUDIT, "--root", root]
+    result = must_pass(run_cli(args), "layout coverage")
+    contains(result.out, "coverage=4/4 project paths", "complete project path population")
+    contains(result.out, "unscoped_entries=1", "root contract exclusion")
+    mesh = root / "projects/demo/06_build/mechanical/base.stl"
+    mesh.parent.mkdir(parents=True)
+    mesh.write_text("solid base\nendsolid base\n")
+    subprocess.run(["git", "-C", str(root), "add", "-f", str(mesh)], check=True)
+    rejected = must_fail(run_cli(args), "misplaced generated STL",
+                         expect="generated 06_build meshes stay ignored")
+    contains(rejected.out, "coverage=5/5 project paths", "failure retains full census")
+
+
+@test("empty enclosure layout population is incomplete", kind="known_bad")
+def t_empty_coverage():
+    """RED against 18c96c58: an empty Git index falsely reported PASS."""
+    from harness import KPY, must_fail, run as run_cli
+    root = tmpdir("enclosure-layout-empty-")
+    subprocess.run(["git", "init", "-q", str(root)], check=True)
+    result = must_fail(run_cli([KPY, AUDIT, "--root", root]),
+                       "empty layout population", expect="NOTHING GRADED")
+    contains(result.out, "coverage=0/0 project paths", "explicit empty census")
+
+
 if __name__ == "__main__":
     raise SystemExit(main())

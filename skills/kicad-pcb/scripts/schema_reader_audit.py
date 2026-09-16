@@ -261,7 +261,8 @@ TEMPLATES = "skills/pcb-design/templates/contracts"
 #: `skills/kicad-pcb/scripts/policy_audit.py` in full would break the moment a
 #: script moves, and the basename is what every other artifact in this repo
 #: (design-policies.md, E-NETREF's consumer column) already uses.
-READER_DIRS = ("skills/kicad-pcb/scripts", "skills/jlcpcb-fab/scripts",
+READER_DIRS = ("skills/kicad-pcb/scripts", "skills/pcb-design/scripts",
+               "skills/jlcpcb-fab/scripts",
                "skills/pcb-enclosure/scripts", "skills/shopping-list/scripts",
                "scripts")
 
@@ -282,8 +283,29 @@ ADVISORY, OWED = "ADVISORY", "OWED"
 
 #: THE RATCHET (see the docstring). Committed integers; a drop below either is
 #: a hard FAIL, and `t_governed_family_floor_is_pinned` refuses a lowering.
-GOVERNED_FLOOR = 20
-PROVEN_FLOOR = 716
+GOVERNED_FLOOR = 23
+PROVEN_FLOOR = 820
+#: 775 -> 776 PROVEN on 2026-09-11: name the actual group-level mount_side
+#: YAML reader with a single valid contract cell. No parser or side check changed.
+#: 774 -> 775 PROVEN on 2026-09-11: declare the existing native model
+#: registration mounting-side fraction reader when the first project uses
+#: the field. The integration suite caught the missing contract row; no
+#: registration predicate or tolerance changed and coverage tightens only.
+#: 741 -> 774 PROVEN on 2026-09-09: reconcile the existing investigation
+#: parent declarations and complete their nested requirement/history/evidence/
+#: reservation/next readers. Milestone IDs use one leaf name slot, not a blanket
+#: subtree. Measured 879/879 rows, 774 PROVEN, zero orphan; decision budgets and
+#: engineering acceptance are unchanged. The coverage floor is tightened only.
+#: 740 -> 741 PROVEN on 2026-09-08: scoped_clearances[].pads_only binds
+#: the emitter's two-sided type guard and preflight's exclusion from route
+#: authority. Measured 846/846 rows, zero orphan; no broadened schema wildcard.
+#: 725 -> 740 PROVEN on 2026-09-08: eleven existing repeated-placement
+#: fields and four explicit copper-path fields now name their real readers.
+#: Measured 845/845 rows, 740 PROVEN, zero orphan; no new subtree exemptions.
+#: 20 -> 21 governed families and 716 -> 725 PROVEN on 2026-09-01:
+#: connector source/full phase policy gained nine exact rows bound to the
+#: additive pcb-design phase gate. pcb-design/scripts joined READER_DIRS so the
+#: owner can be proved rather than misreported as absent.
 #: 19 -> 20 governed families and 698 -> 716 PROVEN on 2026-08-24:
 #: enclosure design gained a declarative `03_src/mechanical/enclosure.yaml`
 #: contract whose twelve rows name real enclosure readers. Re-pinning the

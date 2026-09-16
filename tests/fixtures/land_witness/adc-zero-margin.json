@@ -1,0 +1,457 @@
+[
+  {
+    "ref": "U_ADC",
+    "num": "14",
+    "net": "ADC5P",
+    "class": "ANALOG_AUDIO",
+    "status": "VALIDATED_CONSTANT_WIDTH_WITNESS",
+    "witness": {
+      "start": [
+        94.2,
+        72.95
+      ],
+      "end": [
+        94.2,
+        73.95
+      ],
+      "width": 0.2,
+      "layer": "F.Cu",
+      "detail": {
+        "floor": 0.2,
+        "floor_rule": "ANALOG_AUDIO_width",
+        "minimum_margin": 0.0,
+        "limiter": {
+          "ref": "U_ADC",
+          "num": "15",
+          "net": "ADC6N",
+          "gap": 0.2,
+          "required": 0.2,
+          "rule": "baseline"
+        }
+      },
+      "candidate_obstacles": 19
+    },
+    "evaluated_candidates": 13,
+    "potential_candidates_visited_layers": 1392
+  },
+  {
+    "ref": "U_ADC",
+    "num": "15",
+    "net": "ADC6N",
+    "class": "ANALOG_AUDIO",
+    "status": "VALIDATED_CONSTANT_WIDTH_WITNESS",
+    "witness": {
+      "start": [
+        94.6,
+        72.95
+      ],
+      "end": [
+        94.6,
+        73.95
+      ],
+      "width": 0.2,
+      "layer": "F.Cu",
+      "detail": {
+        "floor": 0.2,
+        "floor_rule": "ANALOG_AUDIO_width",
+        "minimum_margin": 0.0,
+        "limiter": {
+          "ref": "U_ADC",
+          "num": "14",
+          "net": "ADC5P",
+          "gap": 0.2,
+          "required": 0.2,
+          "rule": "baseline"
+        }
+      },
+      "candidate_obstacles": 20
+    },
+    "evaluated_candidates": 13,
+    "potential_candidates_visited_layers": 1392
+  },
+  {
+    "ref": "U_ADC",
+    "num": "16",
+    "net": "ADC6P",
+    "class": "ANALOG_AUDIO",
+    "status": "VALIDATED_CONSTANT_WIDTH_WITNESS",
+    "witness": {
+      "start": [
+        95.0,
+        72.95
+      ],
+      "end": [
+        95.0,
+        73.95
+      ],
+      "width": 0.2,
+      "layer": "F.Cu",
+      "detail": {
+        "floor": 0.2,
+        "floor_rule": "ANALOG_AUDIO_width",
+        "minimum_margin": 0.0,
+        "limiter": {
+          "ref": "U_ADC",
+          "num": "15",
+          "net": "ADC6N",
+          "gap": 0.2,
+          "required": 0.2,
+          "rule": "baseline"
+        }
+      },
+      "candidate_obstacles": 21
+    },
+    "evaluated_candidates": 13,
+    "potential_candidates_visited_layers": 1392
+  },
+  {
+    "ref": "U_ADC",
+    "num": "19",
+    "net": "ADC7N",
+    "class": "ANALOG_AUDIO",
+    "status": "VALIDATED_CONSTANT_WIDTH_WITNESS",
+    "witness": {
+      "start": [
+        96.2,
+        72.95
+      ],
+      "end": [
+        96.2,
+        73.95
+      ],
+      "width": 0.2,
+      "layer": "F.Cu",
+      "detail": {
+        "floor": 0.2,
+        "floor_rule": "ANALOG_AUDIO_width",
+        "minimum_margin": 0.0,
+        "limiter": {
+          "ref": "U_ADC",
+          "num": "20",
+          "net": "ADC7P",
+          "gap": 0.2,
+          "required": 0.2,
+          "rule": "baseline"
+        }
+      },
+      "candidate_obstacles": 22
+    },
+    "evaluated_candidates": 13,
+    "potential_candidates_visited_layers": 1392
+  },
+  {
+    "ref": "U_ADC",
+    "num": "20",
+    "net": "ADC7P",
+    "class": "ANALOG_AUDIO",
+    "status": "VALIDATED_CONSTANT_WIDTH_WITNESS",
+    "witness": {
+      "start": [
+        96.6,
+        72.95
+      ],
+      "end": [
+        96.6,
+        73.95
+      ],
+      "width": 0.2,
+      "layer": "F.Cu",
+      "detail": {
+        "floor": 0.2,
+        "floor_rule": "ANALOG_AUDIO_width",
+        "minimum_margin": 0.0,
+        "limiter": {
+          "ref": "U_ADC",
+          "num": "19",
+          "net": "ADC7N",
+          "gap": 0.2,
+          "required": 0.2,
+          "rule": "baseline"
+        }
+      },
+      "candidate_obstacles": 21
+    },
+    "evaluated_candidates": 13,
+    "potential_candidates_visited_layers": 1392
+  },
+  {
+    "ref": "U_ADC",
+    "num": "21",
+    "net": "ADC8N",
+    "class": "ANALOG_AUDIO",
+    "status": "VALIDATED_CONSTANT_WIDTH_WITNESS",
+    "witness": {
+      "start": [
+        97.0,
+        72.95
+      ],
+      "end": [
+        97.0,
+        73.95
+      ],
+      "width": 0.2,
+      "layer": "F.Cu",
+      "detail": {
+        "floor": 0.2,
+        "floor_rule": "ANALOG_AUDIO_width",
+        "minimum_margin": 0.0,
+        "limiter": {
+          "ref": "U_ADC",
+          "num": "20",
+          "net": "ADC7P",
+          "gap": 0.2,
+          "required": 0.2,
+          "rule": "baseline"
+        }
+      },
+      "candidate_obstacles": 20
+    },
+    "evaluated_candidates": 13,
+    "potential_candidates_visited_layers": 1392
+  },
+  {
+    "ref": "U_ADC",
+    "num": "22",
+    "net": "ADC8P",
+    "class": "ANALOG_AUDIO",
+    "status": "VALIDATED_CONSTANT_WIDTH_WITNESS",
+    "witness": {
+      "start": [
+        97.4,
+        72.95
+      ],
+      "end": [
+        97.4,
+        73.95
+      ],
+      "width": 0.2,
+      "layer": "F.Cu",
+      "detail": {
+        "floor": 0.2,
+        "floor_rule": "ANALOG_AUDIO_width",
+        "minimum_margin": 0.0,
+        "limiter": {
+          "ref": "U_ADC",
+          "num": "23",
+          "net": "ADC_RESET_N",
+          "gap": 0.2,
+          "required": 0.2,
+          "rule": "scoped_clr_ADC_RESET_PITCH"
+        }
+      },
+      "candidate_obstacles": 19
+    },
+    "evaluated_candidates": 13,
+    "potential_candidates_visited_layers": 1392
+  },
+  {
+    "ref": "U_ADC",
+    "num": "39",
+    "net": "ADC1N",
+    "class": "ANALOG_AUDIO",
+    "status": "VALIDATED_CONSTANT_WIDTH_WITNESS",
+    "witness": {
+      "start": [
+        97.4,
+        67.05
+      ],
+      "end": [
+        97.4,
+        66.05
+      ],
+      "width": 0.2,
+      "layer": "F.Cu",
+      "detail": {
+        "floor": 0.2,
+        "floor_rule": "ANALOG_AUDIO_width",
+        "minimum_margin": 0.0,
+        "limiter": {
+          "ref": "U_ADC",
+          "num": "38",
+          "net": "3V3_ADC",
+          "gap": 0.2,
+          "required": 0.2,
+          "rule": "scoped_clr_ADC_CS_STRAP_PITCH"
+        }
+      },
+      "candidate_obstacles": 19
+    },
+    "evaluated_candidates": 37,
+    "potential_candidates_visited_layers": 1392
+  },
+  {
+    "ref": "U_ADC",
+    "num": "40",
+    "net": "ADC1P",
+    "class": "ANALOG_AUDIO",
+    "status": "VALIDATED_CONSTANT_WIDTH_WITNESS",
+    "witness": {
+      "start": [
+        97.0,
+        67.05
+      ],
+      "end": [
+        97.0,
+        66.05
+      ],
+      "width": 0.2,
+      "layer": "F.Cu",
+      "detail": {
+        "floor": 0.2,
+        "floor_rule": "ANALOG_AUDIO_width",
+        "minimum_margin": 0.0,
+        "limiter": {
+          "ref": "U_ADC",
+          "num": "39",
+          "net": "ADC1N",
+          "gap": 0.2,
+          "required": 0.2,
+          "rule": "baseline"
+        }
+      },
+      "candidate_obstacles": 20
+    },
+    "evaluated_candidates": 37,
+    "potential_candidates_visited_layers": 1392
+  },
+  {
+    "ref": "U_ADC",
+    "num": "41",
+    "net": "ADC2N",
+    "class": "ANALOG_AUDIO",
+    "status": "VALIDATED_CONSTANT_WIDTH_WITNESS",
+    "witness": {
+      "start": [
+        96.6,
+        67.05
+      ],
+      "end": [
+        96.6,
+        66.05
+      ],
+      "width": 0.2,
+      "layer": "F.Cu",
+      "detail": {
+        "floor": 0.2,
+        "floor_rule": "ANALOG_AUDIO_width",
+        "minimum_margin": 0.0,
+        "limiter": {
+          "ref": "U_ADC",
+          "num": "42",
+          "net": "ADC2P",
+          "gap": 0.2,
+          "required": 0.2,
+          "rule": "baseline"
+        }
+      },
+      "candidate_obstacles": 21
+    },
+    "evaluated_candidates": 37,
+    "potential_candidates_visited_layers": 1392
+  },
+  {
+    "ref": "U_ADC",
+    "num": "45",
+    "net": "ADC3N",
+    "class": "ANALOG_AUDIO",
+    "status": "VALIDATED_CONSTANT_WIDTH_WITNESS",
+    "witness": {
+      "start": [
+        95.0,
+        67.05
+      ],
+      "end": [
+        95.0,
+        66.05
+      ],
+      "width": 0.2,
+      "layer": "F.Cu",
+      "detail": {
+        "floor": 0.2,
+        "floor_rule": "ANALOG_AUDIO_width",
+        "minimum_margin": 0.0,
+        "limiter": {
+          "ref": "U_ADC",
+          "num": "44",
+          "net": "GND",
+          "gap": 0.2,
+          "required": 0.2,
+          "rule": "scoped_clr_ADC_FILT_NORTH_PITCH"
+        }
+      },
+      "candidate_obstacles": 21
+    },
+    "evaluated_candidates": 37,
+    "potential_candidates_visited_layers": 1392
+  },
+  {
+    "ref": "U_ADC",
+    "num": "46",
+    "net": "ADC3P",
+    "class": "ANALOG_AUDIO",
+    "status": "VALIDATED_CONSTANT_WIDTH_WITNESS",
+    "witness": {
+      "start": [
+        94.6,
+        67.05
+      ],
+      "end": [
+        94.6,
+        66.05
+      ],
+      "width": 0.2,
+      "layer": "F.Cu",
+      "detail": {
+        "floor": 0.2,
+        "floor_rule": "ANALOG_AUDIO_width",
+        "minimum_margin": 0.0,
+        "limiter": {
+          "ref": "U_ADC",
+          "num": "47",
+          "net": "ADC4N",
+          "gap": 0.2,
+          "required": 0.2,
+          "rule": "baseline"
+        }
+      },
+      "candidate_obstacles": 20
+    },
+    "evaluated_candidates": 37,
+    "potential_candidates_visited_layers": 1392
+  },
+  {
+    "ref": "U_ADC",
+    "num": "47",
+    "net": "ADC4N",
+    "class": "ANALOG_AUDIO",
+    "status": "VALIDATED_CONSTANT_WIDTH_WITNESS",
+    "witness": {
+      "start": [
+        94.2,
+        67.05
+      ],
+      "end": [
+        94.2,
+        66.05
+      ],
+      "width": 0.2,
+      "layer": "F.Cu",
+      "detail": {
+        "floor": 0.2,
+        "floor_rule": "ANALOG_AUDIO_width",
+        "minimum_margin": 0.0,
+        "limiter": {
+          "ref": "U_ADC",
+          "num": "46",
+          "net": "ADC3P",
+          "gap": 0.2,
+          "required": 0.2,
+          "rule": "baseline"
+        }
+      },
+      "candidate_obstacles": 19
+    },
+    "evaluated_candidates": 37,
+    "potential_candidates_visited_layers": 1392
+  }
+]

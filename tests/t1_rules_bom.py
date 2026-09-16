@@ -596,6 +596,32 @@ def t_scoped_clearances_emitted():
        "scoped clearance duplicated on rerun")
 
 
+@test("scoped_clearances may carry the matching bounded hole-to-copper floor")
+def t_scoped_hole_clearance_emitted():
+    proj, r = generic_rules_project(
+        lambda s: s.update({"scoped_clearances": [
+            dict(SC, hole_clearance="0.14mm")]}))
+    must_pass(r, "generate bounded copper and hole clearance")
+    txt = (proj / "04_kicad" / "cook_loadcell.kicad_dru").read_text()
+    contains(txt, "(constraint clearance (min 0.14mm))",
+             "the copper member remains explicit")
+    contains(txt, "(constraint hole_clearance (min 0.14mm))",
+             "the drill-to-copper member shares the exact bounded condition")
+    eq(txt.count("A.insideArea('rf_launch')"), 1,
+       "the paired constraints must live in one rule, not drift apart")
+
+
+@test("a scoped hole_clearance below the tier's min_space fails before it can "
+      "license unmanufacturable drill-to-copper geometry", kind="known_bad")
+def t_kb_scoped_hole_clearance_below_tier():
+    proj, r = generic_rules_project(
+        lambda s: s.update({"scoped_clearances": [
+            dict(SC, hole_clearance="0.1mm")]}))
+    must_fail(r, "scoped hole clearance below the fab floor",
+              "jlc_2layer_default")
+    contains(r.out, "hole_clearance", "the rejected member is named")
+
+
 @test("scoped_clearances nets_a/nets_b emits a symmetric exact-pair rule — "
       "the relaxation cannot leak from either named family to unrelated nets")
 def t_scoped_clearances_exact_pair_emitted():
@@ -612,6 +638,38 @@ def t_scoped_clearances_exact_pair_emitted():
     contains(txt, "(A.NetName == 'B1' || A.NetName == 'B2') && "
                   "(B.NetName == 'A1' || B.NetName == 'A2')",
              "the symmetric B-to-A family match")
+
+
+@test("pads_only scoped clearance excludes tracks, vias and zones on BOTH sides")
+def t_scoped_clearances_pads_only():
+    """Run RED against 06d3bd3e before the emitter correction (2026-09-08).
+    An item-overlap area alone also exempts an arbitrarily long track.
+    """
+    proj, r = generic_rules_project(
+        lambda s: s.update({"scoped_clearances": [dict(SC, pads_only=True)]}))
+    must_pass(r, "pad-only clearance generation")
+    txt = (proj / "04_kicad" / "cook_loadcell.kicad_dru").read_text()
+    contains(txt, "A.Type == 'Pad' && B.Type == 'Pad'", "two-sided pad guard")
+    contains(txt, "A.insideArea('rf_launch') && B.insideArea('rf_launch')",
+             "type guard supplements, not replaces, area bounds")
+
+
+@test("pads_only false preserves legacy all-item scope")
+def t_scoped_clearances_pads_only_false():
+    proj, r = generic_rules_project(
+        lambda s: s.update({"scoped_clearances": [dict(SC, pads_only=False)]}))
+    must_pass(r, "explicit legacy scope")
+    txt = (proj / "04_kicad" / "cook_loadcell.kicad_dru").read_text()
+    check("A.Type == 'Pad'" not in txt, "false must not restrict legacy routing")
+
+
+@test("pads_only rejects non-boolean values rather than silently widening scope",
+      kind="known_bad")
+def t_kb_scoped_clearances_pads_only_type():
+    for value in ("true", "false", 0, 1, None, [], {}):
+        proj, r = generic_rules_project(
+            lambda s: s.update({"scoped_clearances": [dict(SC, pads_only=value)]}))
+        must_fail(r, f"non-boolean pads_only {value!r}", "pads_only")
 
 
 @test("a scoped_clearances entry with no `why` is a generation error — an "

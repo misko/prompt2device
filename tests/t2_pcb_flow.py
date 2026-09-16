@@ -396,9 +396,11 @@ def t_layout_seal_dry_run():
     r = must_pass(run([KPY, FLOW, "layout-seal", root, "--dry-run"]),
                   "layout seal dry run")
     for needle in ("escape_check.py", "tier_preflight.py", "rebuild_all.sh",
-                   "[escape_lands]", "--schematic-parity",
+                   "[escape_lands]", "[route_acceptance_verify]",
                    "fabrication/PCBA release not sealed"):
         contains(r.out, needle, "layout-seal command plan")
+    not_contains(r.out, "[layout_drc]",
+                 "layout seal must not rewrite receipt-bound DRC evidence")
     check(r.out.index("rebuild_all.sh") < r.out.index("[escape_lands]"),
           "fresh-board P-LAND must run after rebuild")
     check(not (root / "06_build/agent_handoff.yaml").exists(),
@@ -444,7 +446,8 @@ def t_reviewed_commit_seal_dry_run():
     not_contains(r.out, "[pre_route_placement]",
                  "track-free review must not be applied to routed bytes")
     contains(r.out, "[rf_reviews]", "exact RF reviews are revalidated")
-    contains(r.out, "--schematic-parity", "exact DRC is revalidated")
+    contains(r.out, "route_acceptance_gate.py verify",
+             "exact receipt-bound DRC and copper are revalidated")
 
 
 @test("layout-seal never applies a track-free review to the routed artifact")
@@ -475,6 +478,13 @@ def t_reviewed_commit_provenance():
     proof = module.reviewed_commit_provenance(module.resolve_context(root), source)
     eq(proof["method"], "reviewed_commit", "witness method")
     eq(proof["source_commit"], source, "explicit source commit")
+
+    cached, cached_source = reviewed_repo()
+    cache = cached / "03_tscircuit/.tscircuit/cache"
+    cache.mkdir(parents=True)
+    (cache / "supplier-query.json").write_text("{}\n")
+    module.reviewed_commit_provenance(
+        module.resolve_context(cached), cached_source)
 
     rf, rf_source = reviewed_repo(rf_enabled=True)
     module.reviewed_commit_provenance(module.resolve_context(rf), rf_source)
@@ -655,11 +665,6 @@ def t_executable_seal_and_tamper():
     original = module.run_timed
 
     def fake_run(_ctx, stage, _command, _budget=None):
-        if stage == "layout_drc":
-            _ctx.gate.parent.mkdir(parents=True, exist_ok=True)
-            _ctx.gate.write_text(json.dumps({"violations": [],
-                                             "unconnected_items": [],
-                                             "schematic_parity": []}))
         return 0
 
     module.run_timed = fake_run
@@ -681,10 +686,6 @@ def t_kb_seal_failure_atomicity():
     original_run, original_text = module.run_timed, module.handoff_text
 
     def fake_run(_ctx, stage, _command, _budget=None):
-        if stage == "layout_drc":
-            _ctx.gate.write_text(json.dumps({"violations": [],
-                                             "unconnected_items": [],
-                                             "schematic_parity": []}))
         return 0
 
     def fail_handoff(*_args, **_kwargs):
@@ -816,6 +817,41 @@ def t_grind_delegation():
                   "grind dry run")
     contains(r.out, "grind_driver.py", "bounded driver")
     contains(r.out, "--max-cycles 7", "explicit grind bound")
+
+
+@test("bounded runtime helpers participate in flow tool freshness")
+def t_runtime_tool_identity():
+    spec = importlib.util.spec_from_file_location("flow_runtime_identity", FLOW)
+    module = importlib.util.module_from_spec(spec)
+    sys.modules[spec.name] = module; spec.loader.exec_module(module)
+    context = module.resolve_context(scratch(), None, None)
+    files = {path.resolve() for path in module.tool_files(context)}
+    for name in ("pipeline_runtime.py", "pipeline_execution.py", "pipeline_artifacts.py"):
+        check((SCRIPTS.parents[1] / "pcb-design/scripts" / name).resolve() in files,
+              f"{name} must invalidate a flow receipt when changed")
+
+
+
+@test("land helper-only mutation stales the behavioral handoff", kind="known_bad")
+def t_land_helper_stales_handoff():
+    import shutil
+    module = load_flow_module()
+    root = scratch()
+    ctx = module.resolve_context(root)
+    mirror = tmpdir("flow_land_tools_")
+    original_scripts = module.SCRIPTS
+    repo = original_scripts.parents[2]
+    for source in module.tool_files(ctx) + [original_scripts / "land_witness.py"]:
+        dest = mirror / source.relative_to(repo)
+        dest.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(source, dest)
+    module.SCRIPTS = mirror / original_scripts.relative_to(repo)
+    module.FAB_SCRIPTS = mirror / module.FAB_SCRIPTS.relative_to(repo)
+    module.write_handoff(ctx, None, [])
+    eq(module.validate_handoff(ctx), 0, "fresh helper-bound handoff")
+    helper = module.SCRIPTS / "land_witness.py"
+    helper.write_text(helper.read_text() + "\nHELPER_TEST_MUTATION = True\n")
+    eq(module.validate_handoff(ctx), 2, "helper-only mutation must stale handoff")
 
 
 if __name__ == "__main__":

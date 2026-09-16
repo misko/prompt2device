@@ -12,7 +12,7 @@ rotations, check stock, and perform the human uploader review.
 5. Rotation and polarity authority
 6. Uploader-side human checks
 
-Policy/gate IDs owned here: `A-BUY`, `A-POL`, `A-POP`, `A-POS`, `A-ROT`,
+Policy/gate IDs owned here: `A-LOCATOR`, `A-BUY`, `A-POL`, `A-POP`, `A-POS`, `A-ROT`,
 `A-STOCK`, `F-ECHO`, `F-ENCODE`, `F-LEGIBLE`, `F-MPN`, `F-WORDS`, `M-PROV`,
 `POLARITY-CHECK`, `POLARITY-FIT`, and `ROT-DB-SUGGEST`.
 
@@ -123,6 +123,17 @@ satisfy final allocation. Generic passives may use reviewed equivalent pools
 with identical value, tolerance, voltage, dielectric, package and relevant
 temperature/precision constraints; critical parts remain exact-MPN locked.
 
+An explicit user-approved design-only public-stock policy may supplement a
+JLC `LOW_STOCK` observation with the same exact part at a distributor. Use
+`manufacturing_readiness.py grade --phase prelayout --distributor-policy ...
+--distributor-quotes ...` alongside the ordinary catalog inputs. The schema and
+supported provider are documented in the sourcing contract. Preserve the
+original JLC report; do not rewrite its stock or verdict. The composed result
+names distributor-covered rows separately, rejects missing/network-failed JLC
+rows, and cannot be used for selection, authenticated receipt composition or
+order. It is not Q-2SOURCE or assembly acceptance. No public observation or
+policy authorizes payment, procurement exposure or a substituted part.
+
 `bom_source_check` proves semantic identity. `bom_legibility_check` proves the
 recipient can parse what was written:
 
@@ -177,6 +188,19 @@ logic. Every footprint is one of:
   position-file exclusion;
 - board-only mechanical item.
 
+Declare `sides` as a non-empty list of distinct `top`/`bottom` values. The
+coverage gate compares this policy to native mounted layers for every fitted
+SMD, including manual/consigned parts absent from the CPL. Removing an SMD
+from machine placement does not exempt its assembly side. Each `not_assembled`
+reference must have exactly one disposition; duplicate or conflicting records
+fail and cannot remove a component from the fitted-population denominator. Explicit DNP and
+bare test-point declarations represent nonpopulation; THT solder joints and
+thermal vias do not create a second SMD population. Each CPL side must match
+its native footprint mounting layer. The report includes the fitted SMD side
+histogram and graded denominator. A missing legacy policy is explicitly
+ungraded and cannot support a single-side claim. This check does not prove
+body clearance, paste access or solderability; those layout/process gates remain.
+
 Keep the population declaration only in `03_src/rules/assembly.yaml`. Generate
 manifest summaries from it. A hand-typed `--also` list or release note is not a
 second population authority.
@@ -228,3 +252,61 @@ Re-uploading BOM can reset matching/DNP choices; CPL re-upload changes
 placements. Record the actual final previews. Do not claim `ORDER` until these
 operator-side facts exist. When boards arrive, verify power-entry polarity and
 continuity with a meter before applying the normal source.
+
+
+## Evidence-backed assembly locators (A-LOCATOR)
+
+Use `03_src/rules/assembly_locator.yaml` only after an independent reviewer
+finds that the exact omitted references can be identified safely from an atlas.
+This does not authorize blanket omissions or changes to silk size/clearance.
+The locator supports mixed-side full-board context and top-side 1–4 pad
+exceptions whose native CPL datums/rotations coincide; unsupported exceptions
+fail explicitly. Native mounted-side Fab and silkscreen determine each body
+and omission. The offline map automatically selects the mounted side when a
+reference is searched, and offers an explicit side selector. Bottom is viewed
+from below after flipping left-to-right about the native board-frame centre:
+X increases leftward, Y down. Text and displayed native coordinates/rotations
+are never reflected. Top exception pages show top components only; bottom
+context remains available for every bottom reference in the interactive map.
+The source orientation describes the top side. Source and generated schema1
+shapes remain unchanged; generated `side` and `view` declare the convention,
+and exact producer/template/checker hashes require fresh bundles after change.
+
+The config names title, owner, orientation and full exception records (reference,
+value, MPN, supplier code, native position/rotation/side, pad/net identities).
+The source `policy_waivers.yaml` names exactly the same refs with a project-specific
+rationale and runnable evidence: `assembly_locator_check.py project <project>`.
+The generator does not author or approve that waiver.
+
+`export_jlc_package.py` discovers the selected config and generates the offline
+HTML/JSON and numbered PNG/PDF atlas from that run's PCB and BOM/CPL. It calls the
+separate checker before writing its artifact index. For an isolated diagnosis:
+
+```text
+/usr/bin/python3 assembly_locator.py BOARD BOM CPL CONFIG OUT
+/usr/bin/python3 assembly_locator_check.py exact BOARD BOM CPL CONFIG OUT
+```
+
+PR-REVIEW requires the current bundle in `06_build/pre_route/current_assembly`.
+Each record and page is checked, not merely the total. The manifest binds all
+inputs and source tools; HTML's data, clickable geometry and executable must
+agree, and each PDF page must contain the corresponding PNG image at the
+expected transform. Independent visual review still grades clarity and intent.
+
+Ship the entire indexed locator role with the release, along with
+`source/assembly_locator.yaml`, `source/policy_waivers.yaml` and the exact three
+locator tool/template files under `source/locator_tools/`. The release freshness
+gate validates this archive without consulting current project files. The
+ORDER_README links both `fab/assembly_locator.html` and `fab/assembly_locator.pdf`.
+A later change to the PCB, BOM, CPL, exception identities or locator source
+stales the bundle and requires regeneration and affected independent review.
+
+Structural `exact` checking prepares a bundle for review. The `project` and
+`release` checks additionally require the existing independent render review
+to name `locator_manifest_sha256` and `locator_reviewed_refs` (a JSON array of
+all reviewed exceptions), along with reviewer, completion date, render kind,
+SOUND design verdict and exact board hash. These fields are supplied by the
+independent reviewer, never by the generator. Missing or stale visual acceptance
+blocks the consuming gate even when structural identity checks pass. The normal
+`tests/run_tests.sh` suite runs the public CLI and all locator hostile controls
+through `tests/t1_assembly_locator.py`.

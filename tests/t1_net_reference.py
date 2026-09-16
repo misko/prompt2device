@@ -45,7 +45,12 @@ reference resolves must PASS, and a legitimately-unresolvable reference must
 land in the honest UNREACHED class rather than a FAIL. A check that only ever
 fires one way ranks nothing.
 """
+import json
+import re
+import shutil
 import sys
+
+import yaml
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -56,11 +61,14 @@ from harness import (KPY, ROOT, SCRIPTS, check, contains, eq,  # noqa: E402
 NRA = SCRIPTS / "net_reference_audit.py"
 
 REAL = ROOT / "archived_projects" / "smc0985-cooksense"
-#: the PRE-FIX silk, preserved in-tree as a regenerated proof artifact. Its
-#: caption still reads `GND_ISO ONLY`; the live 03_src floorplan was corrected
-#: on 2026-07-29. Read-only — nothing here writes a project file.
-PROOF_FP = REAL / "06_build" / "proof" / "floorplan_p0proof.yaml"
-REAL_NET = REAL / "06_build" / "netlists" / "cooksense.net"
+# Reconstruct the exact historical caption from immutable PCB evidence.
+# The corrected source floorplan and shipped netlist are committed authorities;
+# no fixture depends on ignored 06_build/proof or 06_build/netlists output.
+INCIDENT_PCB = (REAL / "07_releases" / "cooksense-v1.6-2026-07-27" /
+                "source" / "cooksense.kicad_pcb")
+CORRECTED_FP = REAL / "03_src" / "cooksense" / "floorplan.yaml"
+REAL_NET = (REAL / "07_releases" / "cooksense-v1.7-2026-07-30" /
+            "source" / "cooksense.net")
 
 
 # --------------------------------------------------------------- fixtures
@@ -479,19 +487,28 @@ def t_empty_netlist_is_ungraded():
 @test("the REAL cooksense pre-fix silk caption is caught: `GND_ISO ONLY` on "
       "the proof floorplan against the real netlist", kind="known_bad")
 def t_real_cooksense_silk_ghost():
-    """Not a model of the incident — the incident. `06_build/proof/
-    floorplan_p0proof.yaml` still carries the shipped caption verbatim, and
-    `06_build/netlists/cooksense.net` is the netlist it was printed against.
-    Both are read READ-ONLY into a scratch tree; no project file is written.
+    """Restore the exact v1.6 caption on the corrected source fixture.
 
-    MEASURED: 1 ghost of 31 reference sites, near-miss `GND` named.
+    The complete floorplan and v1.7 netlist remain in the denominator. The
+    positive contrast restores only the caption after proving the ghost.
     """
-    if not (PROOF_FP.is_file() and REAL_NET.is_file()):
-        check(False, f"missing real evidence: {PROOF_FP} / {REAL_NET}")
+    historical = [json.loads(match.group(1)) for match in re.finditer(
+        r'\(gr_text\s+("(?:[^"\\]|\\.)*")',
+        INCIDENT_PCB.read_text(encoding="utf-8"))]
+    captions = [text for text in historical
+                if text.startswith("KEYPAD ISOLATION COMB") and "GND_ISO ONLY" in text]
+    eq(len(captions), 1, "one exact sealed incident caption")
+    floorplan = yaml.safe_load(CORRECTED_FP.read_text(encoding="utf-8"))
+    targets = [row for row in floorplan["silk"]["captions"]
+               if row["text"].startswith("KEYPAD ISOLATION COMB")]
+    eq(len(targets), 1, "one corrected caption to break")
+    corrected_caption = targets[0]["text"]
+    targets[0]["text"] = captions[0]
     d = tmpdir("nra_real_")
     (d / "03_src").mkdir(parents=True)
     (d / "06_build" / "netlists").mkdir(parents=True)
-    (d / "03_src" / "floorplan.yaml").write_bytes(PROOF_FP.read_bytes())
+    scratch_floorplan = d / "03_src" / "floorplan.yaml"
+    scratch_floorplan.write_text(yaml.safe_dump(floorplan), encoding="utf-8")
     (d / "06_build" / "netlists" / "cooksense.net").write_bytes(
         REAL_NET.read_bytes())
     r = must_fail(audit(d), "the shipped GND_ISO caption",
@@ -499,6 +516,9 @@ def t_real_cooksense_silk_ghost():
     contains(r.out, "[K11]")
     contains(r.out, "KEYPAD ISOLATION COMB")
     contains(r.out, "'GND'")
+    targets[0]["text"] = corrected_caption
+    scratch_floorplan.write_text(yaml.safe_dump(floorplan), encoding="utf-8")
+    must_pass(audit(d), "corrected caption on the same committed netlist")
 
 
 @test("the fleet sweep prints a per-board denominator for every project and "
@@ -534,9 +554,17 @@ def t_real_clean_board():
     nets through a regex read of the netlist. Two methods, one answer (canon
     M1) — if they ever disagree, one of them is reading the wrong thing.
     """
-    proj = ROOT / "archived_projects" / "pluto-cal-switch"
-    if not (proj / "06_build" / "netlists").is_dir():
-        check(False, f"missing {proj}")
+    source = ROOT / "archived_projects" / "pluto-cal-switch"
+    proj = tmpdir("nra_pluto_clean_")
+    for directory in ("03_src", "02_parts"):
+        shutil.copytree(source / directory, proj / directory)
+    netlists = proj / "06_build" / "netlists"
+    netlists.mkdir(parents=True)
+    must_pass(run([
+        "kicad-cli", "sch", "export", "netlist", "-o",
+        netlists / "pluto_cal_switch.net",
+        source / "04_kicad" / "pluto_cal_switch.kicad_sch",
+    ]), "export committed pluto-cal-switch schematic into scratch")
     r = must_pass(audit(proj), "pluto-cal-switch net references")
     contains(r.out, "E-NETREF: PASS")
     contains(r.out, "0 ghost")

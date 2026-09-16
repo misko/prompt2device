@@ -30,10 +30,11 @@ manufacturer facts, the PCB source owns realized placement, and enclosure
 source owns case geometry. Evidence files are referenced; their dimensions are
 not copied into parallel PCB and enclosure configurations.
 
-Create connector profiles during commission and part selection. Resolve them
-before placement approval and routing. A connector contract does not add a
-lifecycle stage; it is a mandatory placement predicate whenever connectors are
-present. If a board intentionally has no externally serviced connector, the
+Create connector profiles during commission and part selection. Resolve source
+identity before generation, and resolve physical qualification before placement
+approval and routing. The additive source/full phase gate is a predicate at
+those existing boundaries, not a new lifecycle stage. If a board intentionally
+has no externally serviced connector, the
 project may use the typed N-A branch below. Empty populations alone fail, and
 the compiler's N-A is only an evidence-backed applicability decision: it is not
 a PCB-geometry census, placement gate, enclosure check, or service PASS.
@@ -305,11 +306,90 @@ Receipt validity is separate from readiness: a fresh `INCOMPLETE` receipt is
 still not placement authority, while `N-A` is applicability only and must not
 be relabeled as a geometry or service PASS.
 
+### Additive source/full phase gate
+
+The base compiler, receipt kind/schema, `validate_receipt` API, enclosure
+adapter, and release consumers remain unchanged. A second authored file owns
+only lifecycle admission:
+
+```text
+03_src/rules/connector_assembly_phases.yaml
+```
+
+Its exact schema is:
+
+```yaml
+schema: 1
+phase_policy_id: <project-stable-id>
+source_deferrals:
+  - assembly_id: <base assembly id>
+    target_kind: interface | reaction | operation | cable | tolerance
+    target_id: <stable section, operation, or tolerance id>
+    unknown_class: <closed class required for target_kind>
+    plan_source_ids: [<nonempty IDs already cited by target evidence>]
+    rationale: <physical qualification plan>
+```
+
+The compiler-owned class mapping is one-to-one:
+
+| Target | Only source-admissible class |
+|---|---|
+| `interface` | `realized-interface-fit` |
+| `reaction` | `reaction-qualification` |
+| `operation` | `simultaneous-operation-qualification` |
+| `cable` | `installed-cable-route-qualification` |
+| `tolerance` | `installed-tolerance-qualification` |
+
+The gate resolves the base compiler's diagnostic list indexes back to stable
+assembly/operation/tolerance IDs before applying policy. A missing target,
+duplicate target, class/path mismatch, empty plan-source list, or plan source
+not already bound by the target is schema `FAIL`, never an admitted unknown.
+An installed-tolerance deferral must name an `installed_` or `realized_`
+process target and carry no invented numeric bounds. Interface deferral still
+requires typed orientation authority; reaction still requires a selected
+method/load path; cable-route deferral still requires selected kind,
+manufacturer, MPN, and exit.
+
+Source never defers applicability, receptacle, mate, grip, fastening, tool,
+torque, cable identity, orientation authority, or an untyped/document
+tolerance. Every operated assembly needs nonempty selected receptacle and mate
+manufacturer/MPN with non-unknown identity evidence, and the base compiler's
+closed nonzero ref/group census. `source PASS` means only that generation may
+proceed to a physical candidate; it does not change base `INCOMPLETE` and is
+not placement, service, enclosure, release, or order authority.
+
+Run the wrapper only after compiling the base receipt:
+
+```bash
+python3 skills/pcb-design/scripts/connector_assembly_phase_gate.py \
+  --project projects/<name> --phase source
+
+python3 skills/pcb-design/scripts/connector_assembly_phase_gate.py \
+  --project projects/<name> --phase full
+```
+
+The outputs are
+`06_build/verification/connector_assembly_source_gate.json` and
+`connector_assembly_full_gate.json`. The wrapper receipt kind is
+`connector-assembly-phase-gate-receipt`, schema 1. It binds the exact base
+receipt bytes, the base contract/compiler/evidence bindings, phase policy, and
+phase-gate implementation. Its unknowns use stable target identity as well as
+the base diagnostic path. Callers supply `expected_phase`; a receipt cannot
+select its own source/full bar. Exit 0 is `PASS`/typed `N-A`, exit 2 is phase
+`INCOMPLETE`, and exit 1 is invalid or stale authority.
+
+Canonical conductors preserve and print a base rc=2 before invoking source;
+they do not hide it. After the generated PCB and pin-map check exist, they
+recompile the base and invoke full before placement approval or routing. Full
+requires base status `PASS` and zero unknowns. A source receipt cannot validate
+as full.
+
 ## 9. PCB and enclosure consumption
 
-The phase-one landing compiles the project contract in both canonical rebuild
-drivers and stops on represented unknowns. It does **not** yet publish a PCB
-placement-geometry PASS. A future PCB consumer must independently bind the
+Both canonical rebuild drivers source-grade before producer spend and require
+full closure after candidate PCB generation but before placement approval or
+routing. Neither phase publishes a PCB placement-geometry PASS. A future PCB
+consumer must independently bind the
 exact saved board, complete footprint/model identity, realized orientation,
 board outline, installed Z datum, every non-connector obstacle, and each
 operation state before checking exposure, neighbors, tool/cable sweeps,
@@ -318,7 +398,9 @@ remains separate: a connector can point correctly and still be impossible to
 tighten. Until that consumer and its real producer chain land, a compiled
 receipt is a fact-lock boundary, not placement authority.
 
-An `N-A` receipt has no profiles to map. An enclosure declaring a serviced
+Enclosure and release consumers continue to reopen the base receipt and apply
+their existing full bar. They must never accept a source wrapper as a service
+receipt. An `N-A` receipt has no profiles to map. An enclosure declaring a serviced
 opening cannot use it as interface authority; likewise a future exact-board
 connector census must independently reject a false N-A. The compiler does not
 make either downstream claim in phase one.
@@ -340,8 +422,10 @@ subject rather than trusting receipt JSON.
 
 ## 10. Physical qualification
 
-Before routing a dense or novel bank, build a connector coupon using the exact
-PCB thickness, footprint, edge registration, mates, cables, and chosen tools.
+The full-phase pause occurs after the candidate placement exists, so a separate
+coupon workflow can consume it without approving placement or routing. Before
+routing a dense or novel bank, build a connector coupon using the exact PCB
+thickness, footprint, edge registration, mates, cables, and chosen tools.
 Exercise every required operation and simultaneous group. Record:
 
 - initial engagement without cross-threading or latch damage;
@@ -355,3 +439,67 @@ Store reusable, evidence-graded results in `docs/connector-assembly-registry.md`
 Project first-article records remain the authority for one fabricated subject.
 Do not promote a registry prior into a qualified hardware combination without
 the stated coupon or first-article evidence.
+
+A coupon is separately governed, never a phase exception. Declare its exact
+source and evidence matrix in:
+
+```text
+03_src/connector_qualification_coupon.yaml
+```
+
+The config binds the source board, base connector contract/receipt, phase
+policy, exact board-only datum refs, local footprint libraries, fabrication
+stack, minimum samples, required instrument roles and target hardware, plus one
+measurement/evidence requirement for every stable source-phase unknown. Its
+target-key set and sample-assembly set must equal the current compiler-owned
+censuses exactly; omissions and extra rows fail.
+
+Prepare the governed package from the repository root:
+
+```bash
+/usr/bin/python3 skills/pcb-design/scripts/connector_qualification_coupon.py \
+  prepare --project projects/<name>
+```
+
+The default output is
+`06_build/connector_qualification_coupon/current/`. The producer makes a new
+non-functional board rather than deleting from a loaded board: it duplicates
+only operated connector footprints, configured board-only datums and the full
+Edge.Cuts outline; clears every pad net; preserves source layer count and
+thickness; and then reopens both boards. It requires equality of normalized
+footprint value/FPID/anchor/orientation/body/courtyard/pad/model geometry,
+outline, thickness, and every connector pair vector. It exports hash-bound
+bare-board Gerbers/drills, a portable local footprint table, population and
+hardware worksheets, three renders and JSON DRC. Any DRC error, mechanical
+finding, unconnected item or undeclared warning blocks preparation.
+
+The request binds all source/config/compiler/library/artifact bytes and the
+base/source-phase subjects. `READY_FOR_FABRICATION` authorizes only the named
+bare connector coupon; it is not PCBA, product fabrication, placement, release
+or order authority. Populate the exact connector lots by hand, preserve lot
+labels, exercise the declared simultaneous state with the exact mates, cables,
+tools and target hardware, and fill `physical-response.yaml`. Then run the
+grade command embedded in `request.json`, or equivalently:
+
+```bash
+/usr/bin/python3 skills/pcb-design/scripts/connector_qualification_coupon.py \
+  grade --project projects/<name> \
+  --request 06_build/connector_qualification_coupon/current/request.json \
+  --response 06_build/connector_qualification_coupon/current/physical-response.yaml \
+  --output 06_build/connector_qualification_coupon/current/qualification-receipt.json
+```
+
+`grade` and `verify` machine-reopen the current request, source/coupon boards,
+base and source-phase authority, response and every evidence file. An unfilled
+or incomplete observation is `INCOMPLETE`/exit 2; represented negative results
+or out-of-bound measurements are `FAIL`/exit 1; only the complete exact sample,
+hardware, calibrated-instrument, ref, measurement and evidence census is
+`PASS`/exit 0. The typed receipt binds all those bytes and can be reproduced
+with `verify`.
+
+The target project may cite a regraded PASS receipt as ordinary base-contract
+evidence only after copying the measured values into their single authored
+homes and proving every identity still matches its candidate. The base receipt
+must then be recompiled and full-phase must pass normally. A coupon receipt
+does not edit the connector contract or bypass full. Opaque Markdown,
+photographs alone, a request, or an `INCOMPLETE` receipt cannot make full pass.

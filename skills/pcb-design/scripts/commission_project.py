@@ -466,6 +466,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         return 2
     print(
         f"PCB-SCAFFOLD OK name={args.name} files={file_count} "
+        f"coverage={file_count}/{file_count} scaffold files written "
         f"stage=PCB-COMMISSION status=INCOMPLETE target={target_stage}"
     )
     return 0

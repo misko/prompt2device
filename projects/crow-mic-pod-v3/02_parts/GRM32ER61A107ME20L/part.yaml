@@ -1,0 +1,13 @@
+mpn: GRM32ER61A107ME20L
+manufacturer: Murata
+type: ceramic_capacitor
+value: 100uF
+datasheet: {doc_id: GRM32ER61A107ME20-01, revision: "specifications as of 2016-03-05", url: "https://search.murata.co.jp/Ceramy/image/img/A01X/G101/ENG/GRM32ER61A107ME20-01.pdf", sha256: null, fetched: null}
+package: "1210 (3225 metric)"
+footprint: Capacitor_SMD:C_1210_3225Metric
+escape: {style: passive, pitch: 1.0, tier_required: jlc_2layer_default, checked: "standard 1210 land, 2026-09-01"}
+pins: {1: A, 2: B}
+limits: {capacitance_f: 0.0001, tolerance_pct: 20, voltage_v: 10, dielectric: X5R}
+asserts: [{assert: value, equals: 100u, tolerance_pct: 20, why: "Filtered microphone bias reservoir; it is regulator-side, not connector input capacitance."}]
+verified: "Official Murata GRM32ER61A107ME20-01 reference-sheet identity and rated-value row were inspected through the manufacturer index on 2026-09-02; digest-selected PDF bytes are OWED. Exact code/package remain frozen and DC-bias effective capacitance remains a first-article item."
+sourcing: {lcsc: C84455, alternates: []}

@@ -1,0 +1,13 @@
+# Routing journal
+
+## 2026-09-03 12:35 — finish
+- did: froze the source-owned protection and regulator seed copper, promoted the reviewed route, regenerated the fabrication payload, and completed four independent exact-board reviews before issuing the final layout seal.
+- result: the immutable 60 x 40 mm board has 255 track segments and 57 vias; native KiCad DRC reports 0 violations / 0 unconnected / 0 schematic-parity findings; the realized-route checker passes 22/22; four independent lenses report SOUND with P0/P1/P2 = 0/0/0; order authority remains BLOCKED-SOURCING.
+- next: preserve the exact board and review hashes in the release candidate, keep the order response incomplete until authenticated JLCPCB assembly evidence exists, and prove the remaining connector, capsule, enclosure, thermal, noise and acoustic behavior on first articles.
+
+## 2026-09-13T16:54:10.752335+00:00 — RJ45 routing1 failed honest handback
+- Exact configured KRT clean tracked checkout `/home/mouse9911/gits/KiCadRoutingTools-worktrees/cccv-5a1bdc4`, HEAD5a1bdc4d9582fa6c9019cf5bab9625ea4452f188; expected untracked `.venv`. Initial unused-primary checkout probe corrected before launch. Frozen356/356 and copied live350/350 verified.
+- One original race3 campaign via shared runtime started16:51:05.459304Z, finished16:51:08.058765Z, elapsed2.599462s, rc1. Every audio candidate stopped at `forbid_new_via_in_pad`: AUDIO_N through-via(62.4,35.6),diameter0.6/drill0.3mm meets R13.2 F.Cu land left boundary. Native pad center(62.9125,36),size1.025x1.4mm,undrilled; center HitTest true at the left boundary, exactshape point-collision false, actual via hole/annulus collisions true. Same-net contact is prohibited process geometry.
+- Prepared r0 hard-type preflight has48violations(44missing-library warnings+4source escape dangling warnings),52unconnected,0parity rows; all100rows and native UUID/net/ref/geometry classified in task scratch. This invocation omitted refill and schematic parity, and does not claim native final0/0/0. Preserved current native0/58/0 report and all116endpoint classifications remain valid for unchanged current PCB a44b769b1a5ad5fa959b476bd30f91a64aeaba9ad64d7868fa4e60ffbb62ee48.
+- No power/aux wave, candidate acceptance grade, FINAL, import, stitch, deterministic replay or final-route receipt was reached. Previous guard histories and stale final gate are retained unchanged. C10.2GND isolation remains owed. Source author owns legal R13.2 escape correction and renewed gates; no fourth candidate or source/tool edits by this task.
+- Evidence:06_build/task_runs/rj45-pod-routing1/outputs. Root owns durable archive and closure. FIRST-ARTICLE-ONLY/DO-NOT-ORDER.

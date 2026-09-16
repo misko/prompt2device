@@ -398,7 +398,7 @@ def load_model(path, aliases=None, overrides=None, return_ports=False, ties=None
             portinfo[p['source_port_id']] = {
                 "refdes": refdes, "pad": pad, "net": net,
                 "func": p.get('name') or pad, "cid": cid,
-                "pin_number": p.get('pin_number')}
+                "pin_number": p.get('pin_number'), "hints": p.get("port_hints", [])}
             if pad not in pins:
                 pins[pad] = {"port": p.get('name') or pad, "net": net}
             elif pins[pad]["net"] is None and net is not None:
@@ -431,6 +431,8 @@ def load_model(path, aliases=None, overrides=None, return_ports=False, ties=None
             # renders as footprint silk clipped by the board edge -> concise "TP".
             "value": "TP" if is_tp else comp_value(c),
             "is_tp": is_tp,
+            "manufacturer_part_number": c.get("manufacturer_part_number") or "",
+            "supplier_part_numbers": c.get("supplier_part_numbers") or {},
             "fpid": resolve_fpid(tok_by_comp.get(cid), codes, overrides),
             "pins": pin_tuples,
         })
@@ -460,6 +462,8 @@ def comp_value(c):
 
 
 def comp_mpn(c):
+    if c.get("manufacturer_part_number"):
+        return c["manufacturer_part_number"]
     sp = c.get('supplier_part_numbers') or {}
     for vendor in ('jlcpcb',):
         if sp.get(vendor):
@@ -552,6 +556,16 @@ def power_syms():
     if not _PWR_SYMS:
         _PWR_SYMS.update(sw.power_lib_symbols(LIB))
     return _PWR_SYMS
+
+
+def identity_props(comp, x, y):
+    """Native hidden identity fields retain the exact manufacturer/supplier map."""
+    fields = [("Manufacturer Part Number", comp.get("manufacturer_part_number", "")),
+              ("Supplier Part Numbers", json.dumps(comp.get("supplier_part_numbers", {}),
+                                                   sort_keys=True, ensure_ascii=False))]
+    return "\n".join(f'    (property {json.dumps(k)} {json.dumps(v, ensure_ascii=False)} '
+                     f'(at {x:.3f} {y:.3f} 0) (effects (font (size 1.27 1.27)) hide))'
+                     for k, v in fields)
 
 
 def emit_power(project, root_uuid, sym, ref, value, x, y, ang):
@@ -685,6 +699,7 @@ def convert(circuit_json, project, title, rev, date, aliases=None, overrides=Non
 L_S = 12.7            # tscircuit schematic-unit -> KiCad mm (0.2u pin pitch -> 2.54mm)
 L_G = 0.635           # snap grid: coords are ~0.05u multiples -> land near 0.635mm
 L_M = 25.4           # sheet margin (mm)
+L_PAGE_MAX = 3048.0  # KiCad 10.0.4 custom-page export limit, independently measured
 L_PORT_TOL2 = 0.06 ** 2   # nearest-port match radius^2 in tscircuit units
 
 # ----------------------------------------------------- direction vocabulary
@@ -956,6 +971,7 @@ def _side_of(port, cx, cy):
     """left/right/top/bottom for a schematic_port, from its declared side or,
     failing that, from its offset relative to the component center."""
     s = port.get('side_of_component') or port.get('facing_direction')
+    s = {'up': 'top', 'down': 'bottom'}.get(s, s)
     if s in ('left', 'right', 'top', 'bottom'):
         return s
     dx = port['center']['x'] - cx
@@ -965,7 +981,7 @@ def _side_of(port, cx, cy):
     return 'top' if dy > 0 else 'bottom'   # tscircuit y-up: +dy is above
 
 
-def lib_symbol_geo(name, w, h, pins, ref="U", lib=LIB, hide_numbers=False):
+def lib_symbol_geo(name, w, h, pins, ref="U", lib=LIB, hide_numbers=False, positive_pad=None):
     """A UNIQUE per-refdes box lib_symbol whose pins sit at EXPLICIT local
     positions (so their KiCad tips land on tscircuit's schematic_port centers
     and drawn wires attach). pins: (number, pinname, lx, ly, ang, length).
@@ -978,6 +994,17 @@ def lib_symbol_geo(name, w, h, pins, ref="U", lib=LIB, hide_numbers=False):
     out.append(f'      (symbol "{name}_0_1"')
     out.append(f'        (rectangle (start {-w/2:.3f} {-h/2:.3f}) (end {w/2:.3f} {h/2:.3f})'
                f' (stroke (width 0.254) (type default)) (fill (type background)))')
+    if positive_pad is not None:
+        pin = next(p for p in pins if p[0] == positive_pad)
+        _n, _pn, _x, _y, angle, _length = pin
+        if min(w, h) < 3.81:
+            raise ValueError("polarized capacitor body too small for a readable positive mark")
+        # Explicit positive terminal mark inside the body, adjacent to its
+        # authored positive side. This is drawing ink, not hidden pin text.
+        mx = -w/2 + 1.27 if angle == 0 else w/2 - 1.27 if angle == 180 else 1.27
+        my = h/2 - 1.27 if angle == 270 else -h/2 + 1.27 if angle == 90 else 1.27
+        for a, b in [((mx-.635,my),(mx+.635,my)),((mx,my-.635),(mx,my+.635))]:
+            out.append(f'        (polyline (pts (xy {a[0]:.3f} {a[1]:.3f}) (xy {b[0]:.3f} {b[1]:.3f})) (stroke (width 0.254) (type default)) (fill (type none)))')
     out.append("      )")
     out.append(f'      (symbol "{name}_1_1"')
     for num, pname, lx, ly, ang, length in pins:
@@ -1122,11 +1149,9 @@ def _symbol_ink(placed, flag_host, comp_by_ref):
     markers. -> ([(box, desc, owner)], [((p, q), desc, owner)]).
 
     The owner tag exists because S-OCCL exempts a text from its OWN symbol's
-    body/pins/glyphs (`towner == oowner` in `sch_occlusion.occlusions`) and the
-    property search below has to make exactly that exemption — a Reference
-    written across its own symbol's pin is not a finding and must not be
-    chased off the sheet by one. A LABEL plate takes no such exemption: its own
-    pin is reported, deliberately (`t_attachment_is_not_an_occlusion`).
+    body; that body ownership convention does not exempt pin conductors.
+    Reference/Value rows must clear their own pin shafts. Label plates retain
+    their independent direction-scoped wire attachment rule.
     """
     boxes, segs = [], []
     for comp in placed:
@@ -1323,8 +1348,7 @@ def place_props(placed, prop_anchors, flag_host, comp_by_ref, segs):
             if _hit_box(b, ob):
                 return desc
         for (p, q), desc, owner in sym_segs:
-            if owner == ref:
-                continue          # its own pin line
+            # A property must clear its own pin shaft as well as foreign ink.
             if _seg_in_box(p, q, b) > DC_TOUCH:
                 return desc
         for (p, q) in wires:
@@ -1987,6 +2011,10 @@ def convert_layout(circuit_json, project, title, rev, date, aliases=None, overri
     d = json.load(open(circuit_json, encoding="utf-8-sig"))
     components, flag_host, portinfo = load_model(circuit_json, aliases, overrides,
                                                  return_ports=True, ties=ties)
+    # Put the global GND ERC driver on its own visible grounded wire stub.
+    # An arbitrary first component pin is not guaranteed to have external room.
+    need_ground_flag = flag_host is not None
+    flag_host = None
     comp_by_ref = {c["refdes"]: c for c in components}
     scomp = [e for e in d if e.get('type') == 'schematic_component']
     sport = [e for e in d if e.get('type') == 'schematic_port']
@@ -2009,7 +2037,7 @@ def convert_layout(circuit_json, project, title, rev, date, aliases=None, overri
     # wires and property text from otherwise-independent pages (Pluto v5's
     # J1/J2 and U1/U2 were exact measured examples).  KiCad's legacy root-sheet
     # writer used here cannot emit a hierarchy, so retain every page's local
-    # geometry while stacking the pages vertically on one inspectable canvas.
+    # geometry while packing bounded columns on one inspectable canvas.
     # Connectivity remains label-based and therefore unchanged.
     sheet_rows = [e for e in d if e.get('type') == 'schematic_sheet']
     sheet_order = {
@@ -2055,6 +2083,10 @@ def convert_layout(circuit_json, project, title, rev, date, aliases=None, overri
     sheet_geom = {}
     y_cursor = L_M
     max_sheet_w = 0.0
+    x_cursor = L_M
+    column_w = 0.0
+    max_column_y = L_M
+    original_y_cursor = L_M
     for sid in ordered_sids:
         xs, ys = bounds[sid]
         if not xs or not ys:
@@ -2062,21 +2094,44 @@ def convert_layout(circuit_json, project, title, rev, date, aliases=None, overri
         minx, maxx, miny, maxy = min(xs), max(xs), min(ys), max(ys)
         w_mm = (maxx - minx) * L_S
         h_mm = (maxy - miny) * L_S
-        sheet_geom[sid] = (minx, maxx, miny, maxy, y_cursor)
-        max_sheet_w = max(max_sheet_w, w_mm)
+        # Keep the existing bottom allowance inside KiCad's actual export
+        # extent. Never shrink a source page or publish a silently clipped one.
+        if h_mm + 3 * L_M + 20 > L_PAGE_MAX:
+            raise ValueError(f"authored schematic sheet {sid!r} exceeds native page height")
+        if y_cursor + h_mm + 2 * L_M + 20 > L_PAGE_MAX:
+            x_cursor += column_w + L_M + 40
+            y_cursor, column_w = L_M, 0.0
+        if x_cursor + w_mm + L_M + 40 > L_PAGE_MAX:
+            raise ValueError("authored schematic sheets exceed native page column capacity")
+        sheet_geom[sid] = (minx, maxx, miny, maxy, original_y_cursor,
+                           _rhu(x_cursor - L_M, L_G),
+                           _rhu(y_cursor - original_y_cursor, L_G))
+        column_w = max(column_w, w_mm)
+        max_sheet_w = max(max_sheet_w, x_cursor - L_M + w_mm)
         y_cursor += h_mm + L_M
+        max_column_y = max(max_column_y, y_cursor)
+        original_y_cursor += h_mm + L_M
 
     def T(x, y, sid=default_sheet):
         # y flip: tscircuit y-up -> KiCad y-down. snap to L_G grid (consistently
         # from the same source coord) so pin tips and wire ends coincide exactly.
         # The sheet-local y origin also prevents separate TSX pages from
         # occupying the same KiCad coordinates.
-        minx, maxx, miny, maxy, y0 = sheet_geom[sid]
-        return (round(_rhu((x - minx) * L_S + L_M, L_G), 3),
-                round(_rhu((maxy - y) * L_S + y0, L_G), 3))
+        minx, maxx, miny, maxy, y0, dx, dy = sheet_geom[sid]
+        return (round(_rhu((x - minx) * L_S + L_M, L_G) + dx, 3),
+                round(_rhu((maxy - y) * L_S + y0, L_G) + dy, 3))
 
     def key(pt):
         return (round(pt[0], 3), round(pt[1], 3))
+
+    headings = []
+    for row in sheet_rows:
+        sid = row.get("schematic_sheet_id")
+        caption = row.get("display_name") or row.get("name")
+        if sid in sheet_geom and caption:
+            minx, maxx, miny, maxy, y0, dx, dy = sheet_geom[sid]
+            x, y = T(minx, maxy, sid)
+            headings.append((str(caption), x, round(y - L_M/2, 3)))
 
     # ---- build one symbol per schematic_component; record pin tips
     lib_syms = dict(sw.power_lib_symbols(LIB))
@@ -2126,16 +2181,18 @@ def convert_layout(circuit_json, project, title, rev, date, aliases=None, overri
             # and labels are drawn.
             lx = round(tip[0] - inst[0], 3)
             lib_y = round(inst[1] - tip[1], 3)
-            if abs(lx) >= abs(lib_y):
-                if lx < 0:
-                    side, ang, length = 'left', 0, max(-lx - w_mm / 2, 1.27)
-                else:
-                    side, ang, length = 'right', 180, max(lx - w_mm / 2, 1.27)
+            # The authored port side, not its polar angle from the centre,
+            # selects the body edge. A tall box's upper left pin can have
+            # abs(dy) > abs(dx) while still being an explicitly LEFT pin.
+            side = _side_of(rep, cx, cy)
+            if side == 'left':
+                ang, length = 0, max(-lx - w_mm / 2, 1.27)
+            elif side == 'right':
+                ang, length = 180, max(lx - w_mm / 2, 1.27)
+            elif side == 'top':
+                ang, length = 270, max(lib_y - h_mm / 2, 1.27)
             else:
-                if lib_y > 0:
-                    side, ang, length = 'top', 270, max(lib_y - h_mm / 2, 1.27)
-                else:
-                    side, ang, length = 'bottom', 90, max(-lib_y - h_mm / 2, 1.27)
+                ang, length = 90, max(-lib_y - h_mm / 2, 1.27)
             pname = re.sub(r'[\s"()]+', '_', str(pi['func'])) or str(pad)
             pins_geo.append((str(pad), pname, lx, lib_y, ang, length))
             pin_tip[(refdes, pad)] = tip
@@ -2166,9 +2223,18 @@ def convert_layout(circuit_json, project, title, rev, date, aliases=None, overri
             tip_net.setdefault(key(tip), set()).add(net)
             xtra += 1
         symname = "SYM_" + re.sub(r'[^A-Za-z0-9_]', '_', refdes)
+        positive_pad = None
+        if str(c.get("symbol_name", "")).startswith("capacitor_polarized"):
+            plus = {portinfo[p['source_port_id']]['pad'] for p in cports
+                    if set(portinfo[p['source_port_id']]['hints']) & {'pos', 'plus', 'positive'}}
+            minus = {portinfo[p['source_port_id']]['pad'] for p in cports
+                     if set(portinfo[p['source_port_id']]['hints']) & {'neg', 'minus', 'negative'}}
+            if len(plus) != 1 or len(minus) != 1 or plus == minus:
+                raise ValueError(f"polarized capacitor {refdes} lacks distinct positive/negative source pads")
+            positive_pad = next(iter(plus))
         lib_syms[symname] = lib_symbol_geo(symname, w_mm, h_mm, pins_geo,
                                            ref=refdes[0], lib=LIB,
-                                           hide_numbers=len(pins_geo) <= 2)
+                                           hide_numbers=len(pins_geo) <= 2, positive_pad=positive_pad)
         placed.append({**meta, "sym": symname, "inst": inst,
                        "w": w_mm, "h": h_mm, "pins_geo": pins_geo, "tips": tips,
                        "sides": {str(k): pin_side[(refdes, k)] for k in tips}})
@@ -2315,6 +2381,24 @@ def convert_layout(circuit_json, project, title, rev, date, aliases=None, overri
         r = uf.find(key((x, y)))
         root_label_names.setdefault(r, set()).add(net)
 
+    # Candidate labels and producer junction dots were provisional anchors in
+    # the free-end peel above. A whole island can survive between two such
+    # anchors even though neither reaches a component. Candidate labels on
+    # pinless roots are deliberately not emitted below, so retaining that ink
+    # would produce wire_dangling ERC errors. Remove only pinless islands;
+    # preserve a root if any real pin touches the interior of one of its wires.
+    pin_bearing_roots = set(pin_root.values())
+    for a, b, _net in segs:
+        r = uf.find(key(a))
+        if r not in pin_bearing_roots and any(
+                _on_segment(tip[0], tip[1], a[0], a[1], b[0], b[1])
+                for tip in pin_tip.values()):
+            pin_bearing_roots.add(r)
+    rooted_segs = [(a, b, net) for a, b, net in segs
+                   if uf.find(key(a)) in pin_bearing_roots]
+    pruned += len(segs) - len(rooted_segs)
+    segs = rooted_segs
+
     # ---- short detection: a root that carries two different pin nets
     for r, nets in root_pin_nets.items():
         real = {n for n in nets if n and n != "GND"}
@@ -2431,6 +2515,30 @@ def convert_layout(circuit_json, project, title, rev, date, aliases=None, overri
     for _i, _j, _p in same_te:
         junctions = junctions | {key(_p)}
 
+    # Dedicated ground-driver island: both semantic power symbols remain on
+    # GND, with a visible wire between them. Search actual final drawing ink;
+    # fail explicitly if the reserved top margin has no clear placement.
+    ground_flag_stub = None
+    if need_ground_flag:
+        boxes, obsegs = _obstacles(placed, prop_rows_by_ref, None, comp_by_ref)
+        boxes += [(plate_box(n,x,y,side), n) for n,x,y,side in emit_labels]
+        obsegs += [((a,b), n) for a,b,n in segs]
+        for i in range(max(1, int(max_sheet_w / 12.7))):
+            x, y = 15.24 + i * 12.7, 15.24
+            q = (x, y + 7.62)
+            marks = [glyph_box(power_syms()["PWR_FLAG"],x,y,0),
+                     glyph_box(power_syms()["GND"],*q,0), (x,y,*q)]
+            expanded = [(a-.635,b-.635,c+.635,d+.635) for a,b,c,d in marks]
+            if any(_hit_box(a,b) for a in expanded for b,_d in boxes):
+                continue
+            if any(_seg_in_box(a,b,r) > DC_TOUCH for r in expanded for (a,b),_d in obsegs):
+                continue
+            ground_flag_stub = ((x,y),q)
+            segs.append(((x,y),q,"GND"))
+            break
+        if ground_flag_stub is None:
+            raise ValueError("no clear external GND power-flag stub placement")
+
     # ================================================================= emit
     root_uuid = _u()
     body, labels, wires, juncs = [], [], [], []
@@ -2439,6 +2547,11 @@ def convert_layout(circuit_json, project, title, rev, date, aliases=None, overri
         b = _emit_layout_component(comp, project, root_uuid, flag_host, pwr,
                                    comp_by_ref, prop_rows_by_ref[comp["refdes"]])
         body.extend(b)
+    if ground_flag_stub:
+        a, b = ground_flag_stub
+        body.append(emit_power(project, root_uuid, "PWR_FLAG", "#FLG01", "PWR_FLAG", *a, 0))
+        pwr[0] += 1
+        body.append(emit_power(project, root_uuid, "GND", f'#PWR{pwr[0]:02d}', "GND", *b, 0))
     for net, x, y, side in emit_labels:
         ang, just = LABEL_ANG_JUST[side]
         labels.append(
@@ -2458,7 +2571,31 @@ def convert_layout(circuit_json, project, title, rev, date, aliases=None, overri
                          f' (uuid "{_u()}"))')
 
     pw = round(_rhu(max_sheet_w + 2 * L_M + 40, L_G), 2)
-    ph = round(_rhu(y_cursor + L_M + 20, L_G), 2)
+    ph = round(_rhu(max_column_y + L_M + 20, L_G), 2)
+    # Final placement may move property rows/label plates beyond source bounds.
+    # Size to the actual emitted obstacle set, then fail explicitly if it cannot
+    # fit. This is an extent check, independent of electrical/grid fallback.
+    ink_boxes, ink_segs = _obstacles(placed, prop_rows_by_ref, flag_host, comp_by_ref)
+    extent_points = [(x, y) for b, _d in ink_boxes
+                     for x, y in ((b[0], b[1]), (b[2], b[3]))]
+    extent_points += [p for ab, _d in ink_segs for p in ab]
+    extent_points += [p for a, b, _n in segs for p in (a, b)]
+    for net, x, y, side in emit_labels:
+        b = plate_box(net, x, y, side)
+        extent_points += [(b[0], b[1]), (b[2], b[3])]
+    for caption, x, y in headings:
+        b = prop_box(caption, x, y - 0.25, just="left")
+        extent_points += [(b[0], b[1]), (b[2], b[3])]
+    if extent_points:
+        xmin = min(p[0] for p in extent_points)
+        ymin = min(p[1] for p in extent_points)
+        xmax = max(p[0] for p in extent_points)
+        ymax = max(p[1] for p in extent_points)
+        pw = max(pw, math.ceil((xmax + L_M) / L_G) * L_G)
+        ph = max(ph, math.ceil((ymax + L_M) / L_G) * L_G)
+        if xmin < 0 or ymin < 0 or pw > L_PAGE_MAX or ph > L_PAGE_MAX:
+            raise ValueError(f"native drawing cannot fit exported page: ink "
+                             f"{(xmin, ymin, xmax, ymax)}, page {(pw, ph)}")
     sch = [
         '(kicad_sch (version 20230121) (generator circuit_json_to_kicad_sch)',
         f'  (uuid "{root_uuid}")',
@@ -2469,6 +2606,9 @@ def convert_layout(circuit_json, project, title, rev, date, aliases=None, overri
     ]
     sch.extend(lib_syms.values())
     sch.append('  )')
+    sch.extend(f'  (text {json.dumps(caption, ensure_ascii=False)} (at {x:.3f} {y:.3f} 0)'
+               f' (effects (font (size 1.27 1.27)) (justify left)) (uuid "{_u()}"))'
+               for caption, x, y in headings)
     sch.extend(labels)
     sch.extend(wires)
     sch.extend(juncs)
@@ -2537,6 +2677,7 @@ def _emit_layout_component(comp, project, root_uuid, flag_host, pwr, comp_by_ref
         f' (effects (font (size 1.27 1.27))))\n'
         f'    (property "Footprint" "{comp["fpid"]}" (at {ix:.3f} {iy:.3f} 0)'
         f' (effects (font (size 1.27 1.27)) hide))\n'
+        + identity_props(comp, ix, iy) + "\n"
         + "\n".join(f'    (pin "{num}" (uuid "{_u()}"))'
                     for num, _pn, _lx, _ly, _a, _l in comp["pins_geo"])
         + f'\n    (instances (project "{project}" (path "/{root_uuid}"'

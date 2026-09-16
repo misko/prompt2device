@@ -1078,9 +1078,71 @@ def check_switching(project: Path):
     return notes
 
 
+def check_prototype_esd(item, where, normal, aliases, project):
+    """Validate normal-operation selection, never certify transient survival."""
+    allowed = {"name", "qualification_mode", "source_operating_min_V",
+               "source_operating_max_V", "source_tolerance_included",
+               "source_boundary_evidence", "tvs", "exposed", "qualification"}
+    if set(item) - allowed:
+        raise ContractError(f"{where}: unsupported prototype ESD keys {sorted(set(item)-allowed)}")
+    minimum = number(item.get("source_operating_min_V"), f"{where}.source_operating_min_V")
+    if minimum > normal:
+        raise ContractError(f"{where}: source minimum exceeds maximum")
+    tvs = item.get("tvs")
+    required = {"part", "standoff_V", "recommended_min_V", "recommended_max_V",
+                "iec_contact_kV", "iec_air_kV", "evidence"}
+    if not isinstance(tvs, dict) or set(tvs) != required:
+        raise ContractError(f"{where}.tvs: prototype mode requires exactly {sorted(required)}; no invented clamp bound")
+    require_part(tvs["part"], f"{where}.tvs.part", aliases)
+    low = number(tvs["recommended_min_V"], f"{where}.tvs.recommended_min_V")
+    high = number(tvs["recommended_max_V"], f"{where}.tvs.recommended_max_V", positive=True)
+    stand = number(tvs["standoff_V"], f"{where}.tvs.standoff_V", positive=True)
+    if minimum < low or normal > min(high, stand):
+        raise ContractError(f"{where}: normal range exceeds suppressor recommended VIO/standoff")
+    for key in ("iec_contact_kV", "iec_air_kV"):
+        number(tvs[key], f"{where}.tvs.{key}", positive=True)
+    text_value(tvs["evidence"], f"{where}.tvs.evidence")
+    refs = set()
+    array_refs = 0
+    exposed = list_value(item.get("exposed"), f"{where}.exposed")
+    for j, row in enumerate(exposed):
+        ep = f"{where}.exposed[{j}]"
+        if not isinstance(row, dict) or set(row) != {"refs", "part", "recommended_min_V", "recommended_max_V", "evidence"}:
+            raise ContractError(f"{ep}: exact refs/part/normal limits/evidence required; no transient maxima")
+        require_part(row["part"], f"{ep}.part", aliases)
+        rowrefs = list_value(row["refs"], f"{ep}.refs")
+        for ref in rowrefs:
+            if not isinstance(ref, str) or not re.fullmatch(r"[A-Z][A-Z0-9_]*", ref) or not any(c.isdigit() for c in ref) or ref in refs:
+                raise ContractError(f"{ep}: refs must be unique literal designators, not ranges/globs")
+            refs.add(ref)
+        if row["part"] == tvs["part"]:
+            array_refs += len(rowrefs)
+        rlow = number(row["recommended_min_V"], f"{ep}.recommended_min_V")
+        rhigh = number(row["recommended_max_V"], f"{ep}.recommended_max_V", positive=True)
+        if minimum < rlow or normal > rhigh:
+            raise ContractError(f"{ep}: normal range exceeds recommended limits")
+        text_value(row["evidence"], f"{ep}.evidence")
+    if not array_refs:
+        raise ContractError(f"{where}: nonzero suppressor instance coverage required")
+    qual = item.get("qualification")
+    keys = {"status", "board_survival_claim", "installation_restriction", "authorization", "test_plan"}
+    if not isinstance(qual, dict) or set(qual) != keys:
+        raise ContractError(f"{where}.qualification: exact explicit prototype restriction keys required")
+    if qual["status"] != "UNQUALIFIED" or qual["board_survival_claim"] is not False:
+        raise ContractError(f"{where}: prototype mode cannot claim board transient survival")
+    text_value(qual["installation_restriction"], f"{where}.qualification.installation_restriction")
+    for key in ("authorization", "test_plan"):
+        relative = text_value(qual[key], f"{where}.qualification.{key}")
+        target = (project / relative).resolve()
+        if not target.is_relative_to(project.resolve()) or not target.is_file() or not target.read_text().strip():
+            raise ContractError(f"{where}: {key} must name a nonempty in-project document")
+    return [f"E-SURGE {item['name']}: normal-operation selection checked, {len(refs)} exposed parts / {array_refs} suppressors; component IEC ratings cited",
+            f"UNQUALIFIED E-SURGE {item['name']}: board transient survival NOT established; {qual['installation_restriction']}"]
+
+
 def check_surge(project: Path):
     path = project / "03_src" / "rules" / "protection_paths.yaml"
-    data = load_yaml(path, "E-SURGE")
+    data = load_yaml(path, "E-SURGE", schemas=(1, 2))
     paths = data.get("paths")
     if not isinstance(paths, list):
         raise ContractError("E-SURGE paths must be a list")
@@ -1094,6 +1156,13 @@ def check_surge(project: Path):
         if not isinstance(item, dict):
             raise ContractError(f"{where} must be a mapping")
         name = text_value(item.get("name"), f"{where}.name")
+        mode = item.get("qualification_mode")
+        if data["schema"] == 2 and (not isinstance(mode, str) or mode not in {"bounded_transient", "unqualified_prototype_esd"}):
+            raise ContractError(f"{where}.qualification_mode must explicitly select bounded_transient or unqualified_prototype_esd")
+        if mode == "bounded_transient" and "qualification" in item:
+            raise ContractError(f"{where}: bounded_transient cannot carry an ambiguous prototype qualification block")
+        if data["schema"] == 1 and mode is not None:
+            raise ContractError(f"{where}: qualification_mode requires schema 2")
         normal = number(item.get("source_operating_max_V"),
                         f"{where}.source_operating_max_V", positive=True)
         if item.get("source_tolerance_included") is not True:
@@ -1102,6 +1171,9 @@ def check_surge(project: Path):
                 "accuracy, regulation, ripple, and wiring rise")
         text_value(item.get("source_boundary_evidence"),
                    f"{where}.source_boundary_evidence")
+        if mode == "unqualified_prototype_esd":
+            notes.extend(check_prototype_esd(item, where, normal, aliases, project))
+            continue
         tvs = item.get("tvs")
         if not isinstance(tvs, dict):
             raise ContractError(f"{where}.tvs must be a mapping")
@@ -1294,7 +1366,7 @@ def main(argv=None):
         except ContractError as exc:
             fails.append(f"{label}: {exc}")
     for note in notes:
-        print("  PASS", note)
+        print(" ", note) if note.startswith("UNQUALIFIED ") else print("  PASS", note)
     for fail in fails:
         print("  FAIL", fail)
     print(f"EARLY-DESIGN {'FAIL' if fails else 'PASS'}: "

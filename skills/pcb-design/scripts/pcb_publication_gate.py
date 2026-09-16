@@ -27,6 +27,15 @@ allowance is a paired diff proof, so every other path under PCB source,
 generated KiCad, fabrication releases, or reviews continues to fail closed
 into ordinary PCB publication grading.
 
+A boardless system-integration record is also explicit rather than exempt. A
+tracked ``01_docs/project-scope.json`` declaration may replace that parent in
+the denominator with its named PCB children only when the parent has no board
+at either side of the publication diff and every distinct child owns exactly
+one tracked live board at the head. The child projects are then graded by this
+same release boundary even when their own paths did not change. Introducing a
+declaration therefore cannot turn an existing board project, a missing child,
+or an unsealed child into a zero-board pass.
+
 The gate is intentionally pcbnew-free.  It composes the existing release gates
 and adds the publication-only properties they cannot infer from an isolated
 release directory: live-source identity, review archive identity, review
@@ -41,6 +50,7 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import json
 import re
 import subprocess
 import sys
@@ -77,6 +87,9 @@ ENCLOSURE_ONLY_ROOTS = (
 )
 CONNECTOR_AUTHORITY_INNER = "03_src/rules/connector_assemblies.yaml"
 CONNECTOR_CHILD_CONTRACT_INNER = "03_src/rules/contracts.md"
+SYSTEM_SCOPE_INNER = "01_docs/project-scope.json"
+SYSTEM_SCOPE_FIELDS = {"schema", "kind", "pcb_children"}
+SYSTEM_SCOPE_KIND = "system-integration"
 CANONICAL_CONNECTOR_CONTRACT_ROWS = {
     "| `connector_assemblies.yaml` | go-forward shared connector service contract; binds each receptacle, supported mate, grip/fastening/tool/torque/reaction/cable cell, simultaneous population, operation sequence, and tolerance provenance for the PCB and enclosure consumers. Unknown facts are explicit and compile `INCOMPLETE`, never default dimensions. |",
     "| `connector_assemblies.yaml` | complete receptacle/mate/grip/tool/cable/operation/tolerance contracts for every operated or serviced external interface; compiled by `pcb-design` and allowed to remain explicitly `INCOMPLETE` while hardware and service facts are unknown |",
@@ -138,6 +151,7 @@ def classify_project_path(path):
         return PATH_ENCLOSURE_ONLY
     top = inner.split("/", 1)[0]
     if (top in MATERIAL_TOP_LEVEL or inner in MATERIAL_DOCS or
+            inner == SYSTEM_SCOPE_INNER or
             inner.startswith("01_docs/decisions/")):
         return PATH_PCB_MATERIAL
     return PATH_BOOKKEEPING
@@ -169,6 +183,143 @@ def _git_blob_text(commit, path, root):
     if cp.returncode:
         return None
     return cp.stdout
+
+
+def _tracked_paths(commit, prefix, root):
+    """Return every tracked file path at or below one exact prefix."""
+    prefix = Path(prefix).as_posix().rstrip("/")
+    cp = _git("ls-tree", "-r", "--name-only", "-z", commit, "--", prefix,
+              root=root)
+    if cp.returncode:
+        raise ValueError(
+            f"cannot inspect tracked paths below {prefix!r} at {commit}: "
+            f"{cp.stdout.strip() or 'git ls-tree failed'}")
+    return tuple(sorted(path for path in cp.stdout.split("\0") if path))
+
+
+def _project_board_paths(commit, project_rel, root):
+    """Return tracked direct-child live boards for one project at a commit."""
+    prefix = f"{Path(project_rel).as_posix()}/04_kicad"
+    return tuple(
+        path for path in _tracked_paths(commit, prefix, root)
+        if Path(path).parent.as_posix() == prefix
+        and Path(path).suffix == ".kicad_pcb"
+    )
+
+
+def _system_forbidden_payloads(commit, project_rel, root):
+    """Return PCB-authoring/release payloads a boardless parent cannot own."""
+    result = []
+    for inner in ("03_tscircuit", "07_releases"):
+        prefix = f"{project_rel}/{inner}"
+        allowed_contract = f"{prefix}/contracts.md"
+        result.extend(
+            path for path in _tracked_paths(commit, prefix, root)
+            if path != allowed_contract
+        )
+    return tuple(sorted(result))
+
+
+def _parse_system_scope(text, project_rel):
+    """Parse one exact boardless-parent declaration or raise ``ValueError``."""
+    label = f"{project_rel}/{SYSTEM_SCOPE_INNER}"
+    try:
+        value = json.loads(text)
+    except json.JSONDecodeError as e:
+        raise ValueError(f"{label}: invalid JSON: {e}") from e
+    if not isinstance(value, dict):
+        raise ValueError(f"{label}: expected one JSON object")
+    actual = set(value)
+    if actual != SYSTEM_SCOPE_FIELDS:
+        raise ValueError(
+            f"{label}: fields differ "
+            f"(missing={sorted(SYSTEM_SCOPE_FIELDS - actual)}, "
+            f"unknown={sorted(actual - SYSTEM_SCOPE_FIELDS)})")
+    schema = value["schema"]
+    if isinstance(schema, bool) or schema != 1:
+        raise ValueError(f"{label}: schema must be integer 1")
+    if value["kind"] != SYSTEM_SCOPE_KIND:
+        raise ValueError(f"{label}: kind must be {SYSTEM_SCOPE_KIND!r}")
+    children = value["pcb_children"]
+    if (not isinstance(children, list) or len(children) < 2 or
+            children != sorted(set(children))):
+        raise ValueError(
+            f"{label}: pcb_children must be a sorted list of at least two "
+            "unique project paths")
+    for child in children:
+        if (not isinstance(child, str) or
+                not re.fullmatch(
+                    r"projects/[A-Za-z0-9][A-Za-z0-9._-]*", child)):
+            raise ValueError(
+                f"{label}: invalid direct child project path {child!r}")
+        if child == project_rel:
+            raise ValueError(f"{label}: parent cannot name itself as a child")
+    return tuple(children)
+
+
+def _expand_system_integrations(selected, head, root, base=None):
+    """Replace valid boardless integration parents with their PCB children.
+
+    The declaration is read from the tracked ``head`` tree. In diff mode the
+    parent must also have owned no board at ``base``; this prevents a same-diff
+    marker from laundering deletion of a formerly live board. Invalid
+    declarations are removed from the board loop and returned as explicit
+    scope findings so they cannot fall through to a zero-project pass.
+    """
+    expanded = set()
+    integrations = []
+    findings = []
+    for project_rel in selected:
+        marker = f"{project_rel}/{SYSTEM_SCOPE_INNER}"
+        text = _git_blob_text(head, marker, root)
+        if text is None:
+            expanded.add(project_rel)
+            continue
+        try:
+            children = _parse_system_scope(text, project_rel)
+            head_parent_boards = _project_board_paths(
+                head, project_rel, root)
+            base_parent_boards = (
+                _project_board_paths(base, project_rel, root) if base else ())
+            if head_parent_boards or base_parent_boards:
+                boards = sorted(set(base_parent_boards + head_parent_boards))
+                raise ValueError(
+                    f"{marker}: system-integration parent owns or owned live "
+                    f"board(s) in this publication range: {', '.join(boards)}")
+            head_forbidden = _system_forbidden_payloads(
+                head, project_rel, root)
+            base_forbidden = (
+                _system_forbidden_payloads(base, project_rel, root)
+                if base else ())
+            if head_forbidden or base_forbidden:
+                payloads = sorted(set(base_forbidden + head_forbidden))
+                raise ValueError(
+                    f"{marker}: boardless parent owns or owned forbidden "
+                    "circuit/release payload(s) in this publication range: "
+                    f"{', '.join(payloads)}")
+            for child in children:
+                if _tree_identity(head, child, root) is None:
+                    raise ValueError(
+                        f"{marker}: declared PCB child is absent at {head}: "
+                        f"{child}")
+                boards = _project_board_paths(head, child, root)
+                if len(boards) != 1:
+                    raise ValueError(
+                        f"{marker}: declared PCB child must own exactly one "
+                        f"tracked live board at {head}; {child} owns "
+                        f"{len(boards)}")
+            if not base:
+                working = _working_material_changes(project_rel, root)
+                if working:
+                    raise ValueError(
+                        f"{marker}: uncommitted parent material paths cannot "
+                        f"be audited as tracked system scope: {', '.join(working)}")
+        except ValueError as e:
+            findings.append((project_rel, f"SYSTEM-SCOPE: {e}"))
+            continue
+        expanded.update(children)
+        integrations.append((project_rel, children))
+    return sorted(expanded), integrations, findings
 
 
 def _git_file_identity(commit, path, root):
@@ -344,6 +495,42 @@ def _manifest_fields(path):
         if m:
             fields.setdefault(m.group(1).lower(), m.group(2).strip())
     return fields, text
+
+
+
+def manifest_integrity_errors(release, text):
+    """Reopen the complete payload census, including non-board auxiliaries."""
+    records = {}
+    errors = []
+    for line in text.splitlines():
+        match = re.fullmatch(r"\s*(?:([0-9a-fA-F]{64})\s+(.+?)|(.+?)\s+([0-9a-fA-F]{64}))\s*", line)
+        if not match:
+            continue
+        name = match.group(2) or match.group(3)
+        digest = (match.group(1) or match.group(4)).lower()
+        rel = Path(name)
+        if rel.is_absolute() or ".." in rel.parts or rel.as_posix() != name or name == "MANIFEST.txt":
+            errors.append(f"MANIFEST-CENSUS: invalid payload path {name!r}")
+            continue
+        if name in records:
+            errors.append(f"MANIFEST-CENSUS: duplicate payload path {name}")
+            continue
+        records[name] = digest
+        path = release / rel
+        if path.is_symlink() or any(p.is_symlink() for p in path.parents if p != release.parent):
+            errors.append(f"MANIFEST-CENSUS: symlink payload {name}")
+        elif not path.is_file():
+            errors.append(f"MANIFEST-CENSUS: missing hashed file {name}")
+        elif _sha256(path) != digest:
+            errors.append(f"MANIFEST-CENSUS: sha256 mismatch {name}")
+    if not records:
+        errors.append("MANIFEST-CENSUS: zero readable full-SHA256 payload entries")
+    actual = {p.relative_to(release).as_posix() for p in release.rglob("*")
+              if (p.is_file() or p.is_symlink()) and p != release / "MANIFEST.txt"
+              and p != release / "SUPERSEDED.md"}
+    for name in sorted(actual - set(records)):
+        errors.append(f"MANIFEST-CENSUS: unlisted payload file {name}")
+    return errors
 
 
 def _review_field(text, key):
@@ -580,6 +767,34 @@ def grade_board(project, board, head, root, check_worktree, release_override=Non
         return errors, release
 
     fields, manifest_text = _manifest_fields(manifest)
+    errors.extend(manifest_integrity_errors(release, manifest_text))
+    if release_override is None:
+        # A worktree-only ignored file can satisfy the hashes yet disappear on
+        # push. The final publication subject is the Git tree, not that cache.
+        release_rel = release.relative_to(root).as_posix()
+        committed = _git("ls-tree", "-r", "-z", head, "--", release_rel, root=root)
+        if committed.returncode:
+            errors.append("MANIFEST-CENSUS: cannot inspect committed release tree")
+        else:
+            blobs = {}
+            for row in committed.stdout.split("\0"):
+                if row:
+                    meta, name = row.split("\t", 1)
+                    mode, kind, oid = meta.split()
+                    blobs[name] = (mode, kind, oid)
+            for path in release.rglob("*"):
+                if not path.is_file():
+                    continue
+                name = path.relative_to(root).as_posix()
+                entry = blobs.get(name)
+                if entry is None:
+                    errors.append(f"MANIFEST-CENSUS: payload absent from Git head: {name}")
+                    continue
+                raw = path.read_bytes()
+                algo = hashlib.sha1 if len(entry[2]) == 40 else hashlib.sha256
+                oid = algo(b"blob " + str(len(raw)).encode() + b"\0" + raw).hexdigest()
+                if entry[1] != "blob" or oid != entry[2]:
+                    errors.append(f"MANIFEST-CENSUS: payload differs from Git head: {name}")
     commit = fields.get("git_sha", "")
     if not re.fullmatch(r"[0-9a-fA-F]{40}", commit):
         errors.append("MANIFEST-COMMIT: git_sha must be a full 40-character SHA")
@@ -679,6 +894,8 @@ def main(argv=None):
 
     archive_relocations = []
     archive_findings = []
+    system_integrations = []
+    scope_findings = []
     try:
         if args.base:
             names = _diff_names(args.base, args.head, root)
@@ -741,9 +958,16 @@ def main(argv=None):
                         "without an exact same-name relocation into a previously "
                         "absent archived_projects/ destination",
                     ))
+            material_selected_count = len(selected)
+            selected, system_integrations, scope_findings = \
+                _expand_system_integrations(
+                    selected, args.head, root, base=args.base)
             check_worktree = False
-            print(f"P-PUBLISH coverage: {len(selected)} material project(s) "
-                  f"selected from {len(names)} changed path(s); "
+            print(f"P-PUBLISH coverage: {material_selected_count} material "
+                  f"project(s) selected from {len(names)} changed path(s); "
+                  f"{len(system_integrations)} boardless system-integration "
+                  f"project(s) expanded; {len(selected)} PCB child/project "
+                  f"subject(s); "
                   f"{len(archive_relocations)} exact archive relocation(s); "
                   f"{len(changed_archives)} archive subject(s) changed; "
                   f"{len(enclosure_paths)} enclosure-only path(s) across "
@@ -752,6 +976,10 @@ def main(argv=None):
                 name = Path(rel).name
                 print(f"  ARCHIVE {rel} -> archived_projects/{name} "
                       "(tracked tree byte/mode identity proven)")
+            for parent, children in system_integrations:
+                print(f"  SYSTEM {parent} -> {', '.join(children)} "
+                      "(zero parent boards and exact child board ownership "
+                      "proven)")
         else:
             selected = []
             for raw in args.project:
@@ -762,9 +990,18 @@ def main(argv=None):
                     p = Path("projects") / p
                 selected.append(p.as_posix().rstrip("/"))
             selected = sorted(set(selected))
+            material_selected_count = len(selected)
+            selected, system_integrations, scope_findings = \
+                _expand_system_integrations(selected, args.head, root)
             check_worktree = True
-            print(f"P-PUBLISH coverage: {len(selected)} explicitly selected "
-                  "project(s)")
+            print(f"P-PUBLISH coverage: {material_selected_count} explicitly "
+                  f"selected project(s); {len(system_integrations)} boardless "
+                  f"system-integration project(s) expanded; {len(selected)} "
+                  "PCB child/project subject(s)")
+            for parent, children in system_integrations:
+                print(f"  SYSTEM {parent} -> {', '.join(children)} "
+                      "(zero parent boards and exact child board ownership "
+                      "proven)")
     except (ValueError, OSError) as e:
         print(f"P-PUBLISH FAIL: cannot establish diff coverage: {e}")
         return 2
@@ -774,6 +1011,12 @@ def main(argv=None):
             print(f"  FAIL {subject}: {finding}")
         print(f"P-PUBLISH FAIL: {len(archive_findings)} archive integrity "
               "finding(s)")
+        return 1
+
+    if scope_findings and not selected:
+        for subject, finding in scope_findings:
+            print(f"  FAIL {subject}: {finding}")
+        print(f"P-PUBLISH FAIL: {len(scope_findings)} system scope finding(s)")
         return 1
 
     if not selected:
@@ -794,7 +1037,7 @@ def main(argv=None):
               "contains no material PCB project path")
         return 0
 
-    failures = []
+    failures = list(scope_findings)
     board_count = 0
     for rel in selected:
         project = root / rel

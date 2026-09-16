@@ -8671,3 +8671,52 @@ census omits CONTRIBUTING/THIRD_PARTY_NOTICES, and an older entry links to absen
 existing Crow allowlist failures for its deficiency document and node_modules
 entry. These are separate repository maintenance work, not evidence that board
 or release gates pass.
+
+## Crow pod release preflight and deferred-debt follow-up (2026-09-16)
+
+The final policy audit rejected four native schematic headings because their em/en dashes are outside the occlusion checker's measured glyph set. Earlier human readability and routing reviews had passed. Correction: replace only those authored heading characters with supported ASCII, regenerate, and renew affected exact-subject evidence; do not waive an ungraded geometry denominator.
+
+Next-time test: run the full native schematic occlusion check immediately after schematic generation, before commissioning schematic/placement reviewers. Keep a fixture with an unsupported glyph that fails, and an otherwise identical supported-glyph heading that grades. Surface the exact unsupported text rather than letting it first appear in release policy audit.
+
+Delivery lesson: reviewer `result.json` belongs inside the allocated output directory. A wrongly placed result correctly closes INCOMPLETE. Preserve that receipt and permit only a new explicitly mechanical packaging reconciliation of byte-identical reports; never alter reviewer judgement or relabel the original attempt. Include the result path in reviewer briefs.
+
+Integration findings are separate from engineering acceptance: the combined-tree schema reader now passes 28 tests (13 hostile controls), and the connector qualification fixture now covers all 23 required physical targets (previous assertions expected 20). The expanded fixture retains its geometry-tamper rejection. Carrier publication admission was rerun and passed with the existing immutable release. Remaining repository-wide baseline/portability findings must be documented and resolved or explicitly dispositioned; no claim that the full suite passed is warranted by these focused checks.
+
+### Deferred repository bookkeeping (no release-gate waiver)
+
+Owner: PCB process maintainer; revisit before the next source regeneration/toolchain cleanup.
+
+- Existing carrier `03_tscircuit/node_modules` is a tracked absolute cache link on origin/main, contrary to the cache contract. Remove it in a properly resealed source revision and prove a clean-clone dependency install. It is not an input to the shipped manufacturing Gerbers/BOM/CPL.
+- Existing carrier BRIEF decision index omits ADR0027–0029 even though the decisions themselves are present. Reconcile the index in the next source revision, retaining all original user directives. The governance regression remains red until then.
+- Carrier's historical prelayout continuation checkpoint rejects later source/method hashes (including the tightened audit floors), correctly failing closed. Renew through the owning source flow when prelayout is next reopened; do not restamp its recorded hashes merely to make the relocation regression green.
+- The unrelated Pluto enclosure canary depends on an absent disposable manufacturing-audit receipt. Preserve the unrelated project; its owner must replace that dependency with durable, re-openable authority.
+
+These items explain remaining global-suite failures; they do not turn those tests green. Crow publication still requires the exact release-specific required-artifact, freshness, review, source-identity, rehearsal and P-PUBLISH gates to pass. Pod maturity bookkeeping will be reconciled only after its release evidence exists. The earlier full-suite run hit its 900-second bound in trace-audit tests, so it is not a complete green-suite claim.
+
+## Publication manifest completeness escape — corrected 2026-09-16
+
+Situation: the published carrier manifest named an ignored, uncommitted `source/*.kicad_prl` session file. Required-artifact and freshness checks passed; publication compared the board hash only, so the absent auxiliary escaped. The final independent byte census caught it and the atomic push was terminated during packing; remote main remained unchanged.
+
+Test: keep a valid board hash and accepted supporting predicates, delete an auxiliary named in MANIFEST, and require publication rejection. The regression failed against the old implementation because grade_board returned no finding. The corrected gate reopens every full SHA-256 row, rejects missing/tampered/unlisted/duplicate/path-escaping/symlink payloads and an empty denominator. Entire publication suite31PASS,18known-bad.
+
+Avoidance: remove disposable session files before final manifest generation; verify the Git-staged archive census as well as worktree files; run publication admission after the seal commit. Preserve the historical release; mint a docs-only successor with unchanged actual fab/source/3D bytes and a truthful manifest. Never retro-fill the missing session file into a sealed release.
+
+## Publication transport preflight — 2026-09-16, open
+
+Situation: both Crow boards passed exact final P-PUBLISH (2/2), but the atomic GitHub push of candidate 719f7cbad27b8af2faadb79dc1251c4af52abd0d and two release tags was rejected: `remote: fatal: pack exceeds maximum allowed size (2.00 GiB)`. Main remained 2b32184a9e1d343a0b13b459d101ef04c7f902bf; neither new tag exists remotely. The inherited unpushed history includes multi-hundred-MB compressed review archives (largest observed 493288311 bytes), plus an older over-100-MiB STEP blob. Deleting files in a later commit cannot remove their ancestor blobs from the push.
+
+Test/avoidance: before expensive sealing, inventory all outgoing objects against the actual publication base, not just HEAD's tree. Detect oversized individual blobs and estimate outgoing pack size. Add known-bad fixtures for a deleted-but-still-reachable large blob and a too-large aggregate. Keep durable evidence content-addressed in an approved archive/LFS store from initial creation, retaining complete hashes and retrieval instructions. Do not silently replace evidence with absent links or claim publication on local admission alone.
+
+Recovery: preserve this branch and all sealed releases; plan an evidence-store/history migration on an isolated publication branch, inventory every manifest source-commit and review provenance dependency, and prove retrieval plus source/release bindings after migration. Any changed immutable release bytes require a successor, never a retro-edit. Existing remote history must not be force-pushed. Re-run exact publication admission, use an atomic final ref update, and verify remote main and peeled tags. A plain retry or deleting current archive paths does not fix the historical payload.
+
+Implementation: preserve the rejected branch and build a clean fast-forward
+publication history from remote main. The 15 content-addressed review packets
+above 100 MiB use explicit Git LFS pointers; their materialized bytes retain
+the filename SHA-256 and CI checks out LFS content. Smaller immutable packets
+are seeded through a temporary remote ref in batches below 550 MB raw. The new
+`publication_transport_gate.py` independently inventories objects absent from
+declared server refs, rejects ordinary blobs at 100 MiB, and rejects aggregate
+batches at 1.5 GiB. Its two hostile fixtures failed against the no-gate
+behavior and pass with the checker. New reviews should archive outputs,
+envelope/input hashes and host receipts; they should not recursively duplicate
+frozen inputs already preserved by a release or content-addressed store.

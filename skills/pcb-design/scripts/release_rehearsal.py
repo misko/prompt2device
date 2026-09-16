@@ -135,7 +135,8 @@ def _declares_blocked_sourcing(manifest: Path, readme: Path) -> bool:
 
 def rehearse(release: Path, project: Path | None = None,
              representation_supersede: str | None = None,
-             allow_blocked_sourcing: bool = False) -> dict[str, Any]:
+             allow_blocked_sourcing: bool = False,
+             docs_only_supersede: str | None = None) -> dict[str, Any]:
     release = release.resolve()
     project = (project or _project_for(release)).resolve()
     manifest = release / "MANIFEST.txt"
@@ -147,9 +148,12 @@ def rehearse(release: Path, project: Path | None = None,
             "--allow-blocked-sourcing requires BLOCKED-SOURCING on the first "
             "screen of ORDER_README and BLOCKED-SOURCING/BLOCKED-ORDER in "
             "MANIFEST; a quiet order block may not seal")
-    freshness_suffix = (["--representation-supersede",
-                         representation_supersede]
-                        if representation_supersede else [])
+    if representation_supersede and docs_only_supersede:
+        raise ValueError("choose exactly one supersede assertion")
+    freshness_suffix = (["--docs-only-supersede", docs_only_supersede]
+                        if docs_only_supersede else
+                        (["--representation-supersede", representation_supersede]
+                         if representation_supersede else []))
     checks = {
         "release_required": _run(
             "release-required",
@@ -186,7 +190,8 @@ def rehearse(release: Path, project: Path | None = None,
     return {
         "schema": 1, "kind": "release-rehearsal-receipt-v1",
         "verdict": verdict, "project": project.name,
-        "freshness_mode": ({"kind": "representation-supersede",
+        "freshness_mode": ({"kind": "docs-only-supersede", "prior": docs_only_supersede}
+                           if docs_only_supersede else {"kind": "representation-supersede",
                             "prior": representation_supersede}
                            if representation_supersede else
                            {"kind": "full-release"}),
@@ -241,7 +246,10 @@ def main(argv: list[str] | None = None) -> int:
     rehearse_parser.add_argument("release", type=Path)
     rehearse_parser.add_argument("--project", type=Path)
     rehearse_parser.add_argument("--output", type=Path)
-    rehearse_parser.add_argument(
+    modes = rehearse_parser.add_mutually_exclusive_group()
+    modes.add_argument("--docs-only-supersede",
+                       help="assert unchanged fab/source/3d against this prior release")
+    modes.add_argument(
         "--representation-supersede",
         help="assert a representation-only delta against this prior release")
     rehearse_parser.add_argument(
@@ -287,7 +295,7 @@ def main(argv: list[str] | None = None) -> int:
     try:
         result = rehearse(args.release, args.project,
                            args.representation_supersede,
-                           args.allow_blocked_sourcing)
+                           args.allow_blocked_sourcing, args.docs_only_supersede)
     except Exception as exc:
         print(f"RELEASE-REHEARSAL INCOMPLETE: {exc}")
         return 2

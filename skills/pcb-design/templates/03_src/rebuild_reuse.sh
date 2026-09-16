@@ -60,6 +60,8 @@ CS="$REPO_ROOT/skills/pcb-design/scripts"
     || { echo "GATE FAILED [PCB-TOOLCHAIN]: resolved circuits checkout '$REPO_ROOT' does not contain skills/kicad-pcb; export CIRCUITS_ROOT=/absolute/path/to/circuits" >&2; exit 2; }
 [ -f "$CS/connector_assembly_contract.py" ] \
     || { echo "GATE FAILED [PCB-TOOLCHAIN]: resolved circuits checkout '$REPO_ROOT' does not contain the pcb-design connector compiler" >&2; exit 2; }
+[ -f "$CS/connector_assembly_phase_gate.py" ] \
+    || { echo "GATE FAILED [PCB-TOOLCHAIN]: resolved circuits checkout '$REPO_ROOT' does not contain the pcb-design connector phase gate" >&2; exit 2; }
 FS="$(dirname "$(dirname "$S")")/jlcpcb-fab/scripts"
 export PATH="$HOME/.bun/bin:$PATH"
 
@@ -68,16 +70,33 @@ run_stage() {
     "$PY" "$S/pcb_flow.py" run . --stage "$stage" -- "$@"
 }
 
+compile_connector_base() {
+    local gate="$1"
+    local rc=0
+    $PY "$CS/connector_assembly_contract.py" --project . \
+        --contract 03_src/rules/connector_assemblies.yaml \
+        --output 06_build/verification/connector_assembly_contract.json \
+        || rc=$?
+    if [ "$rc" -eq 2 ]; then
+        echo "$gate CONNECTOR-CONTRACT INCOMPLETE: forwarding the explicit base rc=2 to the typed phase gate" >&2
+    elif [ "$rc" -ne 0 ]; then
+        echo "GATE FAILED $gate CONNECTOR-CONTRACT: repair the canonical connector assembly contract and its evidence bindings" >&2
+        exit "$rc"
+    fi
+}
+
 PIPELINE_EVIDENCE=06_build/verification/pipeline
 mkdir -p "$PIPELINE_EVIDENCE/bundles"
 
-# Connector assembly facts remain load-bearing on deterministic replay. This
-# compiles the canonical evidence contract and stops on represented unknowns;
-# it does not manufacture a realized-board service-geometry PASS.
-$PY "$CS/connector_assembly_contract.py" --project . \
+# Deterministic replay preserves the same additive phase split as the full
+# driver. The base rc=2 remains explicit and is forwarded only to SOURCE.
+compile_connector_base "[0g]"
+$PY "$CS/connector_assembly_phase_gate.py" --project . --phase source \
     --contract 03_src/rules/connector_assemblies.yaml \
-    --output 06_build/verification/connector_assembly_contract.json \
-    || { rc=$?; if [ "$rc" -eq 2 ]; then echo "GATE INCOMPLETE CONNECTOR-CONTRACT: select exact mates, tools, cables, operations, and tolerance sources" >&2; else echo "GATE FAILED CONNECTOR-CONTRACT: repair the canonical connector assembly contract and its evidence bindings" >&2; fi; exit "$rc"; }
+    --policy 03_src/rules/connector_assembly_phases.yaml \
+    --base-receipt 06_build/verification/connector_assembly_contract.json \
+    --output 06_build/verification/connector_assembly_source_gate.json \
+    || { rc=$?; if [ "$rc" -eq 2 ]; then echo "GATE INCOMPLETE [0g] CONNECTOR-SOURCE: close connector identities/census or classify only governed physical qualification work" >&2; else echo "GATE FAILED [0g] CONNECTOR-SOURCE: repair stale, malformed, or mismatched connector phase authority" >&2; fi; exit "$rc"; }
 
 # P-MOD is source-only and cheap; the deterministic path must not bypass the
 # architecture decision merely because it reuses a pinned schematic.
@@ -154,6 +173,17 @@ cp "$SCH" "04_kicad/$BOARD.kicad_sch"
 $PY "$S/pin_map_check.py" . --board "04_kicad/$BOARD.kicad_pcb" \
     --circuit-json 03_tscircuit/build/circuit.json \
     || { echo "GATE FAILED [2a] P-PINMAP: reconcile pin identities before placement/routing work"; exit 1; }
+
+# Candidate placement exists. FULL is the unchanged base PASS/zero-unknown bar
+# and blocks before any placement approval or route import. A separately
+# governed coupon may consume this candidate, but cannot bypass this gate.
+compile_connector_base "[2b]"
+$PY "$CS/connector_assembly_phase_gate.py" --project . --phase full \
+    --contract 03_src/rules/connector_assemblies.yaml \
+    --policy 03_src/rules/connector_assembly_phases.yaml \
+    --base-receipt 06_build/verification/connector_assembly_contract.json \
+    --output 06_build/verification/connector_assembly_full_gate.json \
+    || { rc=$?; if [ "$rc" -eq 2 ]; then echo "GATE INCOMPLETE [2b] CONNECTOR-FULL: qualify every physical operation/fit/tolerance on the exact candidate or governed coupon before placement approval/routing" >&2; else echo "GATE FAILED [2b] CONNECTOR-FULL: repair stale, malformed, or substituted connector phase authority" >&2; fi; exit "$rc"; }
 
 # [3] placement/pad invariants, if the board defines them  [per-board gate]
 if [ -f 03_src/audit_board.py ]; then $PY 03_src/audit_board.py; fi

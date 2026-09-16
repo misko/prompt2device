@@ -129,16 +129,29 @@ def early_boundaries_ok(txt):
 
 def connector_contract_wiring_ok(txt):
     invocation = txt.find('$PY "$CS/connector_assembly_contract.py"')
+    source = txt.find('connector_assembly_phase_gate.py" --project . --phase source')
+    board = txt.find('$PY "$S/generate_board_generic.py"')
+    full = txt.find('connector_assembly_phase_gate.py" --project . --phase full')
+    placement = txt.find('placement_routability_preflight.py" grade .', board)
     spends = [position for position in (
         txt.find("run_stage tscircuit_build"),
-        txt.find('$PY "$S/generate_board_generic.py"'),
+        board,
     ) if position >= 0]
-    if invocation < 0 or not spends or invocation >= min(spends):
+    if (invocation < 0 or source < invocation or not spends or
+            source >= min(spends) or board < 0 or full <= board or
+            placement < 0 or full >= placement):
         return False
-    window = txt[invocation:min(spends)]
-    return all(token in window for token in (
+    source_window = txt[invocation:min(spends)]
+    full_window = txt[full:placement]
+    return all(token in source_window for token in (
         "--contract 03_src/rules/connector_assemblies.yaml",
         "--output 06_build/verification/connector_assembly_contract.json",
+        "--policy 03_src/rules/connector_assembly_phases.yaml",
+        "--output 06_build/verification/connector_assembly_source_gate.json",
+        "forwarding the explicit base rc=2",
+    )) and all(token in full_window for token in (
+        "--phase full",
+        "--output 06_build/verification/connector_assembly_full_gate.json",
     ))
 
 
@@ -1466,24 +1479,38 @@ def t_source_schema_precedes_tsci():
           "part layout/precedent source gate must precede hash-bound reviews")
 
 
-@test("both rebuild drivers compile connector assembly facts before producer or placement spend")
+@test("both rebuild drivers source-grade before generation and require full connector closure before placement approval")
 def t_connector_contract_stage_order():
     for path in (ALL, REUSE):
         txt = path.read_text()
         check(connector_contract_wiring_ok(txt),
-              f"{path.name}: connector fact lock must select the canonical "
-              "contract/output before producer or placement spend")
+              f"{path.name}: connector base/source/full phase ordering or "
+              "canonical bindings are incomplete")
 
 
-@test("connector fact-lock wiring check rejects a dropped compiler",
+@test("connector phase wiring check rejects a dropped source classifier",
       kind="known_bad")
 def t_connector_contract_stage_order_has_teeth():
     for path in (ALL, REUSE):
         txt = path.read_text().replace(
-            '$PY "$CS/connector_assembly_contract.py"',
-            '$PY "$CS/removed_connector_compiler.py"', 1)
+            'connector_assembly_phase_gate.py" --project . --phase source',
+            'removed_connector_phase_gate.py" --project . --phase source', 1)
         check(not connector_contract_wiring_ok(txt),
-              f"{path.name}: dropped connector compiler still passed wiring check")
+              f"{path.name}: dropped source classifier still passed wiring check")
+
+
+@test("connector phase wiring check rejects full closure after placement",
+      kind="known_bad")
+def t_connector_full_stage_order_has_teeth():
+    for path in (ALL, REUSE):
+        txt = path.read_text()
+        full_start = txt.index(
+            'connector_assembly_phase_gate.py" --project . --phase full')
+        full_end = txt.index("\n\n", full_start)
+        full_block = txt[full_start:full_end]
+        broken = txt[:full_start] + txt[full_end:] + "\n" + full_block
+        check(not connector_contract_wiring_ok(broken),
+              f"{path.name}: full connector gate after placement still passed")
 
 
 @test("both rebuild drivers keep the conditional RF module bounded inside "

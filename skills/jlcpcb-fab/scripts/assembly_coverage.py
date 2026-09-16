@@ -235,6 +235,7 @@ def read_footprints(path):
             1 for number in rec["_drilled_numbers"]
             if not number or number not in rec["_smd_copper_numbers"])
         rec.pop("_drilled_numbers")
+        rec["smd_copper_pads"] = len(rec["_smd_copper_numbers"])
         rec.pop("_smd_copper_numbers")
         if pad_xy:
             rec["datum"] = _pad_array_centre(pad_xy, rec["at"], rec["rot"])
@@ -591,6 +592,67 @@ def check_smt_placeable(fps, cpl_refs, asm):
     return fails
 
 
+def check_assembly_sides(fps, cpl_rows, asm):
+    """Compare native mounting layers with declared assembly sides and CPL.
+
+    Manual/consigned SMD is still fitted population. Only explicitly declared
+    nonpopulation can remove a numbered SMD land from this denominator.
+    Missing legacy policy is reported as ungraded, never inferred as top-only.
+    """
+    fails, hist = [], {}
+    by_ref = {f["ref"]: f for f in fps}
+    cpl_refs = {r[0] for r in cpl_rows}
+    policy = asm.get("sides")
+    valid = (isinstance(policy, list) and bool(policy)
+             and all(isinstance(s, str) and s in ("top", "bottom") for s in policy)
+             and len(set(policy)) == len(policy))
+    if "sides" in asm and not valid:
+        fails.append("  ASSEMBLY-SIDES-INVALID: sides must be a non-empty list "
+                     "of distinct top/bottom values")
+    seen, duplicates = set(), set()
+    for e in (asm.get("not_assembled") or []):
+        for ref in (e.get("refs") or []):
+            ref = str(ref)
+            if ref in seen:
+                duplicates.add(ref)
+            seen.add(ref)
+    if duplicates:
+        fails.append("  ASSEMBLY-POPULATION-DUPLICATE: each not_assembled ref "
+                     "must have one disposition; repeated references: "
+                     + ", ".join(sorted(duplicates)))
+    nonpopulation = {
+        str(r) for e in (asm.get("not_assembled") or [])
+        if e.get("reason") in {"dnp_by_design", "test_point"}
+        for r in (e.get("refs") or [])
+    } - cpl_refs - duplicates
+    layer_side = {"F.Cu": "top", "B.Cu": "bottom"}
+    for f in fps:
+        if f["ref"] in nonpopulation:
+            continue
+        # A fiducial may carry attr smd but has no numbered electrical land.
+        # Conversely manual SMD lands need not carry the authoring attribute.
+        if not f.get("smd_copper_pads", 0):
+            continue
+        side = layer_side.get(f["layer"])
+        hist[side or "unknown"] = hist.get(side or "unknown", 0) + 1
+        if valid and side not in policy:
+            fails.append(f"  SMD-SIDE-NOT-ALLOWED: {f['ref']} native layer "
+                         f"{f['layer']!r} is outside assembly sides={policy}; "
+                         "manual/consigned fitting does not exempt SMD")
+    cpl_graded = 0
+    for ref, _rot, side in cpl_rows:
+        native = layer_side.get(by_ref.get(ref, {}).get("layer"))
+        if native is None or side.lower() != native:
+            fails.append(f"  CPL-SIDE-MISMATCH: {ref} CPL side={side!r}, "
+                         f"native side={native!r}; require top/bottom matching "
+                         "the board mounting layer")
+        cpl_graded += 1
+    return fails, {"smd_population_sides": hist,
+                   "smd_side_graded": sum(hist.values()) if valid else 0,
+                   "assembly_sides_status": "GRADED" if valid else "UNDECLARED_OR_INVALID",
+                   "cpl_side_graded": cpl_graded}
+
+
 def check(fps, cpl_rows, bom_rows, asm, manifest_refs, have_assembly,
           cpl_xy=None):
     """-> (fails, notes, summary). Pure; unit-testable without files."""
@@ -781,6 +843,8 @@ def check(fps, cpl_rows, bom_rows, asm, manifest_refs, have_assembly,
         dfails, datum_worst = check_datum(fps, cpl_xy)
         fails.extend(dfails)
     fails.extend(check_smt_placeable(fps, cpl_refs, asm))
+    side_fails, side_summary = check_assembly_sides(fps, cpl_rows, asm)
+    fails.extend(side_fails)
 
     hist = {}
     for _ref, _rot, layer in cpl_rows:
@@ -792,6 +856,7 @@ def check(fps, cpl_rows, bom_rows, asm, manifest_refs, have_assembly,
                "unpopulated": len(unpopulated), "declared": len(declared),
                "consigned": len(consigned), "exempt_prefixes": exempt,
                "sides": hist, "unexplained": unexplained}
+    summary.update(side_summary)
     return fails, notes, summary
 
 
@@ -884,6 +949,10 @@ def main(argv=None):
           f"exempt_prefixes={summary['exempt_prefixes']})")
     print("  placement histogram: "
           + ", ".join(f"{k}={v}" for k, v in sorted(summary["sides"].items())))
+    print(f"  A-POS assembly sides: {summary['assembly_sides_status']}; "
+          f"{summary['smd_side_graded']} fitted SMD, "
+          f"{summary['cpl_side_graded']} CPL sides graded; "
+          f"native SMD population={summary['smd_population_sides']}")
     if summary.get("datum_graded"):
         print(f"  A-POS datum: {summary['datum_graded']} CPL row(s) graded "
               f"against the pad-array centre, worst = "

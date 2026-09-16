@@ -442,6 +442,11 @@ def main(argv=None):
         cnets = sc.get("nets") or []
         nets_a = sc.get("nets_a") or []
         nets_b = sc.get("nets_b") or []
+        pads_only = sc.get("pads_only", False)
+        if type(pads_only) is not bool:
+            sys.exit(f"generate_rules_generic: scoped_clearances[{i}] "
+                     f"(zone {zone}) `pads_only` must be a boolean — "
+                     f"never silently widen a pad-only isolation scope")
         pair_scoped = bool(nets_a or nets_b)
         if pair_scoped and (not nets_a or not nets_b):
             sys.exit(f"generate_rules_generic: scoped_clearances[{i}] "
@@ -470,6 +475,12 @@ def main(argv=None):
                      f"(zone {zone}) clearance {scv}mm is below fab tier "
                      f"'{tier['name']}' min_space {tier['min_space']}mm — a "
                      f"scope relaxes a NETCLASS floor, never the FAB's")
+        holev = mm(sc.get("hole_clearance"))
+        if holev is not None and tier is not None and holev < float(tier["min_space"]):
+            sys.exit(f"generate_rules_generic: scoped_clearances[{i}] "
+                     f"(zone {zone}) hole_clearance {holev}mm is below fab "
+                     f"tier '{tier['name']}' min_space "
+                     f"{tier['min_space']}mm")
         rname = f"scoped_clr_{zone}"
         while rname in clr_names:
             rname += "_"
@@ -486,10 +497,15 @@ def main(argv=None):
                                  for n in cnets)
         cond = (f"A.insideArea('{zone}') && B.insideArea('{zone}') "
                 f"&& ({clause})")
+        if pads_only:
+            cond = "A.Type == 'Pad' && B.Type == 'Pad' && " + cond
+        constraints = f'  (constraint clearance (min {scv}mm))'
+        if holev is not None:
+            constraints += f'\n  (constraint hole_clearance (min {holev}mm))'
         clr_rules.append(
             f'(rule "{rname}"\n'
             f'  (condition "{cond}")\n'
-            f'  (constraint clearance (min {scv}mm)))')
+            f'{constraints})')
     dru_rules += scoped_rules + clr_rules
 
     # PRESERVE foreign rules (e.g. stitch's pad_rescue_stubs sub-floor) so this

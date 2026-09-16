@@ -4,9 +4,10 @@ from __future__ import annotations
 
 import csv
 import json
+import os
 import shutil
 import sys
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -37,18 +38,38 @@ def policy_file(root, *, line_cash="0", total_cash="0", line_surplus="0",
 
 def fixture(*, phase="prelayout", status="AVAILABLE", resolved="C100",
             available="20", checked="2026-08-18T11:00:00Z",
-            economics=None, limits=None):
+            economics=None, limits=None, subject_role="bom", now=NOW):
     root = tmpdir("pcba_")
-    bom = root / "bom.csv"
-    bom.write_text(
-        "Comment,Designator,Footprint,LCSC\n"
-        "10k,R1,R_0402,C100\n"
-        "10k,R2,R_0402,C100\n"
-        "1uF,C1,C_0402,C200\n", encoding="utf-8")
+    assembly = None
+    if subject_role == "circuit":
+        bom = root / "03_tscircuit/build/circuit.json"
+        bom.parent.mkdir(parents=True)
+        bom.write_text(json.dumps([
+            {"type": "source_component", "name": "U1",
+             "supplier_part_numbers": {"jlcpcb": ["C100"]}},
+            {"type": "source_component", "name": "U2",
+             "supplier_part_numbers": {"jlcpcb": ["C100"]}},
+            {"type": "source_component", "name": "U3",
+             "supplier_part_numbers": {"jlcpcb": ["C200"]}},
+        ]), encoding="utf-8")
+        assembly = root / "03_src/rules/assembly.yaml"
+        assembly.parent.mkdir(parents=True)
+        assembly.write_text("not_assembled: []\n", encoding="utf-8")
+        (root / "02_parts").mkdir()
+    elif subject_role == "bom":
+        bom = root / "bom.csv"
+        bom.write_text(
+            "Comment,Designator,Footprint,LCSC\n"
+            "10k,R1,R_0402,C100\n"
+            "10k,R2,R_0402,C100\n"
+            "1uF,C1,C_0402,C200\n", encoding="utf-8")
+    else:
+        raise ValueError(f"unsupported subject_role {subject_role!r}")
     policy = policy_file(root, **(limits or {}))
     request = pcba.prepare(bom, build_quantity=5, phase=phase,
+                           assembly=assembly,
                            procurement_policy=policy,
-                           generated_at=NOW)
+                           generated_at=now)
     request_path = root / "request.json"
     request_path.write_text(json.dumps(request), encoding="utf-8")
     response = root / "response.csv"
@@ -73,7 +94,7 @@ def fixture(*, phase="prelayout", status="AVAILABLE", resolved="C100",
                          "Available Qty": "10", "Checked At": checked,
                          "Evidence": "JLC upload row 2",
                          **{**base, "Public Stock Qty": "10"}})
-    receipt = pcba.grade(request_path, response, max_age_hours=24, now=NOW)
+    receipt = pcba.grade(request_path, response, max_age_hours=24, now=now)
     receipt_path = root / "receipt.json"
     receipt_path.write_text(json.dumps(receipt), encoding="utf-8")
     return root, bom, request, response, receipt, receipt_path
@@ -153,6 +174,303 @@ def t_request_stale_after_bom_change():
     check(not valid, "stale request passed after BOM changed")
     check(any("subject" in failure or "rows" in failure for failure in failures),
           f"stale request diagnosis missing: {failures}")
+
+
+def portable_request_fixture():
+    root = tmpdir("pcba_portable_")
+    project = root / "checkout-one/projects/demo-board"
+    circuit = project / "03_tscircuit/build/circuit.json"
+    circuit.parent.mkdir(parents=True)
+    circuit.write_text(json.dumps([
+        {"type": "source_component", "name": "R1", "value": "10k",
+         "supplier_part_numbers": {"jlcpcb": ["C100"]}},
+    ]), encoding="utf-8")
+    assembly = project / "03_src/rules/assembly.yaml"
+    assembly.parent.mkdir(parents=True)
+    assembly.write_text("not_assembled: []\nbuild_quantity: 5\n",
+                        encoding="utf-8")
+    policy = project / "01_docs/sourcing/procurement-policy.yaml"
+    policy.parent.mkdir(parents=True)
+    policy_file(policy.parent)
+
+    evidence = project / "06_build/sourcing"
+    evidence.mkdir(parents=True)
+    request_path = evidence / "prelayout_request.json"
+    request = pcba.prepare(
+        circuit, build_quantity=5, phase="prelayout", assembly=assembly,
+        procurement_policy=policy, generated_at=NOW,
+        record_base=request_path.parent)
+    request_path.write_text(json.dumps(request), encoding="utf-8")
+    response = evidence / "prelayout_response.csv"
+    with response.open("w", newline="", encoding="utf-8") as stream:
+        writer = csv.DictWriter(stream, fieldnames=pcba.RESPONSE_FIELDS)
+        writer.writeheader()
+        writer.writerow({
+            "Requested LCSC": "C100", "Resolved LCSC": "C100",
+            "PCBA Status": "AVAILABLE", "Available Qty": "5",
+            "Fulfillment": "PUBLIC_STOCK",
+            "Economic Status": "NO_MINIMUM_COST", "Public Stock Qty": "5",
+            "My Parts Qty": "0", "Attrition Qty": "0", "MOQ": "0",
+            "Order Multiple": "0", "Preorder Purchase Qty": "0",
+            "Preorder Part Subtotal": "0", "Preorder Fees": "0",
+            "Assembly Charged Qty": "0", "Assembly Part Subtotal": "0",
+            "Currency": "USD", "Checked At": NOW.isoformat(),
+            "Evidence": "JLCPCB PCBA interface row",
+        })
+    receipt_path = evidence / "prelayout_receipt.json"
+    receipt = pcba.grade(
+        request_path, response, max_age_hours=24, now=NOW,
+        evidence_base=receipt_path.parent)
+    receipt_path.write_text(json.dumps(receipt), encoding="utf-8")
+    return root, project
+
+
+def rewrite_response_code(path: Path, old: str, new: str) -> None:
+    with path.open(encoding="utf-8", newline="") as stream:
+        rows = list(csv.DictReader(stream))
+    for row in rows:
+        if row["Requested LCSC"] == old:
+            row["Requested LCSC"] = new
+        if row["Resolved LCSC"] == old:
+            row["Resolved LCSC"] = new
+    with path.open("w", encoding="utf-8", newline="") as stream:
+        writer = csv.DictWriter(stream, fieldnames=pcba.RESPONSE_FIELDS)
+        writer.writeheader()
+        writer.writerows(rows)
+
+
+@test("portable request and receipt survive checkout relocation")
+def t_portable_evidence_relocation():
+    root, project = portable_request_fixture()
+    request = json.loads((project / "06_build/sourcing/prelayout_request.json").read_text())
+    for name in ("subject", "assembly", "procurement_policy"):
+        path = request[name]["path"]
+        check(not Path(path).is_absolute(), f"{name} retained absolute path {path}")
+        check("checkout-one" not in path, f"{name} retained checkout identity")
+
+    relocated = root / "renamed-checkout/projects/demo-board"
+    relocated.parent.mkdir(parents=True)
+    shutil.move(project, relocated)
+    request_path = relocated / "06_build/sourcing/prelayout_request.json"
+    circuit = relocated / "03_tscircuit/build/circuit.json"
+    assembly = relocated / "03_src/rules/assembly.yaml"
+    policy = relocated / "01_docs/sourcing/procurement-policy.yaml"
+    valid, failures, _ = pcba.verify_request(
+        request_path, bom=circuit, build_quantity=5, phase="prelayout",
+        assembly=assembly, procurement_policy=policy)
+    check(valid and not failures,
+          f"portable request failed after relocation: {failures}")
+    receipt_path = relocated / "06_build/sourcing/prelayout_receipt.json"
+    valid, failures, receipt = pcba.verify_receipt(
+        receipt_path, bom=circuit, required_phase="prelayout", now=NOW)
+    check(valid and not failures,
+          f"portable receipt failed after relocation: {failures}")
+    for name in ("request", "response"):
+        check(not Path(receipt[name]["path"]).is_absolute(),
+              f"receipt {name} retained an absolute path")
+
+
+@test("portable request rejects mixed path models", kind="known_bad")
+def t_portable_evidence_mixed_paths():
+    _, project = portable_request_fixture()
+    request_path = project / "06_build/sourcing/prelayout_request.json"
+    request = json.loads(request_path.read_text(encoding="utf-8"))
+    request["assembly"]["path"] = str(
+        (project / "03_src/rules/assembly.yaml").resolve())
+    request_path.write_text(json.dumps(request), encoding="utf-8")
+    valid, failures, _ = pcba.verify_request(
+        request_path,
+        bom=project / "03_tscircuit/build/circuit.json",
+        build_quantity=5, phase="prelayout",
+        assembly=project / "03_src/rules/assembly.yaml",
+        procurement_policy=project / "01_docs/sourcing/procurement-policy.yaml")
+    check(not valid and any("mixes absolute and relative" in item
+                            for item in failures),
+          f"mixed path models were accepted: {failures}")
+
+
+@test("grade rejects a mixed saved-request path model", kind="known_bad")
+def t_grade_rejects_mixed_request_paths():
+    _, project = portable_request_fixture()
+    request_path = project / "06_build/sourcing/prelayout_request.json"
+    request = json.loads(request_path.read_text(encoding="utf-8"))
+    request["assembly"]["path"] = str(
+        (project / "03_src/rules/assembly.yaml").resolve())
+    request_path.write_text(json.dumps(request), encoding="utf-8")
+    rejected = False
+    try:
+        pcba.grade(
+            request_path,
+            project / "06_build/sourcing/prelayout_response.csv",
+            max_age_hours=24, now=NOW)
+    except ValueError as exc:
+        rejected = "mixes absolute and relative" in str(exc)
+    check(rejected, "direct grade accepted a mixed saved-request path model")
+
+
+@test("receipt verification rejects a durable mixed request model",
+      kind="known_bad")
+def t_receipt_rejects_mixed_request_paths():
+    _, project = portable_request_fixture()
+    evidence = project / "06_build/sourcing"
+    request_path = evidence / "prelayout_request.json"
+    receipt_path = evidence / "prelayout_receipt.json"
+    absolute_assembly = str(
+        (project / "03_src/rules/assembly.yaml").resolve())
+
+    request = json.loads(request_path.read_text(encoding="utf-8"))
+    request["assembly"]["path"] = absolute_assembly
+    request_path.write_text(json.dumps(request), encoding="utf-8")
+    receipt = json.loads(receipt_path.read_text(encoding="utf-8"))
+    receipt["assembly"]["path"] = absolute_assembly
+    receipt["request"] = pcba._record(
+        request_path, relative_to=receipt_path.parent)
+    receipt_path.write_text(json.dumps(receipt), encoding="utf-8")
+
+    valid, failures, _ = pcba.verify_receipt(
+        receipt_path,
+        bom=project / "03_tscircuit/build/circuit.json",
+        required_phase="prelayout", now=NOW)
+    check(not valid and any("receipt request path model is invalid" in item
+                            for item in failures),
+          f"durable mixed request model was accepted: {failures}")
+
+
+@test("grade reproduces request rows from the hash-bound subject",
+      kind="known_bad")
+def t_grade_rejects_forged_request_rows():
+    _, project = portable_request_fixture()
+    evidence = project / "06_build/sourcing"
+    request_path = evidence / "prelayout_request.json"
+    response_path = evidence / "prelayout_response.csv"
+    request = json.loads(request_path.read_text(encoding="utf-8"))
+    request["rows"][0]["requested_lcsc"] = "C999"
+    request_path.write_text(json.dumps(request), encoding="utf-8")
+    rewrite_response_code(response_path, "C100", "C999")
+
+    rejected = False
+    try:
+        pcba.grade(request_path, response_path, max_age_hours=24, now=NOW)
+    except ValueError as exc:
+        rejected = ("saved request is stale or changed" in str(exc)
+                    and "rows" in str(exc))
+    check(rejected, "direct grade accepted rows not derived from its subject")
+
+
+@test("durable receipt cannot bless forged request and response rows",
+      kind="known_bad")
+def t_receipt_rejects_forged_request_rows():
+    _, project = portable_request_fixture()
+    evidence = project / "06_build/sourcing"
+    request_path = evidence / "prelayout_request.json"
+    response_path = evidence / "prelayout_response.csv"
+    receipt_path = evidence / "prelayout_receipt.json"
+
+    request = json.loads(request_path.read_text(encoding="utf-8"))
+    request["rows"][0]["requested_lcsc"] = "C999"
+    request_path.write_text(json.dumps(request), encoding="utf-8")
+    rewrite_response_code(response_path, "C100", "C999")
+    receipt = json.loads(receipt_path.read_text(encoding="utf-8"))
+    for row in receipt["rows"]:
+        if row["requested_lcsc"] == "C100":
+            row["requested_lcsc"] = "C999"
+            row["resolved_lcsc"] = "C999"
+    receipt["request"] = pcba._record(
+        request_path, relative_to=receipt_path.parent)
+    receipt["response"] = pcba._record(
+        response_path, relative_to=receipt_path.parent)
+    receipt_path.write_text(json.dumps(receipt), encoding="utf-8")
+
+    valid, failures, _ = pcba.verify_receipt(
+        receipt_path,
+        bom=project / "03_tscircuit/build/circuit.json",
+        required_phase="prelayout", now=NOW)
+    check(not valid and any(
+        "receipt cannot be reproduced" in item
+        and "saved request is stale or changed" in item
+        and "rows" in item for item in failures),
+        f"durable forged row set was accepted: {failures}")
+
+
+@test("grade rejects a noncanonical portable subject label", kind="known_bad")
+def t_grade_rejects_relative_request_alias():
+    _, project = portable_request_fixture()
+    evidence = project / "06_build/sourcing"
+    request_path = evidence / "prelayout_request.json"
+    request = json.loads(request_path.read_text(encoding="utf-8"))
+    request["subject"]["path"] = (
+        "../../03_tscircuit/build/../build/circuit.json")
+    request_path.write_text(json.dumps(request), encoding="utf-8")
+
+    rejected = False
+    try:
+        pcba.grade(request_path, evidence / "prelayout_response.csv",
+                   max_age_hours=24, now=NOW)
+    except ValueError as exc:
+        rejected = "relative path is not canonical" in str(exc)
+    check(rejected, "grade accepted a noncanonical relative subject label")
+
+
+@test("portable request creation rejects an external identical subject",
+      kind="known_bad")
+def t_prepare_rejects_external_portable_input():
+    root, project = portable_request_fixture()
+    source = project / "03_tscircuit/build/circuit.json"
+    external = root / "outside-project/circuit.json"
+    external.parent.mkdir()
+    shutil.copy2(source, external)
+    evidence = project / "06_build/sourcing"
+
+    rejected = False
+    try:
+        pcba.prepare(
+            external, build_quantity=5, phase="prelayout",
+            assembly=project / "03_src/rules/assembly.yaml",
+            procurement_policy=(
+                project / "01_docs/sourcing/procurement-policy.yaml"),
+            generated_at=NOW, record_base=evidence)
+    except ValueError as exc:
+        rejected = "escapes its portable evidence root" in str(exc)
+    check(rejected, "prepare emitted a request tied outside its project")
+
+
+@test("receipt rejects a noncanonical relative evidence label",
+      kind="known_bad")
+def t_receipt_rejects_relative_evidence_alias():
+    _, project = portable_request_fixture()
+    receipt_path = project / "06_build/sourcing/prelayout_receipt.json"
+    receipt = json.loads(receipt_path.read_text(encoding="utf-8"))
+    receipt["request"]["path"] = "./prelayout_request.json"
+    receipt_path.write_text(json.dumps(receipt), encoding="utf-8")
+
+    valid, failures, _ = pcba.verify_receipt(
+        receipt_path,
+        bom=project / "03_tscircuit/build/circuit.json", now=NOW)
+    check(not valid and any("relative path is not canonical" in item
+                            for item in failures),
+          f"receipt accepted a relative evidence alias: {failures}")
+
+
+@test("receipt rejects relative evidence outside its durable directory",
+      kind="known_bad")
+def t_receipt_rejects_external_relative_evidence():
+    _, project = portable_request_fixture()
+    evidence = project / "06_build/sourcing"
+    receipt_path = evidence / "prelayout_receipt.json"
+    outside = project / "06_build/copied_request.json"
+    shutil.copy2(evidence / "prelayout_request.json", outside)
+    receipt = json.loads(receipt_path.read_text(encoding="utf-8"))
+    receipt["request"] = pcba._record(outside, relative_to=evidence)
+    check(receipt["request"]["path"] == os.path.join(
+        "..", "copied_request.json"), "fixture did not escape evidence dir")
+    receipt_path.write_text(json.dumps(receipt), encoding="utf-8")
+
+    valid, failures, _ = pcba.verify_receipt(
+        receipt_path,
+        bom=project / "03_tscircuit/build/circuit.json", now=NOW)
+    check(not valid and any("escapes its portable evidence root" in item
+                            for item in failures),
+          f"receipt accepted external relative evidence: {failures}")
 
 
 @test("catalog availability cannot clear an unavailable JLCPCB PCBA row",
@@ -347,7 +665,8 @@ def t_embedded_policy_tamper():
     try:
         pcba.grade(request_path, response, max_age_hours=24, now=NOW)
     except ValueError as exc:
-        rejected = "embedded procurement policy disagrees" in str(exc)
+        rejected = ("saved request is stale or changed" in str(exc)
+                    and "procurement_policy_value" in str(exc))
     check(rejected, "forged embedded financial limits were accepted")
 
 
@@ -369,24 +688,28 @@ def t_receipt_tamper():
 
 @test("receipt reopens from a self-contained relocated evidence bundle")
 def t_relocated_bundle():
-    root, bom, _, response, _, receipt_path = fixture()
+    root, bom, _, response, _, receipt_path = fixture(subject_role="circuit")
     request = root / "request.json"
+    assembly = root / "03_src/rules/assembly.yaml"
+    policy = root / "procurement-policy.yaml"
     bundle = root / "release_verification"
     bundle.mkdir()
-    for source in (request, response, receipt_path):
+    originals = (bom, assembly, policy, request, response, receipt_path)
+    for source in originals:
         shutil.copy2(source, bundle / source.name)
-    shutil.copy2(root / "procurement-policy.yaml",
-                 bundle / "procurement-policy.yaml")
-    request.unlink()
-    response.unlink()
+    for source in originals:
+        source.unlink()
     valid, failures, _ = pcba.verify_receipt(
-        bundle / "receipt.json", bom=bom, now=NOW)
+        bundle / "receipt.json", bom=bundle / "circuit.json", now=NOW)
     check(valid and not failures, f"relocated bundle refused: {failures}")
 
 
 @test("release sourcing CLEAR comes from final JLC allocation, not catalog")
 def t_release_clear_authority():
-    root, bom, _, _, _, receipt_path = fixture(phase="order", status="ALLOCATED")
+    now = datetime.now(timezone.utc)
+    root, bom, _, _, _, receipt_path = fixture(
+        phase="order", status="ALLOCATED", now=now,
+        checked=(now - timedelta(minutes=1)).isoformat())
     release = root / "release"
     (release / "fab").mkdir(parents=True)
     (release / "fab/bom.csv").write_bytes(bom.read_bytes())
@@ -398,8 +721,10 @@ def t_release_clear_authority():
 @test("valid unavailable JLC receipt produces measured BLOCKED-SOURCING",
       kind="known_bad")
 def t_release_blocked_authority():
+    now = datetime.now(timezone.utc)
     root, bom, _, _, _, receipt_path = fixture(
-        phase="order", status="UNAVAILABLE")
+        phase="order", status="UNAVAILABLE", now=now,
+        checked=(now - timedelta(minutes=1)).isoformat())
     release = root / "release"
     (release / "fab").mkdir(parents=True)
     (release / "fab/bom.csv").write_bytes(bom.read_bytes())
@@ -412,8 +737,10 @@ def t_release_blocked_authority():
 @test("aggregate MOQ-cost rejection cannot report sourcing CLEAR",
       kind="known_bad")
 def t_release_aggregate_cost_blocked():
+    now = datetime.now(timezone.utc)
     root, bom, _, _, _, receipt_path = fixture(
         phase="order", status="ALLOCATED",
+        now=now, checked=(now - timedelta(minutes=1)).isoformat(),
         economics={
             "Fulfillment": "PREORDER", "Economic Status": "QUOTED",
             "Public Stock Qty": "0", "MOQ": "20", "Order Multiple": "1",
@@ -477,12 +804,66 @@ def t_non_overwriting_pause():
     check(not request.exists(), "partial request was written before refusal")
 
 
-@test("manufacturing readiness accepts the exact prelayout receipt")
+@test("manufacturing readiness accepts a prelayout receipt for its current circuit")
 def t_manufacturing_composes_prelayout():
-    _, _, _, _, _, receipt_path = fixture()
-    result = manufacturing_readiness._pcba_check(
-        receipt_path, phase="prelayout")
-    eq(result["status"], "PASS", "composed prelayout receipt")
+    now = datetime.now(timezone.utc)
+    project, _, _, _, _, receipt_path = fixture(
+        subject_role="circuit", now=now,
+        checked=(now - timedelta(minutes=1)).isoformat())
+    result = manufacturing_readiness.grade(
+        project, phase="prelayout", pcba_receipt=receipt_path)
+    eq(result["verdict"], "ACCEPTED", "composed prelayout readiness")
+    eq(result["checks"]["jlc_pcba_availability"]["status"], "PASS",
+       "current-circuit availability binding")
+    eq(result["checks"]["procurement_exposure"]["status"], "PASS",
+       "current-circuit economics binding")
+
+
+@test("manufacturing readiness rejects a receipt for a changed circuit",
+      kind="known_bad")
+def t_manufacturing_rejects_changed_prelayout_subject():
+    now = datetime.now(timezone.utc)
+    project, circuit, _, _, _, receipt_path = fixture(
+        subject_role="circuit", now=now,
+        checked=(now - timedelta(minutes=1)).isoformat())
+    subject = json.loads(circuit.read_text(encoding="utf-8"))
+    subject.append({"type": "pcb_note", "text": "changed after JLC check"})
+    circuit.write_text(json.dumps(subject), encoding="utf-8")
+
+    result = manufacturing_readiness.grade(
+        project, phase="prelayout", pcba_receipt=receipt_path)
+    eq(result["verdict"], "REJECTED", "changed-subject readiness")
+    for name in ("jlc_pcba_availability", "procurement_exposure"):
+        check(result["checks"][name]["status"] != "PASS",
+              f"{name} accepted a receipt for another circuit")
+        check("not bound to the current subject/BOM" in
+              result["checks"][name]["output"],
+              f"{name} omitted the subject-binding diagnosis")
+
+
+@test("manufacturing readiness rejects a receipt replaced after verification",
+      kind="known_bad")
+def t_manufacturing_rejects_receipt_swap_during_check():
+    now = datetime.now(timezone.utc)
+    _, circuit, _, _, _, receipt_path = fixture(
+        subject_role="circuit", now=now,
+        checked=(now - timedelta(minutes=1)).isoformat())
+    original_verify = manufacturing_readiness.verify_receipt
+
+    def verify_then_replace(*args, **kwargs):
+        result = original_verify(*args, **kwargs)
+        receipt_path.write_text('{"schema": 999}\n', encoding="utf-8")
+        return result
+
+    manufacturing_readiness.verify_receipt = verify_then_replace
+    try:
+        result = manufacturing_readiness._pcba_check(
+            receipt_path, phase="prelayout", bom=circuit)
+    finally:
+        manufacturing_readiness.verify_receipt = original_verify
+    check(result["status"] != "PASS", "replaced receipt was consumed as verified")
+    check("changed during verification" in result["detail"],
+          f"receipt-swap diagnosis missing: {result}")
 
 
 @test("manufacturing readiness refuses missing operator evidence",
@@ -492,6 +873,108 @@ def t_manufacturing_missing_prelayout():
     eq(result["status"], "INCOMPLETE", "missing operator receipt")
     check("catalog stock is not" in result["output"],
           "authority distinction missing")
+
+
+def public_catalog_fixture():
+    root = tmpdir("public_catalog_readiness_")
+    request = root / "prelayout_request.json"
+    evidence = root / "public_catalog_stock.json"
+    decision = root / "decision.md"
+    request.write_text(json.dumps({
+        "schema": 2,
+        "phase": "prelayout",
+        "build_quantity": 5,
+        "rows": [{
+            "requested_lcsc": "C100",
+            "designators": ["R1", "R2"],
+            "per_board_qty": 2,
+            "required_qty": 10,
+        }],
+    }), encoding="utf-8")
+    evidence.write_text(json.dumps({
+        "tool": "jlc_stock_check.py",
+        "stock_source": "lcsc_catalog_stockCount",
+        "generated_at": datetime.now(timezone.utc).isoformat(),
+        "min_stock_per_board": 5,
+        "min_absolute_surplus": 0,
+        "verdict": "PASS",
+        "predicts_jlc_assembly_allocation": False,
+        "graded_lines": 1,
+        "total_lines": 1,
+        "failures": 0,
+        "uncoded_lines": 0,
+        "lines": [{
+            "lcsc": "C100", "designators": "R1,R2", "qty": 2,
+            "required_qty": 10, "stock_threshold": 10,
+            "absolute_surplus": 90, "status": "OK", "stock": 100,
+        }],
+    }), encoding="utf-8")
+    decision.write_text(
+        "public-catalog accepted for pre-layout only; DO-NOT-ORDER\n",
+        encoding="utf-8")
+    return request, evidence, decision
+
+
+@test("manufacturing readiness accepts an exact public-catalog prelayout screen")
+def t_public_catalog_prelayout_accepts_exact_screen():
+    request, evidence, decision = public_catalog_fixture()
+    result = manufacturing_readiness._catalog_prelayout_check(
+        request, evidence, decision)
+    eq(result["status"], "PASS", "public prelayout negative filter")
+    check("does not" in result["output"] or "only" in result["output"],
+          "public result omitted its non-allocation scope")
+
+
+@test("public-catalog prelayout rejects forged row identity", kind="known_bad")
+def t_public_catalog_prelayout_rejects_forged_row():
+    request, evidence, decision = public_catalog_fixture()
+    payload = json.loads(evidence.read_text(encoding="utf-8"))
+    payload["lines"][0]["designators"] = "R1,R9"
+    evidence.write_text(json.dumps(payload), encoding="utf-8")
+    result = manufacturing_readiness._catalog_prelayout_check(
+        request, evidence, decision)
+    check(result["status"] != "PASS",
+          "public screen accepted a forged designator census")
+    check("designators disagree" in result["detail"],
+          f"forged-row diagnosis missing: {result}")
+
+
+@test("public-catalog prelayout rejects missing scope decision", kind="known_bad")
+def t_public_catalog_prelayout_rejects_unbounded_decision():
+    request, evidence, decision = public_catalog_fixture()
+    decision.write_text("continue board work\n", encoding="utf-8")
+    result = manufacturing_readiness._catalog_prelayout_check(
+        request, evidence, decision)
+    check(result["status"] != "PASS",
+          "public screen passed without DO-NOT-ORDER decision")
+
+
+@test("PCBA CLI accepts complete stock and rejects a real insufficient row", kind="known_bad")
+def t_cli_stock_rejection():
+    """Exercise real CLI exits; library-only checks did not satisfy G-RED."""
+    from harness import KPY, must_pass, must_fail, run
+    current = datetime.now(timezone.utc)
+    root, _, _, response, _, _ = fixture(now=current, checked=current.isoformat())
+    tool = ROOT / "skills/jlcpcb-fab/scripts/jlc_pcba_availability.py"
+    good_path = root / "cli-good.json"
+    args = [KPY, tool, "grade", root / "request.json", response]
+    good = must_pass(run([*args, "--out", good_path]), "complete CLI stock")
+    contains_good = json.loads(good_path.read_text())
+    eq(contains_good["coverage"], {"passing": 2, "graded": 2, "total": 2},
+       "clean CLI population")
+    rows = list(csv.DictReader(response.open(newline="")))
+    rows[0]["Available Qty"] = rows[0]["Public Stock Qty"] = "0"
+    with response.open("w", newline="") as stream:
+        writer = csv.DictWriter(stream, fieldnames=pcba.RESPONSE_FIELDS)
+        writer.writeheader()
+        writer.writerows(rows)
+    bad_path = root / "cli-bad.json"
+    bad = must_fail(run([*args, "--out", bad_path]), "insufficient stock CLI",
+                    expect="REJECTED")
+    eq(bad.rc, 1, "stock rejection exit code")
+    rejected = json.loads(bad_path.read_text())
+    eq(rejected["coverage"], {"passing": 1, "graded": 2, "total": 2},
+       "one insufficient row remains graded")
 
 
 if __name__ == "__main__":

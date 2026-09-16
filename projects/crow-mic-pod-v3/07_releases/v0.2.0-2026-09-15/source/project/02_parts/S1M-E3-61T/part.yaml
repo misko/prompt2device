@@ -1,0 +1,16 @@
+mpn: "S1M-E3/61T"
+manufacturer: Vishay General Semiconductor
+type: general_purpose_rectifier
+status: active
+datasheet: {doc_id: "Vishay S1A-S1M", revision: "07-May-2024", url: "https://www.vishay.com/docs/88711/s1.pdf", local: Vishay_S1_88711.pdf, sha256: 49c11fe1f333fda1bcdacc72754927dda4ee5bf977bf88d3c46eb1cd6ffe9277, fetched: 2026-09-13, pages: 4}
+package: "SMA DO-214AC"
+footprint: crow_mic_pod_v3:Vishay_S1M_SMA
+escape: {style: passive, pitch: 4.0, tier_required: jlc_2layer_default, checked: "Vishay document 88711 package outline plus retained project/JLC-qualified SMA land geometry, 2026-09-13"}
+pins: {1: K, 2: A}
+limits: {reverse_voltage_v: 1000, average_current_a: 1, forward_voltage_max_v_at_1a: 1.1, reverse_current_max_ua_at_25c: 5, reverse_current_max_ua_at_125c: 50, surge_current_a_8_3ms: 30}
+gotchas:
+  - "The exact primary datasheet explicitly states that the color band denotes the cathode end. Pad 1/cathode is VIN_PROTECTED; pad 2/anode is 12V_FUSED."
+  - "R14 is required: at the published 50 uA hot reverse-leakage maximum its +1% 4.747 kohm pull-down corner bounds VIN_PROTECTED to -0.23735 V, inside the TPS7A49 -0.3 V absolute minimum."
+  - "The retained 2.50 x 1.80 mm pads at 4.00 mm centers are the already-qualified project/JLC SMA assembly land; the manufacturer drawing's mounting layout remains an independent first-article solder-fillet check."
+verified: "Vishay document 88711 rev 07-May-2024 explicitly identifies the cathode band and specifies S1M at 1 kV, 1 A, 1.1 V maximum at 1 A, 5 uA maximum reverse current at 25 C, 50 uA at 125 C, and 30 A for 8.3 ms; exact PDF hash and four-page count verified 2026-09-13."
+sourcing: {lcsc: C144860, alternates: []}

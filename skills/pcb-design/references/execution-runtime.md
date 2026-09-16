@@ -14,6 +14,9 @@ Runtime policy ID owned here: `M-BOUND`.
 3. Process-group control and filesystem detection
 4. Terminal outcomes and replacement
 5. Migration and canaries
+6. Validated task delivery
+7. Startup qualification
+8. Same-owner repair admission
 
 ## Authority boundary
 
@@ -39,7 +42,7 @@ containment.
 
 ## Task envelope and attempt
 
-`pipeline_execution.py` owns the closed schema-1 `TaskEnvelope`, `TaskAttempt`,
+`pipeline_execution.py` owns closed schema-1/2 `TaskEnvelope` and schema-1 `TaskAttempt`,
 `WriterScope`, and `AgentSpan` objects. Generated envelopes live under
 `06_build`; they are not authored project policy.
 
@@ -123,6 +126,16 @@ limit. A late or superseded attempt remains forensic evidence and cannot update
 authority. Token telemetry is optional; missing telemetry is `UNKNOWN`, and
 different accounting authorities or metrics are never summed.
 
+For recurring engineering investigations, the coordinator uses the cumulative
+decision-progress protocol in `lifecycle-and-backtrack.md`. A TaskEnvelope's
+`max_nonimproving_attempts` is an attempt declaration, not by itself persistent
+cross-handoff enforcement. Its limit must agree with the finding's investigation
+budget. The separate read-only guard and opt-in `pcb_flow.py run --investigation`
+launch check do not extend StageSpec, execute domain reviews, or grant admission.
+The named launch reserves durable spend before dispatch and refuses another
+launch while its outcome lacks an assessment. Failed dispatch is still a
+reservation, not fabricated execution telemetry. The evaluator CLI stays read-only.
+
 ## Migration and canaries
 
 Adopt the shared runner in three steps:
@@ -146,3 +159,174 @@ redirect all output, timeout cleanup, stale input, writer-scope escape,
 duplicate terminal writes, late replacements, and a missing executable. A
 shadow runtime must not change authoritative identity, verdict, pointer, or
 median elapsed time beyond the documented migration budget.
+
+
+## Validated task delivery
+
+Use the opt-in `pcb_flow.py task-run PROJECT --envelope FILE -- COMMAND` for
+subprocess work with required outputs. Schema-1 readers remain supported;
+new task delivery requires a schema-2 envelope with two additional fields:
+
+- `completion: {outputs: [...], checks: [...]}`: nonempty sorted unique output
+  paths and check IDs. Output paths are relative to the allocated output
+  directory; `result.json` is reserved and implicit.
+- `repair: null`, or a predeclared same-owner allowance described below.
+
+`output_path` names `06_build/task_runs/<run>/attempt.json`. The CLI allocates
+a unique run and persists its exact revised envelope. The runtime owns run
+creation. The producer gets `PCB_TASK_OUTPUT_DIR` and `PCB_TASK_SCRATCH_DIR`;
+create files inside these existing directories. `PCB_TASK_SUBJECT_JSON` carries
+the exact subject for result.json. Design edits still require the
+envelope's writer scope. The CLI projects PATH/LANG/LC_ALL and the unchanged HOME; API callers may
+supply other explicit environment values, which are excluded from the receipt.
+Full stdout/stderr share one lossless log, with byte census and digest.
+
+The producer writes every declared output plus `result.json`, exactly:
+`{"subject": <envelope subject>, "checks": {"<check ID>": "PASS"}, "unresolved": []}`.
+Missing/extra files, malformed files, symlinks, stale subjects, incomplete check
+census or unresolved work cannot pass. This checks delivery consistency;
+independent engineering judgment and artifact promotion still follow separately.
+Failure retains partial files and an explicit terminal attempt. Persist needed
+forensic evidence in the project's durable evidence home before clearing build.
+
+For agents, run `agent-open PROJECT --envelope FILE` before dispatch. It returns
+the allocated envelope and paths. Launch through the available host agent tool,
+delivering this exact envelope. Then run `agent-close PROJECT --envelope ALLOCATED
+--host-event EVENT.json`. The coordinator records the observed host event with
+exact keys `host`, `agent_id`, `state`, `envelope_sha256`, `cleanup`, `detail`.
+`state` is completed/error/running/unknown; `cleanup` is confirmed/unknown.
+A completed host state and confirmed cleanup are required in addition to the
+handback. Capture the event from host tools, never from the worker's own prose.
+The adapter cannot authenticate host testimony or launch reviewers from a shell.
+Missing host telemetry remains UNKNOWN; a provider failure or late delivery
+closes non-pass. Interrupt through the host if needed; never act on a stale PID.
+A durable closure latch prevents late callbacks from replacing a terminal result.
+
+
+## Startup qualification
+
+Before native work, use `pcb_flow.py qualify PROJECT` (default total deadline
+120 seconds; `--python`, `--kicad-cli`, `--timeout-s` select the actual tools).
+This runs a project-independent complete-netclass fixture through serialization,
+explicit project reload and clean/hostile native DRC. The hostile result must
+name the exact two pads; empty or partial native reporting cannot qualify.
+Every child uses the bounded runtime and retains its logs and result records.
+
+Successful native evidence is cached below `06_build/cache/`, keyed by actual
+executable, imported Python module/shared-library, probe/runtime source and
+isolated configuration identities. Changed or missing evidence invalidates it.
+Repository contract/authority audits run again independently; an unrelated board
+edit does not invalidate an unchanged API probe. Qualification never changes
+board geometry or admits a design/release stage.
+
+Live reviewer availability remains separate and uncached. When review is next,
+use the agent open/close adapter with a fresh bounded probe packet and one small
+required result; launch through the host and observe delivery. A probe's success
+shows current launch/delivery availability, not future quota or review quality.
+Commission the actual engineering review freshly afterward. Without a successful
+live probe, reviewer availability stays UNKNOWN and review admission remains owed;
+independent authorized preparation can continue. Native compatibility PASS is
+explicitly scoped to tools and repository contracts, not to reviewers.
+
+
+## Same-owner repair admission
+
+Schema-2 subprocess envelopes may set `repair` to exactly `owner_id`,
+`hypothesis_sha256`, `max_attempts`, `setup_remedies`, and `finding_id`.
+The positive total cap includes the initial attempt. Setup remedies are a sorted
+subset of `wrong_cwd`, `missing_directory`, `missing_executable`, `missing_output`.
+`finding_id` is null for ordinary tasks or names the existing recurring
+investigation; its cumulative accounting remains independently binding.
+Agent/reviewer replacement uses its separate existing admission boundary.
+
+After a failed attempt, run `pcb_flow.py task-repair PROJECT --envelope
+ALLOCATED/envelope.json --assessment FILE -- COMMAND`. The coordinator's JSON
+assessment has exactly `owner_id`, `hypothesis_sha256`, `classification`
+(setup/engineering), `remedy` (an admitted setup token or null for engineering),
+`improved` (boolean), `boundary` (existing semantic boundary or null), `d_back`
+(boolean), `context_used_pct` (number or null), `reason`, and `evidence` (nonempty
+PacketItem mappings with name/path/size/sha256).
+PacketItem `name` uses lowercase letters, digits and underscores, starting with
+a letter (for example `failed_child_log`); paths use ordinary relative filenames. Reopen the actual evidence before
+classifying it; matching hashes cannot judge whether a causal explanation is true.
+
+An initial repair-enabled launch claims its stage, semantic subject and hypothesis
+once, independently of task/owner naming; reissuing task-run cannot reset spend.
+The command records the assessment in the successor TaskAttempt, preserves the
+original deadline and scope, and claims the predecessor once before dispatch.
+All executions consume the original total allowance. Setup errors increment the
+non-improving count, never earn progress credit, and cannot be retroactively
+removed from campaign history. A failed dispatch retains its reservation; it
+cannot silently retry. Missing/stale evidence, different owner or hypothesis,
+mandatory handoff/context boundary, runtime containment error or exhausted limits
+refuse local continuation. A known missing-executable launch failure may use that
+specifically pre-admitted remedy. No retries run automatically.
+
+Keep the predecessor attempt/envelope/evidence chain while this task is active;
+archive the chain before clearing build scratch. These are the existing attempt
+records, not a second findings ledger. The single-writer rule still applies:
+claims detect competing successors, but do not make filesystem history tamper-proof.
+
+
+### Complete construction example
+
+Run this Python from the repository root with an existing scratch project as
+its first argument. The scratch project must contain `input.txt`. It writes an
+admissible envelope; adjust stage, required checks, input packet and owning
+scope for the actual commission. Task/check IDs allow hyphens; packet names
+use underscores. The allowance is declared before the initial execution.
+
+<!-- executable-task-example -->
+```python
+import hashlib, json, sys
+from datetime import datetime, timedelta, timezone
+from pathlib import Path
+sys.path.insert(0, "skills/pcb-design/scripts")
+from pipeline_execution import TaskEnvelope
+from pipeline_identity import TypedIdentityInput, subject_identity
+project = Path(sys.argv[1]).resolve()
+data = (project / "input.txt").read_bytes()
+subject = subject_identity("report", 1, [TypedIdentityInput(
+    "input", "mapping", {"text": data.decode()}, data)])
+envelope = TaskEnvelope(
+    schema=2, task_id="report-1", stage_id="PCB-COMMISSION", run_id="report-1",
+    subject=subject, executor="subprocess", execution_class="local",
+    recommended_agent_role=None, agent_role=None, role_escalation_reason=None,
+    context_mode="NOT_APPLICABLE", input_handoff_id=None,
+    input_packet=[{"name": "source", "path": "input.txt", "size": len(data),
+                   "sha256": hashlib.sha256(data).hexdigest()}],
+    deadline_at=(datetime.now(timezone.utc) + timedelta(minutes=5)).isoformat().replace("+00:00", "Z"),
+    max_nonimproving_attempts=3, replacement_limit=0,
+    writer_scope={"mode": "READ_ONLY", "paths": []},
+    output_path="06_build/task_runs/report-1/attempt.json",
+    completion={"outputs": ["report.md"], "checks": ["report-complete"]},
+    repair={"owner_id": "report-owner", "hypothesis_sha256": hashlib.sha256(b"summarize input").hexdigest(),
+            "max_attempts": 2, "setup_remedies": ["wrong_cwd"], "finding_id": None})
+(project / "task-envelope.json").write_text(envelope.to_json() + "\n")
+```
+
+Launch with `pcb_flow.py task-run PROJECT --envelope PROJECT/task-envelope.json
+-- /usr/bin/python3 producer.py`. The producer reads input.txt, writes report.md
+inside `PCB_TASK_OUTPUT_DIR`, and writes the exact-subject result.json described
+above. A successful delivery requires the `report-complete` check.
+
+For a real wrong-path failure, the coordinator prepares an assessment like the
+following. Replace the hypothesis and evidence binding with the original
+allowance and actual retained child log; do not manufacture a setup diagnosis.
+
+```json
+{
+  "owner_id": "report-owner",
+  "hypothesis_sha256": "<original repair hypothesis SHA-256>",
+  "classification": "setup", "remedy": "wrong_cwd", "improved": false,
+  "boundary": null, "d_back": false, "context_used_pct": null,
+  "reason": "The retained traceback names the wrong relative input path; correct it within the original scope.",
+  "evidence": [{"name": "failed_child_log", "path": "<project-relative attempt.json.log>",
+                "size": 123, "sha256": "<actual log SHA-256>"}]
+}
+```
+
+Repair with the allocated previous envelope (the envelope.json beside its
+attempt.json), not the original template. The command prints the successor path.
+The two-execution example allowance leaves no third launch, even if the second
+execution fails. No additional agent is needed for this correction.

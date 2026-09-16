@@ -1,0 +1,17 @@
+{
+  "schema": 2,
+  "generated_at": "2026-09-03T19:24:02+00:00",
+  "inputs": {
+    "source": "sha256:b56190c8c25c0f3a72900bb69ed7f8a7761663431925103d52b7ac17a80b6de5",
+    "board": "sha256:a932200e0976418383fae0c131dfe2a5768c00ef261b611762ccd3507f05ca8f",
+    "tools": "sha256:cb189f9f40bdbf2d52f7b2cb6fea4d86670760a7eb1786cf69ff842983c11b19",
+    "gate": "sha256:52666334dc34f19355f0167dcea12fdf76e7da208ea153f9b49efd2cf9220d19"
+  },
+  "scope": "PCB layout only",
+  "board_id": "crow_mic_pod_v3",
+  "provenance": {
+    "method": "reviewed_commit",
+    "source_commit": "08b79dbce2857341632c5224263db60adb4274e5",
+    "reviews": "2026-09-03_08b79dbc_pin_review.md,2026-09-03_08b79dbc_render_review.md,2026-09-03_08b79dbc_redteam_topology.md,2026-09-03_08b79dbc_redteam_layout.md"
+  }
+}

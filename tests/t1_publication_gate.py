@@ -45,6 +45,7 @@ def t_diff_selection_is_semantic():
           f"wrong affected-project set: {pg.affected_projects(paths)}")
     for material in (
             "projects/x/01_docs/BRIEF.md",
+            "projects/x/01_docs/project-scope.json",
             "projects/x/01_docs/decisions/0001.md",
             "projects/x/03_tscircuit/src/board.tsx",
             "projects/x/04_kicad/x.kicad_pcb",
@@ -179,6 +180,82 @@ def _connector_bundle_repo(*, missing_contract=False, extra_contract=False,
         (reviews / "DISPOSITIONS.md").write_text("# generic ledger\n")
     head = _commit(root, "connector bundle candidate")
     return root, base, head
+
+
+def _system_scope_repo(*, former_parent_board=False, release_payload=False):
+    root = tmpdir("pub_system_scope_")
+    must_pass(run(["git", "init", "-q"], cwd=root),
+              "init system scope fixture")
+    must_pass(run(["git", "config", "user.email", "tests@example.invalid"],
+                  cwd=root), "configure fixture email")
+    must_pass(run(["git", "config", "user.name", "Publication Gate Tests"],
+                  cwd=root), "configure fixture name")
+    (root / "README.md").write_text("fixture\n")
+    for child in ("child-a", "child-b"):
+        board = root / "projects" / child / "04_kicad" / f"{child}.kicad_pcb"
+        board.parent.mkdir(parents=True)
+        board.write_text("(kicad_pcb)\n")
+    parent = root / "projects" / "system"
+    if former_parent_board:
+        board = parent / "04_kicad" / "former.kicad_pcb"
+        board.parent.mkdir(parents=True)
+        board.write_text("(kicad_pcb)\n")
+    base = _commit(root, "base system children")
+    if former_parent_board:
+        (parent / "04_kicad" / "former.kicad_pcb").unlink()
+    marker = parent / "01_docs" / "project-scope.json"
+    marker.parent.mkdir(parents=True, exist_ok=True)
+    marker.write_text(
+        '{\n'
+        '  "schema": 1,\n'
+        '  "kind": "system-integration",\n'
+        '  "pcb_children": [\n'
+        '    "projects/child-a",\n'
+        '    "projects/child-b"\n'
+        '  ]\n'
+        '}\n')
+    if release_payload:
+        release = parent / "07_releases" / "v1" / "MANIFEST.txt"
+        release.parent.mkdir(parents=True)
+        release.write_text("version: v1\n")
+    head = _commit(root, "declare boardless system")
+    return root, base, head
+
+
+@test("a boardless integration parent expands into all declared PCB children")
+def t_system_parent_expands_to_child_release_denominator():
+    root, base, head = _system_scope_repo()
+    r = must_fail(run([sys.executable, PUB, "--root", root,
+                       "--base", base, "--head", head]),
+                  "boardless system publication", "NO-RELEASE")
+    contains(r.out, "SYSTEM projects/system -> projects/child-a, projects/child-b",
+             "explicit system-to-child expansion")
+    contains(r.out, "2 project(s), 2 board(s) graded",
+             "all declared children enter the release denominator")
+    check("BOARD-COVERAGE: no 04_kicad" not in r.out,
+          "valid boardless parent fell through to generic zero-board failure")
+
+
+@test("a system declaration cannot launder a former parent board",
+      kind="known_bad")
+def t_system_parent_former_board_is_refused():
+    root, base, head = _system_scope_repo(former_parent_board=True)
+    r = must_fail(run([sys.executable, PUB, "--root", root,
+                       "--base", base, "--head", head]),
+                  "former-board system publication", "SYSTEM-SCOPE")
+    contains(r.out, "owns or owned live board",
+             "base/head board-ownership diagnosis")
+
+
+@test("a system declaration cannot hide a parent release payload",
+      kind="known_bad")
+def t_system_parent_release_payload_is_refused():
+    root, base, head = _system_scope_repo(release_payload=True)
+    r = must_fail(run([sys.executable, PUB, "--root", root,
+                       "--base", base, "--head", head]),
+                  "parent-release system publication", "SYSTEM-SCOPE")
+    contains(r.out, "forbidden circuit/release payload",
+             "parent release-payload diagnosis")
 
 
 def _cross_domain_rename_repo(*, commit=True):
@@ -705,6 +782,74 @@ def t_docs_only_missing_predecessor_is_refused():
     check(not args, f"bad declaration still produced gate argv: {args}")
     contains("\n".join(errors), "FRESHNESS-PREDECESSOR",
              "missing predecessor diagnosis")
+
+
+@test("publication verifies every manifest member, not only the board", kind="known_bad")
+def t_publication_manifest_census():
+    from unittest.mock import patch
+    import hashlib
+    root = tmpdir("pub_manifest_census_")
+    project = root / "projects/demo"
+    release = project / "07_releases/v1.0-2026-09-16"
+    board = project / "04_kicad/demo.kicad_pcb"
+    board.parent.mkdir(parents=True)
+    board.write_text("exact board")
+    (release / "source").mkdir(parents=True)
+    shutil.copy2(board, release / "source/demo.kicad_pcb")
+    evidence = release / "evidence.txt"
+    evidence.write_text("accepted evidence")
+    manifest = release / "MANIFEST.txt"
+    manifest.write_text("git_sha: " + "a" * 40 + "\ngit_dirty: false\nsha256:\n" +
+        "".join("  " + f.relative_to(release).as_posix() + "  " +
+                hashlib.sha256(f.read_bytes()).hexdigest() + "\n"
+                for f in [release / "source/demo.kicad_pcb", evidence]))
+    # Isolate manifest admission from unrelated review/git/child-gate predicates.
+    # Pre-fix grade_board accepted the missing auxiliary file: this test was RED.
+    with patch.object(pg, "_is_ancestor", return_value=True), \
+         patch.object(pg, "_material_changes_since", return_value=[]), \
+         patch.object(pg, "_child_gate", return_value=[]), \
+         patch.object(pg, "review_binding_errors", return_value=[]):
+        def grade():
+            return pg.grade_board(project, board, "HEAD", root, False, release)[0]
+        check(not grade(), "complete exact manifest rejected")
+        evidence.unlink()
+        contains("\n".join(grade()), "MANIFEST-CENSUS", "missing auxiliary file")
+        evidence.write_text("tampered evidence")
+        contains("\n".join(grade()), "MANIFEST-CENSUS", "changed auxiliary bytes")
+        evidence.write_text("accepted evidence")
+        (release / "unexpected.txt").write_text("unaccounted")
+        contains("\n".join(grade()), "MANIFEST-CENSUS", "unlisted auxiliary file")
+
+
+@test("publication rejects a hashed ignored payload absent from Git head", kind="known_bad")
+def t_ignored_manifest_payload_is_not_published():
+    from unittest.mock import patch
+    import hashlib
+    root = tmpdir("pub_ignored_payload_")
+    for argv in (["git", "init", "-q"], ["git", "config", "user.email", "test@example.invalid"],
+                 ["git", "config", "user.name", "Publication test"]):
+        must_pass(run(argv, cwd=root), "initialize committed payload fixture")
+    (root / ".gitignore").write_text("*.kicad_prl\n")
+    project = root / "projects/demo"
+    board = project / "04_kicad/demo.kicad_pcb"
+    board.parent.mkdir(parents=True)
+    board.write_text("exact board")
+    release = project / "07_releases/v1.0-2026-09-16"
+    (release / "source").mkdir(parents=True)
+    shutil.copy2(board, release / "source/demo.kicad_pcb")
+    ghost = release / "source/demo.kicad_prl"
+    (release / "MANIFEST.txt").write_text("git_sha: " + "a" * 40 + "\ngit_dirty: false\nsha256:\n" +
+        "  source/demo.kicad_pcb  " + hashlib.sha256(board.read_bytes()).hexdigest() + "\n" +
+        "  source/demo.kicad_prl  " + hashlib.sha256(b"session").hexdigest() + "\n")
+    head = _commit(root, "commit manifest but not ignored session file")
+    ghost.write_text("session")
+    with patch.object(pg, "_is_ancestor", return_value=True), \
+         patch.object(pg, "_material_changes_since", return_value=[]), \
+         patch.object(pg, "_child_gate", return_value=[]), \
+         patch.object(pg, "review_binding_errors", return_value=[]), \
+         patch.object(pg.release_index, "latest_release", return_value=release):
+        errors, _ = pg.grade_board(project, board, head, root, False)
+    contains("\n".join(errors), "payload absent from Git head", "ignored payload refusal")
 
 
 if __name__ == "__main__":

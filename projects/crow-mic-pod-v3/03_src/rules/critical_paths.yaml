@@ -1,0 +1,109 @@
+schema: 1
+layers:
+- F.Cu
+- B.Cu
+stackup_mm:
+- 1.6
+short_paths:
+- from: D1.1
+  to: D2.1
+  max_length_mm: 12.0
+  layer: F.Cu
+  max_pad_centre_mm: null
+  why: reverse diode to input TVS
+- from: J1.5
+  to: U3.3
+  max_length_mm: 9.0
+  layer: F.Cu
+  max_pad_centre_mm: 8.6
+  why: 'PROPOSED ADR0009: closest practical rear-side top clamp, rounded no-via prefix; exact source review and system ESD
+    proof owed.'
+- from: J1.4
+  to: U3.5
+  max_length_mm: 7.5
+  layer: F.Cu
+  max_pad_centre_mm: 5.7
+  why: 'PROPOSED ADR0009: closest practical rear-side top clamp, rounded no-via prefix; exact source review and system ESD
+    proof owed.'
+- from: U2.8
+  to: C1.1
+  max_length_mm: 3.0
+  layer: F.Cu
+  max_pad_centre_mm: null
+  why: LDO input bulk capacitor
+- from: U2.8
+  to: C2.1
+  max_length_mm: 3.0
+  layer: F.Cu
+  max_pad_centre_mm: null
+  why: LDO input HF capacitor
+- from: U2.1
+  to: C5.1
+  max_length_mm: 3.0
+  layer: F.Cu
+  max_pad_centre_mm: null
+  why: LDO output bulk capacitor
+- from: U2.1
+  to: C6.1
+  max_length_mm: 3.0
+  layer: F.Cu
+  max_pad_centre_mm: null
+  why: LDO output HF capacitor
+- from: U2.6
+  to: C4.1
+  max_length_mm: 3.0
+  layer: F.Cu
+  max_pad_centre_mm: null
+  why: LDO noise-reduction capacitor
+- from: U2.2
+  to: C3.2
+  max_length_mm: 3.0
+  layer: F.Cu
+  max_pad_centre_mm: null
+  why: LDO feed-forward FB side
+- from: U2.1
+  to: C3.1
+  max_length_mm: 3.0
+  layer: F.Cu
+  max_pad_centre_mm: null
+  why: LDO feed-forward OUT side
+- from: U1.4
+  to: C10.1
+  max_length_mm: 3.0
+  layer: F.Cu
+  max_pad_centre_mm: null
+  why: OPA1679 local bypass
+- from: R12.2
+  to: TP5.1
+  max_length_mm: 5.0
+  layer: F.Cu
+  max_pad_centre_mm: null
+  why: AUDIO+ probe branch
+- from: R13.2
+  to: TP6.1
+  max_length_mm: 9.0
+  layer: F.Cu
+  max_pad_centre_mm: null
+  why: post-clamp low-impedance AUDIO- probe branch; 9 mm admits the shortest native-clean F.Cu detour around PRE_OUT at the accepted placement; no via or delay target; exact-cable CMRR/EMC remains first-article scope
+prefixes:
+- from: D1.1
+  through: D2.1
+  targets:
+  - C1.1
+  - C2.1
+  - U2.8
+  - U2.5
+  - R14.1
+  why: the TVS must be first after the reverse diode
+- from: J1.5
+  through: U3.3
+  targets:
+  - TP5.1
+  - R12.2
+  why: AUDIO+ must reach U3 before any probe/output branch
+- from: J1.4
+  through: U3.5
+  targets:
+  - TP6.1
+  - R13.2
+  why: AUDIO- must reach U3 before any probe/output branch

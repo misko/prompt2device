@@ -56,6 +56,22 @@ class FirstArticleCheckTest(unittest.TestCase):
         codes = {row["code"] for row in check(CARD, record)["findings"]}
         self.assertTrue({"FA-POP", "FA-ABORT"}.issubset(codes))
 
+    def test_population_range_is_not_a_literal_refdes(self):
+        card = {**CARD,
+                "stages": [{"name": "regulator-only",
+                            "installed": ["F1", "R5-R13", "U2"],
+                            "exposed_pads": ["U2"]}]}
+        with self.assertRaisesRegex(ValueError, "ranges/pins are not expanded"):
+            check(card, good_record())
+
+    def test_exposed_pad_must_name_an_installed_component(self):
+        card = {**CARD,
+                "stages": [{"name": "regulator-only",
+                            "installed": ["F1", "U2", "U11"],
+                            "exposed_pads": ["VIN_PROTECTED"]}]}
+        with self.assertRaisesRegex(ValueError, "not installed"):
+            check(card, good_record())
+
 
 if __name__ == "__main__":
     unittest.main()

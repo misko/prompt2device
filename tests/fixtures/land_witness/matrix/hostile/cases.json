@@ -1,0 +1,398 @@
+[
+  {
+    "name": "remote_high",
+    "ref": "X1",
+    "net": "remote_high_T",
+    "obstacle_net": "remote_high_B",
+    "width": 0.2,
+    "layer": "F.Cu",
+    "start": [
+      10,
+      10
+    ],
+    "end": [
+      11,
+      10
+    ],
+    "obstacle": [
+      10.5,
+      10.42
+    ],
+    "track_uuid": "ae4c744a-e2bb-46f3-9432-80749af36ba3",
+    "expected_violation": "clearance"
+  },
+  {
+    "name": "b_side",
+    "ref": "X2",
+    "net": "b_side_T",
+    "obstacle_net": "b_side_B_wrong",
+    "width": 0.2,
+    "layer": "F.Cu",
+    "start": [
+      20,
+      10
+    ],
+    "end": [
+      21,
+      10
+    ],
+    "obstacle": [
+      20.5,
+      10.42
+    ],
+    "track_uuid": "0a76cfbc-c21c-4d54-907f-b7c56637eb0b",
+    "expected_violation": "clearance"
+  },
+  {
+    "name": "reversal",
+    "ref": "X3",
+    "net": "reversal_T",
+    "obstacle_net": "reversal_B_wrong",
+    "width": 0.2,
+    "layer": "F.Cu",
+    "start": [
+      30,
+      10
+    ],
+    "end": [
+      31,
+      10
+    ],
+    "obstacle": [
+      30.5,
+      10.42
+    ],
+    "track_uuid": "d8079daf-3fe3-4cb4-8c93-be3e18ff13d4",
+    "expected_violation": "clearance"
+  },
+  {
+    "name": "both_area",
+    "ref": "X4",
+    "net": "both_area_T",
+    "obstacle_net": "both_area_B",
+    "width": 0.2,
+    "layer": "F.Cu",
+    "start": [
+      40,
+      10
+    ],
+    "end": [
+      41,
+      10
+    ],
+    "obstacle": [
+      40.5,
+      10.42
+    ],
+    "track_uuid": "43a8857e-1c11-4e53-808f-78ff516cf22d",
+    "expected_violation": "clearance"
+  },
+  {
+    "name": "offcenter",
+    "ref": "X5",
+    "net": "offcenter_T",
+    "obstacle_net": "offcenter_B",
+    "width": 0.2,
+    "layer": "F.Cu",
+    "start": [
+      50,
+      10
+    ],
+    "end": [
+      51,
+      10
+    ],
+    "obstacle": [
+      50.5,
+      10.42
+    ],
+    "track_uuid": "38746a94-42fb-4282-b821-71afe5b96a89",
+    "expected_violation": "track_width"
+  },
+  {
+    "name": "contained",
+    "ref": "X6",
+    "net": "contained_T",
+    "obstacle_net": "contained_B",
+    "width": 0.2,
+    "layer": "F.Cu",
+    "start": [
+      60,
+      10
+    ],
+    "end": [
+      61,
+      10
+    ],
+    "obstacle": [
+      60.5,
+      10.42
+    ],
+    "track_uuid": "c084790b-fe45-4991-91b1-7c0ece180a35",
+    "expected_violation": "track_width"
+  },
+  {
+    "name": "padpad_guard",
+    "ref": "X7",
+    "net": "padpad_guard_T",
+    "obstacle_net": "padpad_guard_B",
+    "width": 0.2,
+    "layer": "F.Cu",
+    "start": [
+      10,
+      20
+    ],
+    "end": [
+      11,
+      20
+    ],
+    "obstacle": [
+      10.5,
+      20.42
+    ],
+    "track_uuid": "5af5a0cc-d546-40e0-b500-a2c035dc1d57",
+    "expected_violation": "clearance"
+  },
+  {
+    "name": "track_width",
+    "ref": "X8",
+    "net": "track_width_T",
+    "obstacle_net": "track_width_B",
+    "width": 0.2,
+    "layer": "F.Cu",
+    "start": [
+      20,
+      20
+    ],
+    "end": [
+      21,
+      20
+    ],
+    "obstacle": [
+      20.5,
+      20.42
+    ],
+    "track_uuid": "4759e58e-397d-466e-80f6-919c1a14f20b",
+    "expected_violation": "track_width"
+  },
+  {
+    "name": "area_layer",
+    "ref": "X9",
+    "net": "area_layer_T",
+    "obstacle_net": "area_layer_B",
+    "width": 0.2,
+    "layer": "B.Cu",
+    "start": [
+      30,
+      20
+    ],
+    "end": [
+      31,
+      20
+    ],
+    "obstacle": [
+      30.5,
+      20.42
+    ],
+    "track_uuid": "ddf61dac-51f5-4b23-8f09-d943b440e6a5",
+    "expected_violation": "track_width"
+  },
+  {
+    "name": "last_match",
+    "ref": "X10",
+    "net": "last_match_T",
+    "obstacle_net": "last_match_B",
+    "width": 0.2,
+    "layer": "F.Cu",
+    "start": [
+      40,
+      20
+    ],
+    "end": [
+      41,
+      20
+    ],
+    "obstacle": [
+      40.5,
+      20.42
+    ],
+    "track_uuid": "1a830365-d8fc-41ce-9213-0695e2963aa5",
+    "expected_violation": "track_width"
+  },
+  {
+    "name": "boolean_left",
+    "ref": "X11",
+    "net": "boolean_left_T",
+    "obstacle_net": "boolean_left_B",
+    "width": 0.2,
+    "layer": "F.Cu",
+    "start": [
+      50,
+      20
+    ],
+    "end": [
+      51,
+      20
+    ],
+    "obstacle": [
+      50.5,
+      20.42
+    ],
+    "track_uuid": "c9663d60-58b2-402d-bbb0-ca389d4e4367",
+    "expected_violation": "track_width"
+  },
+  {
+    "name": "negation",
+    "ref": "X12",
+    "net": "negation_T",
+    "obstacle_net": "negation_B",
+    "width": 0.2,
+    "layer": "F.Cu",
+    "start": [
+      60,
+      20
+    ],
+    "end": [
+      61,
+      20
+    ],
+    "obstacle": [
+      60.5,
+      20.42
+    ],
+    "track_uuid": "f963bf1c-31c2-423b-8786-551fda4c6d14",
+    "expected_violation": "track_width"
+  },
+  {
+    "name": "wildcard",
+    "ref": "X13",
+    "net": "wildcard_T",
+    "obstacle_net": "wildcard_B",
+    "width": 0.2,
+    "layer": "F.Cu",
+    "start": [
+      10,
+      30
+    ],
+    "end": [
+      11,
+      30
+    ],
+    "obstacle": [
+      10.5,
+      30.42
+    ],
+    "track_uuid": "1d716a62-22b9-45b3-962d-93b1abe99572",
+    "expected_violation": "track_width"
+  },
+  {
+    "name": "multi_constraint",
+    "ref": "X14",
+    "net": "multi_constraint_T",
+    "obstacle_net": "multi_constraint_B",
+    "width": 0.2,
+    "layer": "F.Cu",
+    "start": [
+      20,
+      30
+    ],
+    "end": [
+      21,
+      30
+    ],
+    "obstacle": [
+      20.5,
+      30.42
+    ],
+    "track_uuid": "db27502f-4374-44b8-9293-77730c3d5b62",
+    "expected_violation": "track_width"
+  },
+  {
+    "name": "rule_layer",
+    "ref": "X15",
+    "net": "rule_layer_T",
+    "obstacle_net": "rule_layer_B",
+    "width": 0.2,
+    "layer": "B.Cu",
+    "start": [
+      30,
+      30
+    ],
+    "end": [
+      31,
+      30
+    ],
+    "obstacle": [
+      30.5,
+      30.42
+    ],
+    "track_uuid": "0c7c7432-4445-49cd-ac54-e43f99baf25d",
+    "expected_violation": "track_width"
+  },
+  {
+    "name": "width_transition",
+    "ref": "X16",
+    "net": "width_transition_T",
+    "obstacle_net": "width_transition_B",
+    "width": 0.2,
+    "layer": "F.Cu",
+    "start": [
+      40,
+      30
+    ],
+    "end": [
+      41,
+      30
+    ],
+    "obstacle": [
+      40.5,
+      31.3
+    ],
+    "track_uuid": "d6ea97e0-6cf2-4d60-bb1f-ca23a2d59207",
+    "expected_violation": "track_width"
+  },
+  {
+    "name": "oscillation",
+    "ref": "X17",
+    "net": "oscillation_T",
+    "obstacle_net": "oscillation_B",
+    "width": 0.6,
+    "layer": "F.Cu",
+    "start": [
+      50,
+      30
+    ],
+    "end": [
+      51,
+      30
+    ],
+    "obstacle": [
+      50.5,
+      30.5
+    ],
+    "track_uuid": "a319595c-ea22-4f63-bbd2-48b08225f887",
+    "expected_violation": "clearance"
+  },
+  {
+    "name": "one_sided",
+    "ref": "X18",
+    "net": "one_sided_T",
+    "obstacle_net": "one_sided_B",
+    "width": 0.2,
+    "layer": "F.Cu",
+    "start": [
+      60,
+      30
+    ],
+    "end": [
+      61,
+      30
+    ],
+    "obstacle": [
+      60.5,
+      30.42
+    ],
+    "track_uuid": "3247c2b1-45c3-47e7-a14a-7f85dd4dd293",
+    "expected_violation": "clearance"
+  }
+]

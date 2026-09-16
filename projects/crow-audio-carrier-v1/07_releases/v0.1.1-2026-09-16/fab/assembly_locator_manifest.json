@@ -1,0 +1,261 @@
+{
+  "schema": 1,
+  "kind": "assembly-locator-v1",
+  "owner": "Carrier board design owner",
+  "board_sha256": "0776f364424282a7924266450f899ce69bf28cf95a602ca74d92b86fd91c164d",
+  "bom_sha256": "5661aef990441718b44f18236222df7f0a8a2f1aebce30877b1606a9e4fbc8c8",
+  "cpl_sha256": "29c8674108ef9d5ad70739d4635c7ae0794bd258386a9ada93d198c2fc92a58a",
+  "config_sha256": "145ffb452ac628c862444341fc33fa5ac22e4326c1adac173e42c3a1e5ef4820",
+  "generator_sha256": "f7967323698925edc1833223723ee24cf8a984a37365b03658d32a817b63cc6e",
+  "template_sha256": "02ebb7283ce6786faa989dcf0c6550808e11f7812e81eeedd687691cfbc6adee",
+  "checker_sha256": "d93ae9bfd47912f8a871126d8a35afaf6e2af5b80ffdfffb274ce7145a1b0c5e",
+  "page_refs": [
+    {
+      "ref": "C_FILT1_10U",
+      "page": 1,
+      "path": "assembly_locator_001.png"
+    },
+    {
+      "ref": "C_FILT2_10U",
+      "page": 2,
+      "path": "assembly_locator_002.png"
+    },
+    {
+      "ref": "C_PWR_CT",
+      "page": 3,
+      "path": "assembly_locator_003.png"
+    },
+    {
+      "ref": "C_VDDA2_10N",
+      "page": 4,
+      "path": "assembly_locator_004.png"
+    },
+    {
+      "ref": "C_VMID1_470N",
+      "page": 5,
+      "path": "assembly_locator_005.png"
+    },
+    {
+      "ref": "C_VMID1_4U7",
+      "page": 6,
+      "path": "assembly_locator_006.png"
+    },
+    {
+      "ref": "C_VMID2_470N",
+      "page": 7,
+      "path": "assembly_locator_007.png"
+    },
+    {
+      "ref": "C_VMID2_4U7",
+      "page": 8,
+      "path": "assembly_locator_008.png"
+    },
+    {
+      "ref": "R_ADC_BOT",
+      "page": 9,
+      "path": "assembly_locator_009.png"
+    },
+    {
+      "ref": "R_ADC_PD6N",
+      "page": 10,
+      "path": "assembly_locator_010.png"
+    },
+    {
+      "ref": "R_ADC_TOP",
+      "page": 11,
+      "path": "assembly_locator_011.png"
+    },
+    {
+      "ref": "R_AUDIO_PD",
+      "page": 12,
+      "path": "assembly_locator_012.png"
+    },
+    {
+      "ref": "R_AUDIO_PU",
+      "page": 13,
+      "path": "assembly_locator_013.png"
+    },
+    {
+      "ref": "R_DUMP_TIME2",
+      "page": 14,
+      "path": "assembly_locator_014.png"
+    },
+    {
+      "ref": "R_FILT1P",
+      "page": 15,
+      "path": "assembly_locator_015.png"
+    },
+    {
+      "ref": "R_IN6N",
+      "page": 16,
+      "path": "assembly_locator_016.png"
+    },
+    {
+      "ref": "R_PRE_G",
+      "page": 17,
+      "path": "assembly_locator_017.png"
+    },
+    {
+      "ref": "R_PWR_BOT",
+      "page": 18,
+      "path": "assembly_locator_018.png"
+    },
+    {
+      "ref": "R_PWR_TOP",
+      "page": 19,
+      "path": "assembly_locator_019.png"
+    },
+    {
+      "ref": "R_VMID1_BOT",
+      "page": 20,
+      "path": "assembly_locator_020.png"
+    },
+    {
+      "ref": "R_VMID1_TOP",
+      "page": 21,
+      "path": "assembly_locator_021.png"
+    },
+    {
+      "ref": "R_VMID2_BOT",
+      "page": 22,
+      "path": "assembly_locator_022.png"
+    },
+    {
+      "ref": "R_X6N",
+      "page": 23,
+      "path": "assembly_locator_023.png"
+    }
+  ],
+  "members": [
+    {
+      "path": "assembly_locator.json",
+      "sha256": "94660ddfa132939861fcb487d1f27f7b95d91786dba9f844628bafe10566dc6b",
+      "size": 302978
+    },
+    {
+      "path": "assembly_locator.html",
+      "sha256": "91b9f27f4736e38bb76e54824e6ef19e892123df26f00bfcedd42861e89f4b22",
+      "size": 293460
+    },
+    {
+      "path": "assembly_locator.pdf",
+      "sha256": "39d12b8d4a83cb088560348a85d4eee484c8f744ab7103a06d3b8f6b9172bc12",
+      "size": 6384217
+    },
+    {
+      "path": "assembly_locator_001.png",
+      "sha256": "9fb964b79a766b0d873fa584a61f6b8837389dac2f18d3a299c1eea0a54c3905",
+      "size": 125349
+    },
+    {
+      "path": "assembly_locator_002.png",
+      "sha256": "b8834e73265a3ad988d6f97d2fbaf412e6c0dc707193fecbf713c868763205dc",
+      "size": 125672
+    },
+    {
+      "path": "assembly_locator_003.png",
+      "sha256": "482582de2ebcde30b0797d2b738e7fbd5bb06a4a0e64c9a9b3623e22bc50a408",
+      "size": 128382
+    },
+    {
+      "path": "assembly_locator_004.png",
+      "sha256": "4c07dc15158b653b36003c93408f2f42497c67257a3c455537f12a2794772a18",
+      "size": 129944
+    },
+    {
+      "path": "assembly_locator_005.png",
+      "sha256": "09d5538ef04ab6ce21a563a28171d7841c67152f67c64b15219d598a8892ac45",
+      "size": 130226
+    },
+    {
+      "path": "assembly_locator_006.png",
+      "sha256": "4950a60af67fccb69653e218e98d9118e088b29c8031e858ed0a525e704dbab6",
+      "size": 130165
+    },
+    {
+      "path": "assembly_locator_007.png",
+      "sha256": "04374403e692409f5c3f064946249520ff9207c4215e21a22a6b196416e4b0cd",
+      "size": 130373
+    },
+    {
+      "path": "assembly_locator_008.png",
+      "sha256": "0de1c303da371d57031632311dfbe31b7eaaf8d50c4438a5c6edfbcf7654b55a",
+      "size": 130275
+    },
+    {
+      "path": "assembly_locator_009.png",
+      "sha256": "5a37ca027e782f88e0560a607e37062a4380046afca07fd25d259f60b7182472",
+      "size": 130883
+    },
+    {
+      "path": "assembly_locator_010.png",
+      "sha256": "9b8f8b0f700651b3fe5ab67e7527f682efca415235f922c91ec92554ad413d49",
+      "size": 131261
+    },
+    {
+      "path": "assembly_locator_011.png",
+      "sha256": "170419de714ffa454cb7ffa0d5b2ebb0ad6c03c0bdf359abf11fa372412bb492",
+      "size": 132098
+    },
+    {
+      "path": "assembly_locator_012.png",
+      "sha256": "03c0aa826b7cd26f1728b15d49cf2a15e6edb724cae23e8b7607cb8204515a98",
+      "size": 130580
+    },
+    {
+      "path": "assembly_locator_013.png",
+      "sha256": "e993e343a094694f3b1b8f4948bbdc1417b5dcbc227e6b664ba2cb64064623bf",
+      "size": 130295
+    },
+    {
+      "path": "assembly_locator_014.png",
+      "sha256": "0aa176c5151caa8c306922f9b99ca137dda8248f7e6bcf2fa0833260c001da31",
+      "size": 128282
+    },
+    {
+      "path": "assembly_locator_015.png",
+      "sha256": "99daf15c3486e2e8419718c8ebc09ddfe944ba2938eb0a97b6bd541d93d7d689",
+      "size": 125492
+    },
+    {
+      "path": "assembly_locator_016.png",
+      "sha256": "72e0b1cdf96f93f64055651ff5a42ed9e063f8f69ecc56bc8d0d66a0d2585ee8",
+      "size": 126539
+    },
+    {
+      "path": "assembly_locator_017.png",
+      "sha256": "87d1f038fee72ace51c5f734fe7b37fa9a0f7edb69f0a1756b9cf5420912ff69",
+      "size": 126701
+    },
+    {
+      "path": "assembly_locator_018.png",
+      "sha256": "815ba41be9306d98691e3698c5136ef26d856ab172cb1d1e2c0f501ba2ad8f65",
+      "size": 131280
+    },
+    {
+      "path": "assembly_locator_019.png",
+      "sha256": "2b38475c18dcbf612b9e929b7fb028eef1761928ca4f9476cc52b7e1452f6231",
+      "size": 132370
+    },
+    {
+      "path": "assembly_locator_020.png",
+      "sha256": "d9fb68227b3b0172fe233128a38d099e2a5891f7e849340ae61959bd3e5520d4",
+      "size": 129074
+    },
+    {
+      "path": "assembly_locator_021.png",
+      "sha256": "1f52174bf567fbee6eec1f5ffeefdaf3ac78ef9564f0c32082e3b7750b9fd428",
+      "size": 129314
+    },
+    {
+      "path": "assembly_locator_022.png",
+      "sha256": "ce22da407e8ff69eb32a56937532497f439f8e7aa0b4a73a35c89cda1270f11c",
+      "size": 128901
+    },
+    {
+      "path": "assembly_locator_023.png",
+      "sha256": "b0d1287b089e33232342c477b8ea0767cd91ab99e6f31468d0238b696e0b29b9",
+      "size": 126687
+    }
+  ]
+}

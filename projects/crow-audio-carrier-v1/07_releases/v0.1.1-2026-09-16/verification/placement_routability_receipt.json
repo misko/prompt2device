@@ -1,0 +1,352 @@
+{
+  "checks": {
+    "connector_lane_order": {
+      "detail": "no connector lane rows declared",
+      "findings": [],
+      "rows": [],
+      "status": "N-A"
+    },
+    "critical_route_contract": {
+      "detail": "0 critical pair(s) contracted",
+      "notes": [
+        "no critical routes: There is no RF/USB/high-speed differential interface. AUDIO_Pn/AUDIO_Nn are low-frequency balanced pairs and are constrained by analog adjacency/symmetry review rather than controlled-impedance pair routing."
+      ],
+      "status": "PASS"
+    },
+    "endpoint_topology": {
+      "detail": "8/8 topology row(s) graded",
+      "findings": [],
+      "rows": [
+        {
+          "common_signal_pads": [],
+          "input_signal_pads": [],
+          "kind": "shunt",
+          "output_signal_pads": [],
+          "pairs": [],
+          "part_mpn": "TPD2E2U06DRLR",
+          "part_yaml": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/02_parts/TPD2E2U06DRLR/part.yaml",
+          "ref": "U_ESD1",
+          "return_pads": [
+            "4"
+          ],
+          "selected_signal_pads": [],
+          "signal_nets": [
+            "AUDIO_P1",
+            "AUDIO_N1"
+          ],
+          "signal_pads": [
+            "3",
+            "5"
+          ],
+          "unused_signal_pads": [],
+          "why": "connector-side two-line shunt clamp"
+        },
+        {
+          "common_signal_pads": [],
+          "input_signal_pads": [],
+          "kind": "shunt",
+          "output_signal_pads": [],
+          "pairs": [],
+          "part_mpn": "TPD2E2U06DRLR",
+          "part_yaml": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/02_parts/TPD2E2U06DRLR/part.yaml",
+          "ref": "U_ESD2",
+          "return_pads": [
+            "4"
+          ],
+          "selected_signal_pads": [],
+          "signal_nets": [
+            "AUDIO_P2",
+            "AUDIO_N2"
+          ],
+          "signal_pads": [
+            "3",
+            "5"
+          ],
+          "unused_signal_pads": [],
+          "why": "connector-side two-line shunt clamp"
+        },
+        {
+          "common_signal_pads": [],
+          "input_signal_pads": [],
+          "kind": "shunt",
+          "output_signal_pads": [],
+          "pairs": [],
+          "part_mpn": "TPD2E2U06DRLR",
+          "part_yaml": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/02_parts/TPD2E2U06DRLR/part.yaml",
+          "ref": "U_ESD3",
+          "return_pads": [
+            "4"
+          ],
+          "selected_signal_pads": [],
+          "signal_nets": [
+            "AUDIO_P3",
+            "AUDIO_N3"
+          ],
+          "signal_pads": [
+            "3",
+            "5"
+          ],
+          "unused_signal_pads": [],
+          "why": "connector-side two-line shunt clamp"
+        },
+        {
+          "common_signal_pads": [],
+          "input_signal_pads": [],
+          "kind": "shunt",
+          "output_signal_pads": [],
+          "pairs": [],
+          "part_mpn": "TPD2E2U06DRLR",
+          "part_yaml": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/02_parts/TPD2E2U06DRLR/part.yaml",
+          "ref": "U_ESD4",
+          "return_pads": [
+            "4"
+          ],
+          "selected_signal_pads": [],
+          "signal_nets": [
+            "AUDIO_P4",
+            "AUDIO_N4"
+          ],
+          "signal_pads": [
+            "3",
+            "5"
+          ],
+          "unused_signal_pads": [],
+          "why": "connector-side two-line shunt clamp"
+        },
+        {
+          "common_signal_pads": [],
+          "input_signal_pads": [],
+          "kind": "shunt",
+          "output_signal_pads": [],
+          "pairs": [],
+          "part_mpn": "TPD2E2U06DRLR",
+          "part_yaml": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/02_parts/TPD2E2U06DRLR/part.yaml",
+          "ref": "U_ESD5",
+          "return_pads": [
+            "4"
+          ],
+          "selected_signal_pads": [],
+          "signal_nets": [
+            "AUDIO_P5",
+            "AUDIO_N5"
+          ],
+          "signal_pads": [
+            "3",
+            "5"
+          ],
+          "unused_signal_pads": [],
+          "why": "connector-side two-line shunt clamp"
+        },
+        {
+          "common_signal_pads": [],
+          "input_signal_pads": [],
+          "kind": "shunt",
+          "output_signal_pads": [],
+          "pairs": [],
+          "part_mpn": "TPD2E2U06DRLR",
+          "part_yaml": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/02_parts/TPD2E2U06DRLR/part.yaml",
+          "ref": "U_ESD6",
+          "return_pads": [
+            "4"
+          ],
+          "selected_signal_pads": [],
+          "signal_nets": [
+            "AUDIO_P6",
+            "AUDIO_N6"
+          ],
+          "signal_pads": [
+            "3",
+            "5"
+          ],
+          "unused_signal_pads": [],
+          "why": "connector-side two-line shunt clamp"
+        },
+        {
+          "common_signal_pads": [],
+          "input_signal_pads": [],
+          "kind": "shunt",
+          "output_signal_pads": [],
+          "pairs": [],
+          "part_mpn": "TPD2E2U06DRLR",
+          "part_yaml": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/02_parts/TPD2E2U06DRLR/part.yaml",
+          "ref": "U_ESD7",
+          "return_pads": [
+            "4"
+          ],
+          "selected_signal_pads": [],
+          "signal_nets": [
+            "AUDIO_P7",
+            "AUDIO_N7"
+          ],
+          "signal_pads": [
+            "3",
+            "5"
+          ],
+          "unused_signal_pads": [],
+          "why": "connector-side two-line shunt clamp"
+        },
+        {
+          "common_signal_pads": [],
+          "input_signal_pads": [],
+          "kind": "shunt",
+          "output_signal_pads": [],
+          "pairs": [],
+          "part_mpn": "TPD2E2U06DRLR",
+          "part_yaml": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/02_parts/TPD2E2U06DRLR/part.yaml",
+          "ref": "U_ESD8",
+          "return_pads": [
+            "4"
+          ],
+          "selected_signal_pads": [],
+          "signal_nets": [
+            "AUDIO_P8",
+            "AUDIO_N8"
+          ],
+          "signal_pads": [
+            "3",
+            "5"
+          ],
+          "unused_signal_pads": [],
+          "why": "connector-side two-line shunt clamp"
+        }
+      ],
+      "status": "PASS"
+    },
+    "layer_eligibility": {
+      "class_layers": {
+        "ADC_CLOCK": [
+          "F.Cu",
+          "B.Cu"
+        ],
+        "ANALOG_AUDIO": [
+          "F.Cu",
+          "B.Cu"
+        ],
+        "BOOTSTRAP": [
+          "F.Cu"
+        ],
+        "CHASSIS_SHIELD": [
+          "F.Cu",
+          "B.Cu"
+        ],
+        "Default": [
+          "F.Cu",
+          "B.Cu"
+        ],
+        "POD_POWER": [
+          "F.Cu",
+          "B.Cu"
+        ],
+        "POWER_CONTROL": [
+          "F.Cu",
+          "B.Cu"
+        ],
+        "POWER_TRANSIENT": [
+          "F.Cu",
+          "B.Cu"
+        ],
+        "QUIET_POWER": [
+          "F.Cu",
+          "B.Cu"
+        ]
+      },
+      "detail": "4 layer role(s), 9 class map(s)",
+      "findings": [],
+      "roles": {
+        "B.Cu": "signal",
+        "F.Cu": "signal",
+        "In1.Cu": "reference_plane",
+        "In2.Cu": "reference_plane"
+      },
+      "status": "PASS"
+    },
+    "physical_placement": {
+      "detail": "0 failure(s), 0 warning(s)",
+      "report": {
+        "board": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/04_kicad/crow_audio_carrier_v1.kicad_pcb",
+        "coverage": {
+          "graded": 3,
+          "total": 3
+        },
+        "failures": [],
+        "notes": [
+          "P-OUT tightest pad-to-outline margin 2.26mm (J1.9) [min 0.15]",
+          "P-CAP worst cut x=36.5mm: demand 15 nets vs capacity 263 tracks (2 layers, pitch 0.45mm) \u2014 ratio 0.06 [fail > 0.5]",
+          "P-BODYCLR minimum reported courtyard gap >=0.100 mm (C_HOLD1<->C_FILT1_470U; search ceiling 0.100 mm)",
+          "P-BODYCLR denominator 333 assembled footprint envelopes; 0 close/overlapping pair(s), 0 envelope-to-foreign-pad finding(s)"
+        ],
+        "schema": 1,
+        "verdict": "PASS",
+        "warnings": []
+      },
+      "status": "PASS"
+    },
+    "route_ownership": {
+      "detail": "0 finding(s)",
+      "report": {
+        "coverage": {
+          "board_nets": 221,
+          "constrained_waves": [
+            "analog_outputs",
+            "bootstrap",
+            "clocks",
+            "power_5v_ldo_feed",
+            "power_adc_dump",
+            "power_buck_sw"
+          ],
+          "declared_corridors": 0,
+          "declared_net_owners": 21
+        },
+        "findings": [],
+        "notes": [
+          "12V_PROTECTED: wide_trunk owned by route.wave",
+          "3V3_ADC: wide_trunk owned by route.wave",
+          "5V_LDO_HOLD: wide_trunk owned by route.wave"
+        ],
+        "schema": 1,
+        "verdict": "PASS"
+      },
+      "status": "PASS"
+    },
+    "series_power_paths": {
+      "detail": "no series power paths declared",
+      "findings": [],
+      "rows": [],
+      "status": "N-A"
+    }
+  },
+  "coverage": {
+    "passing": 7,
+    "total": 7
+  },
+  "inputs": {
+    "board": {
+      "path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/04_kicad/crow_audio_carrier_v1.kicad_pcb",
+      "sha256": "60aa7f6740255f9943eb92779b33f793a097e9b093923105a58141b3642623bf",
+      "size": 1494484
+    },
+    "nets": {
+      "path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/03_src/rules/nets.yaml",
+      "sha256": "1ee3488b3e999f21941fa0d6e35bda8e3416d511a0a39cff6cc57aebf32efd23",
+      "size": 72834
+    },
+    "part_tpd2e2u06drlr": {
+      "path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/02_parts/TPD2E2U06DRLR/part.yaml",
+      "sha256": "bdba638536450d513a0a7714ec13c225886e761c79712d991c2a9639e826d4c7",
+      "size": 5204
+    },
+    "route": {
+      "path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/03_src/route.yaml",
+      "sha256": "d1c24e76e29104d2f89bc740fdd42a606518e49e1ea9e3ac72adce039d4173d4",
+      "size": 337866
+    }
+  },
+  "kind": "placement-routability-receipt-v1",
+  "schema": 1,
+  "subject": {
+    "path": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/04_kicad/crow_audio_carrier_v1.kicad_pcb",
+    "sha256": "60aa7f6740255f9943eb92779b33f793a097e9b093923105a58141b3642623bf",
+    "size": 1494484
+  },
+  "verdict": "ACCEPTED"
+}

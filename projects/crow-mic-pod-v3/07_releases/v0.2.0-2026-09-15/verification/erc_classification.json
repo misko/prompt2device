@@ -1,0 +1,12 @@
+{
+  "errors": 0,
+  "warnings": 158,
+  "by_type": {
+    "lib_symbol_issues": 64,
+    "endpoint_off_grid": 94
+  },
+  "classification": {
+    "endpoint_off_grid": "Inherited generated schematic placement warning; electrical graph and all pins independently reviewed.",
+    "lib_symbol_issues": "Archive lacks project symbol-table resolution; native schematic embeds exact symbols. Must reconcile standalone library context before final ERC evidence."
+  }
+}

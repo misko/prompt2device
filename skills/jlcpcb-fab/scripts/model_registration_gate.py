@@ -79,14 +79,21 @@ def normalized_group(group_id: str, group):
     if len(model_sha) != 64 or any(ch not in "0123456789abcdef" for ch in model_sha):
         raise ValueError(f"P-MODEL-REG {group_id}: invalid model_sha256")
     orientation = group.get("orientation")
-    mount_side = None
+    mount_side = group.get("mount_side")
+    if mount_side is not None:
+        mount_side = str(mount_side).strip().lower()
+        if mount_side not in ("front", "back"):
+            raise ValueError(f"P-MODEL-REG {group_id}: mount_side must be front or back")
     if orientation is not None:
         if not isinstance(orientation, dict):
             raise ValueError(f"P-MODEL-REG {group_id}: orientation must be a mapping")
-        mount_side = str(orientation.get("mount_side", "")).strip().lower()
-        if mount_side not in ("front", "back"):
+        orientation_side = str(orientation.get("mount_side", "")).strip().lower()
+        if orientation_side not in ("front", "back"):
             raise ValueError(
                 f"P-MODEL-REG {group_id}: orientation.mount_side must be front or back")
+        if mount_side is not None and mount_side != orientation_side:
+            raise ValueError(f"P-MODEL-REG {group_id}: conflicting mount_side declarations")
+        mount_side = orientation_side
     values = {
         "refs": refs,
         "model_sha256": model_sha,
@@ -159,7 +166,7 @@ def declared_outputs(refs, model_suffix, mount_side=None):
     return names
 
 
-def validate_receipt(receipt, tuple_value, refs, output_names) -> None:
+def validate_receipt(receipt, tuple_value, refs, output_names, registration_datum="drilled_centres") -> None:
     expected_top = {"schema", "kind", "tuple", "refs", "measurements", "evidence"}
     if not isinstance(receipt, dict) or set(receipt) != expected_top:
         raise ValueError("model receipt fields differ from schema 1")
@@ -176,8 +183,9 @@ def validate_receipt(receipt, tuple_value, refs, output_names) -> None:
     if receipt["refs"] != refs:
         raise ValueError("model receipt refs are stale or unordered")
     measurements = receipt["measurements"]
+    attachment = "attachment_overlaps" if registration_datum == "all_smd_pad_overlap" else "attachment_centres"
     expected_measurement = {
-        "ref", "attachment_centres_graded", "attachment_centres_total",
+        "ref", attachment + "_graded", attachment + "_total",
         "centre_delta_mm", "fab_outward_mm", "courtyard_outward_mm",
     }
     if (not isinstance(measurements, list) or
@@ -187,8 +195,8 @@ def validate_receipt(receipt, tuple_value, refs, output_names) -> None:
     for item in measurements:
         if not isinstance(item, dict) or set(item) != expected_measurement:
             raise ValueError("model receipt measurement fields differ")
-        graded = item["attachment_centres_graded"]
-        total = item["attachment_centres_total"]
+        graded = item[attachment + "_graded"]
+        total = item[attachment + "_total"]
         if (not isinstance(graded, int) or isinstance(graded, bool) or
                 not isinstance(total, int) or isinstance(total, bool) or
                 total <= 0 or graded != total):
@@ -210,7 +218,7 @@ def validate_receipt(receipt, tuple_value, refs, output_names) -> None:
             raise ValueError(f"model receipt evidence is undeclared: {name}")
 
 
-def accepted_cache_valid(path: Path, tuple_value, refs, output_names) -> bool:
+def accepted_cache_valid(path: Path, tuple_value, refs, output_names, registration_datum="drilled_centres") -> bool:
     try:
         manifest = json.loads((path / "bundle.json").read_text(encoding="utf-8"))
         if manifest.get("schema") != 1 or manifest.get("status") != "PASS":
@@ -230,7 +238,7 @@ def accepted_cache_valid(path: Path, tuple_value, refs, output_names) -> bool:
                 return False
         receipt = json.loads(
             (path / "model_registration_receipt.json").read_text(encoding="utf-8"))
-        validate_receipt(receipt, tuple_value, refs, output_names)
+        validate_receipt(receipt, tuple_value, refs, output_names, registration_datum)
         return manifest.get("subject", {}).get("semantic_sha256") == native.tuple_cache_key(
             tuple_value)
     except (OSError, ValueError, TypeError, json.JSONDecodeError):
@@ -264,7 +272,7 @@ def run_group(project: Path, board: Path, config_path: Path, build: Path,
     accepted = build / group_id
     outputs = declared_outputs(
         values["refs"], rows[0]["model"].suffix, values["mount_side"])
-    if accepted_cache_valid(accepted, tuple_value, values["refs"], outputs):
+    if accepted_cache_valid(accepted, tuple_value, values["refs"], outputs, values["registration_datum"]):
         print(f"P-MODEL-REG CACHE-HIT: {group_id} {native.tuple_cache_key(tuple_value)}")
         return accepted, True, None
 
@@ -315,7 +323,7 @@ def run_group(project: Path, board: Path, config_path: Path, build: Path,
     def reopen(_staging, opened):
         validate_receipt(
             opened["model_registration_receipt.json"], tuple_value,
-            values["refs"], outputs,
+            values["refs"], outputs, values["registration_datum"],
         )
 
     try:
@@ -566,8 +574,8 @@ def main(argv=None) -> int:
         "",
         "This aggregate is independent physical-registration evidence. Each "
         "group uses an origin-centred coupon and compares native-model pixels "
-        "with F.Fab, F.CrtYd, and each group's declared drilled-centre or "
-        "all-pad-centre datum. Catalog-twin "
+        "with mounted-side Fab/courtyard and each group's declared drilled-centre, "
+        "all-pad-centre or SMD-overlap datum. Catalog-twin "
         "renderer fidelity is a separate gate.",
         "",
         "| group | refs | tuple cache key | group report | result |",

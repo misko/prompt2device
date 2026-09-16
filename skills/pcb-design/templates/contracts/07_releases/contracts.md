@@ -405,6 +405,8 @@ MANIFEST line above, and
 exits non-zero when dirty — the seal calls it and gates on the exit code
 rather than eyeballing `git status`.
 
+Publication reopens every full SHA-256 entry and both directions of the payload census, then compares every payload and MANIFEST with the exact Git head. A worktree-only ignored session file cannot satisfy a committed-release claim.
+
 ## Seal procedure (normative — the 2-commit seal)
 
 The ONE home for HOW a release is cut; SKILL.md stage 7, the revision
@@ -486,7 +488,7 @@ procedure below.
    repository delta: before a material PCB project reaches the publication
    branch, run `python3 skills/pcb-design/scripts/pcb_publication_gate.py
    --base <publication-branch-base-sha> --head <candidate-head-sha>`. Require
-   `P-PUBLISH PASS`. The gate binds live board bytes, MANIFEST source commit,
+   `P-PUBLISH PASS`, including complete manifest SHA-256 and bidirectional payload census (missing, changed, unlisted or symlinked auxiliary files fail). The gate binds live board bytes, MANIFEST source commit,
    both existing release gates, and all four archived exact-artifact reviews.
    Branch protection must require this check and a PR; an after-push workflow
    cannot prevent a direct push to an unprotected branch.
@@ -500,7 +502,9 @@ FAILS — it is not docs-only), identical pdf/ is allowed, and the order
 README + MANIFEST must byte-differ (otherwise the release supersedes
 nothing). The audit/manifest-agreement and draft-marker checks still run.
 Never waive fab-identical files one-by-one for this case — the mode
-asserts the identity instead of flagging it.
+asserts the identity instead of flagging it. `release_rehearsal.py rehearse`
+accepts the same `--docs-only-supersede` assertion, mutually exclusive with
+representation mode, and records it while preserving every child failure.
 
 **BOM-only supersede mode.** The one case docs-only mode correctly refuses:
 the copper is untouched but the ASSEMBLY BOM must lose rows, because canon
@@ -867,3 +871,37 @@ after the fix or waiver). **On a multi-board project `--board` is REQUIRED to
 grade the second board** — the audit grades one board per run (the report's
 header line names it), and M-REL/M-BOM/A-POP/A-BODY resolve the release from
 THAT board's series.
+
+
+## Selected assembly locator evidence
+
+When source selects `rules/assembly_locator.yaml`, the release additionally ships
+`source/assembly_locator.yaml`, `source/policy_waivers.yaml`, and the exact
+`source/locator_tools/assembly_locator.py`, `assembly_locator.html` and
+`assembly_locator_check.py`. The normal fab export includes
+`fab/assembly_locator.json`, `assembly_locator.html`, `assembly_locator.pdf`,
+`assembly_locator_NNN.png` for each exception, and `assembly_locator_manifest.json`;
+its artifact index records these in the `assembly_locator` role. All are covered
+by the ordinary complete MANIFEST, and ORDER_README links the offline viewer and
+atlas. These files are conditionally required, not an exception to completeness.
+
+A-LOCATOR is composed into `release_freshness_check.py` as a design-side failure.
+It uses only the archive's source, tools and fab files; a missing/stale source
+contract, wrong waiver set, changed native/BOM/CPL identity, missing/corrupt member,
+HTML geometry/script disagreement or PDF/PNG page disagreement blocks the seal.
+Independent visual review remains required; hashes do not prove usability.
+
+The existing `verification/render_review.md` must also bind
+`locator_manifest_sha256` and list the exact `locator_reviewed_refs` JSON array,
+with `reviewer`, `completed_at`, `review_kind: render`, `design_verdict: SOUND`
+and `board_sha256`. A-LOCATOR checks this exact independent acceptance before
+sealing. A changed page with refreshed file hashes still stales the review.
+The exporter creates no acceptance record; the normal independent render lens
+owns both board readability and locator usability.
+
+The locator retains complete mixed-side native context. Its interactive map
+shows one mounted side at a time and reflects bottom geometry left-to-right
+about the native board-frame centre, with native Y down and readable text.
+Source exceptions and per-exception atlas pages remain top-side; bottom context
+is available by reference in the HTML. Exact source tools and manifest bind
+this convention; unchanged schema1 shapes do not permit reuse of older tools.

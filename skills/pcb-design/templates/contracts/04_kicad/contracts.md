@@ -87,3 +87,19 @@ P8's other half P-LAYOUT — part.yaml carries a `layout:` block — stays a
   `--skip-drc` only for fast re-grades).
 - Remember: this folder is never hand-edited — a FAIL here is fixed in the
   `03_src` config or `03_tscircuit` source and regenerated.
+
+## Finite pad-launch admission
+
+P-LAND (`escape_check.py --board <board>.kicad_pcb`, library
+`land_witness.py`) requires this exact board/project/rules triple and complete
+native class assignments. It validates declared-width finite launch witnesses
+with native Track–Pad rules, optional local clearances, effective copper
+shapes, enabled layers and DRC tolerance. The fixed policy is <=2-mm declared
+widths, adaptive native-admitted bbox starts (five intervals per axis, <=37
+proposals), 48 directions and 1-mm reach. Output records an exact witness or
+NO_VALIDATED_WITNESS for that finite coverage, never a maximum or impossibility.
+Physical/copper/noncopper counts and all eligibility buckets reconcile;
+nominal pour/via inventory proves no connectivity. Actual incident tracks are
+inventoried outside the finite policy. Missing/incoherent inputs, unsupported
+syntax/geometry/configuration, unreadable pads and zero grading block. P-LAND
+clears no native DRC, connectivity, routing or release obligation.

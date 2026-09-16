@@ -192,7 +192,9 @@ MODEL_RE = re.compile(
 # --------------------------------------------------------------------------
 # geometry: the EXPECTED side. Deliberately reads JLC's cached .kicad_mod and
 # .wrl as TEXT rather than through the same loaders jlc_twin uses, and never
-# reads twin.kicad_pcb or twin_report.csv (canon M1).
+# derives geometry from twin.kicad_pcb or twin_report.csv (canon M1).
+# Explicit native selection reopens delivered board hashes only as identity;
+# expected geometry remains the independent source-board Fab envelope.
 # --------------------------------------------------------------------------
 
 def rot_ydown(x, y, deg):
@@ -460,7 +462,9 @@ def collect(board, side):
         fab_layer = pcbnew.F_Fab if side == "top" else pcbnew.B_Fab
         fxs, fys = [], []
         for item in fp.GraphicalItems():
-            if item.GetLayer() != fab_layer:
+            # Text and properties are labels, never physical body authority.
+            # Accept only authored geometry; preserve its drawing stroke.
+            if item.GetLayer() != fab_layer or not isinstance(item, pcbnew.PCB_SHAPE):
                 continue
             box = item.GetBoundingBox()
             fxs += [box.GetLeft() / 1e6, box.GetRight() / 1e6]
@@ -626,11 +630,15 @@ def read_model_adjudications(path):
     except Exception as exc:
         raise ValueError(f"cannot read --adjudications {path}: {exc}") from exc
     out = {}
+    from native_representation import declarations
+    native_absence = declarations(rows)
     for row in rows:
         if not isinstance(row, dict) or not row.get("lcsc"):
             continue
         code = str(row["lcsc"])
         dst = out.setdefault(code, {})
+        dst["native_absence"] = {ref: spec for ref, spec in native_absence.items()
+                                 if spec["lcsc"] == code}
         for key in ("model_dx", "model_dy", "board_dx", "board_dy",
                     "model_rot_z", "pad_alias", "mount_anchor",
                     "render_model_extension", "render_model_source",
@@ -703,6 +711,8 @@ def explicit_anchor_geometry(anchor, our_pads, jlc_pads, footprint_pos=None):
 
 
 def fit_description(row):
+    if row.get("fit_err") is None and not row.get("anchored"):
+        return "UNAVAILABLE (no vendor pad comparison)"
     if row.get("anchored"):
         a = row["anchor"]
         return (f"ANCHOR {a['our_pad']}->{a['jlc_pad']} @{row['ang']}deg "
@@ -859,32 +869,72 @@ def main(argv=None):
     ref_lcsc = read_ref_lcsc(a.bom, a.assembly)
     local_body_refs = read_local_body_refs(a.assembly)
     by_ref = {p["ref"]: p for p in parts}
+    for adj in model_adjudications.values():
+        for ref, spec in adj.get("native_absence", {}).items():
+            if ref_lcsc.get(ref) != spec["lcsc"] or ref not in by_ref:
+                print(f"OVERLAY REFUSED: native representation ref/code missing: {ref}", file=sys.stderr)
+                return 2
 
     expected = {}            # ref -> dict(exp, ang, fit_err, fitted, code)
     no_model = {}            # ref -> why
     for ref, code in sorted(ref_lcsc.items()):
+        adj = model_adjudications.get(code, {})
+        absent_spec = adj.get("native_absence", {}).get(ref)
         p = by_ref.get(ref)
         if p is None:
             no_model[ref] = f"{code}: on the BOM, not on the board"
             continue
         if p["cy"] is None:
+            if absent_spec and p["bottom"] == (a.side == "bottom"):
+                print(f"OVERLAY REFUSED: native representation courtyard missing: {ref}", file=sys.stderr)
+                return 2
             continue                       # not on the side being rendered
         mod = cache.get(code)
+        if absent_spec and absent_spec["reason"] == "vendor_cad_absent":
+            from native_representation import check_overlay_receipt
+            try:
+                check_overlay_receipt(twin_dir, a.board, ref, code, mod, 0, absent_spec)
+                if p["fab"] is None:
+                    raise ValueError("native body has no authored Fab envelope")
+            except (ValueError, OSError, KeyError) as exc:
+                print(f"OVERLAY REFUSED: native representation {ref}: {exc}", file=sys.stderr)
+                return 2
+            expected[ref] = dict(exp=p["fab"], ang=0, fitted=False,
+                                 anchored=False, anchor=None, code=code,
+                                 fit_err=None, adjudicated=True)
+            continue
         if not mod:
+            if absent_spec:
+                print(f"OVERLAY REFUSED: native representation vendor cache missing: {ref}", file=sys.stderr)
+                return 2
             no_model[ref] = f"{code}: no JLC footprint cached (never fetched)"
             continue
         jpads, model = parse_jlc_footprint(mod)
-        if not model:
+        adj = model_adjudications.get(code, {})
+        absent_spec = adj.get("native_absence", {}).get(ref)
+        if absent_spec:
+            from native_representation import check_overlay_receipt
+            try:
+                check_overlay_receipt(twin_dir, a.board, ref, code, mod,
+                                      1 if model else 0, absent_spec)
+                if p["fab"] is None:
+                    raise ValueError("native body has no authored Fab envelope")
+            except (ValueError, OSError, KeyError) as exc:
+                print(f"OVERLAY REFUSED: native representation {ref}: {exc}", file=sys.stderr)
+                return 2
+            model = {"rotz": 0.0}
+            mesh = None
+        elif not model:
             no_model[ref] = f"{code}: JLC footprint declares no 3D model"
             continue
-        mesh_path = resolve_mesh(model, mod)
-        mesh = wrl_plan_bbox(mesh_path) if mesh_path else None
-        if not mesh:
-            no_model[ref] = f"{code}: mesh {Path(model['file']).name} unreadable"
-            continue
-        adj = model_adjudications.get(code, {})
+        else:
+            mesh_path = resolve_mesh(model, mod)
+            mesh = wrl_plan_bbox(mesh_path) if mesh_path else None
+            if not mesh:
+                no_model[ref] = f"{code}: mesh {Path(model['file']).name} unreadable"
+                continue
         expand = adj.get("plan_bbox_expand_mm", 0.0)
-        if expand:
+        if expand and mesh:
             # The selected render representation can be a manufacturer STEP
             # while the independently parsed catalog geometry remains WRL.
             # Record the measured symmetric plan-envelope delta explicitly;

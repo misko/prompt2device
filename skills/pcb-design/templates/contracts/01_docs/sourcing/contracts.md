@@ -32,8 +32,32 @@ mutable file: it is an INPUT, and a re-read replaces the entry it re-reads.
 | `two-source-qualification-<YYYY-MM-DD>.md` | dated interpretation of the machine-composed Q-2SOURCE evidence | HAND-WRITTEN review record; it must name the machine report and may not replace its verdict |
 | `exact-parts.csv` | frozen pre-schematic candidate identity/quantity set consumed by sourcing qualification; final BOM authority remains the generated board BOM and dossiers | HAND-WRITTEN selection input; no volatile stock/price claims |
 | `manual_quotes.yaml` | every DigiKey / Amazon number. One entry per `{manufacturer, mpn, distributor}` with source, URL, read date and stock/price fields | HAND-WRITTEN evidence. `manufacturer:` plus full `mpn:` is Q-MFR-IDENT and is required for a quote to count toward Q-2SOURCE. Search snippets are refused; catalog absence is the only admissible search-page use |
+| `public-distributor-policy.yaml` | explicit user-approved, exact-part design-only public-stock policy | optional schema below; never purchase or allocation authority |
 | `procurement-policy.yaml` | durable currency and per-line/aggregate limits for preorder cash, gross MOQ surplus cost, and nonrecoverable assembly excess cost | HAND-WRITTEN user policy. Template limits are zero so no spending authority is invented; volatile MOQ/quote observations remain in `06_build/sourcing/` |
 | `contracts.md` | this file | |
+
+## Optional public distributor design policy
+
+`manufacturing_readiness.py` reads schema1 with `scope: prelayout-only`,
+`order_authorized: false`, a nonempty `directive` present verbatim in both
+project-relative `brief` and `decision` files, and nonempty `rows`. The decision
+must explicitly retain public-catalog/pre-layout/DO-NOT-ORDER scope. Each row
+contains `lcsc`, `mpn`, `manufacturer`, `footprint`, exact `designators`,
+`distributor`, exact product `url`, and `packaging`. Identity must agree with
+the current generated source, request and dossier; no implicit substitution.
+
+Supported observation: `distributor: digikey`, HTTPS
+`www.digikey.com/en/products/detail/...`, one matching `manual_quotes.yaml`
+entry with exact MPN/manufacturer/URL/packaging, nonempty `dpn`,
+`source: product_page`, `lifecycle: Active`, timezone-bearing `checked_at`
+within24hours, positive integer `stock`, `min`, and `mult`. Stock must cover
+the actual minimum/multiple-expanded request. Other quote entries may remain
+for other tasks; they do not grant extra policy coverage. Record the actual
+public read and its limitations; hashes do not prove accurate transcription.
+
+This path can cover only JLC `LOW_STOCK` rows in prelayout design composition.
+It leaves the raw JLC report unchanged, is not Q-2SOURCE, and cannot satisfy
+selection, assembly allocation, economics, order readiness or payment authority.
 
 ## Forbidden
 

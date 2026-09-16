@@ -1,0 +1,24 @@
+{
+ "target": "projects/crow-mic-pod-v3/07_releases/v0.1.0-2026-09-03",
+ "summary": {
+  "board": 44,
+  "cpl": 31,
+  "datum_max_mm": 0.0,
+  "datum_max_ref": "U3",
+  "datum_graded": 31,
+  "unpopulated": 13,
+  "declared": 9,
+  "consigned": 0,
+  "exempt_prefixes": [
+   "FID",
+   "H",
+   "MH",
+   "TP"
+  ],
+  "sides": {
+   "top": 31
+  },
+  "unexplained": []
+ },
+ "fails": []
+}

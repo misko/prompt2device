@@ -17,6 +17,51 @@ import os from "node:os"
 import path from "node:path"
 import { execFileSync, spawnSync } from "node:child_process"
 import { pathToFileURL } from "node:url"
+import { createRequire } from "node:module"
+
+// librsvg 2.58 ignores dominant-baseline. Materialize the SVG baseline in
+// local text coordinates using the resolved font's metrics, leaving glyphs,
+// rotations, symbols and wires unchanged. Offsets follow the SVG baseline
+// fallback metrics: middle uses half x-height; central uses ascent/descent;
+// hanging uses 80% of ascent; ideographic uses the descender.
+export const materializeTextBaselines = (input, metricsForFont) => {
+  const tree = structuredClone(input)
+  let corrections = 0
+  const walk = (node) => {
+    const attrs = node.attributes ?? {}
+    if (node.name === "text" && attrs["dominant-baseline"]) {
+      const baseline = attrs["dominant-baseline"]
+      if (!["auto", "alphabetic", "baseline"].includes(baseline)) {
+        const font = metricsForFont(attrs["font-family"] ?? "sans-serif",
+          attrs["font-weight"] ?? "normal", attrs["font-style"] ?? "normal")
+        if (![font.unitsPerEm, font.ascender, font.descender, font.xHeight].every(Number.isFinite) ||
+            font.unitsPerEm <= 0 || font.xHeight <= 0) {
+          throw new Error("invalid font baseline metrics")
+        }
+        const offsets = {
+          central: (font.ascender + font.descender) / 2,
+          middle: font.xHeight / 2,
+          hanging: font.ascender * 0.8,
+          ideographic: font.descender,
+          "text-before-edge": font.ascender,
+          "text-after-edge": font.descender,
+        }
+        if (!(baseline in offsets)) throw new Error(`unsupported text baseline: ${baseline}`)
+        const sizeText = attrs["font-size"] ?? ""
+        if (!/^\d+(?:\.\d+)?(?:px)?$/.test(sizeText)) throw new Error(`unsupported font size: ${sizeText}`)
+        const size = Number.parseFloat(sizeText)
+        const prior = attrs.dy ?? "0"
+        if (!/^-?\d+(?:\.\d+)?(?:px)?$/.test(prior)) throw new Error(`unsupported text dy: ${prior}`)
+        attrs.dy = String(Number.parseFloat(prior) + size * offsets[baseline] / font.unitsPerEm)
+        attrs["dominant-baseline"] = "alphabetic"
+        corrections += 1
+      }
+    }
+    for (const child of node.children ?? []) walk(child)
+  }
+  walk(tree)
+  return { tree, corrections }
+}
 
 // Presentation-only workaround for circuit-to-svg's scaled-symbol transform.
 // circuit-to-svg currently composes translate(a2-a1) then scale(s), which maps
@@ -183,7 +228,8 @@ const die = (message) => {
 const usage = () => {
   process.stderr.write(
     "usage: render_schematic_pdf.mjs <circuit.json> <schematic.pdf> " +
-      "[--title <title>] [--net-aliases <net_aliases.txt>]\n",
+      "[--title <title>] [--net-aliases <net_aliases.txt>] " +
+      "[--toolchain-package <package.json>]\n",
   )
 }
 
@@ -198,7 +244,13 @@ const circuitPath = path.resolve(args[0])
 const outputPath = path.resolve(args[1])
 let projectTitle = "SCHEMATIC"
 let netAliasesPath = null
+let toolchainPackage = null
 for (let i = 2; i < args.length; i += 1) {
+  if (args[i] === "--toolchain-package" && args[i + 1]) {
+    toolchainPackage = path.resolve(args[i + 1])
+    i += 1
+    continue
+  }
   if (args[i] === "--title" && args[i + 1]) {
     projectTitle = args[i + 1]
     i += 1
@@ -226,7 +278,7 @@ if (!Array.isArray(circuit)) die("Circuit JSON root must be an array")
 // leading N (for example N5V -> 5V).  The KiCad bridge removes that syntax and
 // also accepts explicit per-board exceptions in net_aliases.txt.  A human PDF
 // must show the same canonical names as the machine netlist.  Rewrite only a
-// shallow copy of schematic_net_label records: source nets, connectivity keys,
+// shallow copy of label records: source nets, connectivity keys,
 // and the exact circuit.json bytes remain untouched.
 const netAliases = new Map()
 if (netAliasesPath !== null) {
@@ -258,8 +310,16 @@ const canonicalNetName = (name) => {
   return /^N\d/.test(name) ? name.slice(1) : name
 }
 
+// Explicit wires in the pinned producer carry inline names as schematic_text.
+// Only exact source-net names on an existing source trace qualify; component
+// values, notes and custom trace annotations must remain verbatim.
+const sourceNetNames = new Set(circuit.filter(e => e.type === "source_net").map(e => e.name))
+const sourceTraceIds = new Set(circuit.filter(e => e.type === "source_trace").map(e => e.source_trace_id))
 const canonicalDisplayCircuit = circuit.map((element) =>
-  element.type === "schematic_net_label" && typeof element.text === "string"
+  (element.type === "schematic_net_label" ||
+    (element.type === "schematic_text" &&
+      sourceTraceIds.has(element.source_trace_id) && sourceNetNames.has(element.text))) &&
+    typeof element.text === "string"
     ? { ...element, text: canonicalNetName(element.text) }
     : element,
 )
@@ -297,34 +357,56 @@ if (sheets.length > 0) {
   }
 }
 
-let tscircuitCli
-try {
-  tscircuitCli = fs.realpathSync(
-    execFileSync("which", ["tsci"], { encoding: "utf8" }).trim(),
-  )
-} catch (error) {
-  die(`cannot resolve the installed tsci command: ${error.message}`)
+if (!toolchainPackage) {
+  let cursor = path.dirname(circuitPath)
+  while (cursor !== path.dirname(cursor)) {
+    if (fs.existsSync(path.join(cursor, "package.json"))) {
+      toolchainPackage = path.join(cursor, "package.json")
+      break
+    }
+    cursor = path.dirname(cursor)
+  }
 }
-const rendererPath = path.join(
-  path.dirname(tscircuitCli),
-  "node_modules",
-  "circuit-to-svg",
-  "dist",
-  "index.js",
-)
-const symbolsPath = path.join(
-  path.dirname(tscircuitCli),
-  "node_modules",
-  "schematic-symbols",
-  "dist",
-  "index.js",
-)
-if (!fs.existsSync(rendererPath)) {
-  die(`installed tscircuit is missing circuit-to-svg: ${rendererPath}`)
+if (!toolchainPackage || !fs.existsSync(toolchainPackage)) {
+  die("no project-local toolchain package; supply --toolchain-package <package.json>")
 }
-if (!fs.existsSync(symbolsPath)) {
-  die(`installed tscircuit is missing schematic-symbols: ${symbolsPath}`)
+const require = createRequire(toolchainPackage)
+const localModules = fs.realpathSync(path.join(path.dirname(toolchainPackage), "node_modules"))
+const resolveLocal = (name) => {
+  const resolved = fs.realpathSync(require.resolve(name))
+  const relative = path.relative(localModules, resolved)
+  if (relative.startsWith(`..${path.sep}`) || relative === ".." || path.isAbsolute(relative)) {
+    die(`dependency ${name} escaped project-local node_modules: ${resolved}`)
+  }
+  return resolved
 }
+const rendererPath = resolveLocal("circuit-to-svg")
+const symbolsPath = resolveLocal("schematic-symbols")
+const { parseSync, stringify } = require(resolveLocal("svgson"))
+const opentype = require(resolveLocal("opentype.js"))
+const fontMetrics = new Map()
+const metricsForFont = (family, weight, style) => {
+  const face = `${family}:weight=${weight === "bold" ? "bold" : "regular"}:slant=${style === "italic" ? "italic" : "roman"}`
+  if (!fontMetrics.has(face)) {
+    const fontPath = execFileSync("fc-match", ["-f", "%{file}", face], {
+      encoding: "utf8", timeout: 5000,
+    }).trim()
+    const font = opentype.loadSync(fontPath)
+    const metrics = { unitsPerEm: font.unitsPerEm, ascender: font.ascender,
+      descender: font.descender,
+      // Older OpenType OS/2 tables omit sxHeight. Derive it from the actual
+      // font's x glyph, rather than substituting an arbitrary em fraction.
+      xHeight: font.tables.os2?.sxHeight || font.charToGlyph("x").getBoundingBox().y2 }
+    if (Object.values(metrics).some((value) => !Number.isFinite(value)) ||
+        metrics.unitsPerEm <= 0 || metrics.xHeight <= 0) {
+      die(`font lacks required baseline metrics: ${fontPath}`)
+    }
+    fontMetrics.set(face, metrics)
+    process.stdout.write(`SCHEMATIC-RENDER font: ${fontPath} SHA-256 ${crypto.createHash("sha256").update(fs.readFileSync(fontPath)).digest("hex")}\n`)
+  }
+  return fontMetrics.get(face)
+}
+process.stdout.write(`SCHEMATIC-RENDER toolchain: ${toolchainPackage}\n`)
 const { convertCircuitJsonToSchematicSvg } = await import(
   pathToFileURL(rendererPath).href
 )
@@ -364,6 +446,7 @@ const pages =
 const HEADER_HEIGHT = 90
 const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), "schematic-render-"))
 const pagePdfs = []
+let baselineCorrections = 0
 
 // Select the matching A-series orientation from the exact, unmodified
 // schematic component bounds.  This is a page-fit decision only: unlike a
@@ -420,11 +503,14 @@ try {
 
     const geometry = pageGeometry(pageComponents)
     const pageHeight = geometry.contentHeight + HEADER_HEIGHT
-    const fitted = convertCircuitJsonToSchematicSvg(pageCircuit, {
+    const renderedSvg = convertCircuitJsonToSchematicSvg(pageCircuit, {
       width: geometry.width,
       height: geometry.contentHeight,
       showErrorsInTextOverlay: true,
-    }).replace(
+    })
+    const normalized = materializeTextBaselines(parseSync(renderedSvg), metricsForFont)
+    baselineCorrections += normalized.corrections
+    const fitted = stringify(normalized.tree).replace(
       /^<svg /,
       `<svg x="0" y="${HEADER_HEIGHT}" `,
     )
@@ -474,6 +560,7 @@ try {
     `SCHEMATIC-RENDER PASS: ${pages.length} page(s), ${components.length} components, ` +
       `${netAliases.size} explicit net alias(es), ` +
       `${alignment.correctionCount} scaled two-port symbol alignment correction(s), ` +
+      `${baselineCorrections} font-metric text baseline(s), ` +
       `maximum endpoint residual ${alignment.maximumResidual.toExponential(2)}, ` +
       `${outputPath}\n`,
   )

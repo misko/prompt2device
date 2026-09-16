@@ -823,5 +823,225 @@ def t_undeclared_output():
         raise AssertionError("runtime accepted an output absent from StageSpec")
 
 
+def delivery_envelope(root, **changes):
+    from dataclasses import replace
+    return replace(attempt_envelope(root, deadline_s=10), schema=2,
+                   output_path="06_build/task_runs/probe/attempt.json",
+                   completion={"outputs": ["answer.txt"], "checks": ["probe"]},
+                   **changes)
+
+
+def delivery_code(envelope, *, bad_subject=False, unresolved=False):
+    report = {"subject": envelope.subject.to_mapping(),
+              "checks": {"probe": "PASS"}, "unresolved": []}
+    if bad_subject:
+        report["subject"]["raw_sha256"] = "0" * 64
+    if unresolved:
+        report["unresolved"] = ["still owed"]
+    return ("import os,json; from pathlib import Path; "
+            "p=Path(os.environ['PCB_TASK_OUTPUT_DIR']); "
+            "(p/'answer.txt').write_text('42'); "
+            f"(p/'result.json').write_text({json.dumps(report)!r}); "
+            "print('delivered')")
+
+
+@test("task completion rejects exit-zero with missing output", kind="known_bad")
+def t_delivery_missing():
+    # RED against cfa87025 runtime: rc=0 was sufficient, no handback validated.
+    root = tmpdir("task_delivery_"); (root / "input.txt").write_text("input")
+    envelope = delivery_envelope(root)
+    attempt = execute_attempt(envelope, [sys.executable, "-c", "pass"],
+                              cwd=root, env={}, console=None)
+    eq(attempt.status, "INCOMPLETE", "missing handback cannot pass")
+    check(attempt.unresolved, "explicit missing completion")
+
+
+@test("task completion allocates outputs and records complete evidence")
+def t_delivery_clean():
+    root = tmpdir("task_delivery_"); (root / "input.txt").write_text("input")
+    envelope = delivery_envelope(root)
+    attempt = execute_attempt(envelope, [sys.executable, "-c", delivery_code(envelope)],
+                              cwd=root, env={"SECRET_TOKEN": "do-not-copy"}, console=None)
+    eq(attempt.status, "PASS", str(attempt.output))
+    eq(attempt.output["completion"]["graded"], 1, "complete check census")
+    check("do-not-copy" not in json.dumps(attempt.output), "credentials excluded")
+    check(attempt.output["runtime"]["pid"] > 0, "actual PID retained")
+    check(attempt.output["log"]["sha256"], "log identity")
+    try:
+        execute_attempt(envelope, [sys.executable, "-c", "pass"], cwd=root, env={}, console=None)
+    except FileExistsError:
+        pass
+    else:
+        raise AssertionError("run directory reused")
+
+
+@test("task completion blocks stale subjects and unresolved reports", kind="known_bad")
+def t_delivery_bad_report():
+    for changes in ({"bad_subject": True}, {"unresolved": True}):
+        root = tmpdir("task_delivery_"); (root / "input.txt").write_text("input")
+        envelope = delivery_envelope(root)
+        attempt = execute_attempt(envelope,
+            [sys.executable, "-c", delivery_code(envelope, **changes)], cwd=root, env={}, console=None)
+        eq(attempt.status, "INCOMPLETE", "producer statement is not completion")
+        check((root / envelope.output_path).parent.joinpath("outputs/answer.txt").exists(),
+              "failed evidence retained")
+
+
+def agent_fixture():
+    from pipeline_execution import envelope_sha256
+    from pipeline_runtime import open_agent_attempt
+    root = tmpdir("task_agent_"); (root / "input.txt").write_text("input")
+    envelope = delivery_envelope(root, executor="reviewer", context_mode="FRESH",
+        recommended_agent_role="judgment", agent_role="judgment", input_handoff_id="packet",
+        writer_scope={"mode": "READ_ONLY", "paths": []})
+    opened = open_agent_attempt(envelope, cwd=root)
+    report = {"subject": envelope.subject.to_mapping(), "checks": {"probe": "PASS"}, "unresolved": []}
+    out = Path(opened["output_dir"])
+    (out / "answer.txt").write_text("independent result")
+    (out / "result.json").write_text(json.dumps(report))
+    event = dict(host="test-host", agent_id="fresh-1", state="completed",
+                 envelope_sha256=envelope_sha256(envelope), cleanup="confirmed", detail="observed")
+    return root, envelope, event
+
+
+@test("agent adapter validates delivery once without fabricating process telemetry")
+def t_agent_clean():
+    from pipeline_runtime import close_agent_attempt
+    root, envelope, event = agent_fixture()
+    attempt = close_agent_attempt(envelope, cwd=root, event=event)
+    eq(attempt.status, "PASS", str(attempt.output))
+    eq(attempt.output["runtime"], None, "no invented PID")
+    try:
+        close_agent_attempt(envelope, cwd=root, event=event)
+    except FileExistsError:
+        pass
+    else:
+        raise AssertionError("late callback overwrote terminal attempt")
+
+
+@test("agent adapter rejects provider errors, early handbacks and unknown cleanup", kind="known_bad")
+def t_agent_host_failures():
+    from pipeline_runtime import close_agent_attempt
+    for key, value in (("state", "error"), ("state", "running"), ("cleanup", "unknown"),
+                       ("envelope_sha256", "f" * 64)):
+        root, envelope, event = agent_fixture()
+        event[key] = value
+        attempt = close_agent_attempt(envelope, cwd=root, event=event)
+        check(attempt.status != "PASS", "host problem blocked")
+        check(attempt.unresolved, "explicit unresolved work")
+        check((root / envelope.output_path).exists(), "terminal record persisted")
+
+
+def repair_fixture(cap=3):
+    root = tmpdir("task_repair_"); (root / "input.txt").write_text("input")
+    envelope = delivery_envelope(root, max_nonimproving_attempts=3,
+        repair={"owner_id": "implementation-owner", "hypothesis_sha256": "a" * 64,
+                "max_attempts": cap, "setup_remedies": ["missing_output", "wrong_cwd"],
+                "finding_id": None})
+    previous = execute_attempt(envelope, [sys.executable, "-c",
+        "from pathlib import Path; Path('wrong-working-directory/input').read_text()"],
+        cwd=root, env={}, console=None)
+    log = root / (envelope.output_path + ".log")
+    assessment = {"owner_id": "implementation-owner", "hypothesis_sha256": "a" * 64,
+        "classification": "setup", "remedy": "wrong_cwd", "improved": False,
+        "boundary": None, "d_back": False, "context_used_pct": None,
+        "reason": "Observed failed relative input lookup; correct command within declared scope.",
+        "evidence": [{"name": "failure", "path": log.relative_to(root).as_posix(),
+                      "size": log.stat().st_size, "sha256": hashlib.sha256(log.read_bytes()).hexdigest()}]}
+    return root, envelope, previous, assessment
+
+
+@test("same owner repairs admitted wrong-cwd error within original task allowance")
+def t_repair_clean():
+    from pipeline_runtime import execute_repair
+    root, envelope, previous, assessment = repair_fixture()
+    eq(previous.status, "FAIL", "real initial failed child")
+    current = execute_repair(envelope, [sys.executable, "-c", delivery_code(envelope)],
+                            cwd=root, env={}, assessment=assessment, console=None)
+    eq(current.status, "PASS", str(current.unresolved))
+    eq(current.attempt_index, 1, "initial failure still charged")
+    eq(current.task_id, previous.task_id, "same task identity")
+    path = root / current.output["continuation"]["attempt_path"]
+    saved = TaskEnvelope.from_json(path.with_name("envelope.json").read_text())
+    eq(saved.deadline_at, envelope.deadline_at, "original deadline preserved")
+    check((root / envelope.output_path).exists(), "previous failure retained")
+
+
+@test("repair rejects changed premise, stale evidence, semantic boundary and owner", kind="known_bad")
+def t_repair_boundaries():
+    from pipeline_runtime import execute_repair
+    for key, value in (("hypothesis_sha256", "b" * 64), ("owner_id", "replacement"),
+        ("boundary", "placement_feasibility_adopted"), ("d_back", True),
+        ("context_used_pct", 70), ("improved", True)):
+        root, envelope, _, assessment = repair_fixture()
+        assessment[key] = value
+        try:
+            execute_repair(envelope, [sys.executable, "-c", "pass"], cwd=root, env={},
+                           assessment=assessment, console=None)
+        except ValueError:
+            pass
+        else:
+            raise AssertionError(f"repair admitted {key}={value}")
+
+
+@test("repair relabeling and branching cannot reset total spend", kind="known_bad")
+def t_repair_budget():
+    from dataclasses import replace
+    from pipeline_runtime import execute_repair
+    root, envelope, _, assessment = repair_fixture(cap=2)
+    current = execute_repair(envelope, [sys.executable, "-c", "pass"],
+                            cwd=root, env={}, assessment=assessment, console=None)
+    path = root / current.output["continuation"]["attempt_path"]
+    saved = TaskEnvelope.from_json(path.with_name("envelope.json").read_text())
+    for candidate in (saved, replace(saved, task_id="renamed-task"), envelope):
+        try:
+            execute_repair(candidate, [sys.executable, "-c", "pass"], cwd=root, env={},
+                           assessment=assessment, console=None)
+        except (ValueError, FileExistsError):
+            pass
+        else:
+            raise AssertionError("exhausted or branched task restored spend")
+
+
+@test("initial launch cannot reset repair allowance by renaming task or owner", kind="known_bad")
+def t_repair_initial_replay():
+    # RED against 022af552 runtime: a new task-run name restored initial spend.
+    from dataclasses import replace
+    root, envelope, _, _ = repair_fixture()
+    for candidate in (replace(envelope, task_id="renamed-task", output_path="06_build/task_runs/replay/attempt.json"),
+                      replace(envelope, repair=dict(envelope.repair, owner_id="new-owner"),
+                              output_path="06_build/task_runs/replay-owner/attempt.json")):
+        try:
+            execute_attempt(candidate, [sys.executable, "-c", "pass"], cwd=root, env={}, console=None)
+        except FileExistsError:
+            pass
+        else:
+            raise AssertionError("fresh initial launch reset the original campaign allowance")
+
+
+@test("repair refuses stale cited evidence", kind="known_bad")
+def t_repair_stale_and_late():
+    from pipeline_runtime import execute_repair
+    root, envelope, _, assessment = repair_fixture()
+    (root / assessment["evidence"][0]["path"]).write_text("replaced evidence")
+    try:
+        execute_repair(envelope, [sys.executable, "-c", "pass"], cwd=root, env={},
+                       assessment=assessment, console=None)
+    except ValueError as exc:
+        check("stale repair evidence" in str(exc), "specific stale evidence rejection")
+    else:
+        raise AssertionError("stale repair evidence admitted")
+
+
+@test("task cannot pass after deleting its retained child log", kind="known_bad")
+def t_deleted_log():
+    root = tmpdir("task_deleted_log_"); (root / "input.txt").write_text("input")
+    envelope = delivery_envelope(root)
+    code = delivery_code(envelope) + "; (p.parent/'attempt.json.log').unlink()"
+    attempt = execute_attempt(envelope, [sys.executable, "-c", code], cwd=root, env={}, console=None)
+    eq(attempt.status, "INCOMPLETE", "lost log prevents complete evidence")
+    check(any('log is missing' in row['detail'] for row in attempt.unresolved), "loss is explicit")
+
+
 if __name__ == "__main__":
     raise SystemExit(main())

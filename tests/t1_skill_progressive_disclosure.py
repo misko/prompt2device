@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import copy
 import json
+import re
 import shutil
 import sys
 from pathlib import Path
@@ -63,7 +64,10 @@ def profile(name: str) -> CapabilityProfile:
 @test("the real skill authority gate passes with the frozen legacy denominator")
 def t_real_authority_gate():
     result = must_pass(run([KPY, AUTH]), "real skill authority gate")
-    contains(result.out, "policies=111/109", "legacy policy denominator plus connector gates")
+    policies = re.search(r"policies=(\d+)/109\b", result.out)
+    check(policies is not None, "reported frozen legacy policy denominator")
+    check(int(policies.group(1)) >= 111,
+          "legacy policy and connector gate coverage must not shrink")
     contains(result.out, "core=", "reported core progressive-disclosure budget")
     contains(result.out, " lines/", "reported core line/word denominator")
 

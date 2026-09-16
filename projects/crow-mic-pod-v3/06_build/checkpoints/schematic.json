@@ -1,0 +1,35 @@
+{
+  "files": {
+    "03_src/rebuild_all.sh": {
+      "sha256": "ad6630b82a748b679b3c2e35b862e6a6042463b90ca5b44c3480a151f97a9ba0",
+      "size": 38164
+    },
+    "03_tscircuit/build/circuit.json": {
+      "sha256": "05e07265ce6757d371299c43bb5bf1148968e06fa6bc34c7f9add5ecb7b4eded",
+      "size": 503271
+    },
+    "03_tscircuit/build/schematic.pdf": {
+      "sha256": "bd164975e792d44f4cc1783125b3d4231ea0d0db795c1387e81a287040491ed3",
+      "size": 120087
+    },
+    "03_tscircuit/manifest.yaml": {
+      "sha256": "f94fbbbd561a9ff6cbe0c7d20f1305e3fad054fe680fbbd951ee6c7e0b891b30",
+      "size": 413
+    },
+    "04_kicad/crow_mic_pod_v3.kicad_sch": {
+      "sha256": "bab66f091c5bc580c17bf7d02749f514b70521bee0beafa78be34bd6cc6418d3",
+      "size": 115204
+    },
+    "06_build/build_provenance.json": {
+      "sha256": "529922416fbcc1cce1685788a101374106721411641de37c29bf34671c0df613",
+      "size": 794
+    },
+    "06_build/netlists/crow_mic_pod_v3.net": {
+      "sha256": "31af563ff47ff578fc9a7a0455e12e16ea194ffa316d3ddc27d17bf836ce37ba",
+      "size": 72585
+    }
+  },
+  "name": "schematic",
+  "project": "crow-mic-pod-v3",
+  "schema": 1
+}

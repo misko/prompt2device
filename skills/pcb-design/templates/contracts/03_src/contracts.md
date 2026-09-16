@@ -548,6 +548,7 @@ two cannot drift apart without the router failing to find its own pass.
 | `stitch.endpoint_length_matching.*` | `copper_length_audit.py` | exact mechanism/verification/group bindings; elongation is credited only when canonicalize_chains is enabled and carries matching group-tagged edits |
 | `stitch.canonicalize_chains.*` | `route_and_stitch_generic.py` | exact source-declared remove/add rewrites that replace fragmented same-net segment chains before later stitch cleanup; stale or partially applied geometry is a hard error |
 | `stitch.protect_via_in_pad.*` | `route_and_stitch_generic.py` | post-route exact pad-hit census and item-level cap/fill promotion for every realised via inside an SMT land; config declares the protected via geometry, protection modes, and minimum expected count |
+| `stitch.restore_exact_geometry.*` | `route_and_stitch_generic.py` | exact, idempotent via/segment transactions with complete old/new geometry; rejects stale/mixed identities and occupied targets before restoring source-owned copper |
 | `stitch.protect_via_family.*` | `route_and_stitch_generic.py` | post-route promotion of every realized via with one exact size/drill pair to filled+capped intent; never resizes or touches another via family |
 | `stitch.bridge_via_endpoints.*` | `route_and_stitch_generic.py` | strictly copper-contained same-net endpoint-to-via topology bridge, run before any barrel cleanup |
 | `stitch.via_janitor.*` | `route_and_stitch_generic.py` | minimum attached-layer count and local pad-search window for removing unused single-layer barrels |

@@ -1,0 +1,302 @@
+# Crow microphone pod v3 route/stitch contract. GND is owned by continuous
+# two-layer pours and stitching; no controlled-impedance or timing pair exists.
+
+project:
+  name: crow_mic_pod_v3
+  board: 04_kicad/crow_mic_pod_v3.kicad_pcb
+  build_dir: 06_build/route
+
+flow:
+  heartbeat_s: 10
+  # Layout sealing must resume the already reviewed, hash-pinned schematic.
+  # A bare rebuild would intentionally refuse at the preserved prelayout
+  # checkpoint rather than rerun tscircuit's nondeterministic producer.
+  rebuild_args: [--resume-after-schematic-review]
+  pre_route_reviews:
+    board: 04_kicad/crow_mic_pod_v3.kicad_pcb
+    netlist: 06_build/netlists/crow_mic_pod_v3.net
+    topology: 08_reviews/pre-route_topology.md
+    schematic_pdf: 03_tscircuit/build/schematic.pdf
+    schematic_render: 08_reviews/pre-route_schematic_render.md
+    pin: 08_reviews/pre-route_pin.md
+    layout: 08_reviews/pre-route_layout.md
+    render: 08_reviews/pre-route_render.md
+    # model_registration_gate.py emits the placement-bound A-RENDER verdict
+    # here; no separate catalog-twin overlay is produced before routing.
+    a_render: 06_build/pre_route/model_registration.md
+  owner:
+    stage: routing
+    files: [03_src/route.yaml, 03_src/floorplan.yaml]
+  copper:
+    deterministic: [prep.seed_stubs, taps.connections, stitch.seed_stubs]
+    stochastic: [route.waves]
+  budgets_s:
+    tscircuit_deps: 30
+    tscircuit_build: 60
+    escape_packages: 30
+    escape_lands: 120
+    tier_preflight: 15
+    grind: 900
+    rebuild: 1200
+    layout_drc: 120
+  timeouts_s:
+    default: 600
+    source_schema_governance: 60
+    adr_bound_governance: 60
+    tscircuit_deps: 120
+    tscircuit_build: 180
+    route_wave: 900
+    route_race: 2400
+    route_evaluate: 180
+    route_import: 300
+    stitch: 900
+    rebuild: 1500
+    layout_drc: 180
+  blockers: []
+
+prep:
+  out: r0.kicad_pcb
+  keepouts:
+    layers: [User.2]
+    mounting_holes: {radius: 3.0}
+    edge_band: 0.5
+    rects:
+      # J1's two unplated 3 mm locating holes are not signal-routing space.
+      - {x0: 45.8, y0: 22.8, x1: 49.5, y1: 26.5, layer: User.2}
+      - {x0: 50.5, y0: 22.8, x1: 54.2, y1: 26.5, layer: User.2}
+      # Keep the router out of the local U2/C6/C5 output-bypass cell. Its
+      # source-owned F.Cu chain is intentionally same-side and via-free.
+      - {x0: 30.0, y0: 45.8, x1: 33.1, y1: 51.1, layer: User.2}
+  # Safety- and stability-critical copper is source-owned here.  Every local
+  # regulator and protection path is F.Cu/via-free; only the noncritical EN
+  # return and distributed 5 V trunk use deliberate, off-pad layer changes.
+  # The realized-route checker independently reopens the saved board and
+  # proves pad-to-pad lengths, branch order and layer changes.
+  seed_stubs:
+    # Match the board's governed 0.15 mm class clearance.  The 0.65 mm-pitch
+    # U2 launch has exactly 0.15 mm pad-to-pad space beside a 0.50 mm trace;
+    # using a stricter ad-hoc seed clearance would reject otherwise legal
+    # class-compliant copper at the package throat.
+    clearance: 0.15
+    via: {size: 0.6, drill: 0.3}
+    stubs:
+      - net: LDO_FB
+        pin: U2.2
+        segments:
+          # C3 is the feed-forward capacitor.  Its FB land is the first
+          # destination from the regulator FB pin.  The divider lands are
+          # then completed on F.Cu so KRT cannot use a via inside U2.2 or R1.2.
+          - {layer: F.Cu, width: 0.26, pts: [[34.675, 47.150], [34.675, 48.000], [35.080, 49.200]]}
+          - {layer: F.Cu, width: 0.26, pts: [[35.080, 49.200], [36.200, 49.490], [36.900, 49.490], [37.400, 50.510], [38.000, 50.510]]}
+      - net: LDO_NR
+        pin: U2.6
+        segments:
+          - {layer: F.Cu, width: 0.26, pts: [[35.325, 42.850], [35.300, 40.980]]}
+      - net: VIN_PROTECTED
+        pin: D1.1
+        segments:
+          # D2 is the first and only destination on the exposed D1.1 branch.
+          # All LDO/input-cap loads fan out from D2.1 after the TVS clamp.
+          - {layer: F.Cu, width: 0.50, pts: [[37.500, 34.500], [36.800, 35.850], [27.300, 35.850]]}
+          # Leave D2 in the opposite direction so no downstream tee can sit
+          # on the connector-side D1-to-D2 segment.  TP2 is inline evidence,
+          # not a dead-end branch.
+          - {layer: F.Cu, width: 0.50, pts: [[27.300, 35.850], [25.200, 37.000], [24.000, 40.000], [24.000, 43.000], [30.000, 42.783333], [31.500, 42.675]]}
+          # Each required input capacitor has its own direct U2.8 route; one
+          # nearby capacitor can no longer mask a long route to the other.
+          - {layer: F.Cu, width: 0.50, pts: [[34.025, 42.850], [33.400, 42.850]]}
+          - {layer: F.Cu, width: 0.50, pts: [[33.400, 42.850], [31.500, 42.675]]}
+          - {layer: F.Cu, width: 0.50, pts: [[33.400, 42.850], [32.480, 44.200]]}
+          # EN is tied into the same protected tree deterministically.  A
+          # short top-layer escape reaches a legal via, crosses the dense LDO
+          # cell on B.Cu, and returns after D2.  With every VIN terminal
+          # connected before KRT, the router cannot replace either mandatory
+          # U2-to-input-cap branch while pruning a later redundant cycle.
+          - {layer: F.Cu, width: 0.50, pts: [[35.975, 42.850], [37.000, 42.850]]}
+          - {layer: B.Cu, width: 0.50, pts: [[37.000, 42.850], [37.000, 38.000], [30.000, 38.000], [30.000, 42.783333]]}
+          # R14 belongs to the protected side and cannot create a pre-D2 tee.
+          # It leaves the already-clamped TP2-to-C1 corridor from the left,
+          # avoiding C2's grounded second land.
+          - {layer: F.Cu, width: 0.50, pts: [[30.000, 42.783333], [30.000, 45.500], [28.000, 47.4625]]}
+        vias: [[37.000, 42.850], [30.000, 42.783333]]
+      - net: OUTP_FB
+        pin: R11.2
+        segments:
+          - {layer: F.Cu, width: 0.26, pts: [[64.000, 53.490], [65.000, 53.490]]}
+      - net: AUDIO_P
+        pin: J1.3
+        segments:
+          # Connector -> clamp is a complete direct path.  Every resistor and
+          # probe connection launches from the clamp pad, never before it.
+          - {layer: F.Cu, width: 0.25, pts: [[51.500, 28.420], [50.900, 30.650], [50.900, 31.650], [51.6875, 31.650]]}
+          - {layer: F.Cu, width: 0.25, pts: [[51.6875, 31.650], [51.400, 31.650], [51.400, 33.000]]}
+          - {layer: F.Cu, width: 0.26, pts: [[51.400, 33.000], [57.900, 33.000], [57.900, 32.500]]}
+          - {layer: F.Cu, width: 0.26, pts: [[57.900, 32.500], [57.9125, 36.000]]}
+      - net: AUDIO_N
+        pin: J1.4
+        segments:
+          # Connector-first negative leg: J1.4 reaches the clamp before any
+          # resistor or probe branch, mirroring the compact positive leg.
+          - {layer: F.Cu, width: 0.26, pts: [[54.500, 28.420], [53.1125, 29.500], [53.1125, 30.650]]}
+          - {layer: F.Cu, width: 0.26, pts: [[53.1125, 30.650], [54.500, 30.650], [54.500, 31.300], [62.900, 31.300], [62.900, 32.500]]}
+          - {layer: F.Cu, width: 0.26, pts: [[62.900, 32.500], [62.9125, 36.000]]}
+      - net: VREF_RAW
+        pin: R7.1
+        segments:
+          # Complete the four-pad bias net on F.Cu before KRT runs. Keeping
+          # this low-current divider/reference trace deterministic prevents
+          # an unnecessary layer change on either 0402 resistor land.
+          - {layer: F.Cu, width: 0.26, pts: [[46.000, 44.490], [44.500, 44.490], [44.500, 48.510], [46.000, 48.510], [47.000, 48.510], [47.000, 47.450], [49.000, 47.450], [52.000, 47.730], [55.025, 47.730]]}
+      - net: VREF
+        pin: U1.2
+        segments:
+          - {layer: F.Cu, width: 0.26, pts: [[55.025, 46.460], [53.500, 46.460]]}
+      - net: 5V_QUIET
+        pin: U2.1
+        segments:
+          # HF bypass, bulk output and CFF source each have a direct local
+          # route from OUT.  All three remain same-side and via-free.  The
+          # rest of this low-current rail is also source-owned as one acyclic
+          # tree so KRT cannot prune the regulator's mandatory seed copper.
+          - {layer: F.Cu, width: 0.50, pts: [[34.025, 47.150], [32.480, 47.000]]}
+          - {layer: F.Cu, width: 0.50, pts: [[34.025, 47.150], [33.600, 48.000], [32.600, 49.500]]}
+          - {layer: F.Cu, width: 0.50, pts: [[34.025, 47.150], [33.400, 47.150], [34.120, 49.200]]}
+          # Feedback-divider supply and west-side service probe.
+          - {layer: F.Cu, width: 0.40, pts: [[34.120, 49.200], [34.120, 49.430], [35.200, 50.510], [36.200, 50.510]]}
+          - {layer: F.Cu, width: 0.40, pts: [[36.200, 50.510], [37.000, 51.500]]}
+          - {layer: F.Cu, width: 0.50, pts: [[32.600, 49.500], [33.000, 51.100], [28.100, 51.100], [24.000, 47.000]]}
+          # Main trunk crosses the quiet cell on B.Cu, returning to F.Cu at
+          # controlled off-pad vias before the divider and op-amp loads.
+          - {layer: B.Cu, width: 0.50, pts: [[37.000, 51.500], [39.000, 49.500], [39.000, 49.200]]}
+          - {layer: F.Cu, width: 0.50, pts: [[39.000, 49.200], [43.800, 44.400], [43.800, 44.200], [44.300, 43.700], [46.500, 43.700], [46.900, 44.100], [46.900, 44.800]]}
+          - {layer: F.Cu, width: 0.50, pts: [[46.900, 44.800], [46.700, 45.000], [46.700, 45.100], [46.300, 45.500], [46.000, 45.510]]}
+          - {layer: F.Cu, width: 0.50, pts: [[46.900, 44.800], [47.400, 45.300], [48.200, 44.500], [50.500, 44.500], [52.500, 46.500], [52.800, 46.900]]}
+          - {layer: B.Cu, width: 0.50, pts: [[52.800, 46.900], [54.500, 48.600]]}
+          - {layer: F.Cu, width: 0.50, pts: [[54.500, 48.600], [54.900, 49.000], [55.025, 49.000], [53.080, 49.000]]}
+          # North-east branch supplies the rail bulk and microphone bias.
+          - {layer: F.Cu, width: 0.50, pts: [[52.500, 46.500], [52.800, 46.200], [52.800, 46.100], [53.500, 45.400], [53.500, 44.800], [55.300, 43.000], [55.300, 42.100]]}
+          - {layer: B.Cu, width: 0.50, pts: [[55.300, 42.100], [56.900, 42.100]]}
+          - {layer: F.Cu, width: 0.50, pts: [[56.900, 42.100], [58.000, 41.000], [58.050, 41.000]]}
+          - {layer: F.Cu, width: 0.50, pts: [[58.000, 41.000], [60.000, 39.000], [63.0875, 39.000]]}
+        vias: [[37.000, 51.500], [39.000, 49.200], [52.800, 46.900], [54.500, 48.600], [55.300, 42.100], [56.900, 42.100]]
+      - net: MIC_AC
+        pin: R5.1
+        segments:
+          # Give the stochastic wave a legal off-pad launch.  Without this
+          # bounded top-layer escape KRT placed its first layer-change via
+          # inside the 0402 land, which the manufacturing guard rejects.
+          - {layer: F.Cu, width: 0.26, pts: [[64.500, 43.510], [65.250, 43.510]]}
+      - net: PRE_OUT
+        pin: U1.7
+        segments:
+          # Exit the SOIC land before the router owns the remaining fanout;
+          # this prevents a via-in-pad at U1.7 while preserving route freedom.
+          - {layer: F.Cu, width: 0.26, pts: [[55.025, 52.810], [53.500, 52.810]]}
+  waves:
+    exclude: ["GND", "unconnected-*"]
+    groups:
+      audio: [AUDIO_P, AUDIO_N, OUTP_DRV, OUTP_FB, PRE_OUT, PRE_FB, MIC_AC, MIC_RAW, VREF, VREF_RAW, SPARE_BUF]
+      power: [12V_POD, 12V_FUSED, VIN_PROTECTED, 5V_QUIET, MIC_BIAS]
+      aux: rest
+
+route:
+  # This is a deliberate first route of the corrected topology.  The old
+  # promoted chain contains the obsolete OUTN_DRV net and is never eligible
+  # for import.  A newly graded build candidate is promoted only after all
+  # realized-route and independent layout reviews pass.
+  # The exact accepted pre-stitch KRT chain is source-promoted below.  Reuse
+  # imports this chain into a freshly generated, track-free placement and then
+  # deterministically owns GND stitching, zones, rule generation and final
+  # acceptance.  Never source-promote the already stitched/poured board.
+  final: 03_src/route/final_chain.kicad_pcb
+  import_source: promoted
+  # Route only with the clean detached worktree pinned below.  The primary
+  # KiCadRoutingTools checkout contains unrelated local edits and is not a
+  # reproducible routing authority.
+  krt: /home/mouse9911/gits/KiCadRoutingTools-worktrees/cccv-5a1bdc4
+  ownership_preflight: {mode: enforce}
+  candidate_grade: {mode: enforce}
+  wave_drc: true
+  forbid_new_via_in_pad: true
+  exploration_guard:
+    mode: enforce
+    plateau_attempts: 2
+    max_attempts: 5
+    max_novel_signatures: 3
+    max_operation_amplification: 8
+  preflight_critical_pairs: []
+  no_critical_routes: >-
+    All signals are ordinary audio or DC below 20 kHz and therefore have no
+    controlled-impedance differential-pair timing contract. Connector-first
+    clamp order, regulator bypass proximity and probe-stub limits are governed
+    separately by the pod realized-route checker.
+  common:
+    layers: [F.Cu, B.Cu]
+    via_size: 0.6
+    via_drill: 0.3
+    fab_tier: standard
+    no_stub_layer_swap: true
+    no_power_tap_neckdown: true
+    keepout: true
+    keepout_layer: User.2
+    clearance: 0.2
+  race: 3
+  kicad_python: /usr/bin/python3
+  waves:
+    # 0.26 mm prevents 1-2 um grid/diagonal quantization from dropping an
+    # emitted segment below the 0.25-mm BALANCED_AUDIO floor.
+    - {name: audio, group: audio, track_width: 0.26, max_iterations: 800000, max_probe_iterations: 60000, max_ripup: 30}
+    - {name: power, group: power, track_width: 0.5, max_iterations: 500000}
+    - {name: aux, group: aux, track_width: 0.26, max_iterations: 500000}
+
+stitch:
+  clearance: 0.15
+  via:
+    size: 0.6
+    drill: 0.3
+    spacing: 0.85
+    pth_margin: 0.3
+    # The explicit screen matches the governed 0.25 mm hole-clearance floor
+    # plus the router's 5 um numerical guard. A* inherits this exact tier.
+    tiers: [{size: 0.6, drill: 0.3, hole_to_copper: 0.255}]
+  keepin: {inset: 0.8}
+  passes: [dedupe_vias, normalize_vias, drop_micro_fragments, drop_dangling,
+           split_t_junctions, reload, hole_to_hole, pad_rescue, stub_fallback,
+           astar_fallback, seed_stubs, stitch_grid, fill, island_rescue, fill,
+           unify_zone_priorities, heal_islands, gate]
+  unify_zone_priorities: {min_bbox: 0.8}
+  dedupe_vias: {radius: 0.5, metric: box}
+  normalize_vias: {below_width: 0.449, size: 0.6, drill: 0.3}
+  drop_micro_fragments: {max_length: 0.12, require_free_end: true}
+  drop_dangling: {max_length: 1.0, tol: 0.05, sweeps: 4}
+  split_t_junctions: {tol: 0.05}
+  hole_to_hole: {min_gap: 0.5, mode: nudge, prefer_keep: [GND]}
+  pad_rescue:
+    net: GND
+    via_in_pad: false
+    served_within: 1.6
+    rings: [0.75, 0.95, 1.2, 1.6, 2.1, 2.7]
+    stub_width: 0.3
+    require: none
+  stub_fallback: {net: GND, min_dist: 0.2, max_dist: 8.0, width: 0.3}
+  astar_fallback: {net: GND, width: 0.25, window: 3.0, attempts: 3}
+  seed_stubs:
+    clearance: 0.15
+    via: {size: 0.6, drill: 0.3}
+    stubs:
+      - net: GND
+        pin: C5.2
+        # C5.2 sits inside a small F.Cu pour pocket bounded by the nearby
+        # 5V_QUIET escape. Bond that pocket to the continuous B.Cu plane with
+        # one legal off-pad barrel; the exact line and via both clear live
+        # foreign copper at the board's full 0.15 mm clearance screen.
+        segments:
+          - {layer: F.Cu, width: 0.25, pts: [[30.510, 49.000], [29.310, 48.000]]}
+        vias: [[29.310, 48.000]]
+  stitch_grid:
+    net: GND
+    x: [23, 77, 7]
+    y: [23, 57, 7]
+    avoid: [{x0: 41.5, y0: 20.0, x1: 58.5, y1: 30.5, margin: 0.8}]
+  island_rescue: {min_bbox: 0.8, layers: [F.Cu, B.Cu], require: all}
+  heal_islands: {min_bbox: 0.8}

@@ -28,6 +28,7 @@ mutable index.
 | `pre-route_pin.md` | placement-phase physical-pin review bound to exact board, parts and adopted design-rule hashes |
 | `pre-route_layout.md` | placement-phase layout review bound to exact board and adopted design-rule hashes |
 | `pre-route_render.md` | placement-phase render review bound to exact board and adopted design-rule hashes |
+| `connector_orientation.yaml` | Gate-written explicit human connector-orientation approval; fresh schema 1 binds exact verified existing review-image keys/hashes, complete scene/camera semantic subject, reference census and tool identity. No approval-time rerender; closed receipt metadata must agree with fresh full semantic/machine expectations and hashed native commands/producer board bytes. Original rendered and latest observed board hashes have separate retained byte evidence. Subject-only relabels and missing/extra/duplicate/contradictory fields refuse; absent/stale/tampered bundles require new review. Existing schema 2 preserves unchanged-semantic pixel regeneration only; both schemas stale on scene/camera change |
 | `rf_schematic.md` `rf_pcb.md` `rf_fab.md` | canonical independent RF witnesses bound to the exact schematic, board, or plotted-fab subject required by `rf.yaml` |
 | `<date>_pre-D*.md` | immutable decision-delta review retained when a later directive supersedes the canonical witness |
 | `<date>_<subject>_<source>_<lens>.md` | one review, verbatim (e.g. `2026-07-21_v1.0_redteam_topology.md`, `2026-07-21_v1.0_external-llm_full.md`) |
@@ -207,3 +208,26 @@ until the declared first-article VNA/TDR acceptance measurements pass.
   `VERDICT AT RUN TIME: **DO NOT ORDER.**`, a sealed release carrying a
   DO-NOT-ORDER review nobody read. A prose rule eventually gets skipped
   (canon M2).
+
+
+## Selected locator usability acceptance
+
+When a project selects an assembly locator, the existing independent render
+review also grades its exact visible pages and interactive identification.
+`assembly_locator_check.py` requires these header fields in the configured
+pre-route render review and the sealed `verification/render_review.md`:
+
+| Field | Required evidence |
+|---|---|
+| `reviewer`, `completed_at` | Identity of the independent reviewer and completion date |
+| `review_kind`, `design_verdict` | `render` and `SOUND` |
+| `board_sha256` | Exact board named by the locator manifest |
+| `locator_manifest_sha256` | SHA-256 of the exact reviewed `assembly_locator_manifest.json` |
+| `locator_reviewed_refs` | JSON array naming every exception reviewed, once each |
+
+The manifest binds all HTML/JSON/PDF/PNG bytes and source tools. Changing visible
+pixels and refreshing their hashes invalidates this existing review; structural
+checks alone cannot renew visual acceptance. The producer never writes these
+fields or issues a review. Preserve the independent report verbatim under the
+ordinary dated review and sealed-copy rules. Missing, stale, partial, duplicate
+or non-SOUND acceptance blocks placement and release.

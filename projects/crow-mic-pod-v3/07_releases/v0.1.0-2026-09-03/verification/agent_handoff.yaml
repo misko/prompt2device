@@ -1,0 +1,83 @@
+schema: 2
+generated_at: '2026-09-03T19:24:04+00:00'
+project: crow-mic-pod-v3
+board_id: crow_mic_pod_v3
+stage: layout_sealed
+inputs:
+  source: sha256:b56190c8c25c0f3a72900bb69ed7f8a7761663431925103d52b7ac17a80b6de5
+  board: sha256:a932200e0976418383fae0c131dfe2a5768c00ef261b611762ccd3507f05ca8f
+  tools: sha256:cb189f9f40bdbf2d52f7b2cb6fea4d86670760a7eb1786cf69ff842983c11b19
+  gate: sha256:52666334dc34f19355f0167dcea12fdf76e7da208ea153f9b49efd2cf9220d19
+  board_path: 04_kicad/crow_mic_pod_v3.kicad_pcb
+metrics:
+  drc:
+    violations: 0
+    unconnected: 0
+    parity: 0
+  timing_s:
+    stitch:astar_fallback: 0.001
+    stitch:seed_stubs: 0.004
+    stitch:stitch_grid: 0.051
+    stitch:fill: 0.058
+    stitch:island_rescue: 0.006
+    stitch:unify_zone_priorities: 0.0
+    stitch:heal_islands: 0.011
+    stitch:gate: 0.0
+    stitch: 1.327
+    rf_realized: 0.061
+    route_acceptance: 1.146
+    rebuild: 22.784
+    board_bom_identity: 0.368
+    module_first: 0.081
+    build_freshness: 0.041
+    early_design: 0.146
+    net_label_survival: 0.048
+    electrical_invariants: 0.058
+    adr_coverage: 0.058
+    power_topology: 0.11
+    power_margin: 0.049
+    off_control: 0.043
+    count_parity: 0.041
+    circuit_bom: 0.106
+    rf_contract: 0.042
+    rf_context: 0.058
+    rf_solver: 0.054
+    rf_source: 0.058
+    pre_route_schematic: 0.1
+    tier_preflight: 0.073
+    escape_packages: 0.076
+    route_prep: 0.584
+    route_import: 0.895
+    route_taps: 0.221
+    stitch:dedupe_vias: 0.0
+    stitch:normalize_vias: 0.0
+    stitch:drop_micro_fragments: 0.006
+    stitch:drop_dangling: 0.002
+    stitch:split_t_junctions: 0.047
+    stitch:reload: 0.0
+    stitch:hole_to_hole: 0.001
+    stitch:pad_rescue: 0.093
+    stitch:stub_fallback: 0.0
+    placement_clearance: 0.313
+    critical_pair_map: 0.184
+    escape_lands: 2.424
+    pad_separation: 0.234
+    placement_policy: 1.032
+    rf_placement: 0.055
+    critical_route_connected: 0.28
+    via_ampacity: 0.191
+    via_process: 0.303
+    rf_reviews: 0.044
+    layout_drc: 0.773
+    route_acceptance_verify: 0.217
+owner:
+  stage: routing
+  files:
+  - 03_src/route.yaml
+  - 03_src/floorplan.yaml
+blockers: []
+commands:
+  preflight: /usr/bin/python3 skills/kicad-pcb/scripts/pcb_flow.py preflight /home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-mic-pod-v3
+  grind: /usr/bin/python3 skills/kicad-pcb/scripts/pcb_flow.py grind /home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-mic-pod-v3
+  layout_seal: /usr/bin/python3 skills/kicad-pcb/scripts/pcb_flow.py layout-seal /home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-mic-pod-v3
+scope: PCB layout only; fabrication/PCBA release gates are not sealed

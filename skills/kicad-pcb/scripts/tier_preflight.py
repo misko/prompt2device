@@ -317,6 +317,11 @@ class Preflight:
         out = []
         for sc in (self.nets.get("scoped_clearances") or []):
             sc = sc or {}
+            # A package-land exception licenses no track/via clearance.
+            # Malformed values are refused by the emitter; they must not
+            # provide route authority here in the meantime either.
+            if sc.get("pads_only", False) is not False:
+                continue
             v = _mm(sc.get("clearance"))
             if sc.get("zone") and v is not None:
                 scoped_nets = (list(sc.get("nets") or [])

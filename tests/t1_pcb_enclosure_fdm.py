@@ -3,8 +3,10 @@
 from __future__ import annotations
 
 import copy
+from contextlib import redirect_stdout
 import hashlib
 import importlib.util
+import io
 import json
 import math
 import os
@@ -1508,9 +1510,6 @@ def t_v2_collision_swap_bites():
 
 @test("fleet audit counts only declared release meshes and grandfathers predecessors")
 def t_fleet_policy():
-    result = run([KPY, FLEET, "--root", ROOT])
-    eq(result.rc, 0, "real fleet audit")
-    contains(result.out, "releases=")
     report = fdm_audit_fleet_report()
     check(report["release_count"] >= 12, "established enclosure releases disappeared")
     check(report["printable_count"] >= 48, "established printable census shrank")
@@ -1532,9 +1531,27 @@ def fdm_audit_fleet_report() -> dict:
     # collision validator and makes test order affect the result.
     previous_runner = v2._COLLISION_PROCESS_RUNNER
     v2._COLLISION_PROCESS_RUNNER = None
+    # Exercise the actual CLI handler and retain its actual audit result.
+    # Do not replay every sealed CAD release twice just to inspect the counts.
+    reports = []
+    original_audit = module.audit_fleet
+
+    def capture_audit(root):
+        report = original_audit(root)
+        reports.append(report)
+        return report
+
+    module.audit_fleet = capture_audit
+    output = io.StringIO()
     try:
-        return module.audit_fleet(ROOT)
+        with redirect_stdout(output):
+            status = module.main(["--root", str(ROOT)])
+        eq(status, 0, "real fleet audit CLI")
+        contains(output.getvalue(), "releases=")
+        eq(len(reports), 1, "one complete fleet replay")
+        return reports[0]
     finally:
+        module.audit_fleet = original_audit
         v2._COLLISION_PROCESS_RUNNER = previous_runner
 
 

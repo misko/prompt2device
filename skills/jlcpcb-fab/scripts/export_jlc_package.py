@@ -781,6 +781,24 @@ roles = {
     "drill": [_artifact_record(path) for path in fresh
               if path.suffix.lower() == ".drl"],
 }
+# A selected locator is part of this exact assembly export. The independent
+# checker must accept it before the producer can publish its artifact index.
+_locator_config = next((parent / "03_src/rules/assembly_locator.yaml"
+                        for parent in Path(args.board).resolve().parents
+                        if (parent / "03_src/rules/assembly_locator.yaml").is_file()), None)
+if _locator_config is not None:
+    from assembly_locator import generate as generate_locator
+    from assembly_locator_check import check as check_locator
+    try:
+        locator_files = generate_locator(args.board, bom_path, cpl_path, _locator_config, out)
+        locator_result = check_locator(args.board, bom_path, cpl_path, _locator_config, out)
+    except (OSError, KeyError, TypeError, ValueError, AttributeError) as exc:
+        sweep_uploadable(bom_path, cpl_path, zip_path, out / "artifact_index.json",
+                         out / "assembly_locator_manifest.json", why="A-LOCATOR failed")
+        print(f"A-LOCATOR BLOCKED: {exc}")
+        sys.exit(4)
+    roles["assembly_locator"] = [_artifact_record(path) for path in locator_files]
+    print("A-LOCATOR PASS: " + json.dumps(locator_result, sort_keys=True))
 if order_notes_path.is_file():
     roles["via_order_note"] = [_artifact_record(order_notes_path)]
 artifact_index = {

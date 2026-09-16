@@ -13,6 +13,7 @@ from harness import check, contains, main, run, test
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 RENDERER = ROOT / "skills/kicad-pcb/scripts/render_schematic_pdf.mjs"
 ALIGNER = RENDERER
+TOOLCHAIN = ROOT / 'projects/crow-audio-carrier-v1/03_tscircuit/package.json'
 
 
 def component(number, sheet_id=None):
@@ -57,7 +58,7 @@ def render(circuit, aliases=None):
     source.write_text(json.dumps(circuit))
     source_before = hashlib.sha256(source.read_bytes()).hexdigest()
     command = ["node", str(RENDERER), str(source), str(output),
-               "--title", "FIXTURE"]
+               "--title", "FIXTURE", "--toolchain-package", str(TOOLCHAIN)]
     if aliases is not None:
         alias_path = directory / "net_aliases.txt"
         alias_path.write_text(aliases)
@@ -212,6 +213,36 @@ def t_canonical_net_names():
         tmp.cleanup()
 
 
+@test("explicit-wire net text is canonicalized but notes and custom text are not")
+def t_inline_net_names():
+    circuit = component(0)
+    circuit += [
+        {"type": "source_net", "source_net_id": "source_net_0", "name": "N5V_INTERNAL"},
+        {"type": "source_trace", "source_trace_id": "source_trace_0",
+         "connected_source_port_ids": [], "connected_source_net_ids": ["source_net_0"]},
+    ]
+    for i, (value, trace) in enumerate([
+        ("N5V_INTERNAL", "source_trace_0"),
+        ("N5V_INTERNAL", None),
+        ("N12V_CUSTOM_NOTE", "source_trace_0"),
+        ("N5V_INTERNAL", "missing_trace"),
+    ]):
+        circuit.append({"type": "schematic_text", "schematic_text_id": f"inline_{i}",
+                        "text": value, "source_trace_id": trace, "anchor": "center",
+                        "position": {"x": 0, "y": 2 + i}, "rotation": 0, "font_size": 0.18})
+    tmp, output, result, before, after = render(circuit, "N5V_INTERNAL 5V_CANONICAL\n")
+    try:
+        check(result.rc == 0, result.out)
+        check(before == after, "inline render changed exact input")
+        text = run(["pdftotext", str(output), "-"])
+        check(text.rc == 0, text.out)
+        check(text.out.count("5V_CANONICAL") == 1, "missing/overbroad inline alias")
+        check(text.out.count("N5V_INTERNAL") == 2, "note/orphan trace was rewritten")
+        contains(text.out, "N12V_CUSTOM_NOTE", "custom annotation preserved")
+    finally:
+        tmp.cleanup()
+
+
 @test("leading-N digit convention is canonicalized without an explicit alias")
 def t_implicit_digit_alias():
     circuit = component(0)
@@ -287,6 +318,108 @@ def t_zero_components():
         check(not output.exists(), "failed render left a PDF behind")
     finally:
         tmp.cleanup()
+
+
+@test("font-metric baselines preserve non-text geometry, content and rotated anchors")
+def t_materialized_baselines():
+    script = f'''
+      import {{ materializeTextBaselines }} from {json.dumps(RENDERER.as_uri())};
+      const metrics = {{unitsPerEm:1000, ascender:1069, descender:-293, xHeight:536}};
+      const baselines = ["central","middle","hanging","ideographic","text-before-edge","text-after-edge"];
+      const tree = {{name:"svg",attributes:{{}},children:[
+        {{name:"path",attributes:{{d:"M 0 0 L 10 0",stroke:"green"}},children:[]}},
+        ...baselines.map((b,i)=>({{name:"text",attributes:{{x:"100",y:"100",dy:"2",
+          transform:`rotate(${{i*90}} 100 100)`,"font-size":"20px","dominant-baseline":b}},
+          children:[{{type:"text",value:"ADC_MCLK 300Ω"}}]}}))]}};
+      const before = JSON.stringify(tree);
+      const normalized = materializeTextBaselines(tree, ()=>metrics);
+      const deltas = normalized.tree.children.slice(1).map(n=>Number(n.attributes.dy)-2);
+      const expected = [7.76,5.36,17.104,-5.86,21.38,-5.86];
+      if (deltas.some((v,i)=>Math.abs(v-expected[i])>1e-9)) throw new Error("wrong metrics");
+      if (before!==JSON.stringify(tree)) throw new Error("source AST mutated");
+      normalized.tree.children.slice(1).forEach((n,i)=>{{
+        if(n.attributes.x!=="100"||n.attributes.y!=="100"||
+          n.attributes.transform!==`rotate(${{i*90}} 100 100)`||
+          n.children[0].value!=="ADC_MCLK 300Ω") throw new Error("anchor/content changed");
+      }});
+      if(JSON.stringify(normalized.tree.children[0])!==JSON.stringify(tree.children[0])) throw new Error("wire changed");
+      console.log(normalized.corrections);
+    '''
+    result = run(['node', '--input-type=module', '--eval', script])
+    check(result.rc == 0, result.out)
+    check(result.out.strip() == '6', 'missing baseline denominator')
+
+
+@test("baseline conversion rejects unsupported units and invalid font metrics", kind="known_bad")
+def t_bad_baseline_inputs():
+    script = f'''
+      import {{ materializeTextBaselines }} from {json.dumps(RENDERER.as_uri())};
+      const good={{unitsPerEm:1000,ascender:1069,descender:-293,xHeight:536}};
+      const fixtures=[
+        [{{"font-size":"20%","dominant-baseline":"central"}},good],
+        [{{"font-size":"20px","dominant-baseline":"unrecognized"}},good],
+        [{{"font-size":"20px","dominant-baseline":"central",dy:"2em"}},good],
+        [{{"font-size":"20px","dominant-baseline":"central"}},{{...good,xHeight:NaN}}],
+      ];
+      let rejected=0;
+      for (const [attributes,metrics] of fixtures) {{
+        try {{ materializeTextBaselines({{name:"text",attributes,children:[]}},()=>metrics); }}
+        catch {{ rejected++; }}
+      }}
+      if(rejected!==4) throw new Error(`only ${{rejected}}/4 rejected`);
+      console.log("4/4 rejected");
+    '''
+    result = run(['node', '--input-type=module', '--eval', script])
+    check(result.rc == 0, result.out)
+
+
+@test("rasterized label and passive value clear their graphic borders")
+def t_rasterized_baselines():
+    from PIL import Image
+    with tempfile.TemporaryDirectory() as directory:
+        base = pathlib.Path(directory)
+        svg, png = base / 'fixture.svg', base / 'fixture.png'
+        script = f'''
+          import fs from "node:fs";
+          import {{createRequire}} from "node:module";
+          import {{ materializeTextBaselines }} from {json.dumps(RENDERER.as_uri())};
+          const require=createRequire({json.dumps(str(TOOLCHAIN))});
+          const {{parseSync,stringify}}=require("svgson");
+          const input=`<svg xmlns="http://www.w3.org/2000/svg" width="500" height="260">
+            <rect width="500" height="260" fill="white"/>
+            <rect x="20" y="50" width="330" height="56" stroke="red" stroke-width="2" fill="none"/>
+            <text x="40" y="78" font-family="Noto Sans" font-size="48" dominant-baseline="central">CLK_10kΩ</text>
+            <rect x="200" y="193" width="45" height="14" stroke="red" stroke-width="2" fill="none"/>
+            <text x="200" y="210" font-family="Noto Sans" font-size="20" dominant-baseline="hanging">300Ω</text>
+          </svg>`;
+          const {{tree}}=materializeTextBaselines(parseSync(input),()=>({{unitsPerEm:1000,ascender:1069,descender:-293,xHeight:536}}));
+          fs.writeFileSync({json.dumps(str(svg))},stringify(tree));
+        '''
+        result = run(['node', '--input-type=module', '--eval', script])
+        check(result.rc == 0, result.out)
+        result = run(['rsvg-convert','-f','png','-o',str(png),str(svg)])
+        check(result.rc == 0, result.out)
+        with Image.open(png) as loaded:
+            image = loaded.convert('RGB')
+            label_y = [y for y in range(30,125) for x in range(30,345)
+                       if max(image.getpixel((x,y))) < 80]
+            value_y = [y for y in range(175,250) for x in range(190,290)
+                       if max(image.getpixel((x,y))) < 80]
+        check(bool(label_y) and min(label_y) > 51 and max(label_y) < 105,
+              f'label touches outline: {min(label_y) if label_y else None}/{max(label_y) if label_y else None}')
+        check(bool(value_y) and min(value_y) > 208, 'passive value collides with lower body')
+
+
+@test("renderer refuses ambient toolchain fallback outside a project", kind="known_bad")
+def t_no_ambient_toolchain():
+    with tempfile.TemporaryDirectory() as directory:
+        source = pathlib.Path(directory) / 'circuit.json'
+        output = pathlib.Path(directory) / 'schematic.pdf'
+        source.write_text(json.dumps(component(0)))
+        result = run(['node',str(RENDERER),str(source),str(output)])
+        check(result.rc != 0, 'renderer silently used ambient CLI')
+        contains(result.out, 'no project-local toolchain package', 'toolchain diagnostic')
+        check(not output.exists(), 'missing toolchain left output')
 
 
 if __name__ == "__main__":

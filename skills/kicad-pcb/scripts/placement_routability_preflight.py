@@ -13,13 +13,16 @@ Optional ``route.routability.topology`` rows have this schema::
     kind: shunt                   # shunt|series_flow_through|series_directional
     signal_pads: ["1", "2"]
     return_pads: ["3"]           # required for shunt
-    pairs: [P1_PORT]
+    pairs: [P1_PORT]             # or signal_nets for non-critical analog nets
     why: "direct-on-trace USB clamp"
 
 When ``route.routability.require_topology`` is true, every footprint whose
 part dossier declares ``layout.route_topology.kind`` must have a matching row.
 The board row remains the instance authority; the dossier is the part-class
 authority.
+For non-critical analog circuits, ``signal_nets`` binds exact net names instead
+of inventing a controlled-impedance pair. It cannot overlap any critical pair
+or coexist with ``pairs``; critical routes still require the pair contract.
 
 Two optional source contracts close common placement-time omissions without
 turning this gate into a router:
@@ -329,6 +332,7 @@ def _topology(route_cfg: dict[str, Any], board: Any,
         inputs = [str(value) for value in raw.get("input_signal_pads") or []]
         outputs = [str(value) for value in raw.get("output_signal_pads") or []]
         row_pairs = [str(value) for value in raw.get("pairs") or []]
+        named_nets = raw.get("signal_nets")
         if not ref or ref in seen:
             findings.append(f"{where}.ref must be non-empty and unique")
         seen.add(ref)
@@ -378,8 +382,22 @@ def _topology(route_cfg: dict[str, Any], board: Any,
         elif inputs or outputs:
             findings.append(
                 f"{where}: input/output bank fields require series_flow_through")
-        if not row_pairs or any(name not in pairs for name in row_pairs):
-            findings.append(f"{where}.pairs must name declared critical pairs")
+        if named_nets is None:
+            if not row_pairs or any(name not in pairs for name in row_pairs):
+                findings.append(f"{where}.pairs must name declared critical pairs")
+            expected_nets = set().union(*(pair_nets.get(name, set())
+                                          for name in row_pairs))
+        else:
+            valid_names = (isinstance(named_nets, list) and len(named_nets) >= 2
+                           and all(isinstance(n, str) and n.strip() == n and n
+                                   for n in named_nets)
+                           and len(set(named_nets)) == len(named_nets))
+            expected_nets = set(named_nets) if valid_names else set()
+            critical_nets = set().union(*pair_nets.values())
+            if (not valid_names or "pairs" in raw or
+                    expected_nets & critical_nets):
+                findings.append(f"{where}.signal_nets must name unique non-critical "
+                                "nets, exclusively instead of pairs")
         pad_numbers = {str(pad.GetNumber()) for pad in fp.Pads()}
         unknown = sorted(set(signal + returns + common + selected + unused
                              + inputs + outputs) - pad_numbers)
@@ -389,12 +407,10 @@ def _topology(route_cfg: dict[str, Any], board: Any,
                        if str(pad.GetNumber()) in signal]
         if kind == "shunt" and len(set(signal_nets)) != len(signal_nets):
             findings.append(f"{where}: shunt signal pads do not land on distinct nets")
-        expected_nets = set().union(*(pair_nets.get(name, set())
-                                      for name in row_pairs))
         if expected_nets and set(signal_nets) != expected_nets:
             findings.append(
                 f"{where}: signal-pad nets {sorted(set(signal_nets))} disagree "
-                f"with declared pair nets {sorted(expected_nets)}")
+                f"with declared signal nets {sorted(expected_nets)}")
         if dossier is not None:
             dossier_fields = {
                 "shunt": ("signal_pads", "return_pads"),

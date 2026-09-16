@@ -121,6 +121,21 @@ def design_rules_digest(project: Path) -> str | None:
             routing = dict(routing)
             for key in ("final", "import_source", "krt", "race"):
                 routing.pop(key, None)
+            # Grid resolution and search cost control how the declared geometry
+            # is searched; neither changes a physical width, clearance, layer,
+            # topology, or acceptance floor reviewed at PR-REVIEW. Keeping them
+            # in the semantic digest would force unrelated schematic/pin/
+            # placement reviews to be repeated when a stopped router needs a
+            # finer search or a stronger preference against vias.
+            waves = routing.get("waves")
+            if isinstance(waves, list):
+                routing["waves"] = [
+                    ({key: value for key, value in wave.items()
+                      if key not in ("grid_step", "ordering", "via_cost",
+                                     "via_proximity_cost")}
+                     if isinstance(wave, dict) else wave)
+                    for wave in waves
+                ]
             if routing:
                 projection["route"] = routing
             else:
@@ -256,6 +271,20 @@ def main(argv=None) -> int:
                       f"{route_vias} base/prepared vias / {route_tracks} "
                       "prepared segments compared")
             errors.extend(route_errors)
+            # An evidenced silk exception must carry a current, complete
+            # locator before human placement witnesses can admit routing.
+            locator_config = project / "03_src/rules/assembly_locator.yaml"
+            if (locator_config.is_file() or (project / "03_src/rules/policy_waivers.yaml").is_file()
+                    or (project / "06_build/pre_route/current_assembly/assembly_locator_manifest.json").is_file()):
+                fab_scripts = Path(__file__).resolve().parents[2] / "jlcpcb-fab/scripts"
+                sys.path.insert(0, str(fab_scripts))
+                from assembly_locator_check import project_check as check_locator
+                try:
+                    locator_result = check_locator(project, board)
+                    if locator_result is not None:
+                        print("A-LOCATOR coverage: " + json.dumps(locator_result, sort_keys=True))
+                except (OSError, KeyError, TypeError, ValueError, AttributeError) as exc:
+                    errors.append(f"A-LOCATOR: {exc}")
             board_hash = digest(board)
             for kind in ("pin", "layout", "render"):
                 value = cfg.get(kind)

@@ -25,6 +25,19 @@ adjudication register. Fetch JLC footprint/model data per LCSC into a reusable
 cache. Classify transient fetch failures as `FETCH-FAILED`, distinct from
 `NO-CAD`, and block until retried or independently proven absent.
 
+When the real importer returns a generic failure without a footprint, retain
+one bounded direct observation of the exact public component endpoint. Only
+HTTP 200 with the exact application response `success: false`, integer
+`code: 404`, and `message: Component not found` is affirmative absence.
+Redirects, authorization errors, rate limits and unrecognized responses remain
+blocking. Preserve URL, UTC observation time, transport status, raw body and
+digest in the per-code cache's `catalog-response.json` and
+`catalog-response.body`. A confirmed absence stops further retries for that
+code in that run; an old observation is never a new fetch result. Successful
+CAD takes precedence. This establishes no vendor pad comparison and does not
+discharge mounted-body coverage. A native body still requires the separate
+reviewed selection and physical evidence below.
+
 Do not parallelize a rate-limited fetch burst. Retry with backoff and heartbeat
 and retain already fetched codes. A partial twin cannot pass by shrinking its
 denominator.
@@ -70,6 +83,12 @@ atomic-staging directory must never survive in the promoted twin board. After a
 producer or cache change, move/copy the bundle once and rerun mounted-body
 coverage from its new location before accepting the evidence.
 
+This also applies to explicitly declared manual-install bodies. Copy their
+exact resolved source files into the twin's `native_models/` directory and
+persist `${KIPRJMOD}` references while retaining scale, offset and rotation.
+An absolute path into the author's project is provenance, not a portable
+delivered model. An unresolved source body still fails `NO-BODY`.
+
 Never validate a transform only at 0/180 degrees; sign errors are invisible
 there and fail exactly at 90/270. Never treat an inverse mapping as suspect
 because its formula resembles a previously wrong forward mapping—grade the
@@ -100,6 +119,19 @@ Keep findings and mechanisms separate:
 - explicit dispositions for `PAD-GEOM`, `MODEL-SELF`, `MODEL-REG`, polarity,
   and true missing CAD.
 
+For successfully fetched catalog footprints with zero model clauses, an explicit
+`native_representation` declaration may select a drawing-derived native body.
+Bind the exact code/MPN, vendor-footprint/model SHA, primary PDF pages/revision,
+source footprint, generator, provenance, reviewer/date and limitations. Require
+an exact-ref `all_pad_centres` registration group with signed `mount_side`;
+reject stale registration, changed inputs or a newly supplied vendor model.
+Copy the complete accepted registration bundle and exact native file into the
+twin; the generated receipt binds both board identities and the unchanged
+model transform. A-RENDER reopens delivered evidence and uses independent
+mounted-side Fab versus actual image differences. Missing fetch data never enables this
+path, and every CPL body remains required. Run relocation and hostile-input
+controls before accepting the generated evidence.
+
 Account for a position delta by mechanism. A land-pattern shift cannot be
 described as bbox asymmetry or fit residual. One waiver cannot discharge two
 independent obligations. Preserve the raw failed fit in evidence.
@@ -112,7 +144,7 @@ isolation from both board sides: prove its signed mount side, measure the plan
 envelope delta, and show that it no longer occludes a legitimate opposite-side
 body. Never use an envelope expansion to compensate for a centre translation.
 For explicit native retention, A-RENDER derives its expected plan position
-from the independently authored F.Fab physical envelope while the measured
+from the independently authored mounted-side Fab physical envelope while the measured
 position still comes only from populated-minus-bare pixels. Absence of that
 Fab envelope is a failure; the selected body's SHA remains owned by the
 connector datum receipt.
@@ -123,10 +155,10 @@ Generate six populated views, a navigable twin board, and same-camera bare
 top/bottom views. Independently verify every CPL designator resolves to a
 nonempty 3D file. Generate `missing_models.txt`; never hand-author it.
 
-Top-view registration and mount-side registration are separate obligations.
+Plan-view registration and mount-side registration are separate obligations.
 For each native-model registration coupon, render at least one orthogonal side
 profile, locate the PCB plane from the authored coupon geometry, and measure
-solid-model occupancy on both signed sides of that plane. A front-mounted body
+visible model-pixel occupancy on both signed sides of that plane. A front-mounted body
 must have the declared minimum fraction above the board; a back-mounted body
 must have it below. Leads crossing the plane are expected and therefore a
 small opposite-side fraction is not itself a failure. The declared mounting
@@ -201,3 +233,50 @@ When a connector appears outside its pads or colored boxes are disjoint:
 Do not fix a render by moving the real footprint unless independent PCB and
 mechanical evidence says the footprint is wrong. A render/model failure and a
 board placement failure are different dispositions.
+
+## True catalog CAD absence
+
+An explicit `native_representation.reason: vendor_cad_absent` selects a
+reviewed native body when the exact public component endpoint supplies neither
+footprint nor model. Require the dedicated independent absence and physical
+pin/land reviews, exact response-body SHA, primary drawing, source footprint,
+model, producer or verbatim import recipe and provenance. A newly captured
+HTTP200/application404 observation must match the reviewed body and be no older
+than24hours at twin production. New vendor CAD reopens the selection.
+
+Write `catalog_comparison: unavailable`. No catalog residual, pad fit, or
+rotation acceptance exists. Keep the raw NO-CAD finding and every CPL body in
+the denominator. Signed native registration and actual same-camera extraction
+remain mandatory. Copy all bound source authority files, registration outputs,
+model and raw observation into the relocatable bundle. Offline overlay binds
+the exact production-time observation; it does not claim a fresh network read.
+An absent observation, changed review, changed model or missing native Fab
+must fail. The uploader's exact-part assembly preview remains an order hold.
+
+Extended SMD lands can place copper centers outside the package. An explicitly selected `all_smd_pad_overlap` registration datum tests positive-area intersection of every native effective copper polygon with the independently measured model plan envelope, while retaining Fab, courtyard and signed-side checks. It reports overlap counts, not center containment or solder qualification. Separate primary terminal/land and pin review is still required.
+
+Native physical registration selects F.Fab/F.CrtYd for F.Cu footprints and B.Fab/B.CrtYd for B.Cu footprints. Opposite-side graphics cannot supply missing datums. A declared mount_side must agree with the native footprint; mixed-side groups are refused. Coupons preserve the native flip, normalize board rotation, and render populated and bare images from the actual mounted side. Bottom plan pixels are X-mirrored, with ordered inverse boxes used for native pad intersections. The registration tuple binds side, owned geometry, model transform, contract and tool bytes. Historical v1 native_top filenames remain stable bundle members; plan_camera and plan_projection in the report state their actual view.
+
+Signed-side registration measures visible exterior pixels and does not prove
+full model-volume exclusion from the board. The native engine declares this
+G-VACUOUS limitation and binds a subject-first executable fixture: an inverted
+1 mm nested-transform body falsely passes, while the height-only 3 mm contrast
+fails the unchanged signed-side predicate. When full-volume exclusion matters,
+require independent exact-model native geometry evidence in addition to the
+registration receipt. Existing required-fail controls remain mandatory.
+
+
+Native plan extraction also has a thin-feature sampling limitation. Two
+3x3 erosions can delete actual exterior features before the surviving-pixel
+union is measured, and restoring two pixels does not recover them. A PASS
+therefore does not establish complete occupied extent at every coupon scale.
+The bound G-VACUOUS fixture first requires a false PASS for an actual thin
+exterior feature beyond courtyard, then requires FAIL for a thicker feature
+at the same extent. Where this property matters, supplement ordinary
+P-MODEL-REG with independent exact-model native full-extent/courtyard evidence
+and original un-eroded images; an actual exterior feature outside courtyard
+must fail or remain incomplete even if the eroded-pixel gate passes. Fab is a
+union of geometric marks, so exterior-feature detail changes its bbox datum
+and does not separately recognize a retained nominal-shell rectangle. Preserve
+independent primary-drawing shell and attachment-datum evidence. Nominal CAD
+containment is not a manufacturing-tolerance or physical-fit guarantee.

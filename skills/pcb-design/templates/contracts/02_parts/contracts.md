@@ -708,7 +708,7 @@ against the `side: bottom` features) are the cheapest first bite.
 | `pin_aliases.<N>.fused` | `pin_map_check.py` | declares that an intentional many-logical-pins-to-one-pad collapse is a manufacturer-fused land |
 | `pin_aliases.<N>.why` | `pin_map_check.py` | required explanation for every non-identity mapping |
 | `pin_aliases.<N>.evidence` | `pin_map_check.py` | required datasheet/package-drawing citation for every non-identity mapping |
-| `escape.style` | `escape_check.py` | P-ESC escape geometry class |
+| `escape.style` | `escape_check.py` | P-ESC escape geometry class; qfn/dfn share the bottom-terminated ring model, with pitch, budget, conditions and tier still independently checked |
 | `escape.pitch` | `escape_check.py` | P-ESC pitch |
 | `escape.tier_required` | `escape_check.py, policy_audit.py` | P-TIER: the fab tier the escape needs |
 | `escape.escapes_worst_side` | `escape_check.py` | P-ESC worst-side count |

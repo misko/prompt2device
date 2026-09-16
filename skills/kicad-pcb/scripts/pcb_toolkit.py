@@ -143,7 +143,8 @@ class Toolkit:
 
     # ---------------------------------------------------------------- checks
     def collides(self, x1, y1, x2, y2, width, netcode, layer, clr=None,
-                 respect_pad_mask=False):
+                 respect_pad_mask=False, clearance_resolver=None,
+                 hole_clearance_resolver=None):
         """First colliding item (exact shapes) for a segment probe, or None.
 
         A pad's local clearance is part of its realized geometry contract, not
@@ -160,8 +161,10 @@ class Toolkit:
         xhi = max(pcbnew.FromMM(x1), pcbnew.FromMM(x2))
         ylo = min(pcbnew.FromMM(y1), pcbnew.FromMM(y2))
         yhi = max(pcbnew.FromMM(y1), pcbnew.FromMM(y2))
+        max_pair_clr = max(
+            clr, pcbnew.FromMM(getattr(clearance_resolver, "maximum_mm", 0)))
         for bb, item, is_track, local_clearance, mask_f, mask_b in self._get_index():
-            item_clr = clr
+            item_clr = max_pair_clr
             if not is_track:
                 item_clr = max(item_clr, local_clearance)
                 if respect_pad_mask and layer in (pcbnew.F_Cu, pcbnew.B_Cu):
@@ -177,12 +180,28 @@ class Toolkit:
                 continue
             if item.GetNetCode() == netcode:
                 continue
+            pair_clr = (clr if clearance_resolver is None else
+                        pcbnew.FromMM(clearance_resolver(probe, item, layer)))
+            item_clr = pair_clr
+            if not is_track:
+                item_clr = max(item_clr, local_clearance)
+                if respect_pad_mask and layer in (pcbnew.F_Cu, pcbnew.B_Cu):
+                    item_clr = max(
+                        item_clr,
+                        mask_f if layer == pcbnew.F_Cu else mask_b)
             if is_track:
                 if (item.GetClass() in ("PCB_TRACK", "PCB_ARC") and
                         item.GetLayer() != layer):
                     continue
-                if probe.Collide(item.GetEffectiveShape(), clr):
+                if probe.Collide(item.GetEffectiveShape(), pair_clr):
                     return item
+                if item.GetClass() == "PCB_VIA":
+                    hole_clr = MM(self.board.GetDesignSettings().m_HoleClearance)
+                    if hole_clearance_resolver is not None:
+                        hole_clr = hole_clearance_resolver(probe, item, layer)
+                    if probe.Collide(item.GetEffectiveHoleShape(),
+                                     pcbnew.FromMM(hole_clr)):
+                        return item
             else:
                 if item.FlashLayer(layer) and \
                         probe.Collide(item.GetEffectiveShape(layer), item_clr):
@@ -201,7 +220,8 @@ class Toolkit:
         return None
 
     def collides_item(self, candidate, netcode, layer, clr=None,
-                      respect_pad_mask=False):
+                      respect_pad_mask=False, clearance_resolver=None,
+                      hole_clearance_resolver=None):
         """First foreign item colliding with a prepared track/arc candidate.
 
         Unlike a chord approximation, ``candidate.GetEffectiveShape()`` keeps
@@ -211,28 +231,39 @@ class Toolkit:
         probe = candidate.GetEffectiveShape()
         clr = self.clr if clr is None else pcbnew.FromMM(clr)
         cbb = candidate.GetBoundingBox()
-        margin = clr + pcbnew.FromMM(0.05)
+        max_pair_clr = max(
+            clr, pcbnew.FromMM(getattr(clearance_resolver, "maximum_mm", 0)))
+        margin = max_pair_clr + pcbnew.FromMM(0.05)
         lox, hix = cbb.GetLeft() - margin, cbb.GetRight() + margin
         loy, hiy = cbb.GetTop() - margin, cbb.GetBottom() + margin
         for bb, item, is_track, local_clearance, mask_f, mask_b in self._get_index():
-            item_clr = clr
+            if (bb.GetRight() < lox or bb.GetLeft() > hix or
+                    bb.GetBottom() < loy or bb.GetTop() > hiy):
+                continue
+            if item.GetNetCode() == netcode:
+                continue
+            pair_clr = (clr if clearance_resolver is None else
+                        pcbnew.FromMM(clearance_resolver(probe, item, layer)))
+            item_clr = pair_clr
             if not is_track:
                 item_clr = max(item_clr, local_clearance)
                 if respect_pad_mask and layer in (pcbnew.F_Cu, pcbnew.B_Cu):
                     item_clr = max(
                         item_clr,
                         mask_f if layer == pcbnew.F_Cu else mask_b)
-            if (bb.GetRight() < lox or bb.GetLeft() > hix or
-                    bb.GetBottom() < loy or bb.GetTop() > hiy):
-                continue
-            if item.GetNetCode() == netcode:
-                continue
             if is_track:
                 if (item.GetClass() in ("PCB_TRACK", "PCB_ARC")
                         and item.GetLayer() != layer):
                     continue
-                if probe.Collide(item.GetEffectiveShape(), clr):
+                if probe.Collide(item.GetEffectiveShape(), pair_clr):
                     return item
+                if item.GetClass() == "PCB_VIA":
+                    hole_clr = MM(self.board.GetDesignSettings().m_HoleClearance)
+                    if hole_clearance_resolver is not None:
+                        hole_clr = hole_clearance_resolver(probe, item, layer)
+                    if probe.Collide(item.GetEffectiveHoleShape(),
+                                     pcbnew.FromMM(hole_clr)):
+                        return item
             else:
                 if item.FlashLayer(layer) and \
                         probe.Collide(item.GetEffectiveShape(layer), item_clr):
@@ -298,8 +329,9 @@ class Toolkit:
         return True
 
     def via_site_ok(self, x, y, netcode, size=0.45, drill=0.2,
-                    hole_to_copper=0.205, layers=None,
-                    hole_to_hole=None, skip=()):
+                    hole_to_copper=None, layers=None,
+                    hole_to_hole=None, skip=(), clearance_resolver=None,
+                    hole_clearance_resolver=None):
         """Barrel clearance, hole-to-copper on every layer, AND hole-to-hole.
 
         `layers` DEFAULTS to the board's FULL copper stack (via
@@ -318,15 +350,21 @@ class Toolkit:
         HOLE-TO-HOLE is checked LAST and is the only test here that does not
         exempt same-net items — see `hole_to_hole_ok`. `skip` names holes to
         ignore (the via a caller is about to move out of the way)."""
+        if hole_to_copper is None:
+            hole_to_copper = MM(
+                self.board.GetDesignSettings().m_HoleClearance)
         if layers is None:
             layers = tuple(self.board.GetEnabledLayers().CuStack())
         for lay in layers:
             if self.collides(
                     x, y, x, y, size, netcode, lay,
-                    respect_pad_mask=(lay in (pcbnew.F_Cu, pcbnew.B_Cu))):
+                    respect_pad_mask=(lay in (pcbnew.F_Cu, pcbnew.B_Cu)),
+                    clearance_resolver=clearance_resolver,
+                    hole_clearance_resolver=hole_clearance_resolver):
                 return False
             if self.collides(x, y, x, y, drill, netcode, lay,
-                             clr=hole_to_copper):
+                             clr=hole_to_copper,
+                             clearance_resolver=hole_clearance_resolver):
                 return False
         return self.hole_to_hole_ok(x, y, drill, floor=hole_to_hole, skip=skip)
 
@@ -408,7 +446,7 @@ class Toolkit:
     def verified_astar(self, netname, p1, p2, width, grid=0.1, viacost=25,
                        window=4.0, attempts=8, exempt_r=0.3,
                        via_size=0.45, via_drill=0.2, layers=None,
-                       hole_to_copper=None):
+                       hole_to_copper=None, clearance_resolver=None):
         """Run one A* search against a stable cached obstacle index."""
         self._get_index()
         self._index_frozen = True
@@ -417,7 +455,8 @@ class Toolkit:
                 netname, p1, p2, width, grid=grid, viacost=viacost,
                 window=window, attempts=attempts, exempt_r=exempt_r,
                 via_size=via_size, via_drill=via_drill, layers=layers,
-                hole_to_copper=hole_to_copper)
+                hole_to_copper=hole_to_copper,
+                clearance_resolver=clearance_resolver)
         finally:
             self._index_frozen = False
             # The implementation may have emitted tracks/vias.  Invalidating
@@ -429,7 +468,7 @@ class Toolkit:
     def _verified_astar(self, netname, p1, p2, width, grid=0.1, viacost=25,
                         window=4.0, attempts=8, exempt_r=0.3,
                         via_size=0.45, via_drill=0.2, layers=None,
-                        hole_to_copper=None):
+                        hole_to_copper=None, clearance_resolver=None):
         """Two-layer grid A* whose EMITTED path is re-verified segment by
         segment (exact shapes); failing nodes are blocked and the search
         retries. Endpoint exemption is for the search only — verification
@@ -462,7 +501,9 @@ class Toolkit:
         extra = set()
 
         def seg_ok(ax, ay, bx, by, lay, w):
-            return self.collides(ax, ay, bx, by, w, nc, lay) is None
+            return self.collides(
+                ax, ay, bx, by, w, nc, lay,
+                clearance_resolver=clearance_resolver) is None
 
         for _ in range(attempts):
             cache = {}
@@ -537,7 +578,9 @@ class Toolkit:
                     kw = ({"hole_to_copper": hole_to_copper}
                           if hole_to_copper is not None else {})
                     if not self.via_site_ok(vx, vy, nc, size=via_size,
-                                            drill=via_drill, **kw):
+                                            drill=via_drill,
+                                            clearance_resolver=
+                                            clearance_resolver, **kw):
                         bad.append(path[i])
             if bad:
                 extra.update(bad)

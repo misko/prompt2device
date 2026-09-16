@@ -1,0 +1,24 @@
+mpn: AOM-5024L-HD-R
+manufacturer: PUI Audio
+type: electret_condenser_microphone
+status: active
+datasheet: {doc_id: AOM-5024L-HD-R, revision: "Released from Engineering 2017-06-06", url: "https://puiaudio.com/file/specs-AOM-5024L-HD-R.pdf", local: aom-5024l-hd-r.pdf, sha256: b1981ae73606fafde7ce27a54e71a2f6aa655e2dd83c9e268a45ab9cebe1969b, fetched: 2026-09-01}
+package: "9.7 mm diameter x 5.0 mm electret capsule; hand-wired off board"
+footprint: crow_mic_pod_v3:Mic_Wire_Pads_P5.00mm
+escape: {style: connector, pitch: 5.0, tier_required: jlc_2layer_default, checked: "project wire landing only; not capsule terminal geometry"}
+pins: {1: CAPSULE_POS_WIRE, 2: CAPSULE_NEG_WIRE}
+limits: {sensitivity_dbv_per_pa: "-24 +/-3", rated_voltage_v: 3, operating_voltage_v: "1-10", operating_temperature_c: "-30 to +70", storage_temperature_c: "-40 to +85", current_at_3v_2k2_ua: 500, characterized_load_ohm: 2200, frequency_hz: "20-20000", snr_db: 80, max_spl_test_db: 110, thd_max_at_110db_pct: 3, diameter_mm: "9.7 +/-0.1", height_mm: "5.0 +/-0.2"}
+gotchas:
+  - "Official drawing does not dimension terminal pitch; this dossier deliberately maps to wire landings, not a direct-fit capsule footprint."
+  - "Hand solder less than 90 W, 360 +/-10 C, no more than 2 s per terminal per PUI note."
+  - "Acoustic polarity is a target with qualification OWED; wiring alone does not prove pressure polarity."
+  - "The 500 uA row is a reported consumption at 3 V with 2.2k load, not a guaranteed maximum-current bound. R3/R4 intentionally reproduce that characterized condition nominally; measure actual current and sensitivity."
+verified: "Exact PUI specification electrical/acoustic tables and body drawing on PDF pages 1-4, plus the 2017-06-06 revision table on PDF page 5, inspected 2026-09-02. The PCB object is only two wire landings; assembly.yaml is the machine authority that excludes MK1 from supplier BOM/CPL and requires off-board manual fit."
+layout:
+  source: "PUI exact specification plus explicit off-board wire-landing decision"
+  reviewed: 2026-09-01
+  notes: "Keep MIC_RAW wire landing at quiet edge; enclosure owns capsule port, wires and strain relief."
+layout_refs:
+  - {tier: 1, reached: true, artifact: "PUI AOM-5024L-HD-R exact specification", why: "Binds capsule body/electrical values while exposing the absent terminal pitch."}
+  - {tier: 2, reached: false, artifact: "qualified pod enclosure acoustic assembly", why: "No measured acoustic/mechanical article exists."}
+sourcing: {lcsc: C3273706, alternates: []}

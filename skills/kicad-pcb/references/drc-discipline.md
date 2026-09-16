@@ -56,6 +56,15 @@ Caveats: a `(min 0mm)` edge rule still flags pads that CROSS the edge line
 
 ## Severity policy (each class must have an owner)
 
+For a package's fixed pad-to-pad gap, author `scoped_clearances` in
+`03_src/rules/nets.yaml` with `pads_only: true`, a tight named rule area and
+exact `nets_a`/`nets_b` pairs. The generic emitter adds two-sided pad-type
+guards; tracks, vias and zones cannot inherit that relaxation, and route
+preflight does not count it as routing authority. Absent/false preserves the
+existing all-item scope; non-boolean values are rejected. Reopen the generated
+board to verify actual members and clearances, with out-of-scope native DRC
+controls. This applies R-SCOPE/M1, not a waiver of the fabrication floor.
+
 `rule_severities` in `.kicad_pro` → "ignore", each with documented
 ownership: `lib_footprint_issues` (generated board is source of truth),
 `solder_mask_bridge` (fab strips sub-web mask on fine pitch),
