@@ -1,6 +1,6 @@
 # ADR-0005 — release only as a non-orderable first-article candidate
 
-Status: accepted
+Status: superseded-by-0010
 Date: 2026-09-01
 
 ## Decision

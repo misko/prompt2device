@@ -20,11 +20,11 @@ unchanged board; `v0.1.5-2026-09-16` is the current immutable release candidate.
 
 | Deficiency | Disposition |
 | --- | --- |
-| Exact-part allocation | RESOLVED for design-time public availability: current authorized-channel evidence reports 1,965 exact LT3041ADE#TRPBF and DigiKey reports 2,449 exact TMUX2821DSGR, clearing the configured 155 and 190 thresholds. JLC uploader fulfillment remains a manual order-time check. The release remains `DO-NOT-ORDER` for first-article qualification, not for public availability. |
+| Exact-part allocation | RESOLVED for design-time public availability: current authorized-channel evidence reports 1,965 exact LT3041ADE#TRPBF and DigiKey reports 2,449 exact TMUX2821DSGR, clearing the configured 155 and 190 thresholds. JLC uploader fulfillment remains a manual order-time check. D9 authorizes the five-board first-article purchase after that check; production remains unqualified. |
 | First-article electrical captures | Rail startup, shutdown, reset, TDM timing, analog-path performance, fault behavior, and thermal measurements remain owed by the controlled first-article plan. No production qualification is claimed. |
 | Physical copper and barrel validation | Calculated DCR, current, and via-capacity checks pass the design model; physical DCR and temperature-rise measurements remain first-article obligations. |
 | Silkscreen locator fallbacks | Crowded references that cannot remain legible on F.SilkS are carried by the assembly locator/F.Fab evidence. This affects assembly convenience, not connectivity or fabrication geometry. |
-| Fabricator upload checks | Gerber interpretation, BOM/CPL matching, stock allocation, substitutions, and panel/order options must be reconfirmed in the fabricator uploader before purchase. |
+| Fabricator upload checks | Exact selections are frozen by ADR0032. Gerber interpretation, BOM/CPL matching, stock allocation, substitutions, rotations and the twelve-site selective via process must still be confirmed in the fabricator uploader before payment. |
 
 The initial five-board build remains a prototype lot. Closing these items may
 change orderability or qualification status; it does not permit silently

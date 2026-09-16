@@ -1,0 +1,8 @@
+MPN,Required Qty,Refs per Board,Mount,Method,Required Inspection
+CS5308P-DN,5,U_ADC,SMD QFN-48 exposed pad,Qualified hot-air or reflow after partial PCBA,"pin 1; full perimeter wetting; exposed-pad joint; no solder loss into capped vias"
+2920L260/33DR,5,F_IN,SMD 2920,Manual reflow or hot-air,"exact DR suffix; centered body; hot loaded inspection"
+EEEFK1A471P,20,"C_FILT1_470U C_FILT2_470U C_HOLD1 C_HOLD2",SMD aluminum electrolytic,Manual reflow or hot-air,"positive pad 1; exact standard-terminal P suffix; case clearance"
+R82DC4100DQ60J,80,"C_A1P C_A1N C_A2P C_A2N C_A3P C_A3N C_A4P C_A4N C_A5P C_A5N C_A6P C_A6N C_A7P C_A7N C_A8P C_A8N",THT radial film,Hand solder,"5.00 mm pitch; body clearance; lead form; both fillets"
+615008160221,40,"J1 J2 J3 J4 J5 J6 J7 J8",THT shielded RJ45,Hand solder,"mouth outward; eight contacts; two shield tabs; two guides; shell isolation"
+43650-0200,5,J9,THT right-angle power header,Hand solder,"pin 1/polarity; keying; body seating; both fillets"
+TMM-106-01-L-D,10,"J10 J11",THT 2x6 header,Hand solder,"pin 1; vertical seating; J10/J11 identity; all fillets"

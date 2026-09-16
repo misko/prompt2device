@@ -1,7 +1,7 @@
 # Crow audio carrier v1 — first-article test plan
 
 status: PLANNED — NO HARDWARE RESULT
-order_status: DO-NOT-ORDER
+order_status: FIRST-ARTICLE ORDER AUTHORIZED — LIVE UPLOADER CHECK REQUIRED
 
 ## Current shared-rail source — 2026-09-12
 

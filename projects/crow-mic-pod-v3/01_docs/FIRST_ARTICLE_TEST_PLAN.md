@@ -1,7 +1,7 @@
 # Crow microphone pod v3 — first-article test plan
 
 status: PLANNED — NO HARDWARE RESULT
-order_status: DO-NOT-ORDER
+order_status: FIRST-ARTICLE ORDER AUTHORIZED — LIVE UPLOADER CHECK REQUIRED
 
 ## Authority and scope
 

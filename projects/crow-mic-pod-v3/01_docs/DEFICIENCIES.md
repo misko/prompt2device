@@ -28,4 +28,8 @@ None.
 
 ## Separate holds
 
-JLC uploader fulfillment is an order-time check. Manual RJ45/capsule assembly, physical cable fit, rail/noise/gain/clipping, thermal and environmental measurements remain first-article/order holds under ADR0005 and assembly.yaml. No production or order-ready claim follows from design release.
+JLC uploader fulfillment is an order-time check. D7 and ADR0010 authorize a
+ten-board supervised first-article purchase after that check. Manual
+RJ45/capsule assembly, physical cable fit, rail/noise/gain/clipping, thermal
+and environmental measurements remain post-delivery first-article holds. No
+production or deployment claim follows from design release or purchase.

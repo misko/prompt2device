@@ -2,8 +2,8 @@
 
 status: in-progress
 prompt_sha256: a6fcb7d5b8465bc23415c7d5f9381b368f12d69455da135d8b6b0b1cb89965b3
-current_release: no
-order_status: DO-NOT-ORDER
+current_release: 07_releases/v0.1.5-2026-09-16
+order_status: FIRST-ARTICLE ORDER AUTHORIZED — UPLOADER CHECK REQUIRED
 
 ## Original prompt
 
@@ -159,6 +159,18 @@ and existing outdoor service requirements while selecting exact parts.
 Source, schematic, placement and downstream acceptance must be renewed for
 this material interface revision. No order or push authority is implied.
 
+### D9 — 2026-09-16 — user directive
+
+> Can you please make a list and review, we would like to get the board ordered today,
+>
+> Oh great thats not too bad. lets go through the list and address all changes required for ordering in this release/pass
+
+Impact: authorizes preparation and purchase of the governed first-article lot
+after the exact release upload, fabrication selections, BOM mapping, placement
+preview and selective via-process checks pass. This does not authorize part
+substitutions or a production/deployment claim. ADR0032 freezes the order
+profile and preserves physical qualification as post-delivery work.
+
 ## Decision register
 
 | id | decision | decided by | depth |
@@ -189,6 +201,7 @@ this material interface revision. No order or push authority is implied.
 | 0020 | 0020 — Pad-only clearance scopes for retained package lands | agent (P-delegation; existing ADR) | [existing decision](decisions/0020-package-pad-clearances.md) |
 | 0021 | Connected-start input current limits and damped OPA supply | agent (P-delegation; existing ADR) | [existing decision](decisions/0021-connected-start-input-current-limits.md) |
 | 0025 | shared ADC/amplifier rail with passive external bias | agent (P-delegation; existing ADR) | [existing decision](decisions/0025-shared-rail-protection-architecture.md) |
+| 0032 | Freeze the five-board carrier first-article fabrication and assembly order profile. | user (D9) | [order-profile ADR](decisions/0032-first-article-order-profile.md) |
 
 ## Spec tensions
 

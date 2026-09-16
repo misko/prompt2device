@@ -2,8 +2,8 @@
 
 status: in-progress
 prompt_sha256: a6fcb7d5b8465bc23415c7d5f9381b368f12d69455da135d8b6b0b1cb89965b3
-current_release: no
-order_status: DO-NOT-ORDER
+current_release: 07_releases/v0.2.5-2026-09-16
+order_status: FIRST-ARTICLE ORDER AUTHORIZED — UPLOADER CHECK REQUIRED
 
 ## Original prompt
 
@@ -43,7 +43,7 @@ under ADR0005. Measured first-article evidence precedes tested/deployment claims
 | G5 | Gain, phase, noise, common mode, CMRR, stability, polarity and clipping pass through the exact selected 15 m cord into the carrier receiver; any shorter installed cord requires exact-source adoption and qualification. | D1, D2, A1, A4 | unmet |
 | G6 | Capsule mount, port, wire dress, strain relief, windscreen, drainage, condensation control and connector service are qualified in the exact enclosure. | A3, A5 | unmet |
 | G7 | The pod contains no MCU, ADC, USB, Ethernet or PoE circuitry and requires no project-authored firmware. | D1, D4, A1 | met — [architecture boundary](ARCHITECTURE.md) |
-| G8 | The candidate remains FIRST-ARTICLE-ONLY / DO-NOT-ORDER until sourcing, JLC, review, cable/audio, mechanical, environmental and hardware-evidence holds close. | D5, A5 | met — [maturity and findings ledger](findings.yaml) |
+| G8 | Production and deployment remain blocked until physical qualification closes; a supervised ten-board first-article order may proceed after the exact uploader checks pass. | D5, D7, A5 | met — [first-article order decision](decisions/0010-first-article-order-profile.md) |
 
 ## Log
 
@@ -130,6 +130,18 @@ Balanced analog audio, 12 V supply, 0.10 A maximum continuous pod current,
 remain false. Exact parts and all affected source and native-artifact gates
 must be accepted before a new release; existing sealed entries stay immutable.
 
+### D7 — 2026-09-16 — user directive
+
+> Can you please make a list and review, we would like to get the board ordered today,
+>
+> Oh great thats not too bad. lets go through the list and address all changes required for ordering in this release/pass
+
+Impact: authorizes preparation and purchase of the governed ten-pod
+first-article lot after the exact release upload, fabrication selections, BOM
+mapping and placement preview checks pass. Production and roof deployment
+remain subject to the existing first-article tests. ADR0010 supersedes the
+blanket pre-order prohibition in ADR0005.
+
 ## Decision register
 
 | id | decision | decided by | depth |
@@ -138,9 +150,10 @@ must be accepted before a new release; existing sealed entries stay immutable.
 | 0002 | Protect the admitted 12 V input and derive a quiet linear nominal 5.02 V rail. | agent (A2 / P-delegation) | [power/protection ADR](decisions/0002-protected-quiet-five-volt-rail.md) |
 | 0003 | Use an OPA1679 active-balanced 18/11 V/V topology at nominal 2.5 V common mode. | agent (A4 / P-delegation) | [analog ADR](decisions/0003-active-balanced-audio.md) |
 | 0004 | Use reviewable bare analog ICs because available modules do not preserve the exact interface. | agent (A1, A2, A4 / P-delegation) | [integration ADR](decisions/0004-bare-ic-exceptions.md) |
-| 0005 | Separate prototype design and authorized ordering from subsequent physical qualification; current artifacts remain DO-NOT-ORDER. | agent (A5 / D5-delegation) | [lifecycle ADR](decisions/0005-first-article-only-release.md) |
+| 0005 | Separate prototype design from physical qualification; its blanket no-order state is superseded for the controlled first-article lot by ADR0010. | agent (A5 / D5-delegation) | [superseded lifecycle ADR](decisions/0005-first-article-only-release.md) |
 | 0007 | Adopt exact factory RJ45 analog/power spokes and isolated shield island; physical qualification remains owed. | user D6 / independent source review | [RJ45 ADR](decisions/0007-rj45-factory-spoke.md) |
 | 0006 | Permit design-only continuation from an exact-code public catalog screen while keeping authenticated JLC allocation mandatory for order readiness. | agent (A5 / D5-delegation) | [sourcing-boundary ADR](decisions/0006-public-catalog-prelayout-only.md) |
+| 0010 | Authorize a supervised ten-board pod first-article order under a fixed fabrication and assembly profile. | user (D7) | [order-profile ADR](decisions/0010-first-article-order-profile.md) |
 
 ## Spec tensions
 

@@ -1,14 +1,20 @@
 # First-article checklist
 
-This checklist is not an authorization to order or deploy.
+User directive D7 authorizes the ten-board first-article order after the live
+uploader checks below pass. This checklist does not authorize production or
+deployment.
 
 ## Before fabrication
 
 - [ ] Confirm parent and pod `spoke_interface.yaml` are byte-identical.
 - [ ] Run the generated-artifact spoke implementation check: J1 exact MPN and
       footprint, with pad 1=12V_POD, 2=GND, 3=AUDIO_P, 4=AUDIO_N (1/1 closed).
-- [ ] Complete the Micro-Fit connector assembly/operation contract.
-- [ ] Confirm exact crimp tool, wire-strip, crimp-height and pull-test process.
+- [ ] Confirm the exact Würth 615008160221 RJ45 connector and Weidmüller
+      8909650150 factory Cat6A patch-cord contract; this interface is custom
+      analog/DC and must never be connected to Ethernet or PoE equipment.
+- [ ] Confirm J1 is excluded from machine assembly and retained for manual
+      soldering after PCBA; inspect all eight contacts, both shield tabs and
+      both guide posts.
 - [ ] Resolve every part sourcing hold with a dated JLCPCB PCBA response.
 - [ ] Review rendered schematic against every manufacturer pin table.
 - [ ] Run ERC, invariants, parity, DRC, layout policy and release provenance.
@@ -43,7 +49,9 @@ This checklist is not an authorization to order or deploy.
 - [ ] Verify common mode stays within 2.35–2.65 V and differential output stays
       at or below 1.2 Vrms over the stated acoustic operating envelope.
 - [ ] Test real capsule self-noise, frequency response and clipping through 110 dB SPL.
-- [ ] Repeat gain/noise/stability/common-mode tests with 4 m and 15 m Belden cables.
+- [ ] Repeat gain/noise/stability/common-mode tests with the exact 15 m
+      Weidmüller 8909650150 factory Cat6A cable and any shorter exact cord
+      proposed for deployment.
 - [ ] Verify the carrier decodes polarity consistently on all eight spokes.
 
 ## Environmental/mechanical
