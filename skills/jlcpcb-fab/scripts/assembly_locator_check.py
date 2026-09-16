@@ -17,9 +17,16 @@ import re
 import sys
 import xml.etree.ElementTree as ET
 
-import pcbnew
 import yaml
-from PIL import Image, PdfParser
+
+try:
+    import pcbnew
+except ModuleNotFoundError:  # Publication CI verifies sealed bytes without KiCad.
+    pcbnew = None
+try:
+    from PIL import Image, PdfParser
+except ModuleNotFoundError:  # Sealed archive replay needs hashes, not raster APIs.
+    Image = PdfParser = None
 
 STEM = "assembly_locator"
 
@@ -60,6 +67,9 @@ def csv_index(path, grouped=False):
 
 
 def check(board_path, bom_path, cpl_path, config_path, out_dir, tool_source=None):
+    require(pcbnew is not None, "native locator validation requires KiCad pcbnew")
+    require(Image is not None and PdfParser is not None,
+            "native locator validation requires Pillow")
     out = Path(out_dir)
     manifest = json.loads((out / f"{STEM}_manifest.json").read_text())
     data = json.loads((out / f"{STEM}.json").read_text())
@@ -227,6 +237,101 @@ def check(board_path, bom_path, cpl_path, config_path, out_dir, tool_source=None
             "pages": len(page_rows), "manifest_members": len(names)}
 
 
+def check_sealed_archive(board_path, bom_path, cpl_path, config_path, out_dir,
+                         tool_source):
+    """Verify immutable locator evidence without loading native board geometry.
+
+    Native geometry is proved when the package is generated and admitted. A
+    publication runner only needs to prove that the sealed inputs, generated
+    members, embedded identities, frozen tools and independent review remain
+    the same bytes. This keeps publication replay portable while preserving
+    the stronger native check everywhere pcbnew is installed.
+    """
+    out = Path(out_dir)
+    manifest_path = out / f"{STEM}_manifest.json"
+    manifest = json.loads(manifest_path.read_text())
+    data_path = out / f"{STEM}.json"
+    data = json.loads(data_path.read_text())
+    cfg = yaml.safe_load(Path(config_path).read_text())
+    require(isinstance(cfg, dict) and set(cfg) == {"schema", "title", "owner", "orientation", "exceptions"}
+            and cfg["schema"] == 1, "invalid locator source schema")
+    require(manifest.get("schema") == 1 and manifest.get("kind") == "assembly-locator-v1",
+            "invalid manifest schema")
+    require(data.get("schema") == 1, "invalid data schema")
+    for key, name in [("generator_sha256", "assembly_locator.py"),
+                      ("template_sha256", "assembly_locator.html"),
+                      ("checker_sha256", "assembly_locator_check.py")]:
+        require(manifest.get(key) == digest(Path(tool_source) / name),
+                "stale/missing locator tool " + name)
+    for key, path in [("board_sha256", board_path), ("bom_sha256", bom_path),
+                      ("cpl_sha256", cpl_path), ("config_sha256", config_path)]:
+        actual = digest(path)
+        require(data.get(key) == actual and manifest.get(key) == actual,
+                "stale " + key)
+    require(manifest.get("owner") == cfg["owner"] and cfg["owner"],
+            "missing/different waiver owner")
+
+    records = manifest.get("members")
+    require(isinstance(records, list) and records, "missing manifest members")
+    names = [row["path"] for row in records]
+    require(len(names) == len(set(names)), "duplicate manifest member")
+    for row in records:
+        name = row["path"]
+        require(isinstance(name, str) and Path(name).name == name,
+                "unsafe manifest path")
+        path = out / name
+        require(path.is_file() and path.stat().st_size == row["size"]
+                and digest(path) == row["sha256"],
+                "missing/corrupt manifest member " + name)
+
+    parts = data.get("parts")
+    require(isinstance(parts, list) and parts, "assembled denominator")
+    refs = [row.get("ref") for row in parts]
+    require(all(isinstance(ref, str) and ref for ref in refs)
+            and len(refs) == len(set(refs)), "reference set/duplicate")
+    require(data.get("assembly_count") == len(refs),
+            "declared assembled denominator")
+    hidden = data.get("hidden")
+    require(isinstance(hidden, list) and len(hidden) == len(set(hidden)),
+            "hidden list")
+    source_rows = cfg["exceptions"]
+    require(isinstance(source_rows, list) and source_rows, "empty source exception set")
+    source_refs = [row.get("ref") for row in source_rows]
+    require(len(source_refs) == len(set(source_refs))
+            and set(source_refs) == set(hidden) <= set(refs),
+            "source/locator omission sets differ")
+
+    text = (out / f"{STEM}.html").read_text()
+    match = re.search(r"const DATA=(.*?);const byRef=", text, re.S)
+    require(match is not None and json.loads(match.group(1)) == data,
+            "HTML/JSON disagreement")
+    script = re.search(r"<script>(.*?)</script>", text, re.S).group(1)
+    expected_script = re.search(
+        r"<script>(.*?)</script>",
+        (Path(tool_source) / "assembly_locator.html").read_text(), re.S).group(1)
+    require(re.sub(r"const DATA=.*?;const byRef=", "const DATA=DATAJSON;const byRef=",
+                   script, flags=re.S) == expected_script,
+            "HTML executable differs from bound source template")
+
+    pages = manifest.get("page_refs")
+    require(isinstance(pages, list) and len(pages) == len(hidden),
+            "atlas page denominator")
+    require([row["page"] for row in pages] == list(range(1, len(hidden) + 1)),
+            "atlas page order/duplicate")
+    page_refs = [row["ref"] for row in pages]
+    require(len(page_refs) == len(set(page_refs)) and set(page_refs) == set(hidden),
+            "atlas reference set/duplicate")
+    expected_names = {f"{STEM}.json", f"{STEM}.html", f"{STEM}.pdf"} | {
+        row["path"] for row in pages}
+    require(set(names) == expected_names, "manifest/page membership")
+    require({path.name for path in out.glob(f"{STEM}_*.png")} ==
+            {row["path"] for row in pages}, "unlisted/missing atlas image")
+    return {"assembled_refs": len(refs),
+            "pads": sum(len(row.get("pads", [])) for row in parts),
+            "exceptions": len(hidden), "pages": len(pages),
+            "manifest_members": len(names)}
+
+
 def waiver_refs(path):
     require(Path(path).is_file(), "source policy waiver record is missing")
     entries = yaml.safe_load(Path(path).read_text())
@@ -322,8 +427,12 @@ def release_check(release):
             {r["ref"] for r in yaml.safe_load(config.read_text())["exceptions"]}, "release policy waiver/locator sets differ")
     boards = list((release / "source").glob("*.kicad_pcb"))
     require(len(boards) == 1, "release locator board is missing/ambiguous")
-    result = check(boards[0], target / "bom.csv", target / "cpl.csv", config, target,
-                   tool_source=release / "source/locator_tools")
+    args = (boards[0], target / "bom.csv", target / "cpl.csv", config, target)
+    tools = release / "source/locator_tools"
+    if pcbnew is None or Image is None or PdfParser is None:
+        result = check_sealed_archive(*args, tool_source=tools)
+    else:
+        result = check(*args, tool_source=tools)
     check_visual_review(release / "verification/render_review.md", target)
     return result
 

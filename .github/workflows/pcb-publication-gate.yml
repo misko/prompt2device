@@ -31,6 +31,7 @@ jobs:
           lfs: true
       - name: Regression tests
         run: |
+          python3 tests/t1_assembly_locator.py --only='without pcbnew'
           python3 tests/t1_release_freshness.py --only='review coverage'
           python3 tests/t1_publication_gate.py
           python3 tests/t1_publication_transport.py

@@ -8727,3 +8727,15 @@ ref, and final T-PUBLISH measured only 759511 raw bytes still absent remotely.
 The atomic main/tag push succeeded at `c7276176`; both successor tags peeled to
 their seal commits. The temporary staging ref is deleted after final status
 publication and remote verification.
+
+CI portability follow-up: the first remote publication replay exposed a
+top-level `pcbnew` import in the assembly-locator release checker, despite the
+publication boundary's pcbnew-free contract. Locator generation and admission
+still perform the full native geometry check. Sealed publication replay now
+verifies the immutable board/BOM/CPL/config hashes, frozen tool hashes,
+manifest membership and member hashes, embedded HTML identity, exception/page
+denominators, and independent review without loading KiCad. A CI regression
+actively blocks `pcbnew` import and proves both clean acceptance and corrupt
+member rejection. Future archive-only release consumers must lazy-load native
+CAD dependencies and carry the same missing-dependency regression before they
+are added to the publication workflow.
