@@ -770,6 +770,24 @@ def t_representation_freshness_mode_is_composed():
     check(Path(args[3]) == prior, f"wrong predecessor path: {args[3]}")
 
 
+@test("publication replays a declared assembly-policy predecessor")
+def t_assembly_policy_freshness_mode_is_composed():
+    d = tmpdir("pub_assembly_policy_")
+    releases = d / "07_releases"
+    prior = releases / "v1.0-2026-08-01"
+    current = releases / "v1.1-2026-08-02"
+    prior.mkdir(parents=True)
+    current.mkdir()
+    errors, args = pg._freshness_args(
+        {"release_mode": "assembly-policy", "supersedes": prior.name},
+        current)
+    check(not errors, f"valid assembly-policy declaration refused: {errors}")
+    check(args[:3] == ["--claim", "design",
+                       "--assembly-policy-supersede"],
+          f"wrong assembly-policy freshness argv: {args}")
+    check(Path(args[3]) == prior, f"wrong predecessor path: {args[3]}")
+
+
 @test("publication fails closed on a docs-only declaration with no existing "
       "predecessor", kind="known_bad")
 def t_docs_only_missing_predecessor_is_refused():
