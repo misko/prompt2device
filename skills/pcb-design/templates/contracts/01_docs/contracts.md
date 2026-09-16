@@ -17,6 +17,7 @@ one that is unrecoverable if lost.
 | `DETAIL_DESIGN.md` | the math: ripple, compensation, ampacity, thermal, tolerance | every number that a component value depends on, with its equation |
 | `CHANGELOG.md` | one entry per revision | see structure below |
 | `CHECKLIST.md` | the gate a revision must pass before release | |
+| `DEFICIENCIES.md` | human-readable backlog of minor improvements and links to current blockers or later-boundary holds | stable IDs, affected revision, impact/evidence, owner, revisit target and closure test; follow pcb-design lifecycle section 8; never substitutes for findings/gate authority; snapshot in staged release verification |
 | `FIRST_ARTICLE_TEST_PLAN.md` | controlled bring-up, inspection and measurement procedure for the first manufactured article | source-side plan copied into sealed release verification; never evidence that hardware passed |
 | `findings.yaml` | single machine-readable findings/gates ledger; `project_state.py` derives maturity from it | hand-edited; every row names owner, closure condition and maturity boundary |
 | `PUBLISH_MANIFEST.md` | the current publication inventory and validation snapshot; descriptive only, never release authority | must name the live sealed release or explicitly say none |

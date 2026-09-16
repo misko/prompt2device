@@ -53,6 +53,11 @@ Perform verification against a pre-seal staging archive. Do not review an
 immutable release and then modify it; findings must cost an edit and rerun, not
 a superseding release.
 
+Classify findings through [deficiency triage](lifecycle-and-backtrack.md#8-deficiency-triage).
+Only blocking findings require current-release repair. Include the deficiency
+list in the existing review packet and staged verification so supported minor
+improvements can wait for the next release without another review cycle.
+
 ## 3. Build the pre-seal staging archive
 
 The staged archive must be self-contained and include:

@@ -27,6 +27,10 @@ why).
   `contracts_audit.py --walk --root <proj>` with zero violations before design.
 - Template drift is the failure mode this layout kills: there is exactly ONE
   copy of each stage contract (here), so nothing can silently diverge.
+- `references/lifecycle-and-backtrack.md` owns deficiency triage. Commission
+  seeds `01_docs/DEFICIENCIES.md`; existing release review carries its snapshot
+  under verification. This backlog does not replace gate/findings authority
+  or introduce a separate approval procedure.
 - `scripts/skill_authority_check.py` freezes the pre-refactor policy
   denominator, requires every routed reference to be reachable, and rejects
   duplicate authority or a core outside its line/word budget.

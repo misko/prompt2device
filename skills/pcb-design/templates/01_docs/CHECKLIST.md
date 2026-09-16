@@ -39,6 +39,10 @@ Any release, publication, ship/ready claim, or merge of material project
 changes to the publication branch requires this section. An explicitly
 unreviewed WIP may exist only on a clearly labelled branch/draft PR and is not
 mergeable.
+- [ ] deficiency triage reconciled in the existing release review: deferred
+      items have evidence, owner and next-release closure test; blockers remain
+      blocking; snapshot `01_docs/DEFICIENCIES.md` in staged
+      `verification/DEFICIENCIES.md` and include it in normal manifest hashing
 - [ ] release inputs clean (`git_dirty: false`, scope `projects/<board>/ + skills/` via `python3 "$CIRCUITS_ROOT/skills/kicad-pcb/scripts/release_git_dirty.py" "$PWD"` — a dirty sibling board does not block)
 - [ ] tagged
 - [ ] `07_releases/<ver>-<date>/` written with MANIFEST + verification evidence

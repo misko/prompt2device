@@ -123,6 +123,9 @@ the only thing that says which board a sealed archive belongs to.
     │   ├── <board>.step            for enclosure/clearance checks
     │   └── <board>.gltf            (either or both; note absence in the MANIFEST)
     └── verification/               REQUIRED — all evidence, the reports that PASSED
+        ├── DEFICIENCIES.md          current release's deficiency-list snapshot;
+        │                           disclosure in the existing review, not a gate
+        │                           waiver; never retro-fill historical seals
         ├── drc.json                DRC 0/0/0 (--severity-all --refill-zones
         │                           --schematic-parity)
         ├── erc.json                ERC 0 errors

@@ -132,6 +132,10 @@ validate exact inputs and applicability
      plateau    classify the cause and backtrack to its upstream owner
 ```
 
+Triage findings through the [deficiency workflow](references/lifecycle-and-backtrack.md#8-deficiency-triage).
+Record supported non-blocking improvements in `01_docs/DEFICIENCIES.md` and
+continue; reopen them only on new evidence or at next-release planning.
+
 ## Core invariants
 
 1. Preserve the original prompt verbatim in `01_docs/BRIEF.md`; later user

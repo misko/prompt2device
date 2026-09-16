@@ -8646,3 +8646,28 @@ measured current, resistance, dissipation, route-acceptance evidence and first-
 article obligations. Include known-bad fixtures that exceed the current or thermal
 assumptions. This moves classification earlier; it does not weaken final native
 DRC, ampacity, thermal, or first-article requirements.
+
+### Implemented — defer minor deficiencies without release churn (2026-09-16)
+
+Minor polish must not repeatedly reopen a working release. The PCB skill now
+owns a lightweight deficiency workflow in its lifecycle procedure, seeded as
+`01_docs/DEFICIENCIES.md`. Triage once into current blockers, supported minor
+deferrals, or separate order/first-article/production holds. A deferred item
+records impact and evidence, owner, revisit target, and a closure test; new
+evidence or next-release planning can reopen it. Unknown impact stays blocking.
+
+The existing review carries the list and the staged release gets a hashed
+snapshot. No extra reviewer, gate waiver, or approval round is introduced.
+Required function, safety, manufacturability, mating, and user requirements
+retain their existing gates. Current engineering release and order readiness
+remain distinct. Commissioning, checklist, and contract templates carry the
+workflow forward; historical immutable releases are not backfilled.
+
+Validation: skill authority, progressive disclosure (14 tests), commissioning
+(7 tests), skill-format validation, and the non-project contract audit pass.
+The wider documentation suite retains two existing failures: its root-document
+census omits CONTRIBUTING/THIRD_PARTY_NOTICES, and an older entry links to absent
+`tests/t1_critical_path_check.py`. The project-wide contract audit also retains
+existing Crow allowlist failures for its deficiency document and node_modules
+entry. These are separate repository maintenance work, not evidence that board
+or release gates pass.

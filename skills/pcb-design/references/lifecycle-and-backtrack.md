@@ -12,6 +12,7 @@ red gate, and resume safely from repository state.
 5. D-BACK diagnosis
 6. Backtrack destinations
 7. Writer and promotion discipline
+8. Deficiency triage
 
 Policy IDs owned by this procedure: `D-BACK`, `M-BEACON`, `M-JRNL`, and
 `M-LEARN`.
@@ -131,8 +132,9 @@ Before moving upstream:
 5. Append a `stuck` journal event with plateau and hypothesis.
 6. Write the learning while the evidence is live.
 
-Cheap independent finding groups should be resolved before escalating the
-surviving hard group.
+Triage findings under section 8 first. Resolve cheap independent blockers
+before escalating the surviving hard group; leave deferred improvements out
+of the current repair loop.
 
 ## 6. Backtrack destinations
 
@@ -175,3 +177,47 @@ Every producer follows a transaction:
 Promote the final route chain into committed source. Keep generated build data
 disposable unless a contract names it as release or resume evidence. Commit at
 green gates so Git remains the geometry undo and handoff boundary.
+
+## 8. Deficiency triage
+
+Use `01_docs/DEFICIENCIES.md` as the small, human-readable release backlog.
+Commission seeds it from the skill template; on an existing project, create it
+when the first item needs deferral. Classify each finding once:
+
+- **Fix now:** violates the current brief, fails a required gate/review, or
+  lacks evidence required at the current boundary for electrical function,
+  safety, assembly, mating, or manufacturability. Unknown impact is not
+  evidence of a minor issue.
+- **Defer:** evidence shows the current release meets its requirements and
+  remains functional, safe, manufacturable, and usable as documented. Examples
+  include optional extra labels when required markings are already legible,
+  cosmetic render polish, and optional test-access improvements when the
+  required bring-up procedure already works.
+- **Later-boundary hold:** belongs to an explicitly separate order,
+  first-article, or production boundary under its existing rules. Stock
+  shortages or owed hardware measurements are not cosmetic deficiencies;
+  preserve their actual hold and make no stronger readiness claim.
+
+For each deferred item record a stable ID, affected revision/refs, practical
+impact, evidence supporting deferral (including any workaround), owner, and
+next-release action with a closure test. Link an existing review finding or
+`findings.yaml` row rather than creating a competing gate verdict. The list
+cannot waive a gate, lower a floor, or drop a user requirement. If the impact
+cannot be established cheaply from current evidence, retain the blocker and
+name the specific test needed to decide it.
+
+Within the agreed scope, the implementing agent may defer eligible items
+without another permission round or separate review commission. Include the
+list in the existing review packet. Reviewers still report blockers; merely
+preferring a deferred enhancement does not reopen it. Reopen only when new
+evidence changes its impact or affected scope, or during next-release planning.
+Do not reroute, regenerate renders, or repeat accepted reviews solely to polish
+an eligible deferred item.
+
+Before sealing, reconcile the list with actual gate/review outcomes and copy
+it into staged `verification/DEFICIENCIES.md`; summarize remaining items and
+later-boundary holds in the release handoff. Use the normal manifest hashing
+and seal procedure. This is disclosure within the existing review, not a new
+approval gate. Never backfill a sealed release. At the next revision, triage
+carried items against the new brief; keep IDs and record closure evidence or
+an explicit continued deferral rather than silently dropping them.
