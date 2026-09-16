@@ -18,8 +18,10 @@ or publication procedure.
 - Prove every population exception through one assembly-policy source.
 - Treat catalog stock as advisory. Screen every coded BOM line against the
   quantity-expanded build plus the configured absolute surplus (150 units in
-  the current template), then require JLCPCB PCBA availability/allocation
-  receipts at their lifecycle boundaries.
+  the current template). Apply the same configured surplus to exact-part
+  public distributor or authorized-channel aggregate observations; those
+  observations remain design-only and never replace JLCPCB PCBA
+  availability/allocation receipts at their lifecycle boundaries.
 - Bind those receipts to explicit procurement limits and grade preorder cash,
   gross MOQ surplus cost, and nonrecoverable assembly excess cost.
 - Enforce measured per-LCSC rotation authority before CPL export (`A-ROT`).

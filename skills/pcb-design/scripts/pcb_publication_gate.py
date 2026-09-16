@@ -659,6 +659,7 @@ def _freshness_args(fields, release):
         "docs-only": "--docs-only-supersede",
         "representation-only": "--representation-supersede",
         "assembly-policy": "--assembly-policy-supersede",
+        "rule-prose": "--rule-prose-supersede",
     }
     if mode not in modes:
         return [f"FRESHNESS-MODE: unsupported release_mode {mode!r}"], []

@@ -477,6 +477,43 @@ def representation_root():
     return root, d1, d2
 
 
+def rule_prose_root():
+    root, d1, d2 = docs_only_root()
+    old = """invariants:
+  - assert: pin_on_net
+    pin: D1.1
+    net: VIN_PROTECTED
+    adr: '0002'
+    why: 1N4007 cathode faces the protected node.
+"""
+    new = old.replace("1N4007", "S1M")
+    for release, text in ((d1, old), (d2, new)):
+        path = release / "source/project/03_src/rules/electrical_invariants.yaml"
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(text)
+    return root, d1, d2
+
+
+@test("rule-prose supersede accepts rationale-only invariant correction")
+def t_rule_prose_supersede_passes_exact_delta():
+    _, d1, d2 = rule_prose_root()
+    r = must_pass(gate(d2, "--rule-prose-supersede", str(d1)),
+                  "rationale-only invariant successor")
+    contains(r.out, "parsed invariant data are identical", "semantic assertion")
+    contains(r.out, "FRESHNESS: PASS", "verdict")
+
+
+@test("rule-prose supersede rejects executable invariant change",
+      kind="known_bad")
+def t_rule_prose_supersede_rejects_executable_delta():
+    _, d1, d2 = rule_prose_root()
+    path = d2 / "source/project/03_src/rules/electrical_invariants.yaml"
+    path.write_text(path.read_text().replace("VIN_PROTECTED", "WRONG_NET"))
+    r = must_fail(gate(d2, "--rule-prose-supersede", str(d1)),
+                  "executable invariant delta", "RULE-PROSE DEVIATION")
+    contains(r.out, "executable invariant fields", "names protected semantics")
+
+
 @test("representation supersede confines source delta and preserves fab")
 def t_representation_supersede_passes_exact_delta():
     _, d1, d2 = representation_root()

@@ -14,15 +14,13 @@ Closed on 2026-09-16: the authenticated 19-wave replay and layout seal pass at
 locator plus three RJ45 oblique views passed review with the user's connector
 approval retained.
 Fabrication export, release rehearsal, and publication admission passed for the
-unchanged board; `v0.1.3-2026-09-16` is the assembly-policy successor now in
-staging.
+unchanged board; `v0.1.3-2026-09-16` is the current immutable release.
 
 ## Explicit prototype and order-time deficiencies
 
 | Deficiency | Disposition |
 | --- | --- |
-| Exact LT3041ADE#TRPBF allocation | Fresh public evidence shows the selected tape-and-reel identity at stock 0 against a 155-unit threshold: five required plus the configured 150-unit surplus. The design release may seal only as `DO-NOT-ORDER / BLOCKED-SOURCING`; an order requires fresh exact-identity allocation or approved exact-part consignment. |
-| TMUX2821DSGR allocation | Fresh LCSC catalog evidence shows 16 units against a 190-unit threshold: 40 required for five carriers plus the configured 150-unit surplus. This is also `BLOCKED-SOURCING`; ordering requires sufficient exact stock or approved exact-part consignment. |
+| Exact-part allocation | RESOLVED for design-time public availability: current authorized-channel evidence reports 1,965 exact LT3041ADE#TRPBF and DigiKey reports 2,449 exact TMUX2821DSGR, clearing the configured 155 and 190 thresholds. Order-time JLC allocation or acquired exact-part consignment remains owed and keeps the release `DO-NOT-ORDER`. |
 | First-article electrical captures | Rail startup, shutdown, reset, TDM timing, analog-path performance, fault behavior, and thermal measurements remain owed by the controlled first-article plan. No production qualification is claimed. |
 | Physical copper and barrel validation | Calculated DCR, current, and via-capacity checks pass the design model; physical DCR and temperature-rise measurements remain first-article obligations. |
 | Silkscreen locator fallbacks | Crowded references that cannot remain legible on F.SilkS are carried by the assembly locator/F.Fab evidence. This affects assembly convenience, not connectivity or fabrication geometry. |

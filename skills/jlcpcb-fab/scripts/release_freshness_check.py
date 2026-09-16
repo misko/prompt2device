@@ -1366,7 +1366,7 @@ def check_cpl_delta(release_dir, prior_dir):
 def check_docs_only(release_dir, prior_dir, bom_only=False,
                     cpl_only=False, legible_bom=False, sourcing=False,
                     value_change=False, representation=False,
-                    assembly_policy=False):
+                    assembly_policy=False, rule_prose=False):
     """Assert the docs-only-supersede contract against the DECLARED prior
     release: fab/source/3d byte-identical (any deviation = FAIL), order
     README + MANIFEST byte-DIFFERENT (identical docs supersede nothing).
@@ -1400,9 +1400,15 @@ def check_docs_only(release_dir, prior_dir, bom_only=False,
     assembly_contract_paths = {
         "03_src/rules/contracts.md", "project/03_src/rules/contracts.md",
     }
+    rule_prose_paths = {
+        "03_src/rules/electrical_invariants.yaml",
+        "project/03_src/rules/electrical_invariants.yaml",
+    }
     if assembly_policy:
         exempt = {("source", rel) for rel in
                   assembly_paths | assembly_contract_paths}
+    elif rule_prose:
+        exempt = {("source", rel) for rel in rule_prose_paths}
     elif representation:
         exempt = {("source", "03_src/rules/twin_adjudications.yaml")}
     elif bom_only or legible_bom:
@@ -1411,7 +1417,7 @@ def check_docs_only(release_dir, prior_dir, bom_only=False,
         exempt = {("fab", "cpl.csv")}
     def is_exempt(sub, rel):
         return ((sub, rel) in exempt or
-                (assembly_policy and sub == "source" and
+                ((assembly_policy or rule_prose) and sub == "source" and
                  rel.startswith("project/01_docs/")))
     for sub in _DOCS_ONLY_IDENTICAL_DIRS:
         cur = _tree_files(release_dir / sub)
@@ -1455,6 +1461,7 @@ def check_docs_only(release_dir, prior_dir, bom_only=False,
                 same += 1
         if same:
             _label = ("assembly-policy" if assembly_policy
+                      else "rule-prose" if rule_prose
                       else "representation" if representation
                       else "bom-only" if bom_only else "cpl-only" if cpl_only
                       else "legible-bom" if legible_bom
@@ -1503,6 +1510,46 @@ def check_docs_only(release_dir, prior_dir, bom_only=False,
                 "  note: source delta is confined to "
                 "03_src/rules/twin_adjudications.yaml; fab/ and 3d/ are "
                 "byte-identical — ASSERTED by representation mode")
+    if rule_prose:
+        current = [(rel, release_dir / "source" / rel)
+                   for rel in rule_prose_paths
+                   if (release_dir / "source" / rel).is_file()]
+        prior = {rel: prior_dir / "source" / rel for rel in rule_prose_paths
+                 if (prior_dir / "source" / rel).is_file()}
+        changed = [(rel, path) for rel, path in current
+                   if rel not in prior or _sha256(path) != _sha256(prior[rel])]
+        if len(changed) != 1 or changed[0][0] not in prior:
+            fails.append(
+                "  RULE-PROSE: expected exactly one changed existing "
+                "electrical_invariants.yaml authority, found " +
+                str(len(changed)))
+        else:
+            rel, cur_path = changed[0]
+            try:
+                import yaml
+                cur_data = yaml.safe_load(cur_path.read_text(encoding="utf-8-sig"))
+                old_data = yaml.safe_load(prior[rel].read_text(encoding="utf-8-sig"))
+
+                def without_why(value):
+                    if isinstance(value, dict):
+                        return {key: without_why(item) for key, item in value.items()
+                                if key != "why"}
+                    if isinstance(value, list):
+                        return [without_why(item) for item in value]
+                    return value
+
+                if without_why(cur_data) != without_why(old_data):
+                    fails.append(
+                        "  RULE-PROSE DEVIATION: executable invariant fields "
+                        "changed after removing every `why` rationale")
+                else:
+                    notes.append(
+                        "  note: source delta is confined to " + rel +
+                        "; parsed invariant data are identical after removing "
+                        "`why` rationale fields; fab/ and 3d/ are byte-identical "
+                        "— ASSERTED by rule-prose mode")
+            except Exception as exc:
+                fails.append(f"  RULE-PROSE: cannot compare invariant YAML: {exc}")
     # the documents themselves MUST change — that is the release's whole point
     doc_pairs = [("order README", _find_readme(release_dir),
                   _find_readme(prior_dir)),
@@ -2581,6 +2628,14 @@ def main(argv=None):
                          "verification/assembly.yaml twin plus changed "
                          "README/MANIFEST, and allow refreshed stock/review "
                          "evidence. Board, copper, BOM and CPL may not move")
+    ap.add_argument("--rule-prose-supersede",
+                    metavar="PRIOR_RELEASE_DIR", default=None,
+                    help="rule-prose successor: ASSERT fab/ and 3d/ "
+                         "byte-identical, source/ byte-identical except for "
+                         "exactly one electrical_invariants.yaml whose parsed "
+                         "data differ only in `why` rationale fields, plus "
+                         "project documentation. Executable assertions, board, "
+                         "BOM and CPL may not move")
     ap.add_argument("--cpl-only-supersede", metavar="PRIOR_RELEASE_DIR",
                     default=None,
                     help="CPL-only supersede mode: docs-only, PLUS the one "
@@ -2725,8 +2780,9 @@ def main(argv=None):
     value_change = bool(args.value_change_supersede)
     representation = bool(args.representation_supersede)
     assembly_policy = bool(args.assembly_policy_supersede)
+    rule_prose = bool(args.rule_prose_supersede)
     _modes = [args.docs_only_supersede, args.representation_supersede,
-              args.assembly_policy_supersede,
+              args.assembly_policy_supersede, args.rule_prose_supersede,
               args.bom_only_supersede,
               args.cpl_only_supersede, args.legible_bom_supersede,
               args.sourcing_supersede, args.value_change_supersede]
@@ -2734,11 +2790,13 @@ def main(argv=None):
         print("FATAL: pass at most ONE of --docs-only-supersede / "
               "--representation-supersede / "
               "--assembly-policy-supersede / "
+              "--rule-prose-supersede / "
               "--bom-only-supersede / --cpl-only-supersede / "
               "--legible-bom-supersede / --sourcing-supersede / "
               "--value-change-supersede", file=sys.stderr)
         return 2
     _mode = ("assembly-policy" if assembly_policy
+             else "rule-prose" if rule_prose
              else "representation" if representation
              else "bom-only" if bom_only else "cpl-only" if cpl_only
              else "legible-bom" if legible_bom
@@ -2761,6 +2819,7 @@ def main(argv=None):
         prior_dir = Path(args.docs_only_supersede
                          or args.representation_supersede
                          or args.assembly_policy_supersede
+                         or args.rule_prose_supersede
                          or args.bom_only_supersede
                          or args.cpl_only_supersede
                          or args.legible_bom_supersede
@@ -2808,7 +2867,8 @@ def main(argv=None):
                                      sourcing=sourcing,
                                      value_change=value_change,
                                      representation=representation,
-                                     assembly_policy=assembly_policy)
+                                     assembly_policy=assembly_policy,
+                                     rule_prose=rule_prose)
             fails += df
             notes += dn
             if value_change:

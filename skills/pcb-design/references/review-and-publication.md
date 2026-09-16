@@ -136,6 +136,11 @@ requires the verification copy to match it, and permits refreshed stock and
 review evidence. It cannot carry a board, copper, BOM, CPL, or unrelated
 engineering-source change.
 
+For a rationale-only invariant correction, pass `--rule-prose-supersede
+<prior-release-dir>`. It requires identical fab/3d and identical parsed
+invariant data after removing `why` fields, so a prose cleanup cannot hide an
+executable electrical change.
+
 Rehearsal composes required-release content, design/sourcing freshness and the
 publication contract using `pcb_publication_gate.py --release`. Its receipt is
 stored outside staging to avoid a self-referential manifest. Seal admission

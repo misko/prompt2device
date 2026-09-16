@@ -137,7 +137,8 @@ def rehearse(release: Path, project: Path | None = None,
              representation_supersede: str | None = None,
              allow_blocked_sourcing: bool = False,
              docs_only_supersede: str | None = None,
-             assembly_policy_supersede: str | None = None) -> dict[str, Any]:
+             assembly_policy_supersede: str | None = None,
+             rule_prose_supersede: str | None = None) -> dict[str, Any]:
     release = release.resolve()
     project = (project or _project_for(release)).resolve()
     manifest = release / "MANIFEST.txt"
@@ -151,15 +152,18 @@ def rehearse(release: Path, project: Path | None = None,
             "MANIFEST; a quiet order block may not seal")
     if sum(bool(value) for value in (representation_supersede,
                                      docs_only_supersede,
-                                     assembly_policy_supersede)) > 1:
+                                     assembly_policy_supersede,
+                                     rule_prose_supersede)) > 1:
         raise ValueError("choose exactly one supersede assertion")
     freshness_suffix = (["--assembly-policy-supersede",
                          assembly_policy_supersede]
                         if assembly_policy_supersede else
+                        (["--rule-prose-supersede", rule_prose_supersede]
+                         if rule_prose_supersede else
                         (["--docs-only-supersede", docs_only_supersede]
                         if docs_only_supersede else
                         (["--representation-supersede", representation_supersede]
-                         if representation_supersede else [])))
+                         if representation_supersede else []))))
     checks = {
         "release_required": _run(
             "release-required",
@@ -199,6 +203,9 @@ def rehearse(release: Path, project: Path | None = None,
         "freshness_mode": ({"kind": "assembly-policy-supersede",
                             "prior": assembly_policy_supersede}
                            if assembly_policy_supersede else
+                           {"kind": "rule-prose-supersede",
+                            "prior": rule_prose_supersede}
+                           if rule_prose_supersede else
                            {"kind": "docs-only-supersede", "prior": docs_only_supersede}
                            if docs_only_supersede else {"kind": "representation-supersede",
                             "prior": representation_supersede}
@@ -264,6 +271,9 @@ def main(argv: list[str] | None = None) -> int:
     modes.add_argument(
         "--assembly-policy-supersede",
         help="assert a source-owned assembly-policy-only delta against this prior release")
+    modes.add_argument(
+        "--rule-prose-supersede",
+        help="assert a rationale-only electrical-invariant delta against this prior release")
     rehearse_parser.add_argument(
         "--allow-blocked-sourcing", action="store_true",
         help="seal only the design claim when BLOCKED-SOURCING is declared "
@@ -308,7 +318,8 @@ def main(argv: list[str] | None = None) -> int:
         result = rehearse(args.release, args.project,
                            args.representation_supersede,
                            args.allow_blocked_sourcing, args.docs_only_supersede,
-                           args.assembly_policy_supersede)
+                           args.assembly_policy_supersede,
+                           args.rule_prose_supersede)
     except Exception as exc:
         print(f"RELEASE-REHEARSAL INCOMPLETE: {exc}")
         return 2

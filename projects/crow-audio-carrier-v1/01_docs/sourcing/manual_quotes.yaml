@@ -2,19 +2,37 @@
 quotes:
 - mpn: LT3041ADE#TRPBF
   manufacturer: Analog Devices
-  distributor: mouser
-  dpn: 584-LT3041ADE#TRPBF
-  source: product_page
-  url: https://www.mouser.com/en/ProductDetail/Analog-Devices/LT3041ADETRPBF
+  distributor: trustedparts
+  source: authorized_inventory_aggregator
+  authority: ECIA
+  authorized_only: true
+  aggregation_scope: authorized-distributors-only
+  url: https://www.trustedparts.com/en/manufacturers/analog/LT3041
   read_on: '2026-09-16'
-  checked_at: '2026-09-16T05:53:16+00:00'
+  checked_at: '2026-09-16T18:44:40+00:00'
   lifecycle: Active
-  packaging: Cut Tape
-  stock: 0
+  packaging: Tape & Reel
+  stock: 1965
   min: 1
   mult: 1
   price_breaks: []
-  note: "CITED exact public Mouser product page reopened 2026-09-16T05:53:16+00:00: Analog Devices Inc., exact A-grade MPN LT3041ADE#TRPBF, active listing, DFN-14, stock0 with backorder only. Cut Tape minimum1/multiple1 remains listed; no current unit price was presented on the US page. The tray LT3041ADE#PBF listing was also stock0. This is a fresh BLOCKED-SOURCING observation for design continuation only, with no reservation, JLC allocation, landed quote, Q-2SOURCE PASS or purchase authority. ADR0026 design-only scope; prior positive observations remain preserved in Git."
+  note: "CITED exact public ECIA TrustedParts authorized-channel series page reopened 2026-09-16T18:44:40+00:00: exact A-grade MPN LT3041ADE#TRPBF, 1,965 units aggregated only from authorized/franchised distributors. This clears the five-board need plus configured 150-unit public-stock surplus (155) for design continuation. Aggregation does not identify a reservation, allocation, landed quote, distributor minimum, or purchase authority; final direct supplier and JLC/consign evidence remain owed."
+
+- mpn: TMUX2821DSGR
+  manufacturer: Texas Instruments
+  distributor: digikey
+  dpn: 296-TMUX2821DSGRCT-ND
+  source: product_page
+  url: https://www.digikey.com/en/products/detail/texas-instruments/TMUX2821DSGR/28738833
+  read_on: '2026-09-16'
+  checked_at: '2026-09-16T18:44:40+00:00'
+  lifecycle: Active
+  packaging: Cut Tape
+  stock: 2449
+  min: 1
+  mult: 1
+  price_breaks: []
+  note: "CITED exact public DigiKey product listing reopened 2026-09-16T18:44:40+00:00: exact TMUX2821DSGR, Active, 2,449 units in cut tape. This clears the forty-unit five-board need plus configured 150-unit public-stock surplus (190) for design continuation. No reservation, JLC allocation, landed quote, Q-2SOURCE PASS or purchase authority is inferred."
 
 - mpn: OPA2320AIDR
   manufacturer: Texas Instruments

@@ -515,6 +515,16 @@ documentation; and `verification/assembly.yaml` must match it byte-for-byte.
 README, MANIFEST, stock evidence and reviews may be refreshed. Any board,
 copper, BOM, CPL or unrelated engineering-source delta fails this mode.
 
+**RULE-PROSE supersede mode.** When executable electrical invariants and every
+physical/output artifact remain unchanged but a stale `why` rationale must be
+corrected, gate with `--rule-prose-supersede <prior-release-dir>`. Fab and 3D
+must be byte-identical; source may change exactly one existing
+`electrical_invariants.yaml` plus project documentation. The checker parses
+both YAML files and requires semantic equality after removing every `why`
+field. Any assertion, pin, net, value, ADR, file-set, board, BOM or CPL change
+fails. Declare `release_mode: rule-prose` and the predecessor directory in the
+manifest so publication replays the same assertion.
+
 **BOM-only supersede mode.** The one case docs-only mode correctly refuses:
 the copper is untouched but the ASSEMBLY BOM must lose rows, because canon
 A-POP requires an unplaced part to LEAVE the BOM rather than sit on it

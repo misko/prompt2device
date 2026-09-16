@@ -143,6 +143,11 @@ names distributor-covered rows separately, rejects missing/network-failed JLC
 rows, and cannot be used for selection, authenticated receipt composition or
 order. It is not Q-2SOURCE or assembly acceptance. No public observation or
 policy authorizes payment, procurement exposure or a substituted part.
+The external observation must cover `required_qty + public_stock_surplus`,
+including supplier minimum/multiple expansion. A narrowly admitted ECIA
+TrustedParts authorized-channel aggregate may prove exact-MPN public
+availability when it declares authorized-only coverage; because it is not a
+reservation or supplier quote, it has the same pre-layout/DO-NOT-ORDER limit.
 
 `bom_source_check` proves semantic identity. `bom_legibility_check` proves the
 recipient can parse what was written:

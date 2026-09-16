@@ -19,6 +19,9 @@ class DistributorPrelayoutTests(unittest.TestCase):
         self.tmp = tempfile.TemporaryDirectory()
         self.addCleanup(self.tmp.cleanup)
         self.project = Path(self.tmp.name)
+        (self.project / '03_src/rules').mkdir(parents=True)
+        (self.project / '03_src/rules/assembly.yaml').write_text(
+            'schema: 1\npublic_stock_surplus: 150\n')
         self.directive = 'Continue design using exact distributor stock; no purchases.'
         (self.project / 'brief.md').write_text(self.directive)
         (self.project / 'decision.md').write_text(
@@ -37,7 +40,7 @@ class DistributorPrelayoutTests(unittest.TestCase):
                       rows=[copy.deepcopy(self.row)])
         self.q = dict(quotes=[dict(mpn='EXACT#TR', manufacturer='Maker',
             distributor='digikey', url=self.row['url'], packaging='Cut Tape',
-            dpn='EXACTCT-ND', source='product_page', lifecycle='Active', stock=20,
+            dpn='EXACTCT-ND', source='product_page', lifecycle='Active', stock=200,
             min=1, mult=1, checked_at=datetime.now(timezone.utc).isoformat())])
         self.request = dict(rows=[dict(requested_lcsc='C123', designators=['U1'],
                                       per_board_qty=1, required_qty=5)])
@@ -53,7 +56,7 @@ class DistributorPrelayoutTests(unittest.TestCase):
 
     def test_fresh_zero_stock_is_only_admitted_by_explicit_blocked_sourcing(self):
         self.q['quotes'][0]['stock'] = 0
-        with self.assertRaisesRegex(ValueError, 'below actual'):
+        with self.assertRaisesRegex(ValueError, 'configured surplus'):
             self.grade()
         self.policy.write_text(yaml.safe_dump(self.p))
         self.quotes.write_text(yaml.safe_dump(self.q))
@@ -99,7 +102,9 @@ class DistributorPrelayoutTests(unittest.TestCase):
         # Measured RED before introducing the explicit distributor path.
         rows, inputs = self.grade()
         self.assertEqual({'C123'}, set(rows))
-        self.assertEqual(20, rows['C123']['stock'])
+        self.assertEqual(200, rows['C123']['stock'])
+        self.assertEqual(150, rows['C123']['public_stock_surplus'])
+        self.assertEqual(155, rows['C123']['public_stock_threshold'])
         self.assertIn('distributor_policy', inputs)
         self.assertIn('distributor_quotes', inputs)
         self.assertIn('distributor_decision', inputs)
@@ -120,6 +125,41 @@ class DistributorPrelayoutTests(unittest.TestCase):
             self.q['quotes'][0]['url'] = hostile
             with self.subTest(url=hostile), self.assertRaisesRegex(ValueError, 'unsupported'):
                 self.grade()
+
+    def test_ecia_authorized_inventory_aggregate_is_narrowly_admitted(self):
+        url = 'https://www.trustedparts.com/en/manufacturers/analog/LT3041'
+        self.p['rows'][0].update(distributor='trustedparts', url=url,
+                                 packaging='Tape & Reel')
+        quote = self.q['quotes'][0]
+        quote.update(distributor='trustedparts', url=url,
+                     packaging='Tape & Reel',
+                     source='authorized_inventory_aggregator',
+                     authority='ECIA', authorized_only=True,
+                     aggregation_scope='authorized-distributors-only')
+        quote.pop('dpn')
+        rows, _ = self.grade()
+        self.assertEqual('AVAILABLE', rows['C123']['sourcing_state'])
+        for key, value in (
+                ('authority', 'not-ecia'),
+                ('authorized_only', False),
+                ('aggregation_scope', 'all-distributors')):
+            saved = quote[key]
+            quote[key] = value
+            with self.subTest(key=key), self.assertRaisesRegex(
+                    ValueError, 'authorized-only'):
+                self.grade()
+            quote[key] = saved
+
+    def test_configured_surplus_is_required_for_external_stock(self):
+        self.q['quotes'][0]['stock'] = 154
+        with self.assertRaisesRegex(ValueError, 'configured surplus'):
+            self.grade()
+        rows, _ = self.grade(allow_blocked_sourcing=True)
+        self.assertEqual('BLOCKED-SOURCING', rows['C123']['sourcing_state'])
+        (self.project / '03_src/rules/assembly.yaml').write_text(
+            'schema: 1\npublic_stock_surplus: -1\n')
+        with self.assertRaisesRegex(ValueError, 'public_stock_surplus'):
+            self.grade(allow_blocked_sourcing=True)
 
     def test_cli_paths_are_cwd_relative_but_policy_references_are_project_relative(self):
         expected = self.grade()

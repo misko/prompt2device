@@ -13,8 +13,8 @@ invariants:
     chain: [12V_POD, F1, 12V_FUSED, D1, VIN_PROTECTED]
     adr: "0002"
     why: "The local PTC and low-leakage forward rectifier precede every pod load."
-  - {assert: pin_on_net, pin: "D1.1", net: VIN_PROTECTED, adr: "0002", why: "1N4007 cathode faces the protected node."}
-  - {assert: pin_on_net, pin: "D1.2", net: 12V_FUSED, adr: "0002", why: "1N4007 anode receives correctly polarized fused input."}
+  - {assert: pin_on_net, pin: "D1.1", net: VIN_PROTECTED, adr: "0002", why: "S1M cathode faces the protected node."}
+  - {assert: pin_on_net, pin: "D1.2", net: 12V_FUSED, adr: "0002", why: "S1M anode receives correctly polarized fused input."}
   - {assert: pin_on_net, pin: "D2.1", net: VIN_PROTECTED, adr: "0002", why: "SMBJ15A cathode clamps the protected positive rail."}
   - {assert: pin_on_net, pin: "U2.8", net: VIN_PROTECTED, adr: "0002", why: "TPS7A4901 input is protected."}
   - {assert: pin_on_net, pin: "U2.5", net: VIN_PROTECTED, adr: "0002", why: "TPS7A4901 enable is always on only after protection."}

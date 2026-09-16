@@ -46,14 +46,20 @@ contains `lcsc`, `mpn`, `manufacturer`, `footprint`, exact `designators`,
 `distributor`, exact product `url`, and `packaging`. Identity must agree with
 the current generated source, request and dossier; no implicit substitution.
 
-Supported observation: `distributor: digikey`, HTTPS
-`www.digikey.com/en/products/detail/...`, one matching `manual_quotes.yaml`
-entry with exact MPN/manufacturer/URL/packaging, nonempty `dpn`,
+Supported direct observations are `distributor: digikey` or `mouser` with the
+checker-owned HTTPS product-page shape and one matching `manual_quotes.yaml`
+entry containing exact MPN/manufacturer/URL/packaging, nonempty `dpn`,
 `source: product_page`, `lifecycle: Active`, timezone-bearing `checked_at`
-within24hours, positive integer `stock`, `min`, and `mult`. Stock must cover
-the actual minimum/multiple-expanded request. Other quote entries may remain
-for other tasks; they do not grant extra policy coverage. Record the actual
-public read and its limitations; hashes do not prove accurate transcription.
+within24hours, and integer `stock`, `min`, and `mult`. A narrowly supported
+`distributor: trustedparts` observation may instead use
+`source: authorized_inventory_aggregator` only with `authority: ECIA`,
+`authorized_only: true`, and
+`aggregation_scope: authorized-distributors-only`. Every observation must
+cover the build request plus `assembly.yaml public_stock_surplus` (150), after
+minimum/multiple expansion. It remains design-only public availability, never
+an allocation or purchase quote. Other quote entries may remain for other
+tasks; they do not grant extra policy coverage. Record the actual public read
+and its limitations; hashes do not prove accurate transcription.
 
 This path can cover only JLC `LOW_STOCK` rows in prelayout design composition.
 It leaves the raw JLC report unchanged, is not Q-2SOURCE, and cannot satisfy

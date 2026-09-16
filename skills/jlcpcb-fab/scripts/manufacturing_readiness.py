@@ -165,8 +165,13 @@ def _distributor_prelayout_rows(project: Path, request: dict[str, Any],
     # inside the policy remain project-relative. Keep symlink checks intact.
     policy_path = local(Path(os.path.abspath(policy_path)))
     quotes_path = local(Path(os.path.abspath(quotes_path)))
+    assembly_path = local(Path("03_src/rules/assembly.yaml"))
     policy = yaml.safe_load(policy_path.read_text())
     quotes = yaml.safe_load(quotes_path.read_text())
+    assembly = yaml.safe_load(assembly_path.read_text()) or {}
+    surplus = assembly.get('public_stock_surplus')
+    if type(surplus) is not int or surplus < 0:
+        raise ValueError('assembly public_stock_surplus must be a nonnegative integer')
     if (not isinstance(policy, dict) or policy.get('schema') != 1 or
             policy.get('scope') != 'prelayout-only' or
             policy.get('order_authorized') is not False):
@@ -210,8 +215,10 @@ def _distributor_prelayout_rows(project: Path, request: dict[str, Any],
         # Each admitted provider has a narrow, tested public product-page
         # shape. Exact row/quote equality below binds the observed page.
         provider_paths = {
-            'digikey': ('www.digikey.com', '/en/products/detail/'),
-            'mouser': ('www.mouser.com', '/en/ProductDetail/'),
+            'digikey': ('www.digikey.com', '/en/products/detail/', 'product_page'),
+            'mouser': ('www.mouser.com', '/en/ProductDetail/', 'product_page'),
+            'trustedparts': ('www.trustedparts.com', '/en/manufacturers/',
+                             'authorized_inventory_aggregator'),
         }
         provider = provider_paths.get(row['distributor'])
         if (provider is None or url.scheme != 'https' or
@@ -225,9 +232,16 @@ def _distributor_prelayout_rows(project: Path, request: dict[str, Any],
         quote = found[0]
         if (any(quote.get(key) != row[key] for key in
                 ('mpn', 'manufacturer', 'distributor', 'url', 'packaging')) or
-                quote.get('source') != 'product_page' or quote.get('lifecycle') != 'Active' or
-                not isinstance(quote.get('dpn'), str) or not quote['dpn'].strip()):
+                quote.get('source') != provider[2] or
+                quote.get('lifecycle') != 'Active'):
             raise ValueError(f'{code}: non-product-page or mismatched distributor observation')
+        if provider[2] == 'product_page':
+            if not isinstance(quote.get('dpn'), str) or not quote['dpn'].strip():
+                raise ValueError(f'{code}: product-page observation lacks distributor part number')
+        elif (quote.get('authority') != 'ECIA' or
+              quote.get('authorized_only') is not True or
+              quote.get('aggregation_scope') != 'authorized-distributors-only'):
+            raise ValueError(f'{code}: aggregator does not prove ECIA authorized-only inventory')
         try:
             checked = datetime.fromisoformat(str(quote.get('checked_at') or '').replace('Z', '+00:00'))
             if checked.tzinfo is None:
@@ -245,16 +259,22 @@ def _distributor_prelayout_rows(project: Path, request: dict[str, Any],
         required = wanted[code].get('required_qty')
         if type(required) is not int or required <= 0:
             raise ValueError(f'{code}: invalid requested quantity')
-        purchase_quantity = ((max(required, minimum) + multiple - 1) // multiple) * multiple
+        public_threshold = required + surplus
+        purchase_quantity = ((max(public_threshold, minimum) + multiple - 1) // multiple) * multiple
         blocked = stock < purchase_quantity
         if blocked and not allow_blocked_sourcing:
-            raise ValueError(f'{code}: distributor stock below actual minimum/multiple quantity')
-        approved[code] = dict(stock=stock, required_qty=required, mpn=row['mpn'],
+            raise ValueError(
+                f'{code}: distributor stock below build plus configured surplus quantity')
+        approved[code] = dict(stock=stock, required_qty=required,
+                              public_stock_surplus=surplus,
+                              public_stock_threshold=public_threshold,
+                              purchase_quantity=purchase_quantity, mpn=row['mpn'],
                               distributor=row['distributor'], url=row['url'],
                               checked_at=quote['checked_at'], order_authorized=False,
                               sourcing_state=('BLOCKED-SOURCING' if blocked else 'AVAILABLE'))
     inputs = {name: _record(path) for name, path in (
         ('distributor_policy', policy_path), ('distributor_quotes', quotes_path),
+        ('distributor_assembly', assembly_path),
         ('distributor_decision', decision), ('distributor_brief', brief))}
     return approved, inputs
 

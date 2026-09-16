@@ -788,6 +788,22 @@ def t_assembly_policy_freshness_mode_is_composed():
     check(Path(args[3]) == prior, f"wrong predecessor path: {args[3]}")
 
 
+@test("publication replays a declared rule-prose predecessor")
+def t_rule_prose_freshness_mode_is_composed():
+    d = tmpdir("pub_rule_prose_")
+    releases = d / "07_releases"
+    prior = releases / "v1.0-2026-08-01"
+    current = releases / "v1.1-2026-08-02"
+    prior.mkdir(parents=True)
+    current.mkdir()
+    errors, args = pg._freshness_args(
+        {"release_mode": "rule-prose", "supersedes": prior.name}, current)
+    check(not errors, f"valid rule-prose declaration refused: {errors}")
+    check(args[:3] == ["--claim", "design", "--rule-prose-supersede"],
+          f"wrong rule-prose freshness argv: {args}")
+    check(Path(args[3]) == prior, f"wrong predecessor path: {args[3]}")
+
+
 @test("publication fails closed on a docs-only declaration with no existing "
       "predecessor", kind="known_bad")
 def t_docs_only_missing_predecessor_is_refused():

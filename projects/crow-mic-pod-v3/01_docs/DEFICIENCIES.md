@@ -1,6 +1,6 @@
 # Crow daughter-pod release deficiencies
 
-Candidate: v0.2.2 assembly-policy successor (staging). Updated 2026-09-16.
+Current immutable release: v0.2.3-2026-09-16. Updated 2026-09-16.
 
 ## Fix before release
 
@@ -9,11 +9,13 @@ Candidate: v0.2.2 assembly-policy successor (staging). Updated 2026-09-16.
 
 ## Deferred to next release
 
-| ID | Issue / impact | Evidence and current disposition | Owner | Revisit / closure test |
-|---|---|---|---|---|
-| POD-D001 | D1 invariant rationale still names 1N4007 instead of S1M; misleading prose | Current pre-route topology review identifies this as documentation-only; executable pin assertions and actual S1M part identity are correct. | PCB maintainer | Next source revision: correct rationale and verify it matches D1 BOM/dossier without changing topology. |
+None.
 
 ## Resolved on current candidate
+
+- POD-D001: the two D1 invariant rationales now name the actual S1M rectifier.
+  Parsed executable fields remain unchanged; the rule-prose successor gate
+  proves this is rationale-only.
 
 - Public-catalog selection now requires the ten-board quantity plus a
   source-owned 150-unit surplus per aggregated LCSC line; fresh evidence passes
