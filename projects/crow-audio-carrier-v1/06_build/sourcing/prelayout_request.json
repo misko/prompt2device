@@ -1,8 +1,8 @@
 {
   "assembly": {
     "path": "../../03_src/rules/assembly.yaml",
-    "sha256": "0b8b7b936dfd473772f1213156fe284d427ee20bde9fc71bdbe0bf8f5618634d",
-    "size": 5760
+    "sha256": "ac189605965f236abf47aad44fe0b11054f28f5b57544a746242bd139ad1d56b",
+    "size": 6922
   },
   "authority_required": "jlcpcb_pcba_interface",
   "build_quantity": 5,
@@ -39,7 +39,7 @@
     "J8",
     "J9"
   ],
-  "generated_at": "2026-09-16T23:54:44.982377+00:00",
+  "generated_at": "2026-09-17T01:09:28.828927+00:00",
   "kind": "jlc-pcba-availability-request-v2",
   "phase": "prelayout",
   "procurement_policy": {
