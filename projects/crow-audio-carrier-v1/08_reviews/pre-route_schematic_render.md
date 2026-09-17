@@ -4,14 +4,20 @@ reviewer_identity: /root/carrier_render_refresh
 context: FRESH
 date: 2026-09-16T23:55:53+00:00
 design_verdict: SOUND
-order_verdict: BLOCKED-SOURCING
+order_verdict: FIRST-ARTICLE-ONLY
 netlist_sha256: d3e2f0f15ab1c291856d81db26842a88a15944f36135f469934dba9b00d49ebe
 parts_sha256: 19914c21c35cc6593b6dcc88a26f5b094517c09c3834356f6fc252048ce3b916
-design_rules_sha256: 945c7614cbfe8a321faa691286034a9d10fe8f9a14349732a25eb40bdf483792
+design_rules_sha256: 790b9c21efc3a61c742237939eaa94759f3cbb4658e8c418a69781eb1f0d5417
 schematic_pdf_sha256: 19da91c103ea3ebf7c39f5fba65cc197293764e015a9f6b9ddc326ad8fd89686
 exact_netlist_sha256: e0eb2e1e8b15e7efd1c9f8fa0ce10784a651177381ac9f9074430d79ee333746
 circuit_json_sha256: f92e15c227d997c83d6bf009b9d88e16034079f3ce62a9fb26fd0d6748217bd9
 kicad_schematic_sha256: 3160cc4afdd2855c1d8198419e98efeb5c9b0db70d716735b535270078d9096f
+
+2026-09-16 final sourcing rebind: the semantic rules digest changed only by
+adding exact dated public-stock plans for F_IN/C22870534 and
+U_ADC/C42457798. Schematic bytes and all rendered pages remain unchanged.
+Exact public observations clear the configured surplus; uploader fulfillment
+remains a supervised first-article order control.
 
 Fresh bounded follow-up schematic-readability review of the newly regenerated
 exact 19-page PDF, native KiCad schematic, normalized netlist, 333-component

@@ -3,17 +3,24 @@ review_kind: topology
 reviewer_identity: /root/carrier_topology_refresh
 context: FRESH
 date: 2026-09-16T23:43:08Z
-source_commit: 4d95b2eac677fec7b5492780483296cc73566070
+source_commit: 60ad41827f29fa7327241b12f521617e6fc7d518
 design_verdict: SOUND
-order_verdict: BLOCKED-SOURCING
+order_verdict: FIRST-ARTICLE-ONLY
 netlist_sha256: d3e2f0f15ab1c291856d81db26842a88a15944f36135f469934dba9b00d49ebe
 parts_sha256: 19914c21c35cc6593b6dcc88a26f5b094517c09c3834356f6fc252048ce3b916
-design_rules_sha256: 945c7614cbfe8a321faa691286034a9d10fe8f9a14349732a25eb40bdf483792
+design_rules_sha256: 790b9c21efc3a61c742237939eaa94759f3cbb4658e8c418a69781eb1f0d5417
 schematic_pdf_sha256: abc0a7a5d4e12c2d0dd3d65adf36291a6a2465ce50520f63084e462e345dbf18
 exact_netlist_sha256: 124e8c4f889c44752fd5c7343f9e708556fb56066e6e2a299e937b074afea616
 circuit_json_sha256: cffbcd410f2cfe085d990bf4b8ccc31aa5a2cb280f9b11a873376eb3d501bddf
 kicad_schematic_sha256: 3160cc4afdd2855c1d8198419e98efeb5c9b0db70d716735b535270078d9096f
 promoted_kicad_schematic_sha256: a83d90aa2d84bd59356f4ed0d99470cbf9cd0e8a0a664c57f872d15591bec9c0
+
+2026-09-16 final sourcing rebind: the semantic rules digest changed only by
+adding exact dated public-stock plans for F_IN/C22870534 and
+U_ADC/C42457798. Electrical topology, schematic, netlist, geometry, assembly
+population and every safety floor remain unchanged. Exact public observations
+now clear the configured surplus; live uploader identity, rotations and
+allocation remain supervised first-article order controls.
 
 Fresh independent topology verdict: SOUND for the exact current carrier
 schematic subject. I reviewed the authoritative source delta, all current part
