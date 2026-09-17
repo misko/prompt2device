@@ -8,9 +8,9 @@ reasoning_effort: xhigh
 date: 2026-09-17
 completed_at: 2026-09-17T00:11:38Z
 design_verdict: SOUND
-order_verdict: BLOCKED-SOURCING
+order_verdict: FIRST-ARTICLE-ONLY
 board_sha256: c03db60ae47d6737e0bab2439bc410a127b8f15acfdde82925f77f96d62287df
-design_rules_sha256: 945c7614cbfe8a321faa691286034a9d10fe8f9a14349732a25eb40bdf483792
+design_rules_sha256: 790b9c21efc3a61c742237939eaa94759f3cbb4658e8c418a69781eb1f0d5417
 locator_manifest_sha256: ead3b85efb53b27a1486d5a3d80b53bf778c3afef7c4d373c2801434cdde45bd
 locator_reviewed_refs: ["C_FILT1_10U", "C_FILT2_10U", "C_PWR_CT", "C_VDDA2_10N", "C_VMID1_470N", "C_VMID1_4U7", "C_VMID2_470N", "C_VMID2_4U7", "R_ADC_BOT", "R_ADC_PD6N", "R_ADC_TOP", "R_AUDIO_PD", "R_AUDIO_PU", "R_DUMP_TIME2", "R_FILT1P", "R_IN6N", "R_PRE_G", "R_PWR_BOT", "R_PWR_TOP", "R_VMID1_BOT", "R_VMID1_TOP", "R_VMID2_BOT", "R_X6N"]
 twin_board_sha256: 0f9a3c29f954e6c356c183ba419f489bd4900b74308affa8d1cee528b5ff0ab3
@@ -24,6 +24,8 @@ twin_overlay_report_sha256: d3f573dc408fa6ebd4154ba12b6cfe36c04eeb8abd78df76238e
 twin_overlay_png_sha256: 883c32b2a698ff13c73d9b0207d39addffad301d472d47ac8e9c471aa77818bf
 connector_orientation_subject_sha256: 155896eb43a7c2b04c684523d4d96309bd4d945670f11a1c7a1d52b01a7a70e8
 connector_orientation_approval_sha256: 7caf0d53c2909cb74ecea7cfaba51d5f87c09a84b514bafac37b5220a7a87570
+2026-09-16 final sourcing rebind: the semantic rules digest changed only by adding exact dated public-stock plans for F_IN/C22870534 and U_ADC/C42457798. Placement, pin identities, models, connector geometry, routing constraints and every safety floor remain unchanged. Exact public observations clear the configured surplus; uploader fulfillment remains supervised.
+
 
 # Fresh pre-route native/render placement review
 

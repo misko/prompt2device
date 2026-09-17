@@ -5,17 +5,19 @@ context: FRESH FIX-PASS
 completed_at: 2026-09-17T00:11:32Z
 source_commit: fd8c88b2accd3df10d8b1443e1e5968e1c4f0c3b
 design_verdict: SOUND
-order_verdict: BLOCKED-SOURCING
+order_verdict: FIRST-ARTICLE-ONLY
 qualification: FIRST-ARTICLE-ONLY
 board_sha256: c03db60ae47d6737e0bab2439bc410a127b8f15acfdde82925f77f96d62287df
 parts_sha256: 19914c21c35cc6593b6dcc88a26f5b094517c09c3834356f6fc252048ce3b916
-design_rules_sha256: 945c7614cbfe8a321faa691286034a9d10fe8f9a14349732a25eb40bdf483792
+design_rules_sha256: 790b9c21efc3a61c742237939eaa94759f3cbb4658e8c418a69781eb1f0d5417
 locator_manifest_sha256: ead3b85efb53b27a1486d5a3d80b53bf778c3afef7c4d373c2801434cdde45bd
 bom_sha256: e10bffd5c56171b349af1c282ddaf618f236d4fc66a6d5a14d9f5732fc76d44d
 cpl_sha256: b4e43d2ae1e007fa8506b299380fb49b77297cc2b8db9fc352f4d490e1892864
 twin_report_sha256: 7450fd61047002827a49f49e41589ee68258e89e83f35dae3277d9e3c5387695
 twin_overlay_report_sha256: d3f573dc408fa6ebd4154ba12b6cfe36c04eeb8abd78df76238e0e98f11f451d
 orientation_subject_sha256: 155896eb43a7c2b04c684523d4d96309bd4d945670f11a1c7a1d52b01a7a70e8
+2026-09-16 final sourcing rebind: the semantic rules digest changed only by adding exact dated public-stock plans for F_IN/C22870534 and U_ADC/C42457798. Placement, pin identities, models, connector geometry, routing constraints and every safety floor remain unchanged. Exact public observations clear the configured surplus; uploader fulfillment remains supervised.
+
 
 Fresh independent physical-pin verdict: SOUND for the exact current pre-route
 carrier board. I regenerated conclusion-free pin dossiers from this board and
