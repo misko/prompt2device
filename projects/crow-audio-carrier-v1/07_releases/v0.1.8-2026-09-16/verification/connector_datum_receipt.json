@@ -1,0 +1,420 @@
+{
+  "applicability": "APPLICABLE",
+  "board_sha256": "0f9a3c29f954e6c356c183ba419f489bd4900b74308affa8d1cee528b5ff0ab3",
+  "contract": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/03_src/rules/model_registration.yaml",
+  "contract_sha256": "77f8ca4a1de0f046cf828f2225258ecb9b2600d11972463c2b1835fe523b65cc",
+  "kind": "connector-datum-receipt-v1",
+  "measurements": [
+    {
+      "access_axis_local": [
+        0.0,
+        -1.0
+      ],
+      "authority": "Manufacturer pad1 datum, mouth6.36mm toward footprint-Y; model+Y is outward; PCB edge target0.5mm nominal",
+      "catalog_to_source_footprint_transform": null,
+      "fab_bbox_local_mm": [
+        -5.108081,
+        -6.41,
+        12.268081,
+        7.14
+      ],
+      "fab_mating_support_mm": 6.41,
+      "group": "wurth-615008160221-side-entry",
+      "mating_plane_offset_mm": 6.36,
+      "mating_support_delta_mm": 0.0,
+      "native_model_actual_sha256": "3f902b89d4bd756b121be056782deff312efb127c9c48f2c798ebd6db0e59f49",
+      "native_model_sha256": "3f902b89d4bd756b121be056782deff312efb127c9c48f2c798ebd6db0e59f49",
+      "ref": "J1",
+      "representation_source": "native-manual",
+      "tolerance_mm": 0.35,
+      "vendor_bbox_local_mm": null,
+      "vendor_model_sha256": null,
+      "vendor_model_transform": {
+        "offset": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rotation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "verdict": "PASS"
+    },
+    {
+      "access_axis_local": [
+        0.0,
+        -1.0
+      ],
+      "authority": "Manufacturer pad1 datum, mouth6.36mm toward footprint-Y; model+Y is outward; PCB edge target0.5mm nominal",
+      "catalog_to_source_footprint_transform": null,
+      "fab_bbox_local_mm": [
+        -5.108081,
+        -6.41,
+        12.268081,
+        7.14
+      ],
+      "fab_mating_support_mm": 6.41,
+      "group": "wurth-615008160221-side-entry",
+      "mating_plane_offset_mm": 6.36,
+      "mating_support_delta_mm": 0.0,
+      "native_model_actual_sha256": "3f902b89d4bd756b121be056782deff312efb127c9c48f2c798ebd6db0e59f49",
+      "native_model_sha256": "3f902b89d4bd756b121be056782deff312efb127c9c48f2c798ebd6db0e59f49",
+      "ref": "J2",
+      "representation_source": "native-manual",
+      "tolerance_mm": 0.35,
+      "vendor_bbox_local_mm": null,
+      "vendor_model_sha256": null,
+      "vendor_model_transform": {
+        "offset": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rotation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "verdict": "PASS"
+    },
+    {
+      "access_axis_local": [
+        0.0,
+        -1.0
+      ],
+      "authority": "Manufacturer pad1 datum, mouth6.36mm toward footprint-Y; model+Y is outward; PCB edge target0.5mm nominal",
+      "catalog_to_source_footprint_transform": null,
+      "fab_bbox_local_mm": [
+        -5.108081,
+        -6.41,
+        12.268081,
+        7.14
+      ],
+      "fab_mating_support_mm": 6.41,
+      "group": "wurth-615008160221-side-entry",
+      "mating_plane_offset_mm": 6.36,
+      "mating_support_delta_mm": 0.0,
+      "native_model_actual_sha256": "3f902b89d4bd756b121be056782deff312efb127c9c48f2c798ebd6db0e59f49",
+      "native_model_sha256": "3f902b89d4bd756b121be056782deff312efb127c9c48f2c798ebd6db0e59f49",
+      "ref": "J3",
+      "representation_source": "native-manual",
+      "tolerance_mm": 0.35,
+      "vendor_bbox_local_mm": null,
+      "vendor_model_sha256": null,
+      "vendor_model_transform": {
+        "offset": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rotation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "verdict": "PASS"
+    },
+    {
+      "access_axis_local": [
+        0.0,
+        -1.0
+      ],
+      "authority": "Manufacturer pad1 datum, mouth6.36mm toward footprint-Y; model+Y is outward; PCB edge target0.5mm nominal",
+      "catalog_to_source_footprint_transform": null,
+      "fab_bbox_local_mm": [
+        -5.108081,
+        -6.41,
+        12.268081,
+        7.14
+      ],
+      "fab_mating_support_mm": 6.41,
+      "group": "wurth-615008160221-side-entry",
+      "mating_plane_offset_mm": 6.36,
+      "mating_support_delta_mm": 0.0,
+      "native_model_actual_sha256": "3f902b89d4bd756b121be056782deff312efb127c9c48f2c798ebd6db0e59f49",
+      "native_model_sha256": "3f902b89d4bd756b121be056782deff312efb127c9c48f2c798ebd6db0e59f49",
+      "ref": "J4",
+      "representation_source": "native-manual",
+      "tolerance_mm": 0.35,
+      "vendor_bbox_local_mm": null,
+      "vendor_model_sha256": null,
+      "vendor_model_transform": {
+        "offset": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rotation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "verdict": "PASS"
+    },
+    {
+      "access_axis_local": [
+        0.0,
+        -1.0
+      ],
+      "authority": "Manufacturer pad1 datum, mouth6.36mm toward footprint-Y; model+Y is outward; PCB edge target0.5mm nominal",
+      "catalog_to_source_footprint_transform": null,
+      "fab_bbox_local_mm": [
+        -5.108081,
+        -6.41,
+        12.268081,
+        7.14
+      ],
+      "fab_mating_support_mm": 6.41,
+      "group": "wurth-615008160221-side-entry",
+      "mating_plane_offset_mm": 6.36,
+      "mating_support_delta_mm": 0.0,
+      "native_model_actual_sha256": "3f902b89d4bd756b121be056782deff312efb127c9c48f2c798ebd6db0e59f49",
+      "native_model_sha256": "3f902b89d4bd756b121be056782deff312efb127c9c48f2c798ebd6db0e59f49",
+      "ref": "J5",
+      "representation_source": "native-manual",
+      "tolerance_mm": 0.35,
+      "vendor_bbox_local_mm": null,
+      "vendor_model_sha256": null,
+      "vendor_model_transform": {
+        "offset": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rotation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "verdict": "PASS"
+    },
+    {
+      "access_axis_local": [
+        0.0,
+        -1.0
+      ],
+      "authority": "Manufacturer pad1 datum, mouth6.36mm toward footprint-Y; model+Y is outward; PCB edge target0.5mm nominal",
+      "catalog_to_source_footprint_transform": null,
+      "fab_bbox_local_mm": [
+        -5.108081,
+        -6.41,
+        12.268081,
+        7.14
+      ],
+      "fab_mating_support_mm": 6.41,
+      "group": "wurth-615008160221-side-entry",
+      "mating_plane_offset_mm": 6.36,
+      "mating_support_delta_mm": 0.0,
+      "native_model_actual_sha256": "3f902b89d4bd756b121be056782deff312efb127c9c48f2c798ebd6db0e59f49",
+      "native_model_sha256": "3f902b89d4bd756b121be056782deff312efb127c9c48f2c798ebd6db0e59f49",
+      "ref": "J6",
+      "representation_source": "native-manual",
+      "tolerance_mm": 0.35,
+      "vendor_bbox_local_mm": null,
+      "vendor_model_sha256": null,
+      "vendor_model_transform": {
+        "offset": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rotation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "verdict": "PASS"
+    },
+    {
+      "access_axis_local": [
+        0.0,
+        -1.0
+      ],
+      "authority": "Manufacturer pad1 datum, mouth6.36mm toward footprint-Y; model+Y is outward; PCB edge target0.5mm nominal",
+      "catalog_to_source_footprint_transform": null,
+      "fab_bbox_local_mm": [
+        -5.108081,
+        -6.41,
+        12.268081,
+        7.14
+      ],
+      "fab_mating_support_mm": 6.41,
+      "group": "wurth-615008160221-side-entry",
+      "mating_plane_offset_mm": 6.36,
+      "mating_support_delta_mm": 0.0,
+      "native_model_actual_sha256": "3f902b89d4bd756b121be056782deff312efb127c9c48f2c798ebd6db0e59f49",
+      "native_model_sha256": "3f902b89d4bd756b121be056782deff312efb127c9c48f2c798ebd6db0e59f49",
+      "ref": "J7",
+      "representation_source": "native-manual",
+      "tolerance_mm": 0.35,
+      "vendor_bbox_local_mm": null,
+      "vendor_model_sha256": null,
+      "vendor_model_transform": {
+        "offset": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rotation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "verdict": "PASS"
+    },
+    {
+      "access_axis_local": [
+        0.0,
+        -1.0
+      ],
+      "authority": "Manufacturer pad1 datum, mouth6.36mm toward footprint-Y; model+Y is outward; PCB edge target0.5mm nominal",
+      "catalog_to_source_footprint_transform": null,
+      "fab_bbox_local_mm": [
+        -5.108081,
+        -6.41,
+        12.268081,
+        7.14
+      ],
+      "fab_mating_support_mm": 6.41,
+      "group": "wurth-615008160221-side-entry",
+      "mating_plane_offset_mm": 6.36,
+      "mating_support_delta_mm": 0.0,
+      "native_model_actual_sha256": "3f902b89d4bd756b121be056782deff312efb127c9c48f2c798ebd6db0e59f49",
+      "native_model_sha256": "3f902b89d4bd756b121be056782deff312efb127c9c48f2c798ebd6db0e59f49",
+      "ref": "J8",
+      "representation_source": "native-manual",
+      "tolerance_mm": 0.35,
+      "vendor_bbox_local_mm": null,
+      "vendor_model_sha256": null,
+      "vendor_model_transform": {
+        "offset": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rotation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "verdict": "PASS"
+    },
+    {
+      "access_axis_local": [
+        0.0,
+        -1.0
+      ],
+      "authority": "Molex SD-43650-001 D8: right-angle mating face, locating-peg-to-pin 4.32 +/-0.08 mm, peg-to-mouth 4.60 mm nominal, and peg-to-board-edge 10.16 mm maximum",
+      "catalog_to_source_footprint_transform": null,
+      "fab_bbox_local_mm": [
+        -3.375,
+        -8.97,
+        6.375,
+        1.03
+      ],
+      "fab_mating_support_mm": 8.97,
+      "group": "molex-43650-0200-side-entry",
+      "mating_plane_offset_mm": 8.92,
+      "mating_support_delta_mm": 0.0,
+      "native_model_actual_sha256": "301488732bd715060f80583e9cc8936bbbbd584dbe14055705d89d0d37442ffb",
+      "native_model_sha256": "301488732bd715060f80583e9cc8936bbbbd584dbe14055705d89d0d37442ffb",
+      "ref": "J9",
+      "representation_source": "native-manual",
+      "tolerance_mm": 0.35,
+      "vendor_bbox_local_mm": null,
+      "vendor_model_sha256": null,
+      "vendor_model_transform": {
+        "offset": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rotation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "verdict": "PASS"
+    }
+  ],
+  "refs_declared": [
+    "J1",
+    "J2",
+    "J3",
+    "J4",
+    "J5",
+    "J6",
+    "J7",
+    "J8",
+    "J9"
+  ],
+  "refs_graded": [
+    "J1",
+    "J2",
+    "J3",
+    "J4",
+    "J5",
+    "J6",
+    "J7",
+    "J8",
+    "J9"
+  ],
+  "schema": 1,
+  "verdict": "PASS"
+}

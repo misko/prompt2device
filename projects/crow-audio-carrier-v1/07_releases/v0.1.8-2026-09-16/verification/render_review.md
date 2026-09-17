@@ -1,0 +1,23 @@
+subject: crow-audio-carrier-v1 v0.1.8-2026-09-16 exact release
+review_stage: release
+review_kind: render
+reviewer: /root/carrier_release_render_v018
+reviewer_identity: /root/carrier_release_render_v018
+context: FRESH-INDEPENDENT-FINAL
+completed_at: 2026-09-16T17:41:00-07:00
+source_commit: cc14bc442b14c412a82da708d11346a00a8a9615
+design_verdict: SOUND
+order_verdict: FIRST-ARTICLE-ONLY
+board_sha256: 45ff675971600c279c1d1e34e1610a08426b144f8435349037919a2328987e26
+locator_manifest_sha256: 815d40bf879787db9ad9b4ece6742e57eae136feb34950fda4007c961e19bd2f
+locator_reviewed_refs: ["C_FILT1_10U", "C_FILT2_10U", "C_PWR_CT", "C_VDDA2_10N", "C_VMID1_470N", "C_VMID1_4U7", "C_VMID2_470N", "C_VMID2_4U7", "R_ADC_BOT", "R_ADC_PD6N", "R_ADC_TOP", "R_AUDIO_PD", "R_AUDIO_PU", "R_DUMP_TIME2", "R_FILT1P", "R_IN6N", "R_PRE_G", "R_PWR_BOT", "R_PWR_TOP", "R_VMID1_BOT", "R_VMID1_TOP", "R_VMID2_BOT", "R_X6N"]
+
+# Crow carrier v0.1.8 render and assembly review
+
+The exact staged board is SOUND for placement, modeled assembly, top-side population, critical orientation, connector geometry and visible interference scope. The corrected twin represents 306 CPL bodies plus 27 declared manual THT bodies and resolves 333/333 fitted bodies with zero missing.
+
+A-RENDER passes: 83/333 bodies independently measurable, 250 explicitly below the 2.0 mm resolution floor, zero resolvable bodies unmeasured, and 0.573 mm maximum measured center delta against 1.00 mm. Body clearance covers 333 envelopes with zero overlaps/close pairs and zero foreign-pad conflicts.
+
+The 23-page locator and offline viewer were reviewed for every listed reference and remain usable. Connector datum passes 9/9. The exact-board front-left, front-right and rear-left obliques bind board 45ff6759 and show outward RJ45 mouths, correct top mounting, keying, clear cable approaches, accessible holes and unobstructed J10/J11. The user-approved subject is 155896eb43a7c2b04c684523d4d96309bd4d945670f11a1c7a1d52b01a7a70e8.
+
+P0: 0. P1: confirm the 26 rotation rows, exact CS5308P-DN identity, capacitor polarity, substitutions and selective via process in JLC previews. Render evidence cannot replace first-article cable and mechanical checks.

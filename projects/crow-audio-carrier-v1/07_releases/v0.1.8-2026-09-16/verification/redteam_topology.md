@@ -1,0 +1,18 @@
+subject: crow-audio-carrier-v1 v0.1.8-2026-09-16 exact release
+review_stage: release
+review_kind: redteam_topology
+reviewer_identity: /root/carrier_release_topology_v018
+context: FRESH-INDEPENDENT-FINAL
+completed_at: 2026-09-16T17:42:00-07:00
+source_commit: cc14bc442b14c412a82da708d11346a00a8a9615
+design_verdict: SOUND
+order_verdict: FIRST-ARTICLE-ONLY
+board_sha256: 45ff675971600c279c1d1e34e1610a08426b144f8435349037919a2328987e26
+
+# Crow carrier v0.1.8 adversarial topology and protection review
+
+The exact release candidate is SOUND for a supervised five-board first-article order. It represents 333/333 source components, 985 pins and 221 nets. All 205 electrical invariants, 7 protection/topology ADRs, 10 rail-topology checks and 9 loaded-delivery margin checks pass. Analog routed copper passes 155/155 paths; route acceptance is 7 PASS / 2 N-A; DRC is 0/0/0; via ampacity passes 54/54 banks; via process grades 601/601 vias and 12/12 protected via-in-pad sites.
+
+The protected 12 V input, reverse-polarity stage, buck supply, held-energy rail, LT3041 supply, ADC supervision/reset and eight separately fused spokes retain their accepted topology. Each analog channel retains cable-side ESD, AC coupling, passive bias, current limiting, differential receive, filtering and isolation before the CS5308P. The proprietary RJ45 links are balanced-audio and isolated-DC interfaces, not Ethernet or PoE.
+
+The six newly automated SMD placements keep identical geometry, pads, nets and copper. Exact public observations clear the configured surplus for F_IN, U_ADC, U_LDO and the TMUX family. P0: 0. P1: live uploader identity/orientation, exact substitutions, the 12-site selective filled/capped-via process, and physical first-article qualification remain mandatory.

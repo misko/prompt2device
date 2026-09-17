@@ -1,0 +1,127 @@
+# Exact final-board policy dispositions. These do not waive native DRC,
+# current-transfer, resistance, or first-article thermal qualification.
+- id: R-POUR
+  refs:
+  - 03_src/rules/nets.yaml
+  - 03_src/rules/power_tree.yaml
+  - 03_src/route.yaml
+  - 04_kicad/crow_audio_carrier_v1.kicad_pcb
+  - 06_build/verification/route_acceptance_receipt.json
+  - 06_build/verification/via_ampacity.json
+  why: >-
+    This disposition is limited to the exact 21-net high-current-class
+    population on the final board. The carrier intentionally realizes these
+    nets as collision-screened tracks and explicit layer-transfer banks rather
+    than local KiCad zone objects: the common 12 V trunk is bounded at 1.0 A,
+    each pod branch at 0.10 A, and the regulated distribution at 0.30 A steady.
+    CHASSIS has no normal DC load; BUCK_SW is a bounded switching loop; FILT1P
+    and FILT2P include low-current filter branches. Atomic route acceptance is
+    7 PASS / 2 N-A with native DRC 0/0/0, and A-VIA grades all 54 declared
+    transfer banks with zero failures. A blanket pour would consume the
+    co-designed analog and zero-via digital corridors without establishing a
+    stronger current claim. This disposition grants no transient, joint,
+    plating, temperature, or production qualification; loaded first-article
+    voltage-drop and temperature-rise measurements remain mandatory.
+  evidence:
+  - claim: the complete no-pour high-current-class population remains exactly 21 nets
+    command: >-
+      KICAD_PY=/usr/lib/python3/dist-packages /usr/bin/python3 -c "import pcbnew,json,re; p='projects/crow-audio-carrier-v1/04_kicad/crow_audio_carrier_v1'; b=pcbnew.LoadBoard(p+'.kicad_pcb'); d=json.load(open(p+'.kicad_pro')); ns=d['net_settings']; c={t.GetNetname() for t in b.GetTracks() if t.GetNetname()}; z={x.GetNetname() for x in b.Zones()}; q=set(); [(q.add(n)) for x in ns['classes'] if x['name']!='Default' and not float(x.get('track_width',0))<.5 for n in c for a in ns['netclass_patterns'] if a['netclass']==x['name'] and re.fullmatch(a['pattern'].replace('*','.*'),n)]; print(len(q-z))"
+    output: "21"
+    budget: "== 21"
+    requires: [projects/crow-audio-carrier-v1/04_kicad/crow_audio_carrier_v1.kicad_pcb, projects/crow-audio-carrier-v1/04_kicad/crow_audio_carrier_v1.kicad_pro]
+    grade: CITED
+  - claim: atomic route acceptance retains zero failing checks
+    command: >-
+      python3 -c "import json; d=json.load(open('projects/crow-audio-carrier-v1/06_build/verification/route_acceptance_receipt.json')); print(sum(x['status'] in ('FAIL','INCOMPLETE') for x in d['checks'].values()))"
+    output: "0"
+    budget: "== 0"
+    requires: [projects/crow-audio-carrier-v1/06_build/verification/route_acceptance_receipt.json]
+    grade: CITED
+  - claim: all 54 declared current-transfer banks retain zero ampacity failures
+    command: >-
+      python3 -c "import json; d=json.load(open('projects/crow-audio-carrier-v1/06_build/verification/via_ampacity.json')); print(len(d['failures']))"
+    output: "0"
+    budget: "== 0"
+    requires: [projects/crow-audio-carrier-v1/06_build/verification/via_ampacity.json]
+    grade: CITED
+
+- id: R-THERM
+  refs:
+  - 02_parts/DMP6023LFG-13/part.yaml
+  - 03_src/rules/power_tree.yaml
+  - 04_kicad/crow_audio_carrier_v1.kicad_pcb
+  why: >-
+    The sole R-THERM finding is Q_IN pad 5 on 12V_FUSED. It is a 4.0527 mm2
+    power terminal on F.Cu, not an exposed thermal pad tied to either internal
+    plane; 12V_FUSED has no zone on any layer, so the heuristic's demand for
+    two nearby same-net plane vias is unsatisfiable by mechanism. Q_IN is the
+    reverse-hookup P-channel MOSFET. The governed trunk limit is 1.0 A and the
+    exact-part published maximum resistance used by the power-tree contract is
+    25 milliohm, giving 25 mW worst-case conduction loss before copper and
+    ambient margins. Native DRC is 0/0/0. This disposition applies only to
+    Q_IN.5 and does not waive the retained loaded first-article input-drop and
+    thermal measurements.
+  evidence:
+  - claim: Q_IN pad 5 remains on 12V_FUSED and that net has zero zone objects
+    command: >-
+      KICAD_PY=/usr/lib/python3/dist-packages /usr/bin/python3 -c "import pcbnew; b=pcbnew.LoadBoard('projects/crow-audio-carrier-v1/04_kicad/crow_audio_carrier_v1.kicad_pcb'); p=next(x for x in b.FindFootprintByReference('Q_IN').Pads() if x.GetNumber()=='5'); print(sum(z.GetNetname()==p.GetNetname() for z in b.Zones()))"
+    output: "0"
+    budget: "== 0"
+    requires: [projects/crow-audio-carrier-v1/04_kicad/crow_audio_carrier_v1.kicad_pcb]
+    grade: CITED
+  - claim: Q_IN worst-case governed conduction loss remains at or below 25 mW
+    command: >-
+      python3 -c "import yaml; d=yaml.safe_load(open('projects/crow-audio-carrier-v1/03_src/rules/power_tree.yaml')); print(d['upstream_delivery']['load_current_A']**2*d['upstream_delivery']['resistance_components_mohm']['reverse_hookup_pfet']['value'])"
+    output: "25.0"
+    budget: "<= 25.0"
+    requires: [projects/crow-audio-carrier-v1/03_src/rules/power_tree.yaml]
+    grade: CITED
+
+# Source proposal: effective only with current A-LOCATOR and independent render acceptance.
+- id: P-SILK-REF
+  refs:
+  - C_FILT1_10U
+  - C_FILT2_10U
+  - C_PWR_CT
+  - C_VDDA2_10N
+  - C_VMID1_470N
+  - C_VMID1_4U7
+  - C_VMID2_470N
+  - C_VMID2_4U7
+  - R_ADC_BOT
+  - R_ADC_PD6N
+  - R_ADC_TOP
+  - R_AUDIO_PD
+  - R_AUDIO_PU
+  - R_DUMP_TIME2
+  - R_FILT1P
+  - R_IN6N
+  - R_PRE_G
+  - R_PWR_BOT
+  - R_PWR_TOP
+  - R_VMID1_BOT
+  - R_VMID1_TOP
+  - R_VMID2_BOT
+  - R_X6N
+  why: These dense passive locations use full-reference, body-and-pad assembly locators
+    because detached silkscreen names made nearby component ownership ambiguous. The
+    independent static-atlas review accepted this identification basis. The source
+    identity contract names the responsible owner and each exact part, position, side
+    and pad/net tuple. This proposed exception is effective only with the current
+    checked bundle and an independent exact-artifact render verdict; it cannot waive
+    font size, clearance, routing or ordering requirements.
+  evidence:
+  - claim: Complete native/source/policy/locator/atlas set equality and current PCB,
+      BOM, CPL, tool and shipped-member bindings for every listed exception.
+    command: /usr/bin/python3 skills/jlcpcb-fab/scripts/assembly_locator_check.py
+      project projects/crow-audio-carrier-v1
+    output: '23'
+    budget: == 23
+    grade: CITED
+    requires:
+    - pcbnew
+    - projects/crow-audio-carrier-v1/04_kicad/crow_audio_carrier_v1.kicad_pcb
+    - projects/crow-audio-carrier-v1/03_src/rules/assembly_locator.yaml
+    note: Read-only artifact identity evidence; independent usability judgment and
+      exact release packaging remain mandatory. A missing or stale bundle fails; source
+      records alone do not grant a waiver.

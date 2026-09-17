@@ -1,0 +1,1341 @@
+{
+  "schema": 1,
+  "created_at": "2026-09-17T00:02:12.502130+00:00",
+  "source_board_sha256": "c03db60ae47d6737e0bab2439bc410a127b8f15acfdde82925f77f96d62287df",
+  "twin_board_sha256": "0f9a3c29f954e6c356c183ba419f489bd4900b74308affa8d1cee528b5ff0ab3",
+  "rows": [
+    {
+      "ref": "F1",
+      "declaration": {
+        "reason": "vendor_cad_absent",
+        "catalog_response_body_sha256": "2e5c07eb9432f630b1c0fbaf02bcf601e7e9ddd0d3df5008254d90298764c1f2",
+        "catalog_comparison": "unavailable",
+        "absence_review": {
+          "path": "08_reviews/2026-09-11_cad-absence-source-review_independent_source.md",
+          "sha256": "6b764845ee96faf395fa692e85f1ddb09934f1221e402814592ab346af1c3c48"
+        },
+        "reviewed_on": "2026-09-11",
+        "mpn": "1812L035/60MR",
+        "model_sha256": "edd6c3054b944bb9436d3943f1b5da78396621e59065dde98e828219fa62cde9",
+        "registration_group": "littelfuse-1812l035-native-package",
+        "authority": {
+          "path": "02_parts/1812L035-60MR/Littelfuse_1812L_GD20240610_Megastar.pdf",
+          "sha256": "a18b5ceec6d56cd31b20da55341ed1b35a48184f1f7fff8ca8bc6948cd8fb974",
+          "pages": [
+            6,
+            7
+          ],
+          "revision": "GD06/10/24"
+        },
+        "native_footprint": {
+          "path": "03_src/lib/crow_audio_carrier.pretty/Littelfuse_1812L035_60_Exact.kicad_mod",
+          "sha256": "3b419dd3166ea043cc46dd4f7375d37b5dc594b9067189d49a47d5f844c8d9db"
+        },
+        "generator": {
+          "path": "03_src/build_package_models.py",
+          "sha256": "9b376ffc46c8a8746e06e5cddfc3d3b39656795a83754144077f86716c588019"
+        },
+        "provenance": {
+          "path": "03_src/lib/3dmodels/provenance.md",
+          "sha256": "50eb3a3f9319de6def5a5bf9bb9ba66e05d1e162d765c043d49fe30c9641a18d"
+        },
+        "pin_review": {
+          "path": "08_reviews/2026-09-11_fuse-land-pin-review_independent_source.md",
+          "sha256": "1ecf1899b16bc13d01ab8fb1e11eae330d73e003f5f30dff40a7e0ef1160f7bc"
+        },
+        "reviewer": "fuse-land-pin-review with independent catalog-absence source review; see bound reports",
+        "limitations": "Maximum-envelope drawing-derived body; visual terminal bands are illustrative. Exact published lands and all 16 pins independently reviewed. Thermal trip, fault and manufacturing qualification remain open. Catalog pad comparison unavailable. Every ordinary registration, body coverage, overlay, placement and release gate remains active; DO-NOT-ORDER.",
+        "lcsc": "C3761431",
+        "refs": [
+          "F1",
+          "F2",
+          "F3",
+          "F4",
+          "F5",
+          "F6",
+          "F7",
+          "F8"
+        ]
+      },
+      "source_files": {
+        "authority": "native_authority/littelfuse-1812l035-native-package/authority-Littelfuse_1812L_GD20240610_Megastar.pdf",
+        "native_footprint": "native_authority/littelfuse-1812l035-native-package/native_footprint-Littelfuse_1812L035_60_Exact.kicad_mod",
+        "generator": "native_authority/littelfuse-1812l035-native-package/generator-build_package_models.py",
+        "provenance": "native_authority/littelfuse-1812l035-native-package/provenance-provenance.md",
+        "absence_review": "native_authority/littelfuse-1812l035-native-package/absence_review-2026-09-11_cad-absence-source-review_independent_source.md",
+        "pin_review": "native_authority/littelfuse-1812l035-native-package/pin_review-2026-09-11_fuse-land-pin-review_independent_source.md"
+      },
+      "catalog_comparison": "unavailable",
+      "catalog_response_sha256": "3ca5e75e62b50c5a52f58406bd43340278cfa3d8f2822b1dbca0bde81c38f52c",
+      "model": "native_models/edd6c3054b944bb9436d3943f1b5da78396621e59065dde98e828219fa62cde9-Littelfuse_1812L035_60_max-envelope.wrl",
+      "transform": {
+        "m_Scale": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "m_Rotation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "m_Offset": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "registration_manifest": "native_registration/littelfuse-1812l035-native-package/bundle.json",
+      "registration_manifest_sha256": "3b8e3c977e52a5f4e8799189d0271f84f352992662473dd69968dae10e483bcf"
+    },
+    {
+      "ref": "F2",
+      "declaration": {
+        "reason": "vendor_cad_absent",
+        "catalog_response_body_sha256": "2e5c07eb9432f630b1c0fbaf02bcf601e7e9ddd0d3df5008254d90298764c1f2",
+        "catalog_comparison": "unavailable",
+        "absence_review": {
+          "path": "08_reviews/2026-09-11_cad-absence-source-review_independent_source.md",
+          "sha256": "6b764845ee96faf395fa692e85f1ddb09934f1221e402814592ab346af1c3c48"
+        },
+        "reviewed_on": "2026-09-11",
+        "mpn": "1812L035/60MR",
+        "model_sha256": "edd6c3054b944bb9436d3943f1b5da78396621e59065dde98e828219fa62cde9",
+        "registration_group": "littelfuse-1812l035-native-package",
+        "authority": {
+          "path": "02_parts/1812L035-60MR/Littelfuse_1812L_GD20240610_Megastar.pdf",
+          "sha256": "a18b5ceec6d56cd31b20da55341ed1b35a48184f1f7fff8ca8bc6948cd8fb974",
+          "pages": [
+            6,
+            7
+          ],
+          "revision": "GD06/10/24"
+        },
+        "native_footprint": {
+          "path": "03_src/lib/crow_audio_carrier.pretty/Littelfuse_1812L035_60_Exact.kicad_mod",
+          "sha256": "3b419dd3166ea043cc46dd4f7375d37b5dc594b9067189d49a47d5f844c8d9db"
+        },
+        "generator": {
+          "path": "03_src/build_package_models.py",
+          "sha256": "9b376ffc46c8a8746e06e5cddfc3d3b39656795a83754144077f86716c588019"
+        },
+        "provenance": {
+          "path": "03_src/lib/3dmodels/provenance.md",
+          "sha256": "50eb3a3f9319de6def5a5bf9bb9ba66e05d1e162d765c043d49fe30c9641a18d"
+        },
+        "pin_review": {
+          "path": "08_reviews/2026-09-11_fuse-land-pin-review_independent_source.md",
+          "sha256": "1ecf1899b16bc13d01ab8fb1e11eae330d73e003f5f30dff40a7e0ef1160f7bc"
+        },
+        "reviewer": "fuse-land-pin-review with independent catalog-absence source review; see bound reports",
+        "limitations": "Maximum-envelope drawing-derived body; visual terminal bands are illustrative. Exact published lands and all 16 pins independently reviewed. Thermal trip, fault and manufacturing qualification remain open. Catalog pad comparison unavailable. Every ordinary registration, body coverage, overlay, placement and release gate remains active; DO-NOT-ORDER.",
+        "lcsc": "C3761431",
+        "refs": [
+          "F1",
+          "F2",
+          "F3",
+          "F4",
+          "F5",
+          "F6",
+          "F7",
+          "F8"
+        ]
+      },
+      "source_files": {
+        "authority": "native_authority/littelfuse-1812l035-native-package/authority-Littelfuse_1812L_GD20240610_Megastar.pdf",
+        "native_footprint": "native_authority/littelfuse-1812l035-native-package/native_footprint-Littelfuse_1812L035_60_Exact.kicad_mod",
+        "generator": "native_authority/littelfuse-1812l035-native-package/generator-build_package_models.py",
+        "provenance": "native_authority/littelfuse-1812l035-native-package/provenance-provenance.md",
+        "absence_review": "native_authority/littelfuse-1812l035-native-package/absence_review-2026-09-11_cad-absence-source-review_independent_source.md",
+        "pin_review": "native_authority/littelfuse-1812l035-native-package/pin_review-2026-09-11_fuse-land-pin-review_independent_source.md"
+      },
+      "catalog_comparison": "unavailable",
+      "catalog_response_sha256": "3ca5e75e62b50c5a52f58406bd43340278cfa3d8f2822b1dbca0bde81c38f52c",
+      "model": "native_models/edd6c3054b944bb9436d3943f1b5da78396621e59065dde98e828219fa62cde9-Littelfuse_1812L035_60_max-envelope.wrl",
+      "transform": {
+        "m_Scale": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "m_Rotation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "m_Offset": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "registration_manifest": "native_registration/littelfuse-1812l035-native-package/bundle.json",
+      "registration_manifest_sha256": "3b8e3c977e52a5f4e8799189d0271f84f352992662473dd69968dae10e483bcf"
+    },
+    {
+      "ref": "F3",
+      "declaration": {
+        "reason": "vendor_cad_absent",
+        "catalog_response_body_sha256": "2e5c07eb9432f630b1c0fbaf02bcf601e7e9ddd0d3df5008254d90298764c1f2",
+        "catalog_comparison": "unavailable",
+        "absence_review": {
+          "path": "08_reviews/2026-09-11_cad-absence-source-review_independent_source.md",
+          "sha256": "6b764845ee96faf395fa692e85f1ddb09934f1221e402814592ab346af1c3c48"
+        },
+        "reviewed_on": "2026-09-11",
+        "mpn": "1812L035/60MR",
+        "model_sha256": "edd6c3054b944bb9436d3943f1b5da78396621e59065dde98e828219fa62cde9",
+        "registration_group": "littelfuse-1812l035-native-package",
+        "authority": {
+          "path": "02_parts/1812L035-60MR/Littelfuse_1812L_GD20240610_Megastar.pdf",
+          "sha256": "a18b5ceec6d56cd31b20da55341ed1b35a48184f1f7fff8ca8bc6948cd8fb974",
+          "pages": [
+            6,
+            7
+          ],
+          "revision": "GD06/10/24"
+        },
+        "native_footprint": {
+          "path": "03_src/lib/crow_audio_carrier.pretty/Littelfuse_1812L035_60_Exact.kicad_mod",
+          "sha256": "3b419dd3166ea043cc46dd4f7375d37b5dc594b9067189d49a47d5f844c8d9db"
+        },
+        "generator": {
+          "path": "03_src/build_package_models.py",
+          "sha256": "9b376ffc46c8a8746e06e5cddfc3d3b39656795a83754144077f86716c588019"
+        },
+        "provenance": {
+          "path": "03_src/lib/3dmodels/provenance.md",
+          "sha256": "50eb3a3f9319de6def5a5bf9bb9ba66e05d1e162d765c043d49fe30c9641a18d"
+        },
+        "pin_review": {
+          "path": "08_reviews/2026-09-11_fuse-land-pin-review_independent_source.md",
+          "sha256": "1ecf1899b16bc13d01ab8fb1e11eae330d73e003f5f30dff40a7e0ef1160f7bc"
+        },
+        "reviewer": "fuse-land-pin-review with independent catalog-absence source review; see bound reports",
+        "limitations": "Maximum-envelope drawing-derived body; visual terminal bands are illustrative. Exact published lands and all 16 pins independently reviewed. Thermal trip, fault and manufacturing qualification remain open. Catalog pad comparison unavailable. Every ordinary registration, body coverage, overlay, placement and release gate remains active; DO-NOT-ORDER.",
+        "lcsc": "C3761431",
+        "refs": [
+          "F1",
+          "F2",
+          "F3",
+          "F4",
+          "F5",
+          "F6",
+          "F7",
+          "F8"
+        ]
+      },
+      "source_files": {
+        "authority": "native_authority/littelfuse-1812l035-native-package/authority-Littelfuse_1812L_GD20240610_Megastar.pdf",
+        "native_footprint": "native_authority/littelfuse-1812l035-native-package/native_footprint-Littelfuse_1812L035_60_Exact.kicad_mod",
+        "generator": "native_authority/littelfuse-1812l035-native-package/generator-build_package_models.py",
+        "provenance": "native_authority/littelfuse-1812l035-native-package/provenance-provenance.md",
+        "absence_review": "native_authority/littelfuse-1812l035-native-package/absence_review-2026-09-11_cad-absence-source-review_independent_source.md",
+        "pin_review": "native_authority/littelfuse-1812l035-native-package/pin_review-2026-09-11_fuse-land-pin-review_independent_source.md"
+      },
+      "catalog_comparison": "unavailable",
+      "catalog_response_sha256": "3ca5e75e62b50c5a52f58406bd43340278cfa3d8f2822b1dbca0bde81c38f52c",
+      "model": "native_models/edd6c3054b944bb9436d3943f1b5da78396621e59065dde98e828219fa62cde9-Littelfuse_1812L035_60_max-envelope.wrl",
+      "transform": {
+        "m_Scale": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "m_Rotation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "m_Offset": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "registration_manifest": "native_registration/littelfuse-1812l035-native-package/bundle.json",
+      "registration_manifest_sha256": "3b8e3c977e52a5f4e8799189d0271f84f352992662473dd69968dae10e483bcf"
+    },
+    {
+      "ref": "F4",
+      "declaration": {
+        "reason": "vendor_cad_absent",
+        "catalog_response_body_sha256": "2e5c07eb9432f630b1c0fbaf02bcf601e7e9ddd0d3df5008254d90298764c1f2",
+        "catalog_comparison": "unavailable",
+        "absence_review": {
+          "path": "08_reviews/2026-09-11_cad-absence-source-review_independent_source.md",
+          "sha256": "6b764845ee96faf395fa692e85f1ddb09934f1221e402814592ab346af1c3c48"
+        },
+        "reviewed_on": "2026-09-11",
+        "mpn": "1812L035/60MR",
+        "model_sha256": "edd6c3054b944bb9436d3943f1b5da78396621e59065dde98e828219fa62cde9",
+        "registration_group": "littelfuse-1812l035-native-package",
+        "authority": {
+          "path": "02_parts/1812L035-60MR/Littelfuse_1812L_GD20240610_Megastar.pdf",
+          "sha256": "a18b5ceec6d56cd31b20da55341ed1b35a48184f1f7fff8ca8bc6948cd8fb974",
+          "pages": [
+            6,
+            7
+          ],
+          "revision": "GD06/10/24"
+        },
+        "native_footprint": {
+          "path": "03_src/lib/crow_audio_carrier.pretty/Littelfuse_1812L035_60_Exact.kicad_mod",
+          "sha256": "3b419dd3166ea043cc46dd4f7375d37b5dc594b9067189d49a47d5f844c8d9db"
+        },
+        "generator": {
+          "path": "03_src/build_package_models.py",
+          "sha256": "9b376ffc46c8a8746e06e5cddfc3d3b39656795a83754144077f86716c588019"
+        },
+        "provenance": {
+          "path": "03_src/lib/3dmodels/provenance.md",
+          "sha256": "50eb3a3f9319de6def5a5bf9bb9ba66e05d1e162d765c043d49fe30c9641a18d"
+        },
+        "pin_review": {
+          "path": "08_reviews/2026-09-11_fuse-land-pin-review_independent_source.md",
+          "sha256": "1ecf1899b16bc13d01ab8fb1e11eae330d73e003f5f30dff40a7e0ef1160f7bc"
+        },
+        "reviewer": "fuse-land-pin-review with independent catalog-absence source review; see bound reports",
+        "limitations": "Maximum-envelope drawing-derived body; visual terminal bands are illustrative. Exact published lands and all 16 pins independently reviewed. Thermal trip, fault and manufacturing qualification remain open. Catalog pad comparison unavailable. Every ordinary registration, body coverage, overlay, placement and release gate remains active; DO-NOT-ORDER.",
+        "lcsc": "C3761431",
+        "refs": [
+          "F1",
+          "F2",
+          "F3",
+          "F4",
+          "F5",
+          "F6",
+          "F7",
+          "F8"
+        ]
+      },
+      "source_files": {
+        "authority": "native_authority/littelfuse-1812l035-native-package/authority-Littelfuse_1812L_GD20240610_Megastar.pdf",
+        "native_footprint": "native_authority/littelfuse-1812l035-native-package/native_footprint-Littelfuse_1812L035_60_Exact.kicad_mod",
+        "generator": "native_authority/littelfuse-1812l035-native-package/generator-build_package_models.py",
+        "provenance": "native_authority/littelfuse-1812l035-native-package/provenance-provenance.md",
+        "absence_review": "native_authority/littelfuse-1812l035-native-package/absence_review-2026-09-11_cad-absence-source-review_independent_source.md",
+        "pin_review": "native_authority/littelfuse-1812l035-native-package/pin_review-2026-09-11_fuse-land-pin-review_independent_source.md"
+      },
+      "catalog_comparison": "unavailable",
+      "catalog_response_sha256": "3ca5e75e62b50c5a52f58406bd43340278cfa3d8f2822b1dbca0bde81c38f52c",
+      "model": "native_models/edd6c3054b944bb9436d3943f1b5da78396621e59065dde98e828219fa62cde9-Littelfuse_1812L035_60_max-envelope.wrl",
+      "transform": {
+        "m_Scale": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "m_Rotation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "m_Offset": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "registration_manifest": "native_registration/littelfuse-1812l035-native-package/bundle.json",
+      "registration_manifest_sha256": "3b8e3c977e52a5f4e8799189d0271f84f352992662473dd69968dae10e483bcf"
+    },
+    {
+      "ref": "F5",
+      "declaration": {
+        "reason": "vendor_cad_absent",
+        "catalog_response_body_sha256": "2e5c07eb9432f630b1c0fbaf02bcf601e7e9ddd0d3df5008254d90298764c1f2",
+        "catalog_comparison": "unavailable",
+        "absence_review": {
+          "path": "08_reviews/2026-09-11_cad-absence-source-review_independent_source.md",
+          "sha256": "6b764845ee96faf395fa692e85f1ddb09934f1221e402814592ab346af1c3c48"
+        },
+        "reviewed_on": "2026-09-11",
+        "mpn": "1812L035/60MR",
+        "model_sha256": "edd6c3054b944bb9436d3943f1b5da78396621e59065dde98e828219fa62cde9",
+        "registration_group": "littelfuse-1812l035-native-package",
+        "authority": {
+          "path": "02_parts/1812L035-60MR/Littelfuse_1812L_GD20240610_Megastar.pdf",
+          "sha256": "a18b5ceec6d56cd31b20da55341ed1b35a48184f1f7fff8ca8bc6948cd8fb974",
+          "pages": [
+            6,
+            7
+          ],
+          "revision": "GD06/10/24"
+        },
+        "native_footprint": {
+          "path": "03_src/lib/crow_audio_carrier.pretty/Littelfuse_1812L035_60_Exact.kicad_mod",
+          "sha256": "3b419dd3166ea043cc46dd4f7375d37b5dc594b9067189d49a47d5f844c8d9db"
+        },
+        "generator": {
+          "path": "03_src/build_package_models.py",
+          "sha256": "9b376ffc46c8a8746e06e5cddfc3d3b39656795a83754144077f86716c588019"
+        },
+        "provenance": {
+          "path": "03_src/lib/3dmodels/provenance.md",
+          "sha256": "50eb3a3f9319de6def5a5bf9bb9ba66e05d1e162d765c043d49fe30c9641a18d"
+        },
+        "pin_review": {
+          "path": "08_reviews/2026-09-11_fuse-land-pin-review_independent_source.md",
+          "sha256": "1ecf1899b16bc13d01ab8fb1e11eae330d73e003f5f30dff40a7e0ef1160f7bc"
+        },
+        "reviewer": "fuse-land-pin-review with independent catalog-absence source review; see bound reports",
+        "limitations": "Maximum-envelope drawing-derived body; visual terminal bands are illustrative. Exact published lands and all 16 pins independently reviewed. Thermal trip, fault and manufacturing qualification remain open. Catalog pad comparison unavailable. Every ordinary registration, body coverage, overlay, placement and release gate remains active; DO-NOT-ORDER.",
+        "lcsc": "C3761431",
+        "refs": [
+          "F1",
+          "F2",
+          "F3",
+          "F4",
+          "F5",
+          "F6",
+          "F7",
+          "F8"
+        ]
+      },
+      "source_files": {
+        "authority": "native_authority/littelfuse-1812l035-native-package/authority-Littelfuse_1812L_GD20240610_Megastar.pdf",
+        "native_footprint": "native_authority/littelfuse-1812l035-native-package/native_footprint-Littelfuse_1812L035_60_Exact.kicad_mod",
+        "generator": "native_authority/littelfuse-1812l035-native-package/generator-build_package_models.py",
+        "provenance": "native_authority/littelfuse-1812l035-native-package/provenance-provenance.md",
+        "absence_review": "native_authority/littelfuse-1812l035-native-package/absence_review-2026-09-11_cad-absence-source-review_independent_source.md",
+        "pin_review": "native_authority/littelfuse-1812l035-native-package/pin_review-2026-09-11_fuse-land-pin-review_independent_source.md"
+      },
+      "catalog_comparison": "unavailable",
+      "catalog_response_sha256": "3ca5e75e62b50c5a52f58406bd43340278cfa3d8f2822b1dbca0bde81c38f52c",
+      "model": "native_models/edd6c3054b944bb9436d3943f1b5da78396621e59065dde98e828219fa62cde9-Littelfuse_1812L035_60_max-envelope.wrl",
+      "transform": {
+        "m_Scale": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "m_Rotation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "m_Offset": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "registration_manifest": "native_registration/littelfuse-1812l035-native-package/bundle.json",
+      "registration_manifest_sha256": "3b8e3c977e52a5f4e8799189d0271f84f352992662473dd69968dae10e483bcf"
+    },
+    {
+      "ref": "F6",
+      "declaration": {
+        "reason": "vendor_cad_absent",
+        "catalog_response_body_sha256": "2e5c07eb9432f630b1c0fbaf02bcf601e7e9ddd0d3df5008254d90298764c1f2",
+        "catalog_comparison": "unavailable",
+        "absence_review": {
+          "path": "08_reviews/2026-09-11_cad-absence-source-review_independent_source.md",
+          "sha256": "6b764845ee96faf395fa692e85f1ddb09934f1221e402814592ab346af1c3c48"
+        },
+        "reviewed_on": "2026-09-11",
+        "mpn": "1812L035/60MR",
+        "model_sha256": "edd6c3054b944bb9436d3943f1b5da78396621e59065dde98e828219fa62cde9",
+        "registration_group": "littelfuse-1812l035-native-package",
+        "authority": {
+          "path": "02_parts/1812L035-60MR/Littelfuse_1812L_GD20240610_Megastar.pdf",
+          "sha256": "a18b5ceec6d56cd31b20da55341ed1b35a48184f1f7fff8ca8bc6948cd8fb974",
+          "pages": [
+            6,
+            7
+          ],
+          "revision": "GD06/10/24"
+        },
+        "native_footprint": {
+          "path": "03_src/lib/crow_audio_carrier.pretty/Littelfuse_1812L035_60_Exact.kicad_mod",
+          "sha256": "3b419dd3166ea043cc46dd4f7375d37b5dc594b9067189d49a47d5f844c8d9db"
+        },
+        "generator": {
+          "path": "03_src/build_package_models.py",
+          "sha256": "9b376ffc46c8a8746e06e5cddfc3d3b39656795a83754144077f86716c588019"
+        },
+        "provenance": {
+          "path": "03_src/lib/3dmodels/provenance.md",
+          "sha256": "50eb3a3f9319de6def5a5bf9bb9ba66e05d1e162d765c043d49fe30c9641a18d"
+        },
+        "pin_review": {
+          "path": "08_reviews/2026-09-11_fuse-land-pin-review_independent_source.md",
+          "sha256": "1ecf1899b16bc13d01ab8fb1e11eae330d73e003f5f30dff40a7e0ef1160f7bc"
+        },
+        "reviewer": "fuse-land-pin-review with independent catalog-absence source review; see bound reports",
+        "limitations": "Maximum-envelope drawing-derived body; visual terminal bands are illustrative. Exact published lands and all 16 pins independently reviewed. Thermal trip, fault and manufacturing qualification remain open. Catalog pad comparison unavailable. Every ordinary registration, body coverage, overlay, placement and release gate remains active; DO-NOT-ORDER.",
+        "lcsc": "C3761431",
+        "refs": [
+          "F1",
+          "F2",
+          "F3",
+          "F4",
+          "F5",
+          "F6",
+          "F7",
+          "F8"
+        ]
+      },
+      "source_files": {
+        "authority": "native_authority/littelfuse-1812l035-native-package/authority-Littelfuse_1812L_GD20240610_Megastar.pdf",
+        "native_footprint": "native_authority/littelfuse-1812l035-native-package/native_footprint-Littelfuse_1812L035_60_Exact.kicad_mod",
+        "generator": "native_authority/littelfuse-1812l035-native-package/generator-build_package_models.py",
+        "provenance": "native_authority/littelfuse-1812l035-native-package/provenance-provenance.md",
+        "absence_review": "native_authority/littelfuse-1812l035-native-package/absence_review-2026-09-11_cad-absence-source-review_independent_source.md",
+        "pin_review": "native_authority/littelfuse-1812l035-native-package/pin_review-2026-09-11_fuse-land-pin-review_independent_source.md"
+      },
+      "catalog_comparison": "unavailable",
+      "catalog_response_sha256": "3ca5e75e62b50c5a52f58406bd43340278cfa3d8f2822b1dbca0bde81c38f52c",
+      "model": "native_models/edd6c3054b944bb9436d3943f1b5da78396621e59065dde98e828219fa62cde9-Littelfuse_1812L035_60_max-envelope.wrl",
+      "transform": {
+        "m_Scale": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "m_Rotation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "m_Offset": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "registration_manifest": "native_registration/littelfuse-1812l035-native-package/bundle.json",
+      "registration_manifest_sha256": "3b8e3c977e52a5f4e8799189d0271f84f352992662473dd69968dae10e483bcf"
+    },
+    {
+      "ref": "F7",
+      "declaration": {
+        "reason": "vendor_cad_absent",
+        "catalog_response_body_sha256": "2e5c07eb9432f630b1c0fbaf02bcf601e7e9ddd0d3df5008254d90298764c1f2",
+        "catalog_comparison": "unavailable",
+        "absence_review": {
+          "path": "08_reviews/2026-09-11_cad-absence-source-review_independent_source.md",
+          "sha256": "6b764845ee96faf395fa692e85f1ddb09934f1221e402814592ab346af1c3c48"
+        },
+        "reviewed_on": "2026-09-11",
+        "mpn": "1812L035/60MR",
+        "model_sha256": "edd6c3054b944bb9436d3943f1b5da78396621e59065dde98e828219fa62cde9",
+        "registration_group": "littelfuse-1812l035-native-package",
+        "authority": {
+          "path": "02_parts/1812L035-60MR/Littelfuse_1812L_GD20240610_Megastar.pdf",
+          "sha256": "a18b5ceec6d56cd31b20da55341ed1b35a48184f1f7fff8ca8bc6948cd8fb974",
+          "pages": [
+            6,
+            7
+          ],
+          "revision": "GD06/10/24"
+        },
+        "native_footprint": {
+          "path": "03_src/lib/crow_audio_carrier.pretty/Littelfuse_1812L035_60_Exact.kicad_mod",
+          "sha256": "3b419dd3166ea043cc46dd4f7375d37b5dc594b9067189d49a47d5f844c8d9db"
+        },
+        "generator": {
+          "path": "03_src/build_package_models.py",
+          "sha256": "9b376ffc46c8a8746e06e5cddfc3d3b39656795a83754144077f86716c588019"
+        },
+        "provenance": {
+          "path": "03_src/lib/3dmodels/provenance.md",
+          "sha256": "50eb3a3f9319de6def5a5bf9bb9ba66e05d1e162d765c043d49fe30c9641a18d"
+        },
+        "pin_review": {
+          "path": "08_reviews/2026-09-11_fuse-land-pin-review_independent_source.md",
+          "sha256": "1ecf1899b16bc13d01ab8fb1e11eae330d73e003f5f30dff40a7e0ef1160f7bc"
+        },
+        "reviewer": "fuse-land-pin-review with independent catalog-absence source review; see bound reports",
+        "limitations": "Maximum-envelope drawing-derived body; visual terminal bands are illustrative. Exact published lands and all 16 pins independently reviewed. Thermal trip, fault and manufacturing qualification remain open. Catalog pad comparison unavailable. Every ordinary registration, body coverage, overlay, placement and release gate remains active; DO-NOT-ORDER.",
+        "lcsc": "C3761431",
+        "refs": [
+          "F1",
+          "F2",
+          "F3",
+          "F4",
+          "F5",
+          "F6",
+          "F7",
+          "F8"
+        ]
+      },
+      "source_files": {
+        "authority": "native_authority/littelfuse-1812l035-native-package/authority-Littelfuse_1812L_GD20240610_Megastar.pdf",
+        "native_footprint": "native_authority/littelfuse-1812l035-native-package/native_footprint-Littelfuse_1812L035_60_Exact.kicad_mod",
+        "generator": "native_authority/littelfuse-1812l035-native-package/generator-build_package_models.py",
+        "provenance": "native_authority/littelfuse-1812l035-native-package/provenance-provenance.md",
+        "absence_review": "native_authority/littelfuse-1812l035-native-package/absence_review-2026-09-11_cad-absence-source-review_independent_source.md",
+        "pin_review": "native_authority/littelfuse-1812l035-native-package/pin_review-2026-09-11_fuse-land-pin-review_independent_source.md"
+      },
+      "catalog_comparison": "unavailable",
+      "catalog_response_sha256": "3ca5e75e62b50c5a52f58406bd43340278cfa3d8f2822b1dbca0bde81c38f52c",
+      "model": "native_models/edd6c3054b944bb9436d3943f1b5da78396621e59065dde98e828219fa62cde9-Littelfuse_1812L035_60_max-envelope.wrl",
+      "transform": {
+        "m_Scale": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "m_Rotation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "m_Offset": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "registration_manifest": "native_registration/littelfuse-1812l035-native-package/bundle.json",
+      "registration_manifest_sha256": "3b8e3c977e52a5f4e8799189d0271f84f352992662473dd69968dae10e483bcf"
+    },
+    {
+      "ref": "F8",
+      "declaration": {
+        "reason": "vendor_cad_absent",
+        "catalog_response_body_sha256": "2e5c07eb9432f630b1c0fbaf02bcf601e7e9ddd0d3df5008254d90298764c1f2",
+        "catalog_comparison": "unavailable",
+        "absence_review": {
+          "path": "08_reviews/2026-09-11_cad-absence-source-review_independent_source.md",
+          "sha256": "6b764845ee96faf395fa692e85f1ddb09934f1221e402814592ab346af1c3c48"
+        },
+        "reviewed_on": "2026-09-11",
+        "mpn": "1812L035/60MR",
+        "model_sha256": "edd6c3054b944bb9436d3943f1b5da78396621e59065dde98e828219fa62cde9",
+        "registration_group": "littelfuse-1812l035-native-package",
+        "authority": {
+          "path": "02_parts/1812L035-60MR/Littelfuse_1812L_GD20240610_Megastar.pdf",
+          "sha256": "a18b5ceec6d56cd31b20da55341ed1b35a48184f1f7fff8ca8bc6948cd8fb974",
+          "pages": [
+            6,
+            7
+          ],
+          "revision": "GD06/10/24"
+        },
+        "native_footprint": {
+          "path": "03_src/lib/crow_audio_carrier.pretty/Littelfuse_1812L035_60_Exact.kicad_mod",
+          "sha256": "3b419dd3166ea043cc46dd4f7375d37b5dc594b9067189d49a47d5f844c8d9db"
+        },
+        "generator": {
+          "path": "03_src/build_package_models.py",
+          "sha256": "9b376ffc46c8a8746e06e5cddfc3d3b39656795a83754144077f86716c588019"
+        },
+        "provenance": {
+          "path": "03_src/lib/3dmodels/provenance.md",
+          "sha256": "50eb3a3f9319de6def5a5bf9bb9ba66e05d1e162d765c043d49fe30c9641a18d"
+        },
+        "pin_review": {
+          "path": "08_reviews/2026-09-11_fuse-land-pin-review_independent_source.md",
+          "sha256": "1ecf1899b16bc13d01ab8fb1e11eae330d73e003f5f30dff40a7e0ef1160f7bc"
+        },
+        "reviewer": "fuse-land-pin-review with independent catalog-absence source review; see bound reports",
+        "limitations": "Maximum-envelope drawing-derived body; visual terminal bands are illustrative. Exact published lands and all 16 pins independently reviewed. Thermal trip, fault and manufacturing qualification remain open. Catalog pad comparison unavailable. Every ordinary registration, body coverage, overlay, placement and release gate remains active; DO-NOT-ORDER.",
+        "lcsc": "C3761431",
+        "refs": [
+          "F1",
+          "F2",
+          "F3",
+          "F4",
+          "F5",
+          "F6",
+          "F7",
+          "F8"
+        ]
+      },
+      "source_files": {
+        "authority": "native_authority/littelfuse-1812l035-native-package/authority-Littelfuse_1812L_GD20240610_Megastar.pdf",
+        "native_footprint": "native_authority/littelfuse-1812l035-native-package/native_footprint-Littelfuse_1812L035_60_Exact.kicad_mod",
+        "generator": "native_authority/littelfuse-1812l035-native-package/generator-build_package_models.py",
+        "provenance": "native_authority/littelfuse-1812l035-native-package/provenance-provenance.md",
+        "absence_review": "native_authority/littelfuse-1812l035-native-package/absence_review-2026-09-11_cad-absence-source-review_independent_source.md",
+        "pin_review": "native_authority/littelfuse-1812l035-native-package/pin_review-2026-09-11_fuse-land-pin-review_independent_source.md"
+      },
+      "catalog_comparison": "unavailable",
+      "catalog_response_sha256": "3ca5e75e62b50c5a52f58406bd43340278cfa3d8f2822b1dbca0bde81c38f52c",
+      "model": "native_models/edd6c3054b944bb9436d3943f1b5da78396621e59065dde98e828219fa62cde9-Littelfuse_1812L035_60_max-envelope.wrl",
+      "transform": {
+        "m_Scale": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "m_Rotation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "m_Offset": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "registration_manifest": "native_registration/littelfuse-1812l035-native-package/bundle.json",
+      "registration_manifest_sha256": "3b8e3c977e52a5f4e8799189d0271f84f352992662473dd69968dae10e483bcf"
+    },
+    {
+      "ref": "R_PWR_TOP",
+      "declaration": {
+        "reason": "vendor_cad_absent",
+        "catalog_response_body_sha256": "2e5c07eb9432f630b1c0fbaf02bcf601e7e9ddd0d3df5008254d90298764c1f2",
+        "catalog_comparison": "unavailable",
+        "absence_review": {
+          "path": "08_reviews/2026-09-11_cad-absence-source-review_independent_source.md",
+          "sha256": "6b764845ee96faf395fa692e85f1ddb09934f1221e402814592ab346af1c3c48"
+        },
+        "reviewed_on": "2026-09-11",
+        "mpn": "RT0603BRD0730K9L",
+        "model_sha256": "1875571c326d0d9e96f36b4efeb8094068ef7619f0a449c781caf0b49c2e5861",
+        "registration_group": "yageo-rt0603-native-package",
+        "authority": {
+          "path": "02_parts/RT0603BRD0730K9L/Yageo_RT_v17_20260212.pdf",
+          "sha256": "00a9148c2958122200e8a93292e389392a795adcfe40562d6ca4f690d1e5d7d1",
+          "pages": [
+            4,
+            6
+          ],
+          "revision": "V17 2026-02-12"
+        },
+        "native_footprint": {
+          "path": "03_src/lib/crow_audio_carrier.pretty/Yageo_RT0603_NominalBody.kicad_mod",
+          "sha256": "590a4231c40f8f2dbb1afba0f7f26ca656cfac101b98160429b6d9f9f3cf4b9a"
+        },
+        "generator": {
+          "path": "03_src/lib/3dmodels/kicad/RT0603-provenance.md",
+          "sha256": "8fefca9620923aa60d1c21a5ac0efee795ca24c431d6e4c6b4ab4cc3441afc95"
+        },
+        "provenance": {
+          "path": "03_src/lib/3dmodels/kicad/RT0603-provenance.md",
+          "sha256": "8fefca9620923aa60d1c21a5ac0efee795ca24c431d6e4c6b4ab4cc3441afc95"
+        },
+        "pin_review": {
+          "path": "08_reviews/2026-09-11_small-delta-pin-review_independent_source.md",
+          "sha256": "8ba08f5c10a4950dc037395b0fc9554d56100ef67c95ad3c16c16a282d024862"
+        },
+        "reviewer": "small-delta-pin-review with independent catalog-absence source review; see bound reports",
+        "limitations": "Nominal KiCad body, not maximum material condition; independent Yageo Mounting V10 review supports land compatibility with actual 0.20mm rounded corners. Not universal metallization containment or assembly-process qualification. Catalog pad comparison unavailable. Every ordinary registration, body coverage, overlay, placement and release gate remains active; DO-NOT-ORDER.",
+        "lcsc": "C861313",
+        "refs": [
+          "R_PWR_TOP"
+        ]
+      },
+      "source_files": {
+        "authority": "native_authority/yageo-rt0603-native-package/authority-Yageo_RT_v17_20260212.pdf",
+        "native_footprint": "native_authority/yageo-rt0603-native-package/native_footprint-Yageo_RT0603_NominalBody.kicad_mod",
+        "generator": "native_authority/yageo-rt0603-native-package/generator-RT0603-provenance.md",
+        "provenance": "native_authority/yageo-rt0603-native-package/provenance-RT0603-provenance.md",
+        "absence_review": "native_authority/yageo-rt0603-native-package/absence_review-2026-09-11_cad-absence-source-review_independent_source.md",
+        "pin_review": "native_authority/yageo-rt0603-native-package/pin_review-2026-09-11_small-delta-pin-review_independent_source.md"
+      },
+      "catalog_comparison": "unavailable",
+      "catalog_response_sha256": "ba1311fddfb8278801c4b50135385c174342d13656e468b762b6222d7c958eb4",
+      "model": "native_models/1875571c326d0d9e96f36b4efeb8094068ef7619f0a449c781caf0b49c2e5861-R_0603_1608Metric.step",
+      "transform": {
+        "m_Scale": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "m_Rotation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "m_Offset": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "registration_manifest": "native_registration/yageo-rt0603-native-package/bundle.json",
+      "registration_manifest_sha256": "ef9f2ebcd818c5d515dbef641e88380d5aacb6c951c5a72055ba707fb427a8eb"
+    },
+    {
+      "ref": "U_ISO1",
+      "declaration": {
+        "reason": "vendor_model_absent",
+        "mpn": "TMUX2821DSGR",
+        "vendor_footprint_sha256": "aac4957b19f2388b942cb7f7e5ea234120c087013ae6a2ded63c4ab8c6fbe089",
+        "model_sha256": "0efc4d267f4b25c433f509251759baab99611db311ca31b3f60ae180c3beb1fe",
+        "registration_group": "ti-dsg0008a-native-package",
+        "authority": {
+          "path": "02_parts/TMUX2821DSGR/TMUX28xx_SCDS488.pdf",
+          "sha256": "493e5c0d4eb5ca55dea82dbcce59b1be9c353577e256c161821662c38bb9ac55",
+          "pages": [
+            30,
+            31
+          ],
+          "revision": "DSG0008A drawing4218900/E08/2022"
+        },
+        "native_footprint": {
+          "path": "03_src/lib/crow_audio_carrier.pretty/TI_DSG0008A_Exact.kicad_mod",
+          "sha256": "d451fc7671e11f5f664d86d3cca10f2b1ee7f78746fd10bd8c1c82349fad0d65"
+        },
+        "generator": {
+          "path": "03_src/build_package_models.py",
+          "sha256": "9b376ffc46c8a8746e06e5cddfc3d3b39656795a83754144077f86716c588019"
+        },
+        "provenance": {
+          "path": "03_src/lib/3dmodels/provenance.md",
+          "sha256": "50eb3a3f9319de6def5a5bf9bb9ba66e05d1e162d765c043d49fe30c9641a18d"
+        },
+        "reviewer": "carrier_missing_cad_dback independent source judgment; journal5595edc7d5430a2d87247dad35c289e484bb164f6a8648b7ea45c0baf3c2ba36.tar.gz",
+        "reviewed_on": "2026-09-11",
+        "limitations": "Drawing-derived nominal visual body, not manufacturer CAD, worst-case tolerance authority or manufacturing proof. Pad/rotation, signed registration, same-camera overlay and every CPL-body obligation remain active.",
+        "lcsc": "C53283916",
+        "refs": [
+          "U_ISO1",
+          "U_ISO2",
+          "U_ISO3",
+          "U_ISO4",
+          "U_ISO5",
+          "U_ISO6",
+          "U_ISO7",
+          "U_ISO8"
+        ]
+      },
+      "source_files": {
+        "authority": "native_authority/ti-dsg0008a-native-package/authority-TMUX28xx_SCDS488.pdf",
+        "native_footprint": "native_authority/ti-dsg0008a-native-package/native_footprint-TI_DSG0008A_Exact.kicad_mod",
+        "generator": "native_authority/ti-dsg0008a-native-package/generator-build_package_models.py",
+        "provenance": "native_authority/ti-dsg0008a-native-package/provenance-provenance.md"
+      },
+      "catalog_comparison": "vendor-footprint",
+      "catalog_response_sha256": null,
+      "model": "native_models/0efc4d267f4b25c433f509251759baab99611db311ca31b3f60ae180c3beb1fe-TI_DSG0008A_nominal.wrl",
+      "transform": {
+        "m_Scale": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "m_Rotation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "m_Offset": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "registration_manifest": "native_registration/ti-dsg0008a-native-package/bundle.json",
+      "registration_manifest_sha256": "ea36ffa81f3c9f341c968ad035419f9fc7d66c8f648740fe86de8e68ae252fde"
+    },
+    {
+      "ref": "U_ISO2",
+      "declaration": {
+        "reason": "vendor_model_absent",
+        "mpn": "TMUX2821DSGR",
+        "vendor_footprint_sha256": "aac4957b19f2388b942cb7f7e5ea234120c087013ae6a2ded63c4ab8c6fbe089",
+        "model_sha256": "0efc4d267f4b25c433f509251759baab99611db311ca31b3f60ae180c3beb1fe",
+        "registration_group": "ti-dsg0008a-native-package",
+        "authority": {
+          "path": "02_parts/TMUX2821DSGR/TMUX28xx_SCDS488.pdf",
+          "sha256": "493e5c0d4eb5ca55dea82dbcce59b1be9c353577e256c161821662c38bb9ac55",
+          "pages": [
+            30,
+            31
+          ],
+          "revision": "DSG0008A drawing4218900/E08/2022"
+        },
+        "native_footprint": {
+          "path": "03_src/lib/crow_audio_carrier.pretty/TI_DSG0008A_Exact.kicad_mod",
+          "sha256": "d451fc7671e11f5f664d86d3cca10f2b1ee7f78746fd10bd8c1c82349fad0d65"
+        },
+        "generator": {
+          "path": "03_src/build_package_models.py",
+          "sha256": "9b376ffc46c8a8746e06e5cddfc3d3b39656795a83754144077f86716c588019"
+        },
+        "provenance": {
+          "path": "03_src/lib/3dmodels/provenance.md",
+          "sha256": "50eb3a3f9319de6def5a5bf9bb9ba66e05d1e162d765c043d49fe30c9641a18d"
+        },
+        "reviewer": "carrier_missing_cad_dback independent source judgment; journal5595edc7d5430a2d87247dad35c289e484bb164f6a8648b7ea45c0baf3c2ba36.tar.gz",
+        "reviewed_on": "2026-09-11",
+        "limitations": "Drawing-derived nominal visual body, not manufacturer CAD, worst-case tolerance authority or manufacturing proof. Pad/rotation, signed registration, same-camera overlay and every CPL-body obligation remain active.",
+        "lcsc": "C53283916",
+        "refs": [
+          "U_ISO1",
+          "U_ISO2",
+          "U_ISO3",
+          "U_ISO4",
+          "U_ISO5",
+          "U_ISO6",
+          "U_ISO7",
+          "U_ISO8"
+        ]
+      },
+      "source_files": {
+        "authority": "native_authority/ti-dsg0008a-native-package/authority-TMUX28xx_SCDS488.pdf",
+        "native_footprint": "native_authority/ti-dsg0008a-native-package/native_footprint-TI_DSG0008A_Exact.kicad_mod",
+        "generator": "native_authority/ti-dsg0008a-native-package/generator-build_package_models.py",
+        "provenance": "native_authority/ti-dsg0008a-native-package/provenance-provenance.md"
+      },
+      "catalog_comparison": "vendor-footprint",
+      "catalog_response_sha256": null,
+      "model": "native_models/0efc4d267f4b25c433f509251759baab99611db311ca31b3f60ae180c3beb1fe-TI_DSG0008A_nominal.wrl",
+      "transform": {
+        "m_Scale": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "m_Rotation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "m_Offset": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "registration_manifest": "native_registration/ti-dsg0008a-native-package/bundle.json",
+      "registration_manifest_sha256": "ea36ffa81f3c9f341c968ad035419f9fc7d66c8f648740fe86de8e68ae252fde"
+    },
+    {
+      "ref": "U_ISO3",
+      "declaration": {
+        "reason": "vendor_model_absent",
+        "mpn": "TMUX2821DSGR",
+        "vendor_footprint_sha256": "aac4957b19f2388b942cb7f7e5ea234120c087013ae6a2ded63c4ab8c6fbe089",
+        "model_sha256": "0efc4d267f4b25c433f509251759baab99611db311ca31b3f60ae180c3beb1fe",
+        "registration_group": "ti-dsg0008a-native-package",
+        "authority": {
+          "path": "02_parts/TMUX2821DSGR/TMUX28xx_SCDS488.pdf",
+          "sha256": "493e5c0d4eb5ca55dea82dbcce59b1be9c353577e256c161821662c38bb9ac55",
+          "pages": [
+            30,
+            31
+          ],
+          "revision": "DSG0008A drawing4218900/E08/2022"
+        },
+        "native_footprint": {
+          "path": "03_src/lib/crow_audio_carrier.pretty/TI_DSG0008A_Exact.kicad_mod",
+          "sha256": "d451fc7671e11f5f664d86d3cca10f2b1ee7f78746fd10bd8c1c82349fad0d65"
+        },
+        "generator": {
+          "path": "03_src/build_package_models.py",
+          "sha256": "9b376ffc46c8a8746e06e5cddfc3d3b39656795a83754144077f86716c588019"
+        },
+        "provenance": {
+          "path": "03_src/lib/3dmodels/provenance.md",
+          "sha256": "50eb3a3f9319de6def5a5bf9bb9ba66e05d1e162d765c043d49fe30c9641a18d"
+        },
+        "reviewer": "carrier_missing_cad_dback independent source judgment; journal5595edc7d5430a2d87247dad35c289e484bb164f6a8648b7ea45c0baf3c2ba36.tar.gz",
+        "reviewed_on": "2026-09-11",
+        "limitations": "Drawing-derived nominal visual body, not manufacturer CAD, worst-case tolerance authority or manufacturing proof. Pad/rotation, signed registration, same-camera overlay and every CPL-body obligation remain active.",
+        "lcsc": "C53283916",
+        "refs": [
+          "U_ISO1",
+          "U_ISO2",
+          "U_ISO3",
+          "U_ISO4",
+          "U_ISO5",
+          "U_ISO6",
+          "U_ISO7",
+          "U_ISO8"
+        ]
+      },
+      "source_files": {
+        "authority": "native_authority/ti-dsg0008a-native-package/authority-TMUX28xx_SCDS488.pdf",
+        "native_footprint": "native_authority/ti-dsg0008a-native-package/native_footprint-TI_DSG0008A_Exact.kicad_mod",
+        "generator": "native_authority/ti-dsg0008a-native-package/generator-build_package_models.py",
+        "provenance": "native_authority/ti-dsg0008a-native-package/provenance-provenance.md"
+      },
+      "catalog_comparison": "vendor-footprint",
+      "catalog_response_sha256": null,
+      "model": "native_models/0efc4d267f4b25c433f509251759baab99611db311ca31b3f60ae180c3beb1fe-TI_DSG0008A_nominal.wrl",
+      "transform": {
+        "m_Scale": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "m_Rotation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "m_Offset": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "registration_manifest": "native_registration/ti-dsg0008a-native-package/bundle.json",
+      "registration_manifest_sha256": "ea36ffa81f3c9f341c968ad035419f9fc7d66c8f648740fe86de8e68ae252fde"
+    },
+    {
+      "ref": "U_ISO4",
+      "declaration": {
+        "reason": "vendor_model_absent",
+        "mpn": "TMUX2821DSGR",
+        "vendor_footprint_sha256": "aac4957b19f2388b942cb7f7e5ea234120c087013ae6a2ded63c4ab8c6fbe089",
+        "model_sha256": "0efc4d267f4b25c433f509251759baab99611db311ca31b3f60ae180c3beb1fe",
+        "registration_group": "ti-dsg0008a-native-package",
+        "authority": {
+          "path": "02_parts/TMUX2821DSGR/TMUX28xx_SCDS488.pdf",
+          "sha256": "493e5c0d4eb5ca55dea82dbcce59b1be9c353577e256c161821662c38bb9ac55",
+          "pages": [
+            30,
+            31
+          ],
+          "revision": "DSG0008A drawing4218900/E08/2022"
+        },
+        "native_footprint": {
+          "path": "03_src/lib/crow_audio_carrier.pretty/TI_DSG0008A_Exact.kicad_mod",
+          "sha256": "d451fc7671e11f5f664d86d3cca10f2b1ee7f78746fd10bd8c1c82349fad0d65"
+        },
+        "generator": {
+          "path": "03_src/build_package_models.py",
+          "sha256": "9b376ffc46c8a8746e06e5cddfc3d3b39656795a83754144077f86716c588019"
+        },
+        "provenance": {
+          "path": "03_src/lib/3dmodels/provenance.md",
+          "sha256": "50eb3a3f9319de6def5a5bf9bb9ba66e05d1e162d765c043d49fe30c9641a18d"
+        },
+        "reviewer": "carrier_missing_cad_dback independent source judgment; journal5595edc7d5430a2d87247dad35c289e484bb164f6a8648b7ea45c0baf3c2ba36.tar.gz",
+        "reviewed_on": "2026-09-11",
+        "limitations": "Drawing-derived nominal visual body, not manufacturer CAD, worst-case tolerance authority or manufacturing proof. Pad/rotation, signed registration, same-camera overlay and every CPL-body obligation remain active.",
+        "lcsc": "C53283916",
+        "refs": [
+          "U_ISO1",
+          "U_ISO2",
+          "U_ISO3",
+          "U_ISO4",
+          "U_ISO5",
+          "U_ISO6",
+          "U_ISO7",
+          "U_ISO8"
+        ]
+      },
+      "source_files": {
+        "authority": "native_authority/ti-dsg0008a-native-package/authority-TMUX28xx_SCDS488.pdf",
+        "native_footprint": "native_authority/ti-dsg0008a-native-package/native_footprint-TI_DSG0008A_Exact.kicad_mod",
+        "generator": "native_authority/ti-dsg0008a-native-package/generator-build_package_models.py",
+        "provenance": "native_authority/ti-dsg0008a-native-package/provenance-provenance.md"
+      },
+      "catalog_comparison": "vendor-footprint",
+      "catalog_response_sha256": null,
+      "model": "native_models/0efc4d267f4b25c433f509251759baab99611db311ca31b3f60ae180c3beb1fe-TI_DSG0008A_nominal.wrl",
+      "transform": {
+        "m_Scale": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "m_Rotation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "m_Offset": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "registration_manifest": "native_registration/ti-dsg0008a-native-package/bundle.json",
+      "registration_manifest_sha256": "ea36ffa81f3c9f341c968ad035419f9fc7d66c8f648740fe86de8e68ae252fde"
+    },
+    {
+      "ref": "U_ISO5",
+      "declaration": {
+        "reason": "vendor_model_absent",
+        "mpn": "TMUX2821DSGR",
+        "vendor_footprint_sha256": "aac4957b19f2388b942cb7f7e5ea234120c087013ae6a2ded63c4ab8c6fbe089",
+        "model_sha256": "0efc4d267f4b25c433f509251759baab99611db311ca31b3f60ae180c3beb1fe",
+        "registration_group": "ti-dsg0008a-native-package",
+        "authority": {
+          "path": "02_parts/TMUX2821DSGR/TMUX28xx_SCDS488.pdf",
+          "sha256": "493e5c0d4eb5ca55dea82dbcce59b1be9c353577e256c161821662c38bb9ac55",
+          "pages": [
+            30,
+            31
+          ],
+          "revision": "DSG0008A drawing4218900/E08/2022"
+        },
+        "native_footprint": {
+          "path": "03_src/lib/crow_audio_carrier.pretty/TI_DSG0008A_Exact.kicad_mod",
+          "sha256": "d451fc7671e11f5f664d86d3cca10f2b1ee7f78746fd10bd8c1c82349fad0d65"
+        },
+        "generator": {
+          "path": "03_src/build_package_models.py",
+          "sha256": "9b376ffc46c8a8746e06e5cddfc3d3b39656795a83754144077f86716c588019"
+        },
+        "provenance": {
+          "path": "03_src/lib/3dmodels/provenance.md",
+          "sha256": "50eb3a3f9319de6def5a5bf9bb9ba66e05d1e162d765c043d49fe30c9641a18d"
+        },
+        "reviewer": "carrier_missing_cad_dback independent source judgment; journal5595edc7d5430a2d87247dad35c289e484bb164f6a8648b7ea45c0baf3c2ba36.tar.gz",
+        "reviewed_on": "2026-09-11",
+        "limitations": "Drawing-derived nominal visual body, not manufacturer CAD, worst-case tolerance authority or manufacturing proof. Pad/rotation, signed registration, same-camera overlay and every CPL-body obligation remain active.",
+        "lcsc": "C53283916",
+        "refs": [
+          "U_ISO1",
+          "U_ISO2",
+          "U_ISO3",
+          "U_ISO4",
+          "U_ISO5",
+          "U_ISO6",
+          "U_ISO7",
+          "U_ISO8"
+        ]
+      },
+      "source_files": {
+        "authority": "native_authority/ti-dsg0008a-native-package/authority-TMUX28xx_SCDS488.pdf",
+        "native_footprint": "native_authority/ti-dsg0008a-native-package/native_footprint-TI_DSG0008A_Exact.kicad_mod",
+        "generator": "native_authority/ti-dsg0008a-native-package/generator-build_package_models.py",
+        "provenance": "native_authority/ti-dsg0008a-native-package/provenance-provenance.md"
+      },
+      "catalog_comparison": "vendor-footprint",
+      "catalog_response_sha256": null,
+      "model": "native_models/0efc4d267f4b25c433f509251759baab99611db311ca31b3f60ae180c3beb1fe-TI_DSG0008A_nominal.wrl",
+      "transform": {
+        "m_Scale": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "m_Rotation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "m_Offset": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "registration_manifest": "native_registration/ti-dsg0008a-native-package/bundle.json",
+      "registration_manifest_sha256": "ea36ffa81f3c9f341c968ad035419f9fc7d66c8f648740fe86de8e68ae252fde"
+    },
+    {
+      "ref": "U_ISO6",
+      "declaration": {
+        "reason": "vendor_model_absent",
+        "mpn": "TMUX2821DSGR",
+        "vendor_footprint_sha256": "aac4957b19f2388b942cb7f7e5ea234120c087013ae6a2ded63c4ab8c6fbe089",
+        "model_sha256": "0efc4d267f4b25c433f509251759baab99611db311ca31b3f60ae180c3beb1fe",
+        "registration_group": "ti-dsg0008a-native-package",
+        "authority": {
+          "path": "02_parts/TMUX2821DSGR/TMUX28xx_SCDS488.pdf",
+          "sha256": "493e5c0d4eb5ca55dea82dbcce59b1be9c353577e256c161821662c38bb9ac55",
+          "pages": [
+            30,
+            31
+          ],
+          "revision": "DSG0008A drawing4218900/E08/2022"
+        },
+        "native_footprint": {
+          "path": "03_src/lib/crow_audio_carrier.pretty/TI_DSG0008A_Exact.kicad_mod",
+          "sha256": "d451fc7671e11f5f664d86d3cca10f2b1ee7f78746fd10bd8c1c82349fad0d65"
+        },
+        "generator": {
+          "path": "03_src/build_package_models.py",
+          "sha256": "9b376ffc46c8a8746e06e5cddfc3d3b39656795a83754144077f86716c588019"
+        },
+        "provenance": {
+          "path": "03_src/lib/3dmodels/provenance.md",
+          "sha256": "50eb3a3f9319de6def5a5bf9bb9ba66e05d1e162d765c043d49fe30c9641a18d"
+        },
+        "reviewer": "carrier_missing_cad_dback independent source judgment; journal5595edc7d5430a2d87247dad35c289e484bb164f6a8648b7ea45c0baf3c2ba36.tar.gz",
+        "reviewed_on": "2026-09-11",
+        "limitations": "Drawing-derived nominal visual body, not manufacturer CAD, worst-case tolerance authority or manufacturing proof. Pad/rotation, signed registration, same-camera overlay and every CPL-body obligation remain active.",
+        "lcsc": "C53283916",
+        "refs": [
+          "U_ISO1",
+          "U_ISO2",
+          "U_ISO3",
+          "U_ISO4",
+          "U_ISO5",
+          "U_ISO6",
+          "U_ISO7",
+          "U_ISO8"
+        ]
+      },
+      "source_files": {
+        "authority": "native_authority/ti-dsg0008a-native-package/authority-TMUX28xx_SCDS488.pdf",
+        "native_footprint": "native_authority/ti-dsg0008a-native-package/native_footprint-TI_DSG0008A_Exact.kicad_mod",
+        "generator": "native_authority/ti-dsg0008a-native-package/generator-build_package_models.py",
+        "provenance": "native_authority/ti-dsg0008a-native-package/provenance-provenance.md"
+      },
+      "catalog_comparison": "vendor-footprint",
+      "catalog_response_sha256": null,
+      "model": "native_models/0efc4d267f4b25c433f509251759baab99611db311ca31b3f60ae180c3beb1fe-TI_DSG0008A_nominal.wrl",
+      "transform": {
+        "m_Scale": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "m_Rotation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "m_Offset": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "registration_manifest": "native_registration/ti-dsg0008a-native-package/bundle.json",
+      "registration_manifest_sha256": "ea36ffa81f3c9f341c968ad035419f9fc7d66c8f648740fe86de8e68ae252fde"
+    },
+    {
+      "ref": "U_ISO7",
+      "declaration": {
+        "reason": "vendor_model_absent",
+        "mpn": "TMUX2821DSGR",
+        "vendor_footprint_sha256": "aac4957b19f2388b942cb7f7e5ea234120c087013ae6a2ded63c4ab8c6fbe089",
+        "model_sha256": "0efc4d267f4b25c433f509251759baab99611db311ca31b3f60ae180c3beb1fe",
+        "registration_group": "ti-dsg0008a-native-package",
+        "authority": {
+          "path": "02_parts/TMUX2821DSGR/TMUX28xx_SCDS488.pdf",
+          "sha256": "493e5c0d4eb5ca55dea82dbcce59b1be9c353577e256c161821662c38bb9ac55",
+          "pages": [
+            30,
+            31
+          ],
+          "revision": "DSG0008A drawing4218900/E08/2022"
+        },
+        "native_footprint": {
+          "path": "03_src/lib/crow_audio_carrier.pretty/TI_DSG0008A_Exact.kicad_mod",
+          "sha256": "d451fc7671e11f5f664d86d3cca10f2b1ee7f78746fd10bd8c1c82349fad0d65"
+        },
+        "generator": {
+          "path": "03_src/build_package_models.py",
+          "sha256": "9b376ffc46c8a8746e06e5cddfc3d3b39656795a83754144077f86716c588019"
+        },
+        "provenance": {
+          "path": "03_src/lib/3dmodels/provenance.md",
+          "sha256": "50eb3a3f9319de6def5a5bf9bb9ba66e05d1e162d765c043d49fe30c9641a18d"
+        },
+        "reviewer": "carrier_missing_cad_dback independent source judgment; journal5595edc7d5430a2d87247dad35c289e484bb164f6a8648b7ea45c0baf3c2ba36.tar.gz",
+        "reviewed_on": "2026-09-11",
+        "limitations": "Drawing-derived nominal visual body, not manufacturer CAD, worst-case tolerance authority or manufacturing proof. Pad/rotation, signed registration, same-camera overlay and every CPL-body obligation remain active.",
+        "lcsc": "C53283916",
+        "refs": [
+          "U_ISO1",
+          "U_ISO2",
+          "U_ISO3",
+          "U_ISO4",
+          "U_ISO5",
+          "U_ISO6",
+          "U_ISO7",
+          "U_ISO8"
+        ]
+      },
+      "source_files": {
+        "authority": "native_authority/ti-dsg0008a-native-package/authority-TMUX28xx_SCDS488.pdf",
+        "native_footprint": "native_authority/ti-dsg0008a-native-package/native_footprint-TI_DSG0008A_Exact.kicad_mod",
+        "generator": "native_authority/ti-dsg0008a-native-package/generator-build_package_models.py",
+        "provenance": "native_authority/ti-dsg0008a-native-package/provenance-provenance.md"
+      },
+      "catalog_comparison": "vendor-footprint",
+      "catalog_response_sha256": null,
+      "model": "native_models/0efc4d267f4b25c433f509251759baab99611db311ca31b3f60ae180c3beb1fe-TI_DSG0008A_nominal.wrl",
+      "transform": {
+        "m_Scale": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "m_Rotation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "m_Offset": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "registration_manifest": "native_registration/ti-dsg0008a-native-package/bundle.json",
+      "registration_manifest_sha256": "ea36ffa81f3c9f341c968ad035419f9fc7d66c8f648740fe86de8e68ae252fde"
+    },
+    {
+      "ref": "U_ISO8",
+      "declaration": {
+        "reason": "vendor_model_absent",
+        "mpn": "TMUX2821DSGR",
+        "vendor_footprint_sha256": "aac4957b19f2388b942cb7f7e5ea234120c087013ae6a2ded63c4ab8c6fbe089",
+        "model_sha256": "0efc4d267f4b25c433f509251759baab99611db311ca31b3f60ae180c3beb1fe",
+        "registration_group": "ti-dsg0008a-native-package",
+        "authority": {
+          "path": "02_parts/TMUX2821DSGR/TMUX28xx_SCDS488.pdf",
+          "sha256": "493e5c0d4eb5ca55dea82dbcce59b1be9c353577e256c161821662c38bb9ac55",
+          "pages": [
+            30,
+            31
+          ],
+          "revision": "DSG0008A drawing4218900/E08/2022"
+        },
+        "native_footprint": {
+          "path": "03_src/lib/crow_audio_carrier.pretty/TI_DSG0008A_Exact.kicad_mod",
+          "sha256": "d451fc7671e11f5f664d86d3cca10f2b1ee7f78746fd10bd8c1c82349fad0d65"
+        },
+        "generator": {
+          "path": "03_src/build_package_models.py",
+          "sha256": "9b376ffc46c8a8746e06e5cddfc3d3b39656795a83754144077f86716c588019"
+        },
+        "provenance": {
+          "path": "03_src/lib/3dmodels/provenance.md",
+          "sha256": "50eb3a3f9319de6def5a5bf9bb9ba66e05d1e162d765c043d49fe30c9641a18d"
+        },
+        "reviewer": "carrier_missing_cad_dback independent source judgment; journal5595edc7d5430a2d87247dad35c289e484bb164f6a8648b7ea45c0baf3c2ba36.tar.gz",
+        "reviewed_on": "2026-09-11",
+        "limitations": "Drawing-derived nominal visual body, not manufacturer CAD, worst-case tolerance authority or manufacturing proof. Pad/rotation, signed registration, same-camera overlay and every CPL-body obligation remain active.",
+        "lcsc": "C53283916",
+        "refs": [
+          "U_ISO1",
+          "U_ISO2",
+          "U_ISO3",
+          "U_ISO4",
+          "U_ISO5",
+          "U_ISO6",
+          "U_ISO7",
+          "U_ISO8"
+        ]
+      },
+      "source_files": {
+        "authority": "native_authority/ti-dsg0008a-native-package/authority-TMUX28xx_SCDS488.pdf",
+        "native_footprint": "native_authority/ti-dsg0008a-native-package/native_footprint-TI_DSG0008A_Exact.kicad_mod",
+        "generator": "native_authority/ti-dsg0008a-native-package/generator-build_package_models.py",
+        "provenance": "native_authority/ti-dsg0008a-native-package/provenance-provenance.md"
+      },
+      "catalog_comparison": "vendor-footprint",
+      "catalog_response_sha256": null,
+      "model": "native_models/0efc4d267f4b25c433f509251759baab99611db311ca31b3f60ae180c3beb1fe-TI_DSG0008A_nominal.wrl",
+      "transform": {
+        "m_Scale": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "m_Rotation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "m_Offset": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "registration_manifest": "native_registration/ti-dsg0008a-native-package/bundle.json",
+      "registration_manifest_sha256": "ea36ffa81f3c9f341c968ad035419f9fc7d66c8f648740fe86de8e68ae252fde"
+    }
+  ]
+}

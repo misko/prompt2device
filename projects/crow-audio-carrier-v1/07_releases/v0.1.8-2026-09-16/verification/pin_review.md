@@ -1,0 +1,20 @@
+subject: crow-audio-carrier-v1 v0.1.8-2026-09-16 exact release
+review_stage: release
+review_kind: pin
+reviewer_identity: /root/carrier_release_pin_v018
+context: FRESH-INDEPENDENT-FINAL
+completed_at: 2026-09-16T17:40:00-07:00
+source_commit: cc14bc442b14c412a82da708d11346a00a8a9615
+design_verdict: SOUND
+order_verdict: FIRST-ARTICLE-ONLY
+board_sha256: 45ff675971600c279c1d1e34e1610a08426b144f8435349037919a2328987e26
+
+# Crow carrier v0.1.8 independent pin-map review
+
+The exact staged design is SOUND. P-PINMAP passes 411/411 physical identities across 47 multi-pin references. Independent netlist-to-board comparison has 0 discrepancies across 179 nets, 943/943 connected nodes and 42/42 no-connect nodes. Native and standalone archive DRC are 0 violations / 0 unconnected / 0 parity.
+
+The board has 340 footprints, all on F.Cu. Assembly coverage passes 306/306 top-side CPL placements plus 27 declared manual through-hole parts, with 306/306 datum checks and 0.00050 mm worst center error. Relative to v0.1.7 exactly U_ADC, F_IN, C_FILT1_470U, C_FILT2_470U, C_HOLD1 and C_HOLD2 were added to BOM/CPL; no pre-existing CPL row changed.
+
+U_ADC retains 49/49 identities including EP49 on GND. F_IN remains 12V_IN to 12V_FUSED. Each polarized 470 uF capacitor retains pad 1 on its positive rail and pad 2 on GND. The 26-entry uploader rotation worklist includes U_ADC and all four polarized cans. The manufacturing twin resolves 333/333 fitted bodies. Connector approval binds subject 155896eb43a7c2b04c684523d4d96309bd4d945670f11a1c7a1d52b01a7a70e8.
+
+P0: 0. P1: live JLC exact-part mapping, rotations and substitutions require supervised confirmation. Physical first-article qualification remains owed.

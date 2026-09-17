@@ -1,0 +1,2189 @@
+{
+  "kicad_version": "10.0.4",
+  "board": "projects/crow-audio-carrier-v1/04_kicad/crow_audio_carrier_v1.kicad_pcb",
+  "board_sha256": "45ff675971600c279c1d1e34e1610a08426b144f8435349037919a2328987e26",
+  "render_tool_sha256": "fd4862bf4a33653402d9f67099cd529adf10a7fd8094739887e4a7a3deac4b1d",
+  "models": [
+    {
+      "ref": "C_A1N",
+      "declared": "${KIPRJMOD}/../03_src/lib/3dmodels/kicad/C_Rect_L7.2mm_W5.0mm_P5.00mm.step",
+      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/kicad/C_Rect_L7.2mm_W5.0mm_P5.00mm.step",
+      "sha256": "35659ae3b9a50ddeb0aa5add4edfaea1770d99f3a8c2db7320eb8fb13be8ee1b"
+    },
+    {
+      "ref": "C_A1P",
+      "declared": "${KIPRJMOD}/../03_src/lib/3dmodels/kicad/C_Rect_L7.2mm_W5.0mm_P5.00mm.step",
+      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/kicad/C_Rect_L7.2mm_W5.0mm_P5.00mm.step",
+      "sha256": "35659ae3b9a50ddeb0aa5add4edfaea1770d99f3a8c2db7320eb8fb13be8ee1b"
+    },
+    {
+      "ref": "C_A2N",
+      "declared": "${KIPRJMOD}/../03_src/lib/3dmodels/kicad/C_Rect_L7.2mm_W5.0mm_P5.00mm.step",
+      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/kicad/C_Rect_L7.2mm_W5.0mm_P5.00mm.step",
+      "sha256": "35659ae3b9a50ddeb0aa5add4edfaea1770d99f3a8c2db7320eb8fb13be8ee1b"
+    },
+    {
+      "ref": "C_A2P",
+      "declared": "${KIPRJMOD}/../03_src/lib/3dmodels/kicad/C_Rect_L7.2mm_W5.0mm_P5.00mm.step",
+      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/kicad/C_Rect_L7.2mm_W5.0mm_P5.00mm.step",
+      "sha256": "35659ae3b9a50ddeb0aa5add4edfaea1770d99f3a8c2db7320eb8fb13be8ee1b"
+    },
+    {
+      "ref": "C_A3N",
+      "declared": "${KIPRJMOD}/../03_src/lib/3dmodels/kicad/C_Rect_L7.2mm_W5.0mm_P5.00mm.step",
+      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/kicad/C_Rect_L7.2mm_W5.0mm_P5.00mm.step",
+      "sha256": "35659ae3b9a50ddeb0aa5add4edfaea1770d99f3a8c2db7320eb8fb13be8ee1b"
+    },
+    {
+      "ref": "C_A3P",
+      "declared": "${KIPRJMOD}/../03_src/lib/3dmodels/kicad/C_Rect_L7.2mm_W5.0mm_P5.00mm.step",
+      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/kicad/C_Rect_L7.2mm_W5.0mm_P5.00mm.step",
+      "sha256": "35659ae3b9a50ddeb0aa5add4edfaea1770d99f3a8c2db7320eb8fb13be8ee1b"
+    },
+    {
+      "ref": "C_A4N",
+      "declared": "${KIPRJMOD}/../03_src/lib/3dmodels/kicad/C_Rect_L7.2mm_W5.0mm_P5.00mm.step",
+      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/kicad/C_Rect_L7.2mm_W5.0mm_P5.00mm.step",
+      "sha256": "35659ae3b9a50ddeb0aa5add4edfaea1770d99f3a8c2db7320eb8fb13be8ee1b"
+    },
+    {
+      "ref": "C_A4P",
+      "declared": "${KIPRJMOD}/../03_src/lib/3dmodels/kicad/C_Rect_L7.2mm_W5.0mm_P5.00mm.step",
+      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/kicad/C_Rect_L7.2mm_W5.0mm_P5.00mm.step",
+      "sha256": "35659ae3b9a50ddeb0aa5add4edfaea1770d99f3a8c2db7320eb8fb13be8ee1b"
+    },
+    {
+      "ref": "C_A5N",
+      "declared": "${KIPRJMOD}/../03_src/lib/3dmodels/kicad/C_Rect_L7.2mm_W5.0mm_P5.00mm.step",
+      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/kicad/C_Rect_L7.2mm_W5.0mm_P5.00mm.step",
+      "sha256": "35659ae3b9a50ddeb0aa5add4edfaea1770d99f3a8c2db7320eb8fb13be8ee1b"
+    },
+    {
+      "ref": "C_A5P",
+      "declared": "${KIPRJMOD}/../03_src/lib/3dmodels/kicad/C_Rect_L7.2mm_W5.0mm_P5.00mm.step",
+      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/kicad/C_Rect_L7.2mm_W5.0mm_P5.00mm.step",
+      "sha256": "35659ae3b9a50ddeb0aa5add4edfaea1770d99f3a8c2db7320eb8fb13be8ee1b"
+    },
+    {
+      "ref": "C_A6N",
+      "declared": "${KIPRJMOD}/../03_src/lib/3dmodels/kicad/C_Rect_L7.2mm_W5.0mm_P5.00mm.step",
+      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/kicad/C_Rect_L7.2mm_W5.0mm_P5.00mm.step",
+      "sha256": "35659ae3b9a50ddeb0aa5add4edfaea1770d99f3a8c2db7320eb8fb13be8ee1b"
+    },
+    {
+      "ref": "C_A6P",
+      "declared": "${KIPRJMOD}/../03_src/lib/3dmodels/kicad/C_Rect_L7.2mm_W5.0mm_P5.00mm.step",
+      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/kicad/C_Rect_L7.2mm_W5.0mm_P5.00mm.step",
+      "sha256": "35659ae3b9a50ddeb0aa5add4edfaea1770d99f3a8c2db7320eb8fb13be8ee1b"
+    },
+    {
+      "ref": "C_A7N",
+      "declared": "${KIPRJMOD}/../03_src/lib/3dmodels/kicad/C_Rect_L7.2mm_W5.0mm_P5.00mm.step",
+      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/kicad/C_Rect_L7.2mm_W5.0mm_P5.00mm.step",
+      "sha256": "35659ae3b9a50ddeb0aa5add4edfaea1770d99f3a8c2db7320eb8fb13be8ee1b"
+    },
+    {
+      "ref": "C_A7P",
+      "declared": "${KIPRJMOD}/../03_src/lib/3dmodels/kicad/C_Rect_L7.2mm_W5.0mm_P5.00mm.step",
+      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/kicad/C_Rect_L7.2mm_W5.0mm_P5.00mm.step",
+      "sha256": "35659ae3b9a50ddeb0aa5add4edfaea1770d99f3a8c2db7320eb8fb13be8ee1b"
+    },
+    {
+      "ref": "C_A8N",
+      "declared": "${KIPRJMOD}/../03_src/lib/3dmodels/kicad/C_Rect_L7.2mm_W5.0mm_P5.00mm.step",
+      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/kicad/C_Rect_L7.2mm_W5.0mm_P5.00mm.step",
+      "sha256": "35659ae3b9a50ddeb0aa5add4edfaea1770d99f3a8c2db7320eb8fb13be8ee1b"
+    },
+    {
+      "ref": "C_A8P",
+      "declared": "${KIPRJMOD}/../03_src/lib/3dmodels/kicad/C_Rect_L7.2mm_W5.0mm_P5.00mm.step",
+      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/kicad/C_Rect_L7.2mm_W5.0mm_P5.00mm.step",
+      "sha256": "35659ae3b9a50ddeb0aa5add4edfaea1770d99f3a8c2db7320eb8fb13be8ee1b"
+    },
+    {
+      "ref": "C_ADC_CM1N",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "sha256": "03e44c4b2b727b8d4b6b1fd598cbd12dd5e614f1dfeefa96a92a07e3a3b312a2"
+    },
+    {
+      "ref": "C_ADC_CM1P",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "sha256": "03e44c4b2b727b8d4b6b1fd598cbd12dd5e614f1dfeefa96a92a07e3a3b312a2"
+    },
+    {
+      "ref": "C_ADC_CM2N",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "sha256": "03e44c4b2b727b8d4b6b1fd598cbd12dd5e614f1dfeefa96a92a07e3a3b312a2"
+    },
+    {
+      "ref": "C_ADC_CM2P",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "sha256": "03e44c4b2b727b8d4b6b1fd598cbd12dd5e614f1dfeefa96a92a07e3a3b312a2"
+    },
+    {
+      "ref": "C_ADC_CM3N",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "sha256": "03e44c4b2b727b8d4b6b1fd598cbd12dd5e614f1dfeefa96a92a07e3a3b312a2"
+    },
+    {
+      "ref": "C_ADC_CM3P",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "sha256": "03e44c4b2b727b8d4b6b1fd598cbd12dd5e614f1dfeefa96a92a07e3a3b312a2"
+    },
+    {
+      "ref": "C_ADC_CM4N",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "sha256": "03e44c4b2b727b8d4b6b1fd598cbd12dd5e614f1dfeefa96a92a07e3a3b312a2"
+    },
+    {
+      "ref": "C_ADC_CM4P",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "sha256": "03e44c4b2b727b8d4b6b1fd598cbd12dd5e614f1dfeefa96a92a07e3a3b312a2"
+    },
+    {
+      "ref": "C_ADC_CM5N",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "sha256": "03e44c4b2b727b8d4b6b1fd598cbd12dd5e614f1dfeefa96a92a07e3a3b312a2"
+    },
+    {
+      "ref": "C_ADC_CM5P",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "sha256": "03e44c4b2b727b8d4b6b1fd598cbd12dd5e614f1dfeefa96a92a07e3a3b312a2"
+    },
+    {
+      "ref": "C_ADC_CM6N",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "sha256": "03e44c4b2b727b8d4b6b1fd598cbd12dd5e614f1dfeefa96a92a07e3a3b312a2"
+    },
+    {
+      "ref": "C_ADC_CM6P",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "sha256": "03e44c4b2b727b8d4b6b1fd598cbd12dd5e614f1dfeefa96a92a07e3a3b312a2"
+    },
+    {
+      "ref": "C_ADC_CM7N",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "sha256": "03e44c4b2b727b8d4b6b1fd598cbd12dd5e614f1dfeefa96a92a07e3a3b312a2"
+    },
+    {
+      "ref": "C_ADC_CM7P",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "sha256": "03e44c4b2b727b8d4b6b1fd598cbd12dd5e614f1dfeefa96a92a07e3a3b312a2"
+    },
+    {
+      "ref": "C_ADC_CM8N",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "sha256": "03e44c4b2b727b8d4b6b1fd598cbd12dd5e614f1dfeefa96a92a07e3a3b312a2"
+    },
+    {
+      "ref": "C_ADC_CM8P",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "sha256": "03e44c4b2b727b8d4b6b1fd598cbd12dd5e614f1dfeefa96a92a07e3a3b312a2"
+    },
+    {
+      "ref": "C_AUDIO",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "sha256": "03e44c4b2b727b8d4b6b1fd598cbd12dd5e614f1dfeefa96a92a07e3a3b312a2"
+    },
+    {
+      "ref": "C_AUDIO_CT1",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0603_1608Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0603_1608Metric.step",
+      "sha256": "4857b3dc717675bf1fb22edda622ac3b3ae03cf44d81eefaf3fa3ba3a86d84c1"
+    },
+    {
+      "ref": "C_AUDIO_CT2",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0603_1608Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0603_1608Metric.step",
+      "sha256": "4857b3dc717675bf1fb22edda622ac3b3ae03cf44d81eefaf3fa3ba3a86d84c1"
+    },
+    {
+      "ref": "C_BUCK_BST",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "sha256": "03e44c4b2b727b8d4b6b1fd598cbd12dd5e614f1dfeefa96a92a07e3a3b312a2"
+    },
+    {
+      "ref": "C_BUCK_IN",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_1210_3225Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_1210_3225Metric.step",
+      "sha256": "f8510481c5044113cf49b0fa6dd54ddab9224508bd6808e1afab8ef0cefdefc9"
+    },
+    {
+      "ref": "C_BUCK_IN2",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_1210_3225Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_1210_3225Metric.step",
+      "sha256": "f8510481c5044113cf49b0fa6dd54ddab9224508bd6808e1afab8ef0cefdefc9"
+    },
+    {
+      "ref": "C_BUCK_IN3",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_1210_3225Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_1210_3225Metric.step",
+      "sha256": "f8510481c5044113cf49b0fa6dd54ddab9224508bd6808e1afab8ef0cefdefc9"
+    },
+    {
+      "ref": "C_BUCK_O1",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_1210_3225Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_1210_3225Metric.step",
+      "sha256": "f8510481c5044113cf49b0fa6dd54ddab9224508bd6808e1afab8ef0cefdefc9"
+    },
+    {
+      "ref": "C_BUCK_O2",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_1210_3225Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_1210_3225Metric.step",
+      "sha256": "f8510481c5044113cf49b0fa6dd54ddab9224508bd6808e1afab8ef0cefdefc9"
+    },
+    {
+      "ref": "C_BUCK_O3",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_1210_3225Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_1210_3225Metric.step",
+      "sha256": "f8510481c5044113cf49b0fa6dd54ddab9224508bd6808e1afab8ef0cefdefc9"
+    },
+    {
+      "ref": "C_CLK",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "sha256": "03e44c4b2b727b8d4b6b1fd598cbd12dd5e614f1dfeefa96a92a07e3a3b312a2"
+    },
+    {
+      "ref": "C_DUMP_LOGIC",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "sha256": "03e44c4b2b727b8d4b6b1fd598cbd12dd5e614f1dfeefa96a92a07e3a3b312a2"
+    },
+    {
+      "ref": "C_DUMP_TIME",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0805_2012Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0805_2012Metric.step",
+      "sha256": "9a669c1a2f1ea25b88b401acef6efeaa80a067bd7da9db6993de719a7fbe155c"
+    },
+    {
+      "ref": "C_FB1N",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "sha256": "03e44c4b2b727b8d4b6b1fd598cbd12dd5e614f1dfeefa96a92a07e3a3b312a2"
+    },
+    {
+      "ref": "C_FB1P",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "sha256": "03e44c4b2b727b8d4b6b1fd598cbd12dd5e614f1dfeefa96a92a07e3a3b312a2"
+    },
+    {
+      "ref": "C_FB2N",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "sha256": "03e44c4b2b727b8d4b6b1fd598cbd12dd5e614f1dfeefa96a92a07e3a3b312a2"
+    },
+    {
+      "ref": "C_FB2P",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "sha256": "03e44c4b2b727b8d4b6b1fd598cbd12dd5e614f1dfeefa96a92a07e3a3b312a2"
+    },
+    {
+      "ref": "C_FB3N",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "sha256": "03e44c4b2b727b8d4b6b1fd598cbd12dd5e614f1dfeefa96a92a07e3a3b312a2"
+    },
+    {
+      "ref": "C_FB3P",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "sha256": "03e44c4b2b727b8d4b6b1fd598cbd12dd5e614f1dfeefa96a92a07e3a3b312a2"
+    },
+    {
+      "ref": "C_FB4N",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "sha256": "03e44c4b2b727b8d4b6b1fd598cbd12dd5e614f1dfeefa96a92a07e3a3b312a2"
+    },
+    {
+      "ref": "C_FB4P",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "sha256": "03e44c4b2b727b8d4b6b1fd598cbd12dd5e614f1dfeefa96a92a07e3a3b312a2"
+    },
+    {
+      "ref": "C_FB5N",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "sha256": "03e44c4b2b727b8d4b6b1fd598cbd12dd5e614f1dfeefa96a92a07e3a3b312a2"
+    },
+    {
+      "ref": "C_FB5P",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "sha256": "03e44c4b2b727b8d4b6b1fd598cbd12dd5e614f1dfeefa96a92a07e3a3b312a2"
+    },
+    {
+      "ref": "C_FB6N",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "sha256": "03e44c4b2b727b8d4b6b1fd598cbd12dd5e614f1dfeefa96a92a07e3a3b312a2"
+    },
+    {
+      "ref": "C_FB6P",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "sha256": "03e44c4b2b727b8d4b6b1fd598cbd12dd5e614f1dfeefa96a92a07e3a3b312a2"
+    },
+    {
+      "ref": "C_FB7N",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "sha256": "03e44c4b2b727b8d4b6b1fd598cbd12dd5e614f1dfeefa96a92a07e3a3b312a2"
+    },
+    {
+      "ref": "C_FB7P",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "sha256": "03e44c4b2b727b8d4b6b1fd598cbd12dd5e614f1dfeefa96a92a07e3a3b312a2"
+    },
+    {
+      "ref": "C_FB8N",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "sha256": "03e44c4b2b727b8d4b6b1fd598cbd12dd5e614f1dfeefa96a92a07e3a3b312a2"
+    },
+    {
+      "ref": "C_FB8P",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "sha256": "03e44c4b2b727b8d4b6b1fd598cbd12dd5e614f1dfeefa96a92a07e3a3b312a2"
+    },
+    {
+      "ref": "C_FILT1_10U",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0805_2012Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0805_2012Metric.step",
+      "sha256": "9a669c1a2f1ea25b88b401acef6efeaa80a067bd7da9db6993de719a7fbe155c"
+    },
+    {
+      "ref": "C_FILT1_1U",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0603_1608Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0603_1608Metric.step",
+      "sha256": "4857b3dc717675bf1fb22edda622ac3b3ae03cf44d81eefaf3fa3ba3a86d84c1"
+    },
+    {
+      "ref": "C_FILT1_470U",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/CP_Elec_8x10.5.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/CP_Elec_8x10.5.step",
+      "sha256": "ae35c4f1043bc64d44be9822563a47867ce2b6bed1663a1144d81c9b58368562"
+    },
+    {
+      "ref": "C_FILT2_10U",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0805_2012Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0805_2012Metric.step",
+      "sha256": "9a669c1a2f1ea25b88b401acef6efeaa80a067bd7da9db6993de719a7fbe155c"
+    },
+    {
+      "ref": "C_FILT2_1U",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0603_1608Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0603_1608Metric.step",
+      "sha256": "4857b3dc717675bf1fb22edda622ac3b3ae03cf44d81eefaf3fa3ba3a86d84c1"
+    },
+    {
+      "ref": "C_FILT2_470U",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/CP_Elec_8x10.5.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/CP_Elec_8x10.5.step",
+      "sha256": "ae35c4f1043bc64d44be9822563a47867ce2b6bed1663a1144d81c9b58368562"
+    },
+    {
+      "ref": "C_FILTER1N1",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0805_2012Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0805_2012Metric.step",
+      "sha256": "9a669c1a2f1ea25b88b401acef6efeaa80a067bd7da9db6993de719a7fbe155c"
+    },
+    {
+      "ref": "C_FILTER1N2",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0805_2012Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0805_2012Metric.step",
+      "sha256": "9a669c1a2f1ea25b88b401acef6efeaa80a067bd7da9db6993de719a7fbe155c"
+    },
+    {
+      "ref": "C_FILTER1P1",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0805_2012Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0805_2012Metric.step",
+      "sha256": "9a669c1a2f1ea25b88b401acef6efeaa80a067bd7da9db6993de719a7fbe155c"
+    },
+    {
+      "ref": "C_FILTER1P2",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0805_2012Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0805_2012Metric.step",
+      "sha256": "9a669c1a2f1ea25b88b401acef6efeaa80a067bd7da9db6993de719a7fbe155c"
+    },
+    {
+      "ref": "C_FILTER2N1",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0805_2012Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0805_2012Metric.step",
+      "sha256": "9a669c1a2f1ea25b88b401acef6efeaa80a067bd7da9db6993de719a7fbe155c"
+    },
+    {
+      "ref": "C_FILTER2N2",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0805_2012Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0805_2012Metric.step",
+      "sha256": "9a669c1a2f1ea25b88b401acef6efeaa80a067bd7da9db6993de719a7fbe155c"
+    },
+    {
+      "ref": "C_FILTER2P1",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0805_2012Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0805_2012Metric.step",
+      "sha256": "9a669c1a2f1ea25b88b401acef6efeaa80a067bd7da9db6993de719a7fbe155c"
+    },
+    {
+      "ref": "C_FILTER2P2",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0805_2012Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0805_2012Metric.step",
+      "sha256": "9a669c1a2f1ea25b88b401acef6efeaa80a067bd7da9db6993de719a7fbe155c"
+    },
+    {
+      "ref": "C_FILTER3N1",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0805_2012Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0805_2012Metric.step",
+      "sha256": "9a669c1a2f1ea25b88b401acef6efeaa80a067bd7da9db6993de719a7fbe155c"
+    },
+    {
+      "ref": "C_FILTER3N2",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0805_2012Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0805_2012Metric.step",
+      "sha256": "9a669c1a2f1ea25b88b401acef6efeaa80a067bd7da9db6993de719a7fbe155c"
+    },
+    {
+      "ref": "C_FILTER3P1",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0805_2012Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0805_2012Metric.step",
+      "sha256": "9a669c1a2f1ea25b88b401acef6efeaa80a067bd7da9db6993de719a7fbe155c"
+    },
+    {
+      "ref": "C_FILTER3P2",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0805_2012Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0805_2012Metric.step",
+      "sha256": "9a669c1a2f1ea25b88b401acef6efeaa80a067bd7da9db6993de719a7fbe155c"
+    },
+    {
+      "ref": "C_FILTER4N1",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0805_2012Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0805_2012Metric.step",
+      "sha256": "9a669c1a2f1ea25b88b401acef6efeaa80a067bd7da9db6993de719a7fbe155c"
+    },
+    {
+      "ref": "C_FILTER4N2",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0805_2012Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0805_2012Metric.step",
+      "sha256": "9a669c1a2f1ea25b88b401acef6efeaa80a067bd7da9db6993de719a7fbe155c"
+    },
+    {
+      "ref": "C_FILTER4P1",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0805_2012Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0805_2012Metric.step",
+      "sha256": "9a669c1a2f1ea25b88b401acef6efeaa80a067bd7da9db6993de719a7fbe155c"
+    },
+    {
+      "ref": "C_FILTER4P2",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0805_2012Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0805_2012Metric.step",
+      "sha256": "9a669c1a2f1ea25b88b401acef6efeaa80a067bd7da9db6993de719a7fbe155c"
+    },
+    {
+      "ref": "C_FILTER5N1",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0805_2012Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0805_2012Metric.step",
+      "sha256": "9a669c1a2f1ea25b88b401acef6efeaa80a067bd7da9db6993de719a7fbe155c"
+    },
+    {
+      "ref": "C_FILTER5N2",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0805_2012Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0805_2012Metric.step",
+      "sha256": "9a669c1a2f1ea25b88b401acef6efeaa80a067bd7da9db6993de719a7fbe155c"
+    },
+    {
+      "ref": "C_FILTER5P1",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0805_2012Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0805_2012Metric.step",
+      "sha256": "9a669c1a2f1ea25b88b401acef6efeaa80a067bd7da9db6993de719a7fbe155c"
+    },
+    {
+      "ref": "C_FILTER5P2",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0805_2012Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0805_2012Metric.step",
+      "sha256": "9a669c1a2f1ea25b88b401acef6efeaa80a067bd7da9db6993de719a7fbe155c"
+    },
+    {
+      "ref": "C_FILTER6N1",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0805_2012Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0805_2012Metric.step",
+      "sha256": "9a669c1a2f1ea25b88b401acef6efeaa80a067bd7da9db6993de719a7fbe155c"
+    },
+    {
+      "ref": "C_FILTER6N2",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0805_2012Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0805_2012Metric.step",
+      "sha256": "9a669c1a2f1ea25b88b401acef6efeaa80a067bd7da9db6993de719a7fbe155c"
+    },
+    {
+      "ref": "C_FILTER6P1",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0805_2012Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0805_2012Metric.step",
+      "sha256": "9a669c1a2f1ea25b88b401acef6efeaa80a067bd7da9db6993de719a7fbe155c"
+    },
+    {
+      "ref": "C_FILTER6P2",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0805_2012Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0805_2012Metric.step",
+      "sha256": "9a669c1a2f1ea25b88b401acef6efeaa80a067bd7da9db6993de719a7fbe155c"
+    },
+    {
+      "ref": "C_FILTER7N1",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0805_2012Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0805_2012Metric.step",
+      "sha256": "9a669c1a2f1ea25b88b401acef6efeaa80a067bd7da9db6993de719a7fbe155c"
+    },
+    {
+      "ref": "C_FILTER7N2",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0805_2012Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0805_2012Metric.step",
+      "sha256": "9a669c1a2f1ea25b88b401acef6efeaa80a067bd7da9db6993de719a7fbe155c"
+    },
+    {
+      "ref": "C_FILTER7P1",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0805_2012Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0805_2012Metric.step",
+      "sha256": "9a669c1a2f1ea25b88b401acef6efeaa80a067bd7da9db6993de719a7fbe155c"
+    },
+    {
+      "ref": "C_FILTER7P2",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0805_2012Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0805_2012Metric.step",
+      "sha256": "9a669c1a2f1ea25b88b401acef6efeaa80a067bd7da9db6993de719a7fbe155c"
+    },
+    {
+      "ref": "C_FILTER8N1",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0805_2012Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0805_2012Metric.step",
+      "sha256": "9a669c1a2f1ea25b88b401acef6efeaa80a067bd7da9db6993de719a7fbe155c"
+    },
+    {
+      "ref": "C_FILTER8N2",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0805_2012Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0805_2012Metric.step",
+      "sha256": "9a669c1a2f1ea25b88b401acef6efeaa80a067bd7da9db6993de719a7fbe155c"
+    },
+    {
+      "ref": "C_FILTER8P1",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0805_2012Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0805_2012Metric.step",
+      "sha256": "9a669c1a2f1ea25b88b401acef6efeaa80a067bd7da9db6993de719a7fbe155c"
+    },
+    {
+      "ref": "C_FILTER8P2",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0805_2012Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0805_2012Metric.step",
+      "sha256": "9a669c1a2f1ea25b88b401acef6efeaa80a067bd7da9db6993de719a7fbe155c"
+    },
+    {
+      "ref": "C_HOLD1",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/CP_Elec_8x10.5.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/CP_Elec_8x10.5.step",
+      "sha256": "ae35c4f1043bc64d44be9822563a47867ce2b6bed1663a1144d81c9b58368562"
+    },
+    {
+      "ref": "C_HOLD2",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/CP_Elec_8x10.5.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/CP_Elec_8x10.5.step",
+      "sha256": "ae35c4f1043bc64d44be9822563a47867ce2b6bed1663a1144d81c9b58368562"
+    },
+    {
+      "ref": "C_ISO1",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "sha256": "03e44c4b2b727b8d4b6b1fd598cbd12dd5e614f1dfeefa96a92a07e3a3b312a2"
+    },
+    {
+      "ref": "C_ISO2",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "sha256": "03e44c4b2b727b8d4b6b1fd598cbd12dd5e614f1dfeefa96a92a07e3a3b312a2"
+    },
+    {
+      "ref": "C_ISO3",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "sha256": "03e44c4b2b727b8d4b6b1fd598cbd12dd5e614f1dfeefa96a92a07e3a3b312a2"
+    },
+    {
+      "ref": "C_ISO4",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "sha256": "03e44c4b2b727b8d4b6b1fd598cbd12dd5e614f1dfeefa96a92a07e3a3b312a2"
+    },
+    {
+      "ref": "C_ISO5",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "sha256": "03e44c4b2b727b8d4b6b1fd598cbd12dd5e614f1dfeefa96a92a07e3a3b312a2"
+    },
+    {
+      "ref": "C_ISO6",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "sha256": "03e44c4b2b727b8d4b6b1fd598cbd12dd5e614f1dfeefa96a92a07e3a3b312a2"
+    },
+    {
+      "ref": "C_ISO7",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "sha256": "03e44c4b2b727b8d4b6b1fd598cbd12dd5e614f1dfeefa96a92a07e3a3b312a2"
+    },
+    {
+      "ref": "C_ISO8",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "sha256": "03e44c4b2b727b8d4b6b1fd598cbd12dd5e614f1dfeefa96a92a07e3a3b312a2"
+    },
+    {
+      "ref": "C_LDO_A",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0603_1608Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0603_1608Metric.step",
+      "sha256": "4857b3dc717675bf1fb22edda622ac3b3ae03cf44d81eefaf3fa3ba3a86d84c1"
+    },
+    {
+      "ref": "C_LDO_D",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0603_1608Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0603_1608Metric.step",
+      "sha256": "4857b3dc717675bf1fb22edda622ac3b3ae03cf44d81eefaf3fa3ba3a86d84c1"
+    },
+    {
+      "ref": "C_LDO_EN",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "sha256": "03e44c4b2b727b8d4b6b1fd598cbd12dd5e614f1dfeefa96a92a07e3a3b312a2"
+    },
+    {
+      "ref": "C_LDO_IN",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_1210_3225Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_1210_3225Metric.step",
+      "sha256": "f8510481c5044113cf49b0fa6dd54ddab9224508bd6808e1afab8ef0cefdefc9"
+    },
+    {
+      "ref": "C_LDO_NR4",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "sha256": "03e44c4b2b727b8d4b6b1fd598cbd12dd5e614f1dfeefa96a92a07e3a3b312a2"
+    },
+    {
+      "ref": "C_LDO_NR5",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "sha256": "03e44c4b2b727b8d4b6b1fd598cbd12dd5e614f1dfeefa96a92a07e3a3b312a2"
+    },
+    {
+      "ref": "C_LDO_OUT",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_1210_3225Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_1210_3225Metric.step",
+      "sha256": "f8510481c5044113cf49b0fa6dd54ddab9224508bd6808e1afab8ef0cefdefc9"
+    },
+    {
+      "ref": "C_OE",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "sha256": "03e44c4b2b727b8d4b6b1fd598cbd12dd5e614f1dfeefa96a92a07e3a3b312a2"
+    },
+    {
+      "ref": "C_OPA1",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "sha256": "03e44c4b2b727b8d4b6b1fd598cbd12dd5e614f1dfeefa96a92a07e3a3b312a2"
+    },
+    {
+      "ref": "C_OPA2",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "sha256": "03e44c4b2b727b8d4b6b1fd598cbd12dd5e614f1dfeefa96a92a07e3a3b312a2"
+    },
+    {
+      "ref": "C_OPA3",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "sha256": "03e44c4b2b727b8d4b6b1fd598cbd12dd5e614f1dfeefa96a92a07e3a3b312a2"
+    },
+    {
+      "ref": "C_OPA4",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "sha256": "03e44c4b2b727b8d4b6b1fd598cbd12dd5e614f1dfeefa96a92a07e3a3b312a2"
+    },
+    {
+      "ref": "C_OPA5",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "sha256": "03e44c4b2b727b8d4b6b1fd598cbd12dd5e614f1dfeefa96a92a07e3a3b312a2"
+    },
+    {
+      "ref": "C_OPA6",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "sha256": "03e44c4b2b727b8d4b6b1fd598cbd12dd5e614f1dfeefa96a92a07e3a3b312a2"
+    },
+    {
+      "ref": "C_OPA7",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "sha256": "03e44c4b2b727b8d4b6b1fd598cbd12dd5e614f1dfeefa96a92a07e3a3b312a2"
+    },
+    {
+      "ref": "C_OPA8",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "sha256": "03e44c4b2b727b8d4b6b1fd598cbd12dd5e614f1dfeefa96a92a07e3a3b312a2"
+    },
+    {
+      "ref": "C_OPA_BULK",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_1210_3225Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_1210_3225Metric.step",
+      "sha256": "f8510481c5044113cf49b0fa6dd54ddab9224508bd6808e1afab8ef0cefdefc9"
+    },
+    {
+      "ref": "C_PWR",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "sha256": "03e44c4b2b727b8d4b6b1fd598cbd12dd5e614f1dfeefa96a92a07e3a3b312a2"
+    },
+    {
+      "ref": "C_PWR_CT",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0603_1608Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0603_1608Metric.step",
+      "sha256": "4857b3dc717675bf1fb22edda622ac3b3ae03cf44d81eefaf3fa3ba3a86d84c1"
+    },
+    {
+      "ref": "C_RST1",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "sha256": "03e44c4b2b727b8d4b6b1fd598cbd12dd5e614f1dfeefa96a92a07e3a3b312a2"
+    },
+    {
+      "ref": "C_RST2",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "sha256": "03e44c4b2b727b8d4b6b1fd598cbd12dd5e614f1dfeefa96a92a07e3a3b312a2"
+    },
+    {
+      "ref": "C_RST_T",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0603_1608Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0603_1608Metric.step",
+      "sha256": "4857b3dc717675bf1fb22edda622ac3b3ae03cf44d81eefaf3fa3ba3a86d84c1"
+    },
+    {
+      "ref": "C_TDM",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "sha256": "03e44c4b2b727b8d4b6b1fd598cbd12dd5e614f1dfeefa96a92a07e3a3b312a2"
+    },
+    {
+      "ref": "C_TDM_SCH",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "sha256": "03e44c4b2b727b8d4b6b1fd598cbd12dd5e614f1dfeefa96a92a07e3a3b312a2"
+    },
+    {
+      "ref": "C_VDDA1_10N",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "sha256": "03e44c4b2b727b8d4b6b1fd598cbd12dd5e614f1dfeefa96a92a07e3a3b312a2"
+    },
+    {
+      "ref": "C_VDDA1_4U7",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0603_1608Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0603_1608Metric.step",
+      "sha256": "4857b3dc717675bf1fb22edda622ac3b3ae03cf44d81eefaf3fa3ba3a86d84c1"
+    },
+    {
+      "ref": "C_VDDA2_10N",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "sha256": "03e44c4b2b727b8d4b6b1fd598cbd12dd5e614f1dfeefa96a92a07e3a3b312a2"
+    },
+    {
+      "ref": "C_VDDA2_4U7",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0603_1608Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0603_1608Metric.step",
+      "sha256": "4857b3dc717675bf1fb22edda622ac3b3ae03cf44d81eefaf3fa3ba3a86d84c1"
+    },
+    {
+      "ref": "C_VDDIO",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+      "sha256": "03e44c4b2b727b8d4b6b1fd598cbd12dd5e614f1dfeefa96a92a07e3a3b312a2"
+    },
+    {
+      "ref": "C_VMID1_470N",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0603_1608Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0603_1608Metric.step",
+      "sha256": "4857b3dc717675bf1fb22edda622ac3b3ae03cf44d81eefaf3fa3ba3a86d84c1"
+    },
+    {
+      "ref": "C_VMID1_4U7",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0603_1608Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0603_1608Metric.step",
+      "sha256": "4857b3dc717675bf1fb22edda622ac3b3ae03cf44d81eefaf3fa3ba3a86d84c1"
+    },
+    {
+      "ref": "C_VMID1_EXT_10U",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0805_2012Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0805_2012Metric.step",
+      "sha256": "9a669c1a2f1ea25b88b401acef6efeaa80a067bd7da9db6993de719a7fbe155c"
+    },
+    {
+      "ref": "C_VMID1_EXT_1U",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0603_1608Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0603_1608Metric.step",
+      "sha256": "4857b3dc717675bf1fb22edda622ac3b3ae03cf44d81eefaf3fa3ba3a86d84c1"
+    },
+    {
+      "ref": "C_VMID2_470N",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0603_1608Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0603_1608Metric.step",
+      "sha256": "4857b3dc717675bf1fb22edda622ac3b3ae03cf44d81eefaf3fa3ba3a86d84c1"
+    },
+    {
+      "ref": "C_VMID2_4U7",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0603_1608Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0603_1608Metric.step",
+      "sha256": "4857b3dc717675bf1fb22edda622ac3b3ae03cf44d81eefaf3fa3ba3a86d84c1"
+    },
+    {
+      "ref": "C_VMID2_EXT_10U",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0805_2012Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0805_2012Metric.step",
+      "sha256": "9a669c1a2f1ea25b88b401acef6efeaa80a067bd7da9db6993de719a7fbe155c"
+    },
+    {
+      "ref": "C_VMID2_EXT_1U",
+      "declared": "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0603_1608Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Capacitor_SMD.3dshapes/C_0603_1608Metric.step",
+      "sha256": "4857b3dc717675bf1fb22edda622ac3b3ae03cf44d81eefaf3fa3ba3a86d84c1"
+    },
+    {
+      "ref": "D_BUCK_IN",
+      "declared": "${KICAD10_3DMODEL_DIR}/Diode_SMD.3dshapes/D_SMA.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Diode_SMD.3dshapes/D_SMA.step",
+      "sha256": "1cfddd4e3b1bf22b8fc6ee3258c2aade882ed7b85b528e23b9db42437775a1db"
+    },
+    {
+      "ref": "D_HOLD",
+      "declared": "${KICAD10_3DMODEL_DIR}/Diode_SMD.3dshapes/D_SMA.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Diode_SMD.3dshapes/D_SMA.step",
+      "sha256": "1cfddd4e3b1bf22b8fc6ee3258c2aade882ed7b85b528e23b9db42437775a1db"
+    },
+    {
+      "ref": "D_IN",
+      "declared": "${KICAD10_3DMODEL_DIR}/Diode_SMD.3dshapes/D_SMB.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Diode_SMD.3dshapes/D_SMB.step",
+      "sha256": "029466277d91e9f5492556be93e46611049e07115c7913880c547afa96058ed4"
+    },
+    {
+      "ref": "D_QIN_GS",
+      "declared": "${KICAD10_3DMODEL_DIR}/Diode_SMD.3dshapes/D_SOD-123.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Diode_SMD.3dshapes/D_SOD-123.step",
+      "sha256": "b3dc4065573abc72e3d5b4cca0e908f72a24205a41b6284b1f75ccacbe99adf8"
+    },
+    {
+      "ref": "F1",
+      "declared": "${KIPRJMOD}/../03_src/lib/3dmodels/derived/Littelfuse_1812L035_60_max-envelope.wrl",
+      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/derived/Littelfuse_1812L035_60_max-envelope.wrl",
+      "sha256": "edd6c3054b944bb9436d3943f1b5da78396621e59065dde98e828219fa62cde9"
+    },
+    {
+      "ref": "F2",
+      "declared": "${KIPRJMOD}/../03_src/lib/3dmodels/derived/Littelfuse_1812L035_60_max-envelope.wrl",
+      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/derived/Littelfuse_1812L035_60_max-envelope.wrl",
+      "sha256": "edd6c3054b944bb9436d3943f1b5da78396621e59065dde98e828219fa62cde9"
+    },
+    {
+      "ref": "F3",
+      "declared": "${KIPRJMOD}/../03_src/lib/3dmodels/derived/Littelfuse_1812L035_60_max-envelope.wrl",
+      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/derived/Littelfuse_1812L035_60_max-envelope.wrl",
+      "sha256": "edd6c3054b944bb9436d3943f1b5da78396621e59065dde98e828219fa62cde9"
+    },
+    {
+      "ref": "F4",
+      "declared": "${KIPRJMOD}/../03_src/lib/3dmodels/derived/Littelfuse_1812L035_60_max-envelope.wrl",
+      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/derived/Littelfuse_1812L035_60_max-envelope.wrl",
+      "sha256": "edd6c3054b944bb9436d3943f1b5da78396621e59065dde98e828219fa62cde9"
+    },
+    {
+      "ref": "F5",
+      "declared": "${KIPRJMOD}/../03_src/lib/3dmodels/derived/Littelfuse_1812L035_60_max-envelope.wrl",
+      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/derived/Littelfuse_1812L035_60_max-envelope.wrl",
+      "sha256": "edd6c3054b944bb9436d3943f1b5da78396621e59065dde98e828219fa62cde9"
+    },
+    {
+      "ref": "F6",
+      "declared": "${KIPRJMOD}/../03_src/lib/3dmodels/derived/Littelfuse_1812L035_60_max-envelope.wrl",
+      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/derived/Littelfuse_1812L035_60_max-envelope.wrl",
+      "sha256": "edd6c3054b944bb9436d3943f1b5da78396621e59065dde98e828219fa62cde9"
+    },
+    {
+      "ref": "F7",
+      "declared": "${KIPRJMOD}/../03_src/lib/3dmodels/derived/Littelfuse_1812L035_60_max-envelope.wrl",
+      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/derived/Littelfuse_1812L035_60_max-envelope.wrl",
+      "sha256": "edd6c3054b944bb9436d3943f1b5da78396621e59065dde98e828219fa62cde9"
+    },
+    {
+      "ref": "F8",
+      "declared": "${KIPRJMOD}/../03_src/lib/3dmodels/derived/Littelfuse_1812L035_60_max-envelope.wrl",
+      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/derived/Littelfuse_1812L035_60_max-envelope.wrl",
+      "sha256": "edd6c3054b944bb9436d3943f1b5da78396621e59065dde98e828219fa62cde9"
+    },
+    {
+      "ref": "F_IN",
+      "declared": "${KIPRJMOD}/../03_src/lib/3dmodels/derived/Littelfuse_2920L260_33_max-envelope.wrl",
+      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/derived/Littelfuse_2920L260_33_max-envelope.wrl",
+      "sha256": "8e7369b50eb9d507764e7758dd2e03ece1e7c763da5872989afe98be15f1b37c"
+    },
+    {
+      "ref": "J1",
+      "declared": "${KIPRJMOD}/../03_src/lib/3dmodels/wurth/J_Wurth_WR-MJ_615008160221.step",
+      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/wurth/J_Wurth_WR-MJ_615008160221.step",
+      "sha256": "3f902b89d4bd756b121be056782deff312efb127c9c48f2c798ebd6db0e59f49"
+    },
+    {
+      "ref": "J10",
+      "declared": "${KIPRJMOD}/../03_src/lib/3dmodels/derived/connectors/Samtec_TMM-106-01-L-D_reference.wrl",
+      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/derived/connectors/Samtec_TMM-106-01-L-D_reference.wrl",
+      "sha256": "3a9f0dd56986b0a8b9fa5229f8fcd12451cb9b857a472bb36f87992f8f086737"
+    },
+    {
+      "ref": "J11",
+      "declared": "${KIPRJMOD}/../03_src/lib/3dmodels/derived/connectors/Samtec_TMM-106-01-L-D_reference.wrl",
+      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/derived/connectors/Samtec_TMM-106-01-L-D_reference.wrl",
+      "sha256": "3a9f0dd56986b0a8b9fa5229f8fcd12451cb9b857a472bb36f87992f8f086737"
+    },
+    {
+      "ref": "J2",
+      "declared": "${KIPRJMOD}/../03_src/lib/3dmodels/wurth/J_Wurth_WR-MJ_615008160221.step",
+      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/wurth/J_Wurth_WR-MJ_615008160221.step",
+      "sha256": "3f902b89d4bd756b121be056782deff312efb127c9c48f2c798ebd6db0e59f49"
+    },
+    {
+      "ref": "J3",
+      "declared": "${KIPRJMOD}/../03_src/lib/3dmodels/wurth/J_Wurth_WR-MJ_615008160221.step",
+      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/wurth/J_Wurth_WR-MJ_615008160221.step",
+      "sha256": "3f902b89d4bd756b121be056782deff312efb127c9c48f2c798ebd6db0e59f49"
+    },
+    {
+      "ref": "J4",
+      "declared": "${KIPRJMOD}/../03_src/lib/3dmodels/wurth/J_Wurth_WR-MJ_615008160221.step",
+      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/wurth/J_Wurth_WR-MJ_615008160221.step",
+      "sha256": "3f902b89d4bd756b121be056782deff312efb127c9c48f2c798ebd6db0e59f49"
+    },
+    {
+      "ref": "J5",
+      "declared": "${KIPRJMOD}/../03_src/lib/3dmodels/wurth/J_Wurth_WR-MJ_615008160221.step",
+      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/wurth/J_Wurth_WR-MJ_615008160221.step",
+      "sha256": "3f902b89d4bd756b121be056782deff312efb127c9c48f2c798ebd6db0e59f49"
+    },
+    {
+      "ref": "J6",
+      "declared": "${KIPRJMOD}/../03_src/lib/3dmodels/wurth/J_Wurth_WR-MJ_615008160221.step",
+      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/wurth/J_Wurth_WR-MJ_615008160221.step",
+      "sha256": "3f902b89d4bd756b121be056782deff312efb127c9c48f2c798ebd6db0e59f49"
+    },
+    {
+      "ref": "J7",
+      "declared": "${KIPRJMOD}/../03_src/lib/3dmodels/wurth/J_Wurth_WR-MJ_615008160221.step",
+      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/wurth/J_Wurth_WR-MJ_615008160221.step",
+      "sha256": "3f902b89d4bd756b121be056782deff312efb127c9c48f2c798ebd6db0e59f49"
+    },
+    {
+      "ref": "J8",
+      "declared": "${KIPRJMOD}/../03_src/lib/3dmodels/wurth/J_Wurth_WR-MJ_615008160221.step",
+      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/wurth/J_Wurth_WR-MJ_615008160221.step",
+      "sha256": "3f902b89d4bd756b121be056782deff312efb127c9c48f2c798ebd6db0e59f49"
+    },
+    {
+      "ref": "J9",
+      "declared": "${KIPRJMOD}/../03_src/lib/3dmodels/derived/Molex_43650-0200_conservative-envelope.wrl",
+      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/derived/Molex_43650-0200_conservative-envelope.wrl",
+      "sha256": "301488732bd715060f80583e9cc8936bbbbd584dbe14055705d89d0d37442ffb"
+    },
+    {
+      "ref": "L_BUCK",
+      "declared": "${KIPRJMOD}/../03_src/lib/3dmodels/derived/Coilcraft_XGL4020_nominal.wrl",
+      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/derived/Coilcraft_XGL4020_nominal.wrl",
+      "sha256": "7bad54018ac4dc4a88aefcfd22ea77252a562697b913a4b19abfe49bde13231d"
+    },
+    {
+      "ref": "Q_DUMP",
+      "declared": "${KICAD10_3DMODEL_DIR}/Package_TO_SOT_SMD.3dshapes/SOT-23.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Package_TO_SOT_SMD.3dshapes/SOT-23.step",
+      "sha256": "dd5d1711204e1d8d26cd11490923bd84340820baa69538c385a4300ec2539bc0"
+    },
+    {
+      "ref": "Q_IN",
+      "declared": "${KICAD10_3DMODEL_DIR}/Package_SON.3dshapes/Diodes_PowerDI3333-8.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Package_SON.3dshapes/Diodes_PowerDI3333-8.step",
+      "sha256": "97e1a6ca310f642085269e937d4a72a49d1532ff16b4412cd182b5c4fbb1b6c4"
+    },
+    {
+      "ref": "Q_PRE",
+      "declared": "${KICAD10_3DMODEL_DIR}/Package_TO_SOT_SMD.3dshapes/SOT-23.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Package_TO_SOT_SMD.3dshapes/SOT-23.step",
+      "sha256": "dd5d1711204e1d8d26cd11490923bd84340820baa69538c385a4300ec2539bc0"
+    },
+    {
+      "ref": "Q_PRE_EN",
+      "declared": "${KICAD10_3DMODEL_DIR}/Package_TO_SOT_SMD.3dshapes/SOT-23.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Package_TO_SOT_SMD.3dshapes/SOT-23.step",
+      "sha256": "dd5d1711204e1d8d26cd11490923bd84340820baa69538c385a4300ec2539bc0"
+    },
+    {
+      "ref": "Q_RST1",
+      "declared": "${KICAD10_3DMODEL_DIR}/Package_TO_SOT_SMD.3dshapes/SOT-23.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Package_TO_SOT_SMD.3dshapes/SOT-23.step",
+      "sha256": "dd5d1711204e1d8d26cd11490923bd84340820baa69538c385a4300ec2539bc0"
+    },
+    {
+      "ref": "R_ADC_BOT",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0603_1608Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0603_1608Metric.step",
+      "sha256": "1875571c326d0d9e96f36b4efeb8094068ef7619f0a449c781caf0b49c2e5861"
+    },
+    {
+      "ref": "R_ADC_PD1N",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb"
+    },
+    {
+      "ref": "R_ADC_PD1P",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb"
+    },
+    {
+      "ref": "R_ADC_PD2N",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb"
+    },
+    {
+      "ref": "R_ADC_PD2P",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb"
+    },
+    {
+      "ref": "R_ADC_PD3N",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb"
+    },
+    {
+      "ref": "R_ADC_PD3P",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb"
+    },
+    {
+      "ref": "R_ADC_PD4N",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb"
+    },
+    {
+      "ref": "R_ADC_PD4P",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb"
+    },
+    {
+      "ref": "R_ADC_PD5N",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb"
+    },
+    {
+      "ref": "R_ADC_PD5P",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb"
+    },
+    {
+      "ref": "R_ADC_PD6N",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb"
+    },
+    {
+      "ref": "R_ADC_PD6P",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb"
+    },
+    {
+      "ref": "R_ADC_PD7N",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb"
+    },
+    {
+      "ref": "R_ADC_PD7P",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb"
+    },
+    {
+      "ref": "R_ADC_PD8N",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb"
+    },
+    {
+      "ref": "R_ADC_PD8P",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb"
+    },
+    {
+      "ref": "R_ADC_TOP",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0603_1608Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0603_1608Metric.step",
+      "sha256": "1875571c326d0d9e96f36b4efeb8094068ef7619f0a449c781caf0b49c2e5861"
+    },
+    {
+      "ref": "R_AUDIO_PD",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb"
+    },
+    {
+      "ref": "R_AUDIO_PU",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb"
+    },
+    {
+      "ref": "R_B1N",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb"
+    },
+    {
+      "ref": "R_B1P",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb"
+    },
+    {
+      "ref": "R_B2N",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb"
+    },
+    {
+      "ref": "R_B2P",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb"
+    },
+    {
+      "ref": "R_B3N",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb"
+    },
+    {
+      "ref": "R_B3P",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb"
+    },
+    {
+      "ref": "R_B4N",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb"
+    },
+    {
+      "ref": "R_B4P",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb"
+    },
+    {
+      "ref": "R_B5N",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb"
+    },
+    {
+      "ref": "R_B5P",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb"
+    },
+    {
+      "ref": "R_B6N",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb"
+    },
+    {
+      "ref": "R_B6P",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb"
+    },
+    {
+      "ref": "R_B7N",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb"
+    },
+    {
+      "ref": "R_B7P",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb"
+    },
+    {
+      "ref": "R_B8N",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb"
+    },
+    {
+      "ref": "R_B8P",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb"
+    },
+    {
+      "ref": "R_BCLK",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb"
+    },
+    {
+      "ref": "R_CFG1",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb"
+    },
+    {
+      "ref": "R_CFG2",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb"
+    },
+    {
+      "ref": "R_CFG4",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb"
+    },
+    {
+      "ref": "R_CFG5",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb"
+    },
+    {
+      "ref": "R_DUMP",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_1206_3216Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_1206_3216Metric.step",
+      "sha256": "f5d1ea5c47935091292bd1c6c698e0df88d3d4bbf92bf66b4c97e49df5be9ebc"
+    },
+    {
+      "ref": "R_DUMP_PD",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb"
+    },
+    {
+      "ref": "R_DUMP_TIME1",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb"
+    },
+    {
+      "ref": "R_DUMP_TIME2",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb"
+    },
+    {
+      "ref": "R_FILT1P",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_1206_3216Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_1206_3216Metric.step",
+      "sha256": "f5d1ea5c47935091292bd1c6c698e0df88d3d4bbf92bf66b4c97e49df5be9ebc"
+    },
+    {
+      "ref": "R_FILT2P",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_1206_3216Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_1206_3216Metric.step",
+      "sha256": "f5d1ea5c47935091292bd1c6c698e0df88d3d4bbf92bf66b4c97e49df5be9ebc"
+    },
+    {
+      "ref": "R_FSYNC",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_1206_3216Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_1206_3216Metric.step",
+      "sha256": "f5d1ea5c47935091292bd1c6c698e0df88d3d4bbf92bf66b4c97e49df5be9ebc"
+    },
+    {
+      "ref": "R_IN1N",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb"
+    },
+    {
+      "ref": "R_IN1P",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb"
+    },
+    {
+      "ref": "R_IN2N",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb"
+    },
+    {
+      "ref": "R_IN2P",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb"
+    },
+    {
+      "ref": "R_IN3N",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb"
+    },
+    {
+      "ref": "R_IN3P",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb"
+    },
+    {
+      "ref": "R_IN4N",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb"
+    },
+    {
+      "ref": "R_IN4P",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb"
+    },
+    {
+      "ref": "R_IN5N",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb"
+    },
+    {
+      "ref": "R_IN5P",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb"
+    },
+    {
+      "ref": "R_IN6N",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb"
+    },
+    {
+      "ref": "R_IN6P",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb"
+    },
+    {
+      "ref": "R_IN7N",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb"
+    },
+    {
+      "ref": "R_IN7P",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb"
+    },
+    {
+      "ref": "R_IN8N",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb"
+    },
+    {
+      "ref": "R_IN8P",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb"
+    },
+    {
+      "ref": "R_LDO_SET",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0603_1608Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0603_1608Metric.step",
+      "sha256": "1875571c326d0d9e96f36b4efeb8094068ef7619f0a449c781caf0b49c2e5861"
+    },
+    {
+      "ref": "R_MCH_BCLK_PD",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb"
+    },
+    {
+      "ref": "R_MCH_FSYNC_PD",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb"
+    },
+    {
+      "ref": "R_MCH_MCLK_PD",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb"
+    },
+    {
+      "ref": "R_MCH_SENSE",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb"
+    },
+    {
+      "ref": "R_MCH_SENSE_PD",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb"
+    },
+    {
+      "ref": "R_MCLK",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb"
+    },
+    {
+      "ref": "R_OPA_BLEED1",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb"
+    },
+    {
+      "ref": "R_OPA_BLEED2",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb"
+    },
+    {
+      "ref": "R_OUT1N",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb"
+    },
+    {
+      "ref": "R_OUT1P",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb"
+    },
+    {
+      "ref": "R_OUT2N",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb"
+    },
+    {
+      "ref": "R_OUT2P",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb"
+    },
+    {
+      "ref": "R_OUT3N",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb"
+    },
+    {
+      "ref": "R_OUT3P",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb"
+    },
+    {
+      "ref": "R_OUT4N",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb"
+    },
+    {
+      "ref": "R_OUT4P",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb"
+    },
+    {
+      "ref": "R_OUT5N",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb"
+    },
+    {
+      "ref": "R_OUT5P",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb"
+    },
+    {
+      "ref": "R_OUT6N",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb"
+    },
+    {
+      "ref": "R_OUT6P",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb"
+    },
+    {
+      "ref": "R_OUT7N",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb"
+    },
+    {
+      "ref": "R_OUT7P",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb"
+    },
+    {
+      "ref": "R_OUT8N",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb"
+    },
+    {
+      "ref": "R_OUT8P",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb"
+    },
+    {
+      "ref": "R_PRE",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_1206_3216Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_1206_3216Metric.step",
+      "sha256": "f5d1ea5c47935091292bd1c6c698e0df88d3d4bbf92bf66b4c97e49df5be9ebc"
+    },
+    {
+      "ref": "R_PRE_G",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb"
+    },
+    {
+      "ref": "R_PWR_BOT",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0603_1608Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0603_1608Metric.step",
+      "sha256": "1875571c326d0d9e96f36b4efeb8094068ef7619f0a449c781caf0b49c2e5861"
+    },
+    {
+      "ref": "R_PWR_PU",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb"
+    },
+    {
+      "ref": "R_PWR_TOP",
+      "declared": "${KIPRJMOD}/../03_src/lib/3dmodels/kicad/R_0603_1608Metric.step",
+      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/kicad/R_0603_1608Metric.step",
+      "sha256": "1875571c326d0d9e96f36b4efeb8094068ef7619f0a449c781caf0b49c2e5861"
+    },
+    {
+      "ref": "R_QIN_G",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb"
+    },
+    {
+      "ref": "R_RESET_GPD",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb"
+    },
+    {
+      "ref": "R_RESET_PU",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb"
+    },
+    {
+      "ref": "R_RST_T",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb"
+    },
+    {
+      "ref": "R_TDM",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb"
+    },
+    {
+      "ref": "R_TDM_PD",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb"
+    },
+    {
+      "ref": "R_VMID1_BOT",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0603_1608Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0603_1608Metric.step",
+      "sha256": "1875571c326d0d9e96f36b4efeb8094068ef7619f0a449c781caf0b49c2e5861"
+    },
+    {
+      "ref": "R_VMID1_TOP",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0603_1608Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0603_1608Metric.step",
+      "sha256": "1875571c326d0d9e96f36b4efeb8094068ef7619f0a449c781caf0b49c2e5861"
+    },
+    {
+      "ref": "R_VMID2_BOT",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0603_1608Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0603_1608Metric.step",
+      "sha256": "1875571c326d0d9e96f36b4efeb8094068ef7619f0a449c781caf0b49c2e5861"
+    },
+    {
+      "ref": "R_VMID2_TOP",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0603_1608Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0603_1608Metric.step",
+      "sha256": "1875571c326d0d9e96f36b4efeb8094068ef7619f0a449c781caf0b49c2e5861"
+    },
+    {
+      "ref": "R_X1N",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb"
+    },
+    {
+      "ref": "R_X1P",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb"
+    },
+    {
+      "ref": "R_X2N",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb"
+    },
+    {
+      "ref": "R_X2P",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb"
+    },
+    {
+      "ref": "R_X3N",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb"
+    },
+    {
+      "ref": "R_X3P",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb"
+    },
+    {
+      "ref": "R_X4N",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb"
+    },
+    {
+      "ref": "R_X4P",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb"
+    },
+    {
+      "ref": "R_X5N",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb"
+    },
+    {
+      "ref": "R_X5P",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb"
+    },
+    {
+      "ref": "R_X6N",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb"
+    },
+    {
+      "ref": "R_X6P",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb"
+    },
+    {
+      "ref": "R_X7N",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb"
+    },
+    {
+      "ref": "R_X7P",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb"
+    },
+    {
+      "ref": "R_X8N",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb"
+    },
+    {
+      "ref": "R_X8P",
+      "declared": "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+      "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb"
+    },
+    {
+      "ref": "U_ADC",
+      "declared": "${KIPRJMOD}/../03_src/lib/3dmodels/derived/Cirrus_CS5308P_QFN48_nominal.wrl",
+      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/derived/Cirrus_CS5308P_QFN48_nominal.wrl",
+      "sha256": "524842aeb15f39c3fbefa14588adf985784f2df4d93fb0812d0779ae22f87135"
+    },
+    {
+      "ref": "U_AFE1",
+      "declared": "${KICAD10_3DMODEL_DIR}/Package_SO.3dshapes/SOIC-8_3.9x4.9mm_P1.27mm.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Package_SO.3dshapes/SOIC-8_3.9x4.9mm_P1.27mm.step",
+      "sha256": "07f46cff378d30e6c27dfd5a03092c795323f86d91c71fc7e743f4f418dc553a"
+    },
+    {
+      "ref": "U_AFE2",
+      "declared": "${KICAD10_3DMODEL_DIR}/Package_SO.3dshapes/SOIC-8_3.9x4.9mm_P1.27mm.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Package_SO.3dshapes/SOIC-8_3.9x4.9mm_P1.27mm.step",
+      "sha256": "07f46cff378d30e6c27dfd5a03092c795323f86d91c71fc7e743f4f418dc553a"
+    },
+    {
+      "ref": "U_AFE3",
+      "declared": "${KICAD10_3DMODEL_DIR}/Package_SO.3dshapes/SOIC-8_3.9x4.9mm_P1.27mm.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Package_SO.3dshapes/SOIC-8_3.9x4.9mm_P1.27mm.step",
+      "sha256": "07f46cff378d30e6c27dfd5a03092c795323f86d91c71fc7e743f4f418dc553a"
+    },
+    {
+      "ref": "U_AFE4",
+      "declared": "${KICAD10_3DMODEL_DIR}/Package_SO.3dshapes/SOIC-8_3.9x4.9mm_P1.27mm.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Package_SO.3dshapes/SOIC-8_3.9x4.9mm_P1.27mm.step",
+      "sha256": "07f46cff378d30e6c27dfd5a03092c795323f86d91c71fc7e743f4f418dc553a"
+    },
+    {
+      "ref": "U_AFE5",
+      "declared": "${KICAD10_3DMODEL_DIR}/Package_SO.3dshapes/SOIC-8_3.9x4.9mm_P1.27mm.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Package_SO.3dshapes/SOIC-8_3.9x4.9mm_P1.27mm.step",
+      "sha256": "07f46cff378d30e6c27dfd5a03092c795323f86d91c71fc7e743f4f418dc553a"
+    },
+    {
+      "ref": "U_AFE6",
+      "declared": "${KICAD10_3DMODEL_DIR}/Package_SO.3dshapes/SOIC-8_3.9x4.9mm_P1.27mm.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Package_SO.3dshapes/SOIC-8_3.9x4.9mm_P1.27mm.step",
+      "sha256": "07f46cff378d30e6c27dfd5a03092c795323f86d91c71fc7e743f4f418dc553a"
+    },
+    {
+      "ref": "U_AFE7",
+      "declared": "${KICAD10_3DMODEL_DIR}/Package_SO.3dshapes/SOIC-8_3.9x4.9mm_P1.27mm.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Package_SO.3dshapes/SOIC-8_3.9x4.9mm_P1.27mm.step",
+      "sha256": "07f46cff378d30e6c27dfd5a03092c795323f86d91c71fc7e743f4f418dc553a"
+    },
+    {
+      "ref": "U_AFE8",
+      "declared": "${KICAD10_3DMODEL_DIR}/Package_SO.3dshapes/SOIC-8_3.9x4.9mm_P1.27mm.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Package_SO.3dshapes/SOIC-8_3.9x4.9mm_P1.27mm.step",
+      "sha256": "07f46cff378d30e6c27dfd5a03092c795323f86d91c71fc7e743f4f418dc553a"
+    },
+    {
+      "ref": "U_AUDIO",
+      "declared": "${KIPRJMOD}/../03_src/lib/3dmodels/derived/TI_DSE0006A_nominal.wrl",
+      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/derived/TI_DSE0006A_nominal.wrl",
+      "sha256": "ab2e205855dcf71a0663cbd021ff2cddd284a980d338753ffb54dd726409c1ce"
+    },
+    {
+      "ref": "U_BUCK",
+      "declared": "${KICAD10_3DMODEL_DIR}/Package_TO_SOT_SMD.3dshapes/TSOT-23-6.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Package_TO_SOT_SMD.3dshapes/TSOT-23-6.step",
+      "sha256": "1007b8f67a3e81e2c5182bfd1fd27afe4d8d3710e0bfa1a14b8a91db8b595eb5"
+    },
+    {
+      "ref": "U_CLK",
+      "declared": "${KICAD10_3DMODEL_DIR}/Package_SO.3dshapes/VSSOP-8_2.3x2mm_P0.5mm.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Package_SO.3dshapes/VSSOP-8_2.3x2mm_P0.5mm.step",
+      "sha256": "353552981eef35cb93635057d4aeb89aef22648c77af6fd095e328bfe6b834bd"
+    },
+    {
+      "ref": "U_DUMP",
+      "declared": "${KICAD10_3DMODEL_DIR}/Package_TO_SOT_SMD.3dshapes/SOT-23-5.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Package_TO_SOT_SMD.3dshapes/SOT-23-5.step",
+      "sha256": "720a6eab0024069bbee68e7cb4c3ff1149468a34611225cdc852662c5d0ec2b7"
+    },
+    {
+      "ref": "U_ESD1",
+      "declared": "${KICAD10_3DMODEL_DIR}/Package_TO_SOT_SMD.3dshapes/SOT-553.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Package_TO_SOT_SMD.3dshapes/SOT-553.step",
+      "sha256": "2219d28dc74f980a4614180a52f390c2a095740e92ee987e4ac96f80edf01c52"
+    },
+    {
+      "ref": "U_ESD2",
+      "declared": "${KICAD10_3DMODEL_DIR}/Package_TO_SOT_SMD.3dshapes/SOT-553.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Package_TO_SOT_SMD.3dshapes/SOT-553.step",
+      "sha256": "2219d28dc74f980a4614180a52f390c2a095740e92ee987e4ac96f80edf01c52"
+    },
+    {
+      "ref": "U_ESD3",
+      "declared": "${KICAD10_3DMODEL_DIR}/Package_TO_SOT_SMD.3dshapes/SOT-553.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Package_TO_SOT_SMD.3dshapes/SOT-553.step",
+      "sha256": "2219d28dc74f980a4614180a52f390c2a095740e92ee987e4ac96f80edf01c52"
+    },
+    {
+      "ref": "U_ESD4",
+      "declared": "${KICAD10_3DMODEL_DIR}/Package_TO_SOT_SMD.3dshapes/SOT-553.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Package_TO_SOT_SMD.3dshapes/SOT-553.step",
+      "sha256": "2219d28dc74f980a4614180a52f390c2a095740e92ee987e4ac96f80edf01c52"
+    },
+    {
+      "ref": "U_ESD5",
+      "declared": "${KICAD10_3DMODEL_DIR}/Package_TO_SOT_SMD.3dshapes/SOT-553.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Package_TO_SOT_SMD.3dshapes/SOT-553.step",
+      "sha256": "2219d28dc74f980a4614180a52f390c2a095740e92ee987e4ac96f80edf01c52"
+    },
+    {
+      "ref": "U_ESD6",
+      "declared": "${KICAD10_3DMODEL_DIR}/Package_TO_SOT_SMD.3dshapes/SOT-553.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Package_TO_SOT_SMD.3dshapes/SOT-553.step",
+      "sha256": "2219d28dc74f980a4614180a52f390c2a095740e92ee987e4ac96f80edf01c52"
+    },
+    {
+      "ref": "U_ESD7",
+      "declared": "${KICAD10_3DMODEL_DIR}/Package_TO_SOT_SMD.3dshapes/SOT-553.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Package_TO_SOT_SMD.3dshapes/SOT-553.step",
+      "sha256": "2219d28dc74f980a4614180a52f390c2a095740e92ee987e4ac96f80edf01c52"
+    },
+    {
+      "ref": "U_ESD8",
+      "declared": "${KICAD10_3DMODEL_DIR}/Package_TO_SOT_SMD.3dshapes/SOT-553.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Package_TO_SOT_SMD.3dshapes/SOT-553.step",
+      "sha256": "2219d28dc74f980a4614180a52f390c2a095740e92ee987e4ac96f80edf01c52"
+    },
+    {
+      "ref": "U_ISO1",
+      "declared": "${KIPRJMOD}/../03_src/lib/3dmodels/derived/TI_DSG0008A_nominal.wrl",
+      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/derived/TI_DSG0008A_nominal.wrl",
+      "sha256": "0efc4d267f4b25c433f509251759baab99611db311ca31b3f60ae180c3beb1fe"
+    },
+    {
+      "ref": "U_ISO2",
+      "declared": "${KIPRJMOD}/../03_src/lib/3dmodels/derived/TI_DSG0008A_nominal.wrl",
+      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/derived/TI_DSG0008A_nominal.wrl",
+      "sha256": "0efc4d267f4b25c433f509251759baab99611db311ca31b3f60ae180c3beb1fe"
+    },
+    {
+      "ref": "U_ISO3",
+      "declared": "${KIPRJMOD}/../03_src/lib/3dmodels/derived/TI_DSG0008A_nominal.wrl",
+      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/derived/TI_DSG0008A_nominal.wrl",
+      "sha256": "0efc4d267f4b25c433f509251759baab99611db311ca31b3f60ae180c3beb1fe"
+    },
+    {
+      "ref": "U_ISO4",
+      "declared": "${KIPRJMOD}/../03_src/lib/3dmodels/derived/TI_DSG0008A_nominal.wrl",
+      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/derived/TI_DSG0008A_nominal.wrl",
+      "sha256": "0efc4d267f4b25c433f509251759baab99611db311ca31b3f60ae180c3beb1fe"
+    },
+    {
+      "ref": "U_ISO5",
+      "declared": "${KIPRJMOD}/../03_src/lib/3dmodels/derived/TI_DSG0008A_nominal.wrl",
+      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/derived/TI_DSG0008A_nominal.wrl",
+      "sha256": "0efc4d267f4b25c433f509251759baab99611db311ca31b3f60ae180c3beb1fe"
+    },
+    {
+      "ref": "U_ISO6",
+      "declared": "${KIPRJMOD}/../03_src/lib/3dmodels/derived/TI_DSG0008A_nominal.wrl",
+      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/derived/TI_DSG0008A_nominal.wrl",
+      "sha256": "0efc4d267f4b25c433f509251759baab99611db311ca31b3f60ae180c3beb1fe"
+    },
+    {
+      "ref": "U_ISO7",
+      "declared": "${KIPRJMOD}/../03_src/lib/3dmodels/derived/TI_DSG0008A_nominal.wrl",
+      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/derived/TI_DSG0008A_nominal.wrl",
+      "sha256": "0efc4d267f4b25c433f509251759baab99611db311ca31b3f60ae180c3beb1fe"
+    },
+    {
+      "ref": "U_ISO8",
+      "declared": "${KIPRJMOD}/../03_src/lib/3dmodels/derived/TI_DSG0008A_nominal.wrl",
+      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/derived/TI_DSG0008A_nominal.wrl",
+      "sha256": "0efc4d267f4b25c433f509251759baab99611db311ca31b3f60ae180c3beb1fe"
+    },
+    {
+      "ref": "U_LDO",
+      "declared": "${KICAD10_3DMODEL_DIR}/Package_DFN_QFN.3dshapes/DFN-14-1EP_3x4mm_P0.5mm_EP1.7x3.3mm.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Package_DFN_QFN.3dshapes/DFN-14-1EP_3x4mm_P0.5mm_EP1.7x3.3mm.step",
+      "sha256": "be5cff1a18ac6ffbe197561441c1546755e61de7ca02dcc6734fc20d3d6c79dd"
+    },
+    {
+      "ref": "U_LDO_EN",
+      "declared": "${KICAD10_3DMODEL_DIR}/Package_TO_SOT_SMD.3dshapes/SOT-23-5.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Package_TO_SOT_SMD.3dshapes/SOT-23-5.step",
+      "sha256": "720a6eab0024069bbee68e7cb4c3ff1149468a34611225cdc852662c5d0ec2b7"
+    },
+    {
+      "ref": "U_OE",
+      "declared": "${KICAD10_3DMODEL_DIR}/Package_TO_SOT_SMD.3dshapes/SOT-23-5.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Package_TO_SOT_SMD.3dshapes/SOT-23-5.step",
+      "sha256": "720a6eab0024069bbee68e7cb4c3ff1149468a34611225cdc852662c5d0ec2b7"
+    },
+    {
+      "ref": "U_PWR",
+      "declared": "${KIPRJMOD}/../03_src/lib/3dmodels/derived/TI_DSE0006A_nominal.wrl",
+      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/derived/TI_DSE0006A_nominal.wrl",
+      "sha256": "ab2e205855dcf71a0663cbd021ff2cddd284a980d338753ffb54dd726409c1ce"
+    },
+    {
+      "ref": "U_RST1",
+      "declared": "${KICAD10_3DMODEL_DIR}/Package_TO_SOT_SMD.3dshapes/SOT-23.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Package_TO_SOT_SMD.3dshapes/SOT-23.step",
+      "sha256": "dd5d1711204e1d8d26cd11490923bd84340820baa69538c385a4300ec2539bc0"
+    },
+    {
+      "ref": "U_RST2",
+      "declared": "${KICAD10_3DMODEL_DIR}/Package_SO.3dshapes/SSOP-8_2.95x2.8mm_P0.65mm.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Package_SO.3dshapes/SSOP-8_2.95x2.8mm_P0.65mm.step",
+      "sha256": "9b95dcfed5f8335acc9fd1e0856ff0f83eafda73809c7e051c1615ab69a863c6"
+    },
+    {
+      "ref": "U_TDM",
+      "declared": "${KICAD10_3DMODEL_DIR}/Package_TO_SOT_SMD.3dshapes/SOT-23-5.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Package_TO_SOT_SMD.3dshapes/SOT-23-5.step",
+      "sha256": "720a6eab0024069bbee68e7cb4c3ff1149468a34611225cdc852662c5d0ec2b7"
+    },
+    {
+      "ref": "U_TDM_SCH",
+      "declared": "${KICAD10_3DMODEL_DIR}/Package_TO_SOT_SMD.3dshapes/SOT-23-5.step",
+      "resolved": "/home/mouse9911/.local/share/kicad/10.0/3dmodels/Package_TO_SOT_SMD.3dshapes/SOT-23-5.step",
+      "sha256": "720a6eab0024069bbee68e7cb4c3ff1149468a34611225cdc852662c5d0ec2b7"
+    }
+  ],
+  "views": [
+    {
+      "name": "front-left",
+      "path": "projects/crow-audio-carrier-v1/01_docs/renders/front-left.png",
+      "sha256": "181512b8fcd3e199cd3fbc63ef2f899f0693db635f6c2ac9fc0e7cce1a801e07",
+      "command": [
+        "kicad-cli",
+        "pcb",
+        "render",
+        "--output",
+        "projects/crow-audio-carrier-v1/01_docs/renders/front-left.png",
+        "--side",
+        "top",
+        "--width",
+        "2400",
+        "--height",
+        "1600",
+        "--quality",
+        "high",
+        "--background",
+        "opaque",
+        "--floor",
+        "--perspective",
+        "--rotate",
+        "315,0,325",
+        "--zoom",
+        "0.85",
+        "--define-var",
+        "KICAD10_3DMODEL_DIR=/home/mouse9911/.local/share/kicad/10.0/3dmodels",
+        "projects/crow-audio-carrier-v1/04_kicad/crow_audio_carrier_v1.kicad_pcb"
+      ],
+      "elapsed_s": null,
+      "producer_output_path": "projects/crow-audio-carrier-v1/01_docs/renders/front-left.png",
+      "reproduce_command": [
+        "kicad-cli",
+        "pcb",
+        "render",
+        "--output",
+        "projects/crow-audio-carrier-v1/01_docs/renders/front-left.png",
+        "--side",
+        "top",
+        "--width",
+        "2400",
+        "--height",
+        "1600",
+        "--quality",
+        "high",
+        "--background",
+        "opaque",
+        "--floor",
+        "--perspective",
+        "--rotate",
+        "315,0,325",
+        "--zoom",
+        "0.85",
+        "--define-var",
+        "KICAD10_3DMODEL_DIR=/home/mouse9911/.local/share/kicad/10.0/3dmodels",
+        "projects/crow-audio-carrier-v1/04_kicad/crow_audio_carrier_v1.kicad_pcb"
+      ]
+    },
+    {
+      "name": "front-right",
+      "path": "projects/crow-audio-carrier-v1/01_docs/renders/front-right.png",
+      "sha256": "8a344fb047b9ce6a9e7de1b7b0391399ca54d1125651a8610e3ee00cb4159eb4",
+      "command": [
+        "kicad-cli",
+        "pcb",
+        "render",
+        "--output",
+        "projects/crow-audio-carrier-v1/01_docs/renders/front-right.png",
+        "--side",
+        "top",
+        "--width",
+        "2400",
+        "--height",
+        "1600",
+        "--quality",
+        "high",
+        "--background",
+        "opaque",
+        "--floor",
+        "--perspective",
+        "--rotate",
+        "315,0,35",
+        "--zoom",
+        "0.85",
+        "--define-var",
+        "KICAD10_3DMODEL_DIR=/home/mouse9911/.local/share/kicad/10.0/3dmodels",
+        "projects/crow-audio-carrier-v1/04_kicad/crow_audio_carrier_v1.kicad_pcb"
+      ],
+      "elapsed_s": null,
+      "producer_output_path": "projects/crow-audio-carrier-v1/01_docs/renders/front-right.png",
+      "reproduce_command": [
+        "kicad-cli",
+        "pcb",
+        "render",
+        "--output",
+        "projects/crow-audio-carrier-v1/01_docs/renders/front-right.png",
+        "--side",
+        "top",
+        "--width",
+        "2400",
+        "--height",
+        "1600",
+        "--quality",
+        "high",
+        "--background",
+        "opaque",
+        "--floor",
+        "--perspective",
+        "--rotate",
+        "315,0,35",
+        "--zoom",
+        "0.85",
+        "--define-var",
+        "KICAD10_3DMODEL_DIR=/home/mouse9911/.local/share/kicad/10.0/3dmodels",
+        "projects/crow-audio-carrier-v1/04_kicad/crow_audio_carrier_v1.kicad_pcb"
+      ]
+    },
+    {
+      "name": "rear-left",
+      "path": "projects/crow-audio-carrier-v1/01_docs/renders/rear-left.png",
+      "sha256": "57adfb53ad8a188453e0702be0a389797e9d9a8ae61389cdd9e2b741af90a596",
+      "command": [
+        "kicad-cli",
+        "pcb",
+        "render",
+        "--output",
+        "projects/crow-audio-carrier-v1/01_docs/renders/rear-left.png",
+        "--side",
+        "top",
+        "--width",
+        "2400",
+        "--height",
+        "1600",
+        "--quality",
+        "high",
+        "--background",
+        "opaque",
+        "--floor",
+        "--perspective",
+        "--rotate",
+        "315,0,145",
+        "--zoom",
+        "0.85",
+        "--define-var",
+        "KICAD10_3DMODEL_DIR=/home/mouse9911/.local/share/kicad/10.0/3dmodels",
+        "projects/crow-audio-carrier-v1/04_kicad/crow_audio_carrier_v1.kicad_pcb"
+      ],
+      "elapsed_s": null,
+      "producer_output_path": "projects/crow-audio-carrier-v1/01_docs/renders/rear-left.png",
+      "reproduce_command": [
+        "kicad-cli",
+        "pcb",
+        "render",
+        "--output",
+        "projects/crow-audio-carrier-v1/01_docs/renders/rear-left.png",
+        "--side",
+        "top",
+        "--width",
+        "2400",
+        "--height",
+        "1600",
+        "--quality",
+        "high",
+        "--background",
+        "opaque",
+        "--floor",
+        "--perspective",
+        "--rotate",
+        "315,0,145",
+        "--zoom",
+        "0.85",
+        "--define-var",
+        "KICAD10_3DMODEL_DIR=/home/mouse9911/.local/share/kicad/10.0/3dmodels",
+        "projects/crow-audio-carrier-v1/04_kicad/crow_audio_carrier_v1.kicad_pcb"
+      ]
+    }
+  ],
+  "claim": "Native final routed-board visual evidence; connector orientation remains user-approved; fabrication and release admission are separately gated.",
+  "status": "FINAL ROUTED BOARD: exact-board RJ45 obliques regenerated after layout seal; release gates pending.",
+  "render_producer_sha256": "4a98b5069c9fce8e190d40b3b0ca988fcdc19b950cc8acd162839fcd41de6e80",
+  "orientation_subject_sha256": "155896eb43a7c2b04c684523d4d96309bd4d945670f11a1c7a1d52b01a7a70e8"
+}

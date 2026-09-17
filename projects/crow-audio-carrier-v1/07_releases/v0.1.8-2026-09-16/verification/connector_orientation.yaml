@@ -1,0 +1,29 @@
+schema: 1
+kind: connector-orientation-approval-v1
+verdict: APPROVED
+subject_sha256: 155896eb43a7c2b04c684523d4d96309bd4d945670f11a1c7a1d52b01a7a70e8
+refs:
+- J1
+- J2
+- J3
+- J4
+- J5
+- J6
+- J7
+- J8
+- J9
+reviewer: 'User explicit confirmation in Codex task: regenerated connector views are
+  correct'
+confirmed_at: '2026-09-17T00:04:52Z'
+evidence_sha256:
+  views/J1_inside.png: 6a7890f386fc7553d3de102e4c23fce9ab976db0e7734661c3c1980f763f9c04
+  views/J1_outside.png: 4797ade408649e1c8b53b70394e8f8423a2dd8e04a07b15cd044c6934aacbadc
+  views/J1_top.png: 0fdc5d3db68ffb7596819b2cd4ebb0b64eaff17e33926ffc7a70048f40b941f2
+  views/J5_inside.png: ec86c2690e6f621b1d3f2833ea0896ceb73403fef7793af9646902fbdcf17963
+  views/J5_outside.png: fb85d973bf86fcae8768ad8d6ab4463bdd1f59aeb2a155d7b2c9bf3ab88e48eb
+  views/J5_top.png: f203b2d21761fd5971fdd0c47b88d3008a91b44860af3bd86052382a20230437
+  views/J9_inside.png: ce8291a635f166b27aed7cd7ff3d4fb9a277b1e9c559bcd82b1e8da06719bc87
+  views/J9_outside.png: 05ad420e10c4733e84962d7ca9d64d5d629843ba8e4d35148643daa8e3d35c6f
+  views/J9_profile_a.png: 670cc71fa33188a4d4a58122f08ce080f93b93d00f62ec9ad923a789ce57ec7e
+  views/J9_profile_b.png: edc3647a4188e5c8c543bfbd21397a8ecf04fefaf1ce0fb16a1c60e237468b37
+  views/J9_top.png: 245092ff1d81ae174bae7899cf44462eb704a666da3a8ce3e9589f584af0e75c

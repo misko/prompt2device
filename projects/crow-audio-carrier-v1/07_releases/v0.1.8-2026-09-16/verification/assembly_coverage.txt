@@ -1,0 +1,6 @@
+== A-POP assembly_coverage: crow-carrier-v018 ==
+  board=340 footprints, cpl=306 placements, unpopulated=34 (declared=27, consigned=0, exempt_prefixes=['FID', 'H', 'MH', 'TP'])
+  placement histogram: top=306
+  A-POS assembly sides: GRADED; 306 fitted SMD, 306 CPL sides graded; native SMD population={'top': 306}
+  A-POS datum: 306 CPL row(s) graded against the pad-array centre, worst = 0.00050mm (Q_IN), tolerance 0.05mm
+A-POP: PASS (every unpopulated part is declared with evidence)

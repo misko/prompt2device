@@ -1,0 +1,112 @@
+# Dated public product-page observations only; stale before ordering.
+quotes:
+- mpn: CS5308P-DN
+  manufacturer: Cirrus Logic
+  distributor: digikey
+  dpn: 598-CS5308P-DN-ND
+  source: product_page
+  url: https://www.digikey.com/en/products/detail/cirrus-logic-inc/CS5308P-DN/26753129
+  read_on: '2026-09-16'
+  checked_at: '2026-09-16T17:36:00-07:00'
+  lifecycle: Active
+  packaging: Tray
+  stock: 234
+  min: 1
+  mult: 1
+  price_breaks: []
+  note: "CITED exact public DigiKey product listing reopened 2026-09-16: exact CS5308P-DN, Active, 234 tray units. This clears the five-board need plus configured 150-unit public-stock surplus (155) for design continuation. No reservation, JLC allocation, consignment acceptance, landed quote or purchase authority is inferred."
+
+- mpn: 2920L260/33DR
+  manufacturer: Littelfuse
+  distributor: digikey
+  dpn: 18-2920L260/33DRCT-ND
+  source: product_page
+  url: https://www.digikey.com/en/products/detail/littelfuse-inc/2920L260-33DR/21801850
+  read_on: '2026-09-16'
+  checked_at: '2026-09-16T17:36:00-07:00'
+  lifecycle: Active
+  packaging: Cut Tape
+  stock: 35798
+  min: 1
+  mult: 1
+  price_breaks: []
+  note: "CITED exact public DigiKey product listing reopened 2026-09-16: exact 2920L260/33DR, Active, 35,798 units across cut-tape/reel fulfillment. This clears the five-board need plus configured 150-unit public-stock surplus (155) for design continuation. No reservation, JLC allocation, consignment acceptance, landed quote or purchase authority is inferred."
+
+- mpn: LT3041ADE#TRPBF
+  manufacturer: Analog Devices
+  distributor: trustedparts
+  source: authorized_inventory_aggregator
+  authority: ECIA
+  authorized_only: true
+  aggregation_scope: authorized-distributors-only
+  url: https://www.trustedparts.com/en/manufacturers/analog/LT3041
+  read_on: '2026-09-16'
+  checked_at: '2026-09-16T18:44:40+00:00'
+  lifecycle: Active
+  packaging: Tape & Reel
+  stock: 1965
+  min: 1
+  mult: 1
+  price_breaks: []
+  note: "CITED exact public ECIA TrustedParts authorized-channel series page reopened 2026-09-16T18:44:40+00:00: exact A-grade MPN LT3041ADE#TRPBF, 1,965 units aggregated only from authorized/franchised distributors. This clears the five-board need plus configured 150-unit public-stock surplus (155) for design continuation. Aggregation does not identify a reservation, allocation, landed quote, distributor minimum, or purchase authority; final direct supplier and JLC/consign evidence remain owed."
+
+- mpn: TMUX2821DSGR
+  manufacturer: Texas Instruments
+  distributor: digikey
+  dpn: 296-TMUX2821DSGRCT-ND
+  source: product_page
+  url: https://www.digikey.com/en/products/detail/texas-instruments/TMUX2821DSGR/28738833
+  read_on: '2026-09-16'
+  checked_at: '2026-09-16T18:44:40+00:00'
+  lifecycle: Active
+  packaging: Cut Tape
+  stock: 2449
+  min: 1
+  mult: 1
+  price_breaks: []
+  note: "CITED exact public DigiKey product listing reopened 2026-09-16T18:44:40+00:00: exact TMUX2821DSGR, Active, 2,449 units in cut tape. This clears the forty-unit five-board need plus configured 150-unit public-stock surplus (190) for design continuation. No reservation, JLC allocation, landed quote, Q-2SOURCE PASS or purchase authority is inferred."
+
+- mpn: OPA2320AIDR
+  manufacturer: Texas Instruments
+  distributor: digikey
+  dpn: 296-29885-1-ND
+  source: product_page
+  url: https://www.digikey.com/en/products/detail/texas-instruments/OPA2320AIDR/2782284
+  read_on: '2026-09-09'
+  lifecycle: Active
+  stock: 1086
+  min: 1
+  mult: 1
+  price_breaks:
+  - qty: 1
+    usd: 4.27
+  - qty: 10
+    usd: 3.227
+  - qty: 25
+    usd: 2.9656
+  - qty: 100
+    usd: 2.6785
+  note: Exact manufacturer/MPN, Active, stock and cut-tape ladder read from opened
+    public product page. Five carriers need45; reel MOQ2500 does not apply to this
+    cut-tape line. Freight, taxes, tariffs and allocation not quoted or authorized.
+- mpn: RC0402FR-071KL
+  manufacturer: YAGEO
+  distributor: digikey
+  dpn: 311-1.00KLRCT-ND
+  source: product_page
+  url: https://www.digikey.com/en/products/detail/yageo/RC0402FR-071KL/729460
+  read_on: '2026-09-09'
+  lifecycle: Active
+  stock: 6348432
+  min: 1
+  mult: 1
+  price_breaks:
+  - qty: 1
+    usd: 0.1
+  - qty: 10
+    usd: 0.021
+  - qty: 25
+    usd: 0.0152
+  note: Exact manufacturer/MPN, Active, stock and cut-tape ladder read from opened
+    public product page, not differing search snippet. Five boards need10; freight,
+    taxes, tariffs and allocation not quoted or authorized.

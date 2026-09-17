@@ -1,0 +1,6049 @@
+{
+  "status": "PASS",
+  "physical_dcr_status": "UNVERIFIED",
+  "source": {
+    "status": "PASS",
+    "groups": 24,
+    "nets": 48,
+    "endpoints": 192,
+    "paths": 144,
+    "channel_map_id": "crow-carrier-channel-map-20260912",
+    "channel_map_sha256": "1640e8993f47658a46b2d1c90f9f8082c5a04c5339ca063b6a9efceeb1f41c23",
+    "channel_map_source": "03_src/adc_channel_map.json",
+    "pod_to_adc": [
+      4,
+      3,
+      2,
+      1,
+      5,
+      6,
+      7,
+      8
+    ],
+    "capture_requirements": {
+      "record_fields": [
+        "map_id",
+        "map_sha256",
+        "slot_to_pod",
+        "pod_serials",
+        "cable_serials",
+        "surveyed_pod_coordinates",
+        "stream_epoch",
+        "impulse_evidence"
+      ],
+      "impulse_channel_count": 8,
+      "reject": [
+        "missing",
+        "duplicate",
+        "swapped",
+        "inverted",
+        "unstable"
+      ]
+    },
+    "capture_identity_status": "OWED",
+    "slot_to_pod": [
+      4,
+      3,
+      2,
+      1,
+      5,
+      6,
+      7,
+      8
+    ],
+    "per_section_tolerance_mm": 1.0,
+    "summed_three_section_main_spread_ceiling_mm": 3.0,
+    "routed_length_status": "NOT_GRADED",
+    "physical_dcr_status": "UNVERIFIED"
+  },
+  "entry_source": {
+    "status": "PASS",
+    "prefixes": 16,
+    "downstream_paths": 16,
+    "shield_pads": 16,
+    "realized_copper": "NOT_GRADED"
+  },
+  "input_sha256": {
+    "03_src/floorplan.yaml": "0c2ea775da88bebc2c89f13dae7dde8411550d0e9cf0f0705208a97d889ab733",
+    "03_src/route.yaml": "d1c24e76e29104d2f89bc740fdd42a606518e49e1ea9e3ac72adce039d4173d4",
+    "03_src/rules/nets.yaml": "1ee3488b3e999f21941fa0d6e35bda8e3416d511a0a39cff6cc57aebf32efd23",
+    "03_src/check_analog_paths.py": "b689be331cf80a885f4aa3f12f9e378fd04516564de807d9d201b34f9bfa00ac",
+    "03_src/rules/critical_paths.yaml": "0587c20f6ca75820b4c29fd301dbfa880fd12f886599913ad72dbe397d273ffc",
+    "06_build/netlists/crow_audio_carrier_v1.net": "e0eb2e1e8b15e7efd1c9f8fa0ce10784a651177381ac9f9074430d79ee333746"
+  },
+  "critical_path_checker_sha256": "a5e67ac81d71ef860902ead9c1561d2c656e46d5c4be0c1c09fe3a2fda626cd6",
+  "board_sha256": "45ff675971600c279c1d1e34e1610a08426b144f8435349037919a2328987e26",
+  "entry_copper": {
+    "schema": 1,
+    "kind": "critical-path-audit-v1",
+    "verdict": "PASS",
+    "graded": 32,
+    "rows": [
+      {
+        "kind": "short_path",
+        "start": "J1.5",
+        "end": "U_ESD1.3",
+        "net": "AUDIO_P1",
+        "length_mm": 8.74933,
+        "maximum_mm": 9.0,
+        "required_layer": "F.Cu",
+        "pad_centre_mm": 8.434729,
+        "via_count": 0,
+        "layers": [
+          "F.Cu"
+        ],
+        "why": "PROPOSED ADR0030: closest practical rear-side top clamp, rounded no-via prefix; exact source review and system ESD proof owed.",
+        "verdict": "PASS"
+      },
+      {
+        "kind": "short_path",
+        "start": "J1.4",
+        "end": "U_ESD1.5",
+        "net": "AUDIO_N1",
+        "length_mm": 6.967176,
+        "maximum_mm": 7.5,
+        "required_layer": "F.Cu",
+        "pad_centre_mm": 5.538173,
+        "via_count": 0,
+        "layers": [
+          "F.Cu"
+        ],
+        "why": "PROPOSED ADR0030: closest practical rear-side top clamp, rounded no-via prefix; exact source review and system ESD proof owed.",
+        "verdict": "PASS"
+      },
+      {
+        "kind": "short_path",
+        "start": "J2.5",
+        "end": "U_ESD2.3",
+        "net": "AUDIO_P2",
+        "length_mm": 8.74933,
+        "maximum_mm": 9.0,
+        "required_layer": "F.Cu",
+        "pad_centre_mm": 8.434729,
+        "via_count": 0,
+        "layers": [
+          "F.Cu"
+        ],
+        "why": "PROPOSED ADR0030: closest practical rear-side top clamp, rounded no-via prefix; exact source review and system ESD proof owed.",
+        "verdict": "PASS"
+      },
+      {
+        "kind": "short_path",
+        "start": "J2.4",
+        "end": "U_ESD2.5",
+        "net": "AUDIO_N2",
+        "length_mm": 6.967176,
+        "maximum_mm": 7.5,
+        "required_layer": "F.Cu",
+        "pad_centre_mm": 5.538173,
+        "via_count": 0,
+        "layers": [
+          "F.Cu"
+        ],
+        "why": "PROPOSED ADR0030: closest practical rear-side top clamp, rounded no-via prefix; exact source review and system ESD proof owed.",
+        "verdict": "PASS"
+      },
+      {
+        "kind": "short_path",
+        "start": "J3.5",
+        "end": "U_ESD3.3",
+        "net": "AUDIO_P3",
+        "length_mm": 8.74933,
+        "maximum_mm": 9.0,
+        "required_layer": "F.Cu",
+        "pad_centre_mm": 8.434729,
+        "via_count": 0,
+        "layers": [
+          "F.Cu"
+        ],
+        "why": "PROPOSED ADR0030: closest practical rear-side top clamp, rounded no-via prefix; exact source review and system ESD proof owed.",
+        "verdict": "PASS"
+      },
+      {
+        "kind": "short_path",
+        "start": "J3.4",
+        "end": "U_ESD3.5",
+        "net": "AUDIO_N3",
+        "length_mm": 6.967176,
+        "maximum_mm": 7.5,
+        "required_layer": "F.Cu",
+        "pad_centre_mm": 5.538173,
+        "via_count": 0,
+        "layers": [
+          "F.Cu"
+        ],
+        "why": "PROPOSED ADR0030: closest practical rear-side top clamp, rounded no-via prefix; exact source review and system ESD proof owed.",
+        "verdict": "PASS"
+      },
+      {
+        "kind": "short_path",
+        "start": "J4.5",
+        "end": "U_ESD4.3",
+        "net": "AUDIO_P4",
+        "length_mm": 8.74933,
+        "maximum_mm": 9.0,
+        "required_layer": "F.Cu",
+        "pad_centre_mm": 8.434729,
+        "via_count": 0,
+        "layers": [
+          "F.Cu"
+        ],
+        "why": "PROPOSED ADR0030: closest practical rear-side top clamp, rounded no-via prefix; exact source review and system ESD proof owed.",
+        "verdict": "PASS"
+      },
+      {
+        "kind": "short_path",
+        "start": "J4.4",
+        "end": "U_ESD4.5",
+        "net": "AUDIO_N4",
+        "length_mm": 6.967176,
+        "maximum_mm": 7.5,
+        "required_layer": "F.Cu",
+        "pad_centre_mm": 5.538173,
+        "via_count": 0,
+        "layers": [
+          "F.Cu"
+        ],
+        "why": "PROPOSED ADR0030: closest practical rear-side top clamp, rounded no-via prefix; exact source review and system ESD proof owed.",
+        "verdict": "PASS"
+      },
+      {
+        "kind": "short_path",
+        "start": "J5.5",
+        "end": "U_ESD5.3",
+        "net": "AUDIO_P5",
+        "length_mm": 8.74933,
+        "maximum_mm": 9.0,
+        "required_layer": "F.Cu",
+        "pad_centre_mm": 8.434729,
+        "via_count": 0,
+        "layers": [
+          "F.Cu"
+        ],
+        "why": "PROPOSED ADR0030: closest practical rear-side top clamp, rounded no-via prefix; exact source review and system ESD proof owed.",
+        "verdict": "PASS"
+      },
+      {
+        "kind": "short_path",
+        "start": "J5.4",
+        "end": "U_ESD5.5",
+        "net": "AUDIO_N5",
+        "length_mm": 6.967176,
+        "maximum_mm": 7.5,
+        "required_layer": "F.Cu",
+        "pad_centre_mm": 5.538173,
+        "via_count": 0,
+        "layers": [
+          "F.Cu"
+        ],
+        "why": "PROPOSED ADR0030: closest practical rear-side top clamp, rounded no-via prefix; exact source review and system ESD proof owed.",
+        "verdict": "PASS"
+      },
+      {
+        "kind": "short_path",
+        "start": "J6.5",
+        "end": "U_ESD6.3",
+        "net": "AUDIO_P6",
+        "length_mm": 8.74933,
+        "maximum_mm": 9.0,
+        "required_layer": "F.Cu",
+        "pad_centre_mm": 8.434729,
+        "via_count": 0,
+        "layers": [
+          "F.Cu"
+        ],
+        "why": "PROPOSED ADR0030: closest practical rear-side top clamp, rounded no-via prefix; exact source review and system ESD proof owed.",
+        "verdict": "PASS"
+      },
+      {
+        "kind": "short_path",
+        "start": "J6.4",
+        "end": "U_ESD6.5",
+        "net": "AUDIO_N6",
+        "length_mm": 6.967176,
+        "maximum_mm": 7.5,
+        "required_layer": "F.Cu",
+        "pad_centre_mm": 5.538173,
+        "via_count": 0,
+        "layers": [
+          "F.Cu"
+        ],
+        "why": "PROPOSED ADR0030: closest practical rear-side top clamp, rounded no-via prefix; exact source review and system ESD proof owed.",
+        "verdict": "PASS"
+      },
+      {
+        "kind": "short_path",
+        "start": "J7.5",
+        "end": "U_ESD7.3",
+        "net": "AUDIO_P7",
+        "length_mm": 8.74933,
+        "maximum_mm": 9.0,
+        "required_layer": "F.Cu",
+        "pad_centre_mm": 8.434729,
+        "via_count": 0,
+        "layers": [
+          "F.Cu"
+        ],
+        "why": "PROPOSED ADR0030: closest practical rear-side top clamp, rounded no-via prefix; exact source review and system ESD proof owed.",
+        "verdict": "PASS"
+      },
+      {
+        "kind": "short_path",
+        "start": "J7.4",
+        "end": "U_ESD7.5",
+        "net": "AUDIO_N7",
+        "length_mm": 6.967176,
+        "maximum_mm": 7.5,
+        "required_layer": "F.Cu",
+        "pad_centre_mm": 5.538173,
+        "via_count": 0,
+        "layers": [
+          "F.Cu"
+        ],
+        "why": "PROPOSED ADR0030: closest practical rear-side top clamp, rounded no-via prefix; exact source review and system ESD proof owed.",
+        "verdict": "PASS"
+      },
+      {
+        "kind": "short_path",
+        "start": "J8.5",
+        "end": "U_ESD8.3",
+        "net": "AUDIO_P8",
+        "length_mm": 8.74933,
+        "maximum_mm": 9.0,
+        "required_layer": "F.Cu",
+        "pad_centre_mm": 8.434729,
+        "via_count": 0,
+        "layers": [
+          "F.Cu"
+        ],
+        "why": "PROPOSED ADR0030: closest practical rear-side top clamp, rounded no-via prefix; exact source review and system ESD proof owed.",
+        "verdict": "PASS"
+      },
+      {
+        "kind": "short_path",
+        "start": "J8.4",
+        "end": "U_ESD8.5",
+        "net": "AUDIO_N8",
+        "length_mm": 6.967176,
+        "maximum_mm": 7.5,
+        "required_layer": "F.Cu",
+        "pad_centre_mm": 5.538173,
+        "via_count": 0,
+        "layers": [
+          "F.Cu"
+        ],
+        "why": "PROPOSED ADR0030: closest practical rear-side top clamp, rounded no-via prefix; exact source review and system ESD proof owed.",
+        "verdict": "PASS"
+      },
+      {
+        "kind": "branch_after_clamp",
+        "start": "J1.5",
+        "clamp": "U_ESD1.3",
+        "target": "C_A1P.1",
+        "net": "AUDIO_P1",
+        "prefix_edge_count": 3,
+        "missing_prefix_edge_count": 0,
+        "bypassed_prefix_edge_count": 0,
+        "why": "Every downstream AC-coupling branch must follow the entire entry-clamp path",
+        "verdict": "PASS"
+      },
+      {
+        "kind": "branch_after_clamp",
+        "start": "J1.4",
+        "clamp": "U_ESD1.5",
+        "target": "C_A1N.1",
+        "net": "AUDIO_N1",
+        "prefix_edge_count": 5,
+        "missing_prefix_edge_count": 0,
+        "bypassed_prefix_edge_count": 0,
+        "why": "Every downstream AC-coupling branch must follow the entire entry-clamp path",
+        "verdict": "PASS"
+      },
+      {
+        "kind": "branch_after_clamp",
+        "start": "J2.5",
+        "clamp": "U_ESD2.3",
+        "target": "C_A2P.1",
+        "net": "AUDIO_P2",
+        "prefix_edge_count": 3,
+        "missing_prefix_edge_count": 0,
+        "bypassed_prefix_edge_count": 0,
+        "why": "Every downstream AC-coupling branch must follow the entire entry-clamp path",
+        "verdict": "PASS"
+      },
+      {
+        "kind": "branch_after_clamp",
+        "start": "J2.4",
+        "clamp": "U_ESD2.5",
+        "target": "C_A2N.1",
+        "net": "AUDIO_N2",
+        "prefix_edge_count": 5,
+        "missing_prefix_edge_count": 0,
+        "bypassed_prefix_edge_count": 0,
+        "why": "Every downstream AC-coupling branch must follow the entire entry-clamp path",
+        "verdict": "PASS"
+      },
+      {
+        "kind": "branch_after_clamp",
+        "start": "J3.5",
+        "clamp": "U_ESD3.3",
+        "target": "C_A3P.1",
+        "net": "AUDIO_P3",
+        "prefix_edge_count": 3,
+        "missing_prefix_edge_count": 0,
+        "bypassed_prefix_edge_count": 0,
+        "why": "Every downstream AC-coupling branch must follow the entire entry-clamp path",
+        "verdict": "PASS"
+      },
+      {
+        "kind": "branch_after_clamp",
+        "start": "J3.4",
+        "clamp": "U_ESD3.5",
+        "target": "C_A3N.1",
+        "net": "AUDIO_N3",
+        "prefix_edge_count": 5,
+        "missing_prefix_edge_count": 0,
+        "bypassed_prefix_edge_count": 0,
+        "why": "Every downstream AC-coupling branch must follow the entire entry-clamp path",
+        "verdict": "PASS"
+      },
+      {
+        "kind": "branch_after_clamp",
+        "start": "J4.5",
+        "clamp": "U_ESD4.3",
+        "target": "C_A4P.1",
+        "net": "AUDIO_P4",
+        "prefix_edge_count": 3,
+        "missing_prefix_edge_count": 0,
+        "bypassed_prefix_edge_count": 0,
+        "why": "Every downstream AC-coupling branch must follow the entire entry-clamp path",
+        "verdict": "PASS"
+      },
+      {
+        "kind": "branch_after_clamp",
+        "start": "J4.4",
+        "clamp": "U_ESD4.5",
+        "target": "C_A4N.1",
+        "net": "AUDIO_N4",
+        "prefix_edge_count": 5,
+        "missing_prefix_edge_count": 0,
+        "bypassed_prefix_edge_count": 0,
+        "why": "Every downstream AC-coupling branch must follow the entire entry-clamp path",
+        "verdict": "PASS"
+      },
+      {
+        "kind": "branch_after_clamp",
+        "start": "J5.5",
+        "clamp": "U_ESD5.3",
+        "target": "C_A5P.1",
+        "net": "AUDIO_P5",
+        "prefix_edge_count": 3,
+        "missing_prefix_edge_count": 0,
+        "bypassed_prefix_edge_count": 0,
+        "why": "Every downstream AC-coupling branch must follow the entire entry-clamp path",
+        "verdict": "PASS"
+      },
+      {
+        "kind": "branch_after_clamp",
+        "start": "J5.4",
+        "clamp": "U_ESD5.5",
+        "target": "C_A5N.1",
+        "net": "AUDIO_N5",
+        "prefix_edge_count": 5,
+        "missing_prefix_edge_count": 0,
+        "bypassed_prefix_edge_count": 0,
+        "why": "Every downstream AC-coupling branch must follow the entire entry-clamp path",
+        "verdict": "PASS"
+      },
+      {
+        "kind": "branch_after_clamp",
+        "start": "J6.5",
+        "clamp": "U_ESD6.3",
+        "target": "C_A6P.1",
+        "net": "AUDIO_P6",
+        "prefix_edge_count": 3,
+        "missing_prefix_edge_count": 0,
+        "bypassed_prefix_edge_count": 0,
+        "why": "Every downstream AC-coupling branch must follow the entire entry-clamp path",
+        "verdict": "PASS"
+      },
+      {
+        "kind": "branch_after_clamp",
+        "start": "J6.4",
+        "clamp": "U_ESD6.5",
+        "target": "C_A6N.1",
+        "net": "AUDIO_N6",
+        "prefix_edge_count": 5,
+        "missing_prefix_edge_count": 0,
+        "bypassed_prefix_edge_count": 0,
+        "why": "Every downstream AC-coupling branch must follow the entire entry-clamp path",
+        "verdict": "PASS"
+      },
+      {
+        "kind": "branch_after_clamp",
+        "start": "J7.5",
+        "clamp": "U_ESD7.3",
+        "target": "C_A7P.1",
+        "net": "AUDIO_P7",
+        "prefix_edge_count": 3,
+        "missing_prefix_edge_count": 0,
+        "bypassed_prefix_edge_count": 0,
+        "why": "Every downstream AC-coupling branch must follow the entire entry-clamp path",
+        "verdict": "PASS"
+      },
+      {
+        "kind": "branch_after_clamp",
+        "start": "J7.4",
+        "clamp": "U_ESD7.5",
+        "target": "C_A7N.1",
+        "net": "AUDIO_N7",
+        "prefix_edge_count": 5,
+        "missing_prefix_edge_count": 0,
+        "bypassed_prefix_edge_count": 0,
+        "why": "Every downstream AC-coupling branch must follow the entire entry-clamp path",
+        "verdict": "PASS"
+      },
+      {
+        "kind": "branch_after_clamp",
+        "start": "J8.5",
+        "clamp": "U_ESD8.3",
+        "target": "C_A8P.1",
+        "net": "AUDIO_P8",
+        "prefix_edge_count": 3,
+        "missing_prefix_edge_count": 0,
+        "bypassed_prefix_edge_count": 0,
+        "why": "Every downstream AC-coupling branch must follow the entire entry-clamp path",
+        "verdict": "PASS"
+      },
+      {
+        "kind": "branch_after_clamp",
+        "start": "J8.4",
+        "clamp": "U_ESD8.5",
+        "target": "C_A8N.1",
+        "net": "AUDIO_N8",
+        "prefix_edge_count": 5,
+        "missing_prefix_edge_count": 0,
+        "bypassed_prefix_edge_count": 0,
+        "why": "Every downstream AC-coupling branch must follow the entire entry-clamp path",
+        "verdict": "PASS"
+      }
+    ],
+    "findings": [],
+    "board": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/04_kicad/crow_audio_carrier_v1.kicad_pcb",
+    "board_sha256": "45ff675971600c279c1d1e34e1610a08426b144f8435349037919a2328987e26"
+  },
+  "length": {
+    "project": "crow-audio-carrier-v1",
+    "declaration": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/03_src/rules/nets.yaml",
+    "board": "04_kicad/crow_audio_carrier_v1.kicad_pcb",
+    "groups": [
+      {
+        "name": "MCH_INPUT_SECTIONS",
+        "adr": "0010-route-stack-and-current-paths",
+        "topology": "tree",
+        "max_spread_mm": "report",
+        "members": [
+          {
+            "name": "MCLK",
+            "nets": [
+              "MCH_MCLK"
+            ],
+            "total_mm": 12.69333411179387,
+            "path_mm": 12.69333411179387,
+            "n_via": 0,
+            "n_zone": 0,
+            "n_branch": 0,
+            "n_pad_barrel": 0,
+            "n_comp": 1,
+            "n_end": 2,
+            "n_cyclic": 0,
+            "measured": true,
+            "why": []
+          },
+          {
+            "name": "BCLK",
+            "nets": [
+              "MCH_BCLK"
+            ],
+            "total_mm": 29.34612918120762,
+            "path_mm": 27.8323260235943,
+            "n_via": 0,
+            "n_zone": 0,
+            "n_branch": 1,
+            "n_pad_barrel": 0,
+            "n_comp": 1,
+            "n_end": 3,
+            "n_cyclic": 0,
+            "measured": true,
+            "why": []
+          },
+          {
+            "name": "FSYNC",
+            "nets": [
+              "MCH_FSYNC"
+            ],
+            "total_mm": 15.534639567345527,
+            "path_mm": 13.968954142396287,
+            "n_via": 0,
+            "n_zone": 0,
+            "n_branch": 0,
+            "n_pad_barrel": 0,
+            "n_comp": 2,
+            "n_end": 4,
+            "n_cyclic": 0,
+            "measured": true,
+            "why": []
+          },
+          {
+            "name": "TDM",
+            "nets": [
+              "TDM_RAW",
+              "TDM_CLEAN",
+              "TDM_BUFFERED",
+              "ADC_TDM"
+            ],
+            "total_mm": 78.51206177999039,
+            "path_mm": 78.5120617799904,
+            "n_via": 0,
+            "n_zone": 0,
+            "n_branch": 0,
+            "n_pad_barrel": 0,
+            "n_comp": 4,
+            "n_end": 8,
+            "n_cyclic": 0,
+            "measured": true,
+            "why": []
+          }
+        ],
+        "verdict": "PASS",
+        "why": "",
+        "spread_mm": 65.81872766819652,
+        "t_pd_ps_per_mm": 6.105,
+        "f_ghz": 6.0,
+        "deg_per_mm": 13.19,
+        "epsilon_eff": null,
+        "z0_ohm": null,
+        "solver_evidence": null,
+        "router_moves": "octilinear",
+        "oct_floor_mm": {
+          "MCLK": 11.315180361560905,
+          "BCLK": 14.315180361560905,
+          "FSYNC": 13.983809511662425,
+          "TDM": 69.48818177180199
+        },
+        "oct_spread_mm": 58.173001410241085,
+        "oct_why": "",
+        "electrical_paths": [
+          {
+            "member": "MCLK",
+            "id": "main",
+            "length_mm": 12.693334111793869,
+            "segments": [
+              {
+                "net": "MCH_MCLK",
+                "from": "J10.9",
+                "to": "U_CLK.1",
+                "length_mm": 12.693334111793869,
+                "physical_edges": 7
+              }
+            ]
+          },
+          {
+            "member": "MCLK",
+            "id": "pull_down",
+            "length_mm": 3.847955790834378,
+            "segments": [
+              {
+                "net": "MCH_MCLK",
+                "from": "U_CLK.1",
+                "to": "R_MCH_MCLK_PD.1",
+                "length_mm": 3.847955790834378,
+                "physical_edges": 5
+              }
+            ]
+          },
+          {
+            "member": "BCLK",
+            "id": "main",
+            "length_mm": 27.8323260235943,
+            "segments": [
+              {
+                "net": "MCH_BCLK",
+                "from": "J10.10",
+                "to": "U_CLK.3",
+                "length_mm": 27.8323260235943,
+                "physical_edges": 14
+              }
+            ]
+          },
+          {
+            "member": "BCLK",
+            "id": "pull_down",
+            "length_mm": 3.2043725726554166,
+            "segments": [
+              {
+                "net": "MCH_BCLK",
+                "from": "U_CLK.3",
+                "to": "R_MCH_BCLK_PD.1",
+                "length_mm": 3.2043725726554166,
+                "physical_edges": 3
+              }
+            ]
+          },
+          {
+            "member": "FSYNC",
+            "id": "main",
+            "length_mm": 15.534639567345527,
+            "segments": [
+              {
+                "net": "MCH_FSYNC",
+                "from": "J10.12",
+                "to": "U_CLK.6",
+                "length_mm": 15.534639567345527,
+                "physical_edges": 6
+              }
+            ]
+          },
+          {
+            "member": "FSYNC",
+            "id": "pull_down",
+            "length_mm": 1.565685424949241,
+            "segments": [
+              {
+                "net": "MCH_FSYNC",
+                "from": "U_CLK.6",
+                "to": "R_MCH_FSYNC_PD.1",
+                "length_mm": 1.565685424949241,
+                "physical_edges": 2
+              }
+            ]
+          },
+          {
+            "member": "TDM",
+            "id": "main",
+            "length_mm": 78.51206177999039,
+            "segments": [
+              {
+                "net": "TDM_RAW",
+                "from": "U_ADC.25",
+                "to": "U_TDM_SCH.2",
+                "length_mm": 61.84338032886255,
+                "physical_edges": 25
+              },
+              {
+                "net": "TDM_CLEAN",
+                "from": "U_TDM_SCH.4",
+                "to": "U_TDM.2",
+                "length_mm": 4.634924240491742,
+                "physical_edges": 2
+              },
+              {
+                "net": "TDM_BUFFERED",
+                "from": "U_TDM.4",
+                "to": "R_TDM.1",
+                "length_mm": 1.7949747468305783,
+                "physical_edges": 2
+              },
+              {
+                "net": "ADC_TDM",
+                "from": "R_TDM.2",
+                "to": "J10.2",
+                "length_mm": 10.238782463805526,
+                "physical_edges": 16
+              }
+            ]
+          },
+          {
+            "member": "TDM",
+            "id": "pull_down",
+            "length_mm": 1.134619407771253,
+            "segments": [
+              {
+                "net": "TDM_RAW",
+                "from": "U_TDM_SCH.2",
+                "to": "R_TDM_PD.1",
+                "length_mm": 1.134619407771253,
+                "physical_edges": 2
+              }
+            ]
+          }
+        ],
+        "path_spreads": [
+          {
+            "id": "main",
+            "members": {
+              "MCLK": 12.693334111793869,
+              "BCLK": 27.8323260235943,
+              "FSYNC": 15.534639567345527,
+              "TDM": 78.51206177999039
+            },
+            "spread_mm": 65.81872766819652,
+            "max_spread_mm": "report"
+          },
+          {
+            "id": "pull_down",
+            "members": {
+              "MCLK": 3.847955790834378,
+              "BCLK": 3.2043725726554166,
+              "FSYNC": 1.565685424949241,
+              "TDM": 1.134619407771253
+            },
+            "spread_mm": 2.713336383063125,
+            "max_spread_mm": "report"
+          }
+        ],
+        "off_path": [
+          {
+            "net": "TDM_RAW",
+            "off_path_mm": 0,
+            "unexplained_edge_count": 0
+          },
+          {
+            "net": "TDM_CLEAN",
+            "off_path_mm": 0,
+            "unexplained_edge_count": 0
+          },
+          {
+            "net": "MCH_BCLK",
+            "off_path_mm": 0,
+            "unexplained_edge_count": 0
+          },
+          {
+            "net": "ADC_TDM",
+            "off_path_mm": 0,
+            "unexplained_edge_count": 0
+          },
+          {
+            "net": "MCH_MCLK",
+            "off_path_mm": 0,
+            "unexplained_edge_count": 0
+          },
+          {
+            "net": "MCH_FSYNC",
+            "off_path_mm": 0,
+            "unexplained_edge_count": 0
+          },
+          {
+            "net": "TDM_BUFFERED",
+            "off_path_mm": 0,
+            "unexplained_edge_count": 0
+          }
+        ],
+        "off_path_mm": 0.0
+      },
+      {
+        "name": "BUFFERED_DIGITAL_SECTIONS",
+        "adr": "0010-route-stack-and-current-paths",
+        "topology": "chain",
+        "max_spread_mm": "report",
+        "members": [
+          {
+            "name": "MCLK",
+            "nets": [
+              "MCLK_BUF",
+              "ADC_MCLK"
+            ],
+            "total_mm": 112.66482796022775,
+            "path_mm": 112.66482796022774,
+            "n_via": 0,
+            "n_zone": 0,
+            "n_branch": 0,
+            "n_pad_barrel": 0,
+            "n_comp": 2,
+            "n_end": 4,
+            "n_cyclic": 0,
+            "measured": true,
+            "why": []
+          },
+          {
+            "name": "BCLK",
+            "nets": [
+              "BCLK_BUF",
+              "ADC_BCLK"
+            ],
+            "total_mm": 104.70002284475594,
+            "path_mm": 104.70002284475592,
+            "n_via": 0,
+            "n_zone": 0,
+            "n_branch": 0,
+            "n_pad_barrel": 0,
+            "n_comp": 2,
+            "n_end": 4,
+            "n_cyclic": 0,
+            "measured": true,
+            "why": []
+          },
+          {
+            "name": "FSYNC",
+            "nets": [
+              "FSYNC_BUF",
+              "ADC_FSYNC"
+            ],
+            "total_mm": 65.41157658735652,
+            "path_mm": 65.41157658735652,
+            "n_via": 0,
+            "n_zone": 0,
+            "n_branch": 0,
+            "n_pad_barrel": 0,
+            "n_comp": 2,
+            "n_end": 4,
+            "n_cyclic": 0,
+            "measured": true,
+            "why": []
+          }
+        ],
+        "verdict": "PASS",
+        "why": "",
+        "spread_mm": 47.25325137287122,
+        "t_pd_ps_per_mm": 6.105,
+        "f_ghz": 6.0,
+        "deg_per_mm": 13.19,
+        "epsilon_eff": null,
+        "z0_ohm": null,
+        "solver_evidence": null,
+        "router_moves": "octilinear",
+        "oct_floor_mm": {
+          "MCLK": 66.94421715174808,
+          "BCLK": 67.35843071412118,
+          "FSYNC": 66.69604614807103
+        },
+        "oct_spread_mm": 0.6623845660501502,
+        "oct_why": "",
+        "electrical_paths": [
+          {
+            "member": "MCLK",
+            "id": "main",
+            "length_mm": 112.66482796022774,
+            "segments": [
+              {
+                "net": "MCLK_BUF",
+                "from": "U_CLK.7",
+                "to": "R_MCLK.1",
+                "length_mm": 4.437213595499981,
+                "physical_edges": 4
+              },
+              {
+                "net": "ADC_MCLK",
+                "from": "R_MCLK.2",
+                "to": "U_ADC.34",
+                "length_mm": 108.22761436472776,
+                "physical_edges": 16
+              }
+            ]
+          },
+          {
+            "member": "BCLK",
+            "id": "main",
+            "length_mm": 104.70002284475592,
+            "segments": [
+              {
+                "net": "BCLK_BUF",
+                "from": "U_CLK.5",
+                "to": "R_BCLK.1",
+                "length_mm": 2.0844563789739796,
+                "physical_edges": 2
+              },
+              {
+                "net": "ADC_BCLK",
+                "from": "R_BCLK.2",
+                "to": "U_ADC.29",
+                "length_mm": 102.61556646578194,
+                "physical_edges": 21
+              }
+            ]
+          },
+          {
+            "member": "FSYNC",
+            "id": "main",
+            "length_mm": 65.41157658735652,
+            "segments": [
+              {
+                "net": "FSYNC_BUF",
+                "from": "U_CLK.2",
+                "to": "R_FSYNC.1",
+                "length_mm": 2.0,
+                "physical_edges": 2
+              },
+              {
+                "net": "ADC_FSYNC",
+                "from": "R_FSYNC.2",
+                "to": "U_ADC.24",
+                "length_mm": 63.41157658735652,
+                "physical_edges": 9
+              }
+            ]
+          }
+        ],
+        "path_spreads": [
+          {
+            "id": "main",
+            "members": {
+              "MCLK": 112.66482796022774,
+              "BCLK": 104.70002284475592,
+              "FSYNC": 65.41157658735652
+            },
+            "spread_mm": 47.25325137287122,
+            "max_spread_mm": "report"
+          }
+        ],
+        "off_path": [
+          {
+            "net": "BCLK_BUF",
+            "off_path_mm": 0,
+            "unexplained_edge_count": 0
+          },
+          {
+            "net": "FSYNC_BUF",
+            "off_path_mm": 0,
+            "unexplained_edge_count": 0
+          },
+          {
+            "net": "MCLK_BUF",
+            "off_path_mm": 0,
+            "unexplained_edge_count": 0
+          },
+          {
+            "net": "ADC_FSYNC",
+            "off_path_mm": 0,
+            "unexplained_edge_count": 0
+          },
+          {
+            "net": "ADC_BCLK",
+            "off_path_mm": 0,
+            "unexplained_edge_count": 0
+          },
+          {
+            "net": "ADC_MCLK",
+            "off_path_mm": 0,
+            "unexplained_edge_count": 0
+          }
+        ],
+        "off_path_mm": 0.0
+      },
+      {
+        "name": "ANALOG_CH1_OUTPUT",
+        "adr": "0019-analog-path-matching",
+        "topology": "tree",
+        "max_spread_mm": 1.0,
+        "members": [
+          {
+            "name": "P",
+            "nets": [
+              "OPA_P1"
+            ],
+            "total_mm": 3.159543960315043,
+            "path_mm": 1.7999999999999972,
+            "n_via": 0,
+            "n_zone": 0,
+            "n_branch": 0,
+            "n_pad_barrel": 0,
+            "n_comp": 2,
+            "n_end": 4,
+            "n_cyclic": 0,
+            "measured": true,
+            "why": []
+          },
+          {
+            "name": "N",
+            "nets": [
+              "OPA_N1"
+            ],
+            "total_mm": 3.526496554346291,
+            "path_mm": 1.8999999999999986,
+            "n_via": 0,
+            "n_zone": 0,
+            "n_branch": 0,
+            "n_pad_barrel": 0,
+            "n_comp": 2,
+            "n_end": 4,
+            "n_cyclic": 0,
+            "measured": true,
+            "why": []
+          }
+        ],
+        "verdict": "PASS",
+        "why": "",
+        "spread_mm": 0.3669525940312477,
+        "t_pd_ps_per_mm": 6.105,
+        "f_ghz": 6.0,
+        "deg_per_mm": 13.19,
+        "epsilon_eff": null,
+        "z0_ohm": null,
+        "solver_evidence": null,
+        "router_moves": "octilinear",
+        "oct_floor_mm": {
+          "P": 3.6543502884254457,
+          "N": 3.6212132034355986
+        },
+        "oct_spread_mm": 0.03313708498984713,
+        "oct_why": "",
+        "electrical_paths": [
+          {
+            "member": "P",
+            "id": "main",
+            "length_mm": 3.1595439603150433,
+            "segments": [
+              {
+                "net": "OPA_P1",
+                "from": "U_AFE1.1",
+                "to": "R_OUT1P.1",
+                "length_mm": 3.1595439603150433,
+                "physical_edges": 3
+              }
+            ]
+          },
+          {
+            "member": "P",
+            "id": "feedback",
+            "length_mm": 1.7999999999999972,
+            "segments": [
+              {
+                "net": "OPA_P1",
+                "from": "U_AFE1.1",
+                "to": "C_FB1P.2",
+                "length_mm": 1.7999999999999972,
+                "physical_edges": 1
+              }
+            ]
+          },
+          {
+            "member": "N",
+            "id": "main",
+            "length_mm": 3.526496554346291,
+            "segments": [
+              {
+                "net": "OPA_N1",
+                "from": "U_AFE1.7",
+                "to": "R_OUT1N.1",
+                "length_mm": 3.526496554346291,
+                "physical_edges": 3
+              }
+            ]
+          },
+          {
+            "member": "N",
+            "id": "feedback",
+            "length_mm": 1.8999999999999986,
+            "segments": [
+              {
+                "net": "OPA_N1",
+                "from": "U_AFE1.7",
+                "to": "C_FB1N.2",
+                "length_mm": 1.8999999999999986,
+                "physical_edges": 1
+              }
+            ]
+          }
+        ],
+        "path_spreads": [
+          {
+            "id": "main",
+            "members": {
+              "P": 3.1595439603150433,
+              "N": 3.526496554346291
+            },
+            "spread_mm": 0.3669525940312477,
+            "max_spread_mm": 1.0
+          },
+          {
+            "id": "feedback",
+            "members": {
+              "P": 1.7999999999999972,
+              "N": 1.8999999999999986
+            },
+            "spread_mm": 0.10000000000000142,
+            "max_spread_mm": 1.0
+          }
+        ],
+        "off_path": [
+          {
+            "net": "OPA_P1",
+            "off_path_mm": 0,
+            "unexplained_edge_count": 0
+          },
+          {
+            "net": "OPA_N1",
+            "off_path_mm": 0,
+            "unexplained_edge_count": 0
+          }
+        ],
+        "off_path_mm": 0.0
+      },
+      {
+        "name": "ANALOG_CH1_FILTER",
+        "adr": "0019-analog-path-matching",
+        "topology": "tree",
+        "max_spread_mm": 1.0,
+        "members": [
+          {
+            "name": "P",
+            "nets": [
+              "FILTER1P"
+            ],
+            "total_mm": 15.790228898319963,
+            "path_mm": 9.686220743934857,
+            "n_via": 0,
+            "n_zone": 0,
+            "n_branch": 0,
+            "n_pad_barrel": 0,
+            "n_comp": 2,
+            "n_end": 4,
+            "n_cyclic": 0,
+            "measured": true,
+            "why": []
+          },
+          {
+            "name": "N",
+            "nets": [
+              "FILTER1N"
+            ],
+            "total_mm": 15.887091911176402,
+            "path_mm": 9.827542033568776,
+            "n_via": 0,
+            "n_zone": 0,
+            "n_branch": 0,
+            "n_pad_barrel": 0,
+            "n_comp": 2,
+            "n_end": 4,
+            "n_cyclic": 0,
+            "measured": true,
+            "why": []
+          }
+        ],
+        "verdict": "PASS",
+        "why": "",
+        "spread_mm": 0.14646950344897314,
+        "t_pd_ps_per_mm": 6.105,
+        "f_ghz": 6.0,
+        "deg_per_mm": 13.19,
+        "epsilon_eff": null,
+        "z0_ohm": null,
+        "solver_evidence": null,
+        "router_moves": "octilinear",
+        "oct_floor_mm": {
+          "P": 10.901555544218265,
+          "N": 11.051555544218264
+        },
+        "oct_spread_mm": 0.14999999999999858,
+        "oct_why": "",
+        "electrical_paths": [
+          {
+            "member": "P",
+            "id": "main",
+            "length_mm": 15.790228898319958,
+            "segments": [
+              {
+                "net": "FILTER1P",
+                "from": "R_OUT1P.2",
+                "to": "U_ISO1.1",
+                "length_mm": 15.790228898319958,
+                "physical_edges": 42
+              }
+            ]
+          },
+          {
+            "member": "P",
+            "id": "feedback",
+            "length_mm": 1.1000000000000014,
+            "segments": [
+              {
+                "net": "FILTER1P",
+                "from": "R_OUT1P.2",
+                "to": "R_X1P.2",
+                "length_mm": 1.1000000000000014,
+                "physical_edges": 1
+              }
+            ]
+          },
+          {
+            "member": "P",
+            "id": "shunt1",
+            "length_mm": 8.286220743934857,
+            "segments": [
+              {
+                "net": "FILTER1P",
+                "from": "R_OUT1P.2",
+                "to": "C_FILTER1P1.1",
+                "length_mm": 8.286220743934857,
+                "physical_edges": 16
+              }
+            ]
+          },
+          {
+            "member": "P",
+            "id": "shunt2",
+            "length_mm": 9.686220743934856,
+            "segments": [
+              {
+                "net": "FILTER1P",
+                "from": "R_OUT1P.2",
+                "to": "C_FILTER1P2.1",
+                "length_mm": 9.686220743934856,
+                "physical_edges": 17
+              }
+            ]
+          },
+          {
+            "member": "N",
+            "id": "main",
+            "length_mm": 15.887091911176402,
+            "segments": [
+              {
+                "net": "FILTER1N",
+                "from": "R_OUT1N.2",
+                "to": "U_ISO1.5",
+                "length_mm": 15.887091911176402,
+                "physical_edges": 23
+              }
+            ]
+          },
+          {
+            "member": "N",
+            "id": "feedback",
+            "length_mm": 0.9535304965510283,
+            "segments": [
+              {
+                "net": "FILTER1N",
+                "from": "R_OUT1N.2",
+                "to": "R_X1N.2",
+                "length_mm": 0.9535304965510283,
+                "physical_edges": 2
+              }
+            ]
+          },
+          {
+            "member": "N",
+            "id": "shunt1",
+            "length_mm": 8.427542033568777,
+            "segments": [
+              {
+                "net": "FILTER1N",
+                "from": "R_OUT1N.2",
+                "to": "C_FILTER1N1.1",
+                "length_mm": 8.427542033568777,
+                "physical_edges": 14
+              }
+            ]
+          },
+          {
+            "member": "N",
+            "id": "shunt2",
+            "length_mm": 9.827542033568776,
+            "segments": [
+              {
+                "net": "FILTER1N",
+                "from": "R_OUT1N.2",
+                "to": "C_FILTER1N2.1",
+                "length_mm": 9.827542033568776,
+                "physical_edges": 15
+              }
+            ]
+          }
+        ],
+        "path_spreads": [
+          {
+            "id": "main",
+            "members": {
+              "P": 15.790228898319958,
+              "N": 15.887091911176402
+            },
+            "spread_mm": 0.09686301285644383,
+            "max_spread_mm": 1.0
+          },
+          {
+            "id": "feedback",
+            "members": {
+              "P": 1.1000000000000014,
+              "N": 0.9535304965510283
+            },
+            "spread_mm": 0.14646950344897314,
+            "max_spread_mm": 1.0
+          },
+          {
+            "id": "shunt1",
+            "members": {
+              "P": 8.286220743934857,
+              "N": 8.427542033568777
+            },
+            "spread_mm": 0.14132128963392,
+            "max_spread_mm": 1.0
+          },
+          {
+            "id": "shunt2",
+            "members": {
+              "P": 9.686220743934856,
+              "N": 9.827542033568776
+            },
+            "spread_mm": 0.14132128963392,
+            "max_spread_mm": 1.0
+          }
+        ],
+        "off_path": [
+          {
+            "net": "FILTER1N",
+            "off_path_mm": 0,
+            "unexplained_edge_count": 0
+          },
+          {
+            "net": "FILTER1P",
+            "off_path_mm": 0,
+            "unexplained_edge_count": 0
+          }
+        ],
+        "off_path_mm": 0.0
+      },
+      {
+        "name": "ANALOG_CH1_ADC",
+        "adr": "0019-analog-path-matching",
+        "topology": "tree",
+        "max_spread_mm": 1.0,
+        "members": [
+          {
+            "name": "P",
+            "nets": [
+              "ADC1P"
+            ],
+            "total_mm": 83.33776731750551,
+            "path_mm": 81.45530519725959,
+            "n_via": 8,
+            "n_zone": 0,
+            "n_branch": 1,
+            "n_pad_barrel": 0,
+            "n_comp": 2,
+            "n_end": 5,
+            "n_cyclic": 0,
+            "measured": true,
+            "why": []
+          },
+          {
+            "name": "N",
+            "nets": [
+              "ADC1N"
+            ],
+            "total_mm": 82.79801360125786,
+            "path_mm": 77.9380890678726,
+            "n_via": 4,
+            "n_zone": 0,
+            "n_branch": 1,
+            "n_pad_barrel": 0,
+            "n_comp": 2,
+            "n_end": 5,
+            "n_cyclic": 0,
+            "measured": true,
+            "why": []
+          }
+        ],
+        "verdict": "PASS",
+        "why": "",
+        "spread_mm": 1.4508449865949729,
+        "t_pd_ps_per_mm": 6.105,
+        "f_ghz": 6.0,
+        "deg_per_mm": 13.19,
+        "epsilon_eff": null,
+        "z0_ohm": null,
+        "solver_evidence": null,
+        "router_moves": "octilinear",
+        "oct_floor_mm": {
+          "P": 59.71761902332486,
+          "N": 58.010512242138304
+        },
+        "oct_spread_mm": 1.7071067811865532,
+        "oct_why": "floor spread 1.7071 mm (22.52 deg at 6 GHz) exceeds max_spread_mm 1.0: shortest member N >= 58.0105 mm, longest P >= 59.7176 mm. An octilinear router (KRT moves in 8 directions, so the shortest pad-to-pad copper is max(dx,dy)+0.4142*min(dx,dy)) cannot do better \u2014 accepted because `elongation: meander` is declared and route.yaml carries executable endpoint_length_matching/canonicalize_chains, so the short members are deliberately lengthened. The realized spread below is the check that the elongation actually happened.",
+        "electrical_paths": [
+          {
+            "member": "P",
+            "id": "main",
+            "length_mm": 82.5953051972596,
+            "segments": [
+              {
+                "net": "ADC1P",
+                "from": "U_ISO1.2",
+                "to": "U_ADC.48",
+                "length_mm": 82.5953051972596,
+                "physical_edges": 41
+              }
+            ]
+          },
+          {
+            "member": "P",
+            "id": "common_mode",
+            "length_mm": 79.38893405446757,
+            "segments": [
+              {
+                "net": "ADC1P",
+                "from": "U_ISO1.2",
+                "to": "C_ADC_CM1P.1",
+                "length_mm": 79.38893405446757,
+                "physical_edges": 38
+              }
+            ]
+          },
+          {
+            "member": "P",
+            "id": "bias",
+            "length_mm": 1.1400000000000006,
+            "segments": [
+              {
+                "net": "ADC1P",
+                "from": "U_ISO1.2",
+                "to": "R_ADC_PD1P.1",
+                "length_mm": 1.1400000000000006,
+                "physical_edges": 1
+              }
+            ]
+          },
+          {
+            "member": "N",
+            "id": "main",
+            "length_mm": 82.24801360125791,
+            "segments": [
+              {
+                "net": "ADC1N",
+                "from": "U_ISO1.6",
+                "to": "U_ADC.47",
+                "length_mm": 82.24801360125791,
+                "physical_edges": 109
+              }
+            ]
+          },
+          {
+            "member": "N",
+            "id": "common_mode",
+            "length_mm": 77.9380890678726,
+            "segments": [
+              {
+                "net": "ADC1N",
+                "from": "U_ISO1.6",
+                "to": "C_ADC_CM1N.1",
+                "length_mm": 77.9380890678726,
+                "physical_edges": 105
+              }
+            ]
+          },
+          {
+            "member": "N",
+            "id": "bias",
+            "length_mm": 1.8399999999999963,
+            "segments": [
+              {
+                "net": "ADC1N",
+                "from": "U_ISO1.6",
+                "to": "R_ADC_PD1N.1",
+                "length_mm": 1.8399999999999963,
+                "physical_edges": 2
+              }
+            ]
+          }
+        ],
+        "path_spreads": [
+          {
+            "id": "main",
+            "members": {
+              "P": 82.5953051972596,
+              "N": 82.24801360125791
+            },
+            "spread_mm": 0.34729159600169623,
+            "max_spread_mm": 1.0
+          },
+          {
+            "id": "common_mode",
+            "members": {
+              "P": 79.38893405446757,
+              "N": 77.9380890678726
+            },
+            "spread_mm": 1.4508449865949729,
+            "max_spread_mm": 12.0
+          },
+          {
+            "id": "bias",
+            "members": {
+              "P": 1.1400000000000006,
+              "N": 1.8399999999999963
+            },
+            "spread_mm": 0.6999999999999957,
+            "max_spread_mm": 1.0
+          }
+        ],
+        "off_path": [
+          {
+            "net": "ADC1N",
+            "off_path_mm": 0,
+            "unexplained_edge_count": 0
+          },
+          {
+            "net": "ADC1P",
+            "off_path_mm": 0,
+            "unexplained_edge_count": 0
+          }
+        ],
+        "off_path_mm": 0.0
+      },
+      {
+        "name": "ANALOG_CH2_OUTPUT",
+        "adr": "0019-analog-path-matching",
+        "topology": "tree",
+        "max_spread_mm": 1.0,
+        "members": [
+          {
+            "name": "P",
+            "nets": [
+              "OPA_P2"
+            ],
+            "total_mm": 3.1595439603150433,
+            "path_mm": 1.7999999999999972,
+            "n_via": 0,
+            "n_zone": 0,
+            "n_branch": 0,
+            "n_pad_barrel": 0,
+            "n_comp": 2,
+            "n_end": 4,
+            "n_cyclic": 0,
+            "measured": true,
+            "why": []
+          },
+          {
+            "name": "N",
+            "nets": [
+              "OPA_N2"
+            ],
+            "total_mm": 3.5264965543462976,
+            "path_mm": 1.9000000000000057,
+            "n_via": 0,
+            "n_zone": 0,
+            "n_branch": 0,
+            "n_pad_barrel": 0,
+            "n_comp": 2,
+            "n_end": 4,
+            "n_cyclic": 0,
+            "measured": true,
+            "why": []
+          }
+        ],
+        "verdict": "PASS",
+        "why": "",
+        "spread_mm": 0.3669525940312548,
+        "t_pd_ps_per_mm": 6.105,
+        "f_ghz": 6.0,
+        "deg_per_mm": 13.19,
+        "epsilon_eff": null,
+        "z0_ohm": null,
+        "solver_evidence": null,
+        "router_moves": "octilinear",
+        "oct_floor_mm": {
+          "P": 3.6543502884254386,
+          "N": 3.6212132034355915
+        },
+        "oct_spread_mm": 0.03313708498984713,
+        "oct_why": "",
+        "electrical_paths": [
+          {
+            "member": "P",
+            "id": "main",
+            "length_mm": 3.1595439603150433,
+            "segments": [
+              {
+                "net": "OPA_P2",
+                "from": "U_AFE2.1",
+                "to": "R_OUT2P.1",
+                "length_mm": 3.1595439603150433,
+                "physical_edges": 3
+              }
+            ]
+          },
+          {
+            "member": "P",
+            "id": "feedback",
+            "length_mm": 1.7999999999999972,
+            "segments": [
+              {
+                "net": "OPA_P2",
+                "from": "U_AFE2.1",
+                "to": "C_FB2P.2",
+                "length_mm": 1.7999999999999972,
+                "physical_edges": 1
+              }
+            ]
+          },
+          {
+            "member": "N",
+            "id": "main",
+            "length_mm": 3.526496554346298,
+            "segments": [
+              {
+                "net": "OPA_N2",
+                "from": "U_AFE2.7",
+                "to": "R_OUT2N.1",
+                "length_mm": 3.526496554346298,
+                "physical_edges": 3
+              }
+            ]
+          },
+          {
+            "member": "N",
+            "id": "feedback",
+            "length_mm": 1.9000000000000057,
+            "segments": [
+              {
+                "net": "OPA_N2",
+                "from": "U_AFE2.7",
+                "to": "C_FB2N.2",
+                "length_mm": 1.9000000000000057,
+                "physical_edges": 1
+              }
+            ]
+          }
+        ],
+        "path_spreads": [
+          {
+            "id": "main",
+            "members": {
+              "P": 3.1595439603150433,
+              "N": 3.526496554346298
+            },
+            "spread_mm": 0.3669525940312548,
+            "max_spread_mm": 1.0
+          },
+          {
+            "id": "feedback",
+            "members": {
+              "P": 1.7999999999999972,
+              "N": 1.9000000000000057
+            },
+            "spread_mm": 0.10000000000000853,
+            "max_spread_mm": 1.0
+          }
+        ],
+        "off_path": [
+          {
+            "net": "OPA_P2",
+            "off_path_mm": 0,
+            "unexplained_edge_count": 0
+          },
+          {
+            "net": "OPA_N2",
+            "off_path_mm": 0,
+            "unexplained_edge_count": 0
+          }
+        ],
+        "off_path_mm": 0.0
+      },
+      {
+        "name": "ANALOG_CH2_FILTER",
+        "adr": "0019-analog-path-matching",
+        "topology": "tree",
+        "max_spread_mm": 1.0,
+        "members": [
+          {
+            "name": "P",
+            "nets": [
+              "FILTER2P"
+            ],
+            "total_mm": 13.663954251468827,
+            "path_mm": 9.542640254578775,
+            "n_via": 0,
+            "n_zone": 0,
+            "n_branch": 0,
+            "n_pad_barrel": 0,
+            "n_comp": 2,
+            "n_end": 4,
+            "n_cyclic": 0,
+            "measured": true,
+            "why": []
+          },
+          {
+            "name": "N",
+            "nets": [
+              "FILTER2N"
+            ],
+            "total_mm": 14.642638571153634,
+            "path_mm": 9.131397974644653,
+            "n_via": 2,
+            "n_zone": 0,
+            "n_branch": 0,
+            "n_pad_barrel": 0,
+            "n_comp": 3,
+            "n_end": 6,
+            "n_cyclic": 0,
+            "measured": true,
+            "why": []
+          }
+        ],
+        "verdict": "PASS",
+        "why": "",
+        "spread_mm": 0.9786843196848096,
+        "t_pd_ps_per_mm": 6.105,
+        "f_ghz": 6.0,
+        "deg_per_mm": 13.19,
+        "epsilon_eff": null,
+        "z0_ohm": null,
+        "solver_evidence": null,
+        "router_moves": "octilinear",
+        "oct_floor_mm": {
+          "P": 10.901555544218265,
+          "N": 11.051555544218264
+        },
+        "oct_spread_mm": 0.14999999999999858,
+        "oct_why": "",
+        "electrical_paths": [
+          {
+            "member": "P",
+            "id": "main",
+            "length_mm": 13.663954251468825,
+            "segments": [
+              {
+                "net": "FILTER2P",
+                "from": "R_OUT2P.2",
+                "to": "U_ISO2.1",
+                "length_mm": 13.663954251468825,
+                "physical_edges": 20
+              }
+            ]
+          },
+          {
+            "member": "P",
+            "id": "feedback",
+            "length_mm": 1.1000000000000014,
+            "segments": [
+              {
+                "net": "FILTER2P",
+                "from": "R_OUT2P.2",
+                "to": "R_X2P.2",
+                "length_mm": 1.1000000000000014,
+                "physical_edges": 1
+              }
+            ]
+          },
+          {
+            "member": "P",
+            "id": "shunt1",
+            "length_mm": 8.142640254578778,
+            "segments": [
+              {
+                "net": "FILTER2P",
+                "from": "R_OUT2P.2",
+                "to": "C_FILTER2P1.1",
+                "length_mm": 8.142640254578778,
+                "physical_edges": 14
+              }
+            ]
+          },
+          {
+            "member": "P",
+            "id": "shunt2",
+            "length_mm": 9.542640254578776,
+            "segments": [
+              {
+                "net": "FILTER2P",
+                "from": "R_OUT2P.2",
+                "to": "C_FILTER2P2.1",
+                "length_mm": 9.542640254578776,
+                "physical_edges": 15
+              }
+            ]
+          },
+          {
+            "member": "N",
+            "id": "main",
+            "length_mm": 14.642638571153634,
+            "segments": [
+              {
+                "net": "FILTER2N",
+                "from": "R_OUT2N.2",
+                "to": "U_ISO2.5",
+                "length_mm": 14.642638571153634,
+                "physical_edges": 21
+              }
+            ]
+          },
+          {
+            "member": "N",
+            "id": "feedback",
+            "length_mm": 0.9535304965510398,
+            "segments": [
+              {
+                "net": "FILTER2N",
+                "from": "R_OUT2N.2",
+                "to": "R_X2N.2",
+                "length_mm": 0.9535304965510398,
+                "physical_edges": 2
+              }
+            ]
+          },
+          {
+            "member": "N",
+            "id": "shunt1",
+            "length_mm": 8.684928471195695,
+            "segments": [
+              {
+                "net": "FILTER2N",
+                "from": "R_OUT2N.2",
+                "to": "C_FILTER2N1.1",
+                "length_mm": 8.684928471195695,
+                "physical_edges": 9
+              }
+            ]
+          },
+          {
+            "member": "N",
+            "id": "shunt2",
+            "length_mm": 10.084928471195694,
+            "segments": [
+              {
+                "net": "FILTER2N",
+                "from": "R_OUT2N.2",
+                "to": "C_FILTER2N2.1",
+                "length_mm": 10.084928471195694,
+                "physical_edges": 10
+              }
+            ]
+          }
+        ],
+        "path_spreads": [
+          {
+            "id": "main",
+            "members": {
+              "P": 13.663954251468825,
+              "N": 14.642638571153634
+            },
+            "spread_mm": 0.9786843196848096,
+            "max_spread_mm": 1.0
+          },
+          {
+            "id": "feedback",
+            "members": {
+              "P": 1.1000000000000014,
+              "N": 0.9535304965510398
+            },
+            "spread_mm": 0.1464695034489616,
+            "max_spread_mm": 1.0
+          },
+          {
+            "id": "shunt1",
+            "members": {
+              "P": 8.142640254578778,
+              "N": 8.684928471195695
+            },
+            "spread_mm": 0.5422882166169174,
+            "max_spread_mm": 1.0
+          },
+          {
+            "id": "shunt2",
+            "members": {
+              "P": 9.542640254578776,
+              "N": 10.084928471195694
+            },
+            "spread_mm": 0.5422882166169174,
+            "max_spread_mm": 1.0
+          }
+        ],
+        "off_path": [
+          {
+            "net": "FILTER2N",
+            "off_path_mm": 0,
+            "unexplained_edge_count": 0
+          },
+          {
+            "net": "FILTER2P",
+            "off_path_mm": 0,
+            "unexplained_edge_count": 0
+          }
+        ],
+        "off_path_mm": 0.0
+      },
+      {
+        "name": "ANALOG_CH2_ADC",
+        "adr": "0019-analog-path-matching",
+        "topology": "tree",
+        "max_spread_mm": 1.0,
+        "members": [
+          {
+            "name": "P",
+            "nets": [
+              "ADC2P"
+            ],
+            "total_mm": 47.79264441808875,
+            "path_mm": 43.928901850761406,
+            "n_via": 5,
+            "n_zone": 0,
+            "n_branch": 1,
+            "n_pad_barrel": 0,
+            "n_comp": 2,
+            "n_end": 5,
+            "n_cyclic": 0,
+            "measured": true,
+            "why": []
+          },
+          {
+            "name": "N",
+            "nets": [
+              "ADC2N"
+            ],
+            "total_mm": 45.69779224683867,
+            "path_mm": 43.05177702888446,
+            "n_via": 2,
+            "n_zone": 0,
+            "n_branch": 1,
+            "n_pad_barrel": 0,
+            "n_comp": 2,
+            "n_end": 5,
+            "n_cyclic": 0,
+            "measured": true,
+            "why": []
+          }
+        ],
+        "verdict": "PASS",
+        "why": "",
+        "spread_mm": 1.8343979703622466,
+        "t_pd_ps_per_mm": 6.105,
+        "f_ghz": 6.0,
+        "deg_per_mm": 13.19,
+        "epsilon_eff": null,
+        "z0_ohm": null,
+        "solver_evidence": null,
+        "router_moves": "octilinear",
+        "oct_floor_mm": {
+          "P": 28.51761902332485,
+          "N": 26.8105122421383
+        },
+        "oct_spread_mm": 1.7071067811865497,
+        "oct_why": "floor spread 1.7071 mm (22.52 deg at 6 GHz) exceeds max_spread_mm 1.0: shortest member N >= 26.8105 mm, longest P >= 28.5176 mm. An octilinear router (KRT moves in 8 directions, so the shortest pad-to-pad copper is max(dx,dy)+0.4142*min(dx,dy)) cannot do better \u2014 accepted because `elongation: meander` is declared and route.yaml carries executable endpoint_length_matching/canonicalize_chains, so the short members are deliberately lengthened. The realized spread below is the check that the elongation actually happened.",
+        "electrical_paths": [
+          {
+            "member": "P",
+            "id": "main",
+            "length_mm": 45.06890185076141,
+            "segments": [
+              {
+                "net": "ADC2P",
+                "from": "U_ISO2.2",
+                "to": "U_ADC.46",
+                "length_mm": 45.06890185076141,
+                "physical_edges": 28
+              }
+            ]
+          },
+          {
+            "member": "P",
+            "id": "common_mode",
+            "length_mm": 44.886174999246705,
+            "segments": [
+              {
+                "net": "ADC2P",
+                "from": "U_ISO2.2",
+                "to": "C_ADC_CM2P.1",
+                "length_mm": 44.886174999246705,
+                "physical_edges": 25
+              }
+            ]
+          },
+          {
+            "member": "P",
+            "id": "bias",
+            "length_mm": 1.1400000000000006,
+            "segments": [
+              {
+                "net": "ADC2P",
+                "from": "U_ISO2.2",
+                "to": "R_ADC_PD2P.1",
+                "length_mm": 1.1400000000000006,
+                "physical_edges": 1
+              }
+            ]
+          },
+          {
+            "member": "N",
+            "id": "main",
+            "length_mm": 45.14779224683867,
+            "segments": [
+              {
+                "net": "ADC2N",
+                "from": "U_ISO2.6",
+                "to": "U_ADC.45",
+                "length_mm": 45.14779224683867,
+                "physical_edges": 60
+              }
+            ]
+          },
+          {
+            "member": "N",
+            "id": "common_mode",
+            "length_mm": 43.05177702888446,
+            "segments": [
+              {
+                "net": "ADC2N",
+                "from": "U_ISO2.6",
+                "to": "C_ADC_CM2N.1",
+                "length_mm": 43.05177702888446,
+                "physical_edges": 54
+              }
+            ]
+          },
+          {
+            "member": "N",
+            "id": "bias",
+            "length_mm": 1.8399999999999892,
+            "segments": [
+              {
+                "net": "ADC2N",
+                "from": "U_ISO2.6",
+                "to": "R_ADC_PD2N.1",
+                "length_mm": 1.8399999999999892,
+                "physical_edges": 2
+              }
+            ]
+          }
+        ],
+        "path_spreads": [
+          {
+            "id": "main",
+            "members": {
+              "P": 45.06890185076141,
+              "N": 45.14779224683867
+            },
+            "spread_mm": 0.07889039607726289,
+            "max_spread_mm": 1.0
+          },
+          {
+            "id": "common_mode",
+            "members": {
+              "P": 44.886174999246705,
+              "N": 43.05177702888446
+            },
+            "spread_mm": 1.8343979703622466,
+            "max_spread_mm": 12.0
+          },
+          {
+            "id": "bias",
+            "members": {
+              "P": 1.1400000000000006,
+              "N": 1.8399999999999892
+            },
+            "spread_mm": 0.6999999999999886,
+            "max_spread_mm": 1.0
+          }
+        ],
+        "off_path": [
+          {
+            "net": "ADC2P",
+            "off_path_mm": 0,
+            "unexplained_edge_count": 0
+          },
+          {
+            "net": "ADC2N",
+            "off_path_mm": 0,
+            "unexplained_edge_count": 0
+          }
+        ],
+        "off_path_mm": 0.0
+      },
+      {
+        "name": "ANALOG_CH3_OUTPUT",
+        "adr": "0019-analog-path-matching",
+        "topology": "tree",
+        "max_spread_mm": 1.0,
+        "members": [
+          {
+            "name": "P",
+            "nets": [
+              "OPA_P3"
+            ],
+            "total_mm": 3.159543960315043,
+            "path_mm": 3.159543960315043,
+            "n_via": 0,
+            "n_zone": 0,
+            "n_branch": 0,
+            "n_pad_barrel": 0,
+            "n_comp": 1,
+            "n_end": 2,
+            "n_cyclic": 0,
+            "measured": true,
+            "why": []
+          },
+          {
+            "name": "N",
+            "nets": [
+              "OPA_N3"
+            ],
+            "total_mm": 3.526496554346298,
+            "path_mm": 1.9000000000000057,
+            "n_via": 0,
+            "n_zone": 0,
+            "n_branch": 0,
+            "n_pad_barrel": 0,
+            "n_comp": 2,
+            "n_end": 4,
+            "n_cyclic": 0,
+            "measured": true,
+            "why": []
+          }
+        ],
+        "verdict": "PASS",
+        "why": "",
+        "spread_mm": 0.3669525940312548,
+        "t_pd_ps_per_mm": 6.105,
+        "f_ghz": 6.0,
+        "deg_per_mm": 13.19,
+        "epsilon_eff": null,
+        "z0_ohm": null,
+        "solver_evidence": null,
+        "router_moves": "octilinear",
+        "oct_floor_mm": {
+          "P": 3.6543502884254386,
+          "N": 3.6212132034355915
+        },
+        "oct_spread_mm": 0.03313708498984713,
+        "oct_why": "",
+        "electrical_paths": [
+          {
+            "member": "P",
+            "id": "main",
+            "length_mm": 3.1595439603150433,
+            "segments": [
+              {
+                "net": "OPA_P3",
+                "from": "U_AFE3.1",
+                "to": "R_OUT3P.1",
+                "length_mm": 3.1595439603150433,
+                "physical_edges": 3
+              }
+            ]
+          },
+          {
+            "member": "P",
+            "id": "feedback",
+            "length_mm": 1.7999999999999972,
+            "segments": [
+              {
+                "net": "OPA_P3",
+                "from": "U_AFE3.1",
+                "to": "C_FB3P.2",
+                "length_mm": 1.7999999999999972,
+                "physical_edges": 1
+              }
+            ]
+          },
+          {
+            "member": "N",
+            "id": "main",
+            "length_mm": 3.526496554346298,
+            "segments": [
+              {
+                "net": "OPA_N3",
+                "from": "U_AFE3.7",
+                "to": "R_OUT3N.1",
+                "length_mm": 3.526496554346298,
+                "physical_edges": 3
+              }
+            ]
+          },
+          {
+            "member": "N",
+            "id": "feedback",
+            "length_mm": 1.9000000000000057,
+            "segments": [
+              {
+                "net": "OPA_N3",
+                "from": "U_AFE3.7",
+                "to": "C_FB3N.2",
+                "length_mm": 1.9000000000000057,
+                "physical_edges": 1
+              }
+            ]
+          }
+        ],
+        "path_spreads": [
+          {
+            "id": "main",
+            "members": {
+              "P": 3.1595439603150433,
+              "N": 3.526496554346298
+            },
+            "spread_mm": 0.3669525940312548,
+            "max_spread_mm": 1.0
+          },
+          {
+            "id": "feedback",
+            "members": {
+              "P": 1.7999999999999972,
+              "N": 1.9000000000000057
+            },
+            "spread_mm": 0.10000000000000853,
+            "max_spread_mm": 1.0
+          }
+        ],
+        "off_path": [
+          {
+            "net": "OPA_N3",
+            "off_path_mm": 0,
+            "unexplained_edge_count": 0
+          },
+          {
+            "net": "OPA_P3",
+            "off_path_mm": 0,
+            "unexplained_edge_count": 0
+          }
+        ],
+        "off_path_mm": 0.0
+      },
+      {
+        "name": "ANALOG_CH3_FILTER",
+        "adr": "0019-analog-path-matching",
+        "topology": "tree",
+        "max_spread_mm": 1.0,
+        "members": [
+          {
+            "name": "P",
+            "nets": [
+              "FILTER3P"
+            ],
+            "total_mm": 14.43969061529739,
+            "path_mm": 10.318376618407344,
+            "n_via": 0,
+            "n_zone": 0,
+            "n_branch": 0,
+            "n_pad_barrel": 0,
+            "n_comp": 2,
+            "n_end": 4,
+            "n_cyclic": 0,
+            "measured": true,
+            "why": []
+          },
+          {
+            "name": "N",
+            "nets": [
+              "FILTER3N"
+            ],
+            "total_mm": 15.00449094906925,
+            "path_mm": 8.574011537017762,
+            "n_via": 0,
+            "n_zone": 0,
+            "n_branch": 0,
+            "n_pad_barrel": 0,
+            "n_comp": 3,
+            "n_end": 6,
+            "n_cyclic": 0,
+            "measured": true,
+            "why": []
+          }
+        ],
+        "verdict": "PASS",
+        "why": "",
+        "spread_mm": 0.7908345848385405,
+        "t_pd_ps_per_mm": 6.105,
+        "f_ghz": 6.0,
+        "deg_per_mm": 13.19,
+        "epsilon_eff": null,
+        "z0_ohm": null,
+        "solver_evidence": null,
+        "router_moves": "octilinear",
+        "oct_floor_mm": {
+          "P": 10.901555544218265,
+          "N": 11.051555544218264
+        },
+        "oct_spread_mm": 0.14999999999999858,
+        "oct_why": "",
+        "electrical_paths": [
+          {
+            "member": "P",
+            "id": "main",
+            "length_mm": 14.43969061529739,
+            "segments": [
+              {
+                "net": "FILTER3P",
+                "from": "R_OUT3P.2",
+                "to": "U_ISO3.1",
+                "length_mm": 14.43969061529739,
+                "physical_edges": 24
+              }
+            ]
+          },
+          {
+            "member": "P",
+            "id": "feedback",
+            "length_mm": 1.1000000000000014,
+            "segments": [
+              {
+                "net": "FILTER3P",
+                "from": "R_OUT3P.2",
+                "to": "R_X3P.2",
+                "length_mm": 1.1000000000000014,
+                "physical_edges": 1
+              }
+            ]
+          },
+          {
+            "member": "P",
+            "id": "shunt1",
+            "length_mm": 8.918376618407343,
+            "segments": [
+              {
+                "net": "FILTER3P",
+                "from": "R_OUT3P.2",
+                "to": "C_FILTER3P1.1",
+                "length_mm": 8.918376618407343,
+                "physical_edges": 18
+              }
+            ]
+          },
+          {
+            "member": "P",
+            "id": "shunt2",
+            "length_mm": 10.318376618407342,
+            "segments": [
+              {
+                "net": "FILTER3P",
+                "from": "R_OUT3P.2",
+                "to": "C_FILTER3P2.1",
+                "length_mm": 10.318376618407342,
+                "physical_edges": 19
+              }
+            ]
+          },
+          {
+            "member": "N",
+            "id": "main",
+            "length_mm": 15.00449094906925,
+            "segments": [
+              {
+                "net": "FILTER3N",
+                "from": "R_OUT3N.2",
+                "to": "U_ISO3.5",
+                "length_mm": 15.00449094906925,
+                "physical_edges": 21
+              }
+            ]
+          },
+          {
+            "member": "N",
+            "id": "feedback",
+            "length_mm": 0.9535304965510398,
+            "segments": [
+              {
+                "net": "FILTER3N",
+                "from": "R_OUT3N.2",
+                "to": "R_X3N.2",
+                "length_mm": 0.9535304965510398,
+                "physical_edges": 2
+              }
+            ]
+          },
+          {
+            "member": "N",
+            "id": "shunt1",
+            "length_mm": 8.127542033568803,
+            "segments": [
+              {
+                "net": "FILTER3N",
+                "from": "R_OUT3N.2",
+                "to": "C_FILTER3N1.1",
+                "length_mm": 8.127542033568803,
+                "physical_edges": 14
+              }
+            ]
+          },
+          {
+            "member": "N",
+            "id": "shunt2",
+            "length_mm": 9.527542033568801,
+            "segments": [
+              {
+                "net": "FILTER3N",
+                "from": "R_OUT3N.2",
+                "to": "C_FILTER3N2.1",
+                "length_mm": 9.527542033568801,
+                "physical_edges": 15
+              }
+            ]
+          }
+        ],
+        "path_spreads": [
+          {
+            "id": "main",
+            "members": {
+              "P": 14.43969061529739,
+              "N": 15.00449094906925
+            },
+            "spread_mm": 0.5648003337718599,
+            "max_spread_mm": 1.0
+          },
+          {
+            "id": "feedback",
+            "members": {
+              "P": 1.1000000000000014,
+              "N": 0.9535304965510398
+            },
+            "spread_mm": 0.1464695034489616,
+            "max_spread_mm": 1.0
+          },
+          {
+            "id": "shunt1",
+            "members": {
+              "P": 8.918376618407343,
+              "N": 8.127542033568803
+            },
+            "spread_mm": 0.7908345848385405,
+            "max_spread_mm": 1.0
+          },
+          {
+            "id": "shunt2",
+            "members": {
+              "P": 10.318376618407342,
+              "N": 9.527542033568801
+            },
+            "spread_mm": 0.7908345848385405,
+            "max_spread_mm": 1.0
+          }
+        ],
+        "off_path": [
+          {
+            "net": "FILTER3P",
+            "off_path_mm": 0,
+            "unexplained_edge_count": 0
+          },
+          {
+            "net": "FILTER3N",
+            "off_path_mm": 0,
+            "unexplained_edge_count": 0
+          }
+        ],
+        "off_path_mm": 0.0
+      },
+      {
+        "name": "ANALOG_CH3_ADC",
+        "adr": "0019-analog-path-matching",
+        "topology": "tree",
+        "max_spread_mm": 1.0,
+        "members": [
+          {
+            "name": "P",
+            "nets": [
+              "ADC3P"
+            ],
+            "total_mm": 29.089917894162053,
+            "path_mm": 25.019587555380983,
+            "n_via": 3,
+            "n_zone": 0,
+            "n_branch": 1,
+            "n_pad_barrel": 0,
+            "n_comp": 2,
+            "n_end": 5,
+            "n_cyclic": 0,
+            "measured": true,
+            "why": []
+          },
+          {
+            "name": "N",
+            "nets": [
+              "ADC3N"
+            ],
+            "total_mm": 26.68593974135907,
+            "path_mm": 20.599669904138263,
+            "n_via": 4,
+            "n_zone": 0,
+            "n_branch": 1,
+            "n_pad_barrel": 0,
+            "n_comp": 2,
+            "n_end": 5,
+            "n_cyclic": 0,
+            "measured": true,
+            "why": []
+          }
+        ],
+        "verdict": "PASS",
+        "why": "",
+        "spread_mm": 1.9932137406675388,
+        "t_pd_ps_per_mm": 6.105,
+        "f_ghz": 6.0,
+        "deg_per_mm": 13.19,
+        "epsilon_eff": null,
+        "z0_ohm": null,
+        "solver_evidence": null,
+        "router_moves": "octilinear",
+        "oct_floor_mm": {
+          "P": 16.244469683442244,
+          "N": 16.365790027001893
+        },
+        "oct_spread_mm": 0.12132034355964905,
+        "oct_why": "",
+        "electrical_paths": [
+          {
+            "member": "P",
+            "id": "main",
+            "length_mm": 26.159587555380984,
+            "segments": [
+              {
+                "net": "ADC3P",
+                "from": "U_ISO3.2",
+                "to": "U_ADC.42",
+                "length_mm": 26.159587555380984,
+                "physical_edges": 64
+              }
+            ]
+          },
+          {
+            "member": "P",
+            "id": "common_mode",
+            "length_mm": 22.592883644805802,
+            "segments": [
+              {
+                "net": "ADC3P",
+                "from": "U_ISO3.2",
+                "to": "C_ADC_CM3P.1",
+                "length_mm": 22.592883644805802,
+                "physical_edges": 60
+              }
+            ]
+          },
+          {
+            "member": "P",
+            "id": "bias",
+            "length_mm": 1.1400000000000006,
+            "segments": [
+              {
+                "net": "ADC3P",
+                "from": "U_ISO3.2",
+                "to": "R_ADC_PD3P.1",
+                "length_mm": 1.1400000000000006,
+                "physical_edges": 1
+              }
+            ]
+          },
+          {
+            "member": "N",
+            "id": "main",
+            "length_mm": 26.13593974135907,
+            "segments": [
+              {
+                "net": "ADC3N",
+                "from": "U_ISO3.6",
+                "to": "U_ADC.41",
+                "length_mm": 26.13593974135907,
+                "physical_edges": 20
+              }
+            ]
+          },
+          {
+            "member": "N",
+            "id": "common_mode",
+            "length_mm": 20.599669904138263,
+            "segments": [
+              {
+                "net": "ADC3N",
+                "from": "U_ISO3.6",
+                "to": "C_ADC_CM3N.1",
+                "length_mm": 20.599669904138263,
+                "physical_edges": 12
+              }
+            ]
+          },
+          {
+            "member": "N",
+            "id": "bias",
+            "length_mm": 1.8399999999999892,
+            "segments": [
+              {
+                "net": "ADC3N",
+                "from": "U_ISO3.6",
+                "to": "R_ADC_PD3N.1",
+                "length_mm": 1.8399999999999892,
+                "physical_edges": 2
+              }
+            ]
+          }
+        ],
+        "path_spreads": [
+          {
+            "id": "main",
+            "members": {
+              "P": 26.159587555380984,
+              "N": 26.13593974135907
+            },
+            "spread_mm": 0.023647814021913405,
+            "max_spread_mm": 1.0
+          },
+          {
+            "id": "common_mode",
+            "members": {
+              "P": 22.592883644805802,
+              "N": 20.599669904138263
+            },
+            "spread_mm": 1.9932137406675388,
+            "max_spread_mm": 12.0
+          },
+          {
+            "id": "bias",
+            "members": {
+              "P": 1.1400000000000006,
+              "N": 1.8399999999999892
+            },
+            "spread_mm": 0.6999999999999886,
+            "max_spread_mm": 1.0
+          }
+        ],
+        "off_path": [
+          {
+            "net": "ADC3P",
+            "off_path_mm": 0,
+            "unexplained_edge_count": 0
+          },
+          {
+            "net": "ADC3N",
+            "off_path_mm": 0,
+            "unexplained_edge_count": 0
+          }
+        ],
+        "off_path_mm": 0.0
+      },
+      {
+        "name": "ANALOG_CH4_OUTPUT",
+        "adr": "0019-analog-path-matching",
+        "topology": "tree",
+        "max_spread_mm": 1.0,
+        "members": [
+          {
+            "name": "P",
+            "nets": [
+              "OPA_P4"
+            ],
+            "total_mm": 3.1595449603150687,
+            "path_mm": 1.9000000000000057,
+            "n_via": 0,
+            "n_zone": 0,
+            "n_branch": 0,
+            "n_pad_barrel": 0,
+            "n_comp": 2,
+            "n_end": 4,
+            "n_cyclic": 0,
+            "measured": true,
+            "why": []
+          },
+          {
+            "name": "N",
+            "nets": [
+              "OPA_N4"
+            ],
+            "total_mm": 3.5264965543462994,
+            "path_mm": 1.9000000000000057,
+            "n_via": 0,
+            "n_zone": 0,
+            "n_branch": 0,
+            "n_pad_barrel": 0,
+            "n_comp": 2,
+            "n_end": 4,
+            "n_cyclic": 0,
+            "measured": true,
+            "why": []
+          }
+        ],
+        "verdict": "PASS",
+        "why": "",
+        "spread_mm": 0.36695159403123023,
+        "t_pd_ps_per_mm": 6.105,
+        "f_ghz": 6.0,
+        "deg_per_mm": 13.19,
+        "epsilon_eff": null,
+        "z0_ohm": null,
+        "solver_evidence": null,
+        "router_moves": "octilinear",
+        "oct_floor_mm": {
+          "P": 3.654350288425453,
+          "N": 3.6212132034356057
+        },
+        "oct_spread_mm": 0.03313708498984713,
+        "oct_why": "",
+        "electrical_paths": [
+          {
+            "member": "P",
+            "id": "main",
+            "length_mm": 3.159544960315069,
+            "segments": [
+              {
+                "net": "OPA_P4",
+                "from": "U_AFE4.1",
+                "to": "R_OUT4P.1",
+                "length_mm": 3.159544960315069,
+                "physical_edges": 3
+              }
+            ]
+          },
+          {
+            "member": "P",
+            "id": "feedback",
+            "length_mm": 1.9000000000000057,
+            "segments": [
+              {
+                "net": "OPA_P4",
+                "from": "U_AFE4.1",
+                "to": "C_FB4P.2",
+                "length_mm": 1.9000000000000057,
+                "physical_edges": 1
+              }
+            ]
+          },
+          {
+            "member": "N",
+            "id": "main",
+            "length_mm": 3.5264965543462994,
+            "segments": [
+              {
+                "net": "OPA_N4",
+                "from": "U_AFE4.7",
+                "to": "R_OUT4N.1",
+                "length_mm": 3.5264965543462994,
+                "physical_edges": 3
+              }
+            ]
+          },
+          {
+            "member": "N",
+            "id": "feedback",
+            "length_mm": 1.9000000000000057,
+            "segments": [
+              {
+                "net": "OPA_N4",
+                "from": "U_AFE4.7",
+                "to": "C_FB4N.2",
+                "length_mm": 1.9000000000000057,
+                "physical_edges": 1
+              }
+            ]
+          }
+        ],
+        "path_spreads": [
+          {
+            "id": "main",
+            "members": {
+              "P": 3.159544960315069,
+              "N": 3.5264965543462994
+            },
+            "spread_mm": 0.36695159403123023,
+            "max_spread_mm": 1.0
+          },
+          {
+            "id": "feedback",
+            "members": {
+              "P": 1.9000000000000057,
+              "N": 1.9000000000000057
+            },
+            "spread_mm": 0.0,
+            "max_spread_mm": 1.0
+          }
+        ],
+        "off_path": [
+          {
+            "net": "OPA_N4",
+            "off_path_mm": 0,
+            "unexplained_edge_count": 0
+          },
+          {
+            "net": "OPA_P4",
+            "off_path_mm": 0,
+            "unexplained_edge_count": 0
+          }
+        ],
+        "off_path_mm": 0.0
+      },
+      {
+        "name": "ANALOG_CH4_FILTER",
+        "adr": "0019-analog-path-matching",
+        "topology": "tree",
+        "max_spread_mm": 1.0,
+        "members": [
+          {
+            "name": "P",
+            "nets": [
+              "FILTER4P"
+            ],
+            "total_mm": 16.888004210354364,
+            "path_mm": 11.366690213464306,
+            "n_via": 2,
+            "n_zone": 0,
+            "n_branch": 0,
+            "n_pad_barrel": 0,
+            "n_comp": 3,
+            "n_end": 6,
+            "n_cyclic": 0,
+            "measured": true,
+            "why": []
+          },
+          {
+            "name": "N",
+            "nets": [
+              "FILTER4N"
+            ],
+            "total_mm": 17.33949094016722,
+            "path_mm": 11.862542024666764,
+            "n_via": 0,
+            "n_zone": 0,
+            "n_branch": 0,
+            "n_pad_barrel": 0,
+            "n_comp": 2,
+            "n_end": 4,
+            "n_cyclic": 0,
+            "measured": true,
+            "why": []
+          }
+        ],
+        "verdict": "PASS",
+        "why": "",
+        "spread_mm": 0.9041481887975404,
+        "t_pd_ps_per_mm": 6.105,
+        "f_ghz": 6.0,
+        "deg_per_mm": 13.19,
+        "epsilon_eff": null,
+        "z0_ohm": null,
+        "solver_evidence": null,
+        "router_moves": "octilinear",
+        "oct_floor_mm": {
+          "P": 10.901555544218265,
+          "N": 11.051555544218264
+        },
+        "oct_spread_mm": 0.14999999999999858,
+        "oct_why": "",
+        "electrical_paths": [
+          {
+            "member": "P",
+            "id": "main",
+            "length_mm": 16.88800421035436,
+            "segments": [
+              {
+                "net": "FILTER4P",
+                "from": "R_OUT4P.2",
+                "to": "U_ISO4.1",
+                "length_mm": 16.88800421035436,
+                "physical_edges": 18
+              }
+            ]
+          },
+          {
+            "member": "P",
+            "id": "feedback",
+            "length_mm": 1.1000000000000014,
+            "segments": [
+              {
+                "net": "FILTER4P",
+                "from": "R_OUT4P.2",
+                "to": "R_X4P.2",
+                "length_mm": 1.1000000000000014,
+                "physical_edges": 1
+              }
+            ]
+          },
+          {
+            "member": "P",
+            "id": "shunt1",
+            "length_mm": 11.366690213464306,
+            "segments": [
+              {
+                "net": "FILTER4P",
+                "from": "R_OUT4P.2",
+                "to": "C_FILTER4P1.1",
+                "length_mm": 11.366690213464306,
+                "physical_edges": 12
+              }
+            ]
+          },
+          {
+            "member": "P",
+            "id": "shunt2",
+            "length_mm": 12.766690213464305,
+            "segments": [
+              {
+                "net": "FILTER4P",
+                "from": "R_OUT4P.2",
+                "to": "C_FILTER4P2.1",
+                "length_mm": 12.766690213464305,
+                "physical_edges": 13
+              }
+            ]
+          },
+          {
+            "member": "N",
+            "id": "main",
+            "length_mm": 17.33949094016722,
+            "segments": [
+              {
+                "net": "FILTER4N",
+                "from": "R_OUT4N.2",
+                "to": "U_ISO4.5",
+                "length_mm": 17.33949094016722,
+                "physical_edges": 33
+              }
+            ]
+          },
+          {
+            "member": "N",
+            "id": "feedback",
+            "length_mm": 0.9535304965510283,
+            "segments": [
+              {
+                "net": "FILTER4N",
+                "from": "R_OUT4N.2",
+                "to": "R_X4N.2",
+                "length_mm": 0.9535304965510283,
+                "physical_edges": 2
+              }
+            ]
+          },
+          {
+            "member": "N",
+            "id": "shunt1",
+            "length_mm": 10.462542024666766,
+            "segments": [
+              {
+                "net": "FILTER4N",
+                "from": "R_OUT4N.2",
+                "to": "C_FILTER4N1.1",
+                "length_mm": 10.462542024666766,
+                "physical_edges": 26
+              }
+            ]
+          },
+          {
+            "member": "N",
+            "id": "shunt2",
+            "length_mm": 11.862542024666764,
+            "segments": [
+              {
+                "net": "FILTER4N",
+                "from": "R_OUT4N.2",
+                "to": "C_FILTER4N2.1",
+                "length_mm": 11.862542024666764,
+                "physical_edges": 27
+              }
+            ]
+          }
+        ],
+        "path_spreads": [
+          {
+            "id": "main",
+            "members": {
+              "P": 16.88800421035436,
+              "N": 17.33949094016722
+            },
+            "spread_mm": 0.45148672981286,
+            "max_spread_mm": 1.0
+          },
+          {
+            "id": "feedback",
+            "members": {
+              "P": 1.1000000000000014,
+              "N": 0.9535304965510283
+            },
+            "spread_mm": 0.14646950344897314,
+            "max_spread_mm": 1.0
+          },
+          {
+            "id": "shunt1",
+            "members": {
+              "P": 11.366690213464306,
+              "N": 10.462542024666766
+            },
+            "spread_mm": 0.9041481887975404,
+            "max_spread_mm": 1.0
+          },
+          {
+            "id": "shunt2",
+            "members": {
+              "P": 12.766690213464305,
+              "N": 11.862542024666764
+            },
+            "spread_mm": 0.9041481887975404,
+            "max_spread_mm": 1.0
+          }
+        ],
+        "off_path": [
+          {
+            "net": "FILTER4P",
+            "off_path_mm": 0,
+            "unexplained_edge_count": 0
+          },
+          {
+            "net": "FILTER4N",
+            "off_path_mm": 0,
+            "unexplained_edge_count": 0
+          }
+        ],
+        "off_path_mm": 0.0
+      },
+      {
+        "name": "ANALOG_CH4_ADC",
+        "adr": "0019-analog-path-matching",
+        "topology": "tree",
+        "max_spread_mm": 1.0,
+        "members": [
+          {
+            "name": "P",
+            "nets": [
+              "ADC4P"
+            ],
+            "total_mm": 73.89487831172403,
+            "path_mm": 69.10596101525054,
+            "n_via": 7,
+            "n_zone": 0,
+            "n_branch": 1,
+            "n_pad_barrel": 0,
+            "n_comp": 2,
+            "n_end": 5,
+            "n_cyclic": 0,
+            "measured": true,
+            "why": []
+          },
+          {
+            "name": "N",
+            "nets": [
+              "ADC4N"
+            ],
+            "total_mm": 69.76571725963234,
+            "path_mm": 67.3507162596323,
+            "n_via": 10,
+            "n_zone": 0,
+            "n_branch": 1,
+            "n_pad_barrel": 0,
+            "n_comp": 2,
+            "n_end": 5,
+            "n_cyclic": 0,
+            "measured": true,
+            "why": []
+          }
+        ],
+        "verdict": "PASS",
+        "why": "",
+        "spread_mm": 10.663121720444387,
+        "t_pd_ps_per_mm": 6.105,
+        "f_ghz": 6.0,
+        "deg_per_mm": 13.19,
+        "epsilon_eff": null,
+        "z0_ohm": null,
+        "solver_evidence": null,
+        "router_moves": "octilinear",
+        "oct_floor_mm": {
+          "P": 44.01761902332487,
+          "N": 45.31051224213829
+        },
+        "oct_spread_mm": 1.2928932188134183,
+        "oct_why": "floor spread 1.2929 mm (17.05 deg at 6 GHz) exceeds max_spread_mm 1.0: shortest member P >= 44.0176 mm, longest N >= 45.3105 mm. An octilinear router (KRT moves in 8 directions, so the shortest pad-to-pad copper is max(dx,dy)+0.4142*min(dx,dy)) cannot do better \u2014 accepted because `elongation: meander` is declared and route.yaml carries executable endpoint_length_matching/canonicalize_chains, so the short members are deliberately lengthened. The realized spread below is the check that the elongation actually happened.",
+        "electrical_paths": [
+          {
+            "member": "P",
+            "id": "main",
+            "length_mm": 69.21223290106184,
+            "segments": [
+              {
+                "net": "ADC4P",
+                "from": "U_ISO4.2",
+                "to": "U_ADC.40",
+                "length_mm": 69.21223290106184,
+                "physical_edges": 76
+              }
+            ]
+          },
+          {
+            "member": "P",
+            "id": "common_mode",
+            "length_mm": 70.24596101525056,
+            "segments": [
+              {
+                "net": "ADC4P",
+                "from": "U_ISO4.2",
+                "to": "C_ADC_CM4P.1",
+                "length_mm": 70.24596101525056,
+                "physical_edges": 76
+              }
+            ]
+          },
+          {
+            "member": "P",
+            "id": "bias",
+            "length_mm": 1.1400000000000148,
+            "segments": [
+              {
+                "net": "ADC4P",
+                "from": "U_ISO4.2",
+                "to": "R_ADC_PD4P.1",
+                "length_mm": 1.1400000000000148,
+                "physical_edges": 1
+              }
+            ]
+          },
+          {
+            "member": "N",
+            "id": "main",
+            "length_mm": 69.19071625963232,
+            "segments": [
+              {
+                "net": "ADC4N",
+                "from": "U_ISO4.6",
+                "to": "U_ADC.39",
+                "length_mm": 69.19071625963232,
+                "physical_edges": 48
+              }
+            ]
+          },
+          {
+            "member": "N",
+            "id": "common_mode",
+            "length_mm": 59.58283929480617,
+            "segments": [
+              {
+                "net": "ADC4N",
+                "from": "U_ISO4.6",
+                "to": "C_ADC_CM4N.1",
+                "length_mm": 59.58283929480617,
+                "physical_edges": 38
+              }
+            ]
+          },
+          {
+            "member": "N",
+            "id": "bias",
+            "length_mm": 1.8400000000000176,
+            "segments": [
+              {
+                "net": "ADC4N",
+                "from": "U_ISO4.6",
+                "to": "R_ADC_PD4N.1",
+                "length_mm": 1.8400000000000176,
+                "physical_edges": 2
+              }
+            ]
+          }
+        ],
+        "path_spreads": [
+          {
+            "id": "main",
+            "members": {
+              "P": 69.21223290106184,
+              "N": 69.19071625963232
+            },
+            "spread_mm": 0.02151664142951404,
+            "max_spread_mm": 1.0
+          },
+          {
+            "id": "common_mode",
+            "members": {
+              "P": 70.24596101525056,
+              "N": 59.58283929480617
+            },
+            "spread_mm": 10.663121720444387,
+            "max_spread_mm": 12.0
+          },
+          {
+            "id": "bias",
+            "members": {
+              "P": 1.1400000000000148,
+              "N": 1.8400000000000176
+            },
+            "spread_mm": 0.7000000000000028,
+            "max_spread_mm": 1.0
+          }
+        ],
+        "off_path": [
+          {
+            "net": "ADC4P",
+            "off_path_mm": 0,
+            "unexplained_edge_count": 0
+          },
+          {
+            "net": "ADC4N",
+            "off_path_mm": 0,
+            "unexplained_edge_count": 0
+          }
+        ],
+        "off_path_mm": 0.0
+      },
+      {
+        "name": "ANALOG_CH5_OUTPUT",
+        "adr": "0019-analog-path-matching",
+        "topology": "tree",
+        "max_spread_mm": 1.0,
+        "members": [
+          {
+            "name": "P",
+            "nets": [
+              "OPA_P5"
+            ],
+            "total_mm": 3.159543960315043,
+            "path_mm": 1.7999999999999972,
+            "n_via": 0,
+            "n_zone": 0,
+            "n_branch": 0,
+            "n_pad_barrel": 0,
+            "n_comp": 2,
+            "n_end": 4,
+            "n_cyclic": 0,
+            "measured": true,
+            "why": []
+          },
+          {
+            "name": "N",
+            "nets": [
+              "OPA_N5"
+            ],
+            "total_mm": 3.2402423887213456,
+            "path_mm": 1.8999999999999986,
+            "n_via": 0,
+            "n_zone": 0,
+            "n_branch": 0,
+            "n_pad_barrel": 0,
+            "n_comp": 2,
+            "n_end": 4,
+            "n_cyclic": 0,
+            "measured": true,
+            "why": []
+          }
+        ],
+        "verdict": "PASS",
+        "why": "",
+        "spread_mm": 0.10000000000000142,
+        "t_pd_ps_per_mm": 6.105,
+        "f_ghz": 6.0,
+        "deg_per_mm": 13.19,
+        "epsilon_eff": null,
+        "z0_ohm": null,
+        "solver_evidence": null,
+        "router_moves": "octilinear",
+        "oct_floor_mm": {
+          "P": 3.6543502884254457,
+          "N": 3.6212132034355986
+        },
+        "oct_spread_mm": 0.03313708498984713,
+        "oct_why": "",
+        "electrical_paths": [
+          {
+            "member": "P",
+            "id": "main",
+            "length_mm": 3.1595439603150433,
+            "segments": [
+              {
+                "net": "OPA_P5",
+                "from": "U_AFE5.1",
+                "to": "R_OUT5P.1",
+                "length_mm": 3.1595439603150433,
+                "physical_edges": 3
+              }
+            ]
+          },
+          {
+            "member": "P",
+            "id": "feedback",
+            "length_mm": 1.7999999999999972,
+            "segments": [
+              {
+                "net": "OPA_P5",
+                "from": "U_AFE5.1",
+                "to": "C_FB5P.2",
+                "length_mm": 1.7999999999999972,
+                "physical_edges": 1
+              }
+            ]
+          },
+          {
+            "member": "N",
+            "id": "main",
+            "length_mm": 3.2402423887213456,
+            "segments": [
+              {
+                "net": "OPA_N5",
+                "from": "U_AFE5.7",
+                "to": "R_OUT5N.1",
+                "length_mm": 3.2402423887213456,
+                "physical_edges": 3
+              }
+            ]
+          },
+          {
+            "member": "N",
+            "id": "feedback",
+            "length_mm": 1.8999999999999986,
+            "segments": [
+              {
+                "net": "OPA_N5",
+                "from": "U_AFE5.7",
+                "to": "C_FB5N.2",
+                "length_mm": 1.8999999999999986,
+                "physical_edges": 1
+              }
+            ]
+          }
+        ],
+        "path_spreads": [
+          {
+            "id": "main",
+            "members": {
+              "P": 3.1595439603150433,
+              "N": 3.2402423887213456
+            },
+            "spread_mm": 0.08069842840630237,
+            "max_spread_mm": 1.0
+          },
+          {
+            "id": "feedback",
+            "members": {
+              "P": 1.7999999999999972,
+              "N": 1.8999999999999986
+            },
+            "spread_mm": 0.10000000000000142,
+            "max_spread_mm": 1.0
+          }
+        ],
+        "off_path": [
+          {
+            "net": "OPA_N5",
+            "off_path_mm": 0,
+            "unexplained_edge_count": 0
+          },
+          {
+            "net": "OPA_P5",
+            "off_path_mm": 0,
+            "unexplained_edge_count": 0
+          }
+        ],
+        "off_path_mm": 0.0
+      },
+      {
+        "name": "ANALOG_CH5_FILTER",
+        "adr": "0019-analog-path-matching",
+        "topology": "tree",
+        "max_spread_mm": 1.0,
+        "members": [
+          {
+            "name": "P",
+            "nets": [
+              "FILTER5P"
+            ],
+            "total_mm": 18.243853671331653,
+            "path_mm": 12.142640687119302,
+            "n_via": 0,
+            "n_zone": 0,
+            "n_branch": 0,
+            "n_pad_barrel": 0,
+            "n_comp": 2,
+            "n_end": 4,
+            "n_cyclic": 0,
+            "measured": true,
+            "why": []
+          },
+          {
+            "name": "N",
+            "nets": [
+              "FILTER5N"
+            ],
+            "total_mm": 17.46961927005235,
+            "path_mm": 10.15860676850889,
+            "n_via": 2,
+            "n_zone": 0,
+            "n_branch": 0,
+            "n_pad_barrel": 0,
+            "n_comp": 4,
+            "n_end": 8,
+            "n_cyclic": 0,
+            "measured": true,
+            "why": []
+          }
+        ],
+        "verdict": "PASS",
+        "why": "",
+        "spread_mm": 0.7742344012793119,
+        "t_pd_ps_per_mm": 6.105,
+        "f_ghz": 6.0,
+        "deg_per_mm": 13.19,
+        "epsilon_eff": null,
+        "z0_ohm": null,
+        "solver_evidence": null,
+        "router_moves": "octilinear",
+        "oct_floor_mm": {
+          "P": 10.901555544218258,
+          "N": 11.051555544218264
+        },
+        "oct_spread_mm": 0.15000000000000568,
+        "oct_why": "",
+        "electrical_paths": [
+          {
+            "member": "P",
+            "id": "main",
+            "length_mm": 18.243853671331653,
+            "segments": [
+              {
+                "net": "FILTER5P",
+                "from": "R_OUT5P.2",
+                "to": "U_ISO5.1",
+                "length_mm": 18.243853671331653,
+                "physical_edges": 47
+              }
+            ]
+          },
+          {
+            "member": "P",
+            "id": "feedback",
+            "length_mm": 1.1000000000000085,
+            "segments": [
+              {
+                "net": "FILTER5P",
+                "from": "R_OUT5P.2",
+                "to": "R_X5P.2",
+                "length_mm": 1.1000000000000085,
+                "physical_edges": 1
+              }
+            ]
+          },
+          {
+            "member": "P",
+            "id": "shunt1",
+            "length_mm": 10.74264068711931,
+            "segments": [
+              {
+                "net": "FILTER5P",
+                "from": "R_OUT5P.2",
+                "to": "C_FILTER5P1.1",
+                "length_mm": 10.74264068711931,
+                "physical_edges": 22
+              }
+            ]
+          },
+          {
+            "member": "P",
+            "id": "shunt2",
+            "length_mm": 12.142640687119302,
+            "segments": [
+              {
+                "net": "FILTER5P",
+                "from": "R_OUT5P.2",
+                "to": "C_FILTER5P2.1",
+                "length_mm": 12.142640687119302,
+                "physical_edges": 23
+              }
+            ]
+          },
+          {
+            "member": "N",
+            "id": "main",
+            "length_mm": 17.46961927005234,
+            "segments": [
+              {
+                "net": "FILTER5N",
+                "from": "R_OUT5N.2",
+                "to": "U_ISO5.5",
+                "length_mm": 17.46961927005234,
+                "physical_edges": 38
+              }
+            ]
+          },
+          {
+            "member": "N",
+            "id": "feedback",
+            "length_mm": 0.9535304965510253,
+            "segments": [
+              {
+                "net": "FILTER5N",
+                "from": "R_OUT5N.2",
+                "to": "R_X5N.2",
+                "length_mm": 0.9535304965510253,
+                "physical_edges": 2
+              }
+            ]
+          },
+          {
+            "member": "N",
+            "id": "shunt1",
+            "length_mm": 10.234091710789208,
+            "segments": [
+              {
+                "net": "FILTER5N",
+                "from": "R_OUT5N.2",
+                "to": "C_FILTER5N1.1",
+                "length_mm": 10.234091710789208,
+                "physical_edges": 31
+              }
+            ]
+          },
+          {
+            "member": "N",
+            "id": "shunt2",
+            "length_mm": 12.034091710789205,
+            "segments": [
+              {
+                "net": "FILTER5N",
+                "from": "R_OUT5N.2",
+                "to": "C_FILTER5N2.1",
+                "length_mm": 12.034091710789205,
+                "physical_edges": 32
+              }
+            ]
+          }
+        ],
+        "path_spreads": [
+          {
+            "id": "main",
+            "members": {
+              "P": 18.243853671331653,
+              "N": 17.46961927005234
+            },
+            "spread_mm": 0.7742344012793119,
+            "max_spread_mm": 1.0
+          },
+          {
+            "id": "feedback",
+            "members": {
+              "P": 1.1000000000000085,
+              "N": 0.9535304965510253
+            },
+            "spread_mm": 0.14646950344898324,
+            "max_spread_mm": 1.0
+          },
+          {
+            "id": "shunt1",
+            "members": {
+              "P": 10.74264068711931,
+              "N": 10.234091710789208
+            },
+            "spread_mm": 0.5085489763301023,
+            "max_spread_mm": 1.0
+          },
+          {
+            "id": "shunt2",
+            "members": {
+              "P": 12.142640687119302,
+              "N": 12.034091710789205
+            },
+            "spread_mm": 0.10854897633009664,
+            "max_spread_mm": 1.0
+          }
+        ],
+        "off_path": [
+          {
+            "net": "FILTER5P",
+            "off_path_mm": 0,
+            "unexplained_edge_count": 0
+          },
+          {
+            "net": "FILTER5N",
+            "off_path_mm": 0,
+            "unexplained_edge_count": 0
+          }
+        ],
+        "off_path_mm": 0.0
+      },
+      {
+        "name": "ANALOG_CH5_ADC",
+        "adr": "0019-analog-path-matching",
+        "topology": "tree",
+        "max_spread_mm": 1.0,
+        "members": [
+          {
+            "name": "P",
+            "nets": [
+              "ADC5P"
+            ],
+            "total_mm": 114.2280358483681,
+            "path_mm": 108.69882228599498,
+            "n_via": 4,
+            "n_zone": 0,
+            "n_branch": 0,
+            "n_pad_barrel": 0,
+            "n_comp": 3,
+            "n_end": 6,
+            "n_cyclic": 0,
+            "measured": true,
+            "why": []
+          },
+          {
+            "name": "N",
+            "nets": [
+              "ADC5N"
+            ],
+            "total_mm": 113.93204789993906,
+            "path_mm": 105.30744458735133,
+            "n_via": 4,
+            "n_zone": 0,
+            "n_branch": 1,
+            "n_pad_barrel": 0,
+            "n_comp": 2,
+            "n_end": 5,
+            "n_cyclic": 0,
+            "measured": true,
+            "why": []
+          }
+        ],
+        "verdict": "PASS",
+        "why": "",
+        "spread_mm": 4.531377698643709,
+        "t_pd_ps_per_mm": 6.105,
+        "f_ghz": 6.0,
+        "deg_per_mm": 13.19,
+        "epsilon_eff": null,
+        "z0_ohm": null,
+        "solver_evidence": null,
+        "router_moves": "octilinear",
+        "oct_floor_mm": {
+          "P": 58.21761902332486,
+          "N": 59.51051224213831
+        },
+        "oct_spread_mm": 1.2928932188134539,
+        "oct_why": "floor spread 1.2929 mm (17.05 deg at 6 GHz) exceeds max_spread_mm 1.0: shortest member P >= 58.2176 mm, longest N >= 59.5105 mm. An octilinear router (KRT moves in 8 directions, so the shortest pad-to-pad copper is max(dx,dy)+0.4142*min(dx,dy)) cannot do better \u2014 accepted because `elongation: meander` is declared and route.yaml carries executable endpoint_length_matching/canonicalize_chains, so the short members are deliberately lengthened. The realized spread below is the check that the elongation actually happened.",
+        "electrical_paths": [
+          {
+            "member": "P",
+            "id": "main",
+            "length_mm": 114.22803584836814,
+            "segments": [
+              {
+                "net": "ADC5P",
+                "from": "U_ISO5.2",
+                "to": "U_ADC.14",
+                "length_mm": 114.22803584836814,
+                "physical_edges": 84
+              }
+            ]
+          },
+          {
+            "member": "P",
+            "id": "common_mode",
+            "length_mm": 109.83882228599504,
+            "segments": [
+              {
+                "net": "ADC5P",
+                "from": "U_ISO5.2",
+                "to": "C_ADC_CM5P.1",
+                "length_mm": 109.83882228599504,
+                "physical_edges": 78
+              }
+            ]
+          },
+          {
+            "member": "P",
+            "id": "bias",
+            "length_mm": 1.1400000000000006,
+            "segments": [
+              {
+                "net": "ADC5P",
+                "from": "U_ISO5.2",
+                "to": "R_ADC_PD5P.1",
+                "length_mm": 1.1400000000000006,
+                "physical_edges": 1
+              }
+            ]
+          },
+          {
+            "member": "N",
+            "id": "main",
+            "length_mm": 113.38204789993904,
+            "segments": [
+              {
+                "net": "ADC5N",
+                "from": "U_ISO5.6",
+                "to": "U_ADC.13",
+                "length_mm": 113.38204789993904,
+                "physical_edges": 45
+              }
+            ]
+          },
+          {
+            "member": "N",
+            "id": "common_mode",
+            "length_mm": 105.30744458735133,
+            "segments": [
+              {
+                "net": "ADC5N",
+                "from": "U_ISO5.6",
+                "to": "C_ADC_CM5N.1",
+                "length_mm": 105.30744458735133,
+                "physical_edges": 37
+              }
+            ]
+          },
+          {
+            "member": "N",
+            "id": "bias",
+            "length_mm": 1.8400000000000105,
+            "segments": [
+              {
+                "net": "ADC5N",
+                "from": "U_ISO5.6",
+                "to": "R_ADC_PD5N.1",
+                "length_mm": 1.8400000000000105,
+                "physical_edges": 2
+              }
+            ]
+          }
+        ],
+        "path_spreads": [
+          {
+            "id": "main",
+            "members": {
+              "P": 114.22803584836814,
+              "N": 113.38204789993904
+            },
+            "spread_mm": 0.845987948429098,
+            "max_spread_mm": 1.0
+          },
+          {
+            "id": "common_mode",
+            "members": {
+              "P": 109.83882228599504,
+              "N": 105.30744458735133
+            },
+            "spread_mm": 4.531377698643709,
+            "max_spread_mm": 12.0
+          },
+          {
+            "id": "bias",
+            "members": {
+              "P": 1.1400000000000006,
+              "N": 1.8400000000000105
+            },
+            "spread_mm": 0.70000000000001,
+            "max_spread_mm": 1.0
+          }
+        ],
+        "off_path": [
+          {
+            "net": "ADC5P",
+            "off_path_mm": 0,
+            "unexplained_edge_count": 0
+          },
+          {
+            "net": "ADC5N",
+            "off_path_mm": 0,
+            "unexplained_edge_count": 0
+          }
+        ],
+        "off_path_mm": 0.0
+      },
+      {
+        "name": "ANALOG_CH6_OUTPUT",
+        "adr": "0019-analog-path-matching",
+        "topology": "tree",
+        "max_spread_mm": 1.0,
+        "members": [
+          {
+            "name": "P",
+            "nets": [
+              "OPA_P6"
+            ],
+            "total_mm": 3.1595439603150433,
+            "path_mm": 1.7999999999999972,
+            "n_via": 0,
+            "n_zone": 0,
+            "n_branch": 0,
+            "n_pad_barrel": 0,
+            "n_comp": 2,
+            "n_end": 4,
+            "n_cyclic": 0,
+            "measured": true,
+            "why": []
+          },
+          {
+            "name": "N",
+            "nets": [
+              "OPA_N6"
+            ],
+            "total_mm": 3.526496554346301,
+            "path_mm": 1.9000000000000057,
+            "n_via": 0,
+            "n_zone": 0,
+            "n_branch": 0,
+            "n_pad_barrel": 0,
+            "n_comp": 2,
+            "n_end": 4,
+            "n_cyclic": 0,
+            "measured": true,
+            "why": []
+          }
+        ],
+        "verdict": "PASS",
+        "why": "",
+        "spread_mm": 0.3669525940312579,
+        "t_pd_ps_per_mm": 6.105,
+        "f_ghz": 6.0,
+        "deg_per_mm": 13.19,
+        "epsilon_eff": null,
+        "z0_ohm": null,
+        "solver_evidence": null,
+        "router_moves": "octilinear",
+        "oct_floor_mm": {
+          "P": 3.6543502884254386,
+          "N": 3.6212132034355915
+        },
+        "oct_spread_mm": 0.03313708498984713,
+        "oct_why": "",
+        "electrical_paths": [
+          {
+            "member": "P",
+            "id": "main",
+            "length_mm": 3.1595439603150433,
+            "segments": [
+              {
+                "net": "OPA_P6",
+                "from": "U_AFE6.1",
+                "to": "R_OUT6P.1",
+                "length_mm": 3.1595439603150433,
+                "physical_edges": 3
+              }
+            ]
+          },
+          {
+            "member": "P",
+            "id": "feedback",
+            "length_mm": 1.7999999999999972,
+            "segments": [
+              {
+                "net": "OPA_P6",
+                "from": "U_AFE6.1",
+                "to": "C_FB6P.2",
+                "length_mm": 1.7999999999999972,
+                "physical_edges": 1
+              }
+            ]
+          },
+          {
+            "member": "N",
+            "id": "main",
+            "length_mm": 3.526496554346301,
+            "segments": [
+              {
+                "net": "OPA_N6",
+                "from": "U_AFE6.7",
+                "to": "R_OUT6N.1",
+                "length_mm": 3.526496554346301,
+                "physical_edges": 3
+              }
+            ]
+          },
+          {
+            "member": "N",
+            "id": "feedback",
+            "length_mm": 1.9000000000000057,
+            "segments": [
+              {
+                "net": "OPA_N6",
+                "from": "U_AFE6.7",
+                "to": "C_FB6N.2",
+                "length_mm": 1.9000000000000057,
+                "physical_edges": 1
+              }
+            ]
+          }
+        ],
+        "path_spreads": [
+          {
+            "id": "main",
+            "members": {
+              "P": 3.1595439603150433,
+              "N": 3.526496554346301
+            },
+            "spread_mm": 0.3669525940312579,
+            "max_spread_mm": 1.0
+          },
+          {
+            "id": "feedback",
+            "members": {
+              "P": 1.7999999999999972,
+              "N": 1.9000000000000057
+            },
+            "spread_mm": 0.10000000000000853,
+            "max_spread_mm": 1.0
+          }
+        ],
+        "off_path": [
+          {
+            "net": "OPA_P6",
+            "off_path_mm": 0,
+            "unexplained_edge_count": 0
+          },
+          {
+            "net": "OPA_N6",
+            "off_path_mm": 0,
+            "unexplained_edge_count": 0
+          }
+        ],
+        "off_path_mm": 0.0
+      },
+      {
+        "name": "ANALOG_CH6_FILTER",
+        "adr": "0019-analog-path-matching",
+        "topology": "tree",
+        "max_spread_mm": 1.0,
+        "members": [
+          {
+            "name": "P",
+            "nets": [
+              "FILTER6P"
+            ],
+            "total_mm": 14.122533327771997,
+            "path_mm": 10.001219330881957,
+            "n_via": 0,
+            "n_zone": 0,
+            "n_branch": 0,
+            "n_pad_barrel": 0,
+            "n_comp": 2,
+            "n_end": 4,
+            "n_cyclic": 0,
+            "measured": true,
+            "why": []
+          },
+          {
+            "name": "N",
+            "nets": [
+              "FILTER6N"
+            ],
+            "total_mm": 14.95596591987724,
+            "path_mm": 9.479017004376795,
+            "n_via": 0,
+            "n_zone": 0,
+            "n_branch": 0,
+            "n_pad_barrel": 0,
+            "n_comp": 2,
+            "n_end": 4,
+            "n_cyclic": 0,
+            "measured": true,
+            "why": []
+          }
+        ],
+        "verdict": "PASS",
+        "why": "",
+        "spread_mm": 0.8334325921052468,
+        "t_pd_ps_per_mm": 6.105,
+        "f_ghz": 6.0,
+        "deg_per_mm": 13.19,
+        "epsilon_eff": null,
+        "z0_ohm": null,
+        "solver_evidence": null,
+        "router_moves": "octilinear",
+        "oct_floor_mm": {
+          "P": 10.901555544218258,
+          "N": 11.051555544218264
+        },
+        "oct_spread_mm": 0.15000000000000568,
+        "oct_why": "",
+        "electrical_paths": [
+          {
+            "member": "P",
+            "id": "main",
+            "length_mm": 14.122533327771995,
+            "segments": [
+              {
+                "net": "FILTER6P",
+                "from": "R_OUT6P.2",
+                "to": "U_ISO6.1",
+                "length_mm": 14.122533327771995,
+                "physical_edges": 28
+              }
+            ]
+          },
+          {
+            "member": "P",
+            "id": "feedback",
+            "length_mm": 1.1000000000000085,
+            "segments": [
+              {
+                "net": "FILTER6P",
+                "from": "R_OUT6P.2",
+                "to": "R_X6P.2",
+                "length_mm": 1.1000000000000085,
+                "physical_edges": 1
+              }
+            ]
+          },
+          {
+            "member": "P",
+            "id": "shunt1",
+            "length_mm": 8.601219330881966,
+            "segments": [
+              {
+                "net": "FILTER6P",
+                "from": "R_OUT6P.2",
+                "to": "C_FILTER6P1.1",
+                "length_mm": 8.601219330881966,
+                "physical_edges": 22
+              }
+            ]
+          },
+          {
+            "member": "P",
+            "id": "shunt2",
+            "length_mm": 10.001219330881957,
+            "segments": [
+              {
+                "net": "FILTER6P",
+                "from": "R_OUT6P.2",
+                "to": "C_FILTER6P2.1",
+                "length_mm": 10.001219330881957,
+                "physical_edges": 23
+              }
+            ]
+          },
+          {
+            "member": "N",
+            "id": "main",
+            "length_mm": 14.955965919877242,
+            "segments": [
+              {
+                "net": "FILTER6N",
+                "from": "R_OUT6N.2",
+                "to": "U_ISO6.5",
+                "length_mm": 14.955965919877242,
+                "physical_edges": 20
+              }
+            ]
+          },
+          {
+            "member": "N",
+            "id": "feedback",
+            "length_mm": 0.953531311883797,
+            "segments": [
+              {
+                "net": "FILTER6N",
+                "from": "R_OUT6N.2",
+                "to": "R_X6N.2",
+                "length_mm": 0.953531311883797,
+                "physical_edges": 2
+              }
+            ]
+          },
+          {
+            "member": "N",
+            "id": "shunt1",
+            "length_mm": 8.079017004376803,
+            "segments": [
+              {
+                "net": "FILTER6N",
+                "from": "R_OUT6N.2",
+                "to": "C_FILTER6N1.1",
+                "length_mm": 8.079017004376803,
+                "physical_edges": 13
+              }
+            ]
+          },
+          {
+            "member": "N",
+            "id": "shunt2",
+            "length_mm": 9.479017004376795,
+            "segments": [
+              {
+                "net": "FILTER6N",
+                "from": "R_OUT6N.2",
+                "to": "C_FILTER6N2.1",
+                "length_mm": 9.479017004376795,
+                "physical_edges": 14
+              }
+            ]
+          }
+        ],
+        "path_spreads": [
+          {
+            "id": "main",
+            "members": {
+              "P": 14.122533327771995,
+              "N": 14.955965919877242
+            },
+            "spread_mm": 0.8334325921052468,
+            "max_spread_mm": 1.0
+          },
+          {
+            "id": "feedback",
+            "members": {
+              "P": 1.1000000000000085,
+              "N": 0.953531311883797
+            },
+            "spread_mm": 0.1464686881162115,
+            "max_spread_mm": 1.0
+          },
+          {
+            "id": "shunt1",
+            "members": {
+              "P": 8.601219330881966,
+              "N": 8.079017004376803
+            },
+            "spread_mm": 0.5222023265051625,
+            "max_spread_mm": 1.0
+          },
+          {
+            "id": "shunt2",
+            "members": {
+              "P": 10.001219330881957,
+              "N": 9.479017004376795
+            },
+            "spread_mm": 0.5222023265051625,
+            "max_spread_mm": 1.0
+          }
+        ],
+        "off_path": [
+          {
+            "net": "FILTER6N",
+            "off_path_mm": 0,
+            "unexplained_edge_count": 0
+          },
+          {
+            "net": "FILTER6P",
+            "off_path_mm": 0,
+            "unexplained_edge_count": 0
+          }
+        ],
+        "off_path_mm": 0.0
+      },
+      {
+        "name": "ANALOG_CH6_ADC",
+        "adr": "0019-analog-path-matching",
+        "topology": "tree",
+        "max_spread_mm": 1.0,
+        "members": [
+          {
+            "name": "P",
+            "nets": [
+              "ADC6P"
+            ],
+            "total_mm": 40.943649027598006,
+            "path_mm": 37.199716725346775,
+            "n_via": 3,
+            "n_zone": 0,
+            "n_branch": 1,
+            "n_pad_barrel": 0,
+            "n_comp": 2,
+            "n_end": 5,
+            "n_cyclic": 0,
+            "measured": true,
+            "why": []
+          },
+          {
+            "name": "N",
+            "nets": [
+              "ADC6N"
+            ],
+            "total_mm": 38.33760817306694,
+            "path_mm": 35.07260817306693,
+            "n_via": 4,
+            "n_zone": 0,
+            "n_branch": 0,
+            "n_pad_barrel": 0,
+            "n_comp": 3,
+            "n_end": 6,
+            "n_cyclic": 0,
+            "measured": true,
+            "why": []
+          }
+        ],
+        "verdict": "PASS",
+        "why": "",
+        "spread_mm": 0.7000000000000028,
+        "t_pd_ps_per_mm": 6.105,
+        "f_ghz": 6.0,
+        "deg_per_mm": 13.19,
+        "epsilon_eff": null,
+        "z0_ohm": null,
+        "solver_evidence": null,
+        "router_moves": "octilinear",
+        "oct_floor_mm": {
+          "P": 27.017619023324855,
+          "N": 28.31051224213831
+        },
+        "oct_spread_mm": 1.2928932188134539,
+        "oct_why": "floor spread 1.2929 mm (17.05 deg at 6 GHz) exceeds max_spread_mm 1.0: shortest member P >= 27.0176 mm, longest N >= 28.3105 mm. An octilinear router (KRT moves in 8 directions, so the shortest pad-to-pad copper is max(dx,dy)+0.4142*min(dx,dy)) cannot do better \u2014 accepted because `elongation: meander` is declared and route.yaml carries executable endpoint_length_matching/canonicalize_chains, so the short members are deliberately lengthened. The realized spread below is the check that the elongation actually happened.",
+        "electrical_paths": [
+          {
+            "member": "P",
+            "id": "main",
+            "length_mm": 38.33971672534677,
+            "segments": [
+              {
+                "net": "ADC6P",
+                "from": "U_ISO6.2",
+                "to": "U_ADC.16",
+                "length_mm": 38.33971672534677,
+                "physical_edges": 41
+              }
+            ]
+          },
+          {
+            "member": "P",
+            "id": "common_mode",
+            "length_mm": 37.50347055814361,
+            "segments": [
+              {
+                "net": "ADC6P",
+                "from": "U_ISO6.2",
+                "to": "C_ADC_CM6P.1",
+                "length_mm": 37.50347055814361,
+                "physical_edges": 39
+              }
+            ]
+          },
+          {
+            "member": "P",
+            "id": "bias",
+            "length_mm": 1.1400000000000006,
+            "segments": [
+              {
+                "net": "ADC6P",
+                "from": "U_ISO6.2",
+                "to": "R_ADC_PD6P.1",
+                "length_mm": 1.1400000000000006,
+                "physical_edges": 1
+              }
+            ]
+          },
+          {
+            "member": "N",
+            "id": "main",
+            "length_mm": 38.33760817306693,
+            "segments": [
+              {
+                "net": "ADC6N",
+                "from": "U_ISO6.6",
+                "to": "U_ADC.15",
+                "length_mm": 38.33760817306693,
+                "physical_edges": 20
+              }
+            ]
+          },
+          {
+            "member": "N",
+            "id": "common_mode",
+            "length_mm": 36.912608173066936,
+            "segments": [
+              {
+                "net": "ADC6N",
+                "from": "U_ISO6.6",
+                "to": "C_ADC_CM6N.1",
+                "length_mm": 36.912608173066936,
+                "physical_edges": 19
+              }
+            ]
+          },
+          {
+            "member": "N",
+            "id": "bias",
+            "length_mm": 1.8400000000000034,
+            "segments": [
+              {
+                "net": "ADC6N",
+                "from": "U_ISO6.6",
+                "to": "R_ADC_PD6N.1",
+                "length_mm": 1.8400000000000034,
+                "physical_edges": 2
+              }
+            ]
+          }
+        ],
+        "path_spreads": [
+          {
+            "id": "main",
+            "members": {
+              "P": 38.33971672534677,
+              "N": 38.33760817306693
+            },
+            "spread_mm": 0.0021085522798358625,
+            "max_spread_mm": 1.0
+          },
+          {
+            "id": "common_mode",
+            "members": {
+              "P": 37.50347055814361,
+              "N": 36.912608173066936
+            },
+            "spread_mm": 0.5908623850766759,
+            "max_spread_mm": 12.0
+          },
+          {
+            "id": "bias",
+            "members": {
+              "P": 1.1400000000000006,
+              "N": 1.8400000000000034
+            },
+            "spread_mm": 0.7000000000000028,
+            "max_spread_mm": 1.0
+          }
+        ],
+        "off_path": [
+          {
+            "net": "ADC6P",
+            "off_path_mm": 0,
+            "unexplained_edge_count": 0
+          },
+          {
+            "net": "ADC6N",
+            "off_path_mm": 0,
+            "unexplained_edge_count": 0
+          }
+        ],
+        "off_path_mm": 0.0
+      },
+      {
+        "name": "ANALOG_CH7_OUTPUT",
+        "adr": "0019-analog-path-matching",
+        "topology": "tree",
+        "max_spread_mm": 1.0,
+        "members": [
+          {
+            "name": "P",
+            "nets": [
+              "OPA_P7"
+            ],
+            "total_mm": 3.1595439603150433,
+            "path_mm": 3.1595439603150433,
+            "n_via": 0,
+            "n_zone": 0,
+            "n_branch": 0,
+            "n_pad_barrel": 0,
+            "n_comp": 1,
+            "n_end": 2,
+            "n_cyclic": 0,
+            "measured": true,
+            "why": []
+          },
+          {
+            "name": "N",
+            "nets": [
+              "OPA_N7"
+            ],
+            "total_mm": 3.526496554346301,
+            "path_mm": 1.9000000000000057,
+            "n_via": 0,
+            "n_zone": 0,
+            "n_branch": 0,
+            "n_pad_barrel": 0,
+            "n_comp": 2,
+            "n_end": 4,
+            "n_cyclic": 0,
+            "measured": true,
+            "why": []
+          }
+        ],
+        "verdict": "PASS",
+        "why": "",
+        "spread_mm": 0.3669525940312579,
+        "t_pd_ps_per_mm": 6.105,
+        "f_ghz": 6.0,
+        "deg_per_mm": 13.19,
+        "epsilon_eff": null,
+        "z0_ohm": null,
+        "solver_evidence": null,
+        "router_moves": "octilinear",
+        "oct_floor_mm": {
+          "P": 3.6543502884254386,
+          "N": 3.6212132034355915
+        },
+        "oct_spread_mm": 0.03313708498984713,
+        "oct_why": "",
+        "electrical_paths": [
+          {
+            "member": "P",
+            "id": "main",
+            "length_mm": 3.1595439603150433,
+            "segments": [
+              {
+                "net": "OPA_P7",
+                "from": "U_AFE7.1",
+                "to": "R_OUT7P.1",
+                "length_mm": 3.1595439603150433,
+                "physical_edges": 3
+              }
+            ]
+          },
+          {
+            "member": "P",
+            "id": "feedback",
+            "length_mm": 1.7999999999999972,
+            "segments": [
+              {
+                "net": "OPA_P7",
+                "from": "U_AFE7.1",
+                "to": "C_FB7P.2",
+                "length_mm": 1.7999999999999972,
+                "physical_edges": 1
+              }
+            ]
+          },
+          {
+            "member": "N",
+            "id": "main",
+            "length_mm": 3.526496554346301,
+            "segments": [
+              {
+                "net": "OPA_N7",
+                "from": "U_AFE7.7",
+                "to": "R_OUT7N.1",
+                "length_mm": 3.526496554346301,
+                "physical_edges": 3
+              }
+            ]
+          },
+          {
+            "member": "N",
+            "id": "feedback",
+            "length_mm": 1.9000000000000057,
+            "segments": [
+              {
+                "net": "OPA_N7",
+                "from": "U_AFE7.7",
+                "to": "C_FB7N.2",
+                "length_mm": 1.9000000000000057,
+                "physical_edges": 1
+              }
+            ]
+          }
+        ],
+        "path_spreads": [
+          {
+            "id": "main",
+            "members": {
+              "P": 3.1595439603150433,
+              "N": 3.526496554346301
+            },
+            "spread_mm": 0.3669525940312579,
+            "max_spread_mm": 1.0
+          },
+          {
+            "id": "feedback",
+            "members": {
+              "P": 1.7999999999999972,
+              "N": 1.9000000000000057
+            },
+            "spread_mm": 0.10000000000000853,
+            "max_spread_mm": 1.0
+          }
+        ],
+        "off_path": [
+          {
+            "net": "OPA_P7",
+            "off_path_mm": 0,
+            "unexplained_edge_count": 0
+          },
+          {
+            "net": "OPA_N7",
+            "off_path_mm": 0,
+            "unexplained_edge_count": 0
+          }
+        ],
+        "off_path_mm": 0.0
+      },
+      {
+        "name": "ANALOG_CH7_FILTER",
+        "adr": "0019-analog-path-matching",
+        "topology": "tree",
+        "max_spread_mm": 1.0,
+        "members": [
+          {
+            "name": "P",
+            "nets": [
+              "FILTER7P"
+            ],
+            "total_mm": 14.207498316753249,
+            "path_mm": 10.08618431986321,
+            "n_via": 0,
+            "n_zone": 0,
+            "n_branch": 0,
+            "n_pad_barrel": 0,
+            "n_comp": 2,
+            "n_end": 4,
+            "n_cyclic": 0,
+            "measured": true,
+            "why": []
+          },
+          {
+            "name": "N",
+            "nets": [
+              "FILTER7N"
+            ],
+            "total_mm": 14.91334924927228,
+            "path_mm": 8.03640033377184,
+            "n_via": 2,
+            "n_zone": 0,
+            "n_branch": 0,
+            "n_pad_barrel": 0,
+            "n_comp": 3,
+            "n_end": 6,
+            "n_cyclic": 0,
+            "measured": true,
+            "why": []
+          }
+        ],
+        "verdict": "PASS",
+        "why": "",
+        "spread_mm": 0.7058509325190307,
+        "t_pd_ps_per_mm": 6.105,
+        "f_ghz": 6.0,
+        "deg_per_mm": 13.19,
+        "epsilon_eff": null,
+        "z0_ohm": null,
+        "solver_evidence": null,
+        "router_moves": "octilinear",
+        "oct_floor_mm": {
+          "P": 10.901555544218258,
+          "N": 11.051555544218264
+        },
+        "oct_spread_mm": 0.15000000000000568,
+        "oct_why": "",
+        "electrical_paths": [
+          {
+            "member": "P",
+            "id": "main",
+            "length_mm": 14.207498316753249,
+            "segments": [
+              {
+                "net": "FILTER7P",
+                "from": "R_OUT7P.2",
+                "to": "U_ISO7.1",
+                "length_mm": 14.207498316753249,
+                "physical_edges": 28
+              }
+            ]
+          },
+          {
+            "member": "P",
+            "id": "feedback",
+            "length_mm": 1.1000000000000085,
+            "segments": [
+              {
+                "net": "FILTER7P",
+                "from": "R_OUT7P.2",
+                "to": "R_X7P.2",
+                "length_mm": 1.1000000000000085,
+                "physical_edges": 1
+              }
+            ]
+          },
+          {
+            "member": "P",
+            "id": "shunt1",
+            "length_mm": 8.68618431986322,
+            "segments": [
+              {
+                "net": "FILTER7P",
+                "from": "R_OUT7P.2",
+                "to": "C_FILTER7P1.1",
+                "length_mm": 8.68618431986322,
+                "physical_edges": 22
+              }
+            ]
+          },
+          {
+            "member": "P",
+            "id": "shunt2",
+            "length_mm": 10.08618431986321,
+            "segments": [
+              {
+                "net": "FILTER7P",
+                "from": "R_OUT7P.2",
+                "to": "C_FILTER7P2.1",
+                "length_mm": 10.08618431986321,
+                "physical_edges": 23
+              }
+            ]
+          },
+          {
+            "member": "N",
+            "id": "main",
+            "length_mm": 14.91334924927228,
+            "segments": [
+              {
+                "net": "FILTER7N",
+                "from": "R_OUT7N.2",
+                "to": "U_ISO7.5",
+                "length_mm": 14.91334924927228,
+                "physical_edges": 17
+              }
+            ]
+          },
+          {
+            "member": "N",
+            "id": "feedback",
+            "length_mm": 0.9535304965510369,
+            "segments": [
+              {
+                "net": "FILTER7N",
+                "from": "R_OUT7N.2",
+                "to": "R_X7N.2",
+                "length_mm": 0.9535304965510369,
+                "physical_edges": 2
+              }
+            ]
+          },
+          {
+            "member": "N",
+            "id": "shunt1",
+            "length_mm": 8.03640033377184,
+            "segments": [
+              {
+                "net": "FILTER7N",
+                "from": "R_OUT7N.2",
+                "to": "C_FILTER7N1.1",
+                "length_mm": 8.03640033377184,
+                "physical_edges": 10
+              }
+            ]
+          },
+          {
+            "member": "N",
+            "id": "shunt2",
+            "length_mm": 9.436400333771832,
+            "segments": [
+              {
+                "net": "FILTER7N",
+                "from": "R_OUT7N.2",
+                "to": "C_FILTER7N2.1",
+                "length_mm": 9.436400333771832,
+                "physical_edges": 11
+              }
+            ]
+          }
+        ],
+        "path_spreads": [
+          {
+            "id": "main",
+            "members": {
+              "P": 14.207498316753249,
+              "N": 14.91334924927228
+            },
+            "spread_mm": 0.7058509325190307,
+            "max_spread_mm": 1.0
+          },
+          {
+            "id": "feedback",
+            "members": {
+              "P": 1.1000000000000085,
+              "N": 0.9535304965510369
+            },
+            "spread_mm": 0.14646950344897158,
+            "max_spread_mm": 1.0
+          },
+          {
+            "id": "shunt1",
+            "members": {
+              "P": 8.68618431986322,
+              "N": 8.03640033377184
+            },
+            "spread_mm": 0.6497839860913786,
+            "max_spread_mm": 1.0
+          },
+          {
+            "id": "shunt2",
+            "members": {
+              "P": 10.08618431986321,
+              "N": 9.436400333771832
+            },
+            "spread_mm": 0.6497839860913786,
+            "max_spread_mm": 1.0
+          }
+        ],
+        "off_path": [
+          {
+            "net": "FILTER7P",
+            "off_path_mm": 0,
+            "unexplained_edge_count": 0
+          },
+          {
+            "net": "FILTER7N",
+            "off_path_mm": 0,
+            "unexplained_edge_count": 0
+          }
+        ],
+        "off_path_mm": 0.0
+      },
+      {
+        "name": "ANALOG_CH7_ADC",
+        "adr": "0019-analog-path-matching",
+        "topology": "tree",
+        "max_spread_mm": 1.0,
+        "members": [
+          {
+            "name": "P",
+            "nets": [
+              "ADC7P"
+            ],
+            "total_mm": 28.938176464628807,
+            "path_mm": 24.93825222413704,
+            "n_via": 2,
+            "n_zone": 0,
+            "n_branch": 1,
+            "n_pad_barrel": 0,
+            "n_comp": 2,
+            "n_end": 5,
+            "n_cyclic": 0,
+            "measured": true,
+            "why": []
+          },
+          {
+            "name": "N",
+            "nets": [
+              "ADC7N"
+            ],
+            "total_mm": 28.51264231219176,
+            "path_mm": 24.286842312191748,
+            "n_via": 3,
+            "n_zone": 0,
+            "n_branch": 1,
+            "n_pad_barrel": 0,
+            "n_comp": 2,
+            "n_end": 5,
+            "n_cyclic": 0,
+            "measured": true,
+            "why": []
+          }
+        ],
+        "verdict": "PASS",
+        "why": "",
+        "spread_mm": 1.4594408408978339,
+        "t_pd_ps_per_mm": 6.105,
+        "f_ghz": 6.0,
+        "deg_per_mm": 13.19,
+        "epsilon_eff": null,
+        "z0_ohm": null,
+        "solver_evidence": null,
+        "router_moves": "octilinear",
+        "oct_floor_mm": {
+          "P": 16.8657900270019,
+          "N": 15.74446968344225
+        },
+        "oct_spread_mm": 1.121320343559649,
+        "oct_why": "floor spread 1.1213 mm (14.79 deg at 6 GHz) exceeds max_spread_mm 1.0: shortest member N >= 15.7445 mm, longest P >= 16.8658 mm. An octilinear router (KRT moves in 8 directions, so the shortest pad-to-pad copper is max(dx,dy)+0.4142*min(dx,dy)) cannot do better \u2014 accepted because `elongation: meander` is declared and route.yaml carries executable endpoint_length_matching/canonicalize_chains, so the short members are deliberately lengthened. The realized spread below is the check that the elongation actually happened.",
+        "electrical_paths": [
+          {
+            "member": "P",
+            "id": "main",
+            "length_mm": 26.078252224137042,
+            "segments": [
+              {
+                "net": "ADC7P",
+                "from": "U_ISO7.2",
+                "to": "U_ADC.20",
+                "length_mm": 26.078252224137042,
+                "physical_edges": 21
+              }
+            ]
+          },
+          {
+            "member": "P",
+            "id": "common_mode",
+            "length_mm": 20.551170696119918,
+            "segments": [
+              {
+                "net": "ADC7P",
+                "from": "U_ISO7.2",
+                "to": "C_ADC_CM7P.1",
+                "length_mm": 20.551170696119918,
+                "physical_edges": 15
+              }
+            ]
+          },
+          {
+            "member": "P",
+            "id": "bias",
+            "length_mm": 1.1400000000000006,
+            "segments": [
+              {
+                "net": "ADC7P",
+                "from": "U_ISO7.2",
+                "to": "R_ADC_PD7P.1",
+                "length_mm": 1.1400000000000006,
+                "physical_edges": 1
+              }
+            ]
+          },
+          {
+            "member": "N",
+            "id": "main",
+            "length_mm": 26.12684231219175,
+            "segments": [
+              {
+                "net": "ADC7N",
+                "from": "U_ISO7.6",
+                "to": "U_ADC.19",
+                "length_mm": 26.12684231219175,
+                "physical_edges": 24
+              }
+            ]
+          },
+          {
+            "member": "N",
+            "id": "common_mode",
+            "length_mm": 22.010611537017752,
+            "segments": [
+              {
+                "net": "ADC7N",
+                "from": "U_ISO7.6",
+                "to": "C_ADC_CM7N.1",
+                "length_mm": 22.010611537017752,
+                "physical_edges": 23
+              }
+            ]
+          },
+          {
+            "member": "N",
+            "id": "bias",
+            "length_mm": 1.8400000000000034,
+            "segments": [
+              {
+                "net": "ADC7N",
+                "from": "U_ISO7.6",
+                "to": "R_ADC_PD7N.1",
+                "length_mm": 1.8400000000000034,
+                "physical_edges": 2
+              }
+            ]
+          }
+        ],
+        "path_spreads": [
+          {
+            "id": "main",
+            "members": {
+              "P": 26.078252224137042,
+              "N": 26.12684231219175
+            },
+            "spread_mm": 0.04859008805470921,
+            "max_spread_mm": 1.0
+          },
+          {
+            "id": "common_mode",
+            "members": {
+              "P": 20.551170696119918,
+              "N": 22.010611537017752
+            },
+            "spread_mm": 1.4594408408978339,
+            "max_spread_mm": 12.0
+          },
+          {
+            "id": "bias",
+            "members": {
+              "P": 1.1400000000000006,
+              "N": 1.8400000000000034
+            },
+            "spread_mm": 0.7000000000000028,
+            "max_spread_mm": 1.0
+          }
+        ],
+        "off_path": [
+          {
+            "net": "ADC7N",
+            "off_path_mm": 0,
+            "unexplained_edge_count": 0
+          },
+          {
+            "net": "ADC7P",
+            "off_path_mm": 0,
+            "unexplained_edge_count": 0
+          }
+        ],
+        "off_path_mm": 0.0
+      },
+      {
+        "name": "ANALOG_CH8_OUTPUT",
+        "adr": "0019-analog-path-matching",
+        "topology": "tree",
+        "max_spread_mm": 1.0,
+        "members": [
+          {
+            "name": "P",
+            "nets": [
+              "OPA_P8"
+            ],
+            "total_mm": 3.1595439603150717,
+            "path_mm": 3.1595439603150712,
+            "n_via": 0,
+            "n_zone": 0,
+            "n_branch": 0,
+            "n_pad_barrel": 0,
+            "n_comp": 1,
+            "n_end": 2,
+            "n_cyclic": 0,
+            "measured": true,
+            "why": []
+          },
+          {
+            "name": "N",
+            "nets": [
+              "OPA_N8"
+            ],
+            "total_mm": 3.2402433887213644,
+            "path_mm": 2.0,
+            "n_via": 0,
+            "n_zone": 0,
+            "n_branch": 0,
+            "n_pad_barrel": 0,
+            "n_comp": 2,
+            "n_end": 4,
+            "n_cyclic": 0,
+            "measured": true,
+            "why": []
+          }
+        ],
+        "verdict": "PASS",
+        "why": "",
+        "spread_mm": 0.19999999999998863,
+        "t_pd_ps_per_mm": 6.105,
+        "f_ghz": 6.0,
+        "deg_per_mm": 13.19,
+        "epsilon_eff": null,
+        "z0_ohm": null,
+        "solver_evidence": null,
+        "router_moves": "octilinear",
+        "oct_floor_mm": {
+          "P": 3.654350288425453,
+          "N": 3.6212132034356057
+        },
+        "oct_spread_mm": 0.03313708498984713,
+        "oct_why": "",
+        "electrical_paths": [
+          {
+            "member": "P",
+            "id": "main",
+            "length_mm": 3.1595439603150717,
+            "segments": [
+              {
+                "net": "OPA_P8",
+                "from": "U_AFE8.1",
+                "to": "R_OUT8P.1",
+                "length_mm": 3.1595439603150717,
+                "physical_edges": 3
+              }
+            ]
+          },
+          {
+            "member": "P",
+            "id": "feedback",
+            "length_mm": 1.8000000000000114,
+            "segments": [
+              {
+                "net": "OPA_P8",
+                "from": "U_AFE8.1",
+                "to": "C_FB8P.2",
+                "length_mm": 1.8000000000000114,
+                "physical_edges": 1
+              }
+            ]
+          },
+          {
+            "member": "N",
+            "id": "main",
+            "length_mm": 3.2402433887213644,
+            "segments": [
+              {
+                "net": "OPA_N8",
+                "from": "U_AFE8.7",
+                "to": "R_OUT8N.1",
+                "length_mm": 3.2402433887213644,
+                "physical_edges": 3
+              }
+            ]
+          },
+          {
+            "member": "N",
+            "id": "feedback",
+            "length_mm": 2.0,
+            "segments": [
+              {
+                "net": "OPA_N8",
+                "from": "U_AFE8.7",
+                "to": "C_FB8N.2",
+                "length_mm": 2.0,
+                "physical_edges": 1
+              }
+            ]
+          }
+        ],
+        "path_spreads": [
+          {
+            "id": "main",
+            "members": {
+              "P": 3.1595439603150717,
+              "N": 3.2402433887213644
+            },
+            "spread_mm": 0.08069942840629274,
+            "max_spread_mm": 1.0
+          },
+          {
+            "id": "feedback",
+            "members": {
+              "P": 1.8000000000000114,
+              "N": 2.0
+            },
+            "spread_mm": 0.19999999999998863,
+            "max_spread_mm": 1.0
+          }
+        ],
+        "off_path": [
+          {
+            "net": "OPA_N8",
+            "off_path_mm": 0,
+            "unexplained_edge_count": 0
+          },
+          {
+            "net": "OPA_P8",
+            "off_path_mm": 0,
+            "unexplained_edge_count": 0
+          }
+        ],
+        "off_path_mm": 0.0
+      },
+      {
+        "name": "ANALOG_CH8_FILTER",
+        "adr": "0019-analog-path-matching",
+        "topology": "tree",
+        "max_spread_mm": 1.0,
+        "members": [
+          {
+            "name": "P",
+            "nets": [
+              "FILTER8P"
+            ],
+            "total_mm": 14.163806129029783,
+            "path_mm": 8.57695526217002,
+            "n_via": 0,
+            "n_zone": 0,
+            "n_branch": 0,
+            "n_pad_barrel": 0,
+            "n_comp": 2,
+            "n_end": 4,
+            "n_cyclic": 0,
+            "measured": true,
+            "why": []
+          },
+          {
+            "name": "N",
+            "nets": [
+              "FILTER8N"
+            ],
+            "total_mm": 14.913349249274166,
+            "path_mm": 8.036400333773718,
+            "n_via": 2,
+            "n_zone": 0,
+            "n_branch": 0,
+            "n_pad_barrel": 0,
+            "n_comp": 3,
+            "n_end": 6,
+            "n_cyclic": 0,
+            "measured": true,
+            "why": []
+          }
+        ],
+        "verdict": "PASS",
+        "why": "",
+        "spread_mm": 0.8594450716036892,
+        "t_pd_ps_per_mm": 6.105,
+        "f_ghz": 6.0,
+        "deg_per_mm": 13.19,
+        "epsilon_eff": null,
+        "z0_ohm": null,
+        "solver_evidence": null,
+        "router_moves": "octilinear",
+        "oct_floor_mm": {
+          "P": 10.901555544218258,
+          "N": 11.051555544218264
+        },
+        "oct_spread_mm": 0.15000000000000568,
+        "oct_why": "",
+        "electrical_paths": [
+          {
+            "member": "P",
+            "id": "main",
+            "length_mm": 14.163806129029782,
+            "segments": [
+              {
+                "net": "FILTER8P",
+                "from": "R_OUT8P.2",
+                "to": "U_ISO8.1",
+                "length_mm": 14.163806129029782,
+                "physical_edges": 35
+              }
+            ]
+          },
+          {
+            "member": "P",
+            "id": "feedback",
+            "length_mm": 1.1000000000000085,
+            "segments": [
+              {
+                "net": "FILTER8P",
+                "from": "R_OUT8P.2",
+                "to": "R_X8P.2",
+                "length_mm": 1.1000000000000085,
+                "physical_edges": 1
+              }
+            ]
+          },
+          {
+            "member": "P",
+            "id": "shunt1",
+            "length_mm": 7.176955262170029,
+            "segments": [
+              {
+                "net": "FILTER8P",
+                "from": "R_OUT8P.2",
+                "to": "C_FILTER8P1.1",
+                "length_mm": 7.176955262170029,
+                "physical_edges": 6
+              }
+            ]
+          },
+          {
+            "member": "P",
+            "id": "shunt2",
+            "length_mm": 8.57695526217002,
+            "segments": [
+              {
+                "net": "FILTER8P",
+                "from": "R_OUT8P.2",
+                "to": "C_FILTER8P2.1",
+                "length_mm": 8.57695526217002,
+                "physical_edges": 7
+              }
+            ]
+          },
+          {
+            "member": "N",
+            "id": "main",
+            "length_mm": 14.913349249274164,
+            "segments": [
+              {
+                "net": "FILTER8N",
+                "from": "R_OUT8N.2",
+                "to": "U_ISO8.5",
+                "length_mm": 14.913349249274164,
+                "physical_edges": 17
+              }
+            ]
+          },
+          {
+            "member": "N",
+            "id": "feedback",
+            "length_mm": 0.9535304965510253,
+            "segments": [
+              {
+                "net": "FILTER8N",
+                "from": "R_OUT8N.2",
+                "to": "R_X8N.2",
+                "length_mm": 0.9535304965510253,
+                "physical_edges": 2
+              }
+            ]
+          },
+          {
+            "member": "N",
+            "id": "shunt1",
+            "length_mm": 8.036400333773718,
+            "segments": [
+              {
+                "net": "FILTER8N",
+                "from": "R_OUT8N.2",
+                "to": "C_FILTER8N1.1",
+                "length_mm": 8.036400333773718,
+                "physical_edges": 10
+              }
+            ]
+          },
+          {
+            "member": "N",
+            "id": "shunt2",
+            "length_mm": 9.43640033377371,
+            "segments": [
+              {
+                "net": "FILTER8N",
+                "from": "R_OUT8N.2",
+                "to": "C_FILTER8N2.1",
+                "length_mm": 9.43640033377371,
+                "physical_edges": 11
+              }
+            ]
+          }
+        ],
+        "path_spreads": [
+          {
+            "id": "main",
+            "members": {
+              "P": 14.163806129029782,
+              "N": 14.913349249274164
+            },
+            "spread_mm": 0.7495431202443825,
+            "max_spread_mm": 1.0
+          },
+          {
+            "id": "feedback",
+            "members": {
+              "P": 1.1000000000000085,
+              "N": 0.9535304965510253
+            },
+            "spread_mm": 0.14646950344898324,
+            "max_spread_mm": 1.0
+          },
+          {
+            "id": "shunt1",
+            "members": {
+              "P": 7.176955262170029,
+              "N": 8.036400333773718
+            },
+            "spread_mm": 0.8594450716036892,
+            "max_spread_mm": 1.0
+          },
+          {
+            "id": "shunt2",
+            "members": {
+              "P": 8.57695526217002,
+              "N": 9.43640033377371
+            },
+            "spread_mm": 0.8594450716036892,
+            "max_spread_mm": 1.0
+          }
+        ],
+        "off_path": [
+          {
+            "net": "FILTER8N",
+            "off_path_mm": 0,
+            "unexplained_edge_count": 0
+          },
+          {
+            "net": "FILTER8P",
+            "off_path_mm": 0,
+            "unexplained_edge_count": 0
+          }
+        ],
+        "off_path_mm": 0.0
+      },
+      {
+        "name": "ANALOG_CH8_ADC",
+        "adr": "0019-analog-path-matching",
+        "topology": "tree",
+        "max_spread_mm": 1.0,
+        "members": [
+          {
+            "name": "P",
+            "nets": [
+              "ADC8P"
+            ],
+            "total_mm": 62.99892650017597,
+            "path_mm": 61.85892650017595,
+            "n_via": 4,
+            "n_zone": 0,
+            "n_branch": 0,
+            "n_pad_barrel": 0,
+            "n_comp": 2,
+            "n_end": 4,
+            "n_cyclic": 0,
+            "measured": true,
+            "why": []
+          },
+          {
+            "name": "N",
+            "nets": [
+              "ADC8N"
+            ],
+            "total_mm": 64.39878720977477,
+            "path_mm": 61.103333904054516,
+            "n_via": 6,
+            "n_zone": 0,
+            "n_branch": 2,
+            "n_pad_barrel": 0,
+            "n_comp": 2,
+            "n_end": 6,
+            "n_cyclic": 0,
+            "measured": true,
+            "why": []
+          }
+        ],
+        "verdict": "PASS",
+        "why": "",
+        "spread_mm": 6.81463259888956,
+        "t_pd_ps_per_mm": 6.105,
+        "f_ghz": 6.0,
+        "deg_per_mm": 13.19,
+        "epsilon_eff": null,
+        "z0_ohm": null,
+        "solver_evidence": null,
+        "router_moves": "octilinear",
+        "oct_floor_mm": {
+          "P": 45.51761902332484,
+          "N": 43.81051224213832
+        },
+        "oct_spread_mm": 1.7071067811865177,
+        "oct_why": "floor spread 1.7071 mm (22.52 deg at 6 GHz) exceeds max_spread_mm 1.0: shortest member N >= 43.8105 mm, longest P >= 45.5176 mm. An octilinear router (KRT moves in 8 directions, so the shortest pad-to-pad copper is max(dx,dy)+0.4142*min(dx,dy)) cannot do better \u2014 accepted because `elongation: meander` is declared and route.yaml carries executable endpoint_length_matching/canonicalize_chains, so the short members are deliberately lengthened. The realized spread below is the check that the elongation actually happened.",
+        "electrical_paths": [
+          {
+            "member": "P",
+            "id": "main",
+            "length_mm": 62.99892650017596,
+            "segments": [
+              {
+                "net": "ADC8P",
+                "from": "U_ISO8.2",
+                "to": "U_ADC.22",
+                "length_mm": 62.99892650017596,
+                "physical_edges": 35
+              }
+            ]
+          },
+          {
+            "member": "P",
+            "id": "common_mode",
+            "length_mm": 56.64654013943834,
+            "segments": [
+              {
+                "net": "ADC8P",
+                "from": "U_ISO8.2",
+                "to": "C_ADC_CM8P.1",
+                "length_mm": 56.64654013943834,
+                "physical_edges": 23
+              }
+            ]
+          },
+          {
+            "member": "P",
+            "id": "bias",
+            "length_mm": 1.1400000000000148,
+            "segments": [
+              {
+                "net": "ADC8P",
+                "from": "U_ISO8.2",
+                "to": "R_ADC_PD8P.1",
+                "length_mm": 1.1400000000000148,
+                "physical_edges": 1
+              }
+            ]
+          },
+          {
+            "member": "N",
+            "id": "main",
+            "length_mm": 62.59878720977476,
+            "segments": [
+              {
+                "net": "ADC8N",
+                "from": "U_ISO8.6",
+                "to": "U_ADC.21",
+                "length_mm": 62.59878720977476,
+                "physical_edges": 51
+              }
+            ]
+          },
+          {
+            "member": "N",
+            "id": "common_mode",
+            "length_mm": 49.831907540548784,
+            "segments": [
+              {
+                "net": "ADC8N",
+                "from": "U_ISO8.6",
+                "to": "C_ADC_CM8N.1",
+                "length_mm": 49.831907540548784,
+                "physical_edges": 45
+              }
+            ]
+          },
+          {
+            "member": "N",
+            "id": "bias",
+            "length_mm": 1.8400000000000318,
+            "segments": [
+              {
+                "net": "ADC8N",
+                "from": "U_ISO8.6",
+                "to": "R_ADC_PD8N.1",
+                "length_mm": 1.8400000000000318,
+                "physical_edges": 2
+              }
+            ]
+          }
+        ],
+        "path_spreads": [
+          {
+            "id": "main",
+            "members": {
+              "P": 62.99892650017596,
+              "N": 62.59878720977476
+            },
+            "spread_mm": 0.40013929040119933,
+            "max_spread_mm": 1.0
+          },
+          {
+            "id": "common_mode",
+            "members": {
+              "P": 56.64654013943834,
+              "N": 49.831907540548784
+            },
+            "spread_mm": 6.81463259888956,
+            "max_spread_mm": 12.0
+          },
+          {
+            "id": "bias",
+            "members": {
+              "P": 1.1400000000000148,
+              "N": 1.8400000000000318
+            },
+            "spread_mm": 0.700000000000017,
+            "max_spread_mm": 1.0
+          }
+        ],
+        "off_path": [
+          {
+            "net": "ADC8N",
+            "off_path_mm": 0,
+            "unexplained_edge_count": 0
+          },
+          {
+            "net": "ADC8P",
+            "off_path_mm": 0,
+            "unexplained_edge_count": 0
+          }
+        ],
+        "off_path_mm": 0.0
+      }
+    ],
+    "fails": [],
+    "unreached": [],
+    "n_group": 26,
+    "n_member": 55,
+    "n_measured": 55,
+    "n_electrical_declared": 155,
+    "n_electrical_measured": 155
+  },
+  "resistance": {
+    "nets": {
+      "OPA_N5": {
+        "track_ohm": 0.010018810024472066,
+        "via_ohm": 0.0,
+        "track_mm": 3.2402423887213456,
+        "segments": 3,
+        "vias": 0
+      },
+      "FILTER3N": {
+        "track_ohm": 0.046393795987576425,
+        "via_ohm": 0.0,
+        "track_mm": 15.00449094906925,
+        "segments": 21,
+        "vias": 0
+      },
+      "OPA_P4": {
+        "track_ohm": 0.009769294060024431,
+        "via_ohm": 0.0,
+        "track_mm": 3.1595449603150687,
+        "segments": 3,
+        "vias": 0
+      },
+      "FILTER7N": {
+        "track_ohm": 0.03692381702825439,
+        "via_ohm": 0.006123987384485998,
+        "track_mm": 11.941749249272279,
+        "segments": 15,
+        "vias": 2
+      },
+      "FILTER5N": {
+        "track_ohm": 0.02302506466311807,
+        "via_ohm": 0.006123987384485998,
+        "track_mm": 14.49801927005235,
+        "segments": 36,
+        "vias": 2
+      },
+      "OPA_P8": {
+        "track_ohm": 0.009769290968030439,
+        "via_ohm": 0.0,
+        "track_mm": 3.1595439603150717,
+        "segments": 3,
+        "vias": 0
+      },
+      "FILTER4N": {
+        "track_ohm": 0.0536136019500514,
+        "via_ohm": 0.0,
+        "track_mm": 17.33949094016722,
+        "segments": 33,
+        "vias": 0
+      },
+      "ADC4P": {
+        "track_ohm": 0.13248207393030628,
+        "via_ohm": 0.02143395584570099,
+        "track_mm": 63.49427831172403,
+        "segments": 75,
+        "vias": 7
+      },
+      "ADC7P": {
+        "track_ohm": 0.07533951170343844,
+        "via_ohm": 0.006123987384485998,
+        "track_mm": 25.966576464628808,
+        "segments": 23,
+        "vias": 2
+      },
+      "OPA_N3": {
+        "track_ohm": 0.010903906187059427,
+        "via_ohm": 0.0,
+        "track_mm": 3.526496554346298,
+        "segments": 3,
+        "vias": 0
+      },
+      "ADC5P": {
+        "track_ohm": 0.1844129731189308,
+        "via_ohm": 0.012247974768971995,
+        "track_mm": 108.28483584836809,
+        "segments": 80,
+        "vias": 4
+      },
+      "ADC1N": {
+        "track_ohm": 0.1560758423741963,
+        "via_ohm": 0.012247974768971995,
+        "track_mm": 76.85481360125786,
+        "segments": 106,
+        "vias": 4
+      },
+      "OPA_P6": {
+        "track_ohm": 0.00976929096803035,
+        "via_ohm": 0.0,
+        "track_mm": 3.1595439603150433,
+        "segments": 3,
+        "vias": 0
+      },
+      "FILTER4P": {
+        "track_ohm": 0.04302943831999043,
+        "via_ohm": 0.006123987384485998,
+        "track_mm": 13.916404210354365,
+        "segments": 16,
+        "vias": 2
+      },
+      "OPA_N7": {
+        "track_ohm": 0.010903906187059437,
+        "via_ohm": 0.0,
+        "track_mm": 3.526496554346301,
+        "segments": 3,
+        "vias": 0
+      },
+      "ADC4N": {
+        "track_ohm": 0.1226439457905225,
+        "via_ohm": 0.030619936922429983,
+        "track_mm": 54.90771725963234,
+        "segments": 39,
+        "vias": 10
+      },
+      "FILTER8P": {
+        "track_ohm": 0.043794403568123315,
+        "via_ohm": 0.0,
+        "track_mm": 14.163806129029783,
+        "segments": 35,
+        "vias": 0
+      },
+      "OPA_P5": {
+        "track_ohm": 0.00976929096803035,
+        "via_ohm": 0.0,
+        "track_mm": 3.159543960315043,
+        "segments": 3,
+        "vias": 0
+      },
+      "FILTER3P": {
+        "track_ohm": 0.04464743674435584,
+        "via_ohm": 0.0,
+        "track_mm": 14.43969061529739,
+        "segments": 24,
+        "vias": 0
+      },
+      "OPA_N1": {
+        "track_ohm": 0.010903906187059404,
+        "via_ohm": 0.0,
+        "track_mm": 3.526496554346291,
+        "segments": 3,
+        "vias": 0
+      },
+      "FILTER7P": {
+        "track_ohm": 0.04392949955041116,
+        "via_ohm": 0.0,
+        "track_mm": 14.207498316753249,
+        "segments": 28,
+        "vias": 0
+      },
+      "ADC2N": {
+        "track_ohm": 0.09348571059036395,
+        "via_ohm": 0.006123987384485998,
+        "track_mm": 42.726192246838664,
+        "segments": 59,
+        "vias": 2
+      },
+      "FILTER8N": {
+        "track_ohm": 0.036923817028260225,
+        "via_ohm": 0.006123987384485998,
+        "track_mm": 11.941749249274165,
+        "segments": 15,
+        "vias": 2
+      },
+      "FILTER2N": {
+        "track_ohm": 0.0360867812357756,
+        "via_ohm": 0.006123987384485998,
+        "track_mm": 11.671038571153634,
+        "segments": 19,
+        "vias": 2
+      },
+      "OPA_N4": {
+        "track_ohm": 0.010903906187059432,
+        "via_ohm": 0.0,
+        "track_mm": 3.5264965543462994,
+        "segments": 3,
+        "vias": 0
+      },
+      "ADC7N": {
+        "track_ohm": 0.05458173762453803,
+        "via_ohm": 0.009185981076728997,
+        "track_mm": 24.05524231219176,
+        "segments": 24,
+        "vias": 3
+      },
+      "OPA_P1": {
+        "track_ohm": 0.00976929096803035,
+        "via_ohm": 0.0,
+        "track_mm": 3.159543960315043,
+        "segments": 3,
+        "vias": 0
+      },
+      "FILTER6P": {
+        "track_ohm": 0.04366678831427105,
+        "via_ohm": 0.0,
+        "track_mm": 14.122533327771997,
+        "segments": 28,
+        "vias": 0
+      },
+      "FILTER2P": {
+        "track_ohm": 0.04224886456181609,
+        "via_ohm": 0.0,
+        "track_mm": 13.663954251468827,
+        "segments": 20,
+        "vias": 0
+      },
+      "OPA_N8": {
+        "track_ohm": 0.010018813116466126,
+        "via_ohm": 0.0,
+        "track_mm": 3.2402433887213644,
+        "segments": 3,
+        "vias": 0
+      },
+      "ADC8P": {
+        "track_ohm": 0.12586413395052037,
+        "via_ohm": 0.012247974768971995,
+        "track_mm": 57.05572650017597,
+        "segments": 31,
+        "vias": 4
+      },
+      "FILTER1P": {
+        "track_ohm": 0.048823293012231955,
+        "via_ohm": 0.0,
+        "track_mm": 15.790228898319963,
+        "segments": 42,
+        "vias": 0
+      },
+      "ADC6P": {
+        "track_ohm": 0.07672691654248358,
+        "via_ohm": 0.009185981076728997,
+        "track_mm": 36.48624902759801,
+        "segments": 41,
+        "vias": 3
+      },
+      "OPA_P7": {
+        "track_ohm": 0.00976929096803035,
+        "via_ohm": 0.0,
+        "track_mm": 3.1595439603150433,
+        "segments": 3,
+        "vias": 0
+      },
+      "ADC2P": {
+        "track_ohm": 0.0831649533789788,
+        "via_ohm": 0.015309968461214993,
+        "track_mm": 40.36364441808875,
+        "segments": 25,
+        "vias": 5
+      },
+      "FILTER5P": {
+        "track_ohm": 0.02780514613507146,
+        "via_ohm": 0.0,
+        "track_mm": 18.243853671331653,
+        "segments": 47,
+        "vias": 0
+      },
+      "OPA_P2": {
+        "track_ohm": 0.00976929096803035,
+        "via_ohm": 0.0,
+        "track_mm": 3.1595439603150433,
+        "segments": 3,
+        "vias": 0
+      },
+      "OPA_P3": {
+        "track_ohm": 0.00976929096803035,
+        "via_ohm": 0.0,
+        "track_mm": 3.159543960315043,
+        "segments": 3,
+        "vias": 0
+      },
+      "OPA_N6": {
+        "track_ohm": 0.010903906187059437,
+        "via_ohm": 0.0,
+        "track_mm": 3.526496554346301,
+        "segments": 3,
+        "vias": 0
+      },
+      "ADC3N": {
+        "track_ohm": 0.053683131515590926,
+        "via_ohm": 0.012247974768971995,
+        "track_mm": 20.74273974135907,
+        "segments": 17,
+        "vias": 4
+      },
+      "FILTER1N": {
+        "track_ohm": 0.049122792866805966,
+        "via_ohm": 0.0,
+        "track_mm": 15.887091911176402,
+        "segments": 23,
+        "vias": 0
+      },
+      "ADC6N": {
+        "track_ohm": 0.07012123439786094,
+        "via_ohm": 0.012247974768971995,
+        "track_mm": 32.39440817306694,
+        "segments": 16,
+        "vias": 4
+      },
+      "ADC3P": {
+        "track_ohm": 0.0620655682024008,
+        "via_ohm": 0.009185981076728997,
+        "track_mm": 24.632517894162053,
+        "segments": 64,
+        "vias": 3
+      },
+      "OPA_N2": {
+        "track_ohm": 0.010903906187059427,
+        "via_ohm": 0.0,
+        "track_mm": 3.5264965543462976,
+        "segments": 3,
+        "vias": 0
+      },
+      "FILTER6N": {
+        "track_ohm": 0.04624375688846492,
+        "via_ohm": 0.0,
+        "track_mm": 14.95596591987724,
+        "segments": 20,
+        "vias": 0
+      },
+      "ADC8N": {
+        "track_ohm": 0.1268526499229213,
+        "via_ohm": 0.01837196215345799,
+        "track_mm": 55.48398720977477,
+        "segments": 47,
+        "vias": 6
+      },
+      "ADC1P": {
+        "track_ohm": 0.14595898937420193,
+        "via_ohm": 0.024495949537943987,
+        "track_mm": 71.45136731750551,
+        "segments": 34,
+        "vias": 8
+      },
+      "ADC5N": {
+        "track_ohm": 0.19429168458341387,
+        "via_ohm": 0.012247974768971995,
+        "track_mm": 107.98884789993906,
+        "segments": 42,
+        "vias": 4
+      }
+    },
+    "legs": [
+      {
+        "channel": 1,
+        "leg": "P",
+        "nets": [
+          "OPA_P1",
+          "FILTER1P",
+          "ADC1P"
+        ],
+        "inventory_model_ohm": 0.2290475228924082,
+        "reserve_charged_ohm": 0.4580950457848164,
+        "within_design_screen": true
+      },
+      {
+        "channel": 1,
+        "leg": "N",
+        "nets": [
+          "OPA_N1",
+          "FILTER1N",
+          "ADC1N"
+        ],
+        "inventory_model_ohm": 0.22835051619703367,
+        "reserve_charged_ohm": 0.45670103239406734,
+        "within_design_screen": true
+      },
+      {
+        "channel": 2,
+        "leg": "P",
+        "nets": [
+          "OPA_P2",
+          "FILTER2P",
+          "ADC2P"
+        ],
+        "inventory_model_ohm": 0.15049307737004025,
+        "reserve_charged_ohm": 0.3009861547400805,
+        "within_design_screen": true
+      },
+      {
+        "channel": 2,
+        "leg": "N",
+        "nets": [
+          "OPA_N2",
+          "FILTER2N",
+          "ADC2N"
+        ],
+        "inventory_model_ohm": 0.15272437278217096,
+        "reserve_charged_ohm": 0.30544874556434193,
+        "within_design_screen": true
+      },
+      {
+        "channel": 3,
+        "leg": "P",
+        "nets": [
+          "OPA_P3",
+          "FILTER3P",
+          "ADC3P"
+        ],
+        "inventory_model_ohm": 0.125668276991516,
+        "reserve_charged_ohm": 0.251336553983032,
+        "within_design_screen": true
+      },
+      {
+        "channel": 3,
+        "leg": "N",
+        "nets": [
+          "OPA_N3",
+          "FILTER3N",
+          "ADC3N"
+        ],
+        "inventory_model_ohm": 0.12322880845919877,
+        "reserve_charged_ohm": 0.24645761691839754,
+        "within_design_screen": true
+      },
+      {
+        "channel": 4,
+        "leg": "P",
+        "nets": [
+          "OPA_P4",
+          "FILTER4P",
+          "ADC4P"
+        ],
+        "inventory_model_ohm": 0.21283874954050813,
+        "reserve_charged_ohm": 0.42567749908101626,
+        "within_design_screen": true
+      },
+      {
+        "channel": 4,
+        "leg": "N",
+        "nets": [
+          "OPA_N4",
+          "FILTER4N",
+          "ADC4N"
+        ],
+        "inventory_model_ohm": 0.21778139085006332,
+        "reserve_charged_ohm": 0.43556278170012663,
+        "within_design_screen": true
+      },
+      {
+        "channel": 5,
+        "leg": "P",
+        "nets": [
+          "OPA_P5",
+          "FILTER5P",
+          "ADC5P"
+        ],
+        "inventory_model_ohm": 0.2342353849910046,
+        "reserve_charged_ohm": 0.4684707699820092,
+        "within_design_screen": true
+      },
+      {
+        "channel": 5,
+        "leg": "N",
+        "nets": [
+          "OPA_N5",
+          "FILTER5N",
+          "ADC5N"
+        ],
+        "inventory_model_ohm": 0.245707521424462,
+        "reserve_charged_ohm": 0.491415042848924,
+        "within_design_screen": true
+      },
+      {
+        "channel": 6,
+        "leg": "P",
+        "nets": [
+          "OPA_P6",
+          "FILTER6P",
+          "ADC6P"
+        ],
+        "inventory_model_ohm": 0.139348976901514,
+        "reserve_charged_ohm": 0.278697953803028,
+        "within_design_screen": true
+      },
+      {
+        "channel": 6,
+        "leg": "N",
+        "nets": [
+          "OPA_N6",
+          "FILTER6N",
+          "ADC6N"
+        ],
+        "inventory_model_ohm": 0.1395168722423573,
+        "reserve_charged_ohm": 0.2790337444847146,
+        "within_design_screen": true
+      },
+      {
+        "channel": 7,
+        "leg": "P",
+        "nets": [
+          "OPA_P7",
+          "FILTER7P",
+          "ADC7P"
+        ],
+        "inventory_model_ohm": 0.13516228960636595,
+        "reserve_charged_ohm": 0.2703245792127319,
+        "within_design_screen": true
+      },
+      {
+        "channel": 7,
+        "leg": "N",
+        "nets": [
+          "OPA_N7",
+          "FILTER7N",
+          "ADC7N"
+        ],
+        "inventory_model_ohm": 0.11771942930106685,
+        "reserve_charged_ohm": 0.2354388586021337,
+        "within_design_screen": true
+      },
+      {
+        "channel": 8,
+        "leg": "P",
+        "nets": [
+          "OPA_P8",
+          "FILTER8P",
+          "ADC8P"
+        ],
+        "inventory_model_ohm": 0.19167580325564612,
+        "reserve_charged_ohm": 0.38335160651129224,
+        "within_design_screen": true
+      },
+      {
+        "channel": 8,
+        "leg": "N",
+        "nets": [
+          "OPA_N8",
+          "FILTER8N",
+          "ADC8N"
+        ],
+        "inventory_model_ohm": 0.19829122960559165,
+        "reserve_charged_ohm": 0.3965824592111833,
+        "within_design_screen": true
+      }
+    ],
+    "copper_mm": {
+      "F.Cu": 0.035,
+      "B.Cu": 0.035
+    },
+    "barrel_height_model_mm": 1.6,
+    "rho_ohm_m_at85C": 2.1643958e-08,
+    "hole_plating_model_mm": 0.018,
+    "hole_plating_basis": "public average, not minimum",
+    "reserve_factor": 2.0,
+    "signal_track_limit_ohm": 0.5,
+    "physical_dcr_status": "UNVERIFIED",
+    "excluded": [
+      "pad spreading",
+      "solder joints",
+      "10 ohm series resistors",
+      "switch Ron"
+    ],
+    "model_status": "PASS"
+  },
+  "scope": "saved path matching and conditional copper model; not physical DCR"
+}

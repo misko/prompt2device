@@ -1,0 +1,66 @@
+input: bom = /tmp/crow-carrier-v018/fab/bom.csv
+54 BOM lines: 54 with LCSC, 0 without
+
+  OK               C106231    x1   0Ω                                     expand stock=1564937
+  OK               C60491     x25  100kΩ                                  expand stock=5917145
+  OK               C1525      x28  100nF                                  base   stock=30747953
+  OK               C106232    x2   100Ω                                   expand stock=5071608
+  OK               C60490     x40  10kΩ                                   expand stock=8860445
+  OK               C95204     x2   10kΩ                                   expand stock=2025525
+  OK               C15195     x2   10nF                                   base   stock=5597982
+  OK               C2167576   x4   10uF                                   expand stock=4927
+  OK               C597579    x3   10uF                                   expand stock=2924
+  OK               C138066    x16  10Ω                                    expand stock=1604222
+  OK               C97907     x33  15nF                                   expand stock=30574
+  OK               C861167    x1   17.4kΩ                                 expand stock=2701
+  OK               C3761431   x8   1812L035/60MR                          expand stock=1863
+  OK               C110776    x4   1kΩ                                    expand stock=459293
+  OK               C76947     x18  1nF                                    expand stock=914542
+  OK               C2167386   x7   1uF                                    expand stock=12064
+  OK               C844653    x3   1Ω                                     expand stock=50642
+  OK               C21120     x1   220nF                                  base   stock=962232
+  OK               C114765    x2   22Ω                                    expand stock=4042612
+  OK               C844025    x2   22Ω                                    expand stock=24215
+  LOW_STOCK(28)    C22870534  x1   2920L260/33DR                          expand stock=28
+  OK               C85047     x2   2N7002K-7                              expand stock=78398
+  OK               C861313    x1   30.9kΩ                                 expand stock=4434
+  OK               C138010    x17  300Ω                                   expand stock=303239
+  OK               C705768    x1   33kΩ                                   expand stock=138050
+  OK               C138002    x1   33Ω                                    expand stock=5463736
+  OK               C105871    x2   4.7kΩ                                  expand stock=6582652
+  OK               C19666     x2   4.7uF                                  base   stock=3385980
+  OK               C389010    x4   4.7uF                                  expand stock=14564
+  OK               C318640    x2   470nF                                  expand stock=22631
+  OK               C178530    x4   470uF                                  expand stock=668
+  OK               C84494     x6   47uF                                   expand stock=56880
+  OK               C126514    x16  680pF                                  expand stock=75200
+  OK               C131093    x3   74LVC1G14GV,125                        expand stock=3414
+  OK               C6076      x1   74LVC1G17GV,125                        expand stock=3104
+  OK               C20917     x1   AO3400A                                base   stock=886803
+  OK               C15127     x1   AO3401A                                base   stock=467343
+  OK               C2071056   x1   AP63205WU-7                            expand stock=15552
+  OK               C85098     x1   B340A-13-F                             expand stock=206706
+  OK               C124196    x1   BZT52C12-7-F                           expand stock=9429
+  LOW_STOCK(0)     C42457798  x1   CS5308P-DN                             expand stock=0
+  OK               C780842    x1   DMP6023LFG-13                          expand stock=3341
+  LOW_STOCK(0)     C7452883   x1   LT3041ADE#TRPBF                        expand stock=0
+  OK               C2863402   x8   OPA2320AIDR                            expand stock=1113
+  OK               C83846     x1   SMBJ15A                                expand stock=18028
+  OK               C123302    x1   SN74LVC1G123DCTR                       expand stock=7304
+  OK               C23654     x1   SN74LVC1G125DBVR                       expand stock=71489
+  OK               C130024    x1   SN74LVC3G34DCUR                        expand stock=785
+  LOW_STOCK(16)    C53283916  x8   TMUX2821DSGR                           expand stock=16
+  OK               C1972959   x8   TPD2E2U06DRLR                          expand stock=8963
+  OK               C96333     x1   TPS3839K33DBZR                         expand stock=793
+  OK               C1509297   x2   TPS389001DSER                          expand stock=598
+  OK               C154439    x1   US1B-13-F                              expand stock=21431
+  OK               C6937839   x1   XGL4020-332MEC                         expand stock=1500
+
+report -> /tmp/crow-carrier-v018/verification/stock_check.csv
+json -> /tmp/crow-carrier-v018/verification/stock_check.json
+
+FAIL: 50/54 coded BOM lines have stock >= 5 x qty + 150 absolute surplus (4 with problems); 0/54 lines carry NO LCSC and were NOT graded by this tool
+  SCOPE: graded against LCSC CATALOG stock (stockCount). JLC's assembly uploader
+  allocates from a DIFFERENT pool, so a PASS here does NOT mean the line will
+  clear at order time. A FAIL is real; a PASS is necessary and not sufficient.
+  The only instrument that answers 'will it clear' is the uploader itself — F-ECHO.
