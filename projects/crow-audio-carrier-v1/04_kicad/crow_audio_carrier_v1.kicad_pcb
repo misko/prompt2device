@@ -215,7 +215,7 @@
 				)
 			)
 		)
-		(property "Supplier Part Numbers" "{\"jlcpcb\": []}"
+		(property "Supplier Part Numbers" "{\"jlcpcb\": [\"C178530\"]}"
 			(at 0 0 0)
 			(layer "F.SilkS")
 			(hide yes)
@@ -227,7 +227,7 @@
 				)
 			)
 		)
-		(attr smd exclude_from_pos_files)
+		(attr smd)
 		(duplicate_pad_numbers_are_jumpers no)
 		(fp_line
 			(start -6 -1.55)
@@ -432,7 +432,7 @@
 				)
 			)
 		)
-		(property "Supplier Part Numbers" "{\"jlcpcb\": []}"
+		(property "Supplier Part Numbers" "{\"jlcpcb\": [\"C178530\"]}"
 			(at 0 0 180)
 			(layer "F.SilkS")
 			(hide yes)
@@ -444,7 +444,7 @@
 				)
 			)
 		)
-		(attr smd exclude_from_pos_files)
+		(attr smd)
 		(duplicate_pad_numbers_are_jumpers no)
 		(fp_line
 			(start 4.12 1.25)
@@ -2482,7 +2482,7 @@
 				)
 			)
 		)
-		(property "Supplier Part Numbers" "{\"jlcpcb\": []}"
+		(property "Supplier Part Numbers" "{\"jlcpcb\": [\"C22870534\"]}"
 			(at 0 0 0)
 			(layer "F.SilkS")
 			(hide yes)
@@ -2494,7 +2494,7 @@
 				)
 			)
 		)
-		(attr smd exclude_from_pos_files)
+		(attr smd)
 		(duplicate_pad_numbers_are_jumpers no)
 		(fp_line
 			(start -2.203752 -2.67)
@@ -12382,7 +12382,7 @@
 				)
 			)
 		)
-		(property "Supplier Part Numbers" "{\"jlcpcb\": []}"
+		(property "Supplier Part Numbers" "{\"jlcpcb\": [\"C42457798\"]}"
 			(at 0 0 0)
 			(layer "F.SilkS")
 			(hide yes)
@@ -12394,7 +12394,7 @@
 				)
 			)
 		)
-		(attr smd exclude_from_pos_files)
+		(attr smd)
 		(duplicate_pad_numbers_are_jumpers no)
 		(fp_line
 			(start -3.11 -3.11)
@@ -21055,7 +21055,7 @@
 				)
 			)
 		)
-		(property "Supplier Part Numbers" "{\"jlcpcb\": []}"
+		(property "Supplier Part Numbers" "{\"jlcpcb\": [\"C178530\"]}"
 			(at 0 0 180)
 			(layer "F.SilkS")
 			(hide yes)
@@ -21067,7 +21067,7 @@
 				)
 			)
 		)
-		(attr smd exclude_from_pos_files)
+		(attr smd)
 		(duplicate_pad_numbers_are_jumpers no)
 		(fp_line
 			(start 4.12 1.25)
@@ -32702,7 +32702,7 @@
 				)
 			)
 		)
-		(property "Supplier Part Numbers" "{\"jlcpcb\": []}"
+		(property "Supplier Part Numbers" "{\"jlcpcb\": [\"C178530\"]}"
 			(at 0 0 180)
 			(layer "F.SilkS")
 			(hide yes)
@@ -32714,7 +32714,7 @@
 				)
 			)
 		)
-		(attr smd exclude_from_pos_files)
+		(attr smd)
 		(duplicate_pad_numbers_are_jumpers no)
 		(fp_line
 			(start 4.12 1.25)

@@ -1,14 +1,14 @@
 {
   "artifact": "03_tscircuit/build/circuit.json",
-  "artifact_sha256": "d524421f517ca6876ded176145cfb48ebbfa43e37f34864c6da5988f33505c36",
+  "artifact_sha256": "f92e15c227d997c83d6bf009b9d88e16034079f3ce62a9fb26fd0d6748217bd9",
   "board": "crow_audio_carrier_v1",
   "driver": "03_src/rebuild_all.sh",
   "phase": "verified",
   "producer": "03_tscircuit/dist/src/crow_audio_carrier_v1/circuit.json",
   "project": "crow-audio-carrier-v1",
   "render": "03_tscircuit/build/schematic.pdf",
-  "render_sha256": "19e772f3a18015e52c558e6ffcff6757e4302863b5c76cb84f829c6154dd0ae0",
-  "run_id": "0b82d6bb0e7743e9a66d42b027801277",
+  "render_sha256": "19da91c103ea3ebf7c39f5fba65cc197293764e015a9f6b9ddc326ad8fd89686",
+  "run_id": "ef34e21693984421a1c634f670af3dfc",
   "src_files": [
     "bun.lock",
     "package.json",
@@ -16,7 +16,7 @@
     "src/schematic_presentation.tsx"
   ],
   "src_fingerprint": "61942da9c52cc29f0fe5848ebd22a4d87c92b1e53b009c08a3b5c6ac7ae71b93",
-  "started_ns": 1789597869556797611,
+  "started_ns": 1789602823804637369,
   "tsx": "crow_audio_carrier_v1",
-  "verified_ns": 1789597897514771702
+  "verified_ns": 1789602851100023877
 }

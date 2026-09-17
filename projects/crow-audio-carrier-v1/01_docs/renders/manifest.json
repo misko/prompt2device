@@ -1,103 +1,103 @@
 {
   "kicad_version": "10.0.4",
   "board": "projects/crow-audio-carrier-v1/04_kicad/crow_audio_carrier_v1.kicad_pcb",
-  "board_sha256": "0776f364424282a7924266450f899ce69bf28cf95a602ca74d92b86fd91c164d",
+  "board_sha256": "45ff675971600c279c1d1e34e1610a08426b144f8435349037919a2328987e26",
   "render_tool_sha256": "fd4862bf4a33653402d9f67099cd529adf10a7fd8094739887e4a7a3deac4b1d",
   "models": [
     {
       "ref": "C_A1N",
       "declared": "${KIPRJMOD}/../03_src/lib/3dmodels/kicad/C_Rect_L7.2mm_W5.0mm_P5.00mm.step",
-      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/kicad/C_Rect_L7.2mm_W5.0mm_P5.00mm.step",
+      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/kicad/C_Rect_L7.2mm_W5.0mm_P5.00mm.step",
       "sha256": "35659ae3b9a50ddeb0aa5add4edfaea1770d99f3a8c2db7320eb8fb13be8ee1b"
     },
     {
       "ref": "C_A1P",
       "declared": "${KIPRJMOD}/../03_src/lib/3dmodels/kicad/C_Rect_L7.2mm_W5.0mm_P5.00mm.step",
-      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/kicad/C_Rect_L7.2mm_W5.0mm_P5.00mm.step",
+      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/kicad/C_Rect_L7.2mm_W5.0mm_P5.00mm.step",
       "sha256": "35659ae3b9a50ddeb0aa5add4edfaea1770d99f3a8c2db7320eb8fb13be8ee1b"
     },
     {
       "ref": "C_A2N",
       "declared": "${KIPRJMOD}/../03_src/lib/3dmodels/kicad/C_Rect_L7.2mm_W5.0mm_P5.00mm.step",
-      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/kicad/C_Rect_L7.2mm_W5.0mm_P5.00mm.step",
+      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/kicad/C_Rect_L7.2mm_W5.0mm_P5.00mm.step",
       "sha256": "35659ae3b9a50ddeb0aa5add4edfaea1770d99f3a8c2db7320eb8fb13be8ee1b"
     },
     {
       "ref": "C_A2P",
       "declared": "${KIPRJMOD}/../03_src/lib/3dmodels/kicad/C_Rect_L7.2mm_W5.0mm_P5.00mm.step",
-      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/kicad/C_Rect_L7.2mm_W5.0mm_P5.00mm.step",
+      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/kicad/C_Rect_L7.2mm_W5.0mm_P5.00mm.step",
       "sha256": "35659ae3b9a50ddeb0aa5add4edfaea1770d99f3a8c2db7320eb8fb13be8ee1b"
     },
     {
       "ref": "C_A3N",
       "declared": "${KIPRJMOD}/../03_src/lib/3dmodels/kicad/C_Rect_L7.2mm_W5.0mm_P5.00mm.step",
-      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/kicad/C_Rect_L7.2mm_W5.0mm_P5.00mm.step",
+      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/kicad/C_Rect_L7.2mm_W5.0mm_P5.00mm.step",
       "sha256": "35659ae3b9a50ddeb0aa5add4edfaea1770d99f3a8c2db7320eb8fb13be8ee1b"
     },
     {
       "ref": "C_A3P",
       "declared": "${KIPRJMOD}/../03_src/lib/3dmodels/kicad/C_Rect_L7.2mm_W5.0mm_P5.00mm.step",
-      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/kicad/C_Rect_L7.2mm_W5.0mm_P5.00mm.step",
+      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/kicad/C_Rect_L7.2mm_W5.0mm_P5.00mm.step",
       "sha256": "35659ae3b9a50ddeb0aa5add4edfaea1770d99f3a8c2db7320eb8fb13be8ee1b"
     },
     {
       "ref": "C_A4N",
       "declared": "${KIPRJMOD}/../03_src/lib/3dmodels/kicad/C_Rect_L7.2mm_W5.0mm_P5.00mm.step",
-      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/kicad/C_Rect_L7.2mm_W5.0mm_P5.00mm.step",
+      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/kicad/C_Rect_L7.2mm_W5.0mm_P5.00mm.step",
       "sha256": "35659ae3b9a50ddeb0aa5add4edfaea1770d99f3a8c2db7320eb8fb13be8ee1b"
     },
     {
       "ref": "C_A4P",
       "declared": "${KIPRJMOD}/../03_src/lib/3dmodels/kicad/C_Rect_L7.2mm_W5.0mm_P5.00mm.step",
-      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/kicad/C_Rect_L7.2mm_W5.0mm_P5.00mm.step",
+      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/kicad/C_Rect_L7.2mm_W5.0mm_P5.00mm.step",
       "sha256": "35659ae3b9a50ddeb0aa5add4edfaea1770d99f3a8c2db7320eb8fb13be8ee1b"
     },
     {
       "ref": "C_A5N",
       "declared": "${KIPRJMOD}/../03_src/lib/3dmodels/kicad/C_Rect_L7.2mm_W5.0mm_P5.00mm.step",
-      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/kicad/C_Rect_L7.2mm_W5.0mm_P5.00mm.step",
+      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/kicad/C_Rect_L7.2mm_W5.0mm_P5.00mm.step",
       "sha256": "35659ae3b9a50ddeb0aa5add4edfaea1770d99f3a8c2db7320eb8fb13be8ee1b"
     },
     {
       "ref": "C_A5P",
       "declared": "${KIPRJMOD}/../03_src/lib/3dmodels/kicad/C_Rect_L7.2mm_W5.0mm_P5.00mm.step",
-      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/kicad/C_Rect_L7.2mm_W5.0mm_P5.00mm.step",
+      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/kicad/C_Rect_L7.2mm_W5.0mm_P5.00mm.step",
       "sha256": "35659ae3b9a50ddeb0aa5add4edfaea1770d99f3a8c2db7320eb8fb13be8ee1b"
     },
     {
       "ref": "C_A6N",
       "declared": "${KIPRJMOD}/../03_src/lib/3dmodels/kicad/C_Rect_L7.2mm_W5.0mm_P5.00mm.step",
-      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/kicad/C_Rect_L7.2mm_W5.0mm_P5.00mm.step",
+      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/kicad/C_Rect_L7.2mm_W5.0mm_P5.00mm.step",
       "sha256": "35659ae3b9a50ddeb0aa5add4edfaea1770d99f3a8c2db7320eb8fb13be8ee1b"
     },
     {
       "ref": "C_A6P",
       "declared": "${KIPRJMOD}/../03_src/lib/3dmodels/kicad/C_Rect_L7.2mm_W5.0mm_P5.00mm.step",
-      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/kicad/C_Rect_L7.2mm_W5.0mm_P5.00mm.step",
+      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/kicad/C_Rect_L7.2mm_W5.0mm_P5.00mm.step",
       "sha256": "35659ae3b9a50ddeb0aa5add4edfaea1770d99f3a8c2db7320eb8fb13be8ee1b"
     },
     {
       "ref": "C_A7N",
       "declared": "${KIPRJMOD}/../03_src/lib/3dmodels/kicad/C_Rect_L7.2mm_W5.0mm_P5.00mm.step",
-      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/kicad/C_Rect_L7.2mm_W5.0mm_P5.00mm.step",
+      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/kicad/C_Rect_L7.2mm_W5.0mm_P5.00mm.step",
       "sha256": "35659ae3b9a50ddeb0aa5add4edfaea1770d99f3a8c2db7320eb8fb13be8ee1b"
     },
     {
       "ref": "C_A7P",
       "declared": "${KIPRJMOD}/../03_src/lib/3dmodels/kicad/C_Rect_L7.2mm_W5.0mm_P5.00mm.step",
-      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/kicad/C_Rect_L7.2mm_W5.0mm_P5.00mm.step",
+      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/kicad/C_Rect_L7.2mm_W5.0mm_P5.00mm.step",
       "sha256": "35659ae3b9a50ddeb0aa5add4edfaea1770d99f3a8c2db7320eb8fb13be8ee1b"
     },
     {
       "ref": "C_A8N",
       "declared": "${KIPRJMOD}/../03_src/lib/3dmodels/kicad/C_Rect_L7.2mm_W5.0mm_P5.00mm.step",
-      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/kicad/C_Rect_L7.2mm_W5.0mm_P5.00mm.step",
+      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/kicad/C_Rect_L7.2mm_W5.0mm_P5.00mm.step",
       "sha256": "35659ae3b9a50ddeb0aa5add4edfaea1770d99f3a8c2db7320eb8fb13be8ee1b"
     },
     {
       "ref": "C_A8P",
       "declared": "${KIPRJMOD}/../03_src/lib/3dmodels/kicad/C_Rect_L7.2mm_W5.0mm_P5.00mm.step",
-      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/kicad/C_Rect_L7.2mm_W5.0mm_P5.00mm.step",
+      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/kicad/C_Rect_L7.2mm_W5.0mm_P5.00mm.step",
       "sha256": "35659ae3b9a50ddeb0aa5add4edfaea1770d99f3a8c2db7320eb8fb13be8ee1b"
     },
     {
@@ -907,127 +907,127 @@
     {
       "ref": "F1",
       "declared": "${KIPRJMOD}/../03_src/lib/3dmodels/derived/Littelfuse_1812L035_60_max-envelope.wrl",
-      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/derived/Littelfuse_1812L035_60_max-envelope.wrl",
+      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/derived/Littelfuse_1812L035_60_max-envelope.wrl",
       "sha256": "edd6c3054b944bb9436d3943f1b5da78396621e59065dde98e828219fa62cde9"
     },
     {
       "ref": "F2",
       "declared": "${KIPRJMOD}/../03_src/lib/3dmodels/derived/Littelfuse_1812L035_60_max-envelope.wrl",
-      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/derived/Littelfuse_1812L035_60_max-envelope.wrl",
+      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/derived/Littelfuse_1812L035_60_max-envelope.wrl",
       "sha256": "edd6c3054b944bb9436d3943f1b5da78396621e59065dde98e828219fa62cde9"
     },
     {
       "ref": "F3",
       "declared": "${KIPRJMOD}/../03_src/lib/3dmodels/derived/Littelfuse_1812L035_60_max-envelope.wrl",
-      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/derived/Littelfuse_1812L035_60_max-envelope.wrl",
+      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/derived/Littelfuse_1812L035_60_max-envelope.wrl",
       "sha256": "edd6c3054b944bb9436d3943f1b5da78396621e59065dde98e828219fa62cde9"
     },
     {
       "ref": "F4",
       "declared": "${KIPRJMOD}/../03_src/lib/3dmodels/derived/Littelfuse_1812L035_60_max-envelope.wrl",
-      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/derived/Littelfuse_1812L035_60_max-envelope.wrl",
+      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/derived/Littelfuse_1812L035_60_max-envelope.wrl",
       "sha256": "edd6c3054b944bb9436d3943f1b5da78396621e59065dde98e828219fa62cde9"
     },
     {
       "ref": "F5",
       "declared": "${KIPRJMOD}/../03_src/lib/3dmodels/derived/Littelfuse_1812L035_60_max-envelope.wrl",
-      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/derived/Littelfuse_1812L035_60_max-envelope.wrl",
+      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/derived/Littelfuse_1812L035_60_max-envelope.wrl",
       "sha256": "edd6c3054b944bb9436d3943f1b5da78396621e59065dde98e828219fa62cde9"
     },
     {
       "ref": "F6",
       "declared": "${KIPRJMOD}/../03_src/lib/3dmodels/derived/Littelfuse_1812L035_60_max-envelope.wrl",
-      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/derived/Littelfuse_1812L035_60_max-envelope.wrl",
+      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/derived/Littelfuse_1812L035_60_max-envelope.wrl",
       "sha256": "edd6c3054b944bb9436d3943f1b5da78396621e59065dde98e828219fa62cde9"
     },
     {
       "ref": "F7",
       "declared": "${KIPRJMOD}/../03_src/lib/3dmodels/derived/Littelfuse_1812L035_60_max-envelope.wrl",
-      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/derived/Littelfuse_1812L035_60_max-envelope.wrl",
+      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/derived/Littelfuse_1812L035_60_max-envelope.wrl",
       "sha256": "edd6c3054b944bb9436d3943f1b5da78396621e59065dde98e828219fa62cde9"
     },
     {
       "ref": "F8",
       "declared": "${KIPRJMOD}/../03_src/lib/3dmodels/derived/Littelfuse_1812L035_60_max-envelope.wrl",
-      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/derived/Littelfuse_1812L035_60_max-envelope.wrl",
+      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/derived/Littelfuse_1812L035_60_max-envelope.wrl",
       "sha256": "edd6c3054b944bb9436d3943f1b5da78396621e59065dde98e828219fa62cde9"
     },
     {
       "ref": "F_IN",
       "declared": "${KIPRJMOD}/../03_src/lib/3dmodels/derived/Littelfuse_2920L260_33_max-envelope.wrl",
-      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/derived/Littelfuse_2920L260_33_max-envelope.wrl",
+      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/derived/Littelfuse_2920L260_33_max-envelope.wrl",
       "sha256": "8e7369b50eb9d507764e7758dd2e03ece1e7c763da5872989afe98be15f1b37c"
     },
     {
       "ref": "J1",
       "declared": "${KIPRJMOD}/../03_src/lib/3dmodels/wurth/J_Wurth_WR-MJ_615008160221.step",
-      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/wurth/J_Wurth_WR-MJ_615008160221.step",
+      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/wurth/J_Wurth_WR-MJ_615008160221.step",
       "sha256": "3f902b89d4bd756b121be056782deff312efb127c9c48f2c798ebd6db0e59f49"
     },
     {
       "ref": "J10",
       "declared": "${KIPRJMOD}/../03_src/lib/3dmodels/derived/connectors/Samtec_TMM-106-01-L-D_reference.wrl",
-      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/derived/connectors/Samtec_TMM-106-01-L-D_reference.wrl",
+      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/derived/connectors/Samtec_TMM-106-01-L-D_reference.wrl",
       "sha256": "3a9f0dd56986b0a8b9fa5229f8fcd12451cb9b857a472bb36f87992f8f086737"
     },
     {
       "ref": "J11",
       "declared": "${KIPRJMOD}/../03_src/lib/3dmodels/derived/connectors/Samtec_TMM-106-01-L-D_reference.wrl",
-      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/derived/connectors/Samtec_TMM-106-01-L-D_reference.wrl",
+      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/derived/connectors/Samtec_TMM-106-01-L-D_reference.wrl",
       "sha256": "3a9f0dd56986b0a8b9fa5229f8fcd12451cb9b857a472bb36f87992f8f086737"
     },
     {
       "ref": "J2",
       "declared": "${KIPRJMOD}/../03_src/lib/3dmodels/wurth/J_Wurth_WR-MJ_615008160221.step",
-      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/wurth/J_Wurth_WR-MJ_615008160221.step",
+      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/wurth/J_Wurth_WR-MJ_615008160221.step",
       "sha256": "3f902b89d4bd756b121be056782deff312efb127c9c48f2c798ebd6db0e59f49"
     },
     {
       "ref": "J3",
       "declared": "${KIPRJMOD}/../03_src/lib/3dmodels/wurth/J_Wurth_WR-MJ_615008160221.step",
-      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/wurth/J_Wurth_WR-MJ_615008160221.step",
+      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/wurth/J_Wurth_WR-MJ_615008160221.step",
       "sha256": "3f902b89d4bd756b121be056782deff312efb127c9c48f2c798ebd6db0e59f49"
     },
     {
       "ref": "J4",
       "declared": "${KIPRJMOD}/../03_src/lib/3dmodels/wurth/J_Wurth_WR-MJ_615008160221.step",
-      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/wurth/J_Wurth_WR-MJ_615008160221.step",
+      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/wurth/J_Wurth_WR-MJ_615008160221.step",
       "sha256": "3f902b89d4bd756b121be056782deff312efb127c9c48f2c798ebd6db0e59f49"
     },
     {
       "ref": "J5",
       "declared": "${KIPRJMOD}/../03_src/lib/3dmodels/wurth/J_Wurth_WR-MJ_615008160221.step",
-      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/wurth/J_Wurth_WR-MJ_615008160221.step",
+      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/wurth/J_Wurth_WR-MJ_615008160221.step",
       "sha256": "3f902b89d4bd756b121be056782deff312efb127c9c48f2c798ebd6db0e59f49"
     },
     {
       "ref": "J6",
       "declared": "${KIPRJMOD}/../03_src/lib/3dmodels/wurth/J_Wurth_WR-MJ_615008160221.step",
-      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/wurth/J_Wurth_WR-MJ_615008160221.step",
+      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/wurth/J_Wurth_WR-MJ_615008160221.step",
       "sha256": "3f902b89d4bd756b121be056782deff312efb127c9c48f2c798ebd6db0e59f49"
     },
     {
       "ref": "J7",
       "declared": "${KIPRJMOD}/../03_src/lib/3dmodels/wurth/J_Wurth_WR-MJ_615008160221.step",
-      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/wurth/J_Wurth_WR-MJ_615008160221.step",
+      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/wurth/J_Wurth_WR-MJ_615008160221.step",
       "sha256": "3f902b89d4bd756b121be056782deff312efb127c9c48f2c798ebd6db0e59f49"
     },
     {
       "ref": "J8",
       "declared": "${KIPRJMOD}/../03_src/lib/3dmodels/wurth/J_Wurth_WR-MJ_615008160221.step",
-      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/wurth/J_Wurth_WR-MJ_615008160221.step",
+      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/wurth/J_Wurth_WR-MJ_615008160221.step",
       "sha256": "3f902b89d4bd756b121be056782deff312efb127c9c48f2c798ebd6db0e59f49"
     },
     {
       "ref": "J9",
       "declared": "${KIPRJMOD}/../03_src/lib/3dmodels/derived/Molex_43650-0200_conservative-envelope.wrl",
-      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/derived/Molex_43650-0200_conservative-envelope.wrl",
+      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/derived/Molex_43650-0200_conservative-envelope.wrl",
       "sha256": "301488732bd715060f80583e9cc8936bbbbd584dbe14055705d89d0d37442ffb"
     },
     {
       "ref": "L_BUCK",
       "declared": "${KIPRJMOD}/../03_src/lib/3dmodels/derived/Coilcraft_XGL4020_nominal.wrl",
-      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/derived/Coilcraft_XGL4020_nominal.wrl",
+      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/derived/Coilcraft_XGL4020_nominal.wrl",
       "sha256": "7bad54018ac4dc4a88aefcfd22ea77252a562697b913a4b19abfe49bde13231d"
     },
     {
@@ -1621,7 +1621,7 @@
     {
       "ref": "R_PWR_TOP",
       "declared": "${KIPRJMOD}/../03_src/lib/3dmodels/kicad/R_0603_1608Metric.step",
-      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/kicad/R_0603_1608Metric.step",
+      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/kicad/R_0603_1608Metric.step",
       "sha256": "1875571c326d0d9e96f36b4efeb8094068ef7619f0a449c781caf0b49c2e5861"
     },
     {
@@ -1783,7 +1783,7 @@
     {
       "ref": "U_ADC",
       "declared": "${KIPRJMOD}/../03_src/lib/3dmodels/derived/Cirrus_CS5308P_QFN48_nominal.wrl",
-      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/derived/Cirrus_CS5308P_QFN48_nominal.wrl",
+      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/derived/Cirrus_CS5308P_QFN48_nominal.wrl",
       "sha256": "524842aeb15f39c3fbefa14588adf985784f2df4d93fb0812d0779ae22f87135"
     },
     {
@@ -1837,7 +1837,7 @@
     {
       "ref": "U_AUDIO",
       "declared": "${KIPRJMOD}/../03_src/lib/3dmodels/derived/TI_DSE0006A_nominal.wrl",
-      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/derived/TI_DSE0006A_nominal.wrl",
+      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/derived/TI_DSE0006A_nominal.wrl",
       "sha256": "ab2e205855dcf71a0663cbd021ff2cddd284a980d338753ffb54dd726409c1ce"
     },
     {
@@ -1909,49 +1909,49 @@
     {
       "ref": "U_ISO1",
       "declared": "${KIPRJMOD}/../03_src/lib/3dmodels/derived/TI_DSG0008A_nominal.wrl",
-      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/derived/TI_DSG0008A_nominal.wrl",
+      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/derived/TI_DSG0008A_nominal.wrl",
       "sha256": "0efc4d267f4b25c433f509251759baab99611db311ca31b3f60ae180c3beb1fe"
     },
     {
       "ref": "U_ISO2",
       "declared": "${KIPRJMOD}/../03_src/lib/3dmodels/derived/TI_DSG0008A_nominal.wrl",
-      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/derived/TI_DSG0008A_nominal.wrl",
+      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/derived/TI_DSG0008A_nominal.wrl",
       "sha256": "0efc4d267f4b25c433f509251759baab99611db311ca31b3f60ae180c3beb1fe"
     },
     {
       "ref": "U_ISO3",
       "declared": "${KIPRJMOD}/../03_src/lib/3dmodels/derived/TI_DSG0008A_nominal.wrl",
-      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/derived/TI_DSG0008A_nominal.wrl",
+      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/derived/TI_DSG0008A_nominal.wrl",
       "sha256": "0efc4d267f4b25c433f509251759baab99611db311ca31b3f60ae180c3beb1fe"
     },
     {
       "ref": "U_ISO4",
       "declared": "${KIPRJMOD}/../03_src/lib/3dmodels/derived/TI_DSG0008A_nominal.wrl",
-      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/derived/TI_DSG0008A_nominal.wrl",
+      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/derived/TI_DSG0008A_nominal.wrl",
       "sha256": "0efc4d267f4b25c433f509251759baab99611db311ca31b3f60ae180c3beb1fe"
     },
     {
       "ref": "U_ISO5",
       "declared": "${KIPRJMOD}/../03_src/lib/3dmodels/derived/TI_DSG0008A_nominal.wrl",
-      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/derived/TI_DSG0008A_nominal.wrl",
+      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/derived/TI_DSG0008A_nominal.wrl",
       "sha256": "0efc4d267f4b25c433f509251759baab99611db311ca31b3f60ae180c3beb1fe"
     },
     {
       "ref": "U_ISO6",
       "declared": "${KIPRJMOD}/../03_src/lib/3dmodels/derived/TI_DSG0008A_nominal.wrl",
-      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/derived/TI_DSG0008A_nominal.wrl",
+      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/derived/TI_DSG0008A_nominal.wrl",
       "sha256": "0efc4d267f4b25c433f509251759baab99611db311ca31b3f60ae180c3beb1fe"
     },
     {
       "ref": "U_ISO7",
       "declared": "${KIPRJMOD}/../03_src/lib/3dmodels/derived/TI_DSG0008A_nominal.wrl",
-      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/derived/TI_DSG0008A_nominal.wrl",
+      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/derived/TI_DSG0008A_nominal.wrl",
       "sha256": "0efc4d267f4b25c433f509251759baab99611db311ca31b3f60ae180c3beb1fe"
     },
     {
       "ref": "U_ISO8",
       "declared": "${KIPRJMOD}/../03_src/lib/3dmodels/derived/TI_DSG0008A_nominal.wrl",
-      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/derived/TI_DSG0008A_nominal.wrl",
+      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/derived/TI_DSG0008A_nominal.wrl",
       "sha256": "0efc4d267f4b25c433f509251759baab99611db311ca31b3f60ae180c3beb1fe"
     },
     {
@@ -1975,7 +1975,7 @@
     {
       "ref": "U_PWR",
       "declared": "${KIPRJMOD}/../03_src/lib/3dmodels/derived/TI_DSE0006A_nominal.wrl",
-      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-roof-array-v1-20260901/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/derived/TI_DSE0006A_nominal.wrl",
+      "resolved": "/home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/projects/crow-audio-carrier-v1/03_src/lib/3dmodels/derived/TI_DSE0006A_nominal.wrl",
       "sha256": "ab2e205855dcf71a0663cbd021ff2cddd284a980d338753ffb54dd726409c1ce"
     },
     {
@@ -2007,7 +2007,7 @@
     {
       "name": "front-left",
       "path": "projects/crow-audio-carrier-v1/01_docs/renders/front-left.png",
-      "sha256": "8a57dbc10039cd372d672ae15bc0678b294edb7022e65242f68bb148fde34cdc",
+      "sha256": "181512b8fcd3e199cd3fbc63ef2f899f0693db635f6c2ac9fc0e7cce1a801e07",
       "command": [
         "kicad-cli",
         "pcb",
@@ -2034,7 +2034,7 @@
         "KICAD10_3DMODEL_DIR=/home/mouse9911/.local/share/kicad/10.0/3dmodels",
         "projects/crow-audio-carrier-v1/04_kicad/crow_audio_carrier_v1.kicad_pcb"
       ],
-      "elapsed_s": 10.397,
+      "elapsed_s": null,
       "producer_output_path": "projects/crow-audio-carrier-v1/01_docs/renders/front-left.png",
       "reproduce_command": [
         "kicad-cli",
@@ -2066,7 +2066,7 @@
     {
       "name": "front-right",
       "path": "projects/crow-audio-carrier-v1/01_docs/renders/front-right.png",
-      "sha256": "a3464c627e3cca39014851990863fba87a837dbd290b34d54c5496eaead73013",
+      "sha256": "8a344fb047b9ce6a9e7de1b7b0391399ca54d1125651a8610e3ee00cb4159eb4",
       "command": [
         "kicad-cli",
         "pcb",
@@ -2093,7 +2093,7 @@
         "KICAD10_3DMODEL_DIR=/home/mouse9911/.local/share/kicad/10.0/3dmodels",
         "projects/crow-audio-carrier-v1/04_kicad/crow_audio_carrier_v1.kicad_pcb"
       ],
-      "elapsed_s": 11.093,
+      "elapsed_s": null,
       "producer_output_path": "projects/crow-audio-carrier-v1/01_docs/renders/front-right.png",
       "reproduce_command": [
         "kicad-cli",
@@ -2125,7 +2125,7 @@
     {
       "name": "rear-left",
       "path": "projects/crow-audio-carrier-v1/01_docs/renders/rear-left.png",
-      "sha256": "39dcc51210c01b4b30b7ea248646600a32d44a566a64081ac3f84d785ed68e5e",
+      "sha256": "57adfb53ad8a188453e0702be0a389797e9d9a8ae61389cdd9e2b741af90a596",
       "command": [
         "kicad-cli",
         "pcb",
@@ -2152,7 +2152,7 @@
         "KICAD10_3DMODEL_DIR=/home/mouse9911/.local/share/kicad/10.0/3dmodels",
         "projects/crow-audio-carrier-v1/04_kicad/crow_audio_carrier_v1.kicad_pcb"
       ],
-      "elapsed_s": 11.533,
+      "elapsed_s": null,
       "producer_output_path": "projects/crow-audio-carrier-v1/01_docs/renders/rear-left.png",
       "reproduce_command": [
         "kicad-cli",
@@ -2185,5 +2185,5 @@
   "claim": "Native final routed-board visual evidence; connector orientation remains user-approved; fabrication and release admission are separately gated.",
   "status": "FINAL ROUTED BOARD: exact-board RJ45 obliques regenerated after layout seal; release gates pending.",
   "render_producer_sha256": "4a98b5069c9fce8e190d40b3b0ca988fcdc19b950cc8acd162839fcd41de6e80",
-  "orientation_subject_sha256": "a278a3bd182ee10ae8dad309e70ac5719a849b7774641e26befbc5bf7746a55b"
+  "orientation_subject_sha256": "155896eb43a7c2b04c684523d4d96309bd4d945670f11a1c7a1d52b01a7a70e8"
 }

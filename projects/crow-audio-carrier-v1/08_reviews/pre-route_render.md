@@ -1,106 +1,67 @@
 review_stage: pre-route
 review_kind: render
-reviewer_identity: /root/carrier_final_delta_review
-reviewer: /root/carrier_final_delta_review
+reviewer_identity: /root/carrier_render_refresh
+reviewer: /root/carrier_render_refresh
 context: FRESH
-date: 2026-09-16
-completed_at: 2026-09-16T06:29:00+00:00
+model: GPT-6 Codex
+reasoning_effort: xhigh
+date: 2026-09-17
+completed_at: 2026-09-17T00:11:38Z
 design_verdict: SOUND
-order_verdict: DO-NOT-ORDER
-board_sha256: 60aa7f6740255f9943eb92779b33f793a097e9b093923105a58141b3642623bf
-design_rules_sha256: f45a216fcc87beb74f390d97e97ecae9ef3a95c55fa445f2d727f5cac45cdd1f
-locator_manifest_sha256: be476a893732fb9f1fb4352527e4d2c1339387f5d574210d03ff9937a9c614c4
+order_verdict: BLOCKED-SOURCING
+board_sha256: c03db60ae47d6737e0bab2439bc410a127b8f15acfdde82925f77f96d62287df
+design_rules_sha256: 945c7614cbfe8a321faa691286034a9d10fe8f9a14349732a25eb40bdf483792
+locator_manifest_sha256: ead3b85efb53b27a1486d5a3d80b53bf778c3afef7c4d373c2801434cdde45bd
 locator_reviewed_refs: ["C_FILT1_10U", "C_FILT2_10U", "C_PWR_CT", "C_VDDA2_10N", "C_VMID1_470N", "C_VMID1_4U7", "C_VMID2_470N", "C_VMID2_4U7", "R_ADC_BOT", "R_ADC_PD6N", "R_ADC_TOP", "R_AUDIO_PD", "R_AUDIO_PU", "R_DUMP_TIME2", "R_FILT1P", "R_IN6N", "R_PRE_G", "R_PWR_BOT", "R_PWR_TOP", "R_VMID1_BOT", "R_VMID1_TOP", "R_VMID2_BOT", "R_X6N"]
+twin_board_sha256: 0f9a3c29f954e6c356c183ba419f489bd4900b74308affa8d1cee528b5ff0ab3
+twin_report_sha256: 226dd817c4c566d0a1a6dc096071bc3339e36dfc26970bfb1757c632ed912c27
+missing_models_sha256: 9848aad1ff4ec5f774f5c134921ebf11774e2d16bce57c762f65165adaa32206
+twin_top_sha256: af819e782aa138f11d1d556d98ca8b9415bd1b5859cd744770aa8558f45c08c6
+twin_bottom_sha256: 9ecb09c6b07af6f818218acb62b143c63fde09353c4a8eaa699b1808d8339ae4
+twin_iso_nw_sha256: 1418c308344529dd243111fb3094ad545c9f145d3ce1e8affd5362c3a92e22cd
+twin_iso_se_sha256: 6f346115bfd8ef841f2234ecc56f0678e9eab63756a8196bd3d6128a57ab3865
+twin_overlay_report_sha256: d3f573dc408fa6ebd4154ba12b6cfe36c04eeb8abd78df76238e0e98f11f451d
+twin_overlay_png_sha256: 883c32b2a698ff13c73d9b0207d39addffad301d472d47ac8e9c471aa77818bf
+connector_orientation_subject_sha256: 155896eb43a7c2b04c684523d4d96309bd4d945670f11a1c7a1d52b01a7a70e8
+connector_orientation_approval_sha256: 7caf0d53c2909cb74ecea7cfaba51d5f87c09a84b514bafac37b5220a7a87570
 
-SOUND for the commissioned pre-route render and locator scope. No new source geometry defect observed. FIRST-ARTICLE-ONLY / DO-NOT-ORDER remains; empty routing and diagnostic Gerbers are expected pre-route evidence, not fabrication release.
+# Fresh pre-route native/render placement review
 
-2026-09-16 exact-board rebind: independent report SHA-256 a126202b3f11e89597b9b23295d69c33b4c60959f0ed64bfe031b8581118df8d confirms unchanged component/model placement and all-front-side SMD population. The exact locator was regenerated twice from the current board with identical output; its JSON is identical after removing the board hash, and all 23 page-image differences are confined to the printed board-hash footer. RENDER remains SOUND. A transient live catalog fetch failure during an additional twin attempt adds no new geometry evidence and grants no sourcing or order acceptance.
+## Verdict
 
-All 333 native and twin fitted references have matching position, rotation and side. All 309 SMD-attributed footprints are on F.Cu (306 fitted plus three fiducials); 27 fitted THT bodies. The underside shows only board features and THT legs, with no fitted underside body. All 333 native model hash bindings verified.
+**SOUND** for placement, body fidelity, connector orientation, all-top SMD population, and assembly-locator readability on the exact board bound above. I independently reopened the promoted current twin, its top/bottom and two opposing oblique renders, the full top courtyard overlay and flagged crops, the connector view set and current user approval, the native board, CPL, assembly declaration, and all 23 locator pages. I did not rely on an earlier acceptance.
 
-The three full-frame obliques collectively expose both opposing RJ45 mouth rows. J1-J4 face the upper edge; J5-J8 face the lower edge; J9 faces left; J10/J11 are vertical top-entry with TDM/SENSE labels. Corner holes and board approaches are clear of modeled bodies. Existing nine-connector explicit user approval for subject 40e3171bc656b3496a0cd620e9bcd65e5246b618aae9147ea889a6c7e06b10bd remains valid and was not requested again. Real capacitor occlusion remains.
+The order verdict remains **BLOCKED-SOURCING** because this review does not close the separately owned sourcing/order-preview controls. That order status does not identify a placement geometry defect.
 
-All 23 locator PNG pages were actually opened and usable. R_PWR_BOT is now page 18 at (30.000,56.700), 180 degrees, pad 1 PWR_SENSE on the right and pad 2 GND on the left; C_AUDIO_CT2 is no longer an omission page. Native targets are identified by numbered pads and local body context rather than nearby silk. The exact checker passed 333 references, 1051 pads and 23 pages. Native Fab bounding rectangles are locator context, not production body measurements.
+## Exact representation and population
 
-Retry provenance: previous packet was diagnostic after provider failure. This new packet was independently reopened and all images reinspected; native/twin audit, locator and HTML checks rerun with new paths. Audit and packaging script methods reused, never their prior results.
+The promoted twin receipt binds the exact source board SHA-256 above. Its population is 306/306 CPL bodies plus 27/27 declared manual-install bodies, for 333/333 expected fitted bodies and zero missing models. The twin board and all inspected render bytes are bound in the header.
 
-Verified every one of 1054 envelope input sizes and SHA256 before and after review.
+The native board census is 340 footprints, all on F.Cu. It contains 309 SMD-attributed footprints on the front only: 306 fitted CPL items plus three fiducials. Every one of the 306 CPL rows declares the top side. The remaining fitted population is 27 through-hole bodies. The bottom render shows through-hole pins and board features, with no mounted bottom-side SMD body.
 
-Fresh visual inspection of every image in image_bindings; no geometry changes, hidden-body tricks, new cameras or source adoption.
+The six newly assembly-owned JLC placements are present and visually coherent with the native pads and silkscreen: U_ADC 270 degrees, F_IN 0 degrees, C_FILT1_470U 180 degrees, C_FILT2_470U 180 degrees, C_HOLD1 0 degrees, and C_HOLD2 180 degrees.
 
-Independent pcbnew native/twin census, all mounting sides/coordinates/rotations, owning semantic rules digest and all 333 native model-instance hash bindings; installed KiCad libraries only outside frozen packet, never live project.
+## Body/courtyard fidelity and interference
 
-Shared runtime exact locator checker: 333 refs, 1051 pads, 23 pages, 26 manifest members; all PDF images decoded and compared; HTML data/SVG checked.
+A-RENDER passes with 340 front courtyards drawn and no footprint lacking a courtyard on both sides. It independently measures 83 of 333 expected bodies; 250 bodies are explicitly below the 2.0 mm render-resolvability floor, zero resolvable bodies are unmeasured, and zero expected bodies lack a model. Maximum measured centre delta is 0.573 mm against the 1.00 mm limit. The populated-minus-bare overlay shows no body registration failure or unexplained outward excursion.
 
-Shared runtime actual shipped HTML control function: 333/333 selections and 7/7 startup cases.
+Top, bottom, north-west and south-east renders show no modeled body-to-body interference, connector obstruction, or mounting-hole obstruction. The four 470 uF can markings and board polarity cues agree in the inspected top and oblique views. D_HOLD remains polarity-fit-blind in the available vendor body, D_QIN_GS retains its polarity check, and D_BUCK_IN retains the declared catalog-transform fallback. Those named items still require the existing supplier uploader/order-preview check; the renders do not create polarity authority that the vendor model lacks.
 
-Read current TPS389001 dossier and engineered TI_DSE0006A_GNDToe018 source; freshly opened TI SLVSD65A PDF pages 24 and 25. Package 1.45..1.55 mm square, height <=0.8 mm, 0.5 mm pitch; left SMD/right NSMD mask detail and asymmetric pad 1 confirmed. Covered 0.18 mm ground toe is an authored engineering extension, not a TI verbatim recommendation. Current twin reports U_AUDIO/U_PWR fit 0.06 mm and model registration 0.02 mm.
+## Connector orientation and approach
 
-Unchanged primary research reused explicitly from frozen prior independent report: Wurth p1, Molex p1, Samtec p1, US1B p4, B340A p6, TI DSG p30, Littelfuse p6, Yageo p4 and six native-registration groups. These pages were not falsely claimed freshly reopened here; current changed board/renders reviewed afresh.
+The nine-connector datum receipt passes 9/9. J1-J4 face the north board edge, J5-J8 face the south edge, and J9 faces west. The current connector approval binds subject `155896eb43a7c2b04c684523d4d96309bd4d945670f11a1c7a1d52b01a7a70e8`; the user explicitly confirmed the regenerated views on 2026-09-17.
 
-R1 — coverage-limit — RETAINED
+I reopened all 11 bound connector images. The RJ45 mouths, top-side mounting, keying, retention geometry, and outward cable approaches are visible and mutually consistent. J9's top, inside, outside and two profile views show a clear westward mating approach. J10 and J11 are unobstructed vertical top-entry headers. Render review cannot prove real plug-boot tolerance, simultaneous seating, latch access, or loaded service; those remain first-article physical checks.
 
-A-RENDER PASS measures 83/333 bodies, with 250 below 2.0 mm resolvability floor, zero resolvable unmeasured and zero missing models. Maximum listed center delta 0.555 mm at D_HOLD; limit 1.00 mm. Action: Retain explicit unresolvable census; do not claim 333 independent body measurements.
+## Assembly locator
 
-R2 — catalog-limitation — MOUNT-FALLBACK-RETAINED
+All 23 locator pages were reopened. Every highlighted target is legible in whole-board and local context, with numbered pads available where silk is crowded. The reviewed exception set is exactly the `locator_reviewed_refs` list in the header; no required page was omitted or substituted. The exact locator manifest is bound above and is expected to check as 333 references, 1051 pads, 23 pages and 26 manifest members.
 
-Raw catalog numbered-pad fit 0.570 mm exceeds 0.5 mm. Declared common-centroid fallback and unchanged primary US1B land research support retaining source; catalog 5.14 mm pitch does not supersede native 4.00 mm pitch. Action: Retain fallback annotation and exact supplier preview check; do not import discrepant catalog lands.
+## Coverage limits retained
 
-R3 — order-hold — OPEN-ORDER-PREVIEW
+- 83/333 bodies are independently pixel-measurable; 250/333 are named as below the resolution floor and are not silently counted as measured.
+- Native/manual body retention and catalog-transform fallbacks remain declared evidence limits.
+- Supplier uploader polarity/rotation previews remain required for the named order-preview items.
+- Rendered connector access remains subject to first-article physical mating and service checks.
 
-POLARITY-CHECK and D_HOLD POLARITY-FIT-BLIND remain; symmetric body fitting cannot prove cathode orientation. Existing single-channel order-preview list remains owed. Action: Retain and perform all named final human supplier-preview orientation checks before ordering.
-
-R4 — representation-limit — DECLARED-NATIVE-RETENTION
-
-17 coded parts retain native representations (9 without independent catalog CAD and 8 without catalog body); 33 local/manual bodies retain native models. Action: Preserve nominal/max-envelope qualifications; native model registration is not independent catalog body confirmation.
-
-R5 — first-article-hold — PHYSICAL-QUALIFICATION-OWED
-
-Modeled mouths and board-level approaches are unobstructed, but plug/boot/latch access, tolerances, simultaneous seating and loaded service need physical qualification. Tall film capacitors cause real rear-view occlusion. Action: Retain physical first-article mating, continuity, pin-1 and service checks; not a new prototype-fabrication prerequisite. Factory Cat6A/RJ45 carries custom analog/DC only, not Ethernet/PoE; power off for mating.
-
-R6 — method-limit — DISCLOSED
-
-23 actual PNG pages visually inspected; PDF page images decoded and pixel-matched by exact checker; HTML geometry and 333 selection functions checked. No browser raster/layout session was performed. Action: Accept inspected PNG/PDF atlas for visual presentation; do not claim browser-specific layout review.
-
-Exact locator visual acceptance:
-
-| Page | Ref | X, Y mm | Rotation | Result |
-|---:|---|---|---:|---|
-| 1 | C_FILT1_10U | 96.750, 62.550 | 0.0 | PASS |
-| 2 | C_FILT2_10U | 96.750, 77.450 | 0.0 | PASS |
-| 3 | C_PWR_CT | 36.000, 55.300 | 0.0 | PASS |
-| 4 | C_VDDA2_10N | 91.000, 71.500 | 180.0 | PASS |
-| 5 | C_VMID1_470N | 90.600, 65.700 | 180.0 | PASS |
-| 6 | C_VMID1_4U7 | 90.700, 63.900 | 180.0 | PASS |
-| 7 | C_VMID2_470N | 90.600, 74.300 | 180.0 | PASS |
-| 8 | C_VMID2_4U7 | 90.700, 76.100 | 180.0 | PASS |
-| 9 | R_ADC_BOT | 30.900, 64.500 | 90.0 | PASS |
-| 10 | R_ADC_PD6N | 69.750, 85.100 | 180.0 | PASS |
-| 11 | R_ADC_TOP | 32.700, 64.500 | 90.0 | PASS |
-| 12 | R_AUDIO_PD | 37.170, 59.650 | 90.0 | PASS |
-| 13 | R_AUDIO_PU | 34.200, 63.400 | 90.0 | PASS |
-| 14 | R_DUMP_TIME2 | 58.650, 78.200 | 0.0 | PASS |
-| 15 | R_FILT1P | 88.000, 61.300 | 0.0 | PASS |
-| 16 | R_IN6N | 67.550, 91.000 | 0.0 | PASS |
-| 17 | R_PRE_G | 43.600, 61.000 | 0.0 | PASS |
-| 18 | R_PWR_BOT | 30.000, 56.700 | 180.0 | PASS |
-| 19 | R_PWR_TOP | 30.000, 54.900 | 180.0 | PASS |
-| 20 | R_VMID1_BOT | 73.800, 74.600 | 90.0 | PASS |
-| 21 | R_VMID1_TOP | 72.000, 74.600 | 90.0 | PASS |
-| 22 | R_VMID2_BOT | 78.200, 75.700 | 90.0 | PASS |
-| 23 | R_X6N | 65.900, 92.350 | 180.0 | PASS |
-
-
-2026-09-16 final route-delta rebind: fresh independent Sol Medium integrated
-review is SOUND on the exact current board, prepared route and accepted routed
-board. The board/prepared hashes, all footprint/pad placement and connector
-orientation subjects remain current; only the semantic rules digest changed.
-The reviewed delta is confined to source-governed ADC3P restoration validation,
-the ADC4P local notch/shared CM3 ground-via geometry and the fail-closed stitch
-backstop. Exact native DRC is 0/0/0, analog paths pass 155/155, zero-via groups
-retain zero realized vias, and all via/fabrication floors remain unchanged and
-passing. This rebind grants no sourcing, ordering or first-article acceptance.
-
-2026-09-16 CM6P redundant-spur rebind: fresh independent Sol Medium read-only review found this placement lens SOUND. The removed entry is under `stitch.seed_stubs`, after track-free preparation, so it cannot alter the exact pin, footprint, pad, placement, locator, model, or render subjects. The authoritative base-board SHA-256 remains `60aa7f6740255f9943eb92779b33f793a097e9b093923105a58141b3642623bf`; the prepared r0 SHA-256 remains `6440b4da5a8e0e2273526561ece7ef4c9e464498a484542413c59fddf08bccb3`. Fresh replay confirmed P-ROUTEBASE 340 footprints, 132 base/prepared vias, and 760 prepared segments; A-LOCATOR remains 333 refs, 1051 pads, 23 exceptions/pages, and 26 manifest members; P-ORIENT passes 9/9 machine and 9/9 human. FIRST-ARTICLE-ONLY / DO-NOT-ORDER remains mandatory.
-
-2026-09-16 CM6P Type VII final rebind: fresh independent Sol Medium read-only review found this lens SOUND. The exact route delta restores the short `C_ADC_CM6P.2` GND seed and adds `protect_via_in_pad` after exact-geometry restoration, promoting all 12 realized SMT-land barrels into the existing 0.60/0.30 mm epoxy-filled, copper-capped drill family. The assembly remark now names the U_ADC EP49 3x3 field, U_LDO EP15 pair, and CM6P.2 return; every 0.20 mm drill remains ordinary. This is a routed fabrication-process realization, not a schematic or track-free subject change. The native probe passes 601/601 vias, 12/12 via-in-pad sites, 12 protected/589 ordinary/0 partial, with zero non-library DRC or unconnected finding. FIRST-ARTICLE-ONLY / DO-NOT-ORDER and uploader confirmation remain mandatory.
+No placement or render defect blocks routing or release progression for this exact subject.

@@ -1,5 +1,37 @@
 # Dated public product-page observations only; stale before ordering.
 quotes:
+- mpn: CS5308P-DN
+  manufacturer: Cirrus Logic
+  distributor: digikey
+  dpn: 598-CS5308P-DN-ND
+  source: product_page
+  url: https://www.digikey.com/en/products/detail/cirrus-logic-inc/CS5308P-DN/26753129
+  read_on: '2026-09-16'
+  checked_at: '2026-09-16T17:36:00-07:00'
+  lifecycle: Active
+  packaging: Tray
+  stock: 234
+  min: 1
+  mult: 1
+  price_breaks: []
+  note: "CITED exact public DigiKey product listing reopened 2026-09-16: exact CS5308P-DN, Active, 234 tray units. This clears the five-board need plus configured 150-unit public-stock surplus (155) for design continuation. No reservation, JLC allocation, consignment acceptance, landed quote or purchase authority is inferred."
+
+- mpn: 2920L260/33DR
+  manufacturer: Littelfuse
+  distributor: digikey
+  dpn: 18-2920L260/33DRCT-ND
+  source: product_page
+  url: https://www.digikey.com/en/products/detail/littelfuse-inc/2920L260-33DR/21801850
+  read_on: '2026-09-16'
+  checked_at: '2026-09-16T17:36:00-07:00'
+  lifecycle: Active
+  packaging: Cut Tape
+  stock: 35798
+  min: 1
+  mult: 1
+  price_breaks: []
+  note: "CITED exact public DigiKey product listing reopened 2026-09-16: exact 2920L260/33DR, Active, 35,798 units across cut-tape/reel fulfillment. This clears the five-board need plus configured 150-unit public-stock surplus (155) for design continuation. No reservation, JLC allocation, consignment acceptance, landed quote or purchase authority is inferred."
+
 - mpn: LT3041ADE#TRPBF
   manufacturer: Analog Devices
   distributor: trustedparts

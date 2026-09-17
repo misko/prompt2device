@@ -1,51 +1,97 @@
 review_stage: pre-route
 review_kind: pin
-reviewer_identity: /root/carrier_final_delta_review
-context: FRESH
-date: 2026-09-16
+reviewer_identity: /root/carrier_topology_refresh
+context: FRESH FIX-PASS
+completed_at: 2026-09-17T00:11:32Z
+source_commit: fd8c88b2accd3df10d8b1443e1e5968e1c4f0c3b
 design_verdict: SOUND
-order_verdict: DO-NOT-ORDER
+order_verdict: BLOCKED-SOURCING
 qualification: FIRST-ARTICLE-ONLY
-board_sha256: 60aa7f6740255f9943eb92779b33f793a097e9b093923105a58141b3642623bf
-design_rules_sha256: f45a216fcc87beb74f390d97e97ecae9ef3a95c55fa445f2d727f5cac45cdd1f
-parts_sha256: 7e43d5d63f3021d88fa96b12d4f5bd80048868bad8f66fd53bc1f112743950fd
+board_sha256: c03db60ae47d6737e0bab2439bc410a127b8f15acfdde82925f77f96d62287df
+parts_sha256: 19914c21c35cc6593b6dcc88a26f5b094517c09c3834356f6fc252048ce3b916
+design_rules_sha256: 945c7614cbfe8a321faa691286034a9d10fe8f9a14349732a25eb40bdf483792
+locator_manifest_sha256: ead3b85efb53b27a1486d5a3d80b53bf778c3afef7c4d373c2801434cdde45bd
+bom_sha256: e10bffd5c56171b349af1c282ddaf618f236d4fc66a6d5a14d9f5732fc76d44d
+cpl_sha256: b4e43d2ae1e007fa8506b299380fb49b77297cc2b8db9fc352f4d490e1892864
+twin_report_sha256: 7450fd61047002827a49f49e41589ee68258e89e83f35dae3277d9e3c5387695
+twin_overlay_report_sha256: d3f573dc408fa6ebd4154ba12b6cfe36c04eeb8abd78df76238e0e98f11f451d
+orientation_subject_sha256: 155896eb43a7c2b04c684523d4d96309bd4d945670f11a1c7a1d52b01a7a70e8
 
-Fresh bounded fix-pass PIN judgment: SOUND for the commissioned 61 critical references. This is an independent reviewer of the delta, with 59 unchanged primary-document conclusions inherited explicitly from the accepted collection, not 59 newly researched parts. No purchase, fabrication, assembly qualification or completed-route acceptance is granted.
+Fresh independent physical-pin verdict: SOUND for the exact current pre-route
+carrier board. I regenerated conclusion-free pin dossiers from this board and
+its current BOM, inspected the current part authorities and affected primary
+documents, compared every physical identity against the board, and checked the
+locator, twin, overlay and connector-orientation evidence. This witness does
+not treat internally consistent project artifacts as external pin authority.
 
-2026-09-16 exact-board rebind: independent report SHA-256 a126202b3f11e89597b9b23295d69c33b4c60959f0ed64bfe031b8581118df8d proves that the current source-board delta changes only the explicit solid GND zone connection of U_ISO3.9 and U_ISO4.9, while every footprint, pad identity, position, size, layer, and all 309 SMD mounting sides remain unchanged. PIN remains SOUND under the current routing policy.
+P-PINMAP grades 47 multi-pin references and passes 411/411 declared physical
+pin identities into both the schematic circuit model and real board pads,
+including every explicit fused-land alias. The fresh pin-audit extraction
+produces 47 nonempty dossiers with mounted side, component-top coordinate
+frame, winding, pad size, function and observed board net. The exact board has
+340/340 footprints on F.Cu, 1,058 total pad features and 985 numbered electrical
+pads. No component is mounted on the back side.
 
-841/841 envelope inputs independently passed SHA256 and size guards before and after review. Current hashes above were computed from bytes, with parts digest using sorted relative-path/NUL/content/NUL records and rules digest using the shared semantic policy projection. There are 89 part dossiers; 88 are byte-identical to the accepted baseline. TPS389001DSER alone changes package/footprint provenance; its MPN, manufacturer PDF and pin-function mapping remain identical. The exact per-reference credited prior reviewer/report/archive, complete local electrical pad identities, current native identity comparison and inheritance decision are in per-ref-coverage.json. The old native source and prepared hashes match the prior reports. All 61 refs are accounted for once: 59 inherited PASS, U_AUDIO and U_PWR fresh PASS.
+I compared the current board against the accepted v0.1.5 source board, SHA-256
+`0776f364424282a7924266450f899ce69bf28cf95a602ca74d92b86fd91c164d`.
+All 340 reference sets match. Footprint library/item identity, value, x/y
+position, rotation, mounting side, every numbered and anonymous pad position,
+size, shape, attribute, layer set and net are identical for every reference.
+Only `exclude_from_pos_files` changed, and only on the intended six references:
+U_ADC, F_IN, C_FILT1_470U, C_FILT2_470U, C_HOLD1 and C_HOLD2. This is a
+population-file attribute and cannot mirror, renumber, move or reconnect a pad.
+Thus the accepted primary-document pin conclusions remain applicable to the
+unchanged geometry, while the exact current hashes above bind this review.
 
-Manufacturer witness: independently rendered and viewed TI SLVSD65A PDF pages 3,24,25,26, SHA256 ee79599730e7606ba9718d9820b411020e3dcd9ff7d44572f8ee63fead15b9d0, matching the selected dossier. Page 3 explicitly shows TOP VIEW: pin1 upper left, 1/2/3 descending left and 4/5/6 ascending right, CCW. Page24 package underside uses the opposite vertical orientation; converting that bottom projection to top agrees with page3. Both native parts mount F.Cu, rotation0, component-top x right/y down. No mirror is applied. Six distinct electrical terminals exist, no EP, no fused identities. Page25 land pattern has 0.5mm pitch, 1.2mm row separation, 0.8x0.25mm pin1 and five 0.7x0.25mm lands; page26 repeats those stencil apertures and R0.05 corners.
+The parts-dossier delta is also pin-neutral and was rechecked rather than
+assumed. The 2920L260/33DR dossier changes only its sourcing code and still has
+two interchangeable passive terminals in the exact 2920 land. The CS5308P-DN
+dossier changes only its sourcing code: Cirrus DS1314F1 SHA-256
+`6ca42cc09ac47ebdacacaee435f05e3f9c34b83d5692e52a2d8a26533e810e57`
+still defines pins 1 through 48 plus exposed paddle 49; the current exact QFN
+footprint and board retain all 49 identities, with EP49 on GND_A/GND. The
+EEEFK1A471P dossier adds manufacturer-land adjudication without changing its
+pin map. Panasonic PDF SHA-256
+`b36857d089adaddf3042b33bf11d0f7d83bf70734e983f33b7827152e11854e3`
+identifies the standard-P size-F polarized part. Pad 1 remains positive and pad
+2 negative on all four instances: C_FILT1_470U.1 is FILT1P,
+C_FILT2_470U.1 is FILT2P, C_HOLD1.1 and C_HOLD2.1 are 5V_LDO_HOLD, and all
+four pad-2 terminals are GND. The exact native land remains +/-3.55 mm with
+4.0 x 2.0 mm pads, matching the manufacturer standard-product table.
 
-U_AUDIO and U_PWR — VERDICT: PASS. Fresh expected/observed function comparison:
+The current BOM has 54 lines and the CPL has 306/306 placements, all on the top
+side. Each of the six corrected SMD references is present exactly once with its
+unchanged value, footprint and rotation: U_ADC 270 degrees, F_IN 0 degrees,
+C_FILT1_470U and C_FILT2_470U 180 degrees, C_HOLD1 0 degrees and C_HOLD2
+180 degrees. These rotations agree with the unchanged accepted board geometry;
+final uploader rotation and polarized-part preview remain mandatory.
 
-| Pin | TI function | U_AUDIO net | U_PWR net |
-|---|---|---|---|
-| 1 | SENSE | ADC_SENSE | PWR_SENSE |
-| 2 | GND | GND | GND |
-| 3 | active-low MR | PWR_EN | 5V_LDO_HOLD |
-| 4 | VDD | 5V_LDO_HOLD | 5V_LDO_HOLD |
-| 5 | CT timing capacitor | AUDIO_CT | PWR_CT |
-| 6 | open-drain RESET | AUDIO_EN | PWR_EN |
+Connector evidence is coherent with the pin map. The independently parsed
+spoke contract passes 8/8 J1-J8 implementations. Each exact Wurth RJ45 retains
+pins 1/3/7 on its channel's protected 12 V rail, pins 2/6/8 on GND, pins 4/5
+on AUDIO_N/P respectively, and shell pins 9/10 on CHASSIS. The current
+orientation receipt binds this board and passes 9/9 edge connectors: J1-J4 face
+north, J5-J8 south, and J9 west, each with model/footprint alignment 1.0. The
+user approval binds the same subject SHA-256 and all eleven evidence-image
+hashes. J10/J11 remain unchanged top-entry Samtec headers; their pad identities
+and nets are byte-for-byte unchanged from the accepted board. The external
+MCHStreamer post fit, cable keying and continuity remain explicit first-article
+holds because the COTS module-side header identity is not published.
 
-The two supervisors retain their prior accepted divider, pull-up, timing and cascade assignments; the table verifies every changed-footprint physical identity independently. Their electrical nets and numbered pad count did not change.
+The exact locator structure passes 333/333 references, 1,051 graded pads,
+23/23 exception pages and 26 manifest members. The current twin resolves bodies
+for 333/333 fitted/manual references, including 306/306 CPL bodies and 27/27
+manual bodies. Its same-camera overlay passes calibration and measures 83/83
+resolvable bodies; the remaining 250 are explicitly below the image-resolution
+floor rather than silently credited. U_ADC, F_IN and all four newly placed
+Panasonic cans are among the measured bodies. The twin's retained catalog-CAD
+adjudications and D_HOLD's polarity-blind catalog marking preserve their human
+uploader checks; they do not contradict a numbered-pad identity on this board.
 
-TI_DSE0006A_GNDToe018 is an engineered land derivative, not an exact manufacturer recommendation. Pin2 center moves from local x=-0.60 to -0.69mm and copper length from0.70 to0.88mm: inner edge stays -0.25mm, outer edge extends from -0.95 to -1.13mm. Its original0.70x0.25mm paste at x=-0.60 is retained as a separate unnumbered paste feature. Pins1/3 retain original copper/paste. Three separate mask-only openings are added: pin1 0.70x0.15mm, pins2/3 0.60x0.15mm. This gives the explicit page25 pads1–3 solder-mask-defined detail at least0.05mm copper overlap; the extra GND toe remains covered. Pins4–6 have +0.05mm NSMD mask expansion, matching the page25 maximum. The upper land-pattern graphic is less explicit about SMD versus NSMD than the labeled detail; I used the explicit lower detail and record this interpretation, not a fabricated manufacturer endorsement of the toe. Numbered pin identities remain six per package, with four extra non-electrical features per package. No pad or identity is collapsed. Fresh geometry/DRC establishes no introduced land overlap or drill violation. Assembly/process validation remains a first-article obligation, not a new prerequisite to prototype release.
-
-The native whole-board census remains340 footprints and985 numbered pads; total pad features1050→1058 solely reflect those eight mask/paste features. All critical identity inheritance excludes these two altered footprints. Changes to pad thermal angles and silk do not change pin function/winding and are separately reviewed in the layout block.
-
-
-2026-09-16 final route-delta rebind: fresh independent Sol Medium integrated
-review is SOUND on the exact current board, prepared route and accepted routed
-board. The board/prepared hashes, all footprint/pad placement and connector
-orientation subjects remain current; only the semantic rules digest changed.
-The reviewed delta is confined to source-governed ADC3P restoration validation,
-the ADC4P local notch/shared CM3 ground-via geometry and the fail-closed stitch
-backstop. Exact native DRC is 0/0/0, analog paths pass 155/155, zero-via groups
-retain zero realized vias, and all via/fabrication floors remain unchanged and
-passing. This rebind grants no sourcing, ordering or first-article acceptance.
-
-2026-09-16 CM6P redundant-spur rebind: fresh independent Sol Medium read-only review found this placement lens SOUND. The removed entry is under `stitch.seed_stubs`, after track-free preparation, so it cannot alter the exact pin, footprint, pad, placement, locator, model, or render subjects. The authoritative base-board SHA-256 remains `60aa7f6740255f9943eb92779b33f793a097e9b093923105a58141b3642623bf`; the prepared r0 SHA-256 remains `6440b4da5a8e0e2273526561ece7ef4c9e464498a484542413c59fddf08bccb3`. Fresh replay confirmed P-ROUTEBASE 340 footprints, 132 base/prepared vias, and 760 prepared segments; A-LOCATOR remains 333 refs, 1051 pads, 23 exceptions/pages, and 26 manifest members; P-ORIENT passes 9/9 machine and 9/9 human. FIRST-ARTICLE-ONLY / DO-NOT-ORDER remains mandatory.
-
-2026-09-16 CM6P Type VII final rebind: fresh independent Sol Medium read-only review found this lens SOUND. The exact route delta restores the short `C_ADC_CM6P.2` GND seed and adds `protect_via_in_pad` after exact-geometry restoration, promoting all 12 realized SMT-land barrels into the existing 0.60/0.30 mm epoxy-filled, copper-capped drill family. The assembly remark now names the U_ADC EP49 3x3 field, U_LDO EP15 pair, and CM6P.2 return; every 0.20 mm drill remains ordinary. This is a routed fabrication-process realization, not a schematic or track-free subject change. The native probe passes 601/601 vias, 12/12 via-in-pad sites, 12 protected/589 ordinary/0 partial, with zero non-library DRC or unconnected finding. FIRST-ARTICLE-ONLY / DO-NOT-ORDER and uploader confirmation remain mandatory.
+No pin-count, pin-1, winding, mirror, fused-land, exposed-pad, function-to-net,
+pairwise-instance, polarity, mounting-side or connector-direction defect was
+found. This review grants placement-stage pin acceptance only. It does not
+grant the separate locator/render witness, routing, fabrication, JLC uploader,
+first-article or order acceptance. Public evidence remains insufficient to
+prove JLC allocation for every exact placed line, so order status remains
+BLOCKED-SOURCING.

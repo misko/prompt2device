@@ -5,6 +5,22 @@ directive: please verify public stock and contunue
 brief: 01_docs/BRIEF.md
 decision: 01_docs/decisions/0031-authorized-public-stock-surplus.md
 rows:
+  - lcsc: C42457798
+    mpn: CS5308P-DN
+    manufacturer: Cirrus Logic
+    footprint: crow_audio_carrier:Cirrus_CS5308P_QFN48_6x6_P0.4_EP4.6
+    designators: [U_ADC]
+    distributor: digikey
+    url: https://www.digikey.com/en/products/detail/cirrus-logic-inc/CS5308P-DN/26753129
+    packaging: Tray
+  - lcsc: C22870534
+    mpn: 2920L260/33DR
+    manufacturer: Littelfuse
+    footprint: Fuse:Fuse_2920_7451Metric
+    designators: [F_IN]
+    distributor: digikey
+    url: https://www.digikey.com/en/products/detail/littelfuse-inc/2920L260-33DR/21801850
+    packaging: Cut Tape
   - lcsc: C7452883
     mpn: LT3041ADE#TRPBF
     manufacturer: Analog Devices

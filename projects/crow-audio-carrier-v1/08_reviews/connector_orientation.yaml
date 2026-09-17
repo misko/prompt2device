@@ -1,7 +1,7 @@
 schema: 1
 kind: connector-orientation-approval-v1
 verdict: APPROVED
-subject_sha256: 6f9e58b568098fd39b3cdcb11637e70ae4313ecc5c556a6f3c6e2ef2b5687c03
+subject_sha256: 155896eb43a7c2b04c684523d4d96309bd4d945670f11a1c7a1d52b01a7a70e8
 refs:
 - J1
 - J2
@@ -12,19 +12,18 @@ refs:
 - J7
 - J8
 - J9
-reviewer: User approval carried from explicit connector confirmation; exact connector
-  placements, models, mouths, mounting sides, keying, and cable approaches unchanged;
-  current machine gate 9/9 PASS; recorded by /root 2026-09-16
-confirmed_at: '2026-09-16T06:17:42Z'
+reviewer: 'User explicit confirmation in Codex task: regenerated connector views are
+  correct'
+confirmed_at: '2026-09-17T00:04:52Z'
 evidence_sha256:
-  views/J1_inside.png: 173102b9d3d2b3fddd7e0288d1b9af1801375a363c45f123d070a018b50c6f62
-  views/J1_outside.png: 5e1d1a1f177ceba0e7ff389bf633ab11421644934143dcb550d7cf52afb84483
-  views/J1_top.png: d0afb31c9c5de1b7538f99aa5a0a5a3107d5c37e046980859981cc22b9843b30
-  views/J5_inside.png: b88e0428958d211f0520531fb6a46818021ee3b50a334ffb55235bdc196ea5fe
-  views/J5_outside.png: b5bf1c6632584eafe0722da5fcba0c22ab190b24c31ed2723581a53f5e392185
-  views/J5_top.png: 3aca60187a2829734b01ba35c38b3729a8222c04853857c9fbc4026a5c2de059
-  views/J9_inside.png: 181fd24ad902d29000da1af7bf42a71ed2a0a530c5e985d3d094c8540ce1ae9c
-  views/J9_outside.png: 15fb34d4b6b59bda73635d1897a631172f891020bc256c9bf9333266915b077b
-  views/J9_profile_a.png: 518c867d2f2e4b467d29009cb6518d906b64a9c8eeccc317e6266703f7e5ec5c
-  views/J9_profile_b.png: 5e26b34df6c7f782bd979cc4e461da386af17551901593f081db9b9bf90cb31a
-  views/J9_top.png: 064bdad3dcad93df537200c76b925759c22d8f3ddeab86e8d1e06dbbb85268e6
+  views/J1_inside.png: 6a7890f386fc7553d3de102e4c23fce9ab976db0e7734661c3c1980f763f9c04
+  views/J1_outside.png: 4797ade408649e1c8b53b70394e8f8423a2dd8e04a07b15cd044c6934aacbadc
+  views/J1_top.png: 0fdc5d3db68ffb7596819b2cd4ebb0b64eaff17e33926ffc7a70048f40b941f2
+  views/J5_inside.png: ec86c2690e6f621b1d3f2833ea0896ceb73403fef7793af9646902fbdcf17963
+  views/J5_outside.png: fb85d973bf86fcae8768ad8d6ab4463bdd1f59aeb2a155d7b2c9bf3ab88e48eb
+  views/J5_top.png: f203b2d21761fd5971fdd0c47b88d3008a91b44860af3bd86052382a20230437
+  views/J9_inside.png: ce8291a635f166b27aed7cd7ff3d4fb9a277b1e9c559bcd82b1e8da06719bc87
+  views/J9_outside.png: 05ad420e10c4733e84962d7ca9d64d5d629843ba8e4d35148643daa8e3d35c6f
+  views/J9_profile_a.png: 670cc71fa33188a4d4a58122f08ce080f93b93d00f62ec9ad923a789ce57ec7e
+  views/J9_profile_b.png: edc3647a4188e5c8c543bfbd21397a8ecf04fefaf1ce0fb16a1c60e237468b37
+  views/J9_top.png: 245092ff1d81ae174bae7899cf44462eb704a666da3a8ce3e9589f584af0e75c

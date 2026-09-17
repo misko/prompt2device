@@ -39,7 +39,7 @@
     "J8",
     "J9"
   ],
-  "generated_at": "2026-09-16T22:32:12.245077+00:00",
+  "generated_at": "2026-09-16T23:54:44.982377+00:00",
   "kind": "jlc-pcba-availability-request-v2",
   "phase": "prelayout",
   "procurement_policy": {
@@ -751,8 +751,8 @@
   "schema": 2,
   "subject": {
     "path": "../../03_tscircuit/build/circuit.json",
-    "sha256": "d524421f517ca6876ded176145cfb48ebbfa43e37f34864c6da5988f33505c36",
-    "size": 5743743
+    "sha256": "f92e15c227d997c83d6bf009b9d88e16034079f3ce62a9fb26fd0d6748217bd9",
+    "size": 5732951
   },
   "subject_role": "circuit"
 }

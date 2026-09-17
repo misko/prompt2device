@@ -1,181 +1,145 @@
-
-
 review_stage: pre-route
 review_kind: layout
-reviewer_identity: /root/carrier_final_delta_review
+reviewer_identity: /root/carrier_cap_land_review
 context: FRESH
 date: 2026-09-16
+source_commit: fd8c88b2accd3df10d8b1443e1e5968e1c4f0c3b
 design_verdict: SOUND
-order_verdict: DO-NOT-ORDER
+order_verdict: BLOCKED-SOURCING
 qualification: FIRST-ARTICLE-ONLY
-board_sha256: 60aa7f6740255f9943eb92779b33f793a097e9b093923105a58141b3642623bf
-design_rules_sha256: f45a216fcc87beb74f390d97e97ecae9ef3a95c55fa445f2d727f5cac45cdd1f
-prepared_board_sha256: 6440b4da5a8e0e2273526561ece7ef4c9e464498a484542413c59fddf08bccb3
-
-Fresh bounded integrated LAYOUT judgment: SOUND for pre-route placement admission. The changed regions remain physically feasible with unchanged safety floors. Normal unfinished routing and exact later copper/ground/thermal grading remain owned by downstream stages. The supplied final diagnostic is not canonical acceptance, and its 0-open/2 historical supervisor-FPID mismatch statement is not substituted for current source/r0 observations.
-
-2026-09-16 exact-board rebind: independent report SHA-256 a126202b3f11e89597b9b23295d69c33b4c60959f0ed64bfe031b8581118df8d accounts for the complete prepared-board delta as the corrected off-pad ADC3P via/link, a 0.02 mm ADC_RESET_N meeting-point move, and a width-preserving 3V3_ADC waypoint. It confirms no footprint or pad change and zero vias on all 13 governed no-via digital nets. LAYOUT remains SOUND; downstream route and final DRC gates retain ownership.
-
-The complete actual native and source delta census is retained in native-census.json, complete-native-delta.json, deltas.json and the exact semantic source diffs. It compares all340 footprints, every pad field extracted, and every top-level native S-expression after UUID/whitespace normalization, including unchanged104 zones/keepouts, outline and board setup. Source and prepared component/pad identity/position/shape/layer extraction agrees exactly. No components are added or removed. There remain333 fitted components:306 SMD,27 THT, plus4 mounting holes and3 fiducials; all306 fitted SMD and all340 native footprints are front-side.
-
-Actual placement/package deltas:
-
-- U_AUDIO moves (33.0,61.1)→(33.299999,61.1)mm, rotation0. U_PWR stays (33.0,56.7), rotation0. Both adopt the separately reviewed supervisor derivative; all other electrical pads retain package-local positions and shapes.
-- C_ADC_CM5N moves (94.25,77.35)→(94.45,77.35)mm, rotation-90 unchanged, with identical two pad/net identities. Its ADC5N proximity to U_ADC is freshly measured3.248877mm against4.0mm by the declared rotated pad bounding-box copper-gap metric.
-- Seventeen pad-specific thermal angles are added: U_RST2.1/.4=45deg; C_ADC_CM1N.2=45; C_FILTER2N1.2=0; U_ISO4.4/.9=45; C_FILTER2N2.2=30; R_TDM_PD.2=45; C_FILTER8P1.2=60; C_PWR.2=45; U_ISO3.4/.9=45; C_FILTER5P1.2=45; R_ADC_PD1N.2=60; C_FILTER5P2.2=30; Q_PRE_EN.2=15; C_FILTER7N2.2=15. These change spoke orientation, not minimum spoke count, clearance or pad identity.
-- Silk/reference presentation changes C_AUDIO,C_AUDIO_CT2,C_BUCK_IN,C_FILTER1P1,C_PWR,R_B1P,R_PWR_BOT,R_PWR_PU,U_AUDIO,U_PWR. C_AUDIO_CT2 becomes visible; R_PWR_BOT becomes hidden and replaces it in the23-reference locator/waiver census. R_PWR_PU/U_AUDIO lettering increases0.55→0.7mm. Two F.Fab reference labels follow their moved parts. Exact old/new positions/fonts/hide fields are retained in detail.log. Connector footprint serialization also reorders children with no native pad/placement change. Final assembly atlas/render acceptance remains separate; these changes do not confer a fresh atlas verdict.
-
-Prepared r0 copper changes887→891 objects:25 old segments and3 vias removed;26 segments and6 vias added. Source native11 copper objects are unchanged. Complete coordinates, layers, widths and net names for every removed/added object are archived, not inferred from comments. Changed nets are 5V_LDO_HOLD (shorter supervisor supply landing), AUDIO_EN (via x34.2→34.4), PWR_EN (supervisor MR escape relocated to32.96,61.96), AUDIO_CT (reworked0.15mm timing tree), ADC5N (moved-capacitor fanout), ADC8P (escape via102.2,75.025→103.95,74.65), ADC3P (short local stub replacement), 5V_BUCK (1.2mm B.Cu trunk dogleg), CFG2 (added0.2mm B.Cu continuation), VMID2_EXT (new0.35mm F/B escape plus via), and GND (both supervisor0.3mm front returns and0.3/0.2mm vias). No digital seed geometry changes.
-
-All13 digital seed-net copper censuses are unchanged; the10 populated nets contain110 F.Cu segments and zero vias. The remaining three TDM sections are absent from canonical r0, just as in the accepted baseline; their simultaneous routing feasibility is inherited from the prior independently accepted exact candidate witness. Both MCH_INPUT_SECTIONS and BUFFERED_DIGITAL_SECTIONS still explicitly require no_vias:true. Changed component placements are far from the TDM corridor, unchanged zone/keepout definitions preserve its obstacles, and the native region drawing was inspected. The deleted B.Cu digital reference projection was vacuous under these F.Cu-only requirements; the active F.Cu/In1.GND projection retains0.25mm track and0.50mm via-reference clearances. This is not permission to route digital signals on the back.
-
-Fresh whole-board placement gates:333 assembled envelopes, zero body/courtyard-to-foreign-pad conflicts, zero warnings/failures; minimum pad-to-outline2.26mm at J1.9 versus0.15mm floor. Coarse capacity worst ratio15/263=0.06; this is only a congestion screen. All13 changed-reference adjacency roles pass, including C_AUDIO gap1.639916/2.5mm and both CT capacitors2.616414/3.0 and2.324999/3.0mm. Unchanged adjacency/physical-pin conclusions are inherited, not claimed rerun. Rotation-aware native plots inspect the supervisor, ADC south and clock/TDM regions; actual clearance judgment comes from native DRC.
-
-Fresh scratch refill DRC with exact sidecars gives source5 starved thermals/499 opens and prepared76 violations/393 opens:38 dangling vias,24 dangling tracks,14 starved thermals. Zero shorts, copper clearances, drill clearances, edge, courtyard, track-width or library mismatch findings occur. No schematic-parity rerun is claimed. The five source thermals are C_FILTER4N1.2,C_FILTER7N1.2,U_ISO3.9,U_ISO4.9,C_FILTER2N1.2. Prepared adds C_ADC_CM3P.2,C_ADC_CM3N.2,C_FILTER4N2.2,C_ADC_CM7P.2,C_ADC_CM5N.2,C_ADC_CM1P.2,U_AFE4.4,U_CLK.4,J10.11. All require later exact filled-copper closure; J10.11 is the isolated-island case. The64 authored later ground stubs are source instructions, not already realized in r0. These preliminary findings are not intrinsic placement defects or a waiver of thermal limits.
-
-Independently enumerated291 current drill features have minimum conservative edge gap0.500000mm (ADC3P/ADC4N); supervisor GND(31.79,60.7) to ADC_SENSE(32.45,60.45) gap0.505762mm. Thus the0.01mm local adjustment preserves the intermediate0.50mm criterion. Current prepared project explicitly sets hole-to-hole0.20mm from route_fab_overrides.txt; source project sets0.50mm. Neither is silently weakened in this review. The circle calculation conservatively uses maximum drill dimension for noncircular holes, and native DRC separately confirms the exact shapes.
-
-Source semantic changes beyond placement are completely recorded but are downstream route implementation, not accepted realized copper: prep seeds227→230; CFG1/CFG2 move to timers; a bounded realized-width declaration is added to route wave1 and wave14 clearance strengthens0.20→0.25mm; exact additions24→29, chain edits28→103, six exact segment drops,31 via relocations,64 ground seeds,168 width edits, a0.3/0.2mm stitch-via tier, via janitor and explicit stub_scope:false; stitch passes22→34; via-current transfer census21→54 with per-barrel0.30A screening and only the genuinely parallel input pair summed at1A. The source itself labels the IPC capacity assumption as a retained screening basis, not an independently derived rating. These instructions require exact later geometry/current/DRC gates. No routed-board acceptance is borrowed from them.
-
-Current connector human approval40e3171bc656b349 (machine9/9,human9/9) is retained as the supplied existing authority; connector geometry is unchanged and no new user approval is requested. First-article physical, loaded thermal and electrical holds remain at their documented first-article boundary. Order verdict remains DO-NOT-ORDER because this review does not own release/order authorization.
-
-Evidence: actual scripts, raw logs, runtime receipts, complete census/deltas, guards, fresh DRC, current scratch board copies, primary page renders and independent native-region drawing are in evidence.tar.gz. Initial plotting attempt failed because matplotlib was unavailable; the retained failure was resolved using Pillow, without altering source. Native KiCad API warnings about unspecified via-layer width are preserved; widths were independently confirmed by exact native S-expression census, and no warning was treated as an engineering pass.
-
-Per-reference PIN coverage trace (prior report/archive identifiers and pad rows are in per-ref-coverage.json):
-
-U_AFE1: PASS — inherited accepted primary review; unchanged complete native identity.
-
-U_AFE2: PASS — inherited accepted primary review; unchanged complete native identity.
-
-U_AFE3: PASS — inherited accepted primary review; unchanged complete native identity.
-
-U_AFE4: PASS — inherited accepted primary review; unchanged complete native identity.
-
-U_AFE5: PASS — inherited accepted primary review; unchanged complete native identity.
-
-U_AFE6: PASS — inherited accepted primary review; unchanged complete native identity.
-
-U_AFE7: PASS — inherited accepted primary review; unchanged complete native identity.
-
-U_AFE8: PASS — inherited accepted primary review; unchanged complete native identity.
-
-U_CLK: PASS — inherited accepted primary review; unchanged complete native identity.
-
-U_RST1: PASS — inherited accepted primary review; unchanged complete native identity.
-
-U_RST2: PASS — inherited accepted primary review; unchanged complete native identity.
-
-Q_DUMP: PASS — inherited accepted primary review; unchanged complete native identity.
-
-Q_PRE_EN: PASS — inherited accepted primary review; unchanged complete native identity.
-
-Q_RST1: PASS — inherited accepted primary review; unchanged complete native identity.
-
-U_ADC: PASS — inherited accepted primary review; unchanged complete native identity.
-
-U_LDO: PASS — inherited accepted primary review; unchanged complete native identity.
-
-U_ESD1: PASS — inherited accepted primary review; unchanged complete native identity.
-
-U_ESD2: PASS — inherited accepted primary review; unchanged complete native identity.
-
-U_ESD3: PASS — inherited accepted primary review; unchanged complete native identity.
-
-U_ESD4: PASS — inherited accepted primary review; unchanged complete native identity.
-
-U_ESD5: PASS — inherited accepted primary review; unchanged complete native identity.
-
-U_ESD6: PASS — inherited accepted primary review; unchanged complete native identity.
-
-U_ESD7: PASS — inherited accepted primary review; unchanged complete native identity.
-
-U_ESD8: PASS — inherited accepted primary review; unchanged complete native identity.
-
-J10: PASS — inherited accepted primary review; unchanged complete native identity.
-
-J11: PASS — inherited accepted primary review; unchanged complete native identity.
-
-J9: PASS — inherited accepted primary review; unchanged complete native identity.
-
-J1: PASS — inherited accepted primary review; unchanged complete native identity.
-
-J2: PASS — inherited accepted primary review; unchanged complete native identity.
-
-J3: PASS — inherited accepted primary review; unchanged complete native identity.
-
-J4: PASS — inherited accepted primary review; unchanged complete native identity.
-
-J5: PASS — inherited accepted primary review; unchanged complete native identity.
-
-J6: PASS — inherited accepted primary review; unchanged complete native identity.
-
-J7: PASS — inherited accepted primary review; unchanged complete native identity.
-
-J8: PASS — inherited accepted primary review; unchanged complete native identity.
-
-U_DUMP: PASS — inherited accepted primary review; unchanged complete native identity.
-
-U_LDO_EN: PASS — inherited accepted primary review; unchanged complete native identity.
-
-U_OE: PASS — inherited accepted primary review; unchanged complete native identity.
-
-U_TDM: PASS — inherited accepted primary review; unchanged complete native identity.
-
-U_TDM_SCH: PASS — inherited accepted primary review; unchanged complete native identity.
-
-Q_IN: PASS — inherited accepted primary review; unchanged complete native identity.
-
-Q_PRE: PASS — inherited accepted primary review; unchanged complete native identity.
-
-C_FILT1_470U: PASS — inherited accepted primary review; unchanged complete native identity.
-
-C_FILT2_470U: PASS — inherited accepted primary review; unchanged complete native identity.
-
-C_HOLD1: PASS — inherited accepted primary review; unchanged complete native identity.
-
-C_HOLD2: PASS — inherited accepted primary review; unchanged complete native identity.
-
-D_BUCK_IN: PASS — inherited accepted primary review; unchanged complete native identity.
-
-D_HOLD: PASS — inherited accepted primary review; unchanged complete native identity.
-
-U_AUDIO: PASS — fresh TI primary figure and current native comparison.
-
-U_BUCK: PASS — inherited accepted primary review; unchanged complete native identity.
-
-U_PWR: PASS — fresh TI primary figure and current native comparison.
-
-U_ISO1: PASS — inherited accepted primary review; unchanged complete native identity.
-
-U_ISO2: PASS — inherited accepted primary review; unchanged complete native identity.
-
-U_ISO3: PASS — inherited accepted primary review; unchanged complete native identity.
-
-U_ISO4: PASS — inherited accepted primary review; unchanged complete native identity.
-
-U_ISO5: PASS — inherited accepted primary review; unchanged complete native identity.
-
-U_ISO6: PASS — inherited accepted primary review; unchanged complete native identity.
-
-U_ISO7: PASS — inherited accepted primary review; unchanged complete native identity.
-
-U_ISO8: PASS — inherited accepted primary review; unchanged complete native identity.
-
-D_IN: PASS — inherited accepted primary review; unchanged complete native identity.
-
-D_QIN_GS: PASS — inherited accepted primary review; unchanged complete native identity.
-
-
-2026-09-16 final route-delta rebind: fresh independent Sol Medium integrated
-review is SOUND on the exact current board, prepared route and accepted routed
-board. The board/prepared hashes, all footprint/pad placement and connector
-orientation subjects remain current; only the semantic rules digest changed.
-The reviewed delta is confined to source-governed ADC3P restoration validation,
-the ADC4P local notch/shared CM3 ground-via geometry and the fail-closed stitch
-backstop. Exact native DRC is 0/0/0, analog paths pass 155/155, zero-via groups
-retain zero realized vias, and all via/fabrication floors remain unchanged and
-passing. This rebind grants no sourcing, ordering or first-article acceptance.
-
-2026-09-16 CM6P redundant-spur rebind: fresh independent Sol Medium read-only review found this placement lens SOUND. The removed entry is under `stitch.seed_stubs`, after track-free preparation, so it cannot alter the exact pin, footprint, pad, placement, locator, model, or render subjects. The authoritative base-board SHA-256 remains `60aa7f6740255f9943eb92779b33f793a097e9b093923105a58141b3642623bf`; the prepared r0 SHA-256 remains `6440b4da5a8e0e2273526561ece7ef4c9e464498a484542413c59fddf08bccb3`. Fresh replay confirmed P-ROUTEBASE 340 footprints, 132 base/prepared vias, and 760 prepared segments; A-LOCATOR remains 333 refs, 1051 pads, 23 exceptions/pages, and 26 manifest members; P-ORIENT passes 9/9 machine and 9/9 human. FIRST-ARTICLE-ONLY / DO-NOT-ORDER remains mandatory.
-
-2026-09-16 CM6P Type VII final rebind: fresh independent Sol Medium read-only review found this lens SOUND. The exact route delta restores the short `C_ADC_CM6P.2` GND seed and adds `protect_via_in_pad` after exact-geometry restoration, promoting all 12 realized SMT-land barrels into the existing 0.60/0.30 mm epoxy-filled, copper-capped drill family. The assembly remark now names the U_ADC EP49 3x3 field, U_LDO EP15 pair, and CM6P.2 return; every 0.20 mm drill remains ordinary. This is a routed fabrication-process realization, not a schematic or track-free subject change. The native probe passes 601/601 vias, 12/12 via-in-pad sites, 12 protected/589 ordinary/0 partial, with zero non-library DRC or unconnected finding. FIRST-ARTICLE-ONLY / DO-NOT-ORDER and uploader confirmation remain mandatory.
+board_sha256: c03db60ae47d6737e0bab2439bc410a127b8f15acfdde82925f77f96d62287df
+design_rules_sha256: 945c7614cbfe8a321faa691286034a9d10fe8f9a14349732a25eb40bdf483792
+floorplan_sha256: 0c2ea775da88bebc2c89f13dae7dde8411550d0e9cf0f0705208a97d889ab733
+route_sha256: d1c24e76e29104d2f89bc740fdd42a606518e49e1ea9e3ac72adce039d4173d4
+locator_manifest_sha256: ead3b85efb53b27a1486d5a3d80b53bf778c3afef7c4d373c2801434cdde45bd
+twin_report_sha256: 226dd817c4c566d0a1a6dc096071bc3339e36dfc26970bfb1757c632ed912c27
+twin_overlay_report_sha256: d3f573dc408fa6ebd4154ba12b6cfe36c04eeb8abd78df76238e0e98f11f451d
+orientation_receipt_sha256: b0725e7f8695a38d0ee57ddf8782e4bc3d92b4f805360ca5f5ababec4f145349
+orientation_subject_sha256: 155896eb43a7c2b04c684523d4d96309bd4d945670f11a1c7a1d52b01a7a70e8
+orientation_approval_sha256: 7caf0d53c2909cb74ecea7cfaba51d5f87c09a84b514bafac37b5220a7a87570
+
+# Fresh pre-route carrier layout review
+
+## Verdict
+
+**SOUND** for mechanical and electrical placement admission on the exact
+track-free carrier board bound above. I independently inspected the native
+board, current exact twin, top courtyard overlay, opposing oblique and edge
+views, all 11 connector views, and every page of the 23-page assembly locator.
+I also reran the placement-stage geometry, policy, pad-separation, model
+coverage and native DRC screens. I found no placement defect that prevents
+routing.
+
+The order verdict remains **BLOCKED-SOURCING** because exact allocation and the
+supplier uploader preview are separate release controls. The board remains
+**FIRST-ARTICLE-ONLY**; installed cable strain relief, real connector mating,
+loaded thermal behavior and measured electrical performance require the
+documented first article.
+
+## Population, mounting side and assembly access
+
+The native board contains 340 footprints and all 340 are on the front side.
+The fitted population is 333 parts: 306 top-side SMD parts and 27 through-hole
+parts. Three additional front-side SMD footprints are fiducials and four
+non-copper footprints are mounting holes. There is no bottom-side SMD or other
+bottom-mounted body.
+
+The 27 through-hole parts are J1-J11 plus the sixteen channel film capacitors
+C_A1N/P through C_A8N/P. Their bodies are accessible from the top and all
+solder tails remain accessible from the unpopulated bottom. J10 and J11 are
+unobstructed top-entry headers. The four mounting holes are unobstructed in the
+top, bottom and oblique views. This placement supports the declared workflow
+in which J1-J11 and the film capacitors are installed after automated top-side
+assembly.
+
+## Mechanical clearance and routing feasibility
+
+Fresh placement-routability grading accepts all 7/7 checks. Its physical
+placement row covers all 333 assembled envelopes with zero failures and zero
+warnings. The tightest pad-to-outline margin is 2.26 mm at J1.9 against the
+0.15 mm floor. The closest reported courtyard pair is
+C_HOLD1/C_FILT1_470U at at least 0.100 mm; there are zero close or overlapping
+assembled-envelope pairs and zero envelope-to-foreign-pad findings. The coarse
+capacity screen's worst cut is 15 demanded nets versus 263 track slots, ratio
+0.06 against the 0.50 failure limit. Route ownership, class-layer eligibility
+and all eight U_ESD shunt endpoint topologies also pass.
+
+The independent pad-separation screen passes 1,009 copper pads across 340
+footprints: 505,544 inter-footprint copper-pad pairs and 836,186
+paste-to-foreign-copper pairs were graded at the 0.090 mm JLC four-layer
+advanced floor. The placement policy audit passes 5/5. These checks establish
+placement legality and credible escape capacity; they do not substitute for
+the downstream exact routed-board DRC and return-path gates.
+
+Fresh scratch native DRC with zone refill and schematic parity reports three
+placement-stage findings, all classified as expected starved thermals on
+C_FILTER4N1.2, C_FILTER7N1.2 and C_FILTER2N1.2. It reports 499 expected
+unconnected items on this track-free board and zero schematic-parity finding.
+The placement DRC classifier passes and assigns the three thermals and all
+opens to routing. Final routing must close them; this review does not waive
+them.
+
+## Critical electrical placement
+
+The eight channel cells retain a regular connector-to-ESD-to-AFE-to-filter
+flow, with the large film capacitors between each RJ45 edge connector and its
+active cell. The central ADC and its local common-mode, supply, reset and
+configuration parts remain compact. The buck, input protection, supervisor,
+hold and LDO parts form a coherent west-side power cell. The clock/TDM and
+both service headers retain open launch space on the east side. No component
+body occupies the authored digital or ADC-clock routing corridors.
+
+The exact twin covers 333/333 expected fitted bodies. The top overlay passes:
+all 340 courtyards are drawn, 83 render-resolvable bodies are measured, 250
+smaller bodies are explicitly below the render resolution threshold, zero
+resolvable bodies are unmeasured, and zero bodies lack a model. The measured
+body/courtyard agreement and visual top, bottom, oblique and edge inspection
+show no modeled collision or mounting-hole obstruction. Supplier-model
+polarity limitations for D_HOLD and the separately named order-preview items
+remain owned by the render and uploader gates.
+
+## Via-in-pad process
+
+The exact pre-route board has eleven vias, and every one is an intentional
+GND thermal via inside an exposed pad: nine in U_ADC pad 49 and two in U_LDO
+pad 15. Each is exactly 0.60 mm diameter with a 0.30 mm drill, and every via is
+serialized with `capping yes` and `filling yes`. There are no other base-board
+vias and no accidental via-in-pad site. The floorplan authority declares the
+same two arrays and process. The route authority forbids unplanned new
+via-in-pad geometry and later promotes the routed C_ADC_CM6P.2 return into the
+same protected family, yielding the separately gated final count of twelve.
+All ordinary routed 0.20 mm drills remain outside that process family.
+
+Fabrication still requires explicit confirmation of epoxy fill and copper cap
+for the final twelve 0.60/0.30 mm sites. Placement SOUND does not permit an
+open, tent-only or unspecified treatment under U_ADC, U_LDO or C_ADC_CM6P.
+
+## Connector and cable access
+
+The current connector-orientation receipt is bound to this exact board and
+passes all 9/9 declared edge connectors; the matching user approval binds the
+same semantic subject. J1-J4 face north, J5-J8 face south, and J9 faces west,
+with model/footprint axis alignment 1.0 for every connector. The RJ45 mouths,
+top-side mounting, keying and outward cable approaches are visible and clear
+in the top, opposing oblique, edge and dedicated inside/outside views. J9's
+west-facing mating approach is clear. J10/J11 are vertical top-entry headers
+and do not compete with an edge cable path.
+
+The eight RJ45s are close enough to their adjacent film capacitors that final
+real-plug boot clearance, latch handling, simultaneous cable seating and
+strain relief must be checked on the first article. The rendered maximum-body
+envelopes and current courtyard screen reveal no present collision, so this is
+a retained physical qualification rather than a source placement defect.
+
+## Assembly documentation
+
+The current locator manifest binds this board, the current BOM and CPL, 333
+assembly parts, 23 locator exceptions/pages and all 26 manifest members. I
+inspected every locator page; each target has a whole-board context, an exact
+highlighted local view and numbered/polarized pad cues where applicable. The
+locator therefore closes access to dense or intentionally hidden references
+without relying on crowded silkscreen.
+
+No sourcing, routing, final DRC, fabrication-upload, supplier-rotation or
+first-article acceptance is inferred from this layout verdict. Those gates
+remain mandatory and no safety floor was weakened.
