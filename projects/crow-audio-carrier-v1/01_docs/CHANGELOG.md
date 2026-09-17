@@ -1,5 +1,18 @@
 # Changelog
 
+## v0.1.8 — complete top-side SMD assembly release — 2026-09-16
+
+- Move U_ADC, F_IN, C_FILT1_470U, C_FILT2_470U, C_HOLD1, and C_HOLD2 into
+  the JLC BOM/CPL so JLC places all 306 fitted SMD references on the top side.
+- Retain the exact routed copper and replay every layout gate: native DRC
+  0/0/0, analog copper 155/155, route acceptance 7 PASS / 2 N-A, via ampacity
+  54/54, and via-process coverage 601/601 with twelve protected sites.
+- Record exact public availability above the configured five-board demand plus
+  150-unit surplus. Live uploader mapping, rotations, substitutions, selective
+  via processing, and first-article qualification remain supervised controls.
+
+Released: v0.1.8-2026-09-16
+
 ## v0.1.5 — public-sourcing classification successor — 2026-09-16
 
 - Recognize exact surplus-backed public observations as the release-time

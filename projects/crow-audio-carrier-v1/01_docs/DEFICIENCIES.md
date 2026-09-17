@@ -13,8 +13,11 @@ Closed on 2026-09-16: the authenticated 19-wave replay and layout seal pass at
 0 native DRC violations / 0 unconnected / 0 parity findings, and the exact-board
 locator plus three RJ45 oblique views passed review with the user's connector
 approval retained.
-Fabrication export, release rehearsal, and publication admission passed for the
-unchanged board; `v0.1.7-2026-09-16` is the current immutable first-article order release.
+The v0.1.8 candidate transfers U_ADC, F_IN, C_FILT1_470U, C_FILT2_470U,
+C_HOLD1, and C_HOLD2 into JLC's top-side BOM/CPL without changing copper.
+Fabrication export, release rehearsal, and publication admission must pass on
+that exact candidate before `v0.1.8-2026-09-16` becomes the immutable
+first-article order release.
 
 ## Explicit prototype and order-time deficiencies
 
