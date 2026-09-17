@@ -60,6 +60,33 @@ assembly_scope:
   connectors: "all populated manually before electrical qualification"
 
 sourcing_plan:
+  - lcsc: C22870534
+    measured_stock: 35798
+    measured_on: 2026-09-16
+    evidence_kind: distributor_product_page
+    evidence_provider: DigiKey
+    evidence_url: https://www.digikey.com/en/products/detail/littelfuse-inc/2920L260-33DR/21801850
+    function: input resettable fuse
+    part: 2920L260/33DR
+    refs: [F_IN]
+    plan: >-
+      Exact public distributor stock clears the 5 + 150 unit threshold.
+      Retain the exact MPN and require JLC to resolve C22870534 to that device;
+      reject every substitution or redirected code.
+  - lcsc: C42457798
+    measured_stock: 234
+    measured_on: 2026-09-16
+    evidence_kind: distributor_product_page
+    evidence_provider: DigiKey
+    evidence_url: https://www.digikey.com/en/products/detail/cirrus-logic-inc/CS5308P-DN/26753129
+    function: eight-channel audio ADC
+    part: CS5308P-DN
+    refs: [U_ADC]
+    plan: >-
+      Exact public distributor stock clears the 5 + 150 unit threshold.
+      Retain the exact MPN and require JLC to place C42457798 only after the
+      uploader resolves it to CS5308P-DN with the reviewed 270-degree offset;
+      otherwise consign exact parts to JLC for placement.
   - lcsc: C7452883
     measured_stock: 1965
     measured_on: 2026-09-16
