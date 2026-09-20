@@ -367,12 +367,16 @@ have separate responsibilities; success in one does not substitute for another:
 |---|---|---|
 | Adjacent pin-field composition | `tests/t2_route_neighborhood.py` | Two 0.5 mm-pitch terminals launch individually legal paths; composing them exposes a foreign-net crossing. Corrected geometry preserves the terminal sets, front copper and zero vias in either insertion order. |
 | Scoped rule semantics | `tests/t2_scoped_pad_clearance.py` | Native pad-only clearance discrimination and full-copper width-scope intersection; verifies exact affected item sets and a nonempty scope probe. |
-| Candidate refusal and bounded routing | `tests/t2_route_stitch.py` | Existing seed collision refusal, via/stub cleanup, and order-sensitive whole-set reattempt controls. |
+| Candidate refusal and bounded routing | `tests/t2_route_stitch.py` | Seed collision refusal, adjacent escape via/stub atomic rejection through the production CLI, and order-sensitive whole-set reattempt controls. |
 
 The composition coupon is a fixed witness, not a search algorithm or proof that
 no alternate route exists. Scoped-rule fixtures intentionally include hostile
 objects; their diagnostic DRC results are not whole-board clearance receipts.
 These tests use disposable native boards. Production source preparation, earliest
 affected-wave replay and all final-source release gates remain independently
-required. Compound adjacent via/dogbone atomic rejection and automatic driver
-adoption remain future work; do not infer their coverage from these coupons.
+required. The adjacent plane-drop fixture separately proves that a legal via
+site is insufficient when its connecting stub crosses neighboring copper:
+rejection preserves all saved copper, while corrected geometry connects both
+pads through off-pad barrels. This is a plane-rescue contract, not permission
+to add vias to zero-via digital paths. Automatic project-driver adoption remains
+future work; these coupons do not prove general routing completeness.

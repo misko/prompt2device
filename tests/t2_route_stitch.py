@@ -2443,6 +2443,93 @@ t.SetEnd(pcbnew.VECTOR2I_MM(15.75,12.0)); b.Add(t)
        "a rejected via+stub candidate left an orphan via")
 
 
+def adjacent_rescue_snapshot(board):
+    """Read native saved copper and pad-to-barrel connectivity, not log claims."""
+    code = r"""
+import pcbnew, sys, json
+b=pcbnew.LoadBoard(sys.argv[1]); b.BuildConnectivity(); conn=b.GetConnectivity()
+rows=[]
+for t in b.GetTracks():
+    rows.append([t.GetNetname(), t.GetClass(), t.GetLayer(),
+                 t.GetStart().x, t.GetStart().y, t.GetEnd().x, t.GetEnd().y,
+                 t.GetWidth(), t.GetDrillValue() if t.GetClass()=='PCB_VIA' else 0])
+connected={p.GetNetname(): any(t.GetClass()=='PCB_VIA' and t.GetNetCode()==p.GetNetCode()
+                            for t in conn.GetConnectedItems(p))
+           for fp in b.GetFootprints() for p in fp.Pads()}
+print('@@'+json.dumps({'copper':sorted(rows), 'connected':connected}))
+"""
+    result = must_pass(run([KPY, '-c', code, board]), 'read saved adjacent rescue')
+    return json.loads(result.out.split('@@', 1)[1].splitlines()[0])
+
+
+@test("pad_rescue composes adjacent escapes and rejects the whole blocked candidate",
+      kind="known_bad")
+def t_adjacent_rescue_composition():
+    """Native 0.5mm-pitch pair through the real stitch CLI, without KRT.
+
+    VIN already has an off-pad barrel. Its old eastward branch crosses the
+    sole configured GND stub, while the GND via site itself is legal. Moving
+    VIN west reserves the GND exit without changing either pad or rescue policy.
+    RED-verified 2026-09-20: replacing the non-emitting via_choice probe with
+    try_via leaves an orphan barrel and fails the full copper census. Restored
+    production code passes; this exercises the real CLI and saved native board.
+    """
+    import yaml
+    for blocked in (True, False):
+        d, p, board = four_layer_scratch(
+            {'GND': [[15, 10]], 'VIN': [[15, 10.5]]},
+            {'nets': [{'net': 'GND', 'layer': 'In1.Cu'},
+                      {'net': 'VIN', 'layer': 'In2.Cu'}],
+             'via_in_pad': False, 'stub_width': .3,
+             'rings': [1.0], 'angle_step': 360, 'require': 'none'},
+            passes=('pad_rescue', 'fill'), dru_floor=.3)
+        pts = [[15, 10.5], [15.5, 10.5], [15.5, 9.5]] if blocked else [[15, 10.5], [14, 10.5]]
+        edit_board(board, f"""
+for fp in b.GetFootprints():
+    fp.Reference().SetVisible(False); fp.Value().SetVisible(False)
+    for pad in fp.Pads(): pad.SetSize(pcbnew.VECTOR2I_MM(.3,.3))
+pts={pts!r}; net=b.FindNet('VIN')
+for a,z in zip(pts,pts[1:]):
+    t=pcbnew.PCB_TRACK(b);t.SetStart(pcbnew.VECTOR2I_MM(*a));t.SetEnd(pcbnew.VECTOR2I_MM(*z))
+    t.SetWidth(pcbnew.FromMM(.3));t.SetLayer(pcbnew.F_Cu);t.SetNet(net);b.Add(t)
+v=pcbnew.PCB_VIA(b);v.SetPosition(pcbnew.VECTOR2I_MM(*pts[-1]));v.SetNet(net)
+v.SetWidth(pcbnew.FromMM(.6));v.SetDrill(pcbnew.FromMM(.3))
+v.SetViaType(pcbnew.VIATYPE_THROUGH);v.SetLayerPair(pcbnew.F_Cu,pcbnew.B_Cu);b.Add(v)
+""")
+        must_pass(run([KPY, '-c',
+            "import pcbnew,sys; sys.path.insert(0,sys.argv[2]); "
+            "from pcb_toolkit import Toolkit; b=pcbnew.LoadBoard(sys.argv[1]); "
+            "tk=Toolkit(b,.15); assert tk.via_site_ok(16.15,10,b.FindNet('GND').GetNetCode(),size=.6,drill=.3)",
+            board, SCRIPTS]), 'via alone is legal; compound stub is the discriminator')
+        before = adjacent_rescue_snapshot(board)
+        eq(before['connected'], {'GND': False, 'VIN': True}, 'nonvacuous input terminals')
+        result = must_pass(stitch(p), 'diagnostic adjacent rescue')
+        after = adjacent_rescue_snapshot(board)
+        eq(after['connected'], {'GND': not blocked, 'VIN': True}, 'native terminal-to-barrel census')
+        eq([r for r in after['copper'] if r[0] == 'VIN'],
+           [r for r in before['copper'] if r[0] == 'VIN'], 'neighbor copper preserved')
+        if blocked:
+            contains(result.out, '0/1 SMD pads served', 'blocked GND is reported')
+            eq(after['copper'], before['copper'], 'rejection leaves no via OR stub')
+        else:
+            eq(via_nets(board), {'GND': 1, 'VIN': 1}, 'exact accepted barrel census')
+            eq(vias_in_smd_pads(board), [], 'both barrels remain off-pad')
+            eq(drc_counts(board)['unconnected'], 0, 'native plane connectivity')
+            eq(json.loads((board.parent / 'drc.json').read_text())['violations'],
+               [], 'corrected native coupon has no ignored DRC findings')
+        # The diagnostic save above exposes the rejected candidate's state.
+        # Now require completion through the production gate, not just logging.
+        cfg = yaml.safe_load(p.read_text())
+        cfg['stitch']['pad_rescue']['require'] = 'all'
+        cfg['stitch']['passes'] = ['pad_rescue', 'fill', 'gate']
+        p.write_text(yaml.safe_dump(cfg))
+        if blocked:
+            must_fail(stitch(p), 'required blocked adjacent escape', 'unserved')
+        else:
+            must_pass(stitch(p), 'required corrected adjacent escapes')
+        eq(adjacent_rescue_snapshot(board), after, 'completion recheck preserves saved copper and terminals')
+
+
 @test("pad_rescue via_in_pad:false also rejects another same-net SMD land")
 def t_pad_rescue_no_foreign_same_net_pad_landing():
     """Same-net copper is legal to `via_site_ok`, but it is not permission to

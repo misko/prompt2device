@@ -8907,3 +8907,23 @@ whole-set reattempt controls rather than introducing another geometry checker.
 These coupons prove fixed geometry witnesses, not route-search completeness or
 absence of alternatives. Adjacent via/dogbone atomic-rejection integration and
 project-driver adoption remain outstanding; no release gate was relaxed.
+
+
+## Adjacent compound escape admission through the production driver — 2026-09-20
+
+The prior native composition coupons proved geometry but did not exercise
+production candidate admission. Extend the existing stitch suite rather than
+building another checker: two 0.5 mm-pitch pads, one pre-existing plane-drop
+branch, and one candidate via plus stub. Confirm the via alone passes the real
+site check, then require the complete blocked candidate to leave the saved
+copper census unchanged. Moving the neighboring branch preserves pad positions
+and policy and lets both terminals connect through off-pad barrels. The corrected
+native coupon has zero violations and zero unconnected items; the production
+require-all gate rejects the blocked arm and accepts the corrected arm.
+
+Mutation evidence: restoring the early via commit before stub collision checking
+makes the new regression fail specifically on an orphan GND barrel. Restoring
+the production non-emitting probe passes. This closes the candidate-admission
+coverage gap without changing a gate or relaxing digital zero-via contracts.
+Production-project adapter adoption and general routing completeness remain
+separate obligations; a coupon is not a release receipt.

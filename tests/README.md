@@ -732,3 +732,14 @@ whose centreline lies outside a width-rule area while its copper edge overlaps.
 Trimming the area removes only that collateral finding; an intended thin probe
 still fails, while outside and wrong-net controls remain exempt. These are
 native diagnostic property tests, not claims of full-board DRC acceptance.
+
+
+`t2_route_stitch.py::t_adjacent_rescue_composition` now drives the production
+stitch CLI on adjacent 0.5 mm-pitch plane pads. A legal GND via site behind a
+VIN branch must be rejected together with its blocked stub; compare the full
+saved copper census to prove neither item leaks. Relocating VIN preserves the
+pads and policy, connects both to off-pad barrels, and produces zero native
+violations/unconnected items. `require:all` rejects the blocked case and accepts
+the corrected one. Replacing the non-emitting via-choice probe with early via
+commit was RED on the orphan-barrel census, then restored GREEN. This plane-drop
+fixture does not change any governed zero-via digital path contract.
