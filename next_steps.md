@@ -157,10 +157,20 @@ It changes process tools, not the sealed carrier or pod releases.
 | Safe targeted reruns | Implementation owner; Astra medium boundary review | Diagnostic downstream impact implemented; automatic reuse/execution deliberately remains behind existing canary adoption requirements |
 | Geometry regression extraction | Sol medium engineering; Terra medium fixture support | Implemented native adjacent-pad composition and scoped-width envelope coupons; existing branch-wall/reattempt and pad-clearance fixtures reused. Done: adjacent compound via/stub atomic rejection through the production stitch CLI, with RED mutation proof. Remaining: project-driver adoption |
 | Remaining stage adapters | Sol medium integration owner | Remaining: reconcile each real driver with the dependency graph before enabling selective execution; no inferred acceptance |
-| Usage source adapters and pilot | Terra medium adapter work; Sol medium acceptance | Done: offline Codex/OpenRouter per-response ingestion with explicit issue/turn attribution, declared session coverage and idempotent atomic imports. Remaining: live capture, automatic descendant discovery, issue waiting-state intervals, broader disposable-project pilot |
+| Usage source adapters and pilot | Terra medium adapter work; Sol medium acceptance | Done: offline Codex/OpenRouter per-response ingestion with explicit issue/turn attribution, declared session coverage and idempotent atomic imports. Done: bounded disposable geometry pilot joins diagnostic impact, manual targeted native reruns and issue accounting. Remaining: live capture, automatic descendant discovery, issue waiting-state intervals, production-project adapter pilot |
 
 Two bounded Astra-medium review passes found no blocking issue in the
 root-owned diagnostic impact/runner changes. Runtime status remains execution
 evidence; the ledger cannot close findings, approve reuse or authorize release.
 The ledger's own tests separately verify attribution and arithmetic. Use one
 integration owner; supporting tasks own narrow files and return concrete tests.
+
+
+Pilot checkpoint: `t2_pcb_flow.py::t_issue_geometry_pilot` runs native DRC
+directly and through the accounted runner on clean, deliberately crossed and
+corrected source geometry. It verifies identical verdicts, retained failed
+attempts, diagnostic downstream impact, restored source identity and unchanged
+independent sourcing. It does not execute automatic graph scheduling, authorize
+cache reuse, stage a release or prove a production project's dependencies.
+Next: adopt one actual project-stage adapter in shadow mode and compare declared
+inputs/outputs with the existing driver before expanding selective execution.

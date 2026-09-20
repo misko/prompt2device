@@ -743,3 +743,12 @@ violations/unconnected items. `require:all` rejects the blocked case and accepts
 the corrected one. Replacing the non-emitting via-choice probe with early via
 commit was RED on the orphan-barrel census, then restored GREEN. This plane-drop
 fixture does not change any governed zero-via digital path contract.
+
+
+`t2_pcb_flow.py::t_issue_geometry_pilot` composes a declared diagnostic graph,
+manual source regeneration, native DRC and issue accounting in a scratch project.
+Clean/crossed/corrected arms compare direct and wrapped exit codes and exact
+violation types. It checks zero unconnected items, three distinct attempts,
+PASS/FAIL/PASS history, unchanged independent part source and restored source
+hash identity despite ledger writes. The scratch synthetic gate is removed;
+no layout-seal receipt or release is produced. Token/cost fields remain unknown.

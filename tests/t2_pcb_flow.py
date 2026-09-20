@@ -905,6 +905,113 @@ def t_issue_native_workflow():
     check(not (root / "07_releases").exists(), "accounting cannot publish releases")
 
 
+@test("disposable geometry pilot preserves native failure correction and targeted rerun accounting",
+      kind="known_bad")
+def t_issue_geometry_pilot():
+    """Fixture-declared diagnostic graph; no production dependency/reuse claim."""
+    import pcbnew
+    sys.path.insert(0, str(SCRIPTS.parents[1] / 'pcb-design/scripts'))
+    from pipeline_contract import StageSpec
+    from pipeline_registry import StageRegistry
+    from pipeline_issue_ledger import summarize
+    root = scratch()
+    # This fixture has no schematic; explicitly discard scratch's synthetic
+    # gate rather than let a pre-existing PASS stand in for native evidence.
+    (root / '06_build/drc/gate.json').unlink()
+    board_path = root / '04_kicad/fixture.kicad_pcb'
+    source = root / '03_src/geometry.json'
+    source.write_text(json.dumps({'branch': [[7, 3], [11, 3], [11, 7], [7, 7]]}))
+    independent = root / '02_parts/X/part.yaml'
+    independent_hash = hashlib.sha256(independent.read_bytes()).hexdigest()
+    ledger = root / '01_docs/issue_usage.jsonl'
+    def spec(name, lifecycle, requires, produces):
+        return StageSpec(id=name, owner='pcb-design', lifecycle=lifecycle,
+                         cost='cheap', work_class='local', timeout_s=30,
+                         requires=tuple(requires), produces=tuple(produces),
+                         blocks=(), invalidated_by=())
+    # This synthetic dependency declaration tests composition only. It cannot
+    # validate the completeness of any production project driver.
+    registry = StageRegistry((
+        spec('P-PARTS', 'sourcing', ['part_selection'], ['parts_ready']),
+        spec('P-GENERATE', 'routing', ['geometry_source'], ['routed_board']),
+        spec('P-NATIVE', 'layout_seal', ['routed_board'], ['native_checked']),
+        spec('P-STAGE', 'release_staging', ['native_checked', 'parts_ready'], ['release_staged']),
+    ))
+    def regenerate():
+        board = pcbnew.BOARD(); board.SetCopperLayerCount(2)
+        def vec(x, y): return pcbnew.VECTOR2I(round(x*1e6), round(y*1e6))
+        paths = {'ESCAPE': [[5, 5], [9, 5]],
+                 'BRANCH': json.loads(source.read_text())['branch']}
+        for name, points in paths.items():
+            net = pcbnew.NETINFO_ITEM(board, name); board.Add(net)
+            for i, point in enumerate((points[0], points[-1])):
+                fp = pcbnew.FOOTPRINT(board); fp.SetReference(f'{name}{i}')
+                fp.Reference().SetVisible(False); fp.Value().SetVisible(False)
+                board.Add(fp)
+                pad = pcbnew.PAD(fp); pad.SetNumber('1')
+                pad.SetAttribute(pcbnew.PAD_ATTRIB_SMD); pad.SetShape(pcbnew.PAD_SHAPE_RECT)
+                pad.SetSize(vec(.3,.3)); layers=pcbnew.LSET(); layers.AddLayer(pcbnew.F_Cu)
+                pad.SetLayerSet(layers); fp.Add(pad); pad.SetPosition(vec(*point)); pad.SetNet(net)
+            for a, b in zip(points, points[1:]):
+                track=pcbnew.PCB_TRACK(board); track.SetStart(vec(*a)); track.SetEnd(vec(*b))
+                track.SetWidth(pcbnew.FromMM(.25)); track.SetLayer(pcbnew.F_Cu)
+                track.SetNet(net); board.Add(track)
+        corners = [(1,1),(15,1),(15,10),(1,10)]
+        for a,b in zip(corners,corners[1:]+corners[:1]):
+            edge=pcbnew.PCB_SHAPE(board); edge.SetShape(pcbnew.SHAPE_T_SEGMENT)
+            edge.SetLayer(pcbnew.Edge_Cuts); edge.SetStart(vec(*a)); edge.SetEnd(vec(*b))
+            edge.SetWidth(pcbnew.FromMM(.05)); board.Add(edge)
+        pcbnew.SaveBoard(str(board_path),board)
+    for index, bad in enumerate((False, True, False)):
+        if index:
+            source.write_text(json.dumps({'branch': [[7,3],[7,7]] if bad else
+                                          [[7,3],[11,3],[11,7],[7,7]]}))
+            impact = registry.change_impact(changed_symbols=('geometry_source',))
+            eq(impact['affected'], ['P-GENERATE','P-NATIVE','P-STAGE'], 'declared downstream invalidation')
+            eq(impact['unaffected'], ['P-PARTS'], 'independent source outside diagnostic impact')
+            eq(impact['authority'], 'DIAGNOSTIC_ONLY', 'no automatic dispatch authority')
+            eq(impact['reuse_authorized'], False, 'no automatic cached acceptance')
+        regenerate()
+        reports = []
+        codes = []
+        for wrapped in (False, True):
+            report = root / f'06_build/drc/pilot-{index}-{wrapped}.json'
+            command = ['kicad-cli','pcb','drc','--severity-all','--exit-code-violations',
+                       '--format','json','-o',str(report),str(board_path)]
+            argv = ([KPY,FLOW,'run',root,'--stage','layout_seal','--issue','geometry-pilot',
+                     '--usage-ledger',ledger,'--',*command] if wrapped else command)
+            result = run(argv)
+            if bad: must_fail(result, 'native crossing must fail')
+            else: must_pass(result, 'native corrected geometry')
+            codes.append(result.rc)
+            data = json.loads(report.read_text())
+            eq(data['unconnected_items'], [], 'terminal connectivity retained')
+            types = sorted(row['type'] for row in data['violations'])
+            eq(types, ['tracks_crossing'] if bad else [], 'exact native defect classification')
+            reports.append(types)
+        eq(codes[0], codes[1], 'accounting preserves native exit code')
+        eq(reports[0], reports[1], 'accounting preserves native findings')
+    events = [json.loads(line) for line in ledger.read_text().splitlines()]
+    starts = [e for e in events if e['event_type']=='START']
+    ends = [e for e in events if e['event_type']=='TERMINAL']
+    eq(len(starts), 3, 'one durable start per manual native rerun')
+    eq([e['status'] for e in ends], ['PASS','FAIL','PASS'], 'failed attempt retained')
+    eq(len({e['run_id'] for e in starts}), 3, 'distinct run identities')
+    eq(len({e['attempt_id'] for e in starts}), 3, 'distinct attempt identities')
+    hashes = [e['provenance']['source_sha256'] for e in starts]
+    eq(hashes[0], hashes[2], 'restored source has original identity despite accounting writes')
+    check(hashes[1] != hashes[0], 'changed geometry changes source identity')
+    check(all(e['issue_id']=='geometry-pilot' and e['stage_id']=='layout_seal' for e in events),
+          'stable issue and exact executed stage attribution')
+    check(all(e['token_usage'] is None and e['provider_cost_usd'] is None for e in ends),
+          'native execution invents no provider spend')
+    summary = summarize(ledger)['issues']['geometry-pilot']
+    eq(summary['status_counts'], {'PASS':2,'FAIL':1}, 'failure remains in issue summary')
+    eq(hashlib.sha256(independent.read_bytes()).hexdigest(), independent_hash, 'independent sourcing untouched')
+    check(not (root/'07_releases').exists(), 'diagnostic plan cannot stage a release')
+    check(not (root/'06_build/drc/gate.json').exists(), 'pilot does not forge a layout seal')
+
+
 @test("issue accounting refuses a malformed ledger before command launch", kind="known_bad")
 def t_issue_bad_start():
     root = scratch()

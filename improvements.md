@@ -8927,3 +8927,22 @@ the production non-emitting probe passes. This closes the candidate-admission
 coverage gap without changing a gate or relaxing digital zero-via contracts.
 Production-project adapter adoption and general routing completeness remain
 separate obligations; a coupon is not a release receipt.
+
+
+## Disposable modular workflow pilot — 2026-09-20
+
+Separate graph, native geometry and accounting tests did not demonstrate their
+composition. Added a bounded disposable pilot using the real accounted command
+runner and KiCad DRC: clean source, intentional crossing, corrected source.
+Direct and wrapped commands must return identical exit codes and exact native
+findings. Retain all three attempts, including the failure, under one issue.
+The declared change-impact set includes regeneration, native verification and
+staging while independent part source remains untouched. Impact stays diagnostic;
+no automatic scheduling, reuse or publication is authorized.
+
+The corrected source restores its original identity even after accounting
+writes, guarding against telemetry-induced invalidation loops. Reports preserve
+unknown provider spend. The test removes the scratch helper's synthetic gate
+and never creates a replacement acceptance receipt. This closes a bounded
+composition gap; the next task is a real project-stage adapter comparison in
+shadow mode, not wholesale replacement of existing drivers.

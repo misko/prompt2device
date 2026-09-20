@@ -380,3 +380,14 @@ rejection preserves all saved copper, while corrected geometry connects both
 pads through off-pad barrels. This is a plane-rescue contract, not permission
 to add vias to zero-via digital paths. Automatic project-driver adoption remains
 future work; these coupons do not prove general routing completeness.
+
+
+The disposable integration pilot is
+`tests/t2_pcb_flow.py::t_issue_geometry_pilot`. It composes a fixture-declared diagnostic
+dependency graph, a manual source regeneration, real native DRC and the accounted command
+runner across clean/failing/corrected geometry. The native exit and exact finding
+set must match direct execution. Failed attempts remain in the ledger, accounting
+writes do not alter source identity, and independent part source stays unchanged.
+This is one bounded integration witness, not a production dependency inventory:
+it neither executes the graph automatically nor grants reuse, seal or release
+acceptance. Production adapter adoption still requires a driver comparison.
