@@ -105,6 +105,33 @@ Rules:
 
 ## Companion execution contract
 
+### Change-impact planning
+
+Reuse `StageSpec`, `StageResult`, `TaskEnvelope` and artifact bundles when
+adapting a module; do not invent a second verdict or dependency schema.
+`StageRegistry.change_impact(changed_symbols=..., changed_stage_ids=...,
+changed_categories=...)` computes a diagnostic downstream set and reasons.
+Symbols name declared external inputs or produced artifacts; changing an
+output invalidates its producer too. Categories name declared `invalidated_by`
+entries (including a tool/process change where applicable). Unknown changes
+are rejected. There is no `available` shortcut that can hide an affected edge.
+
+The result is `DIAGNOSTIC_ONLY`, always `reuse_authorized: false`. Unaffected
+means outside the declared change graph, not accepted, fresh or reusable.
+Existing receipt, subject, tool identity, bundle, expiry, applicability and
+coverage checks still own reuse. The graph cannot discover undeclared reads;
+`blocks` is descriptive metadata, not a registry dependency. A migrated
+adapter must represent real barriers through `requires`/`produces`, compare
+its graph with the actual conductor, and retain whole-board final checks.
+The current impact tests demonstrate graph behavior, not full driver coverage.
+
+Before adopting an adapter, inventory its authoritative inputs (including
+methods, configuration and external observations), output owner, side effects,
+failure propagation and reusable evidence. Geometry coupled through a shared
+pin field belongs in one feasibility unit even when it spans several nets.
+Move one boundary at a time; follow the canary requirements below before
+changing execution or acceptance authority.
+
 Do not extend `StageSpec` with argv, agent, prompt, context, token, writer-path,
 or replacement details. `StageSpec` says what engineering work exists;
 `execution-runtime.md` solely owns `TaskEnvelope`, `TaskAttempt`, `WriterScope`,

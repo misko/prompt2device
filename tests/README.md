@@ -687,3 +687,24 @@ five intended Crow source/review files (1319 had correctly rejected untracked
 project membership). Final native DRC and release gates are unchanged.
 
 `t1_publication_gate.py` now removes a hashed auxiliary payload while keeping the board/reviews green. This was RED against the pre-fix publication gate (empty finding list), then GREEN with full manifest census. Tampered and unlisted payload controls remain required; 31 publication tests pass, including18 hostile fixtures.
+
+### Modular impact and issue telemetry
+
+`pipeline_registry.change_impact` is diagnostic, not cache admission. Its
+placement/routing/native-check/staging fixture preserves independent sourcing,
+propagates changed source/output/method inputs, and rejects unknown change keys.
+Removing downstream propagation was mutation-tested RED (three targeted
+failures); restoring it returns GREEN. Real conductor coverage remains a
+separate migration obligation.
+
+`t1_pipeline_issue_ledger.py` exercises append-only attribution, provider/event
+identity conflicts, concurrency, missing/partial usage, interval union and
+incomplete records. `t2_pcb_flow.py` runs the native route-ownership validator
+both directly and through the opt-in accounting path: a clean declared corridor
+passes and an unknown corridor wave fails with the same exit. It also proves a
+malformed start prevents launch and terminal persistence failure preserves the
+command failure while leaving an incomplete ledger record. Bypassing start
+admission was mutation-tested RED, then restored GREEN. The decision-progress
+suite joins accounting to the existing reserved attempt and proves that an
+unassessed launch still blocks another attempt. These checks prove
+accounting and boundary behavior, not whole-board routability or release readiness.

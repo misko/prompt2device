@@ -14,7 +14,7 @@ from pipeline_contract import StageSpec  # noqa: E402
 from pipeline_registry import RegistryValidationError, StageRegistry  # noqa: E402
 
 
-def spec(stage_id, *, cost="cheap", lifecycle="schematic", requires=(), produces=()):
+def spec(stage_id, *, cost="cheap", lifecycle="schematic", requires=(), produces=(), invalidated_by=()):
     return StageSpec(
         id=stage_id,
         owner="pcb-design",
@@ -25,7 +25,7 @@ def spec(stage_id, *, cost="cheap", lifecycle="schematic", requires=(), produces
         requires=tuple(sorted(requires)),
         produces=tuple(sorted(produces)),
         blocks=(),
-        invalidated_by=(),
+        invalidated_by=tuple(sorted(invalidated_by)),
     )
 
 
@@ -122,6 +122,75 @@ def t_cycle():
         check("cycle" in str(exc), "cycle diagnosis")
     else:
         raise AssertionError("cyclic registry was accepted")
+
+
+
+def impact_registry():
+    return StageRegistry((
+        spec("P-PARTS", lifecycle="sourcing", requires=("part_selection",),
+             produces=("parts_ready",), invalidated_by=("stock_expiry",)),
+        spec("P-PLACE", lifecycle="placement", requires=("placement_source",),
+             produces=("placed_board",)),
+        spec("P-ROUTE", lifecycle="routing", requires=("placed_board",),
+             produces=("routed_board",), invalidated_by=("route_method",)),
+        spec("P-NATIVE", lifecycle="layout_seal", requires=("routed_board",),
+             produces=("native_checked",)),
+        spec("P-STAGE", lifecycle="release_staging",
+             requires=("native_checked", "parts_ready"), produces=("release_staged",)),
+    ))
+
+
+@test("impact propagates placement through routing native check and staging")
+def t_impact_placement():
+    result = impact_registry().change_impact(changed_symbols=("placement_source",))
+    eq(result["affected"], ["P-PLACE", "P-ROUTE", "P-NATIVE", "P-STAGE"], "downstream")
+    eq(result["unaffected"], ["P-PARTS"], "independent sourcing")
+    eq(result["authority"], "DIAGNOSTIC_ONLY", "not acceptance")
+    eq(result["reuse_authorized"], False, "unaffected is not reusable evidence")
+
+
+@test("impact preserves upstream work for route-method changes")
+def t_impact_method():
+    result = impact_registry().change_impact(changed_categories=("route_method",))
+    eq(result["affected"], ["P-ROUTE", "P-NATIVE", "P-STAGE"], "method descendants")
+    eq(impact_registry().change_impact()["affected"], [], "no declared changes")
+
+
+@test("impact rejects misspelled changes rather than reporting nothing", kind="known_bad")
+def t_impact_unknown():
+    for kwargs in ({"changed_symbols": ["place_source"]},
+                   {"changed_stage_ids": ["P-ABSENT"]},
+                   {"changed_categories": ["expired"]},
+                   {"changed_symbols": "placement_source"}):
+        try:
+            impact_registry().change_impact(**kwargs)
+        except RegistryValidationError:
+            pass
+        else:
+            raise AssertionError(f"unknown or malformed change accepted: {kwargs}")
+
+
+@test("changed produced artifact invalidates producer and all consumers", kind="known_bad")
+def t_impact_tampered_output():
+    result = impact_registry().change_impact(changed_symbols=("routed_board",))
+    eq(result["affected"], ["P-ROUTE", "P-NATIVE", "P-STAGE"], "tampered output")
+    # No available-fact shortcut is exposed by change_impact.
+    try:
+        impact_registry().change_impact(changed_stage_ids=("P-PLACE",),
+                                       available=("routed_board",))
+    except TypeError:
+        pass
+    else:
+        raise AssertionError("old available artifact suppressed invalidation")
+
+
+@test("impact records converging reasons and preserves deterministic ordering")
+def t_impact_multiple_reasons():
+    result = impact_registry().change_impact(
+        changed_stage_ids=("P-NATIVE",), changed_categories=("stock_expiry",))
+    eq(result["affected"], ["P-PARTS", "P-NATIVE", "P-STAGE"], "ordered union")
+    eq(result["reasons"]["P-STAGE"], ["upstream:P-NATIVE", "upstream:P-PARTS"],
+       "both reasons retained")
 
 
 if __name__ == "__main__":

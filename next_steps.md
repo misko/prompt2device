@@ -141,3 +141,26 @@ owning source and affected gates, regardless of a model's verdict.
 - [Carrier historical dispositions](projects/crow-audio-carrier-v1/08_reviews/DISPOSITIONS.md).
 - [Pod historical dispositions](projects/crow-mic-pod-v3/08_reviews/DISPOSITIONS.md).
 - [Repository process backlog](improvements.md).
+
+
+## Modular process implementation — 2026-09-20
+
+This work is separate from the board ordering/first-article checklist above.
+It changes process tools, not the sealed carrier or pod releases.
+
+| Pass | Owner / effort | Status and completion boundary |
+|---|---|---|
+| Map existing boundaries | Terra medium inventory; implementation owner reconciles | Done: executable owners and adoption limits recorded in the existing execution graph |
+| Standardize interfaces | Existing strict schemas; bounded Astra medium review | Done for this slice: reuse StageSpec/StageResult, TaskEnvelope and artifact bundles; no competing schema |
+| Issue-level accounting | Terra medium implementation; integration owner review | Implemented opt-in ledger and bounded command integration; usage import requires explicit measured provider records |
+| One real workflow integration | Implementation owner | Native route-ownership validator exercised directly and through accounting, with clean and hostile corridor inputs |
+| Safe targeted reruns | Implementation owner; Astra medium boundary review | Diagnostic downstream impact implemented; automatic reuse/execution deliberately remains behind existing canary adoption requirements |
+| Geometry regression extraction | Sol medium engineering; Terra medium fixture support | Remaining: generic pin-field, branch-wall and scoped-native-clearance coupons, reusing existing tests first |
+| Remaining stage adapters | Sol medium integration owner | Remaining: reconcile each real driver with the dependency graph before enabling selective execution; no inferred acceptance |
+| Usage source adapters and pilot | Terra medium adapter work; Sol medium acceptance | Remaining: Codex/OpenRouter automatic per-response ingestion, child-session coverage, issue waiting-state intervals, broader disposable-project pilot |
+
+Two bounded Astra-medium review passes found no blocking issue in the
+root-owned diagnostic impact/runner changes. Runtime status remains execution
+evidence; the ledger cannot close findings, approve reuse or authorize release.
+The ledger's own tests separately verify attribution and arithmetic. Use one
+integration owner; supporting tasks own narrow files and return concrete tests.

@@ -260,6 +260,12 @@ in `references/lifecycle-and-backtrack.md`; a new model or handoff is not a rese
 A fresh agent resumes from committed source, the live beacon, journal, and
 content-addressed handoff—not from hidden conversation history.
 
+For modular reruns, use the existing [stage contracts](references/pipeline-stage-contract.md)
+and their diagnostic change-impact graph; unaffected stages still need valid
+acceptance evidence. For issue-level time/token attribution, use the opt-in
+ledger in [execution-runtime.md](references/execution-runtime.md); it records
+spending, never engineering progress or permission to retry.
+
 ## Human reports
 
 When the user asks for an investigation, design study, issue analysis, or

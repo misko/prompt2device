@@ -110,6 +110,22 @@ actual applicability.
 
 ## Project execution graph
 
+### Adapter inventory for incremental adoption
+
+| Boundary | Existing callable owner | Inputs and outputs | Adoption limit |
+|---|---|---|---|
+| Placement feasibility | `placement_routability_preflight.py grade/verify` in `kicad-pcb` | Board, placement/routing configuration and source topology to a bound domain receipt | Optional typed stage publication remains an INCOMPLETE hold; no accepted P-FEAS bundle |
+| Route acceptance | `route_acceptance_gate.py grade/verify` in `kicad-pcb` | Exact board, source rules, prepared base and native checks to the route receipt | Project conductor retains execution/promotion authority; diagnostic shared adapters cannot replace its verdict |
+| Native verification | Full route acceptance and `route_candidate_workspace.py grade/verify` | Saved board plus effective project/rule sidecars to native DRC/parity evidence | `pcb_flow.py qualify` tests tool capability, not the product board |
+| Fabrication staging | `fab_payload_census.py` in `jlcpcb-fab` | Staged fabrication population/files to census and optional bundle | Does not seal or publish |
+| Release rehearsal | `release_rehearsal.py init/rehearse/verify/seal` in `pcb-design` | Complete staged files, reviews and provenance to bound rehearsal/seal admission | Admission does not itself perform the immutable two-commit seal or remote publication |
+
+This inventory identifies integration seams, not a replacement conductor.
+Hidden inputs such as native tool identities, rule sidecars, review expiry,
+source membership and repository state must be declared by each adapter before
+incremental reuse can become authoritative. `pipeline_registry.change_impact`
+is only the diagnostic graph operation described in the stage contract.
+
 ### Schematic or source changed
 
 The bootstrap hold starts at `PCB-COMMISSION` and spans the separately typed

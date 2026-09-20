@@ -117,6 +117,11 @@ BACKEND GAP to report, not a bespoke script to write here.
   A named launch reserves an ID/source-bound ledger slot before dispatch;
   pending assessment blocks another launch and completed assessment does not
   double-count spend. No automatic scientific assessment or finding closure.
+- `pcb_flow.py run --issue ID --usage-ledger PATH` composes opt-in accounting
+  through `pipeline_issue_ledger.py`; an investigation may supply the issue ID
+  and its reserved attempt identity. Initial persistence failure stops launch;
+  terminal persistence failure is reported separately and preserves the actual
+  command exit. No telemetry field grants engineering acceptance or retry.
 - `route_experiment_store.py` gives each retained attempt exactly one terminal
   state and one content-addressed evidence set. The accepted pointer is
   exclusive and pruning is dry-run only.

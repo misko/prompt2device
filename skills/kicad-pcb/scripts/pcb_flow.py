@@ -25,6 +25,7 @@ import shlex
 import subprocess
 import sys
 import time
+import uuid
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Iterable
@@ -647,18 +648,64 @@ def record_perf(ctx: FlowContext, stage: str, command: list[str], elapsed: float
 
 def run_timed(ctx: FlowContext, stage: str, command: list[str],
               budget_s: float | None = None,
-              timeout_s: float | None = None) -> int:
+              timeout_s: float | None = None, *,
+              issue_id: str | None = None, usage_ledger: Path | None = None,
+              attempt_id: str | None = None) -> int:
     print(f"[{stage}] $ {shlex.join(command)}", flush=True)
     timeout_s = configured_timeout(ctx.cfg, stage) if timeout_s is None else timeout_s
     if timeout_s is not None and timeout_s <= 0:
         raise FlowError("stage timeout must be positive")
     heartbeat_s = configured_heartbeat(ctx.cfg)
     safe_stage = re.sub(r"[^A-Za-z0-9_.-]+", "_", stage)
-    result = run_bounded(
-        command, cwd=ctx.root, env=dict(os.environ), timeout_s=timeout_s,
-        heartbeat_s=heartbeat_s, label=stage,
-        state_path=ctx.state_dir / "pipeline_state" /
-        f"{safe_stage}.json")
+    if bool(issue_id) != bool(usage_ledger):
+        raise FlowError("issue attribution requires both an issue ID and --usage-ledger")
+    run_id = f"flow-{uuid.uuid4().hex}"
+    started_at = dt.datetime.now(dt.timezone.utc).isoformat().replace("+00:00", "Z")
+    if usage_ledger is not None:
+        from pipeline_issue_ledger import record_start, record_run
+        try:
+            record_start(usage_ledger, issue_id=issue_id,
+                         attempt_id=attempt_id or run_id, run_id=run_id,
+                         stage_id=stage, started_at=started_at,
+                         provenance={
+                             "command_sha256": hashlib.sha256(
+                                 json.dumps(command).encode()).hexdigest(),
+                             "source_sha256": tree_hash(ctx).removeprefix("sha256:"),
+                             "tool_sha256": tools_hash(ctx).removeprefix("sha256:"),
+                         })
+        except (OSError, ValueError, TypeError) as exc:
+            raise FlowError(f"issue accounting start refused: {exc}") from exc
+        print(f"issue accounting: issue={issue_id} attempt={attempt_id or run_id} "
+              f"run={run_id} ledger={usage_ledger}", flush=True)
+
+    def finish_accounting(status: str, elapsed_s: float) -> None:
+        if usage_ledger is None:
+            return
+        try:
+            record_run(usage_ledger, issue_id=issue_id,
+                       attempt_id=attempt_id or run_id,
+                       outcome={"run_id": run_id, "stage_id": stage,
+                                "started_at": started_at,
+                                "finished_at": dt.datetime.now(dt.timezone.utc).isoformat().replace("+00:00", "Z"),
+                                "elapsed_s": elapsed_s, "status": status})
+        except (OSError, ValueError, TypeError) as exc:
+            # Accounting is not a domain verdict. A durable unmatched start
+            # remains visible as incomplete; never fabricate a terminal PASS.
+            print(f"ISSUE ACCOUNTING INCOMPLETE: {exc}", file=sys.stderr)
+
+    clock_start = time.monotonic()
+    try:
+        result = run_bounded(
+            command, cwd=ctx.root, env=dict(os.environ), timeout_s=timeout_s,
+            heartbeat_s=heartbeat_s, label=stage,
+            state_path=ctx.state_dir / "pipeline_state" /
+            f"{safe_stage}.json")
+    except BaseException:
+        finish_accounting("ERROR", time.monotonic() - clock_start)
+        raise
+    finish_accounting("TIMED_OUT" if result.timed_out else
+                      "INCOMPLETE" if result.cancelled else
+                      "PASS" if result.returncode == 0 else "FAIL", result.elapsed_s)
     elapsed = result.elapsed_s
     record_perf(ctx, stage, command, elapsed, result.returncode, budget_s,
                 timeout_s)
@@ -1152,6 +1199,10 @@ def parser() -> argparse.ArgumentParser:
                    help="hard deadline; kills the command's process group")
     p.add_argument("--investigation", metavar="FINDING_ID",
                    help="enforce the named findings-ledger investigation before launching")
+    p.add_argument("--issue", metavar="ISSUE_ID",
+                   help="attribute execution to a stable issue; does not authorize retries")
+    p.add_argument("--usage-ledger", type=Path,
+                   help="durable issue JSONL ledger; requires --issue or --investigation")
     return ap
 
 
@@ -1223,6 +1274,12 @@ def main(argv: list[str] | None = None) -> int:
             return cmd_layout_seal(ctx, args.dry_run, args.reviewed_commit)
         if not remainder:
             raise FlowError("run needs a command after --")
+        issue_id = args.issue or (args.investigation if args.usage_ledger else None)
+        if bool(issue_id) != bool(args.usage_ledger):
+            raise FlowError("--issue and --usage-ledger must be supplied together")
+        if args.issue and args.investigation and args.issue != args.investigation:
+            raise FlowError("--issue must match the guarded --investigation")
+        reservation = None
         if args.investigation:
             progress = decision_progress(ctx, args.investigation)
             if progress is None or progress['decision'] != 'CONTINUE_BOUNDED':
@@ -1239,7 +1296,8 @@ def main(argv: list[str] | None = None) -> int:
         budget_s = (args.budget_s if args.budget_s is not None
                     else configured_budget(ctx.cfg, args.stage))
         return run_timed(ctx, args.stage, remainder, budget_s,
-                         args.timeout_s)
+                         args.timeout_s, issue_id=issue_id,
+                         usage_ledger=args.usage_ledger, attempt_id=reservation)
     except FlowError as exc:
         print(f"pcb_flow: {exc}", file=sys.stderr)
         return EXIT_CONFIG

@@ -17,6 +17,7 @@ Runtime policy ID owned here: `M-BOUND`.
 6. Validated task delivery
 7. Startup qualification
 8. Same-owner repair admission
+9. Issue-level accounting
 
 ## Authority boundary
 
@@ -330,3 +331,63 @@ Repair with the allocated previous envelope (the envelope.json beside its
 attempt.json), not the original template. The command prints the successor path.
 The two-execution example allowance leaves no third launch, even if the second
 execution fails. No additional agent is needed for this correction.
+
+## Issue-level accounting
+
+`pipeline_issue_ledger.py` is an optional accounting adapter, not a second
+findings ledger or admission gate. Reuse a stable finding ID across agents and
+retries; `findings.yaml` still owns closure, hypotheses, evidence and attempt
+allowances. Use a separate shared-overhead issue for genuinely shared work
+instead of inventing fractional token attribution.
+
+The first adopted consumer is the existing bounded command path:
+
+```bash
+python3 skills/kicad-pcb/scripts/pcb_flow.py run "$PROJECT" \
+  --stage routing --issue ISSUE-17 \
+  --usage-ledger "$PROJECT/01_docs/issue_usage.jsonl" -- COMMAND ARG
+python3 skills/pcb-design/scripts/pipeline_issue_ledger.py summary \
+  --ledger "$PROJECT/01_docs/issue_usage.jsonl" --issue-id ISSUE-17
+```
+
+With `--investigation ISSUE-17`, `--usage-ledger` uses that issue and the existing
+reserved attempt ID; an explicitly different `--issue` is rejected. Attribution
+alone never invokes or replaces investigation admission. Other commands and
+unattributed runs retain their existing behavior. Each run prints its stable
+IDs. Input provenance stores command, source and tool digests, not command text
+or credentials. These hashes describe the observation; they do not independently
+prove a command read only those inputs.
+
+The schema/API is owned by the ledger module. `record_start` durably records
+intent before launch; `record_run` records terminal execution. A start without
+a terminal remains incomplete. Initial accounting failure prevents the opted-in
+launch. A terminal accounting failure prints `ISSUE ACCOUNTING INCOMPLETE`,
+leaves that start open and preserves the actual command result. This adapter
+runs outside runtime event callbacks so an accounting error cannot rewrite a
+domain verdict. The compatibility runner exposes only coarse execution statuses;
+a runtime cleanup error may be recorded as FAIL with its nonzero exit rather
+than a distinct ERROR. A performance-budget failure remains separate from the recorded
+child execution result, as in the existing performance log.
+
+For provider observations, append strict event JSON using `append --ledger PATH
+--event-json FILE`. Assign a distinct run to each provider response under its
+owning attempt, with stable provider/account scope and response ID. Persist
+observed usage and cost, including failed requests; never use cumulative status
+counters as per-response usage. Duplicate identities are checked; conflicting
+attribution is an accounting error. The schema has no prompt or API-key field.
+Provider-reported cost is USD; absent cost is unknown, not a Codex subscription
+charge estimate. A `PASS` here describes execution only, never a PCB verdict.
+
+Summaries distinguish input, cached input, output and reasoning subsets, retain
+unknown/partial coverage and incomparable authority/metric groups, and distinguish
+observed interval union from summed worker duration. Neither is human active
+labor or complete issue age. Provider wait, operator wait and issue-open/close
+intervals are not inferred from gaps between calls. Missing child sessions are
+not assumed to have zero usage.
+
+Keep the durable ledger outside disposable `06_build`; the optional project
+convention is `01_docs/issue_usage.jsonl` with a local ignored `.lock` sidecar.
+Existing projects adopt the template allowance before using that path. Keep
+raw session logs private and separate. Automatic Codex/OpenRouter ingestion,
+issue-state waiting intervals, and host-agent launch integration are later
+source adapters; this slice does not claim automatic capture of those calls.

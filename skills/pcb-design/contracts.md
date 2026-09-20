@@ -22,6 +22,17 @@ why).
 
 ## Audit
 
+- `pipeline_registry.py change_impact` computes diagnostic downstream impact
+  from declared symbols, stages and categories; it cannot authorize cached
+  evidence or execution. `tests/t1_pipeline_registry.py` pins independent
+  siblings, propagation, malformed inputs and changed output ownership.
+- `scripts/pipeline_issue_ledger.py` owns optional append-only execution/usage
+  accounting, distinct from findings, task attempts and engineering verdicts.
+  `pcb_flow.py run --issue/--usage-ledger` is its first opt-in consumer.
+  Closed records, deduplication, missing usage, overlap and interruption
+  semantics are tested in `tests/t1_pipeline_issue_ledger.py`; actual validator
+  exit preservation and admission failures in `tests/t2_pcb_flow.py`.
+
 - `scripts/commission_project.py` owns the exact scaffold manifest;
   `templates/README.md` summarizes it. A new project must pass
   `contracts_audit.py --walk --root <proj>` with zero violations before design.

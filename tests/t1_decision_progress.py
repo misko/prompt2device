@@ -271,6 +271,25 @@ def t_reservation():
     eq(guard.evaluate(root)['investigations'][0]['attempts'], 2)
 
 
+@test('issue accounting reuses guarded reservation without granting a second launch', kind='known_bad')
+def t_accounted_reservation():
+    root, data, ref = fixture(); save(root, data)
+    ledger = root / '01_docs/issue_usage.jsonl'
+    args = [KPY, SCRIPTS / 'pcb_flow.py', 'run', root, '--stage', 'schematic',
+            '--investigation', 'startup', '--usage-ledger', ledger,
+            '--', KPY, '-c', 'print("CHILD_EXECUTED")']
+    must_pass(run(args), 'accounted guarded dispatch')
+    data = yaml.safe_load((root / '01_docs/findings.yaml').read_text())
+    reservation = data['findings'][0]['investigation']['launches'][0]['id']
+    events = [json.loads(line) for line in ledger.read_text().splitlines()]
+    eq(len(events), 2, 'one start and terminal')
+    for event in events:
+        eq(event['issue_id'], 'startup', 'existing finding identity')
+        eq(event['attempt_id'], reservation, 'same budget reservation')
+    must_fail(run(args), 'no automatic retry', 'ASSESS_PENDING')
+    eq(len(ledger.read_text().splitlines()), 2, 'blocked retry emitted no new run')
+
+
 def schema_fixture():
     """Exercise populated history/reservations, not only the empty-list case."""
     import schema_reader_audit as schema

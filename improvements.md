@@ -8804,3 +8804,48 @@ table. A missing row must be measured with the PCBNew-verified operator and
 independently reviewed before the expensive source/review replay. This is an
 ordering improvement only; the final export, twin, placement reviews and
 uploader preview remain mandatory on exact final bytes.
+
+## Modular boundaries and issue accounting — first executable slice, 2026-09-20
+
+Situation: the Crow retrospective found repeated routing/review/publication work
+and large cumulative token volume, but parent-session counters could not assign
+cost reliably to individual issues. Existing typed stages and runtime helpers
+already provided much of the proposed modular foundation; adding a second
+orchestrator or verdict schema would create competing authority.
+
+Implemented: extend the existing StageRegistry with a diagnostic downstream
+change-impact operation; preserve StageSpec/StageResult, TaskEnvelope and bundle
+schemas. Record current callable placement, routing, native verification and
+release-staging boundaries in execution-graph.md. Add an opt-in durable issue
+ledger and integrate it into pcb_flow run, reusing guarded investigation IDs and
+reserved attempt identities. Every run has a durable start and at most one
+terminal event. Missing usage stays unknown; responses deduplicate by provider
+scope and response ID; token metrics remain partitioned; overlapping execution
+intervals and aggregate worker durations are distinct. Neither telemetry nor an
+unaffected graph node grants engineering acceptance, retry, or cached reuse.
+
+Tests: a placement change reaches routing, native checking and release staging,
+while independent sourcing stays outside that declared set. A route-method
+change preserves upstream placement. Unknown changes fail. Removing propagation
+was mutation-tested RED. A real native route-ownership checker runs through the
+existing bounded conductor with identical clean/hostile exits. Corrupt accounting
+blocks launch; bypassing that check was mutation-tested RED. Terminal accounting
+failure preserves the child failure and leaves a durable incomplete start.
+Guarded accounting cannot obtain a second attempt without the existing assessment.
+Ledger fixtures cover duplicate/conflicting attribution, concurrent appends,
+unknown/partial usage, overlap and interrupted histories.
+
+Avoidance: inventory actual dependencies before adapter migration; retain one
+owner per predicate and one integration writer. Keep coupled pin-field geometry
+together. Run cheap prerequisites before expensive work, and use exact receipts
+rather than conversation history for acceptance. Preserve complete failure
+records without recursively embedding prior archives. Issue IDs persist across
+models and handoffs; model effort is observed metadata, not a project requirement.
+
+Remaining: automatic provider/session ingestion with child-session coverage,
+explicit issue waiting intervals, generic geometry coupons, and measured driver
+canaries before automatic selective execution/reuse. No current board or sealed
+release is modified by this process slice. The repository-wide contract audit
+still reports existing debt (2,884 violations versus a 2,873 recorded ceiling;
+Crow carrier/pod contribute 11 unratcheted violations). This work does not raise
+the ceiling or claim that the whole repository test suite passes.

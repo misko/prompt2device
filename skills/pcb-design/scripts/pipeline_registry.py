@@ -239,6 +239,73 @@ class StageRegistry:
             first_divergence=divergence,
         )
 
+    def change_impact(
+        self, *, changed_symbols: Sequence[str] = (),
+        changed_stage_ids: Sequence[str] = (),
+        changed_categories: Sequence[str] = (),
+    ) -> dict[str, object]:
+        """Explain conservative downstream invalidation, without admitting reuse.
+
+        Symbols include external inputs and produced artifacts. A changed
+        produced artifact invalidates its producer as well as every consumer.
+        Method/tool changes must name the owning stage or declared category.
+        This graph cannot discover undeclared dependencies or authenticate a
+        receipt; an unaffected stage is *not* a cache acceptance decision.
+        ``blocks`` is descriptive metadata, not a dependency edge. Actual
+        barriers must have explicit requires/produces edges in an adopted graph.
+        """
+        declarations = (
+            (changed_symbols, self._required_symbols | set(self._producer), "symbol"),
+            (changed_stage_ids, set(self._by_id), "stage"),
+            (changed_categories,
+             {key for spec in self.stages for key in spec.invalidated_by}, "category"),
+        )
+        normalized = []
+        for values, known, label in declarations:
+            if isinstance(values, (str, bytes)) or any(
+                not isinstance(value, str) or not value for value in values
+            ):
+                raise RegistryValidationError(f"changed {label}s must be symbolic lists")
+            supplied = set(values)
+            if supplied - known:
+                raise RegistryValidationError(
+                    f"unknown changed {label}: {sorted(supplied - known)}")
+            normalized.append(supplied)
+        symbols, stages, categories = normalized
+        reasons: dict[str, set[str]] = {}
+        for spec in self.stages:
+            direct = {f"symbol:{key}" for key in symbols
+                      if key in spec.requires or key in spec.produces}
+            direct.update(f"category:{key}" for key in categories
+                          if key in spec.invalidated_by)
+            if spec.id in stages:
+                direct.add(f"stage:{spec.id}")
+            if direct:
+                reasons[spec.id] = direct
+        while True:
+            changed = False
+            for upstream in tuple(reasons):
+                source = self.get(upstream)
+                for spec in self.stages:
+                    if spec.id == upstream:
+                        continue
+                    if set(source.produces) & set(spec.requires):
+                        if spec.id not in reasons:
+                            reasons[spec.id] = set()
+                            changed = True
+                        reasons[spec.id].add(f"upstream:{upstream}")
+            if not changed:
+                break
+        order = self._topological_order(
+            set(self._by_id), allow_external=True, available=frozenset())
+        return {
+            "schema": 1, "authority": "DIAGNOSTIC_ONLY",
+            "affected": [spec.id for spec in order if spec.id in reasons],
+            "unaffected": [spec.id for spec in order if spec.id not in reasons],
+            "reasons": {key: sorted(value) for key, value in sorted(reasons.items())},
+            "reuse_authorized": False,
+        }
+
 
 __all__ = [
     "RegistryValidationError", "ShadowPlanComparison", "StageRegistry",

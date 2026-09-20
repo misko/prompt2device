@@ -854,5 +854,91 @@ def t_land_helper_stales_handoff():
     eq(module.validate_handoff(ctx), 2, "helper-only mutation must stale handoff")
 
 
+
+@test("issue accounting wraps real native route ownership validation without changing verdicts", kind="known_bad")
+def t_issue_native_workflow():
+    import pcbnew
+    root = scratch()
+    board = pcbnew.BOARD()
+    net = pcbnew.NETINFO_ITEM(board, "SIGNAL")
+    board.Add(net)
+    footprint = pcbnew.FOOTPRINT(board)
+    footprint.SetReference("J1")
+    for index in range(2):
+        pad = pcbnew.PAD(footprint)
+        pad.SetNumber(str(index + 1))
+        pad.SetSize(pcbnew.VECTOR2I(1000000, 1000000))
+        pad.SetPosition(pcbnew.VECTOR2I(index * 3000000, 0))
+        pad.SetNet(net)
+        footprint.Add(pad)
+    board.Add(footprint)
+    pcbnew.SaveBoard(str(root / "04_kicad/fixture.kicad_pcb"), board)
+    route_path = root / "03_src/route.yaml"
+    route = yaml.safe_load(route_path.read_text())
+    route["route"]["ownership"] = {"corridors": {
+        "clock": {"claim_order": ["sig"], "why": "test declared corridor"}}}
+    route_path.write_text(yaml.safe_dump(route))
+    ledger = root / "01_docs/issue_usage.jsonl"
+    validator = [KPY, SCRIPTS / "route_ownership_preflight.py", root / "03_src/route.yaml"]
+    direct = must_pass(run(validator), "direct validator")
+    argv = [KPY, FLOW, "run", root, "--stage", "routing", "--issue", "route-corridor",
+            "--usage-ledger", ledger, "--", *validator]
+    wrapped = must_pass(run(argv), "accounted validator")
+    contains(wrapped.out, "ROUTE-OWNERSHIP PASS", "actual domain result retained")
+    route_path = root / "03_src/route.yaml"
+    route = yaml.safe_load(route_path.read_text())
+    route["route"]["ownership"] = {"corridors": {
+        "clock": {"claim_order": ["missing_wave"], "why": "test declared corridor"}}}
+    route_path.write_text(yaml.safe_dump(route))
+    bad_direct = must_fail(run(validator), "bad direct validator", "O-CORRIDOR")
+    bad_wrapped = must_fail(run(argv), "bad accounted validator", "O-CORRIDOR")
+    eq(bad_wrapped.rc, bad_direct.rc, "same domain exit code")
+    events = [json.loads(line) for line in ledger.read_text().splitlines()]
+    starts = [e for e in events if e["event_type"] == "START"]
+    ends = [e for e in events if e["event_type"] == "TERMINAL"]
+    eq(len(starts), 2, "durable starts")
+    eq([e["status"] for e in ends], ["PASS", "FAIL"], "execution outcomes")
+    check(starts[0]["run_id"] != starts[1]["run_id"], "retry has a distinct run")
+    check(all(e["issue_id"] == "route-corridor" for e in events), "issue persists")
+    check(all(e["token_usage"] is None for e in ends), "no invented token counts")
+    check(all("command_sha256" in e["provenance"] for e in starts), "hashed command provenance")
+    check(not (root / "07_releases").exists(), "accounting cannot publish releases")
+
+
+@test("issue accounting refuses a malformed ledger before command launch", kind="known_bad")
+def t_issue_bad_start():
+    root = scratch()
+    ledger = root / "issue_usage.jsonl"
+    ledger.write_text('{"truncated":')
+    marker = root / "launched"
+    result = run([KPY, FLOW, "run", root, "--stage", "routing", "--issue", "ISSUE-1",
+                  "--usage-ledger", ledger, "--", KPY, "-c",
+                  "from pathlib import Path; Path('launched').touch()"])
+    must_fail(result, "invalid accounting admission", "issue accounting start refused")
+    check(not marker.exists(), "command launched despite rejected accounting start")
+
+
+@test("issue accounting remains incomplete when terminal persistence fails")
+def t_issue_terminal_failure():
+    root = scratch()
+    module = load_flow_module()
+    import pipeline_issue_ledger as ledger_module
+    ledger = root / "issue_usage.jsonl"
+    original = ledger_module.record_run
+    def broken(*args, **kwargs):
+        raise OSError("simulated terminal write failure")
+    ledger_module.record_run = broken
+    try:
+        rc = module.run_timed(module.resolve_context(root), "routing",
+                              [KPY, "-c", "raise SystemExit(7)"],
+                              issue_id="ISSUE-1", usage_ledger=ledger)
+    finally:
+        ledger_module.record_run = original
+    eq(rc, 7, "original command failure preserved")
+    events = [json.loads(line) for line in ledger.read_text().splitlines()]
+    eq(len(events), 1, "only durable start exists")
+    eq(events[0]["status"], "INCOMPLETE", "no fabricated completion")
+
+
 if __name__ == "__main__":
     sys.exit(main())
