@@ -1,12 +1,16 @@
 #!/usr/bin/env python3
 """T1: USB Hub v4 deterministic-reuse shadow catalog canary.
 
-The canary parses declarations and exact legacy bytes only.  It never invokes
-the recorded commands or changes their authority.
+Catalog tests parse declarations and exact legacy bytes without execution.
+The bounded source-rules pilot additionally executes one hash-pinned shell
+step and its catalog command on disposable input copies only. It neither runs
+the whole driver nor changes its authority.
 """
 from __future__ import annotations
 
 import copy
+import hashlib
+import shutil
 import json
 import sys
 from pathlib import Path
@@ -14,7 +18,7 @@ from pathlib import Path
 import yaml
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from harness import check, eq, main, test  # noqa: E402
+from harness import KPY, SCRIPTS, check, contains, eq, main, must_fail, must_pass, run, test, tmpdir  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 PROJECT = ROOT / "archived_projects" / "usb-hub-3s-v4"
@@ -273,6 +277,95 @@ def t_mutated_catalog_refused():
               f"severed-chain diagnosis: {exc}")
     else:
         raise AssertionError("catalog with a severed dependency SHOULD HAVE FAILED")
+
+
+@test("USB source-rules stage matches legacy shell catalog and accounted execution",
+      kind="known_bad")
+def t_source_rules_stage_pilot():
+    value = catalog()
+    driver = DRIVER_PATH.read_bytes()
+    check(value.driver_matches(driver), 'pilot refuses driver/catalog drift')
+    binding = by_key(value, 'source-rules')
+    eq(binding.authority, 'exit', 'owning verdict remains exit status')
+    eq(binding.accepted_output_paths, (), 'source checker publishes no artifact')
+    # The existing hash-pinned trace map assigns these exact two lines to
+    # source-rules and its failure handler. Never execute the remaining driver.
+    eq(TRACE_STAGE_LINES[52], binding.spec.id, 'legacy invocation owner')
+    eq(TRACE_FAILURE_LINES[53], binding.spec.id, 'legacy failure owner')
+    snippet = '\n'.join(driver.decode().splitlines()[51:53])
+    contains(snippet, '"$S/rules_audit.py" . --phase source', 'literal legacy command')
+    stage_ids = list(value.observed_stage_ids())
+    impact = value.stage_registry().change_impact(changed_stage_ids=(binding.spec.id,))
+    eq(impact['affected'], stage_ids[2:], 'actual catalog conservative downstream closure')
+    eq(impact['unaffected'], stage_ids[:2], 'upstream stages outside declared method change')
+    eq(impact['authority'], 'DIAGNOSTIC_ONLY', 'graph remains diagnostic')
+    eq(impact['reuse_authorized'], False, 'no upstream cache grant')
+    root = tmpdir('usb_source_stage_')
+    (root/'03_src/rules').mkdir(parents=True)
+    # Copy the actual flow configuration unchanged; no generated board needed.
+    shutil.copy2(ROUTE_PATH, root/'03_src/route.yaml')
+    shutil.copy2(PROJECT/'03_src/floorplan.yaml', root/'03_src/floorplan.yaml')
+    # Accounting requires nonvacuous part-card inputs even though this
+    # source-only checker reads nets.yaml alone. Copy cards, not large PDFs.
+    for card in (PROJECT/'02_parts').glob('*/part.yaml'):
+        target = root/card.relative_to(PROJECT)
+        target.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(card, target)
+    (root/'03_tscircuit').mkdir()
+    nets = root/'03_src/rules/nets.yaml'
+    original = (PROJECT/'03_src/rules/nets.yaml').read_bytes()
+    ledger = root/'01_docs/issue_usage.jsonl'
+    command = [arg.replace('{repo}', str(ROOT)).replace('{project}', str(root))
+               for arg in binding.argv]
+    eq(binding.cwd, '.', 'same project-root cwd')
+    def diagnostics(result):
+        return [line.strip() for line in result.out.splitlines()
+                if line.strip().startswith(('ok ', 'FAIL ', 'coverage ', 'RULES SOURCE AUDIT:'))]
+    for bad in (False, True, False):
+        if bad:
+            changed = yaml.safe_load(original)
+            changed['classes']['VIN_TRUNK']['nets'] = []
+            nets.write_text(yaml.safe_dump(changed))
+        else:
+            nets.write_bytes(original)
+        before = nets.read_bytes()
+        # Execute the exact source-stage shell and original failure handler,
+        # not a Python approximation of the driver's shell semantics.
+        legacy = run(['bash', '-c', 'set -euo pipefail\nPY="$1"; S="$2"\n'+snippet,
+                      'source-stage-pilot', KPY, SCRIPTS], cwd=root)
+        direct = run(command, cwd=root)
+        wrapped = run([KPY, SCRIPTS/'pcb_flow.py', 'run', root,
+                       '--stage', binding.spec.id, '--timeout-s', str(binding.spec.timeout_s),
+                       '--issue', 'usb-source-rules', '--usage-ledger', ledger,
+                       '--', *command], cwd=root)
+        for result in (legacy, direct, wrapped):
+            if bad:
+                must_fail(result, 'empty class membership must reject', 'A-SOURCE')
+            else:
+                must_pass(result, 'real source-rule baseline')
+            eq(result.rc, 1 if bad else 0, 'owning shell/checker verdict')
+        eq(diagnostics(direct), diagnostics(legacy), 'catalog preserves legacy domain findings')
+        eq(diagnostics(wrapped), diagnostics(legacy), 'runner preserves legacy domain findings')
+        check(diagnostics(legacy), 'nonempty diagnostic census')
+        eq(nets.read_bytes(), before, 'read-only stage preserves source')
+    events = [json.loads(line) for line in ledger.read_text().splitlines()]
+    starts = [row for row in events if row['event_type']=='START']
+    ends = [row for row in events if row['event_type']=='TERMINAL']
+    eq(len(starts),3,'exact stage execution count')
+    check(all(row['stage_id']==binding.spec.id and row['issue_id']=='usb-source-rules'
+              for row in events), 'exact catalog stage and stable issue attribution')
+    eq([row['status'] for row in ends], ['PASS','FAIL','PASS'], 'failed stage retained')
+    eq(len({row['attempt_id'] for row in starts}),3,'distinct accounted attempts')
+    expected_command_hash = hashlib.sha256(json.dumps(command).encode()).hexdigest()
+    check(all(row['provenance']['command_sha256']==expected_command_hash for row in starts),
+          'accounting binds the expanded catalog argv')
+    hashes = [row['provenance']['source_sha256'] for row in starts]
+    eq(hashes[0],hashes[2],'restored real source identity')
+    check(hashes[0]!=hashes[1],'invalid source changes attribution identity')
+    check(all(row['token_usage'] is None for row in ends), 'no invented model tokens')
+    eq((PROJECT/'03_src/rules/nets.yaml').read_bytes(), original, 'archived source untouched')
+    check(not (root/'04_kicad').exists(), 'source stage needs no board artifacts')
+    check(not (root/'07_releases').exists(), 'stage comparison cannot release')
 
 
 if __name__ == "__main__":

@@ -752,3 +752,13 @@ violation types. It checks zero unconnected items, three distinct attempts,
 PASS/FAIL/PASS history, unchanged independent part source and restored source
 hash identity despite ledger writes. The scratch synthetic gate is removed;
 no layout-seal receipt or release is produced. Token/cost fields remain unknown.
+
+
+`t1_pipeline_canary_usb.py::t_source_rules_stage_pilot` executes only the
+hash-pinned legacy source-rules shell lines and failure handler, the matching
+catalog command, and the accounted command runner. Actual rules are copied to
+a disposable tree; an empty VIN_TRUNK net list must fail all three paths with
+the same diagnostics. Restoring the source passes and restores its identity.
+The catalog's actual dependency closure is asserted, with no reuse permission.
+Archived inputs remain untouched; the fixture neither executes the complete
+driver nor claims a complete project snapshot or release acceptance.

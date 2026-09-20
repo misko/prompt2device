@@ -8946,3 +8946,28 @@ unknown provider spend. The test removes the scratch helper's synthetic gate
 and never creates a replacement acceptance receipt. This closes a bounded
 composition gap; the next task is a real project-stage adapter comparison in
 shadow mode, not wholesale replacement of existing drivers.
+
+
+## First real source-stage boundary comparison — 2026-09-20
+
+The initial disposable geometry pilot used a fixture-defined graph and could
+not detect drift between a real catalog command and its legacy shell step.
+Extend the existing USB Hub canary: authenticate the driver bytes, isolate its
+exact source-rules invocation and failure handler, expand the actual catalog
+argv, and compare both against accounted execution. Actual source rules pass;
+removing VIN_TRUNK membership fails all three; restoration passes. Compare
+exit codes and complete domain-diagnostic lines, not merely a final PASS word.
+
+The runner requires declared floorplan and nonempty part cards for provenance;
+copy those separately from the checker input rather than weakening admission.
+No supplier PDFs, generated board or full rebuild are needed. The accounting
+ledger preserves the failed attempt and exact expanded command identity.
+This qualifies one no-output, exit-authoritative stage comparison. It does not
+qualify production dependency completeness or automatic reuse. Next choose an
+artifact-producing stage and prove output admission and failure cleanup with
+the same explicit boundary before adopting more driver work.
+
+The bounded review caught an attribution mistake in the pilot: using the
+lifecycle label `placement` collapsed distinct catalog stages. The accounted
+invocation now uses the exact stage ID and tests every START/TERMINAL row for
+that identity. Lifecycle remains grouping metadata, not a stage identifier.

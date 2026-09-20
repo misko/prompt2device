@@ -391,3 +391,14 @@ writes do not alter source identity, and independent part source stays unchanged
 This is one bounded integration witness, not a production dependency inventory:
 it neither executes the graph automatically nor grants reuse, seal or release
 acceptance. Production adapter adoption still requires a driver comparison.
+
+
+A first real-stage comparison is covered by
+`tests/t1_pipeline_canary_usb.py::t_source_rules_stage_pilot`: the existing
+hash-bound source-rules shell step, its catalog argv and the accounted runner
+must agree on clean, invalid and restored source input. It uses the actual
+catalog's conservative downstream closure, still diagnostic only. This stage
+owns an exit verdict and no output artifact; it needs no generated board.
+Disposable copies include the runner's required provenance inputs but do not
+represent a complete rebuild snapshot. This does not establish other stages'
+input completeness, output admission, shell behavior or safe cache reuse.

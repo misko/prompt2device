@@ -156,7 +156,7 @@ It changes process tools, not the sealed carrier or pod releases.
 | One real workflow integration | Implementation owner | Native route-ownership validator exercised directly and through accounting, with clean and hostile corridor inputs |
 | Safe targeted reruns | Implementation owner; Astra medium boundary review | Diagnostic downstream impact implemented; automatic reuse/execution deliberately remains behind existing canary adoption requirements |
 | Geometry regression extraction | Sol medium engineering; Terra medium fixture support | Implemented native adjacent-pad composition and scoped-width envelope coupons; existing branch-wall/reattempt and pad-clearance fixtures reused. Done: adjacent compound via/stub atomic rejection through the production stitch CLI, with RED mutation proof. Remaining: project-driver adoption |
-| Remaining stage adapters | Sol medium integration owner | Remaining: reconcile each real driver with the dependency graph before enabling selective execution; no inferred acceptance |
+| Remaining stage adapters | Sol medium integration owner | First real-stage comparison done: USB Hub source-rules shell, catalog command and accounted runner agree on clean/hostile/restored inputs. Remaining: other stage boundaries and complete input declarations before selective execution; no inferred acceptance |
 | Usage source adapters and pilot | Terra medium adapter work; Sol medium acceptance | Done: offline Codex/OpenRouter per-response ingestion with explicit issue/turn attribution, declared session coverage and idempotent atomic imports. Done: bounded disposable geometry pilot joins diagnostic impact, manual targeted native reruns and issue accounting. Remaining: live capture, automatic descendant discovery, issue waiting-state intervals, production-project adapter pilot |
 
 Two bounded Astra-medium review passes found no blocking issue in the
@@ -174,3 +174,12 @@ independent sourcing. It does not execute automatic graph scheduling, authorize
 cache reuse, stage a release or prove a production project's dependencies.
 Next: adopt one actual project-stage adapter in shadow mode and compare declared
 inputs/outputs with the existing driver before expanding selective execution.
+
+Real-stage checkpoint: `t1_pipeline_canary_usb.py::t_source_rules_stage_pilot`
+compares the hash-pinned USB Hub source-rules shell step with its existing
+catalog command and accounted execution on disposable copies of actual rules.
+All three preserve clean/empty-class/restored verdicts and findings. The real
+catalog's declared downstream closure remains conservative and diagnostic.
+Only this source-only stage is exercised; the copied provenance inputs are not
+a complete board-build snapshot. Next prioritize one artifact-producing stage
+with explicit output validation and failure cleanup, before automatic adoption.
