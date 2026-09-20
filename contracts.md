@@ -40,6 +40,7 @@ via an explicit pattern (see the coverage rule below).
 | `.gitattributes` | repository-wide Git content classification, including binary evidence files |
 | `.github/` | repository automation and publication checks (own contract) |
 | `improvements.md` | repository-wide pipeline/process improvement ledger harvested from project stages | entries remain visible until completed or rejected with evidence |
+| `next_steps.md` | current Crow ordering, first-article and qualification work plan |
 | `skills/` | the product: pcb-design, kicad-pcb, jlcpcb-fab, pcb-enclosure, shopping-list (own contract) |
 | `docs/` | repo-level canon: ADRs + proof docs (own contract) |
 | `examples/` | frozen evidence snapshots skills may cite (own contract) |
