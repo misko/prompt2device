@@ -718,3 +718,17 @@ and reject conflicts, invented timing and malformed tails before any append.
 Missing/unexpected sessions and unassigned turns prevent complete-coverage
 claims. Removing unexpected-session coverage was mutation-tested RED, then
 restored GREEN. Imports are accounting only; no provider calls or board writes.
+
+
+`t2_route_neighborhood.py` creates project-independent 0.5 mm-pitch launch
+coupons. Each net alone is legal; composing the rejected branches yields an
+exact foreign-net native DRC conflict in either insertion order. The corrected
+pair retains all terminals, zero unconnected items, front copper and no vias.
+Unexpected native violation types also fail; corrected and isolated arms have
+zero total native violations.
+This proves fixed-witness composition, not autorouter completeness or unique
+corridor blockage. `t2_scoped_pad_clearance.py` also checks a same-net thin trace
+whose centreline lies outside a width-rule area while its copper edge overlaps.
+Trimming the area removes only that collateral finding; an intended thin probe
+still fails, while outside and wrong-net controls remain exempt. These are
+native diagnostic property tests, not claims of full-board DRC acceptance.

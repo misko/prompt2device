@@ -8883,3 +8883,27 @@ made its regression fail RED; restoring the condition passes GREEN. Future
 adapters must preserve these boundaries rather than infer attribution from
 conversation proximity. Live capture, waiting intervals and descendant
 inventory remain separate follow-up modules.
+
+
+## Generic native routing regression slice — 2026-09-20
+
+Situation: individually legal escape repairs and centreline-only rule reasoning
+missed coupled copper failures late in routing. Project-specific evidence was
+hard to reuse for subsequent boards.
+
+Implemented: a disposable native coupon with two 0.5 mm-pitch source terminals
+checks isolated versus combined routes, both insertion orders and corrected
+geometry. Native DRC must identify the exact foreign-net conflict; the corrected
+pair keeps the same terminals, zero unconnected items and front-only zero-via
+paths. A second coupon extends the existing native scoped-clearance suite:
+a 0.18 mm trace whose edge intersects a 0.60 mm width scope must fail although
+its centreline is outside. Trimming that scope removes only the collateral
+finding; a thin in-scope probe prevents empty-rule false success.
+
+Avoidance: reason about complete neighboring copper before route replay, use
+native object semantics for scoped constraints, and retain exact affected-item
+censuses. Reuse existing stitch collision/compound-candidate and bounded
+whole-set reattempt controls rather than introducing another geometry checker.
+These coupons prove fixed geometry witnesses, not route-search completeness or
+absence of alternatives. Adjacent via/dogbone atomic-rejection integration and
+project-driver adoption remain outstanding; no release gate was relaxed.

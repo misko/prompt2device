@@ -356,3 +356,23 @@ full-plan `references`, stage-local `load_now`, and unknown placeholders.
 `--at-stage` narrows only `load_now`; it does not truncate the disclosure plan.
 Compare the plan with the project conductor's actual trace; do not treat
 equality as execution evidence.
+
+
+## Reusable geometry regression boundaries
+
+Use existing native fixtures before adding a new checker. The following suites
+have separate responsibilities; success in one does not substitute for another:
+
+| Boundary | Regression owner | Scope |
+|---|---|---|
+| Adjacent pin-field composition | `tests/t2_route_neighborhood.py` | Two 0.5 mm-pitch terminals launch individually legal paths; composing them exposes a foreign-net crossing. Corrected geometry preserves the terminal sets, front copper and zero vias in either insertion order. |
+| Scoped rule semantics | `tests/t2_scoped_pad_clearance.py` | Native pad-only clearance discrimination and full-copper width-scope intersection; verifies exact affected item sets and a nonempty scope probe. |
+| Candidate refusal and bounded routing | `tests/t2_route_stitch.py` | Existing seed collision refusal, via/stub cleanup, and order-sensitive whole-set reattempt controls. |
+
+The composition coupon is a fixed witness, not a search algorithm or proof that
+no alternate route exists. Scoped-rule fixtures intentionally include hostile
+objects; their diagnostic DRC results are not whole-board clearance receipts.
+These tests use disposable native boards. Production source preparation, earliest
+affected-wave replay and all final-source release gates remain independently
+required. Compound adjacent via/dogbone atomic rejection and automatic driver
+adoption remain future work; do not infer their coverage from these coupons.

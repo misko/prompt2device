@@ -161,6 +161,7 @@ SUITES=(
   t1_shopping_list.py
   t2_route_stitch.py
   t2_scoped_pad_clearance.py
+  t2_route_neighborhood.py
   t2_tier_preflight.py
   t2_grind.py
   t2_pcb_flow.py

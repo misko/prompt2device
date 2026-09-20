@@ -102,4 +102,75 @@ def t_native_pad_only_controls():
     print('18/18 native sites graded across two arms; clearance findings 6 guarded / 4 unguarded; both filled-zone screens retain ordinary clearance')
 
 
+@test("native width scope catches copper-envelope overlap outside the centreline",
+      kind="known_bad")
+def t_native_width_scope_envelope():
+    """IMP-194: grade the full native item, not its centreline or net label.
+
+    The narrow same-net branch lies outside the rectangle by its centreline.
+    Its copper edge overlaps the broad arm; trimming the area clears it while
+    retaining both an intended wide route and an independent thin scope probe.
+    """
+    import pcbnew
+    import yaml
+    def vec(x, y):
+        return pcbnew.VECTOR2I(round(x * 1e6), round(y * 1e6))
+    results = {}
+    for broad in (True, False):
+        root = tmpdir('width_scope_native_')
+        (root / '03_src/rules').mkdir(parents=True)
+        (root / '04_kicad').mkdir()
+        board = pcbnew.BOARD()
+        board.SetCopperLayerCount(4)
+        nets = {}
+        for name in ('TARGET', 'FOREIGN'):
+            net = pcbnew.NETINFO_ITEM(board, name)
+            board.Add(net)
+            nets[name] = net
+        ids = {}
+        for label, x, y, width, name in (
+            ('intended', 5, 5, .60, 'TARGET'),
+            ('scope_probe', 7, 5, .18, 'TARGET'),
+            ('edge_branch', 9, 6.05, .18, 'TARGET'),
+            ('outside', 11, 7, .18, 'TARGET'),
+            ('wrong_net', 13, 5, .18, 'FOREIGN'),
+        ):
+            item = pcbnew.PCB_TRACK(board)
+            item.SetStart(vec(x, y)); item.SetEnd(vec(x + 1, y))
+            item.SetWidth(pcbnew.FromMM(width)); item.SetLayer(pcbnew.F_Cu)
+            item.SetNet(nets[name]); board.Add(item)
+            ids[item.m_Uuid.AsString()] = label
+        zone = pcbnew.ZONE(board)
+        zone.SetIsRuleArea(True); zone.SetZoneName('launch_width')
+        zone.SetLayer(pcbnew.F_Cu)
+        zone.SetDoNotAllowTracks(False); zone.SetDoNotAllowVias(False)
+        zone.SetDoNotAllowPads(False); zone.SetDoNotAllowZoneFills(False)
+        zone.Outline().NewOutline()
+        for x, y in ((4, 4), (15, 4), (15, 6 if broad else 5.8), (4, 6 if broad else 5.8)):
+            zone.Outline().Append(round(x * 1e6), round(y * 1e6))
+        board.Add(zone)
+        pcb = root / '04_kicad/fixture.kicad_pcb'
+        pcbnew.SaveBoard(str(pcb), board)
+        pcb.with_suffix('.kicad_pro').write_text(json.dumps({
+            'board': {'design_settings': {'rules': {'min_track_width': .127}}}}))
+        (root / '03_src/floorplan.yaml').write_text(yaml.safe_dump({
+            'board': {'layers': 4}, 'design_rules': {'min_clearance': .127}}))
+        (root / '03_src/rules/nets.yaml').write_text(yaml.safe_dump({
+            'fab_tier': 'jlc_4layer_advanced', 'default_clearance': '0.25mm',
+            'default_track_width': '0.18mm', 'classes': {},
+            'scoped_floors': [{'zone': 'launch_width', 'nets': ['TARGET'],
+                               'min_width': .60, 'why': 'Native synthetic scope regression.'}]}))
+        must_pass(run([KPY, GEN_RULES, root]), 'generate width scope')
+        report = root / 'drc.json'
+        must_pass(run(['kicad-cli', 'pcb', 'drc', '--severity-all', '--format',
+                       'json', '-o', report, pcb]), 'native width diagnostic')
+        findings = json.loads(report.read_text())['violations']
+        actual = {ids[item['uuid']] for row in findings if row['type'] == 'track_width'
+                  for item in row['items']}
+        expected = {'scope_probe', 'edge_branch'} if broad else {'scope_probe'}
+        eq(actual, expected, 'exact native scoped-width item census')
+        results[broad] = actual
+    eq(results[True] - results[False], {'edge_branch'}, 'geometry correction removes only collateral scope')
+
+
 if __name__=='__main__': sys.exit(main())
