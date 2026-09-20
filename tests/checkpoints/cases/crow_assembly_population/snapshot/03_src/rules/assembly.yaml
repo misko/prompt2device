@@ -1,0 +1,8 @@
+service: standard
+sides: [top]
+fiducials: none
+not_assembled:
+  - refs: [U1]
+    reason: consign
+    evidence: "XU316 C6938291 is supplied on consignment; archived v1.3 record 2026-07-24"
+    disposition: "Hand the supplied CPU to JLC for placement"

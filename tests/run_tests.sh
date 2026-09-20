@@ -66,6 +66,7 @@ SUITES=(
   t1_placement_drc.py
   t1_schematic_render.py
   t1_stage_checkpoint.py
+  t1_checkpoint_framework.py
   t1_pad_separation.py
   t1_rf_contract.py
   t1_rf_module.py
@@ -160,6 +161,7 @@ SUITES=(
   t1_import_provenance.py
   t1_shopping_list.py
   t2_route_stitch.py
+  t2_checkpoint_cases.py
   t2_scoped_pad_clearance.py
   t2_route_neighborhood.py
   t2_tier_preflight.py

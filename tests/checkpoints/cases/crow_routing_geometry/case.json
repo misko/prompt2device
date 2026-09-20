@@ -1,0 +1,30 @@
+{
+  "schema": 1,
+  "id": "crow-routing-geometry",
+  "title": "Repair the Crow-derived ADC source-launch branch without vias",
+  "tags": ["pcb", "routing", "native-pcbnew", "geometry", "resumable"],
+  "origin": {
+    "board": "crow-audio-carrier-v1",
+    "revision": "fc468839332e71d627e08adddfbc7ef9d111aa16",
+    "evidence": [
+      "projects/crow-audio-carrier-v1/03_src/route.yaml",
+      "projects/crow-audio-carrier-v1/03_src/route/final_chain.kicad_pcb",
+      "projects/crow-audio-carrier-v1/01_docs/learnings/routing.md",
+      "projects/crow-audio-carrier-v1/08_reviews/2026-09-12_ef72e6d2_current_layout.md"
+    ],
+    "reduction": "Synthetic two-pad F.Cu geometry derived from the Crow ADC launch/branch-wall constraint. It is not the historical board, route chain, pad population, or a claim that this exact reduced failure occurred in the release."
+  },
+  "checkpoint": {
+    "stage_id": "KICAD-ROUTING",
+    "states": {"KICAD-SCHEMATIC": "accepted", "KICAD-PLACEMENT": "accepted", "KICAD-ROUTING": "blocked"},
+    "history": [{"attempt": 1, "result": "FAIL", "disposition": "The supplied F.Cu launch stops at the branch wall and leaves ADC_DOUT unconnected.", "reconsider_when": "An editable F.Cu branch connects both native pads, passes native DRC, and retains zero vias."}]
+  },
+  "task_file": "task.md",
+  "snapshot_dir": "snapshot",
+  "editable": ["geometry.json", "HANDOFF.md", "native/adc_launch.kicad_pcb", "native/adc_launch.drc"],
+  "prepare": [],
+  "grader": ["/usr/bin/python3", "{case}/driver.py", "grade", "{repo}", "{case}", "{workspace}"],
+  "initial_findings": ["ADC_DOUT_UNCONNECTED", "NATIVE_DRC"],
+  "timeout_s": 120,
+  "grader_timeout_s": 60
+}

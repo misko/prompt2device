@@ -8,6 +8,11 @@ Everything in the default tiers is **hermetic**: the network is mocked, and
 no sealed `04_kicad` board, release, or project file is ever written. Tests
 build scratch trees under `/tmp` and read the real projects only.
 
+`checkpoints/README.md` describes the separate opt-in resumed-checkpoint agent
+tests. Their framework regressions are deterministic; model-solving trials are
+never part of the default tier. The cases preserve graph state and retired
+attempts and independently grade an engineering repair with current skill context.
+
 ---
 
 `t1_pipeline_qualification.py` runs an isolated native clean/hostile control

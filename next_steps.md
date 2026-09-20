@@ -148,6 +148,21 @@ owning source and affected gates, regardless of a model's verdict.
 Use the existing project driver and owning gates. Framework expansion is paused;
 process work is not a prerequisite for ordering or ordinary board corrections.
 
+**Explicitly authorized testing consumer (2026-09-20, implemented and validated):**
+the checkpoint regression framework in `tests/checkpoints/` restores a bounded
+board case with current skill context and independently grades a successful
+repair. It reuses the existing runtime and stage graph. This does not reopen
+production driver migration, automatic evidence reuse or unrelated bundle work.
+Validation includes 16 deterministic framework tests and five case-control tests;
+each of the three case families has initial-fail/valid-repair/invalid-shortcut
+controls. Fresh Luna medium agents solved all three cases and independent grading
+passed. The record in `tests/checkpoints/evidence/2026-09-20-validation.json`
+distinguishes reference controls from agent solving and reduced fixtures from full
+board replay. The nested CLI sandbox is unavailable on this host; the adapter now
+detects that before spending tokens. External supervised runs remain supported,
+with unmeasured usage explicitly unknown. Publication follows the normal reviewed
+Git boundary; this framework is not a prerequisite for ordering Crow boards.
+
 | Area | Current state | Next action |
 |---|---|---|
 | Geometry regressions | Retained: adjacent escapes, native rule scope, atomic via/stub rejection | Use applicable existing checks when a real geometry change needs them |

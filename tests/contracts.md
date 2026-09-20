@@ -16,6 +16,7 @@ the binding testing contract; read it before touching anything here).
 | `net_live.py` | opt-in live-network tier (does not exist until needed) |
 | `fixtures/**` | hand-authored fixture data (see fixtures/t0/README.md) |
 | `t5_skill_canary/**` | the agentic red/green skill test: briefs + grade.py |
+| `checkpoints/**` | resumed PCB engineering cases and their independent test runner; governed by checkpoints/contracts.md |
 
 ## Audit
 

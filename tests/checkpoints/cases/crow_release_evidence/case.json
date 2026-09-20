@@ -1,0 +1,71 @@
+{
+  "schema": 1,
+  "id": "crow-release-evidence",
+  "title": "Reconcile Crow v1.0 audit and manifest evidence",
+  "tags": [
+    "pcb",
+    "release",
+    "evidence",
+    "resumable"
+  ],
+  "origin": {
+    "board": "crow-recorder-central-v2",
+    "revision": "v1.0-2026-07-23",
+    "evidence": [
+      "archived_projects/crow-recorder-central-v2/07_releases/crow-recorder-central-v2-v1.0-2026-07-23/MANIFEST.txt",
+      "archived_projects/crow-recorder-central-v2/07_releases/crow-recorder-central-v2-v1.0-2026-07-23/verification/policy_audit.md",
+      "archived_projects/crow-recorder-central-v2/07_releases/crow-recorder-central-v2-v1.0-2026-07-23/verification/erc.json",
+      "archived_projects/crow-recorder-central-v2/07_releases/crow-recorder-central-v2-v1.0-2026-07-23/fab/bom.csv",
+      "archived_projects/crow-recorder-central-v2/07_releases/crow-recorder-central-v2-v1.0-2026-07-23/verification/bom_source_check.txt"
+    ],
+    "reduction": "Copy the archived ERC JSON, policy audit, and BOM bytes exactly. Reduce the MANIFEST and BOM-check report to the historical 1,409-vs-1,215 ERC and 48-vs-49 BOM count claims; the report excerpt omits the archived staging-path defect so this case grades only the two count contradictions. This is a mutable candidate check, not a complete release replay."
+  },
+  "checkpoint": {
+    "stage_id": "PCB-RELEASE-REVIEW",
+    "states": {
+      "JLC-ASSEMBLY-VERIFY": "accepted",
+      "PCB-RELEASE-REVIEW": "blocked"
+    },
+    "history": [
+      {
+        "attempt": 1,
+        "result": "FAIL",
+        "disposition": "MANIFEST/EVIDENCE MISMATCH for ERC warnings and BOM source row count",
+        "reconsider_when": "policy audit and manifest summaries agree with machine ERC and BOM evidence"
+      }
+    ]
+  },
+  "task_file": "task.md",
+  "snapshot_dir": "snapshot",
+  "editable": [
+    "06_build/candidates/crow-recorder-v1.0/MANIFEST.txt",
+    "06_build/candidates/crow-recorder-v1.0/verification/policy_audit.md",
+    "06_build/candidates/crow-recorder-v1.0/verification/freshness_report.txt",
+    "HANDOFF.md",
+    "06_build/candidates/crow-recorder-v1.0/verification/bom_source_check.txt"
+  ],
+  "prepare": [
+    [
+      "python3",
+      "{case}/driver.py",
+      "prepare",
+      "{repo}",
+      "{workspace}"
+    ]
+  ],
+  "grader": [
+    "python3",
+    "{case}/driver.py",
+    "grade",
+    "{repo}",
+    "{workspace}"
+  ],
+  "initial_findings": [
+    "ERC-AUDIT-STALE",
+    "BOM-MANIFEST-STALE",
+    "BOM-CHECK-STALE",
+    "RELEASE-FRESHNESS-FAIL"
+  ],
+  "timeout_s": 300,
+  "grader_timeout_s": 120
+}

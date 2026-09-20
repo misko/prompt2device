@@ -1,0 +1,358 @@
+{
+  "schema": 1,
+  "date": "2026-09-20",
+  "scope": "Reduced checkpoint framework validation; not production PCB release acceptance",
+  "native_tool": "KiCad 10.0.4",
+  "solving_trials": [
+    {
+      "case": "crow_assembly_population",
+      "initial_outcome": "FAIL",
+      "initial_findings": [
+        {
+          "code": "U1-POPULATION-SOURCE",
+          "message": "U1-POPULATION-SOURCE"
+        },
+        {
+          "code": "U1-MISDECLARED-UNPOPULATED",
+          "message": "U1-MISDECLARED-UNPOPULATED"
+        },
+        {
+          "code": "MANIFEST-POPULATION-DRIFT",
+          "message": "MANIFEST-POPULATION-DRIFT"
+        },
+        {
+          "code": "A-POP-CHECK-FAIL",
+          "message": "A-POP-CHECK-FAIL"
+        }
+      ],
+      "outcome": "PASS",
+      "engineering_outcome": "PASS",
+      "findings": [],
+      "agent": {
+        "attempts": 1,
+        "effort": "medium",
+        "execution_evidence": "external supervised agent handback; no process telemetry",
+        "model": "gpt-5.6-luna",
+        "provider": "collaboration",
+        "task": "/root/solve_assembly_checkpoint",
+        "usage": "UNKNOWN"
+      },
+      "case_manifest": {
+        "case.json": "818bf3ca3233c4bfd8776a97779d0e14a23e862333ae4eb6d794addeb3c13461",
+        "driver.py": "f7acbfcd7b83b7d9bb5a50ed0468744b99066544543e5dd382f5f6136e294947",
+        "snapshot/03_src/rules/assembly.yaml": "1da66ec141dc54ac0ae9908ff5e234b9b78defe930326329128b84559f6f4f1e",
+        "snapshot/06_build/candidates/crow-assembly-v1.3/HANDOFF.md": "f36f3f0423025c66757085af7e86aabea608e166e8abe4f1ac7693c6f330d392",
+        "snapshot/06_build/candidates/crow-assembly-v1.3/MANIFEST.txt": "53820910670f4540a63bc92f9c02467437a76cbf8bf6646d6a84f18aa0ca0903",
+        "snapshot/06_build/candidates/crow-assembly-v1.3/fab/bom.csv": "1ab5cfbd7f40349fe938a3c60ea51c0333d0cb57c47bea522b0c4c788245ee1f",
+        "snapshot/06_build/candidates/crow-assembly-v1.3/fab/cpl.csv": "1bc9082de88339b3eeee6af72fc700d90281835c0e93816cf26769ea5c375ebd",
+        "snapshot/06_build/candidates/crow-assembly-v1.3/source/crow_recorder_central_v2.kicad_pcb": "4cb5d9da4dfe4efa1c789b588ee745bc958cebb0d495e1cdc884192a5dafa135",
+        "snapshot/HANDOFF.md": "601c63999a6b6ebc2b276f825119b0de633987a298184a4c397f9a1f74600ff4",
+        "task.md": "5bac8f50ccdeec94ff44288c9a94ed75760aa4440536233e3071d5e626b159c0"
+      },
+      "runner_sha256": "592efadd96d6d1ca2f3961f42b751b85b1f7ac9b394aae908015fea67e3c7128",
+      "skill_authority_map_sha256": "c2b46883ef84fa649a590edbdd62af96352f3a669440958a48c783da1a171830",
+      "changed_artifacts": [
+        {
+          "path": "03_src/rules/assembly.yaml",
+          "sha256": "9e7b49dde5f88ed94d3fc980e74683d7aa33bcf60e708fcd28e13fa0cd1ed3a9",
+          "original_sha256": "1da66ec141dc54ac0ae9908ff5e234b9b78defe930326329128b84559f6f4f1e",
+          "content": "service: standard\nsides: [top]\nfiducials: none\nconsigned:\n  - refs: [U1]\n    evidence: \"XU316 C6938291 is supplied on consignment; archived v1.3 record 2026-07-24\"\n    disposition: \"Hand the supplied CPU to JLC for placement\"\n"
+        },
+        {
+          "path": "06_build/candidates/crow-assembly-v1.3/MANIFEST.txt",
+          "sha256": "a5a0c50f7491b49e3eee6b884e3c6422bc0d10a8046d5aa030aabd7cfe666dc6",
+          "original_sha256": "53820910670f4540a63bc92f9c02467437a76cbf8bf6646d6a84f18aa0ca0903",
+          "content": "board: crow_recorder_central_v2\nversion: v1.3\nnot_assembled:\n"
+        },
+        {
+          "path": "06_build/candidates/crow-assembly-v1.3/verification/assembly_coverage.txt",
+          "sha256": "3c48c18476f3468d9c52e40ff1d0b4145274c7741eee23638669a254596d09cb",
+          "original_sha256": "5fb27aabb360911fcab80607bc8a1b7c7f2c1c6d164904b283211fe35355b7ce",
+          "content": "== A-POP assembly_coverage: crow-assembly-v1.3 ==\n  board=1 footprints, cpl=1 placements, unpopulated=0 (declared=0, consigned=1, exempt_prefixes=[])\n  placement histogram: top=1\n  A-POS assembly sides: GRADED; 1 fitted SMD, 1 CPL sides graded; native SMD population={'top': 1}\n  A-POS datum: 1 CPL row(s) graded against the pad-array centre, worst = 0.00000mm (U1), tolerance 0.05mm\nA-POP: PASS (every unpopulated part is declared with evidence)\n"
+        },
+        {
+          "path": "HANDOFF.md",
+          "sha256": "f780ef8e27f9ecccc24f096f4116583d70a37a5e2f767592febe31531da45c2d",
+          "original_sha256": "601c63999a6b6ebc2b276f825119b0de633987a298184a4c397f9a1f74600ff4",
+          "content": "# Handoff \u2014 JLC assembly population verification\n\nU1 is a consigned, populated component: the assembly supplier is instructed to place it, and the archived CPL retains its placement. Moved U1 from `not_assembled` into `consigned` in `03_src/rules/assembly.yaml`, preserving the dated sourcing evidence and placement disposition. Regenerated the `not_assembled:` declaration in the candidate `MANIFEST.txt` from the source policy; it is empty because no part is unpopulated. The board footprint, BOM, CPL, and placement datum were left unchanged.\n\nCheck command:\n\n```sh\npython3 /home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/skills/jlcpcb-fab/scripts/assembly_coverage.py 06_build/candidates/crow-assembly-v1.3 --assembly 03_src/rules/assembly.yaml --board 06_build/candidates/crow-assembly-v1.3/source/crow_recorder_central_v2.kicad_pcb --cpl 06_build/candidates/crow-assembly-v1.3/fab/cpl.csv --bom 06_build/candidates/crow-assembly-v1.3/fab/bom.csv --manifest 06_build/candidates/crow-assembly-v1.3/MANIFEST.txt\n```\n\nResult: `A-POP: PASS (every unpopulated part is declared with evidence)`. The check graded one board footprint and one CPL placement, one consigned part, top-side population, and U1's CPL datum at 0.00000 mm worst offset.\n"
+        }
+      ]
+    },
+    {
+      "case": "crow_release_evidence",
+      "initial_outcome": "FAIL",
+      "initial_findings": [
+        {
+          "code": "ERC-AUDIT-STALE",
+          "message": "ERC-AUDIT-STALE"
+        },
+        {
+          "code": "BOM-MANIFEST-STALE",
+          "message": "BOM-MANIFEST-STALE"
+        },
+        {
+          "code": "BOM-CHECK-STALE",
+          "message": "BOM-CHECK-STALE"
+        },
+        {
+          "code": "RELEASE-FRESHNESS-FAIL",
+          "message": "RELEASE-FRESHNESS-FAIL"
+        }
+      ],
+      "outcome": "PASS",
+      "engineering_outcome": "PASS",
+      "findings": [],
+      "agent": {
+        "attempts": 1,
+        "effort": "medium",
+        "execution_evidence": "external supervised agent handback; no process telemetry",
+        "model": "gpt-5.6-luna",
+        "provider": "collaboration",
+        "task": "/root/solve_release_checkpoint",
+        "usage": "UNKNOWN"
+      },
+      "case_manifest": {
+        "case.json": "0126a5882c1d6d738dfa292d5271c7b4b1a0bb069fc8ac95e7309f76897047f9",
+        "driver.py": "9d65c69ba63bf82ec62ee6a01f2f104cc1b982dd25be4206c170fe8f93f07468",
+        "snapshot/06_build/candidates/crow-recorder-v1.0/HANDOFF.md": "191d364c0aea4cdec1aa0e00df77189362d30d375d920d1e353373242f544d53",
+        "snapshot/06_build/candidates/crow-recorder-v1.0/MANIFEST.txt": "9e1760c7d998ada651788ca11ec219060800634b9a9f89bc838cbc8ef87270c1",
+        "snapshot/06_build/candidates/crow-recorder-v1.0/ORDER_README.md": "b40d43067cf388a6542ecb2da8541094f9f5a298f5f3b53a5e3eed780158eb0a",
+        "snapshot/06_build/candidates/crow-recorder-v1.0/fab/bom.csv": "50682b4090f6fb8dbffb3df0e1a20e099bf54010a2ee9f4de30339c43f581ad7",
+        "snapshot/06_build/candidates/crow-recorder-v1.0/fab/crow_recorder_central_v2_gerbers.zip": "1182748709502381650172d8054e69da88702fba9e323f73b1c0b0d93ddaf946",
+        "snapshot/06_build/candidates/crow-recorder-v1.0/pdf/assembly_back.pdf": "9138b9298f7d2d19361f22f8d068e22f70816bc198e1319da5e616a6e3d68bd0",
+        "snapshot/06_build/candidates/crow-recorder-v1.0/pdf/assembly_front.pdf": "261d1fcc6cd582bb9b47198663255af7e4786a8443fa592cbceed3925e02deb6",
+        "snapshot/06_build/candidates/crow-recorder-v1.0/pdf/pcb_layers.pdf": "4c8a1299772b4145fbfd8bb9c1633ac5719cede4e0ddd574e8cecbdadaffb4d8",
+        "snapshot/06_build/candidates/crow-recorder-v1.0/verification/bom_source_check.txt": "6b99d3f1d78a15a9bb3bbb160cfbf4e415c7eebd55249dd943e054c9f4bd2a76",
+        "snapshot/06_build/candidates/crow-recorder-v1.0/verification/erc.json": "4a4b2fa4738a1f4365639d368e264035124248bce259599fc97fc487e3574d21",
+        "snapshot/06_build/candidates/crow-recorder-v1.0/verification/policy_audit.md": "eba9f159365d07056bd084916873654ade269b4c538d8f9607cb0401071c9ca2",
+        "snapshot/06_build/candidates/crow-recorder-v1.0/verification/redteam_layout.md": "98a70979628cf8d5547a34964d9a9c0a0710dfae00efe114deca324ed5ab89c2",
+        "snapshot/06_build/candidates/crow-recorder-v1.0/verification/redteam_topology.md": "98a70979628cf8d5547a34964d9a9c0a0710dfae00efe114deca324ed5ab89c2",
+        "snapshot/HANDOFF.md": "1ebe99fdfab5b4eb6275554375e72e5921884528f51a85163e4b962e02f9c89a",
+        "task.md": "161322ef9a62968a9a3f6645e54cfedf42624fda15b2262c21f384421299ab85"
+      },
+      "runner_sha256": "592efadd96d6d1ca2f3961f42b751b85b1f7ac9b394aae908015fea67e3c7128",
+      "skill_authority_map_sha256": "c2b46883ef84fa649a590edbdd62af96352f3a669440958a48c783da1a171830",
+      "changed_artifacts": [
+        {
+          "path": "06_build/candidates/crow-recorder-v1.0/MANIFEST.txt",
+          "sha256": "5b76ec74cb9f08cb06ab3ff0b99d2f957ed0329ba8839e661b79bf988cb94686",
+          "original_sha256": "9e1760c7d998ada651788ca11ec219060800634b9a9f89bc838cbc8ef87270c1",
+          "content": "board: crow_recorder_central_v2\nversion: v1.0\ngates: ERC 0 errors (1409 baselined warnings); policy_audit 0 FAIL; bom_source_check PASS (49 lines, every LCSC == source)\n"
+        },
+        {
+          "path": "06_build/candidates/crow-recorder-v1.0/verification/bom_source_check.txt",
+          "sha256": "aed7689bc723a36f677225f731c6eaae925826ce7299d6d87a86883f1812df0a",
+          "original_sha256": "6b99d3f1d78a15a9bb3bbb160cfbf4e415c7eebd55249dd943e054c9f4bd2a76",
+          "content": "PASS: bom_source_check PASS (49 lines, every LCSC == source)\n"
+        },
+        {
+          "path": "06_build/candidates/crow-recorder-v1.0/verification/freshness_report.txt",
+          "sha256": "e6d269baa731aeff3719473816cea12d579dd4062e2165cf15064398027aee4b",
+          "original_sha256": "b86287e2be087813b1217e21f59a7711b9903d23c05b76e62ea4012543afc8eb",
+          "content": "== release-freshness: crow-recorder-v1.0 ==\n  note: A-STOCK: this release ships no fab/bom.csv + fab/cpl.csv pair \u2014 no coded, placed line to grade\n  note: A-BUY: sourcing UNGRADED (no fab/bom.csv + fab/cpl.csv) \u2014 0 line(s) measured, so no declaration is graded either way\n  note: M-REV: 2 graded / 2 redteam*.md present in verification/ (graded = the contract-named redteam_topology.md, redteam_layout.md; others are archived reviews of other versions and are not this release's verdict)\nDESIGN: PASS\nSOURCING: UNGRADED\nFRESHNESS: PASS\n"
+        },
+        {
+          "path": "06_build/candidates/crow-recorder-v1.0/verification/policy_audit.md",
+          "sha256": "7b406d49c347a5396a53af8e28a91293413973fc83efa17770be5540964321a7",
+          "original_sha256": "eba9f159365d07056bd084916873654ade269b4c538d8f9607cb0401071c9ca2",
+          "content": "# Policy audit \u2014 crow-recorder-central-v2\n\nGenerated by policy_audit.py; canon: design-policies.md\n\n| ID | Grade | Detail |\n|---|---|---|\n| S-ERC | PASS | 0 errors (1409 warnings) |\n| S-NC | PASS | all floats no_connect-flagged |\n| S-NET | PASS | 116 routed nets, all named |\n| S-VER | PASS | 17/17 verified: cite figure/page |\n| P-ESC | PASS | 24 parts: escape blocks agree with escape_check |\n| P-TIER | PASS | all parts escape at declared fab_tier 'jlc_6layer_smallvia' |\n| P-LAYOUT | PASS | 17 in-scope parts carry a datasheet layout: block |\n| P-ADJ | WAIVED | datasheet layout budgets exceeded: ['BEEP_GATE span 101.1mm > 6.0mm (gate-RC (Rg + Cgs) local to gate(1) so slow edge is defined at the pin)', 'VIN_RAW span 12.1mm > 6.0mm (drain(3) = raw barrel-jack + ahead of the FET, short/wide)', '1V8 span 114.4mm > 4.0mm (Cout hard to VOUT(5)/GND(2) for phase stability)', '3V3 span 163.7mm > 4.0mm (Cin hard to VIN(1)/GND(2))', '1V8 span 114.4mm > 4.0mm (Cout hard to VOUT(5)/GND(2) \u2014 same budget as TCR2LF18; measured Cout_U9.1->U9.5 = 4.7mm, dispositioned in policy_waivers P-ADJ)'] \u2014 re-place per the part's layout: block (targets HARD against the chip), or waive with the measured span + why (P-ADJ) \u2014 waived: P-ADJ grades the WHOLE-NET pad-span bbox; for rail/drive nets that span conflates board-wi... |\n| S-OCCL | WAIVED | 64 schematic text occlusions: ['label VIN_RAW x Reference C_VINR', 'label 5V x Reference Cin_U7', 'label 5V x Reference Cin_U10', 'label 5V x label PLUS5V_BEEP', 'label 3V3 x Reference Couth_U7', 'label 3V3 x label PLL_AVDD'] \u2014 waived: The 64 occlusions are net-label vs reference/value overlaps in the tscircuit CONVERTER .ki... |\n| S5 | HUMAN | design-math spot-check per review protocol |\n| S6 | HUMAN | schematic readability graded in render review |\n| S7 | HUMAN | decoupling-adjacency graded in render review |\n| P-CRT | PASS | 0 courtyard findings |\n| R-DRC | PASS | 0/0/0 at severity-all |\n| P-POL | PASS | polarity machine-check present (pad-1 nets vs part facts) |\n| P-KEEP | PASS | mate/keepout checks present in project audit |\n| P-SILK-REF | PASS | all refdes on visible silk |\n| P-SILK-FN | PASS | every connector/fuse/TP has functional silk nearby |\n| P-PLANE | PASS | In1 carries only its plane (0 tracks) |\n| R-PLANE | N-A | no plane_regions configured |\n| R-POUR | PASS | high-current-class nets all poured (1 nets) |\n| R-THERM | WAIVED | underserved power pads: ['U1.129(0)'] \u2014 waived: Flagged pad U1.129(0) is the XU316 4.7x4.7mm GND EP. The checker counts only PCB_VIA track... |\n| R-RULES | PASS | rv2_final.kicad_pro: classes=['Default', 'PWR_IN', 'PWR', 'SWITCH_NODE', 'ANALOG_IN', 'CLOCK'] |\n| R4 | HUMAN | escape-first routing order \u2014 design review (feasibility itself is machine-checked: P-ESC/P-TIER) |\n| R-LEN | N-A | no timing-critical nets declared |\n| E-INV | PASS | E-INV OK: 7 invariants hold against crow_recorder_central_v2.net |\n| E-ADR | PASS | E-ADR OK: every protection/topology ADR is cited by an invariant |\n| E-TOPO | PASS | E-TOPO OK: 2 rail(s) topology-correct   rail '3V3_DIGITAL' (Vin 4.9-5.1 V, Vout 3.3-3.3 V): required=BUCK, declared=BUCK (AP61102Z6-7) -> PASS   rail '0V9_CORE' (Vin 4.9-5.1 V, Vout 0.9-0.9 V): requir |\n| E-MARGIN | N-A | E-MARGIN N-A: no rail declares load_uv_threshold - no regulated rail feeds a known fixed-brownout load |\n| E-OFF | N-A | E-OFF N-A: no self-contained energy source detected (source_type: 'dc_jack' (externally powered)) - de-energization is by unplugging the input |\n| M-REPRO | PASS | all rebuild inputs git-tracked |\n| M-REL | N-A | no releases yet |\n| M-BOM | PASS | 06_build/fab/bom.csv: every LCSC == source (180 coded) |\n| M-JRNL | PASS | 3 stage journals, 3 with entries |\n| M-LEARN | N-A | no release yet |\n| M-WAIV | PASS | 17 adjudications, all evidenced |\n| M1 | HUMAN | independent-reference coverage \u2014 release review |\n| M6 | HUMAN | authoritative-source discipline \u2014 encoded in protocols |\n\nSummary: HUMAN=6, N-A=6, PASS=23, WAIVED=3\n"
+        },
+        {
+          "path": "HANDOFF.md",
+          "sha256": "580ca115d977e7664682e297ae355b3b31642509ac064a62a25cb6530fc19a81",
+          "original_sha256": "1ebe99fdfab5b4eb6275554375e72e5921884528f51a85163e4b962e02f9c89a",
+          "content": "# Handoff \u2014 PCB-RELEASE-REVIEW\n\nCandidate `06_build/candidates/crow-recorder-v1.0/` remains mutable scratch evidence; this is not a sealed release or a full release replay. The machine ERC JSON and BOM source bytes were preserved. Their measured values are 1,409 ERC warnings and 49 BOM data rows. I reconciled the repeated claims in `MANIFEST.txt`, `verification/policy_audit.md`, and `verification/bom_source_check.txt` to those values.\n\nFreshness command:\n\n```sh\npython3 /home/mouse9911/gits/circuits-worktrees/crow-transport-publication-20260916/skills/jlcpcb-fab/scripts/release_freshness_check.py 06_build/candidates/crow-recorder-v1.0\n```\n\nResult: exit 0; `DESIGN: PASS`; `FRESHNESS: PASS`. `SOURCING: UNGRADED` remains because this fixture has no BOM/CPL pair. The output is recorded in `06_build/candidates/crow-recorder-v1.0/verification/freshness_report.txt`.\n\nThis resolves only the two count contradictions in the reduced mutable fixture. It does not establish full-board release acceptance, sourcing clearance, sealing, or order readiness. Stage prerequisites remain inherited from the checkpoint.\n"
+        }
+      ]
+    },
+    {
+      "case": "crow_routing_geometry",
+      "initial_outcome": "FAIL",
+      "initial_findings": [
+        {
+          "code": "ADC_DOUT_UNCONNECTED",
+          "message": "native pcbnew connectivity does not join U_ADC.DOUT to J_ADC.1"
+        },
+        {
+          "code": "NATIVE_DRC",
+          "message": "Found 1 violations\nFound 1 unconnected items\nSaved DRC Report to /tmp/crow-checkpoint-routing_geometry-external-20260920-01/workspace/native/adc_launch.drc\n"
+        }
+      ],
+      "outcome": "PASS",
+      "engineering_outcome": "PASS",
+      "findings": [],
+      "agent": {
+        "attempts": 1,
+        "effort": "medium",
+        "execution_evidence": "external supervised agent handback; no process telemetry",
+        "model": "gpt-5.6-luna",
+        "provider": "collaboration",
+        "task": "/root/solve_routing_checkpoint",
+        "usage": "UNKNOWN"
+      },
+      "case_manifest": {
+        "README.md": "5d2c20bb170bfcf29f520383ccb56c122873ac19861464f9ac60135cc4b59553",
+        "bypass/geometry.json": "8c48993d4382fb5bc4b3e3bf1827326d5b5b37a2f1051bd93d4c3beb8f76f2cd",
+        "case.json": "fb2eb18084c93b78e7a58e4cac0bbdd42167da6781c69508efa4673a9e982f18",
+        "driver.py": "c733c721e239b95473154b3ed295a39d0908e44be745028911db59d801aac5ef",
+        "reference/geometry.json": "f00b4a74948fefa880ca8b5a73187a3f6259ad04ab39dea4ea9ac20c900314cf",
+        "snapshot/HANDOFF.md": "6262d2d0e00091f2550a5251b68c583a649ff072e8e5f07e1eb7314f46efbb16",
+        "snapshot/build_native.py": "39878edbfea3f0927fddf2e278b8780c9544e5236f22197682d96b61ad6abfcd",
+        "snapshot/geometry.json": "f204f996067b69102705947fbd58d408fb215cbd16607b57dc48b9d558c99445",
+        "task.md": "c35148b32bac8c26475048f96baf17c2d75af842077ee07a6116827ae7775c54"
+      },
+      "runner_sha256": "592efadd96d6d1ca2f3961f42b751b85b1f7ac9b394aae908015fea67e3c7128",
+      "skill_authority_map_sha256": "c2b46883ef84fa649a590edbdd62af96352f3a669440958a48c783da1a171830",
+      "changed_artifacts": [
+        {
+          "path": "HANDOFF.md",
+          "sha256": "8adb4e2548da9d1772d3291fe2107d0cba567e957f14c98bf7100c722e436ac0",
+          "original_sha256": "6262d2d0e00091f2550a5251b68c583a649ff072e8e5f07e1eb7314f46efbb16",
+          "content": "# Routing handoff\n\nState: repaired reduced `KICAD-ROUTING` fixture; ready for independent grading.\n\n`geometry.json` now routes `ADC_DOUT` from the fixed pad at (20.0, 20.0) mm\nup to y=15.5 mm, passes above the immutable GND branch wall, and returns to\nthe fixed pad at (60.0, 20.0) mm. The route remains on F.Cu at 0.25 mm width\nand `vias_mm` remains empty. Neither pad endpoint was moved.\n\nNative check evidence: `python3 build_native.py` regenerated\n`native/adc_launch.kicad_pcb`; `kicad-cli pcb drc --severity-all --output\nnative/adc_launch.drc native/adc_launch.kicad_pcb` reported **0 violations**\nand **0 unconnected items**. Reopening the generated board with pcbnew found\nsix F.Cu track segments and zero vias. This is evidence for this synthetic\nreduction only and is not acceptance of the full Crow board.\n"
+        },
+        {
+          "path": "geometry.json",
+          "sha256": "9aabebfcd6fd1cd62cc60ac0a129015802cfdcb0761ffb9b52af1ee428e898e4",
+          "original_sha256": "f204f996067b69102705947fbd58d408fb215cbd16607b57dc48b9d558c99445",
+          "content": "{\n  \"schema\": 1,\n  \"net\": \"ADC_DOUT\",\n  \"pads_mm\": [[20.0, 20.0], [60.0, 20.0]],\n  \"route\": {\"layer\": \"F.Cu\", \"width_mm\": 0.25, \"points_mm\": [[20.0, 20.0], [38.8, 20.0], [38.8, 15.5], [41.2, 15.5], [41.2, 20.0], [60.0, 20.0]]},\n  \"vias_mm\": []\n}\n"
+        },
+        {
+          "path": "native/adc_launch.drc",
+          "sha256": "8b4c165707098c7a9ca98889e36a63a72c5970df244ee3d580ecb02828bc2bbd",
+          "original_sha256": "da01d23e08f7f1136b394dcbedd9b121dbf77ab599eb652f25aaaf7a4b9d564b"
+        },
+        {
+          "path": "native/adc_launch.kicad_pcb",
+          "sha256": "5a1b6735e37c877350c775004f130a83fd9b6de918ac5087b209dd793136d316",
+          "original_sha256": "8cc23f15e5610cbab418820474f3a9d3116636f9805c17f182dc86f2bd03b419"
+        }
+      ]
+    }
+  ],
+  "cli_trial": {
+    "outcome": "ERROR",
+    "reason": "Nested Codex shell and file tools could not run: bwrap network namespace EPERM. No engineering repair performed. A concurrent test temporarily changed case identity; neither condition was accepted as success.",
+    "agent": {
+      "provider": "codex",
+      "model": "gpt-5.6-luna",
+      "effort": "medium",
+      "attempts": 1,
+      "usage": {
+        "status": "REPORTED",
+        "source": "codex turn.completed",
+        "completed_turns": 1,
+        "tokens": {
+          "input_tokens": 227271,
+          "cached_input_tokens": 201728,
+          "output_tokens": 1702
+        },
+        "command_executions": 0,
+        "error_events": [],
+        "cost": "UNKNOWN",
+        "coverage": "completed turns only; interrupted-turn usage may be missing"
+      }
+    },
+    "followup": "Linux sandbox preflight now rejects this host before model invocation; external supervised trials used prepared workspaces without CLI sandbox bypass."
+  },
+  "limitations": [
+    "Externally supervised model token usage and dollar cost unknown; no hard token cap claimed.",
+    "Local answer exclusion is cooperative, not hermetic read isolation.",
+    "Cases are reductions, not full Crow board replay.",
+    "Full repository suite was interrupted after unrelated historical/project-contract failures; targeted checks listed separately."
+  ],
+  "repository_contract_audit": {
+    "core": "PASS: 722 files, zero violations",
+    "full": "FAIL: 2884 existing project violations vs 2873 recorded debt; 11 unratcheted Crow paths",
+    "preexisting_paths_verified_equal_to_origin_main": [
+      {
+        "path": "projects/crow-audio-carrier-v1/01_docs/journal/4931d60e30b2730fdf6ea7d7fb0ef5c4cd8e2089c8db9c7f3931816bb296260b.tar.gz",
+        "unchanged_origin_main_objects": {
+          "projects/crow-audio-carrier-v1/01_docs/journal/4931d60e30b2730fdf6ea7d7fb0ef5c4cd8e2089c8db9c7f3931816bb296260b.tar.gz": "3849186d4b300c90eeba8c7159239e8936401e7b",
+          "projects/crow-audio-carrier-v1/01_docs/journal/contracts.md": "8e1a0363c8ca4d15e1758f743296d1429e1fda22",
+          "scripts/contracts_audit.py": "c9e4c47d38f30637b834656f7a9abe21ca0d6a65"
+        }
+      },
+      {
+        "path": "projects/crow-audio-carrier-v1/01_docs/journal/4af6b9d2f952d040cfe9cded3683d2808c9be939ec579c5afcec4f0ef6475571.tar.gz",
+        "unchanged_origin_main_objects": {
+          "projects/crow-audio-carrier-v1/01_docs/journal/4af6b9d2f952d040cfe9cded3683d2808c9be939ec579c5afcec4f0ef6475571.tar.gz": "e560975010802a2102b06cf4f4adf4af76246f43",
+          "projects/crow-audio-carrier-v1/01_docs/journal/contracts.md": "8e1a0363c8ca4d15e1758f743296d1429e1fda22",
+          "scripts/contracts_audit.py": "c9e4c47d38f30637b834656f7a9abe21ca0d6a65"
+        }
+      },
+      {
+        "path": "projects/crow-audio-carrier-v1/01_docs/journal/809c2ae4912ef5590b81f60ea8713607c4ac2df0485924ae70d8413899c4e2b3.tar.gz",
+        "unchanged_origin_main_objects": {
+          "projects/crow-audio-carrier-v1/01_docs/journal/809c2ae4912ef5590b81f60ea8713607c4ac2df0485924ae70d8413899c4e2b3.tar.gz": "ba4f5ff2e058f285d2f4cd7d90198a6b32391194",
+          "projects/crow-audio-carrier-v1/01_docs/journal/contracts.md": "8e1a0363c8ca4d15e1758f743296d1429e1fda22",
+          "scripts/contracts_audit.py": "c9e4c47d38f30637b834656f7a9abe21ca0d6a65"
+        }
+      },
+      {
+        "path": "projects/crow-audio-carrier-v1/01_docs/journal/82b7d9b16e70f0fbba3dbce578eecf7465f1f61dd2a2fa002854e9bcb2eba664.tar.gz",
+        "unchanged_origin_main_objects": {
+          "projects/crow-audio-carrier-v1/01_docs/journal/82b7d9b16e70f0fbba3dbce578eecf7465f1f61dd2a2fa002854e9bcb2eba664.tar.gz": "cc142bc6a135879176a60c8bbb48e26da8997b28",
+          "projects/crow-audio-carrier-v1/01_docs/journal/contracts.md": "8e1a0363c8ca4d15e1758f743296d1429e1fda22",
+          "scripts/contracts_audit.py": "c9e4c47d38f30637b834656f7a9abe21ca0d6a65"
+        }
+      },
+      {
+        "path": "projects/crow-audio-carrier-v1/01_docs/journal/c456e61990a36e96d595a269fa3642d9f9a47cc43f28f9cac217b3c2ff768df7.tar.gz",
+        "unchanged_origin_main_objects": {
+          "projects/crow-audio-carrier-v1/01_docs/journal/c456e61990a36e96d595a269fa3642d9f9a47cc43f28f9cac217b3c2ff768df7.tar.gz": "476b4b46c96c56df1d4565caab0293e1156662b5",
+          "projects/crow-audio-carrier-v1/01_docs/journal/contracts.md": "8e1a0363c8ca4d15e1758f743296d1429e1fda22",
+          "scripts/contracts_audit.py": "c9e4c47d38f30637b834656f7a9abe21ca0d6a65"
+        }
+      },
+      {
+        "path": "projects/crow-audio-carrier-v1/01_docs/journal/c5554a33659932018e202621d81ffef13446b3a621b1720e6aa70d758186ddc5.tar.gz",
+        "unchanged_origin_main_objects": {
+          "projects/crow-audio-carrier-v1/01_docs/journal/c5554a33659932018e202621d81ffef13446b3a621b1720e6aa70d758186ddc5.tar.gz": "cb6e500ed4f7bfb03605d6b4babcdf340a524fcc",
+          "projects/crow-audio-carrier-v1/01_docs/journal/contracts.md": "8e1a0363c8ca4d15e1758f743296d1429e1fda22",
+          "scripts/contracts_audit.py": "c9e4c47d38f30637b834656f7a9abe21ca0d6a65"
+        }
+      },
+      {
+        "path": "projects/crow-audio-carrier-v1/01_docs/journal/d9af0fef5235bdcec0ae01ede8f70cf4895f2abbd9fe97040e01b05d8c8bdafc.tar.gz",
+        "unchanged_origin_main_objects": {
+          "projects/crow-audio-carrier-v1/01_docs/journal/d9af0fef5235bdcec0ae01ede8f70cf4895f2abbd9fe97040e01b05d8c8bdafc.tar.gz": "f7cb84de9d3071395ce4d0915d351b2806b37308",
+          "projects/crow-audio-carrier-v1/01_docs/journal/contracts.md": "8e1a0363c8ca4d15e1758f743296d1429e1fda22",
+          "scripts/contracts_audit.py": "c9e4c47d38f30637b834656f7a9abe21ca0d6a65"
+        }
+      },
+      {
+        "path": "projects/crow-audio-carrier-v1/01_docs/journal/e7aa8d53eee7b06de53b786d6e318f4ea29f75eb01a3d899b9c13db00e40d4a7.tar.gz",
+        "unchanged_origin_main_objects": {
+          "projects/crow-audio-carrier-v1/01_docs/journal/e7aa8d53eee7b06de53b786d6e318f4ea29f75eb01a3d899b9c13db00e40d4a7.tar.gz": "83e3971ea3769e593f0c4251270127fefab39755",
+          "projects/crow-audio-carrier-v1/01_docs/journal/contracts.md": "8e1a0363c8ca4d15e1758f743296d1429e1fda22",
+          "scripts/contracts_audit.py": "c9e4c47d38f30637b834656f7a9abe21ca0d6a65"
+        }
+      },
+      {
+        "path": "projects/crow-audio-carrier-v1/03_tscircuit/node_modules",
+        "unchanged_origin_main_objects": {
+          "projects/crow-audio-carrier-v1/03_tscircuit/node_modules": "73944b479d96443400e3bd2959c2d68066c77b1f",
+          "projects/crow-audio-carrier-v1/03_tscircuit/contracts.md": "13b86d9e586e1bb0bab9a8c076701eb74358b0b2",
+          "scripts/contracts_audit.py": "c9e4c47d38f30637b834656f7a9abe21ca0d6a65"
+        }
+      },
+      {
+        "path": "projects/crow-mic-pod-v3/01_docs/journal/4931d60e30b2730fdf6ea7d7fb0ef5c4cd8e2089c8db9c7f3931816bb296260b.tar.gz",
+        "unchanged_origin_main_objects": {
+          "projects/crow-mic-pod-v3/01_docs/journal/4931d60e30b2730fdf6ea7d7fb0ef5c4cd8e2089c8db9c7f3931816bb296260b.tar.gz": "3849186d4b300c90eeba8c7159239e8936401e7b",
+          "projects/crow-mic-pod-v3/01_docs/journal/contracts.md": "a74078114d3dc19f5471729ce0ed6270e5c8cd03",
+          "scripts/contracts_audit.py": "c9e4c47d38f30637b834656f7a9abe21ca0d6a65"
+        }
+      },
+      {
+        "path": "projects/crow-mic-pod-v3/01_docs/journal/82b7d9b16e70f0fbba3dbce578eecf7465f1f61dd2a2fa002854e9bcb2eba664.tar.gz",
+        "unchanged_origin_main_objects": {
+          "projects/crow-mic-pod-v3/01_docs/journal/82b7d9b16e70f0fbba3dbce578eecf7465f1f61dd2a2fa002854e9bcb2eba664.tar.gz": "cc142bc6a135879176a60c8bbb48e26da8997b28",
+          "projects/crow-mic-pod-v3/01_docs/journal/contracts.md": "a74078114d3dc19f5471729ce0ed6270e5c8cd03",
+          "scripts/contracts_audit.py": "c9e4c47d38f30637b834656f7a9abe21ca0d6a65"
+        }
+      }
+    ],
+    "action": "No debt ceiling increased and no unrelated board source changed."
+  }
+}

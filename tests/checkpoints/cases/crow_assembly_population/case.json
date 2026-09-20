@@ -1,0 +1,69 @@
+{
+  "schema": 1,
+  "id": "crow-assembly-population",
+  "title": "Repair Crow v1.3 consigned CPU population policy",
+  "tags": [
+    "pcb",
+    "assembly",
+    "population",
+    "resumable"
+  ],
+  "origin": {
+    "board": "crow-recorder-central-v2",
+    "revision": "v1.3-2026-07-24",
+    "evidence": [
+      "archived_projects/crow-recorder-central-v2/07_releases/crow-recorder-central-v2-v1.3-2026-07-24/MANIFEST.txt",
+      "archived_projects/crow-recorder-central-v2/07_releases/crow-recorder-central-v2-v1.3-2026-07-24/fab/cpl.csv",
+      "archived_projects/crow-recorder-central-v2/07_releases/crow-recorder-central-v2-v1.3-2026-07-24/fab/bom.csv",
+      "archived_projects/crow-recorder-central-v2/07_releases/crow-recorder-central-v2-v1.3-2026-07-24/source/crow_recorder_central_v2.kicad_pcb"
+    ],
+    "reduction": "Preserve the archived U1 board footprint, CPL row, BOM row, and misclassification; omit unrelated components while retaining the checker path and board-derived placement datum."
+  },
+  "checkpoint": {
+    "stage_id": "JLC-ASSEMBLY-VERIFY",
+    "states": {
+      "JLC-FABRICATION": "accepted",
+      "JLC-ASSEMBLY-VERIFY": "blocked"
+    },
+    "history": [
+      {
+        "attempt": 1,
+        "result": "FAIL",
+        "disposition": "U1 is simultaneously declared not_assembled and placed on the CPL",
+        "reconsider_when": "source policy classifies consigned U1 as populated and the generated MANIFEST agrees"
+      }
+    ]
+  },
+  "task_file": "task.md",
+  "snapshot_dir": "snapshot",
+  "editable": [
+    "03_src/rules/assembly.yaml",
+    "06_build/candidates/crow-assembly-v1.3/MANIFEST.txt",
+    "06_build/candidates/crow-assembly-v1.3/verification/assembly_coverage.txt",
+    "HANDOFF.md"
+  ],
+  "prepare": [
+    [
+      "python3",
+      "{case}/driver.py",
+      "prepare",
+      "{repo}",
+      "{workspace}"
+    ]
+  ],
+  "grader": [
+    "python3",
+    "{case}/driver.py",
+    "grade",
+    "{repo}",
+    "{workspace}"
+  ],
+  "initial_findings": [
+    "U1-POPULATION-SOURCE",
+    "U1-MISDECLARED-UNPOPULATED",
+    "MANIFEST-POPULATION-DRIFT",
+    "A-POP-CHECK-FAIL"
+  ],
+  "timeout_s": 300,
+  "grader_timeout_s": 120
+}

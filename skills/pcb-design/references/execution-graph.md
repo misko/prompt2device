@@ -397,3 +397,15 @@ do not establish complete production dependencies, automatic reuse, live-file
 installation or release acceptance. New consumers and broad driver migration
 are deferred until a real task identifies a named consumer and a demonstrated
 gap. Existing adopted receipt and artifact checks continue to apply.
+
+## Optional checkpoint regression tests
+
+For testing changes to this skill or its tools, the repository's
+`tests/checkpoints/README.md` describes a separate resumed-checkpoint consumer.
+It restores bounded source, current graph state and retired-attempt history;
+an independent grader checks whether the agent solved the engineering task.
+Its runner reads this skill's authority map rather than maintaining a second
+stage graph. Deterministic framework checks spend no model tokens; solving
+trials require explicit opt-in and a bounded, named model attempt. Reference
+repairs establish case solvability, not agent success. Reduced fixtures and
+checkpoint acceptance do not replace full board gates or release evidence.
