@@ -2,15 +2,16 @@
 """T1: USB Hub v4 deterministic-reuse shadow catalog canary.
 
 Catalog tests parse declarations and exact legacy bytes without execution.
-The bounded source-rules pilot additionally executes one hash-pinned shell
-step and its catalog command on disposable input copies only. It neither runs
-the whole driver nor changes its authority.
+Bounded source-rules and rules-artifact pilots additionally execute selected
+hash-pinned shell steps and catalog commands on disposable input copies only.
+They neither run the whole driver nor change its authority.
 """
 from __future__ import annotations
 
 import copy
 import hashlib
 import shutil
+import tempfile
 import json
 import sys
 from pathlib import Path
@@ -366,6 +367,125 @@ def t_source_rules_stage_pilot():
     eq((PROJECT/'03_src/rules/nets.yaml').read_bytes(), original, 'archived source untouched')
     check(not (root/'04_kicad').exists(), 'source stage needs no board artifacts')
     check(not (root/'07_releases').exists(), 'stage comparison cannot release')
+
+
+@test("USB rules artifact pilot validates both outputs and preserves acceptance on failure",
+      kind="known_bad")
+def t_rules_artifact_pilot():
+    from pipeline_artifacts import (ArtifactBundleTransaction, OutputSpec,
+                                    ArtifactProducerError, ArtifactValidationError)
+    value = catalog()
+    check(value.driver_matches(DRIVER_PATH.read_bytes()), 'exact legacy producer binding')
+    binding = by_key(value, 'rules-pre-placement-drc')
+    eq(TRACE_STAGE_LINES[103], binding.spec.id, 'exact producer source line')
+    snippet = DRIVER_PATH.read_text().splitlines()[102]
+    contains(snippet, '"$S/generate_rules_generic.py" .', 'literal legacy producer')
+    eq(binding.authority, 'exit', 'legacy producer authority unchanged')
+    pro_name = '04_kicad/usb_hub_3s_v4.kicad_pro'
+    dru_name = '04_kicad/usb_hub_3s_v4.kicad_dru'
+    eq(set(binding.accepted_output_paths), {pro_name, dru_name}, 'exact output pair')
+    root = tmpdir('usb_rule_artifact_')
+    seed = root/'seed'; seed.mkdir()
+    inputs = {}
+    for rel in ('03_src/rules/nets.yaml', '03_src/floorplan.yaml', '03_src/route.yaml',
+                pro_name, dru_name, '04_kicad/usb_hub_3s_v4.kicad_pcb'):
+        target=seed/rel; target.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(PROJECT/rel,target); inputs[rel]=target
+    for card in (PROJECT/'02_parts').glob('*/part.yaml'):
+        rel=card.relative_to(PROJECT); target=seed/rel
+        target.parent.mkdir(parents=True,exist_ok=True); shutil.copy2(card,target)
+        inputs[rel.as_posix()]=target
+    (seed/'03_tscircuit').mkdir()
+    inputs['driver.sh']=DRIVER_PATH
+    for name in ('generate_rules_generic.py','dru_subject.py','fab_tier_util.py','rules_audit.py'):
+        inputs['tools/'+name]=SCRIPTS/name
+    nets=seed/'03_src/rules/nets.yaml'; original=nets.read_bytes()
+    accepted=root/'accepted'; ledger=root/'usage.jsonl'
+    audit_count=[]
+    def reopen(staging, opened):
+        eq(set(opened),{pro_name,dru_name},'durably reopened exact output pair')
+        result=run([KPY,SCRIPTS/'rules_audit.py','--nets',nets,
+                    '--pro',staging/pro_name,'--dru',staging/dru_name,
+                    '--board',seed/'04_kicad/usb_hub_3s_v4.kicad_pcb'])
+        audit_count.append(result.rc)
+        if result.rc:
+            raise ArtifactValidationError('independent rules audit rejected: '+result.out)
+        contains(result.out,'RULES AUDIT: PASS','independent postcheck ran')
+    def attempt(mode, fault=None):
+        # Conservative raw subject; no semantic cache/reuse claim is made.
+        digest=hashlib.sha256(json.dumps({k:hashlib.sha256(v.read_bytes()).hexdigest()
+                                         for k,v in sorted(inputs.items())},sort_keys=True).encode()).hexdigest()
+        tx=ArtifactBundleTransaction(accepted,producer=binding.spec.id,
+            producer_version=hashlib.sha256((SCRIPTS/'generate_rules_generic.py').read_bytes()).hexdigest(),
+            subject={'semantic_sha256':digest,'raw_sha256':digest},inputs=inputs,
+            outputs={pro_name:OutputSpec(parser=lambda p:json.loads(p.read_text())),
+                     dru_name:OutputSpec(parser=lambda p:p.read_text())})
+        def produce(staging):
+            if fault=='missing': return 0  # stale accepted pair must not count
+            with tempfile.TemporaryDirectory(prefix='workspace-',dir=root) as temporary:
+                workspace=Path(temporary)/'project'; shutil.copytree(seed,workspace)
+                command=[arg.replace('{repo}',str(ROOT)).replace('{project}',str(workspace))
+                         for arg in binding.argv]
+                if mode=='legacy':
+                    argv=['bash','-c','set -euo pipefail\nPY="$1"; S="$2"\n'+snippet,
+                          'artifact-pilot',KPY,SCRIPTS]
+                elif mode=='accounted':
+                    argv=[KPY,SCRIPTS/'pcb_flow.py','run',workspace,'--stage',binding.spec.id,
+                          '--timeout-s',str(binding.spec.timeout_s),'--issue','usb-rule-artifacts',
+                          '--usage-ledger',ledger,'--',*command]
+                else: argv=command
+                result=run(argv,cwd=workspace)
+                if result.rc: return result.rc
+                for name in (pro_name,dru_name):
+                    target=staging/name;target.parent.mkdir(parents=True,exist_ok=True)
+                    shutil.copy2(workspace/name,target)
+                    if fault=='partial': return 1
+                if fault=='corrupt':
+                    doc=json.loads((staging/pro_name).read_text())
+                    next(c for c in doc['net_settings']['classes'] if c['name']=='VIN_TRUNK')['track_width']=.1
+                    (staging/pro_name).write_text(json.dumps(doc))
+                return 0
+        return tx.publish(produce,reopen_validator=reopen)
+    def snapshot():
+        return {p.relative_to(accepted).as_posix():p.read_bytes()
+                for p in accepted.rglob('*') if p.is_file()}
+    baseline=None
+    for mode in ('legacy','catalog','accounted'):
+        attempt(mode)
+        settings=json.loads((accepted/pro_name).read_text())['net_settings']
+        if baseline is None: baseline=settings
+        eq(settings,baseline,'same generated netclass semantics across execution paths')
+        manifest=json.loads((accepted/'bundle.json').read_text())
+        eq(set(manifest['outputs']),{pro_name,dru_name},'both outputs admitted together')
+        for name in (pro_name,dru_name):
+            eq(manifest['outputs'][name]['sha256'],hashlib.sha256((accepted/name).read_bytes()).hexdigest(),
+               'accepted output binding')
+    eq(audit_count,[0,0,0],'each clean path independently audited')
+    previous=snapshot()
+    bad=yaml.safe_load(original);bad['classes']['VIN_TRUNK']['min_width']='0.001mm'
+    nets.write_text(yaml.safe_dump(bad))
+    for mode in ('legacy','catalog','accounted'):
+        try: attempt(mode)
+        except ArtifactProducerError: pass
+        else: raise AssertionError('invalid source admitted an artifact pair')
+        eq(snapshot(),previous,'failed generation preserves previous accepted pair')
+    nets.write_bytes(original)
+    for fault, error in (('missing',ArtifactValidationError),('partial',ArtifactProducerError),
+                         ('corrupt',ArtifactValidationError)):
+        try: attempt('accounted',fault)
+        except error: pass
+        else: raise AssertionError(f'{fault} outputs admitted')
+        eq(snapshot(),previous,'failed output admission preserves previous bundle')
+        eq(list(root.glob('.accepted.txn-*')),[],'failed staging cleaned')
+        eq(list(root.glob('workspace-*')),[],'disposable producer workspace cleaned')
+    check(audit_count[-1]!=0,'corruption reached independent rules checker')
+    events=[json.loads(line) for line in ledger.read_text().splitlines()]
+    ends=[row for row in events if row['event_type']=='TERMINAL']
+    eq([row['status'] for row in ends],['PASS','FAIL','PASS','PASS'],
+       'producer success remains separate from failed artifact admission')
+    check(all(row['stage_id']==binding.spec.id for row in events),'exact stage attribution')
+    eq((PROJECT/'03_src/rules/nets.yaml').read_bytes(),original,'archive unchanged')
+    check(not (root/'07_releases').exists(),'artifact bundle is not a release')
 
 
 if __name__ == "__main__":

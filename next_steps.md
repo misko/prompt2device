@@ -183,3 +183,13 @@ catalog's declared downstream closure remains conservative and diagnostic.
 Only this source-only stage is exercised; the copied provenance inputs are not
 a complete board-build snapshot. Next prioritize one artifact-producing stage
 with explicit output validation and failure cleanup, before automatic adoption.
+
+Artifact checkpoint: the USB Hub rules-generation stage now has a disposable
+legacy/catalog/accounted comparison through the existing artifact transaction.
+Independent rules audit reopens both generated files. Invalid source, missing
+outputs, partial output and a corrupted width cannot replace the accepted pair;
+failed staging and producer workspaces are cleaned. This tests one candidate
+bundle boundary, not atomic replacement of live project files or production
+driver adoption. Next: define explicit production adapter input/output and
+installation boundaries, then adopt one opt-in consumer without enabling cache
+reuse or changing existing gate authority.

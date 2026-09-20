@@ -402,3 +402,16 @@ owns an exit verdict and no output artifact; it needs no generated board.
 Disposable copies include the runner's required provenance inputs but do not
 represent a complete rebuild snapshot. This does not establish other stages'
 input completeness, output admission, shell behavior or safe cache reuse.
+
+
+The artifact-producing comparison is
+`tests/t1_pipeline_canary_usb.py::t_rules_artifact_pilot`. It runs the actual
+hash-pinned rules generator in disposable workspaces through legacy, catalog
+and accounted paths. The existing `ArtifactBundleTransaction` owns candidate
+publication; `rules_audit.py` independently reopens both outputs against source
+and board evidence. Invalid source, missing/partial output and inconsistent
+project/rule widths cannot replace the previous accepted bundle. A command PASS
+remains execution evidence when artifact admission later fails. This does not
+atomically install files into live `04_kicad`, change the legacy catalog's exit
+authority, prove complete producer dependencies, or enable cache reuse. Those
+production-adapter boundaries must be declared before consumer adoption.

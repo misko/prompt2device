@@ -762,3 +762,13 @@ the same diagnostics. Restoring the source passes and restores its identity.
 The catalog's actual dependency closure is asserted, with no reuse permission.
 Archived inputs remain untouched; the fixture neither executes the complete
 driver nor claims a complete project snapshot or release acceptance.
+
+
+`t1_pipeline_canary_usb.py::t_rules_artifact_pilot` exercises a real producer
+through legacy, catalog and accounted execution on disposable real-source copies.
+The existing artifact transaction admits the generated `.kicad_pro`/`.kicad_dru`
+pair only after independent rules audit reopens it. Invalid source, zero-exit
+missing output, nonzero partial output and corrupted class width all preserve
+the previous accepted bundle and clean staging. Recorded producer PASS cannot
+stand in for artifact acceptance. This is candidate-bundle qualification, not
+live multi-file installation, whole-board qualification or cache admission.

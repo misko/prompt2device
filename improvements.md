@@ -8971,3 +8971,26 @@ The bounded review caught an attribution mistake in the pilot: using the
 lifecycle label `placement` collapsed distinct catalog stages. The accounted
 invocation now uses the exact stage ID and tests every START/TERMINAL row for
 that identity. Lifecycle remains grouping metadata, not a stage identifier.
+
+
+## Real rules producer and artifact admission pilot — 2026-09-20
+
+The source-only pilot had no output artifact and could not expose stale-file or
+partial-publication failures. Add a bounded real rules-generator comparison:
+hash-pinned legacy invocation, catalog argv and accounted command all execute
+on disposable copies. Use the existing artifact transaction rather than a new
+publication protocol. Reopen both emitted rule/project files through the
+independent rules auditor before admitting the candidate pair.
+
+Hostile cases cover invalid source, successful exit with missing outputs,
+nonzero exit after one copied output, and a corrupt class width. Each must leave
+the previous accepted bundle intact; failed staging and workspaces are cleaned.
+The issue ledger deliberately retains producer PASS when later artifact
+validation fails: execution evidence and engineering acceptance are different
+facts. A fresh candidate directory prevents the previous good pair from making
+an empty successful command look productive.
+
+Remaining boundary: this pilot publishes a candidate bundle, not an atomic
+replacement of scattered live project files. Production adapters still need
+complete input/tool membership and an explicit installation/consumer contract.
+No archive, safety floor, digital zero-via contract or release gate is changed.
