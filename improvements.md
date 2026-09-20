@@ -8994,3 +8994,25 @@ Remaining boundary: this pilot publishes a candidate bundle, not an atomic
 replacement of scattered live project files. Production adapters still need
 complete input/tool membership and an explicit installation/consumer contract.
 No archive, safety floor, digital zero-via contract or release gate is changed.
+
+
+## Scope correction: use the existing process before expanding it — 2026-09-20
+
+User decision superseding the preceding framework next-step proposals: pause
+new bundle-consumer development, broad adapter migration and additional generic
+pilots. No consumer code was implemented. Keep useful regression coverage,
+existing gates and opt-in accounting. The growing chain of pilots had not yet
+shown savings on ordinary board work; another interface was not justified by
+technical feasibility alone.
+
+The current plan is consolidated in next_steps.md. A new abstraction needs a
+named production consumer and an observed failure the existing tools cannot
+handle. Skill guidance now makes optional experiments distinct from required
+project execution. Existing adopted contracts remain mandatory.
+
+First concrete P03 action: both mutable Crow first-article plans still directed
+operators to bottom-side ESD clamps, contradicting the sealed carrier v0.1.8 and
+pod v0.2.7 top-only SMD instructions. Correct those two sentences and link the
+exact order instructions. Sealed releases are untouched; broader P03 and power-up
+specification work remain open. No time/token saving is claimed from this small
+correction without comparative measurements.

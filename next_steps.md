@@ -143,53 +143,31 @@ owning source and affected gates, regardless of a model's verdict.
 - [Repository process backlog](improvements.md).
 
 
-## Modular process implementation — 2026-09-20
+## Process improvements — current decision
 
-This work is separate from the board ordering/first-article checklist above.
-It changes process tools, not the sealed carrier or pod releases.
+Use the existing project driver and owning gates. Framework expansion is paused;
+process work is not a prerequisite for ordering or ordinary board corrections.
 
-| Pass | Owner / effort | Status and completion boundary |
+| Area | Current state | Next action |
 |---|---|---|
-| Map existing boundaries | Terra medium inventory; implementation owner reconciles | Done: executable owners and adoption limits recorded in the existing execution graph |
-| Standardize interfaces | Existing strict schemas; bounded Astra medium review | Done for this slice: reuse StageSpec/StageResult, TaskEnvelope and artifact bundles; no competing schema |
-| Issue-level accounting | Terra medium implementation; integration owner review | Implemented opt-in ledger and bounded command integration; usage import requires explicit measured provider records |
-| One real workflow integration | Implementation owner | Native route-ownership validator exercised directly and through accounting, with clean and hostile corridor inputs |
-| Safe targeted reruns | Implementation owner; Astra medium boundary review | Diagnostic downstream impact implemented; automatic reuse/execution deliberately remains behind existing canary adoption requirements |
-| Geometry regression extraction | Sol medium engineering; Terra medium fixture support | Implemented native adjacent-pad composition and scoped-width envelope coupons; existing branch-wall/reattempt and pad-clearance fixtures reused. Done: adjacent compound via/stub atomic rejection through the production stitch CLI, with RED mutation proof. Remaining: project-driver adoption |
-| Remaining stage adapters | Sol medium integration owner | First real-stage comparison done: USB Hub source-rules shell, catalog command and accounted runner agree on clean/hostile/restored inputs. Remaining: other stage boundaries and complete input declarations before selective execution; no inferred acceptance |
-| Usage source adapters and pilot | Terra medium adapter work; Sol medium acceptance | Done: offline Codex/OpenRouter per-response ingestion with explicit issue/turn attribution, declared session coverage and idempotent atomic imports. Done: bounded disposable geometry pilot joins diagnostic impact, manual targeted native reruns and issue accounting. Remaining: live capture, automatic descendant discovery, issue waiting-state intervals, production-project adapter pilot |
+| Geometry regressions | Retained: adjacent escapes, native rule scope, atomic via/stub rejection | Use applicable existing checks when a real geometry change needs them |
+| Issue accounting | Available, opt-in: command ledger and offline provider imports | Use when attribution helps a concrete investigation; unknown usage stays unknown |
+| Dependency graph | Diagnostic only; no automatic reuse permission | Consult when useful, then follow the actual driver and mandatory gates |
+| Integration pilots | Completed, retained as regression coverage | No additional pilot solely to advance framework adoption |
+| New bundle consumer, driver migration and automatic reuse | Deferred; no consumer code was implemented | Reopen only for a named production consumer and demonstrated missing capability |
+| Live capture, descendant discovery and detailed time tracking | Deferred | Reopen if manual accounting demonstrably impedes real work |
+| Review/deficiency workflow | Existing review gates and deficiency lists retained | Defer convenience debt; keep functional and manufacturing blockers explicit |
+| Documentation/publication | Current roadmap here; history in Git and improvements.md | Publish the reviewed changes separately; no push performed in this pass |
 
-Two bounded Astra-medium review passes found no blocking issue in the
-root-owned diagnostic impact/runner changes. Runtime status remains execution
-evidence; the ledger cannot close findings, approve reuse or authorize release.
-The ledger's own tests separately verify attribution and arithmetic. Use one
-integration owner; supporting tasks own narrow files and return concrete tests.
+**Next real work:** finish P03 operator-document reconciliation, then P01/P02
+power-up and acceptance specifications. The first bounded P03 correction replaces
+stale bottom-side ESD inspection wording in both mutable first-article plans:
+carrier v0.1.8 and pod v0.2.7 order instructions require top-side SMD assembly.
+This does not amend sealed releases or close the rest of P03.
 
-
-Pilot checkpoint: `t2_pcb_flow.py::t_issue_geometry_pilot` runs native DRC
-directly and through the accounted runner on clean, deliberately crossed and
-corrected source geometry. It verifies identical verdicts, retained failed
-attempts, diagnostic downstream impact, restored source identity and unchanged
-independent sourcing. It does not execute automatic graph scheduling, authorize
-cache reuse, stage a release or prove a production project's dependencies.
-Next: adopt one actual project-stage adapter in shadow mode and compare declared
-inputs/outputs with the existing driver before expanding selective execution.
-
-Real-stage checkpoint: `t1_pipeline_canary_usb.py::t_source_rules_stage_pilot`
-compares the hash-pinned USB Hub source-rules shell step with its existing
-catalog command and accounted execution on disposable copies of actual rules.
-All three preserve clean/empty-class/restored verdicts and findings. The real
-catalog's declared downstream closure remains conservative and diagnostic.
-Only this source-only stage is exercised; the copied provenance inputs are not
-a complete board-build snapshot. Next prioritize one artifact-producing stage
-with explicit output validation and failure cleanup, before automatic adoption.
-
-Artifact checkpoint: the USB Hub rules-generation stage now has a disposable
-legacy/catalog/accounted comparison through the existing artifact transaction.
-Independent rules audit reopens both generated files. Invalid source, missing
-outputs, partial output and a corrupted width cannot replace the accepted pair;
-failed staging and producer workspaces are cleaned. This tests one candidate
-bundle boundary, not atomic replacement of live project files or production
-driver adoption. Next: define explicit production adapter input/output and
-installation boundaries, then adopt one opt-in consumer without enabling cache
-reuse or changing existing gate authority.
+For each real task, record the issue, changed source, owning check and outcome.
+Use existing timing/usage tools only where useful; do not reconstruct missing
+measurements. Compare repeated commands and retries before claiming savings.
+Add infrastructure only when a named consumer and concrete failure demonstrate
+a gap in the existing tools. One integration writer; inexpensive, bounded
+subagents only for independent work that saves effort.

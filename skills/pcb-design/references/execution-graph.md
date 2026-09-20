@@ -382,36 +382,18 @@ to add vias to zero-via digital paths. Automatic project-driver adoption remains
 future work; these coupons do not prove general routing completeness.
 
 
-The disposable integration pilot is
-`tests/t2_pcb_flow.py::t_issue_geometry_pilot`. It composes a fixture-declared diagnostic
-dependency graph, a manual source regeneration, real native DRC and the accounted command
-runner across clean/failing/corrected geometry. The native exit and exact finding
-set must match direct execution. Failed attempts remain in the ledger, accounting
-writes do not alter source identity, and independent part source stays unchanged.
-This is one bounded integration witness, not a production dependency inventory:
-it neither executes the graph automatically nor grants reuse, seal or release
-acceptance. Production adapter adoption still requires a driver comparison.
+## Optional integration experiments
 
+These retained tests establish bounded behavior, not an adoption roadmap:
 
-A first real-stage comparison is covered by
-`tests/t1_pipeline_canary_usb.py::t_source_rules_stage_pilot`: the existing
-hash-bound source-rules shell step, its catalog argv and the accounted runner
-must agree on clean, invalid and restored source input. It uses the actual
-catalog's conservative downstream closure, still diagnostic only. This stage
-owns an exit verdict and no output artifact; it needs no generated board.
-Disposable copies include the runner's required provenance inputs but do not
-represent a complete rebuild snapshot. This does not establish other stages'
-input completeness, output admission, shell behavior or safe cache reuse.
+| Test | Evidence boundary |
+|---|---|
+| `t2_pcb_flow.py::t_issue_geometry_pilot` | Fixture-defined diagnostic graph, native clean/fail/corrected results and accounted manual reruns |
+| `t1_pipeline_canary_usb.py::t_source_rules_stage_pilot` | One real hash-bound shell step agrees with catalog and accounted execution |
+| `t1_pipeline_canary_usb.py::t_rules_artifact_pilot` | Independent admission of a candidate rule-file pair; failed outputs preserve the prior bundle |
 
-
-The artifact-producing comparison is
-`tests/t1_pipeline_canary_usb.py::t_rules_artifact_pilot`. It runs the actual
-hash-pinned rules generator in disposable workspaces through legacy, catalog
-and accounted paths. The existing `ArtifactBundleTransaction` owns candidate
-publication; `rules_audit.py` independently reopens both outputs against source
-and board evidence. Invalid source, missing/partial output and inconsistent
-project/rule widths cannot replace the previous accepted bundle. A command PASS
-remains execution evidence when artifact admission later fails. This does not
-atomically install files into live `04_kicad`, change the legacy catalog's exit
-authority, prove complete producer dependencies, or enable cache reuse. Those
-production-adapter boundaries must be declared before consumer adoption.
+The existing project driver and owning gates remain authoritative. These tests
+do not establish complete production dependencies, automatic reuse, live-file
+installation or release acceptance. New consumers and broad driver migration
+are deferred until a real task identifies a named consumer and a demonstrated
+gap. Existing adopted receipt and artifact checks continue to apply.

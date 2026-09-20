@@ -22,6 +22,11 @@ why).
 
 ## Audit
 
+Experimental graph/pilot tools and optional issue accounting do not impose
+migration requirements on existing projects. Project drivers and their owning
+gates retain authority; new integration needs a named consumer and demonstrated
+missing capability. Existing adopted receipt/acceptance contracts still apply.
+
 - `pipeline_registry.py change_impact` computes diagnostic downstream impact
   from declared symbols, stages and categories; it cannot authorize cached
   evidence or execution. `tests/t1_pipeline_registry.py` pins independent

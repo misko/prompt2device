@@ -95,7 +95,7 @@ FAB_EXAMPLE_BINDINGS = {
 
 ENTRY_DOCS = (README, SKILL, GRAPH, DOCS_INDEX, HISTORY_INDEX, IMPROVEMENTS)
 CURRENT_ROOT_DOCS = {"CLAUDE.md", "README.md", "contracts.md", "improvements.md",
-                     "CONTRIBUTING.md", "THIRD_PARTY_NOTICES.md"}
+                     "CONTRIBUTING.md", "THIRD_PARTY_NOTICES.md", "next_steps.md"}
 LINK_RE = re.compile(
     r"!?\[[^\]]*\]\(\s*(?:<(?P<angle>[^>]+)>|(?P<plain>[^\s)]+))"
 )

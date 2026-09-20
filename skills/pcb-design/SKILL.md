@@ -260,11 +260,13 @@ in `references/lifecycle-and-backtrack.md`; a new model or handoff is not a rese
 A fresh agent resumes from committed source, the live beacon, journal, and
 content-addressed handoff—not from hidden conversation history.
 
-For modular reruns, use the existing [stage contracts](references/pipeline-stage-contract.md)
-and their diagnostic change-impact graph; unaffected stages still need valid
-acceptance evidence. For issue-level time/token attribution, use the opt-in
-ledger in [execution-runtime.md](references/execution-runtime.md); it records
-spending, never engineering progress or permission to retry.
+Use the existing project driver and owning checks; fix authoritative source
+and rerun affected mandatory gates. The [stage graph](references/pipeline-stage-contract.md)
+is diagnostic, not reuse permission. [Issue accounting](references/execution-runtime.md)
+is optional and grants no engineering acceptance. Experimental pilots and
+adapter migration are not prerequisites for ordinary board work. Add process
+infrastructure only for a named consumer and concrete failure that existing
+tools cannot handle; keep nonblocking convenience work in the deficiency list.
 
 ## Human reports
 
