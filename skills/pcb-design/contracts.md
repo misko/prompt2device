@@ -32,6 +32,13 @@ why).
   Closed records, deduplication, missing usage, overlap and interruption
   semantics are tested in `tests/t1_pipeline_issue_ledger.py`; actual validator
   exit preservation and admission failures in `tests/t2_pcb_flow.py`.
+- `scripts/pipeline_usage_import.py` owns versioned offline source manifests,
+  explicit Codex turn attribution and coverage; `openrouter_usage_adapter.py`
+  normalizes saved receipts. Both consume the ledger's public normalization and
+  atomic batch APIs. Schema-2 USAGE has no execution timing and never grants an
+  engineering verdict. Source snapshots and manifests remain local; no provider
+  call or private transcript export occurs. Validate with
+  `tests/t1_pipeline_usage_import.py` and `tests/t1_openrouter_usage_adapter.py`.
 
 - `scripts/commission_project.py` owns the exact scaffold manifest;
   `templates/README.md` summarizes it. A new project must pass

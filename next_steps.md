@@ -157,7 +157,7 @@ It changes process tools, not the sealed carrier or pod releases.
 | Safe targeted reruns | Implementation owner; Astra medium boundary review | Diagnostic downstream impact implemented; automatic reuse/execution deliberately remains behind existing canary adoption requirements |
 | Geometry regression extraction | Sol medium engineering; Terra medium fixture support | Remaining: generic pin-field, branch-wall and scoped-native-clearance coupons, reusing existing tests first |
 | Remaining stage adapters | Sol medium integration owner | Remaining: reconcile each real driver with the dependency graph before enabling selective execution; no inferred acceptance |
-| Usage source adapters and pilot | Terra medium adapter work; Sol medium acceptance | Remaining: Codex/OpenRouter automatic per-response ingestion, child-session coverage, issue waiting-state intervals, broader disposable-project pilot |
+| Usage source adapters and pilot | Terra medium adapter work; Sol medium acceptance | Done: offline Codex/OpenRouter per-response ingestion with explicit issue/turn attribution, declared session coverage and idempotent atomic imports. Remaining: live capture, automatic descendant discovery, issue waiting-state intervals, broader disposable-project pilot |
 
 Two bounded Astra-medium review passes found no blocking issue in the
 root-owned diagnostic impact/runner changes. Runtime status remains execution

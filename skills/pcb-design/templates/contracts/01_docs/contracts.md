@@ -32,7 +32,7 @@ one that is unrecoverable if lost.
 | `<target>-mechanical.md` | **the board's ANALYSIS of a device it must mate with**: the tolerance stack, the mating strategy, what the geometry means for THIS board. One file per mating target. NOT a design doc and NOT a decision — it is where external evidence is reasoned about, and it belongs beside `BRIEF.md` because, like the brief, it is something the board must be true to | **the NUMBERS live in `external_hardware/<device>/`, not here** (canon M-IMPORT, ADR-0005/0009): the device record is the single home, `facts.yaml` its machine index, and `03_src/rules/mates.yaml` the board's reference. This file may quote them WITH their grade while it reasons; it may not be the only place one exists. Every number it does state must say how it was obtained — a bare dimension with no method is a defect |
 | `sourcing/` | what to BUY for the self-supplied parts, and the evidence behind each number — dated, append-only, produced by `/shopping-list` | see `sourcing/contracts.md`; governed by canon M-QUOTE |
 | `contracts.md` | this file | |
-| `issue_usage.jsonl` | optional durable per-issue execution and provider-usage events | append only via `pipeline_issue_ledger.py`; no prompts, secrets, engineering verdict authority, or inferred billing |
+| `issue_usage.jsonl` | optional durable per-issue execution and provider-usage events | schema-1 execution and schema-2 usage-only observations via `pipeline_issue_ledger.py`; logical append only, atomic batches; no prompts, secrets, engineering verdict authority, or inferred billing |
 | `issue_usage.jsonl.lock` | local advisory writer lock for issue telemetry | generated, ignored, never evidence; do not remove while writers are active |
 
 ## Forbidden

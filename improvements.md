@@ -8849,3 +8849,37 @@ release is modified by this process slice. The repository-wide contract audit
 still reports existing debt (2,884 violations versus a 2,873 recorded ceiling;
 Crow carrier/pod contribute 11 unratcheted violations). This work does not raise
 the ceiling or claim that the whole repository test suite passes.
+
+
+## Offline issue-usage ingestion — 2026-09-20
+
+Situation: cumulative token snapshots, duplicate parent/child observations and
+missing execution timestamps can make retrospective issue totals misleading.
+Saved responses prove observed usage; they do not prove engineering completion
+or elapsed work time.
+
+Implemented: separate offline source adapters import per-response increments
+into schema-2 USAGE records through the existing issue ledger. An explicit
+manifest maps exact turns/responses to issues and attempts. Provider-scoped
+response identities deduplicate observations, including differing observer
+clocks; conflicting attribution rejects the whole batch before mutation.
+Locked, atomic file replacement and directory fsync preserve durable logical
+append semantics. Only allowlisted accounting fields are retained. Missing
+billing, timing and model metadata stay unknown. Declared source coverage is
+separate from automatic descendant discovery, which remains unimplemented.
+No provider call or engineering acceptance is authorized by this importer.
+
+Measured smoke evidence: nine saved OpenRouter receipts imported once with
+$3.7880943646 in historical reported cost; reimport added zero records. A
+historical Codex turn imported 1,099 incremental records, ignored 19,055
+cumulative snapshots and reported 17,218 unassigned records as partial coverage.
+Those numbers describe the tested snapshots, not ongoing session totals.
+Raw transcripts and local accounting fixtures remain outside the repository.
+
+Regression controls: absent/unexpected sessions, unassigned turns, malformed
+source tails, duplicate/conflicting attribution, wrong-turn model context,
+invented timing and partial batch writes. Removing unexpected-session coverage
+made its regression fail RED; restoring the condition passes GREEN. Future
+adapters must preserve these boundaries rather than infer attribution from
+conversation proximity. Live capture, waiting intervals and descendant
+inventory remain separate follow-up modules.

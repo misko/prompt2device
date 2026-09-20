@@ -388,6 +388,92 @@ not assumed to have zero usage.
 Keep the durable ledger outside disposable `06_build`; the optional project
 convention is `01_docs/issue_usage.jsonl` with a local ignored `.lock` sidecar.
 Existing projects adopt the template allowance before using that path. Keep
-raw session logs private and separate. Automatic Codex/OpenRouter ingestion,
-issue-state waiting intervals, and host-agent launch integration are later
-source adapters; this slice does not claim automatic capture of those calls.
+raw session logs private and separate. Offline saved-record ingestion is now
+available below. Live host-agent launch integration, automatic descendant-log
+discovery and issue-state waiting intervals remain separate work; no complete
+capture of all agents is claimed.
+
+
+### Offline usage-source adapters
+
+The source reader and ledger have separate interfaces:
+
+- `openrouter_usage_adapter.parse_response(mapping)` returns only provider
+  identity, model, status, usage, cost and observation time from a saved receipt.
+- `pipeline_usage_import.prepare_import(manifest_path)` streams local Codex
+  JSONL and reads saved OpenRouter JSON, returning normalized events plus source
+  hashes and coverage. It does not write the ledger.
+- `pipeline_issue_ledger.normalize_usage`, `normalize_event`,
+  `validate_event_batch` and `equivalent_event` own common validation.
+- `append_events(path, events)` validates the entire batch and existing history
+  under the shared lock, then atomically replaces the ledger with its unchanged
+  existing bytes plus new records. Identical responses are idempotent; conflicts
+  abort the batch. Files and the containing directory are fsynced.
+
+Use a local schema-1 manifest. Paths are relative to that manifest, or absolute.
+Never put raw prompts or credentials into it. `provider_scope` must remain the
+same for records from the same machine/account across parent and child logs:
+
+```json
+{
+  "schema": 1,
+  "provider_scope": "workstation-account-a",
+  "expected_session_ids": ["parent-session", "child-session"],
+  "sources": [
+    {
+      "format": "codex-rollout-v1",
+      "path": "parent-snapshot.jsonl",
+      "assignments": {
+        "exact-turn-id": {"issue_id": "ISSUE-17", "attempt_id": "attempt-1"}
+      }
+    },
+    {
+      "format": "openrouter-response-v1",
+      "path": "review-response.json",
+      "issue_id": "ISSUE-17",
+      "attempt_id": "review-1"
+    }
+  ]
+}
+```
+
+This example deliberately lists an expected child whose file is absent;
+coverage is PARTIAL until that session source is supplied. Codex assignments
+are exact turn IDs, not keyword guesses. A long turn spanning several issues
+belongs to an explicitly shared-overhead issue unless finer attribution exists.
+Unassigned records and unused assignments are reported. Child files are explicit
+sources; identical scoped response IDs count once across files and repeated
+imports. Different observation clocks alone do not create a new response; the
+first clock is retained. Conflicting issue, attempt, model, status or usage is
+rejected. No source parser can prove it was given every descendant session.
+
+```bash
+python3 skills/pcb-design/scripts/pipeline_usage_import.py \
+  --manifest /local/usage-import.json --ledger "$PROJECT/01_docs/issue_usage.jsonl" \
+  --dry-run
+python3 skills/pcb-design/scripts/pipeline_usage_import.py \
+  --manifest /local/usage-import.json --ledger "$PROJECT/01_docs/issue_usage.jsonl" \
+  --require-complete
+```
+
+Dry-run validates the import packet only, without creating the destination or
+checking its existing conflicts. The real import also validates the destination.
+`--require-complete` refuses missing/unexpected declared sessions, unassigned
+records and unmatched assignments before writing. Its completeness claim is
+only `DECLARED_SOURCES_COMPLETE`, always `all_descendants_verified: false`.
+Use a stable source snapshot; incomplete trailing JSON is rejected rather than
+silently discarded. Missing response IDs cannot be safely deduplicated.
+
+The local `codex-rollout-v1` adapter recognizes observed per-response
+`token_usage_record.payload.usage` fields. It excludes cumulative
+`event_msg/token_count`, and uses model/effort only from the exact turn context.
+It is a versioned local-log adapter, not a promise of a stable public log API.
+Cache-write tokens are not separately summarized; uncached input includes all
+input not reported as cached. No subscription pricing is inferred.
+
+Schema-2 USAGE adds `observed_at` to the schema-1 fields, requires a scoped
+response ID and null start/end/duration, and cannot share a run ID with execution
+events. Provider completion status is not an engineering verdict. Missing usage,
+cost and timing remain unknown. Execution timing coverage excludes usage-only
+observations and reports their missing durations separately. Summaries separate
+Codex and OpenRouter accounting authorities rather than inventing one bill.

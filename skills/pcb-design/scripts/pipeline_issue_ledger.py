@@ -20,8 +20,9 @@ token/cost coverage and both interval-union wall time and summed worker time.
 The schema intentionally has no cumulative ``token_count`` event: each run has
 at most one START and one TERMINAL observation, so retries can be deduplicated.
 A crash is represented by an ``INCOMPLETE`` start with null finish/duration;
-such a record remains visible in summaries.  Importing Codex task history is a
-separate data-source adapter and is deliberately not implemented here.
+such a record remains visible in summaries. Schema-2 USAGE observations carry
+per-response spending without inventing execution timing. The separate
+pipeline_usage_import adapter owns source parsing and explicit attribution.
 """
 from __future__ import annotations
 
@@ -32,6 +33,7 @@ import math
 import os
 import re
 import sys
+import tempfile
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
@@ -98,7 +100,7 @@ def _number(value: Any, where: str, *, nullable: bool = False) -> float | None:
     return float(value)
 
 
-def _usage(value: Any) -> dict[str, Any] | None:
+def normalize_usage(value: Any) -> dict[str, Any] | None:
     if value is None:
         return None
     if not isinstance(value, Mapping) or set(value) != _USAGE_FIELDS:
@@ -145,14 +147,16 @@ def normalize_event(value: Mapping[str, Any]) -> dict[str, Any]:
     """Return a validated plain event mapping with canonical numeric values."""
     if not isinstance(value, Mapping):
         _fail("event: expected a mapping")
-    if set(value) != _FIELDS:
-        _fail(f"event: fields differ (missing={sorted(_FIELDS - set(value))}, unknown={sorted(set(value) - _FIELDS)})")
-    if value["schema"] != SCHEMA or isinstance(value["schema"], bool):
-        _fail(f"schema: only schema {SCHEMA} is supported")
+    schema = value.get("schema")
+    if schema not in (1, 2) or isinstance(schema, bool):
+        _fail("schema: only schema 1 execution and schema 2 usage observations are supported")
+    fields = _FIELDS | {"observed_at"} if schema == 2 else _FIELDS
+    if set(value) != fields:
+        _fail(f"event: fields differ (missing={sorted(fields - set(value))}, unknown={sorted(set(value) - fields)})")
     event_id = _id(value["event_id"], "event_id")
     event_type = value["event_type"]
-    if event_type not in {"START", "TERMINAL"}:
-        _fail("event_type: expected START or TERMINAL")
+    if event_type not in ({"USAGE"} if schema == 2 else {"START", "TERMINAL"}):
+        _fail("event_type: schema 1 requires START/TERMINAL; schema 2 requires USAGE")
     response_id = _id(value["response_id"], "response_id", nullable=True)
     provider_scope = _id(value["provider_scope"], "provider_scope", nullable=True)
     if (response_id is None) != (provider_scope is None):
@@ -170,10 +174,15 @@ def normalize_event(value: Mapping[str, Any]) -> dict[str, Any]:
     status = value["status"]
     if status not in _STATUSES:
         _fail(f"status: expected one of {sorted(_STATUSES)}")
-    started_at, started = _timestamp(value["started_at"], "started_at")
+    started_at, started = _timestamp(value["started_at"], "started_at", nullable=schema == 2)
     finished_at, finished = _timestamp(value["finished_at"], "finished_at", nullable=True)
     elapsed = _number(value["elapsed_s"], "elapsed_s", nullable=True)
-    if event_type == "START":
+    if event_type == "USAGE":
+        if response_id is None or any(value[key] is not None for key in
+                                     ("started_at", "finished_at", "elapsed_s")):
+            _fail("USAGE requires a scoped response ID and null execution timing")
+        _timestamp(value["observed_at"], "observed_at", nullable=True)
+    elif event_type == "START":
         if status != "INCOMPLETE" or finished is not None or elapsed is not None:
             _fail("START events require INCOMPLETE status and null finished_at/elapsed_s")
         if response_id is not None or value["token_usage"] is not None or value["provider_cost_usd"] is not None:
@@ -188,18 +197,43 @@ def normalize_event(value: Mapping[str, Any]) -> dict[str, Any]:
         _fail("terminal INCOMPLETE events require finished_at and elapsed_s")
     if finished is not None and finished < started:
         _fail("finished_at cannot precede started_at")
-    return {"schema": SCHEMA, "event_id": event_id, "event_type": event_type,
+    return {"schema": schema, "event_id": event_id, "event_type": event_type,
             "response_id": response_id, "provider_scope": provider_scope,
             "issue_id": issue_id, "attempt_id": attempt_id, "run_id": run_id,
             "stage_id": stage_id, "model": model, "effort": effort, "status": status,
             "started_at": started_at, "finished_at": finished_at, "elapsed_s": elapsed,
             "provenance": _provenance(value["provenance"]),
-            "token_usage": _usage(value["token_usage"]),
-            "provider_cost_usd": _number(value["provider_cost_usd"], "provider_cost_usd", nullable=True)}
+            "token_usage": normalize_usage(value["token_usage"]),
+            "provider_cost_usd": _number(value["provider_cost_usd"], "provider_cost_usd", nullable=True),
+            **({"observed_at": value["observed_at"]} if schema == 2 else {})}
 
 
 def _canonical(event: Mapping[str, Any]) -> str:
     return json.dumps(event, sort_keys=True, separators=(",", ":"), ensure_ascii=False, allow_nan=False)
+
+
+def validate_response_id(value: Any) -> str:
+    """Shared provider-response identity grammar for ingestion adapters."""
+    return _id(value, "response_id")
+
+
+def equivalent_event(left: Mapping[str, Any], right: Mapping[str, Any]) -> bool:
+    """USAGE observation clocks can differ across parent/child log copies.
+
+    Preserve the first observed_at; every identity, attribution, usage, cost,
+    model and provenance field must agree. Execution events remain exact.
+    """
+    if left.get("schema") == right.get("schema") == 2:
+        return ({k: v for k, v in left.items() if k != "observed_at"} ==
+                {k: v for k, v in right.items() if k != "observed_at"})
+    return left == right
+
+
+def validate_event_batch(events: list[Mapping[str, Any]]) -> list[dict[str, Any]]:
+    """Public, pure validation boundary; grants no persistence or acceptance."""
+    normalized = [normalize_event(event) for event in events]
+    _validate_ledger(normalized)
+    return normalized
 
 
 def _locked(path: Path, exclusive: bool):
@@ -247,47 +281,76 @@ def _validate_ledger(events: list[dict[str, Any]]) -> None:
             if prior[key] != event[key]:
                 _fail(f"ledger: run_id {event['run_id']!r} has conflicting {key}")
         types = run_types.setdefault(event["run_id"], set())
+        if types and (event["event_type"] == "USAGE" or "USAGE" in types):
+            _fail("ledger: a USAGE observation must have its own response run_id")
         if event["event_type"] in types:
             _fail(f"ledger: run_id {event['run_id']!r} has multiple {event['event_type']} events")
         types.add(event["event_type"])
 
 
-def append_event(path: str | Path, event: Mapping[str, Any]) -> AppendResult:
-    """Durably append one event, or identify its exact idempotent replay."""
+def append_events(path: str | Path, events: list[Mapping[str, Any]]) -> list[AppendResult]:
+    """Validate a batch once and atomically publish its append-only suffix.
+
+    A shared sidecar lock protects both single and batch writers. A malformed
+    late observation cannot leave an earlier half-import committed. Existing
+    bytes are preserved exactly; replacement only commits the appended suffix.
+    """
     ledger = Path(path)
-    candidate = normalize_event(event)
+    candidates = [normalize_event(event) for event in events]
     lock, mode = _locked(ledger, True)
+    temporary = None
     try:
         fcntl.flock(lock.fileno(), mode)
-        existing_events = _read_events(ledger)
-        for existing in existing_events:
-            same_event = existing["event_id"] == candidate["event_id"]
-            same_response = (candidate["response_id"] is not None and
-                             existing["response_id"] == candidate["response_id"] and
-                             existing["provider_scope"] == candidate["provider_scope"])
-            if same_event or same_response:
-                if _canonical(existing) == _canonical(candidate):
-                    return AppendResult("DUPLICATE", candidate["event_id"])
-                identity = "event_id" if same_event else "response_id"
-                raise LedgerConflictError(f"conflicting duplicate {identity}: {candidate[identity]!r}")
-        _validate_ledger(existing_events + [candidate])
-        ledger.parent.mkdir(parents=True, exist_ok=True)
-        payload = (_canonical(candidate) + "\n").encode("utf-8")
-        fd = os.open(ledger, os.O_WRONLY | os.O_CREAT | os.O_APPEND, 0o644)
-        try:
-            written = 0
-            while written < len(payload):
-                count = os.write(fd, payload[written:])
-                if count <= 0:
-                    raise OSError("short write while appending ledger event")
-                written += count
-            os.fsync(fd)
-        finally:
-            os.close(fd)
-        return AppendResult("APPENDED", candidate["event_id"])
+        existing = _read_events(ledger)
+        by_id = {event["event_id"]: event for event in existing}
+        by_response = {(event["provider_scope"], event["response_id"]): event
+                       for event in existing if event["response_id"] is not None}
+        additions, results = [], []
+        for candidate in candidates:
+            key = (candidate["provider_scope"], candidate["response_id"])
+            prior = by_id.get(candidate["event_id"])
+            identity = "event_id"
+            if prior is None and candidate["response_id"] is not None:
+                prior, identity = by_response.get(key), "response_id"
+            if prior is not None:
+                if not equivalent_event(prior, candidate):
+                    raise LedgerConflictError(f"conflicting duplicate {identity}")
+                results.append(AppendResult("DUPLICATE", candidate["event_id"]))
+                continue
+            by_id[candidate["event_id"]] = candidate
+            if candidate["response_id"] is not None:
+                by_response[key] = candidate
+            additions.append(candidate)
+            results.append(AppendResult("APPENDED", candidate["event_id"]))
+        _validate_ledger(existing + additions)
+        if additions:
+            with tempfile.NamedTemporaryFile(dir=ledger.parent, prefix=".usage-",
+                                             delete=False) as stream:
+                temporary = Path(stream.name)
+                if ledger.exists():
+                    stream.write(ledger.read_bytes())
+                for event in additions:
+                    stream.write((_canonical(event) + "\n").encode("utf-8"))
+                stream.flush()
+                os.fsync(stream.fileno())
+            os.replace(temporary, ledger)
+            temporary = None
+            directory_fd = os.open(ledger.parent, os.O_RDONLY | os.O_DIRECTORY)
+            try:
+                os.fsync(directory_fd)
+            finally:
+                os.close(directory_fd)
+        return results
     finally:
+        if temporary is not None:
+            temporary.unlink(missing_ok=True)
         fcntl.flock(lock.fileno(), fcntl.LOCK_UN)
         lock.close()
+
+
+def append_event(path: str | Path, event: Mapping[str, Any]) -> AppendResult:
+    """Durably append one event, or identify its exact idempotent replay."""
+    return append_events(path, [event])[0]
 
 
 def _field(value: Any, key: str, default: Any = None) -> Any:
@@ -395,16 +458,21 @@ def _issue_summary(events: list[dict[str, Any]]) -> dict[str, Any]:
     events = list(by_run.values())
     costs = [event["provider_cost_usd"] for event in events]
     measured_costs = [x for x in costs if x is not None]
-    completed = [x for x in events if x["status"] != "INCOMPLETE"]
+    executions = [x for x in events if x["event_type"] != "USAGE"]
+    completed = [x for x in executions if x["status"] != "INCOMPLETE"]
     return {"event_count": len(events), "completed_run_count": len(completed),
-            "incomplete_run_count": len(events) - len(completed),
+            "incomplete_run_count": len(executions) - len(completed),
+            "usage_observation_count": len(events) - len(executions),
+            "timing_coverage": {"execution_count": len(executions),
+                                "unknown_duration_count": sum(x["elapsed_s"] is None for x in executions),
+                                "usage_unknown_duration_count": len(events) - len(executions)},
             "execution_interval_union_s": _union_seconds(events),
             "summed_worker_duration_s": sum(x["elapsed_s"] or 0.0 for x in events),
             "token_usage": _token_summary(events),
             "provider_cost_usd": {"status": "MEASURED" if len(measured_costs) == len(events) else ("PARTIAL" if measured_costs else "UNKNOWN"),
                                   "measured_run_count": len(measured_costs), "run_count": len(events),
                                   **({"total": sum(measured_costs)} if measured_costs else {})},
-            "status_counts": {status: sum(x["status"] == status for x in events) for status in sorted(_STATUSES) if any(x["status"] == status for x in events)}}
+            "status_counts": {status: sum(x["status"] == status for x in executions) for status in sorted(_STATUSES) if any(x["status"] == status for x in executions)}}
 
 
 def summarize(path: str | Path, issue_id: str | None = None) -> dict[str, Any]:

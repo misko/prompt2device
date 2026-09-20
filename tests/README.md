@@ -708,3 +708,13 @@ admission was mutation-tested RED, then restored GREEN. The decision-progress
 suite joins accounting to the existing reserved attempt and proves that an
 unassessed launch still blocks another attempt. These checks prove
 accounting and boundary behavior, not whole-board routability or release readiness.
+
+
+Offline usage ingestion is covered by `t1_pipeline_usage_import.py` (11 tests,
+7 known-bads) and `t1_openrouter_usage_adapter.py` (5 tests, 1 known-bad).
+Fixtures distinguish increments from cumulative totals, retain unknown fields,
+deduplicate parent/child observations despite different observer timestamps,
+and reject conflicts, invented timing and malformed tails before any append.
+Missing/unexpected sessions and unassigned turns prevent complete-coverage
+claims. Removing unexpected-session coverage was mutation-tested RED, then
+restored GREEN. Imports are accounting only; no provider calls or board writes.
