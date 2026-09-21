@@ -189,7 +189,7 @@ focused test alone does not complete a checkpoint family.
 | Item | Current evidence | Remaining acceptance |
 |---|---|---|
 | Incident provenance | Three packets in `tests/checkpoints/incidents/`; cited retrospective and historical revisions resolve in Git | Keep reductions and case coverage aligned as implementation lands |
-| Decision admission | Source/native compositor and conductor integration under implementation | Protect actual `nets.yaml` clock contracts as well as critical pairs; verify native net anchors, authored assembly policy, production refusal and fresh recovery |
+| Decision admission | Implemented at `6fdf970a`; real pre-fix RED, corrected refusal/valid controls, focused Sol acceptance and fresh Sol recovery PASS | Complete; revalidate affected checks if later integration changes its authorities |
 | Coupled geometry | Existing native neighborhood fixture reports combined `tracks_crossing`; candidate hard-DRC classifier currently omits it | Preserve actual pre-fix RED; implement combined witness admission after family 1 closes |
 | Review/publication | Existing authorities identified; read-only integration design complete | Implement early composition without requiring completed reviews or weakening final acceptance |
 
@@ -198,3 +198,7 @@ Historical revisions independently resolved during integration:
 `39510ae9a664c35878ade2dc1ac655c3adbd9916` (top-only assembly),
 `99557b65a4b74892b1ac61e5a3753463bab9d133` (carrier source), and
 `2f16225630637955b43f3446419cad2f8797e17b` (transport-safe integration).
+
+Decision-admission validation: `tests/checkpoints/evidence/2026-09-20-decision-admission-validation.json`.
+The fresh Sol medium trial passed independent grading with protected sources intact;
+its recorder demonstrates admission only, not a completed routed board.

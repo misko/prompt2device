@@ -1,0 +1,95 @@
+{
+  "schema": 1,
+  "date": "2026-09-20",
+  "family": "decision-admission",
+  "repository_revision": "6fdf970a709228ea5aa4b20af8be66f9e52dd13b",
+  "case_manifest_sha256": "2ae4546520d19d34bc2b09e0a82d2b138e3877ad0e3a3e6d8a2487b5d41187eb",
+  "trusted_skill_map_sha256": "9dd167ed44498f32ca382cbfbc2ff85a59e9b259140a1d58a1b01e52e4b3fc62",
+  "trusted_tool_map_sha256": "adf9b5a8bfaa8760cf3cc35d8295177dbab9aa0675bbc1f410366a9be1f80fa4",
+  "initial_outcome": "FAIL",
+  "initial_findings": [
+    "U1-MACHINE-ASSEMBLY-REQUIRED",
+    "DDA-ASSEMBLY-OWNER",
+    "DDA-PROTECTED-NETS-DRIFT",
+    "DDA-SMD-OWNER-MISSING",
+    "DDA-RETIRED-PAD-ANCHOR",
+    "ADMISSION-COMMAND-FAILED",
+    "ROUTE-NOT-INVOKED"
+  ],
+  "final_outcome": "PASS",
+  "engineering_outcome": "PASS",
+  "final_findings": [],
+  "evidence": {
+    "admission": "native PASS",
+    "production_complete": false,
+    "route_recorder": "06_build/route-command.json"
+  },
+  "agent": {
+    "attempts": 1,
+    "deadline_enforcement": "host-supervised; no hard token or dollar cap",
+    "effort": "medium",
+    "first_observed_at": "2026-09-21T00:55:50.503151+00:00",
+    "handback_observed_at": "2026-09-21T00:57:31.031197+00:00",
+    "host_task_status": "completed",
+    "model": "gpt-5.6-sol",
+    "process_cleanup": "UNKNOWN",
+    "provider": "codex-host-collaboration",
+    "task": "/root/solve_decision_admission_checkpoint",
+    "usage": "UNKNOWN"
+  },
+  "observed_handback_interval_s": 100.528,
+  "timing_scope": "Interval between first supervisor observation and observed handback; grader elapsed and model usage are separate. Not a provider execution-time or cost measurement.",
+  "grader_elapsed_s": 0.424451,
+  "review": {
+    "model": "gpt-5.6-sol",
+    "effort": "medium",
+    "verdict": "ACCEPT",
+    "scope": "Focused admission, protected contracts, assembly ownership, native anchors, conductor and checkpoint boundary; concrete false-green repros corrected before solve"
+  },
+  "checks": {
+    "t1_design_decision_admission": {
+      "passed": 29,
+      "known_bad": 23
+    },
+    "t1_decision_admission_integration": {
+      "passed": 7,
+      "known_bad": 5
+    },
+    "t1_assembly_gates": {
+      "passed": 51
+    },
+    "t2_pcb_flow": {
+      "passed": 47,
+      "known_bad": 22
+    },
+    "t1_rebuild_templates": {
+      "passed": 67,
+      "known_bad": 31,
+      "declared_blind_spots": 1
+    },
+    "t1_schema_reader": {
+      "passed": 28,
+      "known_bad": 13,
+      "declared_blind_spots": 1
+    },
+    "t1_checkpoint_framework": {
+      "passed": 16,
+      "known_bad": 12
+    },
+    "t2_checkpoint_cases": {
+      "passed": 5,
+      "known_bad": 3
+    },
+    "contracts_audit_core": {
+      "graded_files": 747,
+      "violations": 0,
+      "project_scope": "not graded"
+    }
+  },
+  "limitations": [
+    "Synthetic Crow reduction; not a full historical board replay or production release acceptance.",
+    "Agent token usage and cost UNKNOWN; host process cleanup UNKNOWN.",
+    "Fixture and trusted authorities were frozen for the trial; later unrelated skill changes require appropriately scoped revalidation.",
+    "Publication and remaining two checkpoint families are still incomplete."
+  ]
+}

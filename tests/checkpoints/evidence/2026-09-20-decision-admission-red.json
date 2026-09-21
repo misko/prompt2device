@@ -62,5 +62,48 @@
     "authorization": "No --issue, --investigation or --usage-ledger option was supplied. The immutable parser predates --require-decision-admission; the corrected arms use that ratchet explicitly.",
     "claim_limit": "The corrected gate reports production_stage as not complete"
   },
+  "helper_hash_red_green": {
+    "scope": "Focused handoff tool-identity regression for the three imported owners used by decision admission; no production, test, case or skill source was edited",
+    "baseline": {
+      "commit": "e1c8f2bb9eab1c815b60a55093be62e6461fe116",
+      "pcb_flow_sha256": "36597d5770f2d1ca906d5e5cdc1c016bb37cdc465f5dffa1acc3e3a77ea3f87a",
+      "source": "The same full git-archive extraction recorded above"
+    },
+    "corrected": {
+      "pcb_flow_sha256": "7e8ceea66bb9c79a76357eb87c7aeaee3459bfbea52d9e2145f4566d5e841849",
+      "test": "tests/t2_pcb_flow.py::t_decision_policy_helpers_stale_handoff",
+      "test_sha256": "2da9b7938aa6248c8f03e25f2417624a386729412f3d4fa64ead49403f4b19aa"
+    },
+    "subjects": {
+      "skills/kicad-pcb/scripts/copper_length_audit.py": "e9eb8cc66d4f2ad608bf8b856c0b1b495110c5e580a392d54d06df716b0eb127",
+      "skills/jlcpcb-fab/scripts/assembly_coverage.py": "ab685d1d02be7aa7fc9893be49a3eb5be805dc470fe1bb19c4f851062b1f62be",
+      "skills/jlcpcb-fab/scripts/manufacturing_readiness.py": "21d135035f2966206c87ae370bb9b7df90c94a5f8562ff2a5d935eec50618bad"
+    },
+    "probe": {
+      "path": "$TMP/helper_hash_probe.py",
+      "sha256": "32cbe82276d7b530e4ab273530d226b52766760be3d6e706c97c9ba61255023e",
+      "method": "Load immutable pcb_flow.py, copy tool_files plus the three helpers into a disposable mirror, write a handoff, mutate one mirrored helper, then validate that exact handoff"
+    },
+    "commands": {
+      "pref_fix": "/usr/bin/python3 $TMP/helper_hash_probe.py $TMP/old-source/skills/kicad-pcb/scripts/pcb_flow.py $WORKTREE/tests",
+      "corrected": "/usr/bin/python3 -c 'import sys; sys.path.insert(0, \"tests\"); import t2_pcb_flow; t2_pcb_flow.t_decision_policy_helpers_stale_handoff()'"
+    },
+    "outcomes": {
+      "pref_fix": {
+        "process_exit": 0,
+        "fresh_validation_exits": [0, 0, 0],
+        "post_mutation_validation_exits": [0, 0, 0],
+        "result": "RED: e1c8f2bb accepted every stale handoff because none of the three imported helpers was in tool_files()"
+      },
+      "corrected": {
+        "process_exit": 0,
+        "fresh_validation_exits": [0, 0, 0],
+        "post_mutation_validation_exits": [2, 2, 2],
+        "finding_each": "STALE handoff: tool hash changed",
+        "result": "GREEN: the exact focused regression passed for all three helpers"
+      }
+    },
+    "mutation_isolation": "Both arms mutate only helper copies under /tmp; shared helper and test files were read-only"
+  },
   "result": "RED established against e1c8f2bb; corrected invalid refusal and valid-control launch both established"
 }
