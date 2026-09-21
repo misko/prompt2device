@@ -1,7 +1,8 @@
 # Update and test the PCB design process
 
-Status: implementation in progress. Acceptance remains governed by the unchecked
-completion criteria below. User instruction: use Sol subagents for bounded work.
+Status: implemented, tested and published. The evidence below records accepted
+recovery, the retained harness failure, and inherited repository test debt.
+Bounded implementation and review work used Sol medium subagents.
 
 ## Objective
 
@@ -175,7 +176,7 @@ unresolved engineering question; do not use larger models for routine extraction
 - [x] Fresh-agent recovery is demonstrated for all three families through the same framework.
 - [x] Applicable repository checks and focused boundary review are complete; inherited failures are recorded separately.
 - [x] Documentation distinguishes implemented behavior, limitations and deferred work.
-- [ ] Reviewed changes are published and remote state is verified.
+- [x] Reviewed changes are published and remote state is verified.
 
 Completion requires earlier detection of the documented failure modes and valid
 recovery, without a replacement workflow engine, weakened engineering constraints
@@ -190,8 +191,8 @@ focused test alone does not complete a checkpoint family.
 |---|---|---|
 | Incident provenance | Three packets in `tests/checkpoints/incidents/`; cited retrospective and historical revisions resolve in Git | Keep reductions and case coverage aligned as implementation lands |
 | Decision admission | Implemented at `6fdf970a`; real pre-fix RED, corrected refusal/valid controls, focused Sol acceptance and fresh Sol recovery PASS | Complete; revalidate affected checks if later integration changes its authorities |
-| Coupled geometry | Implemented at `379f6ca6`; historical candidate-boundary RED, 8 leaf and 6 checkpoint tests pass; fresh Sol boundary review accepted source-rule regeneration, tool binding and independent receipt verification | Final integration/publication checks pending; recovery evidence and limitations below |
-| Review/publication | Implemented at `379f6ca6`; 14 preflight, 8 transport and 6 checkpoint tests pass; fresh Sol boundary review accepted corrected stage, source, packet and archive checks while preserving generic commissions | Final integration/publication checks pending; recovery evidence and limitations below |
+| Coupled geometry | Implemented at `379f6ca6`; historical candidate-boundary RED, 8 leaf and 6 checkpoint tests pass; fresh Sol boundary review accepted source-rule regeneration, tool binding and independent receipt verification | Complete; recovery evidence and limitations below |
+| Review/publication | Implemented at `379f6ca6`; 14 preflight, 8 transport and 6 checkpoint tests pass; fresh Sol boundary review accepted corrected stage, source, packet and archive checks while preserving generic commissions | Complete; recovery evidence and limitations below |
 
 Historical revisions independently resolved during integration:
 `0dd098e2b58dc8750b19ab9305a78e46a9c92c5b` (retrospective),
@@ -210,3 +211,11 @@ reuse in the test harness. The original failed result is retained. After correct
 the harness, deterministic replay of the exact observed source and handoff passed
 the same runner and repeated independent grades while preserving earlier evidence.
 This replay is not a second model attempt or an uninterrupted first-attempt PASS.
+
+Publication: implementation and recovery evidence were pushed to `origin/main` at
+`76a370e0e1558b5e6408c93fb2034b7154c016e5`; `git ls-remote` returned that exact
+commit. `T-PUBLISH` and `P-PUBLISH` passed for the six-commit change from
+`e9296d26620f5c86a46a9ddacb421db5827b5d03`. Local publication CI checks passed
+45 tests. The publication gate graded zero PCB projects because this change
+contains process, skill and test artifacts only. This closeout entry records that
+verified implementation publication; final remote CI is checked in the task.

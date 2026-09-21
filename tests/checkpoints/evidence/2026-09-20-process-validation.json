@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "date": "2026-09-20",
-  "status": "engineering validation complete; publication pending",
+  "status": "implemented, tested and published; inherited repository debt documented",
   "families": {
     "coupled_geometry": {
       "fresh_trial": {
@@ -294,5 +294,18 @@
       "publication_transport": 8,
       "all_passed": true
     }
+  },
+  "publication": {
+    "base": "e9296d26620f5c86a46a9ddacb421db5827b5d03",
+    "implementation_commit": "76a370e0e1558b5e6408c93fb2034b7154c016e5",
+    "remote_main_verified": "76a370e0e1558b5e6408c93fb2034b7154c016e5",
+    "transport_gate": "PASS",
+    "publication_gate": "PASS",
+    "pcb_projects_graded": 0,
+    "boards_graded": 0,
+    "scope": "process, skill and tests only",
+    "transport_log_sha256": "d2ed1b00790f192bfa9e13b3a00cb7678488b55dd94e84d9c0a9c9c3d1ae6be9",
+    "publication_log_sha256": "aa6bd7ee4e8f6d658730aea7fd8cb540fc0b73ea107bfbf4a3269a61c2123d2c",
+    "followup": "This record documents the published implementation commit; final closeout-record HEAD and remote CI are separately verified in the task."
   }
 }
