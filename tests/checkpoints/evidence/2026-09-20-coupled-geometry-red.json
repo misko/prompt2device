@@ -1,0 +1,114 @@
+{
+  "schema": 1,
+  "kind": "coupled-geometry-prefixed-red-evidence-v1",
+  "recorded_on": "2026-09-20",
+  "repository_commit": "e1c8f2bb9eab1c815b60a55093be62e6461fe116",
+  "commit_subject": "Record Crow process regression implementation plan and Sol delegation",
+  "environment": {
+    "kicad_cli": "10.0.4",
+    "python": "3.12.3"
+  },
+  "sources": {
+    "classifier": {
+      "path": "skills/kicad-pcb/scripts/route_candidate_workspace.py",
+      "git_blob": "19ee4db2fe34e9fd6208c762af3ebda0dfa477c6",
+      "sha256": "ec879170618248ee0b0f270c04f8e33f0b703697267b3e15d35366844d0083d7"
+    },
+    "native_coupon": {
+      "path": "tests/t2_route_neighborhood.py",
+      "sha256": "59b79b51ebc3e8ca128cc5279d62375f295f746341011f0c1d6a1f9b5f64ebdf"
+    },
+    "identity_checks": {
+      "head_equal_to_repository_commit": true,
+      "classifier_and_coupon_diff_against_repository_commit": false
+    }
+  },
+  "scratch_root": "/tmp/coupled-geometry-red-e1c8f2bb.O4Jng1",
+  "commands": [
+    {
+      "purpose": "bind the immutable historical sources",
+      "shell": "git rev-parse HEAD && git rev-parse e1c8f2bb && git rev-parse e1c8f2bb:skills/kicad-pcb/scripts/route_candidate_workspace.py && git hash-object skills/kicad-pcb/scripts/route_candidate_workspace.py; git show e1c8f2bb:skills/kicad-pcb/scripts/route_candidate_workspace.py | sha256sum; sha256sum skills/kicad-pcb/scripts/route_candidate_workspace.py; git show e1c8f2bb:tests/t2_route_neighborhood.py | sha256sum; sha256sum tests/t2_route_neighborhood.py; git diff --quiet e1c8f2bb -- skills/kicad-pcb/scripts/route_candidate_workspace.py tests/t2_route_neighborhood.py"
+    },
+    {
+      "purpose": "generate isolated, blocked-combined, and corrected-combined native reports with the existing coupon helper",
+      "shell": "scratch_dir=$(mktemp -d /tmp/coupled-geometry-red-e1c8f2bb.XXXXXX); python3 - \"$scratch_dir\"",
+      "stdin": "import importlib.util\nfrom pathlib import Path\nimport sys\nroot = Path(sys.argv[1])\ntests = Path.cwd() / 'tests'\nsys.path.insert(0, str(tests))\nspec = importlib.util.spec_from_file_location('coupon', tests / 't2_route_neighborhood.py')\nmod = importlib.util.module_from_spec(spec)\nspec.loader.exec_module(mod)\nblocked = {'ESCAPE': [(5, 5), (9, 5)], 'BRANCH': [(5, 5.5), (6, 5.5), (6, 4), (9, 4)]}\ncorrected = {'ESCAPE': [(5, 5), (9, 5)], 'BRANCH': [(5, 5.5), (5, 7), (11, 7), (11, 4), (9, 4)]}\ncases = [('isolated_escape', blocked, ['ESCAPE']), ('isolated_branch', blocked, ['BRANCH']), ('combined_blocked', blocked, ['ESCAPE', 'BRANCH']), ('combined_corrected', corrected, ['ESCAPE', 'BRANCH'])]\nfor name, paths, order in cases:\n    case_dir = root / name\n    case_dir.mkdir()\n    mod.tmpdir = lambda _prefix, case_dir=case_dir: case_dir\n    print(name, sorted(mod.native_report(paths, order)))"
+    },
+    {
+      "purpose": "replay only the immutable candidate physical-classification predicate over each fresh native report",
+      "shell": "python3 - /tmp/coupled-geometry-red-e1c8f2bb.O4Jng1",
+      "stdin": "import hashlib\nimport json\nfrom pathlib import Path\nimport sys\nroot = Path(sys.argv[1])\nsys.path.insert(0, str(Path.cwd() / 'skills/kicad-pcb/scripts'))\nimport route_candidate_workspace as legacy\nfor case in ('isolated_escape', 'isolated_branch', 'combined_blocked', 'combined_corrected'):\n    path = root / case / 'drc.json'\n    raw = path.read_bytes()\n    payload = json.loads(raw)\n    hits = [row for row in payload.get('violations', []) if row.get('type') in legacy.HARD_DRC_TYPES]\n    status = 'FAIL' if hits else 'PASS'\n    print(case, hashlib.sha256(raw).hexdigest(), [row.get('type') for row in payload.get('violations', [])], [row.get('type') for row in hits], status)"
+    }
+  ],
+  "historical_classifier": {
+    "hard_drc_types": [
+      "annular_width",
+      "board_edge",
+      "clearance",
+      "copper_edge_clearance",
+      "diff_pair_uncoupled_length_too_long",
+      "drill_out_of_range",
+      "hole_clearance",
+      "hole_to_hole",
+      "shorting_items",
+      "through_hole_pad_without_hole",
+      "track_width",
+      "via_diameter",
+      "via_in_pad"
+    ],
+    "tracks_crossing_is_hard": false,
+    "predicate_replayed": "hits = violations whose type is in HARD_DRC_TYPES; with a successful native process, FAIL iff hits is nonempty, otherwise PASS"
+  },
+  "cases": [
+    {
+      "id": "isolated_escape",
+      "report": "/tmp/coupled-geometry-red-e1c8f2bb.O4Jng1/isolated_escape/drc.json",
+      "report_sha256": "3d7598d75a44fd8d06f98dd8c7e39ef41245ad2da4bc12a1593485d46e6ee92f",
+      "report_size": 1084,
+      "native_counts": {"violations": 0, "unconnected": 0, "schematic_parity": 0},
+      "native_violation_types": [],
+      "coupon_conflict_pairs": [],
+      "classifier_hard_hits": [],
+      "classifier_physical_result": "PASS"
+    },
+    {
+      "id": "isolated_branch",
+      "report": "/tmp/coupled-geometry-red-e1c8f2bb.O4Jng1/isolated_branch/drc.json",
+      "report_sha256": "745b328e957c7dfb3e2191e775540f980b4ec96280b35c8f16c9882f9b86b6b6",
+      "report_size": 1084,
+      "native_counts": {"violations": 0, "unconnected": 0, "schematic_parity": 0},
+      "native_violation_types": [],
+      "coupon_conflict_pairs": [],
+      "classifier_hard_hits": [],
+      "classifier_physical_result": "PASS"
+    },
+    {
+      "id": "combined_blocked",
+      "report": "/tmp/coupled-geometry-red-e1c8f2bb.O4Jng1/combined_blocked/drc.json",
+      "report_sha256": "af768836fe83d8785378d8f711fad57270974f5a1a59eb90b663d46f22ba1b73",
+      "report_size": 1867,
+      "native_counts": {"violations": 1, "unconnected": 0, "schematic_parity": 0},
+      "native_violation_types": ["tracks_crossing"],
+      "coupon_conflict_pairs": [["BRANCH", "ESCAPE"]],
+      "classifier_hard_hits": [],
+      "classifier_physical_result": "PASS",
+      "red": true
+    },
+    {
+      "id": "combined_corrected",
+      "report": "/tmp/coupled-geometry-red-e1c8f2bb.O4Jng1/combined_corrected/drc.json",
+      "report_sha256": "af8fa43f4904673c7b2f798a5ce7009f68b2c1b272a4bf247d77c5a0e6772d95",
+      "report_size": 1084,
+      "native_counts": {"violations": 0, "unconnected": 0, "schematic_parity": 0},
+      "native_violation_types": [],
+      "coupon_conflict_pairs": [],
+      "classifier_hard_hits": [],
+      "classifier_physical_result": "PASS"
+    }
+  ],
+  "claim": {
+    "demonstrated": "At immutable commit e1c8f2bb, the candidate physical-classification predicate returns PASS for a fresh native report whose only violation is tracks_crossing. Each isolated arm and the corrected combined witness are natively clean, while the blocked combined witness records the exact foreign-net conflict with no unconnected items.",
+    "not_demonstrated": "This is a classifier-only RED. grade_candidate and the full candidate transaction were not invoked, so this artifact does not claim that every other candidate-boundary predicate passed or that an accepted candidate receipt was published.",
+    "engineering_limit": "The coupon is a fixed rejected witness. It proves a concrete combined collision and the historical classification gap; it does not prove that the placement is globally impossible or that no alternate legal route exists."
+  }
+}

@@ -166,7 +166,7 @@ unresolved engineering question; do not use larger models for routine extraction
 
 ## Completion checklist
 
-- [ ] Three incident packets have explicit provenance and reduction boundaries.
+- [x] Three incident packets have explicit provenance and reduction boundaries.
 - [ ] Three components have clear source ownership and invocation boundaries.
 - [ ] Deterministic RED/GREEN evidence exists for each implemented improvement.
 - [ ] Valid repairs and invalid shortcuts exercise each independent grader.
@@ -180,3 +180,21 @@ unresolved engineering question; do not use larger models for routine extraction
 Completion requires earlier detection of the documented failure modes and valid
 recovery, without a replacement workflow engine, weakened engineering constraints
 or reduced final-release coverage.
+
+## Implementation evidence ledger
+
+Keep this ledger distinct from the acceptance checklist: implementation or a
+focused test alone does not complete a checkpoint family.
+
+| Item | Current evidence | Remaining acceptance |
+|---|---|---|
+| Incident provenance | Three packets in `tests/checkpoints/incidents/`; cited retrospective and historical revisions resolve in Git | Keep reductions and case coverage aligned as implementation lands |
+| Decision admission | Source/native compositor and conductor integration under implementation | Protect actual `nets.yaml` clock contracts as well as critical pairs; verify native net anchors, authored assembly policy, production refusal and fresh recovery |
+| Coupled geometry | Existing native neighborhood fixture reports combined `tracks_crossing`; candidate hard-DRC classifier currently omits it | Preserve actual pre-fix RED; implement combined witness admission after family 1 closes |
+| Review/publication | Existing authorities identified; read-only integration design complete | Implement early composition without requiring completed reviews or weakening final acceptance |
+
+Historical revisions independently resolved during integration:
+`0dd098e2b58dc8750b19ab9305a78e46a9c92c5b` (retrospective),
+`39510ae9a664c35878ade2dc1ac655c3adbd9916` (top-only assembly),
+`99557b65a4b74892b1ac61e5a3753463bab9d133` (carrier source), and
+`2f16225630637955b43f3446419cad2f8797e17b` (transport-safe integration).

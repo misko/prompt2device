@@ -1,0 +1,66 @@
+{
+  "schema": 1,
+  "date": "2026-09-20",
+  "scope": "Deterministic checker calibration at the production placement boundary; synthetic reduction, not PCB completion or release acceptance",
+  "baseline": {
+    "commit": "e1c8f2bb9eab1c815b60a55093be62e6461fe116",
+    "subject": "skills/kicad-pcb/scripts/pcb_flow.py",
+    "sha256": "36597d5770f2d1ca906d5e5cdc1c016bb37cdc465f5dffa1acc3e3a77ea3f87a",
+    "isolation": "Full immutable source tree extracted under $TMP with git archive e1c8f2bb; no shared checkout was reverted or edited"
+  },
+  "corrected_subjects": {
+    "skills/kicad-pcb/scripts/pcb_flow.py": "1cdd4337662fa0f5386149119c37e061ec7d5f2b56952ec9ecd9b52944a1a6cb",
+    "skills/pcb-design/scripts/design_decision_admission.py": "9006bc8af3a539310a75a45c3e0f1bbbf50231271b19fcdb15a27e2686a8cebc"
+  },
+  "fixture_reduction": {
+    "source": "projects/crow-audio-carrier-v1/03_src/rules/nets.yaml",
+    "source_sha256": "1ee3488b3e999f21941fa0d6e35bda8e3416d511a0a39cff6cc57aebf32efd23",
+    "preserved_group": "length_match.MCH_INPUT_SECTIONS",
+    "removed": "Unrelated net classes and the second length-match group",
+    "invalid_mutation": "Current no_vias changed from reviewed true to false; members, paths, topology, endpoints and all other preserved fields remained byte-equivalent after YAML parsing",
+    "invalid_nets_sha256": "3132e234b74a115efa2625d727d4e43066fbe422f3c1a8a541e6c106588a3105",
+    "reviewed_nets_sha256": "e81761360e4076639536b566930c4923c0fb1353d83a760e1f9d70e0e44cb6f3",
+    "payload": "Disposable Python recorder appending one launch line; minimal valid source-component, part dossier and assembly inputs isolate decision admission"
+  },
+  "commands": {
+    "extract_baseline": "git archive --format=tar e1c8f2bb | tar -xf - -C $TMP/old-source",
+    "pref_fix_invalid": "/usr/bin/python3 $TMP/old-source/skills/kicad-pcb/scripts/pcb_flow.py run $TMP/fixture-old-invalid --stage placement -- /usr/bin/python3 $TMP/fixture-old-invalid/recorder.py $TMP/fixture-old-invalid/launches.txt",
+    "corrected_invalid": "/usr/bin/python3 $WORKTREE/skills/kicad-pcb/scripts/pcb_flow.py run $TMP/fixture-current-invalid --stage placement --require-decision-admission -- /usr/bin/python3 $TMP/fixture-current-invalid/recorder.py $TMP/fixture-current-invalid/launches.txt",
+    "corrected_valid": "/usr/bin/python3 $WORKTREE/skills/kicad-pcb/scripts/pcb_flow.py run $TMP/fixture-current-valid --stage placement --require-decision-admission -- /usr/bin/python3 $TMP/fixture-current-valid/recorder.py $TMP/fixture-current-valid/launches.txt"
+  },
+  "outcomes": {
+    "pref_fix_invalid": {
+      "exit": 0,
+      "placement_launches": 1,
+      "observation": "The immutable production conductor executed the invalid candidate without any decision-admission stage"
+    },
+    "corrected_invalid": {
+      "exit": 1,
+      "placement_launches": 0,
+      "recorder_file": "absent",
+      "finding": "DDA-PROTECTED-NETS-DRIFT",
+      "coverage": {
+        "current_length_groups": 1,
+        "current_no_vias_groups": 0,
+        "locked_no_vias_groups": 1
+      },
+      "observation": "Source admission refused the policy relaxation before downstream placement execution"
+    },
+    "corrected_valid": {
+      "exit": 0,
+      "admission_status": "PASS",
+      "placement_launches": 1,
+      "coverage": {
+        "current_length_groups": 1,
+        "current_no_vias_groups": 1,
+        "locked_no_vias_groups": 1
+      }
+    }
+  },
+  "control_integrity": {
+    "production_cli": "All three arms invoke pcb_flow.py run --stage placement; no legacy stub or direct gate substitute",
+    "authorization": "No --issue, --investigation or --usage-ledger option was supplied. The immutable parser predates --require-decision-admission; the corrected arms use that ratchet explicitly.",
+    "claim_limit": "The corrected gate reports production_stage as not complete"
+  },
+  "result": "RED established against e1c8f2bb; corrected invalid refusal and valid-control launch both established"
+}
