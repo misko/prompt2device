@@ -67,7 +67,8 @@ export PATH="$HOME/.bun/bin:$PATH"
 
 run_stage() {
     local stage="$1"; shift
-    "$PY" "$S/pcb_flow.py" run . --stage "$stage" -- "$@"
+    "$PY" "$S/pcb_flow.py" run . --stage "$stage" \
+        --require-decision-admission -- "$@"
 }
 
 compile_connector_base() {
@@ -163,7 +164,10 @@ $PY "$FS/manufacturing_readiness.py" grade . --phase prelayout \
     || { echo "GATE FAILED [1b] J-PCBA-PRELAYOUT: receipt missing, stale, substituted, insufficient, or bound to another source"; exit 1; }
 
 # [2] board (placement + zones) from committed floorplan.yaml  [SHARED]
-$PY "$S/generate_board_generic.py" 03_src/floorplan.yaml -o "04_kicad/$BOARD.kicad_pcb"
+# Deterministic replay still crosses the source admission boundary before it
+# regenerates placement from the committed floorplan.
+run_stage placement "$PY" "$S/generate_board_generic.py" \
+    03_src/floorplan.yaml -o "04_kicad/$BOARD.kicad_pcb"
 # KiCad parity discovers the comparison schematic only beside the board.  Put
 # the pinned canonical copy in place before the preliminary and final DRC runs.
 cp "$SCH" "04_kicad/$BOARD.kicad_sch"
@@ -223,7 +227,9 @@ $PY "$S/escape_check.py" --board "04_kicad/$BOARD.kicad_pcb" \
 
 $PY "$S/tier_preflight.py" . \
     || { echo "GATE FAILED [4b] R-PREFLIGHT: route geometry disagrees with the fab tier"; exit 1; }
-$PY "$S/route_and_stitch_generic.py" prep 03_src/route.yaml
+# route_prep is the native admission seam: the just-generated board is
+# rechecked for pin, side and anchor identity before any route is imported.
+run_stage route_prep "$PY" "$S/route_and_stitch_generic.py" prep 03_src/route.yaml
 
 $PY "$FS/model_registration_gate.py" . --board "04_kicad/$BOARD.kicad_pcb" \
     || { echo "GATE FAILED [4c] P-MODEL-REG: native body, footprint, courtyard, or attachment datums disagree"; exit 1; }

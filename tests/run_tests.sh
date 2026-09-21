@@ -67,6 +67,8 @@ SUITES=(
   t1_schematic_render.py
   t1_stage_checkpoint.py
   t1_checkpoint_framework.py
+  t1_design_decision_admission.py
+  t1_decision_admission_integration.py
   t1_pad_separation.py
   t1_rf_contract.py
   t1_rf_module.py

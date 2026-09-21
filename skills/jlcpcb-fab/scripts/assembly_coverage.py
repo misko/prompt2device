@@ -653,25 +653,18 @@ def check_assembly_sides(fps, cpl_rows, asm):
                    "cpl_side_graded": cpl_graded}
 
 
-def check(fps, cpl_rows, bom_rows, asm, manifest_refs, have_assembly,
-          cpl_xy=None):
-    """-> (fails, notes, summary). Pure; unit-testable without files."""
-    fails, notes = [], []
-    by_ref = {f["ref"]: f for f in fps}
-    board_refs = set(by_ref)
-    cpl_refs = {r[0] for r in cpl_rows}
-    codes = {}
-    for code, refs in bom_rows:
-        for r in refs:
-            codes[r] = code
+def validate_population_dispositions(asm):
+    """Return the owning A-POP failures for authored population dispositions.
 
-    exempt = [str(p) for p in (asm.get("exempt_prefixes") or [])]
-    declared, entry_of = set(), {}
+    ``load_assembly`` owns the declaration shape. This pure predicate owns the
+    closed not-assembled reason vocabulary, its evidence and disposition, and
+    the contradiction between populated consignment and nonpopulation.
+    """
+    fails = []
+    declared = set()
     for e in (asm.get("not_assembled") or []):
         refs = [str(r) for r in (e.get("refs") or [])]
         declared |= set(refs)
-        for r in refs:
-            entry_of[r] = e
         if str(e.get("reason") or "") not in REASONS:
             fails.append(
                 f"  BAD-REASON: not_assembled entry {refs[:4]} has reason="
@@ -704,6 +697,31 @@ def check(fps, cpl_rows, bom_rows, asm, manifest_refs, have_assembly,
             f"  CONSIGN-AS-UNPOPULATED: {both} appear in BOTH `consigned:` "
             f"and `not_assembled:` — consigned parts are PLACED; a ref cannot "
             f"be both populated and not")
+    return fails
+
+
+def check(fps, cpl_rows, bom_rows, asm, manifest_refs, have_assembly,
+          cpl_xy=None):
+    """-> (fails, notes, summary). Pure; unit-testable without files."""
+    fails, notes = [], []
+    by_ref = {f["ref"]: f for f in fps}
+    board_refs = set(by_ref)
+    cpl_refs = {r[0] for r in cpl_rows}
+    codes = {}
+    for code, refs in bom_rows:
+        for r in refs:
+            codes[r] = code
+
+    exempt = [str(p) for p in (asm.get("exempt_prefixes") or [])]
+    declared, entry_of = set(), {}
+    for e in (asm.get("not_assembled") or []):
+        refs = [str(r) for r in (e.get("refs") or [])]
+        declared |= set(refs)
+        for r in refs:
+            entry_of[r] = e
+    fails.extend(validate_population_dispositions(asm))
+    consigned = {str(r) for e in (asm.get("consigned") or [])
+                 for r in (e.get("refs") or [])}
 
     # ---- the core set identity: {board} - {CPL} == declared (mod exempt)
     unpopulated = sorted(board_refs - cpl_refs)

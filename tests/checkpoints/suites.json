@@ -1,9 +1,25 @@
 {
   "schema": 1,
   "suites": {
-    "smoke": ["crow_routing_geometry", "crow_assembly_population", "crow_release_evidence"],
-    "routing": ["crow_routing_geometry"],
-    "assembly": ["crow_assembly_population"],
-    "release": ["crow_release_evidence"]
+    "smoke": [
+      "crow_routing_geometry",
+      "crow_assembly_population",
+      "crow_release_evidence"
+    ],
+    "routing": [
+      "crow_routing_geometry"
+    ],
+    "assembly": [
+      "crow_assembly_population"
+    ],
+    "release": [
+      "crow_release_evidence"
+    ],
+    "admission": [
+      "crow_decision_admission"
+    ],
+    "process": [
+      "crow_decision_admission"
+    ]
   }
 }

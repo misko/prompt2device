@@ -152,7 +152,7 @@ continue; reopen them only on new evidence or at next-release planning.
 3. Change human-owned source and regenerate. Never repair generated KiCad,
    route candidates, fabrication payloads, or sealed releases in place.
 4. Grade the bytes just produced. Reviews and receipts bind both raw and
-   semantic identity; stale or missing subjects cannot pass.
+   semantic identity; never refresh an independently reviewed decision snapshot from current source to make a change pass.
 5. Require a nonzero denominator and explicit applicability. Zero findings
    over zero graded items is `INCOMPLETE`, not success.
 6. Bound every producer/reviewer attempt with progress and a deadline. An

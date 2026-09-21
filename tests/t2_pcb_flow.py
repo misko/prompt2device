@@ -855,6 +855,31 @@ def t_land_helper_stales_handoff():
 
 
 
+@test("decision-admission dependency changes stale flow handoffs", kind="known_bad")
+def t_decision_policy_helpers_stale_handoff():
+    import shutil
+    module = load_flow_module()
+    ctx = module.resolve_context(scratch())
+    repo = module.SCRIPTS.parents[2]
+    helpers = [module.SCRIPTS / "copper_length_audit.py",
+               module.FAB_SCRIPTS / "assembly_coverage.py",
+               module.FAB_SCRIPTS / "manufacturing_readiness.py"]
+    mirror = tmpdir("flow_decision_tools_")
+    for source in set(module.tool_files(ctx) + helpers):
+        dest = mirror / source.relative_to(repo)
+        dest.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(source, dest)
+    module.SCRIPTS = mirror / module.SCRIPTS.relative_to(repo)
+    module.FAB_SCRIPTS = mirror / module.FAB_SCRIPTS.relative_to(repo)
+    for original in helpers:
+        module.write_handoff(ctx, None, [])
+        eq(module.validate_handoff(ctx), 0, "fresh decision-policy handoff")
+        helper = mirror / original.relative_to(repo)
+        helper.write_text(helper.read_text() + "\nPOLICY_TEST_MUTATION = True\n")
+        eq(module.validate_handoff(ctx), 2,
+           f"{original.name} policy change must stale prior admission context")
+
+
 @test("issue accounting wraps real native route ownership validation without changing verdicts", kind="known_bad")
 def t_issue_native_workflow():
     import pcbnew

@@ -114,6 +114,7 @@ actual applicability.
 
 | Boundary | Existing callable owner | Inputs and outputs | Adoption limit |
 |---|---|---|---|
+| Design-decision admission | `design_decision_admission.py --phase source\|native` in `pcb-design` | Authored assembly disposition and independently reviewed full route/nets snapshots to source findings; exact native board, pin identities, mounted sides and ref/pad/net anchors to native findings | No live assembly allocation, route feasibility, complete engineering certification or downstream lifecycle promotion |
 | Placement feasibility | `placement_routability_preflight.py grade/verify` in `kicad-pcb` | Board, placement/routing configuration and source topology to a bound domain receipt | Optional typed stage publication remains an INCOMPLETE hold; no accepted P-FEAS bundle |
 | Route acceptance | `route_acceptance_gate.py grade/verify` in `kicad-pcb` | Exact board, source rules, prepared base and native checks to the route receipt | Project conductor retains execution/promotion authority; diagnostic shared adapters cannot replace its verdict |
 | Native verification | Full route acceptance and `route_candidate_workspace.py grade/verify` | Saved board plus effective project/rule sidecars to native DRC/parity evidence | `pcb_flow.py qualify` tests tool capability, not the product board |
@@ -142,6 +143,32 @@ prelayout response, schematic review, placement review, or another declared
 operator checkpoint. A typed `INCOMPLETE` at one of these boundaries is a
 successful refusal to overclaim, not a broken build.
 
+Projects opt into the early decision boundary in `03_src/route.yaml`:
+
+```yaml
+flow:
+  decision_admission:
+    mode: enforce
+    locked_route: 03_src/reviews/accepted-route-contract.yaml
+    locked_nets: 03_src/reviews/accepted-nets-contract.yaml
+    # Optional project-relative overrides:
+    # assembly: 03_src/rules/assembly.yaml
+    # circuit_json: 03_tscircuit/build/circuit.json
+    # parts: 02_parts
+    # floorplan: 03_src/floorplan.yaml
+    # nets: 03_src/rules/nets.yaml
+```
+
+The locks are independently reviewed prior full `route.yaml` and `nets.yaml`
+snapshots, not projections generated from the current files. Enforced calls
+pass `--locked-route --require-locked-route` and
+`--locked-nets --require-locked-nets`. They protect `no_vias: true` critical
+pairs and length-match groups and never bless or refresh either lock.
+An absent block or `mode: legacy_unmigrated` is printed explicitly and grants
+no `D-DESIGN-ADMISSION` credit. New-project rebuild conductors also pass
+`pcb_flow.py run --require-decision-admission`; deleting or downgrading adopted
+configuration therefore refuses before launching the stage command.
+
 After the exact schematic checkpoint is accepted, continue without rerunning
 the nondeterministic TSX producer:
 
@@ -157,8 +184,9 @@ source/schema/architecture/RF preflight
   -> exact circuit.json handoff and human schematic render
   -> provenance, semantic, sourcing, and ERC gates
   -> schematic checkpoint and independent review
-  -> board generation, parity, pin, placement, model, and DRC gates
-  -> deterministic route preparation
+  -> source decision admission before placement work
+  -> board generation, native decision admission, parity, pin, placement, model, and DRC gates
+  -> native decision admission before deterministic route preparation
   -> import the authenticated route source selected by route.yaml
   -> taps, stitch/fill, final rules, RF-realized checks
   -> full route-acceptance receipt
@@ -234,6 +262,14 @@ The bounded repair loop is:
 It stops on the configured attempt limit, repeated unconnected set, or
 non-improving plateau. A stop backtracks to source, ownership, endpoint escape,
 plane fill, or placement; it is not permission to keep grinding.
+
+For adopted projects, `pcb_flow.py run --stage placement` runs source admission
+before its owning command. The `routing` and `route_prep` stages, `preflight`,
+and `grind` run native admission before downstream routing work. Source phase
+owns complete authored assembly disposition; native phase repeats it against
+the generated board and adds P-PINMAP, allowed assembly side, authored owner
+for each populated SMD, authored ref/pad/net-anchor and critical-route checks. A PASS means only that these
+declared decisions agree at that boundary.
 
 Final route admission is one full receipt:
 

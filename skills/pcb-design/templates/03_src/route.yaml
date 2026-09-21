@@ -27,6 +27,13 @@ project:
 # copper, and wall-time expectations explicit before an expensive route begins.
 flow:
   heartbeat_s: 10
+  # New projects adopt D-DESIGN-ADMISSION before the commissioning hold is
+  # removed. These name independently reviewed PRIOR route.yaml and nets.yaml
+  # snapshots; no build step creates or refreshes them from current policy.
+  decision_admission:
+    mode: enforce
+    locked_route: 03_src/reviews/accepted-route-contract.yaml
+    locked_nets: 03_src/reviews/accepted-nets-contract.yaml
   # Fail-closed independent evidence before the first route. The initial
   # schematic/placement build stops until these exact-artifact witnesses exist.
   pre_route_reviews:

@@ -127,10 +127,18 @@ def early_boundaries_ok(txt):
     return all(value in txt for value in required)
 
 
+def board_generation_command(txt):
+    """Locate an invocation, not the earlier producer-file existence check."""
+    return re.search(
+        r'^\s*(?:run_stage\s+placement\s+)?"?\$PY"?\s+'
+        r'"\$S/generate_board_generic\.py"', txt, re.M)
+
+
 def connector_contract_wiring_ok(txt):
     invocation = txt.find('$PY "$CS/connector_assembly_contract.py"')
     source = txt.find('connector_assembly_phase_gate.py" --project . --phase source')
-    board = txt.find('$PY "$S/generate_board_generic.py"')
+    generated = board_generation_command(txt)
+    board = generated.start() if generated else -1
     full = txt.find('connector_assembly_phase_gate.py" --project . --phase full')
     placement = txt.find('placement_routability_preflight.py" grade .', board)
     spends = [position for position in (
@@ -625,8 +633,7 @@ def t_all_promotes_pinned_schematic_at_stage_boundary():
     review = re.search(
         r'^\s*\$PY\s+"\$S/pre_route_review_check\.py"\s+\.\s+--phase\s+schematic',
         txt, re.M)
-    board = re.search(r'^\s*\$PY\s+"\$S/generate_board_generic\.py"',
-                      txt, re.M)
+    board = board_generation_command(txt)
     drc = re.search(r'^\s*(?:run_stage\s+layout_drc\s+)?kicad-cli pcb drc',
                     txt, re.M)
     copies = list(re.finditer(
@@ -1543,7 +1550,9 @@ def t_early_boundary_wiring():
         txt = path.read_text()
         check(early_boundaries_ok(txt),
               f"{path.name}: incomplete E-CLOSURE/S-PART-FREEZE/P-FEASIBILITY wiring")
-        board_generation = txt.index('$PY "$S/generate_board_generic.py"')
+        generated = board_generation_command(txt)
+        check(generated is not None, f"{path.name}: missing board producer")
+        board_generation = generated.start()
         check(txt.index("electrical_closure.py") < board_generation,
               f"{path.name}: E-CLOSURE must precede board generation")
         check(txt.index("S-PART-FREEZE.stage.json") <

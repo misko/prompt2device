@@ -32,6 +32,14 @@ From the repository root, use `/usr/bin/python3` for native KiCad cases:
   --run-dir /tmp/checkpoint-assembly-001
 ```
 
+Use `--suite admission` to select the decision-admission checkpoint. The
+`process` suite collects the new Crow process regressions as each family lands;
+the existing `smoke` suite remains the three original runner examples. Incident
+provenance lives in `incidents/`; implementation and acceptance are tracked in
+the repository-root `update_and_test_pcb_design.md`.
+Suite membership does not mean that a fresh-agent trial or a production board
+has passed. Deterministic controls and trial receipts state those separately.
+
 The run directory must not exist. Preparation copies the snapshot to
 `workspace/`, supplies task/current skill context, runs trusted preparation and
 requires the documented initial failure. A broken baseline is an infrastructure

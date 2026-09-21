@@ -1,0 +1,8 @@
+length_match:
+  MCH_INPUT_SECTIONS:
+    adr: 0010-route-stack-and-current-paths
+    intent: "Reduced Crow MCH clock inputs remain on front copper without vias."
+    members: {MCLK: [CLK_P], BCLK: [CLK_N]}
+    topology: chain
+    no_vias: true
+    max_spread_mm: report

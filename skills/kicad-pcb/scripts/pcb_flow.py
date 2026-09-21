@@ -40,6 +40,7 @@ except ImportError:  # pragma: no cover - the KiCad interpreter carries yaml
 
 
 SCRIPTS = Path(__file__).resolve().parent
+PCB_DESIGN_SCRIPTS = SCRIPTS.parent.parent / "pcb-design" / "scripts"
 FAB_SCRIPTS = SCRIPTS.parent.parent / "jlcpcb-fab" / "scripts"
 KPY = "/usr/bin/python3"
 MAX_HANDOFF_BYTES = 16 * 1024
@@ -73,9 +74,12 @@ DEFAULT_TOOL_FILES = (
     "../../pcb-design/scripts/pipeline_runtime.py",
     "../../pcb-design/scripts/pipeline_execution.py",
     "../../pcb-design/scripts/pipeline_artifacts.py",
-    "critical_part_facts.py", "project_state.py",
+    "../../pcb-design/scripts/design_decision_admission.py",
+    "critical_part_facts.py", "project_state.py", "copper_length_audit.py",
 )
-DEFAULT_FAB_TOOL_FILES = ("via_process_check.py",)
+DEFAULT_FAB_TOOL_FILES = (
+    "via_process_check.py", "assembly_coverage.py", "manufacturing_readiness.py",
+)
 
 
 class FlowError(RuntimeError):
@@ -179,7 +183,8 @@ def flow_cfg(cfg: dict[str, Any], root: Path | None = None) -> dict[str, Any]:
     flow = cfg.get("flow") or {}
     if not isinstance(flow, dict):
         raise FlowError("route.yaml flow must be a mapping")
-    for key in ("owner", "copper", "budgets_s", "timeouts_s", "paths", "inputs"):
+    for key in ("owner", "copper", "budgets_s", "timeouts_s", "paths", "inputs",
+                "decision_admission"):
         if key in flow and not isinstance(flow[key], dict):
             raise FlowError(f"flow.{key} must be a mapping")
     rebuild_args = flow.get("rebuild_args", [])
@@ -215,6 +220,93 @@ def flow_cfg(cfg: dict[str, Any], root: Path | None = None) -> dict[str, Any]:
                     raise FlowError("flow.owner.files entries overlap hierarchically: "
                                     f"{left} and {right}")
     return flow
+
+
+def decision_admission_command(ctx: FlowContext, phase: str) -> list[str] | None:
+    """Build the adopted D-DESIGN-ADMISSION command; absence is legacy."""
+    decision = flow_cfg(ctx.cfg).get("decision_admission")
+    if decision is None:
+        return None
+    mode = decision.get("mode")
+    if mode == "legacy_unmigrated":
+        extra = sorted(set(decision) - {"mode"})
+        if extra:
+            raise FlowError("flow.decision_admission legacy_unmigrated cannot "
+                            f"declare adopted fields: {extra}")
+        return None
+    if mode != "enforce":
+        raise FlowError("flow.decision_admission.mode must be enforce or "
+                        "legacy_unmigrated")
+    locked = decision.get("locked_route")
+    if not isinstance(locked, str) or not locked.strip():
+        raise FlowError("flow.decision_admission.locked_route is required in "
+                        "enforce mode")
+    locked_nets = decision.get("locked_nets")
+    if not isinstance(locked_nets, str) or not locked_nets.strip():
+        raise FlowError("flow.decision_admission.locked_nets is required in "
+                        "enforce mode")
+    if phase not in {"source", "native"}:
+        raise FlowError(f"unknown decision-admission phase {phase!r}")
+
+    command = [
+        KPY, str(PCB_DESIGN_SCRIPTS / "design_decision_admission.py"),
+        str(ctx.root), "--phase", phase,
+        "--route", str(ctx.route_path),
+        "--locked-route", str(_inside(ctx.root, locked,
+                                      "flow.decision_admission.locked_route")),
+        "--require-locked-route",
+        "--nets", str(_inside(
+            ctx.root, decision.get("nets", ctx.route_path.parent / "rules/nets.yaml"),
+            "flow.decision_admission.nets")),
+        "--locked-nets", str(_inside(
+            ctx.root, locked_nets, "flow.decision_admission.locked_nets")),
+        "--require-locked-nets",
+    ]
+    option_names = {
+        "assembly": "--assembly",
+        "circuit_json": "--circuit-json",
+        "parts": "--parts",
+    }
+    for key, option in option_names.items():
+        value = decision.get(key)
+        if value is not None:
+            if not isinstance(value, str) or not value.strip():
+                raise FlowError(f"flow.decision_admission.{key} must be a "
+                                "non-empty project-relative path")
+            command.extend([option, str(_inside(
+                ctx.root, value, f"flow.decision_admission.{key}"))])
+    if phase == "native":
+        floorplan = decision.get("floorplan", ctx.route_path.parent / "floorplan.yaml")
+        if not isinstance(floorplan, (str, Path)) or not str(floorplan).strip():
+            raise FlowError("flow.decision_admission.floorplan must be a "
+                            "non-empty project-relative path")
+        command.extend([
+            "--board", str(ctx.board),
+            "--floorplan", str(_inside(
+                ctx.root, floorplan, "flow.decision_admission.floorplan")),
+        ])
+    return command
+
+
+def _report_legacy_decision_admission(ctx: FlowContext) -> None:
+    decision = flow_cfg(ctx.cfg).get("decision_admission")
+    if decision is None or decision.get("mode") == "legacy_unmigrated":
+        print("[decision_admission] LEGACY_UNMIGRATED: no D-DESIGN-ADMISSION "
+              "credit; adopt exact reviewed route and nets snapshots to enable it",
+              flush=True)
+
+
+def run_decision_admission(ctx: FlowContext, phase: str,
+                           *, dry_run: bool = False) -> int:
+    command = decision_admission_command(ctx, phase)
+    if command is None:
+        _report_legacy_decision_admission(ctx)
+        return 0
+    stage = f"decision_admission_{phase}"
+    if dry_run:
+        print(f"[{stage}] $ {shlex.join(command)}")
+        return 0
+    return run_timed(ctx, stage, command, configured_budget(ctx.cfg, stage))
 
 
 def resolve_context(root: Path, board_selector: str | None = None,
@@ -773,6 +865,9 @@ def preflight_commands(ctx: FlowContext, include_land: bool = True
         ("escape_packages", [KPY, str(SCRIPTS / "escape_check.py"),
                              *map(str, part_files(ctx))]),
     ]
+    decision = decision_admission_command(ctx, "native")
+    if decision is not None:
+        commands.insert(0, ("decision_admission_native", decision))
     # Legacy projects remain explicit/unmigrated. Adopted source contracts are
     # hard architecture gates and cannot be bypassed through direct pcb_flow.
     prefix = []
@@ -861,6 +956,8 @@ def preflight_commands(ctx: FlowContext, include_land: bool = True
 
 def cmd_preflight(ctx: FlowContext, dry_run: bool) -> int:
     flow_cfg(ctx.cfg, ctx.root)
+    if decision_admission_command(ctx, "native") is None:
+        _report_legacy_decision_admission(ctx)
     for stage, command in preflight_commands(ctx):
         if dry_run:
             print(f"[{stage}] $ {shlex.join(command)}")
@@ -1027,8 +1124,14 @@ def cmd_grind(ctx: FlowContext, max_cycles: int, dry_run: bool) -> int:
                "--config", str(ctx.route_path.relative_to(ctx.root)),
                "--max-cycles", str(max_cycles)]
     if dry_run:
+        rc = run_decision_admission(ctx, "native", dry_run=True)
+        if rc:
+            return rc
         print(f"[grind] $ {shlex.join(command)}")
         return 0
+    rc = run_decision_admission(ctx, "native")
+    if rc:
+        return rc
     rc = run_timed(ctx, "grind", command, configured_budget(ctx.cfg, "grind"))
     write_handoff(ctx, None, [])
     return rc
@@ -1203,6 +1306,8 @@ def parser() -> argparse.ArgumentParser:
                    help="attribute execution to a stable issue; does not authorize retries")
     p.add_argument("--usage-ledger", type=Path,
                    help="durable issue JSONL ledger; requires --issue or --investigation")
+    p.add_argument("--require-decision-admission", action="store_true",
+                   help="refuse legacy/unmigrated config before launching the command")
     return ap
 
 
@@ -1259,6 +1364,10 @@ def main(argv: list[str] | None = None) -> int:
             except (OSError, ValueError, TypeError, KeyError) as exc:
                 raise FlowError(str(exc)) from exc
         ctx = resolve_context(root, args.board, args.route_config)
+        if (getattr(args, "require_decision_admission", False)
+                and decision_admission_command(ctx, "source") is None):
+            raise FlowError("--require-decision-admission needs "
+                            "flow.decision_admission.mode: enforce")
         if args.command == "preflight":
             return cmd_preflight(ctx, args.dry_run)
         if args.command == "handoff":
@@ -1274,6 +1383,12 @@ def main(argv: list[str] | None = None) -> int:
             return cmd_layout_seal(ctx, args.dry_run, args.reviewed_commit)
         if not remainder:
             raise FlowError("run needs a command after --")
+        admission_phase = ({"placement": "source", "routing": "native",
+                            "route_prep": "native"}.get(args.stage))
+        if admission_phase is not None:
+            admission_rc = run_decision_admission(ctx, admission_phase)
+            if admission_rc:
+                return admission_rc
         issue_id = args.issue or (args.investigation if args.usage_ledger else None)
         if bool(issue_id) != bool(args.usage_ledger):
             raise FlowError("--issue and --usage-ledger must be supplied together")

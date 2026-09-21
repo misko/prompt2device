@@ -42,7 +42,8 @@ export PATH="$HOME/.nvm/versions/node/v22.12.0/bin:$HOME/.bun/bin:$PATH"
 
 run_stage() {
     local stage="$1"; shift
-    "$PY" "$S/pcb_flow.py" run . --stage "$stage" -- "$@"
+    "$PY" "$S/pcb_flow.py" run . --stage "$stage" \
+        --require-decision-admission -- "$@"
 }
 
 compile_connector_base() {
@@ -369,7 +370,10 @@ $PY "$S/artifact_provenance.py" begin . --stage pcb_layout \
     --output "04_kicad/$BOARD.kicad_pro" \
     --output "04_kicad/$BOARD.kicad_dru" \
     --output 06_build/drc/gate.json
-$PY "$S/generate_board_generic.py" 03_src/floorplan.yaml -o "04_kicad/$BOARD.kicad_pcb"
+# The placement stage is admitted against the exact reviewed interface,
+# assembly, route and nets decisions before the first placement producer runs.
+run_stage placement "$PY" "$S/generate_board_generic.py" \
+    03_src/floorplan.yaml -o "04_kicad/$BOARD.kicad_pcb"
 $PY "$S/count_parity.py" . \
     || { echo "GATE FAILED [3] S-COUNT (count_parity.py): generated PCB refdes differ from schematic intent"; exit 1; }
 

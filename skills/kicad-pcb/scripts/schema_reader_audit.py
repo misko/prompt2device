@@ -284,7 +284,7 @@ ADVISORY, OWED = "ADVISORY", "OWED"
 #: THE RATCHET (see the docstring). Committed integers; a drop below either is
 #: a hard FAIL, and `t_governed_family_floor_is_pinned` refuses a lowering.
 GOVERNED_FLOOR = 23
-PROVEN_FLOOR = 820
+PROVEN_FLOOR = 821
 #: 775 -> 776 PROVEN on 2026-09-11: name the actual group-level mount_side
 #: YAML reader with a single valid contract cell. No parser or side check changed.
 #: 774 -> 775 PROVEN on 2026-09-11: declare the existing native model

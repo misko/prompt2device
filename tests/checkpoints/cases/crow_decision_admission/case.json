@@ -1,0 +1,61 @@
+{
+  "schema": 1,
+  "id": "crow-decision-admission",
+  "title": "Reconcile Crow interface, assembly owner, and protected digital-route decisions",
+  "tags": ["pcb", "commission", "placement", "assembly", "interface", "no-vias", "resumable"],
+  "origin": {
+    "board": "crow-audio-carrier-v1 inspired coupon",
+    "revision": "synthetic reduction from 2026-09-12 through 2026-09-17 incidents",
+    "evidence": [
+      "projects/crow-roof-array-v1/01_docs/reports/2026-09-20-transcript-cost-retrospective.md#R04",
+      "projects/crow-roof-array-v1/01_docs/reports/2026-09-20-transcript-cost-retrospective.md#R05",
+      "projects/crow-roof-array-v1/01_docs/reports/2026-09-20-transcript-cost-retrospective.md#R06",
+      "projects/crow-roof-array-v1/01_docs/reports/2026-09-20-transcript-cost-retrospective.md#R07",
+      "projects/crow-roof-array-v1/01_docs/reports/2026-09-20-transcript-cost-retrospective.md#R11",
+      "projects/crow-roof-array-v1/01_docs/reports/2026-09-20-transcript-cost-retrospective.md#R20",
+      "projects/crow-audio-carrier-v1/03_src/rules/nets.yaml"
+    ],
+    "reduction": "Synthetic two-part coupon. It preserves the observed classes: a retired connector pad anchor after migration (R04-R06), an unresolved fitted-SMD owner under the assembly decision (R07/R20), and the actual Crow MCH_INPUT_SECTIONS no_vias length-group authority relaxed before routing (R11). It does not reproduce the full Crow board, quantify incident cost, or prove the repaired production design."
+  },
+  "checkpoint": {
+    "stage_id": "KICAD-PLACEMENT",
+    "states": {
+      "KICAD-SCHEMATIC": "accepted",
+      "KICAD-PLACEMENT": "blocked",
+      "KICAD-ROUTING": "blocked"
+    },
+    "history": [
+      {
+        "attempt": 1,
+        "result": "FAIL",
+        "disposition": "retired connector pad anchor, unresolved U1 assembly owner, and relaxed Crow no_vias group",
+        "reconsider_when": "authoritative sources reconcile and native admission passes before the disposable route command runs"
+      }
+    ]
+  },
+  "task_file": "task.md",
+  "snapshot_dir": "snapshot",
+  "editable": [
+    "03_tscircuit/src/components.json",
+    "03_tscircuit/build/circuit.json",
+    "03_src/rules/assembly.yaml",
+    "03_src/rules/nets.yaml",
+    "03_src/floorplan.yaml",
+    "06_build/decision_admission.json",
+    "06_build/route-command.json",
+    "HANDOFF.md"
+  ],
+  "prepare": [["python3", "{case}/driver.py", "prepare", "{repo}", "{workspace}"]],
+  "grader": ["python3", "{case}/driver.py", "grade", "{repo}", "{workspace}"],
+  "initial_findings": [
+    "U1-MACHINE-ASSEMBLY-REQUIRED",
+    "DDA-ASSEMBLY-OWNER",
+    "DDA-PROTECTED-NETS-DRIFT",
+    "DDA-SMD-OWNER-MISSING",
+    "DDA-RETIRED-PAD-ANCHOR",
+    "ADMISSION-COMMAND-FAILED",
+    "ROUTE-NOT-INVOKED"
+  ],
+  "timeout_s": 300,
+  "grader_timeout_s": 120
+}

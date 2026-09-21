@@ -1,0 +1,4 @@
+constraints:
+  pad_net:
+    - {ref: J1, pad: "9", net: CLK_P}
+    - {ref: J1, pad: "2", net: CLK_N}
