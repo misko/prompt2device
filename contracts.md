@@ -41,6 +41,7 @@ via an explicit pattern (see the coverage rule below).
 | `.github/` | repository automation and publication checks (own contract) |
 | `improvements.md` | repository-wide pipeline/process improvement ledger harvested from project stages | entries remain visible until completed or rejected with evidence |
 | `next_steps.md` | current Crow ordering, first-article and qualification work plan |
+| `update_and_test_pcb_design.md` | Crow-grounded implementation and red/green testing plan for PCB process improvements |
 | `skills/` | the product: pcb-design, kicad-pcb, jlcpcb-fab, pcb-enclosure, shopping-list (own contract) |
 | `docs/` | repo-level canon: ADRs + proof docs (own contract) |
 | `examples/` | frozen evidence snapshots skills may cite (own contract) |

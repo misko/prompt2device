@@ -12,6 +12,7 @@ current skill. This is an opt-in testing consumer, not production release author
 | `*.py` | Runner, schema, explicit agent adapter and suite selection |
 | `suites.json` | Named selections of checkpoint cases |
 | `cases/**` | Case manifests, task context, snapshots, independent graders and maintainer controls |
+| `incidents/*.md` | Compact Crow incident provenance and regression properties; no raw private transcripts |
 | `evidence/**` | Compact, sanitized validation summaries; no credentials or raw conversations |
 
 Runtime artifacts belong outside the repository in a fresh run directory.
