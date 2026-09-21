@@ -7,6 +7,7 @@ Final rehearsal, seal, and publication gates remain independently authoritative.
 """
 from __future__ import annotations
 
+import argparse
 import hashlib
 import json
 import re
@@ -425,3 +426,74 @@ def assess(repo_root: str | Path, project: str | Path, release: str | Path,
 __all__ = [
     "Admission", "Finding", "assess", "build_packet_receipt",
 ]
+
+
+def _cli_path(value: Path, parent: Path) -> Path:
+    return value.resolve() if value.is_absolute() else (parent / value).resolve()
+
+
+def main(argv: list[str] | None = None) -> int:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("repo_root", type=Path)
+    parser.add_argument("project", type=Path)
+    parser.add_argument("release", type=Path)
+    parser.add_argument("--envelope", required=True, type=Path)
+    parser.add_argument("--commission", required=True, type=Path)
+    parser.add_argument("--packet-receipt", required=True, type=Path)
+    parser.add_argument("--live-input", required=True, action="append", type=Path)
+    parser.add_argument("--authoritative-board", required=True, type=Path)
+    parser.add_argument("--transport-base", required=True)
+    parser.add_argument("--transport-head", default="HEAD")
+    args = parser.parse_args(argv)
+
+    repo = args.repo_root.resolve()
+    project = _cli_path(args.project, repo)
+    release = _cli_path(args.release, project)
+    envelope_path = _cli_path(args.envelope, project)
+    commission_path = _cli_path(args.commission, project)
+    receipt_path = _cli_path(args.packet_receipt, project)
+    live_paths = tuple(_cli_path(path, project) for path in args.live_input)
+    board = _cli_path(args.authoritative_board, project)
+    inputs = {
+        "repo_root": str(repo), "project": str(project),
+        "release": str(release), "envelope": str(envelope_path),
+        "commission": str(commission_path), "packet_receipt": str(receipt_path),
+        "authoritative_board": str(board),
+        "live_inputs": [str(path) for path in live_paths],
+        "transport_base": args.transport_base,
+        "transport_head": args.transport_head,
+    }
+    for name in ("repo_root", "project", "release", "envelope", "commission",
+                 "packet_receipt", "authoritative_board"):
+        print(f"input: {name}={inputs[name]}")
+    for path in live_paths:
+        print(f"input: live_source={path}")
+    print(f"input: transport={args.transport_base}..{args.transport_head}")
+
+    try:
+        envelope = TaskEnvelope.from_json(envelope_path.read_text(encoding="utf-8-sig"))
+        admission = assess(
+            repo, project, release, envelope, commission_path, receipt_path,
+            live_paths=live_paths, authoritative_board=board,
+            transport_base=args.transport_base,
+            transport_head=args.transport_head)
+    except (OSError, ValueError, TypeError, json.JSONDecodeError) as exc:
+        admission = Admission(
+            "INCOMPLETE", (Finding("RP-OPERATION", str(exc)),), {},
+            tuple(RELEASE_REVIEW_OUTPUTS))
+    graded = (int(admission.census.get("candidate_artifacts", 0)) +
+              int(admission.census.get("live_inputs", 0)))
+    print(f"coverage: {graded}/{graded} current candidate and authoritative-source "
+          "records graded")
+    result = admission.to_mapping()
+    result["inputs"] = inputs
+    result["coverage"] = {
+        "graded": graded, "total": graded,
+        "unit": "current candidate and authoritative-source records",
+    }
+    print(json.dumps(result, sort_keys=True))
+    return 0 if admission.status == "READY" else 1 if admission.status == "REFUSED" else 2
+
+
+if __name__ == "__main__":
+    sys.exit(main())

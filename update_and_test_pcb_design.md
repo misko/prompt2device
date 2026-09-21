@@ -167,14 +167,14 @@ unresolved engineering question; do not use larger models for routine extraction
 ## Completion checklist
 
 - [x] Three incident packets have explicit provenance and reduction boundaries.
-- [ ] Three components have clear source ownership and invocation boundaries.
-- [ ] Deterministic RED/GREEN evidence exists for each implemented improvement.
-- [ ] Valid repairs and invalid shortcuts exercise each independent grader.
-- [ ] Alternate legal geometry can pass; isolated-net success cannot hide conflicts.
-- [ ] Early refusal is distinguished from production-stage completion.
-- [ ] Fresh-agent recovery is demonstrated for all three families through the same framework.
-- [ ] Applicable repository checks and focused boundary review are complete.
-- [ ] Documentation distinguishes implemented behavior, limitations and deferred work.
+- [x] Three components have clear source ownership and invocation boundaries.
+- [x] Deterministic RED/GREEN evidence exists for each implemented improvement.
+- [x] Valid repairs and invalid shortcuts exercise each independent grader.
+- [x] Alternate legal geometry can pass; isolated-net success cannot hide conflicts.
+- [x] Early refusal is distinguished from production-stage completion.
+- [x] Fresh-agent recovery is demonstrated for all three families through the same framework.
+- [x] Applicable repository checks and focused boundary review are complete; inherited failures are recorded separately.
+- [x] Documentation distinguishes implemented behavior, limitations and deferred work.
 - [ ] Reviewed changes are published and remote state is verified.
 
 Completion requires earlier detection of the documented failure modes and valid
@@ -190,8 +190,8 @@ focused test alone does not complete a checkpoint family.
 |---|---|---|
 | Incident provenance | Three packets in `tests/checkpoints/incidents/`; cited retrospective and historical revisions resolve in Git | Keep reductions and case coverage aligned as implementation lands |
 | Decision admission | Implemented at `6fdf970a`; real pre-fix RED, corrected refusal/valid controls, focused Sol acceptance and fresh Sol recovery PASS | Complete; revalidate affected checks if later integration changes its authorities |
-| Coupled geometry | Combined native admission and checkpoint controls implemented; historical candidate-boundary RED retained | Correct review findings on source-rule freshness, receipt verdict reconciliation and native-tool binding; repeat review and run fresh Sol recovery |
-| Review/publication | Early review composition and checkpoint controls implemented; historical allocation-boundary RED retained | Correct review findings on stage bypass, live/staged source agreement, future review outputs, archive signature detection and exact packet scope; repeat review and run fresh Sol recovery |
+| Coupled geometry | Implemented at `379f6ca6`; historical candidate-boundary RED, 8 leaf and 6 checkpoint tests pass; fresh Sol boundary review accepted source-rule regeneration, tool binding and independent receipt verification | Final integration/publication checks pending; recovery evidence and limitations below |
+| Review/publication | Implemented at `379f6ca6`; 14 preflight, 8 transport and 6 checkpoint tests pass; fresh Sol boundary review accepted corrected stage, source, packet and archive checks while preserving generic commissions | Final integration/publication checks pending; recovery evidence and limitations below |
 
 Historical revisions independently resolved during integration:
 `0dd098e2b58dc8750b19ab9305a78e46a9c92c5b` (retrospective),
@@ -202,3 +202,11 @@ Historical revisions independently resolved during integration:
 Decision-admission validation: `tests/checkpoints/evidence/2026-09-20-decision-admission-validation.json`.
 The fresh Sol medium trial passed independent grading with protected sources intact;
 its recorder demonstrates admission only, not a completed routed board.
+
+Family 2/3 validation: `tests/checkpoints/evidence/2026-09-20-process-validation.json`.
+The fresh publication trial passed independent grading. The fresh routing solver
+produced valid geometry, but its first independent grade exposed fixed-directory
+reuse in the test harness. The original failed result is retained. After correcting
+the harness, deterministic replay of the exact observed source and handoff passed
+the same runner and repeated independent grades while preserving earlier evidence.
+This replay is not a second model attempt or an uninterrupted first-attempt PASS.

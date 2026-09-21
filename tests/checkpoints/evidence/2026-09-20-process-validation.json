@@ -1,0 +1,298 @@
+{
+  "schema": 1,
+  "date": "2026-09-20",
+  "status": "engineering validation complete; publication pending",
+  "families": {
+    "coupled_geometry": {
+      "fresh_trial": {
+        "repository_revision": "379f6ca6547b3f1db4f60fc41dad664cf7b7fc1e",
+        "case_manifest_sha256": "f7c2545b2ef352a97ad27f9a5ec9825d7cd47ea292b0fe9765c25b5ba5d8c7b1",
+        "trusted_skill_map_sha256": "7866c2395741623f2797508a4b94f4e90e51be5db44f43c5d8a777960fca233d",
+        "trusted_tool_map_sha256": "29cc04af6ac2eb038f43d1ee4bb5e40a6f83e1cf1b3c21534eb4db5380d53261",
+        "initial_outcome": "FAIL",
+        "initial_findings": [
+          {
+            "code": "COMBINED-NATIVE-COLLISION",
+            "message": "combined witness has native conflicts: ['tracks_crossing']"
+          },
+          {
+            "code": "COUPLED-PREFLIGHT-FAIL",
+            "message": "production coupled gate exited 1"
+          }
+        ],
+        "outcome": "FAIL",
+        "engineering_outcome": "FAIL",
+        "findings": [
+          {
+            "code": "COUPLED-PREFLIGHT-FAIL",
+            "message": "production coupled gate exited 2"
+          }
+        ],
+        "evidence": {
+          "native_unconnected": 0,
+          "native_violation_types": [],
+          "pad_population": {
+            "ADC_TDM": 3,
+            "MCH_CLK": 3
+          },
+          "production_complete": false,
+          "production_gate_exit": 2,
+          "production_gate_status": null,
+          "production_receipt": "06_build/coupled/coupled-receipt.json",
+          "source_regenerated": true
+        },
+        "agent": {
+          "provider": "codex-host-collaboration",
+          "model": "gpt-5.6-sol",
+          "effort": "medium",
+          "attempts": 1,
+          "task": "/root/solve_coupled_process_checkpoint",
+          "first_observed_at": "2026-09-21T01:29:03.056640+00:00",
+          "usage": "UNKNOWN",
+          "process_cleanup": "UNKNOWN",
+          "deadline_enforcement": "host-supervised; no hard token or dollar cap",
+          "handback_observed_at": "2026-09-21T01:31:21.797723+00:00",
+          "host_task_status": "completed"
+        },
+        "observed_handback_interval_s": 138.741083,
+        "grader_elapsed_s": 1.180404
+      },
+      "diagnosis": "Original native geometry was clean; independent grader reused calibration rules directory after deleting solver evidence. Production immutable-workspace refusal was correct. Corrected case grader creates immutable UUID attempts and preserves prior artifacts. The unchanged observed Sol repair passes deterministic replay and two additional independent grades.",
+      "observed_repair_sha256": "8fc61169c623af04b3bd2db3fdc820b6f0667c1385f958c0b525cfdf1b0e906f",
+      "corrected_harness_replay": {
+        "kind": "deterministic replay of exact observed fresh Sol output; no second model attempt",
+        "result_sha256": "d3ea0e7cf794eb088a7f9c9ee9eb5ecee41e279c6203997c14789d71f9c4a564",
+        "state_sha256": "8350915dec2db7d79c32490c0ea6221da26c410a49874a30c67aa11e10b6d245",
+        "observed_source_sha256": "8fc61169c623af04b3bd2db3fdc820b6f0667c1385f958c0b525cfdf1b0e906f",
+        "observed_handoff_sha256": "f2c2b3276319d27b20056cbcf131bdca614117cc2a7315176612679b4154535f",
+        "outcome": "PASS",
+        "engineering_outcome": "PASS",
+        "findings": [],
+        "evidence": {
+          "native_unconnected": 0,
+          "native_violation_types": [],
+          "pad_population": {
+            "ADC_TDM": 3,
+            "MCH_CLK": 3
+          },
+          "production_complete": false,
+          "production_gate_exit": 0,
+          "production_gate_output_tail": "8:38:15: Debug: Adding duplicate image handler for 'GIF file'\n18:38:15: Debug: Adding duplicate image handler for 'PNM file'\n18:38:15: Debug: Adding duplicate image handler for 'PCX file'\n18:38:15: Debug: Adding duplicate image handler for 'IFF file'\n18:38:15: Debug: Adding duplicate image handler for 'Windows icon file'\n18:38:15: Debug: Adding duplicate image handler for 'Windows cursor file'\n18:38:15: Debug: Adding duplicate image handler for 'Windows animated cursor file'\n18:38:15: Debug: Adding duplicate image handler for 'TGA file'\n18:38:15: Debug: Adding duplicate image handler for 'XPM file'\n18:38:15: Debug: Adding duplicate image handler for 'PNG file'\n18:38:15: Debug: Adding duplicate image handler for 'JPEG file'\n18:38:15: Debug: Adding duplicate image handler for 'TIFF file'\n18:38:15: Debug: Adding duplicate image handler for 'GIF file'\n18:38:15: Debug: Adding duplicate image handler for 'PNM file'\n18:38:15: Debug: Adding duplicate image handler for 'PCX file'\n18:38:15: Debug: Adding duplicate image handler for 'IFF file'\n18:38:15: Debug: Adding duplicate image handler for 'Windows icon file'\n18:38:15: Debug: Adding duplicate image handler for 'Windows cursor file'\n18:38:15: Debug: Adding duplicate image handler for 'Windows animated cursor file'\n18:38:15: Debug: Adding duplicate image handler for 'TGA file'\n18:38:15: Debug: Adding duplicate image handler for 'XPM file'\n18:38:15: Debug: Adding duplicate image handler for 'PNG file'\n18:38:15: Debug: Adding duplicate image handler for 'JPEG file'\n18:38:15: Debug: Adding duplicate image handler for 'TIFF file'\n18:38:15: Debug: Adding duplicate image handler for 'GIF file'\n18:38:15: Debug: Adding duplicate image handler for 'PNM file'\n18:38:15: Debug: Adding duplicate image handler for 'PCX file'\n18:38:15: Debug: Adding duplicate image handler for 'IFF file'\n18:38:15: Debug: Adding duplicate image handler for 'Windows icon file'\n18:38:15: Debug: Adding duplicate image handler for 'Windows cursor file'\n18:38:15: Debug: Adding duplicate image handler for 'Windows animated cursor file'\n18:38:15: Debug: Adding duplicate image handler for 'TGA file'\n18:38:15: Debug: Adding duplicate image handler for 'XPM file'\n18:38:15: Debug: Adding duplicate image handler for 'PNG file'\n18:38:15: Debug: Adding duplicate image handler for 'JPEG file'\n18:38:15: Debug: Adding duplicate image handler for 'TIFF file'\n18:38:15: Debug: Adding duplicate image handler for 'GIF file'\n18:38:15: Debug: Adding duplicate image handler for 'PNM file'\n18:38:15: Debug: Adding duplicate image handler for 'PCX file'\n18:38:15: Debug: Adding duplicate image handler for 'IFF file'\n18:38:15: Debug: Adding duplicate image handler for 'Windows icon file'\n18:38:15: Debug: Adding duplicate image handler for 'Windows cursor file'\n18:38:15: Debug: Adding duplicate image handler for 'Windows animated cursor file'\n18:38:15: Debug: Adding duplicate image handler for 'TGA file'\n18:38:15: Debug: Adding duplicate image handler for 'XPM file'\n",
+          "production_gate_status": "PASS",
+          "production_receipt": "06_build/coupled/gate/grader-dd0497f72229420fa5eb61cb00a1bfa5.coupled-receipt.json",
+          "regenerated_prepared": "06_build/coupled/gate/grader-dd0497f72229420fa5eb61cb00a1bfa5-source/prepared.kicad_pcb",
+          "regenerated_witness": "06_build/coupled/gate/grader-dd0497f72229420fa5eb61cb00a1bfa5-source/witness.kicad_pcb",
+          "source_regenerated": true
+        },
+        "receipts": [
+          {
+            "path": "06_build/coupled/gate/grader-05c6cc766e464c7d9d8c0dcfb96bcf38.coupled-receipt.json",
+            "sha256": "685bad0b00aacbe22360b938a8ce38e50bc0266006e6b97111072585902dd27d",
+            "status": "PASS"
+          },
+          {
+            "path": "06_build/coupled/gate/grader-2feedb3d9b1e475085168d386c2c0fee.coupled-receipt.json",
+            "sha256": "2202e2a0fb76068ad7b5dfec8f8780151b3805154c331ed606d447179ea8bdc2",
+            "status": "PASS"
+          },
+          {
+            "path": "06_build/coupled/gate/grader-dd0497f72229420fa5eb61cb00a1bfa5.coupled-receipt.json",
+            "sha256": "68c55b52f496b6ad55eaed5b14581e80d4c4a50682462a2f0ac180adac33bf4a",
+            "status": "PASS"
+          },
+          {
+            "path": "06_build/coupled/gate/grader-ffe02d480ee54c61a0fc10f08c63feca.coupled-receipt.json",
+            "sha256": "794abfa9165ff9ab12dd7575f075e222c2fe1f3ff53faca2e9ae4592e4b3b1e8",
+            "status": "FAIL"
+          }
+        ],
+        "prior_evidence_preserved": true,
+        "repeat_grades": 3,
+        "case_driver_sha256": "afe2ebd91d82bea1d8c511aa19b1669bfb590797701e0c35ffbd78e227e8f2c4",
+        "superseded_by_final_source_replay": true
+      },
+      "final_source_replay": {
+        "kind": "deterministic replay, no new model attempt",
+        "result_sha256": "39ba0cce54e0ddf17d3101bfb652116f0d89338db7845d104eddb7efc94b869d",
+        "state_sha256": "507ddc064425ae291b3f4deb39618e7d5ece86d3152c715b8c924ecb094ea692",
+        "observed_source_sha256": "8fc61169c623af04b3bd2db3fdc820b6f0667c1385f958c0b525cfdf1b0e906f",
+        "observed_handoff_sha256": "f2c2b3276319d27b20056cbcf131bdca614117cc2a7315176612679b4154535f",
+        "outcome": "PASS",
+        "engineering_outcome": "PASS",
+        "findings": [],
+        "evidence": {
+          "native_unconnected": 0,
+          "native_violation_types": [],
+          "pad_population": {
+            "ADC_TDM": 3,
+            "MCH_CLK": 3
+          },
+          "production_complete": false,
+          "production_gate_exit": 0,
+          "production_gate_output_tail": "9:01:03: Debug: Adding duplicate image handler for 'GIF file'\n19:01:03: Debug: Adding duplicate image handler for 'PNM file'\n19:01:03: Debug: Adding duplicate image handler for 'PCX file'\n19:01:03: Debug: Adding duplicate image handler for 'IFF file'\n19:01:03: Debug: Adding duplicate image handler for 'Windows icon file'\n19:01:03: Debug: Adding duplicate image handler for 'Windows cursor file'\n19:01:03: Debug: Adding duplicate image handler for 'Windows animated cursor file'\n19:01:03: Debug: Adding duplicate image handler for 'TGA file'\n19:01:03: Debug: Adding duplicate image handler for 'XPM file'\n19:01:03: Debug: Adding duplicate image handler for 'PNG file'\n19:01:03: Debug: Adding duplicate image handler for 'JPEG file'\n19:01:03: Debug: Adding duplicate image handler for 'TIFF file'\n19:01:03: Debug: Adding duplicate image handler for 'GIF file'\n19:01:03: Debug: Adding duplicate image handler for 'PNM file'\n19:01:03: Debug: Adding duplicate image handler for 'PCX file'\n19:01:03: Debug: Adding duplicate image handler for 'IFF file'\n19:01:03: Debug: Adding duplicate image handler for 'Windows icon file'\n19:01:03: Debug: Adding duplicate image handler for 'Windows cursor file'\n19:01:03: Debug: Adding duplicate image handler for 'Windows animated cursor file'\n19:01:03: Debug: Adding duplicate image handler for 'TGA file'\n19:01:03: Debug: Adding duplicate image handler for 'XPM file'\n19:01:03: Debug: Adding duplicate image handler for 'PNG file'\n19:01:03: Debug: Adding duplicate image handler for 'JPEG file'\n19:01:03: Debug: Adding duplicate image handler for 'TIFF file'\n19:01:03: Debug: Adding duplicate image handler for 'GIF file'\n19:01:03: Debug: Adding duplicate image handler for 'PNM file'\n19:01:03: Debug: Adding duplicate image handler for 'PCX file'\n19:01:03: Debug: Adding duplicate image handler for 'IFF file'\n19:01:03: Debug: Adding duplicate image handler for 'Windows icon file'\n19:01:03: Debug: Adding duplicate image handler for 'Windows cursor file'\n19:01:03: Debug: Adding duplicate image handler for 'Windows animated cursor file'\n19:01:03: Debug: Adding duplicate image handler for 'TGA file'\n19:01:03: Debug: Adding duplicate image handler for 'XPM file'\n19:01:03: Debug: Adding duplicate image handler for 'PNG file'\n19:01:03: Debug: Adding duplicate image handler for 'JPEG file'\n19:01:03: Debug: Adding duplicate image handler for 'TIFF file'\n19:01:03: Debug: Adding duplicate image handler for 'GIF file'\n19:01:03: Debug: Adding duplicate image handler for 'PNM file'\n19:01:03: Debug: Adding duplicate image handler for 'PCX file'\n19:01:03: Debug: Adding duplicate image handler for 'IFF file'\n19:01:03: Debug: Adding duplicate image handler for 'Windows icon file'\n19:01:03: Debug: Adding duplicate image handler for 'Windows cursor file'\n19:01:03: Debug: Adding duplicate image handler for 'Windows animated cursor file'\n19:01:03: Debug: Adding duplicate image handler for 'TGA file'\n19:01:03: Debug: Adding duplicate image handler for 'XPM file'\n",
+          "production_gate_status": "PASS",
+          "production_receipt": "06_build/coupled/gate/grader-58c5f624a8874fb2a072cc986f33dc4d.coupled-receipt.json",
+          "regenerated_prepared": "06_build/coupled/gate/grader-58c5f624a8874fb2a072cc986f33dc4d-source/prepared.kicad_pcb",
+          "regenerated_witness": "06_build/coupled/gate/grader-58c5f624a8874fb2a072cc986f33dc4d-source/witness.kicad_pcb",
+          "source_regenerated": true
+        },
+        "driver_sha256": "a4fcf9a1c2cdefdc7c29c3d747029b2cc08fc29bfc747bda53082fc4920c3876",
+        "repeated_grades": 3,
+        "prior_evidence_preserved_by_test": true
+      }
+    },
+    "publication_preflight": {
+      "fresh_trial": {
+        "repository_revision": "379f6ca6547b3f1db4f60fc41dad664cf7b7fc1e",
+        "case_manifest_sha256": "0656dd9b7c95ec4ca5cacb433c5f498b2539a129518c6200828f48db5cd52bb8",
+        "trusted_skill_map_sha256": "a1b27f4eb3c1935c1a363704780c396d8c67ab00f80c6cc90a1510764cb7ef98",
+        "trusted_tool_map_sha256": "29cc04af6ac2eb038f43d1ee4bb5e40a6f83e1cf1b3c21534eb4db5380d53261",
+        "initial_outcome": "FAIL",
+        "initial_findings": [
+          {
+            "code": "RP-SUBJECT",
+            "message": "producer packet receipt does not match current candidate and authoritative source bytes"
+          },
+          {
+            "code": "RP-SOURCE",
+            "message": "current authoritative input differs from source commit: 04_kicad/crow_publication_coupon.kicad_pcb"
+          },
+          {
+            "code": "RP-GIT",
+            "message": "candidate artifact absent from HEAD: 06_build/candidates/crow-publication-v0.1/fab/board-PTH.drl"
+          },
+          {
+            "code": "RP-OPERATION",
+            "message": "archive inspection depth ceiling exceeded at /tmp/crow-publication-sol-trial-20260920-01/workspace/06_build/candidates/crow-publication-v0.1/verification/evidence.zip!level-1.zip!level-2.zip!level-3.zip!level-4.zip: > 4"
+          },
+          {
+            "code": "REVIEW-NOT-ALLOCATED",
+            "message": "preflight refused before attempt allocation"
+          }
+        ],
+        "outcome": "PASS",
+        "engineering_outcome": "PASS",
+        "findings": [],
+        "evidence": {
+          "host_reviewer_called": false,
+          "later_gates": [
+            "review verdict",
+            "release rehearsal",
+            "release seal",
+            "publication",
+            "remote verification"
+          ],
+          "opener_calls": 1,
+          "preflight": {
+            "census": {
+              "archive_inspection": {
+                "archives": 1,
+                "declared_expanded_bytes": 34,
+                "max_depth": 1,
+                "members": 1,
+                "nested_archives": 0,
+                "streamed_bytes": 34
+              },
+              "candidate_artifacts": 6,
+              "live_inputs": 5,
+              "required_present": 6,
+              "transport": {
+                "blobs": 16,
+                "largest_blob_bytes": 784,
+                "lfs_pointers": 0,
+                "objects": 39,
+                "raw_blob_bytes": 3785
+              }
+            },
+            "deferred_review_outputs": [
+              "verification/pin_review.md",
+              "verification/redteam_layout.md",
+              "verification/redteam_topology.md",
+              "verification/render_review.md"
+            ],
+            "findings": [],
+            "kind": "release-review-preflight-v1",
+            "schema": 1,
+            "status": "READY"
+          },
+          "production_complete": false
+        },
+        "agent": {
+          "provider": "codex-host-collaboration",
+          "model": "gpt-5.6-sol",
+          "effort": "medium",
+          "attempts": 1,
+          "task": "/root/solve_publication_process_checkpoint",
+          "first_observed_at": "2026-09-21T01:29:03.057049+00:00",
+          "usage": "UNKNOWN",
+          "process_cleanup": "UNKNOWN",
+          "deadline_enforcement": "host-supervised; no hard token or dollar cap",
+          "handback_observed_at": "2026-09-21T01:34:12.561909+00:00",
+          "host_task_status": "completed"
+        },
+        "observed_handback_interval_s": 309.50486,
+        "grader_elapsed_s": 0.407034
+      }
+    }
+  },
+  "scope_limits": [
+    "Synthetic Crow reductions, not complete historical boards or production release acceptance.",
+    "Provider usage, costs and cleanup UNKNOWN. Supervisor observation interval is not provider execution time or a cost cap.",
+    "Original failed trial is preserved; any subsequent repaired-harness replay must be labeled deterministic replay, not a new model solve."
+  ],
+  "checks": {
+    "staged_core_contracts": {
+      "files": 784,
+      "violations": 0
+    },
+    "decision_final_source_controls": {
+      "checker": 29,
+      "integration": 7,
+      "runner": 4
+    },
+    "boundary_reviews": {
+      "coupled_geometry": "ACCEPT",
+      "publication_preflight": "ACCEPT"
+    },
+    "full_default_suite": {
+      "passed": 2683,
+      "failed": 12,
+      "known_bad": 1598,
+      "exit_code": 1,
+      "log_sha256": "115bd3d068d30ac165859c18dbafa4bd771c95ca6525df1440c6db0fca00b28f",
+      "scope": "One full run before final CLI, test-registration and malformed-receipt fixes. Focused rechecks below cover final changes; no claim of a wholly green repository."
+    },
+    "final_targeted": {
+      "release_review_preflight": {
+        "passed": 15
+      },
+      "coupled_checkpoint": {
+        "passed": 8,
+        "known_bad": 5
+      },
+      "publication_checkpoint": {
+        "passed": 6
+      },
+      "suite_registration": {
+        "passed": 1
+      },
+      "core_contracts": {
+        "files": 788,
+        "violations": 0
+      },
+      "gate_contract_audit": {
+        "unmet": 6,
+        "origin_main_unmet": 7,
+        "new_unmet": 0,
+        "baseline": "2026-09-20-process-contract-baseline.json"
+      }
+    },
+    "publication_ci_local": {
+      "locator_publication": 2,
+      "release_freshness_review_coverage": 1,
+      "publication_gate": 34,
+      "publication_transport": 8,
+      "all_passed": true
+    }
+  }
+}

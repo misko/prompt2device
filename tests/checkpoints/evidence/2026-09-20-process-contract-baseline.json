@@ -70,5 +70,134 @@
     "sha256sum violations.sorted",
     "comm -3 origin-main/violations.sorted current/violations.sorted"
   ],
+  "crow_suite_baseline": {
+    "origin_main": {
+      "commit": "e9296d26620f5c86a46a9ddacb421db5827b5d03",
+      "isolation": "fresh detached git worktree removed after the read-only replay",
+      "t1_crow_governance": {
+        "exit": 1,
+        "passed": 3,
+        "failed": 2,
+        "known_bad_controls_passed": 1,
+        "log_sha256": "fed59c6e2fa06ec313d48917aef5c5bc8ef826aa9c9154fcd04b5b306be9c5e9",
+        "root_cause": "Both BRIEFs name sealed release paths and FIRST-ARTICLE ORDER AUTHORIZED, while validate_brief requires current_release: no and order_status: DO-NOT-ORDER. The D7 known-bad then fails for this unrelated base-fixture rejection, so the two failures are one stale posture expectation plus one cascade."
+      },
+      "t1_crow_prelayout_resume": {
+        "exit": 1,
+        "passed": 25,
+        "failed": 1,
+        "known_bad_controls_passed": 21,
+        "log_sha256": "6008d0733e5be1bf9aebc77ae0169cceafc32a7378446fe6d66ca8e0855efc53",
+        "recorded_files": 622,
+        "changed_inputs": [
+          "repo:skills/kicad-pcb/scripts/contracts.md",
+          "repo:skills/kicad-pcb/scripts/pcb_flow.py",
+          "repo:skills/pcb-design/scripts/pipeline_registry.py"
+        ],
+        "root_cause": "The accepted real-project prelayout input checkpoint is already stale on origin/main. Its correct exit-1 INPUT-CHECKPOINT refusal occurs before the clean test's expected exit-2 missing JLC receipt boundary."
+      }
+    },
+    "current_worktree": {
+      "base_head": "19dae2ecbe0e943f93e8653e762f319bc73cc52a",
+      "tree_state": "dirty tracked worktree containing the reviewed family-1/2/3 process changes",
+      "test_source_diff_from_origin_main": "none for tests/t1_crow_prelayout_resume.py",
+      "t1_crow_governance": {
+        "exit": 1,
+        "passed": 3,
+        "failed": 2,
+        "log_sha256": "b6cbe6d6ebff6612c5f399ead029173ad4e1b92e7c44e3e07c2d308465d90750",
+        "classification": "same inherited stale posture expectation and cascade as origin/main"
+      },
+      "t1_crow_prelayout_resume": {
+        "exit": 1,
+        "passed": 25,
+        "failed": 1,
+        "known_bad_controls_passed": 21,
+        "log_sha256": "b346f125b4c7614ffe00ab8d0a85346488e27e481f5a62613d2a887832270833",
+        "recorded_files": 622,
+        "changed_inputs_total": 11,
+        "inherited_changed_inputs": [
+          "repo:skills/kicad-pcb/scripts/contracts.md",
+          "repo:skills/kicad-pcb/scripts/pcb_flow.py",
+          "repo:skills/pcb-design/scripts/pipeline_registry.py"
+        ],
+        "additional_changed_inputs_from_current_process_work": [
+          "repo:skills/jlcpcb-fab/scripts/assembly_coverage.py",
+          "repo:skills/kicad-pcb/scripts/placement_routability_preflight.py",
+          "repo:skills/kicad-pcb/scripts/release_required_check.py",
+          "repo:skills/kicad-pcb/scripts/route_candidate_workspace.py",
+          "repo:skills/kicad-pcb/scripts/schema_reader_audit.py",
+          "repo:skills/kicad-pcb/scripts/tests/test_placement_cell_checks.py",
+          "repo:skills/kicad-pcb/scripts/tests/test_route_candidate_workspace.py",
+          "repo:skills/pcb-design/scripts/publication_transport_gate.py"
+        ],
+        "classification": "The failing test expectation is inherited; the eight additional stale hashes are the intended fail-closed effect of changing shared tools after the accepted checkpoint."
+      }
+    },
+    "valid_boundary_behavior": "With changed governed tool bytes, prelayout resume must refuse at INPUT-CHECKPOINT exit 1. The test's missing-receipt exit-2 expectation is valid only while the accepted checkpoint matches current tools. Refreshing the Crow checkpoint or receipt merely to make this test green would improperly bless changed source authority.",
+    "deferred_unrelated_test_debt": "Keep the production gate and real project receipts unchanged. A later test-only repair should generate a current synthetic checkpoint for the relocation-to-missing-receipt assertion, or wait for a governed full stage and independent-review refresh of the real checkpoint. The separate checkout-relocation and tracked-portable-closure assertions already pass.",
+    "commands": [
+      "/usr/bin/python3 tests/t1_crow_governance.py",
+      "/usr/bin/python3 tests/t1_crow_prelayout_resume.py"
+    ],
+    "suite_claim": "These focused replays are red. The full suite cannot be claimed green from this evidence."
+  },
+  "additional_full_suite_baseline": {
+    "origin_main": {
+      "commit": "e9296d26620f5c86a46a9ddacb421db5827b5d03",
+      "isolation": "fresh detached git worktree removed after the read-only replay",
+      "t1_pluto_enclosure_v2_canary": {
+        "exit": 1,
+        "passed": 8,
+        "failed": 2,
+        "known_bad_controls_passed": 4,
+        "log_sha256": "6023e74ab80a2e00d83141e40d214b0e6d29d73d739426bb242240542cd24662",
+        "root_cause": "The tracked Pluto v5 enclosure-v2 config binds 06_build/mechanical/pluto-fdm-v08/fdm-structural-audit.json, which is absent in the clean checkout. Config validation exits 2; the optimistic aggregate test then receives the same non-JSON error and its JSON decode failure is a cascade.",
+        "current_comparison": "The current full-suite log has the same 8/2 result and missing-receipt/cascade signature. Neither this test nor t1_copper_length.py differs from origin/main."
+      },
+      "t1_copper_length": {
+        "exit": 1,
+        "passed": 36,
+        "failed": 1,
+        "known_bad_controls_passed": 16,
+        "log_sha256": "d79b90684c6dc9bd78f405fe1f0215ca25a47aea52290cf80c7b9e31e717f650",
+        "root_cause": "The copper checks pass; the final schema/contract test fails because it requires the repository-wide gate_contract_audit to pass, and that audit is already red on origin/main."
+      },
+      "gate_contract_audit": {
+        "exit": 1,
+        "verdict_printing_scripts": 103,
+        "unmet_obligations": 7,
+        "log_sha256": "2c46549e049f90ec55d33523d33d2218fd2dd5241334f3004c36de5aab4941c2",
+        "findings": {
+          "skills/pcb-design/scripts/openrouter_usage_adapter.py": ["G-COVER", "G-INPUT", "G-RED"],
+          "skills/pcb-design/scripts/pipeline_issue_ledger.py": ["G-INPUT", "G-RED"],
+          "skills/pcb-design/scripts/publication_transport_gate.py": ["G-COVER", "G-RED"]
+        }
+      }
+    },
+    "current_worktree": {
+      "full_suite_log_sha256": "80d54997c160b932c1bdd5d3d192ae44943fe17fc028fa6d90b948341616746b",
+      "gate_contract_audit": {
+        "exit": 1,
+        "verdict_printing_scripts": 106,
+        "unmet_obligations": 8,
+        "focused_log_sha256": "3dab95c795b03ca6989d8bf0ec73331139921b1fe7cebc3ae8fe1bfbd24efa00",
+        "inherited_still_open": {
+          "skills/pcb-design/scripts/openrouter_usage_adapter.py": ["G-COVER", "G-INPUT", "G-RED"],
+          "skills/pcb-design/scripts/pipeline_issue_ledger.py": ["G-INPUT", "G-RED"],
+          "skills/pcb-design/scripts/publication_transport_gate.py": ["G-COVER"]
+        },
+        "inherited_closed": {
+          "skills/pcb-design/scripts/publication_transport_gate.py": ["G-RED"]
+        },
+        "current_regression": {
+          "skills/pcb-design/scripts/release_review_preflight.py": ["G-COVER", "G-INPUT"]
+        },
+        "delta": "One inherited publication-transport obligation closed and two release-review-preflight obligations opened, so the total moved from 7/103 to 8/106. The copper-suite failure is inherited, while the two release-review-preflight findings are genuine current work and remain owed."
+      }
+    },
+    "classification": "The two Pluto failures and the copper suite's repository-audit dependency are inherited baseline debt. This evidence does not excuse the two new release-review-preflight contract findings and does not authorize editing Pluto artifacts, refreshing generated evidence, or weakening any gate.",
+    "suite_claim": "The full suite remains red and cannot be claimed green."
+  },
   "scope_limit": "Both audits use git ls-files and therefore exclude untracked files, including this evidence file and other new family-2/family-3 files. Repeat the core and projects audits after final additions are staged; this record is a pre-staging baseline, not a final-suite result."
 }

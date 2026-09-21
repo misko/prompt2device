@@ -142,6 +142,7 @@ SUITES=(
   t1_release_freshness.py
   t1_release_required.py
   t1_publication_gate.py
+  t1_publication_transport.py
   t1_assembly_gates.py
   t1_assembly_locator.py
   t1_locator_publication.py

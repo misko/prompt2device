@@ -182,6 +182,36 @@ def t_ready():
        "exact future review outputs")
 
 
+@test("native preflight CLI names exact inputs and measured coverage")
+def t_native_cli_report():
+    f = fixture()
+    command = [
+        KPY, DESIGN / "release_review_preflight.py",
+        f["repo"], f["project"], f["release"],
+        "--envelope", f["envelope"],
+        "--commission", f["commission"],
+        "--packet-receipt", f["receipt"],
+        "--authoritative-board", f["project"] / "04_kicad/demo.kicad_pcb",
+        "--transport-base", f["source"], "--transport-head", f["head"],
+    ]
+    for path in f["live"]:
+        command.extend(("--live-input", path))
+    result = run(command, cwd=f["repo"])
+    eq(result.rc, 0, f"native CLI refused clean packet: {result.out}")
+    for label, path in (("repo_root", f["repo"]), ("project", f["project"]),
+                        ("release", f["release"]),
+                        ("authoritative_board",
+                         f["project"] / "04_kicad/demo.kicad_pcb")):
+        check(f"input: {label}={path.resolve()}" in result.out,
+              f"CLI omitted {label}: {result.out}")
+    expected = len(json.loads(f["receipt"].read_text())["artifacts"]) + len(f["live"])
+    check(f"coverage: {expected}/{expected}" in result.out,
+          f"CLI omitted measured denominator: {result.out}")
+    report = json.loads(result.out.splitlines()[-1])
+    eq(report["coverage"]["graded"], expected, "structured CLI coverage")
+    eq(report["status"], "READY", "structured CLI status")
+
+
 @test("three mutually matching stale assertions cannot admit current source",
       kind="known_bad")
 def t_stale_all_three():

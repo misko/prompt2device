@@ -7,6 +7,7 @@ import json
 import shutil
 import subprocess
 import sys
+import uuid
 from pathlib import Path
 
 import pcbnew
@@ -124,14 +125,12 @@ def _native_drc(witness_path: Path):
     return payload, types
 
 
-def _production_gate(repo: Path, workspace: Path, prepared: Path, witness: Path):
-    output = workspace / "06_build/coupled"
-    gate_workspace = output / "gate"
-    receipt = output / "coupled-receipt.json"
-    if gate_workspace.exists():
-        shutil.rmtree(gate_workspace)
-    if receipt.exists():
-        receipt.unlink()
+def _production_gate(repo: Path, workspace: Path, prepared: Path,
+                     witness: Path, attempt: str):
+    gate_root = workspace / "06_build/coupled/gate"
+    gate_root.mkdir(parents=True, exist_ok=True)
+    gate_workspace = gate_root / attempt
+    receipt = gate_root / f"{attempt}.coupled-receipt.json"
     command = [
         "/usr/bin/python3",
         str(repo / "skills/kicad-pcb/scripts/coupled_geometry_preflight.py"),
@@ -143,7 +142,12 @@ def _production_gate(repo: Path, workspace: Path, prepared: Path, witness: Path)
                                capture_output=True, timeout=150, check=False)
     value = None
     if receipt.is_file():
-        value = json.loads(receipt.read_text())
+        try:
+            value = json.loads(receipt.read_text())
+        except (OSError, ValueError) as exc:
+            diagnostic = f"invalid production receipt JSON: {exc}"
+            completed.stderr = "\n".join(
+                part for part in (completed.stderr, diagnostic) if part)
     return completed, receipt, value
 
 
@@ -170,8 +174,10 @@ def grade(repo: Path, workspace: Path):
             findings.append(("FROZEN-CONSTRAINT-CHANGED",
                              f"protected fixture authority changed: {relative}"))
     output = workspace / "06_build/coupled"
+    attempt = f"grader-{uuid.uuid4().hex}"
+    regenerated = output / "gate" / f"{attempt}-source"
     try:
-        prepared, witness = build_from_source(workspace, output)
+        prepared, witness = build_from_source(workspace, regenerated)
         findings.extend(_native_properties(prepared, witness))
         drc, violation_types = _native_drc(witness)
     except Exception as exc:
@@ -190,18 +196,26 @@ def grade(repo: Path, workspace: Path):
         findings.append(("REQUIRED-TERMINAL-UNCONNECTED",
                          "native DRC reports unconnected required copper"))
     gate, receipt_path, receipt = _production_gate(
-        repo, workspace, prepared, witness)
-    gate_valid = (
-        gate.returncode == 0 and isinstance(receipt, dict) and
-        receipt.get("schema") == 1 and
+        repo, workspace, prepared, witness, attempt)
+    receipt_contract = (
+        isinstance(receipt, dict) and receipt.get("schema") == 1 and
         receipt.get("kind") == "coupled-geometry-receipt-v1" and
-        receipt.get("status") == "PASS" and
         set(receipt.get("checks") or {}) ==
-        {"route_base", "candidate", "realized_policy"} and
+        {"route_base", "candidate", "realized_policy"}
+    )
+    gate_valid = (
+        gate.returncode == 0 and receipt_contract and
+        receipt.get("status") == "PASS" and
         all(row.get("status") == "PASS"
             for row in receipt.get("checks", {}).values())
     )
-    if not gate_valid:
+    gate_error = (gate.returncode not in (0, 1) or not receipt_contract or
+                  (gate.returncode == 0 and not gate_valid) or
+                  (gate.returncode == 1 and receipt.get("status") != "FAIL"))
+    if gate_error:
+        findings.append(("COUPLED-PREFLIGHT-INCOMPLETE",
+                         f"production coupled gate was incomplete (exit {gate.returncode})"))
+    elif not gate_valid:
         findings.append(("COUPLED-PREFLIGHT-FAIL",
                          f"production coupled gate exited {gate.returncode}"))
     handoff = (workspace / "HANDOFF.md").read_text(errors="replace").lower()
@@ -217,9 +231,15 @@ def grade(repo: Path, workspace: Path):
         "pad_population": {net: len(PAD_LAYOUT[net]) for net in NETS},
         "production_gate_exit": gate.returncode,
         "production_gate_status": receipt.get("status") if receipt else None,
+        "production_gate_output_tail":
+            (gate.stdout + gate.stderr)[-3000:],
         "production_receipt": str(receipt_path.relative_to(workspace)),
+        "regenerated_prepared": str(prepared.relative_to(workspace)),
+        "regenerated_witness": str(witness.relative_to(workspace)),
         "production_complete": False,
     }
+    if gate_error:
+        return emit("ERROR", findings, evidence, rc=2)
     if findings:
         return emit("FAIL", findings, evidence)
     return emit("PASS", evidence=evidence)

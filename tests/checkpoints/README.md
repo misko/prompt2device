@@ -139,3 +139,17 @@ Sixteen framework tests and five case-control tests passed. The complete reposit
 suite is not claimed green: a broader run was interrupted after historical/project
 contract failures. Run the focused checks above to reproduce this framework's
 deterministic validation.
+
+## Crow process regression validation
+
+`evidence/2026-09-20-process-validation.json` records the coupled-geometry and
+publication-preflight Sol-medium trials, alongside the separate decision-admission
+receipt. The geometry trial exposed immutable-workspace reuse in its grader;
+the original failure is retained, and the exact observed source repair passes
+deterministic replay through the corrected harness. Repeated grading preserves
+prior evidence. This is not an additional model solve.
+
+The full default suite recorded 2,683 passing tests and 12 failures before final
+focused fixes. The evidence distinguishes corrected integration issues from
+verified inherited contract, project-fixture and gate-audit debt. It does not
+claim the whole repository is green or that these coupons certify a board release.
