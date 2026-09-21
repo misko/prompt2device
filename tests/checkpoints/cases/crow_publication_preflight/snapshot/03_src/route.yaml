@@ -1,0 +1,8 @@
+project:
+  name: crow_publication_coupon
+  board: 04_kicad/crow_publication_coupon.kicad_pcb
+flow:
+  paths:
+    rebuild: 03_src/rebuild_all.sh
+route:
+  waves: []

@@ -1,0 +1,60 @@
+{
+  "schema": 1,
+  "id": "crow-publication-preflight",
+  "title": "Stabilize Crow release-review and recipient-visible publication inputs",
+  "tags": ["pcb", "release", "review", "publication", "transport", "resumable"],
+  "origin": {
+    "board": "crow-audio-carrier-v1 inspired publication coupon",
+    "revision": "synthetic reduction from 2026-09-12 through 2026-09-16 incidents",
+    "evidence": [
+      "tests/checkpoints/incidents/release-readiness.md",
+      "projects/crow-audio-carrier-v1/01_docs/journal/schematic.md",
+      "projects/crow-audio-carrier-v1/07_releases/v0.1.8-2026-09-16/MANIFEST.txt"
+    ],
+    "reduction": "Synthetic minimal candidate with a real MANIFEST.txt, required fabrication/source/pre-review artifacts, exact review inputs and an isolated recipient-visible Git population. It preserves stale review subject, omitted publishable member and recursive archive failure classes. Four legitimate review outputs remain deferred. It does not replay the complete Crow release, a live reviewer, remote provider behavior, release sealing or publication."
+  },
+  "checkpoint": {
+    "stage_id": "PCB-RELEASE-REVIEW",
+    "states": {
+      "PCB-RELEASE-REVIEW": "blocked",
+      "PCB-RELEASE-SEAL": "blocked",
+      "PCB-PUBLICATION": "blocked"
+    },
+    "history": [
+      {
+        "attempt": 1,
+        "result": "FAIL",
+        "disposition": "retired metadata-only refresh because the review subject remained stale",
+        "reconsider_when": "the current producer, candidate and live inputs reopen to one exact review subject"
+      },
+      {
+        "attempt": 2,
+        "result": "FAIL",
+        "disposition": "retired review reuse after candidate identity changed",
+        "reconsider_when": "a fresh review is commissioned against the exact current packet"
+      },
+      {
+        "attempt": 3,
+        "result": "FAIL",
+        "disposition": "retired recursive evidence archive and oversized outgoing population",
+        "reconsider_when": "recipient-visible Git membership and bounded transport census both pass"
+      }
+    ]
+  },
+  "task_file": "task.md",
+  "snapshot_dir": "snapshot",
+  "editable": [
+    ".git/**",
+    "06_build/candidates/crow-publication-v0.1/**",
+    "08_reviews/release-review/commission.json",
+    "08_reviews/release-review/envelope.json",
+    "08_reviews/release-review/evidence/**",
+    "08_reviews/release-review/packet-receipt.json",
+    "HANDOFF.md"
+  ],
+  "prepare": [["python3", "{case}/driver.py", "prepare", "{repo}", "{workspace}"]],
+  "grader": ["python3", "{case}/driver.py", "grade", "{repo}", "{workspace}"],
+  "initial_findings": ["RP-SUBJECT", "RP-SOURCE", "RP-GIT", "RP-OPERATION", "REVIEW-NOT-ALLOCATED"],
+  "timeout_s": 300,
+  "grader_timeout_s": 120
+}

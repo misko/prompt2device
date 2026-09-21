@@ -96,9 +96,11 @@ and whose return pads leave the signal path. Use `series_flow_through` or
 `series_directional` when signal current must enter and leave through declared
 banks. `require_topology: true` with no rows is a failure, not zero-row PASS.
 The receipt reports declared feasibility and catches misclassified endpoints
-early; structural reopening does not independently regrade its predicates, so
-it cannot authorize P-FEAS promotion or claim that a global route exists. Dense
-ECOs that need bounded candidate route probes remain governed by IMP-148.
+early. When coupled neighborhoods are declared, its schema-2
+`coupled_geometry` check binds and reopens an independently graded combined
+copper witness against the exact prepared board and native rules. That witness
+admits one legal coexistence result, not global routability. The receipt still
+cannot authorize P-FEAS stage promotion.
 
 For a non-critical analog shunt, use `signal_nets: [AUDIO_P1, AUDIO_N1]`
 instead of `pairs`. The exact observed signal-pad nets must match, and the
@@ -164,10 +166,10 @@ the legacy placement-routability projection used to construct the P-FEAS
 subject, so checker churn cannot stale a previously accepted placement. Add
 them to that identity only in the same change that promotes the predicate.
 
-The current P-FEAS stage emitter is also fail-closed: structural receipt
-reopening does not rerun the seven placement predicates. It therefore writes
-only a typed `INCOMPLETE` shadow result, no accepted output and no accepted
-bundle.
+The current P-FEAS stage emitter remains fail-closed and writes only a typed
+`INCOMPLETE` shadow result, no accepted output and no accepted bundle. This is
+separate from the authoritative `coupled_geometry` child inside the placement
+receipt, whose verifier reopens the bound child receipt and identities.
 
 Promote only after focused known-bad fixtures and representative USB Hub,
 Pluto, and USB-controlled-debug-hub canaries establish all of the following:

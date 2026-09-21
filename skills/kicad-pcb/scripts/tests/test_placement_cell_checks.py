@@ -35,8 +35,10 @@ def accepted_preflight_receipt(root: Path):
         name: {"status": "PASS", "detail": "fixture"}
         for name in preflight.AUTHORITATIVE_CHECKS
     }
+    checks_by_name["coupled_geometry"] = {
+        "status": "N-A", "detail": "no coupled neighborhoods declared"}
     receipt = {
-        "schema": 1, "kind": "placement-routability-receipt-v1",
+        "schema": 2, "kind": "placement-routability-receipt-v2",
         "verdict": "ACCEPTED",
         "inputs": {name: preflight._record(path)
                    for name, path in files.items()},
@@ -44,6 +46,8 @@ def accepted_preflight_receipt(root: Path):
         "coverage": {"passing": len(checks_by_name),
                      "total": len(checks_by_name)},
     }
+    receipt["inputs"]["checker_placement"] = preflight._record(
+        Path(preflight.__file__).resolve())
     receipt["subject"] = receipt["inputs"]["board"]
     return receipt, files
 

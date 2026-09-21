@@ -880,6 +880,43 @@ def t_decision_policy_helpers_stale_handoff():
            f"{original.name} policy change must stale prior admission context")
 
 
+@test("geometry and release helper changes stale flow handoffs", kind="known_bad")
+def t_geometry_release_helpers_stale_handoff():
+    import shutil
+    module = load_flow_module()
+    ctx = module.resolve_context(scratch())
+    repo = module.SCRIPTS.parents[2]
+    helpers = [
+        module.SCRIPTS / "placement_routability_preflight.py",
+        module.SCRIPTS / "coupled_geometry_preflight.py",
+        module.SCRIPTS / "route_candidate_workspace.py",
+        module.SCRIPTS / "dru_subject.py",
+        module.SCRIPTS / "release_required_check.py",
+        *[
+            repo / "skills/pcb-design/scripts" / name
+            for name in (
+                "release_review_preflight.py", "publication_transport_gate.py",
+                "pcb_publication_gate.py", "pipeline_review.py",
+                "pipeline_identity.py",
+            )
+        ],
+    ]
+    mirror = tmpdir("flow_family23_tools_")
+    for source in set(module.tool_files(ctx) + helpers):
+        dest = mirror / source.relative_to(repo)
+        dest.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(source, dest)
+    module.SCRIPTS = mirror / module.SCRIPTS.relative_to(repo)
+    module.FAB_SCRIPTS = mirror / module.FAB_SCRIPTS.relative_to(repo)
+    for original in helpers:
+        module.write_handoff(ctx, None, [])
+        eq(module.validate_handoff(ctx), 0, "fresh family-2/3 helper handoff")
+        helper = mirror / original.relative_to(repo)
+        helper.write_text(helper.read_text() + "\nFLOW_TOOL_TEST_MUTATION = True\n")
+        eq(module.validate_handoff(ctx), 2,
+           f"{original.name} change must stale the prior handoff")
+
+
 @test("issue accounting wraps real native route ownership validation without changing verdicts", kind="known_bad")
 def t_issue_native_workflow():
     import pcbnew

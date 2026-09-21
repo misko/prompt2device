@@ -7,19 +7,23 @@
       "crow_release_evidence"
     ],
     "routing": [
-      "crow_routing_geometry"
+      "crow_routing_geometry",
+      "crow_coupled_geometry"
     ],
     "assembly": [
       "crow_assembly_population"
     ],
     "release": [
-      "crow_release_evidence"
+      "crow_release_evidence",
+      "crow_publication_preflight"
     ],
     "admission": [
       "crow_decision_admission"
     ],
     "process": [
-      "crow_decision_admission"
+      "crow_decision_admission",
+      "crow_coupled_geometry",
+      "crow_publication_preflight"
     ]
   }
 }

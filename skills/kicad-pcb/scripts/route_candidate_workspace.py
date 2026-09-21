@@ -33,7 +33,8 @@ from process_runner import run_bounded
 HARD_DRC_TYPES = {
     "annular_width", "board_edge", "clearance", "copper_edge_clearance",
     "diff_pair_uncoupled_length_too_long", "drill_out_of_range",
-    "hole_clearance", "hole_to_hole", "shorting_items", "track_width",
+    "hole_clearance", "hole_to_hole", "shorting_items", "tracks_crossing",
+    "track_width",
     "through_hole_pad_without_hole", "via_diameter", "via_in_pad",
 }
 

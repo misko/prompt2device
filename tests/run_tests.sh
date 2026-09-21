@@ -69,6 +69,8 @@ SUITES=(
   t1_checkpoint_framework.py
   t1_design_decision_admission.py
   t1_decision_admission_integration.py
+  t1_coupled_geometry_preflight.py
+  t1_release_review_preflight.py
   t1_pad_separation.py
   t1_rf_contract.py
   t1_rf_module.py
@@ -164,6 +166,9 @@ SUITES=(
   t1_shopping_list.py
   t2_route_stitch.py
   t2_checkpoint_cases.py
+  t2_decision_admission_checkpoint.py
+  t2_coupled_geometry_checkpoint.py
+  t2_publication_preflight_checkpoint.py
   t2_scoped_pad_clearance.py
   t2_route_neighborhood.py
   t2_tier_preflight.py

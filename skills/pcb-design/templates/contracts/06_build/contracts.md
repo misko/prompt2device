@@ -14,6 +14,7 @@ explicit stage-checkpoint certificates.
 | `netlists/**` | exported netlists | regenerate |
 | `drc/**` | DRC/ERC/audit reports (`gate.json` = the current gate result) | regenerate |
 | `route/**` | KRT routing chain inputs/outputs (`r0..rN`, `taps_*.kicad_pcb`) | regenerate (needs KiCadRoutingTools) |
+| `coupled/**` | disposable prepared/combined native boards and workspaces used to produce an exact coupled-geometry witness; PASS applies only to the bound witness and is not a promoted route | regenerate |
 | `fab/**` | JLC export: gerbers, `bom.csv` (carries LCSC codes between runs), `cpl.csv`, zip — the CONTRACT's names, so a seal COPIES rather than renames (07_releases/contracts.md requires `fab/bom.csv` + `fab/cpl.csv`) | regenerate; bom LCSC column is the seed store |
 | `pdf/**` | release PDF set + PNG verification renders | regenerate |
 | `cache/**` | **volatile market data**: stock, price, distributor attrs | hours |
@@ -22,6 +23,7 @@ explicit stage-checkpoint certificates.
 | `mechanical/**` | generated PCB-interface snapshots, CAD/mesh exports, fit coupons, renders, verification reports and hash-bound candidate packages | regenerate from `03_src/mechanical/` plus the exact bound PCB subject |
 | `connector_qualification_coupon/**` | optional generated connector-only board, bare-board fabrication package, exact source/geometry request, physical-response template and typed grade receipt from `connector_qualification_coupon.py`; never product-board or order authority | regenerate while blank; move real response/receipt/evidence into governed project evidence before durable use |
 | `task_runs/**` | fresh schema-2 task envelopes, attempt receipts, combined child logs, scratch and declared outputs; preserve needed failed-run evidence in durable docs before deleting | regenerate |
+| `release_review_packet/**` | optional caller-owned `release-review-packet-v1` receipt and exact commission used by `PCB-RELEASE-REVIEW` agent-open preflight; kept outside the candidate to avoid self-hash cycles, with no canonical filename/default | regenerate for each material candidate state |
 | `tmp/**` | scratch workspace for in-flight stage work | regenerate |
 | `pin_review/**` `pin_audit/**` | fresh-context pin-review dossiers + verdicts (either spelling; boards have used both) | regenerate |
 | `verification/**` | **the SEAL STAGING AREA** — every gate's evidence, written here and COPIED into `07_releases/<ver>/verification/` at seal time. It had no row until 2026-07-31 despite being live on a shipping board (smc0985-cooksense carries 27 files here), because `--projects`' exit code was never read. Same names as the sealed copy, so the seal COPIES and never renames — see the `fab/**` row for what a rename costs | regenerate |

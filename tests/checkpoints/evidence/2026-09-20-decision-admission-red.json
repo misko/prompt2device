@@ -105,5 +105,58 @@
     },
     "mutation_isolation": "Both arms mutate only helper copies under /tmp; shared helper and test files were read-only"
   },
+  "family23_helper_hash_red_green": {
+    "scope": "Focused handoff identity calibration for the ten family-2 geometry and family-3 review/publication helpers; this is freshness evidence, not engineering acceptance",
+    "baseline": {
+      "commit": "19dae2ecbe0e943f93e8653e762f319bc73cc52a",
+      "pcb_flow_sha256": "7e8ceea66bb9c79a76357eb87c7aeaee3459bfbea52d9e2145f4566d5e841849",
+      "isolation": "Full immutable source tree extracted with git archive; its pcb_flow module and tracked tools were copied to a disposable mirror"
+    },
+    "corrected": {
+      "pcb_flow_sha256": "6df9f5cae824814fd30672816348c48eaadbe4961e37ce5989d25ad3d0d78496",
+      "test": "tests/t2_pcb_flow.py::t_geometry_release_helpers_stale_handoff",
+      "test_sha256": "9f67d85dd9f96e415f22b49a3540d48a6df69ccb5bee8e121e8a3fa88747211b"
+    },
+    "subjects": {
+      "skills/kicad-pcb/scripts/placement_routability_preflight.py": "1b5abd6b67b35d807d3112936a3e737dccca871570fbab6f1c215dab2931fdc2",
+      "skills/kicad-pcb/scripts/coupled_geometry_preflight.py": "5203976581a26082d0cd8de321234d742b18d047b3ab02599a1052ccfc95c75e",
+      "skills/kicad-pcb/scripts/route_candidate_workspace.py": "dd79bf8e18b9b9bc50d70747f5afaf1e5c9c429f1f1a43a25587733b326fd748",
+      "skills/kicad-pcb/scripts/dru_subject.py": "25320ae0d6f686482c65a4ac8b454cd8935e1837e361bee7e7750307749a2ce8",
+      "skills/kicad-pcb/scripts/release_required_check.py": "063f5b5d941067a315c42bf89013dda43c15b851cb151084743e150ebaba71c6",
+      "skills/pcb-design/scripts/release_review_preflight.py": "2f5570f2425b06a0305583701a0f372c2e38c82dd5ad197c64ffb0f44d77d89b",
+      "skills/pcb-design/scripts/publication_transport_gate.py": "1a92089075c83e1422763cf4de33d6c6d8cd5bdad7bceb5ea0de19785a29cda8",
+      "skills/pcb-design/scripts/pcb_publication_gate.py": "8efc5a915e4ddba165f2779bbccb62c902e411eecc1eba842afb8ebf671868a6",
+      "skills/pcb-design/scripts/pipeline_review.py": "65a79a86b5c72e0fb71a5ac53fd018ac40a85a3999f9a7337bb9b0771ad32813",
+      "skills/pcb-design/scripts/pipeline_identity.py": "5d1e6dfccf79243e8e82839234e498b1f162d1d56588bd4aced7fe2d0bdac33c"
+    },
+    "probe": {
+      "path": "$TMP/family23_helper_hash_probe.py",
+      "sha256": "3d86f805144728527006e1d66cf486e7478067485ea27b470b84a776bdb707e8",
+      "method": "Supply current helper bytes to the immutable module only through the disposable mirror; write a fresh handoff, mutate one mirrored helper, and validate before advancing to the next helper"
+    },
+    "commands": {
+      "extract_baseline": "git archive --format=tar 19dae2ec | tar -xf - -C $TMP/old-source",
+      "pref_fix": "/usr/bin/python3 $TMP/family23_helper_hash_probe.py $TMP/old-source/skills/kicad-pcb/scripts/pcb_flow.py $WORKTREE",
+      "corrected": "/usr/bin/python3 -c 'import sys; sys.path.insert(0, \"tests\"); import t2_pcb_flow; t2_pcb_flow.t_geometry_release_helpers_stale_handoff()'"
+    },
+    "outcomes": {
+      "pref_fix": {
+        "process_exit": 0,
+        "helpers_graded": 10,
+        "fresh_validation_exits": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        "post_mutation_validation_exits": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        "result": "RED: 19dae2ec incorrectly kept every mutated helper handoff fresh because all ten helpers were omitted from tool_files()"
+      },
+      "corrected": {
+        "process_exit": 0,
+        "helpers_graded": 10,
+        "fresh_validation_exits": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        "post_mutation_validation_exits": [2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
+        "finding_each": "STALE handoff: tool hash changed",
+        "result": "GREEN: the exact current focused regression rejected all ten helper mutations"
+      }
+    },
+    "mutation_isolation": "Only copies under /tmp were mutated; no shared skill, case, test or helper file was changed"
+  },
   "result": "RED established against e1c8f2bb; corrected invalid refusal and valid-control launch both established"
 }

@@ -10,10 +10,12 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from harness import (KPY, ROOT, check, contains, main, must_fail,  # noqa: E402
+from harness import (KPY, ROOT, check, contains, eq, main, must_fail,  # noqa: E402
                      must_pass, not_contains, run, test, tmpdir)
 
 TOOL = ROOT / "skills/kicad-pcb/scripts/release_required_check.py"
+sys.path.insert(0, str(TOOL.parent))
+import release_required_check as required_gate  # noqa: E402
 
 CONTRACT = """# contract: 07_releases/
 
@@ -56,6 +58,39 @@ def fixture(missing=()):
 def t_complete_passes():
     r = must_pass(run([KPY, TOOL, str(fixture())]), "complete release")
     contains(r.out, "A-EVID OK", "grades clean")
+
+
+@test("release-review input check defers only the four future review outputs")
+def t_release_review_inputs():
+    d = tmpdir("aevid_review_inputs_")
+    contract = d / "contracts.md"
+    contract.write_text("""```
+07_releases/
+└── <version>-<date>/
+    ├── MANIFEST.txt REQUIRED
+    └── verification/ REQUIRED
+        ├── pin_review.md future
+        ├── render_review.md future
+        ├── redteam_topology.md future
+        ├── redteam_layout.md future
+        └── parity.md machine
+```
+""")
+    release = d / "candidate"
+    (release / "verification").mkdir(parents=True)
+    (release / "MANIFEST.txt").write_text("draft\n")
+    (release / "verification/parity.md").write_text("PASS\n")
+    early = required_gate.check_release_review_inputs(release, contract)
+    eq(early["missing"], [], "non-review inputs complete")
+    eq(tuple(early["deferred_review_outputs"]),
+       required_gate.RELEASE_REVIEW_OUTPUTS, "exact deferred review set")
+    final = required_gate.check(release, contract)
+    eq(sorted(final["missing"]), sorted(required_gate.RELEASE_REVIEW_OUTPUTS),
+       "ordinary final check still requires every review")
+    (release / "verification/parity.md").unlink()
+    broken = required_gate.check_release_review_inputs(release, contract)
+    eq(broken["missing"], ["verification/parity.md"],
+       "arbitrary required file was not deferred")
 
 
 # ------------------------------------------- the PRODUCER side of A-EVID ---

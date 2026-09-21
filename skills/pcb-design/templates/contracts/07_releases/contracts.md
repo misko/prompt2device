@@ -424,6 +424,21 @@ current seal admission. These commands neither commit nor replace the numbered
 procedure below.
 
 0. **Stage.** Write the complete archive into `07_releases/<ver>-<date>/`.
+   Before allocating a `PCB-RELEASE-REVIEW` agent attempt, recompute the
+   producer-owned review-packet receipt over every regular candidate file
+   except exactly `verification/{pin_review,render_review,redteam_topology,redteam_layout}.md`.
+   Those four files must be absent and are reported as deferred. The exact
+   schema-2 reviewer/stage `pcb_flow.py agent-open` must reopen that receipt,
+   the typed commission, current scoped live-source bytes, candidate
+   manifest/inventory and outgoing Git transport state before it allocates
+   anything. The current authoritative board must be byte-equal to
+   `source/<authoritative-basename>` when present; a source directory with one
+   PCB may use that sole member as the unambiguous fallback, while additional
+   staged route-evidence PCBs remain allowed and inventoried. The envelope
+   packet must equal the full candidate inventory plus the supplied commission
+   and receipt by path/hash/size, with no extra, missing, duplicate or misbound
+   path. READY is packet-launch
+   readiness only; the review, M-REV verdict and host dispatch are still owed.
    Run EVERY gate and review against this staging dir — DRC/ERC/parity,
    twin, policy_audit, freshness, semantic M-BOM, and the review lenses
    (breadth per canon "Verification scoping": initial release = full

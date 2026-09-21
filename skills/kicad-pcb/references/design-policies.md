@@ -247,6 +247,18 @@ BOM.
 
 | S-DSL | Circuit declarations COMPILE TO NATIVE KiCad artifacts; every gate runs on artifacts, never on a DSL's claims about them. Front-ends may vary (schwriter2 declarations, future adapters); .kicad_sch/.kicad_pcb + the gate stack are fixed | [G] structural | evaluated CircuitScript 2026-07-18: netlist-only KiCad export would break ERC/parity/S-OCCL at their strongest link |
 
+`PCB-RELEASE-REVIEW` has a local pre-attempt admission predicate under the
+existing review/publication procedure. It conservatively binds the current
+scoped live-source census and exact staged source-board twin, complete
+non-review candidate inventory, manifest, typed commission, receipt, schema-2
+reviewer/stage envelope packet and outgoing Git state before reviewer capacity
+is allocated. The four named future review outputs must be absent and are the
+only deferred candidate files. READY is not an M-REV verdict and carries no
+seal, publication, engineering-correctness, host-dispatch or transport-push
+claim. Signature-based nested-archive inspection uses separate resource
+ceilings; unreadable/over-budget input is INCOMPLETE, distinct from unchanged
+Git transport limits.
+
 ### GG-* mechanics — the exit vocabulary, and the ONE THING THIS LAYER CANNOT DO
 
 `trace_audit.py --subject PROJECT_DIR` installs `skills/kicad-pcb/gradelib/` on

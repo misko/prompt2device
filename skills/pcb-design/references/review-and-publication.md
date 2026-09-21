@@ -94,6 +94,41 @@ a second seal algorithm here.
 
 ## 4. Admit independent review evidence
 
+Before opening an agent attempt for `PCB-RELEASE-REVIEW`, build a
+`release-review-packet-v1` receipt outside the candidate and an exact review
+commission. Conventional caller-owned locations are
+`06_build/release_review_packet/packet.json` and `commission.json`; they are
+not canonical defaults. Then use the reviewer-specific `pcb_flow.py agent-open`
+arguments documented in [execution-runtime.md](execution-runtime.md).
+
+The preflight accepts only the exact schema-2 `PCB-RELEASE-REVIEW` envelope
+with executor `reviewer`. It recomputes the producer-owned receipt from current
+live sources and every regular candidate file except the four fixed future
+reviews, which must still be absent and are reported as deferred. The current
+authoritative board must be in the live census and byte-equal the staged
+`source/<authoritative-basename>` when present; exactly one staged PCB is the
+fallback when the basename path is absent. Other staged PCB route evidence is
+allowed and remains in the inventory. It requires complete non-review membership,
+reopened hashes and manifest census, exact source/candidate/commission/envelope
+identity, and an envelope packet equal by path/hash/size to the candidate plus
+the supplied typed commission and receipt, with no missing, extra, duplicate or
+misbound paths. It also requires candidate bytes in the selected transport
+head, source-commit ancestry, and unchanged outgoing Git transport limits. Its
+subject is a versioned exact record; it does not assert semantic equivalence.
+Unrelated later documentation outside the scoped source census does not stale
+it. The admission adds no canonical commission lens, checklist, output path or
+completion filename; the generic typed commission remains their authority.
+
+Archive inspection has a separate operational resource ceiling: default depth
+4, 100,000 members, 4 GiB expanded/streamed and 512 MiB nested reads. Each
+streamed member is signature-sniffed for ZIP, gzip or TAR nesting regardless
+of filename; only detected nested bytes are retained within that ceiling.
+Bounded nested archives and leaf Gerber ZIPs are allowed. An unreadable archive
+or resource overrun is `INCOMPLETE`, not a Git oversize finding. Only READY may
+allocate the attempt, and READY precedes host dispatch and every final review
+verdict. It is not review, seal, publication, correctness, or transport-push
+evidence.
+
 Each review commission names one immutable subject, one lens, exclusions,
 checklist, output path, and deadline. The launcher enforces time. The witness
 must contain parseable data:

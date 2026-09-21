@@ -1,0 +1,74 @@
+{
+  "schema": 1,
+  "kind": "process-contract-baseline-v1",
+  "recorded_on": "2026-09-20",
+  "audit": "scripts/contracts_audit.py",
+  "current_worktree": {
+    "head": "19dae2ecbe0e943f93e8653e762f319bc73cc52a",
+    "tree_state": "dirty tracked worktree; HEAD identifies the base commit, not all audited bytes",
+    "core": {
+      "exit": 0,
+      "tracked_files_graded": 748,
+      "tracked_files_total": 20456,
+      "project_files_excluded": 19708,
+      "violations": 0
+    },
+    "projects": {
+      "exit": 1,
+      "tracked_files_graded": 20456,
+      "violations": 2884,
+      "classes": {"C-ALLOW": 2884},
+      "units_measured": 28,
+      "recorded_debt": 2873,
+      "recorded_units": 26
+    }
+  },
+  "origin_main_snapshot": {
+    "commit": "e9296d26620f5c86a46a9ddacb421db5827b5d03",
+    "isolation": "fresh detached git worktree, removed after the read-only audit",
+    "core": {
+      "exit": 0,
+      "tracked_files_graded": 722,
+      "tracked_files_total": 20430,
+      "project_files_excluded": 19708,
+      "violations": 0
+    },
+    "projects": {
+      "exit": 1,
+      "tracked_files_graded": 20430,
+      "violations": 2884,
+      "classes": {"C-ALLOW": 2884},
+      "units_measured": 28,
+      "recorded_debt": 2873,
+      "recorded_units": 26
+    }
+  },
+  "finding_identity": {
+    "population": "sorted complete lines beginning FAIL C- from each --projects run",
+    "line_count_each": 2884,
+    "sha256_each": "1273afd680fba77d774d4a6a9a947a73d4ba72b52b48b818b6500fadbc0ba33b",
+    "symmetric_difference_lines": 0
+  },
+  "unratcheted_crow_debt": {
+    "projects/crow-audio-carrier-v1": {
+      "violations": 9,
+      "journal_tar_gz": 8,
+      "tracked_node_modules_symlink": 1,
+      "symlink_git_mode": "120000"
+    },
+    "projects/crow-mic-pod-v3": {
+      "violations": 2,
+      "journal_tar_gz": 2
+    },
+    "total": 11,
+    "classification": "10 journal tar.gz paths plus one tracked node_modules symlink"
+  },
+  "commands": [
+    "/usr/bin/python3 scripts/contracts_audit.py",
+    "/usr/bin/python3 scripts/contracts_audit.py --projects",
+    "rg '^FAIL C-' projects.txt | sort",
+    "sha256sum violations.sorted",
+    "comm -3 origin-main/violations.sorted current/violations.sorted"
+  ],
+  "scope_limit": "Both audits use git ls-files and therefore exclude untracked files, including this evidence file and other new family-2/family-3 files. Repeat the core and projects audits after final additions are staged; this record is a pre-staging baseline, not a final-suite result."
+}

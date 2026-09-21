@@ -1,0 +1,70 @@
+{
+  "schema": 1,
+  "id": "crow-coupled-geometry",
+  "title": "Co-design the Crow-inspired MCH clock and ADC TDM pin-field escapes",
+  "tags": ["pcb", "routing", "native-pcbnew", "coupled-geometry", "resumable"],
+  "origin": {
+    "board": "crow-audio-carrier-v1 inspired coupon",
+    "revision": "synthetic reduction from verified 2026-09-16 and 2026-09-20 evidence",
+    "evidence": [
+      "tests/checkpoints/incidents/coupled-geometry.md",
+      "projects/crow-roof-array-v1/01_docs/reports/2026-09-20-transcript-cost-retrospective.md#R09",
+      "projects/crow-roof-array-v1/01_docs/reports/2026-09-20-transcript-cost-retrospective.md#R10",
+      "projects/crow-roof-array-v1/01_docs/reports/2026-09-20-transcript-cost-retrospective.md#R11",
+      "projects/crow-roof-array-v1/01_docs/reports/2026-09-20-transcript-cost-retrospective.md#R12",
+      "improvements.md#IMP-193",
+      "improvements.md#IMP-258"
+    ],
+    "reduction": "Synthetic three-terminal MCH_CLK/ADC_TDM F.Cu coupon. It preserves the documented classes: isolated legal routes that collide when composed, an inherited early branch occupying a later terminal's launch, and frozen width/layer/zero-via/net-population constraints. It is not the historical Crow board, route chain, pad density, or proof of general routability or impossibility. Provenance revisions are 0dd098e2b58dc8750b19ab9305a78e46a9c92c5b and 99557b65a4b74892b1ac61e5a3753463bab9d133."
+  },
+  "checkpoint": {
+    "stage_id": "KICAD-ROUTING",
+    "states": {
+      "KICAD-SCHEMATIC": "accepted",
+      "KICAD-PLACEMENT": "accepted",
+      "KICAD-ROUTING": "blocked"
+    },
+    "history": [
+      {
+        "attempt": 1,
+        "result": "FAIL",
+        "disposition": "Per-net isolation passed, but the accepted early MCH_CLK branch crosses ADC_TDM and blocks its required pin-field launch in the combined native witness.",
+        "reconsider_when": "Current source geometry regenerates a combined native witness that connects all six terminals and passes the production coupled-neighborhood gate with frozen F.Cu, width, and zero-via constraints."
+      },
+      {
+        "attempt": 2,
+        "result": "RETIRED",
+        "disposition": "Route-order reversal reproduced the same combined collision because it did not change the physical cut.",
+        "reconsider_when": "Placement, legal layers, effective rules, or an independently graded crossover changes the cut; invalidate and replay both affected nets."
+      },
+      {
+        "attempt": 3,
+        "result": "RETIRED",
+        "disposition": "Grid and search retries preserved the obstructing early branch and therefore did not create terminal-launch capacity.",
+        "reconsider_when": "The source-owned branch or placement changes and the complete constrained neighborhood is regenerated and regraded."
+      }
+    ]
+  },
+  "task_file": "task.md",
+  "snapshot_dir": "snapshot",
+  "editable": [
+    "03_src/route_geometry.yaml",
+    "06_build/coupled/prepared.kicad_pcb",
+    "06_build/coupled/prepared.kicad_prl",
+    "06_build/coupled/prepared.kicad_pro",
+    "06_build/coupled/prepared.kicad_dru",
+    "06_build/coupled/witness.kicad_pcb",
+    "06_build/coupled/witness.kicad_prl",
+    "06_build/coupled/coupled-receipt.json",
+    "06_build/coupled/gate/**",
+    "HANDOFF.md"
+  ],
+  "prepare": [["/usr/bin/python3", "{case}/driver.py", "prepare", "{repo}", "{workspace}"]],
+  "grader": ["/usr/bin/python3", "{case}/driver.py", "grade", "{repo}", "{workspace}"],
+  "initial_findings": [
+    "COMBINED-NATIVE-COLLISION",
+    "COUPLED-PREFLIGHT-FAIL"
+  ],
+  "timeout_s": 300,
+  "grader_timeout_s": 180
+}

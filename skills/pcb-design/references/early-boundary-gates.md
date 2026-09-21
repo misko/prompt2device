@@ -119,7 +119,8 @@ Run on the exact placed board before route preparation. The existing
 `placement_routability_preflight.py` compositor records a typed
 `P-FEASIBILITY` shadow result. It combines physical placement, critical
 inventory, route ownership, endpoint topology, layer eligibility, ordered
-connector lanes, and explicit series power transitions.
+connector lanes, explicit series power transitions, and the authoritative
+`coupled_geometry` check when a combined neighborhood is declared.
 
 ```yaml
 require_connector_lanes: true
@@ -138,11 +139,61 @@ series_power_paths:
       - {kind: copper, from: J_PWR.1, to: F_IN.1}
       - {kind: component, from: F_IN.1, to: F_IN.2}
       - {kind: copper, from: F_IN.2, to: U_AGG.5}
+
+coupled_neighborhoods:
+  - id: clock_and_adc_launch
+    nets: [MCLK, BCLK, ADC_D0, ADC_D1]
+    why: these launches share one constrained escape corridor
+coupled_witness: 06_build/coupled/combined-witness.kicad_pcb
 ```
 
 `copper` endpoints must share one non-empty net. A `component` transition
 must cross two different pads/nets of one footprint. Realized filled-copper
 connectivity and ampacity remain post-route checks.
+
+Each coupled-neighborhood row is closed to exactly `id`, `nets`, and `why`;
+the ID is unique, `nets` contains at least two unique exact names, and `why` is
+nonempty. `coupled_witness` is an optional project-relative `.kicad_pcb`; the
+placement CLI may override it with `--coupled-witness`. The leaf command is:
+
+```text
+coupled_geometry_preflight.py grade PROJECT --prepared PREPARED \
+  --witness WITNESS --workspace FRESH_DIR --json RECEIPT [--board-name NAME]
+```
+
+Its schema-1 `coupled-geometry-receipt-v1` has exactly `route_base`,
+`candidate`, and `realized_policy` checks. Each attempt copies the prepared
+board/project/rules plus the resolved current nets source into an immutable
+`<workspace>-current-rules/` sibling, reruns `generate_rules_generic.py`, and
+requires the regenerated board bytes to equal the prepared board. This closes
+the placement-before-rule-generation ordering without trusting stale prepared
+sidecars. Prepared bytes own placement, pads, and inherited seed copper; the
+witness may add alternate legal copper but cannot move or delete that
+authority. Candidate grading
+reuses route-base, via-in-pad, physical-DRC and connectivity predicates, with
+`tracks_crossing` blocking. Width and scoped floors come from the prepared
+placement and freshly generated `.kicad_dru`; allowed layers come from class
+policy, route defaults and any reference-plane narrowing; zero-via policy
+comes from the resolved current `nets.yaml` length-match groups. Required nets
+come only from the closed neighborhood declarations.
+
+Missing or unreadable witness, tool or evidence is `INCOMPLETE`. Moved or
+deleted prepared geometry, missing inherited copper, disconnected required
+pads, native collision/width findings, forbidden layers or forbidden vias are
+`FAIL`. A PASS admits only the exact combined witness and does not prove global
+routability or impossibility. The receipt binds the rules generator, regenerated
+board/project/rules, current nets, selected KiCad CLI/Python/pcbnew module and
+native pcbnew runtime. It reports exact expected/observed check and required
+net/neighborhood coverage. `verify` hash-reopens these inputs, independently
+recomputes route-base and realized source/native policy, derives candidate
+status from the verified child, and requires the placement status to agree.
+Placement embeds
+the child in `placement-routability-receipt-v2`; when the placement JSON is
+`06_build/verification/placement_routability.json`, its omitted workspace
+uses a fresh `attempt-<uuid>/` beneath the sibling
+`placement_routability.coupled-workspace/`. Explicit `--coupled-workspace`
+names one fresh immutable attempt and refuses reuse. Direct leaf use also
+refuses a pre-existing `--json` path before mutating either output location.
 
 Switching-loop adjacency, zone ownership, and service-part reachability should
 extend this compositor as domain predicates, not new lifecycle stages.
@@ -157,11 +208,10 @@ receipt, verdict, or identity. The placement command writes this request beside
 its authoritative legacy receipt; it does not execute the shadow compilers in
 the hot path.
 
-Receipt reopening currently proves byte freshness and a closed seven-row
-shape, not that those seven predicates actually executed. Therefore the stage
-result is deliberately `INCOMPLETE`, has no accepted output, and creates no
-accepted bundle. Promotion requires independent predicate regrade from the
-exact board, route, nets, and placement configuration.
+Receipt reopening regrades the bound coupled child when that check passes.
+The optional typed P-FEASIBILITY stage publication remains deliberately
+`INCOMPLETE`, with no accepted output or bundle; the authoritative placement
+receipt and final route acceptance keep their existing roles.
 
 ## Promotion rule
 

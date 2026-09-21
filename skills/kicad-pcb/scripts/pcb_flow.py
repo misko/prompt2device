@@ -64,6 +64,9 @@ DEFAULT_TOOL_FILES = (
     "pre_route_review_check.py", "promoted_route_check.py", "early_design_check.py",
     "via_ampacity_check.py",
     "critical_route_check.py", "placement_gates.py",
+    "placement_routability_preflight.py", "coupled_geometry_preflight.py",
+    "route_candidate_workspace.py", "dru_subject.py",
+    "release_required_check.py",
     "policy_audit.py", "rf_contract_check.py", "rf_context.py",
     "rf_check.py", "rf_solver.py", "rf_bundle.py", "fence_pitch.py",
     "../references/rf/source_cards.yaml", "../references/rf/rf-context.md",
@@ -75,6 +78,11 @@ DEFAULT_TOOL_FILES = (
     "../../pcb-design/scripts/pipeline_execution.py",
     "../../pcb-design/scripts/pipeline_artifacts.py",
     "../../pcb-design/scripts/design_decision_admission.py",
+    "../../pcb-design/scripts/release_review_preflight.py",
+    "../../pcb-design/scripts/publication_transport_gate.py",
+    "../../pcb-design/scripts/pcb_publication_gate.py",
+    "../../pcb-design/scripts/pipeline_review.py",
+    "../../pcb-design/scripts/pipeline_identity.py",
     "critical_part_facts.py", "project_state.py", "copper_length_audit.py",
 )
 DEFAULT_FAB_TOOL_FILES = (
@@ -1294,6 +1302,12 @@ def parser() -> argparse.ArgumentParser:
             p.add_argument("--assessment", required=True, help="coordinator repair assessment JSON")
         if name == "agent-close":
             p.add_argument("--host-event", required=True, help="coordinator-observed host event JSON")
+        if name == "agent-open":
+            p.add_argument("--review-commission")
+            p.add_argument("--review-packet-receipt")
+            p.add_argument("--review-release")
+            p.add_argument("--transport-base")
+            p.add_argument("--transport-head", default="HEAD")
     p = sub.add_parser("run")
     common(p)
     p.add_argument("--stage", required=True)
@@ -1343,6 +1357,49 @@ def main(argv: list[str] | None = None) -> int:
                     envelope = replace(envelope, output_path=(
                         f"06_build/task_runs/{envelope.run_id}-{uuid.uuid4().hex}/attempt.json"))
                 if args.command == "agent-open":
+                    release_review = envelope.stage_id == "PCB-RELEASE-REVIEW"
+                    review_values = (args.review_commission,
+                                     args.review_packet_receipt,
+                                     args.review_release,
+                                     args.transport_base)
+                    if release_review and not all(review_values):
+                        raise ValueError(
+                            "PCB-RELEASE-REVIEW agent-open requires "
+                            "--review-commission, --review-packet-receipt, "
+                            "--review-release, and --transport-base")
+                    if release_review and envelope.executor != "reviewer":
+                        raise ValueError(
+                            "PCB-RELEASE-REVIEW requires executor reviewer")
+                    if not release_review and any(review_values):
+                        raise ValueError(
+                            "release-review admission arguments require an exact "
+                            "PCB-RELEASE-REVIEW reviewer envelope")
+                    if release_review:
+                        if str(PCB_DESIGN_SCRIPTS) not in sys.path:
+                            sys.path.insert(0, str(PCB_DESIGN_SCRIPTS))
+                        from release_review_preflight import assess
+                        repo_probe = subprocess.run(
+                            ["git", "rev-parse", "--show-toplevel"], cwd=root,
+                            capture_output=True, text=True, timeout=30,
+                            check=False)
+                        if repo_probe.returncode:
+                            raise ValueError(
+                                "release review admission requires a Git worktree")
+                        ctx = resolve_context(root, args.board, args.route_config)
+                        live_paths = [ctx.board, *build_source_files(ctx)]
+                        release = _inside(root, args.review_release,
+                                          "--review-release")
+                        admission = assess(
+                            Path(repo_probe.stdout.strip()), root, release,
+                            envelope, args.review_commission,
+                            args.review_packet_receipt,
+                            live_paths=live_paths,
+                            authoritative_board=ctx.board,
+                            transport_base=args.transport_base,
+                            transport_head=args.transport_head)
+                        if admission.status != "READY":
+                            print(json.dumps(admission.to_mapping(), sort_keys=True))
+                            return 1 if admission.status == "REFUSED" else 2
                     result = open_agent_attempt(envelope, cwd=root)
                     result["envelope"] = str(root / Path(envelope.output_path).parent / "envelope.json")
                     print(json.dumps(result, sort_keys=True))

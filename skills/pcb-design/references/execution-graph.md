@@ -115,10 +115,11 @@ actual applicability.
 | Boundary | Existing callable owner | Inputs and outputs | Adoption limit |
 |---|---|---|---|
 | Design-decision admission | `design_decision_admission.py --phase source\|native` in `pcb-design` | Authored assembly disposition and independently reviewed full route/nets snapshots to source findings; exact native board, pin identities, mounted sides and ref/pad/net anchors to native findings | No live assembly allocation, route feasibility, complete engineering certification or downstream lifecycle promotion |
-| Placement feasibility | `placement_routability_preflight.py grade/verify` in `kicad-pcb` | Board, placement/routing configuration and source topology to a bound domain receipt | Optional typed stage publication remains an INCOMPLETE hold; no accepted P-FEAS bundle |
+| Placement feasibility | `placement_routability_preflight.py grade/verify` in `kicad-pcb` | Board, placement/routing configuration, source topology and any declared combined-copper witness to a bound schema-2 receipt | The `coupled_geometry` check admits only its exact witness; typed stage publication remains an INCOMPLETE hold with no accepted P-FEAS bundle |
 | Route acceptance | `route_acceptance_gate.py grade/verify` in `kicad-pcb` | Exact board, source rules, prepared base and native checks to the route receipt | Project conductor retains execution/promotion authority; diagnostic shared adapters cannot replace its verdict |
 | Native verification | Full route acceptance and `route_candidate_workspace.py grade/verify` | Saved board plus effective project/rule sidecars to native DRC/parity evidence | `pcb_flow.py qualify` tests tool capability, not the product board |
 | Fabrication staging | `fab_payload_census.py` in `jlcpcb-fab` | Staged fabrication population/files to census and optional bundle | Does not seal or publish |
+| Release-review packet admission | `pcb_flow.py agent-open` plus `release_review_preflight.py` | Current scoped live sources, complete candidate inventory, manifest, commission, envelope and outgoing Git state to `release-review-preflight-v1` | READY permits attempt allocation only; host dispatch, completed review, M-REV, seal, publication and push remain separate |
 | Release rehearsal | `release_rehearsal.py init/rehearse/verify/seal` in `pcb-design` | Complete staged files, reviews and provenance to bound rehearsal/seal admission | Admission does not itself perform the immutable two-commit seal or remote publication |
 
 This inventory identifies integration seams, not a replacement conductor.
@@ -271,6 +272,16 @@ the generated board and adds P-PINMAP, allowed assembly side, authored owner
 for each populated SMD, authored ref/pad/net-anchor and critical-route checks. A PASS means only that these
 declared decisions agree at that boundary.
 
+Where `route.routability.coupled_neighborhoods` declares interacting nets,
+placement admission also requires one combined-copper witness before repeated
+routing. `coupled_geometry_preflight.py grade` proves that the witness preserves
+the exact prepared placement, pads, inherited seeds and native rule sidecars,
+then grades the whole declared net set together for connectivity, native DRC
+(including crossings and width), allowed layers and existing zero-via policy.
+Its PASS is bound to that witness and permits alternate legal polylines; it is
+neither a general routability proof nor evidence that failed search is
+impossible. Missing tools, witness bytes or gradeable evidence are INCOMPLETE.
+
 Final route admission is one full receipt:
 
 ```bash
@@ -303,6 +314,15 @@ The deterministic reuse conductor writes its native DRC detail under
 JLC tooling then stages exact fabrication and assembly evidence. The PCB design
 owner composes independent reviews and seals an immutable candidate release.
 A sealed candidate may still be `DO-NOT-ORDER`; ordering is a distinct claim.
+
+Before allocating an agent for `PCB-RELEASE-REVIEW`, run the reviewer-specific
+`agent-open` preflight described in `execution-runtime.md`. It accepts only the
+typed reviewer/stage envelope, proves the current authoritative board equals
+its basename-selected staged source board (or the sole unambiguous PCB fallback),
+and binds the complete candidate plus supplied commission/receipt packet by
+path, hash and size. The four named review outputs
+must be absent and are deferred. READY allocates a packet but does not dispatch
+the host or establish a review verdict.
 
 Initialize the mutable candidate declaration before expensive staging gates,
 then rehearse, reopen, and admit the exact accepted receipt:

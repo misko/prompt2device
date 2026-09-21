@@ -1,0 +1,24 @@
+fab_tier: jlc_2layer_default
+default_clearance: 0.15mm
+default_track_width: 0.25mm
+classes:
+  ADC_CLOCK:
+    intent: "Synthetic Crow MCH clock and ADC TDM pin-field neighborhood."
+    nets: [MCH_CLK, ADC_TDM]
+    current: signal
+    min_width: 0.25mm
+    clearance: 0.15mm
+    routing: "F.Cu only; preserve every terminal and inherited launch seed."
+    verify: "production coupled-neighborhood receipt plus independent native census"
+length_match:
+  MCH_ADC_PINFIELD:
+    adr: "synthetic-crow-coupled-geometry"
+    intent: "Preserve single-layer paths; no equal-length claim."
+    members:
+      MCH: [MCH_CLK]
+      TDM: [ADC_TDM]
+    topology: tree
+    congruent_pads: false
+    no_vias: true
+    max_spread_mm: report
+    stackup_mm: [1.6]

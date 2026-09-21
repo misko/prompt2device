@@ -543,9 +543,11 @@ def t_placement_feasibility_stage_evidence():
         name: {"status": "PASS", "detail": "fixture pass"}
         for name in placement_routability_preflight.AUTHORITATIVE_CHECKS
     }
+    checks["coupled_geometry"] = {
+        "status": "N-A", "detail": "no coupled neighborhoods declared"}
     checks["endpoint_topology"]["rows"] = []
     receipt = {
-        "schema": 1, "kind": "placement-routability-receipt-v1",
+        "schema": 2, "kind": "placement-routability-receipt-v2",
         "verdict": "ACCEPTED", "subject": record(board),
         "inputs": {"board": record(board), "route": record(route),
                    "nets": record(nets)},
@@ -603,6 +605,54 @@ def t_placement_output_alias_is_rejected():
     eq(rc, 2, "placement output alias was accepted")
     grade.assert_not_called()
     eq(output.read_text(), "receipt sentinel", "placement receipt overwritten")
+
+
+@test("placement default coupled workspace creates a fresh immutable attempt")
+def t_placement_fresh_coupled_workspace():
+    project = tmpdir("placement_fresh_coupled_")
+    board = project / "board.kicad_pcb"
+    board.write_text("board sentinel")
+    route = project / "route.yaml"; route.write_text("route: {}\n")
+    nets = project / "nets.yaml"; nets.write_text("schema: 1\n")
+    output = project / "placement.json"
+    seen = []
+
+    def fake_grade(_project, _board, **kwargs):
+        workspace = Path(kwargs["coupled_workspace"])
+        seen.append(workspace)
+        workspace.mkdir(parents=True)
+        child = workspace / "receipt.json"
+        child.write_text("child evidence")
+        checks = {
+            name: {"status": "N-A", "detail": "fixture"}
+            for name in placement_routability_preflight.AUTHORITATIVE_CHECKS
+        }
+        inputs = {
+            "board": record(board), "route": record(route), "nets": record(nets),
+            "checker_placement": record(Path(
+                placement_routability_preflight.__file__)),
+            "coupled_child_receipt": record(child),
+        }
+        return {
+            "schema": 2, "kind": "placement-routability-receipt-v2",
+            "verdict": "ACCEPTED", "subject": inputs["board"],
+            "inputs": inputs, "checks": checks,
+            "coverage": {"passing": len(checks), "total": len(checks)},
+        }
+
+    with mock.patch("placement_routability_preflight.grade",
+                    side_effect=fake_grade):
+        for _ in range(2):
+            eq(placement_routability_preflight.main([
+                "grade", str(project), "--board", str(board),
+                "--json", str(output),
+            ]), 0, "placement rerun")
+    eq(len(seen), 2, "coupled attempt count")
+    check(seen[0] != seen[1], "default coupled workspace was reused")
+    expected_parent = output.with_name(
+        f"{output.stem}.coupled-workspace").resolve()
+    check(all(path.parent == expected_parent for path in seen),
+          "coupled attempt escaped stable parent")
 
 
 @test("route rejects native DRC alias before grading", kind="known_bad")

@@ -1,0 +1,10 @@
+route:
+  preflight_critical_pairs: []
+  no_critical_routes: "Synthetic single-ended MCH clock and ADC TDM trees are governed as one coupled neighborhood."
+  routability:
+    layer_roles: {F.Cu: signal, B.Cu: signal}
+    class_layers: {ADC_CLOCK: [F.Cu]}
+    coupled_neighborhoods:
+      - id: crow_mch_adc_pinfield
+        nets: [MCH_CLK, ADC_TDM]
+        why: "The early MCH clock branch and later ADC TDM source launch share one pin-field escape."

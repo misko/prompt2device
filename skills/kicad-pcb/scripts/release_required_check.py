@@ -74,6 +74,17 @@ ASCII_TREE_RE = re.compile(r"^[\s│|+\\]*[|+\\][-]{2,}\s*\S")
 #: placeholders the contract writes generically.
 PLACEHOLDER_RE = re.compile(r"<[^>]+>")
 
+# These are outputs of the four independent release reviews.  They are the
+# only contract-required files which cannot exist when the packet is admitted
+# for those reviews.  The ordinary/final check below deliberately does not use
+# this allowance.
+RELEASE_REVIEW_OUTPUTS = (
+    "verification/pin_review.md",
+    "verification/redteam_layout.md",
+    "verification/redteam_topology.md",
+    "verification/render_review.md",
+)
+
 
 def tree_block(text):
     """The fenced ``` block that holds the directory tree, or None."""
@@ -178,6 +189,22 @@ def check(release_dir, contract_path):
     return {"release": str(rel), "contract": str(contract_path),
             "present": present, "missing": missing,
             "conditional_absent": conditional, "unparsed": unparsed}
+
+
+def check_release_review_inputs(release_dir, contract_path):
+    """Grade inputs before release review, deferring exactly its four outputs.
+
+    This named lifecycle check is intentionally narrower than a caller-chosen
+    exclusion list.  Final release admission continues to call :func:`check`
+    and therefore requires all four review files.
+    """
+    result = check(release_dir, contract_path)
+    deferred = [path for path in RELEASE_REVIEW_OUTPUTS
+                if path in result["missing"]]
+    result["missing"] = [path for path in result["missing"]
+                         if path not in RELEASE_REVIEW_OUTPUTS]
+    result["deferred_review_outputs"] = deferred
+    return result
 
 
 def main(argv=None):

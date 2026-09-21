@@ -147,6 +147,36 @@ class CandidateWorkspaceTest(unittest.TestCase):
         self.assertEqual(receipt["verdict"], "REJECTED")
         self.assertIn("native_drc_delta", shadow["checks"])
 
+    def test_native_tracks_crossing_is_a_hard_candidate_failure(self):
+        root = Path(tempfile.mkdtemp(prefix="candidate-crossing-"))
+        prepared, candidate = fixture(root)
+        prepared.with_suffix(".kicad_dru").write_text("clean prepared rules")
+
+        def crossing(command, cwd):
+            if command[:3] == ["kicad-cli", "pcb", "drc"]:
+                report = Path(command[command.index("-o") + 1])
+                report.write_text(json.dumps({
+                    "$schema": "https://schemas.kicad.org/drc.v1.json",
+                    "source": Path(command[-1]).name,
+                    "date": "2026-09-20T12:00:00Z",
+                    "kicad_version": "10.0.4",
+                    "violations": [{"type": "tracks_crossing",
+                                    "description": "combined foreign nets"}],
+                    "unconnected_items": [], "schematic_parity": [],
+                }))
+                return CommandResult(0, "native report records crossing")
+            return FakeRunner()(command, cwd)
+
+        workspace = root / "grade"
+        receipt = grade_candidate(
+            prepared, candidate, workspace, required_nets=["SCL"],
+            runner=crossing)
+        self.assertEqual(receipt["verdict"], "REJECTED")
+        self.assertEqual(
+            receipt["checks"]["physical_drc"]["hard_types"],
+            ["tracks_crossing"])
+        self.assertTrue(verify_receipt(workspace / "receipt.json")[0])
+
     def test_receipt_status_forgery_breaks_content_binding(self):
         root = Path(tempfile.mkdtemp(prefix="candidate-workspace-"))
         prepared, candidate = fixture(root)

@@ -203,6 +203,50 @@ Missing host telemetry remains UNKNOWN; a provider failure or late delivery
 closes non-pass. Interrupt through the host if needed; never act on a stale PID.
 A durable closure latch prevents late callbacks from replacing a terminal result.
 
+Opening an exact reviewer attempt for `PCB-RELEASE-REVIEW` has an additional
+packet-admission boundary:
+
+```text
+pcb_flow.py agent-open PROJECT --envelope FILE \
+  --review-commission COMMISSION.json \
+  --review-packet-receipt PACKET.json \
+  --review-release 07_releases/<candidate> \
+  --transport-base BASE_SHA [--transport-head HEAD_SHA]
+```
+
+This applies only to a schema-2 envelope whose executor is exactly `reviewer`
+and stage is exactly `PCB-RELEASE-REVIEW`. Before allocating any attempt, the
+runtime recomputes the current packet receipt, reopens hashes and inventory,
+and requires the receipt, commission and envelope to bind the same versioned
+exact-record subject. The current authoritative board must occur in the live
+source census and be byte-equal to `release/source/<authoritative-basename>`
+when that path exists; a source directory containing exactly one PCB may use
+that sole file as the unambiguous fallback. Other staged PCB route evidence is
+allowed and remains inventoried. The envelope packet must equal, by path, hash
+and size, the complete candidate inventory plus the exact supplied typed
+commission and receipt: missing, extra, duplicate or misbound paths refuse.
+It also requires the recorded source commit to be an ancestor, exact current
+Git bytes for the scoped live-source census, manifest agreement, candidate
+presence in the transport head, and current outgoing T-BLOB/T-PACK checks.
+READY then allocates the host packet; REFUSED
+exits 1 and INCOMPLETE exits 2 without allocation. Host dispatch remains an
+explicit coordinator action outside this command.
+
+The packet inventory defers only these future review outputs:
+`verification/pin_review.md`, `verification/render_review.md`,
+`verification/redteam_topology.md`, and
+`verification/redteam_layout.md`. All four must be absent at admission and are
+reported as deferred; every other regular candidate file is bound. Archive
+inspection is independently bounded (default depth 4, 100,000 members, 4 GiB
+expanded/streamed, 512 MiB nested reads). It sniffs a bounded prefix of every
+streamed member for ZIP, gzip, or TAR signatures regardless of filename and
+retains only detected nested bytes within the nested-read ceiling. Unreadable
+input or exceeded bounds are INCOMPLETE, not Git oversize. Leaf Gerber ZIPs
+and bounded nesting are allowed. Git hosting limits remain the unchanged
+transport gate's concern.
+READY proves packet-launch readiness only: no review has completed, and it does
+not seal, publish, launch a host, push transport, or certify engineering.
+
 
 ## Startup qualification
 

@@ -38,6 +38,7 @@ import argparse
 import hashlib
 import json
 import os
+import uuid
 from pathlib import Path
 from typing import Any, Mapping, Sequence
 
@@ -46,8 +47,10 @@ import yaml
 
 import critical_route_check
 import board_authority
+import coupled_geometry_preflight
 import placement_cell_checks
 import placement_gates
+import route_candidate_workspace
 import route_ownership_preflight
 from tier_preflight import board_scoped
 
@@ -69,7 +72,7 @@ SHADOW_INPUTS = frozenset({
 AUTHORITATIVE_CHECKS = frozenset({
     "physical_placement", "critical_route_contract", "route_ownership",
     "endpoint_topology", "layer_eligibility", "connector_lane_order",
-    "series_power_paths",
+    "series_power_paths", "coupled_geometry",
 })
 CHECK_STATUSES = frozenset({"PASS", "N-A", "FAIL", "INCOMPLETE"})
 
@@ -631,6 +634,8 @@ def _series_power_paths(route_cfg: dict[str, Any], board: Any) -> dict[str, Any]
 
 def grade(project: Path, board_path: Path, *, board_name: str | None = None,
           placement_config: Path | None = None,
+          coupled_witness: Path | None = None,
+          coupled_workspace: Path | None = None,
           functional_cells_config: Path | None = None,
           functional_cell_observations: Path | None = None,
           stack_authority: Path | None = None,
@@ -700,19 +705,69 @@ def grade(project: Path, board_path: Path, *, board_name: str | None = None,
         checks["series_power_paths"] = _series_power_paths(route_cfg, board)
     except Exception as exc:
         checks["series_power_paths"] = {"status": "INCOMPLETE", "detail": str(exc)}
+    coupled_rows = (((route_cfg.get("route") or {}).get("routability") or {})
+                    .get("coupled_neighborhoods") or [])
+    if coupled_rows:
+        declared = (((route_cfg.get("route") or {}).get("routability") or {})
+                    .get("coupled_witness"))
+        witness = coupled_witness
+        if witness is None and declared:
+            relative = Path(str(declared))
+            if relative.is_absolute() or ".." in relative.parts:
+                checks["coupled_geometry"] = {
+                    "status": "INCOMPLETE",
+                    "detail": "route.routability.coupled_witness must be project-relative",
+                }
+                witness = None
+            else:
+                witness = project / relative
+        if witness is None or coupled_workspace is None:
+            missing = []
+            if witness is None:
+                missing.append("combined witness")
+            if coupled_workspace is None:
+                missing.append("fresh evidence workspace")
+            checks.setdefault("coupled_geometry", {
+                "status": "INCOMPLETE",
+                "detail": f"declared coupled neighborhoods lack {', '.join(missing)}",
+            })
+        elif "coupled_geometry" not in checks:
+            try:
+                report = coupled_geometry_preflight.grade(
+                    project, board_path, Path(witness), coupled_workspace,
+                    board_name=board_name)
+                checks["coupled_geometry"] = {
+                    "status": report["status"],
+                    "detail": (f"{len(report['neighborhoods'])} combined "
+                               f"neighborhood(s), {len(report['required_nets'])} net(s)"),
+                    "report": report,
+                }
+            except Exception as exc:
+                checks["coupled_geometry"] = {
+                    "status": "INCOMPLETE", "detail": str(exc)}
+    else:
+        checks["coupled_geometry"] = {
+            "status": "N-A", "detail": "no coupled neighborhoods declared"}
     statuses = {row["status"] for row in checks.values()}
     verdict = ("INCOMPLETE" if "INCOMPLETE" in statuses else
                "REJECTED" if "FAIL" in statuses else "ACCEPTED")
     inputs = {"board": _record(board_path), "route": _record(route_path),
-              "nets": _record(nets_path)}
+              "nets": _record(nets_path),
+              "checker_placement": _record(Path(__file__).resolve())}
     if placement_config is not None and placement_config.is_file():
         inputs["placement_config"] = _record(placement_config.resolve())
     for row in checks.get("endpoint_topology", {}).get("rows", []):
         if row.get("part_yaml"):
             key = "part_" + row["part_mpn"].lower().replace("/", "_")
             inputs.setdefault(key, _record(Path(row["part_yaml"])))
+    coupled_report = checks.get("coupled_geometry", {}).get("report") or {}
+    for name, record in (coupled_report.get("inputs") or {}).items():
+        inputs.setdefault(f"coupled_{name}", dict(record))
+    child = coupled_report.get("child_receipt")
+    if isinstance(child, Mapping):
+        inputs["coupled_child_receipt"] = dict(child)
     return {
-        "schema": 1, "kind": "placement-routability-receipt-v1",
+        "schema": 2, "kind": "placement-routability-receipt-v2",
         "verdict": verdict, "subject": inputs["board"], "inputs": inputs,
         "checks": checks,
         "coverage": {"passing": sum(row["status"] in {"PASS", "N-A"}
@@ -784,14 +839,14 @@ def verify(receipt_path: Path) -> tuple[bool, list[str]]:
         return False, [f"receipt cannot be read: {exc}"]
     if not isinstance(receipt, Mapping):
         return False, ["placement-routability receipt must be a mapping"]
-    if (receipt.get("schema") != 1 or
-            receipt.get("kind") != "placement-routability-receipt-v1"):
+    if (receipt.get("schema") != 2 or
+            receipt.get("kind") != "placement-routability-receipt-v2"):
         failures.append("unsupported receipt schema/kind")
     inputs = receipt.get("inputs")
     if not isinstance(inputs, Mapping):
         failures.append("receipt inputs must be a mapping")
         inputs = {}
-    required_inputs = {"board", "route", "nets"}
+    required_inputs = {"board", "route", "nets", "checker_placement"}
     if not required_inputs <= set(inputs):
         failures.append(
             f"receipt inputs omit required authority: "
@@ -824,6 +879,39 @@ def verify(receipt_path: Path) -> tuple[bool, list[str]]:
             failures.append(f"authoritative check status is malformed: {name}")
             continue
         statuses.append(str(row["status"]))
+    coupled_child = inputs.get("coupled_child_receipt")
+    coupled = checks.get("coupled_geometry")
+    if isinstance(coupled, Mapping) and isinstance(coupled.get("report"), Mapping):
+        required_coupled = {
+            "coupled_checker", "coupled_candidate_checker",
+            "coupled_route_base_checker", "coupled_authority_parser",
+            "coupled_kicad_cli", "coupled_kicad_python",
+            "coupled_pcbnew_module", "coupled_pcbnew_native",
+            "coupled_rules_generator", "coupled_current_rules_board",
+            "coupled_current_rules_project", "coupled_current_rules_rules",
+            "coupled_child_receipt",
+        }
+        missing_coupled = sorted(required_coupled - set(inputs))
+        if missing_coupled:
+            failures.append(
+                f"coupled receipt inputs omit producer authority: {missing_coupled}")
+    if isinstance(coupled, Mapping) and isinstance(coupled.get("report"), Mapping):
+        valid_report, report_failures = coupled_geometry_preflight.verify_mapping(
+            coupled["report"])
+        failures.extend(f"coupled report: {row}" for row in report_failures)
+        if not valid_report and not report_failures:
+            failures.append("coupled report verification failed")
+        if coupled.get("status") != coupled["report"].get("status"):
+            failures.append("coupled check status differs from verified report")
+    if isinstance(coupled, Mapping) and coupled.get("status") == "PASS":
+        if not isinstance(coupled_child, Mapping):
+            failures.append("passing coupled geometry has no bound child receipt")
+        else:
+            valid, child_failures = route_candidate_workspace.verify_receipt(
+                Path(str(coupled_child.get("path") or "")))
+            failures.extend(f"coupled child: {row}" for row in child_failures)
+            if not valid and not child_failures:
+                failures.append("coupled child receipt verification failed")
     if statuses and len(statuses) == len(AUTHORITATIVE_CHECKS):
         expected_verdict = (
             "INCOMPLETE" if "INCOMPLETE" in statuses else
@@ -866,7 +954,7 @@ def _publish_feasibility(receipt: dict[str, Any], receipt_path: Path,
         findings=[{
             "code": "P-FEAS-PROMOTION-DISABLED",
             "detail": ("receipt reopening is structural only; independent "
-                       "seven-predicate regrade is not implemented"),
+                       "authoritative-predicate regrade is not implemented"),
         }], resume=None,
     )
     write_json_atomic(stage_path, result.to_mapping())
@@ -880,6 +968,8 @@ def main(argv: list[str] | None = None) -> int:
     grade_parser.add_argument("--board", type=Path, required=True)
     grade_parser.add_argument("--board-name")
     grade_parser.add_argument("--placement-config", type=Path)
+    grade_parser.add_argument("--coupled-witness", type=Path)
+    grade_parser.add_argument("--coupled-workspace", type=Path)
     grade_parser.add_argument("--functional-cells", type=Path)
     grade_parser.add_argument("--functional-cell-observations", type=Path)
     grade_parser.add_argument("--stack-authority", type=Path)
@@ -902,14 +992,21 @@ def main(argv: list[str] | None = None) -> int:
               "--stage-result must be supplied together")
         return 2
     shadow_path = args.json.with_name(f"{args.json.stem}.shadow.json")
-    output_paths = {"receipt": args.json, "shadow": shadow_path}
+    if args.coupled_workspace is None:
+        args.coupled_workspace = (args.json.with_name(
+            f"{args.json.stem}.coupled-workspace") /
+            f"attempt-{uuid.uuid4().hex}")
+    output_paths = {"receipt": args.json, "shadow": shadow_path,
+                    "coupled_workspace": args.coupled_workspace}
     if args.stage_bundle:
         output_paths.update({"stage_bundle": args.stage_bundle,
                              "stage_result": args.stage_result})
     try:
         require_safe_output_layout(
             output_paths,
-            directory_outputs=("stage_bundle",) if args.stage_bundle else (),
+            directory_outputs=(
+                ("stage_bundle", "coupled_workspace")
+                if args.stage_bundle else ("coupled_workspace",)),
             protected_paths={"project": args.project, "board": args.board},
         )
     except ValueError as exc:
@@ -918,6 +1015,8 @@ def main(argv: list[str] | None = None) -> int:
     try:
         receipt = grade(args.project, args.board, board_name=args.board_name,
                         placement_config=args.placement_config,
+                        coupled_witness=args.coupled_witness,
+                        coupled_workspace=args.coupled_workspace,
                         functional_cells_config=args.functional_cells,
                         functional_cell_observations=(
                             args.functional_cell_observations),
@@ -928,8 +1027,12 @@ def main(argv: list[str] | None = None) -> int:
         print(f"PLACEMENT-ROUTABILITY INCOMPLETE: {exc}")
         return 2
     try:
+        post_output_paths = {
+            name: path for name, path in output_paths.items()
+            if name != "coupled_workspace"
+        }
         require_safe_output_layout(
-            output_paths,
+            post_output_paths,
             directory_outputs=("stage_bundle",) if args.stage_bundle else (),
             protected_paths={
                 "project": args.project,

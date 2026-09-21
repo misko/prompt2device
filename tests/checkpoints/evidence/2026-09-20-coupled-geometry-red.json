@@ -106,9 +106,68 @@
       "classifier_physical_result": "PASS"
     }
   ],
+  "candidate_boundary_red": {
+    "repository_commit": "6fdf970a709228ea5aa4b20af8be66f9e52dd13b",
+    "source_sha256": "ec879170618248ee0b0f270c04f8e33f0b703697267b3e15d35366844d0083d7",
+    "scratch_root": "/tmp/coupled-boundary-red-6fdf970a.wZQFR2",
+    "commands": [
+      "git archive 6fdf970a skills/kicad-pcb/scripts skills/pcb-design/scripts | tar -x -C /tmp/coupled-boundary-red-6fdf970a.wZQFR2/source",
+      "/usr/bin/python3 /tmp/coupled-boundary-red-6fdf970a.wZQFR2/reproduce.py /tmp/coupled-boundary-red-6fdf970a.wZQFR2",
+      "historical_candidate.grade_candidate(prepared.kicad_pcb, combined-crossing.kicad_pcb, grade, required_nets=['ESCAPE','BRANCH'], kicad_python='/usr/bin/python3', kicad_cli='kicad-cli')",
+      "historical_candidate.verify_receipt(grade/receipt.json)"
+    ],
+    "fixture": {
+      "prepared": {
+        "path": "/tmp/coupled-boundary-red-6fdf970a.wZQFR2/prepared.kicad_pcb",
+        "sha256": "5908a32ff2384665fd85fed4e10f7e3fa3cd7744bddcd36416f62b62ba743ef6",
+        "size": 6808,
+        "role": "four exact SMD terminals, native project/rule sidecars, no route copper"
+      },
+      "candidate": {
+        "path": "/tmp/coupled-boundary-red-6fdf970a.wZQFR2/combined-crossing.kicad_pcb",
+        "sha256": "f0b70357e4a03ecf1069eb1627af124af0fc8165fe196287b5f7a197dc94a3dc",
+        "size": 7358,
+        "role": "same four terminals plus connected ESCAPE and BRANCH copper with one foreign-net crossing"
+      },
+      "required_nets": ["BRANCH", "ESCAPE"]
+    },
+    "receipt": {
+      "path": "/tmp/coupled-boundary-red-6fdf970a.wZQFR2/grade/receipt.json",
+      "sha256": "0231f0f1bf6d5848b902aecbdc630774071d6498c02d33c79554b928d829c50f",
+      "size": 5747,
+      "verdict": "ACCEPTED",
+      "independent_verify": {"valid": true, "failures": []},
+      "check_statuses": {
+        "route_base": "PASS",
+        "via_in_pad": "PASS",
+        "physical_drc": "PASS",
+        "connectivity": "PASS"
+      }
+    },
+    "native_drc": {
+      "path": "/tmp/coupled-boundary-red-6fdf970a.wZQFR2/grade/physical_drc.json",
+      "sha256": "dbdbeab9296069cd4c3a7ff6f26c7077bbf5b55e6dea0490f85f520ad7e86250",
+      "size": 6412,
+      "counts": {"violations": 7, "unconnected": 0, "schematic_parity": 0},
+      "violation_types": [
+        "tracks_crossing", "silk_overlap", "silk_overlap", "silk_overlap",
+        "silk_overlap", "silk_overlap", "silk_edge_clearance"
+      ],
+      "historical_hard_hits": [],
+      "historical_detail": "0 hard / 7 partial-stage violation(s)"
+    },
+    "connectivity": {
+      "path": "/tmp/coupled-boundary-red-6fdf970a.wZQFR2/grade/connectivity.json",
+      "sha256": "1e5b66d4e341c3030f4502955de516209420f6e813e9d5cf6961c6dedfb2c86e",
+      "size": 168,
+      "verdict": "PASS",
+      "failed_required_nets": 0
+    },
+    "claim": "This is an actual full candidate-boundary RED: the immutable grade_candidate transaction independently reopens as valid and ACCEPTED even though its fresh native report contains tracks_crossing. The other six non-hard silk diagnostics are disclosed and do not cause the crossing result."
+  },
   "claim": {
-    "demonstrated": "At immutable commit e1c8f2bb, the candidate physical-classification predicate returns PASS for a fresh native report whose only violation is tracks_crossing. Each isolated arm and the corrected combined witness are natively clean, while the blocked combined witness records the exact foreign-net conflict with no unconnected items.",
-    "not_demonstrated": "This is a classifier-only RED. grade_candidate and the full candidate transaction were not invoked, so this artifact does not claim that every other candidate-boundary predicate passed or that an accepted candidate receipt was published.",
+    "demonstrated": "At immutable commit e1c8f2bb, the candidate physical-classification predicate returns PASS for a fresh native report whose only violation is tracks_crossing. At immutable commit 6fdf970a, an actual grade_candidate transaction over the connected combined witness returns ACCEPTED and independently verifies while its fresh native report contains tracks_crossing. Each isolated arm and the corrected combined witness are natively clean.",
+    "not_demonstrated": "The first four cases remain classifier-only controls; candidate_boundary_red is the separate full candidate-transaction evidence. Neither receipt is a placement-routability or final-route acceptance receipt.",
     "engineering_limit": "The coupon is a fixed rejected witness. It proves a concrete combined collision and the historical classification gap; it does not prove that the placement is globally impossible or that no alternate legal route exists."
   }
 }

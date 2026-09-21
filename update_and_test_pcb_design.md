@@ -190,8 +190,8 @@ focused test alone does not complete a checkpoint family.
 |---|---|---|
 | Incident provenance | Three packets in `tests/checkpoints/incidents/`; cited retrospective and historical revisions resolve in Git | Keep reductions and case coverage aligned as implementation lands |
 | Decision admission | Implemented at `6fdf970a`; real pre-fix RED, corrected refusal/valid controls, focused Sol acceptance and fresh Sol recovery PASS | Complete; revalidate affected checks if later integration changes its authorities |
-| Coupled geometry | Existing native neighborhood fixture reports combined `tracks_crossing`; candidate hard-DRC classifier currently omits it | Preserve actual pre-fix RED; implement combined witness admission after family 1 closes |
-| Review/publication | Existing authorities identified; read-only integration design complete | Implement early composition without requiring completed reviews or weakening final acceptance |
+| Coupled geometry | Combined native admission and checkpoint controls implemented; historical candidate-boundary RED retained | Correct review findings on source-rule freshness, receipt verdict reconciliation and native-tool binding; repeat review and run fresh Sol recovery |
+| Review/publication | Early review composition and checkpoint controls implemented; historical allocation-boundary RED retained | Correct review findings on stage bypass, live/staged source agreement, future review outputs, archive signature detection and exact packet scope; repeat review and run fresh Sol recovery |
 
 Historical revisions independently resolved during integration:
 `0dd098e2b58dc8750b19ab9305a78e46a9c92c5b` (retrospective),

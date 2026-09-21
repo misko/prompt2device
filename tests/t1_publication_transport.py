@@ -2,6 +2,8 @@
 """T1: publication transport rejects oversized and over-aggregate pushes."""
 import subprocess
 import sys
+import io
+import zipfile
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -76,6 +78,74 @@ def t_lfs_pointer():
                                    batch_limit=512)
     check(not findings and census["lfs_pointers"] == 1,
           f"valid pointer metadata rejected: {findings}, {census}")
+
+
+def zip_bytes(name="board.gbr", payload=b"G04 gerber*"):
+    stream = io.BytesIO()
+    with zipfile.ZipFile(stream, "w", zipfile.ZIP_DEFLATED) as archive:
+        archive.writestr(name, payload)
+    return stream.getvalue()
+
+
+@test("bounded Gerber ZIP and bounded nested evidence are inspectable")
+def t_archive_inspection_bounded():
+    root = tmpdir("publication_archives_")
+    gerber = root / "board_gerbers.zip"
+    gerber.write_bytes(zip_bytes())
+    nested = root / "evidence.zip"
+    nested.write_bytes(zip_bytes("prior.zip", zip_bytes("report.txt", b"ok")))
+    status, census, errors = gate.inspect_archives(
+        [gerber, nested], limits=gate.ArchiveLimits(
+            depth=4, members=20, expanded_bytes=4096,
+            nested_read_bytes=2048))
+    check(status == "PASS" and not errors,
+          f"bounded archives rejected: {census}, {errors}")
+    check(census["nested_archives"] == 1 and census["streamed_bytes"] > 0,
+          f"nested/streamed census missing: {census}")
+
+
+@test("archive inspection resource exhaustion is INCOMPLETE, not Git oversize",
+      kind="known_bad")
+def t_archive_inspection_limits():
+    root = tmpdir("publication_archive_limit_")
+    path = root / "evidence.zip"
+    path.write_bytes(zip_bytes("report.txt", b"x" * 32))
+    status, census, errors = gate.inspect_archives(
+        [path], limits=gate.ArchiveLimits(
+            depth=4, members=20, expanded_bytes=16,
+            nested_read_bytes=16))
+    check(status == "INCOMPLETE" and errors,
+          f"inspection budget was treated as pass: {census}")
+    check(all("T-BLOB" not in row and "T-PACK" not in row for row in errors),
+          f"inspection resource limit mislabeled as Git transport: {errors}")
+
+
+@test("nested archives are detected from bytes despite opaque member names",
+      kind="known_bad")
+def t_archive_opaque_nested_depth():
+    root = tmpdir("publication_archive_opaque_")
+    payload = zip_bytes("leaf.txt", b"ok")
+    for _ in range(4):
+        payload = zip_bytes("opaque.bin", payload)
+    path = root / "evidence.zip"
+    path.write_bytes(payload)
+    status, census, errors = gate.inspect_archives(
+        [path], limits=gate.ArchiveLimits(
+            depth=4, members=20, expanded_bytes=16384,
+            nested_read_bytes=8192))
+    check(status == "INCOMPLETE" and any("depth ceiling" in row for row in errors),
+          f"opaque nested archive bypassed depth bound: {census}, {errors}")
+
+
+@test("malformed recognized archive is operationally incomplete",
+      kind="known_bad")
+def t_archive_inspection_malformed():
+    root = tmpdir("publication_archive_bad_")
+    path = root / "evidence.tar.gz"
+    path.write_bytes(b"not an archive")
+    status, _, errors = gate.inspect_archives([path])
+    check(status == "INCOMPLETE" and errors,
+          "malformed archive was treated as inspectable")
 
 
 if __name__ == "__main__":
