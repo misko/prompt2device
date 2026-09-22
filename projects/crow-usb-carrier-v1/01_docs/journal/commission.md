@@ -113,3 +113,8 @@
 - did: adopted exact Wurth 744373240047 dossier, primary PDF, corrected native footprint and three digital-rail source instances after visual drawing review.
 - result: source 422 components/85 MPNs/1276 traces/26 endpoints PASS; TypeScript PASS; all 85 native footprint loads PASS; modular 422/422 refs and 53/53 crossings PASS; contracts 335 files, zero violations. Larger body and sourcing/thermal limitations documented.
 - next: review passive-fault correction and close remaining commissioning facts; no native board admission yet.
+
+## 2026-09-22 — iterate 23
+- did: reconciled BRIEF intake with adopted XU316 architecture, supply intent, selected stackup and completed SOL delegation evidence; kept native-board criteria unmet and unanswered scope questions unchanged.
+- result: contracts 335 files, zero violations. Passive-checker root review found post-trip leakage lacked a sustained-safe-current comparison; correction requested. Opened bounded SOL read-only research for actual capacitor and spoke-fault architecture closure, plus replacement of layout seed data.
+- next: assess concrete capacitor/protection choices and Crow-specific floorplan proposal; no engineering pass inferred from checker completion.

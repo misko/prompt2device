@@ -1,7 +1,9 @@
 stage: commission
-step: Review corrections for inductor footprint and passive fault checker
-measure: 422 source components; readiness DRAFT with 6 open engineering findings
+step: Resolve capacitor and spoke-fault design choices; replace layout seed data
+measure: 422 source components; primary-supported inductors adopted; readiness remains
+  DRAFT
 state: working
-next: Review SOL corrections before adoption; close power, connector and source admission
+next: Review SOL capacitor/protection research, floorplan proposal and fault-check
+  correction
 op_pid: null
-updated: '2026-09-22T08:57:03.957604+00:00'
+updated: '2026-09-22T09:03:56.443914+00:00'
