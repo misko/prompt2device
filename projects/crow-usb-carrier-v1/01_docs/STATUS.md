@@ -1,9 +1,9 @@
 stage: commission
-step: Reviewed source presentation repaired; USB net contract under independent review
-measure: 489 refs /85 MPNs; source0errors; 40pages/489unique refs; electrical source
-  JSON unchanged; current sourcing83/85
+step: Reviewed USB source decisions adopted; all489 assembly owners declared
+measure: 489 refs /85 MPNs; 40source preview pages; electrical source0errors; decision
+  admission489/489 owners and1/1 USB group; sourcing83/85
 state: working
-next: Close capacitor sourcing and ADC/crystal assembly ownership; accept reviewed
-  USB net contract before source admission
+next: Complete capacitor substitutions and source-schema normalization, then regrade
+  source admission before native schematic
 op_pid: null
-updated: '2026-09-22T13:40:51.897618+00:00'
+updated: '2026-09-22T13:50:08.847385+00:00'

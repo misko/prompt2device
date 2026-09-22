@@ -127,6 +127,20 @@ via_process:
 #   the sealed BOM was not reproducible from source (canon M3) — re-running the
 #   exporter put both rows straight back. The key landed at v1.3 (2026-07-27).
 not_assembled:
+  - refs: [U_ADC]
+    reason: not_in_catalog
+    on_bom: false
+    evidence: >-
+      JLC/LCSC exact search 2026-09-22 returned only C9900305019 at stock 0,
+      manufacturer JLCPCB Assembly, with no product or datasheet URL; exact
+      Cirrus Logic CS5308P-DNR manufacturer binding remains absent.
+    disposition: >-
+      Exclude U_ADC from the JLC CPL and assembly BOM. Plan for a qualified
+      professional secondary assembler to procure and reflow-place exact Cirrus Logic
+      CS5308P-DNR, then supplies lot traceability, moisture/reflow records,
+      X-ray/inspection results, orientation confirmation, and post-reflow
+      electrical-test evidence before finished-board acceptance. Qualify that
+      provider before part freeze or placement spend.
   # - refs: [K_U1, K_U2, K_U3]
   #   reason: not_in_catalog
   #   evidence: "LCSC search 'DIP05-1A72-12L' 2026-07-24 -> 0 results; Standex
@@ -143,6 +157,14 @@ not_assembled:
   #   reason: mechanical
   #   evidence: "M3 mounting holes, no footprint pads with nets (board 2026-07-24)"
   #   disposition: "n/a"
+
+board_attr_plan:
+  - refs: [U_ADC]
+    measured_on: 2026-09-22
+    plan: >-
+      The source-owned JLC exporter excludes every not_assembled ref from its CPL.
+      On native PCB generation, also set FP_EXCLUDE_FROM_POS_FILES on U_ADC and
+      verify board-minus-CPL population equality before release.
   # - refs: [TP1, TP2]
   #   reason: test_point
   #   evidence: "bare probe pads, no part (board 2026-07-24)"
