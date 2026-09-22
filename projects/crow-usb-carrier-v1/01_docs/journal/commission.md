@@ -58,3 +58,8 @@
 - did: closed SOL 1 oz impedance delivery PASS and adopted the nominal vendor-solved USB cross-section. Preserved exact vendor template/configuration/solve response payloads in tracked research; corrected generated-artifact names to the current crow_carrier build stem. Kept explanatory solver/tolerance details out of unconsumed YAML keys.
 - result: RF-CONTRACT passes 1 port, 1 cross-section and 1 claim; no review phases requested or passed. JLC solver gives89.6111388098 ohm for0.410mm width/0.150mm gap on JLC04161H-7628G. Reconciled the evidence prose with the unresolved85%versus88%thermal premise; no board thermal claim.
 - next: SOL schematic presentation, connector fact closure and power bound closure are active. Native board generation still requires commission admission.
+
+## 2026-09-22 — iterate 12
+- did: closed SOL presentation delivery PASS; adopted project-local schematic helpers and corrected USB poses, retaining all electrical source.
+- result: independent current-tree comparison preserves422refs/1276endpoints/netnames. All29page previews regenerate422schematiccomponents with0renderererrors. Pinned-local TypeScript check exposes7existing intrinsic-pad key declaration errors; no typecheck or native schematic approval claimed.
+- next: native schematic and formal reviews remain owed; SOL power/connector closure active. Commission hold retained.
