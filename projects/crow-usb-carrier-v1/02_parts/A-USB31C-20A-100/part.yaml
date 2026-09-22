@@ -1,0 +1,25 @@
+mpn: A-USB31C-20A-100
+manufacturer: ASSMANN WSW
+type: external_usb_a_to_c_cable
+mates: plug
+datasheet:
+  doc_id: ASS 7348 CA
+  revision: 08, 2022-08-25
+  url: https://www.assmann-wsw.com/uploads/datasheets/ASS_7348_CA.pdf
+  local: ASS_7348_CA_rev08.pdf
+  sha256: 35ee709e548f41ba3aee36bff69eda43ed25bc96906f820ca2a0ba98be2ae4a4
+  fetched: '2026-09-22'
+package: External 1m USB2 A-male to C-male cable; not a PCBA component
+pins:
+  A1: VBUS -> C A4/B4/A9/B9
+  A2: D- -> C A7
+  A3: D+ -> C A6
+  A4: GND -> C A1/B1/A12/B12
+  SH: braid -> C shell
+verified: '2026-09-22: visually inspected manufacturer rev08 sheet1 wiring table and
+  two orthogonal plug views; not a completed-board mating proof.'
+gotchas:
+- USB2 data cable despite USB31C text in MPN.
+- 'External accessory: do not instantiate a PCB footprint or include in assembly CPL.'
+- Type-C overmold dimensions support service planning; actual board registration,
+  reaction and installed routing remain unverified.

@@ -32,3 +32,8 @@
 - did: added CC/VBUS protection; independently compared retained analog topology with donor; corrected the firmware-posture interpretation without authoring firmware. Pushed committed source through7b74ba2a.
 - result: expanded303 unique refs with303 exact-MPN dossiers; strict USB typecheck PASS; contracts242files0violations. Power repair delivery PASS. Digital delivery INCOMPLETE solely because coordinator created envelope after snapshot; preserved packet. Digital source review found ADC input overvoltage during quiet-rail brownout and two capacitor MPN/value mismatches; bounded Sol repair opened. Power module land review opened separately.
 - next: adopt corrected hardware source after review. Commission hold remains; no complete schematic or board exists. Firmware remains forbidden and is not by itself a hardware-design blocker.
+
+## 2026-09-22T06:59:39.963354+00:00 — iterate 7
+- did: repaired unsupported USB ESD footprint source and rendered an isolated fixture; retained a dimensioned USB cable candidate; corrected architecture prose to match the hardware/firmware boundary. Closed power land review and digital interface delivery.
+- result: USB fixture6components37pads0reportederrors. Power land engineering FAIL includes output-to-ground overlap; coordinator also corrected replacement dimensions against primary drawing. ADC supply-interface repair delivery PASS; native part mappings and helper catalog-code mismatch still require repair. Analog module electrical topology remains retained, while its source footprint strings need conversion.
+- next: three bounded Sol tasks own power lands, digital part/native footprint closure, and analog source footprint repair. No whole schematic/board exists; commissioning hold remains.

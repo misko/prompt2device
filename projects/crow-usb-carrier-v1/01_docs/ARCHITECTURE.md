@@ -1,7 +1,7 @@
 # Crow USB carrier architecture — commissioning draft
 
 Status: candidate architecture. XU316-1024-TQ128-C24 is preferred for continued
-hardware design, conditional on its firmware path. No IC, pin map, rail setpoint,
+hardware design with a documented programming contract and separately scoped firmware. No IC, pin map, rail setpoint,
 stackup or source rule has been frozen. The commissioning hold remains active.
 
 ## Block diagram
@@ -29,9 +29,11 @@ rechecked from its owner and pin limits.
 The provisional policy retains the external carrier supply and eight powered
 spokes. The USB bridge is provisionally carrier-powered, so its audio clocks,
 ADC and control logic can share a controlled local startup/shutdown sequence.
-Exact bridge core/I/O rails and power-up requirements depend on IC selection.
-Existing analog quiet-start, hold-up and disconnect circuits are evidence to
-review, not a preapproved circuit copied into this board.
+The digital source candidate uses 0.9 V core, 1.8 V on every XU316 I/O bank, and
+separate 3.3 V USB/audio support power. The repaired 5 V input supply candidate
+is TPSM63603V5RDHR; its land pattern and thermal implementation remain under
+review. Retained analog quiet-start, hold-up and disconnect source has been
+compared with the donor topology; this does not confer new-board acceptance.
 
 | Carrier power | Pi VBUS | Required behavior |
 |---|---|---|
@@ -54,8 +56,9 @@ requirement, not evidence that these behaviors already work.
 - Onboard serial audio: select the IC pair and clock master together. Existing
   operating intent is 48 kHz, eight 32-bit time slots, 12.288 MHz serial bit clock
   and 24.576 MHz master clock; alternate clock modes need explicit evidence.
-- USB device link: exact electrical implementation and USB speed/class are under
-  research; no GPIO bit-banging or external converter is an accepted substitute.
+- USB device link: USB 2.0 high-speed UAC2 through the onboard XU316 and
+  protected USB4105 receptacle. The 8-channel payload exceeds one full-speed
+  isochronous transaction; high-speed operation is required.
 - Power/protection/control: source rules will replace the scaffold examples once
   the input envelope and part selection are admitted.
 
@@ -66,7 +69,10 @@ protocol overhead. With four-byte sample containers it is 12,288,000 bits/s.
 The synchronous TDM link is 8 × 32 × 48,000 = 12.288 MHz. Matching those rates
 alone is insufficient: exact frame-sync polarity/width, data alignment, launch
 edge, receiver setup/hold and master-clock relationship must match both ICs.
-The USB research task must verify endpoint capacity and clock-domain handling.
+The digital source adds a hardware frame-sync pulse extender to accommodate
+the documented lib_xua pulse and ADC minimum width. Component timing has been
+screened; the ADC supply-domain interface is being repaired before adoption.
+Routed timing and eventual USB capture remain separate evidence boundaries.
 
 ## Stackup
 
@@ -104,10 +110,11 @@ engineering tasks; the coordinator reopens actual output evidence. Research,
 a completed agent report and successful tool qualification do not close any
 board engineering gate.
 
-Firmware, USB identity/configuration and host compatibility must be resolved
-before freezing the interface IC. Existing firmware authoring remains forbidden
-pending the user's answer; the hardware design cannot claim a working USB path
-while an indispensable software dependency is unowned.
+Hardware freeze requires the documented software capability, flash protocol,
+port mapping and programming interface described in BRIEF D2. Firmware
+authoring remains forbidden; a future board-specific image is explicitly owed.
+Hardware design may continue, but neither a working USB capture path nor a
+programmed board is claimed.
 
 ## Research disposition
 

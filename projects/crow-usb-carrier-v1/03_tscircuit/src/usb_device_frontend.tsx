@@ -25,6 +25,15 @@ function dataEsdFootprint() { return <footprint>
   <smtpad portHints={["3"]} pcbX="0mm" pcbY="-0.425mm" width="0.3mm" height="0.3mm" shape="rect" />
 </footprint> }
 
+// Explicit DRL lands: pinned footprinter does not recognize "sot553".
+// KiCad SOT-553 centers are reflected into tscircuit's y-up local frame.
+function auxiliaryEsdFootprint() { return <footprint>
+  {[[1,-0.7125,0.5],[2,-0.7125,0],[3,-0.7125,-0.5],
+    [4,0.7125,-0.5],[5,0.7125,0.5]].map(([pin,x,y]) =>
+    <smtpad portHints={[String(pin)]} pcbX={x} pcbY={y}
+      width={0.675} height={0.35} shape="rect" />)}
+</footprint> }
+
 export function UsbDeviceFrontend({ nets, receptacleFootprint }:
   { nets: Nets; receptacleFootprint?: any }) {
   const c = usbFrontendConnections(nets)
@@ -41,12 +50,12 @@ export function UsbDeviceFrontend({ nets, receptacleFootprint }:
       connections={c.esd} footprint={dataEsdFootprint()}
       schSheetName="usb" schSectionName="USB interface" schX={1} schY={2} />
     <chip name="U_USB_CC_ESD" manufacturerPartNumber="TPD2E2U06DRLR"
-      supplierPartNumbers={{jlcpcb:["C1972959"]}} footprint="sot553"
+      supplierPartNumbers={{jlcpcb:["C1972959"]}} footprint={auxiliaryEsdFootprint()}
       pinLabels={{pin1:"NC1",pin2:"NC2",pin3:"CC1",pin4:"GND",pin5:"CC2"}}
       connections={c.ccEsd} schSheetName="usb" schSectionName="USB interface" schX={1} schY={-6} />
     {/* Pins1/2 are package NC; unused second VBUS-array channel pin5 is NC. */}
     <chip name="U_USB_VBUS_ESD" manufacturerPartNumber="TPD2E2U06DRLR"
-      supplierPartNumbers={{jlcpcb:["C1972959"]}} footprint="sot553"
+      supplierPartNumbers={{jlcpcb:["C1972959"]}} footprint={auxiliaryEsdFootprint()}
       pinLabels={{pin1:"NC1",pin2:"NC2",pin3:"VBUS",pin4:"GND",pin5:"UNUSED_NC"}}
       connections={c.vbusEsd} schSheetName="usb" schSectionName="USB interface" schX={1} schY={8} />
   </>
