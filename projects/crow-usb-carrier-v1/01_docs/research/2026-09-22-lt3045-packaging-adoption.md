@@ -1,0 +1,11 @@
+# LT3045 packaging adoption — 2026-09-22
+
+Selected U_LDO LT3045EDD#PBF (tube), replacing LT3045EDD#TRPBF (tape and reel). ADI Rev D page 2 lists both on the same ordering row: LGYP marking, 10-lead 3 × 3 mm DFN, −40 to 125 °C. The retained LT3045_RevD.pdf is unchanged (SHA-256 9132e595759a58a0920e7c63997872df02ca9ce598ead76c6f7a31051405eba6). Independent packaging review accepted the substitution with full dossier preservation.
+
+The complete dossier was retained under LT3045EDD-PBF, changing only exact MPN/value and sourcing identity/note. All pin, programming, capacitor, thermal, footprint and layout requirements remain. The power-tree converter identity and TSX U_LDO identity agree. Regenerated expanded source differs in exactly one record: U_LDO manufacturer part number and JLC supplier code. All other source records are equal, including all 1,493 connections.
+
+Root opened the exact DigiKey product page at 2026-09-22T12:09:38.360478+00:00: LT3045EDD#PBF, Active, tube, stock 4,101, minimum/multiple 1. The exact JLC C666574 owning stock-check observation reports 404. The owning shopping gate passes this candidate through DigiKey and JLC for five boards. Catalog stock does not establish assembly allocation; order staging must refresh it.
+
+The composed full-BOM checkpoint is 68/85 with two qualifying pools, 17 with one, zero unparseable. It retains the prior 81-code snapshot except the former LDO line, replaced by the new code's original stock observation. This is a composition of dated observations, not a fresh simultaneous full query. Evidence is in 06_build/verification/lt3045-packaging-adoption and jlc-stock-ldo-composed.json. Full sourcing admission remains incomplete.
+
+Validation: 489 components, 85 MPNs, 1,619 ports, 1,493 traces, zero source errors, 26 critical endpoint checks; early electrical 4/4 families, topology 13/13 rails and 5/5 converter types, voltage margins 9/9, TSX preflight 92/92 dossiers. Native schematic, placement, routing and physical qualification remain owed. In particular, the detailed retained thermal calculation includes quiescent input power (583.75 mW); the generic topology check's 457 mW pass-element figure is not the complete thermal bound.

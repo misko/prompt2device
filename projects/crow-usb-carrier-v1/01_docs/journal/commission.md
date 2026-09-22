@@ -249,3 +249,7 @@ Retained primary dossier maker identities while admitting narrowly enumerated W�
 ## Crystal capacitor and clock resistor catalog identity closure — 2026-09-22
 
 Bound exact GRM1555C1H220JA01D toC76960 and RC0402FR-0733RL toC138002 after manufacturer/MPN/packaging review. The alternative exact resistor catalog listing remains documented in isolated raw evidence and was not chosen. Owning source helpers and dossiers agree; regenerated CSV changes only these two codes. Root compared full expanded source: onlyfive supplier metadata records changed; all other bytes and489references/1493traces remain equal. A fresh owning JLC check queried all81current coded lines; composed shopping grade is67/85two-pool,18one-pool,0zero-pool,0unparseable. Modular489/489and54/54 andcontracts pass. Current receipts:06_build/verification/jlc-stock-81.json and06_build/verification/sourcing-current/. Catalog coverage remains distinct from JLC allocation.
+
+## LT3045 packaging substitution — 2026-09-22
+
+Adopted independently reviewed LT3045EDD#PBF / C666574 with complete original dossier preserved. Exact source comparison changes only U_LDO MPN/supplier fields; all connections remain equal. Full sourcing advances to 68/85 two-pool, 17 one-pool, zero unparseable. Electrical and pin-name checks pass. See research/2026-09-22-lt3045-packaging-adoption.md. Commissioning hold remains.

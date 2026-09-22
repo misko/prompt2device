@@ -150,7 +150,7 @@ const QuietAnalogPower = ({ n }: any) => (
     <C name="C_HOLD1" value="470uF" a="5V_LDO_HOLD" b="GND" mpn="EEEFK1A471P" jlc="C178530" footprint={<PanasonicEeeFk8x10 />} polarized n={n} />
     <C name="C_HOLD2" value="470uF" a="5V_LDO_HOLD" b="GND" mpn="EEEFK1A471P" jlc="C178530" footprint={<PanasonicEeeFk8x10 />} polarized n={n} />
     <C name="C_LDO_IN" value="47uF" a="5V_LDO_HOLD" b="GND" mpn="GRM32ER71A476KE15L" jlc="C84494" footprint="1210" n={n} />
-    <Chip name="U_LDO" manufacturerPartNumber="LT3045EDD#TRPBF" jlc="C514420" footprint={<Lt3045Dd />}
+    <Chip name="U_LDO" manufacturerPartNumber="LT3045EDD#PBF" jlc="C666574" footprint={<Lt3045Dd />}
       pinLabels={{ pin1: "IN1", pin2: "IN2", pin3: "EN_UV", pin4: "PG_NC", pin5: "ILIM", pin6: "PGFB", pin7: "SET", pin8: "GND", pin9: "OUTS", pin10: "OUT", pin11: "EP_GND" }}
       connections={{ pin1: n("5V_LDO_HOLD"), pin2: n("5V_LDO_HOLD"), pin3: n("LDO_EN"), pin5: n("LDO_ILIM"), pin6: n("LDO_PGFB"), pin7: n("LDO_NR"), pin8: n("GND"), pin9: n("3V3_ADC"), pin10: n("3V3_ADC"), pin11: n("GND") }} />
     <R name="R_LDO_ILIM" value="300" a="LDO_ILIM" b="GND" mpn="RC0402FR-07300RL" jlc="C138010" n={n} />

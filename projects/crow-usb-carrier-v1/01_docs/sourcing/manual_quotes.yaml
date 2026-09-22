@@ -1316,3 +1316,19 @@ quotes:
   packaging: Tray
   lifecycle: Active
   note: Exact MPN/manufacturer; need 5.
+- mpn: LT3045EDD#PBF
+  manufacturer: Analog Devices Inc.
+  distributor: digikey
+  source: product_page
+  url: https://www.digikey.com/en/products/detail/analog-devices-inc/LT3045EDD-PBF/6234770
+  read_on: '2026-09-22'
+  checked_at: '2026-09-22T12:09:38.360478+00:00'
+  dpn: 505-LT3045EDD#PBF-ND
+  stock: 4101
+  min: 1
+  mult: 1
+  packaging: Tube
+  lifecycle: Active
+  orderable: true
+  note: Root reopened exact product page; current observed stock supersedes candidate
+    count6060. Five-board requirement5.

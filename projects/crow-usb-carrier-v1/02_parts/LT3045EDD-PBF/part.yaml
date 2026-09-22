@@ -1,8 +1,8 @@
-mpn: LT3045EDD#TRPBF
+mpn: LT3045EDD#PBF
 note_dirname: Filesystem-safe spelling replaces the MPN hash with a hyphen; exact orderable MPN remains above.
 manufacturer: Analog Devices
 type: linear_ldo_regulator
-value: LT3045EDD#TRPBF
+value: LT3045EDD#PBF
 status: active
 package: DFN-10-1EP_3x3mm_P0.5mm
 footprint: Package_DFN_QFN:DFN-10-1EP_3x3mm_P0.5mm_EP1.65x2.38mm_ThermalVias
@@ -52,8 +52,8 @@ stability:
   output: 'C_LDO_OUT and C_OPA_BULK are separate 47uF X7R ceramics, above the 10uF minimum. Each installed effective capacitance must remain >=10uF; ESR must be <20mohm and ESL <2nH.'
   minimum_load: 'The datasheet requires 10uA only when VOUT<1V. At 3.3V there is no specified minimum-load requirement; the retained 200ohm bleed also provides a large load while enabled.'
 sourcing:
-  lcsc: C514420
-  note: 'Architecture sourcing report dated 2026-09-22 records two independent exact-part pools for JLC C514420 / LT3045EDD#TRPBF. Volatile counts remain in the time-stamped sourcing evidence and must be rechecked at order staging.'
+  lcsc: C666574
+  note: 'Tube-packaged order code; ADI Rev.D places it on the same electrical/package/temperature row as the former tape-and-reel code. Exact catalog identity C666574; catalog availability is not assembly allocation.'
   alternates: []
 verified: 'Primary Rev.D pin table, DD package drawing, TSX geometry and installed KiCad FPID inspected: left pads 1-5, right pads 10-6, EP11; 0.5mm pitch, 0.70x0.25mm outer lands and 1.65x2.38mm EP. Native FPID loads and exposes electrical pad numbers 1-11. JLC model/rotation, paste realization and realized board remain unreviewed.'
 gotchas:
