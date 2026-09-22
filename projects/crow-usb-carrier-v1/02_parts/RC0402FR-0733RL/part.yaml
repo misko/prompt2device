@@ -8,3 +8,5 @@ pins: {1: terminal_1, 2: terminal_2}
 datasheet:
   url: https://www.yageogroup.com/component-documentation/download/specsheet/RC0402FR-0733RL
   provenance: "Exact-MPN manufacturer-generated specification inspected 2026-09-22; identifies YAGEO RC0402FR-0733RL as a 33 Ohm, 1%, 0402/1005 thick-film resistor."
+
+sourcing: {lcsc: C138002, note: "Exact catalog identity; no assembly allocation claim."}
