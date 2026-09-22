@@ -19,6 +19,7 @@ import yaml
 
 BASELINE = "d7c3ac4416b1ee3c233b98de869ad410e2e61788"
 PROJECT_REL = Path("projects/crow-audio-carrier-v1")
+MODEL_PREFIX = "${KIPRJMOD}/../03_src/lib/3dmodels/"
 DEFAULT_DEST = Path(
     "/home/mouse9911/gits/circuits-trials/crow-modular-20260921/"
     "crow-audio-carrier-v1"
@@ -144,8 +145,45 @@ def require_clean_source_state(state: dict[str, object]) -> None:
         raise SystemExit("source Crow project is dirty; refusing reconstruction")
 
 
+def resolve_inherited_model(source: Path, value: object) -> Path:
+    """Resolve one scalar library model binding without accepting transforms."""
+    if not isinstance(value, str) or not value.startswith(MODEL_PREFIX):
+        raise ValueError("model_override must be a scalar project-library path")
+    relative = Path(value.removeprefix(MODEL_PREFIX))
+    if not relative.parts or relative.is_absolute() or any(
+            part in ("", ".", "..") for part in relative.parts):
+        raise ValueError("model_override escapes the retained model library")
+    model_root = (source / "03_src/lib/3dmodels").resolve()
+    candidate = (model_root / relative).resolve()
+    if not candidate.is_relative_to(model_root) or not candidate.is_file():
+        raise ValueError("model_override does not resolve to a retained model asset")
+    if candidate.suffix.lower() not in (".step", ".wrl"):
+        raise ValueError("model_override is not a supported 3D model asset")
+    return candidate
+
+
+def model_only_patterns(
+        original: dict[str, object], source: Path) -> list[dict[str, object]]:
+    """Project only ref selectors and scalar source-owned model filenames."""
+    projected = []
+    for pattern in original.get("placement", {}).get("patterns", []):
+        if "model_override" not in pattern:
+            continue
+        resolve_inherited_model(source, pattern["model_override"])
+        match = pattern.get("match")
+        refs = [match] if isinstance(match, str) else match
+        if (not isinstance(refs, list) or not refs or
+                any(not isinstance(ref, str) or not ref for ref in refs)):
+            raise ValueError("model_override requires scalar/list reference selectors")
+        projected.append({
+            "match": match,
+            "model_override": pattern["model_override"],
+        })
+    return projected
+
+
 def validate_floorplan_transform(
-        original: dict[str, object], result: dict[str, object]) -> None:
+        original: dict[str, object], result: dict[str, object], source: Path) -> None:
     """Reject envelope drift and surviving solved physical geometry."""
     if result["board"]["outline"] != original["board"]["outline"]:
         raise ValueError("sanitized outline differs from pinned baseline")
@@ -159,10 +197,18 @@ def validate_floorplan_transform(
     if set(result["board"]) != {
             "outline", "edge_width", "layers", "stackup", "mounting_holes"}:
         raise ValueError("sanitized board retained solution-derived geometry")
-    if set(result["placement"]) != {"sides", "require_anchor", "anchors"}:
+    if set(result["placement"]) != {
+            "sides", "require_anchor", "anchors", "patterns"}:
         raise ValueError("sanitized placement retained solution-derived geometry")
     if result["placement"]["anchors"]:
         raise ValueError("sanitized placement retained component anchors")
+    expected_models = model_only_patterns(original, source)
+    if result["placement"]["patterns"] != expected_models:
+        raise ValueError("sanitized model bindings differ from pinned source projection")
+    for pattern in result["placement"]["patterns"]:
+        if set(pattern) != {"match", "model_override"}:
+            raise ValueError("model binding retained placement or transform fields")
+        resolve_inherited_model(source, pattern["model_override"])
     if set(result["asserts"]) != {"pad_net", "edge_faces"}:
         raise ValueError("sanitized assertions retained solution-derived geometry")
 
@@ -175,6 +221,9 @@ def sanitized_floorplan(source: Path) -> dict[str, object]:
     # work must establish or replace the physical boundary through its owner.
     # Component anchors, repeat cells, regions, keepouts, zones, captions,
     # fiducials, thermal-via sites, legalization, and route seeds are omitted.
+    # The only retained placement.patterns fields bind selected refs to scalar
+    # model filenames already present in the copied project library. They carry
+    # no model transform or board pose.
     result = {
         "project": original["project"],
         "board": {
@@ -189,6 +238,7 @@ def sanitized_floorplan(source: Path) -> dict[str, object]:
             "sides": {},
             "require_anchor": True,
             "anchors": {},
+            "patterns": model_only_patterns(original, source),
         },
         "design_rules": original["design_rules"],
         "asserts": {
@@ -196,7 +246,7 @@ def sanitized_floorplan(source: Path) -> dict[str, object]:
             "edge_faces": original["asserts"]["edge_faces"],
         },
     }
-    validate_floorplan_transform(original, result)
+    validate_floorplan_transform(original, result, source)
     return result
 
 
@@ -221,8 +271,11 @@ baseline board outline and mounting-hole values, connector edge-facing
 requirements, stackup, fabrication minima and top-side assembly policy. The
 outline and hole values are trial inputs, not newly established hard
 requirements; placement must verify or replace them through the owning design
-boundary. Connector component coordinates are intentionally absent because
-their old positions were implementation results, not fixed input.
+boundary. Three inherited model-only bindings preserve package model identity
+for the film capacitors and resettable fuses by reference selector and scalar
+project-library filename. They carry no model transform, registration vector,
+side or PCB coordinate. Connector component coordinates are intentionally
+absent because their old positions were implementation results, not fixed input.
 
 Excluded: every generated CAD/build/netlist/PDF, release, review, journal and
 archived evidence artifact; the solved PCB, component anchors/repeat cells,
@@ -286,7 +339,7 @@ def prepare(repo: Path, dest: Path) -> dict[str, object]:
     return manifest
 
 
-def verify(dest: Path) -> dict[str, object]:
+def verify(dest: Path, source: Path) -> dict[str, object]:
     manifest_path = dest / "INPUT_MANIFEST.json"
     expected = json.loads(manifest_path.read_text(encoding="utf-8"))
     actual = tree_manifest(dest)
@@ -308,8 +361,15 @@ def verify(dest: Path) -> dict[str, object]:
     if found:
         raise SystemExit(f"forbidden solved/generated inputs present: {found}")
     floorplan = yaml.safe_load((dest / "03_src/floorplan.yaml").read_text())
-    if floorplan["placement"]["anchors"] or "zones" in floorplan or "keepouts" in floorplan:
-        raise SystemExit("solution-derived placement geometry survived sanitization")
+    original = yaml.safe_load((source / "03_src/floorplan.yaml").read_text())
+    try:
+        validate_floorplan_transform(original, floorplan, source)
+        for pattern in floorplan["placement"]["patterns"]:
+            # Re-resolve in the reconstructed tree too: source validation alone
+            # cannot prove the selected asset was copied into the destination.
+            resolve_inherited_model(dest, pattern["model_override"])
+    except ValueError as exc:
+        raise SystemExit(f"invalid sanitized floorplan: {exc}") from exc
     return expected
 
 
@@ -323,7 +383,10 @@ def main() -> int:
     if args.command == "prepare":
         result = prepare(args.repo.resolve(), args.destination.resolve())
     else:
-        result = verify(args.destination.resolve())
+        result = verify(
+            args.destination.resolve(),
+            (args.repo.resolve() / PROJECT_REL),
+        )
     print(json.dumps({k: result[k] for k in
                       ("baseline", "classification", "destination",
                        "member_count", "tree_sha256")}, indent=2))

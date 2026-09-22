@@ -117,3 +117,23 @@ Reviewed artifact identities:
 A separately bounded Sol physical-trial owner is now executing P1-P5 from the
 empty placement anchors. Placement acceptance and full-board routing remain
 pending; the implementation's coverage checker grants neither.
+
+## Model-binding reconstruction finding
+
+The initial reconstruction copied the selected 3D model assets and their
+provenance but dropped three scalar `placement.patterns[].model_override`
+bindings from the pinned source: the sixteen `C_A1P/N` through `C_A8P/N` film
+capacitors, eight `F1` through `F8` branch fuses, and `F_IN`. Those bindings
+replace only the model filename and contain no offset, scale, rotation, side or
+board coordinate. Their omission made the coarse physical candidate unable to
+recover the selected package model identity from the retained assets alone.
+
+The initial manifest remains immutable forensic evidence, and the active trial
+was not modified under its running owner. Future preparation now projects
+exactly each source `match` selector and scalar `${KIPRJMOD}/../03_src/lib/3dmodels/`
+path, verifies that it resolves to a copied `.step` or `.wrl` beneath that
+library, and rejects mappings/transforms, path traversal, or any adjacent
+placement field. Root must restore these three model-only bindings through an
+explicit new trial mapping at the next idle placement boundary. This restores
+selected package model identity; it does not inherit model-registration vectors,
+component placement, board geometry, copper, or physical model-coverage proof.
