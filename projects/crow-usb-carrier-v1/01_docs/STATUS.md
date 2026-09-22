@@ -1,9 +1,9 @@
 stage: commission
-step: Source schema and decision admission pass; capacitor substitutions under review
-measure: 489 refs /85 MPNs; 40source preview pages; electrical source0errors; decision
-  admission489/489 owners and1/1 USB group; sourcing83/85
+step: USB/ADC capacitor substitutions integrated; sourcing84/85
+measure: 489refs /85MPNs; source0errors; only5 intended capacitor metadata changes;15capacitance
+  banks pass; sourcing84/85,1unqualified47uF row
 state: working
-next: Qualify and integrate capacitor substitutions, regenerate sourcing and source
-  previews, then review commission admission
+next: Complete47uF bank replacement and independent review; regenerate source previews
+  and source admission
 op_pid: null
-updated: '2026-09-22T13:54:38.759151+00:00'
+updated: '2026-09-22T14:05:03.094922+00:00'

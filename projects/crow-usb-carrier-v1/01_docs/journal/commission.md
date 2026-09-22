@@ -417,3 +417,9 @@ Set stitch.via.tiers and stitch.astar_fallback.via to the existing0.60/0.30mm or
 - did: Preserved primary-source ADC moisture/reflow investigation; current DS1314F2 binds exact CS5308P-DNR package/container but supplies no located handling classification. No neighboring-part MSL or generic-QFN handling assumptions adopted.
 - result: Exact-lot/manufacturer handling authority remains due before exposure/reflow. This does not invalidate planned professional source ownership. After source-schema normalization, root TSX preflight passes92/92 dossiers and37 multi-pin records; actual locked source decision-admission remains PASS489/489 with0 findings.
 - next: Review F2-versus-F1 hardware deltas, complete capacitor source changes and independent review. No conductor invoked while hold exists.
+
+## 2026-09-22T14:05:03.095288+00:00 — iterate (USB/ADC capacitor sourcing closure)
+- did: Integrated independently accepted five-reference capacitor split asd7eaec34: GCM21BR71C475KA73L/C90791 at USB and twoLDO filters, existing C0805C106K8RACTU/C2167576 at twoVMID filters; all0805. Review archived in08_reviews.
+- result: Root sourceJSON comparison finds exactly5 intended component identity/value/supplier changes and every other record identical;489components/85MPNs/1619ports/1490traces. Early electrical4/4 and15capacitance banks pass. Whole sourcing84/85 with0unparsed; only47uF remains. Fresh current-quantity JLC check regrades GCM/KEMET/Molex, preserving dated earlier observations separately.
+- repair: Full composition caught malformed quote indentation and two catalog identities removed during schema normalization. Corrected YAML and restored canonical sourcing.lcsc for TPS26625DRCR/C2862873 andXU316/C6362698 from unchanged exact identities; no stock or partidentity invented. Source schema regraded.
+- next: Finish13-part47uF bank candidate; refresh affected previews/native footprint census and source admission before hold removal.

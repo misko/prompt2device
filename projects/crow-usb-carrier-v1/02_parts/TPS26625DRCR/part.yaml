@@ -37,6 +37,7 @@ layout_refs:
   - {tier: 1, reached: true, artifact: 'TI SLVSDT4F sections 10.4 and 11, Figures 11-1/11-2, package drawing pages 43-44', why: 'Exact manufacturer authority for bypass placement, RTN/GND separation, PowerPAD use, land geometry and stencil apertures.'}
   - {tier: 2, reached: false, artifact: 'Exact TPS26625 editable routed reference design', why: 'The datasheet application layouts are sufficient precedent for source constraints; exact project placement and thermal realization remain project-owned.'}
 sourcing:
+  lcsc: C2862873
 escape:
   style: dfn
   pitch: 0.5
