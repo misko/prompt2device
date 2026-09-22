@@ -1,3 +1,4 @@
+import { Fragment } from "react"
 /**
  * Copper/drill geometry transcribed from the immutable KiCad libraries listed
  * in 06_build/tmp/analog-footprints/repair.json. KiCad's +Y-down centers are negated for tscircuit's +Y-up
@@ -6,21 +7,21 @@
  */
 type Smd = readonly [pin: string, x: number, yKiCad: number, w: number, h: number, radius?: number]
 const pads = (ps: readonly Smd[]) => ps.map(([pin, x, y, w, h, radius]) =>
-  <smtpad key={`${pin}:${x}:${y}`} portHints={[pin]} pcbX={`${x}mm`} pcbY={`${-y}mm`}
+  <Fragment key={`${pin}:${x}:${y}`}><smtpad portHints={[pin]} pcbX={`${x}mm`} pcbY={`${-y}mm`}
     width={`${w}mm`} height={`${h}mm`} shape="rect"
-    {...(radius === undefined ? {} : { rectBorderRadius: `${radius}mm` })} />)
+    {...(radius === undefined ? {} : { rectBorderRadius: `${radius}mm` })} /></Fragment>)
 
 export const Wurth615008160221Rj45 = () => <footprint>
   <hole pcbX="-3.28mm" pcbY="-0.7mm" diameter="3.18mm" />
   <hole pcbX="10.42mm" pcbY="-0.7mm" diameter="3.18mm" />
   <platedhole portHints={['1']} pcbX="0mm" pcbY="0mm" shape="circular_hole_with_rect_pad"
     holeDiameter="0.8mm" rectPadWidth="1.3mm" rectPadHeight="1.3mm" />
-  {[2,3,4,5,6,7,8].map((pin) => <platedhole key={pin} portHints={[`${pin}`]}
+  {[2,3,4,5,6,7,8].map((pin) => <Fragment key={pin}><platedhole portHints={[`${pin}`]}
     pcbX={`${(pin - 1) * 1.02}mm`} pcbY={`${pin % 2 === 0 ? -4 : 0}mm`}
-    shape="circle" holeDiameter="0.8mm" outerDiameter="1.3mm" />)}
-  {[['9',10.97],['10',-3.83]].map(([pin,x]) => <platedhole key={pin} portHints={[`${pin}`]}
+    shape="circle" holeDiameter="0.8mm" outerDiameter="1.3mm" /></Fragment>)}
+  {[['9',10.97],['10',-3.83]].map(([pin,x]) => <Fragment key={pin}><platedhole portHints={[`${pin}`]}
     pcbX={`${x}mm`} pcbY="2.35mm" shape="oval" outerWidth="1.5mm" outerHeight="2.5mm"
-    holeWidth="1mm" holeHeight="2mm" />)}
+    holeWidth="1mm" holeHeight="2mm" /></Fragment>)}
 </footprint>
 
 export const Littelfuse1812L03560 = () => <footprint>{pads([

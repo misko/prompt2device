@@ -1,3 +1,4 @@
+import { Fragment } from "react"
 /**
  * Conditional XU316 USB-audio digital-core hardware source.
  * No firmware, XN, USB descriptor, or production board is generated here.
@@ -30,7 +31,7 @@ function assertXUPinCoverage(){
 function XU316TQ128EPFootprint(){
  const side=(start:number,axis:"x"|"y",fixed:number,reverse=false)=>Array.from({length:32},(_,i)=>{
    const along=(reverse?15.5-i:i-15.5)*0.4; const x=axis==="x"?along:fixed; const y=axis==="y"?along:fixed;
-   return <smtpad key={start+i} portHints={[String(start+i)]} pcbX={`${x}mm`} pcbY={`${y}mm`} width={axis==="x"?"0.22mm":"1.5mm"} height={axis==="y"?"0.22mm":"1.5mm"} shape="rect" />
+   return <Fragment key={start+i}><smtpad portHints={[String(start+i)]} pcbX={`${x}mm`} pcbY={`${y}mm`} width={axis==="x"?"0.22mm":"1.5mm"} height={axis==="y"?"0.22mm":"1.5mm"} shape="rect" /></Fragment>
  });
  return <footprint>
   {side(1,"x",-7.65)} {side(33,"y",7.65)} {side(65,"x",7.65,true)} {side(97,"y",-7.65,true)}

@@ -63,3 +63,8 @@
 - did: closed SOL presentation delivery PASS; adopted project-local schematic helpers and corrected USB poses, retaining all electrical source.
 - result: independent current-tree comparison preserves422refs/1276endpoints/netnames. All29page previews regenerate422schematiccomponents with0renderererrors. Pinned-local TypeScript check exposes7existing intrinsic-pad key declaration errors; no typecheck or native schematic approval claimed.
 - next: native schematic and formal reviews remain owed; SOL power/connector closure active. Commission hold retained.
+
+## 2026-09-22 — iterate 13
+- did: moved seven React list keys from pad intrinsic elements to keyed fragments, using the pinned local dependency JSX declarations.
+- result: TypeScript PASS. Expanded presentation/component/footprint properties are byte-identical before/after after flattening fragments and excluding React keys. Electrical source remains422refs/1276traces/0errors/26criticalendpointchecks. Contracts315files0violations.
+- next: continue native schematic admission and active SOL connector/power closure. No native schematic or board approval claimed.

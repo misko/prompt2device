@@ -1,3 +1,4 @@
+import { Fragment } from "react"
 import {
   CirrusCs5308pQfn48, Diodes2N7002kSot23, Littelfuse1812L03560,
   PanasonicEeeFk8x10, Sot553, TiDse0006a, TiDsg0008a,
@@ -51,8 +52,8 @@ const FilmCap5mm = () => (
 
 const Lt3041Wson = () => (
   <footprint>
-    {Array.from({ length: 7 }, (_, i) => <smtpad key={`l${i}`} portHints={[`${i + 1}`]} pcbX="-1.45mm" pcbY={`${-1.5 + i * 0.5}mm`} width="0.7mm" height="0.3mm" shape="rect" />)}
-    {Array.from({ length: 7 }, (_, i) => <smtpad key={`r${i}`} portHints={[`${14 - i}`]} pcbX="1.45mm" pcbY={`${-1.5 + i * 0.5}mm`} width="0.7mm" height="0.3mm" shape="rect" />)}
+    {Array.from({ length: 7 }, (_, i) => <Fragment key={`l${i}`}><smtpad portHints={[`${i + 1}`]} pcbX="-1.45mm" pcbY={`${-1.5 + i * 0.5}mm`} width="0.7mm" height="0.3mm" shape="rect" /></Fragment>)}
+    {Array.from({ length: 7 }, (_, i) => <Fragment key={`r${i}`}><smtpad portHints={[`${14 - i}`]} pcbX="1.45mm" pcbY={`${-1.5 + i * 0.5}mm`} width="0.7mm" height="0.3mm" shape="rect" /></Fragment>)}
     <smtpad portHints={["15"]} pcbX="0mm" pcbY="0mm" width="1.7mm" height="3.3mm" shape="rect" />
   </footprint>
 )

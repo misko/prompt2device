@@ -1,3 +1,4 @@
+import { Fragment } from "react"
 /** Exact copper/drill helpers derived from the native FPIDs in the twelve dossiers. */
 export const MicroFit2 = () => <footprint>
   <platedhole portHints={["1"]} pcbX="0mm" pcbY="0mm" shape="circular_hole_with_rect_pad"
@@ -14,9 +15,9 @@ export const Pptc = () => <footprint>
 </footprint>
 
 export const Pdi = () => <footprint>
-  {[1,2,3,4].map((pin,index) => <smtpad key={pin} portHints={[`${pin}`]}
+  {[1,2,3,4].map((pin,index) => <Fragment key={pin}><smtpad portHints={[`${pin}`]}
     pcbX="-1.5mm" pcbY={`${0.975-index*0.65}mm`} width="0.7mm" height="0.42mm"
-    shape="rect" rectBorderRadius="0.105mm" />)}
+    shape="rect" rectBorderRadius="0.105mm" /></Fragment>)}
   {/* KiCad pad 5 is one fused copper land for manufacturer logical drain pins 5-8. */}
   <smtpad portHints={["5","6","7","8","DRAIN_COMMON"]} shape="polygon" points={[
     {x:-0.4,y:-1.185},{x:1.85,y:-1.185},{x:1.85,y:-0.765},{x:1.31,y:-0.765},
