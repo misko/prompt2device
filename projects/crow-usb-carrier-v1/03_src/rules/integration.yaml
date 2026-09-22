@@ -302,27 +302,26 @@ selections:
   - U_PWR
   - U_RST1
   - U_RST2
-  rationale: Retain the existing eight-channel converter and the complete297-component
-    analog/spoke/quiet-power source boundary. The296 supporting references deliberately
-    include shared infrastructure, rather than undercounting a minimal ADC example.
+  rationale: Retain the existing eight-channel converter and the complete297-component analog/spoke/quiet-power
+    source boundary. The296 supporting references deliberately include shared infrastructure, rather
+    than undercounting a minimal ADC example.
   exception:
-    decision_rationale: The retained Crow balanced analog and powered spoke interface
-      must feed one synchronous converter; a USB transport module does not replace
-      that analog front end.
-    evidence: Retained Crow architecture and current297-reference analog source; donor
-      integration comparison names the Cirrus evaluation assembly and MCHStreamer.
-      Their prior board approvals are not inherited.
+    decision_rationale: The retained Crow balanced analog and powered spoke interface must feed one
+      synchronous converter; a USB transport module does not replace that analog front end.
+    evidence: Retained Crow architecture and current297-reference analog source; donor integration
+      comparison names the Cirrus evaluation assembly and MCHStreamer. Their prior board approvals
+      are not inherited.
     modules_considered:
     - part: miniDSP MCHStreamer
-      rejected_because: Digital USB/TDM transport does not supply the eight balanced
-        analog converter channels and protected powered RJ45 interfaces.
-      evidence: Retained source research and miniDSP MCHStreamer User Manual TDM8
-        interface, referenced in the prior carrier integration contract.
+      rejected_because: Digital USB/TDM transport does not supply the eight balanced analog converter
+        channels and protected powered RJ45 interfaces.
+      evidence: Retained source research and miniDSP MCHStreamer User Manual TDM8 interface, referenced
+        in the prior carrier integration contract.
     - part: Cirrus DC5308P evaluation platform
-      rejected_because: Evaluation hardware is a reference for ADC circuitry, not
-        the requested carrier with eight protected Crow spoke interfaces.
-      evidence: Cirrus evaluation schematic/layout archive cited by the retained analog
-        source adoption and prior carrier integration contract.
+      rejected_because: Evaluation hardware is a reference for ADC circuitry, not the requested carrier
+        with eight protected Crow spoke interfaces.
+      evidence: Cirrus evaluation schematic/layout archive cited by the retained analog source adoption
+        and prior carrier integration contract.
     adr: 01_docs/decisions/0003-integrated-subsystem-boundaries.md
 - function: onboard_usb_audio_processor
   part: XU316-1024-TQ128-C24
@@ -346,15 +345,12 @@ selections:
   - C_U_1V8_IN_1
   - C_U_1V8_IN_2
   - C_U_1V8_OUT_1
-  - C_U_1V8_OUT_2
   - C_U_3V3X_IN_1
   - C_U_3V3X_IN_2
   - C_U_3V3X_OUT_1
-  - C_U_3V3X_OUT_2
   - C_U_CORE_IN_1
   - C_U_CORE_IN_2
   - C_U_CORE_OUT_1
-  - C_U_CORE_OUT_2
   - C_XLATE_A
   - C_XLATE_B
   - C_XTAL_IN
@@ -435,34 +431,33 @@ selections:
   - U_USB_VBUS_ESD
   - Y_AUDIO
   - Y_XU
-  rationale: User explicitly requested an onboard USB IC. Count all101 digital support
-    references and all6 USB-front-end references, including regulators, flash, clocks,
-    reset, programming and ADC interface conditioning.
+  rationale: User explicitly requested an onboard USB IC. Count all101 digital support references
+    and all6 USB-front-end references, including regulators, flash, clocks, reset, programming and
+    ADC interface conditioning.
   exception:
-    decision_rationale: An external bridge cannot satisfy the requested onboard-IC
-      boundary. XU316 supports the selected high-speed multichannel USB architecture
-      with an exposed hardware programming interface; board-specific firmware remains
-      a separate unimplemented dependency.
-    evidence: 01_docs/research/2026-09-22-usb-ic-research.md and digital-source-adoption.md
-      document exact part selection, source support and stack capabilities. BRIEF
-      D2 supersedes the research report prior firmware-authorization interpretation.
+    decision_rationale: An external bridge cannot satisfy the requested onboard-IC boundary. XU316
+      supports the selected high-speed multichannel USB architecture with an exposed hardware programming
+      interface; board-specific firmware remains a separate unimplemented dependency.
+    evidence: 01_docs/research/2026-09-22-usb-ic-research.md and digital-source-adoption.md document
+      exact part selection, source support and stack capabilities. BRIEF D2 supersedes the research
+      report prior firmware-authorization interpretation.
     modules_considered:
     - part: miniDSP MCHStreamer
-      rejected_because: The previous external USB bridge does not satisfy the newly
-        requested onboard bare-IC carrier architecture.
-      evidence: User request in BRIEF original prompt and ADR0001; retained carrier
-        used this external transport.
+      rejected_because: The previous external USB bridge does not satisfy the newly requested onboard
+        bare-IC carrier architecture.
+      evidence: User request in BRIEF original prompt and ADR0001; retained carrier used this external
+        transport.
     - part: XMOS XK-AUDIO-316-MC
-      rejected_because: Useful reference and prototype platform, but adopting the
-        evaluation board does not implement the requested onboard IC and Crow analog/power
-        interface on the new carrier.
-      evidence: XMOS multichannel reference hardware and USB stack evidence linked
-        in 2026-09-22-usb-ic-research.md.
+      rejected_because: Useful reference and prototype platform, but adopting the evaluation board
+        does not implement the requested onboard IC and Crow analog/power interface on the new carrier.
+      evidence: XMOS multichannel reference hardware and USB stack evidence linked in 2026-09-22-usb-ic-research.md.
     adr: 01_docs/decisions/0003-integrated-subsystem-boundaries.md
 - function: external_twelve_volt_to_five_volt
   part: TPSM63603V5RDHR
   implementation: module
-  rationale: Selected integrated inductor/switching power module reduces external
-    switching-loop assembly complexity. Its surrounding input protection, capacitors
-    and AGND join remain explicitly designed in the17-reference source module. Four-layer
-    thermal and manufacturing assumptions still require verification.
+  rationale: Selected integrated inductor/switching power module reduces external switching-loop
+    assembly complexity. Its surrounding input protection, capacitors and AGND join remain explicitly
+    designed in the17-reference source module. Four-layer thermal and manufacturing assumptions still
+    require verification.
+  support_refs:
+  - C_IN3

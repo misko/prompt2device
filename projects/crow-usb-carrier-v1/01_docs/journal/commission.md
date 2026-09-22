@@ -148,3 +148,8 @@
 - did: received independent SOL six-state electrical review; root inspected held-buffer paths and added a power-state-sequencing finding. Root additionally identified FSYNC_EXT (post-OR) as another potentially floating held-buffer input, beyond reported MCLK_RAW.
 - result: current source has unresolved brownout/reset and VBUS/PHY-readiness behavior; isolated digital repair delegated with explicit preservation of ADC startup sequence and capacitor-candidate merge boundary.
 - next: review circuit revisions and renewed source-state proof before schematic admission.
+
+## 2026-09-22 — iterate 30
+- did: adopted conservative capacitor-bank revision after independent full retained-pin/net comparison and exact delta review; reconciled manifest, modular interfaces, floorplan patterns, presentation and integration census.
+- result:420components84MPNs1272traces; TypeScript and26endpoint assertions PASS; E-CAP8/8 PASS; modular420/420refs53/53crossings PASS; contracts338files0violations. Closed source-stage capacitance finding with retained hashes and explicit physical-stability limitations.
+- next: review active-spoke and digital-state source repairs and connector geometry before schematic admission.

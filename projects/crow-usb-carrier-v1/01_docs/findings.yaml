@@ -29,16 +29,17 @@ gates:
   - 03_src/rules/rf.yaml
 findings:
 - id: USB-capacitance
-  state: open
+  state: closed
   blocks_at_or_above: DESIGN_CLEAN
   owner: power
-  finding: Effective capacitance banks contain unresolved DC-bias and aging bounds; typical curves
-    do not establish worst-case retention.
+  finding: Source-stage effective-capacitance screen closed with reviewed conservative engineering
+    derating and exact bank/source changes. Adjacent-tolerance proxy and lifecycle reserves are explicit;
+    this is not production or physical stability qualification.
   closes_when: Retain defensible effective-capacitance bounds for exact parts and operating conditions,
     adjust banks if needed, and pass E-CAP.
   evidence:
   - 03_src/rules/power_tree.yaml
-  - 01_docs/research/2026-09-22-power-bounds-adoption.md
+  - 01_docs/research/2026-09-22-capacitor-engineering-bound.md
 - id: USB-protection
   state: open
   blocks_at_or_above: DESIGN_CLEAN

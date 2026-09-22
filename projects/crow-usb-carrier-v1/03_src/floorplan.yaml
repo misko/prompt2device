@@ -466,15 +466,12 @@ placement:
     - C_U_1V8_IN_1
     - C_U_1V8_IN_2
     - C_U_1V8_OUT_1
-    - C_U_1V8_OUT_2
     - C_U_3V3X_IN_1
     - C_U_3V3X_IN_2
     - C_U_3V3X_OUT_1
-    - C_U_3V3X_OUT_2
     - C_U_CORE_IN_1
     - C_U_CORE_IN_2
     - C_U_CORE_OUT_1
-    - C_U_CORE_OUT_2
     - L_U_1V8
     - L_U_3V3X
     - L_U_CORE
@@ -491,6 +488,7 @@ placement:
   - match:
     - C_IN1
     - C_IN2
+    - C_IN3
     - C_IN_HF
     - C_OUT1
     - C_OUT2

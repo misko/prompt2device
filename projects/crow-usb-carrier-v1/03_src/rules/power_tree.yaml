@@ -29,30 +29,37 @@ upstream_delivery:
     F_IN_2920L330_24DR: {value: 55, basis: manufacturer_R1max, evidence: Littelfuse exact 2920L330/24 row.}
     Q_IN_DMP6023LFG_13: {value: 25, basis: manufacturer_maximum_at_VGS_minus10V, evidence: Diodes DS37204 Rev.2-2.}
 
-# E-CAP is deliberately fail-closed. The exact manufacturer PDFs establish
-# tolerance and X5R/X7R temperature class, but publish DC/AC curves as typical
-# only and provide no guaranteed aging lower bound. Text tokens in consumed
-# numeric fields make the owning checker reject the contract rather than turn
-# an unknown into 0% or a fabricated guarantee.
+# E-CAP engineering candidate. Numeric terms are conservative design bounds,
+# not supplier guarantees. Exact characteristic plots establish typical
+# centers; the declared adverse reserves are more severe, and first article
+# must still verify startup, ripple and load-step stability. No service life is
+# specified, so lifecycle percentages are engineering reserves rather than
+# lifetime guarantees.
 effective_capacitance_banks:
   - name: TPSM63603 N12V_PROTECTED input
     requirement_uF: 9.4
-    requirement_evidence: TI SLVSFS5A requires 2x4.7 uF effective ceramic input capacitance.
+    requirement_evidence: >-
+      Project conservative effective floor derived from TI SLVSFS5A's
+      two-4.7-uF nominal ceramic input recommendation; TI does not label
+      9.4 uF as an effective-capacitance minimum.
     accepted_dielectrics: [x7r]
     contributors:
       - part: 12105C106K4Z2A
-        refs: [C_IN1, C_IN2]
+        refs: [C_IN1, C_IN2, C_IN3]
         nominal_each_uF: 10
         dielectric: x7r
         tolerance_minus_pct: 10
-        dc_bias_derating_pct: UNBOUNDED_EXACT_PDF_CURVE_IS_TYPICAL_ONLY
+        dc_bias_derating_pct: 40
         temperature_derating_pct: 15
-        lifecycle_derating_pct: UNBOUNDED_NO_EXACT_AGING_RATE
-        basis: exact_primary_pdf_fail_closed
+        lifecycle_derating_pct: 10
+        basis: conservative_engineering_bound
         evidence: >-
-          Kyocera AVX exact PDF guarantees 9-11 uF at its measurement condition
-          and X7R temperature class. Its DC, AC and temperature plots are
-          characteristics, not guaranteed lower limits; no aging rate is given.
+          Exact Kyocera AVX K-tolerance PDF gives 10 uF +/-10%, 50 V and X7R.
+          Its typical 13.2 V DC/AC screen retains about 80%; this candidate
+          instead retains only 60% for combined voltage effects, the full 15%
+          X7R temperature allowance, and a separate chosen 10% lifecycle
+          reserve. Three parts give 12.393 uF. The plot remains typical and the
+          reserve is an engineering bound, not a guaranteed production limit.
   - name: TPSM63603 N5V_BUCK output
     requirement_uF: 25
     requirement_evidence: TI SLVSFS5A section 8.2.1.2.5 requires 25 uF effective output capacitance.
@@ -63,16 +70,20 @@ effective_capacitance_banks:
         nominal_each_uF: 47
         dielectric: x7r
         tolerance_minus_pct: 10
-        dc_bias_derating_pct: UNBOUNDED_NO_EXACT_GUARANTEED_DC_BIAS_LIMIT
+        dc_bias_derating_pct: 60
         temperature_derating_pct: 15
         lifecycle_derating_pct: 12.5
-        basis: exact_primary_reference_sheet_fail_closed
+        basis: conservative_engineering_bound_with_adjacent_tolerance_proxy
         evidence: >-
-          Murata exact reference sheet guarantees identity, nominal tolerance
-          and X7R class but directs the user to an approval sheet and actual-use
-          confirmation for voltage and aging behavior. Its exact endurance
-          test bounds post-test capacitance change to 12.5%, but no exact
-          guaranteed DC-bias lower bound at 5 V is supplied in the packet.
+          Exact K-tolerance PDF gives 47 uF +/-10%, 10 V and X7R, and reports a
+          +/-12.5% post-endurance change after 1000 h at maximum temperature
+          and 150% rated voltage. It has no DC-bias curve. TI's application BOM
+          uses adjacent GRM32ER71A476ME15L (M means +/-20% rather than this K
+          part's +/-10%) and reports about 48 uF effective for two at 5 V,
+          about 51% typical retention each. This candidate uses only 40%
+          retention and three exact K parts, giving 37.753 uF. The 12.5% term
+          is a chosen lifecycle reserve informed by that endurance test, not a
+          service-life guarantee; hot/load-step first-article proof remains due.
   - &tps62825_input
     name: TPS62825 U_3V3X input
     requirement_uF: 3
@@ -84,49 +95,60 @@ effective_capacitance_banks:
         nominal_each_uF: 10
         dielectric: x5r
         tolerance_minus_pct: 10
-        dc_bias_derating_pct: UNBOUNDED_MURATA_LABELS_CURVE_TYPICAL_ONLY
+        dc_bias_derating_pct: 70
         temperature_derating_pct: 15
-        lifecycle_derating_pct: UNBOUNDED_NO_EXACT_AGING_RATE
-        basis: exact_primary_typical_curve_fail_closed
+        lifecycle_derating_pct: 10
+        basis: conservative_combined_voltage_engineering_bound
         evidence: >-
-          Exact Murata sheet labels all curves typical. About 45% retention at
-          5 V is useful for a screen but is not a guaranteed lower bound; its
-          AC curve is also typical and no aging guarantee is stated.
+          Exact Murata typical curves show about 45% DC retention at 5 V and
+          about 80% additional AC-amplitude retention, or about 36% combined.
+          The single E-CAP voltage field uses the more adverse 30% combined
+          retention, plus +/-10% initial tolerance, full 15% X5R temperature
+          loss and a separate chosen 10% lifecycle reserve. Two parts give
+          4.131 uF. These are design reserves, not curve guarantees.
   - <<: *tps62825_input
     name: TPS62825 U_1V8 input
     contributors:
-      - {part: GRM21BR61C106KE15L, refs: [C_U_1V8_IN_1, C_U_1V8_IN_2], nominal_each_uF: 10, dielectric: x5r, tolerance_minus_pct: 10, dc_bias_derating_pct: UNBOUNDED_MURATA_LABELS_CURVE_TYPICAL_ONLY, temperature_derating_pct: 15, lifecycle_derating_pct: UNBOUNDED_NO_EXACT_AGING_RATE, basis: exact_primary_typical_curve_fail_closed, evidence: "Same exact 5 V input-bank condition and evidence as U_3V3X."}
+      - {part: GRM21BR61C106KE15L, refs: [C_U_1V8_IN_1, C_U_1V8_IN_2], nominal_each_uF: 10, dielectric: x5r, tolerance_minus_pct: 10, dc_bias_derating_pct: 70, temperature_derating_pct: 15, lifecycle_derating_pct: 10, basis: conservative_combined_voltage_engineering_bound, evidence: "Same exact 5 V input-bank condition and conservative 30% combined DC/AC retention as U_3V3X; 4.131 uF effective by design estimate."}
   - <<: *tps62825_input
     name: TPS62825 U_CORE input
     contributors:
-      - {part: GRM21BR61C106KE15L, refs: [C_U_CORE_IN_1, C_U_CORE_IN_2], nominal_each_uF: 10, dielectric: x5r, tolerance_minus_pct: 10, dc_bias_derating_pct: UNBOUNDED_MURATA_LABELS_CURVE_TYPICAL_ONLY, temperature_derating_pct: 15, lifecycle_derating_pct: UNBOUNDED_NO_EXACT_AGING_RATE, basis: exact_primary_typical_curve_fail_closed, evidence: "Same exact 5 V input-bank condition and evidence as U_3V3X."}
+      - {part: GRM21BR61C106KE15L, refs: [C_U_CORE_IN_1, C_U_CORE_IN_2], nominal_each_uF: 10, dielectric: x5r, tolerance_minus_pct: 10, dc_bias_derating_pct: 70, temperature_derating_pct: 15, lifecycle_derating_pct: 10, basis: conservative_combined_voltage_engineering_bound, evidence: "Same exact 5 V input-bank condition and conservative 30% combined DC/AC retention as U_3V3X; 4.131 uF effective by design estimate."}
   - &tps62825_output
     name: TPS62825 U_3V3X output
     requirement_uF: 10
-    requirement_evidence: TI SLVSEF9I Table 8-3 minimum effective capacitance in the nominal 47 uF class.
-    accepted_dielectrics: [x5r]
+    requirement_evidence: TI SLVSEF9I section 8.2.2.5 requires 10 uF minimum effective output capacitance.
+    accepted_dielectrics: [x7r]
     contributors:
-      - part: GRM21BR60J226ME39L
-        refs: [C_U_3V3X_OUT_1, C_U_3V3X_OUT_2]
-        nominal_each_uF: 22
-        dielectric: x5r
-        tolerance_minus_pct: 20
-        dc_bias_derating_pct: UNBOUNDED_MURATA_LABELS_CURVE_TYPICAL_ONLY
+      - part: GRM32ER71A476KE15L
+        refs: [C_U_3V3X_OUT_1]
+        nominal_each_uF: 47
+        dielectric: x7r
+        tolerance_minus_pct: 10
+        dc_bias_derating_pct: 65
         temperature_derating_pct: 15
-        lifecycle_derating_pct: UNBOUNDED_NO_EXACT_AGING_RATE
-        basis: exact_primary_typical_curve_fail_closed
+        lifecycle_derating_pct: 12.5
+        basis: conservative_engineering_bound_with_nominal_TI_LC_match
         evidence: >-
-          Exact Murata sheet labels all curves typical. About 54% retention at
-          3.3 V is a screen, not a guaranteed lower bound; the exact AC curve
-          and temperature curve are also typical and no aging rate is stated.
+          Nominal 47 uF with 0.47 uH matches a combination in TI SLVSEF9I
+          Table 8-3; its footnote anticipates 35% effective-capacitance loss,
+          so that table does not validate this candidate's more adverse full
+          derating envelope. Section 8.2.2.5 independently requires 10 uF
+          effective. Exact K-tolerance PDF gives 47 uF +/-10%, 10 V and X7R but
+          no DC-bias curve. TI's adjacent M-tolerance sibling reports about 51%
+          typical retention at the more adverse 5 V condition; this estimate
+          retains only 35% for voltage at 3.3 V, then separately charges 15%
+          temperature and a chosen 12.5% lifecycle reserve, for 11.011 uF.
+          No exact-K curve, production guarantee, or stability proof is claimed;
+          startup and load-step first-article proof remains due.
   - <<: *tps62825_output
     name: TPS62825 U_1V8 output
     contributors:
-      - {part: GRM21BR60J226ME39L, refs: [C_U_1V8_OUT_1, C_U_1V8_OUT_2], nominal_each_uF: 22, dielectric: x5r, tolerance_minus_pct: 20, dc_bias_derating_pct: UNBOUNDED_MURATA_LABELS_CURVE_TYPICAL_ONLY, temperature_derating_pct: 15, lifecycle_derating_pct: UNBOUNDED_NO_EXACT_AGING_RATE, basis: exact_primary_typical_curve_fail_closed, evidence: "Lower DC bias improves the typical screen, but no guaranteed lower bound is provided."}
+      - {part: GRM32ER71A476KE15L, refs: [C_U_1V8_OUT_1], nominal_each_uF: 47, dielectric: x7r, tolerance_minus_pct: 10, dc_bias_derating_pct: 65, temperature_derating_pct: 15, lifecycle_derating_pct: 12.5, basis: conservative_engineering_bound_with_nominal_TI_LC_match, evidence: "Same conservative 35% retained-capacitance voltage estimate as the 3.3 V bank; lower bias can only improve the typical screen. After the separate temperature and lifecycle reserves, estimated effective capacitance is 11.011 uF against section 8.2.2.5's 10 uF minimum; startup/load-step proof remains due."}
   - <<: *tps62825_output
     name: TPS62825 U_CORE output
     contributors:
-      - {part: GRM21BR60J226ME39L, refs: [C_U_CORE_OUT_1, C_U_CORE_OUT_2], nominal_each_uF: 22, dielectric: x5r, tolerance_minus_pct: 20, dc_bias_derating_pct: UNBOUNDED_MURATA_LABELS_CURVE_TYPICAL_ONLY, temperature_derating_pct: 15, lifecycle_derating_pct: UNBOUNDED_NO_EXACT_AGING_RATE, basis: exact_primary_typical_curve_fail_closed, evidence: "Lower DC bias improves the typical screen, but no guaranteed lower bound is provided."}
+      - {part: GRM32ER71A476KE15L, refs: [C_U_CORE_OUT_1], nominal_each_uF: 47, dielectric: x7r, tolerance_minus_pct: 10, dc_bias_derating_pct: 65, temperature_derating_pct: 15, lifecycle_derating_pct: 12.5, basis: conservative_engineering_bound_with_nominal_TI_LC_match, evidence: "Same conservative 35% retained-capacitance voltage estimate as the 3.3 V bank; lower bias can only improve the typical screen. After the separate temperature and lifecycle reserves, estimated effective capacitance is 11.011 uF against section 8.2.2.5's 10 uF minimum; startup/load-step proof remains due."}
 
 rails:
   - {name: N5V_BUCK, vin_min: 11.196, vin_max: 13.2, vout_min: 4.95, vout_max: 5.05, iout_max_A: 1.9, converter: TPSM63603V5RDHR, eff: 0.85, external_output: false}

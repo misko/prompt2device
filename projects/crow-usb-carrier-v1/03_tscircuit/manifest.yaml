@@ -1,4 +1,4 @@
-# Source-intent census reviewed before foreign Circuit rendering: power17, analog297, digital102, USB6.
+# Candidate source-intent census: power18, analog297, digital99, USB6 (420 total).
 # Derived from authored functional modules, never from generated schematic/PCB output.
 components:
 - C_1V8_OK_VDD
@@ -108,6 +108,7 @@ components:
 - C_HOLD2
 - C_IN1
 - C_IN2
+- C_IN3
 - C_IN_HF
 - C_ISO1
 - C_ISO2
@@ -147,15 +148,12 @@ components:
 - C_U_1V8_IN_1
 - C_U_1V8_IN_2
 - C_U_1V8_OUT_1
-- C_U_1V8_OUT_2
 - C_U_3V3X_IN_1
 - C_U_3V3X_IN_2
 - C_U_3V3X_OUT_1
-- C_U_3V3X_OUT_2
 - C_U_CORE_IN_1
 - C_U_CORE_IN_2
 - C_U_CORE_OUT_1
-- C_U_CORE_OUT_2
 - C_VCC
 - C_VDDA1_10N
 - C_VDDA1_4U7
