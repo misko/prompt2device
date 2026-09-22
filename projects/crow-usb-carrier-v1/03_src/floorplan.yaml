@@ -1,14 +1,3 @@
-# Crow USB exploratory placement canvas, not accepted placement.
-# 220 x 120 mm permits initial modular studies; final outline remains open.
-# Operated connector refs deliberately have no pose or region assignment.
-# require_anchor rejects them until exact mating-plane anchors are reviewed.
-# Region patterns only seed placement: they do not enforce a region boundary.
-# Physical stackup authority is rules/rf.yaml and retained JLC evidence.
-# Composite Dk matches the vendor calculator convention. Df=0.020 is a
-# material-family nominal annotation, not qualified USB-band attenuation.
-# The single native mask thickness describes over-trace mask; the vendor
-# impedance solver separately models substrate/trace/gap mask geometry.
-# Board generation remains prohibited by the commissioning hold.
 project:
   name: crow_carrier
   netlist: 06_build/netlists/crow_carrier.net
@@ -148,6 +137,11 @@ placement:
     - 84
   patterns:
   - match:
+    - C_ADC_DIGITAL_BAD
+    - C_ADC_DIGITAL_OK
+    - C_ADC_READY
+    - C_ADC_READY_BAD
+    - C_ADC_START_DELAY
     - C_FILT1_10U
     - C_FILT1_1U
     - C_FILT1_470U
@@ -172,7 +166,14 @@ placement:
     - C_VMID2_4U7
     - C_VMID2_EXT_10U
     - C_VMID2_EXT_1U
+    - Q_ADC_DELAY_DISCH
+    - Q_ADC_DIG_RST
     - Q_RST1
+    - R_ADC_DELAY_GATE_PD
+    - R_ADC_DIGITAL_OK_PU
+    - R_ADC_DIG_RST_PD
+    - R_ADC_READY_PD
+    - R_ADC_START_DELAY
     - R_CFG1
     - R_CFG2
     - R_CFG4
@@ -187,6 +188,11 @@ placement:
     - R_VMID2_BOT
     - R_VMID2_TOP
     - U_ADC
+    - U_ADC_1V8_OK
+    - U_ADC_3V3X_OK
+    - U_ADC_DIGITAL_BAD
+    - U_ADC_READY
+    - U_ADC_READY_BAD
     - U_RST1
     - U_RST2
     region: adc_reference
@@ -206,9 +212,6 @@ placement:
     - C_SPOKE_DVDT1
     - C_SPOKE_IN1
     - C_SPOKE_OUT1
-    - R_SPOKE_ILIM1
-    - R_SPOKE_UVLO1
-    - U_SPOKE1
     - R_ADC_PD1N
     - R_ADC_PD1P
     - R_B1N
@@ -217,11 +220,14 @@ placement:
     - R_IN1P
     - R_OUT1N
     - R_OUT1P
+    - R_SPOKE_ILIM1
+    - R_SPOKE_UVLO1
     - R_X1N
     - R_X1P
     - U_AFE1
     - U_ESD1
     - U_ISO1
+    - U_SPOKE1
     region: analog_ch1
   - match:
     - C_A2N
@@ -239,9 +245,6 @@ placement:
     - C_SPOKE_DVDT2
     - C_SPOKE_IN2
     - C_SPOKE_OUT2
-    - R_SPOKE_ILIM2
-    - R_SPOKE_UVLO2
-    - U_SPOKE2
     - R_ADC_PD2N
     - R_ADC_PD2P
     - R_B2N
@@ -250,11 +253,14 @@ placement:
     - R_IN2P
     - R_OUT2N
     - R_OUT2P
+    - R_SPOKE_ILIM2
+    - R_SPOKE_UVLO2
     - R_X2N
     - R_X2P
     - U_AFE2
     - U_ESD2
     - U_ISO2
+    - U_SPOKE2
     region: analog_ch2
   - match:
     - C_A3N
@@ -272,9 +278,6 @@ placement:
     - C_SPOKE_DVDT3
     - C_SPOKE_IN3
     - C_SPOKE_OUT3
-    - R_SPOKE_ILIM3
-    - R_SPOKE_UVLO3
-    - U_SPOKE3
     - R_ADC_PD3N
     - R_ADC_PD3P
     - R_B3N
@@ -283,11 +286,14 @@ placement:
     - R_IN3P
     - R_OUT3N
     - R_OUT3P
+    - R_SPOKE_ILIM3
+    - R_SPOKE_UVLO3
     - R_X3N
     - R_X3P
     - U_AFE3
     - U_ESD3
     - U_ISO3
+    - U_SPOKE3
     region: analog_ch3
   - match:
     - C_A4N
@@ -305,9 +311,6 @@ placement:
     - C_SPOKE_DVDT4
     - C_SPOKE_IN4
     - C_SPOKE_OUT4
-    - R_SPOKE_ILIM4
-    - R_SPOKE_UVLO4
-    - U_SPOKE4
     - R_ADC_PD4N
     - R_ADC_PD4P
     - R_B4N
@@ -316,11 +319,14 @@ placement:
     - R_IN4P
     - R_OUT4N
     - R_OUT4P
+    - R_SPOKE_ILIM4
+    - R_SPOKE_UVLO4
     - R_X4N
     - R_X4P
     - U_AFE4
     - U_ESD4
     - U_ISO4
+    - U_SPOKE4
     region: analog_ch4
   - match:
     - C_A5N
@@ -338,9 +344,6 @@ placement:
     - C_SPOKE_DVDT5
     - C_SPOKE_IN5
     - C_SPOKE_OUT5
-    - R_SPOKE_ILIM5
-    - R_SPOKE_UVLO5
-    - U_SPOKE5
     - R_ADC_PD5N
     - R_ADC_PD5P
     - R_B5N
@@ -349,11 +352,14 @@ placement:
     - R_IN5P
     - R_OUT5N
     - R_OUT5P
+    - R_SPOKE_ILIM5
+    - R_SPOKE_UVLO5
     - R_X5N
     - R_X5P
     - U_AFE5
     - U_ESD5
     - U_ISO5
+    - U_SPOKE5
     region: analog_ch5
   - match:
     - C_A6N
@@ -371,9 +377,6 @@ placement:
     - C_SPOKE_DVDT6
     - C_SPOKE_IN6
     - C_SPOKE_OUT6
-    - R_SPOKE_ILIM6
-    - R_SPOKE_UVLO6
-    - U_SPOKE6
     - R_ADC_PD6N
     - R_ADC_PD6P
     - R_B6N
@@ -382,11 +385,14 @@ placement:
     - R_IN6P
     - R_OUT6N
     - R_OUT6P
+    - R_SPOKE_ILIM6
+    - R_SPOKE_UVLO6
     - R_X6N
     - R_X6P
     - U_AFE6
     - U_ESD6
     - U_ISO6
+    - U_SPOKE6
     region: analog_ch6
   - match:
     - C_A7N
@@ -404,9 +410,6 @@ placement:
     - C_SPOKE_DVDT7
     - C_SPOKE_IN7
     - C_SPOKE_OUT7
-    - R_SPOKE_ILIM7
-    - R_SPOKE_UVLO7
-    - U_SPOKE7
     - R_ADC_PD7N
     - R_ADC_PD7P
     - R_B7N
@@ -415,11 +418,14 @@ placement:
     - R_IN7P
     - R_OUT7N
     - R_OUT7P
+    - R_SPOKE_ILIM7
+    - R_SPOKE_UVLO7
     - R_X7N
     - R_X7P
     - U_AFE7
     - U_ESD7
     - U_ISO7
+    - U_SPOKE7
     region: analog_ch7
   - match:
     - C_A8N
@@ -437,9 +443,6 @@ placement:
     - C_SPOKE_DVDT8
     - C_SPOKE_IN8
     - C_SPOKE_OUT8
-    - R_SPOKE_ILIM8
-    - R_SPOKE_UVLO8
-    - U_SPOKE8
     - R_ADC_PD8N
     - R_ADC_PD8P
     - R_B8N
@@ -448,13 +451,17 @@ placement:
     - R_IN8P
     - R_OUT8N
     - R_OUT8P
+    - R_SPOKE_ILIM8
+    - R_SPOKE_UVLO8
     - R_X8N
     - R_X8P
     - U_AFE8
     - U_ESD8
     - U_ISO8
+    - U_SPOKE8
     region: analog_ch8
   - match:
+    - C_ADC_CLOCK_OK
     - C_ADC_OK_CT
     - C_ADC_OK_VDD
     - C_ADC_OUT
@@ -468,17 +475,19 @@ placement:
     - C_XLATE_B
     - Q_MCLK_GATE
     - Q_TDM_GATE
+    - R_ADC_CLOCK_OK_PD
     - R_ADC_DATA_PD
-    - R_ADC_OK_B1
-    - R_ADC_OK_B2
     - R_ADC_OK_PU
     - R_BCLK
     - R_BCLK_RAW_PD
     - R_FSYNC
+    - R_FSYNC_EXT_PD
     - R_FSYNC_RAW_PD
     - R_MCLK
     - R_MCLK_OE_PU
+    - R_MCLK_RAW_PD
     - R_TDM_OE_PU
+    - U_ADC_CLOCK_OK
     - U_ADC_OK
     - U_ADC_OUT
     - U_BCLK_INV
@@ -512,6 +521,8 @@ placement:
     - C_U_CORE_IN_1
     - C_U_CORE_IN_2
     - C_U_CORE_OUT_1
+    - C_XU_3V3_OK_CT
+    - C_XU_3V3_OK_VDD
     - L_U_1V8
     - L_U_3V3X
     - L_U_CORE
@@ -524,6 +535,7 @@ placement:
     - U_3V3X
     - U_CORE
     - U_CORE_OK
+    - U_XU_3V3_OK
     region: digital_power
   - match:
     - C_IN1
@@ -587,8 +599,10 @@ placement:
     - U_PWR
     region: quiet_power
   - match:
+    - C_USB_VBUS
     - R_USB_CC1
     - R_USB_CC2
+    - R_USB_VBUS_BLEED
     - U_USB_CC_ESD
     - U_USB_ESD
     - U_USB_VBUS_ESD
@@ -641,22 +655,22 @@ placement:
     - J8
     model_override: ${KIPRJMOD}/../03_src/lib/3dmodels/wurth/J_Wurth_WR-MJ_615008160221.step
   - match:
-    - C_A1P
     - C_A1N
-    - C_A2P
+    - C_A1P
     - C_A2N
-    - C_A3P
+    - C_A2P
     - C_A3N
-    - C_A4P
+    - C_A3P
     - C_A4N
-    - C_A5P
+    - C_A4P
     - C_A5N
-    - C_A6P
+    - C_A5P
     - C_A6N
-    - C_A7P
+    - C_A6P
     - C_A7N
-    - C_A8P
+    - C_A7P
     - C_A8N
+    - C_A8P
     model_override: ${KIPRJMOD}/../03_src/lib/3dmodels/kicad/C_Rect_L7.2mm_W5.0mm_P5.00mm.step
   - match:
     - U_ADC
@@ -672,8 +686,8 @@ placement:
     - U_ISO8
     model_override: ${KIPRJMOD}/../03_src/lib/3dmodels/derived/TI_DSG0008A_nominal.wrl
   - match:
-    - U_PWR
     - U_AUDIO
+    - U_PWR
     model_override: ${KIPRJMOD}/../03_src/lib/3dmodels/derived/TI_DSE0006A_nominal.wrl
   legalize:
     enable: true

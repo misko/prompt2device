@@ -16,6 +16,8 @@ export function usbFrontendConnections(n: Nets) {
     esd: { pin1: n.dp, pin2: n.dm, pin3: n.ground },
     ccEsd: { pin3: n.cc1, pin4: n.ground, pin5: n.cc2 },
     vbusEsd: { pin3: n.vbus, pin4: n.ground },
+    vbusCap: { pin1: n.vbus, pin2: n.ground },
+    vbusBleed: { pin1: n.vbus, pin2: n.ground },
   }
 }
 
@@ -60,5 +62,13 @@ export function UsbDeviceFrontend({ nets, receptacleFootprint }:
       supplierPartNumbers={{jlcpcb:["C1972959"]}} footprint={auxiliaryEsdFootprint()}
       pinLabels={{pin1:"NC1",pin2:"NC2",pin3:"VBUS",pin4:"GND",pin5:"UNUSED_NC"}}
       connections={c.vbusEsd} schSheetName="usb" schSectionName="USB interface" schX={1} schY={8} />
+    {/* XMOS self-powered reference requires 1-10uF at connector VBUS and 47k
+        discharge. Exact 4.7uF/16V/X7R/0603 identity is retained in its dossier. */}
+    <capacitor name="C_USB_VBUS" capacitance="4.7uF" footprint="0603"
+      manufacturerPartNumber="GRM188Z71C475KE21D" supplierPartNumbers={{jlcpcb:["C389010"]}}
+      connections={c.vbusCap} schSheetName="usb" schSectionName="USB interface" schX={5} schY={8} />
+    <resistor name="R_USB_VBUS_BLEED" resistance="47k" footprint="0402"
+      manufacturerPartNumber="RC0402FR-0747KL"
+      connections={c.vbusBleed} schSheetName="usb" schSectionName="USB interface" schX={5} schY={11} />
   </>
 }

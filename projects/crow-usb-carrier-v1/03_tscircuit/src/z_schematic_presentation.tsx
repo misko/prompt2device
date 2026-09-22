@@ -16,7 +16,7 @@ const powerPoses: Record<string, [string, number, number, number?]> = {
 const digitalPage = (ref: string) => {
   if (ref === "U_XU") return "xmos_core"
   if (/^C_XU_|^FB_PLL$|^C_PLL_/.test(ref)) return "xmos_decoupling"
-  if (/^(U_|C_U_)(3V3X|1V8|CORE)|^L_U_(3V3X|1V8|CORE)$|^R_CORE_|^C_CORE_|^U_1V8_OK$|^C_1V8|^R_XU_RST/.test(ref)) return "digital_power"
+  if (/^(U_|C_U_)(3V3X|1V8|CORE)|^L_U_(3V3X|1V8|CORE)$|^R_CORE_|^C_CORE_|^U_1V8_OK$|^U_XU_3V3_OK$|^C_XU_3V3_OK_|^C_1V8|^R_XU_RST/.test(ref)) return "digital_power"
   if (/FLASH|QSPI|XTAL|^Y_XU$/.test(ref)) return "flash_clock"
   if (/JTAG/.test(ref)) return "debug"
   if (/VBUS/.test(ref)) return "usb_logic"
@@ -58,6 +58,7 @@ const pose = (domain: Domain, ref: string, existing: any): Pose => {
     const positions: Record<string, [number, number, number?]> = {
       J_USB: [-7, 0], U_USB_ESD: [1, 4], U_USB_VBUS_ESD: [1, 8],
       U_USB_CC_ESD: [1, -3], R_USB_CC1: [-4, -6, -90], R_USB_CC2: [0, -6, -90],
+      C_USB_VBUS: [5, 8, -90], R_USB_VBUS_BLEED: [5, 11, -90],
     }
     const p = positions[ref]
     if (!p) throw new Error(`No USB schematic pose: ${ref}`)

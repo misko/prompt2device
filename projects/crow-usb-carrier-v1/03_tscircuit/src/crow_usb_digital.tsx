@@ -80,6 +80,13 @@ export function CrowUsbDigital({net=defaultNet}:CrowUsbDigitalProps={}){
    pinLabels={{pin1:"RESET_N",pin2:"GND",pin3:"MR_N",pin4:"CT_NC",pin5:"SENSE",pin6:"VDD"}}
    connections={{pin1:n("XU_RESET_N"),pin2:n("GND"),pin3:n("1V8"),pin5:n("0V9"),pin6:n("1V8")}} />
   <C name="C_CORE_OK" value="100nF" a="1V8" b="GND" n={n} />
+  {/* Wired-open-drain reset also qualifies the independently generated 3V3X USB rail.
+      Core release remains downstream of U_1V8_OK, so its delay bounds flash readiness. */}
+  <Chip name="U_XU_3V3_OK" manufacturerPartNumber="TPS389030DSER" jlc="" footprint={<DSE0006ALand/>}
+   pinLabels={{pin1:"SENSE",pin2:"GND",pin3:"MR_N",pin4:"VDD",pin5:"CT",pin6:"RESET_N"}}
+   connections={{pin1:n("3V3X"),pin2:n("GND"),pin3:n("5V_BUCK"),pin4:n("5V_BUCK"),pin5:n("XU_3V3_OK_CT"),pin6:n("XU_RESET_N")}} />
+  <C name="C_XU_3V3_OK_VDD" value="100nF" a="5V_BUCK" b="GND" n={n} />
+  <C name="C_XU_3V3_OK_CT" value="1nF" a="XU_3V3_OK_CT" b="GND" mpn="GRM1555C1H102JA01D" jlc="" n={n} />
   <R name="R_XU_RST_PU" value="10k" a="1V8" b="XU_RESET_N" mpn="RC0402FR-0710KL" n={n} />
 
   <Chip name="U_XU" manufacturerPartNumber="XU316-1024-TQ128-C24" jlc="C6362698" footprint={<XU316TQ128EPFootprint />}
@@ -297,6 +304,10 @@ export function CrowUsbDigital({net=defaultNet}:CrowUsbDigitalProps={}){
   <C name="C_XLATE_A" value="100nF" a="1V8" b="GND" n={n} /><C name="C_XLATE_B" value="100nF" a="3V3X" b="GND" n={n} />
   <R name="R_ADC_DATA_PD" value="100k" a="ADC_DOUT1" b="GND" mpn="RC0402FR-07100KL" n={n} />
   <R name="R_BCLK_RAW_PD" value="100k" a="ADC_BCLK_RAW" b="GND" mpn="RC0402FR-07100KL" n={n} /><R name="R_FSYNC_RAW_PD" value="100k" a="ADC_FSYNC_RAW" b="GND" mpn="RC0402FR-07100KL" n={n} />
+  {/* U_ADC_OUT remains powered when 3V3X is absent. Define every input at its
+      actual held-domain pin; R_FSYNC_RAW_PD alone cannot define the post-OR net. */}
+  <R name="R_MCLK_RAW_PD" value="100k" a="ADC_MCLK_RAW" b="GND" mpn="RC0402FR-07100KL" n={n} />
+  <R name="R_FSYNC_EXT_PD" value="100k" a="ADC_FSYNC_EXT" b="GND" mpn="RC0402FR-07100KL" n={n} />
   {/* 3V3X processing stops before the ADC pins.  U_ADC_OUT is powered by
       3V3_ADC so its outputs can never exceed the ADC input rail by a fixed
       3V3X/quiet-rail mismatch.  Ioff makes its inputs safe while 3V3_ADC=0. */}
@@ -332,12 +343,22 @@ export function CrowUsbDigital({net=defaultNet}:CrowUsbDigitalProps={}){
   <C name="C_ADC_OK_VDD" value="100nF" a="3V3X" b="GND" n={n} />
   <C name="C_ADC_OK_CT" value="1nF" a="ADC_OK_CT" b="GND" mpn="GRM1555C1H102JA01D" jlc="" n={n} />
   <R name="R_ADC_OK_PU" value="10k" a="3V3X" b="ADC_OK" mpn="RC0402FR-0710KL" n={n} />
-  <Chip name="Q_TDM_GATE" manufacturerPartNumber="BC847B,215" jlc="C57668" footprint="sot23" pinLabels={{pin1:"B",pin2:"E",pin3:"C"}} connections={{pin1:n("ADC_OK_B1"),pin2:n("GND"),pin3:n("TDM_OE_N")}} />
-  <R name="R_ADC_OK_B1" value="47k" a="ADC_OK" b="ADC_OK_B1" mpn="RC0402FR-0747KL" n={n} /><R name="R_TDM_OE_PU" value="10k" a="1V8" b="TDM_OE_N" mpn="RC0402FR-0710KL" n={n} />
-  <Chip name="Q_MCLK_GATE" manufacturerPartNumber="BC847B,215" jlc="C57668" footprint="sot23" pinLabels={{pin1:"B",pin2:"E",pin3:"C"}} connections={{pin1:n("ADC_OK_B2"),pin2:n("GND"),pin3:n("MCLK_OE_N")}} />
-  <R name="R_ADC_OK_B2" value="47k" a="ADC_OK" b="ADC_OK_B2" mpn="RC0402FR-0747KL" n={n} /><R name="R_MCLK_OE_PU" value="10k" a="3V3X" b="MCLK_OE_N" mpn="RC0402FR-0710KL" n={n} />
+  {/* A held-domain tri-state buffer implements ADC_OK AND ADC_DIGITAL_OK.
+      Its disabled output is pulled low, so either bad state turns both
+      open-drain MOSFETs off without a B-C injection path into 1V8. */}
+  <Chip name="U_ADC_CLOCK_OK" manufacturerPartNumber="SN74LVC1G125DCKR" jlc="" footprint={<SC70_5Land/>}
+   pinLabels={{pin1:"OE_N",pin2:"A",pin3:"GND",pin4:"Y",pin5:"VCC"}}
+   connections={{pin1:n("ADC_DIGITAL_BAD"),pin2:n("ADC_OK"),pin3:n("GND"),pin4:n("ADC_CLOCK_OK"),pin5:n("3V3_ADC")}} />
+  <C name="C_ADC_CLOCK_OK" value="100nF" a="3V3_ADC" b="GND" n={n} />
+  <R name="R_ADC_CLOCK_OK_PD" value="100k" a="ADC_CLOCK_OK" b="GND" mpn="RC0402FR-07100KL" n={n} />
+  <Chip name="Q_TDM_GATE" manufacturerPartNumber="AO3400A" jlc="C20917" footprint="sot23"
+   pinLabels={{pin1:"G",pin2:"S",pin3:"D"}} connections={{pin1:n("ADC_CLOCK_OK"),pin2:n("GND"),pin3:n("TDM_OE_N")}} />
+  <R name="R_TDM_OE_PU" value="10k" a="1V8" b="TDM_OE_N" mpn="RC0402FR-0710KL" n={n} />
+  <Chip name="Q_MCLK_GATE" manufacturerPartNumber="AO3400A" jlc="C20917" footprint="sot23"
+   pinLabels={{pin1:"G",pin2:"S",pin3:"D"}} connections={{pin1:n("ADC_CLOCK_OK"),pin2:n("GND"),pin3:n("MCLK_OE_N")}} />
+  <R name="R_MCLK_OE_PU" value="10k" a="3V3X" b="MCLK_OE_N" mpn="RC0402FR-0710KL" n={n} />
 
-  <Chip name="Q_VBUS" manufacturerPartNumber="BC847B,215" jlc="C57668" footprint="sot23" pinLabels={{pin1:"B",pin2:"E",pin3:"C"}} connections={{pin1:n("VBUS_B"),pin2:n("GND"),pin3:n("VBUS_PRESENT_N")}} />
+  <Chip name="Q_VBUS" manufacturerPartNumber="AO3400A" jlc="C20917" footprint="sot23" pinLabels={{pin1:"G",pin2:"S",pin3:"D"}} connections={{pin1:n("VBUS_B"),pin2:n("GND"),pin3:n("VBUS_PRESENT_N")}} />
   <R name="R_VBUS_B" value="100k" a="VBUS_USB" b="VBUS_B" mpn="RC0402FR-07100KL" n={n} /><R name="R_VBUS_BE" value="1M" a="VBUS_B" b="GND" mpn="RC0402FR-071ML" n={n} /><R name="R_VBUS_PU" value="10k" a="1V8" b="VBUS_PRESENT_N" mpn="RC0402FR-0710KL" n={n} />
 
   <Chip name="J_JTAG" manufacturerPartNumber="FTSH-105-01-L-DV-K" jlc="" footprint={<FTSH2x5Land/>}

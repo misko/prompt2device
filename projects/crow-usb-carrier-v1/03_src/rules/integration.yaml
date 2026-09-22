@@ -38,6 +38,11 @@ selections:
   - C_ADC_CM7P
   - C_ADC_CM8N
   - C_ADC_CM8P
+  - C_ADC_DIGITAL_BAD
+  - C_ADC_DIGITAL_OK
+  - C_ADC_READY
+  - C_ADC_READY_BAD
+  - C_ADC_START_DELAY
   - C_AUDIO
   - C_AUDIO_CT1
   - C_AUDIO_CT2
@@ -128,6 +133,30 @@ selections:
   - C_RST1
   - C_RST2
   - C_RST_T
+  - C_SPOKE_DVDT1
+  - C_SPOKE_DVDT2
+  - C_SPOKE_DVDT3
+  - C_SPOKE_DVDT4
+  - C_SPOKE_DVDT5
+  - C_SPOKE_DVDT6
+  - C_SPOKE_DVDT7
+  - C_SPOKE_DVDT8
+  - C_SPOKE_IN1
+  - C_SPOKE_IN2
+  - C_SPOKE_IN3
+  - C_SPOKE_IN4
+  - C_SPOKE_IN5
+  - C_SPOKE_IN6
+  - C_SPOKE_IN7
+  - C_SPOKE_IN8
+  - C_SPOKE_OUT1
+  - C_SPOKE_OUT2
+  - C_SPOKE_OUT3
+  - C_SPOKE_OUT4
+  - C_SPOKE_OUT5
+  - C_SPOKE_OUT6
+  - C_SPOKE_OUT7
+  - C_SPOKE_OUT8
   - C_VDDA1_10N
   - C_VDDA1_4U7
   - C_VDDA2_10N
@@ -142,54 +171,6 @@ selections:
   - C_VMID2_EXT_10U
   - C_VMID2_EXT_1U
   - D_HOLD
-  - C_SPOKE_DVDT1
-  - C_SPOKE_IN1
-  - C_SPOKE_OUT1
-  - R_SPOKE_ILIM1
-  - R_SPOKE_UVLO1
-  - U_SPOKE1
-  - C_SPOKE_DVDT2
-  - C_SPOKE_IN2
-  - C_SPOKE_OUT2
-  - R_SPOKE_ILIM2
-  - R_SPOKE_UVLO2
-  - U_SPOKE2
-  - C_SPOKE_DVDT3
-  - C_SPOKE_IN3
-  - C_SPOKE_OUT3
-  - R_SPOKE_ILIM3
-  - R_SPOKE_UVLO3
-  - U_SPOKE3
-  - C_SPOKE_DVDT4
-  - C_SPOKE_IN4
-  - C_SPOKE_OUT4
-  - R_SPOKE_ILIM4
-  - R_SPOKE_UVLO4
-  - U_SPOKE4
-  - C_SPOKE_DVDT5
-  - C_SPOKE_IN5
-  - C_SPOKE_OUT5
-  - R_SPOKE_ILIM5
-  - R_SPOKE_UVLO5
-  - U_SPOKE5
-  - C_SPOKE_DVDT6
-  - C_SPOKE_IN6
-  - C_SPOKE_OUT6
-  - R_SPOKE_ILIM6
-  - R_SPOKE_UVLO6
-  - U_SPOKE6
-  - C_SPOKE_DVDT7
-  - C_SPOKE_IN7
-  - C_SPOKE_OUT7
-  - R_SPOKE_ILIM7
-  - R_SPOKE_UVLO7
-  - U_SPOKE7
-  - C_SPOKE_DVDT8
-  - C_SPOKE_IN8
-  - C_SPOKE_OUT8
-  - R_SPOKE_ILIM8
-  - R_SPOKE_UVLO8
-  - U_SPOKE8
   - J1
   - J2
   - J3
@@ -198,11 +179,16 @@ selections:
   - J6
   - J7
   - J8
+  - Q_ADC_DELAY_DISCH
+  - Q_ADC_DIG_RST
   - Q_DUMP
   - Q_PRE
   - Q_PRE_EN
   - Q_RST1
   - R_ADC_BOT
+  - R_ADC_DELAY_GATE_PD
+  - R_ADC_DIGITAL_OK_PU
+  - R_ADC_DIG_RST_PD
   - R_ADC_PD1N
   - R_ADC_PD1P
   - R_ADC_PD2N
@@ -219,6 +205,8 @@ selections:
   - R_ADC_PD7P
   - R_ADC_PD8N
   - R_ADC_PD8P
+  - R_ADC_READY_PD
+  - R_ADC_START_DELAY
   - R_ADC_TOP
   - R_AUDIO_PD
   - R_AUDIO_PU
@@ -291,6 +279,22 @@ selections:
   - R_RESET_GPD
   - R_RESET_PU
   - R_RST_T
+  - R_SPOKE_ILIM1
+  - R_SPOKE_ILIM2
+  - R_SPOKE_ILIM3
+  - R_SPOKE_ILIM4
+  - R_SPOKE_ILIM5
+  - R_SPOKE_ILIM6
+  - R_SPOKE_ILIM7
+  - R_SPOKE_ILIM8
+  - R_SPOKE_UVLO1
+  - R_SPOKE_UVLO2
+  - R_SPOKE_UVLO3
+  - R_SPOKE_UVLO4
+  - R_SPOKE_UVLO5
+  - R_SPOKE_UVLO6
+  - R_SPOKE_UVLO7
+  - R_SPOKE_UVLO8
   - R_VMID1_BOT
   - R_VMID1_TOP
   - R_VMID2_BOT
@@ -311,6 +315,11 @@ selections:
   - R_X7P
   - R_X8N
   - R_X8P
+  - U_ADC_1V8_OK
+  - U_ADC_3V3X_OK
+  - U_ADC_DIGITAL_BAD
+  - U_ADC_READY
+  - U_ADC_READY_BAD
   - U_AFE1
   - U_AFE2
   - U_AFE3
@@ -342,15 +351,22 @@ selections:
   - U_PWR
   - U_RST1
   - U_RST2
+  - U_SPOKE1
+  - U_SPOKE2
+  - U_SPOKE3
+  - U_SPOKE4
+  - U_SPOKE5
+  - U_SPOKE6
+  - U_SPOKE7
+  - U_SPOKE8
   rationale: Retain the existing eight-channel converter and the complete337-component analog/spoke/quiet-power
-    source boundary. The336 supporting references deliberately include shared infrastructure, rather
-    than undercounting a minimal ADC example.
+    source boundary. The336 supporting references deliberately include shared infrastructure, rather than
+    undercounting a minimal ADC example.
   exception:
-    decision_rationale: The retained Crow balanced analog and powered spoke interface must feed one
-      synchronous converter; a USB transport module does not replace that analog front end.
-    evidence: Retained Crow architecture and current337-reference analog source; donor integration
-      comparison names the Cirrus evaluation assembly and MCHStreamer. Their prior board approvals
-      are not inherited.
+    decision_rationale: The retained Crow balanced analog and powered spoke interface must feed one synchronous
+      converter; a USB transport module does not replace that analog front end.
+    evidence: Retained Crow architecture and current337-reference analog source; donor integration comparison
+      names the Cirrus evaluation assembly and MCHStreamer. Their prior board approvals are not inherited.
     modules_considered:
     - part: miniDSP MCHStreamer
       rejected_because: Digital USB/TDM transport does not supply the eight balanced analog converter
@@ -368,6 +384,7 @@ selections:
   implementation: bare_ic
   support_refs:
   - C_1V8_OK_VDD
+  - C_ADC_CLOCK_OK
   - C_ADC_OK_CT
   - C_ADC_OK_VDD
   - C_ADC_OUT
@@ -382,6 +399,7 @@ selections:
   - C_MCLK_BUF
   - C_PLL_100N
   - C_PLL_1U
+  - C_USB_VBUS
   - C_U_1V8_IN_1
   - C_U_1V8_IN_2
   - C_U_1V8_OUT_1
@@ -395,6 +413,8 @@ selections:
   - C_XLATE_B
   - C_XTAL_IN
   - C_XTAL_OUT
+  - C_XU_3V3_OK_CT
+  - C_XU_3V3_OK_VDD
   - C_XU_USB18
   - C_XU_USB33
   - C_XU_VDDIO_10
@@ -429,9 +449,8 @@ selections:
   - Q_MCLK_GATE
   - Q_TDM_GATE
   - Q_VBUS
+  - R_ADC_CLOCK_OK_PD
   - R_ADC_DATA_PD
-  - R_ADC_OK_B1
-  - R_ADC_OK_B2
   - R_ADC_OK_PU
   - R_BCLK
   - R_BCLK_RAW_PD
@@ -439,13 +458,16 @@ selections:
   - R_CORE_FB_BOTTOM
   - R_CORE_FB_TOP
   - R_FSYNC
+  - R_FSYNC_EXT_PD
   - R_FSYNC_RAW_PD
   - R_MCLK
   - R_MCLK_OE_PU
+  - R_MCLK_RAW_PD
   - R_QSPI_CS
   - R_TDM_OE_PU
   - R_USB_CC1
   - R_USB_CC2
+  - R_USB_VBUS_BLEED
   - R_VBUS_B
   - R_VBUS_BE
   - R_VBUS_PU
@@ -455,6 +477,7 @@ selections:
   - U_1V8
   - U_1V8_OK
   - U_3V3X
+  - U_ADC_CLOCK_OK
   - U_ADC_OK
   - U_ADC_OUT
   - U_BCLK_INV
@@ -469,18 +492,19 @@ selections:
   - U_USB_CC_ESD
   - U_USB_ESD
   - U_USB_VBUS_ESD
+  - U_XU_3V3_OK
   - Y_AUDIO
   - Y_XU
-  rationale: User explicitly requested an onboard USB IC. Count all101 digital support references
-    and all6 USB-front-end references, including regulators, flash, clocks, reset, programming and
-    ADC interface conditioning.
+  rationale: User explicitly requested an onboard USB IC. Count all101 digital support references and
+    all6 USB-front-end references, including regulators, flash, clocks, reset, programming and ADC interface
+    conditioning.
   exception:
-    decision_rationale: An external bridge cannot satisfy the requested onboard-IC boundary. XU316
-      supports the selected high-speed multichannel USB architecture with an exposed hardware programming
-      interface; board-specific firmware remains a separate unimplemented dependency.
-    evidence: 01_docs/research/2026-09-22-usb-ic-research.md and digital-source-adoption.md document
-      exact part selection, source support and stack capabilities. BRIEF D2 supersedes the research
-      report prior firmware-authorization interpretation.
+    decision_rationale: An external bridge cannot satisfy the requested onboard-IC boundary. XU316 supports
+      the selected high-speed multichannel USB architecture with an exposed hardware programming interface;
+      board-specific firmware remains a separate unimplemented dependency.
+    evidence: 01_docs/research/2026-09-22-usb-ic-research.md and digital-source-adoption.md document exact
+      part selection, source support and stack capabilities. BRIEF D2 supersedes the research report prior
+      firmware-authorization interpretation.
     modules_considered:
     - part: miniDSP MCHStreamer
       rejected_because: The previous external USB bridge does not satisfy the newly requested onboard
@@ -488,16 +512,15 @@ selections:
       evidence: User request in BRIEF original prompt and ADR0001; retained carrier used this external
         transport.
     - part: XMOS XK-AUDIO-316-MC
-      rejected_because: Useful reference and prototype platform, but adopting the evaluation board
-        does not implement the requested onboard IC and Crow analog/power interface on the new carrier.
+      rejected_because: Useful reference and prototype platform, but adopting the evaluation board does
+        not implement the requested onboard IC and Crow analog/power interface on the new carrier.
       evidence: XMOS multichannel reference hardware and USB stack evidence linked in 2026-09-22-usb-ic-research.md.
     adr: 01_docs/decisions/0003-integrated-subsystem-boundaries.md
 - function: external_twelve_volt_to_five_volt
   part: TPSM63603V5RDHR
   implementation: module
-  rationale: Selected integrated inductor/switching power module reduces external switching-loop
-    assembly complexity. Its surrounding input protection, capacitors and AGND join remain explicitly
-    designed in the17-reference source module. Four-layer thermal and manufacturing assumptions still
-    require verification.
+  rationale: Selected integrated inductor/switching power module reduces external switching-loop assembly
+    complexity. Its surrounding input protection, capacitors and AGND join remain explicitly designed
+    in the17-reference source module. Four-layer thermal and manufacturing assumptions still require verification.
   support_refs:
   - C_IN3

@@ -98,9 +98,15 @@ own("tdm", {
   U_TDM_SCH:[2,6], R_TDM_PD:[-2,5,-90], C_TDM_SCH:[2,3,-90],
 })
 own("reset", {
-  U_RST1:[-5,1], C_RST1:[-5,-2,-90], U_RST2:[0,1], C_RST2:[0,-3,-90],
-  R_RST_T:[3,4,-90], C_RST_T:[3,1,-90], Q_RST1:[6,-1.5],
-  R_RESET_PU:[9,2,-90], R_RESET_GPD:[3.5,-3,-90],
+  U_RST1:[-14,8], C_RST1:[-14,5,-90],
+  U_ADC_1V8_OK:[-10,8], U_ADC_3V3X_OK:[-6,8],
+  R_ADC_DIGITAL_OK_PU:[-2,10,-90], C_ADC_DIGITAL_OK:[-2,7,-90],
+  U_ADC_DIGITAL_BAD:[2,10], C_ADC_DIGITAL_BAD:[6,11,-90], Q_ADC_DIG_RST:[10,10], R_ADC_DIG_RST_PD:[14,10,-90],
+  U_ADC_READY:[2,6], C_ADC_READY:[6,7,-90], R_ADC_READY_PD:[10,6,-90],
+  R_ADC_START_DELAY:[-8,3], C_ADC_START_DELAY:[-5,1,-90],
+  U_ADC_READY_BAD:[-3,4], C_ADC_READY_BAD:[0,6,-90], R_ADC_DELAY_GATE_PD:[7,4,-90], Q_ADC_DELAY_DISCH:[0,2],
+  U_RST2:[2,1], C_RST2:[2,-4,-90], R_RST_T:[6,3,-90], C_RST_T:[6,0,-90], Q_RST1:[10,-1.5],
+  R_RESET_PU:[10,2,-90], R_RESET_GPD:[6,-4,-90],
 })
 
 export const poseFor = (ref: string) => {
@@ -153,8 +159,15 @@ export const chipStyle = (ref: string): any => {
     U_TDM_SCH:{leftSide:[2,1],rightSide:[4],topSide:[5],bottomSide:[3]},
     U_TDM:{leftSide:[2,1],rightSide:[4],topSide:[5],bottomSide:[3]},
     U_RST1:{rightSide:[2],topSide:[3],bottomSide:[1]},
+    U_ADC_1V8_OK:{leftSide:[1,3],rightSide:[6],topSide:[4],bottomSide:[2,5]},
+    U_ADC_3V3X_OK:{leftSide:[1,3],rightSide:[6],topSide:[4],bottomSide:[2,5]},
+    U_ADC_DIGITAL_BAD:{leftSide:[2],rightSide:[4],topSide:[5],bottomSide:[3]},
+    U_ADC_READY:{leftSide:[1,2],rightSide:[4],topSide:[5],bottomSide:[3]},
+    U_ADC_READY_BAD:{leftSide:[2],rightSide:[4],topSide:[5],bottomSide:[3]},
     U_RST2:{leftSide:[3],rightSide:[5,6,7],topSide:[2,8],bottomSide:[1,4]},
     Q_RST1:{leftSide:[1],rightSide:[3],bottomSide:[2]},
+    Q_ADC_DIG_RST:{leftSide:[1],rightSide:[3],bottomSide:[2]},
+    Q_ADC_DELAY_DISCH:{leftSide:[1],rightSide:[3],bottomSide:[2]},
   }
   const arrangement = arrangements[ref]
   if (!arrangement) throw new Error(`No schematic chip arrangement: ${ref}`)

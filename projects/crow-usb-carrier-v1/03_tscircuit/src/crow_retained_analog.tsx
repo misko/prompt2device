@@ -1,7 +1,7 @@
 import { Fragment } from "react"
 import {
   CirrusCs5308pQfn48, Diodes2N7002kSot23, TiDrc0010j,
-  PanasonicEeeFk8x10, Sot553, TiDse0006a, TiDsg0008a,
+  PanasonicEeeFk8x10, Sot553, TiDck0005a, TiDse0006a, TiDsg0008a,
   Wurth615008160221Rj45, YageoRt0603,
 } from "./z_analog_exact_footprints"
 
@@ -227,9 +227,42 @@ const AdcReset = ({ n }: any) => (
     <Chip name="U_RST1" manufacturerPartNumber="TPS3839K33DBZR" jlc="C96333" footprint="sot23"
       pinLabels={{ pin1: "GND", pin2: "RESET_N", pin3: "VDD" }} connections={{ pin1: n("GND"), pin2: n("POR_N"), pin3: n("3V3_ADC") }} />
     <C name="C_RST1" value="100nF" a="3V3_ADC" b="GND" jlc="C1525" mpn="CL05B104KO5NNNC" n={n} />
+    {/* Both digital rails must be valid before clocks or ADC reset are released.
+        Open-drain supervisor outputs form ADC_DIGITAL_OK in the held domain. */}
+    <Chip name="U_ADC_1V8_OK" manufacturerPartNumber="TPS389018DSER" jlc="" footprint={<TiDse0006a />}
+      pinLabels={{ pin1: "SENSE", pin2: "GND", pin3: "MR_N", pin4: "VDD", pin5: "CT", pin6: "RESET_N" }}
+      connections={{ pin1: n("1V8"), pin2: n("GND"), pin3: n("3V3_ADC"), pin4: n("3V3_ADC"), pin6: n("ADC_DIGITAL_OK") }} />
+    <Chip name="U_ADC_3V3X_OK" manufacturerPartNumber="TPS389030DSER" jlc="" footprint={<TiDse0006a />}
+      pinLabels={{ pin1: "SENSE", pin2: "GND", pin3: "MR_N", pin4: "VDD", pin5: "CT", pin6: "RESET_N" }}
+      connections={{ pin1: n("3V3X"), pin2: n("GND"), pin3: n("3V3_ADC"), pin4: n("3V3_ADC"), pin6: n("ADC_DIGITAL_OK") }} />
+    <R name="R_ADC_DIGITAL_OK_PU" value="10k" a="3V3_ADC" b="ADC_DIGITAL_OK" jlc="C60490" mpn="RC0402FR-0710KL" n={n} />
+    <C name="C_ADC_DIGITAL_OK" value="100nF" a="3V3_ADC" b="GND" jlc="C1525" mpn="CL05B104KO5NNNC" n={n} />
+    {/* Qualify the push-pull POR with the wired-open-drain digital-rail result.
+        Disabled output is pulled low. ADC_READY rises only after both are valid. */}
+    <Chip name="U_ADC_READY" manufacturerPartNumber="SN74LVC1G125DCKR" jlc="" footprint={<TiDck0005a />}
+      pinLabels={{ pin1: "OE_N", pin2: "A", pin3: "GND", pin4: "Y", pin5: "VCC" }}
+      connections={{ pin1: n("ADC_DIGITAL_BAD"), pin2: n("POR_N"), pin3: n("GND"), pin4: n("ADC_READY"), pin5: n("3V3_ADC") }} />
+    <C name="C_ADC_READY" value="100nF" a="3V3_ADC" b="GND" jlc="C1525" mpn="CL05B104KO5NNNC" n={n} />
+    <R name="R_ADC_READY_PD" value="100k" a="ADC_READY" b="GND" jlc="C60491" mpn="RC0402FR-07100KL" n={n} />
+    <Chip name="U_ADC_DIGITAL_BAD" manufacturerPartNumber="SN74LVC1G04DCKR" jlc="" footprint={<TiDck0005a />}
+      pinLabels={{ pin1: "NC", pin2: "A", pin3: "GND", pin4: "Y", pin5: "VCC" }}
+      connections={{ pin2: n("ADC_DIGITAL_OK"), pin3: n("GND"), pin4: n("ADC_DIGITAL_BAD"), pin5: n("3V3_ADC") }} />
+    <C name="C_ADC_DIGITAL_BAD" value="100nF" a="3V3_ADC" b="GND" jlc="C1525" mpn="CL05B104KO5NNNC" n={n} />
+    <Chip name="Q_ADC_DIG_RST" manufacturerPartNumber="2N7002K-7" jlc="C85047" footprint={<Diodes2N7002kSot23 />}
+      pinLabels={{ pin1: "G", pin2: "S", pin3: "D" }} connections={{ pin1: n("ADC_DIGITAL_BAD"), pin2: n("GND"), pin3: n("ADC_RESET_N") }} />
+    <R name="R_ADC_DIG_RST_PD" value="100k" a="ADC_DIGITAL_BAD" b="GND" jlc="C60491" mpn="RC0402FR-07100KL" n={n} />
     <Chip name="U_RST2" manufacturerPartNumber="SN74LVC1G123DCTR" jlc="C123302" footprint="ssop8"
       pinLabels={{ pin1: "A", pin2: "B", pin3: "CLR_N", pin4: "GND", pin5: "Q", pin6: "CEXT", pin7: "REXT_CEXT", pin8: "VCC" }}
-      connections={{ pin1: n("GND"), pin2: n("3V3_ADC"), pin3: n("POR_N"), pin4: n("GND"), pin5: n("RESET_PULSE_H"), pin6: n("RESET_C"), pin7: n("RESET_RC"), pin8: n("3V3_ADC") }} />
+      connections={{ pin1: n("GND"), pin2: n("ADC_START_DELAY"), pin3: n("ADC_READY"), pin4: n("GND"), pin5: n("RESET_PULSE_H"), pin6: n("RESET_C"), pin7: n("RESET_RC"), pin8: n("3V3_ADC") }} />
+    <R name="R_ADC_START_DELAY" value="100k" a="ADC_READY" b="ADC_START_DELAY" jlc="C60491" mpn="RC0402FR-07100KL" n={n} />
+    <C name="C_ADC_START_DELAY" value="470nF" a="ADC_START_DELAY" b="GND" jlc="C473840" mpn="CL10B474KA8NFNC" footprint="0603" n={n} />
+    <Chip name="U_ADC_READY_BAD" manufacturerPartNumber="SN74LVC1G04DCKR" jlc="" footprint={<TiDck0005a />}
+      pinLabels={{ pin1: "NC", pin2: "A", pin3: "GND", pin4: "Y", pin5: "VCC" }}
+      connections={{ pin2: n("ADC_READY"), pin3: n("GND"), pin4: n("ADC_READY_BAD"), pin5: n("3V3_ADC") }} />
+    <C name="C_ADC_READY_BAD" value="100nF" a="3V3_ADC" b="GND" jlc="C1525" mpn="CL05B104KO5NNNC" n={n} />
+    <R name="R_ADC_DELAY_GATE_PD" value="100k" a="ADC_READY_BAD" b="GND" jlc="C60491" mpn="RC0402FR-07100KL" n={n} />
+    <Chip name="Q_ADC_DELAY_DISCH" manufacturerPartNumber="2N7002K-7" jlc="C85047" footprint={<Diodes2N7002kSot23 />}
+      pinLabels={{ pin1: "G", pin2: "S", pin3: "D" }} connections={{ pin1: n("ADC_READY_BAD"), pin2: n("GND"), pin3: n("ADC_START_DELAY") }} />
     <R name="R_RST_T" value="100k" a="3V3_ADC" b="RESET_RC" jlc="C60491" mpn="RC0402FR-07100KL" n={n} />
     <C name="C_RST_T" value="220nF" a="RESET_C" b="RESET_RC" jlc="C21120" mpn="CL10B224KA8NNNC" footprint="0603" n={n} />
     <C name="C_RST2" value="100nF" a="3V3_ADC" b="GND" jlc="C1525" mpn="CL05B104KO5NNNC" n={n} />

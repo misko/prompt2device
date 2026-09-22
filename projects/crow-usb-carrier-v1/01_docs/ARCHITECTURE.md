@@ -132,3 +132,57 @@ MCH-specific circuits disappear and which analog sequencing functions remain.
 [Coordinator disposition](research/2026-09-22-research-disposition.md) records
 claim limits and corrections. Source adoption is now being prepared; none of
 these reports supplies a completed schematic or board.
+
+## Digital power-state repair candidate (2026-09-22)
+
+This source candidate makes the six required power states explicit at pins. It is a
+reviewable circuit delta, not a routed-board, firmware, USB-compliance, or first-article
+acceptance result.
+
+| State | Hardware path and resulting state |
+|---|---|
+| carrier absent, VBUS absent | 1V8/0V9/3V3X and 3V3_ADC are absent. The rail-less USB protectors do not provide a carrier supply path. `R_USB_VBUS_BLEED` discharges connector VBUS. |
+| carrier absent, VBUS present | VBUS reaches only rail-less `U_USB_VBUS_ESD`, `C_USB_VBUS`, the 47k bleeder, and the 100k/1M gate divider of AO3400A `Q_VBUS`; the insulated gate cannot source the unpowered 1V8 rail. No intentional VBUS-to-carrier power path exists. |
+| carrier present, VBUS absent | `Q_VBUS` is off and `R_VBUS_PU` reports `VBUS_PRESENT_N=1` in the 1V8 domain. Board firmware must interpret this inversion and keep the USB D+/D- pullups detached. |
+| carrier and VBUS present | `Q_VBUS` reports `VBUS_PRESENT_N=0`. Firmware may attach only after XU and ADC startup sequencing completes; hardware alone does not claim enumeration. |
+| digital brownout while 3V3_ADC is held | `U_ADC_1V8_OK` and `U_ADC_3V3X_OK` form wired-open-drain `ADC_DIGITAL_OK`. Either rail loss disables held-domain `U_ADC_CLOCK_OK`; its output pulldown turns off the two AO3400A open-drain enable sinks, so the local 1V8/3V3X pullups disable TDM/MCLK drive. `U_ADC_DIGITAL_BAD` plus `Q_ADC_DIG_RST` holds `ADC_RESET_N` low. The held `U_ADC_OUT` inputs are defined by 100k pulls at `ADC_MCLK_RAW`, `ADC_BCLK_RAW`, and the actual post-OR `ADC_FSYNC_EXT` pin. |
+| VBUS removed/reapplied with carrier stable | The 47k bleeder discharges the required connector-side capacitor. Firmware must treat low-to-high `VBUS_PRESENT_N` as detach immediately and may reattach only on the opposite transition after its debounce/validity policy. |
+
+`U_XU_3V3_OK` adds 3V3X to the wired-open-drain `XU_RESET_N` qualification.
+The existing 1V8 supervisor delays `CORE_EN`; therefore core-valid reset release occurs
+after 1V8 and flash power are established. With the 10nF CT capacitor screened at
+7.65nF (nominal 10nF, -10% tolerance, -15% X7R temperature allocation), TPS3890
+`VCT(min)=1.17V` and `ICT(max)=1.35uA` give 6.63ms minimum before core enable,
+which exceeds the XU316 flash-readiness requirement of 300us by 22.1x before adding
+core ramp and the TPS3808 reset delay. The added 3V3X supervisor's exact 1nF C0G
+part gives at least 0.823ms from its 5% low capacitor corner using the same TPS3890
+limits. These are component-bound source calculations; rail ramps still require a saved
+PCB and first-article measurement.
+
+The CS5308 sequence remains hardware-owned. `U_ADC_READY` qualifies the push-pull
+120-350ms `POR_N` result with wired-open-drain `ADC_DIGITAL_OK` in the held domain.
+On readiness, the invalid-state clamp releases `ADC_RESET_N` high. A 100k/470nF
+Schmitt-input delay then triggers `U_RST2`, and `Q_RST1` produces the required second
+active-low interval. Conservative selected-part corners give 9.1ms for the initial-high
+interval: fastest -1% R/-10% C, an actively discharged 0V start, the 0.8V guaranteed-low
+boundary as the earliest possible trigger, 3.6V supply, and 5uA leakage toward the input.
+The 100k/220nF pulse network has a 19.6ms engineering lower bound by scaling TI's
+guaranteed 1.0ms minimum at 10k/0.1uF by the selected -1%/-10% RC product; TI's
+log-log curves show proportional pulse duration over the selected range. These are
+documented engineering bounds rather than manufacturer guarantees for arbitrary RC.
+
+`C_USB_VBUS` is exact GRM188Z71C475KE21D, 4.7uF +/-10%, 16V, 0603. Its Murata
+sheet specifies the Z7 +/-15% temperature range with 50% rated DC voltage applied;
+the combined documented low corner is 3.595uF and high corner is 5.946uF, within the
+XU316 self-powered reference's 1-10uF interval. At the high corner and +1% 47k bleeder,
+the conservative VBUS discharge time constant is 282ms; decay from 5.25V to 0.8V is
+530ms. The AO3400A sense remains intentionally inverted. Its 100k/1M divider gives at
+least 4.32V gate drive at the 4.75V USB valid floor and the exact device guarantees
+48mohm maximum at 2.5V gate drive. Host-source impedance and the actual detach threshold must be captured
+on first article; no USB compliance conclusion is inferred from the calculation.
+
+The JTAG header VREF is 1V8. Only a probe that senses 1.8V VREF, level-adapts TCK/TMS/TDI,
+does not source an unpowered target, and treats `XU_RESET_N` as an open-drain target
+reset is supported. Firmware remains separately owned: it must configure X0D14/pin 8
+for the active-low VBUS indication and configure `lib_xud` to remove D+/D- pullups whenever
+VBUS is absent. No firmware image is created or implied here.
