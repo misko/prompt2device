@@ -193,3 +193,7 @@ Reopened current74c94f08 source: EARLY-DESIGN4/4 families and A-SOURCE6/6 classe
 ## LT3045 source adoption — 2026-09-22
 
 Adopted independently reviewed patch9606b2f753a65206c20a0214aaa1feadd2d57585fe60140ccd509a1b9c7934b5 plus root reconciliation of three block-interface endpoint maps and current sourcing CSV. Full source489refs/85MPNs/0errors; modular489/489 and54/54; digital70/70; TypeScriptPASS; E-CAP10banks and E-MARGIN9railsPASS. Actual source delta is4 new resistors and2 changed existing refs, with483 unaffected source identities/pin-net mappings checked. Thermal583.75mW versus650mW engineering capacity requires native realization at70C/84.6CperW; no physical qualification claim. Old485ref rendered-page receipts are superseded pending regeneration.
+
+## First-power template disposition — 2026-09-22
+
+Removed the seeded EXAMPLE_RAIL card after checking owning applicability: first_article_check runs at physical first article, not design rebuild. Actual current/resistance/bench-limit numbers are not established and cannot be replaced by literal OWED in a numeric schema. Human test plan now requires card creation from final population and reviewed numerical bounds before energization. The design-stage absence preserves an explicit first-power INCOMPLETE state without inventing test acceptance.

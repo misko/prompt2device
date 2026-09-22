@@ -13,13 +13,16 @@ instrument calibration and ambient temperature. Record raw measurements and
 waveforms with those identities; a photograph or successful USB enumeration
 cannot substitute for electrical or audio measurements.
 
-Before applying power, close the numeric probe ranges, staged population and
-bench-supply current limits in `03_src/rules/first_article.yaml`. That file still
-contains template values and is **not an executable test card**. Current-limit
-settings must come from the closed startup/fault envelope, not from the input
-PPTC hold or trip current. The unresolved power contract, connector service
-facts, thermal model and source admission must be reviewed before this plan
-can become an approved test procedure.
+`03_src/rules/first_article.yaml` is intentionally absent during design. Before
+applying power, create it from the exact released CPL, exposed-pad population,
+closed numeric probe ranges and reviewed bench-supply current limit. Record
+physical measurements in `01_docs/journal/first_article.json` and run the owning
+first-article gate. The current limit must follow the closed startup/fault
+analysis; neither the 4 A input fuse rating nor the quiet-rail 250 mA allocation
+is a valid substitute. Missing card data keeps first-power admission incomplete.
+This physical first-article gate is separate from schematic and layout design.
+The unresolved power, connector and thermal obligations must be reviewed before
+this plan becomes an approved test procedure.
 
 ## Unpowered inspection
 
