@@ -48,13 +48,13 @@ seeded rule examples are not product facts and will be replaced before use.
 | Fact | Value | Locked by |
 |---|---|---|
 | Audio | Eight simultaneous channels, 48 kHz, 24-bit samples; existing TDM uses eight 32-bit slots. | A1; original Crow BRIEF G2 and digital-interface fact |
-| External outputs | Eight Crow audio/power spokes, all operating concurrently. Exact connector and load envelopes under source review. | A1; OWED requirements research |
-| Input source | Independent external 11.4–13.2 V input selected; 2.12 A design allocation and protection topology recorded in power_tree.yaml. Connector-plane delivery, fault and thermal margins remain owed. | A2; Q1 pending |
+| External outputs | Eight Crow audio/power spokes concurrently, each 0.10 A; 10.8–13.2 V at the carrier connector plane. Three parallel supply and return conductors; the selected 15 m cable has a 3.0 ohm total hot-loop acceptance allocation. | A1; power_tree.yaml and 100009141 cable selection; realized delivery owed |
+| Input source | Independent isolated external 11.4–13.2 V input; 2.185 A one-fault voltage-drop screen, 2.85 A hot continuous trunk/protection allocation, and 4 A input fuse. These distinct quantities are defined in power_tree.yaml. Actual source fault behavior and realized thermal/delivery qualification remain owed. | A2; source power/protection contracts; Q1 unanswered |
 | USB power role | Pi is USB host; carrier is USB device. VBUS feeds sensing only under decision 0002; it does not supply the carrier. Exact power-state verification remains owed. | P, A2 |
 | Protection posture | Re-evaluate USB-only, carrier-only, both-powered, brownout and cable connection/removal states; no inherited sequencing approval. | A2 |
 | Measurement plane | Digital audio at Pi USB capture endpoint; analog/power capability at the existing Crow spoke boundary. Exact cable/load envelope OWED. | A1, A2 |
 | Off-control / stored energy | Preserve supported quiet shutdown intent; changed USB core power and flash dependencies require new state analysis. | A2; OWED |
-| Critical sourcing | XU316 with 1.8 V flash/I/O, separate core/PHY rails and supporting clocks selected in source; 85 selected MPN native footprints load. Procurement and complete source review remain open. | P; OWED research |
+| Critical sourcing | XU316, W25Q128JWSIQ 1.8 V flash, CS5308P-DNR ADC, LT3045 quiet regulator and separate core/PHY rails; current source has 489 references and 85 exact MPNs. Full selected-BOM sourcing remains open. | P; current TSX/manifest/dossiers and sourcing CSV |
 | Integration posture | Onboard bare USB IC is explicitly requested; module comparison informs the exception but cannot substitute an external bridge. | P; decision 0001 |
 | Mechanical boundary | No Pi HAT/header alignment is assumed. Existing Crow outline/hole coordinates are precedent, not automatically hard limits. | A3 |
 | Fabrication / assembly | JLCPCB populated-PCBA intent, ordinary four-layer JLC04161H-7628G stackup; nominal 90-ohm USB cross-section documented. Actual-board manufacturing acceptance and cost remain owed before freeze. | A3 |
@@ -63,8 +63,9 @@ seeded rule examples are not product facts and will be replaced before use.
 ## Mating fact-lock
 
 No board-to-Pi mechanical alignment is required under A3: connection is by a
-USB cable. Exact USB receptacle/mate/cable and all serviced Crow connectors
-still require their connector assembly facts before placement approval.
+USB cable. Connector source admission now passes for all 11 operated connector references.
+Nineteen explicitly planned installed-fit, cable-route and service checks remain
+for their physical qualification boundary; source admission is not placement approval.
 Foreign-mating applicability must be re-evaluated if a fixed enclosure or
 Pi mounting geometry is introduced; no foreign dimensions are consumed now.
 
@@ -118,3 +119,19 @@ Decision: retain **firmware forbidden** and keep Q2 unanswered. Continue the har
 ### D3 — 2026-09-22 — current-state reconciliation
 
 Updated intake rows to reflect adopted hardware source and decisions 0002–0004. This is not commission acceptance: [findings.yaml](findings.yaml) retains pending commission, native schematic and routed-layout gates. Source expansion and footprint loading do not prove a built board. G6 evidence is the bounded SOL deliveries and preserved unsuccessful attempts recorded in [commission journal](journal/commission.md) and the source-adoption research dispositions. Q1/Q2 remain unanswered; A1/A2 and firmware-forbidden D2 remain unchanged.
+
+### D4 — 2026-09-22 — source checkpoint reconciliation
+
+The current source has 489 references and 85 selected MPNs. Connector SOURCE
+passes for 11 instances with 19 explicit physical deferrals and no source
+findings. ADC/film-capacitor packaging and the PLL capacitor have been updated
+without changing the named signal connectivity. The power rows above now
+separate nominal requirements, one-fault screens, current allocations and fuse
+rating; none is a bench-current-limit instruction. See the source journal and
+[fabrication posture](decisions/0005-four-layer-design-cost-posture.md).
+
+The brief remains draft while full-BOM sourcing and refreshed schematic-source review are completed.
+The source power/protection disposition is reviewed; its native-layout and
+physical qualifications remain in the open final-design findings. A1/A2 remain the retained
+Crow design assumptions; Q1/Q2 remain unanswered. No firmware or purchase work
+is authorized by this reconciliation.

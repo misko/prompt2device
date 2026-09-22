@@ -1,5 +1,5 @@
-# SCHEMA EXAMPLE (skill-owned, project-independent). Copy into a new project's
-# 03_src/rules/ and replace the values — the KEYS are the contract.
+# Crow USB assembly design intent. Exact schema is owned by the skill.
+# These selections are quotation/design inputs; no order has been placed.
 #
 # PCBA IS THE DELIVERABLE (see pcb-design/SKILL.md). This file is the ONE
 # machine-readable home for "who gets placed, and why not". The ASSEMBLY gate
@@ -32,7 +32,7 @@
 
 # ---- SERVICE DECLARATION (required; declaration-only until the capability
 # reference is fetched — do NOT gate on numbers written from memory) ----------
-service: standard          # JLC assembly service tier, as ORDERED
+service: standard          # selected JLC assembly service intent; not an order
 # Allowed mounting sides for all fitted SMD, including manual/consigned parts.
 sides: [top]               # sides that carry placed parts. Adding `bottom` is a
                            # COST and process decision, not a layout convenience.

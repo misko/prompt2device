@@ -45,28 +45,32 @@ findings:
   state: open
   blocks_at_or_above: DESIGN_CLEAN
   owner: power
-  finding: Eight TPS26625 eFuses and a 0451004.MRL input fuse are integrated. Early-design
-    component-voltage screen passes; full fault-envelope and source/board behavior
-    remain unqualified.
+  finding: Source protection coordination and component-envelope review is complete.
+    Fuse clearing OR bounded current-limit/hiccup source modes and eight branch contracts
+    are explicit. Native fault-path realization and actual source/retry/one-fault-seven-healthy
+    behavior remain unqualified.
   closes_when: Complete shared-source fault and surge engineering bounds, input-protector
     coordination and supported retry/startup behavior; qualify realized hardware at
     its owning boundary.
   evidence:
   - 03_src/rules/power_tree.yaml
   - 01_docs/research/2026-09-22-spoke-adoption.md
+  - 01_docs/research/2026-09-22-source-power-protection-disposition.md
 - id: USB-power-delivery
   state: open
   blocks_at_or_above: DESIGN_CLEAN
   owner: power
-  finding: Source voltage budgets now pass E-MARGIN 9/9 with conservative hot-resistance
-    allocations. Realized connector/copper losses and thermal margins still require
-    native layout and qualification.
+  finding: 'Source voltage/load/thermal allocations are reviewed: E-MARGIN9/9, quiet
+    rail250mA and LT3045 583.75mW versus650mW engineering capacity. Routed losses
+    and thermal realization remain DESIGN_CLEAN obligations; physical temperature
+    validation is later.'
   closes_when: Close resistance/load allocations and converter thermal bounds against
     actual copper and operating states; pass owning power gates.
   evidence:
   - 03_src/rules/power_tree.yaml
   - 03_src/rules/nets.yaml
   - 01_docs/research/2026-09-22-input-protection-adoption.md
+  - 01_docs/research/2026-09-22-source-power-protection-disposition.md
 - id: USB-connectors
   state: open
   blocks_at_or_above: DESIGN_CLEAN
@@ -116,10 +120,10 @@ findings:
   state: open
   blocks_at_or_above: DESIGN_CLEAN
   owner: digital-electrical
-  finding: Digital source repair passes 70 merged-source pin/net/value/MPN assertions
-    and engineering reset timing screens. Added static held-rail load fits the current
-    allocation. Quiet-rail startup/hold-up/dropout transient proof, rail-collapse
-    clock behavior and USB functional qualification remain open.
+  finding: Source pin-level power/boot review is complete with70 digital assertions
+    and explicit reset/hold/isolation timing allocations. Native clock/reset/rail-return
+    realization remains owed; actual startup/shutdown/USB/audio waveforms require
+    separate physical qualification.
   closes_when: Review exact pin-level off-state behavior; define all held-buffer inputs,
     preserve CS5308 startup reset sequence while asserting safe brownout reset, qualify
     flash/PHY reset timing, add supported VBUS capacitance/detector behavior and document
@@ -132,3 +136,4 @@ findings:
   - 01_docs/ARCHITECTURE.md
   - 01_docs/research/2026-09-22-hardware-software-interface.md
   - 01_docs/research/2026-09-22-source-selection-verification.md
+  - 01_docs/research/2026-09-22-source-power-protection-disposition.md

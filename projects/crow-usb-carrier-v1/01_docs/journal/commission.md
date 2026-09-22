@@ -213,3 +213,7 @@ Selected Telegartner100009141 PUR shielded15m cable for source/prototype plannin
 ## PLL capacitor source backtrack closed — 2026-09-22
 
 Replaced obsolete Murata1uF PLL bypass with exact YAGEO CC0402KRX5R5BB105. Root checked primaryspec and1uF/pin-net mapping; source489refs/85MPNs/1493traces/0errors, modular54/54. Rebuilt sourcing CSV with correct YAGEO manufacturer. Rejected unsupported rated_voltage assertion from candidate; documented rating retained. No source-placement/native or hardware PLL acceptance inferred.
+
+## Commission source disposition — 2026-09-22
+
+Independent review found no user-choice blocker for retained8spokes/externalpower/hardware-only scope. UpdatedBRIEF factlocks, recorded four-layer design/cost posture without inventedprice or purchaseauthorization, and retainedDRAFT until sourcing/presentationchecks close. Source power/protection calculations reviewed complete; broader DESIGN_CLEAN findings stayopen for actualnative/layout/physical obligations. No hold removed.
