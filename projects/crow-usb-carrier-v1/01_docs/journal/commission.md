@@ -17,3 +17,8 @@
 - did: reopened both Sol reports, closed exact runtime attempts, retained research with coordinator dispositions; opened two bounded hardware source tasks.
 - result: requirements delivery PASS; USB research delivery INCOMPLETE for a result.json outside allocated outputs. XU316 preferred conditionally; no firmware, schematic or layout acceptance. Official pin data rechecked, including fixed 1.8 V bottom I/O domain.
 - next: obtain source-ready XU316 dossier/pinmap and selective analog source package; independently review before adoption. Firmware question remains unanswered.
+
+## 2026-09-22 05:59 — iterate 4
+- did: adopted exact USB4105-GF-A-120 component dossier, retained manufacturer B4 drawing, native footprint and draft data-capable TSX receptacle module.
+- result: checked 17 logical contacts, 4 paired power lands and 2 alignment holes against the drawing; component connection check confirms paired D+/D-, separate CC pins and unused SBU. Contract audit previously 98 files, 0 violations. This is component source evidence, not complete schematic, SI, sourcing or mating acceptance.
+- next: review Sol hardware/analog packages and integrate the USB front end; firmware authorization remains pending.
