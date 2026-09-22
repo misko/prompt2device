@@ -197,3 +197,7 @@ Adopted independently reviewed patch9606b2f753a65206c20a0214aaa1feadd2d57585fe60
 ## First-power template disposition — 2026-09-22
 
 Removed the seeded EXAMPLE_RAIL card after checking owning applicability: first_article_check runs at physical first article, not design rebuild. Actual current/resistance/bench-limit numbers are not established and cannot be replaced by literal OWED in a numeric schema. Human test plan now requires card creation from final population and reviewed numerical bounds before energization. The design-stage absence preserves an explicit first-power INCOMPLETE state without inventing test acceptance.
+
+## ADC and coupling-capacitor packaging substitutions — 2026-09-22
+
+Adopted exact CS5308P-DNR and R82DC4100CK60J variants after checking primary Cirrus ordering table and exact KEMET geometry/value/tolerance. Maintained489refs/85MPNs; all1493 named source pin/net edges unchanged; only17 source identities change. Primary PDFs retained as regular files; old active variants removed with history preserved. Source CSV, module selection and current dossiers reconciled. Manual sourcing observations remain evidence candidates until strict exact-orderability grading.

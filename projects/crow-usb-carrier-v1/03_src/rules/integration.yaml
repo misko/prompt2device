@@ -3,7 +3,7 @@ default: complexity_weighted
 module_support_threshold: 10
 selections:
 - function: synchronous_eight_channel_analog_capture
-  part: CS5308P-DN
+  part: CS5308P-DNR
   implementation: bare_ic
   support_refs:
   - C_A1N

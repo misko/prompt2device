@@ -1,7 +1,7 @@
-mpn: CS5308P-DN
+mpn: CS5308P-DNR
 manufacturer: Cirrus Logic
 type: precision_adc
-value: CS5308P-DN
+value: CS5308P-DNR
 status: active
 datasheet:
   doc_id: DS1314
@@ -12,7 +12,7 @@ datasheet:
   fetched: 2026-09-01
   pages: 95
   provenance: "Downloaded directly from statics.cirrus.com; title/footer identify CS5308P and DS1314F1."
-package: "QFN-48 6x6mm P0.4mm with 4.6mm exposed paddle"
+package: "QFN-48 6x6mm P0.4mm with 4.6mm exposed paddle; DNR tape-and-reel ordering code per DS1314F1"
 footprint: crow_usb_analog:Cirrus_CS5308P_QFN48_6x6_P0.4_EP4.6
 escape:
   style: qfn
@@ -646,8 +646,8 @@ layout:
 layout_refs:
   - {tier: 1, reached: true, artifact: "Cirrus DS1314F1 Figure 2-1/Section 5 and local SHA-bound AN0556R1 Figure 2", why: "Manufacturer authorities fix the complete connection, per-channel buffer/filter skeleton, decoupling, and common-ground architecture."}
   - {tier: 2, reached: true, artifact: "Cirrus DC5302P_4P_4S_8P_8S-ADC_Schematic_Layout.zip; E0 PCB PDF,240-11375-Z1 PADS ASCII/IPC/Gerbers and stackup, public statics.cirrus.com", why: "The same ZIP was already captured;2026-09-08 newly examined editable layout and artwork, with49/49 ASCII/IPC pad positions reconciled. Study staggered CFG drops and local capacitor/VMID ordering only. PADS descriptor is older CS5308P-CN/B0, not the selected DN; exact current-DN revision CAD is not established. Different8-layer stack,0.40/0.20mm vias and4.8mm copper EP land do not transfer. Primary DS1314F1 and project footprints remain unchanged; no vendor copper imported. See notes.md and ADR0013."}
-  - {tier: 2, reached: false, artifact: "Editable reference CAD explicitly identifying the selected CS5308P-DN revision", why: "The inspected public Cirrus PADS layout identifies older CS5308P-CN/B0, not this DN device. An exact current-DN editable reference has not been established; preserve DS1314F1 and the independently derived carrier footprint as authority. This names the known applicability ceiling, not a claim that no such design exists."}
+  - {tier: 2, reached: false, artifact: "Editable reference CAD explicitly identifying the selected CS5308P-DNR revision", why: "The inspected public Cirrus PADS layout identifies older CS5308P-CN/B0, not this DN device. An exact current-DN editable reference has not been established; preserve DS1314F1 and the independently derived carrier footprint as authority. This names the known applicability ceiling, not a claim that no such design exists."}
 sourcing:
   lcsc:
   alternates: []
-  note: "Live catalog reopening on 2026-09-22 showed C42457798 resolves only to suffixless CS5308P with zero stock; an exact CS5308P-DN JLC identity is not admitted. DigiKey carries the exact tray MPN. Confirm an exact PCBA code or consign CS5308P-DN."
+  note: "Live catalog reopening on 2026-09-22 showed C42457798 resolves only to suffixless CS5308P with zero stock; an exact CS5308P-DNR JLC identity is not admitted. DigiKey and Mouser carry the exact DNR tape-and-reel MPN with cut-tape quantities; no exact JLC PCBA code is admitted."

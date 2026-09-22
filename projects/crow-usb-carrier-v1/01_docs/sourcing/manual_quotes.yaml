@@ -19,3 +19,68 @@ quotes:
       - {qty: 1, usd: 3.99}
       - {qty: 10, usd: 3.727}
     note: Exact public product page; five-board requirement is 5. Raw observation is retained alongside this candidate input.
+
+  - mpn: CS5308P-DNR
+    manufacturer: Cirrus Logic
+    distributor: digikey
+    source: product_page
+    url: https://www.digikey.com/en/products/detail/cirrus-logic-inc/CS5308P-DNR/26753133
+    read_on: '2026-09-22'
+    checked_at: '2026-09-22T04:05:51-07:00'
+    dpn: 598-CS5308P-DNRCT-ND
+    stock: 3105
+    min: 1
+    mult: 1
+    packaging: Cut Tape
+    lifecycle: Active
+    price_breaks: []
+    note: Exact DNR identity; DS1314F1 ordering table defines DNR as tape-and-reel packaging of the selected CS5308P commercial QFN-48 device. Five-board requirement is 5.
+
+  - mpn: CS5308P-DNR
+    manufacturer: Cirrus Logic
+    distributor: mouser
+    source: product_page
+    url: https://www.mouser.com/en/ProductDetail/Cirrus-Logic/CS5308P-DNR
+    read_on: '2026-09-22'
+    checked_at: '2026-09-22T04:05:51-07:00'
+    dpn: 777-CS5308P-DNR
+    stock: 62
+    min: 1
+    mult: 1
+    packaging: Cut Tape
+    lifecycle: Active
+    price_breaks: []
+    note: Exact manufacturer and MPN, immediate shipment observation. Five-board requirement is 5.
+
+  - mpn: R82DC4100CK60J
+    manufacturer: KEMET
+    distributor: digikey
+    source: product_page
+    url: https://www.digikey.com/en/products/detail/kemet/R82DC4100CK60J/21776592
+    read_on: '2026-09-22'
+    checked_at: '2026-09-22T04:05:51-07:00'
+    dpn: 399-R82DC4100CK60JCT-ND
+    stock: 6466
+    min: 1
+    mult: 1
+    packaging: Cut Tape
+    lifecycle: Active
+    price_breaks: []
+    note: Exact CK identity and exact retained 1uF, 5%, PET, 63V, 5mm-pitch geometry. Five-board requirement is 80.
+
+  - mpn: R82DC4100CK60J
+    manufacturer: KEMET
+    distributor: mouser
+    source: product_page
+    url: https://www.mouser.com/ProductDetail/KEMET/R82DC4100CK60J
+    read_on: '2026-09-22'
+    checked_at: '2026-09-22T04:05:51-07:00'
+    dpn: 80-R82DC4100CK60J
+    stock: 5775
+    min: 1
+    mult: 1
+    packaging: Cut Tape
+    lifecycle: Active
+    price_breaks:
+      - {qty: 1, usd: 0.63}
+    note: Exact manufacturer and MPN, immediate shipment observation. Five-board requirement is 80.

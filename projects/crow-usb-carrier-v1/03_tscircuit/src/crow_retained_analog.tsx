@@ -101,8 +101,8 @@ const Spoke = ({ index, n }: any) => (
 
 const AnalogChannel = ({ index, vmid, n }: any) => (
   <>
-    <C name={`C_A${index}P`} value="1uF" a={`AUDIO_P${index}`} b={`BIAS_P${index}`} jlc="" mpn="R82DC4100DQ60J" footprint={<FilmCap5mm />} n={n} />
-    <C name={`C_A${index}N`} value="1uF" a={`AUDIO_N${index}`} b={`BIAS_N${index}`} jlc="" mpn="R82DC4100DQ60J" footprint={<FilmCap5mm />} n={n} />
+    <C name={`C_A${index}P`} value="1uF" a={`AUDIO_P${index}`} b={`BIAS_P${index}`} jlc="" mpn="R82DC4100CK60J" footprint={<FilmCap5mm />} n={n} />
+    <C name={`C_A${index}N`} value="1uF" a={`AUDIO_N${index}`} b={`BIAS_N${index}`} jlc="" mpn="R82DC4100CK60J" footprint={<FilmCap5mm />} n={n} />
     <R name={`R_B${index}P`} value="100k" a={`BIAS_P${index}`} b={vmid} jlc="C60491" mpn="RC0402FR-07100KL" n={n} />
     <R name={`R_B${index}N`} value="100k" a={`BIAS_N${index}`} b={vmid} jlc="C60491" mpn="RC0402FR-07100KL" n={n} />
     <R name={`R_IN${index}P`} value="10k" a={`BIAS_P${index}`} b={`AIN_P${index}`} jlc="C60490" mpn="RC0402FR-0710KL" n={n} />
@@ -201,7 +201,7 @@ const AdcReferenceAndMode = ({ n }: any) => (
       <C name={`C_VMID${bank}_EXT_10U`} value="10uF" a={`VMID${bank}_EXT`} b="GND" jlc="C2167576" mpn="C0805C106K8RACTU" footprint="0805" n={n} />
       <C name={`C_VMID${bank}_EXT_1U`} value="1uF" a={`VMID${bank}_EXT`} b="GND" jlc="C2167386" mpn="C0603C105K4RACTU" footprint="0603" n={n} />
     </group>)}
-    <Chip name="U_ADC" manufacturerPartNumber="CS5308P-DN" jlc=""
+    <Chip name="U_ADC" manufacturerPartNumber="CS5308P-DNR" jlc=""
       footprint={<CirrusCs5308pQfn48 />}
       pinLabels={{ pin1: "ADC_VMID1", pin2: "CONFIG1", pin3: "CONFIG2", pin4: "CONFIG3", pin5: "VDD_A1", pin6: "GND_A1", pin7: "LDO_A_FILT", pin8: "GND_A2", pin9: "VDD_A2", pin10: "CONFIG4", pin11: "CONFIG5", pin12: "ADC_VMID2", pin13: "IN5N", pin14: "IN5P", pin15: "IN6N", pin16: "IN6P", pin17: "ADC_FILT2N", pin18: "ADC_FILT2P", pin19: "IN7N", pin20: "IN7P", pin21: "IN8N", pin22: "IN8P", pin23: "RESET", pin24: "ASP_FSYNC", pin25: "ASP_DOUT1", pin26: "ASP_DOUT2_NC", pin27: "ASP_DOUT3_NC", pin28: "ASP_DOUT4_NC", pin29: "ASP_BCLK", pin30: "GND_D", pin31: "VDD_IO", pin32: "LDO_D_FILT", pin33: "VDD_D", pin34: "MCLK", pin35: "SPI_SDO_I2C_SCL", pin36: "SPI_SCK", pin37: "SPI_SDI_I2C_SDA", pin38: "SPI_CS", pin39: "IN1N", pin40: "IN1P", pin41: "IN2N", pin42: "IN2P", pin43: "ADC_FILT1P", pin44: "ADC_FILT1N", pin45: "IN3N", pin46: "IN3P", pin47: "IN4N", pin48: "IN4P", pin49: "EP_GND" }}
       connections={{ pin1: n("VMID1"), pin2: n("CFG1"), pin3: n("CFG2"), pin4: n("GND"), pin5: n("3V3_ADC"), pin6: n("GND"), pin7: n("LDO_A_FILT"), pin8: n("GND"), pin9: n("3V3_ADC"), pin10: n("CFG4"), pin11: n("CFG5"), pin12: n("VMID2"), pin13: n(adcInputNet(5, "N")), pin14: n(adcInputNet(5, "P")), pin15: n(adcInputNet(6, "N")), pin16: n(adcInputNet(6, "P")), pin17: n("GND"), pin18: n("FILT2P"), pin19: n(adcInputNet(7, "N")), pin20: n(adcInputNet(7, "P")), pin21: n(adcInputNet(8, "N")), pin22: n(adcInputNet(8, "P")), pin23: n("ADC_RESET_N"), pin24: n("ADC_FSYNC"), pin25: n("ADC_DOUT1"), pin29: n("ADC_BCLK"), pin30: n("GND"), pin31: n("3V3_ADC"), pin32: n("LDO_D_FILT"), pin33: n("LDO_D_FILT"), pin34: n("ADC_MCLK"), pin35: n("GND"), pin36: n("GND"), pin37: n("GND"), pin38: n("3V3_ADC"), pin39: n(adcInputNet(1, "N")), pin40: n(adcInputNet(1, "P")), pin41: n(adcInputNet(2, "N")), pin42: n(adcInputNet(2, "P")), pin43: n("FILT1P"), pin44: n("GND"), pin45: n(adcInputNet(3, "N")), pin46: n(adcInputNet(3, "P")), pin47: n(adcInputNet(4, "N")), pin48: n(adcInputNet(4, "P")), pin49: n("GND") }} />
