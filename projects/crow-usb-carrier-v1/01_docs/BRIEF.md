@@ -56,8 +56,8 @@ seeded rule examples are not product facts and will be replaced before use.
 | Off-control / stored energy | Preserve supported quiet shutdown intent; changed USB core power and flash dependencies require new state analysis. | A2; OWED |
 | Critical sourcing | XU316, W25Q128JWSIQ 1.8 V flash, CS5308P-DNR ADC, LT3045 quiet regulator and separate core/PHY rails; current source has 489 references and 85 exact MPNs. Full selected-BOM sourcing remains open. | P; current TSX/manifest/dossiers and sourcing CSV |
 | Integration posture | Onboard bare USB IC is explicitly requested; module comparison informs the exception but cannot substitute an external bridge. | P; decision 0001 |
-| Mechanical boundary | No Pi HAT/header alignment is assumed. Existing Crow outline/hole coordinates are precedent, not automatically hard limits. | A3 |
-| Fabrication / assembly | JLCPCB populated-PCBA intent, four-layer JLC04161H-7628G stackup with the advanced routing/process candidate in decision 0006; nominal 90-ohm USB cross-section documented. Selective LT3045 via fill/cap remains a proposed uploader/order requirement pending exact vendor acceptance. Actual-board manufacturing acceptance and cost remain owed before freeze. | A3 |
+| Mechanical boundary | Adopt the current 220 × 120 mm rectangle for initial placement, with no inherited mounting holes or Pi HAT/header alignment. This reversible design assumption is not a size maximum or fit claim. | A3; decision 0007 |
+| Fabrication / assembly | JLCPCB populated-PCBA intent, four-layer JLC04161H-7628G stackup with the advanced routing/process candidate in decision 0006; nominal 90-ohm USB cross-section documented. Selective LT3045 via fill/cap remains a proposed uploader/order requirement pending exact vendor acceptance. No hard numeric design budget was supplied; authorized expenditure is zero, with actual-board quotations and process acceptance required before spending. | A3; decisions 0006 and 0007 |
 | Firmware | Research permitted. No firmware source, build or release until Q2 is answered affirmatively or an existing authorized image path is selected. | Q2; skill default |
 
 ## Mating fact-lock
@@ -106,6 +106,7 @@ Escalate if: a specific enclosure, board outline, assembly budget or different P
 | 0002 | USB sensing and independent external carrier power topology. | agent (A2 / P-delegation) | [decision](decisions/0002-usb-power-path-intent.md) |
 | 0003 | Onboard XU316, retained CS5308P and integrated TPSM power boundary. | agent (P-delegation) | [decision](decisions/0003-integrated-subsystem-boundaries.md) |
 | 0004 | USB shell to local GND; Crow spoke shells remain on CHASSIS. | agent (A2 / P-delegation) | [decision](decisions/0004-usb-shield-separation.md) |
+| 0007 | Initial outline and design-only cost assumptions; no purchase authorization. | agent (A3 / P-delegation) | [decision](decisions/0007-outline-and-design-cost-assumptions.md) |
 | A1 | Existing Crow audio/spoke function retained provisionally. | agent (A1 / P-delegation) | log A1 |
 | A2 | External carrier power retained provisionally. | agent (A2 / P-delegation) | log A2 |
 | A3 | Cable connection, fresh design, populated-PCBA intent. | agent (A3 / P-delegation) | log A3 |
