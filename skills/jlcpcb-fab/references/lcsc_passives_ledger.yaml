@@ -24,6 +24,16 @@
 # every projects/ + archived_projects/ fab BOM; cross-checked against the fleet
 # labels — exactly two mismatches found, both real defects (C2933210, C2933195).
 
+# Crow USB carrier exact selected passives. JLC selectSmtComponentList exact-MPN
+# rows were retained on 2026-09-22 and the componentCode, componentModelEn and
+# catalog value were read from the same returned record. These rows establish
+# offline code/value identity only; stock is not an assembly allocation.
+C2171626: {mpn: CKG57KX7R1E476M335JH, value: "47uF", verified: "2026-09-22 JLC exact-MPN API row: componentCode C2171626, TDK CKG57KX7R1E476M335JH, erpComponentName '47uF +/-20% 25V', describe '25V 47uF X7R +/-20% SMD,6x5mm'; fresh retained query timestamp 2026-09-22T15:21:11.333487Z, stock 0; catalog identity only."}
+C3778009: {mpn: R82DC4100CK60J, value: "1uF", verified: "2026-09-22 JLC exact-MPN API row retained at 2026-09-22T11:34:28.816292Z: componentCode C3778009, KEMET R82DC4100CK60J, erpComponentName '1uF +/-5% 63V', PET film, P=5mm; stock 6; catalog identity only."}
+C852472: {mpn: RT0402BRD07100KL, value: "100k", verified: "2026-09-22 JLC exact-MPN API row retained at 2026-09-22T11:34:36.521258Z: componentCode C852472, YAGEO RT0402BRD07100KL, erpComponentName 100kOhm +/-0.1% 62.5mW; catalog identity only."}
+C728556: {mpn: RT0402BRD07200KL, value: "200k", verified: "2026-09-22 JLC exact-MPN API row retained at 2026-09-22T11:34:38.057418Z: componentCode C728556, YAGEO RT0402BRD07200KL, erpComponentName 200kOhm +/-0.1% 62.5mW; catalog identity only."}
+C106253: {mpn: CC0402KRX5R5BB105, value: "1uF", verified: "2026-09-22 JLC exact-MPN API row retained at 2026-09-22T11:34:17.757498Z: componentCode C106253, YAGEO CC0402KRX5R5BB105, erpComponentName '1uF +/-10% 6.3V'; catalog identity only."}
+
 # USB controlled debug hub v0.1.4 sourcing-only substitutions. Exact-code JLC
 # catalog rows were captured in 06_build/sourcing/v014-candidate on 2026-08-18;
 # the user subsequently reported that the candidate BOM matched in the JLCPCB
