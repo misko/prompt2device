@@ -30,6 +30,8 @@ own("held_ldo", {
   // pin, so the primary wire does not loop through the chip reference.
   R_LDO_SET:[5,7,-90],
   C_LDO_NR4:[7.5,7,-90], C_LDO_NR5:[10,7,-90],
+  R_LDO_ILIM:[3,-2,-90],
+  R_LDO_PG_TOP:[8,4,-90], R_LDO_PG_BOT_A:[10.5,4,-90], R_LDO_PG_BOT_B:[13,4,-90],
 })
 own("supervisors", {
   U_PWR:[-3,2], R_PWR_TOP:[-7,3,-90], R_PWR_BOT:[-7,0,-90],
@@ -144,7 +146,7 @@ export const chipStyle = (ref: string): any => {
     U_BUCK:{leftSide:[3,2],rightSide:[5,1],topSide:[6],bottomSide:[4]},
     D_BUCK_IN:{leftSide:[2],rightSide:[1]}, D_HOLD:{leftSide:[2],rightSide:[1]}, Q_PRE:{leftSide:[2],rightSide:[3],bottomSide:[1]},
     Q_PRE_EN:{leftSide:[1],topSide:[3],bottomSide:[2]},
-    U_LDO:{leftSide:[1,2,3,5,8],rightSide:[12,13,14,6,4],topSide:[9],bottomSide:[7,10,11,15]},
+    U_LDO:{leftSide:[1,2,3],rightSide:[10,9,6,4],topSide:[7],bottomSide:[5,8,11]},
     U_PWR:{leftSide:[1],rightSide:[6],topSide:[3,4],bottomSide:[2,5]},
     U_AUDIO:{leftSide:[1,3],rightSide:[6],topSide:[4],bottomSide:[2,5]},
     U_DUMP:{leftSide:[2,1],rightSide:[4],topSide:[5],bottomSide:[3]},

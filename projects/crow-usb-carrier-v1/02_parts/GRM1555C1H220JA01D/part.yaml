@@ -1,6 +1,10 @@
 mpn: "GRM1555C1H220JA01D"
+manufacturer: Murata Manufacturing Co., Ltd.
 footprint: "Capacitor_SMD:C_0402_1005Metric"
 
 type: capacitor
 value: "22pF"
 pins: {1: terminal_1, 2: terminal_2}
+datasheet:
+  url: https://pim.murata.com/en-us/pim/details/?partNum=GRM1555C1H220JA01D
+  provenance: "Exact-part Murata product-detail record inspected 2026-09-22; the exact MPN is resolved by Murata's Product Information Management system."

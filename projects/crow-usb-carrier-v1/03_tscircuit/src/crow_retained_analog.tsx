@@ -50,11 +50,12 @@ const FilmCap5mm = () => (
   </footprint>
 )
 
-const Lt3041Wson = () => (
+// ADI LT3045 DD package, LTC drawing 05-08-1699 Rev C.
+const Lt3045Dd = () => (
   <footprint>
-    {Array.from({ length: 7 }, (_, i) => <Fragment key={`l${i}`}><smtpad portHints={[`${i + 1}`]} pcbX="-1.45mm" pcbY={`${-1.5 + i * 0.5}mm`} width="0.7mm" height="0.3mm" shape="rect" /></Fragment>)}
-    {Array.from({ length: 7 }, (_, i) => <Fragment key={`r${i}`}><smtpad portHints={[`${14 - i}`]} pcbX="1.45mm" pcbY={`${-1.5 + i * 0.5}mm`} width="0.7mm" height="0.3mm" shape="rect" /></Fragment>)}
-    <smtpad portHints={["15"]} pcbX="0mm" pcbY="0mm" width="1.7mm" height="3.3mm" shape="rect" />
+    {Array.from({ length: 5 }, (_, i) => <Fragment key={`l${i}`}><smtpad portHints={[`${i + 1}`]} pcbX="-1.425mm" pcbY={`${-1 + i * 0.5}mm`} width="0.7mm" height="0.25mm" shape="rect" /></Fragment>)}
+    {Array.from({ length: 5 }, (_, i) => <Fragment key={`r${i}`}><smtpad portHints={[`${10 - i}`]} pcbX="1.425mm" pcbY={`${-1 + i * 0.5}mm`} width="0.7mm" height="0.25mm" shape="rect" /></Fragment>)}
+    <smtpad portHints={["11"]} pcbX="0mm" pcbY="0mm" width="1.65mm" height="2.38mm" shape="rect" />
   </footprint>
 )
 
@@ -144,14 +145,18 @@ const QuietAnalogPower = ({ n }: any) => (
     <C name="C_HOLD1" value="470uF" a="5V_LDO_HOLD" b="GND" mpn="EEEFK1A471P" jlc="C178530" footprint={<PanasonicEeeFk8x10 />} polarized n={n} />
     <C name="C_HOLD2" value="470uF" a="5V_LDO_HOLD" b="GND" mpn="EEEFK1A471P" jlc="C178530" footprint={<PanasonicEeeFk8x10 />} polarized n={n} />
     <C name="C_LDO_IN" value="47uF" a="5V_LDO_HOLD" b="GND" mpn="GRM32ER71A476KE15L" jlc="C84494" footprint="1210" n={n} />
-    <Chip name="U_LDO" manufacturerPartNumber="LT3041ADE#TRPBF" jlc="C7452883" footprint={<Lt3041Wson />}
-      pinLabels={{ pin1: "IN1", pin2: "IN2", pin3: "IN3", pin4: "VIOC_NC", pin5: "EN_UV", pin6: "PG_NC", pin7: "ILIM", pin8: "PGFB", pin9: "SET", pin10: "GND1", pin11: "GND2", pin12: "OUTS", pin13: "OUT1", pin14: "OUT2", pin15: "EP" }}
-      connections={{ pin1: n("5V_LDO_HOLD"), pin2: n("5V_LDO_HOLD"), pin3: n("5V_LDO_HOLD"), pin5: n("LDO_EN"), pin7: n("GND"), pin8: n("5V_LDO_HOLD"), pin9: n("LDO_NR"), pin10: n("GND"), pin11: n("GND"), pin12: n("3V3_ADC"), pin13: n("3V3_ADC"), pin14: n("3V3_ADC"), pin15: n("GND") }} />
+    <Chip name="U_LDO" manufacturerPartNumber="LT3045EDD#TRPBF" jlc="C514420" footprint={<Lt3045Dd />}
+      pinLabels={{ pin1: "IN1", pin2: "IN2", pin3: "EN_UV", pin4: "PG_NC", pin5: "ILIM", pin6: "PGFB", pin7: "SET", pin8: "GND", pin9: "OUTS", pin10: "OUT", pin11: "EP_GND" }}
+      connections={{ pin1: n("5V_LDO_HOLD"), pin2: n("5V_LDO_HOLD"), pin3: n("LDO_EN"), pin5: n("LDO_ILIM"), pin6: n("LDO_PGFB"), pin7: n("LDO_NR"), pin8: n("GND"), pin9: n("3V3_ADC"), pin10: n("3V3_ADC"), pin11: n("GND") }} />
+    <R name="R_LDO_ILIM" value="300" a="LDO_ILIM" b="GND" mpn="RC0402FR-07300RL" jlc="C138010" n={n} />
     <C name="C_LDO_OUT" value="47uF" a="3V3_ADC" b="GND" mpn="GRM32ER71A476KE15L" jlc="C84494" footprint="1210" n={n} />
     <C name="C_OPA_BULK" value="47uF" a="3V3_ADC" b="GND" mpn="GRM32ER71A476KE15L" jlc="C84494" footprint="1210" n={n} />
-    <C name="C_LDO_NR4" value="1nF" a="LDO_NR" b="GND" mpn="GRM1555C1H102JA01D" jlc="C76947" n={n} />
+    <C name="C_LDO_NR4" value="4.7uF" a="LDO_NR" b="GND" mpn="CL10A475KO8NNNC" jlc="C19666" footprint="0603" n={n} />
     <C name="C_LDO_NR5" value="1nF" a="LDO_NR" b="GND" mpn="GRM1555C1H102JA01D" jlc="C76947" n={n} />
     <R name="R_LDO_SET" value="33k" a="LDO_NR" b="GND" mpn="RT0603BRD0733KL" jlc="C705768" footprint="0603" n={n} />
+    <R name="R_LDO_PG_TOP" value="100k" a="3V3_ADC" b="LDO_PGFB" mpn="RC0402FR-07100KL" jlc="C60491" n={n} />
+    <R name="R_LDO_PG_BOT_A" value="10k" a="LDO_PGFB" b="LDO_PGFB_BOT" mpn="RT0603BRD0710KL" jlc="C95204" footprint="0603" n={n} />
+    <R name="R_LDO_PG_BOT_B" value="1k" a="LDO_PGFB_BOT" b="GND" mpn="RT0603BRD071KL" jlc="C110776" footprint="0603" n={n} />
     <R name="R_OPA_BLEED1" value="100" a="3V3_ADC" b="OPA_BLEED_A" mpn="RC0402FR-07100RL" jlc="C106232" n={n} />
     <R name="R_OPA_BLEED2" value="100" a="OPA_BLEED_A" b="GND" mpn="RC0402FR-07100RL" jlc="C106232" n={n} />
     <Chip name="U_PWR" manufacturerPartNumber="TPS389001DSER" jlc="C1509297" footprint={<TiDse0006a />}

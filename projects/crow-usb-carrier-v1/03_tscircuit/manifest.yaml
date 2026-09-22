@@ -1,4 +1,4 @@
-# Source census: power18, analog354, digital107, USB8 (485 total).
+# Source census: power18, analog358, digital107, USB8 (489 total).
 components:
 - C_1V8_OK_VDD
 - C_A1N
@@ -339,6 +339,10 @@ components:
 - R_IN8N
 - R_IN8P
 - R_LDO_SET
+- R_LDO_ILIM
+- R_LDO_PG_BOT_A
+- R_LDO_PG_BOT_B
+- R_LDO_PG_TOP
 - R_MCLK
 - R_MCLK_OE_PU
 - R_MCLK_RAW_PD

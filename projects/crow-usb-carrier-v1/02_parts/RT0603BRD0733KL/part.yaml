@@ -11,6 +11,6 @@ limits: {resistance_ohm: 33000, tolerance: 0.1pct, tcr_ppm_C: 25, power_W_at_70C
 sourcing: {lcsc: C705768, note: '2026-09-09 https://www.lcsc.com/product-detail/C705768.html exact MPN/value/package/0.1pct identity; advisory catalog only, no PCBA availability/allocation', alternates: []}
 verified: Exact manufacturer specification and public catalog identity; local Kelvin SET return placement remains unreviewed.
 layout:
-  source: 'Exact YAGEO specification and LT3041 Rev.A p22; ADR0025'
+  source: 'Exact YAGEO specification and LT3045 Rev.D p15; retained 3.3V SET function'
   reviewed: '2026-09-09 source ownership only'
-  notes: ['The exact U_LDO SET9 to R_LDO_SET adjacency and pin-center bound live in the LT3041 dossier. The resistor ground must Kelvin-connect to the output-capacitor return.']
+  notes: ['The exact U_LDO SET7 to R_LDO_SET adjacency and pin-center bound live in the LT3045 dossier. The resistor ground must Kelvin-connect to the output-capacitor return.']

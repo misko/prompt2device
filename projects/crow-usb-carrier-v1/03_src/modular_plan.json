@@ -562,6 +562,10 @@
         "R_DUMP_PD",
         "R_DUMP_TIME1",
         "R_DUMP_TIME2",
+        "R_LDO_ILIM",
+        "R_LDO_PG_BOT_A",
+        "R_LDO_PG_BOT_B",
+        "R_LDO_PG_TOP",
         "R_LDO_SET",
         "R_OPA_BLEED1",
         "R_OPA_BLEED2",
@@ -578,7 +582,7 @@
       ],
       "responsibilities": [
         "Generate, supervise, precharge, and discharge the quiet analog supply without sharing switching-current loops.",
-        "Keep hold-up, LT3041, supervisor, enable, and dump loops physically coupled to their local storage nodes."
+        "Keep hold-up, LT3045, supervisor, enable, and dump loops physically coupled to their local storage nodes."
       ]
     },
     {
@@ -1479,15 +1483,15 @@
           "R_ADC_BOT.2",
           "R_AUDIO_PD.2",
           "R_DUMP_PD.2",
+          "R_LDO_ILIM.2",
+          "R_LDO_PG_BOT_B.2",
           "R_LDO_SET.2",
           "R_OPA_BLEED2.2",
           "R_PWR_BOT.2",
           "U_AUDIO.2",
           "U_DUMP.3",
-          "U_LDO.10",
           "U_LDO.11",
-          "U_LDO.15",
-          "U_LDO.7",
+          "U_LDO.8",
           "U_LDO_EN.3",
           "U_PWR.2"
         ],
@@ -1931,10 +1935,10 @@
           "C_OPA_BULK.1",
           "R_ADC_TOP.1",
           "R_DUMP.1",
+          "R_LDO_PG_TOP.1",
           "R_OPA_BLEED1.1",
-          "U_LDO.12",
-          "U_LDO.13",
-          "U_LDO.14"
+          "U_LDO.10",
+          "U_LDO.9"
         ]
       },
       "requirements": [
@@ -2044,8 +2048,6 @@
           "U_DUMP.5",
           "U_LDO.1",
           "U_LDO.2",
-          "U_LDO.3",
-          "U_LDO.8",
           "U_LDO_EN.5",
           "U_PWR.3",
           "U_PWR.4"
@@ -2435,7 +2437,7 @@
       "id": "power_thermal_copper",
       "owner": "board_integration",
       "requirements": [
-        "Allocate copper and thermal-via fields for input protection, buck conversion, three digital regulators, LT3041, and dump load.",
+        "Allocate copper and thermal-via fields for input protection, buck conversion, three digital regulators, LT3045, and dump load.",
         "Verify aggregate 5 V and downstream rail current capacity without narrowing at block boundaries."
       ]
     },

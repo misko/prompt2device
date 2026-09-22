@@ -1,9 +1,13 @@
 mpn: "RC0402FR-071ML"
+manufacturer: YAGEO
 footprint: "Resistor_SMD:R_0402_1005Metric"
 
 type: resistor
 value: "1MΩ"
 pins: {1: terminal_1, 2: terminal_2}
+datasheet:
+  url: https://www.yageogroup.com/component-documentation/download/specsheet/RC0402FR-071ML
+  provenance: "Exact-MPN manufacturer-generated specification inspected 2026-09-22; identifies YAGEO RC0402FR-071ML as a 1 MOhm, 1%, 0402/1005 thick-film resistor."
 sourcing:
   lcsc: C138033
   alternates: []

@@ -6,7 +6,7 @@ The exact Murata TPS62825 characteristic sheets explicitly say their curves are 
 
 The consumed `N5V_BUCK` efficiency remains 85%. At 5 V × 1.9 A, this means 1.676470588 W loss. With 70 °C ambient and a 125 °C junction ceiling, the selected JLC04161H-7628G four-layer 1 oz board must realize θJA ≤32.807017544 °C/W. TI’s 33.5 °C/W figure uses a four-layer 2 oz test-board basis and cannot prove the selected board. The 88% alternative produces 1.295454545 W and 42.456140351 °C/W, but mixing that result with an 85% worst-case contract was the reviewed inconsistency.
 
-The provisional digital rail allowances consume 1.184171123 A from the 4.95 V parent at the declared corners and 85% efficiency. Adding the retained 0.23 A quiet-analog screen leaves 0.485828877 A. This is an allocation remainder, not proof: direct 5 V devices, converter quiescent current, startup charging, and firmware-dependent XU current do not have a complete maximum census.
+The provisional digital rail allowances consume 1.184171123 A from the 4.95 V parent at the declared corners and 85% efficiency. Adding the reconciled 0.25 A quiet-analog screen leaves 0.465828877 A. This is an allocation remainder, not proof: direct 5 V devices, converter quiescent current, startup charging, and firmware-dependent XU current do not have a complete maximum census.
 
 ## Corrected E-CAP evidence boundary
 

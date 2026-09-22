@@ -1,0 +1,81 @@
+mpn: LT3045EDD#TRPBF
+note_dirname: Filesystem-safe spelling replaces the MPN hash with a hyphen; exact orderable MPN remains above.
+manufacturer: Analog Devices
+type: linear_ldo_regulator
+value: LT3045EDD#TRPBF
+status: active
+package: DFN-10-1EP_3x3mm_P0.5mm
+footprint: Package_DFN_QFN:DFN-10-1EP_3x3mm_P0.5mm_EP1.65x2.38mm_ThermalVias
+escape: {style: dfn, pitch: 0.5, escapes_worst_side: 5, tier_required: jlc_4layer_advanced, conditions: [outward_escape, exposed_pad_thermal_vias], checked: 'ADI DD drawing 05-08-1699 Rev C and installed KiCad 10 FPID inspected. Native footprint loads with electrical pads 1-11; outward escape only, with no between-pad lane assumed.'}
+datasheet:
+  doc_id: LT3045
+  revision: Rev. D November 2022
+  url: https://www.analog.com/media/en/technical-documentation/data-sheets/lt3045.pdf
+  local: LT3045_RevD.pdf
+  sha256: 9132e595759a58a0920e7c63997872df02ca9ce598ead76c6f7a31051405eba6
+  fetched: 2026-09-22
+  provenance: Direct public ADI URL fetched with wget after curl HTTP/2 failure; exact bytes hashed and pages 2-5, 11-22 and 29 inspected.
+pins: {1: IN, 2: IN, 3: EN_UV, 4: PG, 5: ILIM, 6: PGFB, 7: SET, 8: GND, 9: OUTS, 10: OUT, 11: GND}
+limits:
+  vin_operating_V: [2, 20]
+  output_current_A: 0.5
+  dropout_max_V_at_300mA: 0.35
+  dropout_max_V_at_500mA: 0.45
+  tj_max_C: 125
+  ground_current_max_at_500mA_A: 0.025
+  SET_current_full_range_A: [0.000098, 0.000102]
+  output_offset_full_range_V: [-0.002, 0.002]
+  SET_cap_max_uF: 22
+  shutdown_current_max_A: 0.000010
+programming:
+  rset: {ref: R_LDO_SET, nominal_ohm: 33000, tolerance: 0.001, nominal_vout_V: 3.3, full_range_screen_V: [3.228766, 3.371366], engineering_band_V: [3.22, 3.38], note: 'Includes resistor tolerance, full-temperature 98-102uA SET current and +/-2mV offset. The conservative 3.22-3.38V engineering band contains this result and remains within every actual held-load operating range; the prior 3.23-3.35V declaration was optimistic and no user hard limit supports it.'}
+  cset: {refs: [C_LDO_NR4, C_LDO_NR5], total_uF_nominal: 4.701, t90_ms_fast_start_disabled: 356.3859, noise_typ_uVrms_10Hz_100kHz: 0.8, note: '4.7uF is the Rev.D low-noise condition. PGFB fast start avoids the disabled-fast-start RC delay; exact ramp under candidate load remains an owed transient check.'}
+  ilim: {ref: R_LDO_ILIM, nominal_ohm: 300, specified_limit_A: [0.45, 0.55], source: 'Rev.D electrical table pp4-5. Existing 300ohm exact resistor dossier reused.'}
+  pgfb: {top: 'R_LDO_PG_TOP=100k 1%', bottom: 'R_LDO_PG_BOT_A=10k 0.1% plus R_LDO_PG_BOT_B=1k 0.1%', rising_output_threshold_nominal_V: 3.02727, rising_output_threshold_screen_V: [2.906, 3.149], effect: 'Fast-start current remains active until the output reaches the screened threshold; PG remains floating. Datasheet example is 10ms typical with 4.7uF and fast start, but candidate ramp is not guaranteed by that example.'}
+  enable: {source_net: LDO_EN, rising_range_V: [1.18, 1.32], hysteresis_typ_V: 0.13, note: '74LVC1G14 held-domain driver swings between GND and 5V_LDO_HOLD; native timing and transition measurement remain owed.'}
+rail_screen:
+  load_allocation_A: 0.25
+  capacity_margin_A: 0.25
+  capacity_ratio: 2.0
+  min_headroom_V: 0.72
+  dropout_margin_at_500mA_V: 0.27
+  dissipation_W_at_5V05_3V22_250mA_before_ground_current: 0.4575
+  conservative_dissipation_W_using_25mA_ground_current_bound: 0.58375
+  board_engineering_capacity_W: 0.650
+  max_ambient_C: 70
+  effective_theta_ja_max_C_per_W: 84.6
+  power_reserve_W: 0.06625
+  power_reserve_pct: 11.35
+  note: '250mA allocation incorporates the independent 224.831mA held-domain static audit plus 25.169mA reserve. The 25mA ground-current bound is specified at 500mA and is deliberately conservative here. The 650mW board capacity at 70C requires effective thetaJA <=84.6C/W to remain at or below the 125C E-grade junction limit. Native extraction and thermal measurement remain physical qualification.'
+stability:
+  input: 'C_LDO_IN is 47uF X7R, above the 4.7uF minimum; effective capacitance and input-loop geometry remain layout checks.'
+  output: 'C_LDO_OUT and C_OPA_BULK are separate 47uF X7R ceramics, above the 10uF minimum. Each installed effective capacitance must remain >=10uF; ESR must be <20mohm and ESL <2nH.'
+  minimum_load: 'The datasheet requires 10uA only when VOUT<1V. At 3.3V there is no specified minimum-load requirement; the retained 200ohm bleed also provides a large load while enabled.'
+sourcing:
+  lcsc: C514420
+  note: 'Architecture sourcing report dated 2026-09-22 records two independent exact-part pools for JLC C514420 / LT3045EDD#TRPBF. Volatile counts remain in the time-stamped sourcing evidence and must be rechecked at order staging.'
+  alternates: []
+verified: 'Primary Rev.D pin table, DD package drawing, TSX geometry and installed KiCad FPID inspected: left pads 1-5, right pads 10-6, EP11; 0.5mm pitch, 0.70x0.25mm outer lands and 1.65x2.38mm EP. Native FPID loads and exposes electrical pad numbers 1-11. JLC model/rotation, paste realization and realized board remain unreviewed.'
+gotchas:
+  - 'The 0.8uVrms noise figure is a typical datasheet value at 500mA with 4.7uF CSET, not a guaranteed board-level audio-noise result. Capacitor leakage, piezoelectric response, layout and actual load remain qualification items.'
+  - 'The PGFB divider enables fast startup with the larger CSET. The datasheet 10ms typical example is informative, not a candidate timing guarantee. Supervisor, hold-up, dump and ADC reset timing require joint transient review.'
+  - 'Programmed 450mA minimum current limit exceeds the 250mA allocation by 200mA. Short-circuit, dump, capacitor charging and fault energy remain qualification items.'
+  - 'EP11 and GND8 must be soldered/common. OUTS9 must Kelvin-sense the output-capacitor/load node; SET return joins the output-capacitor ground directly.'
+layout:
+  source: LT3045 Rev.D pp11-22 and DD package drawing p29
+  reviewed: '2026-09-22 source geometry and circuit ownership; native PCB acceptance not performed'
+  keep_short:
+    - {net: 5V_LDO_HOLD, anchor_pins: ['1', '2'], partner_refs: [C_LDO_IN], max_span_mm: 5, why: 'Local input ceramic.'}
+    - {net: 3V3_ADC, anchor_pins: ['10'], partner_refs: [C_LDO_OUT, C_OPA_BULK], max_span_mm: 5, why: 'Required low-ESR output capacitance.'}
+    - {net: 3V3_ADC, anchor_pins: ['9'], partner_refs: [C_LDO_OUT], max_span_mm: 5, why: 'Kelvin OUTS endpoint at output capacitor/load node.'}
+    - {net: LDO_NR, anchor_pins: ['7'], partner_refs: [C_LDO_NR4, C_LDO_NR5, R_LDO_SET], max_span_mm: 5, why: 'SET programming/noise network with quiet return.'}
+    - {net: LDO_ILIM, anchor_pins: ['5'], partner_refs: [R_LDO_ILIM], max_span_mm: 5, why: 'Current-limit programming resistor with Kelvin ground return.'}
+    - {net: LDO_PGFB, anchor_pins: ['6'], partner_refs: [R_LDO_PG_TOP, R_LDO_PG_BOT_A], max_span_mm: 5, why: 'Fast-start threshold divider.'}
+  adjacency:
+    - {refdes: [U_LDO, C_LDO_IN], nets: [5V_LDO_HOLD], max_mm: 3.5, why: 'Local input loop.'}
+    - {refdes: [U_LDO, C_LDO_OUT], nets: [3V3_ADC], max_mm: 3.5, why: 'Output and sense loop.'}
+    - {refdes: [U_LDO, R_LDO_ILIM], nets: [LDO_ILIM], max_mm: 4, why: 'ILIM programming loop.'}
+    - {refdes: [U_LDO, R_LDO_PG_TOP], nets: [LDO_PGFB], max_mm: 4, why: 'PGFB fast-start divider.'}
+layout_refs:
+  - {tier: 1, reached: true, artifact: 'LT3045 Rev.D pp11-22 and DD drawing p29', why: 'Primary pin, application, Kelvin, capacitor, thermal and package geometry authority.'}
+  - {tier: 2, reached: false, artifact: 'DC2637A editable evaluation layout', why: 'No evaluation copper imported; native layout realization and review remain owed.'}

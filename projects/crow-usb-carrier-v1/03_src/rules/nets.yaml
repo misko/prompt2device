@@ -51,7 +51,7 @@ classes:
     nets: [N5V_LDO_FEED, N5V_LDO_HOLD, N3V3_ADC]
     min_width: 0.5mm
     clearance: 0.2mm
-    current: 0.23A
+    current: 0.25A
     intent: Retained analog held rail and ADC supply distribution.
     routing: Keep charging, discharge and regulator loops away from analog input returns.
     verify: Quiet-rail load/hold-up/dropout and current-return review.

@@ -584,6 +584,10 @@ placement:
     - R_DUMP_PD
     - R_DUMP_TIME1
     - R_DUMP_TIME2
+    - R_LDO_ILIM
+    - R_LDO_PG_BOT_A
+    - R_LDO_PG_BOT_B
+    - R_LDO_PG_TOP
     - R_LDO_SET
     - R_OPA_BLEED1
     - R_OPA_BLEED2

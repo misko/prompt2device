@@ -154,13 +154,25 @@ effective_capacitance_banks:
     name: TPS62825 U_CORE output
     contributors:
       - {part: GRM32ER71A476KE15L, refs: [C_U_CORE_OUT_1], nominal_each_uF: 47, dielectric: x7r, tolerance_minus_pct: 10, dc_bias_derating_pct: 65, temperature_derating_pct: 15, lifecycle_derating_pct: 12.5, basis: conservative_engineering_bound_with_nominal_TI_LC_match, evidence: "Same conservative 35% retained-capacitance voltage estimate as the 3.3 V bank; lower bias can only improve the typical screen. After the separate temperature and lifecycle reserves, estimated effective capacitance is 11.011 uF against section 8.2.2.5's 10 uF minimum; startup/load-step proof remains due."}
+  - name: LT3045 input
+    requirement_uF: 4.7
+    requirement_evidence: ADI LT3045 Rev.D p18 requires at least 4.7 uF at IN.
+    accepted_dielectrics: [x7r]
+    contributors:
+      - {part: GRM32ER71A476KE15L, refs: [C_LDO_IN], nominal_each_uF: 47, dielectric: x7r, tolerance_minus_pct: 10, dc_bias_derating_pct: 65, temperature_derating_pct: 15, lifecycle_derating_pct: 12.5, basis: conservative_engineering_bound, evidence: "Exact K-tolerance PDF has no DC-bias curve. Reuse of the established 35% voltage-retention estimate at no more than 5.05 V plus separate temperature/lifecycle reserves gives 11.011 uF effective, above 4.7 uF. Input-loop damping remains a layout and transient obligation."}
+  - name: LT3045 output
+    requirement_uF: 10
+    requirement_evidence: ADI LT3045 Rev.D pp13,16 requires at least 10 uF with ESR below 20 milliohm and ESL below 2 nH.
+    accepted_dielectrics: [x7r]
+    contributors:
+      - {part: GRM32ER71A476KE15L, refs: [C_LDO_OUT, C_OPA_BULK], nominal_each_uF: 47, dielectric: x7r, tolerance_minus_pct: 10, dc_bias_derating_pct: 65, temperature_derating_pct: 15, lifecycle_derating_pct: 12.5, basis: conservative_engineering_bound, evidence: "Each capacitor independently estimates 11.011 uF effective at the conservative 3.3 V screen; together estimate 22.022 uF. ESR below 20 milliohm, ESL below 2 nH, Kelvin topology and load-step stability remain realized-layout qualifications."}
 
 rails:
   - {name: N5V_BUCK, vin_min: 11.006, vin_max: 13.2, vout_min: 4.95, vout_max: 5.05, iout_max_A: 1.9, converter: TPSM63603V5RDHR, eff: 0.85, external_output: false}
   - {name: N3V3X, vin_min: 4.95, vin_max: 5.05, vout_min: 3.267, vout_max: 3.333, iout_max_A: 1.0, converter: TPS6282533DMQR, input_parent: N5V_BUCK, eff: 0.85, external_output: false}
   - {name: N1V8, vin_min: 4.95, vin_max: 5.05, vout_min: 1.782, vout_max: 1.818, iout_max_A: 0.30, converter: TPS6282518DMQR, input_parent: N5V_BUCK, eff: 0.85, external_output: false}
   - {name: N0V9, vin_min: 4.95, vin_max: 5.05, vout_min: 0.88, vout_max: 0.92, iout_max_A: 1.2, converter: TPS62825DMQR, input_parent: N5V_BUCK, eff: 0.85, external_output: false}
-  - {name: N3V3_ADC, vin_min: 4.10, vin_max: 5.05, vout_min: 3.23, vout_max: 3.35, iout_max_A: 0.23, converter: LT3041ADE#TRPBF, input_parent: N5V_BUCK, dropout_mv: 500, pdiss_max_mw: 702, eff: 0.65, external_output: false}
+  - {name: N3V3_ADC, vin_min: 4.10, vin_max: 5.05, vout_min: 3.22, vout_max: 3.38, iout_max_A: 0.25, converter: LT3045EDD#TRPBF, input_parent: N5V_BUCK, dropout_mv: 450, pdiss_max_mw: 650, eff: 0.65, external_output: false}
   - &spoke
     name: N12V_POD1
     stage: distribution

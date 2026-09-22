@@ -189,3 +189,7 @@ Selected ASSMANN A-USB31C-20A-100 USB cable and Molex 226206-1022 150±4mm two-c
 ## Source-admission cross-check — 2026-09-22
 
 Reopened current74c94f08 source: EARLY-DESIGN4/4 families and A-SOURCE6/6 classes PASS. Control protocol is explicit N-A; label-survival schema passes with zero pin-map rows, which proves schema validity only. First-article contract still contains EXAMPLE_RAIL, so native rebuild hold remains intact. Assigned bounded SOL work for that source placeholder, the4 RJ45 source facts, packaging-equivalent ADC/film-cap sourcing, and LT3045 adoption. Root identified stale LT3045 candidate headroom/thermal arithmetic and QUIET_POWER current after the proposed voltage/current envelope change; correction requested before adoption.
+
+## LT3045 source adoption — 2026-09-22
+
+Adopted independently reviewed patch9606b2f753a65206c20a0214aaa1feadd2d57585fe60140ccd509a1b9c7934b5 plus root reconciliation of three block-interface endpoint maps and current sourcing CSV. Full source489refs/85MPNs/0errors; modular489/489 and54/54; digital70/70; TypeScriptPASS; E-CAP10banks and E-MARGIN9railsPASS. Actual source delta is4 new resistors and2 changed existing refs, with483 unaffected source identities/pin-net mappings checked. Thermal583.75mW versus650mW engineering capacity requires native realization at70C/84.6CperW; no physical qualification claim. Old485ref rendered-page receipts are superseded pending regeneration.

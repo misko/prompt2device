@@ -1,6 +1,10 @@
 mpn: "RC0402FR-07680RL"
+manufacturer: YAGEO
 footprint: "Resistor_SMD:R_0402_1005Metric"
 
 type: resistor
 value: "680Ω"
 pins: {1: terminal_1, 2: terminal_2}
+datasheet:
+  url: https://www.yageogroup.com/component-documentation/download/specsheet/RC0402FR-07680RL
+  provenance: "Exact-MPN manufacturer-generated specification inspected 2026-09-22; identifies YAGEO RC0402FR-07680RL as a 680 Ohm, 1%, 0402/1005 thick-film resistor."
