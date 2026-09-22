@@ -1,0 +1,14 @@
+mpn: GRM1555C1H102JA01D
+manufacturer: muRata
+type: capacitor
+value: 1nF
+status: active
+datasheet: {doc_id: GRM1555C1H102JA01-01A, revision: 20260613, url: 'https://search.murata.co.jp/Ceramy/image/img/A01X/G101/ENG/GRM1555C1H102JA01-01A.pdf', local: GRM1555C1H102JA01-01A.pdf, sha256: 805014e8a9a42ab11f8dd048f0cf32802dd3353b1d772118468e03222f9ec5d9, fetched: 2026-09-07, provenance: 'Direct Murata PDF; exact1nF±5%,50V,C0G±30ppm,0402,Dpaperreel.'}
+package: '0402'
+footprint: Capacitor_SMD:C_0402_1005Metric
+escape: {style: passive, pitch: 0.96, tier_required: jlc_2layer_default, checked: 'Exact public MPN/package identity2026-09-07; standard passive lands.'}
+pins: {1: A, 2: B}
+limits: {capacitance_f: 0.000000001, tolerance_pct: 5, voltage_v: 50, dielectric: C0G}
+verified: 'Exact manufacturer/MPN/code/value/package identified from public catalog2026-09-07; public identity not allocation. Primary series evidence and applied deratings are stated in ADR0009.'
+gotchas: ['Temperature/lifecycle and capacitor charge-injection screens are engineering bounds, not substituted manufacturer guarantees.']
+sourcing: {lcsc: C76947, alternates: []}

@@ -1,0 +1,25 @@
+mpn: CL10B224KA8NNNC
+manufacturer: Samsung Electro-Mechanics
+type: ceramic_capacitor
+value: 220nF
+datasheet:
+  doc_id: CL10B224KA8NNNC
+  revision: '2023-01-31'
+  url: https://product.samsungsem.com/part/download.do
+  local: Samsung_CL10B224KA8NNN_specsheet.pdf
+  sha256: 00c61e295f03297000302fb2c7b2e5d5557edba7ca3dd0989e872718e9aa89c2
+  fetched: '2026-09-08'
+  pages: 38
+  note: 'p1 exact CL10B224KA8NNNC C-suffix identity, dimensions and packaging: 220nF, 25V, X7R, 0603, 4000/reel, +/-10%; p2 specified test conditions. Manufacturer Reference Sheet, not an order-specific approval or guaranteed effective-capacitance curve. Existing engineering screening allocations remain engineering assumptions. Public POST masterKey=CL10B224KA8NNN&type=specsheet.'
+  product_page: https://product.samsungsem.com/mlcc/CL10B224KA8NNN.do
+  provenance: Manufacturer-authored PDF independently inspected from exact captured bytes on 2026-09-08; copied unchanged into this carrier dossier. Original public manufacturer endpoint https://product.samsungsem.com/part/download.do; immutable capture provenance retained in the 2026-09-08 authority-source packet. Local binding is not independent pin/footprint review, sourcing allocation, approval sheet, physical qualification or order release.
+package: "0603 (1608 metric)"
+footprint: Capacitor_SMD:C_0603_1608Metric
+escape: {style: passive, pitch: 0.8, tier_required: jlc_2layer_default, checked: "standard 0603 land, 2026-09-01"}
+pins: {1: A, 2: B}
+limits: {capacitance_f: 0.00000022, tolerance_pct: 10, voltage_v: 25, dielectric: X7R}
+asserts: [{assert: value, equals: 220n, tolerance_pct: 10, why: "VMID decoupling and reset timing."}]
+verified: "Exact MPN/code/value/package match selected 2026-09-01. A deliberately conservative screening allocation of -10% tolerance, -50% DC-bias loss, and -15% temperature loss leaves 84.15nF; this is not a manufacturer curve or a release performance claim."
+gotchas:
+  - "The 84.15nF screening floor is an engineering derating allocation, not guaranteed part data; raw-VMID ripple over rail, temperature, and lot remains a first-article hold."
+sourcing: {lcsc: C21120, alternates: []}

@@ -1,0 +1,23 @@
+mpn: GCM1555C1H681JA16D
+manufacturer: Murata Electronics
+type: ceramic_capacitor
+value: 680pF
+status: active
+datasheet:
+  doc_id: GCM1555C1H681JA16D
+  revision: '2026-04-05'
+  url: https://pim.murata.com/asset/pim4/ceramicCapacitorSMD/GCM1555C1H681JA16-01A-EN_PDF_CERAMICCAPACITORSMD?lastModifiedDatetime=20260715162731
+  local: Murata_GCM1555C1H681JA16-01A-EN.pdf
+  sha256: 60c98e61fbcb539527be8601d71edea758b1622b3be792f3d2df46f228d6ab00
+  fetched: '2026-09-08'
+  pages: 32
+  note: 'p2 GCM1555C1H681JA16-01A exact family plus D packaging: 680pF +/-5%, DC50V C0G, 0402/1005, dimensions 1.0x0.5x0.5mm nominal, D paper W8P2 10000/reel. Specifications as of Apr.5,2026. Reference sheet requires approval sheet before ordering; typical characteristics and board-level application performance are not guarantees.'
+  provenance: Manufacturer-authored PDF independently inspected from exact captured bytes on 2026-09-08; copied unchanged into this carrier dossier. Original public manufacturer endpoint https://pim.murata.com/asset/pim4/ceramicCapacitorSMD/GCM1555C1H681JA16-01A-EN_PDF_CERAMICCAPACITORSMD?lastModifiedDatetime=20260715162731; immutable capture provenance retained in the 2026-09-08 authority-source packet. Local binding is not independent pin/footprint review, sourcing allocation, approval sheet, physical qualification or order release.
+package: "0402 (1005 metric)"
+footprint: Capacitor_SMD:C_0402_1005Metric
+escape: {style: passive, pitch: 0.5, tier_required: jlc_2layer_default, checked: "exact Murata 0402 identity reviewed 2026-09-01"}
+pins: {1: A, 2: B}
+limits: {capacitance_f: 0.00000000068, tolerance_pct: 5, voltage_v: 50, dielectric: C0G}
+asserts: [{assert: value, equals: 680p, tolerance_pct: 5, why: "Cirrus feedback capacitor requires stable Class-I dielectric."}]
+verified: "Exact Murata MPN/code/value/50V/C0G/0402 match read from the LCSC exact-product record on 2026-09-01."
+sourcing: {lcsc: C126514, alternates: []}

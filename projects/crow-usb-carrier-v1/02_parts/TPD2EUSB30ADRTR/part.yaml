@@ -1,0 +1,43 @@
+mpn: TPD2EUSB30ADRTR
+manufacturer: Texas Instruments
+type: esd_protection_array
+datasheet:
+  doc_id: SLVSAC2
+  revision: G
+  url: https://www.ti.com/lit/ds/symlink/tpd2eusb30a.pdf
+  sha256: a2c0dd845043a5bbfe610f673879c29e38649544385dea51dbe0a4c49df39136
+  fetched: '2026-09-22'
+package: DRT 3-pin SOT, 1.0 x 0.8 mm
+footprint: Package_TO_SOT_SMD:Texas_DRT-3
+pins:
+  '1': DP
+  '2': DM
+  '3': GND
+escape:
+  style: sot
+  pitch: 0.7
+  tier_required: jlc_2layer_default
+  checked: 2026-09-22 selected land geometry compared to manufacturer drawing page27;
+    routed escape remains owed
+limits:
+  operating_voltage_max_V: 3.6
+  absolute_io_voltage_max_V: 4
+  capacitance_typ_pF: 0.7
+  operating_temperature_C: -40 to 85
+sourcing:
+  lcsc: C94934
+gotchas:
+- Data-line protection only; do not connect to 5V VBUS or CC.
+- Use A suffix; non-A version has different standoff and breakdown ratings.
+- Place at receptacle with short low-inductance GND return; component ESD rating is
+  not board ESD qualification.
+- Current source discovery proves catalog identity only; live two-source and assembly
+  stock checks remain owed.
+verified: 2026-09-22 datasheet pin table page3 and limits page4 reopened; standard
+  footprint three 0.3mm lands, 0.7mm data pitch and 0.85mm row separation compared
+  to page27. Full-board parity and protection coordination remain owed.
+layout:
+  source: SLVSAC2G.pdf pages11 and27
+  reviewed: '2026-09-22'
+  notes: Short flow-through data path at J_USB, shortest practical GND return into
+    continuous ground plane.

@@ -1,0 +1,143 @@
+mpn: TPD2E2U06DRLR
+manufacturer: Texas Instruments
+type: two_channel_low_capacitance_esd_protection_array
+value: TPD2E2U06DRLR
+status: active
+datasheet:
+  doc_id: SLLSEG9
+  revision: SLLSEG9C
+  url: https://www.ti.com/lit/ds/symlink/tpd2e2u06.pdf
+  local: TPD2E2U06_SLLSEG9C.pdf
+  sha256: a133b86ea3d3c3d34667339b92d3b5e98d541d10e9775d63e7cdfa153794f4ed
+  fetched: 2026-09-02
+  pages: 23
+  provenance: Downloaded directly from ti.com; the committed PDF matches the declared SHA-256 and includes the exact DRLR
+    order row and DRL/SOT-553 pin map.
+package: DRL SOT-553 P0.5mm
+footprint: Package_TO_SOT_SMD:SOT-553
+escape:
+  style: leaded
+  pitch: 0.5
+  tier_required: jlc_2layer_default
+  checked: TI SLLSEG9C DRL top view and package drawing reviewed 2026-09-01
+pins:
+  1: NC
+  2: NC
+  3: IO1
+  4: GND
+  5: IO2
+limits:
+  working_voltage: 5.5V
+  line_capacitance_typical: 1.5pF
+  contact_discharge: 25kV
+  air_gap_discharge: 30kV
+  peak_pulse_current_8_20us: 5.5A
+  clamp_voltage_typical_at_1a: 9.7V
+gotchas:
+- Pins 1 and 2 are NC in DRL. They may float or be tied to ground/VCC per TI, but are not protected channels.
+- Route connector to IO pin first and onward to the protected circuit; a long branch to the clamp defeats the low-inductance
+  ESD path.
+- Component IEC ratings do not by themselves qualify a complete cable, connector, enclosure, or system.
+verified: 'CITED: TI SLLSEG9C DRL top view and Pin Functions table, PDF p.3, independently fix 1=NC, 2=NC, 3=IO1, 4=GND, 5=IO2;
+  electrical/ESD tables PDF pp.3-5 fix the stated limits; re-read 2026-09-01.'
+layout:
+  source: TI SLLSEG9C Section 10 Layout and Figure 10-1, PDF pp.11-12
+  reviewed: '2026-09-08'
+  route_topology:
+    kind: shunt
+    signal_pads:
+    - '3'
+    - '5'
+    return_pads:
+    - '4'
+    source: 'TI SLLSEG9C p.3 DRL pin table: independent protected IO1/IO2 and GND; NC1/NC2 are not signal paths. Reopened
+      2026-09-07.'
+  notes:
+  - Place immediately at the external connector, ahead of downstream routing.
+  - Use a short, broad GND path with a nearby ground via and avoid stubs on IO1/IO2.
+  - 'Carrier local-placement source 2026-09-08: exact-ref/non-ground-net adjacency is a rotation-aware copper-bounding-box
+    gap, NOT pad-center distance or routed length. Rounded engineering ceilings below are not manufacturer numerical maxima.
+    Ground pours are excluded by P-ADJ-PAIR; local return/thermal/escape proof remains owed on the later saved PCB.'
+  - Source-only pin-center plan uses <=5mm local bypass/BST and <=10mm feedback ceilings, with separately named bulk/input/feed
+    exceptions. See 01_docs/SOURCE-CORRECTION-20260908-local-placement.md for all 299 roles and exact source geometry; no
+    current-board acceptance is inherited.
+  - 'PROPOSED ADR0030 candidate4: top rear cell; preserve no-stub IO, ordinary 45-degree connector prefixes and short 0.50mm GND launch to dedicated
+    nearby through via. Independent engineering acceptance owed.'
+  adjacency:
+  - refdes:
+    - U_ESD1
+    - J1
+    nets:
+    - AUDIO_P1
+    - AUDIO_N1
+    max_mm: 7.7
+    why: 'PROPOSED ADR0030 candidate4: rear-side clamp native copper gap; path prefix and GND drop separately bounded.'
+  - refdes:
+    - U_ESD2
+    - J2
+    nets:
+    - AUDIO_P2
+    - AUDIO_N2
+    max_mm: 7.7
+    why: 'PROPOSED ADR0030 candidate4: rear-side clamp native copper gap; path prefix and GND drop separately bounded.'
+  - refdes:
+    - U_ESD3
+    - J3
+    nets:
+    - AUDIO_P3
+    - AUDIO_N3
+    max_mm: 7.7
+    why: 'PROPOSED ADR0030 candidate4: rear-side clamp native copper gap; path prefix and GND drop separately bounded.'
+  - refdes:
+    - U_ESD4
+    - J4
+    nets:
+    - AUDIO_P4
+    - AUDIO_N4
+    max_mm: 7.7
+    why: 'PROPOSED ADR0030 candidate4: rear-side clamp native copper gap; path prefix and GND drop separately bounded.'
+  - refdes:
+    - U_ESD5
+    - J5
+    nets:
+    - AUDIO_P5
+    - AUDIO_N5
+    max_mm: 7.7
+    why: 'PROPOSED ADR0030 candidate4: rear-side clamp native copper gap; path prefix and GND drop separately bounded.'
+  - refdes:
+    - U_ESD6
+    - J6
+    nets:
+    - AUDIO_P6
+    - AUDIO_N6
+    max_mm: 7.7
+    why: 'PROPOSED ADR0030 candidate4: rear-side clamp native copper gap; path prefix and GND drop separately bounded.'
+  - refdes:
+    - U_ESD7
+    - J7
+    nets:
+    - AUDIO_P7
+    - AUDIO_N7
+    max_mm: 7.7
+    why: 'PROPOSED ADR0030 candidate4: rear-side clamp native copper gap; path prefix and GND drop separately bounded.'
+  - refdes:
+    - U_ESD8
+    - J8
+    nets:
+    - AUDIO_P8
+    - AUDIO_N8
+    max_mm: 7.7
+    why: 'PROPOSED ADR0030 candidate4: rear-side clamp native copper gap; path prefix and GND drop separately bounded.'
+layout_refs:
+- tier: 1
+  reached: true
+  artifact: TI SLLSEG9C Section 10 and Figure 10-1
+  why: Manufacturer authority fixes connector-first flow-through routing and the low-inductance ground return.
+- tier: 2
+  reached: false
+  artifact: exact TPD2E2U06DRL editable reference layout
+  why: No exact editable manufacturer board was retained; the package-specific layout example is authoritative.
+sourcing:
+  lcsc: C1972959
+  alternates: []
+  note: Exact MPN/code match queried from the live JLC catalog 2026-09-01; order-time allocation remains separate.

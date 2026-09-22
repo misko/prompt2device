@@ -1,0 +1,23 @@
+mpn: GRM2195C1H153JA01D
+manufacturer: Murata Electronics
+type: ceramic_capacitor
+value: 15nF
+status: active
+datasheet:
+  doc_id: GRM2195C1H153JA01D
+  revision: '2026-06-24'
+  url: https://pim.murata.com/asset/pim4/ceramicCapacitorSMD/GRM2195C1H153JA01-01A-EN_PDF_CERAMICCAPACITORSMD?lastModifiedDatetime=20260730165451
+  local: Murata_GRM2195C1H153JA01-01A-EN.pdf
+  sha256: bbac4b8492989790f1e2223c4f47fb18c9f8fc3731973990a40dcfa70db85b33
+  fetched: '2026-09-08'
+  pages: 33
+  note: 'p2 GRM2195C1H153JA01-01A exact family plus D packaging: 15000pF +/-5%, DC50V C0G, 0805/2012, nominal2.0x1.25x0.85mm, D paper W8P4 4000/reel. Specifications as of Jun.24,2026. Reference sheet requires approval sheet before ordering; typical characteristics are not guaranteed application behavior.'
+  provenance: Manufacturer-authored PDF independently inspected from exact captured bytes on 2026-09-08; copied unchanged into this carrier dossier. Original public manufacturer endpoint https://pim.murata.com/asset/pim4/ceramicCapacitorSMD/GRM2195C1H153JA01-01A-EN_PDF_CERAMICCAPACITORSMD?lastModifiedDatetime=20260730165451; immutable capture provenance retained in the 2026-09-08 authority-source packet. Local binding is not independent pin/footprint review, sourcing allocation, approval sheet, physical qualification or order release.
+package: "0805 (2012 metric)"
+footprint: Capacitor_SMD:C_0805_2012Metric
+escape: {style: passive, pitch: 1.0, tier_required: jlc_2layer_default, checked: "exact Murata 0805 identity reviewed 2026-09-01"}
+pins: {1: A, 2: B}
+limits: {capacitance_f: 0.000000015, tolerance_pct: 5, voltage_v: 50, dielectric: C0G}
+asserts: [{assert: value, equals: 15n, tolerance_pct: 5, why: "Cirrus differential filter capacitor requires stable Class-I dielectric."}]
+verified: "Exact Murata MPN/code/value/50V/C0G/0805 match read from the LCSC exact-product record on 2026-09-01."
+sourcing: {lcsc: C97907, alternates: []}

@@ -1,0 +1,40 @@
+mpn: R82DC4100DQ60J
+manufacturer: KEMET
+type: metallized_polyester_film_capacitor
+value: 1uF
+status: active
+datasheet:
+  doc_id: R82DC4100DQ60J
+  revision: generated-2026-09-02
+  url: https://search.kemet.com/component-documentation/download/specsheet/R82DC4100DQ60J
+  local: R82DC4100DQ60J_specsheet.pdf
+  sha256: 2aa26ed87a41bae3038953b2d16a7e00a35ba3ce77baa9e49e5303e469ac90e1
+  fetched: 2026-09-02
+  pages: 1
+  provenance: "Generated and downloaded from KEMET's exact-order-code specification endpoint on 2026-09-02; the committed PDF identifies R82DC4100DQ60J and its PET dielectric, value, voltage, tolerance and package."
+package: "radial THT, 5.00 mm pitch, 7.2 x 5.0 x 10.0 mm nominal body"
+footprint: Capacitor_THT:C_Rect_L7.2mm_W5.0mm_P5.00mm
+escape: {style: through_hole, pitch: 5.0, tier_required: jlc_2layer_default, checked: "KiCad installed KEMET R82 module: 5.00 mm pitch, 1.5 mm pads, 0.75 mm drills; reviewed 2026-09-01"}
+pins: {1: A, 2: B}
+limits:
+  capacitance_f: 0.000001
+  tolerance_pct: 5
+  voltage_v: 63
+  dielectric: metallized_stacked_PET
+  operating_temperature: "-55C to +105C"
+  body_mm: [7.2, 5.0, 10.0]
+  body_tolerance_mm: {length_plus: 0.3, length_minus: 0.5, width_plus: 0.1, width_minus: 0.5, height_plus: 0.1, height_minus: 0.5}
+  lead_pitch_mm: 5.0
+  lead_pitch_tolerance_mm: 0.4
+  lead_diameter_mm: 0.50
+  lead_diameter_tolerance_mm: 0.05
+asserts:
+  - {assert: value, equals: 1u, tolerance_pct: 5, why: "AN0556 signal-path coupling requires the exact stable-dielectric value."}
+verified: "CITED: official KEMET exact spec identifies active AEC-Q200 R82DC4100DQ60J as 1uF +/-5%, 63V stacked metallized PET, 5.00mm-pitch radial THT, body and lead dimensions above; read 2026-09-01."
+gotchas:
+  - "Manual THT population only until an exact JLC process response exists; LCSC stock is not PCBA allocation evidence."
+  - "The 10.1mm maximum body height and sixteen ground-plane perforations require placement, enclosure, and return-path review."
+sourcing:
+  lcsc: C183545
+  alternates: []
+  note: "Exact MPN/code match and catalog stock observed 2026-09-01; assembly.yaml keeps all sixteen parts off the JLC CPL pending THT process evidence."

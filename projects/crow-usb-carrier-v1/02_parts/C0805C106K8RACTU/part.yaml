@@ -1,0 +1,33 @@
+mpn: C0805C106K8RACTU
+manufacturer: KEMET
+type: ceramic_capacitor
+value: 10uF
+status: active
+datasheet:
+  doc_id: C0805C106K8RACTU
+  revision: generated-2026-09-02
+  url: https://search.kemet.com/component-documentation/download/specsheet/C0805C106K8RACTU
+  local: C0805C106K8RACTU_specsheet.pdf
+  sha256: 4af66e539dd2a46d29dab98f03a5b6f845fda228a66910f71af7e939270f60ad
+  fetched: 2026-09-02
+  pages: 4
+  provenance: "Generated and downloaded from KEMET's exact-order-code specification endpoint on 2026-09-02; the committed PDF identifies C0805C106K8RACTU."
+package: "0805 (2012 metric)"
+footprint: Capacitor_SMD:C_0805_2012Metric
+escape: {style: passive, pitch: 1.0, tier_required: jlc_2layer_default, checked: "standard 0805 land and exact KEMET package reviewed 2026-09-01"}
+pins: {1: A, 2: B}
+limits:
+  capacitance_f: 0.000010
+  tolerance_pct: 10
+  voltage_v: 10
+  dielectric: X7R
+  operating_temperature: "-55C to +125C"
+asserts:
+  - {assert: value, equals: 10u, tolerance_pct: 10, why: "CS5308P differential ADC reference-filter support capacitor with conservative effective-capacitance margin."}
+verified: "CITED: exact active KEMET C0805C106K8RACTU is 10uF +/-10%, 10V X7R in 0805; selected 2026-09-01."
+gotchas:
+  - "The E-CAP screen charges 50% DC-bias, 15% temperature and 10% lifecycle losses in addition to tolerance; physical reference settling/ripple/THD remain first-article holds."
+sourcing:
+  lcsc: C2167576
+  alternates: []
+  note: "Exact MPN/code identity selected 2026-09-01; observed catalog stock is not frozen and order-time JLC allocation remains separate."

@@ -1,0 +1,115 @@
+mpn: TPS389001DSER
+manufacturer: Texas Instruments
+type: adjustable_supply_supervisor
+value: TPS389001DSER
+status: active
+datasheet: {doc_id: SLVSD65A, revision: SLVSD65A, url: 'https://www.ti.com/lit/ds/symlink/tps3890.pdf', local: TPS3890_SLVSD65A.pdf, sha256: ee79599730e7606ba9718d9820b411020e3dcd9ff7d44572f8ee63fead15b9d0, fetched: 2026-09-07, provenance: 'Direct TI primary PDF; exact bytes and package drawings independently reopened by source author.'}
+package: 'TI_DSE0006A'
+footprint: crow_usb_analog:TI_DSE0006A_Exact
+escape: {style: dfn, pitch: 0.5, tier_required: jlc_4layer_advanced, checked: 'TI land drawing inspected2026-09-07; engineered0.18mm covered GNDtoe added2026-09-16, original paste retained; pads1-3 mask derived from explicit TI SMD detail; pad1 upper left in PCB top view.'}
+pins: {1: SENSE, 2: GND, 3: MR_N, 4: VDD, 5: CT, 6: RESET_N}
+limits: {vdd_min_V: 1.5, vdd_max_V: 5.5, threshold_V: 1.15, threshold_tolerance_pct: 1, sense_leakage_max_nA: 100, ct_current_min_uA: 0.90, ct_current_max_uA: 1.35}
+gotchas: ['RESET is open drain; pull-up required.', 'Sense detection8us at5.5V and18us at3.3V are TYPICAL, not guaranteed maxima.', 'Manufacturer-derived pin1 land is0.8mm long, other original apertures0.7mm. Engineered pin2 GND copper extends0.18mm outward to0.88mm; original0.7x0.25mm paste retained separately; pads1-3 mask openings inset0.05mm from original copper, derived from p25 SMD detail. No exposed pad or via-in-pad.', 'CT threshold1.17..1.29V; MR must remain high throughout programmed delay.']
+verified: 'Primary pin-function table and exact orderable suffix; package land drawing visually inspected2026-09-07. See ADR0009 for modeled versus measured distinction.'
+layout:
+  source: SLVSD65A package land drawing and layout section; engineered covered pin2 ground toe preserves original paste; explicit SMD mask detail governs pads1-3
+  reviewed: '2026-09-08'
+  notes:
+  - Local100nF bypass to uninterrupted ground plane; preserve exact thermal-pad and pin1 identity.
+  - 'Carrier local-placement source 2026-09-08: exact-ref/non-ground-net adjacency is a rotation-aware copper-bounding-box gap, NOT pad-center
+    distance or routed length. Rounded engineering ceilings below are not manufacturer numerical maxima. Ground pours are excluded by P-ADJ-PAIR;
+    local return/thermal/escape proof remains owed on the later saved PCB.'
+  - Source-only pin-center plan uses <=5mm local bypass/BST and <=10mm feedback ceilings, with separately named bulk/input/feed exceptions. See
+    01_docs/SOURCE-CORRECTION-20260908-local-placement.md for all 299 roles and exact source geometry; no current-board acceptance is inherited.
+  - C_PWR and C_AUDIO own each exact supervisor VDD4 despite MR3 sharing the HOLD rail on U_PWR. CT capacitors own pin5 separately. The exact-pair
+    consumer cannot prove VDD4 versus MR3 on their shared net; that pin distinction is retained in source geometry/regression evidence and must
+    be inspected on the later PCB.
+  adjacency:
+  - refdes:
+    - U_PWR
+    - C_PWR
+    nets:
+    - 5V_LDO_HOLD
+    max_mm: 1.5
+    why: 'Engineering copper-gap ceiling: local-bypass; exact partner, selected non-poured net only.'
+  - refdes:
+    - U_AUDIO
+    - C_AUDIO
+    nets:
+    - 5V_LDO_HOLD
+    max_mm: 2.5
+    why: 'Engineering copper-gap ceiling: local-bypass; exact partner, selected non-poured net only.'
+  - refdes:
+    - U_PWR
+    - C_PWR_CT
+    nets:
+    - PWR_CT
+    max_mm: 2.0
+    why: 'Engineering copper-gap ceiling: local-timing; exact partner, selected non-poured net only.'
+  - refdes:
+    - U_AUDIO
+    - C_AUDIO_CT1
+    nets:
+    - AUDIO_CT
+    max_mm: 3.0
+    why: 'Engineering copper-gap ceiling: local-timing; exact partner, selected non-poured net only.'
+  - refdes:
+    - U_AUDIO
+    - C_AUDIO_CT2
+    nets:
+    - AUDIO_CT
+    max_mm: 3.0
+    why: 'Engineering copper-gap ceiling: local-timing; exact partner, selected non-poured net only.'
+  - refdes:
+    - U_PWR
+    - R_PWR_TOP
+    nets:
+    - PWR_SENSE
+    max_mm: 3.5
+    why: 'Engineering copper-gap ceiling: local-control; exact partner, selected non-poured net only.'
+  - refdes:
+    - U_PWR
+    - R_PWR_BOT
+    nets:
+    - PWR_SENSE
+    max_mm: 1.5
+    why: 'Engineering copper-gap ceiling: local-control; exact partner, selected non-poured net only.'
+  - refdes:
+    - U_PWR
+    - R_PWR_PU
+    nets:
+    - PWR_EN
+    max_mm: 2.5
+    why: 'Engineering copper-gap ceiling: local-control; exact partner, selected non-poured net only.'
+  - refdes:
+    - U_AUDIO
+    - R_ADC_TOP
+    nets:
+    - ADC_SENSE
+    max_mm: 3.5
+    why: 'Engineering copper-gap ceiling: local-control; exact partner, selected non-poured net only.'
+  - refdes:
+    - U_AUDIO
+    - R_ADC_BOT
+    nets:
+    - ADC_SENSE
+    max_mm: 5
+    why: 'Engineering copper-gap ceiling: local-control; exact partner, selected non-poured net only.'
+  - refdes:
+    - U_AUDIO
+    - R_AUDIO_PU
+    nets:
+    - AUDIO_EN
+    max_mm: 2.5
+    why: 'Engineering copper-gap ceiling: local-control; exact partner, selected non-poured net only.'
+  - refdes:
+    - U_AUDIO
+    - R_AUDIO_PD
+    nets:
+    - AUDIO_EN
+    max_mm: 3.5
+    why: 'Engineering copper-gap ceiling: local-control; exact partner, selected non-poured net only.'
+layout_refs:
+  - {tier: 1, reached: true, artifact: 'SLVSD65A exact land drawing', why: 'Manufacturer dimensional and pin authority.'}
+  - {tier: 2, reached: false, artifact: 'Exact editable carrier power-state reference', why: 'No identical manufacturer application; first-article qualification remains required.'}
+sourcing: {lcsc: C1509297, alternates: [], note: 'Public exact-MPN identity checked2026-09-07; no order-time allocation or purchase claimed.'}

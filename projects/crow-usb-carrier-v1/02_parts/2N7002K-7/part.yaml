@@ -1,0 +1,56 @@
+mpn: 2N7002K-7
+manufacturer: Diodes Incorporated
+type: small_signal_n_channel_mosfet
+value: 2N7002K-7
+status: active
+datasheet:
+  doc_id: DS30896
+  revision: "Rev. 20-2"
+  url: https://www.diodes.com/datasheet/download/2N7002K.pdf
+  local: 2N7002K_DS30896_Rev20-2.pdf
+  sha256: 669e5d68d6458e0879d7396416bdcdb3ef9966ea60f054773d4c891d735aa818
+  fetched: 2026-09-02
+  pages: 8
+  provenance: "Downloaded directly from diodes.com; the committed PDF matches the declared SHA-256 and includes the exact -7 tape-and-reel suffix and SOT23 pin map."
+package: "SOT-23 P0.95mm"
+footprint: crow_usb_analog:Diodes_2N7002K_SOT23_Exact
+escape: {style: leaded, pitch: 0.95, tier_required: jlc_2layer_default, checked: "Diodes DS30896 Rev. 20-2 SOT23 top view and suggested pad layout reviewed 2026-09-01"}
+pins: {1: G, 2: S, 3: D}
+limits: {vds_max: 60V, vgs_max: "+/-20V", id_continuous_max: 300mA, operating_temperature: "-55C to +150C"}
+gotchas:
+  - "2026-09-11 source erratum: stock SOT-23 0.600mm pad width misses the DS30896 p.7 extreme terminal envelope by0.015/0.030mm; use exact suggested0.90x0.80mm lands at x+/-1.00,y+/-0.95/0. Native pin1 upper-left=G, pin2 lower-left=S, pin3 right=D. Independent review and primary figures: journal d2ae8a6316df79e4ed257efc6212c9de35dcec8cc303e04c93951e8f8a17eddc.tar.gz."
+  - "This MOSFET is suitable for low-current open-drain/control work, not as a protected 12V load switch."
+  - "The equivalent-circuit symbol and top-view drawing independently place gate on pin 1, source on pin 2, and drain on pin 3."
+verified: "CITED: Diodes DS30896 Rev. 20-2 pin configuration and equivalent-circuit top-view figures, PDF p.1, independently fix pin 1=G, pin 2=S, pin 3=D; re-read 2026-09-01."
+layout:
+  source: Diodes DS30896 suggested pad layout, PDF p.7
+  reviewed: '2026-09-08'
+  notes:
+  - Place beside the controlled node; keep gate and source return short and keep the gate away from the buck SW copper.
+  - 'Carrier local-placement source 2026-09-08: exact-ref/non-ground-net adjacency is a rotation-aware copper-bounding-box gap, NOT pad-center
+    distance or routed length. Rounded engineering ceilings below are not manufacturer numerical maxima. Ground pours are excluded by P-ADJ-PAIR;
+    local return/thermal/escape proof remains owed on the later saved PCB.'
+  - Source-only pin-center plan uses <=5mm local bypass/BST and <=10mm feedback ceilings, with separately named bulk/input/feed exceptions. See
+    01_docs/SOURCE-CORRECTION-20260908-local-placement.md for all 299 roles and exact source geometry; no current-board acceptance is inherited.
+  adjacency:
+  - refdes:
+    - Q_RST1
+    - R_RESET_PU
+    nets:
+    - ADC_RESET_N
+    max_mm: 2.5
+    why: 'Engineering copper-gap ceiling: local-control; exact partner, selected non-poured net only.'
+  - refdes:
+    - Q_RST1
+    - R_RESET_GPD
+    nets:
+    - RESET_PULSE_H
+    max_mm: 1.5
+    why: 'Engineering copper-gap ceiling: local-control; exact partner, selected non-poured net only.'
+layout_refs:
+  - {tier: 1, reached: true, artifact: "Diodes DS30896 exact suggested pad layout, PDF p.7", why: "Manufacturer authority fixes the SOT23 land and orientation for this exact pin assignment."}
+  - {tier: 2, reached: false, artifact: "exact 2N7002K routed manufacturer reference", why: "No exact editable routed reference is needed for this local low-current control FET; the manufacturer land is authoritative."}
+sourcing:
+  lcsc: C85047
+  alternates: []
+  note: "Exact MPN/code match queried from the live JLC catalog 2026-09-01; order-time allocation remains separate."

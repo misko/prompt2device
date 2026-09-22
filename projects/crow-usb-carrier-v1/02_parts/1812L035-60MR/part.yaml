@@ -1,0 +1,137 @@
+mpn: 1812L035/60MR
+manufacturer: Littelfuse
+type: resettable_pptc_fuse
+value: 1812L035/60MR
+status: active
+note_dirname: Filesystem-safe spelling of the exact orderable MPN, whose slash cannot be a directory character.
+datasheet:
+  doc_id: 1812L Series
+  revision: GD06/10/24
+  url: https://www.megastar.com/content/pdfs/1812L-Datasheet-Update.pdf
+  local: Littelfuse_1812L_GD20240610_Megastar.pdf
+  sha256: a18b5ceec6d56cd31b20da55341ed1b35a48184f1f7fff8ca8bc6948cd8fb974
+  fetched: '2026-09-08'
+  pages: 8
+  note: 'p2 exact 1812L035/60 electrical row: 0.35A hold, 0.70A trip, 60V, 10A maximum fault current, Rmin 0.400 ohm and R1max
+    1.700 ohm; p6 dimensions; p7 exact 1812L035/60MR 1000/reel ordering row. Temperature rerating and average trip curves
+    remain reference data, not application qualification. Explicitly supersedes the previously declared unavailable digest
+    b7c31967db6e941770783e852135ff101b831b49aedcf40f25576d4ce2b3cf1e with the actual locally inspected bytes.'
+  provenance: Manufacturer-authored PDF independently inspected from exact captured bytes on 2026-09-08; copied unchanged
+    into this carrier dossier. Public distributor mirror https://www.megastar.com/content/pdfs/1812L-Datasheet-Update.pdf;
+    original manufacturer endpoint https://www.littelfuse.com/assetdocs/resettable-ptcs-1812l-datasheet?assetguid=ca5c80cb-504e-4a8a-8e74-0107520a1717
+    had access failures in capture history. No access restriction was bypassed. Local binding is not independent pin/footprint
+    review, sourcing allocation, approval sheet, physical qualification or order release.
+package: 1812 / 4532 metric surface-mount PPTC
+footprint: crow_usb_analog:Littelfuse_1812L035_60_Exact
+escape:
+  style: passive
+  pitch: 5.23
+  tier_required: jlc_2layer_default
+  checked: Littelfuse GD06/10/24 p6 exact published 1.78x3.15mm lands, 3.45mm inner gap; source correction 2026-09-11, regenerated
+    placement review owed
+pins:
+  1: PTC1
+  2: PTC2
+limits:
+  hold_current_20c: 0.35A
+  trip_current_20c: 0.70A
+  voltage_max: 60VDC
+  fault_current_max: 10A
+  power_dissipation_typical: 1.0W
+  max_trip_time: 0.15s at 8.0A
+  resistance_initial_min: 0.400Ohm
+  resistance_post_trip_max: 1.700Ohm
+  hold_current_70c: 0.20A
+  hold_current_85c: 0.16A
+gotchas:
+- Pad 1 is local left and pad 2 local right; electrically nonpolar. Exact published family lands replace stock 1812 copper.
+  Maximum-body F.Fab is 4.73x3.41mm; courtyard encloses body and copper with >=0.25mm clearance. Geometry is not thermal trip
+  or assembly-process qualification. Independent source review df2f98a2383b8f2729b092668414dc3138f6165573b85c070eb57a9212d85afe.tar.gz
+  is retained in 01_docs/journal; fresh generated pin/layout review remains owed.
+- This is a thermally operated resettable protector, not a precision current limiter. Trip time, ambient, copper heat sinking,
+  prior trip history, and airflow all matter.
+- Use the published 1.700Ohm R1max for the normal-path voltage budget; do not substitute initial or typical resistance.
+- The carrier part protects the spoke cable and pre-pod path. The pod's 0ZCJ0010FF2E is the lower-current downstream-board
+  tier. Both tiers still require fault tests.
+verified: 'CITED: Littelfuse 2024 electrical table fixes 1812L035/60 at 0.35A hold, 0.70A trip, 60V, 10A, 8A/0.15s, 0.400Ohm
+  Rmin and 1.700Ohm R1max; ambient table fixes 0.20A at 70C and 0.16A at 85C; ordering table fixes exact 1812L035/60MR.'
+layout:
+  source: Littelfuse 1812L dimensions and recommended pad layout, 2024 PDF pp.6-7
+  reviewed: '2026-09-08'
+  notes:
+  - Place in series at the protected branch origin with copper appropriate to the fault and steady-state current.
+  - Keep it away from the buck converter and other heat sources; intentional copper area changes its thermal behavior and
+    must be consistent across channels.
+  - 'Carrier local-placement source 2026-09-08: exact-ref/non-ground-net adjacency is a rotation-aware copper-bounding-box
+    gap, NOT pad-center distance or routed length. Rounded engineering ceilings below are not manufacturer numerical maxima.
+    Ground pours are excluded by P-ADJ-PAIR; local return/thermal/escape proof remains owed on the later saved PCB.'
+  - Source-only pin-center plan uses <=5mm local bypass/BST and <=10mm feedback ceilings, with separately named bulk/input/feed
+    exceptions. See 01_docs/SOURCE-CORRECTION-20260908-local-placement.md for all 299 roles and exact source geometry; no
+    current-board acceptance is inherited.
+  adjacency:
+  - refdes:
+    - F1
+    - J1
+    nets:
+    - 12V_POD1
+    max_mm: 5.0
+    why: 'PROPOSED ADR0030: closest side-courtyard fuse pad edge4.845mm; preserve original current, voltage and fault limits.'
+  - refdes:
+    - F2
+    - J2
+    nets:
+    - 12V_POD2
+    max_mm: 5.0
+    why: 'PROPOSED ADR0030: closest side-courtyard fuse pad edge4.845mm; preserve original current, voltage and fault limits.'
+  - refdes:
+    - F3
+    - J3
+    nets:
+    - 12V_POD3
+    max_mm: 5.0
+    why: 'PROPOSED ADR0030: closest side-courtyard fuse pad edge4.845mm; preserve original current, voltage and fault limits.'
+  - refdes:
+    - F4
+    - J4
+    nets:
+    - 12V_POD4
+    max_mm: 5.0
+    why: 'PROPOSED ADR0030: closest side-courtyard fuse pad edge4.845mm; preserve original current, voltage and fault limits.'
+  - refdes:
+    - F5
+    - J5
+    nets:
+    - 12V_POD5
+    max_mm: 5.0
+    why: 'PROPOSED ADR0030: closest side-courtyard fuse pad edge4.845mm; preserve original current, voltage and fault limits.'
+  - refdes:
+    - F6
+    - J6
+    nets:
+    - 12V_POD6
+    max_mm: 5.0
+    why: 'PROPOSED ADR0030: closest side-courtyard fuse pad edge4.845mm; preserve original current, voltage and fault limits.'
+  - refdes:
+    - F7
+    - J7
+    nets:
+    - 12V_POD7
+    max_mm: 5.0
+    why: 'PROPOSED ADR0030: closest side-courtyard fuse pad edge4.845mm; preserve original current, voltage and fault limits.'
+  - refdes:
+    - F8
+    - J8
+    nets:
+    - 12V_POD8
+    max_mm: 5.0
+    why: 'PROPOSED ADR0030: closest side-courtyard fuse pad edge4.845mm; preserve original current, voltage and fault limits.'
+layout_refs:
+- tier: 1
+  reached: true
+  artifact: Littelfuse 1812L 2024 electrical, ambient-derating, dimensions, pad-layout, and ordering tables
+  why: Manufacturer authority fixes the exact /60 electrical row, temperature derating, package geometry, and MR ordering
+    suffix.
+sourcing:
+  lcsc: C3761431
+  alternates: []
+  note: Exact MPN/code match queried from the live JLC catalog 2026-09-01; order-time allocation remains a separate gate.

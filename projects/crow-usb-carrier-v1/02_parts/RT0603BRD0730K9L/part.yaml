@@ -1,0 +1,28 @@
+mpn: RT0603BRD0730K9L
+manufacturer: YAGEO
+type: thin_film_resistor
+value: 30.9k
+status: active
+datasheet: {doc_id: RT, revision: V17_20260212, url: 'https://www.yageogroup.com/content/datasheet/asset/file/PYU-RT_1-TO-0-01_ROHS_L', local: Yageo_RT_v17_20260212.pdf, sha256: 00a9148c2958122200e8a93292e389392a795adcfe40562d6ca4f690d1e5d7d1, fetched: 2026-09-07, provenance: 'Direct manufacturer PDF. B=.1%, D=25ppm/C; endurance/solderheat ±0.5%+0.05ohm are not replaced by prototype allowance.'}
+package: '0603'
+footprint: crow_usb_analog:Yageo_RT0603_NominalBody
+escape: {style: passive, pitch: 1.65, tier_required: jlc_2layer_default, checked: 'Exact public MPN/package identity2026-09-07; standard passive lands.'}
+pins: {1: A, 2: B}
+limits: {resistance: 30.9kOhm, tolerance: 0.1pct, temperature_coefficient: 25ppm_per_C, power: 100mW}
+verified: 'Exact manufacturer/MPN/code/value/package identified from public catalog2026-09-07; public identity not allocation. Primary series evidence and applied deratings are stated in ADR0009.'
+gotchas: ['Temperature/lifecycle and capacitor charge-injection screens are engineering bounds, not substituted manufacturer guarantees.']
+sourcing: {lcsc: C861313, alternates: []}
+
+layout:
+  source: https://yageogroup.com/content/Resource%20Library/Product%20Guide-Catalog/yageo_PYu-R_Mount_10_19050818_343.pdf
+    ; Yageo_Chip_Resistors_Mounting_V10.pdf SHA256 591634ace247f61e9c6a263ca1ac98d7672fc163f5e87334c3460956f5c68b7b
+    ; V10 2018-02-13 p4 Fig4/Table1
+  reviewed: '2026-09-11'
+  notes:
+  - 'RT V17 p6 explicitly refers to this document. Mounting p4 Fig4/Table1 reflow0603:
+    A2.60/B0.80/C0.90/D0.80mm. Existing pads0.80x0.95mm at +/-0.825mm are a compatible
+    standard pattern per independent review2026-09-11; they are not an exact manufacturer
+    nominal copy. The +/-0.25mm figure is placement accuracy, not land-size tolerance.
+    No assembly-process/order acceptance. Preserve native copper; nominal STEP1.6x0.8x0.45mm
+    is not maximum-body geometry1.7x0.9x0.55mm. Review archive 35fb5e4d6ae4cbb024232e072c16d7c6f55b8cd28da34ce7393d39e80ccb4132.tar.gz.'
+  - "Source-only Fab correction2026-09-11:1.60x0.80mm now matches nominal RT body; pads/courtyard/model remain unchanged from stock KiCad R_0603_1608Metric. Actual native pad corner radius0.20mm, not the0.15mm given in review input. Rounded pad area0.725664mm2, still above manufacturer rectangular0.720mm2; root correction does not claim assembly-process qualification. Pin1 localleft (5V_BUCK), pin2 localright (PWR_SENSE). Fresh native pin/body review owed."

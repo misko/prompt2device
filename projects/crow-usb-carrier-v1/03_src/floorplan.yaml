@@ -30,7 +30,7 @@ board:
     footprint: MountingHole:MountingHole_3.2mm_M3
     at: [[23.5, 23.5], [71.5, 23.5], [23.5, 61.5], [71.5, 61.5]]
 
-libraries: [/usr/share/kicad/footprints]
+libraries: [/usr/share/kicad/footprints, 03_src/lib]
 
 placement:
   # anchors are PINNED — the legalizer never moves them
@@ -74,6 +74,62 @@ placement:
     # is in_bom yes -> footprint_symbol_mismatch parity error. Clear it.
     - match: "SJ*"
       clear_attrs: [exclude_from_bom]
+    # Draft component-local model sources only; no placement or registration adopted.
+    - match:
+      - J1
+      - J2
+      - J3
+      - J4
+      - J5
+      - J6
+      - J7
+      - J8
+      model_override: ${KIPRJMOD}/../03_src/lib/3dmodels/wurth/J_Wurth_WR-MJ_615008160221.step
+    - match:
+      - F1
+      - F2
+      - F3
+      - F4
+      - F5
+      - F6
+      - F7
+      - F8
+      model_override: ${KIPRJMOD}/../03_src/lib/3dmodels/derived/Littelfuse_1812L035_60_max-envelope.wrl
+    - match:
+      - C_A1P
+      - C_A1N
+      - C_A2P
+      - C_A2N
+      - C_A3P
+      - C_A3N
+      - C_A4P
+      - C_A4N
+      - C_A5P
+      - C_A5N
+      - C_A6P
+      - C_A6N
+      - C_A7P
+      - C_A7N
+      - C_A8P
+      - C_A8N
+      model_override: ${KIPRJMOD}/../03_src/lib/3dmodels/kicad/C_Rect_L7.2mm_W5.0mm_P5.00mm.step
+    - match:
+      - U_ADC
+      model_override: ${KIPRJMOD}/../03_src/lib/3dmodels/derived/Cirrus_CS5308P_QFN48_nominal.wrl
+    - match:
+      - U_ISO1
+      - U_ISO2
+      - U_ISO3
+      - U_ISO4
+      - U_ISO5
+      - U_ISO6
+      - U_ISO7
+      - U_ISO8
+      model_override: ${KIPRJMOD}/../03_src/lib/3dmodels/derived/TI_DSG0008A_nominal.wrl
+    - match:
+      - U_PWR
+      - U_AUDIO
+      model_override: ${KIPRJMOD}/../03_src/lib/3dmodels/derived/TI_DSE0006A_nominal.wrl
   legalize: {enable: true, clearance: 0.25, edge_margin: 1.0, hole_keepout: 2.6, ring_max: 40}
 
 design_rules:

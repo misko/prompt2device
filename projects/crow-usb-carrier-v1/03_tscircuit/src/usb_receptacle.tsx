@@ -1,6 +1,6 @@
 // Draft component-level source. No firmware or complete board is defined here.
 // Native land/hole geometry is owned by the exact part dossier and KiCad library.
-// Caller supplies the tscircuit footprint representation and sheet placement.
+// Default TSX lands mirror the native footprint; sheet placement is independent.
 export const usbReceptacleMpn = "USB4105-GF-A-120"
 export const usbReceptacleContacts = {
   pin1: "A1_GND", pin2: "A4_VBUS", pin3: "A5_CC1", pin4: "A6_DP",
@@ -24,10 +24,35 @@ export function usbReceptacleConnections(n: UsbNets) {
   }
 }
 
+// Native aliases map these numbered TSX ports to manufacturer contact names.
+// Four manufacturer-defined power lands have two logical contacts each.
+export const usbContactLands = [
+  [-3.2, 0.6], [-2.4, 0.6], [-1.25, 0.3], [-0.25, 0.3],
+  [0.25, 0.3], [1.25, 0.3], [2.4, 0.6], [3.2, 0.6],
+  [3.2, 0.6], [2.4, 0.6], [1.75, 0.3], [0.75, 0.3],
+  [-0.75, 0.3], [-1.75, 0.3], [-2.4, 0.6], [-3.2, 0.6],
+] as const
+
+export function UsbReceptacleFootprint() {
+  return <footprint>
+    {usbContactLands.map(([x, width], i) => <smtpad
+      portHints={[String(i + 1)]} pcbX={x} pcbY={-3.68}
+      width={width} height={1.15} shape="rect" />)}
+    {[-4.32, 4.32].map(x => <platedhole portHints={["17"]}
+      pcbX={x} pcbY={-3.105} shape="pill" outerWidth={1} outerHeight={2.1}
+      holeWidth={0.6} holeHeight={1.7} />)}
+    {[-4.32, 4.32].map(x => <platedhole portHints={["17"]}
+      pcbX={x} pcbY={1.075} shape="pill" outerWidth={1} outerHeight={1.8}
+      holeWidth={0.6} holeHeight={1.4} />)}
+    {[-2.89, 2.89].map(x => <hole pcbX={x} pcbY={-2.605}
+      diameter={0.65} />)}
+  </footprint>
+}
+
 // Pins6/14 (SBU1/2) intentionally have no connection in USB2-only operation.
 // The complete schematic must preserve explicit NC annotations in native output.
-export function UsbReceptacle({ nets, footprint, schX = 0, schY = 0 }:
-  { nets: UsbNets; footprint: any; schX?: number; schY?: number }) {
+export function UsbReceptacle({ nets, footprint = UsbReceptacleFootprint(), schX = 0, schY = 0 }:
+  { nets: UsbNets; footprint?: any; schX?: number; schY?: number }) {
   return <chip name="J_USB" manufacturerPartNumber={usbReceptacleMpn}
     supplierPartNumbers={{jlcpcb: ["C5184243"]}}
     pinLabels={usbReceptacleContacts} connections={usbReceptacleConnections(nets)}

@@ -1,0 +1,16 @@
+mpn: RT0603BRD0710KL
+manufacturer: YAGEO
+type: thin_film_resistor
+value: 10k
+status: active
+datasheet: {doc_id: RT, revision: V17_20260212, url: 'https://www.yageogroup.com/content/datasheet/asset/file/PYU-RT_1-TO-0-01_ROHS_L', local: Yageo_RT_v17_20260212.pdf, sha256: 00a9148c2958122200e8a93292e389392a795adcfe40562d6ca4f690d1e5d7d1, fetched: 2026-09-07, provenance: 'Direct manufacturer PDF. B=.1%, D=25ppm/C; endurance/solderheat ±0.5%+0.05ohm are not replaced by prototype allowance.'}
+package: '0603'
+footprint: Resistor_SMD:R_0603_1608Metric
+escape: {style: passive, pitch: 1.65, tier_required: jlc_2layer_default, checked: 'Exact public MPN/package identity2026-09-07; standard passive lands.'}
+pins: {1: A, 2: B}
+limits: {resistance: 10kOhm, tolerance: 0.1pct, temperature_coefficient: 25ppm_per_C, power: 100mW}
+verified: 'Exact manufacturer/MPN/code/value/package identified from public catalog2026-09-07; public identity not allocation. Primary series evidence and applied deratings are stated in ADR0009.'
+gotchas:
+  - 'Temperature/lifecycle and capacitor charge-injection screens are engineering bounds, not substituted manufacturer guarantees.'
+  - 'ADR0024 also uses this exact existing identity for R_VMID1/2_TOP/BOT. Initial tolerance is0.1percent; no correlation or matched-network tracking is assumed. It does not turn the reference leakage or hot/lifetime first-article screen into a manufacturer guarantee.'
+sourcing: {lcsc: C95204, alternates: []}

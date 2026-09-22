@@ -1,0 +1,24 @@
+mpn: CRCW12061R00FKEAHP
+manufacturer: Vishay Draloric
+type: thick_film_resistor
+value: 1
+status: active
+datasheet:
+  doc_id: '20043'
+  revision: 2026-03-17
+  url: https://www.vishay.com/docs/20043/crcwhpe3.pdf
+  local: CRCW_HP_20043_20260317.pdf
+  sha256: 07214eb07fe16cbf2458623ecf67aa89c73e0665d59e60d83f54e97f0287e3a3
+  fetched: 2026-09-07
+package: '1206 (3216 metric)'
+footprint: Resistor_SMD:R_1206_3216Metric
+escape: {style: passive, pitch: 3.0, tier_required: jlc_2layer_default, checked: 'Manufacturer 20043 package and ordering table, reviewed 2026-09-07'}
+pins: {1: A, 2: B}
+limits: {resistance: 1Ohm, tolerance: 1pct, power: 750mW, voltage: 200V, operating_temperature: '-55C to +155C'}
+asserts:
+  - {assert: value, equals: 1, why: 'Retain Cirrus 1ohm positive reference feed; increase thermal and pulse capability.'}
+verified: 'Primary pp1-3: CRCW1206 / 1R00 / F=1% / K=100ppm/K / EA reel / HP pulse-proof high-power. Public exact C844653 identity checked 2026-09-07; no stock/allocation or assembled-board pulse qualification claimed.'
+gotchas:
+  - '750mW P70 requires assembled thermal resistance <=110K/W; linear ambient derating to 155C gives 617.6mW at85C. Board thermal/pulse acceptance remains owed with power redesign.'
+  - 'Never infer complete startup proof from the HP suffix; qualify the actual charging pulse against primary pulse curves and board temperature.'
+sourcing: {lcsc: C844653, alternates: []}

@@ -1,0 +1,23 @@
+mpn: RC0402FR-070RL
+manufacturer: YAGEO
+type: thick_film_resistor
+value: 0
+status: active
+datasheet:
+  doc_id: RC0402FR-series
+  revision: generated2026-09-08
+  url: https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-070RL
+  local: Yageo_RC0402FR-070RL_20260908.pdf
+  sha256: 86e35763f809c9aa780f4e8ad0d3d6f71b57a3d3afdeb5f523837e5a29da9813
+  fetched: '2026-09-08'
+  pages: 1
+  note: p1 exact RC0402FR-070RL identity and authored resistance value, +/-1%, 0402/1005 dimensions, nominal0.063W at70C (rounded display; retained1/16W limit is not increased), -55..155C, 50V and 178mm tape-and-reel. Generated09/08/2026. Application-suitability disclaimer remains. Nonfatal malformed optional Suspects metadata was observed; text and raster rendering succeeded and exact PDF bytes are preserved. Exact FR zero-ohm part exists; no JR substitution. Nominal zero is not a guaranteed zero-resistance or unbounded-current specification.
+  provenance: Manufacturer-authored PDF independently inspected from exact captured bytes on 2026-09-08; copied unchanged into this carrier dossier. Original public manufacturer endpoint https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-070RL; immutable capture provenance retained in the 2026-09-08 authority-source packet. Local binding is not independent pin/footprint review, sourcing allocation, approval sheet, physical qualification or order release.
+package: "0402 (1005 metric)"
+footprint: Resistor_SMD:R_0402_1005Metric
+escape: {style: passive, pitch: 0.5, tier_required: jlc_2layer_default, checked: "exact YAGEO 0402 identity reviewed 2026-09-01"}
+pins: {1: A, 2: B}
+limits: {resistance: 0Ohm, tolerance: 1pct, power: 62.5mW, voltage: 50V}
+asserts: [{assert: value, equals: 0, why: "Replaceable ADC hardware-mode strap."}]
+verified: "Exact YAGEO FR-series zero-ohm MPN/code/package match selected 2026-09-01; the JR suffix is not authored."
+sourcing: {lcsc: C106231, alternates: []}

@@ -1,0 +1,33 @@
+mpn: RC0402FR-075K1L
+manufacturer: Yageo
+type: thick_film_resistor
+datasheet:
+  doc_id: RC0402FR-075K1L
+  revision: generated 2026-08
+  url: https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-075K1L
+  sha256: 0bcbc957e8dbe626207e05a781770b902d29455d7e1774084d60452b5477d575
+  fetched: 2026-08-13
+package: 0402 1005 metric
+footprint: Resistor_SMD:R_0402_1005Metric
+escape:
+  style: passive
+  pitch: 0.5
+  tier_required: jlc_2layer_default
+  checked: Standard 0402 footprint reference; full-board escape remains owed.
+limits:
+  resistance: 5.1kOhm
+  tolerance: 1pct
+  power_70C: 62.5mW
+  voltage: 50V
+  temperature_coefficient: 100ppm_per_C
+  operating_temperature: -55C_to_155C
+asserts:
+- assert: value
+  equals: 5.1k
+  tolerance_pct: 1
+  why: each USB Type-C sink CC pin requires its own 5.1k Rd and the selected exact
+    code is 1 percent
+verified: '2026-09-22 retained Yageo exact-MPN specsheet reopened: 5.1kOhm, 1 percent,
+  0402, 0.063W at70C, 50V. Fresh full-board checks remain owed.'
+sourcing:
+  lcsc: C105872

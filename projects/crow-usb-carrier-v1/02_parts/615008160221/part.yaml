@@ -1,0 +1,85 @@
+mpn: '615008160221'
+manufacturer: Wurth Elektronik
+type: shielded_nonmagnetic_rj45_receptacle
+value: '615008160221'
+status: active
+datasheet:
+  doc_id: '615008160221'
+  revision: '001.003'
+  url: https://www.we-online.com/components/products/datasheet/615008160221.pdf
+  local: Wurth_615008160221_rev001003.pdf
+  sha256: 6ed18749211d4e6cbffd99cd0b90461dfe4ec6d70f558ceceeb5901651f0e048
+  fetched: '2026-09-12'
+package: WR-MJ horizontal shielded EMI Tab Up Cat6, THT8P8C plus2shieldtabs
+footprint: crow_usb_analog:Wurth_615008160221_RJ45
+mates: receptacle
+escape:
+  style: connector
+  pitch: 2.04
+  tier_required: jlc_2layer_default
+  checked: escape_check.py --style connector --pitch2.04, 2026-09-12; eight signal
+    contacts two staggered rows
+pins:
+  1: CONTACT_1
+  2: CONTACT_2
+  3: CONTACT_3
+  4: CONTACT_4
+  5: CONTACT_5
+  6: CONTACT_6
+  7: CONTACT_7
+  8: CONTACT_8
+  9: SHIELD_S1
+  10: SHIELD_S2
+limits:
+  rated_current_a: 1.5
+  working_voltage_v_ac: 150
+  contact_resistance_max_mohm: 20
+  operating_temperature_min_c: -40
+  operating_temperature_max_c: 85
+  mating_cycles: 750
+  pcb_nominal_thickness_mm: 1.6
+gotchas:
+- Plain contacts, no magnetics or LEDs. Used for analog audio and DC, not Ethernet/PoE.
+- Audio positive uses contact5, negative4; power1/3/7, return2/6/8.
+- Two shield tabs are electrically represented as9/10. Carrier CHASSIS and pod POD_SHIELD
+  are separate from signal GND.
+- Manufacturer generic solder caution supplies no qualified manual iron process; manual
+  assembly qualification remains owed.
+- Compact body covers signal pins. Pod U3 underside proposal requires independent
+  architecture and exact bottom-side clearance/route/assembly review.
+- Free EMI fingers exceed nominal body width and height. Do not use body dimensions
+  as assembled maximum.
+verified: Primary drawing pages1/2 inspected; manufacturer native KiCad footprint/model
+  independently corroborated by root. Source candidate pending review and generated
+  pin/orientation/assembly acceptance.
+layout:
+  source: Manufacturer615008160221rev001.003 hole/body authority and KiCad_WR-MJrev26c; project-derived shell lands and edge silk
+  reviewed: '2026-09-12'
+  notes:
+  - Shell lands are project-derived 2.5 x 1.5 mm ovals around unchanged 2 x 1 mm
+    slots, with 0.25 mm nominal annulus; see primary-source-record.md for derivation.
+  - Board-safe forward side silk ends at local y=-5.50 mm; outboard mouth line
+    and marker are omitted. Hole pattern, signal pads, body and model are unchanged.
+  - Preserve connector-first ESD and isolated chassis shell; qualify fully populated
+    plug access and panelbond.
+layout_refs:
+- tier: 1
+  reached: true
+  artifact: 615008160221 drawing and native KiCad footprint/model
+  why: Exact manufacturer hole/pin/body/mating authority.
+- tier: 2
+  reached: false
+  artifact: Manufacturer editable application board
+  why: Native footprint/model are available; no complete analog spoke board reference
+    was identified. Exact placement/routing remain project-owned.
+sourcing:
+  lcsc: null
+  alternates: []
+  note: Manual fitted exact part; live allocation remains owed.
+
+# 2026-09-13 append-only nominal free-state Fab derivation:
+# Native circular sections add all four lateral EMI fingers; exactly coincident
+# end lines represented once. Original shell/hole/courtyard/model retained.
+# Fab union is full-feature expectation; independent shell and drill checks
+# remain required. STEP is nominal CAD, not manufacturing tolerance authority.
+# Exact derivation and current footprint SHA are in primary-source-record.md.
