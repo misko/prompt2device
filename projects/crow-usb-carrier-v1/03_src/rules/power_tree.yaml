@@ -152,10 +152,14 @@ rails:
       branch PPTC maximum is quantified; missing copper/joint/contact resistance
       deliberately leaves zero proven delivery headroom.
     distribution:
-      series_devices: [1812L035-60MR]
+      kind: passive_pptc
+      series_devices: [1812L035/60MR]
       path_resistance_max_mohm: 1700
-      current_limit_min_A: 0.10
-      current_limit_max_A: UNBOUNDED_PPTC_TRIP_CURRENT_IS_NOT_A_HARD_LIMIT
+      hold_current_reference_A: 0.20
+      hold_current_reference_temperature_C: 70
+      operating_ambient_max_C: 70
+      hold_current_reference_grade: manufacturer_reference
+      hold_current_reference_locator: Littelfuse 1812L primary datasheet, ambient rerating table, 1812L035/60 row, 70 C column
       reverse_current_policy: External pods contain no admitted source; hot plug and downstream backfeed are prohibited.
   - {<<: *spoke, name: N12V_POD2}
   - {<<: *spoke, name: N12V_POD3}

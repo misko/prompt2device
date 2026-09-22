@@ -123,3 +123,8 @@
 - did: replaced load-cell floorplan geometry/labels with a Crow-specific four-layer exploratory canvas and exact modular region seeds. Corrected SOL proposal by excluding connector refs from region patterns, since require_anchor alone does not override patterns.
 - result: all 422 refs accounted, 411 region seeds and 11 intentionally unresolved connector poses; no PCB generated. Routing seed replacement and final native stackup remain open.
 - next: close connector geometry and review actual capacitance policy/evidence boundary; retain commissioning hold.
+
+## 2026-09-22 — iterate 25
+- did: adopted reviewed passive distribution reader and regression fixtures, updated template/project key ledgers, and replaced Crow hard-limit placeholders with typed normal-load PPTC reference data.
+- result: topology tests65/65, early-design52/52. Crow topology13/13 PASS; E-FAULT missing proof FAIL and eight E-MARGIN failures retained. Reader limitations documented separately from engineering acceptance.
+- next: assess active per-spoke limiter proposal against actual source/thermal behavior and finish capacitor evidence review.

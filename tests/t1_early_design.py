@@ -710,5 +710,174 @@ def t_fault_conflicting_applicability():
               "contradictory E-FAULT applicability", "mutually exclusive")
 
 
+PASSIVE_RAIL = """  - name: POD1
+    stage: distribution
+    vin_min: 11.2
+    vin_max: 13.2
+    vout_min: 10.8
+    vout_max: 13.2
+    iout_max_A: 0.1
+    distribution:
+      kind: passive_pptc
+      series_devices: [1812L035-60MR]
+      path_resistance_max_mohm: 1700
+      hold_current_reference_A: 0.2
+      hold_current_reference_temperature_C: 70
+      operating_ambient_max_C: 70
+      hold_current_reference_grade: manufacturer_reference
+      hold_current_reference_locator: manufacturer table 1812L035/60 70 C column
+      reverse_current_policy: downstream sources prohibited
+"""
+
+PASSIVE_FAULT = """passive_distribution_faults:
+  - rail: POD1
+    series_device: 1812L035-60MR
+    prospective_current_min_A: 8
+    prospective_current_max_A: 9
+    prospective_current_evidence_grade: qualified_bound
+    prospective_current_evidence_locator: fault-current extraction report section 4
+    fault_current_withstand_A: 10
+    fault_current_withstand_evidence_grade: guaranteed_rating
+    fault_current_withstand_evidence_locator: manufacturer electrical table Imax
+    ambient_min_C: 70
+    ambient_max_C: 70
+    maximum_trip_time_envelope:
+      - current_A: 8
+        time_max_s: 0.15
+        temperature_C: 70
+        evidence_grade: guaranteed_maximum
+        evidence_locator: manufacturer maximum-time table exact row
+    post_trip_leakage_max_A: 0.08
+    post_trip_evidence_grade: guaranteed_maximum
+    post_trip_evidence_locator: manufacturer hot-state leakage qualification
+    protected_path_sustained_current_max_A: 0.1
+    protected_path_sustained_current_evidence_grade: qualified_minimum
+    protected_path_sustained_current_evidence_locator: cable connector copper load continuous qualification
+    let_through_energy_max_J: 18
+    protected_path_withstand_J: 20
+    energy_withstand_evidence_grade: qualified_minimum
+    energy_withstand_evidence_locator: cable connector copper load report section 7
+"""
+
+
+def with_passive_fault(power=POWER, qualification=PASSIVE_FAULT):
+    return power.replace("fault_envelopes:\n", qualification +
+                         "fault_envelopes:\n").replace(
+                             "  - name: LOGIC\n", PASSIVE_RAIL +
+                             "  - name: LOGIC\n")
+
+
+@test("E-FAULT separately qualifies a passive distribution fault envelope")
+def t_passive_fault_envelope_pass():
+    r = must_pass(run([sys.executable, ED,
+                       project(power=with_passive_fault()),
+                       "--fault-envelope"]), "passive fault qualification")
+    contains(r.out, "E-FAULT passive POD1", "passive fault verdict")
+
+
+@test("passive normal metadata cannot bypass missing fault qualification",
+      kind="known_bad")
+def t_passive_missing_fault_qualification_fails():
+    bad = with_passive_fault(qualification="")
+    must_fail(run([sys.executable, ED, project(power=bad),
+                   "--fault-envelope"]), "missing passive fault envelope",
+              "normal E-TOPO hold-current PASS does not qualify fault clearing")
+
+
+@test("passive PPTC N-A aggregate declaration still needs branch fault proof",
+      kind="known_bad")
+def t_passive_fault_cannot_hide_behind_aggregate_na():
+    start = POWER.index("fault_envelopes:\n")
+    end = POWER.index("rails:\n", start)
+    aggregate_na = (POWER[:start] +
+        "no_fault_envelope_requirements: no shared constrained path\n" +
+        POWER[end:]).replace("  - name: LOGIC\n", PASSIVE_RAIL +
+                            "  - name: LOGIC\n")
+    must_fail(run([sys.executable, ED, project(power=aggregate_na),
+                   "--fault-envelope"]), "passive fault hidden by N-A",
+              "passive PPTC rails require")
+
+
+@test("qualified passive branches cannot bypass aggregate coordination with N-A",
+      kind="known_bad")
+def t_passive_fault_qualified_but_aggregate_na_fails():
+    start = POWER.index("fault_envelopes:\n")
+    end = POWER.index("rails:\n", start)
+    aggregate_na = (POWER[:start] + PASSIVE_FAULT +
+        "no_fault_envelope_requirements: no shared constrained path\n" +
+        POWER[end:]).replace("  - name: LOGIC\n", PASSIVE_RAIL +
+                            "  - name: LOGIC\n")
+    must_fail(run([sys.executable, ED, project(power=aggregate_na),
+                   "--fault-envelope"]), "passive aggregate N-A bypass",
+              "is forbidden when passive_pptc rails exist")
+
+
+@test("passive trip coverage rejects current interpolation", kind="known_bad")
+def t_passive_fault_rejects_current_interpolation():
+    bad_fault = PASSIVE_FAULT.replace("      - current_A: 8",
+                                      "      - current_A: 0.05")
+    must_fail(run([sys.executable, ED,
+                   project(power=with_passive_fault(qualification=bad_fault)),
+                   "--fault-envelope"]), "passive trip current interpolation",
+              "interpolation is not permitted")
+
+
+@test("passive trip coverage rejects hot-point interpolation to cold corner",
+      kind="known_bad")
+def t_passive_fault_rejects_temperature_interpolation():
+    bad_fault = PASSIVE_FAULT.replace("    ambient_min_C: 70",
+                                      "    ambient_min_C: -40")
+    must_fail(run([sys.executable, ED,
+                   project(power=with_passive_fault(qualification=bad_fault)),
+                   "--fault-envelope"]), "passive trip temperature interpolation",
+              "interpolation is not permitted")
+
+
+@test("passive trip evidence rejects typical curves", kind="known_bad")
+def t_passive_fault_rejects_typical_trip_data():
+    bad_fault = PASSIVE_FAULT.replace(
+        "        evidence_grade: guaranteed_maximum",
+        "        evidence_grade: typical_average")
+    must_fail(run([sys.executable, ED,
+                   project(power=with_passive_fault(qualification=bad_fault)),
+                   "--fault-envelope"]), "typical PPTC curve misuse",
+              "typical or average trip data cannot prove E-FAULT")
+
+
+@test("passive post-trip evidence rejects typical dissipation", kind="known_bad")
+def t_passive_fault_rejects_typical_post_trip_data():
+    bad_fault = PASSIVE_FAULT.replace(
+        "    post_trip_evidence_grade: guaranteed_maximum",
+        "    post_trip_evidence_grade: typical_dissipation")
+    must_fail(run([sys.executable, ED,
+                   project(power=with_passive_fault(qualification=bad_fault)),
+                   "--fault-envelope"]), "typical PPTC post-trip misuse",
+              "post_trip_evidence_grade must be guaranteed_maximum")
+
+
+@test("passive fault rejects missing protected-path sustained-current bound",
+      kind="known_bad")
+def t_passive_fault_requires_sustained_current_bound():
+    bad_fault = PASSIVE_FAULT.replace(
+        "    protected_path_sustained_current_max_A: 0.1\n", "")
+    must_fail(run([sys.executable, ED,
+                   project(power=with_passive_fault(qualification=bad_fault)),
+                   "--fault-envelope"]), "missing sustained-current bound",
+              "protected_path_sustained_current_max_A must be numeric")
+
+
+@test("passive fault rejects post-trip leakage above path sustained current",
+      kind="known_bad")
+def t_passive_fault_rejects_excessive_sustained_leakage():
+    bad_fault = PASSIVE_FAULT.replace(
+        "    protected_path_sustained_current_max_A: 0.1",
+        "    protected_path_sustained_current_max_A: 0.05")
+    must_fail(run([sys.executable, ED,
+                   project(power=with_passive_fault(qualification=bad_fault)),
+                   "--fault-envelope"]), "excessive post-trip leakage",
+              "post-trip leakage 0.08 A exceeds protected-path "
+              "sustained-current maximum 0.05 A")
+
+
 if __name__ == "__main__":
     sys.exit(main())

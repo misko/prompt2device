@@ -755,31 +755,121 @@ def load_rails(path):
                                 "must be a non-empty exact-part list")
             resistance = _num(raw_distribution.get("path_resistance_max_mohm"),
                               "distribution.path_resistance_max_mohm", name)
-            limit_min = _num(raw_distribution.get("current_limit_min_A"),
-                             "distribution.current_limit_min_A", name)
-            limit_max = _num(raw_distribution.get("current_limit_max_A"),
-                             "distribution.current_limit_max_A", name)
+            # Compatibility: untyped legacy records retain the historical
+            # active-limiter contract.  This reader cannot infer physical
+            # protection technology from an arbitrary MPN string; every new
+            # passive contract must opt in with kind: passive_pptc.
+            protection_kind = str(raw_distribution.get(
+                "kind", "active_current_limiter")).strip().lower()
+            if protection_kind not in ("active_current_limiter",
+                                       "passive_pptc"):
+                raise LoadError(
+                    f"rail {name!r} distribution.kind must be "
+                    "active_current_limiter or passive_pptc")
             reverse_policy = str(
                 raw_distribution.get("reverse_current_policy", "")).strip()
             if resistance <= 0:
                 raise LoadError(f"rail {name!r} distribution path resistance "
                                 "must be > 0")
-            if limit_min <= 0 or limit_max < limit_min:
-                raise LoadError(f"rail {name!r} distribution current-limit "
-                                "window must satisfy 0 < min <= max")
-            if iout > limit_min + 1e-9:
-                raise LoadError(f"rail {name!r} Iout {iout:g} A exceeds the "
-                                f"minimum current limit {limit_min:g} A")
             if not reverse_policy:
                 raise LoadError(f"rail {name!r} distribution requires a "
                                 "reverse_current_policy")
             distribution = {
+                "kind": protection_kind,
                 "series_devices": [str(value).strip() for value in devices],
                 "path_resistance_max_mohm": resistance,
-                "current_limit_min_A": limit_min,
-                "current_limit_max_A": limit_max,
                 "reverse_current_policy": reverse_policy,
             }
+            passive_fields = (
+                "hold_current_reference_A",
+                "hold_current_reference_temperature_C",
+                "operating_ambient_max_C",
+                "hold_current_reference_grade",
+                "hold_current_reference_locator",
+                "hold_current_reference_evidence",
+            )
+            active_fields = ("current_limit_min_A", "current_limit_max_A")
+            if protection_kind == "active_current_limiter":
+                present_passive = [field for field in passive_fields
+                                   if field in raw_distribution]
+                if present_passive:
+                    raise LoadError(
+                        f"rail {name!r} active distribution forbids passive "
+                        f"PPTC fields: {present_passive}")
+                limit_min = _num(raw_distribution.get("current_limit_min_A"),
+                                 "distribution.current_limit_min_A", name)
+                limit_max = _num(raw_distribution.get("current_limit_max_A"),
+                                 "distribution.current_limit_max_A", name)
+                if limit_min <= 0 or limit_max < limit_min:
+                    raise LoadError(
+                        f"rail {name!r} distribution current-limit window "
+                        "must satisfy 0 < min <= max")
+                if iout > limit_min + 1e-9:
+                    raise LoadError(
+                        f"rail {name!r} Iout {iout:g} A exceeds the minimum "
+                        f"current limit {limit_min:g} A")
+                distribution.update({
+                    "current_limit_min_A": limit_min,
+                    "current_limit_max_A": limit_max,
+                })
+            else:
+                if "hold_current_reference_evidence" in raw_distribution:
+                    raise LoadError(
+                        f"rail {name!r} passive PPTC uses obsolete untyped "
+                        "hold_current_reference_evidence; use closed grade "
+                        "and locator fields")
+                present_active = [field for field in active_fields
+                                  if field in raw_distribution]
+                if present_active:
+                    raise LoadError(
+                        f"rail {name!r} passive_pptc forbids active hard-limit "
+                        f"fields: {present_active}; Itrip is not a hard "
+                        "current limit")
+                hold = _num(raw_distribution.get(
+                    "hold_current_reference_A"),
+                    "distribution.hold_current_reference_A", name)
+                hold_temp = _num(raw_distribution.get(
+                    "hold_current_reference_temperature_C"),
+                    "distribution.hold_current_reference_temperature_C", name)
+                ambient_max = _num(raw_distribution.get(
+                    "operating_ambient_max_C"),
+                    "distribution.operating_ambient_max_C", name)
+                hold_grade = str(raw_distribution.get(
+                    "hold_current_reference_grade", "")).strip().lower()
+                hold_locator = str(raw_distribution.get(
+                    "hold_current_reference_locator", "")).strip()
+                if hold <= 0:
+                    raise LoadError(
+                        f"rail {name!r} passive PPTC reference hold current "
+                        "must be > 0")
+                if iout > hold + 1e-9:
+                    raise LoadError(
+                        f"rail {name!r} Iout {iout:g} A exceeds passive PPTC "
+                        f"reference hold current {hold:g} A at "
+                        f"{hold_temp:g} C")
+                if abs(hold_temp - ambient_max) > 1e-9:
+                    raise LoadError(
+                        f"rail {name!r} passive PPTC hold-current reference "
+                        f"temperature {hold_temp:g} C must exactly match "
+                        f"operating_ambient_max_C {ambient_max:g} C; the "
+                        "reader does not interpolate temperature derating")
+                if hold_grade not in ("guaranteed_minimum",
+                                       "manufacturer_reference"):
+                    raise LoadError(
+                        f"rail {name!r} passive PPTC "
+                        "hold_current_reference_grade must be "
+                        "guaranteed_minimum or manufacturer_reference")
+                if not hold_locator:
+                    raise LoadError(
+                        f"rail {name!r} passive PPTC requires "
+                        "hold_current_reference_locator")
+                distribution.update({
+                    "hold_current_reference_A": hold,
+                    "hold_current_reference_temperature_C": hold_temp,
+                    "operating_ambient_max_C": ambient_max,
+                    "hold_current_reference_grade": hold_grade,
+                    "hold_current_reference_locator": hold_locator,
+                })
             if vout_max > vin_max + 1e-9 or vout_min > vin_max + 1e-9:
                 raise LoadError(f"rail {name!r} distribution stage cannot "
                                 "raise its input voltage")
@@ -932,9 +1022,15 @@ def grade_rail(rail, part_index):
         return "PASS", (
             f"rail {rail['name']!r} protected distribution: "
             f"{len(distribution['series_devices'])} exact series device(s), "
-            f"current limit {distribution['current_limit_min_A']:g}-"
-            f"{distribution['current_limit_max_A']:g} A covers "
-            f"Iout {rail['iout']:g} A, path drop <= {drop_mv:.0f} mV; "
+            + (f"current limit {distribution['current_limit_min_A']:g}-"
+               f"{distribution['current_limit_max_A']:g} A covers "
+               if distribution["kind"] == "active_current_limiter" else
+               f"passive PPTC reference hold "
+               f"{distribution['hold_current_reference_A']:g} A at "
+               f"{distribution['hold_current_reference_temperature_C']:g} C "
+               f"({distribution['hold_current_reference_grade']}) covers "
+               "normal load; fault clearing is NOT graded by E-TOPO; ")
+            + f"Iout {rail['iout']:g} A, path drop <= {drop_mv:.0f} mV; "
             f"reverse policy={distribution['reverse_current_policy']} -> PASS")
     required = derive_topology(rail["vin_min"], rail["vin_max"],
                                rail["vout_min"], rail["vout_max"])

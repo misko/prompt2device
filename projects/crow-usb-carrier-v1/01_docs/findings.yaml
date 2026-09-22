@@ -43,8 +43,9 @@ findings:
   state: open
   blocks_at_or_above: DESIGN_CLEAN
   owner: power
-  finding: PPTC trip current is not a hard fault-current limit. Current contract deliberately refuses
-    that interpretation.
+  finding: Typed passive-distribution reader is adopted. Normal-load topology passes without claiming
+    a hard current limit; E-FAULT rejects the missing branch fault qualification. Recovery/retry
+    behavior and shared source coordination still require engineering evidence.
   closes_when: Adopt reviewed passive-distribution semantics and establish source fault envelope,
     clearing, withstand, leakage and energy evidence for actual protected paths.
   evidence:

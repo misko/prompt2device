@@ -95,6 +95,26 @@ def distribution_rail(name="USB1", *, resistance=300, limit_min=0.926,
             "      reverse_current_policy: upstream_vbus_isolated\n")
 
 
+def passive_distribution_rail(name="POD1", *, hold=0.2, hold_temp=70,
+                              ambient_max=70, extra=""):
+    return (f"  - name: {name}\n    stage: distribution\n"
+            "    vin_min: 11.2\n    vin_max: 13.2\n"
+            "    vout_min: 10.8\n    vout_max: 13.2\n"
+            "    iout_max_A: 0.1\n"
+            "    distribution:\n"
+            "      kind: passive_pptc\n"
+            "      series_devices: [1812L035-60MR]\n"
+            "      path_resistance_max_mohm: 1700\n"
+            f"      hold_current_reference_A: {hold}\n"
+            f"      hold_current_reference_temperature_C: {hold_temp}\n"
+            f"      operating_ambient_max_C: {ambient_max}\n"
+            "      hold_current_reference_grade: manufacturer_reference\n"
+            "      hold_current_reference_locator: exact manufacturer "
+            "temperature-rerating table, 1812L035/60 row, 70 C column\n"
+            "      reverse_current_policy: downstream sources prohibited\n"
+            f"{extra}")
+
+
 def ptree(*rails, top=""):
     return top + "rails:\n" + "".join(rails)
 
@@ -138,6 +158,65 @@ def t_distribution_stage_pass():
     r = must_pass(etopo(d), "protected distribution rail")
     contains(r.out, "protected distribution", "distribution verdict")
     contains(r.out, "0/0 converter", "no invented converter census")
+
+
+@test("E-TOPO grades passive PPTC normal hold without claiming fault clearing")
+def t_passive_distribution_normal_pass():
+    d = project(ptree(passive_distribution_rail()), parts={
+        "1812L035-60MR": "resettable_passive_pptc",
+    })
+    r = must_pass(etopo(d), "passive PPTC normal distribution")
+    contains(r.out, "reference hold 0.2 A at 70 C "
+             "(manufacturer_reference) covers normal load",
+             "typed passive normal-load evidence")
+    contains(r.out, "fault clearing is NOT graded by E-TOPO",
+             "normal/fault boundary")
+
+
+@test("passive PPTC rejects Itrip encoded as a hard limit", kind="known_bad")
+def t_passive_distribution_rejects_active_limit_fields():
+    d = project(ptree(passive_distribution_rail(extra=
+        "      current_limit_min_A: 0.1\n"
+        "      current_limit_max_A: 0.7\n")), parts={
+            "1812L035-60MR": "resettable_passive_pptc",
+        })
+    must_fail(etopo(d), "PPTC Itrip-as-limit misuse",
+              "Itrip is not a hard current limit")
+
+
+@test("passive PPTC rejects normal load above reference hold",
+      kind="known_bad")
+def t_passive_distribution_undersized_hold_fails():
+    d = project(ptree(passive_distribution_rail(hold=0.09)), parts={
+        "1812L035-60MR": "resettable_passive_pptc",
+    })
+    must_fail(etopo(d), "undersized passive hold current",
+              "exceeds passive PPTC reference hold current")
+
+
+@test("passive hold reference must exactly cover operating ambient",
+      kind="known_bad")
+def t_passive_distribution_rejects_temperature_interpolation():
+    d = project(ptree(passive_distribution_rail(hold_temp=20,
+                                                ambient_max=70)), parts={
+        "1812L035-60MR": "resettable_passive_pptc",
+    })
+    must_fail(etopo(d), "unbound passive hold temperature",
+              "reader does not interpolate temperature derating")
+
+
+@test("explicit active kind preserves the legacy current-limit contract")
+def t_distribution_explicit_active_unchanged():
+    active = distribution_rail().replace(
+        "    distribution:\n", "    distribution:\n"
+        "      kind: active_current_limiter\n")
+    d = project(ptree(active), parts={
+        "DMP3007SPS-13": "p_channel_mosfet_reverse_protection",
+        "TPS2557DRBR": "adjustable_current_limited_load_switch",
+    })
+    r = must_pass(etopo(d), "explicit active distribution")
+    contains(r.out, "current limit 0.926-1.273 A covers",
+             "legacy active verdict")
 
 
 @test("distribution rail rejects an unresolvable series device", kind="known_bad")

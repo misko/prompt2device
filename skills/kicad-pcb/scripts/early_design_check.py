@@ -554,6 +554,183 @@ def require_asserted_part(ref, where, invariant_values):
     return ref
 
 
+def check_passive_distribution_faults(data):
+    """Qualify passive-PPTC fault behavior independently of E-TOPO.
+
+    E-TOPO may prove normal-load hold current and voltage drop.  It cannot turn
+    a thermal trip current into a hard current limit.  Every passive rail
+    therefore adopts this fault gate and needs a bound tied to prospective
+    current, ambient, maximum trip time, leakage and protected-path energy.
+    """
+    passive = {}
+    for i, rail in enumerate(data.get("rails") or []):
+        if not isinstance(rail, dict):
+            continue
+        distribution = rail.get("distribution")
+        if (rail.get("stage") == "distribution" and
+                isinstance(distribution, dict) and
+                str(distribution.get("kind", "")).strip().lower() ==
+                "passive_pptc"):
+            name = text_value(rail.get("name"), f"rails[{i}].name")
+            if name in passive:
+                raise ContractError(
+                    f"E-FAULT duplicate passive distribution rail {name!r}")
+            passive[name] = rail
+    qualifications = data.get("passive_distribution_faults")
+    if not passive:
+        if qualifications is not None:
+            raise ContractError(
+                "E-FAULT passive_distribution_faults exists but no "
+                "distribution.kind=passive_pptc rail exists")
+        return []
+    if not isinstance(qualifications, list) or not qualifications:
+        raise ContractError(
+            "E-FAULT passive PPTC rails require a non-empty "
+            "passive_distribution_faults list; normal E-TOPO hold-current "
+            "PASS does not qualify fault clearing")
+    notes, seen = [], set()
+    for i, qual in enumerate(qualifications):
+        where = f"E-FAULT passive_distribution_faults[{i}]"
+        if not isinstance(qual, dict):
+            raise ContractError(f"{where} must be a mapping")
+        rail_name = text_value(qual.get("rail"), f"{where}.rail")
+        if rail_name not in passive:
+            raise ContractError(
+                f"{where}.rail {rail_name!r} is not a passive_pptc rail")
+        if rail_name in seen:
+            raise ContractError(
+                f"E-FAULT duplicate passive qualification for {rail_name!r}")
+        seen.add(rail_name)
+        rail = passive[rail_name]
+        distribution = rail["distribution"]
+        devices = distribution.get("series_devices")
+        device = text_value(qual.get("series_device"),
+                            f"{where}.series_device")
+        if not isinstance(devices, list) or device not in devices:
+            raise ContractError(
+                f"{where}.series_device {device!r} is not in the rail's "
+                "exact series_devices population")
+        prospective_min = number(qual.get("prospective_current_min_A"),
+                                 f"{where}.prospective_current_min_A",
+                                 positive=True)
+        prospective_max = number(qual.get("prospective_current_max_A"),
+                                 f"{where}.prospective_current_max_A",
+                                 positive=True)
+        if prospective_max + 1e-12 < prospective_min:
+            raise ContractError(
+                f"{where}: prospective-current corners are reversed")
+        withstand = number(qual.get("fault_current_withstand_A"),
+                           f"{where}.fault_current_withstand_A", positive=True)
+        if prospective_max > withstand + 1e-12:
+            raise ContractError(
+                f"E-FAULT {rail_name!r}: prospective maximum "
+                f"{prospective_max:g} A exceeds {withstand:g} A PPTC "
+                "fault-current withstand")
+        ambient_min = number(qual.get("ambient_min_C"),
+                             f"{where}.ambient_min_C")
+        ambient_max = number(qual.get("ambient_max_C"),
+                             f"{where}.ambient_max_C")
+        if ambient_max + 1e-12 < ambient_min:
+            raise ContractError(f"{where}: ambient corners are reversed")
+        hold_ambient = number(distribution.get("operating_ambient_max_C"),
+                              f"rail {rail_name} operating_ambient_max_C")
+        if abs(ambient_max - hold_ambient) > 1e-12:
+            raise ContractError(
+                f"E-FAULT {rail_name!r}: ambient_max_C {ambient_max:g} C "
+                f"does not match normal hold ambient {hold_ambient:g} C")
+        points = list_value(qual.get("maximum_trip_time_envelope"),
+                            f"{where}.maximum_trip_time_envelope")
+        covering_times = []
+        for j, point in enumerate(points):
+            pw = f"{where}.maximum_trip_time_envelope[{j}]"
+            if not isinstance(point, dict):
+                raise ContractError(f"{pw} must be a mapping")
+            current = number(point.get("current_A"), f"{pw}.current_A",
+                             positive=True)
+            time_s = number(point.get("time_max_s"), f"{pw}.time_max_s",
+                            positive=True)
+            temperature = number(point.get("temperature_C"),
+                                 f"{pw}.temperature_C")
+            grade = text_value(point.get("evidence_grade"),
+                               f"{pw}.evidence_grade").lower()
+            if grade != "guaranteed_maximum":
+                raise ContractError(
+                    f"{pw}.evidence_grade must be guaranteed_maximum; "
+                    "typical or average trip data cannot prove E-FAULT")
+            text_value(point.get("evidence_locator"),
+                       f"{pw}.evidence_locator")
+            # No interpolation is inferred.  The proof must contain an exact
+            # guaranteed point at the minimum prospective current and the
+            # cold operating corner, where a thermal PPTC trips slowest.
+            if (abs(current - prospective_min) <= 1e-12 and
+                    abs(temperature - ambient_min) <= 1e-12):
+                covering_times.append(time_s)
+        if not covering_times:
+            raise ContractError(
+                f"E-FAULT {rail_name!r}: no guaranteed maximum trip-time "
+                "point exactly matches prospective_current_min_A and "
+                "ambient_min_C; interpolation is not permitted")
+        trip_time = max(covering_times)
+        post_trip = number(qual.get("post_trip_leakage_max_A"),
+                           f"{where}.post_trip_leakage_max_A",
+                           nonnegative=True)
+        sustained_safe = number(
+            qual.get("protected_path_sustained_current_max_A"),
+            f"{where}.protected_path_sustained_current_max_A",
+            positive=True)
+        if post_trip > sustained_safe + 1e-12:
+            raise ContractError(
+                f"E-FAULT {rail_name!r}: post-trip leakage "
+                f"{post_trip:g} A exceeds protected-path sustained-current "
+                f"maximum {sustained_safe:g} A")
+        let_through = number(qual.get("let_through_energy_max_J"),
+                             f"{where}.let_through_energy_max_J",
+                             positive=True)
+        protected = number(qual.get("protected_path_withstand_J"),
+                           f"{where}.protected_path_withstand_J",
+                           positive=True)
+        vin_max = number(rail.get("vin_max"),
+                         f"rail {rail_name}.vin_max", positive=True)
+        source_energy = vin_max * prospective_max * trip_time
+        if let_through + 1e-12 < source_energy:
+            raise ContractError(
+                f"E-FAULT {rail_name!r}: let-through bound "
+                f"{let_through:g} J is below conservative source-energy "
+                f"bound {source_energy:g} J")
+        if protected + 1e-12 < let_through:
+            raise ContractError(
+                f"E-FAULT {rail_name!r}: protected-path withstand "
+                f"{protected:g} J is below let-through {let_through:g} J")
+        evidence_contracts = (
+            ("prospective_current_evidence_grade", "qualified_bound"),
+            ("fault_current_withstand_evidence_grade", "guaranteed_rating"),
+            ("post_trip_evidence_grade", "guaranteed_maximum"),
+            ("protected_path_sustained_current_evidence_grade",
+             "qualified_minimum"),
+            ("energy_withstand_evidence_grade", "qualified_minimum"),
+        )
+        for field, required in evidence_contracts:
+            grade = text_value(qual.get(field), f"{where}.{field}").lower()
+            if grade != required:
+                raise ContractError(
+                    f"{where}.{field} must be {required}, got {grade!r}")
+            locator_field = field.replace("_grade", "_locator")
+            text_value(qual.get(locator_field),
+                       f"{where}.{locator_field}")
+        notes.append(
+            f"E-FAULT passive {rail_name}: prospective="
+            f"{prospective_min:g}-{prospective_max:g} A <= {withstand:g} A, "
+            f"trip<={trip_time:g} s at cold corner {ambient_min:g} C, "
+            f"leakage={post_trip:g}/{sustained_safe:g} A "
+            f"post-trip/path-safe, energy={source_energy:g}/{let_through:g}/"
+            f"{protected:g} J source/limit/withstand")
+    missing = sorted(set(passive) - seen)
+    if missing:
+        raise ContractError(
+            f"E-FAULT passive PPTC rails lack fault qualification: {missing}")
+    return notes
+
+
 def check_fault_envelopes(project: Path):
     """Grade aggregate overload handling across normal, peak and fault time.
 
@@ -564,6 +741,7 @@ def check_fault_envelopes(project: Path):
     """
     path = project / "03_src" / "rules" / "power_tree.yaml"
     data = load_yaml(path, "E-FAULT")
+    passive_notes = check_passive_distribution_faults(data)
     envelopes = data.get("fault_envelopes")
     no_requirements = data.get("no_fault_envelope_requirements")
     if envelopes is not None and no_requirements is not None:
@@ -571,9 +749,15 @@ def check_fault_envelopes(project: Path):
             "E-FAULT fault_envelopes and no_fault_envelope_requirements are "
             "mutually exclusive")
     if envelopes is None and no_requirements is not None:
+        if passive_notes:
+            raise ContractError(
+                "E-FAULT no_fault_envelope_requirements is forbidden when "
+                "passive_pptc rails exist; branch qualification does not "
+                "replace shared-upstream aggregate coordination")
         reason = text_value(no_requirements,
                             "no_fault_envelope_requirements")
-        return [f"E-FAULT not applicable: {reason}"]
+        return passive_notes + [f"E-FAULT not applicable to aggregate "
+                                f"envelope: {reason}"]
     if not isinstance(envelopes, list) or not envelopes:
         raise ContractError(
             "E-FAULT fault_envelopes must be a non-empty list; use an explicit "
@@ -581,7 +765,7 @@ def check_fault_envelopes(project: Path):
             "limited outputs share an upstream path")
     invariant_values = asserted_part_values(project)
     aliases = part_aliases(project)
-    notes, seen_names = [], set()
+    notes, seen_names = list(passive_notes), set()
     for i, env in enumerate(envelopes):
         where = f"E-FAULT fault_envelopes[{i}]"
         if not isinstance(env, dict):
@@ -1343,7 +1527,15 @@ def main(argv=None):
             fault_adopted = any(k in power_doc for k in (
                 "fault_envelopes",
                 "no_fault_envelope_requirements",
+                "passive_distribution_faults",
             ))
+            fault_adopted = fault_adopted or any(
+                isinstance(rail, dict) and
+                rail.get("stage") == "distribution" and
+                isinstance(rail.get("distribution"), dict) and
+                str(rail["distribution"].get("kind", "")).strip().lower()
+                == "passive_pptc"
+                for rail in (power_doc.get("rails") or []))
         except Exception:
             # The owning D-SPEC/E-PATH loader will report malformed YAML; an
             # explicit E-CAP request still reaches check_capacitance.
