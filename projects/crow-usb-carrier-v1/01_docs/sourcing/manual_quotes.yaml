@@ -1,0 +1,21 @@
+# Candidate input only. These distributor facts are dated observations and go stale.
+# Merge into the project's mutable manual_quotes.yaml, then run shopping_list.py;
+# this file does not itself declare Q-2SOURCE PASS.
+quotes:
+  - mpn: W25Q128JWSIQ
+    manufacturer: Winbond Electronics
+    distributor: digikey
+    source: product_page
+    url: https://www.digikey.com/en/products/detail/winbond-electronics/W25Q128JWSIQ/12090690
+    read_on: '2026-09-22'
+    checked_at: '2026-09-22T03:40:22-07:00'
+    dpn: 256-W25Q128JWSIQ-ND
+    stock: 809
+    min: 1
+    mult: 1
+    packaging: Tube
+    lifecycle: Active
+    price_breaks:
+      - {qty: 1, usd: 3.99}
+      - {qty: 10, usd: 3.727}
+    note: Exact public product page; five-board requirement is 5. Raw observation is retained alongside this candidate input.

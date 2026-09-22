@@ -1,0 +1,104 @@
+mpn: W25Q128JWSIQ
+manufacturer: Winbond Electronics
+type: serial_quad_flash
+value: 128Mbit
+status: candidate
+package: SOIC-8 208mil (package code S)
+footprint: Package_SO:SOIC-8_5.3x5.3mm_P1.27mm
+escape:
+  style: leaded
+  pitch: 1.27
+  tier_required: jlc_2layer_default
+  checked: escape_check.py SOIC-8 1.27mm pitch at jlc_2layer_default, 2026-09-22
+datasheet:
+  doc_id: W25Q128JW Rev H
+  revision: H
+  url: https://www.winbond.com.tw/hq/product/code-storage-flash-memory/serial-nor-flash/?__locale=en&partNo=W25Q128JW
+  retained_from: https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/8919/256_W25Q128JW.pdf
+  local: Winbond_W25Q128JW_RevH.pdf
+  sha256: fe9adbf87c6c57a8bf5af1406d5d30242b3ee13450d1d942f177559ac728627f
+  fetched: '2026-09-22'
+  pages: 79
+  provenance: Winbond-authored Rev H primary datasheet retained from DigiKey's document mirror; exact
+    order code is in the Winbond ordering table.
+pins:
+  1: CE_N
+  2: SO_IO1
+  3: WP_N_IO2
+  4: GND
+  5: SI_IO0
+  6: SCK
+  7: HOLD_N_IO3
+  8: VCC
+limits:
+  supply_voltage_min_v: 1.7
+  supply_voltage_max_v: 1.95
+  memory_mbit: 128
+  maximum_clock_mhz: 133
+  read_ready_after_vcc_min_max_us: 20
+  operating_temperature_min_c: -40
+  operating_temperature_max_c: 85
+ordering_decode:
+  W: 1.7V to 1.95V supply
+  S: 8-pin SOIC 208mil
+  I: industrial temperature grade
+  Q: QE bit fixed at 1 in Status Register-2
+boot_compatibility:
+  controller_document: XMOS XU316/XU316-QF60B/XU316-QF128B Datasheet XM-014532-PC v2.0.0 section 9.1
+  controller_document_sha256: a2ce2dc835df06793a4e1aa6c5d226c6a01c25c979a63b09a2b57059c17321cf
+  protocol: 0xEB Quad I/O Read with three address bytes, one mode byte, then dummy clocks
+  power_up: Device powers up in SPI mode; fixed-QE ordering option permits quad data pins without a status-register
+    write.
+  readiness: Winbond tVSL maximum is 20us; XU316 boot requires the device to be QSPI-access-ready within
+    300us.
+  addressability: 128Mbit is 16MiB and fits the XU316 ROM's 24-bit boot address range starting at address
+    zero.
+  clock_alignment: XMOS XTC Tools15.3 explicitly specifies six post-address clocks. Winbond RevH consumes
+    two mode clocks plus four dummy clocks before data; this resolves the older XU316 one-dummy-byte shorthand.
+  clock_alignment_source: https://www.xmos.com/documentation/XM-014363-PC/html/tools-guide/tools-ref/libraries/libquadflash-included-devices/libquadflash-devices.html
+package_geometry_mm:
+  body_d_min: 5.18
+  body_d_nom: 5.28
+  body_d_max: 5.38
+  body_e_min: 5.18
+  body_e_nom: 5.28
+  body_e_max: 5.38
+  lead_span_h_min: 7.7
+  lead_span_h_nom: 7.9
+  lead_span_h_max: 8.1
+  pitch: 1.27
+  lead_width_min: 0.35
+  lead_width_nom: 0.42
+  lead_width_max: 0.48
+footprint_check: KiCad Package_SO:SOIC-8_5.3x5.3mm_P1.27mm matches the Rev H nominal 5.28mm square body
+  and 1.27mm pitch; no native footprint change is required.
+verified: Exact order code, pins, voltage, package geometry, fixed QE, EBh transaction and tVSL checked
+  against Winbond Rev H; XU316 transaction/readiness checked against XM-014532-PC v2.0.0 section 9.1 on
+  2026-09-22.
+gotchas:
+- The selected Q suffix is load-bearing because XU316 ROM boot cannot first write a volatile QE setting.
+- XU316 boots with EBh in SPI mode and requires the flash not to power up in QPI mode.
+- Candidate has two dated public observations, but Q-2SOURCE remains pending until the project machine
+  gate composes and passes the adopted inputs.
+layout:
+  source: Winbond W25Q128JW Rev H pinout and SOIC-8 208mil package drawing
+  reviewed: '2026-09-22'
+  notes:
+  - Place C_FLASH at VCC pin 8 with a short return to GND pin 4.
+  - Keep CLK and IO0 through IO3 short and grouped between XU316 and flash; keep the CS pull-up local
+    to pin 1.
+layout_refs:
+- tier: 1
+  reached: true
+  artifact: Winbond W25Q128JW Rev H pinout
+  interface timing: null
+  ordering table and package drawing: null
+- tier: 2
+  reached: false
+  artifact: Exact-part manufacturer routed reference design
+  why: No routed manufacturer design was identified; placement and routing remain project-owned.
+sourcing:
+  lcsc: C2763561
+  alternates: []
+  note: Exact JLC and DigiKey dated observations are candidate gate inputs; run the machine Q-2SOURCE
+    gate after adoption.

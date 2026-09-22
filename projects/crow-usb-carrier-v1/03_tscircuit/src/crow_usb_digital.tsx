@@ -290,7 +290,7 @@ export function CrowUsbDigital({net=defaultNet}:CrowUsbDigitalProps={}){
   <R name="R_XTAL_FB" value="1M" a="XTAL_IN" b="XTAL_OUT" mpn="RC0402FR-071ML" n={n} />
   <C name="C_XTAL_IN" value="22pF" a="XTAL_IN_R" b="GND" mpn="GRM1555C1H220JA01D" n={n} /><C name="C_XTAL_OUT" value="22pF" a="XTAL_OUT" b="GND" mpn="GRM1555C1H220JA01D" n={n} />
 
-  <Chip name="U_FLASH" manufacturerPartNumber="IS25WP032D-JBLE" jlc="C1349020" footprint="soic8_208mil"
+  <Chip name="U_FLASH" manufacturerPartNumber="W25Q128JWSIQ" jlc="C2763561" footprint="soic8_208mil"
    pinLabels={{pin1:"CE_N",pin2:"SO_IO1",pin3:"WP_N_IO2",pin4:"GND",pin5:"SI_IO0",pin6:"SCK",pin7:"HOLD_N_IO3",pin8:"VCC"}}
    connections={{pin1:n("QSPI_CS_N"),pin2:n("QSPI_D1"),pin3:n("QSPI_D2"),pin4:n("GND"),pin5:n("QSPI_D0"),pin6:n("QSPI_CLK"),pin7:n("QSPI_D3"),pin8:n("1V8")}} />
   <R name="R_QSPI_CS" value="4.7k" a="1V8" b="QSPI_CS_N" mpn="RC0402FR-074K7L" n={n} /><C name="C_FLASH" value="100nF" a="1V8" b="GND" n={n} />

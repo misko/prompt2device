@@ -148,6 +148,8 @@ def normalize_manufacturer(value):
         "keystone": "keystoneelectronics",
         "diodes": "diodes",
         "panasonicindustry": "panasonic",
+        "winbondelec": "winbond",
+        "winbondelectronics": "winbond",
     }
     return aliases.get(s, s)
 

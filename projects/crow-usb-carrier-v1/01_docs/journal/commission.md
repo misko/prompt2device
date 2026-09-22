@@ -173,3 +173,7 @@ Independent SOL rendering covers all 485 refs across 37 pages, with no duplicate
 ## Iterate 35 — connector planning and physical qualification boundary
 
 Adopted explicit intended frames for all11 connectors as authored planning evidence, without inventing an executable rule file. Added physical qualification plan and16 typed source deferrals; actual placement and service remain unknown. Root visual inspection rejected two incorrect Molex dimension interpretations, then adopted a conservative housing envelope with explicit2mm latch allowance and independently reviewed header bounds. Connector facts23/45,22unknown; source phase admits16 and retains7 findings. Lateral JTAG cable schema support and sourceable flash/regulator candidates remain in isolated SOL work.
+
+## Iterate 36 — sourceable flash adopted
+
+Replaced U_FLASH with W25Q128JWSIQ after primary six-clock ROM framing clarification and independent review. Root removed unsupported proposed assertion types and an orphan power-tree identity field, verified the exact part/datasheet/footprint, and reran the actual single-part two-source gate:1/1 part, JLC+DigiKey, five boards PASS. Full-source485/85/1615/1488,0errors,26endpoint assertions. Shopping spelling normalization retains strict adjacent-MPN rejection;27tests pass. Full-BOM sourcing, regulator backtrack and physical layout remain open.

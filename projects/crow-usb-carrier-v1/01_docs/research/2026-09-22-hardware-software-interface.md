@@ -48,8 +48,9 @@ then at least a 19.6 ms engineering-bounded low pulse before final reset release
 
 ## Boot and programming
 
-The selected flash is IS25WP032D-JBLE, powered from 1V8. ROM-fixed QSPI
-connections are CS_N=X0D01/pin 2, CLK=X0D10/pin 4, D0=X0D04/pin 127,
+The selected flash is W25Q128JWSIQ, a 128-Mbit (16-MiB) fixed-QE device
+powered from 1V8. Its 24-bit address range is 0x000000-0xFFFFFF and matches the
+XU316 ROM boot range. ROM-fixed QSPI connections are CS_N=X0D01/pin 2, CLK=X0D10/pin 4, D0=X0D04/pin 127,
 D1=X0D05/pin 128, D2=X0D06/pin 1 and D3=X0D07/pin 3. Preserve normal
 power-on QSPI boot compatibility and flash readiness before reset release;
 do not leave the flash in a mode the ROM cannot read.

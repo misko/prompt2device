@@ -133,6 +133,16 @@ def t_manufacturer_aliases_are_narrow():
           "JLC's legacy Panasonic label is the Panasonic Industry identity")
     check(not sl.same_manufacturer("Keystone", "Phoenix Contact"),
           "the alias must not become fuzzy manufacturer matching")
+    check(sl.same_manufacturer("Winbond Elec", "Winbond Electronics"),
+          "JLC's exact Winbond abbreviation must join the DigiKey manufacturer")
+    check(sl.same_manufacturer("Winbond Electronics Corporation", "Winbond"),
+          "Winbond's corporate spelling must retain its manufacturer identity")
+    check(not sl.same_manufacturer("Winbond Partner", "Winbond Electronics"),
+          "Winbond aliases must not admit a similarly named supplier")
+    check(sl.same_part("W25Q128JWSIQ", "W25Q128JWSIQ"),
+          "the exact flash identity must remain accepted")
+    check(not sl.same_part("W25Q128JVSIQ", "W25Q128JWSIQ"),
+          "manufacturer spelling aliases must not admit the adjacent voltage variant")
 
 
 @test("the live catalog calendar is UTC, matching its snapshot timestamps")
