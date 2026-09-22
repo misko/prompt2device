@@ -1,9 +1,9 @@
 stage: commission
-step: Reviewed USB source decisions adopted; all489 assembly owners declared
+step: Source schema and decision admission pass; capacitor substitutions under review
 measure: 489 refs /85 MPNs; 40source preview pages; electrical source0errors; decision
   admission489/489 owners and1/1 USB group; sourcing83/85
 state: working
-next: Complete capacitor substitutions and source-schema normalization, then regrade
-  source admission before native schematic
+next: Qualify and integrate capacitor substitutions, regenerate sourcing and source
+  previews, then review commission admission
 op_pid: null
-updated: '2026-09-22T13:50:08.847385+00:00'
+updated: '2026-09-22T13:54:38.759151+00:00'
