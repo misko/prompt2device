@@ -11,6 +11,9 @@ evidence_sources:
 - id: rj45_jack_drawing
   kind: manufacturer-drawing
   path: 02_parts/615008160221/Wurth_615008160221_rev001003.pdf
+- id: rj45_jack_model
+  kind: manufacturer-3d-model
+  path: 03_src/lib/3dmodels/wurth/Wurth_615008160221_rev1.step
 - id: usb_receptacle_drawing
   kind: manufacturer-drawing
   path: 02_parts/USB4105-GF-A-120/GCT_USB4105_drawing.pdf
@@ -114,15 +117,18 @@ assemblies:
     manufacturer: Wurth Elektronik
     mpn: '615008160221'
     mounting_method: through_hole
-    model_source_id: null
+    model_source_id: rj45_jack_model
     body_envelope_mm: null
     evidence:
-      grade: unknown
+      grade: exact
       source_ids:
-      - source_census
       - rj45_jack_drawing
-      rationale: Exact fitted part is selected in source; body envelope and assembly
-        qualification remain unresolved.
+      - rj45_jack_model
+      rationale: Exact manufacturer STEP rev1 is retained and contains the modeled
+        shell, lateral/top EMI springs and terminal tails. OpenCascade AddOptimal
+        measures its nominal box as 13.450054 mm axial x 17.276161 mm lateral x
+        19.092892 mm PCB-normal. Manufacturing tolerance, spring deflection and
+        mated service fit remain separate qualification work.
   mate:
     manufacturer: Weidmuller
     mpn: '8909650150'
