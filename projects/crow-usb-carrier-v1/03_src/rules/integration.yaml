@@ -535,3 +535,13 @@ selections:
   - C_OUT1
   - C_OUT2
   - C_OUT3
+- function: synchronous_audio_master_clock
+  part: ASFL1-24.576MHZ-EC-T
+  implementation: module
+  rationale: >-
+    The selected packaged CMOS oscillator integrates its resonator and sustaining
+    circuit and supplies the 24.576 MHz audio reference. This is an existing
+    source-selected oscillator module, not a new bare resonator design. External
+    bypassing and clock buffers remain source-owned; actual clock phase and
+    signal integrity require native timing and first-article verification.
+  support_refs: [C_AUDIO_OSC]
