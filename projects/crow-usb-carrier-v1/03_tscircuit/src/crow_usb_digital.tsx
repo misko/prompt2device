@@ -70,7 +70,7 @@ function Buck({name,mpn,out,adjustable=false,en="5V_BUCK",n}:any){return <>
   connections={{pin1:n(en),pin3:n(adjustable?`${name}_FB`:out),pin4:n("GND"),pin5:n(`${name}_SW`),pin6:n("5V_BUCK")}} />
  <Chip name={`L_${name}`} manufacturerPartNumber="744373240047" jlc="" footprint={<WurthLHMI4020Land/>} pinLabels={{pin1:"1",pin2:"2"}} connections={{pin1:n(`${name}_SW`),pin2:n(out)}} />
  {[1,2].map(i=><C key={`in${i}`} name={`C_${name}_IN_${i}`} value="10uF" a="5V_BUCK" b="GND" mpn="CL21A106KOCLRNC" footprint="0805" n={n} />)}
- {[1,2].map(i=><C key={`out${i}`} name={`C_${name}_OUT_${i}`} value="47uF" a={out} b="GND" mpn="CKG57KX7R1E476M335JH" footprint={<TdkCkg57KJLead/>} n={n} />)}
+ {[1,2].map(i=><C key={`out${i}`} name={`C_${name}_OUT_${i}`} value="47uF" a={out} b="GND" mpn="CKG57KX7R1E476M335JH" jlc="C2171626" footprint={<TdkCkg57KJLead/>} n={n} />)}
  </>}
 
 export function CrowUsbDigital({net=defaultNet}:CrowUsbDigitalProps={}){

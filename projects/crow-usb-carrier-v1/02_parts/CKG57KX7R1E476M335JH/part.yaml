@@ -20,6 +20,6 @@ gotchas:
   - "Not footprint-compatible with 1210; use exact metal-frame J-lead land and re-review placement."
   - "TDK simple model gives R1=4.1mohm and L1=2.000nH per part. LT3045 COUT therefore uses a symmetric pair and retains an assembled-network <2nH verification hold."
   - "Typical characteristic graphs are reference-only; startup/load-step and exact-bank validation remain required."
-  - "C_OPA_BULK is an advisory downstream reservoir, not a regulator stability bank. The same conservative proxy estimates 9.786uF effective, but no invented minimum is claimed; analog load-step validation remains owed."
+  - "C_OPA_BULK is an advisory downstream reservoir, not a regulator stability bank. The same conservative proxy estimates 9.78775uF effective, but no invented minimum is claimed; analog load-step validation remains owed."
 verified: "CITED: exact TDK primary page reports Production (not NRND) and exact electrical/package identity; exact TDK equivalent-circuit library reports R1=0.0041ohm and L1=2.000nH. Read 2026-09-22."
 sourcing: {lcsc: C2171626, alternates: [], note: "Exact LCSC catalog identity exists but live stock was 0 on 2026-09-22; this is source identity, not an allocation claim. Owning Q-2SOURCE separately passed DigiKey plus Mouser for 65 required."}

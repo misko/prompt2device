@@ -144,28 +144,28 @@ effective_capacitance_banks:
           retention at the more adverse 5 V condition. This estimate retains
           only 35% as a cross-part engineering proxy at 3.3 V, then separately
           charges 15% temperature and a selected 12.5% lifecycle reserve, for
-          19.572 uF for the pair. These factors are not exact TDK production
+          19.5755 uF for the pair. These factors are not exact TDK production
           data or stability proof; startup/load-step first-article proof remains due.
   - <<: *tps62825_output
     name: TPS62825 U_1V8 output
     contributors:
-      - {part: CKG57KX7R1E476M335JH, refs: [C_U_1V8_OUT_1, C_U_1V8_OUT_2], nominal_each_uF: 47, dielectric: x7r, tolerance_minus_pct: 20, dc_bias_derating_pct: 65, temperature_derating_pct: 15, lifecycle_derating_pct: 12.5, basis: conservative_engineering_bound_with_nominal_TI_LC_match, evidence: "Same conservative 35% retained-capacitance voltage estimate as the 3.3 V bank; lower bias can only improve the typical screen. After the separate temperature and lifecycle reserves, estimated effective capacitance is 19.572 uF for the pair against section 8.2.2.5's 10 uF minimum; startup/load-step proof remains due."}
+      - {part: CKG57KX7R1E476M335JH, refs: [C_U_1V8_OUT_1, C_U_1V8_OUT_2], nominal_each_uF: 47, dielectric: x7r, tolerance_minus_pct: 20, dc_bias_derating_pct: 65, temperature_derating_pct: 15, lifecycle_derating_pct: 12.5, basis: conservative_engineering_bound_with_nominal_TI_LC_match, evidence: "Same conservative 35% retained-capacitance voltage estimate as the 3.3 V bank; lower bias can only improve the typical screen. After the separate temperature and lifecycle reserves, estimated effective capacitance is 19.5755 uF for the pair against section 8.2.2.5's 10 uF minimum; startup/load-step proof remains due."}
   - <<: *tps62825_output
     name: TPS62825 U_CORE output
     contributors:
-      - {part: CKG57KX7R1E476M335JH, refs: [C_U_CORE_OUT_1, C_U_CORE_OUT_2], nominal_each_uF: 47, dielectric: x7r, tolerance_minus_pct: 20, dc_bias_derating_pct: 65, temperature_derating_pct: 15, lifecycle_derating_pct: 12.5, basis: conservative_engineering_bound_with_nominal_TI_LC_match, evidence: "Same conservative 35% retained-capacitance voltage estimate as the 3.3 V bank; lower bias can only improve the typical screen. After the separate temperature and lifecycle reserves, estimated effective capacitance is 19.572 uF for the pair against section 8.2.2.5's 10 uF minimum; startup/load-step proof remains due."}
+      - {part: CKG57KX7R1E476M335JH, refs: [C_U_CORE_OUT_1, C_U_CORE_OUT_2], nominal_each_uF: 47, dielectric: x7r, tolerance_minus_pct: 20, dc_bias_derating_pct: 65, temperature_derating_pct: 15, lifecycle_derating_pct: 12.5, basis: conservative_engineering_bound_with_nominal_TI_LC_match, evidence: "Same conservative 35% retained-capacitance voltage estimate as the 3.3 V bank; lower bias can only improve the typical screen. After the separate temperature and lifecycle reserves, estimated effective capacitance is 19.5755 uF for the pair against section 8.2.2.5's 10 uF minimum; startup/load-step proof remains due."}
   - name: LT3045 input
     requirement_uF: 4.7
     requirement_evidence: ADI LT3045 Rev.D p18 requires at least 4.7 uF at IN.
     accepted_dielectrics: [x7r]
     contributors:
-      - {part: CKG57KX7R1E476M335JH, refs: [C_LDO_IN], nominal_each_uF: 47, dielectric: x7r, tolerance_minus_pct: 20, dc_bias_derating_pct: 65, temperature_derating_pct: 15, lifecycle_derating_pct: 12.5, basis: conservative_engineering_bound, evidence: "The selected exact 47 uF +/-20%, 25 V TDK part has no exact-part DC-bias guarantee. Applying the 35% cross-part voltage-retention proxy at no more than 5.05 V plus separate 15% temperature and selected 12.5% lifecycle reserves gives 9.786 uF effective, above 4.7 uF. These factors are not exact TDK production data; input-loop damping remains a layout and transient obligation."}
+      - {part: CKG57KX7R1E476M335JH, refs: [C_LDO_IN], nominal_each_uF: 47, dielectric: x7r, tolerance_minus_pct: 20, dc_bias_derating_pct: 65, temperature_derating_pct: 15, lifecycle_derating_pct: 12.5, basis: conservative_engineering_bound, evidence: "The selected exact 47 uF +/-20%, 25 V TDK part has no exact-part DC-bias guarantee. Applying the 35% cross-part voltage-retention proxy at no more than 5.05 V plus separate 15% temperature and selected 12.5% lifecycle reserves gives 9.78775 uF effective, above 4.7 uF. These factors are not exact TDK production data; input-loop damping remains a layout and transient obligation."}
   - name: LT3045 output
     requirement_uF: 10
     requirement_evidence: ADI LT3045 Rev.D pp13,16 requires at least 10 uF with ESR below 20 milliohm and ESL below 2 nH.
     accepted_dielectrics: [x7r]
     contributors:
-      - {part: CKG57KX7R1E476M335JH, refs: [C_LDO_OUT_1, C_LDO_OUT_2], nominal_each_uF: 47, dielectric: x7r, tolerance_minus_pct: 20, dc_bias_derating_pct: 65, temperature_derating_pct: 15, lifecycle_derating_pct: 12.5, basis: conservative_engineering_bound, evidence: "The symmetric pair estimates 19.572 uF effective. Exact TDK simple models give 4.1 milliohm and 2.000 nH each; ideal parallel values are 2.05 milliohm and 1.000 nH. Placement must keep added shared-loop inductance below 1.0 nH, Kelvin-connect OUTS at the shared output node, and verify assembled total ESL strictly below 2 nH plus startup/load-step stability."}
+      - {part: CKG57KX7R1E476M335JH, refs: [C_LDO_OUT_1, C_LDO_OUT_2], nominal_each_uF: 47, dielectric: x7r, tolerance_minus_pct: 20, dc_bias_derating_pct: 65, temperature_derating_pct: 15, lifecycle_derating_pct: 12.5, basis: conservative_engineering_bound, evidence: "The symmetric pair estimates 19.5755 uF effective. Exact TDK simple models give 4.1 milliohm and 2.000 nH each; ideal parallel values are 2.05 milliohm and 1.000 nH. Placement must keep added shared-loop inductance below 1.0 nH, Kelvin-connect OUTS at the shared output node, and verify assembled total ESL strictly below 2 nH plus startup/load-step stability."}
   - name: XU316 USB VBUS sense capacitance
     requirement_uF: 1
     requirement_evidence: XMOS self-powered reference requires 1-10 uF at connector VBUS.
