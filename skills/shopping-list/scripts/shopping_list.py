@@ -161,6 +161,14 @@ def normalize_manufacturer(value):
         "panasonicindustry": "panasonic",
         "winbondelec": "winbond",
         "winbondelectronics": "winbond",
+        # Exact catalog/legal-name spellings observed on the current Crow BOM.
+        # Keep both sides explicit: do not reduce these to substring matching.
+        "alphaandomegasemiconductor": "alphaandomegasemiconductor",
+        "alphaomegasemicon": "alphaandomegasemiconductor",
+        "murata": "murata",
+        "murataelectronics": "murata",
+        "vishaydraloric": "vishayintertechnology",
+        "vishayintertech": "vishayintertechnology",
     }
     return aliases.get(s, s)
 

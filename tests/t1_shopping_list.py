@@ -139,6 +139,22 @@ def t_manufacturer_aliases_are_narrow():
           "Winbond's corporate spelling must retain its manufacturer identity")
     check(not sl.same_manufacturer("Winbond Partner", "Winbond Electronics"),
           "Winbond aliases must not admit a similarly named supplier")
+    check(sl.same_manufacturer("Alpha & Omega Semicon",
+                               "Alpha and Omega Semiconductor"),
+          "JLC's truncated Alpha and Omega legal name must join exactly")
+    check(not sl.same_manufacturer("Alpha Wire",
+                                   "Alpha and Omega Semiconductor"),
+          "the Alpha and Omega alias must not become an Alpha prefix match")
+    check(sl.same_manufacturer("Murata Electronics", "muRata"),
+          "Murata capitalization and Electronics suffix retain one identity")
+    check(not sl.same_manufacturer("Murata Power Solutions", "muRata"),
+          "a different Murata-named entity must not join by substring")
+    check(sl.same_manufacturer("Vishay Intertech", "Vishay Draloric"),
+          "the catalog abbreviation and Vishay Draloric maker label join")
+    check(not sl.same_manufacturer("Vishay Precision Group", "Vishay Draloric"),
+          "a distinct Vishay-named company must not join")
+    check(not sl.same_manufacturer("--", "Kyocera AVX"),
+          "a blank catalog maker is never repaired by aliasing")
     check(sl.same_part("W25Q128JWSIQ", "W25Q128JWSIQ"),
           "the exact flash identity must remain accepted")
     check(not sl.same_part("W25Q128JVSIQ", "W25Q128JWSIQ"),

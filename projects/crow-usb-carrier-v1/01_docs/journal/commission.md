@@ -217,3 +217,7 @@ Replaced obsolete Murata1uF PLL bypass with exact YAGEO CC0402KRX5R5BB105. Root 
 ## Commission source disposition — 2026-09-22
 
 Independent review found no user-choice blocker for retained8spokes/externalpower/hardware-only scope. UpdatedBRIEF factlocks, recorded four-layer design/cost posture without inventedprice or purchaseauthorization, and retainedDRAFT until sourcing/presentationchecks close. Source power/protection calculations reviewed complete; broader DESIGN_CLEAN findings stayopen for actualnative/layout/physical obligations. No hold removed.
+
+## Exact manufacturer identity normalization — 2026-09-22
+
+Adopted narrowly enumerated catalog aliases for Alpha and Omega Semiconductor, Murata Electronics, and Vishay Draloric/Intertechnology. Exact MPN matching remains required; blank catalog manufacturer and similarly named independent entities remain rejected. Primary corporate identity references: https://www.aosmd.com/about and https://www.vishay.com/en/landingpage/classicsdk/. Root shopping-list tests32/32 pass, including17known-bad cases. Consolidation of current distributor evidence continues separately; this tool change does not close full-BOM sourcing. Source page render covers489unique refs across37pages with0missing/extra/duplicate refs; human readability corrections remain on four pages. PLL capacitor replacement is complete; newly identified obsolete PLL bead requires separate electrical qualification.
