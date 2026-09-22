@@ -21,16 +21,17 @@ The initial manifest and hashes remain preserved as forensic truth for the
 already launched schematic envelope. The preparer is corrected for future runs
 to copy the pinned baseline `board.outline` and `board.mounting_holes` values
 verbatim and label them inherited trial inputs, not hard requirements. The
-active child is intentionally not rewritten under its running owner. Its next
-placement handoff must explicitly restore or adjudicate the missing 2 mm and
-record the resulting source-bound envelope before any physical claim.
+initial child was not rewritten under its running owner. After that owner
+finished, the placement handoff restored the pinned 156 mm envelope, preserving
+the empty anchor map and recording the change in `INPUT_ADJUSTMENTS.json` and
+`PLACEMENT_INPUT_BOUNDARY.md` in the isolated trial.
 
 The fresh schematic trial also exposed a missing inherited input:
 `rules/protection_paths.yaml` references `01_docs/FIRST_ARTICLE_TEST_PLAN.md`,
 which the initial selection omitted. The source E-SURGE check correctly
 remained incomplete. Future preparation includes that requirements document;
-the active run must restore its exact pinned bytes and recheck the source gate
-at the next boundary. This is a reconstruction repair, not a relaxed rule or
+the coordinator restored its exact pinned bytes after the schematic writer
+finished, then reran the source gate: four of four gate families passed. This is a reconstruction repair, not a relaxed rule or
 physical first-article evidence.
 
 The reconstruction excludes generated CAD, netlists and PDFs; build output;
@@ -55,3 +56,64 @@ No schematic producer, KiCad native generator, placement tool, router, DRC,
 review, fabrication or release command was run during reconstruction. The
 inherited TSX is schematic intent only. Fresh schematic generation and review
 are the first trial result; every physical result remains owed.
+
+
+## Execution checkpoint after schematic generation
+
+Implementation commit: `d9a49cee`. Isolated mutable trial:
+`/home/mouse9911/gits/circuits-trials/crow-modular-20260921/crow-audio-carrier-v1`.
+The original carrier project remains unchanged. The trial inherits schematic
+intent; this is fresh generation and review, not a claim of independent
+schematic invention from only a bill of materials.
+
+Measured source evidence: 333/333 component census, 178/178 net labels,
+241/241 pin assertions, zero blocking native ERC errors, four of four
+early-design gate families, and the complete E-CLOSURE battery at 9/9 specialists. The modular plan owns all 333 components across
+12 blocks and covers all 33 crossing nets. Its 27 placement child tasks remain
+pending at this checkpoint. These counts do not prove physical feasibility.
+
+The first schematic author delivered artifacts but its runtime attempt is
+INCOMPLETE because Python cache writes escaped its declared scope. That failed
+receipt remains preserved. Later source rechecks and an independent review
+packet reopen the artifacts; the failed delivery is not rewritten as PASS.
+An initial reviewer-delivery probe likewise failed on the output directory;
+a separately admitted corrected probe passed. Native qualification passed
+four of four checks. No token or cost total is inferred from absent telemetry.
+
+Focused implementation validation passed: modular tests 10/10, trial-input
+checks 4/4, progressive disclosure 14/14, PCB documentation 15/15 and schema
+reader 28/28. Skill authority and the default contract audit passed. The full
+contract suite had three existing project failures outside this change;
+whole-repository success is not claimed. Sol performed the implementation,
+trial generation, and independent implementation review.
+
+
+During independent visual review, an apparent clipped-title finding was
+withdrawn after reopening the pages individually at original detail: the
+batched image viewer had misled the reviewer. The coordinator stopped the
+already dispatched presentation repair. Its writer-scope comparison passed;
+source, PDF, and circuit hashes were unchanged. The aborted attempt remains
+INCOMPLETE, not a claimed successful repair. Independent review continued
+against the original packet.
+
+
+The independent schematic review subsequently completed with topology SOUND
+and schematic-render SOUND (all 19 pages inspected). Runtime delivery PASS;
+`pre_route_review_check.py --phase schematic` reopened both reviews and passed
+2/2 required artifacts. This admits placement work only. Both reviews retain
+`DO-NOT-ORDER`. The completed packet and outputs are at the sibling
+`schematic-review/06_build/task_runs/review/` under the trial root.
+
+Reviewed artifact identities:
+
+| Artifact | SHA-256 |
+|---|---|
+| Fresh circuit JSON | `adff7da6a45109578739994c51a664133fa0f06327a1b97b239361cc7cf33520` |
+| Human schematic PDF | `0ad692b855784ddee1d40c268985794c82ab8cc06dc485840862c880322effa2` |
+| Native schematic | `eef3b223966eb658b75761ee251ffad94c20be33e5ef307a648bad61ffdf3aed` |
+| Raw exported netlist | `d9115fbff897dcbcd82e7e55ce7ec9697eaa83d86437ec5ad0aec39e25a99379` |
+| Modular source plan | `db2e6bb5e6f1af0477c76eb1f491fa488761f675d6b9ce082cf2c08e22ec8dc9` |
+
+A separately bounded Sol physical-trial owner is now executing P1-P5 from the
+empty placement anchors. Placement acceptance and full-board routing remain
+pending; the implementation's coverage checker grants neither.
