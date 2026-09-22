@@ -66,3 +66,10 @@ sourcing:
     catalog_manufacturer: Texas Instruments
     stock: 3091
     note: Exact MPN/manufacturer identity from live JLC parts API; design-stage observation only.
+
+escape:
+  style: dfn
+  pitch: 0.5
+  escapes_worst_side: 5
+  tier_required: jlc_4layer_advanced
+  checked: "TI DRC0010J package drawing and exact TI_DRC0010J_VSON10 footprint: two perimeter rows, 5 pads per side at0.5mm. Owning checker admits advanced unconditionally; cheaper outward-only-local condition is not claimed. Actual routing and thermal realization remain owed."

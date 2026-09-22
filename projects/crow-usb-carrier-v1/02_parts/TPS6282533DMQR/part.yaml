@@ -45,3 +45,10 @@ layout_refs:
   why: No exact-part routed design files were included in the immutable packet; this
     bounded repair does not claim unseen files.
 sourcing: {lcsc: C3189971, note: 'Exact catalog identity; allocation remains an order-time check.'}
+
+escape:
+  style: dfn
+  pitch: 0.5
+  escapes_worst_side: 3
+  tier_required: jlc_4layer_advanced
+  checked: "TI SLVSEF9I DMQ0006A drawing and exact TI_DMQ0006A_VSON6 footprint: two perimeter rows, 3 pads per side at0.5mm. Owning checker admits advanced unconditionally; cheaper outward-only-local condition is not claimed. Actual routing and thermal realization remain owed."

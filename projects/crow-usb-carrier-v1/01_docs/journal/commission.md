@@ -287,3 +287,7 @@ Adopted six exactSamsungCL21A106KOCLRNC caps using reviewed25%combinedAC/DC rete
 ## Crystal resistor source qualified — 2026-09-22
 
 Adopted CRCW0402680RFKED with authentic retained Vishay20035 primaryPDF and full dossier. OnlyR_XTAL_DRIVE identity/supplier changed; rootfullsourcing73/85. MOSFET candidate remains unadmitted at actual gate voltages. New perimeter-module checker proposal is rejected pending its independent forged-geometry failures; no tool changes merged. See research/2026-09-22-vishay-crystal-resistor-adoption.md.
+
+## Power escape records reconciled — 2026-09-22
+
+Repaired sixpower records without changing non-escape facts. Existing owning P-ESC nowPASS85/85. Thirteen selectedMPNs declare above currentstandardboardtier; D-TIER remainsopen. No perimeter-module extension merged; generic conservatism is explicit. See research/2026-09-22-power-escape-record-adoption.md.

@@ -1,0 +1,9 @@
+# Power escape record repair — 2026-09-22
+
+Root repaired the remaining six selected-dossier escape records using the existing owning model. TPS26625 and the three TPS62825 variants now declare their exact dual-row0.5mm geometry and unconditional advanced-tier requirement. LT3045 retains advanced and removes unsupported condition names. TPSM retains generic QFN classification and now declares its conservative computed advanced result; the failed perimeter-module extension is not used.
+
+Native DMQ pads establish three0.5mm-spaced lands per side; DRC0010J establishes five per side plus exposed pad. These match retained TI drawings and the independent power-family assessment. Root owning ad-hoc checks offer cheaper outward-only-local conditions, but those conditions have not been earned for these exact circuits. The LT3045 exposed-pad thermal-via process conflict remains for the board-tier decision. TPSM's435-pair pad-gap screen is not route-escape evidence, and the generic model result is not a proof that every standard-process layout is impossible.
+
+All non-escape fields are semantically preserved6/6; no circuitry, pin map, footprint or BOM identity changes. Owning selected-dossier P-ESC now passes85/85 with zero problems. Thirteen selected parts currently declare tiers above the board's jlc_4layer_standard. Thus P-ESC record consistency is closed while P-TIER/physical process admission remains incomplete. The bounded D-TIER comparison must resolve the actual geometry, drill/aspect ratio, stack, filled/capped via requirements and cost posture before board acceptance.
+
+Evidence:06_build/verification/power-escape-record-adoption/selected-escape.log. The rejected model proposal and its adversarial review remain in the isolated power-escape-model-repair trial. Native schematic, routing, physical qualification and the remaining12two-source rows are still owed.

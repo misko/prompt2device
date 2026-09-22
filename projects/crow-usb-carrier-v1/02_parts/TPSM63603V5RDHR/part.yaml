@@ -17,10 +17,9 @@ escape:
   style: qfn
   pitch: 0.5
   escapes_worst_side: 8
-  tier_required: jlc_4layer_standard
-  checked: '2026-09-22 coordinator native pad-to-pad check: all435 pairs preserve0.15mm,
-    above0.127mm standard floor; realized thermal-via and trace escape remain board
-    gates.'
+  tier_required: jlc_4layer_advanced
+  checked: 'TI RDH0030A and exact native footprint have eight worst-side perimeter lands at0.5mm. Existing generic QFN checker conservatively requires advanced for this input. Prior435-pair pad spacing screen does not prove escape. A proposed irregular-module checker was rejected by independent malformed-geometry controls; no relaxed classification is used. This is not proof that all standard-process layouts are physically impossible.'
+
 pins:
   1: RT
   2: EN_SYNC
