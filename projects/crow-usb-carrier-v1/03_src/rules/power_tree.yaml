@@ -69,25 +69,24 @@ effective_capacitance_banks:
     requirement_evidence: TI SLVSFS5A section 8.2.1.2.5 requires 25 uF effective output capacitance.
     accepted_dielectrics: [x7r]
     contributors:
-      - part: GRM32ER71A476KE15L
+      - part: CKG57KX7R1E476M335JH
         refs: [C_OUT1, C_OUT2, C_OUT3]
         nominal_each_uF: 47
         dielectric: x7r
-        tolerance_minus_pct: 10
+        tolerance_minus_pct: 20
         dc_bias_derating_pct: 60
         temperature_derating_pct: 15
         lifecycle_derating_pct: 12.5
         basis: conservative_engineering_bound_with_adjacent_tolerance_proxy
         evidence: >-
-          Exact K-tolerance PDF gives 47 uF +/-10%, 10 V and X7R, and reports a
-          +/-12.5% post-endurance change after 1000 h at maximum temperature
-          and 150% rated voltage. It has no DC-bias curve. TI's application BOM
-          uses adjacent GRM32ER71A476ME15L (M means +/-20% rather than this K
-          part's +/-10%) and reports about 48 uF effective for two at 5 V,
-          about 51% typical retention each. This candidate uses only 40%
-          retention and three exact K parts, giving 37.753 uF. The 12.5% term
-          is a chosen lifecycle reserve informed by that endurance test, not a
-          service-life guarantee; hot/load-step first-article proof remains due.
+          The selected exact TDK CKG57KX7R1E476M335JH is 47 uF +/-20%, 25 V
+          X7R, but its primary page supplies no exact-part DC-bias guarantee.
+          TI's application BOM uses an adjacent 47 uF M-tolerance ceramic and
+          reports about 48 uF effective for two at 5 V, about 51% typical
+          retention each. This candidate applies a more adverse 40% cross-part
+          engineering proxy plus a separately selected 12.5% lifecycle reserve
+          to three exact TDK parts, giving 33.558 uF. Neither factor is exact
+          TDK production data; hot/load-step first-article proof remains due.
   - &tps62825_input
     name: TPS62825 U_3V3X input
     requirement_uF: 3
@@ -125,11 +124,11 @@ effective_capacitance_banks:
     requirement_evidence: TI SLVSEF9I section 8.2.2.5 requires 10 uF minimum effective output capacitance.
     accepted_dielectrics: [x7r]
     contributors:
-      - part: GRM32ER71A476KE15L
-        refs: [C_U_3V3X_OUT_1]
+      - part: CKG57KX7R1E476M335JH
+        refs: [C_U_3V3X_OUT_1, C_U_3V3X_OUT_2]
         nominal_each_uF: 47
         dielectric: x7r
-        tolerance_minus_pct: 10
+        tolerance_minus_pct: 20
         dc_bias_derating_pct: 65
         temperature_derating_pct: 15
         lifecycle_derating_pct: 12.5
@@ -139,33 +138,34 @@ effective_capacitance_banks:
           Table 8-3; its footnote anticipates 35% effective-capacitance loss,
           so that table does not validate this candidate's more adverse full
           derating envelope. Section 8.2.2.5 independently requires 10 uF
-          effective. Exact K-tolerance PDF gives 47 uF +/-10%, 10 V and X7R but
-          no DC-bias curve. TI's adjacent M-tolerance sibling reports about 51%
-          typical retention at the more adverse 5 V condition; this estimate
-          retains only 35% for voltage at 3.3 V, then separately charges 15%
-          temperature and a chosen 12.5% lifecycle reserve, for 11.011 uF.
-          No exact-K curve, production guarantee, or stability proof is claimed;
-          startup and load-step first-article proof remains due.
+          effective. The selected exact TDK CKG57KX7R1E476M335JH is 47 uF
+          +/-20%, 25 V X7R; its primary page supplies no exact-part DC-bias
+          guarantee. An adjacent TI BOM capacitor reports about 51% typical
+          retention at the more adverse 5 V condition. This estimate retains
+          only 35% as a cross-part engineering proxy at 3.3 V, then separately
+          charges 15% temperature and a selected 12.5% lifecycle reserve, for
+          19.572 uF for the pair. These factors are not exact TDK production
+          data or stability proof; startup/load-step first-article proof remains due.
   - <<: *tps62825_output
     name: TPS62825 U_1V8 output
     contributors:
-      - {part: GRM32ER71A476KE15L, refs: [C_U_1V8_OUT_1], nominal_each_uF: 47, dielectric: x7r, tolerance_minus_pct: 10, dc_bias_derating_pct: 65, temperature_derating_pct: 15, lifecycle_derating_pct: 12.5, basis: conservative_engineering_bound_with_nominal_TI_LC_match, evidence: "Same conservative 35% retained-capacitance voltage estimate as the 3.3 V bank; lower bias can only improve the typical screen. After the separate temperature and lifecycle reserves, estimated effective capacitance is 11.011 uF against section 8.2.2.5's 10 uF minimum; startup/load-step proof remains due."}
+      - {part: CKG57KX7R1E476M335JH, refs: [C_U_1V8_OUT_1, C_U_1V8_OUT_2], nominal_each_uF: 47, dielectric: x7r, tolerance_minus_pct: 20, dc_bias_derating_pct: 65, temperature_derating_pct: 15, lifecycle_derating_pct: 12.5, basis: conservative_engineering_bound_with_nominal_TI_LC_match, evidence: "Same conservative 35% retained-capacitance voltage estimate as the 3.3 V bank; lower bias can only improve the typical screen. After the separate temperature and lifecycle reserves, estimated effective capacitance is 19.572 uF for the pair against section 8.2.2.5's 10 uF minimum; startup/load-step proof remains due."}
   - <<: *tps62825_output
     name: TPS62825 U_CORE output
     contributors:
-      - {part: GRM32ER71A476KE15L, refs: [C_U_CORE_OUT_1], nominal_each_uF: 47, dielectric: x7r, tolerance_minus_pct: 10, dc_bias_derating_pct: 65, temperature_derating_pct: 15, lifecycle_derating_pct: 12.5, basis: conservative_engineering_bound_with_nominal_TI_LC_match, evidence: "Same conservative 35% retained-capacitance voltage estimate as the 3.3 V bank; lower bias can only improve the typical screen. After the separate temperature and lifecycle reserves, estimated effective capacitance is 11.011 uF against section 8.2.2.5's 10 uF minimum; startup/load-step proof remains due."}
+      - {part: CKG57KX7R1E476M335JH, refs: [C_U_CORE_OUT_1, C_U_CORE_OUT_2], nominal_each_uF: 47, dielectric: x7r, tolerance_minus_pct: 20, dc_bias_derating_pct: 65, temperature_derating_pct: 15, lifecycle_derating_pct: 12.5, basis: conservative_engineering_bound_with_nominal_TI_LC_match, evidence: "Same conservative 35% retained-capacitance voltage estimate as the 3.3 V bank; lower bias can only improve the typical screen. After the separate temperature and lifecycle reserves, estimated effective capacitance is 19.572 uF for the pair against section 8.2.2.5's 10 uF minimum; startup/load-step proof remains due."}
   - name: LT3045 input
     requirement_uF: 4.7
     requirement_evidence: ADI LT3045 Rev.D p18 requires at least 4.7 uF at IN.
     accepted_dielectrics: [x7r]
     contributors:
-      - {part: GRM32ER71A476KE15L, refs: [C_LDO_IN], nominal_each_uF: 47, dielectric: x7r, tolerance_minus_pct: 10, dc_bias_derating_pct: 65, temperature_derating_pct: 15, lifecycle_derating_pct: 12.5, basis: conservative_engineering_bound, evidence: "Exact K-tolerance PDF has no DC-bias curve. Reuse of the established 35% voltage-retention estimate at no more than 5.05 V plus separate temperature/lifecycle reserves gives 11.011 uF effective, above 4.7 uF. Input-loop damping remains a layout and transient obligation."}
+      - {part: CKG57KX7R1E476M335JH, refs: [C_LDO_IN], nominal_each_uF: 47, dielectric: x7r, tolerance_minus_pct: 20, dc_bias_derating_pct: 65, temperature_derating_pct: 15, lifecycle_derating_pct: 12.5, basis: conservative_engineering_bound, evidence: "The selected exact 47 uF +/-20%, 25 V TDK part has no exact-part DC-bias guarantee. Applying the 35% cross-part voltage-retention proxy at no more than 5.05 V plus separate 15% temperature and selected 12.5% lifecycle reserves gives 9.786 uF effective, above 4.7 uF. These factors are not exact TDK production data; input-loop damping remains a layout and transient obligation."}
   - name: LT3045 output
     requirement_uF: 10
     requirement_evidence: ADI LT3045 Rev.D pp13,16 requires at least 10 uF with ESR below 20 milliohm and ESL below 2 nH.
     accepted_dielectrics: [x7r]
     contributors:
-      - {part: GRM32ER71A476KE15L, refs: [C_LDO_OUT, C_OPA_BULK], nominal_each_uF: 47, dielectric: x7r, tolerance_minus_pct: 10, dc_bias_derating_pct: 65, temperature_derating_pct: 15, lifecycle_derating_pct: 12.5, basis: conservative_engineering_bound, evidence: "Each capacitor independently estimates 11.011 uF effective at the conservative 3.3 V screen; together estimate 22.022 uF. ESR below 20 milliohm, ESL below 2 nH, Kelvin topology and load-step stability remain realized-layout qualifications."}
+      - {part: CKG57KX7R1E476M335JH, refs: [C_LDO_OUT_1, C_LDO_OUT_2], nominal_each_uF: 47, dielectric: x7r, tolerance_minus_pct: 20, dc_bias_derating_pct: 65, temperature_derating_pct: 15, lifecycle_derating_pct: 12.5, basis: conservative_engineering_bound, evidence: "The symmetric pair estimates 19.572 uF effective. Exact TDK simple models give 4.1 milliohm and 2.000 nH each; ideal parallel values are 2.05 milliohm and 1.000 nH. Placement must keep added shared-loop inductance below 1.0 nH, Kelvin-connect OUTS at the shared output node, and verify assembled total ESL strictly below 2 nH plus startup/load-step stability."}
   - name: XU316 USB VBUS sense capacitance
     requirement_uF: 1
     requirement_evidence: XMOS self-powered reference requires 1-10 uF at connector VBUS.

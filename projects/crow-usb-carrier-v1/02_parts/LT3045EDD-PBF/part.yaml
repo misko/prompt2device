@@ -33,6 +33,7 @@ sourcing:
   alternates: []
 verified: 'Primary Rev.D pin table, DD package drawing, TSX geometry and installed KiCad FPID inspected: left pads 1-5, right pads 10-6, EP11; 0.5mm pitch, 0.70x0.25mm outer lands and 1.65x2.38mm EP. Owned no-hole native FPID loads and exposes electrical pad numbers 1-11 with ADI/TSX geometry; floorplan emits six separately process-controlled PCB_VIA items on EP11. JLC model/rotation, paste realization and realized board remain unreviewed.'
 gotchas:
+  - "C_LDO_OUT_1 and C_LDO_OUT_2 are the symmetric local COUT pair; C_OPA_BULK is downstream bulk, not regulator-stability capacitance. Verify local effective capacitance >=10uF, ESR <20mohm and assembled ESL <2nH with Kelvin OUTS at the shared node."
   - 'The 0.8uVrms noise figure is a typical datasheet value at 500mA with 4.7uF CSET, not a guaranteed board-level audio-noise result. Capacitor leakage, piezoelectric response, layout and actual load remain qualification items.'
   - 'The PGFB divider enables fast startup with the larger CSET. The datasheet 10ms typical example is informative, not a candidate timing guarantee. Supervisor, hold-up, dump and ADC reset timing require joint transient review.'
   - 'Programmed 450mA minimum current limit exceeds the 250mA allocation by 200mA. Short-circuit, dump, capacitor charging and fault energy remain qualification items.'
@@ -42,14 +43,14 @@ layout:
   reviewed: '2026-09-22 source geometry and circuit ownership; native PCB acceptance not performed'
   keep_short:
     - {net: 5V_LDO_HOLD, anchor_pins: ['1', '2'], partner_refs: [C_LDO_IN], max_span_mm: 5, why: 'Local input ceramic.'}
-    - {net: 3V3_ADC, anchor_pins: ['10'], partner_refs: [C_LDO_OUT, C_OPA_BULK], max_span_mm: 5, why: 'Required low-ESR output capacitance.'}
-    - {net: 3V3_ADC, anchor_pins: ['9'], partner_refs: [C_LDO_OUT], max_span_mm: 5, why: 'Kelvin OUTS endpoint at output capacitor/load node.'}
+    - {net: 3V3_ADC, anchor_pins: ['10'], partner_refs: [C_LDO_OUT_1, C_LDO_OUT_2], max_span_mm: 5, why: 'Required low-ESR output capacitance.'}
+    - {net: 3V3_ADC, anchor_pins: ['9'], partner_refs: [C_LDO_OUT_1], max_span_mm: 5, why: 'Kelvin OUTS endpoint at output capacitor/load node.'}
     - {net: LDO_NR, anchor_pins: ['7'], partner_refs: [C_LDO_NR4, C_LDO_NR5, R_LDO_SET], max_span_mm: 5, why: 'SET programming/noise network with quiet return.'}
     - {net: LDO_ILIM, anchor_pins: ['5'], partner_refs: [R_LDO_ILIM], max_span_mm: 5, why: 'Current-limit programming resistor with Kelvin ground return.'}
     - {net: LDO_PGFB, anchor_pins: ['6'], partner_refs: [R_LDO_PG_TOP, R_LDO_PG_BOT_A], max_span_mm: 5, why: 'Fast-start threshold divider.'}
   adjacency:
     - {refdes: [U_LDO, C_LDO_IN], nets: [5V_LDO_HOLD], max_mm: 3.5, why: 'Local input loop.'}
-    - {refdes: [U_LDO, C_LDO_OUT], nets: [3V3_ADC], max_mm: 3.5, why: 'Output and sense loop.'}
+    - {refdes: [U_LDO, C_LDO_OUT_1, C_LDO_OUT_2], nets: [3V3_ADC], max_mm: 3.5, why: 'Output and sense loop.'}
     - {refdes: [U_LDO, R_LDO_ILIM], nets: [LDO_ILIM], max_mm: 4, why: 'ILIM programming loop.'}
     - {refdes: [U_LDO, R_LDO_PG_TOP], nets: [LDO_PGFB], max_mm: 4, why: 'PGFB fast-start divider.'}
 layout_refs:

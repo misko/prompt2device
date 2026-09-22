@@ -1,0 +1,25 @@
+mpn: CKG57KX7R1E476M335JH
+manufacturer: TDK
+type: ceramic_capacitor_metal_frame
+value: 47uF
+status: active
+datasheet:
+  doc_id: TDK CKG57K product page and CKG commercial catalog
+  revision: live product center / 2026-09-22
+  url: https://product.tdk.com/en/search/capacitor/ceramic/mlcc/info?part_no=CKG57KX7R1E476M335JH
+  fetched: '2026-09-22'
+  note: 'Exact primary page reports Production, 47uF +/-20%, 25VDC, X7R, -55..125C, MEGACAP J-lead 6.0x5.0x3.35mm and land ranges PA3.90..4.30, PB1.50..2.00, PC4.50..5.00mm. Exact clicked ECM authority: https://product.tdk.com/system/files/dam/technicalsupport/tvcl/pdf/capacitor_mlcc_com_megacap_ckg57k_ecm.pdf, revision 2026-02-27; direct byte retention was denied HTTP 403 on re-fetch, so no local file/hash is claimed.'
+package: "TDK CKG57K MEGACAP metal-frame J-lead, 6.0 x 5.0 x 3.35 mm"
+footprint: crow_usb_power_aux:TDK_CKG57K_JLead
+escape: {style: passive_jlead, pitch: 4.1, tier_required: jlc_2layer_default, checked: "Native source land uses midpoint of exact TDK PA/PB/PC recommended ranges; placement and stencil review owed."}
+pins: {1: A, 2: B}
+limits: {capacitance: 47uF, tolerance: 20pct, rated_voltage: 25V, dielectric: X7R, operating_temperature: "-55C to +125C"}
+asserts:
+  - {assert: value, equals: 47u, tolerance_pct: 20, why: "Split 13-part bank allocation is source-qualified and conservatively derated in power_tree.yaml."}
+gotchas:
+  - "Not footprint-compatible with 1210; use exact metal-frame J-lead land and re-review placement."
+  - "TDK simple model gives R1=4.1mohm and L1=2.000nH per part. LT3045 COUT therefore uses a symmetric pair and retains an assembled-network <2nH verification hold."
+  - "Typical characteristic graphs are reference-only; startup/load-step and exact-bank validation remain required."
+  - "C_OPA_BULK is an advisory downstream reservoir, not a regulator stability bank. The same conservative proxy estimates 9.786uF effective, but no invented minimum is claimed; analog load-step validation remains owed."
+verified: "CITED: exact TDK primary page reports Production (not NRND) and exact electrical/package identity; exact TDK equivalent-circuit library reports R1=0.0041ohm and L1=2.000nH. Read 2026-09-22."
+sourcing: {lcsc: C2171626, alternates: [], note: "Exact LCSC catalog identity exists but live stock was 0 on 2026-09-22; this is source identity, not an allocation claim. Owning Q-2SOURCE separately passed DigiKey plus Mouser for 65 required."}

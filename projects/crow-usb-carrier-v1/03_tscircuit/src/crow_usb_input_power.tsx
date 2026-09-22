@@ -1,4 +1,4 @@
-import { MicroFit2, NanoFuse451, Pdi, Smbj } from "./z_power_aux_footprints"
+import { MicroFit2, NanoFuse451, Pdi, Smbj, TdkCkg57KJLead } from "./z_power_aux_footprints"
 import { TpsmRdh0030A } from "./z_tpsm_rdh0030a"
 
 /** Repaired 70 C-rated source module. No downstream digital/analog loads are instantiated here. */
@@ -18,5 +18,5 @@ export const CrowUsbInputPowerHot=({net=N0}:CrowUsbInputPowerHotProps)=>{const n
  {([1,2,3] as const).map(i=><C name={`C_IN${i}`} value="10uF" a="12V_PROTECTED" b="GND" mpn="12105C106K4Z2A" footprint="1210" jlc="C597579" n={n}/>)}<C name="C_IN_HF" value="100nF" a="12V_PROTECTED" b="GND" mpn="CC0805KRX7R9BB104" footprint="0805" jlc="C49678" n={n}/>
  <Chip name="U_BUCK" manufacturerPartNumber="TPSM63603V5RDHR" footprint={<TpsmRdh0030A/>} pinLabels={{pin1:"RT",pin2:"EN",pin3:"VIN3",pin4:"VIN4",pin5:"PGND5",pin6:"PGND6",pin7:"VOUT7",pin8:"VOUT8",pin9:"VOUT9",pin10:"VOUT10",pin11:"SW_NC",pin12:"VOUT12",pin13:"VOUT13",pin14:"VOUT14",pin15:"VOUT15",pin16:"PGND16",pin17:"PGND17",pin18:"VIN18",pin19:"VIN19",pin20:"CBOOT",pin21:"RBOOT",pin22:"VLDOIN",pin23:"VCC",pin24:"AGND24",pin25:"FB",pin26:"PG_NC",pin27:"AGND27",pin28:"PGND28",pin29:"PGND29",pin30:"VOUT30"}} connections={{pin1:n("BUCK_RT"),pin2:n("12V_PROTECTED"),pin3:n("12V_PROTECTED"),pin4:n("12V_PROTECTED"),pin5:n("GND"),pin6:n("GND"),pin7:n("5V_BUCK"),pin8:n("5V_BUCK"),pin9:n("5V_BUCK"),pin10:n("5V_BUCK"),pin12:n("5V_BUCK"),pin13:n("5V_BUCK"),pin14:n("5V_BUCK"),pin15:n("5V_BUCK"),pin16:n("GND"),pin17:n("GND"),pin18:n("12V_PROTECTED"),pin19:n("12V_PROTECTED"),pin20:n("BOOT_SHORT"),pin21:n("BOOT_SHORT"),pin22:n("5V_BUCK"),pin23:n("BUCK_VCC"),pin24:n("BUCK_AGND"),pin25:n("5V_BUCK"),pin27:n("BUCK_AGND"),pin28:n("GND"),pin29:n("GND"),pin30:n("5V_BUCK")}}/>
  <R name="R_RT" value="13k" a="BUCK_RT" b="BUCK_AGND" mpn="RC0402FR-0713KL" n={n}/><R name="R_AGND_JOIN" value="0" a="BUCK_AGND" b="GND" mpn="RC0402FR-070RL" jlc="C106231" n={n}/><C name="C_VCC" value="1uF" a="BUCK_VCC" b="GND" mpn="C0603C105K4RACTU" footprint="0603" jlc="C2167386" n={n}/><C name="C_VLDO" value="100nF" a="5V_BUCK" b="GND" mpn="CL05B104KO5NNNC" jlc="C1525" n={n}/>
- {([1,2,3] as const).map(i=><C name={`C_OUT${i}`} value="47uF" a="5V_BUCK" b="GND" mpn="GRM32ER71A476KE15L" footprint="1210" jlc="C84494" n={n}/>)}
+ {([1,2,3] as const).map(i=><C name={`C_OUT${i}`} value="47uF" a="5V_BUCK" b="GND" mpn="CKG57KX7R1E476M335JH" footprint={<TdkCkg57KJLead/>} n={n}/>)}
  </>}

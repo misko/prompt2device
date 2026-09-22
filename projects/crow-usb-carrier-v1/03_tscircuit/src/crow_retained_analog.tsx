@@ -1,3 +1,4 @@
+import { TdkCkg57KJLead } from "./z_power_aux_footprints"
 import { Fragment } from "react"
 import {
   CirrusCs5308pQfn48, Diodes2N7002kSot23, TiDrc0010j,
@@ -149,13 +150,13 @@ const QuietAnalogPower = ({ n }: any) => (
     <R name="R_PRE_G" value="100k" a="PRE_GATE" b="5V_LDO_FEED" mpn="RC0402FR-07100KL" jlc="C60491" n={n} />
     <C name="C_HOLD1" value="470uF" a="5V_LDO_HOLD" b="GND" mpn="EEEFK1A471P" jlc="C178530" footprint={<PanasonicEeeFk8x10 />} polarized n={n} />
     <C name="C_HOLD2" value="470uF" a="5V_LDO_HOLD" b="GND" mpn="EEEFK1A471P" jlc="C178530" footprint={<PanasonicEeeFk8x10 />} polarized n={n} />
-    <C name="C_LDO_IN" value="47uF" a="5V_LDO_HOLD" b="GND" mpn="GRM32ER71A476KE15L" jlc="C84494" footprint="1210" n={n} />
+    <C name="C_LDO_IN" value="47uF" a="5V_LDO_HOLD" b="GND" mpn="CKG57KX7R1E476M335JH" footprint={<TdkCkg57KJLead/>} n={n} />
     <Chip name="U_LDO" manufacturerPartNumber="LT3045EDD#PBF" jlc="C666574" footprint={<Lt3045Dd />}
       pinLabels={{ pin1: "IN1", pin2: "IN2", pin3: "EN_UV", pin4: "PG_NC", pin5: "ILIM", pin6: "PGFB", pin7: "SET", pin8: "GND", pin9: "OUTS", pin10: "OUT", pin11: "EP_GND" }}
       connections={{ pin1: n("5V_LDO_HOLD"), pin2: n("5V_LDO_HOLD"), pin3: n("LDO_EN"), pin5: n("LDO_ILIM"), pin6: n("LDO_PGFB"), pin7: n("LDO_NR"), pin8: n("GND"), pin9: n("3V3_ADC"), pin10: n("3V3_ADC"), pin11: n("GND") }} />
     <R name="R_LDO_ILIM" value="300" a="LDO_ILIM" b="GND" mpn="RC0402FR-07300RL" jlc="C138010" n={n} />
-    <C name="C_LDO_OUT" value="47uF" a="3V3_ADC" b="GND" mpn="GRM32ER71A476KE15L" jlc="C84494" footprint="1210" n={n} />
-    <C name="C_OPA_BULK" value="47uF" a="3V3_ADC" b="GND" mpn="GRM32ER71A476KE15L" jlc="C84494" footprint="1210" n={n} />
+    {[1,2].map(i=><C key={`ldo_out${i}`} name={`C_LDO_OUT_${i}`} value="47uF" a="3V3_ADC" b="GND" mpn="CKG57KX7R1E476M335JH" footprint={<TdkCkg57KJLead/>} n={n} />)}
+    <C name="C_OPA_BULK" value="47uF" a="3V3_ADC" b="GND" mpn="CKG57KX7R1E476M335JH" footprint={<TdkCkg57KJLead/>} n={n} />
     <C name="C_LDO_NR4" value="4.7uF" a="LDO_NR" b="GND" mpn="CL10A475KO8NNNC" jlc="C19666" footprint="0603" n={n} />
     <C name="C_LDO_NR5" value="1nF" a="LDO_NR" b="GND" mpn="GRM1555C1H102JA01D" jlc="C76947" n={n} />
     <R name="R_LDO_SET" value="33k" a="LDO_NR" b="GND" mpn="RT0603BRD0733KL" jlc="C705768" footprint="0603" n={n} />

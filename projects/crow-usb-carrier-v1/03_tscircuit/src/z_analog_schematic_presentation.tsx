@@ -25,7 +25,7 @@ own("buck", {
 own("held_ldo", {
   D_HOLD:[-6,3], R_PRE:[-2,3], Q_PRE:[-2,0], R_PRE_G:[-5,-.5,-90],
   Q_PRE_EN:[-2,-3], C_HOLD1:[1,-3,-90], C_HOLD2:[4,-3,-90],
-  C_LDO_IN:[1,2,-90], U_LDO:[6,1], C_LDO_OUT:[12,1,-90],
+  C_LDO_IN:[1,2,-90], U_LDO:[6,1], C_LDO_OUT_1:[11,1,-90], C_LDO_OUT_2:[14,1,-90],
   // SET leaves the top of U_LDO. Keep its resistor/capacitors above that
   // pin, so the primary wire does not loop through the chip reference.
   R_LDO_SET:[6,8,-90],

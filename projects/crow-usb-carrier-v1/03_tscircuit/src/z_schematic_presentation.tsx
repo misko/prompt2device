@@ -43,19 +43,19 @@ const explicitDigitalPose = (ref: string): Pose | undefined => {
   const railPower: Record<string,[string,number,number,number?]> = {
     U_3V3X:["digital_power_3v3x",-5,2], L_U_3V3X:["digital_power_3v3x",0,2],
     C_U_3V3X_IN_1:["digital_power_3v3x",-6,-1,-90], C_U_3V3X_IN_2:["digital_power_3v3x",-3,-1,-90],
-    C_U_3V3X_OUT_1:["digital_power_3v3x",4,-1,-90],
+    C_U_3V3X_OUT_1:["digital_power_3v3x",4,-1,-90], C_U_3V3X_OUT_2:["digital_power_3v3x",6,-1,-90],
     U_XU_3V3_OK:["digital_power_3v3x",1,-4],
     C_XU_3V3_OK_VDD:["digital_power_3v3x",-5,-4,-90], C_XU_3V3_OK_CT:["digital_power_3v3x",7,-4,-90],
 
     U_1V8:["digital_power_1v8",-5,2], L_U_1V8:["digital_power_1v8",0,2],
     C_U_1V8_IN_1:["digital_power_1v8",-6,-1,-90], C_U_1V8_IN_2:["digital_power_1v8",-3,-1,-90],
-    C_U_1V8_OUT_1:["digital_power_1v8",4,-1,-90],
+    C_U_1V8_OUT_1:["digital_power_1v8",4,-1,-90], C_U_1V8_OUT_2:["digital_power_1v8",6,-1,-90],
     U_1V8_OK:["digital_power_1v8",0,-4], C_1V8_OK_VDD:["digital_power_1v8",-5,-5,-90],
     C_CORE_EN_CT:["digital_power_1v8",5,-5,-90], R_CORE_EN_PU:["digital_power_1v8",6,-2,-90],
 
     U_CORE:["digital_power_core",-5,2], L_U_CORE:["digital_power_core",0,2],
     C_U_CORE_IN_1:["digital_power_core",-6,-1,-90], C_U_CORE_IN_2:["digital_power_core",-3,-1,-90],
-    C_U_CORE_OUT_1:["digital_power_core",4,-1,-90],
+    C_U_CORE_OUT_1:["digital_power_core",4,-1,-90], C_U_CORE_OUT_2:["digital_power_core",6,-1,-90],
     R_CORE_FB_TOP:["digital_power_core",5,-3], R_CORE_FB_BOTTOM:["digital_power_core",9,-3],
     U_CORE_OK:["digital_power_core",-1,-5], C_CORE_OK:["digital_power_core",-6,-5,-90],
     R_XU_RST_PU:["digital_power_core",5,-6,-90],

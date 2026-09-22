@@ -1491,3 +1491,19 @@ quotes:
   note: Exact US product page opened through web tool; displayed stock0 and backorder.
     Lifecycle not displayed. Incoming217153 expected2026-10-06 is not current stock.
     Supersedes unsupported prior positive observation; no second-pool credit.
+
+- mpn: CKG57KX7R1E476M335JH
+  manufacturer: TDK
+  distributor: digikey
+  dpn: 445-174689-1-ND
+  source: product_page
+  url: https://www.digikey.com/en/products/detail/tdk-corporation/CKG57KX7R1E476M335JH/6236783
+  read_on: '2026-09-22'
+  checked_at: '2026-09-22T06:43:27-07:00'
+  lifecycle: Active
+  packaging: Cut Tape
+  stock: 5872
+  min: 1
+  mult: 1
+  price_breaks: []
+  note: Exact manufacturer/MPN product page; quantity 65 covered.

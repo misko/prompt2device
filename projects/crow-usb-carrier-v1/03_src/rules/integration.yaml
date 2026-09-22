@@ -118,7 +118,8 @@ selections:
   - C_LDO_IN
   - C_LDO_NR4
   - C_LDO_NR5
-  - C_LDO_OUT
+  - C_LDO_OUT_1
+  - C_LDO_OUT_2
   - C_OPA1
   - C_OPA2
   - C_OPA3
@@ -407,12 +408,15 @@ selections:
   - C_U_1V8_IN_1
   - C_U_1V8_IN_2
   - C_U_1V8_OUT_1
+  - C_U_1V8_OUT_2
   - C_U_3V3X_IN_1
   - C_U_3V3X_IN_2
   - C_U_3V3X_OUT_1
+  - C_U_3V3X_OUT_2
   - C_U_CORE_IN_1
   - C_U_CORE_IN_2
   - C_U_CORE_OUT_1
+  - C_U_CORE_OUT_2
   - C_XLATE_A
   - C_XLATE_B
   - C_XTAL_IN
@@ -528,3 +532,6 @@ selections:
     in the17-reference source module. Four-layer thermal and manufacturing assumptions still require verification.
   support_refs:
   - C_IN3
+  - C_OUT1
+  - C_OUT2
+  - C_OUT3

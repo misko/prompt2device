@@ -31,3 +31,15 @@ export const Smbj = () => <footprint>
   <smtpad portHints={["1"]} pcbX="-2.15mm" pcbY="0mm" width="2.5mm" height="2.3mm" shape="rect" rectBorderRadius="0.25mm" />
   <smtpad portHints={["2"]} pcbX="2.15mm" pcbY="0mm" width="2.5mm" height="2.3mm" shape="rect" rectBorderRadius="0.25mm" />
 </footprint>
+
+/** TDK CKG57K MEGACAP 5750 metal-frame recommended land, exact primary ranges:
+ * PA 3.90..4.30 mm, PB 1.50..2.00 mm, PC 4.50..5.00 mm. Mid-range land used;
+ * body is 6.00 x 5.00 x 3.35 mm. This is not an EIA-2220 chip land. */
+export const TdkCkg57KJLead = () => <footprint>
+  <smtpad portHints={["1"]} pcbX="-2.925mm" pcbY="0mm" width="1.75mm" height="4.75mm" shape="rect" rectBorderRadius="0.175mm" />
+  <smtpad portHints={["2"]} pcbX="2.925mm" pcbY="0mm" width="1.75mm" height="4.75mm" shape="rect" rectBorderRadius="0.175mm" />
+  {/* TDK drawing maximum body is 6.5 x 5.5 mm. The courtyard contains that
+      body and the 7.60 mm pad span with 0.25 mm outward clearance. */}
+  <fabricationnoterect pcbX="0mm" pcbY="0mm" width="6.5mm" height="5.5mm" strokeWidth="0.1mm" />
+  <courtyardrect pcbX="0mm" pcbY="0mm" width="8.1mm" height="6.0mm" />
+</footprint>
