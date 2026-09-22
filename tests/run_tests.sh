@@ -86,6 +86,8 @@ SUITES=(
   t1_pipeline_foundation.py
   t1_pipeline_contract.py
   t1_pipeline_execution.py
+  t1_modular_design.py
+  t1_crow_modular_trial.py
   t1_pipeline_issue_ledger.py
   t1_openrouter_usage_adapter.py
   t1_pipeline_usage_import.py

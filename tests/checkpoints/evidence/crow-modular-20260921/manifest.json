@@ -1,0 +1,18 @@
+{
+  "schema": 1,
+  "classification": "reconstructed-current-parts-replay-input",
+  "baseline_commit": "d7c3ac4416b1ee3c233b98de869ad410e2e61788",
+  "baseline_project_tree": "aa582e5ac63c235731140bed64fd5070504ad522",
+  "source_project": "projects/crow-audio-carrier-v1",
+  "destination": "/home/mouse9911/gits/circuits-trials/crow-modular-20260921/crow-audio-carrier-v1",
+  "preparer": "tests/checkpoints/crow_modular_trial.py",
+  "preparer_sha256": "fff3fa920a654ff3cb51a593722ebcb5292ba9c2683fe428da6dc2b5c9f61e2a",
+  "input_member_count": 304,
+  "input_tree_sha256": "6db65a4c04e21e7017ade05632d333434cef26409795f33cf7267db7aac5bfe7",
+  "input_manifest_sha256": "67bca7ebf136e349418fa0b3c768eca69624d4076e132ce270e990195335d4c4",
+  "input_boundary_sha256": "6956193484c273e2c2dde5ee08aa8e04d3cb19ef03c3a3a00738a124590d336b",
+  "sanitized_floorplan_sha256": "c29ebc9188654e541ccc9b8de6692a9fa669d1a77a60a38fd474587502affff8",
+  "source_project_clean_against_baseline_before_and_after": true,
+  "producer_or_native_tool_run": false,
+  "fresh_result_claimed": false
+}

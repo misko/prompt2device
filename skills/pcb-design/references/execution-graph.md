@@ -223,6 +223,36 @@ cleanup, progress, and state telemetry. Direct in-process and administrative
 driver steps are not automatically covered. The child gate still owns
 engineering meaning.
 
+### Modular placement child work
+
+When a board benefits from functional decomposition, draft block boundaries in
+`PCB-ARCHITECTURE`, then validate exact ref ownership and interface endpoints
+from generated `circuit.json` after part selection and schematic generation.
+The operational P1 floorplan, P2 block placement, P3 critical local-route
+probe, P4 joint proof, and P5 integrated review are dependency-linked child
+tasks of `KICAD-PLACEMENT`. P3 may invoke routing tools on isolated diagnostic
+geometry; it does not enter top-level `KICAD-ROUTING` or satisfy
+`placement_reviewed`.
+
+`modular_design.py` checks this child graph and reopens identity-bound
+`TaskAttempt` completion files. It leaves every engineering acceptance field
+unevaluated. The owning placement/coupled-geometry gates still establish
+placement evidence, and the normal routing subgraph begins only after the
+existing placement boundary passes. See [modular-design.md](modular-design.md).
+For a project that opts into `03_src/modular_plan.json`, run the stage-local
+boundary check after the accepted schematic generated its exact circuit input
+and before P1 starts:
+
+```bash
+python3 skills/pcb-design/scripts/modular_design.py \
+  projects/<name>/03_src/modular_plan.json \
+  projects/<name>/03_tscircuit/build/circuit.json \
+  --json projects/<name>/06_build/modular/coverage.json
+```
+
+This optional recipe does not alter existing conductors or require plans on
+boards that do not select modular work.
+
 ## Routing subgraph
 
 The full fresh-route/build-import/stitch workflow is separate from canonical

@@ -206,8 +206,8 @@ domains. References longer than 100 lines have a contents list.
 | Review, seal, supersession, publication | [review-and-publication.md](references/review-and-publication.md) |
 | Stage/result/artifact/review schemas | [pipeline-stage-contract.md](references/pipeline-stage-contract.md) |
 | Part-freeze/electrical/placement boundary composition | [early-boundary-gates.md](references/early-boundary-gates.md) |
+| Functional decomposition, block interfaces, and P1–P5 child work | [modular-design.md](references/modular-design.md) |
 | Compute/model tier | [compute-tiers.md](references/compute-tiers.md) |
-
 ### KiCad electrical and layout
 
 | Need | Read |

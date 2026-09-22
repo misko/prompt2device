@@ -1,6 +1,9 @@
 # Modular PCB design: implementation plan
 
-Status: proposed; no design, skill, gate or execution authority is changed by this document.
+Status: implementation and isolated Crow trial in progress. The procedure and
+diagnostic work graph are being integrated into the owning skills; existing
+engineering gates and project conductors retain acceptance authority. This
+document does not promote a PCB or grant selective gate reuse.
 
 ## Objective
 
@@ -176,6 +179,32 @@ existing bounded plateau/backtrack policy. A new model, worker or group name
 does not reset failed-attempt history.
 
 ## Implementation phases
+
+The placement work expands inside the existing `KICAD-PLACEMENT` stage:
+
+```text
+architecture: propose functional blocks
+schematic: verify exact ownership and every crossing connection
+placement:
+    P1 whole-board floorplan and corridors
+      -> P2 detailed block/group placement
+      -> P3 critical local route probes
+      -> P4 joint neighborhood proofs
+      -> P5 integrated placement review
+full routing: supported local-work handoff, remaining routes, whole-board checks
+```
+
+P2 through P4 may interleave across independent work scopes. A P3 routing probe
+is placement work using routing tools, not early admission to the top-level
+`KICAD-ROUTING` stage. Failures reopen their causal child task or the existing
+sourcing/architecture owner, preserving the cumulative attempt history.
+
+The first real-board trial is a reconstructed current-parts Crow input, not a
+pristine historical post-selection snapshot. Its inherited schematic intent,
+excluded solved placement/copper, initial preparation finding and exact input
+identity are recorded in the [trial provenance](tests/checkpoints/evidence/crow-modular-20260921/PROVENANCE.md).
+Fresh generation, coverage, placement, routing and acceptance are separate
+results; a restored input or successful task handback cannot stand for them.
 
 | Phase | Work and deliverable | Exit condition | Suggested execution |
 |---|---|---|---|

@@ -93,6 +93,14 @@ missing capability. Existing adopted receipt/acceptance contracts still apply.
   Validate with execution, runtime and artifact suites. Host events are observed
   evidence, not authenticated process telemetry or engineering verdicts.
 
+- `scripts/modular_design.py` owns diagnostic schema-1 block membership,
+  crossing-interface coverage, and P1–P5 child-work dependencies inside the
+  existing lifecycle. It derives refs and complete crossing endpoints from
+  generated `circuit.json`, consumes identity-bound schema-1 `TaskAttempt`
+  observations, and always leaves engineering acceptance unevaluated. Validate
+  with `tests/t1_modular_design.py`; no result authorizes geometry, routing,
+  cache reuse, or stage promotion.
+
 - `pipeline_qualification.py` composes startup checks, with native fixture
   mechanics in `kicad-pcb/scripts/qualification_probe.py`. Stable cache identity
   covers executed tools, loaded libraries and probe sources; live reviewer
