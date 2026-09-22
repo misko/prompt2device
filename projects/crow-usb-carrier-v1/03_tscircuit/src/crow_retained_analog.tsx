@@ -82,11 +82,11 @@ const Spoke = ({ index, n }: any) => (
       footprint={<Wurth615008160221Rj45 />}
       pinLabels={{ pin1: "12V_1", pin2: "GND_1", pin3: "12V_2", pin4: "AUDIO_N", pin5: "AUDIO_P", pin6: "GND_2", pin7: "12V_3", pin8: "GND_3", pin9: "SHIELD_S1", pin10: "SHIELD_S2" }}
       connections={{ pin1: n(`12V_POD${index}`), pin2: n("GND"), pin3: n(`12V_POD${index}`), pin4: n(`AUDIO_N${index}`), pin5: n(`AUDIO_P${index}`), pin6: n("GND"), pin7: n(`12V_POD${index}`), pin8: n("GND"), pin9: n("CHASSIS"), pin10: n("CHASSIS") }} />
-    <Chip name={`U_SPOKE${index}`} manufacturerPartNumber="TPS26625DRCR" jlc=""
+    <Chip name={`U_SPOKE${index}`} manufacturerPartNumber="TPS26625DRCR" jlc="C2862873"
       footprint={<TiDrc0010j />}
       pinLabels={{ pin1: "IN", pin2: "UVLO", pin3: "OVP", pin4: "SHDN", pin5: "RTN", pin6: "GND", pin7: "ILIM", pin8: "dVdT", pin9: "FLT", pin10: "OUT", pin11: "EP" }}
       connections={{ pin1: n("12V_PROTECTED"), pin2: n(`SPOKE_UVLO${index}`), pin3: n(`SPOKE_RTN${index}`), pin4: n("12V_PROTECTED"), pin5: n(`SPOKE_RTN${index}`), pin6: n("GND"), pin7: n(`SPOKE_ILIM${index}`), pin8: n(`SPOKE_DVDT${index}`), pin10: n(`12V_POD${index}`), pin11: n(`SPOKE_RTN${index}`) }} />
-    <R name={`R_SPOKE_UVLO${index}`} value="1M" a="12V_PROTECTED" b={`SPOKE_UVLO${index}`} mpn="RC0402FR-071ML" jlc="C26083" n={n} />
+    <R name={`R_SPOKE_UVLO${index}`} value="1M" a="12V_PROTECTED" b={`SPOKE_UVLO${index}`} mpn="RC0402FR-071ML" jlc="C138033" n={n} />
     <R name={`R_SPOKE_ILIM${index}`} value="44.2k" a={`SPOKE_ILIM${index}`} b={`SPOKE_RTN${index}`} mpn="RT0603BRD0744K2L" jlc="C861410" footprint={<YageoRt0603 />} n={n} />
     <C name={`C_SPOKE_DVDT${index}`} value="10nF" a={`SPOKE_DVDT${index}`} b={`SPOKE_RTN${index}`} mpn="CL05B103KB5NNNC" jlc="C15195" n={n} />
     <C name={`C_SPOKE_IN${index}`} value="100nF" a="12V_PROTECTED" b="GND" mpn="CC0805KRX7R9BB104" jlc="C49678" footprint="0805" n={n} />
@@ -196,7 +196,7 @@ const AdcReferenceAndMode = ({ n }: any) => (
       <C name={`C_VMID${bank}_EXT_10U`} value="10uF" a={`VMID${bank}_EXT`} b="GND" jlc="C2167576" mpn="C0805C106K8RACTU" footprint="0805" n={n} />
       <C name={`C_VMID${bank}_EXT_1U`} value="1uF" a={`VMID${bank}_EXT`} b="GND" jlc="C2167386" mpn="C0603C105K4RACTU" footprint="0603" n={n} />
     </group>)}
-    <Chip name="U_ADC" manufacturerPartNumber="CS5308P-DN" jlc="C42457798"
+    <Chip name="U_ADC" manufacturerPartNumber="CS5308P-DN" jlc=""
       footprint={<CirrusCs5308pQfn48 />}
       pinLabels={{ pin1: "ADC_VMID1", pin2: "CONFIG1", pin3: "CONFIG2", pin4: "CONFIG3", pin5: "VDD_A1", pin6: "GND_A1", pin7: "LDO_A_FILT", pin8: "GND_A2", pin9: "VDD_A2", pin10: "CONFIG4", pin11: "CONFIG5", pin12: "ADC_VMID2", pin13: "IN5N", pin14: "IN5P", pin15: "IN6N", pin16: "IN6P", pin17: "ADC_FILT2N", pin18: "ADC_FILT2P", pin19: "IN7N", pin20: "IN7P", pin21: "IN8N", pin22: "IN8P", pin23: "RESET", pin24: "ASP_FSYNC", pin25: "ASP_DOUT1", pin26: "ASP_DOUT2_NC", pin27: "ASP_DOUT3_NC", pin28: "ASP_DOUT4_NC", pin29: "ASP_BCLK", pin30: "GND_D", pin31: "VDD_IO", pin32: "LDO_D_FILT", pin33: "VDD_D", pin34: "MCLK", pin35: "SPI_SDO_I2C_SCL", pin36: "SPI_SCK", pin37: "SPI_SDI_I2C_SDA", pin38: "SPI_CS", pin39: "IN1N", pin40: "IN1P", pin41: "IN2N", pin42: "IN2P", pin43: "ADC_FILT1P", pin44: "ADC_FILT1N", pin45: "IN3N", pin46: "IN3P", pin47: "IN4N", pin48: "IN4P", pin49: "EP_GND" }}
       connections={{ pin1: n("VMID1"), pin2: n("CFG1"), pin3: n("CFG2"), pin4: n("GND"), pin5: n("3V3_ADC"), pin6: n("GND"), pin7: n("LDO_A_FILT"), pin8: n("GND"), pin9: n("3V3_ADC"), pin10: n("CFG4"), pin11: n("CFG5"), pin12: n("VMID2"), pin13: n(adcInputNet(5, "N")), pin14: n(adcInputNet(5, "P")), pin15: n(adcInputNet(6, "N")), pin16: n(adcInputNet(6, "P")), pin17: n("GND"), pin18: n("FILT2P"), pin19: n(adcInputNet(7, "N")), pin20: n(adcInputNet(7, "P")), pin21: n(adcInputNet(8, "N")), pin22: n(adcInputNet(8, "P")), pin23: n("ADC_RESET_N"), pin24: n("ADC_FSYNC"), pin25: n("ADC_DOUT1"), pin29: n("ADC_BCLK"), pin30: n("GND"), pin31: n("3V3_ADC"), pin32: n("LDO_D_FILT"), pin33: n("LDO_D_FILT"), pin34: n("ADC_MCLK"), pin35: n("GND"), pin36: n("GND"), pin37: n("GND"), pin38: n("3V3_ADC"), pin39: n(adcInputNet(1, "N")), pin40: n(adcInputNet(1, "P")), pin41: n(adcInputNet(2, "N")), pin42: n(adcInputNet(2, "P")), pin43: n("FILT1P"), pin44: n("GND"), pin45: n(adcInputNet(3, "N")), pin46: n(adcInputNet(3, "P")), pin47: n(adcInputNet(4, "N")), pin48: n(adcInputNet(4, "P")), pin49: n("GND") }} />

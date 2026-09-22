@@ -58,3 +58,11 @@ layout_refs:
 sourcing:
   ti_store_observation_2026_09_22: active production, out of stock, no public unit price
   allocation: UNQUALIFIED
+
+  jlcpcb:
+    lcsc: C2862873
+    checked_at: '2026-09-22T02:31:00-07:00'
+    catalog_mpn: TPS26625DRCR
+    catalog_manufacturer: Texas Instruments
+    stock: 3091
+    note: Exact MPN/manufacturer identity from live JLC parts API; design-stage observation only.

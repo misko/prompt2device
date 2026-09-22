@@ -82,7 +82,7 @@ export function CrowUsbDigital({net=defaultNet}:CrowUsbDigitalProps={}){
   <C name="C_CORE_OK" value="100nF" a="1V8" b="GND" n={n} />
   <R name="R_XU_RST_PU" value="10k" a="1V8" b="XU_RESET_N" mpn="RC0402FR-0710KL" n={n} />
 
-  <Chip name="U_XU" manufacturerPartNumber="XU316-1024-TQ128-C24" jlc="" footprint={<XU316TQ128EPFootprint />}
+  <Chip name="U_XU" manufacturerPartNumber="XU316-1024-TQ128-C24" jlc="C6362698" footprint={<XU316TQ128EPFootprint />}
    pinLabels={{
     pin1: "X0D06",
     pin2: "X0D01",
@@ -332,12 +332,12 @@ export function CrowUsbDigital({net=defaultNet}:CrowUsbDigitalProps={}){
   <C name="C_ADC_OK_VDD" value="100nF" a="3V3X" b="GND" n={n} />
   <C name="C_ADC_OK_CT" value="1nF" a="ADC_OK_CT" b="GND" mpn="GRM1555C1H102JA01D" jlc="" n={n} />
   <R name="R_ADC_OK_PU" value="10k" a="3V3X" b="ADC_OK" mpn="RC0402FR-0710KL" n={n} />
-  <Chip name="Q_TDM_GATE" manufacturerPartNumber="BC847B,215" jlc="C8576" footprint="sot23" pinLabels={{pin1:"B",pin2:"E",pin3:"C"}} connections={{pin1:n("ADC_OK_B1"),pin2:n("GND"),pin3:n("TDM_OE_N")}} />
+  <Chip name="Q_TDM_GATE" manufacturerPartNumber="BC847B,215" jlc="C57668" footprint="sot23" pinLabels={{pin1:"B",pin2:"E",pin3:"C"}} connections={{pin1:n("ADC_OK_B1"),pin2:n("GND"),pin3:n("TDM_OE_N")}} />
   <R name="R_ADC_OK_B1" value="47k" a="ADC_OK" b="ADC_OK_B1" mpn="RC0402FR-0747KL" n={n} /><R name="R_TDM_OE_PU" value="10k" a="1V8" b="TDM_OE_N" mpn="RC0402FR-0710KL" n={n} />
-  <Chip name="Q_MCLK_GATE" manufacturerPartNumber="BC847B,215" jlc="C8576" footprint="sot23" pinLabels={{pin1:"B",pin2:"E",pin3:"C"}} connections={{pin1:n("ADC_OK_B2"),pin2:n("GND"),pin3:n("MCLK_OE_N")}} />
+  <Chip name="Q_MCLK_GATE" manufacturerPartNumber="BC847B,215" jlc="C57668" footprint="sot23" pinLabels={{pin1:"B",pin2:"E",pin3:"C"}} connections={{pin1:n("ADC_OK_B2"),pin2:n("GND"),pin3:n("MCLK_OE_N")}} />
   <R name="R_ADC_OK_B2" value="47k" a="ADC_OK" b="ADC_OK_B2" mpn="RC0402FR-0747KL" n={n} /><R name="R_MCLK_OE_PU" value="10k" a="3V3X" b="MCLK_OE_N" mpn="RC0402FR-0710KL" n={n} />
 
-  <Chip name="Q_VBUS" manufacturerPartNumber="BC847B,215" jlc="C8576" footprint="sot23" pinLabels={{pin1:"B",pin2:"E",pin3:"C"}} connections={{pin1:n("VBUS_B"),pin2:n("GND"),pin3:n("VBUS_PRESENT_N")}} />
+  <Chip name="Q_VBUS" manufacturerPartNumber="BC847B,215" jlc="C57668" footprint="sot23" pinLabels={{pin1:"B",pin2:"E",pin3:"C"}} connections={{pin1:n("VBUS_B"),pin2:n("GND"),pin3:n("VBUS_PRESENT_N")}} />
   <R name="R_VBUS_B" value="100k" a="VBUS_USB" b="VBUS_B" mpn="RC0402FR-07100KL" n={n} /><R name="R_VBUS_BE" value="1M" a="VBUS_B" b="GND" mpn="RC0402FR-071ML" n={n} /><R name="R_VBUS_PU" value="10k" a="1V8" b="VBUS_PRESENT_N" mpn="RC0402FR-0710KL" n={n} />
 
   <Chip name="J_JTAG" manufacturerPartNumber="FTSH-105-01-L-DV-K" jlc="" footprint={<FTSH2x5Land/>}

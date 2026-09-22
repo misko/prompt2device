@@ -433,3 +433,11 @@ layout_refs:
     (not present in the immutable task packet)
   why: No exact-part routed design files were included in the immutable packet; this
     bounded repair does not claim unseen files.
+sourcing:
+  jlcpcb:
+    lcsc: C6362698
+    checked_at: '2026-09-22T02:31:00-07:00'
+    catalog_mpn: XU316-1024-TQ128-C24
+    catalog_manufacturer: XMOS
+    stock: 46
+    note: Exact MPN/manufacturer identity from live JLC parts API; design-stage observation only.

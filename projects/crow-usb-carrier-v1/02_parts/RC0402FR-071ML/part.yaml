@@ -4,3 +4,7 @@ footprint: "Resistor_SMD:R_0402_1005Metric"
 type: resistor
 value: "1MΩ"
 pins: {1: terminal_1, 2: terminal_2}
+sourcing:
+  lcsc: C138033
+  alternates: []
+  note: Exact RC0402FR-071ML full-MPN catalog match observed 2026-09-22; replaces C26083, which resolved to a different manufacturer/MPN.

@@ -40,3 +40,7 @@ layout_refs:
   artifact: Exact-part manufacturer evaluation-board or routed reference-design files
   why: No exact-part routed design files were included in the immutable packet; this
     bounded repair does not claim unseen files.
+sourcing:
+  lcsc: C57668
+  alternates: []
+  note: Exact BC847B,215 full-MPN catalog match observed 2026-09-22; replaces C8576, which resolved to BC848A.
