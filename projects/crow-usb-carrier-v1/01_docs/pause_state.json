@@ -1,0 +1,20 @@
+{
+  "blocker": "J-PCBA-PRELAYOUT requires actual provider availability/economic response for 84 exact codes; response template generated, no placement started",
+  "checkpoint": {
+    "path": "03_tscircuit/build/circuit.json",
+    "sha256": "ead8cb33c07afcb9dd371a5c61188c8f2fde59c55c9e703400d5b21765daa336",
+    "size": 4382904
+  },
+  "next_command": "python3 skills/jlcpcb-fab/scripts/jlc_pcba_availability.py grade projects/crow-usb-carrier-v1/06_build/sourcing/prelayout_request.json projects/crow-usb-carrier-v1/06_build/sourcing/prelayout_response.csv --out projects/crow-usb-carrier-v1/06_build/sourcing/prelayout_receipt.json",
+  "phase": "schematic",
+  "project": "crow-usb-carrier-v1",
+  "receipts": [
+    {
+      "path": "06_build/verification/pipeline/electrical_closure.json",
+      "sha256": "adf49bc658e307d3c2b772fc78621269d7403bb8e6d4ed6c992112533e159663",
+      "size": 46336
+    }
+  ],
+  "schema": 1,
+  "state_id": "0c0667abf5a416f1f621c974dedce195c12b81b8832aec60d9703b66d7f8911c"
+}

@@ -26,6 +26,7 @@ one that is unrecoverable if lost.
 | `reports/` | dated human-readable Markdown investigations | see `reports/contracts.md`; explanatory evidence, never executable or release authority |
 | `decisions/` | one file per decision | see `decisions/contracts.md` |
 | `renders/**` | TRACKED render pair per revision: `bare_<side>.png` (Cu+Mask+Silk fab view — the no-components truth) + the modeled twin renders. ALWAYS produced (SKILL stage 7); a bodiless modeled render means missing 3D model, never unpopulated — CPL is population ground truth (usb-hub-3s incident 2026-07-21) | committed |
+| `pause_state.json` | generated hash-bound current checkpoint, receipts, blocker and next command; owned by pause_state.py |
 | `STATUS*.md` | the live STATUS beacon — the coordinator's between-gates progress signal, OVERWRITTEN at every transition | `STATUS.md` (single-board) or `STATUS-<board>.md` (multi-board, mirroring `journal/<stage>_<board>.md`); schema + audit below; read by `skills/kicad-pcb/scripts/pcb_status.py` |
 | `journal/` | per-stage diary: append an entry at every stage start/iteration/finish | see `journal/contracts.md`; enforced by policy_audit M-JRNL |
 | `learnings/` | per-stage harvest source, written at stage completion | see `learnings/contracts.md`; enforced by policy_audit M-LEARN at release |

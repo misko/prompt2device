@@ -22,6 +22,7 @@ re-order it.
 
 | Pattern | What |
 |---|---|
+| `RESUME.md` | generated current checkpoint view; verify against 01_docs/pause_state.json |
 | `README.md` | what the board is, status, current release, how to build |
 | `contracts.md` | this file |
 | `.gitignore` | must ignore `06_build/`; must NOT ignore `01_docs/decisions/` or `02_parts/` |
