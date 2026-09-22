@@ -956,6 +956,25 @@
       "disposition": "Point-to-point digital-audio timing corridor with ownership split at driver and receiver pin escapes."
     },
     {
+      "net": "ADC_DIGITAL_BAD",
+      "endpoints": {
+        "adc_reference": [
+          "Q_ADC_DIG_RST.1",
+          "R_ADC_DIG_RST_PD.1",
+          "U_ADC_DIGITAL_BAD.4",
+          "U_ADC_READY.1"
+        ],
+        "audio_clock_tdm": [
+          "U_ADC_CLOCK_OK.1"
+        ]
+      },
+      "requirements": [
+        "Keep the held 3V3_ADC-domain digital-rail fault signal connected to both the ADC reset clamp and the audio clock qualification buffer enable.",
+        "Route the active-high disable signal over continuous GND; preserve independent destination-domain output-enable pullups and verify rail-collapse timing during joint reset/clock review."
+      ],
+      "disposition": "ADC/reference owns fault generation and reset; audio_clock_tdm owns clock disable response. Joint timing proof is required before accepting either block."
+    },
+    {
       "net": "ADC_DOUT1",
       "endpoints": {
         "adc_reference": [
@@ -1113,6 +1132,11 @@
       "net": "GND",
       "endpoints": {
         "adc_reference": [
+          "C_ADC_DIGITAL_BAD.2",
+          "C_ADC_DIGITAL_OK.2",
+          "C_ADC_READY.2",
+          "C_ADC_READY_BAD.2",
+          "C_ADC_START_DELAY.2",
           "C_FILT1_10U.2",
           "C_FILT1_1U.2",
           "C_FILT1_470U.2",
@@ -1136,7 +1160,12 @@
           "C_VMID2_4U7.2",
           "C_VMID2_EXT_10U.2",
           "C_VMID2_EXT_1U.2",
+          "Q_ADC_DELAY_DISCH.2",
+          "Q_ADC_DIG_RST.2",
           "Q_RST1.2",
+          "R_ADC_DELAY_GATE_PD.2",
+          "R_ADC_DIG_RST_PD.2",
+          "R_ADC_READY_PD.2",
           "R_CFG1.2",
           "R_CFG5.2",
           "R_RESET_GPD.2",
@@ -1152,6 +1181,11 @@
           "U_ADC.49",
           "U_ADC.6",
           "U_ADC.8",
+          "U_ADC_1V8_OK.2",
+          "U_ADC_3V3X_OK.2",
+          "U_ADC_DIGITAL_BAD.3",
+          "U_ADC_READY.3",
+          "U_ADC_READY_BAD.3",
           "U_RST1.1",
           "U_RST2.1",
           "U_RST2.4"
@@ -1333,6 +1367,7 @@
           "U_SPOKE8.6"
         ],
         "audio_clock_tdm": [
+          "C_ADC_CLOCK_OK.2",
           "C_ADC_OK_CT.2",
           "C_ADC_OK_VDD.2",
           "C_ADC_OUT.2",
@@ -1346,9 +1381,13 @@
           "C_XLATE_B.2",
           "Q_MCLK_GATE.2",
           "Q_TDM_GATE.2",
+          "R_ADC_CLOCK_OK_PD.2",
           "R_ADC_DATA_PD.2",
           "R_BCLK_RAW_PD.2",
+          "R_FSYNC_EXT_PD.2",
           "R_FSYNC_RAW_PD.2",
+          "R_MCLK_RAW_PD.2",
+          "U_ADC_CLOCK_OK.3",
           "U_ADC_OK.2",
           "U_ADC_OUT.4",
           "U_BCLK_INV.3",
@@ -1388,12 +1427,15 @@
           "C_U_CORE_IN_1.2",
           "C_U_CORE_IN_2.2",
           "C_U_CORE_OUT_1.2",
+          "C_XU_3V3_OK_CT.2",
+          "C_XU_3V3_OK_VDD.2",
           "R_CORE_FB_BOTTOM.2",
           "U_1V8.4",
           "U_1V8_OK.2",
           "U_3V3X.4",
           "U_CORE.4",
-          "U_CORE_OK.2"
+          "U_CORE_OK.2",
+          "U_XU_3V3_OK.2"
         ],
         "input_buck": [
           "C_IN1.2",
@@ -1450,6 +1492,7 @@
           "U_PWR.2"
         ],
         "usb_frontend": [
+          "C_USB_VBUS.2",
           "J_USB.1",
           "J_USB.16",
           "J_USB.17",
@@ -1457,6 +1500,7 @@
           "J_USB.9",
           "R_USB_CC1.2",
           "R_USB_CC2.2",
+          "R_USB_VBUS_BLEED.2",
           "U_USB_CC_ESD.4",
           "U_USB_ESD.3",
           "U_USB_VBUS_ESD.4"
@@ -1700,6 +1744,9 @@
     {
       "net": "N1V8",
       "endpoints": {
+        "adc_reference": [
+          "U_ADC_1V8_OK.1"
+        ],
         "audio_clock_tdm": [
           "C_XLATE_A.1",
           "R_TDM_OE_PU.1",
@@ -1758,6 +1805,9 @@
     {
       "net": "N3V3X",
       "endpoints": {
+        "adc_reference": [
+          "U_ADC_3V3X_OK.1"
+        ],
         "audio_clock_tdm": [
           "C_ADC_OK_VDD.1",
           "C_AUDIO_OSC.1",
@@ -1785,7 +1835,8 @@
         "digital_power": [
           "C_U_3V3X_OUT_1.1",
           "L_U_3V3X.2",
-          "U_3V3X.3"
+          "U_3V3X.3",
+          "U_XU_3V3_OK.1"
         ],
         "xmos_core": [
           "C_XU_USB33.1",
@@ -1802,6 +1853,10 @@
       "net": "N3V3_ADC",
       "endpoints": {
         "adc_reference": [
+          "C_ADC_DIGITAL_BAD.1",
+          "C_ADC_DIGITAL_OK.1",
+          "C_ADC_READY.1",
+          "C_ADC_READY_BAD.1",
           "C_RST1.1",
           "C_RST2.1",
           "C_VDDA1_10N.1",
@@ -1809,6 +1864,7 @@
           "C_VDDA2_10N.1",
           "C_VDDA2_4U7.1",
           "C_VDDIO.1",
+          "R_ADC_DIGITAL_OK_PU.1",
           "R_CFG2.2",
           "R_CFG4.2",
           "R_FILT1P.1",
@@ -1821,8 +1877,14 @@
           "U_ADC.38",
           "U_ADC.5",
           "U_ADC.9",
+          "U_ADC_1V8_OK.3",
+          "U_ADC_1V8_OK.4",
+          "U_ADC_3V3X_OK.3",
+          "U_ADC_3V3X_OK.4",
+          "U_ADC_DIGITAL_BAD.5",
+          "U_ADC_READY.5",
+          "U_ADC_READY_BAD.5",
           "U_RST1.3",
-          "U_RST2.2",
           "U_RST2.8"
         ],
         "analog_ch1": [
@@ -1858,7 +1920,9 @@
           "U_AFE8.8"
         ],
         "audio_clock_tdm": [
+          "C_ADC_CLOCK_OK.1",
           "C_ADC_OUT.1",
+          "U_ADC_CLOCK_OK.5",
           "U_ADC_OK.1",
           "U_ADC_OUT.8"
         ],
@@ -1890,13 +1954,16 @@
           "C_U_3V3X_IN_2.1",
           "C_U_CORE_IN_1.1",
           "C_U_CORE_IN_2.1",
+          "C_XU_3V3_OK_VDD.1",
           "U_1V8.1",
           "U_1V8.6",
           "U_1V8_OK.3",
           "U_1V8_OK.4",
           "U_3V3X.1",
           "U_3V3X.6",
-          "U_CORE.6"
+          "U_CORE.6",
+          "U_XU_3V3_OK.3",
+          "U_XU_3V3_OK.4"
         ],
         "input_buck": [
           "C_OUT1.1",
@@ -2192,10 +2259,12 @@
       "net": "VBUS_USB",
       "endpoints": {
         "usb_frontend": [
+          "C_USB_VBUS.1",
           "J_USB.10",
           "J_USB.15",
           "J_USB.2",
           "J_USB.7",
+          "R_USB_VBUS_BLEED.1",
           "U_USB_VBUS_ESD.3"
         ],
         "usb_vbus_sense": [
@@ -2315,7 +2384,8 @@
         ],
         "digital_power": [
           "R_XU_RST_PU.2",
-          "U_CORE_OK.1"
+          "U_CORE_OK.1",
+          "U_XU_3V3_OK.6"
         ],
         "xmos_core": [
           "U_XU.38"

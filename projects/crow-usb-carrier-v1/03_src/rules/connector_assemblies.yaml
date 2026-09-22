@@ -532,31 +532,37 @@ assemblies:
     mpn: FTSH-105-01-L-DV-K
     mounting_method: surface_mount
     model_source_id: null
-    body_envelope_mm: null
+    body_envelope_mm: {x: 7.0, y: 8.0, z: 7.0}
     evidence:
-      grade: unknown
+      grade: conservative
       source_ids:
-      - source_census
       - jtag_header_print
       - jtag_footprint
-      rationale: Exact fitted keyed header and primary series geometry are selected;
-        a conservative complete mounted envelope is not yet established.
+      rationale: In the explicit J_JTAG local frame, x contains the 2.92 mm maximum
+        SMT-tail extent, 3.20 mm reference keyed-wall height, 0.30 mm reference
+        reserve, 0.13 mm row-height variation and 0.10 mm coplanarity. y contains
+        the five-position 6.48 mm maximum bank plus 0.51 mm cut flash at each end.
+        z contains the 5.84 mm reference tail span plus 0.30 mm reference reserve,
+        0.08 mm burr per side and 0.31 mm sway allowance. Each result is rounded
+        outward; placement and service fit remain separate.
   mate:
     manufacturer: Samtec
     mpn: FFSD-05-D-06.00-01-N
     part_kind: keyed_double_ended_idc_ribbon_cable
     model_source_id: null
-    body_envelope_mm: null
+    body_envelope_mm: {x: 5.5, y: 11.0, z: 5.0}
     evidence:
-      grade: unknown
+      grade: conservative
       source_ids:
-      - jtag_header_print
       - jtag_mate_print
       - jtag_mate_catalog
-      - connector_selection
-      rationale: The exact keyed cable is selected, but the trial bounding box omitted
-        the -N protrusion. FFSD component print and toleranced full keyed-body extents
-        are owed.
+      rationale: In the explicit J_JTAG local frame, x contains the 5.23 mm maximum
+        socket thickness plus 0.15 mm maximum conductor protrusion. y contains the
+        five-position 10.54 mm body formula plus 0.13 mm general tolerance. z
+        contains 3.05 mm reference body depth, 1.02 mm reference -N projection,
+        0.13 mm reserve for each reference dimension and 0.25 mm maximum cable
+        overhang. Each result is rounded outward. The opposite connector, ribbon
+        route, bend and hand-service envelope remain separate.
   interface:
     mating_plane_offset_mm: null
     minimum_exposure_mm: null
@@ -570,16 +576,17 @@ assemblies:
         owed.
   grip:
     kind: keyed_idc_socket_body
-    across_flats_mm: null
-    outer_diameter_mm: null
-    axial_length_mm: null
+    across_flats_mm: 11.0
+    outer_diameter_mm: 12.1
+    axial_length_mm: 5.5
     evidence:
-      grade: unknown
+      grade: conservative
       source_ids:
       - jtag_mate_print
-      - connector_selection
-      rationale: The trial grip bound omitted the keyed protrusion; derive a complete
-        grip envelope from the full component print before dimensional use.
+      rationale: The grip reuses the complete conservative socket-body box. A 12.1
+        mm cylinder rounds outward from sqrt(11.0^2 + 5.0^2), and 5.5 mm is the
+        full axial bound. Finger approach, required hand clearance, ribbon bend and
+        simultaneous-neighbor service remain unqualified.
   fastening:
     method: polarized_friction_fit
     thread_designation: null

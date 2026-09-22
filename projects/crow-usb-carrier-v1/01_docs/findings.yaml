@@ -67,8 +67,9 @@ findings:
   state: open
   blocks_at_or_above: DESIGN_CLEAN
   owner: mechanical
-  finding: Exact mating and service envelopes remain incomplete, including JTAG full body and RJ45 mate
-    geometry.
+  finding: JTAG receptacle, cable socket and grip now have primary-drawing-supported conservative bounds
+    in an explicit local frame. Remaining connector source and service facts include RJ45 mate geometry
+    and Molex housing geometry; complete placed-board service qualification remains open.
   closes_when: Close all nondeferrable source facts and satisfy connector source admission; qualify physical
     service geometry on the placed board at its owning boundary.
   evidence:
@@ -101,9 +102,10 @@ findings:
   state: open
   blocks_at_or_above: DESIGN_CLEAN
   owner: digital-electrical
-  finding: Held ADC output buffer inputs MCLK_RAW and FSYNC_EXT have no explicit pulldown when 3V3X drivers
-    lose power; ADC reset is not bound to digital-clock rail loss. USB VBUS input capacitance and PHY
-    rail reset qualification are missing from the current source.
+  finding: Digital source repair adds held-input defaults, digital-rail ADC reset/clock qualification,
+    active startup-delay discharge, XU PHY rail supervision and VBUS capacitance/MOSFET sensing. Source
+    expansion passes; independent verification against the merged source and physical rail-collapse/reset/USB
+    qualification remain open.
   closes_when: Review exact pin-level off-state behavior; define all held-buffer inputs, preserve CS5308
     startup reset sequence while asserting safe brownout reset, qualify flash/PHY reset timing, add supported
     VBUS capacitance/detector behavior and document firmware detach/JTAG assumptions. Pass source checks
@@ -113,3 +115,4 @@ findings:
   - 03_tscircuit/src/usb_device_frontend.tsx
   - 03_tscircuit/src/crow_retained_analog.tsx
   - 01_docs/ARCHITECTURE.md
+  - 01_docs/research/2026-09-22-hardware-software-interface.md
