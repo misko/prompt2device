@@ -265,3 +265,9 @@ Root ran owning escape checker against all85selected dossiers and found 20 probl
 ## Buffer small-reel adoption — 2026-09-22
 
 Adopted SN74LVC1G125DCKT for three buffer instances after primary packing-table review and actual two-pool qualification. Full source comparison changes only the three MPN/supplier records. Current sourcing70/85; modular489/489 and54/54; pin-name preflight92/92. Source escape repairs remain outstanding. The Samsung capacitor candidate remains unmerged pending retained primary curve evidence at the actual5.05V maximum. See research/2026-09-22-buffer-packaging-adoption.md.
+
+## Source presentation refresh and escape repair direction — 2026-09-22
+
+Fresh source-only page rendering at11bc43fb covers37pages,489manifest/rendered/unique references, zero duplicates/missing/extra and zero renderer errors. Root visually spot-checked held_ldo and adc_clock_control after the exact order-code substitutions; labels remain visible. Evidence:06_build/verification/source-pages-11bc43fb. This is not native schematic acceptance or a refreshed independent full review.
+
+Independent admission review confirms LT3045's current native ThermalVias footprint includes exposed-pad plated vias incompatible with the selected standard-tier via-in-pad policy. A no-via-in-pad land and external thermal-via solution is under engineering review; do not insert an arbitrary local resistor merely to satisfy an abstract escape condition. TPSM63603's irregular HotRod module geometry requires an evidence-backed model assessment rather than relabeling it to pass the generic QFN check. Digital/power escape repair tasks remain active, with the commissioning hold retained.
