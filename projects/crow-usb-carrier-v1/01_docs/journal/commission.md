@@ -88,3 +88,8 @@
 - did: opened a bounded SOL modular plan task for current422-refsource, exactcrossingsandP1-P5workgraph; noplacement tasks dispatched. Rechecked Nexperia primaryBC847X_SER Rev13 throughwebdocument extraction and corrected dossier metadata/pinverification citation.
 - result: primaryTable3page2confirms1=B/2=E/3=C. DirectPDFdownload stillHTTP403; localprimarybyteclosure notclaimed. TDKALCprimary remainsunresolved; ALMwasnot substituted merely fromsearchresults.
 - next: review SOL modular and PPTCfault packets; resolve actualelectrical/sourceadmission requirements. Commissionholdretained.
+
+## 2026-09-22 — iterate 18
+- did: retained the exact Nexperia BC847X_SER Rev13 primary PDF using a normal browser-user-agent request after curl's403. Visually verifiedTable3packagepinorientation; bound primaryhash and package/reflow drawing references into the dossier.
+- result: BC847localprimaryfreeze gap closes; pin1base/2emitter/3collector unchanged. TDKALC and fullFFSDcomponentdrawing fetches remainunresolved. No placed-boardlandorlayoutqualificationclaimed.
+- next: review activeSOLmodularplanandPPTCfaultmodel; complete remainingcommissionadmissionfacts.

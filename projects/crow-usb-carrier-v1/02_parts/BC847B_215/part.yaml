@@ -8,33 +8,33 @@ datasheet:
   revision: '13'
   url: https://assets.nexperia.com/documents/data-sheet/BC847X_SER.pdf
   fetched: 2026-09-22
-  note: Primary Nexperia PDF read through web document extraction on2026-09-22; Rev13
-    dated1July2022. Direct local PDF download still returnsHTTP403; retained distributor
-    snapshot is not substituted for primary bytes. Local primary PDF/hash remain owed.
+  note: Primary manufacturer PDF retained after successful browser-user-agent request;
+    Rev13 dated1July2022. Earlier distributor snapshot is retained only as history.
   pages: 12
+  local: 02_parts/BC847B_215/BC847X_SER-Rev13.pdf
+  sha256: 43634945eddee9221b9bfb8d4f9c0c684b70e5d3526de3340cf327db6a7ef0be
 pins:
   1: B
   2: E
   3: C
-verified: Primary Nexperia BC847X_SER Rev13 page2 Table3 independently confirms1=B,2=E,3=C;
-  page2 Table4 identifiesSOT23/TO-236AB. Web document inspection2026-09-22; local
-  primary byte capture remains owed.
+verified: Nexperia BC847X_SER Rev13 page2 Table3 and its simplified package outline
+  independently confirm1=B,2=E,3=C; primary PDF inspected and hash-bound2026-09-22.
 layout:
-  source: Local BC847B_215.pdf distributor snapshot page 1 for SOT-23 package class
-    only; no primary manufacturer layout section is present
+  source: Nexperia BC847X_SER Rev13 sections11-12, package outline Fig14 and reflow
+    soldering footprint Fig15
   reviewed: 2026-09-22
   notes:
-  - 'Evidence grade: distributor snapshot only. It supports the SOT-23 package class
-    but is not manufacturer placement authority.'
+  - Primary package and reflow land drawings are now retained. They establish component/package
+    guidance, not a measured placed-board result.
   - 'Engineering recommendation: keep R_ADC_OK_B1 beside Q_TDM_GATE, R_ADC_OK_B2 beside
     Q_MCLK_GATE, and R_VBUS_B/R_VBUS_BE beside Q_VBUS to keep the base nodes compact;
     no maximum distance is claimed.'
 layout_refs:
 - tier: 1
-  reached: false
-  artifact: Nexperia BC847 series manufacturer datasheet and package drawing
-  why: The immutable packet contains only a one-page distributor snapshot, not the
-    manufacturer primary datasheet.
+  reached: true
+  artifact: 02_parts/BC847B_215/BC847X_SER-Rev13.pdf, sections11-12 Figs14-15
+  why: Primary package outline and reflow soldering footprint inspected; exact-board
+    placement and routing remain subject to their own checks.
 - tier: 2
   reached: false
   artifact: Exact-part manufacturer evaluation-board or routed reference-design files
