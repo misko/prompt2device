@@ -73,3 +73,8 @@
 - did: replaced copied load-cell netclasses with Crow routing intent and selected ordinary four-layer fabrication tier. Renamed negative USB net toUSB_DN so native differential-pair recognition works; source pin functions unchanged.
 - result: pcbnew confirmsDP/DNpairedandDMunpaired. Generic fixture emits6classes23patternsand0.410/0.150USBgeometry. Full1276endpointcomparison matches with single explicit alias mapping; TypeScript and RF-CONTRACT pass. No routed power or SI pass claimed.
 - next: review delivered SOL power-bound candidate; connector facts still active. Commission hold retained.
+
+## 2026-09-22 — iterate 15
+- did: reviewed SOL connector candidate against USB and JTAG primary drawings; adopted sixteen evidenced sections and retained exact source PDFs in part dossiers. Corrected USB-C width11mmplus1mmtolerance; withdrew JTAG mate/grip extents that omitted its polarizing protrusion.
+- result: current connector compiler covers4profiles11refs,16/45evidencedsections and29unknown; receipt reopens. Contracts325files0violations. Candidate runtime remainsINCOMPLETE(handback check); coordinator adoption does not relabel it.
+- next: resolve remaining connector geometry/physical facts and power bounds before commissioning admission. No placement/fit approval.

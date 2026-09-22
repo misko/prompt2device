@@ -1,10 +1,40 @@
-# Actual source census; unresolved mechanical facts remain explicit.
+# Reviewed connector source facts; physical qualification remains incomplete.
 schema: 1
 contract_id: crow-usb-carrier-v1-operated-connectors
 evidence_sources:
 - id: source_census
   kind: connector-applicability-record
   path: 01_docs/research/2026-09-22-connector-census.md
+- id: connector_selection
+  kind: engineering-selection-record
+  path: 01_docs/research/2026-09-22-connector-selections.md
+- id: rj45_jack_drawing
+  kind: manufacturer-drawing
+  path: 02_parts/615008160221/Wurth_615008160221_rev001003.pdf
+- id: usb_receptacle_drawing
+  kind: manufacturer-drawing
+  path: 02_parts/USB4105-GF-A-120/GCT_USB4105_drawing.pdf
+- id: usb_product_spec
+  kind: manufacturer-product-specification
+  path: 02_parts/USB4105-GF-A-120/GCT_USB4105_product_spec.pdf
+- id: usb_cable_drawing
+  kind: manufacturer-drawing
+  path: 02_parts/A-USB31C-20A-100/ASSMANN_A-USB31C-20A-100_rev08.pdf
+- id: power_header_drawing
+  kind: manufacturer-drawing
+  path: 02_parts/43650-0200/Molex_43650_header_revD8.pdf
+- id: jtag_header_print
+  kind: manufacturer-drawing
+  path: 02_parts/FTSH-105-01-L-DV-K/Samtec_FTSH_DV_series_print.pdf
+- id: jtag_footprint
+  kind: manufacturer-footprint-drawing
+  path: 02_parts/FTSH-105-01-L-DV-K/Samtec_FTSH_footprint_revH.pdf
+- id: jtag_mate_print
+  kind: manufacturer-drawing
+  path: 02_parts/FTSH-105-01-L-DV-K/Samtec_FFSD_series_print.pdf
+- id: jtag_mate_catalog
+  kind: manufacturer-catalog
+  path: 02_parts/FTSH-105-01-L-DV-K/Samtec_FFSD_catalog.pdf
 applicability:
   operated: true
   evidence:
@@ -90,6 +120,7 @@ assemblies:
       grade: unknown
       source_ids:
       - source_census
+      - rj45_jack_drawing
       rationale: Exact fitted part is selected in source; body envelope and assembly
         qualification remain unresolved.
   mate:
@@ -133,25 +164,28 @@ assemblies:
       source_ids: []
       rationale: Mating and final-fastening method are not selected.
   tool:
-    kind: null
+    kind: none
     identifier: null
     model_source_id: null
     head_envelope_mm: null
-    approach: null
-    effective_sweep_radius_mm: null
-    counter_tool_required: null
+    approach: none
+    effective_sweep_radius_mm: 0.0
+    counter_tool_required: false
     evidence:
-      grade: unknown
-      source_ids: []
-      rationale: Final tool, approach, sweep, and counter-tool need are not selected.
+      grade: exact
+      source_ids:
+      - connector_selection
+      rationale: The selected straight RJ45 plug is a hand-operated push-in interface;
+        no separate final tightening or counter-tool is selected.
   torque:
-    required: null
+    required: false
     minimum_nm: null
     maximum_nm: null
     evidence:
-      grade: unknown
-      source_ids: []
-      rationale: Manufacturer or qualified assembly torque authority is not selected.
+      grade: exact
+      source_ids:
+      - connector_selection
+      rationale: The selected RJ45 plug is not threaded and has no final torque step.
   reaction:
     method: null
     load_path: null
@@ -161,18 +195,20 @@ assemblies:
       rationale: Insertion, extraction, and fastening reaction load paths are not
         proven.
   cable:
-    kind: null
-    manufacturer: null
-    mpn: null
-    outer_diameter_mm: null
-    straight_run_mm: null
-    minimum_bend_radius_mm: null
-    exit: null
+    kind: shielded_sftp_pur_patch_cable
+    manufacturer: Weidmuller
+    mpn: '8909650150'
+    outer_diameter_mm: 6.5
+    straight_run_mm: 65.0
+    minimum_bend_radius_mm: 65.0
+    exit: along_mating_axis
     evidence:
-      grade: unknown
-      source_ids: []
-      rationale: Termination, boot, cable body, straight run, exit, and bend are not
-        selected.
+      grade: conservative
+      source_ids:
+      - connector_selection
+      rationale: The exact 15 m cable is 6.1-6.5 mm OD and requires 10x OD for repeated
+        bends. The 65 mm straight run is an equal project service allowance; installed
+        routing and plug-body clearance remain unqualified.
   operations:
   - id: spoke_rj45_service
     sequence: 1
@@ -211,25 +247,35 @@ assemblies:
     mpn: USB4105-GF-A-120
     mounting_method: smd_with_shell_stakes
     model_source_id: null
-    body_envelope_mm: null
+    body_envelope_mm:
+      x: 7.73
+      y: 9.32
+      z: 3.69
     evidence:
-      grade: unknown
+      grade: conservative
       source_ids:
-      - source_census
-      rationale: Exact fitted part is selected in source; body envelope and assembly
-        qualification remain unresolved.
+      - usb_receptacle_drawing
+      - connector_selection
+      rationale: Drawing dimensions 7.35 x 8.94 x 3.31 mm are conservatively expanded
+        by the drawing's 0.38 mm general tolerance. Placement and complete mated fit
+        remain separate.
   mate:
     manufacturer: ASSMANN WSW
     mpn: A-USB31C-20A-100
     part_kind: cable_plug
     model_source_id: null
-    body_envelope_mm: null
+    body_envelope_mm:
+      x: 31.8
+      y: 12.0
+      z: 7.0
     evidence:
-      grade: unknown
+      grade: conservative
       source_ids:
-      - source_census
-      rationale: Dimensioned USB cable selected in its local dossier; registered service
-        envelope remains unresolved.
+      - usb_cable_drawing
+      - connector_selection
+      rationale: The bound contains the dimensioned Type-C body/boot, exposed plug
+        and drawing tolerances. Cross-manufacturer fit and installed clearance remain
+        unqualified.
   interface:
     mating_plane_offset_mm: null
     minimum_exposure_mm: null
@@ -242,42 +288,52 @@ assemblies:
       rationale: Mating datum, exposure, process setback, and service clearance are
         owed.
   grip:
-    kind: null
+    kind: molded_usb_c_overmold
     across_flats_mm: null
-    outer_diameter_mm: null
-    axial_length_mm: null
+    outer_diameter_mm: 13.9
+    axial_length_mm: 18.1
     evidence:
-      grade: unknown
-      source_ids: []
-      rationale: Coupling, latch, finger-grip, or release geometry is not selected.
+      grade: conservative
+      source_ids:
+      - usb_cable_drawing
+      - connector_selection
+      rationale: A 13.90 mm circumscribed grip contains the maximum 12 x 7 mm transverse
+        Type-C overmold rectangle; 18.1 mm contains the 17.6 mm grip length plus 0.5
+        mm drawing tolerance.
   fastening:
-    method: null
+    method: friction_retention
     thread_designation: null
-    final_tightening: null
+    final_tightening: none
     evidence:
-      grade: unknown
-      source_ids: []
-      rationale: Mating and final-fastening method are not selected.
+      grade: exact
+      source_ids:
+      - usb_product_spec
+      rationale: The product specification defines insertion and withdrawal force
+        for the non-threaded Type-C interface; there is no tightening operation.
   tool:
-    kind: null
+    kind: none
     identifier: null
     model_source_id: null
     head_envelope_mm: null
-    approach: null
-    effective_sweep_radius_mm: null
-    counter_tool_required: null
+    approach: none
+    effective_sweep_radius_mm: 0.0
+    counter_tool_required: false
     evidence:
-      grade: unknown
-      source_ids: []
-      rationale: Final tool, approach, sweep, and counter-tool need are not selected.
+      grade: exact
+      source_ids:
+      - usb_product_spec
+      - connector_selection
+      rationale: Mating is a hand insertion/removal operation with no separate final
+        tool or counter-tool.
   torque:
-    required: null
+    required: false
     minimum_nm: null
     maximum_nm: null
     evidence:
-      grade: unknown
-      source_ids: []
-      rationale: Manufacturer or qualified assembly torque authority is not selected.
+      grade: exact
+      source_ids:
+      - usb_product_spec
+      rationale: The non-threaded Type-C interface has no torque requirement.
   reaction:
     method: null
     load_path: null
@@ -345,15 +401,18 @@ assemblies:
       rationale: Exact fitted part is selected in source; body envelope and assembly
         qualification remain unresolved.
   mate:
-    manufacturer: null
-    mpn: null
-    part_kind: null
+    manufacturer: Molex
+    mpn: 43645-0200 + 2x 43030-0038
+    part_kind: latched_wire_receptacle_with_18awg_terminals
     model_source_id: null
     body_envelope_mm: null
     evidence:
       grade: unknown
-      source_ids: []
-      rationale: Exact supported mating plug, adapter, antenna, or cable is not selected.
+      source_ids:
+      - power_header_drawing
+      - connector_selection
+      rationale: Exact compatible housing and terminal set is selected, but wire,
+        termination, strain relief and complete mate envelope remain unresolved.
   interface:
     mating_plane_offset_mm: null
     minimum_exposure_mm: null
@@ -375,33 +434,39 @@ assemblies:
       source_ids: []
       rationale: Coupling, latch, finger-grip, or release geometry is not selected.
   fastening:
-    method: null
+    method: positive_latch
     thread_designation: null
-    final_tightening: null
+    final_tightening: latch_engagement
     evidence:
-      grade: unknown
-      source_ids: []
-      rationale: Mating and final-fastening method are not selected.
+      grade: exact
+      source_ids:
+      - power_header_drawing
+      - connector_selection
+      rationale: Molex identifies the compatible receptacle family and the selected
+        housing provides a positive latch; the interface is not threaded.
   tool:
-    kind: null
+    kind: none
     identifier: null
     model_source_id: null
     head_envelope_mm: null
-    approach: null
-    effective_sweep_radius_mm: null
-    counter_tool_required: null
+    approach: none
+    effective_sweep_radius_mm: 0.0
+    counter_tool_required: false
     evidence:
-      grade: unknown
-      source_ids: []
-      rationale: Final tool, approach, sweep, and counter-tool need are not selected.
+      grade: exact
+      source_ids:
+      - connector_selection
+      rationale: The selected positive-latch receptacle is hand mated and has no separate
+        final tightening tool.
   torque:
-    required: null
+    required: false
     minimum_nm: null
     maximum_nm: null
     evidence:
-      grade: unknown
-      source_ids: []
-      rationale: Manufacturer or qualified assembly torque authority is not selected.
+      grade: exact
+      source_ids:
+      - connector_selection
+      rationale: The positive-latch Micro-Fit interface has no threaded torque step.
   reaction:
     method: null
     load_path: null
@@ -465,18 +530,26 @@ assemblies:
       grade: unknown
       source_ids:
       - source_census
-      rationale: Exact fitted part is selected in source; body envelope and assembly
-        qualification remain unresolved.
+      - jtag_header_print
+      - jtag_footprint
+      rationale: Exact fitted keyed header and primary series geometry are selected;
+        a conservative complete mounted envelope is not yet established.
   mate:
-    manufacturer: null
-    mpn: null
-    part_kind: null
+    manufacturer: Samtec
+    mpn: FFSD-05-D-06.00-01-N
+    part_kind: keyed_double_ended_idc_ribbon_cable
     model_source_id: null
     body_envelope_mm: null
     evidence:
       grade: unknown
-      source_ids: []
-      rationale: Exact supported mating plug, adapter, antenna, or cable is not selected.
+      source_ids:
+      - jtag_header_print
+      - jtag_mate_print
+      - jtag_mate_catalog
+      - connector_selection
+      rationale: The exact keyed cable is selected, but the trial bounding box omitted
+        the -N protrusion. FFSD component print and toleranced full keyed-body extents
+        are owed.
   interface:
     mating_plane_offset_mm: null
     minimum_exposure_mm: null
@@ -489,42 +562,51 @@ assemblies:
       rationale: Mating datum, exposure, process setback, and service clearance are
         owed.
   grip:
-    kind: null
+    kind: keyed_idc_socket_body
     across_flats_mm: null
     outer_diameter_mm: null
     axial_length_mm: null
     evidence:
       grade: unknown
-      source_ids: []
-      rationale: Coupling, latch, finger-grip, or release geometry is not selected.
+      source_ids:
+      - jtag_mate_print
+      - connector_selection
+      rationale: The trial grip bound omitted the keyed protrusion; derive a complete
+        grip envelope from the full component print before dimensional use.
   fastening:
-    method: null
+    method: polarized_friction_fit
     thread_designation: null
-    final_tightening: null
+    final_tightening: fully_seated
     evidence:
-      grade: unknown
-      source_ids: []
-      rationale: Mating and final-fastening method are not selected.
+      grade: exact
+      source_ids:
+      - jtag_header_print
+      - jtag_mate_print
+      rationale: Samtec defines the FTSH -K notch for the selected polarized FFSD
+        socket; the interface has no threaded fastening.
   tool:
-    kind: null
+    kind: none
     identifier: null
     model_source_id: null
     head_envelope_mm: null
-    approach: null
-    effective_sweep_radius_mm: null
-    counter_tool_required: null
+    approach: none
+    effective_sweep_radius_mm: 0.0
+    counter_tool_required: false
     evidence:
-      grade: unknown
-      source_ids: []
-      rationale: Final tool, approach, sweep, and counter-tool need are not selected.
+      grade: exact
+      source_ids:
+      - connector_selection
+      rationale: The selected keyed IDC socket is hand operated with no separate tightening
+        or counter-tool.
   torque:
-    required: null
+    required: false
     minimum_nm: null
     maximum_nm: null
     evidence:
-      grade: unknown
-      source_ids: []
-      rationale: Manufacturer or qualified assembly torque authority is not selected.
+      grade: exact
+      source_ids:
+      - connector_selection
+      rationale: The polarized friction-fit JTAG cable has no torque requirement.
   reaction:
     method: null
     load_path: null
