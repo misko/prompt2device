@@ -32,9 +32,17 @@ and in `tests/t1_shopping_list.py` in the SAME change.
   for credential-shaped content by `t_fixtures_carry_no_credential`.
 - Absent credential = say so. A Mouser manual fallback qualifies only from an
   exact-MPN HTTPS Mouser product page with nonempty matching manufacturer,
-  agreeing nonfuture read/check dates, Active and explicitly orderable state,
-  finite nonnegative integral stock, packaging, and finite positive integral
-  min/mult. Anything less is OWED or a graded negative.
+  agreeing nonfuture read/check dates, explicitly orderable state, finite
+  nonnegative integral stock, packaging, and finite positive integral min/mult.
+  Lifecycle is either literal Active on that page or a separate exact-MPN,
+  matching-manufacturer primary-source record with official-host validation
+  (currently the narrow Texas Instruments / `ti.com` case only),
+  independent timestamps, retained bytes and verified SHA-256. The exact OPN
+  and status must come from one supported TI structured record, and only blank
+  or `New Product` distributor lifecycle text is neutral. A conflicting
+  inactive distributor state always rejects. The primary record supplies no
+  stock fact and no additional distributor pool. Anything less is OWED or a
+  graded negative.
   One distributor is one pool regardless of record count.
 
 ## Audit

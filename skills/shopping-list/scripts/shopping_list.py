@@ -87,6 +87,7 @@ at order time").
 """
 import argparse
 import csv
+import hashlib
 import json
 import math
 import os
@@ -1023,8 +1024,112 @@ def grade_quote(q, qty, min_stock, max_age_days, today,
             "lifecycle": q.get("lifecycle"), "why": why}
 
 
+def ti_lifecycle_record(source_text):
+    """Return one exact OPN/status association from a supported TI page shape."""
+    metrics = re.search(
+        r"var\s+_metrics_store_data\s*=\s*\{(?P<body>.*?)\}\s*;",
+        source_text, re.DOTALL)
+    if metrics:
+        body = metrics.group("body")
+        opn = re.search(r'part_number\s*:\s*"([^"]+)"', body)
+        badge = re.search(r'tiBadge\s*:\s*"(ACTIVE|INACTIVE)_true"',
+                          body, re.IGNORECASE)
+        if opn and badge:
+            return opn.group(1), badge.group(1).upper(), "ti_metrics_store_data"
+    header = re.search(
+        r'<h2[^>]*>\s*(?P<opn>[A-Za-z0-9._#-]+)\s*'
+        r'<ti-product-status\b(?P<body>.*?)</ti-product-status>\s*</h2>',
+        source_text, re.DOTALL | re.IGNORECASE)
+    if header:
+        status = re.search(r'data-navtitle="(ACTIVE|INACTIVE)"',
+                           header.group("body"), re.IGNORECASE)
+        if status:
+            return (header.group("opn"), status.group(1).upper(),
+                    "ti_carrier_material_h2")
+    return None
+
+
+def validate_ti_lifecycle_evidence(ev, authoritative_mpn,
+                                   authoritative_manufacturer, project,
+                                   today, max_age_days):
+    allowed = {"manufacturer", "mpn", "url", "read_on", "checked_at",
+               "raw_status", "retained_path", "sha256"}
+    if not isinstance(ev, dict) or set(ev) != allowed \
+            or any(not isinstance(ev[k], str) or not ev[k] for k in allowed):
+        return None, "QUOTE-INVALID", OWED, (
+            "Q-GRADE: primary lifecycle evidence requires exactly the "
+            "documented nonempty string fields")
+    if ev["mpn"] != authoritative_mpn:
+        return None, "QUOTE-INVALID", OWED, (
+            "Q-IDENT: primary lifecycle evidence MPN must exactly equal the "
+            "dossier MPN")
+    if not same_manufacturer(ev["manufacturer"], authoritative_manufacturer):
+        return None, "MANUFACTURER-MISMATCH", CITED, (
+            "Q-MFR-IDENT: primary lifecycle evidence manufacturer does not "
+            "match the dossier")
+    ep = urlparse(ev["url"])
+    ehost = (ep.hostname or "").lower()
+    if not same_manufacturer(authoritative_manufacturer, "Texas Instruments") \
+            or ep.scheme != "https" \
+            or not (ehost == "ti.com" or ehost.endswith(".ti.com")):
+        return None, "QUOTE-INVALID", OWED, (
+            "Q-GRADE: lifecycle evidence requires an HTTPS TI primary page")
+    try:
+        erd = date.fromisoformat(ev["read_on"])
+        ecd = datetime.fromisoformat(ev["checked_at"].replace("Z", "+00:00"))
+        if ecd.tzinfo is None or ecd.date() != erd:
+            raise ValueError("timestamp mismatch")
+    except ValueError:
+        return None, "QUOTE-INVALID", OWED, (
+            "Q-GRADE: primary lifecycle evidence requires matching ISO "
+            "read_on and timezone checked_at")
+    eage = (today - erd).days
+    if eage < 0:
+        return None, "QUOTE-INVALID", OWED, (
+            "Q-GRADE: primary lifecycle evidence is future-dated")
+    if eage > max_age_days:
+        return None, "STALE", ESTIMATED, (
+            "Q-GRADE: primary lifecycle evidence is stale")
+    if not re.fullmatch(r"[0-9a-fA-F]{64}", ev["sha256"]):
+        return None, "QUOTE-INVALID", OWED, (
+            "Q-GRADE: lifecycle evidence SHA-256 must be 64 hexadecimal characters")
+    if project is None:
+        return None, "QUOTE-INVALID", OWED, (
+            "Q-GRADE: cannot resolve retained lifecycle source")
+    root = Path(project).resolve()
+    artifact = (root / ev["retained_path"]).resolve()
+    try:
+        artifact.relative_to(root)
+        source_bytes = artifact.read_bytes()
+    except (ValueError, OSError):
+        return None, "QUOTE-INVALID", OWED, (
+            "Q-GRADE: retained lifecycle source is missing or outside the project")
+    digest = hashlib.sha256(source_bytes).hexdigest()
+    if digest.lower() != ev["sha256"].lower():
+        return None, "QUOTE-INVALID", OWED, (
+            "Q-GRADE: retained lifecycle source SHA-256 mismatch")
+    record = ti_lifecycle_record(source_bytes.decode("utf-8", errors="ignore"))
+    if not record:
+        return None, "QUOTE-INVALID", OWED, (
+            "Q-GRADE: retained TI page has no supported exact OPN/status record")
+    parsed_mpn, parsed_status, locator = record
+    if parsed_mpn != authoritative_mpn or parsed_mpn != ev["mpn"]:
+        return None, "QUOTE-INVALID", OWED, (
+            "Q-IDENT: retained TI lifecycle record is for a different exact OPN")
+    if ev["raw_status"] not in {"ACTIVE", "INACTIVE"} \
+            or parsed_status != ev["raw_status"]:
+        return None, "QUOTE-INVALID", OWED, (
+            "Q-GRADE: declared lifecycle status does not equal the parsed TI record")
+    provenance = {**ev, "sha256": digest,
+                  "status": "Active" if parsed_status == "ACTIVE" else "Inactive",
+                  "authority": "manufacturer_product_page",
+                  "record_locator": locator}
+    return provenance, None, None, None
+
+
 def grade_mouser_page_quote(q, qty, min_stock, max_age_days, today,
-                            authoritative_mpn, authoritative_manufacturer):
+                            authoritative_mpn, authoritative_manufacturer,
+                            project=None):
     """Grade the narrow no-API fallback: an authenticated public Mouser page.
 
     This path is deliberately stricter than generic manual quotes.  It must
@@ -1096,10 +1201,37 @@ def grade_mouser_page_quote(q, qty, min_stock, max_age_days, today,
                 "why": "Q-MFR-IDENT: manual Mouser manufacturer does not "
                        "match the dossier manufacturer"}
     lifecycle = str(q.get("lifecycle") or "").strip()
-    if lifecycle.lower() != "active" or q.get("orderable") is not True:
+    lifecycle_provenance = None
+    conflicting = ("inactive", "obsolete", "discontinued", "nrnd", "not recommended",
+                   "end of life", "last time buy")
+    if any(token in lifecycle.lower() for token in conflicting):
         return {**base, "status": "NOT-ORDERABLE", "grade": CITED,
-                "why": "manual Mouser fallback requires lifecycle Active and "
-                       "orderable: true"}
+                "why": "manual Mouser page carries a conflicting inactive "
+                       f"lifecycle state: {lifecycle}"}
+    ev = q.get("lifecycle_evidence")
+    if lifecycle.lower() not in {"", "active", "new product"}:
+        return {**base, "status": "QUOTE-INVALID", "grade": OWED,
+                "why": "Q-GRADE: unrecognized Mouser lifecycle cannot be "
+                       f"treated as neutral: {lifecycle}"}
+    if ev is not None:
+        lifecycle_provenance, ev_status, ev_grade, ev_why = \
+            validate_ti_lifecycle_evidence(
+                ev, authoritative_mpn, authoritative_manufacturer, project,
+                today, max_age_days)
+        if ev_status:
+            return {**base, "status": ev_status, "grade": ev_grade,
+                    "why": ev_why}
+        if lifecycle_provenance["status"] != "Active":
+            return {**base, "status": "NOT-ORDERABLE", "grade": CITED,
+                    "why": "primary lifecycle evidence conflicts with Active"}
+    if lifecycle.lower() != "active":
+        if lifecycle_provenance is None:
+            return {**base, "status": "NOT-ORDERABLE", "grade": CITED,
+                    "why": "manual Mouser fallback requires lifecycle Active "
+                           "or complete separate primary lifecycle evidence"}
+    if q.get("orderable") is not True:
+        return {**base, "status": "NOT-ORDERABLE", "grade": CITED,
+                "why": "manual Mouser fallback requires orderable: true"}
     packaging = str(q.get("packaging") or "").strip()
     minimum, multiple = q.get("min"), q.get("mult")
     if not packaging or not finite_integer(minimum, minimum=1) \
@@ -1108,7 +1240,9 @@ def grade_mouser_page_quote(q, qty, min_stock, max_age_days, today,
                 "why": "Q-GRADE: manual Mouser fallback requires packaging "
                        "and positive numeric min/mult"}
     return {**base, "source_method": "manual_product_page",
-            "packaging": packaging, "checked_at": checked}
+            "packaging": packaging, "checked_at": checked,
+            "distributor_lifecycle_raw": lifecycle,
+            "lifecycle_provenance": lifecycle_provenance}
 
 
 DIGIKEY_ENABLEMENT = """\
@@ -1452,7 +1586,7 @@ def main(argv=None):
             if cand:
                 graded = [grade_mouser_page_quote(
                     q, qty, a.min_stock, a.quote_max_age_days, today,
-                    p.mpn, p.manufacturer) for q in cand]
+                    p.mpn, p.manufacturer, project) for q in cand]
                 good = [g for g in graded if g["status"] == "OK"]
                 m = good[0] if good else graded[0]
                 m["searches"] = rs.searches

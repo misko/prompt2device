@@ -195,6 +195,23 @@ adjacent MPN, wrong manufacturer, stale page, inactive/non-orderable line, or
 incomplete provenance remains OWED or a graded negative. One Mouser pool counts
 once even if several records exist.
 
+The narrow exception for a missing or neutral Mouser lifecycle label is a
+separate `lifecycle_evidence` record from the primary manufacturer. The current
+allowlist is deliberately limited to Texas Instruments on `ti.com`. It must
+name the same exact MPN and manufacturer, use an allowlisted official HTTPS
+host, retain the source bytes inside the project with their SHA-256, carry
+independent agreeing nonfuture timestamps, and prove literal `ACTIVE` in those
+bytes in the same supported TI product-detail metrics record or carrier-material
+header as the exact OPN. Its schema is closed to the eight documented string
+fields. Composition is allowed only for blank Mouser lifecycle text or the
+observed neutral label `New Product`; unknown labels fail closed. The Mouser
+lifecycle text remains visible as
+`distributor_lifecycle_raw`; it is never overwritten. An explicit obsolete,
+discontinued, NRND, end-of-life, or last-time-buy distributor state rejects the
+record. This evidence supplies only lifecycle: stock, orderability, packaging,
+minimum and multiple still come from Mouser, and the manufacturer record never
+adds a Q-2SOURCE pool.
+
 ---
 
 ## What goes in, what comes out

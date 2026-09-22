@@ -1395,3 +1395,49 @@ quotes:
   lifecycle: Active
   orderable: true
   price_breaks: []
+- mpn: TMUX2821DSGR
+  manufacturer: Texas Instruments
+  distributor: mouser
+  source: product_page
+  url: https://www.mouser.com/ProductDetail/Texas-Instruments/TMUX2821DSGR
+  read_on: '2026-09-22'
+  checked_at: '2026-09-22T05:25:23-07:00'
+  dpn: 595-TMUX2821DSGR
+  stock: 146
+  min: 1
+  mult: 1
+  packaging: Cut Tape
+  lifecycle: New Product
+  orderable: true
+  lifecycle_evidence:
+    manufacturer: Texas Instruments
+    mpn: TMUX2821DSGR
+    url: https://www.ti.com/product/TMUX2821/part-details/TMUX2821DSGR
+    read_on: '2026-09-22'
+    checked_at: '2026-09-22T05:43:51-07:00'
+    raw_status: ACTIVE
+    retained_path: 01_docs/sourcing/evidence/TMUX2821DSGR-ti.html
+    sha256: 00f8e731251f16264c555954f4d3e0b6eb065331abafc65f8c25397a0f971535
+- mpn: TPSM63603V5RDHR
+  manufacturer: Texas Instruments
+  distributor: mouser
+  source: product_page
+  url: https://www.mouser.com/ProductDetail/Texas-Instruments/TPSM63603V5RDHR
+  read_on: '2026-09-22'
+  checked_at: '2026-09-22T05:25:23-07:00'
+  dpn: 595-TPSM63603V5RDHR
+  stock: 1825
+  min: 1
+  mult: 1
+  packaging: Cut Tape
+  lifecycle: ''
+  orderable: true
+  lifecycle_evidence:
+    manufacturer: Texas Instruments
+    mpn: TPSM63603V5RDHR
+    url: https://www.ti.com/packaging/docs/carriermaterial/carrierlookup?OPN=TPSM63603V5RDHR&state=details
+    read_on: '2026-09-22'
+    checked_at: '2026-09-22T05:43:51-07:00'
+    raw_status: ACTIVE
+    retained_path: 01_docs/sourcing/evidence/TPSM63603V5RDHR-ti.html
+    sha256: 36f185f5b7f73c19dcbe939babf5e7dab8ce9191b7e0f6d5f4a3240276a5d4c4

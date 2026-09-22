@@ -248,6 +248,93 @@ def mouser_page_quote(**overrides):
     return "\n".join(lines) + "\n"
 
 
+@test("primary lifecycle composition retains field-level provenance and fails closed")
+def t_primary_lifecycle_evidence_is_bound_to_retained_bytes():
+    import hashlib
+    import importlib
+    sys.path.insert(0, str(ROOT / "skills" / "shopping-list" / "scripts"))
+    sl = importlib.import_module("shopping_list")
+    d = tmpdir("lifecycle_")
+    retained = d / "evidence" / "TMUX2821DSGR-ti.html"
+    retained.parent.mkdir()
+    def ti_metrics(mpn="TMUX2821DSGR", status="ACTIVE"):
+        return (f'<script>var _metrics_store_data = {{ tiBadge: '
+                f'"{status}_true", part_number: "{mpn}" }};</script>').encode()
+
+    source = ti_metrics()
+    retained.write_bytes(source)
+    evidence = {
+        "manufacturer": "Texas Instruments", "mpn": "TMUX2821DSGR",
+        "url": "https://www.ti.com/product/TMUX2821/part-details/TMUX2821DSGR",
+        "read_on": "2026-01-02", "checked_at": "2026-01-02T12:00:00Z",
+        "raw_status": "ACTIVE", "retained_path": "evidence/TMUX2821DSGR-ti.html",
+        "sha256": hashlib.sha256(source).hexdigest(),
+    }
+    quote = {
+        "mpn": "TMUX2821DSGR", "manufacturer": "Texas Instruments",
+        "distributor": "mouser", "source": "product_page",
+        "url": "https://www.mouser.com/ProductDetail/Texas-Instruments/TMUX2821DSGR",
+        "read_on": "2026-01-02", "checked_at": "2026-01-02T12:34:56Z",
+        "lifecycle": "New Product", "orderable": True,
+        "packaging": "Cut Tape", "stock": 146, "min": 1, "mult": 1,
+        "lifecycle_evidence": evidence,
+    }
+
+    def grade(q):
+        return sl.grade_mouser_page_quote(
+            q, 40, 10, 7, sl.date(2026, 1, 2), "TMUX2821DSGR",
+            "Texas Instruments", d)
+
+    good = grade(quote)
+    check(good["status"] == "OK", f"authentic composition failed: {good}")
+    check(good["distributor_lifecycle_raw"] == "New Product",
+          "distributor lifecycle was overwritten")
+    check(good["lifecycle_provenance"]["sha256"] == evidence["sha256"],
+          "retained-source digest missing from output")
+    check(good["lifecycle_provenance"]["record_locator"] ==
+          "ti_metrics_store_data", "parsed TI record locator missing")
+
+    cases = []
+    missing = dict(quote); missing.pop("lifecycle_evidence"); cases.append(missing)
+    for field, value in [
+            ("sha256", "0" * 64), ("mpn", "TMUX2821DSGT"),
+            ("manufacturer", "Adjacent Devices"),
+            ("url", "https://example.com/TMUX2821DSGR"),
+            ("read_on", "2099-01-01")]:
+        q = dict(quote); q["lifecycle_evidence"] = dict(evidence)
+        q["lifecycle_evidence"][field] = value
+        if field == "read_on":
+            q["lifecycle_evidence"]["checked_at"] = "2099-01-01T00:00:00Z"
+        cases.append(q)
+    for state in ("Obsolete", "Inactive"):
+        conflict = dict(quote); conflict["lifecycle"] = state; cases.append(conflict)
+    unknown = dict(quote); unknown["lifecycle"] = "BANANA"; cases.append(unknown)
+    extra = dict(quote); extra["lifecycle_evidence"] = dict(evidence)
+    extra["lifecycle_evidence"]["typo_field"] = "ignored?"; cases.append(extra)
+    wrong_type = dict(quote); wrong_type["lifecycle_evidence"] = dict(evidence)
+    wrong_type["lifecycle_evidence"]["manufacturer"] = ["Texas Instruments"]
+    cases.append(wrong_type)
+    malformed = dict(quote); malformed["lifecycle_evidence"] = dict(evidence)
+    malformed["lifecycle_evidence"]["sha256"] = "abc"; cases.append(malformed)
+    for bad in cases:
+        result = grade(bad)
+        check(result["status"] != "OK",
+              f"invalid lifecycle evidence was admitted: {result}")
+    for adversarial in (
+            b'TMUX2821DSGR unrelated footer ACTIVE',
+            ti_metrics("TMUX2821DSGR-EVM"),
+            ti_metrics(status="INACTIVE")):
+        retained.write_bytes(adversarial)
+        q = dict(quote); q["lifecycle_evidence"] = dict(evidence)
+        q["lifecycle_evidence"]["sha256"] = hashlib.sha256(adversarial).hexdigest()
+        if b'INACTIVE_true' in adversarial:
+            q["lifecycle"] = "Active"
+            q["lifecycle_evidence"]["raw_status"] = "INACTIVE"
+        result = grade(q)
+        check(result["status"] != "OK",
+              f"substring-only lifecycle evidence was admitted: {result}")
+
+
 @test("nested sourcing.jlcpcb.lcsc is admitted as the same exact JLC identity")
 def t_nested_jlcpcb_identity_is_supported():
     nested = POOL_PART.replace("  lcsc: C123456",

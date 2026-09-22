@@ -34,6 +34,7 @@ mutable file: it is an INPUT, and a re-read replaces the entry it re-reads.
 | `manual_quotes.yaml` | every DigiKey / Amazon number. One entry per `{manufacturer, mpn, distributor}` with source, URL, read date and stock/price fields | HAND-WRITTEN evidence. `manufacturer:` plus full `mpn:` is Q-MFR-IDENT and is required for a quote to count toward Q-2SOURCE. Search snippets are refused; catalog absence is the only admissible search-page use |
 | `public-distributor-policy.yaml` | explicit user-approved, exact-part design-only public-stock policy | optional schema below; never purchase or allocation authority |
 | `procurement-policy.yaml` | durable currency and per-line/aggregate limits for preorder cash, gross MOQ surplus cost, and nonrecoverable assembly excess cost | HAND-WRITTEN user policy. Template limits are zero so no spending authority is invented; volatile MOQ/quote observations remain in `06_build/sourcing/` |
+| `evidence/` | retained primary manufacturer lifecycle pages | Exact bytes and identity/date/hash provenance; its own contract governs contents. No stock inference. |
 | `contracts.md` | this file | |
 
 ## Optional public distributor design policy
