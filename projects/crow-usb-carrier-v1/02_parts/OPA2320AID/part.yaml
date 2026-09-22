@@ -1,7 +1,7 @@
-mpn: OPA2320AIDR
+mpn: OPA2320AID
 manufacturer: Texas Instruments
 type: dual_operational_amplifier
-value: OPA2320AIDR
+value: OPA2320AID
 status: active
 datasheet:
   doc_id: SBOS513
@@ -24,15 +24,15 @@ limits:
   operating_temperature: "-40C to +125C specified range"
   quiescent_current: "1.7mA/channel maximum over-40..125C atVS5.5V, IO=0; not transient/output load"
   input_bias_current: "+/-50pA maximum-40..85C; OPA2320+/-400pA maximum-40..125C"
-  msl: "Level 2, 260C, 1 year for OPA2320AIDR"
+  msl: "Level 2, 260C, 1 year for OPA2320AID"
 gotchas:
-  - "Exact OPA2320AIDR is the dual D/SOIC-8 WITHOUT shutdown; OPA2320S has a different10-pin package. Do not infer a shutdown pin from the family title."
+  - "Exact OPA2320AID is the dual D/SOIC-8 WITHOUT shutdown; OPA2320S has a different10-pin package. Do not infer a shutdown pin from the family title."
   - "Input, output, and feedback current loops must remain local; do not route a channel's output parallel to its high-impedance input."
   - "ADR0025 shares3V3_ADC across ADC and eight amplifiers; passive1k/1k reference dividers replace U_AFE9. No independent5V_OPA reservoir remains."
   - "The independent ground shunts change common-mode loading. Local return, output tracking, noise and filter-loop stability remain first-article obligations."
   - "Typical noise/distortion data is not an exact Cirrus AN0556 performance guarantee; retained1.2Vrms differential operation still requires measurement."
 verified: "CITED: SBOS513F p4 OPA2320 D-package top view and pin-functions table:1=OUTA,2=-INA,3=+INA,4=V-,5=+INB,6=-INB,7=OUTB,8=V+. Main visual read and fresh independent source review2026-09-09; generated/native acceptance remains incomplete."
-sourcing: {lcsc: C2863402, alternates: []}
+sourcing: {lcsc: C2861439, alternates: []}
 layout:
   source: TI SBOS513F sections9 and10, PDF p28; capacitive-load guidance section7.3.8 p19
   reviewed: '2026-09-09'

@@ -1441,3 +1441,21 @@ quotes:
     raw_status: ACTIVE
     retained_path: 01_docs/sourcing/evidence/TPSM63603V5RDHR-ti.html
     sha256: 36f185f5b7f73c19dcbe939babf5e7dab8ce9191b7e0f6d5f4a3240276a5d4c4
+- mpn: OPA2320AID
+  manufacturer: Texas Instruments
+  distributor: digikey
+  source: product_page
+  url: https://www.digikey.com/en/products/detail/texas-instruments/OPA2320AID/2833369
+  read_on: '2026-09-22'
+  checked_at: '2026-09-22T06:04:21-07:00'
+  dpn: 296-47713-ND
+  stock: 479
+  min: 1
+  mult: 1
+  packaging: Tube
+  lifecycle: Active
+  orderable: true
+  five_board_need: 40
+  note: Exact opened product page; TI SBOS513F package addendum identifies OPA2320AID
+    and OPA2320AIDR as the same D/SOIC-8 device and marking, differing in carrier
+    quantity/type.
