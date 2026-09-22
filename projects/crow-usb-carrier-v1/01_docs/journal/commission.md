@@ -295,3 +295,7 @@ Repaired sixpower records without changing non-escape facts. Existing owning P-E
 ## ADC escape census correction — 2026-09-22
 
 Root loaded the exact native Cirrus_CS5308P_QFN48_6x6_P0.4_EP4.6 footprint and counted electricalF.Cu pads1-48, excluding unnumbered paste apertures and centralEP49:12/12/12/12perimeterpads. Corrected dossier escapes_worst_side10→12. Pin identities, footprint bytes, circuitry and advanced-tier requirement are unchanged. The D-TIER candidate recommends the same four-layer stack with advanced process and0.20mmmechanicaldrills; its actual route/order-reader compatibility is under independent review before adoption. No physical standard-tier impossibility, order or quote is claimed.
+
+## Actual via-process consumer probe — 2026-09-22
+
+Root exactLTfootprint fixture has6platedholes but candidate via_process checker inventories0nativevias and rejectsV-COVER. Candidateorderremark alsoomitsordinary0.30mmfamily. D-TIERpatch remainsunmerged pending source-to-process representation repair. See research/2026-09-22-via-process-admission-probe.md. No projectboardgenerated orconductorinvoked.
