@@ -1,0 +1,20 @@
+{
+  "baseline": "72efaaef",
+  "components": 489,
+  "unique_mpns": 85,
+  "ports": 1619,
+  "source_traces": 1490,
+  "changed_refs": [
+    "C_LDO_A",
+    "C_LDO_D",
+    "C_USB_VBUS",
+    "C_VMID1_4U7",
+    "C_VMID2_4U7"
+  ],
+  "intended_value_changes": [
+    "C_VMID1_4U7",
+    "C_VMID2_4U7"
+  ],
+  "other_electrical_fields_unchanged": true,
+  "connectivity_edges_unchanged": true
+}

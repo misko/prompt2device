@@ -173,10 +173,11 @@ guaranteed 1.0ms minimum at 10k/0.1uF by the selected -1%/-10% RC product; TI's
 log-log curves show proportional pulse duration over the selected range. These are
 documented engineering bounds rather than manufacturer guarantees for arbitrary RC.
 
-`C_USB_VBUS` is exact GRM188Z71C475KE21D, 4.7uF +/-10%, 16V, 0603. Its Murata
-sheet specifies the Z7 +/-15% temperature range with 50% rated DC voltage applied;
-the combined documented low corner is 3.595uF and high corner is 5.946uF, within the
-XU316 self-powered reference's 1-10uF interval. At the high corner and +1% 47k bleeder,
+`C_USB_VBUS` is exact GCM21BR71C475KA73L, 4.7uF +/-10%, 16V X7R, 0805. Its Murata
+typical curves are conservatively screened at 36% combined DC/AC retention, then
+charged the full -10% tolerance, -15% temperature and a separate -10% lifecycle
+reserve. The resulting 1.165uF low estimate and 5.946uF no-bias high corner remain
+within the XU316 self-powered reference's 1-10uF interval. At the high corner and +1% 47k bleeder,
 the conservative VBUS discharge time constant is 282ms; decay from 5.25V to 0.8V is
 530ms. The AO3400A sense remains intentionally inverted. Its 100k/1M divider gives at
 least 4.32V gate drive at the 4.75V USB valid floor and the exact device guarantees

@@ -1,0 +1,167 @@
+{
+ "project": "project",
+ "scope": "all",
+ "boards": 5,
+ "min_stock": 10,
+ "total_parts": 1,
+ "selected": 1,
+ "coverage": {
+  "mouser": {
+   "graded": 0,
+   "ok": 0,
+   "total": 1
+  },
+  "digikey": {
+   "graded": 1,
+   "ok": 1,
+   "total": 1
+  },
+  "amazon": {
+   "graded": 0,
+   "ok": 0,
+   "total": 1
+  }
+ },
+ "totals": {
+  "mouser": {
+   "usd": 0.0,
+   "priced": 0
+  },
+  "digikey": {
+   "usd": 0.0,
+   "priced": 0
+  },
+  "amazon": {
+   "usd": 0.0,
+   "priced": 0
+  }
+ },
+ "rows": [
+  {
+   "mpn": "GCM21BR71C475KA73L",
+   "mpn_source": "part.yaml mpn:",
+   "manufacturer": "Murata Electronics",
+   "type": "ceramic_capacitor",
+   "lcsc": "C90791",
+   "qty": 25,
+   "refs": "candidate: C_LDO_A, C_LDO_D, C_USB_VBUS, C_VMID1_4U7, C_VMID2_4U7",
+   "reasons": [],
+   "dist": {
+    "mouser": {
+     "status": "LOOKUP-FAILED",
+     "grade": "OWED",
+     "why": "no Mouser API key (see --help): fact is OWED; no Mouser API key (see --help): fact is OWED",
+     "searches": [
+      {
+       "kind": "exact",
+       "query": "GCM21BR71C475KA73L",
+       "opt": "Exact",
+       "hits": 0,
+       "error": "no Mouser API key (see --help): fact is OWED"
+      },
+      {
+       "kind": "broad",
+       "query": "GCM21BR71C475KA73L",
+       "opt": "None",
+       "hits": 0,
+       "error": "no Mouser API key (see --help): fact is OWED"
+      }
+     ],
+     "all_records": []
+    },
+    "digikey": {
+     "distributor": "digikey",
+     "url": "https://www.digikey.com/es/products/detail/murata-electronics/GCM21BR71C475KA73L/2075311",
+     "dpn": "490-5332-1-ND",
+     "read_on": "2026-09-22",
+     "manufacturer": "Murata Electronics",
+     "manufacturer_match": true,
+     "status": "OK",
+     "grade": "CITED",
+     "stock": 254233,
+     "unit_price": null,
+     "break_qty": null,
+     "min": 1,
+     "mult": 1,
+     "ext_price": null,
+     "lifecycle": "Active",
+     "why": ""
+    },
+    "amazon": {
+     "status": "NO-QUOTE",
+     "grade": "OWED",
+     "why": "no amazon quote recorded. Open the PRODUCT PAGE (never a search snippet) and add an entry to 01_docs/sourcing/manual_quotes.yaml with its url and read_on date; Amazon has no usable API (PA-API needs an affiliate account) so this stays ESTIMATED even once recorded"
+    },
+    "jlc": {
+     "status": "OK",
+     "grade": "CITED",
+     "manufacturer_match": true,
+     "stock": 40697,
+     "record": {
+      "lcsc": "C90791",
+      "designators": "C_LDO_A,C_LDO_D,C_USB_VBUS,C_VMID1_4U7,C_VMID2_4U7",
+      "qty": 5,
+      "required_qty": 25,
+      "stock_threshold": 35,
+      "absolute_surplus": 40672,
+      "status": "OK",
+      "stock": 40697,
+      "type": "expand",
+      "mpn": "GCM21BR71C475KA73L",
+      "manufacturer": "Murata Electronics"
+     },
+     "why": "",
+     "url": "https://jlcpcb.com/parts/componentSearch?searchTxt=C90791"
+    }
+   },
+   "authorized_pools": [
+    "jlc",
+    "digikey"
+   ],
+   "rejected_pools": {
+    "mouser": "no Mouser API key (see --help): fact is OWED; no Mouser API key (see --help): fact is OWED"
+   }
+  }
+ ],
+ "failures": [
+  {
+   "mpn": "GCM21BR71C475KA73L",
+   "qty": 25,
+   "distributor": "mouser",
+   "status": "LOOKUP-FAILED",
+   "why": "no Mouser API key (see --help): fact is OWED; no Mouser API key (see --help): fact is OWED"
+  },
+  {
+   "mpn": "GCM21BR71C475KA73L",
+   "qty": 25,
+   "distributor": "amazon",
+   "status": "NO-QUOTE",
+   "why": "no amazon quote recorded. Open the PRODUCT PAGE (never a search snippet) and add an entry to 01_docs/sourcing/manual_quotes.yaml with its url and read_on date; Amazon has no usable API (PA-API needs an affiliate account) so this stays ESTIMATED even once recorded"
+  }
+ ],
+ "single_source": [
+  "digikey"
+ ],
+ "methods": {
+  "mouser": "Mouser Search API (search/partnumber). TWO searches per part: `Exact` on the authoritative MPN, then `None` on the suffix-stripped MPN \u2014 one part has several catalog records and they disagree. When the API credential is absent, a strictly validated exact-MPN public Mouser product-page record may supply the same pool once. CITED.",
+  "digikey": "PRODUCT PAGE read by a human and recorded in 01_docs/sourcing/manual_quotes.yaml. No API key available (OAuth client credentials not provided). CITED from a product page; a search snippet is REFUSED.",
+  "amazon": "Direct product links only, hand-recorded. No usable API (PA-API needs an affiliate account). ESTIMATED, always \u2014 stock and price are volatile and unverifiable."
+ },
+ "unparsed": [],
+ "required_pools": 2,
+ "eligible_pools": [
+  "jlc",
+  "mouser",
+  "digikey"
+ ],
+ "pool_failures": [],
+ "jlc_coverage": {
+  "graded": 1,
+  "ok": 1,
+  "total": 1
+ },
+ "generated": "2026-09-22 13:46 UTC",
+ "mouser_calls": 0,
+ "key_provenance": "ABSENT",
+ "verdict": "PASS"
+}

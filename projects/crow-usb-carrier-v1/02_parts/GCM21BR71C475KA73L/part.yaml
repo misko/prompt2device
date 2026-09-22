@@ -1,0 +1,26 @@
+mpn: GCM21BR71C475KA73L
+manufacturer: Murata Electronics
+type: ceramic_capacitor
+value: 4.7uF
+status: active
+datasheet:
+  doc_id: GCM21BR71C475KA73
+  revision: 2026-09
+  url: https://pimapi.murata.com/public/api/pim/v1/characteristics/search/technical?partNum=GCM21BR71C475KA73%23&productCategoryId=ceramicCapacitorSMD&displayLanguage=en&languageRegion=en-us
+  local: Murata_GCM21BR71C475KA73_technical.pdf
+  sha256: 63590229b64448ab28a97b45400c058f566006c904836073dbba89df74e9aac9
+  fetched: '2026-09-22'
+  pages: 1
+  note: 'Exact Murata family electrical sheet: 4.7uF +/-10%, 16Vdc X7R, 2012M/0805, dimensions 2.0+/-0.15 by 1.25+/-0.15 by 1.25+/-0.15mm. Typical DC-bias and AC-amplitude curves are engineering inputs, not guaranteed minima.'
+  provenance: 'Manufacturer PIM response binds exact package MPN GCM21BR71C475KA73L to family GCM21BR71C475KA73# and L embossed-tape carrier; authentic response and characteristic bytes captured 2026-09-22.'
+package: "0805 (2012 metric)"
+footprint: Capacitor_SMD:C_0805_2012Metric
+escape: {style: passive, pitch: 1.0, tier_required: jlc_2layer_default, checked: "Murata 2012M dimensions and standard 0805 two-terminal land reviewed 2026-09-22"}
+pins: {1: A, 2: B}
+limits: {capacitance_f: 0.0000047, tolerance_pct: 10, voltage_v: 16, dielectric: X7R, operating_temperature: "-55C to +125C"}
+asserts: [{assert: value, equals: 4.7u, tolerance_pct: 10, why: "CS5308P LDO_A/LDO_D filter and USB VBUS connector capacitance."}]
+verified: "Exact PIM/package identity and primary characteristics captured 2026-09-22; fitted source uses C90791 and 0805 for C_USB_VBUS, C_LDO_A, and C_LDO_D."
+gotchas:
+  - "Murata labels the curves typical and requires product-specification approval before ordering. Effective-capacitance bounds remain engineering screens and require first-article measurement."
+  - "This replaces a 0603 part; placement and land geometry must be reviewed in the native board."
+sourcing: {lcsc: C90791, alternates: [], note: "Fresh JLC catalog stock 40697 and opened DigiKey product-page stock 254233 on 2026-09-22; order-time allocation remains separate."}

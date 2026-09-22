@@ -63,9 +63,9 @@ export function UsbDeviceFrontend({ nets, receptacleFootprint }:
       pinLabels={{pin1:"NC1",pin2:"NC2",pin3:"VBUS",pin4:"GND",pin5:"UNUSED_NC"}}
       connections={c.vbusEsd} schSheetName="usb" schSectionName="USB interface" schX={1} schY={8} />
     {/* XMOS self-powered reference requires 1-10uF at connector VBUS and 47k
-        discharge. Exact 4.7uF/16V/X7R/0603 identity is retained in its dossier. */}
-    <capacitor name="C_USB_VBUS" capacitance="4.7uF" footprint="0603"
-      manufacturerPartNumber="GRM188Z71C475KE21D" supplierPartNumbers={{jlcpcb:["C389010"]}}
+        discharge. Exact 4.7uF/16V/X7R/0805 identity is retained in its dossier. */}
+    <capacitor name="C_USB_VBUS" capacitance="4.7uF" footprint="0805"
+      manufacturerPartNumber="GCM21BR71C475KA73L" supplierPartNumbers={{jlcpcb:["C90791"]}}
       connections={c.vbusCap} schSheetName="usb" schSectionName="USB interface" schX={5} schY={8} />
     <resistor name="R_USB_VBUS_BLEED" resistance="47k" footprint="0402"
       manufacturerPartNumber="RC0402FR-0747KL" supplierPartNumbers={{jlcpcb:["C93943"]}}

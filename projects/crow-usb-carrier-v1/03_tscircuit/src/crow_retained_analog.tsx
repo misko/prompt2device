@@ -219,11 +219,11 @@ const AdcReferenceAndMode = ({ n }: any) => (
       <C name={`C_FILT${bank}_470U`} value="470uF" a={`FILT${bank}P`} b="GND" jlc="C178530" mpn="EEEFK1A471P" footprint={<PanasonicEeeFk8x10 />} polarized n={n} />
       <C name={`C_FILT${bank}_10U`} value="10uF" a={`FILT${bank}P`} b="GND" jlc="C2167576" mpn="C0805C106K8RACTU" footprint="0805" n={n} />
       <C name={`C_FILT${bank}_1U`} value="1uF" a={`FILT${bank}P`} b="GND" jlc="C2167386" mpn="C0603C105K4RACTU" footprint="0603" n={n} />
-      <C name={`C_VMID${bank}_4U7`} value="4.7uF" a={`VMID${bank}`} b="GND" jlc="C389010" mpn="GRM188Z71C475KE21D" footprint="0603" n={n} />
+      <C name={`C_VMID${bank}_4U7`} value="10uF" a={`VMID${bank}`} b="GND" jlc="C2167576" mpn="C0805C106K8RACTU" footprint="0805" n={n} />
       <C name={`C_VMID${bank}_470N`} value="470nF" a={`VMID${bank}`} b="GND" jlc="C318640" mpn="CL10B474KA8NFNC" footprint="0603" n={n} />
     </group>)}
-    <C name="C_LDO_A" value="4.7uF" a="LDO_A_FILT" b="GND" jlc="C389010" mpn="GRM188Z71C475KE21D" footprint="0603" n={n} />
-    <C name="C_LDO_D" value="4.7uF" a="LDO_D_FILT" b="GND" jlc="C389010" mpn="GRM188Z71C475KE21D" footprint="0603" n={n} />
+    <C name="C_LDO_A" value="4.7uF" a="LDO_A_FILT" b="GND" jlc="C90791" mpn="GCM21BR71C475KA73L" footprint="0805" n={n} />
+    <C name="C_LDO_D" value="4.7uF" a="LDO_D_FILT" b="GND" jlc="C90791" mpn="GCM21BR71C475KA73L" footprint="0805" n={n} />
     <C name="C_VDDA1_4U7" value="4.7uF" a="3V3_ADC" b="GND" jlc="C19666" mpn="CL10A475KO8NNNC" footprint="0603" n={n} />
     <C name="C_VDDA1_10N" value="10nF" a="3V3_ADC" b="GND" jlc="C15195" mpn="CL05B103KB5NNNC" n={n} />
     <C name="C_VDDA2_4U7" value="4.7uF" a="3V3_ADC" b="GND" jlc="C19666" mpn="CL10A475KO8NNNC" footprint="0603" n={n} />

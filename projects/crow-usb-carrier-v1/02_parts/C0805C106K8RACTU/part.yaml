@@ -24,7 +24,8 @@ limits:
   operating_temperature: "-55C to +125C"
 asserts:
   - {assert: value, equals: 10u, tolerance_pct: 10, why: "CS5308P differential ADC reference-filter support capacitor with conservative effective-capacitance margin."}
-verified: "CITED: exact active KEMET C0805C106K8RACTU is 10uF +/-10%, 10V X7R in 0805; selected 2026-09-01."
+  - {assert: value, equals: 10u, tolerance_pct: 10, why: "C_VMID1_4U7 and C_VMID2_4U7 replace the shown 2.2uF bulk bypasses with retained effective-capacitance margin."}
+verified: "CITED: exact active KEMET C0805C106K8RACTU is 10uF +/-10%, 10V X7R in 0805; selected 2026-09-01 and extended to both ADC_VMID bulk positions after the 2026-09-22 effective-capacitance review."
 gotchas:
   - "The E-CAP screen charges 50% DC-bias, 15% temperature and 10% lifecycle losses in addition to tolerance; physical reference settling/ripple/THD remain first-article holds."
 sourcing:

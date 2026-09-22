@@ -166,6 +166,80 @@ effective_capacitance_banks:
     accepted_dielectrics: [x7r]
     contributors:
       - {part: GRM32ER71A476KE15L, refs: [C_LDO_OUT, C_OPA_BULK], nominal_each_uF: 47, dielectric: x7r, tolerance_minus_pct: 10, dc_bias_derating_pct: 65, temperature_derating_pct: 15, lifecycle_derating_pct: 12.5, basis: conservative_engineering_bound, evidence: "Each capacitor independently estimates 11.011 uF effective at the conservative 3.3 V screen; together estimate 22.022 uF. ESR below 20 milliohm, ESL below 2 nH, Kelvin topology and load-step stability remain realized-layout qualifications."}
+  - name: XU316 USB VBUS sense capacitance
+    requirement_uF: 1
+    requirement_evidence: XMOS self-powered reference requires 1-10 uF at connector VBUS.
+    accepted_dielectrics: [x7r]
+    contributors:
+      - part: GCM21BR71C475KA73L
+        refs: [C_USB_VBUS]
+        nominal_each_uF: 4.7
+        dielectric: x7r
+        tolerance_minus_pct: 10
+        dc_bias_derating_pct: 64
+        temperature_derating_pct: 15
+        lifecycle_derating_pct: 10
+        basis: conservative_combined_voltage_engineering_bound
+        evidence: >-
+          Exact Murata typical curves are bracketed at the worse 6 V point for
+          the 5.25 V USB ceiling (60% DC retention) and the lowest plotted AC
+          drive (60% AC retention). Their product is 36% combined retention,
+          represented here as 64% combined voltage derating. With tolerance,
+          full X7R temperature allowance and a separate 10% lifecycle reserve,
+          the estimate is 1.164942 uF. The curves are typical, the reserves are
+          engineering bounds, and first-article measurement remains required.
+  - &cs5308_ldo_filter
+    name: CS5308P LDO_A filter capacitor
+    requirement_uF: 1
+    requirement_evidence: Cirrus DS1314F1 Figure 2-1 shows a 1 uF capacitor at LDO_A_FILT.
+    accepted_dielectrics: [x7r]
+    contributors:
+      - part: GCM21BR71C475KA73L
+        refs: [C_LDO_A]
+        nominal_each_uF: 4.7
+        dielectric: x7r
+        tolerance_minus_pct: 10
+        dc_bias_derating_pct: 52
+        temperature_derating_pct: 15
+        lifecycle_derating_pct: 10
+        basis: conservative_combined_voltage_engineering_bound
+        evidence: >-
+          At the conservative 3.6 V ADC supply ceiling, use the worse Murata 4 V
+          point (80% DC retention) and lowest-drive AC point (60% retention),
+          or 48% combined retention. After tolerance, temperature and 10%
+          lifecycle reserves, the part estimates 1.553256 uF, 55.3% above the
+          Cirrus shown 1 uF.
+  - <<: *cs5308_ldo_filter
+    name: CS5308P LDO_D filter capacitor
+    requirement_evidence: Cirrus DS1314F1 Figure 2-1 shows a 1 uF capacitor at LDO_D_FILT.
+    contributors:
+      - {part: GCM21BR71C475KA73L, refs: [C_LDO_D], nominal_each_uF: 4.7, dielectric: x7r, tolerance_minus_pct: 10, dc_bias_derating_pct: 52, temperature_derating_pct: 15, lifecycle_derating_pct: 10, basis: conservative_combined_voltage_engineering_bound, evidence: "Same conservative 3.6 V screen as LDO_A: 48% combined DC/AC retention plus tolerance, temperature and lifecycle reserves estimates 1.553256 uF, 55.3% above the Cirrus shown 1 uF."}
+  - &cs5308_vmid_bypass
+    name: CS5308P ADC_VMID1 bulk bypass capacitor
+    requirement_uF: 2.2
+    requirement_evidence: Cirrus DS1314F1 Figure 2-1 shows a 2.2 uF bulk bypass at ADC_VMID1, in parallel with a separate 0.22 uF high-frequency capacitor.
+    accepted_dielectrics: [x7r]
+    contributors:
+      - part: C0805C106K8RACTU
+        refs: [C_VMID1_4U7]
+        nominal_each_uF: 10
+        dielectric: x7r
+        tolerance_minus_pct: 10
+        dc_bias_derating_pct: 50
+        temperature_derating_pct: 15
+        lifecycle_derating_pct: 10
+        basis: conservative_engineering_bound
+        evidence: >-
+          Existing exact-part engineering screen charges 50% DC-bias, 15%
+          temperature and 10% lifecycle loss in addition to tolerance. Each
+          10 uF capacitor estimates 3.4425 uF, 56.5% above the Cirrus shown
+          2.2 uF. Reference settling,
+          ripple and THD remain first-article qualifications.
+  - <<: *cs5308_vmid_bypass
+    name: CS5308P ADC_VMID2 bulk bypass capacitor
+    requirement_evidence: Cirrus DS1314F1 Figure 2-1 shows a 2.2 uF bulk bypass at ADC_VMID2, in parallel with a separate 0.22 uF high-frequency capacitor.
+    contributors:
+      - {part: C0805C106K8RACTU, refs: [C_VMID2_4U7], nominal_each_uF: 10, dielectric: x7r, tolerance_minus_pct: 10, dc_bias_derating_pct: 50, temperature_derating_pct: 15, lifecycle_derating_pct: 10, basis: conservative_engineering_bound, evidence: "Same exact-part screen as ADC_VMID1 estimates 3.4425 uF, 56.5% above the Cirrus shown 2.2 uF; reference settling, ripple and THD remain first-article qualifications."}
 
 rails:
   - {name: N5V_BUCK, vin_min: 11.006, vin_max: 13.2, vout_min: 4.95, vout_max: 5.05, iout_max_A: 1.9, converter: TPSM63603V5RDHR, eff: 0.85, external_output: false}

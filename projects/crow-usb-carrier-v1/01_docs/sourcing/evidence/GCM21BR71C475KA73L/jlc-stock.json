@@ -1,0 +1,31 @@
+{
+ "tool": "jlc_stock_check.py",
+ "bom": "/home/mouse9911/gits/circuits-trials/crow-usb-design-20260922/cap4u7-voltage-footprint-broad/exact.csv",
+ "generated_at": "2026-09-22T13:46:11.614587+00:00",
+ "min_stock_per_board": 5,
+ "min_absolute_surplus": 10,
+ "verdict": "PASS",
+ "stock_source": "lcsc_catalog_stockCount",
+ "predicts_jlc_assembly_allocation": false,
+ "pass_means": "catalog stock >= min_stock x qty + min_absolute_surplus at query time; NOT that JLC will allocate the line -- see F-ECHO",
+ "graded_lines": 1,
+ "total_lines": 1,
+ "zero_coverage": null,
+ "failures": 0,
+ "uncoded_lines": 0,
+ "lines": [
+  {
+   "lcsc": "C90791",
+   "designators": "C_LDO_A,C_LDO_D,C_USB_VBUS,C_VMID1_4U7,C_VMID2_4U7",
+   "qty": 5,
+   "required_qty": 25,
+   "stock_threshold": 35,
+   "absolute_surplus": 40672,
+   "status": "OK",
+   "stock": 40697,
+   "type": "expand",
+   "mpn": "GCM21BR71C475KA73L",
+   "manufacturer": "Murata Electronics"
+  }
+ ]
+}
