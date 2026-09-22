@@ -20,7 +20,9 @@ upstream_delivery:
   evidence: >-
     Partial source-stage bound only. F_IN uses the exact 2920L330/24
     55 milliohm R1max and Q_IN uses the DMP6023LFG-13 25 milliohm maximum
-    at VGS=-10 V. Copper, joints and connector resistance remain unallocated;
+    at VGS=-10 V. The 2.12 A value is the inherited normal-load allocation;
+    TPS26625 supply current over 11.4-13.2 V remains open. Copper, joints and
+    connector resistance remain unallocated;
     therefore this is not a qualified connector-plane floor.
   rails: [N5V_BUCK, N12V_POD1, N12V_POD2, N12V_POD3, N12V_POD4, N12V_POD5, N12V_POD6, N12V_POD7, N12V_POD8]
   fixed_drop_components_mV:
@@ -164,25 +166,47 @@ rails:
     vout_min: 10.8
     vout_max: 13.2
     iout_max_A: 0.10
+    ir_budget_mohm: 3960
+    ir_budget_components_mohm:
+      protection_switch: {value: 800, basis: maximum, evidence: 'TPS26625 manufacturer RON maximum over -40 to 125 C.'}
+      pcb_copper_vias_joints: {value: 3060, basis: budgeted_max, evidence: 'Pre-layout allocation; verify by post-route extraction and first-article four-wire measurement.'}
+      connector_contacts: {value: 100, basis: budgeted_max, evidence: 'Board-side paralleled contact allocation; mated cable loss belongs to the external source envelope.'}
+    ir_budget_evidence: >-
+      Engineering ceiling from (11.196 V protected-rail floor - 10.8 V
+      connector-plane floor) / 0.10 A. The TPS26625 consumes at most 800
+      milliohm of this ceiling at its guaranteed hot RON; the remaining 3160
+      milliohm is available to realized copper, joints and connector contacts
+      and must be checked on the native board.
     external_output: true
     claim_id: eight_analog_spokes
     load_uv_threshold: 10.8
     margin: 0.20
     margin_basis: requirement_boundary_only
     margin_evidence: >-
-      The 10.8 V connector-plane floor is the requirement. Only the retained
-      branch PPTC maximum is quantified; missing copper/joint/contact resistance
-      deliberately leaves zero proven delivery headroom.
+      The 10.8 V connector-plane floor is the requirement. TPS26625 RON is
+      bounded at 800 milliohm over -40 to 125 C, so its own normal 0.10 A drop
+      is at most 80 mV. Missing copper, joint, contact and thermal realization
+      deliberately leave the complete connector-plane delivery unqualified.
     distribution:
-      kind: passive_pptc
-      series_devices: [1812L035/60MR]
-      path_resistance_max_mohm: 1700
-      hold_current_reference_A: 0.20
-      hold_current_reference_temperature_C: 70
+      kind: active_efuse_candidate
+      series_devices: [TPS26625DRCR]
+      path_resistance_max_mohm: 800
+      current_limit_min_A: UNQUALIFIED_AT_12V_HARD_SHORT_TABLE_IS_24V_1V_DROP
+      current_limit_max_A: UNQUALIFIED_AT_12V_HARD_SHORT_TABLE_IS_24V_1V_DROP
+      engineering_screen_current_limit_A: [0.145, 0.159]
+      engineering_screen_condition: TI electrical table at VIN=24V and VIN-VOUT=1V with 44.2kohm ILIM
+      engineering_screen_resistor: RT0603BRD0744K2L, 0.1 percent, 25 ppm/C
       operating_ambient_max_C: 70
-      hold_current_reference_grade: manufacturer_reference
-      hold_current_reference_locator: Littelfuse 1812L primary datasheet, ambient rerating table, 1812L035/60 row, 70 C column
-      reverse_current_policy: External pods contain no admitted source; hot plug and downstream backfeed are prohibited.
+      device_quiescent_current_max_uA_at_24V_table_condition: 482
+      eight_device_quiescent_current_screen_mA: 3.856
+      inherited_normal_load_allocation_A: 2.12
+      normal_source_current_screen_including_table_conditioned_efuse_iq_A: 2.123856
+      normal_drop_grade: manufacturer_maximum_RON
+      normal_drop_locator: TI SLVSDT4F electrical table, RON maximum 800 milliohm over -40 to 125 C
+      reverse_current_policy: TPS26625 output-side reverse protection is present; externally powered pods remain outside the admitted operating states pending verification.
+      fault_containment_status: OPEN_SOURCE_LOAD_LINE_HICCUP_CABLE_RL_THERMAL_RETRY_NOT_QUALIFIED
+      transient_status: OPEN_220NS_AND_1P6A_ARE_TYPICAL_OR_UNBOUNDED_NOT_GUARANTEED_MAXIMA
+      startup_status: OPEN_ALL_POD_LOAD_AND_CAPACITANCE_STATES
   - {<<: *spoke, name: N12V_POD2}
   - {<<: *spoke, name: N12V_POD3}
   - {<<: *spoke, name: N12V_POD4}

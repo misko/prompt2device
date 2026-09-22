@@ -14,16 +14,16 @@ gates:
   required_for: DESIGN_CLEAN
   state: pending
   owner: electrical
-  closes_when: Generate complete native schematic and netlist from admitted source; pass electrical
-    gates and independent topology and rendered-schematic review.
+  closes_when: Generate complete native schematic and netlist from admitted source; pass electrical gates
+    and independent topology and rendered-schematic review.
   evidence:
   - 03_tscircuit/src/crow_carrier.tsx
 - id: USB-layout
   required_for: DESIGN_CLEAN
   state: pending
   owner: layout
-  closes_when: Execute modular placement and global routing; verify exact native connectivity, DRC,
-    power delivery, USB impedance/return path and independent layout review.
+  closes_when: Execute modular placement and global routing; verify exact native connectivity, DRC, power
+    delivery, USB impedance/return path and independent layout review.
   evidence:
   - 03_src/modular_plan.json
   - 03_src/rules/rf.yaml
@@ -32,9 +32,9 @@ findings:
   state: closed
   blocks_at_or_above: DESIGN_CLEAN
   owner: power
-  finding: Source-stage effective-capacitance screen closed with reviewed conservative engineering
-    derating and exact bank/source changes. Adjacent-tolerance proxy and lifecycle reserves are explicit;
-    this is not production or physical stability qualification.
+  finding: Source-stage effective-capacitance screen closed with reviewed conservative engineering derating
+    and exact bank/source changes. Adjacent-tolerance proxy and lifecycle reserves are explicit; this
+    is not production or physical stability qualification.
   closes_when: Retain defensible effective-capacitance bounds for exact parts and operating conditions,
     adjust banks if needed, and pass E-CAP.
   evidence:
@@ -44,21 +44,22 @@ findings:
   state: open
   blocks_at_or_above: DESIGN_CLEAN
   owner: power
-  finding: Typed passive-distribution reader is adopted. Normal-load topology passes without claiming
-    a hard current limit; E-FAULT rejects the missing branch fault qualification. Recovery/retry
-    behavior and shared source coordination still require engineering evidence.
-  closes_when: Adopt reviewed passive-distribution semantics and establish source fault envelope,
-    clearing, withstand, leakage and energy evidence for actual protected paths.
+  finding: Eight TPS26625 spoke eFuses replace branch PPTCs in reviewed source. Full source composition
+    and modular endpoint coverage pass; shared input protection, source load-line and transient coordination
+    remain open.
+  closes_when: Complete shared-source fault and surge engineering bounds, input-protector coordination
+    and supported retry/startup behavior; qualify realized hardware at its owning boundary.
   evidence:
   - 03_src/rules/power_tree.yaml
+  - 01_docs/research/2026-09-22-spoke-adoption.md
 - id: USB-power-delivery
   state: open
   blocks_at_or_above: DESIGN_CLEAN
   owner: power
   finding: Connector-plane voltage, complete load allocation and realized-board thermal margins remain
     unqualified.
-  closes_when: Close resistance/load allocations and converter thermal bounds against actual copper
-    and operating states; pass owning power gates.
+  closes_when: Close resistance/load allocations and converter thermal bounds against actual copper and
+    operating states; pass owning power gates.
   evidence:
   - 03_src/rules/power_tree.yaml
   - 03_src/rules/nets.yaml
@@ -66,10 +67,10 @@ findings:
   state: open
   blocks_at_or_above: DESIGN_CLEAN
   owner: mechanical
-  finding: Exact mating and service envelopes remain incomplete, including JTAG full body and RJ45
-    mate geometry.
-  closes_when: Close all nondeferrable source facts and satisfy connector source admission; qualify
-    physical service geometry on the placed board at its owning boundary.
+  finding: Exact mating and service envelopes remain incomplete, including JTAG full body and RJ45 mate
+    geometry.
+  closes_when: Close all nondeferrable source facts and satisfy connector source admission; qualify physical
+    service geometry on the placed board at its owning boundary.
   evidence:
   - 03_src/rules/connector_assemblies.yaml
   - 03_src/rules/connector_assembly_phases.yaml
@@ -80,8 +81,8 @@ findings:
   owner: sourcing
   finding: Exact layout evidence and assembly sourcing are not fully qualified. The primary-drawing-supported
     Wurth inductor is adopted; its pricing and availability remain unqualified.
-  closes_when: Bind selected exact parts to reviewed primary geometry, current source and approved
-    assembly sourcing evidence.
+  closes_when: Bind selected exact parts to reviewed primary geometry, current source and approved assembly
+    sourcing evidence.
   evidence:
   - 03_src/rules/assembly.yaml
   - 01_docs/research/2026-09-22-inductor-adoption.md
@@ -89,11 +90,10 @@ findings:
   state: open
   blocks_at_or_above: DESIGN_CLEAN
   owner: layout
-  finding: Crow-specific draft floorplan and routing replace load-cell examples. Connector poses,
-    native physical stackup, analog matching, converter-loop ownership and reviewed route admission
-    remain incomplete.
-  closes_when: Replace examples with Crow USB dimensions, connector orientations, block placement
-    constraints and routing intent before native placement admission.
+  finding: Crow-specific draft floorplan and routing replace load-cell examples. Connector poses, native
+    physical stackup, analog matching, converter-loop ownership and reviewed route admission remain incomplete.
+  closes_when: Replace examples with Crow USB dimensions, connector orientations, block placement constraints
+    and routing intent before native placement admission.
   evidence:
   - 03_src/floorplan.yaml
   - 03_src/route.yaml
@@ -101,13 +101,13 @@ findings:
   state: open
   blocks_at_or_above: DESIGN_CLEAN
   owner: digital-electrical
-  finding: Held ADC output buffer inputs MCLK_RAW and FSYNC_EXT have no explicit pulldown when 3V3X
-    drivers lose power; ADC reset is not bound to digital-clock rail loss. USB VBUS input capacitance
-    and PHY rail reset qualification are missing from the current source.
-  closes_when: Review exact pin-level off-state behavior; define all held-buffer inputs, preserve
-    CS5308 startup reset sequence while asserting safe brownout reset, qualify flash/PHY reset timing,
-    add supported VBUS capacitance/detector behavior and document firmware detach/JTAG assumptions.
-    Pass source checks and independent power-state review.
+  finding: Held ADC output buffer inputs MCLK_RAW and FSYNC_EXT have no explicit pulldown when 3V3X drivers
+    lose power; ADC reset is not bound to digital-clock rail loss. USB VBUS input capacitance and PHY
+    rail reset qualification are missing from the current source.
+  closes_when: Review exact pin-level off-state behavior; define all held-buffer inputs, preserve CS5308
+    startup reset sequence while asserting safe brownout reset, qualify flash/PHY reset timing, add supported
+    VBUS capacitance/detector behavior and document firmware detach/JTAG assumptions. Pass source checks
+    and independent power-state review.
   evidence:
   - 03_tscircuit/src/crow_usb_digital.tsx
   - 03_tscircuit/src/usb_device_frontend.tsx

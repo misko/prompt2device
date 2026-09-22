@@ -6,6 +6,7 @@ default_track_width: 0.20mm
 classes:
   USB_HS:
     nets: [USB_DP, USB_DN]
+    current: signal
     min_width: 0.410mm
     clearance: 0.150mm
     via_diameter: 0.6mm

@@ -142,14 +142,54 @@ selections:
   - C_VMID2_EXT_10U
   - C_VMID2_EXT_1U
   - D_HOLD
-  - F1
-  - F2
-  - F3
-  - F4
-  - F5
-  - F6
-  - F7
-  - F8
+  - C_SPOKE_DVDT1
+  - C_SPOKE_IN1
+  - C_SPOKE_OUT1
+  - R_SPOKE_ILIM1
+  - R_SPOKE_UVLO1
+  - U_SPOKE1
+  - C_SPOKE_DVDT2
+  - C_SPOKE_IN2
+  - C_SPOKE_OUT2
+  - R_SPOKE_ILIM2
+  - R_SPOKE_UVLO2
+  - U_SPOKE2
+  - C_SPOKE_DVDT3
+  - C_SPOKE_IN3
+  - C_SPOKE_OUT3
+  - R_SPOKE_ILIM3
+  - R_SPOKE_UVLO3
+  - U_SPOKE3
+  - C_SPOKE_DVDT4
+  - C_SPOKE_IN4
+  - C_SPOKE_OUT4
+  - R_SPOKE_ILIM4
+  - R_SPOKE_UVLO4
+  - U_SPOKE4
+  - C_SPOKE_DVDT5
+  - C_SPOKE_IN5
+  - C_SPOKE_OUT5
+  - R_SPOKE_ILIM5
+  - R_SPOKE_UVLO5
+  - U_SPOKE5
+  - C_SPOKE_DVDT6
+  - C_SPOKE_IN6
+  - C_SPOKE_OUT6
+  - R_SPOKE_ILIM6
+  - R_SPOKE_UVLO6
+  - U_SPOKE6
+  - C_SPOKE_DVDT7
+  - C_SPOKE_IN7
+  - C_SPOKE_OUT7
+  - R_SPOKE_ILIM7
+  - R_SPOKE_UVLO7
+  - U_SPOKE7
+  - C_SPOKE_DVDT8
+  - C_SPOKE_IN8
+  - C_SPOKE_OUT8
+  - R_SPOKE_ILIM8
+  - R_SPOKE_UVLO8
+  - U_SPOKE8
   - J1
   - J2
   - J3
@@ -302,13 +342,13 @@ selections:
   - U_PWR
   - U_RST1
   - U_RST2
-  rationale: Retain the existing eight-channel converter and the complete297-component analog/spoke/quiet-power
-    source boundary. The296 supporting references deliberately include shared infrastructure, rather
+  rationale: Retain the existing eight-channel converter and the complete337-component analog/spoke/quiet-power
+    source boundary. The336 supporting references deliberately include shared infrastructure, rather
     than undercounting a minimal ADC example.
   exception:
     decision_rationale: The retained Crow balanced analog and powered spoke interface must feed one
       synchronous converter; a USB transport module does not replace that analog front end.
-    evidence: Retained Crow architecture and current297-reference analog source; donor integration
+    evidence: Retained Crow architecture and current337-reference analog source; donor integration
       comparison names the Cirrus evaluation assembly and MCHStreamer. Their prior board approvals
       are not inherited.
     modules_considered:

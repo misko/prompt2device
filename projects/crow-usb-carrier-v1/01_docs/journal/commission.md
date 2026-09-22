@@ -153,3 +153,7 @@
 - did: adopted conservative capacitor-bank revision after independent full retained-pin/net comparison and exact delta review; reconciled manifest, modular interfaces, floorplan patterns, presentation and integration census.
 - result:420components84MPNs1272traces; TypeScript and26endpoint assertions PASS; E-CAP8/8 PASS; modular420/420refs53/53crossings PASS; contracts338files0violations. Closed source-stage capacitance finding with retained hashes and explicit physical-stability limitations.
 - next: review active-spoke and digital-state source repairs and connector geometry before schematic admission.
+
+## Iterate 31 — spoke eFuse source integration
+
+Integrated SOL-reviewed TPS26625 channels onto the capacitor-corrected baseline. Root full-source rendering exposed missing schematic poses and the modular checker exposed 24 missing GND endpoints; repaired both in owning source. Moved the ungraded interface YAML into a clearly informational research snapshot rather than inventing executable rule authority. Full source: 460 components, 86 selected MPNs, 1539 ports, 1416 traces, zero source diagnostics and 26 endpoint checks. Modular 460/460 and53/53; E-CAP8/8; contracts349files0violations. Source-only boundary; native schematic/PCB, full E-FAULT and E-SURGE remain open. Digital repair review found candidate startup-delay and NPN backfeed defects; corrected isolated candidate still under review.

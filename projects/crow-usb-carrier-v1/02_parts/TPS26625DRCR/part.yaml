@@ -1,0 +1,60 @@
+mpn: TPS26625DRCR
+manufacturer: Texas Instruments
+type: industrial_efuse
+value: 60V 0.152A-programmed auto-retry eFuse
+status: active_production_candidate
+datasheet:
+  doc_id: SLVSDT4F
+  revision: F_202112
+  url: https://www.ti.com/lit/ds/symlink/tps2662.pdf
+  local: TI_TPS2662_SLVSDT4F.pdf
+  sha256: ff038eaa557fb618f93c0b6276a5ae08d0d3d9fbff1dddf0c45974a89120aefa
+  fetched: '2026-09-22'
+  pages: 46
+package: DRC0010J VSON-10 3x3mm 0.5mm pitch with exposed PowerPAD
+footprint: crow_usb_analog:TI_DRC0010J_VSON10
+pins: {1: IN, 2: UVLO, 3: OVP, 4: SHDN, 5: RTN, 6: GND, 7: ILIM, 8: dVdT, 9: FLT, 10: OUT, 11: PowerPAD}
+limits:
+  operating_input_V: [4.5, 60]
+  absolute_input_V: [-60, 62]
+  overload_current_A_at_44k2_24V_1Vdrop: {minimum: 0.145, typical: 0.152, maximum: 0.159}
+  ron_max_ohm_minus40_to125C: 0.800
+  quiescent_current_max_uA_at_24V_global_table_condition: 482
+  junction_operating_C: [-40, 125]
+  shutdown_threshold_rising_min_V: 1.8
+design_binding:
+  rilim: RT0603BRD0744K2L
+  rilim_nominal_ohm: 44200
+  rilim_tolerance_pct: 0.1
+  rilim_tcr_ppm_per_C: 25
+  uvlo: 1M from IN to UVLO as required when UVLO is unused
+  ovp: OVP tied to RTN; upstream rail owns the admitted overvoltage envelope
+  shutdown: SHDN tied to IN; no control or floating state
+  fault: FLT left unconnected because the pin-functions table directs this when unused
+  dvdt: 10nF to RTN, provisional startup slew selection pending all pod load states
+  rtn: dedicated local RTN island; never short RTN directly to GND
+  powerpad: pin 11 tied to RTN plane, with a separate pin-5 RTN connection
+evidence_limits:
+  - The 0.145/0.152/0.159A table row is characterized at 24V and VIN-VOUT=1V over the table temperature range. It is not claimed as a guaranteed 12V hard-short bound.
+  - The 482uA maximum supply-current entry also uses the electrical table's 24V global condition; its eight-device sum is a planning screen, not a guaranteed 11.4-13.2V bound.
+  - The 1.6A fast-trip threshold and 220ns response are typical behavior, not maximum transient guarantees.
+  - The 512ms timing is nominal and depends on operating mode, CdVdT, voltage drop and thermal shutdown. No bounded common-bus disturbance is claimed.
+  - Thermal shutdown time depends on exposed-pad copper and ambient. The candidate has no PCB or thermal proof.
+  - TI's application section is explicitly not a component specification; system fault containment needs source, harness and first-article evidence.
+layout:
+  source: TI SLVSDT4F sections 10.4 and 11, Figures 11-1/11-2, and DRC0010J package drawing
+  reviewed: '2026-09-22'
+  notes:
+    - Place C_SPOKE_INx directly between IN pin 1 and system GND pin 6 with the smallest practical loop; place C_SPOKE_OUTx directly between OUT pin 10 and system GND.
+    - Keep R_SPOKE_ILIMx and C_SPOKE_DVDTx local to pins 7/8 and return them to the RTN island at pin 5, never to system GND.
+    - Join exposed pad 11 to the RTN copper plane for heat spreading and retain an independent copper connection from pin 5 to that plane; the exposed pad is not the sole RTN connection.
+    - Keep RTN and system GND electrically separate. Size RTN copper and thermal vias from the later overload/retry thermal analysis at 70 C rather than inheriting TI evaluation-board temperature performance.
+  adjacency:
+    - {refdes: [U_SPOKE1, U_SPOKE2, U_SPOKE3, U_SPOKE4, U_SPOKE5, U_SPOKE6, U_SPOKE7, U_SPOKE8, C_SPOKE_IN1, C_SPOKE_IN2, C_SPOKE_IN3, C_SPOKE_IN4, C_SPOKE_IN5, C_SPOKE_IN6, C_SPOKE_IN7, C_SPOKE_IN8], nets: [12V_PROTECTED], max_mm: 2.5, why: 'Engineering copper-gap ceiling implementing TI close input-bypass guidance.'}
+    - {refdes: [U_SPOKE1, U_SPOKE2, U_SPOKE3, U_SPOKE4, U_SPOKE5, U_SPOKE6, U_SPOKE7, U_SPOKE8, R_SPOKE_ILIM1, R_SPOKE_ILIM2, R_SPOKE_ILIM3, R_SPOKE_ILIM4, R_SPOKE_ILIM5, R_SPOKE_ILIM6, R_SPOKE_ILIM7, R_SPOKE_ILIM8], nets: [SPOKE_ILIM1, SPOKE_ILIM2, SPOKE_ILIM3, SPOKE_ILIM4, SPOKE_ILIM5, SPOKE_ILIM6, SPOKE_ILIM7, SPOKE_ILIM8], max_mm: 2.5, why: 'Engineering copper-gap ceiling for each local ILIM-to-RTN programming loop.'}
+layout_refs:
+  - {tier: 1, reached: true, artifact: 'TI SLVSDT4F sections 10.4 and 11, Figures 11-1/11-2, package drawing pages 43-44', why: 'Exact manufacturer authority for bypass placement, RTN/GND separation, PowerPAD use, land geometry and stencil apertures.'}
+  - {tier: 2, reached: false, artifact: 'Exact TPS26625 editable routed reference design', why: 'The datasheet application layouts are sufficient precedent for source constraints; exact project placement and thermal realization remain project-owned.'}
+sourcing:
+  ti_store_observation_2026_09_22: active production, out of stock, no public unit price
+  allocation: UNQUALIFIED

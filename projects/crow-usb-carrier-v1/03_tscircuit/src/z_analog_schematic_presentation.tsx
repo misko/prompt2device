@@ -45,8 +45,16 @@ own("dump", {
   R_DUMP:[8,-4,-90], R_DUMP_PD:[2,-5,-90],
 })
 for (let n=1; n<=8; n++) {
+  own(`spoke_protection_${n}`, {
+    [`U_SPOKE${n}`]:[0,0],
+    [`R_SPOKE_UVLO${n}`]:[-6,4],
+    [`R_SPOKE_ILIM${n}`]:[5,-2,-90],
+    [`C_SPOKE_DVDT${n}`]:[8,-2,-90],
+    [`C_SPOKE_IN${n}`]:[-8,-2,-90],
+    [`C_SPOKE_OUT${n}`]:[5,4,-90],
+  })
   own(`analog_${n}`, {
-    [`J${n}`]:[-10,0], [`F${n}`]:[-8.5,4], [`U_ESD${n}`]:[-8.5,-4],
+    [`J${n}`]:[-10,0], [`U_ESD${n}`]:[-8.5,-4],
     [`C_A${n}P`]:[-6,1.6], [`C_A${n}N`]:[-6,-1.6],
     [`R_B${n}P`]:[-4.7,.7,-90], [`R_B${n}N`]:[-4.7,-2.5,-90],
     [`R_IN${n}P`]:[-3.1,1.6], [`R_IN${n}N`]:[-3.1,-1.6],
@@ -103,6 +111,10 @@ export const poseFor = (ref: string) => {
 
 // Pin functions are unchanged. Arrangement is explicitly human-flow oriented.
 export const chipStyle = (ref: string): any => {
+  if (/^U_SPOKE[1-8]$/.test(ref)) return {
+    schWidth:3, schPinStyle:pinStyle(11,.5),
+    schPinArrangement:{leftSide:[1,2,4],rightSide:[10,9,7,8],bottomSide:[3,5,11,6]},
+  }
   if (/^U_AFE[1-8]$/.test(ref)) return {
     schWidth:1.8, schPinStyle:pinStyle(8,.3),
     schPinArrangement:{leftSide:[3,2,5,6],rightSide:[1,7],topSide:[8],bottomSide:[4]},
@@ -156,4 +168,3 @@ export const chipStyle = (ref: string): any => {
 const pinStyle = (count: number, margin: number) => Object.fromEntries(
   Array.from({length:count}, (_,i) => [`pin${i+1}`, {topMargin:margin,bottomMargin:margin}]),
 )
-

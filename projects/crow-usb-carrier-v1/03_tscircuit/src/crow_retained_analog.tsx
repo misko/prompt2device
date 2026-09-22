@@ -1,6 +1,6 @@
 import { Fragment } from "react"
 import {
-  CirrusCs5308pQfn48, Diodes2N7002kSot23, Littelfuse1812L03560,
+  CirrusCs5308pQfn48, Diodes2N7002kSot23, TiDrc0010j,
   PanasonicEeeFk8x10, Sot553, TiDse0006a, TiDsg0008a,
   Wurth615008160221Rj45, YageoRt0603,
 } from "./z_analog_exact_footprints"
@@ -82,10 +82,15 @@ const Spoke = ({ index, n }: any) => (
       footprint={<Wurth615008160221Rj45 />}
       pinLabels={{ pin1: "12V_1", pin2: "GND_1", pin3: "12V_2", pin4: "AUDIO_N", pin5: "AUDIO_P", pin6: "GND_2", pin7: "12V_3", pin8: "GND_3", pin9: "SHIELD_S1", pin10: "SHIELD_S2" }}
       connections={{ pin1: n(`12V_POD${index}`), pin2: n("GND"), pin3: n(`12V_POD${index}`), pin4: n(`AUDIO_N${index}`), pin5: n(`AUDIO_P${index}`), pin6: n("GND"), pin7: n(`12V_POD${index}`), pin8: n("GND"), pin9: n("CHASSIS"), pin10: n("CHASSIS") }} />
-    <Chip name={`F${index}`} manufacturerPartNumber="1812L035/60MR" jlc="C3761431"
-      footprint={<Littelfuse1812L03560 />}
-      pinLabels={{ pin1: "IN", pin2: "OUT" }}
-      connections={{ pin1: n("12V_PROTECTED"), pin2: n(`12V_POD${index}`) }} />
+    <Chip name={`U_SPOKE${index}`} manufacturerPartNumber="TPS26625DRCR" jlc=""
+      footprint={<TiDrc0010j />}
+      pinLabels={{ pin1: "IN", pin2: "UVLO", pin3: "OVP", pin4: "SHDN", pin5: "RTN", pin6: "GND", pin7: "ILIM", pin8: "dVdT", pin9: "FLT", pin10: "OUT", pin11: "EP" }}
+      connections={{ pin1: n("12V_PROTECTED"), pin2: n(`SPOKE_UVLO${index}`), pin3: n(`SPOKE_RTN${index}`), pin4: n("12V_PROTECTED"), pin5: n(`SPOKE_RTN${index}`), pin6: n("GND"), pin7: n(`SPOKE_ILIM${index}`), pin8: n(`SPOKE_DVDT${index}`), pin10: n(`12V_POD${index}`), pin11: n(`SPOKE_RTN${index}`) }} />
+    <R name={`R_SPOKE_UVLO${index}`} value="1M" a="12V_PROTECTED" b={`SPOKE_UVLO${index}`} mpn="RC0402FR-071ML" jlc="C26083" n={n} />
+    <R name={`R_SPOKE_ILIM${index}`} value="44.2k" a={`SPOKE_ILIM${index}`} b={`SPOKE_RTN${index}`} mpn="RT0603BRD0744K2L" jlc="C861410" footprint={<YageoRt0603 />} n={n} />
+    <C name={`C_SPOKE_DVDT${index}`} value="10nF" a={`SPOKE_DVDT${index}`} b={`SPOKE_RTN${index}`} mpn="CL05B103KB5NNNC" jlc="C15195" n={n} />
+    <C name={`C_SPOKE_IN${index}`} value="100nF" a="12V_PROTECTED" b="GND" mpn="CC0805KRX7R9BB104" jlc="C49678" footprint="0805" n={n} />
+    <C name={`C_SPOKE_OUT${index}`} value="100nF" a={`12V_POD${index}`} b="GND" mpn="CC0805KRX7R9BB104" jlc="C49678" footprint="0805" n={n} />
     <Chip name={`U_ESD${index}`} manufacturerPartNumber="TPD2E2U06DRLR" jlc="C1972959"
       footprint={<Sot553 />}
       pinLabels={{ pin1: "NC1", pin2: "NC2", pin3: "IO1", pin4: "GND", pin5: "IO2" }}

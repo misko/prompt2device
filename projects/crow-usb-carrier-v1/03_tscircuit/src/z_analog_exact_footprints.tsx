@@ -24,8 +24,14 @@ export const Wurth615008160221Rj45 = () => <footprint>
     holeWidth="1mm" holeHeight="2mm" /></Fragment>)}
 </footprint>
 
-export const Littelfuse1812L03560 = () => <footprint>{pads([
-  ['1',-2.615,0,1.78,3.15], ['2',2.615,0,1.78,3.15],
+/** TI DRC0010J manufacturer-land centers; EP is pin 11 and must join RTN. */
+export const TiDrc0010j = () => <footprint>{pads([
+  ['1',-1.4,-1,0.6,0.24,0.05], ['2',-1.4,-0.5,0.6,0.24,0.05],
+  ['3',-1.4,0,0.6,0.24,0.05], ['4',-1.4,0.5,0.6,0.24,0.05],
+  ['5',-1.4,1,0.6,0.24,0.05], ['6',1.4,1,0.6,0.24,0.05],
+  ['7',1.4,0.5,0.6,0.24,0.05], ['8',1.4,0,0.6,0.24,0.05],
+  ['9',1.4,-0.5,0.6,0.24,0.05], ['10',1.4,-1,0.6,0.24,0.05],
+  ['11',0,0,1.65,2.4],
 ])}</footprint>
 
 export const Sot553 = () => <footprint>{pads([

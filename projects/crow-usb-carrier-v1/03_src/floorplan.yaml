@@ -203,7 +203,12 @@ placement:
     - C_FILTER1P2
     - C_ISO1
     - C_OPA1
-    - F1
+    - C_SPOKE_DVDT1
+    - C_SPOKE_IN1
+    - C_SPOKE_OUT1
+    - R_SPOKE_ILIM1
+    - R_SPOKE_UVLO1
+    - U_SPOKE1
     - R_ADC_PD1N
     - R_ADC_PD1P
     - R_B1N
@@ -231,7 +236,12 @@ placement:
     - C_FILTER2P2
     - C_ISO2
     - C_OPA2
-    - F2
+    - C_SPOKE_DVDT2
+    - C_SPOKE_IN2
+    - C_SPOKE_OUT2
+    - R_SPOKE_ILIM2
+    - R_SPOKE_UVLO2
+    - U_SPOKE2
     - R_ADC_PD2N
     - R_ADC_PD2P
     - R_B2N
@@ -259,7 +269,12 @@ placement:
     - C_FILTER3P2
     - C_ISO3
     - C_OPA3
-    - F3
+    - C_SPOKE_DVDT3
+    - C_SPOKE_IN3
+    - C_SPOKE_OUT3
+    - R_SPOKE_ILIM3
+    - R_SPOKE_UVLO3
+    - U_SPOKE3
     - R_ADC_PD3N
     - R_ADC_PD3P
     - R_B3N
@@ -287,7 +302,12 @@ placement:
     - C_FILTER4P2
     - C_ISO4
     - C_OPA4
-    - F4
+    - C_SPOKE_DVDT4
+    - C_SPOKE_IN4
+    - C_SPOKE_OUT4
+    - R_SPOKE_ILIM4
+    - R_SPOKE_UVLO4
+    - U_SPOKE4
     - R_ADC_PD4N
     - R_ADC_PD4P
     - R_B4N
@@ -315,7 +335,12 @@ placement:
     - C_FILTER5P2
     - C_ISO5
     - C_OPA5
-    - F5
+    - C_SPOKE_DVDT5
+    - C_SPOKE_IN5
+    - C_SPOKE_OUT5
+    - R_SPOKE_ILIM5
+    - R_SPOKE_UVLO5
+    - U_SPOKE5
     - R_ADC_PD5N
     - R_ADC_PD5P
     - R_B5N
@@ -343,7 +368,12 @@ placement:
     - C_FILTER6P2
     - C_ISO6
     - C_OPA6
-    - F6
+    - C_SPOKE_DVDT6
+    - C_SPOKE_IN6
+    - C_SPOKE_OUT6
+    - R_SPOKE_ILIM6
+    - R_SPOKE_UVLO6
+    - U_SPOKE6
     - R_ADC_PD6N
     - R_ADC_PD6P
     - R_B6N
@@ -371,7 +401,12 @@ placement:
     - C_FILTER7P2
     - C_ISO7
     - C_OPA7
-    - F7
+    - C_SPOKE_DVDT7
+    - C_SPOKE_IN7
+    - C_SPOKE_OUT7
+    - R_SPOKE_ILIM7
+    - R_SPOKE_UVLO7
+    - U_SPOKE7
     - R_ADC_PD7N
     - R_ADC_PD7P
     - R_B7N
@@ -399,7 +434,12 @@ placement:
     - C_FILTER8P2
     - C_ISO8
     - C_OPA8
-    - F8
+    - C_SPOKE_DVDT8
+    - C_SPOKE_IN8
+    - C_SPOKE_OUT8
+    - R_SPOKE_ILIM8
+    - R_SPOKE_UVLO8
+    - U_SPOKE8
     - R_ADC_PD8N
     - R_ADC_PD8P
     - R_B8N
@@ -600,16 +640,6 @@ placement:
     - J7
     - J8
     model_override: ${KIPRJMOD}/../03_src/lib/3dmodels/wurth/J_Wurth_WR-MJ_615008160221.step
-  - match:
-    - F1
-    - F2
-    - F3
-    - F4
-    - F5
-    - F6
-    - F7
-    - F8
-    model_override: ${KIPRJMOD}/../03_src/lib/3dmodels/derived/Littelfuse_1812L035_60_max-envelope.wrl
   - match:
     - C_A1P
     - C_A1N

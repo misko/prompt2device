@@ -1,4 +1,4 @@
-# Candidate source-intent census: power18, analog297, digital99, USB6 (420 total).
+# Source-intent census reviewed before foreign Circuit rendering: power18, analog337, digital99, USB6 (460 total).
 # Derived from authored functional modules, never from generated schematic/PCB output.
 components:
 - C_1V8_OK_VDD
@@ -145,6 +145,30 @@ components:
 - C_RST1
 - C_RST2
 - C_RST_T
+- C_SPOKE_DVDT1
+- C_SPOKE_DVDT2
+- C_SPOKE_DVDT3
+- C_SPOKE_DVDT4
+- C_SPOKE_DVDT5
+- C_SPOKE_DVDT6
+- C_SPOKE_DVDT7
+- C_SPOKE_DVDT8
+- C_SPOKE_IN1
+- C_SPOKE_IN2
+- C_SPOKE_IN3
+- C_SPOKE_IN4
+- C_SPOKE_IN5
+- C_SPOKE_IN6
+- C_SPOKE_IN7
+- C_SPOKE_IN8
+- C_SPOKE_OUT1
+- C_SPOKE_OUT2
+- C_SPOKE_OUT3
+- C_SPOKE_OUT4
+- C_SPOKE_OUT5
+- C_SPOKE_OUT6
+- C_SPOKE_OUT7
+- C_SPOKE_OUT8
 - C_U_1V8_IN_1
 - C_U_1V8_IN_2
 - C_U_1V8_OUT_1
@@ -201,14 +225,6 @@ components:
 - D_HOLD
 - D_IN
 - D_QIN_GS
-- F1
-- F2
-- F3
-- F4
-- F5
-- F6
-- F7
-- F8
 - FB_PLL
 - F_IN
 - J1
@@ -338,6 +354,22 @@ components:
 - R_RESET_GPD
 - R_RESET_PU
 - R_RST_T
+- R_SPOKE_ILIM1
+- R_SPOKE_ILIM2
+- R_SPOKE_ILIM3
+- R_SPOKE_ILIM4
+- R_SPOKE_ILIM5
+- R_SPOKE_ILIM6
+- R_SPOKE_ILIM7
+- R_SPOKE_ILIM8
+- R_SPOKE_UVLO1
+- R_SPOKE_UVLO2
+- R_SPOKE_UVLO3
+- R_SPOKE_UVLO4
+- R_SPOKE_UVLO5
+- R_SPOKE_UVLO6
+- R_SPOKE_UVLO7
+- R_SPOKE_UVLO8
 - R_RT
 - R_TDM_OE_PU
 - R_USB_CC1
@@ -414,6 +446,14 @@ components:
 - U_PWR
 - U_RST1
 - U_RST2
+- U_SPOKE1
+- U_SPOKE2
+- U_SPOKE3
+- U_SPOKE4
+- U_SPOKE5
+- U_SPOKE6
+- U_SPOKE7
+- U_SPOKE8
 - U_TDM_XLATE
 - U_USB_CC_ESD
 - U_USB_ESD

@@ -1,0 +1,13 @@
+mpn: RT0603BRD0744K2L
+manufacturer: YAGEO
+type: thin_film_resistor
+value: 44.2k
+status: candidate
+datasheet: {doc_id: RT, revision: V17_20260212, url: 'https://www.yageogroup.com/content/datasheet/asset/file/PYU-RT_1-TO-0-01_ROHS_L', local: Yageo_RT_v17_20260212.pdf, sha256: 00a9148c2958122200e8a93292e389392a795adcfe40562d6ca4f690d1e5d7d1, fetched: '2026-09-22'}
+package: '0603'
+footprint: crow_usb_analog:Yageo_RT0603_NominalBody
+pins: {1: ILIM, 2: RTN}
+limits: {resistance_ohm: 44200, tolerance_pct: 0.1, temperature_coefficient_ppm_per_C: 25, power_W: 0.1}
+ordering_decode: B is 0.1 percent tolerance; D is 25 ppm/C TCR; 44K2 is 44.2 kohm; L is reel packaging.
+sourcing: {lcsc: C861410, allocation: unqualified_for_candidate}
+
