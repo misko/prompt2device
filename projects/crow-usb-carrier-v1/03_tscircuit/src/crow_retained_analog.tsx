@@ -75,7 +75,7 @@ const C = ({ name, value, a, b, mpn, jlc, footprint = "0402", polarized = false,
 
 const sourced = (mpn: string, jlc = "") => jlc || ({
   "615008160221": "C6461980", "R82DC4100CK60J": "C3778009",
-  "SN74LVC1G04DCKR": "C8207", "SN74LVC1G125DCKR": "C7833",
+  "SN74LVC1G04DCKR": "C8207", "SN74LVC1G125DCKT": "C2675550",
   "TPS389018DSER": "C2066910", "TPS389030DSER": "C2066942",
 } as Record<string, string>)[mpn] || ""
 const Chip = ({ jlc = "", manufacturerPartNumber, ...props }: any) => (
@@ -249,7 +249,7 @@ const AdcReset = ({ n }: any) => (
     <C name="C_ADC_DIGITAL_OK" value="100nF" a="3V3_ADC" b="GND" jlc="C1525" mpn="CL05B104KO5NNNC" n={n} />
     {/* Qualify the push-pull POR with the wired-open-drain digital-rail result.
         Disabled output is pulled low. ADC_READY rises only after both are valid. */}
-    <Chip name="U_ADC_READY" manufacturerPartNumber="SN74LVC1G125DCKR" jlc="" footprint={<TiDck0005a />}
+    <Chip name="U_ADC_READY" manufacturerPartNumber="SN74LVC1G125DCKT" jlc="" footprint={<TiDck0005a />}
       pinLabels={{ pin1: "OE_N", pin2: "A", pin3: "GND", pin4: "Y", pin5: "VCC" }}
       connections={{ pin1: n("ADC_DIGITAL_BAD"), pin2: n("POR_N"), pin3: n("GND"), pin4: n("ADC_READY"), pin5: n("3V3_ADC") }} />
     <C name="C_ADC_READY" value="100nF" a="3V3_ADC" b="GND" jlc="C1525" mpn="CL05B104KO5NNNC" n={n} />

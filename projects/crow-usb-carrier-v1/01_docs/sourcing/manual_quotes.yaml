@@ -1332,3 +1332,18 @@ quotes:
   orderable: true
   note: Root reopened exact product page; current observed stock supersedes candidate
     count6060. Five-board requirement5.
+- mpn: SN74LVC1G125DCKT
+  manufacturer: Texas Instruments
+  distributor: digikey
+  source: product_page
+  url: https://www.digikey.com/en/products/detail/texas-instruments/SN74LVC1G125DCKT/1591994
+  read_on: '2026-09-22'
+  checked_at: '2026-09-22T05:17:33-07:00'
+  dpn: 296-26596-1-ND
+  stock: 7507
+  min: 1
+  mult: 1
+  packaging: Cut Tape
+  lifecycle: Active
+  orderable: true
+  five_board_need: 15

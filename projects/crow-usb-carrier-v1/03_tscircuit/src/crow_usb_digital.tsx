@@ -16,7 +16,7 @@ const sourced=(mpn:string,jlc="")=>jlc||({
  "744373240047":"C19270343","ASFL1-24.576MHZ-EC-T":"C17566269","CC0402KRX5R5BB105":"C106253","FTSH-105-01-L-DV-K":"C5155080",
  "GRM1555C1H220JA01D":"C76960","RC0402FR-0733RL":"C138002","GRM155R71H103KA88D":"C77019","GRM21BR61C106KE15L":"C77075","RC0402FR-07680RL":"C137948",
  "RT0402BRD07100KL":"C852472","RT0402BRD07200KL":"C728556","SN74AUP3G34DCUR":"C2675543",
- "SN74AXC4T245PWR":"C2867798","SN74LVC1G04DCKR":"C8207","SN74LVC1G125DCKR":"C7833",
+ "SN74AXC4T245PWR":"C2867798","SN74LVC1G04DCKR":"C8207","SN74LVC1G125DCKT":"C2675550",
  "SN74LVC1G332DBVR":"C43368","SN74LVC2G74DCTR":"C79339","TPS3808G09DBVR":"C24584",
  "TPS389018DSER":"C2066910","TPS389030DSER":"C2066942","TPS6282518DMQR":"C2072356",
  "TPS6282533DMQR":"C3189971","TPS62825DMQR":"C2650334"
@@ -336,7 +336,7 @@ export function CrowUsbDigital({net=defaultNet}:CrowUsbDigitalProps={}){
    pinLabels={{pin1:"A",pin2:"GND",pin3:"B",pin4:"Y",pin5:"VCC",pin6:"C"}}
    connections={{pin1:n("ADC_FSYNC_RAW"),pin2:n("GND"),pin3:n("FSYNC_Q1"),pin4:n("ADC_FSYNC_EXT"),pin5:n("3V3X"),pin6:n("FSYNC_Q2")}} />
   <C name="C_FSYNC_FF1" value="100nF" a="3V3X" b="GND" n={n} /><C name="C_FSYNC_FF2" value="100nF" a="3V3X" b="GND" n={n} /><C name="C_FSYNC_INV" value="100nF" a="3V3X" b="GND" n={n} /><C name="C_FSYNC_OR" value="100nF" a="3V3X" b="GND" n={n} />
-  <Chip name="U_MCLK_BUF" manufacturerPartNumber="SN74LVC1G125DCKR" jlc="" footprint={<SC70_5Land/>}
+  <Chip name="U_MCLK_BUF" manufacturerPartNumber="SN74LVC1G125DCKT" jlc="" footprint={<SC70_5Land/>}
    pinLabels={{pin1:"OE_N",pin2:"A",pin3:"GND",pin4:"Y",pin5:"VCC"}} connections={{pin1:n("MCLK_OE_N"),pin2:n("AUDIO_24M576"),pin3:n("GND"),pin4:n("ADC_MCLK_RAW"),pin5:n("3V3X")}} />
   <C name="C_MCLK_BUF" value="100nF" a="3V3X" b="GND" n={n} />
   <Chip name="U_ADC_OUT" manufacturerPartNumber="SN74AUP3G34DCUR" jlc="" footprint="vssop8_dcu"
@@ -355,7 +355,7 @@ export function CrowUsbDigital({net=defaultNet}:CrowUsbDigitalProps={}){
   {/* A held-domain tri-state buffer implements ADC_OK AND ADC_DIGITAL_OK.
       Its disabled output is pulled low, so either bad state turns both
       open-drain MOSFETs off without a B-C injection path into 1V8. */}
-  <Chip name="U_ADC_CLOCK_OK" manufacturerPartNumber="SN74LVC1G125DCKR" jlc="" footprint={<SC70_5Land/>}
+  <Chip name="U_ADC_CLOCK_OK" manufacturerPartNumber="SN74LVC1G125DCKT" jlc="" footprint={<SC70_5Land/>}
    pinLabels={{pin1:"OE_N",pin2:"A",pin3:"GND",pin4:"Y",pin5:"VCC"}}
    connections={{pin1:n("ADC_DIGITAL_BAD"),pin2:n("ADC_OK"),pin3:n("GND"),pin4:n("ADC_CLOCK_OK"),pin5:n("3V3_ADC")}} />
   <C name="C_ADC_CLOCK_OK" value="100nF" a="3V3_ADC" b="GND" n={n} />

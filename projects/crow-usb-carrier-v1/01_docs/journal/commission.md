@@ -261,3 +261,7 @@ Integrated exact C192562 Molex and C19270343 Würth catalog identities; the latt
 ## Source escape admission audit — 2026-09-22
 
 Root ran owning escape checker against all85selected dossiers and found 20 problems; prior layout-guidance PASS does not cover this gate. Concrete power-tier/condition and missing digital escape records are under bounded SOL repair. See research/2026-09-22-source-escape-admission-audit.md. No conductor invoked, no admission claimed.
+
+## Buffer small-reel adoption — 2026-09-22
+
+Adopted SN74LVC1G125DCKT for three buffer instances after primary packing-table review and actual two-pool qualification. Full source comparison changes only the three MPN/supplier records. Current sourcing70/85; modular489/489 and54/54; pin-name preflight92/92. Source escape repairs remain outstanding. The Samsung capacitor candidate remains unmerged pending retained primary curve evidence at the actual5.05V maximum. See research/2026-09-22-buffer-packaging-adoption.md.
