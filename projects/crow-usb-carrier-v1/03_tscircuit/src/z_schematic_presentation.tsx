@@ -15,8 +15,10 @@ const powerPoses: Record<string, [string, number, number, number?]> = {
 
 const digitalPage = (ref: string) => {
   if (ref === "U_XU") return "xmos_core"
+  if (/^(U_3V3X|L_U_3V3X|C_U_3V3X_|U_XU_3V3_OK|C_XU_3V3_OK_)/.test(ref)) return "digital_power_3v3x"
+  if (/^(U_1V8|U_1V8_OK|L_U_1V8|C_U_1V8_|C_1V8_OK_VDD|C_CORE_EN_CT|R_CORE_EN_PU)$/.test(ref)) return "digital_power_1v8"
+  if (/^(U_CORE|L_U_CORE|C_U_CORE_|R_CORE_FB_|U_CORE_OK|C_CORE_OK|R_XU_RST_PU)/.test(ref)) return "digital_power_core"
   if (/^C_XU_|^FB_PLL$|^C_PLL_/.test(ref)) return "xmos_decoupling"
-  if (/^(U_|C_U_)(3V3X|1V8|CORE)|^L_U_(3V3X|1V8|CORE)$|^R_CORE_|^C_CORE_|^U_1V8_OK$|^U_XU_3V3_OK$|^C_XU_3V3_OK_|^C_1V8|^R_XU_RST/.test(ref)) return "digital_power"
   if (/FLASH|QSPI|XTAL|^Y_XU$/.test(ref)) return "flash_clock"
   if (/JTAG/.test(ref)) return "debug"
   if (/VBUS/.test(ref)) return "usb_logic"
@@ -35,6 +37,33 @@ const decouplingRefs = [
   "C_XU_VDDIO_72","C_XU_VDDIO_89","C_XU_VDDIO_109","C_XU_VDDIO_121",
 ]
 const explicitDigitalPose = (ref: string): Pose | undefined => {
+  // Keep each rail's complete regulator chain on one compact page.  Shared
+  // rails/reset signals cross pages by their existing net labels; these poses
+  // change presentation only and do not create electrical connections.
+  const railPower: Record<string,[string,number,number,number?]> = {
+    U_3V3X:["digital_power_3v3x",-5,2], L_U_3V3X:["digital_power_3v3x",0,2],
+    C_U_3V3X_IN_1:["digital_power_3v3x",-6,-1,-90], C_U_3V3X_IN_2:["digital_power_3v3x",-3,-1,-90],
+    C_U_3V3X_OUT_1:["digital_power_3v3x",4,-1,-90],
+    U_XU_3V3_OK:["digital_power_3v3x",1,-4],
+    C_XU_3V3_OK_VDD:["digital_power_3v3x",-5,-4,-90], C_XU_3V3_OK_CT:["digital_power_3v3x",7,-4,-90],
+
+    U_1V8:["digital_power_1v8",-5,2], L_U_1V8:["digital_power_1v8",0,2],
+    C_U_1V8_IN_1:["digital_power_1v8",-6,-1,-90], C_U_1V8_IN_2:["digital_power_1v8",-3,-1,-90],
+    C_U_1V8_OUT_1:["digital_power_1v8",4,-1,-90],
+    U_1V8_OK:["digital_power_1v8",0,-4], C_1V8_OK_VDD:["digital_power_1v8",-5,-5,-90],
+    C_CORE_EN_CT:["digital_power_1v8",5,-5,-90], R_CORE_EN_PU:["digital_power_1v8",6,-2,-90],
+
+    U_CORE:["digital_power_core",-5,2], L_U_CORE:["digital_power_core",0,2],
+    C_U_CORE_IN_1:["digital_power_core",-6,-1,-90], C_U_CORE_IN_2:["digital_power_core",-3,-1,-90],
+    C_U_CORE_OUT_1:["digital_power_core",4,-1,-90],
+    R_CORE_FB_TOP:["digital_power_core",5,-3], R_CORE_FB_BOTTOM:["digital_power_core",9,-3],
+    U_CORE_OK:["digital_power_core",-1,-5], C_CORE_OK:["digital_power_core",-6,-5,-90],
+    R_XU_RST_PU:["digital_power_core",5,-6,-90],
+  }
+  if (railPower[ref]) {
+    const p=railPower[ref]
+    return {schSheetName:p[0],schSectionName:p[0],schX:p[1],schY:p[2],schRotation:p[3]??0}
+  }
   const flash: Record<string,[number,number,number?]> = {
     U_FLASH:[-7,-1], R_QSPI_CS:[-3,4,-90], C_FLASH:[-3,-5,-90],
     Y_XU:[0,-1], R_XTAL_DRIVE:[7,-1], R_XTAL_FB:[3,5],
@@ -100,6 +129,11 @@ const style = (domain: Domain, ref: string, tag: string) => {
   if (domain === "analog") return analogChipStyle(ref)
   if (ref === "U_XU") return {schWidth:16,schHeight:20,schPinArrangement:xmosArrangement,
     schPinStyle:Object.fromEntries(Array.from({length:129},(_,i)=>[`pin${i+1}`,{topMargin:.08,bottomMargin:.08}]))}
+  if (["U_1V8_OK","U_XU_3V3_OK","U_CORE_OK"].includes(ref)) return {
+    schWidth:4.2, schHeight:3.2,
+    schPinArrangement:{leftSide:[1,2,3],rightSide:[6,5,4]},
+    schPinStyle:Object.fromEntries(Array.from({length:6},(_,i)=>[`pin${i+1}`,{topMargin:.35,bottomMargin:.35}])),
+  }
   if (ref === "Y_XU") return {schWidth:3.5}
   return {}
 }
