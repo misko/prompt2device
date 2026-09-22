@@ -481,3 +481,7 @@ Set stitch.via.tiers and stitch.astar_fallback.via to the existing0.60/0.30mm or
 ## 2026-09-22 — provider hold revalidation and warning triage
 - Provider response still has0/84 populated statuses; no receipt exists. Actual all-severity native ERC has3459warnings:2088off-grid endpoints,878missing elt symbol-library registrations,493missing footprint-library registrations. Retained diagnostic baseline in01_docs/research/2026-09-22-native-erc-warning-triage.md; no suppression or formal review acceptance.
 - SOL delivered-PDF readability triage is running independently while provider evidence is owed. No placement producer was invoked.
+
+## 2026-09-22 — PDF triage complete; external checkpoint unchanged
+- SOL read-only diagnostic inspected all40pages: no verified clipping/overlap; page31 dense129pin U_XU text remains a formal-readability review concern. Evidence retained in06_build/verification/canonical-pdf-triage/ and diagnostic report in01_docs/research/2026-09-22-canonical-pdf-triage.md. No source repair indicated by this triage; formal review is not accepted.
+- Provider checkpoint has now remained unchanged across three goal turns:0/84response statuses, no receipt. Placement is not admitted. Need actual provider evidence before the conductor can advance.
