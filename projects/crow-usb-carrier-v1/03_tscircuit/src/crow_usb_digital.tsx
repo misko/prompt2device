@@ -14,7 +14,7 @@ const defaultNet=(name:string)=>`net.${ /^\d/.test(name) ? `N${name}` : name }`
 const supplier=(jlc:string)=>({jlcpcb:jlc?[jlc]:[]})
 const sourced=(mpn:string,jlc="")=>jlc||({
  "744373240047":"C19270343","ASFL1-24.576MHZ-EC-T":"C17566269","CC0402KRX5R5BB105":"C106253","FTSH-105-01-L-DV-K":"C5155080",
- "GRM1555C1H220JA01D":"C76960","RC0402FR-0733RL":"C138002","GRM155R71H103KA88D":"C77019","CL21A106KOCLRNC":"C318695","RC0402FR-07680RL":"C137948",
+ "GRM1555C1H220JA01D":"C76960","RC0402FR-0733RL":"C138002","GRM155R71H103KA88D":"C77019","CL21A106KOCLRNC":"C318695","CRCW0402680RFKED":"C482224",
  "RT0402BRD07100KL":"C852472","RT0402BRD07200KL":"C728556","SN74AUP3G34DCUR":"C2675543",
  "SN74AXC4T245PWR":"C2867798","SN74LVC1G04DCKR":"C8207","SN74LVC1G125DCKT":"C2675550",
  "SN74LVC1G332DBVR":"C43368","SN74LVC2G74DCTR":"C79339","TPS3808G09DBVR":"C24584",
@@ -295,7 +295,7 @@ export function CrowUsbDigital({net=defaultNet}:CrowUsbDigitalProps={}){
 
   <Chip name="Y_XU" manufacturerPartNumber="FA-238 24.0000MD30X-W5" jlc="" footprint="crystal_3225_4pin"
    pinLabels={{pin1:"X1",pin2:"CASE",pin3:"X2",pin4:"CASE"}} connections={{pin1:n("XTAL_IN_R"),pin2:n("GND"),pin3:n("XTAL_OUT"),pin4:n("GND")}} />
-  <R name="R_XTAL_DRIVE" value="680" a="XTAL_IN" b="XTAL_IN_R" mpn="RC0402FR-07680RL" n={n} />
+  <R name="R_XTAL_DRIVE" value="680" a="XTAL_IN" b="XTAL_IN_R" mpn="CRCW0402680RFKED" n={n} />
   <R name="R_XTAL_FB" value="1M" a="XTAL_IN" b="XTAL_OUT" mpn="RC0402FR-071ML" n={n} />
   <C name="C_XTAL_IN" value="22pF" a="XTAL_IN_R" b="GND" mpn="GRM1555C1H220JA01D" n={n} /><C name="C_XTAL_OUT" value="22pF" a="XTAL_OUT" b="GND" mpn="GRM1555C1H220JA01D" n={n} />
 

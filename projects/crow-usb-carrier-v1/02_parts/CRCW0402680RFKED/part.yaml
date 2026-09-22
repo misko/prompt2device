@@ -1,0 +1,71 @@
+mpn: CRCW0402680RFKED
+manufacturer: Vishay Intertechnology
+type: resistor
+technology: thick_film
+value: "680Ω"
+status: active
+package: "0402 (1005 metric)"
+footprint: Resistor_SMD:R_0402_1005Metric
+pins: {1: terminal_1, 2: terminal_2}
+datasheet:
+  doc_id: "Vishay 20035"
+  revision: "14-Apr-2026"
+  url: https://www.vishay.com/docs/20035/dcrcwe3.pdf
+  local: 02_parts/CRCW0402680RFKED/Vishay_D_CRCW_e3_20035.pdf
+  sha256: 0bfd8988e5e5e95dbc76811faf00e0f0f83ec39293d67e76e8710606f44ed773
+  fetched: 2026-09-22
+  pages: 13
+  provenance: >-
+    Direct public Vishay D/CRCW e3 family specification, read completely. Page 3
+    defines the order-code fields and ED packaging; pages 1-2 give the applicable
+    D10/CRCW0402 ratings and resistance range.
+ordering_code:
+  family_and_size: "CRCW0402 = D/CRCW 0402 thick-film chip resistor"
+  resistance: "680R = 680Ω (R is the decimal designator)"
+  tolerance: "F = ±1%"
+  tcr: "K = ±100 ppm/K"
+  packaging: "ED = ET7, lead-free paper tape, 10,000 pieces, 180 mm reel"
+  termination: "E.. = lead-free; product description defines e3 as pure-tin termination finish"
+limits:
+  resistance_ohm: 680
+  tolerance: "±1%"
+  tcr_ppm_K: "±100"
+  rated_dissipation_W_at_70C_standard_mode: 0.063
+  operating_voltage_V_ac_rms_or_dc_standard_mode: 50
+  operating_temperature_C: [-55, 155]
+verified: >-
+  CRCW0402680RFKED decodes exactly to 0402, 680Ω, ±1%, ±100 ppm/K, ED reel.
+  Standard-mode ratings are used because this role does not assert extended-mode operation.
+role:
+  refdes: R_XTAL_DRIVE
+  circuit: XU316 24 MHz crystal network
+  connection: "series from XTAL_IN to XTAL_IN_R"
+  rationale: >-
+    The exact 680Ω value and ±1% tolerance preserve the existing crystal-drive
+    damping. This is a low-voltage AC series role with no DC 680Ω load; 0.063 W
+    and 50 V standard-mode ratings exceed the circuit requirement.
+layout:
+  source: >-
+    Vishay document 20035 pages 1, 3, and 11 for 0402 identity, packaging, and body
+    dimensions; Epson Q22FA23801885 plus existing board oscillator allocation for placement.
+  reviewed: 2026-09-22
+  notes:
+    - "Standard two-terminal 0402 pin interchange preserves Resistor_SMD:R_0402_1005Metric."
+    - >-
+      Place R_XTAL_DRIVE with Y_XU, R_XTAL_FB, C_XTAL_IN, and C_XTAL_OUT
+      immediately around U_XU pins 33/34; keep both crystal nodes compact and
+      symmetric and away from clocks and switch nodes.
+layout_refs:
+  - tier: 1
+    reached: true
+    artifact: "Vishay document 20035, pages 1, 3, and 11"
+  - tier: 1
+    reached: true
+    artifact: "Epson Q22FA23801885, crystal external dimensions and recommended footprint"
+sourcing:
+  lcsc: C482224
+  alternates: []
+  note: >-
+    Exact full-MPN JLC/LCSC catalog identity observed 2026-09-22; allocation remains
+    an order-time check. Independent exact DigiKey product-page evidence provides
+    the second authorized pool.

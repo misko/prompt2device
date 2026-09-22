@@ -283,3 +283,7 @@ Integrated14 selected digital/control/oscillator escape repairs with all non-esc
 ## Samsung input capacitors adopted — 2026-09-22
 
 Adopted six exactSamsungCL21A106KOCLRNC caps using reviewed25%combinedAC/DC retention. All three inputbanks pass3.4425/3uF; earlyelectrical4/4 andmodular489/489,54/54 pass. OnlysixMPN/supplier records change. Fullsourcing72/85. PrimaryHTML retained under explicit projectcontract with deviations register. See research/2026-09-22-samsung-input-cap-adoption.md.
+
+## Crystal resistor source qualified — 2026-09-22
+
+Adopted CRCW0402680RFKED with authentic retained Vishay20035 primaryPDF and full dossier. OnlyR_XTAL_DRIVE identity/supplier changed; rootfullsourcing73/85. MOSFET candidate remains unadmitted at actual gate voltages. New perimeter-module checker proposal is rejected pending its independent forged-geometry failures; no tool changes merged. See research/2026-09-22-vishay-crystal-resistor-adoption.md.
