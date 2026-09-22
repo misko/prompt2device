@@ -18,9 +18,9 @@ escape:
   style: qfn
   pitch: 0.4
   pins: 48
-  escapes_worst_side: 10
+  escapes_worst_side: 12
   tier_required: jlc_4layer_advanced
-  checked: "Cirrus DS1314F1 package drawing and exact project-local footprint reviewed 2026-09-01"
+  checked: "Cirrus DS1314F1 package drawing and exact project-local footprint reviewed 2026-09-22: native F.Cu pad census1-48 confirms twelve perimeter pads per side plusEP49; unnumbered paste apertures excluded."
 pins:
   1: ADC_VMID1
   2: CONFIG1

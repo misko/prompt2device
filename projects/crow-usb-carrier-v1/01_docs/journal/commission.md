@@ -291,3 +291,7 @@ Adopted CRCW0402680RFKED with authentic retained Vishay20035 primaryPDF and full
 ## Power escape records reconciled — 2026-09-22
 
 Repaired sixpower records without changing non-escape facts. Existing owning P-ESC nowPASS85/85. Thirteen selectedMPNs declare above currentstandardboardtier; D-TIER remainsopen. No perimeter-module extension merged; generic conservatism is explicit. See research/2026-09-22-power-escape-record-adoption.md.
+
+## ADC escape census correction — 2026-09-22
+
+Root loaded the exact native Cirrus_CS5308P_QFN48_6x6_P0.4_EP4.6 footprint and counted electricalF.Cu pads1-48, excluding unnumbered paste apertures and centralEP49:12/12/12/12perimeterpads. Corrected dossier escapes_worst_side10→12. Pin identities, footprint bytes, circuitry and advanced-tier requirement are unchanged. The D-TIER candidate recommends the same four-layer stack with advanced process and0.20mmmechanicaldrills; its actual route/order-reader compatibility is under independent review before adoption. No physical standard-tier impossibility, order or quote is claimed.
