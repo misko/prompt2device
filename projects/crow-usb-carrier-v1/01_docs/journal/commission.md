@@ -205,3 +205,7 @@ Adopted exact CS5308P-DNR and R82DC4100CK60J variants after checking primary Cir
 ## Sourcing reader repair — 2026-09-22
 
 Adopted independently reviewed shopping-list patcha69ab653417d95dc8d966e7f2a32f0f1bc475368de11bdc8719f1ee080ea6bd2. Recognizes actual nested JLC code with conflict rejection; absent-API Mouser fallback requires exact manufacturer/MPN and dated orderable product-page evidence with finite integral stock/order metadata. Future dates, empty manufacturer authority, invalid numeric values and duplicate-pool credit are rejected. Root32/32 focusedtests (17knownbad), skillvalidator, authority, documentation15/15 anddisclosure14/14 pass. This repairs evidence ingestion, not full-board sourcing; selected85part census remains the grading denominator.
+
+## Connector source admission closed — 2026-09-22
+
+Selected Telegartner100009141 PUR shielded15m cable for source/prototype planning. Primary product page binds current/former ordercodes; retainedPDF SHA9befcc16298bbaf808b14c359de1f3b725eba2ecad444aa37f90684457fff7c9. Root and independentreview corrected the undimensioned nose projection:41.9×14.2×14.7mm includes explicit4mm axialprojection allowance plus1mm general reserve. Maximum15.1m length screens2.22433ohm/0.222433V at0.1A with3parallel supply/return conductors. These are engineering allocations; cross-vendor fit, latch travel, hot total-loop≤3ohm and outdoor suitability remain physical qualification. Compiler26/45facts,19unknown; SOURCE PASS11instances/19admitteddeferrals/0findings. No physical connector PASS is claimed.

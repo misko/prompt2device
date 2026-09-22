@@ -71,9 +71,11 @@ findings:
   state: open
   blocks_at_or_above: DESIGN_CLEAN
   owner: mechanical
-  finding: USB, power and JTAG exact cable identities are selected. Connector source
-    phase admits19 explicitly planned physical checks and retains4 RJ45 mate identity/envelope/grip/fastening
-    findings. Physical board service qualification remains open.
+  finding: Connector source phase passes for all11 instances:26/45 base facts established,19
+    physical qualification deferrals admitted,0 source findings. Telegartner100009141
+    planning mate/cable replaces the geometry-undocumented Weidmuller selection. Installed
+    fit, service, hot cable/contact loss and outdoor production suitability remain
+    open.
   closes_when: Close all nondeferrable source facts and satisfy connector source admission;
     qualify physical service geometry on the placed board at its owning boundary.
   evidence:
@@ -85,6 +87,7 @@ findings:
   - 01_docs/research/2026-09-22-connector-placement-intent.md
   - 01_docs/research/2026-09-22-external-power-cable-selection.md
   - 01_docs/research/2026-09-22-molex-power-cable-primary-extract.md
+  - 02_parts/100009141/notes.md
 - id: USB-parts
   state: open
   blocks_at_or_above: DESIGN_CLEAN

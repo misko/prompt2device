@@ -13,6 +13,12 @@ evidence_sources:
 - id: rj45_jack_model
   kind: manufacturer-3d-model
   path: 03_src/lib/3dmodels/wurth/Wurth_615008160221_rev1.step
+- id: rj45_mate_selection
+  kind: engineering-selection-record
+  path: 02_parts/100009141/notes.md
+- id: rj45_mate_drawing
+  kind: manufacturer-drawing
+  path: 02_parts/100009141/Telegartner_L00000A0149DP.pdf
 - id: usb_receptacle_drawing
   kind: manufacturer-drawing
   path: 02_parts/USB4105-GF-A-120/GCT_USB4105_drawing.pdf
@@ -143,16 +149,26 @@ assemblies:
         axial x 17.276161 mm lateral x 19.092892 mm PCB-normal. Manufacturing tolerance, spring deflection
         and mated service fit remain separate qualification work.
   mate:
-    manufacturer: Weidmuller
-    mpn: '8909650150'
+    manufacturer: Telegartner
+    mpn: '100009141'
     part_kind: cable_plug
     model_source_id: null
-    body_envelope_mm: null
+    body_envelope_mm:
+      x: 41.9
+      y: 14.2
+      z: 14.7
     evidence:
-      grade: unknown
+      grade: conservative
       source_ids:
-      - source_census
-      rationale: Retained exact Crow cable interface; new board service qualification is not inherited.
+      - rj45_mate_drawing
+      - rj45_mate_selection
+      rationale: Exact manufacturer drawing L00000A0149DP binds current item 100009141 (former
+        L00006A0099) and dimensions a 12.9 + 24.0 mm axial span, 13.2 mm
+        lateral and 13.7 mm including the resting latch. The axial span excludes an undimensioned
+        nose projection. Add an explicit 4 mm project allowance for that projection, plus 1 mm
+        general allowance per total dimension, yielding 41.9 x 14.2 x 14.7 mm. This is a conservative
+        planning allocation, not a measured projection or manufacturer tolerance guarantee;
+        latch-release motion and physical fit remain unqualified.
   interface:
     mating_plane_offset_mm: null
     minimum_exposure_mm: null
@@ -166,22 +182,29 @@ assemblies:
       - connector_physical_qualification_plan
       rationale: Mating datum, exposure, process setback, and service clearance are owed.
   grip:
-    kind: null
-    across_flats_mm: null
-    outer_diameter_mm: null
-    axial_length_mm: null
+    kind: molded_rj45_overmold
+    across_flats_mm: 14.2
+    outer_diameter_mm: 20.45
+    axial_length_mm: 41.9
     evidence:
-      grade: unknown
-      source_ids: []
-      rationale: Coupling, latch, finger-grip, or release geometry is not selected.
+      grade: conservative
+      source_ids:
+      - rj45_mate_drawing
+      - rj45_mate_selection
+      rationale: The conservative complete plug box is reused as the grip. The 20.45 mm cylinder
+        rounds outward from sqrt(14.2^2 + 14.7^2), and 41.9 mm is the conservative allocated axial
+        bound. Finger and latch-release clearance remains unqualified.
   fastening:
-    method: null
+    method: positive_latch
     thread_designation: null
-    final_tightening: null
+    final_tightening: latch_engagement
     evidence:
-      grade: unknown
-      source_ids: []
-      rationale: Mating and final-fastening method are not selected.
+      grade: exact
+      source_ids:
+      - rj45_mate_drawing
+      - rj45_mate_selection
+      rationale: The exact drawing depicts the integral RJ45 latch and the manufacturer identifies
+        an IEC 60603-7-51 shielded RJ45 plug; no threaded fastener or torque operation is present.
   tool:
     kind: none
     identifier: null
@@ -215,19 +238,21 @@ assemblies:
       rationale: Insertion, extraction, and fastening reaction load paths are not proven.
   cable:
     kind: shielded_sftp_pur_patch_cable
-    manufacturer: Weidmuller
-    mpn: '8909650150'
-    outer_diameter_mm: 6.5
+    manufacturer: Telegartner
+    mpn: '100009141'
+    outer_diameter_mm: 6.4
     straight_run_mm: 65.0
     minimum_bend_radius_mm: 65.0
     exit: along_mating_axis
     evidence:
       grade: conservative
       source_ids:
-      - connector_selection
-      rationale: The exact 15 m cable is 6.1-6.5 mm OD and requires 10x OD for repeated bends. The 65
-        mm straight run is an equal project service allowance; installed routing and plug-body clearance
-        remain unqualified.
+      - rj45_mate_drawing
+      - rj45_mate_selection
+      rationale: Exact manufacturer item 100009141 is a 15 m, straight-through 1:1, shielded S/FTP
+        Cat.6A cable with PUR jacket and 6.2 +/-0.2 mm OD. The retained 65 mm bend radius and equal
+        straight run are project planning allowances greater than 10x maximum OD; the manufacturer
+        drawing does not specify bend radius. Installed routing remains unqualified.
   operations:
   - id: spoke_rj45_service
     sequence: 1
