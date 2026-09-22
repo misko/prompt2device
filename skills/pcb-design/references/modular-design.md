@@ -69,6 +69,9 @@ dependency cannot unlock a child. `WORK_RECORDED` means only that bounded work
 and its runtime-validated outputs were recorded. Every work row reports
 `engineering_acceptance: NOT_EVALUATED` because placement feasibility, coupled
 geometry, routing, DRC, and review remain decisions of their existing gates.
+A failed engineering prerequisite keeps dependent work undispatched, even if
+delivery of its failure report passed. Do not execute a dependent task merely
+to record that it is blocked, or infer admission from `WORK_RECORDED`.
 
 ## Backtrack and evidence boundaries
 
