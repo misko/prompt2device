@@ -1,0 +1,94 @@
+schema: 1
+target: DESIGN_CLEAN
+gates:
+- id: USB-commission
+  required_for: DESIGN_CLEAN
+  state: pending
+  owner: systems
+  closes_when: Replace seed contracts, close source-admission facts and satisfy commissioning requirements
+    before removing the hold.
+  evidence:
+  - 01_docs/BRIEF.md
+  - 01_docs/COMMISSIONING-HOLD.md
+- id: USB-schematic
+  required_for: DESIGN_CLEAN
+  state: pending
+  owner: electrical
+  closes_when: Generate complete native schematic and netlist from admitted source; pass electrical
+    gates and independent topology and rendered-schematic review.
+  evidence:
+  - 03_tscircuit/src/crow_carrier.tsx
+- id: USB-layout
+  required_for: DESIGN_CLEAN
+  state: pending
+  owner: layout
+  closes_when: Execute modular placement and global routing; verify exact native connectivity, DRC,
+    power delivery, USB impedance/return path and independent layout review.
+  evidence:
+  - 03_src/modular_plan.json
+  - 03_src/rules/rf.yaml
+findings:
+- id: USB-capacitance
+  state: open
+  blocks_at_or_above: DESIGN_CLEAN
+  owner: power
+  finding: Effective capacitance banks contain unresolved DC-bias and aging bounds; typical curves
+    do not establish worst-case retention.
+  closes_when: Retain defensible effective-capacitance bounds for exact parts and operating conditions,
+    adjust banks if needed, and pass E-CAP.
+  evidence:
+  - 03_src/rules/power_tree.yaml
+  - 01_docs/research/2026-09-22-power-bounds-adoption.md
+- id: USB-protection
+  state: open
+  blocks_at_or_above: DESIGN_CLEAN
+  owner: power
+  finding: PPTC trip current is not a hard fault-current limit. Current contract deliberately refuses
+    that interpretation.
+  closes_when: Adopt reviewed passive-distribution semantics and establish source fault envelope,
+    clearing, withstand, leakage and energy evidence for actual protected paths.
+  evidence:
+  - 03_src/rules/power_tree.yaml
+- id: USB-power-delivery
+  state: open
+  blocks_at_or_above: DESIGN_CLEAN
+  owner: power
+  finding: Connector-plane voltage, complete load allocation and realized-board thermal margins remain
+    unqualified.
+  closes_when: Close resistance/load allocations and converter thermal bounds against actual copper
+    and operating states; pass owning power gates.
+  evidence:
+  - 03_src/rules/power_tree.yaml
+  - 03_src/rules/nets.yaml
+- id: USB-connectors
+  state: open
+  blocks_at_or_above: DESIGN_CLEAN
+  owner: mechanical
+  finding: Exact mating and service envelopes remain incomplete, including JTAG full body and RJ45
+    mate geometry.
+  closes_when: Close all nondeferrable source facts and satisfy connector source admission; qualify
+    physical service geometry on the placed board at its owning boundary.
+  evidence:
+  - 03_src/rules/connector_assemblies.yaml
+  - 03_src/rules/connector_assembly_phases.yaml
+  - 01_docs/research/2026-09-22-connector-selections.md
+- id: USB-parts
+  state: open
+  blocks_at_or_above: DESIGN_CLEAN
+  owner: sourcing
+  finding: Exact layout evidence and assembly sourcing are not fully qualified; replacement inductor
+    candidate is still under review.
+  closes_when: Bind selected exact parts to reviewed primary geometry, current source and approved
+    assembly sourcing evidence.
+  evidence:
+  - 03_src/rules/assembly.yaml
+- id: USB-seed-layout
+  state: open
+  blocks_at_or_above: DESIGN_CLEAN
+  owner: layout
+  finding: Floorplan and route contracts retain unrelated scaffold examples.
+  closes_when: Replace examples with Crow USB dimensions, connector orientations, block placement
+    constraints and routing intent before native placement admission.
+  evidence:
+  - 03_src/floorplan.yaml
+  - 03_src/route.yaml

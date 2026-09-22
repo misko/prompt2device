@@ -103,3 +103,8 @@
 - did: added the missing CrowUSBfirst-articleprocedure, coveringpower-state/USBbackfeed/quietshutdown/connectorservice/TDM/audio/SI/thermal/faulttests. Keptnumerictestcardandfirmwareprerequisitesexplicitlyunresolved.
 - result: procedureisDRAFTandnotexecuted; nofirstarticleapproval. Contracts330files0violations. LiveSOLtasksarepassive-distributionreaderandprimary-evidencedinductoralternative.
 - next: reviewthosetwopacketsandcloseelectrical/sourceadmissionbeforeanynativeboardplacementwork.
+
+## 2026-09-22 — iterate 21
+- did: added schema-1 findings ledger with pending commission, schematic and layout gates and six open engineering findings; linked deficiencies to their owning controls. Closed both SOL candidate delivery receipts PASS; engineering adoption remains separate.
+- result: inductor visual review found zero pad-to-courtyard margin and an unenforced drawing restriction; SOL correction requested before adoption. Passive reader is under adversarial review.
+- next: review corrected inductor geometry and passive fault logic, then integrate and verify supported changes.

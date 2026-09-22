@@ -9,8 +9,11 @@ discloses dispositions; gates, review receipts, the brief, and any
 
 ## Fix before this release
 
-No items recorded yet; this is not a gate-pass claim. Link current blockers
-to their owning findings/receipts rather than duplicating gate state here.
+The authoritative open design controls are in [findings.yaml](findings.yaml):
+capacitance, passive fault protection, power delivery, connector geometry, exact
+parts/sourcing, and replacement of layout seed contracts. Commissioning, native
+schematic review and placed/routed-board verification remain pending.
+No design-clean or release claim is made.
 
 ## Deferred to a future release
 
