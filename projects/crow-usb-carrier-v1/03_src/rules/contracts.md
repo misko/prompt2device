@@ -824,6 +824,7 @@ TWO ORPHANS THIS FOLDER'S OWN PROSE HAD HIDDEN, both found by the first run:
 | `rf.process.context_policy` | `rf_contract_check.py, rf_context.py` | closed clean-room/precedent selection policy; clean-room excludes prior-design results |
 | `rf.process.geometry_policy` | `rf_contract_check.py, rf_check.py` | closed advisory/blocking state for measured bend geometry |
 | `rf.process.geometry_stage` | `rf_contract_check.py, rf_check.py, pcb_flow.py` | closed source/placement lifecycle owner; placement deferral passes early only and is replayed fail-closed before route preparation |
+| absent `rf.process` and absent `rf.layout_constraints` | `rf_check.py` | legacy intent-only composition: early source RF-module geometry reports `CONTRACT_ONLY` / `NOT_GRADED`; `--require-geometry` and realized mode remain fail-closed, and ordinary project routing, DRC and signal-integrity gates remain mandatory |
 | `rf.topology.*` | ADVISORY | human architecture summary; exact connectivity is owned by electrical invariants, pin-map parity and port nets |
 | `rf.ports[].id` | `rf_contract_check.py` | unique RF port-group identity |
 | `rf.ports[].nets` | `rf_contract_check.py` | non-empty exact net denominator for the port group |

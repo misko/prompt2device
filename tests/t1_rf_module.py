@@ -35,6 +35,17 @@ def source_project(*, blocking=False, geometry_deferred=False):
                             "dielectric_height_mm": 0.2, "dk": 4.4,
                             "target_z0_ohm": 50, "width_mm": 0.3,
                             "gap_mm": 0.2}],
+        "performance_claims": [{"id": "Z0", "claim": "controlled route",
+                                "acceptance": "measure fifty ohms",
+                                "evidence": "retained solver evidence"}],
+        "first_article": {"measurements": ["measure impedance coupon"],
+                          "acceptance": ["fifty ohm result accepted"]},
+        "reviews": {
+            phase: {"path": f"08_reviews/rf_{phase}.md",
+                    "artifact": f"artifacts/{phase}.bin",
+                    "requirements": [f"RF-{phase.upper()}"]}
+            for phase in ("schematic", "pcb", "fab")
+        },
         "layout_constraints": {
             "route": {"nets": ["RF1"], "layer": "F.Cu",
                       "reference_layer": "In1.Cu", "width_mm": 0.3,
@@ -69,6 +80,15 @@ def source_project(*, blocking=False, geometry_deferred=False):
         "stitch": {"route_fence": {"band": 1.1}},
     }
     (root / "03_src/route.yaml").write_text(yaml.safe_dump(route, sort_keys=False))
+    return root
+
+
+def legacy_contract_only_project():
+    root = source_project()
+    path = root / "03_src/rules/rf.yaml"
+    doc = yaml.safe_load(path.read_text())
+    doc["rf"].pop("layout_constraints")
+    path.write_text(yaml.safe_dump(doc, sort_keys=False))
     return root
 
 
@@ -120,6 +140,70 @@ def t_source_advisory():
     eq(report["coverage"], {"graded": 1, "total": 1}, "RF net coverage")
     eq(len(report["bend_findings"]), 1, "sharp turn inventory")
     eq(report["verdict"], "PASS", "advisory verdict")
+
+
+@test("legacy RF intent without geometry is explicit contract-only state")
+def t_legacy_contract_only():
+    root = legacy_contract_only_project()
+    source = must_pass(run([KPY, CHECK, "source", root]),
+                       "legacy source contract-only dispatch")
+    contains(source.out, "0/0 RF nets graded", "honest geometry denominator")
+    report = json.loads((root / "06_build/rf/source/report.json").read_text())
+    eq(report["status"], "CONTRACT_ONLY", "source contract-only status")
+    eq(report["geometry_status"], "NOT_GRADED", "source geometry boundary")
+
+    must_fail(run([KPY, CHECK, "source", root, "--require-geometry"]),
+              "placement cannot accept contract-only", "CONTRACT_ONLY")
+    must_fail(run([KPY, CHECK, "realized", root]),
+              "realized cannot accept contract-only", "cannot approve a board")
+
+
+@test("contract-only dispatch cannot bless malformed RF authority",
+      kind="known_bad")
+def t_legacy_contract_only_rejects_malformed_ports():
+    root = legacy_contract_only_project()
+    path = root / "03_src/rules/rf.yaml"
+    doc = yaml.safe_load(path.read_text())
+    doc["rf"]["ports"][0]["nets"] = []
+    path.write_text(yaml.safe_dump(doc, sort_keys=False))
+    must_fail(run([KPY, CHECK, "source", root]), "empty RF port nets",
+              "rf.ports[0].nets")
+
+
+@test("contract-only dispatch uses owning applicability loader",
+      kind="known_bad")
+def t_legacy_contract_only_rejects_missing_rationale():
+    root = legacy_contract_only_project()
+    path = root / "03_src/rules/rf.yaml"
+    doc = yaml.safe_load(path.read_text())
+    doc["rf"].pop("rationale")
+    path.write_text(yaml.safe_dump(doc, sort_keys=False))
+    must_fail(run([KPY, CHECK, "source", root]),
+              "missing RF applicability rationale", "rf.rationale")
+
+
+@test("contract-only dispatch validates cross-section authority",
+      kind="known_bad")
+def t_legacy_contract_only_rejects_malformed_cross_section():
+    root = legacy_contract_only_project()
+    path = root / "03_src/rules/rf.yaml"
+    doc = yaml.safe_load(path.read_text())
+    doc["rf"]["cross_sections"][0]["width_mm"] = None
+    path.write_text(yaml.safe_dump(doc, sort_keys=False))
+    must_fail(run([KPY, CHECK, "source", root]),
+              "malformed locked RF cross-section", "width_mm")
+
+
+@test("adopted source geometry cannot use contract-only dispatch",
+      kind="known_bad")
+def t_adopted_missing_route_denominator_stays_fail_closed():
+    root = source_project(blocking=True)
+    path = root / "03_src/rules/rf.yaml"
+    doc = yaml.safe_load(path.read_text())
+    doc["rf"].pop("layout_constraints")
+    path.write_text(yaml.safe_dump(doc, sort_keys=False))
+    must_fail(run([KPY, CHECK, "source", root]),
+              "adopted module missing geometry", "route-net denominator")
 
 
 @test("RF source corners cannot hide at YAML segment-list boundaries")

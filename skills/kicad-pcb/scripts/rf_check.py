@@ -23,6 +23,8 @@ from pathlib import Path
 
 import yaml
 
+import rf_contract_check
+
 HERE = Path(__file__).resolve().parent
 PCB_DESIGN_SCRIPTS = HERE.parents[1] / "pcb-design" / "scripts"
 sys.path.insert(0, str(PCB_DESIGN_SCRIPTS))
@@ -76,6 +78,36 @@ def _contract_state(contract: dict) -> tuple[dict, str, bool, str]:
     if geometry_stage not in {"source", "placement"}:
         raise RFCheckError("rf.process.geometry_stage must be source or placement")
     return rf, policy, adopted, geometry_stage
+
+
+def _validate_contract(project: Path, contract_path: Path) -> dict:
+    """Use the owning schema before any shallow applicability dispatch."""
+    try:
+        contract = rf_contract_check.load_contract(contract_path)
+        if contract["rf"]["enabled"]:
+            rf_contract_check.validate_enabled(
+                project, contract, contract_path=contract_path)
+    except (KeyError, TypeError, rf_contract_check.ContractError) as exc:
+        raise RFCheckError(f"invalid RF contract: {exc}") from exc
+    return contract
+
+
+def _legacy_contract_only(mode: str, policy: str) -> dict:
+    """Explicitly decline RF-module geometry for an unadopted contract."""
+    return {
+        "schema": 1, "mode": mode, "status": "CONTRACT_ONLY",
+        "geometry_status": "NOT_GRADED", "geometry_policy": policy,
+        "nets": [], "coverage": {"graded": 0, "total": 0},
+        "routes": [], "bend_findings": [], "errors": [],
+        "advisories": [
+            "legacy RF intent contract has no RF-module layout_constraints; "
+            "RF-module geometry is NOT_GRADED. Port, cross-section and review "
+            "coverage remain owned by rf_contract_check.py; native routing "
+            "must be accepted by the project's ordinary routing, DRC and "
+            "signal-integrity gates."
+        ],
+        "verdict": "PASS",
+    }
 
 
 def _resolve(project: Path, supplied: Path | None, default: str) -> Path:
@@ -536,9 +568,18 @@ def _publish_source(project: Path, contract_path: Path, route_path: Path,
         inputs = {"rf.yaml": contract_path}
     else:
         route = _load_yaml(route_path, "route contract")
-        report = _source_inventory(
-            rf, route, policy, geometry_stage=geometry_stage,
-            require_geometry=require_geometry)
+        if not adopted and rf.get("layout_constraints") is None:
+            if require_geometry:
+                raise RFCheckError(
+                    "legacy RF contract has no RF-module geometry; "
+                    "--require-geometry cannot accept CONTRACT_ONLY")
+            contract = _validate_contract(project, contract_path)
+            rf, policy, adopted, geometry_stage = _contract_state(contract)
+            report = _legacy_contract_only("source", policy)
+        else:
+            report = _source_inventory(
+                rf, route, policy, geometry_stage=geometry_stage,
+                require_geometry=require_geometry)
         if report["verdict"] != "PASS":
             raise RFCheckError("; ".join(report["errors"]))
         inputs = {"rf.yaml": contract_path, "route.yaml": route_path}
@@ -576,7 +617,7 @@ def _publish_realized(project: Path, contract_path: Path, route_path: Path,
                       board_path: Path | None,
                       out: Path) -> tuple[dict, Path, Path]:
     contract = _load_yaml(contract_path, "RF contract")
-    rf, policy, _adopted, _geometry_stage = _contract_state(contract)
+    rf, policy, adopted, _geometry_stage = _contract_state(contract)
     if not rf["enabled"]:
         # Applicability is source authority.  A non-RF project must not need a
         # route contract, board file, or pcbnew merely to prove that this gate
@@ -588,6 +629,11 @@ def _publish_realized(project: Path, contract_path: Path, route_path: Path,
         inputs = {"rf.yaml": contract_path}
         run_fence = False
         subject_path = contract_path
+    elif not adopted and rf.get("layout_constraints") is None:
+        _validate_contract(project, contract_path)
+        raise RFCheckError(
+            "legacy RF contract has no realized RF geometry authority; "
+            "CONTRACT_ONLY is source-stage only and cannot approve a board")
     else:
         route = _load_yaml(route_path, "route contract")
         board_path = board_path or _route_board(project, route, None)
