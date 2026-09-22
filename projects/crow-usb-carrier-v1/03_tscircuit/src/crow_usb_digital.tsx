@@ -290,7 +290,7 @@ export function CrowUsbDigital({net=defaultNet}:CrowUsbDigitalProps={}){
   {[5,11,14,18,39,45,50,54,68,85,95,104,105,106,113].map(p=><C key={`core${p}`} name={`C_XU_VDD_${p}`} value="100nF" a="0V9" b="GND" n={n} />)}
   {[10,17,35,56,72,89,109,121].map(p=><C key={`io${p}`} name={`C_XU_VDDIO_${p}`} value="100nF" a="1V8" b="GND" n={n} />)}
   <C name="C_XU_USB33" value="100nF" a="3V3X" b="GND" n={n} /><C name="C_XU_USB18" value="100nF" a="1V8" b="GND" n={n} />
-  <Chip name="FB_PLL" manufacturerPartNumber="BKH1005LM601-T" jlc="" footprint="0402" pinLabels={{pin1:"1",pin2:"2"}} connections={{pin1:n("0V9"),pin2:n("PLL_0V9")}} />
+  <Chip name="FB_PLL" manufacturerPartNumber="BLM15AG601SN1D" jlc="C76884" footprint="0402" pinLabels={{pin1:"1",pin2:"2"}} connections={{pin1:n("0V9"),pin2:n("PLL_0V9")}} />
   <C name="C_PLL_1U" value="1uF" a="PLL_0V9" b="GND" mpn="CC0402KRX5R5BB105" n={n} /><C name="C_PLL_100N" value="100nF" a="PLL_0V9" b="GND" n={n} />
 
   <Chip name="Y_XU" manufacturerPartNumber="FA-238 24.0000MD30X-W5" jlc="" footprint="crystal_3225_4pin"

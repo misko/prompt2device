@@ -233,3 +233,7 @@ Integrated reviewed presentation-only changes to the held LDO, ADC, crystal/flas
 ## Catalog identity integration — 2026-09-22
 
 Integrated26exactmanufacturer/MPN catalog identities into owning TSX supplier fields and dossiers. Regenerated candidate CSV from actual source, preserving the current canonical Murata identity. Root compared complete expanded source before/after: only62supplier metadata records change; all other expanded bytes,489components/1493traces and26criticalendpoints remain equal. All26source/dossier code bindings match the reviewed identity mapping. Modular489/489components and54/54crossings,TSXpreflight92/92 andcontracts380files pass. Code presence does not imply stock or assembly allocation; current sourcing must be regraded with the added codes.
+
+## PLL bead source backtrack closed — 2026-09-22
+
+Adopted exact Murata BLM15AG601SN1D at FB_PLL after independent review of retained AJ manufacturer specification, dimensions and current DigiKey/LCSC two-pool evidence. Removed obsolete active dossier with history retained. Only FB_PLL MPN/supplier metadata changes in expanded source; all489refs/1493traces and26criticalendpoint checks remain. Source voltage analysis distinguishes typical5mA from missing maximum-load proof and preserves physical qualification. See research/2026-09-22-pll-bead-adoption.md.

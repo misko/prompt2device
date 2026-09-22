@@ -1,0 +1,38 @@
+mpn: BLM15AG601SN1D
+manufacturer: Murata Electronics
+type: ferrite_bead
+footprint: Inductor_SMD:L_0402_1005Metric
+package: 0402 / 1005; body 1.00±0.05 x 0.50±0.05 x 0.50±0.05 mm
+pins:
+  1: terminal
+  2: terminal
+datasheet:
+  doc_id: JENF243A-0018AJ-01
+  url: https://datasheet.lcsc.com/datasheet/pdf/f85b01b3a1a015a5ec4a9f03876e0063.pdf?productCode=C76884
+  local: 02_parts/BLM15AG601SN1D/Murata_ENFA0018_AJ.pdf
+  sha256: 72584e2b0fad42b4fd0fc45b175151fa42acab38f373431d3f726f55317918aa
+  pages: 11
+  fetched: '2026-09-22'
+  provenance: Manufacturer-authored Murata Manufacturing Co., Ltd. reference specification
+    retained through the exact LCSC product datasheet link. Exact MPN row page1; temperature
+    page3; dimensions page4. Later AP revision was consulted online but these retained
+    bytes are AJ.
+limits:
+  impedance_ohm_at_100MHz: 600
+  impedance_tolerance_pct: 25
+  dcr_max_ohm_initial: 0.52
+  dcr_max_ohm_after_testing: 0.62
+  operating_temperature: -55C to +125C
+  rated_current_mA: 300
+verified: 'Retained manufacturer specification exact MPN row: 600ohm±25% at100MHz,300mA,.52ohm
+  initial/.62ohm post-test DCR; 0402 dimensions. Read2026-09-22.'
+gotchas:
+- Matches the XMOS published impedance point and DCR requirement, not an assertion
+  of full impedance-curve equivalence.
+- XMOS PLL current5mA is typical; no maximum is published. At5mA and0.62ohm post-test
+  DCR, DC drop is3.1mV. Ripple, transient, layout and maximum-load voltage proof remain
+  physical qualification.
+sourcing:
+  lcsc: C76884
+  alternates: []
+  note: Exact LCSC catalog identity; catalog availability is not JLC assembly allocation.

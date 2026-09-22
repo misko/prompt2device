@@ -1,4 +1,3 @@
-# Isolated current-evidence merge; not order authority.
 quotes:
 - mpn: 0451004.MRL
   manufacturer: Littelfuse
@@ -1163,3 +1162,20 @@ quotes:
   five_board_need: 40
   normalization_note: YAML numeric scalar normalized to the literal selected MPN digit
     string; digits unchanged.
+- mpn: BLM15AG601SN1D
+  manufacturer: Murata Electronics
+  distributor: digikey
+  source: product_page
+  url: https://www.digikey.com/en/products/detail/murata-electronics/BLM15AG601SN1D/584454
+  read_on: '2026-09-22'
+  checked_at: '2026-09-22T04:45:39-07:00'
+  dpn: 490-1006-1-ND
+  stock: 1191822
+  min: 1
+  mult: 1
+  packaging: Cut Tape
+  lifecycle: Active
+  price_breaks:
+  - qty: 1
+    usd: 0.1
+  note: Exact manufacturer/MPN; five-board requirement is 5.
