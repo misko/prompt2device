@@ -14,6 +14,21 @@ quotes:
   lifecycle: Active
   orderable: true
   five_board_need: 5
+- mpn: 12105C106K4Z2A
+  manufacturer: KYOCERA AVX
+  distributor: digikey
+  source: product_page
+  url: https://www.digikey.com/en/products/detail/kyocera-avx/12105C106K4Z2A/9748473
+  read_on: '2026-09-22'
+  checked_at: '2026-09-22T04:44:17-07:00'
+  dpn: 478-KAF32LR71H106KUCT-ND
+  stock: 78618
+  min: 1
+  mult: 1
+  packaging: Cut Tape
+  lifecycle: Active
+  price_breaks: []
+  note: Exact product page; five-board requirement 15.
 - mpn: 2N7002K-7
   manufacturer: Diodes Incorporated
   distributor: digikey
@@ -30,6 +45,54 @@ quotes:
   orderable: true
   five_board_need: 20
   note: Exact page says out of stock and permits backorder.
+- mpn: 43650-0200
+  manufacturer: Molex
+  distributor: digikey
+  source: product_page
+  url: https://www.digikey.com/en/products/detail/molex/0436500200/268989
+  read_on: '2026-09-22'
+  checked_at: '2026-09-22T04:44:17-07:00'
+  dpn: WM1860-ND
+  stock: 49129
+  min: 1
+  mult: 1
+  packaging: Tray
+  lifecycle: Active
+  price_breaks: []
+  note: Five-board requirement 5. DigiKey displays Molex material number 0436500200;
+    manufacturer page identifies keyword/order code 43650-0200 for the same material.
+- mpn: '615008160221'
+  manufacturer: Wurth Elektronik
+  distributor: digikey
+  source: product_page
+  url: https://www.digikey.com/en/products/detail/w%C3%BCrth-elektronik/615008160221/11627337
+  read_on: '2026-09-22'
+  checked_at: '2026-09-22T04:30:58-07:00'
+  dpn: 732-615008160221-ND
+  stock: 991
+  min: 1
+  mult: 1
+  packaging: Tray
+  lifecycle: Active
+  orderable: true
+  five_board_need: 40
+  normalization_note: YAML numeric scalar normalized to the literal selected MPN digit
+    string; digits unchanged.
+- mpn: 744373240047
+  manufacturer: "W\xFCrth Elektronik"
+  distributor: digikey
+  source: product_page
+  url: https://www.digikey.com/en/products/detail/w%C3%BCrth-elektronik/744373240047/2791039
+  read_on: '2026-09-22'
+  checked_at: '2026-09-22T04:44:17-07:00'
+  dpn: 732-3332-1-ND
+  stock: 3432
+  min: 1
+  mult: 1
+  packaging: Cut Tape
+  lifecycle: Active
+  price_breaks: []
+  note: Exact product page; five-board requirement 15.
 - mpn: 74LVC1G14GV,125
   manufacturer: Nexperia
   distributor: digikey
@@ -120,6 +183,23 @@ quotes:
   five_board_need: 5
   note: Exact page says obsolete and no longer manufactured; no minimum or multiple
     is asserted.
+- mpn: BLM15AG601SN1D
+  manufacturer: Murata Electronics
+  distributor: digikey
+  source: product_page
+  url: https://www.digikey.com/en/products/detail/murata-electronics/BLM15AG601SN1D/584454
+  read_on: '2026-09-22'
+  checked_at: '2026-09-22T04:45:39-07:00'
+  dpn: 490-1006-1-ND
+  stock: 1191822
+  min: 1
+  mult: 1
+  packaging: Cut Tape
+  lifecycle: Active
+  price_breaks:
+  - qty: 1
+    usd: 0.1
+  note: Exact manufacturer/MPN; five-board requirement is 5.
 - mpn: BZT52C12-7-F
   manufacturer: Diodes Incorporated
   distributor: digikey
@@ -136,6 +216,21 @@ quotes:
   orderable: true
   five_board_need: 5
   note: Exact page says out of stock and permits backorder.
+- mpn: C0603C105K4RACTU
+  manufacturer: KEMET
+  distributor: digikey
+  source: product_page
+  url: https://www.digikey.com/en/products/detail/kemet/C0603C105K4RACTU/2199788
+  read_on: '2026-09-22'
+  checked_at: '2026-09-22T04:44:17-07:00'
+  dpn: 399-C0603C105K4RACTUCT-ND
+  stock: 4038316
+  min: 1
+  mult: 1
+  packaging: Cut Tape
+  lifecycle: Active
+  price_breaks: []
+  note: Exact product page; five-board requirement 40.
 - mpn: C0805C106K8RACTU
   manufacturer: KEMET
   distributor: digikey
@@ -182,6 +277,21 @@ quotes:
   price_breaks: []
   note: Exact manufacturer and MPN product page reports quantity-one cut tape and
     immediate shipment; five-board requirement is 5.
+- mpn: CC0805KRX7R9BB104
+  manufacturer: YAGEO
+  distributor: digikey
+  source: product_page
+  url: https://www.digikey.com/en/products/detail/yageo/CC0805KRX7R9BB104/302874
+  read_on: '2026-09-22'
+  checked_at: '2026-09-22T04:44:17-07:00'
+  dpn: 311-1140-1-ND
+  stock: 1649202
+  min: 1
+  mult: 1
+  packaging: Cut Tape
+  lifecycle: Active
+  price_breaks: []
+  note: Exact product page; five-board requirement 85.
 - mpn: CL05B103KB5NNNC
   manufacturer: Samsung Electro-Mechanics
   distributor: digikey
@@ -257,6 +367,36 @@ quotes:
   lifecycle: Active
   orderable: true
   five_board_need: 15
+- mpn: CRCW12061R00FKEAHP
+  manufacturer: Vishay Dale
+  distributor: digikey
+  source: product_page
+  url: https://www.digikey.com/en/products/detail/vishay-dale/CRCW12061R00FKEAHP/2222406
+  read_on: '2026-09-22'
+  checked_at: '2026-09-22T04:44:17-07:00'
+  dpn: 541-1.00UCT-ND
+  stock: 107651
+  min: 1
+  mult: 1
+  packaging: Cut Tape
+  lifecycle: Active
+  price_breaks: []
+  note: Exact product page; five-board requirement 15.
+- mpn: CRCW120622R0FKEAHP
+  manufacturer: Vishay Dale
+  distributor: digikey
+  source: product_page
+  url: https://www.digikey.com/en/products/detail/vishay-dale/CRCW120622R0FKEAHP/2227570
+  read_on: '2026-09-22'
+  checked_at: '2026-09-22T04:44:17-07:00'
+  dpn: 541-22.0UCT-ND
+  stock: 20065
+  min: 1
+  mult: 1
+  packaging: Cut Tape
+  lifecycle: Active
+  price_breaks: []
+  note: Exact product page; five-board requirement 5.
 - mpn: CS5308P-DNR
   manufacturer: Cirrus Logic
   distributor: digikey
@@ -305,6 +445,22 @@ quotes:
   lifecycle: Active
   orderable: true
   five_board_need: 5
+- mpn: EEEFK1A471P
+  manufacturer: Panasonic Industry
+  distributor: digikey
+  source: product_page
+  url: https://www.digikey.com/en/products/detail/panasonic-industry/EEE-FK1A471P/765950
+  read_on: '2026-09-22'
+  checked_at: '2026-09-22T04:44:17-07:00'
+  dpn: PCE3780CT-ND
+  stock: 224
+  min: 1
+  mult: 1
+  packaging: Cut Tape
+  lifecycle: Active
+  price_breaks: []
+  note: Five-board requirement 20. DigiKey inserts punctuation and displays manufacturer
+    product number EEE-FK1A471P; Panasonic ordering table prints EEEFK1A471P.
 - mpn: FA-238 24.0000MD30X-W5
   manufacturer: Epson
   distributor: digikey
@@ -935,6 +1091,21 @@ quotes:
   packaging: Cut Tape (CT)
   lifecycle: Active
   note: Exact MPN/manufacturer; need 10.
+- mpn: TMUX2821DSGR
+  manufacturer: Texas Instruments
+  distributor: digikey
+  source: product_page
+  url: https://www.digikey.com/en/products/detail/texas-instruments/TMUX2821DSGR/28738833
+  read_on: '2026-09-22'
+  checked_at: '2026-09-22T04:44:17-07:00'
+  dpn: 296-TMUX2821DSGRCT-ND
+  stock: 2449
+  min: 1
+  mult: 1
+  packaging: Cut Tape
+  lifecycle: Active
+  price_breaks: []
+  note: Exact product page; five-board requirement 40.
 - mpn: TPD2E2U06DRLR
   manufacturer: Texas Instruments
   distributor: digikey
@@ -1145,37 +1316,3 @@ quotes:
   packaging: Tray
   lifecycle: Active
   note: Exact MPN/manufacturer; need 5.
-- mpn: '615008160221'
-  manufacturer: Wurth Elektronik
-  distributor: digikey
-  source: product_page
-  url: https://www.digikey.com/en/products/detail/w%C3%BCrth-elektronik/615008160221/11627337
-  read_on: '2026-09-22'
-  checked_at: '2026-09-22T04:30:58-07:00'
-  dpn: 732-615008160221-ND
-  stock: 991
-  min: 1
-  mult: 1
-  packaging: Tray
-  lifecycle: Active
-  orderable: true
-  five_board_need: 40
-  normalization_note: YAML numeric scalar normalized to the literal selected MPN digit
-    string; digits unchanged.
-- mpn: BLM15AG601SN1D
-  manufacturer: Murata Electronics
-  distributor: digikey
-  source: product_page
-  url: https://www.digikey.com/en/products/detail/murata-electronics/BLM15AG601SN1D/584454
-  read_on: '2026-09-22'
-  checked_at: '2026-09-22T04:45:39-07:00'
-  dpn: 490-1006-1-ND
-  stock: 1191822
-  min: 1
-  mult: 1
-  packaging: Cut Tape
-  lifecycle: Active
-  price_breaks:
-  - qty: 1
-    usd: 0.1
-  note: Exact manufacturer/MPN; five-board requirement is 5.

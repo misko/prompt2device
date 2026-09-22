@@ -237,3 +237,7 @@ Integrated26exactmanufacturer/MPN catalog identities into owning TSX supplier fi
 ## PLL bead source backtrack closed — 2026-09-22
 
 Adopted exact Murata BLM15AG601SN1D at FB_PLL after independent review of retained AJ manufacturer specification, dimensions and current DigiKey/LCSC two-pool evidence. Removed obsolete active dossier with history retained. Only FB_PLL MPN/supplier metadata changes in expanded source; all489refs/1493traces and26criticalendpoint checks remain. Source voltage analysis distinguishes typical5mA from missing maximum-load proof and preserves physical qualification. See research/2026-09-22-pll-bead-adoption.md.
+
+## Sourcing checkpoint with catalog links and qualified PLL bead — 2026-09-22
+
+Integrated the nine missing-set direct distributor observations, preserving all79existing manual records. Root reran the current owning shopping script against the exact current85MPN/489ref source CSV (SHA940b1a863764eb733e7116a38635729e47eb801f719b27a0f9cb11e29db532d4). Result:62/85two-pool,22one-pool,1zero-pool,0unparseable. The combined stock evidence contains the fresh78code snapshot plus the independently qualified newPLLbead sidecar without modified line fields. Manufacturer-label and actualshortage gaps remain; no sourcing admission or assembly allocation is claimed. Current evidence:06_build/verification/sourcing-combined-current/. The earlier dated41/85 shopping report remains an immutable historical observation.
