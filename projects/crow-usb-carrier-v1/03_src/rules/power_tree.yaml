@@ -95,30 +95,31 @@ effective_capacitance_banks:
     requirement_evidence: TI SLVSEF9I minimum effective input capacitance.
     accepted_dielectrics: [x5r]
     contributors:
-      - part: GRM21BR61C106KE15L
+      - part: CL21A106KOCLRNC
         refs: [C_U_3V3X_IN_1, C_U_3V3X_IN_2]
         nominal_each_uF: 10
         dielectric: x5r
         tolerance_minus_pct: 10
-        dc_bias_derating_pct: 70
+        dc_bias_derating_pct: 75
         temperature_derating_pct: 15
         lifecycle_derating_pct: 10
         basis: conservative_combined_voltage_engineering_bound
         evidence: >-
-          Exact Murata typical curves show about 45% DC retention at 5 V and
-          about 80% additional AC-amplitude retention, or about 36% combined.
-          The single E-CAP voltage field uses the more adverse 30% combined
-          retention, plus +/-10% initial tolerance, full 15% X5R temperature
-          loss and a separate chosen 10% lifecycle reserve. Two parts give
-          4.131 uF. These are design reserves, not curve guarantees.
+          Samsung retained typical curves: DC retention35.959775% at5.11605V
+          (above5.05V maximum), low-amplitude AC retention75.4752%.
+          Their product screens to27.14%; use more adverse25% combined
+          retention,10% initial tolerance,15% temperature and10% lifecycle
+          allowances. Two parts give3.4425uF versus3uF. Separate typical
+          curves and selected reserves are not guaranteed joint PVT/aging
+          bounds; first-article ripple/startup/transient qualification remains.
   - <<: *tps62825_input
     name: TPS62825 U_1V8 input
     contributors:
-      - {part: GRM21BR61C106KE15L, refs: [C_U_1V8_IN_1, C_U_1V8_IN_2], nominal_each_uF: 10, dielectric: x5r, tolerance_minus_pct: 10, dc_bias_derating_pct: 70, temperature_derating_pct: 15, lifecycle_derating_pct: 10, basis: conservative_combined_voltage_engineering_bound, evidence: "Same exact 5 V input-bank condition and conservative 30% combined DC/AC retention as U_3V3X; 4.131 uF effective by design estimate."}
+      - {part: CL21A106KOCLRNC, refs: [C_U_1V8_IN_1, C_U_1V8_IN_2], nominal_each_uF: 10, dielectric: x5r, tolerance_minus_pct: 10, dc_bias_derating_pct: 75, temperature_derating_pct: 15, lifecycle_derating_pct: 10, basis: conservative_combined_voltage_engineering_bound, evidence: "Same exact 5.05 V maximum input-bank condition and conservative 25% combined DC/AC retention as U_3V3X; 3.4425 uF effective by design estimate."}
   - <<: *tps62825_input
     name: TPS62825 U_CORE input
     contributors:
-      - {part: GRM21BR61C106KE15L, refs: [C_U_CORE_IN_1, C_U_CORE_IN_2], nominal_each_uF: 10, dielectric: x5r, tolerance_minus_pct: 10, dc_bias_derating_pct: 70, temperature_derating_pct: 15, lifecycle_derating_pct: 10, basis: conservative_combined_voltage_engineering_bound, evidence: "Same exact 5 V input-bank condition and conservative 30% combined DC/AC retention as U_3V3X; 4.131 uF effective by design estimate."}
+      - {part: CL21A106KOCLRNC, refs: [C_U_CORE_IN_1, C_U_CORE_IN_2], nominal_each_uF: 10, dielectric: x5r, tolerance_minus_pct: 10, dc_bias_derating_pct: 75, temperature_derating_pct: 15, lifecycle_derating_pct: 10, basis: conservative_combined_voltage_engineering_bound, evidence: "Same exact 5.05 V maximum input-bank condition and conservative 25% combined DC/AC retention as U_3V3X; 3.4425 uF effective by design estimate."}
   - &tps62825_output
     name: TPS62825 U_3V3X output
     requirement_uF: 10

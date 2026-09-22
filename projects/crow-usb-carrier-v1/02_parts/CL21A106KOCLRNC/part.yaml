@@ -1,0 +1,16 @@
+mpn: "CL21A106KOCLRNC"
+footprint: "Capacitor_SMD:C_0805_2012Metric"
+manufacturer: Samsung Electro-Mechanics
+value: 10uF
+voltage: 16V
+tolerance: 10%
+dielectric: X5R
+package: 0805
+status: active
+source_url: "https://product.samsungsem.com/mlcc/CL21A106KOCLRN.do"
+verified: "Samsung exact family page reports Mass Production, 10uF +/-10%, 16Vdc, X5R -55C to +85C, 0805; read 2026-09-22."
+characteristics_note: "Samsung exact-family typical design-reference curves are not guaranteed worst-case limits. DC retention is 35.9598% at the measured 5.11605V point above the 5.05V maximum. The separate adverse low-amplitude AC sample retains 75.475%; multiplied combined typical retention is 27.14%."
+design_curve_screen: "Samsung typical DC retention at5.11605V is35.959775%; separate low-amplitude AC retention is75.4752%. Multiplication screens to about27.14%; use the more adverse25% combined engineering retention. Two10uF parts with0.90 tolerance,0.25 DC/AC,0.85 temperature and0.90 lifecycle give3.4425uF versus3uF required. Separate typical curves and selected reserves are not guaranteed joint PVT/aging limits; input ripple/startup/transient qualification remains required."
+type: capacitor
+pins: {1: terminal_1, 2: terminal_2}
+sourcing: {lcsc: C318695, note: 'Exact current catalog identity; allocation remains an order-time check.'}

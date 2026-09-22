@@ -41,6 +41,7 @@ iterating over alternatives.
 |---|---|
 | `<MPN>/part.yaml` | the facts + provenance. Required for every used part |
 | `<MPN>/<DOCID><REV>.pdf` | the datasheet. Filename carries the REVISION |
+| `CL21A106KOCLRNC/CL21A106KOCLRN-20260922.html` | Exact retained Samsung manufacturer response containing embedded typical AC/DC characteristic datasets; URL/date/byte hash in the dossier notes. This evidence is a primary web export, not a manufacturer PDF or guaranteed curve. |
 | `<MPN>/notes.md` | optional: errata, application gotchas too long for `gotchas:` |
 | `README.md` | folder status + **deviations register**: every departure from this contract (unfetchable PDF, series-sheet passives without PDFs), each with why + what must happen before bring-up | required if any deviation exists |
 | `contracts.md` | this file |

@@ -279,3 +279,7 @@ Root verified primary DS18004 commercial ordering rows and adopted BZT52C12-13-F
 ## Digital escape records adopted — 2026-09-22
 
 Integrated14 selected digital/control/oscillator escape repairs with all non-escape fields preserved. Root selected85-dossier owning check now reports6remaining power-package problems. Four digital records expose unconditional advanced-tier requirements; together with LT3045 these keep standard-tier feasibility open. No source connectivity or footprint changed. See research/2026-09-22-digital-escape-adoption.md.
+
+## Samsung input capacitors adopted — 2026-09-22
+
+Adopted six exactSamsungCL21A106KOCLRNC caps using reviewed25%combinedAC/DC retention. All three inputbanks pass3.4425/3uF; earlyelectrical4/4 andmodular489/489,54/54 pass. OnlysixMPN/supplier records change. Fullsourcing72/85. PrimaryHTML retained under explicit projectcontract with deviations register. See research/2026-09-22-samsung-input-cap-adoption.md.

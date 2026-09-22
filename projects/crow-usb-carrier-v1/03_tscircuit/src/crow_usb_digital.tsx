@@ -14,7 +14,7 @@ const defaultNet=(name:string)=>`net.${ /^\d/.test(name) ? `N${name}` : name }`
 const supplier=(jlc:string)=>({jlcpcb:jlc?[jlc]:[]})
 const sourced=(mpn:string,jlc="")=>jlc||({
  "744373240047":"C19270343","ASFL1-24.576MHZ-EC-T":"C17566269","CC0402KRX5R5BB105":"C106253","FTSH-105-01-L-DV-K":"C5155080",
- "GRM1555C1H220JA01D":"C76960","RC0402FR-0733RL":"C138002","GRM155R71H103KA88D":"C77019","GRM21BR61C106KE15L":"C77075","RC0402FR-07680RL":"C137948",
+ "GRM1555C1H220JA01D":"C76960","RC0402FR-0733RL":"C138002","GRM155R71H103KA88D":"C77019","CL21A106KOCLRNC":"C318695","RC0402FR-07680RL":"C137948",
  "RT0402BRD07100KL":"C852472","RT0402BRD07200KL":"C728556","SN74AUP3G34DCUR":"C2675543",
  "SN74AXC4T245PWR":"C2867798","SN74LVC1G04DCKR":"C8207","SN74LVC1G125DCKT":"C2675550",
  "SN74LVC1G332DBVR":"C43368","SN74LVC2G74DCTR":"C79339","TPS3808G09DBVR":"C24584",
@@ -67,7 +67,7 @@ function Buck({name,mpn,out,adjustable=false,en="5V_BUCK",n}:any){return <>
  <Chip name={name} manufacturerPartNumber={mpn} jlc="" footprint={<DMQ0006ALand/>} pinLabels={buckPins}
   connections={{pin1:n(en),pin2:n(`${name}_PG`),pin3:n(adjustable?`${name}_FB`:out),pin4:n("GND"),pin5:n(`${name}_SW`),pin6:n("5V_BUCK")}} />
  <Chip name={`L_${name}`} manufacturerPartNumber="744373240047" jlc="" footprint={<WurthLHMI4020Land/>} pinLabels={{pin1:"1",pin2:"2"}} connections={{pin1:n(`${name}_SW`),pin2:n(out)}} />
- {[1,2].map(i=><C key={`in${i}`} name={`C_${name}_IN_${i}`} value="10uF" a="5V_BUCK" b="GND" mpn="GRM21BR61C106KE15L" footprint="0805" n={n} />)}
+ {[1,2].map(i=><C key={`in${i}`} name={`C_${name}_IN_${i}`} value="10uF" a="5V_BUCK" b="GND" mpn="CL21A106KOCLRNC" footprint="0805" n={n} />)}
  <C name={`C_${name}_OUT_1`} value="47uF" a={out} b="GND" mpn="GRM32ER71A476KE15L" jlc="C84494" footprint="1210" n={n} />
  </>}
 
