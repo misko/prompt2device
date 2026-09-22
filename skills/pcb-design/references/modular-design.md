@@ -39,6 +39,12 @@ mechanical list into the observed electrical denominator.
 
 ## Schedule child work
 
+Functional ownership does not require physical colocation. Place interface
+terminations, protection, and bypass parts at the endpoints they serve, even
+when other parts owned by that block sit elsewhere. Represent those attachments
+in coupled placement/proof groups; do not use a block-center seed or a clean
+courtyard check as evidence that its electrical placement is complete.
+
 Use these scopes without forcing every block through a lockstep barrier:
 
 1. `P1_FLOORPLAN` allocates fixed features, regions, and corridors.
