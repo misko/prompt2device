@@ -1,140 +1,632 @@
-# SCHEMA EXAMPLE (skill-owned, project-independent). Adopted from a proven
-# board as a reference for the generic backend's config format. Copy into a
-# new project's 03_src/ and replace the values — the KEYS are the contract.
-#
-# cook-loadcell floorplan — the whole per-board input to
-# skills/kicad-pcb/scripts/generate_board_generic.py, replacing the 373-line
-# hand-written 03_src/generate_board.py.
-#   /usr/bin/python3 ../../skills/kicad-pcb/scripts/generate_board_generic.py \
-#       03_src/floorplan.yaml -o 06_build/proof/cook_loadcell.kicad_pcb
-# 55x45 2-layer: sensors J1/J2 + J5 north, J3/J4 + J6 south, HX711 center-west
-# (analog corner W, digital SE).
-
+# Crow USB exploratory placement canvas, not accepted placement.
+# 220 x 120 mm permits initial modular studies; final outline remains open.
+# Operated connector refs deliberately have no pose or region assignment.
+# require_anchor rejects them until exact mating-plane anchors are reviewed.
+# Region patterns only seed placement: they do not enforce a region boundary.
+# Physical stackup authority is rules/rf.yaml and retained JLC evidence; the
+# native stackup must be populated consistently before placement admission.
+# Board generation remains prohibited by the commissioning hold.
 project:
-  name: cook_loadcell
-  netlist: 06_build/netlists/cook_loadcell.net
-  output: 04_kicad/cook_loadcell.kicad_pcb
+  name: crow_carrier
+  netlist: 06_build/netlists/crow_carrier.net
+  output: 04_kicad/crow_carrier.kicad_pcb
   parts_dir: 02_parts
-
 board:
-  outline: {x0: 20.0, y0: 20.0, x1: 75.0, y1: 65.0}
+  outline:
+    x0: 20.0
+    y0: 20.0
+    x1: 240.0
+    y1: 140.0
   edge_width: 0.1
-  layers: 2
-  # Optional, board-wide fabrication intent. Enable only when the order calls
-  # for every via to use the corresponding process; separately identify all
-  # via-in-pad sites and require fabricator/assembly DFM acceptance.
-  # Board-default via treatment; every via left "From rules" inherits it.
-  # Prefer selective thermal_vias.protection for via-in-pad work.
-  # via_protection: {capping: yes, filling: yes}
-  mounting_holes:
-    footprint: MountingHole:MountingHole_3.2mm_M3
-    at: [[23.5, 23.5], [71.5, 23.5], [23.5, 61.5], [71.5, 61.5]]
-
-libraries: [/usr/share/kicad/footprints, 03_src/lib]
-
+  layers: 4
+libraries:
+- /usr/share/kicad/footprints
+- 03_src/lib
 placement:
-  # anchors are PINNED — the legalizer never moves them
-  anchors:
-    # XH footprints are pad-1-origin; pads run +x at rot 0. Pitch must be
-    # >= 11.1 (B3B-XH courtyard is 10.99 wide) or bodies overlap pairwise
-    # and J1/J3 pad 1 lands on the corner mounting holes.
-    J1: [30.2, 24.2, 0]
-    J2: [41.3, 24.2, 0]
-    J5: [52.5, 24.2, 0]
-    J3: [30.2, 60.8, 0]
-    J4: [41.3, 60.8, 0]
-    J6: [53.5, 60.8, 0]
-    U1: [38.0, 42.0, 0]
-    Q1: [28.5, 36.0, 0]
-    JP1: [63.0, 42.0, 270]
-  # seeds are starting points the legalizer may walk outward from
-  seeds:
-    R1: [28.5, 39.5]
-    R2: [26.6, 42.6]     # moved: its GND pad kept landing on the S_PLUS B.Cu run
-    C1: [28.5, 44.5]
-    C2: [28.5, 47.0]
-    R7: [63.0, 27.5]
-    C7: [63.0, 30.0]
-    SJ1: [63.0, 32.5]
-    C3: [44.0, 38.0]
-    C4: [47.0, 38.0]
-    C5: [44.0, 46.0]
-    C6: [47.0, 46.0]
-    D1: [55.0, 55.0]
-    D2: [58.0, 55.0]
-    TP1: [24.0, 32.0]
-    TP2: [24.0, 40.0]
-    TP3: [24.0, 48.0]
-    TP4: [24.0, 55.0]
-    TP5: [52.0, 51.0]
-    TP6: [56.0, 51.0]
-    TP7: [60.0, 51.0]
+  require_anchor: true
+  anchors: {}
+  seeds: {}
+  regions:
+    adc_reference:
+    - 75
+    - 85
+    - 145
+    - 134
+    input_buck:
+    - 25
+    - 85
+    - 70
+    - 110
+    quiet_power:
+    - 25
+    - 105
+    - 75
+    - 134
+    digital_power:
+    - 145
+    - 85
+    - 185
+    - 134
+    xmos_core:
+    - 185
+    - 72
+    - 232
+    - 128
+    clock_flash_debug:
+    - 185
+    - 112
+    - 232
+    - 136
+    audio_clock_tdm:
+    - 140
+    - 72
+    - 190
+    - 112
+    usb_frontend:
+    - 200
+    - 35
+    - 236
+    - 70
+    usb_vbus_sense:
+    - 195
+    - 62
+    - 220
+    - 82
+    debug_connector:
+    - 218
+    - 35
+    - 238
+    - 65
+    analog_ch1:
+    - 25
+    - 42
+    - 47
+    - 84
+    analog_ch2:
+    - 47
+    - 42
+    - 69
+    - 84
+    analog_ch3:
+    - 69
+    - 42
+    - 91
+    - 84
+    analog_ch4:
+    - 91
+    - 42
+    - 113
+    - 84
+    analog_ch5:
+    - 113
+    - 42
+    - 135
+    - 84
+    analog_ch6:
+    - 135
+    - 42
+    - 157
+    - 84
+    analog_ch7:
+    - 157
+    - 42
+    - 179
+    - 84
+    analog_ch8:
+    - 179
+    - 42
+    - 201
+    - 84
   patterns:
-    # the KiCad SolderJumper footprint ships exclude_from_bom but the symbol
-    # is in_bom yes -> footprint_symbol_mismatch parity error. Clear it.
-    - match: "SJ*"
-      clear_attrs: [exclude_from_bom]
-    # Draft component-local model sources only; no placement or registration adopted.
-    - match:
-      - J1
-      - J2
-      - J3
-      - J4
-      - J5
-      - J6
-      - J7
-      - J8
-      model_override: ${KIPRJMOD}/../03_src/lib/3dmodels/wurth/J_Wurth_WR-MJ_615008160221.step
-    - match:
-      - F1
-      - F2
-      - F3
-      - F4
-      - F5
-      - F6
-      - F7
-      - F8
-      model_override: ${KIPRJMOD}/../03_src/lib/3dmodels/derived/Littelfuse_1812L035_60_max-envelope.wrl
-    - match:
-      - C_A1P
-      - C_A1N
-      - C_A2P
-      - C_A2N
-      - C_A3P
-      - C_A3N
-      - C_A4P
-      - C_A4N
-      - C_A5P
-      - C_A5N
-      - C_A6P
-      - C_A6N
-      - C_A7P
-      - C_A7N
-      - C_A8P
-      - C_A8N
-      model_override: ${KIPRJMOD}/../03_src/lib/3dmodels/kicad/C_Rect_L7.2mm_W5.0mm_P5.00mm.step
-    - match:
-      - U_ADC
-      model_override: ${KIPRJMOD}/../03_src/lib/3dmodels/derived/Cirrus_CS5308P_QFN48_nominal.wrl
-    - match:
-      - U_ISO1
-      - U_ISO2
-      - U_ISO3
-      - U_ISO4
-      - U_ISO5
-      - U_ISO6
-      - U_ISO7
-      - U_ISO8
-      model_override: ${KIPRJMOD}/../03_src/lib/3dmodels/derived/TI_DSG0008A_nominal.wrl
-    - match:
-      - U_PWR
-      - U_AUDIO
-      model_override: ${KIPRJMOD}/../03_src/lib/3dmodels/derived/TI_DSE0006A_nominal.wrl
-  legalize: {enable: true, clearance: 0.25, edge_margin: 1.0, hole_keepout: 2.6, ring_max: 40}
-
+  - match:
+    - C_FILT1_10U
+    - C_FILT1_1U
+    - C_FILT1_470U
+    - C_FILT2_10U
+    - C_FILT2_1U
+    - C_FILT2_470U
+    - C_LDO_A
+    - C_LDO_D
+    - C_RST1
+    - C_RST2
+    - C_RST_T
+    - C_VDDA1_10N
+    - C_VDDA1_4U7
+    - C_VDDA2_10N
+    - C_VDDA2_4U7
+    - C_VDDIO
+    - C_VMID1_470N
+    - C_VMID1_4U7
+    - C_VMID1_EXT_10U
+    - C_VMID1_EXT_1U
+    - C_VMID2_470N
+    - C_VMID2_4U7
+    - C_VMID2_EXT_10U
+    - C_VMID2_EXT_1U
+    - Q_RST1
+    - R_CFG1
+    - R_CFG2
+    - R_CFG4
+    - R_CFG5
+    - R_FILT1P
+    - R_FILT2P
+    - R_RESET_GPD
+    - R_RESET_PU
+    - R_RST_T
+    - R_VMID1_BOT
+    - R_VMID1_TOP
+    - R_VMID2_BOT
+    - R_VMID2_TOP
+    - U_ADC
+    - U_RST1
+    - U_RST2
+    region: adc_reference
+  - match:
+    - C_A1N
+    - C_A1P
+    - C_ADC_CM1N
+    - C_ADC_CM1P
+    - C_FB1N
+    - C_FB1P
+    - C_FILTER1N1
+    - C_FILTER1N2
+    - C_FILTER1P1
+    - C_FILTER1P2
+    - C_ISO1
+    - C_OPA1
+    - F1
+    - R_ADC_PD1N
+    - R_ADC_PD1P
+    - R_B1N
+    - R_B1P
+    - R_IN1N
+    - R_IN1P
+    - R_OUT1N
+    - R_OUT1P
+    - R_X1N
+    - R_X1P
+    - U_AFE1
+    - U_ESD1
+    - U_ISO1
+    region: analog_ch1
+  - match:
+    - C_A2N
+    - C_A2P
+    - C_ADC_CM2N
+    - C_ADC_CM2P
+    - C_FB2N
+    - C_FB2P
+    - C_FILTER2N1
+    - C_FILTER2N2
+    - C_FILTER2P1
+    - C_FILTER2P2
+    - C_ISO2
+    - C_OPA2
+    - F2
+    - R_ADC_PD2N
+    - R_ADC_PD2P
+    - R_B2N
+    - R_B2P
+    - R_IN2N
+    - R_IN2P
+    - R_OUT2N
+    - R_OUT2P
+    - R_X2N
+    - R_X2P
+    - U_AFE2
+    - U_ESD2
+    - U_ISO2
+    region: analog_ch2
+  - match:
+    - C_A3N
+    - C_A3P
+    - C_ADC_CM3N
+    - C_ADC_CM3P
+    - C_FB3N
+    - C_FB3P
+    - C_FILTER3N1
+    - C_FILTER3N2
+    - C_FILTER3P1
+    - C_FILTER3P2
+    - C_ISO3
+    - C_OPA3
+    - F3
+    - R_ADC_PD3N
+    - R_ADC_PD3P
+    - R_B3N
+    - R_B3P
+    - R_IN3N
+    - R_IN3P
+    - R_OUT3N
+    - R_OUT3P
+    - R_X3N
+    - R_X3P
+    - U_AFE3
+    - U_ESD3
+    - U_ISO3
+    region: analog_ch3
+  - match:
+    - C_A4N
+    - C_A4P
+    - C_ADC_CM4N
+    - C_ADC_CM4P
+    - C_FB4N
+    - C_FB4P
+    - C_FILTER4N1
+    - C_FILTER4N2
+    - C_FILTER4P1
+    - C_FILTER4P2
+    - C_ISO4
+    - C_OPA4
+    - F4
+    - R_ADC_PD4N
+    - R_ADC_PD4P
+    - R_B4N
+    - R_B4P
+    - R_IN4N
+    - R_IN4P
+    - R_OUT4N
+    - R_OUT4P
+    - R_X4N
+    - R_X4P
+    - U_AFE4
+    - U_ESD4
+    - U_ISO4
+    region: analog_ch4
+  - match:
+    - C_A5N
+    - C_A5P
+    - C_ADC_CM5N
+    - C_ADC_CM5P
+    - C_FB5N
+    - C_FB5P
+    - C_FILTER5N1
+    - C_FILTER5N2
+    - C_FILTER5P1
+    - C_FILTER5P2
+    - C_ISO5
+    - C_OPA5
+    - F5
+    - R_ADC_PD5N
+    - R_ADC_PD5P
+    - R_B5N
+    - R_B5P
+    - R_IN5N
+    - R_IN5P
+    - R_OUT5N
+    - R_OUT5P
+    - R_X5N
+    - R_X5P
+    - U_AFE5
+    - U_ESD5
+    - U_ISO5
+    region: analog_ch5
+  - match:
+    - C_A6N
+    - C_A6P
+    - C_ADC_CM6N
+    - C_ADC_CM6P
+    - C_FB6N
+    - C_FB6P
+    - C_FILTER6N1
+    - C_FILTER6N2
+    - C_FILTER6P1
+    - C_FILTER6P2
+    - C_ISO6
+    - C_OPA6
+    - F6
+    - R_ADC_PD6N
+    - R_ADC_PD6P
+    - R_B6N
+    - R_B6P
+    - R_IN6N
+    - R_IN6P
+    - R_OUT6N
+    - R_OUT6P
+    - R_X6N
+    - R_X6P
+    - U_AFE6
+    - U_ESD6
+    - U_ISO6
+    region: analog_ch6
+  - match:
+    - C_A7N
+    - C_A7P
+    - C_ADC_CM7N
+    - C_ADC_CM7P
+    - C_FB7N
+    - C_FB7P
+    - C_FILTER7N1
+    - C_FILTER7N2
+    - C_FILTER7P1
+    - C_FILTER7P2
+    - C_ISO7
+    - C_OPA7
+    - F7
+    - R_ADC_PD7N
+    - R_ADC_PD7P
+    - R_B7N
+    - R_B7P
+    - R_IN7N
+    - R_IN7P
+    - R_OUT7N
+    - R_OUT7P
+    - R_X7N
+    - R_X7P
+    - U_AFE7
+    - U_ESD7
+    - U_ISO7
+    region: analog_ch7
+  - match:
+    - C_A8N
+    - C_A8P
+    - C_ADC_CM8N
+    - C_ADC_CM8P
+    - C_FB8N
+    - C_FB8P
+    - C_FILTER8N1
+    - C_FILTER8N2
+    - C_FILTER8P1
+    - C_FILTER8P2
+    - C_ISO8
+    - C_OPA8
+    - F8
+    - R_ADC_PD8N
+    - R_ADC_PD8P
+    - R_B8N
+    - R_B8P
+    - R_IN8N
+    - R_IN8P
+    - R_OUT8N
+    - R_OUT8P
+    - R_X8N
+    - R_X8P
+    - U_AFE8
+    - U_ESD8
+    - U_ISO8
+    region: analog_ch8
+  - match:
+    - C_ADC_OK_CT
+    - C_ADC_OK_VDD
+    - C_ADC_OUT
+    - C_AUDIO_OSC
+    - C_FSYNC_FF1
+    - C_FSYNC_FF2
+    - C_FSYNC_INV
+    - C_FSYNC_OR
+    - C_MCLK_BUF
+    - C_XLATE_A
+    - C_XLATE_B
+    - Q_MCLK_GATE
+    - Q_TDM_GATE
+    - R_ADC_DATA_PD
+    - R_ADC_OK_B1
+    - R_ADC_OK_B2
+    - R_ADC_OK_PU
+    - R_BCLK
+    - R_BCLK_RAW_PD
+    - R_FSYNC
+    - R_FSYNC_RAW_PD
+    - R_MCLK
+    - R_MCLK_OE_PU
+    - R_TDM_OE_PU
+    - U_ADC_OK
+    - U_ADC_OUT
+    - U_BCLK_INV
+    - U_FSYNC_FF1
+    - U_FSYNC_FF2
+    - U_FSYNC_OR
+    - U_MCLK_BUF
+    - U_TDM_XLATE
+    - Y_AUDIO
+    region: audio_clock_tdm
+  - match:
+    - C_FLASH
+    - C_XTAL_IN
+    - C_XTAL_OUT
+    - R_QSPI_CS
+    - R_XTAL_DRIVE
+    - R_XTAL_FB
+    - U_FLASH
+    - Y_XU
+    region: clock_flash_debug
+  - match:
+    - C_1V8_OK_VDD
+    - C_CORE_EN_CT
+    - C_CORE_OK
+    - C_U_1V8_IN_1
+    - C_U_1V8_IN_2
+    - C_U_1V8_OUT_1
+    - C_U_1V8_OUT_2
+    - C_U_3V3X_IN_1
+    - C_U_3V3X_IN_2
+    - C_U_3V3X_OUT_1
+    - C_U_3V3X_OUT_2
+    - C_U_CORE_IN_1
+    - C_U_CORE_IN_2
+    - C_U_CORE_OUT_1
+    - C_U_CORE_OUT_2
+    - L_U_1V8
+    - L_U_3V3X
+    - L_U_CORE
+    - R_CORE_EN_PU
+    - R_CORE_FB_BOTTOM
+    - R_CORE_FB_TOP
+    - R_XU_RST_PU
+    - U_1V8
+    - U_1V8_OK
+    - U_3V3X
+    - U_CORE
+    - U_CORE_OK
+    region: digital_power
+  - match:
+    - C_IN1
+    - C_IN2
+    - C_IN_HF
+    - C_OUT1
+    - C_OUT2
+    - C_OUT3
+    - C_VCC
+    - C_VLDO
+    - D_IN
+    - D_QIN_GS
+    - F_IN
+    - Q_IN
+    - R_AGND_JOIN
+    - R_QIN_G
+    - R_RT
+    - U_BUCK
+    region: input_buck
+  - match:
+    - C_AUDIO
+    - C_AUDIO_CT1
+    - C_AUDIO_CT2
+    - C_DUMP_LOGIC
+    - C_DUMP_TIME
+    - C_HOLD1
+    - C_HOLD2
+    - C_LDO_EN
+    - C_LDO_IN
+    - C_LDO_NR4
+    - C_LDO_NR5
+    - C_LDO_OUT
+    - C_OPA_BULK
+    - C_PWR
+    - C_PWR_CT
+    - D_HOLD
+    - Q_DUMP
+    - Q_PRE
+    - Q_PRE_EN
+    - R_ADC_BOT
+    - R_ADC_TOP
+    - R_AUDIO_PD
+    - R_AUDIO_PU
+    - R_DUMP
+    - R_DUMP_PD
+    - R_DUMP_TIME1
+    - R_DUMP_TIME2
+    - R_LDO_SET
+    - R_OPA_BLEED1
+    - R_OPA_BLEED2
+    - R_PRE
+    - R_PRE_G
+    - R_PWR_BOT
+    - R_PWR_PU
+    - R_PWR_TOP
+    - U_AUDIO
+    - U_DUMP
+    - U_LDO
+    - U_LDO_EN
+    - U_PWR
+    region: quiet_power
+  - match:
+    - R_USB_CC1
+    - R_USB_CC2
+    - U_USB_CC_ESD
+    - U_USB_ESD
+    - U_USB_VBUS_ESD
+    region: usb_frontend
+  - match:
+    - Q_VBUS
+    - R_VBUS_B
+    - R_VBUS_BE
+    - R_VBUS_PU
+    region: usb_vbus_sense
+  - match:
+    - C_PLL_100N
+    - C_PLL_1U
+    - C_XU_USB18
+    - C_XU_USB33
+    - C_XU_VDDIO_10
+    - C_XU_VDDIO_109
+    - C_XU_VDDIO_121
+    - C_XU_VDDIO_17
+    - C_XU_VDDIO_35
+    - C_XU_VDDIO_56
+    - C_XU_VDDIO_72
+    - C_XU_VDDIO_89
+    - C_XU_VDD_104
+    - C_XU_VDD_105
+    - C_XU_VDD_106
+    - C_XU_VDD_11
+    - C_XU_VDD_113
+    - C_XU_VDD_14
+    - C_XU_VDD_18
+    - C_XU_VDD_39
+    - C_XU_VDD_45
+    - C_XU_VDD_5
+    - C_XU_VDD_50
+    - C_XU_VDD_54
+    - C_XU_VDD_68
+    - C_XU_VDD_85
+    - C_XU_VDD_95
+    - FB_PLL
+    - U_XU
+    region: xmos_core
+  - match:
+    - J1
+    - J2
+    - J3
+    - J4
+    - J5
+    - J6
+    - J7
+    - J8
+    model_override: ${KIPRJMOD}/../03_src/lib/3dmodels/wurth/J_Wurth_WR-MJ_615008160221.step
+  - match:
+    - F1
+    - F2
+    - F3
+    - F4
+    - F5
+    - F6
+    - F7
+    - F8
+    model_override: ${KIPRJMOD}/../03_src/lib/3dmodels/derived/Littelfuse_1812L035_60_max-envelope.wrl
+  - match:
+    - C_A1P
+    - C_A1N
+    - C_A2P
+    - C_A2N
+    - C_A3P
+    - C_A3N
+    - C_A4P
+    - C_A4N
+    - C_A5P
+    - C_A5N
+    - C_A6P
+    - C_A6N
+    - C_A7P
+    - C_A7N
+    - C_A8P
+    - C_A8N
+    model_override: ${KIPRJMOD}/../03_src/lib/3dmodels/kicad/C_Rect_L7.2mm_W5.0mm_P5.00mm.step
+  - match:
+    - U_ADC
+    model_override: ${KIPRJMOD}/../03_src/lib/3dmodels/derived/Cirrus_CS5308P_QFN48_nominal.wrl
+  - match:
+    - U_ISO1
+    - U_ISO2
+    - U_ISO3
+    - U_ISO4
+    - U_ISO5
+    - U_ISO6
+    - U_ISO7
+    - U_ISO8
+    model_override: ${KIPRJMOD}/../03_src/lib/3dmodels/derived/TI_DSG0008A_nominal.wrl
+  - match:
+    - U_PWR
+    - U_AUDIO
+    model_override: ${KIPRJMOD}/../03_src/lib/3dmodels/derived/TI_DSE0006A_nominal.wrl
+  legalize:
+    enable: true
+    clearance: 0.25
+    edge_margin: 1.0
+    hole_keepout: 2.6
+    ring_max: 40
 design_rules:
   track_min_width: 0.15
-  min_clearance: 0.127
+  min_clearance: 0.15
   via_min_annulus: 0.13
   hole_clearance: 0.25
   hole_to_hole: 0.5
@@ -143,45 +635,33 @@ design_rules:
   min_through_drill: 0.2
   solder_mask_min_width: 0.0
   solder_mask_expansion: 0.0
-
 zones:
-  - {net: GND, layers: [F.Cu, B.Cu], priority: 0, min_thickness: 0.3, clearance: 0.3, connect: thermal}
-
+- net: GND
+  layers:
+  - In1.Cu
+  priority: 0
+  min_thickness: 0.2
+  clearance: 0.15
+  connect: solid
 silk:
   min_text_height: 0.6
-  refdes: {size: 0.6, min_size: 0.45, fab_copy: true, clearance: 0.16, priority_prefixes: "UJQ"}
+  refdes:
+    size: 0.6
+    min_size: 0.45
+    fab_copy: true
+    clearance: 0.16
+    priority_prefixes: UJQ
   labels:
-    - {match: "TP*", from: value, strip: "TP ", size: 0.6}
-  captions:
-    - ["LOAD SENSOR 1  B R W", 30.5, 29.2, 0.7]
-    - ["SENSOR 2  B R W", 38.8, 31.0, 0.7]
-    - ["FULL BRIDGE ALT: E+ S+ S- E- SH", 52.0, 29.4, 0.65]
-    - ["SENSOR 3  B R W", 30.5, 57.2, 0.7]
-    - ["SENSOR 4  B R W", 39.5, 55.4, 0.7]
-    - ["TO COOK-HUB J6: 5V 3V3 G DAT CLK", 54.0, 57.2, 0.65]
-    - ["JP1 RATE: 1-2=10SPS 2-3=80SPS", 62.0, 37.8, 0.6]
-    - ["SJ1: SHIELD HARD BOND", 63.0, 34.6, 0.55]
-    # title block lives in the SE clearing (JP1 y<=44.5, TP row y=51)
-    - ["cook-loadcell v1.0  HX711 PCB C", 57.0, 47.0, 0.7]
-    - ["MODE = POPULATION: 4x HALF-BRIDGE OR J5", 57.0, 48.7, 0.6]
-
+  - match: TP*
+    from: value
+    strip: 'TP '
+    size: 0.6
+  captions: []
 asserts:
   pad_net:
-    - {ref: D1, pad: 1, net: DAT}      # pad 1 = cathode
-    - {ref: D2, pad: 1, net: CLK}
-    - {ref: Q1, pad: 2, net: 5V}
-    - {ref: Q1, pad: 3, net: E_PLUS}
-    - {ref: U1, pad: 8, net: S_PLUS}
-    - {ref: U1, pad: 7, net: S_MINUS}
-    - {ref: J6, pad: 4, net: DAT}
-    - {ref: J6, pad: 5, net: CLK}
-
-# ESCAPE CORRIDORS (Phase F 2026-07-21, from usb-pwr-hub-3s ADR-0008):
-# reserved routing lanes off a dense package's loaded side — satisfies
-# escape_check v2's `escape-corridor` condition (P-ESC). Expands to a named
-# rule area `esc_<ref>_<side>` denying footprints+pours (tracks/vias stay
-# allowed — that is the lane). Unknown ref / bad side = hard error.
-#
-# escape_corridors:
-#   - {ref: U1, side: E, depth_mm: 4.0}            # full-side lane
-#   - {ref: U2, side: N, depth_mm: 3.0, width_mm: 6.0, layers: [F.Cu]}
+  - ref: U_XU
+    pad: 59
+    net: USB_DN
+  - ref: U_XU
+    pad: 60
+    net: USB_DP

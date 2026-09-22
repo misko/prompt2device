@@ -87,7 +87,9 @@ findings:
   state: open
   blocks_at_or_above: DESIGN_CLEAN
   owner: layout
-  finding: Floorplan and route contracts retain unrelated scaffold examples.
+  finding: Crow-specific four-layer exploratory floorplan replaces load-cell seeds, with 411 block-region
+    seeds and 11 unresolved connector poses. Routing contract still contains scaffold examples; actual
+    stackup and placement admission remain pending.
   closes_when: Replace examples with Crow USB dimensions, connector orientations, block placement
     constraints and routing intent before native placement admission.
   evidence:

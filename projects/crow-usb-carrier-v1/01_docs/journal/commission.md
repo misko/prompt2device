@@ -118,3 +118,8 @@
 - did: reconciled BRIEF intake with adopted XU316 architecture, supply intent, selected stackup and completed SOL delegation evidence; kept native-board criteria unmet and unanswered scope questions unchanged.
 - result: contracts 335 files, zero violations. Passive-checker root review found post-trip leakage lacked a sustained-safe-current comparison; correction requested. Opened bounded SOL read-only research for actual capacitor and spoke-fault architecture closure, plus replacement of layout seed data.
 - next: assess concrete capacitor/protection choices and Crow-specific floorplan proposal; no engineering pass inferred from checker completion.
+
+## 2026-09-22 — iterate 24
+- did: replaced load-cell floorplan geometry/labels with a Crow-specific four-layer exploratory canvas and exact modular region seeds. Corrected SOL proposal by excluding connector refs from region patterns, since require_anchor alone does not override patterns.
+- result: all 422 refs accounted, 411 region seeds and 11 intentionally unresolved connector poses; no PCB generated. Routing seed replacement and final native stackup remain open.
+- next: close connector geometry and review actual capacitance policy/evidence boundary; retain commissioning hold.
