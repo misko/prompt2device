@@ -12,3 +12,8 @@
 - did: documented USB device/host boundary, power-state requirements, audio-rate arithmetic and joint placement ownership in the draft architecture.
 - result: no part or electrical gate frozen; research still active. Correction: the preceding iterate1 timestamp05:36 was typed ahead of the observed clock; its command results occurred before05:34:42UTC.
 - next: incorporate cited IC and inherited-requirements research; resolve firmware dependency before selection.
+
+## 2026-09-22 05:46 — iterate 3
+- did: reopened both Sol reports, closed exact runtime attempts, retained research with coordinator dispositions; opened two bounded hardware source tasks.
+- result: requirements delivery PASS; USB research delivery INCOMPLETE for a result.json outside allocated outputs. XU316 preferred conditionally; no firmware, schematic or layout acceptance. Official pin data rechecked, including fixed 1.8 V bottom I/O domain.
+- next: obtain source-ready XU316 dossier/pinmap and selective analog source package; independently review before adoption. Firmware question remains unanswered.

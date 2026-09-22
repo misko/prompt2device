@@ -1,7 +1,7 @@
 stage: commission
-step: "USB IC and inherited Crow requirements research delegated to Sol"
-measure: "Native tool qualification4/4; structure87files0violations; commission still open"
+step: "Sol preparing XU316 dossier and selective analog source adoption"
+measure: "Preferred USB candidate identified; requirements delivery PASS; USB research delivery INCOMPLETE (output path)"
 state: working
-next: "Compare USB candidates, close firmware and power assumptions, author exact requirements"
+next: "Review hardware source packets; resolve firmware authorization before complete schematic freeze"
 op_pid:
-updated: 2026-09-22T05:33:53.643089+00:00
+updated: 2026-09-22T05:46:44.881163+00:00

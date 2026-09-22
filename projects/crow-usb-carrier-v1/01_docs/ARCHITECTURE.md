@@ -1,7 +1,8 @@
 # Crow USB carrier architecture — commissioning draft
 
-Status: candidate architecture. No IC, pin map, rail setpoint, stackup or source
-rule has been frozen. The commissioning hold remains active.
+Status: candidate architecture. XU316-1024-TQ128-C24 is preferred for continued
+hardware design, conditional on its firmware path. No IC, pin map, rail setpoint,
+stackup or source rule has been frozen. The commissioning hold remains active.
 
 ## Block diagram
 
@@ -107,3 +108,13 @@ Firmware, USB identity/configuration and host compatibility must be resolved
 before freezing the interface IC. Existing firmware authoring remains forbidden
 pending the user's answer; the hardware design cannot claim a working USB path
 while an indispensable software dependency is unowned.
+
+## Research disposition
+
+[USB IC research](research/2026-09-22-usb-ic-research.md) favors XU316 over the
+older XU208 and the less-accessible CM6637 production path. The
+[requirements delta](research/2026-09-22-crow-requirements.md) identifies which
+MCH-specific circuits disappear and which analog sequencing functions remain.
+[Coordinator disposition](research/2026-09-22-research-disposition.md) records
+claim limits and corrections. Source adoption is now being prepared; none of
+these reports supplies a completed schematic or board.
