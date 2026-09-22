@@ -307,3 +307,7 @@ TI SLVSEF9I pin table and§7.4.2 explicitly require unusedPG outputs to float. R
 ## Route/stitch clearance consistency — 2026-09-22
 
 Aligned route.common.clearance and stitch.clearance from0.15to0.20mm to meet the existing0.20mm INPUT_TRUNK/PARENT_5V/POD_POWER/QUIET_POWER DRC clearances. Root YAML comparison confirms exactly these two settings changed. USB's explicit0.410mmwidth/0.150mm pairgap and RF stack contract are unchanged. Owning tier_preflight changes1FAIL/4WARN→0FAIL/3WARN; remaining warnings are stitch hole-to-copper defaults, astar fallback hole clearance, and placement rescue-via space. This config-only result does not resolve selected-part P-TIER mismatch or prove routed clearance. Evidence:06_build/verification/route-clearance-adoption. No copper generated.
+
+## Ordinary-via hole clearance made explicit — 2026-09-22
+
+Set stitch.via.tiers and stitch.astar_fallback.via to the existing0.60/0.30mm ordinary geometry with hole_to_copper0.255mm. The live consumers now screen against the board's0.25mmhole floor plus5um, rather than their0.205mm implicit default. Explicit geometry also prevents a future tier change from silently changing fallback drill size. Owningtier_preflight now0FAIL/1WARN; the remaining warning is placementlegalize gap versus rescue-via room, which needs physicalplacement resolution rather than a waivedrule. Evidence:06_build/verification/route-clearance-adoption/hole-clearance-after.log. No copper orselectedprocesschange.
