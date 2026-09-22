@@ -438,3 +438,8 @@ Set stitch.via.tiers and stitch.astar_fallback.via to the existing0.60/0.30mm or
 - did: Archived exact independent ACCEPT reviews for40sourcepages/493refs and integratedCKGbank. Added missing existing ASFL1 packaged oscillator module selection in integration.yaml; no circuit change.
 - result: ActualP-MOD4/4 (2modules,2bare), source policy/rules/electrical-invariant/net-label/control-protocol checks pass. RFcontract/context/solver pass and control-profile has explicitN-A; connector base remains physicalINCOMPLETE with SOURCEphasePASS. RF-SOURCE currently FAILS empty route-net denominator and is being repaired at its owning stage boundary; no admission/hold removal yet.
 - next: Close RFsource configuration mismatch without weakening controlled-impedance/USB obligations, independently review admission change, then run native schematic conductor.
+
+## 2026-09-22T14:27:15.282510+00:00 — iterate (commission register integrity)
+- did: Reopened prompt integrity and decision-register bijection against all current ADR files. Original prompt hash matches. Added missing register entries for historical/superseded0005 and accepted0006; no decision content or authority changed.
+- result: Register now covers all9ADR files exactly once; capability-profile router accepts current high-speed-digital/design configuration. Independent RF diagnosis identifies the source checker demanding RF-module geometry from a valid legacy USB contract; narrow compatibility repair is under implementation with regression controls.
+- next: Review the checker repair and complete actual source-admission checks before deleting the commissioning hold.

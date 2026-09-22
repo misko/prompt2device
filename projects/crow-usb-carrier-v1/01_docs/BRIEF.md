@@ -106,6 +106,8 @@ Escalate if: a specific enclosure, board outline, assembly budget or different P
 | 0002 | USB sensing and independent external carrier power topology. | agent (A2 / P-delegation) | [decision](decisions/0002-usb-power-path-intent.md) |
 | 0003 | Onboard XU316, retained CS5308P and integrated TPSM power boundary. | agent (P-delegation) | [decision](decisions/0003-integrated-subsystem-boundaries.md) |
 | 0004 | USB shell to local GND; Crow spoke shells remain on CHASSIS. | agent (A2 / P-delegation) | [decision](decisions/0004-usb-shield-separation.md) |
+| 0005 | Historical four-layer fabrication/cost baseline; superseded by 0006. | agent (A3 / P-delegation) | [superseded decision](decisions/0005-four-layer-design-cost-posture.md) |
+| 0006 | Four-layer advanced escape/process posture, with selective via fill/cap qualification owed. | agent (A3 / P-delegation) | [decision](decisions/0006-four-layer-advanced-escape-process.md) |
 | 0007 | Initial outline and design-only cost assumptions; no purchase authorization. | agent (A3 / P-delegation) | [decision](decisions/0007-outline-and-design-cost-assumptions.md) |
 | 0008 | USB tree endpoint paths, 1 mm skew ceiling and no-signal-via policy. | agent (P-delegation) | [decision](decisions/0008-usb-realized-copper-policy.md) |
 | A1 | Existing Crow audio/spoke function retained provisionally. | agent (A1 / P-delegation) | log A1 |
