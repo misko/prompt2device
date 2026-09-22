@@ -128,3 +128,8 @@
 - did: adopted reviewed passive distribution reader and regression fixtures, updated template/project key ledgers, and replaced Crow hard-limit placeholders with typed normal-load PPTC reference data.
 - result: topology tests65/65, early-design52/52. Crow topology13/13 PASS; E-FAULT missing proof FAIL and eight E-MARGIN failures retained. Reader limitations documented separately from engineering acceptance.
 - next: assess active per-spoke limiter proposal against actual source/thermal behavior and finish capacitor evidence review.
+
+## 2026-09-22 — iterate 26
+- did: replaced route seed paths/geometry/nets with Crow-specific draft waves and USB differential-pair/connector/shunt contracts. Retained pre-route review and decision admission requirements.
+- result: 60 exact declared wave nets resolve in current source; native USB aliases and ESD pins checked; contracts337files0violations. SOL capacitor policy review corrected the coordinator-imposed manufacturer-guarantee requirement: owning E-CAP permits justified conservative engineering derating. Isolated capacitor and active-spoke candidates are now in progress.
+- next: review candidates against exact primary facts and update modular source population; retain hold until source/connector/thermal facts close.
