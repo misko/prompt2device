@@ -253,3 +253,7 @@ Bound exact GRM1555C1H220JA01D toC76960 and RC0402FR-0733RL toC138002 after manu
 ## LT3045 packaging substitution — 2026-09-22
 
 Adopted independently reviewed LT3045EDD#PBF / C666574 with complete original dossier preserved. Exact source comparison changes only U_LDO MPN/supplier fields; all connections remain equal. Full sourcing advances to 68/85 two-pool, 17 one-pool, zero unparseable. Electrical and pin-name checks pass. See research/2026-09-22-lt3045-packaging-adoption.md. Commissioning hold remains.
+
+## Connector and inductor catalog identity — 2026-09-22
+
+Integrated exact C192562 Molex and C19270343 Würth catalog identities; the latter remains zero stock. Only four supplier metadata records changed in expanded source. Root full owning sourcing grade is 69/85 two-pool, 16 one-pool, zero unparseable. See research/2026-09-22-connector-inductor-catalog-adoption.md. SOL capacitor packaging candidates failed their actual two-pool check and remain unmerged; alternative electrical qualification is in progress.

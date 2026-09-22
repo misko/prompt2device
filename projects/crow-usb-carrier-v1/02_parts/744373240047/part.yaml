@@ -35,7 +35,8 @@ qualification:
   moisture_sensitivity_level: 1
 procurement:
   classification: current availability and pricing not qualified in this packet
-  lcsc: null
+  lcsc: C19270343
+sourcing: {lcsc: C19270343, note: "Exact catalog identity; observed stock is zero and no allocation claim is made."}
 layout:
   source: Würth 744373240047 revision 003.000 page 1 and TI SLVSEF9I Table 8-5
   reviewed: '2026-09-22'

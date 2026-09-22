@@ -6,7 +6,7 @@ export const CROW_USB_POWER_BOUNDARY = { input:["12V_IN","GND"], outputs:["12V_P
 export interface CrowUsbInputPowerHotProps { net?: (name:string)=>string }
 const N0=(s:string)=>`net.${/^\d/.test(s)?`N${s}`:s}`
 const sup=(j:string)=>({jlcpcb:j?[j]:[]})
-const sourced=(mpn:string,jlc="")=>jlc||({"0451004.MRL":"C27515","TPSM63603V5RDHR":"C5219330","RC0402FR-0713KL":"C138057"} as Record<string,string>)[mpn]||""
+const sourced=(mpn:string,jlc="")=>jlc||({"43650-0200":"C192562","0451004.MRL":"C27515","TPSM63603V5RDHR":"C5219330","RC0402FR-0713KL":"C138057"} as Record<string,string>)[mpn]||""
 const R=({name,value,a,b,mpn,jlc="",n}:any)=><resistor name={name} resistance={value} footprint="0402" manufacturerPartNumber={mpn} supplierPartNumbers={sup(sourced(mpn,jlc))} connections={{pin1:n(a),pin2:n(b)}}/>
 const C=({name,value,a,b,mpn,footprint="0402",jlc="",n}:any)=><capacitor name={name} capacitance={value} footprint={footprint} manufacturerPartNumber={mpn} supplierPartNumbers={sup(jlc)} connections={{pin1:n(a),pin2:n(b)}}/>
 const Chip=({jlc="",manufacturerPartNumber,...p}:any)=><chip manufacturerPartNumber={manufacturerPartNumber} supplierPartNumbers={sup(sourced(manufacturerPartNumber,jlc))} {...p}/>

@@ -28,4 +28,4 @@ layout:
   notes: ["Place at the west edge ahead of every protection element."]
 layout_refs:
   - {tier: 1, reached: true, artifact: "Molex 436501000 sales drawing", why: "Manufacturer authority fixes the connector family geometry."}
-sourcing: {lcsc: null, alternates: [], note: "Exact orderable MPN selected; allocation and physical assembly remain blocked."}
+sourcing: {lcsc: C192562, alternates: [], note: "Catalog MPN 436500200 normalizes exactly to primary order code 43650-0200; allocation remains an order-time check."}
