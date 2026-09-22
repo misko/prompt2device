@@ -311,3 +311,8 @@ Aligned route.common.clearance and stitch.clearance from0.15to0.20mm to meet the
 ## Ordinary-via hole clearance made explicit — 2026-09-22
 
 Set stitch.via.tiers and stitch.astar_fallback.via to the existing0.60/0.30mm ordinary geometry with hole_to_copper0.255mm. The live consumers now screen against the board's0.25mmhole floor plus5um, rather than their0.205mm implicit default. Explicit geometry also prevents a future tier change from silently changing fallback drill size. Owningtier_preflight now0FAIL/1WARN; the remaining warning is placementlegalize gap versus rescue-via room, which needs physicalplacement resolution rather than a waivedrule. Evidence:06_build/verification/route-clearance-adoption/hole-clearance-after.log. No copper orselectedprocesschange.
+
+## 2026-09-22 12:59 — iterate (source preview refresh)
+- did: Regenerated source-only previews after capacitor, crystal resistor and unused buck PG changes at 421de202.
+- result: MEASURED 37 pages, 489/489 unique manifest references, no missing/extra/duplicate references and zero generation errors. Receipt and selected SVG bytes: `06_build/verification/source-pages-421de202/`. Root visual inspection of digital_power found long shared rail/ground wires and sparse grouping; generation coverage does not establish readability.
+- next: SOL readability owner will repair presentation in isolation and compare connectivity. Thermal process reconciliation and independent lifecycle-evidence review are running; commissioning hold remains.
