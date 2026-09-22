@@ -68,3 +68,8 @@
 - did: moved seven React list keys from pad intrinsic elements to keyed fragments, using the pinned local dependency JSX declarations.
 - result: TypeScript PASS. Expanded presentation/component/footprint properties are byte-identical before/after after flattening fragments and excluding React keys. Electrical source remains422refs/1276traces/0errors/26criticalendpointchecks. Contracts315files0violations.
 - next: continue native schematic admission and active SOL connector/power closure. No native schematic or board approval claimed.
+
+## 2026-09-22 — iterate 14
+- did: replaced copied load-cell netclasses with Crow routing intent and selected ordinary four-layer fabrication tier. Renamed negative USB net toUSB_DN so native differential-pair recognition works; source pin functions unchanged.
+- result: pcbnew confirmsDP/DNpairedandDMunpaired. Generic fixture emits6classes23patternsand0.410/0.150USBgeometry. Full1276endpointcomparison matches with single explicit alias mapping; TypeScript and RF-CONTRACT pass. No routed power or SI pass claimed.
+- next: review delivered SOL power-bound candidate; connector facts still active. Commission hold retained.

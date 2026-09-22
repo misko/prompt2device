@@ -2,7 +2,7 @@
 invariants:
 - assert: pin_on_net
   pin: U_XU.59
-  net: USB_DM
+  net: USB_DN
   adr: '0002'
   why: XU316 USB negative data pin
 - assert: pin_on_net

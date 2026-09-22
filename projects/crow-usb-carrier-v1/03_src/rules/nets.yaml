@@ -1,65 +1,56 @@
-# SCHEMA EXAMPLE (skill-owned, project-independent). Adopted from a proven
-# board as a reference for the generic backend's config format. Copy into a
-# new project's 03_src/ and replace the values — the KEYS are the contract.
-#
-# cook-loadcell net architecture — netclasses + DRU floors source.
-# fab_tier is a COST CEILING decided at commission (D-TIER), named from
-# skills/kicad-pcb/references/fab_tiers.yaml. Default to the CHEAPEST
-# plausible tier; policy_audit P-TIER blocks any part whose escape needs a
-# costlier one — raising it requires the tier ADR + ORDER_README line.
-#
-# fab_tier is also the SINGLE SOURCE of capability floors for the generic
-# backend (fab_tier_util.py): generate_rules_generic floors class widths at
-# the tier's min_track (an EXPLICIT width below it is a hard error, never a
-# silent clamp); route_and_stitch_generic derives missing via_size/via_drill/
-# clearance from the tier and rejects explicit sub-floor values; and
-# generate_board_generic floors silk text heights at min_silk_text_height.
-#
-# `classes` below are ALSO the width source for the router: a route.yaml
-# wave with no track_width derives it from its member nets' class floors
-# (largest member floor wins), and an explicit wave width below a member's
-# floor is a hard error at route-prep naming the class. One source — the
-# router can no longer disagree with the .kicad_dru gate this file emits.
-fab_tier: jlc_2layer_default   # 0.6/0.3 vias, no advanced option
-
+# Crow USB routing intent. Width floors do not prove routed IR or thermal margins.
+# Stack/model authority: rf.yaml and the retained vendor-response research.
+fab_tier: jlc_4layer_standard
+default_clearance: 0.15mm
+default_track_width: 0.20mm
 classes:
-  BRIDGE:
-    intent: >
-      Microvolt-level bridge nodes + excitation: the four ring splices and
-      E+/S+/S-/E-. 0.5mm floor = robustness + low IR drop in excitation;
-      kept < 15mm, guarded by both GND pours, no clock crossings (audit).
-    nets: [E_PLUS, S_PLUS, S_MINUS, RING_12, RING_23, RING_34, RING_41]
-    current: "excitation ~1.5mA (4x 2k bridge) + uV signals"
+  USB_HS:
+    nets: [USB_DP, USB_DN]
+    min_width: 0.410mm
+    clearance: 0.150mm
+    via_diameter: 0.6mm
+    via_drill: 0.3mm
+    diff_pair: {width: 0.410mm, gap: 0.150mm}
+    intent: Nominal 90 ohm masked F.Cu pair over continuous In1.Cu; exact geometry in rf.yaml.
+    routing: Coupled pair; source and connector escapes require exact-board review.
+    verify: Native differential-pair recognition, geometry, continuous return and at most 1 mm skew.
+  INPUT_TRUNK:
+    nets: [N12V_IN, N12V_FUSED, N12V_PROTECTED]
+    min_width: 1.2mm
+    clearance: 0.2mm
+    current: 2.12A
+    intent: Input protection trunk; use broad copper and allocate every neck/joint in the delivery budget.
+    routing: Broad continuous copper; width is a preliminary floor, not an IR qualification.
+    verify: Exact-board ampacity and source-to-spoke voltage drop at the hot operating corner.
+  PARENT_5V:
+    nets: [N5V_BUCK]
+    min_width: 1.0mm
+    clearance: 0.2mm
+    current: 1.9A
+    intent: Parent 5 V distribution under the current design allocation.
+    routing: Broad copper with converter loops kept local.
+    verify: Power-tree current census, dropout, IR and thermal analysis on realized copper.
+  DIGITAL_POWER:
+    nets: [N0V9, N1V8, N3V3X, U_CORE_SW, U_1V8_SW, U_3V3X_SW]
+    min_width: 0.6mm
+    clearance: 0.15mm
+    current: 1.2A
+    intent: Low-voltage digital rails; 1.2 A is the largest provisional rail allowance.
+    routing: Short local converter loops and broad distribution; switching nodes remain small islands.
+    verify: Per-rail load, voltage drop and exact converter loop geometry.
+  POD_POWER:
+    nets: [N12V_POD1, N12V_POD2, N12V_POD3, N12V_POD4, N12V_POD5, N12V_POD6, N12V_POD7, N12V_POD8]
     min_width: 0.5mm
-    routing: engineered corner stubs (KRT wave 1, analog corner)
-    verify: audit I-AN separation + DRC floor
-
-  PWR:
-    intent: 5V feed, AVDD regulator loop, 3V3 digital. 0.4mm floor.
-    nets: [5V, 3V3, AVDD_FB]
-    current: 0.02A
-    min_width: 0.4mm
-    routing: KRT
-    verify: DRC floor
-
-# Default 0.25: DAT, CLK, RATE_SEL, SH. GND = pours + stitch.
-
-# SCOPED FLOORS (canon M8 two-strike promotion: cook-hub u7_taps, then the
-# clean-room 3S append_sw_floor.py). A width relaxation that applies ONLY
-# inside a named board zone / rule area, emitted as a KiCad last-match
-# `insideArea('<zone>')` .kicad_dru rule AFTER the netclass floors — for
-# sense taps / thin backstops riding a pour-fed trunk class. `nets` scopes
-# the relaxation to the listed nets so an unrelated thin net crossing the
-# area keeps its own floor. `why` is REQUIRED (canon M4: a floor relaxation
-# without evidence is an inherited defect — generation fails without it),
-# and min_width must still be >= the declared tier's min_track (no scope
-# makes a sub-fab-floor track manufacturable).
-#
-# scoped_floors:
-#   - zone: sw_pour_zone          # zone or rule-area NAME on the board
-#     nets: [SW]                  # optional net scope (recommended)
-#     min_width: 0.3
-#     why: >
-#       U1 SW-sense taps ride inside the SW island; the 15A path is the
-#       POUR, the 0.3mm tracks are connectivity backstops (measured on
-#       usb-pwr-hub-3s: DRC track_width x2 without this, 0 with).
+    clearance: 0.2mm
+    current: 0.1A
+    intent: Eight independently protected concurrent spoke feeds.
+    routing: Copper sized against the board-connector delivery requirement.
+    verify: Each connector contact bank meets requirements.yaml after hot fuse/copper/joint drop.
+  QUIET_POWER:
+    nets: [N5V_LDO_FEED, N5V_LDO_HOLD, N3V3_ADC]
+    min_width: 0.5mm
+    clearance: 0.2mm
+    current: 0.23A
+    intent: Retained analog held rail and ADC supply distribution.
+    routing: Keep charging, discharge and regulator loops away from analog input returns.
+    verify: Quiet-rail load/hold-up/dropout and current-return review.

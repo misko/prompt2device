@@ -3,7 +3,7 @@
 schema: 1
 rf:
   enabled: true
-  rationale: The carrier uses the XU316 high-speed USB PHY. Its USB_DP/USB_DM route
+  rationale: The carrier uses the XU316 high-speed USB PHY. Its USB_DP/USB_DN route
     requires controlled differential impedance and an uninterrupted return.
   risk_tier: controlled-impedance
   risk_basis: XMOS XM-014532-PC v2.0.0 sections 14.1-14.2 specify 90 ohm USB differential
@@ -13,7 +13,7 @@ rf:
   - id: USB_DEVICE
     nets:
     - USB_DP
-    - USB_DM
+    - USB_DN
     band_hz:
     - 0
     - 2400000000

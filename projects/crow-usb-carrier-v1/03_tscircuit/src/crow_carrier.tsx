@@ -12,7 +12,7 @@ export default function CrowCarrier() {
     <Presented domain="analog"><CrowRetainedAnalog net={net} /></Presented>
     <Presented domain="digital"><CrowUsbDigital net={net} /></Presented>
     <Presented domain="usb"><UsbDeviceFrontend nets={{
-      ground:net("GND"),vbus:net("VBUS_USB"),dp:net("USB_DP"),dm:net("USB_DM"),
+      ground:net("GND"),vbus:net("VBUS_USB"),dp:net("USB_DP"),dm:net("USB_DN"),
       cc1:net("USB_CC1"),cc2:net("USB_CC2"),shield:net("GND"),
     }} /></Presented>
   </group>

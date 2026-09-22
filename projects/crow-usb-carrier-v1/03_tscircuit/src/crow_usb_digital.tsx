@@ -2,10 +2,10 @@ import { Fragment } from "react"
 /**
  * Conditional XU316 USB-audio digital-core hardware source.
  * No firmware, XN, USB descriptor, or production board is generated here.
- * Parent supplies protected 5V_BUCK and connector/ESD nets USB_DP/USB_DM/VBUS_USB.
+ * Parent supplies protected 5V_BUCK and connector/ESD nets USB_DP/USB_DN/VBUS_USB.
  */
 export const CROW_DIGITAL_BOUNDARY_NETS = {
-  powerInputs: ["5V_BUCK", "GND"], usbInputs: ["USB_DP", "USB_DM", "VBUS_USB"],
+  powerInputs: ["5V_BUCK", "GND"], usbInputs: ["USB_DP", "USB_DN", "VBUS_USB"],
   analogInterface: ["ADC_MCLK", "ADC_BCLK", "ADC_FSYNC", "ADC_DOUT1", "3V3_ADC"],
   debug: ["JTAG_TDI", "JTAG_TDO", "JTAG_TMS", "JTAG_TCK", "XU_RESET_N"],
 } as const
@@ -141,7 +141,7 @@ export function CrowUsbDigital({net=defaultNet}:CrowUsbDigitalProps={}){
     pin56: "VDDIOB18",
     pin57: "X1D23_NC",
     pin58: "USB_ID_NC",
-    pin59: "USB_DM",
+    pin59: "USB_DN",
     pin60: "USB_DP",
     pin61: "USB_VDD33",
     pin62: "USB_VDD18",
@@ -249,7 +249,7 @@ export function CrowUsbDigital({net=defaultNet}:CrowUsbDigitalProps={}){
     pin52: n("GND"),
     pin54: n("0V9"),
     pin56: n("1V8"),
-    pin59: n("USB_DM"),
+    pin59: n("USB_DN"),
     pin60: n("USB_DP"),
     pin61: n("3V3X"),
     pin62: n("1V8"),
