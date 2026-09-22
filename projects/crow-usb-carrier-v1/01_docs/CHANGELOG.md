@@ -14,3 +14,9 @@ candidate, and order none or one later.
 - Initial schematic generated; netclasses + ampacity floors defined BEFORE
   routing (see ../03_src/rules/nets.yaml).
 Released: no
+
+
+## Commission admission checkpoint — 2026-09-22
+- Admitted the reviewed 493-reference hardware source and 85-MPN design-stage sourcing set for native generation.
+- Preserved separate native schematic, placement/routing, provider capability, order allocation, publication, firmware and first-article gates.
+Released: no

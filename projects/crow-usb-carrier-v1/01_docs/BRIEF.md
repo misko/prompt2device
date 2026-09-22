@@ -1,6 +1,6 @@
 # brief: crow-usb-carrier-v1
 
-status: draft
+status: agreed
 prompt_sha256: 5b4bf606a77fbfb700f834caf36af9b33d23c14a249a5f26ecff0b5293290d60
 current_release: no
 
@@ -37,7 +37,7 @@ separate first-article measurement; no fabrication or order is authorized here.
 | # | Requirement | Standard / parts question | Resolution | User flagged |
 |---|---|---|---|---|
 | T1 | Onboard IC instead of existing external MCHStreamer | Existing Crow explicitly kept USB off-board; new user directive supersedes that boundary. | New carrier; see decision 0001. | yes, original request |
-| T2 | Eight-channel direct USB audio | Exact IC, packet bandwidth, clock-master modes and host support must be verified together. | XU316-1024-TQ128-C24 selected under decision 0003; complete native schematic and host configuration verification remain owed. | pending research |
+| T2 | Eight-channel direct USB audio | Exact IC, packet bandwidth, clock-master modes and host support must be verified together. | XU316-1024-TQ128-C24 and the documented lib_xua/lib_i2s plus Linux snd-usb-audio path are selected under decision 0003 and the hardware/software interface record; native schematic and board-specific firmware implementation remain owed. | yes; decision 0003 / D2 |
 | T3 | Complete onboard USB function | Some candidate ICs need custom firmware, while firmware is forbidden by default. | D2 retains hardware-only scope. Board-specific firmware remains required for operation; its authoring is not authorized. | yes, Q2 |
 
 ## Commission fact-lock
@@ -54,7 +54,7 @@ seeded rule examples are not product facts and will be replaced before use.
 | Protection posture | Re-evaluate USB-only, carrier-only, both-powered, brownout and cable connection/removal states; no inherited sequencing approval. | A2 |
 | Measurement plane | Digital audio at Pi USB capture endpoint; analog/power capability at the existing Crow spoke boundary. Exact cable/load envelope OWED. | A1, A2 |
 | Off-control / stored energy | Preserve supported quiet shutdown intent; changed USB core power and flash dependencies require new state analysis. | A2; OWED |
-| Critical sourcing | XU316, W25Q128JWSIQ 1.8 V flash, CS5308P-DNR ADC, LT3045 quiet regulator and separate core/PHY rails; current source has 489 references and 85 exact MPNs. Full selected-BOM sourcing remains open. | P; current TSX/manifest/dossiers and sourcing CSV |
+| Critical sourcing | XU316, W25Q128JWSIQ 1.8 V flash, CS5308P-DNR ADC, LT3045 quiet regulator and separate core/PHY rails; current source has 493 references and 85 exact MPNs. All 85 selected MPNs pass the design-stage two-pool sourcing gate; allocation and order-time availability remain separate. | P; current TSX/manifest/dossiers and sourcing CSV |
 | Integration posture | Onboard bare USB IC is explicitly requested; module comparison informs the exception but cannot substitute an external bridge. | P; decision 0001 |
 | Mechanical boundary | Adopt the current 220 × 120 mm rectangle for initial placement, with no inherited mounting holes or Pi HAT/header alignment. This reversible design assumption is not a size maximum or fit claim. | A3; decision 0007 |
 | Fabrication / assembly | JLCPCB populated-PCBA intent, four-layer JLC04161H-7628G stackup with the advanced routing/process candidate in decision 0006; nominal 90-ohm USB cross-section documented. Selective LT3045 via fill/cap remains a proposed uploader/order requirement pending exact vendor acceptance. U_ADC is excluded from the JLC BOM/CPL and assigned to professional secondary procurement and reflow; provider capability evidence is required before part freeze or placement spend. No hard numeric design budget was supplied; authorized expenditure is zero, with actual-board quotations and process acceptance required before spending. | A3; decisions 0006 and 0007; assembly.yaml |
@@ -126,7 +126,7 @@ Updated intake rows to reflect adopted hardware source and decisions 0002–0004
 
 ### D4 — 2026-09-22 — source checkpoint reconciliation
 
-The current source has 489 references and 85 selected MPNs. Connector SOURCE
+The admitted source has 493 references and 85 selected MPNs. Connector SOURCE
 passes for 11 instances with 19 explicit physical deferrals and no source
 findings. ADC/film-capacitor packaging and the PLL capacitor have been updated
 without changing the named signal connectivity. The power rows above now
@@ -134,7 +134,7 @@ separate nominal requirements, one-fault screens, current allocations and fuse
 rating; none is a bench-current-limit instruction. See the source journal and
 [superseding advanced fabrication posture](decisions/0006-four-layer-advanced-escape-process.md); decision 0005 remains the superseded historical baseline.
 
-The brief remains draft while full-BOM sourcing and refreshed schematic-source review are completed.
+Commission, architecture, and design-stage sourcing are admitted against the reviewed 493-reference source, current 85/85 two-pool result, accepted 40-page source review, source decision locks, schema and electrical receipts. Native schematic, placement, routing, provider capability, order allocation and physical qualification remain open.
 The source power/protection disposition is reviewed; its native-layout and
 physical qualifications remain in the open final-design findings. A1/A2 remain the retained
 Crow design assumptions; Q1/Q2 remain unanswered. No firmware or purchase work

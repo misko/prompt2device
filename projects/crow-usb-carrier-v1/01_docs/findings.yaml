@@ -3,13 +3,22 @@ target: DESIGN_CLEAN
 gates:
 - id: USB-commission
   required_for: DESIGN_CLEAN
-  state: pending
+  state: passed
   owner: systems
   closes_when: Replace seed contracts, close source-admission facts and satisfy commissioning
     requirements before removing the hold.
   evidence:
   - 01_docs/BRIEF.md
-  - 01_docs/COMMISSIONING-HOLD.md
+  - 01_docs/journal/commission.md
+  - 01_docs/sourcing/exact-parts.csv
+  - 01_docs/sourcing/manual_quotes.yaml
+  - 08_reviews/2026-09-22_source-pages-40_sol_source.md
+  - 08_reviews/2026-09-22_ckg-bank_sol_source.md
+  - 08_reviews/2026-09-22_usb-contract_sol_decision.md
+  - 08_reviews/2026-09-22_schema-normalization_sol_source.md
+  - 01_docs/sourcing/shopping-list-2026-09-22-1437.json
+  - 08_reviews/2026-09-22_rf-source-compatibility_sol_source.md
+  - 08_reviews/2026-09-22_admission_sol_source.md
 - id: USB-schematic
   required_for: DESIGN_CLEAN
   state: pending

@@ -443,3 +443,17 @@ Set stitch.via.tiers and stitch.astar_fallback.via to the existing0.60/0.30mm or
 - did: Reopened prompt integrity and decision-register bijection against all current ADR files. Original prompt hash matches. Added missing register entries for historical/superseded0005 and accepted0006; no decision content or authority changed.
 - result: Register now covers all9ADR files exactly once; capability-profile router accepts current high-speed-digital/design configuration. Independent RF diagnosis identifies the source checker demanding RF-module geometry from a valid legacy USB contract; narrow compatibility repair is under implementation with regression controls.
 - next: Review the checker repair and complete actual source-admission checks before deleting the commissioning hold.
+
+
+## 2026-09-22 — finish (commission, architecture and sourcing admission)
+- did: Bound the reviewed 493-reference source, 85/85 design-stage two-pool sourcing result, exact dossiers/escape evidence, connector SOURCE receipt, source decision locks, schema governance, electrical checks, contract-only RF source disposition and independent 40-page source review. Removed the commissioning hold in this same reviewed change.
+- result: Commission/architecture/sourcing admission PASS. The USB-commission ledger gate is closed; native schematic and layout gates remain pending. RF module geometry is explicitly NOT_GRADED at source while the ordinary USB route contract retains its nonempty protected group. Provider prelayout capability, current order allocation, realized placement/routing, native electrical/SI evidence and physical qualification remain open. Firmware remains forbidden under D2; no firmware, publication acceptance or purchase was authorized.
+- next: Commit this green checkpoint, run `bash 03_src/rebuild_all.sh` to J-PCBA-PRELAYOUT, obtain and retain the exact provider availability response, then resume and stop at the native schematic review checkpoint before placement.
+
+### Admission evidence reopened on final source
+
+- Measured source checks: P-MOD4/4, TSX-PRE94/94 dossiers, E-INV schema15/15, early electrical4/4 including15 capacitor banks, source rules6/6, policy2, schema969/969, ADR bound ratchetPASS. Protocol/profile are explicitly not applicable under the firmware boundary.
+- Locked D-DESIGN-ADMISSION493/493 assembly owners and one protected USB group; modular493/493refs and54/54crossings; connector SOURCE4assemblies/11instances/19physical deferrals/0findings; selected escape85/85; native footprint load85/85,493refs,0findings. Logs and receipts: `06_build/verification/admission-final/` and `/tmp/crow-admission-final-*`.
+- The final source has no changes to TSX, dossiers, footprints or USB locks since accepted051246af. Only the packaged audio-oscillator integration declaration, conductor routing flag and RF applicability documentation changed under03_src. Therefore the accepted40-page/493-ref and CKG reviews retain their exact source subjects.
+- Independently accepted RF repair084a119b (integratedddeb37e7) passes early source contract validation; no geometry is graded there. Geometry-required and realized checks fail without geometry. Fresh native tool qualification passes4/4, without accepting any product board.
+- Durable current sourcing result: `01_docs/sourcing/shopping-list-2026-09-22-1437.json` and matching Markdown,85/85 qualifying rows. Historical41/85 observation remains unchanged. Replayed authentic observations retain original dates; no stock allocation or order approval.
