@@ -41,7 +41,8 @@ function XU316TQ128EPFootprint(){
 
 /** Source-owned lands for package names the pinned footprinter cannot expand. */
 const P=({n,x,y,w,h}:any)=><smtpad portHints={[String(n)]} pcbX={`${x}mm`} pcbY={`${y}mm`} width={`${w}mm`} height={`${h}mm`} shape="rect" />
-function Inductor2016Land(){return <footprint><P n={1} x={-0.75} y={0} w={0.9} h={1.6}/><P n={2} x={0.75} y={0} w={0.9} h={1.6}/></footprint>}
+/** Würth 744373240047 primary drawing: 5.2-mm land span, 2.2-mm inner gap, 1.5 x 2.4-mm lands. */
+function WurthLHMI4020Land(){return <footprint><P n={1} x={-1.85} y={0} w={1.5} h={2.4}/><P n={2} x={1.85} y={0} w={1.5} h={2.4}/></footprint>}
 // ASFL1 primary drawing: 2.54 x 2.2 mm pad-center pitch, 1.7 x 1.5 mm lands.
 function Osc5032Land(){return <footprint><P n={1} x={-1.27} y={-1.1} w={1.7} h={1.5}/><P n={2} x={1.27} y={-1.1} w={1.7} h={1.5}/><P n={3} x={1.27} y={1.1} w={1.7} h={1.5}/><P n={4} x={-1.27} y={1.1} w={1.7} h={1.5}/></footprint>}
 function SC70_5Land(){return <footprint><P n={1} x={-1} y={0.65} w={0.6} h={1}/><P n={2} x={-1} y={0} w={0.6} h={1}/><P n={3} x={-1} y={-0.65} w={0.6} h={1}/><P n={4} x={1} y={-0.65} w={0.6} h={1}/><P n={5} x={1} y={0.65} w={0.6} h={1}/></footprint>}
@@ -56,7 +57,7 @@ const buckPins={pin1:"EN",pin2:"PG",pin3:"FB",pin4:"GND",pin5:"SW",pin6:"VIN"}
 function Buck({name,mpn,out,adjustable=false,en="5V_BUCK",n}:any){return <>
  <Chip name={name} manufacturerPartNumber={mpn} jlc="" footprint={<DMQ0006ALand/>} pinLabels={buckPins}
   connections={{pin1:n(en),pin2:n(`${name}_PG`),pin3:n(adjustable?`${name}_FB`:out),pin4:n("GND"),pin5:n(`${name}_SW`),pin6:n("5V_BUCK")}} />
- <Chip name={`L_${name}`} manufacturerPartNumber="TFM201610ALC-R47MTAA" jlc="" footprint={<Inductor2016Land/>} pinLabels={{pin1:"1",pin2:"2"}} connections={{pin1:n(`${name}_SW`),pin2:n(out)}} />
+ <Chip name={`L_${name}`} manufacturerPartNumber="744373240047" jlc="" footprint={<WurthLHMI4020Land/>} pinLabels={{pin1:"1",pin2:"2"}} connections={{pin1:n(`${name}_SW`),pin2:n(out)}} />
  {[1,2].map(i=><C key={`in${i}`} name={`C_${name}_IN_${i}`} value="10uF" a="5V_BUCK" b="GND" mpn="GRM21BR61C106KE15L" footprint="0805" n={n} />)}
  {[1,2].map(i=><C key={`out${i}`} name={`C_${name}_OUT_${i}`} value="22uF" a={out} b="GND" mpn="GRM21BR60J226ME39L" footprint="0805" n={n} />)}
  </>}

@@ -108,3 +108,8 @@
 - did: added schema-1 findings ledger with pending commission, schematic and layout gates and six open engineering findings; linked deficiencies to their owning controls. Closed both SOL candidate delivery receipts PASS; engineering adoption remains separate.
 - result: inductor visual review found zero pad-to-courtyard margin and an unenforced drawing restriction; SOL correction requested before adoption. Passive reader is under adversarial review.
 - next: review corrected inductor geometry and passive fault logic, then integrate and verify supported changes.
+
+## 2026-09-22 — iterate 22
+- did: adopted exact Wurth 744373240047 dossier, primary PDF, corrected native footprint and three digital-rail source instances after visual drawing review.
+- result: source 422 components/85 MPNs/1276 traces/26 endpoints PASS; TypeScript PASS; all 85 native footprint loads PASS; modular 422/422 refs and 53/53 crossings PASS; contracts 335 files, zero violations. Larger body and sourcing/thermal limitations documented.
+- next: review passive-fault correction and close remaining commissioning facts; no native board admission yet.

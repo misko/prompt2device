@@ -1,0 +1,60 @@
+mpn: '744373240047'
+manufacturer: Würth Elektronik eiSos
+type: shielded_power_inductor
+series: WE-LHMI
+package: 4020, 4.45 x 4.06 x 1.8 mm body
+footprint: crow_usb_digital:Wurth_WE-LHMI_744373240047
+datasheet:
+  doc_id: '744373240047'
+  revision: '003.000'
+  date: '2024-12-27'
+  url: https://www.we-online.com/components/products/datasheet/744373240047.pdf
+  local: 02_parts/744373240047/Wurth_744373240047.pdf
+  sha256: 18d4780afd61015ea4d7b56a174b1f51405d51a51fd87ca1d1eef86f177af2da
+  pages: 8
+pins:
+  1: winding_start
+  2: winding_end
+limits:
+  inductance_nominal_uH: 0.47
+  inductance_tolerance_pct: 20
+  performance_rated_current_deltaT40_A: 8.7
+  saturation_current_10pct_typ_A: 10.4
+  saturation_current_30pct_typ_A: 19.6
+  dcr_typ_20C_mohm: 11.2
+  dcr_max_20C_mohm: 14
+  self_resonant_frequency_typ_MHz: 122
+  operating_temperature_C:
+  - -40
+  - 125
+  ambient_temperature_C:
+  - -40
+  - 85
+qualification:
+  aec_q200: Grade 1 marking shown on primary drawing
+  moisture_sensitivity_level: 1
+procurement:
+  classification: current availability and pricing not qualified in this packet
+  lcsc: null
+layout:
+  recommended_lands_mm:
+    pad_size:
+    - 1.5
+    - 2.4
+    pad_centers:
+    - - -1.85
+      - 0
+    - - 1.85
+      - 0
+    overall_span_x: 5.2
+    inner_restricted_gap_x: 2.2
+  restriction: No vias or traces in the 2.2-mm central restricted area shown by the
+    primary drawing.
+verified: Primary Würth drawing visually inspected and dimensions transcribed; TI
+  SLVSEF9I Table 8-5 names the exact MPN as a recommended 0.47-uH inductor.
+layout_refs:
+- tier: 1
+  reached: true
+  artifact: 02_parts/744373240047/Wurth_744373240047.pdf page 1, revision 003.000
+  why: Primary manufacturer body, lands and routing restriction visually reviewed;
+    native footprint and JSX lands compared.

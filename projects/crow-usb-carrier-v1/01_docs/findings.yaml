@@ -76,12 +76,13 @@ findings:
   state: open
   blocks_at_or_above: DESIGN_CLEAN
   owner: sourcing
-  finding: Exact layout evidence and assembly sourcing are not fully qualified; replacement inductor
-    candidate is still under review.
+  finding: Exact layout evidence and assembly sourcing are not fully qualified. The primary-drawing-supported
+    Wurth inductor is adopted; its pricing and availability remain unqualified.
   closes_when: Bind selected exact parts to reviewed primary geometry, current source and approved
     assembly sourcing evidence.
   evidence:
   - 03_src/rules/assembly.yaml
+  - 01_docs/research/2026-09-22-inductor-adoption.md
 - id: USB-seed-layout
   state: open
   blocks_at_or_above: DESIGN_CLEAN
