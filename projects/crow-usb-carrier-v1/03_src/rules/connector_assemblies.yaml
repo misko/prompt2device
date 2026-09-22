@@ -1,4 +1,3 @@
-# Reviewed connector source facts; physical qualification remains incomplete.
 schema: 1
 contract_id: crow-usb-carrier-v1-operated-connectors
 evidence_sources:
@@ -38,14 +37,23 @@ evidence_sources:
 - id: jtag_mate_catalog
   kind: manufacturer-catalog
   path: 02_parts/FTSH-105-01-L-DV-K/Samtec_FFSD_catalog.pdf
+- id: connector_placement_contract
+  kind: placement-contract
+  path: 01_docs/research/2026-09-22-connector-placement-intent.md
+- id: connector_physical_qualification_plan
+  kind: engineering-qualification-plan
+  path: 01_docs/research/2026-09-22-connector-physical-qualification-plan.md
+- id: power_mate_drawing
+  kind: manufacturer-drawing
+  path: 02_parts/43645-0200/Molex_43645_family_drawing_revA1.pdf
 applicability:
   operated: true
   evidence:
     grade: exact
     source_ids:
     - source_census
-    rationale: Current hardware source contains eleven operated board connectors;
-      explicit profiles cover all eleven.
+    rationale: Current hardware source contains eleven operated board connectors; explicit profiles cover
+      all eleven.
 assemblies:
 - id: spoke_rj45
   instances:
@@ -124,11 +132,10 @@ assemblies:
       source_ids:
       - rj45_jack_drawing
       - rj45_jack_model
-      rationale: Exact manufacturer STEP rev1 is retained and contains the modeled
-        shell, lateral/top EMI springs and terminal tails. OpenCascade AddOptimal
-        measures its nominal box as 13.450054 mm axial x 17.276161 mm lateral x
-        19.092892 mm PCB-normal. Manufacturing tolerance, spring deflection and
-        mated service fit remain separate qualification work.
+      rationale: Exact manufacturer STEP rev1 is retained and contains the modeled shell, lateral/top
+        EMI springs and terminal tails. OpenCascade AddOptimal measures its nominal box as 13.450054 mm
+        axial x 17.276161 mm lateral x 19.092892 mm PCB-normal. Manufacturing tolerance, spring deflection
+        and mated service fit remain separate qualification work.
   mate:
     manufacturer: Weidmuller
     mpn: '8909650150'
@@ -139,19 +146,19 @@ assemblies:
       grade: unknown
       source_ids:
       - source_census
-      rationale: Retained exact Crow cable interface; new board service qualification
-        is not inherited.
+      rationale: Retained exact Crow cable interface; new board service qualification is not inherited.
   interface:
     mating_plane_offset_mm: null
     minimum_exposure_mm: null
     exposure_setback_allowance_mm: null
     minimum_service_clearance_mm: null
-    orientation_source_id: null
+    orientation_source_id: connector_placement_contract
     evidence:
       grade: unknown
-      source_ids: []
-      rationale: Mating datum, exposure, process setback, and service clearance are
-        owed.
+      source_ids:
+      - connector_placement_contract
+      - connector_physical_qualification_plan
+      rationale: Mating datum, exposure, process setback, and service clearance are owed.
   grip:
     kind: null
     across_flats_mm: null
@@ -181,8 +188,8 @@ assemblies:
       grade: exact
       source_ids:
       - connector_selection
-      rationale: The selected straight RJ45 plug is a hand-operated push-in interface;
-        no separate final tightening or counter-tool is selected.
+      rationale: The selected straight RJ45 plug is a hand-operated push-in interface; no separate final
+        tightening or counter-tool is selected.
   torque:
     required: false
     minimum_nm: null
@@ -193,13 +200,13 @@ assemblies:
       - connector_selection
       rationale: The selected RJ45 plug is not threaded and has no final torque step.
   reaction:
-    method: null
-    load_path: null
+    method: restrained_pcb_hand_operation
+    load_path: mate_to_through_hole_connector_to_pcb_to_adjacent_board_restraints
     evidence:
       grade: unknown
-      source_ids: []
-      rationale: Insertion, extraction, and fastening reaction load paths are not
-        proven.
+      source_ids:
+      - connector_physical_qualification_plan
+      rationale: Insertion, extraction, and fastening reaction load paths are not proven.
   cable:
     kind: shielded_sftp_pur_patch_cable
     manufacturer: Weidmuller
@@ -212,9 +219,9 @@ assemblies:
       grade: conservative
       source_ids:
       - connector_selection
-      rationale: The exact 15 m cable is 6.1-6.5 mm OD and requires 10x OD for repeated
-        bends. The 65 mm straight run is an equal project service allowance; installed
-        routing and plug-body clearance remain unqualified.
+      rationale: The exact 15 m cable is 6.1-6.5 mm OD and requires 10x OD for repeated bends. The 65
+        mm straight run is an equal project service allowance; installed routing and plug-body clearance
+        remain unqualified.
   operations:
   - id: spoke_rj45_service
     sequence: 1
@@ -225,18 +232,20 @@ assemblies:
     end_state: neighbors_connected_target_mated
     evidence:
       grade: unknown
-      source_ids: []
-      rationale: Mating with other required connectors populated is required; insertion/release
-        envelope and reaction qualification remain owed.
+      source_ids:
+      - connector_physical_qualification_plan
+      rationale: Mating with other required connectors populated is required; insertion/release envelope
+        and reaction qualification remain owed.
   tolerances:
   - id: spoke_rj45_registration
-    applies_to: receptacle_mating_plane_to_board_edge
+    applies_to: installed_receptacle_mating_plane_to_realized_board_edge
     effect: exposure_setback
     minus_mm: null
     plus_mm: null
     evidence:
       grade: unknown
-      source_ids: []
+      source_ids:
+      - connector_physical_qualification_plan
       rationale: Drawing, PCB, seating, enclosure, print, and tool stack is not closed.
 - id: usb_device
   instances:
@@ -262,9 +271,8 @@ assemblies:
       source_ids:
       - usb_receptacle_drawing
       - connector_selection
-      rationale: Drawing dimensions 7.35 x 8.94 x 3.31 mm are conservatively expanded
-        by the drawing's 0.38 mm general tolerance. Placement and complete mated fit
-        remain separate.
+      rationale: Drawing dimensions 7.35 x 8.94 x 3.31 mm are conservatively expanded by the drawing's
+        0.38 mm general tolerance. Placement and complete mated fit remain separate.
   mate:
     manufacturer: ASSMANN WSW
     mpn: A-USB31C-20A-100
@@ -279,20 +287,20 @@ assemblies:
       source_ids:
       - usb_cable_drawing
       - connector_selection
-      rationale: The bound contains the dimensioned Type-C body/boot, exposed plug
-        and drawing tolerances. Cross-manufacturer fit and installed clearance remain
-        unqualified.
+      rationale: The bound contains the dimensioned Type-C body/boot, exposed plug and drawing tolerances.
+        Cross-manufacturer fit and installed clearance remain unqualified.
   interface:
     mating_plane_offset_mm: null
     minimum_exposure_mm: null
     exposure_setback_allowance_mm: null
     minimum_service_clearance_mm: null
-    orientation_source_id: null
+    orientation_source_id: connector_placement_contract
     evidence:
       grade: unknown
-      source_ids: []
-      rationale: Mating datum, exposure, process setback, and service clearance are
-        owed.
+      source_ids:
+      - connector_placement_contract
+      - connector_physical_qualification_plan
+      rationale: Mating datum, exposure, process setback, and service clearance are owed.
   grip:
     kind: molded_usb_c_overmold
     across_flats_mm: null
@@ -303,9 +311,8 @@ assemblies:
       source_ids:
       - usb_cable_drawing
       - connector_selection
-      rationale: A 13.90 mm circumscribed grip contains the maximum 12 x 7 mm transverse
-        Type-C overmold rectangle; 18.1 mm contains the 17.6 mm grip length plus 0.5
-        mm drawing tolerance.
+      rationale: A 13.90 mm circumscribed grip contains the maximum 12 x 7 mm transverse Type-C overmold
+        rectangle; 18.1 mm contains the 17.6 mm grip length plus 0.5 mm drawing tolerance.
   fastening:
     method: friction_retention
     thread_designation: null
@@ -314,8 +321,8 @@ assemblies:
       grade: exact
       source_ids:
       - usb_product_spec
-      rationale: The product specification defines insertion and withdrawal force
-        for the non-threaded Type-C interface; there is no tightening operation.
+      rationale: The product specification defines insertion and withdrawal force for the non-threaded
+        Type-C interface; there is no tightening operation.
   tool:
     kind: none
     identifier: null
@@ -329,8 +336,7 @@ assemblies:
       source_ids:
       - usb_product_spec
       - connector_selection
-      rationale: Mating is a hand insertion/removal operation with no separate final
-        tool or counter-tool.
+      rationale: Mating is a hand insertion/removal operation with no separate final tool or counter-tool.
   torque:
     required: false
     minimum_nm: null
@@ -341,13 +347,13 @@ assemblies:
       - usb_product_spec
       rationale: The non-threaded Type-C interface has no torque requirement.
   reaction:
-    method: null
-    load_path: null
+    method: restrained_pcb_hand_operation
+    load_path: mate_to_shell_stakes_and_smt_mounting_to_pcb_to_adjacent_board_restraints
     evidence:
       grade: unknown
-      source_ids: []
-      rationale: Insertion, extraction, and fastening reaction load paths are not
-        proven.
+      source_ids:
+      - connector_physical_qualification_plan
+      rationale: Insertion, extraction, and fastening reaction load paths are not proven.
   cable:
     kind: null
     manufacturer: null
@@ -359,8 +365,7 @@ assemblies:
     evidence:
       grade: unknown
       source_ids: []
-      rationale: Termination, boot, cable body, straight run, exit, and bend are not
-        selected.
+      rationale: Termination, boot, cable body, straight run, exit, and bend are not selected.
   operations:
   - id: usb_device_service
     sequence: 1
@@ -371,18 +376,20 @@ assemblies:
     end_state: neighbors_connected_target_mated
     evidence:
       grade: unknown
-      source_ids: []
-      rationale: Mating with other required connectors populated is required; insertion/release
-        envelope and reaction qualification remain owed.
+      source_ids:
+      - connector_physical_qualification_plan
+      rationale: Mating with other required connectors populated is required; insertion/release envelope
+        and reaction qualification remain owed.
   tolerances:
   - id: usb_device_registration
-    applies_to: receptacle_mating_plane_to_board_edge
+    applies_to: installed_receptacle_mating_plane_to_realized_board_edge
     effect: exposure_setback
     minus_mm: null
     plus_mm: null
     evidence:
       grade: unknown
-      source_ids: []
+      source_ids:
+      - connector_physical_qualification_plan
       rationale: Drawing, PCB, seating, enclosure, print, and tool stack is not closed.
 - id: external_power
   instances:
@@ -399,46 +406,62 @@ assemblies:
     mpn: 43650-0200
     mounting_method: through_hole
     model_source_id: null
-    body_envelope_mm: null
+    body_envelope_mm:
+      x: 10.25
+      y: 10.0
+      z: 10.0
     evidence:
-      grade: unknown
+      grade: conservative
       source_ids:
-      - source_census
-      rationale: Exact fitted part is selected in source; body envelope and assembly
-        qualification remain unresolved.
+      - power_header_drawing
+      rationale: Root visually checked SD-43650-001 revD8 page1, exact two-circuit 43650-0200 row. Reference
+        axial9.90 plus project0.35 allowance yields10.25; widthA9.65 plus0.35 yields10.00. Total reference
+        height includes housing4.37 +latch1.20 +lower peg3.30 =8.87; separate0.35 allowances for all three
+        terms yield9.92, rounded outward to10.00 mm. Reference-dimension allowances are conservative engineering
+        choices, not manufacturer guarantees. Includes the fitted header projections; mated exposure and
+        service remain separate.
   mate:
     manufacturer: Molex
     mpn: 43645-0200 + 2x 43030-0038
     part_kind: latched_wire_receptacle_with_18awg_terminals
     model_source_id: null
-    body_envelope_mm: null
+    body_envelope_mm:
+      x: 14.25
+      y: 8.53
+      z: 8.53
     evidence:
-      grade: unknown
+      grade: conservative
       source_ids:
-      - power_header_drawing
-      - connector_selection
-      rationale: Exact compatible housing and terminal set is selected, but wire,
-        termination, strain relief and complete mate envelope remain unresolved.
+      - power_mate_drawing
+      rationale: 'Released Molex drawing436450000-SD revA1, exact two-circuit detail: axial14.00 and lateral8.28
+        mm plus each0.25 mm tolerance yield14.25 and8.53. Transverse chain2.03+3.86 plus two0.25 tolerances
+        gives6.39 mm; a project2.00 mm allowance for the undimensioned upper latch-tip/flange spread gives8.39,
+        rounded outward to8.53. This is a conservative planning bound, not a manufacturer-guaranteed maximum.
+        Wire/crimp routing, finger access, latch operation and physical fit remain separate qualification.'
   interface:
     mating_plane_offset_mm: null
     minimum_exposure_mm: null
     exposure_setback_allowance_mm: null
     minimum_service_clearance_mm: null
-    orientation_source_id: null
+    orientation_source_id: connector_placement_contract
     evidence:
       grade: unknown
-      source_ids: []
-      rationale: Mating datum, exposure, process setback, and service clearance are
-        owed.
+      source_ids:
+      - connector_placement_contract
+      - connector_physical_qualification_plan
+      rationale: Mating datum, exposure, process setback, and service clearance are owed.
   grip:
-    kind: null
-    across_flats_mm: null
-    outer_diameter_mm: null
-    axial_length_mm: null
+    kind: positive_latch_housing
+    across_flats_mm: 8.53
+    outer_diameter_mm: 12.07
+    axial_length_mm: 14.25
     evidence:
-      grade: unknown
-      source_ids: []
-      rationale: Coupling, latch, finger-grip, or release geometry is not selected.
+      grade: conservative
+      source_ids:
+      - power_mate_drawing
+      rationale: Use the conservative complete housing planning box, including the explicit2mm project
+        latch allowance. Transverse circumscribed diameter sqrt(8.53^2+8.53^2) is rounded outward to12.07
+        mm. This bounds the selected grip body, not finger clearance or an operated latch.
   fastening:
     method: positive_latch
     thread_designation: null
@@ -448,8 +471,8 @@ assemblies:
       source_ids:
       - power_header_drawing
       - connector_selection
-      rationale: Molex identifies the compatible receptacle family and the selected
-        housing provides a positive latch; the interface is not threaded.
+      rationale: Molex identifies the compatible receptacle family and the selected housing provides a
+        positive latch; the interface is not threaded.
   tool:
     kind: none
     identifier: null
@@ -462,8 +485,8 @@ assemblies:
       grade: exact
       source_ids:
       - connector_selection
-      rationale: The selected positive-latch receptacle is hand mated and has no separate
-        final tightening tool.
+      rationale: The selected positive-latch receptacle is hand mated and has no separate final tightening
+        tool.
   torque:
     required: false
     minimum_nm: null
@@ -474,13 +497,13 @@ assemblies:
       - connector_selection
       rationale: The positive-latch Micro-Fit interface has no threaded torque step.
   reaction:
-    method: null
-    load_path: null
+    method: restrained_pcb_hand_operation
+    load_path: mate_to_through_hole_header_to_pcb_to_adjacent_board_restraints
     evidence:
       grade: unknown
-      source_ids: []
-      rationale: Insertion, extraction, and fastening reaction load paths are not
-        proven.
+      source_ids:
+      - connector_physical_qualification_plan
+      rationale: Insertion, extraction, and fastening reaction load paths are not proven.
   cable:
     kind: null
     manufacturer: null
@@ -492,8 +515,7 @@ assemblies:
     evidence:
       grade: unknown
       source_ids: []
-      rationale: Termination, boot, cable body, straight run, exit, and bend are not
-        selected.
+      rationale: Termination, boot, cable body, straight run, exit, and bend are not selected.
   operations:
   - id: external_power_service
     sequence: 1
@@ -504,18 +526,20 @@ assemblies:
     end_state: neighbors_connected_target_mated
     evidence:
       grade: unknown
-      source_ids: []
-      rationale: Mating with other required connectors populated is required; insertion/release
-        envelope and reaction qualification remain owed.
+      source_ids:
+      - connector_physical_qualification_plan
+      rationale: Mating with other required connectors populated is required; insertion/release envelope
+        and reaction qualification remain owed.
   tolerances:
   - id: external_power_registration
-    applies_to: receptacle_mating_plane_to_board_edge
+    applies_to: installed_receptacle_mating_plane_to_realized_board_edge
     effect: exposure_setback
     minus_mm: null
     plus_mm: null
     evidence:
       grade: unknown
-      source_ids: []
+      source_ids:
+      - connector_physical_qualification_plan
       rationale: Drawing, PCB, seating, enclosure, print, and tool stack is not closed.
 - id: debug_jtag
   instances:
@@ -524,7 +548,10 @@ assemblies:
     - 0.0
     - 0.0
     - 1.0
-    lateral_axis_board: [1.0, 0.0, 0.0]
+    lateral_axis_board:
+    - 1.0
+    - 0.0
+    - 0.0
     simultaneous_group_ids:
     - bench_service
   receptacle:
@@ -532,48 +559,52 @@ assemblies:
     mpn: FTSH-105-01-L-DV-K
     mounting_method: surface_mount
     model_source_id: null
-    body_envelope_mm: {x: 7.0, y: 8.0, z: 7.0}
+    body_envelope_mm:
+      x: 7.0
+      y: 8.0
+      z: 7.0
     evidence:
       grade: conservative
       source_ids:
       - jtag_header_print
       - jtag_footprint
-      rationale: In the explicit J_JTAG local frame, x contains the 2.92 mm maximum
-        SMT-tail extent, 3.20 mm reference keyed-wall height, 0.30 mm reference
-        reserve, 0.13 mm row-height variation and 0.10 mm coplanarity. y contains
-        the five-position 6.48 mm maximum bank plus 0.51 mm cut flash at each end.
-        z contains the 5.84 mm reference tail span plus 0.30 mm reference reserve,
-        0.08 mm burr per side and 0.31 mm sway allowance. Each result is rounded
-        outward; placement and service fit remain separate.
+      rationale: In the explicit J_JTAG local frame, x contains the 2.92 mm maximum SMT-tail extent, 3.20
+        mm reference keyed-wall height, 0.30 mm reference reserve, 0.13 mm row-height variation and 0.10
+        mm coplanarity. y contains the five-position 6.48 mm maximum bank plus 0.51 mm cut flash at each
+        end. z contains the 5.84 mm reference tail span plus 0.30 mm reference reserve, 0.08 mm burr per
+        side and 0.31 mm sway allowance. Each result is rounded outward; placement and service fit remain
+        separate.
   mate:
     manufacturer: Samtec
     mpn: FFSD-05-D-06.00-01-N
     part_kind: keyed_double_ended_idc_ribbon_cable
     model_source_id: null
-    body_envelope_mm: {x: 5.5, y: 11.0, z: 5.0}
+    body_envelope_mm:
+      x: 5.5
+      y: 11.0
+      z: 5.0
     evidence:
       grade: conservative
       source_ids:
       - jtag_mate_print
       - jtag_mate_catalog
-      rationale: In the explicit J_JTAG local frame, x contains the 5.23 mm maximum
-        socket thickness plus 0.15 mm maximum conductor protrusion. y contains the
-        five-position 10.54 mm body formula plus 0.13 mm general tolerance. z
-        contains 3.05 mm reference body depth, 1.02 mm reference -N projection,
-        0.13 mm reserve for each reference dimension and 0.25 mm maximum cable
-        overhang. Each result is rounded outward. The opposite connector, ribbon
-        route, bend and hand-service envelope remain separate.
+      rationale: In the explicit J_JTAG local frame, x contains the 5.23 mm maximum socket thickness plus
+        0.15 mm maximum conductor protrusion. y contains the five-position 10.54 mm body formula plus
+        0.13 mm general tolerance. z contains 3.05 mm reference body depth, 1.02 mm reference -N projection,
+        0.13 mm reserve for each reference dimension and 0.25 mm maximum cable overhang. Each result is
+        rounded outward. The opposite connector, ribbon route, bend and hand-service envelope remain separate.
   interface:
     mating_plane_offset_mm: null
     minimum_exposure_mm: null
     exposure_setback_allowance_mm: null
     minimum_service_clearance_mm: null
-    orientation_source_id: null
+    orientation_source_id: connector_placement_contract
     evidence:
       grade: unknown
-      source_ids: []
-      rationale: Mating datum, exposure, process setback, and service clearance are
-        owed.
+      source_ids:
+      - connector_placement_contract
+      - connector_physical_qualification_plan
+      rationale: Mating datum, exposure, process setback, and service clearance are owed.
   grip:
     kind: keyed_idc_socket_body
     across_flats_mm: 11.0
@@ -583,10 +614,9 @@ assemblies:
       grade: conservative
       source_ids:
       - jtag_mate_print
-      rationale: The grip reuses the complete conservative socket-body box. A 12.1
-        mm cylinder rounds outward from sqrt(11.0^2 + 5.0^2), and 5.5 mm is the
-        full axial bound. Finger approach, required hand clearance, ribbon bend and
-        simultaneous-neighbor service remain unqualified.
+      rationale: The grip reuses the complete conservative socket-body box. A 12.1 mm cylinder rounds
+        outward from sqrt(11.0^2 + 5.0^2), and 5.5 mm is the full axial bound. Finger approach, required
+        hand clearance, ribbon bend and simultaneous-neighbor service remain unqualified.
   fastening:
     method: polarized_friction_fit
     thread_designation: null
@@ -596,8 +626,8 @@ assemblies:
       source_ids:
       - jtag_header_print
       - jtag_mate_print
-      rationale: Samtec defines the FTSH -K notch for the selected polarized FFSD
-        socket; the interface has no threaded fastening.
+      rationale: Samtec defines the FTSH -K notch for the selected polarized FFSD socket; the interface
+        has no threaded fastening.
   tool:
     kind: none
     identifier: null
@@ -610,8 +640,7 @@ assemblies:
       grade: exact
       source_ids:
       - connector_selection
-      rationale: The selected keyed IDC socket is hand operated with no separate tightening
-        or counter-tool.
+      rationale: The selected keyed IDC socket is hand operated with no separate tightening or counter-tool.
   torque:
     required: false
     minimum_nm: null
@@ -622,26 +651,30 @@ assemblies:
       - connector_selection
       rationale: The polarized friction-fit JTAG cable has no torque requirement.
   reaction:
-    method: null
-    load_path: null
+    method: restrained_pcb_hand_operation
+    load_path: keyed_socket_body_to_smt_header_joints_to_pcb_to_adjacent_board_restraints
     evidence:
       grade: unknown
-      source_ids: []
-      rationale: Insertion, extraction, and fastening reaction load paths are not
-        proven.
+      source_ids:
+      - connector_physical_qualification_plan
+      rationale: Insertion, extraction, and fastening reaction load paths are not proven.
   cable:
-    kind: null
-    manufacturer: null
-    mpn: null
+    kind: keyed_double_ended_idc_ribbon_cable
+    manufacturer: Samtec
+    mpn: FFSD-05-D-06.00-01-N
     outer_diameter_mm: null
     straight_run_mm: null
     minimum_bend_radius_mm: null
     exit: null
     evidence:
       grade: unknown
-      source_ids: []
-      rationale: Termination, boot, cable body, straight run, exit, and bend are not
-        selected.
+      source_ids:
+      - jtag_mate_print
+      - jtag_mate_catalog
+      - connector_physical_qualification_plan
+      rationale: Exact cable assembly identity matches the selected mate. Its lateral ribbon exit, installed
+        straight run, bend, strain relief, and clearance remain unknown because schema 1 cannot encode
+        the required angled exit as axial.
   operations:
   - id: debug_jtag_service
     sequence: 1
@@ -652,18 +685,20 @@ assemblies:
     end_state: neighbors_connected_target_mated
     evidence:
       grade: unknown
-      source_ids: []
-      rationale: Mating with other required connectors populated is required; insertion/release
-        envelope and reaction qualification remain owed.
+      source_ids:
+      - connector_physical_qualification_plan
+      rationale: Mating with other required connectors populated is required; insertion/release envelope
+        and reaction qualification remain owed.
   tolerances:
   - id: debug_jtag_registration
-    applies_to: receptacle_mating_plane_to_board_edge
+    applies_to: installed_receptacle_mating_plane_to_realized_board_edge
     effect: exposure_setback
     minus_mm: null
     plus_mm: null
     evidence:
       grade: unknown
-      source_ids: []
+      source_ids:
+      - connector_physical_qualification_plan
       rationale: Drawing, PCB, seating, enclosure, print, and tool stack is not closed.
 simultaneous_groups:
 - id: normal_service

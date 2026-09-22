@@ -169,3 +169,7 @@ Pushed reviewed digital source checkpoint18b7e415 under the user directive. Rebu
 ## Iterate 34 — complete source census and digital verification
 
 Independent SOL rendering covers all 485 refs across 37 pages, with no duplicate/missing/extra refs or page errors. Seventy digital source assertions pass; source-state timing and added static current screens pass within their engineering limits. Root repaired missing CC-resistor dossier pins and the new delay capacitor supplier-code inconsistency, reran source expansion and all 85 selected native FPID/pinset checks, and created a candidate BOM accepted by the owning sourcing reader. Complete quiet-rail transients and proposed sourceable flash/regulator backtracks remain under SOL review.
+
+## Iterate 35 — connector planning and physical qualification boundary
+
+Adopted explicit intended frames for all11 connectors as authored planning evidence, without inventing an executable rule file. Added physical qualification plan and16 typed source deferrals; actual placement and service remain unknown. Root visual inspection rejected two incorrect Molex dimension interpretations, then adopted a conservative housing envelope with explicit2mm latch allowance and independently reviewed header bounds. Connector facts23/45,22unknown; source phase admits16 and retains7 findings. Lateral JTAG cable schema support and sourceable flash/regulator candidates remain in isolated SOL work.

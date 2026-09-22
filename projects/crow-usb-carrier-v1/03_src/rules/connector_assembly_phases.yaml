@@ -2,5 +2,101 @@
 # cannot make the base connector receipt PASS. It may classify only the closed
 # physical/realized unknown classes accepted by connector_assembly_phase_gate.py.
 schema: 1
-phase_policy_id: replace-with-project-connector-phase-policy
-source_deferrals: []
+phase_policy_id: crow-usb-carrier-v1-connector-physical-qualification
+source_deferrals:
+- assembly_id: spoke_rj45
+  target_kind: interface
+  target_id: interface
+  unknown_class: realized-interface-fit
+  plan_source_ids: [connector_placement_contract, connector_physical_qualification_plan]
+  rationale: Measure realized mating orientation, exposure, setback, and service clearance on the exact candidate; mate every J1-J8 ref with both simultaneous groups populated.
+- assembly_id: spoke_rj45
+  target_kind: reaction
+  target_id: reaction
+  unknown_class: reaction-qualification
+  plan_source_ids: [connector_physical_qualification_plan]
+  rationale: Exercise insertion, latch release, withdrawal, and cable strain while the adjacent-board restraint carries reaction through the through-hole connector and PCB; inspect flex, rotation, and joints.
+- assembly_id: spoke_rj45
+  target_kind: operation
+  target_id: spoke_rj45_service
+  unknown_class: simultaneous-operation-qualification
+  plan_source_ids: [connector_physical_qualification_plan]
+  rationale: For every J1-J8 ref, complete the authored service transition with normal_service and bench_service neighbors populated and record grip, latch, interference, and neighbor disturbance.
+- assembly_id: spoke_rj45
+  target_kind: tolerance
+  target_id: spoke_rj45_registration
+  unknown_class: installed-tolerance-qualification
+  plan_source_ids: [connector_physical_qualification_plan]
+  rationale: Measure the installed receptacle mating-plane to realized-board-edge stack and all applicable process contributors across the governed samples; derive no allowance until evidence exists.
+- assembly_id: usb_device
+  target_kind: interface
+  target_id: interface
+  unknown_class: realized-interface-fit
+  plan_source_ids: [connector_placement_contract, connector_physical_qualification_plan]
+  rationale: Measure realized orientation, engagement, exposure, setback, and service clearance for the exact Type-C pair on the exact candidate with required neighbors populated.
+- assembly_id: usb_device
+  target_kind: reaction
+  target_id: reaction
+  unknown_class: reaction-qualification
+  plan_source_ids: [connector_physical_qualification_plan]
+  rationale: Exercise insertion and withdrawal while the adjacent-board restraint carries reaction through the shell stakes and SMT mounting into the PCB; inspect flex, rotation, and joints.
+- assembly_id: usb_device
+  target_kind: operation
+  target_id: usb_device_service
+  unknown_class: simultaneous-operation-qualification
+  plan_source_ids: [connector_physical_qualification_plan]
+  rationale: Complete the authored service transition with normal_service and bench_service neighbors populated and record overmold grip access, interference, seating, and neighbor disturbance.
+- assembly_id: usb_device
+  target_kind: tolerance
+  target_id: usb_device_registration
+  unknown_class: installed-tolerance-qualification
+  plan_source_ids: [connector_physical_qualification_plan]
+  rationale: Measure the installed receptacle mating-plane to realized-board-edge stack and all applicable process contributors across the governed samples; derive no allowance until evidence exists.
+- assembly_id: external_power
+  target_kind: interface
+  target_id: interface
+  unknown_class: realized-interface-fit
+  plan_source_ids: [connector_placement_contract, connector_physical_qualification_plan]
+  rationale: Measure realized orientation, latch engagement, exposure, setback, and service clearance for the exact Molex pair on the exact candidate with required neighbors populated.
+- assembly_id: external_power
+  target_kind: reaction
+  target_id: reaction
+  unknown_class: reaction-qualification
+  plan_source_ids: [connector_physical_qualification_plan]
+  rationale: Exercise latch engagement, release, and withdrawal while the adjacent-board restraint carries reaction through the through-hole header and PCB; inspect flex, rotation, and joints.
+- assembly_id: external_power
+  target_kind: operation
+  target_id: external_power_service
+  unknown_class: simultaneous-operation-qualification
+  plan_source_ids: [connector_physical_qualification_plan]
+  rationale: Complete the authored service transition with normal_service and bench_service neighbors populated and record latch access, interference, seating, and neighbor disturbance.
+- assembly_id: external_power
+  target_kind: tolerance
+  target_id: external_power_registration
+  unknown_class: installed-tolerance-qualification
+  plan_source_ids: [connector_physical_qualification_plan]
+  rationale: Measure the installed receptacle mating-plane to realized-board-edge stack and all applicable process contributors across the governed samples; derive no allowance until evidence exists.
+- assembly_id: debug_jtag
+  target_kind: interface
+  target_id: interface
+  unknown_class: realized-interface-fit
+  plan_source_ids: [connector_placement_contract, connector_physical_qualification_plan]
+  rationale: Measure realized orientation, polarized engagement, exposure, and service clearance for the exact Samtec pair on the exact candidate with the bench group populated.
+- assembly_id: debug_jtag
+  target_kind: reaction
+  target_id: reaction
+  unknown_class: reaction-qualification
+  plan_source_ids: [connector_physical_qualification_plan]
+  rationale: Exercise insertion and withdrawal by the keyed socket body while the adjacent-board restraint carries reaction through SMT header joints and PCB; inspect flex, rotation, and joints.
+- assembly_id: debug_jtag
+  target_kind: operation
+  target_id: debug_jtag_service
+  unknown_class: simultaneous-operation-qualification
+  plan_source_ids: [connector_physical_qualification_plan]
+  rationale: Complete the authored service transition with the entire bench_service group populated and record polarization, grip access, interference, seating, and neighbor disturbance.
+- assembly_id: debug_jtag
+  target_kind: tolerance
+  target_id: debug_jtag_registration
+  unknown_class: installed-tolerance-qualification
+  plan_source_ids: [connector_physical_qualification_plan]
+  rationale: Measure the installed receptacle mating-plane to realized-board relationship and applicable assembly-process contributors across governed samples; derive no allowance until evidence exists.

@@ -1,0 +1,11 @@
+# Molex power mate placement bound
+
+Root and SOL independently inspected the orthographic drawing, including the two-circuit detail and latch profile. Text extraction initially associated the three-circuit width with the two-circuit part; that candidate was rejected. The 5.30 mm flange dimension also excludes part of the latch, so it was not used as the complete height.
+
+The adopted conservative planning box is axial 14.25 × lateral 8.53 × transverse 8.53 mm. Axial 14.00 and two-circuit lateral 8.28 each receive the drawing’s +0.25 mm tolerance. The transverse 2.03 + 3.86 mm chain receives two +0.25 mm tolerances and an explicit 2.00 mm project allowance for the undimensioned upper latch-tip/flange spread; 8.39 mm is rounded outward to 8.53 mm. The allowance is an engineering choice, not a manufacturer-guaranteed dimension. Grip diameter 12.07 mm rounds outward from the transverse diagonal; axial grip length is 14.25 mm.
+
+Primary authority: Molex drawing 436450000-SD revision A1, released 2022-10-17, exact 43645-0200 row and two-circuit detail. Root reopened the [official drawing](https://www.molex.com/content/dam/molex/molex-dot-com/products/automated/en-us/salesdrawingpdf/436/43645/436450200_sd.pdf). A manufacturer-authored [mirror package](https://images.100y.com.tw/pdf_file/10-Molex-43645-0700.pdf) retains the same drawing on PDF page 5, and is copied unchanged to `02_parts/43645-0200/Molex_43645_family_drawing_revA1.pdf`, SHA-256 `79741fa9670490f3d8561208176572c0b3f4ec678dde0e0aea7a27b3bf288ac5`. No image scaling supplied dimensions.
+
+Wire/termination routing, operated latch/finger clearance, installed tolerances, cross-mated fit and simultaneous service remain unqualified. These planning bounds support a future physical candidate; they do not accept its geometry.
+
+Root also inspected the retained header drawing SD-43650-001 revD8 page1. Header axial9.90 and width9.65 receive0.35mm project allowances, yielding10.25×10.00mm. Height4.37+1.20+3.30=8.87mm includes latch and lower peg; separate0.35mm reference reserves for each term yield9.92mm, rounded to10.00mm. The header planning box is therefore10.25×10.00×10.00mm. These reserves are engineering choices and do not establish manufactured maximum dimensions or mated clearance.
