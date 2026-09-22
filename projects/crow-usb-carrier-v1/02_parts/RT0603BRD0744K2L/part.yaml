@@ -8,6 +8,5 @@ package: '0603'
 footprint: crow_usb_analog:Yageo_RT0603_NominalBody
 pins: {1: ILIM, 2: RTN}
 limits: {resistance_ohm: 44200, tolerance_pct: 0.1, temperature_coefficient_ppm_per_C: 25, power_W: 0.1}
-ordering_decode: B is 0.1 percent tolerance; D is 25 ppm/C TCR; 44K2 is 44.2 kohm; L is reel packaging.
-sourcing: {lcsc: C861410, allocation: unqualified_for_candidate}
+sourcing: {lcsc: C861410}
 

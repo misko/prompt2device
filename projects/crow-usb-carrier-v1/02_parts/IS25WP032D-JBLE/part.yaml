@@ -3,12 +3,10 @@ footprint: Package_SO:SOIC-8_5.3x5.3mm_P1.27mm
 manufacturer: ISSI
 type: serial_quad_flash
 package: SOIC-8 208mil
-lcsc: C1349020
 datasheet:
   doc_id: IS25LP-WP032D Rev A15
   revision: A15
   url: https://www.mouser.com/datasheet/2/198/25LP_WP032D-1090958.pdf
-  mirror_url: https://www.ic-components.com/files/0c/IS25LP032D-JBLE.pdf
   local: 02_parts/IS25WP032D-JBLE/IS25LP_WP032D.pdf
   sha256: 53ef94f9f600a6053935d18c37e9abad326ba825524004cc8687486f4532968d
   fetched: 2026-09-22

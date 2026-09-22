@@ -7,6 +7,5 @@ footprint: Capacitor_SMD:C_0805_2012Metric
 pins: {1: A, 2: B}
 datasheet: {doc_id: exact_generated_specsheet, url: 'https://www.yageogroup.com/download/specsheet/CC0805KRX7R9BB104', local: Yageo_CC0805KRX7R9BB104_specsheet.pdf, sha256: 132977e32e5b110ba56e07a95e66165ea1f8676252cd3eefc3301d696a97e5e1, fetched: '2026-09-22'}
 limits: {capacitance_F: 0.0000001, tolerance_pct: 10, voltage_VDC: 50, dielectric: X7R, temperature_C: [-55, 125]}
-use: local TPS26625 IN and OUT high-frequency capacitors; no effective-capacitance or transient-clamp guarantee inferred
-sourcing: {lcsc: C49678, allocation: unqualified_for_candidate}
+sourcing: {lcsc: C49678}
 

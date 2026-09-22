@@ -3,7 +3,6 @@ schema: 1
 source_type: isolated_external_12V_supply
 source_voltage_boundary:
   minimum_operating_V: 11.4
-  maximum_operating_V: 13.2
   evidence: CROW_USB_POWER_BOUNDARY declares 11.4-13.2 V; isolation is external.
 off_control: disconnect_J_PWR_external_isolated_12V_input
 quiescent_ua: 0
@@ -187,13 +186,6 @@ rails:
       protection_switch: {value: 800, basis: maximum, evidence: 'TPS26625 manufacturer RON maximum over -40 to 125 C.'}
       pcb_copper_vias_joints: {value: 810, basis: budgeted_max, evidence: 'Pre-layout allocation; verify by post-route extraction and first-article four-wire measurement.'}
       connector_contacts: {value: 100, basis: budgeted_max, evidence: 'Board-side paralleled contact allocation; mated cable loss belongs to the external source envelope.'}
-    ir_budget_evidence: >-
-      The 11.006 V protected-rail floor provides 206 mV above the 10.8 V
-      connector-plane floor. After the owning gate's 20% delivery margin, the
-      admitted path is 1710 milliohm: 171 mV nominal and 205.2 mV charged at
-      0.10 A. TPS26625 consumes at most 800 milliohm at its guaranteed hot
-      RON; 910 milliohm remains for copper, joints and connector contacts and
-      must be checked on the native board.
     external_output: true
     claim_id: eight_analog_spokes
     load_uv_threshold: 10.8

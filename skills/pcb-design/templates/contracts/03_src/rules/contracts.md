@@ -625,23 +625,23 @@ TWO ORPHANS THIS FOLDER'S OWN PROSE HAD HIDDEN, both found by the first run:
 | `passive_distribution_faults[].prospective_current_min_A` | `early_design_check.py` | minimum available fault current that the maximum trip-time envelope must cover |
 | `passive_distribution_faults[].prospective_current_max_A` | `early_design_check.py` | maximum prospective current checked against PPTC fault-current withstand and used in the source-energy bound |
 | `passive_distribution_faults[].prospective_current_evidence_grade` | `early_design_check.py` | closed `qualified_bound` grade for both prospective-current corners |
-| `passive_distribution_faults[].prospective_current_evidence_locator` | `early_design_check.py` | exact source/report locator for both prospective-current corners |
+| `passive_distribution_faults[].prospective_current_evidence_locator` | OWED | human evidence locator retained for review; the current reader grades the adjacent numeric bound but does not resolve this locator |
 | `passive_distribution_faults[].fault_current_withstand_A` | `early_design_check.py` | maximum device fault-current withstand; explicitly not a current clamp |
 | `passive_distribution_faults[].fault_current_withstand_evidence_grade` | `early_design_check.py` | closed `guaranteed_rating` grade for device fault-current withstand |
-| `passive_distribution_faults[].fault_current_withstand_evidence_locator` | `early_design_check.py` | exact manufacturer source locator for device fault-current withstand |
+| `passive_distribution_faults[].fault_current_withstand_evidence_locator` | OWED | human evidence locator retained for review; the current reader grades the adjacent numeric bound but does not resolve this locator |
 | `passive_distribution_faults[].ambient_min_C` | `early_design_check.py` | cold operating corner that an exact maximum-trip-time point must match; no temperature interpolation is inferred |
 | `passive_distribution_faults[].ambient_max_C` | `early_design_check.py` | hot operating corner that must match the normal distribution hold-current ambient bound |
 | `passive_distribution_faults[].maximum_trip_time_envelope[]` | `early_design_check.py` | `{current_A, time_max_s, temperature_C, evidence_grade, evidence_locator}` points; an exact `guaranteed_maximum` point must match minimum prospective current and cold ambient |
 | `passive_distribution_faults[].post_trip_leakage_max_A` | `early_design_check.py` | guaranteed post-trip current bound, separate from typical tripped dissipation |
 | `passive_distribution_faults[].post_trip_evidence_grade` | `early_design_check.py` | closed `guaranteed_maximum` grade; typical tripped dissipation is rejected |
-| `passive_distribution_faults[].post_trip_evidence_locator` | `early_design_check.py` | exact source locator for guaranteed post-trip current |
+| `passive_distribution_faults[].post_trip_evidence_locator` | OWED | human evidence locator retained for review; the current reader grades the adjacent numeric bound but does not resolve this locator |
 | `passive_distribution_faults[].protected_path_sustained_current_max_A` | `early_design_check.py` | qualified continuous-safe current for the complete protected path; must be no lower than maximum post-trip leakage |
 | `passive_distribution_faults[].protected_path_sustained_current_evidence_grade` | `early_design_check.py` | closed `qualified_minimum` grade for the protected path's continuous-safe current capability |
-| `passive_distribution_faults[].protected_path_sustained_current_evidence_locator` | `early_design_check.py` | exact qualification-report locator for continuous-safe load/cable/connector/copper current |
+| `passive_distribution_faults[].protected_path_sustained_current_evidence_locator` | OWED | human evidence locator retained for review; the current reader grades the adjacent numeric bound but does not resolve this locator |
 | `passive_distribution_faults[].let_through_energy_max_J` | `early_design_check.py` | fault-energy allocation no lower than `vin_max * prospective_current_max_A * covering_time_max_s` |
 | `passive_distribution_faults[].protected_path_withstand_J` | `early_design_check.py` | qualified load/interconnect withstand no lower than the let-through allocation |
 | `passive_distribution_faults[].energy_withstand_evidence_grade` | `early_design_check.py` | closed `qualified_minimum` grade for complete protected-path withstand |
-| `passive_distribution_faults[].energy_withstand_evidence_locator` | `early_design_check.py` | exact report locator for complete load/cable/connector/copper energy withstand |
+| `passive_distribution_faults[].energy_withstand_evidence_locator` | OWED | human evidence locator retained for review; the current reader grades the adjacent numeric bound but does not resolve this locator |
 | `no_fault_envelope_requirements` | `early_design_check.py` | explicit evidenced applicability decision when independently limited outputs do not share an upstream path |
 | `pd_input_and_regulator` | ADVISORY | human grouping of the selected PD controller, fixed PDO, regulator and input-gate design; executable voltage, surge, topology and fault bounds live in protection_paths, electrical_invariants and the graded rail records below |
 | `pd_input_and_regulator.*` | ADVISORY | human-readable selection and calculation summary; every release-driving bound must also live in a dedicated machine-read field |

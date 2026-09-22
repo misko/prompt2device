@@ -1,13 +1,11 @@
 mpn: '744373240047'
 manufacturer: Würth Elektronik eiSos
 type: shielded_power_inductor
-series: WE-LHMI
 package: 4020, 4.45 x 4.06 x 1.8 mm body
 footprint: crow_usb_digital:Wurth_WE-LHMI_744373240047
 datasheet:
   doc_id: '744373240047'
   revision: '003.000'
-  date: '2024-12-27'
   url: https://www.we-online.com/components/products/datasheet/744373240047.pdf
   local: 02_parts/744373240047/Wurth_744373240047.pdf
   sha256: 18d4780afd61015ea4d7b56a174b1f51405d51a51fd87ca1d1eef86f177af2da
@@ -30,12 +28,6 @@ limits:
   ambient_temperature_C:
   - -40
   - 85
-qualification:
-  aec_q200: Grade 1 marking shown on primary drawing
-  moisture_sensitivity_level: 1
-procurement:
-  classification: current availability and pricing not qualified in this packet
-  lcsc: C19270343
 sourcing: {lcsc: C19270343, note: "Exact catalog identity; observed stock is zero and no allocation claim is made."}
 layout:
   source: Würth 744373240047 revision 003.000 page 1 and TI SLVSEF9I Table 8-5
@@ -43,19 +35,6 @@ layout:
   notes:
   - Preserve the manufacturer's 2.2-mm central no-via/no-trace restriction and 1.5 x 2.4 mm lands.
   - Place in the corresponding TPS62825 switch loop with the SW-side land facing the converter; exact loop realization remains a native-layout review item.
-  recommended_lands_mm:
-    pad_size:
-    - 1.5
-    - 2.4
-    pad_centers:
-    - - -1.85
-      - 0
-    - - 1.85
-      - 0
-    overall_span_x: 5.2
-    inner_restricted_gap_x: 2.2
-  restriction: No vias or traces in the 2.2-mm central restricted area shown by the
-    primary drawing.
 verified: Primary Würth drawing visually inspected and dimensions transcribed; TI
   SLVSEF9I Table 8-5 names the exact MPN as a recommended 0.47-uH inductor.
 layout_refs:
