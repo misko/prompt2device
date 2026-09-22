@@ -3,8 +3,11 @@
 # Operated connector refs deliberately have no pose or region assignment.
 # require_anchor rejects them until exact mating-plane anchors are reviewed.
 # Region patterns only seed placement: they do not enforce a region boundary.
-# Physical stackup authority is rules/rf.yaml and retained JLC evidence; the
-# native stackup must be populated consistently before placement admission.
+# Physical stackup authority is rules/rf.yaml and retained JLC evidence.
+# Composite Dk matches the vendor calculator convention. Df=0.020 is a
+# material-family nominal annotation, not qualified USB-band attenuation.
+# The single native mask thickness describes over-trace mask; the vendor
+# impedance solver separately models substrate/trace/gap mask geometry.
 # Board generation remains prohibited by the commissioning hold.
 project:
   name: crow_carrier
@@ -19,6 +22,32 @@ board:
     y1: 140.0
   edge_width: 0.1
   layers: 4
+  stackup:
+    nominal_thickness_mm: 1.63
+    thickness_tolerance_mm: 0.163
+    copper_thickness_mm:
+    - 0.04064
+    - 0.0152
+    - 0.0152
+    - 0.04064
+    dielectrics:
+    - type: prepreg
+      thickness_mm: 0.5124
+      material: NP-155F 7628+7628+1080 composite; JLC04161H-7628G
+      epsilon_r: 4.2366666667
+      loss_tangent: 0.02
+    - type: core
+      thickness_mm: 0.5
+      material: NP-155F core
+      epsilon_r: 4.48
+      loss_tangent: 0.02
+    - type: prepreg
+      thickness_mm: 0.5124
+      material: NP-155F 7628+7628+1080 composite; JLC04161H-7628G
+      epsilon_r: 4.2366666667
+      loss_tangent: 0.02
+    mask_thickness_mm: 0.01524
+    dielectric_constraints: true
 libraries:
 - /usr/share/kicad/footprints
 - 03_src/lib

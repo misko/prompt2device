@@ -138,3 +138,8 @@
 - did: corrected the power-bound disposition after checking the actual E-CAP implementation and project contract. Manufacturer-guaranteed derating was an extra coordinator restriction, not a repository requirement; conservative supported engineering allowances are permitted with explicit qualification limits.
 - result: no numeric placeholder or gate result changed. Isolated SOL capacitor candidate must substantiate exact-part operating conditions and extra derating before adoption. Normal topology disposition updated to match the already-adopted passive reader.
 - next: review live capacitor/protection candidates and connector/power-state reviews.
+
+## 2026-09-22 — iterate 28
+- did: populated the draft floorplan physical stackup from retained JLC construction/solver evidence, with explicit limits for composite Dk, native mask and material-family Df annotations.
+- result: existing stackup writer produced/reloaded an empty four-layer schema fixture; 1.63648-mm copper-plus-dielectric construction matches nominal1.63±10%. No Crow geometry or SI acceptance claimed.
+- next: review live SOL capacitor/protection candidates and independent power-state/connector findings.
