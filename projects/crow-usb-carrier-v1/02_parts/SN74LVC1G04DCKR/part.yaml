@@ -1,5 +1,5 @@
-mpn: "SN74LVC1G04DCKR"
-footprint: "crow_usb_digital:TI_DCK0005A_SC70_5"
+mpn: SN74LVC1G04DCKR
+footprint: crow_usb_digital:TI_DCK0005A_SC70_5
 manufacturer: Texas Instruments
 type: inverter
 package: SC70-5 DCK
@@ -11,8 +11,29 @@ datasheet:
   sha256: ac04a53de979125799e57ea5a6dff4138fe53e0eceebe45c31f57523669887d5
   fetched: 2026-09-22
   pages: 26
-pins: {1: NC, 2: A, 3: GND, 4: Y, 5: VCC}
-verified: "pin map checked to SCES214AF Figure 4-1/pin table — 2026-09-22"
+pins:
+  1: NC
+  2: A
+  3: GND
+  4: Y
+  5: VCC
+verified: "pin map checked to SCES214AF Figure 4-1/pin table \u2014 2026-09-22"
 layout:
-  source: "SCES214AF layout guidance"
+  source: TI SCES214AF Sections 8.4-8.5, datasheet page 12
   reviewed: 2026-09-22
+  notes:
+  - 'Evidence grade: primary manufacturer power-supply and input-state guidance. Place
+    C_FSYNC_INV beside U_BCLK_INV VCC pin 5 with a short return to pin 3/GND.'
+  - Keep ADC_BCLK_RAW and ADC_BCLK_INV short within the frame-sync timing cluster.
+    Input A is driven in the current source; preserve that state because Section 8.5
+    forbids floating logic inputs.
+layout_refs:
+- tier: 1
+  reached: true
+  artifact: TI SCES214AF Sections 8.4-8.5 and Figure 8-2, page 12
+- tier: 2
+  reached: false
+  artifact: Exact-part manufacturer evaluation-board or routed reference-design files
+    (not present in the immutable task packet)
+  why: No exact-part routed design files were included in the immutable packet; this
+    bounded repair does not claim unseen files.

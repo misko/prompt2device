@@ -1,5 +1,5 @@
-mpn: "SN74LVC1G125DCKR"
-footprint: "crow_usb_digital:TI_DCK0005A_SC70_5"
+mpn: SN74LVC1G125DCKR
+footprint: crow_usb_digital:TI_DCK0005A_SC70_5
 manufacturer: Texas Instruments
 type: logic_level_interface
 package: SC70-5 DCK
@@ -17,7 +17,24 @@ pins:
   3: GND
   4: Y
   5: VCC
-verified: "pin map checked to SCES223 package/pin table — 2026-09-22"
+verified: "pin map checked to SCES223 package/pin table \u2014 2026-09-22"
 layout:
-  source: "SCES223 layout guidance"
+  source: TI SCES223 Section 8.4 and layout example, datasheet pages 14-15
   reviewed: 2026-09-22
+  notes:
+  - 'Evidence grade: primary manufacturer layout guidance. Place C_MCLK_BUF beside
+    U_MCLK_BUF VCC pin 5 with an electrically short return to pin 3/GND, using wide
+    supply/return traces on the same side where practical.'
+  - Keep AUDIO_24M576 and ADC_MCLK_RAW short over an unbroken ground plane. If a long
+    branch becomes unavoidable, Section 8.4 calls for impedance control and source
+    damping near the output rather than an arbitrary placement-distance claim.
+layout_refs:
+- tier: 1
+  reached: true
+  artifact: TI SCES223 Section 8.4 and layout example, pages 14-15
+- tier: 2
+  reached: false
+  artifact: Exact-part manufacturer evaluation-board or routed reference-design files
+    (not present in the immutable task packet)
+  why: No exact-part routed design files were included in the immutable packet; this
+    bounded repair does not claim unseen files.

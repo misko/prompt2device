@@ -1,0 +1,9 @@
+# USB signal integrity admission — 2026-09-22
+
+The template's disabled RF/high-speed applicability is rejected. The current onboard USB pair requires controlled impedance. The local primary XU316 datasheet `02_parts/XU316-1024-TQ128-C24/XM-014532-PC-v2.0.0.pdf`, sections 14.1–14.2 (printed pages 30–32), specifies a 90 ohm differential USB pair and gives a 1 mm pair-skew guideline. Its example uses 0.12 mm trace width, 0.10 mm pair spacing and 0.10 mm reference distance; these are not adopted route dimensions for this board.
+
+The intended route is on F.Cu over continuous In1.Cu ground, with protection adjacent to the connector and no unrelated stubs. The contract's 0–2.4 GHz band is an engineering analysis span (five times the 480 Mbit/s bit-rate expressed numerically as frequency), not the USB signaling clock or a manufacturer-guaranteed bandwidth. It must be checked against the actual PHY edge specification and selected simulation models.
+
+JLCPCB's primary stackup page, https://jlcpcb.com/impedance (accessed 2026-09-22), exposes different outer-copper options and stackup tables. The initially rendered table uses 0.035 mm outer copper. It cannot substantiate the 2 oz outer-copper thermal assumption used in the power screen. Do not mix those two conditions or copy the default table into the design.
+
+Next admission work: obtain the exact four-layer, 2 oz outer-copper stackup; check package clearances against that process; solve the USB differential pair including mask and manufacturing tolerance; record the selected geometry and independently verify the saved route. If that process cannot realize the existing package lands, backtrack the copper/thermal or package choice explicitly. The new rf.yaml intentionally leaves cross_sections empty so RF-CONTRACT refuses admission until evidence exists. This is an open engineering dependency, not a passing RF gate.

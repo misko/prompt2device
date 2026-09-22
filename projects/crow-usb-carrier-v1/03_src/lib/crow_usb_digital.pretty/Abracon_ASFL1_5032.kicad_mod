@@ -1,0 +1,12 @@
+(footprint "Abracon_ASFL1_5032"
+  (version 20240108) (generator "codex-component-source") (layer "F.Cu")
+  (descr "Abracon ASFL1 5.0x3.2mm; manufacturer recommended lands, rev04.13.11 page2")
+  (attr smd)
+  (fp_rect (start -2.5 -1.6) (end 2.5 1.6) (stroke (width 0.1) (type default)) (fill none) (layer "F.Fab"))
+  (fp_rect (start -2.75 -2.1) (end 2.75 2.1) (stroke (width 0.05) (type default)) (fill none) (layer "F.CrtYd"))
+  (fp_circle (center -2.4 1.95) (end -2.3 1.95) (stroke (width 0.12) (type default)) (fill none) (layer "F.SilkS"))
+  (pad "1" smd rect (at -1.27 1.1) (size 1.7 1.5) (layers "F.Cu" "F.Paste" "F.Mask"))
+  (pad "2" smd rect (at 1.27 1.1) (size 1.7 1.5) (layers "F.Cu" "F.Paste" "F.Mask"))
+  (pad "3" smd rect (at 1.27 -1.1) (size 1.7 1.5) (layers "F.Cu" "F.Paste" "F.Mask"))
+  (pad "4" smd rect (at -1.27 -1.1) (size 1.7 1.5) (layers "F.Cu" "F.Paste" "F.Mask"))
+)

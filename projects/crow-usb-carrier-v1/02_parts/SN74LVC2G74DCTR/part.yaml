@@ -1,5 +1,5 @@
-mpn: "SN74LVC2G74DCTR"
-footprint: "crow_usb_digital:TI_DCT0008A_SM8"
+mpn: SN74LVC2G74DCTR
+footprint: crow_usb_digital:TI_DCT0008A_SM8
 manufacturer: Texas Instruments
 type: positive_edge_d_flip_flop_with_async_clear_preset
 package: SM8-8 DCT
@@ -11,9 +11,36 @@ datasheet:
   sha256: 19bc881b14bac1dd02c9a5c9a184d09b2482eab053fb5e7706897ab42c023bea
   fetched: 2026-09-22
   pages: 21
-pins: {1: CLK, 2: D, 3: Q_N, 4: GND, 5: Q, 6: CLR_N, 7: PRE_N, 8: VCC}
-verified: "pin map checked to SCES203Q Figure 5-1/Table 5-1 — 2026-09-22"
-limits: {vcc: 1.65V_to_5.5V, tpd_max_3V3: 5.9ns}
+pins:
+  1: CLK
+  2: D
+  3: Q_N
+  4: GND
+  5: Q
+  6: CLR_N
+  7: PRE_N
+  8: VCC
+verified: "pin map checked to SCES203Q Figure 5-1/Table 5-1 \u2014 2026-09-22"
+limits:
+  vcc: 1.65V_to_5.5V
+  tpd_max_3V3: 5.9ns
 layout:
-  source: "SCES203Q layout guidance; local 100nF bypass"
+  source: TI SCES203Q Section 10 and Section 11.1, datasheet pages 11-12
   reviewed: 2026-09-22
+  notes:
+  - 'Evidence grade: primary manufacturer supply and logic-layout guidance. Put C_FSYNC_FF1
+    and C_FSYNC_FF2 beside the corresponding VCC pin 8 with a short return to pin
+    4/GND.'
+  - All asynchronous and data inputs are driven in the current source; preserve that
+    state because Section 11.1 forbids floating CMOS inputs. Keep the two flip-flops
+    and U_BCLK_INV/U_FSYNC_OR compact around the BCLK/FSYNC path.
+layout_refs:
+- tier: 1
+  reached: true
+  artifact: TI SCES203Q Sections 10-11 and Figure 11-1, pages 11-12
+- tier: 2
+  reached: false
+  artifact: Exact-part manufacturer evaluation-board or routed reference-design files
+    (not present in the immutable task packet)
+  why: No exact-part routed design files were included in the immutable packet; this
+    bounded repair does not claim unseen files.

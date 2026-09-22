@@ -1,5 +1,5 @@
-mpn: "FTSH-105-01-L-DV-K"
-footprint: "crow_usb_digital:Samtec_FTSH_105_01_L_DV_K"
+mpn: FTSH-105-01-L-DV-K
+footprint: crow_usb_digital:Samtec_FTSH_105_01_L_DV_K
 manufacturer: Samtec
 type: debug_header
 package: 2x5 1.27mm pitch vertical SMD
@@ -8,9 +8,39 @@ datasheet:
   revision: unknown
   url: https://www.samtec.com/products/ftsh-105-01-l-dv-k
   fetched: 2026-09-22
-  note: "Manufacturer drawing fetch returned HTTP 403; land-pattern drawing/hash is an explicit freeze gate."
-pins: {1: VREF, 2: TMS, 3: GND, 4: TCK, 5: GND, 6: TDO, 7: KEY_NC, 8: TDI, 9: GND, 10: RESET_N}
-verified: "logical debug assignment is project-owned; manufacturer land drawing pending — 2026-09-22"
+  note: Manufacturer drawing fetch returned HTTP 403; land-pattern drawing/hash is
+    an explicit freeze gate.
+pins:
+  1: VREF
+  2: TMS
+  3: GND
+  4: TCK
+  5: GND
+  6: TDO
+  7: KEY_NC
+  8: TDI
+  9: GND
+  10: RESET_N
+verified: "logical debug assignment is project-owned; manufacturer land drawing pending\
+  \ \u2014 2026-09-22"
 layout:
-  source: "place for probe access at board edge; exact land drawing pending"
+  source: Samtec FTSH-1XX-XX-XXX-DV-XXX recommended PCB/stencil layout drawing Revision
+    H, sheets 1-4
   reviewed: 2026-09-22
+  notes:
+  - 'Evidence grade: primary manufacturer land-pattern drawing. Preserve the 1.27
+    mm pitch, connector outline, and option-dependent holes from Revision H; the current
+    -K key assignment is project-owned.'
+  - 'Engineering placement requirement: keep J_JTAG accessible to the intended cable/probe
+    and preserve mating clearance. Board-edge placement is a project access decision,
+    not a requirement stated by the Samtec land drawing.'
+layout_refs:
+- tier: 1
+  reached: true
+  artifact: Samtec Revision H recommended PCB layout, sheets 1-4
+- tier: 2
+  reached: false
+  artifact: Exact-part manufacturer evaluation-board or routed reference-design files
+    (not present in the immutable task packet)
+  why: No exact-part routed design files were included in the immutable packet; this
+    bounded repair does not claim unseen files.

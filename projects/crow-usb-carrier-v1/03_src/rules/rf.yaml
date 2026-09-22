@@ -1,101 +1,24 @@
-# RF applicability and review contract. Keep this file even for a non-RF
-# board: an explicit false is evidence that applicability was considered.
+# Applicability is adopted; the cross-section remains unadmitted until the
+# exact fabrication stackup and differential solver result are available.
 schema: 1
 rf:
-  enabled: false
-  rationale: "No intentional controlled-impedance or RF signal path."
-
-  # When enabled=true, replace the example below with real, cited values.
-  # risk_tier: controlled-impedance  # ordinary-high-speed | controlled-impedance | phase-coherent | microwave
-  # risk_basis: "<electrical length, highest harmonic/band, and performance claim>"
-  # process:
-  #   profile: rf-module-v1
-  #   context_policy: clean_room       # clean_room | allow_precedent
-  #   geometry_policy: advisory        # adopt blocking only after arc support/checks pass
-  # ports:
-  #   - id: RF1
-  #     nets: [RF1]
-  #     band_hz: [1000000, 6000000000]
-  #     z0_ohm: 50
-  #     launch: "J_RF1 + cited footprint/model"
-  #     termination: "50 ohm source/load"
-  #     reference_layer: In1.Cu
-  # cross_sections:
-  #   - id: CPWG_TOP
-  #     stackup_source: "<fab stackup name + revision/date>"
-  #     solver: "<tool/version + evidence path>"
-  #     copper_layer: F.Cu
-  #     reference_layer: In1.Cu
-  #     dielectric_height_mm: 0.2104
-  #     dk: 4.4
-  #     target_z0_ohm: 50
-  #     width_mm: 0.36
-  #     gap_mm: 0.20
-  # analysis:                         # only needed while a section is pending_solver
-  #   solver_jobs:
-  #     - id: cpwg_top
-  #       cross_section_ids: [CPWG_TOP]
-  #       work_class: local_compute
-  #       network: false
-  #       command: ["/usr/bin/python3", "tools/solve_cpwg.py", "--out", "{output_dir}/result.json"]
-  #       inputs: [tools/solve_cpwg.py]
-  #       outputs: [result.json]
-  #       timeout_s: 60
-  #       heartbeat_s: 5
-  # layout_constraints:
-  #   route:
-  #     nets: [RF1]
-  #     layer: F.Cu
-  #     reference_layer: In1.Cu
-  #     width_mm: 0.36
-  #     gap_to_top_ground_mm: 0.20
-  #     maximum_vias_per_net: 0
-  #     maximum_stubs_per_net: 0
-  #     length_matching: "not required; single path"
-  #     geometry: "short, direct, no meander"
-  #     bend_policy:
-  #       minimum_radius_width_multiple: 3.0
-  #       source_claim_ids: [ADI-RF-BEND-RADIUS-3W]
-  #       exceptions: []
-  #   ground_fence:
-  #     status: "required after the saved RF centreline exists"
-  #     source: "selected local source cards plus component guidance"
-  #     source_urls: [https://www.analog.com/en/resources/technical-articles/pcbs-layout-guidelines-for-rf--mixedsignal.html]
-  #     wavelength_basis: "<guided wavelength and maximum frequency>"
-  #     maximum_along_route_pitch_mm: 1.40
-  #     pitch_derivation: "<cited/derived bound>"
-  #     nominal_via_mm: {size: 0.45, drill: 0.20}
-  #     nominal_lateral_center_offset_mm: 0.70
-  #     maximum_lateral_center_offset_mm: 1.10
-  #     lateral_offset_basis: "<CPWG clearance plus via radius>"
-  #     endpoint_structures:
-  #       - refs: [U1, J1]
-  #         maximum_along_route_span_mm: 1.0
-  #         basis: "<measured saved package/launch return geometry>"
-  #     coverage: "both flanks, including bounded endpoint structures"
-  #     verify: "rf_check.py realized plus fence_pitch.py on saved board"
-  # performance_claims:
-  #   - id: RF-CLAIM-LOSS
-  #     claim: "Insertion loss remains within the system budget."
-  #     acceptance: "<numeric limit and band>"
-  #     evidence: "<calculation/simulation path>"
-  # first_article:
-  #   measurements: ["VNA S11/S21 with named calibration plane"]
-  #   acceptance: ["<numeric first-article limit and band>"]
-  # reviews:
-  #   schematic:
-  #     path: 08_reviews/<date>_<subject>_rf_schematic.md
-  #     artifact: 04_kicad/<board>.kicad_sch
-  #     requirements: [RF-SCH-TOPOLOGY, RF-SCH-RATINGS, RF-SCH-CLAIMS]
-  #     evidence:
-  #       - {role: rf_source_bundle, path: 06_build/rf/source/bundle.json}
-  #   pcb:
-  #     path: 08_reviews/<date>_<subject>_rf_pcb.md
-  #     artifact: 04_kicad/<board>.kicad_pcb
-  #     requirements: [RF-PCB-STACKUP, RF-PCB-LAUNCH, RF-PCB-RETURN, RF-PCB-COUPLING]
-  #     evidence:
-  #       - {role: rf_realized_bundle, path: 06_build/rf/realized/bundle.json}
-  #   fab:
-  #     path: 08_reviews/<date>_<subject>_rf_fab.md
-  #     artifact: 07_releases/<release>/fab/<gerbers>.zip
-  #     requirements: [RF-FAB-STACKUP, RF-FAB-MASK, RF-FAB-GEOMETRY]
+  enabled: true
+  rationale: >-
+    The carrier uses the XU316 high-speed USB PHY. Its USB_DP/USB_DM route
+    requires controlled differential impedance and an uninterrupted return.
+  risk_tier: controlled-impedance
+  risk_basis: >-
+    XMOS XM-014532-PC v2.0.0 sections 14.1-14.2 specify 90 ohm USB
+    differential impedance, matched pair routing and continuous references.
+    The published example dimensions are not a fabrication stackup selection.
+  ports:
+    - id: USB_DEVICE
+      nets: [USB_DP, USB_DM]
+      band_hz: [0, 2400000000]
+      z0_ohm: 90
+      launch: GCT USB4105 through TPD2EUSB30A to XU316 pins 60/59
+      termination: XU316 integrated USB PHY; no external parallel resistor added
+      reference_layer: In1.Cu
+  # Deliberately incomplete: no invented dielectric thickness, Dk or trace
+  # geometry. RF-CONTRACT must refuse source admission until this is populated.
+  cross_sections: []

@@ -1,5 +1,5 @@
-mpn: "BC847B,215"
-footprint: "Package_TO_SOT_SMD:SOT-23"
+mpn: BC847B,215
+footprint: Package_TO_SOT_SMD:SOT-23
 manufacturer: Nexperia
 type: npn_transistor
 package: SOT-23
@@ -8,9 +8,32 @@ datasheet:
   revision: unknown
   url: https://www.nexperia.com/product/BC847B
   fetched: 2026-09-22
-  note: "Manufacturer PDF fetch returned HTTP 403; local PDF/hash is an explicit freeze gate."
-pins: {1: B, 2: E, 3: C}
-verified: "pin order checked against Nexperia product pinout; local primary PDF pending — 2026-09-22"
+  note: Manufacturer PDF fetch returned HTTP 403; local PDF/hash is an explicit freeze
+    gate.
+pins:
+  1: B
+  2: E
+  3: C
+verified: "pin order checked against Nexperia product pinout; local primary PDF pending\
+  \ \u2014 2026-09-22"
 layout:
-  source: "standard SOT-23 low-current switch placement"
+  source: Local BC847B_215.pdf distributor snapshot page 1 for SOT-23 package class
+    only; no primary manufacturer layout section is present
   reviewed: 2026-09-22
+  notes:
+  - 'Evidence grade: distributor snapshot only. It supports the SOT-23 package class
+    but is not manufacturer placement authority.'
+  - 'Engineering recommendation: keep R_ADC_OK_B1 beside Q_TDM_GATE, R_ADC_OK_B2 beside
+    Q_MCLK_GATE, and R_VBUS_B/R_VBUS_BE beside Q_VBUS to keep the base nodes compact;
+    no maximum distance is claimed.'
+layout_refs:
+- tier: 1
+  reached: false
+  artifact: Nexperia BC847 series manufacturer datasheet and package drawing
+  why: The immutable packet contains only a one-page distributor snapshot, not the
+    manufacturer primary datasheet.
+- tier: 2
+  reached: false
+  artifact: Exact-part manufacturer evaluation-board or routed reference-design files
+  why: No exact-part routed design files were included in the immutable packet; this
+    bounded repair does not claim unseen files.

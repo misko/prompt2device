@@ -10,12 +10,6 @@ datasheet:
   sha256: 35ee709e548f41ba3aee36bff69eda43ed25bc96906f820ca2a0ba98be2ae4a4
   fetched: '2026-09-22'
 package: External 1m USB2 A-male to C-male cable; not a PCBA component
-pins:
-  A1: VBUS -> C A4/B4/A9/B9
-  A2: D- -> C A7
-  A3: D+ -> C A6
-  A4: GND -> C A1/B1/A12/B12
-  SH: braid -> C shell
 verified: '2026-09-22: visually inspected manufacturer rev08 sheet1 wiring table and
   two orthogonal plug views; not a completed-board mating proof.'
 gotchas:

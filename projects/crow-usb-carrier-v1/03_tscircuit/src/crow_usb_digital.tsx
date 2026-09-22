@@ -41,7 +41,8 @@ function XU316TQ128EPFootprint(){
 /** Source-owned lands for package names the pinned footprinter cannot expand. */
 const P=({n,x,y,w,h}:any)=><smtpad portHints={[String(n)]} pcbX={`${x}mm`} pcbY={`${y}mm`} width={`${w}mm`} height={`${h}mm`} shape="rect" />
 function Inductor2016Land(){return <footprint><P n={1} x={-0.75} y={0} w={0.9} h={1.6}/><P n={2} x={0.75} y={0} w={0.9} h={1.6}/></footprint>}
-function Osc7050Land(){return <footprint><P n={1} x={-2.54} y={-2.2} w={2} h={1.8}/><P n={2} x={2.54} y={-2.2} w={2} h={1.8}/><P n={3} x={2.54} y={2.2} w={2} h={1.8}/><P n={4} x={-2.54} y={2.2} w={2} h={1.8}/></footprint>}
+// ASFL1 primary drawing: 2.54 x 2.2 mm pad-center pitch, 1.7 x 1.5 mm lands.
+function Osc5032Land(){return <footprint><P n={1} x={-1.27} y={-1.1} w={1.7} h={1.5}/><P n={2} x={1.27} y={-1.1} w={1.7} h={1.5}/><P n={3} x={1.27} y={1.1} w={1.7} h={1.5}/><P n={4} x={-1.27} y={1.1} w={1.7} h={1.5}/></footprint>}
 function SC70_5Land(){return <footprint><P n={1} x={-1} y={0.65} w={0.6} h={1}/><P n={2} x={-1} y={0} w={0.6} h={1}/><P n={3} x={-1} y={-0.65} w={0.6} h={1}/><P n={4} x={1} y={-0.65} w={0.6} h={1}/><P n={5} x={1} y={0.65} w={0.6} h={1}/></footprint>}
 function SM8_DCTLand(){return <footprint>{[1,2,3,4].map((n,i)=><P key={n} n={n} x={-1.45} y={(1.5-i)*0.65} w={0.6} h={1.2}/>)}{[5,6,7,8].map((n,i)=><P key={n} n={n} x={1.45} y={(i-1.5)*0.65} w={0.6} h={1.2}/>)}</footprint>}
 function FTSH2x5Land(){return <footprint>{Array.from({length:10},(_,i)=>{const row=Math.floor(i/2),col=i%2;return <P key={i+1} n={i+1} x={col?0.635:-0.635} y={(2-row)*1.27} w={0.7} h={1.5}/>})}</footprint>}
@@ -285,9 +286,9 @@ export function CrowUsbDigital({net=defaultNet}:CrowUsbDigitalProps={}){
    connections={{pin1:n("QSPI_CS_N"),pin2:n("QSPI_D1"),pin3:n("QSPI_D2"),pin4:n("GND"),pin5:n("QSPI_D0"),pin6:n("QSPI_CLK"),pin7:n("QSPI_D3"),pin8:n("1V8")}} />
   <R name="R_QSPI_CS" value="4.7k" a="1V8" b="QSPI_CS_N" mpn="RC0402FR-074K7L" n={n} /><C name="C_FLASH" value="100nF" a="1V8" b="GND" n={n} />
 
-  <Chip name="Y_AUDIO" manufacturerPartNumber="ASFL1-24.576MHZ-EC-T" jlc="" footprint={<Osc7050Land/>}
+  <Chip name="Y_AUDIO" manufacturerPartNumber="ASFL1-24.576MHZ-EC-T" jlc="" footprint={<Osc5032Land/>}
    pinLabels={{pin1:"OE",pin2:"GND",pin3:"OUT",pin4:"VDD"}} connections={{pin1:n("3V3X"),pin2:n("GND"),pin3:n("AUDIO_24M576"),pin4:n("3V3X")}} />
-  <C name="C_AUDIO_OSC" value="100nF" a="3V3X" b="GND" n={n} />
+  <C name="C_AUDIO_OSC" value="10nF" a="3V3X" b="GND" mpn="GRM155R71H103KA88D" n={n} />
   <Chip name="U_TDM_XLATE" manufacturerPartNumber="SN74AXC4T245PWR" jlc="" footprint="tssop16"
    pinLabels={{pin1:"VCCA",pin2:"1DIR",pin3:"2DIR",pin4:"1A1",pin5:"1A2",pin6:"2A1",pin7:"2A2",pin8:"GND1",pin9:"GND2",pin10:"2B2",pin11:"2B1",pin12:"1B2",pin13:"1B1",pin14:"2OE_N",pin15:"1OE_N",pin16:"VCCB"}}
    connections={{pin1:n("1V8"),pin2:n("1V8"),pin3:n("GND"),pin4:n("TDM_BCLK_1V8"),pin5:n("TDM_FSYNC_1V8"),pin6:n("AUDIO_MCLK_1V8"),pin7:n("TDM_DATA_1V8"),pin8:n("GND"),pin9:n("GND"),pin10:n("ADC_DOUT1"),pin11:n("AUDIO_24M576"),pin12:n("ADC_FSYNC_RAW"),pin13:n("ADC_BCLK_RAW"),pin14:n("GND"),pin15:n("TDM_OE_N"),pin16:n("3V3X")}} />

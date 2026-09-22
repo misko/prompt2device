@@ -1,5 +1,5 @@
-mpn: "TFM201610ALC-R47MTAA"
-footprint: "crow_usb_digital:TDK_TFM201610"
+mpn: TFM201610ALC-R47MTAA
+footprint: crow_usb_digital:TDK_TFM201610
 manufacturer: TDK
 type: shielded_power_inductor
 package: 2016 metric
@@ -11,10 +11,31 @@ datasheet:
   sha256: 8a309f2a40486a380242d3f178eb4bda3ef4dca3deca647fa82f763d14866f63
   fetched: 2026-09-22
   pages: 33
-  note: "Primary TI converter datasheet Table 8-5 names this exact third-party inductor; TDK manufacturer PDF still required at freeze."
-pins: {1: winding, 2: winding}
-limits: {inductance: 0.47uH, current_rating: 5.2A, dcr_max: 25mohm}
-verified: "two-terminal passive; exact MPN/rating checked in TI SLVSEF9I Table 8-5 — 2026-09-22"
+  note: Primary TI converter datasheet Table 8-5 names this exact third-party inductor;
+    TDK manufacturer PDF still required at freeze.
+pins:
+  1: winding
+  2: winding
+limits:
+  inductance: 0.47uH
+  current_rating: 5.2A
+  dcr_max: 25mohm
+verified: "two-terminal passive; exact MPN/rating checked in TI SLVSEF9I Table 8-5\
+  \ \u2014 2026-09-22"
 layout:
-  source: "TI SLVSEF9I buck layout guidance"
+  source: TI SLVSEF9I buck layout guidance
   reviewed: 2026-09-22
+  notes:
+  - 'TI SLVSEF9I section8.4: place each L_U_CORE/L_U_1V8/L_U_3V3X beside its converter
+    SW pin; keep switch-node copper compact and route feedback from the output capacitor
+    away from SW.'
+  - This is converter-manufacturer application guidance, not a TDK package-land qualification.
+    The exact TDK ALC manufacturer drawing and native land comparison remain owed.
+    Do not substitute the currently indexed ALM variant without checking its changed
+    resistance/current data.
+layout_refs:
+- tier: 1
+  reached: false
+  artifact: TDK TFM201610ALC-R47MTAA exact manufacturer package/land drawing
+  why: Current dossier retains the TI converter recommendation; a TDK primary ALC
+    package document has not yet been retained and verified.

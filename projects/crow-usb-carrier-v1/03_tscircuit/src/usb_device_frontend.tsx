@@ -5,8 +5,10 @@ type Nets = Parameters<typeof usbReceptacleConnections>[0]
 // Component-level source only. VBUS sense and shield bond
 // are integration boundaries, not silently supplied by this module.
 export function usbFrontendConnections(n: Nets) {
-  if (new Set(Object.values(n)).size !== 7)
-    throw new Error("USB front-end boundaries must use seven distinct nets")
+  const { shield, ...electrical } = n
+  if (new Set(Object.values(electrical)).size !== 6 ||
+      (shield !== n.ground && Object.values(electrical).includes(shield)))
+    throw new Error("USB data, CC and power nets must be distinct; shield may bond only to ground")
   return {
     receptacle: usbReceptacleConnections(n),
     cc1: { pin1: n.cc1, pin2: n.ground },

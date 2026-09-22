@@ -1,5 +1,5 @@
-mpn: "TPS62825DMQR"
-footprint: "crow_usb_digital:TI_DMQ0006A_VSON6"
+mpn: TPS62825DMQR
+footprint: crow_usb_digital:TI_DMQ0006A_VSON6
 manufacturer: Texas Instruments
 type: buck_converter
 package: VSON-HR-6 DMQ 1.5x1.5mm
@@ -18,8 +18,29 @@ pins:
   4: GND
   5: SW
   6: VIN
-verified: "pin map checked to SLVSEF9I Figure 5-1/Table 5-1 — 2026-09-22"
-limits: {vin_min: 2.4V, vin_max: 5.5V, iout_max: 2A, output: "adjustable 0.9V"}
+verified: "pin map checked to SLVSEF9I Figure 5-1/Table 5-1 \u2014 2026-09-22"
+limits:
+  vin_min: 2.4V
+  vin_max: 5.5V
+  iout_max: 2A
+  output: adjustable 0.9V
 layout:
-  source: "SLVSEF9I Section 8.3 layout"
+  source: TI SLVSEF9I Section 8.4 and Figure 8-49, datasheet pages 22-23
   reviewed: 2026-09-22
+  notes:
+  - 'Evidence grade: primary manufacturer layout guidance. Cluster U_CORE with L_U_CORE,
+    C_U_CORE_IN_1/2, and C_U_CORE_OUT_1/2; use short, direct, wide VIN, SW, VOUT,
+    and capacitor-return copper.'
+  - Route U_CORE_FB as a quiet sense trace away from U_CORE_SW and take the feedback-divider
+    output connection at the output capacitor, as required by Section 8.4.1.
+layout_refs:
+- tier: 1
+  reached: true
+  artifact: TI SLVSEF9I Section 8.4 and Figure 8-49 PCB Layout Recommendation, pages
+    22-23
+- tier: 2
+  reached: false
+  artifact: Exact-part manufacturer evaluation-board or routed reference-design files
+    (not present in the immutable task packet)
+  why: No exact-part routed design files were included in the immutable packet; this
+    bounded repair does not claim unseen files.

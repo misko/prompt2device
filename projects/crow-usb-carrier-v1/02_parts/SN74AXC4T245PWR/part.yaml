@@ -1,5 +1,5 @@
-mpn: "SN74AXC4T245PWR"
-footprint: "Package_SO:TSSOP-16_4.4x5mm_P0.65mm"
+mpn: SN74AXC4T245PWR
+footprint: Package_SO:TSSOP-16_4.4x5mm_P0.65mm
 manufacturer: Texas Instruments
 type: logic_level_interface
 package: TSSOP-16 PW
@@ -28,7 +28,23 @@ pins:
   14: 2OE_N
   15: 1OE_N
   16: VCCB
-verified: "pin map checked to SCES877 package/pin table — 2026-09-22"
+verified: "pin map checked to SCES877 package/pin table \u2014 2026-09-22"
 layout:
-  source: "SCES877 layout guidance"
+  source: TI SCES877 Section 8.4 and Figure 8-3, datasheet page 23
   reviewed: 2026-09-22
+  notes:
+  - 'Evidence grade: primary manufacturer layout guidance. Place C_XLATE_A at U_TDM_XLATE
+    VCCA pin 1 and C_XLATE_B at VCCB pin 16, each with a short return to the adjacent
+    ground network/pins 8 and 9.'
+  - Keep the translated clock/data traces short to limit capacitive loading, following
+    Section 8.4.1. Preserve a continuous ground reference under both voltage domains.
+layout_refs:
+- tier: 1
+  reached: true
+  artifact: TI SCES877 Section 8.4 and Figure 8-3, page 23
+- tier: 2
+  reached: false
+  artifact: Exact-part manufacturer evaluation-board or routed reference-design files
+    (not present in the immutable task packet)
+  why: No exact-part routed design files were included in the immutable packet; this
+    bounded repair does not claim unseen files.

@@ -1,5 +1,5 @@
-mpn: "XU316-1024-TQ128-C24"
-footprint: "crow_usb_digital:TQFP-128_14x14mm_P0.4mm_EP_XU316"
+mpn: XU316-1024-TQ128-C24
+footprint: crow_usb_digital:TQFP-128_14x14mm_P0.4mm_EP_XU316
 manufacturer: XMOS
 type: multicore_microcontroller_usb_audio
 package: TQFP-128 14x14mm P0.4 exposed pad
@@ -12,139 +12,424 @@ datasheet:
   fetched: 2026-09-22
   pages: 47
 pins:
-  1: {name: X0D06, domain: IOL_1V8_SELECTED}
-  2: {name: X0D01, domain: IOL_1V8_SELECTED}
-  3: {name: X0D07, domain: IOL_1V8_SELECTED}
-  4: {name: X0D10, domain: IOL_1V8_SELECTED}
-  5: {name: VDD, domain: CORE_0V9}
-  6: {name: X0D00, domain: IOL_1V8_SELECTED}
-  7: {name: X0D11, domain: IOL_1V8_SELECTED}
-  8: {name: X0D14, domain: IOL_1V8_SELECTED}
-  9: {name: X0D16, domain: IOL_1V8_SELECTED}
-  10: {name: VDDIOL, domain: IOL_1V8_SELECTED}
-  11: {name: VDD, domain: CORE_0V9}
-  12: {name: X1D36, domain: IOL_1V8_SELECTED}
-  13: {name: X1D37, domain: IOL_1V8_SELECTED}
-  14: {name: VDD, domain: CORE_0V9}
-  15: {name: X1D38, domain: IOL_1V8_SELECTED}
-  16: {name: X1D39, domain: IOL_1V8_SELECTED}
-  17: {name: VDDIOL, domain: IOL_1V8_SELECTED}
-  18: {name: VDD, domain: CORE_0V9}
-  19: {name: X1D00, domain: IOL_1V8_SELECTED}
-  20: {name: X1D01, domain: IOL_1V8_SELECTED}
-  21: {name: X1D09, domain: IOL_1V8_SELECTED}
-  22: {name: X1D10, domain: IOL_1V8_SELECTED}
-  23: {name: X1D11, domain: IOL_1V8_SELECTED}
-  24: {name: MIPI_VDD18, domain: MIPI_UNUSED_GND}
-  25: {name: MIPI_DN2, domain: MIPI_UNUSED_NC}
-  26: {name: MIPI_DP2, domain: MIPI_UNUSED_NC}
-  27: {name: MIPI_VDD09, domain: MIPI_UNUSED_GND}
-  28: {name: MIPI_DN1, domain: MIPI_UNUSED_NC}
-  29: {name: MIPI_DP1, domain: MIPI_UNUSED_NC}
-  30: {name: VSS, domain: GND}
-  31: {name: MIPI_DN0, domain: MIPI_UNUSED_NC}
-  32: {name: MIPI_DP0, domain: MIPI_UNUSED_NC}
-  33: {name: XOUT, domain: IOB_1V8_FIXED}
-  34: {name: XIN, domain: IOB_1V8_FIXED}
-  35: {name: VDDIOB18, domain: IOB_1V8_FIXED}
-  36: {name: TDI, domain: IOB_1V8_FIXED}
-  37: {name: TDO, domain: IOB_1V8_FIXED}
-  38: {name: RST_N, domain: IOB_1V8_FIXED}
-  39: {name: VDD, domain: CORE_0V9}
-  40: {name: LV_L_N, domain: IOB_1V8_FIXED}
-  41: {name: PLL_AVDD, domain: PLL_0V9_FILTERED}
-  42: {name: PLL_AGND, domain: GND}
-  43: {name: LV_T_N, domain: IOB_1V8_FIXED}
-  44: {name: TMS, domain: IOB_1V8_FIXED}
-  45: {name: VDD, domain: CORE_0V9}
-  46: {name: X0D12, domain: IOB_1V8_FIXED}
-  47: {name: X0D13, domain: IOB_1V8_FIXED}
-  48: {name: X0D22, domain: IOB_1V8_FIXED}
-  49: {name: X0D23, domain: IOB_1V8_FIXED}
-  50: {name: VDD, domain: CORE_0V9}
-  51: {name: TCK, domain: IOB_1V8_FIXED}
-  52: {name: LV_R_N, domain: IOB_1V8_FIXED}
-  53: {name: X1D12, domain: IOB_1V8_FIXED}
-  54: {name: VDD, domain: CORE_0V9}
-  55: {name: NC, domain: NC}
-  56: {name: VDDIOB18, domain: IOB_1V8_FIXED}
-  57: {name: X1D23, domain: IOB_1V8_FIXED}
-  58: {name: USB_ID, domain: USB_PHY}
-  59: {name: USB_DM, domain: USB_PHY}
-  60: {name: USB_DP, domain: USB_PHY}
-  61: {name: USB_VDD33, domain: USB_3V3}
-  62: {name: USB_VDD18, domain: USB_1V8}
-  63: {name: X1D14, domain: IOR_1V8_SELECTED}
-  64: {name: X1D13, domain: IOR_1V8_SELECTED}
-  65: {name: X1D15, domain: IOR_1V8_SELECTED}
-  66: {name: X1D16, domain: IOR_1V8_SELECTED}
-  67: {name: X1D17, domain: IOR_1V8_SELECTED}
-  68: {name: VDD, domain: CORE_0V9}
-  69: {name: X1D18, domain: IOR_1V8_SELECTED}
-  70: {name: X1D19, domain: IOR_1V8_SELECTED}
-  71: {name: X1D20, domain: IOR_1V8_SELECTED}
-  72: {name: VDDIOR, domain: IOR_1V8_SELECTED}
-  73: {name: X1D21, domain: IOR_1V8_SELECTED}
-  74: {name: X1D22, domain: IOR_1V8_SELECTED}
-  75: {name: X1D49, domain: IOR_1V8_SELECTED}
-  76: {name: X1D50, domain: IOR_1V8_SELECTED}
-  77: {name: X1D51, domain: IOR_1V8_SELECTED}
-  78: {name: X1D52, domain: IOR_1V8_SELECTED}
-  79: {name: X1D53, domain: IOR_1V8_SELECTED}
-  80: {name: X1D54, domain: IOR_1V8_SELECTED}
-  81: {name: X1D55, domain: IOR_1V8_SELECTED}
-  82: {name: X1D56, domain: IOR_1V8_SELECTED}
-  83: {name: X1D57, domain: IOR_1V8_SELECTED}
-  84: {name: X1D58, domain: IOR_1V8_SELECTED}
-  85: {name: VDD, domain: CORE_0V9}
-  86: {name: X0D24, domain: IOR_1V8_SELECTED}
-  87: {name: X0D25, domain: IOR_1V8_SELECTED}
-  88: {name: X0D26, domain: IOR_1V8_SELECTED}
-  89: {name: VDDIOR, domain: IOR_1V8_SELECTED}
-  90: {name: X0D27, domain: IOR_1V8_SELECTED}
-  91: {name: X0D28, domain: IOR_1V8_SELECTED}
-  92: {name: X0D29, domain: IOR_1V8_SELECTED}
-  93: {name: X0D35, domain: IOR_1V8_SELECTED}
-  94: {name: X0D36, domain: IOR_1V8_SELECTED}
-  95: {name: VDD, domain: CORE_0V9}
-  96: {name: X0D37, domain: IOR_1V8_SELECTED}
-  97: {name: X0D38, domain: IOR_1V8_SELECTED}
-  98: {name: X0D40, domain: IOT_1V8_SELECTED}
-  99: {name: X0D39, domain: IOT_1V8_SELECTED}
-  100: {name: X0D42, domain: IOT_1V8_SELECTED}
-  101: {name: X0D41, domain: IOT_1V8_SELECTED}
-  102: {name: X1D43, domain: IOT_1V8_SELECTED}
-  103: {name: X0D43, domain: IOT_1V8_SELECTED}
-  104: {name: VDD, domain: CORE_0V9}
-  105: {name: VDD, domain: CORE_0V9}
-  106: {name: VDD, domain: CORE_0V9}
-  107: {name: X1D24, domain: IOT_1V8_SELECTED}
-  108: {name: X1D25, domain: IOT_1V8_SELECTED}
-  109: {name: VDDIOT, domain: IOT_1V8_SELECTED}
-  110: {name: X1D26, domain: IOT_1V8_SELECTED}
-  111: {name: X1D27, domain: IOT_1V8_SELECTED}
-  112: {name: X1D28, domain: IOT_1V8_SELECTED}
-  113: {name: VDD, domain: CORE_0V9}
-  114: {name: X1D29, domain: IOT_1V8_SELECTED}
-  115: {name: X1D30, domain: IOT_1V8_SELECTED}
-  116: {name: X1D31, domain: IOT_1V8_SELECTED}
-  117: {name: X1D32, domain: IOT_1V8_SELECTED}
-  118: {name: X1D33, domain: IOT_1V8_SELECTED}
-  119: {name: X1D34, domain: IOT_1V8_SELECTED}
-  120: {name: X1D35, domain: IOT_1V8_SELECTED}
-  121: {name: VDDIOT, domain: IOT_1V8_SELECTED}
-  122: {name: X0D30, domain: IOT_1V8_SELECTED}
-  123: {name: X0D32, domain: IOT_1V8_SELECTED}
-  124: {name: X0D31, domain: IOT_1V8_SELECTED}
-  125: {name: X0D34, domain: IOT_1V8_SELECTED}
-  126: {name: X0D33, domain: IOT_1V8_SELECTED}
-  127: {name: X0D04, domain: IOL_1V8_SELECTED}
-  128: {name: X0D05, domain: IOL_1V8_SELECTED}
-  129: {name: EP, domain: GND}
-verified: "all 128 physical pins plus EP129 cross-checked to XM-014532-PC Table 4/Figure 2 and input pinmap — 2026-09-22"
+  1:
+    name: X0D06
+    domain: IOL_1V8_SELECTED
+  2:
+    name: X0D01
+    domain: IOL_1V8_SELECTED
+  3:
+    name: X0D07
+    domain: IOL_1V8_SELECTED
+  4:
+    name: X0D10
+    domain: IOL_1V8_SELECTED
+  5:
+    name: VDD
+    domain: CORE_0V9
+  6:
+    name: X0D00
+    domain: IOL_1V8_SELECTED
+  7:
+    name: X0D11
+    domain: IOL_1V8_SELECTED
+  8:
+    name: X0D14
+    domain: IOL_1V8_SELECTED
+  9:
+    name: X0D16
+    domain: IOL_1V8_SELECTED
+  10:
+    name: VDDIOL
+    domain: IOL_1V8_SELECTED
+  11:
+    name: VDD
+    domain: CORE_0V9
+  12:
+    name: X1D36
+    domain: IOL_1V8_SELECTED
+  13:
+    name: X1D37
+    domain: IOL_1V8_SELECTED
+  14:
+    name: VDD
+    domain: CORE_0V9
+  15:
+    name: X1D38
+    domain: IOL_1V8_SELECTED
+  16:
+    name: X1D39
+    domain: IOL_1V8_SELECTED
+  17:
+    name: VDDIOL
+    domain: IOL_1V8_SELECTED
+  18:
+    name: VDD
+    domain: CORE_0V9
+  19:
+    name: X1D00
+    domain: IOL_1V8_SELECTED
+  20:
+    name: X1D01
+    domain: IOL_1V8_SELECTED
+  21:
+    name: X1D09
+    domain: IOL_1V8_SELECTED
+  22:
+    name: X1D10
+    domain: IOL_1V8_SELECTED
+  23:
+    name: X1D11
+    domain: IOL_1V8_SELECTED
+  24:
+    name: MIPI_VDD18
+    domain: MIPI_UNUSED_GND
+  25:
+    name: MIPI_DN2
+    domain: MIPI_UNUSED_NC
+  26:
+    name: MIPI_DP2
+    domain: MIPI_UNUSED_NC
+  27:
+    name: MIPI_VDD09
+    domain: MIPI_UNUSED_GND
+  28:
+    name: MIPI_DN1
+    domain: MIPI_UNUSED_NC
+  29:
+    name: MIPI_DP1
+    domain: MIPI_UNUSED_NC
+  30:
+    name: VSS
+    domain: GND
+  31:
+    name: MIPI_DN0
+    domain: MIPI_UNUSED_NC
+  32:
+    name: MIPI_DP0
+    domain: MIPI_UNUSED_NC
+  33:
+    name: XOUT
+    domain: IOB_1V8_FIXED
+  34:
+    name: XIN
+    domain: IOB_1V8_FIXED
+  35:
+    name: VDDIOB18
+    domain: IOB_1V8_FIXED
+  36:
+    name: TDI
+    domain: IOB_1V8_FIXED
+  37:
+    name: TDO
+    domain: IOB_1V8_FIXED
+  38:
+    name: RST_N
+    domain: IOB_1V8_FIXED
+  39:
+    name: VDD
+    domain: CORE_0V9
+  40:
+    name: LV_L_N
+    domain: IOB_1V8_FIXED
+  41:
+    name: PLL_AVDD
+    domain: PLL_0V9_FILTERED
+  42:
+    name: PLL_AGND
+    domain: GND
+  43:
+    name: LV_T_N
+    domain: IOB_1V8_FIXED
+  44:
+    name: TMS
+    domain: IOB_1V8_FIXED
+  45:
+    name: VDD
+    domain: CORE_0V9
+  46:
+    name: X0D12
+    domain: IOB_1V8_FIXED
+  47:
+    name: X0D13
+    domain: IOB_1V8_FIXED
+  48:
+    name: X0D22
+    domain: IOB_1V8_FIXED
+  49:
+    name: X0D23
+    domain: IOB_1V8_FIXED
+  50:
+    name: VDD
+    domain: CORE_0V9
+  51:
+    name: TCK
+    domain: IOB_1V8_FIXED
+  52:
+    name: LV_R_N
+    domain: IOB_1V8_FIXED
+  53:
+    name: X1D12
+    domain: IOB_1V8_FIXED
+  54:
+    name: VDD
+    domain: CORE_0V9
+  55:
+    name: NC
+    domain: NC
+  56:
+    name: VDDIOB18
+    domain: IOB_1V8_FIXED
+  57:
+    name: X1D23
+    domain: IOB_1V8_FIXED
+  58:
+    name: USB_ID
+    domain: USB_PHY
+  59:
+    name: USB_DM
+    domain: USB_PHY
+  60:
+    name: USB_DP
+    domain: USB_PHY
+  61:
+    name: USB_VDD33
+    domain: USB_3V3
+  62:
+    name: USB_VDD18
+    domain: USB_1V8
+  63:
+    name: X1D14
+    domain: IOR_1V8_SELECTED
+  64:
+    name: X1D13
+    domain: IOR_1V8_SELECTED
+  65:
+    name: X1D15
+    domain: IOR_1V8_SELECTED
+  66:
+    name: X1D16
+    domain: IOR_1V8_SELECTED
+  67:
+    name: X1D17
+    domain: IOR_1V8_SELECTED
+  68:
+    name: VDD
+    domain: CORE_0V9
+  69:
+    name: X1D18
+    domain: IOR_1V8_SELECTED
+  70:
+    name: X1D19
+    domain: IOR_1V8_SELECTED
+  71:
+    name: X1D20
+    domain: IOR_1V8_SELECTED
+  72:
+    name: VDDIOR
+    domain: IOR_1V8_SELECTED
+  73:
+    name: X1D21
+    domain: IOR_1V8_SELECTED
+  74:
+    name: X1D22
+    domain: IOR_1V8_SELECTED
+  75:
+    name: X1D49
+    domain: IOR_1V8_SELECTED
+  76:
+    name: X1D50
+    domain: IOR_1V8_SELECTED
+  77:
+    name: X1D51
+    domain: IOR_1V8_SELECTED
+  78:
+    name: X1D52
+    domain: IOR_1V8_SELECTED
+  79:
+    name: X1D53
+    domain: IOR_1V8_SELECTED
+  80:
+    name: X1D54
+    domain: IOR_1V8_SELECTED
+  81:
+    name: X1D55
+    domain: IOR_1V8_SELECTED
+  82:
+    name: X1D56
+    domain: IOR_1V8_SELECTED
+  83:
+    name: X1D57
+    domain: IOR_1V8_SELECTED
+  84:
+    name: X1D58
+    domain: IOR_1V8_SELECTED
+  85:
+    name: VDD
+    domain: CORE_0V9
+  86:
+    name: X0D24
+    domain: IOR_1V8_SELECTED
+  87:
+    name: X0D25
+    domain: IOR_1V8_SELECTED
+  88:
+    name: X0D26
+    domain: IOR_1V8_SELECTED
+  89:
+    name: VDDIOR
+    domain: IOR_1V8_SELECTED
+  90:
+    name: X0D27
+    domain: IOR_1V8_SELECTED
+  91:
+    name: X0D28
+    domain: IOR_1V8_SELECTED
+  92:
+    name: X0D29
+    domain: IOR_1V8_SELECTED
+  93:
+    name: X0D35
+    domain: IOR_1V8_SELECTED
+  94:
+    name: X0D36
+    domain: IOR_1V8_SELECTED
+  95:
+    name: VDD
+    domain: CORE_0V9
+  96:
+    name: X0D37
+    domain: IOR_1V8_SELECTED
+  97:
+    name: X0D38
+    domain: IOR_1V8_SELECTED
+  98:
+    name: X0D40
+    domain: IOT_1V8_SELECTED
+  99:
+    name: X0D39
+    domain: IOT_1V8_SELECTED
+  100:
+    name: X0D42
+    domain: IOT_1V8_SELECTED
+  101:
+    name: X0D41
+    domain: IOT_1V8_SELECTED
+  102:
+    name: X1D43
+    domain: IOT_1V8_SELECTED
+  103:
+    name: X0D43
+    domain: IOT_1V8_SELECTED
+  104:
+    name: VDD
+    domain: CORE_0V9
+  105:
+    name: VDD
+    domain: CORE_0V9
+  106:
+    name: VDD
+    domain: CORE_0V9
+  107:
+    name: X1D24
+    domain: IOT_1V8_SELECTED
+  108:
+    name: X1D25
+    domain: IOT_1V8_SELECTED
+  109:
+    name: VDDIOT
+    domain: IOT_1V8_SELECTED
+  110:
+    name: X1D26
+    domain: IOT_1V8_SELECTED
+  111:
+    name: X1D27
+    domain: IOT_1V8_SELECTED
+  112:
+    name: X1D28
+    domain: IOT_1V8_SELECTED
+  113:
+    name: VDD
+    domain: CORE_0V9
+  114:
+    name: X1D29
+    domain: IOT_1V8_SELECTED
+  115:
+    name: X1D30
+    domain: IOT_1V8_SELECTED
+  116:
+    name: X1D31
+    domain: IOT_1V8_SELECTED
+  117:
+    name: X1D32
+    domain: IOT_1V8_SELECTED
+  118:
+    name: X1D33
+    domain: IOT_1V8_SELECTED
+  119:
+    name: X1D34
+    domain: IOT_1V8_SELECTED
+  120:
+    name: X1D35
+    domain: IOT_1V8_SELECTED
+  121:
+    name: VDDIOT
+    domain: IOT_1V8_SELECTED
+  122:
+    name: X0D30
+    domain: IOT_1V8_SELECTED
+  123:
+    name: X0D32
+    domain: IOT_1V8_SELECTED
+  124:
+    name: X0D31
+    domain: IOT_1V8_SELECTED
+  125:
+    name: X0D34
+    domain: IOT_1V8_SELECTED
+  126:
+    name: X0D33
+    domain: IOT_1V8_SELECTED
+  127:
+    name: X0D04
+    domain: IOL_1V8_SELECTED
+  128:
+    name: X0D05
+    domain: IOL_1V8_SELECTED
+  129:
+    name: EP
+    domain: GND
+verified: "all 128 physical pins plus EP129 cross-checked to XM-014532-PC Table 4/Figure\
+  \ 2 and input pinmap \u2014 2026-09-22"
 gotchas:
-  - "Bottom I/O/JTAG/crystal/reset domain is always 1.8 V. L/R/T selectors are tied low and all four GPIO banks run at 1.8 V."
-  - "EP129 is VSS. Inline footprint has no thermal vias; board floorplan must add fabrication vias later."
+- Bottom I/O/JTAG/crystal/reset domain is always 1.8 V. L/R/T selectors are tied low
+  and all four GPIO banks run at 1.8 V.
+- EP129 is VSS. Inline footprint has no thermal vias; board floorplan must add fabrication
+  vias later.
 layout:
-  source: "XM-014532-PC package/decoupling guidance; local EP land only"
+  source: XMOS XM-014532-PC v2.0.0 Sections 7.3 and 14, plus Appendix I PCB Layout
+    Design Checklist
   reviewed: 2026-09-22
+  notes:
+  - 'Evidence grade: primary manufacturer integration and layout checklist. Distribute
+    the fifteen C_XU_VDD_* 100 nF capacitors around VDD pins and the eight C_XU_VDDIO_*
+    capacitors around their named VDDIO pins; each ground side needs a direct, short
+    return toward the device center/ground pins.'
+  - Keep FB_PLL, C_PLL_1U, and C_PLL_100N local to PLL_AVDD pin 41/PLL_AGND pin 42
+    and isolate PLL_0V9 from noisy supplies. Place Y_XU, R_XTAL_DRIVE, R_XTAL_FB,
+    C_XTAL_IN, and C_XTAL_OUT tightly around XIN pin 34/XOUT pin 33.
+  - "Route USB_DP/USB_DM as a 90 ohm differential pair with continuous reference,\
+    \ matched lengths, minimal vias, no stubs, and the spacing rules in Sections 14.1\u2013\
+    14.2. Connect EP129 and every ground pin directly to board ground with the thermal/ground-via\
+    \ treatment in Sections 14.4 and Appendix I."
+layout_refs:
+- tier: 1
+  reached: true
+  artifact: XMOS XM-014532-PC v2.0.0 Sections 7.3/14 and Appendix I, pages 20, 29-34,
+    and 94-97
+- tier: 2
+  reached: false
+  artifact: Exact-part manufacturer evaluation-board or routed reference-design files
+    (not present in the immutable task packet)
+  why: No exact-part routed design files were included in the immutable packet; this
+    bounded repair does not claim unseen files.

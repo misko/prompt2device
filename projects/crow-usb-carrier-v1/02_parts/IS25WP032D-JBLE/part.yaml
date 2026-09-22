@@ -1,5 +1,5 @@
-mpn: "IS25WP032D-JBLE"
-footprint: "Package_SO:SOIC-8_5.3x5.3mm_P1.27mm"
+mpn: IS25WP032D-JBLE
+footprint: Package_SO:SOIC-8_5.3x5.3mm_P1.27mm
 manufacturer: ISSI
 type: serial_quad_flash
 package: SOIC-8 208mil
@@ -22,11 +22,34 @@ pins:
   6: SCK
   7: HOLD_N_IO3
   8: VCC
-verified: "pin map checked to Rev A15 section 2 and 208 mil package drawing — 2026-09-22"
+verified: "pin map checked to Rev A15 section 2 and 208 mil package drawing \u2014\
+  \ 2026-09-22"
 gotchas:
-  - "Power reset returns standard SPI mode; all four data pins are used only after a supported Quad-I/O command sequence."
-  - "CE# must remain high for at least tVCE=300 us after VCC reaches 1.65 V; the 4.7 kohm CE# pull-up and delayed XU reset enforce deselection during that interval."
-  - "Hardware is source-compatible with xflash device inquiry/SFDP, but exact XTC/XN programming support remains a recorded software-programming gate; no image is authored here."
+- Power reset returns standard SPI mode; all four data pins are used only after a
+  supported Quad-I/O command sequence.
+- CE# must remain high for at least tVCE=300 us after VCC reaches 1.65 V; the 4.7
+  kohm CE# pull-up and delayed XU reset enforce deselection during that interval.
+- Hardware is source-compatible with xflash device inquiry/SFDP, but exact XTC/XN
+  programming support remains a recorded software-programming gate; no image is authored
+  here.
 layout:
-  source: "Rev A15 section 10.1 package drawing"
+  source: ISSI IS25LP/WP032D Rev A15 Sections 2 and 4 plus 208-mil SOIC drawing; no
+    dedicated PCB-layout section
   reviewed: 2026-09-22
+  notes:
+  - 'Evidence grade: primary datasheet interface, pin, and package constraints; the
+    document does not prescribe component placement.'
+  - 'Engineering recommendation: place C_FLASH at U_FLASH VCC pin 8 with a short return
+    to pin 4/GND, and keep QSPI_CLK and QSPI_D0..D3 short and grouped between U_XU
+    and U_FLASH without stubs. Keep R_QSPI_CS local to CE# pin 1 so CE# remains defined
+    during power-up.'
+layout_refs:
+- tier: 1
+  reached: true
+  artifact: ISSI Rev A15 Sections 2/4 and 208-mil SOIC package drawing
+- tier: 2
+  reached: false
+  artifact: Exact-part manufacturer evaluation-board or routed reference-design files
+    (not present in the immutable task packet)
+  why: No exact-part routed design files were included in the immutable packet; this
+    bounded repair does not claim unseen files.

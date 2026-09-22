@@ -1,5 +1,5 @@
-mpn: "TPS389018DSER"
-footprint: "crow_usb_digital:TI_DSE0006A_WSON6"
+mpn: TPS389018DSER
+footprint: crow_usb_digital:TI_DSE0006A_WSON6
 manufacturer: Texas Instruments
 type: voltage_supervisor_open_drain
 package: WSON-6 DSE 1.5x1.5mm
@@ -18,8 +18,27 @@ pins:
   4: VDD
   5: CT
   6: RESET_N
-verified: "pin map checked to SBVS228A pin table — 2026-09-22"
-limits: {threshold: "1.73V falling", vdd: 1.5V_to_5.5V}
+verified: "pin map checked to SBVS228A pin table \u2014 2026-09-22"
+limits:
+  threshold: 1.73V falling
+  vdd: 1.5V_to_5.5V
 layout:
-  source: "SBVS228A application section"
+  source: TI SBVS228A Section 11.1 Layout Guidelines and Figure 27, datasheet page
+    17
   reviewed: 2026-09-22
+  notes:
+  - 'Evidence grade: primary manufacturer layout guidance. Keep the VDD connection
+    low impedance and place C_1V8_OK_VDD near U_1V8_OK pin 4 with a short return to
+    pin 2/GND.'
+  - Place C_CORE_EN_CT next to CT pin 5 and shield the CORE_EN_CT node from switching
+    copper; Section 11.1 warns that CT parasitic capacitance changes reset delay.
+layout_refs:
+- tier: 1
+  reached: true
+  artifact: TI SBVS228A Section 11.1 and Figure 27, page 17
+- tier: 2
+  reached: false
+  artifact: Exact-part manufacturer evaluation-board or routed reference-design files
+    (not present in the immutable task packet)
+  why: No exact-part routed design files were included in the immutable packet; this
+    bounded repair does not claim unseen files.

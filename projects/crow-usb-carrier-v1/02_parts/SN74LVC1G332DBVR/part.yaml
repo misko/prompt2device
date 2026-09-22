@@ -1,5 +1,5 @@
-mpn: "SN74LVC1G332DBVR"
-footprint: "Package_TO_SOT_SMD:SOT-23-6"
+mpn: SN74LVC1G332DBVR
+footprint: Package_TO_SOT_SMD:SOT-23-6
 manufacturer: Texas Instruments
 type: three_input_or_gate
 package: SOT-23-6 DBV
@@ -11,9 +11,35 @@ datasheet:
   sha256: 5ecad3180cb93664b358a9cb6a724e012fc9b124e6ae0d1004c9ae6600549f21
   fetched: 2026-09-22
   pages: 20
-pins: {1: A, 2: GND, 3: B, 4: Y, 5: VCC, 6: C}
-verified: "pin map checked to SCES489E DBV top-view drawing — 2026-09-22"
-limits: {vcc: 1.65V_to_5.5V, tpd_max_3V3_125C_50pF: 6.2ns}
+pins:
+  1: A
+  2: GND
+  3: B
+  4: Y
+  5: VCC
+  6: C
+verified: "pin map checked to SCES489E DBV top-view drawing \u2014 2026-09-22"
+limits:
+  vcc: 1.65V_to_5.5V
+  tpd_max_3V3_125C_50pF: 6.2ns
 layout:
-  source: "SCES489E layout guidance"
+  source: TI SCES489E DBV pin/package drawings and electrical tables; the document
+    has no dedicated layout section
   reviewed: 2026-09-22
+  notes:
+  - 'Evidence grade: primary datasheet package and electrical constraints only; the
+    local 100 nF bypass recommendation is engineering practice, not a quoted SCES489E
+    requirement.'
+  - Place C_FSYNC_OR beside U_FSYNC_OR VCC pin 5 with a short ground return; keep
+    ADC_FSYNC_RAW, FSYNC_Q1, FSYNC_Q2, and ADC_FSYNC_EXT compact because this gate
+    is in the BCLK-timed frame-sync path.
+layout_refs:
+- tier: 1
+  reached: true
+  artifact: TI SCES489E DBV top-view/package drawings and switching tables
+- tier: 2
+  reached: false
+  artifact: Exact-part manufacturer evaluation-board or routed reference-design files
+    (not present in the immutable task packet)
+  why: No exact-part routed design files were included in the immutable packet; this
+    bounded repair does not claim unseen files.

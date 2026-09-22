@@ -1,5 +1,5 @@
-mpn: "SN74AUP3G34DCUR"
-footprint: "crow_usb_digital:TI_DCU0008A_VSSOP8"
+mpn: SN74AUP3G34DCUR
+footprint: crow_usb_digital:TI_DCU0008A_VSSOP8
 manufacturer: Texas Instruments
 type: triple_noninverting_buffer
 package: VSSOP-8 DCU
@@ -13,12 +13,43 @@ datasheet:
   local: 02_parts/SN74AUP3G34DCUR/SN74AUP3G34-SCES766C.pdf
   sha256: f188afa526b904201017529cf6c363974be3a1bf580a64e12485e40d5aefcf07
   fetched: 2026-09-22
-pins: {1: 1A, 2: 3Y, 3: 2A, 4: GND, 5: 2Y, 6: 3A, 7: 1Y, 8: VCC}
-verified: "SCES766C pin configuration, electrical and switching tables — 2026-09-22"
+pins:
+  1: 1A
+  2: 3Y
+  3: 2A
+  4: GND
+  5: 2Y
+  6: 3A
+  7: 1Y
+  8: VCC
+verified: "SCES766C pin configuration, electrical and switching tables \u2014 2026-09-22"
 sourceability:
   ti_status: active
-  digikey: "296-25595 series exact DCUR authorized listing"
-  mouser: "exact DCUR listing not independently closed; DQE family variant stocked but not footprint-compatible"
+  digikey: 296-25595 series exact DCUR authorized listing
+  mouser: exact DCUR listing not independently closed; DQE family variant stocked
+    but not footprint-compatible
 gotchas:
-  - "Powered from quiet 3V3_ADC. Ioff prevents back-power from 3V3X-derived inputs when this rail is off."
-  - "85C maximum operating temperature is a product-temperature constraint."
+- Powered from quiet 3V3_ADC. Ioff prevents back-power from 3V3X-derived inputs when
+  this rail is off.
+- 85C maximum operating temperature is a product-temperature constraint.
+layout:
+  source: TI SCES766C DCU0008A package/example-board-layout addendum; the device text
+    has no dedicated layout section
+  reviewed: 2026-09-22
+  notes:
+  - 'Evidence grade: primary manufacturer package drawing only; C_ADC_OUT placement
+    is an engineering decoupling recommendation rather than a cited SCES766C layout
+    rule.'
+  - Place C_ADC_OUT beside U_ADC_OUT VCC pin 8 with a short return to pin 4/GND. Keep
+    ADC_MCLK_SAFE, ADC_BCLK_SAFE, and ADC_FSYNC_SAFE short to their 33 ohm source
+    resistors, which should remain near the buffer outputs.
+layout_refs:
+- tier: 1
+  reached: true
+  artifact: TI SCES766C DCU0008A package and example board-layout addendum
+- tier: 2
+  reached: false
+  artifact: Exact-part manufacturer evaluation-board or routed reference-design files
+    (not present in the immutable task packet)
+  why: No exact-part routed design files were included in the immutable packet; this
+    bounded repair does not claim unseen files.

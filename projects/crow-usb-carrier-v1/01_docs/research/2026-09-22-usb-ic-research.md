@@ -1,5 +1,7 @@
 # Crow USB audio bridge architecture research
 
+> Historical research snapshot: BRIEF D2 supersedes this report’s requirement for firmware authorization before hardware pin freeze. Firmware authoring remains forbidden; hardware design continues. The adopted hardware and capacitor/interface corrections are recorded in 2026-09-22-digital-source-adoption.md.
+
 Retrieved 2026-09-22 UTC. Scope is architecture and sourcing evidence only; no firmware was authored and no schematic or PCB source was changed.
 
 ## Recommendation

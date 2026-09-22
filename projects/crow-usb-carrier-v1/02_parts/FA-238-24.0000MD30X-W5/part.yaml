@@ -1,5 +1,5 @@
-mpn: "FA-238 24.0000MD30X-W5"
-footprint: "crow_usb_digital:Epson_FA238_3225_4Pin"
+mpn: FA-238 24.0000MD30X-W5
+footprint: crow_usb_digital:Epson_FA238_3225_4Pin
 manufacturer: Epson
 type: quartz_crystal
 package: 3.2x2.5mm 4-pad
@@ -16,8 +16,30 @@ pins:
   2: CASE_GND
   3: CRYSTAL
   4: CASE_GND
-verified: "pin map checked to Epson one-page specification — 2026-09-22"
-limits: {frequency: 24MHz, load_capacitance: 12pF, esr_max: 60ohm}
+verified: "pin map checked to Epson one-page specification \u2014 2026-09-22"
+limits:
+  frequency: 24MHz
+  load_capacitance: 12pF
+  esr_max: 60ohm
 layout:
-  source: "Epson recommended footprint and XMOS oscillator network"
+  source: Epson Q22FA23801885 one-page specification Sections 3-4, external dimensions
+    and recommended footprint
   reviewed: 2026-09-22
+  notes:
+  - 'Evidence grade: primary manufacturer package/land-pattern authority; the Epson
+    sheet does not prescribe oscillator-network placement.'
+  - 'Engineering recommendation based on the XMOS oscillator circuit: place Y_XU with
+    R_XTAL_DRIVE, R_XTAL_FB, C_XTAL_IN, and C_XTAL_OUT immediately around U_XU pins
+    33/34, keep both crystal nodes compact and symmetric, and keep them away from
+    clocks and switch nodes. Ground case pads 2 and 4 as specified by the current
+    source.'
+layout_refs:
+- tier: 1
+  reached: true
+  artifact: Epson Q22FA23801885 Sections 3-4 recommended footprint, page 1
+- tier: 2
+  reached: false
+  artifact: Exact-part manufacturer evaluation-board or routed reference-design files
+    (not present in the immutable task packet)
+  why: No exact-part routed design files were included in the immutable packet; this
+    bounded repair does not claim unseen files.

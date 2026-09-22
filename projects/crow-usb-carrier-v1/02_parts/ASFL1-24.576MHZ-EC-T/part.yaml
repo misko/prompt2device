@@ -1,8 +1,8 @@
-mpn: "ASFL1-24.576MHZ-EC-T"
-footprint: "crow_usb_digital:Abracon_ASFL1_7050"
+mpn: ASFL1-24.576MHZ-EC-T
+footprint: crow_usb_digital:Abracon_ASFL1_5032
 manufacturer: Abracon
 type: cmos_oscillator
-package: 7.0x5.0mm SMD 4-pad
+package: 5.0x3.2mm SMD 4-pad, maximum height1.3mm
 datasheet:
   doc_id: ASFL1
   revision: current
@@ -16,8 +16,29 @@ pins:
   2: GND
   3: OUTPUT
   4: VDD
-verified: "pin map checked to ASFL1 dimensional drawing — 2026-09-22"
-limits: {frequency: 24.576MHz, supply: 3.3V, stability: 50ppm}
+verified: 2026-09-22 coordinator visually checked primary page2 top view, pin functions,
+  recommended lands and capacitor note; native Y-down and source Y-up corrected.
+limits:
+  frequency: 24.576MHz
+  supply: 3.3V
+  stability: 50ppm
 layout:
-  source: "ASFL1 datasheet pin and land drawing"
-  reviewed: 2026-09-22
+  source: Abracon ASFL1 datasheet revised04.13.11 page2 recommended land pattern and
+    bypass note
+  reviewed: '2026-09-22'
+  notes:
+  - Use the exact5.0x3.2mm body and1.7x1.5mm lands on2.54x2.2mm center pitch.
+  - Place C_AUDIO_OSC10nF between pins4(VDD) and2(GND) next to Y_AUDIO per manufacturer
+    approximate0.01uF bypass recommendation.
+  - Separate Y_AUDIO from USB_DP/USB_DM and analog input nodes; this separation is
+    engineering layout intent, not a claimed measured margin.
+layout_refs:
+- tier: 1
+  reached: true
+  artifact: Abracon ASFL1 outline drawing and bypass-capacitor note, page 2
+- tier: 2
+  reached: false
+  artifact: Exact-part manufacturer evaluation-board or routed reference-design files
+    (not present in the immutable task packet)
+  why: No exact-part routed design files were included in the immutable packet; this
+    bounded repair does not claim unseen files.
