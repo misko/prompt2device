@@ -201,3 +201,7 @@ Removed the seeded EXAMPLE_RAIL card after checking owning applicability: first_
 ## ADC and coupling-capacitor packaging substitutions — 2026-09-22
 
 Adopted exact CS5308P-DNR and R82DC4100CK60J variants after checking primary Cirrus ordering table and exact KEMET geometry/value/tolerance. Maintained489refs/85MPNs; all1493 named source pin/net edges unchanged; only17 source identities change. Primary PDFs retained as regular files; old active variants removed with history preserved. Source CSV, module selection and current dossiers reconciled. Manual sourcing observations remain evidence candidates until strict exact-orderability grading.
+
+## Sourcing reader repair — 2026-09-22
+
+Adopted independently reviewed shopping-list patcha69ab653417d95dc8d966e7f2a32f0f1bc475368de11bdc8719f1ee080ea6bd2. Recognizes actual nested JLC code with conflict rejection; absent-API Mouser fallback requires exact manufacturer/MPN and dated orderable product-page evidence with finite integral stock/order metadata. Future dates, empty manufacturer authority, invalid numeric values and duplicate-pool credit are rejected. Root32/32 focusedtests (17knownbad), skillvalidator, authority, documentation15/15 anddisclosure14/14 pass. This repairs evidence ingestion, not full-board sourcing; selected85part census remains the grading denominator.

@@ -7,9 +7,9 @@ It is the only skill here whose primary inputs come from OUTSIDE the repo, so
 it is governed by canon **`M-QUOTE`** (design-policies.md, Meta) — the narrow
 instance of `M-IMPORT` scoped to distributor facts.
 
-**Mutability** — hand-edited. A tier change (a new distributor, a new
-credential path, a new grade) must land in `design-policies.md`'s `M-QUOTE`
-row and in `tests/t1_shopping_list.py` in the SAME change.
+**Mutability** — hand-edited. A tier change (a new distributor, evidence path,
+credential path, or grade) must land in `design-policies.md`'s `M-QUOTE` row
+and in `tests/t1_shopping_list.py` in the SAME change.
 
 ## Allowed
 
@@ -30,8 +30,12 @@ row and in `tests/t1_shopping_list.py` in the SAME change.
   stdout, the report, the JSON sidecar and every cache file.
 - Recorded API fixtures live in `tests/fixtures/shopping_list/` and are grepped
   for credential-shaped content by `t_fixtures_carry_no_credential`.
-- Absent credential = say so, degrade to the manual path, grade OWED. Never
-  crash; never emit an unsourced list that looks sourced.
+- Absent credential = say so. A Mouser manual fallback qualifies only from an
+  exact-MPN HTTPS Mouser product page with nonempty matching manufacturer,
+  agreeing nonfuture read/check dates, Active and explicitly orderable state,
+  finite nonnegative integral stock, packaging, and finite positive integral
+  min/mult. Anything less is OWED or a graded negative.
+  One distributor is one pool regardless of record count.
 
 ## Audit
 

@@ -28,6 +28,15 @@ recorded responses so the suite never makes one.
   forbid caching their content, and the 06_build contract already forbids
   treating a cached stock number as truth at order time.
 - Substituting a part. Naming a near MPN is reporting; choosing one is not.
+- Silently choosing between `sourcing.lcsc` and `sourcing.jlcpcb.lcsc`. Either
+  spelling is supported; if both are present and differ, Q-LCSC-CONFLICT
+  rejects both identities and the gate fails.
+- Counting a hand-recorded Mouser line unless the API credential is absent and
+  the record is an exact manufacturer/MPN HTTPS Mouser product page with
+  matching nonfuture `read_on`/timezone-bearing `checked_at`, Active lifecycle,
+  `orderable: true`, finite nonnegative integral stock, packaging and finite
+  positive integral min/mult. Search snippets never qualify, and
+  multiple records from Mouser remain one pool.
 - **Re-deriving "the newest release".** `newest_release_boms` imports
   `jlcpcb-fab/scripts/release_index.py`; it must not sort release directories
   itself. It did, with `d.name > prev[0]` — a TEXT comparison under which
@@ -42,7 +51,7 @@ recorded responses so the suite never makes one.
 
 - `gate_contract_audit.py` — G-INPUT / G-COVER / G-RED (`shopping_list.py`
   prints a verdict).
-- `tests/t1_shopping_list.py` — 26 tests, 14 known-bad, hermetic via
+- `tests/t1_shopping_list.py` — 32 tests, 17 known-bad, hermetic via
   `--replay tests/fixtures/shopping_list/mouser/`. Q-WIDE, Q-SNIPPET and
   Q-IDENT are each RED-verified against a neutered checker, with the measured
   pass/fail counts recorded in the suite docstring.

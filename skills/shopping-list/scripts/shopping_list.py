@@ -88,12 +88,14 @@ at order time").
 import argparse
 import csv
 import json
+import math
 import os
 import re
 import sys
 import time
 import urllib.error
 import urllib.request
+from urllib.parse import urlparse
 from datetime import date, datetime, timezone
 from pathlib import Path
 
@@ -122,9 +124,18 @@ DISTRIBUTORS = ("mouser", "digikey", "amazon")
 #: never an omission: `bom_source_check` dropped 87 of 673 rows and exited 0.
 GRADED_STATUSES = ("OK", "LOW-STOCK", "NO-STOCK", "NOT-IN-CATALOG",
                    "SUBSTITUTE-ONLY", "MANUFACTURER-MISMATCH",
-                   "REFUSED-SNIPPET", "STALE")
+                   "REFUSED-SNIPPET", "STALE", "NOT-ORDERABLE")
 
 AUTHORIZED_POOLS = ("jlc", "mouser", "digikey")
+
+
+def finite_integer(value, minimum=0):
+    """True only for finite integral numbers; bool is never a quantity."""
+    return (not isinstance(value, bool)
+            and isinstance(value, (int, float))
+            and math.isfinite(value)
+            and float(value).is_integer()
+            and value >= minimum)
 
 
 def normalize_manufacturer(value):
@@ -358,11 +369,25 @@ def read_parts(project):
         p.manufacturer = str(y.get("manufacturer") or "").split("#")[0].strip()
         p.type = str(y.get("type") or "").split("#")[0].strip()
         s = y.get("sourcing") or {}
-        lc = s.get("lcsc") if isinstance(s, dict) else None
-        p.lcsc = (str(lc).split("#")[0].strip().strip('"')
-                  if isinstance(lc, str) else None)
-        if p.lcsc in ("", "null", "None"):
+
+        def lcsc_value(value):
+            value = (str(value).split("#")[0].strip().strip('"')
+                     if isinstance(value, str) else None)
+            return None if value in ("", "null", "None") else value
+
+        direct = lcsc_value(s.get("lcsc")) if isinstance(s, dict) else None
+        nested_raw = s.get("jlcpcb") if isinstance(s, dict) else None
+        nested = (lcsc_value(nested_raw.get("lcsc"))
+                  if isinstance(nested_raw, dict) else None)
+        if direct and nested and direct != nested:
+            unparsed.append(
+                f"{f.relative_to(project)}: Q-LCSC-CONFLICT: "
+                f"sourcing.lcsc={direct!r} != sourcing.jlcpcb.lcsc={nested!r}; "
+                "neither identity is admitted")
             p.lcsc = None
+            p.reasons.append("conflicting direct/nested LCSC identities")
+        else:
+            p.lcsc = direct or nested
         if not p.lcsc:
             p.reasons.append("part.yaml sourcing.lcsc is empty — no fab-library "
                              "line exists, so it is self-supplied")
@@ -921,15 +946,26 @@ def grade_quote(q, qty, min_stock, max_age_days, today,
         return {**base, "status": "QUOTE-INVALID", "grade": OWED,
                 "why": f"Q-SNIPPET: `read_on: {base['read_on']}` is not an "
                        f"ISO date"}
+    if age < 0:
+        return {**base, "status": "QUOTE-INVALID", "grade": OWED,
+                "why": f"Q-SNIPPET: read_on {base['read_on']} is in the future "
+                       f"relative to {today.isoformat()}"}
     if age > max_age_days:
         return {**base, "status": "STALE", "grade": ESTIMATED,
                 "why": f"Q-SNIPPET: read {age} days ago (> {max_age_days}); "
                        f"stock moves — re-read the product page"}
     stock = q.get("stock")
-    if not isinstance(stock, (int, float)):
+    if not finite_integer(stock, minimum=0):
         return {**base, "status": "QUOTE-INVALID", "grade": OWED,
-                "why": f"Q-GRADE: `stock:` is {stock!r}, not a number"}
+                "why": f"Q-GRADE: `stock:` is {stock!r}, not a finite "
+                       "nonnegative integer"}
     stock = int(stock)
+    for field in ("min", "mult"):
+        value = q.get(field)
+        if value is not None and not finite_integer(value, minimum=1):
+            return {**base, "status": "QUOTE-INVALID", "grade": OWED,
+                    "why": f"Q-GRADE: `{field}:` is {value!r}, not a finite "
+                           "positive integer"}
     # `price_breaks: [{qty: 1, usd: 3.87}, {qty: 10, usd: 3.448}]` when the page
     # showed a ladder; `unit_price_usd` when it showed one number.
     brk_rows = [(int(b["qty"]), float(b["usd"]))
@@ -972,6 +1008,94 @@ def grade_quote(q, qty, min_stock, max_age_days, today,
             "min": q.get("min"), "mult": q.get("mult"),
             "ext_price": round(unit * qty, 4) if unit is not None else None,
             "lifecycle": q.get("lifecycle"), "why": why}
+
+
+def grade_mouser_page_quote(q, qty, min_stock, max_age_days, today,
+                            authoritative_mpn, authoritative_manufacturer):
+    """Grade the narrow no-API fallback: an authenticated public Mouser page.
+
+    This path is deliberately stricter than generic manual quotes.  It must
+    carry enough page provenance to distinguish an orderable exact product
+    page from a search result, locale redirect, nearby MPN, or stale note.
+    """
+    quoted_manufacturer = str(q.get("manufacturer") or "").strip()
+    if not authoritative_manufacturer or not quoted_manufacturer:
+        return {"distributor": "mouser", "url": q.get("url"),
+                "dpn": q.get("dpn"), "read_on": str(q.get("read_on") or ""),
+                "manufacturer": quoted_manufacturer,
+                "manufacturer_match": False, "status": "QUOTE-INVALID",
+                "grade": OWED,
+                "why": "Q-MFR-IDENT: manual Mouser fallback requires both "
+                       "the dossier and quote to name a manufacturer"}
+    # Validate every numeric field before grade_quote converts or compares it.
+    # bool is an int subclass in Python; NaN/Inf make int() raise; fractional
+    # MOQ/multiple values are not order constraints the tool can enforce.
+    if not finite_integer(q.get("stock"), minimum=0):
+        return {"distributor": "mouser", "url": q.get("url"),
+                "dpn": q.get("dpn"), "read_on": str(q.get("read_on") or ""),
+                "manufacturer": quoted_manufacturer,
+                "manufacturer_match": False, "status": "QUOTE-INVALID",
+                "grade": OWED,
+                "why": "Q-GRADE: manual Mouser stock must be a finite "
+                       "nonnegative integer"}
+    for field in ("min", "mult"):
+        if not finite_integer(q.get(field), minimum=1):
+            return {"distributor": "mouser", "url": q.get("url"),
+                    "dpn": q.get("dpn"),
+                    "read_on": str(q.get("read_on") or ""),
+                    "manufacturer": quoted_manufacturer,
+                    "manufacturer_match": False, "status": "QUOTE-INVALID",
+                    "grade": OWED,
+                    "why": f"Q-GRADE: manual Mouser {field} must be a finite "
+                           "positive integer"}
+    base = grade_quote(q, qty, min_stock, max_age_days, today,
+                       authoritative_manufacturer)
+    if str(q.get("mpn") or "").strip() != authoritative_mpn:
+        return {**base, "status": "QUOTE-INVALID", "grade": OWED,
+                "why": "Q-IDENT: manual Mouser fallback MPN must exactly equal "
+                       f"the dossier MPN {authoritative_mpn!r}"}
+    parsed = urlparse(str(q.get("url") or ""))
+    host = (parsed.hostname or "").lower()
+    if parsed.scheme != "https" or not (host == "mouser.com" or
+                                         host.endswith(".mouser.com")) \
+            or "/productdetail/" not in parsed.path.lower():
+        return {**base, "status": "QUOTE-INVALID", "grade": OWED,
+                "why": "Q-GRADE: manual Mouser fallback requires an HTTPS "
+                       "public /ProductDetail/ URL on mouser.com"}
+    if q.get("source") != "product_page":
+        return base  # grade_quote already refuses snippets/invalid sources.
+    checked = str(q.get("checked_at") or "")
+    try:
+        checked_dt = datetime.fromisoformat(checked.replace("Z", "+00:00"))
+        if checked_dt.tzinfo is None:
+            raise ValueError("checked_at has no timezone")
+        checked_date = checked_dt.date()
+        read_date = date.fromisoformat(str(q.get("read_on") or ""))
+    except ValueError:
+        return {**base, "status": "QUOTE-INVALID", "grade": OWED,
+                "why": "Q-GRADE: manual Mouser fallback requires ISO read_on "
+                       "and checked_at provenance dates"}
+    if checked_date != read_date:
+        return {**base, "status": "QUOTE-INVALID", "grade": OWED,
+                "why": "Q-GRADE: checked_at calendar date must match read_on"}
+    if not base.get("manufacturer_match"):
+        return {**base, "status": "MANUFACTURER-MISMATCH", "grade": CITED,
+                "why": "Q-MFR-IDENT: manual Mouser manufacturer does not "
+                       "match the dossier manufacturer"}
+    lifecycle = str(q.get("lifecycle") or "").strip()
+    if lifecycle.lower() != "active" or q.get("orderable") is not True:
+        return {**base, "status": "NOT-ORDERABLE", "grade": CITED,
+                "why": "manual Mouser fallback requires lifecycle Active and "
+                       "orderable: true"}
+    packaging = str(q.get("packaging") or "").strip()
+    minimum, multiple = q.get("min"), q.get("mult")
+    if not packaging or not finite_integer(minimum, minimum=1) \
+            or not finite_integer(multiple, minimum=1):
+        return {**base, "status": "QUOTE-INVALID", "grade": OWED,
+                "why": "Q-GRADE: manual Mouser fallback requires packaging "
+                       "and positive numeric min/mult"}
+    return {**base, "source_method": "manual_product_page",
+            "packaging": packaging, "checked_at": checked}
 
 
 DIGIKEY_ENABLEMENT = """\
@@ -1265,8 +1389,9 @@ def main(argv=None):
         print(f"  mouser key: present (from {key_prov}) — never printed/logged")
     else:
         print("  mouser key: ABSENT. Set $MOUSER_API_KEY or create "
-              "<repo>/.secrets/mouser.env (mode 600). Every Mouser line will "
-              "be graded OWED and this list is NOT sourced.")
+              "<repo>/.secrets/mouser.env (mode 600). A strictly validated "
+              "dated Mouser product-page record may be used; every other "
+              "Mouser line is OWED.")
 
     cache = None if a.no_cache else (project / "06_build" / "cache" / "mouser")
     mouser = Mouser(key, cache, Path(a.replay).resolve() if a.replay else None,
@@ -1305,6 +1430,20 @@ def main(argv=None):
         m = grade_mouser(rs, qty, a.min_stock, p.manufacturer)
         m["searches"] = rs.searches
         m["all_records"] = rs.records
+        # The API remains the preferred path.  Only when it is unavailable do
+        # we admit a public product-page record carrying the exact identity,
+        # active/orderable state, stock, packaging and dated provenance.
+        if not key and m["status"] == "LOOKUP-FAILED":
+            cand = [q for q in qmap.get(p.mpn, [])
+                    if str(q.get("distributor", "")).lower() == "mouser"]
+            if cand:
+                graded = [grade_mouser_page_quote(
+                    q, qty, a.min_stock, a.quote_max_age_days, today,
+                    p.mpn, p.manufacturer) for q in cand]
+                good = [g for g in graded if g["status"] == "OK"]
+                m = good[0] if good else graded[0]
+                m["searches"] = rs.searches
+                m["all_records"] = rs.records
         row["dist"]["mouser"] = m
 
         for d in ("digikey", "amazon"):
@@ -1363,7 +1502,10 @@ def main(argv=None):
             rejected_pools["jlc"] = jlc.get("why") or jlc["status"]
         if p.manufacturer and m["status"] == "OK" and m["grade"] == CITED:
             rec = m.get("record") or {}
-            if rec.get("is_same_manufacturer"):
+            mfr_match = (m.get("manufacturer_match")
+                         if m.get("source_method") == "manual_product_page"
+                         else rec.get("is_same_manufacturer"))
+            if mfr_match:
                 pools.append("mouser")
             else:
                 rejected_pools["mouser"] = "Q-MFR-IDENT mismatch or missing"
@@ -1399,7 +1541,9 @@ def main(argv=None):
         "mouser": "Mouser Search API (search/partnumber). TWO searches per "
                   "part: `Exact` on the authoritative MPN, then `None` on the "
                   "suffix-stripped MPN — one part has several catalog records "
-                  "and they disagree. CITED.",
+                  "and they disagree. When the API credential is absent, a "
+                  "strictly validated exact-MPN public Mouser product-page "
+                  "record may supply the same pool once. CITED.",
         "digikey": "PRODUCT PAGE read by a human and recorded in "
                    "01_docs/sourcing/manual_quotes.yaml. No API key available "
                    "(OAuth client credentials not provided). CITED from a "

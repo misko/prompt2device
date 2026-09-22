@@ -44,8 +44,8 @@ byte-identical afterwards).
       -> 16 passed, 1 FAILED — t_a_neighbouring_mpn_is_never_substituted. The
          tool sourced B5B-XH-A-GU, a different connector, against B5B-XH-A.
 
-  Current suite after the candidate-BOM/composed-pool and progress-ledger
-  additions: 26 passed, 0 failed, 14 known-bad.
+  Current suite after the candidate-BOM/composed-pool, nested-LCSC and strict
+  no-key Mouser product-page additions: 32 passed, 0 failed, 17 known-bad.
 """
 import json
 import shutil
@@ -198,6 +198,169 @@ quotes:
     stock: 1000
     unit_price_usd: 1.0
 """)
+
+
+def mouser_page_quote(**overrides):
+    q = {
+        "mpn": "ACME-1", "manufacturer": "Acme Devices",
+        "distributor": "mouser", "source": "product_page",
+        "url": "https://www.mouser.com/ProductDetail/Acme/ACME-1",
+        "read_on": "2026-01-02", "checked_at": "2026-01-02T12:34:56Z",
+        "lifecycle": "Active", "orderable": True, "packaging": "Cut Tape",
+        "stock": 1000, "min": 1, "mult": 1,
+    }
+    q.update(overrides)
+    lines = ["quotes:"]
+    for k, v in q.items():
+        if isinstance(v, bool):
+            value = "true" if v else "false"
+        else:
+            value = str(v)
+        lines.append(f"  - {k}: {value}" if len(lines) == 1 else f"    {k}: {value}")
+    return "\n".join(lines) + "\n"
+
+
+@test("nested sourcing.jlcpcb.lcsc is admitted as the same exact JLC identity")
+def t_nested_jlcpcb_identity_is_supported():
+    nested = POOL_PART.replace("  lcsc: C123456",
+                               "  jlcpcb:\n    lcsc: C123456")
+    d = project({"ACME-1": nested},
+                ["ACME-1,U1,QFN,ACME-1,C123456"],
+                quotes=mouser_page_quote())
+    candidate = d / "candidate.csv"
+    candidate.write_text("Comment,Designator,Footprint,MPN,LCSC\n"
+                         "ACME-1,U1,QFN,ACME-1,C123456\n")
+    jlc = write_jlc_snapshot(d, [{
+        "lcsc": "C123456", "designators": "U1", "qty": 1,
+        "status": "OK", "stock": 1000, "type": "expand",
+        "mpn": "ACME-1", "manufacturer": "Acme Devices",
+    }])
+    js = d / "nested.json"
+    must_pass(run([
+        KPY, SHOP, d, "--scope", "all", "--boards", "5", "--bom", candidate,
+        "--required-pools", "2", "--jlc-stock-json", jlc,
+        "--today", "2026-01-02", "--offline", "--no-cache", "--json", js,
+    ], env=NO_NET), "nested JLC plus manual Mouser page")
+    row = json.loads(js.read_text())["rows"][0]
+    check(row["lcsc"] == "C123456", f"nested LCSC lost: {row['lcsc']}")
+    check(row["authorized_pools"] == ["jlc", "mouser"],
+          f"nested JLC/manual Mouser composition: {row['authorized_pools']}")
+
+
+@test("conflicting direct and nested LCSC identities reject the gate",
+      kind="known_bad")
+def t_conflicting_lcsc_identities_are_rejected():
+    conflict = POOL_PART.replace(
+        "  lcsc: C123456", "  lcsc: C123456\n  jlcpcb:\n    lcsc: C999999")
+    d = project({"ACME-1": conflict},
+                ["ACME-1,U1,QFN,ACME-1,C123456"],
+                quotes=mouser_page_quote())
+    candidate = d / "candidate.csv"
+    candidate.write_text("Comment,Designator,Footprint,MPN,LCSC\n"
+                         "ACME-1,U1,QFN,ACME-1,C123456\n")
+    r = must_fail(run([
+        KPY, SHOP, d, "--scope", "all", "--boards", "5", "--bom", candidate,
+        "--required-pools", "2", "--today", "2026-01-02",
+        "--offline", "--no-cache",
+    ], env=NO_NET), "conflicting LCSC identities")
+    contains(r.out, "Q-LCSC-CONFLICT", "strict conflict diagnostic")
+
+
+@test("an exact active dated Mouser product page is a no-key pool fallback")
+def t_mouser_product_page_fallback_when_api_absent():
+    d = project({"ACME-1": POOL_PART},
+                ["ACME-1,U1,QFN,ACME-1,C123456"],
+                quotes=mouser_page_quote())
+    candidate = d / "candidate.csv"
+    candidate.write_text("Comment,Designator,Footprint,MPN,LCSC\n"
+                         "ACME-1,U1,QFN,ACME-1,C123456\n")
+    jlc = write_jlc_snapshot(d, [{
+        "lcsc": "C123456", "designators": "U1", "qty": 1,
+        "status": "OK", "stock": 1000, "type": "expand",
+        "mpn": "ACME-1", "manufacturer": "Acme Devices",
+    }])
+    js = d / "fallback.json"
+    must_pass(run([
+        KPY, SHOP, d, "--scope", "all", "--boards", "5", "--bom", candidate,
+        "--required-pools", "2", "--jlc-stock-json", jlc,
+        "--today", "2026-01-02", "--offline", "--no-cache", "--json", js,
+    ], env=NO_NET), "manual Mouser product-page fallback")
+    row = json.loads(js.read_text())["rows"][0]
+    check(row["dist"]["mouser"]["source_method"] == "manual_product_page",
+          "manual Mouser provenance marker is missing")
+    check(row["authorized_pools"] == ["jlc", "mouser"],
+          f"manual Mouser pool missing: {row['authorized_pools']}")
+
+
+@test("Mouser fallback rejects weak provenance and wrong identity/state",
+      kind="known_bad")
+def t_mouser_fallback_requires_complete_product_page_provenance():
+    bad_cases = [
+        {"source": "search_snippet"},
+        {"url": "https://example.invalid/ProductDetail/ACME-1"},
+        {"url": "https://www.mouser.com/search?keyword=ACME-1"},
+        {"manufacturer": "Adjacent Devices"},
+        {"manufacturer": "", "_dossier_manufacturer": ""},
+        {"lifecycle": "Obsolete"},
+        {"orderable": False},
+        {"packaging": ""},
+        {"read_on": "2099-01-01", "checked_at": "2099-01-01T00:00:00Z"},
+        {"stock": True},
+        {"stock": 1.5},
+        {"stock": ".nan"},
+        {"stock": ".inf"},
+        {"min": True},
+        {"min": 1.5},
+        {"min": ".nan"},
+        {"min": ".inf"},
+        {"mult": True},
+        {"mult": 1.5},
+        {"mult": ".nan"},
+        {"mult": ".inf"},
+        {"checked_at": "2026-01-02T12:34:56"},
+        {"checked_at": "2026-01-01T23:59:00Z"},
+    ]
+    for i, raw_bad in enumerate(bad_cases):
+        bad = dict(raw_bad)
+        dossier_manufacturer = bad.pop("_dossier_manufacturer", "Acme Devices")
+        part = POOL_PART.replace("manufacturer: Acme Devices",
+                                 f"manufacturer: {dossier_manufacturer}")
+        d = project({"ACME-1": part},
+                    ["ACME-1,U1,QFN,ACME-1,C123456"],
+                    quotes=mouser_page_quote(**bad))
+        candidate = d / "candidate.csv"
+        candidate.write_text("Comment,Designator,Footprint,MPN,LCSC\n"
+                             "ACME-1,U1,QFN,ACME-1,C123456\n")
+        js = d / f"bad-{i}.json"
+        must_fail(run([
+            KPY, SHOP, d, "--scope", "all", "--boards", "5",
+            "--bom", candidate, "--required-pools", "1",
+            "--today", "2026-01-02", "--offline", "--no-cache", "--json", js,
+        ], env=NO_NET), f"bad Mouser fallback {bad}")
+        row = json.loads(js.read_text())["rows"][0]
+        check("mouser" not in row["authorized_pools"],
+              f"bad Mouser evidence counted as a pool: {bad}")
+
+
+@test("duplicate manual Mouser quotes still count as one independent pool",
+      kind="known_bad")
+def t_manual_mouser_is_never_double_counted():
+    one = mouser_page_quote()
+    duplicate = one + "\n".join(one.splitlines()[1:]) + "\n"
+    d = project({"ACME-1": POOL_PART.replace("C123456", "null")},
+                ["ACME-1,U1,QFN,ACME-1,"], quotes=duplicate)
+    candidate = d / "candidate.csv"
+    candidate.write_text("Comment,Designator,Footprint,MPN,LCSC\n"
+                         "ACME-1,U1,QFN,ACME-1,\n")
+    js = d / "one-pool.json"
+    must_fail(run([
+        KPY, SHOP, d, "--scope", "all", "--boards", "5", "--bom", candidate,
+        "--required-pools", "2", "--today", "2026-01-02",
+        "--offline", "--no-cache", "--json", js,
+    ], env=NO_NET), "duplicate manual Mouser evidence")
+    row = json.loads(js.read_text())["rows"][0]
+    check(row["authorized_pools"] == ["mouser"],
+          f"one distributor was counted more than once: {row['authorized_pools']}")
 
 
 @test("Q-2SOURCE composes JLC plus DigiKey per exact row even when Mouser and "
@@ -608,7 +771,8 @@ def t_absent_key_degrades_loudly():
     r = must_fail(run([KPY, SHOP, d, "--offline", "--no-cache"], env=NO_NET),
                   "shopping_list.py with no credential", "LOOKUP-FAILED")
     contains(r.out, "mouser key: ABSENT", "the absence must be stated")
-    contains(r.out, "this list is NOT sourced", "and its consequence named")
+    contains(r.out, "every other Mouser line is OWED",
+             "and the bounded manual-fallback consequence named")
     contains(r.out, "mouser    graded 0/1", "graded nothing, and says so")
 
 

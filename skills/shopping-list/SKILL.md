@@ -86,7 +86,7 @@ lines are marked DO-NOT-SUBSTITUTE because the part *is* the safety argument.
 
 | distributor | method | grade |
 |---|---|---|
-| **Mouser** | the Search API (`search/partnumber`), two searches per part | **CITED** — machine-readable, timestamped |
+| **Mouser** | Search API (`search/partnumber`), or a strict public product-page record only when the API credential is absent | **CITED** — API response, or exact-MPN page with URL, dates, manufacturer, active/orderable state, stock, packaging and min/mult |
 | **DigiKey** | a **product page** a human opened, recorded with its URL and read date | **CITED** from a product page; a snippet is **REFUSED** |
 | **Amazon** | direct product links, hand-recorded | **ESTIMATED, always** |
 
@@ -185,9 +185,15 @@ the tool records is a leak site; `Mouser.call()` scrubs it out of every error
 path, and `t_the_key_is_never_printed` plants a sentinel key and greps stdout,
 the markdown, the JSON sidecar and every cache file for it.
 
-**If the credential is absent the tool says so, degrades to the manual path, and
-grades every Mouser line OWED.** It does not crash, and it does not emit an
-unsourced list that looks sourced.
+**If the credential is absent the tool says so.** It admits a manual Mouser
+record only when `source: product_page`, the HTTPS URL is on `mouser.com`, the
+MPN matches literally, both manufacturer fields are nonempty and match,
+`read_on` and timezone-bearing `checked_at` agree and are not in the future,
+lifecycle is `Active`, `orderable: true`, stock is a finite nonnegative integer,
+and packaging plus finite positive integer `min`/`mult` are recorded. A snippet,
+adjacent MPN, wrong manufacturer, stale page, inactive/non-orderable line, or
+incomplete provenance remains OWED or a graded negative. One Mouser pool counts
+once even if several records exist.
 
 ---
 
@@ -197,12 +203,12 @@ unsourced list that looks sourced.
 
 | source | what it decides |
 |---|---|
-| `02_parts/<dir>/part.yaml` | **the MPN**, from the `mpn:` FIELD. The directory name is a *sanitised rendering* — real MPNs contain `/` (`MCP23017-E/SS`) and `*` (`2.54-2*20PPC104`). A path is not an MPN |
+| `02_parts/<dir>/part.yaml` | **the MPN**, from the `mpn:` FIELD. The directory name is a *sanitised rendering* — real MPNs contain `/` (`MCP23017-E/SS`) and `*` (`2.54-2*20PPC104`). A path is not an MPN. LCSC may be direct `sourcing.lcsc` or nested `sourcing.jlcpcb.lcsc`; if both exist they must agree exactly or Q-LCSC-CONFLICT rejects both identities |
 | the newest sealed `07_releases/*/fab/bom.csv` per board | which refdes exist, and therefore the quantity. Opened **read-only** — releases are immutable |
 | `03_src/**/rules/assembly.yaml` | `not_assembled:` / `consigned:` — the refs the fab will not place, i.e. the ones you buy |
 | `--bom CANDIDATE.csv` | pre-release refdes/quantity authority; replaces sealed-release discovery so three parts per board times five boards is 15, not a guessed 5 |
 | `--jlc-stock-json stock.json` | fresh, timestamped `jlc_stock_check.py` sidecar; joined by LCSC, full MPN, manufacturer and per-board quantity |
-| `01_docs/sourcing/manual_quotes.yaml` | every DigiKey / Amazon number, each with manufacturer, page URL and read date |
+| `01_docs/sourcing/manual_quotes.yaml` | every DigiKey / Amazon number, plus the strict no-credential Mouser fallback; each carries the distributor-specific provenance above |
 
 Scope defaults to `self_supplied`: a part is selected if its `sourcing.lcsc` is
 empty, or it asserts `not_on_assembly_bom`, or its BOM row has a blank LCSC, or
@@ -262,7 +268,7 @@ drift into a hand-written join:
 
 ## Tests
 
-`tests/t1_shopping_list.py` — 26 tests, 14 known-bad. The two headline fixtures
+`tests/t1_shopping_list.py` — 32 tests, 17 known-bad. The two headline fixtures
 are the real recorded responses from incidents 1 and 2, and all three checks
 (Q-WIDE, Q-SNIPPET, Q-IDENT) are RED-verified against a deliberately neutered
 checker with the measurements written into the suite docstring. `--replay`
