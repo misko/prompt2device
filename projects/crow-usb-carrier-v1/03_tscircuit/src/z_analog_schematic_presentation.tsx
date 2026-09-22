@@ -25,13 +25,13 @@ own("buck", {
 own("held_ldo", {
   D_HOLD:[-6,3], R_PRE:[-2,3], Q_PRE:[-2,0], R_PRE_G:[-5,-.5,-90],
   Q_PRE_EN:[-2,-3], C_HOLD1:[1,-3,-90], C_HOLD2:[4,-3,-90],
-  C_LDO_IN:[1,2,-90], U_LDO:[5,2], C_LDO_OUT:[9,2,-90],
+  C_LDO_IN:[1,2,-90], U_LDO:[6,1], C_LDO_OUT:[12,1,-90],
   // SET leaves the top of U_LDO. Keep its resistor/capacitors above that
   // pin, so the primary wire does not loop through the chip reference.
-  R_LDO_SET:[5,7,-90],
-  C_LDO_NR4:[7.5,7,-90], C_LDO_NR5:[10,7,-90],
-  R_LDO_ILIM:[3,-2,-90],
-  R_LDO_PG_TOP:[8,4,-90], R_LDO_PG_BOT_A:[10.5,4,-90], R_LDO_PG_BOT_B:[13,4,-90],
+  R_LDO_SET:[6,8,-90],
+  C_LDO_NR4:[10,8,-90], C_LDO_NR5:[14,8,-90],
+  R_LDO_ILIM:[5,-4,-90],
+  R_LDO_PG_TOP:[12,5,-90], R_LDO_PG_BOT_A:[16,5,-90], R_LDO_PG_BOT_B:[20,5,-90],
 })
 own("supervisors", {
   U_PWR:[-3,2], R_PWR_TOP:[-7,3,-90], R_PWR_BOT:[-7,0,-90],
@@ -71,11 +71,11 @@ for (let n=1; n<=8; n++) {
   })
 }
 own("adc", {
-  U_ADC:[0,0], R_CFG1:[5,3,-90], R_CFG2:[7.5,3,-90],
-  R_CFG4:[5,0,-90], R_CFG5:[7.5,0,-90],
+  U_ADC:[0,0], R_CFG1:[5,5], R_CFG2:[9,5],
+  R_CFG4:[5,2], R_CFG5:[9,2],
   C_LDO_A:[5,-3,-90], C_LDO_D:[8,-3,-90],
-  C_VDDA1_4U7:[-3,-7,-90], C_VDDA1_10N:[0,-7,-90],
-  C_VDDA2_4U7:[3,-7,-90], C_VDDA2_10N:[6,-7,-90], C_VDDIO:[9,-7,-90],
+  C_VDDA1_4U7:[-4,-10,-90], C_VDDA1_10N:[0,-10,-90],
+  C_VDDA2_4U7:[4,-10,-90], C_VDDA2_10N:[8,-10,-90], C_VDDIO:[12,-10,-90],
 })
 for (let n=1; n<=2; n++) {
   const y = n===1 ? 2.5 : -2.5
@@ -153,7 +153,7 @@ export const chipStyle = (ref: string): any => {
     U_LDO_EN:{leftSide:[2,1],rightSide:[4],topSide:[5],bottomSide:[3]},
     Q_DUMP:{leftSide:[1],rightSide:[3],bottomSide:[2]},
     U_ADC:{leftSide:[40,39,42,41,46,45,48,47,14,13,16,15,20,19,22,21,1,12,43,18],
-      rightSide:[2,3,10,11,7,32,33,23,24,25,26,27,28,29,34],topSide:[5,9,31,38],bottomSide:[6,8,17,30,44,49,4,35,36,37]},
+      rightSide:[5,9,31,38,4,35,36,37,6,8,17,30,44,49,2,3,10,11,7,32,33,23,24,25,26,27,28,29,34]},
     J10:{leftSide:[1,3,4,5,6,7,8],rightSide:[9,10,12,2],bottomSide:[11]},
     J11:{leftSide:[3,4,5,6,7],rightSide:[2,8,9,10,11,12],bottomSide:[1]},
     U_CLK:{leftSide:[1,3,6],rightSide:[7,5,2],topSide:[8],bottomSide:[4]},
@@ -175,8 +175,8 @@ export const chipStyle = (ref: string): any => {
   if (!arrangement) throw new Error(`No schematic chip arrangement: ${ref}`)
   return {schPinArrangement:arrangement,
     // Separate horizontal NC labels from the vertical ground/EP labels.
-    ...(ref === "U_LDO" ? {schHeight:2.2} : {}),
-    ...(ref === "U_ADC" ? {schPinStyle:pinStyle(49,.1)} : {}),
+    ...(ref === "U_LDO" ? {schWidth:4.5,schHeight:3.8,schPinStyle:pinStyle(11,.35)} : {}),
+    ...(ref === "U_ADC" ? {schWidth:3.5,schPinStyle:pinStyle(49,.18)} : {}),
     ...(["U_OE","U_TDM_SCH","U_TDM"].includes(ref) ? {schPinStyle:pinStyle(5,.3)} : {}),
     ...(ref === "U_CLK" ? {schPinStyle:pinStyle(8,.5)} : {})}
 }

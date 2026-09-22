@@ -27,6 +27,30 @@ const digitalPage = (ref: string) => {
 }
 
 const counters: Record<string, number> = {}
+const decouplingRefs = [
+  "C_XU_VDD_5","C_XU_VDD_11","C_XU_VDD_14","C_XU_VDD_18","C_XU_VDD_39",
+  "C_XU_VDD_45","C_XU_VDD_50","C_XU_VDD_54","C_XU_VDD_68","C_XU_VDD_85",
+  "C_XU_VDD_95","C_XU_VDD_104","C_XU_VDD_105","C_XU_VDD_106","C_XU_VDD_113",
+  "C_XU_VDDIO_10","C_XU_VDDIO_17","C_XU_VDDIO_35","C_XU_VDDIO_56",
+  "C_XU_VDDIO_72","C_XU_VDDIO_89","C_XU_VDDIO_109","C_XU_VDDIO_121",
+]
+const explicitDigitalPose = (ref: string): Pose | undefined => {
+  const flash: Record<string,[number,number,number?]> = {
+    U_FLASH:[-7,-1], R_QSPI_CS:[-3,4,-90], C_FLASH:[-3,-5,-90],
+    Y_XU:[0,-1], R_XTAL_DRIVE:[7,-1], R_XTAL_FB:[3,5],
+    C_XTAL_IN:[8,5,-90], C_XTAL_OUT:[12,5,-90],
+  }
+  if (flash[ref]) { const p=flash[ref]; return {schSheetName:"flash_clock",schSectionName:"flash_clock",schX:p[0],schY:p[1],schRotation:p[2]??0} }
+  const i=decouplingRefs.indexOf(ref)
+  if (i>=0) return {schSheetName:"xmos_decoupling",schSectionName:"xmos_decoupling",
+    schX:(i%8)*4-14,schY:8-Math.floor(i/8)*5,schRotation:-90}
+  const support: Record<string,[number,number,number?]> = {
+    C_XU_3V3_OK_VDD:[-12,-9,-90], C_XU_3V3_OK_CT:[-8,-9,-90],
+    C_XU_USB33:[-2,-9,-90], C_XU_USB18:[2,-9,-90],
+    FB_PLL:[8,-8], C_PLL_1U:[12,-8,-90], C_PLL_100N:[16,-8,-90],
+  }
+  if (support[ref]) { const p=support[ref]; return {schSheetName:"xmos_decoupling",schSectionName:"xmos_decoupling",schX:p[0],schY:p[1],schRotation:p[2]??0} }
+}
 const gridPose = (sheet: string): Pose => {
   const i = counters[sheet] ?? 0
   counters[sheet] = i + 1
@@ -66,6 +90,8 @@ const pose = (domain: Domain, ref: string, existing: any): Pose => {
       schX:p[0],schY:p[1],schRotation:p[2]??0}
   }
   if (ref === "U_XU") return {schSheetName:"xmos_core",schSectionName:"XU316 core and ports",schX:0,schY:0}
+  const explicit=explicitDigitalPose(ref)
+  if (explicit) return explicit
   return gridPose(digitalPage(ref))
 }
 
@@ -74,6 +100,7 @@ const style = (domain: Domain, ref: string, tag: string) => {
   if (domain === "analog") return analogChipStyle(ref)
   if (ref === "U_XU") return {schWidth:16,schHeight:20,schPinArrangement:xmosArrangement,
     schPinStyle:Object.fromEntries(Array.from({length:129},(_,i)=>[`pin${i+1}`,{topMargin:.08,bottomMargin:.08}]))}
+  if (ref === "Y_XU") return {schWidth:3.5}
   return {}
 }
 

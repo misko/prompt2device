@@ -225,3 +225,7 @@ Adopted narrowly enumerated catalog aliases for Alpha and Omega Semiconductor, M
 ## Current selected BOM sourcing evidence integrated — 2026-09-22
 
 Retained78exact distributor observations, including current negative records, and the generated dated sourcing report. Root reproduced41/85two-pool acceptance,34one-pool,10zero-pool with0unparseable inputs against the selected85dossier fixture. Full sourcing remainsFAIL; no commission hold removed. Later quote and catalog-code candidates remain outside this snapshot. See sourcing/two-source-qualification-2026-09-22.md.
+
+## Source schematic presentation repair — 2026-09-22
+
+Integrated reviewed presentation-only changes to the held LDO, ADC, crystal/flash and XMOS bypass sheets. Root rejected the first candidate ADC top-edge clipping; the second rearranges exact numbered pins and keeps reference/value within the rendered page. Root visually reopened final affected images and independently rendered all37pages:489manifest/489rendered/489unique refs,0missing/extra/duplicates,0renderererrors. Fresh electrical expansion remains489components/1619ports/1493traces/26criticalendpointchecks with0errors. Electrical modules and manifest are unchanged. Native schematic/ERC and full design acceptance remain owed; this is source-SVG review only. Receipts:06_build/verification/presentation-489/; final reviewed isolatedcandidate:presentation_repair_489 in circuits-trials/crow-usb-design-20260922.
