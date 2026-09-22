@@ -672,6 +672,23 @@ def t_v2_shared_connector_receipt():
     eq(report["scope_readiness_ceilings"]["antenna_accessory"], "INCOMPLETE")
 
 
+@test("shared connector adapter accepts a compiler-authored local frame")
+def t_v2_shared_connector_framed_receipt():
+    fixture = _fresh_fixture()
+    _add_shared_connector_contract(fixture)
+    contract = yaml.safe_load(fixture["connector_contract"].read_text())
+    instance = contract["assemblies"][0]["instances"][0]
+    instance["lateral_axis_board"] = [1.0, 0.0, 0.0]
+    _write_yaml(fixture["connector_contract"], contract)
+    _recompile_shared_connector(fixture)
+    result = must_pass(run(_validate_args(fixture)),
+                       "v2 framed shared connector config")
+    report = json.loads(result.out)
+    eq(report["service_envelope_coverage"]["shared_mappings"], 1)
+    eq(report["scope_readiness_ceilings"]["antenna_accessory"],
+       "INCOMPLETE")
+
+
 @test("wholly irrelevant connector groups require explicit dispositions")
 def t_v2_shared_non_enclosure_group_clean():
     fixture = _fresh_fixture()

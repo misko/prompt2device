@@ -226,6 +226,27 @@ def _unit_vector(value: Any, where: str) -> list[float]:
     return vector
 
 
+def _local_frame(mating_axis: list[float], lateral_axis: list[float],
+                 where: str) -> dict[str, list[float]]:
+    """Return the authored right-handed connector frame in board coordinates."""
+    dot = sum(a * b for a, b in zip(mating_axis, lateral_axis))
+    if abs(dot) > 1e-6:
+        raise ContractError(
+            f"{where}.lateral_axis_board: expected orthogonal to "
+            f"mating_axis_board, dot={dot:.9g}")
+    transverse = [
+        mating_axis[1] * lateral_axis[2] - mating_axis[2] * lateral_axis[1],
+        mating_axis[2] * lateral_axis[0] - mating_axis[0] * lateral_axis[2],
+        mating_axis[0] * lateral_axis[1] - mating_axis[1] * lateral_axis[0],
+    ]
+    transverse = [0.0 if abs(value) < 1e-15 else value for value in transverse]
+    return {
+        "x_axial": mating_axis,
+        "y_lateral": lateral_axis,
+        "z_transverse": transverse,
+    }
+
+
 def _envelope(value: Any, where: str, *, nullable: bool = True) -> dict[str, float] | None:
     if value is None and nullable:
         return None
@@ -715,16 +736,30 @@ class _Compiler:
         instances: list[dict[str, Any]] = []
         for index, raw in enumerate(_list(item["instances"], f"{where}.instances", nonempty=True)):
             path = f"{where}.instances[{index}]"
-            instance = _exact_mapping(
-                raw, {"ref", "mating_axis_board", "simultaneous_group_ids"}, path)
-            instances.append({
+            if not isinstance(raw, Mapping):
+                raise ContractError(f"{path}: expected mapping")
+            legacy_keys = {"ref", "mating_axis_board", "simultaneous_group_ids"}
+            framed_keys = legacy_keys | {"lateral_axis_board"}
+            if set(raw) not in (legacy_keys, framed_keys):
+                instance = _exact_mapping(raw, framed_keys, path)
+            else:
+                instance = raw
+            mating_axis = _unit_vector(
+                instance["mating_axis_board"], f"{path}.mating_axis_board")
+            result = {
                 "ref": _ref(instance["ref"], f"{path}.ref"),
-                "mating_axis_board": _unit_vector(
-                    instance["mating_axis_board"], f"{path}.mating_axis_board"),
+                "mating_axis_board": mating_axis,
                 "simultaneous_group_ids": _unique_sorted_strings(
                     instance["simultaneous_group_ids"],
                     f"{path}.simultaneous_group_ids", ids=True, nonempty=True),
-            })
+            }
+            if "lateral_axis_board" in instance:
+                lateral_axis = _unit_vector(
+                    instance["lateral_axis_board"], f"{path}.lateral_axis_board")
+                result["lateral_axis_board"] = lateral_axis
+                result["local_frame_board"] = _local_frame(
+                    mating_axis, lateral_axis, path)
+            instances.append(result)
         refs = [row["ref"] for row in instances]
         if len(refs) != len(set(refs)):
             raise ContractError(f"{where}.instances: duplicate refs")

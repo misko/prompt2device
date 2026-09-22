@@ -141,7 +141,14 @@ required section: `receptacle`, `mate`, `interface`, `grip`, `fastening`,
 `tool`, `torque`, `reaction`, `cable`, `operations`, and `tolerances`.
 
 An instance binds an exact connector ref, board-coordinate mating-axis unit
-vector, and one or more simultaneous-group IDs. Connector refs may use the
+vector, and one or more simultaneous-group IDs. It may also bind
+`lateral_axis_board`, a unit vector across the connector bank that is
+orthogonal to the mating axis. The compiler then publishes the right-handed
+local basis `x_axial=mating_axis`, `y_lateral=lateral_axis`, and
+`z_transverse=cross(x_axial,y_lateral)`. Omission retains the legacy schema-1
+instance payload shape. Receipts remain compiler-bound and must be recompiled
+after a compiler update. A consumer that transforms a connector-local envelope into
+board coordinates must require the explicit basis. Connector refs may use the
 established digit-bearing designator form (`J1`, `J2A`) or the segmented named
 connector form used by authored PCB source (`J_USB`, `J_PWR`, `J_JTAG`). Named refs
 begin with `J_`; the first segment starts with an uppercase letter, and each segment is
@@ -164,11 +171,20 @@ do not encode the word `unknown` as an exact method.
 ## 5. Coordinate and envelope meanings
 
 `mating_axis_board` is a unit vector in board coordinates pointing outward
-through the mating mouth. Envelope fields use connector-local axes:
+through the mating mouth. Envelope fields use a right-handed connector-local
+basis:
 
 - `x`: axial, along the positive mating axis;
 - `y`: lateral across the connector bank;
-- `z`: PCB-normal/vertical.
+- `z`: transverse, `cross(x, y)`.
+
+For an edge-facing connector whose lateral axis is in the PCB plane, `z` is
+PCB-normal and preserves the established interpretation. For a board-normal
+connector, `x` is PCB-normal and `z` is the remaining in-plane direction.
+Never describe both `x` and `z` as PCB-normal or duplicate one extent into both
+fields. An instance used by a board-coordinate geometry consumer must author
+`lateral_axis_board`; no implicit bank direction or global-axis fallback is
+allowed.
 
 `mating_plane_offset_mm` starts at the footprint origin and follows the mating
 axis. `minimum_exposure_mm` is the required installed mating-plane exposure

@@ -205,6 +205,87 @@ def t_legacy_connector_refs():
         eq(contract_module._ref(ref, "fixture"), ref, "supported reference")
 
 
+@test("explicit lateral axis publishes right-handed vertical connector frame")
+def t_vertical_connector_frame():
+    value = good_contract()
+    instance = value["assemblies"][0]["instances"][0]
+    instance["mating_axis_board"] = [0.0, 0.0, 1.0]
+    instance["lateral_axis_board"] = [1.0, 0.0, 0.0]
+    receipt = load_and_compile(fixture(value))
+    compiled = receipt["assemblies"][0]["instances"][0]
+    eq(compiled["local_frame_board"], {
+        "x_axial": [0.0, 0.0, 1.0],
+        "y_lateral": [1.0, 0.0, 0.0],
+        "z_transverse": [0.0, 1.0, 0.0],
+    }, "right-handed JTAG frame")
+
+
+@test("lateral axis must be orthogonal to mating axis", kind="known_bad")
+def t_nonorthogonal_connector_frame():
+    value = good_contract()
+    instance = value["assemblies"][0]["instances"][0]
+    instance["mating_axis_board"] = [0.0, 0.0, 1.0]
+    instance["lateral_axis_board"] = [0.0, 0.0, 1.0]
+    try:
+        load_and_compile(fixture(value))
+    except ContractError as exc:
+        contains(str(exc), "expected orthogonal", "parallel-axis refusal")
+        return
+    raise AssertionError("parallel mating/lateral axes accepted")
+
+
+@test("lateral axis uses the strict finite unit-vector schema", kind="known_bad")
+def t_malformed_lateral_axis():
+    malformed = (
+        ([1.0, 0.0], "expected [x, y, z]"),
+        ([1.0, 0.0, 0.0, 0.0], "expected [x, y, z]"),
+        ([2.0, 0.0, 0.0], "expected a unit vector"),
+        ([float("nan"), 0.0, 0.0], "expected finite number"),
+        ([float("inf"), 0.0, 0.0], "expected finite number"),
+        ([True, 0.0, 0.0], "expected finite number"),
+    )
+    for lateral, expected in malformed:
+        value = good_contract()
+        instance = value["assemblies"][0]["instances"][0]
+        instance["mating_axis_board"] = [0.0, 0.0, 1.0]
+        instance["lateral_axis_board"] = lateral
+        try:
+            load_and_compile(fixture(value))
+        except ContractError as exc:
+            contains(str(exc), expected, f"malformed lateral axis {lateral!r}")
+            continue
+        raise AssertionError(f"malformed lateral axis accepted: {lateral!r}")
+
+
+@test("orthogonality tolerance is closed at one part per million")
+def t_connector_frame_orthogonality_tolerance():
+    accepted = good_contract()
+    instance = accepted["assemblies"][0]["instances"][0]
+    instance["mating_axis_board"] = [0.0, 0.0, 1.0]
+    # Both vectors remain within the unit tolerance and dot exactly at the
+    # documented implementation threshold.
+    instance["lateral_axis_board"] = [1.0, 0.0, 1e-6]
+    load_and_compile(fixture(accepted))
+
+    rejected = copy.deepcopy(accepted)
+    rejected["assemblies"][0]["instances"][0]["lateral_axis_board"] = \
+        [1.0, 0.0, 1.000001e-6]
+    try:
+        load_and_compile(fixture(rejected))
+    except ContractError as exc:
+        contains(str(exc), "expected orthogonal", "over-tolerance lateral axis")
+        return
+    raise AssertionError("over-tolerance lateral axis accepted")
+
+
+@test("legacy instance receipt shape remains unchanged")
+def t_legacy_instance_shape_unchanged():
+    receipt = load_and_compile(fixture())
+    compiled = receipt["assemblies"][0]["instances"][0]
+    check("lateral_axis_board" not in compiled, "legacy axis unexpectedly added")
+    check("local_frame_board" not in compiled, "legacy frame unexpectedly added")
+
+
 @test("malformed named connector identifiers are rejected", kind="known_bad")
 def t_malformed_named_refs():
     for ref in ["J_", "J__USB", "J_USB_", "J_usb", "j_USB", "_J_USB",

@@ -1630,15 +1630,55 @@ def _validate_interface_assemblies(value: Any, root: Path,
             raise V2Error(f"{where}.instances: expected non-empty list")
         for ii, raw_instance in enumerate(instances):
             iw = f"{where}.instances[{ii}]"
-            instance = _exact(raw_instance, {
+            legacy_keys = {
                 "ref", "mating_axis_board", "simultaneous_group_ids",
-            }, iw)
+            }
+            framed_keys = legacy_keys | {
+                "lateral_axis_board", "local_frame_board",
+            }
+            instance_keys = (frozenset(raw_instance)
+                             if isinstance(raw_instance, Mapping) else None)
+            if instance_keys not in {frozenset(legacy_keys),
+                                     frozenset(framed_keys)}:
+                missing = legacy_keys - set(raw_instance) \
+                    if isinstance(raw_instance, Mapping) else legacy_keys
+                unknown = set(raw_instance) - framed_keys \
+                    if isinstance(raw_instance, Mapping) else set()
+                raise V2Error(
+                    f"{iw}: expected exact legacy or framed instance shape "
+                    f"(missing={sorted(missing)}, unknown={sorted(unknown)})")
+            instance = raw_instance
             ref = _string(instance["ref"], f"{iw}.ref")
             if ref in ref_to_assembly:
                 raise V2Error(
                     f"connector receipt ref {ref} appears in multiple assemblies")
             axis = _vec(instance["mating_axis_board"], 3,
                         f"{iw}.mating_axis_board", nonzero=True)
+            if instance_keys == frozenset(framed_keys):
+                lateral = _vec(instance["lateral_axis_board"], 3,
+                               f"{iw}.lateral_axis_board", nonzero=True)
+                frame = _exact(instance["local_frame_board"], {
+                    "x_axial", "y_lateral", "z_transverse",
+                }, f"{iw}.local_frame_board")
+                transverse = [
+                    axis[1] * lateral[2] - axis[2] * lateral[1],
+                    axis[2] * lateral[0] - axis[0] * lateral[2],
+                    axis[0] * lateral[1] - axis[1] * lateral[0],
+                ]
+                expected_frame = {
+                    "x_axial": axis,
+                    "y_lateral": lateral,
+                    "z_transverse": transverse,
+                }
+                for name, expected in expected_frame.items():
+                    actual = _vec(frame[name], 3,
+                                  f"{iw}.local_frame_board.{name}",
+                                  nonzero=True)
+                    if any(abs(a - b) > 1e-9
+                           for a, b in zip(actual, expected)):
+                        raise V2Error(
+                            f"{iw}.local_frame_board.{name}: differs from "
+                            "the compiler-authored connector frame")
             groups = set(_unique_ids(
                 instance["simultaneous_group_ids"],
                 f"{iw}.simultaneous_group_ids", allow_empty=True))
