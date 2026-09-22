@@ -9,6 +9,7 @@ datasheet:
   fetched: 2026-08-13
 package: 0402 1005 metric
 footprint: Resistor_SMD:R_0402_1005Metric
+pins: {1: A, 2: B}
 escape:
   style: passive
   pitch: 0.5

@@ -102,10 +102,9 @@ findings:
   state: open
   blocks_at_or_above: DESIGN_CLEAN
   owner: digital-electrical
-  finding: Digital source repair adds held-input defaults, digital-rail ADC reset/clock qualification,
-    active startup-delay discharge, XU PHY rail supervision and VBUS capacitance/MOSFET sensing. Source
-    expansion passes; independent verification against the merged source and physical rail-collapse/reset/USB
-    qualification remain open.
+  finding: Digital source repair passes 70 merged-source pin/net/value/MPN assertions and engineering
+    reset timing screens. Added static held-rail load fits the current allocation. Quiet-rail startup/hold-up/dropout
+    transient proof, rail-collapse clock behavior and USB functional qualification remain open.
   closes_when: Review exact pin-level off-state behavior; define all held-buffer inputs, preserve CS5308
     startup reset sequence while asserting safe brownout reset, qualify flash/PHY reset timing, add supported
     VBUS capacitance/detector behavior and document firmware detach/JTAG assumptions. Pass source checks
@@ -116,3 +115,4 @@ findings:
   - 03_tscircuit/src/crow_retained_analog.tsx
   - 01_docs/ARCHITECTURE.md
   - 01_docs/research/2026-09-22-hardware-software-interface.md
+  - 01_docs/research/2026-09-22-source-selection-verification.md

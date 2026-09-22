@@ -255,7 +255,7 @@ const AdcReset = ({ n }: any) => (
       pinLabels={{ pin1: "A", pin2: "B", pin3: "CLR_N", pin4: "GND", pin5: "Q", pin6: "CEXT", pin7: "REXT_CEXT", pin8: "VCC" }}
       connections={{ pin1: n("GND"), pin2: n("ADC_START_DELAY"), pin3: n("ADC_READY"), pin4: n("GND"), pin5: n("RESET_PULSE_H"), pin6: n("RESET_C"), pin7: n("RESET_RC"), pin8: n("3V3_ADC") }} />
     <R name="R_ADC_START_DELAY" value="100k" a="ADC_READY" b="ADC_START_DELAY" jlc="C60491" mpn="RC0402FR-07100KL" n={n} />
-    <C name="C_ADC_START_DELAY" value="470nF" a="ADC_START_DELAY" b="GND" jlc="C473840" mpn="CL10B474KA8NFNC" footprint="0603" n={n} />
+    <C name="C_ADC_START_DELAY" value="470nF" a="ADC_START_DELAY" b="GND" jlc="C318640" mpn="CL10B474KA8NFNC" footprint="0603" n={n} />
     <Chip name="U_ADC_READY_BAD" manufacturerPartNumber="SN74LVC1G04DCKR" jlc="" footprint={<TiDck0005a />}
       pinLabels={{ pin1: "NC", pin2: "A", pin3: "GND", pin4: "Y", pin5: "VCC" }}
       connections={{ pin2: n("ADC_READY"), pin3: n("GND"), pin4: n("ADC_READY_BAD"), pin5: n("3V3_ADC") }} />
