@@ -62,10 +62,11 @@ function DSE0006ALand(){return <footprint>{[1,2,3].map((n,i)=><P key={n} n={n} x
 /** TI drawing 4222645/E: DMQ0006A asymmetric 0.5-mm-pitch VSON lands. */
 function DMQ0006ALand(){return <footprint>{[1,2,3].map((n,i)=><P key={n} n={n} x={-0.55} y={(1-i)*0.5} w={0.6} h={0.25}/>)}{[4,5,6].map((n,i)=><P key={n} n={n} x={0.35} y={(i-1)*0.5} w={1.0} h={0.25}/>)}</footprint>}
 
-const buckPins={pin1:"EN",pin2:"PG",pin3:"FB",pin4:"GND",pin5:"SW",pin6:"VIN"}
+// TI SLVSEF9I §7.4.2: unused open-drain PG is deliberately unconnected.
+const buckPins={pin1:"EN",pin2:"PG_NC",pin3:"FB",pin4:"GND",pin5:"SW",pin6:"VIN"}
 function Buck({name,mpn,out,adjustable=false,en="5V_BUCK",n}:any){return <>
  <Chip name={name} manufacturerPartNumber={mpn} jlc="" footprint={<DMQ0006ALand/>} pinLabels={buckPins}
-  connections={{pin1:n(en),pin2:n(`${name}_PG`),pin3:n(adjustable?`${name}_FB`:out),pin4:n("GND"),pin5:n(`${name}_SW`),pin6:n("5V_BUCK")}} />
+  connections={{pin1:n(en),pin3:n(adjustable?`${name}_FB`:out),pin4:n("GND"),pin5:n(`${name}_SW`),pin6:n("5V_BUCK")}} />
  <Chip name={`L_${name}`} manufacturerPartNumber="744373240047" jlc="" footprint={<WurthLHMI4020Land/>} pinLabels={{pin1:"1",pin2:"2"}} connections={{pin1:n(`${name}_SW`),pin2:n(out)}} />
  {[1,2].map(i=><C key={`in${i}`} name={`C_${name}_IN_${i}`} value="10uF" a="5V_BUCK" b="GND" mpn="CL21A106KOCLRNC" footprint="0805" n={n} />)}
  <C name={`C_${name}_OUT_1`} value="47uF" a={out} b="GND" mpn="GRM32ER71A476KE15L" jlc="C84494" footprint="1210" n={n} />

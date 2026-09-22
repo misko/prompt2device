@@ -299,3 +299,7 @@ Root loaded the exact native Cirrus_CS5308P_QFN48_6x6_P0.4_EP4.6 footprint and c
 ## Actual via-process consumer probe — 2026-09-22
 
 Root exactLTfootprint fixture has6platedholes but candidate via_process checker inventories0nativevias and rejectsV-COVER. Candidateorderremark alsoomitsordinary0.30mmfamily. D-TIERpatch remainsunmerged pending source-to-process representation repair. See research/2026-09-22-via-process-admission-probe.md. No projectboardgenerated orconductorinvoked.
+
+## Unused buck power-good outputs — 2026-09-22
+
+TI SLVSEF9I pin table and§7.4.2 explicitly require unusedPG outputs to float. Removed the three singleton U_3V3X_PG/U_1V8_PG/U_CORE_PG net attachments and labeled pin2 PG_NC in the sharedBuck source. Root canonical endpoint/net comparison proves those three one-pin stubs are the only removed connections; no newconnections. Source has489components/85MPNs/1619ports/1490traces,zero errors,26critical endpoint checks. Modular489/489,54/54 andpinpreflight92/92pass. Explicitnative no-connect rendering/ERC remain part of the native schematic gate; source labels alone are not that proof. Sourcing/BOMidentities unchanged.
