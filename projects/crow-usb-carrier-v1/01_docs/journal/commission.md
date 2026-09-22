@@ -303,3 +303,7 @@ Root exactLTfootprint fixture has6platedholes but candidate via_process checker 
 ## Unused buck power-good outputs — 2026-09-22
 
 TI SLVSEF9I pin table and§7.4.2 explicitly require unusedPG outputs to float. Removed the three singleton U_3V3X_PG/U_1V8_PG/U_CORE_PG net attachments and labeled pin2 PG_NC in the sharedBuck source. Root canonical endpoint/net comparison proves those three one-pin stubs are the only removed connections; no newconnections. Source has489components/85MPNs/1619ports/1490traces,zero errors,26critical endpoint checks. Modular489/489,54/54 andpinpreflight92/92pass. Explicitnative no-connect rendering/ERC remain part of the native schematic gate; source labels alone are not that proof. Sourcing/BOMidentities unchanged.
+
+## Route/stitch clearance consistency — 2026-09-22
+
+Aligned route.common.clearance and stitch.clearance from0.15to0.20mm to meet the existing0.20mm INPUT_TRUNK/PARENT_5V/POD_POWER/QUIET_POWER DRC clearances. Root YAML comparison confirms exactly these two settings changed. USB's explicit0.410mmwidth/0.150mm pairgap and RF stack contract are unchanged. Owning tier_preflight changes1FAIL/4WARN→0FAIL/3WARN; remaining warnings are stitch hole-to-copper defaults, astar fallback hole clearance, and placement rescue-via space. This config-only result does not resolve selected-part P-TIER mismatch or prove routed clearance. Evidence:06_build/verification/route-clearance-adoption. No copper generated.

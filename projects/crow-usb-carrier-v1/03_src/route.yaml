@@ -173,7 +173,7 @@ route:
     no_stub_layer_swap: true
     keepout: true
     keepout_layer: User.2
-    clearance: 0.15
+    clearance: 0.2
   waves:
   - name: usb
     group: usb
@@ -268,7 +268,7 @@ route:
       - USB_DEVICE
       why: Connector-side clamp connects directly to continuous USB pair.
 stitch:
-  clearance: 0.15
+  clearance: 0.2
   via:
     size: 0.6
     drill: 0.3
