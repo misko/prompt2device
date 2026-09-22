@@ -28,7 +28,7 @@ separate first-article measurement; no fabrication or order is authorized here.
 | G1 | USB interface IC and its required support circuitry are on the new carrier; Pi connects by USB cable without an external USB/TDM bridge. | P | unmet |
 | G2 | Preserve eight synchronous Crow audio channels at the existing 48 kHz, 24-bit operating point, unless the user changes it. | A1 | unmet |
 | G3 | Preserve supported Crow analog/power spoke interfaces and protect independently powered USB/Pi and carrier domains. | A1, A2 | unmet |
-| G4 | Exact USB implementation has an evidenced host/software/configuration path; firmware dependency is resolved before freezing the IC. | P, Q2 | unmet |
+| G4 | Exact USB implementation has an evidenced host/software/configuration path and a complete hardware programming/interface contract; firmware authoring remains a separate, explicitly authorized workstream. | P, Q2 | unmet |
 | G5 | Source-generated schematic passes independent topology/readability review; routed board passes native DRC, connectivity, parity and relevant electrical/SI gates. | P, A3 | unmet |
 | G6 | Work is delegated to Sol agents with bounded scopes, measured outputs and retained unsuccessful attempts. | P | unmet |
 
@@ -82,7 +82,7 @@ Impact: USB power delivery and spoke-power topology could change.
 ### Q2 — 2026-09-22 — clarification asked
 Asked: If the best onboard USB-audio IC needs firmware, may I develop and include that firmware as part of this design?
 Answer: UNANSWERED — do not perform firmware authoring.
-Impact: Determines admissible USB IC/software path and firmware workstream.
+Impact: Controls firmware source/build/release authorization. See D2: it does not by itself prohibit reversible hardware design.
 
 ### A1 — 2026-09-22 — assumption (pending Q1)
 Assumed: retain existing eight-channel phase-coherent audio, 48 kHz/24-bit operation and existing Crow spoke interoperability. Authority: P requests a new Crow carrier, not a reduced-channel product; existing Crow BRIEF is the requirements precedent.
@@ -105,3 +105,9 @@ Escalate if: a specific enclosure, board outline, assembly budget or different P
 | A1 | Existing Crow audio/spoke function retained provisionally. | agent (A1 / P-delegation) | log A1 |
 | A2 | External carrier power retained provisionally. | agent (A2 / P-delegation) | log A2 |
 | A3 | Cable connection, fresh design, populated-PCBA intent. | agent (A3 / P-delegation) | log A3 |
+
+### D2 — 2026-09-22 — firmware posture clarification
+
+Authority: user requested PCB design; `skills/pcb-design/references/commission-and-scope.md` says firmware is forbidden unless explicitly requested, and PCB gates may define the hardware programming interface without expanding scope. The commission exit criteria require an explicit firmware posture and recorded decisions, not an affirmative firmware authorization for every programmable part.
+
+Decision: retain **firmware forbidden** and keep Q2 unanswered. Continue the hardware-only design under the user's existing PCB authorization. The prior coordinator requirement for firmware authorization before any hardware pin freeze was overly broad and is superseded. Before hardware freeze, verify the exact SoC, flash protocol/readiness, documented USB/audio stack capabilities, port resources, clock/data contract, reset/supply behavior and accessible programming interface. Document the board-specific firmware work still required; do not claim that an image exists or that USB capture has run. Firmware creation/build/release and physical functional qualification remain separate deliverables. This does not waive schematic, electrical, placement, routing, sourcing or PCB review gates.

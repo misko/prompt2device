@@ -27,3 +27,8 @@
 - did: adopted297-reference analog module, component-only assets and USB CC/data protection source; completed both Sol delivery closures and opened bounded power/digital source tasks.
 - result: expanded source301 unique refs,301 exact-MPN dossiers,9 custom footprint identities and6 model paths resolved. Combined no-emit typecheck passes. Fixed stale library identities, missing100ohm dossier and unconsumed model-binding format; raw packets preserved. XU316 report has unresolved support/BOM/footprint claims recorded separately. No schematic, routing or electrical admission.
 - next: integrate and independently check Sol input-power and processor-support source; firmware authorization remains pending.
+
+## 2026-09-22T06:47:45.159479+00:00 — iterate 6
+- did: added CC/VBUS protection; independently compared retained analog topology with donor; corrected the firmware-posture interpretation without authoring firmware. Pushed committed source through7b74ba2a.
+- result: expanded303 unique refs with303 exact-MPN dossiers; strict USB typecheck PASS; contracts242files0violations. Power repair delivery PASS. Digital delivery INCOMPLETE solely because coordinator created envelope after snapshot; preserved packet. Digital source review found ADC input overvoltage during quiet-rail brownout and two capacitor MPN/value mismatches; bounded Sol repair opened. Power module land review opened separately.
+- next: adopt corrected hardware source after review. Commission hold remains; no complete schematic or board exists. Firmware remains forbidden and is not by itself a hardware-design blocker.

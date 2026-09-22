@@ -64,3 +64,7 @@ Contract corrections: primary-source records were merged into their permitted pa
 A further footprint check found TPS389001DSER dossier/TSX disagreement: the dossier retained `GNDToe018`, while the supplied TSX/library used `TI_DSE0006A_Exact`. The draft dossier now names the supplied Exact footprint. The donor toe/mask layout optimization and associated acceptance are not transferred; new-board pin/escape/paste/grounding review is owed.
 
 Expanding the actual JSX confirmed297 analog references but found a missing dossier for `RC0402FR-07100RL` used by R_OPA_BLEED1/2, despite its presence in the delivered ref manifest. The coordinator selectively added its donor dossier/PDF and provenance. Source expansion with the USB front end totals301 unique references; this is a source inventory check, not native connectivity or electrical acceptance.
+
+## Independent source topology comparison
+
+Coordinator recursively expanded the donor TSX and the adopted module without invoking the CAD generator. Of297 retained components,296 match donor exact MPN, resistance/capacitance and connected pin-to-net mappings. The sole difference is the intended U_ADC pin25 boundary rename from `TDM_RAW` to `ADC_DOUT1`; its other pins match. The donor expansion contains333 components. This establishes retained source-level topology/value identity, not native ERC, analog performance, placement or inherited engineering approval. Exact comparison output is `06_build/tmp/analog-adoption/donor-electrical-diff.json`.

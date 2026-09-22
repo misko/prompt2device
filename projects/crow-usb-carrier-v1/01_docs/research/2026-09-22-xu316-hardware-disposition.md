@@ -9,3 +9,7 @@ The delivered hardware YAML is not adopted as live configuration: its3V3 regulat
 The candidate footprint description and report claim a4x4 thermal-via grid, but inspection found no drilled pads. Do not infer thermal connectivity from that text. Fabrication vias should be owned by the existing floorplan thermal_vias mechanism and checked against the actual board. The footprint references a standard KiCad body model; this is distinct from an exact manufacturer STEP or registered mating proof.
 
 The generic escape-tier diagnostic alone does not select the manufacturing tier. Actual land geometry, escape routing, return planes and assembly capability must support that decision. The next task authors a complete draft digital hardware module and calculations, with no firmware or native board generation while commissioning remains open.
+
+## Independent pin-map comparison
+
+Coordinator compared all128 rows in manufacturer appendixE against the delivered CSV, including88 explicit I/O-bank assignments. Pin55 NC was checked against Figure2; CSV pin129 `EP` denotes manufacturer `VSS`. All129 physical identities are accounted for. This does not validate the eventual circuit connections, firmware port binding or footprint. The current digital task is exploring all banks at1.8V with ADC-side level translation; this proposal requires fresh support-part, timing and power checks before adoption.
