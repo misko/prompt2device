@@ -17,7 +17,7 @@ distinction is load-bearing and mechanical, not rhetorical:
 - the raw API responses stay in `06_build/cache/` (gitignored, TTL'd, never
   committed), and nothing here is re-consumed by a build.
 
-**Mutability** — APPEND-ONLY, one dated file per run. A shopping list is
+**Mutability** — APPEND-ONLY, one dated file per run. Multiple runs on the same UTC date add a `-HHMM` suffix to the date in generated report and qualification filenames. A shopping list is
 evidence of what a distributor said on a day; superseding it means adding the
 next dated file, never editing the old one. `manual_quotes.yaml` is the one
 mutable file: it is an INPUT, and a re-read replaces the entry it re-reads.
@@ -27,9 +27,12 @@ mutable file: it is an INPUT, and a re-read replaces the entry it re-reads.
 | File | What | Rule |
 |---|---|---|
 | `shopping-list-<YYYY-MM-DD>.md` | the generated per-distributor list: MPN, distributor part number, stock, min/multiple, lifecycle, unit price at the needed break, extended price, direct product URL; every catalog record seen; a CANNOT-SOURCE section naming every failed line with its reason; and the coverage denominator | GENERATED — never hand-edited. Regenerate with `shopping_list.py PROJECT_DIR --out ...` and add a NEW dated file |
+| `shopping-list-<YYYY-MM-DD>-<HHMM>.md` | the generated per-distributor list: MPN, distributor part number, stock, min/multiple, lifecycle, unit price at the needed break, extended price, direct product URL; every catalog record seen; a CANNOT-SOURCE section naming every failed line with its reason; and the coverage denominator | GENERATED — never hand-edited. Regenerate with `shopping_list.py PROJECT_DIR --out ...` and add a NEW dated file |
 | `shopping-list-<YYYY-MM-DD>.json` | the machine sidecar for the same run, carrying an explicit `verdict` | GENERATED. A missing or unparseable verdict is a FAIL, never a skip |
+| `shopping-list-<YYYY-MM-DD>-<HHMM>.json` | the machine sidecar for the same run, carrying an explicit `verdict` | GENERATED. A missing or unparseable verdict is a FAIL, never a skip |
 | `parts-selection-<YYYY-MM-DD>.md` | dated architecture/selection evidence and the candidate BOM it qualifies | HAND-WRITTEN review record; exact identities remain authoritative in `02_parts/` and the candidate BOM |
 | `two-source-qualification-<YYYY-MM-DD>.md` | dated interpretation of the machine-composed Q-2SOURCE evidence | HAND-WRITTEN review record; it must name the machine report and may not replace its verdict |
+| `two-source-qualification-<YYYY-MM-DD>-<HHMM>.md` | dated interpretation of the machine-composed Q-2SOURCE evidence | HAND-WRITTEN review record; it must name the machine report and may not replace its verdict |
 | `exact-parts.csv` | frozen pre-schematic candidate identity/quantity set consumed by sourcing qualification; final BOM authority remains the generated board BOM and dossiers | HAND-WRITTEN selection input; no volatile stock/price claims |
 | `manual_quotes.yaml` | every DigiKey / Amazon number. One entry per `{manufacturer, mpn, distributor}` with source, URL, read date and stock/price fields | HAND-WRITTEN evidence. `manufacturer:` plus full `mpn:` is Q-MFR-IDENT and is required for a quote to count toward Q-2SOURCE. Search snippets are refused; catalog absence is the only admissible search-page use |
 | `public-distributor-policy.yaml` | explicit user-approved, exact-part design-only public-stock policy | optional schema below; never purchase or allocation authority |
