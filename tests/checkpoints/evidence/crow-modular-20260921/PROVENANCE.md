@@ -114,9 +114,10 @@ Reviewed artifact identities:
 | Raw exported netlist | `d9115fbff897dcbcd82e7e55ce7ec9697eaa83d86437ec5ad0aec39e25a99379` |
 | Modular source plan | `db2e6bb5e6f1af0477c76eb1f491fa488761f675d6b9ce082cf2c08e22ec8dc9` |
 
-A separately bounded Sol physical-trial owner is now executing P1-P5 from the
-empty placement anchors. Placement acceptance and full-board routing remain
-pending; the implementation's coverage checker grants neither.
+A separately bounded Sol physical-trial owner subsequently generated a coarse
+placement from the empty anchors. Its delivery completed, but engineering
+remained INCOMPLETE at P2; see the physical-trial findings below. Placement
+acceptance and full-board routing remain pending.
 
 ## Model-binding reconstruction finding
 
@@ -137,3 +138,65 @@ placement field. Root must restore these three model-only bindings through an
 explicit new trial mapping at the next idle placement boundary. This restores
 selected package model identity; it does not inherit model-registration vectors,
 component placement, board geometry, copper, or physical model-coverage proof.
+
+## Physical-trial findings
+
+The first current trial candidate (`20d7dd4bda069e96aceb7cab490d03f09ffdcb6884a37265737d1fec5121453c`)
+has 333 fitted components and passes the outline, coarse corridor-capacity and
+courtyard/body screens. It has **54 failures out of 62** P-ADJ checks and
+**268 failures out of 353** P-ADJ-PAIR checks. These numerators count failures,
+not passes. All 415 proximity endpoints resolve. This is an unaccepted
+placement candidate; the zero-floor pad-overlap screen does not establish
+fabrication clearance.
+
+The first receive-channel-1 satellite pilot was rejected: it cleared both
+ADC1 common-mode attachment failures, but retained 22 channel pair failures
+and worsened the global proximity results. This led to a bounded coupled
+AFE/isolator/passive experiment, with every unrelated component frozen.
+Neither pilot is a routed-block proof. P3 local copper, P4 combined witnesses,
+P5 independent placement review and full-board routing remain unexecuted.
+
+The trial also exposed an execution error: an early report recorder produced
+27 successful delivery records without doing the corresponding engineering
+work. Those records are preserved in the trial's
+`06_build/modular/excluded-status-report-attempts.json` and excluded from its
+active observation index. They earn no child-work credit. The recorder now
+refuses P3-P5 and fails on red P2 measurements. The reusable workflow explicitly
+keeps engineering-failed dependencies undispatched even when delivery of their
+failure report succeeds. The coverage helper remains a delivery/identity
+checker, not a physical acceptance authority.
+
+A coordinator diagnostic restored only the selected scalar model bindings and
+regenerated the coarse candidate in a separate directory. Native comparison
+found zero changes to component poses or pad positions/net identities. The
+owning MODEL-COVERAGE gate passed 333/333 at the correct project depth. This
+proves model-file resolution, not registration, mating or placement acceptance.
+Diagnostic evidence is in the campaign's `model-binding-diagnostic/` directory;
+the active trial was not changed during the coupled writer's attempt.
+
+## Bounded coupled repair closeout
+
+Sol completed two additional CH1 experiments after the first rejected pilot.
+The final collision-free candidate has 54/62 global P-ADJ failures and 269/353
+global pair failures; its channel-specific failures are 2 and 23 respectively
+(previous coarse candidate: 2 and 22). Independent native reopening confirmed
+all 306 surrounding fitted components plus four mounting holes stayed fixed
+and every pin/net identity remained unchanged. The local attempt cap is
+reached. The documented P1/P4 backtrack joins U_ADC, C_FILT1_1U and C_ADC_CM1P/N
+at the ADC north bank with the still-unsolved receive-chain placement. This
+is evidence for changing the work scope, not proof of infeasibility.
+
+The coupled runtime receipt is INCOMPLETE: a temporary log escaped the admitted
+writer directory. The coordinator preserved that finding and independently
+reopened the useful native evidence; no delivery or placement PASS is granted.
+
+After runtime closure, the model bindings were restored in the active trial
+and its coarse board regenerated. The owning MODEL-COVERAGE gate passed
+333/333 and native comparison found zero pose/pad changes across 337 footprints.
+Its new SHA-256 is `7554e172335ec4179e4f3bd77666f5808ef79f69da340cd004be59ff3086fcfd`.
+The coupled candidate remains unpromoted. Old receipts retain their exact old
+subjects. The trial HANDOFF.md records the current state and evidence paths.
+
+Implementation validation: modular 10/10, preparation 6/6, schema-reader 28/28,
+progressive-disclosure 14/14 and PCB-documentation 15/15. These software checks
+do not substitute for the uncompleted physical/routing trial.
