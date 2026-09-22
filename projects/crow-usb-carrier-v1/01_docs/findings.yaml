@@ -5,8 +5,8 @@ gates:
   required_for: DESIGN_CLEAN
   state: pending
   owner: systems
-  closes_when: Replace seed contracts, close source-admission facts and satisfy commissioning requirements
-    before removing the hold.
+  closes_when: Replace seed contracts, close source-admission facts and satisfy commissioning
+    requirements before removing the hold.
   evidence:
   - 01_docs/BRIEF.md
   - 01_docs/COMMISSIONING-HOLD.md
@@ -14,16 +14,16 @@ gates:
   required_for: DESIGN_CLEAN
   state: pending
   owner: electrical
-  closes_when: Generate complete native schematic and netlist from admitted source; pass electrical gates
-    and independent topology and rendered-schematic review.
+  closes_when: Generate complete native schematic and netlist from admitted source;
+    pass electrical gates and independent topology and rendered-schematic review.
   evidence:
   - 03_tscircuit/src/crow_carrier.tsx
 - id: USB-layout
   required_for: DESIGN_CLEAN
   state: pending
   owner: layout
-  closes_when: Execute modular placement and global routing; verify exact native connectivity, DRC, power
-    delivery, USB impedance/return path and independent layout review.
+  closes_when: Execute modular placement and global routing; verify exact native connectivity,
+    DRC, power delivery, USB impedance/return path and independent layout review.
   evidence:
   - 03_src/modular_plan.json
   - 03_src/rules/rf.yaml
@@ -32,11 +32,12 @@ findings:
   state: closed
   blocks_at_or_above: DESIGN_CLEAN
   owner: power
-  finding: Source-stage effective-capacitance screen closed with reviewed conservative engineering derating
-    and exact bank/source changes. Adjacent-tolerance proxy and lifecycle reserves are explicit; this
-    is not production or physical stability qualification.
-  closes_when: Retain defensible effective-capacitance bounds for exact parts and operating conditions,
-    adjust banks if needed, and pass E-CAP.
+  finding: Source-stage effective-capacitance screen closed with reviewed conservative
+    engineering derating and exact bank/source changes. Adjacent-tolerance proxy and
+    lifecycle reserves are explicit; this is not production or physical stability
+    qualification.
+  closes_when: Retain defensible effective-capacitance bounds for exact parts and
+    operating conditions, adjust banks if needed, and pass E-CAP.
   evidence:
   - 03_src/rules/power_tree.yaml
   - 01_docs/research/2026-09-22-capacitor-engineering-bound.md
@@ -44,10 +45,12 @@ findings:
   state: open
   blocks_at_or_above: DESIGN_CLEAN
   owner: power
-  finding: Eight TPS26625 eFuses and a 0451004.MRL input fuse are integrated. Early-design component-voltage
-    screen passes; full fault-envelope and source/board behavior remain unqualified.
-  closes_when: Complete shared-source fault and surge engineering bounds, input-protector coordination
-    and supported retry/startup behavior; qualify realized hardware at its owning boundary.
+  finding: Eight TPS26625 eFuses and a 0451004.MRL input fuse are integrated. Early-design
+    component-voltage screen passes; full fault-envelope and source/board behavior
+    remain unqualified.
+  closes_when: Complete shared-source fault and surge engineering bounds, input-protector
+    coordination and supported retry/startup behavior; qualify realized hardware at
+    its owning boundary.
   evidence:
   - 03_src/rules/power_tree.yaml
   - 01_docs/research/2026-09-22-spoke-adoption.md
@@ -55,10 +58,11 @@ findings:
   state: open
   blocks_at_or_above: DESIGN_CLEAN
   owner: power
-  finding: Source voltage budgets now pass E-MARGIN 9/9 with conservative hot-resistance allocations.
-    Realized connector/copper losses and thermal margins still require native layout and qualification.
-  closes_when: Close resistance/load allocations and converter thermal bounds against actual copper and
-    operating states; pass owning power gates.
+  finding: Source voltage budgets now pass E-MARGIN 9/9 with conservative hot-resistance
+    allocations. Realized connector/copper losses and thermal margins still require
+    native layout and qualification.
+  closes_when: Close resistance/load allocations and converter thermal bounds against
+    actual copper and operating states; pass owning power gates.
   evidence:
   - 03_src/rules/power_tree.yaml
   - 03_src/rules/nets.yaml
@@ -67,11 +71,11 @@ findings:
   state: open
   blocks_at_or_above: DESIGN_CLEAN
   owner: mechanical
-  finding: JTAG and Molex header/mate/grip have reviewed conservative planning bounds. Connector source
-    phase admits16 explicitly planned physical checks and retains7 source findings, including RJ45 mate/grip
-    geometry and exact cable route definitions. Physical board service qualification remains open.
-  closes_when: Close all nondeferrable source facts and satisfy connector source admission; qualify physical
-    service geometry on the placed board at its owning boundary.
+  finding: USB, power and JTAG exact cable identities are selected. Connector source
+    phase admits19 explicitly planned physical checks and retains4 RJ45 mate identity/envelope/grip/fastening
+    findings. Physical board service qualification remains open.
+  closes_when: Close all nondeferrable source facts and satisfy connector source admission;
+    qualify physical service geometry on the placed board at its owning boundary.
   evidence:
   - 03_src/rules/connector_assemblies.yaml
   - 03_src/rules/connector_assembly_phases.yaml
@@ -79,14 +83,17 @@ findings:
   - 01_docs/research/2026-09-22-molex-mate-bound.md
   - 01_docs/research/2026-09-22-connector-physical-qualification-plan.md
   - 01_docs/research/2026-09-22-connector-placement-intent.md
+  - 01_docs/research/2026-09-22-external-power-cable-selection.md
+  - 01_docs/research/2026-09-22-molex-power-cable-primary-extract.md
 - id: USB-parts
   state: open
   blocks_at_or_above: DESIGN_CLEAN
   owner: sourcing
-  finding: Exact layout evidence and assembly sourcing are not fully qualified. The primary-drawing-supported
-    Wurth inductor is adopted; its pricing and availability remain unqualified.
-  closes_when: Bind selected exact parts to reviewed primary geometry, current source and approved assembly
-    sourcing evidence.
+  finding: Exact layout evidence and assembly sourcing are not fully qualified. The
+    primary-drawing-supported Wurth inductor is adopted; its pricing and availability
+    remain unqualified.
+  closes_when: Bind selected exact parts to reviewed primary geometry, current source
+    and approved assembly sourcing evidence.
   evidence:
   - 03_src/rules/assembly.yaml
   - 01_docs/research/2026-09-22-inductor-adoption.md
@@ -94,10 +101,11 @@ findings:
   state: open
   blocks_at_or_above: DESIGN_CLEAN
   owner: layout
-  finding: Crow-specific draft floorplan and routing replace load-cell examples. Connector poses, native
-    physical stackup, analog matching, converter-loop ownership and reviewed route admission remain incomplete.
-  closes_when: Replace examples with Crow USB dimensions, connector orientations, block placement constraints
-    and routing intent before native placement admission.
+  finding: Crow-specific draft floorplan and routing replace load-cell examples. Connector
+    poses, native physical stackup, analog matching, converter-loop ownership and
+    reviewed route admission remain incomplete.
+  closes_when: Replace examples with Crow USB dimensions, connector orientations,
+    block placement constraints and routing intent before native placement admission.
   evidence:
   - 03_src/floorplan.yaml
   - 03_src/route.yaml
@@ -105,13 +113,15 @@ findings:
   state: open
   blocks_at_or_above: DESIGN_CLEAN
   owner: digital-electrical
-  finding: Digital source repair passes 70 merged-source pin/net/value/MPN assertions and engineering
-    reset timing screens. Added static held-rail load fits the current allocation. Quiet-rail startup/hold-up/dropout
-    transient proof, rail-collapse clock behavior and USB functional qualification remain open.
-  closes_when: Review exact pin-level off-state behavior; define all held-buffer inputs, preserve CS5308
-    startup reset sequence while asserting safe brownout reset, qualify flash/PHY reset timing, add supported
-    VBUS capacitance/detector behavior and document firmware detach/JTAG assumptions. Pass source checks
-    and independent power-state review.
+  finding: Digital source repair passes 70 merged-source pin/net/value/MPN assertions
+    and engineering reset timing screens. Added static held-rail load fits the current
+    allocation. Quiet-rail startup/hold-up/dropout transient proof, rail-collapse
+    clock behavior and USB functional qualification remain open.
+  closes_when: Review exact pin-level off-state behavior; define all held-buffer inputs,
+    preserve CS5308 startup reset sequence while asserting safe brownout reset, qualify
+    flash/PHY reset timing, add supported VBUS capacitance/detector behavior and document
+    firmware detach/JTAG assumptions. Pass source checks and independent power-state
+    review.
   evidence:
   - 03_tscircuit/src/crow_usb_digital.tsx
   - 03_tscircuit/src/usb_device_frontend.tsx

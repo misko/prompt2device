@@ -185,3 +185,7 @@ Adopted independently reviewed patch 2824cee20693a8dd7218df216be2b1d1af74f101acc
 ## USB and external power cable selection — 2026-09-22
 
 Selected ASSMANN A-USB31C-20A-100 USB cable and Molex 226206-1022 150±4mm two-conductor18AWG power harness. Primary Molex drawing identifies two43645-0200 housings, four43030-0038 contacts and straight-through pin continuity. Retained primary extract and capture provenance live under research; original extract SHA verified. Connector source gate now admits19 physical deferrals with4 remaining RJ45 findings. Installed cable run, bend, strain relief and clearance are owed. Contracts audit373 files/0 violations.
+
+## Source-admission cross-check — 2026-09-22
+
+Reopened current74c94f08 source: EARLY-DESIGN4/4 families and A-SOURCE6/6 classes PASS. Control protocol is explicit N-A; label-survival schema passes with zero pin-map rows, which proves schema validity only. First-article contract still contains EXAMPLE_RAIL, so native rebuild hold remains intact. Assigned bounded SOL work for that source placeholder, the4 RJ45 source facts, packaging-equivalent ADC/film-cap sourcing, and LT3045 adoption. Root identified stale LT3045 candidate headroom/thermal arithmetic and QUIET_POWER current after the proposed voltage/current envelope change; correction requested before adoption.
