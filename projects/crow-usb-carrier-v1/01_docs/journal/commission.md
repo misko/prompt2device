@@ -371,3 +371,8 @@ Set stitch.via.tiers and stitch.astar_fallback.via to the existing0.60/0.30mm or
 - did: Root reopened the exact US Mouser GRM32ER71A476KE15L product page with its full query URL; retained the dated negative observation in manual_quotes.yaml.
 - result: Exact manufacturer/MPN and cut-tape/min1/mult1 confirmed, but stock is0 and the page permits backorder. Future incoming inventory does not count. The earlier284509-unit observation has no retained authentic page and is not accepted. Murata primary In Production evidence cannot repair missing distributor stock.
 - next: Stop further lifecycle-reader expansion for this zero-stock row and backtrack to an electrically supported packaging/component alternative. Existing partial reader work remains unintegrated. Sourcing remains83/85; schematic and source assembly-owner repairs continue in parallel.
+
+## 2026-09-22 13:31 — iterate (USB independent net-contract backtrack)
+- did: Reopened independent route/net snapshot review, SHA-256 `e270da4deda2b428a0b31a3ee08d09822094470054ce7058f742b9fc668d7e73`.
+- result: REPAIR. Route intent correctly binds USB_DP/DN to F.Cu without vias and agrees with the connector/ESD/XU316 endpoints. nets.yaml has zero length_match groups, so the independent realized-copper skew/no-via check has no USB denominator. RF/route intent alone cannot substitute for that owning check. No accepted locks were installed or refreshed.
+- next: USB source owner authors a valid USB_DEVICE net group with1mm spread and no_vias, explicitly accounting for duplicated Type-C contacts and shunt branches; independent review precedes new snapshots. Assembly-owner and source-presentation repairs remain separate.
