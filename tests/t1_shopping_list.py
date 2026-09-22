@@ -151,8 +151,20 @@ def t_manufacturer_aliases_are_narrow():
           "a different Murata-named entity must not join by substring")
     check(sl.same_manufacturer("Vishay Intertech", "Vishay Draloric"),
           "the catalog abbreviation and Vishay Draloric maker label join")
+    check(sl.same_manufacturer("Vishay Dale", "Vishay Draloric"),
+          "Vishay's distributor division label joins its primary CRCW-HP Draloric label")
     check(not sl.same_manufacturer("Vishay Precision Group", "Vishay Draloric"),
           "a distinct Vishay-named company must not join")
+    check(sl.same_manufacturer("Wurth Elektronik", "Würth Elektronik eiSos"),
+          "the ASCII catalog brand joins the primary eiSos legal identity")
+    check(sl.same_manufacturer("Würth Elektronik", "Würth Elektronik eiSos"),
+          "the actual accented distributor brand joins its exact legal identity")
+    check(not sl.same_manufacturer("Wurth Electronics Midcom", "Würth Elektronik eiSos"),
+          "a separate Wurth subsidiary must not join the eiSos identity")
+    check(sl.same_manufacturer("Abracon LLC", "Abracon"),
+          "the legal LLC suffix does not change the Abracon identity")
+    check(not sl.same_manufacturer("Abracon Partner LLC", "Abracon"),
+          "LLC stripping must not become prefix matching")
     check(not sl.same_manufacturer("--", "Kyocera AVX"),
           "a blank catalog maker is never repaired by aliasing")
     check(sl.same_part("W25Q128JWSIQ", "W25Q128JWSIQ"),

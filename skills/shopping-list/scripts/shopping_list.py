@@ -148,7 +148,7 @@ def normalize_manufacturer(value):
     """
     s = re.sub(r"[^a-z0-9]+", "", str(value or "").lower())
     for suffix in ("incorporated", "corporation", "commercial", "company", "limited",
-                   "electronicscorp", "inc", "corp", "ltd", "co"):
+                   "electronicscorp", "inc", "corp", "llc", "ltd", "co"):
         if s.endswith(suffix):
             s = s[:-len(suffix)]
     aliases = {
@@ -168,7 +168,12 @@ def normalize_manufacturer(value):
         "murata": "murata",
         "murataelectronics": "murata",
         "vishaydraloric": "vishayintertechnology",
+        "vishaydale": "vishayintertechnology",
         "vishayintertech": "vishayintertechnology",
+        "wurthelektronik": "wurthelektronikeisos",
+        "wrthelektronik": "wurthelektronikeisos",
+        "wuerthelektronik": "wurthelektronikeisos",
+        "wrthelektronikeisos": "wurthelektronikeisos",
     }
     return aliases.get(s, s)
 
