@@ -99,16 +99,18 @@ own("tdm", {
   U_OE:[3,-1], C_OE:[1.5,-4,-90], U_TDM:[7,1], C_TDM:[7,-2,-90], R_TDM:[10,1],
   U_TDM_SCH:[2,6], R_TDM_PD:[-2,5,-90], C_TDM_SCH:[2,3,-90],
 })
-own("reset", {
-  U_RST1:[-14,8], C_RST1:[-14,5,-90],
-  U_ADC_1V8_OK:[-10,8], U_ADC_3V3X_OK:[-6,8],
-  R_ADC_DIGITAL_OK_PU:[-2,10,-90], C_ADC_DIGITAL_OK:[-2,7,-90],
-  U_ADC_DIGITAL_BAD:[2,10], C_ADC_DIGITAL_BAD:[6,11,-90], Q_ADC_DIG_RST:[10,10], R_ADC_DIG_RST_PD:[14,10,-90],
-  U_ADC_READY:[2,6], C_ADC_READY:[6,7,-90], R_ADC_READY_PD:[10,6,-90],
-  R_ADC_START_DELAY:[-8,3], C_ADC_START_DELAY:[-5,1,-90],
-  U_ADC_READY_BAD:[-3,4], C_ADC_READY_BAD:[0,6,-90], R_ADC_DELAY_GATE_PD:[7,4,-90], Q_ADC_DELAY_DISCH:[0,2],
-  U_RST2:[2,1], C_RST2:[2,-4,-90], R_RST_T:[6,3,-90], C_RST_T:[6,0,-90], Q_RST1:[10,-1.5],
-  R_RESET_PU:[10,2,-90], R_RESET_GPD:[6,-4,-90],
+own("reset_supervisors", {
+  U_RST1:[-14,3], C_RST1:[-14,-1,-90],
+  U_ADC_1V8_OK:[-8,3], U_ADC_3V3X_OK:[-1,3],
+  R_ADC_DIGITAL_OK_PU:[4,6], C_ADC_DIGITAL_OK:[4,0,-90],
+  U_ADC_DIGITAL_BAD:[9,5], C_ADC_DIGITAL_BAD:[13,6,-90], Q_ADC_DIG_RST:[17,5], R_ADC_DIG_RST_PD:[21,5,-90],
+  U_ADC_READY:[9,0], C_ADC_READY:[13,1,-90], R_ADC_READY_PD:[17,0,-90],
+})
+own("reset_sequencer", {
+  R_ADC_START_DELAY:[-10,3], C_ADC_START_DELAY:[-6,0,-90],
+  U_ADC_READY_BAD:[-2,4], C_ADC_READY_BAD:[4,5,-90], R_ADC_DELAY_GATE_PD:[5,3], Q_ADC_DELAY_DISCH:[2,-2],
+  U_RST2:[7,-2], C_RST2:[7,-6,-90], R_RST_T:[12,0,-90], C_RST_T:[12,-3,-90], Q_RST1:[17,-2],
+  R_RESET_PU:[17,1,-90], R_RESET_GPD:[12,-6,-90],
 })
 
 export const poseFor = (ref: string) => {
@@ -137,6 +139,11 @@ export const chipStyle = (ref: string): any => {
     schPinArrangement:{leftSide:[1,3,7],rightSide:[5,4],topSide:[9,10],bottomSide:[2,6,8]},
   }
   if (/^U_ESD[1-8]$/.test(ref)) return {schPinArrangement:{leftSide:[1,2],rightSide:[3,5],bottomSide:[4]}}
+  if (["U_ADC_1V8_OK","U_ADC_3V3X_OK"].includes(ref)) return {
+    schWidth:4.2, schHeight:3.2,
+    schPinArrangement:{leftSide:[1,3],rightSide:[6],topSide:[4],bottomSide:[2,5]},
+    schPinStyle:pinStyle(6,.35),
+  }
   if (/^F[1-8]$/.test(ref) || ["F_IN","L_BUCK","FB_OPA"].includes(ref))
     return {schPinArrangement:{leftSide:[1],rightSide:[2]}}
   const arrangements: Record<string, any> = {
@@ -177,7 +184,8 @@ export const chipStyle = (ref: string): any => {
     // Separate horizontal NC labels from the vertical ground/EP labels.
     ...(ref === "U_LDO" ? {schWidth:4.5,schHeight:3.8,schPinStyle:pinStyle(11,.35)} : {}),
     ...(ref === "U_ADC" ? {schWidth:3.5,schPinStyle:pinStyle(49,.18)} : {}),
-    ...(["U_OE","U_TDM_SCH","U_TDM"].includes(ref) ? {schPinStyle:pinStyle(5,.3)} : {}),
+    ...(["U_OE","U_TDM_SCH","U_TDM","U_ADC_DIGITAL_BAD","U_ADC_READY","U_ADC_READY_BAD"].includes(ref)
+      ? {schWidth:3.5,schHeight:3,schPinStyle:pinStyle(5,.35)} : {}),
     ...(ref === "U_CLK" ? {schPinStyle:pinStyle(8,.5)} : {})}
 }
 const pinStyle = (count: number, margin: number) => Object.fromEntries(

@@ -64,6 +64,13 @@ const explicitDigitalPose = (ref: string): Pose | undefined => {
     const p=railPower[ref]
     return {schSheetName:p[0],schSectionName:p[0],schX:p[1],schY:p[2],schRotation:p[3]??0}
   }
+  const usbLogic: Record<string,[number,number,number?]> = {
+    R_VBUS_B:[-5,2], R_VBUS_BE:[-5,-2], R_VBUS_PU:[0,3], Q_VBUS:[6,0],
+  }
+  if (usbLogic[ref]) {
+    const p=usbLogic[ref]
+    return {schSheetName:"usb_logic",schSectionName:"usb_logic",schX:p[0],schY:p[1],schRotation:p[2]??0}
+  }
   const flash: Record<string,[number,number,number?]> = {
     U_FLASH:[-7,-1], R_QSPI_CS:[-3,4,-90], C_FLASH:[-3,-5,-90],
     Y_XU:[0,-1], R_XTAL_DRIVE:[7,-1], R_XTAL_FB:[3,5],
@@ -90,11 +97,17 @@ const gridPose = (sheet: string): Pose => {
     schRotation: /decoupling|power/.test(sheet) ? -90 : 0 }
 }
 
+// Distribute the 129-pin device evenly around all four sides instead of
+// reproducing the package banks.  The physical top bank carries most of the
+// connected clocks, USB and JTAG pins, which made their net labels collide;
+// schematic pin order is presentation-only and each numbered pin remains
+// present exactly once.
+const xmosPins = Array.from({length:129},(_,i)=>i+1)
 const xmosArrangement = {
-  leftSide: Array.from({length:32},(_,i)=>i+1),
-  topSide: Array.from({length:32},(_,i)=>i+33),
-  rightSide: Array.from({length:32},(_,i)=>96-i),
-  bottomSide: [...Array.from({length:32},(_,i)=>128-i),129],
+  leftSide: xmosPins.filter((_,i)=>i%4===0),
+  topSide: xmosPins.filter((_,i)=>i%4===1),
+  rightSide: xmosPins.filter((_,i)=>i%4===2).reverse(),
+  bottomSide: xmosPins.filter((_,i)=>i%4===3).reverse(),
 }
 
 const pose = (domain: Domain, ref: string, existing: any): Pose => {
@@ -127,7 +140,7 @@ const pose = (domain: Domain, ref: string, existing: any): Pose => {
 const style = (domain: Domain, ref: string, tag: string) => {
   if (tag !== "chip") return {}
   if (domain === "analog") return analogChipStyle(ref)
-  if (ref === "U_XU") return {schWidth:16,schHeight:20,schPinArrangement:xmosArrangement,
+  if (ref === "U_XU") return {schWidth:24,schHeight:24,schPinArrangement:xmosArrangement,
     schPinStyle:Object.fromEntries(Array.from({length:129},(_,i)=>[`pin${i+1}`,{topMargin:.08,bottomMargin:.08}]))}
   if (["U_1V8_OK","U_XU_3V3_OK","U_CORE_OK"].includes(ref)) return {
     schWidth:4.2, schHeight:3.2,
