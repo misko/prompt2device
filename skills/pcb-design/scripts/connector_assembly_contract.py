@@ -32,7 +32,16 @@ DEFAULT_CONTRACT = Path("03_src/rules/connector_assemblies.yaml")
 DEFAULT_OUTPUT = Path("06_build/verification/connector_assembly_contract.json")
 
 _ID = re.compile(r"^[a-z0-9][a-z0-9._-]*$")
-_REF = re.compile(r"^[A-Z][A-Z0-9_-]*[0-9][A-Z0-9_-]*$")
+# Keep the established digit-bearing designators (J1, J2A, J_BANK-1, ...),
+# and also accept the named connector designators used by authored PCB source.  The
+# named form is deliberately connector-scoped and segmented: ``J_USB`` and
+# ``J_DEBUG_A`` are valid, while empty, repeated, or trailing separators are
+# not.  This does not turn arbitrary component names such as ``USB`` or
+# ``U_CORE`` into connector references.
+_REF = re.compile(
+    r"^(?:[A-Z][A-Z0-9_-]*[0-9][A-Z0-9_-]*|"
+    r"J_[A-Z][A-Z0-9]*(?:_[A-Z0-9]+)*)$"
+)
 _GRADES = frozenset({"exact", "conservative", "unknown"})
 _OPERATION_KINDS = frozenset({
     "mate", "unmate", "hand_start", "tighten", "loosen", "latch",
@@ -151,7 +160,10 @@ def _ref(value: Any, where: str) -> str:
     result = _string(value, where)
     assert result is not None
     if not _REF.fullmatch(result):
-        raise ContractError(f"{where}: expected populated connector reference (for example J1)")
+        raise ContractError(
+            f"{where}: expected populated connector reference "
+            "(for example J1 or J_USB)"
+        )
     return result
 
 

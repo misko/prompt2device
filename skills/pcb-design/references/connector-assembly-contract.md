@@ -140,8 +140,12 @@ Each assembly has one stable `id`, one or more board `instances`, and every
 required section: `receptacle`, `mate`, `interface`, `grip`, `fastening`,
 `tool`, `torque`, `reaction`, `cable`, `operations`, and `tolerances`.
 
-An instance binds an exact ref, board-coordinate mating-axis unit vector, and
-one or more simultaneous-group IDs. A known `interface` must bind that axis to
+An instance binds an exact connector ref, board-coordinate mating-axis unit
+vector, and one or more simultaneous-group IDs. Connector refs may use the
+established digit-bearing designator form (`J1`, `J2A`) or the segmented named
+connector form used by authored PCB source (`J_USB`, `J_PWR`, `J_JTAG`). Named refs
+begin with `J_`; the first segment starts with an uppercase letter, and each segment is
+non-empty and contains only uppercase letters or digits. A known `interface` must bind that axis to
 a typed `orientation_source_id` included in the interface evidence. An unknown
 interface may retain an authored candidate axis for planning, but its receipt
 remains `INCOMPLETE`; the vector alone is not realized-orientation evidence. A

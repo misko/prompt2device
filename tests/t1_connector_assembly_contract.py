@@ -185,6 +185,51 @@ def invoke(project: Path, *extra: str):
     return run([KPY, COMPILER, "--project", project, *extra], cwd=ROOT)
 
 
+@test("named connector refs survive compilation and phase census")
+def t_named_connector_refs():
+    from connector_assembly_phase_gate import _census
+    value = good_contract()
+    for row, ref in zip(value["assemblies"][0]["instances"], ["J_USB", "J_PWR"]):
+        row["ref"] = ref
+    group = value["simultaneous_groups"][0]
+    group["members"] = ["J_USB", "J_PWR"]
+    group["serviceable_member_refs"] = ["J_USB", "J_PWR"]
+    receipt = load_and_compile(fixture(value))
+    eq(receipt["status"], "PASS", "named fixture compiles")
+    eq(_census(receipt)["refs"], ["J_PWR", "J_USB"], "exact named census")
+
+
+@test("connector reference grammar retains legacy identifiers")
+def t_legacy_connector_refs():
+    for ref in ["J1", "J2A", "P1", "J_BANK-1", "J_JTAG", "J_DEBUG_A"]:
+        eq(contract_module._ref(ref, "fixture"), ref, "supported reference")
+
+
+@test("malformed named connector identifiers are rejected", kind="known_bad")
+def t_malformed_named_refs():
+    for ref in ["J_", "J__USB", "J_USB_", "J_usb", "j_USB", "_J_USB",
+                "USB", "U_CORE", "J-USB", "J_USB-PORT", "J USB"]:
+        try:
+            contract_module._ref(ref, "fixture")
+        except ContractError:
+            continue
+        raise AssertionError(f"malformed reference accepted: {ref}")
+
+
+@test("phase census rejects duplicate named connectors", kind="known_bad")
+def t_duplicate_named_census():
+    from connector_assembly_phase_gate import _census
+    value = good_contract()
+    for row in value["assemblies"][0]["instances"]:
+        row["ref"] = "J_USB"
+    try:
+        _census(value)
+    except ContractError as exc:
+        contains(str(exc), "duplicate connector refs", "duplicate refusal")
+        return
+    raise AssertionError("duplicate named connector accepted")
+
+
 @test("exact complete connector bank compiles deterministically and reopens")
 def t_clean_compile_and_reopen():
     project = fixture()

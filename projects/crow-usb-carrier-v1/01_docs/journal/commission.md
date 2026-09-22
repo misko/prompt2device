@@ -48,3 +48,8 @@
 - result: current electrical expansion422refs/85MPNs/1391ports/1276traces/26endpointchecks/0errors. TypeScript passes. Source policy layout/precedent checks pass structurally, with explicit manufacturer/source and physical qualification debt. SOL2ozstackup research found0.16mmspacing conflict withTPSM0.15mmgap;1ozsolve active. Powercandidate remains unadopted because85%efficiency conflicts with88%-basedthermal limit and connector-plane IR remains open.
 - runtime: stackup and powercontract deliveryPASS; compositionTIMED_OUT; layoutdossiersINCOMPLETE(unallocatedscratch); connectorparserINCOMPLETE(handback failedcheck). Receipts preserved; these are not engineering approvals.
 - next: SOLsourcepresentation and1ozimpedance tasks active; coordinator must review parser candidate and resolve remaining commissioning/source facts before native generation.
+
+## 2026-09-22T08:08:09Z — iterate 10
+- did: reviewed the SOL connector-reference parser candidate and integrated its narrow additive named-connector grammar. Replaced trial-dependent tests with portable fixtures in the existing registered suite; preserved legacy digit-bearing identifiers.
+- result: demonstrated RED against the old checker (25 pass, 2 fail), then GREEN after repair (27/27 contract tests and 19/19 phase tests, including 35 known-bad controls). Current Crow contract compiles all 4 profiles and 11 instances, with INCOMPLETE and 44/45 evidence items unknown; no geometry or readiness criterion was weakened.
+- next: close actual connector assembly facts, reconcile power and thermal bounds, and review the active SOL schematic presentation and 1 oz impedance candidates. Commission hold remains.
