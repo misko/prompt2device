@@ -40,6 +40,13 @@ an OR gate; therefore the actual ADC pin pulse is not the raw one-BCLK
 firmware pulse. Validate the realized frame edge, pulse width, setup/hold,
 slot order and all 24 meaningful sample bits before functional acceptance.
 
+CS5308P DS1314F2 adds an explicit phase requirement for the selected hardware-mode,
+secondary, 24.576 MHz MCLK/PLL-bypass configuration. Pin 38 is strapped high,
+selecting noninverted BCLK, so the active falling BCLK edge should align with the
+falling MCLK edge at the ADC. Firmware must configure the clock-generation path for the intended
+phase; a post-buffer and route timing budget must preserve it, and first article must confirm
+it at the ADC pins. A shared frequency source alone does not close this requirement.
+
 Hardware qualifies the clock-output enables with ADC quiet-power validity and
 1V8/3V3X digital-rail validity. Firmware must treat clock availability and USB
 attachment as separate conditions. On initial power and any qualified restart,
@@ -73,6 +80,6 @@ not been performed.
 
 Pin/net assignments and power-state behavior were read from the corrected
 authored TSX. Primary pin/boot authority is the retained XU316 XM-014532-PC
-v2.0.0 PDF; audio format authority is CS5308P DS1314F1 and the retained XMOS
+v2.0.0 PDF; audio format and clock-phase authority is CS5308P DS1314F2 and the retained XMOS
 library research. Native schematic parity and actual USB/audio behavior remain
 separate verification steps.

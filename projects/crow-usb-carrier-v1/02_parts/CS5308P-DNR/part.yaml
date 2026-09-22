@@ -5,14 +5,14 @@ value: CS5308P-DNR
 status: active
 datasheet:
   doc_id: DS1314
-  revision: DS1314F1
-  url: https://statics.cirrus.com/pubs/proDatasheet/CS5308P_DS1314F1.pdf
-  local: CS5308P_DS1314F1.pdf
-  sha256: 6ca42cc09ac47ebdacacaee435f05e3f9c34b83d5692e52a2d8a26533e810e57
-  fetched: 2026-09-01
-  pages: 95
-  provenance: "Downloaded directly from statics.cirrus.com; title/footer identify CS5308P and DS1314F1."
-package: "QFN-48 6x6mm P0.4mm with 4.6mm exposed paddle; DNR tape-and-reel ordering code per DS1314F1"
+  revision: DS1314F2
+  url: https://statics.cirrus.com/pubs/proDatasheet/CS5308P_Datasheet.pdf
+  local: CS5308P_Datasheet_DS1314F2.pdf
+  sha256: 410a8b060d8daabbf7d4a541544049b6bc598a4ddcbd50aeaf50861e2069b6e4
+  fetched: 2026-09-22
+  pages: 94
+  provenance: "Downloaded directly from statics.cirrus.com; title/footer identify CS5308P and DS1314F2."
+package: "QFN-48 6x6mm P0.4mm with 4.6mm exposed paddle; DNR tape-and-reel ordering code per DS1314F2"
 footprint: crow_usb_analog:Cirrus_CS5308P_QFN48_6x6_P0.4_EP4.6
 escape:
   style: qfn
@@ -20,7 +20,7 @@ escape:
   pins: 48
   escapes_worst_side: 12
   tier_required: jlc_4layer_advanced
-  checked: "Cirrus DS1314F1 package drawing and exact project-local footprint reviewed 2026-09-22: native F.Cu pad census1-48 confirms twelve perimeter pads per side plusEP49; unnumbered paste apertures excluded."
+  checked: "Cirrus DS1314F2 package drawing and exact project-local footprint reviewed 2026-09-22: native F.Cu pad census1-48 confirms twelve perimeter pads per side plusEP49; unnumbered paste apertures excluded."
 pins:
   1: ADC_VMID1
   2: CONFIG1
@@ -57,9 +57,9 @@ pins:
   33: VDD_D
   34: MCLK
   35: SPI_SDO/I2C_SCL
-  36: SPI_SCK
+  36: SPI_SCK/HIZ_SEL
   37: SPI_SDI/I2C_SDA
-  38: SPI_CS
+  38: SPI_CS/BCLK_INV
   39: IN1N
   40: IN1P
   41: IN2N
@@ -80,16 +80,17 @@ limits:
   asp_sample_rate_max: 768kHz
   operating_temperature: "-40C to +85C"
 gotchas:
-  - "DS1314F1 section 4.5.6/p31 and Figure 2-2/p8 require external VMID in hardware/default mid-impedance mode. ADC_VMID1/2 retain local bypass only, not a connection to the external input-buffer bias circuit."
+  - "DS1314F2 makes pin 36 HIZ_SEL in hardware mode; its ground strap selects mid input impedance. The external input-buffer VMID network remains a deliberate design choice, while ADC_VMID1/2 retain local bypass."
   - "Figure 2-2 connects ADC_FILT1N/2N and the three capacitors per reference bank directly to GND; the one-ohm elements belong only in positive feeds."
   - "Pad 49 is electrical ground authority, not a mechanical-only pad; it must be present in the netlist and tied to the low-impedance ground plane."
   - "The 0.4mm-pitch QFN and analog input/filter perimeter require an advanced four-layer escape and an independent exact-footprint pin review."
   - "Public E0 reference PCB/PADS/IPC study2026-09-08: stagger configuration drops outward before placing wide power elbows; route VMID around, not across, their exits. Re-derive against our0.50/0.20mm vias,0.15mm annulus and exact neighboring capacitors. The EVM's0.40/0.20mm via,4.8mm copper EP land and8-layer stack are not our footprint/process authority."
   - "CONFIG/HGC and SPI/I2C multiplexing is strap/configuration dependent; firmware and population rules must agree before power-up."
+  - "DS1314F2 Section 4.4.3: with the selected MCLK/PLL-bypass secondary mode and pin 38 high (noninverted BCLK), the falling BCLK active edge should align with the falling MCLK edge. Firmware implementation plus buffer/route timing and first-article waveform proof remain owed."
   - "Table 3-9 specifies ADC_VMIDn as 1.65V nominal only, with no minimum or maximum; an op-amp common-mode proof cannot silently treat the nominal as a production bound."
-verified: "CITED: Cirrus Logic DS1314F1 Figure 1-1 and Table 1-1, PDF pp.4-5, independently fix pins 1-48 and exposed paddle 49; re-read 2026-09-01."
+verified: "CITED: Cirrus Logic DS1314F2 Figure 1-1 and Table 1-1, PDF pp.4-5, independently fix pins 1-48 and exposed paddle 49; re-read 2026-09-22."
 layout:
-  source: Cirrus DS1314F1 Figure 2-1 typical connection, PDF pp.7-8, and Section 5 input buffer, PDF p.47; Cirrus AN0556R1 Section 1.2/Figure
+  source: Cirrus DS1314F2 Figure 2-1 typical connection, PDF pp.7-8, and Section 5 input buffer, PDF p.47; Cirrus AN0556R1 Section 1.2/Figure
     2, PDF p.4, locally hash-bound in notes.md
   reviewed: '2026-09-08'
   notes:
@@ -644,9 +645,9 @@ layout:
     max_span_mm: 10
     why: 'Engineering physical-pin center ceiling: adc-hardware-strap; exact capacitor/support ref, unique owner footprint on this carrier.'
 layout_refs:
-  - {tier: 1, reached: true, artifact: "Cirrus DS1314F1 Figure 2-1/Section 5 and local SHA-bound AN0556R1 Figure 2", why: "Manufacturer authorities fix the complete connection, per-channel buffer/filter skeleton, decoupling, and common-ground architecture."}
-  - {tier: 2, reached: true, artifact: "Cirrus DC5302P_4P_4S_8P_8S-ADC_Schematic_Layout.zip; E0 PCB PDF,240-11375-Z1 PADS ASCII/IPC/Gerbers and stackup, public statics.cirrus.com", why: "The same ZIP was already captured;2026-09-08 newly examined editable layout and artwork, with49/49 ASCII/IPC pad positions reconciled. Study staggered CFG drops and local capacitor/VMID ordering only. PADS descriptor is older CS5308P-CN/B0, not the selected DN; exact current-DN revision CAD is not established. Different8-layer stack,0.40/0.20mm vias and4.8mm copper EP land do not transfer. Primary DS1314F1 and project footprints remain unchanged; no vendor copper imported. See notes.md and ADR0013."}
-  - {tier: 2, reached: false, artifact: "Editable reference CAD explicitly identifying the selected CS5308P-DNR revision", why: "The inspected public Cirrus PADS layout identifies older CS5308P-CN/B0, not this DN device. An exact current-DN editable reference has not been established; preserve DS1314F1 and the independently derived carrier footprint as authority. This names the known applicability ceiling, not a claim that no such design exists."}
+  - {tier: 1, reached: true, artifact: "Cirrus DS1314F2 Figure 2-1/Section 5 and local SHA-bound AN0556R1 Figure 2", why: "Manufacturer authorities fix the complete connection, per-channel buffer/filter skeleton, decoupling, and common-ground architecture."}
+  - {tier: 2, reached: true, artifact: "Cirrus DC5302P_4P_4S_8P_8S-ADC_Schematic_Layout.zip; E0 PCB PDF,240-11375-Z1 PADS ASCII/IPC/Gerbers and stackup, public statics.cirrus.com", why: "The same ZIP was already captured;2026-09-08 newly examined editable layout and artwork, with49/49 ASCII/IPC pad positions reconciled. Study staggered CFG drops and local capacitor/VMID ordering only. PADS descriptor is older CS5308P-CN/B0, not the selected DN; exact current-DN revision CAD is not established. Different8-layer stack,0.40/0.20mm vias and4.8mm copper EP land do not transfer. Primary DS1314F2 and project footprints remain the authority; no vendor copper imported. See notes.md and ADR0013."}
+  - {tier: 2, reached: false, artifact: "Editable reference CAD explicitly identifying the selected CS5308P-DNR revision", why: "The inspected public Cirrus PADS layout identifies older CS5308P-CN/B0, not this DN device. An exact current-DN editable reference has not been established; preserve DS1314F2 and the independently derived carrier footprint as authority. This names the known applicability ceiling, not a claim that no such design exists."}
 sourcing:
   lcsc:
   alternates: []

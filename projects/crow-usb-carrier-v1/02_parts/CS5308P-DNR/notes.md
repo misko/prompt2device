@@ -1,7 +1,9 @@
 # CS5308P supporting source authority
 
-The component datasheet authority remains `CS5308P_DS1314F1.pdf`, selected by
-`datasheet.local` and its SHA-256 in `part.yaml`. The receive-stage topology
+The current component datasheet authority is
+`CS5308P_Datasheet_DS1314F2.pdf`, selected by
+`datasheet.local` and its SHA-256 in `part.yaml`. DS1314F2 is the January 2026
+manufacturer revision. The receive-stage topology
 also depends on a distinct manufacturer application note:
 
 - document: Cirrus Logic AN0556R1, *CS530x Input Buffer/Filter Circuits*,
@@ -31,8 +33,8 @@ qualification holds.
 ## Retained power/reference supporting authority — 2026-09-07
 
 Two byte-identical documents from the previously retrieved official Cirrus
-package are now retained here for portable re-verification. The primary
-component datasheet selection above is unchanged.
+package are now retained here for portable re-verification. The supporting
+documents remain distinct from the current DS1314F2 component authority.
 
 - Package URL: <https://statics.cirrus.com/pubs/software/DC5302P_4P_4S_8P_8S-ADC_Schematic_Layout.zip>.
 - Reopened ZIP SHA-256: `2b4f99aad0eb5a562f25aacb8ab5147f4eeadbef7c2e35aea0abc4acb9aabda7`.
@@ -47,8 +49,7 @@ component datasheet selection above is unchanged.
   filter returns R351/R434 and one-ohm positive feeds R352/R435. The current
   carrier likewise connects physical FILT1N/FILT2N pins directly to GND; it
   has no nonzero negative-return resistors. The configurable reference
-  board is supporting evidence, not authority to ignore DS1314F1 section
-  4.5.6/p31's explicit external-VMID requirement for hardware/mid-Z mode.
+  board is supporting evidence, not authority to ignore DS1314F2's hardware-mode impedance selection and VMID guidance.
 
 These files are read-only manufacturer precedents. Study and re-derive the
 carrier source; never import the reference board's copper or infer physical
@@ -93,6 +94,8 @@ New inspected identities:
 - IPC: `654d231f233c52bf51e274133113409acdf2dea12ece16e3ac3609c2b8dcd9ae`.
 - Stack PDF: `2c5abe1e51c199b395e9dc895602720df608bf63d71f84ad1a09713f66dca690`.
 
-ADR0013 records independently derived carrier decisions. Datasheet authority,
-external-VMID topology, component values and every physical qualification hold
-remain unchanged.
+ADR0013 records independently derived carrier decisions. Component values and
+every physical qualification hold remain unchanged. DS1314F2
+adds hardware-mode meanings to pins 36 and 38; the existing low/high straps select
+mid impedance and noninverted BCLK respectively. Its new clock-phase rule is recorded
+in the hardware/software interface and remains an implementation and first-article hold.
