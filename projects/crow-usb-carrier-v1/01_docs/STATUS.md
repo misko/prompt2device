@@ -1,11 +1,10 @@
 stage: commission
-step: Digital power source pages regrouped; sourcing76/85 and full preview review
-  pending
+step: Exact API sourcing82/85; independent39-page preview review running
 measure: 489 refs /85 MPNs; source0errors; 39pages/489unique refs; modular489/489
-  and54/54; early electrical4/4; current sourcing76/85; 9parts need a second qualifying
+  and54/54; early electrical4/4; current sourcing82/85; 3parts need a second qualifying
   pool
 state: working
-next: Close 9 remaining second-source pools and complete source readability review;
-  retain commissioning hold
+next: Resolve Epson identity alias and two capacitor sourcing gaps; finish source
+  preview review
 op_pid: null
-updated: '2026-09-22T13:15:21.902515+00:00'
+updated: '2026-09-22T13:18:17.186435+00:00'
