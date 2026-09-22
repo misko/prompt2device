@@ -3,6 +3,12 @@ footprint: crow_usb_digital:TI_DCT0008A_SM8
 manufacturer: Texas Instruments
 type: positive_edge_d_flip_flop_with_async_clear_preset
 package: SM8-8 DCT
+escape:
+  style: leaded
+  pitch: 0.65
+  escapes_worst_side: 4
+  tier_required: jlc_2layer_default
+  checked: "TI SCES203Q DCT0008A package drawing and exact TI_DCT0008A_SM8 footprint: 0.65 mm pitch, four leads per side; escape_check.py 2026-09-22"
 datasheet:
   doc_id: SCES203Q
   revision: Q

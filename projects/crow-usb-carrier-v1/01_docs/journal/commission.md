@@ -275,3 +275,7 @@ Independent admission review confirms LT3045's current native ThermalVias footpr
 ## Zener reel substitution — 2026-09-22
 
 Root verified primary DS18004 commercial ordering rows and adopted BZT52C12-13-F / C177013 with full dossier retained. Only D_QIN_GS identity/supplier metadata changed in expanded source. Full sourcing71/85; early electrical4/4. See research/2026-09-22-zener-packaging-adoption.md. Other small-part candidates remain under independent review.
+
+## Digital escape records adopted — 2026-09-22
+
+Integrated14 selected digital/control/oscillator escape repairs with all non-escape fields preserved. Root selected85-dossier owning check now reports6remaining power-package problems. Four digital records expose unconditional advanced-tier requirements; together with LT3045 these keep standard-tier feasibility open. No source connectivity or footprint changed. See research/2026-09-22-digital-escape-adoption.md.

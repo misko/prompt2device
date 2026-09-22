@@ -3,6 +3,12 @@ footprint: Package_TO_SOT_SMD:SOT-23-6
 manufacturer: Texas Instruments
 type: three_input_or_gate
 package: SOT-23-6 DBV
+escape:
+  style: leaded
+  pitch: 0.95
+  escapes_worst_side: 3
+  tier_required: jlc_2layer_default
+  checked: "TI SCES489E DBV0006A package drawing and selected SOT-23-6 footprint: 0.95 mm pitch, three leads per side; escape_check.py 2026-09-22"
 datasheet:
   doc_id: SCES489E
   revision: E

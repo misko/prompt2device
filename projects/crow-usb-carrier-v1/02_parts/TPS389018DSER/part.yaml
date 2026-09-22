@@ -3,6 +3,12 @@ footprint: crow_usb_digital:TI_DSE0006A_WSON6
 manufacturer: Texas Instruments
 type: voltage_supervisor_open_drain
 package: WSON-6 DSE 1.5x1.5mm
+escape:
+  style: dfn
+  pitch: 0.5
+  escapes_worst_side: 3
+  tier_required: jlc_4layer_advanced
+  checked: "TI SBVS228A DSE0006A land drawing and exact TI_DSE0006A_WSON6 footprint: 0.50 mm pitch, three bottom-terminated pads per side; escape_check.py says standard tiers require unproven outward-only-local routing, so this dossier declares the unconditional advanced tier, 2026-09-22"
 datasheet:
   doc_id: SBVS228A
   revision: A

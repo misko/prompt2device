@@ -3,6 +3,12 @@ footprint: crow_usb_digital:TI_DCU0008A_VSSOP8
 manufacturer: Texas Instruments
 type: triple_noninverting_buffer
 package: VSSOP-8 DCU
+escape:
+  style: leaded
+  pitch: 0.65
+  escapes_worst_side: 4
+  tier_required: jlc_2layer_default
+  checked: "TI SCES766C DCU0008A package drawing and exact TI_DCU0008A_VSSOP8 footprint: 0.65 mm pitch, four leads per side; escape_check.py 2026-09-22"
 status: active
 supply: 0.8V_to_3.6V
 input_tolerance: 3.6V_with_Ioff_partial_power_down

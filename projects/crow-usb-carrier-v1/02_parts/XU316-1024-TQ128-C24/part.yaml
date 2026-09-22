@@ -3,6 +3,12 @@ footprint: crow_usb_digital:TQFP-128_14x14mm_P0.4mm_EP_XU316
 manufacturer: XMOS
 type: multicore_microcontroller_usb_audio
 package: TQFP-128 14x14mm P0.4 exposed pad
+escape:
+  style: leaded
+  pitch: 0.4
+  escapes_worst_side: 32
+  tier_required: jlc_4layer_advanced
+  checked: "XMOS XM-014532-PC TQ128 package drawing and exact TQFP-128 footprint: 0.40 mm pitch, 32 leads per side; escape_check.py says standard tiers are conditional on a separately proven escape-corridor, so this dossier declares the unconditional advanced tier, 2026-09-22"
 datasheet:
   doc_id: XM-014532-PC
   revision: 2.0.0

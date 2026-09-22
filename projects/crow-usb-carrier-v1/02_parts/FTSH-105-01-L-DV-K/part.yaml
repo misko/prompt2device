@@ -3,6 +3,12 @@ footprint: crow_usb_digital:Samtec_FTSH_105_01_L_DV_K
 manufacturer: Samtec
 type: debug_header
 package: 2x5 1.27mm pitch vertical SMD
+escape:
+  style: connector
+  pitch: 1.27
+  escapes_worst_side: 5
+  tier_required: jlc_2layer_default
+  checked: "Samtec FTSH-DV Revision H recommended PCB layout and exact Samtec_FTSH_105_01_L_DV_K footprint: 1.27 mm grid, five pads per column; escape_check.py 2026-09-22"
 datasheet:
   doc_id: FTSH-DV
   revision: unknown

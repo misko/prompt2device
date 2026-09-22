@@ -3,6 +3,12 @@ footprint: Package_SO:TSSOP-16_4.4x5mm_P0.65mm
 manufacturer: Texas Instruments
 type: logic_level_interface
 package: TSSOP-16 PW
+escape:
+  style: leaded
+  pitch: 0.65
+  escapes_worst_side: 8
+  tier_required: jlc_4layer_advanced
+  checked: "TI SCES877 PW0016A package drawing and selected TSSOP-16 footprint: 0.65 mm pitch, eight escapes per side; escape_check.py says standard tiers are conditional on a separately proven escape-corridor, so this dossier declares the unconditional advanced tier, 2026-09-22"
 datasheet:
   doc_id: SCES877
   revision: A

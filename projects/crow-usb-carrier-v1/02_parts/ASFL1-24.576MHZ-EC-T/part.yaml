@@ -3,6 +3,12 @@ footprint: crow_usb_digital:Abracon_ASFL1_5032
 manufacturer: Abracon
 type: cmos_oscillator
 package: 5.0x3.2mm SMD 4-pad, maximum height1.3mm
+escape:
+  style: module
+  pitch: 2.2
+  escapes_worst_side: 2
+  tier_required: jlc_2layer_default
+  checked: "Abracon ASFL1 page 2 recommended land pattern and exact Abracon_ASFL1_5032 footprint: 2.20 mm minimum adjacent pad-center pitch; escape_check.py 2026-09-22"
 datasheet:
   doc_id: ASFL1
   revision: current
