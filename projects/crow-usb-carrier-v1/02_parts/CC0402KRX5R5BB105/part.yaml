@@ -1,0 +1,36 @@
+mpn: CC0402KRX5R5BB105
+manufacturer: YAGEO
+footprint: Capacitor_SMD:C_0402_1005Metric
+type: capacitor
+value: 1uF
+status: active
+pins:
+  1: terminal_1
+  2: terminal_2
+datasheet:
+  doc_id: CC0402KRX5R5BB105
+  revision: generated-2026-09-22
+  url: https://www.yageogroup.com/download/specsheet/CC0402KRX5R5BB105
+  local: CC0402KRX5R5BB105_yageo.pdf
+  sha256: f08b12390decf02892738a3b0ef7fb535d0441ffd96e71ce66caa0e1a480f178
+  fetched: 2026-09-22
+  pages: 4
+  provenance: Exact-part specification downloaded directly from YAGEO; document identifies the full MPN and declared electrical, dimensional, environmental, and packaging properties.
+package: 0402 / 1005 MLCC, 1.00 x 0.50 x 0.50 mm
+limits:
+  capacitance_f: 0.000001
+  tolerance_pct: 10
+  voltage_v: 6.3
+  dielectric: X5R
+  operating_temperature: -55C to +85C
+  body_mm: [1.0, 0.5, 0.5]
+  body_tolerance_mm: 0.05
+asserts:
+  - {assert: value, equals: 1u, tolerance_pct: 10, why: Retains the selected local PLL supply capacitance class after FB_PLL.}
+verified: YAGEO exact specification states 1uF +/-10%, 6.3VDC, X5R, 0402/1005, 1.00x0.50x0.50mm and -55C to +85C; read 2026-09-22.
+gotchas:
+  - Class-2 MLCC effective capacitance is bias-dependent; the source evidence does not establish a guaranteed minimum at 0.9 V. Preserve C_PLL_1U and C_PLL_100N placement at the PLL supply pins and validate PLL lock on hardware.
+sourcing:
+  lcsc:
+  alternates: []
+  note: Exact dated DigiKey and Mouser observations are retained in manual_quotes.yaml; no JLC PCBA identity is asserted.

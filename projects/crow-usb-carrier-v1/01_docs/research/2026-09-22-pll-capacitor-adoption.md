@@ -1,0 +1,7 @@
+# PLL capacitor replacement
+
+Adopted YAGEO CC0402KRX5R5BB105 for C_PLL_1U, replacing obsolete GRM155R60J105KE19D. The exact manufacturer specification retains 1 µF, ±10%, 6.3 V, X5R and 0402 geometry. Existing source value, PLL_0V9-to-GND connection and footprint remain unchanged. The obsolete dossier is removed from active selection; history remains in Git.
+
+The retained YAGEO PDF has SHA-256 f08b12390decf02892738a3b0ef7fb535d0441ffd96e71ce66caa0e1a480f178. Root checked its value, voltage, dielectric and dimensions. The adoption patch contained an incorrect Murata manufacturer cell in the sourcing CSV and an unsupported rated_voltage assertion; both were corrected before committing. The voltage rating remains a documented part limit. Strict P-FACT has zero violated facts and26 stage-unreached comparisons because fabrication BOM/native netlist are future artifacts; it is not a physical or fabrication PASS.
+
+Source expansion:489 refs,85 selected MPNs,1493 traces,0 errors. C_PLL_1U is exactly1 µF with pin1 on PLL_0V9 and pin2 on GND. Modular coverage489/489 and54/54 passes. Source SHA-256: f71e3a8e3fcfacff37564e2e81b7a38166e1533671c145e25fddc44751556c67. Effective capacitance, PLL supply layout and hardware lock/noise qualification remain downstream obligations; nominal class equivalence is not a measured PLL result. Dated supplier observations remain subject to full selected-BOM strict sourcing checks.

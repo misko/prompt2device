@@ -209,3 +209,7 @@ Adopted independently reviewed shopping-list patcha69ab653417d95dc8d966e7f2a32f0
 ## Connector source admission closed — 2026-09-22
 
 Selected Telegartner100009141 PUR shielded15m cable for source/prototype planning. Primary product page binds current/former ordercodes; retainedPDF SHA9befcc16298bbaf808b14c359de1f3b725eba2ecad444aa37f90684457fff7c9. Root and independentreview corrected the undimensioned nose projection:41.9×14.2×14.7mm includes explicit4mm axialprojection allowance plus1mm general reserve. Maximum15.1m length screens2.22433ohm/0.222433V at0.1A with3parallel supply/return conductors. These are engineering allocations; cross-vendor fit, latch travel, hot total-loop≤3ohm and outdoor suitability remain physical qualification. Compiler26/45facts,19unknown; SOURCE PASS11instances/19admitteddeferrals/0findings. No physical connector PASS is claimed.
+
+## PLL capacitor source backtrack closed — 2026-09-22
+
+Replaced obsolete Murata1uF PLL bypass with exact YAGEO CC0402KRX5R5BB105. Root checked primaryspec and1uF/pin-net mapping; source489refs/85MPNs/1493traces/0errors, modular54/54. Rebuilt sourcing CSV with correct YAGEO manufacturer. Rejected unsupported rated_voltage assertion from candidate; documented rating retained. No source-placement/native or hardware PLL acceptance inferred.

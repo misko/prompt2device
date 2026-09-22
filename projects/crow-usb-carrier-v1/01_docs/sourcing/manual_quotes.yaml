@@ -84,3 +84,34 @@ quotes:
     price_breaks:
       - {qty: 1, usd: 0.63}
     note: Exact manufacturer and MPN, immediate shipment observation. Five-board requirement is 80.
+
+  - mpn: CC0402KRX5R5BB105
+    manufacturer: YAGEO
+    distributor: digikey
+    source: product_page
+    url: https://www.digikey.com/en/products/detail/yageo/CC0402KRX5R5BB105/2833603
+    read_on: '2026-09-22'
+    checked_at: '2026-09-22T04:31:00-07:00'
+    dpn: 311-1438-1-ND
+    stock: 20379839
+    min: 1
+    mult: 1
+    packaging: Cut Tape
+    lifecycle: Active
+    price_breaks: []
+    note: Exact manufacturer and MPN product page; five-board requirement is 5.
+
+  - mpn: CC0402KRX5R5BB105
+    manufacturer: YAGEO
+    distributor: mouser
+    source: product_page
+    url: https://www.mouser.com/ProductDetail/YAGEO/CC0402KRX5R5BB105
+    read_on: '2026-09-22'
+    checked_at: '2026-09-22T04:31:00-07:00'
+    dpn: 603-CC402KRX5R5BB105
+    stock: 206864
+    min: 1
+    mult: 1
+    packaging: Cut Tape
+    price_breaks: []
+    note: Exact manufacturer and MPN product page reports quantity-one cut tape and immediate shipment; five-board requirement is 5.
