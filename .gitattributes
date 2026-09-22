@@ -22,3 +22,6 @@ projects/crow-audio-carrier-v1/01_docs/journal/d7b8b8b63574e331473104b6703a873fe
 projects/crow-audio-carrier-v1/01_docs/journal/eea96e126c7d3bc720d2b3f3dd0eaa7cc935da493c4b37f001b07d2bd002f698.tar.gz filter=lfs diff=lfs merge=lfs -text
 projects/crow-audio-carrier-v1/01_docs/journal/fac1c1d8d65d4e74cde722cf173dbae2e790057277e128886074a59ad8c51d42.tar.gz filter=lfs diff=lfs merge=lfs -text
 projects/crow-audio-carrier-v1/01_docs/journal/fbed61c94b1e18fd385831459d81d209975c7fcca1fd3cf7cfe5f3251006d48c.tar.gz filter=lfs diff=lfs merge=lfs -text
+
+# Preserve the hashed manufacturer response byte-for-byte, including original CRLF/spacing.
+projects/crow-usb-carrier-v1/02_parts/CL21A106KOCLRNC/CL21A106KOCLRN-20260922.html binary
