@@ -143,3 +143,8 @@
 - did: populated the draft floorplan physical stackup from retained JLC construction/solver evidence, with explicit limits for composite Dk, native mask and material-family Df annotations.
 - result: existing stackup writer produced/reloaded an empty four-layer schema fixture; 1.63648-mm copper-plus-dielectric construction matches nominal1.63±10%. No Crow geometry or SI acceptance claimed.
 - next: review live SOL capacitor/protection candidates and independent power-state/connector findings.
+
+## 2026-09-22 — iterate 29
+- did: received independent SOL six-state electrical review; root inspected held-buffer paths and added a power-state-sequencing finding. Root additionally identified FSYNC_EXT (post-OR) as another potentially floating held-buffer input, beyond reported MCLK_RAW.
+- result: current source has unresolved brownout/reset and VBUS/PHY-readiness behavior; isolated digital repair delegated with explicit preservation of ADC startup sequence and capacitor-candidate merge boundary.
+- next: review circuit revisions and renewed source-state proof before schematic admission.

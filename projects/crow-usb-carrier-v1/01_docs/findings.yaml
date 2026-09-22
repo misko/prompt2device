@@ -96,3 +96,19 @@ findings:
   evidence:
   - 03_src/floorplan.yaml
   - 03_src/route.yaml
+- id: USB-power-state-sequencing
+  state: open
+  blocks_at_or_above: DESIGN_CLEAN
+  owner: digital-electrical
+  finding: Held ADC output buffer inputs MCLK_RAW and FSYNC_EXT have no explicit pulldown when 3V3X
+    drivers lose power; ADC reset is not bound to digital-clock rail loss. USB VBUS input capacitance
+    and PHY rail reset qualification are missing from the current source.
+  closes_when: Review exact pin-level off-state behavior; define all held-buffer inputs, preserve
+    CS5308 startup reset sequence while asserting safe brownout reset, qualify flash/PHY reset timing,
+    add supported VBUS capacitance/detector behavior and document firmware detach/JTAG assumptions.
+    Pass source checks and independent power-state review.
+  evidence:
+  - 03_tscircuit/src/crow_usb_digital.tsx
+  - 03_tscircuit/src/usb_device_frontend.tsx
+  - 03_tscircuit/src/crow_retained_analog.tsx
+  - 01_docs/ARCHITECTURE.md
