@@ -221,3 +221,7 @@ Independent review found no user-choice blocker for retained8spokes/externalpowe
 ## Exact manufacturer identity normalization — 2026-09-22
 
 Adopted narrowly enumerated catalog aliases for Alpha and Omega Semiconductor, Murata Electronics, and Vishay Draloric/Intertechnology. Exact MPN matching remains required; blank catalog manufacturer and similarly named independent entities remain rejected. Primary corporate identity references: https://www.aosmd.com/about and https://www.vishay.com/en/landingpage/classicsdk/. Root shopping-list tests32/32 pass, including17known-bad cases. Consolidation of current distributor evidence continues separately; this tool change does not close full-BOM sourcing. Source page render covers489unique refs across37pages with0missing/extra/duplicate refs; human readability corrections remain on four pages. PLL capacitor replacement is complete; newly identified obsolete PLL bead requires separate electrical qualification.
+
+## Current selected BOM sourcing evidence integrated — 2026-09-22
+
+Retained78exact distributor observations, including current negative records, and the generated dated sourcing report. Root reproduced41/85two-pool acceptance,34one-pool,10zero-pool with0unparseable inputs against the selected85dossier fixture. Full sourcing remainsFAIL; no commission hold removed. Later quote and catalog-code candidates remain outside this snapshot. See sourcing/two-source-qualification-2026-09-22.md.

@@ -1,117 +1,1165 @@
-# Candidate input only. These distributor facts are dated observations and go stale.
-# Merge into the project's mutable manual_quotes.yaml, then run shopping_list.py;
-# this file does not itself declare Q-2SOURCE PASS.
+# Isolated current-evidence merge; not order authority.
 quotes:
-  - mpn: W25Q128JWSIQ
-    manufacturer: Winbond Electronics
-    distributor: digikey
-    source: product_page
-    url: https://www.digikey.com/en/products/detail/winbond-electronics/W25Q128JWSIQ/12090690
-    read_on: '2026-09-22'
-    checked_at: '2026-09-22T03:40:22-07:00'
-    dpn: 256-W25Q128JWSIQ-ND
-    stock: 809
-    min: 1
-    mult: 1
-    packaging: Tube
-    lifecycle: Active
-    price_breaks:
-      - {qty: 1, usd: 3.99}
-      - {qty: 10, usd: 3.727}
-    note: Exact public product page; five-board requirement is 5. Raw observation is retained alongside this candidate input.
-
-  - mpn: CS5308P-DNR
-    manufacturer: Cirrus Logic
-    distributor: digikey
-    source: product_page
-    url: https://www.digikey.com/en/products/detail/cirrus-logic-inc/CS5308P-DNR/26753133
-    read_on: '2026-09-22'
-    checked_at: '2026-09-22T04:05:51-07:00'
-    dpn: 598-CS5308P-DNRCT-ND
-    stock: 3105
-    min: 1
-    mult: 1
-    packaging: Cut Tape
-    lifecycle: Active
-    price_breaks: []
-    note: Exact DNR identity; DS1314F1 ordering table defines DNR as tape-and-reel packaging of the selected CS5308P commercial QFN-48 device. Five-board requirement is 5.
-
-  - mpn: CS5308P-DNR
-    manufacturer: Cirrus Logic
-    distributor: mouser
-    source: product_page
-    url: https://www.mouser.com/en/ProductDetail/Cirrus-Logic/CS5308P-DNR
-    read_on: '2026-09-22'
-    checked_at: '2026-09-22T04:05:51-07:00'
-    dpn: 777-CS5308P-DNR
-    stock: 62
-    min: 1
-    mult: 1
-    packaging: Cut Tape
-    lifecycle: Active
-    price_breaks: []
-    note: Exact manufacturer and MPN, immediate shipment observation. Five-board requirement is 5.
-
-  - mpn: R82DC4100CK60J
-    manufacturer: KEMET
-    distributor: digikey
-    source: product_page
-    url: https://www.digikey.com/en/products/detail/kemet/R82DC4100CK60J/21776592
-    read_on: '2026-09-22'
-    checked_at: '2026-09-22T04:05:51-07:00'
-    dpn: 399-R82DC4100CK60JCT-ND
-    stock: 6466
-    min: 1
-    mult: 1
-    packaging: Cut Tape
-    lifecycle: Active
-    price_breaks: []
-    note: Exact CK identity and exact retained 1uF, 5%, PET, 63V, 5mm-pitch geometry. Five-board requirement is 80.
-
-  - mpn: R82DC4100CK60J
-    manufacturer: KEMET
-    distributor: mouser
-    source: product_page
-    url: https://www.mouser.com/ProductDetail/KEMET/R82DC4100CK60J
-    read_on: '2026-09-22'
-    checked_at: '2026-09-22T04:05:51-07:00'
-    dpn: 80-R82DC4100CK60J
-    stock: 5775
-    min: 1
-    mult: 1
-    packaging: Cut Tape
-    lifecycle: Active
-    price_breaks:
-      - {qty: 1, usd: 0.63}
-    note: Exact manufacturer and MPN, immediate shipment observation. Five-board requirement is 80.
-
-  - mpn: CC0402KRX5R5BB105
-    manufacturer: YAGEO
-    distributor: digikey
-    source: product_page
-    url: https://www.digikey.com/en/products/detail/yageo/CC0402KRX5R5BB105/2833603
-    read_on: '2026-09-22'
-    checked_at: '2026-09-22T04:31:00-07:00'
-    dpn: 311-1438-1-ND
-    stock: 20379839
-    min: 1
-    mult: 1
-    packaging: Cut Tape
-    lifecycle: Active
-    price_breaks: []
-    note: Exact manufacturer and MPN product page; five-board requirement is 5.
-
-  - mpn: CC0402KRX5R5BB105
-    manufacturer: YAGEO
-    distributor: mouser
-    source: product_page
-    url: https://www.mouser.com/ProductDetail/YAGEO/CC0402KRX5R5BB105
-    read_on: '2026-09-22'
-    checked_at: '2026-09-22T04:31:00-07:00'
-    dpn: 603-CC402KRX5R5BB105
-    stock: 206864
-    min: 1
-    mult: 1
-    packaging: Cut Tape
-    price_breaks: []
-    note: Exact manufacturer and MPN product page reports quantity-one cut tape and immediate shipment; five-board requirement is 5.
+- mpn: 0451004.MRL
+  manufacturer: Littelfuse
+  distributor: digikey
+  source: product_page
+  url: https://www.digikey.com/en/products/detail/littelfuse-inc/0451004-MRL/700827
+  read_on: '2026-09-22'
+  checked_at: '2026-09-22T04:30:58-07:00'
+  dpn: F2586CT-ND
+  stock: 9421
+  min: 1
+  mult: 1
+  packaging: Cut Tape
+  lifecycle: Active
+  orderable: true
+  five_board_need: 5
+- mpn: 2N7002K-7
+  manufacturer: Diodes Incorporated
+  distributor: digikey
+  source: product_page
+  url: https://www.digikey.com/en/products/detail/diodes-incorporated/2N7002K-7/1934378
+  read_on: '2026-09-22'
+  checked_at: '2026-09-22T04:30:58-07:00'
+  dpn: 2N7002K-7DICT-ND
+  stock: 0
+  min: 1
+  mult: 1
+  packaging: Cut Tape
+  lifecycle: Active
+  orderable: true
+  five_board_need: 20
+  note: Exact page says out of stock and permits backorder.
+- mpn: 74LVC1G14GV,125
+  manufacturer: Nexperia
+  distributor: digikey
+  source: product_page
+  url: https://www.digikey.com/en/products/detail/nexperia-usa-inc/74LVC1G14GV-125/1231437
+  read_on: '2026-09-22'
+  checked_at: '2026-09-22T04:30:58-07:00'
+  dpn: 1727-4116-1-ND
+  stock: 194
+  min: 1
+  mult: 1
+  packaging: Cut Tape
+  lifecycle: Active
+  orderable: true
+  five_board_need: 10
+- mpn: AO3400A
+  manufacturer: Alpha and Omega Semiconductor
+  distributor: digikey
+  source: product_page
+  url: https://www.digikey.com/en/products/detail/alpha-omega-semiconductor-inc/AO3400A/1855772
+  read_on: '2026-09-22'
+  checked_at: '2026-09-22T04:30:58-07:00'
+  dpn: 785-1000-1-ND
+  stock: 340581
+  min: 1
+  mult: 1
+  packaging: Cut Tape
+  lifecycle: Active
+  orderable: true
+  five_board_need: 20
+- mpn: AO3401A
+  manufacturer: Alpha and Omega Semiconductor
+  distributor: digikey
+  source: product_page
+  url: https://www.digikey.com/en/products/detail/alpha-omega-semiconductor-inc/AO3401A/1855773
+  read_on: '2026-09-22'
+  checked_at: '2026-09-22T04:30:58-07:00'
+  dpn: 785-1001-1-ND
+  stock: 440456
+  min: 1
+  mult: 1
+  packaging: Cut Tape
+  lifecycle: Active
+  orderable: true
+  five_board_need: 5
+- mpn: ASFL1-24.576MHZ-EC-T
+  manufacturer: Abracon
+  distributor: digikey
+  source: product_page
+  url: https://www.digikey.com/en/products/detail/abracon-llc/ASFL1-24-576MHZ-EC-T/687864
+  read_on: '2026-09-22'
+  checked_at: '2026-09-22T04:30:58-07:00'
+  dpn: 300-8253-1-ND
+  stock: 4590
+  min: 1
+  mult: 1
+  packaging: Cut Tape
+  lifecycle: Active
+  orderable: true
+  five_board_need: 5
+- mpn: B340A-13-F
+  manufacturer: Diodes Incorporated
+  distributor: digikey
+  source: product_page
+  url: https://www.digikey.com/en/products/detail/diodes-incorporated/B340A-13-F/725015
+  read_on: '2026-09-22'
+  checked_at: '2026-09-22T04:30:58-07:00'
+  dpn: B340A-FDICT-ND
+  stock: 378864
+  min: 1
+  mult: 1
+  packaging: Cut Tape
+  lifecycle: Active
+  orderable: true
+  five_board_need: 5
+- mpn: BKH1005LM601-T
+  manufacturer: Taiyo Yuden
+  distributor: digikey
+  source: product_page
+  url: https://www.digikey.com/en/products/detail/taiyo-yuden/BKH1005LM601-T/4157967
+  read_on: '2026-09-22'
+  checked_at: '2026-09-22T04:30:58-07:00'
+  dpn: 587-3281-2-ND
+  stock: 0
+  packaging: Tape and Reel
+  lifecycle: Obsolete
+  orderable: false
+  five_board_need: 5
+  note: Exact page says obsolete and no longer manufactured; no minimum or multiple
+    is asserted.
+- mpn: BZT52C12-7-F
+  manufacturer: Diodes Incorporated
+  distributor: digikey
+  source: product_page
+  url: https://www.digikey.com/en/products/detail/diodes-incorporated/BZT52C12-7-F/717727
+  read_on: '2026-09-22'
+  checked_at: '2026-09-22T04:30:58-07:00'
+  dpn: BZT52C12-FDICT-ND
+  stock: 0
+  min: 1
+  mult: 1
+  packaging: Cut Tape
+  lifecycle: Active
+  orderable: true
+  five_board_need: 5
+  note: Exact page says out of stock and permits backorder.
+- mpn: C0805C106K8RACTU
+  manufacturer: KEMET
+  distributor: digikey
+  source: product_page
+  url: https://www.digikey.com/en/products/detail/kemet/C0805C106K8RACTU/3317617
+  read_on: '2026-09-22'
+  checked_at: '2026-09-22T04:30:58-07:00'
+  dpn: 399-C0805C106K8RACTUCT-ND
+  stock: 46757
+  min: 1
+  mult: 1
+  packaging: Cut Tape
+  lifecycle: Active
+  orderable: true
+  five_board_need: 20
+- mpn: CC0402KRX5R5BB105
+  manufacturer: YAGEO
+  distributor: digikey
+  source: product_page
+  url: https://www.digikey.com/en/products/detail/yageo/CC0402KRX5R5BB105/2833603
+  read_on: '2026-09-22'
+  checked_at: '2026-09-22T04:31:00-07:00'
+  dpn: 311-1438-1-ND
+  stock: 20379839
+  min: 1
+  mult: 1
+  packaging: Cut Tape
+  lifecycle: Active
+  orderable: true
+  five_board_need: 5
+  note: Reused same-date exact product-page observation from main worktree.
+- mpn: CC0402KRX5R5BB105
+  manufacturer: YAGEO
+  distributor: mouser
+  source: product_page
+  url: https://www.mouser.com/ProductDetail/YAGEO/CC0402KRX5R5BB105
+  read_on: '2026-09-22'
+  checked_at: '2026-09-22T04:31:00-07:00'
+  dpn: 603-CC402KRX5R5BB105
+  stock: 206864
+  min: 1
+  mult: 1
+  packaging: Cut Tape
+  price_breaks: []
+  note: Exact manufacturer and MPN product page reports quantity-one cut tape and
+    immediate shipment; five-board requirement is 5.
+- mpn: CL05B103KB5NNNC
+  manufacturer: Samsung Electro-Mechanics
+  distributor: digikey
+  source: product_page
+  url: https://www.digikey.com/en/products/detail/samsung-electro-mechanics/CL05B103KB5NNNC/3886686
+  read_on: '2026-09-22'
+  checked_at: '2026-09-22T04:30:58-07:00'
+  dpn: 1276-1028-1-ND
+  stock: 4883770
+  min: 1
+  mult: 1
+  packaging: Cut Tape
+  lifecycle: Active
+  orderable: true
+  five_board_need: 50
+- mpn: CL05B104KO5NNNC
+  manufacturer: Samsung Electro-Mechanics
+  distributor: digikey
+  source: product_page
+  url: https://www.digikey.com/en/products/detail/samsung-electro-mechanics/CL05B104KO5NNNC/3889087
+  read_on: '2026-09-22'
+  checked_at: '2026-09-22T04:30:58-07:00'
+  dpn: 1276-1001-1-ND
+  stock: 1928734
+  min: 1
+  mult: 1
+  packaging: Cut Tape
+  lifecycle: Active
+  orderable: true
+  five_board_need: 340
+- mpn: CL10A475KO8NNNC
+  manufacturer: Samsung Electro-Mechanics
+  distributor: digikey
+  source: product_page
+  url: https://www.digikey.com/en/products/detail/samsung-electro-mechanics/CL10A475KO8NNNC/3889870
+  read_on: '2026-09-22'
+  checked_at: '2026-09-22T04:30:58-07:00'
+  dpn: 1276-1784-1-ND
+  stock: 560
+  min: 1
+  mult: 1
+  packaging: Cut Tape
+  lifecycle: Active
+  orderable: true
+  five_board_need: 15
+- mpn: CL10B224KA8NNNC
+  manufacturer: Samsung Electro-Mechanics
+  distributor: digikey
+  source: product_page
+  url: https://www.digikey.com/en/products/detail/samsung-electro-mechanics/CL10B224KA8NNNC/3886769
+  read_on: '2026-09-22'
+  checked_at: '2026-09-22T04:30:58-07:00'
+  dpn: 1276-1111-1-ND
+  stock: 235246
+  min: 1
+  mult: 1
+  packaging: Cut Tape
+  lifecycle: Active
+  orderable: true
+  five_board_need: 5
+- mpn: CL10B474KA8NFNC
+  manufacturer: Samsung Electro-Mechanics
+  distributor: digikey
+  source: product_page
+  url: https://www.digikey.com/en/products/detail/samsung-electro-mechanics/CL10B474KA8NFNC/3890168
+  read_on: '2026-09-22'
+  checked_at: '2026-09-22T04:30:58-07:00'
+  dpn: 1276-2082-1-ND
+  stock: 197010
+  min: 1
+  mult: 1
+  packaging: Cut Tape
+  lifecycle: Active
+  orderable: true
+  five_board_need: 15
+- mpn: CS5308P-DNR
+  manufacturer: Cirrus Logic
+  distributor: digikey
+  source: product_page
+  url: https://www.digikey.com/en/products/detail/cirrus-logic-inc/CS5308P-DNR/26753133
+  read_on: '2026-09-22'
+  checked_at: '2026-09-22T04:05:51-07:00'
+  dpn: 598-CS5308P-DNRCT-ND
+  stock: 3105
+  min: 1
+  mult: 1
+  packaging: Cut Tape
+  lifecycle: Active
+  orderable: true
+  five_board_need: 5
+  note: Reused same-date exact product-page observation from main worktree.
+- mpn: CS5308P-DNR
+  manufacturer: Cirrus Logic
+  distributor: mouser
+  source: product_page
+  url: https://www.mouser.com/en/ProductDetail/Cirrus-Logic/CS5308P-DNR
+  read_on: '2026-09-22'
+  checked_at: '2026-09-22T04:05:51-07:00'
+  dpn: 777-CS5308P-DNR
+  stock: 62
+  min: 1
+  mult: 1
+  packaging: Cut Tape
+  lifecycle: Active
+  price_breaks: []
+  note: Exact manufacturer and MPN, immediate shipment observation. Five-board requirement
+    is 5.
+  orderable: true
+- mpn: DMP6023LFG-13
+  manufacturer: Diodes Incorporated
+  distributor: digikey
+  source: product_page
+  url: https://www.digikey.com/en/products/detail/diodes-incorporated/DMP6023LFG-13/5080331
+  read_on: '2026-09-22'
+  checked_at: '2026-09-22T04:30:58-07:00'
+  dpn: 31-DMP6023LFG-13CT-ND
+  stock: 2900
+  min: 1
+  mult: 1
+  packaging: Cut Tape
+  lifecycle: Active
+  orderable: true
+  five_board_need: 5
+- mpn: FA-238 24.0000MD30X-W5
+  manufacturer: Epson
+  distributor: digikey
+  source: product_page
+  url: https://www.digikey.com/en/products/detail/epson/FA-238-24-0000MD30X-W5/5259755
+  read_on: '2026-09-22'
+  checked_at: '2026-09-22T04:30:58-07:00'
+  dpn: SER4252CT-ND
+  stock: 32380
+  min: 1
+  mult: 1
+  packaging: Cut Tape
+  lifecycle: Active
+  orderable: true
+  five_board_need: 5
+- mpn: FTSH-105-01-L-DV-K
+  manufacturer: Samtec
+  distributor: digikey
+  source: product_page
+  url: https://www.digikey.com/en/products/detail/samtec-inc/FTSH-105-01-L-DV-K/1875039
+  read_on: '2026-09-22'
+  checked_at: '2026-09-22T04:30:58-07:00'
+  dpn: SAM8799-ND
+  stock: 49306
+  min: 1
+  mult: 1
+  packaging: Tube
+  lifecycle: Active
+  orderable: true
+  five_board_need: 5
+- mpn: GCM1555C1H681JA16D
+  manufacturer: Murata Electronics
+  distributor: digikey
+  source: product_page
+  url: https://www.digikey.com/en/products/detail/murata-electronics/GCM1555C1H681JA16D/7363420
+  read_on: '2026-09-22'
+  checked_at: '2026-09-22T04:33:02-07:00'
+  dpn: 490-16438-1-ND
+  stock: 22147
+  min: 1
+  mult: 1
+  packaging: Cut Tape
+  lifecycle: Active
+  price_breaks: []
+  note: Exact product page; five-board requirement 80.
+- mpn: GRM1555C1H102JA01D
+  manufacturer: Murata Electronics
+  distributor: digikey
+  source: product_page
+  url: https://www.digikey.com/en/products/detail/murata-electronics/GRM1555C1H102JA01D/702509
+  read_on: '2026-09-22'
+  checked_at: '2026-09-22T04:33:02-07:00'
+  dpn: 490-3244-1-ND
+  stock: 3239744
+  min: 1
+  mult: 1
+  packaging: Cut Tape
+  lifecycle: Active
+  price_breaks: []
+  note: Exact product page; five-board requirement 95.
+- mpn: GRM1555C1H220JA01D
+  manufacturer: Murata Electronics
+  distributor: digikey
+  source: product_page
+  url: https://www.digikey.com/en/products/detail/murata-electronics/GRM1555C1H220JA01D/3175200
+  read_on: '2026-09-22'
+  checked_at: '2026-09-22T04:33:02-07:00'
+  dpn: 490-5868-1-ND
+  stock: 879828
+  min: 1
+  mult: 1
+  packaging: Cut Tape
+  lifecycle: Active
+  price_breaks: []
+  note: Exact product page; five-board requirement 10.
+- mpn: GRM155R71H103KA88D
+  manufacturer: Murata Electronics
+  distributor: digikey
+  source: product_page
+  url: https://www.digikey.com/en/products/detail/murata-electronics/GRM155R71H103KA88D/1033252
+  read_on: '2026-09-22'
+  checked_at: '2026-09-22T04:33:02-07:00'
+  dpn: 490-4516-1-ND
+  stock: 3704330
+  min: 1
+  mult: 1
+  packaging: Cut Tape
+  lifecycle: Active
+  price_breaks: []
+  note: Exact product page; five-board requirement 10.
+- mpn: GRM188Z71C475KE21D
+  manufacturer: Murata Electronics
+  distributor: digikey
+  source: product_page
+  url: https://www.digikey.com/en/products/detail/murata-electronics/GRM188Z71C475KE21D/13401930
+  read_on: '2026-09-22'
+  checked_at: '2026-09-22T04:33:02-07:00'
+  dpn: 490-GRM188Z71C475KE21DCT-ND
+  stock: 0
+  min: 1
+  mult: 1
+  packaging: Cut Tape
+  lifecycle: Active
+  price_breaks: []
+  note: Exact product page; five-board requirement 25; backorder/inbound stock does
+    not count.
+- mpn: GRM2195C1H153JA01D
+  manufacturer: Murata Electronics
+  distributor: digikey
+  source: product_page
+  url: https://www.digikey.com/en/products/detail/murata-electronics/GRM2195C1H153JA01D/586797
+  read_on: '2026-09-22'
+  checked_at: '2026-09-22T04:33:02-07:00'
+  dpn: 490-1643-1-ND
+  stock: 29765
+  min: 1
+  mult: 1
+  packaging: Cut Tape
+  lifecycle: Active
+  price_breaks: []
+  note: Exact product page; five-board requirement 165.
+- mpn: GRM21BR61C106KE15L
+  manufacturer: Murata Electronics
+  distributor: digikey
+  source: product_page
+  url: https://www.digikey.com/en/products/detail/murata-electronics/GRM21BR61C106KE15L/965900
+  read_on: '2026-09-22'
+  checked_at: '2026-09-22T04:33:02-07:00'
+  dpn: 490-3886-1-ND
+  stock: 0
+  min: 1
+  mult: 1
+  packaging: Cut Tape
+  lifecycle: Active
+  price_breaks: []
+  note: Exact product page; five-board requirement 30; future expected stock does
+    not count.
+- mpn: GRM32ER71A476KE15L
+  manufacturer: Murata Electronics
+  distributor: digikey
+  source: product_page
+  url: https://www.digikey.com/en/products/detail/murata-electronics/GRM32ER71A476KE15L/2039091
+  read_on: '2026-09-22'
+  checked_at: '2026-09-22T04:33:02-07:00'
+  dpn: 490-5312-1-ND
+  stock: 0
+  min: 1
+  mult: 1
+  packaging: Cut Tape
+  lifecycle: Active
+  price_breaks: []
+  note: Exact product page; five-board requirement 45; estimated future stock does
+    not count.
+- mpn: LT3045EDD#TRPBF
+  manufacturer: Analog Devices Inc.
+  distributor: digikey
+  source: product_page
+  url: https://www.digikey.com/en/products/detail/analog-devices-inc/LT3045EDD-TRPBF/6235365
+  read_on: '2026-09-22'
+  checked_at: '2026-09-22T04:33:02-07:00'
+  dpn: 505-LT3045EDD#TRPBFCT-ND
+  stock: 0
+  min: 1
+  mult: 1
+  packaging: Cut Tape
+  lifecycle: Active
+  price_breaks: []
+  note: Exact product page; five-board requirement 5; expected future stock does not
+    count.
+- mpn: OPA2320AIDR
+  manufacturer: Texas Instruments
+  distributor: digikey
+  source: product_page
+  url: https://www.digikey.com/en/products/detail/texas-instruments/OPA2320AIDR/2782284
+  read_on: '2026-09-22'
+  checked_at: '2026-09-22T04:33:02-07:00'
+  dpn: 296-29885-1-ND
+  stock: 0
+  min: 1
+  mult: 1
+  packaging: Cut Tape
+  lifecycle: Active
+  price_breaks: []
+  note: Exact product page; five-board requirement 40; expected future stock does
+    not count.
+- mpn: R82DC4100CK60J
+  manufacturer: KEMET
+  distributor: digikey
+  source: product_page
+  url: https://www.digikey.com/en/products/detail/kemet/R82DC4100CK60J/21776592
+  read_on: '2026-09-22'
+  checked_at: '2026-09-22T04:33:02-07:00'
+  dpn: 399-R82DC4100CK60JCT-ND
+  stock: 969
+  min: 1
+  mult: 1
+  packaging: Cut Tape
+  lifecycle: Active
+  price_breaks: []
+  note: Exact product page; five-board requirement 80.
+- mpn: R82DC4100CK60J
+  manufacturer: KEMET
+  distributor: mouser
+  source: product_page
+  url: https://www.mouser.com/ProductDetail/KEMET/R82DC4100CK60J
+  read_on: '2026-09-22'
+  checked_at: '2026-09-22T04:05:51-07:00'
+  dpn: 80-R82DC4100CK60J
+  stock: 5775
+  min: 1
+  mult: 1
+  packaging: Cut Tape
+  lifecycle: Active
+  price_breaks:
+  - qty: 1
+    usd: 0.63
+  note: Exact manufacturer and MPN, immediate shipment observation. Five-board requirement
+    is 80.
+  orderable: true
+- mpn: RC0402FR-070RL
+  manufacturer: YAGEO
+  distributor: digikey
+  source: product_page
+  url: https://www.digikey.com/en/products/detail/yageo/RC0402FR-070RL/2827570
+  read_on: '2026-09-22'
+  checked_at: '2026-09-22T04:33:02-07:00'
+  dpn: 311-0.0LRCT-ND
+  stock: 653969
+  min: 1
+  mult: 1
+  packaging: Cut Tape
+  lifecycle: Active
+  price_breaks: []
+  note: Exact product page; five-board requirement 10.
+- mpn: RC0402FR-07100KL
+  manufacturer: YAGEO
+  distributor: digikey
+  source: product_page
+  url: https://www.digikey.com/en/products/detail/yageo/RC0402FR-07100KL/726526
+  read_on: '2026-09-22'
+  checked_at: '2026-09-22T04:33:02-07:00'
+  dpn: 311-100KLRCT-ND
+  stock: 6700279
+  min: 1
+  mult: 1
+  packaging: Cut Tape
+  lifecycle: Active
+  price_breaks: []
+  note: Exact product page; five-board requirement 185.
+- mpn: RC0402FR-07100RL
+  manufacturer: YAGEO
+  distributor: digikey
+  source: product_page
+  url: https://www.digikey.com/en/products/detail/yageo/RC0402FR-07100RL/726527
+  read_on: '2026-09-22'
+  checked_at: '2026-09-22T04:33:02-07:00'
+  dpn: 311-100LRCT-ND
+  stock: 2975491
+  min: 1
+  mult: 1
+  packaging: Cut Tape
+  lifecycle: Active
+  price_breaks: []
+  note: Exact product page; five-board requirement 10.
+- mpn: RC0402FR-0710KL
+  manufacturer: YAGEO
+  distributor: digikey
+  source: product_page
+  url: https://www.digikey.com/en/products/detail/yageo/RC0402FR-0710KL/729470
+  read_on: '2026-09-22'
+  checked_at: '2026-09-22T04:33:02-07:00'
+  dpn: 311-10.0KLRCT-ND
+  stock: 11150432
+  min: 1
+  mult: 1
+  packaging: Cut Tape
+  lifecycle: Active
+  price_breaks: []
+  note: Exact product page; five-board requirement 210.
+- mpn: RC0402FR-0710RL
+  manufacturer: YAGEO
+  distributor: digikey
+  source: product_page
+  url: https://www.digikey.com/en/products/detail/yageo/RC0402FR-0710RL/729471
+  read_on: '2026-09-22'
+  checked_at: '2026-09-22T04:33:02-07:00'
+  dpn: 311-10.0LRCT-ND
+  stock: 3733367
+  min: 1
+  mult: 1
+  packaging: Cut Tape
+  lifecycle: Active
+  price_breaks: []
+  note: Exact product page; five-board requirement 80.
+- mpn: RC0402FR-0713KL
+  manufacturer: YAGEO
+  distributor: digikey
+  source: product_page
+  url: https://www.digikey.com/en/products/detail/yageo/RC0402FR-0713KL/729486
+  read_on: '2026-09-22'
+  checked_at: '2026-09-22T04:33:02-07:00'
+  dpn: 311-13.0KLRCT-ND
+  stock: 753441
+  min: 1
+  mult: 1
+  packaging: Cut Tape
+  lifecycle: Active
+  price_breaks: []
+  note: Exact product page; five-board requirement 5.
+- mpn: RC0402FR-071ML
+  manufacturer: YAGEO
+  distributor: digikey
+  source: product_page
+  url: https://www.digikey.com/en/products/detail/yageo/RC0402FR-071ML/726515
+  read_on: '2026-09-22'
+  checked_at: '2026-09-22T04:33:02-07:00'
+  dpn: 311-1.00MLRCT-ND
+  stock: 1382896
+  min: 1
+  mult: 1
+  packaging: Cut Tape
+  lifecycle: Active
+  price_breaks: []
+  note: Exact product page; five-board requirement 50.
+- mpn: RC0402FR-07300RL
+  manufacturer: YAGEO
+  distributor: digikey
+  source: product_page
+  url: https://www.digikey.com/en/products/detail/yageo/RC0402FR-07300RL/726589
+  read_on: '2026-09-22'
+  checked_at: '2026-09-22T04:33:02-07:00'
+  dpn: 311-300LRCT-ND
+  stock: 301173
+  min: 1
+  mult: 1
+  packaging: Cut Tape
+  lifecycle: Active
+  price_breaks: []
+  note: Exact product page; five-board requirement 85.
+- mpn: RC0402FR-0733RL
+  manufacturer: YAGEO
+  distributor: digikey
+  source: product_page
+  url: https://www.digikey.com/en/products/detail/yageo/RC0402FR-0733RL/726593
+  read_on: '2026-09-22'
+  checked_at: '2026-09-22T04:33:02-07:00'
+  dpn: 311-33.0LRCT-ND
+  stock: 890655
+  min: 1
+  mult: 1
+  packaging: Cut Tape
+  lifecycle: Active
+  price_breaks: []
+  note: Exact product page; five-board requirement 15.
+- mpn: RC0402FR-0747KL
+  manufacturer: YAGEO
+  distributor: digikey
+  source: product_page
+  url: https://www.digikey.com/en/products/detail/yageo/RC0402FR-0747KL/729563
+  read_on: '2026-09-22'
+  checked_at: '2026-09-22T04:33:02-07:00'
+  dpn: 311-47.0KLRCT-ND
+  stock: 2038057
+  min: 1
+  mult: 1
+  packaging: Cut Tape
+  lifecycle: Active
+  price_breaks: []
+  note: Exact product page; five-board requirement 5.
+- mpn: RC0402FR-074K7L
+  manufacturer: YAGEO
+  distributor: digikey
+  source: product_page
+  url: https://www.digikey.com/en/products/detail/yageo/RC0402FR-074K7L/2827563
+  read_on: '2026-09-22'
+  checked_at: '2026-09-22T04:33:02-07:00'
+  dpn: 311-4.7KLRCT-ND
+  stock: 495333
+  min: 1
+  mult: 1
+  packaging: Cut Tape
+  lifecycle: Active
+  price_breaks: []
+  note: Exact product page; five-board requirement 15.
+- mpn: RC0402FR-075K1L
+  manufacturer: YAGEO
+  distributor: digikey
+  source: product_page
+  url: https://www.digikey.com/en/products/detail/yageo/RC0402FR-075K1L/726624
+  read_on: '2026-09-22'
+  checked_at: '2026-09-22T04:33:02-07:00'
+  dpn: 311-5.10KLRCT-ND
+  stock: 1031158
+  min: 1
+  mult: 1
+  packaging: Cut Tape
+  lifecycle: Active
+  price_breaks: []
+  note: Exact product page; five-board requirement 10.
+- mpn: RC0402FR-07680RL
+  manufacturer: YAGEO
+  distributor: digikey
+  source: product_page
+  url: https://www.digikey.com/en/products/detail/yageo/RC0402FR-07680RL/729601
+  read_on: '2026-09-22'
+  checked_at: '2026-09-22T04:33:02-07:00'
+  dpn: 311-680LRCT-ND
+  stock: 0
+  min: 1
+  mult: 1
+  packaging: Cut Tape
+  lifecycle: Active
+  price_breaks: []
+  note: Exact DigiKey-stock line; five-board requirement 5. Marketplace and future
+    stock are excluded.
+- mpn: RT0402BRD07100KL
+  manufacturer: YAGEO
+  distributor: digikey
+  source: product_page
+  url: https://www.digikey.com/en/products/detail/yageo/RT0402BRD07100KL/5138791
+  read_on: '2026-09-22'
+  checked_at: '2026-09-22T04:33:02-07:00'
+  dpn: YAG1343CT-ND
+  stock: 192535
+  min: 1
+  mult: 1
+  packaging: Cut Tape
+  lifecycle: Active
+  price_breaks: []
+  note: Exact product page; five-board requirement 5.
+- mpn: RT0402BRD07200KL
+  manufacturer: YAGEO
+  distributor: digikey
+  source: product_page
+  url: https://www.digikey.com/en/products/detail/yageo/RT0402BRD07200KL/5926115
+  read_on: '2026-09-22'
+  checked_at: '2026-09-22T04:33:02-07:00'
+  dpn: YAG4202CT-ND
+  stock: 171411
+  min: 1
+  mult: 1
+  packaging: Cut Tape
+  lifecycle: Active
+  price_breaks: []
+  note: Exact product page; five-board requirement 5.
+- mpn: RT0603BRD0710KL
+  manufacturer: YAGEO
+  distributor: digikey
+  source: product_page
+  url: https://www.digikey.com/en/products/detail/yageo/RT0603BRD0710KL/1072198
+  read_on: '2026-09-22'
+  checked_at: '2026-09-22T04:33:02-07:00'
+  dpn: YAG1236CT-ND
+  stock: 334258
+  min: 1
+  mult: 1
+  packaging: Cut Tape
+  lifecycle: Active
+  price_breaks: []
+  note: Exact product page; five-board requirement 15.
+- mpn: RT0603BRD0717K4L
+  manufacturer: YAGEO
+  distributor: digikey
+  source: product_page
+  url: https://www.digikey.com/en/products/detail/yageo/RT0603BRD0717K4L/1072289
+  read_on: '2026-09-22'
+  checked_at: '2026-09-22T04:33:02-07:00'
+  dpn: YAG1547CT-ND
+  stock: 7790
+  min: 1
+  mult: 1
+  packaging: Cut Tape
+  lifecycle: Active
+  price_breaks: []
+  note: Exact product page; five-board requirement 5.
+- mpn: RT0603BRD071KL
+  manufacturer: YAGEO
+  distributor: digikey
+  source: product_page
+  url: https://www.digikey.com/en/products/detail/yageo/RT0603BRD071KL/1072344
+  read_on: 2026-09-22
+  checked_at: '2026-09-22T04:33:04-07:00'
+  dpn: YAG1237CT-ND
+  stock: 139647
+  min: 1
+  mult: 1
+  packaging: Cut Tape (CT)
+  lifecycle: Active
+  note: Exact MPN/manufacturer; product page opened; need 25 for five boards.
+- mpn: RT0603BRD0730K9L
+  manufacturer: YAGEO
+  distributor: digikey
+  source: product_page
+  url: https://www.digikey.com/en/products/detail/yageo/RT0603BRD0730K9L/1072452
+  read_on: 2026-09-22
+  checked_at: '2026-09-22T04:33:04-07:00'
+  dpn: YAG4530CT-ND
+  stock: 17387
+  min: 1
+  mult: 1
+  packaging: Cut Tape (CT)
+  lifecycle: Active
+  note: Exact MPN/manufacturer; product page opened; need 5 for five boards.
+- mpn: RT0603BRD0733KL
+  manufacturer: YAGEO
+  distributor: digikey
+  source: product_page
+  url: https://www.digikey.com/en/products/detail/yageo/RT0603BRD0733KL/5139088
+  read_on: 2026-09-22
+  checked_at: '2026-09-22T04:33:04-07:00'
+  dpn: YAG1640CT-ND
+  stock: 10859
+  min: 1
+  mult: 1
+  packaging: Cut Tape (CT)
+  lifecycle: Active
+  note: Exact MPN/manufacturer; product page opened; need 5 for five boards.
+- mpn: RT0603BRD0744K2L
+  manufacturer: YAGEO
+  distributor: digikey
+  source: product_page
+  url: https://www.digikey.com/en/products/detail/yageo/RT0603BRD0744K2L/5139110
+  read_on: 2026-09-22
+  checked_at: '2026-09-22T04:33:04-07:00'
+  dpn: YAG1662CT-ND
+  stock: 14900
+  min: 1
+  mult: 1
+  packaging: Cut Tape (CT)
+  lifecycle: Active
+  note: Exact MPN/manufacturer; product page opened; need 40 for five boards.
+- mpn: SMBJ15A
+  manufacturer: Littelfuse
+  distributor: digikey
+  source: product_page
+  url: https://www.digikey.com/en/products/detail/littelfuse-inc/SMBJ15A/285980
+  read_on: 2026-09-22
+  checked_at: '2026-09-22T04:33:04-07:00'
+  dpn: SMBJ15ALFCT-ND
+  stock: 132508
+  min: 1
+  mult: 1
+  packaging: Cut Tape (CT)
+  lifecycle: Active
+  note: Exact MPN; DigiKey shows manufacturer Littelfuse Inc.; need 5.
+- mpn: SN74AXC4T245PWR
+  manufacturer: Texas Instruments
+  distributor: digikey
+  source: product_page
+  url: https://www.digikey.com/en/products/detail/texas-instruments/SN74AXC4T245PWR/10060449
+  read_on: 2026-09-22
+  checked_at: '2026-09-22T04:33:04-07:00'
+  dpn: 296-53472-1-ND
+  stock: 15557
+  min: 1
+  mult: 1
+  packaging: Cut Tape (CT)
+  lifecycle: Active
+  note: Exact MPN/manufacturer; need 5.
+- mpn: SN74LVC1G04DCKR
+  manufacturer: Texas Instruments
+  distributor: digikey
+  source: product_page
+  url: https://www.digikey.com/en/products/detail/texas-instruments/SN74LVC1G04DCKR/385739
+  read_on: 2026-09-22
+  checked_at: '2026-09-22T04:33:04-07:00'
+  dpn: 296-11600-1-ND
+  stock: 145365
+  min: 1
+  mult: 1
+  packaging: Cut Tape (CT)
+  lifecycle: Active
+  note: Exact MPN/manufacturer; need 15.
+- mpn: SN74LVC1G123DCTR
+  manufacturer: Texas Instruments
+  distributor: digikey
+  source: product_page
+  url: https://www.digikey.com/en/products/detail/texas-instruments/SN74LVC1G123DCTR/863597
+  read_on: 2026-09-22
+  checked_at: '2026-09-22T04:33:04-07:00'
+  dpn: 296-18758-1-ND
+  stock: 82440
+  min: 1
+  mult: 1
+  packaging: Cut Tape (CT)
+  lifecycle: Active
+  note: Exact MPN/manufacturer; need 5.
+- mpn: SN74LVC1G125DCKR
+  manufacturer: Texas Instruments
+  distributor: digikey
+  source: product_page
+  url: https://www.digikey.com/en/products/detail/texas-instruments/SN74LVC1G125DCKR/385743
+  read_on: 2026-09-22
+  checked_at: '2026-09-22T04:33:04-07:00'
+  dpn: 296-11604-1-ND
+  stock: 0
+  min: 1
+  mult: 1
+  packaging: Cut Tape (CT)
+  lifecycle: Active
+  note: Exact page says out of stock/backorder; need 15. Substitutes were not treated
+    as sources.
+- mpn: SN74LVC1G332DBVR
+  manufacturer: Texas Instruments
+  distributor: digikey
+  source: product_page
+  url: https://www.digikey.com/en/products/detail/texas-instruments/SN74LVC1G332DBVR/857354
+  read_on: 2026-09-22
+  checked_at: '2026-09-22T04:33:04-07:00'
+  dpn: 296-18587-1-ND
+  stock: 44474
+  min: 1
+  mult: 1
+  packaging: Cut Tape (CT)
+  lifecycle: Active
+  note: Exact DigiKey-held stock only; marketplace stock excluded; need 5.
+- mpn: SN74LVC2G74DCTR
+  manufacturer: Texas Instruments
+  distributor: digikey
+  source: product_page
+  url: https://www.digikey.com/en/products/detail/texas-instruments/SN74LVC2G74DCTR/484721
+  read_on: 2026-09-22
+  checked_at: '2026-09-22T04:33:04-07:00'
+  dpn: 296-13273-1-ND
+  stock: 15687
+  min: 1
+  mult: 1
+  packaging: Cut Tape (CT)
+  lifecycle: Active
+  note: Exact MPN/manufacturer; need 10.
+- mpn: TPD2E2U06DRLR
+  manufacturer: Texas Instruments
+  distributor: digikey
+  source: product_page
+  url: https://www.digikey.com/en/products/detail/texas-instruments/TPD2E2U06DRLR/4972832
+  read_on: 2026-09-22
+  checked_at: '2026-09-22T04:33:04-07:00'
+  dpn: 296-38361-1-ND
+  stock: 87865
+  min: 1
+  mult: 1
+  packaging: Cut Tape (CT)
+  lifecycle: Active
+  note: Exact MPN/manufacturer; need 50.
+- mpn: TPD2EUSB30ADRTR
+  manufacturer: Texas Instruments
+  distributor: digikey
+  source: product_page
+  url: https://www.digikey.com/en/products/detail/texas-instruments/TPD2EUSB30ADRTR/2520840
+  read_on: 2026-09-22
+  checked_at: '2026-09-22T04:33:04-07:00'
+  dpn: 296-28153-1-ND
+  stock: 116065
+  min: 1
+  mult: 1
+  packaging: Cut Tape (CT)
+  lifecycle: Active
+  note: Exact MPN/manufacturer; need 5.
+- mpn: TPS26625DRCR
+  manufacturer: Texas Instruments
+  distributor: digikey
+  source: product_page
+  url: https://www.digikey.com/en/products/detail/texas-instruments/TPS26625DRCR/9692673
+  read_on: 2026-09-22
+  checked_at: '2026-09-22T04:33:04-07:00'
+  dpn: 296-52606-1-ND
+  stock: 9979
+  min: 1
+  mult: 1
+  packaging: Cut Tape (CT)
+  lifecycle: Active
+  note: Exact MPN/manufacturer; need 40.
+- mpn: TPS3808G09DBVR
+  manufacturer: Texas Instruments
+  distributor: digikey
+  source: product_page
+  url: https://www.digikey.com/en/products/detail/texas-instruments/TPS3808G09DBVR/666714
+  read_on: 2026-09-22
+  checked_at: '2026-09-22T04:33:04-07:00'
+  dpn: 296-17189-1-ND
+  stock: 10341
+  min: 1
+  mult: 1
+  packaging: Cut Tape (CT)
+  lifecycle: Active
+  note: Exact MPN/manufacturer; need 5.
+- mpn: TPS3839K33DBZR
+  manufacturer: Texas Instruments
+  distributor: digikey
+  source: product_page
+  url: https://www.digikey.com/en/products/detail/texas-instruments/TPS3839K33DBZR/3748986
+  read_on: 2026-09-22
+  checked_at: '2026-09-22T04:33:04-07:00'
+  dpn: 296-35471-1-ND
+  stock: 3031
+  min: 1
+  mult: 1
+  packaging: Cut Tape (CT)
+  lifecycle: Active
+  note: Exact MPN/manufacturer; need 5.
+- mpn: TPS389001DSER
+  manufacturer: Texas Instruments
+  distributor: digikey
+  source: product_page
+  url: https://www.digikey.com/en/products/detail/texas-instruments/TPS389001DSER/8567784
+  read_on: 2026-09-22
+  checked_at: '2026-09-22T04:33:04-07:00'
+  dpn: 296-48740-1-ND
+  stock: 26294
+  min: 1
+  mult: 1
+  packaging: Cut Tape (CT)
+  lifecycle: Active
+  note: Exact MPN/manufacturer; need 10.
+- mpn: TPS389018DSER
+  manufacturer: Texas Instruments
+  distributor: digikey
+  source: product_page
+  url: https://www.digikey.com/en/products/detail/texas-instruments/TPS389018DSER/6123508
+  read_on: 2026-09-22
+  checked_at: '2026-09-22T04:33:04-07:00'
+  dpn: 296-51971-1-ND
+  stock: 3099
+  min: 1
+  mult: 1
+  packaging: Cut Tape (CT)
+  lifecycle: Active
+  note: Exact MPN/manufacturer; need 10.
+- mpn: TPS389030DSER
+  manufacturer: Texas Instruments
+  distributor: digikey
+  source: product_page
+  url: https://www.digikey.com/en/products/detail/texas-instruments/TPS389030DSER/6123510
+  read_on: 2026-09-22
+  checked_at: '2026-09-22T04:33:04-07:00'
+  stock: 2262
+  min: 1
+  mult: 1
+  packaging: Cut Tape (CT)
+  lifecycle: Active
+  note: Exact MPN/manufacturer; need 15. DPN omitted because it was not visible in
+    the captured page excerpt.
+- mpn: TPS6282518DMQR
+  manufacturer: Texas Instruments
+  distributor: digikey
+  source: product_page
+  url: https://www.digikey.com/en/products/detail/texas-instruments/TPS6282518DMQR/9428258
+  read_on: 2026-09-22
+  checked_at: '2026-09-22T04:33:04-07:00'
+  dpn: 296-49520-1-ND
+  stock: 6523
+  min: 1
+  mult: 1
+  packaging: Cut Tape (CT)
+  lifecycle: Active
+  note: Exact MPN/manufacturer; need 5.
+- mpn: TPS6282533DMQR
+  manufacturer: Texas Instruments
+  distributor: digikey
+  source: product_page
+  url: https://www.digikey.com/en/products/detail/texas-instruments/TPS6282533DMQR/15212775
+  read_on: 2026-09-22
+  checked_at: '2026-09-22T04:33:04-07:00'
+  dpn: 296-TPS6282533DMQRCT-ND
+  stock: 3143
+  min: 1
+  mult: 1
+  packaging: Cut Tape (CT)
+  lifecycle: Active
+  note: Exact MPN/manufacturer; need 5.
+- mpn: TPS62825DMQR
+  manufacturer: Texas Instruments
+  distributor: digikey
+  source: product_page
+  url: https://www.digikey.com/en/products/detail/texas-instruments/TPS62825DMQR/9428263
+  read_on: 2026-09-22
+  checked_at: '2026-09-22T04:33:04-07:00'
+  dpn: 296-49521-1-ND
+  stock: 17561
+  min: 1
+  mult: 1
+  packaging: Cut Tape (CT)
+  lifecycle: Active
+  note: Exact MPN/manufacturer; need 5.
+- mpn: TPSM63603V5RDHR
+  manufacturer: Texas Instruments
+  distributor: digikey
+  source: product_page
+  url: https://www.digikey.com/en/products/detail/texas-instruments/TPSM63603V5RDHR/16585652
+  read_on: 2026-09-22
+  checked_at: '2026-09-22T04:33:04-07:00'
+  dpn: 296-TPSM63603V5RDHRCT-ND
+  stock: 87
+  min: 1
+  mult: 1
+  packaging: Cut Tape (CT)
+  lifecycle: Active
+  note: Exact MPN/manufacturer; need 5.
+- mpn: USB4105-GF-A-120
+  manufacturer: GCT
+  distributor: digikey
+  source: product_page
+  url: https://www.digikey.com/en/products/detail/gct/USB4105-GF-A-120/14559037
+  read_on: 2026-09-22
+  checked_at: '2026-09-22T04:33:04-07:00'
+  dpn: 2073-USB4105-GF-A-120CT-ND
+  stock: 51035
+  min: 1
+  mult: 1
+  packaging: Cut Tape (CT)
+  lifecycle: Active
+  note: Exact MPN/manufacturer; need 5.
+- mpn: W25Q128JWSIQ
+  manufacturer: Winbond Electronics
+  distributor: digikey
+  source: product_page
+  url: https://www.digikey.com/en/products/detail/winbond-electronics/W25Q128JWSIQ/12090690
+  read_on: 2026-09-22
+  checked_at: '2026-09-22T04:33:04-07:00'
+  dpn: 256-W25Q128JWSIQ-ND
+  stock: 809
+  min: 1
+  mult: 1
+  packaging: Tube
+  lifecycle: Active
+  note: Exact MPN/manufacturer; need 5; page states constrained supply and no backorders.
+- mpn: XU316-1024-TQ128-C24
+  manufacturer: XMOS
+  distributor: digikey
+  source: product_page
+  url: https://www.digikey.com/en/products/detail/xmos/XU316-1024-TQ128-C24/17764326
+  read_on: 2026-09-22
+  checked_at: '2026-09-22T04:33:04-07:00'
+  dpn: 880-XU316-1024-TQ128-C24-ND
+  stock: 589
+  min: 1
+  mult: 1
+  packaging: Tray
+  lifecycle: Active
+  note: Exact MPN/manufacturer; need 5.
+- mpn: '615008160221'
+  manufacturer: Wurth Elektronik
+  distributor: digikey
+  source: product_page
+  url: https://www.digikey.com/en/products/detail/w%C3%BCrth-elektronik/615008160221/11627337
+  read_on: '2026-09-22'
+  checked_at: '2026-09-22T04:30:58-07:00'
+  dpn: 732-615008160221-ND
+  stock: 991
+  min: 1
+  mult: 1
+  packaging: Tray
+  lifecycle: Active
+  orderable: true
+  five_board_need: 40
+  normalization_note: YAML numeric scalar normalized to the literal selected MPN digit
+    string; digits unchanged.
