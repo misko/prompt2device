@@ -131,6 +131,10 @@ def t_manufacturer_aliases_are_narrow():
           "JLC's Keystone abbreviation is the same manufacturer")
     check(sl.same_manufacturer("PANASONIC", "Panasonic Industry"),
           "JLC's legacy Panasonic label is the Panasonic Industry identity")
+    check(sl.same_manufacturer("Epson Timing", "Epson"),
+          "Mouser timing brand is the exact Epson manufacturer identity")
+    check(not sl.same_manufacturer("Epson Imaging", "Epson"),
+          "Epson identity alias must not match other prefixes")
     check(not sl.same_manufacturer("Keystone", "Phoenix Contact"),
           "the alias must not become fuzzy manufacturer matching")
     check(sl.same_manufacturer("Winbond Elec", "Winbond Electronics"),

@@ -153,6 +153,7 @@ def normalize_manufacturer(value):
         if s.endswith(suffix):
             s = s[:-len(suffix)]
     aliases = {
+        "epsontiming": "epson",
         "ti": "texasinstruments",
         "st": "stmicroelectronics",
         "gctglobalconnectortechnology": "gct",
