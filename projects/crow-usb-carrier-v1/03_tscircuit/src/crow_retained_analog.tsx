@@ -1,3 +1,9 @@
+import {
+  CirrusCs5308pQfn48, Diodes2N7002kSot23, Littelfuse1812L03560,
+  PanasonicEeeFk8x10, Sot553, TiDse0006a, TiDsg0008a,
+  Wurth615008160221Rj45, YageoRt0603,
+} from "./z_analog_exact_footprints"
+
 /**
  * Draft retained Crow analog subsystem for crow-usb-carrier-v1.
  *
@@ -72,15 +78,15 @@ const Chip = ({ jlc, ...props }: any) => (
 const Spoke = ({ index, n }: any) => (
   <>
     <Chip name={`J${index}`} manufacturerPartNumber="615008160221" jlc=""
-      footprint="crow_usb_analog:Wurth_615008160221_RJ45"
+      footprint={<Wurth615008160221Rj45 />}
       pinLabels={{ pin1: "12V_1", pin2: "GND_1", pin3: "12V_2", pin4: "AUDIO_N", pin5: "AUDIO_P", pin6: "GND_2", pin7: "12V_3", pin8: "GND_3", pin9: "SHIELD_S1", pin10: "SHIELD_S2" }}
       connections={{ pin1: n(`12V_POD${index}`), pin2: n("GND"), pin3: n(`12V_POD${index}`), pin4: n(`AUDIO_N${index}`), pin5: n(`AUDIO_P${index}`), pin6: n("GND"), pin7: n(`12V_POD${index}`), pin8: n("GND"), pin9: n("CHASSIS"), pin10: n("CHASSIS") }} />
     <Chip name={`F${index}`} manufacturerPartNumber="1812L035/60MR" jlc="C3761431"
-      footprint="crow_usb_analog:Littelfuse_1812L035_60_Exact"
+      footprint={<Littelfuse1812L03560 />}
       pinLabels={{ pin1: "IN", pin2: "OUT" }}
       connections={{ pin1: n("12V_PROTECTED"), pin2: n(`12V_POD${index}`) }} />
     <Chip name={`U_ESD${index}`} manufacturerPartNumber="TPD2E2U06DRLR" jlc="C1972959"
-      footprint="sot553"
+      footprint={<Sot553 />}
       pinLabels={{ pin1: "NC1", pin2: "NC2", pin3: "IO1", pin4: "GND", pin5: "IO2" }}
       connections={{ pin3: n(`AUDIO_P${index}`), pin4: n("GND"), pin5: n(`AUDIO_N${index}`) }} />
   </>
@@ -106,7 +112,7 @@ const AnalogChannel = ({ index, vmid, n }: any) => (
     {(["P", "N"] as const).flatMap((leg) => [1, 2].map((unit) =>
       <C key={`${leg}${unit}`} name={`C_FILTER${index}${leg}${unit}`} value="15nF" a={`FILTER${index}${leg}`} b="GND" jlc="C97907" mpn="GRM2195C1H153JA01D" footprint="0805" n={n} />))}
     <Chip name={`U_ISO${index}`} manufacturerPartNumber="TMUX2821DSGR" jlc="C53283916"
-      footprint="crow_usb_analog:TI_DSG0008A_Exact"
+      footprint={<TiDsg0008a />}
       pinLabels={{ pin1: "S1", pin2: "D1", pin3: "SEL2", pin4: "GND", pin5: "S2", pin6: "D2", pin7: "SEL1", pin8: "VDD", pin9: "EP" }}
       connections={{ pin1: n(`FILTER${index}P`), pin2: n(`ADC${index}P`), pin3: n("AUDIO_EN"), pin4: n("GND"), pin5: n(`FILTER${index}N`), pin6: n(`ADC${index}N`), pin7: n("AUDIO_EN"), pin8: n("5V_LDO_HOLD"), pin9: n("GND") }} />
     {/* R_ADC_PD stays within 1.5 mm of its U_ISO output partner. C_ADC_CM is ADC-pin local.
@@ -125,12 +131,12 @@ const QuietAnalogPower = ({ n }: any) => (
       pinLabels={{ pin1: "K", pin2: "A" }} connections={{ pin1: n("5V_LDO_FEED"), pin2: n("5V_BUCK") }} />
     <Chip name="Q_PRE" manufacturerPartNumber="AO3401A" jlc="C15127" footprint="sot23"
       pinLabels={{ pin1: "G", pin2: "S", pin3: "D" }} connections={{ pin1: n("PRE_GATE"), pin2: n("5V_LDO_FEED"), pin3: n("5V_LDO_HOLD") }} />
-    <Chip name="Q_PRE_EN" manufacturerPartNumber="2N7002K-7" jlc="C85047" footprint="crow_usb_analog:Diodes_2N7002K_SOT23_Exact"
+    <Chip name="Q_PRE_EN" manufacturerPartNumber="2N7002K-7" jlc="C85047" footprint={<Diodes2N7002kSot23 />}
       pinLabels={{ pin1: "G", pin2: "S", pin3: "D" }} connections={{ pin1: n("PWR_EN"), pin2: n("GND"), pin3: n("PRE_GATE") }} />
     <R name="R_PRE" value="22" a="5V_LDO_FEED" b="5V_LDO_HOLD" mpn="CRCW120622R0FKEAHP" jlc="C844025" footprint="1206" n={n} />
     <R name="R_PRE_G" value="100k" a="PRE_GATE" b="5V_LDO_FEED" mpn="RC0402FR-07100KL" jlc="C60491" n={n} />
-    <C name="C_HOLD1" value="470uF" a="5V_LDO_HOLD" b="GND" mpn="EEEFK1A471P" jlc="C178530" footprint="crow_usb_analog:Panasonic_EEEFK1A471P_8x10.2_Exact" polarized n={n} />
-    <C name="C_HOLD2" value="470uF" a="5V_LDO_HOLD" b="GND" mpn="EEEFK1A471P" jlc="C178530" footprint="crow_usb_analog:Panasonic_EEEFK1A471P_8x10.2_Exact" polarized n={n} />
+    <C name="C_HOLD1" value="470uF" a="5V_LDO_HOLD" b="GND" mpn="EEEFK1A471P" jlc="C178530" footprint={<PanasonicEeeFk8x10 />} polarized n={n} />
+    <C name="C_HOLD2" value="470uF" a="5V_LDO_HOLD" b="GND" mpn="EEEFK1A471P" jlc="C178530" footprint={<PanasonicEeeFk8x10 />} polarized n={n} />
     <C name="C_LDO_IN" value="47uF" a="5V_LDO_HOLD" b="GND" mpn="GRM32ER71A476KE15L" jlc="C84494" footprint="1210" n={n} />
     <Chip name="U_LDO" manufacturerPartNumber="LT3041ADE#TRPBF" jlc="C7452883" footprint={<Lt3041Wson />}
       pinLabels={{ pin1: "IN1", pin2: "IN2", pin3: "IN3", pin4: "VIOC_NC", pin5: "EN_UV", pin6: "PG_NC", pin7: "ILIM", pin8: "PGFB", pin9: "SET", pin10: "GND1", pin11: "GND2", pin12: "OUTS", pin13: "OUT1", pin14: "OUT2", pin15: "EP" }}
@@ -142,15 +148,15 @@ const QuietAnalogPower = ({ n }: any) => (
     <R name="R_LDO_SET" value="33k" a="LDO_NR" b="GND" mpn="RT0603BRD0733KL" jlc="C705768" footprint="0603" n={n} />
     <R name="R_OPA_BLEED1" value="100" a="3V3_ADC" b="OPA_BLEED_A" mpn="RC0402FR-07100RL" jlc="C106232" n={n} />
     <R name="R_OPA_BLEED2" value="100" a="OPA_BLEED_A" b="GND" mpn="RC0402FR-07100RL" jlc="C106232" n={n} />
-    <Chip name="U_PWR" manufacturerPartNumber="TPS389001DSER" jlc="C1509297" footprint="crow_usb_analog:TI_DSE0006A_Exact"
+    <Chip name="U_PWR" manufacturerPartNumber="TPS389001DSER" jlc="C1509297" footprint={<TiDse0006a />}
       pinLabels={{ pin1: "SENSE", pin2: "GND", pin3: "MR_N", pin4: "VDD", pin5: "CT", pin6: "RESET_N" }}
       connections={{ pin1: n("PWR_SENSE"), pin2: n("GND"), pin3: n("5V_LDO_HOLD"), pin4: n("5V_LDO_HOLD"), pin5: n("PWR_CT"), pin6: n("PWR_EN") }} />
     <C name="C_PWR_CT" value="1uF" a="PWR_CT" b="GND" mpn="C0603C105K4RACTU" jlc="C2167386" footprint="0603" n={n} />
     <C name="C_PWR" value="100nF" a="5V_LDO_HOLD" b="GND" mpn="CL05B104KO5NNNC" jlc="C1525" n={n} />
     <R name="R_PWR_PU" value="10k" a="5V_LDO_HOLD" b="PWR_EN" mpn="RC0402FR-0710KL" jlc="C60490" n={n} />
-    <R name="R_PWR_TOP" value="30.9k" a="5V_BUCK" b="PWR_SENSE" mpn="RT0603BRD0730K9L" jlc="C861313" footprint="crow_usb_analog:Yageo_RT0603_NominalBody" n={n} />
+    <R name="R_PWR_TOP" value="30.9k" a="5V_BUCK" b="PWR_SENSE" mpn="RT0603BRD0730K9L" jlc="C861313" footprint={<YageoRt0603 />} n={n} />
     <R name="R_PWR_BOT" value="10k" a="PWR_SENSE" b="GND" mpn="RT0603BRD0710KL" jlc="C95204" footprint="0603" n={n} />
-    <Chip name="U_AUDIO" manufacturerPartNumber="TPS389001DSER" jlc="C1509297" footprint="crow_usb_analog:TI_DSE0006A_Exact"
+    <Chip name="U_AUDIO" manufacturerPartNumber="TPS389001DSER" jlc="C1509297" footprint={<TiDse0006a />}
       pinLabels={{ pin1: "SENSE", pin2: "GND", pin3: "MR_N", pin4: "VDD", pin5: "CT", pin6: "RESET_N" }}
       connections={{ pin1: n("ADC_SENSE"), pin2: n("GND"), pin3: n("PWR_EN"), pin4: n("5V_LDO_HOLD"), pin5: n("AUDIO_CT"), pin6: n("AUDIO_EN") }} />
     <C name="C_AUDIO_CT1" value="1uF" a="AUDIO_CT" b="GND" mpn="C0603C105K4RACTU" jlc="C2167386" footprint="0603" n={n} />
@@ -179,13 +185,13 @@ const QuietAnalogPower = ({ n }: any) => (
 const AdcReferenceAndMode = ({ n }: any) => (
   <>
     {[1, 2].map((bank) => <group key={`vmid-${bank}`}>
-      <R name={`R_VMID${bank}_TOP`} value="1k" a="3V3_ADC" b={`VMID${bank}_EXT`} jlc="C110776" mpn="RT0603BRD071KL" footprint="crow_usb_analog:Yageo_RT0603_NominalBody" n={n} />
-      <R name={`R_VMID${bank}_BOT`} value="1k" a={`VMID${bank}_EXT`} b="GND" jlc="C110776" mpn="RT0603BRD071KL" footprint="crow_usb_analog:Yageo_RT0603_NominalBody" n={n} />
+      <R name={`R_VMID${bank}_TOP`} value="1k" a="3V3_ADC" b={`VMID${bank}_EXT`} jlc="C110776" mpn="RT0603BRD071KL" footprint={<YageoRt0603 />} n={n} />
+      <R name={`R_VMID${bank}_BOT`} value="1k" a={`VMID${bank}_EXT`} b="GND" jlc="C110776" mpn="RT0603BRD071KL" footprint={<YageoRt0603 />} n={n} />
       <C name={`C_VMID${bank}_EXT_10U`} value="10uF" a={`VMID${bank}_EXT`} b="GND" jlc="C2167576" mpn="C0805C106K8RACTU" footprint="0805" n={n} />
       <C name={`C_VMID${bank}_EXT_1U`} value="1uF" a={`VMID${bank}_EXT`} b="GND" jlc="C2167386" mpn="C0603C105K4RACTU" footprint="0603" n={n} />
     </group>)}
     <Chip name="U_ADC" manufacturerPartNumber="CS5308P-DN" jlc="C42457798"
-      footprint="crow_usb_analog:Cirrus_CS5308P_QFN48_6x6_P0.4_EP4.6"
+      footprint={<CirrusCs5308pQfn48 />}
       pinLabels={{ pin1: "ADC_VMID1", pin2: "CONFIG1", pin3: "CONFIG2", pin4: "CONFIG3", pin5: "VDD_A1", pin6: "GND_A1", pin7: "LDO_A_FILT", pin8: "GND_A2", pin9: "VDD_A2", pin10: "CONFIG4", pin11: "CONFIG5", pin12: "ADC_VMID2", pin13: "IN5N", pin14: "IN5P", pin15: "IN6N", pin16: "IN6P", pin17: "ADC_FILT2N", pin18: "ADC_FILT2P", pin19: "IN7N", pin20: "IN7P", pin21: "IN8N", pin22: "IN8P", pin23: "RESET", pin24: "ASP_FSYNC", pin25: "ASP_DOUT1", pin26: "ASP_DOUT2_NC", pin27: "ASP_DOUT3_NC", pin28: "ASP_DOUT4_NC", pin29: "ASP_BCLK", pin30: "GND_D", pin31: "VDD_IO", pin32: "LDO_D_FILT", pin33: "VDD_D", pin34: "MCLK", pin35: "SPI_SDO_I2C_SCL", pin36: "SPI_SCK", pin37: "SPI_SDI_I2C_SDA", pin38: "SPI_CS", pin39: "IN1N", pin40: "IN1P", pin41: "IN2N", pin42: "IN2P", pin43: "ADC_FILT1P", pin44: "ADC_FILT1N", pin45: "IN3N", pin46: "IN3P", pin47: "IN4N", pin48: "IN4P", pin49: "EP_GND" }}
       connections={{ pin1: n("VMID1"), pin2: n("CFG1"), pin3: n("CFG2"), pin4: n("GND"), pin5: n("3V3_ADC"), pin6: n("GND"), pin7: n("LDO_A_FILT"), pin8: n("GND"), pin9: n("3V3_ADC"), pin10: n("CFG4"), pin11: n("CFG5"), pin12: n("VMID2"), pin13: n(adcInputNet(5, "N")), pin14: n(adcInputNet(5, "P")), pin15: n(adcInputNet(6, "N")), pin16: n(adcInputNet(6, "P")), pin17: n("GND"), pin18: n("FILT2P"), pin19: n(adcInputNet(7, "N")), pin20: n(adcInputNet(7, "P")), pin21: n(adcInputNet(8, "N")), pin22: n(adcInputNet(8, "P")), pin23: n("ADC_RESET_N"), pin24: n("ADC_FSYNC"), pin25: n("ADC_DOUT1"), pin29: n("ADC_BCLK"), pin30: n("GND"), pin31: n("3V3_ADC"), pin32: n("LDO_D_FILT"), pin33: n("LDO_D_FILT"), pin34: n("ADC_MCLK"), pin35: n("GND"), pin36: n("GND"), pin37: n("GND"), pin38: n("3V3_ADC"), pin39: n(adcInputNet(1, "N")), pin40: n(adcInputNet(1, "P")), pin41: n(adcInputNet(2, "N")), pin42: n(adcInputNet(2, "P")), pin43: n("FILT1P"), pin44: n("GND"), pin45: n(adcInputNet(3, "N")), pin46: n(adcInputNet(3, "P")), pin47: n(adcInputNet(4, "N")), pin48: n(adcInputNet(4, "P")), pin49: n("GND") }} />
     <R name="R_CFG1" value="4.7k" a="CFG1" b="GND" jlc="C105871" mpn="RC0402FR-074K7L" n={n} />
@@ -194,7 +200,7 @@ const AdcReferenceAndMode = ({ n }: any) => (
     <R name="R_CFG5" value="100k" a="CFG5" b="GND" jlc="C60491" mpn="RC0402FR-07100KL" n={n} />
     {[1, 2].map((bank) => <group key={`filt-${bank}`}>
       <R name={`R_FILT${bank}P`} value="1" a="3V3_ADC" b={`FILT${bank}P`} jlc="C844653" mpn="CRCW12061R00FKEAHP" footprint="1206" n={n} />
-      <C name={`C_FILT${bank}_470U`} value="470uF" a={`FILT${bank}P`} b="GND" jlc="C178530" mpn="EEEFK1A471P" footprint="crow_usb_analog:Panasonic_EEEFK1A471P_8x10.2_Exact" polarized n={n} />
+      <C name={`C_FILT${bank}_470U`} value="470uF" a={`FILT${bank}P`} b="GND" jlc="C178530" mpn="EEEFK1A471P" footprint={<PanasonicEeeFk8x10 />} polarized n={n} />
       <C name={`C_FILT${bank}_10U`} value="10uF" a={`FILT${bank}P`} b="GND" jlc="C2167576" mpn="C0805C106K8RACTU" footprint="0805" n={n} />
       <C name={`C_FILT${bank}_1U`} value="1uF" a={`FILT${bank}P`} b="GND" jlc="C2167386" mpn="C0603C105K4RACTU" footprint="0603" n={n} />
       <C name={`C_VMID${bank}_4U7`} value="4.7uF" a={`VMID${bank}`} b="GND" jlc="C389010" mpn="GRM188Z71C475KE21D" footprint="0603" n={n} />
@@ -221,7 +227,7 @@ const AdcReset = ({ n }: any) => (
     <R name="R_RST_T" value="100k" a="3V3_ADC" b="RESET_RC" jlc="C60491" mpn="RC0402FR-07100KL" n={n} />
     <C name="C_RST_T" value="220nF" a="RESET_C" b="RESET_RC" jlc="C21120" mpn="CL10B224KA8NNNC" footprint="0603" n={n} />
     <C name="C_RST2" value="100nF" a="3V3_ADC" b="GND" jlc="C1525" mpn="CL05B104KO5NNNC" n={n} />
-    <Chip name="Q_RST1" manufacturerPartNumber="2N7002K-7" jlc="C85047" footprint="crow_usb_analog:Diodes_2N7002K_SOT23_Exact"
+    <Chip name="Q_RST1" manufacturerPartNumber="2N7002K-7" jlc="C85047" footprint={<Diodes2N7002kSot23 />}
       pinLabels={{ pin1: "G", pin2: "S", pin3: "D" }} connections={{ pin1: n("RESET_PULSE_H"), pin2: n("GND"), pin3: n("ADC_RESET_N") }} />
     <R name="R_RESET_PU" value="10k" a="3V3_ADC" b="ADC_RESET_N" jlc="C60490" mpn="RC0402FR-0710KL" n={n} />
     <R name="R_RESET_GPD" value="100k" a="RESET_PULSE_H" b="GND" jlc="C60491" mpn="RC0402FR-07100KL" n={n} />

@@ -1,0 +1,23 @@
+mpn: "FA-238 24.0000MD30X-W5"
+footprint: "crow_usb_digital:Epson_FA238_3225_4Pin"
+manufacturer: Epson
+type: quartz_crystal
+package: 3.2x2.5mm 4-pad
+datasheet:
+  doc_id: Q22FA23801885
+  revision: current
+  url: https://download.epsondevice.com/td/pdf/td_xtal_mhz/FA-238_Q22FA23801885_en.pdf
+  local: 02_parts/FA-238-24.0000MD30X-W5/FA-238-24MHz.pdf
+  sha256: 9b8f1745dd181701e2942d9f00af112f941088fea84d2a62f2f17311d839c21e
+  fetched: 2026-09-22
+  pages: 1
+pins:
+  1: CRYSTAL
+  2: CASE_GND
+  3: CRYSTAL
+  4: CASE_GND
+verified: "pin map checked to Epson one-page specification — 2026-09-22"
+limits: {frequency: 24MHz, load_capacitance: 12pF, esr_max: 60ohm}
+layout:
+  source: "Epson recommended footprint and XMOS oscillator network"
+  reviewed: 2026-09-22

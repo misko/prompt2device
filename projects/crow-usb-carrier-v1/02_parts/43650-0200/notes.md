@@ -1,0 +1,1 @@
+The exact PDF and extracted identity were copied byte-for-byte from the Crow donor dossier. This task reuses component facts and source geometry only. It does not adopt the donor board placement, mating approval, harness qualification, or review receipt.

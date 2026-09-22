@@ -1,0 +1,25 @@
+mpn: "TPS62825DMQR"
+footprint: "crow_usb_digital:TI_DMQ0006A_VSON6"
+manufacturer: Texas Instruments
+type: buck_converter
+package: VSON-HR-6 DMQ 1.5x1.5mm
+datasheet:
+  doc_id: SLVSEF9I
+  revision: I
+  url: https://www.ti.com/lit/ds/symlink/tps62825.pdf
+  local: 02_parts/TPS62825DMQR/TPS6282x-SLVSEF9I.pdf
+  sha256: 8a309f2a40486a380242d3f178eb4bda3ef4dca3deca647fa82f763d14866f63
+  fetched: 2026-09-22
+  pages: 33
+pins:
+  1: EN
+  2: PG
+  3: FB
+  4: GND
+  5: SW
+  6: VIN
+verified: "pin map checked to SLVSEF9I Figure 5-1/Table 5-1 — 2026-09-22"
+limits: {vin_min: 2.4V, vin_max: 5.5V, iout_max: 2A, output: "adjustable 0.9V"}
+layout:
+  source: "SLVSEF9I Section 8.3 layout"
+  reviewed: 2026-09-22

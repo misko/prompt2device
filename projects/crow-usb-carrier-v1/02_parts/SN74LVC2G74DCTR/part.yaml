@@ -1,0 +1,19 @@
+mpn: "SN74LVC2G74DCTR"
+footprint: "crow_usb_digital:TI_DCT0008A_SM8"
+manufacturer: Texas Instruments
+type: positive_edge_d_flip_flop_with_async_clear_preset
+package: SM8-8 DCT
+datasheet:
+  doc_id: SCES203Q
+  revision: Q
+  url: https://www.ti.com/lit/ds/symlink/sn74lvc2g74.pdf
+  local: 02_parts/SN74LVC2G74DCTR/SN74LVC2G74-SCES203Q.pdf
+  sha256: 19bc881b14bac1dd02c9a5c9a184d09b2482eab053fb5e7706897ab42c023bea
+  fetched: 2026-09-22
+  pages: 21
+pins: {1: CLK, 2: D, 3: Q_N, 4: GND, 5: Q, 6: CLR_N, 7: PRE_N, 8: VCC}
+verified: "pin map checked to SCES203Q Figure 5-1/Table 5-1 — 2026-09-22"
+limits: {vcc: 1.65V_to_5.5V, tpd_max_3V3: 5.9ns}
+layout:
+  source: "SCES203Q layout guidance; local 100nF bypass"
+  reviewed: 2026-09-22

@@ -1,0 +1,25 @@
+mpn: "TPS3808G09DBVR"
+footprint: "Package_TO_SOT_SMD:SOT-23-6"
+manufacturer: Texas Instruments
+type: voltage_supervisor_open_drain
+package: SOT-23-6 DBV
+datasheet:
+  doc_id: SBVS050N
+  revision: N
+  url: https://www.ti.com/lit/ds/symlink/tps3808.pdf
+  local: 02_parts/TPS3808G09DBVR/TPS3808-SBVS050N.pdf
+  sha256: 74d889c0f68af88032f1633c26381817cc03e10d9fd3b4c177a044ad3ed86eed
+  fetched: 2026-09-22
+  pages: 29
+pins:
+  1: RESET_N
+  2: GND
+  3: MR_N
+  4: CT
+  5: SENSE
+  6: VDD
+verified: "pin map checked to SBVS050N Figure 5-1/Table 5-1 — 2026-09-22"
+limits: {threshold_typ: 0.84V, delay_ct_open_typ: 20ms}
+layout:
+  source: "SBVS050N Section 8 application guidance"
+  reviewed: 2026-09-22

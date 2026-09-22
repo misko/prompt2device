@@ -1,0 +1,19 @@
+mpn: "GRM155R71H103KA88D"
+footprint: "Capacitor_SMD:C_0402_1005Metric"
+manufacturer: Murata
+value: 10nF
+voltage: 50V
+tolerance: 10%
+dielectric: X7R
+package: 0402
+status: active
+datasheet:
+  url: https://www.digikey.com/en/products/detail/murata-electronics/GRM155R71H103KA88D/1033252
+  local: 02_parts/GRM155R71H103KA88D/Murata_Chip_Multilayer_CAT2021_MLCC.pdf
+  sha256: 40827b0048b9af98017b011f5497ee063e5c4382c2d9eef3d95b5e8141530bb4
+  fetched: 2026-09-22
+use: TPS389018 CT timing capacitor
+verified: "exact active DigiKey listing and Murata catalog family — 2026-09-22"
+
+type: capacitor
+pins: {1: terminal_1, 2: terminal_2}

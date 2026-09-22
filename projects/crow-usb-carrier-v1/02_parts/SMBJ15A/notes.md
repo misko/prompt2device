@@ -1,0 +1,1 @@
+The exact PDF and extracted SMBJ15A row were copied byte-for-byte from the Crow donor dossier. The 24.4 V value is a 10/1000 us pulse clamp at the tabulated current, not a sustained-overvoltage guarantee. New-board surge loop and fuse coordination remain open.

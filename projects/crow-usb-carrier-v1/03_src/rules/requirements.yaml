@@ -1,20 +1,33 @@
-# Commission-stage user-visible power contract. Replace the null decision;
-# silence intentionally fails early_design_check.py.
+# Adopted requirement, not a measured output guarantee for this unfinished board.
 schema: 1
-power_claims: []
-no_external_power_outputs: null
-
-# Example:
-# power_claims:
-#   - id: downstream_ports
-#     rails: [PORT_1, PORT_2]
-#     count: 2
-#     simultaneous_count: 2
-#     current_A: 3.0
-#     voltage_min_V: 4.75
-#     voltage_max_V: 5.25
-#     duty: continuous
-#     measurement_plane: mated_test_plug
-#     boundary_evidence: "standard section / qualified fixture and test plane"
-#     included_elements: [protection_switch, pcb_copper_vias_joints, mated_power_contacts]
-#     excluded_elements: [cable, appliance]
+power_claims:
+- id: eight_analog_spokes
+  rails:
+  - N12V_POD1
+  - N12V_POD2
+  - N12V_POD3
+  - N12V_POD4
+  - N12V_POD5
+  - N12V_POD6
+  - N12V_POD7
+  - N12V_POD8
+  count: 8
+  simultaneous_count: 8
+  current_A: 0.1
+  voltage_min_V: 10.8
+  voltage_max_V: 13.2
+  duty: continuous
+  measurement_plane: board_connector
+  boundary_evidence: Retained functional requirement from projects/crow-audio-carrier-v1/03_src/rules/requirements.yaml
+    and spoke_interface.yaml, adopted under BRIEF A1/A2. Current CrowRetainedAnalog
+    source exposes J1-J8 with power on pins 1/3/7 and ground on 2/6/8. Claim ends
+    at each carrier RJ45 contact bank before mate and cable. New-board delivery drop
+    and qualification remain owed.
+  included_elements:
+  - protection_switch
+  - pcb_copper_vias_joints
+  - connector_contacts
+  excluded_elements:
+  - mated_power_contacts
+  - cable
+  - appliance

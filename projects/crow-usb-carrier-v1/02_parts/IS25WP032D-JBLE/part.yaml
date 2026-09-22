@@ -1,0 +1,32 @@
+mpn: "IS25WP032D-JBLE"
+footprint: "Package_SO:SOIC-8_5.3x5.3mm_P1.27mm"
+manufacturer: ISSI
+type: serial_quad_flash
+package: SOIC-8 208mil
+lcsc: C1349020
+datasheet:
+  doc_id: IS25LP-WP032D Rev A15
+  revision: A15
+  url: https://www.mouser.com/datasheet/2/198/25LP_WP032D-1090958.pdf
+  mirror_url: https://www.ic-components.com/files/0c/IS25LP032D-JBLE.pdf
+  local: 02_parts/IS25WP032D-JBLE/IS25LP_WP032D.pdf
+  sha256: 53ef94f9f600a6053935d18c37e9abad326ba825524004cc8687486f4532968d
+  fetched: 2026-09-22
+  pages: 119
+pins:
+  1: CE_N
+  2: SO_IO1
+  3: WP_N_IO2
+  4: GND
+  5: SI_IO0
+  6: SCK
+  7: HOLD_N_IO3
+  8: VCC
+verified: "pin map checked to Rev A15 section 2 and 208 mil package drawing — 2026-09-22"
+gotchas:
+  - "Power reset returns standard SPI mode; all four data pins are used only after a supported Quad-I/O command sequence."
+  - "CE# must remain high for at least tVCE=300 us after VCC reaches 1.65 V; the 4.7 kohm CE# pull-up and delayed XU reset enforce deselection during that interval."
+  - "Hardware is source-compatible with xflash device inquiry/SFDP, but exact XTC/XN programming support remains a recorded software-programming gate; no image is authored here."
+layout:
+  source: "Rev A15 section 10.1 package drawing"
+  reviewed: 2026-09-22

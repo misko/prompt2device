@@ -1,0 +1,16 @@
+mpn: "FTSH-105-01-L-DV-K"
+footprint: "crow_usb_digital:Samtec_FTSH_105_01_L_DV_K"
+manufacturer: Samtec
+type: debug_header
+package: 2x5 1.27mm pitch vertical SMD
+datasheet:
+  doc_id: FTSH-DV
+  revision: unknown
+  url: https://www.samtec.com/products/ftsh-105-01-l-dv-k
+  fetched: 2026-09-22
+  note: "Manufacturer drawing fetch returned HTTP 403; land-pattern drawing/hash is an explicit freeze gate."
+pins: {1: VREF, 2: TMS, 3: GND, 4: TCK, 5: GND, 6: TDO, 7: KEY_NC, 8: TDI, 9: GND, 10: RESET_N}
+verified: "logical debug assignment is project-owned; manufacturer land drawing pending — 2026-09-22"
+layout:
+  source: "place for probe access at board edge; exact land drawing pending"
+  reviewed: 2026-09-22

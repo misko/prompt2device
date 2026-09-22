@@ -1,0 +1,1 @@
+The exact PDF and extracted pin/electrical facts were copied byte-for-byte from the Crow donor dossier. The reverse-input topology is re-authored in this module; no donor placement or review acceptance transfers.

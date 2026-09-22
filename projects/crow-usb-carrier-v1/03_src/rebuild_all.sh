@@ -12,9 +12,9 @@ if [ -e 01_docs/COMMISSIONING-HOLD.md ] || [ -L 01_docs/COMMISSIONING-HOLD.md ];
 fi
 
 # --- board-specific knobs (the ONLY things to edit) -------------------------
-BOARD=power3s                                  # <board> stem for 04_kicad/<board>.*
-TSX=power3s                                    # 03_tscircuit/src/<TSX>.tsx basename
-SCHEMATIC_TITLE=POWER3S                        # human PDF title
+BOARD=crow_carrier                                  # <board> stem for 04_kicad/<board>.*
+TSX=crow_carrier                                    # 03_tscircuit/src/<TSX>.tsx basename
+SCHEMATIC_TITLE="Crow USB Carrier v1"                        # human PDF title
 # ----------------------------------------------------------------------------
 
 PY=/usr/bin/python3

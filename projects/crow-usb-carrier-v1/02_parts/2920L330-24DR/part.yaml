@@ -1,0 +1,19 @@
+mpn: 2920L330/24DR
+manufacturer: Littelfuse
+type: resettable_pptc
+value: 3.3A hold
+status: active
+datasheet:
+  doc_id: 2920L-series
+  revision: "Promelec capture; manufacturer series data"
+  url: https://www.littelfuse.com/series/2920L.html
+  local: Littelfuse_2920L_Promelec.pdf
+  sha256: e475d42720b26ca785d54a72ad608748af40b8a55fa3d311e6577f485ca4b121
+  fetched: 2026-09-22
+package: 2920
+footprint: "crow_usb_power_aux:Littelfuse_2920L330_24"
+escape: {style: passive, pitch: 6.775, tier_required: jlc_2layer_default, checked: "2920L recommended land"}
+pins: {1: IN, 2: OUT}
+limits: {vmax_V: 24, ihold_20C_A: 3.3, ihold_60C_A: 2.5, ihold_70C_A: 2.25, itrip_20C_A: 5.5}
+verified: "Exact 2920L330/24 row and temperature derating table checked 2026-09-22."
+sourcing: {lcsc: null, alternates: [], note: "Exact JLC and second-distributor allocation remain open."}

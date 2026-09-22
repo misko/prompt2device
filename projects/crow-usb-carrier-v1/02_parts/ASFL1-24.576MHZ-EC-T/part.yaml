@@ -1,0 +1,23 @@
+mpn: "ASFL1-24.576MHZ-EC-T"
+footprint: "crow_usb_digital:Abracon_ASFL1_7050"
+manufacturer: Abracon
+type: cmos_oscillator
+package: 7.0x5.0mm SMD 4-pad
+datasheet:
+  doc_id: ASFL1
+  revision: current
+  url: https://abracon.com/Oscillators/ASFL1.pdf
+  local: 02_parts/ASFL1-24.576MHZ-EC-T/ASFL1.pdf
+  sha256: 1ea3fb87c7a018d96a49ef20f9d355191db8df35c609831bdf0d3a6808f1956b
+  fetched: 2026-09-22
+  pages: 2
+pins:
+  1: OE
+  2: GND
+  3: OUTPUT
+  4: VDD
+verified: "pin map checked to ASFL1 dimensional drawing — 2026-09-22"
+limits: {frequency: 24.576MHz, supply: 3.3V, stability: 50ppm}
+layout:
+  source: "ASFL1 datasheet pin and land drawing"
+  reviewed: 2026-09-22

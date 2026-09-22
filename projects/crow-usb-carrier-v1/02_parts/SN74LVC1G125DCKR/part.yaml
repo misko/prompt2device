@@ -1,0 +1,23 @@
+mpn: "SN74LVC1G125DCKR"
+footprint: "crow_usb_digital:TI_DCK0005A_SC70_5"
+manufacturer: Texas Instruments
+type: logic_level_interface
+package: SC70-5 DCK
+datasheet:
+  doc_id: SCES223
+  revision: W
+  url: https://www.ti.com/lit/ds/symlink/sn74lvc1g125.pdf
+  local: 02_parts/SN74LVC1G125DCKR/SN74LVC1G125-SCES223.pdf
+  sha256: 65afa3f9d879b37cb8be507caf84804b24bceeb2e0782ba449fff72160994e4c
+  fetched: 2026-09-22
+  pages: 36
+pins:
+  1: OE_N
+  2: A
+  3: GND
+  4: Y
+  5: VCC
+verified: "pin map checked to SCES223 package/pin table — 2026-09-22"
+layout:
+  source: "SCES223 layout guidance"
+  reviewed: 2026-09-22

@@ -1,0 +1,1 @@
+The 3.3 A nameplate hold applies at 20 C. The adopted design current is 2.12 A; the series table supports 2.50 A at 60 C and 2.25 A at 70 C, leaving 0.38 A and 0.13 A respectively. At 85 C the 1.70 A hold rating is insufficient, so an 85 C full-load requirement would force a different protection choice or a lower admitted load.

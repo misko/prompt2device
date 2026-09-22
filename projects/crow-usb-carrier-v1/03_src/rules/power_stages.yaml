@@ -1,13 +1,9 @@
-# External switching-controller/MOSFET compatibility. Replace the null
-# decision; use stages: [] only when the stated reason is true.
+# External switching-controller gate-drive applicability for the current source.
 schema: 2
 stages: []
-no_external_gate_drive_stages: null
-
-# Each stage requires controller_ref + controller_part (resolving to 02_parts),
-# controller limits, and one switch row per independently charged gate. Every
-# switch part must resolve to 02_parts. qg_basis must be maximum or
-# qualified_max; typical is not proof. Schema 2 additionally requires a
-# current_limit mapping per stage: output and Vin/Vout limits, inductor and
-# shunt populations/tolerances, threshold min/nominal/max ratios, required
-# peak margin, minimum sense ripple, and a bounded peak-current path rating.
+no_external_gate_drive_stages: >-
+  TPSM63603V5 and TPS62825 variants contain their switching MOSFETs.
+  No external switching-regulator controller drives a discrete power stage.
+  Q_IN is a passively biased reverse-polarity P-channel device; retained
+  quiet-rail switching and dump devices are not converter gate-drive stages.
+  Their bias, transients and fault behavior remain protection-path obligations.

@@ -1,0 +1,34 @@
+mpn: "SN74AXC4T245PWR"
+footprint: "Package_SO:TSSOP-16_4.4x5mm_P0.65mm"
+manufacturer: Texas Instruments
+type: logic_level_interface
+package: TSSOP-16 PW
+datasheet:
+  doc_id: SCES877
+  revision: A
+  url: https://www.ti.com/lit/ds/symlink/sn74axc4t245.pdf
+  local: 02_parts/SN74AXC4T245PWR/SN74AXC4T245-SCES877.pdf
+  sha256: 56d2fab11d8986f4eaf72c3f613d6d1d696188d6c41f1a5de6f7af1562270441
+  fetched: 2026-09-22
+  pages: 33
+pins:
+  1: VCCA
+  2: 1DIR
+  3: 2DIR
+  4: 1A1
+  5: 1A2
+  6: 2A1
+  7: 2A2
+  8: GND
+  9: GND
+  10: 2B2
+  11: 2B1
+  12: 1B2
+  13: 1B1
+  14: 2OE_N
+  15: 1OE_N
+  16: VCCB
+verified: "pin map checked to SCES877 package/pin table — 2026-09-22"
+layout:
+  source: "SCES877 layout guidance"
+  reviewed: 2026-09-22

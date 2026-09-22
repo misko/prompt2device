@@ -1,0 +1,25 @@
+mpn: "TPS389018DSER"
+footprint: "crow_usb_digital:TI_DSE0006A_WSON6"
+manufacturer: Texas Instruments
+type: voltage_supervisor_open_drain
+package: WSON-6 DSE 1.5x1.5mm
+datasheet:
+  doc_id: SBVS228A
+  revision: A
+  url: https://www.ti.com/lit/ds/symlink/tps3890.pdf
+  local: 02_parts/TPS389018DSER/TPS3890-SBVS228A.pdf
+  sha256: ee79599730e7606ba9718d9820b411020e3dcd9ff7d44572f8ee63fead15b9d0
+  fetched: 2026-09-22
+  pages: 27
+pins:
+  1: SENSE
+  2: GND
+  3: MR_N
+  4: VDD
+  5: CT
+  6: RESET_N
+verified: "pin map checked to SBVS228A pin table — 2026-09-22"
+limits: {threshold: "1.73V falling", vdd: 1.5V_to_5.5V}
+layout:
+  source: "SBVS228A application section"
+  reviewed: 2026-09-22

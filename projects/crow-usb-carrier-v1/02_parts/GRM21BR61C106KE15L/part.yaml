@@ -1,0 +1,17 @@
+mpn: "GRM21BR61C106KE15L"
+footprint: "Capacitor_SMD:C_0805_2012Metric"
+manufacturer: Murata
+value: 10uF
+voltage: 16V
+tolerance: 10%
+dielectric: X5R
+package: 0805
+status: active
+source_url: "https://www.digikey.com/en/products/detail/murata-electronics/GRM21BR61C106KE15L/702594"
+verified: "Murata/DigiKey exact upgrade listing, 2026-09-22"
+characteristics_pdf: "02_parts/GRM21BR61C106KE15L/GRM21BR61C106KE15-characteristics.pdf"
+characteristics_note: "Murata SimSurfing typical curves; not guaranteed worst-case limits"
+design_curve_screen: "Murata typical curve is approximately 45% retained at 5 V; two parallel input parts screen to 6.89 uF after 0.90 tolerance and an additional 0.85 temperature allowance, versus TPS62825 minimum-effective CIN 3 uF. Curve and 0.85 factor are engineering screens, not guaranteed PVT limits."
+
+type: capacitor
+pins: {1: terminal_1, 2: terminal_2}

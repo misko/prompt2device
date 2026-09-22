@@ -1,0 +1,88 @@
+mpn: TPSM63603V5RDHR
+manufacturer: Texas Instruments
+type: integrated_synchronous_buck_power_module
+value: fixed 5V 3A
+status: active
+datasheet:
+  doc_id: SLVSFS5A
+  revision: A
+  url: https://www.ti.com/lit/ds/symlink/tpsm63603.pdf
+  local: TPSM63603_SLVSFS5A.pdf
+  sha256: ffb05dbfc1fb35d79778fda2242d4880a0dfae146c28481afba8dff778b72dc6
+  fetched: 2026-09-22
+  pages: 47
+package: RDH0030A enhanced HotRod B0QFN, 4 x 6 x 1.9 mm max
+footprint: crow_usb_power:TPSM63603V5RDHR_RDH0030A
+escape:
+  style: qfn
+  pitch: 0.5
+  escapes_worst_side: 8
+  tier_required: jlc_4layer_standard
+  checked: '2026-09-22 coordinator native pad-to-pad check: all435 pairs preserve0.15mm,
+    above0.127mm standard floor; realized thermal-via and trace escape remain board
+    gates.'
+pins:
+  1: RT
+  2: EN_SYNC
+  3: VIN
+  4: VIN
+  5: PGND
+  6: PGND
+  7: VOUT
+  8: VOUT
+  9: VOUT
+  10: VOUT
+  11: SW_NC
+  12: VOUT
+  13: VOUT
+  14: VOUT
+  15: VOUT
+  16: PGND
+  17: PGND
+  18: VIN
+  19: VIN
+  20: CBOOT
+  21: RBOOT
+  22: VLDOIN
+  23: VCC
+  24: AGND
+  25: FB
+  26: PG
+  27: AGND
+  28: PGND
+  29: PGND
+  30: VOUT
+limits:
+  vin_min_V: 3
+  vin_max_V: 36
+  iout_max_A: 3
+  vout_fixed_V: 5
+  feedback_accuracy_pct: 1
+  load_regulation_pct_typ: 0.1
+  line_regulation_pct_typ: 0.1
+  tj_max_C: 125
+  theta_ja_4layer_2oz_C_per_W: 33.5
+  high_side_current_limit_max_A: 6.8
+layout:
+  source: TI SLVSFS5A sec.10 and RDH0030A example board layout
+  reviewed: 2026-09-22
+  notes:
+  - Use at least four layers with 2 oz outer copper for the 33.5 C/W design basis;
+    solder all four large pads, join AGND/PGND once as shown, place input/output capacitors
+    at package corners, keep SW pad 11 copper minimal and unconnected externally.
+  - Corrected source and native component footprints were compared pad-by-pad with
+    RDH0030A pages 45-46; native board generation remains a separate gate.
+layout_refs:
+- tier: 1
+  reached: true
+  artifact: TI SLVSFS5A Figure 10-2 and RDH0030A land/stencil drawings
+  why: Exact module and package authority.
+verified: '2026-09-22: SLVSFS5A pin table and pp45-46 land/stencil drawings independently
+  reopened. Corrected native y-down orientation, central sizes, and stepped rounded
+  corner lands transcribed from manufacturer vector; component source only.'
+sourcing:
+  lcsc: C5915071
+  alternates: []
+  note: Exact LCSC catalog identity from retained source research. DigiKey296-TPSM63603V5RDHRCT-ND
+    and Mouser595-TPSM63603V5RDHR are same-part sources, not alternate MPNs. Order-time
+    allocation remains separate.

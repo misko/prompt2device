@@ -1,0 +1,87 @@
+mpn: DMP6023LFG-13
+manufacturer: Diodes Incorporated
+type: p_channel_reverse_polarity_mosfet
+value: DMP6023LFG-13
+status: active
+datasheet:
+  doc_id: DS37204
+  revision: "Rev. 2-2"
+  url: https://www.diodes.com/datasheet/download/DMP6023LFG.pdf
+  local: DMP6023LFG_DS37204_Rev2-2.pdf
+  sha256: 1ea244be5e0fe4195ad20cb2da0960ac622b6efc19cf9e579c9eb8ef5777fa27
+  fetched: 2026-09-02
+  pages: 6
+  provenance: "Downloaded directly from diodes.com; the committed PDF footer identifies DS37204 Rev. 2-2 and covers the exact DMP6023LFG-13 ordering suffix."
+package: "PowerDI3333-8; pins 1-3 source, pin 4 gate, common drain land pins 5-8"
+footprint: "crow_usb_power_aux:Diodes_DMP6023LFG_PowerDI3333_8"
+escape: {style: dfn, pitch: 0.65, tier_required: jlc_4layer_standard, checked: "DS37204 package and KiCad exact PowerDI3333 footprint reviewed 2026-09-01"}
+pins: {1: SOURCE, 2: SOURCE, 3: SOURCE, 4: GATE, 5: DRAIN_COMMON, 6: DRAIN_COMMON, 7: DRAIN_COMMON, 8: DRAIN_COMMON}
+native_pad_map: {1: 1, 2: 2, 3: 3, 4: 4, 5: "manufacturer-fused drain land for logical pins 5-8"}
+pin_aliases:
+  6:
+    schematic: "5"
+    footprint: "5"
+    fused: true
+    why: "Manufacturer drain positions 5-8 share the exposed drain leadframe; the source symbol and exact KiCad composite drain land use identity 5."
+    evidence: "Diodes DS37204 Rev.2-2 p.1 bottom-view package figure and equivalent circuit; p.5 package/land drawing; Package_SON:Diodes_PowerDI3333-8 composite pad 5 includes all four drain fingers."
+  7:
+    schematic: "5"
+    footprint: "5"
+    fused: true
+    why: "Manufacturer drain positions 5-8 share the exposed drain leadframe; the source symbol and exact KiCad composite drain land use identity 5."
+    evidence: "Diodes DS37204 Rev.2-2 p.1 bottom-view package figure and equivalent circuit; p.5 package/land drawing; Package_SON:Diodes_PowerDI3333-8 composite pad 5 includes all four drain fingers."
+  8:
+    schematic: "5"
+    footprint: "5"
+    fused: true
+    why: "Manufacturer drain positions 5-8 share the exposed drain leadframe; the source symbol and exact KiCad composite drain land use identity 5."
+    evidence: "Diodes DS37204 Rev.2-2 p.1 bottom-view package figure and equivalent circuit; p.5 package/land drawing; Package_SON:Diodes_PowerDI3333-8 composite pad 5 includes all four drain fingers."
+limits: {vds_max: -60V, vgs_max: "+/-20V", id_70c: -6.2A, rds_on_max_at_minus10v: 25mOhm}
+gotchas:
+  - "For reverse-hookup protection the drain faces J9/F_IN and the source faces the protected rail; source/drain reversal defeats the intended body-diode direction."
+  - "A 12V gate-source zener is required because the admitted TVS-clamped transient exceeds the +/-20V gate rating."
+  - "This topology blocks reverse hookup, not reverse energy from a powered downstream rail; downstream sources are prohibited by architecture."
+verified: "CITED: Diodes DS37204 Rev. 2-2 bottom/top-view pin drawing and ordering table, PDF p.1, fix pins 1-3=source, pin 4=gate, pins 5-8=common drain and the -13 suffix; the Maximum Ratings and Electrical Characteristics tables, PDF p.2, fix -60V VDS, +/-20V VGS, -6.2A at 70C and 25mOhm maximum at VGS=-10V. Extraction correction 2026-09-07: all eight physical identities retained, with explicit cited aliases for the manufacturer-fused drain positions; primary PDF revision/bytes unchanged."
+layout:
+  source: Diodes DS37204 package/suggested-pad drawing and TI SLVAE57B reverse-polarity topology
+  reviewed: '2026-09-08'
+  notes:
+  - Keep the high-current path short/wide and place the gate clamp directly between source and gate.
+  - 'Carrier local-placement source 2026-09-08: exact-ref/non-ground-net adjacency is a rotation-aware copper-bounding-box gap, NOT pad-center
+    distance or routed length. Rounded engineering ceilings below are not manufacturer numerical maxima. Ground pours are excluded by P-ADJ-PAIR;
+    local return/thermal/escape proof remains owed on the later saved PCB.'
+  - Source-only pin-center plan uses <=5mm local bypass/BST and <=10mm feedback ceilings, with separately named bulk/input/feed exceptions. See
+    01_docs/SOURCE-CORRECTION-20260908-local-placement.md for all 299 roles and exact source geometry; no current-board acceptance is inherited.
+  adjacency:
+  - refdes:
+    - Q_IN
+    - F_IN
+    nets:
+    - 12V_FUSED
+    max_mm: 3.5
+    why: 'Engineering copper-gap ceiling: power-entry-feed; exact partner, selected non-poured net only.'
+  - refdes:
+    - Q_IN
+    - D_IN
+    nets:
+    - 12V_PROTECTED
+    max_mm: 11.0
+    why: 'Engineering copper-gap ceiling: power-entry-feed; exact partner, selected non-poured net only.'
+  - refdes:
+    - Q_IN
+    - D_QIN_GS
+    nets:
+    - Q_IN_GATE
+    max_mm: 7.0
+    why: 'Engineering copper-gap ceiling: power-entry-feed; exact partner, selected non-poured net only.'
+  - refdes:
+    - Q_IN
+    - R_QIN_G
+    nets:
+    - Q_IN_GATE
+    max_mm: 4.0
+    why: 'Engineering copper-gap ceiling: power-entry-feed; exact partner, selected non-poured net only.'
+layout_refs:
+  - {tier: 1, reached: true, artifact: "Diodes DS37204 Rev 2-2", why: "Manufacturer authority fixes pin/land and electrical limits."}
+  - {tier: 2, reached: false, artifact: "Diodes editable reverse-polarity reference design using exact DMP6023LFG-13", why: "No exact manufacturer editable board was identified; TI SLVAE57B supplies topology precedent but not this package realization."}
+sourcing: {lcsc: C780842, alternates: [], note: "Exact MPN/code match queried from the live JLC catalog 2026-09-01; order-time allocation remains separate."}

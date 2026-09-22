@@ -1,0 +1,19 @@
+mpn: "SN74LVC1G332DBVR"
+footprint: "Package_TO_SOT_SMD:SOT-23-6"
+manufacturer: Texas Instruments
+type: three_input_or_gate
+package: SOT-23-6 DBV
+datasheet:
+  doc_id: SCES489E
+  revision: E
+  url: https://www.ti.com/lit/ds/symlink/sn74lvc1g332.pdf
+  local: 02_parts/SN74LVC1G332DBVR/SN74LVC1G332-SCES489E.pdf
+  sha256: 5ecad3180cb93664b358a9cb6a724e012fc9b124e6ae0d1004c9ae6600549f21
+  fetched: 2026-09-22
+  pages: 20
+pins: {1: A, 2: GND, 3: B, 4: Y, 5: VCC, 6: C}
+verified: "pin map checked to SCES489E DBV top-view drawing — 2026-09-22"
+limits: {vcc: 1.65V_to_5.5V, tpd_max_3V3_125C_50pF: 6.2ns}
+layout:
+  source: "SCES489E layout guidance"
+  reviewed: 2026-09-22

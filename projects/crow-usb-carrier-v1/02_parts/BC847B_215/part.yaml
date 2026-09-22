@@ -1,0 +1,16 @@
+mpn: "BC847B,215"
+footprint: "Package_TO_SOT_SMD:SOT-23"
+manufacturer: Nexperia
+type: npn_transistor
+package: SOT-23
+datasheet:
+  doc_id: BC847_SER
+  revision: unknown
+  url: https://www.nexperia.com/product/BC847B
+  fetched: 2026-09-22
+  note: "Manufacturer PDF fetch returned HTTP 403; local PDF/hash is an explicit freeze gate."
+pins: {1: B, 2: E, 3: C}
+verified: "pin order checked against Nexperia product pinout; local primary PDF pending — 2026-09-22"
+layout:
+  source: "standard SOT-23 low-current switch placement"
+  reviewed: 2026-09-22

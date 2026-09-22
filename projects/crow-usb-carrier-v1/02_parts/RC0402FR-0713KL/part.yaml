@@ -1,0 +1,13 @@
+mpn: RC0402FR-0713KL
+manufacturer: YAGEO
+type: thick_film_resistor
+value: 13k
+status: active
+datasheet: {doc_id: RC0402FR-0713KL, revision: generated-2026-09-22, url: "https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-0713KL", local: Yageo_RC0402FR-0713KL.pdf, sha256: 1d362611f47786cbaa9a9a40f230bb82c434da363b62de528b7c542b983b56ee, fetched: 2026-09-22, pages: 1}
+package: "0402 (1005 metric)"
+footprint: "Resistor_SMD:R_0402_1005Metric"
+escape: {style: passive, pitch: 0.5, tier_required: jlc_2layer_default, checked: "exact YAGEO sheet"}
+pins: {1: A, 2: B}
+limits: {resistance_ohm: 13000, tolerance_pct: 1, power_W_at_70C: 0.063, working_voltage_V: 50}
+verified: "Exact MPN/value/package checked 2026-09-22."
+sourcing: {lcsc: null, alternates: [], note: "Generic exact MPN is broadly catalogued; authenticated JLC identity remains order-stage work."}

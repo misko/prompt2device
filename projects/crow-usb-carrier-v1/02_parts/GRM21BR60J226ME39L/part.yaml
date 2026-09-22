@@ -1,0 +1,9 @@
+mpn: "GRM21BR60J226ME39L"
+footprint: "Capacitor_SMD:C_0805_2012Metric"
+characteristics_pdf: "02_parts/GRM21BR60J226ME39L/GRM21BR60J226ME39-characteristics.pdf"
+characteristics_note: "Murata SimSurfing typical curves; not guaranteed worst-case limits"
+design_curve_screen: "Murata typical curve is approximately 54% retained at 3.3 V; two parallel output parts screen to 16.16 uF after 0.80 tolerance and an additional 0.85 temperature allowance, versus TPS62825 minimum-effective COUT 10 uF. The 44-uF nominal bank is treated as the Table 8-3 47-uF class; curve and 0.85 factor are engineering screens, not guaranteed PVT limits."
+
+type: capacitor
+value: "22uF"
+pins: {1: terminal_1, 2: terminal_2}

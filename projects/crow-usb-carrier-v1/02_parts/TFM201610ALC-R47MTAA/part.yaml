@@ -1,0 +1,20 @@
+mpn: "TFM201610ALC-R47MTAA"
+footprint: "crow_usb_digital:TDK_TFM201610"
+manufacturer: TDK
+type: shielded_power_inductor
+package: 2016 metric
+datasheet:
+  doc_id: SLVSEF9I
+  revision: I
+  url: https://www.ti.com/lit/ds/symlink/tps62825.pdf
+  local: 02_parts/TFM201610ALC-R47MTAA/TPS6282x-SLVSEF9I.pdf
+  sha256: 8a309f2a40486a380242d3f178eb4bda3ef4dca3deca647fa82f763d14866f63
+  fetched: 2026-09-22
+  pages: 33
+  note: "Primary TI converter datasheet Table 8-5 names this exact third-party inductor; TDK manufacturer PDF still required at freeze."
+pins: {1: winding, 2: winding}
+limits: {inductance: 0.47uH, current_rating: 5.2A, dcr_max: 25mohm}
+verified: "two-terminal passive; exact MPN/rating checked in TI SLVSEF9I Table 8-5 — 2026-09-22"
+layout:
+  source: "TI SLVSEF9I buck layout guidance"
+  reviewed: 2026-09-22
