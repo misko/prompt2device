@@ -1,24 +1,77 @@
-# Applicability is adopted; the cross-section remains unadmitted until the
-# exact fabrication stackup and differential solver result are available.
+# Nominal design cross-section adopted from the vendor solver.
+# This is not board-realized or fabrication qualification.
 schema: 1
 rf:
   enabled: true
-  rationale: >-
-    The carrier uses the XU316 high-speed USB PHY. Its USB_DP/USB_DM route
+  rationale: The carrier uses the XU316 high-speed USB PHY. Its USB_DP/USB_DM route
     requires controlled differential impedance and an uninterrupted return.
   risk_tier: controlled-impedance
-  risk_basis: >-
-    XMOS XM-014532-PC v2.0.0 sections 14.1-14.2 specify 90 ohm USB
-    differential impedance, matched pair routing and continuous references.
-    The published example dimensions are not a fabrication stackup selection.
+  risk_basis: XMOS XM-014532-PC v2.0.0 sections 14.1-14.2 specify 90 ohm USB differential
+    impedance, matched-pair routing and continuous references. The published 0.12/0.10/0.10
+    mm example is not used as fabrication geometry.
   ports:
-    - id: USB_DEVICE
-      nets: [USB_DP, USB_DM]
-      band_hz: [0, 2400000000]
-      z0_ohm: 90
-      launch: GCT USB4105 through TPD2EUSB30A to XU316 pins 60/59
-      termination: XU316 integrated USB PHY; no external parallel resistor added
-      reference_layer: In1.Cu
-  # Deliberately incomplete: no invented dielectric thickness, Dk or trace
-  # geometry. RF-CONTRACT must refuse source admission until this is populated.
-  cross_sections: []
+  - id: USB_DEVICE
+    nets:
+    - USB_DP
+    - USB_DM
+    band_hz:
+    - 0
+    - 2400000000
+    z0_ohm: 90
+    launch: GCT USB4105 through TPD2EUSB30A to XU316 pins 60/59
+    termination: XU316 integrated USB PHY; no external parallel resistor added
+    reference_layer: In1.Cu
+  cross_sections:
+  - id: USB2_L1_OVER_L2_MASKED
+    status: locked
+    stackup_source: 'JLCPCB JLC04161H-7628G (c9cc086852034b99bdf5d61bf940f3cc), 4-layer
+      nominal 1.6 mm, 1 oz outer / 0.5 oz inner. Exact vendor response: 01_docs/research/2026-09-22-usb-impedance-evidence.md.'
+    solver: 'JLCPCB DiffEdgeCoupledCoatedMicrostrip1B returned 89.6111388098 ohm for
+      0.410/0.150 mm with plated copper and soldermask. Exact input/output and model:
+      01_docs/research/2026-09-22-usb-impedance-evidence.md.'
+    copper_layer: F.Cu
+    reference_layer: In1.Cu
+    dielectric_height_mm: 0.5124
+    dk: 4.2366666667
+    target_z0_ohm: 90
+    width_mm: 0.41
+    gap_mm: 0.15
+  performance_claims:
+  - id: USB2-CLAIM-ZDIFF
+    claim: The nominal masked L1-over-L2 geometry calculates to 89.611 ohm on the
+      selected JLC stack.
+    acceptance: JLC order review and coupon/TDR result are 90 ohm +/-10%; no unreviewed
+      stack, width, gap, copper or mask substitution is accepted.
+    evidence: 01_docs/research/2026-09-22-usb-impedance-evidence.md retains exact
+      vendor request/response. Board and fabrication verification remain owed.
+  first_article:
+    measurements:
+    - Differential TDR or impedance coupon measurement for the ordered stackup
+    - USB 2.0 high-speed eye test at the device connector
+    acceptance:
+    - Differential impedance remains within 81 to 99 ohms
+    - The implemented port passes the applicable USB 2.0 high-speed eye mask
+  reviews:
+    schematic:
+      path: 08_reviews/rf_schematic.md
+      artifact: 04_kicad/crow_carrier.kicad_sch
+      requirements:
+      - USB2-SCH-TOPOLOGY
+      - USB2-SCH-ESD
+      - USB2-SCH-CLAIMS
+    pcb:
+      path: 08_reviews/rf_pcb.md
+      artifact: 04_kicad/crow_carrier.kicad_pcb
+      requirements:
+      - USB2-PCB-STACKUP
+      - USB2-PCB-GEOMETRY
+      - USB2-PCB-RETURN
+      - USB2-PCB-SKEW
+    fab:
+      path: 08_reviews/rf_fab.md
+      artifact: 06_build/fab/crow_carrier_gerbers.zip
+      requirements:
+      - USB2-FAB-STACKUP
+      - USB2-FAB-IMPEDANCE
+      - USB2-FAB-MASK
+      - USB2-FAB-COUPON

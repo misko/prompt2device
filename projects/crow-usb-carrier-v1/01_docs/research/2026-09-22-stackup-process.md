@@ -1,5 +1,9 @@
 # JLCPCB stack/process evidence captured 2026-09-22
 
+The 2 oz construction below is retained as rejected research. The adopted
+1 oz design cross-section and exact vendor responses are in
+[USB impedance evidence](2026-09-22-usb-impedance-evidence.md).
+
 Public primary sources:
 
 - `https://jlcpcb.com/impedance`

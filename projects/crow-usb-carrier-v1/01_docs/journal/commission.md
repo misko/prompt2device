@@ -53,3 +53,8 @@
 - did: reviewed the SOL connector-reference parser candidate and integrated its narrow additive named-connector grammar. Replaced trial-dependent tests with portable fixtures in the existing registered suite; preserved legacy digit-bearing identifiers.
 - result: demonstrated RED against the old checker (25 pass, 2 fail), then GREEN after repair (27/27 contract tests and 19/19 phase tests, including 35 known-bad controls). Current Crow contract compiles all 4 profiles and 11 instances, with INCOMPLETE and 44/45 evidence items unknown; no geometry or readiness criterion was weakened.
 - next: close actual connector assembly facts, reconcile power and thermal bounds, and review the active SOL schematic presentation and 1 oz impedance candidates. Commission hold remains.
+
+## 2026-09-22T08:13:00Z — iterate 11
+- did: closed SOL 1 oz impedance delivery PASS and adopted the nominal vendor-solved USB cross-section. Preserved exact vendor template/configuration/solve response payloads in tracked research; corrected generated-artifact names to the current crow_carrier build stem. Kept explanatory solver/tolerance details out of unconsumed YAML keys.
+- result: RF-CONTRACT passes 1 port, 1 cross-section and 1 claim; no review phases requested or passed. JLC solver gives89.6111388098 ohm for0.410mm width/0.150mm gap on JLC04161H-7628G. Reconciled the evidence prose with the unresolved85%versus88%thermal premise; no board thermal claim.
+- next: SOL schematic presentation, connector fact closure and power bound closure are active. Native board generation still requires commission admission.

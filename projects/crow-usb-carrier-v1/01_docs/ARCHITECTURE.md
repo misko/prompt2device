@@ -1,8 +1,11 @@
 # Crow USB carrier architecture — commissioning draft
 
-Status: candidate architecture. XU316-1024-TQ128-C24 is preferred for continued
-hardware design with a documented programming contract and separately scoped firmware. No IC, pin map, rail setpoint,
-stackup or source rule has been frozen. The commissioning hold remains active.
+Status: hardware source under commissioning. The current source composes the
+XU316-1024-TQ128-C24, its power/clock/memory support, retained eight-channel
+analog circuitry, and USB front end. Nominal USB cross-section is adopted in
+`03_src/rules/rf.yaml`. Schematic presentation/review, power bounds and physical
+qualification remain open. Firmware stays separately scoped; the commissioning
+hold remains active.
 
 ## Block diagram
 
@@ -76,10 +79,14 @@ Routed timing and eventual USB capture remain separate evidence boundaries.
 
 ## Stackup
 
-A continuous-reference multilayer board is the starting point. Layer count is
-not frozen; prove exact package escape and controlled-impedance manufacture
-before committing to it. No old PCB outline, hole position, layer choice or
-learned via/copper arrangement has been imported as a hard constraint.
+Use the vendor-supported four-layer JLC04161H-7628G nominal-1.6-mm stack,
+1 oz outer / 0.5 oz inner copper, with F.Cu USB routing over continuous In1.Cu.
+The source RF rule carries the vendor-solved nominal width/gap; exact primary
+responses and plated-copper/mask assumptions are retained in
+[impedance evidence](research/2026-09-22-usb-impedance-evidence.md).
+This establishes a design cross-section, not routed-board or production
+qualification. The 1 oz thermal design must be proven separately. No old
+outline, hole positions or learned via/copper arrangements are hard constraints.
 
 ## Ground strategy
 
