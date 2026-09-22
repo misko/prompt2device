@@ -1,0 +1,372 @@
+# Crow USB draft routing contract; no routed geometry or accepted placement.
+# USB nominal width/gap comes from rules/rf.yaml and vendor stackup evidence.
+# Analog matching, converter-loop ownership, thermal copper and exact connector
+# launches require modular placement review before route admission.
+# No prior promoted copper is reused. Decision snapshots/reviews remain mandatory.
+# The commissioning hold prohibits execution until source admission closes.
+project:
+  name: crow_carrier
+  board: 04_kicad/crow_carrier.kicad_pcb
+  build_dir: 06_build/route
+flow:
+  heartbeat_s: 10
+  decision_admission:
+    mode: enforce
+    locked_route: 03_src/reviews/accepted-route-contract.yaml
+    locked_nets: 03_src/reviews/accepted-nets-contract.yaml
+  pre_route_reviews:
+    board: 04_kicad/crow_carrier.kicad_pcb
+    netlist: 06_build/netlists/crow_carrier.net
+    topology: 08_reviews/pre-route_topology.md
+    schematic_pdf: 03_tscircuit/build/schematic.pdf
+    schematic_render: 08_reviews/pre-route_schematic_render.md
+    pin: 08_reviews/pre-route_pin.md
+    layout: 08_reviews/pre-route_layout.md
+    render: 08_reviews/pre-route_render.md
+    a_render: 06_build/pre_route/twin_overlay.md
+  owner:
+    stage: routing
+    files:
+    - 03_src/route.yaml
+    - 03_src/floorplan.yaml
+  copper:
+    deterministic:
+    - prep.seed_stubs
+    - stitch.seed_stubs
+    stochastic:
+    - route.waves
+  budgets_s:
+    tscircuit_deps: 30
+    tscircuit_build: 60
+    escape_packages: 30
+    escape_lands: 120
+    tier_preflight: 15
+    grind: 900
+    rebuild: 1200
+    layout_drc: 120
+  timeouts_s:
+    default: 600
+    source_schema_governance: 60
+    adr_bound_governance: 60
+    tscircuit_deps: 120
+    tscircuit_build: 180
+    route_wave: 900
+    route_race: 2400
+    route_evaluate: 180
+    route_import: 300
+    stitch: 900
+    rebuild: 1500
+    layout_drc: 180
+  blockers: []
+prep:
+  out: r0.kicad_pcb
+  keepouts:
+    layers:
+    - User.2
+    edge_band: 0.7
+    rects: []
+  waves:
+    exclude:
+    - GND
+    - CHASSIS
+    - unconnected-*
+    groups:
+      usb:
+      - USB_DP
+      - USB_DN
+      crystal:
+      - XTAL_IN
+      - XTAL_IN_R
+      - XTAL_OUT
+      analog_adc:
+      - ADC1P
+      - ADC1N
+      - ADC2P
+      - ADC2N
+      - ADC3P
+      - ADC3N
+      - ADC4P
+      - ADC4N
+      - ADC5P
+      - ADC5N
+      - ADC6P
+      - ADC6N
+      - ADC7P
+      - ADC7N
+      - ADC8P
+      - ADC8N
+      audio_timing:
+      - ADC_BCLK
+      - ADC_BCLK_INV
+      - ADC_BCLK_RAW
+      - ADC_BCLK_SAFE
+      - ADC_DOUT1
+      - ADC_FSYNC
+      - ADC_FSYNC_EXT
+      - ADC_FSYNC_RAW
+      - ADC_FSYNC_SAFE
+      - ADC_MCLK
+      - ADC_MCLK_RAW
+      - ADC_MCLK_SAFE
+      - AUDIO_24M576
+      - AUDIO_MCLK_1V8
+      - TDM_BCLK_1V8
+      - TDM_DATA_1V8
+      - TDM_FSYNC_1V8
+      - TDM_OE_N
+      input_power:
+      - N12V_IN
+      - N12V_FUSED
+      - N12V_PROTECTED
+      parent_power:
+      - N5V_BUCK
+      quiet_power:
+      - N5V_LDO_FEED
+      - N5V_LDO_HOLD
+      - N3V3_ADC
+      digital_power:
+      - N0V9
+      - N1V8
+      - N3V3X
+      - U_CORE_SW
+      - U_1V8_SW
+      - U_3V3X_SW
+      spoke_power:
+      - N12V_POD1
+      - N12V_POD2
+      - N12V_POD3
+      - N12V_POD4
+      - N12V_POD5
+      - N12V_POD6
+      - N12V_POD7
+      - N12V_POD8
+      control: rest
+route:
+  import_source: build
+  krt: ~/gits/KiCadRoutingTools
+  ownership_preflight:
+    mode: enforce
+  candidate_grade:
+    mode: enforce
+  exploration_guard:
+    mode: enforce
+    plateau_attempts: 2
+    max_attempts: 5
+    max_novel_signatures: 3
+    max_operation_amplification: 8
+  preflight_critical_pairs:
+  - name: USB_DEVICE
+    p: USB_DP
+    n: USB_DN
+    wave: usb
+    allowed_layers:
+    - F.Cu
+    no_vias: true
+  no_critical_routes: null
+  common:
+    layers:
+    - F.Cu
+    - B.Cu
+    via_size: 0.6
+    via_drill: 0.3
+    fab_tier: advanced
+    fab_overrides: projects/crow-usb-carrier-v1/03_src/rules/route_fab_overrides.txt
+    no_stub_layer_swap: true
+    keepout: true
+    keepout_layer: User.2
+    clearance: 0.2
+  waves:
+  - name: usb
+    group: usb
+    track_width: 0.41
+    max_iterations: 400000
+    engine: diff
+    diff_pair_gap: 0.15
+    layers:
+    - F.Cu
+    length_match_group:
+    - - USB_DP
+      - USB_DN
+    length_match_tolerance: 1.0
+  - name: crystal
+    group: crystal
+    track_width: 0.2
+    max_iterations: 400000
+    layers:
+    - F.Cu
+  - name: analog_adc
+    group: analog_adc
+    track_width: 0.2
+    max_iterations: 400000
+  - name: audio_timing
+    group: audio_timing
+    track_width: 0.2
+    max_iterations: 400000
+  - name: input_power
+    group: input_power
+    track_width: 1.2
+    max_iterations: 400000
+    clearance: 0.2
+  - name: parent_power
+    group: parent_power
+    track_width: 1.0
+    max_iterations: 400000
+    clearance: 0.2
+  - name: quiet_power
+    group: quiet_power
+    track_width: 0.5
+    max_iterations: 400000
+    clearance: 0.2
+  - name: digital_power
+    group: digital_power
+    track_width: 0.6
+    max_iterations: 400000
+  - name: spoke_power
+    group: spoke_power
+    track_width: 0.5
+    max_iterations: 400000
+    clearance: 0.2
+  - name: control
+    group: control
+    track_width: 0.2
+    max_iterations: 400000
+  routability:
+    require_topology: true
+    require_connector_lanes: true
+    layer_roles:
+      F.Cu: signal
+      In1.Cu: reference_plane
+      In2.Cu: mixed_signal_pour
+      B.Cu: signal
+    class_layers:
+      usb_hs:
+      - F.Cu
+      low_speed:
+      - F.Cu
+      - B.Cu
+    connector_lanes:
+    - ref: J_USB
+      lanes:
+      - pad: A6
+        net: USB_DP
+      - pad: A7
+        net: USB_DN
+      - pad: B6
+        net: USB_DP
+      - pad: B7
+        net: USB_DN
+      why: Exact USB4105 native pad aliases preserve both reversible data contact sets.
+    topology:
+    - ref: U_USB_ESD
+      part_mpn: TPD2EUSB30ADRTR
+      kind: shunt
+      signal_pads:
+      - '1'
+      - '2'
+      return_pads:
+      - '3'
+      pairs:
+      - USB_DEVICE
+      why: Connector-side clamp connects directly to continuous USB pair.
+stitch:
+  clearance: 0.2
+  via:
+    size: 0.6
+    drill: 0.3
+    spacing: 0.85
+    pth_margin: 0.3
+    tiers:
+    - {size: 0.6, drill: 0.3, hole_to_copper: 0.255}
+  keepin:
+    inset: 0.8
+  passes:
+  - seed_stubs
+  - dedupe_vias
+  - drop_micro_fragments
+  - drop_dangling
+  - split_t_junctions
+  - reload
+  - hole_to_hole
+  - pad_rescue
+  - stub_fallback
+  - astar_fallback
+  - stitch_grid
+  - fill
+  - island_rescue
+  - fill
+  - fresh_reload
+  - unify_zone_priorities
+  - heal_islands
+  - protect_via_family
+  - gate
+  protect_via_family:
+    via: {size: 0.50, drill: 0.20}
+    via_protection: {capping: yes, filling: yes}
+    min: 6
+  unify_zone_priorities:
+    min_bbox: 0.8
+  dedupe_vias:
+    radius: 0.5
+    metric: box
+  drop_micro_fragments:
+    max_length: 0.12
+    require_free_end: true
+  drop_dangling:
+    max_length: 1.0
+    tol: 0.05
+    sweeps: 4
+  split_t_junctions:
+    tol: 0.05
+  hole_to_hole:
+    min_gap: 0.5
+    mode: nudge
+    prefer_keep:
+    - GND
+  pad_rescue:
+    net: GND
+    via_in_pad: false
+    served_within: 1.6
+    rings:
+    - 0.75
+    - 0.95
+    - 1.2
+    - 1.6
+    - 2.1
+    - 2.7
+    stub_width: 0.3
+    require: none
+  stub_fallback:
+    net: GND
+    min_dist: 0.2
+    max_dist: 8.0
+    width: 0.3
+  astar_fallback:
+    net: GND
+    via: {size: 0.6, drill: 0.3, hole_to_copper: 0.255}
+    width: 0.25
+    window: 3.0
+    attempts: 3
+    max_pending: 8
+    budget_s: 30
+    layers:
+    - F.Cu
+    - B.Cu
+  stitch_grid:
+    net: GND
+    x:
+    - 24
+    - 236
+    - 8
+    y:
+    - 24
+    - 136
+    - 8
+    avoid: []
+  island_rescue:
+    min_bbox: 0.8
+    layers:
+    - F.Cu
+    - B.Cu
+    require: all
+  heal_islands:
+    min_bbox: 0.8
