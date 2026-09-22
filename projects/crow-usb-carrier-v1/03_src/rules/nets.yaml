@@ -19,8 +19,8 @@ classes:
     nets: [N12V_IN, N12V_FUSED, N12V_PROTECTED]
     min_width: 1.2mm
     clearance: 0.2mm
-    current: 2.12A
-    intent: Input protection trunk; use broad copper and allocate every neck/joint in the delivery budget.
+    current: 2.85A
+    intent: Input trunk includes the 2.85 A continuous source-limited fault screen; allocate every neck/joint in the delivery budget.
     routing: Broad continuous copper; width is a preliminary floor, not an IR qualification.
     verify: Exact-board ampacity and source-to-spoke voltage drop at the hot operating corner.
   PARENT_5V:

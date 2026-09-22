@@ -44,9 +44,8 @@ findings:
   state: open
   blocks_at_or_above: DESIGN_CLEAN
   owner: power
-  finding: Eight TPS26625 spoke eFuses replace branch PPTCs in reviewed source. Full source composition
-    and modular endpoint coverage pass; shared input protection, source load-line and transient coordination
-    remain open.
+  finding: Eight TPS26625 eFuses and a 0451004.MRL input fuse are integrated. Early-design component-voltage
+    screen passes; full fault-envelope and source/board behavior remain unqualified.
   closes_when: Complete shared-source fault and surge engineering bounds, input-protector coordination
     and supported retry/startup behavior; qualify realized hardware at its owning boundary.
   evidence:
@@ -56,13 +55,14 @@ findings:
   state: open
   blocks_at_or_above: DESIGN_CLEAN
   owner: power
-  finding: Connector-plane voltage, complete load allocation and realized-board thermal margins remain
-    unqualified.
+  finding: Source voltage budgets now pass E-MARGIN 9/9 with conservative hot-resistance allocations.
+    Realized connector/copper losses and thermal margins still require native layout and qualification.
   closes_when: Close resistance/load allocations and converter thermal bounds against actual copper and
     operating states; pass owning power gates.
   evidence:
   - 03_src/rules/power_tree.yaml
   - 03_src/rules/nets.yaml
+  - 01_docs/research/2026-09-22-input-protection-adoption.md
 - id: USB-connectors
   state: open
   blocks_at_or_above: DESIGN_CLEAN

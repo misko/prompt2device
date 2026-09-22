@@ -8,28 +8,31 @@ source_voltage_boundary:
 off_control: disconnect_J_PWR_external_isolated_12V_input
 quiescent_ua: 0
 input_trunk_class: INPUT_TRUNK
-ir_floor_mohm: 100
+ir_floor_mohm: 150
 
 upstream_delivery:
   source_net: N12V_IN
   destination_net: N12V_PROTECTED
   source_min_V: 11.4
-  destination_floor_V: 11.196
-  load_current_A: 2.12
+  destination_floor_V: 11.006
+  load_current_A: 2.185
   margin: 0.20
   evidence: >-
-    Partial source-stage bound only. F_IN uses the exact 2920L330/24
-    55 milliohm R1max and Q_IN uses the DMP6023LFG-13 25 milliohm maximum
-    at VGS=-10 V. The 2.12 A value is the inherited normal-load allocation;
-    TPS26625 supply current over 11.4-13.2 V remains open. Copper, joints and
-    connector resistance remain unallocated;
-    therefore this is not a qualified connector-plane floor.
+    Project engineering bound at the rounded 2.185 A one-fault screen. F_IN is
+    allocated 48 milliohm, three times its exact 16 milliohm nominal-cold value;
+    Q_IN is allocated 50 milliohm, twice its 25 milliohm 25 C maximum at
+    VGS=-10 V; input connector/copper/vias/joints receive 52 milliohm. The
+    150 milliohm total drops 327.75 mV; the owning gate's 20% adverse drop
+    margin makes that 393.3 mV, so the rounded-down floor is 11.006 V.
+    These adverse multipliers are project design reserves, not manufacturer
+    guarantees; native extraction and hot four-wire first article must verify them.
   rails: [N5V_BUCK, N12V_POD1, N12V_POD2, N12V_POD3, N12V_POD4, N12V_POD5, N12V_POD6, N12V_POD7, N12V_POD8]
   fixed_drop_components_mV:
     no_series_diode: {value: 0, basis: topology, evidence: Q_IN is a reverse-hookup PFET.}
   resistance_components_mohm:
-    F_IN_2920L330_24DR: {value: 55, basis: manufacturer_R1max, evidence: Littelfuse exact 2920L330/24 row.}
-    Q_IN_DMP6023LFG_13: {value: 25, basis: manufacturer_maximum_at_VGS_minus10V, evidence: Diodes DS37204 Rev.2-2.}
+    F_IN_0451004_MRL: {value: 48, basis: project_bound_3x_nominal_cold, evidence: 'Littelfuse exact row gives 16 milliohm nominal cold; 3x reserve covers hot/aging spread for design, with hot four-wire verification owed.'}
+    Q_IN_DMP6023LFG_13: {value: 50, basis: project_bound_2x_25C_max, evidence: 'Diodes DS37204 gives 25 milliohm maximum at VGS=-10 V; 2x reserve covers hot operation for design, with realized gate drive and hot four-wire verification owed.'}
+    J_PWR_copper_vias_joints: {value: 52, basis: budgeted_max, evidence: 'Residual project allocation completing the 150 milliohm input-trunk ceiling; verify by route extraction and hot four-wire measurement.'}
 
 # E-CAP engineering candidate. Numeric terms are conservative design bounds,
 # not supplier guarantees. Exact characteristic plots establish typical
@@ -153,7 +156,7 @@ effective_capacitance_banks:
       - {part: GRM32ER71A476KE15L, refs: [C_U_CORE_OUT_1], nominal_each_uF: 47, dielectric: x7r, tolerance_minus_pct: 10, dc_bias_derating_pct: 65, temperature_derating_pct: 15, lifecycle_derating_pct: 12.5, basis: conservative_engineering_bound_with_nominal_TI_LC_match, evidence: "Same conservative 35% retained-capacitance voltage estimate as the 3.3 V bank; lower bias can only improve the typical screen. After the separate temperature and lifecycle reserves, estimated effective capacitance is 11.011 uF against section 8.2.2.5's 10 uF minimum; startup/load-step proof remains due."}
 
 rails:
-  - {name: N5V_BUCK, vin_min: 11.196, vin_max: 13.2, vout_min: 4.95, vout_max: 5.05, iout_max_A: 1.9, converter: TPSM63603V5RDHR, eff: 0.85, external_output: false}
+  - {name: N5V_BUCK, vin_min: 11.006, vin_max: 13.2, vout_min: 4.95, vout_max: 5.05, iout_max_A: 1.9, converter: TPSM63603V5RDHR, eff: 0.85, external_output: false}
   - {name: N3V3X, vin_min: 4.95, vin_max: 5.05, vout_min: 3.267, vout_max: 3.333, iout_max_A: 1.0, converter: TPS6282533DMQR, input_parent: N5V_BUCK, eff: 0.85, external_output: false}
   - {name: N1V8, vin_min: 4.95, vin_max: 5.05, vout_min: 1.782, vout_max: 1.818, iout_max_A: 0.30, converter: TPS6282518DMQR, input_parent: N5V_BUCK, eff: 0.85, external_output: false}
   - {name: N0V9, vin_min: 4.95, vin_max: 5.05, vout_min: 0.88, vout_max: 0.92, iout_max_A: 1.2, converter: TPS62825DMQR, input_parent: N5V_BUCK, eff: 0.85, external_output: false}
@@ -161,22 +164,23 @@ rails:
   - &spoke
     name: N12V_POD1
     stage: distribution
-    vin_min: 11.196
+    vin_min: 11.006
     vin_max: 13.2
-    vout_min: 10.8
+    vout_min: 11.006
     vout_max: 13.2
     iout_max_A: 0.10
-    ir_budget_mohm: 3960
+    ir_budget_mohm: 1710
     ir_budget_components_mohm:
       protection_switch: {value: 800, basis: maximum, evidence: 'TPS26625 manufacturer RON maximum over -40 to 125 C.'}
-      pcb_copper_vias_joints: {value: 3060, basis: budgeted_max, evidence: 'Pre-layout allocation; verify by post-route extraction and first-article four-wire measurement.'}
+      pcb_copper_vias_joints: {value: 810, basis: budgeted_max, evidence: 'Pre-layout allocation; verify by post-route extraction and first-article four-wire measurement.'}
       connector_contacts: {value: 100, basis: budgeted_max, evidence: 'Board-side paralleled contact allocation; mated cable loss belongs to the external source envelope.'}
     ir_budget_evidence: >-
-      Engineering ceiling from (11.196 V protected-rail floor - 10.8 V
-      connector-plane floor) / 0.10 A. The TPS26625 consumes at most 800
-      milliohm of this ceiling at its guaranteed hot RON; the remaining 3160
-      milliohm is available to realized copper, joints and connector contacts
-      and must be checked on the native board.
+      The 11.006 V protected-rail floor provides 206 mV above the 10.8 V
+      connector-plane floor. After the owning gate's 20% delivery margin, the
+      admitted path is 1710 milliohm: 171 mV nominal and 205.2 mV charged at
+      0.10 A. TPS26625 consumes at most 800 milliohm at its guaranteed hot
+      RON; 910 milliohm remains for copper, joints and connector contacts and
+      must be checked on the native board.
     external_output: true
     claim_id: eight_analog_spokes
     load_uv_threshold: 10.8
@@ -188,15 +192,15 @@ rails:
       is at most 80 mV. Missing copper, joint, contact and thermal realization
       deliberately leave the complete connector-plane delivery unqualified.
     distribution:
-      kind: active_efuse_candidate
+      kind: active_current_limiter
       series_devices: [TPS26625DRCR]
       path_resistance_max_mohm: 800
-      current_limit_min_A: UNQUALIFIED_AT_12V_HARD_SHORT_TABLE_IS_24V_1V_DROP
-      current_limit_max_A: UNQUALIFIED_AT_12V_HARD_SHORT_TABLE_IS_24V_1V_DROP
+      current_limit_min_A: 0.145
+      current_limit_max_A: 0.159
       engineering_screen_current_limit_A: [0.145, 0.159]
       engineering_screen_condition: TI electrical table at VIN=24V and VIN-VOUT=1V with 44.2kohm ILIM
       engineering_screen_resistor: RT0603BRD0744K2L, 0.1 percent, 25 ppm/C
-      operating_ambient_max_C: 70
+      engineering_screen_operating_ambient_max_C: 70
       device_quiescent_current_max_uA_at_24V_table_condition: 482
       eight_device_quiescent_current_screen_mA: 3.856
       inherited_normal_load_allocation_A: 2.12
@@ -207,6 +211,7 @@ rails:
       fault_containment_status: OPEN_SOURCE_LOAD_LINE_HICCUP_CABLE_RL_THERMAL_RETRY_NOT_QUALIFIED
       transient_status: OPEN_220NS_AND_1P6A_ARE_TYPICAL_OR_UNBOUNDED_NOT_GUARANTEED_MAXIMA
       startup_status: OPEN_ALL_POD_LOAD_AND_CAPACITANCE_STATES
+      upstream_input_protection: {part: 0451004.MRL, hot_continuous_screen_A: 2.85, one_fault_screen_A: 2.185, screen_margin_A: 0.665, coordination: 'Fuse remains intact for one branch-limited fault. A common-trunk or shorted-TVS fault may either clear the fuse or remain inside the bounded source-limit/hiccup mode in protection_paths.yaml.'}
   - {<<: *spoke, name: N12V_POD2}
   - {<<: *spoke, name: N12V_POD3}
   - {<<: *spoke, name: N12V_POD4}

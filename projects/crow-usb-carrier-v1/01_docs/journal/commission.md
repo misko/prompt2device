@@ -157,3 +157,7 @@
 ## Iterate 31 — spoke eFuse source integration
 
 Integrated SOL-reviewed TPS26625 channels onto the capacitor-corrected baseline. Root full-source rendering exposed missing schematic poses and the modular checker exposed 24 missing GND endpoints; repaired both in owning source. Moved the ungraded interface YAML into a clearly informational research snapshot rather than inventing executable rule authority. Full source: 460 components, 86 selected MPNs, 1539 ports, 1416 traces, zero source diagnostics and 26 endpoint checks. Modular 460/460 and53/53; E-CAP8/8; contracts349files0violations. Source-only boundary; native schematic/PCB, full E-FAULT and E-SURGE remain open. Digital repair review found candidate startup-delay and NPN backfeed defects; corrected isolated candidate still under review.
+
+## Iterate 32 — connector frame, supplier identity and input protection
+
+Bound retained manufacturer RJ45 STEP; root reproduced full modeled extents. Added explicit JTAG local frame and fixed the existing enclosure receipt adapter: connector32/32, enclosure75/75, skill authority/documentation checks pass. Corrected exact supplier identities from live catalog rows. Adopted4A input fuse and50V C_IN_HF, with conservative hot resistance and dimensionless20% drop margin. Full source460/86, E-MARGIN9/9, early-design4/4, modular460/460 and53/53 pass. Native board, complete source selection, full fault envelope and digital reset adoption remain owed.

@@ -9,9 +9,9 @@ export const MicroFit2 = () => <footprint>
   <hole pcbX="1.5mm" pcbY="4.32mm" diameter="3mm" />
 </footprint>
 
-export const Pptc = () => <footprint>
-  <smtpad portHints={["1"]} pcbX="-3.3875mm" pcbY="0mm" width="1.925mm" height="5.45mm" shape="rect" rectBorderRadius="0.25mm" />
-  <smtpad portHints={["2"]} pcbX="3.3875mm" pcbY="0mm" width="1.925mm" height="5.45mm" shape="rect" rectBorderRadius="0.25mm" />
+export const NanoFuse451 = () => <footprint>
+  <smtpad portHints={["1"]} pcbX="-2.455mm" pcbY="0mm" width="1.96mm" height="3.15mm" shape="rect" rectBorderRadius="0.196mm" />
+  <smtpad portHints={["2"]} pcbX="2.455mm" pcbY="0mm" width="1.96mm" height="3.15mm" shape="rect" rectBorderRadius="0.196mm" />
 </footprint>
 
 export const Pdi = () => <footprint>

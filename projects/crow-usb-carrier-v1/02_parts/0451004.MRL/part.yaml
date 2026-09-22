@@ -1,0 +1,19 @@
+mpn: 0451004.MRL
+manufacturer: Littelfuse
+type: very_fast_surface_mount_fuse
+value: 4A 125VAC/VDC
+status: active
+datasheet: {doc_id: 451_453_series, revision: 2011_mirrored_manufacturer_bytes, url: 'https://www.fuse-tech.com/uploads/pdf/littelfuse0451.pdf', provenance: 'Manufacturer-authored Littelfuse PDF mirrored by Fuse-Tech; current exact product identity cross-checked with DigiKey and Farnell.', local: Littelfuse_451_453_series.pdf, sha256: e4f66814c90d70b283a5962080711f26554d974373a550958bda772dfdaf1bf9, pages: 4}
+package: 2410 / 6125 metric Nano2
+footprint: crow_usb_power_aux:Littelfuse_451_Nano2_2410
+pins: {1: IN, 2: OUT}
+limits: {rated_current_A: 4, rated_voltage_ac_dc_V: 125, interrupting_current_A_at_125V: 50, nominal_cold_resistance_ohm: 0.016, nominal_melting_i2t_A2s: 3.152, operating_temperature_C: [-55, 125]}
+engineering_bound: {standard_continuous_derating_pct: 25, temperature_factor_at_70C_screen: 0.95, continuous_current_screen_A_at_70C: 2.85, required_one_fault_current_A: 2.185, margin_A: 0.665, margin_pct: 30.4, caveat: 'The 70C factor is conservatively read from the graphical manufacturer curve; it is an engineering screen, not a tabulated production minimum.'}
+layout:
+  source: Littelfuse 451/453 package and recommended-pad drawing, PDF page 4
+  reviewed: '2026-09-22'
+  notes: ['Use two 1.96 x 3.15 mm lands on 4.91 mm centers, preserving the 2.95 mm inner gap and 6.86 mm overall span.', 'Place immediately after J_PWR, ahead of Q_IN; keep unfused copper short and branch-free.']
+layout_refs:
+  - {tier: 1, reached: true, artifact: 'Littelfuse 451/453 PDF pp1-4, exact 4.00A row and recommended pad layout', why: 'Manufacturer authority fixes rating, package and lands.'}
+  - {tier: 2, reached: false, artifact: 'Exact editable 0451004.MRL routed reference design', why: 'Project current path remains native-layout owned.'}
+sourcing: {digikey: F2586TR-ND, lcsc: null, note: 'Current allocation is a separate sourcing-gate observation.'}

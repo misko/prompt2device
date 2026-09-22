@@ -1667,7 +1667,7 @@
       },
       "requirements": [
         "Keep regulator switching loops and protection surge paths outside analog input, USB, crystal, and reference neighborhoods.",
-        "Re-evaluate the upstream 2920L330/24DR and qualify the exact external source load line, foldback/hiccup, recovery, harness impedance, and every simultaneous pod startup state before admitting single-spoke fault containment.",
+        "Qualify the upstream 0451004.MRL and qualify the exact external source load line, foldback/hiccup, recovery, harness impedance, and every simultaneous pod startup state before admitting single-spoke fault containment.",
         "Size the N12V_PROTECTED distribution for aggregate load and transient current, with each load decoupling loop terminating locally to GND."
       ],
       "disposition": "Board-integrated power corridor for N12V_PROTECTED; source block owns generation and each destination block owns local entry capacitance."
