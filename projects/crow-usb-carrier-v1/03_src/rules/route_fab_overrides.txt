@@ -1,0 +1,9 @@
+# Candidate advanced routing floors for the unchanged 1.63 mm four-layer stack.
+# The 0.20 mm mechanical drill gives 1.63/0.20 = 8.15:1 nominal and
+# 1.793/0.20 = 8.965:1 at maximum declared thickness, within the 10:1 ceiling. Do not substitute the tier minimum 0.15 mm drill: it would
+# be 10.87:1 and outside that ceiling at this thickness.
+clearance = 0.09
+track_width = 0.09
+via_diameter = 0.50
+via_drill = 0.20
+hole_to_hole = 0.25

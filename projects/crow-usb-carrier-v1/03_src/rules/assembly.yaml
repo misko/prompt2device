@@ -44,6 +44,20 @@ fiducials: none            # `none` + the fab's own statement, or a count/type.
 build_quantity: 5          # quantity-expanded JLC PCBA checks bind to this
 public_stock_surplus: 150  # absolute catalog buffer per aggregated LCSC line
 
+pcb_process: "Proposed JLC advanced order: selectively fill/cap the LT3045 EP 0.20 mm drill family; uploader/vendor acceptance required"
+via_process:
+  protected_geometry: {via_diameter_mm: 0.50, drill_mm: 0.20}
+  fabricator_selector:
+    kind: drill_family
+    protected_drill_mm: 0.20
+    ordinary_drill_mm: [0.30]
+  order_remark: >-
+    Fill and copper-cap the complete 0.20 mm drill family only. Do not fill or
+    cap the ordinary 0.30 mm drill family. Request selective Type VII process in
+    the JLCPCB uploader and retain exact vendor acceptance before payment; stop
+    if the uploader does not accept it.
+  uploader_confirmation_required: true
+
 # ---- SELECTIVE VIA-IN-PAD PROCESS (required when any via centre is in an SMT
 # land, or any board via carries native fill/cap flags) ----------------------
 # Electrical DRC deliberately permits same-net overlap; it does NOT approve an
@@ -54,9 +68,6 @@ public_stock_surplus: 150  # absolute catalog buffer per aggregated LCSC line
 # Gerber/drill outputs do not carry them to the fabricator.
 # pcb_process: "JLC advanced; selective filled/capped via-in-pad"
 # via_process:
-#   ipc_4761: type_vii_filled_and_capped
-#   fill_material: copper_paste
-#   selection: item_level_source_plus_drill_family_order_selector
 #   source: "03_src/floorplan.yaml thermal_vias.protection"
 #   protected_geometry: {via_diameter_mm: 0.45, drill_mm: 0.25}
 #   fabricator_selector:

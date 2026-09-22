@@ -5,8 +5,8 @@ type: linear_ldo_regulator
 value: LT3045EDD#PBF
 status: active
 package: DFN-10-1EP_3x3mm_P0.5mm
-footprint: Package_DFN_QFN:DFN-10-1EP_3x3mm_P0.5mm_EP1.65x2.38mm_ThermalVias
-escape: {style: dfn, pitch: 0.5, escapes_worst_side: 5, tier_required: jlc_4layer_advanced, checked: 'ADI DD drawing 05-08-1699 Rev C and installed KiCad 10 FPID inspected. Native footprint loads with electrical pads 1-11; outward escape only, with no between-pad lane assumed.'}
+footprint: crow_usb_analog:ADI_LT3045_DD_NoHoles
+escape: {style: dfn, pitch: 0.5, escapes_worst_side: 5, tier_required: jlc_4layer_advanced, checked: 'ADI DD drawing 05-08-1699 Rev C and installed KiCad 10 FPID inspected. Owned no-hole native footprint matches the ADI/TSX lands and loads electrical pads 1-11. Six protected board-level vias are authored by floorplan thermal_vias.fields on EP11; thermal realization remains physical qualification.'}
 datasheet:
   doc_id: LT3045
   revision: Rev. D November 2022
@@ -55,7 +55,7 @@ sourcing:
   lcsc: C666574
   note: 'Tube-packaged order code; ADI Rev.D places it on the same electrical/package/temperature row as the former tape-and-reel code. Exact catalog identity C666574; catalog availability is not assembly allocation.'
   alternates: []
-verified: 'Primary Rev.D pin table, DD package drawing, TSX geometry and installed KiCad FPID inspected: left pads 1-5, right pads 10-6, EP11; 0.5mm pitch, 0.70x0.25mm outer lands and 1.65x2.38mm EP. Native FPID loads and exposes electrical pad numbers 1-11. JLC model/rotation, paste realization and realized board remain unreviewed.'
+verified: 'Primary Rev.D pin table, DD package drawing, TSX geometry and installed KiCad FPID inspected: left pads 1-5, right pads 10-6, EP11; 0.5mm pitch, 0.70x0.25mm outer lands and 1.65x2.38mm EP. Owned no-hole native FPID loads and exposes electrical pad numbers 1-11 with ADI/TSX geometry; floorplan emits six separately process-controlled PCB_VIA items on EP11. JLC model/rotation, paste realization and realized board remain unreviewed.'
 gotchas:
   - 'The 0.8uVrms noise figure is a typical datasheet value at 500mA with 4.7uF CSET, not a guaranteed board-level audio-noise result. Capacitor leakage, piezoelectric response, layout and actual load remain qualification items.'
   - 'The PGFB divider enables fast startup with the larger CSET. The datasheet 10ms typical example is informative, not a candidate timing guarantee. Supervisor, hold-up, dump and ADC reset timing require joint transient review.'

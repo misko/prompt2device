@@ -40,6 +40,15 @@ board:
 libraries:
 - /usr/share/kicad/footprints
 - 03_src/lib
+thermal_vias:
+  protection: {capping: yes, filling: yes}
+  fields:
+  - ref: U_LDO
+    pad: '11'
+    size: 0.50
+    drill: 0.20
+    at: [[-0.575, -0.94], [-0.575, 0.0], [-0.575, 0.94],
+         [0.575, -0.94], [0.575, 0.0], [0.575, 0.94]]
 placement:
   require_anchor: true
   anchors: {}

@@ -169,7 +169,8 @@ route:
     - B.Cu
     via_size: 0.6
     via_drill: 0.3
-    fab_tier: standard
+    fab_tier: advanced
+    fab_overrides: projects/crow-usb-carrier-v1/03_src/rules/route_fab_overrides.txt
     no_stub_layer_swap: true
     keepout: true
     keepout_layer: User.2
@@ -281,7 +282,6 @@ stitch:
   passes:
   - seed_stubs
   - dedupe_vias
-  - normalize_vias
   - drop_micro_fragments
   - drop_dangling
   - split_t_junctions
@@ -297,16 +297,17 @@ stitch:
   - fresh_reload
   - unify_zone_priorities
   - heal_islands
+  - protect_via_family
   - gate
+  protect_via_family:
+    via: {size: 0.50, drill: 0.20}
+    via_protection: {capping: yes, filling: yes}
+    min: 6
   unify_zone_priorities:
     min_bbox: 0.8
   dedupe_vias:
     radius: 0.5
     metric: box
-  normalize_vias:
-    below_width: 0.449
-    size: 0.6
-    drill: 0.3
   drop_micro_fragments:
     max_length: 0.12
     require_free_end: true

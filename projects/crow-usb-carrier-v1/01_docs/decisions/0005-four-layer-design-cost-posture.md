@@ -1,3 +1,8 @@
+---
+id: 0005
+date: 2026-09-22
+status: superseded-by-0006
+---
 # Four-layer design and cost posture
 
 Decision date: 2026-09-22. Scope: reversible design, with no purchase or fabrication authorization.

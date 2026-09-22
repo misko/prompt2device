@@ -57,7 +57,7 @@ seeded rule examples are not product facts and will be replaced before use.
 | Critical sourcing | XU316, W25Q128JWSIQ 1.8 V flash, CS5308P-DNR ADC, LT3045 quiet regulator and separate core/PHY rails; current source has 489 references and 85 exact MPNs. Full selected-BOM sourcing remains open. | P; current TSX/manifest/dossiers and sourcing CSV |
 | Integration posture | Onboard bare USB IC is explicitly requested; module comparison informs the exception but cannot substitute an external bridge. | P; decision 0001 |
 | Mechanical boundary | No Pi HAT/header alignment is assumed. Existing Crow outline/hole coordinates are precedent, not automatically hard limits. | A3 |
-| Fabrication / assembly | JLCPCB populated-PCBA intent, ordinary four-layer JLC04161H-7628G stackup; nominal 90-ohm USB cross-section documented. Actual-board manufacturing acceptance and cost remain owed before freeze. | A3 |
+| Fabrication / assembly | JLCPCB populated-PCBA intent, four-layer JLC04161H-7628G stackup with the advanced routing/process candidate in decision 0006; nominal 90-ohm USB cross-section documented. Selective LT3045 via fill/cap remains a proposed uploader/order requirement pending exact vendor acceptance. Actual-board manufacturing acceptance and cost remain owed before freeze. | A3 |
 | Firmware | Research permitted. No firmware source, build or release until Q2 is answered affirmatively or an existing authorized image path is selected. | Q2; skill default |
 
 ## Mating fact-lock
@@ -128,7 +128,7 @@ findings. ADC/film-capacitor packaging and the PLL capacitor have been updated
 without changing the named signal connectivity. The power rows above now
 separate nominal requirements, one-fault screens, current allocations and fuse
 rating; none is a bench-current-limit instruction. See the source journal and
-[fabrication posture](decisions/0005-four-layer-design-cost-posture.md).
+[superseding advanced fabrication posture](decisions/0006-four-layer-advanced-escape-process.md); decision 0005 remains the superseded historical baseline.
 
 The brief remains draft while full-BOM sourcing and refreshed schematic-source review are completed.
 The source power/protection disposition is reviewed; its native-layout and

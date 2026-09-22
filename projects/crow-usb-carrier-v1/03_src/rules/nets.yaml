@@ -1,6 +1,6 @@
 # Crow USB routing intent. Width floors do not prove routed IR or thermal margins.
 # Stack/model authority: rf.yaml and the retained vendor-response research.
-fab_tier: jlc_4layer_standard
+fab_tier: jlc_4layer_advanced
 default_clearance: 0.15mm
 default_track_width: 0.20mm
 classes:
