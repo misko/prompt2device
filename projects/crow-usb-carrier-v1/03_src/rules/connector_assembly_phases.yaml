@@ -47,6 +47,12 @@ source_deferrals:
   plan_source_ids: [connector_physical_qualification_plan]
   rationale: Complete the authored service transition with normal_service and bench_service neighbors populated and record overmold grip access, interference, seating, and neighbor disturbance.
 - assembly_id: usb_device
+  target_kind: cable
+  target_id: cable
+  unknown_class: installed-cable-route-qualification
+  plan_source_ids: [usb_cable_drawing, connector_physical_qualification_plan]
+  rationale: Install the exact ASSMANN A-USB31C-20A-100 with its tail leaving along the mating axis; measure the straight run, first bend, bend radius, strain relief, and clearance with required neighbors populated.
+- assembly_id: usb_device
   target_kind: tolerance
   target_id: usb_device_registration
   unknown_class: installed-tolerance-qualification
@@ -70,6 +76,12 @@ source_deferrals:
   unknown_class: simultaneous-operation-qualification
   plan_source_ids: [connector_physical_qualification_plan]
   rationale: Complete the authored service transition with normal_service and bench_service neighbors populated and record latch access, interference, seating, and neighbor disturbance.
+- assembly_id: external_power
+  target_kind: cable
+  target_id: cable
+  unknown_class: installed-cable-route-qualification
+  plan_source_ids: [power_cable_drawing_extract, connector_physical_qualification_plan]
+  rationale: Install exact Molex 226206-1022 with its 18 AWG conductors leaving along the mating axis; verify A1-B1 and A2-B2 continuity/polarity and measure straight run, bend, far-end support, strain relief, and clearance with required neighbors populated.
 - assembly_id: external_power
   target_kind: tolerance
   target_id: external_power_registration

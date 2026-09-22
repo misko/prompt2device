@@ -181,3 +181,7 @@ Replaced U_FLASH with W25Q128JWSIQ after primary six-clock ROM framing clarifica
 ## JTAG initial cable exit representation — 2026-09-22
 
 Adopted independently reviewed patch 2824cee20693a8dd7218df216be2b1d1af74f101acc39fe2282882dad3106131. Source design records both manufacturer-supported reversible initial exits; full phase requires exactly one installed signed axis. Installed bend, strain relief and clearance remain qualification obligations. Current connector compiler: 23/45 facts, 22 unknown; source phase admits 17 physical deferrals and retains 6 findings. Contract tests 34/34, phase tests 22/22, disclosure tests 14/14, documentation tests 15/15, skill authority PASS; project contracts 371 files, zero violations. These checks do not establish native schematic or PCB completion.
+
+## USB and external power cable selection — 2026-09-22
+
+Selected ASSMANN A-USB31C-20A-100 USB cable and Molex 226206-1022 150±4mm two-conductor18AWG power harness. Primary Molex drawing identifies two43645-0200 housings, four43030-0038 contacts and straight-through pin continuity. Retained primary extract and capture provenance live under research; original extract SHA verified. Connector source gate now admits19 physical deferrals with4 remaining RJ45 findings. Installed cable run, bend, strain relief and clearance are owed. Contracts audit373 files/0 violations.

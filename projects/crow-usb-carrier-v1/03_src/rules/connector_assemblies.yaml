@@ -43,6 +43,12 @@ evidence_sources:
 - id: connector_physical_qualification_plan
   kind: engineering-qualification-plan
   path: 01_docs/research/2026-09-22-connector-physical-qualification-plan.md
+- id: power_cable_selection
+  kind: engineering-selection-record
+  path: 01_docs/research/2026-09-22-external-power-cable-selection.md
+- id: power_cable_drawing_extract
+  kind: manufacturer-drawing-extract
+  path: 01_docs/research/2026-09-22-molex-power-cable-primary-extract.md
 - id: power_mate_drawing
   kind: manufacturer-drawing
   path: 02_parts/43645-0200/Molex_43645_family_drawing_revA1.pdf
@@ -355,17 +361,22 @@ assemblies:
       - connector_physical_qualification_plan
       rationale: Insertion, extraction, and fastening reaction load paths are not proven.
   cable:
-    kind: null
-    manufacturer: null
-    mpn: null
+    kind: usb_a_male_to_usb_c_male_cable_assembly
+    manufacturer: ASSMANN WSW
+    mpn: A-USB31C-20A-100
     outer_diameter_mm: null
     straight_run_mm: null
     minimum_bend_radius_mm: null
-    exit: null
+    exit: along_mating_axis
     evidence:
       grade: unknown
-      source_ids: []
-      rationale: Termination, boot, cable body, straight run, exit, and bend are not selected.
+      source_ids:
+      - usb_cable_drawing
+      - connector_physical_qualification_plan
+      rationale: Exact one-metre USB 2.0 A-male to C-male cable identity is selected from the manufacturer
+        drawing. The molded cable tail exits the mated Type-C plug away from the receptacle along the
+        authored mating axis. Installed straight run, bend radius, strain relief, and clearance remain
+        physical qualification work; no unproven route dimension is claimed.
   operations:
   - id: usb_device_service
     sequence: 1
@@ -505,17 +516,24 @@ assemblies:
       - connector_physical_qualification_plan
       rationale: Insertion, extraction, and fastening reaction load paths are not proven.
   cable:
-    kind: null
-    manufacturer: null
-    mpn: null
+    kind: micro_fit_3_female_to_female_two_circuit_18awg_harness
+    manufacturer: Molex
+    mpn: 226206-1022
     outer_diameter_mm: null
     straight_run_mm: null
     minimum_bend_radius_mm: null
-    exit: null
+    exit: along_mating_axis
     evidence:
       grade: unknown
-      source_ids: []
-      rationale: Termination, boot, cable body, straight run, exit, and bend are not selected.
+      source_ids:
+      - power_cable_drawing_extract
+      - power_cable_selection
+      - connector_physical_qualification_plan
+      rationale: Molex drawing 2262061022 revision A1 selects a 150 mm nominal female-to-female assembly
+        made from two 43645-0200 housings, four 43030-0038 terminals, and two straight-through black 18
+        AWG UL 1061 conductors. The conductors leave the mated housing away from the board header along
+        the authored mating axis. Installed run, bend, strain relief, far-end support, and clearance remain
+        physical qualification work; no unproven route dimension is claimed.
   operations:
   - id: external_power_service
     sequence: 1
