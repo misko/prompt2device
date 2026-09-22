@@ -1,7 +1,7 @@
 stage: commission
-step: "Molex second source qualified; remaining sourcing gaps open"
+step: "Source escape audit found 20 selected-dossier problems; SOL repairs active"
 measure: "489 refs /85 MPNs; source0errors; 37pages/489unique refs; modular489/489 and54/54; early electrical4/4; current sourcing69/85; 16parts need a second qualifying pool"
 state: working
-next: "Finish current sourcing grade and remaining exact-part gaps; review source admission"
+next: "Review escape repairs and qualified sourcing candidates; retain commission hold"
 op_pid:
-updated: 2026-09-22T12:18:04.185400+00:00
+updated: 2026-09-22T12:21:24.303251+00:00

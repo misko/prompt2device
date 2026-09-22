@@ -257,3 +257,7 @@ Adopted independently reviewed LT3045EDD#PBF / C666574 with complete original do
 ## Connector and inductor catalog identity — 2026-09-22
 
 Integrated exact C192562 Molex and C19270343 Würth catalog identities; the latter remains zero stock. Only four supplier metadata records changed in expanded source. Root full owning sourcing grade is 69/85 two-pool, 16 one-pool, zero unparseable. See research/2026-09-22-connector-inductor-catalog-adoption.md. SOL capacitor packaging candidates failed their actual two-pool check and remain unmerged; alternative electrical qualification is in progress.
+
+## Source escape admission audit — 2026-09-22
+
+Root ran owning escape checker against all85selected dossiers and found 20 problems; prior layout-guidance PASS does not cover this gate. Concrete power-tier/condition and missing digital escape records are under bounded SOL repair. See research/2026-09-22-source-escape-admission-audit.md. No conductor invoked, no admission claimed.
