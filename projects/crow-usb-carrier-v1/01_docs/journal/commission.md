@@ -271,3 +271,7 @@ Adopted SN74LVC1G125DCKT for three buffer instances after primary packing-table 
 Fresh source-only page rendering at11bc43fb covers37pages,489manifest/rendered/unique references, zero duplicates/missing/extra and zero renderer errors. Root visually spot-checked held_ldo and adc_clock_control after the exact order-code substitutions; labels remain visible. Evidence:06_build/verification/source-pages-11bc43fb. This is not native schematic acceptance or a refreshed independent full review.
 
 Independent admission review confirms LT3045's current native ThermalVias footprint includes exposed-pad plated vias incompatible with the selected standard-tier via-in-pad policy. A no-via-in-pad land and external thermal-via solution is under engineering review; do not insert an arbitrary local resistor merely to satisfy an abstract escape condition. TPSM63603's irregular HotRod module geometry requires an evidence-backed model assessment rather than relabeling it to pass the generic QFN check. Digital/power escape repair tasks remain active, with the commissioning hold retained.
+
+## Zener reel substitution — 2026-09-22
+
+Root verified primary DS18004 commercial ordering rows and adopted BZT52C12-13-F / C177013 with full dossier retained. Only D_QIN_GS identity/supplier metadata changed in expanded source. Full sourcing71/85; early electrical4/4. See research/2026-09-22-zener-packaging-adoption.md. Other small-part candidates remain under independent review.

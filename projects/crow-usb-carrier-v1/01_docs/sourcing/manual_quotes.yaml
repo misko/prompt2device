@@ -1347,3 +1347,20 @@ quotes:
   lifecycle: Active
   orderable: true
   five_board_need: 15
+- mpn: BZT52C12-13-F
+  manufacturer: Diodes Incorporated
+  distributor: digikey
+  source: product_page
+  url: https://www.digikey.com/en/products/detail/diodes-incorporated/BZT52C12-13-F/768854
+  read_on: '2026-09-22'
+  checked_at: '2026-09-22T04:45:39-07:00'
+  dpn: BZT52C1213-FDICT-ND
+  stock: 106745
+  min: 1
+  mult: 1
+  packaging: Cut Tape
+  lifecycle: Active
+  orderable: true
+  price_breaks:
+  - qty: 1
+    usd: 0.1

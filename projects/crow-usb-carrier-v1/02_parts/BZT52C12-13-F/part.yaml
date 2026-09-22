@@ -1,7 +1,7 @@
-mpn: BZT52C12-7-F
+mpn: BZT52C12-13-F
 manufacturer: Diodes Incorporated
 type: zener_diode
-value: BZT52C12-7-F
+value: BZT52C12-13-F
 status: active
 datasheet:
   doc_id: BZT52C2V0-BZT52C51
@@ -11,7 +11,7 @@ datasheet:
   sha256: 0fbd7d137524820f0160594065cbceb8c6b3188757c328416d08fceb7418202f
   fetched: 2026-09-02
   pages: 5
-  provenance: "Downloaded directly from diodes.com; the committed PDF footer identifies DS18004 Rev. 38-2 and its ordering table covers BZT52C12-7-F."
+  provenance: "Downloaded directly from diodes.com; the committed PDF footer identifies DS18004 Rev. 38-2 and its ordering table covers BZT52C12-13-F."
 package: "SOD-123"
 footprint: "Diode_SMD:D_SOD-123"
 escape: {style: passive, pitch: 3.9, tier_required: jlc_2layer_default, checked: "SOD-123 polarity and stock footprint reviewed 2026-09-01"}
@@ -25,4 +25,4 @@ layout:
   notes: ["Place directly across Q_IN source and gate."]
 layout_refs:
   - {tier: 1, reached: true, artifact: "Diodes BZT52C series datasheet", why: "Manufacturer authority fixes polarity and 12V selection."}
-sourcing: {lcsc: C124196, alternates: [], note: "Exact MPN/code match queried from the live JLC catalog 2026-09-01; order-time allocation remains separate."}
+sourcing: {lcsc: C177013, alternates: [], note: "Exact MPN/code match queried from the live JLC catalog 2026-09-01; order-time allocation remains separate."}

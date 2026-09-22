@@ -1,0 +1,7 @@
+# Zener packaging adoption — 2026-09-22
+
+D_QIN_GS now selects BZT52C12-13-F / C177013 in place of BZT52C12-7-F / C124196. Root inspected the retained Diodes DS18004 Rev38-2 ordering table: commercial SOD123 -7-F is 3,000/tape-reel and -13-F is 10,000/tape-reel; the same C12 electrical row applies. The original complete dossier, polarity, land pattern, clamp requirements, layout guidance and primary PDF remain, with exact order-code/supplier updates only.
+
+The candidate exact observations report DigiKey stock106,745 and JLC7,739 against five-board demand5. Root reran the owning shopping gate over all85selectedMPNs using the composed original dated stock observations:71two-pool,14one-pool,0unparseable. Full sourcing remains incomplete and catalog stock is not assembly allocation. Evidence:06_build/verification/zener-packaging-adoption and jlc-stock-zener-composed.json; original candidate observations in /home/mouse9911/gits/circuits-trials/crow-usb-design-20260922/small-parts-second-pool.
+
+Expanded-source comparison changes exactly D_QIN_GS manufacturer part number and supplier fields; all other records remain equal. Counts remain489components/85MPNs/1619ports/1493traces, zero source errors and26critical endpoint checks. Early electrical4/4gatefamilies pass. No MOSFET or resistor substitution is admitted by this change. Escape repair, native schematic, routing and physical gates remain outstanding.
