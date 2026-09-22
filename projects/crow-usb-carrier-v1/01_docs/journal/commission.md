@@ -7,3 +7,8 @@
 - did: qualified native toolchain, routed the high-speed-digital disclosure profile, checked draft brief prompt identity and project structure.
 - result: native qualification4/4; contract audit87files0violations; status beacon1/1; verbatim prompt hash matches. These are intake/tool checks, not commission or board acceptance.
 - next: complete Sol research and resolve exact USB implementation before source adoption.
+
+## 2026-09-22 05:36 — iterate 2
+- did: documented USB device/host boundary, power-state requirements, audio-rate arithmetic and joint placement ownership in the draft architecture.
+- result: no part or electrical gate frozen; research still active. Correction: the preceding iterate1 timestamp05:36 was typed ahead of the observed clock; its command results occurred before05:34:42UTC.
+- next: incorporate cited IC and inherited-requirements research; resolve firmware dependency before selection.

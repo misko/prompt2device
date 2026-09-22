@@ -100,6 +100,7 @@ Escalate if: a specific enclosure, board outline, assembly budget or different P
 
 | id | decision | decided by | depth |
 |---|---|---|---|
+| 0000 | Retain the template ADR format reference; not a product choice. | agent (A3 / P-delegation) | [format reference](decisions/0000-example-adr.md) |
 | 0001 | New board with onboard USB interface; prior off-board bridge boundary superseded. | user (P/D1) | [decision](decisions/0001-onboard-usb-boundary.md) |
 | A1 | Existing Crow audio/spoke function retained provisionally. | agent (A1 / P-delegation) | log A1 |
 | A2 | External carrier power retained provisionally. | agent (A2 / P-delegation) | log A2 |
