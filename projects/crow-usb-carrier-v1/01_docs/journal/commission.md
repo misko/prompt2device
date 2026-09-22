@@ -98,3 +98,8 @@
 - did: closed SOL modular-plan deliveryPASS and adopted contract-owned03_src/modular_plan.json after dependency/backtrack review. Added power-loop prerequisite toUSBdigitaljoint andglobalfloorplan/ADC/digitalpowerbacktracktargets.
 - result: independentcheckerPASS422/422refs53/53crossings,18blocks6sharedresponsibilities16boundedworkitems. Contracts329files0violations after report. No placement observations orengineeringadmissionfabricated.
 - next: complete commissioning/power evidence and actual native schematic before dispatchingplacementchildren.
+
+## 2026-09-22 — iterate 20
+- did: added the missing CrowUSBfirst-articleprocedure, coveringpower-state/USBbackfeed/quietshutdown/connectorservice/TDM/audio/SI/thermal/faulttests. Keptnumerictestcardandfirmwareprerequisitesexplicitlyunresolved.
+- result: procedureisDRAFTandnotexecuted; nofirstarticleapproval. Contracts330files0violations. LiveSOLtasksarepassive-distributionreaderandprimary-evidencedinductoralternative.
+- next: reviewthosetwopacketsandcloseelectrical/sourceadmissionbeforeanynativeboardplacementwork.
