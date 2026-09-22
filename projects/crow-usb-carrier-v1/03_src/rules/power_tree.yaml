@@ -1,132 +1,166 @@
-# SCHEMA EXAMPLE (skill-owned, project-independent). Copy into a new project's
-# 03_src/rules/ and replace the values — the KEYS are the contract.
-#
-# The POWER-TREE gate battery reads this ONE file (power_topology.py):
-#   E-TOPO   — converter topology DERIVED from Vin-vs-Vout (default run)
-#   E-MARGIN — output setpoint vs load brownout, net of the delivery IR drop
-#              (`power_topology.py <proj> --margin`)
-#   E-OFF    — de-energization path + stored quiescent draw for a battery source
-#              (`power_topology.py <proj> --off-control`)
-#
-# WHY E-TOPO: usb-hub-3s (2026-07-22) shipped an IP6559 BUCK-BOOST + 4 external
-# FETs + 30V-FET/TVS coordination + a 16A input trunk for a 5V-ONLY USB-C port.
-# But the battery is 9-12.6V and the output is 5V, so Vout(5) < Vin_min(9)
-# ALWAYS: a plain step-down BUCK sufficed. Root cause: D-SPEC pinned the CURRENT
-# ("5A compliant") but never the OUTPUT VOLTAGE RANGE, and topology was
-# interpreted.
-#   Vout_max < Vin_min  -> BUCK        (step-down only)
-#   Vout_min > Vin_max  -> BOOST       (step-up only)
-#   ranges overlap      -> BUCK_BOOST  (must do both)
-# The converter's part.yaml `type:` must EQUAL the derived topology; MORE capable
-# than needed = over-engineering (FAIL, waiver-able with an ADR justifying the
-# extra capability), LESS capable = cannot meet Vout (FAIL).
-#
-# WHY E-MARGIN + E-OFF: usb-hub-3s-v3 (2026-07-23) passed BOTH zero-context
-# red-team reviews with two defects neither flagged — (A) a 4.97V rail feeding a
-# Raspberry Pi 5 (UV detect ~4.63V) at 5A left only ~68mΩ for board+connector+
-# cable IR drop (the setpoint headroom was computed but never judged); (B) a
-# 3S-LiPo board tied both buck EN pins active with no master switch, so the
-# controllers idle-drain the pack in storage (no review asked how it is
-# de-energized). The optional fields below make both a gated NUMBER.
-
+# WIP power contract; intentional unresolved numeric fields block admission.
 schema: 1
-
-# ---- E-OFF: de-energization + stored quiescent draw (OPTIONAL, top-level) ----
-# Declare these when the board carries its own energy source. E-OFF FIRES when a
-# battery/cell/pack is detected (source_type:, or VBAT/BATT/PACK nets, or a
-# battery ADR); an external supply (usb / dc_jack / mains) is N-A — unplugging
-# de-energizes it. "always-on" is allowed ONLY with an ADR reference in the
-# string (a self-draining storage state must be an explicit decision).
-source_type: 3S-LiPo pack        # battery|cell|lipo|pack|... vs usb|dc_jack|mains
-off_control: "SW1 master slide switch in series with VBAT"  # the de-energize path
-quiescent_ua: 60                 # stored/shutdown draw, µA (idle controllers etc.)
-pack_capacity_mah: 5000          # OPTIONAL — enables an advisory self-drain-time print
-
-# OPTIONAL: name the nets.yaml netclass that carries the shared input trunk.
-# When set, an input-trunk current declared MATERIALLY BELOW the derived worst
-# case is an under-built-copper FAIL (not just an advisory). Omit it and the
-# checker falls back to a heuristic and stays advisory-only.
-input_trunk_class: PWR_IN
-
-# OPTIONAL: E-MARGIN floor (mΩ) used for a rail that declares load_uv_threshold
-# but no ir_budget_mohm — the minimum series-resistance budget the setpoint
-# headroom must buy (default 100 mΩ ~= a bare realistic cable+connector+trace).
+source_type: isolated_external_12V_supply
+source_voltage_boundary:
+  minimum_operating_V: 11.4
+  maximum_operating_V: 13.2
+  evidence: CROW_USB_POWER_BOUNDARY declares 11.4-13.2 V; isolation is external.
+off_control: disconnect_J_PWR_external_isolated_12V_input
+quiescent_ua: 0
+input_trunk_class: INPUT_TRUNK
 ir_floor_mohm: 100
 
+upstream_delivery:
+  source_net: N12V_IN
+  destination_net: N12V_PROTECTED
+  source_min_V: 11.4
+  destination_floor_V: 11.196
+  load_current_A: 2.12
+  margin: 0.20
+  evidence: >-
+    Partial source-stage bound only. F_IN uses the exact 2920L330/24
+    55 milliohm R1max and Q_IN uses the DMP6023LFG-13 25 milliohm maximum
+    at VGS=-10 V. Copper, joints and connector resistance remain unallocated;
+    therefore this is not a qualified connector-plane floor.
+  rails: [N5V_BUCK, N12V_POD1, N12V_POD2, N12V_POD3, N12V_POD4, N12V_POD5, N12V_POD6, N12V_POD7, N12V_POD8]
+  fixed_drop_components_mV:
+    no_series_diode: {value: 0, basis: topology, evidence: Q_IN is a reverse-hookup PFET.}
+  resistance_components_mohm:
+    F_IN_2920L330_24DR: {value: 55, basis: manufacturer_R1max, evidence: Littelfuse exact 2920L330/24 row.}
+    Q_IN_DMP6023LFG_13: {value: 25, basis: manufacturer_maximum_at_VGS_minus10V, evidence: Diodes DS37204 Rev.2-2.}
+
+# E-CAP is deliberately fail-closed. The exact manufacturer PDFs establish
+# tolerance and X5R/X7R temperature class, but publish DC/AC curves as typical
+# only and provide no guaranteed aging lower bound. Text tokens in consumed
+# numeric fields make the owning checker reject the contract rather than turn
+# an unknown into 0% or a fabricated guarantee.
+effective_capacitance_banks:
+  - name: TPSM63603 N12V_PROTECTED input
+    requirement_uF: 9.4
+    requirement_evidence: TI SLVSFS5A requires 2x4.7 uF effective ceramic input capacitance.
+    accepted_dielectrics: [x7r]
+    contributors:
+      - part: 12105C106K4Z2A
+        refs: [C_IN1, C_IN2]
+        nominal_each_uF: 10
+        dielectric: x7r
+        tolerance_minus_pct: 10
+        dc_bias_derating_pct: UNBOUNDED_EXACT_PDF_CURVE_IS_TYPICAL_ONLY
+        temperature_derating_pct: 15
+        lifecycle_derating_pct: UNBOUNDED_NO_EXACT_AGING_RATE
+        basis: exact_primary_pdf_fail_closed
+        evidence: >-
+          Kyocera AVX exact PDF guarantees 9-11 uF at its measurement condition
+          and X7R temperature class. Its DC, AC and temperature plots are
+          characteristics, not guaranteed lower limits; no aging rate is given.
+  - name: TPSM63603 N5V_BUCK output
+    requirement_uF: 25
+    requirement_evidence: TI SLVSFS5A section 8.2.1.2.5 requires 25 uF effective output capacitance.
+    accepted_dielectrics: [x7r]
+    contributors:
+      - part: GRM32ER71A476KE15L
+        refs: [C_OUT1, C_OUT2, C_OUT3]
+        nominal_each_uF: 47
+        dielectric: x7r
+        tolerance_minus_pct: 10
+        dc_bias_derating_pct: UNBOUNDED_NO_EXACT_GUARANTEED_DC_BIAS_LIMIT
+        temperature_derating_pct: 15
+        lifecycle_derating_pct: 12.5
+        basis: exact_primary_reference_sheet_fail_closed
+        evidence: >-
+          Murata exact reference sheet guarantees identity, nominal tolerance
+          and X7R class but directs the user to an approval sheet and actual-use
+          confirmation for voltage and aging behavior. Its exact endurance
+          test bounds post-test capacitance change to 12.5%, but no exact
+          guaranteed DC-bias lower bound at 5 V is supplied in the packet.
+  - &tps62825_input
+    name: TPS62825 U_3V3X input
+    requirement_uF: 3
+    requirement_evidence: TI SLVSEF9I minimum effective input capacitance.
+    accepted_dielectrics: [x5r]
+    contributors:
+      - part: GRM21BR61C106KE15L
+        refs: [C_U_3V3X_IN_1, C_U_3V3X_IN_2]
+        nominal_each_uF: 10
+        dielectric: x5r
+        tolerance_minus_pct: 10
+        dc_bias_derating_pct: UNBOUNDED_MURATA_LABELS_CURVE_TYPICAL_ONLY
+        temperature_derating_pct: 15
+        lifecycle_derating_pct: UNBOUNDED_NO_EXACT_AGING_RATE
+        basis: exact_primary_typical_curve_fail_closed
+        evidence: >-
+          Exact Murata sheet labels all curves typical. About 45% retention at
+          5 V is useful for a screen but is not a guaranteed lower bound; its
+          AC curve is also typical and no aging guarantee is stated.
+  - <<: *tps62825_input
+    name: TPS62825 U_1V8 input
+    contributors:
+      - {part: GRM21BR61C106KE15L, refs: [C_U_1V8_IN_1, C_U_1V8_IN_2], nominal_each_uF: 10, dielectric: x5r, tolerance_minus_pct: 10, dc_bias_derating_pct: UNBOUNDED_MURATA_LABELS_CURVE_TYPICAL_ONLY, temperature_derating_pct: 15, lifecycle_derating_pct: UNBOUNDED_NO_EXACT_AGING_RATE, basis: exact_primary_typical_curve_fail_closed, evidence: "Same exact 5 V input-bank condition and evidence as U_3V3X."}
+  - <<: *tps62825_input
+    name: TPS62825 U_CORE input
+    contributors:
+      - {part: GRM21BR61C106KE15L, refs: [C_U_CORE_IN_1, C_U_CORE_IN_2], nominal_each_uF: 10, dielectric: x5r, tolerance_minus_pct: 10, dc_bias_derating_pct: UNBOUNDED_MURATA_LABELS_CURVE_TYPICAL_ONLY, temperature_derating_pct: 15, lifecycle_derating_pct: UNBOUNDED_NO_EXACT_AGING_RATE, basis: exact_primary_typical_curve_fail_closed, evidence: "Same exact 5 V input-bank condition and evidence as U_3V3X."}
+  - &tps62825_output
+    name: TPS62825 U_3V3X output
+    requirement_uF: 10
+    requirement_evidence: TI SLVSEF9I Table 8-3 minimum effective capacitance in the nominal 47 uF class.
+    accepted_dielectrics: [x5r]
+    contributors:
+      - part: GRM21BR60J226ME39L
+        refs: [C_U_3V3X_OUT_1, C_U_3V3X_OUT_2]
+        nominal_each_uF: 22
+        dielectric: x5r
+        tolerance_minus_pct: 20
+        dc_bias_derating_pct: UNBOUNDED_MURATA_LABELS_CURVE_TYPICAL_ONLY
+        temperature_derating_pct: 15
+        lifecycle_derating_pct: UNBOUNDED_NO_EXACT_AGING_RATE
+        basis: exact_primary_typical_curve_fail_closed
+        evidence: >-
+          Exact Murata sheet labels all curves typical. About 54% retention at
+          3.3 V is a screen, not a guaranteed lower bound; the exact AC curve
+          and temperature curve are also typical and no aging rate is stated.
+  - <<: *tps62825_output
+    name: TPS62825 U_1V8 output
+    contributors:
+      - {part: GRM21BR60J226ME39L, refs: [C_U_1V8_OUT_1, C_U_1V8_OUT_2], nominal_each_uF: 22, dielectric: x5r, tolerance_minus_pct: 20, dc_bias_derating_pct: UNBOUNDED_MURATA_LABELS_CURVE_TYPICAL_ONLY, temperature_derating_pct: 15, lifecycle_derating_pct: UNBOUNDED_NO_EXACT_AGING_RATE, basis: exact_primary_typical_curve_fail_closed, evidence: "Lower DC bias improves the typical screen, but no guaranteed lower bound is provided."}
+  - <<: *tps62825_output
+    name: TPS62825 U_CORE output
+    contributors:
+      - {part: GRM21BR60J226ME39L, refs: [C_U_CORE_OUT_1, C_U_CORE_OUT_2], nominal_each_uF: 22, dielectric: x5r, tolerance_minus_pct: 20, dc_bias_derating_pct: UNBOUNDED_MURATA_LABELS_CURVE_TYPICAL_ONLY, temperature_derating_pct: 15, lifecycle_derating_pct: UNBOUNDED_NO_EXACT_AGING_RATE, basis: exact_primary_typical_curve_fail_closed, evidence: "Lower DC bias improves the typical screen, but no guaranteed lower bound is provided."}
+
 rails:
-  # A 5V-FIXED output rail sets vout_min == vout_max == 5. `converter` is the
-  # part MPN or its 02_parts directory name; its part.yaml `type:` is read.
-  - name: USB-A            # human label for the rail
-    vin_min: 9.0           # battery / input rail LOW  (worst case for buck)
-    vin_max: 12.6          # battery / input rail HIGH
-    vout_min: 5            # output envelope LOW  (== max for a fixed rail)
-    vout_max: 5            # output envelope HIGH
-    iout_max_A: 7          # max continuous output current, amps
-    converter: LM5116MHX-NOPB   # <refdes or part MPN / 02_parts dir name>
-    eff: 0.9               # converter efficiency (default 0.9 if omitted)
-    external_output: false # true requires claim_id + requirements.yaml claim
-
-  # A rail feeding a KNOWN brownout-sensitive load (E-MARGIN). load_uv_threshold
-  # ACTIVATES the check; vout_min is the WORST-CASE (lowest) regulated output.
-  # Here a Pi5 (UV ~4.63V) at 5A: a 5.1V setpoint over an assumed 60mΩ delivery
-  # path passes (headroom 470mV > 60mΩ x 5A x 1.2 = 360mV). The 4.97V setpoint
-  # the v3 board shipped would FAIL. The reviewer confirms ir_budget_mohm ([H]).
-  # - name: PI5
-  #   vin_min: 9.0
-  #   vin_max: 12.6
-  #   vout_min: 5.1
-  #   vout_max: 5.1
-  #   iout_max_A: 5
-  #   converter: LM5116MHX-NOPB
-  #   load_uv_threshold: 4.63   # the load's undervoltage / brownout voltage, V
-  #   ir_budget_mohm: 60        # worst-case board+connector+cable series R, mΩ
-  #   margin: 0.2               # OPTIONAL headroom margin over the IR drop (default 0.2)
-
-  # OPTIONAL per-rail `feedback:` — the divider-tolerance window (2026-07-23,
-  # usb-hub-3s-v3 external review): the gates accepted AUTHOR-DECLARED
-  # vout_min/vout_max, and the author computed them from ONLY the regulator
-  # reference tolerance (Vref ±1.5%), omitting the divider resistors' — the
-  # real window (Vref 1.215V ±1.5%, Rtop 4.12k ±0.1%, Rbot 1.21k ±1%) is
-  # 5.227-5.479V vs the declared 5.27-5.43V, and nothing could catch it.
-  # With the block present the checker COMPUTES the worst-case corners of
-  #   vout = vref * (1 + r_top/r_bottom)
-  #   low  = vref_min * (1 + r_top_min / r_bottom_max)
-  #   high = vref_max * (1 + r_top_max / r_bottom_min)
-  # and (a) E-TOPO + E-MARGIN FAIL if the DECLARED window is NARROWER than the
-  # computed one (under-stated corners), (b) E-MARGIN grades headroom from the
-  # COMPUTED worst-low, not the declared vout_min. All six fields are REQUIRED
-  # when the block is present (a partial tolerance stack is the incident in
-  # disguise). Absent -> declared window taken at face value (back-compat).
-  # - name: USB-C
-  #   vin_min: 9.0
-  #   vin_max: 12.6
-  #   vout_min: 5.22            # must COVER the computed 5.227-5.479 corners
-  #   vout_max: 5.48
-  #   iout_max_A: 5
-  #   converter: LM5116MHX-NOPB
-  #   load_uv_threshold: 4.63
-  #   ir_budget_mohm: 88
-  #   feedback:
-  #     vref: 1.215             # regulator FB reference, V
-  #     vref_tol_pct: 1.5       # reference tolerance, %
-  #     r_top_ohm: 4120         # divider top (output -> FB), Ω
-  #     r_top_tol_pct: 0.1      # its tolerance, %
-  #     r_bottom_ohm: 1210      # divider bottom (FB -> GND), Ω
-  #     r_bottom_tol_pct: 1.0   # its tolerance, %
-
-  # A full-PD rail (5-20V) legitimately overlaps Vin -> buck_boost is REQUIRED
-  # and a buck_boost part PASSES (not over-engineering):
-  # - name: USB-C-PD
-  #   vin_min: 9.0
-  #   vin_max: 12.6
-  #   vout_min: 5
-  #   vout_max: 20
-  #   iout_max_A: 5
-  #   converter: IP6559-C
-  #   eff: 0.9
-
-# E-TOPO also PRINTS the worst-case input-trunk current
-#   Sum(vout_max * iout_max) / eff / Vin_min
-# across all rails, and flags a declared trunk/fuse that is under-built
-# (materially below the derived need) or over-built (>2x it — the usb-hub-3s
-# 16A-vs-7A class). Always reported so the mismatch is visible.
+  - {name: N5V_BUCK, vin_min: 11.196, vin_max: 13.2, vout_min: 4.95, vout_max: 5.05, iout_max_A: 1.9, converter: TPSM63603V5RDHR, eff: 0.85, external_output: false}
+  - {name: N3V3X, vin_min: 4.95, vin_max: 5.05, vout_min: 3.267, vout_max: 3.333, iout_max_A: 1.0, converter: TPS6282533DMQR, input_parent: N5V_BUCK, eff: 0.85, external_output: false}
+  - {name: N1V8, vin_min: 4.95, vin_max: 5.05, vout_min: 1.782, vout_max: 1.818, iout_max_A: 0.30, converter: TPS6282518DMQR, input_parent: N5V_BUCK, eff: 0.85, external_output: false}
+  - {name: N0V9, vin_min: 4.95, vin_max: 5.05, vout_min: 0.88, vout_max: 0.92, iout_max_A: 1.2, converter: TPS62825DMQR, input_parent: N5V_BUCK, eff: 0.85, external_output: false}
+  - {name: N3V3_ADC, vin_min: 4.10, vin_max: 5.05, vout_min: 3.23, vout_max: 3.35, iout_max_A: 0.23, converter: LT3041ADE#TRPBF, input_parent: N5V_BUCK, dropout_mv: 500, pdiss_max_mw: 702, eff: 0.65, external_output: false}
+  - &spoke
+    name: N12V_POD1
+    stage: distribution
+    vin_min: 11.196
+    vin_max: 13.2
+    vout_min: 10.8
+    vout_max: 13.2
+    iout_max_A: 0.10
+    external_output: true
+    claim_id: eight_analog_spokes
+    load_uv_threshold: 10.8
+    margin: 0.20
+    margin_basis: requirement_boundary_only
+    margin_evidence: >-
+      The 10.8 V connector-plane floor is the requirement. Only the retained
+      branch PPTC maximum is quantified; missing copper/joint/contact resistance
+      deliberately leaves zero proven delivery headroom.
+    distribution:
+      series_devices: [1812L035-60MR]
+      path_resistance_max_mohm: 1700
+      current_limit_min_A: 0.10
+      current_limit_max_A: UNBOUNDED_PPTC_TRIP_CURRENT_IS_NOT_A_HARD_LIMIT
+      reverse_current_policy: External pods contain no admitted source; hot plug and downstream backfeed are prohibited.
+  - {<<: *spoke, name: N12V_POD2}
+  - {<<: *spoke, name: N12V_POD3}
+  - {<<: *spoke, name: N12V_POD4}
+  - {<<: *spoke, name: N12V_POD5}
+  - {<<: *spoke, name: N12V_POD6}
+  - {<<: *spoke, name: N12V_POD7}
+  - {<<: *spoke, name: N12V_POD8}

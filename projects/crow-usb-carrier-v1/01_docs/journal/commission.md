@@ -78,3 +78,8 @@
 - did: reviewed SOL connector candidate against USB and JTAG primary drawings; adopted sixteen evidenced sections and retained exact source PDFs in part dossiers. Corrected USB-C width11mmplus1mmtolerance; withdrew JTAG mate/grip extents that omitted its polarizing protrusion.
 - result: current connector compiler covers4profiles11refs,16/45evidencedsections and29unknown; receipt reopens. Contracts325files0violations. Candidate runtime remainsINCOMPLETE(handback check); coordinator adoption does not relabel it.
 - next: resolve remaining connector geometry/physical facts and power bounds before commissioning admission. No placement/fit approval.
+
+## 2026-09-22 — iterate 16
+- did: replaced unrelated battery-template power tree with the reviewed Crow rail/capacitor contract. Corrected INPUT_TRUNK binding and withdrew the branch PPTC trip-current-as-hard-limit claim. Stored consistent85%efficiency thermal rationale in durable research.
+- result: E-CAP intentionally fails unbounded DC-bias numeric input; E-TOPO/E-MARGIN now fail the unresolved PPTC hard-limit field rather than preserve an invalid0.70A claim. No power pass. SOL fault-model research opened with a20minute envelope to identify the correct time/current model or necessary topology change.
+- next: complete electrical power/fault bounds and remaining commission facts; schematic preview source stays available. No native board admission.
