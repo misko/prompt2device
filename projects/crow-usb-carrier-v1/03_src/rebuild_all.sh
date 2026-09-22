@@ -164,7 +164,7 @@ $PY "$S/build_provenance.py" stamp . --board "$BOARD" --tsx "$TSX" \
 # heartbeat distinguishes that from a dead pipeline, and the configured hard
 # deadline terminates the complete process group instead of leaving a child.
 run_stage tscircuit_deps env --chdir=03_tscircuit bun install --frozen-lockfile --ignore-scripts
-run_stage tscircuit_build env --chdir=03_tscircuit ./node_modules/.bin/tsci build --routing-disabled "src/$TSX.tsx"
+run_stage tscircuit_build env --chdir=03_tscircuit ./node_modules/.bin/tsci build --disable-pcb "src/$TSX.tsx"
 mkdir -p 03_tscircuit/build
 cp "03_tscircuit/dist/src/$TSX/circuit.json" "$CJ"
 

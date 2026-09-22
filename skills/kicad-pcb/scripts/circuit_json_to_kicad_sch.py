@@ -51,7 +51,9 @@ Connectivity resolution (validated node-for-node vs exact KiCad reference boards
     (split shields / thermal pads) so every member of an internal group shares
     the one resolved net.
   * PAD NAME per port: the first `pcb_smtpad`/`pcb_plated_hole` `port_hints` entry
-    that is NOT an auto-alias (`unnamed_*`); fall back to the pin_number. This is
+    that is NOT an auto-alias (`unnamed_*`); fall back to the pin_number. A split
+    internal port without either inherits the one unambiguous numbered port in
+    its declared internal-connection group, after its hint and net agree. This is
     the exact KiCad pad name, so the exported netlist nodes match the sealed board.
   * Duplicate pads that share a pad name (internally-connected shields, split
     thermal pads) collapse to ONE symbol pin — matching how the KiCad netlist
@@ -371,13 +373,67 @@ def load_model(path, aliases=None, overrides=None, return_ports=False, ties=None
         if e.get('type') in ('pcb_smtpad', 'pcb_plated_hole') and e.get('pcb_port_id'):
             padhints[e['pcb_port_id']] = e.get('port_hints') or []
 
-    def pad_name(p):
+    def authoritative_pcb_pad(p):
         pp = pcbport_by_src.get(p['source_port_id'])
         ph = padhints.get(pp['pcb_port_id']) if pp else None
-        for h in (ph or []):
-            if h and not str(h).startswith('unnamed_'):
-                return str(h)
-        return str(p['pin_number'])
+        return next((str(h) for h in (ph or [])
+                     if h and not str(h).startswith('unnamed_')), None)
+
+    # A PCB-disabled tscircuit build intentionally has no pcb_port/pad records.
+    # Preserve split shield/thermal-pad identity from source authority only when
+    # the declared internal group has one numbered parent, matching alias hints,
+    # and no conflicting connected nets. Never guess from an arbitrary hint.
+    internal_pad_aliases = {}
+    for c in comps.values():
+        for grp in c.get('internally_connected_source_port_ids', []):
+            missing = [sid for sid in grp if sid not in port_by_id]
+            members = [port_by_id[sid] for sid in grp if sid in port_by_id]
+            unresolved = [p for p in members if p.get('pin_number') is None
+                          and authoritative_pcb_pad(p) is None]
+            if not unresolved:
+                continue
+            if missing:
+                raise ValueError(
+                    f"internal port group {grp!r} names unknown ports {missing!r}")
+            foreign = [p['source_port_id'] for p in members
+                       if p.get('source_component_id') != c['source_component_id']]
+            if foreign:
+                raise ValueError(
+                    f"internal port group {grp!r} crosses component ownership at {foreign!r}")
+            numbered = {str(p['pin_number']) for p in members
+                        if p.get('pin_number') is not None}
+            nets = {portnet.get(p['source_port_id']) for p in members
+                    if portnet.get(p['source_port_id']) is not None}
+            if len(numbered) != 1:
+                raise ValueError(
+                    f"internal port group {grp!r} has no unambiguous numbered parent")
+            if len(nets) > 1:
+                raise ValueError(
+                    f"internal port group {grp!r} spans conflicting nets {sorted(nets)!r}")
+            pad = next(iter(numbered))
+            for p in unresolved:
+                hints = {str(h) for h in (p.get('port_hints') or [])}
+                numeric_hints = {m.group(1) for hint in hints
+                                 if (m := re.fullmatch(r'(?:pin)?([0-9]+)', hint))}
+                if numeric_hints != {pad}:
+                    raise ValueError(
+                        f"internal port {p['source_port_id']} does not uniquely alias parent pin {pad}")
+                prior = internal_pad_aliases.get(p['source_port_id'])
+                if prior is not None and prior != pad:
+                    raise ValueError(
+                        f"internal port {p['source_port_id']} aliases conflicting parent pins {prior} and {pad}")
+                internal_pad_aliases[p['source_port_id']] = pad
+
+    def pad_name(p):
+        pcb_pad = authoritative_pcb_pad(p)
+        if pcb_pad is not None:
+            return pcb_pad
+        if p.get('pin_number') is not None:
+            return str(p['pin_number'])
+        if p['source_port_id'] in internal_pad_aliases:
+            return internal_pad_aliases[p['source_port_id']]
+        raise ValueError(
+            f"source port {p['source_port_id']} has neither PCB pad identity nor pin_number")
 
     # group ports per component, collapse duplicate pad names to one pin
     ports_by_comp = {}

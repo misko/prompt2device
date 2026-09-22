@@ -2801,6 +2801,85 @@ def t_native_nonpolar_clear_control():
     eq([s for s, d, _ in segs if d == 'glyph C1'], [], 'nonpolar mark population')
 
 
+def _pcb_disabled_internal_alias_fixture(mutation=None):
+    source = json.loads((T0 / 'two_resistors/circuit.json').read_text())
+    component = next(e for e in source if e.get('source_component_id') == 'source_component_R1'
+                     and e.get('type') == 'source_component')
+    alias = {
+        'type': 'source_port', 'source_port_id': 'source_port_R1_1_internal',
+        'name': 'pin1_internal', 'port_hints': ['pin1_internal', 'pin1', '1'],
+        'source_component_id': 'source_component_R1',
+        'subcircuit_id': 'subcircuit_source_group_0',
+        'subcircuit_connectivity_map_key': 'k_vin',
+    }
+    source.append(alias)
+    component['internally_connected_source_port_ids'] = [
+        ['source_port_R1_1', alias['source_port_id']]]
+    if mutation:
+        mutation(source, component, alias)
+    path = tmpdir('pcb_disabled_alias_') / 'circuit.json'
+    path.write_text(json.dumps(source))
+    return path
+
+
+@test('converter: PCB-disabled internal pad alias inherits its one declared parent pin')
+def t_pcb_disabled_internal_alias():
+    _, sheet = _convert_json(_pcb_disabled_internal_alias_fixture(), 'internal_alias')
+    eq(netlist_of(sheet), {('R1','1'):'VIN', ('R1','2'):'MID',
+                           ('R2','1'):'MID', ('R2','2'):'GND'},
+       'PCB-disabled internal alias exact node identities')
+
+
+@test('converter: authoritative PCB pad identity bypasses source-only alias fallback')
+def t_pcb_enabled_internal_pad_identity():
+    def add_pcb_identity(source, _component, alias):
+        alias['port_hints'] = ['pin1', 'pin2']
+        source.extend([
+            {'type': 'pcb_port', 'pcb_port_id': 'pcb_port_internal',
+             'pcb_component_id': 'pcb_component_R1', 'source_port_id': alias['source_port_id']},
+            {'type': 'pcb_plated_hole', 'pcb_plated_hole_id': 'pcb_hole_internal',
+             'pcb_component_id': 'pcb_component_R1', 'pcb_port_id': 'pcb_port_internal',
+             'port_hints': ['SH']},
+        ])
+    _, sheet = _convert_json(_pcb_disabled_internal_alias_fixture(add_pcb_identity),
+                             'pcb_internal_alias')
+    nodes = netlist_of(sheet)
+    eq(nodes[('R1', 'SH')], 'VIN', 'authoritative PCB internal-pad identity')
+
+
+@test('converter: ambiguous PCB-disabled internal pad hints fail explicitly', kind='known_bad')
+def t_pcb_disabled_internal_alias_ambiguous():
+    path = _pcb_disabled_internal_alias_fixture(
+        lambda _s, _c, alias: alias.update(port_hints=['pin1', 'pin2']))
+    must_fail(run([PY, CONV, path, '-o', path.with_suffix('.kicad_sch')]),
+              'ambiguous internal pad alias', 'does not uniquely alias parent pin 1')
+
+
+@test('converter: PCB-disabled internal groups reject foreign ownership', kind='known_bad')
+def t_pcb_disabled_internal_alias_foreign():
+    path = _pcb_disabled_internal_alias_fixture(
+        lambda _s, _c, alias: alias.update(source_component_id='source_component_R2'))
+    must_fail(run([PY, CONV, path, '-o', path.with_suffix('.kicad_sch')]),
+              'foreign internal pad alias', 'crosses component ownership')
+
+
+@test('converter: PCB-disabled internal groups reject missing members', kind='known_bad')
+def t_pcb_disabled_internal_alias_missing_member():
+    def add_missing(_source, component, _alias):
+        component['internally_connected_source_port_ids'][0].append('source_port_missing')
+    path = _pcb_disabled_internal_alias_fixture(add_missing)
+    must_fail(run([PY, CONV, path, '-o', path.with_suffix('.kicad_sch')]),
+              'missing internal pad alias member', 'names unknown ports')
+
+
+@test('converter: PCB-disabled internal groups reject net conflicts', kind='known_bad')
+def t_pcb_disabled_internal_alias_net_conflict():
+    path = _pcb_disabled_internal_alias_fixture(
+        lambda _s, _c, alias: alias.update(subcircuit_connectivity_map_key='k_mid'))
+    must_fail(run([PY, CONV, path, '-o', path.with_suffix('.kicad_sch')]),
+              'conflicting internal pad alias', 'spans conflicting nets')
+
+
 @test('converter: ambiguous native capacitor polarity fails explicitly', kind='known_bad')
 def t_native_polarity_ambiguous_refuses():
     """RED on 5d1d0175: missing polarity metadata was silently accepted."""
