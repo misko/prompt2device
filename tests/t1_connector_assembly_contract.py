@@ -286,6 +286,45 @@ def t_legacy_instance_shape_unchanged():
     check("local_frame_board" not in compiled, "legacy frame unexpectedly added")
 
 
+@test("reversible cable publishes every supported board exit axis")
+def t_reversible_cable_exit_axes():
+    value = good_contract()
+    cable = value["assemblies"][0]["cable"]
+    cable["exit"] = "board_axes"
+    cable["exit_axes_board"] = [[0.0, 1.0, 0.0], [0.0, -1.0, 0.0]]
+    receipt = load_and_compile(fixture(value))
+    compiled = receipt["assemblies"][0]["cable"]
+    eq(compiled["exit_axes_board"],
+       [[0.0, -1.0, 0.0], [0.0, 1.0, 0.0]],
+       "canonical reversible exits")
+
+
+@test("board exit axes fail closed", kind="known_bad")
+def t_cable_exit_axes_fail_closed():
+    cases = [
+        ("board_axes", None, "requires exit_axes_board"),
+        ("along_mating_axis", [[1.0, 0.0, 0.0]],
+         "requires exit=board_axes"),
+        ("board_axes", [], "expected non-empty list"),
+        ("board_axes", [[2.0, 0.0, 0.0]], "expected a unit vector"),
+        ("board_axes", [[float("nan"), 0.0, 0.0]], "expected finite number"),
+        ("board_axes", [[1.0, 0.0, 0.0], [1.0, 0.0, 0.0]],
+         "duplicate axes"),
+    ]
+    for exit_kind, axes, expected in cases:
+        value = good_contract()
+        cable = value["assemblies"][0]["cable"]
+        cable["exit"] = exit_kind
+        if axes is not None:
+            cable["exit_axes_board"] = axes
+        try:
+            load_and_compile(fixture(value))
+        except ContractError as exc:
+            contains(str(exc), expected, f"cable exit case {exit_kind}/{axes}")
+            continue
+        raise AssertionError(f"invalid cable exits accepted: {exit_kind}/{axes}")
+
+
 @test("malformed named connector identifiers are rejected", kind="known_bad")
 def t_malformed_named_refs():
     for ref in ["J_", "J__USB", "J_USB_", "J_usb", "j_USB", "_J_USB",

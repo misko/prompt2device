@@ -89,6 +89,12 @@ source_deferrals:
   plan_source_ids: [connector_physical_qualification_plan]
   rationale: Exercise insertion and withdrawal by the keyed socket body while the adjacent-board restraint carries reaction through SMT header joints and PCB; inspect flex, rotation, and joints.
 - assembly_id: debug_jtag
+  target_kind: cable
+  target_id: cable
+  unknown_class: installed-cable-route-qualification
+  plan_source_ids: [connector_physical_qualification_plan]
+  rationale: Select the installed cable end and measure its signed exit, straight run, first controlled bend, strain relief, and populated-neighbor clearance without treating the two primary-supported reversible exits as an installed route.
+- assembly_id: debug_jtag
   target_kind: operation
   target_id: debug_jtag_service
   unknown_class: simultaneous-operation-qualification

@@ -177,3 +177,7 @@ Adopted explicit intended frames for all11 connectors as authored planning evide
 ## Iterate 36 — sourceable flash adopted
 
 Replaced U_FLASH with W25Q128JWSIQ after primary six-clock ROM framing clarification and independent review. Root removed unsupported proposed assertion types and an orphan power-tree identity field, verified the exact part/datasheet/footprint, and reran the actual single-part two-source gate:1/1 part, JLC+DigiKey, five boards PASS. Full-source485/85/1615/1488,0errors,26endpoint assertions. Shopping spelling normalization retains strict adjacent-MPN rejection;27tests pass. Full-BOM sourcing, regulator backtrack and physical layout remain open.
+
+## JTAG initial cable exit representation — 2026-09-22
+
+Adopted independently reviewed patch 2824cee20693a8dd7218df216be2b1d1af74f101acc39fe2282882dad3106131. Source design records both manufacturer-supported reversible initial exits; full phase requires exactly one installed signed axis. Installed bend, strain relief and clearance remain qualification obligations. Current connector compiler: 23/45 facts, 22 unknown; source phase admits 17 physical deferrals and retains 6 findings. Contract tests 34/34, phase tests 22/22, disclosure tests 14/14, documentation tests 15/15, skill authority PASS; project contracts 371 files, zero violations. These checks do not establish native schematic or PCB completion.

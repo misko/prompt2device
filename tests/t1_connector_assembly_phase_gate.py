@@ -256,6 +256,59 @@ def t_full_passes_closed_base():
     contains(result.out, "CONNECTOR-PHASE FULL PASS", "full verdict")
 
 
+@test("source admits selected reversible cable exits while installed route is unknown")
+def t_source_reversible_cable_route_deferral():
+    value = contract()
+    cable = value["assemblies"][0]["cable"]
+    cable["exit"] = "board_axes"
+    cable["exit_axes_board"] = [[0.0, -1.0, 0.0], [0.0, 1.0, 0.0]]
+    cable["evidence"] = physical_unknown()
+    phase_policy = policy()
+    phase_policy["source_deferrals"].append({
+        "assembly_id": "fixture-bank", "target_kind": "cable",
+        "target_id": "cable",
+        "unknown_class": "installed-cable-route-qualification",
+        "plan_source_ids": ["fixture-record"],
+        "rationale": "Installed cable end and route remain to be qualified.",
+    })
+    project = fixture(value, phase_policy=phase_policy)
+    must_pass(invoke(project, "source"), "reversible cable source phase")
+    must_fail(invoke(project, "full"), "reversible cable full phase",
+              expect="CONNECTOR-PHASE FULL INCOMPLETE")
+
+
+@test("full phase refuses an exact cable with no installed signed exit", kind="known_bad")
+def t_full_requires_single_installed_cable_exit():
+    value = contract()
+    cable = value["assemblies"][0]["cable"]
+    cable["exit"] = "board_axes"
+    cable["exit_axes_board"] = [[0.0, -1.0, 0.0], [0.0, 1.0, 0.0]]
+    project = fixture(value)
+    close_physical(project)
+    base_receipt = json.loads(
+        (project / phase_gate.DEFAULT_BASE_RECEIPT).read_text())
+    eq(base_receipt["status"], "PASS", "two-axis base physical status")
+    result = must_fail(
+        invoke(project, "full"), "ambiguous exact cable exit",
+        expect="CONNECTOR-PHASE FULL INCOMPLETE")
+    receipt = json.loads(
+        (project / phase_gate.DEFAULT_FULL_OUTPUT).read_text())
+    check(any(row["code"] == "FULL-CABLE-EXIT-SELECTION"
+              for row in receipt["findings"]),
+          "full phase did not name ambiguous installed cable exit")
+
+
+@test("full phase accepts one exact installed signed cable exit")
+def t_full_accepts_single_installed_cable_exit():
+    value = contract()
+    cable = value["assemblies"][0]["cable"]
+    cable["exit"] = "board_axes"
+    cable["exit_axes_board"] = [[0.0, 1.0, 0.0]]
+    project = fixture(value)
+    close_physical(project)
+    must_pass(invoke(project, "full"), "selected signed cable exit")
+
+
 @test("source phase rejects a missing receptacle identity", kind="known_bad")
 def t_missing_identity_rejected():
     value = contract()

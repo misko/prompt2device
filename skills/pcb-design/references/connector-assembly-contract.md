@@ -215,10 +215,18 @@ and evidence. Model all applicable actions, including:
 - enclosure installation/removal with the declared cable state;
 - final service/removal.
 
-The tool `approach` and cable `exit` are explicitly axial in schema 1:
-`along_mating_axis`, `opposite_mating_axis`, or `none`. Do not encode an angled
-operation as an axial one. Keep it `unknown` until a later schema represents
-and checks that motion exactly.
+The tool `approach` is explicitly axial in schema 1. Cable `exit` accepts
+`along_mating_axis`, `opposite_mating_axis`, `none`, or `board_axes`.
+`exit: board_axes` requires one or more unique finite unit vectors in
+`exit_axes_board`. Each vector points away from the connector along a
+manufacturer-supported initial cable exit. Multiple vectors represent real
+assembly choices such as either end of a reversible double-ended cable; they
+do not select which choice is installed. These axes establish selected cable
+identity and possible initial directions, not the installed route, bend sweep,
+strain clearance, or enclosure clearance. Those physical facts may remain
+`unknown` with a typed source-phase plan. Source phase may retain multiple
+supported axes; full phase requires exactly one signed installed axis and all
+remaining physical facts to close.
 
 Each simultaneous group declares its required state, all members, and the
 members that must remain serviceable. Use the most demanding real state, such

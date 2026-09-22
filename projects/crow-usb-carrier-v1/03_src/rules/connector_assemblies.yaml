@@ -665,16 +665,24 @@ assemblies:
     outer_diameter_mm: null
     straight_run_mm: null
     minimum_bend_radius_mm: null
-    exit: null
+    exit: board_axes
+    exit_axes_board:
+    - - 0.0
+      - -1.0
+      - 0.0
+    - - 0.0
+      - 1.0
+      - 0.0
     evidence:
       grade: unknown
       source_ids:
       - jtag_mate_print
       - jtag_mate_catalog
       - connector_physical_qualification_plan
-      rationale: Exact cable assembly identity matches the selected mate. Its lateral ribbon exit, installed
-        straight run, bend, strain relief, and clearance remain unknown because schema 1 cannot encode
-        the required angled exit as axial.
+      rationale: The FFSD primary assembly drawing shows the ribbon leaving transverse to the connector
+        bank. In the J_JTAG frame x=board +Z, y=board +X and z=board +Y, so either end of the reversible
+        double-ended cable permits board +Y or -Y initial exit. The installed end, straight run, bend,
+        strain relief, and clearance remain unknown pending the governed route qualification.
   operations:
   - id: debug_jtag_service
     sequence: 1

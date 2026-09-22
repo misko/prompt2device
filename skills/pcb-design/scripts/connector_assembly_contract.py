@@ -54,6 +54,7 @@ _GROUP_STATES = frozenset({
 _AXIAL_DIRECTIONS = frozenset({
     "along_mating_axis", "opposite_mating_axis", "none",
 })
+_CABLE_EXIT_DIRECTIONS = _AXIAL_DIRECTIONS | {"board_axes"}
 _TOLERANCE_EFFECTS = frozenset({
     "exposure_setback", "service_radial_growth", "service_axial_growth",
     "other",
@@ -654,13 +655,20 @@ class _Compiler:
         return result
 
     def _cable(self, value: Any, where: str) -> dict[str, Any]:
-        item = _exact_mapping(value, {
+        legacy_keys = {
             "kind", "manufacturer", "mpn", "outer_diameter_mm",
             "straight_run_mm", "minimum_bend_radius_mm", "exit", "evidence",
-        }, where)
+        }
+        axis_keys = legacy_keys | {"exit_axes_board"}
+        if not isinstance(value, Mapping) or set(value) not in (legacy_keys, axis_keys):
+            item = _exact_mapping(value, axis_keys, where)
+        else:
+            item = value
         exit_direction = _string(item["exit"], f"{where}.exit", nullable=True)
-        if exit_direction is not None and exit_direction not in _AXIAL_DIRECTIONS:
-            raise ContractError(f"{where}.exit: expected along_mating_axis|opposite_mating_axis|none")
+        if exit_direction is not None and exit_direction not in _CABLE_EXIT_DIRECTIONS:
+            raise ContractError(
+                f"{where}.exit: expected along_mating_axis|"
+                "opposite_mating_axis|board_axes|none")
         result = {
             "kind": _string(item["kind"], f"{where}.kind", nullable=True),
             "manufacturer": _string(item["manufacturer"], f"{where}.manufacturer", nullable=True),
@@ -671,6 +679,22 @@ class _Compiler:
             "exit": exit_direction,
             "evidence": self.evidence(item["evidence"], f"{where}.evidence"),
         }
+        if "exit_axes_board" in item:
+            axes = [
+                _unit_vector(axis, f"{where}.exit_axes_board[{index}]")
+                for index, axis in enumerate(_list(
+                    item["exit_axes_board"], f"{where}.exit_axes_board",
+                    nonempty=True))
+            ]
+            if len({tuple(axis) for axis in axes}) != len(axes):
+                raise ContractError(f"{where}.exit_axes_board: duplicate axes")
+            result["exit_axes_board"] = sorted(axes)
+        if exit_direction == "board_axes" and "exit_axes_board" not in result:
+            raise ContractError(
+                f"{where}: exit=board_axes requires exit_axes_board")
+        if exit_direction != "board_axes" and "exit_axes_board" in result:
+            raise ContractError(
+                f"{where}: exit_axes_board requires exit=board_axes")
         self._require_known_fields(result, result["evidence"], ("kind", "exit"), where)
         if result["evidence"]["grade"] != "unknown" and result["kind"] != "none":
             self._require_known_fields(

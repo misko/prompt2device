@@ -466,6 +466,18 @@ def grade_phase(
                 "path": "base.status",
                 "message": "full phase requires base status PASS",
             })
+    if phase == "full":
+        for assembly_index, assembly in enumerate(base_receipt["assemblies"]):
+            cable = assembly.get("cable")
+            if not isinstance(cable, Mapping) or cable.get("exit") != "board_axes":
+                continue
+            axes = cable.get("exit_axes_board")
+            if not isinstance(axes, list) or len(axes) != 1:
+                findings.append({
+                    "code": "FULL-CABLE-EXIT-SELECTION",
+                    "path": f"assemblies[{assembly_index}].cable.exit_axes_board",
+                    "message": "full phase requires exactly one installed signed cable exit axis",
+                })
     status = "PASS" if not findings else "INCOMPLETE"
     return {
         "phase_policy_id": authored_policy_id,
