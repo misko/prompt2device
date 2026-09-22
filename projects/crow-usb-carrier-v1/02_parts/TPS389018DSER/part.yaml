@@ -42,3 +42,4 @@ layout_refs:
     (not present in the immutable task packet)
   why: No exact-part routed design files were included in the immutable packet; this
     bounded repair does not claim unseen files.
+sourcing: {lcsc: C2066910, note: 'Exact catalog identity; allocation remains an order-time check.'}

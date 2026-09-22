@@ -68,7 +68,7 @@ export function UsbDeviceFrontend({ nets, receptacleFootprint }:
       manufacturerPartNumber="GRM188Z71C475KE21D" supplierPartNumbers={{jlcpcb:["C389010"]}}
       connections={c.vbusCap} schSheetName="usb" schSectionName="USB interface" schX={5} schY={8} />
     <resistor name="R_USB_VBUS_BLEED" resistance="47k" footprint="0402"
-      manufacturerPartNumber="RC0402FR-0747KL"
+      manufacturerPartNumber="RC0402FR-0747KL" supplierPartNumbers={{jlcpcb:["C93943"]}}
       connections={c.vbusBleed} schSheetName="usb" schSectionName="USB interface" schX={5} schY={11} />
   </>
 }

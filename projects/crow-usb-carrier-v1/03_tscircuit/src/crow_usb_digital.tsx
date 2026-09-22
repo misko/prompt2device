@@ -12,10 +12,19 @@ export const CROW_DIGITAL_BOUNDARY_NETS = {
 export interface CrowUsbDigitalProps { net?: (canonicalName: string) => string }
 const defaultNet=(name:string)=>`net.${ /^\d/.test(name) ? `N${name}` : name }`
 const supplier=(jlc:string)=>({jlcpcb:jlc?[jlc]:[]})
-const Chip=({jlc,...props}:any)=><chip supplierPartNumbers={supplier(jlc)} {...props} />
-const R=({name,value,a,b,mpn,jlc="",n}:any)=><resistor name={name} resistance={value} footprint="0402" manufacturerPartNumber={mpn} supplierPartNumbers={supplier(jlc)} connections={{pin1:n(a),pin2:n(b)}} />
+const sourced=(mpn:string,jlc="")=>jlc||({
+ "ASFL1-24.576MHZ-EC-T":"C17566269","CC0402KRX5R5BB105":"C106253","FTSH-105-01-L-DV-K":"C5155080",
+ "GRM155R71H103KA88D":"C77019","GRM21BR61C106KE15L":"C77075","RC0402FR-07680RL":"C137948",
+ "RT0402BRD07100KL":"C852472","RT0402BRD07200KL":"C728556","SN74AUP3G34DCUR":"C2675543",
+ "SN74AXC4T245PWR":"C2867798","SN74LVC1G04DCKR":"C8207","SN74LVC1G125DCKR":"C7833",
+ "SN74LVC1G332DBVR":"C43368","SN74LVC2G74DCTR":"C79339","TPS3808G09DBVR":"C24584",
+ "TPS389018DSER":"C2066910","TPS389030DSER":"C2066942","TPS6282518DMQR":"C2072356",
+ "TPS6282533DMQR":"C3189971","TPS62825DMQR":"C2650334"
+ } as Record<string,string>)[mpn]||""
+const Chip=({jlc="",manufacturerPartNumber,...props}:any)=><chip manufacturerPartNumber={manufacturerPartNumber} supplierPartNumbers={supplier(sourced(manufacturerPartNumber,jlc))} {...props} />
+const R=({name,value,a,b,mpn,jlc="",n}:any)=><resistor name={name} resistance={value} footprint="0402" manufacturerPartNumber={mpn} supplierPartNumbers={supplier(sourced(mpn,jlc))} connections={{pin1:n(a),pin2:n(b)}} />
 const C=({name,value,a,b,mpn="CL05B104KO5NNNC",jlc="",footprint="0402",n}:any)=>{
- const exactJlc=jlc || (mpn==="CL05B104KO5NNNC" && value==="100nF" ? "C1525" : "");
+ const exactJlc=sourced(mpn,jlc || (mpn==="CL05B104KO5NNNC" && value==="100nF" ? "C1525" : ""));
  return <capacitor name={name} capacitance={value} footprint={footprint} manufacturerPartNumber={mpn} supplierPartNumbers={supplier(exactJlc)} connections={{pin1:n(a),pin2:n(b)}} />
 }
 

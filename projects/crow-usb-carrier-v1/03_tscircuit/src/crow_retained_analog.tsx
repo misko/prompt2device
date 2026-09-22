@@ -63,18 +63,23 @@ const supplier = (jlc: string) => ({ jlcpcb: jlc ? [jlc] : [] })
 
 const R = ({ name, value, a, b, mpn, jlc, footprint = "0402", n }: any) => (
   <resistor name={name} resistance={value} footprint={footprint}
-    manufacturerPartNumber={mpn} supplierPartNumbers={supplier(jlc)}
+    manufacturerPartNumber={mpn} supplierPartNumbers={supplier(sourced(mpn, jlc))}
     connections={{ pin1: n(a), pin2: n(b) }} />
 )
 
 const C = ({ name, value, a, b, mpn, jlc, footprint = "0402", polarized = false, n }: any) => (
   <capacitor name={name} capacitance={value} footprint={footprint} polarized={polarized}
-    manufacturerPartNumber={mpn} supplierPartNumbers={supplier(jlc)}
+    manufacturerPartNumber={mpn} supplierPartNumbers={supplier(sourced(mpn, jlc))}
     connections={{ pin1: n(a), pin2: n(b) }} />
 )
 
-const Chip = ({ jlc, ...props }: any) => (
-  <chip supplierPartNumbers={supplier(jlc)} {...props} />
+const sourced = (mpn: string, jlc = "") => jlc || ({
+  "615008160221": "C6461980", "R82DC4100CK60J": "C3778009",
+  "SN74LVC1G04DCKR": "C8207", "SN74LVC1G125DCKR": "C7833",
+  "TPS389018DSER": "C2066910", "TPS389030DSER": "C2066942",
+} as Record<string, string>)[mpn] || ""
+const Chip = ({ jlc = "", manufacturerPartNumber, ...props }: any) => (
+  <chip manufacturerPartNumber={manufacturerPartNumber} supplierPartNumbers={supplier(sourced(manufacturerPartNumber, jlc))} {...props} />
 )
 
 const Spoke = ({ index, n }: any) => (

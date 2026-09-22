@@ -1,7 +1,7 @@
 stage: commission
-step: "Current BOM sourcing consolidation, PLL bead qualification, and schematic readability repair"
-measure: "489 refs /85 MPNs; Q-2SOURCE41/85 PASS rows,44remaining; source0errors; render37pages/489unique refs; readability corrections pending"
+step: "Schematic source presentation repaired; expanded catalog sourcing grade in progress"
+measure: "489 refs /85 MPNs; source0errors; 37pages/489unique refs; modular489/489 and54/54; early electrical4/4; prior sourcing41/85 awaiting regrade"
 state: working
-next: "Grade consolidated sourcing, qualify replacement PLL bead, review corrected schematic pages, then review commission admission"
+next: "Grade 26 added catalog identities and new quotes; finish PLL bead qualification; review source admission"
 op_pid:
-updated: 2026-09-22T11:49:00.593424+00:00
+updated: 2026-09-22T11:54:23.712607+00:00

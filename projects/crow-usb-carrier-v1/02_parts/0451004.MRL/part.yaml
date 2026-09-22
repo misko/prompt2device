@@ -16,4 +16,4 @@ layout:
 layout_refs:
   - {tier: 1, reached: true, artifact: 'Littelfuse 451/453 PDF pp1-4, exact 4.00A row and recommended pad layout', why: 'Manufacturer authority fixes rating, package and lands.'}
   - {tier: 2, reached: false, artifact: 'Exact editable 0451004.MRL routed reference design', why: 'Project current path remains native-layout owned.'}
-sourcing: {digikey: F2586TR-ND, lcsc: null, note: 'Current allocation is a separate sourcing-gate observation.'}
+sourcing: {digikey: F2586TR-ND, lcsc: C27515, note: 'Current allocation is a separate sourcing-gate observation.'}

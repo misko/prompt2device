@@ -15,3 +15,4 @@ design_curve_screen: "Murata typical curve is approximately 45% retained at 5 V;
 
 type: capacitor
 pins: {1: terminal_1, 2: terminal_2}
+sourcing: {lcsc: C77075, note: 'Exact catalog identity; allocation remains an order-time check.'}

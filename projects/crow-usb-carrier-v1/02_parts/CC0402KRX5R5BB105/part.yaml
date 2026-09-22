@@ -31,6 +31,6 @@ verified: YAGEO exact specification states 1uF +/-10%, 6.3VDC, X5R, 0402/1005, 1
 gotchas:
   - Class-2 MLCC effective capacitance is bias-dependent; the source evidence does not establish a guaranteed minimum at 0.9 V. Preserve C_PLL_1U and C_PLL_100N placement at the PLL supply pins and validate PLL lock on hardware.
 sourcing:
-  lcsc:
+  lcsc: C106253
   alternates: []
   note: Exact dated DigiKey and Mouser observations are retained in manual_quotes.yaml; no JLC PCBA identity is asserted.

@@ -35,6 +35,6 @@ gotchas:
   - "Manual THT population only until an exact JLC process response exists; LCSC stock is not PCBA allocation evidence."
   - "The 10.1mm maximum body height and sixteen ground-plane perforations require placement, enclosure, and return-path review."
 sourcing:
-  lcsc:
+  lcsc: C3778009
   alternates: []
   note: "Exact CK packaging-code distributor observations are recorded in manual_quotes.yaml; assembly.yaml keeps all sixteen parts off the JLC CPL pending THT process evidence."
