@@ -83,3 +83,8 @@
 - did: replaced unrelated battery-template power tree with the reviewed Crow rail/capacitor contract. Corrected INPUT_TRUNK binding and withdrew the branch PPTC trip-current-as-hard-limit claim. Stored consistent85%efficiency thermal rationale in durable research.
 - result: E-CAP intentionally fails unbounded DC-bias numeric input; E-TOPO/E-MARGIN now fail the unresolved PPTC hard-limit field rather than preserve an invalid0.70A claim. No power pass. SOL fault-model research opened with a20minute envelope to identify the correct time/current model or necessary topology change.
 - next: complete electrical power/fault bounds and remaining commission facts; schematic preview source stays available. No native board admission.
+
+## 2026-09-22 — iterate 17
+- did: opened a bounded SOL modular plan task for current422-refsource, exactcrossingsandP1-P5workgraph; noplacement tasks dispatched. Rechecked Nexperia primaryBC847X_SER Rev13 throughwebdocument extraction and corrected dossier metadata/pinverification citation.
+- result: primaryTable3page2confirms1=B/2=E/3=C. DirectPDFdownload stillHTTP403; localprimarybyteclosure notclaimed. TDKALCprimary remainsunresolved; ALMwasnot substituted merely fromsearchresults.
+- next: review SOL modular and PPTCfault packets; resolve actualelectrical/sourceadmission requirements. Commissionholdretained.

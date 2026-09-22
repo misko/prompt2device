@@ -4,18 +4,21 @@ manufacturer: Nexperia
 type: npn_transistor
 package: SOT-23
 datasheet:
-  doc_id: BC847_SER
-  revision: unknown
-  url: https://www.nexperia.com/product/BC847B
+  doc_id: BC847X_SER
+  revision: '13'
+  url: https://assets.nexperia.com/documents/data-sheet/BC847X_SER.pdf
   fetched: 2026-09-22
-  note: Manufacturer PDF fetch returned HTTP 403; local PDF/hash is an explicit freeze
-    gate.
+  note: Primary Nexperia PDF read through web document extraction on2026-09-22; Rev13
+    dated1July2022. Direct local PDF download still returnsHTTP403; retained distributor
+    snapshot is not substituted for primary bytes. Local primary PDF/hash remain owed.
+  pages: 12
 pins:
   1: B
   2: E
   3: C
-verified: "pin order checked against Nexperia product pinout; local primary PDF pending\
-  \ \u2014 2026-09-22"
+verified: Primary Nexperia BC847X_SER Rev13 page2 Table3 independently confirms1=B,2=E,3=C;
+  page2 Table4 identifiesSOT23/TO-236AB. Web document inspection2026-09-22; local
+  primary byte capture remains owed.
 layout:
   source: Local BC847B_215.pdf distributor snapshot page 1 for SOT-23 package class
     only; no primary manufacturer layout section is present
