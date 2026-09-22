@@ -19,8 +19,13 @@ electrical placement was broken. Both facts at once.
 
 ## The snap-back pass (mandatory after any auto-placement)
 
-For each electrically-critical satellite, ring-search a legal spot 2–5 mm
-from its anchor pin:
+For each electrically-critical satellite, confirm the served device and exact
+anchor pin from circuit intent, connectivity and the selected-part dossier.
+Use its layout requirements and approved precedent to set the search region
+and acceptance limits. The historical screening budgets below are fallback
+triage guidance, not universal placement requirements or proof of compliance;
+they never override selected-part requirements. Do not impose a 2 mm minimum
+separation when the owning layout guidance calls for closer placement.
 
 | Class | Anchor | Budget |
 |---|---|---|
@@ -32,8 +37,11 @@ from its anchor pin:
 | TVS / local bulk | their connector/load | ≤ 20–35 mm |
 | Sense-divider hold caps | ADC pin (slow/high-Z: relaxable, document) | ≤ 8–16 mm |
 
-Auto-derive anchors when unsure: the nearest non-passive part sharing the
-satellite's non-GND net.
+When uncertain, the nearest non-passive sharing the satellite's non-GND net
+may suggest a candidate anchor, but shared-net proximity does not establish
+which device the satellite serves. Confirm the relationship before moving the
+part or accepting the proximity check. Record unresolved ownership explicitly;
+do not turn the heuristic into an authoritative anchor.
 
 ## Ring-search placement — three legality layers (all three!)
 
