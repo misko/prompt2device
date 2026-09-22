@@ -133,3 +133,8 @@
 - did: replaced route seed paths/geometry/nets with Crow-specific draft waves and USB differential-pair/connector/shunt contracts. Retained pre-route review and decision admission requirements.
 - result: 60 exact declared wave nets resolve in current source; native USB aliases and ESD pins checked; contracts337files0violations. SOL capacitor policy review corrected the coordinator-imposed manufacturer-guarantee requirement: owning E-CAP permits justified conservative engineering derating. Isolated capacitor and active-spoke candidates are now in progress.
 - next: review candidates against exact primary facts and update modular source population; retain hold until source/connector/thermal facts close.
+
+## 2026-09-22 — iterate 27
+- did: corrected the power-bound disposition after checking the actual E-CAP implementation and project contract. Manufacturer-guaranteed derating was an extra coordinator restriction, not a repository requirement; conservative supported engineering allowances are permitted with explicit qualification limits.
+- result: no numeric placeholder or gate result changed. Isolated SOL capacitor candidate must substantiate exact-part operating conditions and extra derating before adoption. Normal topology disposition updated to match the already-adopted passive reader.
+- next: review live capacitor/protection candidates and connector/power-state reviews.
