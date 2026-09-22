@@ -25,3 +25,7 @@ projects/crow-audio-carrier-v1/01_docs/journal/fbed61c94b1e18fd385831459d81d2099
 
 # Preserve the hashed manufacturer response byte-for-byte, including original CRLF/spacing.
 projects/crow-usb-carrier-v1/02_parts/CL21A106KOCLRNC/CL21A106KOCLRN-20260922.html binary
+
+# Preserve hash-bound primary lifecycle response bytes.
+projects/crow-usb-carrier-v1/01_docs/sourcing/evidence/TMUX2821DSGR-ti.html binary
+projects/crow-usb-carrier-v1/01_docs/sourcing/evidence/TPSM63603V5RDHR-ti.html binary
