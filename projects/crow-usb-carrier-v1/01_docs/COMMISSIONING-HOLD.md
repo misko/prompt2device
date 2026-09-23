@@ -1,9 +1,7 @@
-# Source admission remains held — D5/D7
+# Source readmission in progress — D10 XMOS reserve exception
 
-JLCPCB must stock and populate every non-through-hole component. The user retained five board sets plus150 extra publicly stocked units per exact part. Prior admission does not satisfy these requirements.
+The user authorized an XMOS-only exception to the150-extra-unit reserve in D10 and decision0009. For XU316-1024-TQ128-C24 / C6362698 / U_XU, require stock for the five-board build; all other parts keep150 extra units. JLC must still stock and populate every non-through-hole component. D9 covers only the24 specified manual through-hole references.
 
-The reviewed current source now uses two stocked TLV320ADC6140 ADCs and stocked TMUX4827 switches. Its568 references and90 exact MPNs are reconciled; exactly24 D9 through-hole references are approved for manual assembly. The dated population audit covers544 JLC-coded references across88 MPNs:87 pass the reserve threshold. XMOS XU316-1024-TQ128-C24/C6362698 remains46/155 at2026-09-23 05:52UTC. See sourcing/xmos-stock-refresh-2026-09-23-0552.md and sourcing/adc-composed-population-2026-09-23.md.
+The former46/155 XMOS shortfall is historical under the superseded threshold. Refresh the88 coded exact-part lines, implement and verify the narrow policy across sourcing consumers, then complete reviewed source readmission before removing this hold. No purchase is authorized.
 
-Do not remove this hold until the XMOS public-stock requirement is met (or the user explicitly changes that policy), affected sourcing evidence is refreshed and reviewed source admission is completed. Private inventory, distributor observations and external assemblers do not currently close D5/D7. No purchasing is authorized.
-
-The568-reference diagnostic source and conditional external-supply fault proof have independent engineering reviews. Canonical schematic artifacts remain the historical493-reference checkpoint; regenerate and review after admission. The16 hold capacitors require source floorplan repartition before P1–P5 block placement, pre-routing and integration. No PCB, fabrication payload or sealed release exists. Actual external source/cable, assembly-process and first-article qualification remain separate obligations.
+Reviewed diagnostic source has568 references and90 MPNs; canonical493-reference schematic remains historical. ADC and conditional external-source fault engineering are reviewed. After admission regenerate/review the schematic, repartition the16-capacitor hold-bank floorplan and execute P1–P5 block placement, local pre-routing and board integration. No PCB or sealed release exists. Actual source/cable, assembly-process and first-article qualification remain separate obligations.

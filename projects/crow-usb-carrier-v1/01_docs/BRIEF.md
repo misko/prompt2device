@@ -111,6 +111,7 @@ Escalate if: a specific enclosure, board outline, assembly budget or different P
 | 0006 | Four-layer advanced escape/process posture, with selective via fill/cap qualification owed. | agent (A3 / P-delegation) | [decision](decisions/0006-four-layer-advanced-escape-process.md) |
 | 0007 | Initial outline and design-only cost assumptions; no purchase authorization. | agent (A3 / P-delegation) | [decision](decisions/0007-outline-and-design-cost-assumptions.md) |
 | 0008 | USB tree endpoint paths, 1 mm skew ceiling and no-signal-via policy. | agent (P-delegation) | [decision](decisions/0008-usb-realized-copper-policy.md) |
+| 0009 | XMOS-only public-stock surplus exception; JLC population remains required. | user (D10) | [decision](decisions/0009-xmos-public-stock-reserve-exception.md) |
 | A1 | Existing Crow audio/spoke function retained provisionally. | agent (A1 / P-delegation) | log A1 |
 | A2 | External carrier power retained provisionally. | agent (A2 / P-delegation) | log A2 |
 | A3 | Cable connection, fresh design, populated-PCBA intent. | agent (A3 / P-delegation) | log A3 |
@@ -165,3 +166,9 @@ Interpretation: retain the selected XMOS USB audio controller while investigatin
 > Plan manual assembly for these through-hole parts
 
 Context: the user selected manual assembly for eight RJ45 connectors and sixteen film capacitors per board after JLC assembles every SMD component. Exact selected parts remain Wurth615008160221 and KEMETR82DC4100CK60J. Public distributor observations clear the five-board quantity plus150 extra per exact part (190 connectors;230 capacitors). Record these24 references in assembly.yaml as user-supplied, excluded from JLC sourcing/BOM/CPL but retained in the complete design and final fitted population. J_PWR is not included in this decision. Refresh external stock before ordering; no purchase, SMD exception, component substitution or reserve reduction is authorized.
+
+
+### D10 — 2026-09-23 — XMOS-only public-stock reserve exception
+> lets make an exception for xmos and keep going
+
+Impact: waive the150-extra-unit public-stock reserve only for the selected XMOS XU316-1024-TQ128-C24 / C6362698 at U_XU. Its prelayout public-stock threshold becomes the quantity for five boards (currently five devices), while JLC must still stock and populate it. Retain150 extra units for every other exact part and retain D9 manual through-hole assembly. Confirm JLC assembly attrition/minimum and actual allocation before ordering; this exception is not an attrition waiver, private-stock substitution, purchasing authorization or firmware authorization. Resume sourcing admission and the requested block schematic/placement/pre-routing release workflow after refreshing exact-source evidence. See decision0009.

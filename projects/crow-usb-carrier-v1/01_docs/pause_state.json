@@ -1,11 +1,11 @@
 {
-  "blocker": "D5/D7 source admission held: XMOS public stock remains 46/155 at 05:52 UTC; other 87/88 coded MPNs meet retained dated observations. Reviewed diagnostic source has 568 refs; canonical 493-ref schematic remains historical. Conditional E-FAULT source proof passes; actual supply/cable and first-article qualification owed. Floorplan must repartition 16 hold capacitors. Carrier ambient/private-XMOS inventory questions unanswered.",
+  "blocker": "D10 authorizes zero extra public-stock reserve only for XMOS XU316-1024-TQ128-C24/C6362698/U_XU. Implementing exact-part policy and refreshing88 coded lines before reviewed source readmission. Otherparts retain150extra; JLC population and5-board build unchanged. Canonical493-ref schematic remains historical; reviewed diagnostic568refs.",
   "checkpoint": {
     "path": "03_tscircuit/build/circuit.json",
     "sha256": "ead8cb33c07afcb9dd371a5c61188c8f2fde59c55c9e703400d5b21765daa336",
     "size": 4382904
   },
-  "next_command": "Resolve XMOS sourcing; regenerate and admit current schematic, repartition hold-bank floorplan, then execute P1-P5 block placement and routing with conditional external-supply requirements",
+  "next_command": "Verify D10 policy and refreshed exact stock, complete source readmission, then regenerate schematic and proceed with block floorplan repartition and P1-P5",
   "phase": "sourcing",
   "project": "crow-usb-carrier-v1",
   "receipts": [
@@ -21,5 +21,5 @@
     }
   ],
   "schema": 1,
-  "state_id": "3807d5f708b7218b02e13da0f6da7d14452b78bc259e18ce29a7232ce533b553"
+  "state_id": "80e78493beb6c1aee8ddb2dc08c26056c8a1be234c1ef5a4650cf79fc72aafcf"
 }
