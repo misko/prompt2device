@@ -35,8 +35,13 @@ The physics, per package style:
   adjacent passives, D-ADJ). A four-sided VQFN (LM5145, 20 pins — 3
   boards shipped ADVANCED) or a QFN-48 (IP6559-C) can NOT do outward-only
   and stays unconditional-advanced.
-- bga: needs the dogbone ring AND a routing lane between balls
-  (min_track + 2*min_space <= pitch - ball land, land ~= pitch/2).
+- bga: the generic model needs a dogbone ring AND an inter-ball routing
+  lane (min_track + 2*min_space <= pitch - ball land, land ~= pitch/2).
+  A separately declared 3x3 topology can instead use eight outward surface
+  launches and one center filled/capped via, conditional on exact coupon and
+  native-footprint SHA bindings, JLC BGA geometry and advanced via-in-pad.
+  The Crow TMUX4827 coupon is the first named consumer. The condition proves
+  source-stage geometric feasibility only; production CAM/process remains owed.
 
 CONDITIONS VOCABULARY (emitted in the escape block, verified by P-ESC):
   outward-only-local  every fine-pad net terminates in an adjacent local
@@ -44,6 +49,9 @@ CONDITIONS VOCABULARY (emitted in the escape block, verified by P-ESC):
                       layer drops (the shipped SY8368 configuration)
   escape-corridor     a reserved routing lane at placement for the dense
                       side's fan-out (floorplan `escape_corridors:` key)
+  center-via-perimeter-outward-coupon  reviewed 3x3 native coupon, exact
+                      footprint and dimension-derived advanced via-in-pad;
+                      vendor process acceptance remains a separate hold
 A part.yaml claiming a CONDITIONAL tier must record the SAME conditions
 in its escape block, or P-ESC fails it — a conditional verdict must be
 EARNED per board, never inherited by copy.
@@ -77,6 +85,8 @@ explicit floors. Board default widths do not invent declared requirements.
 A zero graded denominator and unsupported/unreadable inputs block.
 """
 import argparse
+import hashlib
+import math
 import re
 import sys
 from pathlib import Path
@@ -105,14 +115,112 @@ OUTWARD_MAX_PINS = 12
 DENSE_LEADED_ESCAPES = 6
 COND_OUTWARD = "outward-only-local"
 COND_CORRIDOR = "escape-corridor"
-KNOWN_CONDITIONS = {COND_OUTWARD, COND_CORRIDOR}
+COND_CENTER_VIA = "center-via-perimeter-outward-coupon"
+KNOWN_CONDITIONS = {COND_OUTWARD, COND_CORRIDOR, COND_CENTER_VIA}
+
+# JLCPCB 4-layer BGA design guidance (reviewed 2026-09-23): 0.25-mm
+# minimum ball land, 0.35-mm recommended filled-via copper, 0.10-mm
+# via-to-ball copper spacing. Geometry at these floors remains conditional
+# on exact-board DRC, selective Type VII processing and vendor acceptance.
+BGA_LAND_MIN = 0.25
+BGA_FILLED_VIA_MIN = 0.35
+BGA_VIA_PAD_GAP_MIN = 0.10
+
+
+def center_via_geometry_ok(pitch, tier, t):
+    """Special topology: only one inner ball; all perimeter balls exit outward."""
+    try:
+        if any(type(t[key]) is not int for key in
+               ("rows", "cols", "perimeter_outward_launches")):
+            return False
+        rows, cols = t["rows"], t["cols"]
+        land = float(t["land_diameter_mm"])
+        via = float(t["center_via_diameter_mm"])
+        drill = float(t["center_via_drill_mm"])
+        opening = float(t["center_mask_opening_mm"])
+        outward = t["perimeter_outward_launches"]
+    except (KeyError, TypeError, ValueError):
+        return False
+    if not all(math.isfinite(x) for x in (pitch, land, via, drill, opening)):
+        return False
+    if rows != 3 or cols != 3 or outward != rows * cols - 1:
+        return False
+    if land + 1e-6 < BGA_LAND_MIN or via + 1e-6 < BGA_FILLED_VIA_MIN:
+        return False
+    if not (0 < drill < via and 0 < opening <= via):
+        return False
+    if pitch - (land + via) / 2 + 1e-6 < BGA_VIA_PAD_GAP_MIN:
+        return False
+    # Parallel outward launches are separated by one pitch. No lane between
+    # balls is claimed; the only layer transition is the filled center via.
+    if pitch - tier["min_track"] + 1e-6 < tier["min_space"]:
+        return False
+    return (tier.get("via_in_pad", False)
+            and tier["min_via_diameter"] <= via + 1e-6
+            and tier["min_via_drill"] <= drill + 1e-6
+            and tier["min_space"] <= BGA_VIA_PAD_GAP_MIN + 1e-6)
+
+
+def check_center_via_evidence(part_yaml, y, t):
+    """Bind the dimension claim to retained exact native footprint and coupon."""
+    mpn = y.get("mpn", Path(part_yaml).parent.name)
+    probs = []
+    if not isinstance(t, dict):
+        return [f"{mpn}: center-via topology must be a mapping"]
+    pins = y.get("pins") or {}
+    expected_map = {f"{row}{col}": str(index) for index, (row, col) in
+                    enumerate(((row, col) for row in "ABC" for col in "123"), 1)}
+    expected = set(expected_map)
+    mapping = t.get("ball_to_pad")
+    if not isinstance(mapping, dict) or mapping != expected_map:
+        probs.append(f"{mpn}: center-via topology requires exact TI A1..C3 to numeric pad mapping")
+        return probs
+    if set(map(str, pins)) != set(mapping.values()) or str(pins.get(mapping["B2"], "")).upper() != "GND":
+        probs.append(f"{mpn}: center-via topology requires exact numeric pads and B2 GND")
+    for field in ("coupon", "native_footprint"):
+        record = t.get(field)
+        if not isinstance(record, dict) or not record.get("local") or not record.get("sha256"):
+            probs.append(f"{mpn}: missing {field} local path and SHA-256")
+            continue
+        path = (Path(part_yaml).parent / str(record["local"])).resolve()
+        if not path.is_file() or hashlib.sha256(path.read_bytes()).hexdigest() != record["sha256"]:
+            probs.append(f"{mpn}: {field} missing or SHA-256 mismatch: {path}")
+            continue
+        if field == "native_footprint":
+            raw = path.read_text()
+            all_names = re.findall(r'\(pad "([^"]+)" smd', raw)
+            if len(all_names) != 9 or set(all_names) != set(mapping.values()):
+                probs.append(f"{mpn}: native footprint must contain only mapped numeric pads")
+            found = {}
+            for pin, x, yy, diameter in re.findall(
+                    r'\(pad "([1-9])" smd circle\s*\(at ([-\d.]+) ([-\d.]+)\)\s*\(size ([-\d.]+) \4\)', raw):
+                found[pin] = (float(x), float(yy), float(diameter))
+            try:
+                pitch = float((y.get("escape") or {})["pitch"])
+                land = float(t["land_diameter_mm"])
+                via = float(t["center_via_diameter_mm"])
+                for row, yy in zip("ABC", (-pitch, 0, pitch)):
+                    for col, x in zip("123", (-pitch, 0, pitch)):
+                        want = (x, yy, via if row + col == "B2" else land)
+                        got = found.get(mapping[row + col])
+                        if got is None or any(abs(a - b) > 0.0015 for a, b in zip(got, want)):
+                            probs.append(f"{mpn}: native footprint ball {row+col} geometry differs from topology")
+                margin = (float(t["center_mask_opening_mm"]) - via) / 2
+                b2 = re.search(r'\(pad "' + re.escape(mapping["B2"]) + r'" smd circle[^\n]*', raw)
+                if (not b2 or f'(solder_mask_margin {margin:g})' not in b2.group()
+                        or f'(solder_paste_margin {margin:g})' not in b2.group()):
+                    probs.append(f"{mpn}: native B2 mask/paste opening differs from topology")
+            except (KeyError, TypeError, ValueError):
+                probs.append(f"{mpn}: incomplete center-via topology dimensions")
+    return probs
 
 
 def load_tiers(path=TIERS_PATH):
     return yaml.safe_load(Path(path).read_text(encoding="utf-8-sig"))["tiers"]
 
 
-def grade_tier(style, pitch, tier, escapes_worst_side=None, npins=None):
+def grade_tier(style, pitch, tier, escapes_worst_side=None, npins=None,
+               topology=None):
     """One tier's verdict: ('ok'|'conditional'|'no', [conditions]).
 
     'ok' = unconditionally feasible geometry. 'conditional' = feasible only
@@ -143,6 +251,10 @@ def grade_tier(style, pitch, tier, escapes_worst_side=None, npins=None):
             return "conditional", [COND_OUTWARD]
         return "no", []
     if style == "bga":
+        if topology is not None:
+            if center_via_geometry_ok(pitch, tier, topology):
+                return "conditional", [COND_CENTER_VIA]
+            return "no", []
         ring = (tier["min_via_diameter"] + tier["min_space"] <= pitch
                 or tier.get("via_in_pad", False))
         lane = tier["min_track"] + 2 * tier["min_space"] <= pitch - pitch / 2
@@ -156,20 +268,22 @@ def feasible(style, pitch, tier):
     return grade_tier(style, pitch, tier)[0] == "ok"
 
 
-def tier_required(style, pitch, tiers, escapes_worst_side=None, npins=None):
+def tier_required(style, pitch, tiers, escapes_worst_side=None, npins=None,
+                  topology=None):
     """Name of the cheapest UNCONDITIONALLY feasible tier, or None."""
     ranked = sorted(tiers.items(), key=lambda kv: kv[1]["rank"])
     for name, t in ranked:
-        if grade_tier(style, pitch, t, escapes_worst_side, npins)[0] == "ok":
+        if grade_tier(style, pitch, t, escapes_worst_side, npins, topology)[0] == "ok":
             return name
     return None
 
 
-def tier_conditional(style, pitch, tiers, escapes_worst_side=None, npins=None):
+def tier_conditional(style, pitch, tiers, escapes_worst_side=None, npins=None,
+                     topology=None):
     """Cheapest tier feasible AT ALL -> (name, [conditions]) or (None, [])."""
     ranked = sorted(tiers.items(), key=lambda kv: kv[1]["rank"])
     for name, t in ranked:
-        v, conds = grade_tier(style, pitch, t, escapes_worst_side, npins)
+        v, conds = grade_tier(style, pitch, t, escapes_worst_side, npins, topology)
         if v in ("ok", "conditional"):
             return name, conds
     return None, []
@@ -258,11 +372,22 @@ def check_part(part_yaml, tiers):
                      f"(known: {sorted(KNOWN_CONDITIONS)})")
         return probs
 
-    want = tier_required(style, float(pitch), tiers, ews, npins)
+    topology = esc.get("center_via_topology")
+    if topology is not None:
+        if style != "bga":
+            probs.append(f"{mpn}: center-via topology requires bga style")
+        probs.extend(check_center_via_evidence(part_yaml, y, topology))
+    want = tier_required(style, float(pitch), tiers, ews, npins, topology)
+    conditional_want, conditional_need = tier_conditional(
+        style, float(pitch), tiers, ews, npins, topology)
     got = esc.get("tier_required")
     if want is None:
-        probs.append(f"{mpn}: {style} @ {pitch}mm escapes at NO known tier "
-                     f"— package problem, re-select the part")
+        if conditional_want is None:
+            probs.append(f"{mpn}: {style} @ {pitch}mm escapes at NO known tier "
+                         f"— package problem, re-select the part")
+        elif got != conditional_want or sorted(set(conds_declared)) != sorted(set(conditional_need)):
+            probs.append(f"{mpn}: conditional escape requires tier {conditional_want} "
+                         f"and conditions {conditional_need}; got {got} / {conds_declared}")
     elif got == want:
         if conds_declared:
             probs.append(f"{mpn}: conditions {conds_declared} declared but "
@@ -272,7 +397,7 @@ def check_part(part_yaml, tiers):
         probs.append(f"{mpn}: declared tier_required '{got}' is not a tier "
                      f"in fab_tiers.yaml")
     else:
-        v, need = grade_tier(style, float(pitch), tiers[got], ews, npins)
+        v, need = grade_tier(style, float(pitch), tiers[got], ews, npins, topology)
         if v == "conditional":
             if sorted(set(conds_declared)) == sorted(set(need)):
                 pass  # conditional verdict, EARNED: conditions recorded

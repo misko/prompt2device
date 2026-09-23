@@ -1,0 +1,46 @@
+mpn: TMUX4827YBHR
+manufacturer: Texas Instruments
+type: dual_spdt_switch
+package: DSBGA-9 P0.4mm
+footprint: test:TI_YBH0009_C02_TMUX4827
+pins:
+  '1': S1A_UNUSED
+  '2': SEL
+  '3': S2A_UNUSED
+  '4': D1
+  '5': GND
+  '6': D2
+  '7': S1B
+  '8': VDD
+  '9': S2B
+verified: exact TI SCDS457B pp.3,32-34 and retained 3x3 coupon
+escape:
+  style: bga
+  pitch: 0.4
+  tier_required: jlc_4layer_advanced
+  conditions:
+  - center-via-perimeter-outward-coupon
+  center_via_topology:
+    rows: 3
+    cols: 3
+    land_diameter_mm: 0.25
+    center_via_diameter_mm: 0.35
+    center_via_drill_mm: 0.2
+    center_mask_opening_mm: 0.25
+    perimeter_outward_launches: 8
+    coupon:
+      local: coupon.kicad_pcb
+      sha256: 6f39a73aad46444e6b2256ced0b64a1dea5b9792801c3f705f8b691727ce83b6
+    native_footprint:
+      local: native.kicad_mod
+      sha256: 54b81c012d1fe62b93ccb83b877aca3f6452764e1c5bf11a055750eef1662d58
+    ball_to_pad:
+      A1: '1'
+      A2: '2'
+      A3: '3'
+      B1: '4'
+      B2: '5'
+      B3: '6'
+      C1: '7'
+      C2: '8'
+      C3: '9'
