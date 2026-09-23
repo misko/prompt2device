@@ -733,7 +733,7 @@ def check_passive_distribution_faults(data):
     return notes
 
 
-def check_external_source_fuse(project: Path, envelope):
+def check_external_source_fuse(project: Path, envelope, *, prebuild=False):
     """Conditional Crow source/fuse coordination; never a supply qualification."""
     where = "external_source_fuse"
     if not isinstance(envelope, dict) or envelope.get("architecture") != "fuse_external_source_v1":
@@ -745,38 +745,42 @@ def check_external_source_fuse(project: Path, envelope):
     digest = text_value(envelope.get("circuit_sha256"), f"{where}.circuit_sha256")
     if not re.fullmatch(r"[0-9a-f]{64}", digest):
         raise ContractError("E-FAULT circuit_sha256 must be a SHA-256 digest")
-    circuit_path = project / "03_tscircuit/build/circuit.json"
-    try:
-        raw = circuit_path.read_bytes()
-        circuit = json.loads(raw)
-    except (OSError, ValueError) as exc:
-        raise ContractError(f"E-FAULT needs fresh source circuit.json: {exc}") from exc
-    if hashlib.sha256(raw).hexdigest() != digest or not isinstance(circuit, list):
-        raise ContractError("E-FAULT source circuit digest mismatch; fresh reviewed circuit required")
-    components = {item["name"]: item for item in circuit
+    # The producer has not run at the conductor's [0d] gate. Validate the
+    # authored contract there, then bind the actual fresh circuit at [1b].
+    # A historical canonical circuit must never be copied or trusted prebuild.
+    if not prebuild:
+        circuit_path = project / "03_tscircuit/build/circuit.json"
+        try:
+            raw = circuit_path.read_bytes()
+            circuit = json.loads(raw)
+        except (OSError, ValueError) as exc:
+            raise ContractError(f"E-FAULT needs fresh source circuit.json: {exc}") from exc
+        if hashlib.sha256(raw).hexdigest() != digest or not isinstance(circuit, list):
+            raise ContractError("E-FAULT source circuit digest mismatch; fresh reviewed circuit required")
+        components = {item["name"]: item for item in circuit
                   if isinstance(item, dict) and item.get("type") == "source_component"
                   and isinstance(item.get("name"), str)}
-    if len(components) != sum(item.get("type") == "source_component" for item in circuit if isinstance(item, dict)):
-        raise ContractError("E-FAULT duplicate source component names")
-    nets = {item["source_net_id"]: item["name"] for item in circuit
+        if len(components) != sum(item.get("type") == "source_component" for item in circuit if isinstance(item, dict)):
+            raise ContractError("E-FAULT duplicate source component names")
+        nets = {item["source_net_id"]: item["name"] for item in circuit
             if isinstance(item, dict) and item.get("type") == "source_net"}
-    ids = {item["source_component_id"]: item["name"] for item in circuit
+        ids = {item["source_component_id"]: item["name"] for item in circuit
            if isinstance(item, dict) and item.get("type") == "source_component"}
-    ports = {item["source_port_id"]: (ids[item["source_component_id"]], str(item["pin_number"]))
+        ports = {item["source_port_id"]: (ids[item["source_component_id"]], str(item["pin_number"]))
              for item in circuit if isinstance(item, dict) and item.get("type") == "source_port" and "pin_number" in item}
-    port_nets = {}
-    for trace in circuit:
-        if not isinstance(trace, dict) or trace.get("type") != "source_trace":
-            continue
-        trace_nets = [nets[n] for n in trace.get("connected_source_net_ids", []) if n in nets]
-        if len(set(trace_nets)) > 1:
-            raise ContractError("E-FAULT ambiguous source trace joins distinct named nets")
-        for port in trace.get("connected_source_port_ids", []):
-            if port in ports and trace_nets:
-                pin = ports[port]
-                if pin in port_nets and port_nets[pin] != trace_nets[0]:
-                    raise ContractError(f"E-FAULT ambiguous source net for {pin[0]}.{pin[1]}")
-                port_nets[pin] = trace_nets[0]
+        port_nets = {}
+        for trace in circuit:
+            if not isinstance(trace, dict) or trace.get("type") != "source_trace":
+                continue
+            trace_nets = [nets[n] for n in trace.get("connected_source_net_ids", []) if n in nets]
+            if len(set(trace_nets)) > 1:
+                raise ContractError("E-FAULT ambiguous source trace joins distinct named nets")
+            for port in trace.get("connected_source_port_ids", []):
+                if port in ports and trace_nets:
+                    pin = ports[port]
+                    if pin in port_nets and port_nets[pin] != trace_nets[0]:
+                        raise ContractError(f"E-FAULT ambiguous source net for {pin[0]}.{pin[1]}")
+                    port_nets[pin] = trace_nets[0]
     expected_parts = {"J_PWR": "43650-0200", "F_IN": "0451004.MRL",
                       "Q_IN": "DMP6023LFG-13", "R_QIN_G": "RC0402FR-07100KL",
                       "D_QIN_GS": "BZT52C12-13-F", "D_IN": "SMBJ15A",
@@ -793,7 +797,7 @@ def check_external_source_fuse(project: Path, envelope):
         raise ContractError("E-FAULT bound_refs must be nonempty strings")
     if len(declared) != len(set(declared)) or set(declared) != set(expected_parts):
         raise ContractError("E-FAULT bound_refs must be exact J_PWR/F_IN/Q_IN/U_BUCK/eight spoke and three post-fuse capacitor population")
-    if {ref for ref, component in components.items()
+    if not prebuild and {ref for ref, component in components.items()
         if component.get("manufacturer_part_number") == "TPS26625DRCR"} != {f"U_SPOKE{i}" for i in range(1, 9)}:
         raise ContractError("E-FAULT extra or missing shared-path TPS26625 branch escapes eight-spoke denominator")
     tree = load_yaml(project / "03_src/rules/power_tree.yaml", "E-FAULT")
@@ -802,10 +806,11 @@ def check_external_source_fuse(project: Path, envelope):
                     and rail["distribution"].get("kind") == "active_current_limiter"}
     if active_rails != {f"N12V_POD{i}" for i in range(1, 9)}:
         raise ContractError("E-FAULT active shared-path branch rails must be exactly eight named spokes")
-    for ref, mpn in expected_parts.items():
-        component = components.get(ref)
-        if not component or component.get("manufacturer_part_number") != mpn:
-            raise ContractError(f"E-FAULT {ref} source identity must be {mpn}")
+    if not prebuild:
+        for ref, mpn in expected_parts.items():
+            component = components.get(ref)
+            if not component or component.get("manufacturer_part_number") != mpn:
+                raise ContractError(f"E-FAULT {ref} source identity must be {mpn}")
     expected_nets = {("J_PWR", "1"): "N12V_IN", ("F_IN", "1"): "N12V_IN",
                      ("F_IN", "2"): "N12V_FUSED", ("Q_IN", "5"): "N12V_FUSED",
                      ("Q_IN", "1"): "N12V_PROTECTED", ("Q_IN", "2"): "N12V_PROTECTED",
@@ -835,9 +840,10 @@ def check_external_source_fuse(project: Path, envelope):
     for i in range(1, 4):
         expected_nets[(f"C_IN{i}", "1")] = "N12V_PROTECTED"
         expected_nets[(f"C_IN{i}", "2")] = "GND"
-    for pin, net in expected_nets.items():
-        if port_nets.get(pin) != net:
-            raise ContractError(f"E-FAULT {pin[0]}.{pin[1]} must connect to {net}")
+    if not prebuild:
+        for pin, net in expected_nets.items():
+            if port_nets.get(pin) != net:
+                raise ContractError(f"E-FAULT {pin[0]}.{pin[1]} must connect to {net}")
     values = asserted_part_values(project)
     for ref, expected, asserted, field in (("R_QIN_G", 100000, "100k", "resistance"),
                                            ("C_IN1", 1e-5, "10uF", "capacitance"),
@@ -846,7 +852,7 @@ def check_external_source_fuse(project: Path, envelope):
         invariant = values.get(ref)
         if not invariant or invariant.get("equals") != asserted:
             raise ContractError(f"E-FAULT {ref} needs exact part_value assertion")
-        if not math.isclose(number(components[ref].get(field), f"{ref}.{field}"), expected, rel_tol=1e-9):
+        if not prebuild and not math.isclose(number(components[ref].get(field), f"{ref}.{field}"), expected, rel_tol=1e-9):
             raise ContractError(f"E-FAULT {ref} fitted source value mismatch")
     for i in range(1, 9):
         for prefix, expected, field in (("R_SPOKE_ILIM", 44200, "resistance"),
@@ -855,7 +861,7 @@ def check_external_source_fuse(project: Path, envelope):
             invariant = values.get(ref)
             if not invariant or invariant.get("equals") != ("44.2k" if field == "resistance" else "10nF"):
                 raise ContractError(f"E-FAULT {ref} needs exact part_value assertion")
-            if not math.isclose(number(components[ref].get(field), f"{ref}.{field}"), expected, rel_tol=1e-9):
+            if not prebuild and not math.isclose(number(components[ref].get(field), f"{ref}.{field}"), expected, rel_tol=1e-9):
                 raise ContractError(f"E-FAULT {ref} fitted source value mismatch")
     source = envelope.get("source")
     if not isinstance(source, dict):
@@ -936,14 +942,14 @@ def check_external_source_fuse(project: Path, envelope):
         raise ContractError("E-FAULT post-fuse capacitor discharge proof remains owed")
     if series.get("aggregate_source_episode") != source:
         raise ContractError("E-FAULT protection_paths source episode must match power_tree exactly")
-    return (f"E-FAULT CONDITIONAL external source/fuse: peak<={peak:g} A, "
+    return (f"E-FAULT {'PREBUILD CONTRACT ONLY; CIRCUIT OWED' if prebuild else 'CONDITIONAL'} external source/fuse: peak<={peak:g} A, "
             f"cumulative >2.85 A<={excess:g} ms, persistent<={hot:g} A; "
             f"PFET steady/peak={steady_junction:.1f}/{peak_junction:.1f} C; "
             f"nominal fuse I²t comparison={total_i2t:.4f}/{nominal_i2t:g} A²s "
             f"(not nonopening proof); supplier and first-article proof owed")
 
 
-def check_fault_envelopes(project: Path):
+def check_fault_envelopes(project: Path, *, prebuild=False):
     """Grade aggregate overload handling across normal, peak and fault time.
 
     This intentionally treats the current-limit population, aggregate breaker,
@@ -960,7 +966,7 @@ def check_fault_envelopes(project: Path):
     if external is not None and (envelopes is not None or no_requirements is not None):
         raise ContractError("E-FAULT external_source_fuse is exclusive of legacy breaker and no-requirements branches")
     if external is not None:
-        return passive_notes + [check_external_source_fuse(project, external)]
+        return passive_notes + [check_external_source_fuse(project, external, prebuild=prebuild)]
     if envelopes is not None and no_requirements is not None:
         raise ContractError(
             "E-FAULT fault_envelopes and no_fault_envelope_requirements are "
@@ -1721,6 +1727,8 @@ def main(argv=None):
     ap.add_argument("--surge", action="store_true")
     ap.add_argument("--capacitance", action="store_true")
     ap.add_argument("--fault-envelope", action="store_true")
+    ap.add_argument("--prebuild", action="store_true",
+                    help="validate authored external-source fault contract before the circuit producer; full circuit binding remains required after build")
     args = ap.parse_args(argv)
     if yaml is None:
         print("EARLY-DESIGN FAIL: PyYAML is unavailable")
@@ -1768,7 +1776,7 @@ def main(argv=None):
     if args.capacitance or (not selected and cap_adopted):
         checks.append(("E-CAP", check_capacitance))
     if args.fault_envelope or (not selected and fault_adopted):
-        checks.append(("E-FAULT", check_fault_envelopes))
+        checks.append(("E-FAULT", lambda project: check_fault_envelopes(project, prebuild=args.prebuild)))
     notes, fails = [], []
     for label, fn in checks:
         try:

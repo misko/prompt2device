@@ -121,6 +121,32 @@ class ExternalSourceFaultTests(unittest.TestCase):
         with self.assertRaisesRegex(ContractError, "digest mismatch"):
             check_fault_envelopes(self.project)
 
+    def test_prebuild_validates_contract_without_circuit_then_full_requires_it(self):
+        # A cold-start conductor has no generated circuit yet. A prebuild pass
+        # must disclose that circuit binding is still owed.
+        self.check()
+        (self.project / "03_tscircuit/build/circuit.json").unlink()
+        notes = check_fault_envelopes(self.project, prebuild=True)
+        self.assertIn("PREBUILD CONTRACT ONLY; CIRCUIT OWED", " ".join(notes))
+        with self.assertRaisesRegex(ContractError, "needs fresh source circuit.json"):
+            check_fault_envelopes(self.project)
+
+    def test_prebuild_does_not_admit_stale_generated_bytes(self):
+        self.check()
+        path = self.project / "03_tscircuit/build/circuit.json"
+        path.write_bytes(path.read_bytes() + b" ")
+        self.assertIn("CIRCUIT OWED", " ".join(check_fault_envelopes(self.project, prebuild=True)))
+        with self.assertRaisesRegex(ContractError, "digest mismatch"):
+            check_fault_envelopes(self.project)
+
+    def test_prebuild_still_rejects_authored_envelope_contradiction(self):
+        self.check()
+        self.protection["paths"][0]["series_overcurrent"]["one_fault_screen_A"] = 2.1
+        rules = self.project / "03_src/rules"
+        (rules / "protection_paths.yaml").write_text(yaml.safe_dump(self.protection))
+        with self.assertRaisesRegex(ContractError, "one_fault_screen_A contradicts"):
+            check_fault_envelopes(self.project, prebuild=True)
+
     def test_exclusive_from_legacy_and_no_requirements(self):
         self.power["fault_envelopes"] = [{}]
         self.check("exclusive")

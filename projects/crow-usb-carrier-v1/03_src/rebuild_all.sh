@@ -117,7 +117,7 @@ $PY "$S/control_protocol_check.py" . \
     || { echo "GATE FAILED [0d] CONTROL-PROTOCOL: observable timing contract is inconsistent before tsci build"; exit 1; }
 $PY "$S/control_profile_codegen.py" . --check \
     || { echo "GATE FAILED [0d] CONTROL-PROFILE: generated firmware/decoder timing artifacts are missing or stale"; exit 1; }
-$PY "$S/early_design_check.py" . \
+$PY "$S/early_design_check.py" . --prebuild \
     || { echo "GATE FAILED [0d] D-SPEC/E-PATH/E-SWDRV/E-SURGE/E-CAP/E-FAULT: authored electrical schemas are invalid before tsci build"; exit 1; }
 $PY "$S/rules_audit.py" . --phase source \
     || { echo "GATE FAILED [0d] A-SOURCE: net-class current/width/pour intent is malformed before tsci build"; exit 1; }
@@ -173,6 +173,12 @@ cp "03_tscircuit/dist/src/$TSX/circuit.json" "$CJ"
 # they receive, but do not own tscircuit's diagnostic vocabulary.
 $PY "$S/circuit_json_diagnostics.py" "$CJ" \
     || { echo "GATE FAILED [1d] TSX-DIAG: tsci returned a circuit artifact containing hard error diagnostics"; exit 1; }
+
+# The [0d] prebuild arm cannot bind a producer that has not run. Grade the
+# generated source against E-FAULT's reviewed digest before rendering,
+# conversion, schematic review or any board stage.
+$PY "$S/early_design_check.py" . --fault-envelope \
+    || { echo "GATE FAILED [1d] E-FAULT: fresh generated circuit differs from the reviewed external-source contract"; exit 1; }
 
 # [1r] THE HUMAN SCHEMATIC — regenerated, and DELETED FIRST so that a failure
 # leaves ABSENCE rather than the previous revision.
