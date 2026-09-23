@@ -510,3 +510,7 @@ Removed the superseded U_ADC board_attr_plan instruction to set FP_EXCLUDE_FROM_
 ## 2026-09-23 — D7 stock reserve and candidate disposition
 
 The user explicitly retains the 150-unit per-part stock surplus. No policy threshold was changed. AK5578EN/AK5558VN and the 2x-per-channel TMUX2819 proposal fail this user constraint at their observed stock counts; redirected ADC research accordingly. Retained official JLC attrition evidence and AK front-end feasibility as non-adopted research. The OPA/crystal independent review caught an incorrect native YXC pad map; candidate repair must account for the opposite TSX/KiCad Y axes before integration. The adjustable TPSM candidate remains unadmitted pending rail bounds and complete load proof.
+
+### Stocked OPA/crystal source integration
+
+Integrated independently reviewed15beff8e+3e9cabeb as2d600607+2b6f58b8: eight OPA2320AIDR/C2863402 instances and one YXC X322524MOB4SI/C70590. Both exact observed stocks clear build-plus150. The original native YXC land was corrected after review; TSX Y-up versus KiCad Y-down transform is now checked against the primary top-view drawing. Root focused pad/coordinate check passes; TSX preflight96/96. Existing493-reference circuit/native schematic remain the historical checkpoint until the complete revised source is regenerated and re-admitted. No whole-board sourcing, placement or release pass claimed.
