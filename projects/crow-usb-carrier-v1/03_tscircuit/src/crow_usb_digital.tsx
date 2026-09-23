@@ -14,7 +14,7 @@ export interface CrowUsbDigitalProps { net?: (canonicalName: string) => string }
 const defaultNet=(name:string)=>`net.${ /^\d/.test(name) ? `N${name}` : name }`
 const supplier=(jlc:string)=>({jlcpcb:jlc?[jlc]:[]})
 const sourced=(mpn:string,jlc="")=>jlc||({
- "744373240047":"C19270343","ASFL1-24.576MHZ-EC-T":"C17566269","CC0402KRX5R5BB105":"C106253","X322524MOB4SI":"C70590","FTSH-105-01-L-DV-K":"C5155080",
+ "XFL4015-471MEC":"C18221164","ASFL1-24.576MHZ-EC-T":"C17566269","CC0402KRX5R5BB105":"C106253","X322524MOB4SI":"C70590","FTSH-105-01-L-DV-K":"C5155080",
  "GRM1555C1H220JA01D":"C76960","GRM1555C1H102JA01D":"C76947","RC0402FR-0733RL":"C138002","RC0402FR-0710KL":"C60490","RC0402FR-07100KL":"C60491","RC0402FR-071ML":"C138033","RC0402FR-074K7L":"C105871","GRM155R71H103KA88D":"C77019","CL21A106KOCLRNC":"C318695","CRCW0402680RFKED":"C482224",
  "RT0402BRD07100KL":"C852472","RT0402BRD07200KL":"C728556","SN74AUP3G34DCUR":"C2675543",
  "SN74AXC4T245PWR":"C2867798","SN74LVC1G04DCKR":"C8207","SN74LVC1G125DCKT":"C2675550",
@@ -51,8 +51,8 @@ function XU316TQ128EPFootprint(){
 
 /** Source-owned lands for package names the pinned footprinter cannot expand. */
 const P=({n,x,y,w,h}:any)=><smtpad portHints={[String(n)]} pcbX={`${x}mm`} pcbY={`${y}mm`} width={`${w}mm`} height={`${h}mm`} shape="rect" />
-/** Würth 744373240047 primary drawing: 5.2-mm land span, 2.2-mm inner gap, 1.5 x 2.4-mm lands. */
-function WurthLHMI4020Land(){return <footprint><P n={1} x={-1.85} y={0} w={1.5} h={2.4}/><P n={2} x={1.85} y={0} w={1.5} h={2.4}/></footprint>}
+/** Coilcraft XFL4015 Document 769-2: 0.98 x 3.4-mm lands on 2.37-mm pitch. Pin 1 (left) is marked winding start and faces the high-dv/dt switch node. */
+function CoilcraftXFL4015Land(){return <footprint><P n={1} x={-1.185} y={0} w={0.98} h={3.4}/><P n={2} x={1.185} y={0} w={0.98} h={3.4}/></footprint>}
 // ASFL1 primary drawing: 2.54 x 2.2 mm pad-center pitch, 1.7 x 1.5 mm lands.
 function Osc5032Land(){return <footprint><P n={1} x={-1.27} y={-1.1} w={1.7} h={1.5}/><P n={2} x={1.27} y={-1.1} w={1.7} h={1.5}/><P n={3} x={1.27} y={1.1} w={1.7} h={1.5}/><P n={4} x={-1.27} y={1.1} w={1.7} h={1.5}/></footprint>}
 /** YXC YSX321SL top view: upper 4/3, lower 1/2. tscircuit Y is up;
@@ -71,7 +71,7 @@ const buckPins={pin1:"EN",pin2:"PG_NC",pin3:"FB",pin4:"GND",pin5:"SW",pin6:"VIN"
 function Buck({name,mpn,out,adjustable=false,en="5V_BUCK",n}:any){return <>
  <Chip name={name} manufacturerPartNumber={mpn} jlc="" footprint={<DMQ0006ALand/>} pinLabels={buckPins}
   connections={{pin1:n(en),pin3:n(adjustable?`${name}_FB`:out),pin4:n("GND"),pin5:n(`${name}_SW`),pin6:n("5V_BUCK")}} />
- <Chip name={`L_${name}`} manufacturerPartNumber="744373240047" jlc="" footprint={<WurthLHMI4020Land/>} pinLabels={{pin1:"1",pin2:"2"}} connections={{pin1:n(`${name}_SW`),pin2:n(out)}} />
+ <Chip name={`L_${name}`} manufacturerPartNumber="XFL4015-471MEC" jlc="" footprint={<CoilcraftXFL4015Land/>} pinLabels={{pin1:"1",pin2:"2"}} connections={{pin1:n(`${name}_SW`),pin2:n(out)}} />
  {[1,2].map(i=><C key={`in${i}`} name={`C_${name}_IN_${i}`} value="10uF" a="5V_BUCK" b="GND" mpn="CL21A106KOCLRNC" footprint="0805" n={n} />)}
  <C name={`C_${name}_OUT_1`} value="47uF" a={out} b="GND" mpn="GRM32ER71A476KE15L" jlc="C84494" footprint={<MurataGrm32e1210/>} n={n} />
  </>}

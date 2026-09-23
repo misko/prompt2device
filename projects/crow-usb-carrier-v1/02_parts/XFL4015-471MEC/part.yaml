@@ -1,0 +1,53 @@
+mpn: XFL4015-471MEC
+manufacturer: Coilcraft
+type: shielded_power_inductor
+package: XFL4015, 4.0 +/- 0.3 x 4.0 +/- 0.3 x 1.6 mm maximum
+footprint: crow_usb_digital:Coilcraft_XFL4015_471MEC
+datasheet:
+  doc_id: XFL4015
+  revision: Document 769-1/769-2, 2026-03-10
+  url: https://www.coilcraft.com/getmedia/84927b8b-f089-421b-a7f4-a0fa23afe908/xfl4015.pdf
+  local: 02_parts/XFL4015-471MEC/Coilcraft_XFL4015_Doc769_20260310.pdf
+  sha256: 6535ab70d0ef65ba03d4b0800e206fc7867f26464e2d9dfd5dd931a2bcb0c7c1
+  pages: 2
+pins:
+  1: marked_start_short_lead_switch_node
+  2: winding_end_output
+limits:
+  inductance_nominal_uH: 0.47
+  inductance_tolerance_pct: 20
+  saturation_current_10pct_25C_A: 3.5
+  saturation_current_20pct_25C_A: 5.4
+  saturation_current_30pct_25C_A: 6.6
+  rated_current_deltaT20_A: 9.1
+  rated_current_deltaT40_A: 11.2
+  dcr_typ_25C_mohm: 7.60
+  dcr_max_25C_mohm: 8.36
+  self_resonant_frequency_typ_MHz: 89
+  operating_voltage_V: 20
+  ambient_temperature_C: [-40, 125]
+  maximum_part_temperature_C: 165
+sourcing:
+  lcsc: C18221164
+  note: Live inventory changes; refresh exact JLCPCB SMT stock before order. Extended part.
+layout:
+  source: Coilcraft XFL4015 Document 769-2 page 2 and TI SLVSEF9I Table 8-5
+  reviewed: '2026-09-23'
+  notes:
+  - Primary recommended lands are 0.98 x 3.4 mm, 2.37 mm center pitch. A dedicated footprint is required; the Würth footprint is not compatible.
+  - Marked start/short lead connects to high-dv/dt SW for lowest EMI. Source pin 1 is SW and native pad 1 is on the marked side.
+  - Native placement, adjacent keepout, switch-loop escape, actual copper thermal rise, and TPS62825 output-filter stability remain open physical/first-article gates.
+verified: TI TPS62825 Table 8-5 names electrical part XFL4015-471ME; Coilcraft primary datasheet states final C is packaging only (7-inch machine-ready reel) and provides exact XFL4015-471MEC ratings, dimensions, and recommended land pattern.
+layout_refs:
+- tier: 1
+  reached: true
+  artifact: 02_parts/XFL4015-471MEC/Coilcraft_XFL4015_Doc769_20260310.pdf pages 1-2, Document 769 revision 2026-03-10
+  why: Primary exact-part electrical table, part-number suffix, recommended land pattern and terminal orientation inspected.
+- tier: 2
+  reached: true
+  artifact: TI TPS62825 datasheet SLVSEF9I Table 8-5
+  why: Converter manufacturer recommends the same electrical XFL4015-471ME inductor.
+- tier: 3
+  reached: false
+  artifact: Exact routed layout and first-article thermal/stability measurements
+  why: Source and footprint qualification do not prove installed thermal rise, EMI, or output-filter stability.
