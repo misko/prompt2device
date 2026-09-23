@@ -1,17 +1,18 @@
 # Project status
 
-<!-- pause-state:264855efb3ecb2b5e4d8a29fcd767400cc9b1e54d687869c7c48eccbb1aa707d -->
+<!-- pause-state:51c32d0048167ccc5f65d278e349a23a41be2f2b96367d88032f7e41ace021f8 -->
 
 - Phase: `schematic`
 - State: **PAUSED**
-- Checkpoint: `03_tscircuit/build/circuit.json` (`b323ca64ebee`)
-- Blocker: D10 public stock88/88; fresh568-ref,39-page schematic; M-FRESH9/9, E-CLOSURE9/9, selection2/2 PASS. Prelayout2/4 INCOMPLETE solely for signed-in JLC PCBA availability/economics receipt. Schematic review and block placement remain ahead.
-- Next command: `Obtain JLC BOM Tool result for06_build/sourcing/crow-jlc-bom-upload.csv at5boards; fill and grade prelayout_response.csv, then rerun conductor through schematic review checkpoint.`
+- Checkpoint: `06_build/checkpoints/schematic.json` (`3105e1f0dd98`)
+- Blocker: Public-only design sourcing ACCEPTED4/4 underD11; no JLC login required. E-CLOSURE9/9 and ERC0errors. PR-REVIEW0/2: preliminary PDF readability rejects tiny XMOS and clock/control labels; repair authored presentation and review exact regenerated artifacts before block placement.
+- Next command: `Repair schematic presentation using the retained readability findings, regenerate affected artifacts, complete fresh topology/readability review, then resume block placement.`
 
 ## Bound receipts
 
-- `01_docs/research/2026-09-23-d10-schematic-handoff.md` — `058d75411eb5`
-- `08_reviews/2026-09-23_empty-sheet_sol_source.md` — `6ce20d3903aa`
+- `01_docs/research/2026-09-23-public-only-design-admission.md` — `96c21a5570a1`
+- `08_reviews/2026-09-23_public-prelayout_sol_source.md` — `1c7e864cf39c`
+- `08_reviews/2026-09-23_schematic-readability_sol_source.md` — `1ef74ec98bcc`
 
 This file is generated from `01_docs/pause_state.json`; edit the manifest with
 `pause_state.py record`, not this view.

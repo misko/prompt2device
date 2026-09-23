@@ -1,0 +1,13 @@
+# Independent review — D11 public-only prelayout admission
+
+- Candidate: `7cbbf19ce8b1fc03eee1dc486a6fad1b1fc59d89`
+- Base: `6a6cb39434208273cd0ee19873702fa7d8183d6e`
+- Verdict: **ACCEPT** for the design-only public-catalog prelayout boundary. This is not an order or allocation pass.
+
+The Crow driver now requires `sourcing_authority: public-observations`; missing or different authority fails rather than reaching the former authenticated response/receipt branch. It locally prepares the 5-board request, verifies that saved request against the current generated circuit, assembly policy and procurement policy, then invokes `manufacturing_readiness.py grade --phase prelayout` with `--catalog-request`, `--catalog-evidence`, and the accepted D11 decision. No login, upload, supplier contact or purchase command occurs in the changed branch. The local request retains an inherited PCBA request type for its exact line census; the driver never grades it as a PCBA receipt.
+
+The public checker binds all 88 catalog rows to exact source code, ref population, MPN, quantity and stock threshold. A single catalog MPN alias is explicit in the Molex 43650-0200 dossier, bound to C192562 and catalog 436500200; there is no general normalization. The policy retains five boards and 150 extra public units for ordinary parts, with only C6362698/XU316-1024-TQ128-C24 at U_XU using D10's zero reserve. The candidate fixture's XMOS stock 41 exceeds its threshold 5; `public-stock.json` reports 88/88 PASS, 150 default and the exact D10 override. The accepted public grade states procurement exposure is deferred to the final JLC uploader. Order-phase allocation and economics remain separate requirements.
+
+I reproduced `verify-request` PASS against the candidate circuit and policy and `manufacturing_readiness.py grade --phase prelayout` ACCEPTED 4/4 against the real 88-line public stock sidecar. Before the MPN repair, a temp copy with C27515 changed to `WRONG-MPN` incorrectly passed; the final candidate rejects that copy and similarly rejects a forged C192562 MPN. The owning suite `python3 tests/t1_pcba_availability.py` passes 47/47, including new wrong-MPN and exact dossier-alias tests. `bash -n` and `git diff --check` pass. The final amend from `30fe017f` to `7cbbf19c` changes only the module docstring to describe both prelayout evidence paths.
+
+The stock observation is a time-limited public record, and a passing design screen does not establish JLC allocation, attrition, minimums, assembly acceptance, price or order readiness. Reverify the saved request and refresh public stock when the real driver resumes; preserve the explicit order-time checks. No full conductor, upload or order was run for this review.

@@ -1,25 +1,30 @@
 {
-  "blocker": "D10 public stock88/88; fresh568-ref,39-page schematic; M-FRESH9/9, E-CLOSURE9/9, selection2/2 PASS. Prelayout2/4 INCOMPLETE solely for signed-in JLC PCBA availability/economics receipt. Schematic review and block placement remain ahead.",
+  "blocker": "Public-only design sourcing ACCEPTED4/4 underD11; no JLC login required. E-CLOSURE9/9 and ERC0errors. PR-REVIEW0/2: preliminary PDF readability rejects tiny XMOS and clock/control labels; repair authored presentation and review exact regenerated artifacts before block placement.",
   "checkpoint": {
-    "path": "03_tscircuit/build/circuit.json",
-    "sha256": "b323ca64ebeec6e7d3660304a03e6bb8c60e041cf1afcf73d436bd9d3b583c64",
-    "size": 4842421
+    "path": "06_build/checkpoints/schematic.json",
+    "sha256": "3105e1f0dd983fac8f600ecc1b4a7d8d3fe64f70f3d2fe88ade39979941756c6",
+    "size": 1152
   },
-  "next_command": "Obtain JLC BOM Tool result for06_build/sourcing/crow-jlc-bom-upload.csv at5boards; fill and grade prelayout_response.csv, then rerun conductor through schematic review checkpoint.",
+  "next_command": "Repair schematic presentation using the retained readability findings, regenerate affected artifacts, complete fresh topology/readability review, then resume block placement.",
   "phase": "schematic",
   "project": "crow-usb-carrier-v1",
   "receipts": [
     {
-      "path": "01_docs/research/2026-09-23-d10-schematic-handoff.md",
-      "sha256": "058d75411eb579eda8474a71c3789bd6ad0044ecd530c3fd01618c554329fdc9",
-      "size": 2745
+      "path": "01_docs/research/2026-09-23-public-only-design-admission.md",
+      "sha256": "96c21a5570a1494db76322a8593c747ba96d11b7891028a962d337d167b79c7c",
+      "size": 3509
     },
     {
-      "path": "08_reviews/2026-09-23_empty-sheet_sol_source.md",
-      "sha256": "6ce20d3903aad857cfae8d51c195bc4d64053c3193e1523498347bca6ba0cd75",
-      "size": 2639
+      "path": "08_reviews/2026-09-23_public-prelayout_sol_source.md",
+      "sha256": "1c7e864cf39c06b60275d4ee691d48b7de2f05e339558c124b96dec1ac9b7c8f",
+      "size": 2721
+    },
+    {
+      "path": "08_reviews/2026-09-23_schematic-readability_sol_source.md",
+      "sha256": "1ef74ec98bccf59c2f78730826c477fc75aae8d9d139d4eae0b4a6cd9ede8eed",
+      "size": 4125
     }
   ],
   "schema": 1,
-  "state_id": "264855efb3ecb2b5e4d8a29fcd767400cc9b1e54d687869c7c48eccbb1aa707d"
+  "state_id": "51c32d0048167ccc5f65d278e349a23a41be2f2b96367d88032f7e41ace021f8"
 }

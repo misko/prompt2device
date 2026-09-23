@@ -1,0 +1,20 @@
+subject: crow-usb-carrier-v1 source commit 6a6cb39434208273cd0ee19873702fa7d8183d6e
+review_stage: pre-route
+review_kind: schematic_render
+reviewer: independent SOL, human schematic readability lens (preliminary engineering assessment)
+context-given: full-tree
+schematic_pdf_sha256: 3f8fc0a9bd5ff7cc855d91b9a55ebbb114ce60d65b820d75c8778512729069e5
+circuit_json_sha256: b323ca64ebeec6e7d3660304a03e6bb8c60e041cf1afcf73d436bd9d3b583c64
+design_verdict: DEFECTIVE
+
+This is a bounded preliminary assessment, not a gate-admitted canonical witness. The exact PDF has 39 pages. I rendered every page to a contact sheet and opened pages 4, 23, 30, 34, 35, 36 and 39 at full-page size. I also inspected PDF text extraction and font geometry; no claim is made that every pin/net on all 39 pages was independently traced.
+
+Blocking finding RENDER-1, P0 for schematic-stage readability: page 30, XMOS CORE. U_XU (XU316-1024-TQ128-C24) is the sole component on a full landscape page, but all 128 pin numbers/names crowd the four sides of a single symbol. At full-page view, those pin names and numbered terminals cannot be read or checked. Poppler's 1.5x pdf2xml output records 252 body text objects at 4 px and 46 at 5 px, equivalent to about 2.7–3.3 pt in PDF page coordinates. The crowded top and bottom pin banks are especially hard to follow. This fails the project's explicit normal-view first-picture requirement in 08_reviews/contracts.md. It is a presentation defect; this lens makes no claim of an electrical connectivity error. Repair the authored schematic presentation (not the generated PDF) so pin banks can be checked at normal viewing size, for example by showing a readable bank-by-bank breakout or similarly legible pin-group detail tied unambiguously to U_XU, and regenerate. Do not rely on PDF deep zoom for acceptance.
+
+Blocking finding RENDER-2, P0 for schematic-stage readability: pages 34–36, especially page 36 ADC CLOCK CONTROL. Page 34 has only six components, yet the translator is small at the far left and three isolated support groups occupy a line across nearly the entire page. Page 35 has eight components dispersed across the width. Page 36 spreads 23 components to the page edges while the logic and net plates are tiny. In pdf2xml's same 1.5x coordinates, page 34 has 32 text objects at 5 px, page 35 has 54 at 5 px, and all 167 page-36 body text objects are 5 px (about 3.3 pt). I cannot reliably read the clock-control signal labels or verify local functional flow at normal full-page view. Regroup those circuits and shorten long presentation wires/spacing in source-owned poses so part identities and net labels render at a useful size; regenerate and inspect full pages.
+
+Additional fit concern: pages 4 HELD LDO and 25 RESET SUPERVISORS also have all body text at 5–6 px in the 1.5x extraction (roughly 3.3–4 pt), which visually makes local labels and part values too small at full-page view. Include these in the presentation repair sweep. Page 23 ADC is clearer structurally—the two converters and local decoupling appear organized—but some pin and net text is similarly small (6–7 px). Recheck it after any page-fit changes.
+
+Positive bounded observations: page titles and progression make the intended functional sequence visible: input/buck/held LDO, eight repeated spoke protection and analog channels, ADC, digital power, XMOS, translation/clock, then USB. The repeated spoke pages 7–14 and analog pages 15–22 are laid out consistently. At full-page view, page 39 USB FRONTEND is readable enough to distinguish J_USB pins A/B, the two CC 5.1 kΩ pulls, D+/D− labels, and ESD blocks; I saw no obvious pin-label collision or reversed polarity in that rendered page. This does not establish native netlist or connector-footprint parity.
+
+No SOUND verdict is warranted for this exact PDF. A fresh PDF and exact hash-bound independent review are needed after authored presentation repair. The canonical review checker also expects normalized netlist, parts, and adopted design-rule digests; those are deliberately absent here because this report is not an admitted witness.

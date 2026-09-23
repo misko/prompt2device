@@ -677,3 +677,8 @@ The anonymous JLC standalone BOM Tool upload redirected to account sign-in witho
 ### Catalog ledger repaired; next boundary is JLC account evidence
 
 Terra verified all8 exact catalog identities from retained direct JLC responses without network; SOL adopted8 ledger rows in09050504. Root independently checked singleton codes/MPNs/catalog values and raw hashes. Root regrade on unchanged b323 schematic accepts E-CLOSURE9/9 and selection2/2. Prelayout remains INCOMPLETE2/4 solely for missing provider availability/economic receipt. Saved exact handoff research/2026-09-23-d10-schematic-handoff.md. No new producer, native placement, release or purchase occurred.
+
+
+## 2026-09-23 — D11 public-only design continuation admitted
+
+Recorded user public-records/jlcsearch-only direction inBRIEF D11 andADR0010. Adopted independent public-path review as46e72215, plus isolated-test/docs cleanup852e61a0. Root current public prelayout4/4, E-CLOSURE9/9, M-FRESH1/1, native qualification4/4, schema992/992 and documentation checks pass. Exact 88-line request regenerated under current assembly policy; no authenticated response is requested or required for design continuation. The native schematic has0ERCerrors. The7-file checkpoint is current; formalPR-REVIEW remains0/2. Preliminary independent readability review rejects tiny labels on XMOS and clock/control pages; authored presentation repair is next, not account access. Detailed limitations and failed coordinator probe record are retained inresearch/2026-09-23-public-only-design-admission.md. No PCB/release/order claim.
