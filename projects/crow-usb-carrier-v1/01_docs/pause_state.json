@@ -1,14 +1,19 @@
 {
-  "blocker": "TMUX B2 and native parity source repairs reviewed and integrated; actual Crow regeneration remains owed. Regulator replacement electrical screen active; USB clearance, models, support islands and connector physical evidence remain open. Two P1 trials consumed.",
+  "blocker": "TMUX and native parity source repairs integrated. TPS62822DLCR is a stocked regulator redesign candidate only; footprint, rail margins, sequencing and thermal remain unqualified. USB clearance, model/support repairs and connector physical evidence remain open; two P1 trials consumed.",
   "checkpoint": {
     "path": "06_build/checkpoints/schematic.json",
     "sha256": "545adc0b60a8198eca489362e59621681687ccac7725ea9a2241fa21a7862816",
     "size": 1152
   },
-  "next_command": "Finish public-only regulator candidate electrical screen; complete package/model/support source repairs, then refresh canonical reviews and explicitly reassess placement campaign. Do not launch a third local P1 or routing from these source-only tests.",
+  "next_command": "Evaluate and independently review the closer TPS62822DLCR package/rail redesign, then complete remaining source repairs and refresh canonical reviews before explicit placement campaign reassessment. No third local P1 or routing is admitted.",
   "phase": "placement",
   "project": "crow-usb-carrier-v1",
   "receipts": [
+    {
+      "path": "01_docs/research/2026-09-23-regulator-replacement-electrical-screen-sol.md",
+      "sha256": "9f13ec858fc3207c88b56ec8f7f87e62c1e4d550dd212e7bae1a577a07090edb",
+      "size": 19833
+    },
     {
       "path": "08_reviews/2026-09-23_native-parity-code_terra_source.md",
       "sha256": "8e356f0d6d4a928b757dcf8106bb7b4f8bd93824ad824da6046d1cade4083163",
@@ -26,5 +31,5 @@
     }
   ],
   "schema": 1,
-  "state_id": "5b905c699f575d6f54fc513be9ea305de7f04dbc8df591e8c13012ad215b89bb"
+  "state_id": "34db0fe8abc8e25f596abbd56cd4728202a7fe8041a41c7a0714f7fd2669119c"
 }

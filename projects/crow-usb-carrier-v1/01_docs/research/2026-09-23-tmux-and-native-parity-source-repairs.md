@@ -21,3 +21,7 @@ Source review: `08_reviews/2026-09-23_native-parity-code_terra_source.md`. Diagn
 ## Next source work
 
 The public-only regulator investigation identifies TLV62569PDDCR as a package/stock candidate, not an adopted replacement. The subsequent SOL electrical screen rejects direct TLV62569 substitution on all three rails. A closer TPS62A02-family candidate remains under investigation; power-stage values, sequencing and thermal constraints must be settled before any substitution. See `2026-09-23-dmq-resolution-options-terra.md`. The 22 unresolved model files, full model registration, support-island placement, USB clearance and connector physical evidence are still owed. Canonical schematic reviews are stale and must be refreshed against the coherent final source bundle before placement campaign reassessment.
+
+## Completed electrical-screen follow-up
+
+See `2026-09-23-regulator-replacement-electrical-screen-sol.md`: direct TLV62569 substitution fails. Checking packing suffixes found TPS62822DLCR / C473385 with 1,979 public units and TPS62823DLCR / C2693497 with 7,232. These supersede the initial DLCT-only stock conclusion and prioritize the closer DLC family for redesign investigation. No substitution is adopted; new pin mapping, capacitor/rail margins, sequencing and hot thermal evidence remain owed. Raw public inputs are retained locally under `06_build/verification/regulator-replacement-public-screen/`.

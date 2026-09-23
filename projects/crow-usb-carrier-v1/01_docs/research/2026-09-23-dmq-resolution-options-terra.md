@@ -102,3 +102,7 @@ electrical, thermal, placement, routing and order-time checks pass.
 ## Retained coordinator evidence
 
 Downloaded public inputs are retained locally in `06_build/verification/dmq-public-screen/manifest.json`, with exact source URLs and SHA-256 hashes. These are candidate investigation inputs, not adopted part dossiers. The electrical replacement screen is still pending; no part substitution has been made.
+
+## Completed electrical-screen follow-up
+
+See `2026-09-23-regulator-replacement-electrical-screen-sol.md`: direct TLV62569 substitution fails. Checking packing suffixes found TPS62822DLCR / C473385 with 1,979 public units and TPS62823DLCR / C2693497 with 7,232. These supersede the initial DLCT-only stock conclusion and prioritize the closer DLC family for redesign investigation. No substitution is adopted; new pin mapping, capacitor/rail margins, sequencing and hot thermal evidence remain owed. Raw public inputs are retained locally under `06_build/verification/regulator-replacement-public-screen/`.
