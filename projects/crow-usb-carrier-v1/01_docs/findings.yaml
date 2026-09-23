@@ -261,6 +261,8 @@ findings:
   - 08_reviews/2026-09-23_p2-r3-native-power_terra.md
   - 08_reviews/2026-09-23_p2-r3-budget-authority_terra.md
   - 01_docs/research/2026-09-23-p2-input-power-qualitative-scope-audit-terra.md
+  - 01_docs/research/2026-09-23-p2-power-qualitative-source-hypothesis-terra.md
+  - 01_docs/research/2026-09-23-p2-power-joint-screen-terra.md
 
 - id: USB-P2-remaining-block-placement
   state: open
@@ -290,7 +292,9 @@ findings:
     The 20 per-pin ADC supply/reference capacitors have qualitative
     close-placement and VREF/AVSS-return requirements that the numeric
     census does not grade. ADC work preparation remains unconsumed at 0/2;
-    it is not an admission or block acceptance.
+    it is not an admission or block acceptance. A prior IOVDD diagnostic
+    mapping used pin 1 instead of authoritative pin 19; the rejected full-cell
+    patch was never generated and corrected full-cell geometry is unadmitted.
   closes_when: Add and independently review a complete 64-ref ADC source
     placement contract, including the 20 qualitative capacitor observations
     and explicit P3 return-proof handoff; then complete a separately admitted
@@ -299,6 +303,7 @@ findings:
   evidence:
   - 01_docs/research/2026-09-23-adc-p2-layout-scope-audit-terra.md
   - 01_docs/research/2026-09-23-adc-p2-full-64-ref-source-proposal.md
+  - 01_docs/research/2026-09-23-adc-p2-functional-pin-corrigendum.md
 
 - id: USB-model-identity
   state: open
