@@ -685,3 +685,10 @@ Recorded user public-records/jlcsearch-only direction inBRIEF D11 andADR0010. Ad
 
 
 Read-only SOL investigation narrowed the XMOS readability cause to the pinned renderer's0.15mm pin font, producing about2.7pt PDF text. Retained research/2026-09-23-xmos-presentation-investigation.md proposes a bounded source/body and page-font experiment with complete129-pin identity and collision checks; no presentation source changes were made. The parallel preliminary topology pass was interrupted at its coordinator boundary before delivering a final report; sampled critical nets had no reported immediate blocker, but coverage is incomplete and no topology acceptance is claimed.
+
+
+## 2026-09-23 — Resume schematic presentation repair
+
+The user directed “Great work! lets keep going”. Commissioned one isolated SOL owner for bounded presentation-only repair of the retained findings, preserving every physical pin and net. A fresh Terra reviewer-delivery probe closed PASS through agent-open/agent-close; its host-event file was kept outside the read-only project snapshot, correcting the previous coordinator mistake without rewriting that failed attempt. A new independent SOL topology review was then opened against an isolated450-file packet and the unchanged568-reference netlist. Native-tool qualification remains the separate prior4/4 pass. Review delivery and actual engineering acceptance remain distinct. Public-only sourcing and D7/D10/D9 continue unchanged.
+
+Fresh SOL topology review completed 2026-09-23: runtime task PASS (crow-topology-review-ca31b1a9696043c5a6b219a65bb38111), independent native export matches normalized netlist 3188dfd834775c4d1de4d6b268d9c1c1ca1b4e7ea7c144460974ab957a7298f8. Witness archived verbatim and adopted as pre-route_topology.md: SOUND for conditional schematic topology only, DO-NOT-ORDER. Source/cable/fault, thermal, firmware and first-article qualifications remain open. Human-readable schematic gate remains unresolved; no placement promoted.
