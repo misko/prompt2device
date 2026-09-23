@@ -39,6 +39,14 @@ def pair_in_groups(raw, p, n):
     return any(g == [p, n] or g == [n, p] for g in groups)
 
 
+def matching_negative(p):
+    """Return the sole matching N net for a conventional positive net name."""
+    for positive, negative in (("_DP", "_DN"), ("_P", "_N"), ("+", "-")):
+        if p.endswith(positive) and len(p) > len(positive):
+            return p[:-len(positive)] + negative
+    return None
+
+
 def length_contract_pairs(project, nets_path=None):
     """Derive the critical-pair denominator from the independent rules file.
 
@@ -67,10 +75,9 @@ def length_contract_pairs(project, nets_path=None):
             continue
         nset = {str(x) for x in ns}
         for p in map(str, ps):
-            if p.endswith("_P") and p[:-2] + "_N" in nset:
-                found.add((p, p[:-2] + "_N"))
-            elif p.endswith("+") and p[:-1] + "-" in nset:
-                found.add((p, p[:-1] + "-"))
+            n = matching_negative(p)
+            if n in nset:
+                found.add((p, n))
     return found
 
 
@@ -104,6 +111,10 @@ def check(project, board_path, require_connected=False, *, route_path=None,
         if not reason:
             die("route.preflight_critical_pairs is empty; declare a specific "
                 "route.no_critical_routes reason")
+        required = sorted(length_contract_pairs(project, nets_path))
+        if required:
+            die("R-PAIRMAP critical-pair inventory omits length_match pair(s): "
+                + ", ".join(f"{p}/{n}" for p, n in required))
         return [f"no critical routes: {reason}"]
     waves = route.get("waves") or []
     wave_by_name = {str(w.get("name")): w for w in waves if isinstance(w, dict)}
@@ -120,11 +131,14 @@ def check(project, board_path, require_connected=False, *, route_path=None,
         name = str(item.get("name") or "").strip() or die(f"{where}.name is required")
         p = str(item.get("p") or "").strip() or die(f"{where}.p is required")
         n = str(item.get("n") or "").strip() or die(f"{where}.n is required")
+        if (p, n) in declared_pairs:
+            die(f"R-PAIRMAP {name}: duplicate critical-pair declaration {p}/{n}")
         declared_pairs.add((p, n))
         source = str(item.get("source") or "wave").strip()
         wave_name = str(item.get("wave") or "").strip()
-        if not (p.endswith(("_P", "+")) and n.endswith(("_N", "-"))):
-            die(f"R-PAIRMAP {name}: polarity must be p=*P/+ and n=*N/-, got {p}/{n}")
+        if matching_negative(p) != n:
+            die(f"R-PAIRMAP {name}: polarity requires matching _P/_N, "
+                f"_DP/_DN, or +/- names, got {p}/{n}")
         absent = [x for x in (p, n) if x not in board_nets]
         if absent:
             die(f"R-PAIRMAP {name}: board is missing nets {absent}")
