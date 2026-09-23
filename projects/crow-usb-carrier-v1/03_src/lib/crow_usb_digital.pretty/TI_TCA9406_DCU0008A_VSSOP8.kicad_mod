@@ -15,4 +15,5 @@
   (pad "6" smd roundrect (at 1.55 0.25) (size 0.85 0.30) (layers "F.Cu" "F.Paste" "F.Mask") (roundrect_rratio 0.15))
   (pad "7" smd roundrect (at 1.55 -0.25) (size 0.85 0.30) (layers "F.Cu" "F.Paste" "F.Mask") (roundrect_rratio 0.15))
   (pad "8" smd roundrect (at 1.55 -0.75) (size 0.85 0.30) (layers "F.Cu" "F.Paste" "F.Mask") (roundrect_rratio 0.15))
+  (model "${KIPRJMOD}/../03_src/lib/3dmodels/kicad_logic_10_0_4/VSSOP-8_2.3x2mm_P0.5mm.step" (offset (xyz 0 0 0)) (scale (xyz 1 1 1)) (rotate (xyz 0 0 0)))
 )

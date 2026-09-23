@@ -1,0 +1,47 @@
+#VRML V2.0 utf8
+# Source-owned drawing-derived NOMINAL geometry; NOT TI CAD.
+# TI DCT0008A drawing 4220784/D in retained SN74LVC2G74-SCES203Q.pdf, p19.
+# Model unit 2.54 mm; footprint Y down and model Y up; Z=0 PCB seating plane.
+# Body 3.00 x 3.00 mm (drawing 2.9..3.1), top 1.15 mm (drawing 1.0..1.3).
+# Nominal lead outer span X=4.10 mm (drawing 3.95..4.25); pitch=0.65 mm.
+# Box leads simplify gull-wing curvature; no tolerance sweep or solder/thermal detail.
+# body: centre_mm=(0,0,0.625), size_mm=(3,3,1.05); source Y down
+Transform { translation 0.000000000 0.000000000 0.246062992
+ children [ Shape { appearance Appearance { material Material { diffuseColor 0.075 0.075 0.08 } }
+ geometry Box { size 1.181102362 1.181102362 0.413385827 } } ] }
+# lead_1: centre_mm=(-1.775,-0.975,0.1), size_mm=(0.55,0.225,0.2); source Y down
+Transform { translation -0.698818898 0.383858268 0.039370079
+ children [ Shape { appearance Appearance { material Material { diffuseColor 0.70 0.70 0.72 } }
+ geometry Box { size 0.216535433 0.088582677 0.078740157 } } ] }
+# lead_2: centre_mm=(-1.775,-0.325,0.1), size_mm=(0.55,0.225,0.2); source Y down
+Transform { translation -0.698818898 0.127952756 0.039370079
+ children [ Shape { appearance Appearance { material Material { diffuseColor 0.70 0.70 0.72 } }
+ geometry Box { size 0.216535433 0.088582677 0.078740157 } } ] }
+# lead_3: centre_mm=(-1.775,0.325,0.1), size_mm=(0.55,0.225,0.2); source Y down
+Transform { translation -0.698818898 -0.127952756 0.039370079
+ children [ Shape { appearance Appearance { material Material { diffuseColor 0.70 0.70 0.72 } }
+ geometry Box { size 0.216535433 0.088582677 0.078740157 } } ] }
+# lead_4: centre_mm=(-1.775,0.975,0.1), size_mm=(0.55,0.225,0.2); source Y down
+Transform { translation -0.698818898 -0.383858268 0.039370079
+ children [ Shape { appearance Appearance { material Material { diffuseColor 0.70 0.70 0.72 } }
+ geometry Box { size 0.216535433 0.088582677 0.078740157 } } ] }
+# lead_5: centre_mm=(1.775,0.975,0.1), size_mm=(0.55,0.225,0.2); source Y down
+Transform { translation 0.698818898 -0.383858268 0.039370079
+ children [ Shape { appearance Appearance { material Material { diffuseColor 0.70 0.70 0.72 } }
+ geometry Box { size 0.216535433 0.088582677 0.078740157 } } ] }
+# lead_6: centre_mm=(1.775,0.325,0.1), size_mm=(0.55,0.225,0.2); source Y down
+Transform { translation 0.698818898 -0.127952756 0.039370079
+ children [ Shape { appearance Appearance { material Material { diffuseColor 0.70 0.70 0.72 } }
+ geometry Box { size 0.216535433 0.088582677 0.078740157 } } ] }
+# lead_7: centre_mm=(1.775,-0.325,0.1), size_mm=(0.55,0.225,0.2); source Y down
+Transform { translation 0.698818898 0.127952756 0.039370079
+ children [ Shape { appearance Appearance { material Material { diffuseColor 0.70 0.70 0.72 } }
+ geometry Box { size 0.216535433 0.088582677 0.078740157 } } ] }
+# lead_8: centre_mm=(1.775,-0.975,0.1), size_mm=(0.55,0.225,0.2); source Y down
+Transform { translation 0.698818898 0.383858268 0.039370079
+ children [ Shape { appearance Appearance { material Material { diffuseColor 0.70 0.70 0.72 } }
+ geometry Box { size 0.216535433 0.088582677 0.078740157 } } ] }
+# illustrative pin1 mark: centre_mm=(-1.1,-1.1,1.16), size_mm=(0.12,0.12,0.02); source Y down
+Transform { translation -0.433070866 0.433070866 0.456692913
+ children [ Shape { appearance Appearance { material Material { diffuseColor 0.75 0.75 0.75 } }
+ geometry Box { size 0.047244094 0.047244094 0.007874016 } } ] }
