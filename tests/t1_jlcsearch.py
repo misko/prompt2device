@@ -4,11 +4,14 @@ import json
 import tempfile
 import unittest
 import urllib.error
+import sys
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from harness import main, test
 SCRIPT = ROOT / "skills/jlcpcb-fab/scripts/jlcsearch.py"
 spec = importlib.util.spec_from_file_location("jlcsearch_adapter", SCRIPT)
 adapter = importlib.util.module_from_spec(spec)
@@ -151,6 +154,50 @@ class JlcsearchReportTest(unittest.TestCase):
             report = adapter.discover("nonexistent", self.client())
         self.assertEqual(report["status"], "NOT_OBSERVED")
 
+    def test_duplicate_valid_rows_both_unknown(self):
+        request = json.loads(self.request.read_text())
+        request["rows"].append(dict(request["rows"][0]))
+        self.request.write_text(json.dumps(request))
+        with patch.object(adapter.urllib.request, "urlopen", return_value=Response({"components": []})):
+            report = adapter.screen(self.request, self.circuit, self.client())
+        self.assertEqual(report["coverage"]["total"], 3)
+        self.assertEqual(report["rows"][0]["status"], "UNKNOWN")
+        self.assertEqual(report["rows"][2]["status"], "UNKNOWN")
+
+    def test_bool_quantities_and_unhashable_refs_are_unknown(self):
+        request = json.loads(self.request.read_text())
+        request["build_quantity"] = True
+        request["rows"][0]["per_board_qty"] = True
+        request["rows"][1]["designators"] = [["R2"]]
+        self.request.write_text(json.dumps(request))
+        with patch.object(adapter.urllib.request, "urlopen") as fetch:
+            report = adapter.screen(self.request, self.circuit, self.client())
+        fetch.assert_not_called()
+        self.assertEqual(report["coverage"]["unknown"], 2)
+
+    def test_conflicting_same_code_catalog_rows_are_unknown(self):
+        parts = [{"lcsc": 123, "mfr": "EXACT-A", "stock": 9},
+                 {"lcsc": 123, "mfr": "OTHER", "stock": 99}]
+        with patch.object(adapter.urllib.request, "urlopen",
+                          return_value=Response({"components": parts})):
+            report = adapter.screen(self.request, self.circuit, self.client(budget=1))
+        self.assertEqual(report["rows"][0]["status"], "UNKNOWN")
+
+
+for method_name in sorted(name for name in dir(JlcsearchReportTest) if name.startswith("test_")):
+    def run_case(name=method_name):
+        case = JlcsearchReportTest(name)
+        case.setUp()
+        try:
+            getattr(case, name)()
+        finally:
+            case.doCleanups()
+
+    test("jlcsearch " + method_name.replace("test_", "").replace("_", " "),
+         kind="known_bad" if any(term in method_name for term in (
+             "403", "missing", "schema", "duplicate", "invalid",
+             "quantity", "conflicting", "cache_wrong")) else "clean")(run_case)
+
 
 if __name__ == "__main__":
-    unittest.main()
+    sys.exit(main())

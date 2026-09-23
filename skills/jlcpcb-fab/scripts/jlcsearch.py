@@ -7,6 +7,7 @@ omit out-of-stock parts. A result is never PCBA availability or allocation.
 from __future__ import annotations
 
 import argparse
+from collections import Counter
 import hashlib
 import json
 import re
@@ -139,6 +140,8 @@ class Client:
 def screen(request_path, circuit_path, client):
     request_raw = request_path.read_bytes()
     request = json.loads(request_raw)
+    if not isinstance(request, dict):
+        raise ValueError("request must be an object")
     if request.get("kind") not in ("jlc-pcba-availability-request-v1",
                                      "jlc-pcba-availability-request-v2"):
         raise ValueError("expected a JLC PCBA availability request")
@@ -147,29 +150,32 @@ def screen(request_path, circuit_path, client):
         raise ValueError("request has no BOM rows")
     identities = circuit_identities(circuit_path)
     result = []
-    seen_codes = set()
-    seen_refs = set()
+    code_counts = Counter(code_of(row.get("requested_lcsc")) for row in rows
+                          if isinstance(row, dict))
+    ref_counts = Counter(ref for row in rows if isinstance(row, dict)
+                         and isinstance(row.get("designators"), list)
+                         for ref in row["designators"] if isinstance(ref, str))
     for row in rows:
         code = code_of(row.get("requested_lcsc")) if isinstance(row, dict) else None
         refs = row.get("designators") if isinstance(row, dict) else None
         qty = row.get("required_qty") if isinstance(row, dict) else None
-        ref_identities = [identities.get(ref, set()) for ref in refs] if isinstance(refs, list) else []
+        refs_well_formed = (isinstance(refs, list) and bool(refs)
+                            and all(isinstance(ref, str) and ref for ref in refs))
+        ref_identities = [identities.get(ref, set()) for ref in refs] if refs_well_formed else []
         valid_refs = (bool(ref_identities) and all(isinstance(ref, str) and ref and
                       len(found) == 1 for ref, found in zip(refs, ref_identities))
-                      and len(refs) == len(set(refs)) and not seen_refs.intersection(refs))
+                      and all(ref_counts[ref] == 1 for ref in refs))
         pairs = {next(iter(found)) for found in ref_identities} if valid_refs else set()
-        valid = (code and code not in seen_codes and valid_refs and len(pairs) == 1
+        valid = (code and code_counts[code] == 1 and valid_refs and len(pairs) == 1
                  and next(iter(pairs))[0] == code and isinstance(qty, int)
                  and not isinstance(qty, bool) and qty > 0
                  and isinstance(row.get("per_board_qty"), int)
+                 and not isinstance(row["per_board_qty"], bool)
                  and row["per_board_qty"] == len(refs)
                  and isinstance(request.get("build_quantity"), int)
+                 and not isinstance(request["build_quantity"], bool)
                  and request["build_quantity"] > 0
                  and qty == len(refs) * request["build_quantity"])
-        if code:
-            seen_codes.add(code)
-        if isinstance(refs, list):
-            seen_refs.update(ref for ref in refs if isinstance(ref, str))
         mpn = next(iter(pairs))[1] if valid else None
         item = {"requested_lcsc": code, "selected_mpn": mpn,
                 "designators": row.get("designators") if isinstance(row, dict) else None,
@@ -183,7 +189,7 @@ def screen(request_path, circuit_path, client):
                 exact = [part for part in parts if code_of("C" + str(part.get("lcsc", ""))) == code]
                 matched = [part for part in exact if part.get("mfr") == item["selected_mpn"]]
                 item["evidence"] = proof
-                if len(matched) != 1:
+                if len(exact) != 1 or len(matched) != 1:
                     item["reason"] = ("selected code absent from search index" if not exact
                                       else "selected MPN mismatch or ambiguous catalog result")
                 else:
