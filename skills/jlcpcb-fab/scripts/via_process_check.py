@@ -138,6 +138,9 @@ def via_in_pad_hits(board):
 
 
 def _mm(value, path, fails):
+    if isinstance(value, bool):
+        fails.append(f"V-SCHEMA {path}: expected a number, got {value!r}")
+        return None
     try:
         value = float(value)
     except (TypeError, ValueError):
@@ -183,10 +186,12 @@ def check(board_path: Path, assembly: str | None = None):
     singular = vp.get("protected_geometry")
     plural = vp.get("protected_geometries")
     selector = vp.get("fabricator_selector")
-    if singular is not None and plural is not None:
+    has_singular = "protected_geometry" in vp
+    has_plural = "protected_geometries" in vp
+    if has_singular and has_plural:
         out["fails"].append(
             "V-SCHEMA use protected_geometry or protected_geometries, not both")
-    if plural is not None:
+    if has_plural:
         if not isinstance(plural, list) or not plural:
             out["fails"].append(
                 "V-SCHEMA via_process.protected_geometries: expected a non-empty list")
@@ -206,7 +211,7 @@ def check(board_path: Path, assembly: str | None = None):
 
     geoms = []
     for i, geom in enumerate(raw_geoms):
-        path = (f"via_process.protected_geometries[{i}]" if plural is not None
+        path = (f"via_process.protected_geometries[{i}]" if has_plural
                 else "via_process.protected_geometry")
         if not isinstance(geom, dict):
             out["fails"].append(f"V-SCHEMA {path}: expected a mapping")

@@ -153,6 +153,32 @@ def t_mixed_nonfinite_geometry_fails():
              "malformed extra geometry cannot be ignored")
 
 
+@test("V-PROCESS refuses Boolean geometry disguised as a number",
+      kind="known_bad")
+def t_mixed_boolean_geometry_fails():
+    board, assembly = mixed_geometry_fixture(((0.50, 0.20, True),))
+    data = yaml.safe_load(assembly.read_text())
+    data["via_process"]["protected_geometries"].append({
+        "via_diameter_mm": True, "drill_mm": 0.20})
+    assembly.write_text(yaml.safe_dump(data, sort_keys=False))
+    result = must_fail(run([KPY, TOOL, board]),
+                       "true is not a millimetre dimension", "V-SCHEMA")
+    contains(result.out, "expected a number, got True",
+             "strict numeric schema does not coerce Boolean")
+
+
+@test("V-PROCESS refuses both geometry keys even when one is null",
+      kind="known_bad")
+def t_mixed_null_singular_ambiguity_fails():
+    board, assembly = mixed_geometry_fixture(((0.50, 0.20, True),))
+    data = yaml.safe_load(assembly.read_text())
+    data["via_process"]["protected_geometry"] = None
+    assembly.write_text(yaml.safe_dump(data, sort_keys=False))
+    result = must_fail(run([KPY, TOOL, board]),
+                       "null singular key is still present", "V-SCHEMA")
+    contains(result.out, "not both", "mutually exclusive keys are structural")
+
+
 @test("V-PROCESS refuses an ordinary via in the protected drill family",
       kind="known_bad")
 def t_ordinary_protected_drill_fails():
