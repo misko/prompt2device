@@ -1,0 +1,22 @@
+#VRML V2.0 utf8
+# Project-authored maximum package envelope with illustrative terminal contact positions model; derived from retained primary drawing, not vendor CAD.
+# Coilcraft Document 769-2 p2; PDF SHA256 6535ab70d0ef65ba03d4b0800e206fc7867f26464e2d9dfd5dd931a2bcb0c7c1.
+# Source license: repository MIT LICENSE; PDF not copied into this model.
+# 1 VRML unit = 2.54 mm; model Y is opposite footprint local Y; Z=0 seating plane.
+# Rectangular solids simplify edge radii, termination shape, solder and tolerances.
+# body max 4.3x4.3x1.6: centre_mm=(0, 0, 0.875), size_mm=(4.3, 4.3, 1.45)
+Transform { translation 0.000000000 0.000000000 0.344488189
+ children [ Shape { appearance Appearance { material Material { diffuseColor 0.120 0.130 0.140 } }
+ geometry Box { size 1.692913386 1.692913386 0.570866142 } } ] }
+# terminal1 nominal marked start: centre_mm=(-1.185, 0, 0.075), size_mm=(0.82, 3.25, 0.15)
+Transform { translation -0.466535433 0.000000000 0.029527559
+ children [ Shape { appearance Appearance { material Material { diffuseColor 0.700 0.690 0.660 } }
+ geometry Box { size 0.322834646 1.279527559 0.059055118 } } ] }
+# terminal2 nominal: centre_mm=(1.185, 0, 0.075), size_mm=(0.82, 3.25, 0.15)
+Transform { translation 0.466535433 0.000000000 0.029527559
+ children [ Shape { appearance Appearance { material Material { diffuseColor 0.700 0.690 0.660 } }
+ geometry Box { size 0.322834646 1.279527559 0.059055118 } } ] }
+# illustrative start mark: centre_mm=(-1.6, 0, 1.59), size_mm=(0.45, 0.1, 0.02)
+Transform { translation -0.629921260 0.000000000 0.625984252
+ children [ Shape { appearance Appearance { material Material { diffuseColor 0.900 0.900 0.900 } }
+ geometry Box { size 0.177165354 0.039370079 0.007874016 } } ] }

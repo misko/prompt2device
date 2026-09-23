@@ -1,0 +1,30 @@
+#VRML V2.0 utf8
+# Project-authored maximum body envelope with simplified primary-drawing terminals model; derived from retained primary drawing, not vendor CAD.
+# YXC YSX321SL p1; PDF SHA256 8448fb1ea37694ca77ad3d9579b5d10921746ccd8b3ff79349ef61322453340c.
+# Source license: repository MIT LICENSE; PDF not copied into this model.
+# 1 VRML unit = 2.54 mm; model Y is opposite footprint local Y; Z=0 seating plane.
+# Rectangular solids simplify edge radii, termination shape, solder and tolerances.
+# body max 3.3x2.6x0.8: centre_mm=(0, 0, 0.45), size_mm=(3.3, 2.6, 0.7)
+Transform { translation 0.000000000 0.000000000 0.177165354
+ children [ Shape { appearance Appearance { material Material { diffuseColor 0.780 0.780 0.750 } }
+ geometry Box { size 1.299212598 1.023622047 0.275590551 } } ] }
+# pin1: centre_mm=(-1.0, -0.8, 0.05), size_mm=(1.2, 0.9, 0.1)
+Transform { translation -0.393700787 -0.314960630 0.019685039
+ children [ Shape { appearance Appearance { material Material { diffuseColor 0.720 0.700 0.640 } }
+ geometry Box { size 0.472440945 0.354330709 0.039370079 } } ] }
+# pin2: centre_mm=(1.0, -0.8, 0.05), size_mm=(1.2, 0.9, 0.1)
+Transform { translation 0.393700787 -0.314960630 0.019685039
+ children [ Shape { appearance Appearance { material Material { diffuseColor 0.720 0.700 0.640 } }
+ geometry Box { size 0.472440945 0.354330709 0.039370079 } } ] }
+# pin3: centre_mm=(1.0, 0.8, 0.05), size_mm=(1.2, 0.9, 0.1)
+Transform { translation 0.393700787 0.314960630 0.019685039
+ children [ Shape { appearance Appearance { material Material { diffuseColor 0.720 0.700 0.640 } }
+ geometry Box { size 0.472440945 0.354330709 0.039370079 } } ] }
+# pin4: centre_mm=(-1.0, 0.8, 0.05), size_mm=(1.2, 0.9, 0.1)
+Transform { translation -0.393700787 0.314960630 0.019685039
+ children [ Shape { appearance Appearance { material Material { diffuseColor 0.720 0.700 0.640 } }
+ geometry Box { size 0.472440945 0.354330709 0.039370079 } } ] }
+# illustrative pin1 mark: centre_mm=(-1.35, -1.0, 0.79), size_mm=(0.12, 0.12, 0.02)
+Transform { translation -0.531496063 -0.393700787 0.311023622
+ children [ Shape { appearance Appearance { material Material { diffuseColor 0.200 0.200 0.200 } }
+ geometry Box { size 0.047244094 0.047244094 0.007874016 } } ] }

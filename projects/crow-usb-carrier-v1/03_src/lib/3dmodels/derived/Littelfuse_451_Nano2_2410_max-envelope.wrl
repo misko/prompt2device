@@ -1,0 +1,18 @@
+#VRML V2.0 utf8
+# Project-authored maximum plan envelope with nominal height and illustrative end caps model; derived from retained primary drawing, not vendor CAD.
+# Littelfuse 451/453 series p4; PDF SHA256 e4f66814c90d70b283a5962080711f26554d974373a550958bda772dfdaf1bf9.
+# Source license: repository MIT LICENSE; PDF not copied into this model.
+# 1 VRML unit = 2.54 mm; model Y is opposite footprint local Y; Z=0 seating plane.
+# Rectangular solids simplify edge radii, termination shape, solder and tolerances.
+# ceramic core: centre_mm=(0, 0, 0.775), size_mm=(4.9, 2.94, 1.35)
+Transform { translation 0.000000000 0.000000000 0.305118110
+ children [ Shape { appearance Appearance { material Material { diffuseColor 0.820 0.760 0.630 } }
+ geometry Box { size 1.929133858 1.157480315 0.531496063 } } ] }
+# cap1: centre_mm=(-2.8, 0, 0.725), size_mm=(0.7, 2.94, 1.45)
+Transform { translation -1.102362205 0.000000000 0.285433071
+ children [ Shape { appearance Appearance { material Material { diffuseColor 0.720 0.700 0.650 } }
+ geometry Box { size 0.275590551 1.157480315 0.570866142 } } ] }
+# cap2: centre_mm=(2.8, 0, 0.725), size_mm=(0.7, 2.94, 1.45)
+Transform { translation 1.102362205 0.000000000 0.285433071
+ children [ Shape { appearance Appearance { material Material { diffuseColor 0.720 0.700 0.650 } }
+ geometry Box { size 0.275590551 1.157480315 0.570866142 } } ] }

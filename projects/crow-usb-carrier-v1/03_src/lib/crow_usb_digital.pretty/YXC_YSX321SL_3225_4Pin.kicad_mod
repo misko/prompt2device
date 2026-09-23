@@ -12,4 +12,5 @@
   (pad "2" smd rect (at 1.1 0.85) (size 1.4 1.2) (layers "F.Cu" "F.Paste" "F.Mask"))
   (pad "3" smd rect (at 1.1 -0.85) (size 1.4 1.2) (layers "F.Cu" "F.Paste" "F.Mask"))
   (pad "4" smd rect (at -1.1 -0.85) (size 1.4 1.2) (layers "F.Cu" "F.Paste" "F.Mask"))
+  (model "${KIPRJMOD}/../03_src/lib/3dmodels/derived/YXC_YSX321SL_3225_max-envelope.wrl" (offset (xyz 0 0 0)) (scale (xyz 1 1 1)) (rotate (xyz 0 0 0)))
 )
