@@ -222,7 +222,12 @@ findings:
     2b9a33b6 now passes exact electrical/fault and independent canonical schematic
     review. One successor P1 candidate is admitted after explicit upstream
     reassessment; both original failed trials remain consumed and preserved.
-    No successor generation or placement acceptance is claimed at admission.
+    Successor b2f59a1b is now generated and rejected: 41 silkscreen findings,
+    eight U_SPOKE Description mismatches, five of six keep-short and195 of229
+    adjacency checks exceed limits;55 constraints are unreached. Copper/hole/via
+    findings and missing courtyards are now zero, model files resolve568/568,
+    and hold-bank intrusion is zero. The one successor attempt is consumed.
+    No placement acceptance or downstream P2/P3/routing is admitted.
   closes_when: Reconcile via fields and package/process clearances, repair
     endpoint metadata and native parity representation, complete footprint/model
     evidence and reserve support corridors. Independently review upstream
@@ -243,7 +248,9 @@ findings:
     source review. Ten logic and six passive/clock model bindings also pass
     source review. Final J_PWR/J_JTAG/U_BUCK and DLC source bindings also
     pass scoped review; projected file presence is 568/568, not measured on a new board.
-    Full native coverage and registration remain owed.
+    Native successor now resolves568/568 model files with zero missing courtyards.
+    Registration returned N-A without a contract; registered mechanical
+    acceptance and physical qualification remain owed.
   closes_when: Bind current exact-package models with documented provenance,
     regenerate after admitted source repair, and independently verify native
     model identity, registration and mechanical clearance, not file presence alone.
