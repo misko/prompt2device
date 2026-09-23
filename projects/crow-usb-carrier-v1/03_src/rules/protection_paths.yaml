@@ -29,7 +29,7 @@ paths:
       evidence: Littelfuse SMBJ exact SMBJ15A row; clamp maximum applies at the tabulated 24.6 A pulse current, not continuously.
     exposed:
       - {ref: Q_IN, part: DMP6023LFG-13, domain: directly_tvs_clamped_input, bounded_max_V: 24.4, recommended_max_V: 60, absolute_max_V: 60, evidence: 'Diodes DS37204 gives 60 V VDS maximum; 24.4 V clamp screen leaves 35.6 V.'}
-      - {ref: U_BUCK, part: TPSM63603V5RDHR, domain: directly_tvs_clamped_input, bounded_max_V: 24.4, recommended_max_V: 36, absolute_max_V: 42, evidence: 'TI SLVSFS5A gives 3-36 V operating range and 42 V VIN absolute maximum.'}
+      - {ref: U_BUCK, part: TPSM63603RDHR, domain: directly_tvs_clamped_input, bounded_max_V: 24.4, recommended_max_V: 36, absolute_max_V: 42, evidence: 'TI SLVSFS5A gives 3-36 V operating range and 42 V VIN absolute maximum.'}
       - {ref: U_SPOKE1-U_SPOKE8, part: TPS26625DRCR, domain: directly_tvs_clamped_input, bounded_max_V: 24.4, recommended_max_V: 60, absolute_max_V: 62, evidence: 'TI SLVSDT4F gives 4.5-60 V operating and 62 V absolute input.'}
       - {ref: C_IN1-C_IN3, part: 12105C106K4Z2A, domain: directly_tvs_clamped_input, bounded_max_V: 24.4, recommended_max_V: 50, absolute_max_V: 50, evidence: 'Exact Kyocera AVX dossier gives 50 V rating.'}
       - {ref: C_IN_HF, part: CC0805KRX7R9BB104, domain: directly_tvs_clamped_input, bounded_max_V: 24.4, recommended_max_V: 50, absolute_max_V: 50, evidence: 'Exact Yageo dossier gives 50 V rating; replaces the former 16 V part on this node.'}

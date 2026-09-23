@@ -9,4 +9,4 @@ pins: {1: A, 2: B}
 datasheet: {url: 'https://yageogroup.com/component-documentation/download/specsheet/RT0402BRD0740K2L', local: RT0402BRD0740K2L.pdf, sha256: 2d2428aa9d566594f91a38f3b72ab7d1cbbf7fc54098a374027d670fad8ef90c, generated: '2026-09-23'}
 limits: {resistance_ohm: 40200, tolerance_pct: 0.1, tcr_ppm_per_C: 25, power_W_at_70C: 0.0625, working_voltage_V: 50, operating_temperature_C: [-55, 155]}
 verified: 'Exact YAGEO generated specification inspected; 5V FB upper leg dissipates about 0.40mW at nominal operation.'
-sourcing: {lcsc: C852775, observed_stock: 26973, observed_utc: '2026-09-23', note: 'Direct JLC catalog result; uploader allocation owed.'}
+sourcing: {lcsc: C852775}

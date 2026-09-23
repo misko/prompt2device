@@ -21,4 +21,4 @@ layout:
   - Sense VOUT at the output capacitor; return lower resistor to AGND before single-point PGND join.
   - Keep existing VIN, VOUT, PGND, RT, VCC, VLDOIN and bootstrap connections per TI 5V example.
 verified: 'Primary TI family datasheet names TPSM63603RDHR adjustable RDH 30-pin variant and exact 5V divider. Native RDH0030A copper duplicated from previously reviewed V5 land without geometric alteration. Candidate requires native placement, start-up, transient and thermal qualification.'
-sourcing: {lcsc: C5219327, observed_stock: 263, observed_utc: '2026-09-23T04:24:49Z', note: 'Direct JLC catalog result, not uploader allocation; raw snapshot /tmp/crow-tpsm63603-jlc-20260923/C5219327.json.'}
+sourcing: {lcsc: C5219327}
