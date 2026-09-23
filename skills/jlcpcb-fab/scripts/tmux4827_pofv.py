@@ -21,6 +21,7 @@ GEOMETRY = {
     "pad_diameter_mm": .35, "via_diameter_mm": .35, "drill_mm": .20,
     "annulus_mm": .075, "mask_opening_mm": .25,
     "paste_opening_mm": .25, "bga_via_to_pad_gap_mm": .10,
+    "perimeter_pad_gap_mm": .15,
 }
 
 
@@ -87,6 +88,9 @@ def contract(assembly: dict, assembly_path: Path):
                      ("center_via_drill_mm", .20), ("center_mask_opening_mm", .25)):
         if not near(float(topo.get(key, -1)), val, 1e-9):
             raise ValueError(f"TMUX-PROFILE: part topology {key} changed")
+    if any(part.get("pins", {}).get(number) != function
+           for number, function in (("7", "S1B"), ("8", "VDD"), ("9", "S2B"))):
+        raise ValueError("TMUX-PROFILE: perimeter signal/supply functions changed")
     coupon = (part_path.parent / topo["coupon"]["local"]).resolve()
     native = (part_path.parent / topo["native_footprint"]["local"]).resolve()
     if (sha(coupon) != topo["coupon"]["sha256"] or
@@ -137,6 +141,11 @@ def center_pads(board, part, failures):
                 or not near(mm(land.GetSolderMaskExpansion(p.F_Mask)),mask)
                 or not near(mm(paste[0]),mask) or not near(mm(paste[1]),mask)):
                 failures.append(f"TMUX-PAD {ref}.{number}: embedded footprint land differs from hashed native pad map")
+        index = ref.removeprefix("U_ISO")
+        for number, net in (("7", f"FILTER{index}P"), ("8", "N5V_LDO_HOLD"),
+                            ("9", f"FILTER{index}N")):
+            if bynum[number].GetNetname() != net:
+                failures.append(f"TMUX-PERIMETER {ref}.{number}: expected exact net {net}")
         c = bynum["5"]
         if c.GetNetname() != "GND" or c.GetAttribute() != p.PAD_ATTRIB_SMD or c.GetShape() != p.PAD_SHAPE_CIRCLE or c.GetDrillSize().x != 0 or not c.IsOnLayer(p.F_Cu):
             failures.append(f"TMUX-PAD {ref}.5: B2 must be undrilled circular F.Cu SMD GND")
@@ -233,4 +242,15 @@ def dru_rules():
   (condition "(({pair_v}) || ({reverse_v})) && A.NetName != B.NetName")
   (constraint clearance (min 0.10mm))
   (constraint hole_clearance (min 0.175mm)))''')
+        index = ref.removeprefix("U_ISO")
+        for number, signal in (("7", f"FILTER{index}P"), ("9", f"FILTER{index}N")):
+            pair = (f"A.Type == 'Pad' && B.Type == 'Pad' && A.Reference == '{ref}' && "
+                    f"B.Reference == '{ref}' && A.Pad_Number == '{number}' && B.Pad_Number == '8' && "
+                    f"A.NetName == '{signal}' && B.NetName == 'N5V_LDO_HOLD'")
+            reverse = (f"B.Type == 'Pad' && A.Type == 'Pad' && B.Reference == '{ref}' && "
+                       f"A.Reference == '{ref}' && B.Pad_Number == '{number}' && A.Pad_Number == '8' && "
+                       f"B.NetName == '{signal}' && A.NetName == 'N5V_LDO_HOLD'")
+            rules.append(f'''(rule "tmux_perimeter_{ref}_{number}_8"
+  (condition "({pair}) || ({reverse})")
+  (constraint clearance (min 0.15mm)))''')
     return rules

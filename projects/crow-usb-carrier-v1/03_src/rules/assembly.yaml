@@ -58,7 +58,7 @@ via_process:
     pad: '5'
     net: GND
     expected_count: 8
-    geometry: {pad_diameter_mm: 0.35, via_diameter_mm: 0.35, drill_mm: 0.20, annulus_mm: 0.075, mask_opening_mm: 0.25, paste_opening_mm: 0.25, bga_via_to_pad_gap_mm: 0.10}
+    geometry: {pad_diameter_mm: 0.35, via_diameter_mm: 0.35, drill_mm: 0.20, annulus_mm: 0.075, mask_opening_mm: 0.25, paste_opening_mm: 0.25, bga_via_to_pad_gap_mm: 0.10, perimeter_pad_gap_mm: 0.15}
     process: type_vii_filled_and_capped_pofv
     evidence:
       part: 02_parts/TMUX4827YBHR/part.yaml

@@ -24,7 +24,7 @@ import yaml
 def fixture(path):
     b = p.BOARD(); b.SetCopperLayerCount(4)
     nets = {}
-    for name in ("GND", *[f"SIG{i}_{j}" for i in range(1,9) for j in (1,2,3,4,6,7,8,9)]):
+    for name in ("GND", "N5V_LDO_HOLD", *[f"FILTER{i}{suffix}" for i in range(1,9) for suffix in ("P", "N")], *[f"SIG{i}_{j}" for i in range(1,9) for j in (1,2,3,4,6,7,8,9)]):
         n = p.NETINFO_ITEM(b,name);b.Add(n);nets[name]=n
     for i in range(1,9):
         f = p.FootprintLoad(str(PARTDIR), "TI_YBH0009_C02_TMUX4827")
@@ -32,7 +32,9 @@ def fixture(path):
         f.SetReference(f"U_ISO{i}");f.SetValue("TMUX4827YBHR")
         f.SetPosition(p.VECTOR2I_MM(10+i*5,20));b.Add(f)
         for pad in f.Pads():
-            pad.SetNet(nets["GND" if pad.GetNumber()=="5" else f"SIG{i}_{pad.GetNumber()}"])
+            number=pad.GetNumber()
+            name={"5":"GND", "7":f"FILTER{i}P", "8":"N5V_LDO_HOLD", "9":f"FILTER{i}N"}.get(number, f"SIG{i}_{number}")
+            pad.SetNet(nets[name])
         c=next(x for x in f.Pads() if x.GetNumber()=="5")
         v=p.PCB_VIA(b);v.SetPosition(c.GetPosition());v.SetWidth(p.FromMM(.35));v.SetDrill(p.FromMM(.20));v.SetLayerPair(p.F_Cu,p.B_Cu);v.SetNet(nets["GND"]);v.SetPrimaryDrillFilledFlag(True);v.SetPrimaryDrillCappedFlag(True);b.Add(v)
     p.SaveBoard(str(path),b)
@@ -140,9 +142,58 @@ class TmuxProfile(unittest.TestCase):
         data["via_process"]["named_profiles"][0]["geometry"]["via_diameter_mm"] = .45
         with self.assertRaises(ValueError):contract(data,ASSEMBLY)
 
+    def test_native_perimeter_scope_preserves_other_power_clearance(self):
+        pro=self.board.with_suffix(".kicad_pro")
+        data=json.loads(pro.read_text())
+        power=copy.deepcopy(data["net_settings"]["classes"][0])
+        power.update(name="QUIET_POWER", clearance=.20)
+        data["net_settings"]["classes"].append(power)
+        data["net_settings"]["netclass_patterns"]=[{"netclass":"QUIET_POWER", "pattern":"N5V_LDO_HOLD"}]
+        pro.write_text(json.dumps(data))
+        def drc():
+            out=Path(self.tmp.name)/"perimeter.json"
+            result=subprocess.run(["kicad-cli","pcb","drc",str(self.board),"--format","json","-o",str(out)],capture_output=True,text=True)
+            self.assertEqual(result.returncode,0,result.stderr)
+            return [x for x in json.loads(out.read_text())["violations"] if x["type"]=="clearance"]
+        self.assertEqual(drc(), [])
+        dru=self.board.with_suffix(".kicad_dru")
+        original=dru.read_text()
+        for rule in dru_rules():
+            if '"tmux_perimeter_' in rule:
+                original=original.replace(rule, "")
+        dru.write_text(original)
+        missing=drc()
+        self.assertEqual(len(missing),16,missing)
+        self.assertTrue(all("0.2000" in x["description"] for x in missing))
+        emit(self.board,ASSEMBLY)
+        def foreign_track(b):
+            t=p.PCB_TRACK(b);t.SetStart(p.VECTOR2I_MM(14.95,20.75));t.SetEnd(p.VECTOR2I_MM(15.05,20.75))
+            t.SetWidth(p.FromMM(.10));t.SetLayer(p.F_Cu);t.SetNet(b.FindNet("SIG1_1"));b.Add(t)
+        self.mutate(foreign_track)
+        hostile=drc()
+        self.assertTrue(any("0.2000" in x["description"] and any("Track" in i["description"] for i in x["items"]) for x in hostile),hostile)
+        fixture(self.board);emit(self.board,ASSEMBLY)
+        pro.write_text(json.dumps(data))
+        def foreign_pad(b):
+            f=p.FOOTPRINT(b);f.SetReference("U_OTHER");b.Add(f)
+            land=p.PAD(f);land.SetNumber("7");land.SetAttribute(p.PAD_ATTRIB_SMD)
+            land.SetShape(p.PAD_SHAPE_CIRCLE);land.SetSize(p.VECTOR2I_MM(.10,.10))
+            land.SetPosition(p.VECTOR2I_MM(15,20.75));land.SetLayerSet(p.LSET.FrontMask())
+            land.SetNet(b.FindNet("FILTER1P"));f.Add(land)
+        self.mutate(foreign_pad)
+        hostile=drc()
+        self.assertTrue(any("0.2000" in x["description"] and any("U_OTHER" in i["description"] for i in x["items"]) for x in hostile),hostile)
+        fixture(self.board);emit(self.board,ASSEMBLY)
+        def wrong_supply(b):
+            f=next(x for x in b.GetFootprints() if x.GetReference()=="U_ISO1")
+            next(x for x in f.Pads() if x.GetNumber()=="8").SetNet(b.FindNet("SIG1_1"))
+            q,part,_=contract(yaml.safe_load(ASSEMBLY.read_text()),ASSEMBLY)
+            self.assertTrue(any("TMUX-PERIMETER" in failure for failure in audit(b,q,part)))
+        self.mutate(wrong_supply)
+
     def test_native_ordinary_via_floor_and_b2_clearance(self):
         # Use exactly the authored ordinary board minima on input. The
-        # producer changes only the physical envelope and emits both scopes.
+        # producer preserves ordinary board minima and emits the exact local scopes.
         pro=self.board.with_suffix(".kicad_pro")
         saved=json.loads(pro.read_text())
         self.assertEqual(saved["board"]["design_settings"]["rules"]["min_via_diameter"],.45)
