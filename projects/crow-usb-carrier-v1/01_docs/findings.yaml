@@ -208,38 +208,47 @@ findings:
   - 01_docs/research/2026-09-23-p1-repaired-native-backtrack.md
 
 - id: USB-P1-placement-backtrack
-  state: open
+  state: closed
   blocks_at_or_above: DESIGN_CLEAN
   owner: placement-and-process
-  finding: Both local P1 trials are consumed. Candidate 37b45520 has zero shorts
-    but 155 native violations, 45 parity findings, 16 missing courtyards,
-    73 missing models and support intrusion into the hold-bank islands. Source
-    repairs add all seven missing courtyard definitions covering the 16 refs;
-    their placement consequence is not yet regenerated or accepted. Exact TMUX
-    B2 process rules and native pin/datasheet parity repairs now pass independent
-    source/fixture reviews; product regeneration remains owed. Reviewed stocked DLC regulators, USB4215, all remaining source model
-    bindings and hold-bank reservations are integrated. New initial circuit
-    2b9a33b6 now passes exact electrical/fault and independent canonical schematic
-    review. One successor P1 candidate is admitted after explicit upstream
-    reassessment; both original failed trials remain consumed and preserved.
-    Successor b2f59a1b is now generated and rejected with 41 silkscreen findings,
-    eight U_SPOKE Description mismatches, five of six keep-short and195 of229
-    adjacency checks exceed limits;55 constraints are unreached. Copper/hole/via
-    findings and missing courtyards are now zero, model files resolve568/568,
-    and hold-bank intrusion is zero. The one successor attempt is consumed.
-    Reviewed source now corrects silk and Description metadata; coupon silk
-    findings fall41 tozero without pad changes. All311 layout constraints
-    resolve after independent repair review, with7 of10 keep-short and264
-    of301 adjacency distances failing on the unchanged saved board.
-    No placement acceptance or downstream P2/P3/routing is admitted.
-  closes_when: Reconcile via fields and package/process clearances, repair
-    endpoint metadata and native parity representation, complete footprint/model
-    evidence and reserve support corridors. Independently review upstream
-    corrections and reassess the placement campaign without resetting prior
-    spend; pass owning placement and connector gates before downstream work.
+  finding: >-
+    The first three P1 native candidates 637e2665, 37b45520 and b2f59a1b
+    failed and remain consumed. After reviewed source repairs and ADR 0011, fresh
+    P1 r4 board b7b1e7c8 passed the floorplan-only predicate: zero native
+    DRC/parity violations, 27 anchors, 16 holds, 568 model/body envelopes,
+    measured regions/corridors and all 311 declared local budgets reached.
+    Independent Terra review accepted P1 only. Its graph evidence handoff is
+    WORK_RECORDED; this does not close P2 distances or connector FULL.
+  closes_when: Independently accept an exact native P1 floorplan and record its
+    validated graph handoff without resetting failed generations.
   evidence:
-  - 01_docs/research/2026-09-23-p1-repaired-native-backtrack.md
-  - 01_docs/research/2026-09-23-tmux-and-native-parity-source-repairs.md
+  - 08_reviews/2026-09-23_p1-r4_terra_native.md
+  - 08_reviews/2026-09-23_p1-r4-evidence-handoff_terra_review.md
+  - 01_docs/research/2026-09-23-p1-r4-evidence-handoff-disposition.md
+
+- id: USB-P2-input-power-placement
+  state: open
+  blocks_at_or_above: DESIGN_CLEAN
+  owner: layout-power
+  finding: >-
+    The full 72-post-anchor P2 input/quiet-power candidate generated
+    one board, SHA 12224f54, but exact local constraints pass only 38 of 47.
+    Nine numeric budgets fail (one keep-short, eight adjacency). The untouched
+    source board has 104 native DRC violations because the task runner skipped
+    required TMUX POFV; a separate prescribed-POFV copy reaches DRC zero but
+    does not turn the failed source task into acceptance. Both cumulative
+    p2_input_power task attempts are terminal FAIL and exhausted 2/2. The
+    candidate is retained only as a dated research patch; no board promoted.
+  closes_when: Explicitly reassess/backtrack the exhausted P2 work item, review
+    a corrected complete source candidate, admit a fresh bounded native
+    measurement, pass all 47 original local limits plus geometry/invariance,
+    complete required TMUX profile and native DRC/parity, then independently
+    accept P2 without claiming connector FULL or P3 routing.
+  evidence:
+  - 01_docs/research/2026-09-23-p2-input-power-a1-unaccepted-post-anchors.md
+  - 01_docs/research/2026-09-23-p2-input-power-a2-assessment.md
+  - 01_docs/research/2026-09-23-p2-input-power-a2-disposition.md
+  - 08_reviews/2026-09-23_p2-input-power-a2_terra_diagnostic.md
 
 - id: USB-model-identity
   state: open

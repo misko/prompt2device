@@ -1,30 +1,30 @@
 {
-  "blocker": "P1 r4 floorplan accepted and graph handoff recorded; seven P2 local block placements need separate bounded execution, while all 19 connector FULL physical targets remain open. P3, routing, P5 promotion, release and order remain blocked.",
+  "blocker": "P1 r4 floorplan remains accepted, but P2 input/quiet-power candidate is DEFECTIVE: 38/47 local rows pass, nine fail, both task attempts are consumed (2/2), and the graph requires backtrack. The r2 source-only proposal predicts 47/47 in memory but has no native proof. Connector FULL still has 19 physical targets open; P3, all routing, P5 promotion, release and order remain blocked.",
   "checkpoint": {
     "path": "06_build/checkpoints/schematic.json",
     "sha256": "2fb4dd626750114476150d550d88cf15c0d5a2deb5d8e971e1be67a2a7bde856",
     "size": 1152
   },
-  "next_command": "Commission the bounded P2 input-power placement task against the accepted P1 board and current graph, then regrade changed geometry; do not route before connector FULL.",
+  "next_command": "Independently review the unaccepted r2 post-anchor source proposal, then explicitly reassess and admit a fresh bounded P2 campaign before any native generation; keep FULL before P3 or any routing.",
   "phase": "placement",
   "project": "crow-usb-carrier-v1",
   "receipts": [
     {
-      "path": "01_docs/research/2026-09-23-p1-r4-evidence-handoff-disposition.md",
-      "sha256": "82038a9a91139d0429d808034ac7ddef24654c6880dcb7899f3eb369f22c2bd0",
-      "size": 1868
+      "path": "01_docs/research/2026-09-23-p2-input-power-a2-disposition.md",
+      "sha256": "6ce68a6cbfd9408b8dfe267b83c7b5bab7c7aece51dae25c25f35e01061e7725",
+      "size": 5374
     },
     {
-      "path": "08_reviews/2026-09-23_p1-r4-evidence-handoff_terra_review.md",
-      "sha256": "41cc72b7804f5334c31429624b7d0f2681998410b61dc800eeb6f8a36a7dfc77",
-      "size": 1478
+      "path": "01_docs/research/2026-09-23-p2-input-power-r2-unaccepted-backtrack.md",
+      "sha256": "502ee51d31f612a3383f28aa2ad9f7e1f60d794a42e9ed595800ae6adeb8315c",
+      "size": 12081
     },
     {
-      "path": "08_reviews/2026-09-23_p1-r4_terra_native.md",
-      "sha256": "2449a3721abafc7de673057de6a757c6e6f1e624d4b33f40be91f7db4589949c",
-      "size": 1795
+      "path": "08_reviews/2026-09-23_p2-input-power-a2_terra_diagnostic.md",
+      "sha256": "157a3975a229808681598229b0fd286cf5d02f3cc98b371f3359cbc05a216f98",
+      "size": 1777
     }
   ],
   "schema": 1,
-  "state_id": "72825a4a5b35f7b953174fb4241627cf1df05007c082cabb723a472738f02d38"
+  "state_id": "f28efc03c59730a83510442a7c2ec0a1adf7b76493ac4ef5c42602f805eb4b4b"
 }
