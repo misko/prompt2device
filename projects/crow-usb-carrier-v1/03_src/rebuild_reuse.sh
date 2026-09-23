@@ -210,6 +210,7 @@ $PY "$S/policy_audit.py" . --board "$BOARD" --skip-drc --phase placement \
     || { echo "GATE FAILED [3a] P-ADJ: datasheet placement budget violated before routing"; exit 1; }
 
 $PY "$S/generate_rules_generic.py" .
+$PY "$FS/generate_tmux4827_pofv.py" "04_kicad/$BOARD.kicad_pcb" --assembly 03_src/rules/assembly.yaml
 kicad-cli pcb drc --severity-all --refill-zones --schematic-parity \
     --format json -o 06_build/drc/pre_route.json "04_kicad/$BOARD.kicad_pcb"
 $PY "$S/placement_drc_check.py" 06_build/drc/pre_route.json \
@@ -219,6 +220,7 @@ $PY "$S/placement_drc_check.py" 06_build/drc/pre_route.json \
 #     (generate_rules_generic itself purges kicad-cli's stray
 #     <board>.kicad_pcb.kicad_pro/.prl droppings — do NOT re-add a bespoke rmstray)
 $PY "$S/generate_rules_generic.py" .
+$PY "$FS/generate_tmux4827_pofv.py" "04_kicad/$BOARD.kicad_pcb" --assembly 03_src/rules/assembly.yaml
 
 # [4a] P-LAND before promoted-route import: fail on a package/placement launch
 # wall while the board is still track-free, not after replaying/stitching it.
@@ -252,6 +254,7 @@ $PY "$S/critical_route_check.py" . --board "04_kicad/$BOARD.kicad_pcb" --require
 
 # [7] generate_rules LAST — pcbnew saves in the chain clobber netclasses  [SHARED]
 $PY "$S/generate_rules_generic.py" .
+$PY "$FS/generate_tmux4827_pofv.py" "04_kicad/$BOARD.kicad_pcb" --assembly 03_src/rules/assembly.yaml
 $PY "$S/rules_audit.py" . --board "04_kicad/$BOARD.kicad_pcb" \
     || { echo "GATE FAILED [7a] A-CLASS/A-AGREE/A-AMP/A-FIRE/A-ORDER: generated rules do not enforce authored copper intent"; exit 1; }
 run_stage rf_realized "$PY" "$S/rf_check.py" realized . --board "04_kicad/$BOARD.kicad_pcb" \

@@ -1001,6 +1001,7 @@ TWO ORPHANS THIS FOLDER'S OWN PROSE HAD HIDDEN, both found by the first run:
 | `order_time_requirements` | ADVISORY | human order checklist; release and JLC uploader gates own the executable obligations |
 | `pcb_process` | ADVISORY | human process summary; exact capability declarations and the realised board own executable process selection |
 | `via_process.*` | `via_process_check.py` | selective via-fill/cap geometry, selector, ordinary-via exclusion and order-remark contract; Crow permits two declared protected copper diameters (0.50 and 0.35 mm) in the complete 0.20 mm drill family while ordinary 0.30 mm drills stay disjoint |
+| `via_process.named_profiles[]` | `generate_tmux4827_pofv.py`, `via_process_check.py` | Only `TMUX4827_YBH_B2_POFV`: exact eight U_ISO B2/5 GND Type-VII sites; the producer derives tiny rule areas from placed pads and emits native rules after the generic rule generator, while the independent gate binds pad/via identity, geometry, process flags, coupon and native-footprint hashes. The ordinary 0.45/0.13 board-setup minima remain; KiCad's later matching B2 rule alone authorizes 0.35/0.075 at those eight sites. |
 
 ### keys: 03_src/rules/power_stages.yaml
 

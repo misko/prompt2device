@@ -466,6 +466,7 @@ $PY "$S/policy_audit.py" . --board "$BOARD" --skip-drc --phase placement \
     || { echo "GATE FAILED [4c] P-ADJ: datasheet placement budget violated before routing"; exit 1; }
 
 $PY "$S/generate_rules_generic.py" .
+$PY "$FS/generate_tmux4827_pofv.py" "04_kicad/$BOARD.kicad_pcb" --assembly 03_src/rules/assembly.yaml
 kicad-cli pcb drc --severity-all --refill-zones --schematic-parity \
     --format json -o 06_build/drc/pre_route.json "04_kicad/$BOARD.kicad_pcb"
 $PY "$S/placement_drc_check.py" 06_build/drc/pre_route.json \
@@ -473,6 +474,7 @@ $PY "$S/placement_drc_check.py" 06_build/drc/pre_route.json \
 
 # [5] netclasses BEFORE route-prep (canon R1)  [SHARED]
 $PY "$S/generate_rules_generic.py" .
+$PY "$FS/generate_tmux4827_pofv.py" "04_kicad/$BOARD.kicad_pcb" --assembly 03_src/rules/assembly.yaml
 
 # [5a] P-LAND at the moment pad geometry + width floors first coexist.  This
 # is deliberately BEFORE route import: a pad that cannot emit its class width
@@ -516,6 +518,7 @@ $PY "$S/critical_route_check.py" . --board "04_kicad/$BOARD.kicad_pcb" --require
 
 # [9] generate_rules LAST (pcbnew saves clobber .kicad_pro netclasses)  [SHARED]
 $PY "$S/generate_rules_generic.py" .
+$PY "$FS/generate_tmux4827_pofv.py" "04_kicad/$BOARD.kicad_pcb" --assembly 03_src/rules/assembly.yaml
 $PY "$S/rules_audit.py" . --board "04_kicad/$BOARD.kicad_pcb" \
     || { echo "GATE FAILED [9a] A-CLASS/A-AGREE/A-AMP/A-FIRE/A-ORDER: generated rules do not enforce authored copper intent"; exit 1; }
 run_stage rf_realized "$PY" "$S/rf_check.py" realized . --board "04_kicad/$BOARD.kicad_pcb" \

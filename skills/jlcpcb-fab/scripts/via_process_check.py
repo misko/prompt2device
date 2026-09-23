@@ -29,6 +29,7 @@ import sys
 from pathlib import Path
 
 import pcbnew
+from tmux4827_pofv import audit as audit_tmux, contract as tmux_contract, dru_rules as tmux_dru_rules
 
 try:
     import yaml
@@ -180,6 +181,33 @@ def check(board_path: Path, assembly: str | None = None):
     if not isinstance(vp, dict):
         out["fails"].append("V-SCHEMA via_process: expected a mapping")
         return out
+
+    try:
+        tmux = tmux_contract(data, apath)
+        if tmux is not None:
+            profile, part, _ = tmux
+            out["fails"].extend(audit_tmux(board, profile, part))
+            pro = board_path.with_suffix(".kicad_pro")
+            project = json.loads(pro.read_text()) if pro.is_file() else {}
+            physical = project.get("board", {}).get("design_settings", {}).get("rules", {})
+            if physical.get("min_via_diameter") != .45 or physical.get("min_via_annular_width") != .13:
+                out["fails"].append("TMUX-PRO: original ordinary 0.45/0.13 board minima must remain")
+            # The exact source-owned rules are required after the generic
+            # generator.  Foreign relaxed rules could otherwise mask a DRC
+            # error while the identity checker still passes.
+            dru = board_path.with_suffix(".kicad_dru")
+            actual = dru.read_text() if dru.is_file() else ""
+            expected = tmux_dru_rules()
+            for rule in expected:
+                if actual.count("\n" + rule) != 1 or actual.count(rule) != 1:
+                    out["fails"].append("TMUX-DRU: missing or altered generated rule " + rule.split('"')[1])
+            residual = actual
+            for rule in expected:
+                residual = residual.replace(rule, "", 1)
+            if re.search(r"\(\s*constraint\s+(?:clearance|physical_clearance|via_diameter|annular_width|hole_size|hole_clearance)\b", residual):
+                out["fails"].append("TMUX-DRU: foreign clearance/via/hole constraint")
+    except (ValueError, KeyError, TypeError, OSError) as exc:
+        out["fails"].append(f"TMUX-PROFILE: {exc}")
 
     # A single drill family may contain more than one approved copper diameter.
     # Keep the legacy singular key for existing boards; reject an ambiguous mix.

@@ -49,6 +49,20 @@ public_stock_surplus_overrides:
 
 pcb_process: "Proposed JLC advanced order: selectively fill/cap the complete 0.20 mm drill family for LT3045 EP and TMUX4827 B2; uploader/vendor acceptance required"
 via_process:
+  named_profiles:
+  - id: TMUX4827_YBH_B2_POFV
+    kind: tmux4827_ybh_b2_pofv_v1
+    tier: jlc_4layer_advanced
+    finish: ENIG
+    refs: [U_ISO1, U_ISO2, U_ISO3, U_ISO4, U_ISO5, U_ISO6, U_ISO7, U_ISO8]
+    pad: '5'
+    net: GND
+    expected_count: 8
+    geometry: {pad_diameter_mm: 0.35, via_diameter_mm: 0.35, drill_mm: 0.20, annulus_mm: 0.075, mask_opening_mm: 0.25, paste_opening_mm: 0.25, bga_via_to_pad_gap_mm: 0.10}
+    process: type_vii_filled_and_capped_pofv
+    evidence:
+      part: 02_parts/TMUX4827YBHR/part.yaml
+      coupon_sha256: 6f39a73aad46444e6b2256ced0b64a1dea5b9792801c3f705f8b691727ce83b6
   protected_geometries:
   - {via_diameter_mm: 0.50, drill_mm: 0.20}  # six existing U_LDO EP vias
   - {via_diameter_mm: 0.35, drill_mm: 0.20}  # eight U_ISO B2 center vias
