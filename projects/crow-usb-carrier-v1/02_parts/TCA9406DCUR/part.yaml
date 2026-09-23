@@ -24,5 +24,19 @@ gotchas:
   - 'Connect VCCA to XU IOR 1V8 and VCCB to quiet 3V3_ADC; OE may be driven directly from 3.3V ADC_READY because it is 5.5V tolerant.'
   - 'OE low or either supply off puts both I2C sides high impedance and avoids back-powering.'
   - 'Internal 10kohm pullups are complemented by four external 4.7kohm pullups for the board control bus.'
+layout:
+  source: TI SCPS221G Section 11.1 Layout Guidelines and Figure 13 Layout Example, PDF page 23; retained TCA9406-SCPS221G.pdf
+  reviewed: 2026-09-23
+  notes:
+    - 'Place C_ADC_I2C_A by U_ADC_I2C_XLATE VCCA pin 3 and C_ADC_I2C_B by VCCB pin 7, with short ground returns to pin 2 and the ground plane. These are the selected 100 nF source capacitors corresponding to the two bypass capacitors in TI Figure 13.'
+    - 'Keep both I2C-side traces short to limit capacitive loading and reflections; preserve OE low until both supplies are stable, as shown in Figure 13. Actual routed timing and placement remain to be checked on the native board.'
+layout_refs:
+  - tier: 1
+    reached: true
+    artifact: TI SCPS221G Section 11.1 and Figure 13 Layout Example, PDF page 23, retained TCA9406-SCPS221G.pdf
+  - tier: 2
+    reached: false
+    artifact: Exact TCA9406 manufacturer evaluation-board or routed reference-design files
+    why: No exact routed evaluation or reference design is retained in this project; this dossier cites only the reviewed primary datasheet layout example.
 sourcing:
   lcsc: C840107

@@ -64,5 +64,20 @@ gotchas:
   - 'AC-coupled input uses internal bias; move external pulldowns before coupling capacitors.'
   - 'SHDNZ release requires at least 2ms before I2C; capacitors and references need additional settle before unmuted capture.'
   - 'Two devices share one 256-BCLK frame but no guaranteed cross-die aperture skew is specified.'
+layout:
+  source: TI SBAS992A Section 11.1 Layout Guidelines and Figure 179 Layout Example, PDF page 116; retained TLV320ADC6140-SBAS992A.pdf
+  reviewed: 2026-09-23
+  notes:
+    - 'For each selected U_ADC_A and U_ADC_B, place the AVDD, IOVDD, AREG, DREG and VREF capacitors with matching C_ADC_A_* or C_ADC_B_* names at their owning pins. Keep each supply/reference connection and its ground return short; TI specifically calls for the VREF filter capacitors near pin 3.'
+    - 'Connect AVSS pin 4 and exposed VSS pad 25 to the local ground area/plane, with a thermal-via pattern under the pad as allowed by the qualified via process. The VREF capacitor ground return must connect directly to AVSS without a via in that connection trace, per Section 11.1; verify the actual return geometry during placement and routing.'
+    - 'Keep the four differential input pairs for each ADC together and separated from digital clock/control runs. Figure 179 groups analog inputs on the lower pin edge and audio output/control on other edges; route according to the selected exact RTW0024A footprint. MICBIAS pin 5 is intentionally unconnected in this source, so the manufacturer MICBIAS routing/capacitor advice does not describe a fitted network here.'
+layout_refs:
+  - tier: 1
+    reached: true
+    artifact: TI SBAS992A Section 11.1 and Figure 179 Layout Example, PDF page 116, retained TLV320ADC6140-SBAS992A.pdf
+  - tier: 2
+    reached: false
+    artifact: Exact TLV320ADC6140 manufacturer evaluation-board or routed reference-design files
+    why: No exact routed evaluation or reference design is retained in this project; the reviewed datasheet figure is a functional grouping example, not a measured board layout.
 sourcing:
   lcsc: C1852023
