@@ -55,7 +55,8 @@ const P=({n,x,y,w,h}:any)=><smtpad portHints={[String(n)]} pcbX={`${x}mm`} pcbY=
 function WurthLHMI4020Land(){return <footprint><P n={1} x={-1.85} y={0} w={1.5} h={2.4}/><P n={2} x={1.85} y={0} w={1.5} h={2.4}/></footprint>}
 // ASFL1 primary drawing: 2.54 x 2.2 mm pad-center pitch, 1.7 x 1.5 mm lands.
 function Osc5032Land(){return <footprint><P n={1} x={-1.27} y={-1.1} w={1.7} h={1.5}/><P n={2} x={1.27} y={-1.1} w={1.7} h={1.5}/><P n={3} x={1.27} y={1.1} w={1.7} h={1.5}/><P n={4} x={-1.27} y={1.1} w={1.7} h={1.5}/></footprint>}
-/** YXC YSX321SL primary drawing: 2.2 x 1.7 mm pad centers, 1.4 x 1.2 mm lands. */
+/** YXC YSX321SL top view: upper 4/3, lower 1/2. tscircuit Y is up;
+ * circuit_json_to_kicad_pcb.py flips Y for the native KiCad Y-down footprint. */
 function YxcYSX321SLLand(){return <footprint><P n={1} x={-1.1} y={-0.85} w={1.4} h={1.2}/><P n={2} x={1.1} y={-0.85} w={1.4} h={1.2}/><P n={3} x={1.1} y={0.85} w={1.4} h={1.2}/><P n={4} x={-1.1} y={0.85} w={1.4} h={1.2}/></footprint>}
 function SC70_5Land(){return <footprint><P n={1} x={-1} y={0.65} w={0.6} h={1}/><P n={2} x={-1} y={0} w={0.6} h={1}/><P n={3} x={-1} y={-0.65} w={0.6} h={1}/><P n={4} x={1} y={-0.65} w={0.6} h={1}/><P n={5} x={1} y={0.65} w={0.6} h={1}/></footprint>}
 function SM8_DCTLand(){return <footprint>{[1,2,3,4].map((n,i)=><P key={n} n={n} x={-1.45} y={(1.5-i)*0.65} w={0.6} h={1.2}/>)}{[5,6,7,8].map((n,i)=><P key={n} n={n} x={1.45} y={(i-1.5)*0.65} w={0.6} h={1.2}/>)}</footprint>}

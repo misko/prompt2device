@@ -25,7 +25,7 @@ limits:
   operating_temperature: "-40C to +85C for exact C70590 listing"
   shunt_capacitance_max: 7pF
   drive_level: "1-200uW maximum; 100uW typical (series sheet)"
-verified: "YXC YSX321SL primary p1: pins 1/3 diagonal crystal, pins 2/4 case ground; 3225 body and suggested 1.4 x 1.2 mm lands at 2.2 x 1.7 mm centers. Direct JLC C70590 exact code: 24MHz, CL12pF, +/-10ppm initial, +/-20ppm stability, 50ohm ESR."
+verified: "YXC YSX321SL primary p1 top view: upper row 4/3, lower row 1/2; pins 1/3 diagonal crystal, pins 2/4 case ground. Suggested 1.4 x 1.2 mm lands at 2.2 x 1.7 mm centers. Native KiCad Y-down pad centers 1=(-1.1,+0.85), 2=(+1.1,+0.85), 3=(+1.1,-0.85), 4=(-1.1,-0.85); tscircuit Y-up is the Y-negated image. Direct JLC C70590 exact code: 24MHz, CL12pF, +/-10ppm initial, +/-20ppm stability, 50ohm ESR."
 sourcing:
   lcsc: C70590
   alternates: []

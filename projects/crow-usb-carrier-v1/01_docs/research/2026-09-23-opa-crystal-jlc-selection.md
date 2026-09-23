@@ -37,6 +37,12 @@ centers. The Epson recommendation is 1.4 x 1.2 mm at 2.2 x 1.6 mm centers;
 the old native land used 1.2 x 1.1 mm pads at 2.4 x 1.9 mm centers. The
 new TSX and native footprint use the YXC recommendation. Pad numbering
 preserves the existing Y_XU nets: 1 XTAL_IN_R, 3 XTAL_OUT, 2/4 GND.
+YXC's top view is upper 4/3 and lower 1/2. In the native KiCad footprint,
+positive Y is down, so pads 1/2 are at Y=+0.85 mm and pads 4/3 at
+Y=-0.85 mm. tscircuit is Y-up; its authored pad coordinates negate those
+Y values, as the owning `circuit_json_to_kicad_pcb.py` converter does.
+`03_src/tests/test_yxc_crystal_land.py` checks both coordinate sets and
+the source net assignment against the manufacturer's drawing.
 
 The current source has 22 pF from each crystal node to ground. For equal
 capacitors, effective differential load is 22×22/(22+22) = 11 pF plus pin,
