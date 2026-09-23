@@ -243,7 +243,9 @@ findings:
     hold/LDO return or thermal items. The 72 power post anchors and graph
     WORK_RECORDED receipts remain valid administrative/source evidence, but
     full P2 power engineering acceptance is reopened without retrying or
-    resetting any generation history.
+    resetting any generation history. A bounded 430486-state local-cell
+    allocation screen is retained as NO_CANDIDATE source research only; it
+    is not a whole-board impossibility claim or an integrated-board defect.
   closes_when: Explicitly reassess/backtrack the exhausted P2 work item, review
     a corrected complete source candidate, admit a fresh bounded native
     measurement, pass all 47 original local limits plus geometry/invariance,
@@ -263,6 +265,8 @@ findings:
   - 01_docs/research/2026-09-23-p2-input-power-qualitative-scope-audit-terra.md
   - 01_docs/research/2026-09-23-p2-power-qualitative-source-hypothesis-terra.md
   - 01_docs/research/2026-09-23-p2-power-joint-screen-terra.md
+  - 01_docs/research/2026-09-23-p2-power-joint-local-cell-no-candidate.md
+  - 01_docs/research/2026-09-23-p2-power-remaining26-obligations-terra.md
 
 - id: USB-P2-remaining-block-placement
   state: open
@@ -288,22 +292,35 @@ findings:
   owner: adc-reference-source
   finding: >-
     The frozen ADC reset/VMID subset proposal predicts 16/16 numeric rows
-    passing, but those rows cover only 17 of the 64 adc_reference refs.
+    passing, but those rows cover only 17 of the original 64 adc_reference
+    refs.
     The 20 per-pin ADC supply/reference capacitors have qualitative
     close-placement and VREF/AVSS-return requirements that the numeric
     census does not grade. ADC work preparation remains unconsumed at 0/2;
     it is not an admission or block acceptance. A prior IOVDD diagnostic
     mapping used pin 1 instead of authoritative pin 19; the rejected full-cell
     patch was never generated and corrected full-cell geometry is unadmitted.
-  closes_when: Add and independently review a complete 64-ref ADC source
-    placement contract, including the 20 qualitative capacitor observations
-    and explicit P3 return-proof handoff; then complete a separately admitted
-    native candidate and its owning reviews without changing the accepted
-    scoped power baseline or connector FULL requirements.
+    The concrete 64-ref/62-move source proposal and its in-memory pad/body
+    preflight are retained, but are superseded before admission by the
+    required 65-ref schematic source repair adding device-local
+    C_ADC_3V3X_OK_VDD. The corrected supervisor disposition confirms that
+    TPS389001 is the exact active MPN; the prior TPS389018 dossier comparison
+    is preserved only as corrigendum history. No native task was admitted or
+    run, so ADC preparation remains 0/2.
+  closes_when: Independently review the 65-ref ADC source repair, including
+    the added local supervisor bypass, all 20 qualitative capacitor
+    observations and explicit P3 return-proof handoff; then regenerate the
+    source identities and complete a separately admitted native candidate and
+    its owning reviews without changing the accepted scoped power baseline or
+    connector FULL requirements.
   evidence:
   - 01_docs/research/2026-09-23-adc-p2-layout-scope-audit-terra.md
   - 01_docs/research/2026-09-23-adc-p2-full-64-ref-source-proposal.md
   - 01_docs/research/2026-09-23-adc-p2-functional-pin-corrigendum.md
+  - 01_docs/research/2026-09-23-adc-p2-complete64-source-proposal.md
+  - 01_docs/research/2026-09-23-adc-p2-complete64-native-preflight.md
+  - 01_docs/research/2026-09-23-adc-p2-complete64-pad-body-preflight.json
+  - 01_docs/research/2026-09-23-adc-dual-supervisor-bypass-disposition-terra.md
 
 - id: USB-model-identity
   state: open

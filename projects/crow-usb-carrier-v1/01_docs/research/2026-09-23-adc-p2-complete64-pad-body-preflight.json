@@ -1,0 +1,18 @@
+{
+  "board_sha256": "c3d906591a343aea8949687c05c0f5ff4372e982c5af70a04df4828b7409fd93",
+  "clearances_mm": {
+    "distinct_foreign_net_pad": 0.127,
+    "pad_to_body": 0.1
+  },
+  "counts": {
+    "distinct_pad_pairs": 322990,
+    "scoped_body_foreign_pad": 115315,
+    "scoped_pad_foreign_body": 116235
+  },
+  "floorplan_sha256": "5f659a230905debe0dbb2dfc51651c60b3bd3ed8e75e202252ac45c2cbec3c2d",
+  "foreign_pad_body_findings": [],
+  "kind": "FULL64_IN_MEMORY_PAD_BODY_PREFLIGHT",
+  "pad_separation_findings": [],
+  "scope_count": 64,
+  "status": "PASS"
+}

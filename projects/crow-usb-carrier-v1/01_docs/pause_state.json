@@ -1,23 +1,33 @@
 {
-  "blocker": "The scoped P2 power board c3d90659 proves 47/47 declared numeric rows, native DRC/parity zero and preserved 72 power post anchors, but full 89-ref power engineering acceptance is open: 41 refs need qualitative buck/return/thermal source observations and later P3/FULL copper proof. ADC/reference is also open at preparation 0/2: 16/16 numeric subset rows are predicted only, while 20 per-pin capacitor qualitative requirements remain. Other blocks still have 3 keep-short and 227 adjacency failures; connector FULL has 19 physical targets unmeasured; 499 unrouted items block P3, routing, P5, release and order.",
+  "blocker": "The scoped P2 power board c3d90659 proves 47/47 declared numeric rows, native DRC/parity zero and preserves 72 post anchors, but full 89-ref power engineering acceptance is open for 41 qualitative buck/return/thermal obligations; a bounded 430486-state local-cell screen is NO_CANDIDATE source research only. ADC/reference remains 0/2: the 16/16 numeric subset is predicted only, and the 64-ref/62-move source proposal is superseded pending a 65-ref schematic source repair for C_ADC_3V3X_OK_VDD. No ADC native task was admitted or run. Other blocks still have 3 keep-short and 227 adjacency failures; connector FULL has 19 physical targets unmeasured; 499 unrouted items block P3, routing, P5, release and order.",
   "checkpoint": {
     "path": "06_build/checkpoints/schematic.json",
     "sha256": "2fb4dd626750114476150d550d88cf15c0d5a2deb5d8e971e1be67a2a7bde856",
     "size": 1152
   },
-  "next_command": "Prepare and independently review complete source-owned qualitative P2 observation/reservation contracts for the 41 ungraded power refs and 20 ADC per-pin capacitors, with explicit P3/FULL return-proof handoffs; then seek separate bounded native admissions. Preserve the accepted power numeric receipt, 72 post anchors, all existing attempt histories and connector FULL before P3 or routing.",
+  "next_command": "Independently review and repair the 65-ref ADC source, including C_ADC_3V3X_OK_VDD, regenerated identities and full qualitative return handoff; separately prepare complete power qualitative allocation for the 41 ungraded refs, preserving the accepted numeric receipt and all prior histories. Seek native admission only after source review; retain connector FULL requirements before P3 or routing.",
   "phase": "placement",
   "project": "crow-usb-carrier-v1",
   "receipts": [
     {
-      "path": "01_docs/research/2026-09-23-adc-p2-full-64-ref-source-proposal.md",
-      "sha256": "b55c8c810de111e03e4ad40094e112c8ee177cfae1000e07a540578b548d981d",
-      "size": 5743
+      "path": "01_docs/research/2026-09-23-adc-dual-supervisor-bypass-disposition-terra.md",
+      "sha256": "9eefc6bfc0d5747bf629d376d072341d016b0e3db0ca1e73b7cd5f020a408435",
+      "size": 9497
     },
     {
-      "path": "01_docs/research/2026-09-23-adc-p2-layout-scope-audit-terra.md",
-      "sha256": "a907c8c42cf4d42b91dee06fea371f4882d48b9a25de2eab708876b55914470e",
-      "size": 6461
+      "path": "01_docs/research/2026-09-23-adc-p2-complete64-native-preflight.md",
+      "sha256": "74adf9c9bef97c0e576b757449fa758dff977b2244e4f8a0824867dac6dc5dcc",
+      "size": 2411
+    },
+    {
+      "path": "01_docs/research/2026-09-23-adc-p2-complete64-pad-body-preflight.json",
+      "sha256": "2345ea6906a17fddcada734b55260729ee312be033e5069192b2aeede9e89096",
+      "size": 555
+    },
+    {
+      "path": "01_docs/research/2026-09-23-adc-p2-complete64-source-proposal.md",
+      "sha256": "a5e85178dabd35e16ce8fdc58845231cabcdcee1c3dc1f091a7bdf71908af100",
+      "size": 1888
     },
     {
       "path": "01_docs/research/2026-09-23-p2-input-power-qualitative-scope-audit-terra.md",
@@ -28,8 +38,18 @@
       "path": "01_docs/research/2026-09-23-p2-input-power-r3-scoped-adoption.md",
       "sha256": "9ab8689c28537c3d669fb6f06338f90df26386ee4f12111072ed264ff6026152",
       "size": 6281
+    },
+    {
+      "path": "01_docs/research/2026-09-23-p2-power-joint-local-cell-no-candidate.md",
+      "sha256": "869ec63d4061a2f799af42bbf0029c4844ddb96fe6b2b7340ace1c03fd829836",
+      "size": 4114
+    },
+    {
+      "path": "01_docs/research/2026-09-23-p2-power-remaining26-obligations-terra.md",
+      "sha256": "6143119c7db4f012b23736dc83494d1b2565137475e4efd60c37b902f63c057e",
+      "size": 2621
     }
   ],
   "schema": 1,
-  "state_id": "4fd02349d0e9188a479f46e7afd86c08bbecf96b91464c4182a3bf13b7e9d830"
+  "state_id": "b775c92ae301364ac9dcbd78778feb6dcff246f02c8828c8702a39ec29700c05"
 }
