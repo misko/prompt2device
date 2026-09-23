@@ -155,3 +155,8 @@ Impact: target a new sealed hardware release, extending the previous design/layo
 > Keep the 150-extra-unit requirement for every part.
 
 Context: the question contrasted retaining 150 extra publicly stocked units per part beyond the five-board build with using build quantity and confirming JLC assembly attrition at order time. The user selected the former. Keep `build_quantity: 5` and `public_stock_surplus: 150`; aggregate quantities by exact part/code. This is now an explicit user constraint, not merely a template default. JLC allocation and actual assembly attrition/minimum quantities still require order-time confirmation. Current AK5578EN (36 versus 155 required), AK5558VN (32 versus 155), and two-per-channel TMUX2819 (199 versus 230) observations do not qualify these candidates. No release or placement admission follows from their engineering feasibility.
+
+### D8 — 2026-09-23 — established USB audio IC preference
+> What are reasonable was to resolve this? we want to use a ready IC for this
+
+Interpretation: retain the selected XMOS USB audio controller while investigating sourcing; set aside the general-purpose STM32 USB redesign proposal. XMOS has an established vendor USB audio framework but still needs board-specific configuration and programming; no ready Crow image or functional capture is claimed. D7 remains unchanged: 155 publicly stocked units for the one-per-board controller. JLC replenishment/private-stock sourcing, an XMOS-specific reserve exception, and waiting for public replenishment were presented as options, not adopted decisions. No purchase, supplier contact, private-stock policy substitution, firmware authoring or reserve waiver is authorized.
