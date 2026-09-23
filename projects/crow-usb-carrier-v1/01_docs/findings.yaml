@@ -227,25 +227,30 @@ findings:
   - 01_docs/research/2026-09-23-p1-r4-evidence-handoff-disposition.md
 
 - id: USB-P2-input-power-placement
-  state: closed
+  state: open
   blocks_at_or_above: DESIGN_CLEAN
   owner: layout-power
   finding: >-
     Original P2 A1/A2 attempts remain terminal FAIL and exhausted 2/2;
     A2 passed only 38/47 local budgets and did not complete native DRC.
     A distinct, one-attempt r3 source-backtrack campaign produced exact
-    post-POFV board c3d90659. All 47 scoped local budgets pass with zero
-    native DRC/parity violations, 27 fixed anchors, 16 holds and zero
+    post-POFV board c3d90659. Its 47 declared numeric local budgets pass with
+    zero native DRC/parity violations, 27 fixed anchors, 16 holds and zero
     unowned/fixed movements. Independent source, native and all-selected-
-    dossier authority reviews returned SOUND for this scoped P2 placement.
-    The reviewed 72 post anchors are adopted in floorplan source and fresh
-    administrative graph handoffs record P1/P2 work without regeneration.
-    Other-block distances, connector FULL19, P3/routing and P5 remain open.
+    dossier authority reviews remain SOUND for that numeric scope. A later
+    qualitative-scope audit establishes that 41 of 89 input/quiet-power refs
+    are outside those rows, including the 15-ref TPSM63603 buck cell and 26
+    hold/LDO return or thermal items. The 72 power post anchors and graph
+    WORK_RECORDED receipts remain valid administrative/source evidence, but
+    full P2 power engineering acceptance is reopened without retrying or
+    resetting any generation history.
   closes_when: Explicitly reassess/backtrack the exhausted P2 work item, review
     a corrected complete source candidate, admit a fresh bounded native
     measurement, pass all 47 original local limits plus geometry/invariance,
-    complete required TMUX profile and native DRC/parity, then independently
-    accept P2 without claiming connector FULL or P3 routing.
+    complete required TMUX profile and native DRC/parity, and independently
+    review source-owned qualitative buck/return/thermal observations with
+    explicit P3/FULL saved-copper handoffs before accepting the full power
+    block without claiming connector FULL or P3 routing.
   evidence:
   - 01_docs/research/2026-09-23-p2-input-power-a1-unaccepted-post-anchors.md
   - 01_docs/research/2026-09-23-p2-input-power-a2-assessment.md
@@ -255,6 +260,7 @@ findings:
   - 08_reviews/2026-09-23_p2-r3-source-admission_terra.md
   - 08_reviews/2026-09-23_p2-r3-native-power_terra.md
   - 08_reviews/2026-09-23_p2-r3-budget-authority_terra.md
+  - 01_docs/research/2026-09-23-p2-input-power-qualitative-scope-audit-terra.md
 
 - id: USB-P2-remaining-block-placement
   state: open
@@ -273,6 +279,26 @@ findings:
   evidence:
   - 01_docs/research/2026-09-23-p2-input-power-r3-scoped-adoption.md
   - 08_reviews/2026-09-23_p2-r3-native-power_terra.md
+
+- id: USB-P2-adc-reference-placement-scope
+  state: open
+  blocks_at_or_above: DESIGN_CLEAN
+  owner: adc-reference-source
+  finding: >-
+    The frozen ADC reset/VMID subset proposal predicts 16/16 numeric rows
+    passing, but those rows cover only 17 of the 64 adc_reference refs.
+    The 20 per-pin ADC supply/reference capacitors have qualitative
+    close-placement and VREF/AVSS-return requirements that the numeric
+    census does not grade. ADC work preparation remains unconsumed at 0/2;
+    it is not an admission or block acceptance.
+  closes_when: Add and independently review a complete 64-ref ADC source
+    placement contract, including the 20 qualitative capacitor observations
+    and explicit P3 return-proof handoff; then complete a separately admitted
+    native candidate and its owning reviews without changing the accepted
+    scoped power baseline or connector FULL requirements.
+  evidence:
+  - 01_docs/research/2026-09-23-adc-p2-layout-scope-audit-terra.md
+  - 01_docs/research/2026-09-23-adc-p2-full-64-ref-source-proposal.md
 
 - id: USB-model-identity
   state: open
