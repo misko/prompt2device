@@ -219,8 +219,10 @@ findings:
     B2 process rules and native pin/datasheet parity repairs now pass independent
     source/fixture reviews; product regeneration remains owed. Reviewed stocked DLC regulators, USB4215, all remaining source model
     bindings and hold-bank reservations are integrated. New initial circuit
-    416d4f78 passes producer diagnostics but awaits exact electrical/fault and
-    canonical schematic review; no new native board or P1 admission occurred.
+    2b9a33b6 now passes exact electrical/fault and independent canonical schematic
+    review. One successor P1 candidate is admitted after explicit upstream
+    reassessment; both original failed trials remain consumed and preserved.
+    No successor generation or placement acceptance is claimed at admission.
   closes_when: Reconcile via fields and package/process clearances, repair
     endpoint metadata and native parity representation, complete footprint/model
     evidence and reserve support corridors. Independently review upstream
