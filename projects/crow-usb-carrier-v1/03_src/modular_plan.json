@@ -2669,7 +2669,7 @@
   ],
   "work_items": [
     {
-      "id": "p1_floorplan_dlc_usb_successor",
+      "id": "p1_floorplan_r4_after_source_repair",
       "phase": "P1_FLOORPLAN",
       "stage_id": "KICAD-PLACEMENT",
       "blocks": [
@@ -2696,7 +2696,7 @@
       "max_attempts": 1,
       "backtrack_to": [],
       "evidence": [
-        "06_build/evidence/modular_work/p1_dlc_usb_successor.json"
+        "06_build/evidence/modular_work/p1_r4.json"
       ]
     },
     {
@@ -2708,11 +2708,11 @@
         "quiet_power"
       ],
       "depends_on": [
-        "p1_floorplan_dlc_usb_successor"
+        "p1_floorplan_r4_after_source_repair"
       ],
       "max_attempts": 2,
       "backtrack_to": [
-        "p1_floorplan_dlc_usb_successor"
+        "p1_floorplan_r4_after_source_repair"
       ],
       "evidence": [
         "06_build/evidence/modular_work/p2_input_power.json"
@@ -2729,11 +2729,11 @@
         "analog_ch4"
       ],
       "depends_on": [
-        "p1_floorplan_dlc_usb_successor"
+        "p1_floorplan_r4_after_source_repair"
       ],
       "max_attempts": 2,
       "backtrack_to": [
-        "p1_floorplan_dlc_usb_successor"
+        "p1_floorplan_r4_after_source_repair"
       ],
       "evidence": [
         "06_build/evidence/modular_work/p2_analog_1_4.json"
@@ -2750,11 +2750,11 @@
         "analog_ch8"
       ],
       "depends_on": [
-        "p1_floorplan_dlc_usb_successor"
+        "p1_floorplan_r4_after_source_repair"
       ],
       "max_attempts": 2,
       "backtrack_to": [
-        "p1_floorplan_dlc_usb_successor"
+        "p1_floorplan_r4_after_source_repair"
       ],
       "evidence": [
         "06_build/evidence/modular_work/p2_analog_5_8.json"
@@ -2768,11 +2768,11 @@
         "adc_reference"
       ],
       "depends_on": [
-        "p1_floorplan_dlc_usb_successor"
+        "p1_floorplan_r4_after_source_repair"
       ],
       "max_attempts": 2,
       "backtrack_to": [
-        "p1_floorplan_dlc_usb_successor"
+        "p1_floorplan_r4_after_source_repair"
       ],
       "evidence": [
         "06_build/evidence/modular_work/p2_adc_reference.json"
@@ -2787,11 +2787,11 @@
         "xmos_core"
       ],
       "depends_on": [
-        "p1_floorplan_dlc_usb_successor"
+        "p1_floorplan_r4_after_source_repair"
       ],
       "max_attempts": 2,
       "backtrack_to": [
-        "p1_floorplan_dlc_usb_successor"
+        "p1_floorplan_r4_after_source_repair"
       ],
       "evidence": [
         "06_build/evidence/modular_work/p2_digital_power_core.json"
@@ -2806,11 +2806,11 @@
         "clock_flash_debug"
       ],
       "depends_on": [
-        "p1_floorplan_dlc_usb_successor"
+        "p1_floorplan_r4_after_source_repair"
       ],
       "max_attempts": 2,
       "backtrack_to": [
-        "p1_floorplan_dlc_usb_successor"
+        "p1_floorplan_r4_after_source_repair"
       ],
       "evidence": [
         "06_build/evidence/modular_work/p2_clock_flash_audio.json"
@@ -2826,11 +2826,11 @@
         "usb_vbus_sense"
       ],
       "depends_on": [
-        "p1_floorplan_dlc_usb_successor"
+        "p1_floorplan_r4_after_source_repair"
       ],
       "max_attempts": 2,
       "backtrack_to": [
-        "p1_floorplan_dlc_usb_successor"
+        "p1_floorplan_r4_after_source_repair"
       ],
       "evidence": [
         "06_build/evidence/modular_work/p2_usb_service.json"
@@ -3024,7 +3024,7 @@
       ],
       "max_attempts": 2,
       "backtrack_to": [
-        "p1_floorplan_dlc_usb_successor",
+        "p1_floorplan_r4_after_source_repair",
         "p2_adc_reference",
         "p2_digital_power_core",
         "p2_input_power"
