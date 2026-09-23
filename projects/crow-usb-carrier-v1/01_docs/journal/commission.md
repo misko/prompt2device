@@ -494,3 +494,7 @@ Set stitch.via.tiers and stitch.astar_fallback.via to the existing0.60/0.30mm or
 ## 2026-09-23 — D5 JLC-only non-through-hole backtrack
 - Recorded user directive verbatim. Reopened source admission and removed U_ADC secondary-assembler population exemption. Existing source is preserved as a noncompliant candidate, not a qualified board. Old84code prelayout request is stale against changed assembly policy and must not be promoted.
 - SOL researching JLC-stocked ADC architecture and SMD replacements; Terra auditing actual footprint population types. No distributor-risk override adopted, no through-hole population assumed, no placement started.
+
+### D5 bounded research result
+- Terra:468non-THT/25THT instances. SOL: exactJLCcandidateinventory found for seven shortSMD parts and threeADCarchitectures. No candidate approved; key capacitorESL, analogswitchtopology, ADCnoise/input/clock and150buffer constraints retained. Full dated report01_docs/sourcing/jlc-population-review-2026-09-23.md preserves agentoutputs and hashes.
+- Source remains held. Next qualify minimalOPA/crystal substitutions and ADCarchitecture before editing remainingblocks; no distributor or secondaryassembler override.

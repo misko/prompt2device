@@ -40,6 +40,7 @@ mutable file: it is an INPUT, and a re-read replaces the entry it re-reads.
 | `evidence/` | retained primary manufacturer lifecycle pages | Exact bytes and identity/date/hash provenance; its own contract governs contents. No stock inference. |
 | `jlcsearch-screen-<YYYY-MM-DD>.md` | dated interpretation of report-only jlcsearch evidence with exact URLs/times and input report hashes | observation only; never a build input or allocation receipt |
 | `sourcing-review-<YYYY-MM-DD>.md` | dated cross-provider exception dispositions and proposed design-time decisions | observations only; no automatic admission or purchasing authority |
+| `jlc-population-review-<YYYY-MM-DD>.md` | dated JLC-only population/stock backtrack research with exact candidate evidence | proposals only; no automatic part adoption, process or order acceptance |
 | `contracts.md` | this file | |
 
 ## Optional public distributor design policy
