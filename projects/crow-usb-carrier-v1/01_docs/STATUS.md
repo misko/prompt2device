@@ -1,17 +1,17 @@
 # Project status
 
-<!-- pause-state:a0f023220f47b3bcb8f147894d7197944432da7e2d8de97ffa86dfa180c0489e -->
+<!-- pause-state:6482b6953a627ac34638974acbc6b0794a24cd37513ae710989c63286ed72522 -->
 
 - Phase: `placement`
 - State: **PAUSED**
 - Checkpoint: `06_build/checkpoints/schematic.json` (`545adc0b60a8`)
-- Blocker: Second P1 candidate removes all 32 shorts but fails native/process and placement checks. Both local trials consumed: upstream D-BACK required; connector FULL still owes 19 physical targets.
-- Next command: `Read the repaired-native backtrack and Terra cause census; repair source/process, footprint and endpoint authorities before independently reassessing a new placement campaign. Do not run a third local P1 trial or route.`
+- Blocker: Upstream USB checks repaired; model identity repairs adopted without native regeneration. Current schematic reviews are stale on changed dossier hash. Package/process, courtyard/model and island-space repairs remain; P1 budget exhausted and connector FULL physical evidence owed.
+- Next command: `Complete named TMUX pad-specific process profile and remaining package/model/courtyard source repairs, then obtain independent source/canonical carryover review and campaign reassessment. Preserve both P1 trials; do not route or silently refresh reviews.`
 
 ## Bound receipts
 
-- `01_docs/research/2026-09-23-p1-backtrack-census-terra.md` — `81dd401f0b67`
-- `01_docs/research/2026-09-23-p1-repaired-native-backtrack.md` — `63409916fb95`
+- `01_docs/research/2026-09-23-package-process-reassessment-terra.md` — `d7bea942c318`
+- `01_docs/research/2026-09-23-upstream-contract-and-model-repairs.md` — `c44e2e91a599`
 
 This file is generated from `01_docs/pause_state.json`; edit the manifest with
 `pause_state.py record`, not this view.
