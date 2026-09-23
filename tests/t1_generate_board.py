@@ -230,6 +230,33 @@ def t_native_usb4105_aliases():
     eq(mapped[("J_USB", "SH")], "GND", "shell")
 
 
+@test("native converter physical shell pin uses the exact USB1130 dossier")
+def t_native_usb1130_physical_shell():
+    sys.path.insert(0, str(SCRIPTS))
+    from generate_board_generic import FloorplanError, resolve_pad_aliases
+
+    comps = {"J2": ("usb_hub_3s_v4:USB_A_GCT_USB1130-15-A_Horizontal",
+                    "USB1130-15-A")}
+    parts = HUB4 / "02_parts"
+    for nodes in ({("J2", "SH"): "GND"},
+                  {("J2", "5"): "GND"},
+                  {("J2", "5"): "GND", ("J2", "SH"): "GND"}):
+        mapped, expected = resolve_pad_aliases(comps, nodes, parts)
+        eq(mapped, {("J2", "SH"): "GND"}, "shell has one physical net")
+        eq(expected["J2"], {"1", "2", "3", "4", "SH"},
+           "all physical lands remain declared")
+    for nodes, diagnostic in (
+            ({("J2", "5"): "GND", ("J2", "SH"): "VBUS"},
+             "conflicting nets"),
+            ({("J2", "SHH"): "GND"}, "no evidenced alias")):
+        try:
+            resolve_pad_aliases(comps, nodes, parts)
+        except FloorplanError as error:
+            contains(str(error), diagnostic, "physical shell refusal")
+        else:
+            check(False, f"invalid shell identity passed: {diagnostic}")
+
+
 @test("board alias resolver rejects unevidenced, missing and conflicting maps",
       kind="known_bad")
 def t_native_alias_fail_closed():
@@ -290,6 +317,19 @@ def t_native_alias_fail_closed():
                  "same footprint cannot establish part identity")
     else:
         check(False, "unknown value borrowed alias from matching footprint")
+    ambiguous = json.loads(json.dumps(base))
+    ambiguous["pins"] = {"A": "SIGNAL", "SH": "SHIELD"}
+    ambiguous["pin_aliases"] = {
+        "A": {"schematic": "SH", "footprint": "A", "why": "drawing",
+              "evidence": "fixture drawing"},
+        "SH": {"schematic": "5", "footprint": "SH", "why": "drawing",
+               "evidence": "fixture drawing"}}
+    try:
+        attempt(ambiguous, {"SH": "GND"})
+    except FloorplanError as error:
+        contains(str(error), "ambiguously names", "dual identity refused")
+    else:
+        check(False, "physical token borrowed a conflicting schematic alias")
 
 
 @test("board aliases leave identity parts unchanged")

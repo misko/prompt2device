@@ -273,12 +273,21 @@ def resolve_pad_aliases(comps, pad_net, parts_dir):
                 die(f"{ref}/{mpn}: schematic pin {schematic} maps to "
                     f"different footprint pads via {logicals}")
         expected[ref] = set(by_pad)
-        for (node_ref, schematic), net in pad_net.items():
+        for (node_ref, pin), net in pad_net.items():
             if node_ref != ref:
                 continue
-            if schematic not in by_schematic:
-                die(f"{ref}/{mpn}: netlist pin {schematic} has no evidenced alias")
-            footprint = mapping[by_schematic[schematic][0]]["footprint"]
+            # Native exports may already use a declared footprint pad name
+            # (for example SH), while the TSX schematic uses its alias (5).
+            schematic_pad = (mapping[by_schematic[pin][0]]["footprint"]
+                             if pin in by_schematic else None)
+            physical_pad = pin if pin in by_pad else None
+            if (schematic_pad is not None and physical_pad is not None
+                    and schematic_pad != physical_pad):
+                die(f"{ref}/{mpn}: netlist pin {pin} ambiguously names "
+                    f"schematic pad {schematic_pad} and footprint pad {physical_pad}")
+            footprint = schematic_pad if schematic_pad is not None else physical_pad
+            if footprint is None:
+                die(f"{ref}/{mpn}: netlist pin {pin} has no evidenced alias")
             key = (ref, footprint)
             if key in resolved and resolved[key] != net:
                 die(f"{ref}/{mpn}: conflicting nets {resolved[key]} and {net} "
