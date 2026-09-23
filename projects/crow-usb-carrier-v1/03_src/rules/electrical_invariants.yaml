@@ -4,6 +4,32 @@ invariants:
 - {assert: part_value, part: C_IN1, equals: 10uF, tolerance_pct: 10, adr: "0002", why: "Exact post-Q_IN input capacitor 1; local discharge remains separately owed"}
 - {assert: part_value, part: C_IN2, equals: 10uF, tolerance_pct: 10, adr: "0002", why: "Exact post-Q_IN input capacitor 2; local discharge remains separately owed"}
 - {assert: part_value, part: C_IN3, equals: 10uF, tolerance_pct: 10, adr: "0002", why: "Exact post-Q_IN input capacitor 3; local discharge remains separately owed"}
+# TPS62822 DLC source identities; the current committed CJ/native board are stale until canonical rebuild.
+- {assert: part_value, part: R_3V3X_FB_TOP, equals: 453k, tolerance_pct: 0.1, adr: "0002", why: "Stocked Viking exact 453k top divider preserves the reviewed 3V3X feedback ratio"}
+- {assert: part_value, part: C_U_3V3X_IN_1, equals: 10uF, tolerance_pct: 10, adr: "0002", why: "Exact Samsung C1713 input capacitor 1 of the TPS62822 3V3X estimated effective bank"}
+- {assert: part_value, part: C_U_3V3X_IN_2, equals: 10uF, tolerance_pct: 10, adr: "0002", why: "Exact Samsung C1713 input capacitor 2 of the TPS62822 3V3X estimated effective bank"}
+- {assert: part_value, part: C_U_1V8_IN_1, equals: 10uF, tolerance_pct: 10, adr: "0002", why: "Exact Samsung C1713 input capacitor 1 of the TPS62822 1V8 estimated effective bank"}
+- {assert: part_value, part: C_U_1V8_IN_2, equals: 10uF, tolerance_pct: 10, adr: "0002", why: "Exact Samsung C1713 input capacitor 2 of the TPS62822 1V8 estimated effective bank"}
+- {assert: part_value, part: C_U_CORE_IN_1, equals: 10uF, tolerance_pct: 10, adr: "0002", why: "Exact Samsung C1713 input capacitor 1 of the TPS62822 CORE estimated effective bank"}
+- {assert: part_value, part: C_U_CORE_IN_2, equals: 10uF, tolerance_pct: 10, adr: "0002", why: "Exact Samsung C1713 input capacitor 2 of the TPS62822 CORE estimated effective bank"}
+- {assert: pin_on_net, pin: U_3V3X.1, net: N5V_BUCK, adr: "0002", why: "TPS62822 DLC pin 1 enable sequence for U_3V3X; NC4 and unused PG8 remain open"}
+- {assert: pin_on_net, pin: U_3V3X.2, net: U_3V3X_FB, adr: "0002", why: "TPS62822 DLC pin 2 quiet feedback for U_3V3X; NC4 and unused PG8 remain open"}
+- {assert: pin_on_net, pin: U_3V3X.3, net: GND, adr: "0002", why: "TPS62822 DLC pin 3 analog ground for U_3V3X; NC4 and unused PG8 remain open"}
+- {assert: pin_on_net, pin: U_3V3X.5, net: GND, adr: "0002", why: "TPS62822 DLC pin 5 power ground for U_3V3X; NC4 and unused PG8 remain open"}
+- {assert: pin_on_net, pin: U_3V3X.6, net: U_3V3X_SW, adr: "0002", why: "TPS62822 DLC pin 6 switch node for U_3V3X; NC4 and unused PG8 remain open"}
+- {assert: pin_on_net, pin: U_3V3X.7, net: N5V_BUCK, adr: "0002", why: "TPS62822 DLC pin 7 input supply for U_3V3X; NC4 and unused PG8 remain open"}
+- {assert: pin_on_net, pin: U_1V8.1, net: N5V_BUCK, adr: "0002", why: "TPS62822 DLC pin 1 enable sequence for U_1V8; NC4 and unused PG8 remain open"}
+- {assert: pin_on_net, pin: U_1V8.2, net: U_1V8_FB, adr: "0002", why: "TPS62822 DLC pin 2 quiet feedback for U_1V8; NC4 and unused PG8 remain open"}
+- {assert: pin_on_net, pin: U_1V8.3, net: GND, adr: "0002", why: "TPS62822 DLC pin 3 analog ground for U_1V8; NC4 and unused PG8 remain open"}
+- {assert: pin_on_net, pin: U_1V8.5, net: GND, adr: "0002", why: "TPS62822 DLC pin 5 power ground for U_1V8; NC4 and unused PG8 remain open"}
+- {assert: pin_on_net, pin: U_1V8.6, net: U_1V8_SW, adr: "0002", why: "TPS62822 DLC pin 6 switch node for U_1V8; NC4 and unused PG8 remain open"}
+- {assert: pin_on_net, pin: U_1V8.7, net: N5V_BUCK, adr: "0002", why: "TPS62822 DLC pin 7 input supply for U_1V8; NC4 and unused PG8 remain open"}
+- {assert: pin_on_net, pin: U_CORE.1, net: CORE_EN, adr: "0002", why: "TPS62822 DLC pin 1 enable sequence for U_CORE; NC4 and unused PG8 remain open"}
+- {assert: pin_on_net, pin: U_CORE.2, net: U_CORE_FB, adr: "0002", why: "TPS62822 DLC pin 2 quiet feedback for U_CORE; NC4 and unused PG8 remain open"}
+- {assert: pin_on_net, pin: U_CORE.3, net: GND, adr: "0002", why: "TPS62822 DLC pin 3 analog ground for U_CORE; NC4 and unused PG8 remain open"}
+- {assert: pin_on_net, pin: U_CORE.5, net: GND, adr: "0002", why: "TPS62822 DLC pin 5 power ground for U_CORE; NC4 and unused PG8 remain open"}
+- {assert: pin_on_net, pin: U_CORE.6, net: U_CORE_SW, adr: "0002", why: "TPS62822 DLC pin 6 switch node for U_CORE; NC4 and unused PG8 remain open"}
+- {assert: pin_on_net, pin: U_CORE.7, net: N5V_BUCK, adr: "0002", why: "TPS62822 DLC pin 7 input supply for U_CORE; NC4 and unused PG8 remain open"}
 - {assert: part_value, part: R_SPOKE_ILIM1, equals: 44.2k, tolerance_pct: 0.1, adr: "0002", why: "TPS26625 spoke 1 fitted current-limit resistor for conditional aggregate source screen"}
 - {assert: part_value, part: C_SPOKE_DVDT1, equals: 10nF, tolerance_pct: 10, adr: "0002", why: "TPS26625 spoke 1 fitted startup dVdt capacitor; no hard-short timing guarantee implied"}
 - {assert: part_value, part: R_SPOKE_ILIM2, equals: 44.2k, tolerance_pct: 0.1, adr: "0002", why: "TPS26625 spoke 2 fitted current-limit resistor for conditional aggregate source screen"}

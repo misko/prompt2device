@@ -15,11 +15,11 @@ const defaultNet=(name:string)=>`net.${ /^\d/.test(name) ? `N${name}` : name }`
 const supplier=(jlc:string)=>({jlcpcb:jlc?[jlc]:[]})
 const sourced=(mpn:string,jlc="")=>jlc||({
  "XFL4015-471MEC":"C18221164","SX5M24.576M20F30TNN":"C2901534","CC0402KRX5R5BB105":"C106253","X322524MOB4SI":"C70590","FTSH-105-01-L-DV-K":"C5155080",
- "GRM1555C1H220JA01D":"C76960","GRM1555C1H102JA01D":"C76947","RC0402FR-0733RL":"C138002","RC0402FR-0710KL":"C60490","RC0402FR-07100KL":"C60491","RC0402FR-071ML":"C138033","RC0402FR-074K7L":"C105871","GRM155R71H103KA88D":"C77019","CL21A106KOCLRNC":"C318695","CRCW0402680RFKED":"C482224",
- "RT0402BRD07100KL":"C852472","RT0402BRD0749K9L":"C852808","RT0402BRD07200KL":"C728556","RT0402BRD07210KL":"C852631","RT0603BRD07453KL":"C861412","RT0603BRD07100KL":"C122538","CC0402JRNPO9BN121":"C106996","SN74AUP3G34DCUR":"C2675543",
+ "GRM1555C1H220JA01D":"C76960","GRM1555C1H102JA01D":"C76947","RC0402FR-0733RL":"C138002","RC0402FR-0710KL":"C60490","RC0402FR-07100KL":"C60491","RC0402FR-071ML":"C138033","RC0402FR-074K7L":"C105871","GRM155R71H103KA88D":"C77019","CL21A106KOQNNNE":"C1713","CRCW0402680RFKED":"C482224",
+ "RT0402BRD07100KL":"C852472","RT0402BRD0749K9L":"C852808","RT0402BRD07200KL":"C728556","RT0402BRD07210KL":"C852631","ARG03BTC4533":"C2686428","RT0603BRD07100KL":"C122538","CC0402JRNPO9BN121":"C106996","SN74AUP3G34DCUR":"C2675543",
  "SN74AXC4T245PWR":"C2867798","SN74LVC1G04DCKR":"C8207","SN74LVC1G125DCKT":"C2675550","TCA9406DCUR":"C840107",
  "SN74LVC1G332DBVR":"C43368","SN74LVC2G74DCTR":"C79339","TPS3808G09DBVR":"C24584",
- "TPS62825DMQR":"C2650334"
+ "TPS62822DLCR":"C473385"
  } as Record<string,string>)[mpn]||""
 const Chip=({jlc="",manufacturerPartNumber,...props}:any)=><chip manufacturerPartNumber={manufacturerPartNumber} supplierPartNumbers={supplier(sourced(manufacturerPartNumber,jlc))} {...props} />
 const R=({name,value,a,b,mpn,jlc="",footprint="0402",n}:any)=><resistor name={name} resistance={value} footprint={footprint} manufacturerPartNumber={mpn} supplierPartNumbers={supplier(sourced(mpn,jlc))} connections={{pin1:n(a),pin2:n(b)}} />
@@ -72,31 +72,31 @@ function DSE0006ALand(){return <footprint>{[1,2,3].map((n,i)=><P key={n} n={n} x
 function Tca9406DcuLand(){return <footprint>{[1,2,3,4].map((n,i)=><P key={n} n={n} x={-1.55} y={(1.5-i)*0.5} w={0.85} h={0.3}/>)}{[5,6,7,8].map((n,i)=><P key={n} n={n} x={1.55} y={(i-1.5)*0.5} w={0.85} h={0.3}/>)}</footprint>}
 /** TI SCES766C DCU0008A land pattern example, PDF p.24: 0.5-mm pitch, 0.85 x 0.30-mm lands, 3.1-mm row spacing. */
 function Dcu0008ALand(){return <footprint>{[1,2,3,4].map((n,i)=><P key={n} n={n} x={-1.55} y={(1.5-i)*0.5} w={0.85} h={0.3}/>)}{[5,6,7,8].map((n,i)=><P key={n} n={n} x={1.55} y={(i-1.5)*0.5} w={0.85} h={0.3}/>)}</footprint>}
-/** TI drawing 4222645/E: DMQ0006A asymmetric 0.5-mm-pitch VSON lands. */
-function DMQ0006ALand(){return <footprint>{[1,2,3].map((n,i)=><P key={n} n={n} x={-0.55} y={(1-i)*0.5} w={0.6} h={0.25}/>)}{[4,5,6].map((n,i)=><P key={n} n={n} x={0.35} y={(i-1)*0.5} w={1.0} h={0.25}/>)}</footprint>}
+/** TI TPS6282x Rev C DLC0008B pp.29-31: 0.60 × 0.25-mm lands, 0.5-mm pitch. Source Y is up. */
+function Dlc0008BLand(){return <footprint>{[1,2,3,4].map((n,i)=><P key={n} n={n} x={-0.65} y={0.75-i*0.5} w={0.6} h={0.25}/>)}{[5,6,7,8].map((n,i)=><P key={n} n={n} x={0.65} y={-0.75+i*0.5} w={0.6} h={0.25}/>)}</footprint>}
 
-// TI SLVSEF9I §7.4.2: unused open-drain PG is deliberately unconnected.
-const buckPins={pin1:"EN",pin2:"PG_NC",pin3:"FB",pin4:"GND",pin5:"SW",pin6:"VIN"}
+// TI TPS6282x Rev C: NC pin 4 and unused open-drain PG pin 8 stay open.
+const buckPins={pin1:"EN",pin2:"FB",pin3:"AGND",pin4:"NC",pin5:"PGND",pin6:"SW",pin7:"VIN",pin8:"PG"}
 function Buck({name,mpn,out,adjustable=false,en="5V_BUCK",n}:any){return <>
- <Chip name={name} manufacturerPartNumber={mpn} jlc="" footprint={<DMQ0006ALand/>} pinLabels={buckPins}
-  connections={{pin1:n(en),pin3:n(adjustable?`${name}_FB`:out),pin4:n("GND"),pin5:n(`${name}_SW`),pin6:n("5V_BUCK")}} />
+ <Chip name={name} manufacturerPartNumber={mpn} jlc="" footprint={<Dlc0008BLand/>} pinLabels={buckPins}
+  connections={{pin1:n(en),pin2:n(adjustable?`${name}_FB`:out),pin3:n("GND"),pin5:n("GND"),pin6:n(`${name}_SW`),pin7:n("5V_BUCK")}} />
  <Chip name={`L_${name}`} manufacturerPartNumber="XFL4015-471MEC" jlc="" footprint={<CoilcraftXFL4015Land/>} pinLabels={{pin1:"1",pin2:"2"}} connections={{pin1:n(`${name}_SW`),pin2:n(out)}} />
- {[1,2].map(i=><C key={`in${i}`} name={`C_${name}_IN_${i}`} value="10uF" a="5V_BUCK" b="GND" mpn="CL21A106KOCLRNC" footprint="0805" n={n} />)}
+ {[1,2].map(i=><C key={`in${i}`} name={`C_${name}_IN_${i}`} value="10uF" a="5V_BUCK" b="GND" mpn="CL21A106KOQNNNE" footprint="0805" n={n} />)}
  <C name={`C_${name}_OUT_1`} value="47uF" a={out} b="GND" mpn="GRM32ER71A476KE15L" jlc="C84494" footprint={<MurataGrm32e1210/>} n={n} />
  </>}
 
 export function CrowUsbDigital({net=defaultNet}:CrowUsbDigitalProps={}){
  const n=net; assertXUPinCoverage();
  return <>
-  <Buck name="U_3V3X" mpn="TPS62825DMQR" out="3V3X" adjustable n={n} />
-  <R name="R_3V3X_FB_TOP" value="453k" a="3V3X" b="U_3V3X_FB" mpn="RT0603BRD07453KL" footprint="0603" n={n} />
+  <Buck name="U_3V3X" mpn="TPS62822DLCR" out="3V3X" adjustable n={n} />
+  <R name="R_3V3X_FB_TOP" value="453k" a="3V3X" b="U_3V3X_FB" mpn="ARG03BTC4533" footprint="0603" n={n} />
   <R name="R_3V3X_FB_BOTTOM" value="100k" a="U_3V3X_FB" b="GND" mpn="RT0603BRD07100KL" footprint="0603" n={n} />
   <C name="C_3V3X_FF" value="120pF" a="3V3X" b="U_3V3X_FB" mpn="CC0402JRNPO9BN121" n={n} />
-  <Buck name="U_1V8" mpn="TPS62825DMQR" out="1V8" adjustable n={n} />
+  <Buck name="U_1V8" mpn="TPS62822DLCR" out="1V8" adjustable n={n} />
   <R name="R_1V8_FB_TOP" value="210k" a="1V8" b="U_1V8_FB" mpn="RT0402BRD07210KL" n={n} />
   <R name="R_1V8_FB_BOTTOM" value="100k" a="U_1V8_FB" b="GND" mpn="RT0402BRD07100KL" n={n} />
   <C name="C_1V8_FF" value="120pF" a="1V8" b="U_1V8_FB" mpn="CC0402JRNPO9BN121" n={n} />
-  <Buck name="U_CORE" mpn="TPS62825DMQR" out="0V9" adjustable en="CORE_EN" n={n} />
+  <Buck name="U_CORE" mpn="TPS62822DLCR" out="0V9" adjustable en="CORE_EN" n={n} />
   <R name="R_CORE_FB_TOP" value="49.9k" a="0V9" b="U_CORE_FB" mpn="RT0402BRD0749K9L" n={n} />
   <R name="R_CORE_FB_BOTTOM" value="100k" a="U_CORE_FB" b="GND" mpn="RT0402BRD07100KL" n={n} />
   <C name="C_CORE_FF" value="120pF" a="0V9" b="U_CORE_FB" mpn="CC0402JRNPO9BN121" n={n} />

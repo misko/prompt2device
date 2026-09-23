@@ -1,0 +1,27 @@
+#VRML V2.0 utf8
+# Drawing-derived MAXIMUM body envelope; NOT manufacturer CAD.
+# TI SLVSDV6C Rev C DLC0008B pp29-31: body 1.6 x 2.1 x <=1.0 mm.
+# Units: 1 VRML coordinate unit = 2.54 mm; footprint origin centered.
+Shape {
+ appearance Appearance { material Material { diffuseColor 0.075 0.075 0.08 } }
+ geometry IndexedFaceSet { solid TRUE
+  coord Coordinate { point [
+   -0.314960630 0.413385827 0.000000000,
+   0.314960630 0.413385827 0.000000000,
+   0.314960630 -0.413385827 0.000000000,
+   -0.314960630 -0.413385827 0.000000000,
+   -0.314960630 0.413385827 0.393700787,
+   0.314960630 0.413385827 0.393700787,
+   0.314960630 -0.413385827 0.393700787,
+   -0.314960630 -0.413385827 0.393700787,
+  ] }
+  coordIndex [
+   0, 1, 2, 3, -1,
+   7, 6, 5, 4, -1,
+   0, 4, 5, 1, -1,
+   1, 5, 6, 2, -1,
+   2, 6, 7, 3, -1,
+   3, 7, 4, 0, -1,
+  ]
+ }
+}

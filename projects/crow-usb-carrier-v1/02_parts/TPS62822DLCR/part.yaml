@@ -1,0 +1,48 @@
+mpn: TPS62822DLCR
+manufacturer: Texas Instruments
+type: buck_converter
+value: 2A adjustable buck
+package: DLC0008B VSON-HR-8 1.5x2.0mm, 0.5mm pitch, no center pad
+footprint: crow_usb_digital:TI_DLC0008B_VSON_HR8
+status: source_design_candidate
+datasheet:
+  doc_id: SLVSDV6C
+  revision: C
+  url: https://www.ti.com/lit/ds/symlink/tps62823.pdf
+  local: TPS6282x_revC_TI.pdf
+  sha256: 47217a4e3b559423e2962d2a5c51b62e4d47de22c3bb04184c2ceff8c03b2b60
+  fetched: 2026-09-23
+  pages: 32
+  provenance: Official TI TPS6282x family Rev C PDF, exact TPS62822DLC orderable and DLC0008B drawing verified; retained bytes are source evidence, not a routed reference.
+pins: {1: EN, 2: FB, 3: AGND, 4: NC, 5: PGND, 6: SW, 7: VIN, 8: PG}
+verified: TI Rev C pin table, package top view and DLC0008B package/land drawing checked 2026-09-23; pin 4 NC and unused open-drain pin 8 PG are intentionally open in this design.
+limits:
+  vin_min: 2.4V
+  vin_max: 5.5V
+  iout_max: 2A
+  high_side_current_limit_min: 2.7A
+  vfb_pwm_min: 0.594V
+  vfb_pwm_max: 0.606V
+  output_cap_effective_min: 5uF
+  input_cap_effective_min: 3uF
+  tj_operating_max: 125C
+layout:
+  source: TI TPS6282x Rev C section 10 and DLC0008B package drawing/example board layout pp29-31
+  reviewed: 2026-09-23
+  notes:
+    - Place both 0805 input capacitors directly between VIN pin 7 and PGND pin 5; keep their high-current loop short and wide.
+    - Keep the SW pin 6 to Coilcraft L_U_* pin 1 loop short; Kelvin-sense output at its 47uF capacitor into FB pin 2, away from SW.
+    - Return the lower feedback divider to quiet AGND pin 3; join AGND/PGND on the ground plane without routing switch current through AGND.
+    - NC pin 4 and unused PG pin 8 remain open. No via in pad is implied by the source land.
+layout_refs:
+  - {tier: 1, reached: true, artifact: 'TI Rev C section 10 and DLC0008B pp29-31', why: 'Manufacturer electrical, land and placement authority; exact 0.60x0.25mm example lands.'}
+  - {tier: 2, reached: false, artifact: 'Exact TPS62822DLCR editable routed reference', why: 'The manufacturer data do not qualify this carrier routing, thermal copper or startup behavior.'}
+escape:
+  style: dfn
+  pitch: 0.5
+  escapes_worst_side: 4
+  tier_required: jlc_4layer_advanced
+  checked: TI DLC0008B 8-pin no-center-pad 0.5mm perimeter land; project-native 0.60x0.25mm lands and 2.4x2.6mm courtyard. Route/assembly capability remains owed.
+sourcing:
+  lcsc: C473385
+  note: Dated catalog observation and raw-response hash in 01_docs/sourcing/jlcsearch-dlc-screen-2026-09-23.md; refresh exact stock and assembly eligibility before order.

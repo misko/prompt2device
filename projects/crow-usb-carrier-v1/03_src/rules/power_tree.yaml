@@ -124,41 +124,41 @@ effective_capacitance_banks:
           estimate 33.31 uF after 10% initial-tolerance and selected 12.5%
           lifecycle reserves. Model and reserves are not production guarantees;
           independent evidence and startup/load-step stability are owed.
-  - &tps62825_input
-    name: TPS62825 U_3V3X input
+  - &tps62822_input
+    name: TPS62822 U_3V3X input
     requirement_uF: 3
-    requirement_evidence: TI SLVSEF9I minimum effective input capacitance.
+    requirement_evidence: TI SLVSDV6C section 9 minimum 3uF effective input capacitance.
     accepted_dielectrics: [x5r]
     contributors:
-      - part: CL21A106KOCLRNC
+      - part: CL21A106KOQNNNE
         refs: [C_U_3V3X_IN_1, C_U_3V3X_IN_2]
         nominal_each_uF: 10
         dielectric: x5r
         tolerance_minus_pct: 10
-        dc_bias_derating_pct: 76
+        dc_bias_derating_pct: 70
         temperature_derating_pct: 15
         lifecycle_derating_pct: 10
         basis: conservative_combined_voltage_engineering_bound
         evidence: >-
-          Samsung retained typical curves: DC retention35.959775% at5.11605V
-          (just below5.13V ceiling), low-amplitude AC retention75.4752%.
-          Their product screens to27.14%; use more adverse24% combined
-          retention,10% initial tolerance,15% temperature and10% lifecycle
-          allowances. Two parts give3.3048uF versus3uF. Separate typical
-          curves and selected reserves are not guaranteed joint PVT/aging
-          bounds; first-article ripple/startup/transient qualification remains.
-  - <<: *tps62825_input
-    name: TPS62825 U_1V8 input
+          Samsung exact-family official typical curves at 5.13 V give 47.21% DC
+          retention; its separate 0.01-V AC curve gives 70.55%. Their 33.31%
+          product is not a joint PVT guarantee. Use a more adverse selected 30%
+          combined engineering retention, then -10% initial tolerance, -15%
+          temperature and -10% lifecycle factors: two parts estimate 4.131uF
+          against TI's 3uF minimum. The X5R +85C package limit, lot capacitance,
+          input ripple, startup and transient remain first-article qualifications.
+  - <<: *tps62822_input
+    name: TPS62822 U_1V8 input
     contributors:
-      - {part: CL21A106KOCLRNC, refs: [C_U_1V8_IN_1, C_U_1V8_IN_2], nominal_each_uF: 10, dielectric: x5r, tolerance_minus_pct: 10, dc_bias_derating_pct: 76, temperature_derating_pct: 15, lifecycle_derating_pct: 10, basis: conservative_combined_voltage_engineering_bound, evidence: "Same 5.13 V maximum input-bank condition and conservative 24% combined DC/AC retention as U_3V3X; 3.3048 uF effective by design estimate."}
-  - <<: *tps62825_input
-    name: TPS62825 U_CORE input
+      - {part: CL21A106KOQNNNE, refs: [C_U_1V8_IN_1, C_U_1V8_IN_2], nominal_each_uF: 10, dielectric: x5r, tolerance_minus_pct: 10, dc_bias_derating_pct: 70, temperature_derating_pct: 15, lifecycle_derating_pct: 10, basis: conservative_combined_voltage_engineering_bound, evidence: "Same Samsung typical-curve 5.13 V screen and selected 30% combined engineering retention as U_3V3X; 4.131uF estimated, not a joint PVT guarantee."}
+  - <<: *tps62822_input
+    name: TPS62822 U_CORE input
     contributors:
-      - {part: CL21A106KOCLRNC, refs: [C_U_CORE_IN_1, C_U_CORE_IN_2], nominal_each_uF: 10, dielectric: x5r, tolerance_minus_pct: 10, dc_bias_derating_pct: 76, temperature_derating_pct: 15, lifecycle_derating_pct: 10, basis: conservative_combined_voltage_engineering_bound, evidence: "Same 5.13 V maximum input-bank condition and conservative 24% combined DC/AC retention as U_3V3X; 3.3048 uF effective by design estimate."}
-  - &tps62825_output
-    name: TPS62825 U_3V3X output
-    requirement_uF: 10
-    requirement_evidence: TI SLVSEF9I section 8.2.2.5 requires 10 uF minimum effective output; Table 8-3 marks 0.47 uH plus 47 uF nominal for TPS62825.
+      - {part: CL21A106KOQNNNE, refs: [C_U_CORE_IN_1, C_U_CORE_IN_2], nominal_each_uF: 10, dielectric: x5r, tolerance_minus_pct: 10, dc_bias_derating_pct: 70, temperature_derating_pct: 15, lifecycle_derating_pct: 10, basis: conservative_combined_voltage_engineering_bound, evidence: "Same Samsung typical-curve 5.13 V screen and selected 30% combined engineering retention as U_3V3X; 4.131uF estimated, not a joint PVT guarantee."}
+  - &tps62822_output
+    name: TPS62822 U_3V3X output
+    requirement_uF: 5
+    requirement_evidence: TI SLVSDV6C section 9 requires 5 uF minimum effective output; Table 3 marks 0.47 uH plus 47 uF nominal for TPS62822.
     accepted_dielectrics: [x7r]
     contributors:
       - part: GRM32ER71A476KE15L
@@ -176,16 +176,16 @@ effective_capacitance_banks:
           31% nominal retention with 10% initial tolerance and 12.5% lifecycle
           reserve estimates 11.48 uF; model points are not guarantees.
           Temperature is included in the model. One 47-uF part restores TI's
-          marked nominal 0.47-uH/47-uF LC combination; replacement inductor,
+          marked nominal 0.47-uH/47-uF LC combination; retained inductor,
           distributed capacitance, startup and load-step stability remain owed.
-  - <<: *tps62825_output
-    name: TPS62825 U_1V8 output
+  - <<: *tps62822_output
+    name: TPS62822 U_1V8 output
     contributors:
-      - {part: GRM32ER71A476KE15L, refs: [C_U_1V8_OUT_1], nominal_each_uF: 47, dielectric: x7r, tolerance_minus_pct: 10, dc_bias_derating_pct: 65, temperature_derating_pct: 0, lifecycle_derating_pct: 12.5, basis: murata_exact_part_typical_model_with_reviewed_engineering_reserves, evidence: "At the revised 1.899 V upper DC screen, the existing exact Murata -55 C model point at higher 3.38 V gives 16.9 uF; conservative rounded 35% nominal retention with initial-tolerance and lifecycle reserves estimates 12.95 uF. Temperature is already in the model. Nominal 0.47-uH/47-uF combination is marked in TI Table 8-3; physical stability proof remains owed."}
-  - <<: *tps62825_output
-    name: TPS62825 U_CORE output
+      - {part: GRM32ER71A476KE15L, refs: [C_U_1V8_OUT_1], nominal_each_uF: 47, dielectric: x7r, tolerance_minus_pct: 10, dc_bias_derating_pct: 65, temperature_derating_pct: 0, lifecycle_derating_pct: 12.5, basis: murata_exact_part_typical_model_with_reviewed_engineering_reserves, evidence: "At the revised 1.899 V upper DC screen, the existing exact Murata -55 C model point at higher 3.38 V gives 16.9 uF; conservative rounded 35% nominal retention with initial-tolerance and lifecycle reserves estimates 12.95 uF. Temperature is already in the model. Nominal 0.47-uH/47-uF combination is marked in TI Table 3; physical stability proof remains owed."}
+  - <<: *tps62822_output
+    name: TPS62822 U_CORE output
     contributors:
-      - {part: GRM32ER71A476KE15L, refs: [C_U_CORE_OUT_1], nominal_each_uF: 47, dielectric: x7r, tolerance_minus_pct: 10, dc_bias_derating_pct: 65, temperature_derating_pct: 0, lifecycle_derating_pct: 12.5, basis: murata_exact_part_typical_model_with_reviewed_engineering_reserves, evidence: "Exact Murata -55 C / 0.92 V simple model gives 18.7 uF; conservative rounded 35% nominal retention with initial-tolerance and lifecycle reserves estimates 12.95 uF. Temperature is already in the model. Nominal 0.47-uH/47-uF combination is marked in TI Table 8-3; physical stability proof remains owed."}
+      - {part: GRM32ER71A476KE15L, refs: [C_U_CORE_OUT_1], nominal_each_uF: 47, dielectric: x7r, tolerance_minus_pct: 10, dc_bias_derating_pct: 65, temperature_derating_pct: 0, lifecycle_derating_pct: 12.5, basis: murata_exact_part_typical_model_with_reviewed_engineering_reserves, evidence: "Exact Murata -55 C / 0.92 V simple model gives 18.7 uF; conservative rounded 35% nominal retention with initial-tolerance and lifecycle reserves estimates 12.95 uF. Temperature is already in the model. Nominal 0.47-uH/47-uF combination is marked in TI Table 3; physical stability proof remains owed."}
   - name: LT3045 input
     requirement_uF: 4.7
     requirement_evidence: ADI LT3045 Rev.D p18 requires at least 4.7 uF at IN.
@@ -274,13 +274,20 @@ rails:
         Exact Yageo 40.2k/10k PDFs give +/-0.1% and +/-25 ppm/C.
 
   # Adjustable-rail DC setpoint envelopes include TI VFB, opposite divider tolerance/TCR and FB leakage; ripple, startup overshoot and ground shift are separate first-article allocations.
+  # These three rounded vout_min/vout_max values are derived PWM-mode DC
+  # setpoint screens for the retained dividers, not the permitted device-pin
+  # operating ranges. Independent hard at-pin requirements, including ripple,
+  # load transient and return error: XU316 USB 3V3 3.00..3.60V; flash-shared
+  # 1V8 1.70..1.95V; XU316 PLL CORE 0.855..0.945V. Engineering dynamic
+  # allocations: <=100mV 3V3, <=40mV 1V8, <=20mV CORE. First-article
+  # waveforms must verify these, hot TJ<=125C and sequencing before release.
   - name: N3V3X
     vin_min: 4.91
     vin_max: 5.13
     vout_min: 3.243
     vout_max: 3.394
     iout_max_A: 1.0
-    converter: TPS62825DMQR
+    converter: TPS62822DLCR
     input_parent: N5V_BUCK
     eff: 0.85
     external_output: false
@@ -297,14 +304,14 @@ rails:
       fb_bias_current_min_nA: -50
       fb_bias_current_max_nA: 50
       fb_bias_current_basis: symmetric_manufacturer_absolute_maximum_screen
-      fb_bias_current_evidence: TI SLVSEF9I section 6.5 gives IFB leakage 0.05 uA maximum magnitude at VFB=0.6 V; +/-50 nA is conservative for either current direction. TI gives VFB 594-606 mV; exact YAGEO RT0603BRD07453KL/RT0603BRD07100KL primary specifications give 0.1% and +/-25 ppm/C.
+      fb_bias_current_evidence: TI SLVSDV6C section 6.5 gives IFB leakage 0.05 uA maximum magnitude at VFB=0.6 V; +/-50 nA is conservative for either current direction. TI gives VFB 594-606 mV; exact Viking ARG03BTC4533 and Yageo RT0603BRD07100KL primary specifications give 0.1% and +/-25 ppm/C.
   - name: N1V8
     vin_min: 4.91
     vin_max: 5.13
     vout_min: 1.822
     vout_max: 1.899
     iout_max_A: 0.30
-    converter: TPS62825DMQR
+    converter: TPS62822DLCR
     input_parent: N5V_BUCK
     eff: 0.85
     external_output: false
@@ -321,14 +328,14 @@ rails:
       fb_bias_current_min_nA: -50
       fb_bias_current_max_nA: 50
       fb_bias_current_basis: symmetric_manufacturer_absolute_maximum_screen
-      fb_bias_current_evidence: TI SLVSEF9I section 6.5 gives IFB leakage 0.05 uA maximum magnitude at VFB=0.6 V; +/-50 nA is conservative for either current direction. TI gives VFB 594-606 mV; exact YAGEO RT0402BRD07210KL/RT0402BRD07100KL primary specifications give 0.1% and +/-25 ppm/C.
+      fb_bias_current_evidence: TI SLVSDV6C section 6.5 gives IFB leakage 0.05 uA maximum magnitude at VFB=0.6 V; +/-50 nA is conservative for either current direction. TI gives VFB 594-606 mV; exact YAGEO RT0402BRD07210KL/RT0402BRD07100KL primary specifications give 0.1% and +/-25 ppm/C.
   - name: N0V9
     vin_min: 4.91
     vin_max: 5.13
     vout_min: 0.88
     vout_max: 0.92
     iout_max_A: 1.2
-    converter: TPS62825DMQR
+    converter: TPS62822DLCR
     input_parent: N5V_BUCK
     eff: 0.85
     external_output: false
@@ -345,7 +352,7 @@ rails:
       fb_bias_current_min_nA: -50
       fb_bias_current_max_nA: 50
       fb_bias_current_basis: symmetric_manufacturer_absolute_maximum_screen
-      fb_bias_current_evidence: TI SLVSEF9I section 6.5 gives IFB leakage 0.05 uA maximum magnitude at VFB=0.6 V; +/-50 nA conservatively screens either current direction. TI gives VFB 594-606 mV; exact YAGEO RT0402BRD0749K9L/RT0402BRD07100KL primary specifications give 0.1% and +/-25 ppm/C.
+      fb_bias_current_evidence: TI SLVSDV6C section 6.5 gives IFB leakage 0.05 uA maximum magnitude at VFB=0.6 V; +/-50 nA conservatively screens either current direction. TI gives VFB 594-606 mV; exact YAGEO RT0402BRD0749K9L/RT0402BRD07100KL primary specifications give 0.1% and +/-25 ppm/C.
   - {name: N3V3_ADC, vin_min: 4.10, vin_max: 5.13, vout_min: 3.22, vout_max: 3.38, iout_max_A: 0.25, converter: LT3045EDD#PBF, input_parent: N5V_BUCK, dropout_mv: 450, pdiss_max_mw: 650, eff: 0.65, external_output: false}
   # Two TLV6140s + retained OPA/filter loads on N3V3_ADC. These are typical
   # planning currents, not a manufacturer maximum or a changed rail limit.

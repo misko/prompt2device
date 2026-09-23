@@ -1,0 +1,21 @@
+mpn: CL21A106KOQNNNE
+manufacturer: Samsung Electro-Mechanics
+type: capacitor
+value: 10uF
+package: 0805 X5R 16V +/-10%
+footprint: Capacitor_SMD:C_0805_2012Metric
+status: source_design_candidate
+datasheet:
+  url: https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/7132/DataSheet_CL21A106KOQNNN.pdf
+  local: Samsung_CL21A106KOQNNN_datasheet.pdf
+  sha256: 6b5cda1f59a53e34d3e13ff4d97d50a129c07c2c0af507dc75054aba781e1c9d
+  fetched: 2026-09-23
+  provenance: Samsung-authored exact-family PDF retained via DigiKey distributor plus manufacturer-hosted family HTML separately retained; E packaging code is mass production. Separate typical DC/AC curves do not guarantee joint PVT capacitance.
+pins: {1: terminal_1, 2: terminal_2}
+verified: Samsung exact-family page lists 10uF, +/-10%, 16Vdc, X5R -55C to +85C, 0805; six-input-cap bank estimate remains engineering, not lot qualification.
+limits:
+  voltage_rating: 16V
+  operating_temperature_C: [-55, 85]
+sourcing:
+  lcsc: C1713
+  note: Dated catalog observation and raw-response hash in 01_docs/sourcing/jlcsearch-dlc-screen-2026-09-23.md; refresh exact stock and assembly eligibility before order.

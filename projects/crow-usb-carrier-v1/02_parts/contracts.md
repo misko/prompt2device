@@ -42,6 +42,8 @@ iterating over alternatives.
 | `<MPN>/part.yaml` | the facts + provenance. Required for every used part |
 | `<MPN>/<DOCID><REV>.pdf` | the datasheet. Filename carries the REVISION |
 | `CL21A106KOCLRNC/CL21A106KOCLRN-20260922.html` | Exact retained Samsung manufacturer response containing embedded typical AC/DC characteristic datasets; URL/date/byte hash in the dossier notes. This evidence is a primary web export, not a manufacturer PDF or guaranteed curve. |
+| `CL21A106KOQNNNE/Samsung_CL21A106KOQNNN_official.html` | Exact manufacturer family-page capture with typical separate AC/DC curves; URL, capture date and byte hash in the source-candidate research note. Not a joint PVT guarantee. |
+| `ARG03BTC4533/Viking_ARG03BTC4533_official.html` | Exact Viking MPN page for 453kΩ, 0603, 0.1%, 25ppm/C; URL, capture date and byte hash in the source-candidate research note. |
 | `GRM32ER71A476KE15L/models/netlist-*.txt` | Retained Murata SimSurfing small-signal model text at named DC-bias/temperature conditions; evidence for independently reviewed source engineering estimates, not guaranteed production limits |
 | `GRM32ER71A476KE15L/models/README.md` | Model acquisition, normalization, applicability, review and retained-file hash provenance |
 | `TMUX4827YBHR/qualification/*` | Exact reviewed switch routing coupon, reproducible source, diagnostic reports and fabrication outputs; source geometry evidence only, never the Crow fabrication payload |
