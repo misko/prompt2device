@@ -73,13 +73,14 @@ are unknown evidence, never zero stock. The general search excludes zero-stock
 parts: an empty result means not observed, not proof of zero stock or absence.
 
 ```bash
+# Set PROJECT_DIR to the commissioned project directory first.
 python3 skills/jlcpcb-fab/scripts/jlcsearch.py discover 'RC0402FR-074K7L' \
   --out /tmp/jlcsearch-discovery.json
 python3 skills/jlcpcb-fab/scripts/jlcsearch.py screen \
-  projects/BOARD/06_build/sourcing/prelayout_request.json \
-  --circuit-json projects/BOARD/03_tscircuit/build/circuit.json \
-  --cache-dir projects/BOARD/06_build/cache/jlcsearch \
-  --out projects/BOARD/06_build/sourcing/jlcsearch-report.json
+  "$PROJECT_DIR/06_build/sourcing/prelayout_request.json" \
+  --circuit-json "$PROJECT_DIR/03_tscircuit/build/circuit.json" \
+  --cache-dir "$PROJECT_DIR/06_build/cache/jlcsearch" \
+  --out "$PROJECT_DIR/06_build/sourcing/jlcsearch-report.json"
 ```
 
 Verify a saved request against current project inputs with the owning

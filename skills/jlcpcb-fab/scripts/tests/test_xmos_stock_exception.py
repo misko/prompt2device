@@ -15,14 +15,31 @@ import release_freshness_check as fresh
 from stock_surplus_policy import parse_policy, surplus_for
 
 
-ROOT = Path(__file__).resolve().parents[4]
-PROJECT = ROOT / "projects/crow-usb-carrier-v1"
 XMOS = "XU316-1024-TQ128-C24"
 CODE = "C6362698"
 ENTRY = {"lcsc": CODE, "mpn": XMOS, "surplus": 0, "directive": "D10"}
 
 
 class XmosStockException(unittest.TestCase):
+    def setUp(self):
+        self.temp = tempfile.TemporaryDirectory()
+        self.addCleanup(self.temp.cleanup)
+        self.project = Path(self.temp.name) / "crow-usb-carrier-v1"
+        decision = self.project / "01_docs/decisions"
+        decision.mkdir(parents=True)
+        (self.project / "03_src/rules").mkdir(parents=True)
+        (self.project / "01_docs/BRIEF.md").write_text(
+            "### D10 — 2026-09-23 — XMOS-only public-stock reserve exception\n"
+            "> lets make an exception for xmos and keep going\n")
+        (decision / "0009-xmos-public-stock-reserve-exception.md").write_text(
+            "---\nid: 0009\nstatus: accepted\n---\n"
+            "XU316-1024-TQ128-C24, JLC C6362698, reference U_XU only\n")
+        (self.project / "03_src/rules/assembly.yaml").write_text(
+            "build_quantity: 5\npublic_stock_surplus: 150\n"
+            "public_stock_surplus_overrides:\n"
+            "  - {lcsc: C6362698, mpn: XU316-1024-TQ128-C24, "
+            "surplus: 0, directive: D10}\n")
+
     def test_stock_generator_records_exact_applied_surplus(self):
         with tempfile.TemporaryDirectory() as folder:
             bom = Path(folder) / "bom.csv"
@@ -44,7 +61,7 @@ class XmosStockException(unittest.TestCase):
 
             script = Path(__file__).resolve().parents[1] / "jlc_stock_check.py"
             argv = [str(script), str(bom), "--assembly",
-                    str(PROJECT / "03_src/rules/assembly.yaml"),
+                    str(self.project / "03_src/rules/assembly.yaml"),
                     "--json", str(output)]
             with patch.object(sys, "argv", argv), patch("urllib.request.urlopen", answer), \
                     patch("time.sleep", return_value=None), \
@@ -59,7 +76,7 @@ class XmosStockException(unittest.TestCase):
     def test_policy_is_exact_and_authorized(self):
         policy = {"public_stock_surplus": 150,
                   "public_stock_surplus_overrides": [ENTRY]}
-        default, overrides = parse_policy(policy, PROJECT)
+        default, overrides = parse_policy(policy, self.project)
         self.assertEqual((150, 0), (default, surplus_for(default, overrides, CODE, XMOS, ["U_XU"])))
         self.assertEqual(150, surplus_for(default, overrides, "C123", "OTHER", ["U2"]))
         for bad in (
@@ -67,13 +84,13 @@ class XmosStockException(unittest.TestCase):
             dict(ENTRY, surplus=1), dict(ENTRY, surplus=False),
             dict(ENTRY, directive="D7")):
             with self.subTest(bad=bad), self.assertRaises(ValueError):
-                parse_policy(dict(policy, public_stock_surplus_overrides=[bad]), PROJECT)
+                parse_policy(dict(policy, public_stock_surplus_overrides=[bad]), self.project)
         with self.assertRaises(ValueError):
-            parse_policy(dict(policy, public_stock_surplus_overrides=[ENTRY, ENTRY]), PROJECT)
+            parse_policy(dict(policy, public_stock_surplus_overrides=[ENTRY, ENTRY]), self.project)
         with self.assertRaises(ValueError):
             parse_policy(policy, Path(tempfile.gettempdir()) / "other-project")
         with self.assertRaisesRegex(ValueError, "D7"):
-            parse_policy(dict(policy, public_stock_surplus=0), PROJECT)
+            parse_policy(dict(policy, public_stock_surplus=0), self.project)
         with self.assertRaisesRegex(ValueError, "MPN"):
             surplus_for(default, overrides, CODE, "OTHER", ["U_XU"])
         with self.assertRaisesRegex(ValueError, "U_XU"):
@@ -128,54 +145,46 @@ class XmosStockException(unittest.TestCase):
             self.assertEqual("FAIL", grade()["status"])
 
     def test_release_checks_placed_refs_and_shipped_identity(self):
-        with tempfile.TemporaryDirectory() as folder:
-            project = Path(folder) / "crow-usb-carrier-v1"
-            decision = project / "01_docs/decisions"
-            decision.mkdir(parents=True)
-            (project / "01_docs/BRIEF.md").write_bytes(
-                (PROJECT / "01_docs/BRIEF.md").read_bytes())
-            (decision / "0009-xmos-public-stock-reserve-exception.md").write_bytes(
-                (PROJECT / "01_docs/decisions/0009-xmos-public-stock-reserve-exception.md").read_bytes())
-            rel = project / "07_releases/v1.0"
-            (rel / "fab").mkdir(parents=True)
-            (rel / "verification").mkdir()
-            (rel / "fab/bom.csv").write_text(
-                "Comment,Designator,Footprint,LCSC\n"
-                f"{XMOS},U_XU,Package_QFP:TQFP-128,{CODE}\n"
-                "10k,R1,Resistor_SMD:R_0402,C123\n")
-            (rel / "fab/cpl.csv").write_text(
-                "Designator,Val,Package,Mid X,Mid Y,Layer,Rotation\n"
-                "U_XU,XMOS,TQFP-128,1,1,top,0\nR1,10k,R_0402,2,2,top,0\n")
-            doc = dict(verdict="PASS", min_absolute_surplus=150,
-                       public_stock_surplus_overrides=[ENTRY],
-                       lines=[dict(lcsc=CODE, designators="U_XU", status="OK",
-                                   stock=46, mpn=XMOS, required_qty=5,
-                                   stock_threshold=5, applied_surplus=0,
-                                   absolute_surplus=41),
-                              dict(lcsc="C123", designators="R1", status="OK",
-                                   stock=156, mpn="OTHER", required_qty=5,
-                                   stock_threshold=155, applied_surplus=150,
-                                   absolute_surplus=151)])
-            assembly = dict(public_stock_surplus=150,
-                            public_stock_surplus_overrides=[ENTRY], build_quantity=5)
+        project = self.project
+        rel = project / "07_releases/v1.0"
+        (rel / "fab").mkdir(parents=True)
+        (rel / "verification").mkdir()
+        (rel / "fab/bom.csv").write_text(
+            "Comment,Designator,Footprint,LCSC\n"
+            f"{XMOS},U_XU,Package_QFP:TQFP-128,{CODE}\n"
+            "10k,R1,Resistor_SMD:R_0402,C123\n")
+        (rel / "fab/cpl.csv").write_text(
+            "Designator,Val,Package,Mid X,Mid Y,Layer,Rotation\n"
+            "U_XU,XMOS,TQFP-128,1,1,top,0\nR1,10k,R_0402,2,2,top,0\n")
+        doc = dict(verdict="PASS", min_absolute_surplus=150,
+                   public_stock_surplus_overrides=[ENTRY],
+                   lines=[dict(lcsc=CODE, designators="U_XU", status="OK",
+                               stock=46, mpn=XMOS, required_qty=5,
+                               stock_threshold=5, applied_surplus=0,
+                               absolute_surplus=41),
+                          dict(lcsc="C123", designators="R1", status="OK",
+                               stock=156, mpn="OTHER", required_qty=5,
+                               stock_threshold=155, applied_surplus=150,
+                               absolute_surplus=151)])
+        assembly = dict(public_stock_surplus=150,
+                        public_stock_surplus_overrides=[ENTRY], build_quantity=5)
 
-            def grade():
-                (rel / "verification/stock_check.json").write_text(json.dumps(doc))
-                return fresh.check_stock(rel, assembly)[0]
+        def grade():
+            (rel / "verification/stock_check.json").write_text(json.dumps(doc))
+            return fresh.check_stock(rel, assembly)[0]
 
-            self.assertEqual([], grade())
-            doc["lines"][0]["mpn"] = "OTHER"
-            self.assertTrue(any("IDENTITY" in item for item in grade()))
-            doc["lines"][0]["mpn"] = XMOS
-            (rel / "fab/bom.csv").write_text(
-                "Comment,Designator,Footprint,LCSC\n"
-                f"{XMOS},U2,Package_QFP:TQFP-128,{CODE}\n"
-                "10k,R1,Resistor_SMD:R_0402,C123\n")
-            (rel / "fab/cpl.csv").write_text(
-                "Designator,Val,Package,Mid X,Mid Y,Layer,Rotation\n"
-                "U2,XMOS,TQFP-128,1,1,top,0\nR1,10k,R_0402,2,2,top,0\n")
-            self.assertTrue(any("IDENTITY" in item for item in grade()))
-
+        self.assertEqual([], grade())
+        doc["lines"][0]["mpn"] = "OTHER"
+        self.assertTrue(any("IDENTITY" in item for item in grade()))
+        doc["lines"][0]["mpn"] = XMOS
+        (rel / "fab/bom.csv").write_text(
+            "Comment,Designator,Footprint,LCSC\n"
+            f"{XMOS},U2,Package_QFP:TQFP-128,{CODE}\n"
+            "10k,R1,Resistor_SMD:R_0402,C123\n")
+        (rel / "fab/cpl.csv").write_text(
+            "Designator,Val,Package,Mid X,Mid Y,Layer,Rotation\n"
+            "U2,XMOS,TQFP-128,1,1,top,0\nR1,10k,R_0402,2,2,top,0\n")
+        self.assertTrue(any("IDENTITY" in item for item in grade()))
 
 if __name__ == "__main__":
     unittest.main()
