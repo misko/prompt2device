@@ -43,6 +43,7 @@ mutable file: it is an INPUT, and a re-read replaces the entry it re-reads.
 | `jlc-population-review-<YYYY-MM-DD>.md` | dated JLC-only population/stock backtrack research with exact candidate evidence | proposals only; no automatic part adoption, process or order acceptance |
 | `jlc-shortage-ledger-2026-09-23.md` | dated source-delta census at 500700a8, with retained stock evidence and unresolved owner | observation only; no source adoption or order acceptance |
 | `tht-manual-source-2026-09-23.md` | dated exact distributor evidence supporting D9 manual THT assembly | observation only; no purchase or allocation acceptance |
+| `jlc-stock-refresh-2026-09-23-0448.md` | dated current-source JLC public-stock refresh with exact response hashes and proposal separation | observation only; raw receipt retained under ignored verification; no allocation or candidate adoption |
 | `contracts.md` | this file | |
 
 ## Optional public distributor design policy
