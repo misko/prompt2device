@@ -1,3 +1,5 @@
 # Part evidence deviations
 
 CL21A106KOCLRNC uses an explicitly admitted retained Samsung HTML response rather than a characteristics PDF, because the primary manufacturer publishes the curve arrays within the product page. The exact export, URL, capture date and byte hash are retained in its dossier notes. Typical separate AC/DC curves and chosen engineering reserves are not guaranteed joint PVT limits. Before bring-up, verify the installed population and the first-article input ripple/startup/transient test limits; before order, refresh exact part/stock and assembly acceptance. No physical qualification is claimed by retaining the export.
+
+2026-09-23: TPD2EUSB30ADRTR dossier gains missing `layout.route_topology` metadata from the already-retained SLVSAC2G p.3 pin table, without changing revision, pin identities, footprint or electrical limits. This corrects an incomplete extraction under the authorized source repair; it does not claim a new datasheet revision. The native endpoint gate must reopen this metadata against actual pad nets. Routed USB/ESD and physical qualifications remain owed.

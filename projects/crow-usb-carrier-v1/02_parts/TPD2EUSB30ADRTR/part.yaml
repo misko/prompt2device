@@ -39,5 +39,10 @@ verified: 2026-09-22 datasheet pin table page3 and limits page4 reopened; standa
 layout:
   source: SLVSAC2G.pdf pages11 and27
   reviewed: '2026-09-22'
+  route_topology:
+    kind: shunt
+    signal_pads: ['1', '2']
+    return_pads: ['3']
+    source: 'TI SLVSAC2G p.3, Figure 5-1 and Table 5-1: DRT pins 1/2 are independent high-speed ESD ports, pin 3 is ground; retained PDF reopened 2026-09-23.'
   notes: Short flow-through data path at J_USB, shortest practical GND return into
     continuous ground plane.
