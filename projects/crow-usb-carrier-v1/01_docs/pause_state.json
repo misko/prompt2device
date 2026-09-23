@@ -1,28 +1,38 @@
 {
-  "blocker": "The scoped P2 power board c3d90659 proves 47/47 declared numeric rows, native DRC/parity zero and preserves 72 post anchors, but full 89-ref power engineering acceptance is open for 41 qualitative buck/return/thermal obligations. D-BACK v2/v3 retain only a partial output-bank result; whole-cell VIN/precharge allocation and complete regrade remain owed. ADC/reference remains 0/2: an unadopted 65-ref source patch has SOUND READ_ONLY review, but isolated schematic qualification is INCOMPLETE because contracts_audit.py is missing; fixture PASS launched no producer and consumed no attempt. Authoritative source remains the 568-component/64-ref baseline. Other blocks still have 3 keep-short and 227 adjacency failures; connector FULL has 19 physical targets unmeasured; 499 unrouted items block P3, routing, P5, release and order.",
+  "blocker": "Reviewed source adoption changes the authoritative source to 569 components and 65 ADC-reference refs with planned C_ADC_3V3X_OK_VDD placement, but no producer or native task is admitted. All 568-component circuit JSON/schematic/checkpoint/power 47/47 measurement/review and graph subjects remain immutable history and stale for this changed subject. The original P-MOD producer failure/no-handback is retained; conductor repair is adopted but needs a separately admitted fresh campaign. New generated circuit JSON E-FAULT semantic review and matching stock request are owed. Full 89-ref power engineering remains open; connector FULL has 19 physical targets unmeasured; 499 unrouted items block P3, routing, P5, release and order.",
   "checkpoint": {
     "path": "06_build/checkpoints/schematic.json",
     "sha256": "2fb4dd626750114476150d550d88cf15c0d5a2deb5d8e971e1be67a2a7bde856",
     "size": 1152
   },
-  "next_command": "Repair the isolated qualification workspace and rerun source/schematic qualification against the exact unadopted 65-ref patch before any source application or native admission. Separately allocate a complete power whole-cell source scope and regrade all 47 rows plus qualitative obligations. Preserve current source bytes, accepted numeric receipt, connector FULL requirements and all attempt histories before P3 or routing.",
+  "next_command": "Prepare the new 569-component circuit JSON for independent E-FAULT semantic review and a matching public-stock request, then seek explicit admission for a fresh qualified schematic campaign. Do not reuse historical 568-component derived artifacts or run native work. Separately allocate complete power whole-cell scope and regrade all 47 rows plus qualitative obligations before P2 acceptance.",
   "phase": "placement",
   "project": "crow-usb-carrier-v1",
   "receipts": [
-    {
-      "path": "01_docs/research/2026-09-23-adc-p2-complete65-isolated-qualification.json",
-      "sha256": "4e3fc3770ced90d53d4da0b021f54573f7c8983bf482714738347e51dad00dca",
-      "size": 45828
-    },
     {
       "path": "01_docs/research/2026-09-23-adc-p2-complete65-source-review-terra.md",
       "sha256": "9e5e055be68c28605a30929fed3db1c9c0479edbc1b7209a2f1018be3393d93a",
       "size": 5849
     },
     {
-      "path": "01_docs/research/2026-09-23-p2-input-power-r3-scoped-adoption.md",
-      "sha256": "9ab8689c28537c3d669fb6f06338f90df26386ee4f12111072ed264ff6026152",
-      "size": 6281
+      "path": "01_docs/research/2026-09-23-adc65-first-producer-failure.json",
+      "sha256": "acd2c1d6616f11cc5c3c96d87f36338ef311fc2879e3da065075da9314c8faed",
+      "size": 3436
+    },
+    {
+      "path": "01_docs/research/2026-09-23-adc65-isolated-qualification-pass.json",
+      "sha256": "bf79c3fd84cadee72f015400ae722b1f9c86593e56569aff69c9c1640ec00395",
+      "size": 47269
+    },
+    {
+      "path": "01_docs/research/2026-09-23-adc65-pmod-current-cj-order-review-terra.md",
+      "sha256": "f45ab5e906222cf439b84a837d029ae311c8552a40df7f60c35dc353fc8acb08",
+      "size": 5905
+    },
+    {
+      "path": "01_docs/research/2026-09-23-adc65-prebuild-admission-ledger.md",
+      "sha256": "c1103ef59c84354fe24efafef2130805ded2827e76a92d7457f1fc3357ace96c",
+      "size": 4027
     },
     {
       "path": "01_docs/research/2026-09-23-p2-power-whole-cell-owner-handoff.md",
@@ -31,5 +41,5 @@
     }
   ],
   "schema": 1,
-  "state_id": "69b0ce9c4ba37a4c98de48fa167559ff5d7edbb3a1df983cf84c7361924e2afd"
+  "state_id": "596a117faf88ff313645b02a364820b1de8eddfe19e4c1f8ca0ec5d1dfa405ac"
 }

@@ -1,0 +1,6 @@
+CONNECTOR-CONTRACT INCOMPLETE assemblies=4 instances=11 coverage=26/45 unknown=19 ceiling=UNKNOWN output=/tmp/crow-adc65-schematic-run/projects/crow-usb-carrier-v1/06_build/verification/connector_assembly_contract.json
+[0g] CONNECTOR-CONTRACT INCOMPLETE: forwarding the explicit base rc=2 to the typed phase gate
+CONNECTOR-PHASE SOURCE PASS assemblies=4 instances=11 base_unknown=19 source_admitted=19 findings=0 output=/tmp/crow-adc65-schematic-run/projects/crow-usb-carrier-v1/06_build/verification/connector_assembly_source_gate.json
+P-MOD FAIL: 4/7 complex subsystem(s) graded; modules=2 bare=1 simple_bare=0 historical=3; input: /tmp/crow-adc65-schematic-run/projects/crow-usb-carrier-v1/03_src/rules/integration.yaml
+  selections[0]: support_refs absent from circuit.json: ['C_ADC_3V3X_OK_VDD']
+GATE FAILED [0a] P-MOD (module_first_check.py): prefer a proven module, or document why modules cannot meet a binding requirement

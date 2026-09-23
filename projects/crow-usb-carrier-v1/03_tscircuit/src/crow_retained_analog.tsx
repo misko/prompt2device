@@ -268,6 +268,7 @@ const AdcReset = ({ n }: any) => (
       connections={{ pin1:n("U_ADC_3V3X_OK_SENSE"), pin2: n("GND"), pin3: n("3V3_ADC"), pin4: n("3V3_ADC"), pin6: n("ADC_DIGITAL_OK") }} />
     <R name="R_ADC_DIGITAL_OK_PU" value="10k" a="3V3_ADC" b="ADC_DIGITAL_OK" jlc="C60490" mpn="RC0402FR-0710KL" n={n} />
     <C name="C_ADC_DIGITAL_OK" value="100nF" a="3V3_ADC" b="GND" jlc="C1525" mpn="CL05B104KO5NNNC" n={n} />
+    <C name="C_ADC_3V3X_OK_VDD" value="100nF" a="3V3_ADC" b="GND" jlc="C1525" mpn="CL05B104KO5NNNC" n={n} />
     {/* Qualify the push-pull POR with the wired-open-drain digital-rail result.
         Disabled output is pulled low. ADC_READY rises only after both are valid. */}
     <Chip name="U_ADC_READY" manufacturerPartNumber="SN74LVC1G125DCKT" jlc="" footprint={<TiDck0005a />}

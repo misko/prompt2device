@@ -243,7 +243,11 @@ findings:
     hold/LDO return or thermal items. The 72 power post anchors and graph
     WORK_RECORDED receipts remain valid administrative/source evidence, but
     full P2 power engineering acceptance is reopened without retrying or
-    resetting any generation history. A bounded 430486-state local-cell
+    resetting any generation history. The 47/47 measurement and all power
+    graph receipts bind the historical 568-component circuit subject
+    `2b9a33b…`; they remain valid history but are stale for the newly adopted
+    569-component ADC65 subject and cannot be rebound as its E-FAULT review.
+    A bounded 430486-state local-cell
     allocation screen is retained as NO_CANDIDATE source research only; it
     is not a whole-board impossibility claim or an integrated-board defect.
     Follow-on v2/v3 D-BACK results retain a useful output-bank partial but
@@ -312,19 +316,25 @@ findings:
     C_ADC_3V3X_OK_VDD. The corrected supervisor disposition confirms that
     TPS389001 is the exact active MPN; the prior TPS389018 dossier comparison
     is preserved only as corrigendum history. No native task was admitted or
-    run, so ADC preparation remains 0/2. Independent READ_ONLY review of the
-    unadopted six-file 65-ref patch is SOUND for source planning, but the
-    isolated schematic qualification is INCOMPLETE because its workspace
-    omitted `contracts_audit.py`; its native fixture PASS did not launch a
-    producer or consume an attempt. The authoritative source remains the
-    568-component/64-ref baseline until a separately admitted repair and fresh
-    schematic qualification succeed.
-  closes_when: Independently review the 65-ref ADC source repair, including
-    the added local supervisor bypass, all 20 qualitative capacitor
-    observations and explicit P3 return-proof handoff; then regenerate the
-    source identities and complete a separately admitted native candidate and
-    its owning reviews without changing the accepted scoped power baseline or
-    connector FULL requirements.
+    run, so ADC preparation remains 0/2. The independently reviewed six-file
+    ADC65 source patch and separately reviewed P-MOD ordering repair are now
+    adopted: source inventory is 569 and `adc_reference` scope is 65, with
+    planned placement only. The old 568-component circuit JSON, schematic,
+    checkpoint, power measurement, review digests and graph subjects remain
+    immutable historical evidence and are stale for this changed subject.
+    The qualification setup failure, later 4/4 qualification PASS, and first
+    producer P-MOD failure/no-handback are preserved without reset or retry;
+    no producer, native task, or fresh checkpoint is admitted here. A new
+    E-FAULT semantic review against the generated 569-component circuit JSON
+    and a matching public-stock request are owed. The shared template's stale
+    P-MOD order is a separate defect outside this project-only repair.
+  closes_when: Complete a separately admitted fresh schematic campaign from
+    the adopted source, including a generated 569-component circuit JSON,
+    independent E-FAULT semantic review, matching stock request, source
+    identities, all 20 qualitative capacitor observations and explicit P3
+    return-proof handoff; then complete a separately admitted native candidate
+    and its owning reviews without changing the historical scoped-power
+    evidence or connector FULL requirements.
   evidence:
   - 01_docs/research/2026-09-23-adc-p2-layout-scope-audit-terra.md
   - 01_docs/research/2026-09-23-adc-p2-full-64-ref-source-proposal.md
@@ -339,6 +349,11 @@ findings:
   - 01_docs/research/2026-09-23-adc-p2-complete65-source.patch
   - 01_docs/research/2026-09-23-adc-p2-complete65-geometry.json
   - 01_docs/research/2026-09-23-adc-p2-complete65-isolated-qualification.json
+  - 01_docs/research/2026-09-23-adc65-pmod-current-cj-order-review-terra.md
+  - 01_docs/research/2026-09-23-adc65-pmod-current-cj-order.patch
+  - 01_docs/research/2026-09-23-adc65-prebuild-admission-ledger.md
+  - 01_docs/research/2026-09-23-adc65-isolated-qualification-pass.json
+  - 01_docs/research/2026-09-23-adc65-first-producer-failure.json
 
 - id: USB-model-identity
   state: open

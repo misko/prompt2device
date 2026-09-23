@@ -1,12 +1,12 @@
 # Resume
 
-<!-- pause-state:69b0ce9c4ba37a4c98de48fa167559ff5d7edbb3a1df983cf84c7361924e2afd -->
+<!-- pause-state:596a117faf88ff313645b02a364820b1de8eddfe19e4c1f8ca0ec5d1dfa405ac -->
 
 Canonical state: `01_docs/pause_state.json`
 
 1. Verify: `python3 skills/pcb-design/scripts/pause_state.py verify .`
-2. Confirm blocker: The scoped P2 power board c3d90659 proves 47/47 declared numeric rows, native DRC/parity zero and preserves 72 post anchors, but full 89-ref power engineering acceptance is open for 41 qualitative buck/return/thermal obligations. D-BACK v2/v3 retain only a partial output-bank result; whole-cell VIN/precharge allocation and complete regrade remain owed. ADC/reference remains 0/2: an unadopted 65-ref source patch has SOUND READ_ONLY review, but isolated schematic qualification is INCOMPLETE because contracts_audit.py is missing; fixture PASS launched no producer and consumed no attempt. Authoritative source remains the 568-component/64-ref baseline. Other blocks still have 3 keep-short and 227 adjacency failures; connector FULL has 19 physical targets unmeasured; 499 unrouted items block P3, routing, P5, release and order.
-3. Resume with: `Repair the isolated qualification workspace and rerun source/schematic qualification against the exact unadopted 65-ref patch before any source application or native admission. Separately allocate a complete power whole-cell source scope and regrade all 47 rows plus qualitative obligations. Preserve current source bytes, accepted numeric receipt, connector FULL requirements and all attempt histories before P3 or routing.`
+2. Confirm blocker: Reviewed source adoption changes the authoritative source to 569 components and 65 ADC-reference refs with planned C_ADC_3V3X_OK_VDD placement, but no producer or native task is admitted. All 568-component circuit JSON/schematic/checkpoint/power 47/47 measurement/review and graph subjects remain immutable history and stale for this changed subject. The original P-MOD producer failure/no-handback is retained; conductor repair is adopted but needs a separately admitted fresh campaign. New generated circuit JSON E-FAULT semantic review and matching stock request are owed. Full 89-ref power engineering remains open; connector FULL has 19 physical targets unmeasured; 499 unrouted items block P3, routing, P5, release and order.
+3. Resume with: `Prepare the new 569-component circuit JSON for independent E-FAULT semantic review and a matching public-stock request, then seek explicit admission for a fresh qualified schematic campaign. Do not reuse historical 568-component derived artifacts or run native work. Separately allocate complete power whole-cell scope and regrade all 47 rows plus qualitative obligations before P2 acceptance.`
 
 The authenticated checkpoint is `06_build/checkpoints/schematic.json` at
 `2fb4dd626750114476150d550d88cf15c0d5a2deb5d8e971e1be67a2a7bde856`.

@@ -86,11 +86,6 @@ $PY "$CS/connector_assembly_phase_gate.py" --project . --phase source \
 
 if [ "$RESUME_AFTER_SCHEMATIC_REVIEW" = false ]; then
 
-# [0a] P-MOD before generation spend: every complex subsystem is a module, or
-# an evidence-backed bare-IC exception with an ADR and rejected module set.
-$PY "$S/module_first_check.py" . \
-    || { echo "GATE FAILED [0a] P-MOD (module_first_check.py): prefer a proven module, or document why modules cannot meet a binding requirement"; exit 1; }
-
 # [0c] RF applicability/requirements are decided before schematic/layout spend.
 $PY "$S/rf_contract_check.py" . --require-applicability \
     || { echo "GATE FAILED [0c] RF-CONTRACT: fix 03_src/rules/rf.yaml before continuing"; exit 1; }
@@ -173,6 +168,14 @@ cp "03_tscircuit/dist/src/$TSX/circuit.json" "$CJ"
 # they receive, but do not own tscircuit's diagnostic vocabulary.
 $PY "$S/circuit_json_diagnostics.py" "$CJ" \
     || { echo "GATE FAILED [1d] TSX-DIAG: tsci returned a circuit artifact containing hard error diagnostics"; exit 1; }
+
+# [1m] P-MOD needs the current generated component census. Running it before
+# [1] grades a TSX source edit against the preceding circuit.json and makes any
+# newly authored support ref impossible to admit. Keep the gate mandatory and
+# fail-closed, but bind it to the fresh, diagnostics-clean artifact before any
+# fault-envelope comparison, human render, schematic conversion, or review.
+$PY "$S/module_first_check.py" . \
+    || { echo "GATE FAILED [1m] P-MOD (module_first_check.py): prefer a proven module, or document why modules cannot meet a binding requirement"; exit 1; }
 
 # The [0d] prebuild arm cannot bind a producer that has not run. Grade the
 # generated source against E-FAULT's reviewed digest before rendering,

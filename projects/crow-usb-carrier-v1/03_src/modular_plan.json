@@ -3,6 +3,7 @@
     {
       "id": "adc_reference",
       "refs": [
+        "C_ADC_3V3X_OK_VDD",
         "C_ADC_A_AREG_100N",
         "C_ADC_A_AREG_1U",
         "C_ADC_A_AVDD_100N",
@@ -1267,6 +1268,7 @@
           "C_ADC_B_VREF_10U.2",
           "C_ADC_DIGITAL_BAD.2",
           "C_ADC_DIGITAL_OK.2",
+          "C_ADC_3V3X_OK_VDD.2",
           "C_ADC_PWR_BAD.2",
           "C_ADC_READY.2",
           "C_ADC_READY_BAD.2",
@@ -2008,6 +2010,7 @@
           "C_ADC_B_IOVDD_10U.1",
           "C_ADC_DIGITAL_BAD.1",
           "C_ADC_DIGITAL_OK.1",
+          "C_ADC_3V3X_OK_VDD.1",
           "C_ADC_READY.1",
           "C_ADC_READY_BAD.1",
           "C_RST1.1",
