@@ -518,3 +518,9 @@ Integrated independently reviewed15beff8e+3e9cabeb as2d600607+2b6f58b8: eight OP
 ### D7 remaining-stock research
 
 Retained bounded stock-alternative, switch and capacitor-bank reports in the JLC population research archive. Candidate adjustableTPS62825 and TPS389001 already occur on this board and have adequate aggregate inventory for their proposed expanded usage; their new dividers and thresholds remain to qualify. The selected XU316 TQ128 stock still fails150reserve and broader XMOS packages/families are being researched. These are candidate findings, not adopted substitutions or complete sourcing coverage.
+
+### Additional bounded source feasibility evidence
+
+Retained source-research reports for the adjustable buck load census, stocked quad-switch alternative and dual-quad ADC architecture under D7. These are unadmitted engineering candidates. The buck has sufficient declared-load arithmetic but voltage/thermal/startup bounds still need closure; the quad-switch changes fault/power-off behavior; ADC input coupling, noise and synchronization requirements remain explicit. Whole-source admission and block placement remain held.
+
+D7 USB-core blocker: serialized direct-JLC XMOS search covered283 keyword records; no observed part reaches155 stock. SelectedXU316TQ128 has46. Retained2026-09-23-xmos-stock-alternatives.md and rawhashes. Distributor availability doesnotcloseD5. Bounded non-XMOS USBcapture alternative screen underway; no USBcore substitution adopted.
