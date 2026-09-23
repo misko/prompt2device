@@ -514,3 +514,7 @@ The user explicitly retains the 150-unit per-part stock surplus. No policy thres
 ### Stocked OPA/crystal source integration
 
 Integrated independently reviewed15beff8e+3e9cabeb as2d600607+2b6f58b8: eight OPA2320AIDR/C2863402 instances and one YXC X322524MOB4SI/C70590. Both exact observed stocks clear build-plus150. The original native YXC land was corrected after review; TSX Y-up versus KiCad Y-down transform is now checked against the primary top-view drawing. Root focused pad/coordinate check passes; TSX preflight96/96. Existing493-reference circuit/native schematic remain the historical checkpoint until the complete revised source is regenerated and re-admitted. No whole-board sourcing, placement or release pass claimed.
+
+### D7 remaining-stock research
+
+Retained bounded stock-alternative, switch and capacitor-bank reports in the JLC population research archive. Candidate adjustableTPS62825 and TPS389001 already occur on this board and have adequate aggregate inventory for their proposed expanded usage; their new dividers and thresholds remain to qualify. The selected XU316 TQ128 stock still fails150reserve and broader XMOS packages/families are being researched. These are candidate findings, not adopted substitutions or complete sourcing coverage.

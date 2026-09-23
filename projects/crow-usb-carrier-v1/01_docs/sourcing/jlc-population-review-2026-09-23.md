@@ -415,3 +415,181 @@ The new rail must participate in existing PWR_EN, AUDIO_EN, ADC_RESET_N, TMUX po
 **Decision:** One OPA-input shunt per leg plus two VCM changes, 2.2 µF coupling if the 20 Hz response is preserved, and a separate quiet 5 V supply are a feasible engineering backtrack. The change is larger than a passive ADC swap and requires new control, power, filter, thermal, layout and measurement evidence. AK's low input resistance is manageable behind the OPA; its DC bias requirement is the hard constraint. There is no basis yet for release/admission or a claim that JLC stock and the local reserve policy are satisfied.
 
 Local primary PDFs: `/tmp/crow-jlc-adc-20260923/raw/ak5578.pdf`, `projects/crow-usb-carrier-v1/02_parts/OPA2320AID/OPA2320_SBOS513F.pdf`, `projects/crow-usb-carrier-v1/02_parts/TMUX2821DSGR/TMUX28xx_SCDS488.pdf`, `projects/crow-usb-carrier-v1/02_parts/LT3045EDD-PBF/LT3045_RevD.pdf`. Project paths are under `/home/mouse9911/gits/circuits-worktrees/crow-usb-carrier-v1-20260922/`.
+
+
+## D7 buffer-shortage alternatives — research only
+
+# D7 exact JLC catalog alternatives — 2026-09-23 03:24–03:26 UTC
+
+Dated design-stage observations only. Five-board quantities retain **150 extra catalog units per aggregate code**. Direct JLC results are from serialized POST requests to `https://jlcpcb.com/api/overseas-pcb-order/v1/shoppingCart/smtGood/selectSmtComponentList`. Search terms, UTC times, response SHA256 and unmodified raw JSON are retained under `/tmp/crow-active-sourcing-20260922/alternates/` (`exact_search.jsonl`, `broad_search.jsonl`, `variant_search.jsonl`). Search results are candidate identity/stock evidence, never PCBA uploader allocation or a part substitution. No selected source or BOM was changed.
+
+| Selected code and MPN | Five-board qty +150 | Exact-MPN JLC result | Candidate with direct JLC stock | Disposition |
+|---|---:|---|---|---|
+| C17566269 ASFL1-24.576MHZ-EC-T | 5+150=155 | Sole exact code, 86 | C1987425 ASFL1-24.576MHZ-EK-T, 84: same Abracon ASFL1 series and tighter ±30ppm, but also below155. **C2901534 SX5M24.576M20F30TNN, 1,071**, or C252361 SJK 7N24576G33YC, 268: other manufacturers, SMD5032 four-pad oscillators. | SX5M is a real catalog candidate, not an approved replacement. Its manufacturer's signed datasheet shows 24.576MHz, 1.62–3.63V, ±30ppm across -40 to85°C, 15pF CMOS, OE/GND/OUT/VDD on pads1–4. Compare exact pad geometry, clock jitter/edge/load and source qualification before adoption. Retaining the selected Abracon part with exact distributor sourcing is less circuit change. |
+| C2066942 TPS389030DSER | 15+150=165 | Sole exact code, 56 (earlier screen 58; stock moved) | **C1509297 TPS389001DSER, 591**, same TPS3890 WSON-6 family, adjustable sense threshold. Selected fixed 3.0V version trips at 2.89V falling. | Already selected for U_AUDIO/U_PWR; sharing it would bring total to 5 devices per board, 25+150=175, still below observed 591. Requires external sense divider, tolerance/rail/reset timing review, new resistor BOM/placement and sourcing. C702227 TPS389033DSER 97 and C2066922 030QDSERQ1 10 fail165; 033 has wrong nominal threshold. |
+| C2072356 TPS6282518DMQR | 5+150=155 | Sole exact code, 51; DMQT ordering variant C2072289=0 | **C2650334 TPS62825DMQR, 5,819**, same TPS62825 VSON-6 adjustable-output family. | Already selected for U_CORE. Reusing for U_1V8 would take aggregate to 2 devices/board, 10+150=160, still below 5,819. Current fixed 1.8V FB-to-output tie must become an external divider for 0.6V reference; TI specifies R2<=100kΩ. Requalify feedback accuracy/noise, compensation, power sequencing and layout. |
+| C3189971 TPS6282533DMQR | 5+150=155 | Sole exact code, 44 | **C2650334 TPS62825DMQR, 5,819** as above. | Reusing for both U_1V8 and U_3V3X plus existing U_CORE gives 3 devices/board, 15+150=165, still below 5,819. The 3.3V fixed FB tie must become a different external divider; 5V-input dropout, accuracy, noise, thermal/inductor and sequencing need review. The adjustable candidate is a circuit redesign, not a drop-in BOM change. |
+| C6362698 XU316-1024-TQ128-C24 | 5+150=155 | Exact C6362698=46; extra exact-code C9900032908=0 (catalog calls it LQFP) | C6938291 XU316-1024-TQ128-I24=0. | No stocked same-package XMOS alternative found. XMOS's current TQ128 ordering table lists only C24 and I24 at 600MHz/2400MIPS; faster C32/I32 are in QF60 or FB265, not the current TQ128 footprint. Keep exact part and pursue exact distributor sourcing or obtain manufacturer/JLC procurement evidence. No firmware- or layout-compatible replacement is established. |
+
+Additional zero-stock fixed supervisor: **C2066910 TPS389018DSER**, 10+150=160, sole exact code=0; C2066893 TPS389018QDSERQ1=10 also fails160. The same C1509297 adjustable TPS389001DSER=591 can nominally set a 1.8V rail sense threshold with an external divider, but the selected fixed 1.8V variant trips at 1.73V falling. If both fixed supervisor MPNs moved to adjustable, the existing 2 plus 2 plus 3 devices/board total 7, requiring 35+150=185; observed 591 clears that aggregate. The divider, threshold tolerance, delay, rail sequencing and exact source changes remain design work.
+
+Primary specification support: [Abracon ASFL1 ordering and electrical tables](https://abracon.com/Oscillators/ASFL1.pdf), [SCTF SX5M specification](https://static.chipdip.ru/lib/727/DOC043727753.pdf), [SJK 7N specification](https://datasheet.lcsc.com/datasheet/pdf/404d9ade0ee48598cc94231394d91d47.pdf?productCode=C252361), [TI TPS3890 datasheet](https://www.ti.com/lit/ds/symlink/tps3890.pdf), [TI TPS62825 datasheet](https://www.ti.com/lit/ds/symlink/tps62825.pdf), [XMOS TQ128 ordering table](https://www.xmos.com/documentation/XM-014532-PC/html/rst/XU316-1024-TQ128.html), and [XMOS part-number list](https://www.xmos.com/file/xmos-part-numbers-and-part-markings/?version=latest). The TI buck datasheet says adjustable output uses an external divider with `R1=R2*(VOUT/0.6V-1)` and R2 no higher than 100kΩ. The TI supervisor datasheet gives falling thresholds 1.73V (018), 2.89V (030), and 1.15V (001 adjustable base).
+
+The least-disruptive next step is retain exact selected MPNs and apply the established exact-distributor public-stock path where it clears 150 extra units. If an all-JLC-source requirement supersedes that path, the adjustable TI parts and SCTF oscillator are engineering candidates needing new dossiers and full electrical/layout/footprint/sourcing requalification; the XU316 remains unsolved in JLC catalog stock.
+
+
+## Rejected two-SPDT switch proposal under D7
+
+# Crow TMUX shortage: bounded source proof and D5 disposition
+
+Research cut: 2026-09-23 UTC. **Do not adopt TMUX2819DSGR now.**
+User-confirmed policy keeps **150 extra of every part**. Two TMUX2819DSGRs
+per original TMUX2821DSGR require 16 per board, **80 for five boards and 230
+including the buffer**. Direct JLC C53283915 recorded 199 in stock at
+2026-09-23 02:51:42 UTC, 31 short of that threshold; its `canPresaleNumber`
+was 156, also below 230. These are catalog observations, not allocation.
+The original TMUX2821DSGR/C53283916 had 16 in the project JLC census for
+40 needed, and a separate jlcsearch observation showed 4. Neither clears
+five-board demand. No exact JLC-stocked, requirement-preserving dual-SPST
+replacement with >=190 observed units was proven in this bounded search.
+The candidate remains a *topology proof*, not a source selection.
+
+## Current circuit and exact single-package substitution
+
+Current TSX `crow_retained_analog.tsx` instantiates U_ISO1..8, each a
+TMUX2821DSGR with two independent SPST legs. P uses pin1 S1 from
+FILTERnP and pin2 D1 to ADCnP, controlled by pin7 SEL1=`AUDIO_EN`.
+N uses pin5 S2 from FILTERnN and pin6 D2 to ADCnN, controlled by pin3
+SEL2=`AUDIO_EN`. Pins4/9 ground; pin8 is **5V_LDO_HOLD**. The amplifiers
+and ADC use 3V3_ADC; the present switch does not. Each ADC output side
+has its own 10k pulldown and 1nF shunt; one 100nF C_ISOn bypasses each
+original package. The inherited pod ceiling is 1.2 Vrms *differential*;
+this is not a per-leg 1.2 Vrms specification.
+
+[TI SCDS488 primary datasheet](https://www.ti.com/lit/ds/symlink/tmux2821.pdf)
+pp3, 6, 19-20 gives these top-view functions and truth tables:
+
+| Device | Pin 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | EP9 |
+|---|---|---|---|---|---|---|---|---|---|
+| TMUX2821 | S1 | D1 | SEL2 | GND | S2 | D2 | SEL1 | VDD | GND |
+| TMUX2819 | SA | N.C. | EN | GND | SB | D | SEL | VDD | GND |
+
+2821: VDD=0 isolates both channels; with VDD valid each channel is OFF
+at its SELx=0, ON at SELx=1. 2819: VDD=0 isolates; EN=0 isolates both
+throws; EN=1/SEL=0 connects SA-D; EN=1/SEL=1 connects SB-D. Thus one
+2819 for each **single** P or N leg reproduces the intended logic if
+SEL7 is hard tied low and EN3 receives `AUDIO_EN`. One package per leg:
+SA1=FILTERnP or FILTERnN, D6=ADCnP or ADCnN, VDD8=5V_LDO_HOLD,
+GND4/EP9=GND. TI specifically says pin2 N.C. should connect to GND
+for a known state. SB5 is unused and should be a native no-connect; no
+signal should be routed through it. Do not join P and N on one 2819:
+its SA/SB throws share one D, so that would short or select audio legs.
+Existing 2821 and 2819 share the DSG 2x2-mm package outline but **not pad
+functions**; the eight existing footprints/net assignments cannot be
+reused unchanged. There would be 16 packages, 16 local 100nF bypasses
+(+8 versus the current source), and 16 SEL-to-ground ties. The original
+16 total SEL input pins become 16 total EN inputs, so AUDIO_EN input
+count is unchanged. Pin5 SB N.C. and pin2 grounded N.C. must be represented
+explicitly in source/native NC handling.
+
+## Electrical screen and owed proof
+
+The TI family sheet applies to both chips: recommended VDD 1.8..5.5V,
+signal terminals -5.5..+5.5V, logic 0..5.5V; VIL <=0.6V and VIH
+>=1.1V at 3.3V supply. The current held 5V logic pull-up can drive EN
+within the 5.5V limit. TI specifies fail-safe logic up to 5.5V even if
+VDD=0 and powered-off switch-path isolation to +/-5.5V at VDD=0.
+These bounds accommodate a balanced 1.2Vrms differential sine (1.697V
+peak differential, about +/-0.849V peak per opposite leg), including
+the present 3.3V-biased AFE output, and ordinary near-rail excursion.
+They do **not** establish survival of a >5.5V switch-terminal fault,
+or switch behavior while held VDD traverses 0..1.8V. Retain the current
+first-article partial-power and fault-injection tests; review actual
+pod/coupling/protection fault transients before release.
+
+At VDD=3.3V, TI specifies RON <=0.225ohm through +85C and <=0.3ohm
+through +125C under its -5..+5V/100mA test. Each signal still crosses
+one switch, so no series switch is added. Against the source's 10k ADC
+pulldown, 0.3ohm is a <=30ppm ideal resistive gain term, but ADC dynamic
+loading/filter behavior is not captured by that estimate. The 2821
+within-package channel-match number cannot be carried to P/N channels
+in separate 2819 packages. TI's +/-0.1uA off leakage to +85C gives up
+to 1mV per 10k pulldown per leg and 2mV differential worst opposed;
+at +125C the +/-1uA off-leakage bound gives 10mV per leg / 20mV
+differential. The VDD=0 powered-off leakage reaches +/-2uA at +125C,
+which gives 20mV per leg against 10k if that test condition applies.
+These are conservative resistor-only bounds, not measured ADC offsets.
+
+TI's THD+N is -105dB at 600ohm, 0.5Vpp, 20Hz..20kHz over -40..125C;
+this test amplitude/load is not Crow's 1.2Vrms differential operating
+point. Off capacitance 70pF, charge injection 5pC, and isolation/crosstalk
+figures are typical. Recheck analog-filter loading, audio THD+N and
+P/N gain/phase on a first article. Revalidate held-rail start/brownout,
+`AUDIO_EN` timing, ADC backdrive isolation, and break/make transitions
+with both packages at every one of eight channels. No claim of measured
+performance or layout clearance follows from the family match.
+
+## Sourcing comparator and next source action
+
+The bounded catalog search found no verified stocked dual-SPST preserving
+independent SEL gating, negative/beyond-supply signal range, VDD=0
+isolation, low Ron/audio behavior, and the confirmed buffer. A standard
+4066 or ordinary single-supply dual switch cannot be accepted solely
+because it has two SPST channels: negative/beyond-supply and VDD=0
+backfeed behavior require primary evidence. TI TMUX4827 is a dual SPDT
+with a common SEL and no active EN, so it cannot reproduce both OFF
+states under `AUDIO_EN` without an additional disconnect; no JLC stock
+qualification was established. [TI TMUX4827 primary datasheet](https://www.ti.com/lit/ds/symlink/tmux4827.pdf).
+
+Requery direct JLC stock and PCBA availability for exact dual-SPST and
+TMUX2819 codes. A candidate can advance only when exact catalog stock
+is >= five-board need +150 (>=190 for one dual package per board, >=230
+for two single packages per board), and exact primary evidence closes
+negative signal, power-off and control truth table. If 2819 reaches
+>=230, implement the 16-package mapping above in TSX, an exact
+TMUX2819 dossier/native pin/land, 16 local bypasses, placement/adjacency
+and assembly rules, then regenerate and independently regrade netlist,
+filter/loading and fault/timing behavior. Do not waive the buffer,
+change the rail, or count distributor stock as JLC population.
+
+Evidence: retained project `02_parts/TMUX2821DSGR/TMUX28xx_SCDS488.pdf`
+(SHA256 493e5c0d4eb5ca55dea82dbcce59b1be9c353577e256c161821662c38bb9ac55);
+`/tmp/crow-jlc-adc-20260923/raw/C53283915.json`; source
+`projects/crow-usb-carrier-v1/03_tscircuit/src/crow_retained_analog.tsx`
+lines 127-135; project dated `01_docs/sourcing/jlc-population-review-2026-09-23.md`.
+
+
+## Stocked capacitor-bank feasibility — source candidate under preparation
+
+# C84494 Murata replacement for Crow CKG57K bank — bounded primary-evidence screen
+
+Date: 2026-09-23 UTC. Scope: replace the 13-per-board TDK CKG57KX7R1E476M335JH/C2171626 bank, observed JLC stock zero, with **Murata GRM32ER71A476KE15L/C84494**. Serialized direct JLC check retained at `/tmp/crow-jlc-adc-20260923/raw/C84494.json` returned exact Murata MPN and stock **56,478**, enough for the proposed 50 units/5 boards. No source/BOM/board edit was made.
+
+## Result
+
+A **10-part-per-board engineering candidate** follows from exact Murata model data and avoids a TPS62825 capacitor combination outside TI's validated table. It is **not yet an electrical/PCBA signoff**: Murata's characteristic curves and SPICE coefficients are *typical simulation data*, not a production worst-case capacitance, ESR, or ESL guarantee. In particular, ADI's **assembled** LT3045 COUT ESL <2 nH needs extracted or measured loop proof. No defensible paper-only claim can close that physical requirement before board placement.
+
+| Bank | Present CKG references | Proposed C84494 refs | Worst exact-model C per unit at -55 °C / max rail, µF | Screen after ×0.90 tolerance ×0.875 lifecycle, µF | Requirement / disposition |
+|---|---|---|---:|---:|---|
+| TPSM63603 N5V_BUCK output | C_OUT1/2/3 | same 3 × Murata | 14.7 at 5.05 V | **34.73** | 25 effective min: model screen passes 1.39×. TI permits more output C; 141 µF nominal is beyond its two-47-µF example, so startup/load-step check remains. |
+| TPS62825 N3V3X output | C_U_3V3X_OUT_1/2 | **OUT_1 only**, remove OUT_2 | 16.9 at 3.38 V | **13.31** | 10 effective min: model screen passes 1.33×; **47 µF nominal with 0.47 µH is explicitly marked in TI Table 8-3**, while 100 µF nominal is blank for TPS62825. |
+| TPS62825 N1V8 output | C_U_1V8_OUT_1/2 | **OUT_1 only**, remove OUT_2 | 18.4 at 1.818 V | **14.49** | 10 min, passes 1.45×; same TI nominal LC row. |
+| TPS62825 N0V9/Core output | C_U_CORE_OUT_1/2 | **OUT_1 only**, remove OUT_2 | 18.7 at 0.92 V | **14.73** | 10 min, passes 1.47×; same TI nominal LC row. |
+| LT3045 input | C_LDO_IN | same 1 × Murata | 14.7 at 5.05 V | **11.58** | 4.7 min, passes 2.46×; input ripple/loop remains physical check. |
+| LT3045 N3V3_ADC output | C_LDO_OUT_1/2 | same symmetric 2 × Murata | 16.9 at 3.38 V | **26.62** | 10 min, passes 2.66× by model; ESR/ESL below. Kelvin OUTS and SET capacitor ground. |
+| Downstream OPA reservoir | C_OPA_BULK | same 1 × Murata | 16.9 at 3.38 V | **13.31** | Advisory only, no invented regulator minimum. Analog load-step check. |
+
+Total: **10 C84494 per board; 50 per five boards**. Source mutation would need exact `part.yaml`, integration/exact-parts population, schematic/PCB footprint, power-tree rows, E-CAP gate, TSX source, and BOM alignment. All present TDK J-lead lands need replacement with exact Murata 1210 geometry and re-placement; the CKG footprint is **not compatible**.
+
+## Primary evidence and arithmetic
+
+- [Murata exact product page](https://www.murata.com/en-eu/products/productdetail?partno=GRM32ER71A476KE15L) and [Murata reference sheet](https://search.murata.co.jp/Ceramy/image/img/A01X/G101/ENG/GRM32ER71A476KE15-04CA.pdf) establish GRM32ER71A476KE15**L** as 47 µF ±10%, 10 Vdc, X7R, -55…125 °C, 1210/3225M; the trailing L is 180-mm reel packaging. Project's exact [local dossier](/home/mouse9911/gits/circuits-worktrees/crow-usb-carrier-v1-20260922/projects/crow-usb-carrier-v1/02_parts/GRM32ER71A476KE15L/part.yaml) retains the June 2026 sheet. All five relevant bank rail maxima are ≤5.05 V in `03_src/rules/power_tree.yaml`; output overshoot still must remain within the 10 V rating. Reference sheet states 47 µF at 120 Hz, 0.5 Vrms, 25 °C and the 10 V rating with AC peak included; it **does not guarantee DC-biased effective C, ESR or ESL**.
+- Murata's live [SimSurfing exact-part viewer](https://ds.murata.com/simsurfing/mlcc.html?oripartnumbers=%5B%22GRM32ER71A476KE15L%22%5D&partnumbers=%5B%22GRM32ER71A476KE15%22%5D) served numerical `C-DC bias`, `C-AC Voltage`, temperature, impedance, resistance and reactance data for base MPN `GRM32ER71A476KE15`. Exact JSON responses are retained in `/tmp/crow-capbank-evidence-20260923/` (DC-bias SHA-256 `cd00cda39b1ad340ce1f85070c9758677b99361812dc6a33dbef68bb80c64abd`, AC-voltage SHA-256 `7afa43163efee7ac879db8b2f80ee15eeaf77a69af5d827f9faab233ad483599`). The DC curve is labeled **25 °C / 0.5 Vrms**; AC curve **0 V DC / 25 °C**, so directly multiplying their percentages would mix reference conditions. The combined-condition simple netlists below are the cleaner screen.
+- Murata's **own exact-part simple SPICE netlists**, queried from SimSurfing for specified DC voltage and temperature, are retained under the same evidence directory. They identify 2018 model-generation date, small-signal operation, 100 Hz–6 GHz and manufacturer. Values (per part): at **-55 °C**, 5.05 V `C=14.7 µF, L=0.591 nH, R=2.18 mΩ`; 3.38 V `16.9 µF, 0.588 nH, 2.23 mΩ`; 1.818 V `18.4 µF, 0.587 nH, 2.25 mΩ`; 0.92 V `18.7 µF, 0.588 nH, 2.25 mΩ`. At **125 °C / 3.38 V**, `C=28.8 µF, L=0.657 nH, R=2.13 mΩ`; **125 °C / 5.05 V**, `23.8 µF, 0.661 nH, 2.04 mΩ`. The colder models are the smaller-C case in this bounded sample. 25 °C models give 22.0 µF at 5.05 V and 26.2 µF at 3.38 V. These are exact-part *typical model parameters*, with packaging L/K sharing the base die; they are not guaranteed minima/maxima. The ×0.90 tolerance and ×0.875 lifecycle reserve in the table are **engineering allowances** applied to the model C. Temperature and DC/AC behavior are already represented by the model, so the prior separate 15% temperature and 65% bias factors must not be stacked again.
+- [ADI LT3045 datasheet Rev. D](https://www.analog.com/media/en/technical-documentation/data-sheets/lt3045.pdf), pp. 12–13 and 16, requires COUT ≥10 µF, **ESR <20 mΩ and ESL <2 nH**; Kelvin OUTS directly to output capacitor/load and tie output-cap ground to SET-cap ground. For the two symmetric Murata 1210 parts at 3.38 V, the simple 125 °C coefficients imply an ideal parallel **0.329 nH** and **1.065 mΩ**. This leaves **<1.671 nH** for all common pads, vias, copper, return and sensing interconnect if treating the model as representative. The complete network has not been placed, extracted or measured. The model is not a worst-case guarantee, so even a layout calculation below the number is a screen, with first-article measurement still required. More C may lower LT3045 bandwidth; ADI says larger-than-minimum values only marginally improve PSRR/noise, so validate the resulting 94 µF nominal pair at startup/load steps.
+- [TI TPS62825 family datasheet SLVSEF9I](https://www.ti.com/lit/ds/symlink/tps62825.pdf), Table 8-3, marks **0.47 µH + 47 µF** as a supported nominal combination for TPS62825; its **100 µF** column is blank for TPS62825 (the separate TPS62827 Table 8-4 does mark 100 µF). The current 2×47 µF=94 µF output bank is thus not table-certified. TI section 8.2.2.5 requires 10 µF effective output. Retaining one 47 µF at each TPS62825 stage is a cleaner nominal match, but qualified transients/loop stability are still required with the replacement inductor, distributed load capacitance, bias and actual copper.
+- [TI TPSM63603 datasheet SLVSFS5A](https://www.ti.com/lit/ds/symlink/tpsm63603.pdf), section 8.2.2.2.5, requires 25 µF effective output, permits additional capacitance, and describes two 47 µF/10 V/1210 ceramics giving ~48 µF effective at 5 V in its example. The three Murata pieces estimate ≥34.73 µF by the model/reserve screen even at -55 °C. Keep three because two would screen at **23.15 µF**, below 25 µF. Verify the module's output startup/loop and ripple with the actual 141 µF nominal bank.
+
+## Required blocker resolution
+
+This is a **concrete preferred topology for the stocked part**, but cannot be called qualified production substitution from public primary data alone. The decisive unmet evidence is LT3045 **assembled COUT network ESL strictly below 2 nH**, plus actual production lot/temperature/bias effective capacitance and regulator startup/load-step response. Obtain Murata approval/characteristic data or measure representative lot C at **-55 °C** and each stated rail maximum under small-signal conditions, and extract/measure the placed LDO pair including common return and OUTS connection. The model screen has a 1.33× margin at the tightest TPS62825 bank, so an adverse lot shift beyond the chosen allowances could defeat it. Verify all three TPS62825s with the 47 µF/0.47 µH pair and all downstream capacitance; verify TPSM module with 3×47 µF. JLC uploader allocation should be checked at order time. No substitute is automatically approved by the stock observation.
