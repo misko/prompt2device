@@ -813,3 +813,7 @@ SOL repaired ten dossier layout sections; Terra repaired five footprint sources 
 The55 unreached rules are reconciled to actual sharednets/pairs and retired refs. First independentreview rejected a missing parallel R_DUMP_TIME3 limit; SOLadded the same4.0mm limit asR_TIME2. Freshr2 source reviewSOUND and rootpolicyreplayreaches311/311 rules. Actual7/10keep-short and264/301adjacency failures remain. CJ/PDF/nativeSCH remainbyteidentical106ace85; fresh topology/render witnesses bindnewpartsdigest andPR-REVIEW2/2PASS. ERC0errors/4216warnings unchanged.
 
 Runtimeprobe1INCOMPLETE was root evidence-copy interference duringREADONLY; retained verbatim. Frozenprobe2 andboth actualreviewdeliveriesPASS; engineeringr1DEFECTIVE/r2SOUND preserved separately. No newCrowboardtrial orrouting, and no automaticcampaignreset. P1/P2 admission authority under read-only SOL audit.
+
+## 2026-09-23 — correct P1/P2 ownership without relaxing connector qualification
+
+SOL traced the sequencing conflict to campaign interpretation. Terra independently accepted ADR0011 and an exact activation patch. Root adopted it with editorial present-tense cleanup only. P1 proves a fresh floorplan; bounded isolated P2 closes local distances. This is not integrated placement promotion. Allthree failedcandidates stayrejected/consumed; a fresh explicitcampaign andnativeP1proof remainrequired. Canonicaldriver[3c] unchanged. FULL stillrequiresall19physicaltargets/basePASS/zeroUNKNOWN beforeP3, anyrouting/preparation/import, P5promotion, releaseororder. No newboard orP2dispatchatdecisionadoption.

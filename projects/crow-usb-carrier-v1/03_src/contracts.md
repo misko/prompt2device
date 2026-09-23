@@ -624,3 +624,9 @@ requires SOURCE success and retains a separately graded FULL receipt; only
 classified physical INCOMPLETE permits continued prototype work. It does not
 change connector schemas, source/physical grades, native reviews or order gates.
 Absent an accepted project decision, retain the ordinary full qualification bar.
+
+### Crow P1/P2 phase clarification (ADR 0011)
+
+[ADR 0011](../01_docs/decisions/0011-p1-floorplan-and-p2-placement-admission.md) defines a prospective distinction between P1 fixed-anchor/region/corridor proof and P2 local block placement. Separately bounded, isolated P2 candidates may follow a newly accepted P1 floorplan while connector FULL is physically incomplete, without an accepted board pointer or placement-promotion claim. P2 owns measured local `P-ADJ`/`P-ADJ-PAIR` closure; P5 integrates whole-placement acceptance. The three consumed P1 attempts and their failed verdicts remain unchanged; a fresh campaign reassessment and new native P1 proof remain required.
+
+This clarification does not change the ordinary `rebuild_all.sh` [3c] hard stop or the current campaign. Connector FULL still requires base `PASS`, zero unknowns, and all 19 physical targets before any P3 critical-local route proof, route preparation/import or other routing, integrated placement promotion, release, or order. A driver order change to permit P2 inside the canonical run requires separate review and must retain that exact FULL predicate before P3 and routing. Current P1/P2 dispatch remains subject to this sequencing.
