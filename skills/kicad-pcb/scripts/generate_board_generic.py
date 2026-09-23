@@ -103,6 +103,7 @@ except Exception:                                            # pragma: no cover
     def load_part_overrides(parts_dir):
         return {}
 from pcb_toolkit import apply_via_protection
+from pin_map_check import alias_map, load_parts, pin_name, sval
 
 MM = pcbnew.ToMM
 STD_FP_ROOT = "/usr/share/kicad/footprints"
@@ -208,6 +209,82 @@ def parse_identity_fields(path):
                 fields[name] = json.loads(value)
         result[ref] = fields
     return result
+
+
+def resolve_pad_aliases(comps, pad_net, parts_dir):
+    """Translate netlist pin numbers through evidenced part.yaml identities.
+
+    Keep the original netlist intact.  Return physical pad nets and the full
+    declared footprint pin sets, including schematic no-connect contacts.
+    """
+    if parts_dir is None:
+        return pad_net, {}
+    by_id, docs, errors = load_parts(parts_dir)
+    # An unrelated broken dossier is pin-map-gate work; only an ambiguous
+    # identifier actually used by this board can change this translation.
+    active_values = {value for _, value in comps.values()}
+    for error in errors:
+        if any(error.startswith(f"identifier {value!r} resolves")
+               for value in active_values):
+            die("part identity error: " + error)
+    alias_footprints = set()
+    for mpn, (doc, _) in docs.items():
+        if doc.get("pin_aliases") is not None:
+            alias_footprints.add(sval(doc.get("footprint", "")))
+    resolved = {}
+    expected = {}
+    for ref, (fpid, value) in comps.items():
+        mpn = by_id.get(value)
+        if mpn is None and fpid in alias_footprints:
+            die(f"{ref}: footprint {fpid} has a pin_aliases dossier, but "
+                f"netlist value {value!r} does not identify that part")
+        doc = docs[mpn][0] if mpn else {}
+        if doc.get("pin_aliases") is None:
+            for (node_ref, pin), net in pad_net.items():
+                if node_ref == ref:
+                    resolved[(ref, pin)] = net
+            continue
+        if fpid and fpid != sval(doc.get("footprint", "")):
+            die(f"{ref}/{mpn}: netlist footprint {fpid} differs from "
+                f"pin_aliases dossier footprint {doc.get('footprint')}")
+        findings = []
+        pins, mapping = alias_map(doc, mpn, findings)
+        if findings:
+            die(f"{ref}/{mpn}: " + "; ".join(findings))
+        by_schematic = {}
+        by_pad = {}
+        for logical, spec in mapping.items():
+            schematic, footprint = spec["schematic"], spec["footprint"]
+            if not schematic or not footprint:
+                die(f"{ref}/{mpn} logical pin {logical}: empty pin alias")
+            by_schematic.setdefault(schematic, []).append(logical)
+            by_pad.setdefault(footprint, []).append(logical)
+        for footprint, logicals in by_pad.items():
+            if len(logicals) < 2:
+                continue
+            functions = {pin_name(pins[x]).upper() for x in logicals}
+            aliased = [x for x in logicals if mapping[x]["footprint"] != x]
+            if len(functions) != 1 or not aliased or not all(
+                    mapping[x]["fused"] for x in aliased):
+                die(f"{ref}/{mpn}: logical pins {logicals} collapse to pad "
+                    f"{footprint} without matching functions and fused:true")
+        for schematic, logicals in by_schematic.items():
+            if len({mapping[x]["footprint"] for x in logicals}) != 1:
+                die(f"{ref}/{mpn}: schematic pin {schematic} maps to "
+                    f"different footprint pads via {logicals}")
+        expected[ref] = set(by_pad)
+        for (node_ref, schematic), net in pad_net.items():
+            if node_ref != ref:
+                continue
+            if schematic not in by_schematic:
+                die(f"{ref}/{mpn}: netlist pin {schematic} has no evidenced alias")
+            footprint = mapping[by_schematic[schematic][0]]["footprint"]
+            key = (ref, footprint)
+            if key in resolved and resolved[key] != net:
+                die(f"{ref}/{mpn}: conflicting nets {resolved[key]} and {net} "
+                    f"collapse onto pad {footprint}")
+            resolved[key] = net
+    return resolved, expected
 
 
 # ------------------------------------------------------- footprint loading
@@ -371,6 +448,7 @@ class BoardBuilder:
         self.out = Path(out_override) if out_override else \
             self._p(proj.get("output") or die("project.output is required"))
         parts_dir = self._p(proj["parts_dir"]) if proj.get("parts_dir") else None
+        self.parts_dir = parts_dir
         self.res = FootprintResolver(cfg.get("libraries"), base, parts_dir)
         self.board_cfg = cfg.get("board") or {}
         self.X0, self.Y0, self.X1, self.Y1 = rect_of(self.board_cfg)
@@ -520,7 +598,9 @@ class BoardBuilder:
     # ------------------------------------------------------------- run
     def build(self):
         comps, pad_net, nets = parse_netlist(self.netlist)
-        self.comps, self.pad_net = comps, pad_net
+        self.comps = comps
+        self.pad_net, self.expected_alias_pads = resolve_pad_aliases(
+            comps, pad_net, self.parts_dir)
         self.identity_fields = parse_identity_fields(self.netlist)
         self.seed_uuids()
         self.board = pcbnew.BOARD()
@@ -1042,6 +1122,13 @@ class BoardBuilder:
         bottom_count = 0
         for ref, (fpid, val) in sorted(self.comps.items()):
             fp = self.res.load(ref, fpid, val)
+            if ref in getattr(self, "expected_alias_pads", {}):
+                actual = {p.GetNumber() for p in fp.Pads() if p.GetNumber()}
+                expected = self.expected_alias_pads[ref]
+                if actual != expected:
+                    die(f"{ref}: footprint pads disagree with evidenced "
+                        f"pin_aliases (missing {sorted(expected - actual)}, "
+                        f"extra {sorted(actual - expected)})")
             fp.SetReference(ref)
             fp.SetValue(val)
             for name, value in self.identity_fields.get(ref, {}).items():

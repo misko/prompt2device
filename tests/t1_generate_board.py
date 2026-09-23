@@ -20,6 +20,107 @@ MODEL_COVERAGE = SCRIPTS / "model_coverage_check.py"
 LC = ROOT / "archived_projects" / "cook-loadcell"
 HUB4 = ROOT / "archived_projects" / "usb-hub-3s-v4"
 PLUTO_RX2 = ROOT / "archived_projects" / "pluto-rx2-8way"
+CROW_USB = ROOT / "projects" / "crow-usb-carrier-v1"
+
+
+@test("native USB4105 aliases preserve every logical contact and NC land")
+def t_native_usb4105_aliases():
+    import pcbnew
+    sys.path.insert(0, str(SCRIPTS))
+    from generate_board_generic import resolve_pad_aliases
+    logical = {
+        ("J_USB", str(i)): ("NC6" if i == 6 else "NC14" if i == 14 else
+                            "GND" if i in (1, 8, 9, 16, 17) else
+                            "VBUS" if i in (2, 7, 10, 15) else f"USB{i}")
+        for i in range(1, 18)
+    }
+    mapped, expected = resolve_pad_aliases(
+        {"J_USB": ("crow_usb_carrier_v1:GCT_USB4105_GF_A_120",
+                   "USB4105-GF-A-120")}, logical, CROW_USB / "02_parts")
+    fp = pcbnew.FootprintLoad(
+        str(CROW_USB / "03_src/lib/crow_usb_carrier_v1.pretty"),
+        "GCT_USB4105_GF_A_120")
+    check(fp is not None, "native USB4105 footprint loads")
+    physical = {p.GetNumber() for p in fp.Pads() if p.GetNumber()}
+    eq(expected["J_USB"], physical, "all 17 declared physical contacts")
+    eq(len(mapped), 17, "no logical contact dropped or merged")
+    eq(mapped[("J_USB", "A8")], "NC6", "SBU1 no-connect")
+    eq(mapped[("J_USB", "B8")], "NC14", "SBU2 no-connect")
+    eq(mapped[("J_USB", "SH")], "GND", "shell")
+
+
+@test("board alias resolver rejects unevidenced, missing and conflicting maps",
+      kind="known_bad")
+def t_native_alias_fail_closed():
+    import yaml
+    sys.path.insert(0, str(SCRIPTS))
+    from generate_board_generic import FloorplanError, resolve_pad_aliases
+
+    d = tmpdir("gbg_alias_")
+    parts = d / "02_parts" / "PART"
+    parts.mkdir(parents=True)
+    base = {"mpn": "PART", "footprint": "fixture:part",
+            "pins": {"A": "GND", "B": "NC", "C": "GND"},
+            "pin_aliases": {
+                "A": {"schematic": "1", "footprint": "A", "why": "drawing",
+                      "evidence": "fixture drawing"},
+                "B": {"schematic": "2", "footprint": "B", "why": "drawing",
+                      "evidence": "fixture drawing"},
+                "C": {"schematic": "3", "footprint": "C", "why": "drawing",
+                      "evidence": "fixture drawing"}}}
+    comps = {"J1": ("fixture:part", "PART")}
+
+    def attempt(doc, nodes):
+        (parts / "part.yaml").write_text(yaml.safe_dump(doc))
+        return resolve_pad_aliases(comps, {("J1", k): v for k, v in nodes.items()},
+                                   d / "02_parts")
+
+    good, pins = attempt(base, {"1": "GND", "3": "GND"})
+    eq(pins["J1"], {"A", "B", "C"}, "unused NC pad stays declared")
+    eq(good, {("J1", "A"): "GND", ("J1", "C"): "GND"},
+       "unconnected NC has no invented net")
+    cases = [
+        (lambda x: x["pin_aliases"]["A"].pop("evidence"),
+         {"1": "GND"}, "why and evidence"),
+        (lambda x: x["pin_aliases"].pop("B"),
+         {"1": "GND", "2": "NC"}, "no evidenced alias"),
+        (lambda x: x["pin_aliases"]["B"].update(
+            {"footprint": "A", "fused": True}),
+         {"1": "GND"}, "matching functions"),
+        (lambda x: x["pin_aliases"]["C"].update(
+            {"footprint": "A", "fused": True}),
+         {"1": "GND", "3": "OTHER"}, "conflicting nets"),
+    ]
+    for change, nodes, message in cases:
+        doc = json.loads(json.dumps(base))
+        change(doc)
+        try:
+            attempt(doc, nodes)
+        except FloorplanError as error:
+            contains(str(error), message, "alias failure diagnostic")
+        else:
+            check(False, f"invalid alias passed: {message}")
+    (parts / "part.yaml").write_text(yaml.safe_dump(base))
+    try:
+        resolve_pad_aliases({"J1": ("fixture:part", "UNKNOWN")},
+                            {("J1", "1"): "GND"}, d / "02_parts")
+    except FloorplanError as error:
+        contains(str(error), "does not identify that part",
+                 "same footprint cannot establish part identity")
+    else:
+        check(False, "unknown value borrowed alias from matching footprint")
+
+
+@test("board aliases leave identity parts unchanged")
+def t_native_alias_identity():
+    sys.path.insert(0, str(SCRIPTS))
+    from generate_board_generic import resolve_pad_aliases
+    original = {("R1", "1"): "VIN", ("R1", "2"): "GND"}
+    resolved, expected = resolve_pad_aliases(
+        {"R1": ("Resistor_SMD:R_0402_1005Metric", "10k")},
+        original, CROW_USB / "02_parts")
+    eq(resolved, original, "native number and net preserved")
+    eq(expected, {}, "no alias constraints for identity part")
 
 
 def gen(cfg, out, cwd=LC, expect_ok=True):
@@ -69,7 +170,7 @@ def archived_config(project, scratch):
     return path
 
 
-def _isolated_pad_consumer(patterns, *, sides=None):
+def _isolated_pad_consumer(patterns, *, sides=None, expected_alias_pads=None):
     """Call the real place_parts consumer with native pads, without a BOARD.
 
     The fake container owns Add/GetFootprints only. No BoardBuilder constructor,
@@ -103,6 +204,7 @@ def _isolated_pad_consumer(patterns, *, sides=None):
     builder.board = Container()
     builder.pad_net = {(r, n): ('GND' if n == '2' else 'OTHER')
                        for r in builder.comps for n in ('1', '2')}
+    builder.expected_alias_pads = expected_alias_pads or {}
     builder.netmap = {'GND': pcbnew.NETINFO_ITEM(None, 'GND', 1),
                       'OTHER': pcbnew.NETINFO_ITEM(None, 'OTHER', 2)}
     builder.say = lambda message: None
@@ -111,6 +213,18 @@ def _isolated_pad_consumer(patterns, *, sides=None):
          patch.object(pcbnew, 'SaveBoard', side_effect=AssertionError('SaveBoard forbidden')):
         eq(builder.place_parts(), 3, 'actual consumer placement count')
     return builder
+
+
+@test("board generator refuses a missing unconnected alias pad", kind="known_bad")
+def t_native_alias_missing_nc_footprint_pad():
+    sys.path.insert(0, str(SCRIPTS))
+    from generate_board_generic import FloorplanError
+    try:
+        _isolated_pad_consumer([], expected_alias_pads={"C1": {"1", "2", "NC"}})
+    except FloorplanError as error:
+        contains(str(error), "missing ['NC']", "missing NC land diagnostic")
+    else:
+        check(False, "missing unconnected alias pad passed")
 
 
 def _isolated_modes(builder):
