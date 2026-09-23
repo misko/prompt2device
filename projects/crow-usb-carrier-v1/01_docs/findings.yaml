@@ -3,10 +3,11 @@ target: DESIGN_CLEAN
 gates:
 - id: USB-commission
   required_for: DESIGN_CLEAN
-  state: passed
+  state: pending
   owner: systems
-  closes_when: Replace seed contracts, close source-admission facts and satisfy commissioning
-    requirements before removing the hold.
+  closes_when: Reconcile D5 JLCPCB stock/population for every non-through-hole part,
+    replace the former ADC secondary-assembly plan, and regrade source admission before
+    removing the hold.
   evidence:
   - 01_docs/BRIEF.md
   - 01_docs/journal/commission.md
@@ -146,3 +147,17 @@ findings:
   - 01_docs/research/2026-09-22-hardware-software-interface.md
   - 01_docs/research/2026-09-22-source-selection-verification.md
   - 01_docs/research/2026-09-22-source-power-protection-disposition.md
+- id: USB-JLC-population
+  state: open
+  blocks_at_or_above: DESIGN_CLEAN
+  owner: sourcing
+  finding: D5 requires JLC-stocked and JLC-populated non-through-hole parts. Current
+    ADC and seven SMD build shortages need source/architecture backtrack; buffer-only
+    rows and THT population are separately audited. Distributor supply is not closure.
+  closes_when: Qualify exact JLC-stocked non-through-hole selections for the build,
+    verify JLC population/process scope, regenerate and independently review affected
+    source and block interfaces.
+  evidence:
+  - 01_docs/BRIEF.md
+  - 03_src/rules/assembly.yaml
+  - 01_docs/sourcing/sourcing-review-2026-09-23.md

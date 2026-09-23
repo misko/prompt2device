@@ -1,16 +1,16 @@
 # Project status
 
-<!-- pause-state:0c0667abf5a416f1f621c974dedce195c12b81b8832aec60d9703b66d7f8911c -->
+<!-- pause-state:2919951a24efdd0e569925edf2a9ffec42ebb51adc837538ee1da0a7f2a7c9e1 -->
 
-- Phase: `schematic`
+- Phase: `sourcing`
 - State: **PAUSED**
 - Checkpoint: `03_tscircuit/build/circuit.json` (`ead8cb33c07a`)
-- Blocker: J-PCBA-PRELAYOUT requires actual provider availability/economic response for 84 exact codes; response template generated, no placement started
-- Next command: `python3 skills/jlcpcb-fab/scripts/jlc_pcba_availability.py grade projects/crow-usb-carrier-v1/06_build/sourcing/prelayout_request.json projects/crow-usb-carrier-v1/06_build/sourcing/prelayout_response.csv --out projects/crow-usb-carrier-v1/06_build/sourcing/prelayout_receipt.json`
+- Blocker: D5 requires JLC stock and population for all non-through-hole parts; ADC architecture and SMD shortages reopened; old provider request stale
+- Next command: `Resolve D5 source selections and population, then regrade commission admission before invoking rebuild_all.sh`
 
 ## Bound receipts
 
-- `06_build/verification/pipeline/electrical_closure.json` — `adf49bc658e3`
+- None
 
 This file is generated from `01_docs/pause_state.json`; edit the manifest with
 `pause_state.py record`, not this view.

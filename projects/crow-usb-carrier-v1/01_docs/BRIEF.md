@@ -139,3 +139,8 @@ The source power/protection disposition is reviewed; its native-layout and
 physical qualifications remain in the open final-design findings. A1/A2 remain the retained
 Crow design assumptions; Q1/Q2 remain unanswered. No firmware or purchase work
 is authorized by this reconciliation.
+
+### D5 — 2026-09-23 — JLCPCB population and stock requirement
+> We need JLCPCB to populate the non through hole components, they need to be in stock
+
+Impact: every non-through-hole component must be supplied from in-stock JLCPCB inventory and populated by JLCPCB. Distributor stock, consignment assumptions, secondary assembly and design-only sourcing-risk acceptance cannot substitute for this requirement. Reopen ADC selection and every SMD sourcing shortfall before physical placement. The prior U_ADC secondary-assembler plan is superseded. Through-hole exceptions may be evaluated separately; none are automatically excluded. No order or expenditure is authorized.

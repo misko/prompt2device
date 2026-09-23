@@ -490,3 +490,7 @@ Set stitch.via.tiers and stitch.astar_fallback.via to the existing0.60/0.30mm or
 - Delegated active/passive sourcing to SOL and connector identity/new buffer-only rows to Terra. Refreshed directJLC full84code census:70pass build+150,14fail (9build shortages,5buffer-only). Exact distributor observations provide numerical alternatives for all14; detailed qualifications and freshness limits in01_docs/sourcing/sourcing-review-2026-09-23.md.
 - Molex exact manufacturer aliases resolve C192562 naming discrepancy. No part replacements. SN74LVC1G125DCKT now has one observed qualifying supply pool; historical85/85two-pool status is not current proof.
 - Prepared concrete design-only continuation proposal and requested explicit sourcing-risk acceptance, as required by the existing policy. Provider response remains unfilled; no placement or manufacturing admission is claimed.
+
+## 2026-09-23 — D5 JLC-only non-through-hole backtrack
+- Recorded user directive verbatim. Reopened source admission and removed U_ADC secondary-assembler population exemption. Existing source is preserved as a noncompliant candidate, not a qualified board. Old84code prelayout request is stale against changed assembly policy and must not be promoted.
+- SOL researching JLC-stocked ADC architecture and SMD replacements; Terra auditing actual footprint population types. No distributor-risk override adopted, no through-hole population assumed, no placement started.
