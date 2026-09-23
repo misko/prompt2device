@@ -14,12 +14,16 @@ datasheet:
   note: 'p2 GRM32ER71A476KE15-04CA exact family plus L packaging: 47uF +/-10%, DC10V X7R, 1210/3225, nominal3.2x2.5x2.5mm, L plastic W8P4 1000/reel. Specifications as of Jun.26,2026. Reference sheet requires approval sheet before ordering; typical characteristics do not guarantee effective capacitance or transient performance.'
   provenance: Manufacturer-authored PDF independently inspected from exact captured bytes on 2026-09-08; copied unchanged into this carrier dossier. Original public manufacturer endpoint https://pim.murata.com/asset/pim4/ceramicCapacitorSMD/GRM32ER71A476KE15-04CA-EN_PDF_CERAMICCAPACITORSMD?lastModifiedDatetime=20260730173643; immutable capture provenance retained in the 2026-09-08 authority-source packet. Local binding is not independent pin/footprint review, sourcing allocation, approval sheet, physical qualification or order release.
 package: "1210 (3225 metric), 2.5 mm nominal thickness"
-footprint: Capacitor_SMD:C_1210_3225Metric
-escape: {style: passive, pitch: 1.0, tier_required: jlc_2layer_default, checked: "Murata exact 3.2 x 2.5 x 2.5 mm body and 1210 land reviewed 2026-09-02"}
+footprint: crow_usb_power_aux:Murata_GRM32E_1210
+escape: {style: passive, pitch: 1.0, tier_required: jlc_2layer_default, checked: "June 2026 Murata Fig. 3 test-substrate land transcribed for candidate; assembly stencil/placement review owed"}
 pins: {1: A, 2: B}
 limits: {capacitance: 47uF, tolerance: 10pct, rated_voltage: 10V, dielectric: X7R, operating_temperature: "-55C to +125C"}
 asserts:
-  - {assert: value, equals: 47u, tolerance_pct: 10, why: "Three parts provide the derated AP63205 output bank; a fourth is the post-bead op-amp bulk capacitor."}
-gotchas: ["Use exact active KE15L; the older GRM32ER61A476ME20L selection is NRND and is not an authorized substitute."]
-verified: "CITED: official Murata exact page reports in-production GRM32ER71A476KE15L, 47uF +/-10%, 10V, X7R, -55C to +125C and EIA 1210; read 2026-09-02."
-sourcing: {lcsc: C84494, alternates: [], note: "Exact MPN/code match queried from the live JLC catalog 2026-09-02; observed catalog stock 50205 for 20 required, with authenticated PCBA allocation still owed."}
+  - {assert: value, equals: 47u, tolerance_pct: 10, why: "Ten-part Crow bank: TPSM output three, TPS62825 outputs one each, LT3045 input one/output two, OPA reservoir one; Murata model screen is typical only."}
+gotchas:
+  - "Murata base-part SimSurfing small-signal models are typical; production effective C, ESR and ESL require source-independent review or lot measurements."
+  - "At LT3045 output the symmetric model pair leaves less than 1.6715 nH for all shared interconnect under ADI assembled ESL <2 nH. P3 quiet_power must extract or measure this; Kelvin OUTS and common SET/output ground required."
+  - "Murata sheet p6 Fig. 3 supplies test-substrate copper land, not assembly stencil/placement approval; revised 1210 is not footprint-compatible with TDK CKG57K J-lead."
+  - "Use exact active KE15L; the older GRM32ER61A476ME20L selection is NRND and is not an authorized substitute."
+verified: "CITED: official Murata exact sheet reports 47uF +/-10%, 10V, X7R, -55C to +125C and EIA 1210; model-derived bank margins are conditional engineering screens, not qualified production guarantees."
+sourcing: {lcsc: C84494, alternates: [], note: "Serialized direct live JLC exact-code/MPN result 2026-09-23: 56478 catalog stock for 50 required across five boards; PCBA allocation at order time owed. Evidence /tmp/crow-jlc-adc-20260923/raw/C84494.json."}

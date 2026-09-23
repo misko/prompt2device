@@ -43,3 +43,13 @@ export const TdkCkg57KJLead = () => <footprint>
   <fabricationnoterect pcbX="0mm" pcbY="0mm" width="6.5mm" height="5.5mm" strokeWidth="0.1mm" />
   <courtyardrect pcbX="0mm" pcbY="0mm" width="8.1mm" height="6.0mm" />
 </footprint>
+
+/** Murata GRM32ER71A476KE15L June 2026 sheet p6, Fig. 3 test-substrate
+ * land: 5.0-mm total span, 2.2-mm inner gap, 2.9-mm pad height.
+ * Copper only; stencil and placement require independent assembly review. */
+export const MurataGrm32e1210 = () => <footprint>
+  <smtpad portHints={["1"]} pcbX="-1.8mm" pcbY="0mm" width="1.4mm" height="2.9mm" shape="rect" rectBorderRadius="0.14mm" />
+  <smtpad portHints={["2"]} pcbX="1.8mm" pcbY="0mm" width="1.4mm" height="2.9mm" shape="rect" rectBorderRadius="0.14mm" />
+  <fabricationnoterect pcbX="0mm" pcbY="0mm" width="3.5mm" height="2.7mm" strokeWidth="0.1mm" />
+  <courtyardrect pcbX="0mm" pcbY="0mm" width="5.5mm" height="3.4mm" />
+</footprint>

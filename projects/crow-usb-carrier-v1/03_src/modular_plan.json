@@ -478,15 +478,12 @@
         "C_U_1V8_IN_1",
         "C_U_1V8_IN_2",
         "C_U_1V8_OUT_1",
-        "C_U_1V8_OUT_2",
         "C_U_3V3X_IN_1",
         "C_U_3V3X_IN_2",
         "C_U_3V3X_OUT_1",
-        "C_U_3V3X_OUT_2",
         "C_U_CORE_IN_1",
         "C_U_CORE_IN_2",
         "C_U_CORE_OUT_1",
-        "C_U_CORE_OUT_2",
         "C_XU_3V3_OK_CT",
         "C_XU_3V3_OK_VDD",
         "L_U_1V8",
@@ -1429,15 +1426,12 @@
           "C_U_1V8_IN_1.2",
           "C_U_1V8_IN_2.2",
           "C_U_1V8_OUT_1.2",
-          "C_U_1V8_OUT_2.2",
           "C_U_3V3X_IN_1.2",
           "C_U_3V3X_IN_2.2",
           "C_U_3V3X_OUT_1.2",
-          "C_U_3V3X_OUT_2.2",
           "C_U_CORE_IN_1.2",
           "C_U_CORE_IN_2.2",
           "C_U_CORE_OUT_1.2",
-          "C_U_CORE_OUT_2.2",
           "C_XU_3V3_OK_CT.2",
           "C_XU_3V3_OK_VDD.2",
           "R_CORE_FB_BOTTOM.2",
@@ -1634,7 +1628,6 @@
       "endpoints": {
         "digital_power": [
           "C_U_CORE_OUT_1.1",
-          "C_U_CORE_OUT_2.1",
           "L_U_CORE.2",
           "R_CORE_FB_TOP.1",
           "U_CORE_OK.5"
@@ -1777,7 +1770,6 @@
         "digital_power": [
           "C_CORE_OK.1",
           "C_U_1V8_OUT_1.1",
-          "C_U_1V8_OUT_2.1",
           "L_U_1V8.2",
           "R_CORE_EN_PU.1",
           "R_XU_RST_PU.1",
@@ -1848,7 +1840,6 @@
         ],
         "digital_power": [
           "C_U_3V3X_OUT_1.1",
-          "C_U_3V3X_OUT_2.1",
           "L_U_3V3X.2",
           "U_3V3X.3",
           "U_XU_3V3_OK.1"

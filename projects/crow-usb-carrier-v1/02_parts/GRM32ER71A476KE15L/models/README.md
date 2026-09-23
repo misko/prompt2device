@@ -1,0 +1,5 @@
+# Murata SimSurfing small-signal model captures
+
+These are the exact bytes returned on 2026-09-23 by Murata SimSurfing for the base die `GRM32ER71A476KE15` at the stated temperature and DC bias. The exact selected `GRM32ER71A476KE15L` is the L reel-packaging code for that die. Source viewer: https://ds.murata.com/simsurfing/mlcc.html?oripartnumbers=%5B%22GRM32ER71A476KE15L%22%5D&partnumbers=%5B%22GRM32ER71A476KE15%22%5D. The files are *typical simulation models*, applicable to small-signal conditions over the stated model frequency range. They do not specify production min/max effective capacitance, ESR, or ESL. No physical-network ESL or regulator stability pass follows from them.
+
+The files cover -55 C at 0.92, 1.818, 3.38, 5.05 and 5.099 V and 125 C at 3.38 V. The -55 C 5.099 V case explicitly screens the possible TPSM replacement's upper output limit. Verify each file SHA-256 using `sha256sum *.txt`; only CRLF line endings were normalized to LF; model coefficients and comments are unchanged. Independent review must confirm model applicability and lot behavior before source acceptance.
