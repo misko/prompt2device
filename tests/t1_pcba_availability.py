@@ -939,6 +939,44 @@ def t_public_catalog_prelayout_rejects_forged_row():
           f"forged-row diagnosis missing: {result}")
 
 
+@test("public-catalog prelayout binds every observed MPN to exact source", kind="known_bad")
+def t_public_catalog_prelayout_rejects_forged_mpn():
+    request, evidence, decision = public_catalog_fixture()
+    payload = json.loads(evidence.read_text(encoding="utf-8"))
+    payload["lines"][0]["mpn"] = "WRONG-MPN"
+    evidence.write_text(json.dumps(payload), encoding="utf-8")
+    rows = [{"ref": ref, "mpn": "RES-1", "jlc_codes": ["C100"],
+             "dossier": None} for ref in ("R1", "R2")]
+    result = manufacturing_readiness._catalog_prelayout_check(
+        request, evidence, decision, exact_rows=rows)
+    check(result["status"] == "FAIL" and "catalog MPN" in result["detail"],
+          f"public screen accepted a forged catalog MPN: {result}")
+
+
+@test("public-catalog prelayout accepts only an exact dossier-bound catalog alias")
+def t_public_catalog_prelayout_exact_dossier_alias():
+    request, evidence, decision = public_catalog_fixture()
+    payload = json.loads(evidence.read_text(encoding="utf-8"))
+    payload["lines"][0]["mpn"] = "RES1"
+    evidence.write_text(json.dumps(payload), encoding="utf-8")
+    dossier = request.parent / "part.yaml"
+    dossier.write_text(
+        "mpn: RES-1\nsourcing: {lcsc: C100, catalog_mpn: RES1}\n",
+        encoding="utf-8")
+    rows = [{"ref": ref, "mpn": "RES-1", "jlc_codes": ["C100"],
+             "dossier": str(dossier)} for ref in ("R1", "R2")]
+    result = manufacturing_readiness._catalog_prelayout_check(
+        request, evidence, decision, exact_rows=rows)
+    eq(result["status"], "PASS", "exact dossier alias")
+    dossier.write_text(
+        "mpn: RES-1\nsourcing: {lcsc: C999, catalog_mpn: RES1}\n",
+        encoding="utf-8")
+    result = manufacturing_readiness._catalog_prelayout_check(
+        request, evidence, decision, exact_rows=rows)
+    check(result["status"] == "FAIL" and "alias is not bound" in result["detail"],
+          f"alias escaped its exact code: {result}")
+
+
 @test("public-catalog prelayout rejects missing scope decision", kind="known_bad")
 def t_public_catalog_prelayout_rejects_unbounded_decision():
     request, evidence, decision = public_catalog_fixture()

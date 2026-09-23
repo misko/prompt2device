@@ -255,51 +255,50 @@ $PY "$FS/manufacturing_readiness.py" grade . --phase selection \
     --json 06_build/verification/manufacturing_readiness_selection.json \
     || { echo "GATE FAILED [1b] PCB-SOURCING: exact source code/dossier identity or coded R/C value is not ready for part freeze"; exit 1; }
 
-# J-PCBA-PRELAYOUT — the complete source BOM exists, but placement/routing
-# spend has not started. LCSC catalog stock is advisory and cannot satisfy this
-# operator checkpoint. Emit the exact request once, pause visibly, and resume
-# after the JLCPCB PCBA response has been captured and graded.
+# J-PCBA-PRELAYOUT — D11 permits public records for design continuation only.
+# The exact request must still reproduce from the current generated circuit;
+# the public stock sidecar must pass the D7/D10 thresholds before layout spend.
+# An authenticated PCBA response is not part of this project authority.
 PCBA_DIR=06_build/sourcing
 PCBA_REQUEST="$PCBA_DIR/prelayout_request.json"
-PCBA_RESPONSE="$PCBA_DIR/prelayout_response.csv"
-PCBA_RECEIPT="$PCBA_DIR/prelayout_receipt.json"
+PUBLIC_STOCK="$PCBA_DIR/public-stock.json"
+PUBLIC_DECISION=01_docs/decisions/0010-public-records-design-admission.md
 BUILD_QUANTITY=$(awk '$1 == "build_quantity:" {print $2; exit}' 03_src/rules/assembly.yaml)
+SOURCING_AUTHORITY=$(awk '$1 == "sourcing_authority:" {print $2; exit}' 03_src/rules/assembly.yaml)
 if ! [[ "$BUILD_QUANTITY" =~ ^[1-9][0-9]*$ ]]; then
     echo "GATE INCOMPLETE [1c] J-PCBA-PRELAYOUT: assembly.yaml needs a positive build_quantity"
     exit 2
 fi
-if [ ! -f "$PCBA_RECEIPT" ]; then
-    mkdir -p "$PCBA_DIR"
-	if { [ -f "$PCBA_REQUEST" ] && [ ! -f "$PCBA_RESPONSE" ]; } || \
-	   { [ ! -f "$PCBA_REQUEST" ] && [ -f "$PCBA_RESPONSE" ]; }; then
-		echo "GATE INCOMPLETE [1c] J-PCBA-PRELAYOUT: request/response pair is partial; preserve it and resolve the missing artifact explicitly"
-		exit 2
-	fi
-	if [ -f "$PCBA_REQUEST" ] && [ -f "$PCBA_RESPONSE" ]; then
-		$PY "$FS/jlc_pcba_availability.py" verify-request "$PCBA_REQUEST" \
-			--bom "$CJ" --assembly 03_src/rules/assembly.yaml \
-			--procurement-policy 01_docs/sourcing/procurement-policy.yaml \
-			--build-quantity "$BUILD_QUANTITY" --phase prelayout \
-			|| { echo "GATE INCOMPLETE [1c] J-PCBA-PRELAYOUT: saved request/response belong to stale design inputs; preserve any operator evidence, then regenerate both from the current circuit"; exit 2; }
-	fi
-	if [ ! -f "$PCBA_REQUEST" ] && [ ! -f "$PCBA_RESPONSE" ]; then
-        $PY "$FS/jlc_pcba_availability.py" prepare "$CJ" \
-            --assembly 03_src/rules/assembly.yaml \
-            --procurement-policy 01_docs/sourcing/procurement-policy.yaml \
-            --build-quantity "$BUILD_QUANTITY" --phase prelayout \
-            --out "$PCBA_REQUEST" --response-template "$PCBA_RESPONSE" \
-            || { echo "GATE FAILED [1c] J-PCBA-PRELAYOUT: could not prepare exact JLC request"; exit 1; }
-    fi
-    echo "GATE INCOMPLETE [1c] J-PCBA-PRELAYOUT: check/upload $PCBA_REQUEST, fill $PCBA_RESPONSE, then run:"
-    echo "  $PY $FS/jlc_pcba_availability.py grade $PCBA_REQUEST $PCBA_RESPONSE --out $PCBA_RECEIPT"
+if [ "$SOURCING_AUTHORITY" != public-observations ]; then
+    echo "GATE FAILED [1c] J-PCBA-PRELAYOUT: D11 requires sourcing_authority: public-observations"
+    exit 1
+fi
+mkdir -p "$PCBA_DIR"
+if [ ! -f "$PCBA_REQUEST" ]; then
+    $PY "$FS/jlc_pcba_availability.py" prepare "$CJ" \
+        --assembly 03_src/rules/assembly.yaml \
+        --procurement-policy 01_docs/sourcing/procurement-policy.yaml \
+        --build-quantity "$BUILD_QUANTITY" --phase prelayout \
+        --out "$PCBA_REQUEST" \
+        || { echo "GATE FAILED [1c] J-PCBA-PRELAYOUT: could not prepare exact public-screen request"; exit 1; }
+fi
+$PY "$FS/jlc_pcba_availability.py" verify-request "$PCBA_REQUEST" \
+    --bom "$CJ" --assembly 03_src/rules/assembly.yaml \
+    --procurement-policy 01_docs/sourcing/procurement-policy.yaml \
+    --build-quantity "$BUILD_QUANTITY" --phase prelayout \
+    || { echo "GATE INCOMPLETE [1c] J-PCBA-PRELAYOUT: saved public request is stale against the current circuit and policy"; exit 2; }
+if [ ! -f "$PUBLIC_STOCK" ]; then
+    echo "GATE INCOMPLETE [1c] J-PCBA-PRELAYOUT: fresh public-stock.json is required for the exact request; no allocation is claimed"
     exit 2
 fi
 $PY "$FS/manufacturing_readiness.py" grade . --phase prelayout \
-    --pcba-receipt "$PCBA_RECEIPT" \
+    --catalog-request "$PCBA_REQUEST" \
+    --catalog-evidence "$PUBLIC_STOCK" \
+    --catalog-decision "$PUBLIC_DECISION" \
     --json 06_build/verification/manufacturing_readiness_prelayout.json \
     --stage-bundle "$PIPELINE_EVIDENCE/bundles/part_freeze" \
     --stage-result "$PIPELINE_EVIDENCE/S-PART-FREEZE.stage.json" \
-    || { echo "GATE FAILED [1c] J-PCBA-PRELAYOUT: exact JLCPCB PCBA availability is missing, stale, substituted, or insufficient"; exit 1; }
+    || { echo "GATE FAILED [1c] J-PCBA-PRELAYOUT: exact public catalog screen is missing, stale, substituted, or insufficient"; exit 1; }
 
 # [2] ERC gate — 0 ERRORS. TWO RUNS, AND THE SPLIT IS THE CANON'S, NOT A
 # SOFTENING. Canon S4 and the kicad-pcb golden rules both say the gate is

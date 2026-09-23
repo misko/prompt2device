@@ -960,6 +960,7 @@ TWO ORPHANS THIS FOLDER'S OWN PROSE HAD HIDDEN, both found by the first run:
 | `service` | `assembly_coverage.py` | ordered assembly service used when grading whether CPL parts are process-placeable |
 | `sides` | `assembly_coverage.py` | ordered population side set used by the process-placeability gate |
 | `build_quantity` | jlc_pcba_availability.py, release_freshness_check.py | quantity multiplier bound into prelayout availability and final allocation receipts; legacy catalog grading also reads it |
+| `sourcing_authority` | `manufacturing_readiness.py` | selects explicit public-observations authority for the prelayout design screen; Crow's driver also fails closed on absence or another value |
 | `public_stock_surplus` | jlc_stock_check.py, release_freshness_check.py | non-negative absolute public-catalog buffer added once per aggregated LCSC BOM line; new projects configure 150 |
 | `public_stock_surplus_overrides` | stock_surplus_policy.py | validates the optional exact-part list and Crow D10 authority; no global surplus change |
 | `public_stock_surplus_overrides[].*` | stock_surplus_policy.py | closed lcsc/mpn/surplus/directive fields; only accepted Crow D10 C6362698/XU316 zero-surplus override; consumers additionally bind U_XU designator and quantity |

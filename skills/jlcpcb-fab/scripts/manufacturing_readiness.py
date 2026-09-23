@@ -4,11 +4,11 @@
 Selection mode runs before part freeze and proves that every source component
 has exactly one JLC code or an explicit unassembled/manual disposition, that
 every declared MPN resolves to one exact dossier, and that the existing part-
-facts and source-value gates pass.  Prelayout mode additionally requires a
-quantity-expanded JLCPCB PCBA receipt whose availability and procurement-cost
-predicates both pass. Order mode requires a fresh ALLOCATED receipt and quote
-for the exact release BOM instead of treating catalog stock, raw MOQ, or an
-earlier AVAILABLE result as permanent.
+facts and source-value gates pass. Prelayout mode additionally requires either
+a quantity-expanded JLCPCB PCBA receipt or an explicitly bounded public-catalog
+design screen. Order mode requires a fresh ALLOCATED receipt and quote for the
+exact release BOM instead of treating catalog stock, raw MOQ, or an earlier
+AVAILABLE result as permanent.
 """
 from __future__ import annotations
 
@@ -396,6 +396,30 @@ def _catalog_prelayout_check(request_path: Path | None,
             failures.append(f"catalog {field} is not integral")
     for code, row in wanted.items():
         got = observed.get(code) or {}
+        if exact_rows is not None:
+            source = [item for item in exact_rows
+                      if code in item.get("jlc_codes", [])]
+            if sorted(item.get("ref") for item in source) != sorted(
+                    row.get("designators") or []):
+                failures.append(f"{code}: catalog request differs from exact source population")
+            for item in source:
+                source_mpn = item.get("mpn")
+                accepted_mpns = {source_mpn}
+                dossier_path = item.get("dossier")
+                if dossier_path:
+                    dossier = yaml.safe_load(
+                        Path(dossier_path).read_text(encoding="utf-8-sig")) or {}
+                    catalog_mpn = (dossier.get("sourcing") or {}).get("catalog_mpn")
+                    if catalog_mpn is not None:
+                        if not isinstance(catalog_mpn, str) or not catalog_mpn.strip():
+                            failures.append(f"{code}: invalid dossier catalog_mpn alias")
+                        elif (dossier.get("mpn") != source_mpn or
+                              (dossier.get("sourcing") or {}).get("lcsc") != code):
+                            failures.append(f"{code}: catalog_mpn alias is not bound to exact dossier identity")
+                        else:
+                            accepted_mpns.add(catalog_mpn)
+                if not source_mpn or got.get("mpn") not in accepted_mpns:
+                    failures.append(f"{code}: catalog MPN {got.get('mpn')!r} differs from exact source {source_mpn!r}")
         if got.get("status") != "OK" and code not in covered_failures:
             failures.append(f"{code}: catalog status {got.get('status')!r}")
             continue
@@ -589,6 +613,7 @@ def grade(project: Path, *, phase: str, release: Path | None = None,
             distributors = {}
             assembly_rules = yaml.safe_load(
                 assembly.read_text(encoding="utf-8-sig")) or {}
+            sourcing_authority = assembly_rules.get("sourcing_authority")
             configured_surplus, overrides = parse_policy(assembly_rules, project)
             if distributor_policy is not None:
                 distributors, distributor_inputs = _distributor_prelayout_rows(
@@ -603,6 +628,13 @@ def grade(project: Path, *, phase: str, release: Path | None = None,
                 expected_min_surplus=configured_surplus,
                 expected_overrides=overrides,
                 exact_rows=exact['rows'])
+            if (sourcing_authority is not None and
+                    sourcing_authority != "public-observations"):
+                checks["public_catalog_prelayout"] = {
+                    "status": "FAIL",
+                    "detail": "assembly sourcing_authority does not admit public observations",
+                    "output": "public design screen requires explicit project authority",
+                }
             checks["procurement_exposure"] = {
                 "status": checks["public_catalog_prelayout"]["status"],
                 "detail": ("deferred to final JLC uploader under explicit user decision"

@@ -779,6 +779,7 @@ against the `side: bottom` features) are the cheapest first bite.
 | `dropout_mv` | `power_topology.py` | E-TOPO linear dropout bound |
 | `pdiss_max_mw` | `power_topology.py` | E-TOPO linear dissipation bound |
 | `sourcing.lcsc` | `bom_source_check.py, part_facts_check.py, shopping_list.py` | the LCSC code on the BOM |
+| `sourcing.catalog_mpn` | `manufacturing_readiness.py` | optional exact catalog MPN alias bound to this dossier MPN and LCSC code during public prelayout screening |
 | `sourcing.alternates[].lcsc` | `bom_legibility_check.py` | F-ECHO substitution candidates |
 | `sourcing.alternates[].mpn` | `bom_legibility_check.py` | F-ECHO substitution candidates |
 | `sourcing.digikey` | `shopping_list.py` | Q-family distributor lookup |

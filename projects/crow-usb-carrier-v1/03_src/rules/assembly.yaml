@@ -42,6 +42,7 @@ fiducials: none            # `none` + the fab's own statement, or a count/type.
                            # job and cannot be added later. Silence is not allowed:
                            # state `none` deliberately or declare what you placed.
 build_quantity: 5          # quantity-expanded JLC PCBA checks bind to this
+sourcing_authority: public-observations  # D11: public design screen only; order-time uploader check remains
 public_stock_surplus: 150  # D7 user-confirmed absolute buffer per aggregated LCSC line
 public_stock_surplus_overrides:
   - {lcsc: C6362698, mpn: XU316-1024-TQ128-C24, surplus: 0, directive: D10}
