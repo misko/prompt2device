@@ -975,7 +975,7 @@ TWO ORPHANS THIS FOLDER'S OWN PROSE HAD HIDDEN, both found by the first run:
 | `assembly_scope.*` | ADVISORY | human service-scope summary; CPL/BOM/board set identity and bought-process declarations are executable |
 | `order_time_requirements` | ADVISORY | human order checklist; release and JLC uploader gates own the executable obligations |
 | `pcb_process` | ADVISORY | human process summary; exact capability declarations and the realised board own executable process selection |
-| `via_process.*` | `via_process_check.py` | selective via-fill/cap geometry, selector, ordinary-via exclusion and order-remark contract |
+| `via_process.*` | `via_process_check.py` | selective via-fill/cap geometry, selector, ordinary-via exclusion and order-remark contract; Crow permits two declared protected copper diameters (0.50 and 0.35 mm) in the complete 0.20 mm drill family while ordinary 0.30 mm drills stay disjoint |
 
 ### keys: 03_src/rules/power_stages.yaml
 

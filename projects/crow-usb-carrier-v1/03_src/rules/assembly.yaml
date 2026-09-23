@@ -44,15 +44,18 @@ fiducials: none            # `none` + the fab's own statement, or a count/type.
 build_quantity: 5          # quantity-expanded JLC PCBA checks bind to this
 public_stock_surplus: 150  # D7 user-confirmed absolute buffer per aggregated LCSC line
 
-pcb_process: "Proposed JLC advanced order: selectively fill/cap the LT3045 EP 0.20 mm drill family; uploader/vendor acceptance required"
+pcb_process: "Proposed JLC advanced order: selectively fill/cap the complete 0.20 mm drill family for LT3045 EP and TMUX4827 B2; uploader/vendor acceptance required"
 via_process:
-  protected_geometry: {via_diameter_mm: 0.50, drill_mm: 0.20}
+  protected_geometries:
+  - {via_diameter_mm: 0.50, drill_mm: 0.20}  # six existing U_LDO EP vias
+  - {via_diameter_mm: 0.35, drill_mm: 0.20}  # eight U_ISO B2 center vias
   fabricator_selector:
     kind: drill_family
     protected_drill_mm: 0.20
     ordinary_drill_mm: [0.30]
   order_remark: >-
-    Fill and copper-cap the complete 0.20 mm drill family only. Do not fill or
+    Fill and copper-cap the complete 0.20 mm drill family only: both 0.50 mm
+    U_LDO EP and 0.35 mm U_ISO B2 copper diameters. Do not fill or
     cap the ordinary 0.30 mm drill family. Request selective Type VII process in
     the JLCPCB uploader and retain exact vendor acceptance before payment; stop
     if the uploader does not accept it.

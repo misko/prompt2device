@@ -1,0 +1,12 @@
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+input: board = /tmp/crow-tmux4827-coupon-20260923/coupon.kicad_pcb
+input: floors+relaxations = /tmp/crow-tmux4827-coupon-20260923/coupon.kicad_dru (1 width/clearance rule(s))
+input: clearances = /tmp/crow-tmux4827-coupon-20260923/coupon.kicad_pro
+input: native configuration = /home/mouse9911/.config/kicad/10.0/kicad_advanced (DRC epsilon 500 IU)
+input: model = finite declared widths <=2 mm; adaptive bbox starts (0.03 mm requested scale, five intervals per axis, <=37 proposals, 1 IU edge inset and native admission); 48 directions; 1 mm reach; all other-net/no-net pads on enabled copper layers; native clearance tolerance
+P-LAND physical census: 18 physical / 18 copper / 0 noncopper
+P-LAND denominator coupon: 17 graded / 18 copper pads (0 no declared width floor, 0 nominal same-net POUR, 1 native VIA ON THE LAND, 0 no net, 0 UNREACHED); 0 graded against a SCOPED floor, 0 against a scoped clearance; 0 failing
+routed inventory coupon: 17 graded pad(s) already carry a same-net track; actual geometry/width inventoried outside finite witness policy; nominal pours establish no connectivity
+P-LAND PASS: 1/1 board(s) graded, 0 problem(s)

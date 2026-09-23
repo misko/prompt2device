@@ -49,6 +49,48 @@ thermal_vias:
     drill: 0.20
     at: [[-0.575, -0.94], [-0.575, 0.0], [-0.575, 0.94],
          [0.575, -0.94], [0.575, 0.0], [0.575, 0.94]]
+  # Each 3x3 TMUX4827 has one B2 ground via; outer eight balls launch outward.
+  - ref: U_ISO1
+    pad: '5'
+    size: 0.35
+    drill: 0.20
+    at: [[0.0, 0.0]]
+  - ref: U_ISO2
+    pad: '5'
+    size: 0.35
+    drill: 0.20
+    at: [[0.0, 0.0]]
+  - ref: U_ISO3
+    pad: '5'
+    size: 0.35
+    drill: 0.20
+    at: [[0.0, 0.0]]
+  - ref: U_ISO4
+    pad: '5'
+    size: 0.35
+    drill: 0.20
+    at: [[0.0, 0.0]]
+  - ref: U_ISO5
+    pad: '5'
+    size: 0.35
+    drill: 0.20
+    at: [[0.0, 0.0]]
+  - ref: U_ISO6
+    pad: '5'
+    size: 0.35
+    drill: 0.20
+    at: [[0.0, 0.0]]
+  - ref: U_ISO7
+    pad: '5'
+    size: 0.35
+    drill: 0.20
+    at: [[0.0, 0.0]]
+  - ref: U_ISO8
+    pad: '5'
+    size: 0.35
+    drill: 0.20
+    at: [[0.0, 0.0]]
+
 placement:
   require_anchor: true
   anchors: {}

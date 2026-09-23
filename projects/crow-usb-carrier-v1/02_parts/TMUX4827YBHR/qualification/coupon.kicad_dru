@@ -1,0 +1,4 @@
+(version 1)
+(rule "coupon_advanced_width_floor"
+  (condition "A.NetClass == 'Default'")
+  (constraint track_width (min 0.09mm)))

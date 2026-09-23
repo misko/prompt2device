@@ -69,6 +69,21 @@ export const TiDsg0008a = () => <footprint>
   ])}
 </footprint>
 
+/** TI YBH0009-C02 bump-side-down top view. KiCad +Y is down; tscircuit +Y is up.
+ * JLC advanced 4L coupon: 0.25-mm perimeter lands and 0.35-mm B2 copper.
+ * Native footprint owns B2's 0.25-mm mask/paste openings and Type VII via. */
+export const TiYbh0009C02Tmux4827 = () => <footprint>
+  {([['A',-0.4],['B',0],['C',0.4]] as const).flatMap(([row,y], ri) =>
+    (['1','2','3'] as const).map((col, ci) => {
+      const pin = `${row}${col}`
+      const sourcePin = `${ri * 3 + ci + 1}` // 1=A1 ... 5=B2 ... 9=C3
+      const diameter = pin === 'B2' ? 0.35 : 0.25
+      return <Fragment key={pin}><smtpad portHints={[sourcePin]}
+        pcbX={`${(ci - 1) * 0.4}mm`} pcbY={`${-y}mm`}
+        radius={`${diameter / 2}mm`} shape="circle" /></Fragment>
+    }))}
+</footprint>
+
 export const YageoRt0603 = () => <footprint>{pads([
   ['1',-0.825,0,0.8,0.95,0.2], ['2',0.825,0,0.8,0.95,0.2],
 ])}</footprint>

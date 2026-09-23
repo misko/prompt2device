@@ -2,7 +2,7 @@ import { MurataGrm32e1210 } from "./z_power_aux_footprints"
 import { Fragment } from "react"
 import {
   CirrusCs5308pQfn48, Diodes2N7002kSot23, TiDrc0010j,
-  PanasonicEeeFk8x10, Sot553, TiDck0005a, TiDse0006a, TiDsg0008a,
+  PanasonicEeeFk8x10, Sot553, TiDck0005a, TiDse0006a, TiYbh0009C02Tmux4827,
   Wurth615008160221Rj45, YageoRt0603,
 } from "./z_analog_exact_footprints"
 
@@ -123,10 +123,12 @@ const AnalogChannel = ({ index, vmid, n }: any) => (
     <R name={`R_OUT${index}N`} value="10" a={`OPA_N${index}`} b={`FILTER${index}N`} jlc="C138066" mpn="RC0402FR-0710RL" n={n} />
     {(["P", "N"] as const).flatMap((leg) => [1, 2].map((unit) =>
       <C key={`${leg}${unit}`} name={`C_FILTER${index}${leg}${unit}`} value="15nF" a={`FILTER${index}${leg}`} b="GND" jlc="C97907" mpn="GRM2195C1H153JA01D" footprint="0805" n={n} />))}
-    <Chip name={`U_ISO${index}`} manufacturerPartNumber="TMUX2821DSGR" jlc="C53283916"
-      footprint={<TiDsg0008a />}
-      pinLabels={{ pin1: "S1", pin2: "D1", pin3: "SEL2", pin4: "GND", pin5: "S2", pin6: "D2", pin7: "SEL1", pin8: "VDD", pin9: "EP" }}
-      connections={{ pin1: n(`FILTER${index}P`), pin2: n(`ADC${index}P`), pin3: n("AUDIO_EN"), pin4: n("GND"), pin5: n(`FILTER${index}N`), pin6: n(`ADC${index}N`), pin7: n("AUDIO_EN"), pin8: n("5V_LDO_HOLD"), pin9: n("GND") }} />
+    <Chip name={`U_ISO${index}`} manufacturerPartNumber="TMUX4827YBHR" jlc="C22428234"
+      footprint={<TiYbh0009C02Tmux4827 />}
+      // tscircuit chip pins are numeric aliases: 1=A1, 2=A2, 3=A3, 4=B1,
+      // 5=B2, 6=B3, 7=C1, 8=C2, 9=C3 in the TI bump-side-down top view.
+      pinLabels={{ pin1: "S1A_UNUSED", pin2: "SEL", pin3: "S2A_UNUSED", pin4: "D1", pin5: "GND", pin6: "D2", pin7: "S1B", pin8: "VDD", pin9: "S2B" }}
+      connections={{ pin2: n("AUDIO_EN"), pin4: n(`ADC${index}P`), pin5: n("GND"), pin6: n(`ADC${index}N`), pin7: n(`FILTER${index}P`), pin8: n("5V_LDO_HOLD"), pin9: n(`FILTER${index}N`) }} />
     {/* R_ADC_PD stays within 1.5 mm of its U_ISO output partner. C_ADC_CM is ADC-pin local.
         Both belong to the joint TMUX/ADC physical proof; functional grouping is not placement. */}
     {(["P", "N"] as const).map((leg) => <R key={`pd${leg}`} name={`R_ADC_PD${index}${leg}`} value="10k" a={`ADC${index}${leg}`} b="GND" jlc="C60490" mpn="RC0402FR-0710KL" n={n} />)}

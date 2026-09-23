@@ -1,0 +1,565 @@
+mpn: TMUX4827YBHR
+manufacturer: Texas Instruments
+type: dual_spdt_power_off_protected_analog_switch
+value: TMUX4827YBHR
+status: active
+datasheet:
+  doc_id: SCDS457B
+  revision: SCDS457B
+  url: https://www.ti.com/lit/ds/symlink/tmux4827.pdf
+  local: TMUX4827_SCDS457B.pdf
+  sha256: 3af04d7ae37b0e43c71c1b663a2d055667d94d46b5dc87c9ca2de24ec2295028
+  fetched: '2026-09-23'
+  provenance: Direct TI exact-product primary PDF; coupon-backed package drawing reviewed.
+package: TI_YBH0009_C02_TMUX4827 DSBGA-9 P0.4mm
+footprint: crow_usb_analog:TI_YBH0009_C02_TMUX4827
+escape:
+  style: bga
+  pitch: 0.4
+  tier_required: jlc_4layer_advanced
+  conditions:
+  - center-via-perimeter-outward-coupon
+  center_via_topology:
+    rows: 3
+    cols: 3
+    land_diameter_mm: 0.25
+    center_via_diameter_mm: 0.35
+    center_via_drill_mm: 0.2
+    center_mask_opening_mm: 0.25
+    perimeter_outward_launches: 8
+    coupon:
+      local: qualification/coupon.kicad_pcb
+      sha256: 6f39a73aad46444e6b2256ced0b64a1dea5b9792801c3f705f8b691727ce83b6
+    native_footprint:
+      local: ../../03_src/lib/crow_usb_analog.pretty/TI_YBH0009_C02_TMUX4827.kicad_mod
+      sha256: 54b81c012d1fe62b93ccb83b877aca3f6452764e1c5bf11a055750eef1662d58
+    ball_to_pad:
+      A1: '1'
+      A2: '2'
+      A3: '3'
+      B1: '4'
+      B2: '5'
+      B3: '6'
+      C1: '7'
+      C2: '8'
+      C3: '9'
+  checked: TI SCDS457B YBH drawing pp.32-34; exact 3x3 native coupon DRC 0, P-LAND
+    17/18 with center via on land; independent diagnostic acceptance 2026-09-23. Conditional
+    physical feasibility only; JLC process/assembly acceptance owed.
+pins:
+  '1': S1A_UNUSED
+  '2': SEL
+  '3': S2A_UNUSED
+  '4': D1
+  '5': GND
+  '6': D2
+  '7': S1B
+  '8': VDD
+  '9': S2B
+limits:
+  vdd_min_V: 1.8
+  vdd_max_V: 5.5
+  signal_min_V: -12
+  signal_max_V: 12
+  ron_max_85C_ohm: 0.225
+  ron_flatness_max_85C_ohm: 0.05
+  off_leakage_85C_uA: 0.1
+  power_off_leakage_85C_uA: 0.1
+  continuous_current_85C_A: 0.87
+gotchas:
+- VDD=0 isolates both channels. With VDD valid SEL=0 selects floating unused A throws;
+  SEL=1 selects B audio throws. AUDIO_EN remains the common active-high control; downstream
+  10k pulldowns define ADC nodes when muted.
+- Recommended analog I/O -12..+12V and 5V held rail; retain first-article partial-VDD
+  and fault transient tests. SEL fail-safe to 5.5V for VDD=0 but not negative SEL
+  faults.
+- Published 0.001% THD+N uses 0.5Vpp, 0V bias test stimulus; do not claim guaranteed
+  distortion at the 1.65V-biased Crow path.
+- B2 Ø0.35/0.20 filled+capped Type VII via shares the complete 0.20 drill family with
+  six U_LDO Ø0.50/0.20 thermal vias; eight B2 sites are proposed. Exact board census
+  and JLC uploader/CAM/PCBA acceptance remain owed.
+- TI example lands Ø0.23; JLC advanced four-layer minimum Ø0.25 used. Center solder-mask-defined
+  Ø0.25 aperture over Ø0.35 capped copper. No vendor yield guarantee at exact 0.10mm
+  via-to-pad gap.
+verified: '2026-09-23: TI SCDS457B pin/truth/electrical/package tables; exact native
+  coupon and independent diagnostic review /tmp/crow-tmux4827-coupon-independent-review.md.'
+layout:
+  source: TI SCDS457B YBH0009-C02 manufacturer drawing and retained exact native coupon
+  reviewed: '2026-09-23'
+  notes:
+  - A1/A3 are unused A throws; no external nets. Eight perimeter balls escape outward;
+    B2 GND owns the only via-in-pad.
+  - Keep C_ISO1..8 100nF local to held VDD; retain all upstream shunts and downstream
+    10k ADC pulldowns.
+  - Native center B2 copper Ø0.35 with Ø0.25 mask/paste openings; all other lands
+    Ø0.25, 0.4mm pitch.
+  - The copper gap from B2 via to adjacent ball land is exactly 0.10mm; vendor tolerance/process
+    acceptance remains a hold.
+  adjacency:
+  - refdes:
+    - U_ISO1
+    - C_FILTER1P1
+    nets:
+    - FILTER1P
+    max_mm: 5.5
+    why: ADR0025 engineering copper-gap ceiling for each independent ground shunt;
+      not a routed-loop or stability acceptance.
+  - refdes:
+    - U_ISO1
+    - C_FILTER1P2
+    nets:
+    - FILTER1P
+    max_mm: 5.5
+    why: ADR0025 engineering copper-gap ceiling for each independent ground shunt;
+      not a routed-loop or stability acceptance.
+  - refdes:
+    - U_ISO1
+    - C_FILTER1N1
+    nets:
+    - FILTER1N
+    max_mm: 5.5
+    why: ADR0025 engineering copper-gap ceiling for each independent ground shunt;
+      not a routed-loop or stability acceptance.
+  - refdes:
+    - U_ISO1
+    - C_FILTER1N2
+    nets:
+    - FILTER1N
+    max_mm: 5.5
+    why: ADR0025 engineering copper-gap ceiling for each independent ground shunt;
+      not a routed-loop or stability acceptance.
+  - refdes:
+    - U_ISO1
+    - R_ADC_PD1P
+    nets:
+    - ADC1P
+    max_mm: 1.5
+    why: 'Engineering copper-gap ceiling: isolation-output-bias; exact partner, selected
+      non-poured net only.'
+  - refdes:
+    - U_ISO1
+    - R_ADC_PD1N
+    nets:
+    - ADC1N
+    max_mm: 1.5
+    why: 'Engineering copper-gap ceiling: isolation-output-bias; exact partner, selected
+      non-poured net only.'
+  - refdes:
+    - U_ISO1
+    - C_ISO1
+    nets:
+    - 5V_LDO_HOLD
+    max_mm: 1.5
+    why: 'Engineering copper-gap ceiling: local-bypass; exact partner, selected non-poured
+      net only.'
+  - refdes:
+    - U_ISO2
+    - C_FILTER2P1
+    nets:
+    - FILTER2P
+    max_mm: 5.5
+    why: ADR0025 engineering copper-gap ceiling for each independent ground shunt;
+      not a routed-loop or stability acceptance.
+  - refdes:
+    - U_ISO2
+    - C_FILTER2P2
+    nets:
+    - FILTER2P
+    max_mm: 5.5
+    why: ADR0025 engineering copper-gap ceiling for each independent ground shunt;
+      not a routed-loop or stability acceptance.
+  - refdes:
+    - U_ISO2
+    - C_FILTER2N1
+    nets:
+    - FILTER2N
+    max_mm: 5.5
+    why: ADR0025 engineering copper-gap ceiling for each independent ground shunt;
+      not a routed-loop or stability acceptance.
+  - refdes:
+    - U_ISO2
+    - C_FILTER2N2
+    nets:
+    - FILTER2N
+    max_mm: 5.5
+    why: ADR0025 engineering copper-gap ceiling for each independent ground shunt;
+      not a routed-loop or stability acceptance.
+  - refdes:
+    - U_ISO2
+    - R_ADC_PD2P
+    nets:
+    - ADC2P
+    max_mm: 1.5
+    why: 'Engineering copper-gap ceiling: isolation-output-bias; exact partner, selected
+      non-poured net only.'
+  - refdes:
+    - U_ISO2
+    - R_ADC_PD2N
+    nets:
+    - ADC2N
+    max_mm: 1.5
+    why: 'Engineering copper-gap ceiling: isolation-output-bias; exact partner, selected
+      non-poured net only.'
+  - refdes:
+    - U_ISO2
+    - C_ISO2
+    nets:
+    - 5V_LDO_HOLD
+    max_mm: 1.5
+    why: 'Engineering copper-gap ceiling: local-bypass; exact partner, selected non-poured
+      net only.'
+  - refdes:
+    - U_ISO3
+    - C_FILTER3P1
+    nets:
+    - FILTER3P
+    max_mm: 5.5
+    why: ADR0025 engineering copper-gap ceiling for each independent ground shunt;
+      not a routed-loop or stability acceptance.
+  - refdes:
+    - U_ISO3
+    - C_FILTER3P2
+    nets:
+    - FILTER3P
+    max_mm: 5.5
+    why: ADR0025 engineering copper-gap ceiling for each independent ground shunt;
+      not a routed-loop or stability acceptance.
+  - refdes:
+    - U_ISO3
+    - C_FILTER3N1
+    nets:
+    - FILTER3N
+    max_mm: 5.5
+    why: ADR0025 engineering copper-gap ceiling for each independent ground shunt;
+      not a routed-loop or stability acceptance.
+  - refdes:
+    - U_ISO3
+    - C_FILTER3N2
+    nets:
+    - FILTER3N
+    max_mm: 5.5
+    why: ADR0025 engineering copper-gap ceiling for each independent ground shunt;
+      not a routed-loop or stability acceptance.
+  - refdes:
+    - U_ISO3
+    - R_ADC_PD3P
+    nets:
+    - ADC3P
+    max_mm: 1.5
+    why: 'Engineering copper-gap ceiling: isolation-output-bias; exact partner, selected
+      non-poured net only.'
+  - refdes:
+    - U_ISO3
+    - R_ADC_PD3N
+    nets:
+    - ADC3N
+    max_mm: 1.5
+    why: 'Engineering copper-gap ceiling: isolation-output-bias; exact partner, selected
+      non-poured net only.'
+  - refdes:
+    - U_ISO3
+    - C_ISO3
+    nets:
+    - 5V_LDO_HOLD
+    max_mm: 1.5
+    why: 'Engineering copper-gap ceiling: local-bypass; exact partner, selected non-poured
+      net only.'
+  - refdes:
+    - U_ISO4
+    - C_FILTER4P1
+    nets:
+    - FILTER4P
+    max_mm: 5.5
+    why: ADR0025 engineering copper-gap ceiling for each independent ground shunt;
+      not a routed-loop or stability acceptance.
+  - refdes:
+    - U_ISO4
+    - C_FILTER4P2
+    nets:
+    - FILTER4P
+    max_mm: 5.5
+    why: ADR0025 engineering copper-gap ceiling for each independent ground shunt;
+      not a routed-loop or stability acceptance.
+  - refdes:
+    - U_ISO4
+    - C_FILTER4N1
+    nets:
+    - FILTER4N
+    max_mm: 5.5
+    why: ADR0025 engineering copper-gap ceiling for each independent ground shunt;
+      not a routed-loop or stability acceptance.
+  - refdes:
+    - U_ISO4
+    - C_FILTER4N2
+    nets:
+    - FILTER4N
+    max_mm: 5.5
+    why: ADR0025 engineering copper-gap ceiling for each independent ground shunt;
+      not a routed-loop or stability acceptance.
+  - refdes:
+    - U_ISO4
+    - R_ADC_PD4P
+    nets:
+    - ADC4P
+    max_mm: 1.5
+    why: 'Engineering copper-gap ceiling: isolation-output-bias; exact partner, selected
+      non-poured net only.'
+  - refdes:
+    - U_ISO4
+    - R_ADC_PD4N
+    nets:
+    - ADC4N
+    max_mm: 1.5
+    why: 'Engineering copper-gap ceiling: isolation-output-bias; exact partner, selected
+      non-poured net only.'
+  - refdes:
+    - U_ISO4
+    - C_ISO4
+    nets:
+    - 5V_LDO_HOLD
+    max_mm: 1.5
+    why: 'Engineering copper-gap ceiling: local-bypass; exact partner, selected non-poured
+      net only.'
+  - refdes:
+    - U_ISO5
+    - C_FILTER5P1
+    nets:
+    - FILTER5P
+    max_mm: 5.5
+    why: ADR0025 engineering copper-gap ceiling for each independent ground shunt;
+      not a routed-loop or stability acceptance.
+  - refdes:
+    - U_ISO5
+    - C_FILTER5P2
+    nets:
+    - FILTER5P
+    max_mm: 5.5
+    why: ADR0025 engineering copper-gap ceiling for each independent ground shunt;
+      not a routed-loop or stability acceptance.
+  - refdes:
+    - U_ISO5
+    - C_FILTER5N1
+    nets:
+    - FILTER5N
+    max_mm: 5.5
+    why: ADR0025 engineering copper-gap ceiling for each independent ground shunt;
+      not a routed-loop or stability acceptance.
+  - refdes:
+    - U_ISO5
+    - C_FILTER5N2
+    nets:
+    - FILTER5N
+    max_mm: 5.5
+    why: ADR0025 engineering copper-gap ceiling for each independent ground shunt;
+      not a routed-loop or stability acceptance.
+  - refdes:
+    - U_ISO5
+    - R_ADC_PD5P
+    nets:
+    - ADC5P
+    max_mm: 1.5
+    why: 'Engineering copper-gap ceiling: isolation-output-bias; exact partner, selected
+      non-poured net only.'
+  - refdes:
+    - U_ISO5
+    - R_ADC_PD5N
+    nets:
+    - ADC5N
+    max_mm: 1.5
+    why: 'Engineering copper-gap ceiling: isolation-output-bias; exact partner, selected
+      non-poured net only.'
+  - refdes:
+    - U_ISO5
+    - C_ISO5
+    nets:
+    - 5V_LDO_HOLD
+    max_mm: 1.5
+    why: 'Engineering copper-gap ceiling: local-bypass; exact partner, selected non-poured
+      net only.'
+  - refdes:
+    - U_ISO6
+    - C_FILTER6P1
+    nets:
+    - FILTER6P
+    max_mm: 5.5
+    why: ADR0025 engineering copper-gap ceiling for each independent ground shunt;
+      not a routed-loop or stability acceptance.
+  - refdes:
+    - U_ISO6
+    - C_FILTER6P2
+    nets:
+    - FILTER6P
+    max_mm: 5.5
+    why: ADR0025 engineering copper-gap ceiling for each independent ground shunt;
+      not a routed-loop or stability acceptance.
+  - refdes:
+    - U_ISO6
+    - C_FILTER6N1
+    nets:
+    - FILTER6N
+    max_mm: 5.5
+    why: ADR0025 engineering copper-gap ceiling for each independent ground shunt;
+      not a routed-loop or stability acceptance.
+  - refdes:
+    - U_ISO6
+    - C_FILTER6N2
+    nets:
+    - FILTER6N
+    max_mm: 5.5
+    why: ADR0025 engineering copper-gap ceiling for each independent ground shunt;
+      not a routed-loop or stability acceptance.
+  - refdes:
+    - U_ISO6
+    - R_ADC_PD6P
+    nets:
+    - ADC6P
+    max_mm: 1.5
+    why: 'Engineering copper-gap ceiling: isolation-output-bias; exact partner, selected
+      non-poured net only.'
+  - refdes:
+    - U_ISO6
+    - R_ADC_PD6N
+    nets:
+    - ADC6N
+    max_mm: 1.5
+    why: 'Engineering copper-gap ceiling: isolation-output-bias; exact partner, selected
+      non-poured net only.'
+  - refdes:
+    - U_ISO6
+    - C_ISO6
+    nets:
+    - 5V_LDO_HOLD
+    max_mm: 1.5
+    why: 'Engineering copper-gap ceiling: local-bypass; exact partner, selected non-poured
+      net only.'
+  - refdes:
+    - U_ISO7
+    - C_FILTER7P1
+    nets:
+    - FILTER7P
+    max_mm: 5.5
+    why: ADR0025 engineering copper-gap ceiling for each independent ground shunt;
+      not a routed-loop or stability acceptance.
+  - refdes:
+    - U_ISO7
+    - C_FILTER7P2
+    nets:
+    - FILTER7P
+    max_mm: 5.5
+    why: ADR0025 engineering copper-gap ceiling for each independent ground shunt;
+      not a routed-loop or stability acceptance.
+  - refdes:
+    - U_ISO7
+    - C_FILTER7N1
+    nets:
+    - FILTER7N
+    max_mm: 5.5
+    why: ADR0025 engineering copper-gap ceiling for each independent ground shunt;
+      not a routed-loop or stability acceptance.
+  - refdes:
+    - U_ISO7
+    - C_FILTER7N2
+    nets:
+    - FILTER7N
+    max_mm: 5.5
+    why: ADR0025 engineering copper-gap ceiling for each independent ground shunt;
+      not a routed-loop or stability acceptance.
+  - refdes:
+    - U_ISO7
+    - R_ADC_PD7P
+    nets:
+    - ADC7P
+    max_mm: 1.5
+    why: 'Engineering copper-gap ceiling: isolation-output-bias; exact partner, selected
+      non-poured net only.'
+  - refdes:
+    - U_ISO7
+    - R_ADC_PD7N
+    nets:
+    - ADC7N
+    max_mm: 1.5
+    why: 'Engineering copper-gap ceiling: isolation-output-bias; exact partner, selected
+      non-poured net only.'
+  - refdes:
+    - U_ISO7
+    - C_ISO7
+    nets:
+    - 5V_LDO_HOLD
+    max_mm: 1.5
+    why: 'Engineering copper-gap ceiling: local-bypass; exact partner, selected non-poured
+      net only.'
+  - refdes:
+    - U_ISO8
+    - C_FILTER8P1
+    nets:
+    - FILTER8P
+    max_mm: 5.5
+    why: ADR0025 engineering copper-gap ceiling for each independent ground shunt;
+      not a routed-loop or stability acceptance.
+  - refdes:
+    - U_ISO8
+    - C_FILTER8P2
+    nets:
+    - FILTER8P
+    max_mm: 5.5
+    why: ADR0025 engineering copper-gap ceiling for each independent ground shunt;
+      not a routed-loop or stability acceptance.
+  - refdes:
+    - U_ISO8
+    - C_FILTER8N1
+    nets:
+    - FILTER8N
+    max_mm: 5.5
+    why: ADR0025 engineering copper-gap ceiling for each independent ground shunt;
+      not a routed-loop or stability acceptance.
+  - refdes:
+    - U_ISO8
+    - C_FILTER8N2
+    nets:
+    - FILTER8N
+    max_mm: 5.5
+    why: ADR0025 engineering copper-gap ceiling for each independent ground shunt;
+      not a routed-loop or stability acceptance.
+  - refdes:
+    - U_ISO8
+    - R_ADC_PD8P
+    nets:
+    - ADC8P
+    max_mm: 1.5
+    why: 'Engineering copper-gap ceiling: isolation-output-bias; exact partner, selected
+      non-poured net only.'
+  - refdes:
+    - U_ISO8
+    - R_ADC_PD8N
+    nets:
+    - ADC8N
+    max_mm: 1.5
+    why: 'Engineering copper-gap ceiling: isolation-output-bias; exact partner, selected
+      non-poured net only.'
+  - refdes:
+    - U_ISO8
+    - C_ISO8
+    nets:
+    - 5V_LDO_HOLD
+    max_mm: 1.5
+    why: 'Engineering copper-gap ceiling: local-bypass; exact partner, selected non-poured
+      net only.'
+layout_refs:
+- tier: 1
+  reached: true
+  artifact: TI SCDS457B exact YBH pin/package drawing and electrical tables
+- tier: 2
+  reached: true
+  artifact: Exact 3x3 native coupon qualification/ and independent diagnostic review;
+    source-stage only
+  why: Coupon proves geometry under selected local advanced rules, not final board
+    routing or vendor yield.
+- tier: 3
+  reached: false
+  artifact: Exact JLC uploader/CAM/PCBA acceptance of complete 0.20mm fill/cap family
+  why: Order/process hold remains open until final board and vendor review.
+sourcing:
+  lcsc: C22428234
+  alternates: []
+  note: Exact JLC catalog code observed stock 5437 on 2026-09-23; 8x5+150=190. Allocation
+    recheck at staging.
