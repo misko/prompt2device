@@ -1,25 +1,30 @@
 {
-  "blocker": "Source silk/Description repairs and 311/311 layout-constraint coverage accepted; product candidate b2f59a1b remains rejected and its allowance consumed. Block-local distances and connector physical requirements remain open. P1/P2 admission authority is under read-only audit.",
+  "blocker": "P1 r4 floorplan accepted and graph handoff recorded; seven P2 local block placements need separate bounded execution, while all 19 connector FULL physical targets remain open. P3, routing, P5 promotion, release and order remain blocked.",
   "checkpoint": {
     "path": "06_build/checkpoints/schematic.json",
     "sha256": "2fb4dd626750114476150d550d88cf15c0d5a2deb5d8e971e1be67a2a7bde856",
     "size": 1152
   },
-  "next_command": "Resolve P1-to-P2 admission against owning gates, then explicitly admit the appropriate bounded block-placement work. Do not regenerate an exhausted candidate or waive physical/routing requirements.",
+  "next_command": "Commission the bounded P2 input-power placement task against the accepted P1 board and current graph, then regrade changed geometry; do not route before connector FULL.",
   "phase": "placement",
   "project": "crow-usb-carrier-v1",
   "receipts": [
     {
-      "path": "01_docs/research/2026-09-23-layout-constraint-source-repair.md",
-      "sha256": "40613a415a07bc413e0622a890aafc1fb0b9f459a6b4af50f0b22876c28a091c",
-      "size": 3927
+      "path": "01_docs/research/2026-09-23-p1-r4-evidence-handoff-disposition.md",
+      "sha256": "82038a9a91139d0429d808034ac7ddef24654c6880dcb7899f3eb369f22c2bd0",
+      "size": 1868
     },
     {
-      "path": "08_reviews/2026-09-23_p1-source-repair-r2_terra_review.md",
-      "sha256": "d8dac319dcc48afddf860805cf7bf7b54a9c372909e66fa36d6f016d34419b9e",
-      "size": 1219
+      "path": "08_reviews/2026-09-23_p1-r4-evidence-handoff_terra_review.md",
+      "sha256": "41cc72b7804f5334c31429624b7d0f2681998410b61dc800eeb6f8a36a7dfc77",
+      "size": 1478
+    },
+    {
+      "path": "08_reviews/2026-09-23_p1-r4_terra_native.md",
+      "sha256": "2449a3721abafc7de673057de6a757c6e6f1e624d4b33f40be91f7db4589949c",
+      "size": 1795
     }
   ],
   "schema": 1,
-  "state_id": "6c4609ef035f25820263ee1fc32724cde2e51a184e38452fe278efb0c3f634bd"
+  "state_id": "72825a4a5b35f7b953174fb4241627cf1df05007c082cabb723a472738f02d38"
 }
