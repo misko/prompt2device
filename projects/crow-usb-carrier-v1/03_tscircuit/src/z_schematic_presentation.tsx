@@ -8,7 +8,7 @@ const powerPoses: Record<string, [string, number, number, number?]> = {
   J_PWR:["power_input",-14,4], F_IN:["power_input",-10,4], Q_IN:["power_input",-5,4],
   R_QIN_G:["power_input",-5,-2,-90], D_QIN_GS:["power_input",0,1], D_IN:["power_input",5,1],
   C_IN1:["power_input",8,4,-90], C_IN2:["power_input",11,4,-90], C_IN3:["power_input",14,4,-90], C_IN_HF:["power_input",17,4,-90],
-  U_BUCK:["power_buck",0,2], R_RT:["power_buck",-8,-3,-90], R_AGND_JOIN:["power_buck",-3,-5],
+  U_BUCK:["power_buck",0,2], R_BUCK_FB_TOP:["power_buck",3,-3,-90], R_BUCK_FB_BOTTOM:["power_buck",1,-6,-90], R_RT:["power_buck",-8,-3,-90], R_AGND_JOIN:["power_buck",-3,-5],
   C_VCC:["power_buck",5,-4,-90], C_VLDO:["power_buck",8,-4,-90],
   C_OUT1:["power_buck",7,3,-90], C_OUT2:["power_buck",10,3,-90], C_OUT3:["power_buck",13,3,-90],
 }

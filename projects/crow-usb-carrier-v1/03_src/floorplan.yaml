@@ -607,6 +607,8 @@ placement:
     - R_AGND_JOIN
     - R_QIN_G
     - R_RT
+    - R_BUCK_FB_TOP
+    - R_BUCK_FB_BOTTOM
     - U_BUCK
     region: input_buck
   - match:

@@ -539,16 +539,18 @@ selections:
       evidence: XMOS multichannel reference hardware and USB stack evidence linked in 2026-09-22-usb-ic-research.md.
     adr: 01_docs/decisions/0003-integrated-subsystem-boundaries.md
 - function: external_twelve_volt_to_five_volt
-  part: TPSM63603V5RDHR
+  part: TPSM63603RDHR
   implementation: module
   rationale: Selected integrated inductor/switching power module reduces external switching-loop assembly
     complexity. Its surrounding input protection, capacitors and AGND join remain explicitly designed
-    in the17-reference source module. Four-layer thermal and manufacturing assumptions still require verification.
+    in the20-reference source module. Four-layer thermal and manufacturing assumptions still require verification.
   support_refs:
   - C_IN3
   - C_OUT1
   - C_OUT2
   - C_OUT3
+  - R_BUCK_FB_TOP
+  - R_BUCK_FB_BOTTOM
 - function: synchronous_audio_master_clock
   part: SX5M24.576M20F30TNN
   implementation: module

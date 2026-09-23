@@ -1,0 +1,12 @@
+mpn: RT0402BRD0710KL
+manufacturer: YAGEO
+type: thin_film_resistor
+value: 10k
+status: candidate
+package: 0402 / 1005
+footprint: Resistor_SMD:R_0402_1005Metric
+pins: {1: A, 2: B}
+datasheet: {url: 'https://yageogroup.com/component-documentation/download/specsheet/RT0402BRD0710KL', local: RT0402BRD0710KL.pdf, sha256: c700006653e164789cb3bd3cce966af888ddeb2a5c596a21a9958e825c8e545b, generated: '2026-09-23'}
+limits: {resistance_ohm: 10000, tolerance_pct: 0.1, tcr_ppm_per_C: 25, power_W_at_70C: 0.0625, working_voltage_V: 50, operating_temperature_C: [-55, 155]}
+verified: 'Exact YAGEO generated specification inspected; 1V FB lower leg dissipates about 0.10mW at nominal operation.'
+sourcing: {lcsc: C190095, observed_stock: 1088811, observed_utc: '2026-09-23', note: 'Direct JLC catalog result; uploader allocation owed.'}

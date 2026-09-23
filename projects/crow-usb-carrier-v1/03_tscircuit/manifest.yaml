@@ -1,4 +1,4 @@
-# Source census: 507 total components.
+# Source census: 509 total components.
 components:
 - C_1V8_FF
 - C_1V8_OK_VDD
@@ -322,6 +322,8 @@ components:
 - R_B8P
 - R_BCLK
 - R_BCLK_RAW_PD
+- R_BUCK_FB_BOTTOM
+- R_BUCK_FB_TOP
 - R_CFG1
 - R_CFG2
 - R_CFG4
