@@ -98,7 +98,7 @@ import yaml
 # schematic converter uses, so board and sheet cannot disagree on footprints.
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 try:
-    from circuit_json_to_kicad_sch import load_part_overrides
+    from circuit_json_to_kicad_sch import load_part_overrides, load_part_authority, exact_part_doc
 except Exception:                                            # pragma: no cover
     def load_part_overrides(parts_dir):
         return {}
@@ -209,6 +209,43 @@ def parse_identity_fields(path):
                 fields[name] = json.loads(value)
         result[ref] = fields
     return result
+
+
+def resolve_datasheet_fields(comps, identity_fields, parts_dir):
+    """Use exact source identity, never a freeform displayed Value, for metadata."""
+    if parts_dir is None:
+        return {}
+    authority = load_part_authority(parts_dir)
+    result = {}
+    for ref, (fpid, _value) in comps.items():
+        fields = identity_fields.get(ref) or {}
+        if not fields:
+            continue
+        supplier = fields.get('Supplier Part Numbers') or '{}'
+        try:
+            supplier = json.loads(supplier) if isinstance(supplier, str) else supplier
+        except (ValueError, TypeError) as exc:
+            die(f"{ref}: invalid source supplier identity: {exc}")
+        if not isinstance(supplier, dict):
+            die(f"{ref}: supplier identity must be a mapping")
+        source = {'name': ref,
+                  'manufacturer_part_number': fields.get('Manufacturer Part Number'),
+                  'supplier_part_numbers': supplier}
+        try:
+            doc = exact_part_doc(source, authority)
+        except ValueError as exc:
+            die(str(exc))
+        if doc is None:
+            continue
+        if fpid and fpid != str(doc.get('footprint') or ''):
+            die(f"{ref}: exact dossier footprint differs from netlist footprint")
+        result[ref] = str((doc.get('datasheet') or {}).get('url') or '')
+    return result
+
+
+def apply_datasheet_field(footprint, url):
+    """Replace a library URL, including a stale or absent one, with authority."""
+    footprint.SetField("Datasheet", url)
 
 
 def resolve_pad_aliases(comps, pad_net, parts_dir):
@@ -611,6 +648,8 @@ class BoardBuilder:
         self.pad_net, self.expected_alias_pads = resolve_pad_aliases(
             comps, pad_net, self.parts_dir)
         self.identity_fields = parse_identity_fields(self.netlist)
+        self.datasheet_fields = resolve_datasheet_fields(
+            comps, self.identity_fields, self.parts_dir)
         self.seed_uuids()
         self.board = pcbnew.BOARD()
         self.board.SetCopperLayerCount(int(self.board_cfg.get("layers", 2)))
@@ -1143,6 +1182,9 @@ class BoardBuilder:
                         f"extra {sorted(actual - expected)})")
             fp.SetReference(ref)
             fp.SetValue(val)
+            datasheet_fields = getattr(self, 'datasheet_fields', {})
+            if ref in datasheet_fields:
+                apply_datasheet_field(fp, datasheet_fields[ref])
             for name, value in self.identity_fields.get(ref, {}).items():
                 fp.SetField(name, value)
                 fp.GetField(name).SetVisible(False)

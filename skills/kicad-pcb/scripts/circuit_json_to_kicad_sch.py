@@ -75,6 +75,8 @@ import uuid
 # reuse the proven emission machinery
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import schwriter2 as sw  # noqa: E402
+from part_identity import alias_map, load_parts, pin_name
+from pathlib import Path
 
 GRID = 1.27
 PIN_LEN = 2.54
@@ -283,6 +285,34 @@ def load_part_ties(parts_dir):
     return ties
 
 
+def load_part_authority(parts_dir):
+    """Exact dossier identities shared with P-PINMAP and the board exporter."""
+    if not parts_dir:
+        return ({}, {}, [])
+    authority = load_parts(Path(parts_dir))
+    malformed = [e for e in authority[2] if 'cannot parse YAML' in e]
+    if malformed:
+        raise ValueError('malformed part authority: ' + '; '.join(malformed))
+    return authority
+
+
+def exact_part_doc(component, authority):
+    by_id, docs, errors = authority
+    candidates = []
+    mpn = component.get('manufacturer_part_number')
+    if mpn:
+        candidates.append(str(mpn))
+    for values in (component.get('supplier_part_numbers') or {}).values():
+        candidates.extend(str(v) for v in (values if isinstance(values, list) else [values]) if v)
+    for error in errors:
+        if any(error.startswith(f"identifier {ident!r} resolves") for ident in candidates):
+            raise ValueError("part identity error: " + error)
+    matches = {by_id[ident] for ident in candidates if ident in by_id}
+    if len(matches) > 1:
+        raise ValueError(f"{component.get('name')}: conflicting exact part identities {sorted(matches)}")
+    return docs[next(iter(matches))][0] if matches else None
+
+
 def resolve_fpid(token, codes, overrides):
     """FPID for one component: the per-board 02_parts override (specialty parts)
     wins over the baked-in commodity token map; empty string if neither knows it
@@ -318,7 +348,8 @@ def natkey(s):
 
 
 # ------------------------------------------------------------------ model
-def load_model(path, aliases=None, overrides=None, return_ports=False, ties=None):
+def load_model(path, aliases=None, overrides=None, return_ports=False, ties=None,
+               part_authority=None):
     """Parse circuit.json -> per-component ordered (padname, portname, net) plus
     metadata. Returns (components, flag_host) where components is a list of dicts
     in refdes order. flag_host is (refdes, padname) of the GND pin to carry the
@@ -337,6 +368,7 @@ def load_model(path, aliases=None, overrides=None, return_ports=False, ties=None
     aliases = aliases or {}
     overrides = overrides or {}
     ties = ties or {}
+    part_authority = part_authority or ({}, {}, [])
     d = json.load(open(path, encoding="utf-8-sig"))
     comps = {e['source_component_id']: e for e in d
              if e.get('type') == 'source_component'}
@@ -447,9 +479,50 @@ def load_model(path, aliases=None, overrides=None, return_ports=False, ties=None
         if not plist:
             continue  # non-electrical (e.g. a mounting-hole <chip> with no pads)
         refdes = c['name']
+        doc = exact_part_doc(c, part_authority)
+        mapping = {}
+        physical = set()
+        if doc and doc.get('pin_aliases') is not None:
+            findings = []
+            pins_declared, aliases_declared = alias_map(doc, str(doc.get('mpn') or refdes), findings)
+            if findings:
+                raise ValueError(f"{refdes}: " + '; '.join(findings))
+            if str(doc.get('footprint') or '') != resolve_fpid(
+                    tok_by_comp.get(cid), [str(c.get('manufacturer_part_number') or '')] +
+                    [str(v) for vs in (c.get('supplier_part_numbers') or {}).values()
+                     for v in (vs if isinstance(vs, list) else [vs])], overrides):
+                raise ValueError(f"{refdes}: alias dossier footprint differs from native footprint")
+            for logical, spec in aliases_declared.items():
+                raw, target = spec['schematic'], spec['footprint']
+                if raw in mapping and mapping[raw] != target:
+                    raise ValueError(f"{refdes}: schematic pin {raw} maps to conflicting pads")
+                mapping[raw] = target
+                physical.add(target)
+            by_target = {}
+            for logical, spec in aliases_declared.items():
+                by_target.setdefault(spec['footprint'], []).append(logical)
+            for target, logicals in by_target.items():
+                if len(logicals) < 2:
+                    continue
+                names = {pin_name(pins_declared[k]).upper() for k in logicals}
+                changed = [k for k in logicals if aliases_declared[k]['footprint'] != k]
+                if len(names) != 1 or not changed or not all(
+                        aliases_declared[k]['fused'] for k in changed):
+                    raise ValueError(f"{refdes}: undocumented many-to-one pad {target}")
+        def physical_pad(raw):
+            mapped = mapping.get(raw)
+            if mapped is not None and raw in physical and mapped != raw:
+                raise ValueError(f"{refdes}: ambiguous pin {raw} names physical and schematic pads")
+            if mapped is not None:
+                return mapped
+            if mapping and raw not in physical:
+                raise ValueError(f"{refdes}: pin {raw} has no evidenced physical alias")
+            return raw
         pins = {}  # padname -> {"port": portname, "net": net}
+        pin_raws = {}
         for p in plist:
-            pad = pad_name(p)
+            raw = pad_name(p)
+            pad = physical_pad(raw)
             net = portnet[p['source_port_id']]
             portinfo[p['source_port_id']] = {
                 "refdes": refdes, "pad": pad, "net": net,
@@ -457,8 +530,21 @@ def load_model(path, aliases=None, overrides=None, return_ports=False, ties=None
                 "pin_number": p.get('pin_number'), "hints": p.get("port_hints", [])}
             if pad not in pins:
                 pins[pad] = {"port": p.get('name') or pad, "net": net}
+                pin_raws[pad] = {raw}
+            elif mapping and raw not in pin_raws[pad] and (
+                    net is None or pins[pad]['net'] is None or
+                    pins[pad]['net'] != net):
+                raise ValueError(f"{refdes}: distinct pin identities collapse onto "
+                                 f"physical pad {pad} with conflicting or missing nets")
             elif pins[pad]["net"] is None and net is not None:
                 pins[pad]["net"] = net  # a connected duplicate wins over an NC one
+            elif mapping and net is not None and pins[pad]["net"] not in (None, net):
+                raise ValueError(f"{refdes}: conflicting nets collapse onto physical pad {pad}")
+            pin_raws[pad].add(raw)
+        if mapping and set(pins) != physical:
+            raise ValueError(f"{refdes}: exact dossier pads differ from source ports "
+                             f"(missing {sorted(physical - set(pins))}, "
+                             f"extra {sorted(set(pins) - physical)})")
         ordered = sorted(pins.items(), key=lambda kv: natkey(kv[0]))
         is_tp = c.get('ftype') == 'simple_test_point' or refdes.startswith('TP')
         codes = [code for v in (c.get('supplier_part_numbers') or {}).values()
@@ -490,6 +576,7 @@ def load_model(path, aliases=None, overrides=None, return_ports=False, ties=None
             "manufacturer_part_number": c.get("manufacturer_part_number") or "",
             "supplier_part_numbers": c.get("supplier_part_numbers") or {},
             "fpid": resolve_fpid(tok_by_comp.get(cid), codes, overrides),
+            "datasheet": ((doc.get('datasheet') or {}).get('url') or '') if doc else None,
             "pins": pin_tuples,
         })
     components.sort(key=lambda c: natkey(c["refdes"]))
@@ -671,6 +758,9 @@ def emit_component(comp, project, root_uuid, flag_host, pwr_counter):
         f'    (property "Value" "{comp["value"]}" (at {cx:.2f} {vy:.2f} 0)'
         f' (effects (font (size 1.27 1.27))))\n'
         f'    (property "Footprint" "{comp["fpid"]}" (at {cx:.2f} {cy:.2f} 0) (effects (font (size 1.27 1.27)) hide))\n'
+        + (f'    (property "Datasheet" {json.dumps(comp["datasheet"])} (at {cx:.2f} {cy:.2f} 0) (effects (font (size 1.27 1.27)) hide))\n'
+           if comp.get('datasheet') is not None else '')
+        + identity_props(comp, cx, cy) + '\n'
         + "\n".join(f'    (pin "{pad}" (uuid "{_u()}"))' for pad, _pn, _net in comp["pins"])
         + f'\n    (instances (project "{project}" (path "/{root_uuid}"'
         f' (reference "{comp["refdes"]}") (unit 1))))\n  )'
@@ -701,8 +791,9 @@ def emit_component(comp, project, root_uuid, flag_host, pwr_counter):
 
 
 def convert(circuit_json, project, title, rev, date, aliases=None, overrides=None,
-            ties=None):
-    components, flag_host = load_model(circuit_json, aliases, overrides, ties=ties)
+            ties=None, part_authority=None):
+    components, flag_host = load_model(circuit_json, aliases, overrides, ties=ties,
+                                       part_authority=part_authority)
     placed, pw, ph = layout(components)
     root_uuid = _u()
 
@@ -2059,14 +2150,15 @@ def place_labels(cands, placed, prop_rows_by_ref, flag_host, comp_by_ref,
 
 
 def convert_layout(circuit_json, project, title, rev, date, aliases=None, overrides=None,
-                   ties=None):
+                   ties=None, part_authority=None):
     """Layout-preserving emitter. Returns (content, components, stats). Raises
     LayoutFallback if geometry can't be imported without a cross-net short."""
     aliases = aliases or {}
     overrides = overrides or {}
     d = json.load(open(circuit_json, encoding="utf-8-sig"))
     components, flag_host, portinfo = load_model(circuit_json, aliases, overrides,
-                                                 return_ports=True, ties=ties)
+                                                 return_ports=True, ties=ties,
+                                                 part_authority=part_authority)
     # Put the global GND ERC driver on its own visible grounded wire stub.
     # An arbitrary first component pin is not guaranteed to have external room.
     need_ground_flag = flag_host is not None
@@ -2733,6 +2825,8 @@ def _emit_layout_component(comp, project, root_uuid, flag_host, pwr, comp_by_ref
         f' (effects (font (size 1.27 1.27))))\n'
         f'    (property "Footprint" "{comp["fpid"]}" (at {ix:.3f} {iy:.3f} 0)'
         f' (effects (font (size 1.27 1.27)) hide))\n'
+        + (f'    (property "Datasheet" {json.dumps(comp["datasheet"])} (at {ix:.3f} {iy:.3f} 0) (effects (font (size 1.27 1.27)) hide))\n'
+           if comp.get('datasheet') is not None else '')
         + identity_props(comp, ix, iy) + "\n"
         + "\n".join(f'    (pin "{num}" (uuid "{_u()}"))'
                     for num, _pn, _lx, _ly, _a, _l in comp["pins_geo"])
@@ -2786,6 +2880,7 @@ def main():
     alias_path = a.net_aliases or _discover_up(a.circuit_json, ["net_aliases.txt"], False)
     overrides = load_part_overrides(parts_dir)
     ties = load_part_ties(parts_dir)
+    part_authority = load_part_authority(parts_dir)
     aliases = load_aliases(alias_path)
 
     stats = None
@@ -2794,7 +2889,7 @@ def main():
         try:
             content, comps, stats = convert_layout(
                 a.circuit_json, project, title, a.rev, a.date, aliases, overrides,
-                ties)
+                ties, part_authority)
         except LayoutFallback as e:
             print(f"LAYOUT FALLBACK -> grid for {os.path.basename(a.out)}: {e}",
                   file=sys.stderr)
@@ -2808,7 +2903,7 @@ def main():
             return 3
     if mode == "grid":
         content, comps = convert(a.circuit_json, project, title, a.rev, a.date,
-                                 aliases, overrides, ties)
+                                 aliases, overrides, ties, part_authority)
 
     # ---- canon S12, asked of the FINISHED SHEET TEXT and asked in EVERY mode.
     # The in-flight check above runs on the emitter's own segment list, which is
