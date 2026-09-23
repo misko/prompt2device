@@ -482,6 +482,7 @@
         "C_1V8_OK_VDD",
         "C_3V3X_FF",
         "C_CORE_EN_CT",
+        "C_CORE_FF",
         "C_CORE_OK",
         "C_U_1V8_IN_1",
         "C_U_1V8_IN_2",
@@ -1650,6 +1651,7 @@
       "net": "N0V9",
       "endpoints": {
         "digital_power": [
+          "C_CORE_FF.1",
           "C_U_CORE_OUT_1.1",
           "L_U_CORE.2",
           "R_CORE_FB_TOP.1",

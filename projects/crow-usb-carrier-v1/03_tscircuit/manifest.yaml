@@ -1,4 +1,4 @@
-# Source census: 506 total components.
+# Source census: 507 total components.
 components:
 - C_1V8_FF
 - C_1V8_OK_VDD
@@ -49,6 +49,7 @@ components:
 - C_AUDIO_CT2
 - C_AUDIO_OSC
 - C_CORE_EN_CT
+- C_CORE_FF
 - C_CORE_OK
 - C_DUMP_LOGIC
 - C_DUMP_TIME

@@ -1,0 +1,19 @@
+mpn: RT0402BRD0749K9L
+manufacturer: YAGEO
+type: resistor
+value: 49.9kΩ
+footprint: Resistor_SMD:R_0402_1005Metric
+pins: {1: terminal_1, 2: terminal_2}
+datasheet:
+  url: https://www.yageogroup.com/component-documentation/download/specsheet/RT0402BRD0749K9L
+  local: RT0402BRD0749K9L_YAGEO_generated_20260923.pdf
+  sha256: 7e7370fc65587b142979cccaa97cf240770c5d66c10f95e4eaead26eff5b2237
+  provenance: Exact-MPN manufacturer-generated specification, fetched 2026-09-23 UTC.
+limits:
+  resistance_tolerance_pct: 0.1
+  tcr_ppm_per_C: 25
+  power_at_70C: 62.5mW
+  maximum_continuous_voltage: 50V
+  operating_temperature_C: [-55, 155]
+sourcing: {lcsc: C852808, note: Exact live JLC catalog identity; refresh stock before order.}
+verified: Exact YAGEO specification matches MPN, 49.9 kOhm, 0.1% tolerance, +/-25ppm/C TCR, package and ratings.

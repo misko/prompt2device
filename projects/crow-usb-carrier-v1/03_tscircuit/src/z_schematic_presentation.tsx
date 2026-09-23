@@ -61,7 +61,7 @@ const explicitDigitalPose = (ref: string): Pose | undefined => {
     U_CORE:["digital_power_core",-5,2], L_U_CORE:["digital_power_core",0,2],
     C_U_CORE_IN_1:["digital_power_core",-6,-1,-90], C_U_CORE_IN_2:["digital_power_core",-3,-1,-90],
     C_U_CORE_OUT_1:["digital_power_core",4,-1,-90],
-    R_CORE_FB_TOP:["digital_power_core",5,-3], R_CORE_FB_BOTTOM:["digital_power_core",9,-3],
+    R_CORE_FB_TOP:["digital_power_core",5,-3], R_CORE_FB_BOTTOM:["digital_power_core",9,-3], C_CORE_FF:["digital_power_core",8,1,-90],
     U_CORE_OK:["digital_power_core",-1,-5], C_CORE_OK:["digital_power_core",-6,-5,-90],
     R_XU_RST_PU:["digital_power_core",5,-6,-90],
   }
