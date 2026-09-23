@@ -11,18 +11,6 @@ datasheet:
   fetched: 2026-09-23
 package: right-angle top-mount Type-C receptacle, 16 active contacts, four plated shell slots; no locating peg
 footprint: crow_usb_carrier_v1:GCT_USB4215_03_A
-footprint_proof:
-  source: GCT USB4215 drawing A sheet 1, Recommended PCB Layout, viewed from component side
-  tolerance_mm: 0.05
-  contact_lands: 12 physical SMT lands for 16 logical A/B contacts; four power/ground pairs share copper
-  contact_pitch_mm: 0.5
-  contact_widths_mm: {inner_8: 0.30, outer_4: 0.60}
-  contact_length_mm: 1.15
-  shell_slots: four PTH slots at x=±4.32 mm; upper drill 0.60x1.40 in 1.00x1.80 land; lower drill 0.60x1.80 in 1.00x2.20 land
-  minimum_shell_annulus_mm: 0.20
-  minimum_outer_contact_to_shell_copper_mm: 0.32
-  minimum_outer_contact_to_shell_slot_mm: 0.52
-  locating_peg_count: 0
 escape:
   style: connector
   pitch: 0.5
@@ -200,9 +188,23 @@ sourcing:
 layout:
   source: GCT USB4215 A sheet1 recommended PCB layout
   reviewed: '2026-09-23'
-  notes: J_USB at board edge; merge duplicate USB2 contacts near the receptacle and
-    carry one short D+/D- pair through suitable ESD protection. Separate CC and VBUS
-    sensing. No power-only wiring inherited.
+  notes: >-
+    J_USB is intended for a board edge, but its exact placement, mouth-to-edge
+    registration and installed fit remain owed. Merge duplicate USB2 contacts
+    near the receptacle and carry one short D+/D- pair through suitable ESD
+    protection; separate CC and VBUS sensing. No power-only wiring inherited.
+    Human footprint comparison against GCT USB4215 drawing A sheet 1,
+    Recommended PCB Layout as viewed from the component side (drawing layout
+    tolerance ±0.05 mm): 16 logical A/B contacts occupy 12 physical SMT lands
+    because four power/ground pairs share copper. Contact pitch is 0.50 mm;
+    eight inner lands are 0.30 mm wide, four outer lands are 0.60 mm wide,
+    and all contact lands are 1.15 mm long. Four plated shell slots are at
+    X=±4.32 mm: upper holes 0.60×1.40 mm in 1.00×1.80 mm lands, lower
+    holes 0.60×1.80 mm in 1.00×2.20 mm lands. Nominal minimum shell annulus
+    is 0.20 mm; nominal nearest outer-contact-to-shell-copper and
+    contact-to-slot gaps are 0.32 and 0.52 mm respectively. There are zero
+    locating pegs. These figures are descriptive source review, not a
+    machine-graded footprint proof, board DFM, or assembly acceptance.
 layout_refs:
 - tier: 1
   reached: true
