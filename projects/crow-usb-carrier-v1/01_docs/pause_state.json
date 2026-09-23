@@ -1,14 +1,14 @@
 {
-  "blocker": "D5/D7 source admission remains held: XMOS observed46/155; ADC, main buck, analog switches and two THT sourcing rows unresolved. Reviewed diagnostic source has506components; canonical493-reference schematic checkpoint is historical. Carrier ambient and private-XMOS inventory policy questions remain unanswered.",
+  "blocker": "D5/D7 source admission remains held: XMOS observed46/155; ADC, main buck and analog switches unresolved. D9 manual assembly is declared for24 exact THT refs with qualifying dated distributor stock. Reviewed diagnostic source has507components; canonical493-reference schematic is historical. Carrier ambient and private-XMOS inventory questions remain unanswered.",
   "checkpoint": {
     "path": "03_tscircuit/build/circuit.json",
     "sha256": "ead8cb33c07afcb9dd371a5c61188c8f2fde59c55c9e703400d5b21765daa336",
     "size": 4382904
   },
-  "next_command": "Close remaining exact-source stock/engineering gaps, including inherited core-feedback discrepancy, then regenerate and review source admission before schematic and P1-P5 block placement",
+  "next_command": "Complete remaining source candidates and reviews, then regenerate and admit schematic before P1-P5 block placement; retain all150-extra stock requirements",
   "phase": "sourcing",
   "project": "crow-usb-carrier-v1",
   "receipts": [],
   "schema": 1,
-  "state_id": "299a18e65d43fcb35aa5d277a4163eaf0b5653687d3f488f743338a2ca772179"
+  "state_id": "2ca4e08b42ea7850d3a35e4d0068af83685b686b1ac53f3e9155f8606b8adc38"
 }

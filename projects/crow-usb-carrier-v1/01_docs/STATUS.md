@@ -1,12 +1,12 @@
 # Project status
 
-<!-- pause-state:299a18e65d43fcb35aa5d277a4163eaf0b5653687d3f488f743338a2ca772179 -->
+<!-- pause-state:2ca4e08b42ea7850d3a35e4d0068af83685b686b1ac53f3e9155f8606b8adc38 -->
 
 - Phase: `sourcing`
 - State: **PAUSED**
 - Checkpoint: `03_tscircuit/build/circuit.json` (`ead8cb33c07a`)
-- Blocker: D5/D7 source admission remains held: XMOS observed46/155; ADC, main buck, analog switches and two THT sourcing rows unresolved. Reviewed diagnostic source has506components; canonical493-reference schematic checkpoint is historical. Carrier ambient and private-XMOS inventory policy questions remain unanswered.
-- Next command: `Close remaining exact-source stock/engineering gaps, including inherited core-feedback discrepancy, then regenerate and review source admission before schematic and P1-P5 block placement`
+- Blocker: D5/D7 source admission remains held: XMOS observed46/155; ADC, main buck and analog switches unresolved. D9 manual assembly is declared for24 exact THT refs with qualifying dated distributor stock. Reviewed diagnostic source has507components; canonical493-reference schematic is historical. Carrier ambient and private-XMOS inventory questions remain unanswered.
+- Next command: `Complete remaining source candidates and reviews, then regenerate and admit schematic before P1-P5 block placement; retain all150-extra stock requirements`
 
 ## Bound receipts
 
