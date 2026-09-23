@@ -554,3 +554,9 @@ Retained independent SOL read-only replenishment research in 2026-09-23-xu316-jl
 ### Carrier environmental scope correction
 
 Independent Terra audit c39459e4866066d68646a2267b6a39ef2905d1288fe36214b94849d8b127c01b found the cited −40..+80°C range belongs to external spoke/cable infrastructure, not a locked carrier ambient requirement. Corrected the research report's PCM4204 rejection; both its −10..+70°C rating and selected XMOS C24 0..70°C need the actual carrier environment. Sent the user the deployment/ambient question; no assumed response or source change. The existing70°C thermal screen remains unchanged.
+
+### Current-source shortage census and linked power qualification
+
+Previous goal turn made progress: ready-IC preference recorded, environmental rejection corrected, exact replenishment evidence retained, and500700a8 pushed to main. Terra's current-source delta ledger confirms490references/85MPNs,22adoptedidentitychanges and3removedcaps. NineSMD rows includingADC remain unresolved plus2THTrows; datedstock is not allocation. Historical493population report now points to the exact500700a8snapshot rather than presenting oldcandidatecounts as current.
+
+Linked adjustableTPS62825/TPS389001 source work continues in isolatedSOL worktrees with independentreview. Reviewer found no primary requirement to guarantee RESET precedes an operating-minimum crossing during arbitrary isolated-rail fastcollapse; the computed0.4–1.1uscap-onlycrossing remains a first-article limitation, not a newuniversalconstraint. FinalcandidateDCbounds, sourcebudget for ripple/ground/overshoot, originalstartup/heldanalogsequence and exactstock still require review before adoption. No sourceimplementation accepted by this entry.
