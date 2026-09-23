@@ -352,7 +352,9 @@ def check_part(part_yaml, tiers):
     # PCB copper.  Requiring a fabricated-board escape tier for those parts
     # would force a false footprint/land claim.  Their cavity/service geometry
     # remains governed by the connector-assembly and pin-review contracts.
-    if y.get("footprint") == "none_off_board":
+    if y.get("footprint") == "none_off_board" and (y.get("escape") or {}).get("center_via_topology"):
+        probs.append(f"{mpn}: off-board footprint contradicts center-via topology")
+    if y.get("footprint") == "none_off_board" and not (y.get("escape") or {}).get("center_via_topology"):
         return probs
     if npins <= 2 and not (y.get("escape") or {}).get("center_via_topology"):
         return probs

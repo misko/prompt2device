@@ -117,6 +117,13 @@ def t_center_two_pins():
     must_fail(run([KPY, TOOL, part]), 'two-pin bypass', 'exact numeric pads')
 
 
+@test('center-via evidence cannot bypass validation as off-board', kind='known_bad')
+def t_center_offboard():
+    part, _fp, _coupon = fixture()
+    update(part, lambda d: d.__setitem__('footprint', 'none_off_board'))
+    must_fail(run([KPY, TOOL, part]), 'off-board bypass', 'contradicts')
+
+
 @test('center-via escape rejects arbitrary self-hashed coupon', kind='known_bad')
 def t_center_self_hashed_coupon():
     part, _fp, coupon = fixture()
