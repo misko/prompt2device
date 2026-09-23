@@ -59,6 +59,86 @@ def t_disjoint_passes():
     contains(result.out, "V-PROCESS PASS", "gate is green")
 
 
+def mixed_geometry_fixture(rows):
+    _d, board, assembly = fixture(rows=rows)
+    data = yaml.safe_load(assembly.read_text())
+    data["via_process"].pop("protected_geometry")
+    data["via_process"]["protected_geometries"] = [
+        {"via_diameter_mm": 0.50, "drill_mm": 0.20},
+        {"via_diameter_mm": 0.35, "drill_mm": 0.20},
+    ]
+    assembly.write_text(yaml.safe_dump(data, sort_keys=False))
+    return board, assembly
+
+
+@test("V-PROCESS accepts two copper diameters in one protected drill family")
+def t_mixed_protected_geometries_pass():
+    board, _assembly = mixed_geometry_fixture((
+        (0.50, 0.20, True), (0.35, 0.20, True), (0.60, 0.30, False)))
+    result = must_pass(run([KPY, TOOL, board]), "Crow LT and BGA mix")
+    contains(result.out, "2 protected / 1 ordinary", "both protected sizes counted")
+
+
+@test("V-PROCESS refuses an unlisted protected copper size",
+      kind="known_bad")
+def t_mixed_unlisted_geometry_fails():
+    board, _assembly = mixed_geometry_fixture(((0.40, 0.20, True),))
+    result = must_fail(run([KPY, TOOL, board]),
+                       "protected size outside authored set", "V-GEOM")
+    contains(result.out, "expected 0.500/0.200mm or 0.350/0.200mm",
+             "all allowed protected sizes are reported")
+
+
+@test("V-PROCESS still refuses an ordinary via in a protected drill family",
+      kind="known_bad")
+def t_mixed_ordinary_same_drill_fails():
+    board, _assembly = mixed_geometry_fixture(((0.35, 0.20, False),))
+    result = must_fail(run([KPY, TOOL, board]),
+                       "ordinary 0.20 drill remains forbidden", "V-SELECT")
+    contains(result.out, "shares protected 0.200mm drill family",
+             "selector stayed drill-family complete")
+
+
+@test("V-PROCESS refuses a second protected drill family",
+      kind="known_bad")
+def t_mixed_second_drill_fails():
+    board, assembly = mixed_geometry_fixture(((0.50, 0.20, True),))
+    data = yaml.safe_load(assembly.read_text())
+    data["via_process"]["protected_geometries"][1]["drill_mm"] = 0.15
+    assembly.write_text(yaml.safe_dump(data, sort_keys=False))
+    result = must_fail(run([KPY, TOOL, board]),
+                       "extra protected drill cannot hide", "V-SCHEMA")
+    contains(result.out, "disagrees with fabricator selector",
+             "every protected geometry binds the exact selector")
+
+
+@test("V-PROCESS refuses duplicate listed protected geometries",
+      kind="known_bad")
+def t_mixed_duplicate_geometry_fails():
+    board, assembly = mixed_geometry_fixture(((0.50, 0.20, True),))
+    data = yaml.safe_load(assembly.read_text())
+    data["via_process"]["protected_geometries"][1] = dict(
+        data["via_process"]["protected_geometries"][0])
+    assembly.write_text(yaml.safe_dump(data, sort_keys=False))
+    result = must_fail(run([KPY, TOOL, board]),
+                       "duplicate list member", "V-SCHEMA")
+    contains(result.out, "duplicate protected geometry",
+             "the list is a strict set of geometry options")
+
+
+@test("V-PROCESS refuses simultaneous singular and plural geometry schemas",
+      kind="known_bad")
+def t_mixed_ambiguous_schema_fails():
+    board, assembly = mixed_geometry_fixture(((0.50, 0.20, True),))
+    data = yaml.safe_load(assembly.read_text())
+    data["via_process"]["protected_geometry"] = {
+        "via_diameter_mm": 0.50, "drill_mm": 0.20}
+    assembly.write_text(yaml.safe_dump(data, sort_keys=False))
+    result = must_fail(run([KPY, TOOL, board]),
+                       "ambiguous singular/plural contract", "V-SCHEMA")
+    contains(result.out, "not both", "one schema is selected explicitly")
+
+
 @test("V-PROCESS refuses an ordinary via in the protected drill family",
       kind="known_bad")
 def t_ordinary_protected_drill_fails():

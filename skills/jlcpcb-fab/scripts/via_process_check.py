@@ -9,12 +9,15 @@ those native item attributes.  A selective process therefore needs a
 fabricator-visible selector.  This gate uses the drill family declared in
 ``assembly.yaml`` and proves both directions:
 
-* every protected drill is Type VII filled+capped at the declared geometry;
+* every protected drill is Type VII filled+capped at a declared geometry;
 * every ordinary drill is unprotected and belongs to the declared ordinary
   family.
 
-The order remark is also graded because it is the instruction the fabricator
-actually receives.  DRC cannot establish any of these manufacturing facts.
+The optional protected_geometries list permits multiple copper diameters in
+one selected drill family (Crow's LT3045 plus TMUX4827 consumer).  The legacy
+protected_geometry mapping remains valid.  The order remark is also graded
+because it is the instruction the fabricator actually receives.  DRC cannot
+establish any of these manufacturing facts.
 """
 from __future__ import annotations
 
@@ -174,21 +177,52 @@ def check(board_path: Path, assembly: str | None = None):
         out["fails"].append("V-SCHEMA via_process: expected a mapping")
         return out
 
-    geom = vp.get("protected_geometry")
+    # A single drill family may contain more than one approved copper diameter.
+    # Keep the legacy singular key for existing boards; reject an ambiguous mix.
+    singular = vp.get("protected_geometry")
+    plural = vp.get("protected_geometries")
     selector = vp.get("fabricator_selector")
-    if not isinstance(geom, dict):
+    if singular is not None and plural is not None:
         out["fails"].append(
-            "V-SCHEMA via_process.protected_geometry: expected a mapping")
-        geom = {}
+            "V-SCHEMA use protected_geometry or protected_geometries, not both")
+    if plural is not None:
+        if not isinstance(plural, list) or not plural:
+            out["fails"].append(
+                "V-SCHEMA via_process.protected_geometries: expected a non-empty list")
+            raw_geoms = []
+        else:
+            raw_geoms = plural
+    else:
+        if not isinstance(singular, dict):
+            out["fails"].append(
+                "V-SCHEMA via_process.protected_geometry: expected a mapping")
+            singular = {}
+        raw_geoms = [singular]
     if not isinstance(selector, dict):
         out["fails"].append(
             "V-SCHEMA via_process.fabricator_selector: expected a mapping")
         selector = {}
 
-    size = _mm(geom.get("via_diameter_mm"),
-               "via_process.protected_geometry.via_diameter_mm", out["fails"])
-    drill = _mm(geom.get("drill_mm"),
-                "via_process.protected_geometry.drill_mm", out["fails"])
+    geoms = []
+    for i, geom in enumerate(raw_geoms):
+        path = (f"via_process.protected_geometries[{i}]" if plural is not None
+                else "via_process.protected_geometry")
+        if not isinstance(geom, dict):
+            out["fails"].append(f"V-SCHEMA {path}: expected a mapping")
+            continue
+        size = _mm(geom.get("via_diameter_mm"), f"{path}.via_diameter_mm",
+                   out["fails"])
+        drill = _mm(geom.get("drill_mm"), f"{path}.drill_mm",
+                    out["fails"])
+        if size is not None and drill is not None:
+            if size <= drill:
+                out["fails"].append(
+                    f"V-SCHEMA {path}: via diameter must exceed drill")
+            if any(close(size, prior_size) and close(drill, prior_drill)
+                   for prior_size, prior_drill in geoms):
+                out["fails"].append(
+                    f"V-SCHEMA {path}: duplicate protected geometry")
+            geoms.append((size, drill))
     kind = selector.get("kind")
     if kind != "drill_family":
         out["fails"].append(
@@ -212,11 +246,11 @@ def check(board_path: Path, assembly: str | None = None):
                 f"via_process.fabricator_selector.ordinary_drill_mm[{i}]",
                 out["fails"])) is not None
         ]
-    if drill is not None and protected_drill is not None and not close(
-            drill, protected_drill):
-        out["fails"].append(
-            f"V-SCHEMA protected geometry drill {drill:g}mm disagrees with "
-            f"fabricator selector {protected_drill:g}mm")
+    for _, drill in geoms:
+        if protected_drill is not None and not close(drill, protected_drill):
+            out["fails"].append(
+                f"V-SCHEMA protected geometry drill {drill:g}mm disagrees with "
+                f"fabricator selector {protected_drill:g}mm")
     if protected_drill is not None and any(
             close(protected_drill, value) for value in ordinary_drills):
         out["fails"].append(
@@ -273,12 +307,14 @@ def check(board_path: Path, assembly: str | None = None):
             continue
         if capped and filled:
             protected += 1
-            if size is not None and drill is not None and not (
-                    close(diameter, size) and close(hole, drill)):
+            if geoms and not any(close(diameter, size) and close(hole, drill)
+                                 for size, drill in geoms):
+                expected = " or ".join(
+                    f"{size:.3f}/{drill:.3f}mm" for size, drill in geoms)
                 out["fails"].append(
                     f"V-GEOM {where}: protected via is "
                     f"{diameter:.3f}/{hole:.3f}mm, expected "
-                    f"{size:.3f}/{drill:.3f}mm")
+                    f"{expected}")
             if protected_drill is not None and not close(hole, protected_drill):
                 out["fails"].append(
                     f"V-SELECT {where}: protected via is outside the "
