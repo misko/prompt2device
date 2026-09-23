@@ -544,3 +544,13 @@ E-CAP source engineering estimate PASS (15declaredbanks); production capacitance
 ### Ready-IC preference and remaining sourcing work
 
 Recorded user D8 without changing D5/D7 or implementing the STM32 proposal. Retain XMOS; investigate exact JLC replenishment options as research only. Independent carrier-temperature scope audit and PCM4204 dual-ADC feasibility review are running to check whether the previous rejection imported the roof/spoke environment into the carrier. No ADC substitution or thermal relaxation is admitted. Previous answer-only goal turn made no authoritative engineering progress; resumed from clean tracked HEAD 426556dc and confirmed remote main 5ea267d3. Source-stage work remains DO-NOT-ORDER and the full conductor remains held.
+
+### Development-main push and exact XMOS replenishment boundary
+
+Pushed source checkpoint 61278366 directly to remote main under the user's explicit development-main instruction. Exact-base 5ea267d3 transport PASS:120objects,53blobs,937969rawbytes,largest199218bytes. P-PUBLISH remained FAIL with one BOARD-COVERAGE finding (one changed project, zero boards); no release or publication acceptance is claimed.
+
+Retained independent SOL read-only replenishment research in 2026-09-23-xu316-jlc-replenishment.md (source SHA256960c9a071922f315488535f25b69968e890f5cf56fc5ca850c3c51cdcf886314). JLC pre-order creates private inventory; global-source inventory has additional same-part mixing restrictions. Neither establishes D7 public reserve. No anonymous exact firm quote or public replenishment date was established. External distributor supply is not JLC stock. Existing46public units versus155 remains unresolved; no account, vendor contact or purchase performed.
+
+### Carrier environmental scope correction
+
+Independent Terra audit c39459e4866066d68646a2267b6a39ef2905d1288fe36214b94849d8b127c01b found the cited −40..+80°C range belongs to external spoke/cable infrastructure, not a locked carrier ambient requirement. Corrected the research report's PCM4204 rejection; both its −10..+70°C rating and selected XMOS C24 0..70°C need the actual carrier environment. Sent the user the deployment/ambient question; no assumed response or source change. The existing70°C thermal screen remains unchanged.
