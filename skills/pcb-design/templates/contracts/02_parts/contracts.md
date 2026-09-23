@@ -708,12 +708,12 @@ against the `side: bottom` features) are the cheapest first bite.
 | `pins.<N>.type` | ADVISORY | human-readable electrical pin category on the CH224K dossier; executable connection and stress constraints live in the netlist invariants and protection-path contract |
 | `pins.<N>.note` | ADVISORY | per-pin datasheet prose (274 pins). The CONSTRAINTS inside it belong in `electrical.pins.<N>`, which IS graded by `node_level` |
 | `pins.<N>.tie` | OWED | 84 pins name the net they must land on and NOTHING reads it — the `GND_ISO` field class. E-NETREF K13; the patch is in `schema_reader_audit.py`'s docstring |
-| `pin_aliases` | `pin_map_check.py` | optional, explicit logical-to-artifact pin identity map; identity is the default and aliases are never inferred from equal nets |
-| `pin_aliases.<N>.schematic` | `pin_map_check.py` | schematic pin identity reached by logical pin `<N>` |
-| `pin_aliases.<N>.footprint` | `pin_map_check.py` | physical footprint pad identity reached by logical pin `<N>` |
-| `pin_aliases.<N>.fused` | `pin_map_check.py` | declares that an intentional many-logical-pins-to-one-pad collapse is a manufacturer-fused land |
-| `pin_aliases.<N>.why` | `pin_map_check.py` | required explanation for every non-identity mapping |
-| `pin_aliases.<N>.evidence` | `pin_map_check.py` | required datasheet/package-drawing citation for every non-identity mapping |
+| `pin_aliases` | `part_identity.py` | optional, explicit logical-to-artifact pin identity map; identity is the default and aliases are never inferred from equal nets |
+| `pin_aliases.<N>.schematic` | `part_identity.py` | schematic pin identity reached by logical pin `<N>` |
+| `pin_aliases.<N>.footprint` | `part_identity.py` | physical footprint pad identity reached by logical pin `<N>` |
+| `pin_aliases.<N>.fused` | `part_identity.py` | declares that an intentional many-logical-pins-to-one-pad collapse is a manufacturer-fused land |
+| `pin_aliases.<N>.why` | `part_identity.py` | required explanation for every non-identity mapping |
+| `pin_aliases.<N>.evidence` | `part_identity.py` | required datasheet/package-drawing citation for every non-identity mapping |
 | `escape.style` | `escape_check.py` | P-ESC escape geometry class; qfn/dfn share the bottom-terminated ring model, with pitch, budget, conditions and tier still independently checked |
 | `escape.pitch` | `escape_check.py` | P-ESC pitch |
 | `escape.tier_required` | `escape_check.py, policy_audit.py` | P-TIER: the fab tier the escape needs |
