@@ -1,18 +1,18 @@
 {
-  "blocker": "D10 public stock passes88/88. Fresh568-ref circuit and39-page PDF generated, M-FRESH9/9; E-CLOSURE8/9 awaits verified catalog values for8 passivecodes. Signed-in JLC PCBA availability/economics response also owed before placement; exact88-line request and upload CSV prepared.",
+  "blocker": "D10 public stock88/88; fresh568-ref,39-page schematic; M-FRESH9/9, E-CLOSURE9/9, selection2/2 PASS. Prelayout2/4 INCOMPLETE solely for signed-in JLC PCBA availability/economics receipt. Schematic review and block placement remain ahead.",
   "checkpoint": {
     "path": "03_tscircuit/build/circuit.json",
     "sha256": "b323ca64ebeec6e7d3660304a03e6bb8c60e041cf1afcf73d436bd9d3b583c64",
     "size": 4842421
   },
-  "next_command": "Repair verified passive ledger, regrade electrical closure and selection, then obtain and grade exact JLC prelayout response before schematic review and block placement.",
+  "next_command": "Obtain JLC BOM Tool result for06_build/sourcing/crow-jlc-bom-upload.csv at5boards; fill and grade prelayout_response.csv, then rerun conductor through schematic review checkpoint.",
   "phase": "schematic",
   "project": "crow-usb-carrier-v1",
   "receipts": [
     {
-      "path": "01_docs/research/2026-09-23-jlc-prelayout-access.md",
-      "sha256": "e517bbb6e48ae2cc0f1994c7aafb9b871a1b53d9fc83a809346e549d42fe440d",
-      "size": 3504
+      "path": "01_docs/research/2026-09-23-d10-schematic-handoff.md",
+      "sha256": "058d75411eb579eda8474a71c3789bd6ad0044ecd530c3fd01618c554329fdc9",
+      "size": 2745
     },
     {
       "path": "08_reviews/2026-09-23_empty-sheet_sol_source.md",
@@ -21,5 +21,5 @@
     }
   ],
   "schema": 1,
-  "state_id": "424c911b8cbb2a66f7e42c0203ff54e8bf6b111e47147dcb413aa9a3e2f3bd28"
+  "state_id": "264855efb3ecb2b5e4d8a29fcd767400cc9b1e54d687869c7c48eccbb1aa707d"
 }
