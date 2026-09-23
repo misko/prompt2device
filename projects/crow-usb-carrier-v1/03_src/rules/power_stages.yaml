@@ -2,7 +2,7 @@
 schema: 2
 stages: []
 no_external_gate_drive_stages: >-
-  TPSM63603V5 and TPS62825 variants contain their switching MOSFETs.
+  TPSM63603RDHR and TPS62822DLCR contain their switching MOSFETs.
   No external switching-regulator controller drives a discrete power stage.
   Q_IN is a passively biased reverse-polarity P-channel device; retained
   quiet-rail switching and dump devices are not converter gate-drive stages.
