@@ -40,19 +40,91 @@ gotchas:
   - 'EP11 and GND8 must be soldered/common. OUTS9 must Kelvin-sense the output-capacitor/load node; SET return joins the output-capacitor ground directly.'
 layout:
   source: LT3045 Rev.D pp11-22 and DD package drawing p29
-  reviewed: '2026-09-22 source geometry and circuit ownership; native PCB acceptance not performed'
+  reviewed: 2026-09-22 source geometry and circuit ownership; native PCB acceptance not performed
   keep_short:
-    - {net: 5V_LDO_HOLD, anchor_pins: ['1', '2'], partner_refs: [C_LDO_IN], max_span_mm: 5, why: 'Local input ceramic.'}
-    - {net: 3V3_ADC, anchor_pins: ['10'], partner_refs: [C_LDO_OUT_1, C_LDO_OUT_2], max_span_mm: 5, why: 'Required low-ESR output capacitance.'}
-    - {net: 3V3_ADC, anchor_pins: ['9'], partner_refs: [C_LDO_OUT_1], max_span_mm: 5, why: 'Kelvin OUTS endpoint at output capacitor/load node.'}
-    - {net: LDO_NR, anchor_pins: ['7'], partner_refs: [C_LDO_NR4, C_LDO_NR5, R_LDO_SET], max_span_mm: 5, why: 'SET programming/noise network with quiet return.'}
-    - {net: LDO_ILIM, anchor_pins: ['5'], partner_refs: [R_LDO_ILIM], max_span_mm: 5, why: 'Current-limit programming resistor with Kelvin ground return.'}
-    - {net: LDO_PGFB, anchor_pins: ['6'], partner_refs: [R_LDO_PG_TOP, R_LDO_PG_BOT_A], max_span_mm: 5, why: 'Fast-start threshold divider.'}
+  - net: N5V_LDO_HOLD
+    anchor_pins:
+    - '1'
+    - '2'
+    partner_refs:
+    - C_LDO_IN
+    max_span_mm: 5
+    why: Local input ceramic.
+  - net: N3V3_ADC
+    anchor_pins:
+    - '10'
+    partner_refs:
+    - C_LDO_OUT_1
+    - C_LDO_OUT_2
+    max_span_mm: 5
+    why: Required low-ESR output capacitance.
+  - net: N3V3_ADC
+    anchor_pins:
+    - '9'
+    partner_refs:
+    - C_LDO_OUT_1
+    max_span_mm: 5
+    why: Kelvin OUTS endpoint at output capacitor/load node.
+  - net: LDO_NR
+    anchor_pins:
+    - '7'
+    partner_refs:
+    - C_LDO_NR4
+    - C_LDO_NR5
+    - R_LDO_SET
+    max_span_mm: 5
+    why: SET programming/noise network with quiet return.
+  - net: LDO_ILIM
+    anchor_pins:
+    - '5'
+    partner_refs:
+    - R_LDO_ILIM
+    max_span_mm: 5
+    why: Current-limit programming resistor with Kelvin ground return.
+  - net: LDO_PGFB
+    anchor_pins:
+    - '6'
+    partner_refs:
+    - R_LDO_PG_TOP
+    - R_LDO_PG_BOT_A
+    max_span_mm: 5
+    why: Fast-start threshold divider.
   adjacency:
-    - {refdes: [U_LDO, C_LDO_IN], nets: [5V_LDO_HOLD], max_mm: 3.5, why: 'Local input loop.'}
-    - {refdes: [U_LDO, C_LDO_OUT_1, C_LDO_OUT_2], nets: [3V3_ADC], max_mm: 3.5, why: 'Output and sense loop.'}
-    - {refdes: [U_LDO, R_LDO_ILIM], nets: [LDO_ILIM], max_mm: 4, why: 'ILIM programming loop.'}
-    - {refdes: [U_LDO, R_LDO_PG_TOP], nets: [LDO_PGFB], max_mm: 4, why: 'PGFB fast-start divider.'}
+  - refdes:
+    - U_LDO
+    - C_LDO_IN
+    nets:
+    - N5V_LDO_HOLD
+    max_mm: 3.5
+    why: Local input loop.
+  - refdes:
+    - U_LDO
+    - C_LDO_OUT_1
+    nets:
+    - N3V3_ADC
+    max_mm: 3.5
+    why: Output and sense loop.
+  - refdes:
+    - U_LDO
+    - C_LDO_OUT_2
+    nets:
+    - N3V3_ADC
+    max_mm: 3.5
+    why: Output and sense loop.
+  - refdes:
+    - U_LDO
+    - R_LDO_ILIM
+    nets:
+    - LDO_ILIM
+    max_mm: 4
+    why: ILIM programming loop.
+  - refdes:
+    - U_LDO
+    - R_LDO_PG_TOP
+    nets:
+    - LDO_PGFB
+    max_mm: 4
+    why: PGFB fast-start divider.
 layout_refs:
   - {tier: 1, reached: true, artifact: 'LT3045 Rev.D pp11-22 and DD drawing p29', why: 'Primary pin, application, Kelvin, capacitor, thermal and package geometry authority.'}
   - {tier: 2, reached: false, artifact: 'DC2637A editable evaluation layout', why: 'No evaluation copper imported; native layout realization and review remain owed.'}

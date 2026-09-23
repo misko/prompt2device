@@ -44,3 +44,6 @@
 | [Public stock reconciliation](2026-09-23_dlc-usb-stock_terra_review.md) | Mirror discrepancies and exact thresholds. | Public screen88/88; preserve mirror conflicts and dated evidence. | No allocation/reservation claim. |
 
 | [P1 successor native](2026-09-23_p1-successor_terra_native.md) | 41 silkscreen findings, eight Description mismatches and adjacency debt. | ACCEPT DEFECTIVE verdict; preserve exhausted candidate. Correct classification: U_DUMP finding is policy audit, not native DRC; unrouted499 is expected atP1; repair source/library/generator, never generated board. | NoP2/P3/routing or registration/physical acceptance. |
+
+| [Source repair r1](2026-09-23_p1-source-repair-r1_terra_review.md) | Missing direct U_DUMP/R_DUMP_TIME3 timing budget. | ACCEPT finding; SOL added DUMP_RC at4.0mm, equal to parallel R_TIME2. | r1 remains DEFECTIVE evidence. |
+| [Source repair r2](2026-09-23_p1-source-repair-r2_terra_review.md) | Exact silk/Description and layout-contract corrections. | SOUND for source only; root replay reaches311/311 constraints; fresh schematic witnesses pass2/2. | Existing board remains rejected; measured distance and physical requirements remain open. |

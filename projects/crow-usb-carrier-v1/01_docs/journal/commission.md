@@ -805,3 +805,11 @@ Canonical repair reproduced exactly; independent Terra topology and render are S
 ## 2026-09-23 — one successor candidate measured, rejected and preserved
 
 After explicit source-level reassessment55a16531, the single bounded successor produced boardb2f59a1b in72.895s. Native findings improve155→41 and parity45→8; copper/hole/via/annular findings arezero. All568 models resolve and allfootprints havecourtyards;27anchors and16holdcapacitors match withzero reportedbankintrusions. NoMODEL-REGacceptance: CLIreportedN-A. Independent Terra verdictDEFECTIVE/DO-NOT-ORDER.41silkfindings,8Descriptions andmeasuredlocaladjacency/55unreachedconstraints remain. Candidate exhausted; noP2/P3/routing. Fullcounts, reviewerclassificationcorrections andcausalnextsteps recordedin2026-09-23-p1-successor-measurements.md.
+
+## 2026-09-23 — source silk and constraint repairs accepted
+
+SOL repaired ten dossier layout sections; Terra repaired five footprint sources and a separate Terra reviewer checked both. Source-only scope preserves electrical facts, pads, models, courtyards, F.Fab and numerical limits. The coupon negative control reports41 original silk findings versuszero after repair over10 instances; eight netlessUSB coupon findings remain disclosed. Productboardb2f59a1b is unchanged and remains rejected.
+
+The55 unreached rules are reconciled to actual sharednets/pairs and retired refs. First independentreview rejected a missing parallel R_DUMP_TIME3 limit; SOLadded the same4.0mm limit asR_TIME2. Freshr2 source reviewSOUND and rootpolicyreplayreaches311/311 rules. Actual7/10keep-short and264/301adjacency failures remain. CJ/PDF/nativeSCH remainbyteidentical106ace85; fresh topology/render witnesses bindnewpartsdigest andPR-REVIEW2/2PASS. ERC0errors/4216warnings unchanged.
+
+Runtimeprobe1INCOMPLETE was root evidence-copy interference duringREADONLY; retained verbatim. Frozenprobe2 andboth actualreviewdeliveriesPASS; engineeringr1DEFECTIVE/r2SOUND preserved separately. No newCrowboardtrial orrouting, and no automaticcampaignreset. P1/P2 admission authority under read-only SOL audit.

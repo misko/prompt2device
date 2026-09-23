@@ -15,26 +15,23 @@ layout:
   source: AO3401A_Rev3.1.pdf
   reviewed: '2026-09-08'
   notes:
-  - "Supplementary primary package authority2026-09-11: AOS_PO-00001N_SOT23.pdf SHA b6fac64d55f133ce74dd85ddddc618c3d5408e9531cb21e660f6a8ef3d8c5408, https://www.aosmd.com/sites/default/files/res/package/SOT23.pdf; exact product-page chain and independent judgment in journal d2ae8a6316df79e4ed257efc6212c9de35dcec8cc303e04c93951e8f8a17eddc.tar.gz. Native lands fully cover AOS terminal envelope with0.050mm minimum tangential margin. Generic F.Fab1.30mm is not authority for AOS nominal1.60mm body width."
+  - 'Supplementary primary package authority2026-09-11: AOS_PO-00001N_SOT23.pdf SHA b6fac64d55f133ce74dd85ddddc618c3d5408e9531cb21e660f6a8ef3d8c5408, https://www.aosmd.com/sites/default/files/res/package/SOT23.pdf; exact product-page chain and independent judgment in journal d2ae8a6316df79e4ed257efc6212c9de35dcec8cc303e04c93951e8f8a17eddc.tar.gz. Native lands fully cover AOS terminal envelope with0.050mm minimum tangential margin. Generic F.Fab1.30mm is not authority for AOS nominal1.60mm body width.'
   - Keep pulse-current loop short and broad; preserve pin1 orientation and provide thermal spreading.
-  - 'Carrier local-placement source 2026-09-08: exact-ref/non-ground-net adjacency is a rotation-aware copper-bounding-box gap, NOT pad-center
-    distance or routed length. Rounded engineering ceilings below are not manufacturer numerical maxima. Ground pours are excluded by P-ADJ-PAIR;
-    local return/thermal/escape proof remains owed on the later saved PCB.'
-  - Source-only pin-center plan uses <=5mm local bypass/BST and <=10mm feedback ceilings, with separately named bulk/input/feed exceptions. See
-    01_docs/SOURCE-CORRECTION-20260908-local-placement.md for all 299 roles and exact source geometry; no current-board acceptance is inherited.
+  - 'Carrier local-placement source 2026-09-08: exact-ref/non-ground-net adjacency is a rotation-aware copper-bounding-box gap, NOT pad-center distance or routed length. Rounded engineering ceilings below are not manufacturer numerical maxima. Ground pours are excluded by P-ADJ-PAIR; local return/thermal/escape proof remains owed on the later saved PCB.'
+  - Source-only pin-center plan uses <=5mm local bypass/BST and <=10mm feedback ceilings, with separately named bulk/input/feed exceptions. See 01_docs/SOURCE-CORRECTION-20260908-local-placement.md for all 299 roles and exact source geometry; no current-board acceptance is inherited.
   adjacency:
   - refdes:
     - Q_PRE
     - D_HOLD
     nets:
-    - 5V_LDO_FEED
+    - N5V_LDO_FEED
     max_mm: 2.0
     why: 'Engineering copper-gap ceiling: power-entry-feed; exact partner, selected non-poured net only.'
   - refdes:
     - Q_PRE
     - R_PRE
     nets:
-    - 5V_LDO_FEED
+    - N5V_LDO_FEED
     max_mm: 4.0
     why: 'Engineering copper-gap ceiling: power-entry-feed; exact partner, selected non-poured net only.'
   - refdes:

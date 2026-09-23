@@ -26,13 +26,123 @@ layout:
   source: TI SLVSDT4F sections 10.4 and 11, Figures 11-1/11-2, and DRC0010J package drawing
   reviewed: '2026-09-22'
   notes:
-    - Place C_SPOKE_INx directly between IN pin 1 and system GND pin 6 with the smallest practical loop; place C_SPOKE_OUTx directly between OUT pin 10 and system GND.
-    - Keep R_SPOKE_ILIMx and C_SPOKE_DVDTx local to pins 7/8 and return them to the RTN island at pin 5, never to system GND.
-    - Join exposed pad 11 to the RTN copper plane for heat spreading and retain an independent copper connection from pin 5 to that plane; the exposed pad is not the sole RTN connection.
-    - Keep RTN and system GND electrically separate. Size RTN copper and thermal vias from the later overload/retry thermal analysis at 70 C rather than inheriting TI evaluation-board temperature performance.
+  - Place C_SPOKE_INx directly between IN pin 1 and system GND pin 6 with the smallest practical loop; place C_SPOKE_OUTx directly between OUT pin 10 and system GND.
+  - Keep R_SPOKE_ILIMx and C_SPOKE_DVDTx local to pins 7/8 and return them to the RTN island at pin 5, never to system GND.
+  - Join exposed pad 11 to the RTN copper plane for heat spreading and retain an independent copper connection from pin 5 to that plane; the exposed pad is not the sole RTN connection.
+  - Keep RTN and system GND electrically separate. Size RTN copper and thermal vias from the later overload/retry thermal analysis at 70 C rather than inheriting TI evaluation-board temperature performance.
   adjacency:
-    - {refdes: [U_SPOKE1, U_SPOKE2, U_SPOKE3, U_SPOKE4, U_SPOKE5, U_SPOKE6, U_SPOKE7, U_SPOKE8, C_SPOKE_IN1, C_SPOKE_IN2, C_SPOKE_IN3, C_SPOKE_IN4, C_SPOKE_IN5, C_SPOKE_IN6, C_SPOKE_IN7, C_SPOKE_IN8], nets: [12V_PROTECTED], max_mm: 2.5, why: 'Engineering copper-gap ceiling implementing TI close input-bypass guidance.'}
-    - {refdes: [U_SPOKE1, U_SPOKE2, U_SPOKE3, U_SPOKE4, U_SPOKE5, U_SPOKE6, U_SPOKE7, U_SPOKE8, R_SPOKE_ILIM1, R_SPOKE_ILIM2, R_SPOKE_ILIM3, R_SPOKE_ILIM4, R_SPOKE_ILIM5, R_SPOKE_ILIM6, R_SPOKE_ILIM7, R_SPOKE_ILIM8], nets: [SPOKE_ILIM1, SPOKE_ILIM2, SPOKE_ILIM3, SPOKE_ILIM4, SPOKE_ILIM5, SPOKE_ILIM6, SPOKE_ILIM7, SPOKE_ILIM8], max_mm: 2.5, why: 'Engineering copper-gap ceiling for each local ILIM-to-RTN programming loop.'}
+  - refdes:
+    - U_SPOKE1
+    - C_SPOKE_IN1
+    nets:
+    - N12V_PROTECTED
+    max_mm: 2.5
+    why: Engineering copper-gap ceiling implementing TI close input-bypass guidance.
+  - refdes:
+    - U_SPOKE2
+    - C_SPOKE_IN2
+    nets:
+    - N12V_PROTECTED
+    max_mm: 2.5
+    why: Engineering copper-gap ceiling implementing TI close input-bypass guidance.
+  - refdes:
+    - U_SPOKE3
+    - C_SPOKE_IN3
+    nets:
+    - N12V_PROTECTED
+    max_mm: 2.5
+    why: Engineering copper-gap ceiling implementing TI close input-bypass guidance.
+  - refdes:
+    - U_SPOKE4
+    - C_SPOKE_IN4
+    nets:
+    - N12V_PROTECTED
+    max_mm: 2.5
+    why: Engineering copper-gap ceiling implementing TI close input-bypass guidance.
+  - refdes:
+    - U_SPOKE5
+    - C_SPOKE_IN5
+    nets:
+    - N12V_PROTECTED
+    max_mm: 2.5
+    why: Engineering copper-gap ceiling implementing TI close input-bypass guidance.
+  - refdes:
+    - U_SPOKE6
+    - C_SPOKE_IN6
+    nets:
+    - N12V_PROTECTED
+    max_mm: 2.5
+    why: Engineering copper-gap ceiling implementing TI close input-bypass guidance.
+  - refdes:
+    - U_SPOKE7
+    - C_SPOKE_IN7
+    nets:
+    - N12V_PROTECTED
+    max_mm: 2.5
+    why: Engineering copper-gap ceiling implementing TI close input-bypass guidance.
+  - refdes:
+    - U_SPOKE8
+    - C_SPOKE_IN8
+    nets:
+    - N12V_PROTECTED
+    max_mm: 2.5
+    why: Engineering copper-gap ceiling implementing TI close input-bypass guidance.
+  - refdes:
+    - U_SPOKE1
+    - R_SPOKE_ILIM1
+    nets:
+    - SPOKE_ILIM1
+    max_mm: 2.5
+    why: Engineering copper-gap ceiling for each local ILIM-to-RTN programming loop.
+  - refdes:
+    - U_SPOKE2
+    - R_SPOKE_ILIM2
+    nets:
+    - SPOKE_ILIM2
+    max_mm: 2.5
+    why: Engineering copper-gap ceiling for each local ILIM-to-RTN programming loop.
+  - refdes:
+    - U_SPOKE3
+    - R_SPOKE_ILIM3
+    nets:
+    - SPOKE_ILIM3
+    max_mm: 2.5
+    why: Engineering copper-gap ceiling for each local ILIM-to-RTN programming loop.
+  - refdes:
+    - U_SPOKE4
+    - R_SPOKE_ILIM4
+    nets:
+    - SPOKE_ILIM4
+    max_mm: 2.5
+    why: Engineering copper-gap ceiling for each local ILIM-to-RTN programming loop.
+  - refdes:
+    - U_SPOKE5
+    - R_SPOKE_ILIM5
+    nets:
+    - SPOKE_ILIM5
+    max_mm: 2.5
+    why: Engineering copper-gap ceiling for each local ILIM-to-RTN programming loop.
+  - refdes:
+    - U_SPOKE6
+    - R_SPOKE_ILIM6
+    nets:
+    - SPOKE_ILIM6
+    max_mm: 2.5
+    why: Engineering copper-gap ceiling for each local ILIM-to-RTN programming loop.
+  - refdes:
+    - U_SPOKE7
+    - R_SPOKE_ILIM7
+    nets:
+    - SPOKE_ILIM7
+    max_mm: 2.5
+    why: Engineering copper-gap ceiling for each local ILIM-to-RTN programming loop.
+  - refdes:
+    - U_SPOKE8
+    - R_SPOKE_ILIM8
+    nets:
+    - SPOKE_ILIM8
+    max_mm: 2.5
+    why: Engineering copper-gap ceiling for each local ILIM-to-RTN programming loop.
 layout_refs:
   - {tier: 1, reached: true, artifact: 'TI SLVSDT4F sections 10.4 and 11, Figures 11-1/11-2, package drawing pages 43-44', why: 'Exact manufacturer authority for bypass placement, RTN/GND separation, PowerPAD use, land geometry and stencil apertures.'}
   - {tier: 2, reached: false, artifact: 'Exact TPS26625 editable routed reference design', why: 'The datasheet application layouts are sufficient precedent for source constraints; exact project placement and thermal realization remain project-owned.'}

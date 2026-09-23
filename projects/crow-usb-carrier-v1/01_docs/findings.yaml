@@ -227,6 +227,10 @@ findings:
     adjacency checks exceed limits;55 constraints are unreached. Copper/hole/via
     findings and missing courtyards are now zero, model files resolve568/568,
     and hold-bank intrusion is zero. The one successor attempt is consumed.
+    Reviewed source now corrects silk and Description metadata; coupon silk
+    findings fall41 tozero without pad changes. All311 layout constraints
+    resolve after independent repair review, with7 of10 keep-short and264
+    of301 adjacency distances failing on the unchanged saved board.
     No placement acceptance or downstream P2/P3/routing is admitted.
   closes_when: Reconcile via fields and package/process clearances, repair
     endpoint metadata and native parity representation, complete footprint/model

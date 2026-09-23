@@ -42,7 +42,7 @@ layout:
       and datasheet revision are unchanged.
     - Exact-ref adjacency is a copper-edge gap on the named signal or non-poured rail, not a routed length. Ground-return
       qualification remains separate.
-    - All eight amplifiers and their own 100nF capacitors share 3V3_ADC. Each bypass remains bound to its exact U_AFE
+    - All eight amplifiers and their own 100nF capacitors share N3V3_ADC. Each bypass remains bound to its exact U_AFE
       instance.
     - R_X and C_FB stay beside FB/OUT; R_OUT is the 10ohm output resistor. Two 15nF C0G shunts per leg replace C_DIFF;
       their returns must not inject into the input/feedback ground reference.
@@ -52,7 +52,7 @@ layout:
       - U_AFE1
       - C_OPA1
       nets:
-      - 3V3_ADC
+      - N3V3_ADC
       max_mm: 1.5
       why: 'Engineering copper-gap ceiling: local-bypass; exact partner, selected non-poured net only.'
     - refdes:
@@ -195,7 +195,7 @@ layout:
       - U_AFE2
       - C_OPA2
       nets:
-      - 3V3_ADC
+      - N3V3_ADC
       max_mm: 1.5
       why: 'Engineering copper-gap ceiling: local-bypass; exact partner, selected non-poured net only.'
     - refdes:
@@ -338,7 +338,7 @@ layout:
       - U_AFE3
       - C_OPA3
       nets:
-      - 3V3_ADC
+      - N3V3_ADC
       max_mm: 1.5
       why: 'Engineering copper-gap ceiling: local-bypass; exact partner, selected non-poured net only.'
     - refdes:
@@ -481,7 +481,7 @@ layout:
       - U_AFE4
       - C_OPA4
       nets:
-      - 3V3_ADC
+      - N3V3_ADC
       max_mm: 1.5
       why: 'Engineering copper-gap ceiling: local-bypass; exact partner, selected non-poured net only.'
     - refdes:
@@ -624,7 +624,7 @@ layout:
       - U_AFE5
       - C_OPA5
       nets:
-      - 3V3_ADC
+      - N3V3_ADC
       max_mm: 1.5
       why: 'Engineering copper-gap ceiling: local-bypass; exact partner, selected non-poured net only.'
     - refdes:
@@ -767,7 +767,7 @@ layout:
       - U_AFE6
       - C_OPA6
       nets:
-      - 3V3_ADC
+      - N3V3_ADC
       max_mm: 1.5
       why: 'Engineering copper-gap ceiling: local-bypass; exact partner, selected non-poured net only.'
     - refdes:
@@ -910,7 +910,7 @@ layout:
       - U_AFE7
       - C_OPA7
       nets:
-      - 3V3_ADC
+      - N3V3_ADC
       max_mm: 1.5
       why: 'Engineering copper-gap ceiling: local-bypass; exact partner, selected non-poured net only.'
     - refdes:
@@ -1053,7 +1053,7 @@ layout:
       - U_AFE8
       - C_OPA8
       nets:
-      - 3V3_ADC
+      - N3V3_ADC
       max_mm: 1.5
       why: 'Engineering copper-gap ceiling: local-bypass; exact partner, selected non-poured net only.'
     - refdes:

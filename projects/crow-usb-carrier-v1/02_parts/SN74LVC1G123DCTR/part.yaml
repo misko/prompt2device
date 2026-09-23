@@ -31,17 +31,14 @@ layout:
   notes:
   - Place the supply bypass at VCC/GND and keep the external timing R/C loop local to pins 6-7.
   - Keep A, B, CLR, and Q traces short and away from the buck switch node.
-  - 'Carrier local-placement source 2026-09-08: exact-ref/non-ground-net adjacency is a rotation-aware copper-bounding-box gap, NOT pad-center
-    distance or routed length. Rounded engineering ceilings below are not manufacturer numerical maxima. Ground pours are excluded by P-ADJ-PAIR;
-    local return/thermal/escape proof remains owed on the later saved PCB.'
-  - Source-only pin-center plan uses <=5mm local bypass/BST and <=10mm feedback ceilings, with separately named bulk/input/feed exceptions. See
-    01_docs/SOURCE-CORRECTION-20260908-local-placement.md for all 299 roles and exact source geometry; no current-board acceptance is inherited.
+  - 'Carrier local-placement source 2026-09-08: exact-ref/non-ground-net adjacency is a rotation-aware copper-bounding-box gap, NOT pad-center distance or routed length. Rounded engineering ceilings below are not manufacturer numerical maxima. Ground pours are excluded by P-ADJ-PAIR; local return/thermal/escape proof remains owed on the later saved PCB.'
+  - Source-only pin-center plan uses <=5mm local bypass/BST and <=10mm feedback ceilings, with separately named bulk/input/feed exceptions. See 01_docs/SOURCE-CORRECTION-20260908-local-placement.md for all 299 roles and exact source geometry; no current-board acceptance is inherited.
   adjacency:
   - refdes:
     - U_RST2
     - C_RST2
     nets:
-    - 3V3_ADC
+    - N3V3_ADC
     max_mm: 1.5
     why: 'Engineering copper-gap ceiling: local-bypass; exact partner, selected non-poured net only.'
   - refdes:
@@ -60,7 +57,7 @@ layout:
     max_mm: 4.5
     why: 'Engineering copper-gap ceiling: local-timing; exact partner, selected non-poured net only.'
   keep_short:
-  - net: 3V3_ADC
+  - net: N3V3_ADC
     anchor_pins:
     - '8'
     partner_refs:

@@ -1,17 +1,17 @@
 # Project status
 
-<!-- pause-state:6c690c8b75fe0d964f22fd0c08a743de72450a08cb0f9c2b28e25cc6eca39318 -->
+<!-- pause-state:6c4609ef035f25820263ee1fc32724cde2e51a184e38452fe278efb0c3f634bd -->
 
 - Phase: `placement`
 - State: **PAUSED**
 - Checkpoint: `06_build/checkpoints/schematic.json` (`2fb4dd626750`)
-- Blocker: One successor P1 candidate measured and rejected: 41 silkscreen findings, eight Description mismatches, local adjacency failures and 55 unreached constraints. Its single attempt is consumed. Connector FULL retains 19 physical targets; no P2/P3/routing admitted.
-- Next command: `Repair owning footprint/generator metadata and reconcile exact layout constraints, then explicitly reassess before another native candidate. Preserve b2f59a1b and both earlier failures.`
+- Blocker: Source silk/Description repairs and 311/311 layout-constraint coverage accepted; product candidate b2f59a1b remains rejected and its allowance consumed. Block-local distances and connector physical requirements remain open. P1/P2 admission authority is under read-only audit.
+- Next command: `Resolve P1-to-P2 admission against owning gates, then explicitly admit the appropriate bounded block-placement work. Do not regenerate an exhausted candidate or waive physical/routing requirements.`
 
 ## Bound receipts
 
-- `01_docs/research/2026-09-23-p1-successor-measurements.md` — `c493c0dffd4a`
-- `08_reviews/2026-09-23_p1-successor_terra_native.md` — `225d1a6edf85`
+- `01_docs/research/2026-09-23-layout-constraint-source-repair.md` — `40613a415a07`
+- `08_reviews/2026-09-23_p1-source-repair-r2_terra_review.md` — `d8dac319dcc4`
 
 This file is generated from `01_docs/pause_state.json`; edit the manifest with
 `pause_state.py record`, not this view.

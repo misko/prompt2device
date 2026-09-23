@@ -36,47 +36,95 @@ layout:
   notes:
   - Place next to U_TDM with its own100nF bypass at pins5/3; keep Y-to-OE a short local unloaded logic net with no shunt RC or test cable.
   - Keep module sense input separate from local output and rail; preserve Ioff power boundary.
-  - 'Carrier local-placement source 2026-09-08: exact-ref/non-ground-net adjacency is a rotation-aware copper-bounding-box gap, NOT pad-center
-    distance or routed length. Rounded engineering ceilings below are not manufacturer numerical maxima. Ground pours are excluded by P-ADJ-PAIR;
-    local return/thermal/escape proof remains owed on the later saved PCB.'
-  - Source-only pin-center plan uses <=5mm local bypass/BST and <=10mm feedback ceilings, with separately named bulk/input/feed exceptions. See
-    01_docs/SOURCE-CORRECTION-20260908-local-placement.md for all 299 roles and exact source geometry; no current-board acceptance is inherited.
+  - 'Carrier local-placement source 2026-09-08: exact-ref/non-ground-net adjacency is a rotation-aware copper-bounding-box gap, NOT pad-center distance or routed length. Rounded engineering ceilings below are not manufacturer numerical maxima. Ground pours are excluded by P-ADJ-PAIR; local return/thermal/escape proof remains owed on the later saved PCB.'
+  - Source-only pin-center plan uses <=5mm local bypass/BST and <=10mm feedback ceilings, with separately named bulk/input/feed exceptions. See 01_docs/SOURCE-CORRECTION-20260908-local-placement.md for all 299 roles and exact source geometry; no current-board acceptance is inherited.
+  - 'Obsolete U_OE/C_OE/R_MCH_SENSE/R_MCH_SENSE_PD placement pairs retired: current TDM output enable is U_TDM_XLATE pin 15 on TDM_OE_N, with Q_TDM_GATE and R_TDM_OE_PU; those old refdes are absent from this source. Their old U_OE local-bypass and sense-loop budgets cannot be applied to a nonexistent circuit.'
+  - DUMP timing is the actual PWR_EN -> R_DUMP_TIME1 -> DUMP_RMID -> parallel R_DUMP_TIME2/3 -> DUMP_RC -> eight C_DUMP_TIME1..8 circuit. Keep each C_DUMP_TIME close to U_DUMP on DUMP_RC (3.5 mm), each R_DUMP_TIME1-to-R_DUMP_TIME2/3 DUMP_RMID segment within 4.5 mm, and U_DUMP-to-each-R_DUMP_TIME2/3 on DUMP_RC within 4.0 mm. These are placement budgets; timing waveform qualification remains owed.
   adjacency:
   - refdes:
     - U_DUMP
     - C_DUMP_LOGIC
     nets:
-    - 5V_LDO_HOLD
+    - N5V_LDO_HOLD
     max_mm: 4.0
     why: 'Engineering copper-gap ceiling: local-bypass; exact partner, selected non-poured net only.'
   - refdes:
     - U_LDO_EN
     - C_LDO_EN
     nets:
-    - 5V_LDO_HOLD
+    - N5V_LDO_HOLD
     max_mm: 2.0
     why: 'Engineering copper-gap ceiling: local-bypass; exact partner, selected non-poured net only.'
   - refdes:
-    - U_OE
-    - C_OE
-    nets:
-    - 3V3_ADC
-    max_mm: 1.5
-    why: 'Engineering copper-gap ceiling: local-bypass; exact partner, selected non-poured net only.'
-  - refdes:
     - U_DUMP
-    - C_DUMP_TIME
+    - C_DUMP_TIME1
     nets:
     - DUMP_RC
     max_mm: 3.5
     why: 'Engineering copper-gap ceiling: local-timing; exact partner, selected non-poured net only.'
   - refdes:
     - U_DUMP
-    - R_DUMP_TIME1
+    - C_DUMP_TIME2
     nets:
     - DUMP_RC
+    max_mm: 3.5
+    why: 'Engineering copper-gap ceiling: local-timing; exact partner, selected non-poured net only.'
+  - refdes:
+    - U_DUMP
+    - C_DUMP_TIME3
+    nets:
+    - DUMP_RC
+    max_mm: 3.5
+    why: 'Engineering copper-gap ceiling: local-timing; exact partner, selected non-poured net only.'
+  - refdes:
+    - U_DUMP
+    - C_DUMP_TIME4
+    nets:
+    - DUMP_RC
+    max_mm: 3.5
+    why: 'Engineering copper-gap ceiling: local-timing; exact partner, selected non-poured net only.'
+  - refdes:
+    - U_DUMP
+    - C_DUMP_TIME5
+    nets:
+    - DUMP_RC
+    max_mm: 3.5
+    why: 'Engineering copper-gap ceiling: local-timing; exact partner, selected non-poured net only.'
+  - refdes:
+    - U_DUMP
+    - C_DUMP_TIME6
+    nets:
+    - DUMP_RC
+    max_mm: 3.5
+    why: 'Engineering copper-gap ceiling: local-timing; exact partner, selected non-poured net only.'
+  - refdes:
+    - U_DUMP
+    - C_DUMP_TIME7
+    nets:
+    - DUMP_RC
+    max_mm: 3.5
+    why: 'Engineering copper-gap ceiling: local-timing; exact partner, selected non-poured net only.'
+  - refdes:
+    - U_DUMP
+    - C_DUMP_TIME8
+    nets:
+    - DUMP_RC
+    max_mm: 3.5
+    why: 'Engineering copper-gap ceiling: local-timing; exact partner, selected non-poured net only.'
+  - refdes:
+    - R_DUMP_TIME1
+    - R_DUMP_TIME2
+    nets:
+    - DUMP_RMID
     max_mm: 4.5
-    why: 'Engineering copper-gap ceiling: local-control; exact partner, selected non-poured net only.'
+    why: Engineering local series-timing copper-gap ceiling across actual DUMP_RMID segment; original 4.5 mm limit retained.
+  - refdes:
+    - R_DUMP_TIME1
+    - R_DUMP_TIME3
+    nets:
+    - DUMP_RMID
+    max_mm: 4.5
+    why: Engineering local series-timing copper-gap ceiling across actual DUMP_RMID segment; original 4.5 mm limit retained.
   - refdes:
     - U_DUMP
     - R_DUMP_TIME2
@@ -85,19 +133,12 @@ layout:
     max_mm: 4.0
     why: 'Engineering copper-gap ceiling: local-control; exact partner, selected non-poured net only.'
   - refdes:
-    - U_OE
-    - R_MCH_SENSE
+    - U_DUMP
+    - R_DUMP_TIME3
     nets:
-    - TDM_SENSE_G
-    max_mm: 2.5
-    why: 'Engineering copper-gap ceiling: local-control; exact partner, selected non-poured net only.'
-  - refdes:
-    - U_OE
-    - R_MCH_SENSE_PD
-    nets:
-    - TDM_SENSE_G
-    max_mm: 1.5
-    why: 'Engineering copper-gap ceiling: local-control; exact partner, selected non-poured net only.'
+    - DUMP_RC
+    max_mm: 4.0
+    why: 'Engineering copper-gap ceiling: parallel local-control branch shares DUMP_RC with U_DUMP; same 4.0 mm limit as R_DUMP_TIME2.'
 layout_refs:
   - {tier: 1, reached: true, artifact: "Nexperia 74LVC1G14 Rev19 datasheet", why: "Exact package, logic, power-off and input-slew authority."}
   - {tier: 2, reached: false, artifact: "Manufacturer editable independent-power TDM interlock reference board", why: "No exact editable reference board identified; this simple-gate boundary is drawing-backed and still requires first-article power-state qualification."}

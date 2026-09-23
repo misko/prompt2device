@@ -46,24 +46,21 @@ layout:
   reviewed: '2026-09-08'
   notes:
   - Keep the high-current path short/wide and place the gate clamp directly between source and gate.
-  - 'Carrier local-placement source 2026-09-08: exact-ref/non-ground-net adjacency is a rotation-aware copper-bounding-box gap, NOT pad-center
-    distance or routed length. Rounded engineering ceilings below are not manufacturer numerical maxima. Ground pours are excluded by P-ADJ-PAIR;
-    local return/thermal/escape proof remains owed on the later saved PCB.'
-  - Source-only pin-center plan uses <=5mm local bypass/BST and <=10mm feedback ceilings, with separately named bulk/input/feed exceptions. See
-    01_docs/SOURCE-CORRECTION-20260908-local-placement.md for all 299 roles and exact source geometry; no current-board acceptance is inherited.
+  - 'Carrier local-placement source 2026-09-08: exact-ref/non-ground-net adjacency is a rotation-aware copper-bounding-box gap, NOT pad-center distance or routed length. Rounded engineering ceilings below are not manufacturer numerical maxima. Ground pours are excluded by P-ADJ-PAIR; local return/thermal/escape proof remains owed on the later saved PCB.'
+  - Source-only pin-center plan uses <=5mm local bypass/BST and <=10mm feedback ceilings, with separately named bulk/input/feed exceptions. See 01_docs/SOURCE-CORRECTION-20260908-local-placement.md for all 299 roles and exact source geometry; no current-board acceptance is inherited.
   adjacency:
   - refdes:
     - Q_IN
     - F_IN
     nets:
-    - 12V_FUSED
+    - N12V_FUSED
     max_mm: 3.5
     why: 'Engineering copper-gap ceiling: power-entry-feed; exact partner, selected non-poured net only.'
   - refdes:
     - Q_IN
     - D_IN
     nets:
-    - 12V_PROTECTED
+    - N12V_PROTECTED
     max_mm: 11.0
     why: 'Engineering copper-gap ceiling: power-entry-feed; exact partner, selected non-poured net only.'
   - refdes:

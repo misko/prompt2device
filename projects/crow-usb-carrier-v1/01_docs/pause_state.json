@@ -1,25 +1,25 @@
 {
-  "blocker": "One successor P1 candidate measured and rejected: 41 silkscreen findings, eight Description mismatches, local adjacency failures and 55 unreached constraints. Its single attempt is consumed. Connector FULL retains 19 physical targets; no P2/P3/routing admitted.",
+  "blocker": "Source silk/Description repairs and 311/311 layout-constraint coverage accepted; product candidate b2f59a1b remains rejected and its allowance consumed. Block-local distances and connector physical requirements remain open. P1/P2 admission authority is under read-only audit.",
   "checkpoint": {
     "path": "06_build/checkpoints/schematic.json",
     "sha256": "2fb4dd626750114476150d550d88cf15c0d5a2deb5d8e971e1be67a2a7bde856",
     "size": 1152
   },
-  "next_command": "Repair owning footprint/generator metadata and reconcile exact layout constraints, then explicitly reassess before another native candidate. Preserve b2f59a1b and both earlier failures.",
+  "next_command": "Resolve P1-to-P2 admission against owning gates, then explicitly admit the appropriate bounded block-placement work. Do not regenerate an exhausted candidate or waive physical/routing requirements.",
   "phase": "placement",
   "project": "crow-usb-carrier-v1",
   "receipts": [
     {
-      "path": "01_docs/research/2026-09-23-p1-successor-measurements.md",
-      "sha256": "c493c0dffd4adf991fb959c61f15a9f14f16d777a73b51ea6cadedeabb7d38c7",
-      "size": 3607
+      "path": "01_docs/research/2026-09-23-layout-constraint-source-repair.md",
+      "sha256": "40613a415a07bc413e0622a890aafc1fb0b9f459a6b4af50f0b22876c28a091c",
+      "size": 3927
     },
     {
-      "path": "08_reviews/2026-09-23_p1-successor_terra_native.md",
-      "sha256": "225d1a6edf8553c3e42bfc784a9a8e74ee0ce3394639840db01f79bccba473c3",
-      "size": 2301
+      "path": "08_reviews/2026-09-23_p1-source-repair-r2_terra_review.md",
+      "sha256": "d8dac319dcc48afddf860805cf7bf7b54a9c372909e66fa36d6f016d34419b9e",
+      "size": 1219
     }
   ],
   "schema": 1,
-  "state_id": "6c690c8b75fe0d964f22fd0c08a743de72450a08cb0f9c2b28e25cc6eca39318"
+  "state_id": "6c4609ef035f25820263ee1fc32724cde2e51a184e38452fe278efb0c3f634bd"
 }

@@ -16,27 +16,22 @@ layout:
   reviewed: '2026-09-08'
   notes:
   - Local100nF bypass to uninterrupted ground plane; preserve exact thermal-pad and pin1 identity.
-  - 'Carrier local-placement source 2026-09-08: exact-ref/non-ground-net adjacency is a rotation-aware copper-bounding-box gap, NOT pad-center
-    distance or routed length. Rounded engineering ceilings below are not manufacturer numerical maxima. Ground pours are excluded by P-ADJ-PAIR;
-    local return/thermal/escape proof remains owed on the later saved PCB.'
-  - Source-only pin-center plan uses <=5mm local bypass/BST and <=10mm feedback ceilings, with separately named bulk/input/feed exceptions. See
-    01_docs/SOURCE-CORRECTION-20260908-local-placement.md for all 299 roles and exact source geometry; no current-board acceptance is inherited.
-  - C_PWR and C_AUDIO own each exact supervisor VDD4 despite MR3 sharing the HOLD rail on U_PWR. CT capacitors own pin5 separately. The exact-pair
-    consumer cannot prove VDD4 versus MR3 on their shared net; that pin distinction is retained in source geometry/regression evidence and must
-    be inspected on the later PCB.
+  - 'Carrier local-placement source 2026-09-08: exact-ref/non-ground-net adjacency is a rotation-aware copper-bounding-box gap, NOT pad-center distance or routed length. Rounded engineering ceilings below are not manufacturer numerical maxima. Ground pours are excluded by P-ADJ-PAIR; local return/thermal/escape proof remains owed on the later saved PCB.'
+  - Source-only pin-center plan uses <=5mm local bypass/BST and <=10mm feedback ceilings, with separately named bulk/input/feed exceptions. See 01_docs/SOURCE-CORRECTION-20260908-local-placement.md for all 299 roles and exact source geometry; no current-board acceptance is inherited.
+  - C_PWR and C_AUDIO own each exact supervisor VDD4 despite MR3 sharing the HOLD rail on U_PWR. CT capacitors own pin5 separately. The exact-pair consumer cannot prove VDD4 versus MR3 on their shared net; that pin distinction is retained in source geometry/regression evidence and must be inspected on the later PCB.
   adjacency:
   - refdes:
     - U_PWR
     - C_PWR
     nets:
-    - 5V_LDO_HOLD
+    - N5V_LDO_HOLD
     max_mm: 1.5
     why: 'Engineering copper-gap ceiling: local-bypass; exact partner, selected non-poured net only.'
   - refdes:
     - U_AUDIO
     - C_AUDIO
     nets:
-    - 5V_LDO_HOLD
+    - N5V_LDO_HOLD
     max_mm: 2.5
     why: 'Engineering copper-gap ceiling: local-bypass; exact partner, selected non-poured net only.'
   - refdes:
