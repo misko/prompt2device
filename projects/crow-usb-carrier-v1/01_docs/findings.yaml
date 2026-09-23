@@ -217,10 +217,10 @@ findings:
     repairs add all seven missing courtyard definitions covering the 16 refs;
     their placement consequence is not yet regenerated or accepted. Exact TMUX
     B2 process rules and native pin/datasheet parity repairs now pass independent
-    source/fixture reviews; product regeneration remains owed. A stocked wider-pad
-    regulator implementation is under independent source review, not adopted.
-    Scoped perimeter rules and logic/passive models now have source reviews;
-    canonical and native regeneration remain owed.
+    source/fixture reviews; product regeneration remains owed. Reviewed stocked DLC regulators, USB4215, all remaining source model
+    bindings and hold-bank reservations are integrated. New initial circuit
+    416d4f78 passes producer diagnostics but awaits exact electrical/fault and
+    canonical schematic review; no new native board or P1 admission occurred.
   closes_when: Reconcile via fields and package/process clearances, repair
     endpoint metadata and native parity representation, complete footprint/model
     evidence and reserve support corridors. Independently review upstream
@@ -239,7 +239,8 @@ findings:
     restored the missing generic resistor model for nine instances. Drawing-derived
     ADC/TMUX models and a nominal Murata model for 42 refs now have independent
     source review. Ten logic and six passive/clock model bindings also pass
-    source review; projected coverage is 562/568, not measured on a new board.
+    source review. Final J_PWR/J_JTAG/U_BUCK and DLC source bindings also
+    pass scoped review; projected file presence is 568/568, not measured on a new board.
     Full native coverage and registration remain owed.
   closes_when: Bind current exact-package models with documented provenance,
     regenerate after admitted source repair, and independently verify native

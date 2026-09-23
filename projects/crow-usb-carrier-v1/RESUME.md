@@ -1,12 +1,12 @@
 # Resume
 
-<!-- pause-state:dcb897eab92cb30069ebe5d33a8309314457a4b16cbc312f242db3112a54d29d -->
+<!-- pause-state:6305909a5b6650860bf2b72c87e34be67443f2df055c651fdd6b197ac75a4c7a -->
 
 Canonical state: `01_docs/pause_state.json`
 
 1. Verify: `python3 skills/pcb-design/scripts/pause_state.py verify .`
-2. Confirm blocker: Reviewed TMUX and logic-model source repairs integrated. Regulator/USB source candidates and passive models await composition and independent review; new stock shortages identified. Both P1 trials consumed; connector physical evidence remains open.
-3. Resume with: `Review and compose regulator, USB and model source repairs; refresh canonical artifacts and independent reviews, then explicitly reassess placement campaign. No third P1 or routing admitted.`
+2. Confirm blocker: New composed circuit416d4f78 passed producer diagnostics; E-FAULT correctly refuses old reviewed digest. Exact electrical comparison and independent review required before digest update and canonical schematic refresh. No new P1 admitted; connector physical holds remain.
+3. Resume with: `Review exact new circuit and fault-envelope implications, then reproduce and refresh sourcing/topology/readability. Reassess exhausted placement campaign before any new PCB generation.`
 
 The authenticated checkpoint is `06_build/checkpoints/schematic.json` at
 `545adc0b60a8198eca489362e59621681687ccac7725ea9a2241fa21a7862816`.
