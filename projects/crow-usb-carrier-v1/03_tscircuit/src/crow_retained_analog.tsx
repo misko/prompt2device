@@ -77,7 +77,6 @@ const C = ({ name, value, a, b, mpn, jlc, footprint = "0402", polarized = false,
 const sourced = (mpn: string, jlc = "") => jlc || ({
   "615008160221": "C6461980", "R82DC4100CK60J": "C3778009",
   "SN74LVC1G04DCKR": "C8207", "SN74LVC1G125DCKT": "C2675550",
-  "TPS389018DSER": "C2066910", "TPS389030DSER": "C2066942",
 } as Record<string, string>)[mpn] || ""
 const Chip = ({ jlc = "", manufacturerPartNumber, ...props }: any) => (
   <chip manufacturerPartNumber={manufacturerPartNumber} supplierPartNumbers={supplier(sourced(manufacturerPartNumber, jlc))} {...props} />
@@ -240,12 +239,16 @@ const AdcReset = ({ n }: any) => (
     <C name="C_RST1" value="100nF" a="3V3_ADC" b="GND" jlc="C1525" mpn="CL05B104KO5NNNC" n={n} />
     {/* Both digital rails must be valid before clocks or ADC reset are released.
         Open-drain supervisor outputs form ADC_DIGITAL_OK in the held domain. */}
-    <Chip name="U_ADC_1V8_OK" manufacturerPartNumber="TPS389018DSER" jlc="" footprint={<TiDse0006a />}
+    <R name="R_ADC_1V8_OK_TOP" value="52.3k" a="1V8" b="U_ADC_1V8_OK_SENSE" mpn="RT0402BRD0752K3L" jlc="C852832" n={n} />
+    <R name="R_ADC_1V8_OK_BOT" value="100k" a="U_ADC_1V8_OK_SENSE" b="GND" mpn="RT0402BRD07100KL" jlc="C852472" n={n} />
+    <Chip name="U_ADC_1V8_OK" manufacturerPartNumber="TPS389001DSER" jlc="C1509297" footprint={<TiDse0006a />}
       pinLabels={{ pin1: "SENSE", pin2: "GND", pin3: "MR_N", pin4: "VDD", pin5: "CT", pin6: "RESET_N" }}
-      connections={{ pin1: n("1V8"), pin2: n("GND"), pin3: n("3V3_ADC"), pin4: n("3V3_ADC"), pin6: n("ADC_DIGITAL_OK") }} />
-    <Chip name="U_ADC_3V3X_OK" manufacturerPartNumber="TPS389030DSER" jlc="" footprint={<TiDse0006a />}
+      connections={{ pin1:n("U_ADC_1V8_OK_SENSE"), pin2: n("GND"), pin3: n("3V3_ADC"), pin4: n("3V3_ADC"), pin6: n("ADC_DIGITAL_OK") }} />
+    <R name="R_ADC_3V3X_OK_TOP" value="169k" a="3V3X" b="U_ADC_3V3X_OK_SENSE" mpn="RT0402BRD07169KL" jlc="C852555" n={n} />
+    <R name="R_ADC_3V3X_OK_BOT" value="100k" a="U_ADC_3V3X_OK_SENSE" b="GND" mpn="RT0402BRD07100KL" jlc="C852472" n={n} />
+    <Chip name="U_ADC_3V3X_OK" manufacturerPartNumber="TPS389001DSER" jlc="C1509297" footprint={<TiDse0006a />}
       pinLabels={{ pin1: "SENSE", pin2: "GND", pin3: "MR_N", pin4: "VDD", pin5: "CT", pin6: "RESET_N" }}
-      connections={{ pin1: n("3V3X"), pin2: n("GND"), pin3: n("3V3_ADC"), pin4: n("3V3_ADC"), pin6: n("ADC_DIGITAL_OK") }} />
+      connections={{ pin1:n("U_ADC_3V3X_OK_SENSE"), pin2: n("GND"), pin3: n("3V3_ADC"), pin4: n("3V3_ADC"), pin6: n("ADC_DIGITAL_OK") }} />
     <R name="R_ADC_DIGITAL_OK_PU" value="10k" a="3V3_ADC" b="ADC_DIGITAL_OK" jlc="C60490" mpn="RC0402FR-0710KL" n={n} />
     <C name="C_ADC_DIGITAL_OK" value="100nF" a="3V3_ADC" b="GND" jlc="C1525" mpn="CL05B104KO5NNNC" n={n} />
     {/* Qualify the push-pull POR with the wired-open-drain digital-rail result.

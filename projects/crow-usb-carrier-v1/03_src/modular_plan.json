@@ -37,6 +37,10 @@
         "Q_ADC_DELAY_DISCH",
         "Q_ADC_DIG_RST",
         "Q_RST1",
+        "R_ADC_1V8_OK_BOT",
+        "R_ADC_1V8_OK_TOP",
+        "R_ADC_3V3X_OK_BOT",
+        "R_ADC_3V3X_OK_TOP",
         "R_ADC_DELAY_GATE_PD",
         "R_ADC_DIGITAL_OK_PU",
         "R_ADC_DIG_RST_PD",
@@ -416,7 +420,9 @@
         "Q_TDM_GATE",
         "R_ADC_CLOCK_OK_PD",
         "R_ADC_DATA_PD",
+        "R_ADC_OK_BOT",
         "R_ADC_OK_PU",
+        "R_ADC_OK_TOP",
         "R_BCLK",
         "R_BCLK_RAW_PD",
         "R_FSYNC",
@@ -493,11 +499,15 @@
         "L_U_CORE",
         "R_1V8_FB_BOTTOM",
         "R_1V8_FB_TOP",
+        "R_1V8_OK_BOT",
+        "R_1V8_OK_TOP",
         "R_3V3X_FB_BOTTOM",
         "R_3V3X_FB_TOP",
         "R_CORE_EN_PU",
         "R_CORE_FB_BOTTOM",
         "R_CORE_FB_TOP",
+        "R_XU_3V3_OK_BOT",
+        "R_XU_3V3_OK_TOP",
         "R_XU_RST_PU",
         "U_1V8",
         "U_1V8_OK",
@@ -1174,6 +1184,8 @@
           "Q_ADC_DELAY_DISCH.2",
           "Q_ADC_DIG_RST.2",
           "Q_RST1.2",
+          "R_ADC_1V8_OK_BOT.2",
+          "R_ADC_3V3X_OK_BOT.2",
           "R_ADC_DELAY_GATE_PD.2",
           "R_ADC_DIG_RST_PD.2",
           "R_ADC_READY_PD.2",
@@ -1394,6 +1406,7 @@
           "Q_TDM_GATE.2",
           "R_ADC_CLOCK_OK_PD.2",
           "R_ADC_DATA_PD.2",
+          "R_ADC_OK_BOT.2",
           "R_BCLK_RAW_PD.2",
           "R_FSYNC_EXT_PD.2",
           "R_FSYNC_RAW_PD.2",
@@ -1441,8 +1454,10 @@
           "C_XU_3V3_OK_CT.2",
           "C_XU_3V3_OK_VDD.2",
           "R_1V8_FB_BOTTOM.2",
+          "R_1V8_OK_BOT.2",
           "R_3V3X_FB_BOTTOM.2",
           "R_CORE_FB_BOTTOM.2",
+          "R_XU_3V3_OK_BOT.2",
           "U_1V8.4",
           "U_1V8_OK.2",
           "U_3V3X.4",
@@ -1759,7 +1774,7 @@
       "net": "N1V8",
       "endpoints": {
         "adc_reference": [
-          "U_ADC_1V8_OK.1"
+          "R_ADC_1V8_OK_TOP.1"
         ],
         "audio_clock_tdm": [
           "C_XLATE_A.1",
@@ -1781,9 +1796,9 @@
           "C_U_1V8_OUT_1.1",
           "L_U_1V8.2",
           "R_1V8_FB_TOP.1",
+          "R_1V8_OK_TOP.1",
           "R_CORE_EN_PU.1",
           "R_XU_RST_PU.1",
-          "U_1V8_OK.1",
           "U_CORE_OK.3",
           "U_CORE_OK.6"
         ],
@@ -1821,7 +1836,7 @@
       "net": "N3V3X",
       "endpoints": {
         "adc_reference": [
-          "U_ADC_3V3X_OK.1"
+          "R_ADC_3V3X_OK_TOP.1"
         ],
         "audio_clock_tdm": [
           "C_ADC_OK_VDD.1",
@@ -1852,7 +1867,7 @@
           "C_U_3V3X_OUT_1.1",
           "L_U_3V3X.2",
           "R_3V3X_FB_TOP.1",
-          "U_XU_3V3_OK.1"
+          "R_XU_3V3_OK_TOP.1"
         ],
         "xmos_core": [
           "C_XU_USB33.1",
@@ -1938,8 +1953,8 @@
         "audio_clock_tdm": [
           "C_ADC_CLOCK_OK.1",
           "C_ADC_OUT.1",
+          "R_ADC_OK_TOP.1",
           "U_ADC_CLOCK_OK.5",
-          "U_ADC_OK.1",
           "U_ADC_OUT.8"
         ],
         "quiet_power": [

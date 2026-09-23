@@ -102,6 +102,8 @@ own("tdm", {
 own("reset_supervisors", {
   U_RST1:[-14,3], C_RST1:[-14,-1,-90],
   U_ADC_1V8_OK:[-8,3], U_ADC_3V3X_OK:[-1,3],
+  R_ADC_1V8_OK_TOP:[-14,7,-90], R_ADC_1V8_OK_BOT:[-14,-4,-90],
+  R_ADC_3V3X_OK_TOP:[-5,7,-90], R_ADC_3V3X_OK_BOT:[-5,-4,-90],
   R_ADC_DIGITAL_OK_PU:[4,6], C_ADC_DIGITAL_OK:[4,0,-90],
   U_ADC_DIGITAL_BAD:[9,5], C_ADC_DIGITAL_BAD:[13,6,-90], Q_ADC_DIG_RST:[17,5], R_ADC_DIG_RST_PD:[21,5,-90],
   U_ADC_READY:[9,0], C_ADC_READY:[13,1,-90], R_ADC_READY_PD:[17,0,-90],

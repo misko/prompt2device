@@ -19,7 +19,6 @@ const sourced=(mpn:string,jlc="")=>jlc||({
  "RT0402BRD07100KL":"C852472","RT0402BRD07200KL":"C728556","RT0402BRD07210KL":"C852631","RT0603BRD07453KL":"C861412","RT0603BRD07100KL":"C122538","CC0402JRNPO9BN121":"C106996","SN74AUP3G34DCUR":"C2675543",
  "SN74AXC4T245PWR":"C2867798","SN74LVC1G04DCKR":"C8207","SN74LVC1G125DCKT":"C2675550",
  "SN74LVC1G332DBVR":"C43368","SN74LVC2G74DCTR":"C79339","TPS3808G09DBVR":"C24584",
- "TPS389018DSER":"C2066910","TPS389030DSER":"C2066942",
  "TPS62825DMQR":"C2650334"
  } as Record<string,string>)[mpn]||""
 const Chip=({jlc="",manufacturerPartNumber,...props}:any)=><chip manufacturerPartNumber={manufacturerPartNumber} supplierPartNumbers={supplier(sourced(manufacturerPartNumber,jlc))} {...props} />
@@ -91,9 +90,11 @@ export function CrowUsbDigital({net=defaultNet}:CrowUsbDigitalProps={}){
   <Buck name="U_CORE" mpn="TPS62825DMQR" out="0V9" adjustable en="CORE_EN" n={n} />
   <R name="R_CORE_FB_TOP" value="100k" a="0V9" b="U_CORE_FB" mpn="RT0402BRD07100KL" n={n} />
   <R name="R_CORE_FB_BOTTOM" value="200k" a="U_CORE_FB" b="GND" mpn="RT0402BRD07200KL" n={n} />
-  <Chip name="U_1V8_OK" manufacturerPartNumber="TPS389018DSER" jlc="" footprint={<DSE0006ALand/>}
+  <R name="R_1V8_OK_TOP" value="52.3k" a="1V8" b="U_1V8_OK_SENSE" mpn="RT0402BRD0752K3L" jlc="C852832" n={n} />
+  <R name="R_1V8_OK_BOT" value="100k" a="U_1V8_OK_SENSE" b="GND" mpn="RT0402BRD07100KL" jlc="C852472" n={n} />
+  <Chip name="U_1V8_OK" manufacturerPartNumber="TPS389001DSER" jlc="C1509297" footprint={<DSE0006ALand/>}
    pinLabels={{pin1:"SENSE",pin2:"GND",pin3:"MR_N",pin4:"VDD",pin5:"CT",pin6:"RESET_N"}}
-   connections={{pin1:n("1V8"),pin2:n("GND"),pin3:n("5V_BUCK"),pin4:n("5V_BUCK"),pin5:n("CORE_EN_CT"),pin6:n("CORE_EN")}} />
+   connections={{pin1:n("U_1V8_OK_SENSE"),pin2:n("GND"),pin3:n("5V_BUCK"),pin4:n("5V_BUCK"),pin5:n("CORE_EN_CT"),pin6:n("CORE_EN")}} />
   <C name="C_1V8_OK_VDD" value="100nF" a="5V_BUCK" b="GND" n={n} />
   <C name="C_CORE_EN_CT" value="10nF" a="CORE_EN_CT" b="GND" mpn="GRM155R71H103KA88D" jlc="" n={n} />
   <R name="R_CORE_EN_PU" value="10k" a="1V8" b="CORE_EN" mpn="RC0402FR-0710KL" n={n} />
@@ -103,9 +104,11 @@ export function CrowUsbDigital({net=defaultNet}:CrowUsbDigitalProps={}){
   <C name="C_CORE_OK" value="100nF" a="1V8" b="GND" n={n} />
   {/* Wired-open-drain reset also qualifies the independently generated 3V3X USB rail.
       Core release remains downstream of U_1V8_OK, so its delay bounds flash readiness. */}
-  <Chip name="U_XU_3V3_OK" manufacturerPartNumber="TPS389030DSER" jlc="" footprint={<DSE0006ALand/>}
+  <R name="R_XU_3V3_OK_TOP" value="169k" a="3V3X" b="U_XU_3V3_OK_SENSE" mpn="RT0402BRD07169KL" jlc="C852555" n={n} />
+  <R name="R_XU_3V3_OK_BOT" value="100k" a="U_XU_3V3_OK_SENSE" b="GND" mpn="RT0402BRD07100KL" jlc="C852472" n={n} />
+  <Chip name="U_XU_3V3_OK" manufacturerPartNumber="TPS389001DSER" jlc="C1509297" footprint={<DSE0006ALand/>}
    pinLabels={{pin1:"SENSE",pin2:"GND",pin3:"MR_N",pin4:"VDD",pin5:"CT",pin6:"RESET_N"}}
-   connections={{pin1:n("3V3X"),pin2:n("GND"),pin3:n("5V_BUCK"),pin4:n("5V_BUCK"),pin5:n("XU_3V3_OK_CT"),pin6:n("XU_RESET_N")}} />
+   connections={{pin1:n("U_XU_3V3_OK_SENSE"),pin2:n("GND"),pin3:n("5V_BUCK"),pin4:n("5V_BUCK"),pin5:n("XU_3V3_OK_CT"),pin6:n("XU_RESET_N")}} />
   <C name="C_XU_3V3_OK_VDD" value="100nF" a="5V_BUCK" b="GND" n={n} />
   <C name="C_XU_3V3_OK_CT" value="1nF" a="XU_3V3_OK_CT" b="GND" mpn="GRM1555C1H102JA01D" jlc="" n={n} />
   <R name="R_XU_RST_PU" value="10k" a="1V8" b="XU_RESET_N" mpn="RC0402FR-0710KL" n={n} />
@@ -358,9 +361,11 @@ export function CrowUsbDigital({net=defaultNet}:CrowUsbDigitalProps={}){
   <R name="R_MCLK" value="33" a="ADC_MCLK_SAFE" b="ADC_MCLK" mpn="RC0402FR-0733RL" n={n} />
   <R name="R_BCLK" value="33" a="ADC_BCLK_SAFE" b="ADC_BCLK" mpn="RC0402FR-0733RL" n={n} />
   <R name="R_FSYNC" value="33" a="ADC_FSYNC_SAFE" b="ADC_FSYNC" mpn="RC0402FR-0733RL" n={n} />
-  <Chip name="U_ADC_OK" manufacturerPartNumber="TPS389030DSER" jlc="" footprint={<DSE0006ALand/>}
+  <R name="R_ADC_OK_TOP" value="169k" a="3V3_ADC" b="U_ADC_OK_SENSE" mpn="RT0402BRD07169KL" jlc="C852555" n={n} />
+  <R name="R_ADC_OK_BOT" value="100k" a="U_ADC_OK_SENSE" b="GND" mpn="RT0402BRD07100KL" jlc="C852472" n={n} />
+  <Chip name="U_ADC_OK" manufacturerPartNumber="TPS389001DSER" jlc="C1509297" footprint={<DSE0006ALand/>}
    pinLabels={{pin1:"SENSE",pin2:"GND",pin3:"MR_N",pin4:"VDD",pin5:"CT",pin6:"RESET_N"}}
-   connections={{pin1:n("3V3_ADC"),pin2:n("GND"),pin3:n("3V3X"),pin4:n("3V3X"),pin5:n("ADC_OK_CT"),pin6:n("ADC_OK")}} />
+   connections={{pin1:n("U_ADC_OK_SENSE"),pin2:n("GND"),pin3:n("3V3X"),pin4:n("3V3X"),pin5:n("ADC_OK_CT"),pin6:n("ADC_OK")}} />
   <C name="C_ADC_OK_VDD" value="100nF" a="3V3X" b="GND" n={n} />
   <C name="C_ADC_OK_CT" value="1nF" a="ADC_OK_CT" b="GND" mpn="GRM1555C1H102JA01D" jlc="" n={n} />
   <R name="R_ADC_OK_PU" value="10k" a="3V3X" b="ADC_OK" mpn="RC0402FR-0710KL" n={n} />

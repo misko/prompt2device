@@ -320,7 +320,11 @@ selections:
   - R_X7P
   - R_X8N
   - R_X8P
+  - R_ADC_1V8_OK_TOP
+  - R_ADC_1V8_OK_BOT
   - U_ADC_1V8_OK
+  - R_ADC_3V3X_OK_TOP
+  - R_ADC_3V3X_OK_BOT
   - U_ADC_3V3X_OK
   - U_ADC_DIGITAL_BAD
   - U_ADC_READY
@@ -486,9 +490,13 @@ selections:
   - R_XTAL_FB
   - R_XU_RST_PU
   - U_1V8
+  - R_1V8_OK_TOP
+  - R_1V8_OK_BOT
   - U_1V8_OK
   - U_3V3X
   - U_ADC_CLOCK_OK
+  - R_ADC_OK_TOP
+  - R_ADC_OK_BOT
   - U_ADC_OK
   - U_ADC_OUT
   - U_BCLK_INV
@@ -503,6 +511,8 @@ selections:
   - U_USB_CC_ESD
   - U_USB_ESD
   - U_USB_VBUS_ESD
+  - R_XU_3V3_OK_TOP
+  - R_XU_3V3_OK_BOT
   - U_XU_3V3_OK
   - Y_AUDIO
   - Y_XU

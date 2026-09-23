@@ -1,0 +1,15 @@
+mpn: RT0402BRD0752K3L
+manufacturer: YAGEO
+type: resistor
+value: "52.3kΩ"
+footprint: Resistor_SMD:R_0402_1005Metric
+pins: {1: terminal_1, 2: terminal_2}
+limits: {tolerance_pct: 0.1, tcr_ppm_per_C: 25}
+datasheet:
+  url: https://www.yageogroup.com/component-documentation/download/specsheet/RT0402BRD0752K3L
+  local: RT0402BRD0752K3L.pdf
+  sha256: 8412c7543d98c29f43b047e2174d8895a2edce73f84b5863e41f28892cb9fe4f
+  fetched: '2026-09-23'
+  provenance: "Direct YAGEO exact-MPN specification PDF; text confirms resistance, ±0.1%, ±25 ppm/C, 0402/1005 and -55 to +155 C. Source-stage divisor tolerance; no assembled-ripple qualification."
+sourcing: {lcsc: C852832, note: "Direct serialized JLC exact-code/MPN 2026-09-23 snapshot in /tmp/crow-tps389001-jlc-20260923/C852832.json; order allocation owed."}
+gotchas: ["Source-stage divider engineering target; ±20 mV combined ripple and local-ground offset is not vendor guaranteed; verify normal-powerdown and startup waveforms on first article."]

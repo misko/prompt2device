@@ -1,4 +1,4 @@
-# Source census: 496 total components.
+# Source census: 506 total components.
 components:
 - C_1V8_FF
 - C_1V8_OK_VDD
@@ -264,15 +264,23 @@ components:
 - Q_VBUS
 - R_1V8_FB_BOTTOM
 - R_1V8_FB_TOP
+- R_1V8_OK_BOT
+- R_1V8_OK_TOP
 - R_3V3X_FB_BOTTOM
 - R_3V3X_FB_TOP
+- R_ADC_1V8_OK_BOT
+- R_ADC_1V8_OK_TOP
+- R_ADC_3V3X_OK_BOT
+- R_ADC_3V3X_OK_TOP
 - R_ADC_BOT
 - R_ADC_CLOCK_OK_PD
 - R_ADC_DATA_PD
 - R_ADC_DELAY_GATE_PD
 - R_ADC_DIGITAL_OK_PU
 - R_ADC_DIG_RST_PD
+- R_ADC_OK_BOT
 - R_ADC_OK_PU
+- R_ADC_OK_TOP
 - R_ADC_PD1N
 - R_ADC_PD1P
 - R_ADC_PD2N
@@ -427,6 +435,8 @@ components:
 - R_X8P
 - R_XTAL_DRIVE
 - R_XTAL_FB
+- R_XU_3V3_OK_BOT
+- R_XU_3V3_OK_TOP
 - R_XU_RST_PU
 - U_1V8
 - U_1V8_OK

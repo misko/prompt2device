@@ -41,18 +41,21 @@ const explicitDigitalPose = (ref: string): Pose | undefined => {
   // rails/reset signals cross pages by their existing net labels; these poses
   // change presentation only and do not create electrical connections.
   const railPower: Record<string,[string,number,number,number?]> = {
+    R_ADC_OK_TOP:["adc_clock_control",-9,-8,-90], R_ADC_OK_BOT:["adc_clock_control",-7,-8,-90],
     U_3V3X:["digital_power_3v3x",-5,2], L_U_3V3X:["digital_power_3v3x",0,2],
     C_U_3V3X_IN_1:["digital_power_3v3x",-6,-1,-90], C_U_3V3X_IN_2:["digital_power_3v3x",-3,-1,-90],
     C_U_3V3X_OUT_1:["digital_power_3v3x",4,-1,-90],
     R_3V3X_FB_TOP:["digital_power_3v3x",5,-3], R_3V3X_FB_BOTTOM:["digital_power_3v3x",9,-3], C_3V3X_FF:["digital_power_3v3x",8,1,-90],
     U_XU_3V3_OK:["digital_power_3v3x",1,-4],
+    R_XU_3V3_OK_TOP:["digital_power_3v3x",9,-1,-90], R_XU_3V3_OK_BOT:["digital_power_3v3x",10,-4,-90],
     C_XU_3V3_OK_VDD:["digital_power_3v3x",-5,-4,-90], C_XU_3V3_OK_CT:["digital_power_3v3x",7,-4,-90],
 
     U_1V8:["digital_power_1v8",-5,2], L_U_1V8:["digital_power_1v8",0,2],
     C_U_1V8_IN_1:["digital_power_1v8",-6,-1,-90], C_U_1V8_IN_2:["digital_power_1v8",-3,-1,-90],
     C_U_1V8_OUT_1:["digital_power_1v8",4,-1,-90],
     R_1V8_FB_TOP:["digital_power_1v8",5,-3], R_1V8_FB_BOTTOM:["digital_power_1v8",9,-3], C_1V8_FF:["digital_power_1v8",8,1,-90],
-    U_1V8_OK:["digital_power_1v8",0,-4], C_1V8_OK_VDD:["digital_power_1v8",-5,-5,-90],
+    U_1V8_OK:["digital_power_1v8",0,-4],
+    R_1V8_OK_TOP:["digital_power_1v8",9,-1,-90], R_1V8_OK_BOT:["digital_power_1v8",10,-4,-90], C_1V8_OK_VDD:["digital_power_1v8",-5,-5,-90],
     C_CORE_EN_CT:["digital_power_1v8",5,-5,-90], R_CORE_EN_PU:["digital_power_1v8",6,-2,-90],
 
     U_CORE:["digital_power_core",-5,2], L_U_CORE:["digital_power_core",0,2],
