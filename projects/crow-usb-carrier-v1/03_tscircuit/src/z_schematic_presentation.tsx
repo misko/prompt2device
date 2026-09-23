@@ -95,10 +95,13 @@ const explicitDigitalPose = (ref: string): Pose | undefined => {
 const gridPose = (sheet: string): Pose => {
   const i = counters[sheet] ?? 0
   counters[sheet] = i + 1
-  const columns = sheet === "xmos_decoupling" ? 6 : 5
+  const compactControl = ["tdm_translation", "fsync_shaping", "adc_clock_control"].includes(sheet)
+  const columns = sheet === "xmos_decoupling" ? 6 : compactControl ? 3 : 5
+  const spacingX = compactControl ? 6 : 8
+  const spacingY = compactControl ? 5 : 6
   return { schSheetName: sheet, schSectionName: sheet,
-    schX: (i % columns) * 8 - (columns - 1) * 4,
-    schY: 14 - Math.floor(i / columns) * 6,
+    schX: (i % columns) * spacingX - (columns - 1) * spacingX / 2,
+    schY: (compactControl ? 8 : 14) - Math.floor(i / columns) * spacingY,
     schRotation: /decoupling|power/.test(sheet) ? -90 : 0 }
 }
 
@@ -114,6 +117,7 @@ const xmosArrangement = {
   rightSide: xmosPins.filter((_,i)=>i%4===2).reverse(),
   bottomSide: xmosPins.filter((_,i)=>i%4===3).reverse(),
 }
+const xmosHorizontalPins = new Set([...xmosArrangement.topSide, ...xmosArrangement.bottomSide])
 
 const pose = (domain: Domain, ref: string, existing: any): Pose => {
   if (domain === "analog") {
@@ -145,8 +149,13 @@ const pose = (domain: Domain, ref: string, existing: any): Pose => {
 const style = (domain: Domain, ref: string, tag: string) => {
   if (tag !== "chip") return {}
   if (domain === "analog") return analogChipStyle(ref)
-  if (ref === "U_XU") return {schWidth:24,schHeight:24,schPinArrangement:xmosArrangement,
-    schPinStyle:Object.fromEntries(Array.from({length:129},(_,i)=>[`pin${i+1}`,{topMargin:.08,bottomMargin:.08}]))}
+  if (ref === "U_XU") return {schWidth:40,schHeight:24,schPinArrangement:xmosArrangement,
+    schPinStyle:Object.fromEntries(Array.from({length:129},(_,i)=>{
+      const pin=i+1
+      return [`pin${pin}`,xmosHorizontalPins.has(pin)
+        ? {leftMargin:.8,topMargin:.08,bottomMargin:.08}
+        : {topMargin:.08,bottomMargin:.08}]
+    }))}
   if (["U_1V8_OK","U_XU_3V3_OK","U_CORE_OK"].includes(ref)) return {
     schWidth:4.2, schHeight:3.2,
     schPinArrangement:{leftSide:[1,2,3],rightSide:[6,5,4]},

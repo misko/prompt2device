@@ -229,6 +229,7 @@ const usage = () => {
   process.stderr.write(
     "usage: render_schematic_pdf.mjs <circuit.json> <schematic.pdf> " +
       "[--title <title>] [--net-aliases <net_aliases.txt>] " +
+      "[--sheet-text-scale <sheet>:<factor>:<pins|all>] " +
       "[--toolchain-package <package.json>]\n",
   )
 }
@@ -245,7 +246,17 @@ const outputPath = path.resolve(args[1])
 let projectTitle = "SCHEMATIC"
 let netAliasesPath = null
 let toolchainPackage = null
+const sheetTextScales = new Map()
 for (let i = 2; i < args.length; i += 1) {
+  if (args[i] === "--sheet-text-scale" && args[i + 1]) {
+    const match = /^([a-z][a-z0-9_]*):([1-9]\d*(?:\.\d+)?):(pins|all)$/.exec(args[i + 1])
+    const factor = match ? Number(match[2]) : NaN
+    if (!match || !Number.isFinite(factor) || factor > 4 ||
+        sheetTextScales.has(match[1])) die(`invalid or duplicate sheet text scale: ${args[i + 1]}`)
+    sheetTextScales.set(match[1], { factor, mode: match[3] })
+    i += 1
+    continue
+  }
   if (args[i] === "--toolchain-package" && args[i + 1]) {
     toolchainPackage = path.resolve(args[i + 1])
     i += 1
@@ -333,6 +344,10 @@ const sheets = circuit
         (b.sheet_index ?? Number.MAX_SAFE_INTEGER) ||
       String(a.name ?? "").localeCompare(String(b.name ?? "")),
   )
+for (const name of sheetTextScales.keys()) {
+  if (!sheets.some((sheet) => sheet.name === name))
+    die(`sheet text scale names unknown sheet ${name}`)
+}
 
 const components = circuit.filter(
   (element) => element.type === "schematic_component",
@@ -427,6 +442,36 @@ const xmlEscape = (value) =>
     .replaceAll('"', "&quot;")
     .replaceAll("'", "&apos;")
 
+const scaleSheetText = (input, sheet) => {
+  const setting = sheetTextScales.get(sheet.name)
+  if (!setting) return input
+  const tree = structuredClone(input)
+  let scaled = 0
+  const walk = (node) => {
+    const attrs = node.attributes ?? {}
+    const classes = String(attrs.class ?? "").split(/\s+/)
+    const pinText = classes.includes("sch-pin-number") || classes.includes("sch-pin-label")
+    // Net-label text has a separately sized plate; changing only its font
+    // would make the label overrun the plate. Let tighter source poses grow
+    // the whole page scale instead.
+    const platedNetLabel = classes.includes("sch-net-label-text") ||
+      classes.includes("sch-net-label-symbol-text")
+    if (node.name === "text" && !platedNetLabel &&
+        (setting.mode === "all" || pinText)) {
+      const match = /^([0-9]+(?:\.[0-9]+)?)px$/.exec(String(attrs["font-size"] ?? ""))
+      if (match) {
+        attrs["font-size"] = `${Number(match[1]) * setting.factor}px`
+        scaled += 1
+      }
+    }
+    for (const child of node.children ?? []) walk(child)
+  }
+  walk(tree)
+  if (!scaled) die(`sheet ${sheet.name} has no matching text to scale`)
+  process.stdout.write(`SCHEMATIC-RENDER sheet ${sheet.name}: scaled ${scaled} ${setting.mode} text item(s) by ${setting.factor}\n`)
+  return tree
+}
+
 const hash = crypto
   .createHash("sha256")
   .update(fs.readFileSync(circuitPath))
@@ -508,7 +553,8 @@ try {
       height: geometry.contentHeight,
       showErrorsInTextOverlay: true,
     })
-    const normalized = materializeTextBaselines(parseSync(renderedSvg), metricsForFont)
+    const normalized = materializeTextBaselines(
+      scaleSheetText(parseSync(renderedSvg), sheet), metricsForFont)
     baselineCorrections += normalized.corrections
     const fitted = stringify(normalized.tree).replace(
       /^<svg /,

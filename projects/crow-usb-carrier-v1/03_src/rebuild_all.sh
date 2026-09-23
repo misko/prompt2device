@@ -204,7 +204,14 @@ NET_ALIAS_ARGS=()
 [ -f 03_tscircuit/net_aliases.txt ] \
     && NET_ALIAS_ARGS=(--net-aliases 03_tscircuit/net_aliases.txt)
 node "$S/render_schematic_pdf.mjs" "$CJ" "$SCHPDF" \
-    --title "$SCHEMATIC_TITLE" "${NET_ALIAS_ARGS[@]}" || true
+    --title "$SCHEMATIC_TITLE" "${NET_ALIAS_ARGS[@]}" \
+    --sheet-text-scale xmos_core:2.6:pins \
+    --sheet-text-scale held_ldo:1.7:all \
+    --sheet-text-scale adc:1.5:all \
+    --sheet-text-scale reset_supervisors:1.7:all \
+    --sheet-text-scale tdm_translation:1.7:all \
+    --sheet-text-scale fsync_shaping:1.7:all \
+    --sheet-text-scale adc_clock_control:1.5:all || true
 
 # [1a] M-FRESH verify — the pipeline asserts the artifacts it is about to grade
 # and to SHIP are the ones it just built. build_provenance.py finds the producer
