@@ -159,6 +159,9 @@ const style = (domain: Domain, ref: string, tag: string) => {
   if (ref === "U_ADC_CLOCK_OK") return {schWidth:4.2,schHeight:3,
     schPinArrangement:{leftSide:[1,2],rightSide:[4],topSide:[5],bottomSide:[3]},
     schPinStyle:Object.fromEntries(Array.from({length:5},(_,i)=>[`pin${i+1}`,{topMargin:.3,bottomMargin:.3}]))}
+  if (ref === "U_TDM_XLATE") return {schWidth:5.5,schHeight:7,
+    schPinArrangement:{leftSide:[2,3,4,5,6,7],rightSide:[15,14,13,12,11,10],topSide:[1,16],bottomSide:[8,9]},
+    schPinStyle:Object.fromEntries(Array.from({length:16},(_,i)=>[`pin${i+1}`,{topMargin:.45,bottomMargin:.45}]))}
   if (["U_1V8_OK","U_XU_3V3_OK","U_CORE_OK"].includes(ref)) return {
     schWidth:4.2, schHeight:3.2,
     schPinArrangement:{leftSide:[1,2,3],rightSide:[6,5,4]},
