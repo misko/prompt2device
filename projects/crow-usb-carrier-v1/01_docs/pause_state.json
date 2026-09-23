@@ -1,25 +1,30 @@
 {
-  "blocker": "D10 authorizes zero extra public-stock reserve only for XMOS XU316-1024-TQ128-C24/C6362698/U_XU. Implementing exact-part policy and refreshing88 coded lines before reviewed source readmission. Otherparts retain150extra; JLC population and5-board build unchanged. Canonical493-ref schematic remains historical; reviewed diagnostic568refs.",
+  "blocker": "Source readmitted under D10; all88 coded lines meet refreshed public-stock thresholds. Regenerate and independently review current568-ref schematic; canonical493-ref checkpoint remains historical until producer completes. Hold-bank floorplan repartition and P1-P5 remain ahead.",
   "checkpoint": {
     "path": "03_tscircuit/build/circuit.json",
     "sha256": "ead8cb33c07afcb9dd371a5c61188c8f2fde59c55c9e703400d5b21765daa336",
     "size": 4382904
   },
-  "next_command": "Verify D10 policy and refreshed exact stock, complete source readmission, then regenerate schematic and proceed with block floorplan repartition and P1-P5",
-  "phase": "sourcing",
+  "next_command": "bash 03_src/rebuild_all.sh; stop at new schematic review before block placement",
+  "phase": "schematic",
   "project": "crow-usb-carrier-v1",
   "receipts": [
     {
-      "path": "08_reviews/2026-09-23_adc-composition_sol_source.md",
-      "sha256": "fc36805bc683819dc20b442f33ef9941ed37ccc5ea959cf7741388799103cf92",
-      "size": 4517
+      "path": "01_docs/research/2026-09-23-d10-source-readmission.md",
+      "sha256": "b7f9727e7253dfff1d664c04e66cb47c2ee6a0874fb8e183cb17c46556917c6a",
+      "size": 1918
     },
     {
-      "path": "08_reviews/2026-09-23_efault-implementation_sol_source.md",
-      "sha256": "d169475ce036b33cad674b793c8db5f77a54ac396fdd4f36e70763f03c2110e0",
-      "size": 3473
+      "path": "08_reviews/2026-09-23_efault-phase-order_sol_source.md",
+      "sha256": "618b8b44915e054c55bdc5236b831900d473ca76c703e5fc4ff6625129dfd0ea",
+      "size": 2304
+    },
+    {
+      "path": "08_reviews/2026-09-23_xmos-exception_sol_source.md",
+      "sha256": "eed4b709015ab09e55b2bb477fdba3ff0c68894806fb4c656241efa67b45da0e",
+      "size": 3947
     }
   ],
   "schema": 1,
-  "state_id": "80e78493beb6c1aee8ddb2dc08c26056c8a1be234c1ef5a4650cf79fc72aafcf"
+  "state_id": "99c6acbe96f86b05567b4d7af0b56fc5bd4a60336ed73d0427b1ebbdf2d26e39"
 }

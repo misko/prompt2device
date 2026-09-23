@@ -152,15 +152,14 @@ findings:
   state: open
   blocks_at_or_above: DESIGN_CLEAN
   owner: sourcing
-  finding: D5 requires JLC-stocked and JLC-populated non-through-hole parts; D7
-    explicitly retains 150 extra units per aggregated part beyond five-board demand.
-    OPA/crystal source replacements are reviewed, but ADC, USB processor and other
-    SMD substitutions remain unqualified. Selected XU316 has 46 observed JLC units
-    against 155 required; no screened XMOS variant clears the threshold. Distributor
-    supply is not closure. Existing generated schematic is a historical checkpoint.
-  closes_when: Qualify every exact JLC-stocked non-through-hole selection for the
-    five-board quantity plus 150 reserve, verify JLC population/process scope,
-    regenerate and independently review affected source and block interfaces.
+  finding: D5/D7/D10 source catalog screen now passes all 88 exact JLC-coded
+    lines with the reviewed XMOS-only surplus exception. All 568 source refs are
+    reconciled, including exactly 24 D9 manual THT refs. Independent source policy
+    and ADC reviews are retained. Regenerated native schematic review and final
+    JLC population/process verification remain outstanding.
+  closes_when: Regenerate and independently review affected schematic/block interfaces
+    after D10 source readmission; verify JLC population and process at their owning
+    boundaries. Preserve five-board demand plus150 reserve except exact D10 XMOS.
   evidence:
   - 01_docs/BRIEF.md
   - 03_src/rules/assembly.yaml

@@ -1,0 +1,9 @@
+# D10 source readmission — 2026-09-23
+
+Source-stage admission for schematic regeneration is restored. This is not native schematic, placement, manufacturing or release acceptance.
+
+Authority: BRIEF D10 and accepted ADR0009 waive only the XMOS public-stock surplus. Independent policy review accepts bfe12486 (root31de769e), matching the real568-reference diagnostic and exact88-code/544-reference JLC population. The24 D9 through-hole references remain manually assembled. Refreshed dated observations and the documented Molex catalog-alias reconciliation pass all88 stock lines under D7/D10; see01_docs/sourcing/jlc-stock-d10-2026-09-23-1422.md and08_reviews/2026-09-23_xmos-exception_sol_source.md. This is catalog evidence, not allocation or attrition acceptance.
+
+Unchanged reviewed circuit SHA256 b68fd99fad9092260c1e2fd2630cf1a63ce334057802e6c464aa6052b8ab307c has568 source components. ADC and conditional fault-source reviews remain applicable. Root replay in temporary current-source view passed early electrical5/5, rail margin13/13 and design-decision source admission with locked independent route/nets contracts. Logs are under ignored06_build/verification/d10-readmission/. Independent phase-order review accepts6e8cc936 (root4aec3291): prebuild labels circuit evidence owed, and full generated-circuit fault binding remains mandatory after generation before review/placement.
+
+The commissioning/source hold is removed with this evidence. Run the governed source conductor to regenerate the historical493-reference schematic, compare generated source identity and stop at the new schematic review. No historical schematic review is reused. Capacitor-bank repartition and P1–P5 block placement/local routing/integration remain ahead. Conditional external supply/cable, physical hot fault/audio tests, JLC process/allocation and order readiness remain owed. Firmware and purchasing are not authorized.
