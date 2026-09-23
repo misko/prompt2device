@@ -24,6 +24,7 @@ from typing import Any
 from urllib.parse import urlsplit
 
 import yaml
+from stock_surplus_policy import parse_policy, surplus_for
 
 
 SCRIPTS = Path(__file__).resolve().parent
@@ -169,9 +170,7 @@ def _distributor_prelayout_rows(project: Path, request: dict[str, Any],
     policy = yaml.safe_load(policy_path.read_text())
     quotes = yaml.safe_load(quotes_path.read_text())
     assembly = yaml.safe_load(assembly_path.read_text()) or {}
-    surplus = assembly.get('public_stock_surplus')
-    if type(surplus) is not int or surplus < 0:
-        raise ValueError('assembly public_stock_surplus must be a nonnegative integer')
+    surplus, overrides = parse_policy(assembly, project)
     if (not isinstance(policy, dict) or policy.get('schema') != 1 or
             policy.get('scope') != 'prelayout-only' or
             policy.get('order_authorized') is not False):
@@ -259,14 +258,15 @@ def _distributor_prelayout_rows(project: Path, request: dict[str, Any],
         required = wanted[code].get('required_qty')
         if type(required) is not int or required <= 0:
             raise ValueError(f'{code}: invalid requested quantity')
-        public_threshold = required + surplus
+        applied_surplus = surplus_for(surplus, overrides, code, row['mpn'], refs)
+        public_threshold = required + applied_surplus
         purchase_quantity = ((max(public_threshold, minimum) + multiple - 1) // multiple) * multiple
         blocked = stock < purchase_quantity
         if blocked and not allow_blocked_sourcing:
             raise ValueError(
                 f'{code}: distributor stock below build plus configured surplus quantity')
         approved[code] = dict(stock=stock, required_qty=required,
-                              public_stock_surplus=surplus,
+                              public_stock_surplus=applied_surplus,
                               public_stock_threshold=public_threshold,
                               purchase_quantity=purchase_quantity, mpn=row['mpn'],
                               distributor=row['distributor'], url=row['url'],
@@ -284,7 +284,9 @@ def _catalog_prelayout_check(request_path: Path | None,
                              decision_path: Path | None, *,
                              distributors: dict | None = None,
                              allow_blocked_sourcing: bool = False,
-                             expected_min_surplus: int | None = None) -> dict[str, Any]:
+                             expected_min_surplus: int | None = None,
+                             expected_overrides: dict | None = None,
+                             exact_rows: list[dict[str, Any]] | None = None) -> dict[str, Any]:
     """Verify a user-accepted public-catalog pre-layout negative filter.
 
     This deliberately cannot be used for the order phase.  It proves only
@@ -304,6 +306,7 @@ def _catalog_prelayout_check(request_path: Path | None,
                 "output": ""}
     failures = []
     distributors = distributors or {}
+    expected_overrides = expected_overrides or {}
     # Preserve and grade the original failed JLC rows. Only an independently
     # validated, explicitly approved distributor observation can cover a
     # LOW_STOCK row. Network errors/missing codes/other failures still block.
@@ -348,6 +351,12 @@ def _catalog_prelayout_check(request_path: Path | None,
         failures.append("catalog evidence contains duplicate or empty LCSC identities")
     if not wanted or set(wanted) != set(observed):
         failures.append("catalog code set does not exactly match the request")
+    for code, override in expected_overrides.items():
+        source = [item for item in (exact_rows or [])
+                  if code in item.get("jlc_codes", [])]
+        if (sorted(item.get("ref") for item in source) != ["U_XU"] or
+                any(item.get("mpn") != override["mpn"] for item in source)):
+            failures.append(f"{code}: override differs from exact source identity")
     try:
         build_quantity = int(request.get("build_quantity"))
         if build_quantity <= 0:
@@ -371,6 +380,11 @@ def _catalog_prelayout_check(request_path: Path | None,
     except (TypeError, ValueError):
         min_surplus = -1
         failures.append("catalog min_absolute_surplus is not a non-negative integer")
+    observed_overrides = evidence.get("public_stock_surplus_overrides", [])
+    expected_override_rows = [{"lcsc": code, **entry}
+                              for code, entry in sorted(expected_overrides.items())]
+    if observed_overrides != expected_override_rows:
+        failures.append("catalog exact stock surplus overrides do not match assembly policy")
     expected_count = len(request_rows)
     for field, expected in (("graded_lines", expected_count),
                             ("total_lines", expected_count),
@@ -397,7 +411,15 @@ def _catalog_prelayout_check(request_path: Path | None,
         if per_board != int(row.get("per_board_qty") or -1):
             failures.append(f"{code}: per-board quantity disagrees with request")
         request_required = int(row.get("required_qty") or -1)
-        expected_threshold = request_required + min_surplus
+        try:
+            applied_surplus = surplus_for(min_surplus, expected_overrides,
+                                          code, got.get("mpn"), row.get("designators"))
+        except ValueError as exc:
+            failures.append(str(exc))
+            continue
+        expected_threshold = request_required + applied_surplus
+        if expected_overrides and got.get("applied_surplus") != applied_surplus:
+            failures.append(f"{code}: catalog applied surplus disagrees with policy")
         if required != request_required or threshold != expected_threshold:
             failures.append(f"{code}: catalog required quantity disagrees with request")
         expected_designators = sorted(str(ref) for ref in row.get("designators") or [])
@@ -567,12 +589,7 @@ def grade(project: Path, *, phase: str, release: Path | None = None,
             distributors = {}
             assembly_rules = yaml.safe_load(
                 assembly.read_text(encoding="utf-8-sig")) or {}
-            configured_surplus = assembly_rules.get("public_stock_surplus")
-            if (isinstance(configured_surplus, bool) or
-                    not isinstance(configured_surplus, int) or
-                    configured_surplus < 0):
-                raise ValueError(
-                    "assembly public_stock_surplus must be a non-negative integer")
+            configured_surplus, overrides = parse_policy(assembly_rules, project)
             if distributor_policy is not None:
                 distributors, distributor_inputs = _distributor_prelayout_rows(
                     project, json.loads(catalog_request.read_text()),
@@ -583,7 +600,9 @@ def grade(project: Path, *, phase: str, release: Path | None = None,
                 catalog_request, catalog_evidence, catalog_decision,
                 distributors=distributors,
                 allow_blocked_sourcing=allow_blocked_sourcing,
-                expected_min_surplus=configured_surplus)
+                expected_min_surplus=configured_surplus,
+                expected_overrides=overrides,
+                exact_rows=exact['rows'])
             checks["procurement_exposure"] = {
                 "status": checks["public_catalog_prelayout"]["status"],
                 "detail": ("deferred to final JLC uploader under explicit user decision"

@@ -359,6 +359,13 @@ stock, twin).
   that gets skipped. `jlc_stock_check.py --json OUT` writes the one
   machine-readable sidecar with an EXPLICIT verdict; ship it as
   `verification/stock_check.json`.
+  When `assembly.yaml` declares an exact public-stock surplus override,
+  generate the sidecar with `--assembly` and preserve the default surplus,
+  exact MPN/LCSC identity, per-line applied surplus and threshold. The only
+  currently authorized override is Crow D10: C6362698 / XU316-1024-TQ128-C24
+  at U_XU uses zero surplus; all other placed lines retain 150. The release
+  checker compares that identity with actual placed BOM/CPL refs and the
+  accepted Crow brief/decision. Catalog PASS remains advisory to JLC allocation.
 - `release_freshness_check.py <release_dir> --docs-only-supersede <prior>`
   is the mode for a DOCUMENTATION-ONLY supersede release (usb-hub-3s-v3
   v1.4, 2026-07-23), which intentionally ships fab bytes identical to its

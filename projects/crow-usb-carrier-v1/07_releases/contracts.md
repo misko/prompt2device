@@ -808,6 +808,8 @@ checked shared a method.
     the sealed stock evidence carries a PARSEABLE verdict and every coded,
     placed line either clears `qty x build_quantity` or names a dated,
     explicitly classified `sourcing_plan:` entry
+    (D10 exact XU316-1024-TQ128-C24/C6362698 at U_XU uses zero public-stock
+    surplus; all other parts use 150; stock JSON must bind applied thresholds)
   - **and check (f) (canon A-BUY): every `sourcing_plan:` shortfall carries
     `order_status: PLANNED|BLOCKED`, and a release measured `BLOCKED-<n>`
     declares it — count, LCSC set and date all MATCHING the measurement — in

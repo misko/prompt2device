@@ -50,7 +50,8 @@ why they are not machine sourced/placed.
 The public-catalog screen requires `qty per board x build_quantity` plus the
 project's `assembly.yaml` `public_stock_surplus` on every coded BOM line. New
 projects configure 150 units. Invoke `jlc_stock_check.py --min-stock N
---min-surplus S` with those exact values and ship its JSON sidecar; release
+--min-surplus S --assembly path/to/assembly.yaml` with those exact values and
+ship its JSON sidecar; release
 freshness rejects a sidecar whose recorded surplus or line arithmetic differs
 from the project authority. This is one absolute buffer per aggregated LCSC
 BOM line, not per reference. A shortage may be classified explicitly for a

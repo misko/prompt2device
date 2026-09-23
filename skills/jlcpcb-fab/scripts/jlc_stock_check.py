@@ -35,6 +35,10 @@ import sys
 import time
 import urllib.request
 from datetime import datetime, timezone
+from pathlib import Path
+
+import yaml
+from stock_surplus_policy import parse_policy, surplus_for
 
 URL = ("https://jlcpcb.com/api/overseas-pcb-order/v1/"
        "shoppingCart/smtGood/selectSmtComponentList")
@@ -117,6 +121,8 @@ ap.add_argument("--min-surplus", type=int,
                 default=DEFAULT_MIN_ABSOLUTE_SURPLUS,
                 help=("also require this many catalog units beyond "
                       "min-stock x aggregate line qty (default 150)"))
+ap.add_argument("--assembly", type=Path,
+                help="assembly.yaml with exact per-part public-stock surplus policy")
 ap.add_argument("--candidates", type=int, default=3)
 ap.add_argument("--out", default="")
 ap.add_argument("--json", default="",
@@ -124,8 +130,20 @@ ap.add_argument("--json", default="",
                      "explicit catalog verdict); legacy releases ship it as "
                      "verification/stock_check.json")
 args = ap.parse_args()
+if args.min_stock <= 0 or args.min_surplus < 0:
+    ap.error("--min-stock must be positive and --min-surplus nonnegative")
+overrides = {}
+if args.assembly:
+    try:
+        configured, overrides = parse_policy(yaml.safe_load(args.assembly.read_text()) or {},
+                                             args.assembly.resolve().parents[2])
+        if configured != args.min_surplus:
+            raise ValueError("--min-surplus disagrees with assembly public_stock_surplus")
+    except (OSError, ValueError) as exc:
+        ap.error(str(exc))
 
-rows = list(csv.DictReader(open(args.bom, encoding="utf-8-sig")))
+with open(args.bom, encoding="utf-8-sig") as bom_file:
+    rows = list(csv.DictReader(bom_file))
 coded = [r for r in rows if r.get("LCSC", "").strip()]
 uncoded = [r for r in rows if not r.get("LCSC", "").strip()]
 print(f"input: bom = {args.bom}", flush=True)
@@ -159,8 +177,14 @@ for r in coded:
     time.sleep(1.2)
     exact = next((fields(c) for c in (hits or [])
                   if c.get("componentCode") == code), None)
+    try:
+        applied_surplus = surplus_for(args.min_surplus, overrides, code,
+                                      (exact or {}).get("mpn"),
+                                      [ref.strip() for ref in r["Designator"].split(",")])
+    except ValueError as exc:
+        ap.error(str(exc))
     stock_grade = grade_stock((exact or {}).get("stock", 0), qty,
-                              args.min_stock, args.min_surplus)
+                              args.min_stock, applied_surplus)
     if hits is None:
         status = "QUERY_FAILED"; failures += 1
     elif exact is None:
@@ -172,7 +196,8 @@ for r in coded:
     e = exact or {}
     print(f"  {status:16} {code:10} x{qty:<3} {r['Comment'][:36]:38} "
           f"{e.get('type', ''):6} stock={e.get('stock', '-')}", flush=True)
-    report.append({**r, "qty": qty, "status": status, **stock_grade, **e})
+    report.append({**r, "qty": qty, "status": status,
+                   "applied_surplus": applied_surplus, **stock_grade, **e})
 
 if args.search_missing and uncoded:
     print("\n-- proposals for uncoded lines (HUMAN MUST CONFIRM SPECS) --")
@@ -203,7 +228,7 @@ if args.search_missing and uncoded:
 
 if args.out:
     keys = ["Comment", "Designator", "Footprint", "LCSC", "qty",
-            "required_qty", "stock_threshold", "absolute_surplus", "status",
+            "required_qty", "stock_threshold", "applied_surplus", "absolute_surplus", "status",
             "code", "type", "stock", "mpn", "manufacturer", "pkg", "price"]
     with open(args.out, "w", newline="") as f:
         w = csv.DictWriter(f, fieldnames=keys, extrasaction="ignore")
@@ -220,6 +245,8 @@ if args.json:
                    "generated_at": datetime.now(timezone.utc).isoformat(),
                    "min_stock_per_board": args.min_stock,
                    "min_absolute_surplus": args.min_surplus,
+                   "public_stock_surplus_overrides": [
+                       {"lcsc": code, **entry} for code, entry in sorted(overrides.items())],
                    "verdict": "FAIL" if (failures or nothing_graded) else "PASS",
                    # THE LIMIT TRAVELS WITH THE VERDICT (canon M-QUOTE,
                    # 2026-07-27). This tool reads `stockCount`, which is LCSC
@@ -253,6 +280,7 @@ if args.json:
                               "qty": r.get("qty"),
                               "required_qty": r.get("required_qty"),
                               "stock_threshold": r.get("stock_threshold"),
+                              "applied_surplus": r.get("applied_surplus"),
                               "absolute_surplus": r.get("absolute_surplus"),
                               "status": r.get("status"),
                               "stock": r.get("stock"),
@@ -291,8 +319,9 @@ if nothing_graded:
     print(SCOPE)
     sys.exit(1)
 print(f"\n{'FAIL' if failures else 'PASS'}: {graded - failures}/{graded} coded "
-      f"BOM lines have stock >= {args.min_stock} x qty + "
-      f"{args.min_surplus} absolute surplus ({failures} with "
+      f"BOM lines meet {args.min_stock} x qty + "
+      f"{args.min_surplus} default absolute surplus"
+      f" ({len(overrides)} exact override(s); {failures} with "
       f"problems); {len(uncoded)}/{total} lines carry NO LCSC and were NOT "
       f"graded by this tool")
 print(SCOPE)

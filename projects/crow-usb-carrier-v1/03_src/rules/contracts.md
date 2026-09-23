@@ -961,6 +961,7 @@ TWO ORPHANS THIS FOLDER'S OWN PROSE HAD HIDDEN, both found by the first run:
 | `sides` | `assembly_coverage.py` | ordered population side set used by the process-placeability gate |
 | `build_quantity` | jlc_pcba_availability.py, release_freshness_check.py | quantity multiplier bound into prelayout availability and final allocation receipts; legacy catalog grading also reads it |
 | `public_stock_surplus` | jlc_stock_check.py, release_freshness_check.py | non-negative absolute public-catalog buffer added once per aggregated LCSC BOM line; new projects configure 150 |
+| `public_stock_surplus_overrides[]` | jlc_stock_check.py, manufacturing_readiness.py, release_freshness_check.py | D10 only: exact C6362698/XU316-1024-TQ128-C24 at U_XU may use integer zero public-stock surplus; other lines retain 150. Brief and accepted decision 0009 must exist. Generated stock evidence records the exact policy and applied per-line surplus; order-time JLC allocation remains mandatory. |
 | `not_assembled[].refs` | `assembly_coverage.py` | non-empty exact DNP population set, compared with board and CPL |
 | `not_assembled[].reason` | `assembly_coverage.py` | closed DNP reason vocabulary |
 | `not_assembled[].evidence` | `assembly_coverage.py` | substantive dated evidence for the population decision |

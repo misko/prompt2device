@@ -1849,7 +1849,7 @@ _LINE_RE = re.compile(
     r".*?(?:stock=(\S+))?\s*$", re.M)
 
 
-def _placed_coded_lines(release_dir):
+def _placed_coded_lines(release_dir, *, with_refs=False):
     """{lcsc: qty} for every coded BOM line with at least one ref ON the CPL.
     `qty` counts only the refs actually placed — an unpopulated ref consumes
     no stock. Returns None when the release ships no BOM/CPL to grade."""
@@ -1862,16 +1862,19 @@ def _placed_coded_lines(release_dir):
         placed = {(r.get("Designator") or "").strip()
                   for r in _csv.DictReader(f)}
     out = {}
+    refs = {}
     with bom.open(newline="") as f:
         for r in _csv.DictReader(f):
             code = (r.get("LCSC") or "").strip()
             if not code:
                 continue
-            n = sum(1 for d in (r.get("Designator") or "").split(",")
-                    if d.strip() in placed)
+            line_refs = [d.strip() for d in (r.get("Designator") or "").split(",")
+                         if d.strip() in placed]
+            n = len(line_refs)
             if n:
                 out[code] = out.get(code, 0) + n
-    return out
+                refs.setdefault(code, []).extend(line_refs)
+    return (out, refs) if with_refs else out
 
 
 def _parse_stock_evidence(path):
@@ -1945,7 +1948,8 @@ def check_stock(release_dir, assembly, evidence_override=None):
     readiness of this release — the input checks (f) and (g) grade the
     release's own DECLARATIONS against."""
     fails, notes = [], []
-    want = _placed_coded_lines(release_dir)
+    placed = _placed_coded_lines(release_dir, with_refs=True)
+    want, placed_refs = placed if placed is not None else (None, {})
     if want is None:
         notes.append("  note: A-STOCK: this release ships no fab/bom.csv + "
                      "fab/cpl.csv pair — no coded, placed line to grade")
@@ -1954,17 +1958,18 @@ def check_stock(release_dir, assembly, evidence_override=None):
     if not assembly.get("build_quantity"):
         notes.append("  note: A-STOCK: no assembly.yaml build_quantity — "
                      "grading against the 5-board default")
+    from stock_surplus_policy import parse_policy, surplus_for
     configured_surplus = assembly.get("public_stock_surplus")
+    overrides = {}
     if configured_surplus is not None:
         try:
-            configured_surplus = int(configured_surplus)
-            if configured_surplus < 0:
-                raise ValueError
-        except (TypeError, ValueError):
+            configured_surplus, overrides = parse_policy(assembly, release_dir.parents[1])
+        except ValueError as exc:
             fails.append(
-                "  STOCK-SURPLUS-INVALID: assembly.yaml public_stock_surplus "
-                "must be a non-negative integer")
+                f"  STOCK-SURPLUS-INVALID: {exc}")
             configured_surplus = None
+    elif assembly.get("public_stock_surplus_overrides") is not None:
+        fails.append("  STOCK-SURPLUS-INVALID: overrides require public_stock_surplus")
     plan = {}
     for e in (assembly.get("sourcing_plan") or []):
         code = str(e.get("lcsc") or "").strip()
@@ -2019,6 +2024,7 @@ def check_stock(release_dir, assembly, evidence_override=None):
             try:
                 stock_doc = json.loads(ev.read_text(encoding="utf-8-sig"))
                 observed_surplus = int(stock_doc.get("min_absolute_surplus"))
+                observed_overrides = stock_doc.get("public_stock_surplus_overrides", [])
                 raw_stock_lines = {
                     str(row.get("lcsc") or "").strip(): row
                     for row in stock_doc.get("lines") or []
@@ -2026,12 +2032,17 @@ def check_stock(release_dir, assembly, evidence_override=None):
                 }
             except (OSError, ValueError, TypeError, json.JSONDecodeError):
                 observed_surplus = None
+                observed_overrides = None
             if observed_surplus != configured_surplus:
                 fails.append(
                     "  STOCK-SURPLUS-MISMATCH: assembly.yaml requires "
                     f"public_stock_surplus={configured_surplus}, but "
                     f"verification/{ev.name} records "
                     f"min_absolute_surplus={observed_surplus!r}")
+            expected_overrides = [{"lcsc": code, **entry}
+                                  for code, entry in sorted(overrides.items())]
+            if observed_overrides != expected_overrides:
+                fails.append("  STOCK-SURPLUS-MISMATCH: exact override evidence differs from assembly policy")
     verdict, lines = _parse_stock_evidence(ev)
     notes.append(f"  note: A-STOCK: grading verification/{ev.name} "
                  f"({len(lines)} graded line(s), verdict={verdict}) against "
@@ -2069,8 +2080,17 @@ def check_stock(release_dir, assembly, evidence_override=None):
     planned, blocked, plan_dates, unclassified = [], [], [], []
     for code, qty in sorted(want.items()):
         need = qty * qty_mult
-        threshold = need + (configured_surplus or 0)
         raw = raw_stock_lines.get(code)
+        try:
+            applied_surplus = surplus_for(configured_surplus or 0, overrides,
+                                          code, (raw or {}).get("mpn"),
+                                          placed_refs.get(code))
+        except ValueError as exc:
+            fails.append(f"  STOCK-SURPLUS-IDENTITY: {exc}")
+            continue
+        threshold = need + applied_surplus
+        if code in overrides and sorted(ref.strip() for ref in str((raw or {}).get("designators") or "").split(",") if ref.strip()) != sorted(placed_refs[code]):
+            fails.append(f"  STOCK-SURPLUS-IDENTITY: {code} evidence designators differ from placed BOM/CPL refs")
         if configured_surplus is not None and raw is not None:
             try:
                 raw_required = int(raw.get("required_qty"))
@@ -2087,6 +2107,8 @@ def check_stock(release_dir, assembly, evidence_override=None):
                     fails.append(
                         f"  STOCK-SURPLUS-LINE: {code} evidence arithmetic "
                         f"does not bind required={need}, threshold={threshold}")
+                if overrides and raw.get("applied_surplus") != applied_surplus:
+                    fails.append(f"  STOCK-SURPLUS-LINE: {code} applied surplus differs from policy")
         e = plan.get(code)
         if e is not None:
             try:
@@ -2102,7 +2124,7 @@ def check_stock(release_dir, assembly, evidence_override=None):
                         f"  ORDER-PLAN-OVERCLAIM: sourcing_plan entry for "
                         f"{code} declares order_status {st} while its own "
                         f"measured_stock {measured} covers threshold "
-                        f"{qty} x {qty_mult} + {configured_surplus or 0} = "
+                        f"{qty} x {qty_mult} + {applied_surplus} = "
                         f"{threshold} — a release may not invent a blocked line "
                         f"any more than it may hide one")
                 continue
@@ -2113,7 +2135,7 @@ def check_stock(release_dir, assembly, evidence_override=None):
                 fails.append(
                     f"  ORDER-PLAN-UNCLASSIFIED: sourcing_plan entry for "
                     f"{code} measures stock {measured} against threshold "
-                    f"{qty} x {qty_mult} + {configured_surplus or 0} = "
+                    f"{qty} x {qty_mult} + {applied_surplus} = "
                     f"{threshold} and states no `order_status:` "
                     f"({'|'.join(_ORDER_STATUS_VOCAB)}) — a plan whose OWN "
                     f"number does not cover the build used to clear the line "
@@ -2134,7 +2156,7 @@ def check_stock(release_dir, assembly, evidence_override=None):
         if stock is not None and stock < threshold:
             fails.append(
                 f"  STOCK-INSUFFICIENT: {code} stock={stock} < {qty} x "
-                f"{qty_mult} boards + {configured_surplus or 0} surplus = "
+                f"{qty_mult} boards + {applied_surplus} surplus = "
                 f"{threshold} (status {st}) and no "
                 f"assembly.yaml sourcing_plan entry names a measured "
                 f"alternative")
