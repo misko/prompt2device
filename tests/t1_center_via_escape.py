@@ -51,6 +51,13 @@ def t_center_gap():
     must_fail(run([KPY, TOOL, part]), '0.095 mm gap', 'NO known tier')
 
 
+@test('center-via escape rejects drill unlike reviewed coupon', kind='known_bad')
+def t_center_drill():
+    part, _fp, _coupon = fixture()
+    update(part, lambda d: d['escape']['center_via_topology'].__setitem__('center_via_drill_mm', 0.349))
+    must_fail(run([KPY, TOOL, part]), 'near-zero annulus', 'NO known tier')
+
+
 @test('center-via escape rejects changed coupon bytes', kind='known_bad')
 def t_center_coupon_tamper():
     part, _fp, coupon = fixture()
@@ -72,6 +79,24 @@ def t_center_wrong_net():
     part, _fp, _coupon = fixture()
     update(part, lambda d: d['pins'].__setitem__('5', 'VDD'))
     must_fail(run([KPY, TOOL, part]), 'center must be GND', 'B2 GND')
+
+
+@test('center-via escape rejects swapped perimeter ball functions', kind='known_bad')
+def t_center_swapped_functions():
+    part, _fp, _coupon = fixture()
+    def swap(d):
+        d['pins']['1'], d['pins']['8'] = d['pins']['8'], d['pins']['1']
+    update(part, swap)
+    must_fail(run([KPY, TOOL, part]), 'exact TI function map', 'exact TI TMUX4827 ball functions')
+
+
+@test('center-via escape rejects arbitrary self-hashed coupon', kind='known_bad')
+def t_center_self_hashed_coupon():
+    part, _fp, coupon = fixture()
+    coupon.write_text('not a KiCad board')
+    update(part, lambda d: d['escape']['center_via_topology']['coupon'].__setitem__(
+        'sha256', hashlib.sha256(coupon.read_bytes()).hexdigest()))
+    must_fail(run([KPY, TOOL, part]), 'reviewed coupon identity', 'independently reviewed exact diagnostic board')
 
 
 @test('center-via escape requires explicit conditional state', kind='known_bad')

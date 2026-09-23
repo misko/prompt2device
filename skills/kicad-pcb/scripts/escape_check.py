@@ -125,6 +125,12 @@ KNOWN_CONDITIONS = {COND_OUTWARD, COND_CORRIDOR, COND_CENTER_VIA}
 BGA_LAND_MIN = 0.25
 BGA_FILLED_VIA_MIN = 0.35
 BGA_VIA_PAD_GAP_MIN = 0.10
+TMUX4827_COUPON_SHA256 = "6f39a73aad46444e6b2256ced0b64a1dea5b9792801c3f705f8b691727ce83b6"
+TMUX4827_BALL_FUNCTIONS = {
+    "A1": "S1A_UNUSED", "A2": "SEL", "A3": "S2A_UNUSED",
+    "B1": "D1", "B2": "GND", "B3": "D2",
+    "C1": "S1B", "C2": "VDD", "C3": "S2B",
+}
 
 
 def center_via_geometry_ok(pitch, tier, t):
@@ -148,6 +154,10 @@ def center_via_geometry_ok(pitch, tier, t):
     if land + 1e-6 < BGA_LAND_MIN or via + 1e-6 < BGA_FILLED_VIA_MIN:
         return False
     if not (0 < drill < via and 0 < opening <= via):
+        return False
+    # Reviewed coupon has one 0.35/0.20 center via; 0.075-mm annulus is
+    # diagnostic geometry, with fabrication acceptance still outstanding.
+    if abs(drill - 0.20) > 1e-6 or (via - drill) / 2 + 1e-6 < 0.075:
         return False
     if pitch - (land + via) / 2 + 1e-6 < BGA_VIA_PAD_GAP_MIN:
         return False
@@ -177,11 +187,17 @@ def check_center_via_evidence(part_yaml, y, t):
         return probs
     if set(map(str, pins)) != set(mapping.values()) or str(pins.get(mapping["B2"], "")).upper() != "GND":
         probs.append(f"{mpn}: center-via topology requires exact numeric pads and B2 GND")
+    if mpn != "TMUX4827YBHR" or any(
+            pins.get(mapping[ball]) != function
+            for ball, function in TMUX4827_BALL_FUNCTIONS.items()):
+        probs.append(f"{mpn}: center-via topology requires exact TI TMUX4827 ball functions")
     for field in ("coupon", "native_footprint"):
         record = t.get(field)
         if not isinstance(record, dict) or not record.get("local") or not record.get("sha256"):
             probs.append(f"{mpn}: missing {field} local path and SHA-256")
             continue
+        if field == "coupon" and record["sha256"] != TMUX4827_COUPON_SHA256:
+            probs.append(f"{mpn}: coupon differs from independently reviewed exact diagnostic board")
         path = (Path(part_yaml).parent / str(record["local"])).resolve()
         if not path.is_file() or hashlib.sha256(path.read_bytes()).hexdigest() != record["sha256"]:
             probs.append(f"{mpn}: {field} missing or SHA-256 mismatch: {path}")
