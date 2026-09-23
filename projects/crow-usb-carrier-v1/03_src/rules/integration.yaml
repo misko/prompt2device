@@ -453,9 +453,7 @@ selections:
   part: XU316-1024-TQ128-C24
   implementation: bare_ic
   support_refs:
-  - C_1V8_FF
   - C_1V8_OK_VDD
-  - C_3V3X_FF
   - C_ADC_CLOCK_OK
   - C_ADC_I2C_A
   - C_ADC_I2C_B
@@ -628,3 +626,10 @@ selections:
     timing and first-article verification.
   support_refs:
   - C_AUDIO_OSC
+historical_dossiers:
+- part: CS5308P-DNR
+  reason: Retained prior converter dossier for traceability; live source uses two TLV320ADC6140 converters instead.
+- part: ASFL1-24.576MHZ-EC-T
+  reason: Retained prior oscillator dossier for traceability; live source uses the selected SX5M oscillator instead.
+- part: TPSM63603V5RDHR
+  reason: Retained prior fixed-output buck dossier for traceability; live source uses adjustable TPSM63603RDHR instead.

@@ -472,6 +472,9 @@ TWO ORPHANS THIS FOLDER'S OWN PROSE HAD HIDDEN, both found by the first run:
 | `default` | `module_first_check.py` | must match the selected schema, making silence deterministic |
 | `module_support_threshold` | `module_first_check.py` | schema-2 support-ref count at which an evidenced module comparison and ADR become mandatory |
 | `selections` | `module_first_check.py` | complete denominator of selected complex subsystems |
+| `historical_dossiers` | `module_first_check.py` | exact retired complex-part dossiers retained for traceability and excluded from live source selection |
+| `historical_dossiers[].part` | `module_first_check.py` | resolves one retired dossier and checks that its identity is absent from live TSX source |
+| `historical_dossiers[].reason` | `module_first_check.py` | explains why the retired dossier remains in the project |
 | `selections[].function` | `module_first_check.py` | names the subsystem being implemented |
 | `selections[].part` | `module_first_check.py` | resolves to exactly one used part dossier |
 | `selections[].implementation` | `module_first_check.py` | closed choice: `module` or `bare_ic` |

@@ -652,6 +652,12 @@ against the `side: bottom` features) are the cheapest first bite.
 | `mpn` | `part_facts_check.py, bom_source_check.py, shopping_list.py` | the MPN authority (F-MPN prefers this FIELD over the directory name) |
 | `manufacturer` | `shopping_list.py` | distributor search + M-QUOTE |
 | `package` | `escape_check.py` | P-ESC/P-TIER package class |
+| `package_drawing` | ADVISORY | retained TI package-drawing provenance for the TLV320ADC6140; pin geometry is graded by the native footprint and pin audit, not inferred from this metadata bag |
+| `package_drawing.*` | ADVISORY | human URL/local/hash/revision citations; no gate compares these fields to downloaded bytes |
+| `shared_tdm_note` | ADVISORY | retained TI shared-TDM application-note provenance; executable bus connections and firmware configuration remain separately reviewed |
+| `shared_tdm_note.*` | ADVISORY | human URL/local/hash/doc-id citations; no gate executes the application note |
+| `footprint_proof` | ADVISORY | human layout comparison note for candidate packages; exact native footprint geometry and process gates own fabrication evidence |
+
 | `footprint` | `generate_board_generic.py, escape_check.py, policy_audit.py` | the FPID realised on the board |
 | `type` | `module_first_check.py, policy_audit.py, power_topology.py, bom_source_check.py` | P-MOD complex-subsystem scope + E-TOPO topology assertion + BOM row class |
 | `value` | `part_facts_check.py, bom_source_check.py, bom_legibility_check.py` | the BOM/CPL value, graded against the fab BOM |

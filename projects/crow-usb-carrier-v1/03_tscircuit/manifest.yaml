@@ -1,4 +1,4 @@
-# Source census: to be regenerated after diagnostic build.
+# Source census: 568 total components.
 components:
 - C_1V8_FF
 - C_1V8_OK_VDD
@@ -389,10 +389,6 @@ components:
 - R_BCLK_RAW_PD
 - R_BUCK_FB_BOTTOM
 - R_BUCK_FB_TOP
-- R_CFG1
-- R_CFG2
-- R_CFG4
-- R_CFG5
 - R_CORE_EN_PU
 - R_CORE_FB_BOTTOM
 - R_CORE_FB_TOP
