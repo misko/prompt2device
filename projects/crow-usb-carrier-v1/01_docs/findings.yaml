@@ -222,7 +222,7 @@ findings:
     2b9a33b6 now passes exact electrical/fault and independent canonical schematic
     review. One successor P1 candidate is admitted after explicit upstream
     reassessment; both original failed trials remain consumed and preserved.
-    Successor b2f59a1b is now generated and rejected: 41 silkscreen findings,
+    Successor b2f59a1b is now generated and rejected with 41 silkscreen findings,
     eight U_SPOKE Description mismatches, five of six keep-short and195 of229
     adjacency checks exceed limits;55 constraints are unreached. Copper/hole/via
     findings and missing courtyards are now zero, model files resolve568/568,
