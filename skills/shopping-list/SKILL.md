@@ -290,3 +290,11 @@ are the real recorded responses from incidents 1 and 2, and all three checks
 (Q-WIDE, Q-SNIPPET, Q-IDENT) are RED-verified against a deliberately neutered
 checker with the measurements written into the suite docstring. `--replay`
 makes the suite hermetic: **no test in this repo calls Mouser.**
+
+## Optional catalog discovery
+
+Use the [jlcsearch catalog screen](../jlcpcb-fab/references/assembly-and-order.md#optional-jlcsearch-catalog-screen)
+for candidate discovery or preliminary BOM investigation. Its report is not the
+`--jlc-stock-json` schema. Direct JLC and jlcsearch observations represent one
+supply pool, not two distributors. Exact-MPN qualification and manufacturer
+evidence remain in the existing dossier workflow.

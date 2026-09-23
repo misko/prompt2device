@@ -62,6 +62,48 @@ role-keyed hashes for the Gerber archive, BOM, CPL, drill family and optional
 via-order note. Downstream review/release automation resolves roles through
 this index; it must not rediscover a plausible same-basename artifact.
 
+### Optional jlcsearch catalog screen
+
+Use `scripts/jlcsearch.py` for candidate discovery and report-only screening of
+an existing preliminary PCBA request against the exact Circuit JSON identities.
+The public API needs no key for tested requests; use the adapter's descriptive
+User-Agent. Default Python requests have returned HTTP403. Network failures
+are unknown evidence, never zero stock. The general search excludes zero-stock
+parts: an empty result means not observed, not proof of zero stock or absence.
+
+```bash
+python3 skills/jlcpcb-fab/scripts/jlcsearch.py discover 'RC0402FR-074K7L' \
+  --out /tmp/jlcsearch-discovery.json
+python3 skills/jlcpcb-fab/scripts/jlcsearch.py screen \
+  projects/BOARD/06_build/sourcing/prelayout_request.json \
+  --circuit-json projects/BOARD/03_tscircuit/build/circuit.json \
+  --cache-dir projects/BOARD/06_build/cache/jlcsearch \
+  --out projects/BOARD/06_build/sourcing/jlcsearch-report.json
+```
+
+Verify a saved request against current project inputs with the owning
+`jlc_pcba_availability.py verify-request` command before using it. The catalog
+report is a separate evidence format: do not pass it as `--jlc-stock-json` or
+as an authenticated PCBA response. Excluded assembly references retain their
+existing self-supplied sourcing and assembly checks.
+
+| Existing module | Relationship |
+|---|---|
+| `shopping-list` | Candidate discovery; jlcsearch and direct JLC observations count as one underlying supply pool. |
+| `jlc_stock_check.py` | Direct catalog checks remain; compare discrepancies without silently selecting the larger stock number. |
+| `bom_source_check.py` | Exact identities and catalog values remain independently checked; search results do not rewrite dossiers or the passive ledger. |
+| `manufacturing_readiness.py` | Existing policy and provider admission paths retain authority; this report grants no placement or order permission. |
+| Modular P1–P5 graph | Stock-only changes reopen sourcing. Adopted part changes reopen the owning block and affected interfaces, geometry and reviews. |
+
+Keep raw observations and report provenance in `06_build/`. Retrieval time is
+not upstream stock-observation time; preserve unknown upstream timestamps.
+Search proposals still need manufacturer electrical and footprint qualification.
+No automatic substitutions or footprint imports occur. Do not put live network
+lookups into the deterministic electrical rebuild or replace final provider
+allocation/economic checks. Numeric category filters, when used directly, need
+base units (`resistance=1000`, `capacitance=1e-6`); the upstream `1k` example has
+returned1ohm parts. Verify returned parameters rather than trusting query text.
+
 Before part freeze run `manufacturing_readiness.py grade PROJECT --phase
 selection`. It composes exact source-code/manual disposition, exact MPN dossier
 identity and the existing source-value checker into one hash-bound early

@@ -167,6 +167,7 @@ SUITES=(
   t1_pipeline_reliability.py
   t1_import_provenance.py
   t1_shopping_list.py
+  t1_jlcsearch.py
   t2_route_stitch.py
   t2_checkpoint_cases.py
   t2_decision_admission_checkpoint.py

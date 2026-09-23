@@ -38,6 +38,7 @@ mutable file: it is an INPUT, and a re-read replaces the entry it re-reads.
 | `public-distributor-policy.yaml` | explicit user-approved, exact-part design-only public-stock policy | optional schema below; never purchase or allocation authority |
 | `procurement-policy.yaml` | durable currency and per-line/aggregate limits for preorder cash, gross MOQ surplus cost, and nonrecoverable assembly excess cost | HAND-WRITTEN user policy. Template limits are zero so no spending authority is invented; volatile MOQ/quote observations remain in `06_build/sourcing/` |
 | `evidence/` | retained primary manufacturer lifecycle pages | Exact bytes and identity/date/hash provenance; its own contract governs contents. No stock inference. |
+| `jlcsearch-screen-<YYYY-MM-DD>.md` | dated interpretation of report-only jlcsearch evidence with exact URLs/times and input report hashes | observation only; never a build input or allocation receipt |
 | `contracts.md` | this file | |
 
 ## Optional public distributor design policy

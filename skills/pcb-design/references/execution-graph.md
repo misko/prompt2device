@@ -34,6 +34,12 @@ top-level conductor for current projects. No production driver consumes the
 typed `StageSpec` list end to end. Until that changes, the project shell driver
 and each owning gate remain authoritative for work and verdicts.
 
+Optional [jlcsearch catalog screening](../../jlcpcb-fab/references/assembly-and-order.md#optional-jlcsearch-catalog-screen)
+runs inside `PCB-SOURCING` as report-only investigation using the existing
+preliminary request and Circuit JSON. It adds no admission edge or stage.
+Project sourcing-policy and provider gates still control progression; adopted
+part changes follow the existing modular backtrack dependencies.
+
 ## Lifecycle graph
 
 ```mermaid

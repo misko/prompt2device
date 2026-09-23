@@ -38,6 +38,7 @@ or publication procedure.
 
 | Work | Read completely |
 |---|---|
+| Discover candidates or screen a preliminary request with jlcsearch (report-only) | `references/assembly-and-order.md` |
 | Export BOM/CPL, choose codes, check stock, rotations, uploader preview | `references/assembly-and-order.md` |
 | Fetch JLC CAD, fit pads, mount models, render and debug overlays | `references/digital-twin.md` |
 | Prove connector mouth/edge orientation and approve directional 3D views | `references/connector-orientation.md` |
