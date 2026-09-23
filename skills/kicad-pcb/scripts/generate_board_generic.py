@@ -636,6 +636,7 @@ class BoardBuilder:
         self.run_asserts()
         self.legalize()
         self.apply_post_anchors()
+        self.check_emitted_via_collisions()
         self.check_placement_collisions()
         self.normalize_footprint_text()
         self.apply_design_rules()
@@ -1295,6 +1296,9 @@ class BoardBuilder:
         intended to receive an advanced fill/cap process.
         """
         cfg = self.cfg.get("thermal_vias") or {}
+        # Keep explicit vias attached to their authored owner for the final
+        # post-legalizer copper check.  The footprint may move after emission.
+        self.emitted_vias = []
         fields = cfg.get("fields") or []
         refs = cfg.get("promote_heatsink_pads") or []
         default_protection = cfg.get("protection")
@@ -1381,6 +1385,8 @@ class BoardBuilder:
                                     f"{other_fp.GetReference()}."
                                     f"{other.GetNumber()}")
                     self.board.Add(via)
+                    self.emitted_vias.append(
+                        (f"thermal_vias.fields[{i}]", ref, padnum, via))
                     emitted += 1
         if not isinstance(refs, list) or any(not isinstance(r, str) for r in refs):
             die("thermal_vias.promote_heatsink_pads must be a list of refdes")
@@ -1420,6 +1426,9 @@ class BoardBuilder:
                     die(str(exc))
                 fp.Remove(pad)
                 self.board.Add(via)
+                self.emitted_vias.append(
+                    ("thermal_vias.promote_heatsink_pads", ref,
+                     pad.GetNumber(), via))
                 promoted += 1
             # The generated footprint intentionally no longer matches its
             # library copy: its marked holes are now true board vias. An
@@ -1440,6 +1449,28 @@ class BoardBuilder:
         self.say(f"thermal vias: emitted {emitted} explicit + promoted "
                  f"{promoted} marked heatsink pad(s) across {len(total_refs)} "
                  "footprint(s) as board-level vias")
+
+    def check_emitted_via_collisions(self):
+        """Recheck real via/pad copper after floating and post-anchor moves.
+
+        Emission already rejects other-net pads at the initial pose.  A later
+        legalizer move changes the footprint's pad coordinates while the
+        board-level via stays put, so that initial check can become stale.
+        """
+        for source, ref, padnum, via in getattr(self, "emitted_vias", ()):
+            for fp in self.board.GetFootprints():
+                for pad in fp.Pads():
+                    if (pad.GetNetCode() <= 0 or
+                            pad.GetNetCode() == via.GetNetCode()):
+                        continue
+                    for layer in pad.GetLayerSet().CuStack():
+                        if (via.GetLayerSet().Contains(layer) and
+                                pad.GetEffectiveShape(layer).Collide(
+                                    via.GetEffectiveShape(layer), 0)):
+                            die(f"{source}: emitted "
+                                f"{ref}.{padnum} via intersects different-net "
+                                f"pad {fp.GetReference()}.{pad.GetNumber()} "
+                                "after placement")
 
     # ------------------------------------------------- P-COLLIDE (placement)
     def _pad_poly(self, pad):
@@ -1559,10 +1590,26 @@ class BoardBuilder:
             for r2, p2, n2, l2, t2, x2, b2 in pads[i + 1:]:
                 if l2 > x1:
                     break                       # sweep: no later pad can touch
-                if r1 == r2 or t1 > b2 or t2 > b1:
+                if t1 > b2 or t2 > b1:
                     continue
-                if not any(p2.GetLayerSet().Contains(l)
-                           for l in p1.GetLayerSet().CuStack()):
+                common_layers = [l for l in p1.GetLayerSet().CuStack()
+                                 if p2.GetLayerSet().Contains(l)]
+                if not common_layers:
+                    continue
+                if r1 == r2:
+                    # Intentional same-net composite/fused lands and netless
+                    # mechanical pads remain legal.  Only actual different-net
+                    # copper inside one native footprint is a self-short.
+                    if (p1.GetNetCode() <= 0 or p2.GetNetCode() <= 0 or
+                            p1.GetNetCode() == p2.GetNetCode()):
+                        continue
+                    if any(p1.GetEffectiveShape(layer).Collide(
+                            p2.GetEffectiveShape(layer), 0)
+                           for layer in common_layers):
+                        overlaps.append(("SELF-SHORT", r1, p1.GetNumber(), n1,
+                                         r2, p2.GetNumber(), n2,
+                                         min(x1, x2) - max(l1, l2),
+                                         min(b1, b2) - max(t1, t2)))
                     continue
                 for k, pp in ((id(p1), p1), (id(p2), p2)):
                     if k not in cache:
@@ -1614,7 +1661,7 @@ class BoardBuilder:
                   f"placement anchor or board datum "
                   f"(full-severity DRC will fail this as courtyards_overlap)")
         if overlaps or laps:
-            msg = ["P-COLLIDE: this placement has inter-footprint pad overlap."]
+            msg = ["P-COLLIDE: this placement has pad copper overlap."]
             for kind, r1, pn1, n1, r2, pn2, n2, ox, oy in sorted(overlaps):
                 msg.append(f"  {kind:<10} {r1}.{pn1} [{n1}] <-> {r2}.{pn2} "
                            f"[{n2}]  pad copper overlaps "

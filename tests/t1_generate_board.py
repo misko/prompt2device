@@ -1548,6 +1548,92 @@ def t_corridor_bad_side():
 
 
 # ---------------------------------------------------------------- P-COLLIDE
+
+def _self_copper_probe(case):
+    """Small native geometry witness modeled on Crow JTAG/LDO failures."""
+    code = r'''
+import pcbnew as p,sys
+sys.path.insert(0,sys.argv[1])
+from generate_board_generic import BoardBuilder,FloorplanError
+b=p.BOARD(); b.SetCopperLayerCount(4)
+nets={}
+for name in ('GND','KEY_NC','PWR'):
+    n=p.NETINFO_ITEM(b,name);b.Add(n);nets[name]=n
+f=p.FOOTPRINT(b);f.SetReference('J_JTAG');f.SetPosition(p.VECTOR2I_MM(0,0));b.Add(f)
+def pad(num,net,x,y,w=1.0,h=1.0,back=False):
+    q=p.PAD(f);q.SetNumber(num);q.SetAttribute(p.PAD_ATTRIB_SMD)
+    q.SetShape(p.PAD_SHAPE_RECT);q.SetSize(p.VECTOR2I_MM(w,h))
+    layers=p.LSET();layers.AddLayer(p.B_Cu if back else p.F_Cu)
+    q.SetLayerSet(layers);q.SetPosition(p.VECTOR2I_MM(x,y))
+    if net:q.SetNet(nets[net])
+    f.Add(q)
+    return q
+case=sys.argv[2]
+if case=='self_short':
+    # Crow JTAG pads 7/9 share copper despite separate KEY_NC/GND nets.
+    pad('7','KEY_NC',0,0,1.0,1.0);pad('9','GND',.7,0,1.0,1.0)
+elif case=='same_net':
+    # Fused and composite lands may deliberately overlap.
+    pad('1','GND',0,0);pad('2','GND',.7,0)
+elif case=='different_sides':
+    pad('1','GND',0,0);pad('2','PWR',0,0,back=True)
+elif case=='netless_mechanical':
+    pad('1','GND',0,0);pad('M','',0,0)
+elif case in ('via_short','via_same_net'):
+    f.SetReference('U_LDO')
+    pad('11','GND',0,0,3.0,3.0)
+    pad('9','GND' if case=='via_same_net' else 'PWR',1.75,0,.5,.5)
+    v=p.PCB_VIA(b);v.SetPosition(p.VECTOR2I_MM(.8,0))
+    v.SetWidth(p.FromMM(.5));v.SetDrill(p.FromMM(.2))
+    v.SetLayerPair(p.F_Cu,p.B_Cu);v.SetNet(nets['GND']);b.Add(v)
+    # At emission the via clears pad 9; moving the owner leaves the via behind.
+    f.SetPosition(p.VECTOR2I_MM(-.6,0))
+    q=BoardBuilder.__new__(BoardBuilder);q.board=b
+    q.emitted_vias=[('thermal_vias.fields[0]','U_LDO','11',v)]
+    try:q.check_emitted_via_collisions()
+    except FloorplanError as e:print('@@FAIL '+str(e))
+    else:print('@@PASS')
+    raise SystemExit
+else:raise AssertionError(case)
+q=BoardBuilder.__new__(BoardBuilder);q.board=b
+q.pinned=set();q.fixed_board_refs=set();q.say=lambda message:None
+try:q.check_placement_collisions()
+except FloorplanError as e:print('@@FAIL '+str(e))
+else:print('@@PASS')
+'''
+    return must_pass(run([KPY, '-c', code, SCRIPTS, case]),
+                     f'native self-copper probe {case}').out.split('@@', 1)[1]
+
+
+@test('P-COLLIDE rejects different-net pads in one native footprint',
+      kind='known_bad')
+def t_kb_self_pad_short():
+    result = _self_copper_probe('self_short')
+    for fragment in ('FAIL', 'SELF-SHORT', 'J_JTAG.7', 'J_JTAG.9',
+                     'KEY_NC', 'GND'):
+        contains(result, fragment, 'same-footprint short diagnosis')
+
+
+@test('P-COLLIDE keeps fused, netless and opposite-side native pads legal')
+def t_self_pad_nonshorts():
+    for case in ('same_net', 'different_sides', 'netless_mechanical'):
+        contains(_self_copper_probe(case), 'PASS', case)
+
+
+@test('post-placement via check rejects owner signal-pad short',
+      kind='known_bad')
+def t_kb_moved_owner_via_short():
+    result = _self_copper_probe('via_short')
+    for fragment in ('FAIL', 'U_LDO.11', 'U_LDO.9',
+                     'different-net', 'after placement'):
+        contains(result, fragment, 'moved owner via short diagnosis')
+
+
+@test('post-placement via check accepts its own ground exposed pad')
+def t_owner_ground_via_allowed():
+    contains(_self_copper_probe('via_same_net'), 'PASS',
+             'same-net EP and pad under via')
+
 # RED-VERIFIED against the pre-fix generator (2026-07-25): with
 # check_placement_collisions() removed from build(), BOTH known-bad cases below
 # generate cleanly and exit 0 — which is exactly how smc0985-cooksense v1.3
