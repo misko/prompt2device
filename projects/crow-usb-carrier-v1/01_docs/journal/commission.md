@@ -524,3 +524,13 @@ Retained bounded stock-alternative, switch and capacitor-bank reports in the JLC
 Retained source-research reports for the adjustable buck load census, stocked quad-switch alternative and dual-quad ADC architecture under D7. These are unadmitted engineering candidates. The buck has sufficient declared-load arithmetic but voltage/thermal/startup bounds still need closure; the quad-switch changes fault/power-off behavior; ADC input coupling, noise and synchronization requirements remain explicit. Whole-source admission and block placement remain held.
 
 D7 USB-core blocker: serialized direct-JLC XMOS search covered283 keyword records; no observed part reaches155 stock. SelectedXU316TQ128 has46. Retained2026-09-23-xmos-stock-alternatives.md and rawhashes. Distributor availability doesnotcloseD5. Bounded non-XMOS USBcapture alternative screen underway; no USBcore substitution adopted.
+
+## 2026-09-23 — stocked architecture alternatives and source reviews
+
+Dedicated USB bridge screen did not find an eight-capture-channel part meeting D5/D7. The stocked STM32H743+USB3300 hardware study establishes a conditional pin/resource/bandwidth path with upstream UAC2 support, not a ready firmware image. Presented the substantial USB-core redesign versus retaining XMOS until stock improves for user direction; no USB architecture change adopted. Firmware remains outside implementation scope.
+
+Coilcraft XFL4015-471MEC/C18221164 is a TI-recommended stocked inductor source candidate; isolated source implementation underway. Independent ADC research review accepts the TLV6140 comparison but not source adoption. Murata ten-cap source candidate c9cc9db8 remains isolated after a qualification-semantics finding; do not reinterpret its model estimates as guaranteed production minima. Current pause beacon and findings now name D7 and the historical schematic checkpoint accurately.
+
+### Murata evidence adjudication
+
+Independent reviewer reopened the controlling2026-09-22-power-bounds-adoption disposition and corrected the initial capbank rejection: exact model plus conservative reserves meets the existing source engineering-screen standard, which does not promise manufacturer production minima. Candidate c9cc9db8 accepted subject to narrow wording reconciliation and composed build. No new checker/provisional schema or guarantee was introduced. Preserve original review plus adjudication; P3 physicalESL and first-article stability obligations remain.
