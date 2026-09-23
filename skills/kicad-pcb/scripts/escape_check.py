@@ -354,7 +354,7 @@ def check_part(part_yaml, tiers):
     # remains governed by the connector-assembly and pin-review contracts.
     if y.get("footprint") == "none_off_board":
         return probs
-    if npins <= 2:
+    if npins <= 2 and not (y.get("escape") or {}).get("center_via_topology"):
         return probs
     esc = y.get("escape")
     if not esc:
