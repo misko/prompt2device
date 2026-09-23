@@ -11,7 +11,7 @@ const schematicPages = [
   "spoke_protection_1", "spoke_protection_2", "spoke_protection_3", "spoke_protection_4",
   "spoke_protection_5", "spoke_protection_6", "spoke_protection_7", "spoke_protection_8",
   "analog_1", "analog_2", "analog_3", "analog_4", "analog_5", "analog_6", "analog_7", "analog_8",
-  "adc", "vmid", "references", "reset_supervisors", "reset_sequencer",
+  "adc", "vmid", "reset_supervisors", "reset_sequencer",
   "digital_power_3v3x", "digital_power_1v8", "digital_power_core", "xmos_core",
   "xmos_decoupling", "flash_clock", "audio_oscillator", "tdm_translation", "fsync_shaping",
   "adc_clock_control", "usb_logic", "debug", "usb_frontend",
