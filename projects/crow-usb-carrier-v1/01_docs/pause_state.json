@@ -1,30 +1,25 @@
 {
-  "blocker": "Repaired source and canonical schematic accepted; second bounded P1 native trial underway. Placement/routing are not admitted; connector FULL still owes 19 physical targets.",
+  "blocker": "Second P1 candidate removes all 32 shorts but fails native/process and placement checks. Both local trials consumed: upstream D-BACK required; connector FULL still owes 19 physical targets.",
   "checkpoint": {
     "path": "06_build/checkpoints/schematic.json",
     "sha256": "545adc0b60a8198eca489362e59621681687ccac7725ea9a2241fa21a7862816",
     "size": 1152
   },
-  "next_command": "Generate one repaired native P1 candidate with current rules, grade exact shorts and fixed-feature geometry, and preserve remaining blockers before P2.",
+  "next_command": "Read the repaired-native backtrack and Terra cause census; repair source/process, footprint and endpoint authorities before independently reassessing a new placement campaign. Do not run a third local P1 trial or route.",
   "phase": "placement",
   "project": "crow-usb-carrier-v1",
   "receipts": [
     {
-      "path": "08_reviews/2026-09-23_generator-repairs-final_terra_source.md",
-      "sha256": "3a6ae5abed1089d983b8a9d626816d539c40e943708fc3676188b88d420435fe",
-      "size": 3832
+      "path": "01_docs/research/2026-09-23-p1-backtrack-census-terra.md",
+      "sha256": "81dd401f0b676472e8ab21fbb28374e042b15bfeccb9abc02041f28f6becb5c0",
+      "size": 8248
     },
     {
-      "path": "08_reviews/2026-09-23_schematic-land-carryover_terra_source.md",
-      "sha256": "98ad18bf5cb0f94fb5a5816338cf1c4c90b306c0b9b7112de03ab061831c05c3",
-      "size": 3699
-    },
-    {
-      "path": "08_reviews/2026-09-23_topology-land-carryover_terra_source.md",
-      "sha256": "d79659f8cf517939bece89143a5d138a918033f7d8441b7134702fc4017c379a",
-      "size": 5590
+      "path": "01_docs/research/2026-09-23-p1-repaired-native-backtrack.md",
+      "sha256": "63409916fb95eb704cdb6790c7ea629d979f2d70817b3c584d1acb3358ddb1d2",
+      "size": 5538
     }
   ],
   "schema": 1,
-  "state_id": "c1ac4f1e27d1f1fbc25a04deef885acc891928de0c7c483ec4430c2911930b28"
+  "state_id": "a0f023220f47b3bcb8f147894d7197944432da7e2d8de97ffa86dfa180c0489e"
 }

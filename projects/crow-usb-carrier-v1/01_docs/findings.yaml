@@ -177,8 +177,10 @@ findings:
   owner: part-geometry
   finding: First native P1 candidate has 29 different-net overlaps inside JTAG,
     DCK and DCT footprints. Manufacturer drawing review also exposes mirrored
-    native pin placement in active TI package footprints. Numeric pad/net parity
-    cannot establish physical pin orientation. Candidate is rejected.
+    native pin placement in active TI package footprints. Reviewed source repairs
+    eliminate all 32 native shorts in candidate 37b45520, but seven regulator
+    clearance rows and incomplete courtyard/model evidence remain. Numeric
+    parity alone cannot establish physical orientation; placement is rejected.
   closes_when: Correct exact native and TSX land geometry from manufacturer
     top-view and land-pattern evidence; verify signed pin order, dimensions and
     same-footprint copper clearance; regenerate and independently regrade all
@@ -187,6 +189,7 @@ findings:
   - 01_docs/research/2026-09-23-p1-native-short-diagnosis.md
   - 01_docs/research/2026-09-23-native-chirality-audit.md
   - 08_reviews/2026-09-23_p1-native-geometry_terra_source.md
+  - 01_docs/research/2026-09-23-p1-repaired-native-backtrack.md
 - id: USB-ldo-thermal-via-geometry
   state: open
   blocks_at_or_above: DESIGN_CLEAN
@@ -194,10 +197,27 @@ findings:
   finding: Three U_LDO ground thermal vias overlap different-net signal pads in
     native P1 candidate 637e2665. Board-level vias were emitted before the
     legalizer moved their owner. The shared emission-order repair is adopted;
-    regenerated native attachment and clearance remain to be measured.
+    the second candidate now measures all six vias at their exact final-owner
+    offsets with zero U_LDO DRC violations. Thermal qualification remains separate.
   closes_when: Emit vias at final owner positions inside the verified exposed pad,
     regenerate and measure pad clearance under the selected process rules; retain
     the owning thermal and manufacturing qualification requirements.
   evidence:
   - 03_src/floorplan.yaml
   - 08_reviews/2026-09-23_p1-native-geometry_terra_source.md
+  - 01_docs/research/2026-09-23-p1-repaired-native-backtrack.md
+
+- id: USB-P1-placement-backtrack
+  state: open
+  blocks_at_or_above: DESIGN_CLEAN
+  owner: placement-and-process
+  finding: Both local P1 trials are consumed. Candidate 37b45520 has zero shorts
+    but 155 native violations, 45 parity findings, 16 missing courtyards,
+    73 missing models and support intrusion into the hold-bank islands.
+  closes_when: Reconcile via fields and package/process clearances, repair
+    endpoint metadata and native parity representation, complete footprint/model
+    evidence and reserve support corridors. Independently review upstream
+    corrections and reassess the placement campaign without resetting prior
+    spend; pass owning placement and connector gates before downstream work.
+  evidence:
+  - 01_docs/research/2026-09-23-p1-repaired-native-backtrack.md
