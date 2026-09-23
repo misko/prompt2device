@@ -156,6 +156,9 @@ const style = (domain: Domain, ref: string, tag: string) => {
         ? {leftMargin:.8,topMargin:.08,bottomMargin:.08}
         : {topMargin:.08,bottomMargin:.08}]
     }))}
+  if (ref === "U_ADC_CLOCK_OK") return {schWidth:4.2,schHeight:3,
+    schPinArrangement:{leftSide:[1,2],rightSide:[4],topSide:[5],bottomSide:[3]},
+    schPinStyle:Object.fromEntries(Array.from({length:5},(_,i)=>[`pin${i+1}`,{topMargin:.3,bottomMargin:.3}]))}
   if (["U_1V8_OK","U_XU_3V3_OK","U_CORE_OK"].includes(ref)) return {
     schWidth:4.2, schHeight:3.2,
     schPinArrangement:{leftSide:[1,2,3],rightSide:[6,5,4]},

@@ -211,7 +211,13 @@ node "$S/render_schematic_pdf.mjs" "$CJ" "$SCHPDF" \
     --sheet-text-scale reset_supervisors:1.7:all \
     --sheet-text-scale tdm_translation:1.7:all \
     --sheet-text-scale fsync_shaping:1.7:all \
-    --sheet-text-scale adc_clock_control:1.5:all || true
+    --sheet-text-scale adc_clock_control:1.5:all \
+    --detail-tiles held_ldo:3 \
+    --detail-tiles adc:2 \
+    --detail-tiles reset_supervisors:3 \
+    --detail-tiles xmos_core:3 \
+    --detail-tiles fsync_shaping:2 \
+    --detail-tiles adc_clock_control:2 || true
 
 # [1a] M-FRESH verify — the pipeline asserts the artifacts it is about to grade
 # and to SHIP are the ones it just built. build_provenance.py finds the producer

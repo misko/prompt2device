@@ -230,6 +230,7 @@ const usage = () => {
     "usage: render_schematic_pdf.mjs <circuit.json> <schematic.pdf> " +
       "[--title <title>] [--net-aliases <net_aliases.txt>] " +
       "[--sheet-text-scale <sheet>:<factor>:<pins|all>] " +
+      "[--detail-tiles <sheet>:<2|3>] " +
       "[--toolchain-package <package.json>]\n",
   )
 }
@@ -247,7 +248,15 @@ let projectTitle = "SCHEMATIC"
 let netAliasesPath = null
 let toolchainPackage = null
 const sheetTextScales = new Map()
+const detailTiles = new Map()
 for (let i = 2; i < args.length; i += 1) {
+  if (args[i] === "--detail-tiles" && args[i + 1]) {
+    const match = /^([a-z][a-z0-9_]*):([23])$/.exec(args[i + 1])
+    if (!match || detailTiles.has(match[1])) die(`invalid or duplicate detail tiles: ${args[i + 1]}`)
+    detailTiles.set(match[1], Number(match[2]))
+    i += 1
+    continue
+  }
   if (args[i] === "--sheet-text-scale" && args[i + 1]) {
     const match = /^([a-z][a-z0-9_]*):([1-9]\d*(?:\.\d+)?):(pins|all)$/.exec(args[i + 1])
     const factor = match ? Number(match[2]) : NaN
@@ -347,6 +356,10 @@ const sheets = circuit
 for (const name of sheetTextScales.keys()) {
   if (!sheets.some((sheet) => sheet.name === name))
     die(`sheet text scale names unknown sheet ${name}`)
+}
+for (const name of detailTiles.keys()) {
+  if (!sheets.some((sheet) => sheet.name === name))
+    die(`detail tiles name unknown sheet ${name}`)
 }
 
 const components = circuit.filter(
@@ -487,6 +500,8 @@ const pages =
           sheet_index: 1,
         },
       ]
+const totalPages = pages.length + [...detailTiles.values()].reduce(
+  (sum, grid) => sum + grid * grid, 0)
 
 const HEADER_HEIGHT = 90
 const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), "schematic-render-"))
@@ -560,7 +575,7 @@ try {
       /^<svg /,
       `<svg x="0" y="${HEADER_HEIGHT}" `,
     )
-    const pageNumber = index + 1
+    const pageNumber = pagePdfs.length + 1
     const heading = sheet.display_name ?? sheet.name ?? `PAGE ${pageNumber}`
     const headingFontSize = Math.min(
       18,
@@ -571,7 +586,7 @@ try {
       '<rect width="100%" height="100%" fill="rgb(245, 241, 237)"/>',
       `<text x="30" y="27" font-family="sans-serif" font-size="20px" font-weight="bold" fill="#840000">${xmlEscape(projectTitle)}</text>`,
       `<text x="30" y="53" font-family="sans-serif" font-size="${headingFontSize.toFixed(1)}px" font-weight="bold" fill="#840000">${xmlEscape(heading)}</text>`,
-      `<text x="30" y="76" font-family="sans-serif" font-size="11px" fill="#555">Page ${pageNumber} of ${pages.length} • exact circuit.json SHA-256 ${hash.slice(0, 16)}… • ${pageComponents.length} components • ${geometry.orientation} page fit</text>`,
+      `<text x="30" y="76" font-family="sans-serif" font-size="11px" fill="#555">Page ${pageNumber} of ${totalPages} • exact circuit.json SHA-256 ${hash.slice(0, 16)}… • ${pageComponents.length} components • ${geometry.orientation} page fit</text>`,
       fitted,
       "</svg>",
     ].join("\n")
@@ -581,12 +596,53 @@ try {
     const pdfPath = path.join(tempDir, `${stem}.pdf`)
     fs.writeFileSync(svgPath, pageSvg)
     process.stdout.write(
-      `SCHEMATIC-RENDER page ${pageNumber}/${pages.length}: ${
+      `SCHEMATIC-RENDER page ${pageNumber}/${totalPages}: ${
         sheet.display_name ?? sheet.name
       } (${pageComponents.length} components, ${geometry.orientation})\n`,
     )
     run("rsvg-convert", ["-f", "pdf", "-o", pdfPath, svgPath], stem)
     pagePdfs.push(pdfPath)
+
+    const grid = detailTiles.get(sheet.name)
+    if (grid) {
+      // Every tile is a viewBox of the exact same SVG as the overview. The
+      // overlapping windows scale labels, plates, wires and symbols together.
+      // Adjacent panels share 15% of the source extent for visual continuity.
+      const windowWidth = geometry.width / (grid - (grid - 1) * 0.15)
+      const windowHeight = geometry.contentHeight / (grid - (grid - 1) * 0.15)
+      const strideX = (geometry.width - windowWidth) / (grid - 1)
+      const strideY = (geometry.contentHeight - windowHeight) / (grid - 1)
+      for (let row = 0; row < grid; row += 1) {
+        for (let col = 0; col < grid; col += 1) {
+          const detailNumber = row * grid + col + 1
+          const detailPage = pagePdfs.length + 1
+          const viewBox = `${(col * strideX).toFixed(4)} ${(row * strideY).toFixed(4)} ${windowWidth.toFixed(4)} ${windowHeight.toFixed(4)}`
+          const croppedTree = structuredClone(normalized.tree)
+          croppedTree.attributes = {
+            ...croppedTree.attributes,
+            x: "0", y: String(HEADER_HEIGHT), viewBox,
+            overflow: "hidden",
+          }
+          const crop = stringify(croppedTree)
+          const detailHeading = `${heading} — DETAIL ${detailNumber}/${grid * grid} (R${row + 1}C${col + 1})`
+          const detailSvg = [
+            `<svg xmlns="http://www.w3.org/2000/svg" width="${geometry.width}" height="${pageHeight}" viewBox="0 0 ${geometry.width} ${pageHeight}">`,
+            '<rect width="100%" height="100%" fill="rgb(245, 241, 237)"/>',
+            `<text x="30" y="27" font-family="sans-serif" font-size="20px" font-weight="bold" fill="#840000">${xmlEscape(projectTitle)}</text>`,
+            `<text x="30" y="53" font-family="sans-serif" font-size="17px" font-weight="bold" fill="#840000">${xmlEscape(detailHeading)}</text>`,
+            `<text x="30" y="76" font-family="sans-serif" font-size="11px" fill="#555">Page ${detailPage} of ${totalPages} • source sheet ${sheet.sheet_index} ${xmlEscape(sheet.schematic_sheet_id)} • exact circuit.json SHA-256 ${hash.slice(0, 16)}… • overview page ${pageNumber}</text>`,
+            crop,
+            '</svg>',
+          ].join("\n")
+          const detailStem = `page-${String(detailPage).padStart(3, "0")}`
+          const detailSvgPath = path.join(tempDir, `${detailStem}.svg`)
+          const detailPdfPath = path.join(tempDir, `${detailStem}.pdf`)
+          fs.writeFileSync(detailSvgPath, detailSvg)
+          run("rsvg-convert", ["-f", "pdf", "-o", detailPdfPath, detailSvgPath], detailStem)
+          pagePdfs.push(detailPdfPath)
+        }
+      }
+    }
   }
 
   const mergedPath = path.join(tempDir, "schematic.pdf")
@@ -603,7 +659,7 @@ try {
   fs.copyFileSync(mergedPath, atomicPath)
   fs.renameSync(atomicPath, outputPath)
   process.stdout.write(
-    `SCHEMATIC-RENDER PASS: ${pages.length} page(s), ${components.length} components, ` +
+    `SCHEMATIC-RENDER PASS: ${pagePdfs.length} page(s), ${components.length} components, ` +
       `${netAliases.size} explicit net alias(es), ` +
       `${alignment.correctionCount} scaled two-port symbol alignment correction(s), ` +
       `${baselineCorrections} font-metric text baseline(s), ` +

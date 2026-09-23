@@ -50,7 +50,7 @@ def component(number, sheet_id=None):
     return [source, schematic, text]
 
 
-def render(circuit, aliases=None):
+def render(circuit, aliases=None, extra_args=None):
     tmp = tempfile.TemporaryDirectory()
     directory = pathlib.Path(tmp.name)
     source = directory / "circuit.json"
@@ -63,9 +63,51 @@ def render(circuit, aliases=None):
         alias_path = directory / "net_aliases.txt"
         alias_path.write_text(aliases)
         command += ["--net-aliases", str(alias_path)]
+    command += extra_args or []
     result = run(command)
     source_after = hashlib.sha256(source.read_bytes()).hexdigest()
     return tmp, output, result, source_before, source_after
+
+
+@test("opt-in detail tiles keep exact circuit bytes and labeled source-sheet coverage")
+def t_detail_tiles():
+    circuit = [
+        {"type": "schematic_sheet", "schematic_sheet_id": "schematic_sheet_0",
+         "name": "dense", "display_name": "DENSE", "sheet_index": 1},
+        *component(0, "schematic_sheet_0"),
+        *component(1, "schematic_sheet_0"),
+    ]
+    tmp, output, result, before, after = render(
+        circuit, extra_args=["--detail-tiles", "dense:2"])
+    try:
+        check(result.rc == 0, result.out)
+        check(before == after, "detail rendering modified authoritative Circuit JSON")
+        info = run(["pdfinfo", str(output)])
+        contains(info.out, "Pages:           5", "overview and four detail pages")
+        detail = run(["pdftotext", "-f", "2", "-l", "5", str(output), "-"])
+        contains(detail.out, "source sheet 1 schematic_sheet_0", "source-sheet caption")
+        contains(detail.out, f"SHA-256 {before[:16]}", "exact input hash caption")
+        contains(detail.out, "overview page 1", "overview continuation")
+        contains(detail.out, "U1", "first source label in detail coverage")
+        contains(detail.out, "U2", "second source label in detail coverage")
+    finally:
+        tmp.cleanup()
+
+
+@test("detail tile options fail closed before publishing a PDF", kind="known_bad")
+def t_detail_tiles_bad_options():
+    circuit = [{"type": "schematic_sheet", "schematic_sheet_id": "schematic_sheet_0",
+                "name": "dense", "sheet_index": 1},
+               *component(0, "schematic_sheet_0")]
+    for options in (["--detail-tiles", "missing:2"],
+                    ["--detail-tiles", "dense:4"],
+                    ["--detail-tiles", "dense:2", "--detail-tiles", "dense:2"]):
+        tmp, output, result, _, _ = render(circuit, extra_args=options)
+        try:
+            check(result.rc != 0, f"bad options accepted: {options}")
+            check(not output.exists(), "failed detail render published a PDF")
+        finally:
+            tmp.cleanup()
 
 
 @test("scaled two-port alignment lands symbol terminals on original trace endpoints")
