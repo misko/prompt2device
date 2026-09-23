@@ -1,19 +1,18 @@
 # Project status
 
-<!-- pause-state:34db0fe8abc8e25f596abbd56cd4728202a7fe8041a41c7a0714f7fd2669119c -->
+<!-- pause-state:dcb897eab92cb30069ebe5d33a8309314457a4b16cbc312f242db3112a54d29d -->
 
 - Phase: `placement`
 - State: **PAUSED**
 - Checkpoint: `06_build/checkpoints/schematic.json` (`545adc0b60a8`)
-- Blocker: TMUX and native parity source repairs integrated. TPS62822DLCR is a stocked regulator redesign candidate only; footprint, rail margins, sequencing and thermal remain unqualified. USB clearance, model/support repairs and connector physical evidence remain open; two P1 trials consumed.
-- Next command: `Evaluate and independently review the closer TPS62822DLCR package/rail redesign, then complete remaining source repairs and refresh canonical reviews before explicit placement campaign reassessment. No third local P1 or routing is admitted.`
+- Blocker: Reviewed TMUX and logic-model source repairs integrated. Regulator/USB source candidates and passive models await composition and independent review; new stock shortages identified. Both P1 trials consumed; connector physical evidence remains open.
+- Next command: `Review and compose regulator, USB and model source repairs; refresh canonical artifacts and independent reviews, then explicitly reassess placement campaign. No third P1 or routing admitted.`
 
 ## Bound receipts
 
-- `01_docs/research/2026-09-23-regulator-replacement-electrical-screen-sol.md` — `9f13ec858fc3`
-- `08_reviews/2026-09-23_native-parity-code_terra_source.md` — `8e356f0d6d4a`
-- `08_reviews/2026-09-23_native-parity-schema_terra_source.md` — `b82b02e5c5f1`
-- `08_reviews/2026-09-23_tmux-profile-code_terra_source.md` — `705c2e383696`
+- `01_docs/research/2026-09-23-source-repair-checkpoint.md` — `c7414d7f1e16`
+- `08_reviews/2026-09-23_logic-model_terra_source.md` — `86c335d191ec`
+- `08_reviews/2026-09-23_tmux-perimeter-code_terra_source.md` — `d01da77105a5`
 
 This file is generated from `01_docs/pause_state.json`; edit the manifest with
 `pause_state.py record`, not this view.

@@ -1,35 +1,30 @@
 {
-  "blocker": "TMUX and native parity source repairs integrated. TPS62822DLCR is a stocked regulator redesign candidate only; footprint, rail margins, sequencing and thermal remain unqualified. USB clearance, model/support repairs and connector physical evidence remain open; two P1 trials consumed.",
+  "blocker": "Reviewed TMUX and logic-model source repairs integrated. Regulator/USB source candidates and passive models await composition and independent review; new stock shortages identified. Both P1 trials consumed; connector physical evidence remains open.",
   "checkpoint": {
     "path": "06_build/checkpoints/schematic.json",
     "sha256": "545adc0b60a8198eca489362e59621681687ccac7725ea9a2241fa21a7862816",
     "size": 1152
   },
-  "next_command": "Evaluate and independently review the closer TPS62822DLCR package/rail redesign, then complete remaining source repairs and refresh canonical reviews before explicit placement campaign reassessment. No third local P1 or routing is admitted.",
+  "next_command": "Review and compose regulator, USB and model source repairs; refresh canonical artifacts and independent reviews, then explicitly reassess placement campaign. No third P1 or routing admitted.",
   "phase": "placement",
   "project": "crow-usb-carrier-v1",
   "receipts": [
     {
-      "path": "01_docs/research/2026-09-23-regulator-replacement-electrical-screen-sol.md",
-      "sha256": "9f13ec858fc3207c88b56ec8f7f87e62c1e4d550dd212e7bae1a577a07090edb",
-      "size": 19833
+      "path": "01_docs/research/2026-09-23-source-repair-checkpoint.md",
+      "sha256": "c7414d7f1e16bbefc5cc6134a92b24904c60a8dfed189ecc5215dde8f7e6e807",
+      "size": 2368
     },
     {
-      "path": "08_reviews/2026-09-23_native-parity-code_terra_source.md",
-      "sha256": "8e356f0d6d4a928b757dcf8106bb7b4f8bd93824ad824da6046d1cade4083163",
-      "size": 2013
+      "path": "08_reviews/2026-09-23_logic-model_terra_source.md",
+      "sha256": "86c335d191ece1d04de734cbc86d3d14a58661605a5c50ebc3131dfda612f2a3",
+      "size": 4076
     },
     {
-      "path": "08_reviews/2026-09-23_native-parity-schema_terra_source.md",
-      "sha256": "b82b02e5c5f1d44ff16690fac27f2b46e8a58f7364de702f9612d5312d20ccf4",
-      "size": 2059
-    },
-    {
-      "path": "08_reviews/2026-09-23_tmux-profile-code_terra_source.md",
-      "sha256": "705c2e3836966458701548c3b604685b89260af2495f182ea7c9a67bb4e233e7",
-      "size": 2913
+      "path": "08_reviews/2026-09-23_tmux-perimeter-code_terra_source.md",
+      "sha256": "d01da77105a508f4085d4395950281df681662a4a8cdd503b80f8a340f876174",
+      "size": 1773
     }
   ],
   "schema": 1,
-  "state_id": "34db0fe8abc8e25f596abbd56cd4728202a7fe8041a41c7a0714f7fd2669119c"
+  "state_id": "dcb897eab92cb30069ebe5d33a8309314457a4b16cbc312f242db3112a54d29d"
 }

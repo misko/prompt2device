@@ -1,0 +1,11 @@
+# Source repair checkpoint — 2026-09-23
+
+No new Crow board or P1 trial was produced. Both local P1 attempts remain consumed; latest native evidence remains candidate `37b455203fcdae0c20880a94b17a4bcfb61103fa2b8b9df9ecf095c9c97aa519`. Source repairs do not change its measured 155 DRC violations, 45 parity findings, or 499 unrouted connections.
+
+Accepted source commits `5f34c120` and `723d2746` add exact TMUX perimeter-pad rules and ten logic-instance model bindings. The rules apply only to the documented same-footprint signal/supply pad pairs; root and Terra native fixtures pass 8/8, including foreign-track/pad and wrong-net rejection. Logic review rejected the initial oversized DCT model, then accepted a drawing-derived replacement. Projected model file coverage is 556/568, not a regenerated board measurement or MODEL-REG acceptance.
+
+TPS62822DLCR regulator and USB4215-03-A connector changes are isolated source candidates pending implementation review. The archived regulator proposal corrects the two errors identified by Terra: minimum body-based courtyard 2.4 x 2.6 mm and the 200k divider cannot guarantee supervisor release. Public sourcing found new shortages in old C861412 (53 versus 155 required) and C318695 (112 versus 180); prior all-parts stock summaries are historical and cannot establish current sufficiency. Proposed replacements are exact Viking ARG03BTC4533/C2686428 and Samsung CL21A106KOQNNNE/C1713. No inventory is reserved.
+
+The island reservation remains an unapplied, reviewed source proposal. Its corrected causal subject is the second board: 23 left and one right support courtyard intrusions, four right ADC courtyard intrusions plus a fifth footprint-bounding-box intrusion lacking a native courtyard. Source courtyard repairs already exist; regeneration is owed. The first-subject memo remains explicitly superseded evidence. The USB anchor must be reassessed against the replacement footprint before adopting the full proposal.
+
+Next: review and compose the isolated regulator/USB/passive-model sources, finish remaining model evidence, rebuild canonical artifacts and refresh independent reviews, then reassess the exhausted placement campaign explicitly. Physical connector, first-article and release requirements remain open. Public records and jlcsearch only; no firmware, orders or private JLC access. DO-NOT-ORDER.
