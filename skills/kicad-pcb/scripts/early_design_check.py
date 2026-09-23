@@ -24,6 +24,8 @@ board generation.
 from __future__ import annotations
 
 import argparse
+import hashlib
+import json
 import math
 import re
 import sys
@@ -731,6 +733,216 @@ def check_passive_distribution_faults(data):
     return notes
 
 
+def check_external_source_fuse(project: Path, envelope):
+    """Conditional Crow source/fuse coordination; never a supply qualification."""
+    where = "external_source_fuse"
+    if not isinstance(envelope, dict) or envelope.get("architecture") != "fuse_external_source_v1":
+        raise ContractError(f"E-FAULT {where} needs architecture: fuse_external_source_v1")
+    if envelope.get("qualification_status") != "conditional_source_and_first_article_owed":
+        raise ContractError("E-FAULT external source must remain conditional; supplier and first-article qualification owed")
+    if envelope.get("post_fuse_cap_discharge_status") != "first_article_owed":
+        raise ContractError("E-FAULT post-fuse capacitor discharge remains first-article owed")
+    digest = text_value(envelope.get("circuit_sha256"), f"{where}.circuit_sha256")
+    if not re.fullmatch(r"[0-9a-f]{64}", digest):
+        raise ContractError("E-FAULT circuit_sha256 must be a SHA-256 digest")
+    circuit_path = project / "03_tscircuit/build/circuit.json"
+    try:
+        raw = circuit_path.read_bytes()
+        circuit = json.loads(raw)
+    except (OSError, ValueError) as exc:
+        raise ContractError(f"E-FAULT needs fresh source circuit.json: {exc}") from exc
+    if hashlib.sha256(raw).hexdigest() != digest or not isinstance(circuit, list):
+        raise ContractError("E-FAULT source circuit digest mismatch; fresh reviewed circuit required")
+    components = {item["name"]: item for item in circuit
+                  if isinstance(item, dict) and item.get("type") == "source_component"
+                  and isinstance(item.get("name"), str)}
+    if len(components) != sum(item.get("type") == "source_component" for item in circuit if isinstance(item, dict)):
+        raise ContractError("E-FAULT duplicate source component names")
+    nets = {item["source_net_id"]: item["name"] for item in circuit
+            if isinstance(item, dict) and item.get("type") == "source_net"}
+    ids = {item["source_component_id"]: item["name"] for item in circuit
+           if isinstance(item, dict) and item.get("type") == "source_component"}
+    ports = {item["source_port_id"]: (ids[item["source_component_id"]], str(item["pin_number"]))
+             for item in circuit if isinstance(item, dict) and item.get("type") == "source_port" and "pin_number" in item}
+    port_nets = {}
+    for trace in circuit:
+        if not isinstance(trace, dict) or trace.get("type") != "source_trace":
+            continue
+        trace_nets = [nets[n] for n in trace.get("connected_source_net_ids", []) if n in nets]
+        if len(set(trace_nets)) > 1:
+            raise ContractError("E-FAULT ambiguous source trace joins distinct named nets")
+        for port in trace.get("connected_source_port_ids", []):
+            if port in ports and trace_nets:
+                pin = ports[port]
+                if pin in port_nets and port_nets[pin] != trace_nets[0]:
+                    raise ContractError(f"E-FAULT ambiguous source net for {pin[0]}.{pin[1]}")
+                port_nets[pin] = trace_nets[0]
+    expected_parts = {"J_PWR": "43650-0200", "F_IN": "0451004.MRL",
+                      "Q_IN": "DMP6023LFG-13", "R_QIN_G": "RC0402FR-07100KL",
+                      "D_QIN_GS": "BZT52C12-13-F", "D_IN": "SMBJ15A",
+                      "U_BUCK": "TPSM63603RDHR"}
+    for i in range(1, 9):
+        expected_parts.update({f"J{i}": "615008160221",
+                               f"U_SPOKE{i}": "TPS26625DRCR",
+                               f"R_SPOKE_ILIM{i}": "RT0603BRD0744K2L",
+                               f"C_SPOKE_DVDT{i}": "CL05B103KB5NNNC"})
+    for i in range(1, 4):
+        expected_parts[f"C_IN{i}"] = "12105C106K4Z2A"
+    declared = list_value(envelope.get("bound_refs"), f"{where}.bound_refs")
+    if any(not isinstance(ref, str) or not ref for ref in declared):
+        raise ContractError("E-FAULT bound_refs must be nonempty strings")
+    if len(declared) != len(set(declared)) or set(declared) != set(expected_parts):
+        raise ContractError("E-FAULT bound_refs must be exact J_PWR/F_IN/Q_IN/U_BUCK/eight spoke and three post-fuse capacitor population")
+    if {ref for ref, component in components.items()
+        if component.get("manufacturer_part_number") == "TPS26625DRCR"} != {f"U_SPOKE{i}" for i in range(1, 9)}:
+        raise ContractError("E-FAULT extra or missing shared-path TPS26625 branch escapes eight-spoke denominator")
+    tree = load_yaml(project / "03_src/rules/power_tree.yaml", "E-FAULT")
+    active_rails = {str(rail.get("name")) for rail in tree.get("rails", [])
+                    if isinstance(rail, dict) and isinstance(rail.get("distribution"), dict)
+                    and rail["distribution"].get("kind") == "active_current_limiter"}
+    if active_rails != {f"N12V_POD{i}" for i in range(1, 9)}:
+        raise ContractError("E-FAULT active shared-path branch rails must be exactly eight named spokes")
+    for ref, mpn in expected_parts.items():
+        component = components.get(ref)
+        if not component or component.get("manufacturer_part_number") != mpn:
+            raise ContractError(f"E-FAULT {ref} source identity must be {mpn}")
+    expected_nets = {("J_PWR", "1"): "N12V_IN", ("F_IN", "1"): "N12V_IN",
+                     ("F_IN", "2"): "N12V_FUSED", ("Q_IN", "5"): "N12V_FUSED",
+                     ("Q_IN", "1"): "N12V_PROTECTED", ("Q_IN", "2"): "N12V_PROTECTED",
+                     ("Q_IN", "3"): "N12V_PROTECTED", ("Q_IN", "4"): "Q_IN_GATE",
+                     ("R_QIN_G", "1"): "Q_IN_GATE", ("R_QIN_G", "2"): "GND",
+                     ("D_QIN_GS", "1"): "N12V_PROTECTED", ("D_QIN_GS", "2"): "Q_IN_GATE",
+                     ("D_IN", "1"): "N12V_PROTECTED", ("D_IN", "2"): "GND",
+                     ("U_BUCK", "3"): "N12V_PROTECTED"}
+    for i in range(1, 9):
+        expected_nets.update({(f"U_SPOKE{i}", "1"): "N12V_PROTECTED",
+                              (f"U_SPOKE{i}", "7"): f"SPOKE_ILIM{i}",
+                              (f"U_SPOKE{i}", "8"): f"SPOKE_DVDT{i}",
+                              (f"U_SPOKE{i}", "5"): f"SPOKE_RTN{i}",
+                              (f"U_SPOKE{i}", "11"): f"SPOKE_RTN{i}",
+                              (f"U_SPOKE{i}", "6"): "GND",
+                              (f"U_SPOKE{i}", "10"): f"N12V_POD{i}",
+                              (f"J{i}", "1"): f"N12V_POD{i}",
+                              (f"J{i}", "3"): f"N12V_POD{i}",
+                              (f"J{i}", "7"): f"N12V_POD{i}",
+                              (f"J{i}", "2"): "GND",
+                              (f"J{i}", "6"): "GND",
+                              (f"J{i}", "8"): "GND",
+                              (f"R_SPOKE_ILIM{i}", "1"): f"SPOKE_ILIM{i}",
+                              (f"R_SPOKE_ILIM{i}", "2"): f"SPOKE_RTN{i}",
+                              (f"C_SPOKE_DVDT{i}", "1"): f"SPOKE_DVDT{i}",
+                              (f"C_SPOKE_DVDT{i}", "2"): f"SPOKE_RTN{i}"})
+    for i in range(1, 4):
+        expected_nets[(f"C_IN{i}", "1")] = "N12V_PROTECTED"
+        expected_nets[(f"C_IN{i}", "2")] = "GND"
+    for pin, net in expected_nets.items():
+        if port_nets.get(pin) != net:
+            raise ContractError(f"E-FAULT {pin[0]}.{pin[1]} must connect to {net}")
+    values = asserted_part_values(project)
+    for ref, expected, asserted, field in (("R_QIN_G", 100000, "100k", "resistance"),
+                                           ("C_IN1", 1e-5, "10uF", "capacitance"),
+                                           ("C_IN2", 1e-5, "10uF", "capacitance"),
+                                           ("C_IN3", 1e-5, "10uF", "capacitance")):
+        invariant = values.get(ref)
+        if not invariant or invariant.get("equals") != asserted:
+            raise ContractError(f"E-FAULT {ref} needs exact part_value assertion")
+        if not math.isclose(number(components[ref].get(field), f"{ref}.{field}"), expected, rel_tol=1e-9):
+            raise ContractError(f"E-FAULT {ref} fitted source value mismatch")
+    for i in range(1, 9):
+        for prefix, expected, field in (("R_SPOKE_ILIM", 44200, "resistance"),
+                                        ("C_SPOKE_DVDT", 1e-8, "capacitance")):
+            ref = f"{prefix}{i}"
+            invariant = values.get(ref)
+            if not invariant or invariant.get("equals") != ("44.2k" if field == "resistance" else "10nF"):
+                raise ContractError(f"E-FAULT {ref} needs exact part_value assertion")
+            if not math.isclose(number(components[ref].get(field), f"{ref}.{field}"), expected, rel_tol=1e-9):
+                raise ContractError(f"E-FAULT {ref} fitted source value mismatch")
+    source = envelope.get("source")
+    if not isinstance(source, dict):
+        raise ContractError("E-FAULT source envelope missing")
+    def bound(name, *, maximum=None, minimum=None):
+        value = number(source.get(name), f"E-FAULT source.{name}", positive=True)
+        if maximum is not None and value > maximum + 1e-12:
+            raise ContractError(f"E-FAULT source.{name} exceeds reviewed ceiling {maximum}")
+        if minimum is not None and value + 1e-12 < minimum:
+            raise ContractError(f"E-FAULT source.{name} is below reviewed floor {minimum}")
+        return value
+    delivery_current = bound("delivery_current_A", minimum=2.185)
+    vmin = bound("delivery_voltage_min_V", minimum=11.4)
+    vmax = bound("delivery_voltage_max_V", maximum=13.2)
+    recovery = bound("recovery_voltage_max_V", maximum=13.2)
+    peak = bound("fault_instantaneous_peak_A", maximum=3.4)
+    excess = bound("cumulative_excess_above_2p85_ms", maximum=10)
+    hot = bound("persistent_fault_current_max_A", maximum=2.85)
+    if vmin > vmax or recovery < vmin or peak < delivery_current or peak < hot:
+        raise ContractError("E-FAULT source delivery/peak/persistent or voltage bounds are contradictory")
+    boundary = tree.get("source_voltage_boundary")
+    upstream_delivery = tree.get("upstream_delivery")
+    if not isinstance(boundary, dict) or not isinstance(upstream_delivery, dict):
+        raise ContractError("E-FAULT source voltage and upstream delivery contracts required")
+    for actual, expected, label in (
+        (boundary.get("minimum_operating_V"), vmin, "source_voltage_boundary.minimum_operating_V"),
+        (upstream_delivery.get("source_min_V"), vmin, "upstream_delivery.source_min_V"),
+        (upstream_delivery.get("load_current_A"), delivery_current, "upstream_delivery.load_current_A"),
+    ):
+        if number(actual, f"E-FAULT {label}", positive=True) != expected:
+            raise ContractError(f"E-FAULT {label} contradicts external source envelope")
+    if source.get("retry_rearm") != "no_excess_retry_until_input_power_cycle_after_fault_removal":
+        raise ContractError("E-FAULT uncapped excess-current retries are forbidden")
+    if source.get("episode_scope") != "entire_fault_episode_including_cap_discharge_and_retries":
+        raise ContractError("E-FAULT episode must include source/cable capacitor discharge and all retries")
+    text_value(source.get("qualification_evidence_owed"), "E-FAULT source.qualification_evidence_owed")
+    if envelope.get("nominal_fuse_i2t_role") != "comparison_only_not_guaranteed_nonopening":
+        raise ContractError("E-FAULT nominal fuse I2t is comparison only, not a nonopening guarantee")
+    fuse = envelope.get("fuse")
+    pfet = envelope.get("pfet")
+    if not isinstance(fuse, dict) or not isinstance(pfet, dict):
+        raise ContractError("E-FAULT fuse and PFET screens required")
+    fuse_hot = number(fuse.get("hot_continuous_allocation_A"), "E-FAULT fuse hot allocation", positive=True)
+    nominal_i2t = number(fuse.get("nominal_melting_i2t_A2s"), "E-FAULT nominal fuse I2t", positive=True)
+    if fuse_hot > 2.85 or hot > fuse_hot or delivery_current > fuse_hot or nominal_i2t != 3.152:
+        raise ContractError("E-FAULT fuse hot or nominal I2t mismatch")
+    resistance = number(pfet.get("hot_resistance_allocation_ohm"), "E-FAULT PFET resistance", positive=True)
+    theta = number(pfet.get("theta_ja_C_per_W"), "E-FAULT PFET thermal resistance", positive=True)
+    ambient = number(pfet.get("ambient_max_C"), "E-FAULT PFET ambient", positive=True)
+    limit = number(pfet.get("junction_limit_C"), "E-FAULT PFET junction limit", positive=True)
+    if resistance < 0.05 or theta < 123 or ambient < 70 or limit > 150:
+        raise ContractError("E-FAULT PFET thermal inputs weaken reviewed bound")
+    steady_junction = ambient + fuse_hot**2 * resistance * theta
+    peak_junction = ambient + peak**2 * resistance * theta
+    if steady_junction > limit or peak_junction > limit:
+        raise ContractError("E-FAULT PFET steady or peak thermal screen exceeds junction limit")
+    # Nominal fuse I²t is displayed for context only; no passing predicate
+    # treats it as a guaranteed hot non-opening threshold.
+    total_i2t = peak**2 * excess / 1000
+    protection = load_yaml(project / "03_src/rules/protection_paths.yaml", "E-FAULT")
+    paths = protection.get("paths") or []
+    try:
+        series = next(path["series_overcurrent"] for path in paths if path.get("name") == "EXTERNAL_12V_INPUT")
+    except (StopIteration, KeyError, TypeError):
+        raise ContractError("E-FAULT source series_overcurrent contract missing")
+    if series.get("part") != "0451004.MRL" or series.get("allowed_source_fault_modes") != ["bounded_external_source_episode"]:
+        raise ContractError("E-FAULT unqualified fuse-clearing mode or wrong source protection path")
+    for key, expected in (("rated_current_A", 4), ("hot_continuous_screen_A", fuse_hot),
+                          ("one_fault_screen_A", delivery_current),
+                          ("nominal_melting_i2t_A2s", nominal_i2t),
+                          ("interrupting_limit_A", 50)):
+        if number(series.get(key), f"E-FAULT protection_paths.{key}", positive=True) != expected:
+            raise ContractError(f"E-FAULT protection_paths.{key} contradicts fitted fuse/source screen")
+    if number(series.get("source_capacitor_discharge_peak_A"),
+              "E-FAULT protection_paths.source_capacitor_discharge_peak_A", positive=True) != peak:
+        raise ContractError("E-FAULT source/cable capacitor discharge peak must match episode cap")
+    if series.get("post_fuse_cap_discharge_status") != "first_article_owed":
+        raise ContractError("E-FAULT post-fuse capacitor discharge proof remains owed")
+    if series.get("aggregate_source_episode") != source:
+        raise ContractError("E-FAULT protection_paths source episode must match power_tree exactly")
+    return (f"E-FAULT CONDITIONAL external source/fuse: peak<={peak:g} A, "
+            f"cumulative >2.85 A<={excess:g} ms, persistent<={hot:g} A; "
+            f"PFET steady/peak={steady_junction:.1f}/{peak_junction:.1f} C; "
+            f"nominal fuse I²t comparison={total_i2t:.4f}/{nominal_i2t:g} A²s "
+            f"(not nonopening proof); supplier and first-article proof owed")
+
+
 def check_fault_envelopes(project: Path):
     """Grade aggregate overload handling across normal, peak and fault time.
 
@@ -744,6 +956,11 @@ def check_fault_envelopes(project: Path):
     passive_notes = check_passive_distribution_faults(data)
     envelopes = data.get("fault_envelopes")
     no_requirements = data.get("no_fault_envelope_requirements")
+    external = data.get("external_source_fuse")
+    if external is not None and (envelopes is not None or no_requirements is not None):
+        raise ContractError("E-FAULT external_source_fuse is exclusive of legacy breaker and no-requirements branches")
+    if external is not None:
+        return passive_notes + [check_external_source_fuse(project, external)]
     if envelopes is not None and no_requirements is not None:
         raise ContractError(
             "E-FAULT fault_envelopes and no_fault_envelope_requirements are "
@@ -1526,6 +1743,7 @@ def main(argv=None):
             ))
             fault_adopted = any(k in power_doc for k in (
                 "fault_envelopes",
+                "external_source_fuse",
                 "no_fault_envelope_requirements",
                 "passive_distribution_faults",
             ))

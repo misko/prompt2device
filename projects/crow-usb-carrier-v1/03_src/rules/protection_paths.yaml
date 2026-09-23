@@ -41,13 +41,25 @@ paths:
       one_fault_screen_A: 2.185
       nominal_melting_i2t_A2s: 3.152
       interrupting_limit_A: 50
-      source_capacitor_discharge_requirement: Source output capacitance plus cable inductance/resistance must keep peak fault current at or below 50 A and use one of the two allowed fault modes below.
-      allowed_source_fault_modes:
-        - mode: fuse_clearing
-          bounds: Source sustains at least 8 A (200% fuse rating) and no more than 50 A until F_IN opens; manufacturer maximum opening time is 5 s at 200% rating. Source-capacitor discharge and sustained contribution must remain within the fuse interrupting rating.
-        - mode: current_limit_or_hiccup
-          bounds: Source peak is at most 4 A, continuous or thermal-window RMS current is at most 2.85 A at 70 C, and any hiccup pulse train has I-squared-t at most 1.576 A2s per event (50% engineering allocation of the 3.152 A2s nominal fuse melting value). The source must recover without exceeding 13.2 V.
-      requirements: Normal load, startup, and one branch-limited fault must not open F_IN. A shorted TVS or common-trunk fault may either clear F_IN or remain source-limited/hiccup within the declared bounds.
+      source_capacitor_discharge_requirement: Source output capacitance plus cable inductance/resistance are included in the 3.4 A instantaneous episode cap at J_PWR; local post-fuse discharge remains first-article owed. Only the bounded external-source episode is admitted.
+      source_capacitor_discharge_peak_A: 3.4
+      post_fuse_cap_discharge_status: first_article_owed
+      # The former 8–50 A fuse-clearing mode is retained only as historical
+      # rationale: 8 A can heat Q_IN at 3.2 W for up to the fuse's 5 s maximum.
+      # It is not an admitted source mode without a separate thermal proof.
+      allowed_source_fault_modes: [bounded_external_source_episode]
+      aggregate_source_episode:
+        delivery_current_A: 2.185
+        delivery_voltage_min_V: 11.4
+        delivery_voltage_max_V: 13.2
+        recovery_voltage_max_V: 13.2
+        fault_instantaneous_peak_A: 3.4
+        cumulative_excess_above_2p85_ms: 10
+        persistent_fault_current_max_A: 2.85
+        retry_rearm: no_excess_retry_until_input_power_cycle_after_fault_removal
+        episode_scope: entire_fault_episode_including_cap_discharge_and_retries
+        qualification_evidence_owed: Exact isolated supply and cable load-line, source/output-capacitor discharge and repeated-fault waveforms must be qualified before procurement or release; no supply is selected.
+      requirements: Normal load, startup, and one branch-limited fault must not open F_IN. A shorted TVS or common-trunk fault must remain inside the bounded source episode. Fuse clearing is not admitted without separate Q_IN thermal/fuse coordination.
     downstream_consequence:
       spoke_ovp: disabled_by_OVP_to_RTN
       bounded_screen_V: 24.4

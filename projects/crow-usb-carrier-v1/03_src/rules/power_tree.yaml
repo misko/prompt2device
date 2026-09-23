@@ -7,6 +7,43 @@ source_voltage_boundary:
 off_control: disconnect_J_PWR_external_isolated_12V_input
 quiescent_ua: 0
 input_trunk_class: INPUT_TRUNK
+# CONDITIONAL source-stage aggregate fault option. This is a requirement on a future
+# qualified isolated source/cable, not a claim that a selected supply or board passed.
+# A rearmed episode starts only after fault removal plus deliberate input power-cycle;
+# there is no renewed >2.85 A allowance for autonomous auto-retry.
+external_source_fuse:
+  architecture: fuse_external_source_v1
+  qualification_status: conditional_source_and_first_article_owed
+  post_fuse_cap_discharge_status: first_article_owed
+  nominal_fuse_i2t_role: comparison_only_not_guaranteed_nonopening
+  circuit_sha256: b68fd99fad9092260c1e2fd2630cf1a63ce334057802e6c464aa6052b8ab307c
+  bound_refs: [J_PWR, F_IN, Q_IN, R_QIN_G, D_QIN_GS, D_IN, U_BUCK, C_IN1, C_IN2, C_IN3,
+    J1, J2, J3, J4, J5, J6, J7, J8,
+    U_SPOKE1, U_SPOKE2, U_SPOKE3, U_SPOKE4, U_SPOKE5, U_SPOKE6, U_SPOKE7, U_SPOKE8,
+    R_SPOKE_ILIM1, R_SPOKE_ILIM2, R_SPOKE_ILIM3, R_SPOKE_ILIM4,
+    R_SPOKE_ILIM5, R_SPOKE_ILIM6, R_SPOKE_ILIM7, R_SPOKE_ILIM8,
+    C_SPOKE_DVDT1, C_SPOKE_DVDT2, C_SPOKE_DVDT3, C_SPOKE_DVDT4,
+    C_SPOKE_DVDT5, C_SPOKE_DVDT6, C_SPOKE_DVDT7, C_SPOKE_DVDT8]
+  source:
+    delivery_current_A: 2.185
+    delivery_voltage_min_V: 11.4
+    delivery_voltage_max_V: 13.2
+    recovery_voltage_max_V: 13.2
+    fault_instantaneous_peak_A: 3.4
+    cumulative_excess_above_2p85_ms: 10
+    persistent_fault_current_max_A: 2.85
+    retry_rearm: no_excess_retry_until_input_power_cycle_after_fault_removal
+    episode_scope: entire_fault_episode_including_cap_discharge_and_retries
+    qualification_evidence_owed: Exact isolated supply and cable load-line, source/output-capacitor discharge and repeated-fault waveforms must be qualified before procurement or release; no supply is selected.
+  fuse:
+    hot_continuous_allocation_A: 2.85
+    nominal_melting_i2t_A2s: 3.152
+  pfet:
+    hot_resistance_allocation_ohm: 0.05
+    theta_ja_C_per_W: 123
+    ambient_max_C: 70
+    junction_limit_C: 150
+
 ir_floor_mohm: 150
 
 upstream_delivery:

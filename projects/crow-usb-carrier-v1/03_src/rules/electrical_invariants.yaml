@@ -1,5 +1,25 @@
 # Crow USB intent assertions; native netlist execution remains owed.
 invariants:
+- {assert: part_value, part: R_QIN_G, equals: 100k, tolerance_pct: 1, adr: "0002", why: "Exact Q_IN pull-down helps establish negative VGS at the 11.4 V input floor; gate-drive first article remains owed"}
+- {assert: part_value, part: C_IN1, equals: 10uF, tolerance_pct: 10, adr: "0002", why: "Exact post-Q_IN input capacitor 1; local discharge remains separately owed"}
+- {assert: part_value, part: C_IN2, equals: 10uF, tolerance_pct: 10, adr: "0002", why: "Exact post-Q_IN input capacitor 2; local discharge remains separately owed"}
+- {assert: part_value, part: C_IN3, equals: 10uF, tolerance_pct: 10, adr: "0002", why: "Exact post-Q_IN input capacitor 3; local discharge remains separately owed"}
+- {assert: part_value, part: R_SPOKE_ILIM1, equals: 44.2k, tolerance_pct: 0.1, adr: "0002", why: "TPS26625 spoke 1 fitted current-limit resistor for conditional aggregate source screen"}
+- {assert: part_value, part: C_SPOKE_DVDT1, equals: 10nF, tolerance_pct: 10, adr: "0002", why: "TPS26625 spoke 1 fitted startup dVdt capacitor; no hard-short timing guarantee implied"}
+- {assert: part_value, part: R_SPOKE_ILIM2, equals: 44.2k, tolerance_pct: 0.1, adr: "0002", why: "TPS26625 spoke 2 fitted current-limit resistor for conditional aggregate source screen"}
+- {assert: part_value, part: C_SPOKE_DVDT2, equals: 10nF, tolerance_pct: 10, adr: "0002", why: "TPS26625 spoke 2 fitted startup dVdt capacitor; no hard-short timing guarantee implied"}
+- {assert: part_value, part: R_SPOKE_ILIM3, equals: 44.2k, tolerance_pct: 0.1, adr: "0002", why: "TPS26625 spoke 3 fitted current-limit resistor for conditional aggregate source screen"}
+- {assert: part_value, part: C_SPOKE_DVDT3, equals: 10nF, tolerance_pct: 10, adr: "0002", why: "TPS26625 spoke 3 fitted startup dVdt capacitor; no hard-short timing guarantee implied"}
+- {assert: part_value, part: R_SPOKE_ILIM4, equals: 44.2k, tolerance_pct: 0.1, adr: "0002", why: "TPS26625 spoke 4 fitted current-limit resistor for conditional aggregate source screen"}
+- {assert: part_value, part: C_SPOKE_DVDT4, equals: 10nF, tolerance_pct: 10, adr: "0002", why: "TPS26625 spoke 4 fitted startup dVdt capacitor; no hard-short timing guarantee implied"}
+- {assert: part_value, part: R_SPOKE_ILIM5, equals: 44.2k, tolerance_pct: 0.1, adr: "0002", why: "TPS26625 spoke 5 fitted current-limit resistor for conditional aggregate source screen"}
+- {assert: part_value, part: C_SPOKE_DVDT5, equals: 10nF, tolerance_pct: 10, adr: "0002", why: "TPS26625 spoke 5 fitted startup dVdt capacitor; no hard-short timing guarantee implied"}
+- {assert: part_value, part: R_SPOKE_ILIM6, equals: 44.2k, tolerance_pct: 0.1, adr: "0002", why: "TPS26625 spoke 6 fitted current-limit resistor for conditional aggregate source screen"}
+- {assert: part_value, part: C_SPOKE_DVDT6, equals: 10nF, tolerance_pct: 10, adr: "0002", why: "TPS26625 spoke 6 fitted startup dVdt capacitor; no hard-short timing guarantee implied"}
+- {assert: part_value, part: R_SPOKE_ILIM7, equals: 44.2k, tolerance_pct: 0.1, adr: "0002", why: "TPS26625 spoke 7 fitted current-limit resistor for conditional aggregate source screen"}
+- {assert: part_value, part: C_SPOKE_DVDT7, equals: 10nF, tolerance_pct: 10, adr: "0002", why: "TPS26625 spoke 7 fitted startup dVdt capacitor; no hard-short timing guarantee implied"}
+- {assert: part_value, part: R_SPOKE_ILIM8, equals: 44.2k, tolerance_pct: 0.1, adr: "0002", why: "TPS26625 spoke 8 fitted current-limit resistor for conditional aggregate source screen"}
+- {assert: part_value, part: C_SPOKE_DVDT8, equals: 10nF, tolerance_pct: 10, adr: "0002", why: "TPS26625 spoke 8 fitted startup dVdt capacitor; no hard-short timing guarantee implied"}
 - assert: pin_on_net
   pin: U_XU.59
   net: USB_DN

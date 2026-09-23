@@ -601,6 +601,16 @@ TWO ORPHANS THIS FOLDER'S OWN PROSE HAD HIDDEN, both found by the first run:
 | `effective_capacitance_banks` | `early_design_check.py` | E-CAP non-empty set of device minimum-effective-capacitance obligations |
 | `effective_capacitance_banks[].*` | `early_design_check.py` | requirement/evidence, accepted dielectrics, and exact fitted contributor populations with multiplicative tolerance/DC-bias/temperature/lifecycle derating |
 | `no_effective_capacitance_requirements` | `early_design_check.py` | explicit evidenced applicability decision when no device has an effective-capacitance minimum |
+| `external_source_fuse` | `early_design_check.py` | exclusive conditional fuse-plus-isolated-source E-FAULT alternative; not a supply or manufacturing acceptance |
+| `external_source_fuse.architecture` | `early_design_check.py` | exact `fuse_external_source_v1` dispatch, preserving the legacy programmable-breaker branch |
+| `external_source_fuse.qualification_status` | `early_design_check.py` | closed conditional status; supplier and first-article evidence remain owed |
+| `external_source_fuse.post_fuse_cap_discharge_status` | `early_design_check.py` | local capacitor discharge remains explicitly unqualified |
+| `external_source_fuse.nominal_fuse_i2t_role` | `early_design_check.py` | nominal melting I²t is comparison only, never a guaranteed non-opening threshold |
+| `external_source_fuse.circuit_sha256` | `early_design_check.py` | pins the fresh source circuit used for exact ref/MPN/value/net validation |
+| `external_source_fuse.bound_refs` | `early_design_check.py` | closed J_PWR/F_IN/Q_IN/gate/TVS/buck/eight-spoke/post-fuse capacitor denominator |
+| `external_source_fuse.source.*` | `early_design_check.py` | 2.185 A delivery, 11.4–13.2 V, 3.4 A instantaneous peak, one-episode cumulative >2.85 A time, rearm and recovery contract |
+| `external_source_fuse.fuse.*` | `early_design_check.py` | hot continuous allocation and nominal fuse I²t comparison |
+| `external_source_fuse.pfet.*` | `early_design_check.py` | conservative hot resistance, minimum-pad thermal resistance, ambient and junction-limit calculation |
 | `fault_envelopes` | `early_design_check.py` | E-FAULT non-empty set of shared-upstream overload/fault obligations |
 | `fault_envelopes[].downstream_limits` | `early_design_check.py` | exact programmer refs, worst-high per-output current limits, counts, simultaneity and evidence |
 | `fault_envelopes[].upstream` | `early_design_check.py` | continuous/peak current ratings, evidence, and any maximum qualified overload interval above continuous rating |
