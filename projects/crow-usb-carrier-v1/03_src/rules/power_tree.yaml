@@ -239,8 +239,54 @@ effective_capacitance_banks:
 rails:
   - {name: N5V_BUCK, vin_min: 11.006, vin_max: 13.2, vout_min: 4.95, vout_max: 5.05, iout_max_A: 1.9, converter: TPSM63603V5RDHR, eff: 0.85, external_output: false}
   # Adjustable-rail DC setpoint envelopes include TI VFB, opposite divider tolerance/TCR and FB leakage; ripple, startup overshoot and ground shift are separate first-article allocations.
-  - {name: N3V3X, vin_min: 4.95, vin_max: 5.05, vout_min: 3.243, vout_max: 3.394, iout_max_A: 1.0, converter: TPS62825DMQR, input_parent: N5V_BUCK, eff: 0.85, external_output: false}
-  - {name: N1V8, vin_min: 4.95, vin_max: 5.05, vout_min: 1.822, vout_max: 1.899, iout_max_A: 0.30, converter: TPS62825DMQR, input_parent: N5V_BUCK, eff: 0.85, external_output: false}
+  - name: N3V3X
+    vin_min: 4.95
+    vin_max: 5.05
+    vout_min: 3.243
+    vout_max: 3.394
+    iout_max_A: 1.0
+    converter: TPS62825DMQR
+    input_parent: N5V_BUCK
+    eff: 0.85
+    external_output: false
+    feedback:
+      vref_min: 0.594
+      vref_max: 0.606
+      r_top_ohm: 453000
+      r_top_tol_pct: 0.1
+      r_bottom_ohm: 100000
+      r_bottom_tol_pct: 0.1
+      r_top_tcr_ppm_per_C: 25
+      r_bottom_tcr_ppm_per_C: 25
+      resistor_temperature_delta_C: 100
+      fb_bias_current_min_nA: -50
+      fb_bias_current_max_nA: 50
+      fb_bias_current_basis: symmetric_manufacturer_absolute_maximum_screen
+      fb_bias_current_evidence: TI SLVSEF9I section 6.5 gives IFB leakage 0.05 uA maximum magnitude at VFB=0.6 V; +/-50 nA is conservative for either current direction. TI gives VFB 594-606 mV; exact YAGEO RT0603BRD07453KL/RT0603BRD07100KL primary specifications give 0.1% and +/-25 ppm/C.
+  - name: N1V8
+    vin_min: 4.95
+    vin_max: 5.05
+    vout_min: 1.822
+    vout_max: 1.899
+    iout_max_A: 0.30
+    converter: TPS62825DMQR
+    input_parent: N5V_BUCK
+    eff: 0.85
+    external_output: false
+    feedback:
+      vref_min: 0.594
+      vref_max: 0.606
+      r_top_ohm: 210000
+      r_top_tol_pct: 0.1
+      r_bottom_ohm: 100000
+      r_bottom_tol_pct: 0.1
+      r_top_tcr_ppm_per_C: 25
+      r_bottom_tcr_ppm_per_C: 25
+      resistor_temperature_delta_C: 100
+      fb_bias_current_min_nA: -50
+      fb_bias_current_max_nA: 50
+      fb_bias_current_basis: symmetric_manufacturer_absolute_maximum_screen
+      fb_bias_current_evidence: TI SLVSEF9I section 6.5 gives IFB leakage 0.05 uA maximum magnitude at VFB=0.6 V; +/-50 nA is conservative for either current direction. TI gives VFB 594-606 mV; exact YAGEO RT0402BRD07210KL/RT0402BRD07100KL primary specifications give 0.1% and +/-25 ppm/C.
   - {name: N0V9, vin_min: 4.95, vin_max: 5.05, vout_min: 0.88, vout_max: 0.92, iout_max_A: 1.2, converter: TPS62825DMQR, input_parent: N5V_BUCK, eff: 0.85, external_output: false}
   - {name: N3V3_ADC, vin_min: 4.10, vin_max: 5.05, vout_min: 3.22, vout_max: 3.38, iout_max_A: 0.25, converter: LT3045EDD#PBF, input_parent: N5V_BUCK, dropout_mv: 450, pdiss_max_mw: 650, eff: 0.65, external_output: false}
   - &spoke
