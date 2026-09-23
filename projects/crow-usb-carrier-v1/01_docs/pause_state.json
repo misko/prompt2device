@@ -1,30 +1,25 @@
 {
-  "blocker": "Source readmitted under D10; all88 coded lines meet refreshed public-stock thresholds. Regenerate and independently review current568-ref schematic; canonical493-ref checkpoint remains historical until producer completes. Hold-bank floorplan repartition and P1-P5 remain ahead.",
+  "blocker": "D10 public stock passes88/88. Fresh568-ref circuit and39-page PDF generated, M-FRESH9/9; E-CLOSURE8/9 awaits verified catalog values for8 passivecodes. Signed-in JLC PCBA availability/economics response also owed before placement; exact88-line request and upload CSV prepared.",
   "checkpoint": {
     "path": "03_tscircuit/build/circuit.json",
-    "sha256": "ead8cb33c07afcb9dd371a5c61188c8f2fde59c55c9e703400d5b21765daa336",
-    "size": 4382904
+    "sha256": "b323ca64ebeec6e7d3660304a03e6bb8c60e041cf1afcf73d436bd9d3b583c64",
+    "size": 4842421
   },
-  "next_command": "bash 03_src/rebuild_all.sh; stop at new schematic review before block placement",
+  "next_command": "Repair verified passive ledger, regrade electrical closure and selection, then obtain and grade exact JLC prelayout response before schematic review and block placement.",
   "phase": "schematic",
   "project": "crow-usb-carrier-v1",
   "receipts": [
     {
-      "path": "01_docs/research/2026-09-23-d10-source-readmission.md",
-      "sha256": "b7f9727e7253dfff1d664c04e66cb47c2ee6a0874fb8e183cb17c46556917c6a",
-      "size": 1918
+      "path": "01_docs/research/2026-09-23-jlc-prelayout-access.md",
+      "sha256": "e517bbb6e48ae2cc0f1994c7aafb9b871a1b53d9fc83a809346e549d42fe440d",
+      "size": 3504
     },
     {
-      "path": "08_reviews/2026-09-23_efault-phase-order_sol_source.md",
-      "sha256": "618b8b44915e054c55bdc5236b831900d473ca76c703e5fc4ff6625129dfd0ea",
-      "size": 2304
-    },
-    {
-      "path": "08_reviews/2026-09-23_xmos-exception_sol_source.md",
-      "sha256": "eed4b709015ab09e55b2bb477fdba3ff0c68894806fb4c656241efa67b45da0e",
-      "size": 3947
+      "path": "08_reviews/2026-09-23_empty-sheet_sol_source.md",
+      "sha256": "6ce20d3903aad857cfae8d51c195bc4d64053c3193e1523498347bca6ba0cd75",
+      "size": 2639
     }
   ],
   "schema": 1,
-  "state_id": "99c6acbe96f86b05567b4d7af0b56fc5bd4a60336ed73d0427b1ebbdf2d26e39"
+  "state_id": "424c911b8cbb2a66f7e42c0203ff54e8bf6b111e47147dcb413aa9a3e2f3bd28"
 }

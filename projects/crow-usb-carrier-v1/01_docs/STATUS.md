@@ -1,18 +1,17 @@
 # Project status
 
-<!-- pause-state:99c6acbe96f86b05567b4d7af0b56fc5bd4a60336ed73d0427b1ebbdf2d26e39 -->
+<!-- pause-state:424c911b8cbb2a66f7e42c0203ff54e8bf6b111e47147dcb413aa9a3e2f3bd28 -->
 
 - Phase: `schematic`
 - State: **PAUSED**
-- Checkpoint: `03_tscircuit/build/circuit.json` (`ead8cb33c07a`)
-- Blocker: Source readmitted under D10; all88 coded lines meet refreshed public-stock thresholds. Regenerate and independently review current568-ref schematic; canonical493-ref checkpoint remains historical until producer completes. Hold-bank floorplan repartition and P1-P5 remain ahead.
-- Next command: `bash 03_src/rebuild_all.sh; stop at new schematic review before block placement`
+- Checkpoint: `03_tscircuit/build/circuit.json` (`b323ca64ebee`)
+- Blocker: D10 public stock passes88/88. Fresh568-ref circuit and39-page PDF generated, M-FRESH9/9; E-CLOSURE8/9 awaits verified catalog values for8 passivecodes. Signed-in JLC PCBA availability/economics response also owed before placement; exact88-line request and upload CSV prepared.
+- Next command: `Repair verified passive ledger, regrade electrical closure and selection, then obtain and grade exact JLC prelayout response before schematic review and block placement.`
 
 ## Bound receipts
 
-- `01_docs/research/2026-09-23-d10-source-readmission.md` — `b7f9727e7253`
-- `08_reviews/2026-09-23_efault-phase-order_sol_source.md` — `618b8b44915e`
-- `08_reviews/2026-09-23_xmos-exception_sol_source.md` — `eed4b709015a`
+- `01_docs/research/2026-09-23-jlc-prelayout-access.md` — `e517bbb6e48a`
+- `08_reviews/2026-09-23_empty-sheet_sol_source.md` — `6ce20d3903aa`
 
 This file is generated from `01_docs/pause_state.json`; edit the manifest with
 `pause_state.py record`, not this view.
