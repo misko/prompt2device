@@ -274,3 +274,144 @@ AK5558 is pin/register compatible but shares the same 5 V/attenuation/footprint 
 **Advance AK5578EN as the engineering choice for a new ADC cell**, contingent on an explicit revision of the project's 150-surplus rule, order-time JLC stock/BOM-matcher and placement acceptance, bounded full-path noise and clipping proof, quiet 5 V regulator/thermal proof, and measured/configured XU316-to-AK frame timing. The user requires *in stock* and JLC population; the public count 36 is in stock and covers five boards in arithmetic, but does not meet the current local 155-unit policy. A reasonable proposed policy would be minimum five-board BOM quantity plus documented JLC setup/attrition reserve and order-time inventory allocation, rather than a fixed 150 surplus; choose the actual reserve only with vendor order information. Do not silently revise it. Do not advance AK5558 or two PCM1865 merely because of stock count. If AK5578 cannot clear the power, attenuation or JLC/order gates, there is currently no proven in-stock, JLC-populated ADC replacement preserving this Crow architecture; keep release held and seek another part or replenish/obtain CS5308 stock.
 
 Manufacturer primary PDFs retained in `/tmp/crow-jlc-adc-20260923/raw`: `ak5578.pdf` (AKM 015016736-E-03, pp. 8–9, 20, 31–36, 41–43, 55), `ak5558.pdf` (AKM), `pcm1865.pdf` (TI SLAS831D, pp. 13, 58–59, 73). CS5308 source: `projects/crow-usb-carrier-v1/02_parts/CS5308P-DNR/CS5308P_Datasheet_DS1314F2.pdf`. JLC raw exact-part response JSON and query times: `/tmp/crow-jlc-adc-20260923/raw/{C2651626,C2655448,C181312,C9900305019}.json`. Project primary requirement sources above are relative to `/home/mouse9911/gits/circuits-worktrees/crow-usb-carrier-v1-20260922/projects/`.
+
+
+## D7 superseding stock-policy decision
+
+The user explicitly retained 150 extra units per part beyond the five-board build. The preceding AK5578EN architecture recommendation was conditional on revising that policy; that condition is now rejected. Preserve AK feasibility work as research only. AK5578EN, AK5558VN and the two-per-channel TMUX2819 proposal fail the confirmed stock criterion at the retained observations. Continue stocked alternatives; do not reduce the buffer.
+
+### JLC attrition policy evidence (proposal below not adopted)
+
+# JLC PCBA reserve / attrition evidence — 2026-09-23
+
+Accessed official JLCPCB pages at **2026-09-23T03:19:22Z**.  This is a
+read-only evidence review; it does not alter the project's sourcing policy or
+authorize an order.
+
+## What JLCPCB publicly says
+
+1. JLC's current [Global Sourcing Parts Service help page](https://jlcpcb.com/help/article/how-to-use-jlcpcb-global-sourcing-parts-service)
+   says customers must consider the *minimum assembly quantity* and *attrition
+   quantity* during PCBA assembly.  It does **not** publish a numeric formula,
+   table, package class, value class, or per-board example for either number.
+   It also says global-sourced parts cannot be used for assembly until they
+   arrive at JLC's warehouse, and a reviewed part may be cancelled if it does
+   not support assembly.
+2. The official [parts page](https://jlcpcb.com/parts) presents real-time
+   inventory and tells the customer to upload/match the BOM, review stock, and
+   confirm the PCBA order.  It separately advertises the Private Component
+   Library as a way to pre-order/reserve critical parts.  Therefore the public
+   catalog quantity is an observation, not proof that a given order's
+   components are allocated.
+3. The official [PCBA FAQ](https://jlcpcb.com/help/article/common-pcba-after-sales-issues-and-faq)
+   says production normally assembles only parts explicitly selected by the
+   customer, and requires review of the Selected Parts List before order
+   submission.  It also says a BOM C-code is prioritized for matching.  This
+   makes the resolved order selection, rather than an off-line stock count, the
+   operative placement evidence.
+4. JLC's official [MOQ/attrition Q&A page](https://jlcpcb.com/help/answers/detail/92-What%20are%20the%20MOQ%20and%20attrition%3F)
+   currently exposes the question “5 PCBs … 6 pcs” but supplies no visible
+   vendor answer or general numerical rule.  It cannot support a 150-part
+   reserve, a one-part reserve, or a percentage rule.
+
+## Interpretation limits
+
+The official material establishes that attrition and a minimum assembly
+quantity exist, but not their numeric values.  It supplies no defensible basis
+to calculate a fixed reserve from:
+
+* five boards versus any other order size;
+* package type, pin count, reel/cut-tape status, or component value;
+* cheap R/C lines versus expensive ICs; or
+* aggregate usage count of the same MPN on a board.
+
+Thus no public evidence supports changing `+150` to another fixed number,
+including a superficially modest percentage.  The old Q&A's 5-to-6 example is
+only the user's question, not a JLC policy statement.
+
+## Project history / present meaning
+
+`03_src/rules/assembly.yaml:44-45` sets `build_quantity: 5` and
+`public_stock_surplus: 150`, described as an “absolute catalog buffer per
+aggregated LCSC line.”  Git history shows that exact field and value were
+introduced in the project-creation commit
+`3ec8c72537222a95ef2706e5cd36bf5822279fe6` (2026-09-21), with no rationale or
+vendor citation in the field or subsequent history.  It is an internal
+engineering screening rule, not an identified JLC requirement.
+
+The project itself records this limitation:
+
+* `01_docs/sourcing/jlc-population-review-2026-09-23.md:243` calls the prior
+  150-unit surplus an engineering policy rather than a user minimum and says
+  public catalog stock is not allocation.
+* The same document at `:274` proposes “five-board BOM quantity plus documented
+  JLC setup/attrition reserve and order-time inventory allocation,” with the
+  actual reserve chosen only from vendor order information.
+
+## Concrete policy proposal
+
+Replace the flat catalog-surplus test only through a documented source-policy
+change with these two separate gates:
+
+| Gate | Required proof | Quantity rule |
+|---|---|---|
+| **Pre-order source screen** | Dated exact-C-code public catalog observation, exact MPN/package match, and current BOM quantity | `catalog_stock >= boards × placements_per_board` for every JLC-populated non-THT MPN.  This answers “in stock” only at observation time. |
+| **Order-stage assembly gate** | Saved JLC quote/uploader Selected Parts List and its displayed minimum-assembly/attrition requirement for each resolved line; exact BOM/CPL match | `JLC-resolved/reserved quantity >= JLC-displayed required quantity` for each line.  If the order UI does not expose a sufficient number, obtain a vendor order-screen/support response or keep the gate HOLD. |
+
+For **expensive or scarce ICs**, use the same source-screen arithmetic but
+require order-stage allocation/Private Library reservation before calling the
+line ready; do not demand an arbitrary 150 public units.  For **cheap R/Cs**,
+the same two gates apply: their high public quantity does not replace the
+uploader's actual attrition/minimum number.  If the project wants a
+future-build continuity reserve, make it a distinct, per-MPN procurement
+forecast (e.g., planned additional board count), held/reserved at JLC; do not
+fold it into a universal public-catalog availability threshold.
+
+This proposal works for any package/count because it relies on JLC's resolved
+per-line requirement rather than inventing a QFN/SOIC/0402 or expensive/cheap
+formula.  It preserves the D5 requirement that every non-through-hole part be
+in stock and JLC-populated, while not misrepresenting public inventory as
+allocation or assembly acceptance.
+
+## Evidence boundary
+
+No page reviewed proves that the currently selected parts can be assembled,
+that a code is allocated to this project, that JLC will accept a given package,
+or what attrition quantity the eventual quote will show.  Those are
+order-stage, exact-BOM/CPL, and resolved-uploader facts.
+
+
+### AK front-end follow-up (not selected under D7)
+
+# AK5578EN front-end feasibility proof (bounded, 2026-09-23)
+
+**Result:** The retained OPA2320/TMUX/filter architecture can plausibly support AK5578EN with a small *signal-path* change, but it cannot use the old 1.65 V bias or 3.3 V OPA supply. Do not adopt or release this as a completed schematic. The actual network below provides a concrete design starting point and testable corner limits. All eight channels, pod connectors, 1.2 Vrms differential connector ceiling, and XU316 hardware boundary remain in scope. JLC stock/placement and the current 150-unit surplus rule remain open.
+
+## Primary facts and existing nodes
+
+The exact retained `crow_retained_analog.tsx` path per leg is pod 100 Ω source → 1 µF coupling film → BIAS node, 100 kΩ from BIAS to one of two 1.65 V external-VMID banks → 10 kΩ R_IN → OPA2320 noninverting input. OPA output closes feedback through the R_OUT 10 Ω / FILTER node and R_X 300 Ω / C_FB 680 pF loop; two 15 nF shunts at FILTER are before the TMUX2821, then an ADC pin has 10 kΩ to ground and 1 nF to ground. OPA runs on `3V3_ADC`; TMUX runs on `5V_LDO_HOLD`. This is a low-impedance unity/filter buffer, not just a passive cable filter. The current 100 kΩ bias and 10 kΩ R_IN do **not** attenuate an essentially open OPA input.
+
+AKM AK5578EN 015016736-E-03 pp. 8–9 and 68–69 says 3.0–4.2 kΩ input resistance, 2.7–2.9 Vpp differential full scale at nominal 5 V, AVDD/VREFH 4.75–5.25 V, and **new H-datecode products need ADC-pin DC bias 0.502–0.522 × AVDD** for optimal S/(N+D). AKM explicitly says the old 2.5 V bias costs about 6 dB S/(N+D) on those products. Existing 1.65 V is far outside this interval. The ADC's VREFH/AVDD ratio also scales input full scale: conservatively using the 2.7 Vpp minimum at 5 V and 4.75/5 rail ratio yields `2.7×0.95/(2√2)=0.9069 Vrms` minimum full scale. AKM's Figure 76 drives each ADC input through only 10 Ω after a low-impedance buffer; using the AK input resistance itself as an attenuator would make gain and DC bias poorly controlled.
+
+TI OPA2320 SBOS513F §6.5–6.7 rates supply 1.8–5.5 V, input common mode V−−0.1 to V++0.1, 45 mV maximum output swing from either rail at 2 kΩ over −40..125°C, 1.7 mA/channel maximum quiescent, and 8.5 nV/√Hz typical voltage noise at 1 kHz. TI TMUX2821 SCDS488 gives ≤0.225 Ω RON to 85°C, ≤0.3 Ω to 125°C and ≤0.09 Ω RON flatness to 125°C. The 5 V-powered OPA is an allowed component use, but different from the admitted shared-3.3 V source.
+
+## Proposed analog change and calculations
+
+1. Retain each OPA2320, R_IN=10 kΩ, R_OUT=10 Ω, R_X/C_FB/filter, TMUX and ADC-pin protection/isolation. Add **18 kΩ, 1% from each OPA noninverting input to the local new VCM bank**. This makes a divider before the buffer. Supply all eight OPAs from the new quiet 5 V rail. Move the two external bias banks from 3.3 V to the same 5 V rail and set `VCM ≈ 0.512×AVDD`, for example top 1.00 kΩ/bottom 1.05 kΩ in 0.1% tolerance; exact stocked MPN and loading remain to be chosen. Keep each channel's pod input AC-coupled, so its DC bias settles at VCM. Retain separate bank decoupling; the VCM branch carries only op-amp input bias at DC rather than the 3–4.2 kΩ ADC load. AKM VREFH1–4 need their own 20 Ω/0.1 µF/100 µF filtering and VREFL-to-AVSS per datasheet; do not conflate these with signal VCM.
+2. Assuming each pod leg's retained 100 Ω source and a low-impedance VCM AC return, the AC source load is `100k || (10k+18k) = 21.875 kΩ`. Divider transfer to the OPA positive input is `18/(10+18) × 21875/(21875+100) = 0.63993`. Independent ±1% corners of R_IN, 18 kΩ and 100 kΩ give approximately 0.6353–0.6445. Max connector input 1.2 Vrms becomes **0.762–0.773 Vrms differential** before the ADC-pin load. Against the rail-scaled minimum ADC full scale 0.9069 Vrms, the maximum gain corner leaves **1.38 dB nominal arithmetic clipping margin**. The 110 dB SPL pod estimate 0.653 Vrms maps to about 0.418 Vrms; its modeled 0.952 Vrms corner maps to about 0.609 Vrms. No per-pod gain reduction is needed.
+3. At the ADC pins, treat AK's 3.0–4.2 kΩ as an adverse **per-leg load to ground** until its internal impedance topology is validated. In parallel with the retained 10 kΩ pulldown, this is 2.308–2.958 kΩ. The 10 Ω R_OUT plus worst 0.3 Ω TMUX RON drops only ~0.35–0.45% if no feedback compensation; the actual R_X/C_FB loop senses FILTER ahead of TMUX and may compensate part of R_OUT loss at audio frequencies. Because the ADC resistance may mean differential input resistance rather than two independent ground returns, that bound is deliberately pessimistic and must be checked against an AKM input model/bench impedance. It cannot produce the >30% gain spread a series attenuator at the ADC pins would. With 5 V VCM=2.56 V, 0.45% DC loading shifts ADC-pin VCM to ~2.549 V, or 0.510×AVDD, inside AKM's 0.502–0.522 target if the 5 V rail/reference track. This must be checked with actual 4.75/5.25 V rail corners, VREFH drops, switch state and input bias currents.
+4. At 1.2 Vrms differential, each balanced OPA leg swings `0.6445×1.2×√2/2 = 0.547 Vpeak`. Around VCM≈2.56 V the output range is 2.013–3.107 V, well inside a 4.75 V minimum OPA supply, leaving >1.6 V high-side swing margin. At 20 kHz, the two 15 nF shunts per leg draw about `2π×20k×30nF×0.547≈2.06 mApeak` reactive current; a grounded 3 kΩ ADC resistance would add ~0.85 mA DC plus ~0.18 mA signal current per leg; the retained 10 kΩ pulldown adds ~0.26 mA DC. OPA's 2 kΩ rated output-swing load is a useful screen, but the capacitive filter/feedback loop and full-range THD remain unproven. TMUX RON and flatness are small relative to 2.3–3 kΩ, but vendor THD numbers are typical, not a guarantee for this filter/load.
+5. The extra 18 kΩ lowers the pod input resistance and moves the 1 µF coupling high-pass from roughly 1.6 Hz to `1/(2π×1µF×(21.875k+100))=7.24 Hz`, about **−0.53 dB at 20 Hz** per differential signal. A **2.2 µF film** per leg would give 3.29 Hz and −0.116 dB at 20 Hz; 4.7 µF gives 1.54 Hz and −0.026 dB. Thus retaining the old 1 µF capacitor exactly changes low-frequency response. Choose the required 20 Hz tolerance and an exact JLC-compatible/through-hole assembly path before source edits. The existing 10 Ω with 30 nF shunt has a simple RC pole near 530 kHz; R_X/C_FB ~780 kHz and 1 nF pin shunt are not simple isolated poles because of closed-loop feedback and AK input loading. Recompute/simulate the entire loop, check peaking and high-frequency alias attenuation, then measure gain/phase/THD across 20 Hz–20 kHz.
+6. A white-noise scale check at 300 K over an ideal 20 kHz flat band: `10k||18k=6.43kΩ` at each OPA input contributes ~10.3 nV/√Hz per leg or **3.23 µVrms differential referred to the pod connector** after 0.64 gain. OPA2320's typical 8.5 nV/√Hz at 1 kHz adds ~2.66 µVrms connector-referred for two uncorrelated legs; AK5578's typical A-weighted `0.990 Vrms/10^(121/20)` adds ~1.38 µVrms connector-referred. Naive RSS is ~4.4 µVrms / 108.7 dB relative to the 1.2 Vrms ceiling. These use incompatible spectral weighting and omit 1/f noise, source resistors, reference/buck noise, capacitor behavior and actual analog gain response; they demonstrate that the 18 kΩ does not obviously squander the ~80 dB capsule SNR, **not** that the finished system meets a guaranteed noise specification. An unfiltered VCM rail, channel-to-channel reference coupling, and added divider resistor excess noise could dominate. Full-path measurements remain mandatory.
+
+## Quiet 5 V rail and sequencing
+
+AK AVDD/VREFH max current is 125 mA at 48 kHz; sixteen OPA channels add up to 27.2 mA quiescent maximum, two 1k/1.05k VCM dividers draw ~4.88 mA, and an adverse ADC input DC-to-ground interpretation plus the existing 10 kΩ pulldowns can require roughly another 18 mA of OPA output current across sixteen legs. Plan **at least ~0.18 A continuous** before regulator ground current and design margin; TVDD separately draws up to 22 mA at 3.3 V with LDOE=1. Existing fixed TPSM63603V5 5 V buck is 4.95–5.05 V at source and the Schottky/22 Ω `5V_LDO_HOLD` path is lower still, so neither provides dropout headroom for a regulated quiet 5 V LT3045 output. Retargeting that fixed buck would overvoltage the current 5 V-domain hardware and is not a local change.
+
+Minimum credible regulated topology: take `12V_PROTECTED` into a **separate ~6.0–6.4 V switching preregulator**, then a low-noise 5.0 V LDO with ≥0.2 A rated continuous load and the manufacturer's required input/output, reference and thermal layout. Feed AK AVDD/VREFH and OPA V+ from its quiet 5 V output; TVDD may use the retained 3.3 V quiet/digital boundary only after level and sequencing review. At prereg maximum 6.4 V and 0.18–0.20 A, pass-device loss is ~0.25–0.28 W plus LDO ground-current loss, far below a direct 12 V LDO. ADI LT3045 Rev D Table 3 gives ~34–36°C/W only on its specific four-layer 1 oz/2 oz thermal test boards; the Crow native footprint, copper and filled-via process must be requalified. A single direct 13.2-to-5 V LDO at 0.19 A loses ~1.56 W **before** ground current; 35°C/W would raise junction ~55°C above a 70°C board ambient, leaving essentially no margin to the E-grade 125°C limit, so this is not an admitted minimum. No preregulator MPN or JLC stock is selected here.
+
+The new rail must participate in existing PWR_EN, AUDIO_EN, ADC_RESET_N, TMUX power-off protection and held-energy discharge: neither an energized OPA output into an unpowered AK input nor an energized AK pin into an unpowered OPA/TMUX is acceptable. AKM limits analog input pin current to 10 mA and pin voltage to AVSS−0.3..AVDD+0.3 V. Prove ramp/down state ordering and resistor-limited injection across all independently powered states. The existing 10 kΩ ADC-pin pulldown helps discharge but is not a substitute for this analysis.
+
+**Decision:** One OPA-input shunt per leg plus two VCM changes, 2.2 µF coupling if the 20 Hz response is preserved, and a separate quiet 5 V supply are a feasible engineering backtrack. The change is larger than a passive ADC swap and requires new control, power, filter, thermal, layout and measurement evidence. AK's low input resistance is manageable behind the OPA; its DC bias requirement is the hard constraint. There is no basis yet for release/admission or a claim that JLC stock and the local reserve policy are satisfied.
+
+Local primary PDFs: `/tmp/crow-jlc-adc-20260923/raw/ak5578.pdf`, `projects/crow-usb-carrier-v1/02_parts/OPA2320AID/OPA2320_SBOS513F.pdf`, `projects/crow-usb-carrier-v1/02_parts/TMUX2821DSGR/TMUX28xx_SCDS488.pdf`, `projects/crow-usb-carrier-v1/02_parts/LT3045EDD-PBF/LT3045_RevD.pdf`. Project paths are under `/home/mouse9911/gits/circuits-worktrees/crow-usb-carrier-v1-20260922/`.

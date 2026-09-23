@@ -506,3 +506,7 @@ Set stitch.via.tiers and stitch.astar_fallback.via to the existing0.60/0.30mm or
 ### D5 population consistency and ADC architecture research
 
 Removed the superseded U_ADC board_attr_plan instruction to set FP_EXCLUDE_FROM_POS_FILES; not_assembled remains empty. The ADC must appear in the eventual JLC population set, with a qualified stocked selection still owed. Retained the SOL AK5578EN architecture proof in sourcing/jlc-population-review-2026-09-23.md as research only. Its 5 V supply, input attenuation/noise, XU timing and stock-buffer decisions remain open; no substitute has been admitted.
+
+## 2026-09-23 — D7 stock reserve and candidate disposition
+
+The user explicitly retains the 150-unit per-part stock surplus. No policy threshold was changed. AK5578EN/AK5558VN and the 2x-per-channel TMUX2819 proposal fail this user constraint at their observed stock counts; redirected ADC research accordingly. Retained official JLC attrition evidence and AK front-end feasibility as non-adopted research. The OPA/crystal independent review caught an incorrect native YXC pad map; candidate repair must account for the opposite TSX/KiCad Y axes before integration. The adjustable TPSM candidate remains unadmitted pending rail bounds and complete load proof.

@@ -42,7 +42,7 @@ fiducials: none            # `none` + the fab's own statement, or a count/type.
                            # job and cannot be added later. Silence is not allowed:
                            # state `none` deliberately or declare what you placed.
 build_quantity: 5          # quantity-expanded JLC PCBA checks bind to this
-public_stock_surplus: 150  # absolute catalog buffer per aggregated LCSC line
+public_stock_surplus: 150  # D7 user-confirmed absolute buffer per aggregated LCSC line
 
 pcb_process: "Proposed JLC advanced order: selectively fill/cap the LT3045 EP 0.20 mm drill family; uploader/vendor acceptance required"
 via_process:

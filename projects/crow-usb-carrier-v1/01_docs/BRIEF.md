@@ -150,3 +150,8 @@ Impact: every non-through-hole component must be supplied from in-stock JLCPCB i
 > mint a new release using the new JCLPCB sourcing and block schematic + block pre-routing and placement. Please use sol and terra where possible
 
 Impact: target a new sealed hardware release, extending the previous design/layout-seal target. D5 remains binding: JLCPCB must stock and populate every non-through-hole component. Use the existing P1–P5 block floorplan, placement, critical-local-route and joint-proof graph with independent engineering acceptance; block metadata alone does not pass placement. Use SOL for bounded engineering and Terra for suitable evidence/audit work. Release requires the existing fabrication, assembly, exact-artifact independent review, archive rehearsal and seal checks. Firmware authoring and purchasing remain outside scope.
+
+### D7 — 2026-09-23 — stock reserve confirmed
+> Keep the 150-extra-unit requirement for every part.
+
+Context: the question contrasted retaining 150 extra publicly stocked units per part beyond the five-board build with using build quantity and confirming JLC assembly attrition at order time. The user selected the former. Keep `build_quantity: 5` and `public_stock_surplus: 150`; aggregate quantities by exact part/code. This is now an explicit user constraint, not merely a template default. JLC allocation and actual assembly attrition/minimum quantities still require order-time confirmation. Current AK5578EN (36 versus 155 required), AK5558VN (32 versus 155), and two-per-channel TMUX2819 (199 versus 230) observations do not qualify these candidates. No release or placement admission follows from their engineering feasibility.
