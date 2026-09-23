@@ -1,0 +1,114 @@
+#VRML V2.0 utf8
+# Source-authored drawing-derived package geometry, NOT manufacturer CAD.
+# This declarative file is the source; numeric dimensions are recorded in mm below.
+# KiCad model unit=2.54mm; modelY=-footprintY, Z above seating plane; zero transform.
+# See 01_docs/research/2026-09-23-adc-tmux-source-models.md for provenance and limitations.
+# TI RTW0024A drawing4222815/A p1; nominal4x4 body, maximum0.8 height.
+# body: centre_mm=(0,0,0.4125), size_mm=(4,4,0.775); input Y down
+Transform { translation 0.000000000 0.000000000 0.162401575
+ children [ Shape { appearance Appearance { material Material { diffuseColor 0.075 0.075 0.08 } }
+ geometry Box { size 1.574803150 1.574803150 0.305118110 } } ] }
+# terminal_1: centre_mm=(-1.8,-1.25,0.05), size_mm=(0.4,0.25,0.1); input Y down
+Transform { translation -0.708661417 0.492125984 0.019685039
+ children [ Shape { appearance Appearance { material Material { diffuseColor 0.70 0.70 0.72 } }
+ geometry Box { size 0.157480315 0.098425197 0.039370079 } } ] }
+# terminal_2: centre_mm=(-1.8,-0.75,0.05), size_mm=(0.4,0.25,0.1); input Y down
+Transform { translation -0.708661417 0.295275591 0.019685039
+ children [ Shape { appearance Appearance { material Material { diffuseColor 0.70 0.70 0.72 } }
+ geometry Box { size 0.157480315 0.098425197 0.039370079 } } ] }
+# terminal_3: centre_mm=(-1.8,-0.25,0.05), size_mm=(0.4,0.25,0.1); input Y down
+Transform { translation -0.708661417 0.098425197 0.019685039
+ children [ Shape { appearance Appearance { material Material { diffuseColor 0.70 0.70 0.72 } }
+ geometry Box { size 0.157480315 0.098425197 0.039370079 } } ] }
+# terminal_4: centre_mm=(-1.8,0.25,0.05), size_mm=(0.4,0.25,0.1); input Y down
+Transform { translation -0.708661417 -0.098425197 0.019685039
+ children [ Shape { appearance Appearance { material Material { diffuseColor 0.70 0.70 0.72 } }
+ geometry Box { size 0.157480315 0.098425197 0.039370079 } } ] }
+# terminal_5: centre_mm=(-1.8,0.75,0.05), size_mm=(0.4,0.25,0.1); input Y down
+Transform { translation -0.708661417 -0.295275591 0.019685039
+ children [ Shape { appearance Appearance { material Material { diffuseColor 0.70 0.70 0.72 } }
+ geometry Box { size 0.157480315 0.098425197 0.039370079 } } ] }
+# terminal_6: centre_mm=(-1.8,1.25,0.05), size_mm=(0.4,0.25,0.1); input Y down
+Transform { translation -0.708661417 -0.492125984 0.019685039
+ children [ Shape { appearance Appearance { material Material { diffuseColor 0.70 0.70 0.72 } }
+ geometry Box { size 0.157480315 0.098425197 0.039370079 } } ] }
+# terminal_7: centre_mm=(-1.25,1.8,0.05), size_mm=(0.25,0.4,0.1); input Y down
+Transform { translation -0.492125984 -0.708661417 0.019685039
+ children [ Shape { appearance Appearance { material Material { diffuseColor 0.70 0.70 0.72 } }
+ geometry Box { size 0.098425197 0.157480315 0.039370079 } } ] }
+# terminal_8: centre_mm=(-0.75,1.8,0.05), size_mm=(0.25,0.4,0.1); input Y down
+Transform { translation -0.295275591 -0.708661417 0.019685039
+ children [ Shape { appearance Appearance { material Material { diffuseColor 0.70 0.70 0.72 } }
+ geometry Box { size 0.098425197 0.157480315 0.039370079 } } ] }
+# terminal_9: centre_mm=(-0.25,1.8,0.05), size_mm=(0.25,0.4,0.1); input Y down
+Transform { translation -0.098425197 -0.708661417 0.019685039
+ children [ Shape { appearance Appearance { material Material { diffuseColor 0.70 0.70 0.72 } }
+ geometry Box { size 0.098425197 0.157480315 0.039370079 } } ] }
+# terminal_10: centre_mm=(0.25,1.8,0.05), size_mm=(0.25,0.4,0.1); input Y down
+Transform { translation 0.098425197 -0.708661417 0.019685039
+ children [ Shape { appearance Appearance { material Material { diffuseColor 0.70 0.70 0.72 } }
+ geometry Box { size 0.098425197 0.157480315 0.039370079 } } ] }
+# terminal_11: centre_mm=(0.75,1.8,0.05), size_mm=(0.25,0.4,0.1); input Y down
+Transform { translation 0.295275591 -0.708661417 0.019685039
+ children [ Shape { appearance Appearance { material Material { diffuseColor 0.70 0.70 0.72 } }
+ geometry Box { size 0.098425197 0.157480315 0.039370079 } } ] }
+# terminal_12: centre_mm=(1.25,1.8,0.05), size_mm=(0.25,0.4,0.1); input Y down
+Transform { translation 0.492125984 -0.708661417 0.019685039
+ children [ Shape { appearance Appearance { material Material { diffuseColor 0.70 0.70 0.72 } }
+ geometry Box { size 0.098425197 0.157480315 0.039370079 } } ] }
+# terminal_13: centre_mm=(1.8,1.25,0.05), size_mm=(0.4,0.25,0.1); input Y down
+Transform { translation 0.708661417 -0.492125984 0.019685039
+ children [ Shape { appearance Appearance { material Material { diffuseColor 0.70 0.70 0.72 } }
+ geometry Box { size 0.157480315 0.098425197 0.039370079 } } ] }
+# terminal_14: centre_mm=(1.8,0.75,0.05), size_mm=(0.4,0.25,0.1); input Y down
+Transform { translation 0.708661417 -0.295275591 0.019685039
+ children [ Shape { appearance Appearance { material Material { diffuseColor 0.70 0.70 0.72 } }
+ geometry Box { size 0.157480315 0.098425197 0.039370079 } } ] }
+# terminal_15: centre_mm=(1.8,0.25,0.05), size_mm=(0.4,0.25,0.1); input Y down
+Transform { translation 0.708661417 -0.098425197 0.019685039
+ children [ Shape { appearance Appearance { material Material { diffuseColor 0.70 0.70 0.72 } }
+ geometry Box { size 0.157480315 0.098425197 0.039370079 } } ] }
+# terminal_16: centre_mm=(1.8,-0.25,0.05), size_mm=(0.4,0.25,0.1); input Y down
+Transform { translation 0.708661417 0.098425197 0.019685039
+ children [ Shape { appearance Appearance { material Material { diffuseColor 0.70 0.70 0.72 } }
+ geometry Box { size 0.157480315 0.098425197 0.039370079 } } ] }
+# terminal_17: centre_mm=(1.8,-0.75,0.05), size_mm=(0.4,0.25,0.1); input Y down
+Transform { translation 0.708661417 0.295275591 0.019685039
+ children [ Shape { appearance Appearance { material Material { diffuseColor 0.70 0.70 0.72 } }
+ geometry Box { size 0.157480315 0.098425197 0.039370079 } } ] }
+# terminal_18: centre_mm=(1.8,-1.25,0.05), size_mm=(0.4,0.25,0.1); input Y down
+Transform { translation 0.708661417 0.492125984 0.019685039
+ children [ Shape { appearance Appearance { material Material { diffuseColor 0.70 0.70 0.72 } }
+ geometry Box { size 0.157480315 0.098425197 0.039370079 } } ] }
+# terminal_19: centre_mm=(1.25,-1.8,0.05), size_mm=(0.25,0.4,0.1); input Y down
+Transform { translation 0.492125984 0.708661417 0.019685039
+ children [ Shape { appearance Appearance { material Material { diffuseColor 0.70 0.70 0.72 } }
+ geometry Box { size 0.098425197 0.157480315 0.039370079 } } ] }
+# terminal_20: centre_mm=(0.75,-1.8,0.05), size_mm=(0.25,0.4,0.1); input Y down
+Transform { translation 0.295275591 0.708661417 0.019685039
+ children [ Shape { appearance Appearance { material Material { diffuseColor 0.70 0.70 0.72 } }
+ geometry Box { size 0.098425197 0.157480315 0.039370079 } } ] }
+# terminal_21: centre_mm=(0.25,-1.8,0.05), size_mm=(0.25,0.4,0.1); input Y down
+Transform { translation 0.098425197 0.708661417 0.019685039
+ children [ Shape { appearance Appearance { material Material { diffuseColor 0.70 0.70 0.72 } }
+ geometry Box { size 0.098425197 0.157480315 0.039370079 } } ] }
+# terminal_22: centre_mm=(-0.25,-1.8,0.05), size_mm=(0.25,0.4,0.1); input Y down
+Transform { translation -0.098425197 0.708661417 0.019685039
+ children [ Shape { appearance Appearance { material Material { diffuseColor 0.70 0.70 0.72 } }
+ geometry Box { size 0.098425197 0.157480315 0.039370079 } } ] }
+# terminal_23: centre_mm=(-0.75,-1.8,0.05), size_mm=(0.25,0.4,0.1); input Y down
+Transform { translation -0.295275591 0.708661417 0.019685039
+ children [ Shape { appearance Appearance { material Material { diffuseColor 0.70 0.70 0.72 } }
+ geometry Box { size 0.098425197 0.157480315 0.039370079 } } ] }
+# terminal_24: centre_mm=(-1.25,-1.8,0.05), size_mm=(0.25,0.4,0.1); input Y down
+Transform { translation -0.492125984 0.708661417 0.019685039
+ children [ Shape { appearance Appearance { material Material { diffuseColor 0.70 0.70 0.72 } }
+ geometry Box { size 0.098425197 0.157480315 0.039370079 } } ] }
+# terminal_25_EP: centre_mm=(0,0,0.05), size_mm=(2.6,2.6,0.1); input Y down
+Transform { translation 0.000000000 0.000000000 0.019685039
+ children [ Shape { appearance Appearance { material Material { diffuseColor 0.70 0.70 0.72 } }
+ geometry Box { size 1.023622047 1.023622047 0.039370079 } } ] }
+# illustrative_pin1_mark: centre_mm=(-1.6,-1.6,0.799), size_mm=(0.15,0.15,0.002); input Y down
+Transform { translation -0.629921260 0.629921260 0.314566929
+ children [ Shape { appearance Appearance { material Material { diffuseColor 0.55 0.55 0.55 } }
+ geometry Box { size 0.059055118 0.059055118 0.000787402 } } ] }

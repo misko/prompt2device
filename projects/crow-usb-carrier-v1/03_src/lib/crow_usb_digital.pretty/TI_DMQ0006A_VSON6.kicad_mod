@@ -4,6 +4,7 @@
   (layer "F.Cu")
   (descr "TI drawing 4222645/E DMQ0006A")
   (attr smd)
+  (fp_rect (start -1.25 -1.25) (end 1.25 1.25) (stroke (width 0.05) (type default)) (fill none) (layer "F.CrtYd"))
   (fp_rect (start -1 -1) (end 1 1) (stroke (width 0.12) (type default)) (fill none) (layer "F.SilkS"))
   (pad "1" smd rect (at -0.55 -0.5) (size 0.6 0.25) (layers "F.Cu" "F.Paste" "F.Mask"))
   (pad "2" smd rect (at -0.55 -0) (size 0.6 0.25) (layers "F.Cu" "F.Paste" "F.Mask"))

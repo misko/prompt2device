@@ -846,6 +846,20 @@ placement:
     - C_A8P
     model_override: ${KIPRJMOD}/../03_src/lib/3dmodels/kicad/C_Rect_L7.2mm_W5.0mm_P5.00mm.step
   - match:
+    - U_ADC_A
+    - U_ADC_B
+    model_override: ${KIPRJMOD}/../03_src/lib/3dmodels/derived/TI_RTW0024A_nominal.wrl
+  - match:
+    - U_ISO1
+    - U_ISO2
+    - U_ISO3
+    - U_ISO4
+    - U_ISO5
+    - U_ISO6
+    - U_ISO7
+    - U_ISO8
+    model_override: ${KIPRJMOD}/../03_src/lib/3dmodels/derived/TI_YBH0009_C02_envelope.wrl
+  - match:
     - U_AUDIO
     - U_PWR
     model_override: ${KIPRJMOD}/../03_src/lib/3dmodels/derived/TI_DSE0006A_nominal.wrl

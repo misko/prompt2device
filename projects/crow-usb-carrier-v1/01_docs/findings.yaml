@@ -213,7 +213,9 @@ findings:
   owner: placement-and-process
   finding: Both local P1 trials are consumed. Candidate 37b45520 has zero shorts
     but 155 native violations, 45 parity findings, 16 missing courtyards,
-    73 missing models and support intrusion into the hold-bank islands.
+    73 missing models and support intrusion into the hold-bank islands. Source
+    repairs add all seven missing courtyard definitions covering the 16 refs;
+    their placement consequence is not yet regenerated or accepted.
   closes_when: Reconcile via fields and package/process clearances, repair
     endpoint metadata and native parity representation, complete footprint/model
     evidence and reserve support corridors. Independently review upstream
@@ -228,8 +230,9 @@ findings:
   owner: mechanical-models
   finding: Native file-resolution coverage masked ten obsolete model bindings
     for two ADCs and eight TMUX devices. Removed their authored overrides and
-    restored the missing generic resistor model for nine instances. Correct
-    ADC/TMUX bodies, other missing models and full registration remain owed.
+    restored the missing generic resistor model for nine instances. Drawing-derived
+    ADC/TMUX models and a nominal Murata model for 42 refs now have independent
+    source review; full native coverage and registration remain owed.
   closes_when: Bind current exact-package models with documented provenance,
     regenerate after admitted source repair, and independently verify native
     model identity, registration and mechanical clearance, not file presence alone.

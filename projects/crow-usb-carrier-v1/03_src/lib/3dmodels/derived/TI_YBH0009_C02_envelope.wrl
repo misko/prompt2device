@@ -1,0 +1,50 @@
+#VRML V2.0 utf8
+# Source-authored drawing-derived package geometry, NOT manufacturer CAD.
+# This declarative file is the source; numeric dimensions are recorded in mm below.
+# KiCad model unit=2.54mm; modelY=-footprintY, Z above seating plane; zero transform.
+# See 01_docs/research/2026-09-23-adc-tmux-source-models.md for provenance and limitations.
+# TI SCDS457B p32 YBH0009-C02: maximum1.627 plan/0.4 height, nominal0.25 balls/.165 standoff.
+# body_max_plan: centre_mm=(0,0,0.2825), size_mm=(1.627,1.627,0.235); input Y down
+Transform { translation 0.000000000 0.000000000 0.111220472
+ children [ Shape { appearance Appearance { material Material { diffuseColor 0.075 0.075 0.08 } }
+ geometry Box { size 0.640551181 0.640551181 0.092519685 } } ] }
+# ball_1: centre_mm=(-0.4,-0.4,0.0825), diameterXY_mm=0.25, height_mm=0.165
+Transform { translation -0.157480315 0.157480315 0.032480315 scale 1 1 0.66
+ children [ Shape { appearance Appearance { material Material { diffuseColor 0.70 0.70 0.72 } }
+ geometry Sphere { radius 0.049212598 } } ] }
+# ball_2: centre_mm=(0.0,-0.4,0.0825), diameterXY_mm=0.25, height_mm=0.165
+Transform { translation 0.000000000 0.157480315 0.032480315 scale 1 1 0.66
+ children [ Shape { appearance Appearance { material Material { diffuseColor 0.70 0.70 0.72 } }
+ geometry Sphere { radius 0.049212598 } } ] }
+# ball_3: centre_mm=(0.4,-0.4,0.0825), diameterXY_mm=0.25, height_mm=0.165
+Transform { translation 0.157480315 0.157480315 0.032480315 scale 1 1 0.66
+ children [ Shape { appearance Appearance { material Material { diffuseColor 0.70 0.70 0.72 } }
+ geometry Sphere { radius 0.049212598 } } ] }
+# ball_4: centre_mm=(-0.4,0.0,0.0825), diameterXY_mm=0.25, height_mm=0.165
+Transform { translation -0.157480315 -0.000000000 0.032480315 scale 1 1 0.66
+ children [ Shape { appearance Appearance { material Material { diffuseColor 0.70 0.70 0.72 } }
+ geometry Sphere { radius 0.049212598 } } ] }
+# ball_5: centre_mm=(0.0,0.0,0.0825), diameterXY_mm=0.25, height_mm=0.165
+Transform { translation 0.000000000 -0.000000000 0.032480315 scale 1 1 0.66
+ children [ Shape { appearance Appearance { material Material { diffuseColor 0.70 0.70 0.72 } }
+ geometry Sphere { radius 0.049212598 } } ] }
+# ball_6: centre_mm=(0.4,0.0,0.0825), diameterXY_mm=0.25, height_mm=0.165
+Transform { translation 0.157480315 -0.000000000 0.032480315 scale 1 1 0.66
+ children [ Shape { appearance Appearance { material Material { diffuseColor 0.70 0.70 0.72 } }
+ geometry Sphere { radius 0.049212598 } } ] }
+# ball_7: centre_mm=(-0.4,0.4,0.0825), diameterXY_mm=0.25, height_mm=0.165
+Transform { translation -0.157480315 -0.157480315 0.032480315 scale 1 1 0.66
+ children [ Shape { appearance Appearance { material Material { diffuseColor 0.70 0.70 0.72 } }
+ geometry Sphere { radius 0.049212598 } } ] }
+# ball_8: centre_mm=(0.0,0.4,0.0825), diameterXY_mm=0.25, height_mm=0.165
+Transform { translation 0.000000000 -0.157480315 0.032480315 scale 1 1 0.66
+ children [ Shape { appearance Appearance { material Material { diffuseColor 0.70 0.70 0.72 } }
+ geometry Sphere { radius 0.049212598 } } ] }
+# ball_9: centre_mm=(0.4,0.4,0.0825), diameterXY_mm=0.25, height_mm=0.165
+Transform { translation 0.157480315 -0.157480315 0.032480315 scale 1 1 0.66
+ children [ Shape { appearance Appearance { material Material { diffuseColor 0.70 0.70 0.72 } }
+ geometry Sphere { radius 0.049212598 } } ] }
+# illustrative_A1_mark: centre_mm=(-0.6,-0.6,0.399), size_mm=(0.08,0.08,0.002); input Y down
+Transform { translation -0.236220472 0.236220472 0.157086614
+ children [ Shape { appearance Appearance { material Material { diffuseColor 0.55 0.55 0.55 } }
+ geometry Box { size 0.031496063 0.031496063 0.000787402 } } ] }

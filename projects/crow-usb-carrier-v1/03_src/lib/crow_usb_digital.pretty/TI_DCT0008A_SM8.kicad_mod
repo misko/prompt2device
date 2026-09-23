@@ -4,6 +4,7 @@
   (layer "F.Cu")
   (descr "TI DCT SM8 8 pin, 0.65mm pitch")
   (attr smd)
+  (fp_rect (start -2.7 -1.8) (end 2.7 1.8) (stroke (width 0.05) (type default)) (fill none) (layer "F.CrtYd"))
   (fp_rect (start -1 -1) (end 1 1) (stroke (width 0.12) (type default)) (fill none) (layer "F.SilkS"))
   (pad "1" smd rect (at -1.9 -0.975) (size 1.1 0.4) (layers "F.Cu" "F.Paste" "F.Mask"))
   (pad "2" smd rect (at -1.9 -0.325) (size 1.1 0.4) (layers "F.Cu" "F.Paste" "F.Mask"))

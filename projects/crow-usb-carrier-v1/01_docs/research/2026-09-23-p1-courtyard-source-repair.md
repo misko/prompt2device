@@ -1,0 +1,17 @@
+# P1 missing-courtyard source repair
+
+**Scope:** seven authored KiCad library footprints serving the 16 P1 refs below. This is source repair only. No PCB was generated or graded, so placement overlap and full P-CRT remain owed on a later native candidate.
+
+Each rectangle is centred on the retained footprint origin. IC courtyards enclose the greater of maximum manufacturer package body and every authored pad copper extent with at least 0.25 mm per side, rounded outward. The JTAG rectangle encloses the project's conservative 7 × 8 mm mounted header envelope with 0.5 mm per side. The TCA and RTW rectangles also keep their authored pin-one silk dots inside. These are placement margins, not connector mate/grip/service clearance.
+
+| Native footprint; P1 refs | Primary retained drawing and numeric basis (PDF page) | Loaded pad span X × Y (mm) | F.CrtYd span X × Y (mm) |
+|---|---|---:|---:|
+| `Samtec_FTSH_105_01_L_DV_K`; J_JTAG | `02_parts/FTSH-105-01-L-DV-K/Samtec_FTSH_footprint_revH.pdf`, Rev H Fig. 1, p. 1: lands 2.79 × 0.74 at centres X ±2.035, Y ±2.54/±1.27/0, hence copper ±3.43 × ±2.91. Conservative mounted header 7 × 8 mm in `03_src/rules/connector_assemblies.yaml` and `2026-09-22-digital-source-integration.md`; ±3.5 × ±4 plus 0.5 margin. | 6.86 × 5.82 | 8.00 × 9.00 |
+| `TI_DMQ0006A_VSON6`; U_1V8, U_3V3X, U_CORE | `02_parts/TPS62825DMQR/TPS6282x-SLVSEF9I.pdf`, DMQ0006A outline, p. 32: 1.55 × 1.55 maximum body. Authored pads reach X ±0.85, Y ±0.625. | 1.70 × 1.25 | 2.50 × 2.50 |
+| `TI_RTW0024A_WQFN24_4x4_EP2.6`; U_ADC_A, U_ADC_B | `02_parts/TLV320ADC6140IRTWT/RTW0024A-4222815A.pdf`, 4222815/A outline p. 1 and land example p. 2: 4.1 × 4.1 maximum body; 0.6 × 0.25 lands at ±1.9 reach ±2.2. Authored pin-one dot reaches −2.55 on both axes. | 4.40 × 4.40 | 5.60 × 5.60 |
+| `TI_DCK0005A_SC70_5`; U_ADC_CLOCK_OK, U_ADC_DIGITAL_BAD, U_ADC_PWR_BAD, U_ADC_READY, U_ADC_READY_BAD, U_BCLK_INV | `02_parts/SN74LVC1G04DCKR/SN74LVC1G04-SCES214.pdf`, DCK0005A outline p. 34: package maximum overall 2.4 × 2.15 mm. Authored lands reach X ±1.575, Y ±0.85; the body is conservatively centred at ±1.2 × ±1.075. | 3.15 × 1.70 | 3.70 × 2.70 |
+| `TI_DCT0008A_SM8`; U_FSYNC_FF1, U_FSYNC_FF2 | `02_parts/SN74LVC2G74DCTR/SN74LVC2G74-SCES203Q.pdf`, DCT0008A outline p. 19: package maximum overall 4.25 × 3.1 mm. Authored lands reach X ±2.45, Y ±1.175. | 4.90 × 2.35 | 5.40 × 3.60 |
+| `TI_DCU0008A_VSSOP8`; U_ADC_OUT | `02_parts/SN74AUP3G34DCUR/SN74AUP3G34-SCES766C.pdf`, DCU0008A outline p. 23: package maximum overall 3.2 × 2.4 mm. Authored lands reach X ±1.975, Y ±0.9. | 3.95 × 1.80 | 4.50 × 2.90 |
+| `TI_TCA9406_DCU0008A_VSSOP8`; U_ADC_I2C_XLATE | `02_parts/TCA9406DCUR/TCA9406-SCPS221G.pdf`, DCU0008A outline p. 32: package maximum overall 3.2 × 2.4 mm. Authored lands reach X ±1.975, Y ±0.9; pin-one dot reaches X −2.25, Y −1.45. | 3.95 × 1.80 | 5.10 × 3.40 |
+
+**Verification.** `/usr/bin/python3` with KiCad `pcbnew.FootprintLoad` loaded all seven edited footprints and measured all 74 native pad bounding boxes (10 + 6 + 29 + 5 + 8 + 8 + 8). Every pad bound and the maximum body envelope above is inside its F.CrtYd rectangle; the shortest body-to-courtyard gap is 0.25 mm. For each file, removing the sole added F.CrtYd line produces bytes identical to `HEAD`, confirming pads, pin numbers, silk and body primitives were preserved. This does not certify a placed board or physical connector operation.
