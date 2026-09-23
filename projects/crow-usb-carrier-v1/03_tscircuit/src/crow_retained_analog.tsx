@@ -1,7 +1,7 @@
 import { MurataGrm32e1210 } from "./z_power_aux_footprints"
 import { Fragment } from "react"
 import {
-  CirrusCs5308pQfn48, Diodes2N7002kSot23, TiDrc0010j, TiRtw0024Candidate,
+  CirrusCs5308pQfn48, Diodes2N7002kSot23, TiDrc0010j, TiRtw0024a,
   PanasonicEeeFk8x10, Sot553, TiDck0005a, TiDse0006a, TiYbh0009C02Tmux4827,
   Wurth615008160221Rj45, YageoRt0603,
 } from "./z_analog_exact_footprints"
@@ -155,6 +155,7 @@ const QuietAnalogPower = ({ n }: any) => (
     <R name="R_PRE_G" value="100k" a="PRE_GATE" b="5V_LDO_FEED" mpn="RC0402FR-07100KL" jlc="C60491" n={n} />
     <C name="C_HOLD1" value="470uF" a="5V_LDO_HOLD" b="GND" mpn="EEEFK1A471P" jlc="C178530" footprint={<PanasonicEeeFk8x10 />} polarized n={n} />
     <C name="C_HOLD2" value="470uF" a="5V_LDO_HOLD" b="GND" mpn="EEEFK1A471P" jlc="C178530" footprint={<PanasonicEeeFk8x10 />} polarized n={n} />
+    {Array.from({length:12},(_,i)=><C key={`hold${i+3}`} name={`C_HOLD${i+3}`} value="470uF" a="5V_LDO_HOLD" b="GND" mpn="EEEFK1A471P" jlc="C178530" footprint={<PanasonicEeeFk8x10 />} polarized n={n} />)}
     <C name="C_LDO_IN" value="47uF" a="5V_LDO_HOLD" b="GND" mpn="GRM32ER71A476KE15L" jlc="C84494" footprint={<MurataGrm32e1210/>} n={n} />
     <Chip name="U_LDO" manufacturerPartNumber="LT3045EDD#PBF" jlc="C666574" footprint={<Lt3045Dd />}
       pinLabels={{ pin1: "IN1", pin2: "IN2", pin3: "EN_UV", pin4: "PG_NC", pin5: "ILIM", pin6: "PGFB", pin7: "SET", pin8: "GND", pin9: "OUTS", pin10: "OUT", pin11: "EP_GND" }}
@@ -194,9 +195,12 @@ const QuietAnalogPower = ({ n }: any) => (
       pinLabels={{ pin1: "NC", pin2: "A_SCHMITT", pin3: "GND", pin4: "Y", pin5: "VCC" }} connections={{ pin2: n("DUMP_GATE"), pin3: n("GND"), pin4: n("LDO_EN"), pin5: n("5V_LDO_HOLD") }} />
     <C name="C_DUMP_LOGIC" value="100nF" a="5V_LDO_HOLD" b="GND" mpn="CL05B104KO5NNNC" jlc="C1525" n={n} />
     <C name="C_LDO_EN" value="100nF" a="5V_LDO_HOLD" b="GND" mpn="CL05B104KO5NNNC" jlc="C1525" n={n} />
-    <R name="R_DUMP_TIME1" value="100k" a="PWR_EN" b="DUMP_RC" mpn="RC0402FR-07100KL" jlc="C60491" n={n} />
-    <R name="R_DUMP_TIME2" value="100k" a="PWR_EN" b="DUMP_RC" mpn="RC0402FR-07100KL" jlc="C60491" n={n} />
-    <C name="C_DUMP_TIME" value="15nF" a="DUMP_RC" b="GND" mpn="GRM2195C1H153JA01D" jlc="C97907" footprint="0805" n={n} />
+    <R name="R_DUMP_TIME1" value="100k" a="PWR_EN" b="DUMP_RMID" mpn="RC0402FR-07100KL" jlc="C60491" n={n} />
+    {[2,3].map(i=><R key={`dump_r${i}`} name={`R_DUMP_TIME${i}`} value="100k" a="DUMP_RMID" b="DUMP_RC" mpn="RC0402FR-07100KL" jlc="C60491" n={n} />)}
+    {/* Early SHDNZ assertion is upstream of the deliberate rail dump. Eight
+        existing-code C0G caps and 150k nominal resistance give an 18ms RC;
+        first-article loss waveforms still qualify the gate and ADC supply. */}
+    {Array.from({length:8},(_,i)=><C key={`dump_c${i+1}`} name={`C_DUMP_TIME${i+1}`} value="15nF" a="DUMP_RC" b="GND" jlc="C97907" mpn="GRM2195C1H153JA01D" footprint="0805" n={n} />)}
     <Chip name="Q_DUMP" manufacturerPartNumber="AO3400A" jlc="C20917" footprint="sot23"
       pinLabels={{ pin1: "G", pin2: "S", pin3: "D" }} connections={{ pin1: n("DUMP_GATE"), pin2: n("GND"), pin3: n("ADC_DUMP") }} />
     <R name="R_DUMP" value="1" a="3V3_ADC" b="ADC_DUMP" mpn="CRCW12061R00FKEAHP" jlc="C844653" footprint="1206" n={n} />
@@ -214,14 +218,14 @@ const AdcReferenceAndMode = ({ n }: any) => (
     </group>)}
     {/* The retained OPA common mode is about 1.65 V. Each TLV input is AC coupled
         and internally biased. The retained POD_TO_ADC permutation connects TLV
-        channel 1..4 to Pods 1..4, then TLV B channel 1..4 to Pods 5..8. */}
+        channel 1..4 to Pods 4,3,2,1, then TLV B channel 1..4 to Pods 5..8. */}
     {[0,1].map(bank => {
       const name = bank === 0 ? "U_ADC_A" : "U_ADC_B"
       const first = bank * 4 + 1
       const ref = bank === 0 ? "A" : "B"
       return <group key={name}>
         <Chip name={name} manufacturerPartNumber="TLV320ADC6140IRTWT" jlc="C1852023"
-          footprint={<TiRtw0024Candidate />}
+          footprint={<TiRtw0024a />}
           pinLabels={{pin1:"AVDD",pin2:"AREG",pin3:"VREF",pin4:"AVSS",pin5:"MICBIAS_NC",pin6:"IN1P",pin7:"IN1M",pin8:"IN2P",pin9:"IN2M",pin10:"IN3P",pin11:"IN3M",pin12:"IN4P",pin13:"IN4M",pin14:"SHDNZ",pin15:"ADDR1",pin16:"ADDR0",pin17:"SCL",pin18:"SDA",pin19:"IOVDD",pin20:"GPIO1_NC",pin21:"SDOUT",pin22:"BCLK",pin23:"FSYNC",pin24:"DREG",pin25:"EP_VSS"}}
           connections={{pin1:n("3V3_ADC"),pin2:n(`ADC_${ref}_AREG`),pin3:n(`ADC_${ref}_VREF`),pin4:n("GND"),
             pin6:n(adcInputNet(first,"P")),pin7:n(adcInputNet(first,"N")),pin8:n(adcInputNet(first+1,"P")),pin9:n(adcInputNet(first+1,"N")),
@@ -275,6 +279,15 @@ const AdcReset = ({ n }: any) => (
     <C name="C_ADC_DIGITAL_BAD" value="100nF" a="3V3_ADC" b="GND" jlc="C1525" mpn="CL05B104KO5NNNC" n={n} />
     <Chip name="Q_ADC_DIG_RST" manufacturerPartNumber="2N7002K-7" jlc="C85047" footprint={<Diodes2N7002kSot23 />}
       pinLabels={{ pin1: "G", pin2: "S", pin3: "D" }} connections={{ pin1: n("ADC_DIGITAL_BAD"), pin2: n("GND"), pin3: n("ADC_RESET_N") }} />
+    {/* PWR_EN loss asserts TLV SHDNZ before the delayed Q_DUMP can collapse
+        AVDD/IOVDD. This inverter is powered from the held 5-V domain. */}
+    <Chip name="U_ADC_PWR_BAD" manufacturerPartNumber="SN74LVC1G04DCKR" jlc="C8207" footprint={<TiDck0005a />}
+      pinLabels={{ pin1: "NC", pin2: "A", pin3: "GND", pin4: "Y", pin5: "VCC" }}
+      connections={{ pin2:n("PWR_EN"), pin3:n("GND"), pin4:n("ADC_PWR_BAD"), pin5:n("5V_LDO_HOLD") }} />
+    <C name="C_ADC_PWR_BAD" value="100nF" a="5V_LDO_HOLD" b="GND" jlc="C1525" mpn="CL05B104KO5NNNC" n={n} />
+    <R name="R_ADC_PWR_BAD_PD" value="100k" a="ADC_PWR_BAD" b="GND" jlc="C60491" mpn="RC0402FR-07100KL" n={n} />
+    <Chip name="Q_ADC_PWR_RST" manufacturerPartNumber="2N7002K-7" jlc="C85047" footprint={<Diodes2N7002kSot23 />}
+      pinLabels={{ pin1: "G", pin2: "S", pin3: "D" }} connections={{ pin1:n("ADC_PWR_BAD"), pin2:n("GND"), pin3:n("ADC_RESET_N") }} />
     <R name="R_ADC_DIG_RST_PD" value="100k" a="ADC_DIGITAL_BAD" b="GND" jlc="C60491" mpn="RC0402FR-07100KL" n={n} />
     <Chip name="U_RST2" manufacturerPartNumber="SN74LVC1G123DCTR" jlc="C123302" footprint="ssop8"
       pinLabels={{ pin1: "A", pin2: "B", pin3: "CLR_N", pin4: "GND", pin5: "Q", pin6: "CEXT", pin7: "REXT_CEXT", pin8: "VCC" }}

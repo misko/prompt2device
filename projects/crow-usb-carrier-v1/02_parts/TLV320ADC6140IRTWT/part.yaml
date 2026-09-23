@@ -1,0 +1,68 @@
+mpn: TLV320ADC6140IRTWT
+manufacturer: Texas Instruments
+type: quad_audio_adc
+value: TLV320ADC6140
+status: candidate
+package: RTW0024A WQFN24 4x4mm P0.5mm EP2.6mm
+footprint: crow_usb_analog:TI_RTW0024A_WQFN24_4x4_EP2.6
+datasheet:
+  doc_id: SBAS992A
+  url: https://www.ti.com/lit/ds/symlink/tlv320adc6140.pdf
+  local: TLV320ADC6140-SBAS992A.pdf
+  sha256: 47104b38a0d02b04940e1cf891e3fff5aff0998756f36bf4f16edbd772d8d024
+  fetched: 2026-09-23
+package_drawing:
+  doc_id: RTW0024A-4222815/A
+  url: https://www.ti.com/lit/ml/qfnd450a/qfnd450a.pdf
+  local: RTW0024A-4222815A.pdf
+  sha256: 45616d442aed7ce69f42ce26187526723e12082c905d51ad3ff7b2f014752765
+shared_tdm_note:
+  doc_id: SBAA383C
+  url: https://www.ti.com/lit/an/sbaa383c/sbaa383c.pdf
+  local: SBAA383C-shared-TDM.pdf
+  sha256: 2fa401881717de44617fcf6458b680018cb71909e6eb63f5ae7d43d5b8869962
+footprint_proof: 'TI RTW0024A example board layout: 24 lands 0.6x0.25mm, 0.5mm pitch, 3.8mm opposite centerlines, 2.6mm exposed land (pin25); compare source and native coordinates before routing.'
+escape: {style: qfn, pitch: 0.5, pins: 24, escapes_worst_side: 6, tier_required: jlc_4layer_advanced}
+pins:
+  1: AVDD
+  2: AREG
+  3: VREF
+  4: AVSS
+  5: MICBIAS
+  6: IN1P
+  7: IN1M
+  8: IN2P
+  9: IN2M
+  10: IN3P
+  11: IN3M
+  12: IN4P
+  13: IN4M
+  14: SHDNZ
+  15: ADDR1
+  16: ADDR0
+  17: SCL
+  18: SDA
+  19: IOVDD
+  20: GPIO1
+  21: SDOUT
+  22: BCLK
+  23: FSYNC
+  24: DREG
+  25: {name: EP_VSS, tie: GND}
+limits:
+  avdd_3v3_operating_V: [3.0, 3.6]
+  iovdd_3v3_operating_V: [3.0, 3.6]
+  differential_full_scale_3v3_ac_coupled_Vrms: 2.0
+  four_channel_48k_pll_on_dre_off_avdd_mA_typ: 21.3
+  four_channel_48k_pll_on_dre_off_iovdd_mA_typ: 0.1
+  input_impedance_per_pin_kohm_typ: 2.5
+  operating_temperature_C: [-40, 125]
+gotchas:
+  - 'At reset GPIO1 is an IRQ output, so do not hardwire the 24.576MHz oscillator to GPIO1 before changing GPIO1_CFG.'
+  - 'Default 12Hz HPF at 48kHz must be configured to all-pass to preserve low-frequency array response.'
+  - 'TX_FILL defaults to driven zero in unused slots; enable high-impedance fill on both devices before enabling their ASI outputs.'
+  - 'AC-coupled input uses internal bias; move external pulldowns before coupling capacitors.'
+  - 'SHDNZ release requires at least 2ms before I2C; capacitors and references need additional settle before unmuted capture.'
+  - 'Two devices share one 256-BCLK frame but no guaranteed cross-die aperture skew is specified.'
+sourcing:
+  lcsc: C1852023

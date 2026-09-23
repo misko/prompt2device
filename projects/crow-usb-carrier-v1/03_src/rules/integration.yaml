@@ -3,7 +3,7 @@ default: complexity_weighted
 module_support_threshold: 10
 selections:
 - function: synchronous_eight_channel_analog_capture
-  part: CS5308P-DNR
+  part: TLV320ADC6140IRTWT
   implementation: bare_ic
   support_refs:
   - C_A1N
@@ -22,6 +22,58 @@ selections:
   - C_A7P
   - C_A8N
   - C_A8P
+  - C_ADC_AC1N1
+  - C_ADC_AC1N2
+  - C_ADC_AC1P1
+  - C_ADC_AC1P2
+  - C_ADC_AC2N1
+  - C_ADC_AC2N2
+  - C_ADC_AC2P1
+  - C_ADC_AC2P2
+  - C_ADC_AC3N1
+  - C_ADC_AC3N2
+  - C_ADC_AC3P1
+  - C_ADC_AC3P2
+  - C_ADC_AC4N1
+  - C_ADC_AC4N2
+  - C_ADC_AC4P1
+  - C_ADC_AC4P2
+  - C_ADC_AC5N1
+  - C_ADC_AC5N2
+  - C_ADC_AC5P1
+  - C_ADC_AC5P2
+  - C_ADC_AC6N1
+  - C_ADC_AC6N2
+  - C_ADC_AC6P1
+  - C_ADC_AC6P2
+  - C_ADC_AC7N1
+  - C_ADC_AC7N2
+  - C_ADC_AC7P1
+  - C_ADC_AC7P2
+  - C_ADC_AC8N1
+  - C_ADC_AC8N2
+  - C_ADC_AC8P1
+  - C_ADC_AC8P2
+  - C_ADC_A_AREG_100N
+  - C_ADC_A_AREG_1U
+  - C_ADC_A_AVDD_100N
+  - C_ADC_A_AVDD_10U
+  - C_ADC_A_DREG_100N
+  - C_ADC_A_DREG_1U
+  - C_ADC_A_IOVDD_100N
+  - C_ADC_A_IOVDD_10U
+  - C_ADC_A_VREF_100N
+  - C_ADC_A_VREF_10U
+  - C_ADC_B_AREG_100N
+  - C_ADC_B_AREG_1U
+  - C_ADC_B_AVDD_100N
+  - C_ADC_B_AVDD_10U
+  - C_ADC_B_DREG_100N
+  - C_ADC_B_DREG_1U
+  - C_ADC_B_IOVDD_100N
+  - C_ADC_B_IOVDD_10U
+  - C_ADC_B_VREF_100N
+  - C_ADC_B_VREF_10U
   - C_ADC_CM1N
   - C_ADC_CM1P
   - C_ADC_CM2N
@@ -40,6 +92,7 @@ selections:
   - C_ADC_CM8P
   - C_ADC_DIGITAL_BAD
   - C_ADC_DIGITAL_OK
+  - C_ADC_PWR_BAD
   - C_ADC_READY
   - C_ADC_READY_BAD
   - C_ADC_START_DELAY
@@ -47,7 +100,14 @@ selections:
   - C_AUDIO_CT1
   - C_AUDIO_CT2
   - C_DUMP_LOGIC
-  - C_DUMP_TIME
+  - C_DUMP_TIME1
+  - C_DUMP_TIME2
+  - C_DUMP_TIME3
+  - C_DUMP_TIME4
+  - C_DUMP_TIME5
+  - C_DUMP_TIME6
+  - C_DUMP_TIME7
+  - C_DUMP_TIME8
   - C_FB1N
   - C_FB1P
   - C_FB2N
@@ -64,12 +124,6 @@ selections:
   - C_FB7P
   - C_FB8N
   - C_FB8P
-  - C_FILT1_10U
-  - C_FILT1_1U
-  - C_FILT1_470U
-  - C_FILT2_10U
-  - C_FILT2_1U
-  - C_FILT2_470U
   - C_FILTER1N1
   - C_FILTER1N2
   - C_FILTER1P1
@@ -103,7 +157,19 @@ selections:
   - C_FILTER8P1
   - C_FILTER8P2
   - C_HOLD1
+  - C_HOLD10
+  - C_HOLD11
+  - C_HOLD12
+  - C_HOLD13
+  - C_HOLD14
   - C_HOLD2
+  - C_HOLD3
+  - C_HOLD4
+  - C_HOLD5
+  - C_HOLD6
+  - C_HOLD7
+  - C_HOLD8
+  - C_HOLD9
   - C_ISO1
   - C_ISO2
   - C_ISO3
@@ -112,8 +178,6 @@ selections:
   - C_ISO6
   - C_ISO7
   - C_ISO8
-  - C_LDO_A
-  - C_LDO_D
   - C_LDO_EN
   - C_LDO_IN
   - C_LDO_NR4
@@ -158,17 +222,8 @@ selections:
   - C_SPOKE_OUT6
   - C_SPOKE_OUT7
   - C_SPOKE_OUT8
-  - C_VDDA1_10N
-  - C_VDDA1_4U7
-  - C_VDDA2_10N
-  - C_VDDA2_4U7
-  - C_VDDIO
-  - C_VMID1_470N
-  - C_VMID1_4U7
   - C_VMID1_EXT_10U
   - C_VMID1_EXT_1U
-  - C_VMID2_470N
-  - C_VMID2_4U7
   - C_VMID2_EXT_10U
   - C_VMID2_EXT_1U
   - D_HOLD
@@ -182,10 +237,15 @@ selections:
   - J8
   - Q_ADC_DELAY_DISCH
   - Q_ADC_DIG_RST
+  - Q_ADC_PWR_RST
   - Q_DUMP
   - Q_PRE
   - Q_PRE_EN
   - Q_RST1
+  - R_ADC_1V8_OK_BOT
+  - R_ADC_1V8_OK_TOP
+  - R_ADC_3V3X_OK_BOT
+  - R_ADC_3V3X_OK_TOP
   - R_ADC_BOT
   - R_ADC_DELAY_GATE_PD
   - R_ADC_DIGITAL_OK_PU
@@ -206,6 +266,7 @@ selections:
   - R_ADC_PD7P
   - R_ADC_PD8N
   - R_ADC_PD8P
+  - R_ADC_PWR_BAD_PD
   - R_ADC_READY_PD
   - R_ADC_START_DELAY
   - R_ADC_TOP
@@ -227,16 +288,11 @@ selections:
   - R_B7P
   - R_B8N
   - R_B8P
-  - R_CFG1
-  - R_CFG2
-  - R_CFG4
-  - R_CFG5
   - R_DUMP
   - R_DUMP_PD
   - R_DUMP_TIME1
   - R_DUMP_TIME2
-  - R_FILT1P
-  - R_FILT2P
+  - R_DUMP_TIME3
   - R_IN1N
   - R_IN1P
   - R_IN2N
@@ -253,11 +309,11 @@ selections:
   - R_IN7P
   - R_IN8N
   - R_IN8P
-  - R_LDO_SET
   - R_LDO_ILIM
   - R_LDO_PG_BOT_A
   - R_LDO_PG_BOT_B
   - R_LDO_PG_TOP
+  - R_LDO_SET
   - R_OPA_BLEED1
   - R_OPA_BLEED2
   - R_OUT1N
@@ -320,13 +376,12 @@ selections:
   - R_X7P
   - R_X8N
   - R_X8P
-  - R_ADC_1V8_OK_TOP
-  - R_ADC_1V8_OK_BOT
   - U_ADC_1V8_OK
-  - R_ADC_3V3X_OK_TOP
-  - R_ADC_3V3X_OK_BOT
   - U_ADC_3V3X_OK
+  - U_ADC_A
+  - U_ADC_B
   - U_ADC_DIGITAL_BAD
+  - U_ADC_PWR_BAD
   - U_ADC_READY
   - U_ADC_READY_BAD
   - U_AFE1
@@ -368,32 +423,38 @@ selections:
   - U_SPOKE6
   - U_SPOKE7
   - U_SPOKE8
-  rationale: Retain the existing eight-channel converter and the complete337-component analog/spoke/quiet-power
-    source boundary. The336 supporting references deliberately include shared infrastructure, rather than
-    undercounting a minimal ADC example.
+  rationale: Implement eight synchronous inputs with two stocked four-channel ADCs
+    and the retained analog/spoke/quiet-power source boundary. Supporting references
+    include the shared infrastructure and AC-coupling network.
   exception:
-    decision_rationale: The retained Crow balanced analog and powered spoke interface must feed one synchronous
-      converter; a USB transport module does not replace that analog front end.
-    evidence: Retained Crow architecture and current337-reference analog source; donor integration comparison
-      names the Cirrus evaluation assembly and MCHStreamer. Their prior board approvals are not inherited.
+    decision_rationale: The retained Crow balanced analog and powered spoke interface
+      must feed two clock-synchronous converter devices; a USB transport module does
+      not replace that analog front end.
+    evidence: Retained Crow architecture and current337-reference analog source; donor
+      integration comparison names the Cirrus evaluation assembly and MCHStreamer.
+      Their prior board approvals are not inherited.
     modules_considered:
     - part: miniDSP MCHStreamer
-      rejected_because: Digital USB/TDM transport does not supply the eight balanced analog converter
-        channels and protected powered RJ45 interfaces.
-      evidence: Retained source research and miniDSP MCHStreamer User Manual TDM8 interface, referenced
-        in the prior carrier integration contract.
-    - part: Cirrus DC5308P evaluation platform
-      rejected_because: Evaluation hardware is a reference for ADC circuitry, not the requested carrier
-        with eight protected Crow spoke interfaces.
-      evidence: Cirrus evaluation schematic/layout archive cited by the retained analog source adoption
-        and prior carrier integration contract.
+      rejected_because: Digital USB/TDM transport does not supply the eight balanced
+        analog converter channels and protected powered RJ45 interfaces.
+      evidence: Retained source research, TI SBAA383C shared-TDM application note,
+        and miniDSP MCHStreamer User Manual TDM8 interface.
+    - part: TI TLV320ADC6140 evaluation platform
+      rejected_because: Evaluation hardware is a reference for ADC circuitry, not
+        the requested carrier with eight protected Crow spoke interfaces.
+      evidence: TI SBAS992A and SBAA383C manufacturer application material; evaluation
+        hardware is not the requested carrier.
     adr: 01_docs/decisions/0003-integrated-subsystem-boundaries.md
 - function: onboard_usb_audio_processor
   part: XU316-1024-TQ128-C24
   implementation: bare_ic
   support_refs:
+  - C_1V8_FF
   - C_1V8_OK_VDD
+  - C_3V3X_FF
   - C_ADC_CLOCK_OK
+  - C_ADC_I2C_A
+  - C_ADC_I2C_B
   - C_ADC_OK_CT
   - C_ADC_OK_VDD
   - C_ADC_OUT
@@ -408,7 +469,6 @@ selections:
   - C_FSYNC_FF2
   - C_FSYNC_INV
   - C_FSYNC_OR
-  - C_MCLK_BUF
   - C_PLL_100N
   - C_PLL_1U
   - C_USB_VBUS
@@ -458,27 +518,31 @@ selections:
   - L_U_1V8
   - L_U_3V3X
   - L_U_CORE
-  - Q_MCLK_GATE
   - Q_TDM_GATE
   - Q_VBUS
-  - R_ADC_CLOCK_OK_PD
-  - R_ADC_DATA_PD
-  - R_ADC_OK_PU
-  - R_BCLK
-  - R_BCLK_RAW_PD
   - R_1V8_FB_BOTTOM
   - R_1V8_FB_TOP
+  - R_1V8_OK_BOT
+  - R_1V8_OK_TOP
   - R_3V3X_FB_BOTTOM
   - R_3V3X_FB_TOP
+  - R_ADC_CLOCK_OK_PD
+  - R_ADC_DATA_PD
+  - R_ADC_I2C_SCL_A_PU
+  - R_ADC_I2C_SCL_B_PU
+  - R_ADC_I2C_SDA_A_PU
+  - R_ADC_I2C_SDA_B_PU
+  - R_ADC_OK_BOT
+  - R_ADC_OK_PU
+  - R_ADC_OK_TOP
+  - R_BCLK
+  - R_BCLK_RAW_PD
   - R_CORE_EN_PU
   - R_CORE_FB_BOTTOM
   - R_CORE_FB_TOP
   - R_FSYNC
   - R_FSYNC_EXT_PD
   - R_FSYNC_RAW_PD
-  - R_MCLK
-  - R_MCLK_OE_PU
-  - R_MCLK_RAW_PD
   - R_QSPI_CS
   - R_TDM_OE_PU
   - R_USB_CC1
@@ -489,15 +553,14 @@ selections:
   - R_VBUS_PU
   - R_XTAL_DRIVE
   - R_XTAL_FB
+  - R_XU_3V3_OK_BOT
+  - R_XU_3V3_OK_TOP
   - R_XU_RST_PU
   - U_1V8
-  - R_1V8_OK_TOP
-  - R_1V8_OK_BOT
   - U_1V8_OK
   - U_3V3X
   - U_ADC_CLOCK_OK
-  - R_ADC_OK_TOP
-  - R_ADC_OK_BOT
+  - U_ADC_I2C_XLATE
   - U_ADC_OK
   - U_ADC_OUT
   - U_BCLK_INV
@@ -507,36 +570,36 @@ selections:
   - U_FSYNC_FF1
   - U_FSYNC_FF2
   - U_FSYNC_OR
-  - U_MCLK_BUF
   - U_TDM_XLATE
   - U_USB_CC_ESD
   - U_USB_ESD
   - U_USB_VBUS_ESD
-  - R_XU_3V3_OK_TOP
-  - R_XU_3V3_OK_BOT
   - U_XU_3V3_OK
   - Y_AUDIO
   - Y_XU
-  rationale: User explicitly requested an onboard USB IC. Count all101 digital support references and
-    all6 USB-front-end references, including regulators, flash, clocks, reset, programming and ADC interface
-    conditioning.
+  rationale: User explicitly requested an onboard USB IC. Count the digital support
+    references and all6 USB-front-end references, including regulators, flash, clocks,
+    reset, programming and ADC interface conditioning.
   exception:
-    decision_rationale: An external bridge cannot satisfy the requested onboard-IC boundary. XU316 supports
-      the selected high-speed multichannel USB architecture with an exposed hardware programming interface;
-      board-specific firmware remains a separate unimplemented dependency.
-    evidence: 01_docs/research/2026-09-22-usb-ic-research.md and digital-source-adoption.md document exact
-      part selection, source support and stack capabilities. BRIEF D2 supersedes the research report prior
-      firmware-authorization interpretation.
+    decision_rationale: An external bridge cannot satisfy the requested onboard-IC
+      boundary. XU316 supports the selected high-speed multichannel USB architecture
+      with an exposed hardware programming interface; board-specific firmware remains
+      a separate unimplemented dependency.
+    evidence: 01_docs/research/2026-09-22-usb-ic-research.md and digital-source-adoption.md
+      document exact part selection, source support and stack capabilities. BRIEF
+      D2 supersedes the research report prior firmware-authorization interpretation.
     modules_considered:
     - part: miniDSP MCHStreamer
-      rejected_because: The previous external USB bridge does not satisfy the newly requested onboard
-        bare-IC carrier architecture.
-      evidence: User request in BRIEF original prompt and ADR0001; retained carrier used this external
-        transport.
+      rejected_because: The previous external USB bridge does not satisfy the newly
+        requested onboard bare-IC carrier architecture.
+      evidence: User request in BRIEF original prompt and ADR0001; retained carrier
+        used this external transport.
     - part: XMOS XK-AUDIO-316-MC
-      rejected_because: Useful reference and prototype platform, but adopting the evaluation board does
-        not implement the requested onboard IC and Crow analog/power interface on the new carrier.
-      evidence: XMOS multichannel reference hardware and USB stack evidence linked in 2026-09-22-usb-ic-research.md.
+      rejected_because: Useful reference and prototype platform, but adopting the
+        evaluation board does not implement the requested onboard IC and Crow analog/power
+        interface on the new carrier.
+      evidence: XMOS multichannel reference hardware and USB stack evidence linked
+        in 2026-09-22-usb-ic-research.md.
     adr: 01_docs/decisions/0003-integrated-subsystem-boundaries.md
 - function: external_twelve_volt_to_five_volt
   part: TPSM63603RDHR
@@ -554,10 +617,10 @@ selections:
 - function: synchronous_audio_master_clock
   part: SX5M24.576M20F30TNN
   implementation: module
-  rationale: >-
-    The selected packaged CMOS oscillator integrates its resonator and sustaining
-    circuit and supplies the 24.576 MHz audio reference. This is an existing
-    source-selected oscillator module, not a new bare resonator design. External
-    bypassing and clock buffers remain source-owned; actual clock phase and
-    signal integrity require native timing and first-article verification.
-  support_refs: [C_AUDIO_OSC]
+  rationale: The selected packaged CMOS oscillator integrates its resonator and sustaining
+    circuit and supplies the 24.576 MHz audio reference. This is an existing source-selected
+    oscillator module, not a new bare resonator design. External bypassing and clock
+    buffers remain source-owned; actual clock phase and signal integrity require native
+    timing and first-article verification.
+  support_refs:
+  - C_AUDIO_OSC

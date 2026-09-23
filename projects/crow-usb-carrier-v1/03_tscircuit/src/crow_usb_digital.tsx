@@ -63,6 +63,9 @@ function SM8_DCTLand(){return <footprint>{[1,2,3,4].map((n,i)=><P key={n} n={n} 
 function FTSH2x5Land(){return <footprint>{Array.from({length:10},(_,i)=>{const row=Math.floor(i/2),col=i%2;return <P key={i+1} n={i+1} x={col?0.635:-0.635} y={(2-row)*1.27} w={0.7} h={1.5}/>})}</footprint>}
 /** TI drawing 4220552/B: DSE0006A, 0.5-mm pitch, 0.25 x 0.7-mm lands. */
 function DSE0006ALand(){return <footprint>{[1,2,3].map((n,i)=><P key={n} n={n} x={-0.6} y={(1-i)*0.5} w={0.7} h={0.25}/>)}{[4,5,6].map((n,i)=><P key={n} n={n} x={0.6} y={(i-1)*0.5} w={0.7} h={0.25}/>)}</footprint>}
+/** TI TCA9406 DCU0008A drawing 4225266/A: 0.5-mm pitch,
+ * 8×0.85×0.30-mm lands on 3.1-mm opposite pad-center lines. */
+function Tca9406DcuLand(){return <footprint>{[1,2,3,4].map((n,i)=><P key={n} n={n} x={-1.55} y={(1.5-i)*0.5} w={0.85} h={0.3}/>)}{[5,6,7,8].map((n,i)=><P key={n} n={n} x={1.55} y={(i-1.5)*0.5} w={0.85} h={0.3}/>)}</footprint>}
 /** TI drawing 4222645/E: DMQ0006A asymmetric 0.5-mm-pitch VSON lands. */
 function DMQ0006ALand(){return <footprint>{[1,2,3].map((n,i)=><P key={n} n={n} x={-0.55} y={(1-i)*0.5} w={0.6} h={0.25}/>)}{[4,5,6].map((n,i)=><P key={n} n={n} x={0.35} y={(i-1)*0.5} w={1.0} h={0.25}/>)}</footprint>}
 
@@ -328,7 +331,7 @@ export function CrowUsbDigital({net=defaultNet}:CrowUsbDigitalProps={}){
   {/* TCA9406 OE is 5.5-V tolerant: ADC_READY may directly enable the
       1V8/3V3_ADC bus after analog POR and both digital rail qualifiers.
       Both ports become high-Z if OE is low or either supply is absent. */}
-  <Chip name="U_ADC_I2C_XLATE" manufacturerPartNumber="TCA9406DCUR" footprint="vssop8_dcu"
+  <Chip name="U_ADC_I2C_XLATE" manufacturerPartNumber="TCA9406DCUR" footprint={<Tca9406DcuLand/>}
    pinLabels={{pin1:"SDA_B",pin2:"GND",pin3:"VCCA",pin4:"SDA_A",pin5:"SCL_A",pin6:"OE",pin7:"VCCB",pin8:"SCL_B"}}
    connections={{pin1:n("ADC_I2C_SDA"),pin2:n("GND"),pin3:n("1V8"),pin4:n("XU_I2C_SDA_1V8"),pin5:n("XU_I2C_SCL_1V8"),pin6:n("ADC_READY"),pin7:n("3V3_ADC"),pin8:n("ADC_I2C_SCL")}} />
   <C name="C_ADC_I2C_A" value="100nF" a="1V8" b="GND" n={n} />

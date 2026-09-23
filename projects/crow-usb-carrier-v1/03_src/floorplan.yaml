@@ -41,7 +41,9 @@ libraries:
 - /usr/share/kicad/footprints
 - 03_src/lib
 thermal_vias:
-  protection: {capping: yes, filling: yes}
+  protection:
+    capping: true
+    filling: true
   fields:
   - ref: U_LDO
     pad: '11'
@@ -215,49 +217,59 @@ placement:
     attrs:
     - exclude_from_pos_files
   - match:
+    - C_ADC_A_AREG_100N
+    - C_ADC_A_AREG_1U
+    - C_ADC_A_AVDD_100N
+    - C_ADC_A_AVDD_10U
+    - C_ADC_A_DREG_100N
+    - C_ADC_A_DREG_1U
+    - C_ADC_A_IOVDD_100N
+    - C_ADC_A_IOVDD_10U
+    - C_ADC_A_VREF_100N
+    - C_ADC_A_VREF_10U
+    - C_ADC_B_AREG_100N
+    - C_ADC_B_AREG_1U
+    - C_ADC_B_AVDD_100N
+    - C_ADC_B_AVDD_10U
+    - C_ADC_B_DREG_100N
+    - C_ADC_B_DREG_1U
+    - C_ADC_B_IOVDD_100N
+    - C_ADC_B_IOVDD_10U
+    - C_ADC_B_VREF_100N
+    - C_ADC_B_VREF_10U
     - C_ADC_DIGITAL_BAD
     - C_ADC_DIGITAL_OK
+    - C_ADC_I2C_A
+    - C_ADC_I2C_B
+    - C_ADC_PWR_BAD
     - C_ADC_READY
     - C_ADC_READY_BAD
     - C_ADC_START_DELAY
-    - C_FILT1_10U
-    - C_FILT1_1U
-    - C_FILT1_470U
-    - C_FILT2_10U
-    - C_FILT2_1U
-    - C_FILT2_470U
-    - C_LDO_A
-    - C_LDO_D
     - C_RST1
     - C_RST2
     - C_RST_T
-    - C_VDDA1_10N
-    - C_VDDA1_4U7
-    - C_VDDA2_10N
-    - C_VDDA2_4U7
-    - C_VDDIO
-    - C_VMID1_470N
-    - C_VMID1_4U7
     - C_VMID1_EXT_10U
     - C_VMID1_EXT_1U
-    - C_VMID2_470N
-    - C_VMID2_4U7
     - C_VMID2_EXT_10U
     - C_VMID2_EXT_1U
     - Q_ADC_DELAY_DISCH
     - Q_ADC_DIG_RST
+    - Q_ADC_PWR_RST
     - Q_RST1
+    - R_ADC_1V8_OK_BOT
+    - R_ADC_1V8_OK_TOP
+    - R_ADC_3V3X_OK_BOT
+    - R_ADC_3V3X_OK_TOP
     - R_ADC_DELAY_GATE_PD
     - R_ADC_DIGITAL_OK_PU
     - R_ADC_DIG_RST_PD
+    - R_ADC_I2C_SCL_A_PU
+    - R_ADC_I2C_SCL_B_PU
+    - R_ADC_I2C_SDA_A_PU
+    - R_ADC_I2C_SDA_B_PU
+    - R_ADC_PWR_BAD_PD
     - R_ADC_READY_PD
     - R_ADC_START_DELAY
-    - R_CFG1
-    - R_CFG2
-    - R_CFG4
-    - R_CFG5
-    - R_FILT1P
-    - R_FILT2P
     - R_RESET_GPD
     - R_RESET_PU
     - R_RST_T
@@ -265,14 +277,13 @@ placement:
     - R_VMID1_TOP
     - R_VMID2_BOT
     - R_VMID2_TOP
-    - U_ADC
-    - R_ADC_1V8_OK_TOP
-    - R_ADC_1V8_OK_BOT
     - U_ADC_1V8_OK
-    - R_ADC_3V3X_OK_TOP
-    - R_ADC_3V3X_OK_BOT
     - U_ADC_3V3X_OK
+    - U_ADC_A
+    - U_ADC_B
     - U_ADC_DIGITAL_BAD
+    - U_ADC_I2C_XLATE
+    - U_ADC_PWR_BAD
     - U_ADC_READY
     - U_ADC_READY_BAD
     - U_RST1
@@ -281,6 +292,10 @@ placement:
   - match:
     - C_A1N
     - C_A1P
+    - C_ADC_AC1N1
+    - C_ADC_AC1N2
+    - C_ADC_AC1P1
+    - C_ADC_AC1P2
     - C_ADC_CM1N
     - C_ADC_CM1P
     - C_FB1N
@@ -294,6 +309,7 @@ placement:
     - C_SPOKE_DVDT1
     - C_SPOKE_IN1
     - C_SPOKE_OUT1
+    - J1
     - R_ADC_PD1N
     - R_ADC_PD1P
     - R_B1N
@@ -314,6 +330,10 @@ placement:
   - match:
     - C_A2N
     - C_A2P
+    - C_ADC_AC2N1
+    - C_ADC_AC2N2
+    - C_ADC_AC2P1
+    - C_ADC_AC2P2
     - C_ADC_CM2N
     - C_ADC_CM2P
     - C_FB2N
@@ -327,6 +347,7 @@ placement:
     - C_SPOKE_DVDT2
     - C_SPOKE_IN2
     - C_SPOKE_OUT2
+    - J2
     - R_ADC_PD2N
     - R_ADC_PD2P
     - R_B2N
@@ -347,6 +368,10 @@ placement:
   - match:
     - C_A3N
     - C_A3P
+    - C_ADC_AC3N1
+    - C_ADC_AC3N2
+    - C_ADC_AC3P1
+    - C_ADC_AC3P2
     - C_ADC_CM3N
     - C_ADC_CM3P
     - C_FB3N
@@ -360,6 +385,7 @@ placement:
     - C_SPOKE_DVDT3
     - C_SPOKE_IN3
     - C_SPOKE_OUT3
+    - J3
     - R_ADC_PD3N
     - R_ADC_PD3P
     - R_B3N
@@ -380,6 +406,10 @@ placement:
   - match:
     - C_A4N
     - C_A4P
+    - C_ADC_AC4N1
+    - C_ADC_AC4N2
+    - C_ADC_AC4P1
+    - C_ADC_AC4P2
     - C_ADC_CM4N
     - C_ADC_CM4P
     - C_FB4N
@@ -393,6 +423,7 @@ placement:
     - C_SPOKE_DVDT4
     - C_SPOKE_IN4
     - C_SPOKE_OUT4
+    - J4
     - R_ADC_PD4N
     - R_ADC_PD4P
     - R_B4N
@@ -413,6 +444,10 @@ placement:
   - match:
     - C_A5N
     - C_A5P
+    - C_ADC_AC5N1
+    - C_ADC_AC5N2
+    - C_ADC_AC5P1
+    - C_ADC_AC5P2
     - C_ADC_CM5N
     - C_ADC_CM5P
     - C_FB5N
@@ -426,6 +461,7 @@ placement:
     - C_SPOKE_DVDT5
     - C_SPOKE_IN5
     - C_SPOKE_OUT5
+    - J5
     - R_ADC_PD5N
     - R_ADC_PD5P
     - R_B5N
@@ -446,6 +482,10 @@ placement:
   - match:
     - C_A6N
     - C_A6P
+    - C_ADC_AC6N1
+    - C_ADC_AC6N2
+    - C_ADC_AC6P1
+    - C_ADC_AC6P2
     - C_ADC_CM6N
     - C_ADC_CM6P
     - C_FB6N
@@ -459,6 +499,7 @@ placement:
     - C_SPOKE_DVDT6
     - C_SPOKE_IN6
     - C_SPOKE_OUT6
+    - J6
     - R_ADC_PD6N
     - R_ADC_PD6P
     - R_B6N
@@ -479,6 +520,10 @@ placement:
   - match:
     - C_A7N
     - C_A7P
+    - C_ADC_AC7N1
+    - C_ADC_AC7N2
+    - C_ADC_AC7P1
+    - C_ADC_AC7P2
     - C_ADC_CM7N
     - C_ADC_CM7P
     - C_FB7N
@@ -492,6 +537,7 @@ placement:
     - C_SPOKE_DVDT7
     - C_SPOKE_IN7
     - C_SPOKE_OUT7
+    - J7
     - R_ADC_PD7N
     - R_ADC_PD7P
     - R_B7N
@@ -512,6 +558,10 @@ placement:
   - match:
     - C_A8N
     - C_A8P
+    - C_ADC_AC8N1
+    - C_ADC_AC8N2
+    - C_ADC_AC8P1
+    - C_ADC_AC8P2
     - C_ADC_CM8N
     - C_ADC_CM8P
     - C_FB8N
@@ -525,6 +575,7 @@ placement:
     - C_SPOKE_DVDT8
     - C_SPOKE_IN8
     - C_SPOKE_OUT8
+    - J8
     - R_ADC_PD8N
     - R_ADC_PD8P
     - R_B8N
@@ -552,33 +603,27 @@ placement:
     - C_FSYNC_FF2
     - C_FSYNC_INV
     - C_FSYNC_OR
-    - C_MCLK_BUF
     - C_XLATE_A
     - C_XLATE_B
-    - Q_MCLK_GATE
     - Q_TDM_GATE
     - R_ADC_CLOCK_OK_PD
     - R_ADC_DATA_PD
+    - R_ADC_OK_BOT
     - R_ADC_OK_PU
+    - R_ADC_OK_TOP
     - R_BCLK
     - R_BCLK_RAW_PD
     - R_FSYNC
     - R_FSYNC_EXT_PD
     - R_FSYNC_RAW_PD
-    - R_MCLK
-    - R_MCLK_OE_PU
-    - R_MCLK_RAW_PD
     - R_TDM_OE_PU
     - U_ADC_CLOCK_OK
-    - R_ADC_OK_TOP
-    - R_ADC_OK_BOT
     - U_ADC_OK
     - U_ADC_OUT
     - U_BCLK_INV
     - U_FSYNC_FF1
     - U_FSYNC_FF2
     - U_FSYNC_OR
-    - U_MCLK_BUF
     - U_TDM_XLATE
     - Y_AUDIO
     region: audio_clock_tdm
@@ -593,8 +638,8 @@ placement:
     - Y_XU
     region: clock_flash_debug
   - match:
-    - C_1V8_OK_VDD
     - C_1V8_FF
+    - C_1V8_OK_VDD
     - C_3V3X_FF
     - C_CORE_FF
     - C_CORE_EN_CT
@@ -615,21 +660,21 @@ placement:
     - L_U_CORE
     - R_1V8_FB_BOTTOM
     - R_1V8_FB_TOP
+    - R_1V8_OK_BOT
+    - R_1V8_OK_TOP
     - R_3V3X_FB_BOTTOM
     - R_3V3X_FB_TOP
     - R_CORE_EN_PU
     - R_CORE_FB_BOTTOM
     - R_CORE_FB_TOP
+    - R_XU_3V3_OK_BOT
+    - R_XU_3V3_OK_TOP
     - R_XU_RST_PU
     - U_1V8
-    - R_1V8_OK_TOP
-    - R_1V8_OK_BOT
     - U_1V8_OK
     - U_3V3X
     - U_CORE
     - U_CORE_OK
-    - R_XU_3V3_OK_TOP
-    - R_XU_3V3_OK_BOT
     - U_XU_3V3_OK
     region: digital_power
   - match:
@@ -645,6 +690,7 @@ placement:
     - D_IN
     - D_QIN_GS
     - F_IN
+    - J_PWR
     - Q_IN
     - R_AGND_JOIN
     - R_QIN_G
@@ -658,9 +704,28 @@ placement:
     - C_AUDIO_CT1
     - C_AUDIO_CT2
     - C_DUMP_LOGIC
-    - C_DUMP_TIME
+    - C_DUMP_TIME1
+    - C_DUMP_TIME2
+    - C_DUMP_TIME3
+    - C_DUMP_TIME4
+    - C_DUMP_TIME5
+    - C_DUMP_TIME6
+    - C_DUMP_TIME7
+    - C_DUMP_TIME8
     - C_HOLD1
+    - C_HOLD10
+    - C_HOLD11
+    - C_HOLD12
+    - C_HOLD13
+    - C_HOLD14
     - C_HOLD2
+    - C_HOLD3
+    - C_HOLD4
+    - C_HOLD5
+    - C_HOLD6
+    - C_HOLD7
+    - C_HOLD8
+    - C_HOLD9
     - C_LDO_EN
     - C_LDO_IN
     - C_LDO_NR4
@@ -682,6 +747,7 @@ placement:
     - R_DUMP_PD
     - R_DUMP_TIME1
     - R_DUMP_TIME2
+    - R_DUMP_TIME3
     - R_LDO_ILIM
     - R_LDO_PG_BOT_A
     - R_LDO_PG_BOT_B
@@ -702,6 +768,7 @@ placement:
     region: quiet_power
   - match:
     - C_USB_VBUS
+    - J_USB
     - R_USB_CC1
     - R_USB_CC2
     - R_USB_VBUS_BLEED
@@ -775,7 +842,8 @@ placement:
     - C_A8P
     model_override: ${KIPRJMOD}/../03_src/lib/3dmodels/kicad/C_Rect_L7.2mm_W5.0mm_P5.00mm.step
   - match:
-    - U_ADC
+    - U_ADC_A
+    - U_ADC_B
     model_override: ${KIPRJMOD}/../03_src/lib/3dmodels/derived/Cirrus_CS5308P_QFN48_nominal.wrl
   - match:
     - U_ISO1
@@ -791,6 +859,9 @@ placement:
     - U_AUDIO
     - U_PWR
     model_override: ${KIPRJMOD}/../03_src/lib/3dmodels/derived/TI_DSE0006A_nominal.wrl
+  - match:
+    - J_JTAG
+    region: debug_connector
   legalize:
     enable: true
     clearance: 0.25

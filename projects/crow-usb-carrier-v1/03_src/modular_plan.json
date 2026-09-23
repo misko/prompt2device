@@ -5,37 +5,44 @@
     {
       "id": "adc_reference",
       "refs": [
+        "C_ADC_A_AREG_100N",
+        "C_ADC_A_AREG_1U",
+        "C_ADC_A_AVDD_100N",
+        "C_ADC_A_AVDD_10U",
+        "C_ADC_A_DREG_100N",
+        "C_ADC_A_DREG_1U",
+        "C_ADC_A_IOVDD_100N",
+        "C_ADC_A_IOVDD_10U",
+        "C_ADC_A_VREF_100N",
+        "C_ADC_A_VREF_10U",
+        "C_ADC_B_AREG_100N",
+        "C_ADC_B_AREG_1U",
+        "C_ADC_B_AVDD_100N",
+        "C_ADC_B_AVDD_10U",
+        "C_ADC_B_DREG_100N",
+        "C_ADC_B_DREG_1U",
+        "C_ADC_B_IOVDD_100N",
+        "C_ADC_B_IOVDD_10U",
+        "C_ADC_B_VREF_100N",
+        "C_ADC_B_VREF_10U",
         "C_ADC_DIGITAL_BAD",
         "C_ADC_DIGITAL_OK",
+        "C_ADC_I2C_A",
+        "C_ADC_I2C_B",
+        "C_ADC_PWR_BAD",
         "C_ADC_READY",
         "C_ADC_READY_BAD",
         "C_ADC_START_DELAY",
-        "C_FILT1_10U",
-        "C_FILT1_1U",
-        "C_FILT1_470U",
-        "C_FILT2_10U",
-        "C_FILT2_1U",
-        "C_FILT2_470U",
-        "C_LDO_A",
-        "C_LDO_D",
         "C_RST1",
         "C_RST2",
         "C_RST_T",
-        "C_VDDA1_10N",
-        "C_VDDA1_4U7",
-        "C_VDDA2_10N",
-        "C_VDDA2_4U7",
-        "C_VDDIO",
-        "C_VMID1_470N",
-        "C_VMID1_4U7",
         "C_VMID1_EXT_10U",
         "C_VMID1_EXT_1U",
-        "C_VMID2_470N",
-        "C_VMID2_4U7",
         "C_VMID2_EXT_10U",
         "C_VMID2_EXT_1U",
         "Q_ADC_DELAY_DISCH",
         "Q_ADC_DIG_RST",
+        "Q_ADC_PWR_RST",
         "Q_RST1",
         "R_ADC_1V8_OK_BOT",
         "R_ADC_1V8_OK_TOP",
@@ -44,14 +51,13 @@
         "R_ADC_DELAY_GATE_PD",
         "R_ADC_DIGITAL_OK_PU",
         "R_ADC_DIG_RST_PD",
+        "R_ADC_I2C_SCL_A_PU",
+        "R_ADC_I2C_SCL_B_PU",
+        "R_ADC_I2C_SDA_A_PU",
+        "R_ADC_I2C_SDA_B_PU",
+        "R_ADC_PWR_BAD_PD",
         "R_ADC_READY_PD",
         "R_ADC_START_DELAY",
-        "R_CFG1",
-        "R_CFG2",
-        "R_CFG4",
-        "R_CFG5",
-        "R_FILT1P",
-        "R_FILT2P",
         "R_RESET_GPD",
         "R_RESET_PU",
         "R_RST_T",
@@ -59,10 +65,13 @@
         "R_VMID1_TOP",
         "R_VMID2_BOT",
         "R_VMID2_TOP",
-        "U_ADC",
         "U_ADC_1V8_OK",
         "U_ADC_3V3X_OK",
+        "U_ADC_A",
+        "U_ADC_B",
         "U_ADC_DIGITAL_BAD",
+        "U_ADC_I2C_XLATE",
+        "U_ADC_PWR_BAD",
         "U_ADC_READY",
         "U_ADC_READY_BAD",
         "U_RST1",
@@ -78,6 +87,10 @@
       "refs": [
         "C_A1N",
         "C_A1P",
+        "C_ADC_AC1N1",
+        "C_ADC_AC1N2",
+        "C_ADC_AC1P1",
+        "C_ADC_AC1P2",
         "C_ADC_CM1N",
         "C_ADC_CM1P",
         "C_FB1N",
@@ -119,6 +132,10 @@
       "refs": [
         "C_A2N",
         "C_A2P",
+        "C_ADC_AC2N1",
+        "C_ADC_AC2N2",
+        "C_ADC_AC2P1",
+        "C_ADC_AC2P2",
         "C_ADC_CM2N",
         "C_ADC_CM2P",
         "C_FB2N",
@@ -160,6 +177,10 @@
       "refs": [
         "C_A3N",
         "C_A3P",
+        "C_ADC_AC3N1",
+        "C_ADC_AC3N2",
+        "C_ADC_AC3P1",
+        "C_ADC_AC3P2",
         "C_ADC_CM3N",
         "C_ADC_CM3P",
         "C_FB3N",
@@ -201,6 +222,10 @@
       "refs": [
         "C_A4N",
         "C_A4P",
+        "C_ADC_AC4N1",
+        "C_ADC_AC4N2",
+        "C_ADC_AC4P1",
+        "C_ADC_AC4P2",
         "C_ADC_CM4N",
         "C_ADC_CM4P",
         "C_FB4N",
@@ -242,6 +267,10 @@
       "refs": [
         "C_A5N",
         "C_A5P",
+        "C_ADC_AC5N1",
+        "C_ADC_AC5N2",
+        "C_ADC_AC5P1",
+        "C_ADC_AC5P2",
         "C_ADC_CM5N",
         "C_ADC_CM5P",
         "C_FB5N",
@@ -283,6 +312,10 @@
       "refs": [
         "C_A6N",
         "C_A6P",
+        "C_ADC_AC6N1",
+        "C_ADC_AC6N2",
+        "C_ADC_AC6P1",
+        "C_ADC_AC6P2",
         "C_ADC_CM6N",
         "C_ADC_CM6P",
         "C_FB6N",
@@ -324,6 +357,10 @@
       "refs": [
         "C_A7N",
         "C_A7P",
+        "C_ADC_AC7N1",
+        "C_ADC_AC7N2",
+        "C_ADC_AC7P1",
+        "C_ADC_AC7P2",
         "C_ADC_CM7N",
         "C_ADC_CM7P",
         "C_FB7N",
@@ -365,6 +402,10 @@
       "refs": [
         "C_A8N",
         "C_A8P",
+        "C_ADC_AC8N1",
+        "C_ADC_AC8N2",
+        "C_ADC_AC8P1",
+        "C_ADC_AC8P2",
         "C_ADC_CM8N",
         "C_ADC_CM8P",
         "C_FB8N",
@@ -413,10 +454,8 @@
         "C_FSYNC_FF2",
         "C_FSYNC_INV",
         "C_FSYNC_OR",
-        "C_MCLK_BUF",
         "C_XLATE_A",
         "C_XLATE_B",
-        "Q_MCLK_GATE",
         "Q_TDM_GATE",
         "R_ADC_CLOCK_OK_PD",
         "R_ADC_DATA_PD",
@@ -428,9 +467,6 @@
         "R_FSYNC",
         "R_FSYNC_EXT_PD",
         "R_FSYNC_RAW_PD",
-        "R_MCLK",
-        "R_MCLK_OE_PU",
-        "R_MCLK_RAW_PD",
         "R_TDM_OE_PU",
         "U_ADC_CLOCK_OK",
         "U_ADC_OK",
@@ -439,7 +475,6 @@
         "U_FSYNC_FF1",
         "U_FSYNC_FF2",
         "U_FSYNC_OR",
-        "U_MCLK_BUF",
         "U_TDM_XLATE",
         "Y_AUDIO"
       ],
@@ -558,9 +593,28 @@
         "C_AUDIO_CT1",
         "C_AUDIO_CT2",
         "C_DUMP_LOGIC",
-        "C_DUMP_TIME",
+        "C_DUMP_TIME1",
+        "C_DUMP_TIME2",
+        "C_DUMP_TIME3",
+        "C_DUMP_TIME4",
+        "C_DUMP_TIME5",
+        "C_DUMP_TIME6",
+        "C_DUMP_TIME7",
+        "C_DUMP_TIME8",
         "C_HOLD1",
+        "C_HOLD10",
+        "C_HOLD11",
+        "C_HOLD12",
+        "C_HOLD13",
+        "C_HOLD14",
         "C_HOLD2",
+        "C_HOLD3",
+        "C_HOLD4",
+        "C_HOLD5",
+        "C_HOLD6",
+        "C_HOLD7",
+        "C_HOLD8",
+        "C_HOLD9",
         "C_LDO_EN",
         "C_LDO_IN",
         "C_LDO_NR4",
@@ -582,6 +636,7 @@
         "R_DUMP_PD",
         "R_DUMP_TIME1",
         "R_DUMP_TIME2",
+        "R_DUMP_TIME3",
         "R_LDO_ILIM",
         "R_LDO_PG_BOT_A",
         "R_LDO_PG_BOT_B",
@@ -679,12 +734,12 @@
       "net": "ADC1N",
       "endpoints": {
         "adc_reference": [
-          "U_ADC.47"
+          "U_ADC_A.13"
         ],
         "analog_ch1": [
-          "C_ADC_CM1N.1",
-          "R_ADC_PD1N.1",
-          "U_ISO1.6"
+          "C_ADC_AC1N1.2",
+          "C_ADC_AC1N2.2",
+          "C_ADC_CM1N.1"
         ]
       },
       "requirements": [
@@ -697,12 +752,12 @@
       "net": "ADC1P",
       "endpoints": {
         "adc_reference": [
-          "U_ADC.48"
+          "U_ADC_A.12"
         ],
         "analog_ch1": [
-          "C_ADC_CM1P.1",
-          "R_ADC_PD1P.1",
-          "U_ISO1.4"
+          "C_ADC_AC1P1.2",
+          "C_ADC_AC1P2.2",
+          "C_ADC_CM1P.1"
         ]
       },
       "requirements": [
@@ -715,12 +770,12 @@
       "net": "ADC2N",
       "endpoints": {
         "adc_reference": [
-          "U_ADC.45"
+          "U_ADC_A.11"
         ],
         "analog_ch2": [
-          "C_ADC_CM2N.1",
-          "R_ADC_PD2N.1",
-          "U_ISO2.6"
+          "C_ADC_AC2N1.2",
+          "C_ADC_AC2N2.2",
+          "C_ADC_CM2N.1"
         ]
       },
       "requirements": [
@@ -733,12 +788,12 @@
       "net": "ADC2P",
       "endpoints": {
         "adc_reference": [
-          "U_ADC.46"
+          "U_ADC_A.10"
         ],
         "analog_ch2": [
-          "C_ADC_CM2P.1",
-          "R_ADC_PD2P.1",
-          "U_ISO2.4"
+          "C_ADC_AC2P1.2",
+          "C_ADC_AC2P2.2",
+          "C_ADC_CM2P.1"
         ]
       },
       "requirements": [
@@ -751,12 +806,12 @@
       "net": "ADC3N",
       "endpoints": {
         "adc_reference": [
-          "U_ADC.41"
+          "U_ADC_A.9"
         ],
         "analog_ch3": [
-          "C_ADC_CM3N.1",
-          "R_ADC_PD3N.1",
-          "U_ISO3.6"
+          "C_ADC_AC3N1.2",
+          "C_ADC_AC3N2.2",
+          "C_ADC_CM3N.1"
         ]
       },
       "requirements": [
@@ -769,12 +824,12 @@
       "net": "ADC3P",
       "endpoints": {
         "adc_reference": [
-          "U_ADC.42"
+          "U_ADC_A.8"
         ],
         "analog_ch3": [
-          "C_ADC_CM3P.1",
-          "R_ADC_PD3P.1",
-          "U_ISO3.4"
+          "C_ADC_AC3P1.2",
+          "C_ADC_AC3P2.2",
+          "C_ADC_CM3P.1"
         ]
       },
       "requirements": [
@@ -787,12 +842,12 @@
       "net": "ADC4N",
       "endpoints": {
         "adc_reference": [
-          "U_ADC.39"
+          "U_ADC_A.7"
         ],
         "analog_ch4": [
-          "C_ADC_CM4N.1",
-          "R_ADC_PD4N.1",
-          "U_ISO4.6"
+          "C_ADC_AC4N1.2",
+          "C_ADC_AC4N2.2",
+          "C_ADC_CM4N.1"
         ]
       },
       "requirements": [
@@ -805,12 +860,12 @@
       "net": "ADC4P",
       "endpoints": {
         "adc_reference": [
-          "U_ADC.40"
+          "U_ADC_A.6"
         ],
         "analog_ch4": [
-          "C_ADC_CM4P.1",
-          "R_ADC_PD4P.1",
-          "U_ISO4.4"
+          "C_ADC_AC4P1.2",
+          "C_ADC_AC4P2.2",
+          "C_ADC_CM4P.1"
         ]
       },
       "requirements": [
@@ -823,12 +878,12 @@
       "net": "ADC5N",
       "endpoints": {
         "adc_reference": [
-          "U_ADC.13"
+          "U_ADC_B.7"
         ],
         "analog_ch5": [
-          "C_ADC_CM5N.1",
-          "R_ADC_PD5N.1",
-          "U_ISO5.6"
+          "C_ADC_AC5N1.2",
+          "C_ADC_AC5N2.2",
+          "C_ADC_CM5N.1"
         ]
       },
       "requirements": [
@@ -841,12 +896,12 @@
       "net": "ADC5P",
       "endpoints": {
         "adc_reference": [
-          "U_ADC.14"
+          "U_ADC_B.6"
         ],
         "analog_ch5": [
-          "C_ADC_CM5P.1",
-          "R_ADC_PD5P.1",
-          "U_ISO5.4"
+          "C_ADC_AC5P1.2",
+          "C_ADC_AC5P2.2",
+          "C_ADC_CM5P.1"
         ]
       },
       "requirements": [
@@ -859,12 +914,12 @@
       "net": "ADC6N",
       "endpoints": {
         "adc_reference": [
-          "U_ADC.15"
+          "U_ADC_B.9"
         ],
         "analog_ch6": [
-          "C_ADC_CM6N.1",
-          "R_ADC_PD6N.1",
-          "U_ISO6.6"
+          "C_ADC_AC6N1.2",
+          "C_ADC_AC6N2.2",
+          "C_ADC_CM6N.1"
         ]
       },
       "requirements": [
@@ -877,12 +932,12 @@
       "net": "ADC6P",
       "endpoints": {
         "adc_reference": [
-          "U_ADC.16"
+          "U_ADC_B.8"
         ],
         "analog_ch6": [
-          "C_ADC_CM6P.1",
-          "R_ADC_PD6P.1",
-          "U_ISO6.4"
+          "C_ADC_AC6P1.2",
+          "C_ADC_AC6P2.2",
+          "C_ADC_CM6P.1"
         ]
       },
       "requirements": [
@@ -895,12 +950,12 @@
       "net": "ADC7N",
       "endpoints": {
         "adc_reference": [
-          "U_ADC.19"
+          "U_ADC_B.11"
         ],
         "analog_ch7": [
-          "C_ADC_CM7N.1",
-          "R_ADC_PD7N.1",
-          "U_ISO7.6"
+          "C_ADC_AC7N1.2",
+          "C_ADC_AC7N2.2",
+          "C_ADC_CM7N.1"
         ]
       },
       "requirements": [
@@ -913,12 +968,12 @@
       "net": "ADC7P",
       "endpoints": {
         "adc_reference": [
-          "U_ADC.20"
+          "U_ADC_B.10"
         ],
         "analog_ch7": [
-          "C_ADC_CM7P.1",
-          "R_ADC_PD7P.1",
-          "U_ISO7.4"
+          "C_ADC_AC7P1.2",
+          "C_ADC_AC7P2.2",
+          "C_ADC_CM7P.1"
         ]
       },
       "requirements": [
@@ -931,12 +986,12 @@
       "net": "ADC8N",
       "endpoints": {
         "adc_reference": [
-          "U_ADC.21"
+          "U_ADC_B.13"
         ],
         "analog_ch8": [
-          "C_ADC_CM8N.1",
-          "R_ADC_PD8N.1",
-          "U_ISO8.6"
+          "C_ADC_AC8N1.2",
+          "C_ADC_AC8N2.2",
+          "C_ADC_CM8N.1"
         ]
       },
       "requirements": [
@@ -949,12 +1004,12 @@
       "net": "ADC8P",
       "endpoints": {
         "adc_reference": [
-          "U_ADC.22"
+          "U_ADC_B.12"
         ],
         "analog_ch8": [
-          "C_ADC_CM8P.1",
-          "R_ADC_PD8P.1",
-          "U_ISO8.4"
+          "C_ADC_AC8P1.2",
+          "C_ADC_AC8P2.2",
+          "C_ADC_CM8P.1"
         ]
       },
       "requirements": [
@@ -967,7 +1022,8 @@
       "net": "ADC_BCLK",
       "endpoints": {
         "adc_reference": [
-          "U_ADC.29"
+          "U_ADC_A.22",
+          "U_ADC_B.22"
         ],
         "audio_clock_tdm": [
           "R_BCLK.2"
@@ -1002,7 +1058,8 @@
       "net": "ADC_DOUT1",
       "endpoints": {
         "adc_reference": [
-          "U_ADC.25"
+          "U_ADC_A.21",
+          "U_ADC_B.21"
         ],
         "audio_clock_tdm": [
           "R_ADC_DATA_PD.1",
@@ -1019,7 +1076,8 @@
       "net": "ADC_FSYNC",
       "endpoints": {
         "adc_reference": [
-          "U_ADC.24"
+          "U_ADC_A.23",
+          "U_ADC_B.23"
         ],
         "audio_clock_tdm": [
           "R_FSYNC.2"
@@ -1028,22 +1086,6 @@
       "requirements": [
         "Bundle the timing interface through one ADC-to-XMOS corridor and review crosstalk and return vias jointly.",
         "Route ADC_FSYNC on continuous GND with the source resistor adjacent to its driver and no unterminated branch stub."
-      ],
-      "disposition": "Point-to-point digital-audio timing corridor with ownership split at driver and receiver pin escapes."
-    },
-    {
-      "net": "ADC_MCLK",
-      "endpoints": {
-        "adc_reference": [
-          "U_ADC.34"
-        ],
-        "audio_clock_tdm": [
-          "R_MCLK.2"
-        ]
-      },
-      "requirements": [
-        "Bundle the timing interface through one ADC-to-XMOS corridor and review crosstalk and return vias jointly.",
-        "Route ADC_MCLK on continuous GND with the source resistor adjacent to its driver and no unterminated branch stub."
       ],
       "disposition": "Point-to-point digital-audio timing corridor with ownership split at driver and receiver pin escapes."
     },
@@ -1148,60 +1190,65 @@
       "net": "GND",
       "endpoints": {
         "adc_reference": [
+          "C_ADC_A_AREG_100N.2",
+          "C_ADC_A_AREG_1U.2",
+          "C_ADC_A_AVDD_100N.2",
+          "C_ADC_A_AVDD_10U.2",
+          "C_ADC_A_DREG_100N.2",
+          "C_ADC_A_DREG_1U.2",
+          "C_ADC_A_IOVDD_100N.2",
+          "C_ADC_A_IOVDD_10U.2",
+          "C_ADC_A_VREF_100N.2",
+          "C_ADC_A_VREF_10U.2",
+          "C_ADC_B_AREG_100N.2",
+          "C_ADC_B_AREG_1U.2",
+          "C_ADC_B_AVDD_100N.2",
+          "C_ADC_B_AVDD_10U.2",
+          "C_ADC_B_DREG_100N.2",
+          "C_ADC_B_DREG_1U.2",
+          "C_ADC_B_IOVDD_100N.2",
+          "C_ADC_B_IOVDD_10U.2",
+          "C_ADC_B_VREF_100N.2",
+          "C_ADC_B_VREF_10U.2",
           "C_ADC_DIGITAL_BAD.2",
           "C_ADC_DIGITAL_OK.2",
+          "C_ADC_I2C_A.2",
+          "C_ADC_I2C_B.2",
+          "C_ADC_PWR_BAD.2",
           "C_ADC_READY.2",
           "C_ADC_READY_BAD.2",
           "C_ADC_START_DELAY.2",
-          "C_FILT1_10U.2",
-          "C_FILT1_1U.2",
-          "C_FILT1_470U.2",
-          "C_FILT2_10U.2",
-          "C_FILT2_1U.2",
-          "C_FILT2_470U.2",
-          "C_LDO_A.2",
-          "C_LDO_D.2",
           "C_RST1.2",
           "C_RST2.2",
-          "C_VDDA1_10N.2",
-          "C_VDDA1_4U7.2",
-          "C_VDDA2_10N.2",
-          "C_VDDA2_4U7.2",
-          "C_VDDIO.2",
-          "C_VMID1_470N.2",
-          "C_VMID1_4U7.2",
           "C_VMID1_EXT_10U.2",
           "C_VMID1_EXT_1U.2",
-          "C_VMID2_470N.2",
-          "C_VMID2_4U7.2",
           "C_VMID2_EXT_10U.2",
           "C_VMID2_EXT_1U.2",
           "Q_ADC_DELAY_DISCH.2",
           "Q_ADC_DIG_RST.2",
+          "Q_ADC_PWR_RST.2",
           "Q_RST1.2",
           "R_ADC_1V8_OK_BOT.2",
           "R_ADC_3V3X_OK_BOT.2",
           "R_ADC_DELAY_GATE_PD.2",
           "R_ADC_DIG_RST_PD.2",
+          "R_ADC_PWR_BAD_PD.2",
           "R_ADC_READY_PD.2",
-          "R_CFG1.2",
-          "R_CFG5.2",
           "R_RESET_GPD.2",
           "R_VMID1_BOT.2",
           "R_VMID2_BOT.2",
-          "U_ADC.17",
-          "U_ADC.30",
-          "U_ADC.35",
-          "U_ADC.36",
-          "U_ADC.37",
-          "U_ADC.4",
-          "U_ADC.44",
-          "U_ADC.49",
-          "U_ADC.6",
-          "U_ADC.8",
           "U_ADC_1V8_OK.2",
           "U_ADC_3V3X_OK.2",
+          "U_ADC_A.15",
+          "U_ADC_A.16",
+          "U_ADC_A.25",
+          "U_ADC_A.4",
+          "U_ADC_B.15",
+          "U_ADC_B.25",
+          "U_ADC_B.4",
           "U_ADC_DIGITAL_BAD.3",
+          "U_ADC_I2C_XLATE.2",
+          "U_ADC_PWR_BAD.3",
           "U_ADC_READY.3",
           "U_ADC_READY_BAD.3",
           "U_RST1.1",
@@ -1386,10 +1433,8 @@
           "C_FSYNC_FF2.2",
           "C_FSYNC_INV.2",
           "C_FSYNC_OR.2",
-          "C_MCLK_BUF.2",
           "C_XLATE_A.2",
           "C_XLATE_B.2",
-          "Q_MCLK_GATE.2",
           "Q_TDM_GATE.2",
           "R_ADC_CLOCK_OK_PD.2",
           "R_ADC_DATA_PD.2",
@@ -1397,15 +1442,14 @@
           "R_BCLK_RAW_PD.2",
           "R_FSYNC_EXT_PD.2",
           "R_FSYNC_RAW_PD.2",
-          "R_MCLK_RAW_PD.2",
           "U_ADC_CLOCK_OK.3",
           "U_ADC_OK.2",
+          "U_ADC_OUT.1",
           "U_ADC_OUT.4",
           "U_BCLK_INV.3",
           "U_FSYNC_FF1.4",
           "U_FSYNC_FF2.4",
           "U_FSYNC_OR.2",
-          "U_MCLK_BUF.3",
           "U_TDM_XLATE.14",
           "U_TDM_XLATE.3",
           "U_TDM_XLATE.8",
@@ -1478,9 +1522,28 @@
           "C_AUDIO_CT1.2",
           "C_AUDIO_CT2.2",
           "C_DUMP_LOGIC.2",
-          "C_DUMP_TIME.2",
+          "C_DUMP_TIME1.2",
+          "C_DUMP_TIME2.2",
+          "C_DUMP_TIME3.2",
+          "C_DUMP_TIME4.2",
+          "C_DUMP_TIME5.2",
+          "C_DUMP_TIME6.2",
+          "C_DUMP_TIME7.2",
+          "C_DUMP_TIME8.2",
           "C_HOLD1.2",
+          "C_HOLD10.2",
+          "C_HOLD11.2",
+          "C_HOLD12.2",
+          "C_HOLD13.2",
+          "C_HOLD14.2",
           "C_HOLD2.2",
+          "C_HOLD3.2",
+          "C_HOLD4.2",
+          "C_HOLD5.2",
+          "C_HOLD6.2",
+          "C_HOLD7.2",
+          "C_HOLD8.2",
+          "C_HOLD9.2",
           "C_LDO_EN.2",
           "C_LDO_IN.2",
           "C_LDO_NR4.2",
@@ -1762,7 +1825,11 @@
       "net": "N1V8",
       "endpoints": {
         "adc_reference": [
-          "R_ADC_1V8_OK_TOP.1"
+          "C_ADC_I2C_A.1",
+          "R_ADC_1V8_OK_TOP.1",
+          "R_ADC_I2C_SCL_A_PU.2",
+          "R_ADC_I2C_SDA_A_PU.2",
+          "U_ADC_I2C_XLATE.3"
         ],
         "audio_clock_tdm": [
           "C_XLATE_A.1",
@@ -1833,10 +1900,8 @@
           "C_FSYNC_FF2.1",
           "C_FSYNC_INV.1",
           "C_FSYNC_OR.1",
-          "C_MCLK_BUF.1",
           "C_XLATE_B.1",
           "R_ADC_OK_PU.1",
-          "R_MCLK_OE_PU.1",
           "U_ADC_OK.3",
           "U_ADC_OK.4",
           "U_BCLK_INV.5",
@@ -1845,7 +1910,6 @@
           "U_FSYNC_FF2.7",
           "U_FSYNC_FF2.8",
           "U_FSYNC_OR.5",
-          "U_MCLK_BUF.5",
           "U_TDM_XLATE.16",
           "Y_AUDIO.1",
           "Y_AUDIO.4"
@@ -1872,35 +1936,39 @@
       "net": "N3V3_ADC",
       "endpoints": {
         "adc_reference": [
+          "C_ADC_A_AVDD_100N.1",
+          "C_ADC_A_AVDD_10U.1",
+          "C_ADC_A_IOVDD_100N.1",
+          "C_ADC_A_IOVDD_10U.1",
+          "C_ADC_B_AVDD_100N.1",
+          "C_ADC_B_AVDD_10U.1",
+          "C_ADC_B_IOVDD_100N.1",
+          "C_ADC_B_IOVDD_10U.1",
           "C_ADC_DIGITAL_BAD.1",
           "C_ADC_DIGITAL_OK.1",
+          "C_ADC_I2C_B.1",
           "C_ADC_READY.1",
           "C_ADC_READY_BAD.1",
           "C_RST1.1",
           "C_RST2.1",
-          "C_VDDA1_10N.1",
-          "C_VDDA1_4U7.1",
-          "C_VDDA2_10N.1",
-          "C_VDDA2_4U7.1",
-          "C_VDDIO.1",
           "R_ADC_DIGITAL_OK_PU.1",
-          "R_CFG2.2",
-          "R_CFG4.2",
-          "R_FILT1P.1",
-          "R_FILT2P.1",
+          "R_ADC_I2C_SCL_B_PU.2",
+          "R_ADC_I2C_SDA_B_PU.2",
           "R_RESET_PU.1",
           "R_RST_T.1",
           "R_VMID1_TOP.1",
           "R_VMID2_TOP.1",
-          "U_ADC.31",
-          "U_ADC.38",
-          "U_ADC.5",
-          "U_ADC.9",
           "U_ADC_1V8_OK.3",
           "U_ADC_1V8_OK.4",
           "U_ADC_3V3X_OK.3",
           "U_ADC_3V3X_OK.4",
+          "U_ADC_A.1",
+          "U_ADC_A.19",
+          "U_ADC_B.1",
+          "U_ADC_B.16",
+          "U_ADC_B.19",
           "U_ADC_DIGITAL_BAD.5",
+          "U_ADC_I2C_XLATE.7",
           "U_ADC_READY.5",
           "U_ADC_READY_BAD.5",
           "U_RST1.3",
@@ -2016,6 +2084,10 @@
     {
       "net": "N5V_LDO_HOLD",
       "endpoints": {
+        "adc_reference": [
+          "C_ADC_PWR_BAD.1",
+          "U_ADC_PWR_BAD.5"
+        ],
         "analog_ch1": [
           "C_ISO1.1",
           "U_ISO1.8"
@@ -2052,7 +2124,19 @@
           "C_AUDIO.1",
           "C_DUMP_LOGIC.1",
           "C_HOLD1.1",
+          "C_HOLD10.1",
+          "C_HOLD11.1",
+          "C_HOLD12.1",
+          "C_HOLD13.1",
+          "C_HOLD14.1",
           "C_HOLD2.1",
+          "C_HOLD3.1",
+          "C_HOLD4.1",
+          "C_HOLD5.1",
+          "C_HOLD6.1",
+          "C_HOLD7.1",
+          "C_HOLD8.1",
+          "C_HOLD9.1",
           "C_LDO_EN.1",
           "C_LDO_IN.1",
           "C_PWR.1",
@@ -2074,6 +2158,25 @@
         "Reserve a direct N5V_LDO_HOLD handoff between analog_ch1, analog_ch2, analog_ch3, analog_ch4, analog_ch5, analog_ch6, analog_ch7, analog_ch8, quiet_power with continuous GND reference and no unrelated branching."
       ],
       "disposition": "Explicit cross-block net handoff; endpoint owners share corridor and local return verification."
+    },
+    {
+      "net": "PWR_EN",
+      "endpoints": {
+        "adc_reference": [
+          "U_ADC_PWR_BAD.2"
+        ],
+        "quiet_power": [
+          "Q_PRE_EN.1",
+          "R_DUMP_TIME1.1",
+          "R_PWR_PU.2",
+          "U_AUDIO.3",
+          "U_PWR.6"
+        ]
+      },
+      "requirements": [
+        "Preserve the PWR_EN handoff with the named owners and local return."
+      ],
+      "disposition": "Explicit cross-block net handoff; verify interface and return in physical review."
     },
     {
       "net": "QSPI_CLK",
@@ -2393,6 +2496,38 @@
         "Reserve a direct XTAL_OUT handoff between clock_flash_debug, xmos_core with continuous GND reference and no unrelated branching."
       ],
       "disposition": "Explicit cross-block net handoff; endpoint owners share corridor and local return verification."
+    },
+    {
+      "net": "XU_I2C_SCL_1V8",
+      "endpoints": {
+        "adc_reference": [
+          "R_ADC_I2C_SCL_A_PU.1",
+          "U_ADC_I2C_XLATE.5"
+        ],
+        "xmos_core": [
+          "U_XU.93"
+        ]
+      },
+      "requirements": [
+        "Preserve the XU_I2C_SCL_1V8 handoff with the named owners and local return."
+      ],
+      "disposition": "Explicit cross-block net handoff; verify interface and return in physical review."
+    },
+    {
+      "net": "XU_I2C_SDA_1V8",
+      "endpoints": {
+        "adc_reference": [
+          "R_ADC_I2C_SDA_A_PU.1",
+          "U_ADC_I2C_XLATE.4"
+        ],
+        "xmos_core": [
+          "U_XU.94"
+        ]
+      },
+      "requirements": [
+        "Preserve the XU_I2C_SDA_1V8 handoff with the named owners and local return."
+      ],
+      "disposition": "Explicit cross-block net handoff; verify interface and return in physical review."
     },
     {
       "net": "XU_RESET_N",

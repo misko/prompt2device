@@ -1,0 +1,28 @@
+mpn: TCA9406DCUR
+manufacturer: Texas Instruments
+type: bidirectional_i2c_level_translator
+value: TCA9406
+status: candidate
+package: DCU0008A VSSOP8 P0.5mm
+footprint: crow_usb_digital:TI_TCA9406_DCU0008A_VSSOP8
+datasheet:
+  doc_id: SCPS221G
+  url: https://www.ti.com/lit/ds/symlink/tca9406.pdf
+  local: TCA9406-SCPS221G.pdf
+  sha256: fdb80d682fbacd5ef18cbafc57e4d9375a295daa38da33721af6e055f8a7da61
+  fetched: 2026-09-23
+footprint_proof: 'TI DCU0008A example board layout 4225266/A: 8 lands 0.85x0.30mm, 0.5mm pitch, 3.1mm opposite centerlines; the older project TI_DCU0008A_VSSOP8 geometry has 0.65mm pitch and is not used for this part.'
+escape: {style: leaded, pitch: 0.5, pins: 8, escapes_worst_side: 4, tier_required: jlc_2layer_default}
+pins: {1: SDA_B, 2: GND, 3: VCCA, 4: SDA_A, 5: SCL_A, 6: OE, 7: VCCB, 8: SCL_B}
+limits:
+  vcca_operating_V: [1.65, 3.6]
+  vccb_operating_V: [2.3, 5.5]
+  vcca_le_vccb: true
+  oe_input_tolerant_V_max: 5.5
+  operating_temperature_C: [-40, 85]
+gotchas:
+  - 'Connect VCCA to XU IOR 1V8 and VCCB to quiet 3V3_ADC; OE may be driven directly from 3.3V ADC_READY because it is 5.5V tolerant.'
+  - 'OE low or either supply off puts both I2C sides high impedance and avoids back-powering.'
+  - 'Internal 10kohm pullups are complemented by four external 4.7kohm pullups for the board control bus.'
+sourcing:
+  lcsc: C840107

@@ -33,6 +33,7 @@ own("held_ldo", {
   R_LDO_ILIM:[5,-4,-90],
   R_LDO_PG_TOP:[12,5,-90], R_LDO_PG_BOT_A:[16,5,-90], R_LDO_PG_BOT_B:[20,5,-90],
 })
+for (let i=3; i<=14; i++) own("held_ldo", { [`C_HOLD${i}`]:[1+3*((i-3)%6),-7-3*Math.floor((i-3)/6),-90] })
 own("supervisors", {
   U_PWR:[-3,2], R_PWR_TOP:[-7,3,-90], R_PWR_BOT:[-7,0,-90],
   C_PWR_CT:[-2,-1,-90], C_PWR:[-5,-2,-90], R_PWR_PU:[1,3,-90],
@@ -41,11 +42,12 @@ own("supervisors", {
   R_AUDIO_PU:[1,-5,-90], R_AUDIO_PD:[4,-7,-90],
 })
 own("dump", {
-  R_DUMP_TIME1:[-5,2], R_DUMP_TIME2:[-5,0], C_DUMP_TIME:[-2,-1,-90],
+  R_DUMP_TIME1:[-8,2], R_DUMP_TIME2:[-5,2], R_DUMP_TIME3:[-5,0],
   U_DUMP:[1,1], U_LDO_EN:[5,1], Q_DUMP:[5,-4],
   C_DUMP_LOGIC:[0,-2,-90], C_LDO_EN:[8,-2,-90],
   R_DUMP:[8,-4,-90], R_DUMP_PD:[2,-5,-90],
 })
+for (let i=1; i<=8; i++) own("dump", { [`C_DUMP_TIME${i}`]:[-2+2.5*((i-1)%4),-8-2.5*Math.floor((i-1)/4),-90] })
 for (let n=1; n<=8; n++) {
   own(`spoke_protection_${n}`, {
     [`U_SPOKE${n}`]:[0,0],
@@ -107,6 +109,7 @@ own("reset_supervisors", {
   R_ADC_3V3X_OK_TOP:[-5,7,-90], R_ADC_3V3X_OK_BOT:[-5,-4,-90],
   R_ADC_DIGITAL_OK_PU:[4,6], C_ADC_DIGITAL_OK:[4,0,-90],
   U_ADC_DIGITAL_BAD:[9,5], C_ADC_DIGITAL_BAD:[13,6,-90], Q_ADC_DIG_RST:[17,5], R_ADC_DIG_RST_PD:[21,5,-90],
+  U_ADC_PWR_BAD:[9,-9], C_ADC_PWR_BAD:[13,-9,-90], R_ADC_PWR_BAD_PD:[17,-9,-90], Q_ADC_PWR_RST:[21,-9],
   U_ADC_READY:[9,0], C_ADC_READY:[13,1,-90], R_ADC_READY_PD:[17,0,-90],
 })
 own("reset_sequencer", {
@@ -174,11 +177,13 @@ export const chipStyle = (ref: string): any => {
     U_ADC_1V8_OK:{leftSide:[1,3],rightSide:[6],topSide:[4],bottomSide:[2,5]},
     U_ADC_3V3X_OK:{leftSide:[1,3],rightSide:[6],topSide:[4],bottomSide:[2,5]},
     U_ADC_DIGITAL_BAD:{leftSide:[2],rightSide:[4],topSide:[5],bottomSide:[3]},
+    U_ADC_PWR_BAD:{leftSide:[2],rightSide:[4],topSide:[5],bottomSide:[3]},
     U_ADC_READY:{leftSide:[1,2],rightSide:[4],topSide:[5],bottomSide:[3]},
     U_ADC_READY_BAD:{leftSide:[2],rightSide:[4],topSide:[5],bottomSide:[3]},
     U_RST2:{leftSide:[3],rightSide:[5,6,7],topSide:[2,8],bottomSide:[1,4]},
     Q_RST1:{leftSide:[1],rightSide:[3],bottomSide:[2]},
     Q_ADC_DIG_RST:{leftSide:[1],rightSide:[3],bottomSide:[2]},
+    Q_ADC_PWR_RST:{leftSide:[1],rightSide:[3],bottomSide:[2]},
     Q_ADC_DELAY_DISCH:{leftSide:[1],rightSide:[3],bottomSide:[2]},
   }
   const arrangement = arrangements[ref]
@@ -187,7 +192,7 @@ export const chipStyle = (ref: string): any => {
     // Separate horizontal NC labels from the vertical ground/EP labels.
     ...(ref === "U_LDO" ? {schWidth:4.5,schHeight:3.8,schPinStyle:pinStyle(11,.35)} : {}),
     ...(/^U_ADC_[AB]$/.test(ref) ? {schWidth:5,schHeight:6,schPinStyle:pinStyle(25,.25)} : {}),
-    ...(["U_OE","U_TDM_SCH","U_TDM","U_ADC_DIGITAL_BAD","U_ADC_READY","U_ADC_READY_BAD"].includes(ref)
+    ...(["U_OE","U_TDM_SCH","U_TDM","U_ADC_DIGITAL_BAD","U_ADC_PWR_BAD","U_ADC_READY","U_ADC_READY_BAD"].includes(ref)
       ? {schWidth:3.5,schHeight:3,schPinStyle:pinStyle(5,.35)} : {}),
     ...(ref === "U_CLK" ? {schPinStyle:pinStyle(8,.5)} : {})}
 }

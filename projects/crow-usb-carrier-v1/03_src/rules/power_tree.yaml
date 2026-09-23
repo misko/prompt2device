@@ -183,58 +183,23 @@ effective_capacitance_banks:
           full X7R temperature allowance and a separate 10% lifecycle reserve,
           the estimate is 1.164942 uF. The curves are typical, the reserves are
           engineering bounds, and first-article measurement remains required.
-  - &cs5308_ldo_filter
-    name: CS5308P LDO_A filter capacitor
+  # TLV320ADC6140 internal AREG/DREG/VREF local bypass and AC coupling are
+  # selected in the TSX/part dossier. TI Figure 172 gives nominal capacitor
+  # values; do not promote them into guaranteed effective minima without an
+  # exact-part bias/temperature screen. VREF alone has an explicit >=1uF
+  # manufacturer minimum and its 10uF selected part requires longer quick charge.
+  - &tlv_vref_bypass
+    name: TLV320ADC6140 A VREF bypass
     requirement_uF: 1
-    requirement_evidence: Cirrus DS1314F1 Figure 2-1 shows a 1 uF capacitor at LDO_A_FILT.
+    requirement_evidence: TI SBAS992A VREF external capacitor recommendation/minimum; 10uF nominal exact C0805C106K8RACTU is selected per die.
     accepted_dielectrics: [x7r]
     contributors:
-      - part: GCM21BR71C475KA73L
-        refs: [C_LDO_A]
-        nominal_each_uF: 4.7
-        dielectric: x7r
-        tolerance_minus_pct: 10
-        dc_bias_derating_pct: 52
-        temperature_derating_pct: 15
-        lifecycle_derating_pct: 10
-        basis: conservative_combined_voltage_engineering_bound
-        evidence: >-
-          At the conservative 3.6 V ADC supply ceiling, use the worse Murata 4 V
-          point (80% DC retention) and lowest-drive AC point (60% retention),
-          or 48% combined retention. After tolerance, temperature and 10%
-          lifecycle reserves, the part estimates 1.553256 uF, 55.3% above the
-          Cirrus shown 1 uF.
-  - <<: *cs5308_ldo_filter
-    name: CS5308P LDO_D filter capacitor
-    requirement_evidence: Cirrus DS1314F1 Figure 2-1 shows a 1 uF capacitor at LDO_D_FILT.
+      - {part: C0805C106K8RACTU, refs: [C_ADC_A_VREF_10U], nominal_each_uF: 10, dielectric: x7r, tolerance_minus_pct: 10, dc_bias_derating_pct: 50, temperature_derating_pct: 15, lifecycle_derating_pct: 10, basis: conservative_engineering_screen_pending_exact_bias_model, evidence: "At VREF about 2.75V, 50% combined DC/AC retention and full -15% X7R temperature, -10% initial and -10% lifecycle factors estimate 3.4425uF per 10uF device; this is a project screen, not a production guarantee. Confirm KEMET exact-part data and charge/settle waveform before release."}
+
+  - <<: *tlv_vref_bypass
+    name: TLV320ADC6140 B VREF bypass
     contributors:
-      - {part: GCM21BR71C475KA73L, refs: [C_LDO_D], nominal_each_uF: 4.7, dielectric: x7r, tolerance_minus_pct: 10, dc_bias_derating_pct: 52, temperature_derating_pct: 15, lifecycle_derating_pct: 10, basis: conservative_combined_voltage_engineering_bound, evidence: "Same conservative 3.6 V screen as LDO_A: 48% combined DC/AC retention plus tolerance, temperature and lifecycle reserves estimates 1.553256 uF, 55.3% above the Cirrus shown 1 uF."}
-  - &cs5308_vmid_bypass
-    name: CS5308P ADC_VMID1 bulk bypass capacitor
-    requirement_uF: 2.2
-    requirement_evidence: Cirrus DS1314F1 Figure 2-1 shows a 2.2 uF bulk bypass at ADC_VMID1, in parallel with a separate 0.22 uF high-frequency capacitor.
-    accepted_dielectrics: [x7r]
-    contributors:
-      - part: C0805C106K8RACTU
-        refs: [C_VMID1_4U7]
-        nominal_each_uF: 10
-        dielectric: x7r
-        tolerance_minus_pct: 10
-        dc_bias_derating_pct: 50
-        temperature_derating_pct: 15
-        lifecycle_derating_pct: 10
-        basis: conservative_engineering_bound
-        evidence: >-
-          Existing exact-part engineering screen charges 50% DC-bias, 15%
-          temperature and 10% lifecycle loss in addition to tolerance. Each
-          10 uF capacitor estimates 3.4425 uF, 56.5% above the Cirrus shown
-          2.2 uF. Reference settling,
-          ripple and THD remain first-article qualifications.
-  - <<: *cs5308_vmid_bypass
-    name: CS5308P ADC_VMID2 bulk bypass capacitor
-    requirement_evidence: Cirrus DS1314F1 Figure 2-1 shows a 2.2 uF bulk bypass at ADC_VMID2, in parallel with a separate 0.22 uF high-frequency capacitor.
-    contributors:
-      - {part: C0805C106K8RACTU, refs: [C_VMID2_4U7], nominal_each_uF: 10, dielectric: x7r, tolerance_minus_pct: 10, dc_bias_derating_pct: 50, temperature_derating_pct: 15, lifecycle_derating_pct: 10, basis: conservative_engineering_bound, evidence: "Same exact-part screen as ADC_VMID1 estimates 3.4425 uF, 56.5% above the Cirrus shown 2.2 uF; reference settling, ripple and THD remain first-article qualifications."}
+      - {part: C0805C106K8RACTU, refs: [C_ADC_B_VREF_10U], nominal_each_uF: 10, dielectric: x7r, tolerance_minus_pct: 10, dc_bias_derating_pct: 50, temperature_derating_pct: 15, lifecycle_derating_pct: 10, basis: conservative_engineering_screen_pending_exact_bias_model, evidence: "Same 3.4425uF per-device engineering screen as ADC A; exact-part model and charge waveform still required."}
 
 rails:
   # 5 V adjustable module: TI +/-1% FB spec is condition-limited to 1 V/zero load;
@@ -345,6 +310,26 @@ rails:
       fb_bias_current_basis: symmetric_manufacturer_absolute_maximum_screen
       fb_bias_current_evidence: TI SLVSEF9I section 6.5 gives IFB leakage 0.05 uA maximum magnitude at VFB=0.6 V; +/-50 nA conservatively screens either current direction. TI gives VFB 594-606 mV; exact YAGEO RT0402BRD0749K9L/RT0402BRD07100KL primary specifications give 0.1% and +/-25 ppm/C.
   - {name: N3V3_ADC, vin_min: 4.10, vin_max: 5.13, vout_min: 3.22, vout_max: 3.38, iout_max_A: 0.25, converter: LT3045EDD#PBF, input_parent: N5V_BUCK, dropout_mv: 450, pdiss_max_mw: 650, eff: 0.65, external_output: false}
+  # Two TLV6140s + retained OPA/filter loads on N3V3_ADC. These are typical
+  # planning currents, not a manufacturer maximum or a changed rail limit.
+  # 42.8mA two ADCs + 23.2mA sixteen OPA channels + 3.3mA VMID dividers
+  # + 16.5mA bleed = 85.8mA before supervisors/buffers/transients.
+  # Headroom against the existing 250mA allocation is 164.2mA typical-plan.
+  # Fast SHDNZ_CFG=00 before capture reduces TLV powerdown t3/t4 to 100us;
+  # the default preconfiguration state still requires >=10ms. Source candidate:
+  # PWR_EN falling directly asserts SHDNZ through U_ADC_PWR_BAD/Q_ADC_PWR_RST;
+  # 14x470uF C178530 are on 5V_LDO_HOLD; 8x15nF C0G C97907 and 150k
+  # equivalent delay the intentional Q_DUMP/LDO_EN transitions. Accepted
+  # held-start screen is 4.91V buck minimum minus 0.81V full path allocation
+  # =4.10V. Engineering retention 0.54 gives 3.553mF. ADI LT3045 max 350mV
+  # dropout at300mA and TI TLV min3.0V give held terminal input3.35V.
+  # At complete post-reset held-bank load <=70mA, C*dV/I gives >=38.1ms;
+  # full 3.38V regulation to input3.71V lasts >=19.8ms. Primary C0G and
+  # Nexperia Schmitt/leakage corner screen estimates dump at14.8..29.4ms.
+  # This is a conservative engineering screen, not a guaranteed cold curve.
+  # First-article AVDD/IOVDD/SHDNZ/dump waveform, 22ohm precharge pulse,
+  # larger held bank physical placement and rail thermal remain gates.
+
   - &spoke
     name: N12V_POD1
     stage: distribution
