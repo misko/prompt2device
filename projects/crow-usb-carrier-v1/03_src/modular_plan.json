@@ -472,7 +472,9 @@
     {
       "id": "digital_power",
       "refs": [
+        "C_1V8_FF",
         "C_1V8_OK_VDD",
+        "C_3V3X_FF",
         "C_CORE_EN_CT",
         "C_CORE_OK",
         "C_U_1V8_IN_1",
@@ -489,6 +491,10 @@
         "L_U_1V8",
         "L_U_3V3X",
         "L_U_CORE",
+        "R_1V8_FB_BOTTOM",
+        "R_1V8_FB_TOP",
+        "R_3V3X_FB_BOTTOM",
+        "R_3V3X_FB_TOP",
         "R_CORE_EN_PU",
         "R_CORE_FB_BOTTOM",
         "R_CORE_FB_TOP",
@@ -1434,6 +1440,8 @@
           "C_U_CORE_OUT_1.2",
           "C_XU_3V3_OK_CT.2",
           "C_XU_3V3_OK_VDD.2",
+          "R_1V8_FB_BOTTOM.2",
+          "R_3V3X_FB_BOTTOM.2",
           "R_CORE_FB_BOTTOM.2",
           "U_1V8.4",
           "U_1V8_OK.2",
@@ -1768,12 +1776,13 @@
           "J_JTAG.1"
         ],
         "digital_power": [
+          "C_1V8_FF.1",
           "C_CORE_OK.1",
           "C_U_1V8_OUT_1.1",
           "L_U_1V8.2",
+          "R_1V8_FB_TOP.1",
           "R_CORE_EN_PU.1",
           "R_XU_RST_PU.1",
-          "U_1V8.3",
           "U_1V8_OK.1",
           "U_CORE_OK.3",
           "U_CORE_OK.6"
@@ -1839,9 +1848,10 @@
           "Y_AUDIO.4"
         ],
         "digital_power": [
+          "C_3V3X_FF.1",
           "C_U_3V3X_OUT_1.1",
           "L_U_3V3X.2",
-          "U_3V3X.3",
+          "R_3V3X_FB_TOP.1",
           "U_XU_3V3_OK.1"
         ],
         "xmos_core": [

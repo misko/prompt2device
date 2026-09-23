@@ -394,6 +394,8 @@ selections:
   - C_ADC_OK_VDD
   - C_ADC_OUT
   - C_AUDIO_OSC
+  - C_1V8_FF
+  - C_3V3X_FF
   - C_CORE_EN_CT
   - C_CORE_OK
   - C_FLASH
@@ -459,6 +461,10 @@ selections:
   - R_ADC_OK_PU
   - R_BCLK
   - R_BCLK_RAW_PD
+  - R_1V8_FB_BOTTOM
+  - R_1V8_FB_TOP
+  - R_3V3X_FB_BOTTOM
+  - R_3V3X_FB_TOP
   - R_CORE_EN_PU
   - R_CORE_FB_BOTTOM
   - R_CORE_FB_TOP

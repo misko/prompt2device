@@ -16,14 +16,14 @@ const supplier=(jlc:string)=>({jlcpcb:jlc?[jlc]:[]})
 const sourced=(mpn:string,jlc="")=>jlc||({
  "XFL4015-471MEC":"C18221164","SX5M24.576M20F30TNN":"C2901534","CC0402KRX5R5BB105":"C106253","X322524MOB4SI":"C70590","FTSH-105-01-L-DV-K":"C5155080",
  "GRM1555C1H220JA01D":"C76960","GRM1555C1H102JA01D":"C76947","RC0402FR-0733RL":"C138002","RC0402FR-0710KL":"C60490","RC0402FR-07100KL":"C60491","RC0402FR-071ML":"C138033","RC0402FR-074K7L":"C105871","GRM155R71H103KA88D":"C77019","CL21A106KOCLRNC":"C318695","CRCW0402680RFKED":"C482224",
- "RT0402BRD07100KL":"C852472","RT0402BRD07200KL":"C728556","SN74AUP3G34DCUR":"C2675543",
+ "RT0402BRD07100KL":"C852472","RT0402BRD07200KL":"C728556","RT0402BRD07210KL":"C852631","RT0603BRD07453KL":"C861412","RT0603BRD07100KL":"C122538","CC0402JRNPO9BN121":"C106996","SN74AUP3G34DCUR":"C2675543",
  "SN74AXC4T245PWR":"C2867798","SN74LVC1G04DCKR":"C8207","SN74LVC1G125DCKT":"C2675550",
  "SN74LVC1G332DBVR":"C43368","SN74LVC2G74DCTR":"C79339","TPS3808G09DBVR":"C24584",
- "TPS389018DSER":"C2066910","TPS389030DSER":"C2066942","TPS6282518DMQR":"C2072356",
- "TPS6282533DMQR":"C3189971","TPS62825DMQR":"C2650334"
+ "TPS389018DSER":"C2066910","TPS389030DSER":"C2066942",
+ "TPS62825DMQR":"C2650334"
  } as Record<string,string>)[mpn]||""
 const Chip=({jlc="",manufacturerPartNumber,...props}:any)=><chip manufacturerPartNumber={manufacturerPartNumber} supplierPartNumbers={supplier(sourced(manufacturerPartNumber,jlc))} {...props} />
-const R=({name,value,a,b,mpn,jlc="",n}:any)=><resistor name={name} resistance={value} footprint="0402" manufacturerPartNumber={mpn} supplierPartNumbers={supplier(sourced(mpn,jlc))} connections={{pin1:n(a),pin2:n(b)}} />
+const R=({name,value,a,b,mpn,jlc="",footprint="0402",n}:any)=><resistor name={name} resistance={value} footprint={footprint} manufacturerPartNumber={mpn} supplierPartNumbers={supplier(sourced(mpn,jlc))} connections={{pin1:n(a),pin2:n(b)}} />
 const C=({name,value,a,b,mpn="CL05B104KO5NNNC",jlc="",footprint="0402",n}:any)=>{
  const exactJlc=sourced(mpn,jlc || (mpn==="CL05B104KO5NNNC" && value==="100nF" ? "C1525" : ""));
  return <capacitor name={name} capacitance={value} footprint={footprint} manufacturerPartNumber={mpn} supplierPartNumbers={supplier(exactJlc)} connections={{pin1:n(a),pin2:n(b)}} />
@@ -80,8 +80,14 @@ function Buck({name,mpn,out,adjustable=false,en="5V_BUCK",n}:any){return <>
 export function CrowUsbDigital({net=defaultNet}:CrowUsbDigitalProps={}){
  const n=net; assertXUPinCoverage();
  return <>
-  <Buck name="U_3V3X" mpn="TPS6282533DMQR" out="3V3X" n={n} />
-  <Buck name="U_1V8" mpn="TPS6282518DMQR" out="1V8" n={n} />
+  <Buck name="U_3V3X" mpn="TPS62825DMQR" out="3V3X" adjustable n={n} />
+  <R name="R_3V3X_FB_TOP" value="453k" a="3V3X" b="U_3V3X_FB" mpn="RT0603BRD07453KL" footprint="0603" n={n} />
+  <R name="R_3V3X_FB_BOTTOM" value="100k" a="U_3V3X_FB" b="GND" mpn="RT0603BRD07100KL" footprint="0603" n={n} />
+  <C name="C_3V3X_FF" value="120pF" a="3V3X" b="U_3V3X_FB" mpn="CC0402JRNPO9BN121" n={n} />
+  <Buck name="U_1V8" mpn="TPS62825DMQR" out="1V8" adjustable n={n} />
+  <R name="R_1V8_FB_TOP" value="210k" a="1V8" b="U_1V8_FB" mpn="RT0402BRD07210KL" n={n} />
+  <R name="R_1V8_FB_BOTTOM" value="100k" a="U_1V8_FB" b="GND" mpn="RT0402BRD07100KL" n={n} />
+  <C name="C_1V8_FF" value="120pF" a="1V8" b="U_1V8_FB" mpn="CC0402JRNPO9BN121" n={n} />
   <Buck name="U_CORE" mpn="TPS62825DMQR" out="0V9" adjustable en="CORE_EN" n={n} />
   <R name="R_CORE_FB_TOP" value="100k" a="0V9" b="U_CORE_FB" mpn="RT0402BRD07100KL" n={n} />
   <R name="R_CORE_FB_BOTTOM" value="200k" a="U_CORE_FB" b="GND" mpn="RT0402BRD07200KL" n={n} />

@@ -1,0 +1,19 @@
+mpn: RT0603BRD07453KL
+manufacturer: YAGEO
+type: resistor
+value: 453kΩ
+footprint: Resistor_SMD:R_0603_1608Metric
+pins: {1: terminal_1, 2: terminal_2}
+datasheet:
+  url: https://www.yageogroup.com/component-documentation/download/specsheet/RT0603BRD07453KL
+  local: RT0603BRD07453KL_YAGEO_generated_20260923.pdf
+  sha256: 24318b3910be4411c5e5d61434232c2defad287042510e267f05129f3e65b0a9
+  provenance: Exact-MPN manufacturer-generated specification, fetched 2026-09-23 UTC.
+limits:
+  resistance_tolerance_pct: 0.1
+  tcr_ppm_per_C: 25
+  power_at_70C: 100mW
+  maximum_continuous_voltage: 75V
+  operating_temperature_C: [-55, 155]
+sourcing: {lcsc: C861412, note: Exact live JLC catalog identity; refresh stock before order.}
+verified: Exact YAGEO specification matches MPN, value, 0.1% tolerance, +/-25ppm/C TCR, package and ratings.

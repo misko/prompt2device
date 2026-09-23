@@ -1,6 +1,8 @@
-# Source census: 490 total components.
+# Source census: 496 total components.
 components:
+- C_1V8_FF
 - C_1V8_OK_VDD
+- C_3V3X_FF
 - C_A1N
 - C_A1P
 - C_A2N
@@ -260,6 +262,10 @@ components:
 - Q_RST1
 - Q_TDM_GATE
 - Q_VBUS
+- R_1V8_FB_BOTTOM
+- R_1V8_FB_TOP
+- R_3V3X_FB_BOTTOM
+- R_3V3X_FB_TOP
 - R_ADC_BOT
 - R_ADC_CLOCK_OK_PD
 - R_ADC_DATA_PD
@@ -339,11 +345,11 @@ components:
 - R_IN7P
 - R_IN8N
 - R_IN8P
-- R_LDO_SET
 - R_LDO_ILIM
 - R_LDO_PG_BOT_A
 - R_LDO_PG_BOT_B
 - R_LDO_PG_TOP
+- R_LDO_SET
 - R_MCLK
 - R_MCLK_OE_PU
 - R_MCLK_RAW_PD

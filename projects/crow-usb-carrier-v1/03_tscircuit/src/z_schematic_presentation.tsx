@@ -15,8 +15,8 @@ const powerPoses: Record<string, [string, number, number, number?]> = {
 
 const digitalPage = (ref: string) => {
   if (ref === "U_XU") return "xmos_core"
-  if (/^(U_3V3X|L_U_3V3X|C_U_3V3X_|U_XU_3V3_OK|C_XU_3V3_OK_)/.test(ref)) return "digital_power_3v3x"
-  if (/^(U_1V8|U_1V8_OK|L_U_1V8|C_U_1V8_|C_1V8_OK_VDD|C_CORE_EN_CT|R_CORE_EN_PU)$/.test(ref)) return "digital_power_1v8"
+  if (/^(U_3V3X|L_U_3V3X|C_U_3V3X_|R_3V3X_FB_|C_3V3X_FF|U_XU_3V3_OK|C_XU_3V3_OK_)/.test(ref)) return "digital_power_3v3x"
+  if (/^(U_1V8|U_1V8_OK|L_U_1V8|C_U_1V8_|R_1V8_FB_.*|C_1V8_FF|C_1V8_OK_VDD|C_CORE_EN_CT|R_CORE_EN_PU)$/.test(ref)) return "digital_power_1v8"
   if (/^(U_CORE|L_U_CORE|C_U_CORE_|R_CORE_FB_|U_CORE_OK|C_CORE_OK|R_XU_RST_PU)/.test(ref)) return "digital_power_core"
   if (/^C_XU_|^FB_PLL$|^C_PLL_/.test(ref)) return "xmos_decoupling"
   if (/FLASH|QSPI|XTAL|^Y_XU$/.test(ref)) return "flash_clock"
@@ -44,12 +44,14 @@ const explicitDigitalPose = (ref: string): Pose | undefined => {
     U_3V3X:["digital_power_3v3x",-5,2], L_U_3V3X:["digital_power_3v3x",0,2],
     C_U_3V3X_IN_1:["digital_power_3v3x",-6,-1,-90], C_U_3V3X_IN_2:["digital_power_3v3x",-3,-1,-90],
     C_U_3V3X_OUT_1:["digital_power_3v3x",4,-1,-90],
+    R_3V3X_FB_TOP:["digital_power_3v3x",5,-3], R_3V3X_FB_BOTTOM:["digital_power_3v3x",9,-3], C_3V3X_FF:["digital_power_3v3x",8,1,-90],
     U_XU_3V3_OK:["digital_power_3v3x",1,-4],
     C_XU_3V3_OK_VDD:["digital_power_3v3x",-5,-4,-90], C_XU_3V3_OK_CT:["digital_power_3v3x",7,-4,-90],
 
     U_1V8:["digital_power_1v8",-5,2], L_U_1V8:["digital_power_1v8",0,2],
     C_U_1V8_IN_1:["digital_power_1v8",-6,-1,-90], C_U_1V8_IN_2:["digital_power_1v8",-3,-1,-90],
     C_U_1V8_OUT_1:["digital_power_1v8",4,-1,-90],
+    R_1V8_FB_TOP:["digital_power_1v8",5,-3], R_1V8_FB_BOTTOM:["digital_power_1v8",9,-3], C_1V8_FF:["digital_power_1v8",8,1,-90],
     U_1V8_OK:["digital_power_1v8",0,-4], C_1V8_OK_VDD:["digital_power_1v8",-5,-5,-90],
     C_CORE_EN_CT:["digital_power_1v8",5,-5,-90], R_CORE_EN_PU:["digital_power_1v8",6,-2,-90],
 

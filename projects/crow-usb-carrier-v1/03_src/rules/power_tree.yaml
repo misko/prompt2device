@@ -129,21 +129,22 @@ effective_capacitance_banks:
         nominal_each_uF: 47
         dielectric: x7r
         tolerance_minus_pct: 10
-        dc_bias_derating_pct: 65
+        dc_bias_derating_pct: 69
         temperature_derating_pct: 0
         lifecycle_derating_pct: 12.5
         basis: murata_exact_part_typical_model_with_reviewed_engineering_reserves
         evidence: >-
-          Exact Murata simple model at -55 C and 3.38 V gives 16.9 uF;
-          35% nominal retention is a rounded model screen. After 10% initial
-          tolerance and chosen 12.5% lifecycle reserve, estimate 12.95 uF.
+          For revised 3.394 V maximum, the retained exact Murata -55 C model
+          at the more adverse 5.05 V bias gives 14.7 uF typical. Rounded-down
+          31% nominal retention with 10% initial tolerance and 12.5% lifecycle
+          reserve estimates 11.48 uF; model points are not guarantees.
           Temperature is included in the model. One 47-uF part restores TI's
           marked nominal 0.47-uH/47-uF LC combination; replacement inductor,
           distributed capacitance, startup and load-step stability remain owed.
   - <<: *tps62825_output
     name: TPS62825 U_1V8 output
     contributors:
-      - {part: GRM32ER71A476KE15L, refs: [C_U_1V8_OUT_1], nominal_each_uF: 47, dielectric: x7r, tolerance_minus_pct: 10, dc_bias_derating_pct: 65, temperature_derating_pct: 0, lifecycle_derating_pct: 12.5, basis: murata_exact_part_typical_model_with_reviewed_engineering_reserves, evidence: "Exact Murata -55 C / 1.818 V simple model gives 18.4 uF; conservative rounded 35% nominal retention with initial-tolerance and lifecycle reserves estimates 12.95 uF. Temperature is already in the model. Nominal 0.47-uH/47-uF combination is marked in TI Table 8-3; physical stability proof remains owed."}
+      - {part: GRM32ER71A476KE15L, refs: [C_U_1V8_OUT_1], nominal_each_uF: 47, dielectric: x7r, tolerance_minus_pct: 10, dc_bias_derating_pct: 65, temperature_derating_pct: 0, lifecycle_derating_pct: 12.5, basis: murata_exact_part_typical_model_with_reviewed_engineering_reserves, evidence: "At the revised 1.899 V upper DC screen, the existing exact Murata -55 C model point at higher 3.38 V gives 16.9 uF; conservative rounded 35% nominal retention with initial-tolerance and lifecycle reserves estimates 12.95 uF. Temperature is already in the model. Nominal 0.47-uH/47-uF combination is marked in TI Table 8-3; physical stability proof remains owed."}
   - <<: *tps62825_output
     name: TPS62825 U_CORE output
     contributors:
@@ -237,8 +238,9 @@ effective_capacitance_banks:
 
 rails:
   - {name: N5V_BUCK, vin_min: 11.006, vin_max: 13.2, vout_min: 4.95, vout_max: 5.05, iout_max_A: 1.9, converter: TPSM63603V5RDHR, eff: 0.85, external_output: false}
-  - {name: N3V3X, vin_min: 4.95, vin_max: 5.05, vout_min: 3.267, vout_max: 3.333, iout_max_A: 1.0, converter: TPS6282533DMQR, input_parent: N5V_BUCK, eff: 0.85, external_output: false}
-  - {name: N1V8, vin_min: 4.95, vin_max: 5.05, vout_min: 1.782, vout_max: 1.818, iout_max_A: 0.30, converter: TPS6282518DMQR, input_parent: N5V_BUCK, eff: 0.85, external_output: false}
+  # Adjustable-rail DC setpoint envelopes include TI VFB, opposite divider tolerance/TCR and FB leakage; ripple, startup overshoot and ground shift are separate first-article allocations.
+  - {name: N3V3X, vin_min: 4.95, vin_max: 5.05, vout_min: 3.243, vout_max: 3.394, iout_max_A: 1.0, converter: TPS62825DMQR, input_parent: N5V_BUCK, eff: 0.85, external_output: false}
+  - {name: N1V8, vin_min: 4.95, vin_max: 5.05, vout_min: 1.822, vout_max: 1.899, iout_max_A: 0.30, converter: TPS62825DMQR, input_parent: N5V_BUCK, eff: 0.85, external_output: false}
   - {name: N0V9, vin_min: 4.95, vin_max: 5.05, vout_min: 0.88, vout_max: 0.92, iout_max_A: 1.2, converter: TPS62825DMQR, input_parent: N5V_BUCK, eff: 0.85, external_output: false}
   - {name: N3V3_ADC, vin_min: 4.10, vin_max: 5.05, vout_min: 3.22, vout_max: 3.38, iout_max_A: 0.25, converter: LT3045EDD#PBF, input_parent: N5V_BUCK, dropout_mv: 450, pdiss_max_mw: 650, eff: 0.65, external_output: false}
   - &spoke
