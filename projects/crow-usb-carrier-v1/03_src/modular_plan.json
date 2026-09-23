@@ -27,8 +27,6 @@
         "C_ADC_B_VREF_10U",
         "C_ADC_DIGITAL_BAD",
         "C_ADC_DIGITAL_OK",
-        "C_ADC_I2C_A",
-        "C_ADC_I2C_B",
         "C_ADC_PWR_BAD",
         "C_ADC_READY",
         "C_ADC_READY_BAD",
@@ -51,10 +49,6 @@
         "R_ADC_DELAY_GATE_PD",
         "R_ADC_DIGITAL_OK_PU",
         "R_ADC_DIG_RST_PD",
-        "R_ADC_I2C_SCL_A_PU",
-        "R_ADC_I2C_SCL_B_PU",
-        "R_ADC_I2C_SDA_A_PU",
-        "R_ADC_I2C_SDA_B_PU",
         "R_ADC_PWR_BAD_PD",
         "R_ADC_READY_PD",
         "R_ADC_START_DELAY",
@@ -70,7 +64,6 @@
         "U_ADC_A",
         "U_ADC_B",
         "U_ADC_DIGITAL_BAD",
-        "U_ADC_I2C_XLATE",
         "U_ADC_PWR_BAD",
         "U_ADC_READY",
         "U_ADC_READY_BAD",
@@ -446,6 +439,8 @@
       "id": "audio_clock_tdm",
       "refs": [
         "C_ADC_CLOCK_OK",
+        "C_ADC_I2C_A",
+        "C_ADC_I2C_B",
         "C_ADC_OK_CT",
         "C_ADC_OK_VDD",
         "C_ADC_OUT",
@@ -459,6 +454,10 @@
         "Q_TDM_GATE",
         "R_ADC_CLOCK_OK_PD",
         "R_ADC_DATA_PD",
+        "R_ADC_I2C_SCL_A_PU",
+        "R_ADC_I2C_SCL_B_PU",
+        "R_ADC_I2C_SDA_A_PU",
+        "R_ADC_I2C_SDA_B_PU",
         "R_ADC_OK_BOT",
         "R_ADC_OK_PU",
         "R_ADC_OK_TOP",
@@ -469,6 +468,7 @@
         "R_FSYNC_RAW_PD",
         "R_TDM_OE_PU",
         "U_ADC_CLOCK_OK",
+        "U_ADC_I2C_XLATE",
         "U_ADC_OK",
         "U_ADC_OUT",
         "U_BCLK_INV",
@@ -1090,6 +1090,59 @@
       "disposition": "Point-to-point digital-audio timing corridor with ownership split at driver and receiver pin escapes."
     },
     {
+      "net": "ADC_I2C_SCL",
+      "endpoints": {
+        "adc_reference": [
+          "U_ADC_A.17",
+          "U_ADC_B.17"
+        ],
+        "audio_clock_tdm": [
+          "R_ADC_I2C_SCL_B_PU.1",
+          "U_ADC_I2C_XLATE.8"
+        ]
+      },
+      "requirements": [
+        "Preserve the ADC_I2C_SCL handoff with the named owners and local return."
+      ],
+      "disposition": "Explicit cross-block net handoff; verify interface and return in physical review."
+    },
+    {
+      "net": "ADC_I2C_SDA",
+      "endpoints": {
+        "adc_reference": [
+          "U_ADC_A.18",
+          "U_ADC_B.18"
+        ],
+        "audio_clock_tdm": [
+          "R_ADC_I2C_SDA_B_PU.1",
+          "U_ADC_I2C_XLATE.1"
+        ]
+      },
+      "requirements": [
+        "Preserve the ADC_I2C_SDA handoff with the named owners and local return."
+      ],
+      "disposition": "Explicit cross-block net handoff; verify interface and return in physical review."
+    },
+    {
+      "net": "ADC_READY",
+      "endpoints": {
+        "adc_reference": [
+          "R_ADC_READY_PD.1",
+          "R_ADC_START_DELAY.1",
+          "U_ADC_READY.4",
+          "U_ADC_READY_BAD.2",
+          "U_RST2.3"
+        ],
+        "audio_clock_tdm": [
+          "U_ADC_I2C_XLATE.6"
+        ]
+      },
+      "requirements": [
+        "Preserve the ADC_READY handoff with the named owners and local return."
+      ],
+      "disposition": "Explicit cross-block net handoff; verify interface and return in physical review."
+    },
+    {
       "net": "AUDIO_EN",
       "endpoints": {
         "analog_ch1": [
@@ -1212,8 +1265,6 @@
           "C_ADC_B_VREF_10U.2",
           "C_ADC_DIGITAL_BAD.2",
           "C_ADC_DIGITAL_OK.2",
-          "C_ADC_I2C_A.2",
-          "C_ADC_I2C_B.2",
           "C_ADC_PWR_BAD.2",
           "C_ADC_READY.2",
           "C_ADC_READY_BAD.2",
@@ -1247,7 +1298,6 @@
           "U_ADC_B.25",
           "U_ADC_B.4",
           "U_ADC_DIGITAL_BAD.3",
-          "U_ADC_I2C_XLATE.2",
           "U_ADC_PWR_BAD.3",
           "U_ADC_READY.3",
           "U_ADC_READY_BAD.3",
@@ -1425,6 +1475,8 @@
         ],
         "audio_clock_tdm": [
           "C_ADC_CLOCK_OK.2",
+          "C_ADC_I2C_A.2",
+          "C_ADC_I2C_B.2",
           "C_ADC_OK_CT.2",
           "C_ADC_OK_VDD.2",
           "C_ADC_OUT.2",
@@ -1443,6 +1495,7 @@
           "R_FSYNC_EXT_PD.2",
           "R_FSYNC_RAW_PD.2",
           "U_ADC_CLOCK_OK.3",
+          "U_ADC_I2C_XLATE.2",
           "U_ADC_OK.2",
           "U_ADC_OUT.1",
           "U_ADC_OUT.4",
@@ -1825,15 +1878,15 @@
       "net": "N1V8",
       "endpoints": {
         "adc_reference": [
-          "C_ADC_I2C_A.1",
-          "R_ADC_1V8_OK_TOP.1",
-          "R_ADC_I2C_SCL_A_PU.2",
-          "R_ADC_I2C_SDA_A_PU.2",
-          "U_ADC_I2C_XLATE.3"
+          "R_ADC_1V8_OK_TOP.1"
         ],
         "audio_clock_tdm": [
+          "C_ADC_I2C_A.1",
           "C_XLATE_A.1",
+          "R_ADC_I2C_SCL_A_PU.2",
+          "R_ADC_I2C_SDA_A_PU.2",
           "R_TDM_OE_PU.1",
+          "U_ADC_I2C_XLATE.3",
           "U_TDM_XLATE.1",
           "U_TDM_XLATE.2"
         ],
@@ -1946,14 +1999,11 @@
           "C_ADC_B_IOVDD_10U.1",
           "C_ADC_DIGITAL_BAD.1",
           "C_ADC_DIGITAL_OK.1",
-          "C_ADC_I2C_B.1",
           "C_ADC_READY.1",
           "C_ADC_READY_BAD.1",
           "C_RST1.1",
           "C_RST2.1",
           "R_ADC_DIGITAL_OK_PU.1",
-          "R_ADC_I2C_SCL_B_PU.2",
-          "R_ADC_I2C_SDA_B_PU.2",
           "R_RESET_PU.1",
           "R_RST_T.1",
           "R_VMID1_TOP.1",
@@ -1968,7 +2018,6 @@
           "U_ADC_B.16",
           "U_ADC_B.19",
           "U_ADC_DIGITAL_BAD.5",
-          "U_ADC_I2C_XLATE.7",
           "U_ADC_READY.5",
           "U_ADC_READY_BAD.5",
           "U_RST1.3",
@@ -2008,9 +2057,13 @@
         ],
         "audio_clock_tdm": [
           "C_ADC_CLOCK_OK.1",
+          "C_ADC_I2C_B.1",
           "C_ADC_OUT.1",
+          "R_ADC_I2C_SCL_B_PU.2",
+          "R_ADC_I2C_SDA_B_PU.2",
           "R_ADC_OK_TOP.1",
           "U_ADC_CLOCK_OK.5",
+          "U_ADC_I2C_XLATE.7",
           "U_ADC_OUT.8"
         ],
         "quiet_power": [
@@ -2500,7 +2553,7 @@
     {
       "net": "XU_I2C_SCL_1V8",
       "endpoints": {
-        "adc_reference": [
+        "audio_clock_tdm": [
           "R_ADC_I2C_SCL_A_PU.1",
           "U_ADC_I2C_XLATE.5"
         ],
@@ -2516,7 +2569,7 @@
     {
       "net": "XU_I2C_SDA_1V8",
       "endpoints": {
-        "adc_reference": [
+        "audio_clock_tdm": [
           "R_ADC_I2C_SDA_A_PU.1",
           "U_ADC_I2C_XLATE.4"
         ],

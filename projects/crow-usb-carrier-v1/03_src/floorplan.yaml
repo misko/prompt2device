@@ -239,8 +239,6 @@ placement:
     - C_ADC_B_VREF_10U
     - C_ADC_DIGITAL_BAD
     - C_ADC_DIGITAL_OK
-    - C_ADC_I2C_A
-    - C_ADC_I2C_B
     - C_ADC_PWR_BAD
     - C_ADC_READY
     - C_ADC_READY_BAD
@@ -263,10 +261,6 @@ placement:
     - R_ADC_DELAY_GATE_PD
     - R_ADC_DIGITAL_OK_PU
     - R_ADC_DIG_RST_PD
-    - R_ADC_I2C_SCL_A_PU
-    - R_ADC_I2C_SCL_B_PU
-    - R_ADC_I2C_SDA_A_PU
-    - R_ADC_I2C_SDA_B_PU
     - R_ADC_PWR_BAD_PD
     - R_ADC_READY_PD
     - R_ADC_START_DELAY
@@ -282,7 +276,6 @@ placement:
     - U_ADC_A
     - U_ADC_B
     - U_ADC_DIGITAL_BAD
-    - U_ADC_I2C_XLATE
     - U_ADC_PWR_BAD
     - U_ADC_READY
     - U_ADC_READY_BAD
@@ -595,6 +588,8 @@ placement:
     region: analog_ch8
   - match:
     - C_ADC_CLOCK_OK
+    - C_ADC_I2C_A
+    - C_ADC_I2C_B
     - C_ADC_OK_CT
     - C_ADC_OK_VDD
     - C_ADC_OUT
@@ -608,6 +603,10 @@ placement:
     - Q_TDM_GATE
     - R_ADC_CLOCK_OK_PD
     - R_ADC_DATA_PD
+    - R_ADC_I2C_SCL_A_PU
+    - R_ADC_I2C_SCL_B_PU
+    - R_ADC_I2C_SDA_A_PU
+    - R_ADC_I2C_SDA_B_PU
     - R_ADC_OK_BOT
     - R_ADC_OK_PU
     - R_ADC_OK_TOP
@@ -618,6 +617,7 @@ placement:
     - R_FSYNC_RAW_PD
     - R_TDM_OE_PU
     - U_ADC_CLOCK_OK
+    - U_ADC_I2C_XLATE
     - U_ADC_OK
     - U_ADC_OUT
     - U_BCLK_INV
