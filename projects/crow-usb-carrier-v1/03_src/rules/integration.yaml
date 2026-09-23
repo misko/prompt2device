@@ -533,7 +533,7 @@ selections:
   - C_OUT2
   - C_OUT3
 - function: synchronous_audio_master_clock
-  part: ASFL1-24.576MHZ-EC-T
+  part: SX5M24.576M20F30TNN
   implementation: module
   rationale: >-
     The selected packaged CMOS oscillator integrates its resonator and sustaining

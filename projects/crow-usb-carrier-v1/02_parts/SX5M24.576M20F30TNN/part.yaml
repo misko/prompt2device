@@ -1,0 +1,49 @@
+mpn: SX5M24.576M20F30TNN
+footprint: crow_usb_digital:SCTF_SX5M_5032
+manufacturer: Shenzhen SCTF Electronics
+type: cmos_oscillator
+package: 5.0x3.2mm SMD 4-pad, 1.2mm nominal height
+escape:
+  style: module
+  pitch: 2.3
+  escapes_worst_side: 2
+  tier_required: jlc_2layer_default
+  checked: "SCTF20215M027 B01 p.4 2.54x2.30 mm pad-center pitch and 1.8x1.3 mm lands; source and native footprint compared 2026-09-23"
+datasheet:
+  doc_id: SCTF20215M027
+  revision: B01
+  url: https://static.chipdip.ru/lib/727/DOC043727753.pdf
+  local: 02_parts/SX5M24.576M20F30TNN/SCTF20215M027.pdf
+  sha256: c10be001568c12e27692d77260f88cd6cd55611b92835a34a2031d98da835804
+  fetched: 2026-09-23
+  pages: 8
+pins:
+  1: OE
+  2: GND
+  3: OUTPUT
+  4: VDD
+verified: "2026-09-23: primary SCTF B01 pp.3-4 checked for exact MPN, logic, electrical limits, bottom-view pad numbers, and suggested land pattern. Physical top-view pads 4/3 above 1/2; tscircuit Y-up and native KiCad Y-down."
+limits:
+  frequency: 24.576MHz
+  supply: 1.62-3.63V
+  nominal_tolerance: 20ppm
+  temperature_drift: 30ppm
+  load: 15pF
+  current_max: 10mA
+  operating_temperature: -40_to_85C
+layout:
+  source: SCTF20215M027 B01 p.4 suggested solder pad layout and test circuit
+  reviewed: '2026-09-23'
+  notes:
+  - Use 1.8x1.3mm lands on 2.54x2.30mm center pitch; pin 1 marker at physical lower left.
+  - Keep C_AUDIO_OSC 10nF between pins 4 VDD and 2 GND adjacent to the oscillator per SCTF p.4 test circuit.
+  - Measure MCLK edge quality and clock-system performance with final two-load routing; SCTF gives no phase-jitter number and no board SI result is claimed.
+layout_refs:
+- tier: 1
+  reached: true
+  artifact: SCTF exact-part approval specification B01 pages 3-4
+- tier: 2
+  reached: false
+  artifact: Exact-part manufacturer evaluation board or routed reference design
+  why: No exact-part routed reference was available in this bounded qualification.
+sourcing: {lcsc: C2901534, note: 'JLC live API observed 1071 on 2026-09-23; five boards plus 150 reserve requires 155. Recheck at order staging.'}

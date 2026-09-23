@@ -14,7 +14,7 @@ export interface CrowUsbDigitalProps { net?: (canonicalName: string) => string }
 const defaultNet=(name:string)=>`net.${ /^\d/.test(name) ? `N${name}` : name }`
 const supplier=(jlc:string)=>({jlcpcb:jlc?[jlc]:[]})
 const sourced=(mpn:string,jlc="")=>jlc||({
- "XFL4015-471MEC":"C18221164","ASFL1-24.576MHZ-EC-T":"C17566269","CC0402KRX5R5BB105":"C106253","X322524MOB4SI":"C70590","FTSH-105-01-L-DV-K":"C5155080",
+ "XFL4015-471MEC":"C18221164","SX5M24.576M20F30TNN":"C2901534","CC0402KRX5R5BB105":"C106253","X322524MOB4SI":"C70590","FTSH-105-01-L-DV-K":"C5155080",
  "GRM1555C1H220JA01D":"C76960","GRM1555C1H102JA01D":"C76947","RC0402FR-0733RL":"C138002","RC0402FR-0710KL":"C60490","RC0402FR-07100KL":"C60491","RC0402FR-071ML":"C138033","RC0402FR-074K7L":"C105871","GRM155R71H103KA88D":"C77019","CL21A106KOCLRNC":"C318695","CRCW0402680RFKED":"C482224",
  "RT0402BRD07100KL":"C852472","RT0402BRD07200KL":"C728556","SN74AUP3G34DCUR":"C2675543",
  "SN74AXC4T245PWR":"C2867798","SN74LVC1G04DCKR":"C8207","SN74LVC1G125DCKT":"C2675550",
@@ -53,8 +53,9 @@ function XU316TQ128EPFootprint(){
 const P=({n,x,y,w,h}:any)=><smtpad portHints={[String(n)]} pcbX={`${x}mm`} pcbY={`${y}mm`} width={`${w}mm`} height={`${h}mm`} shape="rect" />
 /** Coilcraft XFL4015 Document 769-2: 0.98 x 3.4-mm lands on 2.37-mm pitch. Pin 1 (left) is marked winding start and faces the high-dv/dt switch node. */
 function CoilcraftXFL4015Land(){return <footprint><P n={1} x={-1.185} y={0} w={0.98} h={3.4}/><P n={2} x={1.185} y={0} w={0.98} h={3.4}/></footprint>}
-// ASFL1 primary drawing: 2.54 x 2.2 mm pad-center pitch, 1.7 x 1.5 mm lands.
-function Osc5032Land(){return <footprint><P n={1} x={-1.27} y={-1.1} w={1.7} h={1.5}/><P n={2} x={1.27} y={-1.1} w={1.7} h={1.5}/><P n={3} x={1.27} y={1.1} w={1.7} h={1.5}/><P n={4} x={-1.27} y={1.1} w={1.7} h={1.5}/></footprint>}
+// SCTF SCTF20215M027 p.4: 2.54 x 2.3 mm pad-center pitch, 1.8 x 1.3 mm lands.
+// Source Y increases upward; physical top view has 4/3 above 1/2.
+function Osc5032Land(){return <footprint><P n={1} x={-1.27} y={-1.15} w={1.8} h={1.3}/><P n={2} x={1.27} y={-1.15} w={1.8} h={1.3}/><P n={3} x={1.27} y={1.15} w={1.8} h={1.3}/><P n={4} x={-1.27} y={1.15} w={1.8} h={1.3}/></footprint>}
 /** YXC YSX321SL top view: upper 4/3, lower 1/2. tscircuit Y is up;
  * circuit_json_to_kicad_pcb.py flips Y for the native KiCad Y-down footprint. */
 function YxcYSX321SLLand(){return <footprint><P n={1} x={-1.1} y={-0.85} w={1.4} h={1.2}/><P n={2} x={1.1} y={-0.85} w={1.4} h={1.2}/><P n={3} x={1.1} y={0.85} w={1.4} h={1.2}/><P n={4} x={-1.1} y={0.85} w={1.4} h={1.2}/></footprint>}
@@ -309,7 +310,7 @@ export function CrowUsbDigital({net=defaultNet}:CrowUsbDigitalProps={}){
    connections={{pin1:n("QSPI_CS_N"),pin2:n("QSPI_D1"),pin3:n("QSPI_D2"),pin4:n("GND"),pin5:n("QSPI_D0"),pin6:n("QSPI_CLK"),pin7:n("QSPI_D3"),pin8:n("1V8")}} />
   <R name="R_QSPI_CS" value="4.7k" a="1V8" b="QSPI_CS_N" mpn="RC0402FR-074K7L" n={n} /><C name="C_FLASH" value="100nF" a="1V8" b="GND" n={n} />
 
-  <Chip name="Y_AUDIO" manufacturerPartNumber="ASFL1-24.576MHZ-EC-T" jlc="" footprint={<Osc5032Land/>}
+  <Chip name="Y_AUDIO" manufacturerPartNumber="SX5M24.576M20F30TNN" jlc="C2901534" footprint={<Osc5032Land/>}
    pinLabels={{pin1:"OE",pin2:"GND",pin3:"OUT",pin4:"VDD"}} connections={{pin1:n("3V3X"),pin2:n("GND"),pin3:n("AUDIO_24M576"),pin4:n("3V3X")}} />
   <C name="C_AUDIO_OSC" value="10nF" a="3V3X" b="GND" mpn="GRM155R71H103KA88D" n={n} />
   <Chip name="U_TDM_XLATE" manufacturerPartNumber="SN74AXC4T245PWR" jlc="" footprint="tssop16"
