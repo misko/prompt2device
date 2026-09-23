@@ -215,7 +215,10 @@ findings:
     but 155 native violations, 45 parity findings, 16 missing courtyards,
     73 missing models and support intrusion into the hold-bank islands. Source
     repairs add all seven missing courtyard definitions covering the 16 refs;
-    their placement consequence is not yet regenerated or accepted.
+    their placement consequence is not yet regenerated or accepted. Exact TMUX
+    B2 process rules and native pin/datasheet parity repairs now pass independent
+    source/fixture reviews; product regeneration remains owed. A stocked wider-pad
+    regulator candidate is under electrical investigation, not adopted.
   closes_when: Reconcile via fields and package/process clearances, repair
     endpoint metadata and native parity representation, complete footprint/model
     evidence and reserve support corridors. Independently review upstream
@@ -223,6 +226,7 @@ findings:
     spend; pass owning placement and connector gates before downstream work.
   evidence:
   - 01_docs/research/2026-09-23-p1-repaired-native-backtrack.md
+  - 01_docs/research/2026-09-23-tmux-and-native-parity-source-repairs.md
 
 - id: USB-model-identity
   state: open

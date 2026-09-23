@@ -1,17 +1,18 @@
 # Project status
 
-<!-- pause-state:7e405801764d237cd9117cb49bc912d197d63f9fb2714a55698bbf51e965d41c -->
+<!-- pause-state:5b905c699f575d6f54fc513be9ea305de7f04dbc8df591e8c13012ad215b89bb -->
 
 - Phase: `placement`
 - State: **PAUSED**
 - Checkpoint: `06_build/checkpoints/schematic.json` (`545adc0b60a8`)
-- Blocker: Courtyard and current-package model source repairs reviewed; product native regeneration and registration remain owed. Isolated TMUX profile implementation underway. Canonical schematic reviews stale on dossier; P1 campaign exhausted, connector FULL physical evidence outstanding.
-- Next command: `Finish and independently review the isolated TMUX profile implementation using small positive/hostile native fixtures. Complete remaining package/parity/model source repairs before canonical carryover review and campaign reassessment; no third local P1 or routing.`
+- Blocker: TMUX B2 and native parity source repairs reviewed and integrated; actual Crow regeneration remains owed. Regulator replacement electrical screen active; USB clearance, models, support islands and connector physical evidence remain open. Two P1 trials consumed.
+- Next command: `Finish public-only regulator candidate electrical screen; complete package/model/support source repairs, then refresh canonical reviews and explicitly reassess placement campaign. Do not launch a third local P1 or routing from these source-only tests.`
 
 ## Bound receipts
 
-- `01_docs/research/2026-09-23-tmux-profile-scope-terra.md` — `85fa17403fb9`
-- `08_reviews/2026-09-23_courtyard-model_terra_source.md` — `41c8946b09a3`
+- `08_reviews/2026-09-23_native-parity-code_terra_source.md` — `8e356f0d6d4a`
+- `08_reviews/2026-09-23_native-parity-schema_terra_source.md` — `b82b02e5c5f1`
+- `08_reviews/2026-09-23_tmux-profile-code_terra_source.md` — `705c2e383696`
 
 This file is generated from `01_docs/pause_state.json`; edit the manifest with
 `pause_state.py record`, not this view.

@@ -1,12 +1,12 @@
 # Resume
 
-<!-- pause-state:7e405801764d237cd9117cb49bc912d197d63f9fb2714a55698bbf51e965d41c -->
+<!-- pause-state:5b905c699f575d6f54fc513be9ea305de7f04dbc8df591e8c13012ad215b89bb -->
 
 Canonical state: `01_docs/pause_state.json`
 
 1. Verify: `python3 skills/pcb-design/scripts/pause_state.py verify .`
-2. Confirm blocker: Courtyard and current-package model source repairs reviewed; product native regeneration and registration remain owed. Isolated TMUX profile implementation underway. Canonical schematic reviews stale on dossier; P1 campaign exhausted, connector FULL physical evidence outstanding.
-3. Resume with: `Finish and independently review the isolated TMUX profile implementation using small positive/hostile native fixtures. Complete remaining package/parity/model source repairs before canonical carryover review and campaign reassessment; no third local P1 or routing.`
+2. Confirm blocker: TMUX B2 and native parity source repairs reviewed and integrated; actual Crow regeneration remains owed. Regulator replacement electrical screen active; USB clearance, models, support islands and connector physical evidence remain open. Two P1 trials consumed.
+3. Resume with: `Finish public-only regulator candidate electrical screen; complete package/model/support source repairs, then refresh canonical reviews and explicitly reassess placement campaign. Do not launch a third local P1 or routing from these source-only tests.`
 
 The authenticated checkpoint is `06_build/checkpoints/schematic.json` at
 `545adc0b60a8198eca489362e59621681687ccac7725ea9a2241fa21a7862816`.
