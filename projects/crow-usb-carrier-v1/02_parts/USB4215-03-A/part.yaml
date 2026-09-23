@@ -1,0 +1,216 @@
+mpn: USB4215-03-A
+manufacturer: GCT
+type: usb_type_c_receptacle
+mates: receptacle
+datasheet:
+  doc_id: USB4215
+  revision: A 2024-04-26
+  url: https://gct.co/files/drawings/usb4215.pdf
+  local: GCT_USB4215_A.pdf
+  sha256: 1659ba00769b9b774a033fac72cb2f3bfc481a3272c53f34e87520f33635a9e1
+  fetched: 2026-09-23
+package: right-angle top-mount Type-C receptacle, 16 active contacts, four plated shell slots; no locating peg
+footprint: crow_usb_carrier_v1:GCT_USB4215_03_A
+footprint_proof:
+  source: GCT USB4215 drawing A sheet 1, Recommended PCB Layout, viewed from component side
+  tolerance_mm: 0.05
+  contact_lands: 12 physical SMT lands for 16 logical A/B contacts; four power/ground pairs share copper
+  contact_pitch_mm: 0.5
+  contact_widths_mm: {inner_8: 0.30, outer_4: 0.60}
+  contact_length_mm: 1.15
+  shell_slots: four PTH slots at x=±4.32 mm; upper drill 0.60x1.40 in 1.00x1.80 land; lower drill 0.60x1.80 in 1.00x2.20 land
+  minimum_shell_annulus_mm: 0.20
+  minimum_outer_contact_to_shell_copper_mm: 0.32
+  minimum_outer_contact_to_shell_slot_mm: 0.52
+  locating_peg_count: 0
+escape:
+  style: connector
+  pitch: 0.5
+  tier_required: jlc_2layer_default
+  checked: '2026-09-23 manufacturer drawing A sheet1: 0.5 mm signal pitch and 0.3 mm pad width give 0.2 mm pad-edge gap; four plated shell slots replace the prior locator NPTHs. Full routed escape remains owed'
+pins:
+  A1: GND
+  A4: VBUS
+  A5: CC1
+  A6: DP
+  A7: DM
+  A8: SBU1
+  A9: VBUS
+  A12: GND
+  B1: GND
+  B4: VBUS
+  B5: CC2
+  B6: DP
+  B7: DM
+  B8: SBU2
+  B9: VBUS
+  B12: GND
+  SH: SHIELD
+pin_aliases:
+  A1:
+    schematic: '1'
+    footprint: A1
+    fused: true
+    why: GCT realizes A1 and B12 as coincident manufacturer-defined GND lands; the
+      TSX chip API still owns A1 as a separate logical contact.
+    evidence: GCT_USB4215_A.pdf sheet1 contact table and recommended PCB layout; project
+      native footprint pad identities. Board-level parity remains owed.
+  A4:
+    schematic: '2'
+    footprint: A4
+    fused: true
+    why: GCT realizes A4 and B9 as coincident manufacturer-defined VBUS lands; the
+      TSX chip API still owns A4 as a separate logical contact.
+    evidence: GCT_USB4215_A.pdf sheet1 contact table and recommended PCB layout; project
+      native footprint pad identities. Board-level parity remains owed.
+  A5:
+    schematic: '3'
+    footprint: A5
+    why: The TSX chip API numbers its 17 logical ports while the realized connector
+      uses GCT's alphanumeric contact identities.
+    evidence: GCT_USB4215_A.pdf sheet1 contact table and recommended PCB layout; project
+      native footprint pad identities. Board-level parity remains owed.
+  A6:
+    schematic: '4'
+    footprint: A6
+    why: The TSX chip API numbers its 17 logical ports while the realized connector
+      uses GCT's alphanumeric contact identities.
+    evidence: GCT_USB4215_A.pdf sheet1 contact table and recommended PCB layout; project
+      native footprint pad identities. Board-level parity remains owed.
+  A7:
+    schematic: '5'
+    footprint: A7
+    why: The TSX chip API numbers its 17 logical ports while the realized connector
+      uses GCT's alphanumeric contact identities.
+    evidence: GCT_USB4215_A.pdf sheet1 contact table and recommended PCB layout; project
+      native footprint pad identities. Board-level parity remains owed.
+  A8:
+    schematic: '6'
+    footprint: A8
+    why: The TSX chip API numbers its 17 logical ports while the realized connector
+      uses GCT's alphanumeric contact identities.
+    evidence: GCT_USB4215_A.pdf sheet1 contact table and recommended PCB layout; project
+      native footprint pad identities. Board-level parity remains owed.
+  A9:
+    schematic: '7'
+    footprint: A9
+    fused: true
+    why: GCT realizes A9 and B4 as coincident manufacturer-defined VBUS lands; the
+      TSX chip API still owns A9 as a separate logical contact.
+    evidence: GCT_USB4215_A.pdf sheet1 contact table and recommended PCB layout; project
+      native footprint pad identities. Board-level parity remains owed.
+  A12:
+    schematic: '8'
+    footprint: A12
+    fused: true
+    why: GCT realizes A12 and B1 as coincident manufacturer-defined GND lands; the
+      TSX chip API still owns A12 as a separate logical contact.
+    evidence: GCT_USB4215_A.pdf sheet1 contact table and recommended PCB layout; project
+      native footprint pad identities. Board-level parity remains owed.
+  B1:
+    schematic: '9'
+    footprint: B1
+    fused: true
+    why: GCT realizes B1 and A12 as coincident manufacturer-defined GND lands; the
+      TSX chip API still owns B1 as a separate logical contact.
+    evidence: GCT_USB4215_A.pdf sheet1 contact table and recommended PCB layout; project
+      native footprint pad identities. Board-level parity remains owed.
+  B4:
+    schematic: '10'
+    footprint: B4
+    fused: true
+    why: GCT realizes B4 and A9 as coincident manufacturer-defined VBUS lands; the
+      TSX chip API still owns B4 as a separate logical contact.
+    evidence: GCT_USB4215_A.pdf sheet1 contact table and recommended PCB layout; project
+      native footprint pad identities. Board-level parity remains owed.
+  B5:
+    schematic: '11'
+    footprint: B5
+    why: The TSX chip API numbers its 17 logical ports while the realized connector
+      uses GCT's alphanumeric contact identities.
+    evidence: GCT_USB4215_A.pdf sheet1 contact table and recommended PCB layout; project
+      native footprint pad identities. Board-level parity remains owed.
+  B6:
+    schematic: '12'
+    footprint: B6
+    why: The TSX chip API numbers its 17 logical ports while the realized connector
+      uses GCT's alphanumeric contact identities.
+    evidence: GCT_USB4215_A.pdf sheet1 contact table and recommended PCB layout; project
+      native footprint pad identities. Board-level parity remains owed.
+  B7:
+    schematic: '13'
+    footprint: B7
+    why: The TSX chip API numbers its 17 logical ports while the realized connector
+      uses GCT's alphanumeric contact identities.
+    evidence: GCT_USB4215_A.pdf sheet1 contact table and recommended PCB layout; project
+      native footprint pad identities. Board-level parity remains owed.
+  B8:
+    schematic: '14'
+    footprint: B8
+    why: The TSX chip API numbers its 17 logical ports while the realized connector
+      uses GCT's alphanumeric contact identities.
+    evidence: GCT_USB4215_A.pdf sheet1 contact table and recommended PCB layout; project
+      native footprint pad identities. Board-level parity remains owed.
+  B9:
+    schematic: '15'
+    footprint: B9
+    fused: true
+    why: GCT realizes B9 and A4 as coincident manufacturer-defined VBUS lands; the
+      TSX chip API still owns B9 as a separate logical contact.
+    evidence: GCT_USB4215_A.pdf sheet1 contact table and recommended PCB layout; project
+      native footprint pad identities. Board-level parity remains owed.
+  B12:
+    schematic: '16'
+    footprint: B12
+    fused: true
+    why: GCT realizes B12 and A1 as coincident manufacturer-defined GND lands; the
+      TSX chip API still owns B12 as a separate logical contact.
+    evidence: GCT_USB4215_A.pdf sheet1 contact table and recommended PCB layout; project
+      native footprint pad identities. Board-level parity remains owed.
+  SH:
+    schematic: '17'
+    footprint: SH
+    why: The TSX chip API numbers its 17 logical ports while the realized connector
+      uses GCT's alphanumeric contact identities.
+    evidence: GCT_USB4215_A.pdf sheet1 contact table and recommended PCB layout; project
+      native footprint pad identities. Board-level parity remains owed.
+limits:
+  vbus_collective_current: 5A
+  gnd_collective_current: 6.25A
+  voltage_rating: 48VDC
+  contact_resistance_initial_max: 40mOhm
+  durability: 20000_cycles
+  operating_temperature: -25C_to_85C
+gotchas:
+- 'This is a data-capable USB device port: join A6/B6 to D+ and A7/B7 to D-. Do not
+  inherit power-only no-connect annotations.'
+- CC1 and CC2 are separate; each needs its own device-side termination. Do not short
+  CC pins.
+- SBU1/SBU2 are unused in USB2-only mode and need explicit schematic no-connect disposition.
+- VBUS is a separate host-presence/sense domain; it must not be tied to carrier power
+  under the self-powered architecture.
+- Shell is a separately named shield contact. Its board-level CHASSIS/GND bond and
+  ESD return strategy require review.
+- Four VBUS/GND contact pairs share manufacturer-defined solder lands. Preserve logical
+  contact aliases and all four plated shell slots; there are no locating pegs.
+- The source-owned drawing-derived 3D envelope is not manufacturer CAD or mating/registration evidence.
+verified: '2026-09-23: retained manufacturer drawing A sheet1 supplies the exact 16-contact table, 12 realized SMT lands, four plated shell-slot dimensions and zero locating pegs. Source-only geometry; full-board parity, assembly and fit remain owed.'
+sourcing:
+  lcsc: C37616412
+layout:
+  source: GCT USB4215 A sheet1 recommended PCB layout
+  reviewed: '2026-09-23'
+  notes: J_USB at board edge; merge duplicate USB2 contacts near the receptacle and
+    carry one short D+/D- pair through suitable ESD protection. Separate CC and VBUS
+    sensing. No power-only wiring inherited.
+layout_refs:
+- tier: 1
+  reached: true
+  artifact: GCT_USB4215_A.pdf sheet1 recommended PCB layout
+  why: Retained manufacturer drawing independently reopened; fixes contacts,
+    four plated shell slots and absence of locating pegs. Board edge/mouth registration remains owed.
+- tier: 2
+  reached: false
+  artifact: Exact-part high-speed USB routed reference
+  why: Prior donor used power only and is not a data-routing precedent; new USB path
+    requires its own SI/route proof.

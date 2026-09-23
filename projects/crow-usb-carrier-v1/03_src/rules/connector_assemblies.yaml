@@ -21,10 +21,7 @@ evidence_sources:
   path: 02_parts/100009141/Telegartner_L00000A0149DP.pdf
 - id: usb_receptacle_drawing
   kind: manufacturer-drawing
-  path: 02_parts/USB4105-GF-A-120/GCT_USB4105_drawing.pdf
-- id: usb_product_spec
-  kind: manufacturer-product-specification
-  path: 02_parts/USB4105-GF-A-120/GCT_USB4105_product_spec.pdf
+  path: 02_parts/USB4215-03-A/GCT_USB4215_A.pdf
 - id: usb_cable_drawing
   kind: manufacturer-drawing
   path: 02_parts/A-USB31C-20A-100/ASSMANN_A-USB31C-20A-100_rev08.pdf
@@ -290,20 +287,18 @@ assemblies:
     - bench_service
   receptacle:
     manufacturer: GCT
-    mpn: USB4105-GF-A-120
+    mpn: USB4215-03-A
     mounting_method: smd_with_shell_stakes
     model_source_id: null
     body_envelope_mm:
-      x: 7.73
-      y: 9.32
-      z: 3.69
+      x: 6.75
+      y: 9.19
+      z: 3.41
     evidence:
       grade: conservative
       source_ids:
       - usb_receptacle_drawing
-      - connector_selection
-      rationale: Drawing dimensions 7.35 x 8.94 x 3.31 mm are conservatively expanded by the drawing's
-        0.38 mm general tolerance. Placement and complete mated fit remain separate.
+      rationale: USB4215 drawing A dimensions 6.50 mm body depth, 8.94 mm lateral width and 3.16 mm profile are expanded by its X.XX ±0.25 mm general tolerance. Shell stakes below the seating plane and full installed fit remain separate.
   mate:
     manufacturer: ASSMANN WSW
     mpn: A-USB31C-20A-100
@@ -331,7 +326,7 @@ assemblies:
       source_ids:
       - connector_placement_contract
       - connector_physical_qualification_plan
-      rationale: Mating datum, exposure, process setback, and service clearance are owed.
+      rationale: Board -Y is the inherited service-direction intent, not a registered native placement. The footprint +Y mouth requires an accepted 180-degree board rotation before that axis is physically realized. Mating datum, exposure, process setback, and service clearance are owed.
   grip:
     kind: molded_usb_c_overmold
     across_flats_mm: null
@@ -351,8 +346,8 @@ assemblies:
     evidence:
       grade: exact
       source_ids:
-      - usb_product_spec
-      rationale: The product specification defines insertion and withdrawal force for the non-threaded
+      - usb_receptacle_drawing
+      rationale: The USB4215 drawing A defines insertion and withdrawal force for the non-threaded
         Type-C interface; there is no tightening operation.
   tool:
     kind: none
@@ -365,7 +360,7 @@ assemblies:
     evidence:
       grade: exact
       source_ids:
-      - usb_product_spec
+      - usb_receptacle_drawing
       - connector_selection
       rationale: Mating is a hand insertion/removal operation with no separate final tool or counter-tool.
   torque:
@@ -375,7 +370,7 @@ assemblies:
     evidence:
       grade: exact
       source_ids:
-      - usb_product_spec
+      - usb_receptacle_drawing
       rationale: The non-threaded Type-C interface has no torque requirement.
   reaction:
     method: restrained_pcb_hand_operation

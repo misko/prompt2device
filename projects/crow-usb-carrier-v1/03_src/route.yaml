@@ -255,7 +255,7 @@ route:
         net: USB_DP
       - pad: B7
         net: USB_DN
-      why: Exact USB4105 native pad aliases preserve both reversible data contact sets.
+      why: USB4215-03-A native pad aliases preserve both reversible data contact sets.
     topology:
     - ref: U_USB_ESD
       part_mpn: TPD2EUSB30ADRTR

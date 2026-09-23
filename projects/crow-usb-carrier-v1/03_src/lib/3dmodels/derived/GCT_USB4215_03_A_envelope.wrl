@@ -1,0 +1,44 @@
+#VRML V2.0 utf8
+# Source-owned drawing-derived mechanical ENVELOPE, NOT GCT registered CAD.
+# GCT USB4215 drawing A sheet1 and official product page; no model/mating registration proof.
+# One model unit=2.54 mm; footprint Y down/model Y up; Z=0 top PCB seating plane.
+# XY origin is the contact-row centroid reference chosen by this source footprint.
+# Mouth faces footprint +Y; nominal front component outline y=+2.995 mm, actual mating plane/board exposure owed.
+# Primary drawing A recommended PCB layout: lower shell-slot centre y=+0.895 mm, front dashed component outline 2.10 mm beyond it.
+# Body back y=-3.505 mm; the contact solder lands extend 0.750 mm behind that body outline.
+# housing nominal 8.94 x 6.50 x 3.16: centre_mm=(0,-0.255,1.58), size_mm=(8.94,6.5,3.16); footprint Y down
+Transform { translation 0.000000000 0.100393701 0.622047244 children [ Shape { appearance Appearance { material Material { diffuseColor 0.65 0.67 0.69 } } geometry Box { size 3.519685039 2.559055118 1.244094488 } } ] }
+# dark mouth-side marker; illustrative aperture direction only: centre_mm=(0,3.00,1.58), size_mm=(8.1,0.01,1.65); footprint Y down
+Transform { translation 0.000000000 -1.181102362 0.622047244 children [ Shape { appearance Appearance { material Material { diffuseColor 0.045 0.045 0.05 } } geometry Box { size 3.188976378 0.003937008 0.649606299 } } ] }
+# contact tail 1; illustrative separate land: centre_mm=(-3.2,-3.68,0.04), size_mm=(0.6,0.15,0.08); footprint Y down
+Transform { translation -1.259842520 1.448818898 0.015748031 children [ Shape { appearance Appearance { material Material { diffuseColor 0.75 0.60 0.15 } } geometry Box { size 0.236220472 0.059055118 0.031496063 } } ] }
+# contact tail 2; illustrative separate land: centre_mm=(-2.4,-3.68,0.04), size_mm=(0.6,0.15,0.08); footprint Y down
+Transform { translation -0.944881890 1.448818898 0.015748031 children [ Shape { appearance Appearance { material Material { diffuseColor 0.75 0.60 0.15 } } geometry Box { size 0.236220472 0.059055118 0.031496063 } } ] }
+# contact tail 3; illustrative separate land: centre_mm=(-1.75,-3.68,0.04), size_mm=(0.3,0.15,0.08); footprint Y down
+Transform { translation -0.688976378 1.448818898 0.015748031 children [ Shape { appearance Appearance { material Material { diffuseColor 0.75 0.60 0.15 } } geometry Box { size 0.118110236 0.059055118 0.031496063 } } ] }
+# contact tail 4; illustrative separate land: centre_mm=(-1.25,-3.68,0.04), size_mm=(0.3,0.15,0.08); footprint Y down
+Transform { translation -0.492125984 1.448818898 0.015748031 children [ Shape { appearance Appearance { material Material { diffuseColor 0.75 0.60 0.15 } } geometry Box { size 0.118110236 0.059055118 0.031496063 } } ] }
+# contact tail 5; illustrative separate land: centre_mm=(-0.75,-3.68,0.04), size_mm=(0.3,0.15,0.08); footprint Y down
+Transform { translation -0.295275591 1.448818898 0.015748031 children [ Shape { appearance Appearance { material Material { diffuseColor 0.75 0.60 0.15 } } geometry Box { size 0.118110236 0.059055118 0.031496063 } } ] }
+# contact tail 6; illustrative separate land: centre_mm=(-0.25,-3.68,0.04), size_mm=(0.3,0.15,0.08); footprint Y down
+Transform { translation -0.098425197 1.448818898 0.015748031 children [ Shape { appearance Appearance { material Material { diffuseColor 0.75 0.60 0.15 } } geometry Box { size 0.118110236 0.059055118 0.031496063 } } ] }
+# contact tail 7; illustrative separate land: centre_mm=(0.25,-3.68,0.04), size_mm=(0.3,0.15,0.08); footprint Y down
+Transform { translation 0.098425197 1.448818898 0.015748031 children [ Shape { appearance Appearance { material Material { diffuseColor 0.75 0.60 0.15 } } geometry Box { size 0.118110236 0.059055118 0.031496063 } } ] }
+# contact tail 8; illustrative separate land: centre_mm=(0.75,-3.68,0.04), size_mm=(0.3,0.15,0.08); footprint Y down
+Transform { translation 0.295275591 1.448818898 0.015748031 children [ Shape { appearance Appearance { material Material { diffuseColor 0.75 0.60 0.15 } } geometry Box { size 0.118110236 0.059055118 0.031496063 } } ] }
+# contact tail 9; illustrative separate land: centre_mm=(1.25,-3.68,0.04), size_mm=(0.3,0.15,0.08); footprint Y down
+Transform { translation 0.492125984 1.448818898 0.015748031 children [ Shape { appearance Appearance { material Material { diffuseColor 0.75 0.60 0.15 } } geometry Box { size 0.118110236 0.059055118 0.031496063 } } ] }
+# contact tail 10; illustrative separate land: centre_mm=(1.75,-3.68,0.04), size_mm=(0.3,0.15,0.08); footprint Y down
+Transform { translation 0.688976378 1.448818898 0.015748031 children [ Shape { appearance Appearance { material Material { diffuseColor 0.75 0.60 0.15 } } geometry Box { size 0.118110236 0.059055118 0.031496063 } } ] }
+# contact tail 11; illustrative separate land: centre_mm=(2.4,-3.68,0.04), size_mm=(0.6,0.15,0.08); footprint Y down
+Transform { translation 0.944881890 1.448818898 0.015748031 children [ Shape { appearance Appearance { material Material { diffuseColor 0.75 0.60 0.15 } } geometry Box { size 0.236220472 0.059055118 0.031496063 } } ] }
+# contact tail 12; illustrative separate land: centre_mm=(3.2,-3.68,0.04), size_mm=(0.6,0.15,0.08); footprint Y down
+Transform { translation 1.259842520 1.448818898 0.015748031 children [ Shape { appearance Appearance { material Material { diffuseColor 0.75 0.60 0.15 } } geometry Box { size 0.236220472 0.059055118 0.031496063 } } ] }
+# plated shell stake direction x=-4.32 y=-3.105; simplified: centre_mm=(-4.32,-3.105,-0.4), size_mm=(0.6,1.4,0.8); footprint Y down
+Transform { translation -1.700787402 1.222440945 -0.157480315 children [ Shape { appearance Appearance { material Material { diffuseColor 0.60 0.63 0.66 } } geometry Box { size 0.236220472 0.551181102 0.314960630 } } ] }
+# plated shell stake direction x=-4.32 y=0.895; simplified: centre_mm=(-4.32,0.895,-0.4), size_mm=(0.6,1.8,0.8); footprint Y down
+Transform { translation -1.700787402 -0.352362205 -0.157480315 children [ Shape { appearance Appearance { material Material { diffuseColor 0.60 0.63 0.66 } } geometry Box { size 0.236220472 0.708661417 0.314960630 } } ] }
+# plated shell stake direction x=4.32 y=-3.105; simplified: centre_mm=(4.32,-3.105,-0.4), size_mm=(0.6,1.4,0.8); footprint Y down
+Transform { translation 1.700787402 1.222440945 -0.157480315 children [ Shape { appearance Appearance { material Material { diffuseColor 0.60 0.63 0.66 } } geometry Box { size 0.236220472 0.551181102 0.314960630 } } ] }
+# plated shell stake direction x=4.32 y=0.895; simplified: centre_mm=(4.32,0.895,-0.4), size_mm=(0.6,1.8,0.8); footprint Y down
+Transform { translation 1.700787402 -0.352362205 -0.157480315 children [ Shape { appearance Appearance { material Material { diffuseColor 0.60 0.63 0.66 } } geometry Box { size 0.236220472 0.708661417 0.314960630 } } ] }

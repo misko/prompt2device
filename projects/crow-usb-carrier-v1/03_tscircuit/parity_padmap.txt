@@ -1,5 +1,5 @@
-# GCT USB4105: tscircuit logical contact numbers -> manufacturer/native pads.
-# Authority: exact connector dossier pin_aliases and USB4105-B4 drawing.
+# GCT USB4215-03-A: tscircuit logical contact numbers -> manufacturer/native pads.
+# Authority: exact connector dossier pin_aliases and USB4215 drawing A sheet1.
 # Both A/B contacts are preserved even where copper lands coincide.
 J_USB:1=A1,J_USB:2=A4,J_USB:3=A5,J_USB:4=A6,J_USB:5=A7,J_USB:6=A8
 J_USB:7=A9,J_USB:8=A12,J_USB:9=B1,J_USB:10=B4,J_USB:11=B5,J_USB:12=B6

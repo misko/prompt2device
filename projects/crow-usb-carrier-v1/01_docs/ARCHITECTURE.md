@@ -62,7 +62,7 @@ requirement, not evidence that these behaviors already work.
   operating intent is 48 kHz, eight 32-bit time slots, 12.288 MHz serial bit clock
   and 24.576 MHz master clock; alternate clock modes need explicit evidence.
 - USB device link: USB 2.0 high-speed UAC2 through the onboard XU316 and
-  protected USB4105 receptacle. The 8-channel payload exceeds one full-speed
+  protected USB4215-03-A receptacle. The 8-channel payload exceeds one full-speed
   isochronous transaction; high-speed operation is required.
 - Power/protection/control: source rules will replace the scaffold examples once
   the input envelope and part selection are admitted.

@@ -773,3 +773,6 @@ TPS62822DLCR source candidate795acf68 adopted as87ecfaa1 after Terra source PASS
 
 
 Final three source models79fee31d adopted as23935b33 after Terra PASS: J_PWR/J_JTAG/U_BUCK models are original drawing-derived envelopes with exactshape/keying omissions explicit. All42namedpads and other footprintgeometry unchanged. Together with DLC3bindings, projectedsource filepresence568/568 still awaits actualnewboardcoverage/registration. Root module-firstPASS4/7selectedsubsystems andTSXpreflight111/111dossiers; noP1orproducer.
+
+
+USB4215 finalsourcef75c963 adopted after Terra mechanical+nativefixture PASS. Initialdf2e766f bodyorigin and5.16mm misread rejected; corrected5.15mm source places shellcentres-3.105/+.895 andfront2.995. Exactfixture17logical/12SMTlocations/4PTHshell/0NPTH passes0DRC/0parity with8expectedunconnected;4opposite-net negatives eachfailnativeDRC. Root wrongly assumeddistinctCHASSIS; author reopenedactualcallerSH=GND, preservedhypotheticaltest separately andverifiedactualsource. Reviewedislandproposal adoptedatomicallywithUSBsource: J_USB230,22.995,180 nominalfrontflush,forbidsreservebothholdbanks. Thisis sourcefloorplanonly; no P1/physicalfitadmission, courtyardoverhang.505 andconnectorFULL19unknownremain.
