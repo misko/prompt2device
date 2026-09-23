@@ -8,14 +8,13 @@ escape:
   pitch: 1.27
   escapes_worst_side: 5
   tier_required: jlc_2layer_default
-  checked: "Samtec FTSH-DV Revision H recommended PCB layout and exact Samtec_FTSH_105_01_L_DV_K footprint: 1.27 mm grid, five pads per column; escape_check.py 2026-09-22"
+  checked: "Samtec FTSH-DV Revision H sheet 1 land pattern: 1.27 mm pitch, 0.74 x 2.79 mm lands, 4.07 mm opposing pad-center spacing; native and TSX geometry corrected 2026-09-23. Routed escape remains owed."
 datasheet:
   doc_id: FTSH-DV
-  revision: unknown
+  revision: "footprint Rev H, 2019-08-27"
   url: https://www.samtec.com/products/ftsh-105-01-l-dv-k
   fetched: 2026-09-22
-  note: Manufacturer drawing fetch returned HTTP 403; land-pattern drawing/hash is
-    an explicit freeze gate.
+  note: "Retained local Samtec_FTSH_footprint_revH.pdf sheet 1; SHA-256 caa205b92560423f3b0aea9c69d6c38340d1b7f01b0655092994450e935edcb3. The catalog page fetch returned HTTP 403; exact -K keying disposition still needs separate review."
 pins:
   1: VREF
   2: TMS
@@ -27,8 +26,7 @@ pins:
   8: TDI
   9: GND
   10: RESET_N
-verified: "logical debug assignment is project-owned; manufacturer land drawing pending\
-  \ \u2014 2026-09-22"
+verified: "Samtec Rev H sheet 1 land geometry reconciled to the exact native footprint and TSX land source 2026-09-23; logical debug assignment and -K position-7 disposition remain project-owned and require independent physical pin review."
 layout:
   source: Samtec FTSH-1XX-XX-XXX-DV-XXX recommended PCB/stencil layout drawing Revision
     H, sheets 1-4

@@ -58,14 +58,20 @@ function Osc5032Land(){return <footprint><P n={1} x={-1.27} y={-1.15} w={1.8} h=
 /** YXC YSX321SL top view: upper 4/3, lower 1/2. tscircuit Y is up;
  * circuit_json_to_kicad_pcb.py flips Y for the native KiCad Y-down footprint. */
 function YxcYSX321SLLand(){return <footprint><P n={1} x={-1.1} y={-0.85} w={1.4} h={1.2}/><P n={2} x={1.1} y={-0.85} w={1.4} h={1.2}/><P n={3} x={1.1} y={0.85} w={1.4} h={1.2}/><P n={4} x={-1.1} y={0.85} w={1.4} h={1.2}/></footprint>}
-function SC70_5Land(){return <footprint><P n={1} x={-1} y={0.65} w={0.6} h={1}/><P n={2} x={-1} y={0} w={0.6} h={1}/><P n={3} x={-1} y={-0.65} w={0.6} h={1}/><P n={4} x={1} y={-0.65} w={0.6} h={1}/><P n={5} x={1} y={0.65} w={0.6} h={1}/></footprint>}
-function SM8_DCTLand(){return <footprint>{[1,2,3,4].map((n,i)=><P key={n} n={n} x={-1.45} y={(1.5-i)*0.65} w={0.6} h={1.2}/>)}{[5,6,7,8].map((n,i)=><P key={n} n={n} x={1.45} y={(i-1.5)*0.65} w={0.6} h={1.2}/>)}</footprint>}
-function FTSH2x5Land(){return <footprint>{Array.from({length:10},(_,i)=>{const row=Math.floor(i/2),col=i%2;return <P key={i+1} n={i+1} x={col?0.635:-0.635} y={(2-row)*1.27} w={0.7} h={1.5}/>})}</footprint>}
+/** TI SCES214AF DCK0005A land pattern example, PDF p.35: 0.95 x 0.40, 2.20 row spacing. TSX Y-up reflects native Y-down. */
+function SC70_5Land(){return <footprint><P n={1} x={-1.1} y={0.65} w={0.95} h={0.4}/><P n={2} x={-1.1} y={0} w={0.95} h={0.4}/><P n={3} x={-1.1} y={-0.65} w={0.95} h={0.4}/><P n={4} x={1.1} y={-0.65} w={0.95} h={0.4}/><P n={5} x={1.1} y={0.65} w={0.95} h={0.4}/></footprint>}
+/** TI SCES203Q DCT0008A land pattern example, PDF p.20: 1.10 x 0.40, 3.80 row spacing. TSX Y-up reflects native Y-down. */
+function SM8_DCTLand(){return <footprint>{[1,2,3,4].map((n,i)=><P key={n} n={n} x={-1.9} y={(1.5-i)*0.65} w={1.1} h={0.4}/>)}{[5,6,7,8].map((n,i)=><P key={n} n={n} x={1.9} y={(i-1.5)*0.65} w={1.1} h={0.4}/>)}</footprint>}
+/** Samtec FTSH-DV Rev H recommended PCB layout, sheet 1: 2.79 x 0.74, 4.07 row spacing. TSX Y-up reflects native Y-down. */
+function FTSH2x5Land(){return <footprint>{Array.from({length:10},(_,i)=>{const row=Math.floor(i/2),col=i%2;return <P key={i+1} n={i+1} x={col?2.035:-2.035} y={(row-2)*1.27} w={2.79} h={0.74}/>})}</footprint>}
 /** TI drawing 4220552/B: DSE0006A, 0.5-mm pitch, 0.25 x 0.7-mm lands. */
-function DSE0006ALand(){return <footprint>{[1,2,3].map((n,i)=><P key={n} n={n} x={-0.6} y={(1-i)*0.5} w={0.7} h={0.25}/>)}{[4,5,6].map((n,i)=><P key={n} n={n} x={0.6} y={(i-1)*0.5} w={0.7} h={0.25}/>)}</footprint>}
+/** TI DSE0006A 4220552/B land pattern, TPS3890 PDF p.25: pin 1 is 0.8 x 0.25; other five are 0.7 x 0.25. */
+function DSE0006ALand(){return <footprint>{[1,2,3].map((n,i)=><P key={n} n={n} x={n===1?-0.55:-0.6} y={(1-i)*0.5} w={n===1?0.8:0.7} h={0.25}/>)}{[4,5,6].map((n,i)=><P key={n} n={n} x={0.6} y={(i-1)*0.5} w={0.7} h={0.25}/>)}</footprint>}
 /** TI TCA9406 DCU0008A drawing 4225266/A: 0.5-mm pitch,
  * 8×0.85×0.30-mm lands on 3.1-mm opposite pad-center lines. */
 function Tca9406DcuLand(){return <footprint>{[1,2,3,4].map((n,i)=><P key={n} n={n} x={-1.55} y={(1.5-i)*0.5} w={0.85} h={0.3}/>)}{[5,6,7,8].map((n,i)=><P key={n} n={n} x={1.55} y={(i-1.5)*0.5} w={0.85} h={0.3}/>)}</footprint>}
+/** TI SCES766C DCU0008A land pattern example, PDF p.24: 0.5-mm pitch, 0.85 x 0.30-mm lands, 3.1-mm row spacing. */
+function Dcu0008ALand(){return <footprint>{[1,2,3,4].map((n,i)=><P key={n} n={n} x={-1.55} y={(1.5-i)*0.5} w={0.85} h={0.3}/>)}{[5,6,7,8].map((n,i)=><P key={n} n={n} x={1.55} y={(i-1.5)*0.5} w={0.85} h={0.3}/>)}</footprint>}
 /** TI drawing 4222645/E: DMQ0006A asymmetric 0.5-mm-pitch VSON lands. */
 function DMQ0006ALand(){return <footprint>{[1,2,3].map((n,i)=><P key={n} n={n} x={-0.55} y={(1-i)*0.5} w={0.6} h={0.25}/>)}{[4,5,6].map((n,i)=><P key={n} n={n} x={0.35} y={(i-1)*0.5} w={1.0} h={0.25}/>)}</footprint>}
 
@@ -368,7 +374,7 @@ export function CrowUsbDigital({net=defaultNet}:CrowUsbDigitalProps={}){
    pinLabels={{pin1:"A",pin2:"GND",pin3:"B",pin4:"Y",pin5:"VCC",pin6:"C"}}
    connections={{pin1:n("ADC_FSYNC_RAW"),pin2:n("GND"),pin3:n("FSYNC_Q1"),pin4:n("ADC_FSYNC_EXT"),pin5:n("3V3X"),pin6:n("FSYNC_Q2")}} />
   <C name="C_FSYNC_FF1" value="100nF" a="3V3X" b="GND" n={n} /><C name="C_FSYNC_FF2" value="100nF" a="3V3X" b="GND" n={n} /><C name="C_FSYNC_INV" value="100nF" a="3V3X" b="GND" n={n} /><C name="C_FSYNC_OR" value="100nF" a="3V3X" b="GND" n={n} />
-  <Chip name="U_ADC_OUT" manufacturerPartNumber="SN74AUP3G34DCUR" jlc="" footprint="vssop8_dcu"
+  <Chip name="U_ADC_OUT" manufacturerPartNumber="SN74AUP3G34DCUR" jlc="" footprint={<Dcu0008ALand/>}
    pinLabels={{pin1:"1A",pin2:"3Y",pin3:"2A",pin4:"GND",pin5:"2Y",pin6:"3A",pin7:"1Y",pin8:"VCC"}}
    connections={{pin1:n("GND"),pin2:n("ADC_FSYNC_SAFE"),pin3:n("ADC_BCLK_RAW"),pin4:n("GND"),pin5:n("ADC_BCLK_SAFE"),pin6:n("ADC_FSYNC_EXT"),pin8:n("3V3_ADC")}} />
   <C name="C_ADC_OUT" value="100nF" a="3V3_ADC" b="GND" n={n} />

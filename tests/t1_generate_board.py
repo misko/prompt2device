@@ -6,8 +6,10 @@ FPID is a HARD ERROR (the defect that matters most — a silently un-placed
 part is an electrically-wrong board that still passes DRC).
 """
 import json
+import math
 import re
 import shutil
+import subprocess
 import sys
 from pathlib import Path
 
@@ -21,6 +23,185 @@ LC = ROOT / "archived_projects" / "cook-loadcell"
 HUB4 = ROOT / "archived_projects" / "usb-hub-3s-v4"
 PLUTO_RX2 = ROOT / "archived_projects" / "pluto-rx2-8way"
 CROW_USB = ROOT / "projects" / "crow-usb-carrier-v1"
+
+
+@test("Crow native lands follow retained Samtec and TI drawings; old pads overlap",
+      kind="known_bad")
+def t_crow_native_lands_from_drawings():
+    import pcbnew
+
+    def page(path, n):
+        return subprocess.check_output(
+            ["pdftotext", "-f", str(n), "-l", str(n), "-layout",
+             str(path), "-"], text=True)
+
+    parts = CROW_USB / "02_parts"
+    sam = page(parts / "FTSH-105-01-L-DV-K/Samtec_FTSH_footprint_revH.pdf", 1)
+    dck = page(parts / "SN74LVC1G04DCKR/SN74LVC1G04-SCES214.pdf", 35)
+    dct = page(parts / "SN74LVC2G74DCTR/SN74LVC2G74-SCES203Q.pdf", 20)
+
+    def dimension(text, pattern):
+        match = re.search(pattern, text)
+        check(match is not None, f"manufacturer dimension missing: {pattern}")
+        return float(match.group(1))
+
+    # These are measured source dimensions, not a duplicate of the edited
+    # footprint constants.  The opposing row spacing for Samtec is derived
+    # from outer span minus pad length on the drawing.
+    sam_pitch = dimension(sam, r"\.050\s+([0-9.]+)")
+    sam_length = dimension(sam, r"\.110\s+([0-9.]+)")
+    sam_width = dimension(sam, r"\.029\s+([0-9.]+)")
+    sam_span = dimension(sam, r"\.270\s+([0-9.]+)")
+    dck_lands = [float(x) for x in re.findall(r"5X \(([0-9.]+)\)", dck)]
+    dct_lands = [float(x) for x in re.findall(r"8X \(([0-9.]+)\)", dct)]
+    eq(len(dck_lands), 2, "DCK example gives length then width")
+    eq(len(dct_lands), 2, "DCT example gives length then width")
+    def row_separation(text):
+        drawing = text.split("LAND PATTERN EXAMPLE", 1)[0]
+        return float(re.findall(r"\(([0-9.]+)\)", drawing)[-1])
+    cases = [
+        ("Samtec_FTSH_105_01_L_DV_K", 10, sam_pitch, sam_length,
+         sam_width, sam_span - sam_length),
+        ("TI_DCK0005A_SC70_5", 5,
+         dimension(dck, r"2X \(([0-9.]+)\)"),
+         dck_lands[0], dck_lands[1], row_separation(dck)),
+        ("TI_DCT0008A_SM8", 8,
+         dimension(dct, r"6X \(([0-9.]+)\)"),
+         dct_lands[0], dct_lands[1], row_separation(dct)),
+    ]
+    lib = CROW_USB / "03_src/lib/crow_usb_digital.pretty"
+    tsx = (CROW_USB / "03_tscircuit/src/crow_usb_digital.tsx").read_text()
+
+    def contacts(fp):
+        return {p.GetNumber(): (pcbnew.ToMM(p.GetPosition().x),
+                                pcbnew.ToMM(p.GetPosition().y),
+                                pcbnew.ToMM(p.GetSize().x),
+                                pcbnew.ToMM(p.GetSize().y))
+                for p in fp.Pads()}
+
+    def same_row_overlap(rows):
+        return [(a, b) for a, pa in rows.items() for b, pb in rows.items()
+                if a < b and math.isclose(pa[0], pb[0], abs_tol=1e-6)
+                and abs(pa[1] - pb[1]) < (pa[3] + pb[3]) / 2 - 1e-6]
+
+    for name, count, pitch, length, width, separation in cases:
+        fp = pcbnew.FootprintLoad(str(lib), name)
+        check(fp is not None, f"{name} loads")
+        pads = contacts(fp)
+        eq(set(pads), {str(i) for i in range(1, count + 1)},
+           f"{name} retains pin identities")
+        for x, y, sx, sy in pads.values():
+            check(math.isclose(sx, length, abs_tol=1e-6) and
+                  math.isclose(sy, width, abs_tol=1e-6),
+                  f"{name} pad shape disagrees with manufacturer land")
+        xs = sorted({v[0] for v in pads.values()})
+        eq(len(xs), 2, f"{name} opposing rows")
+        check(math.isclose(xs[1] - xs[0], separation, abs_tol=1e-6),
+              f"{name} opposing row spacing")
+        for x in xs:
+            ys = sorted(v[1] for v in pads.values() if v[0] == x)
+            step = 2 * pitch if count == 5 and len(ys) == 2 else pitch
+            check(all(math.isclose(b - a, step, abs_tol=1e-6)
+                      for a, b in zip(ys, ys[1:])), f"{name} contact pitch")
+        eq(same_row_overlap(pads), [], f"{name} different nets have copper gap")
+        # TI's land drawings label pin 1 at the upper left in a Y-down top
+        # view. Samtec Fig 1 labels odd contacts on the lower row.  Checking
+        # signed positions catches a mirrored footprint that passes all
+        # width, pitch and short checks.
+        if count == 10:
+            check(pads["1"][1] > pads["9"][1] and
+                  math.isclose(pads["1"][1], pads["2"][1], abs_tol=1e-6),
+                  "Samtec odd/even orientation from Rev H Fig 1")
+            expr = re.search(r"function FTSH2x5Land\(\).*?\sy=\{([^}]+)\}", tsx).group(1)
+            tsx_pin1_y = eval(expr, {"__builtins__": {}}, {"row": 0})
+        elif count == 5:
+            check(pads["1"][1] < pads["2"][1] < pads["3"][1],
+                  "DCK pin 1 is upper left in TI land drawing")
+            expr = re.search(r"function SC70_5Land\(\).*?<P n=\{1\}.*?\sy=\{([^}]+)\}", tsx).group(1)
+            tsx_pin1_y = eval(expr, {"__builtins__": {}}, {})
+        else:
+            check(pads["1"][1] < pads["2"][1] < pads["3"][1] < pads["4"][1],
+                  "DCT pin 1 is upper left in TI land drawing")
+            expr = re.search(r"function SM8_DCTLand\(\).*?\sy=\{([^}]+)\}", tsx).group(1)
+            tsx_pin1_y = eval(expr, {"__builtins__": {}}, {"i": 0})
+        check(math.isclose(float(tsx_pin1_y), -pads["1"][1], abs_tol=1e-6),
+              f"{name} TSX Y-up and native KiCad Y-down pin 1 parity")
+        # Recreate the formerly oversized along-pitch pad while retaining
+        # the manufacturer's pitch: the collision detector must turn red.
+        old_extent = {10: 1.5, 5: 1.0, 8: 1.2}[count]
+        bad = {pin: (x, y, sx, old_extent) for pin, (x, y, sx, sy) in pads.items()}
+        check(same_row_overlap(bad), f"{name} old overlong lands must fail")
+
+
+@test("Crow DSE, DMQ and DCU lands follow TI pin-1 orientation and dimensions",
+      kind="known_bad")
+def t_crow_native_ti_chip_orientation():
+    import pcbnew
+
+    parts = CROW_USB / "02_parts"
+    sources = [
+        ("TI_DSE0006A_WSON6", "TPS389030DSER/TPS3890-SBVS228A.pdf", 25,
+         6, 0.5, 0.25, 0.7),
+        ("TI_DMQ0006A_VSON6", "TPS62825DMQR/TPS6282x-SLVSEF9I.pdf", 33,
+         6, 0.5, 0.25, 0.6),
+        ("TI_DCU0008A_VSSOP8", "SN74AUP3G34DCUR/SN74AUP3G34-SCES766C.pdf", 24,
+         8, 0.5, 0.3, 0.85),
+    ]
+    lib = CROW_USB / "03_src/lib/crow_usb_digital.pretty"
+    tsx = (CROW_USB / "03_tscircuit/src/crow_usb_digital.tsx").read_text()
+    function = {"TI_DSE0006A_WSON6": "DSE0006ALand",
+                "TI_DMQ0006A_VSON6": "DMQ0006ALand",
+                "TI_DCU0008A_VSSOP8": "Dcu0008ALand"}
+    for name, pdf, page_no, count, pitch, width, left_length in sources:
+        drawing = subprocess.check_output(
+            ["pdftotext", "-f", str(page_no), "-l", str(page_no),
+             "-layout", str(parts / pdf), "-"], text=True)
+        check("LAND PATTERN EXAMPLE" in drawing and
+              "EXAMPLE BOARD LAYOUT" in drawing, f"{name} selected TI page")
+        check(re.search(rf"\({pitch:g}\)", drawing) or
+              re.search(rf"4X\s+{pitch:g}", drawing),
+              f"{name} manufacturer pitch")
+        check(re.search(rf"\({width:g}\)", drawing),
+              f"{name} manufacturer width")
+        check(re.search(rf"\({left_length:g}\)", drawing),
+              f"{name} manufacturer left land length")
+        fp = pcbnew.FootprintLoad(str(lib), name)
+        check(fp is not None, f"{name} loads")
+        pads = {p.GetNumber(): (pcbnew.ToMM(p.GetPosition().x),
+                                pcbnew.ToMM(p.GetPosition().y),
+                                pcbnew.ToMM(p.GetSize().x),
+                                pcbnew.ToMM(p.GetSize().y)) for p in fp.Pads()}
+        eq(set(pads), {str(i) for i in range(1, count + 1)},
+           f"{name} pin set")
+        check(pads["1"][1] < pads["2"][1] < pads["3"][1],
+              f"{name} TI land drawing labels pin1 upper-left")
+        check(all(math.isclose(pads[str(i+1)][1] - pads[str(i)][1], pitch,
+                               abs_tol=1e-6) for i in range(1, count//2)),
+              f"{name} left-side pitch")
+        check(all(math.isclose(row[3], width, abs_tol=1e-6)
+                  for row in pads.values()), f"{name} pad width")
+        check(math.isclose(pads["2"][2], left_length, abs_tol=1e-6),
+              f"{name} left land length")
+        if count == 8:
+            opposing = float(re.search(r"\(3\.1\)", drawing).group(0)[1:-1])
+            check(math.isclose(pads["8"][0] - pads["1"][0], opposing,
+                               abs_tol=1e-6), "DCU opposing row spacing")
+        elif name == "TI_DSE0006A_WSON6":
+            pin1_length = float(re.search(r"\(0\.8\)", drawing).group(0)[1:-1])
+            check(math.isclose(pads["1"][2], pin1_length, abs_tol=1e-6),
+                  "DSE pin1 has distinct manufacturer land length")
+        else:
+            right_length = float(re.search(r"3X \(1\)", drawing).group(0)[4:-1])
+            check(all(math.isclose(pads[str(i)][2], right_length, abs_tol=1e-6)
+                      for i in (4, 5, 6)), "DMQ long right lands")
+        pattern = rf"function {function[name]}\(\).*?\sy=\{{([^}}]+)\}}"
+        expr = re.search(pattern, tsx).group(1)
+        tsx_pin1_y = eval(expr, {"__builtins__": {}}, {"i": 0})
+        check(math.isclose(float(tsx_pin1_y), -pads["1"][1], abs_tol=1e-6),
+              f"{name} TSX/native signed pin1 parity")
+        bad = {pin: (x, -y, sx, sy) for pin, (x, y, sx, sy) in pads.items()}
+        check(bad["1"][1] > bad["3"][1],
+              f"{name} formerly mirrored pin sequence must fail")
 
 
 @test("native USB4105 aliases preserve every logical contact and NC land")
