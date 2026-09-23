@@ -318,20 +318,25 @@ rails:
   # Fast SHDNZ_CFG=00 before capture reduces TLV powerdown t3/t4 to 100us;
   # the default preconfiguration state still requires >=10ms. Source candidate:
   # PWR_EN falling directly asserts SHDNZ through U_ADC_PWR_BAD/Q_ADC_PWR_RST;
-  # 14x470uF C178530 are on 5V_LDO_HOLD; 8x15nF C0G C97907 and 150k
-  # equivalent delay the intentional Q_DUMP/LDO_EN transitions. Accepted
-  # held-start screen is 4.91V buck minimum minus 0.81V full path allocation
-  # =4.10V. Engineering retention 0.54 gives 3.553mF. ADI LT3045 max 350mV
-  # dropout at300mA and TI TLV min3.0V give held terminal input3.35V.
-  # At <=70mA clock-stopped pre-wake held load, C*dV/I gives >=38.1ms;
-  # at <=120mA awake-before-fast-config held load it gives >=22.2ms to
-  # input3.35V, above TI default10ms. Primary C0G and Nexperia
-  # Schmitt/leakage dynamic screen estimates dump at15.7..33.4ms at120mA;
-  # Nexperia VOH >=VCC-0.1V at <100uA and AOS AO3400A Rds(on) spec at
-  # VGS=2.5V screen gate drive at the modeled latest trip VCC=2.974V.
-  # This is a conservative engineering screen, not a guaranteed cold curve.
-  # First-article AVDD/IOVDD/SHDNZ/dump waveform, 22ohm precharge pulse,
-  # larger held bank physical placement and rail thermal remain gates.
+  # 16x470uF C178530 are on 5V_LDO_HOLD; 8x15nF C0G C97907 and 150k
+  # equivalent delay Q_DUMP/LDO_EN. Slow buck sag can reach the inherited
+  # U_PWR lower trip4.649V before PWR_EN falls; minus the full0.81V path
+  # allocation gives the adverse held start3.839V. Fast collapse from buck
+  # minimum4.91V gives4.10V. Engineering retention0.54 gives4.061mF.
+  # ADI LT3045 max350mV dropout at300mA and TI TLV min3.0V give held
+  # terminal input3.35V. At <=120mA awake-before-fast-mode held load,
+  # C*dV/I from3.839V to3.35V gives >=16.55ms versus TI default10ms;
+  # at <=70mA clock-stopped pre-wake it gives >=28.37ms. C0G/Nexperia
+  # dynamic screen gives dump15.45..32.87ms from adverse start at120mA.
+  # Latest held VCC2.868V and Nexperia VOH>=VCC-0.1V at<100uA give
+  # gate>=2.768V, above AO3400A characterized2.5V drive condition.
+  # Three parallel1uF C_PWR_CT delay PWR_EN/Q_PRE bypass: with0.5 retained
+  # each, TPS389001 VCTmin1.17V/ICTmax1.35uA give >=1.30s, versus
+  # R_PRE22ohm*7.52mF nominal tau165ms. At +20% Panasonic bulk and
+  # R_PRE+1%, tau<=200.5ms and delay>=6.48tau, residual<8mV at5.13V.
+  # These are engineering screens, not guaranteed cold curves. First-article
+  # AVDD/IOVDD/SHDNZ/dump, U_PWR response, R_PRE pulse/repeat thermal,
+  # larger held-bank placement and rail startup remain physical gates.
 
   - &spoke
     name: N12V_POD1

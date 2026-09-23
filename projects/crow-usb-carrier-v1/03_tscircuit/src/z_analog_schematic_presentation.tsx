@@ -33,10 +33,10 @@ own("held_ldo", {
   R_LDO_ILIM:[5,-4,-90],
   R_LDO_PG_TOP:[12,5,-90], R_LDO_PG_BOT_A:[16,5,-90], R_LDO_PG_BOT_B:[20,5,-90],
 })
-for (let i=3; i<=14; i++) own("held_ldo", { [`C_HOLD${i}`]:[1+3*((i-3)%6),-7-3*Math.floor((i-3)/6),-90] })
+for (let i=3; i<=16; i++) own("held_ldo", { [`C_HOLD${i}`]:[1+3*((i-3)%6),-7-3*Math.floor((i-3)/6),-90] })
 own("supervisors", {
   U_PWR:[-3,2], R_PWR_TOP:[-7,3,-90], R_PWR_BOT:[-7,0,-90],
-  C_PWR_CT:[-2,-1,-90], C_PWR:[-5,-2,-90], R_PWR_PU:[1,3,-90],
+  C_PWR_CT:[-2,-1,-90], C_PWR_CT2:[1,-1,-90], C_PWR_CT3:[4,-1,-90], C_PWR:[-5,-2,-90], R_PWR_PU:[1,3,-90],
   U_AUDIO:[-3,-6], R_ADC_TOP:[-7,-5,-90], R_ADC_BOT:[-7,-8,-90],
   C_AUDIO_CT1:[-2,-9,-90], C_AUDIO_CT2:[1,-9,-90], C_AUDIO:[-5,-10,-90],
   R_AUDIO_PU:[1,-5,-90], R_AUDIO_PD:[4,-7,-90],

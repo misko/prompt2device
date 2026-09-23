@@ -155,7 +155,7 @@ const QuietAnalogPower = ({ n }: any) => (
     <R name="R_PRE_G" value="100k" a="PRE_GATE" b="5V_LDO_FEED" mpn="RC0402FR-07100KL" jlc="C60491" n={n} />
     <C name="C_HOLD1" value="470uF" a="5V_LDO_HOLD" b="GND" mpn="EEEFK1A471P" jlc="C178530" footprint={<PanasonicEeeFk8x10 />} polarized n={n} />
     <C name="C_HOLD2" value="470uF" a="5V_LDO_HOLD" b="GND" mpn="EEEFK1A471P" jlc="C178530" footprint={<PanasonicEeeFk8x10 />} polarized n={n} />
-    {Array.from({length:12},(_,i)=><C key={`hold${i+3}`} name={`C_HOLD${i+3}`} value="470uF" a="5V_LDO_HOLD" b="GND" mpn="EEEFK1A471P" jlc="C178530" footprint={<PanasonicEeeFk8x10 />} polarized n={n} />)}
+    {Array.from({length:14},(_,i)=><C key={`hold${i+3}`} name={`C_HOLD${i+3}`} value="470uF" a="5V_LDO_HOLD" b="GND" mpn="EEEFK1A471P" jlc="C178530" footprint={<PanasonicEeeFk8x10 />} polarized n={n} />)}
     <C name="C_LDO_IN" value="47uF" a="5V_LDO_HOLD" b="GND" mpn="GRM32ER71A476KE15L" jlc="C84494" footprint={<MurataGrm32e1210/>} n={n} />
     <Chip name="U_LDO" manufacturerPartNumber="LT3045EDD#PBF" jlc="C666574" footprint={<Lt3045Dd />}
       pinLabels={{ pin1: "IN1", pin2: "IN2", pin3: "EN_UV", pin4: "PG_NC", pin5: "ILIM", pin6: "PGFB", pin7: "SET", pin8: "GND", pin9: "OUTS", pin10: "OUT", pin11: "EP_GND" }}
@@ -175,6 +175,8 @@ const QuietAnalogPower = ({ n }: any) => (
       pinLabels={{ pin1: "SENSE", pin2: "GND", pin3: "MR_N", pin4: "VDD", pin5: "CT", pin6: "RESET_N" }}
       connections={{ pin1: n("PWR_SENSE"), pin2: n("GND"), pin3: n("5V_LDO_HOLD"), pin4: n("5V_LDO_HOLD"), pin5: n("PWR_CT"), pin6: n("PWR_EN") }} />
     <C name="C_PWR_CT" value="1uF" a="PWR_CT" b="GND" mpn="C0603C105K4RACTU" jlc="C2167386" footprint="0603" n={n} />
+    <C name="C_PWR_CT2" value="1uF" a="PWR_CT" b="GND" mpn="C0603C105K4RACTU" jlc="C2167386" footprint="0603" n={n} />
+    <C name="C_PWR_CT3" value="1uF" a="PWR_CT" b="GND" mpn="C0603C105K4RACTU" jlc="C2167386" footprint="0603" n={n} />
     <C name="C_PWR" value="100nF" a="5V_LDO_HOLD" b="GND" mpn="CL05B104KO5NNNC" jlc="C1525" n={n} />
     <R name="R_PWR_PU" value="10k" a="5V_LDO_HOLD" b="PWR_EN" mpn="RC0402FR-0710KL" jlc="C60490" n={n} />
     <R name="R_PWR_TOP" value="30.9k" a="5V_BUCK" b="PWR_SENSE" mpn="RT0603BRD0730K9L" jlc="C861313" footprint={<YageoRt0603 />} n={n} />
