@@ -714,6 +714,7 @@ against the `side: bottom` features) are the cheapest first bite.
 | `escape.escapes_worst_side` | `escape_check.py` | P-ESC worst-side count |
 | `escape.pins` | ADVISORY | descriptive total pin count for an asymmetric package; the exact footprint/pin map and worst-side escape count own the executable geometry |
 | `escape.conditions` | `escape_check.py` | P-ESC qualifying conditions |
+| `escape.center_via_topology.*` | `escape_check.py` | P-ESC conditional exact-coupon/native-template geometry, pin mapping, tier and evidence identity; source feasibility only, not vendor fabrication acceptance |
 | `escape.tier_conditional` | OWED | a declared conditional fab tier that no reader compares with `escape_check.py`'s independently computed `tier_conditional()` result; a stale declaration is currently silent |
 | `escape.checked` | OWED | the date/method the escape was calibrated. 125 dossiers carry it; `escape_check.py` recomputes the geometry and never reads this, so a stale calibration note is invisible |
 | `escape.loaded_side_escapes` | OWED | a second escape count for the loaded side, declared once and read by nothing |

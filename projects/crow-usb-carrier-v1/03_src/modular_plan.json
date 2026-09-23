@@ -702,7 +702,7 @@
         "analog_ch1": [
           "C_ADC_CM1P.1",
           "R_ADC_PD1P.1",
-          "U_ISO1.2"
+          "U_ISO1.4"
         ]
       },
       "requirements": [
@@ -738,7 +738,7 @@
         "analog_ch2": [
           "C_ADC_CM2P.1",
           "R_ADC_PD2P.1",
-          "U_ISO2.2"
+          "U_ISO2.4"
         ]
       },
       "requirements": [
@@ -774,7 +774,7 @@
         "analog_ch3": [
           "C_ADC_CM3P.1",
           "R_ADC_PD3P.1",
-          "U_ISO3.2"
+          "U_ISO3.4"
         ]
       },
       "requirements": [
@@ -810,7 +810,7 @@
         "analog_ch4": [
           "C_ADC_CM4P.1",
           "R_ADC_PD4P.1",
-          "U_ISO4.2"
+          "U_ISO4.4"
         ]
       },
       "requirements": [
@@ -846,7 +846,7 @@
         "analog_ch5": [
           "C_ADC_CM5P.1",
           "R_ADC_PD5P.1",
-          "U_ISO5.2"
+          "U_ISO5.4"
         ]
       },
       "requirements": [
@@ -882,7 +882,7 @@
         "analog_ch6": [
           "C_ADC_CM6P.1",
           "R_ADC_PD6P.1",
-          "U_ISO6.2"
+          "U_ISO6.4"
         ]
       },
       "requirements": [
@@ -918,7 +918,7 @@
         "analog_ch7": [
           "C_ADC_CM7P.1",
           "R_ADC_PD7P.1",
-          "U_ISO7.2"
+          "U_ISO7.4"
         ]
       },
       "requirements": [
@@ -954,7 +954,7 @@
         "analog_ch8": [
           "C_ADC_CM8P.1",
           "R_ADC_PD8P.1",
-          "U_ISO8.2"
+          "U_ISO8.4"
         ]
       },
       "requirements": [
@@ -1051,36 +1051,28 @@
       "net": "AUDIO_EN",
       "endpoints": {
         "analog_ch1": [
-          "U_ISO1.3",
-          "U_ISO1.7"
+          "U_ISO1.2"
         ],
         "analog_ch2": [
-          "U_ISO2.3",
-          "U_ISO2.7"
+          "U_ISO2.2"
         ],
         "analog_ch3": [
-          "U_ISO3.3",
-          "U_ISO3.7"
+          "U_ISO3.2"
         ],
         "analog_ch4": [
-          "U_ISO4.3",
-          "U_ISO4.7"
+          "U_ISO4.2"
         ],
         "analog_ch5": [
-          "U_ISO5.3",
-          "U_ISO5.7"
+          "U_ISO5.2"
         ],
         "analog_ch6": [
-          "U_ISO6.3",
-          "U_ISO6.7"
+          "U_ISO6.2"
         ],
         "analog_ch7": [
-          "U_ISO7.3",
-          "U_ISO7.7"
+          "U_ISO7.2"
         ],
         "analog_ch8": [
-          "U_ISO8.3",
-          "U_ISO8.7"
+          "U_ISO8.2"
         ],
         "quiet_power": [
           "R_AUDIO_PD.1",
@@ -1234,8 +1226,7 @@
           "R_ADC_PD1P.2",
           "U_AFE1.4",
           "U_ESD1.4",
-          "U_ISO1.4",
-          "U_ISO1.9",
+          "U_ISO1.5",
           "U_SPOKE1.6"
         ],
         "analog_ch2": [
@@ -1256,8 +1247,7 @@
           "R_ADC_PD2P.2",
           "U_AFE2.4",
           "U_ESD2.4",
-          "U_ISO2.4",
-          "U_ISO2.9",
+          "U_ISO2.5",
           "U_SPOKE2.6"
         ],
         "analog_ch3": [
@@ -1278,8 +1268,7 @@
           "R_ADC_PD3P.2",
           "U_AFE3.4",
           "U_ESD3.4",
-          "U_ISO3.4",
-          "U_ISO3.9",
+          "U_ISO3.5",
           "U_SPOKE3.6"
         ],
         "analog_ch4": [
@@ -1300,8 +1289,7 @@
           "R_ADC_PD4P.2",
           "U_AFE4.4",
           "U_ESD4.4",
-          "U_ISO4.4",
-          "U_ISO4.9",
+          "U_ISO4.5",
           "U_SPOKE4.6"
         ],
         "analog_ch5": [
@@ -1322,8 +1310,7 @@
           "R_ADC_PD5P.2",
           "U_AFE5.4",
           "U_ESD5.4",
-          "U_ISO5.4",
-          "U_ISO5.9",
+          "U_ISO5.5",
           "U_SPOKE5.6"
         ],
         "analog_ch6": [
@@ -1344,8 +1331,7 @@
           "R_ADC_PD6P.2",
           "U_AFE6.4",
           "U_ESD6.4",
-          "U_ISO6.4",
-          "U_ISO6.9",
+          "U_ISO6.5",
           "U_SPOKE6.6"
         ],
         "analog_ch7": [
@@ -1366,8 +1352,7 @@
           "R_ADC_PD7P.2",
           "U_AFE7.4",
           "U_ESD7.4",
-          "U_ISO7.4",
-          "U_ISO7.9",
+          "U_ISO7.5",
           "U_SPOKE7.6"
         ],
         "analog_ch8": [
@@ -1388,8 +1373,7 @@
           "R_ADC_PD8P.2",
           "U_AFE8.4",
           "U_ESD8.4",
-          "U_ISO8.4",
-          "U_ISO8.9",
+          "U_ISO8.5",
           "U_SPOKE8.6"
         ],
         "audio_clock_tdm": [

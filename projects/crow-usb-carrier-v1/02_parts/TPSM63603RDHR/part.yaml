@@ -8,15 +8,11 @@ footprint: crow_usb_power:TPSM63603RDHR_RDH0030A
 datasheet: {doc_id: SLVSFS5A, revision: A, url: 'https://www.ti.com/lit/ds/symlink/tpsm63603.pdf', local: TPSM63603_SLVSFS5A.pdf, sha256: ffb05dbfc1fb35d79778fda2242d4880a0dfae146c28481afba8dff778b72dc6, pages: 47}
 pins: {1: RT, 2: EN_SYNC, 3: VIN, 4: VIN, 5: PGND, 6: PGND, 7: VOUT, 8: VOUT, 9: VOUT, 10: VOUT, 11: SW_NC, 12: VOUT, 13: VOUT, 14: VOUT, 15: VOUT, 16: PGND, 17: PGND, 18: VIN, 19: VIN, 20: CBOOT, 21: RBOOT, 22: VLDOIN, 23: VCC, 24: AGND, 25: FB, 26: PG, 27: AGND, 28: PGND, 29: PGND, 30: VOUT}
 limits: {vin_min_V: 3, vin_max_V: 36, iout_max_A: 3, vout_adjustable_min_V: 1, vout_adjustable_max_V: 16, feedback_nominal_V: 1, feedback_accuracy_pct: 1, tj_max_C: 125}
-feedback:
-  top: {ref: R_BUCK_FB_TOP, resistance_ohm: 40200, from: 5V_BUCK, to: BUCK_FB}
-  bottom: {ref: R_BUCK_FB_BOTTOM, resistance_ohm: 10000, from: BUCK_FB, to: BUCK_AGND}
-  nominal_vout_V: 5.02
-  evidence: TI SLVSFS5A sections 7.3.2 and 8.2.1.2.2, Table 7-1 (5V row)
 escape: {style: qfn, pitch: 0.5, escapes_worst_side: 8, tier_required: jlc_4layer_advanced, checked: 'Same RDH0030A native land as V5 option; route escape remains unproven.'}
 layout:
   source: TI SLVSFS5A Section 10 and Figures 10-1/10-2
   notes:
+  - Application uses R_BUCK_FB_TOP 40.2k from 5V_BUCK to BUCK_FB and R_BUCK_FB_BOTTOM 10k from BUCK_FB to BUCK_AGND, nominal 5.02V per TI SLVSFS5A Table 7-1 and sections 7.3.2/8.2.1.2.2. Executable voltage bounds belong to power_tree.yaml.
   - Put both divider resistors next to FB pin 25; keep FB trace short and away from switching copper.
   - Sense VOUT at the output capacitor; return lower resistor to AGND before single-point PGND join.
   - Keep existing VIN, VOUT, PGND, RT, VCC, VLDOIN and bootstrap connections per TI 5V example.

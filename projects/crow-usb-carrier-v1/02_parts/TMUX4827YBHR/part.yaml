@@ -82,7 +82,7 @@ gotchas:
   Ø0.25 aperture over Ø0.35 capped copper. No vendor yield guarantee at exact 0.10mm
   via-to-pad gap.
 verified: '2026-09-23: TI SCDS457B pin/truth/electrical/package tables; exact native
-  coupon and independent diagnostic review /tmp/crow-tmux4827-coupon-independent-review.md.'
+  coupon and independent diagnostic review 08_reviews/2026-09-23_tmux4827-coupon_sol_source.md.'
 layout:
   source: TI SCDS457B YBH0009-C02 manufacturer drawing and retained exact native coupon
   reviewed: '2026-09-23'
@@ -561,5 +561,5 @@ layout_refs:
 sourcing:
   lcsc: C22428234
   alternates: []
-  note: Exact JLC catalog code observed stock 5437 on 2026-09-23; 8x5+150=190. Allocation
-    recheck at staging.
+  note: Exact orderable catalog identity. Dated quantities and reserve screen are retained
+    in 01_docs/sourcing/jlc-stock-refresh-2026-09-23-0448.md; recheck allocation at staging.
