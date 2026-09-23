@@ -39,6 +39,7 @@ mutable file: it is an INPUT, and a re-read replaces the entry it re-reads.
 | `procurement-policy.yaml` | durable currency and per-line/aggregate limits for preorder cash, gross MOQ surplus cost, and nonrecoverable assembly excess cost | HAND-WRITTEN user policy. Template limits are zero so no spending authority is invented; volatile MOQ/quote observations remain in `06_build/sourcing/` |
 | `evidence/` | retained primary manufacturer lifecycle pages | Exact bytes and identity/date/hash provenance; its own contract governs contents. No stock inference. |
 | `jlcsearch-screen-<YYYY-MM-DD>.md` | dated interpretation of report-only jlcsearch evidence with exact URLs/times and input report hashes | observation only; never a build input or allocation receipt |
+| `sourcing-review-<YYYY-MM-DD>.md` | dated cross-provider exception dispositions and proposed design-time decisions | observations only; no automatic admission or purchasing authority |
 | `contracts.md` | this file | |
 
 ## Optional public distributor design policy

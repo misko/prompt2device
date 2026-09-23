@@ -485,3 +485,8 @@ Set stitch.via.tiers and stitch.astar_fallback.via to the existing0.60/0.30mm or
 ## 2026-09-22 — PDF triage complete; external checkpoint unchanged
 - SOL read-only diagnostic inspected all40pages: no verified clipping/overlap; page31 dense129pin U_XU text remains a formal-readability review concern. Evidence retained in06_build/verification/canonical-pdf-triage/ and diagnostic report in01_docs/research/2026-09-22-canonical-pdf-triage.md. No source repair indicated by this triage; formal review is not accepted.
 - Provider checkpoint has now remained unchanged across three goal turns:0/84response statuses, no receipt. Placement is not admitted. Need actual provider evidence before the conductor can advance.
+
+## 2026-09-23 — direct sourcing exception resolution
+- Delegated active/passive sourcing to SOL and connector identity/new buffer-only rows to Terra. Refreshed directJLC full84code census:70pass build+150,14fail (9build shortages,5buffer-only). Exact distributor observations provide numerical alternatives for all14; detailed qualifications and freshness limits in01_docs/sourcing/sourcing-review-2026-09-23.md.
+- Molex exact manufacturer aliases resolve C192562 naming discrepancy. No part replacements. SN74LVC1G125DCKT now has one observed qualifying supply pool; historical85/85two-pool status is not current proof.
+- Prepared concrete design-only continuation proposal and requested explicit sourcing-risk acceptance, as required by the existing policy. Provider response remains unfilled; no placement or manufacturing admission is claimed.
