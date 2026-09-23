@@ -1,30 +1,35 @@
 {
-  "blocker": "P1 r4 floorplan remains accepted, but P2 input/quiet-power candidate is DEFECTIVE: 38/47 local rows pass, nine fail, both task attempts are consumed (2/2), and the graph requires backtrack. The r2 source-only proposal predicts 47/47 in memory but has no native proof. Connector FULL still has 19 physical targets open; P3, all routing, P5 promotion, release and order remain blocked.",
+  "blocker": "P1 floorplan and scoped P2 input/quiet-power board c3d90659 are independently accepted; graph P1/P2 work is recorded. Other blocks still exceed 3 keep-short and 227 adjacency budgets, and connector FULL has 19 physical targets unmeasured. The board remains 499 unrouted; P3, routing, P5 integrated promotion, release and order are blocked.",
   "checkpoint": {
     "path": "06_build/checkpoints/schematic.json",
     "sha256": "2fb4dd626750114476150d550d88cf15c0d5a2deb5d8e971e1be67a2a7bde856",
     "size": 1152
   },
-  "next_command": "Independently review the unaccepted r2 post-anchor source proposal, then explicitly reassess and admit a fresh bounded P2 campaign before any native generation; keep FULL before P3 or any routing.",
+  "next_command": "Census the remaining P2 blocks on the exact scoped board, prepare a bounded reviewed placement source candidate for their failed budgets, and obtain all 19 connector FULL physical measurements before P3 or any routing; preserve the old P2 2/2 failure history and scoped power acceptance.",
   "phase": "placement",
   "project": "crow-usb-carrier-v1",
   "receipts": [
     {
-      "path": "01_docs/research/2026-09-23-p2-input-power-a2-disposition.md",
-      "sha256": "6ce68a6cbfd9408b8dfe267b83c7b5bab7c7aece51dae25c25f35e01061e7725",
-      "size": 5374
+      "path": "01_docs/research/2026-09-23-p2-input-power-r3-scoped-adoption.md",
+      "sha256": "9ab8689c28537c3d669fb6f06338f90df26386ee4f12111072ed264ff6026152",
+      "size": 6281
     },
     {
-      "path": "01_docs/research/2026-09-23-p2-input-power-r2-unaccepted-backtrack.md",
-      "sha256": "502ee51d31f612a3383f28aa2ad9f7e1f60d794a42e9ed595800ae6adeb8315c",
-      "size": 12081
+      "path": "08_reviews/2026-09-23_p2-r3-budget-authority_terra.md",
+      "sha256": "d070308a0fb1acfdd6c2fcf5db45c836e27934790246bdccd5bb48dd58ac9397",
+      "size": 1394
     },
     {
-      "path": "08_reviews/2026-09-23_p2-input-power-a2_terra_diagnostic.md",
-      "sha256": "157a3975a229808681598229b0fd286cf5d02f3cc98b371f3359cbc05a216f98",
-      "size": 1777
+      "path": "08_reviews/2026-09-23_p2-r3-native-power_terra.md",
+      "sha256": "9a17469dd252950951727c8d72194d70fd521ce43a3bf5aa0a5e56cb8bc01676",
+      "size": 1785
+    },
+    {
+      "path": "08_reviews/2026-09-23_p2-r3-source-admission_terra.md",
+      "sha256": "4b3bcecc65b6b5a53edd8627fddeef3cdcb52740c3f3c11880cc36a6d473d746",
+      "size": 2127
     }
   ],
   "schema": 1,
-  "state_id": "f28efc03c59730a83510442a7c2ec0a1adf7b76493ac4ef5c42602f805eb4b4b"
+  "state_id": "c31ae4ef9b55746f7319fa11c37986ac42faaf25b6cabb75d6297e76aad4c72b"
 }

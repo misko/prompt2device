@@ -1,18 +1,19 @@
 # Project status
 
-<!-- pause-state:f28efc03c59730a83510442a7c2ec0a1adf7b76493ac4ef5c42602f805eb4b4b -->
+<!-- pause-state:c31ae4ef9b55746f7319fa11c37986ac42faaf25b6cabb75d6297e76aad4c72b -->
 
 - Phase: `placement`
 - State: **PAUSED**
 - Checkpoint: `06_build/checkpoints/schematic.json` (`2fb4dd626750`)
-- Blocker: P1 r4 floorplan remains accepted, but P2 input/quiet-power candidate is DEFECTIVE: 38/47 local rows pass, nine fail, both task attempts are consumed (2/2), and the graph requires backtrack. The r2 source-only proposal predicts 47/47 in memory but has no native proof. Connector FULL still has 19 physical targets open; P3, all routing, P5 promotion, release and order remain blocked.
-- Next command: `Independently review the unaccepted r2 post-anchor source proposal, then explicitly reassess and admit a fresh bounded P2 campaign before any native generation; keep FULL before P3 or any routing.`
+- Blocker: P1 floorplan and scoped P2 input/quiet-power board c3d90659 are independently accepted; graph P1/P2 work is recorded. Other blocks still exceed 3 keep-short and 227 adjacency budgets, and connector FULL has 19 physical targets unmeasured. The board remains 499 unrouted; P3, routing, P5 integrated promotion, release and order are blocked.
+- Next command: `Census the remaining P2 blocks on the exact scoped board, prepare a bounded reviewed placement source candidate for their failed budgets, and obtain all 19 connector FULL physical measurements before P3 or any routing; preserve the old P2 2/2 failure history and scoped power acceptance.`
 
 ## Bound receipts
 
-- `01_docs/research/2026-09-23-p2-input-power-a2-disposition.md` — `6ce68a6cbfd9`
-- `01_docs/research/2026-09-23-p2-input-power-r2-unaccepted-backtrack.md` — `502ee51d31f6`
-- `08_reviews/2026-09-23_p2-input-power-a2_terra_diagnostic.md` — `157a3975a229`
+- `01_docs/research/2026-09-23-p2-input-power-r3-scoped-adoption.md` — `9ab8689c2853`
+- `08_reviews/2026-09-23_p2-r3-budget-authority_terra.md` — `d070308a0fb1`
+- `08_reviews/2026-09-23_p2-r3-native-power_terra.md` — `9a17469dd252`
+- `08_reviews/2026-09-23_p2-r3-source-admission_terra.md` — `4b3bcecc65b6`
 
 This file is generated from `01_docs/pause_state.json`; edit the manifest with
 `pause_state.py record`, not this view.

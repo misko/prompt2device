@@ -1,6 +1,4 @@
 {
-  "schema": 1,
-  "stage_id": "PCB-ARCHITECTURE",
   "blocks": [
     {
       "id": "adc_reference",
@@ -735,7 +733,7 @@
   ],
   "interfaces": [
     {
-      "net": "ADC1N",
+      "disposition": "Explicit cross-block net handoff; endpoint owners share corridor and local return verification.",
       "endpoints": {
         "adc_reference": [
           "U_ADC_A.13"
@@ -746,14 +744,14 @@
           "C_ADC_CM1N.1"
         ]
       },
+      "net": "ADC1N",
       "requirements": [
         "Place any bias, pull, timing, or protection element beside the endpoint whose electrical behavior it controls.",
         "Reserve a direct ADC1N handoff between adc_reference, analog_ch1 with continuous GND reference and no unrelated branching."
-      ],
-      "disposition": "Explicit cross-block net handoff; endpoint owners share corridor and local return verification."
+      ]
     },
     {
-      "net": "ADC1P",
+      "disposition": "Explicit cross-block net handoff; endpoint owners share corridor and local return verification.",
       "endpoints": {
         "adc_reference": [
           "U_ADC_A.12"
@@ -764,14 +762,14 @@
           "C_ADC_CM1P.1"
         ]
       },
+      "net": "ADC1P",
       "requirements": [
         "Place any bias, pull, timing, or protection element beside the endpoint whose electrical behavior it controls.",
         "Reserve a direct ADC1P handoff between adc_reference, analog_ch1 with continuous GND reference and no unrelated branching."
-      ],
-      "disposition": "Explicit cross-block net handoff; endpoint owners share corridor and local return verification."
+      ]
     },
     {
-      "net": "ADC2N",
+      "disposition": "Explicit cross-block net handoff; endpoint owners share corridor and local return verification.",
       "endpoints": {
         "adc_reference": [
           "U_ADC_A.11"
@@ -782,14 +780,14 @@
           "C_ADC_CM2N.1"
         ]
       },
+      "net": "ADC2N",
       "requirements": [
         "Place any bias, pull, timing, or protection element beside the endpoint whose electrical behavior it controls.",
         "Reserve a direct ADC2N handoff between adc_reference, analog_ch2 with continuous GND reference and no unrelated branching."
-      ],
-      "disposition": "Explicit cross-block net handoff; endpoint owners share corridor and local return verification."
+      ]
     },
     {
-      "net": "ADC2P",
+      "disposition": "Explicit cross-block net handoff; endpoint owners share corridor and local return verification.",
       "endpoints": {
         "adc_reference": [
           "U_ADC_A.10"
@@ -800,14 +798,14 @@
           "C_ADC_CM2P.1"
         ]
       },
+      "net": "ADC2P",
       "requirements": [
         "Place any bias, pull, timing, or protection element beside the endpoint whose electrical behavior it controls.",
         "Reserve a direct ADC2P handoff between adc_reference, analog_ch2 with continuous GND reference and no unrelated branching."
-      ],
-      "disposition": "Explicit cross-block net handoff; endpoint owners share corridor and local return verification."
+      ]
     },
     {
-      "net": "ADC3N",
+      "disposition": "Explicit cross-block net handoff; endpoint owners share corridor and local return verification.",
       "endpoints": {
         "adc_reference": [
           "U_ADC_A.9"
@@ -818,14 +816,14 @@
           "C_ADC_CM3N.1"
         ]
       },
+      "net": "ADC3N",
       "requirements": [
         "Place any bias, pull, timing, or protection element beside the endpoint whose electrical behavior it controls.",
         "Reserve a direct ADC3N handoff between adc_reference, analog_ch3 with continuous GND reference and no unrelated branching."
-      ],
-      "disposition": "Explicit cross-block net handoff; endpoint owners share corridor and local return verification."
+      ]
     },
     {
-      "net": "ADC3P",
+      "disposition": "Explicit cross-block net handoff; endpoint owners share corridor and local return verification.",
       "endpoints": {
         "adc_reference": [
           "U_ADC_A.8"
@@ -836,14 +834,14 @@
           "C_ADC_CM3P.1"
         ]
       },
+      "net": "ADC3P",
       "requirements": [
         "Place any bias, pull, timing, or protection element beside the endpoint whose electrical behavior it controls.",
         "Reserve a direct ADC3P handoff between adc_reference, analog_ch3 with continuous GND reference and no unrelated branching."
-      ],
-      "disposition": "Explicit cross-block net handoff; endpoint owners share corridor and local return verification."
+      ]
     },
     {
-      "net": "ADC4N",
+      "disposition": "Explicit cross-block net handoff; endpoint owners share corridor and local return verification.",
       "endpoints": {
         "adc_reference": [
           "U_ADC_A.7"
@@ -854,14 +852,14 @@
           "C_ADC_CM4N.1"
         ]
       },
+      "net": "ADC4N",
       "requirements": [
         "Place any bias, pull, timing, or protection element beside the endpoint whose electrical behavior it controls.",
         "Reserve a direct ADC4N handoff between adc_reference, analog_ch4 with continuous GND reference and no unrelated branching."
-      ],
-      "disposition": "Explicit cross-block net handoff; endpoint owners share corridor and local return verification."
+      ]
     },
     {
-      "net": "ADC4P",
+      "disposition": "Explicit cross-block net handoff; endpoint owners share corridor and local return verification.",
       "endpoints": {
         "adc_reference": [
           "U_ADC_A.6"
@@ -872,14 +870,14 @@
           "C_ADC_CM4P.1"
         ]
       },
+      "net": "ADC4P",
       "requirements": [
         "Place any bias, pull, timing, or protection element beside the endpoint whose electrical behavior it controls.",
         "Reserve a direct ADC4P handoff between adc_reference, analog_ch4 with continuous GND reference and no unrelated branching."
-      ],
-      "disposition": "Explicit cross-block net handoff; endpoint owners share corridor and local return verification."
+      ]
     },
     {
-      "net": "ADC5N",
+      "disposition": "Explicit cross-block net handoff; endpoint owners share corridor and local return verification.",
       "endpoints": {
         "adc_reference": [
           "U_ADC_B.7"
@@ -890,14 +888,14 @@
           "C_ADC_CM5N.1"
         ]
       },
+      "net": "ADC5N",
       "requirements": [
         "Place any bias, pull, timing, or protection element beside the endpoint whose electrical behavior it controls.",
         "Reserve a direct ADC5N handoff between adc_reference, analog_ch5 with continuous GND reference and no unrelated branching."
-      ],
-      "disposition": "Explicit cross-block net handoff; endpoint owners share corridor and local return verification."
+      ]
     },
     {
-      "net": "ADC5P",
+      "disposition": "Explicit cross-block net handoff; endpoint owners share corridor and local return verification.",
       "endpoints": {
         "adc_reference": [
           "U_ADC_B.6"
@@ -908,14 +906,14 @@
           "C_ADC_CM5P.1"
         ]
       },
+      "net": "ADC5P",
       "requirements": [
         "Place any bias, pull, timing, or protection element beside the endpoint whose electrical behavior it controls.",
         "Reserve a direct ADC5P handoff between adc_reference, analog_ch5 with continuous GND reference and no unrelated branching."
-      ],
-      "disposition": "Explicit cross-block net handoff; endpoint owners share corridor and local return verification."
+      ]
     },
     {
-      "net": "ADC6N",
+      "disposition": "Explicit cross-block net handoff; endpoint owners share corridor and local return verification.",
       "endpoints": {
         "adc_reference": [
           "U_ADC_B.9"
@@ -926,14 +924,14 @@
           "C_ADC_CM6N.1"
         ]
       },
+      "net": "ADC6N",
       "requirements": [
         "Place any bias, pull, timing, or protection element beside the endpoint whose electrical behavior it controls.",
         "Reserve a direct ADC6N handoff between adc_reference, analog_ch6 with continuous GND reference and no unrelated branching."
-      ],
-      "disposition": "Explicit cross-block net handoff; endpoint owners share corridor and local return verification."
+      ]
     },
     {
-      "net": "ADC6P",
+      "disposition": "Explicit cross-block net handoff; endpoint owners share corridor and local return verification.",
       "endpoints": {
         "adc_reference": [
           "U_ADC_B.8"
@@ -944,14 +942,14 @@
           "C_ADC_CM6P.1"
         ]
       },
+      "net": "ADC6P",
       "requirements": [
         "Place any bias, pull, timing, or protection element beside the endpoint whose electrical behavior it controls.",
         "Reserve a direct ADC6P handoff between adc_reference, analog_ch6 with continuous GND reference and no unrelated branching."
-      ],
-      "disposition": "Explicit cross-block net handoff; endpoint owners share corridor and local return verification."
+      ]
     },
     {
-      "net": "ADC7N",
+      "disposition": "Explicit cross-block net handoff; endpoint owners share corridor and local return verification.",
       "endpoints": {
         "adc_reference": [
           "U_ADC_B.11"
@@ -962,14 +960,14 @@
           "C_ADC_CM7N.1"
         ]
       },
+      "net": "ADC7N",
       "requirements": [
         "Place any bias, pull, timing, or protection element beside the endpoint whose electrical behavior it controls.",
         "Reserve a direct ADC7N handoff between adc_reference, analog_ch7 with continuous GND reference and no unrelated branching."
-      ],
-      "disposition": "Explicit cross-block net handoff; endpoint owners share corridor and local return verification."
+      ]
     },
     {
-      "net": "ADC7P",
+      "disposition": "Explicit cross-block net handoff; endpoint owners share corridor and local return verification.",
       "endpoints": {
         "adc_reference": [
           "U_ADC_B.10"
@@ -980,14 +978,14 @@
           "C_ADC_CM7P.1"
         ]
       },
+      "net": "ADC7P",
       "requirements": [
         "Place any bias, pull, timing, or protection element beside the endpoint whose electrical behavior it controls.",
         "Reserve a direct ADC7P handoff between adc_reference, analog_ch7 with continuous GND reference and no unrelated branching."
-      ],
-      "disposition": "Explicit cross-block net handoff; endpoint owners share corridor and local return verification."
+      ]
     },
     {
-      "net": "ADC8N",
+      "disposition": "Explicit cross-block net handoff; endpoint owners share corridor and local return verification.",
       "endpoints": {
         "adc_reference": [
           "U_ADC_B.13"
@@ -998,14 +996,14 @@
           "C_ADC_CM8N.1"
         ]
       },
+      "net": "ADC8N",
       "requirements": [
         "Place any bias, pull, timing, or protection element beside the endpoint whose electrical behavior it controls.",
         "Reserve a direct ADC8N handoff between adc_reference, analog_ch8 with continuous GND reference and no unrelated branching."
-      ],
-      "disposition": "Explicit cross-block net handoff; endpoint owners share corridor and local return verification."
+      ]
     },
     {
-      "net": "ADC8P",
+      "disposition": "Explicit cross-block net handoff; endpoint owners share corridor and local return verification.",
       "endpoints": {
         "adc_reference": [
           "U_ADC_B.12"
@@ -1016,14 +1014,14 @@
           "C_ADC_CM8P.1"
         ]
       },
+      "net": "ADC8P",
       "requirements": [
         "Place any bias, pull, timing, or protection element beside the endpoint whose electrical behavior it controls.",
         "Reserve a direct ADC8P handoff between adc_reference, analog_ch8 with continuous GND reference and no unrelated branching."
-      ],
-      "disposition": "Explicit cross-block net handoff; endpoint owners share corridor and local return verification."
+      ]
     },
     {
-      "net": "ADC_BCLK",
+      "disposition": "Point-to-point digital-audio timing corridor with ownership split at driver and receiver pin escapes.",
       "endpoints": {
         "adc_reference": [
           "U_ADC_A.22",
@@ -1033,14 +1031,14 @@
           "R_BCLK.2"
         ]
       },
+      "net": "ADC_BCLK",
       "requirements": [
         "Bundle the timing interface through one ADC-to-XMOS corridor and review crosstalk and return vias jointly.",
         "Route ADC_BCLK on continuous GND with the source resistor adjacent to its driver and no unterminated branch stub."
-      ],
-      "disposition": "Point-to-point digital-audio timing corridor with ownership split at driver and receiver pin escapes."
+      ]
     },
     {
-      "net": "ADC_DIGITAL_BAD",
+      "disposition": "ADC/reference owns fault generation and reset; audio_clock_tdm owns clock disable response. Joint timing proof is required before accepting either block.",
       "endpoints": {
         "adc_reference": [
           "Q_ADC_DIG_RST.1",
@@ -1052,14 +1050,14 @@
           "U_ADC_CLOCK_OK.1"
         ]
       },
+      "net": "ADC_DIGITAL_BAD",
       "requirements": [
         "Keep the held 3V3_ADC-domain digital-rail fault signal connected to both the ADC reset clamp and the audio clock qualification buffer enable.",
         "Route the active-high disable signal over continuous GND; preserve independent destination-domain output-enable pullups and verify rail-collapse timing during joint reset/clock review."
-      ],
-      "disposition": "ADC/reference owns fault generation and reset; audio_clock_tdm owns clock disable response. Joint timing proof is required before accepting either block."
+      ]
     },
     {
-      "net": "ADC_DOUT1",
+      "disposition": "Explicit cross-block net handoff; endpoint owners share corridor and local return verification.",
       "endpoints": {
         "adc_reference": [
           "U_ADC_A.21",
@@ -1070,14 +1068,14 @@
           "U_TDM_XLATE.10"
         ]
       },
+      "net": "ADC_DOUT1",
       "requirements": [
         "Place any bias, pull, timing, or protection element beside the endpoint whose electrical behavior it controls.",
         "Reserve a direct ADC_DOUT1 handoff between adc_reference, audio_clock_tdm with continuous GND reference and no unrelated branching."
-      ],
-      "disposition": "Explicit cross-block net handoff; endpoint owners share corridor and local return verification."
+      ]
     },
     {
-      "net": "ADC_FSYNC",
+      "disposition": "Point-to-point digital-audio timing corridor with ownership split at driver and receiver pin escapes.",
       "endpoints": {
         "adc_reference": [
           "U_ADC_A.23",
@@ -1087,14 +1085,14 @@
           "R_FSYNC.2"
         ]
       },
+      "net": "ADC_FSYNC",
       "requirements": [
         "Bundle the timing interface through one ADC-to-XMOS corridor and review crosstalk and return vias jointly.",
         "Route ADC_FSYNC on continuous GND with the source resistor adjacent to its driver and no unterminated branch stub."
-      ],
-      "disposition": "Point-to-point digital-audio timing corridor with ownership split at driver and receiver pin escapes."
+      ]
     },
     {
-      "net": "ADC_I2C_SCL",
+      "disposition": "Explicit cross-block net handoff; verify interface and return in physical review.",
       "endpoints": {
         "adc_reference": [
           "U_ADC_A.17",
@@ -1105,13 +1103,13 @@
           "U_ADC_I2C_XLATE.8"
         ]
       },
+      "net": "ADC_I2C_SCL",
       "requirements": [
         "Preserve the ADC_I2C_SCL handoff with the named owners and local return."
-      ],
-      "disposition": "Explicit cross-block net handoff; verify interface and return in physical review."
+      ]
     },
     {
-      "net": "ADC_I2C_SDA",
+      "disposition": "Explicit cross-block net handoff; verify interface and return in physical review.",
       "endpoints": {
         "adc_reference": [
           "U_ADC_A.18",
@@ -1122,13 +1120,13 @@
           "U_ADC_I2C_XLATE.1"
         ]
       },
+      "net": "ADC_I2C_SDA",
       "requirements": [
         "Preserve the ADC_I2C_SDA handoff with the named owners and local return."
-      ],
-      "disposition": "Explicit cross-block net handoff; verify interface and return in physical review."
+      ]
     },
     {
-      "net": "ADC_READY",
+      "disposition": "Explicit cross-block net handoff; verify interface and return in physical review.",
       "endpoints": {
         "adc_reference": [
           "R_ADC_READY_PD.1",
@@ -1141,13 +1139,13 @@
           "U_ADC_I2C_XLATE.6"
         ]
       },
+      "net": "ADC_READY",
       "requirements": [
         "Preserve the ADC_READY handoff with the named owners and local return."
-      ],
-      "disposition": "Explicit cross-block net handoff; verify interface and return in physical review."
+      ]
     },
     {
-      "net": "AUDIO_EN",
+      "disposition": "Explicit cross-block net handoff; endpoint owners share corridor and local return verification.",
       "endpoints": {
         "analog_ch1": [
           "U_ISO1.2"
@@ -1179,14 +1177,14 @@
           "U_AUDIO.6"
         ]
       },
+      "net": "AUDIO_EN",
       "requirements": [
         "Place any bias, pull, timing, or protection element beside the endpoint whose electrical behavior it controls.",
         "Reserve a direct AUDIO_EN handoff between analog_ch1, analog_ch2, analog_ch3, analog_ch4, analog_ch5, analog_ch6, analog_ch7, analog_ch8, quiet_power with continuous GND reference and no unrelated branching."
-      ],
-      "disposition": "Explicit cross-block net handoff; endpoint owners share corridor and local return verification."
+      ]
     },
     {
-      "net": "AUDIO_MCLK_1V8",
+      "disposition": "Point-to-point digital-audio timing corridor with ownership split at driver and receiver pin escapes.",
       "endpoints": {
         "audio_clock_tdm": [
           "U_TDM_XLATE.6"
@@ -1195,14 +1193,14 @@
           "U_XU.23"
         ]
       },
+      "net": "AUDIO_MCLK_1V8",
       "requirements": [
         "Bundle the timing interface through one ADC-to-XMOS corridor and review crosstalk and return vias jointly.",
         "Route AUDIO_MCLK_1V8 on continuous GND with the source resistor adjacent to its driver and no unterminated branch stub."
-      ],
-      "disposition": "Point-to-point digital-audio timing corridor with ownership split at driver and receiver pin escapes."
+      ]
     },
     {
-      "net": "CHASSIS",
+      "disposition": "Connector-edge chassis domain; analog channel connector blocks own shell pads and board integration owns separation geometry.",
       "endpoints": {
         "analog_ch1": [
           "J1.10",
@@ -1237,14 +1235,14 @@
           "J8.9"
         ]
       },
+      "net": "CHASSIS",
       "requirements": [
         "Confine CHASSIS to connector-edge shell bonding and maintain spacing from protected analog nodes.",
         "Keep RJ45 shell CHASSIS copper distinct from circuit GND and from the USB connector shield-to-GND termination."
-      ],
-      "disposition": "Connector-edge chassis domain; analog channel connector blocks own shell pads and board integration owns separation geometry."
+      ]
     },
     {
-      "net": "GND",
+      "disposition": "Shared reference plane owned by board integration; endpoints remain locally placed within their functional blocks.",
       "endpoints": {
         "adc_reference": [
           "C_ADC_A_AREG_100N.2",
@@ -1690,14 +1688,14 @@
           "U_XU.52"
         ]
       },
+      "net": "GND",
       "requirements": [
         "Attach decoupling and protection returns beside their owning pins, then verify return-current continuity jointly at P4.",
         "Use the continuous board GND reference; do not create block-local ground islands or route signals across reference voids."
-      ],
-      "disposition": "Shared reference plane owned by board integration; endpoints remain locally placed within their functional blocks."
+      ]
     },
     {
-      "net": "JTAG_TCK",
+      "disposition": "Processor-support local interface; endpoint blocks jointly reserve pin escape and return-via access.",
       "endpoints": {
         "debug_connector": [
           "J_JTAG.4"
@@ -1706,14 +1704,14 @@
           "U_XU.51"
         ]
       },
+      "net": "JTAG_TCK",
       "requirements": [
         "Do not share its escape corridor with USB_DP/USB_DN or regulator switch nodes.",
         "Keep JTAG_TCK short inside the processor support neighborhood with continuous GND reference."
-      ],
-      "disposition": "Processor-support local interface; endpoint blocks jointly reserve pin escape and return-via access."
+      ]
     },
     {
-      "net": "JTAG_TDI",
+      "disposition": "Processor-support local interface; endpoint blocks jointly reserve pin escape and return-via access.",
       "endpoints": {
         "debug_connector": [
           "J_JTAG.8"
@@ -1722,14 +1720,14 @@
           "U_XU.36"
         ]
       },
+      "net": "JTAG_TDI",
       "requirements": [
         "Do not share its escape corridor with USB_DP/USB_DN or regulator switch nodes.",
         "Keep JTAG_TDI short inside the processor support neighborhood with continuous GND reference."
-      ],
-      "disposition": "Processor-support local interface; endpoint blocks jointly reserve pin escape and return-via access."
+      ]
     },
     {
-      "net": "JTAG_TDO",
+      "disposition": "Processor-support local interface; endpoint blocks jointly reserve pin escape and return-via access.",
       "endpoints": {
         "debug_connector": [
           "J_JTAG.6"
@@ -1738,14 +1736,14 @@
           "U_XU.37"
         ]
       },
+      "net": "JTAG_TDO",
       "requirements": [
         "Do not share its escape corridor with USB_DP/USB_DN or regulator switch nodes.",
         "Keep JTAG_TDO short inside the processor support neighborhood with continuous GND reference."
-      ],
-      "disposition": "Processor-support local interface; endpoint blocks jointly reserve pin escape and return-via access."
+      ]
     },
     {
-      "net": "JTAG_TMS",
+      "disposition": "Processor-support local interface; endpoint blocks jointly reserve pin escape and return-via access.",
       "endpoints": {
         "debug_connector": [
           "J_JTAG.2"
@@ -1754,14 +1752,14 @@
           "U_XU.44"
         ]
       },
+      "net": "JTAG_TMS",
       "requirements": [
         "Do not share its escape corridor with USB_DP/USB_DN or regulator switch nodes.",
         "Keep JTAG_TMS short inside the processor support neighborhood with continuous GND reference."
-      ],
-      "disposition": "Processor-support local interface; endpoint blocks jointly reserve pin escape and return-via access."
+      ]
     },
     {
-      "net": "N0V9",
+      "disposition": "Board-integrated power corridor for N0V9; source block owns generation and each destination block owns local entry capacitance.",
       "endpoints": {
         "digital_power": [
           "C_CORE_FF.1",
@@ -1804,14 +1802,14 @@
           "U_XU.95"
         ]
       },
+      "net": "N0V9",
       "requirements": [
         "Keep regulator switching loops and protection surge paths outside analog input, USB, crystal, and reference neighborhoods.",
         "Size the N0V9 distribution for aggregate load and transient current, with each load decoupling loop terminating locally to GND."
-      ],
-      "disposition": "Board-integrated power corridor for N0V9; source block owns generation and each destination block owns local entry capacitance."
+      ]
     },
     {
-      "net": "N12V_PROTECTED",
+      "disposition": "Board-integrated power corridor for N12V_PROTECTED; source block owns generation and each destination block owns local entry capacitance.",
       "endpoints": {
         "analog_ch1": [
           "C_SPOKE_IN1.1",
@@ -1878,15 +1876,15 @@
           "U_BUCK.4"
         ]
       },
+      "net": "N12V_PROTECTED",
       "requirements": [
         "Keep regulator switching loops and protection surge paths outside analog input, USB, crystal, and reference neighborhoods.",
         "Qualify the upstream 0451004.MRL and qualify the exact external source load line, foldback/hiccup, recovery, harness impedance, and every simultaneous pod startup state before admitting single-spoke fault containment.",
         "Size the N12V_PROTECTED distribution for aggregate load and transient current, with each load decoupling loop terminating locally to GND."
-      ],
-      "disposition": "Board-integrated power corridor for N12V_PROTECTED; source block owns generation and each destination block owns local entry capacitance."
+      ]
     },
     {
-      "net": "N1V8",
+      "disposition": "Board-integrated power corridor for N1V8; source block owns generation and each destination block owns local entry capacitance.",
       "endpoints": {
         "adc_reference": [
           "R_ADC_1V8_OK_TOP.1"
@@ -1945,14 +1943,14 @@
           "U_XU.89"
         ]
       },
+      "net": "N1V8",
       "requirements": [
         "Keep regulator switching loops and protection surge paths outside analog input, USB, crystal, and reference neighborhoods.",
         "Size the N1V8 distribution for aggregate load and transient current, with each load decoupling loop terminating locally to GND."
-      ],
-      "disposition": "Board-integrated power corridor for N1V8; source block owns generation and each destination block owns local entry capacitance."
+      ]
     },
     {
-      "net": "N3V3X",
+      "disposition": "Board-integrated power corridor for N3V3X; source block owns generation and each destination block owns local entry capacitance.",
       "endpoints": {
         "adc_reference": [
           "R_ADC_3V3X_OK_TOP.1"
@@ -1990,14 +1988,14 @@
           "U_XU.61"
         ]
       },
+      "net": "N3V3X",
       "requirements": [
         "Keep regulator switching loops and protection surge paths outside analog input, USB, crystal, and reference neighborhoods.",
         "Size the N3V3X distribution for aggregate load and transient current, with each load decoupling loop terminating locally to GND."
-      ],
-      "disposition": "Board-integrated power corridor for N3V3X; source block owns generation and each destination block owns local entry capacitance."
+      ]
     },
     {
-      "net": "N3V3_ADC",
+      "disposition": "Board-integrated power corridor for N3V3_ADC; source block owns generation and each destination block owns local entry capacitance.",
       "endpoints": {
         "adc_reference": [
           "C_ADC_A_AVDD_100N.1",
@@ -2089,14 +2087,14 @@
           "U_LDO.9"
         ]
       },
+      "net": "N3V3_ADC",
       "requirements": [
         "Keep regulator switching loops and protection surge paths outside analog input, USB, crystal, and reference neighborhoods.",
         "Size the N3V3_ADC distribution for aggregate load and transient current, with each load decoupling loop terminating locally to GND."
-      ],
-      "disposition": "Board-integrated power corridor for N3V3_ADC; source block owns generation and each destination block owns local entry capacitance."
+      ]
     },
     {
-      "net": "N5V_BUCK",
+      "disposition": "Board-integrated power corridor for N5V_BUCK; source block owns generation and each destination block owns local entry capacitance.",
       "endpoints": {
         "digital_power": [
           "C_1V8_OK_VDD.1",
@@ -2139,14 +2137,14 @@
           "R_PWR_TOP.1"
         ]
       },
+      "net": "N5V_BUCK",
       "requirements": [
         "Keep regulator switching loops and protection surge paths outside analog input, USB, crystal, and reference neighborhoods.",
         "Size the N5V_BUCK distribution for aggregate load and transient current, with each load decoupling loop terminating locally to GND."
-      ],
-      "disposition": "Board-integrated power corridor for N5V_BUCK; source block owns generation and each destination block owns local entry capacitance."
+      ]
     },
     {
-      "net": "N5V_LDO_HOLD",
+      "disposition": "Explicit cross-block net handoff; endpoint owners share corridor and local return verification.",
       "endpoints": {
         "adc_reference": [
           "C_ADC_PWR_BAD.1",
@@ -2219,14 +2217,14 @@
           "U_PWR.4"
         ]
       },
+      "net": "N5V_LDO_HOLD",
       "requirements": [
         "Place any bias, pull, timing, or protection element beside the endpoint whose electrical behavior it controls.",
         "Reserve a direct N5V_LDO_HOLD handoff between analog_ch1, analog_ch2, analog_ch3, analog_ch4, analog_ch5, analog_ch6, analog_ch7, analog_ch8, quiet_power with continuous GND reference and no unrelated branching."
-      ],
-      "disposition": "Explicit cross-block net handoff; endpoint owners share corridor and local return verification."
+      ]
     },
     {
-      "net": "PWR_EN",
+      "disposition": "Explicit cross-block net handoff; verify interface and return in physical review.",
       "endpoints": {
         "adc_reference": [
           "U_ADC_PWR_BAD.2"
@@ -2239,13 +2237,13 @@
           "U_PWR.6"
         ]
       },
+      "net": "PWR_EN",
       "requirements": [
         "Preserve the PWR_EN handoff with the named owners and local return."
-      ],
-      "disposition": "Explicit cross-block net handoff; verify interface and return in physical review."
+      ]
     },
     {
-      "net": "QSPI_CLK",
+      "disposition": "Processor-support local interface; endpoint blocks jointly reserve pin escape and return-via access.",
       "endpoints": {
         "clock_flash_debug": [
           "U_FLASH.6"
@@ -2254,14 +2252,14 @@
           "U_XU.4"
         ]
       },
+      "net": "QSPI_CLK",
       "requirements": [
         "Do not share its escape corridor with USB_DP/USB_DN or regulator switch nodes.",
         "Keep QSPI_CLK short inside the processor support neighborhood with continuous GND reference."
-      ],
-      "disposition": "Processor-support local interface; endpoint blocks jointly reserve pin escape and return-via access."
+      ]
     },
     {
-      "net": "QSPI_CS_N",
+      "disposition": "Processor-support local interface; endpoint blocks jointly reserve pin escape and return-via access.",
       "endpoints": {
         "clock_flash_debug": [
           "R_QSPI_CS.2",
@@ -2271,14 +2269,14 @@
           "U_XU.2"
         ]
       },
+      "net": "QSPI_CS_N",
       "requirements": [
         "Do not share its escape corridor with USB_DP/USB_DN or regulator switch nodes.",
         "Keep QSPI_CS_N short inside the processor support neighborhood with continuous GND reference."
-      ],
-      "disposition": "Processor-support local interface; endpoint blocks jointly reserve pin escape and return-via access."
+      ]
     },
     {
-      "net": "QSPI_D0",
+      "disposition": "Processor-support local interface; endpoint blocks jointly reserve pin escape and return-via access.",
       "endpoints": {
         "clock_flash_debug": [
           "U_FLASH.5"
@@ -2287,14 +2285,14 @@
           "U_XU.127"
         ]
       },
+      "net": "QSPI_D0",
       "requirements": [
         "Do not share its escape corridor with USB_DP/USB_DN or regulator switch nodes.",
         "Keep QSPI_D0 short inside the processor support neighborhood with continuous GND reference."
-      ],
-      "disposition": "Processor-support local interface; endpoint blocks jointly reserve pin escape and return-via access."
+      ]
     },
     {
-      "net": "QSPI_D1",
+      "disposition": "Processor-support local interface; endpoint blocks jointly reserve pin escape and return-via access.",
       "endpoints": {
         "clock_flash_debug": [
           "U_FLASH.2"
@@ -2303,14 +2301,14 @@
           "U_XU.128"
         ]
       },
+      "net": "QSPI_D1",
       "requirements": [
         "Do not share its escape corridor with USB_DP/USB_DN or regulator switch nodes.",
         "Keep QSPI_D1 short inside the processor support neighborhood with continuous GND reference."
-      ],
-      "disposition": "Processor-support local interface; endpoint blocks jointly reserve pin escape and return-via access."
+      ]
     },
     {
-      "net": "QSPI_D2",
+      "disposition": "Processor-support local interface; endpoint blocks jointly reserve pin escape and return-via access.",
       "endpoints": {
         "clock_flash_debug": [
           "U_FLASH.3"
@@ -2319,14 +2317,14 @@
           "U_XU.1"
         ]
       },
+      "net": "QSPI_D2",
       "requirements": [
         "Do not share its escape corridor with USB_DP/USB_DN or regulator switch nodes.",
         "Keep QSPI_D2 short inside the processor support neighborhood with continuous GND reference."
-      ],
-      "disposition": "Processor-support local interface; endpoint blocks jointly reserve pin escape and return-via access."
+      ]
     },
     {
-      "net": "QSPI_D3",
+      "disposition": "Processor-support local interface; endpoint blocks jointly reserve pin escape and return-via access.",
       "endpoints": {
         "clock_flash_debug": [
           "U_FLASH.7"
@@ -2335,14 +2333,14 @@
           "U_XU.3"
         ]
       },
+      "net": "QSPI_D3",
       "requirements": [
         "Do not share its escape corridor with USB_DP/USB_DN or regulator switch nodes.",
         "Keep QSPI_D3 short inside the processor support neighborhood with continuous GND reference."
-      ],
-      "disposition": "Processor-support local interface; endpoint blocks jointly reserve pin escape and return-via access."
+      ]
     },
     {
-      "net": "TDM_BCLK_1V8",
+      "disposition": "Point-to-point digital-audio timing corridor with ownership split at driver and receiver pin escapes.",
       "endpoints": {
         "audio_clock_tdm": [
           "U_TDM_XLATE.4"
@@ -2351,14 +2349,14 @@
           "U_XU.22"
         ]
       },
+      "net": "TDM_BCLK_1V8",
       "requirements": [
         "Bundle the timing interface through one ADC-to-XMOS corridor and review crosstalk and return vias jointly.",
         "Route TDM_BCLK_1V8 on continuous GND with the source resistor adjacent to its driver and no unterminated branch stub."
-      ],
-      "disposition": "Point-to-point digital-audio timing corridor with ownership split at driver and receiver pin escapes."
+      ]
     },
     {
-      "net": "TDM_DATA_1V8",
+      "disposition": "Point-to-point digital-audio timing corridor with ownership split at driver and receiver pin escapes.",
       "endpoints": {
         "audio_clock_tdm": [
           "U_TDM_XLATE.7"
@@ -2367,14 +2365,14 @@
           "U_XU.107"
         ]
       },
+      "net": "TDM_DATA_1V8",
       "requirements": [
         "Bundle the timing interface through one ADC-to-XMOS corridor and review crosstalk and return vias jointly.",
         "Route TDM_DATA_1V8 on continuous GND with the source resistor adjacent to its driver and no unterminated branch stub."
-      ],
-      "disposition": "Point-to-point digital-audio timing corridor with ownership split at driver and receiver pin escapes."
+      ]
     },
     {
-      "net": "TDM_FSYNC_1V8",
+      "disposition": "Point-to-point digital-audio timing corridor with ownership split at driver and receiver pin escapes.",
       "endpoints": {
         "audio_clock_tdm": [
           "U_TDM_XLATE.5"
@@ -2383,14 +2381,14 @@
           "U_XU.20"
         ]
       },
+      "net": "TDM_FSYNC_1V8",
       "requirements": [
         "Bundle the timing interface through one ADC-to-XMOS corridor and review crosstalk and return vias jointly.",
         "Route TDM_FSYNC_1V8 on continuous GND with the source resistor adjacent to its driver and no unterminated branch stub."
-      ],
-      "disposition": "Point-to-point digital-audio timing corridor with ownership split at driver and receiver pin escapes."
+      ]
     },
     {
-      "net": "USB_DN",
+      "disposition": "Reserved connector-to-XMOS differential corridor; usb_frontend owns the protected launch and xmos_core owns receiver escape.",
       "endpoints": {
         "usb_frontend": [
           "J_USB.13",
@@ -2401,14 +2399,14 @@
           "U_XU.59"
         ]
       },
+      "net": "USB_DN",
       "requirements": [
         "Route USB_DP and USB_DN as one differential-pair corridor with identical layer transitions, no branch stubs, and continuous GND reference.",
         "The corridor joins only usb_frontend, xmos_core; place connector protection before the pair enters the processor escape field."
-      ],
-      "disposition": "Reserved connector-to-XMOS differential corridor; usb_frontend owns the protected launch and xmos_core owns receiver escape."
+      ]
     },
     {
-      "net": "USB_DP",
+      "disposition": "Reserved connector-to-XMOS differential corridor; usb_frontend owns the protected launch and xmos_core owns receiver escape.",
       "endpoints": {
         "usb_frontend": [
           "J_USB.12",
@@ -2419,14 +2417,14 @@
           "U_XU.60"
         ]
       },
+      "net": "USB_DP",
       "requirements": [
         "Route USB_DP and USB_DN as one differential-pair corridor with identical layer transitions, no branch stubs, and continuous GND reference.",
         "The corridor joins only usb_frontend, xmos_core; place connector protection before the pair enters the processor escape field."
-      ],
-      "disposition": "Reserved connector-to-XMOS differential corridor; usb_frontend owns the protected launch and xmos_core owns receiver escape."
+      ]
     },
     {
-      "net": "VBUS_PRESENT_N",
+      "disposition": "Explicit cross-block net handoff; endpoint owners share corridor and local return verification.",
       "endpoints": {
         "usb_vbus_sense": [
           "Q_VBUS.3",
@@ -2436,14 +2434,14 @@
           "U_XU.8"
         ]
       },
+      "net": "VBUS_PRESENT_N",
       "requirements": [
         "Place any bias, pull, timing, or protection element beside the endpoint whose electrical behavior it controls.",
         "Reserve a direct VBUS_PRESENT_N handoff between usb_vbus_sense, xmos_core with continuous GND reference and no unrelated branching."
-      ],
-      "disposition": "Explicit cross-block net handoff; endpoint owners share corridor and local return verification."
+      ]
     },
     {
-      "net": "VBUS_USB",
+      "disposition": "Explicit cross-block net handoff; endpoint owners share corridor and local return verification.",
       "endpoints": {
         "usb_frontend": [
           "C_USB_VBUS.1",
@@ -2458,14 +2456,14 @@
           "R_VBUS_B.1"
         ]
       },
+      "net": "VBUS_USB",
       "requirements": [
         "Place any bias, pull, timing, or protection element beside the endpoint whose electrical behavior it controls.",
         "Reserve a direct VBUS_USB handoff between usb_frontend, usb_vbus_sense with continuous GND reference and no unrelated branching."
-      ],
-      "disposition": "Explicit cross-block net handoff; endpoint owners share corridor and local return verification."
+      ]
     },
     {
-      "net": "VMID1_EXT",
+      "disposition": "Short analog handoff at the ADC perimeter; channel block owns filtering and adc_reference owns converter-pin landing.",
       "endpoints": {
         "adc_reference": [
           "C_VMID1_EXT_10U.1",
@@ -2490,14 +2488,14 @@
           "R_B4P.2"
         ]
       },
+      "net": "VMID1_EXT",
       "requirements": [
         "Keep VMID1_EXT within the analog channel/ADC quiet neighborhood and away from clocks, USB, and switch nodes.",
         "Preserve positive/negative symmetry and provide an uninterrupted local GND return under the complete analog path."
-      ],
-      "disposition": "Short analog handoff at the ADC perimeter; channel block owns filtering and adc_reference owns converter-pin landing."
+      ]
     },
     {
-      "net": "VMID2_EXT",
+      "disposition": "Short analog handoff at the ADC perimeter; channel block owns filtering and adc_reference owns converter-pin landing.",
       "endpoints": {
         "adc_reference": [
           "C_VMID2_EXT_10U.1",
@@ -2522,14 +2520,14 @@
           "R_B8P.2"
         ]
       },
+      "net": "VMID2_EXT",
       "requirements": [
         "Keep VMID2_EXT within the analog channel/ADC quiet neighborhood and away from clocks, USB, and switch nodes.",
         "Preserve positive/negative symmetry and provide an uninterrupted local GND return under the complete analog path."
-      ],
-      "disposition": "Short analog handoff at the ADC perimeter; channel block owns filtering and adc_reference owns converter-pin landing."
+      ]
     },
     {
-      "net": "XTAL_IN",
+      "disposition": "Explicit cross-block net handoff; endpoint owners share corridor and local return verification.",
       "endpoints": {
         "clock_flash_debug": [
           "R_XTAL_DRIVE.1",
@@ -2539,14 +2537,14 @@
           "U_XU.34"
         ]
       },
+      "net": "XTAL_IN",
       "requirements": [
         "Place any bias, pull, timing, or protection element beside the endpoint whose electrical behavior it controls.",
         "Reserve a direct XTAL_IN handoff between clock_flash_debug, xmos_core with continuous GND reference and no unrelated branching."
-      ],
-      "disposition": "Explicit cross-block net handoff; endpoint owners share corridor and local return verification."
+      ]
     },
     {
-      "net": "XTAL_OUT",
+      "disposition": "Explicit cross-block net handoff; endpoint owners share corridor and local return verification.",
       "endpoints": {
         "clock_flash_debug": [
           "C_XTAL_OUT.1",
@@ -2557,14 +2555,14 @@
           "U_XU.33"
         ]
       },
+      "net": "XTAL_OUT",
       "requirements": [
         "Place any bias, pull, timing, or protection element beside the endpoint whose electrical behavior it controls.",
         "Reserve a direct XTAL_OUT handoff between clock_flash_debug, xmos_core with continuous GND reference and no unrelated branching."
-      ],
-      "disposition": "Explicit cross-block net handoff; endpoint owners share corridor and local return verification."
+      ]
     },
     {
-      "net": "XU_I2C_SCL_1V8",
+      "disposition": "Explicit cross-block net handoff; verify interface and return in physical review.",
       "endpoints": {
         "audio_clock_tdm": [
           "R_ADC_I2C_SCL_A_PU.1",
@@ -2574,13 +2572,13 @@
           "U_XU.93"
         ]
       },
+      "net": "XU_I2C_SCL_1V8",
       "requirements": [
         "Preserve the XU_I2C_SCL_1V8 handoff with the named owners and local return."
-      ],
-      "disposition": "Explicit cross-block net handoff; verify interface and return in physical review."
+      ]
     },
     {
-      "net": "XU_I2C_SDA_1V8",
+      "disposition": "Explicit cross-block net handoff; verify interface and return in physical review.",
       "endpoints": {
         "audio_clock_tdm": [
           "R_ADC_I2C_SDA_A_PU.1",
@@ -2590,13 +2588,13 @@
           "U_XU.94"
         ]
       },
+      "net": "XU_I2C_SDA_1V8",
       "requirements": [
         "Preserve the XU_I2C_SDA_1V8 handoff with the named owners and local return."
-      ],
-      "disposition": "Explicit cross-block net handoff; verify interface and return in physical review."
+      ]
     },
     {
-      "net": "XU_RESET_N",
+      "disposition": "Explicit cross-block net handoff; endpoint owners share corridor and local return verification.",
       "endpoints": {
         "debug_connector": [
           "J_JTAG.10"
@@ -2610,13 +2608,14 @@
           "U_XU.38"
         ]
       },
+      "net": "XU_RESET_N",
       "requirements": [
         "Place any bias, pull, timing, or protection element beside the endpoint whose electrical behavior it controls.",
         "Reserve a direct XU_RESET_N handoff between debug_connector, digital_power, xmos_core with continuous GND reference and no unrelated branching."
-      ],
-      "disposition": "Explicit cross-block net handoff; endpoint owners share corridor and local return verification."
+      ]
     }
   ],
+  "schema": 1,
   "shared_responsibilities": [
     {
       "id": "analog_reference_returns",
@@ -2667,11 +2666,10 @@
       ]
     }
   ],
+  "stage_id": "PCB-ARCHITECTURE",
   "work_items": [
     {
-      "id": "p1_floorplan_r4_evidence_adoption",
-      "phase": "P1_FLOORPLAN",
-      "stage_id": "KICAD-PLACEMENT",
+      "backtrack_to": [],
       "blocks": [
         "adc_reference",
         "analog_ch1",
@@ -2693,35 +2691,37 @@
         "xmos_core"
       ],
       "depends_on": [],
-      "max_attempts": 1,
-      "backtrack_to": [],
       "evidence": [
         "06_build/evidence/modular_work/p1_r4.json"
-      ]
+      ],
+      "id": "p1_floorplan_r4_r3_plan_rebind",
+      "max_attempts": 1,
+      "phase": "P1_FLOORPLAN",
+      "stage_id": "KICAD-PLACEMENT"
     },
     {
-      "id": "p2_input_power",
-      "phase": "P2_BLOCK_PLACEMENT",
-      "stage_id": "KICAD-PLACEMENT",
+      "backtrack_to": [
+        "p1_floorplan_r4_r3_plan_rebind"
+      ],
       "blocks": [
         "input_buck",
         "quiet_power"
       ],
       "depends_on": [
-        "p1_floorplan_r4_evidence_adoption"
-      ],
-      "max_attempts": 2,
-      "backtrack_to": [
-        "p1_floorplan_r4_evidence_adoption"
+        "p1_floorplan_r4_r3_plan_rebind"
       ],
       "evidence": [
-        "06_build/evidence/modular_work/p2_input_power.json"
-      ]
+        "06_build/evidence/modular_work/p2_input_power_r3.json"
+      ],
+      "id": "p2_input_power_r3_evidence_adoption",
+      "max_attempts": 1,
+      "phase": "P2_BLOCK_PLACEMENT",
+      "stage_id": "KICAD-PLACEMENT"
     },
     {
-      "id": "p2_analog_1_4",
-      "phase": "P2_BLOCK_PLACEMENT",
-      "stage_id": "KICAD-PLACEMENT",
+      "backtrack_to": [
+        "p1_floorplan_r4_r3_plan_rebind"
+      ],
       "blocks": [
         "analog_ch1",
         "analog_ch2",
@@ -2729,20 +2729,20 @@
         "analog_ch4"
       ],
       "depends_on": [
-        "p1_floorplan_r4_evidence_adoption"
-      ],
-      "max_attempts": 2,
-      "backtrack_to": [
-        "p1_floorplan_r4_evidence_adoption"
+        "p1_floorplan_r4_r3_plan_rebind"
       ],
       "evidence": [
         "06_build/evidence/modular_work/p2_analog_1_4.json"
-      ]
+      ],
+      "id": "p2_analog_1_4",
+      "max_attempts": 2,
+      "phase": "P2_BLOCK_PLACEMENT",
+      "stage_id": "KICAD-PLACEMENT"
     },
     {
-      "id": "p2_analog_5_8",
-      "phase": "P2_BLOCK_PLACEMENT",
-      "stage_id": "KICAD-PLACEMENT",
+      "backtrack_to": [
+        "p1_floorplan_r4_r3_plan_rebind"
+      ],
       "blocks": [
         "analog_ch5",
         "analog_ch6",
@@ -2750,96 +2750,97 @@
         "analog_ch8"
       ],
       "depends_on": [
-        "p1_floorplan_r4_evidence_adoption"
-      ],
-      "max_attempts": 2,
-      "backtrack_to": [
-        "p1_floorplan_r4_evidence_adoption"
+        "p1_floorplan_r4_r3_plan_rebind"
       ],
       "evidence": [
         "06_build/evidence/modular_work/p2_analog_5_8.json"
-      ]
+      ],
+      "id": "p2_analog_5_8",
+      "max_attempts": 2,
+      "phase": "P2_BLOCK_PLACEMENT",
+      "stage_id": "KICAD-PLACEMENT"
     },
     {
-      "id": "p2_adc_reference",
-      "phase": "P2_BLOCK_PLACEMENT",
-      "stage_id": "KICAD-PLACEMENT",
+      "backtrack_to": [
+        "p1_floorplan_r4_r3_plan_rebind"
+      ],
       "blocks": [
         "adc_reference"
       ],
       "depends_on": [
-        "p1_floorplan_r4_evidence_adoption"
-      ],
-      "max_attempts": 2,
-      "backtrack_to": [
-        "p1_floorplan_r4_evidence_adoption"
+        "p1_floorplan_r4_r3_plan_rebind"
       ],
       "evidence": [
         "06_build/evidence/modular_work/p2_adc_reference.json"
-      ]
+      ],
+      "id": "p2_adc_reference",
+      "max_attempts": 2,
+      "phase": "P2_BLOCK_PLACEMENT",
+      "stage_id": "KICAD-PLACEMENT"
     },
     {
-      "id": "p2_digital_power_core",
-      "phase": "P2_BLOCK_PLACEMENT",
-      "stage_id": "KICAD-PLACEMENT",
+      "backtrack_to": [
+        "p1_floorplan_r4_r3_plan_rebind"
+      ],
       "blocks": [
         "digital_power",
         "xmos_core"
       ],
       "depends_on": [
-        "p1_floorplan_r4_evidence_adoption"
-      ],
-      "max_attempts": 2,
-      "backtrack_to": [
-        "p1_floorplan_r4_evidence_adoption"
+        "p1_floorplan_r4_r3_plan_rebind"
       ],
       "evidence": [
         "06_build/evidence/modular_work/p2_digital_power_core.json"
-      ]
+      ],
+      "id": "p2_digital_power_core",
+      "max_attempts": 2,
+      "phase": "P2_BLOCK_PLACEMENT",
+      "stage_id": "KICAD-PLACEMENT"
     },
     {
-      "id": "p2_clock_flash_audio",
-      "phase": "P2_BLOCK_PLACEMENT",
-      "stage_id": "KICAD-PLACEMENT",
+      "backtrack_to": [
+        "p1_floorplan_r4_r3_plan_rebind"
+      ],
       "blocks": [
         "audio_clock_tdm",
         "clock_flash_debug"
       ],
       "depends_on": [
-        "p1_floorplan_r4_evidence_adoption"
-      ],
-      "max_attempts": 2,
-      "backtrack_to": [
-        "p1_floorplan_r4_evidence_adoption"
+        "p1_floorplan_r4_r3_plan_rebind"
       ],
       "evidence": [
         "06_build/evidence/modular_work/p2_clock_flash_audio.json"
-      ]
+      ],
+      "id": "p2_clock_flash_audio",
+      "max_attempts": 2,
+      "phase": "P2_BLOCK_PLACEMENT",
+      "stage_id": "KICAD-PLACEMENT"
     },
     {
-      "id": "p2_usb_service",
-      "phase": "P2_BLOCK_PLACEMENT",
-      "stage_id": "KICAD-PLACEMENT",
+      "backtrack_to": [
+        "p1_floorplan_r4_r3_plan_rebind"
+      ],
       "blocks": [
         "debug_connector",
         "usb_frontend",
         "usb_vbus_sense"
       ],
       "depends_on": [
-        "p1_floorplan_r4_evidence_adoption"
-      ],
-      "max_attempts": 2,
-      "backtrack_to": [
-        "p1_floorplan_r4_evidence_adoption"
+        "p1_floorplan_r4_r3_plan_rebind"
       ],
       "evidence": [
         "06_build/evidence/modular_work/p2_usb_service.json"
-      ]
+      ],
+      "id": "p2_usb_service",
+      "max_attempts": 2,
+      "phase": "P2_BLOCK_PLACEMENT",
+      "stage_id": "KICAD-PLACEMENT"
     },
     {
-      "id": "p3_power_loops",
-      "phase": "P3_CRITICAL_LOCAL_ROUTES",
-      "stage_id": "KICAD-PLACEMENT",
+      "backtrack_to": [
+        "p2_digital_power_core",
+        "p2_input_power_r3_evidence_adoption"
+      ],
       "blocks": [
         "digital_power",
         "input_buck",
@@ -2847,21 +2848,22 @@
       ],
       "depends_on": [
         "p2_digital_power_core",
-        "p2_input_power"
-      ],
-      "max_attempts": 2,
-      "backtrack_to": [
-        "p2_digital_power_core",
-        "p2_input_power"
+        "p2_input_power_r3_evidence_adoption"
       ],
       "evidence": [
         "06_build/evidence/modular_work/p3_power_loops.json"
-      ]
+      ],
+      "id": "p3_power_loops",
+      "max_attempts": 2,
+      "phase": "P3_CRITICAL_LOCAL_ROUTES",
+      "stage_id": "KICAD-PLACEMENT"
     },
     {
-      "id": "p3_analog_handoffs",
-      "phase": "P3_CRITICAL_LOCAL_ROUTES",
-      "stage_id": "KICAD-PLACEMENT",
+      "backtrack_to": [
+        "p2_adc_reference",
+        "p2_analog_1_4",
+        "p2_analog_5_8"
+      ],
       "blocks": [
         "adc_reference",
         "analog_ch1",
@@ -2878,20 +2880,19 @@
         "p2_analog_1_4",
         "p2_analog_5_8"
       ],
-      "max_attempts": 2,
-      "backtrack_to": [
-        "p2_adc_reference",
-        "p2_analog_1_4",
-        "p2_analog_5_8"
-      ],
       "evidence": [
         "06_build/evidence/modular_work/p3_analog_handoffs.json"
-      ]
+      ],
+      "id": "p3_analog_handoffs",
+      "max_attempts": 2,
+      "phase": "P3_CRITICAL_LOCAL_ROUTES",
+      "stage_id": "KICAD-PLACEMENT"
     },
     {
-      "id": "p3_timing_boot",
-      "phase": "P3_CRITICAL_LOCAL_ROUTES",
-      "stage_id": "KICAD-PLACEMENT",
+      "backtrack_to": [
+        "p2_clock_flash_audio",
+        "p2_digital_power_core"
+      ],
       "blocks": [
         "adc_reference",
         "audio_clock_tdm",
@@ -2903,19 +2904,19 @@
         "p2_clock_flash_audio",
         "p2_digital_power_core"
       ],
-      "max_attempts": 2,
-      "backtrack_to": [
-        "p2_clock_flash_audio",
-        "p2_digital_power_core"
-      ],
       "evidence": [
         "06_build/evidence/modular_work/p3_timing_boot.json"
-      ]
+      ],
+      "id": "p3_timing_boot",
+      "max_attempts": 2,
+      "phase": "P3_CRITICAL_LOCAL_ROUTES",
+      "stage_id": "KICAD-PLACEMENT"
     },
     {
-      "id": "p3_usb_pair",
-      "phase": "P3_CRITICAL_LOCAL_ROUTES",
-      "stage_id": "KICAD-PLACEMENT",
+      "backtrack_to": [
+        "p2_digital_power_core",
+        "p2_usb_service"
+      ],
       "blocks": [
         "usb_frontend",
         "usb_vbus_sense",
@@ -2925,19 +2926,20 @@
         "p2_digital_power_core",
         "p2_usb_service"
       ],
-      "max_attempts": 2,
-      "backtrack_to": [
-        "p2_digital_power_core",
-        "p2_usb_service"
-      ],
       "evidence": [
         "06_build/evidence/modular_work/p3_usb_pair.json"
-      ]
+      ],
+      "id": "p3_usb_pair",
+      "max_attempts": 2,
+      "phase": "P3_CRITICAL_LOCAL_ROUTES",
+      "stage_id": "KICAD-PLACEMENT"
     },
     {
-      "id": "p4_analog_joint",
-      "phase": "P4_JOINT_PROOF",
-      "stage_id": "KICAD-PLACEMENT",
+      "backtrack_to": [
+        "p2_adc_reference",
+        "p2_analog_1_4",
+        "p2_analog_5_8"
+      ],
       "blocks": [
         "adc_reference",
         "analog_ch1",
@@ -2955,20 +2957,19 @@
         "p3_power_loops",
         "p3_timing_boot"
       ],
-      "max_attempts": 2,
-      "backtrack_to": [
-        "p2_adc_reference",
-        "p2_analog_1_4",
-        "p2_analog_5_8"
-      ],
       "evidence": [
         "06_build/evidence/modular_work/p4_analog_joint.json"
-      ]
+      ],
+      "id": "p4_analog_joint",
+      "max_attempts": 2,
+      "phase": "P4_JOINT_PROOF",
+      "stage_id": "KICAD-PLACEMENT"
     },
     {
-      "id": "p4_usb_digital_joint",
-      "phase": "P4_JOINT_PROOF",
-      "stage_id": "KICAD-PLACEMENT",
+      "backtrack_to": [
+        "p2_digital_power_core",
+        "p2_usb_service"
+      ],
       "blocks": [
         "audio_clock_tdm",
         "clock_flash_debug",
@@ -2983,19 +2984,21 @@
         "p3_timing_boot",
         "p3_usb_pair"
       ],
-      "max_attempts": 2,
-      "backtrack_to": [
-        "p2_digital_power_core",
-        "p2_usb_service"
-      ],
       "evidence": [
         "06_build/evidence/modular_work/p4_usb_digital_joint.json"
-      ]
+      ],
+      "id": "p4_usb_digital_joint",
+      "max_attempts": 2,
+      "phase": "P4_JOINT_PROOF",
+      "stage_id": "KICAD-PLACEMENT"
     },
     {
-      "id": "p4_power_return_joint",
-      "phase": "P4_JOINT_PROOF",
-      "stage_id": "KICAD-PLACEMENT",
+      "backtrack_to": [
+        "p1_floorplan_r4_r3_plan_rebind",
+        "p2_adc_reference",
+        "p2_digital_power_core",
+        "p2_input_power_r3_evidence_adoption"
+      ],
       "blocks": [
         "adc_reference",
         "analog_ch1",
@@ -3022,21 +3025,20 @@
         "p3_timing_boot",
         "p3_usb_pair"
       ],
-      "max_attempts": 2,
-      "backtrack_to": [
-        "p1_floorplan_r4_evidence_adoption",
-        "p2_adc_reference",
-        "p2_digital_power_core",
-        "p2_input_power"
-      ],
       "evidence": [
         "06_build/evidence/modular_work/p4_power_return_joint.json"
-      ]
+      ],
+      "id": "p4_power_return_joint",
+      "max_attempts": 2,
+      "phase": "P4_JOINT_PROOF",
+      "stage_id": "KICAD-PLACEMENT"
     },
     {
-      "id": "p5_integrated_review",
-      "phase": "P5_INTEGRATED_PLACEMENT_REVIEW",
-      "stage_id": "KICAD-PLACEMENT",
+      "backtrack_to": [
+        "p4_analog_joint",
+        "p4_power_return_joint",
+        "p4_usb_digital_joint"
+      ],
       "blocks": [
         "adc_reference",
         "analog_ch1",
@@ -3062,15 +3064,13 @@
         "p4_power_return_joint",
         "p4_usb_digital_joint"
       ],
-      "max_attempts": 2,
-      "backtrack_to": [
-        "p4_analog_joint",
-        "p4_power_return_joint",
-        "p4_usb_digital_joint"
-      ],
       "evidence": [
         "06_build/evidence/modular_work/p5_integrated_review.json"
-      ]
+      ],
+      "id": "p5_integrated_review",
+      "max_attempts": 2,
+      "phase": "P5_INTEGRATED_PLACEMENT_REVIEW",
+      "stage_id": "KICAD-PLACEMENT"
     }
   ]
 }

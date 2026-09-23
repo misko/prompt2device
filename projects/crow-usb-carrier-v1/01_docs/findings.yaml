@@ -227,18 +227,20 @@ findings:
   - 01_docs/research/2026-09-23-p1-r4-evidence-handoff-disposition.md
 
 - id: USB-P2-input-power-placement
-  state: open
+  state: closed
   blocks_at_or_above: DESIGN_CLEAN
   owner: layout-power
   finding: >-
-    The full 72-post-anchor P2 input/quiet-power candidate generated
-    one board, SHA 12224f54, but exact local constraints pass only 38 of 47.
-    Nine numeric budgets fail (one keep-short, eight adjacency). The untouched
-    source board has 104 native DRC violations because the task runner skipped
-    required TMUX POFV; a separate prescribed-POFV copy reaches DRC zero but
-    does not turn the failed source task into acceptance. Both cumulative
-    p2_input_power task attempts are terminal FAIL and exhausted 2/2. The
-    candidate is retained only as a dated research patch; no board promoted.
+    Original P2 A1/A2 attempts remain terminal FAIL and exhausted 2/2;
+    A2 passed only 38/47 local budgets and did not complete native DRC.
+    A distinct, one-attempt r3 source-backtrack campaign produced exact
+    post-POFV board c3d90659. All 47 scoped local budgets pass with zero
+    native DRC/parity violations, 27 fixed anchors, 16 holds and zero
+    unowned/fixed movements. Independent source, native and all-selected-
+    dossier authority reviews returned SOUND for this scoped P2 placement.
+    The reviewed 72 post anchors are adopted in floorplan source and fresh
+    administrative graph handoffs record P1/P2 work without regeneration.
+    Other-block distances, connector FULL19, P3/routing and P5 remain open.
   closes_when: Explicitly reassess/backtrack the exhausted P2 work item, review
     a corrected complete source candidate, admit a fresh bounded native
     measurement, pass all 47 original local limits plus geometry/invariance,
@@ -249,6 +251,28 @@ findings:
   - 01_docs/research/2026-09-23-p2-input-power-a2-assessment.md
   - 01_docs/research/2026-09-23-p2-input-power-a2-disposition.md
   - 08_reviews/2026-09-23_p2-input-power-a2_terra_diagnostic.md
+  - 01_docs/research/2026-09-23-p2-input-power-r3-scoped-adoption.md
+  - 08_reviews/2026-09-23_p2-r3-source-admission_terra.md
+  - 08_reviews/2026-09-23_p2-r3-native-power_terra.md
+  - 08_reviews/2026-09-23_p2-r3-budget-authority_terra.md
+
+- id: USB-P2-remaining-block-placement
+  state: open
+  blocks_at_or_above: DESIGN_CLEAN
+  owner: placement-and-process
+  finding: >-
+    The scoped input/quiet-power r3 placement is reviewed SOUND, but the
+    full-board placement audit still has three keep-short and 227 adjacency
+    budget failures in other blocks. All 311 declared budgets are reached;
+    none of the remaining limits was waived. The native board is unrouted
+    with 499 unconnected items, and connector FULL still has 19 physical
+    targets unmeasured. Scoped P2 work evidence is not P5 promotion.
+  closes_when: Complete and independently accept remaining P2 block placement
+    budgets and integrated P5 geometry on one exact board, retaining native
+    DRC/parity and all connector FULL requirements before P3 or routing.
+  evidence:
+  - 01_docs/research/2026-09-23-p2-input-power-r3-scoped-adoption.md
+  - 08_reviews/2026-09-23_p2-r3-native-power_terra.md
 
 - id: USB-model-identity
   state: open
