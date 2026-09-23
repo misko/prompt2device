@@ -1,11 +1,11 @@
 {
-  "blocker": "Public-only sourcing accepted 4/4. Fresh independent topology SOUND; PR-REVIEW 1/2. Human schematic readability remains unresolved: XMOS net labels too small and clock-control reference obscured. Isolated presentation repair in progress; no placement accepted.",
+  "blocker": "Electrical closure9/9, public sourcing4/4, ERC0errors and fresh topology SOUND. Full78-page visual review DEFECTIVE: two ADC-B references clipped, C_ADC_DIGITAL_OK obscured, TDM translator pins crowded. Bounded presentation repair in progress; no PCB placement accepted.",
   "checkpoint": {
     "path": "06_build/checkpoints/schematic.json",
-    "sha256": "3105e1f0dd983fac8f600ecc1b4a7d8d3fe64f70f3d2fe88ade39979941756c6",
+    "sha256": "9621f59c604f8b3465202c478e30f7d82188121dbcc80f717d1d56cd8d9333ab",
     "size": 1152
   },
-  "next_command": "Complete bounded presentation repair, regenerate through the source conductor, review exact PDF and identity bridge, then resume block placement.",
+  "next_command": "Complete the three visual repairs, regenerate and review exact schematic outputs, then resume block placement.",
   "phase": "schematic",
   "project": "crow-usb-carrier-v1",
   "receipts": [
@@ -15,16 +15,16 @@
       "size": 3509
     },
     {
-      "path": "08_reviews/2026-09-23_schematic-readability_sol_source.md",
-      "sha256": "1ef74ec98bccf59c2f78730826c477fc75aae8d9d139d4eae0b4a6cd9ede8eed",
-      "size": 4125
+      "path": "08_reviews/2026-09-23_schematic-detail-review_sol_source.md",
+      "sha256": "2e8b4816a95fd0c3c23ac07ab1ec949be95e47941379c773400614fbab4a7338",
+      "size": 7074
     },
     {
-      "path": "08_reviews/2026-09-23_topology_sol_source.md",
-      "sha256": "195d698101a1420444e4963867768315b3c061a828d6d3d25d5087df2a4b1ffc",
-      "size": 10781
+      "path": "08_reviews/2026-09-23_topology-carryover_sol_source.md",
+      "sha256": "a7f462201f5b47dfa148e6320e6e397bd22f2c6c73b7a8e62b2a00e4107ead4b",
+      "size": 6680
     }
   ],
   "schema": 1,
-  "state_id": "2c209f037a5cd0600c0947ed2ed7df1c778c8d4b6a0ad5001bb1e0a4ceb6be29"
+  "state_id": "0e692270b1ac33728c983d87dff52d79068a902ef881bf55659aaae377d274a8"
 }

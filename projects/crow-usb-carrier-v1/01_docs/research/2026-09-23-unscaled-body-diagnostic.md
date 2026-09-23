@@ -1,0 +1,7 @@
+# Crow unscaled-body diagnostic (read-only)
+
+Rendered exact final Circuit JSON SHA-256 `4bbd4ca2d358814edf6617c2a2781253f2c4af8d63b3e0147081d916da64e138` once through the candidate renderer with all six detail-tile declarations and only the XMOS 2.6× pin scale and TDM translation 1.7× body scale. No TSX producer, source edit, or canonical artifact mutation. Output `/tmp/crow-unscaled-body-probe.pdf`, SHA-256 `9d814cf54e78e7e0fb9d5db9a765fb2c49d5e7f4a9d3512742d5e3a6e6633eed`, 78 pages.
+
+At 900px normal page rasters, held LDO p9/12/13 improves but C_HOLD3–8 refs remain immediately under/against the N5V_LDO_HOLD plates; reset p43 C_ADC_DIGITAL_OK still intersects the ADC_DIGITAL_BAD plate; reset p39/40 long supervisor refs cross wires/labels; p47 C_ADC_PWR_BAD is tight against a vertical net label. ADC p35/36 is cleaner, but several vertical plated labels remain close to the capacitor refs. Raster files: `/tmp/crow-unscaled-p9.png`, `p12`, `p13`, `p35`, `p36`, `p39`, `p40`, `p43`, `p47` with the same directory prefix.
+
+Poppler XML font sizes at 1.5×: held p9 min14px (9.3pt), p12/13 min17px (11.3pt); ADC p35/36 min11px (7.3pt); reset p39/40/43/47 min13px (8.7pt). The ADC detail-page minimum remains below the approximate 8pt normal-view target. Removing scaled body text is therefore helpful but insufficient to admit S6. The next source repair needs explicit label/part pose clearance on those sheets; using the unscaled mode alone would conceal remaining collisions.
