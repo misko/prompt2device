@@ -1,16 +1,16 @@
 # Project status
 
-<!-- pause-state:f7e6e3473462661258e30f2d84878294b33f2b786021d2984b3ffef15937bba1 -->
+<!-- pause-state:47c12e6f95d63020987127423a7f9651fd21ace00df119114847b40adef928fb -->
 
 - Phase: `sourcing`
 - State: **PAUSED**
 - Checkpoint: `03_tscircuit/build/circuit.json` (`ead8cb33c07a`)
-- Blocker: D5/D7 source admission remains held: XMOS last observed 46/155 and ADC replacement remains under repair/review. Reviewed TMUX4827 source replaces the short-stock switches; 85/86 coded population lines meet retained dated stock observations, with uncoded ADC separately unresolved. D9 manual assembly covers exactly 24 THT refs. Diagnostic source has 509 components and complete block-interface coverage; canonical 493-reference schematic is historical. Carrier ambient and private-XMOS inventory questions remain unanswered.
-- Next command: `Finish and independently review ADC shutdown/source repair and resolve XMOS supply; then regenerate and admit schematic before P1-P5 block placement, preserving all 150-extra stock requirements`
+- Blocker: D5/D7 source admission held: XMOS public stock 46/155; other 87/88 coded MPNs meet dated thresholds. Current reviewed source has568 refs; canonical493-ref schematic remains historical. Exactly24 D9 manual THT refs. Floorplan must repartition16 hold capacitors; E-FAULT evidence remains owed. Carrier ambient/private-XMOS inventory questions unanswered.
+- Next command: `Resolve XMOS sourcing and remaining source evidence; repartition hold-bank source floorplan before admitted P1-P5 block placement and routing`
 
 ## Bound receipts
 
-- None
+- `08_reviews/2026-09-23_adc-composition_sol_source.md` — `fc36805bc683`
 
 This file is generated from `01_docs/pause_state.json`; edit the manifest with
 `pause_state.py record`, not this view.
