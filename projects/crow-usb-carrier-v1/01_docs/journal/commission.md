@@ -770,3 +770,6 @@ Passive/clock source1002f5bc adopted as36330a35 after independent Terra PASS: fo
 
 
 TPS62822DLCR source candidate795acf68 adopted as87ecfaa1 after Terra source PASS, with exact Samsung input capacitors and Viking feedback resistor. Initial124f6candidate raw stock files violated provenance membership and its followup fixed cache placement; root caught a truncated HTML digest, corrected before adoption. Root present-file audit then exposed the child sourcing contract missing the new observation filename; added one narrow exact membership row with fresh Terra addendum, final664files/0violations. Root E-MARGIN passes all derived feedback windows; source schema992/992. Accepted circuit remains oldcf78 and no new producer or PCB ran. USB source df2e766f rejected pending body-origin/courtyard correction and5.15mm drawing dimension reconciliation. No release or new placement acceptance.
+
+
+Final three source models79fee31d adopted as23935b33 after Terra PASS: J_PWR/J_JTAG/U_BUCK models are original drawing-derived envelopes with exactshape/keying omissions explicit. All42namedpads and other footprintgeometry unchanged. Together with DLC3bindings, projectedsource filepresence568/568 still awaits actualnewboardcoverage/registration. Root module-firstPASS4/7selectedsubsystems andTSXpreflight111/111dossiers; noP1orproducer.
