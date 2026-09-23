@@ -1,0 +1,13 @@
+# Independent review — empty Crow references sheet
+
+- Candidate commit: `1293841d4b93372d92e5046ecdc609b73d66066d`
+- Base commit: `ea8f4e6eb0766b57919ef633f5ed7e18c74efb35`
+- Verdict: **ACCEPT** the single authored sheet-list deletion as a narrow source repair. Source admission and schematic review remain separate gates.
+
+The exact commit diff changes only `03_tscircuit/src/crow_carrier.tsx`, deleting `"references",` from `schematicPages`. It does not edit the electrical TSX modules, part dossiers, `power_tree.yaml`, E-FAULT checker, renderer, or any gate. `git diff --check` passed.
+
+I independently parsed the root canonical circuit SHA-256 `c92d28cfdd9702057de4e651461ae80007f382b0a9e897ed3367ac272039d075` and candidate generated circuit SHA-256 `b323ca64ebeec6e7d3660304a03e6bb8c60e041cf1afcf73d436bd9d3b583c64`. The old `references` sheet (`schematic_sheet_24`) has zero schematic components. The candidate has 39 sheets, none empty, and 568 schematic components. All ordered `source_component` (568), `source_port` (1,782), `source_net` (282), `source_trace` (1,636), and `source_group` (5) records are byte-equivalent after JSON parsing. Thus the ref population, MPNs, values, footprints, source pins/nets and traces did not change. Across the entire JSON type census, only one `schematic_sheet` record is removed. Existing schematic record changes are confined to `schematic_sheet_id`; `source_project_metadata.source_filesystem_md5_hash` changes with the authored TSX; unnamed-trace advisory messages decrement their generated trace counter by one. The number of such advisories remains 1,636.
+
+I independently checked the rendered candidate PDF at `/tmp/crow-remove-empty-references-schematic.pdf`: `pdfinfo` reports 39 pages. The producer's report records zero hard circuit diagnostics, 108/108 TSX preflight, 568 rendered components and zero endpoint residual; I did not rerun the producer or renderer. The untracked candidate `dist/` and linked `node_modules` are validation artifacts, not commit changes.
+
+The current `power_tree.yaml` still binds E-FAULT to `c92d28cf…`. Moving that raw digest to `b323ca64…` is justified only for the candidate generated circuit reviewed here. Root must regenerate after adopting the one-line source edit, verify its actual raw circuit hash and ordered source-record equivalence, then bind E-FAULT to that exact root artifact before full E-FAULT and schematic gates. A different root hash requires examining its cause, not copying the candidate digest by assumption. The repair does not itself satisfy native schematic, review, placement, manufacturing or first-article gates.
