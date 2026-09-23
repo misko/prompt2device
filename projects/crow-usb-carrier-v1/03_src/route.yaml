@@ -37,7 +37,7 @@ flow:
     - route.waves
   budgets_s:
     tscircuit_deps: 30
-    tscircuit_build: 60
+    tscircuit_build: 120  # 568-ref source measured72.118s; hard deadline remains180s
     escape_packages: 30
     escape_lands: 120
     tier_preflight: 15

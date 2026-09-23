@@ -1,0 +1,21 @@
+# Crow regenerated Circuit JSON versus reviewed diagnostic
+
+Read-only comparison, 2026-09-23. New full-worktree producer `03_tscircuit/dist/src/crow_carrier/circuit.json` is SHA-256 `c92d28cfdd9702057de4e651461ae80007f382b0a9e897ed3367ac272039d075`; reviewed minimal-view diagnostic `06_build/verification/adc-composition/circuit.json` is `b68fd99fad9092260c1e2fd2630cf1a63ce334057802e6c464aa6052b8ab307c`. Both files are exactly 4,842,591 bytes and 10,518 ordered records. The new producer returned zero; `pcb_flow` rejected its 72.118-second runtime against a 60-second soft budget before copying it to canonical `build/`, so canonical still is the historical 493-ref file. No project or checker files were edited here.
+
+## Exact difference
+
+The record arrays match in order and type. **Only the last `source_project_metadata.source_filesystem_md5_hash` value differs**: old `224745eda810de35a09acb7359b535b5`, new `db56d5e2d010e3bbace65865d37d4cbd`. Replacing that one 32-byte string in the old raw file yields byte-for-byte equality with the new raw file. Removing that one JSON field yields identical parsed arrays, normalized SHA-256 `49d186f04145a1902f27a02f6fc408022e9e8553e6bf743555bf066749de70af` (sorted compact JSON).
+
+Both have 568 `source_component` refs, 90 exact MPNs, 1,782 `source_port` records, 282 `source_net` records, 1,636 `source_trace` records, 568 schematic components and 40 sheets. Therefore there are **zero differences** in source ref/MPN identity, values, footprints, port/pin/net connectivity, source traces, schematic graphics/IDs, warnings, or sheet geometry. No electrical or drawing difference is hidden in the changed raw SHA.
+
+## Cause, reproduced from the installed producer
+
+Installed `@tscircuit/cli/dist/cli/build/build.worker.js` computes `source_filesystem_md5_hash` by walking the nearest `package.json` project directory. It sorts directory entries and hashes relative path lengths, paths, content lengths and content for `.tsx/.ts/.jsx/.js/.json/.txt/.md/.obj/.kicad_*` files, excluding `node_modules`, `dist`, `build`, `.git` and dot directories. The old diagnostic was generated in `/tmp/crow-adc-composition-diagnostic/03_tscircuit` with **12** eligible files: `package.json` and the 11 TSX files. Replaying the installed algorithm gives exactly `224745eda810de35a09acb7359b535b5`.
+
+The full project has **15** eligible files: those same 12 plus `contracts.md`, `net_aliases.txt` and `parity_padmap.txt`. All 12 common files are byte-identical between the isolated ADC composition tree and current project. Replaying the same algorithm on the full project gives exactly `db56d5e2d010e3bbace65865d37d4cbd`. These three additional files explain the metadata hash difference; this is a different input-file census, not observed producer nondeterminism.
+
+## Bounded admission implication
+
+`03_src/rules/power_tree.yaml` still pins `external_source_fuse.circuit_sha256` to `b68fd99f…`. The full post-generation E-FAULT gate will correctly reject `c92d28cf…` despite the proved identity of all non-metadata records. Do **not** weaken/remove its raw-digest binding or copy the old diagnostic into canonical build. Record an exact-source bridge review citing both raw hashes, the one-field equality, and the 12-versus-15-file cause. Re-pin that field to `c92d28cf…` **before restarting the conductor/provenance stamp**, provided the 15 eligible files remain byte-identical; then let the complete producer rebuild, copy, freshness gate and full E-FAULT gate grade the actual new canonical bytes. Changing `power_tree.yaml` between `build_provenance.py stamp` and `verify` risks a freshness rejection because `03_src` is an authored source root. If any eligible tscircuit file changes, rerun this comparison and review the new output rather than assuming `c92d28cf…` remains valid.
+
+The existing ADC and E-FAULT source reviews remain valid for electrical/source meaning under this exact-byte bridge; their cited `b68fd99f…` remains the historical reviewed diagnostic and should not be rewritten as if the reviewer saw `c92d28cf…`. The new generated artifact and bridge receipt can be separately bound in the current schematic admission record. This conclusion covers source identity only; it is not native schematic, placement, vendor or first-article acceptance.
