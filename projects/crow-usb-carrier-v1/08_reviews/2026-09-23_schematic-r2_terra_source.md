@@ -40,3 +40,4 @@ Page 44 places a vertical wire close to `U_ADC_1V8_OK`; its complete reference r
 ## Limits
 
 This review establishes render completeness and readability, not routing, thermal, source-fault, assembly, firmware, or purchase readiness. The separate topology bridge binds the current electrical carryover and its limits.
+

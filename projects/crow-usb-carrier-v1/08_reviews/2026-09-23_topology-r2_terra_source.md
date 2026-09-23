@@ -43,3 +43,4 @@ All raw netlist hash differences are explained by the exporter date and all 568 
 ## Carried engineering limits
 
 The preceding full topology review remains conditional on a qualified isolated external source/cable and first article: the external fuse is an architectural requirement, not proof of sustained fault interruption or pod-surge behavior. Thermal/copper/contact behavior, rail hold-up and hot behavior still need routed-board and physical validation. The shared ADC output remains dependent on firmware scheduling and safe high-impedance `TX_FILL` slots; no firmware was reviewed here. USB/RF integrity, routed DRC, assembly, and first-article checks also remain outside this bridge. These inherited limits are why this SOUND schematic carryover is not permission to order.
+
