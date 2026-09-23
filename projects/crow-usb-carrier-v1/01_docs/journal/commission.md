@@ -498,3 +498,11 @@ Set stitch.via.tiers and stitch.astar_fallback.via to the existing0.60/0.30mm or
 ### D5 bounded research result
 - Terra:468non-THT/25THT instances. SOL: exactJLCcandidateinventory found for seven shortSMD parts and threeADCarchitectures. No candidate approved; key capacitorESL, analogswitchtopology, ADCnoise/input/clock and150buffer constraints retained. Full dated report01_docs/sourcing/jlc-population-review-2026-09-23.md preserves agentoutputs and hashes.
 - Source remains held. Next qualify minimalOPA/crystal substitutions and ADCarchitecture before editing remainingblocks; no distributor or secondaryassembler override.
+
+## 2026-09-23 — release objective adopted
+- D6 changes capability target fromdesign torelease; existing source-admission D5hold remains. Design maturity and release sealing are separate: no maturitylevel or releasecompletion is inferred from the target change.
+- SOL implementing boundedOPA/crystal sourcecandidate and independently investigating ADCnoise/input/clock architecture. Terra auditing releaseartifact obligations and modulargraph priorities. Native board, P1–P5engineering acceptance and release evidence remain owed.
+
+### D5 population consistency and ADC architecture research
+
+Removed the superseded U_ADC board_attr_plan instruction to set FP_EXCLUDE_FROM_POS_FILES; not_assembled remains empty. The ADC must appear in the eventual JLC population set, with a qualified stocked selection still owed. Retained the SOL AK5578EN architecture proof in sourcing/jlc-population-review-2026-09-23.md as research only. Its 5 V supply, input attenuation/noise, XU timing and stock-buffer decisions remain open; no substitute has been admitted.

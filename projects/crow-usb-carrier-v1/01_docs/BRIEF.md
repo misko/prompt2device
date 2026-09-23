@@ -20,7 +20,8 @@ A new, source-reproducible Crow carrier PCB with its own onboard USB interface
 IC and a direct USB cable connection to a Raspberry Pi. Preserve the Crow audio
 acquisition function while replacing the external USB/TDM bridge. Deliver the
 reviewed schematic, placed and routed native board, design calculations, BOM,
-and layout verification evidence. Physical hardware performance remains a
+and layout verification evidence, then a reviewed, self-contained sealed hardware release
+with fabrication/assembly payloads and the applicable release receipts. Physical hardware performance remains a
 separate first-article measurement; no fabrication or order is authorized here.
 
 | # | Criterion | Source | Status |
@@ -54,10 +55,10 @@ seeded rule examples are not product facts and will be replaced before use.
 | Protection posture | Re-evaluate USB-only, carrier-only, both-powered, brownout and cable connection/removal states; no inherited sequencing approval. | A2 |
 | Measurement plane | Digital audio at Pi USB capture endpoint; analog/power capability at the existing Crow spoke boundary. Exact cable/load envelope OWED. | A1, A2 |
 | Off-control / stored energy | Preserve supported quiet shutdown intent; changed USB core power and flash dependencies require new state analysis. | A2; OWED |
-| Critical sourcing | XU316, W25Q128JWSIQ 1.8 V flash, CS5308P-DNR ADC, LT3045 quiet regulator and separate core/PHY rails; current source has 493 references and 85 exact MPNs. All 85 selected MPNs pass the design-stage two-pool sourcing gate; allocation and order-time availability remain separate. | P; current TSX/manifest/dossiers and sourcing CSV |
+| Critical sourcing | XU316, W25Q128JWSIQ 1.8 V flash, CS5308P-DNR ADC, LT3045 quiet regulator and separate core/PHY rails; current source has 493 references and 85 exact MPNs. The historical 85-MPN two-pool sourcing result does not meet D5: ADC selection and SMD stock shortfalls are reopened; allocation and order-time availability remain separate. | P; current TSX/manifest/dossiers and sourcing CSV |
 | Integration posture | Onboard bare USB IC is explicitly requested; module comparison informs the exception but cannot substitute an external bridge. | P; decision 0001 |
 | Mechanical boundary | Adopt the current 220 × 120 mm rectangle for initial placement, with no inherited mounting holes or Pi HAT/header alignment. This reversible design assumption is not a size maximum or fit claim. | A3; decision 0007 |
-| Fabrication / assembly | JLCPCB populated-PCBA intent, four-layer JLC04161H-7628G stackup with the advanced routing/process candidate in decision 0006; nominal 90-ohm USB cross-section documented. Selective LT3045 via fill/cap remains a proposed uploader/order requirement pending exact vendor acceptance. U_ADC is excluded from the JLC BOM/CPL and assigned to professional secondary procurement and reflow; provider capability evidence is required before part freeze or placement spend. No hard numeric design budget was supplied; authorized expenditure is zero, with actual-board quotations and process acceptance required before spending. | A3; decisions 0006 and 0007; assembly.yaml |
+| Fabrication / assembly | JLCPCB populated-PCBA intent, four-layer JLC04161H-7628G stackup with the advanced routing/process candidate in decision 0006; nominal 90-ohm USB cross-section documented. Selective LT3045 via fill/cap remains a proposed uploader/order requirement pending exact vendor acceptance. D5 requires JLCPCB to populate every non-through-hole component from in-stock inventory, including U_ADC. The former ADC exclusion and secondary-assembler plan are superseded; ADC sourcing and other SMD shortages must close before placement. No hard numeric design budget was supplied; authorized expenditure is zero, with actual-board quotations and process acceptance required before spending. | A3; decisions 0006 and 0007; assembly.yaml |
 | Firmware | Research permitted. No firmware source, build or release until Q2 is answered affirmatively or an existing authorized image path is selected. | Q2; skill default |
 
 ## Mating fact-lock
@@ -144,3 +145,8 @@ is authorized by this reconciliation.
 > We need JLCPCB to populate the non through hole components, they need to be in stock
 
 Impact: every non-through-hole component must be supplied from in-stock JLCPCB inventory and populated by JLCPCB. Distributor stock, consignment assumptions, secondary assembly and design-only sourcing-risk acceptance cannot substitute for this requirement. Reopen ADC selection and every SMD sourcing shortfall before physical placement. The prior U_ADC secondary-assembler plan is superseded. Through-hole exceptions may be evaluated separately; none are automatically excluded. No order or expenditure is authorized.
+
+### D6 — 2026-09-23 — release target and model delegation
+> mint a new release using the new JCLPCB sourcing and block schematic + block pre-routing and placement. Please use sol and terra where possible
+
+Impact: target a new sealed hardware release, extending the previous design/layout-seal target. D5 remains binding: JLCPCB must stock and populate every non-through-hole component. Use the existing P1–P5 block floorplan, placement, critical-local-route and joint-proof graph with independent engineering acceptance; block metadata alone does not pass placement. Use SOL for bounded engineering and Terra for suitable evidence/audit work. Release requires the existing fabrication, assembly, exact-artifact independent review, archive rehearsal and seal checks. Firmware authoring and purchasing remain outside scope.
