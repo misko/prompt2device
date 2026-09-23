@@ -1,0 +1,14 @@
+#VRML V2.0 utf8
+# Project-authored maximum package shell only, with illustrative pin-one mark; not vendor 3D CAD.
+# TI TPSM63603 SLVSFS5A Rev A RDH0030A package outline p44; PDF SHA256 ffb05dbfc1fb35d79778fda2242d4880a0dfae146c28481afba8dff778b72dc6.
+# Source license: repository MIT LICENSE. Manufacturer drawing geometry cited, PDF not copied.
+# 1 VRML unit=2.54 mm. Model Y is opposite KiCad footprint Y; Z=0 is PCB top.
+# Simple solids omit tooling radii, solder fillets, true cavity/key contour, variation.
+# RDH maximum shell 4.1x6.1x1.9: centre_mm=(0, 0, 0.95), size_mm=(4.1, 6.1, 1.9)
+Transform { translation 0.000000000 0.000000000 0.374015748
+ children [ Shape { appearance Appearance { material Material { diffuseColor 0.100 0.100 0.110 } }
+ geometry Box { size 1.614173228 2.401574803 0.748031496 } } ] }
+# pin1 mark indication, not physical relief: centre_mm=(-1.7, 2.7, 1.89), size_mm=(0.15, 0.15, 0.02)
+Transform { translation -0.669291339 1.062992126 0.744094488
+ children [ Shape { appearance Appearance { material Material { diffuseColor 0.800 0.800 0.800 } }
+ geometry Box { size 0.059055118 0.059055118 0.007874016 } } ] }

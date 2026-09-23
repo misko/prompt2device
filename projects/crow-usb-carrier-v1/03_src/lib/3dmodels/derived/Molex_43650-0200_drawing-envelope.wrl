@@ -1,0 +1,26 @@
+#VRML V2.0 utf8
+# Project-authored unmated conservative connector envelope; not vendor 3D CAD.
+# Molex SD-43650-001 D8 p1; PDF SHA256 b8942b95bc3fe4c02171de9e714d99b2688055e249ba1524e3c2a8c3cf78eaa3.
+# Source license: repository MIT LICENSE. Manufacturer drawing geometry cited, PDF not copied.
+# 1 VRML unit=2.54 mm. Model Y is opposite KiCad footprint Y; Z=0 is PCB top.
+# Simple solids omit tooling radii, solder fillets, true cavity/key contour, variation.
+# housing reference 9.65x9.90x4.37: centre_mm=(1.5, 3.97, 2.185), size_mm=(9.65, 9.9, 4.37)
+Transform { translation 0.590551181 1.562992126 0.860236220
+ children [ Shape { appearance Appearance { material Material { diffuseColor 0.080 0.080 0.090 } }
+ geometry Box { size 3.799212598 3.897637795 1.720472441 } } ] }
+# latch height reserve full plan 1.20: centre_mm=(1.5, 3.97, 4.97), size_mm=(9.65, 9.9, 1.2)
+Transform { translation 0.590551181 1.562992126 1.956692913
+ children [ Shape { appearance Appearance { material Material { diffuseColor 0.080 0.080 0.090 } }
+ geometry Box { size 3.799212598 3.897637795 0.472440945 } } ] }
+# locating peg simplified within 3mm NPTH: centre_mm=(1.5, 4.32, -1.65), radius_mm=1.45, height_mm=3.3
+Transform { translation 0.590551181 1.700787402 -0.649606299 rotation 1 0 0 1.570796327
+ children [ Shape { appearance Appearance { material Material { diffuseColor 0.080 0.080 0.090 } }
+ geometry Cylinder { radius 0.570866142 height 1.299212598 } } ] }
+# pin1 tail indicative: centre_mm=(0, 0, -1.59), radius_mm=0.32, height_mm=3.18
+Transform { translation 0.000000000 0.000000000 -0.625984252 rotation 1 0 0 1.570796327
+ children [ Shape { appearance Appearance { material Material { diffuseColor 0.630 0.650 0.660 } }
+ geometry Cylinder { radius 0.125984252 height 1.251968504 } } ] }
+# pin2 tail indicative: centre_mm=(3, 0, -1.59), radius_mm=0.32, height_mm=3.18
+Transform { translation 1.181102362 0.000000000 -0.625984252 rotation 1 0 0 1.570796327
+ children [ Shape { appearance Appearance { material Material { diffuseColor 0.630 0.650 0.660 } }
+ geometry Cylinder { radius 0.125984252 height 1.251968504 } } ] }

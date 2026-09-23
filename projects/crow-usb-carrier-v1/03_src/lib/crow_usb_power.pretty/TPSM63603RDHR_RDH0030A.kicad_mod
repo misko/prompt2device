@@ -38,4 +38,5 @@
  (pad "" smd roundrect (at 0 -0.6) (size 1.47 0.95) (layers "F.Paste") (roundrect_rratio 0.052631579))
  (pad "" smd roundrect (at 0 0.6) (size 1.47 0.95) (layers "F.Paste") (roundrect_rratio 0.052631579))
  (pad "" smd roundrect (at 0 1.925) (size 1.17 0.74) (layers "F.Paste") (roundrect_rratio 0.067567568))
+ (model "${KIPRJMOD}/../03_src/lib/3dmodels/derived/TI_RDH0030A_max-envelope.wrl" (offset (xyz 0 0 0)) (scale (xyz 1 1 1)) (rotate (xyz 0 0 0)))
 )

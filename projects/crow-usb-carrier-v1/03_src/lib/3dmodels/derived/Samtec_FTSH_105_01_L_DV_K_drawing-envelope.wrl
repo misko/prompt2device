@@ -1,0 +1,91 @@
+#VRML V2.0 utf8
+# Project-authored series-drawing nominal header representation; not vendor 3D CAD.
+# Samtec FTSH Rev FX sheet1 and Rev H land Fig1; PDF SHA256 ef2961377445b9ad10762ea27519e7b59e5cbb5847dc0058d8e35c0d97c446a3 and caa205b92560423f3b0aea9c69d6c38340d1b7f01b0655092994450e935edcb3.
+# Source license: repository MIT LICENSE. Manufacturer drawing geometry cited, PDF not copied.
+# 1 VRML unit=2.54 mm. Model Y is opposite KiCad footprint Y; Z=0 is PCB top.
+# Simple solids omit tooling radii, solder fillets, true cavity/key contour, variation.
+# The -K notch is omitted: series print identifies option but does not fix a reviewed 3D cutout here.
+# insulator reference 3.43x6.48, board plane to top 3.05: centre_mm=(0, 0, 1.525), size_mm=(3.43, 6.48, 3.05)
+Transform { translation 0.000000000 0.000000000 0.600393701
+ children [ Shape { appearance Appearance { material Material { diffuseColor 0.080 0.080 0.090 } }
+ geometry Box { size 1.350393701 2.551181102 1.200787402 } } ] }
+# tail1 illustrative at native pad: centre_mm=(-2.035, -2.54, 0.075), size_mm=(2.79, 0.74, 0.15)
+Transform { translation -0.801181102 -1.000000000 0.029527559
+ children [ Shape { appearance Appearance { material Material { diffuseColor 0.630 0.650 0.660 } }
+ geometry Box { size 1.098425197 0.291338583 0.059055118 } } ] }
+# post1 0.41 square, style01 nominal: centre_mm=(-0.635, -2.54, 4.575), size_mm=(0.41, 0.41, 3.05)
+Transform { translation -0.250000000 -1.000000000 1.801181102
+ children [ Shape { appearance Appearance { material Material { diffuseColor 0.630 0.650 0.660 } }
+ geometry Box { size 0.161417323 0.161417323 1.200787402 } } ] }
+# tail2 illustrative at native pad: centre_mm=(2.035, -2.54, 0.075), size_mm=(2.79, 0.74, 0.15)
+Transform { translation 0.801181102 -1.000000000 0.029527559
+ children [ Shape { appearance Appearance { material Material { diffuseColor 0.630 0.650 0.660 } }
+ geometry Box { size 1.098425197 0.291338583 0.059055118 } } ] }
+# post2 0.41 square, style01 nominal: centre_mm=(0.635, -2.54, 4.575), size_mm=(0.41, 0.41, 3.05)
+Transform { translation 0.250000000 -1.000000000 1.801181102
+ children [ Shape { appearance Appearance { material Material { diffuseColor 0.630 0.650 0.660 } }
+ geometry Box { size 0.161417323 0.161417323 1.200787402 } } ] }
+# tail3 illustrative at native pad: centre_mm=(-2.035, -1.27, 0.075), size_mm=(2.79, 0.74, 0.15)
+Transform { translation -0.801181102 -0.500000000 0.029527559
+ children [ Shape { appearance Appearance { material Material { diffuseColor 0.630 0.650 0.660 } }
+ geometry Box { size 1.098425197 0.291338583 0.059055118 } } ] }
+# post3 0.41 square, style01 nominal: centre_mm=(-0.635, -1.27, 4.575), size_mm=(0.41, 0.41, 3.05)
+Transform { translation -0.250000000 -0.500000000 1.801181102
+ children [ Shape { appearance Appearance { material Material { diffuseColor 0.630 0.650 0.660 } }
+ geometry Box { size 0.161417323 0.161417323 1.200787402 } } ] }
+# tail4 illustrative at native pad: centre_mm=(2.035, -1.27, 0.075), size_mm=(2.79, 0.74, 0.15)
+Transform { translation 0.801181102 -0.500000000 0.029527559
+ children [ Shape { appearance Appearance { material Material { diffuseColor 0.630 0.650 0.660 } }
+ geometry Box { size 1.098425197 0.291338583 0.059055118 } } ] }
+# post4 0.41 square, style01 nominal: centre_mm=(0.635, -1.27, 4.575), size_mm=(0.41, 0.41, 3.05)
+Transform { translation 0.250000000 -0.500000000 1.801181102
+ children [ Shape { appearance Appearance { material Material { diffuseColor 0.630 0.650 0.660 } }
+ geometry Box { size 0.161417323 0.161417323 1.200787402 } } ] }
+# tail5 illustrative at native pad: centre_mm=(-2.035, 0, 0.075), size_mm=(2.79, 0.74, 0.15)
+Transform { translation -0.801181102 0.000000000 0.029527559
+ children [ Shape { appearance Appearance { material Material { diffuseColor 0.630 0.650 0.660 } }
+ geometry Box { size 1.098425197 0.291338583 0.059055118 } } ] }
+# post5 0.41 square, style01 nominal: centre_mm=(-0.635, 0, 4.575), size_mm=(0.41, 0.41, 3.05)
+Transform { translation -0.250000000 0.000000000 1.801181102
+ children [ Shape { appearance Appearance { material Material { diffuseColor 0.630 0.650 0.660 } }
+ geometry Box { size 0.161417323 0.161417323 1.200787402 } } ] }
+# tail6 illustrative at native pad: centre_mm=(2.035, 0, 0.075), size_mm=(2.79, 0.74, 0.15)
+Transform { translation 0.801181102 0.000000000 0.029527559
+ children [ Shape { appearance Appearance { material Material { diffuseColor 0.630 0.650 0.660 } }
+ geometry Box { size 1.098425197 0.291338583 0.059055118 } } ] }
+# post6 0.41 square, style01 nominal: centre_mm=(0.635, 0, 4.575), size_mm=(0.41, 0.41, 3.05)
+Transform { translation 0.250000000 0.000000000 1.801181102
+ children [ Shape { appearance Appearance { material Material { diffuseColor 0.630 0.650 0.660 } }
+ geometry Box { size 0.161417323 0.161417323 1.200787402 } } ] }
+# tail7 illustrative at native pad: centre_mm=(-2.035, 1.27, 0.075), size_mm=(2.79, 0.74, 0.15)
+Transform { translation -0.801181102 0.500000000 0.029527559
+ children [ Shape { appearance Appearance { material Material { diffuseColor 0.630 0.650 0.660 } }
+ geometry Box { size 1.098425197 0.291338583 0.059055118 } } ] }
+# post7 0.41 square, style01 nominal: centre_mm=(-0.635, 1.27, 4.575), size_mm=(0.41, 0.41, 3.05)
+Transform { translation -0.250000000 0.500000000 1.801181102
+ children [ Shape { appearance Appearance { material Material { diffuseColor 0.630 0.650 0.660 } }
+ geometry Box { size 0.161417323 0.161417323 1.200787402 } } ] }
+# tail8 illustrative at native pad: centre_mm=(2.035, 1.27, 0.075), size_mm=(2.79, 0.74, 0.15)
+Transform { translation 0.801181102 0.500000000 0.029527559
+ children [ Shape { appearance Appearance { material Material { diffuseColor 0.630 0.650 0.660 } }
+ geometry Box { size 1.098425197 0.291338583 0.059055118 } } ] }
+# post8 0.41 square, style01 nominal: centre_mm=(0.635, 1.27, 4.575), size_mm=(0.41, 0.41, 3.05)
+Transform { translation 0.250000000 0.500000000 1.801181102
+ children [ Shape { appearance Appearance { material Material { diffuseColor 0.630 0.650 0.660 } }
+ geometry Box { size 0.161417323 0.161417323 1.200787402 } } ] }
+# tail9 illustrative at native pad: centre_mm=(-2.035, 2.54, 0.075), size_mm=(2.79, 0.74, 0.15)
+Transform { translation -0.801181102 1.000000000 0.029527559
+ children [ Shape { appearance Appearance { material Material { diffuseColor 0.630 0.650 0.660 } }
+ geometry Box { size 1.098425197 0.291338583 0.059055118 } } ] }
+# post9 0.41 square, style01 nominal: centre_mm=(-0.635, 2.54, 4.575), size_mm=(0.41, 0.41, 3.05)
+Transform { translation -0.250000000 1.000000000 1.801181102
+ children [ Shape { appearance Appearance { material Material { diffuseColor 0.630 0.650 0.660 } }
+ geometry Box { size 0.161417323 0.161417323 1.200787402 } } ] }
+# tail10 illustrative at native pad: centre_mm=(2.035, 2.54, 0.075), size_mm=(2.79, 0.74, 0.15)
+Transform { translation 0.801181102 1.000000000 0.029527559
+ children [ Shape { appearance Appearance { material Material { diffuseColor 0.630 0.650 0.660 } }
+ geometry Box { size 1.098425197 0.291338583 0.059055118 } } ] }
+# post10 0.41 square, style01 nominal: centre_mm=(0.635, 2.54, 4.575), size_mm=(0.41, 0.41, 3.05)
+Transform { translation 0.250000000 1.000000000 1.801181102
+ children [ Shape { appearance Appearance { material Material { diffuseColor 0.630 0.650 0.660 } }
+ geometry Box { size 0.161417323 0.161417323 1.200787402 } } ] }

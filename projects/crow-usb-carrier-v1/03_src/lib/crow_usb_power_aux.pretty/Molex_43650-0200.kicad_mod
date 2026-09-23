@@ -249,7 +249,7 @@
 		(remove_unused_layers no)
 	)
 	(embedded_fonts no)
-	(model "${KICAD10_3DMODEL_DIR}/Connector_Molex.3dshapes/Molex_Micro-Fit_3.0_43650-0200_1x02_P3.00mm_Horizontal.step"
+	(model "${KIPRJMOD}/../03_src/lib/3dmodels/derived/Molex_43650-0200_drawing-envelope.wrl"
 		(offset
 			(xyz 0 0 0)
 		)
