@@ -129,7 +129,51 @@ via_process:
 # D5 (BRIEF.md, 2026-09-23) supersedes the former secondary-assembler ADC
 # exception. All non-through-hole parts must be in stock at and placed by JLC.
 # No exemption may hide the unresolved U_ADC sourcing/architecture backtrack.
-not_assembled: []
+not_assembled:
+- refs:
+  - J1
+  - J2
+  - J3
+  - J4
+  - J5
+  - J6
+  - J7
+  - J8
+  reason: user_supplied
+  lcsc: C6461980
+  on_bom: false
+  evidence: '2026-09-23 exact public distributor observation: DigiKey 615008160221
+    stock 991 versus 190 for five boards plus 150. JLC catalog shortfall and exact
+    URLs recorded in 01_docs/sourcing/tht-manual-source-2026-09-23.md; user D9 selects
+    manual THT assembly.'
+  disposition: Source separately and hand-solder after JLC SMD assembly. Retain in
+    full design/fitted population; omit from JLC BOM and CPL. No purchase authorized.
+- refs:
+  - C_A1N
+  - C_A1P
+  - C_A2N
+  - C_A2P
+  - C_A3N
+  - C_A3P
+  - C_A4N
+  - C_A4P
+  - C_A5N
+  - C_A5P
+  - C_A6N
+  - C_A6P
+  - C_A7N
+  - C_A7P
+  - C_A8N
+  - C_A8P
+  reason: user_supplied
+  lcsc: C3778009
+  on_bom: false
+  evidence: '2026-09-23 exact public distributor observation: DigiKey R82DC4100CK60J
+    stock 969 versus 230 for five boards plus 150. JLC catalog shortfall and exact
+    URLs recorded in 01_docs/sourcing/tht-manual-source-2026-09-23.md; user D9 selects
+    manual THT assembly.'
+  disposition: Source separately and hand-solder after JLC SMD assembly. Retain in
+    full design/fitted population; omit from JLC BOM and CPL. No purchase authorized.
   # - refs: [K_U1, K_U2, K_U3]
   #   reason: not_in_catalog
   #   evidence: "LCSC search 'DIP05-1A72-12L' 2026-07-24 -> 0 results; Standex
@@ -147,7 +191,7 @@ not_assembled: []
   #   evidence: "M3 mounting holes, no footprint pads with nets (board 2026-07-24)"
   #   disposition: "n/a"
 
-# D5 requires U_ADC on the JLC placement list. No pending board exclusion.
+# D5 keeps U_ADC on the JLC placement list. D9 THT position exclusions are authored in floorplan.yaml; no board-attribute deferral.
 board_attr_plan: []
 
 # ---- CONSIGNED (you supply, JLC PLACES — these stay ON the CPL) -------------

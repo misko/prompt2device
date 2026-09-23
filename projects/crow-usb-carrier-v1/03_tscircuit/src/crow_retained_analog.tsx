@@ -75,7 +75,7 @@ const C = ({ name, value, a, b, mpn, jlc, footprint = "0402", polarized = false,
 )
 
 const sourced = (mpn: string, jlc = "") => jlc || ({
-  "615008160221": "C6461980", "R82DC4100CK60J": "C3778009",
+  // D9: J1–J8 and the sixteen film caps are sourced and fitted manually.
   "SN74LVC1G04DCKR": "C8207", "SN74LVC1G125DCKT": "C2675550",
 } as Record<string, string>)[mpn] || ""
 const Chip = ({ jlc = "", manufacturerPartNumber, ...props }: any) => (

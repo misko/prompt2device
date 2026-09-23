@@ -146,6 +146,33 @@ placement:
     - 84
   patterns:
   - match:
+    - J1
+    - J2
+    - J3
+    - J4
+    - J5
+    - J6
+    - J7
+    - J8
+    - C_A1N
+    - C_A1P
+    - C_A2N
+    - C_A2P
+    - C_A3N
+    - C_A3P
+    - C_A4N
+    - C_A4P
+    - C_A5N
+    - C_A5P
+    - C_A6N
+    - C_A6P
+    - C_A7N
+    - C_A7P
+    - C_A8N
+    - C_A8P
+    attrs:
+    - exclude_from_pos_files
+  - match:
     - C_ADC_DIGITAL_BAD
     - C_ADC_DIGITAL_OK
     - C_ADC_READY

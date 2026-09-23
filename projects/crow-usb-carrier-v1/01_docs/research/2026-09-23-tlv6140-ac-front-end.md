@@ -32,3 +32,7 @@ Research only; no ADC source adoption. The broad low-frequency channel-phase spr
 
 - `crow-tlv-front-C84494-20260923.json` SHA-256 `25f71731690125aa3037bcdbe141cc56129d4ee1d60939356dbdc928ce62458c` retained in `06_build/verification/d5-jlc-population/tlv6140-front-end/`.
 - `crow-tlv-front-C1852023-20260923.json` SHA-256 `5793081797651404707ef69c02f9e761bc7fe9b81613c5a09d215eb4e22dd4b7` retained in `06_build/verification/d5-jlc-population/tlv6140-front-end/`.
+
+## Superseding phase interpretation
+
+The broad opposite-condition6.13°/0.85ms comparison above is **not a physically consistent estimate of normal interchannel mismatch on one board**. See [the same-board phase and startup addendum](2026-09-23-tlv6140-array-phase-startup.md), independently accepted as research. It separates a common pole from within-board tolerance/bias variation and keeps model validity, TI input-impedance spread, bass distortion and startup settling unqualified. No source or release adoption follows from either calculation.
