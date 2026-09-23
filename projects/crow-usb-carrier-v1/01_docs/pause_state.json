@@ -1,30 +1,30 @@
 {
-  "blocker": "First native P1 candidate generated; not accepted. Thirty-two real shorts traced to authored JTAG/logic lands and LDO thermal vias; independent geometry review and source repair underway. Connector FULL physical evidence remains owed.",
+  "blocker": "Repaired source and canonical schematic accepted; second bounded P1 native trial underway. Placement/routing are not admitted; connector FULL still owes 19 physical targets.",
   "checkpoint": {
     "path": "06_build/checkpoints/schematic.json",
-    "sha256": "8c536f3acf5ccdce320dffe0301422d4a3bced1e2d875154c20e98218493f619",
+    "sha256": "545adc0b60a8198eca489362e59621681687ccac7725ea9a2241fa21a7862816",
     "size": 1152
   },
-  "next_command": "Review frozen P1 candidate, repair owning footprint geometry from manufacturer drawings, regenerate and regrade before any P2/routing admission.",
+  "next_command": "Generate one repaired native P1 candidate with current rules, grade exact shorts and fixed-feature geometry, and preserve remaining blockers before P2.",
   "phase": "placement",
   "project": "crow-usb-carrier-v1",
   "receipts": [
     {
-      "path": "01_docs/research/2026-09-23-p1-native-trial.md",
-      "sha256": "8735fed5f40c2efc4a0bdad2655c96210ac05a8d70f293f9cdedc322adcb19fa",
-      "size": 2883
+      "path": "08_reviews/2026-09-23_generator-repairs-final_terra_source.md",
+      "sha256": "3a6ae5abed1089d983b8a9d626816d539c40e943708fc3676188b88d420435fe",
+      "size": 3832
     },
     {
-      "path": "08_reviews/2026-09-23_schematic-r2_terra_source.md",
-      "sha256": "45a06814f95ba05d022f065d0600f1636b61adf5c24ff84f141d723537b780f3",
-      "size": 3755
+      "path": "08_reviews/2026-09-23_schematic-land-carryover_terra_source.md",
+      "sha256": "98ad18bf5cb0f94fb5a5816338cf1c4c90b306c0b9b7112de03ab061831c05c3",
+      "size": 3699
     },
     {
-      "path": "08_reviews/2026-09-23_topology-r2_terra_source.md",
-      "sha256": "b528a0392a168778d353051f5c4270e063341c4cf379c2ff90604f20edd00302",
-      "size": 4410
+      "path": "08_reviews/2026-09-23_topology-land-carryover_terra_source.md",
+      "sha256": "d79659f8cf517939bece89143a5d138a918033f7d8441b7134702fc4017c379a",
+      "size": 5590
     }
   ],
   "schema": 1,
-  "state_id": "549208b973e3cc9c697a46507fc0f5a1d45c004c3f8bbf7f9e8e5bc6009b545f"
+  "state_id": "c1ac4f1e27d1f1fbc25a04deef885acc891928de0c7c483ec4430c2911930b28"
 }

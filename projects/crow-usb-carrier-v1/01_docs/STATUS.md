@@ -1,18 +1,18 @@
 # Project status
 
-<!-- pause-state:549208b973e3cc9c697a46507fc0f5a1d45c004c3f8bbf7f9e8e5bc6009b545f -->
+<!-- pause-state:c1ac4f1e27d1f1fbc25a04deef885acc891928de0c7c483ec4430c2911930b28 -->
 
 - Phase: `placement`
 - State: **PAUSED**
-- Checkpoint: `06_build/checkpoints/schematic.json` (`8c536f3acf5c`)
-- Blocker: First native P1 candidate generated; not accepted. Thirty-two real shorts traced to authored JTAG/logic lands and LDO thermal vias; independent geometry review and source repair underway. Connector FULL physical evidence remains owed.
-- Next command: `Review frozen P1 candidate, repair owning footprint geometry from manufacturer drawings, regenerate and regrade before any P2/routing admission.`
+- Checkpoint: `06_build/checkpoints/schematic.json` (`545adc0b60a8`)
+- Blocker: Repaired source and canonical schematic accepted; second bounded P1 native trial underway. Placement/routing are not admitted; connector FULL still owes 19 physical targets.
+- Next command: `Generate one repaired native P1 candidate with current rules, grade exact shorts and fixed-feature geometry, and preserve remaining blockers before P2.`
 
 ## Bound receipts
 
-- `01_docs/research/2026-09-23-p1-native-trial.md` — `8735fed5f40c`
-- `08_reviews/2026-09-23_schematic-r2_terra_source.md` — `45a06814f95b`
-- `08_reviews/2026-09-23_topology-r2_terra_source.md` — `b528a0392a16`
+- `08_reviews/2026-09-23_generator-repairs-final_terra_source.md` — `3a6ae5abed10`
+- `08_reviews/2026-09-23_schematic-land-carryover_terra_source.md` — `98ad18bf5cb0`
+- `08_reviews/2026-09-23_topology-land-carryover_terra_source.md` — `d79659f8cf51`
 
 This file is generated from `01_docs/pause_state.json`; edit the manifest with
 `pause_state.py record`, not this view.

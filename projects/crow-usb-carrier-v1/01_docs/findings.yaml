@@ -22,12 +22,16 @@ gates:
   - 08_reviews/2026-09-22_admission_sol_source.md
 - id: USB-schematic
   required_for: DESIGN_CLEAN
-  state: pending
+  state: pass
   owner: electrical
   closes_when: Generate complete native schematic and netlist from admitted source;
     pass electrical gates and independent topology and rendered-schematic review.
   evidence:
   - 03_tscircuit/src/crow_carrier.tsx
+  - 08_reviews/2026-09-23_schematic-r2_terra_source.md
+  - 08_reviews/2026-09-23_topology-r2_terra_source.md
+  - 08_reviews/2026-09-23_schematic-land-carryover_terra_source.md
+  - 08_reviews/2026-09-23_topology-land-carryover_terra_source.md
 - id: USB-layout
   required_for: DESIGN_CLEAN
   state: pending
@@ -136,7 +140,7 @@ findings:
     realization remains owed; actual startup/shutdown/USB/audio waveforms require
     separate physical qualification.
   closes_when: Review exact pin-level off-state behavior; define all held-buffer inputs,
-    preserve CS5308 startup reset sequence while asserting safe brownout reset, qualify
+    preserve TLV320ADC6140 startup reset sequence while asserting safe brownout reset, qualify
     flash/PHY reset timing, add supported VBUS capacitance/detector behavior and document
     firmware detach/JTAG assumptions. Pass source checks and independent power-state
     review.
@@ -155,8 +159,8 @@ findings:
   finding: D5/D7/D10 source catalog screen now passes all 88 exact JLC-coded
     lines with the reviewed XMOS-only surplus exception. All 568 source refs are
     reconciled, including exactly 24 D9 manual THT refs. Independent source policy
-    and ADC reviews are retained. Regenerated native schematic review and final
-    JLC population/process verification remain outstanding.
+    and ADC reviews are retained. Current native schematic review passes 2/2; final
+    JLC population/process verification remains outstanding.
   closes_when: Regenerate and independently review affected schematic/block interfaces
     after D10 source readmission; verify JLC population and process at their owning
     boundaries. Preserve five-board demand plus150 reserve except exact D10 XMOS.
@@ -166,3 +170,34 @@ findings:
   - 01_docs/sourcing/sourcing-review-2026-09-23.md
   - 01_docs/research/2026-09-23-xmos-stock-alternatives.md
   - 08_reviews/2026-09-23_opa-crystal_sol_source.md
+
+- id: USB-native-land-geometry
+  state: open
+  blocks_at_or_above: DESIGN_CLEAN
+  owner: part-geometry
+  finding: First native P1 candidate has 29 different-net overlaps inside JTAG,
+    DCK and DCT footprints. Manufacturer drawing review also exposes mirrored
+    native pin placement in active TI package footprints. Numeric pad/net parity
+    cannot establish physical pin orientation. Candidate is rejected.
+  closes_when: Correct exact native and TSX land geometry from manufacturer
+    top-view and land-pattern evidence; verify signed pin order, dimensions and
+    same-footprint copper clearance; regenerate and independently regrade all
+    affected instances with unchanged intended pin/net identities.
+  evidence:
+  - 01_docs/research/2026-09-23-p1-native-short-diagnosis.md
+  - 01_docs/research/2026-09-23-native-chirality-audit.md
+  - 08_reviews/2026-09-23_p1-native-geometry_terra_source.md
+- id: USB-ldo-thermal-via-geometry
+  state: open
+  blocks_at_or_above: DESIGN_CLEAN
+  owner: layout-power
+  finding: Three U_LDO ground thermal vias overlap different-net signal pads in
+    native P1 candidate 637e2665. Board-level vias were emitted before the
+    legalizer moved their owner. The shared emission-order repair is adopted;
+    regenerated native attachment and clearance remain to be measured.
+  closes_when: Emit vias at final owner positions inside the verified exposed pad,
+    regenerate and measure pad clearance under the selected process rules; retain
+    the owning thermal and manufacturing qualification requirements.
+  evidence:
+  - 03_src/floorplan.yaml
+  - 08_reviews/2026-09-23_p1-native-geometry_terra_source.md

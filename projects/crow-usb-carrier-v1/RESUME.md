@@ -1,12 +1,12 @@
 # Resume
 
-<!-- pause-state:549208b973e3cc9c697a46507fc0f5a1d45c004c3f8bbf7f9e8e5bc6009b545f -->
+<!-- pause-state:c1ac4f1e27d1f1fbc25a04deef885acc891928de0c7c483ec4430c2911930b28 -->
 
 Canonical state: `01_docs/pause_state.json`
 
 1. Verify: `python3 skills/pcb-design/scripts/pause_state.py verify .`
-2. Confirm blocker: First native P1 candidate generated; not accepted. Thirty-two real shorts traced to authored JTAG/logic lands and LDO thermal vias; independent geometry review and source repair underway. Connector FULL physical evidence remains owed.
-3. Resume with: `Review frozen P1 candidate, repair owning footprint geometry from manufacturer drawings, regenerate and regrade before any P2/routing admission.`
+2. Confirm blocker: Repaired source and canonical schematic accepted; second bounded P1 native trial underway. Placement/routing are not admitted; connector FULL still owes 19 physical targets.
+3. Resume with: `Generate one repaired native P1 candidate with current rules, grade exact shorts and fixed-feature geometry, and preserve remaining blockers before P2.`
 
 The authenticated checkpoint is `06_build/checkpoints/schematic.json` at
-`8c536f3acf5ccdce320dffe0301422d4a3bced1e2d875154c20e98218493f619`.
+`545adc0b60a8198eca489362e59621681687ccac7725ea9a2241fa21a7862816`.
