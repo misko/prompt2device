@@ -1,7 +1,7 @@
 import { MurataGrm32e1210 } from "./z_power_aux_footprints"
 import { Fragment } from "react"
 import {
-  CirrusCs5308pQfn48, Diodes2N7002kSot23, TiDrc0010j,
+  CirrusCs5308pQfn48, Diodes2N7002kSot23, TiDrc0010j, TiRtw0024Candidate,
   PanasonicEeeFk8x10, Sot553, TiDck0005a, TiDse0006a, TiYbh0009C02Tmux4827,
   Wurth615008160221Rj45, YageoRt0603,
 } from "./z_analog_exact_footprints"
@@ -10,7 +10,7 @@ import {
  * Draft retained Crow analog subsystem for crow-usb-carrier-v1.
  *
  * Scope: eight powered analog spokes, complete OPA2320/filter/TMUX receive
- * paths, CS5308P analog/reference/hardware-mode network, quiet held analog
+ * paths, two TLV320ADC6140 converters, quiet held analog
  * rail, and hardware reset. The parent owns the complete digital subsystem;
  * retired connector/presence logic, cable clock buffers, and output isolation
  * are outside this module.
@@ -21,7 +21,7 @@ import {
 
 export const CROW_ANALOG_BOUNDARY_NETS = {
   powerInputs: ["12V_PROTECTED", "5V_BUCK", "GND", "CHASSIS"],
-  clockInputs: ["ADC_MCLK", "ADC_BCLK", "ADC_FSYNC"],
+  clockInputs: ["ADC_BCLK", "ADC_FSYNC"],
   dataOutputs: ["ADC_DOUT1"],
   connectorNets: Array.from({ length: 8 }, (_, i) => {
     const n = i + 1
@@ -128,10 +128,14 @@ const AnalogChannel = ({ index, vmid, n }: any) => (
       // tscircuit chip pins are numeric aliases: 1=A1, 2=A2, 3=A3, 4=B1,
       // 5=B2, 6=B3, 7=C1, 8=C2, 9=C3 in the TI bump-side-down top view.
       pinLabels={{ pin1: "S1A_UNUSED", pin2: "SEL", pin3: "S2A_UNUSED", pin4: "D1", pin5: "GND", pin6: "D2", pin7: "S1B", pin8: "VDD", pin9: "S2B" }}
-      connections={{ pin2: n("AUDIO_EN"), pin4: n(`ADC${index}P`), pin5: n("GND"), pin6: n(`ADC${index}N`), pin7: n(`FILTER${index}P`), pin8: n("5V_LDO_HOLD"), pin9: n(`FILTER${index}N`) }} />
-    {/* R_ADC_PD stays within 1.5 mm of its U_ISO output partner. C_ADC_CM is ADC-pin local.
-        Both belong to the joint TMUX/ADC physical proof; functional grouping is not placement. */}
-    {(["P", "N"] as const).map((leg) => <R key={`pd${leg}`} name={`R_ADC_PD${index}${leg}`} value="10k" a={`ADC${index}${leg}`} b="GND" jlc="C60490" mpn="RC0402FR-0710KL" n={n} />)}
+      connections={{ pin2: n("AUDIO_EN"), pin4: n(`ISO${index}P`), pin5: n("GND"), pin6: n(`ISO${index}N`), pin7: n(`FILTER${index}P`), pin8: n("5V_LDO_HOLD"), pin9: n(`FILTER${index}N`) }} />
+    {/* Pull-down and TMUX output precede AC coupling; TLV inputs set their own DC bias.
+        Two C84494 units per leg keep the 20-Hz pole low under DC-bias derating.
+        R_ADC_PD stays within 1.5 mm of its U_ISO output partner; C_ADC_CM is ADC-pin local. */}
+    {(["P", "N"] as const).map((leg) => <Fragment key={`ac${leg}`}>
+      <R name={`R_ADC_PD${index}${leg}`} value="10k" a={`ISO${index}${leg}`} b="GND" jlc="C60490" mpn="RC0402FR-0710KL" n={n} />
+      {[1,2].map(unit => <C key={unit} name={`C_ADC_AC${index}${leg}${unit}`} value="47uF" a={`ISO${index}${leg}`} b={`ADC${index}${leg}`} jlc="C84494" mpn="GRM32ER71A476KE15L" footprint={<MurataGrm32e1210/>} n={n} />)}
+    </Fragment>)}
     {(["P", "N"] as const).map((leg) => <C key={`cm${leg}`} name={`C_ADC_CM${index}${leg}`} value="1nF" a={`ADC${index}${leg}`} b="GND" jlc="C76947" mpn="GRM1555C1H102JA01D" n={n} />)}
     <C name={`C_ISO${index}`} value="100nF" a="5V_LDO_HOLD" b="GND" jlc="C1525" mpn="CL05B104KO5NNNC" n={n} />
     <C name={`C_OPA${index}`} value="100nF" a="3V3_ADC" b="GND" jlc="C1525" mpn="CL05B104KO5NNNC" n={n} />
@@ -208,29 +212,34 @@ const AdcReferenceAndMode = ({ n }: any) => (
       <C name={`C_VMID${bank}_EXT_10U`} value="10uF" a={`VMID${bank}_EXT`} b="GND" jlc="C2167576" mpn="C0805C106K8RACTU" footprint="0805" n={n} />
       <C name={`C_VMID${bank}_EXT_1U`} value="1uF" a={`VMID${bank}_EXT`} b="GND" jlc="C2167386" mpn="C0603C105K4RACTU" footprint="0603" n={n} />
     </group>)}
-    <Chip name="U_ADC" manufacturerPartNumber="CS5308P-DNR" jlc=""
-      footprint={<CirrusCs5308pQfn48 />}
-      pinLabels={{ pin1: "ADC_VMID1", pin2: "CONFIG1", pin3: "CONFIG2", pin4: "CONFIG3", pin5: "VDD_A1", pin6: "GND_A1", pin7: "LDO_A_FILT", pin8: "GND_A2", pin9: "VDD_A2", pin10: "CONFIG4", pin11: "CONFIG5", pin12: "ADC_VMID2", pin13: "IN5N", pin14: "IN5P", pin15: "IN6N", pin16: "IN6P", pin17: "ADC_FILT2N", pin18: "ADC_FILT2P", pin19: "IN7N", pin20: "IN7P", pin21: "IN8N", pin22: "IN8P", pin23: "RESET", pin24: "ASP_FSYNC", pin25: "ASP_DOUT1", pin26: "ASP_DOUT2_NC", pin27: "ASP_DOUT3_NC", pin28: "ASP_DOUT4_NC", pin29: "ASP_BCLK", pin30: "GND_D", pin31: "VDD_IO", pin32: "LDO_D_FILT", pin33: "VDD_D", pin34: "MCLK", pin35: "SPI_SDO_I2C_SCL", pin36: "SPI_SCK_HIZ_SEL", pin37: "SPI_SDI_I2C_SDA", pin38: "SPI_CS_BCLK_INV", pin39: "IN1N", pin40: "IN1P", pin41: "IN2N", pin42: "IN2P", pin43: "ADC_FILT1P", pin44: "ADC_FILT1N", pin45: "IN3N", pin46: "IN3P", pin47: "IN4N", pin48: "IN4P", pin49: "EP_GND" }}
-      connections={{ pin1: n("VMID1"), pin2: n("CFG1"), pin3: n("CFG2"), pin4: n("GND"), pin5: n("3V3_ADC"), pin6: n("GND"), pin7: n("LDO_A_FILT"), pin8: n("GND"), pin9: n("3V3_ADC"), pin10: n("CFG4"), pin11: n("CFG5"), pin12: n("VMID2"), pin13: n(adcInputNet(5, "N")), pin14: n(adcInputNet(5, "P")), pin15: n(adcInputNet(6, "N")), pin16: n(adcInputNet(6, "P")), pin17: n("GND"), pin18: n("FILT2P"), pin19: n(adcInputNet(7, "N")), pin20: n(adcInputNet(7, "P")), pin21: n(adcInputNet(8, "N")), pin22: n(adcInputNet(8, "P")), pin23: n("ADC_RESET_N"), pin24: n("ADC_FSYNC"), pin25: n("ADC_DOUT1"), pin29: n("ADC_BCLK"), pin30: n("GND"), pin31: n("3V3_ADC"), pin32: n("LDO_D_FILT"), pin33: n("LDO_D_FILT"), pin34: n("ADC_MCLK"), pin35: n("GND"), pin36: n("GND"), pin37: n("GND"), pin38: n("3V3_ADC"), pin39: n(adcInputNet(1, "N")), pin40: n(adcInputNet(1, "P")), pin41: n(adcInputNet(2, "N")), pin42: n(adcInputNet(2, "P")), pin43: n("FILT1P"), pin44: n("GND"), pin45: n(adcInputNet(3, "N")), pin46: n(adcInputNet(3, "P")), pin47: n(adcInputNet(4, "N")), pin48: n(adcInputNet(4, "P")), pin49: n("GND") }} />
-    <R name="R_CFG1" value="4.7k" a="CFG1" b="GND" jlc="C105871" mpn="RC0402FR-074K7L" n={n} />
-    <R name="R_CFG2" value="0" a="CFG2" b="3V3_ADC" jlc="C106231" mpn="RC0402FR-070RL" n={n} />
-    <R name="R_CFG4" value="4.7k" a="CFG4" b="3V3_ADC" jlc="C105871" mpn="RC0402FR-074K7L" n={n} />
-    <R name="R_CFG5" value="100k" a="CFG5" b="GND" jlc="C60491" mpn="RC0402FR-07100KL" n={n} />
-    {[1, 2].map((bank) => <group key={`filt-${bank}`}>
-      <R name={`R_FILT${bank}P`} value="1" a="3V3_ADC" b={`FILT${bank}P`} jlc="C844653" mpn="CRCW12061R00FKEAHP" footprint="1206" n={n} />
-      <C name={`C_FILT${bank}_470U`} value="470uF" a={`FILT${bank}P`} b="GND" jlc="C178530" mpn="EEEFK1A471P" footprint={<PanasonicEeeFk8x10 />} polarized n={n} />
-      <C name={`C_FILT${bank}_10U`} value="10uF" a={`FILT${bank}P`} b="GND" jlc="C2167576" mpn="C0805C106K8RACTU" footprint="0805" n={n} />
-      <C name={`C_FILT${bank}_1U`} value="1uF" a={`FILT${bank}P`} b="GND" jlc="C2167386" mpn="C0603C105K4RACTU" footprint="0603" n={n} />
-      <C name={`C_VMID${bank}_4U7`} value="10uF" a={`VMID${bank}`} b="GND" jlc="C2167576" mpn="C0805C106K8RACTU" footprint="0805" n={n} />
-      <C name={`C_VMID${bank}_470N`} value="470nF" a={`VMID${bank}`} b="GND" jlc="C318640" mpn="CL10B474KA8NFNC" footprint="0603" n={n} />
-    </group>)}
-    <C name="C_LDO_A" value="4.7uF" a="LDO_A_FILT" b="GND" jlc="C90791" mpn="GCM21BR71C475KA73L" footprint="0805" n={n} />
-    <C name="C_LDO_D" value="4.7uF" a="LDO_D_FILT" b="GND" jlc="C90791" mpn="GCM21BR71C475KA73L" footprint="0805" n={n} />
-    <C name="C_VDDA1_4U7" value="4.7uF" a="3V3_ADC" b="GND" jlc="C19666" mpn="CL10A475KO8NNNC" footprint="0603" n={n} />
-    <C name="C_VDDA1_10N" value="10nF" a="3V3_ADC" b="GND" jlc="C15195" mpn="CL05B103KB5NNNC" n={n} />
-    <C name="C_VDDA2_4U7" value="4.7uF" a="3V3_ADC" b="GND" jlc="C19666" mpn="CL10A475KO8NNNC" footprint="0603" n={n} />
-    <C name="C_VDDA2_10N" value="10nF" a="3V3_ADC" b="GND" jlc="C15195" mpn="CL05B103KB5NNNC" n={n} />
-    <C name="C_VDDIO" value="100nF" a="3V3_ADC" b="GND" jlc="C1525" mpn="CL05B104KO5NNNC" n={n} />
+    {/* The retained OPA common mode is about 1.65 V. Each TLV input is AC coupled
+        and internally biased. The retained POD_TO_ADC permutation connects TLV
+        channel 1..4 to Pods 1..4, then TLV B channel 1..4 to Pods 5..8. */}
+    {[0,1].map(bank => {
+      const name = bank === 0 ? "U_ADC_A" : "U_ADC_B"
+      const first = bank * 4 + 1
+      const ref = bank === 0 ? "A" : "B"
+      return <group key={name}>
+        <Chip name={name} manufacturerPartNumber="TLV320ADC6140IRTWT" jlc="C1852023"
+          footprint={<TiRtw0024Candidate />}
+          pinLabels={{pin1:"AVDD",pin2:"AREG",pin3:"VREF",pin4:"AVSS",pin5:"MICBIAS_NC",pin6:"IN1P",pin7:"IN1M",pin8:"IN2P",pin9:"IN2M",pin10:"IN3P",pin11:"IN3M",pin12:"IN4P",pin13:"IN4M",pin14:"SHDNZ",pin15:"ADDR1",pin16:"ADDR0",pin17:"SCL",pin18:"SDA",pin19:"IOVDD",pin20:"GPIO1_NC",pin21:"SDOUT",pin22:"BCLK",pin23:"FSYNC",pin24:"DREG",pin25:"EP_VSS"}}
+          connections={{pin1:n("3V3_ADC"),pin2:n(`ADC_${ref}_AREG`),pin3:n(`ADC_${ref}_VREF`),pin4:n("GND"),
+            pin6:n(adcInputNet(first,"P")),pin7:n(adcInputNet(first,"N")),pin8:n(adcInputNet(first+1,"P")),pin9:n(adcInputNet(first+1,"N")),
+            pin10:n(adcInputNet(first+2,"P")),pin11:n(adcInputNet(first+2,"N")),pin12:n(adcInputNet(first+3,"P")),pin13:n(adcInputNet(first+3,"N")),
+            pin14:n("ADC_RESET_N"),pin15:n("GND"),pin16:n(bank === 0 ? "GND" : "3V3_ADC"),
+            pin17:n("ADC_I2C_SCL"),pin18:n("ADC_I2C_SDA"),pin19:n("3V3_ADC"),pin21:n("ADC_DOUT1"),pin22:n("ADC_BCLK"),pin23:n("ADC_FSYNC"),pin24:n(`ADC_${ref}_DREG`),pin25:n("GND")}} />
+        <C name={`C_ADC_${ref}_AVDD_10U`} value="10uF" a="3V3_ADC" b="GND" jlc="C2167576" mpn="C0805C106K8RACTU" footprint="0805" n={n} />
+        <C name={`C_ADC_${ref}_AVDD_100N`} value="100nF" a="3V3_ADC" b="GND" jlc="C1525" mpn="CL05B104KO5NNNC" n={n} />
+        <C name={`C_ADC_${ref}_IOVDD_10U`} value="10uF" a="3V3_ADC" b="GND" jlc="C2167576" mpn="C0805C106K8RACTU" footprint="0805" n={n} />
+        <C name={`C_ADC_${ref}_IOVDD_100N`} value="100nF" a="3V3_ADC" b="GND" jlc="C1525" mpn="CL05B104KO5NNNC" n={n} />
+        <C name={`C_ADC_${ref}_AREG_1U`} value="1uF" a={`ADC_${ref}_AREG`} b="GND" jlc="C2167386" mpn="C0603C105K4RACTU" footprint="0603" n={n} />
+        <C name={`C_ADC_${ref}_AREG_100N`} value="100nF" a={`ADC_${ref}_AREG`} b="GND" jlc="C1525" mpn="CL05B104KO5NNNC" n={n} />
+        <C name={`C_ADC_${ref}_VREF_10U`} value="10uF" a={`ADC_${ref}_VREF`} b="GND" jlc="C2167576" mpn="C0805C106K8RACTU" footprint="0805" n={n} />
+        <C name={`C_ADC_${ref}_VREF_100N`} value="100nF" a={`ADC_${ref}_VREF`} b="GND" jlc="C1525" mpn="CL05B104KO5NNNC" n={n} />
+        <C name={`C_ADC_${ref}_DREG_1U`} value="1uF" a={`ADC_${ref}_DREG`} b="GND" jlc="C2167386" mpn="C0603C105K4RACTU" footprint="0603" n={n} />
+        <C name={`C_ADC_${ref}_DREG_100N`} value="100nF" a={`ADC_${ref}_DREG`} b="GND" jlc="C1525" mpn="CL05B104KO5NNNC" n={n} />
+      </group>
+    })}
   </>
 )
 

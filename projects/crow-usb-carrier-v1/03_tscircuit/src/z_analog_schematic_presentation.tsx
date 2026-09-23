@@ -66,27 +66,28 @@ for (let n=1; n<=8; n++) {
     [`C_FILTER${n}P1`]:[3.3,4,-90], [`C_FILTER${n}P2`]:[3.3,1.7,-90],
     [`C_FILTER${n}N1`]:[3.3,-2.2,-90], [`C_FILTER${n}N2`]:[3.3,-4.5,-90], [`U_ISO${n}`]:[5.8,0],
     [`R_ADC_PD${n}P`]:[7.7,4,-90], [`R_ADC_PD${n}N`]:[7.7,-2.7,-90],
+    [`C_ADC_AC${n}P1`]:[9,5], [`C_ADC_AC${n}P2`]:[9,3],
+    [`C_ADC_AC${n}N1`]:[9,-2], [`C_ADC_AC${n}N2`]:[9,-4],
     [`C_ADC_CM${n}P`]:[10.2,4,-90], [`C_ADC_CM${n}N`]:[10.2,-2.7,-90],
     [`C_ISO${n}`]:[6.8,-5,-90], [`C_OPA${n}`]:[-1,-6.3,-90],
   })
 }
-own("adc", {
-  U_ADC:[0,0], R_CFG1:[5,5], R_CFG2:[9,5],
-  R_CFG4:[5,2], R_CFG5:[9,2],
-  C_LDO_A:[5,-3,-90], C_LDO_D:[8,-3,-90],
-  C_VDDA1_4U7:[-4,-10,-90], C_VDDA1_10N:[0,-10,-90],
-  C_VDDA2_4U7:[4,-10,-90], C_VDDA2_10N:[8,-10,-90], C_VDDIO:[12,-10,-90],
-})
+for (const bank of ["A", "B"]) {
+  const x = bank === "A" ? -10 : 10
+  own("adc", {
+    [`U_ADC_${bank}`]:[x,1],
+    [`C_ADC_${bank}_AVDD_10U`]:[x-5,-6,-90], [`C_ADC_${bank}_AVDD_100N`]:[x-2,-6,-90],
+    [`C_ADC_${bank}_IOVDD_10U`]:[x+1,-6,-90], [`C_ADC_${bank}_IOVDD_100N`]:[x+4,-6,-90],
+    [`C_ADC_${bank}_AREG_1U`]:[x-5,-9,-90], [`C_ADC_${bank}_AREG_100N`]:[x-2,-9,-90],
+    [`C_ADC_${bank}_VREF_10U`]:[x+1,-9,-90], [`C_ADC_${bank}_VREF_100N`]:[x+4,-9,-90],
+    [`C_ADC_${bank}_DREG_1U`]:[x-5,-12,-90], [`C_ADC_${bank}_DREG_100N`]:[x-2,-12,-90],
+  })
+}
 for (let n=1; n<=2; n++) {
   const y = n===1 ? 2.5 : -2.5
   own("vmid", {
     [`R_VMID${n}_TOP`]:[-9,y+1,-90], [`R_VMID${n}_BOT`]:[-9,y-1,-90],
     [`C_VMID${n}_EXT_10U`]:[-6,y-1,-90], [`C_VMID${n}_EXT_1U`]:[-3.5,y-1,-90],
-  })
-  own("references", {
-    [`R_FILT${n}P`]:[-4,y], [`C_FILT${n}_470U`]:[-1,y-1,-90],
-    [`C_FILT${n}_10U`]:[2,y-1,-90], [`C_FILT${n}_1U`]:[5,y-1,-90],
-    [`C_VMID${n}_4U7`]:[8,y-1,-90], [`C_VMID${n}_470N`]:[11,y-1,-90],
   })
 }
 own("clocks", {
@@ -161,8 +162,8 @@ export const chipStyle = (ref: string): any => {
     U_DUMP:{leftSide:[2,1],rightSide:[4],topSide:[5],bottomSide:[3]},
     U_LDO_EN:{leftSide:[2,1],rightSide:[4],topSide:[5],bottomSide:[3]},
     Q_DUMP:{leftSide:[1],rightSide:[3],bottomSide:[2]},
-    U_ADC:{leftSide:[40,39,42,41,46,45,48,47,14,13,16,15,20,19,22,21,1,12,43,18],
-      rightSide:[5,9,31,38,4,35,36,37,6,8,17,30,44,49,2,3,10,11,7,32,33,23,24,25,26,27,28,29,34]},
+    U_ADC_A:{leftSide:[6,7,8,9,10,11,12,13,17,18,22,23],rightSide:[21,14,15,16,20,5],topSide:[1,19,2,3,24],bottomSide:[4,25]},
+    U_ADC_B:{leftSide:[6,7,8,9,10,11,12,13,17,18,22,23],rightSide:[21,14,15,16,20,5],topSide:[1,19,2,3,24],bottomSide:[4,25]},
     J10:{leftSide:[1,3,4,5,6,7,8],rightSide:[9,10,12,2],bottomSide:[11]},
     J11:{leftSide:[3,4,5,6,7],rightSide:[2,8,9,10,11,12],bottomSide:[1]},
     U_CLK:{leftSide:[1,3,6],rightSide:[7,5,2],topSide:[8],bottomSide:[4]},
@@ -185,7 +186,7 @@ export const chipStyle = (ref: string): any => {
   return {schPinArrangement:arrangement,
     // Separate horizontal NC labels from the vertical ground/EP labels.
     ...(ref === "U_LDO" ? {schWidth:4.5,schHeight:3.8,schPinStyle:pinStyle(11,.35)} : {}),
-    ...(ref === "U_ADC" ? {schWidth:3.5,schPinStyle:pinStyle(49,.18)} : {}),
+    ...(/^U_ADC_[AB]$/.test(ref) ? {schWidth:5,schHeight:6,schPinStyle:pinStyle(25,.25)} : {}),
     ...(["U_OE","U_TDM_SCH","U_TDM","U_ADC_DIGITAL_BAD","U_ADC_READY","U_ADC_READY_BAD"].includes(ref)
       ? {schWidth:3.5,schHeight:3,schPinStyle:pinStyle(5,.35)} : {}),
     ...(ref === "U_CLK" ? {schPinStyle:pinStyle(8,.5)} : {})}

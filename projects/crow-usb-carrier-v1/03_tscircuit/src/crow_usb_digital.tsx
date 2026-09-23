@@ -7,7 +7,7 @@ import { Fragment } from "react"
  */
 export const CROW_DIGITAL_BOUNDARY_NETS = {
   powerInputs: ["5V_BUCK", "GND"], usbInputs: ["USB_DP", "USB_DN", "VBUS_USB"],
-  analogInterface: ["ADC_MCLK", "ADC_BCLK", "ADC_FSYNC", "ADC_DOUT1", "3V3_ADC"],
+  analogInterface: ["ADC_BCLK", "ADC_FSYNC", "ADC_DOUT1", "ADC_I2C_SCL", "ADC_I2C_SDA", "3V3_ADC"],
   debug: ["JTAG_TDI", "JTAG_TDO", "JTAG_TMS", "JTAG_TCK", "XU_RESET_N"],
 } as const
 export interface CrowUsbDigitalProps { net?: (canonicalName: string) => string }
@@ -16,8 +16,8 @@ const supplier=(jlc:string)=>({jlcpcb:jlc?[jlc]:[]})
 const sourced=(mpn:string,jlc="")=>jlc||({
  "XFL4015-471MEC":"C18221164","SX5M24.576M20F30TNN":"C2901534","CC0402KRX5R5BB105":"C106253","X322524MOB4SI":"C70590","FTSH-105-01-L-DV-K":"C5155080",
  "GRM1555C1H220JA01D":"C76960","GRM1555C1H102JA01D":"C76947","RC0402FR-0733RL":"C138002","RC0402FR-0710KL":"C60490","RC0402FR-07100KL":"C60491","RC0402FR-071ML":"C138033","RC0402FR-074K7L":"C105871","GRM155R71H103KA88D":"C77019","CL21A106KOCLRNC":"C318695","CRCW0402680RFKED":"C482224",
- "RT0402BRD07100KL":"C852472","RT0402BRD0749K9L":"C852808","RT0402BRD07210KL":"C852631","RT0603BRD07453KL":"C861412","RT0603BRD07100KL":"C122538","CC0402JRNPO9BN121":"C106996","SN74AUP3G34DCUR":"C2675543",
- "SN74AXC4T245PWR":"C2867798","SN74LVC1G04DCKR":"C8207","SN74LVC1G125DCKT":"C2675550",
+ "RT0402BRD07100KL":"C852472","RT0402BRD0749K9L":"C852808","RT0402BRD07200KL":"C728556","RT0402BRD07210KL":"C852631","RT0603BRD07453KL":"C861412","RT0603BRD07100KL":"C122538","CC0402JRNPO9BN121":"C106996","SN74AUP3G34DCUR":"C2675543",
+ "SN74AXC4T245PWR":"C2867798","SN74LVC1G04DCKR":"C8207","SN74LVC1G125DCKT":"C2675550","TCA9406DCUR":"C840107",
  "SN74LVC1G332DBVR":"C43368","SN74LVC2G74DCTR":"C79339","TPS3808G09DBVR":"C24584",
  "TPS62825DMQR":"C2650334"
  } as Record<string,string>)[mpn]||""
@@ -28,8 +28,8 @@ const C=({name,value,a,b,mpn="CL05B104KO5NNNC",jlc="",footprint="0402",n}:any)=>
  return <capacitor name={name} capacitance={value} footprint={footprint} manufacturerPartNumber={mpn} supplierPartNumbers={supplier(exactJlc)} connections={{pin1:n(a),pin2:n(b)}} />
 }
 
-const XU_NC_PINS=Object.freeze([6, 7, 9, 12, 13, 15, 16, 19, 21, 25, 26, 28, 29, 31, 32, 46, 47, 48, 49, 53, 55, 57, 58, 63, 64, 65, 66, 67, 69, 70, 71, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 86, 87, 88, 90, 91, 92, 93, 94, 96, 97, 98, 99, 100, 101, 102, 103, 108, 110, 111, 112, 114, 115, 116, 117, 118, 119, 120, 122, 123, 124, 125, 126])
-const XU_CONNECTED_PINS=Object.freeze([1, 2, 3, 4, 5, 8, 10, 11, 14, 17, 18, 20, 22, 23, 24, 27, 30, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 50, 51, 52, 54, 56, 59, 60, 61, 62, 68, 72, 85, 89, 95, 104, 105, 106, 107, 109, 113, 121, 127, 128, 129])
+const XU_NC_PINS=Object.freeze([6, 7, 9, 12, 13, 15, 16, 19, 21, 25, 26, 28, 29, 31, 32, 46, 47, 48, 49, 53, 55, 57, 58, 63, 64, 65, 66, 67, 69, 70, 71, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 86, 87, 88, 90, 91, 92, 96, 97, 98, 99, 100, 101, 102, 103, 108, 110, 111, 112, 114, 115, 116, 117, 118, 119, 120, 122, 123, 124, 125, 126])
+const XU_CONNECTED_PINS=Object.freeze([1, 2, 3, 4, 5, 8, 10, 11, 14, 17, 18, 20, 22, 23, 24, 27, 30, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 50, 51, 52, 54, 56, 59, 60, 61, 62, 68, 72, 85, 89, 93, 94, 95, 104, 105, 106, 107, 109, 113, 121, 127, 128, 129])
 function assertXUPinCoverage(){
  const all=[...XU_NC_PINS,...XU_CONNECTED_PINS];
  if(all.length!==129 || new Set(all).size!==129 || Math.min(...all)!==1 || Math.max(...all)!==129)
@@ -208,8 +208,8 @@ export function CrowUsbDigital({net=defaultNet}:CrowUsbDigitalProps={}){
     pin90: "X0D27_NC",
     pin91: "X0D28_NC",
     pin92: "X0D29_NC",
-    pin93: "X0D35_NC",
-    pin94: "X0D36_NC",
+    pin93: "X0D35_I2C_SCL",
+    pin94: "X0D36_I2C_SDA",
     pin95: "VDD",
     pin96: "X0D37_NC",
     pin97: "X0D38_NC",
@@ -290,6 +290,8 @@ export function CrowUsbDigital({net=defaultNet}:CrowUsbDigitalProps={}){
     pin72: n("1V8"),
     pin85: n("0V9"),
     pin89: n("1V8"),
+    pin93: n("XU_I2C_SCL_1V8"),
+    pin94: n("XU_I2C_SDA_1V8"),
     pin95: n("0V9"),
     pin104: n("0V9"),
     pin105: n("0V9"),
@@ -323,6 +325,18 @@ export function CrowUsbDigital({net=defaultNet}:CrowUsbDigitalProps={}){
   <Chip name="Y_AUDIO" manufacturerPartNumber="SX5M24.576M20F30TNN" jlc="C2901534" footprint={<Osc5032Land/>}
    pinLabels={{pin1:"OE",pin2:"GND",pin3:"OUT",pin4:"VDD"}} connections={{pin1:n("3V3X"),pin2:n("GND"),pin3:n("AUDIO_24M576"),pin4:n("3V3X")}} />
   <C name="C_AUDIO_OSC" value="10nF" a="3V3X" b="GND" mpn="GRM155R71H103KA88D" n={n} />
+  {/* TCA9406 OE is 5.5-V tolerant: ADC_READY may directly enable the
+      1V8/3V3_ADC bus after analog POR and both digital rail qualifiers.
+      Both ports become high-Z if OE is low or either supply is absent. */}
+  <Chip name="U_ADC_I2C_XLATE" manufacturerPartNumber="TCA9406DCUR" footprint="vssop8_dcu"
+   pinLabels={{pin1:"SDA_B",pin2:"GND",pin3:"VCCA",pin4:"SDA_A",pin5:"SCL_A",pin6:"OE",pin7:"VCCB",pin8:"SCL_B"}}
+   connections={{pin1:n("ADC_I2C_SDA"),pin2:n("GND"),pin3:n("1V8"),pin4:n("XU_I2C_SDA_1V8"),pin5:n("XU_I2C_SCL_1V8"),pin6:n("ADC_READY"),pin7:n("3V3_ADC"),pin8:n("ADC_I2C_SCL")}} />
+  <C name="C_ADC_I2C_A" value="100nF" a="1V8" b="GND" n={n} />
+  <C name="C_ADC_I2C_B" value="100nF" a="3V3_ADC" b="GND" n={n} />
+  <R name="R_ADC_I2C_SCL_A_PU" value="4.7k" a="XU_I2C_SCL_1V8" b="1V8" mpn="RC0402FR-074K7L" n={n} />
+  <R name="R_ADC_I2C_SDA_A_PU" value="4.7k" a="XU_I2C_SDA_1V8" b="1V8" mpn="RC0402FR-074K7L" n={n} />
+  <R name="R_ADC_I2C_SCL_B_PU" value="4.7k" a="ADC_I2C_SCL" b="3V3_ADC" mpn="RC0402FR-074K7L" n={n} />
+  <R name="R_ADC_I2C_SDA_B_PU" value="4.7k" a="ADC_I2C_SDA" b="3V3_ADC" mpn="RC0402FR-074K7L" n={n} />
   <Chip name="U_TDM_XLATE" manufacturerPartNumber="SN74AXC4T245PWR" jlc="" footprint="tssop16"
    pinLabels={{pin1:"VCCA",pin2:"1DIR",pin3:"2DIR",pin4:"1A1",pin5:"1A2",pin6:"2A1",pin7:"2A2",pin8:"GND1",pin9:"GND2",pin10:"2B2",pin11:"2B1",pin12:"1B2",pin13:"1B1",pin14:"2OE_N",pin15:"1OE_N",pin16:"VCCB"}}
    connections={{pin1:n("1V8"),pin2:n("1V8"),pin3:n("GND"),pin4:n("TDM_BCLK_1V8"),pin5:n("TDM_FSYNC_1V8"),pin6:n("AUDIO_MCLK_1V8"),pin7:n("TDM_DATA_1V8"),pin8:n("GND"),pin9:n("GND"),pin10:n("ADC_DOUT1"),pin11:n("AUDIO_24M576"),pin12:n("ADC_FSYNC_RAW"),pin13:n("ADC_BCLK_RAW"),pin14:n("GND"),pin15:n("TDM_OE_N"),pin16:n("3V3X")}} />
@@ -331,7 +345,6 @@ export function CrowUsbDigital({net=defaultNet}:CrowUsbDigitalProps={}){
   <R name="R_BCLK_RAW_PD" value="100k" a="ADC_BCLK_RAW" b="GND" mpn="RC0402FR-07100KL" n={n} /><R name="R_FSYNC_RAW_PD" value="100k" a="ADC_FSYNC_RAW" b="GND" mpn="RC0402FR-07100KL" n={n} />
   {/* U_ADC_OUT remains powered when 3V3X is absent. Define every input at its
       actual held-domain pin; R_FSYNC_RAW_PD alone cannot define the post-OR net. */}
-  <R name="R_MCLK_RAW_PD" value="100k" a="ADC_MCLK_RAW" b="GND" mpn="RC0402FR-07100KL" n={n} />
   <R name="R_FSYNC_EXT_PD" value="100k" a="ADC_FSYNC_EXT" b="GND" mpn="RC0402FR-07100KL" n={n} />
   {/* 3V3X processing stops before the ADC pins.  U_ADC_OUT is powered by
       3V3_ADC so its outputs can never exceed the ADC input rail by a fixed
@@ -352,14 +365,10 @@ export function CrowUsbDigital({net=defaultNet}:CrowUsbDigitalProps={}){
    pinLabels={{pin1:"A",pin2:"GND",pin3:"B",pin4:"Y",pin5:"VCC",pin6:"C"}}
    connections={{pin1:n("ADC_FSYNC_RAW"),pin2:n("GND"),pin3:n("FSYNC_Q1"),pin4:n("ADC_FSYNC_EXT"),pin5:n("3V3X"),pin6:n("FSYNC_Q2")}} />
   <C name="C_FSYNC_FF1" value="100nF" a="3V3X" b="GND" n={n} /><C name="C_FSYNC_FF2" value="100nF" a="3V3X" b="GND" n={n} /><C name="C_FSYNC_INV" value="100nF" a="3V3X" b="GND" n={n} /><C name="C_FSYNC_OR" value="100nF" a="3V3X" b="GND" n={n} />
-  <Chip name="U_MCLK_BUF" manufacturerPartNumber="SN74LVC1G125DCKT" jlc="" footprint={<SC70_5Land/>}
-   pinLabels={{pin1:"OE_N",pin2:"A",pin3:"GND",pin4:"Y",pin5:"VCC"}} connections={{pin1:n("MCLK_OE_N"),pin2:n("AUDIO_24M576"),pin3:n("GND"),pin4:n("ADC_MCLK_RAW"),pin5:n("3V3X")}} />
-  <C name="C_MCLK_BUF" value="100nF" a="3V3X" b="GND" n={n} />
   <Chip name="U_ADC_OUT" manufacturerPartNumber="SN74AUP3G34DCUR" jlc="" footprint="vssop8_dcu"
    pinLabels={{pin1:"1A",pin2:"3Y",pin3:"2A",pin4:"GND",pin5:"2Y",pin6:"3A",pin7:"1Y",pin8:"VCC"}}
-   connections={{pin1:n("ADC_MCLK_RAW"),pin2:n("ADC_FSYNC_SAFE"),pin3:n("ADC_BCLK_RAW"),pin4:n("GND"),pin5:n("ADC_BCLK_SAFE"),pin6:n("ADC_FSYNC_EXT"),pin7:n("ADC_MCLK_SAFE"),pin8:n("3V3_ADC")}} />
+   connections={{pin1:n("GND"),pin2:n("ADC_FSYNC_SAFE"),pin3:n("ADC_BCLK_RAW"),pin4:n("GND"),pin5:n("ADC_BCLK_SAFE"),pin6:n("ADC_FSYNC_EXT"),pin8:n("3V3_ADC")}} />
   <C name="C_ADC_OUT" value="100nF" a="3V3_ADC" b="GND" n={n} />
-  <R name="R_MCLK" value="33" a="ADC_MCLK_SAFE" b="ADC_MCLK" mpn="RC0402FR-0733RL" n={n} />
   <R name="R_BCLK" value="33" a="ADC_BCLK_SAFE" b="ADC_BCLK" mpn="RC0402FR-0733RL" n={n} />
   <R name="R_FSYNC" value="33" a="ADC_FSYNC_SAFE" b="ADC_FSYNC" mpn="RC0402FR-0733RL" n={n} />
   <R name="R_ADC_OK_TOP" value="169k" a="3V3_ADC" b="U_ADC_OK_SENSE" mpn="RT0402BRD07169KL" jlc="C852555" n={n} />
@@ -381,9 +390,6 @@ export function CrowUsbDigital({net=defaultNet}:CrowUsbDigitalProps={}){
   <Chip name="Q_TDM_GATE" manufacturerPartNumber="AO3400A" jlc="C20917" footprint="sot23"
    pinLabels={{pin1:"G",pin2:"S",pin3:"D"}} connections={{pin1:n("ADC_CLOCK_OK"),pin2:n("GND"),pin3:n("TDM_OE_N")}} />
   <R name="R_TDM_OE_PU" value="10k" a="1V8" b="TDM_OE_N" mpn="RC0402FR-0710KL" n={n} />
-  <Chip name="Q_MCLK_GATE" manufacturerPartNumber="AO3400A" jlc="C20917" footprint="sot23"
-   pinLabels={{pin1:"G",pin2:"S",pin3:"D"}} connections={{pin1:n("ADC_CLOCK_OK"),pin2:n("GND"),pin3:n("MCLK_OE_N")}} />
-  <R name="R_MCLK_OE_PU" value="10k" a="3V3X" b="MCLK_OE_N" mpn="RC0402FR-0710KL" n={n} />
 
   <Chip name="Q_VBUS" manufacturerPartNumber="AO3400A" jlc="C20917" footprint="sot23" pinLabels={{pin1:"G",pin2:"S",pin3:"D"}} connections={{pin1:n("VBUS_B"),pin2:n("GND"),pin3:n("VBUS_PRESENT_N")}} />
   <R name="R_VBUS_B" value="100k" a="VBUS_USB" b="VBUS_B" mpn="RC0402FR-07100KL" n={n} /><R name="R_VBUS_BE" value="1M" a="VBUS_B" b="GND" mpn="RC0402FR-071ML" n={n} /><R name="R_VBUS_PU" value="10k" a="1V8" b="VBUS_PRESENT_N" mpn="RC0402FR-0710KL" n={n} />

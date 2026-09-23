@@ -95,3 +95,13 @@ export const CirrusCs5308pQfn48 = () => {
   const bottom: Smd[] = Array.from({length:12},(_,i) => [`${i+37}`,2.2-i*0.4,-2.95,0.2,0.8,0.05] as const)
   return <footprint>{pads([...left,...top,...right,...bottom,['49',0,0,4.6,4.6]])}</footprint>
 }
+
+/** Candidate RTW 24-pin 4x4 mm WQFN, 0.5-mm pitch. Generic KiCad WQFN land
+ * geometry (EP 2.6 mm); exact TI RTW land drawing remains a release check. */
+export const TiRtw0024Candidate = () => {
+  const left: Smd[] = Array.from({length:6}, (_,i) => [`${i+1}`,-2, -1.25+i*0.5,0.7,0.25] as const)
+  const bottom: Smd[] = Array.from({length:6}, (_,i) => [`${i+7}`,-1.25+i*0.5,2,0.25,0.7] as const)
+  const right: Smd[] = Array.from({length:6}, (_,i) => [`${i+13}`,2,1.25-i*0.5,0.7,0.25] as const)
+  const top: Smd[] = Array.from({length:6}, (_,i) => [`${i+19}`,1.25-i*0.5,-2,0.25,0.7] as const)
+  return <footprint>{pads([...left,...bottom,...right,...top,['25',0,0,2.6,2.6]])}</footprint>
+}
