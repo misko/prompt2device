@@ -23,6 +23,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import math
 import re
 import sys
 from pathlib import Path
@@ -142,8 +143,8 @@ def _mm(value, path, fails):
     except (TypeError, ValueError):
         fails.append(f"V-SCHEMA {path}: expected a number, got {value!r}")
         return None
-    if value <= 0:
-        fails.append(f"V-SCHEMA {path}: must be positive, got {value}")
+    if not math.isfinite(value) or value <= 0:
+        fails.append(f"V-SCHEMA {path}: must be finite and positive, got {value}")
         return None
     return value
 
