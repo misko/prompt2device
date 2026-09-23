@@ -1,0 +1,38 @@
+{
+  "schema": 2,
+  "task_id": "crow-adc65-source-review",
+  "run_id": "crow-adc65-source-review-terra",
+  "stage_id": "KICAD-PLACEMENT",
+  "status": "PASS",
+  "started_at": "2026-09-23T23:37:03.503Z",
+  "finished_at": "2026-09-23T23:39:58.762Z",
+  "elapsed_s": 175.259,
+  "execution_class": "review_wait",
+  "agent_role": "judgment",
+  "context_mode": "FRESH",
+  "replacement_count": 0,
+  "subject": {
+    "raw_sha256": "bc11a51c570e72f03ac63fdeced8aaaedb69fd0d3a6b2fe81ef4451f029ffee9",
+    "semantic_sha256": "bc11a51c570e72f03ac63fdeced8aaaedb69fd0d3a6b2fe81ef4451f029ffee9"
+  },
+  "envelope_sha256": "e9e8af9e295b5435f7ae17b30ec8b8cb0fa6dcaada32f9106b17b459869f21df",
+  "input_manifest_sha256": "652c7004c5e4d0c03d789bc5b4c1d1d2588729cc100ccfd3c206f3b5df9f0abb",
+  "post_review_manifest_check_sha256": "fdcdd650529b0cebcca1674f24859e3eaab179470eded15cb5c43dd6cba94329",
+  "output": {
+    "path": "review/terra-source-review.md",
+    "sha256": "9e5e055be68c28605a30929fed3db1c9c0479edbc1b7209a2f1018be3393d93a",
+    "size": 5849
+  },
+  "checks": {
+    "packet_hash_and_size": "106/106 PASS",
+    "raw_selected_dossiers": "90/90 PASS",
+    "source_only_proposal_assessed": "PASS"
+  },
+  "review_verdict": "SOUND",
+  "source_adoption": "ELIGIBLE_AFTER_REPAIRS",
+  "native_admission": "NOT_REVIEWED",
+  "findings": [
+    "P1: retained verifier stderr contains three KiCad PROPERTY_ENUM assertions; native placement acceptance is unavailable",
+    "P2: preserve the corrected README SHA and TPS389001 corrigendum during source admission"
+  ]
+}

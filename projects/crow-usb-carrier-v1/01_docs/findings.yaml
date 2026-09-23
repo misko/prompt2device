@@ -246,6 +246,9 @@ findings:
     resetting any generation history. A bounded 430486-state local-cell
     allocation screen is retained as NO_CANDIDATE source research only; it
     is not a whole-board impossibility claim or an integrated-board defect.
+    Follow-on v2/v3 D-BACK results retain a useful output-bank partial but
+    stop at the VIN/precharge allocation frontier; their whole-cell handoff
+    requires an explicitly owned allocation and complete 47-row regrade.
   closes_when: Explicitly reassess/backtrack the exhausted P2 work item, review
     a corrected complete source candidate, admit a fresh bounded native
     measurement, pass all 47 original local limits plus geometry/invariance,
@@ -267,6 +270,9 @@ findings:
   - 01_docs/research/2026-09-23-p2-power-joint-screen-terra.md
   - 01_docs/research/2026-09-23-p2-power-joint-local-cell-no-candidate.md
   - 01_docs/research/2026-09-23-p2-power-remaining26-obligations-terra.md
+  - 01_docs/research/2026-09-23-p2-power-dback-v2-terminal.md
+  - 01_docs/research/2026-09-23-p2-power-dback-v3-terminal.md
+  - 01_docs/research/2026-09-23-p2-power-whole-cell-owner-handoff.md
 
 - id: USB-P2-remaining-block-placement
   state: open
@@ -306,7 +312,13 @@ findings:
     C_ADC_3V3X_OK_VDD. The corrected supervisor disposition confirms that
     TPS389001 is the exact active MPN; the prior TPS389018 dossier comparison
     is preserved only as corrigendum history. No native task was admitted or
-    run, so ADC preparation remains 0/2.
+    run, so ADC preparation remains 0/2. Independent READ_ONLY review of the
+    unadopted six-file 65-ref patch is SOUND for source planning, but the
+    isolated schematic qualification is INCOMPLETE because its workspace
+    omitted `contracts_audit.py`; its native fixture PASS did not launch a
+    producer or consume an attempt. The authoritative source remains the
+    568-component/64-ref baseline until a separately admitted repair and fresh
+    schematic qualification succeed.
   closes_when: Independently review the 65-ref ADC source repair, including
     the added local supervisor bypass, all 20 qualitative capacitor
     observations and explicit P3 return-proof handoff; then regenerate the
@@ -321,6 +333,12 @@ findings:
   - 01_docs/research/2026-09-23-adc-p2-complete64-native-preflight.md
   - 01_docs/research/2026-09-23-adc-p2-complete64-pad-body-preflight.json
   - 01_docs/research/2026-09-23-adc-dual-supervisor-bypass-disposition-terra.md
+  - 01_docs/research/2026-09-23-adc-p2-complete65-source-review-terra.md
+  - 01_docs/research/2026-09-23-adc-p2-complete65-source-review-attempt.json
+  - 01_docs/research/2026-09-23-adc-p2-complete65-source-readme.md
+  - 01_docs/research/2026-09-23-adc-p2-complete65-source.patch
+  - 01_docs/research/2026-09-23-adc-p2-complete65-geometry.json
+  - 01_docs/research/2026-09-23-adc-p2-complete65-isolated-qualification.json
 
 - id: USB-model-identity
   state: open

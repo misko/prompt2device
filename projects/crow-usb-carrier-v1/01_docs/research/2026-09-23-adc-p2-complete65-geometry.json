@@ -1,0 +1,109 @@
+{
+  "board_sha256": "c3d906591a343aea8949687c05c0f5ff4372e982c5af70a04df4828b7409fd93",
+  "changed_existing_count": 62,
+  "changed_existing_outside_scope": [],
+  "courtyard_findings": [],
+  "floorplan_sha256": "934673990bbcfb6f1d0c163fef6e082830eb613fa22ae2ef2117e1ecce34fb3d",
+  "foreign_pad_body_findings": [],
+  "functional_pin_map": {
+    "AREG": 2,
+    "AVDD": 1,
+    "AVSS": 4,
+    "DREG": 24,
+    "IOVDD": 19,
+    "VREF": 3
+  },
+  "kind": "COMPLETE65_IN_MEMORY_JOINT_VERIFY",
+  "minimum_courtyard_gap_mm": [
+    0.250001,
+    [
+      "C_ADC_3V3X_OK_VDD",
+      "U_ADC_3V3X_OK"
+    ]
+  ],
+  "named_supervisor_bypass_spans": {
+    "C_ADC_3V3X_OK_VDD": {
+      "GND": [
+        {
+          "center_mm": 1.300154,
+          "pads": [
+            "C_ADC_3V3X_OK_VDD.2",
+            "U_ADC_3V3X_OK.2"
+          ]
+        }
+      ],
+      "MR_N_tied_to_VDD_diagnostic": {
+        "center_mm": 1.969873,
+        "pads": [
+          "C_ADC_3V3X_OK_VDD.1",
+          "U_ADC_3V3X_OK.3"
+        ]
+      },
+      "VDD_functional": [
+        {
+          "center_mm": 2.905237,
+          "pads": [
+            "C_ADC_3V3X_OK_VDD.1",
+            "U_ADC_3V3X_OK.4"
+          ]
+        }
+      ]
+    },
+    "C_ADC_DIGITAL_OK": {
+      "GND": [
+        {
+          "center_mm": 1.300154,
+          "pads": [
+            "C_ADC_DIGITAL_OK.2",
+            "U_ADC_1V8_OK.2"
+          ]
+        }
+      ],
+      "MR_N_tied_to_VDD_diagnostic": {
+        "center_mm": 1.969873,
+        "pads": [
+          "C_ADC_DIGITAL_OK.1",
+          "U_ADC_1V8_OK.3"
+        ]
+      },
+      "VDD_functional": [
+        {
+          "center_mm": 2.905237,
+          "pads": [
+            "C_ADC_DIGITAL_OK.1",
+            "U_ADC_1V8_OK.4"
+          ]
+        }
+      ]
+    }
+  },
+  "new_ref": "C_ADC_3V3X_OK_VDD",
+  "numeric_17_pose_exact": true,
+  "numeric_prediction": "16/16 PASS inherited; not native gate",
+  "pad_body_counts": {
+    "body_pad": 117248,
+    "pad_body": 117576,
+    "pad_pairs": 326123
+  },
+  "pad_separation_findings": [],
+  "scope_count": 65,
+  "status": "PASS",
+  "vref_reservations": {
+    "C_ADC_A_VREF_100N": {
+      "hits": [],
+      "tested": 1396
+    },
+    "C_ADC_A_VREF_10U": {
+      "hits": [],
+      "tested": 1396
+    },
+    "C_ADC_B_VREF_100N": {
+      "hits": [],
+      "tested": 1396
+    },
+    "C_ADC_B_VREF_10U": {
+      "hits": [],
+      "tested": 1396
+    }
+  }
+}
