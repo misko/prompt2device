@@ -112,6 +112,7 @@ Escalate if: a specific enclosure, board outline, assembly budget or different P
 | 0007 | Initial outline and design-only cost assumptions; no purchase authorization. | agent (A3 / P-delegation) | [decision](decisions/0007-outline-and-design-cost-assumptions.md) |
 | 0008 | USB tree endpoint paths, 1 mm skew ceiling and no-signal-via policy. | agent (P-delegation) | [decision](decisions/0008-usb-realized-copper-policy.md) |
 | 0009 | XMOS-only public-stock surplus exception; JLC population remains required. | user (D10) | [decision](decisions/0009-xmos-public-stock-reserve-exception.md) |
+| 0010 | Public records and jlcsearch for design continuation; assembly fulfillment remains unconfirmed. | user (D11) | [decision](decisions/0010-public-records-design-admission.md) |
 | A1 | Existing Crow audio/spoke function retained provisionally. | agent (A1 / P-delegation) | log A1 |
 | A2 | External carrier power retained provisionally. | agent (A2 / P-delegation) | log A2 |
 | A3 | Cable connection, fresh design, populated-PCBA intent. | agent (A3 / P-delegation) | log A3 |
@@ -172,3 +173,9 @@ Context: the user selected manual assembly for eight RJ45 connectors and sixteen
 > lets make an exception for xmos and keep going
 
 Impact: waive the150-extra-unit public-stock reserve only for the selected XMOS XU316-1024-TQ128-C24 / C6362698 at U_XU. Its prelayout public-stock threshold becomes the quantity for five boards (currently five devices), while JLC must still stock and populate it. Retain150 extra units for every other exact part and retain D9 manual through-hole assembly. Confirm JLC assembly attrition/minimum and actual allocation before ordering; this exception is not an attrition waiver, private-stock substitution, purchasing authorization or firmware authorization. Resume sourcing admission and the requested block schematic/placement/pre-routing release workflow after refreshing exact-source evidence. See decision0009.
+
+
+### D11 — 2026-09-23 — public records and jlcsearch only
+> Please only use public records and jlcsearch
+
+Impact: use public records and jlcsearch for sourcing investigation and public-catalog pre-layout design admission. Do not require or attempt authenticated JLC access or BOM uploads for this engineering workflow. Continue the design using exact public-stock evidence under D7/D10 and preserve D9 manual assembly. This changes the evidence boundary for design continuation; it does not establish supplier allocation, assembly attrition, final pricing or order readiness. No purchasing, supplier contact or credential access is authorized. See decision0010.
