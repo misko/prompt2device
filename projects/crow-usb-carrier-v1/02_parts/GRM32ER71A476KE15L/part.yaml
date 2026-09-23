@@ -21,7 +21,7 @@ limits: {capacitance: 47uF, tolerance: 10pct, rated_voltage: 10V, dielectric: X7
 asserts:
   - {assert: value, equals: 47u, tolerance_pct: 10, why: "Ten-part Crow bank: TPSM output three, TPS62825 outputs one each, LT3045 input one/output two, OPA reservoir one; Murata model screen is typical only."}
 gotchas:
-  - "Murata base-part SimSurfing small-signal models are typical; production effective C, ESR and ESL require source-independent review or lot measurements."
+  - "Murata base-part SimSurfing small-signal models are typical; source E-CAP model/reserve screen was independently accepted; production effective C, ESR and ESL remain unqualified and warrant approval-sheet or representative-lot evidence."
   - "At LT3045 output the symmetric model pair leaves less than 1.6715 nH for all shared interconnect under ADI assembled ESL <2 nH. P3 quiet_power must extract or measure this; Kelvin OUTS and common SET/output ground required."
   - "Murata sheet p6 Fig. 3 supplies test-substrate copper land, not assembly stencil/placement approval; revised 1210 is not footprint-compatible with TDK CKG57K J-lead."
   - "Use exact active KE15L; the older GRM32ER61A476ME20L selection is NRND and is not an authorized substitute."

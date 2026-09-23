@@ -33,7 +33,7 @@ upstream_delivery:
     Q_IN_DMP6023LFG_13: {value: 50, basis: project_bound_2x_25C_max, evidence: 'Diodes DS37204 gives 25 milliohm maximum at VGS=-10 V; 2x reserve covers hot operation for design, with realized gate drive and hot four-wire verification owed.'}
     J_PWR_copper_vias_joints: {value: 52, basis: budgeted_max, evidence: 'Residual project allocation completing the 150 milliohm input-trunk ceiling; verify by route extraction and hot four-wire measurement.'}
 
-# E-CAP engineering candidate. Numeric terms are conservative design bounds,
+# E-CAP independently accepted source engineering screen. Numeric terms are conservative design bounds,
 # not supplier guarantees. Exact characteristic plots establish typical
 # centers; the declared adverse reserves are more severe, and first article
 # must still verify startup, ripple and load-step stability. No service life is
@@ -77,7 +77,7 @@ effective_capacitance_banks:
         dc_bias_derating_pct: 69
         temperature_derating_pct: 0
         lifecycle_derating_pct: 12.5
-        basis: murata_exact_part_typical_model_with_engineering_reserves_pending_independent_review
+        basis: murata_exact_part_typical_model_with_reviewed_engineering_reserves
         evidence: >-
           Murata SimSurfing exact-base-part simple model at -55 C and 5.099 V
           gives 14.7 uF per part, or 31.3% nominal. Use 31% retained as a
@@ -132,7 +132,7 @@ effective_capacitance_banks:
         dc_bias_derating_pct: 65
         temperature_derating_pct: 0
         lifecycle_derating_pct: 12.5
-        basis: murata_exact_part_typical_model_with_engineering_reserves_pending_independent_review
+        basis: murata_exact_part_typical_model_with_reviewed_engineering_reserves
         evidence: >-
           Exact Murata simple model at -55 C and 3.38 V gives 16.9 uF;
           35% nominal retention is a rounded model screen. After 10% initial
@@ -143,23 +143,23 @@ effective_capacitance_banks:
   - <<: *tps62825_output
     name: TPS62825 U_1V8 output
     contributors:
-      - {part: GRM32ER71A476KE15L, refs: [C_U_1V8_OUT_1], nominal_each_uF: 47, dielectric: x7r, tolerance_minus_pct: 10, dc_bias_derating_pct: 65, temperature_derating_pct: 0, lifecycle_derating_pct: 12.5, basis: murata_exact_part_typical_model_with_engineering_reserves_pending_independent_review, evidence: "Exact Murata -55 C / 1.818 V simple model gives 18.4 uF; conservative rounded 35% nominal retention with initial-tolerance and lifecycle reserves estimates 12.95 uF. Temperature is already in the model. Nominal 0.47-uH/47-uF combination is marked in TI Table 8-3; physical stability proof remains owed."}
+      - {part: GRM32ER71A476KE15L, refs: [C_U_1V8_OUT_1], nominal_each_uF: 47, dielectric: x7r, tolerance_minus_pct: 10, dc_bias_derating_pct: 65, temperature_derating_pct: 0, lifecycle_derating_pct: 12.5, basis: murata_exact_part_typical_model_with_reviewed_engineering_reserves, evidence: "Exact Murata -55 C / 1.818 V simple model gives 18.4 uF; conservative rounded 35% nominal retention with initial-tolerance and lifecycle reserves estimates 12.95 uF. Temperature is already in the model. Nominal 0.47-uH/47-uF combination is marked in TI Table 8-3; physical stability proof remains owed."}
   - <<: *tps62825_output
     name: TPS62825 U_CORE output
     contributors:
-      - {part: GRM32ER71A476KE15L, refs: [C_U_CORE_OUT_1], nominal_each_uF: 47, dielectric: x7r, tolerance_minus_pct: 10, dc_bias_derating_pct: 65, temperature_derating_pct: 0, lifecycle_derating_pct: 12.5, basis: murata_exact_part_typical_model_with_engineering_reserves_pending_independent_review, evidence: "Exact Murata -55 C / 0.92 V simple model gives 18.7 uF; conservative rounded 35% nominal retention with initial-tolerance and lifecycle reserves estimates 12.95 uF. Temperature is already in the model. Nominal 0.47-uH/47-uF combination is marked in TI Table 8-3; physical stability proof remains owed."}
+      - {part: GRM32ER71A476KE15L, refs: [C_U_CORE_OUT_1], nominal_each_uF: 47, dielectric: x7r, tolerance_minus_pct: 10, dc_bias_derating_pct: 65, temperature_derating_pct: 0, lifecycle_derating_pct: 12.5, basis: murata_exact_part_typical_model_with_reviewed_engineering_reserves, evidence: "Exact Murata -55 C / 0.92 V simple model gives 18.7 uF; conservative rounded 35% nominal retention with initial-tolerance and lifecycle reserves estimates 12.95 uF. Temperature is already in the model. Nominal 0.47-uH/47-uF combination is marked in TI Table 8-3; physical stability proof remains owed."}
   - name: LT3045 input
     requirement_uF: 4.7
     requirement_evidence: ADI LT3045 Rev.D p18 requires at least 4.7 uF at IN.
     accepted_dielectrics: [x7r]
     contributors:
-      - {part: GRM32ER71A476KE15L, refs: [C_LDO_IN], nominal_each_uF: 47, dielectric: x7r, tolerance_minus_pct: 10, dc_bias_derating_pct: 69, temperature_derating_pct: 0, lifecycle_derating_pct: 12.5, basis: murata_exact_part_typical_model_with_engineering_reserves_pending_independent_review, evidence: "Exact Murata -55 C / 5.099 V simple model gives 14.7 uF; rounded 31% nominal retention with initial tolerance and selected lifecycle reserve estimates 11.47 uF. Temperature is in the model; input-loop damping and source-independent evidence remain owed."}
+      - {part: GRM32ER71A476KE15L, refs: [C_LDO_IN], nominal_each_uF: 47, dielectric: x7r, tolerance_minus_pct: 10, dc_bias_derating_pct: 69, temperature_derating_pct: 0, lifecycle_derating_pct: 12.5, basis: murata_exact_part_typical_model_with_reviewed_engineering_reserves, evidence: "Exact Murata -55 C / 5.099 V simple model gives 14.7 uF; rounded 31% nominal retention with initial tolerance and selected lifecycle reserve estimates 11.47 uF. Temperature is in the model; input-loop damping and production lot-characteristic qualification remain owed."}
   - name: LT3045 output
     requirement_uF: 10
     requirement_evidence: ADI LT3045 Rev.D pp13,16 requires at least 10 uF with ESR below 20 milliohm and assembled ESL below 2 nH.
     accepted_dielectrics: [x7r]
     contributors:
-      - {part: GRM32ER71A476KE15L, refs: [C_LDO_OUT_1, C_LDO_OUT_2], nominal_each_uF: 47, dielectric: x7r, tolerance_minus_pct: 10, dc_bias_derating_pct: 65, temperature_derating_pct: 0, lifecycle_derating_pct: 12.5, basis: murata_exact_part_typical_model_with_engineering_reserves_pending_independent_review, evidence: "Exact Murata -55 C / 3.38 V model gives 16.9 uF each; rounded 35% retention with tolerance/lifecycle reserves estimates 25.91 uF for pair. 125 C model gives 0.657 nH and 2.13 milliohm per part; ideal parallel is 0.3285 nH and 1.065 milliohm. P3 quiet_power must independently prove all shared interconnect below the remaining 1.6715 nH for assembled ESL strictly below 2 nH, with Kelvin OUTS and common SET/output ground; neither model values nor board ESL are production guarantees. First-article startup/load-step stability and lot-characteristic review remain owed."}
+      - {part: GRM32ER71A476KE15L, refs: [C_LDO_OUT_1, C_LDO_OUT_2], nominal_each_uF: 47, dielectric: x7r, tolerance_minus_pct: 10, dc_bias_derating_pct: 65, temperature_derating_pct: 0, lifecycle_derating_pct: 12.5, basis: murata_exact_part_typical_model_with_reviewed_engineering_reserves, evidence: "Exact Murata -55 C / 3.38 V model gives 16.9 uF each; rounded 35% retention with tolerance/lifecycle reserves estimates 25.91 uF for pair. 125 C model gives 0.657 nH and 2.13 milliohm per part; ideal parallel is 0.3285 nH and 1.065 milliohm. P3 quiet_power must independently prove all shared interconnect below the remaining 1.6715 nH for assembled ESL strictly below 2 nH, with Kelvin OUTS and common SET/output ground; neither model values nor board ESL are production guarantees. First-article startup/load-step stability and lot-characteristic review remain owed."}
   - name: XU316 USB VBUS sense capacitance
     requirement_uF: 1
     requirement_evidence: XMOS self-powered reference requires 1-10 uF at connector VBUS.
