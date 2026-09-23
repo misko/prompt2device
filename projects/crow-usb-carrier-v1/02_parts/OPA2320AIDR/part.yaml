@@ -1,0 +1,1309 @@
+mpn: OPA2320AIDR
+manufacturer: Texas Instruments
+type: dual_operational_amplifier
+value: OPA2320AIDR
+status: active
+# OPA2320AIDR is the TI 2500-piece tape/reel ordering variant of OPA2320AID (75-piece tube).
+datasheet:
+  doc_id: SBOS513
+  revision: SBOS513F
+  url: https://www.ti.com/lit/ds/symlink/opa2320.pdf
+  local: OPA2320_SBOS513F.pdf
+  sha256: 1d13d91bc220d3f37e814e29599ce23e086bd661227618104dcae5482c8144fc
+  fetched: 2026-09-09
+  pages: 59
+  provenance: "Unchanged ti.com primary PDF captured and visually inspected 2026-09-09; fresh source-part review independently reread pin, limit and protection pages. Not a native pin-review witness."
+package: "D SOIC-8 3.9x4.9mm P1.27mm"
+footprint: Package_SO:SOIC-8_3.9x4.9mm_P1.27mm
+escape: {style: leaded, pitch: 1.27, tier_required: jlc_2layer_default, checked: "TI SBOS513F p4 D-package top-view pinout; SOIC-8 geometry unchanged. Native pin/footprint review remains owed."}
+pins: {1: OUTA, 2: "-INA", 3: "+INA", 4: "V-", 5: "+INB", 6: "-INB", 7: OUTB, 8: "V+"}
+limits:
+  supply_operating: "1.8V to 5.5V; SBOS513F section6.3"
+  supply_absolute_max: 6V
+  input_common_mode: "V- minus0.1V to V+ plus0.1V; section6.7 conditions apply"
+  input_protection: "section6.1 footnote2: input signals beyond rail +/-0.5V must be limited to10mA or less; no separate output backdrive rating inferred"
+  operating_temperature: "-40C to +125C specified range"
+  quiescent_current: "1.7mA/channel maximum over-40..125C atVS5.5V, IO=0; not transient/output load"
+  input_bias_current: "+/-50pA maximum-40..85C; OPA2320+/-400pA maximum-40..125C"
+  msl: "Level 2, 260C, 1 year for OPA2320AIDR"
+gotchas:
+  - "Exact OPA2320AIDR is the dual D/SOIC-8 WITHOUT shutdown; OPA2320S has a different10-pin package. Do not infer a shutdown pin from the family title."
+  - "Input, output, and feedback current loops must remain local; do not route a channel's output parallel to its high-impedance input."
+  - "ADR0025 shares3V3_ADC across ADC and eight amplifiers; passive1k/1k reference dividers replace U_AFE9. No independent5V_OPA reservoir remains."
+  - "The independent ground shunts change common-mode loading. Local return, output tracking, noise and filter-loop stability remain first-article obligations."
+  - "Typical noise/distortion data is not an exact Cirrus AN0556 performance guarantee; retained1.2Vrms differential operation still requires measurement."
+verified: "CITED: SBOS513F p4 OPA2320 D-package top view and pin-functions table:1=OUTA,2=-INA,3=+INA,4=V-,5=+INB,6=-INB,7=OUTB,8=V+. Main visual read and fresh independent source review2026-09-09; generated/native acceptance remains incomplete."
+sourcing: {lcsc: C2863402, alternates: []}
+layout:
+  source: TI SBOS513F sections9 and10, PDF p28; capacitive-load guidance section7.3.8 p19
+  reviewed: '2026-09-09'
+  notes:
+    - ADR0025 board-specific bindings replace the retired bridge and buffered-reference circuit; manufacturer facts
+      and datasheet revision are unchanged.
+    - Exact-ref adjacency is a copper-edge gap on the named signal or non-poured rail, not a routed length. Ground-return
+      qualification remains separate.
+    - All eight amplifiers and their own 100nF capacitors share 3V3_ADC. Each bypass remains bound to its exact U_AFE
+      instance.
+    - R_X and C_FB stay beside FB/OUT; R_OUT is the 10ohm output resistor. Two 15nF C0G shunts per leg replace C_DIFF;
+      their returns must not inject into the input/feedback ground reference.
+    - Passive external-bias divider/capacitor ownership now lives in RT0603BRD071KL; no ninth reference amplifier remains.
+  adjacency:
+    - refdes:
+      - U_AFE1
+      - C_OPA1
+      nets:
+      - 3V3_ADC
+      max_mm: 1.5
+      why: 'Engineering copper-gap ceiling: local-bypass; exact partner, selected non-poured net only.'
+    - refdes:
+      - R_IN1P
+      - C_A1P
+      nets:
+      - BIAS_P1
+      max_mm: 6.0
+      why: 'Engineering copper-gap ceiling: input-coupling; exact partner, selected non-poured net only.'
+    - refdes:
+      - R_IN1P
+      - R_B1P
+      nets:
+      - BIAS_P1
+      max_mm: 1.5
+      why: 'Engineering copper-gap ceiling: input-bias; exact partner, selected non-poured net only.'
+    - refdes:
+      - U_AFE1
+      - C_FB1P
+      nets:
+      - FB_P1
+      - OPA_P1
+      max_mm: 1.5
+      why: 'Engineering copper-gap ceiling: local-feedback; exact partner, selected non-poured net only.'
+    - refdes:
+      - U_AFE1
+      - R_X1P
+      nets:
+      - FB_P1
+      max_mm: 3.0
+      why: 'Engineering copper-gap ceiling: local-feedback; exact partner, selected non-poured net only.'
+    - refdes:
+      - U_AFE1
+      - R_OUT1P
+      nets:
+      - OPA_P1
+      max_mm: 3.0
+      why: 'Engineering copper-gap ceiling: series-output; exact partner, selected non-poured net only.'
+    - refdes:
+      - R_X1P
+      - C_FILTER1P1
+      nets:
+      - FILTER1P
+      max_mm: 7.5
+      why: ADR0025 engineering copper-gap ceiling for each independent ground shunt; not a routed-loop or stability
+        acceptance.
+    - refdes:
+      - R_X1P
+      - C_FILTER1P2
+      nets:
+      - FILTER1P
+      max_mm: 7.5
+      why: ADR0025 engineering copper-gap ceiling for each independent ground shunt; not a routed-loop or stability
+        acceptance.
+    - refdes:
+      - R_OUT1P
+      - C_FILTER1P1
+      nets:
+      - FILTER1P
+      max_mm: 8.0
+      why: ADR0025 engineering copper-gap ceiling for each independent ground shunt; not a routed-loop or stability
+        acceptance.
+    - refdes:
+      - R_OUT1P
+      - C_FILTER1P2
+      nets:
+      - FILTER1P
+      max_mm: 8.0
+      why: ADR0025 engineering copper-gap ceiling for each independent ground shunt; not a routed-loop or stability
+        acceptance.
+    - refdes:
+      - R_IN1N
+      - C_A1N
+      nets:
+      - BIAS_N1
+      max_mm: 7.0
+      why: 'Engineering copper-gap ceiling: input-coupling; exact partner, selected non-poured net only.'
+    - refdes:
+      - R_IN1N
+      - R_B1N
+      nets:
+      - BIAS_N1
+      max_mm: 1.5
+      why: 'Engineering copper-gap ceiling: input-bias; exact partner, selected non-poured net only.'
+    - refdes:
+      - U_AFE1
+      - C_FB1N
+      nets:
+      - FB_N1
+      - OPA_N1
+      max_mm: 1.5
+      why: 'Engineering copper-gap ceiling: local-feedback; exact partner, selected non-poured net only.'
+    - refdes:
+      - U_AFE1
+      - R_X1N
+      nets:
+      - FB_N1
+      max_mm: 3.0
+      why: 'Engineering copper-gap ceiling: local-feedback; exact partner, selected non-poured net only.'
+    - refdes:
+      - U_AFE1
+      - R_OUT1N
+      nets:
+      - OPA_N1
+      max_mm: 3.0
+      why: 'Engineering copper-gap ceiling: series-output; exact partner, selected non-poured net only.'
+    - refdes:
+      - R_X1N
+      - C_FILTER1N1
+      nets:
+      - FILTER1N
+      max_mm: 6.5
+      why: ADR0025 engineering copper-gap ceiling for each independent ground shunt; not a routed-loop or stability
+        acceptance.
+    - refdes:
+      - R_X1N
+      - C_FILTER1N2
+      nets:
+      - FILTER1N
+      max_mm: 6.5
+      why: ADR0025 engineering copper-gap ceiling for each independent ground shunt; not a routed-loop or stability
+        acceptance.
+    - refdes:
+      - R_OUT1N
+      - C_FILTER1N1
+      nets:
+      - FILTER1N
+      max_mm: 7.5
+      why: ADR0025 engineering copper-gap ceiling for each independent ground shunt; not a routed-loop or stability
+        acceptance.
+    - refdes:
+      - R_OUT1N
+      - C_FILTER1N2
+      nets:
+      - FILTER1N
+      max_mm: 7.5
+      why: ADR0025 engineering copper-gap ceiling for each independent ground shunt; not a routed-loop or stability
+        acceptance.
+    - refdes:
+      - U_AFE2
+      - C_OPA2
+      nets:
+      - 3V3_ADC
+      max_mm: 1.5
+      why: 'Engineering copper-gap ceiling: local-bypass; exact partner, selected non-poured net only.'
+    - refdes:
+      - R_IN2P
+      - C_A2P
+      nets:
+      - BIAS_P2
+      max_mm: 6.0
+      why: 'Engineering copper-gap ceiling: input-coupling; exact partner, selected non-poured net only.'
+    - refdes:
+      - R_IN2P
+      - R_B2P
+      nets:
+      - BIAS_P2
+      max_mm: 1.5
+      why: 'Engineering copper-gap ceiling: input-bias; exact partner, selected non-poured net only.'
+    - refdes:
+      - U_AFE2
+      - C_FB2P
+      nets:
+      - FB_P2
+      - OPA_P2
+      max_mm: 1.5
+      why: 'Engineering copper-gap ceiling: local-feedback; exact partner, selected non-poured net only.'
+    - refdes:
+      - U_AFE2
+      - R_X2P
+      nets:
+      - FB_P2
+      max_mm: 3.0
+      why: 'Engineering copper-gap ceiling: local-feedback; exact partner, selected non-poured net only.'
+    - refdes:
+      - U_AFE2
+      - R_OUT2P
+      nets:
+      - OPA_P2
+      max_mm: 3.0
+      why: 'Engineering copper-gap ceiling: series-output; exact partner, selected non-poured net only.'
+    - refdes:
+      - R_X2P
+      - C_FILTER2P1
+      nets:
+      - FILTER2P
+      max_mm: 7.5
+      why: ADR0025 engineering copper-gap ceiling for each independent ground shunt; not a routed-loop or stability
+        acceptance.
+    - refdes:
+      - R_X2P
+      - C_FILTER2P2
+      nets:
+      - FILTER2P
+      max_mm: 7.5
+      why: ADR0025 engineering copper-gap ceiling for each independent ground shunt; not a routed-loop or stability
+        acceptance.
+    - refdes:
+      - R_OUT2P
+      - C_FILTER2P1
+      nets:
+      - FILTER2P
+      max_mm: 8.0
+      why: ADR0025 engineering copper-gap ceiling for each independent ground shunt; not a routed-loop or stability
+        acceptance.
+    - refdes:
+      - R_OUT2P
+      - C_FILTER2P2
+      nets:
+      - FILTER2P
+      max_mm: 8.0
+      why: ADR0025 engineering copper-gap ceiling for each independent ground shunt; not a routed-loop or stability
+        acceptance.
+    - refdes:
+      - R_IN2N
+      - C_A2N
+      nets:
+      - BIAS_N2
+      max_mm: 7.0
+      why: 'Engineering copper-gap ceiling: input-coupling; exact partner, selected non-poured net only.'
+    - refdes:
+      - R_IN2N
+      - R_B2N
+      nets:
+      - BIAS_N2
+      max_mm: 1.5
+      why: 'Engineering copper-gap ceiling: input-bias; exact partner, selected non-poured net only.'
+    - refdes:
+      - U_AFE2
+      - C_FB2N
+      nets:
+      - FB_N2
+      - OPA_N2
+      max_mm: 1.5
+      why: 'Engineering copper-gap ceiling: local-feedback; exact partner, selected non-poured net only.'
+    - refdes:
+      - U_AFE2
+      - R_X2N
+      nets:
+      - FB_N2
+      max_mm: 3.0
+      why: 'Engineering copper-gap ceiling: local-feedback; exact partner, selected non-poured net only.'
+    - refdes:
+      - U_AFE2
+      - R_OUT2N
+      nets:
+      - OPA_N2
+      max_mm: 3.0
+      why: 'Engineering copper-gap ceiling: series-output; exact partner, selected non-poured net only.'
+    - refdes:
+      - R_X2N
+      - C_FILTER2N1
+      nets:
+      - FILTER2N
+      max_mm: 6.5
+      why: ADR0025 engineering copper-gap ceiling for each independent ground shunt; not a routed-loop or stability
+        acceptance.
+    - refdes:
+      - R_X2N
+      - C_FILTER2N2
+      nets:
+      - FILTER2N
+      max_mm: 6.5
+      why: ADR0025 engineering copper-gap ceiling for each independent ground shunt; not a routed-loop or stability
+        acceptance.
+    - refdes:
+      - R_OUT2N
+      - C_FILTER2N1
+      nets:
+      - FILTER2N
+      max_mm: 7.5
+      why: ADR0025 engineering copper-gap ceiling for each independent ground shunt; not a routed-loop or stability
+        acceptance.
+    - refdes:
+      - R_OUT2N
+      - C_FILTER2N2
+      nets:
+      - FILTER2N
+      max_mm: 7.5
+      why: ADR0025 engineering copper-gap ceiling for each independent ground shunt; not a routed-loop or stability
+        acceptance.
+    - refdes:
+      - U_AFE3
+      - C_OPA3
+      nets:
+      - 3V3_ADC
+      max_mm: 1.5
+      why: 'Engineering copper-gap ceiling: local-bypass; exact partner, selected non-poured net only.'
+    - refdes:
+      - R_IN3P
+      - C_A3P
+      nets:
+      - BIAS_P3
+      max_mm: 6.0
+      why: 'Engineering copper-gap ceiling: input-coupling; exact partner, selected non-poured net only.'
+    - refdes:
+      - R_IN3P
+      - R_B3P
+      nets:
+      - BIAS_P3
+      max_mm: 1.5
+      why: 'Engineering copper-gap ceiling: input-bias; exact partner, selected non-poured net only.'
+    - refdes:
+      - U_AFE3
+      - C_FB3P
+      nets:
+      - FB_P3
+      - OPA_P3
+      max_mm: 1.5
+      why: 'Engineering copper-gap ceiling: local-feedback; exact partner, selected non-poured net only.'
+    - refdes:
+      - U_AFE3
+      - R_X3P
+      nets:
+      - FB_P3
+      max_mm: 3.0
+      why: 'Engineering copper-gap ceiling: local-feedback; exact partner, selected non-poured net only.'
+    - refdes:
+      - U_AFE3
+      - R_OUT3P
+      nets:
+      - OPA_P3
+      max_mm: 3.0
+      why: 'Engineering copper-gap ceiling: series-output; exact partner, selected non-poured net only.'
+    - refdes:
+      - R_X3P
+      - C_FILTER3P1
+      nets:
+      - FILTER3P
+      max_mm: 7.5
+      why: ADR0025 engineering copper-gap ceiling for each independent ground shunt; not a routed-loop or stability
+        acceptance.
+    - refdes:
+      - R_X3P
+      - C_FILTER3P2
+      nets:
+      - FILTER3P
+      max_mm: 7.5
+      why: ADR0025 engineering copper-gap ceiling for each independent ground shunt; not a routed-loop or stability
+        acceptance.
+    - refdes:
+      - R_OUT3P
+      - C_FILTER3P1
+      nets:
+      - FILTER3P
+      max_mm: 8.0
+      why: ADR0025 engineering copper-gap ceiling for each independent ground shunt; not a routed-loop or stability
+        acceptance.
+    - refdes:
+      - R_OUT3P
+      - C_FILTER3P2
+      nets:
+      - FILTER3P
+      max_mm: 8.0
+      why: ADR0025 engineering copper-gap ceiling for each independent ground shunt; not a routed-loop or stability
+        acceptance.
+    - refdes:
+      - R_IN3N
+      - C_A3N
+      nets:
+      - BIAS_N3
+      max_mm: 7.0
+      why: 'Engineering copper-gap ceiling: input-coupling; exact partner, selected non-poured net only.'
+    - refdes:
+      - R_IN3N
+      - R_B3N
+      nets:
+      - BIAS_N3
+      max_mm: 1.5
+      why: 'Engineering copper-gap ceiling: input-bias; exact partner, selected non-poured net only.'
+    - refdes:
+      - U_AFE3
+      - C_FB3N
+      nets:
+      - FB_N3
+      - OPA_N3
+      max_mm: 1.5
+      why: 'Engineering copper-gap ceiling: local-feedback; exact partner, selected non-poured net only.'
+    - refdes:
+      - U_AFE3
+      - R_X3N
+      nets:
+      - FB_N3
+      max_mm: 3.0
+      why: 'Engineering copper-gap ceiling: local-feedback; exact partner, selected non-poured net only.'
+    - refdes:
+      - U_AFE3
+      - R_OUT3N
+      nets:
+      - OPA_N3
+      max_mm: 3.0
+      why: 'Engineering copper-gap ceiling: series-output; exact partner, selected non-poured net only.'
+    - refdes:
+      - R_X3N
+      - C_FILTER3N1
+      nets:
+      - FILTER3N
+      max_mm: 6.5
+      why: ADR0025 engineering copper-gap ceiling for each independent ground shunt; not a routed-loop or stability
+        acceptance.
+    - refdes:
+      - R_X3N
+      - C_FILTER3N2
+      nets:
+      - FILTER3N
+      max_mm: 6.5
+      why: ADR0025 engineering copper-gap ceiling for each independent ground shunt; not a routed-loop or stability
+        acceptance.
+    - refdes:
+      - R_OUT3N
+      - C_FILTER3N1
+      nets:
+      - FILTER3N
+      max_mm: 7.5
+      why: ADR0025 engineering copper-gap ceiling for each independent ground shunt; not a routed-loop or stability
+        acceptance.
+    - refdes:
+      - R_OUT3N
+      - C_FILTER3N2
+      nets:
+      - FILTER3N
+      max_mm: 7.5
+      why: ADR0025 engineering copper-gap ceiling for each independent ground shunt; not a routed-loop or stability
+        acceptance.
+    - refdes:
+      - U_AFE4
+      - C_OPA4
+      nets:
+      - 3V3_ADC
+      max_mm: 1.5
+      why: 'Engineering copper-gap ceiling: local-bypass; exact partner, selected non-poured net only.'
+    - refdes:
+      - R_IN4P
+      - C_A4P
+      nets:
+      - BIAS_P4
+      max_mm: 6.0
+      why: 'Engineering copper-gap ceiling: input-coupling; exact partner, selected non-poured net only.'
+    - refdes:
+      - R_IN4P
+      - R_B4P
+      nets:
+      - BIAS_P4
+      max_mm: 1.5
+      why: 'Engineering copper-gap ceiling: input-bias; exact partner, selected non-poured net only.'
+    - refdes:
+      - U_AFE4
+      - C_FB4P
+      nets:
+      - FB_P4
+      - OPA_P4
+      max_mm: 1.5
+      why: 'Engineering copper-gap ceiling: local-feedback; exact partner, selected non-poured net only.'
+    - refdes:
+      - U_AFE4
+      - R_X4P
+      nets:
+      - FB_P4
+      max_mm: 3.0
+      why: 'Engineering copper-gap ceiling: local-feedback; exact partner, selected non-poured net only.'
+    - refdes:
+      - U_AFE4
+      - R_OUT4P
+      nets:
+      - OPA_P4
+      max_mm: 3.0
+      why: 'Engineering copper-gap ceiling: series-output; exact partner, selected non-poured net only.'
+    - refdes:
+      - R_X4P
+      - C_FILTER4P1
+      nets:
+      - FILTER4P
+      max_mm: 7.5
+      why: ADR0025 engineering copper-gap ceiling for each independent ground shunt; not a routed-loop or stability
+        acceptance.
+    - refdes:
+      - R_X4P
+      - C_FILTER4P2
+      nets:
+      - FILTER4P
+      max_mm: 7.5
+      why: ADR0025 engineering copper-gap ceiling for each independent ground shunt; not a routed-loop or stability
+        acceptance.
+    - refdes:
+      - R_OUT4P
+      - C_FILTER4P1
+      nets:
+      - FILTER4P
+      max_mm: 8.0
+      why: ADR0025 engineering copper-gap ceiling for each independent ground shunt; not a routed-loop or stability
+        acceptance.
+    - refdes:
+      - R_OUT4P
+      - C_FILTER4P2
+      nets:
+      - FILTER4P
+      max_mm: 8.0
+      why: ADR0025 engineering copper-gap ceiling for each independent ground shunt; not a routed-loop or stability
+        acceptance.
+    - refdes:
+      - R_IN4N
+      - C_A4N
+      nets:
+      - BIAS_N4
+      max_mm: 7.0
+      why: 'Engineering copper-gap ceiling: input-coupling; exact partner, selected non-poured net only.'
+    - refdes:
+      - R_IN4N
+      - R_B4N
+      nets:
+      - BIAS_N4
+      max_mm: 1.5
+      why: 'Engineering copper-gap ceiling: input-bias; exact partner, selected non-poured net only.'
+    - refdes:
+      - U_AFE4
+      - C_FB4N
+      nets:
+      - FB_N4
+      - OPA_N4
+      max_mm: 1.5
+      why: 'Engineering copper-gap ceiling: local-feedback; exact partner, selected non-poured net only.'
+    - refdes:
+      - U_AFE4
+      - R_X4N
+      nets:
+      - FB_N4
+      max_mm: 3.0
+      why: 'Engineering copper-gap ceiling: local-feedback; exact partner, selected non-poured net only.'
+    - refdes:
+      - U_AFE4
+      - R_OUT4N
+      nets:
+      - OPA_N4
+      max_mm: 3.0
+      why: 'Engineering copper-gap ceiling: series-output; exact partner, selected non-poured net only.'
+    - refdes:
+      - R_X4N
+      - C_FILTER4N1
+      nets:
+      - FILTER4N
+      max_mm: 6.5
+      why: ADR0025 engineering copper-gap ceiling for each independent ground shunt; not a routed-loop or stability
+        acceptance.
+    - refdes:
+      - R_X4N
+      - C_FILTER4N2
+      nets:
+      - FILTER4N
+      max_mm: 6.5
+      why: ADR0025 engineering copper-gap ceiling for each independent ground shunt; not a routed-loop or stability
+        acceptance.
+    - refdes:
+      - R_OUT4N
+      - C_FILTER4N1
+      nets:
+      - FILTER4N
+      max_mm: 7.5
+      why: ADR0025 engineering copper-gap ceiling for each independent ground shunt; not a routed-loop or stability
+        acceptance.
+    - refdes:
+      - R_OUT4N
+      - C_FILTER4N2
+      nets:
+      - FILTER4N
+      max_mm: 7.5
+      why: ADR0025 engineering copper-gap ceiling for each independent ground shunt; not a routed-loop or stability
+        acceptance.
+    - refdes:
+      - U_AFE5
+      - C_OPA5
+      nets:
+      - 3V3_ADC
+      max_mm: 1.5
+      why: 'Engineering copper-gap ceiling: local-bypass; exact partner, selected non-poured net only.'
+    - refdes:
+      - R_IN5P
+      - C_A5P
+      nets:
+      - BIAS_P5
+      max_mm: 6.0
+      why: 'Engineering copper-gap ceiling: input-coupling; exact partner, selected non-poured net only.'
+    - refdes:
+      - R_IN5P
+      - R_B5P
+      nets:
+      - BIAS_P5
+      max_mm: 1.5
+      why: 'Engineering copper-gap ceiling: input-bias; exact partner, selected non-poured net only.'
+    - refdes:
+      - U_AFE5
+      - C_FB5P
+      nets:
+      - FB_P5
+      - OPA_P5
+      max_mm: 1.5
+      why: 'Engineering copper-gap ceiling: local-feedback; exact partner, selected non-poured net only.'
+    - refdes:
+      - U_AFE5
+      - R_X5P
+      nets:
+      - FB_P5
+      max_mm: 3.0
+      why: 'Engineering copper-gap ceiling: local-feedback; exact partner, selected non-poured net only.'
+    - refdes:
+      - U_AFE5
+      - R_OUT5P
+      nets:
+      - OPA_P5
+      max_mm: 3.0
+      why: 'Engineering copper-gap ceiling: series-output; exact partner, selected non-poured net only.'
+    - refdes:
+      - R_X5P
+      - C_FILTER5P1
+      nets:
+      - FILTER5P
+      max_mm: 7.5
+      why: ADR0025 engineering copper-gap ceiling for each independent ground shunt; not a routed-loop or stability
+        acceptance.
+    - refdes:
+      - R_X5P
+      - C_FILTER5P2
+      nets:
+      - FILTER5P
+      max_mm: 7.5
+      why: ADR0025 engineering copper-gap ceiling for each independent ground shunt; not a routed-loop or stability
+        acceptance.
+    - refdes:
+      - R_OUT5P
+      - C_FILTER5P1
+      nets:
+      - FILTER5P
+      max_mm: 8.0
+      why: ADR0025 engineering copper-gap ceiling for each independent ground shunt; not a routed-loop or stability
+        acceptance.
+    - refdes:
+      - R_OUT5P
+      - C_FILTER5P2
+      nets:
+      - FILTER5P
+      max_mm: 8.0
+      why: ADR0025 engineering copper-gap ceiling for each independent ground shunt; not a routed-loop or stability
+        acceptance.
+    - refdes:
+      - R_IN5N
+      - C_A5N
+      nets:
+      - BIAS_N5
+      max_mm: 7.0
+      why: 'Engineering copper-gap ceiling: input-coupling; exact partner, selected non-poured net only.'
+    - refdes:
+      - R_IN5N
+      - R_B5N
+      nets:
+      - BIAS_N5
+      max_mm: 1.5
+      why: 'Engineering copper-gap ceiling: input-bias; exact partner, selected non-poured net only.'
+    - refdes:
+      - U_AFE5
+      - C_FB5N
+      nets:
+      - FB_N5
+      - OPA_N5
+      max_mm: 1.5
+      why: 'Engineering copper-gap ceiling: local-feedback; exact partner, selected non-poured net only.'
+    - refdes:
+      - U_AFE5
+      - R_X5N
+      nets:
+      - FB_N5
+      max_mm: 3.0
+      why: 'Engineering copper-gap ceiling: local-feedback; exact partner, selected non-poured net only.'
+    - refdes:
+      - U_AFE5
+      - R_OUT5N
+      nets:
+      - OPA_N5
+      max_mm: 3.0
+      why: 'Engineering copper-gap ceiling: series-output; exact partner, selected non-poured net only.'
+    - refdes:
+      - R_X5N
+      - C_FILTER5N1
+      nets:
+      - FILTER5N
+      max_mm: 6.5
+      why: ADR0025 engineering copper-gap ceiling for each independent ground shunt; not a routed-loop or stability
+        acceptance.
+    - refdes:
+      - R_X5N
+      - C_FILTER5N2
+      nets:
+      - FILTER5N
+      max_mm: 6.5
+      why: ADR0025 engineering copper-gap ceiling for each independent ground shunt; not a routed-loop or stability
+        acceptance.
+    - refdes:
+      - R_OUT5N
+      - C_FILTER5N1
+      nets:
+      - FILTER5N
+      max_mm: 7.5
+      why: ADR0025 engineering copper-gap ceiling for each independent ground shunt; not a routed-loop or stability
+        acceptance.
+    - refdes:
+      - R_OUT5N
+      - C_FILTER5N2
+      nets:
+      - FILTER5N
+      max_mm: 7.5
+      why: ADR0025 engineering copper-gap ceiling for each independent ground shunt; not a routed-loop or stability
+        acceptance.
+    - refdes:
+      - U_AFE6
+      - C_OPA6
+      nets:
+      - 3V3_ADC
+      max_mm: 1.5
+      why: 'Engineering copper-gap ceiling: local-bypass; exact partner, selected non-poured net only.'
+    - refdes:
+      - R_IN6P
+      - C_A6P
+      nets:
+      - BIAS_P6
+      max_mm: 6.0
+      why: 'Engineering copper-gap ceiling: input-coupling; exact partner, selected non-poured net only.'
+    - refdes:
+      - R_IN6P
+      - R_B6P
+      nets:
+      - BIAS_P6
+      max_mm: 1.5
+      why: 'Engineering copper-gap ceiling: input-bias; exact partner, selected non-poured net only.'
+    - refdes:
+      - U_AFE6
+      - C_FB6P
+      nets:
+      - FB_P6
+      - OPA_P6
+      max_mm: 1.5
+      why: 'Engineering copper-gap ceiling: local-feedback; exact partner, selected non-poured net only.'
+    - refdes:
+      - U_AFE6
+      - R_X6P
+      nets:
+      - FB_P6
+      max_mm: 3.0
+      why: 'Engineering copper-gap ceiling: local-feedback; exact partner, selected non-poured net only.'
+    - refdes:
+      - U_AFE6
+      - R_OUT6P
+      nets:
+      - OPA_P6
+      max_mm: 3.0
+      why: 'Engineering copper-gap ceiling: series-output; exact partner, selected non-poured net only.'
+    - refdes:
+      - R_X6P
+      - C_FILTER6P1
+      nets:
+      - FILTER6P
+      max_mm: 7.5
+      why: ADR0025 engineering copper-gap ceiling for each independent ground shunt; not a routed-loop or stability
+        acceptance.
+    - refdes:
+      - R_X6P
+      - C_FILTER6P2
+      nets:
+      - FILTER6P
+      max_mm: 7.5
+      why: ADR0025 engineering copper-gap ceiling for each independent ground shunt; not a routed-loop or stability
+        acceptance.
+    - refdes:
+      - R_OUT6P
+      - C_FILTER6P1
+      nets:
+      - FILTER6P
+      max_mm: 8.0
+      why: ADR0025 engineering copper-gap ceiling for each independent ground shunt; not a routed-loop or stability
+        acceptance.
+    - refdes:
+      - R_OUT6P
+      - C_FILTER6P2
+      nets:
+      - FILTER6P
+      max_mm: 8.0
+      why: ADR0025 engineering copper-gap ceiling for each independent ground shunt; not a routed-loop or stability
+        acceptance.
+    - refdes:
+      - R_IN6N
+      - C_A6N
+      nets:
+      - BIAS_N6
+      max_mm: 7.0
+      why: 'Engineering copper-gap ceiling: input-coupling; exact partner, selected non-poured net only.'
+    - refdes:
+      - R_IN6N
+      - R_B6N
+      nets:
+      - BIAS_N6
+      max_mm: 1.5
+      why: 'Engineering copper-gap ceiling: input-bias; exact partner, selected non-poured net only.'
+    - refdes:
+      - U_AFE6
+      - C_FB6N
+      nets:
+      - FB_N6
+      - OPA_N6
+      max_mm: 1.5
+      why: 'Engineering copper-gap ceiling: local-feedback; exact partner, selected non-poured net only.'
+    - refdes:
+      - U_AFE6
+      - R_X6N
+      nets:
+      - FB_N6
+      max_mm: 3.0
+      why: 'Engineering copper-gap ceiling: local-feedback; exact partner, selected non-poured net only.'
+    - refdes:
+      - U_AFE6
+      - R_OUT6N
+      nets:
+      - OPA_N6
+      max_mm: 3.0
+      why: 'Engineering copper-gap ceiling: series-output; exact partner, selected non-poured net only.'
+    - refdes:
+      - R_X6N
+      - C_FILTER6N1
+      nets:
+      - FILTER6N
+      max_mm: 6.5
+      why: ADR0025 engineering copper-gap ceiling for each independent ground shunt; not a routed-loop or stability
+        acceptance.
+    - refdes:
+      - R_X6N
+      - C_FILTER6N2
+      nets:
+      - FILTER6N
+      max_mm: 6.5
+      why: ADR0025 engineering copper-gap ceiling for each independent ground shunt; not a routed-loop or stability
+        acceptance.
+    - refdes:
+      - R_OUT6N
+      - C_FILTER6N1
+      nets:
+      - FILTER6N
+      max_mm: 7.5
+      why: ADR0025 engineering copper-gap ceiling for each independent ground shunt; not a routed-loop or stability
+        acceptance.
+    - refdes:
+      - R_OUT6N
+      - C_FILTER6N2
+      nets:
+      - FILTER6N
+      max_mm: 7.5
+      why: ADR0025 engineering copper-gap ceiling for each independent ground shunt; not a routed-loop or stability
+        acceptance.
+    - refdes:
+      - U_AFE7
+      - C_OPA7
+      nets:
+      - 3V3_ADC
+      max_mm: 1.5
+      why: 'Engineering copper-gap ceiling: local-bypass; exact partner, selected non-poured net only.'
+    - refdes:
+      - R_IN7P
+      - C_A7P
+      nets:
+      - BIAS_P7
+      max_mm: 6.0
+      why: 'Engineering copper-gap ceiling: input-coupling; exact partner, selected non-poured net only.'
+    - refdes:
+      - R_IN7P
+      - R_B7P
+      nets:
+      - BIAS_P7
+      max_mm: 1.5
+      why: 'Engineering copper-gap ceiling: input-bias; exact partner, selected non-poured net only.'
+    - refdes:
+      - U_AFE7
+      - C_FB7P
+      nets:
+      - FB_P7
+      - OPA_P7
+      max_mm: 1.5
+      why: 'Engineering copper-gap ceiling: local-feedback; exact partner, selected non-poured net only.'
+    - refdes:
+      - U_AFE7
+      - R_X7P
+      nets:
+      - FB_P7
+      max_mm: 3.0
+      why: 'Engineering copper-gap ceiling: local-feedback; exact partner, selected non-poured net only.'
+    - refdes:
+      - U_AFE7
+      - R_OUT7P
+      nets:
+      - OPA_P7
+      max_mm: 3.0
+      why: 'Engineering copper-gap ceiling: series-output; exact partner, selected non-poured net only.'
+    - refdes:
+      - R_X7P
+      - C_FILTER7P1
+      nets:
+      - FILTER7P
+      max_mm: 7.5
+      why: ADR0025 engineering copper-gap ceiling for each independent ground shunt; not a routed-loop or stability
+        acceptance.
+    - refdes:
+      - R_X7P
+      - C_FILTER7P2
+      nets:
+      - FILTER7P
+      max_mm: 7.5
+      why: ADR0025 engineering copper-gap ceiling for each independent ground shunt; not a routed-loop or stability
+        acceptance.
+    - refdes:
+      - R_OUT7P
+      - C_FILTER7P1
+      nets:
+      - FILTER7P
+      max_mm: 8.0
+      why: ADR0025 engineering copper-gap ceiling for each independent ground shunt; not a routed-loop or stability
+        acceptance.
+    - refdes:
+      - R_OUT7P
+      - C_FILTER7P2
+      nets:
+      - FILTER7P
+      max_mm: 8.0
+      why: ADR0025 engineering copper-gap ceiling for each independent ground shunt; not a routed-loop or stability
+        acceptance.
+    - refdes:
+      - R_IN7N
+      - C_A7N
+      nets:
+      - BIAS_N7
+      max_mm: 7.0
+      why: 'Engineering copper-gap ceiling: input-coupling; exact partner, selected non-poured net only.'
+    - refdes:
+      - R_IN7N
+      - R_B7N
+      nets:
+      - BIAS_N7
+      max_mm: 1.5
+      why: 'Engineering copper-gap ceiling: input-bias; exact partner, selected non-poured net only.'
+    - refdes:
+      - U_AFE7
+      - C_FB7N
+      nets:
+      - FB_N7
+      - OPA_N7
+      max_mm: 1.5
+      why: 'Engineering copper-gap ceiling: local-feedback; exact partner, selected non-poured net only.'
+    - refdes:
+      - U_AFE7
+      - R_X7N
+      nets:
+      - FB_N7
+      max_mm: 3.0
+      why: 'Engineering copper-gap ceiling: local-feedback; exact partner, selected non-poured net only.'
+    - refdes:
+      - U_AFE7
+      - R_OUT7N
+      nets:
+      - OPA_N7
+      max_mm: 3.0
+      why: 'Engineering copper-gap ceiling: series-output; exact partner, selected non-poured net only.'
+    - refdes:
+      - R_X7N
+      - C_FILTER7N1
+      nets:
+      - FILTER7N
+      max_mm: 6.5
+      why: ADR0025 engineering copper-gap ceiling for each independent ground shunt; not a routed-loop or stability
+        acceptance.
+    - refdes:
+      - R_X7N
+      - C_FILTER7N2
+      nets:
+      - FILTER7N
+      max_mm: 6.5
+      why: ADR0025 engineering copper-gap ceiling for each independent ground shunt; not a routed-loop or stability
+        acceptance.
+    - refdes:
+      - R_OUT7N
+      - C_FILTER7N1
+      nets:
+      - FILTER7N
+      max_mm: 7.5
+      why: ADR0025 engineering copper-gap ceiling for each independent ground shunt; not a routed-loop or stability
+        acceptance.
+    - refdes:
+      - R_OUT7N
+      - C_FILTER7N2
+      nets:
+      - FILTER7N
+      max_mm: 7.5
+      why: ADR0025 engineering copper-gap ceiling for each independent ground shunt; not a routed-loop or stability
+        acceptance.
+    - refdes:
+      - U_AFE8
+      - C_OPA8
+      nets:
+      - 3V3_ADC
+      max_mm: 1.5
+      why: 'Engineering copper-gap ceiling: local-bypass; exact partner, selected non-poured net only.'
+    - refdes:
+      - R_IN8P
+      - C_A8P
+      nets:
+      - BIAS_P8
+      max_mm: 6.0
+      why: 'Engineering copper-gap ceiling: input-coupling; exact partner, selected non-poured net only.'
+    - refdes:
+      - R_IN8P
+      - R_B8P
+      nets:
+      - BIAS_P8
+      max_mm: 1.5
+      why: 'Engineering copper-gap ceiling: input-bias; exact partner, selected non-poured net only.'
+    - refdes:
+      - U_AFE8
+      - C_FB8P
+      nets:
+      - FB_P8
+      - OPA_P8
+      max_mm: 1.5
+      why: 'Engineering copper-gap ceiling: local-feedback; exact partner, selected non-poured net only.'
+    - refdes:
+      - U_AFE8
+      - R_X8P
+      nets:
+      - FB_P8
+      max_mm: 3.0
+      why: 'Engineering copper-gap ceiling: local-feedback; exact partner, selected non-poured net only.'
+    - refdes:
+      - U_AFE8
+      - R_OUT8P
+      nets:
+      - OPA_P8
+      max_mm: 3.0
+      why: 'Engineering copper-gap ceiling: series-output; exact partner, selected non-poured net only.'
+    - refdes:
+      - R_X8P
+      - C_FILTER8P1
+      nets:
+      - FILTER8P
+      max_mm: 7.5
+      why: ADR0025 engineering copper-gap ceiling for each independent ground shunt; not a routed-loop or stability
+        acceptance.
+    - refdes:
+      - R_X8P
+      - C_FILTER8P2
+      nets:
+      - FILTER8P
+      max_mm: 7.5
+      why: ADR0025 engineering copper-gap ceiling for each independent ground shunt; not a routed-loop or stability
+        acceptance.
+    - refdes:
+      - R_OUT8P
+      - C_FILTER8P1
+      nets:
+      - FILTER8P
+      max_mm: 8.0
+      why: ADR0025 engineering copper-gap ceiling for each independent ground shunt; not a routed-loop or stability
+        acceptance.
+    - refdes:
+      - R_OUT8P
+      - C_FILTER8P2
+      nets:
+      - FILTER8P
+      max_mm: 8.0
+      why: ADR0025 engineering copper-gap ceiling for each independent ground shunt; not a routed-loop or stability
+        acceptance.
+    - refdes:
+      - R_IN8N
+      - C_A8N
+      nets:
+      - BIAS_N8
+      max_mm: 7.0
+      why: 'Engineering copper-gap ceiling: input-coupling; exact partner, selected non-poured net only.'
+    - refdes:
+      - R_IN8N
+      - R_B8N
+      nets:
+      - BIAS_N8
+      max_mm: 1.5
+      why: 'Engineering copper-gap ceiling: input-bias; exact partner, selected non-poured net only.'
+    - refdes:
+      - U_AFE8
+      - C_FB8N
+      nets:
+      - FB_N8
+      - OPA_N8
+      max_mm: 1.5
+      why: 'Engineering copper-gap ceiling: local-feedback; exact partner, selected non-poured net only.'
+    - refdes:
+      - U_AFE8
+      - R_X8N
+      nets:
+      - FB_N8
+      max_mm: 3.0
+      why: 'Engineering copper-gap ceiling: local-feedback; exact partner, selected non-poured net only.'
+    - refdes:
+      - U_AFE8
+      - R_OUT8N
+      nets:
+      - OPA_N8
+      max_mm: 3.0
+      why: 'Engineering copper-gap ceiling: series-output; exact partner, selected non-poured net only.'
+    - refdes:
+      - R_X8N
+      - C_FILTER8N1
+      nets:
+      - FILTER8N
+      max_mm: 6.5
+      why: ADR0025 engineering copper-gap ceiling for each independent ground shunt; not a routed-loop or stability
+        acceptance.
+    - refdes:
+      - R_X8N
+      - C_FILTER8N2
+      nets:
+      - FILTER8N
+      max_mm: 6.5
+      why: ADR0025 engineering copper-gap ceiling for each independent ground shunt; not a routed-loop or stability
+        acceptance.
+    - refdes:
+      - R_OUT8N
+      - C_FILTER8N1
+      nets:
+      - FILTER8N
+      max_mm: 7.5
+      why: ADR0025 engineering copper-gap ceiling for each independent ground shunt; not a routed-loop or stability
+        acceptance.
+    - refdes:
+      - R_OUT8N
+      - C_FILTER8N2
+      nets:
+      - FILTER8N
+      max_mm: 7.5
+      why: ADR0025 engineering copper-gap ceiling for each independent ground shunt; not a routed-loop or stability
+        acceptance.
+    - refdes:
+      - U_AFE1
+      - R_IN1P
+      nets:
+      - AIN_P1
+      max_mm: 1.5
+      why: ADR0021 current limiter sits at its exact noninverting input.
+    - refdes:
+      - U_AFE1
+      - R_IN1N
+      nets:
+      - AIN_N1
+      max_mm: 1.5
+      why: ADR0021 current limiter sits at its exact noninverting input.
+    - refdes:
+      - U_AFE2
+      - R_IN2P
+      nets:
+      - AIN_P2
+      max_mm: 1.5
+      why: ADR0021 current limiter sits at its exact noninverting input.
+    - refdes:
+      - U_AFE2
+      - R_IN2N
+      nets:
+      - AIN_N2
+      max_mm: 1.5
+      why: ADR0021 current limiter sits at its exact noninverting input.
+    - refdes:
+      - U_AFE3
+      - R_IN3P
+      nets:
+      - AIN_P3
+      max_mm: 1.5
+      why: ADR0021 current limiter sits at its exact noninverting input.
+    - refdes:
+      - U_AFE3
+      - R_IN3N
+      nets:
+      - AIN_N3
+      max_mm: 1.5
+      why: ADR0021 current limiter sits at its exact noninverting input.
+    - refdes:
+      - U_AFE4
+      - R_IN4P
+      nets:
+      - AIN_P4
+      max_mm: 1.5
+      why: ADR0021 current limiter sits at its exact noninverting input.
+    - refdes:
+      - U_AFE4
+      - R_IN4N
+      nets:
+      - AIN_N4
+      max_mm: 1.5
+      why: ADR0021 current limiter sits at its exact noninverting input.
+    - refdes:
+      - U_AFE5
+      - R_IN5P
+      nets:
+      - AIN_P5
+      max_mm: 1.5
+      why: ADR0021 current limiter sits at its exact noninverting input.
+    - refdes:
+      - U_AFE5
+      - R_IN5N
+      nets:
+      - AIN_N5
+      max_mm: 1.5
+      why: ADR0021 current limiter sits at its exact noninverting input.
+    - refdes:
+      - U_AFE6
+      - R_IN6P
+      nets:
+      - AIN_P6
+      max_mm: 1.5
+      why: ADR0021 current limiter sits at its exact noninverting input.
+    - refdes:
+      - U_AFE6
+      - R_IN6N
+      nets:
+      - AIN_N6
+      max_mm: 1.5
+      why: ADR0021 current limiter sits at its exact noninverting input.
+    - refdes:
+      - U_AFE7
+      - R_IN7P
+      nets:
+      - AIN_P7
+      max_mm: 1.5
+      why: ADR0021 current limiter sits at its exact noninverting input.
+    - refdes:
+      - U_AFE7
+      - R_IN7N
+      nets:
+      - AIN_N7
+      max_mm: 1.5
+      why: ADR0021 current limiter sits at its exact noninverting input.
+    - refdes:
+      - U_AFE8
+      - R_IN8P
+      nets:
+      - AIN_P8
+      max_mm: 1.5
+      why: ADR0021 current limiter sits at its exact noninverting input.
+    - refdes:
+      - U_AFE8
+      - R_IN8N
+      nets:
+      - AIN_N8
+      max_mm: 1.5
+      why: ADR0021 current limiter sits at its exact noninverting input.
+layout_refs:
+  - {tier: 1, reached: true, artifact: "TI SBOS513F sections9/10 and Figure49, PDF p28; section7.3.8, p19", why: "Reopened exact hash-selected OPA2320 family primary2026-09-09: local0.1uF supply bypass, minimum-inductance return and short input/feedback placement. Figure49 is a family single-amplifier example, not exact carrier copper or proof of the complete differential filter loop."}
+  - {tier: 2, reached: false, artifact: "exact OPA2320 editable evaluation layout", why: "No exact editable manufacturer-routed reference is retained for this carrier. The source geometry is an engineering proposal; fresh native layout and filter-loop qualification remain owed."}

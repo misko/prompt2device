@@ -1,0 +1,42 @@
+mpn: X322524MOB4SI
+manufacturer: YXC Crystal Oscillators
+type: quartz_crystal
+status: active
+value: 24MHz
+package: 3.2x2.5mm 4-pad
+footprint: crow_usb_digital:YXC_YSX321SL_3225_4Pin
+escape: {style: passive, pitch: 1.7, tier_required: jlc_2layer_default, checked: "YXC YSX321SL p1 suggested layout, pad-center pitch 2.2 x 1.7 mm; native escape check owed."}
+datasheet:
+  doc_id: YXC YSX321SL
+  revision: 2021-02-27 PDF metadata
+  url: https://www.yxc.hk/uploadfiles/2021/11/YSX321SL.pdf
+  local: YSX321SL.pdf
+  sha256: 8448fb1ea37694ca77ad3d9579b5d10921746ccd8b3ff79349ef61322453340c
+  fetched: 2026-09-23
+  pages: 2
+  provenance: "YXC-hosted primary series PDF; page 1 drawing visually checked against current Epson sheet and source land. Exact 12 pF / tolerance code cross-checked to direct JLC C70590 catalog record."
+pins: {1: CRYSTAL, 2: CASE_GND, 3: CRYSTAL, 4: CASE_GND}
+limits:
+  frequency: 24MHz fundamental
+  load_capacitance: 12pF
+  esr_max: 50ohm
+  frequency_tolerance_25c: "+/-10ppm"
+  frequency_stability: "+/-20ppm over -40C to +85C"
+  operating_temperature: "-40C to +85C for exact C70590 listing"
+  shunt_capacitance_max: 7pF
+  drive_level: "1-200uW maximum; 100uW typical (series sheet)"
+verified: "YXC YSX321SL primary p1: pins 1/3 diagonal crystal, pins 2/4 case ground; 3225 body and suggested 1.4 x 1.2 mm lands at 2.2 x 1.7 mm centers. Direct JLC C70590 exact code: 24MHz, CL12pF, +/-10ppm initial, +/-20ppm stability, 50ohm ESR."
+sourcing:
+  lcsc: C70590
+  alternates: []
+layout:
+  source: "YXC YSX321SL p1 recommended lands; XMOS XU316 hardware example for 12 pF crystal loading"
+  reviewed: 2026-09-23
+  notes:
+    - "Current C_XTAL_IN/C_XTAL_OUT are 22pF each. Symmetric ideal network is 11pF plus pin/trace stray; 1pF stray produces the rated 12pF. The XMOS example selects these same 22pF capacitors for a 12pF crystal. Actual stray is unmeasured; first-article oscillator start, frequency and drive remain required."
+    - "YXC recommended land is 1.4 x 1.2 mm at 2.2 x 1.7 mm centers. Epson recommendation is 1.4 x 1.2 mm at 2.2 x 1.6 mm centers; prior project native footprint used 1.2 x 1.1 mm at 2.4 x 1.9 mm centers. New YXC source land replaces that geometry."
+    - "The top-view diagram names 1/3 crystal and 2/4 cover ground. Preserve Y_XU net assignment: pin1 XTAL_IN_R, pin3 XTAL_OUT, pins2/4 GND."
+    - "YXC +/-(10+20)ppm initial-plus-temperature bound at -40..85C is within 500ppm USB reference budget before load pulling/aging, which require first-article confirmation."
+layout_refs:
+  - {tier: 1, reached: true, artifact: "YXC YSX321SL primary p1 top-view connection and suggested layout"}
+  - {tier: 2, reached: false, artifact: "Exact routed YXC/XU316 oscillator reference", why: "No exact routed reference is retained; board parasitics and oscillator frequency require measurement."}

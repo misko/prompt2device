@@ -14,7 +14,7 @@ export interface CrowUsbDigitalProps { net?: (canonicalName: string) => string }
 const defaultNet=(name:string)=>`net.${ /^\d/.test(name) ? `N${name}` : name }`
 const supplier=(jlc:string)=>({jlcpcb:jlc?[jlc]:[]})
 const sourced=(mpn:string,jlc="")=>jlc||({
- "744373240047":"C19270343","ASFL1-24.576MHZ-EC-T":"C17566269","CC0402KRX5R5BB105":"C106253","FA-238 24.0000MD30X-W5":"C2650433","FTSH-105-01-L-DV-K":"C5155080",
+ "744373240047":"C19270343","ASFL1-24.576MHZ-EC-T":"C17566269","CC0402KRX5R5BB105":"C106253","X322524MOB4SI":"C70590","FTSH-105-01-L-DV-K":"C5155080",
  "GRM1555C1H220JA01D":"C76960","GRM1555C1H102JA01D":"C76947","RC0402FR-0733RL":"C138002","RC0402FR-0710KL":"C60490","RC0402FR-07100KL":"C60491","RC0402FR-071ML":"C138033","RC0402FR-074K7L":"C105871","GRM155R71H103KA88D":"C77019","CL21A106KOCLRNC":"C318695","CRCW0402680RFKED":"C482224",
  "RT0402BRD07100KL":"C852472","RT0402BRD07200KL":"C728556","SN74AUP3G34DCUR":"C2675543",
  "SN74AXC4T245PWR":"C2867798","SN74LVC1G04DCKR":"C8207","SN74LVC1G125DCKT":"C2675550",
@@ -55,6 +55,8 @@ const P=({n,x,y,w,h}:any)=><smtpad portHints={[String(n)]} pcbX={`${x}mm`} pcbY=
 function WurthLHMI4020Land(){return <footprint><P n={1} x={-1.85} y={0} w={1.5} h={2.4}/><P n={2} x={1.85} y={0} w={1.5} h={2.4}/></footprint>}
 // ASFL1 primary drawing: 2.54 x 2.2 mm pad-center pitch, 1.7 x 1.5 mm lands.
 function Osc5032Land(){return <footprint><P n={1} x={-1.27} y={-1.1} w={1.7} h={1.5}/><P n={2} x={1.27} y={-1.1} w={1.7} h={1.5}/><P n={3} x={1.27} y={1.1} w={1.7} h={1.5}/><P n={4} x={-1.27} y={1.1} w={1.7} h={1.5}/></footprint>}
+/** YXC YSX321SL primary drawing: 2.2 x 1.7 mm pad centers, 1.4 x 1.2 mm lands. */
+function YxcYSX321SLLand(){return <footprint><P n={1} x={-1.1} y={-0.85} w={1.4} h={1.2}/><P n={2} x={1.1} y={-0.85} w={1.4} h={1.2}/><P n={3} x={1.1} y={0.85} w={1.4} h={1.2}/><P n={4} x={-1.1} y={0.85} w={1.4} h={1.2}/></footprint>}
 function SC70_5Land(){return <footprint><P n={1} x={-1} y={0.65} w={0.6} h={1}/><P n={2} x={-1} y={0} w={0.6} h={1}/><P n={3} x={-1} y={-0.65} w={0.6} h={1}/><P n={4} x={1} y={-0.65} w={0.6} h={1}/><P n={5} x={1} y={0.65} w={0.6} h={1}/></footprint>}
 function SM8_DCTLand(){return <footprint>{[1,2,3,4].map((n,i)=><P key={n} n={n} x={-1.45} y={(1.5-i)*0.65} w={0.6} h={1.2}/>)}{[5,6,7,8].map((n,i)=><P key={n} n={n} x={1.45} y={(i-1.5)*0.65} w={0.6} h={1.2}/>)}</footprint>}
 function FTSH2x5Land(){return <footprint>{Array.from({length:10},(_,i)=>{const row=Math.floor(i/2),col=i%2;return <P key={i+1} n={i+1} x={col?0.635:-0.635} y={(2-row)*1.27} w={0.7} h={1.5}/>})}</footprint>}
@@ -295,7 +297,7 @@ export function CrowUsbDigital({net=defaultNet}:CrowUsbDigitalProps={}){
   <Chip name="FB_PLL" manufacturerPartNumber="BLM15AG601SN1D" jlc="C76884" footprint="0402" pinLabels={{pin1:"1",pin2:"2"}} connections={{pin1:n("0V9"),pin2:n("PLL_0V9")}} />
   <C name="C_PLL_1U" value="1uF" a="PLL_0V9" b="GND" mpn="CC0402KRX5R5BB105" n={n} /><C name="C_PLL_100N" value="100nF" a="PLL_0V9" b="GND" n={n} />
 
-  <Chip name="Y_XU" manufacturerPartNumber="FA-238 24.0000MD30X-W5" jlc="" footprint="crystal_3225_4pin"
+  <Chip name="Y_XU" manufacturerPartNumber="X322524MOB4SI" jlc="C70590" footprint={<YxcYSX321SLLand/>}
    pinLabels={{pin1:"X1",pin2:"CASE",pin3:"X2",pin4:"CASE"}} connections={{pin1:n("XTAL_IN_R"),pin2:n("GND"),pin3:n("XTAL_OUT"),pin4:n("GND")}} />
   <R name="R_XTAL_DRIVE" value="680" a="XTAL_IN" b="XTAL_IN_R" mpn="CRCW0402680RFKED" n={n} />
   <R name="R_XTAL_FB" value="1M" a="XTAL_IN" b="XTAL_OUT" mpn="RC0402FR-071ML" n={n} />

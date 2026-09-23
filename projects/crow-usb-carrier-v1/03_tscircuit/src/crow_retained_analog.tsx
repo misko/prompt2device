@@ -113,7 +113,7 @@ const AnalogChannel = ({ index, vmid, n }: any) => (
     <R name={`R_B${index}N`} value="100k" a={`BIAS_N${index}`} b={vmid} jlc="C60491" mpn="RC0402FR-07100KL" n={n} />
     <R name={`R_IN${index}P`} value="10k" a={`BIAS_P${index}`} b={`AIN_P${index}`} jlc="C60490" mpn="RC0402FR-0710KL" n={n} />
     <R name={`R_IN${index}N`} value="10k" a={`BIAS_N${index}`} b={`AIN_N${index}`} jlc="C60490" mpn="RC0402FR-0710KL" n={n} />
-    <Chip name={`U_AFE${index}`} manufacturerPartNumber="OPA2320AID" jlc="C2861439" footprint="soic8"
+    <Chip name={`U_AFE${index}`} manufacturerPartNumber="OPA2320AIDR" jlc="C2863402" footprint="soic8"
       pinLabels={{ pin1: "OUTA", pin2: "A_NEG", pin3: "A_POS", pin4: "VNEG", pin5: "B_POS", pin6: "B_NEG", pin7: "OUTB", pin8: "VPOS" }}
       connections={{ pin1: n(`OPA_P${index}`), pin2: n(`FB_P${index}`), pin3: n(`AIN_P${index}`), pin4: n("GND"), pin5: n(`AIN_N${index}`), pin6: n(`FB_N${index}`), pin7: n(`OPA_N${index}`), pin8: n("3V3_ADC") }} />
     <R name={`R_X${index}P`} value="300" a={`FB_P${index}`} b={`FILTER${index}P`} jlc="C138010" mpn="RC0402FR-07300RL" n={n} />
