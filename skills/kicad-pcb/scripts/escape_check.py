@@ -126,6 +126,7 @@ BGA_LAND_MIN = 0.25
 BGA_FILLED_VIA_MIN = 0.35
 BGA_VIA_PAD_GAP_MIN = 0.10
 TMUX4827_COUPON_SHA256 = "6f39a73aad46444e6b2256ced0b64a1dea5b9792801c3f705f8b691727ce83b6"
+TMUX4827_FOOTPRINT_SHA256 = "54b81c012d1fe62b93ccb83b877aca3f6452764e1c5bf11a055750eef1662d58"
 TMUX4827_BALL_FUNCTIONS = {
     "A1": "S1A_UNUSED", "A2": "SEL", "A3": "S2A_UNUSED",
     "B1": "D1", "B2": "GND", "B3": "D2",
@@ -204,6 +205,8 @@ def check_center_via_evidence(part_yaml, y, t):
             continue
         if field == "coupon" and record["sha256"] != TMUX4827_COUPON_SHA256:
             probs.append(f"{mpn}: coupon differs from independently reviewed exact diagnostic board")
+        if field == "native_footprint" and record["sha256"] != TMUX4827_FOOTPRINT_SHA256:
+            probs.append(f"{mpn}: native footprint differs from reviewed exact copper/mask/paste lands")
         path = (Path(part_yaml).parent / str(record["local"])).resolve()
         if not path.is_file() or hashlib.sha256(path.read_bytes()).hexdigest() != record["sha256"]:
             probs.append(f"{mpn}: {field} missing or SHA-256 mismatch: {path}")

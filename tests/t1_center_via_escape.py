@@ -94,6 +94,16 @@ def t_center_footprint_tamper():
     must_fail(run([KPY, TOOL, part]), 'native geometry mismatch', 'native footprint ball A3 geometry differs')
 
 
+@test('center-via escape rejects self-hashed copper-layer deletion', kind='known_bad')
+def t_center_no_copper():
+    part, fp, _coupon = fixture()
+    fp.write_text(fp.read_text().replace('(layers "F.Cu" "F.Paste" "F.Mask")',
+                                         '(layers "F.Paste" "F.Mask")', 1))
+    update(part, lambda d: d['escape']['center_via_topology']['native_footprint'].__setitem__(
+        'sha256', hashlib.sha256(fp.read_bytes()).hexdigest()))
+    must_fail(run([KPY, TOOL, part]), 'no pad copper', 'reviewed exact copper/mask/paste lands')
+
+
 @test('center-via escape rejects non-ground interior ball', kind='known_bad')
 def t_center_wrong_net():
     part, _fp, _coupon = fixture()
