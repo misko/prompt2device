@@ -632,10 +632,12 @@ class BoardBuilder:
         self.add_fiducials()
         placed = self.place_parts()
         self.check_pads_present()
-        self.promote_heatsink_pads_to_vias()
         self.run_asserts()
         self.legalize()
         self.apply_post_anchors()
+        # Board-level vias do not travel when their owner footprint moves.
+        # Emit from final pad geometry, then check the finished copper.
+        self.promote_heatsink_pads_to_vias()
         self.check_emitted_via_collisions()
         self.check_placement_collisions()
         self.normalize_footprint_text()
@@ -1296,8 +1298,7 @@ class BoardBuilder:
         intended to receive an advanced fill/cap process.
         """
         cfg = self.cfg.get("thermal_vias") or {}
-        # Keep explicit vias attached to their authored owner for the final
-        # post-legalizer copper check.  The footprint may move after emission.
+        # Keep emitted-via provenance for final copper/owner checks.
         self.emitted_vias = []
         fields = cfg.get("fields") or []
         refs = cfg.get("promote_heatsink_pads") or []
@@ -1386,7 +1387,7 @@ class BoardBuilder:
                                     f"{other.GetNumber()}")
                     self.board.Add(via)
                     self.emitted_vias.append(
-                        (f"thermal_vias.fields[{i}]", ref, padnum, via))
+                        (f"thermal_vias.fields[{i}]", ref, padnum, via, True))
                     emitted += 1
         if not isinstance(refs, list) or any(not isinstance(r, str) for r in refs):
             die("thermal_vias.promote_heatsink_pads must be a list of refdes")
@@ -1428,7 +1429,7 @@ class BoardBuilder:
                 self.board.Add(via)
                 self.emitted_vias.append(
                     ("thermal_vias.promote_heatsink_pads", ref,
-                     pad.GetNumber(), via))
+                     pad.GetNumber(), via, False))
                 promoted += 1
             # The generated footprint intentionally no longer matches its
             # library copy: its marked holes are now true board vias. An
@@ -1451,13 +1452,23 @@ class BoardBuilder:
                  "footprint(s) as board-level vias")
 
     def check_emitted_via_collisions(self):
-        """Recheck real via/pad copper after floating and post-anchor moves.
+        """Require field-via attachment and no different-net copper contact.
 
-        Emission already rejects other-net pads at the initial pose.  A later
-        legalizer move changes the footprint's pad coordinates while the
-        board-level via stays put, so that initial check can become stale.
+        Emission follows final placement: the legalizer never moves a
+        board-level via with its owner.  Promoted heatsink pads were replaced
+        by vias and thus have no remaining numbered pad to reopen.
         """
-        for source, ref, padnum, via in getattr(self, "emitted_vias", ()):
+        for source, ref, padnum, via, needs_pad in getattr(self, "emitted_vias", ()):
+            if needs_pad:
+                owner = self.fps[ref]
+                targets = [pad for pad in owner.Pads()
+                           if (pad.GetNumber() == padnum and
+                               pad.GetNetCode() == via.GetNetCode() and
+                               pad.GetNetCode() > 0)]
+                if not any(pad.HitTest(via.GetPosition(), 0, pcbnew.F_Cu)
+                           for pad in targets):
+                    die(f"{source}: emitted {ref}.{padnum} via outside its "
+                        "current same-net owner pad after placement")
             for fp in self.board.GetFootprints():
                 for pad in fp.Pads():
                     if (pad.GetNetCode() <= 0 or
@@ -1597,10 +1608,10 @@ class BoardBuilder:
                 if not common_layers:
                     continue
                 if r1 == r2:
-                    # Intentional same-net composite/fused lands and netless
-                    # mechanical pads remain legal.  Only actual different-net
-                    # copper inside one native footprint is a self-short.
-                    if (p1.GetNetCode() <= 0 or p2.GetNetCode() <= 0 or
+                    # Intentional assigned same-net composite/fused lands are
+                    # legal.  Unassigned SMD copper is still physical copper;
+                    # true NPTH/mechanical holes were excluded by CuStack.
+                    if (p1.GetNetCode() > 0 and
                             p1.GetNetCode() == p2.GetNetCode()):
                         continue
                     if any(p1.GetEffectiveShape(layer).Collide(

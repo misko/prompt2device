@@ -1560,10 +1560,13 @@ nets={}
 for name in ('GND','KEY_NC','PWR'):
     n=p.NETINFO_ITEM(b,name);b.Add(n);nets[name]=n
 f=p.FOOTPRINT(b);f.SetReference('J_JTAG');f.SetPosition(p.VECTOR2I_MM(0,0));b.Add(f)
-def pad(num,net,x,y,w=1.0,h=1.0,back=False):
-    q=p.PAD(f);q.SetNumber(num);q.SetAttribute(p.PAD_ATTRIB_SMD)
+def pad(num,net,x,y,w=1.0,h=1.0,back=False,mechanical=False):
+    q=p.PAD(f);q.SetNumber(num)
+    q.SetAttribute(p.PAD_ATTRIB_NPTH if mechanical else p.PAD_ATTRIB_SMD)
     q.SetShape(p.PAD_SHAPE_RECT);q.SetSize(p.VECTOR2I_MM(w,h))
-    layers=p.LSET();layers.AddLayer(p.B_Cu if back else p.F_Cu)
+    layers=p.LSET()
+    if mechanical:q.SetDrillSize(p.VECTOR2I_MM(.5,.5))
+    else:layers.AddLayer(p.B_Cu if back else p.F_Cu)
     q.SetLayerSet(layers);q.SetPosition(p.VECTOR2I_MM(x,y))
     if net:q.SetNet(nets[net])
     f.Add(q)
@@ -1578,8 +1581,10 @@ elif case=='same_net':
 elif case=='different_sides':
     pad('1','GND',0,0);pad('2','PWR',0,0,back=True)
 elif case=='netless_mechanical':
+    pad('1','GND',0,0);pad('M','',0,0,mechanical=True)
+elif case=='unassigned_copper':
     pad('1','GND',0,0);pad('M','',0,0)
-elif case in ('via_short','via_same_net'):
+elif case in ('via_short','via_same_net','via_orphan'):
     f.SetReference('U_LDO')
     pad('11','GND',0,0,3.0,3.0)
     pad('9','GND' if case=='via_same_net' else 'PWR',1.75,0,.5,.5)
@@ -1587,9 +1592,10 @@ elif case in ('via_short','via_same_net'):
     v.SetWidth(p.FromMM(.5));v.SetDrill(p.FromMM(.2))
     v.SetLayerPair(p.F_Cu,p.B_Cu);v.SetNet(nets['GND']);b.Add(v)
     # At emission the via clears pad 9; moving the owner leaves the via behind.
-    f.SetPosition(p.VECTOR2I_MM(-.6,0))
+    f.SetPosition(p.VECTOR2I_MM(-3.0 if case=='via_orphan' else -.6,0))
     q=BoardBuilder.__new__(BoardBuilder);q.board=b
-    q.emitted_vias=[('thermal_vias.fields[0]','U_LDO','11',v)]
+    q.fps={'U_LDO':f}
+    q.emitted_vias=[('thermal_vias.fields[0]','U_LDO','11',v,True)]
     try:q.check_emitted_via_collisions()
     except FloorplanError as e:print('@@FAIL '+str(e))
     else:print('@@PASS')
@@ -1620,6 +1626,14 @@ def t_self_pad_nonshorts():
         contains(_self_copper_probe(case), 'PASS', case)
 
 
+@test('P-COLLIDE rejects unassigned SMD copper crossing a netted land',
+      kind='known_bad')
+def t_kb_unassigned_copper_short():
+    result = _self_copper_probe('unassigned_copper')
+    for fragment in ('FAIL', 'SELF-SHORT', 'J_JTAG.1', 'J_JTAG.M'):
+        contains(result, fragment, 'unassigned copper overlap')
+
+
 @test('post-placement via check rejects owner signal-pad short',
       kind='known_bad')
 def t_kb_moved_owner_via_short():
@@ -1627,6 +1641,14 @@ def t_kb_moved_owner_via_short():
     for fragment in ('FAIL', 'U_LDO.11', 'U_LDO.9',
                      'different-net', 'after placement'):
         contains(result, fragment, 'moved owner via short diagnosis')
+
+
+@test('post-placement via check rejects orphaned owner field via',
+      kind='known_bad')
+def t_kb_moved_owner_via_orphan():
+    result = _self_copper_probe('via_orphan')
+    for fragment in ('FAIL', 'U_LDO.11', 'outside', 'owner pad'):
+        contains(result, fragment, 'orphaned field-via diagnosis')
 
 
 @test('post-placement via check accepts its own ground exposed pad')
