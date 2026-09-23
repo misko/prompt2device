@@ -32,8 +32,8 @@ rechecked from its owner and pin limits.
 The provisional policy retains the external carrier supply and eight powered
 spokes. The USB bridge is provisionally carrier-powered, so its audio clocks,
 ADC and control logic can share a controlled local startup/shutdown sequence.
-The digital source candidate uses 0.9 V core, 1.8 V on every XU316 I/O bank, and
-separate 3.3 V USB/audio support power. Boot memory is exact W25Q128JWSIQ,
+The digital source uses 0.9 V core, nominal 1.860 V on the net named 1V8 for every XU316 I/O bank, and
+nominal 3.318 V on 3V3X for USB/audio support. The adjustable-divider DC screens are 1.822–1.899 V and 3.243–3.394 V respectively; executable feedback bounds are in power_tree.yaml. Boot memory is exact W25Q128JWSIQ,
 a 1.8 V, 128-Mbit (16-MiB), fixed-QE QSPI NOR selected for the XU316 ROM EBh path.
 The repaired 5 V input supply candidate
 is TPSM63603V5RDHR; its land pattern and thermal implementation remain under

@@ -1,14 +1,14 @@
 {
-  "blocker": "D5/D7 require JLC population and build-plus-150 stock; selected XMOS has 46 versus 155 required; ADC and remaining SMD substitutions unqualified. Checkpoint is historical before OPA/crystal source changes.",
+  "blocker": "D5/D7 source admission remains held: XMOS observed46/155; ADC, main buck, analog switches and two THT sourcing rows unresolved. Reviewed diagnostic source has506components; canonical493-reference schematic checkpoint is historical. Carrier ambient and private-XMOS inventory policy questions remain unanswered.",
   "checkpoint": {
     "path": "03_tscircuit/build/circuit.json",
     "sha256": "ead8cb33c07afcb9dd371a5c61188c8f2fde59c55c9e703400d5b21765daa336",
     "size": 4382904
   },
-  "next_command": "Qualify stocked USB/ADC and remaining source alternatives, regenerate and review source admission, then resume the schematic and P1-P5 block graph",
+  "next_command": "Close remaining exact-source stock/engineering gaps, including inherited core-feedback discrepancy, then regenerate and review source admission before schematic and P1-P5 block placement",
   "phase": "sourcing",
   "project": "crow-usb-carrier-v1",
   "receipts": [],
   "schema": 1,
-  "state_id": "da8bc23e8f08ee671e01c5824f2f49d51afb5a8a782bd1a5a23de9ff088461ce"
+  "state_id": "299a18e65d43fcb35aa5d277a4163eaf0b5653687d3f488f743338a2ca772179"
 }

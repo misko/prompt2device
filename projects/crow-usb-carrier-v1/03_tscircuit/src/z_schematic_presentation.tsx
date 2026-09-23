@@ -41,7 +41,7 @@ const explicitDigitalPose = (ref: string): Pose | undefined => {
   // rails/reset signals cross pages by their existing net labels; these poses
   // change presentation only and do not create electrical connections.
   const railPower: Record<string,[string,number,number,number?]> = {
-    R_ADC_OK_TOP:["adc_clock_control",-9,-8,-90], R_ADC_OK_BOT:["adc_clock_control",-7,-8,-90],
+    R_ADC_OK_TOP:["adc_clock_control",-9,-8,-90], R_ADC_OK_BOT:["adc_clock_control",-5,-8,-90],
     U_3V3X:["digital_power_3v3x",-5,2], L_U_3V3X:["digital_power_3v3x",0,2],
     C_U_3V3X_IN_1:["digital_power_3v3x",-6,-1,-90], C_U_3V3X_IN_2:["digital_power_3v3x",-3,-1,-90],
     C_U_3V3X_OUT_1:["digital_power_3v3x",4,-1,-90],

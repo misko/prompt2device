@@ -127,3 +127,11 @@ limits. Unmeasured, stale or failed items remain open. Passing one test family
 does not imply another: electrical power, connector service, USB signaling,
 audio performance and physical thermal/fault qualification have separate
 measurements. Reopen affected tests after any material source or assembly change.
+
+## Stocked adjustable-rail and clock source qualification
+
+For the reviewed TPS62825/TPS389001 source substitutions, measure 1V8 at its actual flash/XU loads during startup, load steps, steady operation and shutdown. Nominal1.860V, source DC screen1.822–1.899V; combined low-side ripple/ground deviation at reset release must stay below20mV, and combined high-side ripple/overshoot/ground deviation below40mV, while actual flash supply remains within1.70–1.95V. These are project engineering acceptance allocations, not guaranteed converter transient specifications.
+
+Verify the 3V3X nominal3.318V, source DC screen3.243–3.394V, and the held3V3_ADC rail against supervisor release corners3.1743V; preserve the declared20mV low-side ripple/ground allocation. Capture monotonic ramps, CORE_EN, XU_RESET_N, ADC_DIGITAL_OK and ADC_OK to confirm normal startup and held-analog powerdown behavior. Arbitrary fast local collapse has no promised reset-before-operating-minimum guarantee; characterize recovery and ensure no harmful back-power/injection. Keep the existing startup, shared-rail protection and quiet shutdown tests.
+
+For SX5M24.576M20F30TNN, verify actual oscillator output loading, edge/startup timing and clock phase at both consumers. Its exact manufacturer document does not specify phase jitter; do not claim measured-equivalent low-jitter audio performance until clock/audio characterization is complete.
