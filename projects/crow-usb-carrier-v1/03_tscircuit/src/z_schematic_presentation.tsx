@@ -46,9 +46,11 @@ const explicitDigitalPose = (ref: string): Pose | undefined => {
     C_U_3V3X_IN_1:["digital_power_3v3x",-6,-1,-90], C_U_3V3X_IN_2:["digital_power_3v3x",-3,-1,-90],
     C_U_3V3X_OUT_1:["digital_power_3v3x",4,-1,-90],
     R_3V3X_FB_TOP:["digital_power_3v3x",5,-3], R_3V3X_FB_BOTTOM:["digital_power_3v3x",9,-3], C_3V3X_FF:["digital_power_3v3x",8,1,-90],
-    U_XU_3V3_OK:["digital_power_3v3x",1,-4],
-    R_XU_3V3_OK_TOP:["digital_power_3v3x",9,-1,-90], R_XU_3V3_OK_BOT:["digital_power_3v3x",10,-4,-90],
-    C_XU_3V3_OK_VDD:["digital_power_3v3x",-5,-4,-90], C_XU_3V3_OK_CT:["digital_power_3v3x",7,-4,-90],
+    // Keep the 3V3 supervisor/reset cluster below the feedback divider so its
+    // RESET_N label cannot be read as part of the N3V3X feedback network.
+    U_XU_3V3_OK:["digital_power_3v3x",-1,-8],
+    R_XU_3V3_OK_TOP:["digital_power_3v3x",10,-6,-90], R_XU_3V3_OK_BOT:["digital_power_3v3x",10,-10,-90],
+    C_XU_3V3_OK_VDD:["digital_power_3v3x",-7,-8,-90], C_XU_3V3_OK_CT:["digital_power_3v3x",6,-8,-90],
 
     U_1V8:["digital_power_1v8",-5,2], L_U_1V8:["digital_power_1v8",0,2],
     C_U_1V8_IN_1:["digital_power_1v8",-6,-1,-90], C_U_1V8_IN_2:["digital_power_1v8",-3,-1,-90],

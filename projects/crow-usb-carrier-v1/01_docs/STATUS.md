@@ -1,18 +1,17 @@
 # Project status
 
-<!-- pause-state:6305909a5b6650860bf2b72c87e34be67443f2df055c651fdd6b197ac75a4c7a -->
+<!-- pause-state:415941ef3e201c5cd34c6ad311820e2815a0883eea8f9b6dc617936e5bb4f9b6 -->
 
-- Phase: `schematic`
+- Phase: `placement`
 - State: **PAUSED**
-- Checkpoint: `06_build/checkpoints/schematic.json` (`545adc0b60a8`)
-- Blocker: New composed circuit416d4f78 passed producer diagnostics; E-FAULT correctly refuses old reviewed digest. Exact electrical comparison and independent review required before digest update and canonical schematic refresh. No new P1 admitted; connector physical holds remain.
-- Next command: `Review exact new circuit and fault-envelope implications, then reproduce and refresh sourcing/topology/readability. Reassess exhausted placement campaign before any new PCB generation.`
+- Checkpoint: `06_build/checkpoints/schematic.json` (`2fb4dd626750`)
+- Blocker: Canonical schematic and public prelayout accepted. Placement successor admission pending; both original P1 failures remain consumed. Connector FULL has 19 outstanding physical targets.
+- Next command: `Admit one reviewed P1 successor, generate and measure an isolated candidate; do not promote or route while owning placement and physical checks remain open.`
 
 ## Bound receipts
 
-- `01_docs/research/2026-09-23-dlc-usb-composed-checkpoint.md` — `72b281486236`
-- `08_reviews/2026-09-23_dlc-regulator_terra_source.md` — `a64205d0fad0`
-- `08_reviews/2026-09-23_usb4215_terra_source.md` — `ed5225fece06`
+- `08_reviews/2026-09-23_render-repair_terra_schematic_render.md` — `ea609ad2de21`
+- `08_reviews/2026-09-23_render-repair_terra_topology.md` — `d7a8d6f34de6`
 
 This file is generated from `01_docs/pause_state.json`; edit the manifest with
 `pause_state.py record`, not this view.

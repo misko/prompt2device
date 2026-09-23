@@ -1,12 +1,12 @@
 # Resume
 
-<!-- pause-state:6305909a5b6650860bf2b72c87e34be67443f2df055c651fdd6b197ac75a4c7a -->
+<!-- pause-state:415941ef3e201c5cd34c6ad311820e2815a0883eea8f9b6dc617936e5bb4f9b6 -->
 
 Canonical state: `01_docs/pause_state.json`
 
 1. Verify: `python3 skills/pcb-design/scripts/pause_state.py verify .`
-2. Confirm blocker: New composed circuit416d4f78 passed producer diagnostics; E-FAULT correctly refuses old reviewed digest. Exact electrical comparison and independent review required before digest update and canonical schematic refresh. No new P1 admitted; connector physical holds remain.
-3. Resume with: `Review exact new circuit and fault-envelope implications, then reproduce and refresh sourcing/topology/readability. Reassess exhausted placement campaign before any new PCB generation.`
+2. Confirm blocker: Canonical schematic and public prelayout accepted. Placement successor admission pending; both original P1 failures remain consumed. Connector FULL has 19 outstanding physical targets.
+3. Resume with: `Admit one reviewed P1 successor, generate and measure an isolated candidate; do not promote or route while owning placement and physical checks remain open.`
 
 The authenticated checkpoint is `06_build/checkpoints/schematic.json` at
-`545adc0b60a8198eca489362e59621681687ccac7725ea9a2241fa21a7862816`.
+`2fb4dd626750114476150d550d88cf15c0d5a2deb5d8e971e1be67a2a7bde856`.

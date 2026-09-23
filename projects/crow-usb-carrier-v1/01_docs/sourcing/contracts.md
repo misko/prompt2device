@@ -48,6 +48,7 @@ mutable file: it is an INPUT, and a re-read replaces the entry it re-reads.
 | `adc-composed-population-2026-09-23.md` | dated independent population and aggregate-stock audit of the composed ADC source, bound to retained catalog-response hashes | observation only; no allocation, release or order acceptance |
 | `xmos-stock-refresh-2026-09-23-0552.md` | dated exact-code XMOS recheck with raw catalog-response hash | observation only; no stock reservation or order acceptance |
 | `jlc-stock-d10-2026-09-23-1422.md` | dated full JLC population refresh under D10, including documented exact Molex catalog alias reconciliation | observation only; raw and original/regraded reports retained under ignored verification; no allocation or order acceptance |
+| `jlc-stock-dlc-usb-2026-09-23.md` | dated composed-circuit direct-public and jlcsearch comparison | observation only; raw/cache evidence remains local; no allocation or order authority |
 | `contracts.md` | this file | |
 
 ## Optional public distributor design policy

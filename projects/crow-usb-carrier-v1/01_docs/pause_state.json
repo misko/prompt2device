@@ -1,30 +1,25 @@
 {
-  "blocker": "New composed circuit416d4f78 passed producer diagnostics; E-FAULT correctly refuses old reviewed digest. Exact electrical comparison and independent review required before digest update and canonical schematic refresh. No new P1 admitted; connector physical holds remain.",
+  "blocker": "Canonical schematic and public prelayout accepted. Placement successor admission pending; both original P1 failures remain consumed. Connector FULL has 19 outstanding physical targets.",
   "checkpoint": {
     "path": "06_build/checkpoints/schematic.json",
-    "sha256": "545adc0b60a8198eca489362e59621681687ccac7725ea9a2241fa21a7862816",
+    "sha256": "2fb4dd626750114476150d550d88cf15c0d5a2deb5d8e971e1be67a2a7bde856",
     "size": 1152
   },
-  "next_command": "Review exact new circuit and fault-envelope implications, then reproduce and refresh sourcing/topology/readability. Reassess exhausted placement campaign before any new PCB generation.",
-  "phase": "schematic",
+  "next_command": "Admit one reviewed P1 successor, generate and measure an isolated candidate; do not promote or route while owning placement and physical checks remain open.",
+  "phase": "placement",
   "project": "crow-usb-carrier-v1",
   "receipts": [
     {
-      "path": "01_docs/research/2026-09-23-dlc-usb-composed-checkpoint.md",
-      "sha256": "72b28148623608e24fdf1095e7d13fb3858e3e58f36684f824aa6173081fbcb8",
-      "size": 2667
+      "path": "08_reviews/2026-09-23_render-repair_terra_schematic_render.md",
+      "sha256": "ea609ad2de21ed04f9da8e8f0ec7a9ed6ad81f5fe93681355e23699219c23766",
+      "size": 1856
     },
     {
-      "path": "08_reviews/2026-09-23_dlc-regulator_terra_source.md",
-      "sha256": "a64205d0fad0b68c0188230220e5211181796fce11bd563fa2043a723797a302",
-      "size": 4153
-    },
-    {
-      "path": "08_reviews/2026-09-23_usb4215_terra_source.md",
-      "sha256": "ed5225fece06434481fd450893031e1b40b2cce5bfc6a52dd0f94afd5150c616",
-      "size": 5307
+      "path": "08_reviews/2026-09-23_render-repair_terra_topology.md",
+      "sha256": "d7a8d6f34de61ae450da2dfc6df63d08e9dd5cd1f078f7f96a3fe6c4038c2b37",
+      "size": 2385
     }
   ],
   "schema": 1,
-  "state_id": "6305909a5b6650860bf2b72c87e34be67443f2df055c651fdd6b197ac75a4c7a"
+  "state_id": "415941ef3e201c5cd34c6ad311820e2815a0883eea8f9b6dc617936e5bb4f9b6"
 }
