@@ -55,10 +55,11 @@ findings:
   state: open
   blocks_at_or_above: DESIGN_CLEAN
   owner: power
-  finding: Source protection coordination and component-envelope review is complete.
-    Fuse clearing OR bounded current-limit/hiccup source modes and eight branch contracts
-    are explicit. Native fault-path realization and actual source/retry/one-fault-seven-healthy
-    behavior remain unqualified.
+  finding: Conditional source protection coordination passes against the reviewed
+    568-reference diagnostic. The external source must meet the bounded 3.4 A peak,
+    10 ms cumulative excess and 2.85 A persistent fault episode contract; the former
+    high-current fuse-clearing option is not admitted. Native fault-path realization
+    and actual source/retry/one-fault-seven-healthy behavior remain unqualified.
   closes_when: Complete shared-source fault and surge engineering bounds, input-protector
     coordination and supported retry/startup behavior; qualify realized hardware at
     its owning boundary.
