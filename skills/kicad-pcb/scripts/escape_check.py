@@ -149,6 +149,12 @@ def center_via_geometry_ok(pitch, tier, t):
         return False
     if not all(math.isfinite(x) for x in (pitch, land, via, drill, opening)):
         return False
+    # This condition represents one independently reviewed coupon, not an
+    # adjustable family. Any changed pitch/land/opening/launch needs a new proof.
+    if any(abs(actual - reviewed) > 1e-6 for actual, reviewed in
+           ((pitch, 0.40), (land, 0.25), (via, 0.35),
+            (drill, 0.20), (opening, 0.25))):
+        return False
     if rows != 3 or cols != 3 or outward != rows * cols - 1:
         return False
     if land + 1e-6 < BGA_LAND_MIN or via + 1e-6 < BGA_FILLED_VIA_MIN:

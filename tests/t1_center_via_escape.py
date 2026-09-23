@@ -58,6 +58,26 @@ def t_center_drill():
     must_fail(run([KPY, TOOL, part]), 'near-zero annulus', 'NO known tier')
 
 
+@test('center-via escape rejects an opening unlike reviewed coupon', kind='known_bad')
+def t_center_tiny_opening():
+    part, fp, _coupon = fixture()
+    fp.write_text(fp.read_text().replace('(solder_mask_margin -0.05) (solder_paste_margin -0.05)',
+                                         '(solder_mask_margin -0.17) (solder_paste_margin -0.17)'))
+    def edit(d):
+        t = d['escape']['center_via_topology']
+        t['center_mask_opening_mm'] = 0.01
+        t['native_footprint']['sha256'] = hashlib.sha256(fp.read_bytes()).hexdigest()
+    update(part, edit)
+    must_fail(run([KPY, TOOL, part]), 'tiny self-consistent opening', 'NO known tier')
+
+
+@test('center-via escape rejects changed pitch despite self-consistent native', kind='known_bad')
+def t_center_pitch():
+    part, _fp, _coupon = fixture()
+    update(part, lambda d: d['escape'].__setitem__('pitch', 0.41))
+    must_fail(run([KPY, TOOL, part]), 'coupon pitch', 'NO known tier')
+
+
 @test('center-via escape rejects changed coupon bytes', kind='known_bad')
 def t_center_coupon_tamper():
     part, _fp, coupon = fixture()
