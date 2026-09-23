@@ -323,9 +323,12 @@ rails:
   # held-start screen is 4.91V buck minimum minus 0.81V full path allocation
   # =4.10V. Engineering retention 0.54 gives 3.553mF. ADI LT3045 max 350mV
   # dropout at300mA and TI TLV min3.0V give held terminal input3.35V.
-  # At complete post-reset held-bank load <=70mA, C*dV/I gives >=38.1ms;
-  # full 3.38V regulation to input3.71V lasts >=19.8ms. Primary C0G and
-  # Nexperia Schmitt/leakage corner screen estimates dump at14.8..29.4ms.
+  # At <=70mA clock-stopped pre-wake held load, C*dV/I gives >=38.1ms;
+  # at <=120mA awake-before-fast-config held load it gives >=22.2ms to
+  # input3.35V, above TI default10ms. Primary C0G and Nexperia
+  # Schmitt/leakage dynamic screen estimates dump at15.7..33.4ms at120mA;
+  # Nexperia VOH >=VCC-0.1V at <100uA and AOS AO3400A Rds(on) spec at
+  # VGS=2.5V screen gate drive at the modeled latest trip VCC=2.974V.
   # This is a conservative engineering screen, not a guaranteed cold curve.
   # First-article AVDD/IOVDD/SHDNZ/dump waveform, 22ohm precharge pulse,
   # larger held bank physical placement and rail thermal remain gates.
