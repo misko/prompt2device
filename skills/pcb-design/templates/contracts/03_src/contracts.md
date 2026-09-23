@@ -341,6 +341,8 @@ in the `02_parts` contract. These two are this folder's own.
 | `placement.post_anchors.<REF>` | `generate_board_generic.py` | reviewed local placement applied after legalization, preserving every other floater's deterministic routed position; P-COLLIDE runs afterward |
 | `placement.sides.<REF>` | `generate_board_generic.py` | explicit `top`/`bottom` assembly side; defaults to `top`, validates refdes and value, and makes anchored courtyard collision checks side-aware |
 | `placement.seeds.<REF>` | `generate_board_generic.py` | legalizer start point |
+| `placement.forbid[].rect` | `generate_board_generic.py` | floater legalizer exclusion rectangle; anchored/kept parts bypass it, and no native copper keepout is emitted |
+| `placement.forbid[].margin` | `generate_board_generic.py` | extra spacing around the floater exclusion rectangle, default 0.3 mm; checked using the centered footprint bounding-box proxy |
 | `placement.regions.<NAME>` | `generate_board_generic.py` | named placement region |
 | `placement.require_anchor` | `generate_board_generic.py` | refuse an unanchored part |
 | `placement.legalize.enable` | `generate_board_generic.py` | legalizer on/off |
