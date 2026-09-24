@@ -5,7 +5,12 @@ Before routing, validate that every declared differential pair exists, is
 assigned to a differential wave, has P/N polarity, matching membership, and a
 legal layer policy.  After the critical-first route candidate exists,
 --require-connected proves the actual copper joins every pad while respecting
-the declared no-via/layer constraints.
+the declared no-via, per-net via-count, and layer constraints.
+
+``route.preflight_critical_pairs[].max_vias_per_net`` is an optional
+nonnegative integer. The matching ``nets.yaml length_match`` group may carry
+the same cap; conflicting caps are a contract error. ``no_vias: true`` still
+requires zero vias and is compatible only with an absent or zero cap.
 """
 from __future__ import annotations
 
@@ -45,6 +50,45 @@ def matching_negative(p):
         if p.endswith(positive) and len(p) > len(positive):
             return p[:-len(positive)] + negative
     return None
+
+
+def via_limit(value, where):
+    if value is None:
+        return None
+    if type(value) is not int or value < 0:
+        die(f"{where}.max_vias_per_net must be a nonnegative integer")
+    return value
+
+
+def length_contract_via_limits(project, nets_path=None):
+    """Return independently authored via caps for suffix-matched P/N nets."""
+    path = Path(nets_path) if nets_path is not None else project / "03_src/rules/nets.yaml"
+    if not path.is_file():
+        return {}
+    groups = load(path).get("length_match") or {}
+    if not isinstance(groups, dict):
+        die("rules/nets.yaml length_match must be a mapping")
+    limits = {}
+    for name, group in groups.items():
+        if not isinstance(group, dict):
+            continue
+        cap = via_limit(group.get("max_vias_per_net"), f"length_match.{name}")
+        if cap is None:
+            continue
+        if group.get("no_vias") is True and cap != 0:
+            die(f"length_match.{name}.no_vias conflicts with max_vias_per_net {cap}")
+        members = group.get("members") or {}
+        if not isinstance(members, dict):
+            continue
+        nset = set(map(str, members.get("N") or []))
+        for p in map(str, members.get("P") or []):
+            n = matching_negative(p)
+            if n in nset:
+                pair = (p, n)
+                if pair in limits and limits[pair] != cap:
+                    die(f"length_match groups disagree on max_vias_per_net for {p}/{n}")
+                limits[pair] = cap
+    return limits
 
 
 def length_contract_pairs(project, nets_path=None):
@@ -116,6 +160,7 @@ def check(project, board_path, require_connected=False, *, route_path=None,
             die("R-PAIRMAP critical-pair inventory omits length_match pair(s): "
                 + ", ".join(f"{p}/{n}" for p, n in required))
         return [f"no critical routes: {reason}"]
+    group_via_limits = length_contract_via_limits(project, nets_path)
     waves = route.get("waves") or []
     wave_by_name = {str(w.get("name")): w for w in waves if isinstance(w, dict)}
     groups = ((cfg.get("prep") or {}).get("waves") or {}).get("groups") or {}
@@ -183,8 +228,16 @@ def check(project, board_path, require_connected=False, *, route_path=None,
         if bad_layers:
             die(f"R-PAIRMAP {name}: wave permits forbidden layers {bad_layers}")
         no_vias = item.get("no_vias")
-        if no_vias not in (True, False):
+        if type(no_vias) is not bool:
             die(f"R-PAIRMAP {name}: no_vias must be true/false")
+        declared_cap = via_limit(item.get("max_vias_per_net"), where)
+        group_cap = group_via_limits.get((p, n))
+        if declared_cap is not None and group_cap is not None and declared_cap != group_cap:
+            die(f"R-PAIRMAP {name}: max_vias_per_net {declared_cap} disagrees "
+                f"with length_match cap {group_cap}")
+        effective_cap = declared_cap if declared_cap is not None else group_cap
+        if no_vias and effective_cap not in (None, 0):
+            die(f"R-PAIRMAP {name}: no_vias conflicts with max_vias_per_net {effective_cap}")
         if no_vias and len(set(wave_layers)) != 1:
             die(f"R-PAIRMAP {name}: no_vias requires a single-layer wave")
 
@@ -203,13 +256,20 @@ def check(project, board_path, require_connected=False, *, route_path=None,
                 if no_vias and vias:
                     realized_findings.append(
                         f"R-CRITESC {name}/{net}: {len(vias)} via(s), expected zero")
+                elif effective_cap is not None and len(vias) > effective_cap:
+                    realized_findings.append(
+                        f"R-CRITESC {name}/{net}: {len(vias)} via(s) exceed "
+                        f"max_vias_per_net {effective_cap}")
                 layers = {t.GetLayer() for t in tracks
                           if not isinstance(t, pcbnew.PCB_VIA)}
                 if layers - allowed_ids:
                     bad = [board.GetLayerName(x) for x in sorted(layers - allowed_ids)]
                     realized_findings.append(
                         f"R-CRITESC {name}/{net}: copper on forbidden layers {bad}")
-        notes.append(f"{name} {p}/{n} -> {wave_name} on {wave_layers}, no_vias={no_vias}")
+        cap_note = (f", max_vias_per_net={effective_cap}"
+                    if effective_cap is not None else "")
+        notes.append(f"{name} {p}/{n} -> {wave_name} on {wave_layers}, "
+                     f"no_vias={no_vias}{cap_note}")
     missing = sorted(length_contract_pairs(project, nets_path) - declared_pairs)
     if missing:
         die("R-PAIRMAP critical-pair inventory omits length_match pair(s): "

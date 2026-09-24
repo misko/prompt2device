@@ -552,6 +552,37 @@ def t_no_vias_violation_fails():
              "the report says where the gap is")
 
 
+@test("optional max_vias_per_net grades each realized net and preserves no_vias")
+def t_bounded_vias_per_net():
+    decl = pair_decl(tol=1.0, no_vias=False,
+                     stackup="[0.2104, 0.9792, 0.2104]",
+                     extra="    max_vias_per_net: 1")
+    segs = [straight("ARM1_A", 1, 10.0), straight("ARM1_B", 2, 10.0),
+            straight("ARM2_A", 3, 10.0), straight("ARM2_B", 4, 10.0)]
+    d = scratch(decl, segs=segs,
+                vias=[("ARM2_B", (0, 4), "F.Cu", "In1.Cu")])
+    r = must_pass(run([KPY, LEN, d]), "one via is permitted by cap 1")
+    not_contains(r.out, "R-LEN-VIA", "boundary is accepted")
+
+    d = scratch(decl, segs=segs,
+                vias=[("ARM2_B", (0, 4), "F.Cu", "In1.Cu"),
+                      ("ARM2_B", (5, 4), "F.Cu", "In1.Cu")])
+    r = must_fail(run([KPY, LEN, d]), "two vias exceed cap 1", "R-LEN-VIA")
+    contains(r.out, "ARM2_B carries 2 via(s), exceeding max_vias_per_net 1",
+             "the exact net and count are reported")
+
+    for value in ("-1", "true", "1.5", "'2'"):
+        with_value = pair_decl(tol=1.0, no_vias=False,
+                               extra=f"    max_vias_per_net: {value}")
+        d = scratch(with_value, segs=segs)
+        r = must_fail(run([KPY, LEN, d]), "malformed via cap",
+                      "max_vias_per_net must be a nonnegative integer")
+    d = scratch(pair_decl(tol=1.0, no_vias=True,
+                          extra="    max_vias_per_net: 1"), segs=segs)
+    must_fail(run([KPY, LEN, d]), "conflicting zero-via policy",
+              "no_vias conflicts with max_vias_per_net")
+
+
 @test("a net whose length CANNOT be determined is UNREACHED, never a pass — "
       "a zone, a via with no stackup, and a branch, each on its own",
       kind="known_bad")

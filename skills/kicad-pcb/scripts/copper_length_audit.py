@@ -393,6 +393,9 @@ length_match:
     no_vias: true              # any via on a member net is a FAIL. nothing in
                                # the router enforces this; here is the only
                                # place it is graded.
+    # max_vias_per_net: 2       # OPTIONAL nonnegative integer; each net in
+                               # each member chain is counted separately.
+                               # With no_vias: true, only 0 is consistent.
     max_spread_mm: 1.0         # the DRIFT ceiling (see the module docstring:
                                # derived from TC*dT*dL, NOT a matching target)
                                # or the literal `report` for no ceiling.
@@ -1263,6 +1266,13 @@ def load_groups(proj):
                                  f"an ORDERED list of net names (a member is a "
                                  f"CHAIN: series parts split one run into "
                                  f"several nets)")
+        via_cap = d.get("max_vias_per_net")
+        if via_cap is not None and (type(via_cap) is not int or via_cap < 0):
+            raise AuditError(f"{p}: length_match.{g}.max_vias_per_net must be "
+                             f"a nonnegative integer")
+        if d.get("no_vias") and via_cap not in (None, 0):
+            raise AuditError(f"{p}: length_match.{g}.no_vias conflicts with "
+                             f"max_vias_per_net {via_cap}")
         tol = d.get("max_spread_mm", "report")
         if tol != "report" and not isinstance(tol, (int, float)):
             raise AuditError(f"{p}: length_match.{g}.max_spread_mm must be a "
@@ -1686,6 +1696,13 @@ def grade(proj, board_override=None):
                         f"plating, unspecified per hole, so one via on one "
                         f"member is a pure DIFFERENTIAL error on a published "
                         f"delta. NOTHING IN THE ROUTER ENFORCES THIS.")
+                    row["verdict"] = "FAIL"
+                elif d.get("max_vias_per_net") is not None and \
+                        gg["n_via"] > d["max_vias_per_net"]:
+                    res["fails"].append(
+                        f"R-LEN-VIA [{gname}/{mname}] {n} carries "
+                        f"{gg['n_via']} via(s), exceeding max_vias_per_net "
+                        f"{d['max_vias_per_net']} (ADR-{d['adr']})")
                     row["verdict"] = "FAIL"
             if m["measured"]:
                 res["n_measured"] += 1

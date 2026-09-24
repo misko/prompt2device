@@ -107,6 +107,81 @@ class CriticalRoutePairNamingTest(unittest.TestCase):
                                     "duplicate critical-pair declaration"):
             self.grade(declarations=[self.pairs[0], self.pairs[0]], required=[])
 
+    def _native_with_vias(self, counts):
+        pcb = checker.pcbnew
+        board = pcb.BOARD()
+        for name, count in counts.items():
+            net = pcb.NETINFO_ITEM(board, name)
+            board.Add(net)
+            segment = pcb.PCB_TRACK(board)
+            segment.SetStart(pcb.VECTOR2I(pcb.FromMM(1), pcb.FromMM(1)))
+            segment.SetEnd(pcb.VECTOR2I(pcb.FromMM(2), pcb.FromMM(1)))
+            segment.SetWidth(pcb.FromMM(0.2))
+            segment.SetLayer(pcb.F_Cu)
+            segment.SetNet(net)
+            board.Add(segment)
+            for i in range(count):
+                via = pcb.PCB_VIA(board)
+                via.SetPosition(pcb.VECTOR2I(pcb.FromMM(3 + i), pcb.FromMM(1)))
+                via.SetWidth(pcb.FromMM(0.6))
+                via.SetDrill(pcb.FromMM(0.3))
+                via.SetLayerPair(pcb.F_Cu, pcb.B_Cu)
+                via.SetNet(net)
+                board.Add(via)
+        return board
+
+    def _grade_via_policy(self, route_cap, group_cap, counts, *, no_vias=False):
+        pair = self.pairs[0]
+        self.grade(declarations=[pair], required=[pair])
+        route = yaml.safe_load(self.route_path.read_text())
+        item = route['route']['preflight_critical_pairs'][0]
+        item['no_vias'] = no_vias
+        if route_cap is not None:
+            item['max_vias_per_net'] = route_cap
+        self.route_path.write_text(yaml.safe_dump(route))
+        nets = yaml.safe_load(self.nets_path.read_text())
+        if group_cap is not None:
+            nets['length_match']['required_0']['max_vias_per_net'] = group_cap
+        self.nets_path.write_text(yaml.safe_dump(nets))
+        board = self._native_with_vias(counts)
+        with patch.object(checker.pcbnew, 'LoadBoard', return_value=board), \
+                patch.object(checker, 'connected', return_value=(True, 'all pads connected')):
+            return checker.check(self.root, self.board_path, require_connected=True,
+                                 route_path=self.route_path, nets_path=self.nets_path)
+
+    def test_optional_via_cap_counts_each_net_and_accepts_the_boundary(self):
+        notes = self._grade_via_policy(1, 1, {'USB_DP': 1, 'USB_DN': 0})
+        self.assertIn('max_vias_per_net=1', notes[0])
+        with self.assertRaisesRegex(checker.RouteContractError,
+                                    'USB_DP: 2 via\\(s\\) exceed max_vias_per_net 1'):
+            self._grade_via_policy(1, 1, {'USB_DP': 2, 'USB_DN': 0})
+
+    def test_group_cap_applies_when_route_cap_is_omitted(self):
+        with self.assertRaisesRegex(checker.RouteContractError,
+                                    'USB_DN: 1 via\\(s\\) exceed max_vias_per_net 0'):
+            self._grade_via_policy(None, 0, {'USB_DP': 0, 'USB_DN': 1})
+
+    def test_malformed_conflicting_and_no_vias_caps_reject(self):
+        for bad in (-1, True, 1.5, '2'):
+            with self.subTest(bad=bad), self.assertRaisesRegex(
+                    checker.RouteContractError, 'max_vias_per_net must be a nonnegative integer'):
+                self._grade_via_policy(bad, None, {'USB_DP': 0, 'USB_DN': 0})
+        with self.assertRaisesRegex(checker.RouteContractError,
+                                    'disagrees with length_match cap'):
+            self._grade_via_policy(1, 2, {'USB_DP': 0, 'USB_DN': 0})
+        with self.assertRaisesRegex(checker.RouteContractError,
+                                    'no_vias conflicts with max_vias_per_net'):
+            self._grade_via_policy(1, None, {'USB_DP': 0, 'USB_DN': 0}, no_vias=True)
+        with self.assertRaisesRegex(checker.RouteContractError,
+                                    'max_vias_per_net must be a nonnegative integer'):
+            self._grade_via_policy(None, True, {'USB_DP': 0, 'USB_DN': 0})
+        with self.assertRaisesRegex(checker.RouteContractError,
+                                    'expected zero'):
+            self._grade_via_policy(0, 0, {'USB_DP': 1, 'USB_DN': 0}, no_vias=True)
+        with self.assertRaisesRegex(checker.RouteContractError,
+                                    'expected zero'):
+            self._grade_via_policy(None, None, {'USB_DP': 1, 'USB_DN': 0}, no_vias=True)
+
 
 if __name__ == "__main__":
     unittest.main()
