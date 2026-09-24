@@ -3,6 +3,17 @@
 fab_tier: jlc_4layer_advanced
 default_clearance: 0.15mm
 default_track_width: 0.20mm
+# Exact-package copper exception only.  The source stack binds the JLC04161H
+# 4-layer 1 oz-outer path; JLC's published different-net SMD-pad clearance is
+# 0.15 mm.  These generated predicates name both pads' exact reference, so
+# they cannot cover an inter-footprint pair or a via/track/zone.  They retain
+# the U_ISO center-to-neighbour 0.10 mm pairs for native DRC.
+same_footprint_pad_clearances:
+  - id: jlc_1oz_smd_pad_015
+    refs: [U_XU, U_ISO1, U_ISO2, U_ISO3, U_ISO4, U_ISO5, U_ISO6, U_ISO7, U_ISO8]
+    clearance: 0.15mm
+    evidence: 01_docs/research/2026-09-24-jlc-fine-pitch-pad-gap-evidence-terra.md
+    why: JLC capability table's 1-oz multilayer different-net SMD-pad-to-SMD-pad 0.15-mm row; floorplan.yaml and rf.yaml bind JLC04161H-7628G 4-layer 1-oz outer copper. Order-time stack, mask colour, CAM and assembly remain separate gates.
 classes:
   USB_HS:
     nets: [USB_DP, USB_DN]

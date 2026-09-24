@@ -520,11 +520,65 @@ def main(argv=None):
             f'{constraints})')
     dru_rules += scoped_rules + clr_rules
 
+    # INTRINSIC PACKAGE PAD CLEARANCES.  A package's own SMD lands can have a
+    # documented copper spacing that is tighter than a board's conservative
+    # default.  This is deliberately NOT an insideArea rule: an area scopes
+    # by geometry and can catch a neighbour after placement moves.  Instead,
+    # bind BOTH operands to one explicit reference, and require pads on both
+    # sides.  It consequently cannot relax a via, track, zone, or another
+    # footprint's pad.  The declared value remains subject to the fab tier;
+    # this is a bounded netclass/default override, never a fab-floor waiver.
+    #
+    # Example:
+    #   same_footprint_pad_clearances:
+    #     - {id: jlc_1oz_smd_pad, refs: [U_FINE], clearance: 0.15mm,
+    #        evidence: path/to/review.md, why: "published pad-to-pad row"}
+    intrinsic_rules, intrinsic_names, seen_refs = [], set(), set()
+    for i, spec in enumerate(nets.get("same_footprint_pad_clearances") or []):
+        spec = spec or {}
+        ident = str(spec.get("id") or "").strip()
+        if not re.fullmatch(r"[A-Za-z][A-Za-z0-9_]*", ident):
+            sys.exit(f"generate_rules_generic: same_footprint_pad_clearances[{i}] "
+                     "requires an `id` made of letters, digits, and underscores")
+        refs = spec.get("refs")
+        if not isinstance(refs, list) or not refs or any(
+                not isinstance(ref, str) or not re.fullmatch(r"[A-Za-z][A-Za-z0-9_]*", ref)
+                for ref in refs):
+            sys.exit(f"generate_rules_generic: same_footprint_pad_clearances[{i}] "
+                     "requires non-empty exact `refs`")
+        if len(set(refs)) != len(refs) or seen_refs.intersection(refs):
+            sys.exit(f"generate_rules_generic: same_footprint_pad_clearances[{i}] "
+                     "repeats a reference; one exact footprint may have one intrinsic rule")
+        seen_refs.update(refs)
+        scv = mm(spec.get("clearance"))
+        if scv is None:
+            sys.exit(f"generate_rules_generic: same_footprint_pad_clearances[{i}] "
+                     "has no `clearance`")
+        if tier is not None and scv < float(tier["min_space"]):
+            sys.exit(f"generate_rules_generic: same_footprint_pad_clearances[{i}] "
+                     f"clearance {scv}mm is below fab tier '{tier['name']}' "
+                     f"min_space {tier['min_space']}mm")
+        if not str(spec.get("evidence") or "").strip() or not str(spec.get("why") or "").strip():
+            sys.exit(f"generate_rules_generic: same_footprint_pad_clearances[{i}] "
+                     "requires `evidence` and `why`; DRC otherwise silently waives isolation")
+        for ref in refs:
+            rname = f"intrinsic_pad_clr_{ident}_{ref}"
+            if rname in intrinsic_names:
+                sys.exit(f"generate_rules_generic: duplicate intrinsic rule {rname!r}")
+            intrinsic_names.add(rname)
+            cond = ("A.Type == 'Pad' && B.Type == 'Pad' && "
+                    f"A.memberOfFootprint('{ref}') && B.memberOfFootprint('{ref}')")
+            intrinsic_rules.append(
+                f'(rule "{rname}"\n'
+                f'  (condition "{cond}")\n'
+                f'  (constraint clearance (min {scv}mm)))')
+    dru_rules += intrinsic_rules
+
     # PRESERVE foreign rules (e.g. stitch's pad_rescue_stubs sub-floor) so this
     # wholesale rewrite does not clobber them — emit them LAST for precedence.
     generated_names = ({f"{name}_width" for name in classes}
                        | {f"{name}_diffpair" for name in classes}
-                       | scoped_names | clr_names)
+                       | scoped_names | clr_names | intrinsic_names)
     if pofv:
         generated_names |= {name for name, _ in extract_rules("\n".join(tmux_dru_rules()))}
     foreign, decisions = foreign_dru_rules(dru, generated_names,
@@ -538,6 +592,7 @@ def main(argv=None):
           f"{len(patterns)} patterns -> {pro.name}; "
           f"{len(dru_rules)-1-len(clr_rules)} width rules"
           + (f" + {len(clr_rules)} scoped clearance rules" if clr_rules else "")
+          + (f" + {len(intrinsic_rules)} intrinsic pad rules" if intrinsic_rules else "")
           + (f" + {len(foreign)} preserved foreign rules" if foreign else "")
           + (f" + {len(retired)} retired ({', '.join(d[0] for d in retired)})"
              if retired else "")

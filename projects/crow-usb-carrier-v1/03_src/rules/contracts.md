@@ -183,6 +183,16 @@ be a YAML boolean; absent/false retains existing all-item behavior. Use exact
 native pad members, and retain land-pattern evidence in `why`. Pad-only
 entries never qualify a router-clearance downgrade in `tier_preflight.py`.
 
+`same_footprint_pad_clearances:` is narrower still: `{id, refs, clearance,
+evidence, why}` emits one rule per exact reference. Both native DRC operands
+must be SMD pads and must carry that same reference; no rule area is involved.
+Use it only for a package-internal, documented copper spacing. It cannot waive
+an adjacent footprint, a track, a zone, a via, or a different package's land.
+`evidence` and `why` are mandatory because the rule overrides a larger
+board-default clearance silently. The clearance must remain at or above the
+declared fab tier's `min_space`; stack, mask, CAM and assembly acceptance stay
+outside this source rule.
+
 Top-level `fab_tier:` is also the SINGLE SOURCE of capability floors for
 the generic backend (`fab_tier_util.py`): class widths, route/stitch/tap
 via geometry and silk text heights are floored/derived from it, and
@@ -542,6 +552,10 @@ TWO ORPHANS THIS FOLDER'S OWN PROSE HAD HIDDEN, both found by the first run:
 | `scoped_clearances[].hole_clearance` | `generate_rules_generic.py, route_and_stitch_generic.py` | optional drill-to-copper gap emitted and consumed under the same ordered, symmetric area/net predicate as `clearance`; must still clear the tier's `min_space` |
 | `scoped_clearances[].pads_only` | `generate_rules_generic.py, tier_preflight.py` | optional strict boolean; true restricts BOTH items to pads and cannot authorize reduced route clearance; absent/false preserves legacy all-item behavior |
 | `scoped_clearances[].why` | `generate_rules_generic.py` | REQUIRED evidence (canon M4) — for a STRONGER reason than the width case: a width relaxation is bounded below by ampacity, which A-AMP grades independently from `current:`, while an isolation relaxation has NO downstream grader at all (DRC simply stops reporting what the rule permits) |
+| `same_footprint_pad_clearances[].id` | `generate_rules_generic.py` | stable identifier for generated exact-reference intrinsic-pad rules |
+| `same_footprint_pad_clearances[].refs` | `generate_rules_generic.py` | non-empty exact-reference list; both operands must name the one reference |
+| `same_footprint_pad_clearances[].clearance` | `generate_rules_generic.py` | package-internal pad-to-pad copper floor, never below tier `min_space` |
+| `same_footprint_pad_clearances[].evidence`, `.why` | `generate_rules_generic.py` | mandatory source evidence and rationale for the intrinsic override |
 | `length_match.<G>.adr` | `copper_length_audit.py` | R-LEN: the ADR that emitted the intent |
 | `length_match.<G>.intent` | `copper_length_audit.py` | R-LEN group intent |
 | `length_match.<G>.members.<M>` | `copper_length_audit.py, net_reference_audit.py` | the ORDERED net chain measured (E-NETREF K12) |

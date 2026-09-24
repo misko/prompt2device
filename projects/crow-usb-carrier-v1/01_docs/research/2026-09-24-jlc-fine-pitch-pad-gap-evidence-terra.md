@@ -14,4 +14,17 @@ The public capability table says that 1-oz green/red/yellow/blue/purple mask dam
 
 The narrowest defensible future rule evidence is therefore a same-footprint, pad-to-pad `0.150 mm` copper clearance rule for the exact local footprints `crow_usb_digital:TQFP-128_14x14mm_P0.4mm_EP_XU316`, `crow_usb_analog:TI_YBH0009_C02_TMUX4827`, and `Package_TO_SOT_SMD:SOT-553` (or the exact resolved ESD footprint IDs), conditioned on both objects being pads of the **same** footprint. It may clear only the 205 measured 0.150-mm rows and must retain the 32 TMUX 0.100-mm rows and every via-to-pad row. Its evidence must bind the JLC table URL, the selected four-layer/1-oz order configuration and color, the exact footprint hashes, and a regenerated native DRC. A board-wide 0.15-mm clearance, a mask-dam value used as copper clearance, any `0.10 mm` exemption, or a waiver for inter-footprint/via spacing is unsupported by this review.
 
+**Source-rule follow-up.** `floorplan.yaml` records 0.04064-mm outer finished
+copper and the exact JLC04161H-7628G dielectric section; `rf.yaml` and
+`ARCHITECTURE.md` identify that source stack as four-layer, **1 oz outer / 0.5
+oz inner**. That is enough to encode the public 0.150-mm *copper* row as a
+source-stage rule: `same_footprint_pad_clearances` emits exact-reference
+`memberOfFootprint()` predicates for `U_XU` and `U_ISO1` through `U_ISO8`, with
+two pad operands required. The regenerated isolated DRC has nine such rules
+and still reports 32 ISO 0.100-mm pad pairs plus eight via-to-pad pairs. ESD
+references are deliberately excluded while their land correction is separate.
+Mask colour is not an input to this copper rule; it remains an order-time
+solder-mask/CAM question. Neither the source stack record nor this DRC rule is
+an ordered-board, CAM, PCBA, or P1 acceptance claim.
+
 Before any 0.10-mm rule could be proposed, obtain a public JLC capability statement or written order-specific CAM confirmation explicitly covering the exact 1-oz four-layer BGA pad-to-pad geometry and the via-to-SMD-pad relationship, then bind the response and a coupon/assembly outcome to the selected footprint. The local XMOS record is [XU316 part.yaml](../../02_parts/XU316-1024-TQ128-C24/part.yaml); it establishes its 0.4-mm TQFP package, while the TI TMUX and ESD records establish their exact package/land sources. They are component/footprint evidence, not a JLC manufacturing waiver.

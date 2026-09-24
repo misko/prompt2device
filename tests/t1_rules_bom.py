@@ -663,6 +663,35 @@ def t_scoped_clearances_pads_only_false():
     check("A.Type == 'Pad'" not in txt, "false must not restrict legacy routing")
 
 
+IP = {"id": "fine_smd", "refs": ["U_FINE"], "clearance": "0.15mm",
+      "evidence": "01_docs/research/fine-smd.md",
+      "why": "Published 1 oz SMD pad-to-pad clearance for this exact land."}
+
+
+@test("same_footprint_pad_clearances emits an exact-reference, two-pad rule")
+def t_same_footprint_pad_clearance_emitted():
+    proj, r = generic_rules_project(
+        lambda s: s.update({"same_footprint_pad_clearances": [dict(IP)]}))
+    must_pass(r, "generate exact intrinsic pad clearance")
+    txt = (proj / "04_kicad" / "cook_loadcell.kicad_dru").read_text()
+    contains(txt, 'intrinsic_pad_clr_fine_smd_U_FINE', "named intrinsic rule")
+    contains(txt, "A.Type == 'Pad' && B.Type == 'Pad'", "two-pad guard")
+    contains(txt, "A.memberOfFootprint('U_FINE') && B.memberOfFootprint('U_FINE')",
+             "both operands must be the exact same reference")
+    contains(txt, "(constraint clearance (min 0.15mm))", "intrinsic floor")
+
+
+@test("same_footprint_pad_clearances rejects missing provenance and duplicate refs",
+      kind="known_bad")
+def t_kb_same_footprint_pad_clearance_provenance_and_scope():
+    for bad, expected in ((dict(IP, evidence=""), "evidence"),
+                          (dict(IP, refs=["U_FINE", "U_FINE"]), "repeats"),
+                          (dict(IP, clearance="0.05mm"), "min_space")):
+        proj, r = generic_rules_project(
+            lambda s, bad=bad: s.update({"same_footprint_pad_clearances": [bad]}))
+        must_fail(r, "invalid intrinsic pad clearance", expected)
+
+
 @test("pads_only rejects non-boolean values rather than silently widening scope",
       kind="known_bad")
 def t_kb_scoped_clearances_pads_only_type():
