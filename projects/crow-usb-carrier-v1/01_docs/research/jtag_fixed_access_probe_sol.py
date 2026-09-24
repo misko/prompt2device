@@ -110,39 +110,75 @@ def run():
                 'net': e['net'], 'block': e['block'], 'face': 'south', 'layer': 'F.Cu',
                 'region_face': 'north', 'boundary_bbox': faces[1]['bbox'],
                 'reservation_id': 'jtag_strip_trunk', 'p2_obligation': obligation(e)})
-    blockers = []
+    contacts = []
     for net, fixed, _ in PINS:
         pad = pads[fixed]
-        # The narrowest positive-area rectangle that encloses the pad and
-        # reaches the strip's north edge through the debug region.
-        access = [225.9, pad[3], pad[2], 65]
-        hits = sorted(key for key, box in pads.items()
-                      if key != fixed and checker.intersects(access, box))
-        paired = next(key for key in hits if key.startswith('J_JTAG.'))
-        witness = {'kind': 'fixed_connector_access', 'corridor_id': 'jtag_strip',
-            'source': fixed, 'native': fixed, 'net': net, 'block': 'debug_connector',
-            'face': 'north', 'layer': 'F.Cu', 'region_face': 'south',
-            'boundary_bbox': list(pad), 'reservation_id': f'access_{fixed.rsplit(".", 1)[1]}',
-            'p2_obligation': obligation(next(e for e in endpoints if e['source_pad'] == fixed))}
-        reservation = {'id': witness['reservation_id'], 'kind': 'fixed_connector_access',
-            'corridor_id': 'jtag_strip', 'layer': 'F.Cu', 'bbox': access, 'nets': [net]}
-        # Exercise the maintained exact-pad witness and reservation-contact predicates.
+        # A southward strip can be reached by contact on the pad's bottom or
+        # left side. The other two sides point away from the strip and cannot
+        # make a single axis-aligned rectangle touch both pad and strip.
+        candidates = {'north': [225.85, pad[3], pad[2], 65],
+                      'east': [225.85, pad[3] - .01, pad[0], 65]}
+        rows = []
         owned = {(n, b): {p} for n, f, x in PINS for b, p in
                  [('debug_connector', f), ('xmos_core', x)]}
-        checked = checker._coarse_witness(board, witness, net, owned, aliases,
-            native_pads, outline, regions, set(source['p1_fixed_refs']), {}, corridors)
-        if not checker._witness_touches_reservation(checked, reservation):
-            raise RuntimeError(f'{fixed}: witness does not touch access')
-        if paired not in hits or not checker.intersects(access, pads[paired]):
-            raise RuntimeError(f'{fixed}: expected native paired pad blocker missing')
-        blockers.append({'net': net, 'fixed_pad': fixed, 'fixed_pad_bbox_mm': list(pad),
-                         'access_bbox_mm': access, 'first_paired_obstacle': paired,
-                         'obstacle_bbox_mm': list(pads[paired]), 'all_native_pad_hits': hits})
-        allocation['boundary_witnesses'].append(witness)
-        allocation['reservations'].append(reservation)
-    # Let the maintained whole-packet checker encounter one exact fixed access
-    # before unrelated reset and crystal debt. The four analytical probes above
-    # retain the complete fixed/native pad census.
+        for face, access in candidates.items():
+            witness = {'kind': 'fixed_connector_access', 'corridor_id': 'jtag_strip',
+                'source': fixed, 'native': fixed, 'net': net, 'block': 'debug_connector',
+                'face': face, 'layer': 'F.Cu', 'region_face': 'south',
+                'boundary_bbox': list(pad), 'reservation_id': f'access_{fixed.rsplit(".", 1)[1]}',
+                'p2_obligation': obligation(next(e for e in endpoints if e['source_pad'] == fixed))}
+            reservation = {'id': witness['reservation_id'], 'kind': 'fixed_connector_access',
+                'corridor_id': 'jtag_strip', 'layer': 'F.Cu', 'bbox': access, 'nets': [net]}
+            checked = checker._coarse_witness(board, witness, net, owned, aliases,
+                native_pads, outline, regions, set(source['p1_fixed_refs']), {}, corridors)
+            if not checker._witness_touches_reservation(checked, reservation):
+                raise RuntimeError(f'{fixed}: {face} witness does not touch access')
+            if (not checker.contains(regions['debug_connector'], access) or
+                    not checker.intersects(access, faces[0]['bbox']) or
+                    not checker._witness_touches_reservation(
+                        {'boundary_bbox': access, 'face': 'north'},
+                        {'bbox': regions['board_integration_jtag']})):
+                raise RuntimeError(f'{fixed}: {face} access does not join source corridor')
+            hits = sorted(key for key, box in pads.items()
+                          if key != fixed and checker.intersects(access, box))
+            bodies = sorted(fp.GetReference() for fp in board.GetFootprints()
+                if fp.GetReference() != 'J_JTAG' and fp.GetLayerName() == 'F.Cu'
+                and checker.intersects(access, checker._physical_envelope(fp)))
+            tracks = sum(item.IsOnLayer(board.GetLayerID('F.Cu')) and
+                         checker.intersects(access, checker.box_mm(item.GetBoundingBox()))
+                         for item in board.GetTracks())
+            rule_areas = sum(zone.GetIsRuleArea() and
+                'F.Cu' in {board.GetLayerName(i) for i in zone.GetLayerSet().Seq()} and
+                checker.intersects(access, checker.box_mm(zone.GetBoundingBox()))
+                for zone in board.Zones())
+            other_reservations = sorted(r['id'] for a in contract['allocations']
+                for r in a['reservations'] if r.get('layer') == 'F.Cu' and
+                r['id'] != 'jtag_strip_trunk' and
+                checker.intersects(access, r['bbox']))
+            rows.append({'contact_face': face, 'access_bbox_mm': access,
+                'native_pad_hits': hits, 'foreign_body_hits': bodies,
+                'existing_copper_hits': tracks, 'rule_area_hits': rule_areas,
+                'other_reservation_hits': other_reservations,
+                'checker_geometry_clear': not (hits or bodies or tracks or rule_areas or other_reservations)})
+            if face == 'east' and fixed == 'J_JTAG.8':
+                allocation['boundary_witnesses'].append(witness)
+                allocation['reservations'].append(reservation)
+        for face, reason in [('south', 'reservation north of pad cannot reach y=65'),
+                             ('west', 'reservation east of pad cannot reach strip x<=226')]:
+            # The checker demands edge equality for these faces. That equality
+            # would put the entire rectangle on the wrong side of this pad.
+            wrong_side = checker._witness_touches_reservation(
+                {'boundary_bbox': pad, 'face': face}, {'bbox': candidates['east']})
+            if wrong_side:
+                raise RuntimeError(f'{fixed}: unexpected {face} contact to south strip')
+            rows.append({'contact_face': face, 'feasible_to_south_strip': False,
+                         'checker_contact_with_strip': wrong_side, 'reason': reason})
+        contacts.append({'net': net, 'fixed_pad': fixed,
+                         'fixed_pad_bbox_mm': list(pad), 'contacts': rows})
+    if [r['contacts'][1]['checker_geometry_clear'] for r in contacts] != [False, False, False, True]:
+        raise RuntimeError('left-contact geometry outcome drift')
+    # Keep one exact fixed access in the whole-packet attempt. The pre-existing
+    # reset witness fails before access geometry is consumed by evaluate_coarse.
     first_access = next(w for w in allocation['boundary_witnesses']
                         if w.get('kind') == 'fixed_connector_access')
     allocation['boundary_witnesses'] = [first_access] + [w for w in allocation['boundary_witnesses']
@@ -167,7 +203,7 @@ def run():
     report = {'status': 'FAIL', 'scope': 'RESEARCH_ONLY', 'board_sha256': sha(BOARD),
               'checker': str(CHECKER.relative_to(ROOT)), 'fixed_pad_count': 4,
               'xu_pad_count': 4, 'source_region': regions['debug_connector'],
-              'strip_region': regions['board_integration_jtag'], 'blockers': blockers,
+              'strip_region': regions['board_integration_jtag'], 'contacts': contacts,
               'whole_packet': result}
     service = next(a for a in result['allocations'] if a['id'] == 'xmos_service_escape')
     if (result['status'] != 'FAIL' or result['p1_accepted'] or result['routing_realized'] or
@@ -178,7 +214,7 @@ def run():
                 'jtag_strip: integration affected endpoint/layer denominator mismatch']):
         raise RuntimeError('unexpected checker rejection outcome')
     (HERE / 'jtag_fixed_access_probe_sol.json').write_text(json.dumps(report, indent=2) + '\n')
-    print(json.dumps({'status': report['status'], 'blockers': blockers,
+    print(json.dumps({'status': report['status'], 'contacts': contacts,
                       'checker_reason': next(a for a in result['allocations']
                                              if a['id'] == 'xmos_service_escape')}, indent=2))
 

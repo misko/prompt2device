@@ -17,7 +17,7 @@
     226,
     84
   ],
-  "blockers": [
+  "contacts": [
     {
       "net": "JTAG_TMS",
       "fixed_pad": "J_JTAG.2",
@@ -27,24 +27,61 @@
         230.91,
         49.36
       ],
-      "access_bbox_mm": [
-        225.9,
-        49.36,
-        230.91,
-        65
-      ],
-      "first_paired_obstacle": "J_JTAG.1",
-      "obstacle_bbox_mm": [
-        230.17,
-        50.64,
-        230.91,
-        53.43
-      ],
-      "all_native_pad_hits": [
-        "J_JTAG.1",
-        "J_JTAG.3",
-        "J_JTAG.5",
-        "J_JTAG.7"
+      "contacts": [
+        {
+          "contact_face": "north",
+          "access_bbox_mm": [
+            225.85,
+            49.36,
+            230.91,
+            65
+          ],
+          "native_pad_hits": [
+            "J_JTAG.1",
+            "J_JTAG.3",
+            "J_JTAG.5",
+            "J_JTAG.7"
+          ],
+          "foreign_body_hits": [],
+          "existing_copper_hits": 0,
+          "rule_area_hits": 0,
+          "other_reservation_hits": [],
+          "checker_geometry_clear": false
+        },
+        {
+          "contact_face": "east",
+          "access_bbox_mm": [
+            225.85,
+            49.35,
+            230.17,
+            65
+          ],
+          "native_pad_hits": [
+            "J_JTAG.3",
+            "J_JTAG.4",
+            "J_JTAG.5",
+            "J_JTAG.6",
+            "J_JTAG.7",
+            "J_JTAG.8"
+          ],
+          "foreign_body_hits": [],
+          "existing_copper_hits": 0,
+          "rule_area_hits": 0,
+          "other_reservation_hits": [],
+          "checker_geometry_clear": false
+        },
+        {
+          "contact_face": "south",
+          "feasible_to_south_strip": false,
+          "checker_contact_with_strip": false,
+          "reason": "reservation north of pad cannot reach y=65"
+        },
+        {
+          "contact_face": "west",
+          "feasible_to_south_strip": false,
+          "checker_contact_with_strip": false,
+          "reason": "reservation east of pad cannot reach strip x<=226"
+        }
       ]
     },
     {
@@ -56,23 +93,58 @@
         229.64,
         49.36
       ],
-      "access_bbox_mm": [
-        225.9,
-        49.36,
-        229.64,
-        65
-      ],
-      "first_paired_obstacle": "J_JTAG.3",
-      "obstacle_bbox_mm": [
-        228.9,
-        50.64,
-        229.64,
-        53.43
-      ],
-      "all_native_pad_hits": [
-        "J_JTAG.3",
-        "J_JTAG.5",
-        "J_JTAG.7"
+      "contacts": [
+        {
+          "contact_face": "north",
+          "access_bbox_mm": [
+            225.85,
+            49.36,
+            229.64,
+            65
+          ],
+          "native_pad_hits": [
+            "J_JTAG.3",
+            "J_JTAG.5",
+            "J_JTAG.7"
+          ],
+          "foreign_body_hits": [],
+          "existing_copper_hits": 0,
+          "rule_area_hits": 0,
+          "other_reservation_hits": [],
+          "checker_geometry_clear": false
+        },
+        {
+          "contact_face": "east",
+          "access_bbox_mm": [
+            225.85,
+            49.35,
+            228.9,
+            65
+          ],
+          "native_pad_hits": [
+            "J_JTAG.5",
+            "J_JTAG.6",
+            "J_JTAG.7",
+            "J_JTAG.8"
+          ],
+          "foreign_body_hits": [],
+          "existing_copper_hits": 0,
+          "rule_area_hits": 0,
+          "other_reservation_hits": [],
+          "checker_geometry_clear": false
+        },
+        {
+          "contact_face": "south",
+          "feasible_to_south_strip": false,
+          "checker_contact_with_strip": false,
+          "reason": "reservation north of pad cannot reach y=65"
+        },
+        {
+          "contact_face": "west",
+          "feasible_to_south_strip": false,
+          "checker_contact_with_strip": false,
+          "reason": "reservation east of pad cannot reach strip x<=226"
+        }
       ]
     },
     {
@@ -84,22 +156,55 @@
         228.37,
         49.36
       ],
-      "access_bbox_mm": [
-        225.9,
-        49.36,
-        228.37,
-        65
-      ],
-      "first_paired_obstacle": "J_JTAG.5",
-      "obstacle_bbox_mm": [
-        227.63,
-        50.64,
-        228.37,
-        53.43
-      ],
-      "all_native_pad_hits": [
-        "J_JTAG.5",
-        "J_JTAG.7"
+      "contacts": [
+        {
+          "contact_face": "north",
+          "access_bbox_mm": [
+            225.85,
+            49.36,
+            228.37,
+            65
+          ],
+          "native_pad_hits": [
+            "J_JTAG.5",
+            "J_JTAG.7"
+          ],
+          "foreign_body_hits": [],
+          "existing_copper_hits": 0,
+          "rule_area_hits": 0,
+          "other_reservation_hits": [],
+          "checker_geometry_clear": false
+        },
+        {
+          "contact_face": "east",
+          "access_bbox_mm": [
+            225.85,
+            49.35,
+            227.63,
+            65
+          ],
+          "native_pad_hits": [
+            "J_JTAG.7",
+            "J_JTAG.8"
+          ],
+          "foreign_body_hits": [],
+          "existing_copper_hits": 0,
+          "rule_area_hits": 0,
+          "other_reservation_hits": [],
+          "checker_geometry_clear": false
+        },
+        {
+          "contact_face": "south",
+          "feasible_to_south_strip": false,
+          "checker_contact_with_strip": false,
+          "reason": "reservation north of pad cannot reach y=65"
+        },
+        {
+          "contact_face": "west",
+          "feasible_to_south_strip": false,
+          "checker_contact_with_strip": false,
+          "reason": "reservation east of pad cannot reach strip x<=226"
+        }
       ]
     },
     {
@@ -111,21 +216,51 @@
         227.1,
         49.36
       ],
-      "access_bbox_mm": [
-        225.9,
-        49.36,
-        227.1,
-        65
-      ],
-      "first_paired_obstacle": "J_JTAG.7",
-      "obstacle_bbox_mm": [
-        226.36,
-        50.64,
-        227.1,
-        53.43
-      ],
-      "all_native_pad_hits": [
-        "J_JTAG.7"
+      "contacts": [
+        {
+          "contact_face": "north",
+          "access_bbox_mm": [
+            225.85,
+            49.36,
+            227.1,
+            65
+          ],
+          "native_pad_hits": [
+            "J_JTAG.7"
+          ],
+          "foreign_body_hits": [],
+          "existing_copper_hits": 0,
+          "rule_area_hits": 0,
+          "other_reservation_hits": [],
+          "checker_geometry_clear": false
+        },
+        {
+          "contact_face": "east",
+          "access_bbox_mm": [
+            225.85,
+            49.35,
+            226.36,
+            65
+          ],
+          "native_pad_hits": [],
+          "foreign_body_hits": [],
+          "existing_copper_hits": 0,
+          "rule_area_hits": 0,
+          "other_reservation_hits": [],
+          "checker_geometry_clear": true
+        },
+        {
+          "contact_face": "south",
+          "feasible_to_south_strip": false,
+          "checker_contact_with_strip": false,
+          "reason": "reservation north of pad cannot reach y=65"
+        },
+        {
+          "contact_face": "west",
+          "feasible_to_south_strip": false,
+          "checker_contact_with_strip": false,
+          "reason": "reservation east of pad cannot reach strip x<=226"
+        }
       ]
     }
   ],
@@ -135,7 +270,7 @@
     "status": "FAIL",
     "hashes": {
       "board": "fbfb3bda95f1ddc98e7d3d229550644d136dc7d6349ba19a4023eb13b07e7e27",
-      "contract": "23b228b4da7cf6b9772bc4d050475c89421bc32717165d648343d2fe453c1253",
+      "contract": "0389ccb50b3774059b979c1c08e675552d66724a825f3e71c1faa50dc62d5c86",
       "source": "69195228b845370ad01b3a6ba98239a4c282149eadccd9da9c8e71a786363141",
       "interfaces": "7201aa55cffefca99f9f27e92711cbbcf28387432523a8c960b5cd71e973170e",
       "aliases": "a6baba8bd4e389c146250a2a2ef5f7e9b09f63526e71dbdd05be8bca9b7b2c2e",
