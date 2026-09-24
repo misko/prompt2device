@@ -214,9 +214,12 @@ def _coarse_witness(board, witness, net, owned_pads, aliases, pads, outline,
         endpoint = {'source_pad': source, 'native_pad': native, 'net': net, 'block': block}
         if endpoint not in corridor['affected']:
             raise ContractError(f'{source}: fixed access endpoint not corridor declared')
+        # This is an access declaration from a physical pad, so a generous
+        # witness rectangle cannot stand in for the pad boundary.  Otherwise a
+        # segment could start at an invented face some distance from the pad.
         if not all(p.IsOnLayer(board.GetLayerID(layer)) and
-                   contains(area, box_mm(p.GetBoundingBox())) for p in found):
-            raise ContractError(f'{source}: fixed access does not contain physical pad on layer')
+                   area == box_mm(p.GetBoundingBox()) for p in found):
+            raise ContractError(f'{source}: fixed access boundary is not the physical pad')
         if not contains(region, area):
             raise ContractError(f'{source}: fixed access pad boundary leaves source region')
         obligation = witness.get('p2_obligation')
@@ -802,7 +805,7 @@ def evaluate_coarse(board_path, contract_path, expected_contract_sha256=None, *,
                                     side = fp.GetLayerName()
                                     if (ref != verified['native'].rsplit('.', 1)[0] and
                                             ((side == 'F.Cu' and corridor['layer'] == 'F.Cu') or
-                                             (side == 'B.Cu' and corridor['layer'] == 'B.Cu'))):
+                                            (side == 'B.Cu' and corridor['layer'] == 'B.Cu'))):
                                         if any(intersects(shape, _physical_envelope(fp)) for shape in shapes):
                                             raise ContractError(f"{verified['source']}: fixed access intersects native body {ref}")
                                     for pad in fp.Pads():
@@ -816,6 +819,12 @@ def evaluate_coarse(board_path, contract_path, expected_contract_sha256=None, *,
                                        any(intersects(shape, box_mm(item.GetBoundingBox()))
                                            for shape in shapes)
                                        for item in board.GetTracks()):
+                                    raise ContractError(f"{verified['source']}: fixed access intersects existing copper")
+                                if any(not zone.GetIsRuleArea() and
+                                       zone.IsOnLayer(board.GetLayerID(corridor['layer'])) and
+                                       any(intersects(shape, box_mm(zone.GetBoundingBox()))
+                                           for shape in shapes)
+                                       for zone in zones):
                                     raise ContractError(f"{verified['source']}: fixed access intersects existing copper")
                                 if any(zone.GetIsRuleArea() and
                                        corridor['layer'] in {board.GetLayerName(i) for i in zone.GetLayerSet().Seq()} and

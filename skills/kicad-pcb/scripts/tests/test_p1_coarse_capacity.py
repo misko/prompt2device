@@ -289,6 +289,39 @@ class CoarseCapacityTest(unittest.TestCase):
         self.assertIn('witness source/block ownership mismatch',
                       self.run_case()['allocations'][0]['reason'])
 
+    def test_segmented_fixed_access_requires_the_actual_pad_boundary(self):
+        witness, _ = self.add_segmented_fixed_access()
+        # This enlarged declaration used to let the first segment leave an
+        # invented face at x=2.125 instead of the U_L0.1 pad at x=2.125.
+        witness['boundary_bbox'][0] = 1.5
+        self.assertIn('boundary is not the physical pad',
+                      self.run_case()['allocations'][0]['reason'])
+
+    def test_segmented_fixed_access_rejects_copper_zone(self):
+        self.add_segmented_fixed_access()
+        zone = pcbnew.ZONE(self.board)
+        zone.SetLayer(pcbnew.F_Cu)
+        polygon = zone.Outline()
+        polygon.NewOutline()
+        for x, y in ((2.8, 4.25), (3.1, 4.25), (3.1, 4.35), (2.8, 4.35)):
+            polygon.Append(pcbnew.VECTOR2I(iu(x), iu(y)))
+        self.board.Add(zone)
+        self.assertIn('fixed access intersects existing copper',
+                      self.run_case()['allocations'][0]['reason'])
+
+    def test_segmented_fixed_access_rejects_native_rule_area(self):
+        self.add_segmented_fixed_access()
+        zone = pcbnew.ZONE(self.board)
+        zone.SetIsRuleArea(True)
+        zone.SetLayer(pcbnew.F_Cu)
+        polygon = zone.Outline()
+        polygon.NewOutline()
+        for x, y in ((2.8, 4.25), (3.1, 4.25), (3.1, 4.35), (2.8, 4.35)):
+            polygon.Append(pcbnew.VECTOR2I(iu(x), iu(y)))
+        self.board.Add(zone)
+        self.assertIn('fixed access overlaps immutable native rule area',
+                      self.run_case()['allocations'][0]['reason'])
+
     def test_segmented_fixed_access_rejects_competing_reservation(self):
         self.add_segmented_fixed_access()
         self.allocations[0]['reservations'].append({
@@ -314,7 +347,7 @@ class CoarseCapacityTest(unittest.TestCase):
         self.source['p1_fixed_refs'].append('U_L0')
         witness['boundary_bbox'] = [2.5, 3.575, 2.75, 3.825]
         result = self.run_case()
-        self.assertIn('does not contain physical pad', result['allocations'][0]['reason'])
+        self.assertIn('boundary is not the physical pad', result['allocations'][0]['reason'])
 
     def test_fixed_connector_access_rejects_detached_or_wrong_corridor(self):
         witness = self.add_fixed_connector_access()
