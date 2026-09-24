@@ -1,0 +1,20 @@
+# Isolated research addition to prep.seed_stubs.stubs; not an accepted route.
+stubs:
+  - net: VBUS_PRESENT_N
+    pin: R_VBUS_PU.2
+    segments:
+      - {layer: F.Cu, width: 0.2, pts: [[208.01, 72.0], [214.5, 72.0], [214.5, 74.5]]}
+      - {layer: F.Cu, width: 0.2, pts: [[212.9375, 74.5], [214.5, 74.5]]}
+      - {layer: B.Cu, width: 0.2, pts: [[214.5, 74.5], [204.75, 110.4]]}
+      - {layer: F.Cu, width: 0.15, pts: [[204.75, 110.4], [204.75, 108.93], [205.1, 108.58], [205.1, 107.6625]]}
+    vias: [[214.5, 74.5], [204.75, 110.4]]
+  - net: GND
+    pin: Q_VBUS.2
+    segments:
+      - {layer: F.Cu, width: 0.2, pts: [[211.0625, 75.45], [211.0625, 76.5], [215.5, 76.5], [215.5, 75.6]]}
+    vias: [[215.5, 75.6]]
+  - net: GND
+    pin: C_XU_VDDIO_10.2
+    segments:
+      - {layer: F.Cu, width: 0.2, pts: [[203.98, 109.4], [203.85, 110.4]]}
+    vias: [[203.85, 110.4]]
