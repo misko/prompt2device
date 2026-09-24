@@ -468,13 +468,10 @@ def _physical_envelope(fp):
     body = list(box_mm(fp.GetBoundingBox(False, False)))
     for layer in (pcbnew.F_CrtYd, pcbnew.B_CrtYd):
         courtyard = fp.GetCourtyard(layer)
-        for index in range(courtyard.OutlineCount()):
-            outline = courtyard.COutline(index)
-            for point in range(outline.PointCount()):
-                native = outline.CPoint(point)
-                x, y = pcbnew.ToMM(native.x), pcbnew.ToMM(native.y)
-                body = [min(body[0], x), min(body[1], y),
-                        max(body[2], x), max(body[3], y)]
+        if courtyard.OutlineCount():
+            x0, y0, x1, y1 = box_mm(courtyard.BBox())
+            body = [min(body[0], x0), min(body[1], y0),
+                    max(body[2], x1), max(body[3], y1)]
     return tuple(body)
 
 

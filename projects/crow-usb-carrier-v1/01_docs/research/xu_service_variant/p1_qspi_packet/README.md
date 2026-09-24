@@ -44,9 +44,9 @@ The first exact-board check exposed a generic footprint-envelope issue:
 example `C_XU_VDD_11` has a physical body ending at y=109.885 mm but text
 extends to y=112.862 mm. The checker now uses native body plus F/B courtyard
 and explicit pad bboxes, matching the earlier QSPI gap measurement while
-still rejecting non-text graphics. The focused native fixture suite has 44
-passing tests, including text-only overlap, non-text intrusion, and F/B
-courtyard-only intrusion.
+still rejecting non-text graphics. The focused native fixture suite has 45
+passing tests, including text-only overlap, non-text intrusion, F/B
+courtyard-only intrusion, and a near-edge courtyard stroke intrusion.
 
 Reproduce with KiCad 10 `pcbnew` and PyYAML from the repository root:
 

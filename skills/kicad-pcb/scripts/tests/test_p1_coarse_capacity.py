@@ -363,6 +363,45 @@ class CoarseCapacityTest(unittest.TestCase):
                 self.assertIn('native footprint/pad U_L0 intersects integration corridor/face',
                               result['errors'][0])
 
+    def test_integration_corridor_courtyard_stroke_only_near_edge_fails(self):
+        self.add_integration_corridor()
+        fp = next(f for f in self.board.GetFootprints() if f.GetReference() == 'U_L0')
+        corridor = (4, 3, 6, 7)
+        pads = list(fp.Pads())
+        self.assertEqual(len(pads), 1)
+        self.assertFalse(checker.intersects(checker.box_mm(pads[0].GetBoundingBox()), corridor))
+        # The contour stops 0.01 mm before the corridor. Its 0.05 mm native
+        # stroke extends 0.015 mm inside; vertices alone miss the violation.
+        points = [(3.5, 4.5), (3.99, 4.5), (3.99, 5.5), (3.5, 5.5)]
+        for start, end in zip(points, points[1:] + points[:1]):
+            edge = pcbnew.PCB_SHAPE(fp)
+            edge.SetShape(pcbnew.SHAPE_T_SEGMENT)
+            edge.SetStart(pcbnew.VECTOR2I(iu(start[0]), iu(start[1])))
+            edge.SetEnd(pcbnew.VECTOR2I(iu(end[0]), iu(end[1])))
+            edge.SetLayer(pcbnew.F_CrtYd)
+            edge.SetWidth(iu(.05))
+            fp.Add(edge)
+        courtyard = fp.GetCourtyard(pcbnew.F_CrtYd)
+        self.assertGreater(courtyard.OutlineCount(), 0)
+        rightmost_vertex = max(pcbnew.ToMM(courtyard.COutline(i).CPoint(k).x)
+                               for i in range(courtyard.OutlineCount())
+                               for k in range(courtyard.COutline(i).PointCount()))
+        self.assertLess(rightmost_vertex, corridor[0])
+        self.assertTrue(checker.intersects(checker.box_mm(courtyard.BBox()), corridor))
+
+        class BodyOnly:
+            def GetBoundingBox(self, *_):
+                return pads[0].GetBoundingBox()
+
+            def GetCourtyard(self, layer):
+                return fp.GetCourtyard(layer)
+
+        self.assertTrue(checker.intersects(checker._physical_envelope(BodyOnly()), corridor))
+        result = self.run_case()
+        self.assertEqual(result['status'], 'FAIL')
+        self.assertIn('native footprint/pad U_L0 intersects integration corridor/face',
+                      result['errors'][0])
+
     def run_case(self, change=None):
         if change:
             change()
