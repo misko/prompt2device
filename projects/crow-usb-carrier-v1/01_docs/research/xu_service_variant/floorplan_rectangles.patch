@@ -1,0 +1,21 @@
+--- a/projects/crow-usb-carrier-v1/03_src/floorplan.yaml
++++ b/projects/crow-usb-carrier-v1/03_src/floorplan.yaml
+@@ -384,13 +384,13 @@
+     - 185
+     - 134
+     xmos_core:
+-    - 185
+-    - 72
++    - 190
++    - 84
+     - 232
+-    - 128
++    - 114
+     clock_flash_debug:
+-    - 185
+-    - 112
++    - 190
++    - 114
+     - 232
+     - 136
+     audio_clock_tdm:

@@ -1,0 +1,358 @@
+{
+  "assigned_cell_footprints": 37,
+  "assigned_outside_cell": [],
+  "baseline": {
+    "footprints": 569,
+    "pads": 1872,
+    "tracks_and_vias": 14,
+    "zones": [
+      {
+        "bbox_mm": [
+          20.0,
+          20.0,
+          240.0,
+          140.0
+        ],
+        "layer": "In1.Cu",
+        "net": "GND",
+        "rule_area": false
+      }
+    ]
+  },
+  "changed_pad_identity_refs": [],
+  "changed_pad_position_refs": [
+    "C_FLASH",
+    "C_XTAL_IN",
+    "C_XTAL_OUT",
+    "C_XU_USB18",
+    "C_XU_USB33",
+    "R_QSPI_CS",
+    "R_XTAL_DRIVE",
+    "R_XTAL_FB",
+    "U_FLASH",
+    "Y_XU"
+  ],
+  "changed_source_regions_mm": {
+    "clock_flash_debug": [
+      [
+        185,
+        112,
+        232,
+        136
+      ],
+      [
+        190,
+        114,
+        232,
+        136
+      ]
+    ],
+    "xmos_core": [
+      [
+        185,
+        72,
+        232,
+        128
+      ],
+      [
+        190,
+        84,
+        232,
+        114
+      ]
+    ]
+  },
+  "diagnostic_window_footprint_hits": {
+    "jtag_reset": [],
+    "qspi": []
+  },
+  "moved_footprints": [
+    {
+      "after": [
+        211.7,
+        128.9,
+        0.0
+      ],
+      "after_envelope_mm": [
+        210.765,
+        128.415,
+        212.635,
+        129.385
+      ],
+      "before": [
+        209.2,
+        127.9,
+        0.0
+      ],
+      "before_envelope_mm": [
+        208.265,
+        127.415,
+        210.135,
+        128.385
+      ],
+      "ref": "C_FLASH"
+    },
+    {
+      "after": [
+        210.3,
+        121.1,
+        0.0
+      ],
+      "after_envelope_mm": [
+        209.365,
+        120.615,
+        211.235,
+        121.585
+      ],
+      "before": [
+        207.8,
+        120.1,
+        0.0
+      ],
+      "before_envelope_mm": [
+        206.865,
+        119.615,
+        208.735,
+        120.585
+      ],
+      "ref": "C_XTAL_IN"
+    },
+    {
+      "after": [
+        208.8,
+        128.9,
+        0.0
+      ],
+      "after_envelope_mm": [
+        207.865,
+        128.415,
+        209.735,
+        129.385
+      ],
+      "before": [
+        206.2,
+        127.9,
+        0.0
+      ],
+      "before_envelope_mm": [
+        205.265,
+        127.415,
+        207.135,
+        128.385
+      ],
+      "ref": "C_XTAL_OUT"
+    },
+    {
+      "after": [
+        209.3,
+        89.2,
+        0.0
+      ],
+      "after_envelope_mm": [
+        208.365,
+        88.715,
+        210.235,
+        89.685
+      ],
+      "before": [
+        206.6,
+        110.8,
+        0.0
+      ],
+      "before_envelope_mm": [
+        205.665,
+        110.315,
+        207.535,
+        111.285
+      ],
+      "ref": "C_XU_USB18"
+    },
+    {
+      "after": [
+        212.7,
+        89.2,
+        0.0
+      ],
+      "after_envelope_mm": [
+        211.765,
+        88.715,
+        213.635,
+        89.685
+      ],
+      "before": [
+        206.6,
+        89.2,
+        0.0
+      ],
+      "before_envelope_mm": [
+        205.665,
+        88.715,
+        207.535,
+        89.685
+      ],
+      "ref": "C_XU_USB33"
+    },
+    {
+      "after": [
+        213.2,
+        121.1,
+        0.0
+      ],
+      "after_envelope_mm": [
+        212.245,
+        120.605,
+        214.155,
+        121.595
+      ],
+      "before": [
+        210.8,
+        120.1,
+        0.0
+      ],
+      "before_envelope_mm": [
+        209.845,
+        119.605,
+        211.755,
+        120.595
+      ],
+      "ref": "R_QSPI_CS"
+    },
+    {
+      "after": [
+        212.0,
+        130.4,
+        0.0
+      ],
+      "after_envelope_mm": [
+        211.045,
+        129.905,
+        212.955,
+        130.895
+      ],
+      "before": [
+        209.5,
+        129.4,
+        0.0
+      ],
+      "before_envelope_mm": [
+        208.545,
+        128.905,
+        210.455,
+        129.895
+      ],
+      "ref": "R_XTAL_DRIVE"
+    },
+    {
+      "after": [
+        210.0,
+        119.6,
+        0.0
+      ],
+      "after_envelope_mm": [
+        209.045,
+        119.105,
+        210.955,
+        120.095
+      ],
+      "before": [
+        207.5,
+        118.6,
+        0.0
+      ],
+      "before_envelope_mm": [
+        206.545,
+        118.105,
+        208.455,
+        119.095
+      ],
+      "ref": "R_XTAL_FB"
+    },
+    {
+      "after": [
+        218.5,
+        125.0,
+        0.0
+      ],
+      "after_envelope_mm": [
+        213.825,
+        121.97,
+        223.175,
+        127.925
+      ],
+      "before": [
+        216.0,
+        124.0,
+        0.0
+      ],
+      "before_envelope_mm": [
+        211.325,
+        120.97,
+        220.675,
+        126.925
+      ],
+      "ref": "U_FLASH"
+    },
+    {
+      "after": [
+        211.0,
+        125.0,
+        0.0
+      ],
+      "after_envelope_mm": [
+        208.575,
+        123.125,
+        213.425,
+        126.875
+      ],
+      "before": [
+        208.5,
+        124.0,
+        0.0
+      ],
+      "before_envelope_mm": [
+        206.075,
+        122.125,
+        210.925,
+        125.875
+      ],
+      "ref": "Y_XU"
+    }
+  ],
+  "p1_fixed_count": 27,
+  "p1_fixed_moved_refs": [],
+  "pcbnew_version": "10.0.4",
+  "reservation_status": "UNREPRESENTED: diagnostic windows are not exclusive source-owned corridors",
+  "schema": "crow-xu-service-regeneration-v1",
+  "sha256": {
+    "baseline_board": "60a903b5ae5c7c7ef084fb3bd5dd50abf26e1e0e134a928f46107a6c90934b17",
+    "baseline_floorplan": "a882f87682484c37c5766a9e37c5a0d93b38a8e5a775fb1ab4425011da40a275",
+    "generator": "8a5fa1d48d80138458601a097ab6260565841510a498e44cb9c5773652215b3c",
+    "modular_plan": "7201aa55cffefca99f9f27e92711cbbcf28387432523a8c960b5cd71e973170e",
+    "netlist": "e7ef7dbd752b9431ade0933ca77ee998963bfe3871c3caf65cddc56442f1371d",
+    "requirements": "9ef85e5f4918dea0378203a97fa631ce2e73a690170235902a97a6c8e30527d8",
+    "variant_board": "c3b9d2885e1f475aad4744185eaa7258359a0d340e864e56418da5f61a0d3a6b",
+    "variant_floorplan": "01aa2aa9fa6b264510e568236a265fefb36494b275de081a99b62229c8be3de8"
+  },
+  "source_commit": "9c73181c432b51558003a8be7e496cc8c6757d5a",
+  "source_region_intersections": [],
+  "status": "INCOMPLETE_RESEARCH",
+  "variant": {
+    "footprints": 569,
+    "pads": 1872,
+    "tracks_and_vias": 14,
+    "zones": [
+      {
+        "bbox_mm": [
+          20.0,
+          20.0,
+          240.0,
+          140.0
+        ],
+        "layer": "In1.Cu",
+        "net": "GND",
+        "rule_area": false
+      }
+    ]
+  },
+  "zone_inventory_equal": true
+}
