@@ -247,6 +247,23 @@ class CoarseCapacityTest(unittest.TestCase):
                               [2.5, 4.2, 4, 4.4]]
         return witness, access
 
+    def add_second_segmented_fixed_access(self):
+        self.add_segmented_fixed_access()
+        self.source['p1_fixed_refs'].append('U_L1')
+        witness = next(w for w in self.allocations[0]['boundary_witnesses']
+                       if w['source'] == 'U_L1.1')
+        witness.update(kind='fixed_connector_access_segmented', face='west',
+                       boundary_bbox=[.875, 4.025, 1.125, 4.275],
+                       reservation_id='fixed_left_access_1')
+        access = {'id': 'fixed_left_access_1', 'kind': 'fixed_connector_access_segmented',
+                  'corridor_id': 'qspi', 'layer': 'F.Cu',
+                  'bbox': [1.125, 4.025, 4, 4.65], 'nets': ['QSPI_CS_N'],
+                  'segments': [[1.125, 4.025, 1.5, 4.275],
+                               [1.3, 4.275, 1.5, 4.65],
+                               [1.5, 4.45, 4, 4.65]]}
+        self.allocations[0]['reservations'].append(access)
+        return access
+
     def test_segmented_fixed_access_bypasses_envelope_obstacle_without_credit(self):
         self.add_segmented_fixed_access()
         pad(self.board, 'U_BLOCK', '1', 'OTHER', 3, 3.9, .2)
@@ -259,6 +276,20 @@ class CoarseCapacityTest(unittest.TestCase):
         reservation = result['allocations'][0]['reservations'][-1]
         self.assertEqual(reservation['status'], 'INCOMPLETE')
         self.assertNotIn('capacity_slots', reservation)
+
+    def test_segmented_fixed_access_peers_can_share_only_their_envelopes(self):
+        self.add_second_segmented_fixed_access()
+        result = self.run_case()
+        self.assertEqual(result['errors'], [])
+        self.assertEqual(result['status'], 'INCOMPLETE')
+
+    def test_segmented_fixed_access_peers_reject_actual_segment_overlap(self):
+        self.add_second_segmented_fixed_access()
+        access = self.allocations[0]['reservations'][-2]
+        access['segments'][2][3] = 4.6
+        access['bbox'][3] = 4.6
+        self.assertIn('fixed access overlaps other reservation',
+                      self.run_case()['allocations'][0]['reason'])
 
     def test_segmented_fixed_access_rejects_waypoint_and_native_obstacles(self):
         _, access = self.add_segmented_fixed_access()

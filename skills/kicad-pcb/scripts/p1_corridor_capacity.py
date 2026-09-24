@@ -808,10 +808,28 @@ def evaluate_coarse(board_path, contract_path, expected_contract_sha256=None, *,
                                 if segmented and not intersects(shapes[-1], selected['bbox']):
                                     raise ContractError(f"{verified['source']}: segmented fixed access misses source face")
                                 for other in reservations:
-                                    if other is not target and other.get('id') != corridor['reservation_id'] and \
-                                            other.get('layer') == corridor['layer'] and \
-                                            any(intersects(shape, rectangle(other.get('bbox'), 'other reservation'))
-                                                for shape in shapes):
+                                    if other is target or other.get('id') == corridor['reservation_id'] or \
+                                            other.get('layer') != corridor['layer']:
+                                        continue
+                                    if other.get('kind') == 'fixed_connector_access_segmented':
+                                        peers = [(peer_raw, peer_verified)
+                                                 for peer_raw, peer_verified in zip(witnesses, checked)
+                                                 if peer_raw.get('kind') == 'fixed_connector_access_segmented' and
+                                                 peer_raw.get('reservation_id') == other.get('id')]
+                                        if len(peers) != 1:
+                                            raise ContractError(f"{verified['source']}: segmented peer access endpoint denominator invalid")
+                                        peer_raw, peer_verified = peers[0]
+                                        peer_corridor = corridors.get(peer_raw.get('corridor_id'))
+                                        if peer_corridor is None:
+                                            raise ContractError(f"{verified['source']}: segmented peer access corridor missing")
+                                        other_shapes = _fixed_access_shapes(
+                                            other, peer_verified, peer_corridor['bbox'],
+                                            rectangle(regions[peer_verified['block']], 'peer access source region'))
+                                    else:
+                                        # A legacy rectangle has no narrower geometry to prove.
+                                        other_shapes = [rectangle(other.get('bbox'), 'other reservation')]
+                                    if any(intersects(shape, other_shape)
+                                           for shape in shapes for other_shape in other_shapes):
                                         raise ContractError(f"{verified['source']}: fixed access overlaps other reservation")
                                 # This reservation is intentionally exempt from rough-capacity
                                 # measurement, but it still has to be an empty physical access
