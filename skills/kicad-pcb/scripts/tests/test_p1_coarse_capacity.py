@@ -146,6 +146,150 @@ class CoarseCapacityTest(unittest.TestCase):
         self.allocations[0]['boundary_witnesses'].append(witness)
         return port, witness
 
+    def add_integration_corridor(self):
+        """A six-net QSPI-shaped gap with two source-owned adjacent faces."""
+        nets = [f'QSPI_{suffix}' for suffix in ('CLK', 'CS_N', 'D0', 'D1', 'D2', 'D3')]
+        self.floorplan['placement']['post_anchors']['R_MOVE'] = [8, 8, 0]
+        movable = next(f for f in self.board.GetFootprints() if f.GetReference() == 'R_MOVE')
+        movable.SetPosition(pcbnew.VECTOR2I(iu(8), iu(8)))
+        self.floorplan['placement']['regions']['board_integration_qspi'] = [4, 3, 6, 7]
+        self.interfaces['blocks'] = [
+            {'id': 'left', 'refs': ['J_LEFT']}, {'id': 'right', 'refs': ['J_RIGHT', 'R_MOVE']},
+            {'id': 'power', 'refs': ['J_G', 'J_G2']},
+            {'id': 'board_integration', 'refs': []}]
+        endpoints = {}
+        affected = []
+        for index, net in enumerate(nets):
+            left, right = f'U_L{index}', f'U_R{index}'
+            y = 3.7 + index * .45
+            pad(self.board, left, '1', net, 2, y, .25)
+            pad(self.board, right, '1', net, 8, y, .25)
+            self.floorplan['placement']['post_anchors'][left] = [2, y, 0]
+            self.floorplan['placement']['post_anchors'][right] = [8, y, 0]
+            self.interfaces['blocks'][0]['refs'].append(left)
+            self.interfaces['blocks'][1]['refs'].append(right)
+            endpoints[net] = {'left': [left + '.1'], 'right': [right + '.1']}
+            affected.extend([{'source_pad': left + '.1', 'native_pad': left + '.1',
+                              'net': net, 'block': 'left'},
+                             {'source_pad': right + '.1', 'native_pad': right + '.1',
+                              'net': net, 'block': 'right'}])
+        self.source['allocations'][0] = {'id': 'signal', 'coverage_nets': nets,
+                                          'endpoints': endpoints,
+                                          'demands': [{'id': 'qspi', 'nets': nets}]}
+        self.interfaces['interfaces'] = [{'net': net, 'endpoints': endpoints[net]}
+                                         for net in nets] + [self.interfaces['interfaces'][1]]
+        faces = [{'block': 'left', 'region_face': 'east', 'bbox': [3.8, 4.5, 4, 5.3]},
+                 {'block': 'right', 'region_face': 'west', 'bbox': [6, 4.5, 6.2, 5.3]}]
+        obligation = lambda e: {'status': 'P2_REQUIRED', **e, 'corridor_id': 'qspi',
+                                'region_face': 'east' if e['block'] == 'left' else 'west',
+                                'layer': 'F.Cu', 'to_reservation': 'qspi_trunk'}
+        corridor = {'id': 'qspi', 'owner': 'board_integration',
+                    'region_id': 'board_integration_qspi', 'allocation_id': 'signal',
+                    'participants': ['left', 'right'], 'faces': faces, 'layer': 'F.Cu',
+                    'reference_layer': 'B.Cu', 'nets': nets,
+                    'reservation_id': 'qspi_trunk', 'affected': affected,
+                    'p2_obligations': [obligation(e) for e in affected],
+                    'return_obligation': {'status': 'P2_REQUIRED', 'net': 'GND',
+                                          'corridor_id': 'qspi', 'reference_layer': 'B.Cu',
+                                          'proof': 'continuous_filled_reference'}}
+        self.source['integration_corridors'] = [corridor]
+        self.allocations[0] = {'id': 'signal', 'coverage_nets': nets,
+                               'boundary_witnesses': [
+                                   {'kind': 'integration_corridor_handoff',
+                                    'corridor_id': 'qspi', 'source': e['source_pad'],
+                                    'native': e['native_pad'], 'net': e['net'],
+                                    'block': e['block'], 'layer': 'F.Cu',
+                                    'face': 'west' if e['block'] == 'left' else 'east',
+                                    'region_face': 'east' if e['block'] == 'left' else 'west',
+                                    'boundary_bbox': faces[0 if e['block'] == 'left' else 1]['bbox'][:],
+                                    'reservation_id': 'qspi_trunk', 'p2_obligation': obligation(e)}
+                                   for e in affected],
+                               'reservations': [{'id': 'qspi_trunk', 'kind': 'integration_corridor',
+                                                 'corridor_id': 'qspi', 'owner': 'board_integration',
+                                                 'region_id': 'board_integration_qspi', 'layer': 'F.Cu',
+                                                 'bbox': [4, 3, 6, 7], 'nets': nets}]}
+        return corridor
+
+    def test_integration_corridor_is_declared_debt_without_capacity_credit(self):
+        self.add_integration_corridor()
+        result = self.run_case()
+        self.assertEqual(result['errors'], [])
+        self.assertEqual(result['status'], 'INCOMPLETE')
+        self.assertFalse(result['p1_accepted'])
+        reservation = result['allocations'][0]['reservations'][0]
+        self.assertEqual(reservation['status'], 'INCOMPLETE')
+        self.assertNotIn('potential_slots', reservation)
+        self.assertEqual(len(result['allocations'][0]['p2_obligations']), 12)
+
+    def test_integration_corridor_missing_return_or_endpoint_fails(self):
+        row = self.add_integration_corridor()
+        row.pop('return_obligation')
+        result = self.run_case()
+        self.assertEqual(result['status'], 'FAIL')
+        self.assertIn('filled-reference return obligation missing', result['errors'][0])
+        self.setUp()
+        row = self.add_integration_corridor()
+        row['affected'].pop()
+        result = self.run_case()
+        self.assertEqual(result['status'], 'FAIL')
+        self.assertIn('endpoint denominator mismatch', result['errors'][0])
+
+    def test_integration_corridor_corner_and_owner_mismatch_fail(self):
+        row = self.add_integration_corridor()
+        row['faces'][0]['bbox'] = [3.8, 3, 4, 3.5]
+        result = self.run_case()
+        self.assertEqual(result['status'], 'FAIL')
+        self.assertIn('non-corner shared edge', result['errors'][0])
+        self.setUp()
+        row = self.add_integration_corridor()
+        row['owner'] = 'left'
+        result = self.run_case()
+        self.assertEqual(result['status'], 'FAIL')
+        self.assertIn('identity/owner/region invalid', result['errors'][0])
+
+    def test_integration_corridor_native_hit_and_double_credit_fail(self):
+        self.add_integration_corridor()
+        pad(self.board, 'J_HIT', '1', 'OTHER', 5, 5)
+        self.floorplan['placement']['post_anchors']['J_HIT'] = [5, 5, 0]
+        result = self.run_case()
+        self.assertEqual(result['status'], 'FAIL')
+        self.assertIn('native footprint/pad', result['errors'][0])
+        self.setUp()
+        self.add_integration_corridor()
+        self.allocations[0]['reservations'].append({'id': 'second', 'kind': 'signal',
+                                                      'layer': 'F.Cu', 'bbox': [7, 7, 9, 9],
+                                                      'nets': ['QSPI_CLK'], 'axis': 'horizontal',
+                                                      'demand_slots': 1, 'slot_pitch_mm': .5})
+        result = self.run_case()
+        self.assertEqual(result['status'], 'FAIL')
+        self.assertIn('double reservation credit', ' '.join(result['errors']))
+
+    def test_integration_corridor_partial_demand_and_claimed_pass_fail(self):
+        row = self.add_integration_corridor()
+        row['nets'] = row['nets'][:-1]
+        result = self.run_case()
+        self.assertEqual(result['status'], 'FAIL')
+        self.assertIn('partial or undeclared source demand', result['errors'][0])
+        self.setUp()
+        self.add_integration_corridor()
+        self.allocations[0]['reservations'][0]['status'] = 'PASS'
+        result = self.run_case()
+        self.assertEqual(result['status'], 'FAIL')
+        self.assertIn('source mismatch', result['allocations'][0]['reason'])
+
+    def test_integration_corridor_reused_id_and_wrong_witness_fail(self):
+        self.add_integration_corridor()
+        self.allocations[1]['reservations'][0]['id'] = 'qspi_trunk'
+        result = self.run_case()
+        self.assertEqual(result['status'], 'FAIL')
+        self.assertIn('duplicate global reservation id', result['errors'][0])
+        self.setUp()
+        self.add_integration_corridor()
+        self.allocations[0]['boundary_witnesses'][0]['block'] = 'right'
+        result = self.run_case()
+        self.assertEqual(result['status'], 'FAIL')
+        self.assertIn('ownership mismatch', result['allocations'][0]['reason'])
+
     def run_case(self, change=None):
         if change:
             change()

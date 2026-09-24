@@ -31,6 +31,11 @@ the union zone, participants, exact affected source/native ref.pad/net/block
 tuples, port bbox/face/layers, reservation scope, P2 pad-to-port obligations,
 and a P2 filled-reference return obligation. A matching witness can use only
 that port and never receives a rough capacity credit.
+An optional ``integration_corridors`` source list binds an empty, disjoint
+``board_integration`` floorplan region, two adjacent source faces, exact
+endpoints/net demand and P2 pad-to-face/filled-reference obligations. Its
+matching ``integration_corridor`` reservation remains INCOMPLETE without raw
+slot credit; geometry cannot establish native access or return continuity.
 """
 from __future__ import annotations
 
@@ -85,7 +90,7 @@ def _coarse_hash(path, label, errors):
 
 
 def _coarse_witness(board, witness, net, owned_pads, aliases, pads, outline,
-                    regions, fixed_refs, shared_ports):
+                    regions, fixed_refs, shared_ports, integration_corridors=None):
     source = witness.get('source')
     native = witness.get('native')
     block = witness.get('block')
@@ -165,6 +170,32 @@ def _coarse_witness(board, witness, net, owned_pads, aliases, pads, outline,
             raise ContractError(f'{source}: exact P2 pad-to-port obligation missing')
         if not any(p.IsOnLayer(board.GetLayerID(layer)) for p in found):
             raise ContractError(f'{source}: native source pad not on shared port layer')
+    elif kind == 'integration_corridor_handoff':
+        corridor = (integration_corridors or {}).get(witness.get('corridor_id'))
+        if corridor is None:
+            raise ContractError(f'{source}: undeclared integration corridor')
+        if ref in fixed_refs:
+            raise ContractError(f'{source}: fixed P1 ref cannot use integration handoff')
+        if witness.get('reservation_id') != corridor['reservation_id'] or layer != corridor['layer']:
+            raise ContractError(f'{source}: integration reservation/layer mismatch')
+        faces = {item['block']: item for item in corridor['faces']}
+        selected = faces.get(block)
+        if selected is None or witness.get('region_face') != selected['region_face'] or area != selected['bbox']:
+            raise ContractError(f'{source}: integration owner/face mismatch')
+        opposites = {'north': 'south', 'south': 'north', 'east': 'west', 'west': 'east'}
+        if face != opposites[selected['region_face']]:
+            raise ContractError(f'{source}: integration face direction mismatch')
+        endpoint = {'source_pad': source, 'native_pad': native, 'net': net, 'block': block}
+        if endpoint not in corridor['affected']:
+            raise ContractError(f'{source}: integration endpoint not declared')
+        obligation = witness.get('p2_obligation')
+        expected = {'status': 'P2_REQUIRED', **endpoint,
+                    'corridor_id': corridor['id'], 'region_face': selected['region_face'],
+                    'layer': layer, 'to_reservation': corridor['reservation_id']}
+        if obligation != expected:
+            raise ContractError(f'{source}: integration P2 pad-to-face obligation missing')
+        if not any(p.IsOnLayer(board.GetLayerID(layer)) for p in found):
+            raise ContractError(f'{source}: native source pad not on integration layer')
     else:
         raise ContractError(f'{source}: unknown boundary witness kind')
     return {'source': source, 'native': native, 'net': net, 'block': block,
@@ -300,6 +331,130 @@ def _shared_ports(source, interfaces, board, outline, regions, zones, coverage, 
     return ports
 
 
+def _integration_corridors(source, interfaces, board, outline, regions, zones,
+                           coverage, aliases, pads, shared_ports):
+    """Validate a disjoint source cell; declarations are P2 debt, never proof."""
+    rows = source.get('integration_corridors', [])
+    if not isinstance(rows, list):
+        raise ContractError('integration corridors malformed')
+    blocks = interfaces.get('blocks')
+    if rows and not isinstance(blocks, list):
+        raise ContractError('integration corridors require modular block ownership')
+    owners = {}
+    for block in blocks or []:
+        for ref in block.get('refs', []):
+            if ref in owners:
+                raise ContractError(f'{ref}: duplicate modular footprint owner')
+            owners[ref] = block.get('id')
+    enabled = {board.GetLayerName(i) for i in board.GetEnabledLayers().Seq()
+               if pcbnew.IsCopperLayer(i)}
+    corridors, reservations = {}, set()
+    for row in rows:
+        if not isinstance(row, dict):
+            raise ContractError('integration corridor record malformed')
+        ident, region_id, reservation_id = (row.get(k) for k in ('id', 'region_id', 'reservation_id'))
+        if (not all(isinstance(v, str) and v for v in (ident, region_id, reservation_id)) or
+                ident in corridors or reservation_id in reservations or
+                row.get('owner') != 'board_integration' or region_id not in regions):
+            raise ContractError('integration corridor identity/owner/region invalid')
+        reservations.add(reservation_id)
+        area = rectangle(regions[region_id], f'{ident} region')
+        if not lane_inside_outline(outline, area):
+            raise ContractError(f'{ident}: integration region off board outline')
+        for other_id, other in regions.items():
+            if other_id != region_id and intersects(area, rectangle(other, f'{other_id} region')):
+                raise ContractError(f'{ident}: integration region overlaps {other_id}')
+        participants = row.get('participants')
+        faces = row.get('faces')
+        if (not isinstance(participants, list) or len(participants) != 2 or
+                len(set(participants)) != 2 or region_id in participants or
+                any(p not in regions for p in participants) or
+                not isinstance(faces, list) or len(faces) != 2 or
+                {f.get('block') for f in faces if isinstance(f, dict)} != set(participants)):
+            raise ContractError(f'{ident}: integration participants/faces invalid')
+        layer = row.get('layer')
+        if layer not in enabled:
+            raise ContractError(f'{ident}: integration signal layer unavailable')
+        net_list = row.get('nets')
+        allocation_id = row.get('allocation_id')
+        if (not isinstance(net_list, list) or not net_list or len(set(net_list)) != len(net_list) or
+                allocation_id not in coverage or not set(net_list) <= coverage[allocation_id]):
+            raise ContractError(f'{ident}: integration net/allocation invalid')
+        source_alloc = next((a for a in source.get('allocations', [])
+                             if a.get('id') == allocation_id), None)
+        if source_alloc is None or not any(set(d.get('nets', [])) == set(net_list)
+                                           for d in source_alloc.get('demands', [])):
+            raise ContractError(f'{ident}: partial or undeclared source demand')
+        normalized_faces = []
+        for face in faces:
+            block, direction = face.get('block'), face.get('region_face')
+            if direction not in ('north', 'south', 'east', 'west'):
+                raise ContractError(f'{ident}: integration face direction invalid')
+            owner = rectangle(regions[block], f'{block} region')
+            boundary = rectangle(face.get('bbox'), f'{ident} {block} face')
+            edge = {'west': 0, 'north': 1, 'east': 2, 'south': 3}[direction]
+            if (not contains(owner, boundary) or
+                    abs(boundary[edge] - owner[edge]) > 1e-6 or
+                    any(abs(boundary[i] - owner[i]) <= 1e-6 for i in range(4) if i != edge) or
+                    not _witness_touches_reservation(
+                        {'boundary_bbox': boundary,
+                         'face': {'north': 'south', 'south': 'north',
+                                  'east': 'west', 'west': 'east'}[direction]},
+                        {'bbox': area})):
+                raise ContractError(f'{ident}: integration face lacks positive non-corner shared edge')
+            normalized_faces.append({**face, 'bbox': boundary})
+        affected = row.get('affected')
+        if (not isinstance(affected, list) or not affected or
+                any(not isinstance(e, dict) or set(e) != {'source_pad', 'native_pad', 'net', 'block'}
+                    for e in affected) or
+                len({tuple(sorted(e.items())) for e in affected}) != len(affected)):
+            raise ContractError(f'{ident}: integration affected endpoints invalid')
+        expected = set()
+        for item in interfaces['interfaces']:
+            if item['net'] in net_list:
+                for block in participants:
+                    for source_pad in item.get('endpoints', {}).get(block, []):
+                        expected.add((source_pad, graph.native_identity(source_pad, aliases),
+                                      item['net'], block))
+        actual = {(e['source_pad'], e['native_pad'], e['net'], e['block']) for e in affected}
+        if actual != expected or {e['net'] for e in affected} != set(net_list):
+            raise ContractError(f'{ident}: integration endpoint denominator mismatch')
+        for e in affected:
+            native_pad = e['native_pad']
+            if (owners.get(native_pad.rsplit('.', 1)[0]) != e['block'] or
+                    not pads.get(native_pad) or
+                    any(p.GetNetname() != e['net'] or not p.IsOnLayer(board.GetLayerID(layer))
+                        for p in pads[native_pad])):
+                raise ContractError(f'{ident}: integration native owner/pad/net/layer mismatch')
+        face_by_block = {f['block']: f for f in normalized_faces}
+        expected_p2 = [{'status': 'P2_REQUIRED', **e, 'corridor_id': ident,
+                        'region_face': face_by_block[e['block']]['region_face'],
+                        'layer': layer, 'to_reservation': reservation_id} for e in affected]
+        if row.get('p2_obligations') != expected_p2:
+            raise ContractError(f'{ident}: integration P2 pad-to-face obligations incomplete')
+        reference = row.get('reference_layer')
+        if reference not in enabled or reference == layer or row.get('return_obligation') != {
+                'status': 'P2_REQUIRED', 'net': 'GND', 'corridor_id': ident,
+                'reference_layer': reference, 'proof': 'continuous_filled_reference'}:
+            raise ContractError(f'{ident}: integration P2 filled-reference return obligation missing')
+        for fp in board.GetFootprints():
+            shapes = [box_mm(fp.GetBoundingBox(True, True))] + [box_mm(p.GetBoundingBox()) for p in fp.Pads()]
+            if any(intersects(shape, area) or any(intersects(shape, f['bbox']) for f in normalized_faces)
+                   for shape in shapes):
+                raise ContractError(f'{ident}: native footprint/pad {fp.GetReference()} intersects integration corridor/face')
+        for item in board.GetTracks():
+            if (any(item.IsOnLayer(board.GetLayerID(copper)) for copper in enabled) and
+                    any(intersects(box_mm(item.GetBoundingBox()), shape)
+                        for shape in [area] + [f['bbox'] for f in normalized_faces])):
+                raise ContractError(f'{ident}: native copper intersects integration corridor')
+        for zone in zones:
+            if zone.GetIsRuleArea() and any(intersects(box_mm(zone.GetBoundingBox()), shape)
+                                                for shape in [area] + [f['bbox'] for f in normalized_faces]):
+                raise ContractError(f'{ident}: immutable native rule area intersects integration corridor/face')
+        corridors[ident] = {**row, 'bbox': area, 'faces': normalized_faces}
+    return corridors
+
+
 def _coarse_reservation(board, row, outline, fixed_refs, movable_refs, zones, native_pitch,
                         *, power_boundary, power_like_nets):
     ident = row.get('id')
@@ -352,7 +507,7 @@ def evaluate_coarse(board_path, contract_path, expected_contract_sha256=None, *,
                     expected_source_sha256=None, expected_interface_sha256=None,
                     expected_alias_sha256=None, expected_floorplan_sha256=None):
     errors, results, hashes = [], [], {}
-    shared_ports_configured = False
+    shared_ports_configured = integration_configured = False
     paths = {'board': board_path, 'contract': contract_path, 'source': source_path,
              'interfaces': interface_path, 'aliases': alias_path, 'floorplan': floorplan_path}
     for label, path in paths.items():
@@ -368,6 +523,7 @@ def evaluate_coarse(board_path, contract_path, expected_contract_sha256=None, *,
             contract = json.loads(Path(contract_path).read_text())
             source = yaml.safe_load(Path(source_path).read_text())
             shared_ports_configured = isinstance(source, dict) and 'shared_transition_ports' in source
+            integration_configured = isinstance(source, dict) and 'integration_corridors' in source
             interfaces = json.loads(Path(interface_path).read_text())
             aliases = graph.alias_inventory(yaml.safe_load(Path(alias_path).read_text()))
             floorplan = yaml.safe_load(Path(floorplan_path).read_text())
@@ -445,7 +601,10 @@ def evaluate_coarse(board_path, contract_path, expected_contract_sha256=None, *,
             zones = list(board.Zones())
             shared_ports = _shared_ports(source, interfaces, board, outline, regions,
                                          zones, coverage, aliases, pads)
+            corridors = _integration_corridors(source, interfaces, board, outline, regions,
+                                               zones, coverage, aliases, pads, shared_ports)
             used_port_endpoints = defaultdict(set)
+            used_corridor_endpoints = defaultdict(set)
             native = board.GetDesignSettings()
             native_pitch = pcbnew.ToMM(native.m_TrackMinWidth + native.m_MinClearance)
             if native_pitch <= 0:
@@ -454,6 +613,11 @@ def evaluate_coarse(board_path, contract_path, expected_contract_sha256=None, *,
                                  for allocation in allocations if isinstance(allocation, dict)
                                  for reservation in allocation.get('reservations', [])
                                  if isinstance(reservation, dict)]
+            all_ids = [r.get('id') for _, r in reservations_seen]
+            if len(all_ids) != len(set(all_ids)):
+                raise ContractError('duplicate global reservation id')
+            if {p['reservation_id'] for p in shared_ports.values()} & {c['reservation_id'] for c in corridors.values()}:
+                raise ContractError('shared port/integration corridor reservation identity reused')
             for allocation in allocations:
                 name = allocation['id']
                 try:
@@ -479,7 +643,7 @@ def evaluate_coarse(board_path, contract_path, expected_contract_sha256=None, *,
                             raise ContractError(f'{name}: witness net outside allocation')
                         checked.append(_coarse_witness(board, witness, witness['net'], owned_pads,
                                                        aliases, pads, outline, regions, fixed_refs,
-                                                       shared_ports))
+                                                       shared_ports, corridors))
                     if {w['net'] for w in checked} != coverage[name]:
                         raise ContractError(f'{name}: missing per-net boundary witness')
                     if len({(w['source'], w['net']) for w in checked}) != len(checked):
@@ -508,11 +672,39 @@ def evaluate_coarse(board_path, contract_path, expected_contract_sha256=None, *,
                                 raise ContractError(f"{verified['source']}: reservation outside declared shared port scope")
                             used_port_endpoints[port['id']].add((verified['source'], verified['native'],
                                                                   verified['net'], verified['block'], verified['layer']))
+                        if witness.get('kind') == 'integration_corridor_handoff':
+                            corridor = corridors[witness['corridor_id']]
+                            if (name != corridor['allocation_id'] or
+                                    target.get('id') != corridor['reservation_id'] or
+                                    target.get('kind') != 'integration_corridor' or
+                                    target.get('corridor_id') != corridor['id'] or
+                                    target.get('owner') != 'board_integration' or
+                                    target.get('region_id') != corridor['region_id'] or
+                                    rectangle(target.get('bbox'), 'integration reservation') != corridor['bbox']):
+                                raise ContractError(f"{verified['source']}: integration reservation owner/scope mismatch")
+                            used_corridor_endpoints[corridor['id']].add((verified['source'], verified['native'],
+                                                                         verified['net'], verified['block'], verified['layer']))
                     measured = []
                     for reservation in reservations:
                         if not set(reservation.get('nets', [])) <= coverage[name]:
                             raise ContractError(f'{name}: reservation net outside allocation')
                         associated = [p for p in shared_ports.values() if p['reservation_id'] == reservation.get('id')]
+                        integration = [c for c in corridors.values() if c['reservation_id'] == reservation.get('id')]
+                        if integration or reservation.get('kind') == 'integration_corridor':
+                            if (len(integration) != 1 or name != integration[0]['allocation_id'] or
+                                    'status' in reservation or
+                                    reservation.get('kind') != 'integration_corridor' or
+                                    reservation.get('corridor_id') != integration[0]['id'] or
+                                    reservation.get('owner') != 'board_integration' or
+                                    reservation.get('region_id') != integration[0]['region_id'] or
+                                    reservation.get('layer') != integration[0]['layer'] or
+                                    set(reservation.get('nets', [])) != set(integration[0]['nets']) or
+                                    rectangle(reservation.get('bbox'), 'integration reservation') != integration[0]['bbox']):
+                                raise ContractError(f'{name}: integration reservation source mismatch')
+                            measured.append({'id': reservation['id'], 'status': 'INCOMPLETE',
+                                             'nets': reservation['nets'],
+                                             'reason': 'P2 native pad-to-face, filled-reference return and effective capacity unproved'})
+                            continue
                         if associated:
                             if len(associated) != 1 or not contains(associated[0]['reservation_bbox'], rectangle(reservation.get('bbox'), 'shared reservation')):
                                 raise ContractError(f'{name}: reservation outside declared shared port scope')
@@ -538,7 +730,13 @@ def evaluate_coarse(board_path, contract_path, expected_contract_sha256=None, *,
                                                  'virtual reservation enters' in reason or
                                                  any(w.get('kind') == 'shared_transition_port'
                                                      for w in (allocation.get('boundary_witnesses') or [])
-                                                     if isinstance(w, dict)))
+                                                     if isinstance(w, dict)) or
+                                                 any(w.get('kind') == 'integration_corridor_handoff'
+                                                     for w in (allocation.get('boundary_witnesses') or [])
+                                                     if isinstance(w, dict)) or
+                                                 any(r.get('kind') == 'integration_corridor'
+                                                     for r in (allocation.get('reservations') or [])
+                                                     if isinstance(r, dict)))
                     results.append({'id': name, 'status': 'FAIL' if definite_geometry_failure else 'INCOMPLETE',
                                     'reason': reason})
             for ident, port in shared_ports.items():
@@ -546,6 +744,22 @@ def evaluate_coarse(board_path, contract_path, expected_contract_sha256=None, *,
                                  for e in port['affected'] for layer in port['layers']}
                 if used_port_endpoints[ident] != expected_uses:
                     errors.append(f'{ident}: shared port affected endpoint/layer denominator mismatch')
+            for ident, corridor in corridors.items():
+                expected_uses = {(e['source_pad'], e['native_pad'], e['net'], e['block'], corridor['layer'])
+                                 for e in corridor['affected']}
+                if used_corridor_endpoints[ident] != expected_uses:
+                    errors.append(f'{ident}: integration affected endpoint/layer denominator mismatch')
+                matches = [(name, r) for name, r in reservations_seen
+                           if r.get('id') == corridor['reservation_id']]
+                if len(matches) != 1:
+                    errors.append(f'{ident}: integration reservation denominator mismatch')
+                for name, reservation in reservations_seen:
+                    if (reservation.get('id') != corridor['reservation_id'] and
+                            set(reservation.get('nets', [])) & set(corridor['nets'])):
+                        errors.append(f'{ident}: integration net double reservation credit in {name}')
+                    if (reservation.get('id') != corridor['reservation_id'] and
+                            intersects(rectangle(reservation.get('bbox'), 'reservation'), corridor['bbox'])):
+                        errors.append(f'{ident}: integration corridor overlaps reservation in {name}')
             for index, (left_name, left) in enumerate(reservations_seen):
                 for right_name, right in reservations_seen[index + 1:]:
                     if (left_name != right_name and left.get('layer') == right.get('layer') and
@@ -557,7 +771,7 @@ def evaluate_coarse(board_path, contract_path, expected_contract_sha256=None, *,
         except (ContractError, ValueError, TypeError, AttributeError, RuntimeError, KeyError) as exc:
             errors.append(str(exc))
     status = 'FAIL' if (any(row['status'] == 'FAIL' for row in results) or
-                        (shared_ports_configured and errors) or
+                        ((shared_ports_configured or integration_configured) and errors) or
                         any('overlapping named allocations' in error or 'shared port' in error or
                             'shared transition port' in error or 'unowned overlap' in error or
                             'foreign footprint' in error for error in errors)) else 'INCOMPLETE'
