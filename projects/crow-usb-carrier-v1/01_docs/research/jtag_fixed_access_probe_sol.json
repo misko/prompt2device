@@ -1,0 +1,180 @@
+{
+  "status": "FAIL",
+  "scope": "RESEARCH_ONLY",
+  "board_sha256": "fbfb3bda95f1ddc98e7d3d229550644d136dc7d6349ba19a4023eb13b07e7e27",
+  "checker": "skills/kicad-pcb/scripts/p1_corridor_capacity.py",
+  "fixed_pad_count": 4,
+  "xu_pad_count": 4,
+  "source_region": [
+    221,
+    40,
+    238,
+    65
+  ],
+  "strip_region": [
+    221,
+    65,
+    226,
+    84
+  ],
+  "blockers": [
+    {
+      "net": "JTAG_TMS",
+      "fixed_pad": "J_JTAG.2",
+      "fixed_pad_bbox_mm": [
+        230.17,
+        46.57,
+        230.91,
+        49.36
+      ],
+      "access_bbox_mm": [
+        225.9,
+        49.36,
+        230.91,
+        65
+      ],
+      "first_paired_obstacle": "J_JTAG.1",
+      "obstacle_bbox_mm": [
+        230.17,
+        50.64,
+        230.91,
+        53.43
+      ],
+      "all_native_pad_hits": [
+        "J_JTAG.1",
+        "J_JTAG.3",
+        "J_JTAG.5",
+        "J_JTAG.7"
+      ]
+    },
+    {
+      "net": "JTAG_TCK",
+      "fixed_pad": "J_JTAG.4",
+      "fixed_pad_bbox_mm": [
+        228.9,
+        46.57,
+        229.64,
+        49.36
+      ],
+      "access_bbox_mm": [
+        225.9,
+        49.36,
+        229.64,
+        65
+      ],
+      "first_paired_obstacle": "J_JTAG.3",
+      "obstacle_bbox_mm": [
+        228.9,
+        50.64,
+        229.64,
+        53.43
+      ],
+      "all_native_pad_hits": [
+        "J_JTAG.3",
+        "J_JTAG.5",
+        "J_JTAG.7"
+      ]
+    },
+    {
+      "net": "JTAG_TDO",
+      "fixed_pad": "J_JTAG.6",
+      "fixed_pad_bbox_mm": [
+        227.63,
+        46.57,
+        228.37,
+        49.36
+      ],
+      "access_bbox_mm": [
+        225.9,
+        49.36,
+        228.37,
+        65
+      ],
+      "first_paired_obstacle": "J_JTAG.5",
+      "obstacle_bbox_mm": [
+        227.63,
+        50.64,
+        228.37,
+        53.43
+      ],
+      "all_native_pad_hits": [
+        "J_JTAG.5",
+        "J_JTAG.7"
+      ]
+    },
+    {
+      "net": "JTAG_TDI",
+      "fixed_pad": "J_JTAG.8",
+      "fixed_pad_bbox_mm": [
+        226.36,
+        46.57,
+        227.1,
+        49.36
+      ],
+      "access_bbox_mm": [
+        225.9,
+        49.36,
+        227.1,
+        65
+      ],
+      "first_paired_obstacle": "J_JTAG.7",
+      "obstacle_bbox_mm": [
+        226.36,
+        50.64,
+        227.1,
+        53.43
+      ],
+      "all_native_pad_hits": [
+        "J_JTAG.7"
+      ]
+    }
+  ],
+  "whole_packet": {
+    "schema": 2,
+    "kind": "p1-coarse-reservation-screen",
+    "status": "FAIL",
+    "hashes": {
+      "board": "fbfb3bda95f1ddc98e7d3d229550644d136dc7d6349ba19a4023eb13b07e7e27",
+      "contract": "23b228b4da7cf6b9772bc4d050475c89421bc32717165d648343d2fe453c1253",
+      "source": "69195228b845370ad01b3a6ba98239a4c282149eadccd9da9c8e71a786363141",
+      "interfaces": "7201aa55cffefca99f9f27e92711cbbcf28387432523a8c960b5cd71e973170e",
+      "aliases": "a6baba8bd4e389c146250a2a2ef5f7e9b09f63526e71dbdd05be8bca9b7b2c2e",
+      "floorplan": "1a05e7247604519d3c69b0d311ac607b7c63ba959973c2672ae43763974ce569"
+    },
+    "errors": [
+      "qspi_gap: integration affected endpoint/layer denominator mismatch",
+      "jtag_strip: integration affected endpoint/layer denominator mismatch"
+    ],
+    "allocations": [
+      {
+        "id": "usb_device_pair",
+        "status": "INCOMPLETE",
+        "reason": "J_USB.4: witness bbox is a nonlocal bridge across source region"
+      },
+      {
+        "id": "xmos_service_escape",
+        "status": "FAIL",
+        "reason": "U_XU.38: witness bbox is a nonlocal bridge across source region"
+      },
+      {
+        "id": "adc_timing_xmos_bundle",
+        "status": "INCOMPLETE",
+        "reason": "U_ADC_A.22: P2-movable owner requires virtual block-face witness"
+      },
+      {
+        "id": "adc_analog_boundary",
+        "status": "INCOMPLETE",
+        "reason": "C_ADC_AC1N1.2: witness bbox is a nonlocal bridge across source region"
+      },
+      {
+        "id": "power_boundary_windows",
+        "status": "INCOMPLETE",
+        "reason": "C_ADC_3V3X_OK_VDD.2: witness bbox is a nonlocal bridge across source region"
+      }
+    ],
+    "allocation_denominator": 5,
+    "routing_realized": false,
+    "p1_accepted": false,
+    "reason": "independent filled-reference, effective-capacity and P1 review not supplied"
+  }
+}
