@@ -25,7 +25,10 @@ layer. The debug connector owns `[221,40,238,65]`; its south face is
 packet. The USB frontend is reduced to `[200,35,238.5,40]` so the JTAG
 connector source region has one owner. The four exact fixed pads use their
 native pad bboxes as boundary witnesses; the four XU endpoints use declared
-face handoffs. No connector is moved or rotated.
+face handoffs. The physical exits are TMS east and TCK/TDO/TDI south. The
+checker witness calls those contacts `west` and `north` respectively, because
+it names the reservation-facing side of the source-pad contact. No connector
+is moved or rotated.
 
 Each `jtag_access_*` reservation lists two or more **ordered, positive-edge
 joined, nonoverlapping axis-aligned segments**. The TMS chain exits east;
@@ -33,7 +36,9 @@ TCK, TDO and TDI leave the south pad edges through the inter-row opening and
 dogleg around the native lower-row contacts. The final segment of every chain
 contacts the JTAG strip. [coarse_jtag.json](coarse_jtag.json) contains exact
 segment coordinates and envelopes; [result.json](result.json) records their
-native pad boundaries and pairwise copper spacing (minimum 0.15 mm). These
+native pad boundaries, pairwise copper spacing (minimum 0.15 mm), and a
+0.15-mm clearance screen against foreign native pads, front bodies/courtyards,
+existing F.Cu, saved filled F.Cu, and F.Cu rule areas. These
 chains encode the four simultaneous native Manhattan witnesses from Terra's
 `5ad7dd9b` feasibility probe, with butt-jointed rectangular reservations for
 the segmented checker. The origin connector courtyard requires the probe's

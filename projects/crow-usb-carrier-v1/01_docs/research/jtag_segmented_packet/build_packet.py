@@ -23,6 +23,7 @@ PINS = [('JTAG_TMS', 'J_JTAG.2', 'U_XU.44'),
         ('JTAG_TDO', 'J_JTAG.6', 'U_XU.37'),
         ('JTAG_TDI', 'J_JTAG.8', 'U_XU.36')]
 STRIP = [221, 65, 226, 84]
+CLEARANCE = .15
 FACES = [{'block': 'debug_connector', 'region_face': 'south',
           'bbox': [221.1, 64.7, 225.9, 65]},
          {'block': 'xmos_core', 'region_face': 'north',
@@ -66,6 +67,12 @@ def pin(name, path):
 def envelope(shapes):
     return [min(s[0] for s in shapes), min(s[1] for s in shapes),
             max(s[2] for s in shapes), max(s[3] for s in shapes)]
+
+
+def inflate(shape, margin=CLEARANCE):
+    """Obstacle expansion for the declared copper-to-obstacle clearance."""
+    return [shape[0] - margin, shape[1] - margin,
+            shape[2] + margin, shape[3] + margin]
 
 
 def main():
@@ -150,6 +157,9 @@ def main():
         rid = 'jtag_access_'+fixed.rsplit('.',1)[1]
         witness = {'kind':'fixed_connector_access_segmented','corridor_id':'jtag_strip',
             'source':fixed,'native':fixed,'net':net,'block':'debug_connector',
+            # The checker uses the reservation-facing convention: `west`
+            # denotes the shape leaving the pad's east edge, and `north`
+            # denotes its south-edge exit.
             'face':'west' if net=='JTAG_TMS' else 'north','layer':'F.Cu',
             'region_face':'south','boundary_bbox':list(pads[fixed]),
             'reservation_id':rid,'p2_obligation':obligation(e)}
@@ -242,10 +252,39 @@ def main():
             hits.append('other reservation')
         if hits:
             raise RuntimeError(f'{net}: native obstacle {hits}')
-        checks.append({'net':net,'fixed_pad':witness['source'],'xu_pad':next(x for n,f,x in PINS if n==net),
+        clearance_hits=[]
+        for fp in board.GetFootprints():
+            ref=fp.GetReference()
+            if ref!='J_JTAG' and fp.GetLayerName()=='F.Cu' and any(
+                    checker.intersects(s,inflate(checker._physical_envelope(fp))) for s in shapes):
+                clearance_hits.append('body/courtyard:'+ref)
+            for pad in fp.Pads():
+                name=f'{ref}.{pad.GetNumber()}'
+                if name!=witness['native'] and pad.IsOnLayer(board.GetLayerID('F.Cu')) and any(
+                        checker.intersects(s,inflate(checker.box_mm(pad.GetBoundingBox()))) for s in shapes):
+                    clearance_hits.append('pad:'+name)
+        if any(item.IsOnLayer(board.GetLayerID('F.Cu')) and any(
+                checker.intersects(s,inflate(checker.box_mm(item.GetBoundingBox()))) for s in shapes)
+                for item in board.GetTracks()):
+            clearance_hits.append('existing track')
+        if any(zone.GetIsRuleArea() and 'F.Cu' in {
+                board.GetLayerName(i) for i in zone.GetLayerSet().Seq()} and any(
+                checker.intersects(s,inflate(checker.box_mm(zone.GetBoundingBox()))) for s in shapes)
+                for zone in board.Zones()):
+            clearance_hits.append('rule area')
+        if any(not zone.GetIsRuleArea() and checker._filled_zone_intersects(
+                zone,board.GetLayerID('F.Cu'),inflate(s))
+                for zone in board.Zones() for s in shapes):
+            clearance_hits.append('saved filled copper')
+        if clearance_hits:
+            raise RuntimeError(f'{net}: native {CLEARANCE:.2f}-mm clearance obstacle {clearance_hits}')
+        checks.append({'net':net,'fixed_pad':witness['source'],
+            'checker_contact_face':witness['face'],
+            'xu_pad':next(x for n,f,x in PINS if n==net),
             'physical_pad_bbox':witness['boundary_bbox'],'reservation_id':reservation['id'],
             'segments':shapes,'segment_envelope':reservation['bbox'],
-            'native_obstacle_hits':hits,'status':'INCOMPLETE'})
+            'native_obstacle_hits':hits,'native_clearance_mm':CLEARANCE,
+            'native_clearance_hits':clearance_hits,'status':'INCOMPLETE'})
     minimum_spacing = {}
     for index,left in enumerate(checks):
         for right in checks[index+1:]:

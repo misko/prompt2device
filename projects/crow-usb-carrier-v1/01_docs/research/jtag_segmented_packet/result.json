@@ -30,6 +30,7 @@
     {
       "net": "JTAG_TMS",
       "fixed_pad": "J_JTAG.2",
+      "checker_contact_face": "west",
       "xu_pad": "U_XU.44",
       "physical_pad_bbox": [
         230.17,
@@ -71,11 +72,14 @@
         65
       ],
       "native_obstacle_hits": [],
+      "native_clearance_mm": 0.15,
+      "native_clearance_hits": [],
       "status": "INCOMPLETE"
     },
     {
       "net": "JTAG_TCK",
       "fixed_pad": "J_JTAG.4",
+      "checker_contact_face": "north",
       "xu_pad": "U_XU.51",
       "physical_pad_bbox": [
         228.9,
@@ -123,11 +127,14 @@
         65
       ],
       "native_obstacle_hits": [],
+      "native_clearance_mm": 0.15,
+      "native_clearance_hits": [],
       "status": "INCOMPLETE"
     },
     {
       "net": "JTAG_TDO",
       "fixed_pad": "J_JTAG.6",
+      "checker_contact_face": "north",
       "xu_pad": "U_XU.37",
       "physical_pad_bbox": [
         227.63,
@@ -175,11 +182,14 @@
         65
       ],
       "native_obstacle_hits": [],
+      "native_clearance_mm": 0.15,
+      "native_clearance_hits": [],
       "status": "INCOMPLETE"
     },
     {
       "net": "JTAG_TDI",
       "fixed_pad": "J_JTAG.8",
+      "checker_contact_face": "north",
       "xu_pad": "U_XU.36",
       "physical_pad_bbox": [
         226.36,
@@ -227,6 +237,8 @@
         65
       ],
       "native_obstacle_hits": [],
+      "native_clearance_mm": 0.15,
+      "native_clearance_hits": [],
       "status": "INCOMPLETE"
     }
   ],
