@@ -14,6 +14,7 @@ belongs here.
 | `critical_paths.yaml` | Optional nonempty schema-1 short-path and clamp-dominance contract. Exact endpoints, length/pad-span ceilings, via-free layer, and downstream targets; the independent shared saved-copper checker refuses unsupported topology. Required when a project conductor declares this gate. |
 | `assembly_locator.yaml` | Optional A-LOCATOR schema1 for independently reviewed silkscreen omissions: title, owner, orientation and exact exception identities. Shared exporter generates the exact-board viewer/data/atlas; placement/release gates require the source waiver set and all artifact identities to agree. No automatic waiver or order authority. |
 | `integration.yaml` | P-MOD module-first architecture record. REQUIRED on newly commissioned/adopted projects: every complex subsystem selects a real module or carries an evidenced D-MOD bare-IC exception ADR; absence is UNMIGRATED, never PASS |
+| `ic_reference_research.yaml` | Source-selected IC reference search and exact-instance applicability. `ic_reference_check.py` checks all selected circuit/netlist ICs and is invoked after netlist generation; an independent packet/source-bound semantic receipt is required before P1 board generation. Coverage is not engineering approval. |
 | `rf.yaml` | RF applicability and exact-artifact review contract, schema 1. REQUIRED on new projects even when `rf.enabled: false` (with rationale). When true it declares risk basis, ports/bands/Z0, solved cross-sections, numeric performance claims, first-article measurements/acceptance, and non-empty requirement-ID sets plus artifact/review paths for the independent RF schematic, PCB, and plotted-fab phases. Graded by `rf_contract_check.py`; zero/partial review coverage and stale artifact hashes fail. |
 | `model_registration.yaml` | Optional schema-1 native 3D-model physical-registration contract. Each group binds refs to one exact model SHA and numeric mounted-side Fab/courtyard/attachment-field tolerances. Optional group-level `mount_side: front|back` requests signed-side registration for any package without inventing connector orientation; if both declarations exist they must agree. The declared mounting side must agree with the native footprint side; only that side’s Fab/courtyard datums qualify. Mixed-side groups are refused. Coupons retain native flips, use the mounted-side plan camera and account for bottom X reflection; side and owned datums participate in cache identity. Edge-facing groups add one `orientation` block; all realised `J*` refs are declared or explicitly exempted. Graded before placement review by `model_registration_gate.py` then `connector_orientation_gate.py`; independent of catalog-twin renderer fidelity. |
 | `connector_assemblies.yaml` | REQUIRED on newly commissioned projects. Operated designs carry typed receptacle/mate/grip/fastening/tool/torque/reaction/cable evidence, a known realized-orientation source, contiguous operations, simultaneous groups, and tolerance sources. A no-operated design instead carries exact typed `applicability` evidence and empty populations, producing applicability-only `N-A`, never geometry PASS. Both rebuild drivers compile it; represented unknowns are `INCOMPLETE`. The current enclosure adapter binds its canonical receipt but stays `INCOMPLETE`; realized-board PCB geometry and enclosure operation-solid PASS consumers remain owed. Current enclosure schema-v1 inline candidates are migration-only and cannot become shared service authority. |
@@ -1193,3 +1194,58 @@ requires an independent exact-artifact usability review.
 This graph proof requires explicit supported copper contacts. Graded-net zones,
 arcs, unsplit intersections and width-only contacts are refused. A saved-board
 PASS does not measure clamp function or environmental/transient survival.
+
+### keys: 03_src/rules/ic_reference_research.yaml
+
+| key | reader | why |
+|---|---|---|
+| `schema` | `ic_reference_check.py` | requires schema 1 |
+| `engineering_status` | `ic_reference_check.py` | stays INCOMPLETE; reference coverage is not physical layout proof |
+| `parts` | `ic_reference_check.py` | exact selected-IC MPN/package groups from circuit and netlist |
+| `parts[].mpn` | `ic_reference_check.py` | exact selected manufacturer part number |
+| `parts[].package` | `ic_reference_check.py` | exact selected dossier package |
+| `parts[].state` | `ic_reference_check.py` | complete research or explicit missing_evidence debt |
+| `parts[].research_owner` | `ic_reference_check.py` | named research owner, distinct from semantic reviewer |
+| `parts[].next_action` | `ic_reference_check.py` | named next step for incomplete or downstream work |
+| `parts[].artifacts` | `ic_reference_check.py` | records inspected or unavailable source search |
+| `parts[].artifacts[].publisher` | `ic_reference_check.py` | publisher identity |
+| `parts[].artifacts[].artifact` | `ic_reference_check.py` | must match dossier layout_refs artifact/tier |
+| `parts[].artifacts[].url` | `ic_reference_check.py` | retrieval target, not inspection evidence by itself |
+| `parts[].artifacts[].tier` | `ic_reference_check.py` | precedent authority tier 1-4 |
+| `parts[].artifacts[].format` | `ic_reference_check.py` | source format and inspectability |
+| `parts[].artifacts[].editable` | `ic_reference_check.py` | distinguishes native design files from rendered documentation |
+| `parts[].artifacts[].inspected` | `ic_reference_check.py` | requires content inspection evidence when true |
+| `parts[].artifacts[].retrieval.status` | `ic_reference_check.py` | retrieved, found, unavailable, or restricted |
+| `parts[].artifacts[].retrieval.at` | `ic_reference_check.py` | dated retrieval attempt |
+| `parts[].artifacts[].retrieval.detail` | `ic_reference_check.py` | search detail; task-packet absence alone does not close search |
+| `parts[].artifacts[].inspection.source_path` | `ic_reference_check.py` | optional local evidence path, resolved and hash checked |
+| `parts[].artifacts[].inspection.sha256` | `ic_reference_check.py` | inspected content digest |
+| `parts[].artifacts[].inspection.locator` | `ic_reference_check.py` | exact page/section/file locator |
+| `parts[].artifacts[].inspection.notes` | `ic_reference_check.py` | what was examined |
+| `parts[].docs_fallback` | `ic_reference_check.py` | inspected manufacturer docs can close research when design files are unavailable |
+| `parts[].docs_fallback.artifact` | `ic_reference_check.py` | must match reached dossier layout_refs entry |
+| `parts[].docs_fallback.url` | `ic_reference_check.py` | document retrieval URL |
+| `parts[].docs_fallback.inspected` | `ic_reference_check.py` | separates consulted contents from found link |
+| `parts[].docs_fallback.inspection` | `ic_reference_check.py` | content hash, locator, notes and optional local path |
+| `parts[].docs_fallback.inspection.source_path` | `ic_reference_check.py` | optional project/part-relative retained document path |
+| `parts[].docs_fallback.inspection.sha256` | `ic_reference_check.py` | retained inspected content digest |
+| `parts[].docs_fallback.inspection.locator` | `ic_reference_check.py` | exact source section/page locator |
+| `parts[].docs_fallback.inspection.notes` | `ic_reference_check.py` | what was inspected in the fallback |
+| `parts[].docs_fallback.extracted_guidance` | `ic_reference_check.py` | nonempty guidance when inspected |
+| `parts[].applications` | `ic_reference_check.py` | every selected IC ref exactly once |
+| `parts[].applications[].refdes` | `ic_reference_check.py` | exact source component identity |
+| `parts[].applications[].mode` | `ic_reference_check.py` | instance operating mode, bound into reviewed_for |
+| `parts[].applications[].footprint` | `ic_reference_check.py` | exact native netlist footprint |
+| `parts[].applications[].critical_pins_or_nets` | `ic_reference_check.py` | connected source net or REF.pad identities, never NC placeholders |
+| `parts[].applications[].stackup` | `ic_reference_check.py` | declared application stack description |
+| `parts[].applications[].route_rules` | `ic_reference_check.py` | declared application rule description |
+| `parts[].applications[].applicability.status` | `ic_reference_check.py` | applicable, limited, not_applicable, or unknown |
+| `parts[].applications[].applicability.reasons` | `ic_reference_check.py` | required explanation for limited/unknown applicability |
+| `parts[].applications[].applicability.reviewed_for` | `ic_reference_check.py` | exact MPN/package/mode/circuit/stack/rule hash snapshot |
+| `parts[].applications[].applicability.reviewed_for.mpn` | `ic_reference_check.py` | stale selected part identity fails |
+| `parts[].applications[].applicability.reviewed_for.package` | `ic_reference_check.py` | stale selected package fails |
+| `parts[].applications[].applicability.reviewed_for.mode` | `ic_reference_check.py` | changed declared operating mode reopens review |
+| `parts[].applications[].applicability.reviewed_for.circuit_sha256` | `ic_reference_check.py` | exact instance MPN/footprint/value/pad-net binding |
+| `parts[].applications[].applicability.reviewed_for.stackup_sha256` | `ic_reference_check.py` | stack, reference zones and native rule input binding |
+| `parts[].applications[].applicability.reviewed_for.route_rules_sha256` | `ic_reference_check.py` | authored net/route rule binding |
+| `parts[].applications[].extracted_constraints` | `ic_reference_check.py` | at least one concrete source pin/net-bound constraint; semantic review remains independent |

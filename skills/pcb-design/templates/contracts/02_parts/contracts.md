@@ -283,14 +283,13 @@ layout:                     # REQUIRED for ICs + power/sense parts (P-LAYOUT).
                             # unrelated rail; a missing/non-shared name is
                             # P-ADJ-UNREACHED, never silently ignored.
   # notes: [...]            # free-text rules for the half no gate can grade
-layout_refs:                # REQUIRED for every HARD part (dense escapes,
-                            # switching power, >0.5A analog, RF): the LAYOUT
-                            # PRECEDENT SEARCH record — the routed references
-                            # consulted before drawing the local layout, in
-                            # datasheet-first authority order. STUDY then
-                            # RE-DERIVE; never import copper (M3). Harvested into
-                            # proven-parts.yaml with the part, so the search is
-                            # paid once per part, ever.
+layout_refs:                # Discovery ladder for every selected IC's exact
+                            # MPN/package. `ic_reference_research.yaml` binds
+                            # source-derived per-instance applicability; this
+                            # dossier list never implies transfer to another
+                            # mode, footprint, stack or route rule. Search
+                            # before placement, study then re-derive, and never
+                            # import precedent copper (M3).
                             # TWO FORMS, AS `pins.<N>` AND `sourcing.alternates`
                             # ALSO HAVE. The BARE STRING below is legal and is
                             # what 45 of the fleet's 89 in-scope parts use; it
@@ -300,6 +299,11 @@ layout_refs:                # REQUIRED for every HARD part (dense escapes,
   - "TI EVM SLVUAP7A design files"               # (2) tested instance of circuit
   - "OSHWLab by-LCSC C485912"                     # (3) JLC-fabbed board, Cu viewable
   # - "GitHub kicad project <url>"               # (4) unvetted — weakest
+                            # `ic_reference_research.yaml` records publisher,
+                            # editability, actual inspection, docs fallback,
+                            # and missing-evidence ownership. A found URL is not
+                            # `inspected: true`; missing files are a bounded
+                            # research handoff, never a permanent web blocker.
                             # THE GRADED (MAPPING) FORM. `tier:` is the SKILL.md
                             # authority order 1-4; `artifact:` names the thing
                             # (URL / document + figure + page / design-file
@@ -314,11 +318,13 @@ layout_refs:                # REQUIRED for every HARD part (dense escapes,
                             # ceiling, not possession of it, because no gate can
                             # know what exists on the web for an arbitrary part.
                             # TIER 2 IS ANY OPEN-HARDWARE REFERENCE DESIGN WITH
-                            # PUBLISHED LAYOUT, not just a vendor EVM, and an
-                            # EDITABLE design file OUTRANKS A RENDERED FIGURE —
-                            # you can open it and MEASURE it. Licence matters
-                            # here (it is what makes the file openable) but
-                            # never licenses copying: study-then-re-derive is M3.
+                            # PUBLISHED LAYOUT, not just a vendor EVM. Record
+                            # tier (publisher authority), format (ability to
+                            # inspect), and per-instance applicability separately:
+                            # an editable file improves measurement but does not
+                            # itself outrank a more authoritative source. Public
+                            # access/study and licence to reuse are separate;
+                            # study-then-re-derive is M3.
   # - {tier: 1, reached: true,
   #    artifact: "Hardware design with RP2040 Fig 6, PDF p9 (raster, 200 dpi)"}
   # - {tier: 2, reached: false,

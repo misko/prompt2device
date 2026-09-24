@@ -215,7 +215,7 @@ domains. References longer than 100 lines have a contents list.
 | Policy IDs and electrical/layout canon | [design-policies.md](../kicad-pcb/references/design-policies.md) |
 | TSX and schematic generation | [tscircuit-folder.md](../kicad-pcb/references/tscircuit-folder.md), then [schematic-generation.md](../kicad-pcb/references/schematic-generation.md) only for its documented fallback/review boundary |
 | Placement, adjacency, body clearance, corridors | [placement-and-proximity.md](../kicad-pcb/references/placement-and-proximity.md) |
-| Datasheet/reference-layout precedents | [layout-precedents.md](../kicad-pcb/references/layout-precedents.md) |
+| Selected-IC reference research and datasheet/layout precedents | [layout-precedents.md](../kicad-pcb/references/layout-precedents.md) |
 | Physical stack and source-to-prep ownership | [source-to-prep-authority.md](../kicad-pcb/references/source-to-prep-authority.md) |
 | Route mechanics | [routing-pipeline.md](../kicad-pcb/references/routing-pipeline.md) and [fast-pcb-flow.md](../kicad-pcb/references/fast-pcb-flow.md) |
 | Route ownership, transaction, exploration | [route-ownership.md](../kicad-pcb/references/route-ownership.md), [route-candidate-contract.md](../kicad-pcb/references/route-candidate-contract.md), [route-exploration.md](../kicad-pcb/references/route-exploration.md) |

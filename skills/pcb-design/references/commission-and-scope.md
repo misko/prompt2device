@@ -211,15 +211,28 @@ at the declared tier. Fine-pitch impossibility is a package/tier decision, not
 a router problem. For dense leaded packages, count escapes per side and reserve
 legal staggered via corridors.
 
-Apply `D-LAYOUT` and `D-ADJ` before placement:
+Apply `D-LAYOUT` and `D-ADJ` before placement. Every selected IC is in scope,
+from the source-derived component census rather than its reference prefix. Reuse
+reference discovery by exact MPN/package, but record applicability for every
+instance's operating mode, footprint, stack and route rules. The project packet
+`03_src/rules/ic_reference_research.yaml` binds that census to inspected-artifact
+status and missing-evidence handoff; dossier `layout_refs:` remains the
+discovery ladder.
 
 - read the datasheet layout section and reference design;
-- prefer editable reference-design files over raster pictures;
-- record authority tier, artifact, whether it was reached, and why a stronger
-  source was not used;
+- prefer an inspectable reference-design file over a raster picture for
+  measurement, while recording publisher authority and applicability separately;
+- record publisher, authority tier, artifact, editability, and whether its
+  contents were actually inspected; a found URL is not an inspected layout;
+- record unavailable downloads truthfully and route missing evidence to the
+  named research owner; a docs-only fallback is research, not acceptance;
 - compare the precedent's surrounding free space with this board's corridor;
-- extract decisions into dossiers and floorplan config; never import precedent
-  copper;
+- compare exact package/pinout, operating mode, circuit connectivity, and
+  stack/reference/rule assumptions before P1, then prove critical routes
+  natively in P3;
+- extract reviewed decisions into dossiers and floorplan config; never import
+  precedent copper or treat a precedent as placement, routing, SI, or release
+  acceptance;
 - keep bootstrap, feedback, decoupling, sense, pass-device, and hot-loop parts
   against the pins they serve.
 

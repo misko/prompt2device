@@ -1,0 +1,2894 @@
+schema: 1
+engineering_status: INCOMPLETE
+parts:
+- mpn: 74LVC1G14GV,125
+  package: SC-74A SOT753
+  artifacts:
+  - publisher: Nexperia
+    artifact: Nexperia 74LVC1G14 Rev19 datasheet
+    url: https://assets.nexperia.com/documents/data-sheet/74LVC1G14.pdf
+    tier: 1
+    format: PDF
+    editable: false
+    inspected: true
+    retrieval:
+      status: retrieved
+      at: '2026-09-24'
+      detail: Retained local manufacturer PDF was re-opened for the selected-IC audit.
+    inspection:
+      source_path: 02_parts/74LVC1G14GV,125/74LVC1G14_Rev19.pdf
+      sha256: b8f37c700d0fc8374de6d14f0e2caf310c34b480ffab9d63c69bb3b6defbebbf
+      locator: Nexperia 74LVC1G14 Rev19 pp3,5,7,11
+      notes: Inspected retained primary package/layout source; not a Crow PCB result.
+  docs_fallback:
+    artifact: Nexperia 74LVC1G14 Rev19 datasheet
+    url: https://assets.nexperia.com/documents/data-sheet/74LVC1G14.pdf
+    inspected: true
+    inspection:
+      source_path: 02_parts/74LVC1G14GV,125/74LVC1G14_Rev19.pdf
+      sha256: b8f37c700d0fc8374de6d14f0e2caf310c34b480ffab9d63c69bb3b6defbebbf
+      locator: Nexperia 74LVC1G14 Rev19 pp3,5,7,11
+      notes: Retained primary inspected for this source inventory; it is not a Crow PCB result.
+    extracted_guidance:
+    - 'Primary basis: Nexperia 74LVC1G14 Rev19 pp3,5,7,11'
+    - Place next to U_TDM with its own100nF bypass at pins5/3; keep Y-to-OE a short local unloaded logic net with no shunt RC or test cable.
+    - Keep module sense input separate from local output and rail; preserve Ioff power boundary.
+    - 'Carrier local-placement source 2026-09-08: exact-ref/non-ground-net adjacency is a rotation-aware copper-bounding-box gap, NOT pad-center distance or routed length. Rounded engineering ceilings below are not manufacturer numerical maxima. Ground pours are excluded by P-ADJ-PAIR; local return/thermal/escape proof remains owed on the later saved PCB.'
+    - Source-only pin-center plan uses <=5mm local bypass/BST and <=10mm feedback ceilings, with separately named bulk/input/feed exceptions. See 01_docs/SOURCE-CORRECTION-20260908-local-placement.md for all 299 roles and exact source geometry; no current-board acceptance is inherited.
+    - 'Obsolete U_OE/C_OE/R_MCH_SENSE/R_MCH_SENSE_PD placement pairs retired: current TDM output enable is U_TDM_XLATE pin 15 on TDM_OE_N, with Q_TDM_GATE and R_TDM_OE_PU; those old refdes are absent from this source. Their old U_OE local-bypass and sense-loop budgets cannot be applied to a nonexistent circuit.'
+    - DUMP timing is the actual PWR_EN -> R_DUMP_TIME1 -> DUMP_RMID -> parallel R_DUMP_TIME2/3 -> DUMP_RC -> eight C_DUMP_TIME1..8 circuit. Keep each C_DUMP_TIME close to U_DUMP on DUMP_RC (3.5 mm), each R_DUMP_TIME1-to-R_DUMP_TIME2/3 DUMP_RMID segment within 4.5 mm, and U_DUMP-to-each-R_DUMP_TIME2/3 on DUMP_RC within 4.0 mm. These are placement budgets; timing waveform qualification remains owed.
+    - Pin1 is not connected internally and remains unconnected in source.
+    - 'Genuine Schmitt INVERTER: presence high produces OE low. Powered from local3V3_ADC; never from module sense.'
+    - VT tables give discrete supply points; do not invent an interpolated guaranteed threshold or call propagation delay an output-slew maximum.
+    - Slow input transitions increase supply current. Brownout and hot-plug remain unqualified; normal settled logic is the design claim.
+    - Use the actual VCC/GND pads above for local bypass/return; keep driven input, output and any OE/CLR/DIR timing path compact and do not leave logic inputs floating.
+    - Use the actual VCC/GND pads above for local bypass/return; keep driven input, output and any OE/CLR/DIR timing path compact and do not leave logic inputs floating.
+  applications:
+  - refdes: U_DUMP
+    mode: dump
+    footprint: Package_TO_SOT_SMD:SOT-23-5
+    critical_pins_or_nets:
+    - U_DUMP.2
+    - U_DUMP.3
+    - U_DUMP.4
+    - U_DUMP.5
+    stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    applicability:
+      status: limited
+      reasons:
+      - Exact manufacturer primary was inspected; final Crow native placement, return and route geometry are not inspected.
+      reviewed_for:
+        mpn: 74LVC1G14GV,125
+        package: SC-74A SOT753
+        mode: dump
+        stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        circuit_sha256: f639988220c02317f630b3b138b998605e5dccac74f49ab01f6b2013245e94c8
+    extracted_constraints:
+    - "U_DUMP.2: U_DUMP: DUMP_RC into A2, DUMP_GATE from Y4; pin 3 is GND and pin 5 is N5V_LDO_HOLD, so local bypass belongs at 5/3."
+    - "U_DUMP.2: Keep the RC/input and inverter output local; pin 1 is NC, and timing waveform remains to be checked."
+  - refdes: U_LDO_EN
+    mode: ldo en
+    footprint: Package_TO_SOT_SMD:SOT-23-5
+    critical_pins_or_nets:
+    - U_LDO_EN.2
+    - U_LDO_EN.3
+    - U_LDO_EN.4
+    - U_LDO_EN.5
+    stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    applicability:
+      status: limited
+      reasons:
+      - Exact manufacturer primary was inspected; final Crow native placement, return and route geometry are not inspected.
+      reviewed_for:
+        mpn: 74LVC1G14GV,125
+        package: SC-74A SOT753
+        mode: ldo en
+        stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        circuit_sha256: b0c633e3d986c10b6c3820f61ba0473c7c21473f2e4004711902c1d515cf6a1f
+    extracted_constraints:
+    - "U_LDO_EN.2: U_LDO_EN: DUMP_GATE into A2, LDO_EN from Y4; pin 3 is GND and pin 5 is N5V_LDO_HOLD, so local bypass belongs at 5/3."
+    - "U_LDO_EN.2: Keep the RC/input and inverter output local; pin 1 is NC, and timing waveform remains to be checked."
+  state: complete
+  research_owner: terra
+  next_action: Review final native PCB geometry and returns against this exact primary reference; no route or acceptance is implied here.
+- mpn: LT3045EDD#PBF
+  package: DFN-10-1EP_3x3mm_P0.5mm
+  artifacts:
+  - publisher: Analog Devices
+    artifact: LT3045 Rev.D pp11-22 and DD drawing p29
+    url: https://www.analog.com/media/en/technical-documentation/data-sheets/lt3045.pdf
+    tier: 1
+    format: PDF
+    editable: false
+    inspected: true
+    retrieval:
+      status: retrieved
+      at: '2026-09-24'
+      detail: Retained local manufacturer PDF was re-opened for the selected-IC audit.
+    inspection:
+      source_path: 02_parts/LT3045EDD-PBF/LT3045_RevD.pdf
+      sha256: 9132e595759a58a0920e7c63997872df02ca9ce598ead76c6f7a31051405eba6
+      locator: LT3045 Rev.D pp11-22 and DD package drawing p29
+      notes: Inspected retained primary package/layout source; not a Crow PCB result.
+  docs_fallback:
+    artifact: LT3045 Rev.D pp11-22 and DD drawing p29
+    url: https://www.analog.com/media/en/technical-documentation/data-sheets/lt3045.pdf
+    inspected: true
+    inspection:
+      source_path: 02_parts/LT3045EDD-PBF/LT3045_RevD.pdf
+      sha256: 9132e595759a58a0920e7c63997872df02ca9ce598ead76c6f7a31051405eba6
+      locator: LT3045 Rev.D pp11-22 and DD package drawing p29
+      notes: Retained primary inspected for this source inventory; it is not a Crow PCB result.
+    extracted_guidance:
+    - 'Primary basis: LT3045 Rev.D pp11-22 and DD package drawing p29'
+    - C_LDO_OUT_1 and C_LDO_OUT_2 are the symmetric local COUT pair; C_OPA_BULK is downstream bulk, not regulator-stability capacitance. Verify local effective capacitance >=10uF, ESR <20mohm and assembled ESL <2nH with Kelvin OUTS at the shared node.
+    - The 0.8uVrms noise figure is a typical datasheet value at 500mA with 4.7uF CSET, not a guaranteed board-level audio-noise result. Capacitor leakage, piezoelectric response, layout and actual load remain qualification items.
+    - The PGFB divider enables fast startup with the larger CSET. The datasheet 10ms typical example is informative, not a candidate timing guarantee. Supervisor, hold-up, dump and ADC reset timing require joint transient review.
+    - Programmed 450mA minimum current limit exceeds the 250mA allocation by 200mA. Short-circuit, dump, capacitor charging and fault energy remain qualification items.
+    - EP11 and GND8 must be soldered/common. OUTS9 must Kelvin-sense the output-capacitor/load node; SET return joins the output-capacitor ground directly.
+    - ADI DC2491A manual/schematic inspected as exact-device precedent; DC2637A is LT3045-1 and not transferable.
+    - Keep C_LDO_IN, C_LDO_OUT_1/2, SET/ILIM and feedback networks local to their actual pins; validate output-capacitor Kelvin and EP thermal return.
+  applications:
+  - refdes: U_LDO
+    mode: LT3045 ADC 3.3 V low-noise regulator with Kelvin OUTS/SET network
+    footprint: crow_usb_analog:ADI_LT3045_DD_NoHoles
+    critical_pins_or_nets:
+    - U_LDO.1
+    - U_LDO.2
+    - U_LDO.5
+    - U_LDO.6
+    - U_LDO.7
+    - U_LDO.8
+    - U_LDO.9
+    - U_LDO.10
+    - U_LDO.11
+    stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    applicability:
+      status: limited
+      reasons:
+      - Exact manufacturer primary was inspected; final Crow native placement, return and route geometry are not inspected.
+      reviewed_for:
+        mpn: LT3045EDD#PBF
+        package: DFN-10-1EP_3x3mm_P0.5mm
+        mode: LT3045 ADC 3.3 V low-noise regulator with Kelvin OUTS/SET network
+        stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        circuit_sha256: 24b04a729bf660f8e0a2ebdf4ed0ae19a252b68afe86fc3484a57dd63d61ca87
+    extracted_constraints:
+    - "U_LDO.1: Place C_LDO_IN by IN1/2 and C_LDO_OUT_1/2 by OUT10 with short GND8/EP11 return; verify at least 10uF effective local COUT, ESR and ESL for the actual parts."
+    - "U_LDO.1: Kelvin-sense N3V3_ADC at OUTS9 from the shared output-capacitor/load node; keep SET7 quiet and return its capacitor directly to output-capacitor ground. ILIM5 and PGFB6 are programming/timing pins, not output power pins."
+    - "U_LDO.1: EP11 and GND8 must be soldered/common; thermal and noise behavior requires later board and load verification."
+  state: complete
+  research_owner: terra
+  next_action: Review final native PCB geometry and returns against this exact primary reference; no route or acceptance is implied here.
+- mpn: OPA2320AIDR
+  package: D SOIC-8 3.9x4.9mm P1.27mm
+  artifacts:
+  - publisher: Texas Instruments
+    artifact: TI SBOS513F sections9/10 and Figure49, PDF p28; section7.3.8, p19
+    url: https://www.ti.com/lit/ds/symlink/opa2320.pdf
+    tier: 1
+    format: PDF
+    editable: false
+    inspected: true
+    retrieval:
+      status: retrieved
+      at: '2026-09-24'
+      detail: Retained local manufacturer PDF was re-opened for the selected-IC audit.
+    inspection:
+      source_path: 02_parts/OPA2320AIDR/OPA2320_SBOS513F.pdf
+      sha256: 1d13d91bc220d3f37e814e29599ce23e086bd661227618104dcae5482c8144fc
+      locator: TI SBOS513F sections9 and10, PDF p28; capacitive-load guidance section7.3.8 p19
+      notes: Inspected retained primary package/layout source; not a Crow PCB result.
+  docs_fallback:
+    artifact: TI SBOS513F sections9/10 and Figure49, PDF p28; section7.3.8, p19
+    url: https://www.ti.com/lit/ds/symlink/opa2320.pdf
+    inspected: true
+    inspection:
+      source_path: 02_parts/OPA2320AIDR/OPA2320_SBOS513F.pdf
+      sha256: 1d13d91bc220d3f37e814e29599ce23e086bd661227618104dcae5482c8144fc
+      locator: TI SBOS513F sections9 and10, PDF p28; capacitive-load guidance section7.3.8 p19
+      notes: Retained primary inspected for this source inventory; it is not a Crow PCB result.
+    extracted_guidance:
+    - 'Primary basis: TI SBOS513F sections9 and10, PDF p28; capacitive-load guidance section7.3.8 p19'
+    - ADR0025 board-specific bindings replace the retired bridge and buffered-reference circuit; manufacturer facts and datasheet revision are unchanged.
+    - Exact-ref adjacency is a copper-edge gap on the named signal or non-poured rail, not a routed length. Ground-return qualification remains separate.
+    - All eight amplifiers and their own 100nF capacitors share N3V3_ADC. Each bypass remains bound to its exact U_AFE instance.
+    - R_X and C_FB stay beside FB/OUT; R_OUT is the 10ohm output resistor. Two 15nF C0G shunts per leg replace C_DIFF; their returns must not inject into the input/feedback ground reference.
+    - Passive external-bias divider/capacitor ownership now lives in RT0603BRD071KL; no ninth reference amplifier remains.
+    - Exact OPA2320AIDR is the dual D/SOIC-8 WITHOUT shutdown; OPA2320S has a different10-pin package. Do not infer a shutdown pin from the family title.
+    - Input, output, and feedback current loops must remain local; do not route a channel's output parallel to its high-impedance input.
+    - ADR0025 shares3V3_ADC across ADC and eight amplifiers; passive1k/1k reference dividers replace U_AFE9. No independent5V_OPA reservoir remains.
+    - The independent ground shunts change common-mode loading. Local return, output tracking, noise and filter-loop stability remain first-article obligations.
+    - Typical noise/distortion data is not an exact Cirrus AN0556 performance guarantee; retained1.2Vrms differential operation still requires measurement.
+    - TIDA-010249 discovered; its OPA2320 is VSSOP, not Crow SOIC-8, so no footprint geometry transfer.
+  applications:
+  - refdes: U_AFE1
+    mode: afe1
+    footprint: Package_SO:SOIC-8_3.9x4.9mm_P1.27mm
+    critical_pins_or_nets:
+    - "U_AFE1.1"
+    - "U_AFE1.2"
+    - "U_AFE1.3"
+    - "U_AFE1.4"
+    - "U_AFE1.5"
+    - "U_AFE1.6"
+    - "U_AFE1.7"
+    - "U_AFE1.8"
+    stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    applicability:
+      status: limited
+      reasons:
+      - Exact manufacturer primary was inspected; final Crow native placement, return and route geometry are not inspected.
+      reviewed_for:
+        mpn: OPA2320AIDR
+        package: D SOIC-8 3.9x4.9mm P1.27mm
+        mode: afe1
+        stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        circuit_sha256: 365d58c2d9726c813acdff02530e191d9e262dbb85518a05ce17d4d802dab95d
+    extracted_constraints:
+    - "Place the 100-nF bypass from U_AFE1.8 (VPOS=N3V3_ADC) to U_AFE1.4 (VNEG=GND) close to this SOIC-8."
+    - "Keep each feedback path tight at U_AFE1.2 (A_NEG=FB_P1)/U_AFE1.1 (OUTA=OPA_P1) and U_AFE1.6 (B_NEG=FB_N1)/U_AFE1.7 (OUTB=OPA_N1); keep outputs separate from high-impedance inputs U_AFE1.3 (A_POS=AIN_P1) and U_AFE1.5 (B_POS=AIN_N1)."
+    - "Place output isolation and shunt-filter returns so load current does not share the input/feedback ground path; final loop stability remains to be measured."
+  - refdes: U_AFE2
+    mode: afe2
+    footprint: Package_SO:SOIC-8_3.9x4.9mm_P1.27mm
+    critical_pins_or_nets:
+    - "U_AFE2.1"
+    - "U_AFE2.2"
+    - "U_AFE2.3"
+    - "U_AFE2.4"
+    - "U_AFE2.5"
+    - "U_AFE2.6"
+    - "U_AFE2.7"
+    - "U_AFE2.8"
+    stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    applicability:
+      status: limited
+      reasons:
+      - Exact manufacturer primary was inspected; final Crow native placement, return and route geometry are not inspected.
+      reviewed_for:
+        mpn: OPA2320AIDR
+        package: D SOIC-8 3.9x4.9mm P1.27mm
+        mode: afe2
+        stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        circuit_sha256: c97e8d057e8efe1fc11fa8fedc6f54d9afcb62fd4343d9782348f4fe154d815b
+    extracted_constraints:
+    - "Place the 100-nF bypass from U_AFE2.8 (VPOS=N3V3_ADC) to U_AFE2.4 (VNEG=GND) close to this SOIC-8."
+    - "Keep each feedback path tight at U_AFE2.2 (A_NEG=FB_P2)/U_AFE2.1 (OUTA=OPA_P2) and U_AFE2.6 (B_NEG=FB_N2)/U_AFE2.7 (OUTB=OPA_N2); keep outputs separate from high-impedance inputs U_AFE2.3 (A_POS=AIN_P2) and U_AFE2.5 (B_POS=AIN_N2)."
+    - "Place output isolation and shunt-filter returns so load current does not share the input/feedback ground path; final loop stability remains to be measured."
+  - refdes: U_AFE3
+    mode: afe3
+    footprint: Package_SO:SOIC-8_3.9x4.9mm_P1.27mm
+    critical_pins_or_nets:
+    - "U_AFE3.1"
+    - "U_AFE3.2"
+    - "U_AFE3.3"
+    - "U_AFE3.4"
+    - "U_AFE3.5"
+    - "U_AFE3.6"
+    - "U_AFE3.7"
+    - "U_AFE3.8"
+    stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    applicability:
+      status: limited
+      reasons:
+      - Exact manufacturer primary was inspected; final Crow native placement, return and route geometry are not inspected.
+      reviewed_for:
+        mpn: OPA2320AIDR
+        package: D SOIC-8 3.9x4.9mm P1.27mm
+        mode: afe3
+        stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        circuit_sha256: 09c88f16974d94c6b578d34c2497f8bb4aa827396fa1c557b33aaa1d84dc6b79
+    extracted_constraints:
+    - "Place the 100-nF bypass from U_AFE3.8 (VPOS=N3V3_ADC) to U_AFE3.4 (VNEG=GND) close to this SOIC-8."
+    - "Keep each feedback path tight at U_AFE3.2 (A_NEG=FB_P3)/U_AFE3.1 (OUTA=OPA_P3) and U_AFE3.6 (B_NEG=FB_N3)/U_AFE3.7 (OUTB=OPA_N3); keep outputs separate from high-impedance inputs U_AFE3.3 (A_POS=AIN_P3) and U_AFE3.5 (B_POS=AIN_N3)."
+    - "Place output isolation and shunt-filter returns so load current does not share the input/feedback ground path; final loop stability remains to be measured."
+  - refdes: U_AFE4
+    mode: afe4
+    footprint: Package_SO:SOIC-8_3.9x4.9mm_P1.27mm
+    critical_pins_or_nets:
+    - "U_AFE4.1"
+    - "U_AFE4.2"
+    - "U_AFE4.3"
+    - "U_AFE4.4"
+    - "U_AFE4.5"
+    - "U_AFE4.6"
+    - "U_AFE4.7"
+    - "U_AFE4.8"
+    stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    applicability:
+      status: limited
+      reasons:
+      - Exact manufacturer primary was inspected; final Crow native placement, return and route geometry are not inspected.
+      reviewed_for:
+        mpn: OPA2320AIDR
+        package: D SOIC-8 3.9x4.9mm P1.27mm
+        mode: afe4
+        stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        circuit_sha256: 2c0131c8992f09b1b788c207b805968458bceb1c677a638f87e2642f35dc207f
+    extracted_constraints:
+    - "Place the 100-nF bypass from U_AFE4.8 (VPOS=N3V3_ADC) to U_AFE4.4 (VNEG=GND) close to this SOIC-8."
+    - "Keep each feedback path tight at U_AFE4.2 (A_NEG=FB_P4)/U_AFE4.1 (OUTA=OPA_P4) and U_AFE4.6 (B_NEG=FB_N4)/U_AFE4.7 (OUTB=OPA_N4); keep outputs separate from high-impedance inputs U_AFE4.3 (A_POS=AIN_P4) and U_AFE4.5 (B_POS=AIN_N4)."
+    - "Place output isolation and shunt-filter returns so load current does not share the input/feedback ground path; final loop stability remains to be measured."
+  - refdes: U_AFE5
+    mode: afe5
+    footprint: Package_SO:SOIC-8_3.9x4.9mm_P1.27mm
+    critical_pins_or_nets:
+    - "U_AFE5.1"
+    - "U_AFE5.2"
+    - "U_AFE5.3"
+    - "U_AFE5.4"
+    - "U_AFE5.5"
+    - "U_AFE5.6"
+    - "U_AFE5.7"
+    - "U_AFE5.8"
+    stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    applicability:
+      status: limited
+      reasons:
+      - Exact manufacturer primary was inspected; final Crow native placement, return and route geometry are not inspected.
+      reviewed_for:
+        mpn: OPA2320AIDR
+        package: D SOIC-8 3.9x4.9mm P1.27mm
+        mode: afe5
+        stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        circuit_sha256: 1ff091cef4a2b968b51594fd6d5f7deab9416b8d8ed9b610b75976a7837cd847
+    extracted_constraints:
+    - "Place the 100-nF bypass from U_AFE5.8 (VPOS=N3V3_ADC) to U_AFE5.4 (VNEG=GND) close to this SOIC-8."
+    - "Keep each feedback path tight at U_AFE5.2 (A_NEG=FB_P5)/U_AFE5.1 (OUTA=OPA_P5) and U_AFE5.6 (B_NEG=FB_N5)/U_AFE5.7 (OUTB=OPA_N5); keep outputs separate from high-impedance inputs U_AFE5.3 (A_POS=AIN_P5) and U_AFE5.5 (B_POS=AIN_N5)."
+    - "Place output isolation and shunt-filter returns so load current does not share the input/feedback ground path; final loop stability remains to be measured."
+  - refdes: U_AFE6
+    mode: afe6
+    footprint: Package_SO:SOIC-8_3.9x4.9mm_P1.27mm
+    critical_pins_or_nets:
+    - "U_AFE6.1"
+    - "U_AFE6.2"
+    - "U_AFE6.3"
+    - "U_AFE6.4"
+    - "U_AFE6.5"
+    - "U_AFE6.6"
+    - "U_AFE6.7"
+    - "U_AFE6.8"
+    stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    applicability:
+      status: limited
+      reasons:
+      - Exact manufacturer primary was inspected; final Crow native placement, return and route geometry are not inspected.
+      reviewed_for:
+        mpn: OPA2320AIDR
+        package: D SOIC-8 3.9x4.9mm P1.27mm
+        mode: afe6
+        stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        circuit_sha256: c6e2d2194d27a1135a15b370d8258ebc72497c6576e259a64c91b908139806a5
+    extracted_constraints:
+    - "Place the 100-nF bypass from U_AFE6.8 (VPOS=N3V3_ADC) to U_AFE6.4 (VNEG=GND) close to this SOIC-8."
+    - "Keep each feedback path tight at U_AFE6.2 (A_NEG=FB_P6)/U_AFE6.1 (OUTA=OPA_P6) and U_AFE6.6 (B_NEG=FB_N6)/U_AFE6.7 (OUTB=OPA_N6); keep outputs separate from high-impedance inputs U_AFE6.3 (A_POS=AIN_P6) and U_AFE6.5 (B_POS=AIN_N6)."
+    - "Place output isolation and shunt-filter returns so load current does not share the input/feedback ground path; final loop stability remains to be measured."
+  - refdes: U_AFE7
+    mode: afe7
+    footprint: Package_SO:SOIC-8_3.9x4.9mm_P1.27mm
+    critical_pins_or_nets:
+    - "U_AFE7.1"
+    - "U_AFE7.2"
+    - "U_AFE7.3"
+    - "U_AFE7.4"
+    - "U_AFE7.5"
+    - "U_AFE7.6"
+    - "U_AFE7.7"
+    - "U_AFE7.8"
+    stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    applicability:
+      status: limited
+      reasons:
+      - Exact manufacturer primary was inspected; final Crow native placement, return and route geometry are not inspected.
+      reviewed_for:
+        mpn: OPA2320AIDR
+        package: D SOIC-8 3.9x4.9mm P1.27mm
+        mode: afe7
+        stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        circuit_sha256: fa27b8397cd9393b0cc62214cf6ebbb3d53c9361430d354f5f24e00b0de347d8
+    extracted_constraints:
+    - "Place the 100-nF bypass from U_AFE7.8 (VPOS=N3V3_ADC) to U_AFE7.4 (VNEG=GND) close to this SOIC-8."
+    - "Keep each feedback path tight at U_AFE7.2 (A_NEG=FB_P7)/U_AFE7.1 (OUTA=OPA_P7) and U_AFE7.6 (B_NEG=FB_N7)/U_AFE7.7 (OUTB=OPA_N7); keep outputs separate from high-impedance inputs U_AFE7.3 (A_POS=AIN_P7) and U_AFE7.5 (B_POS=AIN_N7)."
+    - "Place output isolation and shunt-filter returns so load current does not share the input/feedback ground path; final loop stability remains to be measured."
+  - refdes: U_AFE8
+    mode: afe8
+    footprint: Package_SO:SOIC-8_3.9x4.9mm_P1.27mm
+    critical_pins_or_nets:
+    - "U_AFE8.1"
+    - "U_AFE8.2"
+    - "U_AFE8.3"
+    - "U_AFE8.4"
+    - "U_AFE8.5"
+    - "U_AFE8.6"
+    - "U_AFE8.7"
+    - "U_AFE8.8"
+    stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    applicability:
+      status: limited
+      reasons:
+      - Exact manufacturer primary was inspected; final Crow native placement, return and route geometry are not inspected.
+      reviewed_for:
+        mpn: OPA2320AIDR
+        package: D SOIC-8 3.9x4.9mm P1.27mm
+        mode: afe8
+        stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        circuit_sha256: f5d359fbf6fade41bd536ab9ba03b81dd9ef158d1bf47f62470ced50725d4a5b
+    extracted_constraints:
+    - "Place the 100-nF bypass from U_AFE8.8 (VPOS=N3V3_ADC) to U_AFE8.4 (VNEG=GND) close to this SOIC-8."
+    - "Keep each feedback path tight at U_AFE8.2 (A_NEG=FB_P8)/U_AFE8.1 (OUTA=OPA_P8) and U_AFE8.6 (B_NEG=FB_N8)/U_AFE8.7 (OUTB=OPA_N8); keep outputs separate from high-impedance inputs U_AFE8.3 (A_POS=AIN_P8) and U_AFE8.5 (B_POS=AIN_N8)."
+    - "Place output isolation and shunt-filter returns so load current does not share the input/feedback ground path; final loop stability remains to be measured."
+  state: complete
+  research_owner: terra
+  next_action: Review final native PCB geometry and returns against this exact primary reference; no route or acceptance is implied here.
+- mpn: SN74AUP3G34DCUR
+  package: VSSOP-8 DCU
+  artifacts:
+  - publisher: Texas Instruments
+    artifact: TI SCES766C DCU0008A package and example board-layout addendum
+    url: https://www.ti.com/lit/ds/symlink/sn74aup3g34.pdf
+    tier: 1
+    format: PDF
+    editable: false
+    inspected: true
+    retrieval:
+      status: retrieved
+      at: '2026-09-24'
+      detail: Retained local manufacturer PDF was re-opened for the selected-IC audit.
+    inspection:
+      source_path: 02_parts/SN74AUP3G34DCUR/SN74AUP3G34-SCES766C.pdf
+      sha256: f188afa526b904201017529cf6c363974be3a1bf580a64e12485e40d5aefcf07
+      locator: TI SCES766C DCU0008A package/example-board-layout addendum; the device text has no dedicated layout section
+      notes: Inspected retained primary package/layout source; not a Crow PCB result.
+  docs_fallback:
+    artifact: TI SCES766C DCU0008A package and example board-layout addendum
+    url: https://www.ti.com/lit/ds/symlink/sn74aup3g34.pdf
+    inspected: true
+    inspection:
+      source_path: 02_parts/SN74AUP3G34DCUR/SN74AUP3G34-SCES766C.pdf
+      sha256: f188afa526b904201017529cf6c363974be3a1bf580a64e12485e40d5aefcf07
+      locator: TI SCES766C DCU0008A package/example-board-layout addendum; the device text has no dedicated layout section
+      notes: Retained primary inspected for this source inventory; it is not a Crow PCB result.
+    extracted_guidance:
+    - 'Primary basis: TI SCES766C DCU0008A package/example-board-layout addendum; the device text has no dedicated layout section'
+    - 'Evidence grade: primary manufacturer package drawing only; C_ADC_OUT placement is an engineering decoupling recommendation rather than a cited SCES766C layout rule.'
+    - Place C_ADC_OUT beside U_ADC_OUT VCC pin 8 with a short return to pin 4/GND. Keep ADC_MCLK_SAFE, ADC_BCLK_SAFE, and ADC_FSYNC_SAFE short to their 33 ohm source resistors, which should remain near the buffer outputs.
+    - Powered from quiet 3V3_ADC. Ioff prevents back-power from 3V3X-derived inputs when this rail is off.
+    - 85C maximum operating temperature is a product-temperature constraint.
+    - Use the actual VCC/GND pads above for local bypass/return; keep driven input, output and any OE/CLR/DIR timing path compact and do not leave logic inputs floating.
+  applications:
+  - refdes: U_ADC_OUT
+    mode: adc out
+    footprint: crow_usb_digital:TI_DCU0008A_VSSOP8
+    critical_pins_or_nets:
+    - "U_ADC_OUT.1"
+    - "U_ADC_OUT.2"
+    - "U_ADC_OUT.3"
+    - "U_ADC_OUT.4"
+    - "U_ADC_OUT.5"
+    - "U_ADC_OUT.6"
+    - "U_ADC_OUT.8"
+    stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    applicability:
+      status: limited
+      reasons:
+      - Exact manufacturer primary was inspected; final Crow native placement, return and route geometry are not inspected.
+      reviewed_for:
+        mpn: SN74AUP3G34DCUR
+        package: VSSOP-8 DCU
+        mode: adc out
+        stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        circuit_sha256: 1616a7b5d46ba757bc317638b59f5552c481cc9ea38786485764535583c1441d
+    extracted_constraints:
+    - "Place C_ADC_OUT adjacent to U_ADC_OUT.8 (VCC=N3V3_ADC) with short return to U_ADC_OUT.4 (GND=GND); pad 1 is a tied-low unused input, not VCC."
+    - "Keep ADC_BCLK_RAW at U_ADC_OUT.3 to buffered ADC_BCLK_SAFE at U_ADC_OUT.5 and ADC_FSYNC_EXT at U_ADC_OUT.6 to buffered ADC_FSYNC_SAFE at U_ADC_OUT.2 compact, with the existing 33-ohm source resistors near output pads. U_ADC_OUT.7 (1Y) is unused."
+  state: complete
+  research_owner: terra
+  next_action: Review final native PCB geometry and returns against this exact primary reference; no route or acceptance is implied here.
+- mpn: SN74AXC4T245PWR
+  package: TSSOP-16 PW
+  artifacts:
+  - publisher: Texas Instruments
+    artifact: TI SCES877 Section 8.4 and Figure 8-3, page 23
+    url: https://www.ti.com/lit/ds/symlink/sn74axc4t245.pdf
+    tier: 1
+    format: PDF
+    editable: false
+    inspected: true
+    retrieval:
+      status: retrieved
+      at: '2026-09-24'
+      detail: Retained local manufacturer PDF was re-opened for the selected-IC audit.
+    inspection:
+      source_path: 02_parts/SN74AXC4T245PWR/SN74AXC4T245-SCES877.pdf
+      sha256: 56d2fab11d8986f4eaf72c3f613d6d1d696188d6c41f1a5de6f7af1562270441
+      locator: TI SCES877 Section 8.4 and Figure 8-3, datasheet page 23
+      notes: Inspected retained primary package/layout source; not a Crow PCB result.
+  docs_fallback:
+    artifact: TI SCES877 Section 8.4 and Figure 8-3, page 23
+    url: https://www.ti.com/lit/ds/symlink/sn74axc4t245.pdf
+    inspected: true
+    inspection:
+      source_path: 02_parts/SN74AXC4T245PWR/SN74AXC4T245-SCES877.pdf
+      sha256: 56d2fab11d8986f4eaf72c3f613d6d1d696188d6c41f1a5de6f7af1562270441
+      locator: TI SCES877 Section 8.4 and Figure 8-3, datasheet page 23
+      notes: Retained primary inspected for this source inventory; it is not a Crow PCB result.
+    extracted_guidance:
+    - 'Primary basis: TI SCES877 Section 8.4 and Figure 8-3, datasheet page 23'
+    - 'Evidence grade: primary manufacturer layout guidance. Place C_XLATE_A at U_TDM_XLATE VCCA pin 1 and C_XLATE_B at VCCB pin 16, each with a short return to the adjacent ground network/pins 8 and 9.'
+    - Keep the translated clock/data traces short to limit capacitive loading, following Section 8.4.1. Preserve a continuous ground reference under both voltage domains.
+    - SN74AXC8T245EVM discovered; four-channel PW site lists AVC4, not selected AXC4, so it is not an exact population.
+    - Use the actual VCC/GND pads above for local bypass/return; keep driven input, output and any OE/CLR/DIR timing path compact and do not leave logic inputs floating.
+  applications:
+  - refdes: U_TDM_XLATE
+    mode: tdm xlate
+    footprint: Package_SO:TSSOP-16_4.4x5mm_P0.65mm
+    critical_pins_or_nets:
+    - "U_TDM_XLATE.1"
+    - "U_TDM_XLATE.2"
+    - "U_TDM_XLATE.3"
+    - "U_TDM_XLATE.4"
+    - "U_TDM_XLATE.5"
+    - "U_TDM_XLATE.6"
+    - "U_TDM_XLATE.7"
+    - "U_TDM_XLATE.8"
+    - "U_TDM_XLATE.9"
+    - "U_TDM_XLATE.10"
+    - "U_TDM_XLATE.11"
+    - "U_TDM_XLATE.12"
+    - "U_TDM_XLATE.13"
+    - "U_TDM_XLATE.14"
+    - "U_TDM_XLATE.15"
+    - "U_TDM_XLATE.16"
+    stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    applicability:
+      status: limited
+      reasons:
+      - Exact manufacturer primary was inspected; final Crow native placement, return and route geometry are not inspected.
+      reviewed_for:
+        mpn: SN74AXC4T245PWR
+        package: TSSOP-16 PW
+        mode: tdm xlate
+        stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        circuit_sha256: c15c421eca39515999eef00ebdaef165831b008dbf5fa6dc77e1a85e73e26113
+    extracted_constraints:
+    - "Bypass U_TDM_XLATE.1 (VCCA=N1V8) and U_TDM_XLATE.16 (VCCB=N3V3X) separately with short return to ground pads 8/9; pads 10/11 are B-port signals, not supply/ground."
+    - "Keep TDM translated clock/data pads 4–7 and 10–13 short over continuous ground reference."
+    - "Define direction and enable at U_TDM_XLATE.2 (1DIR=N1V8), U_TDM_XLATE.3 (2DIR=GND), U_TDM_XLATE.14 (2OE_N=GND), and U_TDM_XLATE.15 (1OE_N=TDM_OE_N); no control pin may float."
+  state: complete
+  research_owner: terra
+  next_action: Review final native PCB geometry and returns against this exact primary reference; no route or acceptance is implied here.
+- mpn: SN74LVC1G04DCKR
+  package: SC70-5 DCK
+  artifacts:
+  - publisher: Texas Instruments
+    artifact: TI SCES214AF Sections 8.4-8.5 and Figure 8-2, page 12
+    url: https://www.ti.com/lit/ds/symlink/sn74lvc1g04.pdf
+    tier: 1
+    format: PDF
+    editable: false
+    inspected: true
+    retrieval:
+      status: retrieved
+      at: '2026-09-24'
+      detail: Retained local manufacturer PDF was re-opened for the selected-IC audit.
+    inspection:
+      source_path: 02_parts/SN74LVC1G04DCKR/SN74LVC1G04-SCES214.pdf
+      sha256: ac04a53de979125799e57ea5a6dff4138fe53e0eceebe45c31f57523669887d5
+      locator: TI SCES214AF Sections 8.4-8.5, datasheet page 12
+      notes: Inspected retained primary package/layout source; not a Crow PCB result.
+  docs_fallback:
+    artifact: TI SCES214AF Sections 8.4-8.5 and Figure 8-2, page 12
+    url: https://www.ti.com/lit/ds/symlink/sn74lvc1g04.pdf
+    inspected: true
+    inspection:
+      source_path: 02_parts/SN74LVC1G04DCKR/SN74LVC1G04-SCES214.pdf
+      sha256: ac04a53de979125799e57ea5a6dff4138fe53e0eceebe45c31f57523669887d5
+      locator: TI SCES214AF Sections 8.4-8.5, datasheet page 12
+      notes: Retained primary inspected for this source inventory; it is not a Crow PCB result.
+    extracted_guidance:
+    - 'Primary basis: TI SCES214AF Sections 8.4-8.5, datasheet page 12'
+    - 'Evidence grade: primary manufacturer power-supply and input-state guidance. Place C_FSYNC_INV beside U_BCLK_INV VCC pin 5 with a short return to pin 3/GND.'
+    - Keep ADC_BCLK_RAW and ADC_BCLK_INV short within the frame-sync timing cluster. Input A is driven in the current source; preserve that state because Section 8.5 forbids floating logic inputs.
+    - Use the actual VCC/GND pads above for local bypass/return; keep driven input, output and any OE/CLR/DIR timing path compact and do not leave logic inputs floating.
+    - Use the actual VCC/GND pads above for local bypass/return; keep driven input, output and any OE/CLR/DIR timing path compact and do not leave logic inputs floating.
+    - Use the actual VCC/GND pads above for local bypass/return; keep driven input, output and any OE/CLR/DIR timing path compact and do not leave logic inputs floating.
+    - Use the actual VCC/GND pads above for local bypass/return; keep driven input, output and any OE/CLR/DIR timing path compact and do not leave logic inputs floating.
+  applications:
+  - refdes: U_ADC_DIGITAL_BAD
+    mode: adc digital bad
+    footprint: crow_usb_digital:TI_DCK0005A_SC70_5
+    critical_pins_or_nets:
+    - U_ADC_DIGITAL_BAD.2
+    - U_ADC_DIGITAL_BAD.3
+    - U_ADC_DIGITAL_BAD.4
+    - U_ADC_DIGITAL_BAD.5
+    stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    applicability:
+      status: limited
+      reasons:
+      - Exact manufacturer primary was inspected; final Crow native placement, return and route geometry are not inspected.
+      reviewed_for:
+        mpn: SN74LVC1G04DCKR
+        package: SC70-5 DCK
+        mode: adc digital bad
+        stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        circuit_sha256: a8db45453a50b1f71516e451ed0c47ebaf0a5473316c21442d12ac64d19f17d9
+    extracted_constraints:
+    - "U_ADC_DIGITAL_BAD.2: Bypass VCC5 (N3V3_ADC) to GND3 locally; A2=ADC_DIGITAL_OK and Y4=ADC_DIGITAL_BAD are inverter input and output."
+    - "U_ADC_DIGITAL_BAD.2: Keep driven input/output timing nets compact and separate from switching copper; pin 1 is NC."
+  - refdes: U_ADC_PWR_BAD
+    mode: adc pwr bad
+    footprint: crow_usb_digital:TI_DCK0005A_SC70_5
+    critical_pins_or_nets:
+    - U_ADC_PWR_BAD.2
+    - U_ADC_PWR_BAD.3
+    - U_ADC_PWR_BAD.4
+    - U_ADC_PWR_BAD.5
+    stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    applicability:
+      status: limited
+      reasons:
+      - Exact manufacturer primary was inspected; final Crow native placement, return and route geometry are not inspected.
+      reviewed_for:
+        mpn: SN74LVC1G04DCKR
+        package: SC70-5 DCK
+        mode: adc pwr bad
+        stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        circuit_sha256: 94b6fbd1e9a1759c492caac317fbd968cb40666e63fe5c632547631d42cecd2c
+    extracted_constraints:
+    - "U_ADC_PWR_BAD.2: Bypass VCC5 (N5V_LDO_HOLD) to GND3 locally; A2=PWR_EN and Y4=ADC_PWR_BAD are inverter input and output."
+    - "U_ADC_PWR_BAD.2: Keep driven input/output timing nets compact and separate from switching copper; pin 1 is NC."
+  - refdes: U_ADC_READY_BAD
+    mode: adc ready bad
+    footprint: crow_usb_digital:TI_DCK0005A_SC70_5
+    critical_pins_or_nets:
+    - U_ADC_READY_BAD.2
+    - U_ADC_READY_BAD.3
+    - U_ADC_READY_BAD.4
+    - U_ADC_READY_BAD.5
+    stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    applicability:
+      status: limited
+      reasons:
+      - Exact manufacturer primary was inspected; final Crow native placement, return and route geometry are not inspected.
+      reviewed_for:
+        mpn: SN74LVC1G04DCKR
+        package: SC70-5 DCK
+        mode: adc ready bad
+        stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        circuit_sha256: 3c382657454708946ba9e5abf91163ffc78cc17d55d82716e8f9e705f5169ff9
+    extracted_constraints:
+    - "U_ADC_READY_BAD.2: Bypass VCC5 (N3V3_ADC) to GND3 locally; A2=ADC_READY and Y4=ADC_READY_BAD are inverter input and output."
+    - "U_ADC_READY_BAD.2: Keep driven input/output timing nets compact and separate from switching copper; pin 1 is NC."
+  - refdes: U_BCLK_INV
+    mode: bclk inv
+    footprint: crow_usb_digital:TI_DCK0005A_SC70_5
+    critical_pins_or_nets:
+    - U_BCLK_INV.2
+    - U_BCLK_INV.3
+    - U_BCLK_INV.4
+    - U_BCLK_INV.5
+    stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    applicability:
+      status: limited
+      reasons:
+      - Exact manufacturer primary was inspected; final Crow native placement, return and route geometry are not inspected.
+      reviewed_for:
+        mpn: SN74LVC1G04DCKR
+        package: SC70-5 DCK
+        mode: bclk inv
+        stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        circuit_sha256: 42afe863d2f3f98edfa684d793593d411f75e115ce129ac06ae0681b5fefaa9a
+    extracted_constraints:
+    - "U_BCLK_INV.2: Bypass VCC5 (N3V3X) to GND3 locally; A2=ADC_BCLK_RAW and Y4=ADC_BCLK_INV are inverter input and output."
+    - "U_BCLK_INV.2: Keep driven input/output timing nets compact and separate from switching copper; pin 1 is NC."
+  state: complete
+  research_owner: terra
+  next_action: Review final native PCB geometry and returns against this exact primary reference; no route or acceptance is implied here.
+- mpn: SN74LVC1G123DCTR
+  package: DCT SSOP-8 2.95x2.8mm P0.65mm
+  artifacts:
+  - publisher: Texas Instruments
+    artifact: TI SCES586E Sections 8-10 and layout example
+    url: https://www.ti.com/lit/ds/symlink/sn74lvc1g123.pdf
+    tier: 1
+    format: PDF
+    editable: false
+    inspected: true
+    retrieval:
+      status: retrieved
+      at: '2026-09-24'
+      detail: Retained local manufacturer PDF was re-opened for the selected-IC audit.
+    inspection:
+      source_path: 02_parts/SN74LVC1G123DCTR/SN74LVC1G123_SCES586E.pdf
+      sha256: 7248ef0ff62af4d2da172bb2900f0f1f136a6ae90109a6485228e01269fa1c1d
+      locator: TI SCES586E Sections 9-10 and Figure 10-1, PDF p.16
+      notes: Inspected retained primary package/layout source; not a Crow PCB result.
+  docs_fallback:
+    artifact: TI SCES586E Sections 8-10 and layout example
+    url: https://www.ti.com/lit/ds/symlink/sn74lvc1g123.pdf
+    inspected: true
+    inspection:
+      source_path: 02_parts/SN74LVC1G123DCTR/SN74LVC1G123_SCES586E.pdf
+      sha256: 7248ef0ff62af4d2da172bb2900f0f1f136a6ae90109a6485228e01269fa1c1d
+      locator: TI SCES586E Sections 9-10 and Figure 10-1, PDF p.16
+      notes: Retained primary inspected for this source inventory; it is not a Crow PCB result.
+    extracted_guidance:
+    - 'Primary basis: TI SCES586E Sections 9-10 and Figure 10-1, PDF p.16'
+    - Place the supply bypass at VCC/GND and keep the external timing R/C loop local to pins 6-7.
+    - Keep A, B, CLR, and Q traces short and away from the buck switch node.
+    - 'Carrier local-placement source 2026-09-08: exact-ref/non-ground-net adjacency is a rotation-aware copper-bounding-box gap, NOT pad-center distance or routed length. Rounded engineering ceilings below are not manufacturer numerical maxima. Ground pours are excluded by P-ADJ-PAIR; local return/thermal/escape proof remains owed on the later saved PCB.'
+    - Source-only pin-center plan uses <=5mm local bypass/BST and <=10mm feedback ceilings, with separately named bulk/input/feed exceptions. See 01_docs/SOURCE-CORRECTION-20260908-local-placement.md for all 299 roles and exact source geometry; no current-board acceptance is inherited.
+    - A is falling-edge sensitive and B is rising-edge sensitive; CLR is active low. The three trigger inputs are not interchangeable.
+    - TI characterizes pulse width with example R/C values but does not guarantee a physical minimum for every arbitrary Rext/Cext choice. Validate the populated timeout at voltage and temperature on first articles.
+    - Cext connects only to the external timing capacitor; Rext/Cext is the separate resistor/capacitor junction.
+    - Use the actual VCC/GND pads above for local bypass/return; keep driven input, output and any OE/CLR/DIR timing path compact and do not leave logic inputs floating.
+  applications:
+  - refdes: U_RST2
+    mode: rst2
+    footprint: Package_SO:SSOP-8_2.95x2.8mm_P0.65mm
+    critical_pins_or_nets:
+    - U_RST2.1
+    - U_RST2.2
+    - U_RST2.3
+    - U_RST2.4
+    - U_RST2.5
+    - U_RST2.6
+    - U_RST2.7
+    - U_RST2.8
+    stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    applicability:
+      status: limited
+      reasons:
+      - Exact manufacturer primary was inspected; final Crow native placement, return and route geometry are not inspected.
+      reviewed_for:
+        mpn: SN74LVC1G123DCTR
+        package: DCT SSOP-8 2.95x2.8mm P0.65mm
+        mode: rst2
+        stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        circuit_sha256: d15ad96f189fc981111f8073362306baac119648b3b9226d3341b2b271829c9d
+    extracted_constraints:
+    - "U_RST2.1: VCC8 (N3V3_ADC) to GND4 needs local bypass; A1, B2 and active-low CLR3 are distinct trigger/clear inputs with source nets GND, ADC_START_DELAY and ADC_READY."
+    - "U_RST2.1: Keep the external timing R/C loop at Cext6 and Rext/Cext7 short, and route Q5/RESET_PULSE_H away from switch copper. Pin 1 is a trigger input tied to GND, not the ground pin."
+  state: complete
+  research_owner: terra
+  next_action: Review final native PCB geometry and returns against this exact primary reference; no route or acceptance is implied here.
+- mpn: SN74LVC1G125DCKT
+  package: SC70-5 DCK
+  artifacts:
+  - publisher: Texas Instruments
+    artifact: TI SCES223 Section 8.4 and layout example, pages 14-15
+    url: https://www.ti.com/lit/ds/symlink/sn74lvc1g125.pdf
+    tier: 1
+    format: PDF
+    editable: false
+    inspected: true
+    retrieval:
+      status: retrieved
+      at: '2026-09-24'
+      detail: Retained local manufacturer PDF was re-opened for the selected-IC audit.
+    inspection:
+      source_path: 02_parts/SN74LVC1G125DCKT/SN74LVC1G125-SCES223.pdf
+      sha256: 65afa3f9d879b37cb8be507caf84804b24bceeb2e0782ba449fff72160994e4c
+      locator: TI SCES223 Section 8.4 and layout example, datasheet pages 14-15
+      notes: Inspected retained primary package/layout source; not a Crow PCB result.
+  docs_fallback:
+    artifact: TI SCES223 Section 8.4 and layout example, pages 14-15
+    url: https://www.ti.com/lit/ds/symlink/sn74lvc1g125.pdf
+    inspected: true
+    inspection:
+      source_path: 02_parts/SN74LVC1G125DCKT/SN74LVC1G125-SCES223.pdf
+      sha256: 65afa3f9d879b37cb8be507caf84804b24bceeb2e0782ba449fff72160994e4c
+      locator: TI SCES223 Section 8.4 and layout example, datasheet pages 14-15
+      notes: Retained primary inspected for this source inventory; it is not a Crow PCB result.
+    extracted_guidance:
+    - 'Primary basis: TI SCES223 Section 8.4 and layout example, datasheet pages 14-15'
+    - 'Evidence grade: primary manufacturer layout guidance. Place C_MCLK_BUF beside U_MCLK_BUF VCC pin 5 with an electrically short return to pin 3/GND, using wide supply/return traces on the same side where practical.'
+    - Keep AUDIO_24M576 and ADC_MCLK_RAW short over an unbroken ground plane. If a long branch becomes unavoidable, Section 8.4 calls for impedance control and source damping near the output rather than an arbitrary placement-distance claim.
+    - Use the actual VCC/GND pads above for local bypass/return; keep driven input, output and any OE/CLR/DIR timing path compact and do not leave logic inputs floating.
+    - Use the actual VCC/GND pads above for local bypass/return; keep driven input, output and any OE/CLR/DIR timing path compact and do not leave logic inputs floating.
+  applications:
+  - refdes: U_ADC_CLOCK_OK
+    mode: adc clock ok
+    footprint: crow_usb_digital:TI_DCK0005A_SC70_5
+    critical_pins_or_nets:
+    - U_ADC_CLOCK_OK.1
+    - U_ADC_CLOCK_OK.2
+    - U_ADC_CLOCK_OK.3
+    - U_ADC_CLOCK_OK.4
+    - U_ADC_CLOCK_OK.5
+    stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    applicability:
+      status: limited
+      reasons:
+      - Exact manufacturer primary was inspected; final Crow native placement, return and route geometry are not inspected.
+      reviewed_for:
+        mpn: SN74LVC1G125DCKT
+        package: SC70-5 DCK
+        mode: adc clock ok
+        stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        circuit_sha256: cf22936b0dd612730229f5914db975eb874949b08b6630eac916b7f82caaee67
+    extracted_constraints:
+    - "U_ADC_CLOCK_OK.1: Bypass VCC5 (N3V3_ADC) to GND3 locally; OE_N1, A2 and Y4 are distinct enable/input/output nodes."
+    - "U_ADC_CLOCK_OK.1: Keep input, enable and output traces compact; preserve the driven OE_N state and do not claim this buffer as a power supervisor."
+  - refdes: U_ADC_READY
+    mode: adc ready
+    footprint: crow_usb_digital:TI_DCK0005A_SC70_5
+    critical_pins_or_nets:
+    - U_ADC_READY.1
+    - U_ADC_READY.2
+    - U_ADC_READY.3
+    - U_ADC_READY.4
+    - U_ADC_READY.5
+    stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    applicability:
+      status: limited
+      reasons:
+      - Exact manufacturer primary was inspected; final Crow native placement, return and route geometry are not inspected.
+      reviewed_for:
+        mpn: SN74LVC1G125DCKT
+        package: SC70-5 DCK
+        mode: adc ready
+        stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        circuit_sha256: 7bab2542f31da241bdd0f9ab74be86ae6658770fbd7be0a2acfb41ff5326d65e
+    extracted_constraints:
+    - "U_ADC_READY.1: Bypass VCC5 (N3V3_ADC) to GND3 locally; OE_N1, A2 and Y4 are distinct enable/input/output nodes."
+    - "U_ADC_READY.1: Keep input, enable and output traces compact; preserve the driven OE_N state and do not claim this buffer as a power supervisor."
+  state: complete
+  research_owner: terra
+  next_action: Review final native PCB geometry and returns against this exact primary reference; no route or acceptance is implied here.
+- mpn: SN74LVC1G332DBVR
+  package: SOT-23-6 DBV
+  artifacts:
+  - publisher: Texas Instruments
+    artifact: TI SCES489E DBV top-view/package drawings and switching tables
+    url: https://www.ti.com/lit/ds/symlink/sn74lvc1g332.pdf
+    tier: 1
+    format: PDF
+    editable: false
+    inspected: true
+    retrieval:
+      status: retrieved
+      at: '2026-09-24'
+      detail: Retained local manufacturer PDF was re-opened for the selected-IC audit.
+    inspection:
+      source_path: 02_parts/SN74LVC1G332DBVR/SN74LVC1G332-SCES489E.pdf
+      sha256: 5ecad3180cb93664b358a9cb6a724e012fc9b124e6ae0d1004c9ae6600549f21
+      locator: TI SCES489E DBV pin/package drawings and electrical tables; the document has no dedicated layout section
+      notes: Inspected retained primary package/layout source; not a Crow PCB result.
+  docs_fallback:
+    artifact: TI SCES489E DBV top-view/package drawings and switching tables
+    url: https://www.ti.com/lit/ds/symlink/sn74lvc1g332.pdf
+    inspected: true
+    inspection:
+      source_path: 02_parts/SN74LVC1G332DBVR/SN74LVC1G332-SCES489E.pdf
+      sha256: 5ecad3180cb93664b358a9cb6a724e012fc9b124e6ae0d1004c9ae6600549f21
+      locator: TI SCES489E DBV pin/package drawings and electrical tables; the document has no dedicated layout section
+      notes: Retained primary inspected for this source inventory; it is not a Crow PCB result.
+    extracted_guidance:
+    - 'Primary basis: TI SCES489E DBV pin/package drawings and electrical tables; the document has no dedicated layout section'
+    - 'Evidence grade: primary datasheet package and electrical constraints only; the local 100 nF bypass recommendation is engineering practice, not a quoted SCES489E requirement.'
+    - Place C_FSYNC_OR beside U_FSYNC_OR VCC pin 5 with a short ground return; keep ADC_FSYNC_RAW, FSYNC_Q1, FSYNC_Q2, and ADC_FSYNC_EXT compact because this gate is in the BCLK-timed frame-sync path.
+    - Use the actual VCC/GND pads above for local bypass/return; keep driven input, output and any OE/CLR/DIR timing path compact and do not leave logic inputs floating.
+  applications:
+  - refdes: U_FSYNC_OR
+    mode: fsync or
+    footprint: Package_TO_SOT_SMD:SOT-23-6
+    critical_pins_or_nets:
+    - "U_FSYNC_OR.1"
+    - "U_FSYNC_OR.2"
+    - "U_FSYNC_OR.3"
+    - "U_FSYNC_OR.4"
+    - "U_FSYNC_OR.5"
+    - "U_FSYNC_OR.6"
+    stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    applicability:
+      status: limited
+      reasons:
+      - Exact manufacturer primary was inspected; final Crow native placement, return and route geometry are not inspected.
+      reviewed_for:
+        mpn: SN74LVC1G332DBVR
+        package: SOT-23-6 DBV
+        mode: fsync or
+        stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        circuit_sha256: 14f30b77c119722693372cf0a540999a348e4fa480e34c0e41d1d6a0ef5d751a
+    extracted_constraints:
+    - "Place C_FSYNC_OR adjacent to U_FSYNC_OR.5 (VCC=N3V3X) with a short return to U_FSYNC_OR.2 (GND=GND); pins 1 and 3 are logic inputs, not supply/ground."
+    - "Keep U_FSYNC_OR.1 (A=ADC_FSYNC_RAW), pin 3 (B=FSYNC_Q1), pin 6 (C=FSYNC_Q2), and pin 4 (Y=ADC_FSYNC_EXT) compact because this OR gate is in the BCLK-timed frame-sync path."
+  state: complete
+  research_owner: terra
+  next_action: Review final native PCB geometry and returns against this exact primary reference; no route or acceptance is implied here.
+- mpn: SN74LVC2G74DCTR
+  package: SM8-8 DCT
+  artifacts:
+  - publisher: Texas Instruments
+    artifact: TI SCES203Q Sections 10-11 and Figure 11-1, pages 11-12
+    url: https://www.ti.com/lit/ds/symlink/sn74lvc2g74.pdf
+    tier: 1
+    format: PDF
+    editable: false
+    inspected: true
+    retrieval:
+      status: retrieved
+      at: '2026-09-24'
+      detail: Retained local manufacturer PDF was re-opened for the selected-IC audit.
+    inspection:
+      source_path: 02_parts/SN74LVC2G74DCTR/SN74LVC2G74-SCES203Q.pdf
+      sha256: 19bc881b14bac1dd02c9a5c9a184d09b2482eab053fb5e7706897ab42c023bea
+      locator: TI SCES203Q Section 10 and Section 11.1, datasheet pages 11-12
+      notes: Inspected retained primary package/layout source; not a Crow PCB result.
+  docs_fallback:
+    artifact: TI SCES203Q Sections 10-11 and Figure 11-1, pages 11-12
+    url: https://www.ti.com/lit/ds/symlink/sn74lvc2g74.pdf
+    inspected: true
+    inspection:
+      source_path: 02_parts/SN74LVC2G74DCTR/SN74LVC2G74-SCES203Q.pdf
+      sha256: 19bc881b14bac1dd02c9a5c9a184d09b2482eab053fb5e7706897ab42c023bea
+      locator: TI SCES203Q Section 10 and Section 11.1, datasheet pages 11-12
+      notes: Retained primary inspected for this source inventory; it is not a Crow PCB result.
+    extracted_guidance:
+    - 'Primary basis: TI SCES203Q Section 10 and Section 11.1, datasheet pages 11-12'
+    - 'Evidence grade: primary manufacturer supply and logic-layout guidance. Put C_FSYNC_FF1 and C_FSYNC_FF2 beside the corresponding VCC pin 8 with a short return to pin 4/GND.'
+    - All asynchronous and data inputs are driven in the current source; preserve that state because Section 11.1 forbids floating CMOS inputs. Keep the two flip-flops and U_BCLK_INV/U_FSYNC_OR compact around the BCLK/FSYNC path.
+    - Use the actual VCC/GND pads above for local bypass/return; keep driven input, output and any OE/CLR/DIR timing path compact and do not leave logic inputs floating.
+    - Use the actual VCC/GND pads above for local bypass/return; keep driven input, output and any OE/CLR/DIR timing path compact and do not leave logic inputs floating.
+  applications:
+  - refdes: U_FSYNC_FF1
+    mode: fsync ff1
+    footprint: crow_usb_digital:TI_DCT0008A_SM8
+    critical_pins_or_nets:
+    - "U_FSYNC_FF1.1"
+    - "U_FSYNC_FF1.2"
+    - "U_FSYNC_FF1.4"
+    - "U_FSYNC_FF1.5"
+    - "U_FSYNC_FF1.6"
+    - "U_FSYNC_FF1.7"
+    - "U_FSYNC_FF1.8"
+    stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    applicability:
+      status: limited
+      reasons:
+      - Exact manufacturer primary was inspected; final Crow native placement, return and route geometry are not inspected.
+      reviewed_for:
+        mpn: SN74LVC2G74DCTR
+        package: SM8-8 DCT
+        mode: fsync ff1
+        stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        circuit_sha256: fc5facbb91f497177f0b840656126a1247446529a74261fef7ff049e43399941
+    extracted_constraints:
+    - "Place C_FSYNC_FF1 beside U_FSYNC_FF1.8 (VCC=N3V3X) with a short ground return to U_FSYNC_FF1.4 (GND=GND)."
+    - "Keep U_FSYNC_FF1.1 (CLK=ADC_BCLK_RAW), U_FSYNC_FF1.2 (D=ADC_FSYNC_RAW), and U_FSYNC_FF1.5 (Q=FSYNC_Q1) compact in the BCLK-timed frame-sync path; keep asynchronous CLR_N at pin 6 and PRE_N at pin 7 driven."
+  - refdes: U_FSYNC_FF2
+    mode: fsync ff2
+    footprint: crow_usb_digital:TI_DCT0008A_SM8
+    critical_pins_or_nets:
+    - "U_FSYNC_FF2.1"
+    - "U_FSYNC_FF2.2"
+    - "U_FSYNC_FF2.4"
+    - "U_FSYNC_FF2.5"
+    - "U_FSYNC_FF2.6"
+    - "U_FSYNC_FF2.7"
+    - "U_FSYNC_FF2.8"
+    stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    applicability:
+      status: limited
+      reasons:
+      - Exact manufacturer primary was inspected; final Crow native placement, return and route geometry are not inspected.
+      reviewed_for:
+        mpn: SN74LVC2G74DCTR
+        package: SM8-8 DCT
+        mode: fsync ff2
+        stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        circuit_sha256: 419b53bcd660db4e68c816228b3b1b13bf5a52425373c10ef8ece73b26b0e45f
+    extracted_constraints:
+    - "Place C_FSYNC_FF2 beside U_FSYNC_FF2.8 (VCC=N3V3X) with a short ground return to U_FSYNC_FF2.4 (GND=GND)."
+    - "Keep U_FSYNC_FF2.1 (CLK=ADC_BCLK_INV), U_FSYNC_FF2.2 (D=FSYNC_Q1), and U_FSYNC_FF2.5 (Q=FSYNC_Q2) compact in the BCLK-timed frame-sync path; keep asynchronous CLR_N at pin 6 and PRE_N at pin 7 driven."
+  state: complete
+  research_owner: terra
+  next_action: Review final native PCB geometry and returns against this exact primary reference; no route or acceptance is implied here.
+- mpn: SX5M24.576M20F30TNN
+  package: 5.0x3.2mm SMD 4-pad, 1.2mm nominal height
+  artifacts:
+  - publisher: Shenzhen SCTF Electronics
+    artifact: SCTF exact-part approval specification B01 pages 3-4
+    url: https://static.chipdip.ru/lib/727/DOC043727753.pdf
+    tier: 1
+    format: PDF
+    editable: false
+    inspected: true
+    retrieval:
+      status: retrieved
+      at: '2026-09-24'
+      detail: Retained local manufacturer PDF was re-opened for the selected-IC audit.
+    inspection:
+      source_path: 02_parts/SX5M24.576M20F30TNN/SCTF20215M027.pdf
+      sha256: c10be001568c12e27692d77260f88cd6cd55611b92835a34a2031d98da835804
+      locator: SCTF20215M027 B01 p.4 suggested solder pad layout and test circuit
+      notes: Inspected retained primary package/layout source; not a Crow PCB result.
+  docs_fallback:
+    artifact: SCTF exact-part approval specification B01 pages 3-4
+    url: https://static.chipdip.ru/lib/727/DOC043727753.pdf
+    inspected: true
+    inspection:
+      source_path: 02_parts/SX5M24.576M20F30TNN/SCTF20215M027.pdf
+      sha256: c10be001568c12e27692d77260f88cd6cd55611b92835a34a2031d98da835804
+      locator: SCTF20215M027 B01 p.4 suggested solder pad layout and test circuit
+      notes: Retained primary inspected for this source inventory; it is not a Crow PCB result.
+    extracted_guidance:
+    - 'Primary basis: SCTF20215M027 B01 p.4 suggested solder pad layout and test circuit'
+    - Use 1.8x1.3mm lands on 2.54x2.30mm center pitch; pin 1 marker at physical lower left.
+    - Keep C_AUDIO_OSC 10nF between pins 4 VDD and 2 GND adjacent to the oscillator per SCTF p.4 test circuit.
+    - Measure MCLK edge quality and clock-system performance with final two-load routing; SCTF gives no phase-jitter number and no board SI result is claimed.
+  applications:
+  - refdes: Y_AUDIO
+    mode: 24.576 MHz audio clock source
+    footprint: crow_usb_digital:SCTF_SX5M_5032
+    critical_pins_or_nets:
+    - "Y_AUDIO.1"
+    - "Y_AUDIO.2"
+    - "Y_AUDIO.3"
+    - "Y_AUDIO.4"
+    stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    applicability:
+      status: limited
+      reasons:
+      - Exact manufacturer primary was inspected; final Crow native placement, return and route geometry are not inspected.
+      reviewed_for:
+        mpn: SX5M24.576M20F30TNN
+        package: 5.0x3.2mm SMD 4-pad, 1.2mm nominal height
+        mode: 24.576 MHz audio clock source
+        stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        circuit_sha256: f1beb33fbe91f974ea0e44f79ec0e1bc16a91fa5f1495b5d91d00703194aee7f
+    extracted_constraints:
+    - "Place C_AUDIO_OSC 10 nF locally between Y_AUDIO.4 (VDD=N3V3X) and Y_AUDIO.2 (GND=GND), per SCTF test circuit."
+    - "Route Y_AUDIO.3 (OUT=AUDIO_24M576) to its actual MCLK loads with a short, referenced clock path; pin 1 OE is tied high at Y_AUDIO.1 (OE=N3V3X)."
+    - "SCTF B01 p4 suggests 1.8×1.3-mm lands on 2.54×2.30-mm center pitch; check bottom-view pad numbering against native top view."
+  state: complete
+  research_owner: terra
+  next_action: Review final native PCB geometry and returns against this exact primary reference; no route or acceptance is implied here.
+- mpn: TCA9406DCUR
+  package: DCU0008A VSSOP8 P0.5mm
+  artifacts:
+  - publisher: Texas Instruments
+    artifact: TI SCPS221G Section 11.1 and Figure 13 Layout Example, PDF page 23, retained TCA9406-SCPS221G.pdf
+    url: https://www.ti.com/lit/ds/symlink/tca9406.pdf
+    tier: 1
+    format: PDF
+    editable: false
+    inspected: true
+    retrieval:
+      status: retrieved
+      at: '2026-09-24'
+      detail: Retained local manufacturer PDF was re-opened for the selected-IC audit.
+    inspection:
+      source_path: 02_parts/TCA9406DCUR/TCA9406-SCPS221G.pdf
+      sha256: fdb80d682fbacd5ef18cbafc57e4d9375a295daa38da33721af6e055f8a7da61
+      locator: TI SCPS221G Section 11.1 Layout Guidelines and Figure 13 Layout Example, PDF page 23; retained TCA9406-SCPS221G.pdf
+      notes: Inspected retained primary package/layout source; not a Crow PCB result.
+  docs_fallback:
+    artifact: TI SCPS221G Section 11.1 and Figure 13 Layout Example, PDF page 23, retained TCA9406-SCPS221G.pdf
+    url: https://www.ti.com/lit/ds/symlink/tca9406.pdf
+    inspected: true
+    inspection:
+      source_path: 02_parts/TCA9406DCUR/TCA9406-SCPS221G.pdf
+      sha256: fdb80d682fbacd5ef18cbafc57e4d9375a295daa38da33721af6e055f8a7da61
+      locator: TI SCPS221G Section 11.1 Layout Guidelines and Figure 13 Layout Example, PDF page 23; retained TCA9406-SCPS221G.pdf
+      notes: Retained primary inspected for this source inventory; it is not a Crow PCB result.
+    extracted_guidance:
+    - 'Primary basis: TI SCPS221G Section 11.1 Layout Guidelines and Figure 13 Layout Example, PDF page 23; retained TCA9406-SCPS221G.pdf'
+    - Place C_ADC_I2C_A by U_ADC_I2C_XLATE VCCA pin 3 and C_ADC_I2C_B by VCCB pin 7, with short ground returns to pin 2 and the ground plane. These are the selected 100 nF source capacitors corresponding to the two bypass capacitors in TI Figure 13.
+    - Keep both I2C-side traces short to limit capacitive loading and reflections; preserve OE low until both supplies are stable, as shown in Figure 13. Actual routed timing and placement remain to be checked on the native board.
+    - Connect VCCA to XU IOR 1V8 and VCCB to quiet 3V3_ADC; OE may be driven directly from 3.3V ADC_READY because it is 5.5V tolerant.
+    - OE low or either supply off puts both I2C sides high impedance and avoids back-powering.
+    - Internal 10kohm pullups are complemented by four external 4.7kohm pullups for the board control bus.
+    - TCA9406EVM/SCPU040 guide text inspected for DCU package and pull-up domains; figures/geometry were not inspected.
+  applications:
+  - refdes: U_ADC_I2C_XLATE
+    mode: adc i2c xlate
+    footprint: crow_usb_digital:TI_TCA9406_DCU0008A_VSSOP8
+    critical_pins_or_nets:
+    - "U_ADC_I2C_XLATE.1"
+    - "U_ADC_I2C_XLATE.2"
+    - "U_ADC_I2C_XLATE.3"
+    - "U_ADC_I2C_XLATE.4"
+    - "U_ADC_I2C_XLATE.5"
+    - "U_ADC_I2C_XLATE.6"
+    - "U_ADC_I2C_XLATE.7"
+    - "U_ADC_I2C_XLATE.8"
+    stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    applicability:
+      status: limited
+      reasons:
+      - Exact manufacturer primary was inspected; final Crow native placement, return and route geometry are not inspected.
+      reviewed_for:
+        mpn: TCA9406DCUR
+        package: DCU0008A VSSOP8 P0.5mm
+        mode: adc i2c xlate
+        stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        circuit_sha256: 276b4d4e5c15d526e07a95268fef59a5f44da60c69c40e9d7016874c46ee5e70
+    extracted_constraints:
+    - "Put separate 100-nF bypass capacitors at U_ADC_I2C_XLATE.3 (VCCA=N1V8) and U_ADC_I2C_XLATE.7 (VCCB=N3V3_ADC), each with short return to U_ADC_I2C_XLATE.2 (GND=GND)."
+    - "Keep A-side U_ADC_I2C_XLATE.4 (SDA_A=XU_I2C_SDA_1V8)/U_ADC_I2C_XLATE.5 (SCL_A=XU_I2C_SCL_1V8) and B-side U_ADC_I2C_XLATE.1 (SDA_B=ADC_I2C_SDA)/U_ADC_I2C_XLATE.8 (SCL_B=ADC_I2C_SCL) buses compact; side-specific pull-ups and bus capacitance determine rise time."
+    - "Hold U_ADC_I2C_XLATE.6 (OE=ADC_READY) low until both supplies are stable; pad 1 is SDA_B, not a supply pad."
+  state: complete
+  research_owner: terra
+  next_action: Review final native PCB geometry and returns against this exact primary reference; no route or acceptance is implied here.
+- mpn: TLV320ADC6140IRTWT
+  package: RTW0024A WQFN24 4x4mm P0.5mm EP2.6mm
+  artifacts:
+  - publisher: Texas Instruments
+    artifact: TI SBAS992A Section 11.1 and Figure 179 Layout Example, PDF page 116, retained TLV320ADC6140-SBAS992A.pdf
+    url: https://www.ti.com/lit/ds/symlink/tlv320adc6140.pdf
+    tier: 1
+    format: PDF
+    editable: false
+    inspected: true
+    retrieval:
+      status: retrieved
+      at: '2026-09-24'
+      detail: Retained local manufacturer PDF was re-opened for the selected-IC audit.
+    inspection:
+      source_path: 02_parts/TLV320ADC6140IRTWT/TLV320ADC6140-SBAS992A.pdf
+      sha256: 47104b38a0d02b04940e1cf891e3fff5aff0998756f36bf4f16edbd772d8d024
+      locator: TI SBAS992A Section 11.1 Layout Guidelines and Figure 179 Layout Example, PDF page 116; retained TLV320ADC6140-SBAS992A.pdf
+      notes: Inspected retained primary package/layout source; not a Crow PCB result.
+  docs_fallback:
+    artifact: TI SBAS992A Section 11.1 and Figure 179 Layout Example, PDF page 116, retained TLV320ADC6140-SBAS992A.pdf
+    url: https://www.ti.com/lit/ds/symlink/tlv320adc6140.pdf
+    inspected: true
+    inspection:
+      source_path: 02_parts/TLV320ADC6140IRTWT/TLV320ADC6140-SBAS992A.pdf
+      sha256: 47104b38a0d02b04940e1cf891e3fff5aff0998756f36bf4f16edbd772d8d024
+      locator: TI SBAS992A Section 11.1 Layout Guidelines and Figure 179 Layout Example, PDF page 116; retained TLV320ADC6140-SBAS992A.pdf
+      notes: Retained primary inspected for this source inventory; it is not a Crow PCB result.
+    extracted_guidance:
+    - 'Primary basis: TI SBAS992A Section 11.1 Layout Guidelines and Figure 179 Layout Example, PDF page 116; retained TLV320ADC6140-SBAS992A.pdf'
+    - For each selected U_ADC_A and U_ADC_B, place the AVDD, IOVDD, AREG, DREG and VREF capacitors with matching C_ADC_A_* or C_ADC_B_* names at their owning pins. Keep each supply/reference connection and its ground return short; TI specifically calls for the VREF filter capacitors near pin 3.
+    - Connect AVSS pin 4 and exposed VSS pad 25 to the local ground area/plane, with a thermal-via pattern under the pad as allowed by the qualified via process. The VREF capacitor ground return must connect directly to AVSS without a via in that connection trace, per Section 11.1; verify the actual return geometry during placement and routing.
+    - Keep the four differential input pairs for each ADC together and separated from digital clock/control runs. Figure 179 groups analog inputs on the lower pin edge and audio output/control on other edges; route according to the selected exact RTW0024A footprint. MICBIAS pin 5 is intentionally unconnected in this source, so the manufacturer MICBIAS routing/capacitor advice does not describe a fitted network here.
+    - At reset GPIO1 is an IRQ output, so do not hardwire the 24.576MHz oscillator to GPIO1 before changing GPIO1_CFG.
+    - Default 12Hz HPF at 48kHz must be configured to all-pass to preserve low-frequency array response.
+    - TX_FILL defaults to driven zero in unused slots; enable high-impedance fill on both devices before enabling their ASI outputs.
+    - AC-coupled input uses internal bias; move external pulldowns before coupling capacitors.
+    - SHDNZ release requires at least 2ms before I2C; capacitors and references need additional settle before unmuted capture.
+    - Two devices share one 256-BCLK frame but no guaranteed cross-die aperture skew is specified.
+    - ADC6140EVM-PDK/SBAU335 discovered; guide uses TLV320ADC5140IRTWR, so it is functional-family precedent only.
+    - Keep AVDD/IOVDD/AREG/DREG/VREF support local and preserve AVSS/EP ground treatment; shared-TDM cross-die timing is not proven by placement evidence.
+    - Keep AVDD/IOVDD/AREG/DREG/VREF support local and preserve AVSS/EP ground treatment; shared-TDM cross-die timing is not proven by placement evidence.
+  applications:
+  - refdes: U_ADC_A
+    mode: U_ADC_A four-channel audio ADC in shared TDM design
+    footprint: crow_usb_analog:TI_RTW0024A_WQFN24_4x4_EP2.6
+    critical_pins_or_nets:
+    - "U_ADC_A.1"
+    - "U_ADC_A.2"
+    - "U_ADC_A.3"
+    - "U_ADC_A.4"
+    - "U_ADC_A.6"
+    - "U_ADC_A.7"
+    - "U_ADC_A.8"
+    - "U_ADC_A.9"
+    - "U_ADC_A.10"
+    - "U_ADC_A.11"
+    - "U_ADC_A.12"
+    - "U_ADC_A.13"
+    - "U_ADC_A.14"
+    - "U_ADC_A.17"
+    - "U_ADC_A.18"
+    - "U_ADC_A.19"
+    - "U_ADC_A.21"
+    - "U_ADC_A.22"
+    - "U_ADC_A.23"
+    - "U_ADC_A.24"
+    - "U_ADC_A.25"
+    stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    applicability:
+      status: limited
+      reasons:
+      - Exact manufacturer primary was inspected; final Crow native placement, return and route geometry are not inspected.
+      reviewed_for:
+        mpn: TLV320ADC6140IRTWT
+        package: RTW0024A WQFN24 4x4mm P0.5mm EP2.6mm
+        mode: U_ADC_A four-channel audio ADC in shared TDM design
+        stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        circuit_sha256: b466da5863990f31015e93724f1d43f62bb546c78940a131f7e67becd2093301
+    extracted_constraints:
+    - "Place local supply/regulator/reference capacitors at U_ADC_A.1 (AVDD=N3V3_ADC), U_ADC_A.19 (IOVDD=N3V3_ADC), U_ADC_A.2 (AREG=ADC_A_AREG), U_ADC_A.24 (DREG=ADC_A_DREG), and U_ADC_A.3 (VREF=ADC_A_VREF); return VREF capacitor directly to U_ADC_A.4 (AVSS=GND) without a via in the connection trace, and tie U_ADC_A.25 (EP_VSS=GND) to ground."
+    - "Keep differential input pads 6–13 for this ADC together and away from clock/control runs; source nets are ADC4P/ADC4N through ADC1P/ADC1N."
+    - "Route U_ADC_A.22 (BCLK=ADC_BCLK), U_ADC_A.23 (FSYNC=ADC_FSYNC), and U_ADC_A.21 (SDOUT=ADC_DOUT1) as digital audio, not AVDD/AREG/VREF bypass nodes; shared SDOUT operation requires programmed high-impedance unused slots."
+  - refdes: U_ADC_B
+    mode: U_ADC_B four-channel audio ADC in shared TDM design
+    footprint: crow_usb_analog:TI_RTW0024A_WQFN24_4x4_EP2.6
+    critical_pins_or_nets:
+    - "U_ADC_B.1"
+    - "U_ADC_B.2"
+    - "U_ADC_B.3"
+    - "U_ADC_B.4"
+    - "U_ADC_B.6"
+    - "U_ADC_B.7"
+    - "U_ADC_B.8"
+    - "U_ADC_B.9"
+    - "U_ADC_B.10"
+    - "U_ADC_B.11"
+    - "U_ADC_B.12"
+    - "U_ADC_B.13"
+    - "U_ADC_B.14"
+    - "U_ADC_B.17"
+    - "U_ADC_B.18"
+    - "U_ADC_B.19"
+    - "U_ADC_B.21"
+    - "U_ADC_B.22"
+    - "U_ADC_B.23"
+    - "U_ADC_B.24"
+    - "U_ADC_B.25"
+    stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    applicability:
+      status: limited
+      reasons:
+      - Exact manufacturer primary was inspected; final Crow native placement, return and route geometry are not inspected.
+      reviewed_for:
+        mpn: TLV320ADC6140IRTWT
+        package: RTW0024A WQFN24 4x4mm P0.5mm EP2.6mm
+        mode: U_ADC_B four-channel audio ADC in shared TDM design
+        stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        circuit_sha256: 0f47f5b2466ba8790602e9469502e5bdb1eae957910c0866c237404541f293b8
+    extracted_constraints:
+    - "Place local supply/regulator/reference capacitors at U_ADC_B.1 (AVDD=N3V3_ADC), U_ADC_B.19 (IOVDD=N3V3_ADC), U_ADC_B.2 (AREG=ADC_B_AREG), U_ADC_B.24 (DREG=ADC_B_DREG), and U_ADC_B.3 (VREF=ADC_B_VREF); return VREF capacitor directly to U_ADC_B.4 (AVSS=GND) without a via in the connection trace, and tie U_ADC_B.25 (EP_VSS=GND) to ground."
+    - "Keep differential input pads 6–13 for this ADC together and away from clock/control runs; source nets are ADC5P/ADC5N through ADC8P/ADC8N."
+    - "Route U_ADC_B.22 (BCLK=ADC_BCLK), U_ADC_B.23 (FSYNC=ADC_FSYNC), and U_ADC_B.21 (SDOUT=ADC_DOUT1) as digital audio, not AVDD/AREG/VREF bypass nodes; shared SDOUT operation requires programmed high-impedance unused slots."
+  state: complete
+  research_owner: terra
+  next_action: Review final native PCB geometry and returns against this exact primary reference; no route or acceptance is implied here.
+- mpn: TMUX4827YBHR
+  package: TI_YBH0009_C02_TMUX4827 DSBGA-9 P0.4mm
+  artifacts:
+  - publisher: Texas Instruments
+    artifact: TI SCDS457B exact YBH pin/package drawing and electrical tables
+    url: https://www.ti.com/lit/ds/symlink/tmux4827.pdf
+    tier: 1
+    format: PDF
+    editable: false
+    inspected: true
+    retrieval:
+      status: retrieved
+      at: '2026-09-24'
+      detail: Retained local manufacturer PDF was re-opened for the selected-IC audit.
+    inspection:
+      source_path: 02_parts/TMUX4827YBHR/TMUX4827_SCDS457B.pdf
+      sha256: 3af04d7ae37b0e43c71c1b663a2d055667d94d46b5dc87c9ca2de24ec2295028
+      locator: TI SCDS457B YBH0009-C02 manufacturer drawing and retained exact native coupon
+      notes: Inspected retained primary package/layout source; not a Crow PCB result.
+  docs_fallback:
+    artifact: TI SCDS457B exact YBH pin/package drawing and electrical tables
+    url: https://www.ti.com/lit/ds/symlink/tmux4827.pdf
+    inspected: true
+    inspection:
+      source_path: 02_parts/TMUX4827YBHR/TMUX4827_SCDS457B.pdf
+      sha256: 3af04d7ae37b0e43c71c1b663a2d055667d94d46b5dc87c9ca2de24ec2295028
+      locator: TI SCDS457B YBH0009-C02 manufacturer drawing and retained exact native coupon
+      notes: Retained primary inspected for this source inventory; it is not a Crow PCB result.
+    extracted_guidance:
+    - 'Primary basis: TI SCDS457B YBH0009-C02 manufacturer drawing and retained exact native coupon'
+    - A1/A3 are unused A throws; no external nets. Eight perimeter balls escape outward; B2 GND owns the only via-in-pad.
+    - Keep C_ISO1..8 100nF local to held VDD; retain all upstream shunts and downstream 10k ADC pulldowns.
+    - "Native center B2 copper \xD80.35 with \xD80.25 mask/paste openings; all other lands \xD80.25, 0.4mm pitch."
+    - The copper gap from B2 via to adjacent ball land is exactly 0.10mm; vendor tolerance/process acceptance remains a hold.
+    - VDD=0 isolates both channels. With VDD valid SEL=0 selects floating unused A throws; SEL=1 selects B audio throws. AUDIO_EN remains the common active-high control; downstream 10k pulldowns define ADC nodes when muted.
+    - Recommended analog I/O -12..+12V and 5V held rail; retain first-article partial-VDD and fault transient tests. SEL fail-safe to 5.5V for VDD=0 but not negative SEL faults.
+    - Published 0.001% THD+N uses 0.5Vpp, 0V bias test stimulus; do not claim guaranteed distortion at the 1.65V-biased Crow path.
+    - "B2 \xD80.35/0.20 filled+capped Type VII via shares the complete 0.20 drill family with six U_LDO \xD80.50/0.20 thermal vias; eight B2 sites are proposed. Exact board census and JLC uploader/CAM/PCBA acceptance remain owed."
+    - "TI example lands \xD80.23; JLC advanced four-layer minimum \xD80.25 used. Center solder-mask-defined \xD80.25 aperture over \xD80.35 capped copper. No vendor yield guarantee at exact 0.10mm via-to-pad gap."
+    - TMUX4827YBHEVM/SCDU034 guide text inspected for same YBH package and bypass BOM; figures/geometry were not inspected.
+    - Preserve local VDD bypass and short analog path; selected BGA via/process and final analog return remain board-specific.
+    - Preserve local VDD bypass and short analog path; selected BGA via/process and final analog return remain board-specific.
+    - Preserve local VDD bypass and short analog path; selected BGA via/process and final analog return remain board-specific.
+    - Preserve local VDD bypass and short analog path; selected BGA via/process and final analog return remain board-specific.
+    - Preserve local VDD bypass and short analog path; selected BGA via/process and final analog return remain board-specific.
+    - Preserve local VDD bypass and short analog path; selected BGA via/process and final analog return remain board-specific.
+    - Preserve local VDD bypass and short analog path; selected BGA via/process and final analog return remain board-specific.
+    - Preserve local VDD bypass and short analog path; selected BGA via/process and final analog return remain board-specific.
+  applications:
+  - refdes: U_ISO1
+    mode: U_ISO1 analog input isolation switch
+    footprint: crow_usb_analog:TI_YBH0009_C02_TMUX4827
+    critical_pins_or_nets:
+    - "U_ISO1.2"
+    - "U_ISO1.4"
+    - "U_ISO1.5"
+    - "U_ISO1.6"
+    - "U_ISO1.7"
+    - "U_ISO1.8"
+    - "U_ISO1.9"
+    stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    applicability:
+      status: limited
+      reasons:
+      - Exact manufacturer primary was inspected; final Crow native placement, return and route geometry are not inspected.
+      reviewed_for:
+        mpn: TMUX4827YBHR
+        package: TI_YBH0009_C02_TMUX4827 DSBGA-9 P0.4mm
+        mode: U_ISO1 analog input isolation switch
+        stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        circuit_sha256: 23995c7dfe33f6f2d5e41441f7b4702c8e2f2c91f46fc91972ac2c09ba1347d2
+    extracted_constraints:
+    - "Place C_ISO bypass adjacent to U_ISO1.8 (VDD=N5V_LDO_HOLD) with short return to U_ISO1.5 (GND=GND); pad 2 is SEL, not supply."
+    - "Keep B-throw paths U_ISO1.7 (S1B=FILTER1P)/U_ISO1.9 (S2B=FILTER1N) to common outputs U_ISO1.4 (D1=ISO1P)/U_ISO1.6 (D2=ISO1N) short; A1/A3 unused throws remain open."
+    - "Preserve the qualified conditional B2 ground via-in-pad process at U_ISO1.5 (GND=GND); TI EVM text does not prove Crow center-via geometry."
+  - refdes: U_ISO2
+    mode: U_ISO2 analog input isolation switch
+    footprint: crow_usb_analog:TI_YBH0009_C02_TMUX4827
+    critical_pins_or_nets:
+    - "U_ISO2.2"
+    - "U_ISO2.4"
+    - "U_ISO2.5"
+    - "U_ISO2.6"
+    - "U_ISO2.7"
+    - "U_ISO2.8"
+    - "U_ISO2.9"
+    stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    applicability:
+      status: limited
+      reasons:
+      - Exact manufacturer primary was inspected; final Crow native placement, return and route geometry are not inspected.
+      reviewed_for:
+        mpn: TMUX4827YBHR
+        package: TI_YBH0009_C02_TMUX4827 DSBGA-9 P0.4mm
+        mode: U_ISO2 analog input isolation switch
+        stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        circuit_sha256: 0f2b5c4ed5ba5dd297030190144c11d0f14a4d6631aa9328c119081340abd64d
+    extracted_constraints:
+    - "Place C_ISO bypass adjacent to U_ISO2.8 (VDD=N5V_LDO_HOLD) with short return to U_ISO2.5 (GND=GND); pad 2 is SEL, not supply."
+    - "Keep B-throw paths U_ISO2.7 (S1B=FILTER2P)/U_ISO2.9 (S2B=FILTER2N) to common outputs U_ISO2.4 (D1=ISO2P)/U_ISO2.6 (D2=ISO2N) short; A1/A3 unused throws remain open."
+    - "Preserve the qualified conditional B2 ground via-in-pad process at U_ISO2.5 (GND=GND); TI EVM text does not prove Crow center-via geometry."
+  - refdes: U_ISO3
+    mode: U_ISO3 analog input isolation switch
+    footprint: crow_usb_analog:TI_YBH0009_C02_TMUX4827
+    critical_pins_or_nets:
+    - "U_ISO3.2"
+    - "U_ISO3.4"
+    - "U_ISO3.5"
+    - "U_ISO3.6"
+    - "U_ISO3.7"
+    - "U_ISO3.8"
+    - "U_ISO3.9"
+    stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    applicability:
+      status: limited
+      reasons:
+      - Exact manufacturer primary was inspected; final Crow native placement, return and route geometry are not inspected.
+      reviewed_for:
+        mpn: TMUX4827YBHR
+        package: TI_YBH0009_C02_TMUX4827 DSBGA-9 P0.4mm
+        mode: U_ISO3 analog input isolation switch
+        stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        circuit_sha256: 82e8bd5f678ed060ffa1d010dd2cc088c85b055bdad28aad480afd47bc05ce9d
+    extracted_constraints:
+    - "Place C_ISO bypass adjacent to U_ISO3.8 (VDD=N5V_LDO_HOLD) with short return to U_ISO3.5 (GND=GND); pad 2 is SEL, not supply."
+    - "Keep B-throw paths U_ISO3.7 (S1B=FILTER3P)/U_ISO3.9 (S2B=FILTER3N) to common outputs U_ISO3.4 (D1=ISO3P)/U_ISO3.6 (D2=ISO3N) short; A1/A3 unused throws remain open."
+    - "Preserve the qualified conditional B2 ground via-in-pad process at U_ISO3.5 (GND=GND); TI EVM text does not prove Crow center-via geometry."
+  - refdes: U_ISO4
+    mode: U_ISO4 analog input isolation switch
+    footprint: crow_usb_analog:TI_YBH0009_C02_TMUX4827
+    critical_pins_or_nets:
+    - "U_ISO4.2"
+    - "U_ISO4.4"
+    - "U_ISO4.5"
+    - "U_ISO4.6"
+    - "U_ISO4.7"
+    - "U_ISO4.8"
+    - "U_ISO4.9"
+    stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    applicability:
+      status: limited
+      reasons:
+      - Exact manufacturer primary was inspected; final Crow native placement, return and route geometry are not inspected.
+      reviewed_for:
+        mpn: TMUX4827YBHR
+        package: TI_YBH0009_C02_TMUX4827 DSBGA-9 P0.4mm
+        mode: U_ISO4 analog input isolation switch
+        stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        circuit_sha256: b0193764a87a31746d9700a44ce7a066eb8d12eb7366a0706e7b9978a213612a
+    extracted_constraints:
+    - "Place C_ISO bypass adjacent to U_ISO4.8 (VDD=N5V_LDO_HOLD) with short return to U_ISO4.5 (GND=GND); pad 2 is SEL, not supply."
+    - "Keep B-throw paths U_ISO4.7 (S1B=FILTER4P)/U_ISO4.9 (S2B=FILTER4N) to common outputs U_ISO4.4 (D1=ISO4P)/U_ISO4.6 (D2=ISO4N) short; A1/A3 unused throws remain open."
+    - "Preserve the qualified conditional B2 ground via-in-pad process at U_ISO4.5 (GND=GND); TI EVM text does not prove Crow center-via geometry."
+  - refdes: U_ISO5
+    mode: U_ISO5 analog input isolation switch
+    footprint: crow_usb_analog:TI_YBH0009_C02_TMUX4827
+    critical_pins_or_nets:
+    - "U_ISO5.2"
+    - "U_ISO5.4"
+    - "U_ISO5.5"
+    - "U_ISO5.6"
+    - "U_ISO5.7"
+    - "U_ISO5.8"
+    - "U_ISO5.9"
+    stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    applicability:
+      status: limited
+      reasons:
+      - Exact manufacturer primary was inspected; final Crow native placement, return and route geometry are not inspected.
+      reviewed_for:
+        mpn: TMUX4827YBHR
+        package: TI_YBH0009_C02_TMUX4827 DSBGA-9 P0.4mm
+        mode: U_ISO5 analog input isolation switch
+        stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        circuit_sha256: 34bb4c9e0ef3f8981bc65048ed40b9a602ca6b109f43be5434d963f812703b74
+    extracted_constraints:
+    - "Place C_ISO bypass adjacent to U_ISO5.8 (VDD=N5V_LDO_HOLD) with short return to U_ISO5.5 (GND=GND); pad 2 is SEL, not supply."
+    - "Keep B-throw paths U_ISO5.7 (S1B=FILTER5P)/U_ISO5.9 (S2B=FILTER5N) to common outputs U_ISO5.4 (D1=ISO5P)/U_ISO5.6 (D2=ISO5N) short; A1/A3 unused throws remain open."
+    - "Preserve the qualified conditional B2 ground via-in-pad process at U_ISO5.5 (GND=GND); TI EVM text does not prove Crow center-via geometry."
+  - refdes: U_ISO6
+    mode: U_ISO6 analog input isolation switch
+    footprint: crow_usb_analog:TI_YBH0009_C02_TMUX4827
+    critical_pins_or_nets:
+    - "U_ISO6.2"
+    - "U_ISO6.4"
+    - "U_ISO6.5"
+    - "U_ISO6.6"
+    - "U_ISO6.7"
+    - "U_ISO6.8"
+    - "U_ISO6.9"
+    stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    applicability:
+      status: limited
+      reasons:
+      - Exact manufacturer primary was inspected; final Crow native placement, return and route geometry are not inspected.
+      reviewed_for:
+        mpn: TMUX4827YBHR
+        package: TI_YBH0009_C02_TMUX4827 DSBGA-9 P0.4mm
+        mode: U_ISO6 analog input isolation switch
+        stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        circuit_sha256: 0386ae46d152836b2d0662abd6a618f9dd9ec0e8618ec5be3ef645c71bb8530a
+    extracted_constraints:
+    - "Place C_ISO bypass adjacent to U_ISO6.8 (VDD=N5V_LDO_HOLD) with short return to U_ISO6.5 (GND=GND); pad 2 is SEL, not supply."
+    - "Keep B-throw paths U_ISO6.7 (S1B=FILTER6P)/U_ISO6.9 (S2B=FILTER6N) to common outputs U_ISO6.4 (D1=ISO6P)/U_ISO6.6 (D2=ISO6N) short; A1/A3 unused throws remain open."
+    - "Preserve the qualified conditional B2 ground via-in-pad process at U_ISO6.5 (GND=GND); TI EVM text does not prove Crow center-via geometry."
+  - refdes: U_ISO7
+    mode: U_ISO7 analog input isolation switch
+    footprint: crow_usb_analog:TI_YBH0009_C02_TMUX4827
+    critical_pins_or_nets:
+    - "U_ISO7.2"
+    - "U_ISO7.4"
+    - "U_ISO7.5"
+    - "U_ISO7.6"
+    - "U_ISO7.7"
+    - "U_ISO7.8"
+    - "U_ISO7.9"
+    stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    applicability:
+      status: limited
+      reasons:
+      - Exact manufacturer primary was inspected; final Crow native placement, return and route geometry are not inspected.
+      reviewed_for:
+        mpn: TMUX4827YBHR
+        package: TI_YBH0009_C02_TMUX4827 DSBGA-9 P0.4mm
+        mode: U_ISO7 analog input isolation switch
+        stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        circuit_sha256: 92d10ac9df4b8508182ab4f09347a9b57e8847d22cb9cd939798caf47085cdae
+    extracted_constraints:
+    - "Place C_ISO bypass adjacent to U_ISO7.8 (VDD=N5V_LDO_HOLD) with short return to U_ISO7.5 (GND=GND); pad 2 is SEL, not supply."
+    - "Keep B-throw paths U_ISO7.7 (S1B=FILTER7P)/U_ISO7.9 (S2B=FILTER7N) to common outputs U_ISO7.4 (D1=ISO7P)/U_ISO7.6 (D2=ISO7N) short; A1/A3 unused throws remain open."
+    - "Preserve the qualified conditional B2 ground via-in-pad process at U_ISO7.5 (GND=GND); TI EVM text does not prove Crow center-via geometry."
+  - refdes: U_ISO8
+    mode: U_ISO8 analog input isolation switch
+    footprint: crow_usb_analog:TI_YBH0009_C02_TMUX4827
+    critical_pins_or_nets:
+    - "U_ISO8.2"
+    - "U_ISO8.4"
+    - "U_ISO8.5"
+    - "U_ISO8.6"
+    - "U_ISO8.7"
+    - "U_ISO8.8"
+    - "U_ISO8.9"
+    stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    applicability:
+      status: limited
+      reasons:
+      - Exact manufacturer primary was inspected; final Crow native placement, return and route geometry are not inspected.
+      reviewed_for:
+        mpn: TMUX4827YBHR
+        package: TI_YBH0009_C02_TMUX4827 DSBGA-9 P0.4mm
+        mode: U_ISO8 analog input isolation switch
+        stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        circuit_sha256: 6b0756e31f40ff4c11af2137227a34886d0c9f864ec3e20744db933db4196462
+    extracted_constraints:
+    - "Place C_ISO bypass adjacent to U_ISO8.8 (VDD=N5V_LDO_HOLD) with short return to U_ISO8.5 (GND=GND); pad 2 is SEL, not supply."
+    - "Keep B-throw paths U_ISO8.7 (S1B=FILTER8P)/U_ISO8.9 (S2B=FILTER8N) to common outputs U_ISO8.4 (D1=ISO8P)/U_ISO8.6 (D2=ISO8N) short; A1/A3 unused throws remain open."
+    - "Preserve the qualified conditional B2 ground via-in-pad process at U_ISO8.5 (GND=GND); TI EVM text does not prove Crow center-via geometry."
+  state: complete
+  research_owner: terra
+  next_action: Review final native PCB geometry and returns against this exact primary reference; no route or acceptance is implied here.
+- mpn: TPD2E2U06DRLR
+  package: DRL SOT-553 P0.5mm
+  artifacts:
+  - publisher: Texas Instruments
+    artifact: TI SLLSEG9C Section 10 and Figure 10-1
+    url: https://www.ti.com/lit/ds/symlink/tpd2e2u06.pdf
+    tier: 1
+    format: PDF
+    editable: false
+    inspected: true
+    retrieval:
+      status: retrieved
+      at: '2026-09-24'
+      detail: Retained local manufacturer PDF was re-opened for the selected-IC audit.
+    inspection:
+      source_path: 02_parts/TPD2E2U06DRLR/TPD2E2U06_SLLSEG9C.pdf
+      sha256: a133b86ea3d3c3d34667339b92d3b5e98d541d10e9775d63e7cdfa153794f4ed
+      locator: TI SLLSEG9C Section 10 Layout and Figure 10-1, PDF pp.11-12
+      notes: Inspected retained primary package/layout source; not a Crow PCB result.
+  docs_fallback:
+    artifact: TI SLLSEG9C Section 10 and Figure 10-1
+    url: https://www.ti.com/lit/ds/symlink/tpd2e2u06.pdf
+    inspected: true
+    inspection:
+      source_path: 02_parts/TPD2E2U06DRLR/TPD2E2U06_SLLSEG9C.pdf
+      sha256: a133b86ea3d3c3d34667339b92d3b5e98d541d10e9775d63e7cdfa153794f4ed
+      locator: TI SLLSEG9C Section 10 Layout and Figure 10-1, PDF pp.11-12
+      notes: Retained primary inspected for this source inventory; it is not a Crow PCB result.
+    extracted_guidance:
+    - 'Primary basis: TI SLLSEG9C Section 10 Layout and Figure 10-1, PDF pp.11-12'
+    - Place immediately at the external connector, ahead of downstream routing.
+    - Use a short, broad GND path with a nearby ground via and avoid stubs on IO1/IO2.
+    - 'Carrier local-placement source 2026-09-08: exact-ref/non-ground-net adjacency is a rotation-aware copper-bounding-box gap, NOT pad-center distance or routed length. Rounded engineering ceilings below are not manufacturer numerical maxima. Ground pours are excluded by P-ADJ-PAIR; local return/thermal/escape proof remains owed on the later saved PCB.'
+    - Source-only pin-center plan uses <=5mm local bypass/BST and <=10mm feedback ceilings, with separately named bulk/input/feed exceptions. See 01_docs/SOURCE-CORRECTION-20260908-local-placement.md for all 299 roles and exact source geometry; no current-board acceptance is inherited.
+    - 'PROPOSED ADR0030 candidate4: top rear cell; preserve no-stub IO, ordinary 45-degree connector prefixes and short 0.50mm GND launch to dedicated nearby through via. Independent engineering acceptance owed.'
+    - Pins 1 and 2 are NC in DRL. They may float or be tied to ground/VCC per TI, but are not protected channels.
+    - Route connector to IO pin first and onward to the protected circuit; a long branch to the clamp defeats the low-inductance ESD path.
+    - Component IEC ratings do not by themselves qualify a complete cable, connector, enclosure, or system.
+    - TPD2E2U06-Q1EVM discovered; it uses DBZ rather than Crow DRL, so do not transfer land/via geometry.
+  applications:
+  - refdes: U_ESD1
+    mode: esd1
+    footprint: Package_TO_SOT_SMD:SOT-553
+    critical_pins_or_nets:
+    - "U_ESD1.3"
+    - "U_ESD1.4"
+    - "U_ESD1.5"
+    stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    applicability:
+      status: limited
+      reasons:
+      - Exact manufacturer primary was inspected; final Crow native placement, return and route geometry are not inspected.
+      reviewed_for:
+        mpn: TPD2E2U06DRLR
+        package: DRL SOT-553 P0.5mm
+        mode: esd1
+        stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        circuit_sha256: 0e647ce472ecc320acab1a7fd677842e7f77789a8c5ac91000d872864c336b2b
+    extracted_constraints:
+    - "Place the shunt clamp at the associated external connector; bring the connector-side signal to protected U_ESD1.3 (IO1=AUDIO_P1), U_ESD1.5 (IO2=AUDIO_N1) before continuing to the circuit, without a long side stub."
+    - "Give U_ESD1.4 (GND=GND) a short broad return and nearby ground via; pins 1/2 are NC."
+    - "Verify both protected IO pads retain their distinct signal paths and common low-inductance ground return."
+  - refdes: U_ESD2
+    mode: esd2
+    footprint: Package_TO_SOT_SMD:SOT-553
+    critical_pins_or_nets:
+    - "U_ESD2.3"
+    - "U_ESD2.4"
+    - "U_ESD2.5"
+    stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    applicability:
+      status: limited
+      reasons:
+      - Exact manufacturer primary was inspected; final Crow native placement, return and route geometry are not inspected.
+      reviewed_for:
+        mpn: TPD2E2U06DRLR
+        package: DRL SOT-553 P0.5mm
+        mode: esd2
+        stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        circuit_sha256: 03b1afb36a1f695f62d043de5227f703818748a7139091eb781991f4228dd909
+    extracted_constraints:
+    - "Place the shunt clamp at the associated external connector; bring the connector-side signal to protected U_ESD2.3 (IO1=AUDIO_P2), U_ESD2.5 (IO2=AUDIO_N2) before continuing to the circuit, without a long side stub."
+    - "Give U_ESD2.4 (GND=GND) a short broad return and nearby ground via; pins 1/2 are NC."
+    - "Verify both protected IO pads retain their distinct signal paths and common low-inductance ground return."
+  - refdes: U_ESD3
+    mode: esd3
+    footprint: Package_TO_SOT_SMD:SOT-553
+    critical_pins_or_nets:
+    - "U_ESD3.3"
+    - "U_ESD3.4"
+    - "U_ESD3.5"
+    stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    applicability:
+      status: limited
+      reasons:
+      - Exact manufacturer primary was inspected; final Crow native placement, return and route geometry are not inspected.
+      reviewed_for:
+        mpn: TPD2E2U06DRLR
+        package: DRL SOT-553 P0.5mm
+        mode: esd3
+        stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        circuit_sha256: f0b896e5fc658a4a558f6b95c5c1afa957b98aef4bd3a45b25f1dc58933cd02e
+    extracted_constraints:
+    - "Place the shunt clamp at the associated external connector; bring the connector-side signal to protected U_ESD3.3 (IO1=AUDIO_P3), U_ESD3.5 (IO2=AUDIO_N3) before continuing to the circuit, without a long side stub."
+    - "Give U_ESD3.4 (GND=GND) a short broad return and nearby ground via; pins 1/2 are NC."
+    - "Verify both protected IO pads retain their distinct signal paths and common low-inductance ground return."
+  - refdes: U_ESD4
+    mode: esd4
+    footprint: Package_TO_SOT_SMD:SOT-553
+    critical_pins_or_nets:
+    - "U_ESD4.3"
+    - "U_ESD4.4"
+    - "U_ESD4.5"
+    stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    applicability:
+      status: limited
+      reasons:
+      - Exact manufacturer primary was inspected; final Crow native placement, return and route geometry are not inspected.
+      reviewed_for:
+        mpn: TPD2E2U06DRLR
+        package: DRL SOT-553 P0.5mm
+        mode: esd4
+        stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        circuit_sha256: fcec22ac4966b4361b7b251372fc8e39e0a6a1e58ce3700bacc073006092784c
+    extracted_constraints:
+    - "Place the shunt clamp at the associated external connector; bring the connector-side signal to protected U_ESD4.3 (IO1=AUDIO_P4), U_ESD4.5 (IO2=AUDIO_N4) before continuing to the circuit, without a long side stub."
+    - "Give U_ESD4.4 (GND=GND) a short broad return and nearby ground via; pins 1/2 are NC."
+    - "Verify both protected IO pads retain their distinct signal paths and common low-inductance ground return."
+  - refdes: U_ESD5
+    mode: esd5
+    footprint: Package_TO_SOT_SMD:SOT-553
+    critical_pins_or_nets:
+    - "U_ESD5.3"
+    - "U_ESD5.4"
+    - "U_ESD5.5"
+    stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    applicability:
+      status: limited
+      reasons:
+      - Exact manufacturer primary was inspected; final Crow native placement, return and route geometry are not inspected.
+      reviewed_for:
+        mpn: TPD2E2U06DRLR
+        package: DRL SOT-553 P0.5mm
+        mode: esd5
+        stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        circuit_sha256: e0e76a32f22f755cbbc19d424f0ce72ed936b7ff4436ffed8bd74d4bc4f495a9
+    extracted_constraints:
+    - "Place the shunt clamp at the associated external connector; bring the connector-side signal to protected U_ESD5.3 (IO1=AUDIO_P5), U_ESD5.5 (IO2=AUDIO_N5) before continuing to the circuit, without a long side stub."
+    - "Give U_ESD5.4 (GND=GND) a short broad return and nearby ground via; pins 1/2 are NC."
+    - "Verify both protected IO pads retain their distinct signal paths and common low-inductance ground return."
+  - refdes: U_ESD6
+    mode: esd6
+    footprint: Package_TO_SOT_SMD:SOT-553
+    critical_pins_or_nets:
+    - "U_ESD6.3"
+    - "U_ESD6.4"
+    - "U_ESD6.5"
+    stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    applicability:
+      status: limited
+      reasons:
+      - Exact manufacturer primary was inspected; final Crow native placement, return and route geometry are not inspected.
+      reviewed_for:
+        mpn: TPD2E2U06DRLR
+        package: DRL SOT-553 P0.5mm
+        mode: esd6
+        stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        circuit_sha256: d1dfef33d1db87508cf1053ea6e08062947f44f2e8682db7cb89ab8e0fc04c72
+    extracted_constraints:
+    - "Place the shunt clamp at the associated external connector; bring the connector-side signal to protected U_ESD6.3 (IO1=AUDIO_P6), U_ESD6.5 (IO2=AUDIO_N6) before continuing to the circuit, without a long side stub."
+    - "Give U_ESD6.4 (GND=GND) a short broad return and nearby ground via; pins 1/2 are NC."
+    - "Verify both protected IO pads retain their distinct signal paths and common low-inductance ground return."
+  - refdes: U_ESD7
+    mode: esd7
+    footprint: Package_TO_SOT_SMD:SOT-553
+    critical_pins_or_nets:
+    - "U_ESD7.3"
+    - "U_ESD7.4"
+    - "U_ESD7.5"
+    stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    applicability:
+      status: limited
+      reasons:
+      - Exact manufacturer primary was inspected; final Crow native placement, return and route geometry are not inspected.
+      reviewed_for:
+        mpn: TPD2E2U06DRLR
+        package: DRL SOT-553 P0.5mm
+        mode: esd7
+        stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        circuit_sha256: c222a5f862d7fd3ce68596ae2657e1099fdde7d3446a4e2b5873ad339f260e46
+    extracted_constraints:
+    - "Place the shunt clamp at the associated external connector; bring the connector-side signal to protected U_ESD7.3 (IO1=AUDIO_P7), U_ESD7.5 (IO2=AUDIO_N7) before continuing to the circuit, without a long side stub."
+    - "Give U_ESD7.4 (GND=GND) a short broad return and nearby ground via; pins 1/2 are NC."
+    - "Verify both protected IO pads retain their distinct signal paths and common low-inductance ground return."
+  - refdes: U_ESD8
+    mode: esd8
+    footprint: Package_TO_SOT_SMD:SOT-553
+    critical_pins_or_nets:
+    - "U_ESD8.3"
+    - "U_ESD8.4"
+    - "U_ESD8.5"
+    stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    applicability:
+      status: limited
+      reasons:
+      - Exact manufacturer primary was inspected; final Crow native placement, return and route geometry are not inspected.
+      reviewed_for:
+        mpn: TPD2E2U06DRLR
+        package: DRL SOT-553 P0.5mm
+        mode: esd8
+        stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        circuit_sha256: f68e62a44a0735cf3cd7caac0ca9dea8bd5731aa538df31dc9b11d68c9dcdf7e
+    extracted_constraints:
+    - "Place the shunt clamp at the associated external connector; bring the connector-side signal to protected U_ESD8.3 (IO1=AUDIO_P8), U_ESD8.5 (IO2=AUDIO_N8) before continuing to the circuit, without a long side stub."
+    - "Give U_ESD8.4 (GND=GND) a short broad return and nearby ground via; pins 1/2 are NC."
+    - "Verify both protected IO pads retain their distinct signal paths and common low-inductance ground return."
+  - refdes: U_USB_CC_ESD
+    mode: usb cc esd
+    footprint: Package_TO_SOT_SMD:SOT-553
+    critical_pins_or_nets:
+    - "U_USB_CC_ESD.3"
+    - "U_USB_CC_ESD.4"
+    - "U_USB_CC_ESD.5"
+    stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    applicability:
+      status: limited
+      reasons:
+      - Exact manufacturer primary was inspected; final Crow native placement, return and route geometry are not inspected.
+      reviewed_for:
+        mpn: TPD2E2U06DRLR
+        package: DRL SOT-553 P0.5mm
+        mode: usb cc esd
+        stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        circuit_sha256: d4ab2bf984985066cc78482b767a0c6b05c891dda3578e3489401d106fd427fc
+    extracted_constraints:
+    - "Place the shunt clamp at the associated external connector; bring the connector-side signal to protected U_USB_CC_ESD.3 (CC1=USB_CC1), U_USB_CC_ESD.5 (CC2=USB_CC2) before continuing to the circuit, without a long side stub."
+    - "Give U_USB_CC_ESD.4 (GND=GND) a short broad return and nearby ground via; pins 1/2 are NC."
+    - "Verify both protected IO pads retain their distinct signal paths and common low-inductance ground return."
+  - refdes: U_USB_VBUS_ESD
+    mode: usb vbus esd
+    footprint: Package_TO_SOT_SMD:SOT-553
+    critical_pins_or_nets:
+    - "U_USB_VBUS_ESD.3"
+    - "U_USB_VBUS_ESD.4"
+    stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    applicability:
+      status: limited
+      reasons:
+      - Exact manufacturer primary was inspected; final Crow native placement, return and route geometry are not inspected.
+      reviewed_for:
+        mpn: TPD2E2U06DRLR
+        package: DRL SOT-553 P0.5mm
+        mode: usb vbus esd
+        stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        circuit_sha256: 85538a4951d8514523ee47d804fd0d6415f068648dc5b51da064bd5b1f941233
+    extracted_constraints:
+    - "Place the shunt clamp at the associated external connector; bring the connector-side signal to protected U_USB_VBUS_ESD.3 (VBUS=VBUS_USB) before continuing to the circuit, without a long side stub."
+    - "Give U_USB_VBUS_ESD.4 (GND=GND) a short broad return and nearby ground via; pins 1/2 are NC."
+    - "Only protect the populated IO pad(s); U_USB_VBUS_ESD.5 (UNUSED_NC=NC) is unconnected and has no second signal path."
+  state: complete
+  research_owner: terra
+  next_action: Review final native PCB geometry and returns against this exact primary reference; no route or acceptance is implied here.
+- mpn: TPD2EUSB30ADRTR
+  package: DRT 3-pin SOT, 1.0 x 0.8 mm
+  artifacts:
+  - publisher: Texas Instruments
+    artifact: TI SLVSAC2G Section 10 and DRT package drawing, PDF pages 11 and 27
+    url: https://www.ti.com/lit/ds/symlink/tpd2eusb30a.pdf
+    tier: 1
+    format: PDF
+    editable: false
+    inspected: true
+    retrieval:
+      status: retrieved
+      at: '2026-09-24'
+      detail: Retained local manufacturer PDF was re-opened for the selected-IC audit.
+    inspection:
+      source_path: 02_parts/TPD2EUSB30ADRTR/SLVSAC2G.pdf
+      sha256: a2c0dd845043a5bbfe610f673879c29e38649544385dea51dbe0a4c49df39136
+      locator: SLVSAC2G.pdf pages11 and27
+      notes: Inspected retained primary package/layout source; not a Crow PCB result.
+  docs_fallback:
+    artifact: TI SLVSAC2G Section 10 and DRT package drawing, PDF pages 11 and 27
+    url: https://www.ti.com/lit/ds/symlink/tpd2eusb30a.pdf
+    inspected: true
+    inspection:
+      source_path: 02_parts/TPD2EUSB30ADRTR/SLVSAC2G.pdf
+      sha256: a2c0dd845043a5bbfe610f673879c29e38649544385dea51dbe0a4c49df39136
+      locator: SLVSAC2G.pdf pages11 and27
+      notes: Retained primary inspected for this source inventory; it is not a Crow PCB result.
+    extracted_guidance:
+    - 'Primary basis: SLVSAC2G.pdf pages11 and27'
+    - S
+    - h
+    - o
+    - r
+    - t
+    - ' '
+    - Data-line protection only; do not connect to 5V VBUS or CC.
+    - Use A suffix; non-A version has different standoff and breakdown ratings.
+    - Place at receptacle with short low-inductance GND return; component ESD rating is not board ESD qualification.
+    - Current source discovery proves catalog identity only; live two-source and assembly stock checks remain owed.
+    - TPD2EUSB30/A EVM figures discovered; exact A-suffix population and geometry were not established.
+    - Apply only to USB DP/DM. Do not connect this clamp to USB VBUS or CC; pad 3 GND needs the low-inductance return stated in the primary source.
+  applications:
+  - refdes: U_USB_ESD
+    mode: USB DP/DM shunt clamp between J_USB and U_XU
+    footprint: Package_TO_SOT_SMD:Texas_DRT-3
+    critical_pins_or_nets:
+    - "U_USB_ESD.1"
+    - "U_USB_ESD.2"
+    - "U_USB_ESD.3"
+    stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    applicability:
+      status: limited
+      reasons:
+      - Exact manufacturer primary was inspected; final Crow native placement, return and route geometry are not inspected.
+      reviewed_for:
+        mpn: TPD2EUSB30ADRTR
+        package: DRT 3-pin SOT, 1.0 x 0.8 mm
+        mode: USB DP/DM shunt clamp between J_USB and U_XU
+        stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        circuit_sha256: 801ab3feead74cafd3888b202cd7062b264a1096953afd33cbd76f3a477724c5
+    extracted_constraints:
+    - "Place DRT clamp beside J_USB with U_USB_ESD.1 (DP=USB_DP) and U_USB_ESD.2 (DM=USB_DN) on the USB data pair, then continue to U_XU without long stubs."
+    - "Use a short low-inductance return at U_USB_ESD.3 (GND=GND); this 3.6-V data clamp is not a VBUS/CC protector."
+  state: complete
+  research_owner: terra
+  next_action: Review final native PCB geometry and returns against this exact primary reference; no route or acceptance is implied here.
+- mpn: TPS26625DRCR
+  package: DRC0010J VSON-10 3x3mm 0.5mm pitch with exposed PowerPAD
+  artifacts:
+  - publisher: Texas Instruments
+    artifact: TI SLVSDT4F sections 10.4 and 11, Figures 11-1/11-2, package drawing pages 43-44
+    url: https://www.ti.com/lit/ds/symlink/tps2662.pdf
+    tier: 1
+    format: PDF
+    editable: false
+    inspected: true
+    retrieval:
+      status: retrieved
+      at: '2026-09-24'
+      detail: Retained local manufacturer PDF was re-opened for the selected-IC audit.
+    inspection:
+      source_path: 02_parts/TPS26625DRCR/TI_TPS2662_SLVSDT4F.pdf
+      sha256: ff038eaa557fb618f93c0b6276a5ae08d0d3d9fbff1dddf0c45974a89120aefa
+      locator: TI SLVSDT4F sections 10.4 and 11, Figures 11-1/11-2, and DRC0010J package drawing
+      notes: Inspected retained primary package/layout source; not a Crow PCB result.
+  docs_fallback:
+    artifact: TI SLVSDT4F sections 10.4 and 11, Figures 11-1/11-2, package drawing pages 43-44
+    url: https://www.ti.com/lit/ds/symlink/tps2662.pdf
+    inspected: true
+    inspection:
+      source_path: 02_parts/TPS26625DRCR/TI_TPS2662_SLVSDT4F.pdf
+      sha256: ff038eaa557fb618f93c0b6276a5ae08d0d3d9fbff1dddf0c45974a89120aefa
+      locator: TI SLVSDT4F sections 10.4 and 11, Figures 11-1/11-2, and DRC0010J package drawing
+      notes: Retained primary inspected for this source inventory; it is not a Crow PCB result.
+    extracted_guidance:
+    - 'Primary basis: TI SLVSDT4F sections 10.4 and 11, Figures 11-1/11-2, and DRC0010J package drawing'
+    - Place C_SPOKE_INx directly between IN pin 1 and system GND pin 6 with the smallest practical loop; place C_SPOKE_OUTx directly between OUT pin 10 and system GND.
+    - Keep R_SPOKE_ILIMx and C_SPOKE_DVDTx local to pins 7/8 and return them to the RTN island at pin 5, never to system GND.
+    - Join exposed pad 11 to the RTN copper plane for heat spreading and retain an independent copper connection from pin 5 to that plane; the exposed pad is not the sole RTN connection.
+    - Keep RTN and system GND electrically separate. Size RTN copper and thermal vias from the later overload/retry thermal analysis at 70 C rather than inheriting TI evaluation-board temperature performance.
+    - TPS26624-25EVM guide SLVUBA5 discovered; exact DRCR U2/BOM and DRC package text inspected in public guide, but EVM copper geometry was not inspected.
+    - Keep IN/OUT bypass loops short and ILIM/DVdT return at RTN; do not collapse RTN and system GND placement intent.
+    - Keep IN/OUT bypass loops short and ILIM/DVdT return at RTN; do not collapse RTN and system GND placement intent.
+    - Keep IN/OUT bypass loops short and ILIM/DVdT return at RTN; do not collapse RTN and system GND placement intent.
+    - Keep IN/OUT bypass loops short and ILIM/DVdT return at RTN; do not collapse RTN and system GND placement intent.
+    - Keep IN/OUT bypass loops short and ILIM/DVdT return at RTN; do not collapse RTN and system GND placement intent.
+    - Keep IN/OUT bypass loops short and ILIM/DVdT return at RTN; do not collapse RTN and system GND placement intent.
+    - Keep IN/OUT bypass loops short and ILIM/DVdT return at RTN; do not collapse RTN and system GND placement intent.
+    - Keep IN/OUT bypass loops short and ILIM/DVdT return at RTN; do not collapse RTN and system GND placement intent.
+  applications:
+  - refdes: U_SPOKE1
+    mode: U_SPOKE1 protected 12 V spoke eFuse
+    footprint: crow_usb_analog:TI_DRC0010J_VSON10
+    critical_pins_or_nets:
+    - U_SPOKE1.1
+    - U_SPOKE1.5
+    - U_SPOKE1.6
+    - U_SPOKE1.7
+    - U_SPOKE1.8
+    - U_SPOKE1.10
+    - U_SPOKE1.11
+    stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    applicability:
+      status: limited
+      reasons:
+      - Exact manufacturer primary was inspected; final Crow native placement, return and route geometry are not inspected.
+      reviewed_for:
+        mpn: TPS26625DRCR
+        package: DRC0010J VSON-10 3x3mm 0.5mm pitch with exposed PowerPAD
+        mode: U_SPOKE1 protected 12 V spoke eFuse
+        stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        circuit_sha256: 3fbf72d70f9c0203c2fce1cdc0bce78b9da8175f6760d406316876a6e37439a0
+    extracted_constraints:
+    - "U_SPOKE1.1: Place C_SPOKE_IN1 across IN1 and system GND6 and C_SPOKE_OUT1 close to OUT10/system GND; keep input/output current loops short."
+    - "U_SPOKE1.1: Return R_SPOKE_ILIM1 at ILIM7 and C_SPOKE_DVDT1 at dVdT8 to isolated RTN5/EP11, never system GND6; retain a separate pin5-to-RTN-copper connection."
+    - "U_SPOKE1.1: Size RTN/thermal copper and vias from fault/retry thermal analysis; unused FLT9 must not be claimed as an active monitor."
+  - refdes: U_SPOKE2
+    mode: U_SPOKE2 protected 12 V spoke eFuse
+    footprint: crow_usb_analog:TI_DRC0010J_VSON10
+    critical_pins_or_nets:
+    - U_SPOKE2.1
+    - U_SPOKE2.5
+    - U_SPOKE2.6
+    - U_SPOKE2.7
+    - U_SPOKE2.8
+    - U_SPOKE2.10
+    - U_SPOKE2.11
+    stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    applicability:
+      status: limited
+      reasons:
+      - Exact manufacturer primary was inspected; final Crow native placement, return and route geometry are not inspected.
+      reviewed_for:
+        mpn: TPS26625DRCR
+        package: DRC0010J VSON-10 3x3mm 0.5mm pitch with exposed PowerPAD
+        mode: U_SPOKE2 protected 12 V spoke eFuse
+        stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        circuit_sha256: 46fc8f0218b822a9faed1ee48d3bed88fc298778bf7d946b32e751c137287401
+    extracted_constraints:
+    - "U_SPOKE2.1: Place C_SPOKE_IN2 across IN1 and system GND6 and C_SPOKE_OUT2 close to OUT10/system GND; keep input/output current loops short."
+    - "U_SPOKE2.1: Return R_SPOKE_ILIM2 at ILIM7 and C_SPOKE_DVDT2 at dVdT8 to isolated RTN5/EP11, never system GND6; retain a separate pin5-to-RTN-copper connection."
+    - "U_SPOKE2.1: Size RTN/thermal copper and vias from fault/retry thermal analysis; unused FLT9 must not be claimed as an active monitor."
+  - refdes: U_SPOKE3
+    mode: U_SPOKE3 protected 12 V spoke eFuse
+    footprint: crow_usb_analog:TI_DRC0010J_VSON10
+    critical_pins_or_nets:
+    - U_SPOKE3.1
+    - U_SPOKE3.5
+    - U_SPOKE3.6
+    - U_SPOKE3.7
+    - U_SPOKE3.8
+    - U_SPOKE3.10
+    - U_SPOKE3.11
+    stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    applicability:
+      status: limited
+      reasons:
+      - Exact manufacturer primary was inspected; final Crow native placement, return and route geometry are not inspected.
+      reviewed_for:
+        mpn: TPS26625DRCR
+        package: DRC0010J VSON-10 3x3mm 0.5mm pitch with exposed PowerPAD
+        mode: U_SPOKE3 protected 12 V spoke eFuse
+        stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        circuit_sha256: 4e3fc190de5f2392bdcc86ff79306859dd82524ab94b780807a70a57ea3e0e44
+    extracted_constraints:
+    - "U_SPOKE3.1: Place C_SPOKE_IN3 across IN1 and system GND6 and C_SPOKE_OUT3 close to OUT10/system GND; keep input/output current loops short."
+    - "U_SPOKE3.1: Return R_SPOKE_ILIM3 at ILIM7 and C_SPOKE_DVDT3 at dVdT8 to isolated RTN5/EP11, never system GND6; retain a separate pin5-to-RTN-copper connection."
+    - "U_SPOKE3.1: Size RTN/thermal copper and vias from fault/retry thermal analysis; unused FLT9 must not be claimed as an active monitor."
+  - refdes: U_SPOKE4
+    mode: U_SPOKE4 protected 12 V spoke eFuse
+    footprint: crow_usb_analog:TI_DRC0010J_VSON10
+    critical_pins_or_nets:
+    - U_SPOKE4.1
+    - U_SPOKE4.5
+    - U_SPOKE4.6
+    - U_SPOKE4.7
+    - U_SPOKE4.8
+    - U_SPOKE4.10
+    - U_SPOKE4.11
+    stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    applicability:
+      status: limited
+      reasons:
+      - Exact manufacturer primary was inspected; final Crow native placement, return and route geometry are not inspected.
+      reviewed_for:
+        mpn: TPS26625DRCR
+        package: DRC0010J VSON-10 3x3mm 0.5mm pitch with exposed PowerPAD
+        mode: U_SPOKE4 protected 12 V spoke eFuse
+        stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        circuit_sha256: cde5bb97543f6ebc6e5cb62111003fba3450c5d7ba808ad669268b4368a99c5a
+    extracted_constraints:
+    - "U_SPOKE4.1: Place C_SPOKE_IN4 across IN1 and system GND6 and C_SPOKE_OUT4 close to OUT10/system GND; keep input/output current loops short."
+    - "U_SPOKE4.1: Return R_SPOKE_ILIM4 at ILIM7 and C_SPOKE_DVDT4 at dVdT8 to isolated RTN5/EP11, never system GND6; retain a separate pin5-to-RTN-copper connection."
+    - "U_SPOKE4.1: Size RTN/thermal copper and vias from fault/retry thermal analysis; unused FLT9 must not be claimed as an active monitor."
+  - refdes: U_SPOKE5
+    mode: U_SPOKE5 protected 12 V spoke eFuse
+    footprint: crow_usb_analog:TI_DRC0010J_VSON10
+    critical_pins_or_nets:
+    - U_SPOKE5.1
+    - U_SPOKE5.5
+    - U_SPOKE5.6
+    - U_SPOKE5.7
+    - U_SPOKE5.8
+    - U_SPOKE5.10
+    - U_SPOKE5.11
+    stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    applicability:
+      status: limited
+      reasons:
+      - Exact manufacturer primary was inspected; final Crow native placement, return and route geometry are not inspected.
+      reviewed_for:
+        mpn: TPS26625DRCR
+        package: DRC0010J VSON-10 3x3mm 0.5mm pitch with exposed PowerPAD
+        mode: U_SPOKE5 protected 12 V spoke eFuse
+        stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        circuit_sha256: 7794848b4001556878e50d6de9c37e40d1387da6c00367cfb50a2d5828b8f3c7
+    extracted_constraints:
+    - "U_SPOKE5.1: Place C_SPOKE_IN5 across IN1 and system GND6 and C_SPOKE_OUT5 close to OUT10/system GND; keep input/output current loops short."
+    - "U_SPOKE5.1: Return R_SPOKE_ILIM5 at ILIM7 and C_SPOKE_DVDT5 at dVdT8 to isolated RTN5/EP11, never system GND6; retain a separate pin5-to-RTN-copper connection."
+    - "U_SPOKE5.1: Size RTN/thermal copper and vias from fault/retry thermal analysis; unused FLT9 must not be claimed as an active monitor."
+  - refdes: U_SPOKE6
+    mode: U_SPOKE6 protected 12 V spoke eFuse
+    footprint: crow_usb_analog:TI_DRC0010J_VSON10
+    critical_pins_or_nets:
+    - U_SPOKE6.1
+    - U_SPOKE6.5
+    - U_SPOKE6.6
+    - U_SPOKE6.7
+    - U_SPOKE6.8
+    - U_SPOKE6.10
+    - U_SPOKE6.11
+    stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    applicability:
+      status: limited
+      reasons:
+      - Exact manufacturer primary was inspected; final Crow native placement, return and route geometry are not inspected.
+      reviewed_for:
+        mpn: TPS26625DRCR
+        package: DRC0010J VSON-10 3x3mm 0.5mm pitch with exposed PowerPAD
+        mode: U_SPOKE6 protected 12 V spoke eFuse
+        stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        circuit_sha256: ad7f7c8e9fc5267e75126b1109de40bb58690f998e5ca89b369ee86c6051dc50
+    extracted_constraints:
+    - "U_SPOKE6.1: Place C_SPOKE_IN6 across IN1 and system GND6 and C_SPOKE_OUT6 close to OUT10/system GND; keep input/output current loops short."
+    - "U_SPOKE6.1: Return R_SPOKE_ILIM6 at ILIM7 and C_SPOKE_DVDT6 at dVdT8 to isolated RTN5/EP11, never system GND6; retain a separate pin5-to-RTN-copper connection."
+    - "U_SPOKE6.1: Size RTN/thermal copper and vias from fault/retry thermal analysis; unused FLT9 must not be claimed as an active monitor."
+  - refdes: U_SPOKE7
+    mode: U_SPOKE7 protected 12 V spoke eFuse
+    footprint: crow_usb_analog:TI_DRC0010J_VSON10
+    critical_pins_or_nets:
+    - U_SPOKE7.1
+    - U_SPOKE7.5
+    - U_SPOKE7.6
+    - U_SPOKE7.7
+    - U_SPOKE7.8
+    - U_SPOKE7.10
+    - U_SPOKE7.11
+    stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    applicability:
+      status: limited
+      reasons:
+      - Exact manufacturer primary was inspected; final Crow native placement, return and route geometry are not inspected.
+      reviewed_for:
+        mpn: TPS26625DRCR
+        package: DRC0010J VSON-10 3x3mm 0.5mm pitch with exposed PowerPAD
+        mode: U_SPOKE7 protected 12 V spoke eFuse
+        stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        circuit_sha256: 220a9f2a075dfbec025c9ff73eb209fc1718cd70ab5ef1c5cd003fe11249e2e3
+    extracted_constraints:
+    - "U_SPOKE7.1: Place C_SPOKE_IN7 across IN1 and system GND6 and C_SPOKE_OUT7 close to OUT10/system GND; keep input/output current loops short."
+    - "U_SPOKE7.1: Return R_SPOKE_ILIM7 at ILIM7 and C_SPOKE_DVDT7 at dVdT8 to isolated RTN5/EP11, never system GND6; retain a separate pin5-to-RTN-copper connection."
+    - "U_SPOKE7.1: Size RTN/thermal copper and vias from fault/retry thermal analysis; unused FLT9 must not be claimed as an active monitor."
+  - refdes: U_SPOKE8
+    mode: U_SPOKE8 protected 12 V spoke eFuse
+    footprint: crow_usb_analog:TI_DRC0010J_VSON10
+    critical_pins_or_nets:
+    - U_SPOKE8.1
+    - U_SPOKE8.5
+    - U_SPOKE8.6
+    - U_SPOKE8.7
+    - U_SPOKE8.8
+    - U_SPOKE8.10
+    - U_SPOKE8.11
+    stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    applicability:
+      status: limited
+      reasons:
+      - Exact manufacturer primary was inspected; final Crow native placement, return and route geometry are not inspected.
+      reviewed_for:
+        mpn: TPS26625DRCR
+        package: DRC0010J VSON-10 3x3mm 0.5mm pitch with exposed PowerPAD
+        mode: U_SPOKE8 protected 12 V spoke eFuse
+        stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        circuit_sha256: f46927f4740143764032910792a17b008516f6ac22e94a827e2d692351438b13
+    extracted_constraints:
+    - "U_SPOKE8.1: Place C_SPOKE_IN8 across IN1 and system GND6 and C_SPOKE_OUT8 close to OUT10/system GND; keep input/output current loops short."
+    - "U_SPOKE8.1: Return R_SPOKE_ILIM8 at ILIM7 and C_SPOKE_DVDT8 at dVdT8 to isolated RTN5/EP11, never system GND6; retain a separate pin5-to-RTN-copper connection."
+    - "U_SPOKE8.1: Size RTN/thermal copper and vias from fault/retry thermal analysis; unused FLT9 must not be claimed as an active monitor."
+  state: complete
+  research_owner: terra
+  next_action: Review final native PCB geometry and returns against this exact primary reference; no route or acceptance is implied here.
+- mpn: TPS3808G09DBVR
+  package: SOT-23-6 DBV
+  artifacts:
+  - publisher: Texas Instruments
+    artifact: TI SBVS050N Section 8.4 and Figure 8-3, pages 15-16
+    url: https://www.ti.com/lit/ds/symlink/tps3808.pdf
+    tier: 1
+    format: PDF
+    editable: false
+    inspected: true
+    retrieval:
+      status: retrieved
+      at: '2026-09-24'
+      detail: Retained local manufacturer PDF was re-opened for the selected-IC audit.
+    inspection:
+      source_path: 02_parts/TPS3808G09DBVR/TPS3808-SBVS050N.pdf
+      sha256: 74d889c0f68af88032f1633c26381817cc03e10d9fd3b4c177a044ad3ed86eed
+      locator: TI SBVS050N Section 8.4 and Figure 8-3, datasheet pages 15-16
+      notes: Inspected retained primary package/layout source; not a Crow PCB result.
+  docs_fallback:
+    artifact: TI SBVS050N Section 8.4 and Figure 8-3, pages 15-16
+    url: https://www.ti.com/lit/ds/symlink/tps3808.pdf
+    inspected: true
+    inspection:
+      source_path: 02_parts/TPS3808G09DBVR/TPS3808-SBVS050N.pdf
+      sha256: 74d889c0f68af88032f1633c26381817cc03e10d9fd3b4c177a044ad3ed86eed
+      locator: TI SBVS050N Section 8.4 and Figure 8-3, datasheet pages 15-16
+      notes: Retained primary inspected for this source inventory; it is not a Crow PCB result.
+    extracted_guidance:
+    - 'Primary basis: TI SBVS050N Section 8.4 and Figure 8-3, datasheet pages 15-16'
+    - 'Evidence grade: primary manufacturer layout guidance. Place C_CORE_OK near U_CORE_OK VDD pin 6 and return it directly to pin 2/GND; keep the VDD feed low impedance.'
+    - CT pin 4 is intentionally unused in the current source; keep its copper absent/minimal because Section 8.4.1 says parasitic CT capacitance alters reset delay.
+    - TPS3808G01DBVEVM/SBVU015 discovered; same DBV package but G01 threshold differs from Crow G09.
+  applications:
+  - refdes: U_CORE_OK
+    mode: core ok
+    footprint: Package_TO_SOT_SMD:SOT-23-6
+    critical_pins_or_nets:
+    - U_CORE_OK.1
+    - U_CORE_OK.2
+    - U_CORE_OK.3
+    - U_CORE_OK.5
+    - U_CORE_OK.6
+    stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    applicability:
+      status: limited
+      reasons:
+      - Exact manufacturer primary was inspected; final Crow native placement, return and route geometry are not inspected.
+      reviewed_for:
+        mpn: TPS3808G09DBVR
+        package: SOT-23-6 DBV
+        mode: core ok
+        stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        circuit_sha256: 9ef19274966911f4557bc54c6e38b433489a950c039027aa2cbe417104cb3f3e
+    extracted_constraints:
+    - "U_CORE_OK.1: Place C_CORE_OK close from VDD6 (N1V8) to GND2; keep low-impedance supply and SENSE5 (N0V9) quiet."
+    - "U_CORE_OK.1: CT4 is intentionally unconnected; avoid incidental copper/capacitance that changes reset delay. RESET_N1 (XU_RESET_N) is an open-drain timing/output path, not a supply pin."
+  state: complete
+  research_owner: terra
+  next_action: Review final native PCB geometry and returns against this exact primary reference; no route or acceptance is implied here.
+- mpn: TPS3839K33DBZR
+  package: DBZ SOT-23-3 P0.95mm
+  artifacts:
+  - publisher: Texas Instruments
+    artifact: TI SBVS193D layout guidelines and DBZ package drawing
+    url: https://www.ti.com/lit/ds/symlink/tps3839.pdf
+    tier: 1
+    format: PDF
+    editable: false
+    inspected: true
+    retrieval:
+      status: retrieved
+      at: '2026-09-24'
+      detail: Retained local manufacturer PDF was re-opened for the selected-IC audit.
+    inspection:
+      source_path: 02_parts/TPS3839K33DBZR/TPS3839_SBVS193D.pdf
+      sha256: 5f9a9581d1b8df7f0b2a480a71dac6993c9aba3b05767ad22641d151434f5dd3
+      locator: TI SBVS193D Layout Guidelines, PDF p.15
+      notes: Inspected retained primary package/layout source; not a Crow PCB result.
+  docs_fallback:
+    artifact: TI SBVS193D layout guidelines and DBZ package drawing
+    url: https://www.ti.com/lit/ds/symlink/tps3839.pdf
+    inspected: true
+    inspection:
+      source_path: 02_parts/TPS3839K33DBZR/TPS3839_SBVS193D.pdf
+      sha256: 5f9a9581d1b8df7f0b2a480a71dac6993c9aba3b05767ad22641d151434f5dd3
+      locator: TI SBVS193D Layout Guidelines, PDF p.15
+      notes: Retained primary inspected for this source inventory; it is not a Crow PCB result.
+    extracted_guidance:
+    - 'Primary basis: TI SBVS193D Layout Guidelines, PDF p.15'
+    - Route VDD from a low-impedance rail node and place an optional 0.1uF bypass immediately at pins 3 and 1.
+    - Keep RESET away from the switching node and other fast aggressors.
+    - 'Carrier local-placement source 2026-09-08: exact-ref/non-ground-net adjacency is a rotation-aware copper-bounding-box gap, NOT pad-center distance or routed length. Rounded engineering ceilings below are not manufacturer numerical maxima. Ground pours are excluded by P-ADJ-PAIR; local return/thermal/escape proof remains owed on the later saved PCB.'
+    - Source-only pin-center plan uses <=5mm local bypass/BST and <=10mm feedback ceilings, with separately named bulk/input/feed exceptions. See 01_docs/SOURCE-CORRECTION-20260908-local-placement.md for all 299 roles and exact source geometry; no current-board acceptance is inherited.
+    - K33 means a 2.93V nominal falling threshold, not a 3.3V threshold; the G33 option is a different orderable device.
+    - RESET is an active-low push-pull output. The 120-350ms delay is guaranteed after VDD recovers; the VDD-falling propagation delay is a different parameter.
+    - TPS3839K33EVM-112/SLVU758 discovered; EVM uses DQN, not Crow DBZ package.
+  applications:
+  - refdes: U_RST1
+    mode: rst1
+    footprint: Package_TO_SOT_SMD:SOT-23
+    critical_pins_or_nets:
+    - U_RST1.1
+    - U_RST1.2
+    - U_RST1.3
+    stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    applicability:
+      status: limited
+      reasons:
+      - Exact manufacturer primary was inspected; final Crow native placement, return and route geometry are not inspected.
+      reviewed_for:
+        mpn: TPS3839K33DBZR
+        package: DBZ SOT-23-3 P0.95mm
+        mode: rst1
+        stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        circuit_sha256: 68e44e91de3b72b5f0d4b950f2613a35666d359542f4613cbcd95465d4ccd02d
+    extracted_constraints:
+    - "U_RST1.1: VDD3 is N3V3_ADC and GND1 is return; keep their local supply low impedance and any bypass tight."
+    - "U_RST1.1: RESET#2 is POR_N; keep it away from buck switching aggressors. K33 denotes the selected threshold, not a guaranteed 3.3V trip."
+  state: complete
+  research_owner: terra
+  next_action: Review final native PCB geometry and returns against this exact primary reference; no route or acceptance is implied here.
+- mpn: TPS389001DSER
+  package: TI_DSE0006A
+  artifacts:
+  - publisher: Texas Instruments
+    artifact: SLVSD65A exact land drawing
+    url: https://www.ti.com/lit/ds/symlink/tps3890.pdf
+    tier: 1
+    format: PDF
+    editable: false
+    inspected: true
+    retrieval:
+      status: retrieved
+      at: '2026-09-24'
+      detail: Retained local manufacturer PDF was re-opened for the selected-IC audit.
+    inspection:
+      source_path: 02_parts/TPS389001DSER/TPS3890_SLVSD65A.pdf
+      sha256: ee79599730e7606ba9718d9820b411020e3dcd9ff7d44572f8ee63fead15b9d0
+      locator: SLVSD65A package land drawing and layout section; engineered covered pin2 ground toe preserves original paste; explicit SMD mask detail governs pads1-3
+      notes: Inspected retained primary package/layout source; not a Crow PCB result.
+  docs_fallback:
+    artifact: SLVSD65A exact land drawing
+    url: https://www.ti.com/lit/ds/symlink/tps3890.pdf
+    inspected: true
+    inspection:
+      source_path: 02_parts/TPS389001DSER/TPS3890_SLVSD65A.pdf
+      sha256: ee79599730e7606ba9718d9820b411020e3dcd9ff7d44572f8ee63fead15b9d0
+      locator: SLVSD65A package land drawing and layout section; engineered covered pin2 ground toe preserves original paste; explicit SMD mask detail governs pads1-3
+      notes: Retained primary inspected for this source inventory; it is not a Crow PCB result.
+    extracted_guidance:
+    - 'Primary basis: SLVSD65A package land drawing and layout section; engineered covered pin2 ground toe preserves original paste; explicit SMD mask detail governs pads1-3'
+    - Local100nF bypass to uninterrupted ground plane; preserve exact thermal-pad and pin1 identity.
+    - 'Carrier local-placement source 2026-09-08: exact-ref/non-ground-net adjacency is a rotation-aware copper-bounding-box gap, NOT pad-center distance or routed length. Rounded engineering ceilings below are not manufacturer numerical maxima. Ground pours are excluded by P-ADJ-PAIR; local return/thermal/escape proof remains owed on the later saved PCB.'
+    - Source-only pin-center plan uses <=5mm local bypass/BST and <=10mm feedback ceilings, with separately named bulk/input/feed exceptions. See 01_docs/SOURCE-CORRECTION-20260908-local-placement.md for all 299 roles and exact source geometry; no current-board acceptance is inherited.
+    - C_PWR and C_AUDIO own each exact supervisor VDD4 despite MR3 sharing the HOLD rail on U_PWR. CT capacitors own pin5 separately. The exact-pair consumer cannot prove VDD4 versus MR3 on their shared net; that pin distinction is retained in source geometry/regression evidence and must be inspected on the later PCB.
+    - RESET is open drain; pull-up required.
+    - Sense detection8us at5.5V and18us at3.3V are TYPICAL, not guaranteed maxima.
+    - Manufacturer-derived pin1 land is0.8mm long, other original apertures0.7mm. Engineered pin2 GND copper extends0.18mm outward to0.88mm; original0.7x0.25mm paste retained separately; pads1-3 mask openings inset0.05mm from original copper, derived from p25 SMD detail. No exposed pad or via-in-pad.
+    - CT threshold1.17..1.29V; MR must remain high throughout programmed delay.
+    - TPS3890EVM-775/SBVU030 discovered; BOM names exact DSER/DSE, but Crow CT/MR populations differ.
+  applications:
+  - refdes: U_1V8_OK
+    mode: 1v8 ok
+    footprint: crow_usb_analog:TI_DSE0006A_Exact
+    critical_pins_or_nets:
+    - U_1V8_OK.1
+    - U_1V8_OK.2
+    - U_1V8_OK.3
+    - U_1V8_OK.4
+    - U_1V8_OK.5
+    - U_1V8_OK.6
+    stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    applicability:
+      status: limited
+      reasons:
+      - Exact manufacturer primary was inspected; final Crow native placement, return and route geometry are not inspected.
+      reviewed_for:
+        mpn: TPS389001DSER
+        package: TI_DSE0006A
+        mode: 1v8 ok
+        stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        circuit_sha256: df307c6bed9d8d292b90bbf669ff1eb4f8cf9589b26c7b8475b5e36e84df59ab
+    extracted_constraints:
+    - "U_1V8_OK.1: Keep SENSE1 (U_1V8_OK_SENSE) and its divider local/quiet; place a local 100nF VDD4-to-GND2 bypass (VDD4=N5V_BUCK) on an uninterrupted ground return."
+    - "U_1V8_OK.1: MR_N3=N5V_BUCK, CT5=CORE_EN_CT, RESET_N6=CORE_EN; preserve the actual pin-specific manual-reset, delay, and open-drain pull-up networks. CT5 is intentionally open only where shown by the netlist."
+    - "U_1V8_OK.1: The covered pin-2 ground toe/thermal land and exact pin-1 identity are package-specific; do not infer timing or reset behavior from the footprint alone."
+  - refdes: U_ADC_1V8_OK
+    mode: adc 1v8 ok
+    footprint: crow_usb_analog:TI_DSE0006A_Exact
+    critical_pins_or_nets:
+    - U_ADC_1V8_OK.1
+    - U_ADC_1V8_OK.2
+    - U_ADC_1V8_OK.3
+    - U_ADC_1V8_OK.4
+    - U_ADC_1V8_OK.6
+    stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    applicability:
+      status: limited
+      reasons:
+      - Exact manufacturer primary was inspected; final Crow native placement, return and route geometry are not inspected.
+      reviewed_for:
+        mpn: TPS389001DSER
+        package: TI_DSE0006A
+        mode: adc 1v8 ok
+        stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        circuit_sha256: 7c6ae181aaecef77d62f4653ccd8f64dd1771ba947e285ec37bb401b0a7109f0
+    extracted_constraints:
+    - "U_ADC_1V8_OK.1: Keep SENSE1 (U_ADC_1V8_OK_SENSE) and its divider local/quiet; place a local 100nF VDD4-to-GND2 bypass (VDD4=N3V3_ADC) on an uninterrupted ground return."
+    - "U_ADC_1V8_OK.1: MR_N3=N3V3_ADC, CT5=unconnected-(U_ADC_1V8_OK-CT-Pad5), RESET_N6=ADC_DIGITAL_OK; preserve the actual pin-specific manual-reset, delay, and open-drain pull-up networks. CT5 is intentionally open only where shown by the netlist."
+    - "U_ADC_1V8_OK.1: The covered pin-2 ground toe/thermal land and exact pin-1 identity are package-specific; do not infer timing or reset behavior from the footprint alone."
+  - refdes: U_ADC_3V3X_OK
+    mode: adc 3v3x ok
+    footprint: crow_usb_analog:TI_DSE0006A_Exact
+    critical_pins_or_nets:
+    - U_ADC_3V3X_OK.1
+    - U_ADC_3V3X_OK.2
+    - U_ADC_3V3X_OK.3
+    - U_ADC_3V3X_OK.4
+    - U_ADC_3V3X_OK.6
+    stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    applicability:
+      status: limited
+      reasons:
+      - Exact manufacturer primary was inspected; final Crow native placement, return and route geometry are not inspected.
+      reviewed_for:
+        mpn: TPS389001DSER
+        package: TI_DSE0006A
+        mode: adc 3v3x ok
+        stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        circuit_sha256: 0e4a0b1db62aed10ba3687cf12137784cec30aa5f36bc4e5c8ef07d36479e8b5
+    extracted_constraints:
+    - "U_ADC_3V3X_OK.1: Keep SENSE1 (U_ADC_3V3X_OK_SENSE) and its divider local/quiet; place a local 100nF VDD4-to-GND2 bypass (VDD4=N3V3_ADC) on an uninterrupted ground return."
+    - "U_ADC_3V3X_OK.1: MR_N3=N3V3_ADC, CT5=unconnected-(U_ADC_3V3X_OK-CT-Pad5), RESET_N6=ADC_DIGITAL_OK; preserve the actual pin-specific manual-reset, delay, and open-drain pull-up networks. CT5 is intentionally open only where shown by the netlist."
+    - "U_ADC_3V3X_OK.1: The covered pin-2 ground toe/thermal land and exact pin-1 identity are package-specific; do not infer timing or reset behavior from the footprint alone."
+  - refdes: U_ADC_OK
+    mode: adc ok
+    footprint: crow_usb_analog:TI_DSE0006A_Exact
+    critical_pins_or_nets:
+    - U_ADC_OK.1
+    - U_ADC_OK.2
+    - U_ADC_OK.3
+    - U_ADC_OK.4
+    - U_ADC_OK.5
+    - U_ADC_OK.6
+    stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    applicability:
+      status: limited
+      reasons:
+      - Exact manufacturer primary was inspected; final Crow native placement, return and route geometry are not inspected.
+      reviewed_for:
+        mpn: TPS389001DSER
+        package: TI_DSE0006A
+        mode: adc ok
+        stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        circuit_sha256: 8717b3f950b1cd77f34d189b784253f2451931b73ffa22a98214b33a212d82fd
+    extracted_constraints:
+    - "U_ADC_OK.1: Keep SENSE1 (U_ADC_OK_SENSE) and its divider local/quiet; place a local 100nF VDD4-to-GND2 bypass (VDD4=N3V3X) on an uninterrupted ground return."
+    - "U_ADC_OK.1: MR_N3=N3V3X, CT5=ADC_OK_CT, RESET_N6=ADC_OK; preserve the actual pin-specific manual-reset, delay, and open-drain pull-up networks. CT5 is intentionally open only where shown by the netlist."
+    - "U_ADC_OK.1: The covered pin-2 ground toe/thermal land and exact pin-1 identity are package-specific; do not infer timing or reset behavior from the footprint alone."
+  - refdes: U_AUDIO
+    mode: audio
+    footprint: crow_usb_analog:TI_DSE0006A_Exact
+    critical_pins_or_nets:
+    - U_AUDIO.1
+    - U_AUDIO.2
+    - U_AUDIO.3
+    - U_AUDIO.4
+    - U_AUDIO.5
+    - U_AUDIO.6
+    stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    applicability:
+      status: limited
+      reasons:
+      - Exact manufacturer primary was inspected; final Crow native placement, return and route geometry are not inspected.
+      reviewed_for:
+        mpn: TPS389001DSER
+        package: TI_DSE0006A
+        mode: audio
+        stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        circuit_sha256: 9c84ef7762eb87ae667e2253eb46b8977753fa51a425733d451ea5e4e2842841
+    extracted_constraints:
+    - "U_AUDIO.1: Keep SENSE1 (ADC_SENSE) and its divider local/quiet; place a local 100nF VDD4-to-GND2 bypass (VDD4=N5V_LDO_HOLD) on an uninterrupted ground return."
+    - "U_AUDIO.1: MR_N3=PWR_EN, CT5=AUDIO_CT, RESET_N6=AUDIO_EN; preserve the actual pin-specific manual-reset, delay, and open-drain pull-up networks. CT5 is intentionally open only where shown by the netlist."
+    - "U_AUDIO.1: The covered pin-2 ground toe/thermal land and exact pin-1 identity are package-specific; do not infer timing or reset behavior from the footprint alone."
+  - refdes: U_PWR
+    mode: pwr
+    footprint: crow_usb_analog:TI_DSE0006A_Exact
+    critical_pins_or_nets:
+    - U_PWR.1
+    - U_PWR.2
+    - U_PWR.3
+    - U_PWR.4
+    - U_PWR.5
+    - U_PWR.6
+    stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    applicability:
+      status: limited
+      reasons:
+      - Exact manufacturer primary was inspected; final Crow native placement, return and route geometry are not inspected.
+      reviewed_for:
+        mpn: TPS389001DSER
+        package: TI_DSE0006A
+        mode: pwr
+        stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        circuit_sha256: be2c4d97ec5b4515149f49601dfa42fb649f7dd6ec138f762ca9521a50e19b8c
+    extracted_constraints:
+    - "U_PWR.1: Keep SENSE1 (PWR_SENSE) and its divider local/quiet; place a local 100nF VDD4-to-GND2 bypass (VDD4=N5V_LDO_HOLD) on an uninterrupted ground return."
+    - "U_PWR.1: MR_N3=N5V_LDO_HOLD, CT5=PWR_CT, RESET_N6=PWR_EN; preserve the actual pin-specific manual-reset, delay, and open-drain pull-up networks. CT5 is intentionally open only where shown by the netlist."
+    - "U_PWR.1: The covered pin-2 ground toe/thermal land and exact pin-1 identity are package-specific; do not infer timing or reset behavior from the footprint alone."
+  - refdes: U_XU_3V3_OK
+    mode: x3v3 ok
+    footprint: crow_usb_analog:TI_DSE0006A_Exact
+    critical_pins_or_nets:
+    - U_XU_3V3_OK.1
+    - U_XU_3V3_OK.2
+    - U_XU_3V3_OK.3
+    - U_XU_3V3_OK.4
+    - U_XU_3V3_OK.5
+    - U_XU_3V3_OK.6
+    stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    applicability:
+      status: limited
+      reasons:
+      - Exact manufacturer primary was inspected; final Crow native placement, return and route geometry are not inspected.
+      reviewed_for:
+        mpn: TPS389001DSER
+        package: TI_DSE0006A
+        mode: x3v3 ok
+        stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        circuit_sha256: acca1a012c49c1725015c31285f7da0c1fc2161a625ade8bfb11419ec3c011c0
+    extracted_constraints:
+    - "U_XU_3V3_OK.1: Keep SENSE1 (U_XU_3V3_OK_SENSE) and its divider local/quiet; place a local 100nF VDD4-to-GND2 bypass (VDD4=N5V_BUCK) on an uninterrupted ground return."
+    - "U_XU_3V3_OK.1: MR_N3=N5V_BUCK, CT5=XU_3V3_OK_CT, RESET_N6=XU_RESET_N; preserve the actual pin-specific manual-reset, delay, and open-drain pull-up networks. CT5 is intentionally open only where shown by the netlist."
+    - "U_XU_3V3_OK.1: The covered pin-2 ground toe/thermal land and exact pin-1 identity are package-specific; do not infer timing or reset behavior from the footprint alone."
+  state: complete
+  research_owner: terra
+  next_action: Review final native PCB geometry and returns against this exact primary reference; no route or acceptance is implied here.
+- mpn: TPS62822DLCR
+  package: DLC0008B VSON-HR-8 1.5x2.0mm, 0.5mm pitch, no center pad
+  artifacts:
+  - publisher: Texas Instruments
+    artifact: TI Rev C section 10 and DLC0008B pp29-31
+    url: https://www.ti.com/lit/ds/symlink/tps62823.pdf
+    tier: 1
+    format: PDF
+    editable: false
+    inspected: true
+    retrieval:
+      status: retrieved
+      at: '2026-09-24'
+      detail: Retained local manufacturer PDF was re-opened for the selected-IC audit.
+    inspection:
+      source_path: 02_parts/TPS62822DLCR/TPS6282x_revC_TI.pdf
+      sha256: 47217a4e3b559423e2962d2a5c51b62e4d47de22c3bb04184c2ceff8c03b2b60
+      locator: TI TPS6282x Rev C section 10 and DLC0008B package drawing/example board layout pp29-31
+      notes: Inspected retained primary package/layout source; not a Crow PCB result.
+  docs_fallback:
+    artifact: TI Rev C section 10 and DLC0008B pp29-31
+    url: https://www.ti.com/lit/ds/symlink/tps62823.pdf
+    inspected: true
+    inspection:
+      source_path: 02_parts/TPS62822DLCR/TPS6282x_revC_TI.pdf
+      sha256: 47217a4e3b559423e2962d2a5c51b62e4d47de22c3bb04184c2ceff8c03b2b60
+      locator: TI TPS6282x Rev C section 10 and DLC0008B package drawing/example board layout pp29-31
+      notes: Retained primary inspected for this source inventory; it is not a Crow PCB result.
+    extracted_guidance:
+    - 'Primary basis: TI TPS6282x Rev C section 10 and DLC0008B package drawing/example board layout pp29-31'
+    - Place both 0805 input capacitors directly between VIN pin 7 and PGND pin 5; keep their high-current loop short and wide.
+    - Keep the SW pin 6 to Coilcraft L_U_* pin 1 loop short; Kelvin-sense output at its 47uF capacitor into FB pin 2, away from SW.
+    - Return the lower feedback divider to quiet AGND pin 3; join AGND/PGND on the ground plane without routing switch current through AGND.
+    - NC pin 4 and unused PG pin 8 remain open. No via in pad is implied by the source land.
+    - TPS62822EVM-005/SLVUBA0 discovered; DLC family EVM is a related 1.8 V application, not Crow three-rail geometry.
+    - Keep VIN-PGND input capacitors, SW-to-inductor and FB sense at output capacitor compact; keep FB away from SW.
+    - Keep VIN-PGND input capacitors, SW-to-inductor and FB sense at output capacitor compact; keep FB away from SW.
+    - Keep VIN-PGND input capacitors, SW-to-inductor and FB sense at output capacitor compact; keep FB away from SW.
+  applications:
+  - refdes: U_1V8
+    mode: U_1V8 synchronous buck rail
+    footprint: crow_usb_digital:TI_DLC0008B_VSON_HR8
+    critical_pins_or_nets:
+    - U_1V8.1
+    - U_1V8.2
+    - U_1V8.3
+    - U_1V8.5
+    - U_1V8.6
+    - U_1V8.7
+    stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    applicability:
+      status: limited
+      reasons:
+      - Exact manufacturer primary was inspected; final Crow native placement, return and route geometry are not inspected.
+      reviewed_for:
+        mpn: TPS62822DLCR
+        package: DLC0008B VSON-HR-8 1.5x2.0mm, 0.5mm pitch, no center pad
+        mode: U_1V8 synchronous buck rail
+        stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        circuit_sha256: 8bd61601693e2e103e58a7eeddb00c474534a3594fbbd0f3626bd68b09859746
+    extracted_constraints:
+    - "U_1V8.1: Place input capacitors tightly between VIN7 (N5V_BUCK) and PGND5; keep SW6-to-inductor input short and output capacitor close to the inductor/output node."
+    - "U_1V8.1: Kelvin-sense the output capacitor through FB2 and return the divider to quiet AGND3, away from SW6; AGND/PGND join on the ground plane without switch current through AGND."
+    - "U_1V8.1: EN1 is N5V_BUCK; NC4 and unused PG8 are open in this exact source."
+  - refdes: U_3V3X
+    mode: U_3V3X synchronous buck rail
+    footprint: crow_usb_digital:TI_DLC0008B_VSON_HR8
+    critical_pins_or_nets:
+    - U_3V3X.1
+    - U_3V3X.2
+    - U_3V3X.3
+    - U_3V3X.5
+    - U_3V3X.6
+    - U_3V3X.7
+    stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    applicability:
+      status: limited
+      reasons:
+      - Exact manufacturer primary was inspected; final Crow native placement, return and route geometry are not inspected.
+      reviewed_for:
+        mpn: TPS62822DLCR
+        package: DLC0008B VSON-HR-8 1.5x2.0mm, 0.5mm pitch, no center pad
+        mode: U_3V3X synchronous buck rail
+        stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        circuit_sha256: 0061731ff9c23f8bbf5b8a747671bbb9eef64d71f3d6778c3e0f2e3a02fc3cc4
+    extracted_constraints:
+    - "U_3V3X.1: Place input capacitors tightly between VIN7 (N5V_BUCK) and PGND5; keep SW6-to-inductor input short and output capacitor close to the inductor/output node."
+    - "U_3V3X.1: Kelvin-sense the output capacitor through FB2 and return the divider to quiet AGND3, away from SW6; AGND/PGND join on the ground plane without switch current through AGND."
+    - "U_3V3X.1: EN1 is N5V_BUCK; NC4 and unused PG8 are open in this exact source."
+  - refdes: U_CORE
+    mode: U_CORE synchronous buck rail
+    footprint: crow_usb_digital:TI_DLC0008B_VSON_HR8
+    critical_pins_or_nets:
+    - U_CORE.1
+    - U_CORE.2
+    - U_CORE.3
+    - U_CORE.5
+    - U_CORE.6
+    - U_CORE.7
+    stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    applicability:
+      status: limited
+      reasons:
+      - Exact manufacturer primary was inspected; final Crow native placement, return and route geometry are not inspected.
+      reviewed_for:
+        mpn: TPS62822DLCR
+        package: DLC0008B VSON-HR-8 1.5x2.0mm, 0.5mm pitch, no center pad
+        mode: U_CORE synchronous buck rail
+        stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        circuit_sha256: 2d3332065339473f885a6062369f7429984b64e75a8a35ba901f6cfe8ec92cba
+    extracted_constraints:
+    - "U_CORE.1: Place input capacitors tightly between VIN7 (N5V_BUCK) and PGND5; keep SW6-to-inductor input short and output capacitor close to the inductor/output node."
+    - "U_CORE.1: Kelvin-sense the output capacitor through FB2 and return the divider to quiet AGND3, away from SW6; AGND/PGND join on the ground plane without switch current through AGND."
+    - "U_CORE.1: EN1 is CORE_EN; NC4 and unused PG8 are open in this exact source."
+  state: complete
+  research_owner: terra
+  next_action: Review final native PCB geometry and returns against this exact primary reference; no route or acceptance is implied here.
+- mpn: TPSM63603RDHR
+  package: RDH0030A enhanced HotRod B0QFN, 4 x 6 x 1.9 mm max
+  artifacts:
+  - publisher: Texas Instruments
+    artifact: TI SLVSFS5A Section 10, Figures 10-1/10-2, PDF page 36
+    url: https://www.ti.com/lit/ds/symlink/tpsm63603.pdf
+    tier: 1
+    format: PDF
+    editable: false
+    inspected: true
+    retrieval:
+      status: retrieved
+      at: '2026-09-24'
+      detail: Retained local manufacturer PDF was re-opened for the selected-IC audit.
+    inspection:
+      source_path: 02_parts/TPSM63603RDHR/TPSM63603_SLVSFS5A.pdf
+      sha256: ffb05dbfc1fb35d79778fda2242d4880a0dfae146c28481afba8dff778b72dc6
+      locator: TI SLVSFS5A Section 10 and Figures 10-1/10-2
+      notes: Inspected retained primary package/layout source; not a Crow PCB result.
+  docs_fallback:
+    artifact: TI SLVSFS5A Section 10, Figures 10-1/10-2, PDF page 36
+    url: https://www.ti.com/lit/ds/symlink/tpsm63603.pdf
+    inspected: true
+    inspection:
+      source_path: 02_parts/TPSM63603RDHR/TPSM63603_SLVSFS5A.pdf
+      sha256: ffb05dbfc1fb35d79778fda2242d4880a0dfae146c28481afba8dff778b72dc6
+      locator: TI SLVSFS5A Section 10 and Figures 10-1/10-2
+      notes: Retained primary inspected for this source inventory; it is not a Crow PCB result.
+    extracted_guidance:
+    - 'Primary basis: TI SLVSFS5A Section 10 and Figures 10-1/10-2'
+    - Application uses R_BUCK_FB_TOP 40.2k from 5V_BUCK to BUCK_FB and R_BUCK_FB_BOTTOM 10k from BUCK_FB to BUCK_AGND, nominal 5.02V per TI SLVSFS5A Table 7-1 and sections 7.3.2/8.2.1.2.2. Executable voltage bounds belong to power_tree.yaml.
+    - Put both divider resistors next to FB pin 25; keep FB trace short and away from switching copper.
+    - Sense VOUT at the output capacitor; return lower resistor to AGND before single-point PGND join.
+    - Keep existing VIN, VOUT, PGND, RT, VCC, VLDOIN and bootstrap connections per TI 5V example.
+    - TPSM63603EVM guide SLVUBY5A discovered via TI public page; copper figures identified by caption only, not geometrically inspected.
+    - Keep VIN/VOUT/PGND loops wide and compact; FB pin 25 divider and AGND join must avoid switching copper.
+  applications:
+  - refdes: U_BUCK
+    mode: TPSM63603 adjustable 12 V-to-5 V main buck
+    footprint: crow_usb_power:TPSM63603RDHR_RDH0030A
+    critical_pins_or_nets:
+    - U_BUCK.3
+    - U_BUCK.4
+    - U_BUCK.5
+    - U_BUCK.6
+    - U_BUCK.7
+    - U_BUCK.8
+    - U_BUCK.18
+    - U_BUCK.19
+    - U_BUCK.20
+    - U_BUCK.21
+    - U_BUCK.23
+    - U_BUCK.24
+    - U_BUCK.25
+    - U_BUCK.27
+    stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    applicability:
+      status: limited
+      reasons:
+      - Exact manufacturer primary was inspected; final Crow native placement, return and route geometry are not inspected.
+      reviewed_for:
+        mpn: TPSM63603RDHR
+        package: RDH0030A enhanced HotRod B0QFN, 4 x 6 x 1.9 mm max
+        mode: TPSM63603 adjustable 12 V-to-5 V main buck
+        stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        circuit_sha256: a595ddb83ecaeb1eb0b121521bbf41a6edbfc31425c254993b62e285705f98f7
+    extracted_constraints:
+    - "U_BUCK.3: Keep input capacitor loop from VIN3/4/18/19 to PGND5/6/16/17/28/29 short and broad; VOUT7-10/12-15/30 to output capacitors is the separate high-current output loop."
+    - "U_BUCK.3: Place R_BUCK_FB_TOP and R_BUCK_FB_BOTTOM beside FB25; sense output at its capacitor, return lower resistor to AGND24/27 before one-point PGND join, and keep FB away from switching copper."
+    - "U_BUCK.3: CBOOT20/RBOOT21, VCC23, RT1 and VLDOIN22 support the module locally; pin 25 is not a power-loop node."
+  state: complete
+  research_owner: terra
+  next_action: Review final native PCB geometry and returns against this exact primary reference; no route or acceptance is implied here.
+- mpn: W25Q128JWSIQ
+  package: SOIC-8 208mil (package code S)
+  artifacts:
+  - publisher: Winbond Electronics
+    artifact: Winbond W25Q128JW Rev H pinout
+    url: https://www.winbond.com.tw/hq/product/code-storage-flash-memory/serial-nor-flash/?__locale=en&partNo=W25Q128JW
+    tier: 1
+    format: PDF
+    editable: false
+    inspected: true
+    retrieval:
+      status: retrieved
+      at: '2026-09-24'
+      detail: Retained local manufacturer PDF was re-opened for the selected-IC audit.
+    inspection:
+      source_path: 02_parts/W25Q128JWSIQ/Winbond_W25Q128JW_RevH.pdf
+      sha256: fe9adbf87c6c57a8bf5af1406d5d30242b3ee13450d1d942f177559ac728627f
+      locator: Winbond W25Q128JW Rev H pinout and SOIC-8 208mil package drawing
+      notes: Inspected retained primary package/layout source; not a Crow PCB result.
+  docs_fallback:
+    artifact: Winbond W25Q128JW Rev H pinout
+    url: https://www.winbond.com.tw/hq/product/code-storage-flash-memory/serial-nor-flash/?__locale=en&partNo=W25Q128JW
+    inspected: true
+    inspection:
+      source_path: 02_parts/W25Q128JWSIQ/Winbond_W25Q128JW_RevH.pdf
+      sha256: fe9adbf87c6c57a8bf5af1406d5d30242b3ee13450d1d942f177559ac728627f
+      locator: Winbond W25Q128JW Rev H pinout and SOIC-8 208mil package drawing
+      notes: Retained primary inspected for this source inventory; it is not a Crow PCB result.
+    extracted_guidance:
+    - 'Primary basis: Winbond W25Q128JW Rev H pinout and SOIC-8 208mil package drawing'
+    - Place C_FLASH at VCC pin 8 with a short return to GND pin 4.
+    - Keep CLK and IO0 through IO3 short and grouped between XU316 and flash; keep the CS pull-up local to pin 1.
+    - The selected Q suffix is load-bearing because XU316 ROM boot cannot first write a volatile QE setting.
+    - XU316 boots with EBh in SPI mode and requires the flash not to power up in QPI mode.
+    - Candidate has two dated public observations, but Q-2SOURCE remains pending until the project machine gate composes and passes the adopted inputs.
+  applications:
+  - refdes: U_FLASH
+    mode: flash
+    footprint: Package_SO:SOIC-8_5.3x5.3mm_P1.27mm
+    critical_pins_or_nets:
+    - "U_FLASH.1"
+    - "U_FLASH.2"
+    - "U_FLASH.3"
+    - "U_FLASH.4"
+    - "U_FLASH.5"
+    - "U_FLASH.6"
+    - "U_FLASH.7"
+    - "U_FLASH.8"
+    stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    applicability:
+      status: limited
+      reasons:
+      - Exact manufacturer primary was inspected; final Crow native placement, return and route geometry are not inspected.
+      reviewed_for:
+        mpn: W25Q128JWSIQ
+        package: SOIC-8 208mil (package code S)
+        mode: flash
+        stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        circuit_sha256: 80329ae0cadaa64eac794628421d272f5cf838842335f5130e22236974ba23c8
+    extracted_constraints:
+    - "Put C_FLASH from U_FLASH.8 (VCC=N1V8) to U_FLASH.4 (GND=GND) close to the flash; pad 1 is CE_N, not VCC."
+    - "Keep U_FLASH.6 (SCK=QSPI_CLK) and IO0–IO3 pads 5/2/3/7 grouped to U_XU with short clock route."
+    - "Keep CS pull-up local to U_FLASH.1 (CE_N=QSPI_CS_N); preserve the Q-suffix fixed-QE boot behavior in the selected part."
+  state: complete
+  research_owner: terra
+  next_action: Review final native PCB geometry and returns against this exact primary reference; no route or acceptance is implied here.
+- mpn: XU316-1024-TQ128-C24
+  package: TQFP-128 14x14mm P0.4 exposed pad
+  artifacts:
+  - publisher: XMOS
+    artifact: XMOS XM-014532-PC v2.0.0 Sections 7.3/14 and Appendix I, pages 20, 29-34, and 94-97
+    url: https://www.xmos.com/documentation/XM-014532-PC/html/
+    tier: 1
+    format: PDF
+    editable: false
+    inspected: true
+    retrieval:
+      status: retrieved
+      at: '2026-09-24'
+      detail: Retained local manufacturer PDF was re-opened for the selected-IC audit.
+    inspection:
+      source_path: 02_parts/XU316-1024-TQ128-C24/XM-014532-PC-v2.0.0.pdf
+      sha256: a2ce2dc835df06793a4e1aa6c5d226c6a01c25c979a63b09a2b57059c17321cf
+      locator: XMOS XM-014532-PC v2.0.0 Sections 7.3 and 14, plus Appendix I PCB Layout Design Checklist
+      notes: Inspected retained primary package/layout source; not a Crow PCB result.
+  docs_fallback:
+    artifact: XMOS XM-014532-PC v2.0.0 Sections 7.3/14 and Appendix I, pages 20, 29-34, and 94-97
+    url: https://www.xmos.com/documentation/XM-014532-PC/html/
+    inspected: true
+    inspection:
+      source_path: 02_parts/XU316-1024-TQ128-C24/XM-014532-PC-v2.0.0.pdf
+      sha256: a2ce2dc835df06793a4e1aa6c5d226c6a01c25c979a63b09a2b57059c17321cf
+      locator: XMOS XM-014532-PC v2.0.0 Sections 7.3 and 14, plus Appendix I PCB Layout Design Checklist
+      notes: Retained primary inspected for this source inventory; it is not a Crow PCB result.
+    extracted_guidance:
+    - 'Primary basis: XMOS XM-014532-PC v2.0.0 Sections 7.3 and 14, plus Appendix I PCB Layout Design Checklist'
+    - 'Evidence grade: primary manufacturer integration and layout checklist. Distribute the fifteen C_XU_VDD_* 100 nF capacitors around VDD pins and the eight C_XU_VDDIO_* capacitors around their named VDDIO pins; each ground side needs a direct, short return toward the device center/ground pins.'
+    - Keep FB_PLL, C_PLL_1U, and C_PLL_100N local to PLL_AVDD pin 41/PLL_AGND pin 42 and isolate PLL_0V9 from noisy supplies. Place Y_XU, R_XTAL_DRIVE, R_XTAL_FB, C_XTAL_IN, and C_XTAL_OUT tightly around XIN pin 34/XOUT pin 33.
+    - "Route USB_DP/USB_DM as a 90 ohm differential pair with continuous reference, matched lengths, minimal vias, no stubs, and the spacing rules in Sections 14.1\u201314.2. Connect EP129 and every ground pin directly to board ground with the thermal/ground-via treatment in Sections 14.4 and Appendix I."
+    - Bottom I/O/JTAG/crystal/reset domain is always 1.8 V. L/R/T selectors are tied low and all four GPIO banks run at 1.8 V.
+    - EP129 is VSS. Inline footprint has no thermal vias; board floorplan must add fabrication vias later.
+    - USB DP/DM are a coupled 90-ohm pair; QSPI/JTAG/TDM breakout and each named decoupler return require native-board review.
+  applications:
+  - refdes: U_XU
+    mode: 'XMOS USB-audio MCU: USB, QSPI, TDM, clock and power distribution'
+    footprint: crow_usb_digital:TQFP-128_14x14mm_P0.4mm_EP_XU316
+    critical_pins_or_nets:
+    - "U_XU.1"
+    - "U_XU.2"
+    - "U_XU.3"
+    - "U_XU.4"
+    - "U_XU.20"
+    - "U_XU.22"
+    - "U_XU.23"
+    - "U_XU.59"
+    - "U_XU.60"
+    - "U_XU.61"
+    - "U_XU.62"
+    - "U_XU.93"
+    - "U_XU.94"
+    - "U_XU.107"
+    - "U_XU.127"
+    - "U_XU.128"
+    - "U_XU.129"
+    stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    applicability:
+      status: limited
+      reasons:
+      - Exact manufacturer primary was inspected; final Crow native placement, return and route geometry are not inspected.
+      reviewed_for:
+        mpn: XU316-1024-TQ128-C24
+        package: TQFP-128 14x14mm P0.4 exposed pad
+        mode: 'XMOS USB-audio MCU: USB, QSPI, TDM, clock and power distribution'
+        stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
+        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        circuit_sha256: fe03bb5daa51f1c1c2259d4c97dbc82499c34ef1160f8ddb61fddd43f351fdfa
+    extracted_constraints:
+    - "Route USB differential pair U_XU.59 (USB_DN=USB_DN) / U_XU.60 (USB_DP=USB_DP) from the connector/ESD section with continuous reference and controlled pair geometry; keep local PHY supply bypass on U_XU.61 (USB_VDD33=N3V3X) and U_XU.62 (USB_VDD18=N1V8)."
+    - "Keep QSPI CLK U_XU.4 (X0D10=QSPI_CLK), CS U_XU.2 (X0D01=QSPI_CS_N), and data pads U_XU.1 (X0D06=QSPI_D2), U_XU.3 (X0D07=QSPI_D3), U_XU.127 (X0D04=QSPI_D0), U_XU.128 (X0D05=QSPI_D1) grouped to U_FLASH; no unrelated stub on clock."
+    - "Keep TDM pads 20/22/23/107 referenced to their 1.8-V domain; EP pad 129 is ground, not a signal escape."
+  state: complete
+  research_owner: terra
+  next_action: Review final native PCB geometry and returns against this exact primary reference; no route or acceptance is implied here.

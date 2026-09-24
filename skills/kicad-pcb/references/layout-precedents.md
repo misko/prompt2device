@@ -1,11 +1,13 @@
 # Layout precedents — finding how others routed the same local circuit
 
-For any HARD part (dense escapes, switching power, >0.5A analog, RF), a
-routed reference almost always exists. Consulting it is cheaper and safer
-than deriving the local layout from first principles — and canon M6 says
-the manufacturer's own routed example WINS over your derivation. This doc
-is the source catalog, in authority order, with what to extract and the
-rules that keep it canon-clean.
+For every selected IC, search for layout/application guidance before placement.
+Dense, switching-power, high-current analog, and RF ICs usually need an
+inspectable routed precedent; ordinary ICs still need a recorded search and
+datasheet layout read. Consulting it is cheaper and safer
+than deriving the local layout from first principles. A manufacturer's routed
+example has the strongest precedent authority only after its package, mode,
+stack, return path, and rules are reviewed as applicable. This doc is the
+source catalog, with what to extract and the rules that keep it canon-clean.
 
 ## Contents
 
@@ -24,9 +26,32 @@ rules that keep it canon-clean.
   import board files, never trace over someone's copper (canon M3:
   everything regenerable from our source — the same line ADR-0002 draws
   for tscircuit's own PCB output).
-- Record every reference consulted in the part.yaml `layout_refs:` list
-  and harvest it into `proven-parts.yaml` at release — the search is paid
-  once per part, ever.
+- Record discovered references in the exact-MPN/package dossier's `layout_refs:`
+  ladder. Reuse discovery for identical MPN/package, but never assume it
+  transfers across an instance's mode, footprint, stack, reference plane, or
+  route rules.
+
+## IC research packet
+
+Before P1, `03_src/rules/ic_reference_research.yaml` maps the source-derived
+selected-IC census to per-MPN/package `parts:` records. Each record has
+`mpn`, `package`, `artifacts`, `docs_fallback`, `applications`, `state`,
+`research_owner`, and `next_action`; its artifacts must name the matching
+dossier `layout_refs` `artifact` and `tier`. Each application's
+`applicability.reviewed_for` snapshots exact `mpn`, `package`, `mode`,
+`circuit_sha256`, `stackup_sha256`, and `route_rules_sha256`. `inspected: true`
+requires `inspection.sha256`, `locator`, and `notes` from examined contents; a
+URL or `inspected: false` only records discovery. A failed or inaccessible
+design-file download is missing evidence assigned to the research owner. An
+inspected documentation fallback may complete research, but leaves the
+engineering result INCOMPLETE.
+
+Publisher authority, ability to inspect, and editability are distinct. An
+editable file can improve measurement, but neither editability nor a higher-tier
+publisher transfers a layout across unreviewed package, mode, or stack
+conditions. The packet is research evidence only. Constraints enter source
+through normal review, and native P3 critical-route proof remains owned by the
+board.
 
 ## Sources, in authority order
 
@@ -54,12 +79,13 @@ is published — a vendor's own reference board, a chip maker's minimal
 design example, a foundation's open board. MCUs, radios and codecs have
 these as often as converters do.
 
-**AN EDITABLE DESIGN FILE OUTRANKS A RENDERED FIGURE.** A figure is read
-by eye at whatever DPI the PDF carries; a design file opens in KiCad and
-is MEASURED. So a tier-1 figure does NOT discharge this tier when files
-exist — search for them explicitly. Formats rank by what you can do with
-them: KiCad (open and measure) > gerbers (measure, no netlist) > Allegro /
-Altium (openable only if you have the tool) > a rendered figure.
+**PREFER AN INSPECTABLE DESIGN FILE TO A RENDERED FIGURE FOR MEASUREMENT.**
+A figure is read by eye at its available DPI; a board file or Gerber can expose
+geometry. This is an inspection capability, not a publisher-authority ranking:
+record both tier and format, and review applicability before extracting a
+decision. Typical measurement access is KiCad (open and measure) > Gerbers
+(measure, no netlist) > Allegro/Altium (only with a usable tool) > rendered
+figure.
 
 WORKED CASE — RP2040 (canon P-PREC; verified 2026-07-30 at
 `raspberrypi.com/documentation/microcontrollers/rp2040.html`). Raspberry
@@ -72,9 +98,9 @@ read the *Hardware design with RP2040* Figure 6 raster at 200 dpi
 instead — a careful consult that stopped one tier short of a free,
 editable, permissively licensed layout for the exact part.
 
-Licence is a tier-2 question: a permissive licence is what makes the file
-openable at all. It never licenses copying — study-then-re-derive is canon
-M3 regardless of licence.
+Licence and access are separate: a publicly provided file may be opened and
+studied under its access terms even when reuse is restricted. Record any reuse
+restriction; study-then-re-derive remains canon M3 regardless of licence.
 
 ### 3. OSHWLab / EasyEDA open projects — SEARCH BY LCSC CODE
 The highest-leverage source for THIS pipeline: we select parts by LCSC

@@ -216,6 +216,8 @@ mkdir -p 04_kicad 06_build/netlists
 $PY "$S/circuit_json_to_kicad_sch.py" "$CJ" \
     -o "04_kicad/$BOARD.kicad_sch" --parts 02_parts
 kicad-cli sch export netlist --output "06_build/netlists/$BOARD.net" "04_kicad/$BOARD.kicad_sch"
+$PY "$S/ic_reference_check.py" . --json 06_build/verification/ic_reference_research.json \
+    || { echo "GATE INCOMPLETE [1ic] P-PREC/P-LAYOUT-IC: source-selected IC research or applicability is missing/stale"; exit 2; }
 
 # [1b] CHEAP SEMANTIC BATTERY at the schematic gate — seconds each, run HERE
 # and not first at seal (a defect authored at this stage and caught at seal
@@ -364,6 +366,9 @@ cmp -s "04_kicad/$BOARD.kicad_sch" "03_tscircuit/kicad/$BOARD.kicad_sch" \
     || { echo "GATE FAILED [2b] M-PIN: promoted schematic differs from the reviewed schematic-stage subject"; exit 1; }
 
 # [3] board (placement + zones) from floorplan.yaml  [SHARED]
+$PY "$S/ic_reference_check.py" . --require-semantic-review \
+    --json 06_build/verification/ic_reference_semantic_admission.json \
+    || { echo "GATE INCOMPLETE [3ic] P-PREC/P-LAYOUT-IC: independent packet/source-bound semantic review is missing or stale before P1 board generation"; exit 2; }
 $PY "$S/artifact_provenance.py" begin . --stage pcb_layout \
     --input 03_src/floorplan.yaml --input 03_src/route.yaml \
     --input "04_kicad/$BOARD.kicad_sch" \

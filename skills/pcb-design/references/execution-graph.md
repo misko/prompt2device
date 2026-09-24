@@ -80,6 +80,11 @@ The target truncates this graph:
 - `first_article` adds `PCB-FIRST-ARTICLE`;
 - `production` adds `PCB-FIRST-ARTICLE` and `PCB-PRODUCTION`.
 
+Selected-IC reference research is a source/placement preflight, not a new
+lifecycle stage: its source-derived packet and independent semantic review must
+pass before P1. Missing evidence stays with a named research owner and keeps P1
+incomplete. Native critical-route proof remains in P3/routing.
+
 High-speed digital adds signal-integrity procedures inside schematic,
 placement, routing, fabrication, and first article. It does not select the RF
 stages. Firmware is a separate requested handoff and never appears as a PCB
@@ -100,7 +105,7 @@ actual applicability.
 | 4 | `KICAD-RF-CONTEXT` | kicad-pcb | RF | `parts_locked` | `rf_context` |
 | 5 | `KICAD-RF-SOURCE` | kicad-pcb | RF | `rf_context` | `rf_source_clearance` |
 | 6 | `KICAD-SCHEMATIC` | kicad-pcb | always | `parts_locked`, `rf_source_clearance` | `schematic_reviewed` |
-| 7 | `KICAD-PLACEMENT` | kicad-pcb | always | `schematic_reviewed` | `placement_reviewed` |
+| 7 | `KICAD-PLACEMENT` | kicad-pcb | always | `schematic_reviewed`, selected-IC research packet | `placement_reviewed` |
 | 8 | `KICAD-MATING-IMPORT` | kicad-pcb | foreign mating | `placement_reviewed` | `mating_clearance` |
 | 9 | `KICAD-ROUTING` | kicad-pcb | always | `mating_clearance`, `placement_reviewed` | `routed_board` |
 | 10 | `KICAD-RF-REALIZED` | kicad-pcb | RF | `routed_board` | `rf_realized_clearance` |

@@ -138,6 +138,8 @@ SCH="03_tscircuit/kicad/$BOARD.kicad_sch"      # the PINNED canonical schematic
 mkdir -p 06_build/netlists
 kicad-cli sch export netlist --format kicadsexpr \
     -o "06_build/netlists/$BOARD.net" "$SCH"
+$PY "$S/ic_reference_check.py" . --json 06_build/verification/ic_reference_research.json \
+    || { echo "GATE INCOMPLETE [1ic] P-PREC/P-LAYOUT-IC: source-selected IC research or applicability is missing/stale"; exit 2; }
 
 $PY "$S/pre_route_review_check.py" . --phase schematic \
     --netlist "06_build/netlists/$BOARD.net" \
@@ -166,6 +168,9 @@ $PY "$FS/manufacturing_readiness.py" grade . --phase prelayout \
 # [2] board (placement + zones) from committed floorplan.yaml  [SHARED]
 # Deterministic replay still crosses the source admission boundary before it
 # regenerates placement from the committed floorplan.
+$PY "$S/ic_reference_check.py" . --require-semantic-review \
+    --json 06_build/verification/ic_reference_semantic_admission.json \
+    || { echo "GATE INCOMPLETE [2ic] P-PREC/P-LAYOUT-IC: independent packet/source-bound semantic review is missing or stale before P1 board generation"; exit 2; }
 run_stage placement "$PY" "$S/generate_board_generic.py" \
     03_src/floorplan.yaml -o "04_kicad/$BOARD.kicad_pcb"
 # KiCad parity discovers the comparison schematic only beside the board.  Put

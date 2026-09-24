@@ -37,6 +37,16 @@ features absent from the electrical netlist are outside this census and remain
 owned by floorplan and mechanical authorities; do not silently mix an authored
 mechanical list into the observed electrical denominator.
 
+## Bind IC research before placement work
+
+Before allocating P1 corridors, reconcile the source-derived selected-IC census
+with `03_src/rules/ic_reference_research.yaml`. Dossier research may be reused
+only for the same exact MPN/package; every instance records its own operating
+mode, circuit, and stack/rule applicability. A `missing_evidence` packet is a
+handoff to its research owner and keeps P1 incomplete. An independent semantic
+review of the completed packet must pass before board generation. P1 uses
+reviewed package/stack constraints; P3 owns native proof of each critical route.
+
 ## Schedule child work
 
 Functional ownership does not require physical colocation. Place interface

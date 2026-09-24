@@ -11,10 +11,20 @@ limits: {vin_min_V: 3, vin_max_V: 36, iout_max_A: 3, vout_adjustable_min_V: 1, v
 escape: {style: qfn, pitch: 0.5, escapes_worst_side: 8, tier_required: jlc_4layer_advanced, checked: 'Same RDH0030A native land as V5 option; route escape remains unproven.'}
 layout:
   source: TI SLVSFS5A Section 10 and Figures 10-1/10-2
+  reviewed: '2026-09-24'
   notes:
   - Application uses R_BUCK_FB_TOP 40.2k from 5V_BUCK to BUCK_FB and R_BUCK_FB_BOTTOM 10k from BUCK_FB to BUCK_AGND, nominal 5.02V per TI SLVSFS5A Table 7-1 and sections 7.3.2/8.2.1.2.2. Executable voltage bounds belong to power_tree.yaml.
   - Put both divider resistors next to FB pin 25; keep FB trace short and away from switching copper.
   - Sense VOUT at the output capacitor; return lower resistor to AGND before single-point PGND join.
   - Keep existing VIN, VOUT, PGND, RT, VCC, VLDOIN and bootstrap connections per TI 5V example.
+layout_refs:
+  - tier: 1
+    reached: true
+    artifact: TI SLVSFS5A Section 10, Figures 10-1/10-2, PDF page 36
+    why: Exact-family manufacturer layout guidance covers the input/output loops, feedback routing, thermal copper and EMI-sensitive layout for the selected RDH 30-pin module.
+  - tier: 2
+    reached: false
+    artifact: TPSM63603 manufacturer EVM/layout design files
+    why: Datasheet identifies EVM and Altium layout files, but no such routed files were inspected or retained for this project.
 verified: 'Primary TI family datasheet names TPSM63603RDHR adjustable RDH 30-pin variant and exact 5V divider. Native RDH0030A copper duplicated from previously reviewed V5 land without geometric alteration. Candidate requires native placement, start-up, transient and thermal qualification.'
 sourcing: {lcsc: C5219327}
