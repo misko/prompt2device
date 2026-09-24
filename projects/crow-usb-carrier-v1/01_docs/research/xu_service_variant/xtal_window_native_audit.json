@@ -1,0 +1,133 @@
+{
+  "schema": 1,
+  "kind": "crow-xtal-window-native-audit",
+  "status": "REJECTED_SOURCE_LOCAL_HANDOFF",
+  "hashes": {
+    "board": "fbfb3bda95f1ddc98e7d3d229550644d136dc7d6349ba19a4023eb13b07e7e27",
+    "floorplan": "cd52893214a87432b99bab41827a64680bd8a2f970342f126260157948b50925",
+    "source": "9a13c0999d29f17280bb5d8ffb98a5e0d59afe3ee4511eb004e436bffc13ece4",
+    "contract": "b17a94fedafbc334bdc0721535c640fb786f4b632b1abddf487289fdb19fbda4",
+    "checker": "30c33e4cf38ddd9fb9758a2d753b0d10fb3c86fc08a0cbc0cc6d31c9bf9b4899"
+  },
+  "board_path": "/tmp/crow-xu-qspi-gap-sol/project/04_kicad/crow_carrier.kicad_pcb",
+  "crystal_window_mm": [
+    204,
+    118.5,
+    212,
+    132
+  ],
+  "exact_endpoint_count": 7,
+  "exact_endpoints": [
+    {
+      "ref_pad": "U_XU.34",
+      "net": "XTAL_IN",
+      "owner": "xmos_core",
+      "pad_bbox_mm": [
+        215.425,
+        105.675,
+        216.9,
+        105.925
+      ],
+      "inside_crystal_window": false
+    },
+    {
+      "ref_pad": "R_XTAL_DRIVE.1",
+      "net": "XTAL_IN",
+      "owner": "clock_flash_debug",
+      "pad_bbox_mm": [
+        211.22,
+        132.379999,
+        211.76,
+        133.019999
+      ],
+      "inside_crystal_window": false
+    },
+    {
+      "ref_pad": "R_XTAL_FB.1",
+      "net": "XTAL_IN",
+      "owner": "clock_flash_debug",
+      "pad_bbox_mm": [
+        209.22,
+        121.48,
+        209.76,
+        122.12
+      ],
+      "inside_crystal_window": true
+    },
+    {
+      "ref_pad": "U_XU.33",
+      "net": "XTAL_OUT",
+      "owner": "xmos_core",
+      "pad_bbox_mm": [
+        215.425,
+        106.075,
+        216.9,
+        106.325
+      ],
+      "inside_crystal_window": false
+    },
+    {
+      "ref_pad": "C_XTAL_OUT.1",
+      "net": "XTAL_OUT",
+      "owner": "clock_flash_debug",
+      "pad_bbox_mm": [
+        208.04,
+        130.79,
+        208.6,
+        131.41
+      ],
+      "inside_crystal_window": true
+    },
+    {
+      "ref_pad": "R_XTAL_FB.2",
+      "net": "XTAL_OUT",
+      "owner": "clock_flash_debug",
+      "pad_bbox_mm": [
+        210.24,
+        121.48,
+        210.78,
+        122.12
+      ],
+      "inside_crystal_window": true
+    },
+    {
+      "ref_pad": "Y_XU.3",
+      "net": "XTAL_OUT",
+      "owner": "clock_flash_debug",
+      "pad_bbox_mm": [
+        211.4,
+        125.8,
+        212.8,
+        127.0
+      ],
+      "inside_crystal_window": false
+    }
+  ],
+  "cross_owner_witness_count": 2,
+  "cross_owner_witnesses": [
+    {
+      "ref_pad": "U_XU.34",
+      "status": "REJECTED",
+      "reason": "U_XU.34: witness bbox is a nonlocal bridge across source region",
+      "boundary_bbox_mm": [
+        211.98,
+        105.655,
+        216.92,
+        118.5
+      ]
+    },
+    {
+      "ref_pad": "U_XU.33",
+      "status": "REJECTED",
+      "reason": "U_XU.33: witness bbox is a nonlocal bridge across source region",
+      "boundary_bbox_mm": [
+        211.98,
+        106.055,
+        216.92,
+        118.5
+      ]
+    }
+  ],
+  "finding": "The two XMOS pads require a handoff across the QSPI-gap region; the current checker rejects each witness as a nonlocal bridge.  The existing local crystal window also excludes U_XU.33, U_XU.34, R_XTAL_DRIVE.1 and Y_XU.3.",
+  "next_action": "The owning floorplan/interface author must declare and place a local oscillator cell whose endpoint ownership does not cross board_integration_qspi, then supply native P2 pad access and filled In1.Cu return evidence.  Do not promote this as P1 acceptance."
+}
