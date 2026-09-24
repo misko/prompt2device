@@ -8,6 +8,7 @@ import sys
 import tempfile
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 import yaml
 
@@ -289,6 +290,28 @@ class CoarseCapacityTest(unittest.TestCase):
         result = self.run_case()
         self.assertEqual(result['status'], 'FAIL')
         self.assertIn('ownership mismatch', result['allocations'][0]['reason'])
+
+    def test_integration_corridor_shared_port_reservation_id_collision_fails(self):
+        self.add_integration_corridor()
+        port = {'id': 'elsewhere', 'reservation_id': 'qspi_trunk',
+                'bbox': (0.1, .1, .2, .2), 'reservation_bbox': (.1, .1, .2, .2),
+                'zone_rectangles': [(0.1, .1, .2, .2)]}
+        with patch.object(checker, '_shared_ports', return_value={'elsewhere': port}):
+            result = self.run_case()
+        self.assertEqual(result['status'], 'FAIL')
+        self.assertIn('shared port/integration corridor reservation identity reused', result['errors'][0])
+
+    def test_integration_corridor_native_track_hit_fails(self):
+        self.add_integration_corridor()
+        track = pcbnew.PCB_TRACK(self.board)
+        track.SetStart(pcbnew.VECTOR2I(iu(4.5), iu(5)))
+        track.SetEnd(pcbnew.VECTOR2I(iu(5.5), iu(5)))
+        track.SetWidth(iu(.2))
+        track.SetLayer(pcbnew.B_Cu)
+        self.board.Add(track)
+        result = self.run_case()
+        self.assertEqual(result['status'], 'FAIL')
+        self.assertIn('native copper intersects', result['errors'][0])
 
     def run_case(self, change=None):
         if change:

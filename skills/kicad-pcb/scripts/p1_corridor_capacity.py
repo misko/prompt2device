@@ -402,7 +402,15 @@ def _integration_corridors(source, interfaces, board, outline, regions, zones,
                                   'east': 'west', 'west': 'east'}[direction]},
                         {'bbox': area})):
                 raise ContractError(f'{ident}: integration face lacks positive non-corner shared edge')
+            for foreign_id, foreign in regions.items():
+                if foreign_id != block and intersects(boundary, rectangle(foreign, f'{foreign_id} region')):
+                    raise ContractError(f'{ident}: integration face overlaps foreign region {foreign_id}')
             normalized_faces.append({**face, 'bbox': boundary})
+        for port in shared_ports.values():
+            shapes = [port['bbox'], port['reservation_bbox']] + port['zone_rectangles']
+            if any(intersects(shape, area) or any(intersects(shape, f['bbox']) for f in normalized_faces)
+                   for shape in shapes):
+                raise ContractError(f'{ident}: integration corridor overlaps shared port {port["id"]}')
         affected = row.get('affected')
         if (not isinstance(affected, list) or not affected or
                 any(not isinstance(e, dict) or set(e) != {'source_pad', 'native_pad', 'net', 'block'}
