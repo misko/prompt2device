@@ -218,6 +218,13 @@ class CoarseCapacityTest(unittest.TestCase):
         for item in self.allocations[0]['boundary_witnesses']:
             if item['block'] == 'left':
                 item['boundary_bbox'] = corridor['faces'][0]['bbox'][:]
+        # Keep all other synthetic endpoints clear of the fixed physical
+        # access rectangle.  They retain virtual corridor handoffs.
+        for index in range(1, 6):
+            ref = f'U_L{index}'
+            fp = next(f for f in self.board.GetFootprints() if f.GetReference() == ref)
+            fp.SetPosition(pcbnew.VECTOR2I(iu(1), iu(3.7 + index * .45)))
+            self.floorplan['placement']['post_anchors'][ref] = [1, 3.7 + index * .45, 0]
         witness = next(w for w in self.allocations[0]['boundary_witnesses']
                        if w['source'] == 'U_L0.1')
         witness.update(kind='fixed_connector_access', face='west',
@@ -267,6 +274,41 @@ class CoarseCapacityTest(unittest.TestCase):
         result = self.run_case()
         self.assertIn('fixed access overlaps other reservation',
                       result['allocations'][0]['reason'])
+
+    def test_fixed_connector_access_rejects_native_pad_obstacle(self):
+        self.add_fixed_connector_access()
+        pad(self.board, 'U_BLOCK', '1', 'OTHER', 3, 4, .2)
+        self.source['p1_fixed_refs'].append('U_BLOCK')
+        self.floorplan['placement']['post_anchors']['U_BLOCK'] = [3, 4, 0]
+        result = self.run_case()
+        self.assertIn('fixed access intersects native body U_BLOCK',
+                      result['allocations'][0]['reason'])
+
+    def test_fixed_connector_access_rejects_courtyard_only_obstacle(self):
+        for layer in (pcbnew.F_CrtYd, pcbnew.B_CrtYd):
+            with self.subTest(layer=layer):
+                self.setUp()
+                self.add_fixed_connector_access()
+                pad(self.board, 'U_BLOCK', '1', 'OTHER', 1, 3.7, .2)
+                self.source['p1_fixed_refs'].append('U_BLOCK')
+                self.floorplan['placement']['post_anchors']['U_BLOCK'] = [1, 3.7, 0]
+                fp = next(f for f in self.board.GetFootprints() if f.GetReference() == 'U_BLOCK')
+                access = self.allocations[0]['reservations'][-1]['bbox']
+                self.assertFalse(checker.intersects(
+                    checker.box_mm(fp.GetBoundingBox(False, False)), access))
+                points = [(3, 3.6), (3.2, 3.6), (3.2, 3.8), (3, 3.8)]
+                for start, end in zip(points, points[1:] + points[:1]):
+                    edge = pcbnew.PCB_SHAPE(fp)
+                    edge.SetShape(pcbnew.SHAPE_T_SEGMENT)
+                    edge.SetStart(pcbnew.VECTOR2I(iu(start[0]), iu(start[1])))
+                    edge.SetEnd(pcbnew.VECTOR2I(iu(end[0]), iu(end[1])))
+                    edge.SetLayer(layer)
+                    edge.SetWidth(iu(.05))
+                    fp.Add(edge)
+                self.assertTrue(checker.intersects(checker._physical_envelope(fp), access))
+                result = self.run_case()
+                self.assertIn('fixed access intersects native body U_BLOCK',
+                              result['allocations'][0]['reason'])
 
     def test_integration_corridor_is_declared_debt_without_capacity_credit(self):
         self.add_integration_corridor()

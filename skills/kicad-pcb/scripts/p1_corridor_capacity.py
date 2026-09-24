@@ -741,6 +741,36 @@ def evaluate_coarse(board_path, contract_path, expected_contract_sha256=None, *,
                                             other.get('layer') == corridor['layer'] and \
                                             intersects(access, rectangle(other.get('bbox'), 'other reservation')):
                                         raise ContractError(f"{verified['source']}: fixed access overlaps other reservation")
+                                # This reservation is intentionally exempt from rough-capacity
+                                # measurement, but it still has to be an empty physical access
+                                # envelope.  The source footprint's aggregate body bbox is
+                                # exempt because it includes the named pad; its other pads are
+                                # still rejected below.  A foreign body/courtyard, another pad,
+                                # existing copper, or a rule area would make the declaration
+                                # misleading.
+                                for fp in board.GetFootprints():
+                                    ref = fp.GetReference()
+                                    side = fp.GetLayerName()
+                                    if (ref != verified['native'].rsplit('.', 1)[0] and
+                                            ((side == 'F.Cu' and corridor['layer'] == 'F.Cu') or
+                                             (side == 'B.Cu' and corridor['layer'] == 'B.Cu'))):
+                                        if intersects(access, _physical_envelope(fp)):
+                                            raise ContractError(f"{verified['source']}: fixed access intersects native body {ref}")
+                                    for pad in fp.Pads():
+                                        native_pad = f'{ref}.{pad.GetNumber()}'
+                                        if (native_pad != verified['native'] and
+                                                pad.IsOnLayer(board.GetLayerID(corridor['layer'])) and
+                                                intersects(access, box_mm(pad.GetBoundingBox()))):
+                                            raise ContractError(f"{verified['source']}: fixed access intersects native pad {native_pad}")
+                                if any(item.IsOnLayer(board.GetLayerID(corridor['layer'])) and
+                                       intersects(access, box_mm(item.GetBoundingBox()))
+                                       for item in board.GetTracks()):
+                                    raise ContractError(f"{verified['source']}: fixed access intersects existing copper")
+                                if any(zone.GetIsRuleArea() and
+                                       corridor['layer'] in {board.GetLayerName(i) for i in zone.GetLayerSet().Seq()} and
+                                       intersects(access, box_mm(zone.GetBoundingBox()))
+                                       for zone in zones):
+                                    raise ContractError(f"{verified['source']}: fixed access overlaps immutable native rule area")
                             elif (name != corridor['allocation_id'] or
                                     target.get('id') != corridor['reservation_id'] or
                                     target.get('kind') != 'integration_corridor' or
