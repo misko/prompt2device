@@ -65,6 +65,41 @@ prep:
     - User.2
     edge_band: 0.7
     rects: []
+  # Reviewed local PLL filter copper; routed waves must see it as an obstacle.
+  seed_stubs:
+    clearance: 0.15
+    via: {size: 0.6, drill: 0.3}
+    stubs:
+    - net: PLL_0V9
+      pin: U_XU.41
+      segments:
+      - {layer: F.Cu, width: 0.2, pts: [[216.1625, 103.0], [217.2, 103.0], [217.2, 101.9], [219.52, 101.9], [219.52, 102.8]]}
+      - {layer: F.Cu, width: 0.2, pts: [[222.515, 103.9], [219.52, 103.9], [219.52, 102.8]]}
+      - {layer: F.Cu, width: 0.2, pts: [[219.52, 103.9], [219.52, 105.0]]}
+    - net: N0V9
+      pin: FB_PLL.1
+      segments:
+      - {layer: F.Cu, width: 0.6, pts: [[218.0, 101.08], [224.7, 101.08], [224.7, 103.9], [223.485, 103.9]]}
+    - net: GND
+      pin: C_PLL_100N.2
+      segments:
+      - {layer: F.Cu, width: 0.2, pts: [[220.48, 102.8], [220.48, 101.9]]}
+      vias: [[220.48, 101.9]]
+    - net: GND
+      pin: C_PLL_1U.2
+      segments:
+      - {layer: F.Cu, width: 0.2, pts: [[220.48, 105.0], [220.48, 106.0]]}
+      vias: [[220.48, 106.0]]
+    - net: GND
+      pin: U_XU.129
+      segments:
+      - {layer: F.Cu, width: 0.2, pts: [[208.5, 100.0], [208.5, 103.1]]}
+      vias: [[208.5, 103.1]]
+    - net: GND
+      pin: U_XU.42
+      segments:
+      - {layer: F.Cu, width: 0.2, pts: [[216.1625, 102.6], [214.9, 102.6]]}
+      vias: [[214.9, 102.6]]
   waves:
     exclude:
     - GND
@@ -105,9 +140,6 @@ prep:
       - ADC_FSYNC_EXT
       - ADC_FSYNC_RAW
       - ADC_FSYNC_SAFE
-      - ADC_MCLK
-      - ADC_MCLK_RAW
-      - ADC_MCLK_SAFE
       - AUDIO_24M576
       - AUDIO_MCLK_1V8
       - TDM_BCLK_1V8
@@ -170,7 +202,7 @@ route:
     via_size: 0.6
     via_drill: 0.3
     fab_tier: advanced
-    fab_overrides: projects/crow-usb-carrier-v1/03_src/rules/route_fab_overrides.txt
+    fab_overrides: 03_src/rules/route_fab_overrides.txt
     no_stub_layer_swap: true
     keepout: true
     keepout_layer: User.2
