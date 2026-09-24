@@ -30,6 +30,7 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import importlib.util
 import json
 import math
 import sys
@@ -38,7 +39,12 @@ from pathlib import Path
 
 import yaml
 
-import p1_corridor_graph as graph
+_graph_spec = importlib.util.spec_from_file_location(
+    'p1_corridor_graph', Path(__file__).with_name('p1_corridor_graph.py'))
+if _graph_spec is None or _graph_spec.loader is None:
+    raise ImportError('adjacent p1_corridor_graph.py unavailable')
+graph = importlib.util.module_from_spec(_graph_spec)
+_graph_spec.loader.exec_module(graph)
 
 try:
     import pcbnew
