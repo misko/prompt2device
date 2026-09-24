@@ -1,7 +1,6 @@
 """Focused source-stage tests for Crow's conditional fuse/source E-FAULT branch."""
 from __future__ import annotations
 
-import hashlib
 import json
 import shutil
 import sys
@@ -13,7 +12,7 @@ import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "skills/kicad-pcb/scripts"))
-from early_design_check import ContractError, check_fault_envelopes  # noqa: E402
+from early_design_check import ContractError, check_fault_envelopes, circuit_semantic_sha256  # noqa: E402
 
 PROJECT = ROOT / "projects/crow-usb-carrier-v1"
 
@@ -57,7 +56,7 @@ def fixture_circuit():
         pins[(f"R_SPOKE_ILIM{i}", 2)] = f"SPOKE_RTN{i}"
         pins[(f"C_SPOKE_DVDT{i}", 1)] = f"SPOKE_DVDT{i}"
         pins[(f"C_SPOKE_DVDT{i}", 2)] = f"SPOKE_RTN{i}"
-    circuit = []
+    circuit = [{"type": "source_project_metadata", "source_filesystem_md5_hash": "0" * 32}]
     for ref, (mpn, value) in parts.items():
         circuit.append({"type": "source_component", "source_component_id": ref,
                         "name": ref, "manufacturer_part_number": mpn, **value})
@@ -93,7 +92,7 @@ class ExternalSourceFaultTests(unittest.TestCase):
         path.parent.mkdir(parents=True, exist_ok=True)
         raw = json.dumps(self.circuit, sort_keys=True).encode()
         path.write_bytes(raw)
-        self.power["external_source_fuse"]["circuit_sha256"] = hashlib.sha256(raw).hexdigest()
+        self.power["external_source_fuse"]["circuit_semantic_sha256"] = circuit_semantic_sha256(self.circuit)
         rules = self.project / "03_src/rules"
         (rules / "power_tree.yaml").write_text(yaml.safe_dump(self.power))
         (rules / "protection_paths.yaml").write_text(yaml.safe_dump(self.protection))
@@ -117,9 +116,39 @@ class ExternalSourceFaultTests(unittest.TestCase):
     def test_digest_mismatch_rejects_stale_circuit(self):
         self.check()
         path = self.project / "03_tscircuit/build/circuit.json"
-        path.write_bytes(path.read_bytes() + b" ")
+        circuit = json.loads(path.read_text())
+        next(row for row in circuit if row.get("type") == "source_component" and row.get("name") == "R_QIN_G")["resistance"] = 99000
+        path.write_text(json.dumps(circuit))
         with self.assertRaisesRegex(ContractError, "digest mismatch"):
             check_fault_envelopes(self.project)
+
+    def test_path_fingerprint_and_json_format_do_not_stale_electrical_source(self):
+        self.check()
+        path = self.project / "03_tscircuit/build/circuit.json"
+        circuit = json.loads(path.read_text())
+        circuit[0]["source_filesystem_md5_hash"] = "a" * 32
+        path.write_text(json.dumps(circuit, indent=2))
+        self.assertIn("CONDITIONAL external source/fuse", " ".join(check_fault_envelopes(self.project)))
+
+    def test_missing_or_expanded_path_fingerprint_fails_closed(self):
+        self.check()
+        path = self.project / "03_tscircuit/build/circuit.json"
+        circuit = json.loads(path.read_text())
+        circuit[0]["electrical_override"] = "unreviewed"
+        path.write_text(json.dumps(circuit))
+        with self.assertRaisesRegex(ContractError, "metadata must be one path fingerprint only"):
+            check_fault_envelopes(self.project)
+
+    def test_legacy_raw_hash_cannot_bypass_semantic_binding(self):
+        self.power["external_source_fuse"]["circuit_sha256"] = "0" * 64
+        self.check("legacy raw circuit_sha256")
+
+    def test_rebound_digest_still_rejects_real_bound_net_change(self):
+        self.circuit = fixture_circuit()
+        trace = next(row for row in self.circuit if row.get("type") == "source_trace"
+                     and row.get("connected_source_port_ids") == ["F_IN.2"])
+        trace["connected_source_net_ids"] = ["GND"]
+        self.check("F_IN.2 must connect to N12V_FUSED")
 
     def test_prebuild_validates_contract_without_circuit_then_full_requires_it(self):
         # A cold-start conductor has no generated circuit yet. A prebuild pass
@@ -134,7 +163,9 @@ class ExternalSourceFaultTests(unittest.TestCase):
     def test_prebuild_does_not_admit_stale_generated_bytes(self):
         self.check()
         path = self.project / "03_tscircuit/build/circuit.json"
-        path.write_bytes(path.read_bytes() + b" ")
+        circuit = json.loads(path.read_text())
+        next(row for row in circuit if row.get("type") == "source_component" and row.get("name") == "R_QIN_G")["resistance"] = 99000
+        path.write_text(json.dumps(circuit))
         self.assertIn("CIRCUIT OWED", " ".join(check_fault_envelopes(self.project, prebuild=True)))
         with self.assertRaisesRegex(ContractError, "digest mismatch"):
             check_fault_envelopes(self.project)

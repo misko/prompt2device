@@ -733,6 +733,28 @@ def check_passive_distribution_faults(data):
     return notes
 
 
+def circuit_semantic_sha256(circuit):
+    """Bind every generated circuit row except the producer's path fingerprint.
+
+    Row order and all non-metadata fields remain bound.  Reject an unexpected
+    metadata shape rather than silently excluding future electrical fields.
+    """
+    if not isinstance(circuit, list) or not circuit or any(not isinstance(row, dict) for row in circuit):
+        raise ContractError("E-FAULT source circuit must be a nonempty list of rows")
+    metadata = [row for row in circuit if row.get("type") == "source_project_metadata"]
+    if (len(metadata) != 1 or set(metadata[0]) != {"type", "source_filesystem_md5_hash"}
+            or not isinstance(metadata[0]["source_filesystem_md5_hash"], str)
+            or not re.fullmatch(r"[0-9a-f]{32}", metadata[0]["source_filesystem_md5_hash"])):
+        raise ContractError("E-FAULT source project metadata must be one path fingerprint only")
+    semantic_rows = [row for row in circuit if row.get("type") != "source_project_metadata"]
+    try:
+        canonical = json.dumps(semantic_rows, sort_keys=True, separators=(",", ":"),
+                               ensure_ascii=False, allow_nan=False).encode("utf-8")
+    except (TypeError, ValueError, UnicodeError) as exc:
+        raise ContractError(f"E-FAULT source circuit is not finite canonical JSON: {exc}") from exc
+    return hashlib.sha256(canonical).hexdigest()
+
+
 def check_external_source_fuse(project: Path, envelope, *, prebuild=False):
     """Conditional Crow source/fuse coordination; never a supply qualification."""
     where = "external_source_fuse"
@@ -742,9 +764,11 @@ def check_external_source_fuse(project: Path, envelope, *, prebuild=False):
         raise ContractError("E-FAULT external source must remain conditional; supplier and first-article qualification owed")
     if envelope.get("post_fuse_cap_discharge_status") != "first_article_owed":
         raise ContractError("E-FAULT post-fuse capacitor discharge remains first-article owed")
-    digest = text_value(envelope.get("circuit_sha256"), f"{where}.circuit_sha256")
+    if "circuit_sha256" in envelope:
+        raise ContractError("E-FAULT legacy raw circuit_sha256 is not a semantic source binding")
+    digest = text_value(envelope.get("circuit_semantic_sha256"), f"{where}.circuit_semantic_sha256")
     if not re.fullmatch(r"[0-9a-f]{64}", digest):
-        raise ContractError("E-FAULT circuit_sha256 must be a SHA-256 digest")
+        raise ContractError("E-FAULT circuit_semantic_sha256 must be a SHA-256 digest")
     # The producer has not run at the conductor's [0d] gate. Validate the
     # authored contract there, then bind the actual fresh circuit at [1b].
     # A historical canonical circuit must never be copied or trusted prebuild.
@@ -755,7 +779,7 @@ def check_external_source_fuse(project: Path, envelope, *, prebuild=False):
             circuit = json.loads(raw)
         except (OSError, ValueError) as exc:
             raise ContractError(f"E-FAULT needs fresh source circuit.json: {exc}") from exc
-        if hashlib.sha256(raw).hexdigest() != digest or not isinstance(circuit, list):
+        if circuit_semantic_sha256(circuit) != digest:
             raise ContractError("E-FAULT source circuit digest mismatch; fresh reviewed circuit required")
         components = {item["name"]: item for item in circuit
                   if isinstance(item, dict) and item.get("type") == "source_component"
