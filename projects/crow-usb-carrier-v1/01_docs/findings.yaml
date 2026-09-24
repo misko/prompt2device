@@ -293,6 +293,33 @@ findings:
   - 06_build/task_runs/p1_floorplan_569_after_launch_abort_r1-4d8a216d0d254c4db60305b0528ba3c9/attempt.json
   - 01_docs/decisions/0011-p1-floorplan-and-p2-placement-admission.md
 
+- id: USB-P1-native-evidence-failure-replacement
+  state: open
+  blocks_at_or_above: DESIGN_CLEAN
+  owner: placement-and-process
+  finding: >-
+    The sole p1_floorplan_569_after_relative_path_abort native attempt is
+    terminal FAIL and consumed. Its retained candidate board and evidence board
+    share SHA 6d948f70, but the placement receipt embeds a different board SHA,
+    so placement/capacity PASS is non-creditable. The worker also treated
+    P-ADJ-PAIR P2 debt as delivery failure and declared zero P1 corridors/owners.
+  closes_when: >-
+    Independently admit and review the distinct
+    p1_floorplan_569_after_native_evidence_abort campaign with exact
+    candidate-bound receipt hashes, explicit nonzero corridor/owner evidence,
+    and P2 debt preserved without waiver. P3, routing, promotion, release, and
+    order remain out of scope pending connector FULL.
+  evidence:
+  - 01_docs/research/2026-09-24-p1-native-evidence-failure-owner-reassessment.md
+  - 01_docs/research/2026-09-24-p1-native-evidence-failure-evidence/attempt.json
+  - 01_docs/research/2026-09-24-p1-native-evidence-failure-evidence/envelope.json
+  - 01_docs/research/2026-09-24-p1-native-evidence-failure-evidence/candidate.kicad_pcb
+  - 01_docs/research/2026-09-24-p1-native-evidence-failure-evidence/evidence.tar.gz
+  - 01_docs/research/2026-09-24-p1-native-evidence-failure-evidence/measurements.json
+  - 01_docs/research/2026-09-24-p1-native-evidence-failure-evidence/result.json
+  - 01_docs/research/2026-09-24-p1-native-evidence-failure-evidence/SHA256SUMS
+  - 01_docs/decisions/0011-p1-floorplan-and-p2-placement-admission.md
+
 - id: USB-P2-input-power-placement
   state: open
   blocks_at_or_above: DESIGN_CLEAN

@@ -1,0 +1,80 @@
+{
+  "board_bytes_match": true,
+  "board_sha256": "6d948f70f31c1b54dd75d53f5699c8b8fdc61ddf79d0451c3173190ea5b5ccfa",
+  "candidate_sha256": "6d948f70f31c1b54dd75d53f5699c8b8fdc61ddf79d0451c3173190ea5b5ccfa",
+  "connector_FULL": "INCOMPLETE_19_PHYSICAL_TARGETS",
+  "evidence_archive": "evidence.tar.gz",
+  "evidence_archive_contents": [
+    "count_parity.log",
+    "crow_carrier.kicad_dru",
+    "crow_carrier.kicad_pro",
+    "crow_carrier.p1_569.kicad_pcb",
+    "drc_classification.log",
+    "evidence_manifest.json",
+    "generate_native_board.log",
+    "geometry_census.json",
+    "model_coverage.json",
+    "model_coverage.log",
+    "native_drc.log",
+    "p1_geometry.log",
+    "pad_separation.log",
+    "pin_map.log",
+    "placement.log",
+    "placement_config_receipt.json",
+    "placement_policy_audit.md",
+    "placement_routability.json",
+    "placement_routability.shadow.json",
+    "policy_audit.log",
+    "pre_route_drc.json",
+    "rules.log",
+    "tmux_pofv.log"
+  ],
+  "evidence_archive_sha256": "44a47155d8e5146da7c9b9d7670c7fa55bb8c0929d295a08f67e9e87cac7067a",
+  "evidence_board_sha256": "6d948f70f31c1b54dd75d53f5699c8b8fdc61ddf79d0451c3173190ea5b5ccfa",
+  "manifest_sha256": "a7ffcb75ca6679763d7fe8577fa6aeaf77f0fd40d26cfa316aa2a1bc8ae92083",
+  "p2_debt": {
+    "declared_local_rows_expected": 311,
+    "owner": "P2",
+    "p_adj_and_pair_are_not_p1_passes": true,
+    "policy": {
+      "p1_blockers": [],
+      "p2_only_failures": [
+        "P-ADJ-PAIR"
+      ],
+      "rows": {
+        "ID": "Grade",
+        "P-ADJ": "PASS",
+        "P-ADJ-PAIR": "FAIL",
+        "P-ADJ-UNREACHED": "PASS",
+        "P-LAYOUT": "PASS",
+        "P-PREC": "PASS"
+      },
+      "valid": false
+    },
+    "power_scope": "47 numeric rows; 89 qualitative refs; saved-copper obligations retained"
+  },
+  "placement_config": {
+    "mode": "checker_defaults",
+    "path": "03_src/placement_gates.json",
+    "present": false,
+    "waiver_fabricated": false
+  },
+  "promotion": "PROHIBITED",
+  "routing": "PROHIBITED",
+  "source_component_count": 569,
+  "statuses": {
+    "count_parity": 0,
+    "drc_classification": 0,
+    "generate_native_board": 0,
+    "generated_kicad_pro": 0,
+    "model_coverage": 0,
+    "native_drc": 0,
+    "p1_geometry": 0,
+    "pad_separation": 0,
+    "pin_map": 0,
+    "placement": 0,
+    "policy_audit": 1,
+    "rules": 0,
+    "tmux_pofv": 0
+  }
+}
