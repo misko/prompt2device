@@ -17,8 +17,11 @@ launch tracks at 0.150 or 0.250 mm pass only a scratch DRU exception; they
 fail the source `USB_HS_width` requirement of 0.410 mm.
 
 This is a useful *model subject*, not an accepted launch: connector aliases
-remain unconnected, native DRC has the baseline 170 unrelated violations and
-499 unconnected items, and filled-plane samples establish only centerline
+remain unconnected, and its refilled DRC retains the pre-existing diagnostic
+total of 170 violations (80 clearance, 64 hole-clearance, 10
+library-footprint, eight via-diameter, eight annular-width) plus 499
+unconnected items. Those results are a no-new-diagnostic delta for this local
+route, not a clean-board result. Filled-plane samples establish only centerline
 coverage by In1.Cu GND, not return-current continuity or impedance.
 
 ## Inputs present in public/check-in evidence
@@ -29,7 +32,7 @@ coverage by In1.Cu GND, not return-current continuity or impedance.
 | Copper and mask | 1-oz outer; JLC solver plated trace T=0.04064 mm; C1/C2/C3 mask=0.0254/0.01524/0.0254 mm, mask Dk=3.8 | Nominal calculator values, not as-built launch values. |
 | Uniform pair | F.Cu 0.410-mm artwork width / 0.150-mm gap over In1.Cu | JLC `DiffEdgeCoupledCoatedMicrostrip1B` returned 89.6111388098 ohm for this uniform cross-section only. |
 | Scratch copper | Exact board digest above; 15 F.Cu tracks, no vias; six 0.150/0.250-mm neck tracks; `0.150 -> 0.250 -> 0.410` progression | Extract every endpoint, width, gap, corner and pad overlap from exact bytes. The 0.525-mm x-envelope is not a qualified taper length. |
-| Pin identities | XU316 USB_DP/DM pins 60/59; TPD2E2U06DRLR protected I/O pins 3/5 and GND pin 4 | Datasheets fix roles; current land patterns are needed for modeled pad geometry. |
+| Pin identities | XU316 USB_DP/DM pins 60/59; `U_USB_ESD` is TPD2EUSB30ADRTR, whose DRT-3 pins 1/2 are DP/DM and pin 3 is GND | Source `route.yaml` and `accepted-route-contract.yaml` bind the same part/pads; exact lands are still needed for modeled geometry. |
 
 ## Inputs still required
 
@@ -71,5 +74,4 @@ evidence exist.
 
 * JLCPCB, [impedance calculator guide](https://jlcpcb.com/help/article/user-guide-to-the-jlcpcb-impedance-calculator) and [controlled-impedance stackups](https://jlcpcb.com/impedance), accessed 2026-09-24.
 * XMOS, [XU316 product-series datasheet](https://www.xmos.com/documentation/XM-015129-PC/pdf/XU316-1024.pdf), accessed 2026-09-24.
-* Texas Instruments, [TPD2E2U06 datasheet](https://www.ti.com/lit/ds/symlink/tpd2e2u06.pdf), accessed 2026-09-24.
-
+* Texas Instruments, [TPD2EUSB30A datasheet](https://www.ti.com/lit/ds/symlink/tpd2eusb30a.pdf), accessed 2026-09-24.
