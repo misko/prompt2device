@@ -15,9 +15,11 @@ ASSEMBLY = ROOT / "projects/crow-usb-carrier-v1/03_src/rules/assembly.yaml"
 COUPON_PRO = ROOT / "projects/crow-usb-carrier-v1/02_parts/TMUX4827YBHR/qualification/coupon.kicad_pro"
 FAB = ROOT / "skills/jlcpcb-fab/scripts"
 sys.path.insert(0, str(FAB))
+sys.path.insert(0, str(ROOT / "skills/kicad-pcb/scripts"))
 from generate_tmux4827_pofv import emit
 from via_process_check import check
 from tmux4827_pofv import audit, contract, dru_rules
+from land_witness import Unsupported, read_rules
 import yaml
 
 
@@ -71,6 +73,79 @@ class TmuxProfile(unittest.TestCase):
         self.assertEqual(self.result(), [])
         self.assertTrue(emit(self.board, ASSEMBLY))
         self.assertEqual(self.result(), [])
+
+    def test_land_reader_excludes_only_verified_exact_via_block(self):
+        with self.assertRaisesRegex(Unsupported, 'unsupported physical constraint'):
+            read_rules(self.board.with_suffix('.kicad_dru'))
+        rules, scope = read_rules(self.board.with_suffix('.kicad_dru'),
+                                  self.board, ASSEMBLY)
+        self.assertEqual(rules, [])
+        self.assertEqual(len(scope), 1)
+        self.assertIn('verified by via_process_check', scope[0])
+        dru = self.board.with_suffix('.kicad_dru')
+        original = dru.read_text()
+        mutations = {
+            'annulus': ('annular_width (min 0.13mm)',
+                        'annular_width (min 0.12mm)'),
+            'diameter': ('via_diameter (min 0.45mm)',
+                         'via_diameter (min 0.44mm)'),
+            'drill': ('hole_size (min 0.20mm)',
+                      'hole_size (min 0.19mm)'),
+            'net': ("A.NetName == 'GND'", "A.NetName == 'SIG1_1'"),
+            'area': ("insideArea('tmux4827_b2_pofv_U_ISO1')",
+                     "insideArea('forged_area')"),
+            'marker': ('# BEGIN TMUX4827_YBH_B2_POFV',
+                       '# BROKEN TMUX4827_YBH_B2_POFV'),
+        }
+        for name, (old, new) in mutations.items():
+            with self.subTest(name=name):
+                self.assertIn(old, original)
+                dru.write_text(original.replace(old, new, 1))
+                with self.assertRaises(Unsupported):
+                    read_rules(dru, self.board, ASSEMBLY)
+        dru.write_text(original.replace(dru_rules()[0], dru_rules()[0] * 2, 1))
+        with self.assertRaises(Unsupported):
+            read_rules(dru, self.board, ASSEMBLY)
+        start, end = '# BEGIN TMUX4827_YBH_B2_POFV', '# END TMUX4827_YBH_B2_POFV'
+        dru.write_text(original[:original.index(start)] +
+                       original[original.index(end) + len(end):])
+        with self.assertRaises(Unsupported):
+            read_rules(dru, self.board, ASSEMBLY)
+        dru.write_text(original.replace(end,
+            '(rule "forged_track_clearance" '
+            '(constraint clearance (min 0.01mm)))\n' + end, 1))
+        with self.assertRaises(Unsupported):
+            read_rules(dru, self.board, ASSEMBLY)
+        dru.write_text(original.replace(end,
+            '(rule "forged_track_width" '
+            '(constraint track_width (min 0.01mm)))\n' + end, 1))
+        with self.assertRaises(Unsupported):
+            read_rules(dru, self.board, ASSEMBLY)
+        dru.write_text(original + '\n(rule "foreign_annular" '
+                       '(constraint annular_width (min 0.01mm)))\n')
+        with self.assertRaises(Unsupported):
+            read_rules(dru, self.board, ASSEMBLY)
+        dru.write_text(original + '\n(rule "foreign_bad_condition" '
+                       '(condition "A.Unknown == \'x\'") '
+                       '(constraint track_width (min 0.01mm)))\n')
+        with self.assertRaises(Unsupported):
+            read_rules(dru, self.board, ASSEMBLY)
+        dru.write_text(original)
+        alternate = Path(self.tmp.name) / 'alternate.kicad_dru'
+        alternate.write_text(original)
+        with self.assertRaisesRegex(Unsupported, 'board companion DRU'):
+            read_rules(alternate, self.board, ASSEMBLY)
+
+    def test_land_reader_rejects_foreign_via_overlapping_pofv_area(self):
+        def alter(board):
+            via = p.PCB_VIA(board)
+            via.SetPosition(p.VECTOR2I_MM(15.25, 20))
+            via.SetWidth(p.FromMM(.6)); via.SetDrill(p.FromMM(.3))
+            via.SetLayerPair(p.F_Cu, p.B_Cu)
+            via.SetNet(board.FindNet('GND')); board.Add(via)
+        self.mutate(alter)
+        with self.assertRaisesRegex(Unsupported, 'TMUX POFV/process prerequisite failed'):
+            read_rules(self.board.with_suffix('.kicad_dru'), self.board, ASSEMBLY)
 
     def test_wrong_net_offset_missing_fill_and_cap(self):
         for change in ("net","offset","fill","cap","missing","diameter","drill"):

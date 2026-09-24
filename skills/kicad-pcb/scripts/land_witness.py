@@ -9,6 +9,9 @@ wildcards and escapes are blocked. Width/clearance minima are modeled; a
 hole_clearance minimum is validated and explicitly assigned to downstream
 native DRC because this witness creates no holes. Structurally valid
 diff_pair_gap is also explicitly outside scope.
+One exact generated TMUX4827 via/Pad block is excluded only after its active
+assembly, native areas/vias, rule text and process selector pass the same-board
+via-process audit. All other rules retain the strict launch reader.
 
 Geometry authority is pcbnew effective shapes and native Collide at
 max(0, clearance - DRC epsilon). Raw gap/margin are reported independently.
@@ -25,6 +28,7 @@ import math
 import os
 from pathlib import Path
 import re
+import sys
 
 
 class Unsupported(ValueError):
@@ -190,11 +194,65 @@ class Rule:
     offset: int
 
 
-def read_rules(path):
-    forms = sexpressions(Path(path).read_text(encoding='utf-8-sig'))
+def _verified_tmux_launch_exclusion(path, board_path, assembly=None):
+    """Exclude only the exact, independently graded TMUX via/Pad rule block.
+
+    The block constrains vias, holes and Pad-Pad/Via-Pad pairs; none can match
+    this gate's hypothetical Track-Pad witness. Everything outside it stays
+    in the strict launch reader. The native process audit must bind the same
+    board and unmodified DRU bytes before the block is removed.
+    """
+    path, board_path = Path(path), Path(board_path)
+    raw = path.read_bytes(); board_raw = board_path.read_bytes()
+    text = raw.decode('utf-8-sig')
+    start, end = '# BEGIN TMUX4827_YBH_B2_POFV', '# END TMUX4827_YBH_B2_POFV'
+    fab_scripts = Path(__file__).resolve().parents[2] / 'jlcpcb-fab/scripts'
+    sys.path.insert(0, str(fab_scripts))
+    from tmux4827_pofv import contract as tmux_contract, dru_rules
+    from via_process_check import (check as via_process_check,
+                                   find_assembly, load_assembly)
+    apath = find_assembly(board_path, assembly)
+    try:
+        data, _ = load_assembly(board_path, assembly)
+        tmux_active = apath is not None and tmux_contract(data, apath) is not None
+    except (OSError, ValueError, KeyError, TypeError) as exc:
+        raise Unsupported('TMUX POFV assembly prerequisite invalid: ' + str(exc)) from exc
+    if start not in text and end not in text and not tmux_active:
+        return text, []
+    if text.count(start) != 1 or text.count(end) != 1 or text.index(end) < text.index(start):
+        raise Unsupported('TMUX POFV markers missing, duplicated or reversed')
+    if not tmux_active:
+        raise Unsupported('TMUX POFV block lacks active assembly contract')
+    if path.resolve() != board_path.with_suffix('.kicad_dru').resolve():
+        raise Unsupported('TMUX POFV verification requires the board companion DRU')
+    expected = start + '\n' + '\n'.join(dru_rules()) + '\n' + end
+    begin = text.index(start); finish = text.index(end) + len(end)
+    if text[begin:finish] != expected:
+        raise Unsupported('TMUX POFV block differs from exact generated rules')
+    try:
+        result = via_process_check(board_path, str(apath))
+    except (OSError, ValueError, KeyError, TypeError, RuntimeError) as exc:
+        raise Unsupported('TMUX POFV/process prerequisite unreadable: ' + str(exc)) from exc
+    if result.get('na') or result.get('fails') or not result.get('oks'):
+        raise Unsupported('TMUX POFV/process prerequisite failed: '
+                          + '; '.join(result.get('fails') or [str(result.get('na'))]))
+    if path.read_bytes() != raw or board_path.read_bytes() != board_raw:
+        raise Unsupported('TMUX POFV board/DRU changed during verification')
+    return text[:begin] + text[finish:], [
+        'exact TMUX POFV via/Pad block verified by via_process_check; '
+        'native DRC owns excluded physical and Pad-Pad/Via-Pad constraints']
+
+
+def read_rules(path, board_path=None, tmux_assembly=None):
+    if board_path is None:
+        content = Path(path).read_text(encoding='utf-8-sig'); excluded = []
+    else:
+        content, excluded = _verified_tmux_launch_exclusion(
+            path, board_path, tmux_assembly)
+    forms = sexpressions(content)
     if not forms or not isinstance(forms[0], list) or [atom(x, quoted=False) for x in forms[0]] != ['version', '1']:
         raise Unsupported('rules require exactly version 1 at the start')
-    result = []; outside = []
+    result = []; outside = list(excluded)
     for form in forms[1:]:
         name = '<unnamed>'
         try:
@@ -265,7 +323,7 @@ class BoardContext:
             if not f.is_file(): raise Unsupported('missing explicit input ' + str(f))
         if self.pro != self.path.with_suffix('.kicad_pro'):
             raise Unsupported('--project must be the board companion project; override is incoherent')
-        self.rules, self.outside = read_rules(self.dru)
+        self.rules, self.outside = read_rules(self.dru, self.path)
         project = json.loads(self.pro.read_text(encoding='utf-8-sig'))
         if not isinstance(project, dict) or not isinstance(project.get('net_settings'), dict):
             raise Unsupported('malformed project/net_settings mapping')

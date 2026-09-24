@@ -1370,6 +1370,17 @@ def t_land_rejects_zero_hole_clearance():
              "the rejected physical minimum is named")
 
 
+@test("P-LAND still rejects foreign annular rules outside a verified TMUX block",
+      kind="known_bad")
+def t_land_rejects_foreign_annular_rule():
+    b = board_copy(CAL_KICAD, extra_dru=(
+        '(rule "foreign_annular_floor"\n'
+        '  (constraint annular_width (min 0.13mm)))\n'))
+    r = must_fail(land(b), "P-LAND with an unverified annular rule")
+    contains(r.out, "unsupported physical constraint annular_width",
+             "the generic reader did not gain a broad via-rule waiver")
+
+
 @test("P-LAND leaves POUR-fed and VIA-escaped pads out of scope, and says so")
 def t_land_pour_and_via_are_out_of_scope():
     """The sealed, DRC-clean crow-recorder-central-v2 escapes its XU316
