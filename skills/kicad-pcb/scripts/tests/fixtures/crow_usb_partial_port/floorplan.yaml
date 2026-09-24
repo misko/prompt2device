@@ -1,0 +1,1197 @@
+project:
+  name: crow_carrier
+  netlist: 06_build/netlists/crow_carrier.net
+  output: 04_kicad/crow_carrier.kicad_pcb
+  parts_dir: 02_parts
+board:
+  outline:
+    x0: 20.0
+    y0: 20.0
+    x1: 240.0
+    y1: 140.0
+  edge_width: 0.1
+  layers: 4
+  stackup:
+    nominal_thickness_mm: 1.63
+    thickness_tolerance_mm: 0.163
+    copper_thickness_mm:
+    - 0.04064
+    - 0.0152
+    - 0.0152
+    - 0.04064
+    dielectrics:
+    - type: prepreg
+      thickness_mm: 0.5124
+      material: NP-155F 7628+7628+1080 composite; JLC04161H-7628G
+      epsilon_r: 4.2366666667
+      loss_tangent: 0.02
+    - type: core
+      thickness_mm: 0.5
+      material: NP-155F core
+      epsilon_r: 4.48
+      loss_tangent: 0.02
+    - type: prepreg
+      thickness_mm: 0.5124
+      material: NP-155F 7628+7628+1080 composite; JLC04161H-7628G
+      epsilon_r: 4.2366666667
+      loss_tangent: 0.02
+    mask_thickness_mm: 0.01524
+    dielectric_constraints: true
+libraries:
+- /usr/share/kicad/footprints
+- 03_src/lib
+thermal_vias:
+  protection:
+    capping: true
+    filling: true
+  fields:
+  - ref: U_LDO
+    pad: '11'
+    size: 0.50
+    drill: 0.20
+    at: [[-0.575, -0.94], [-0.575, 0.0], [-0.575, 0.94],
+         [0.575, -0.94], [0.575, 0.0], [0.575, 0.94]]
+  # Each 3x3 TMUX4827 has one B2 ground via; outer eight balls launch outward.
+  - ref: U_ISO1
+    pad: '5'
+    size: 0.35
+    drill: 0.20
+    at: [[0.0, 0.0]]
+  - ref: U_ISO2
+    pad: '5'
+    size: 0.35
+    drill: 0.20
+    at: [[0.0, 0.0]]
+  - ref: U_ISO3
+    pad: '5'
+    size: 0.35
+    drill: 0.20
+    at: [[0.0, 0.0]]
+  - ref: U_ISO4
+    pad: '5'
+    size: 0.35
+    drill: 0.20
+    at: [[0.0, 0.0]]
+  - ref: U_ISO5
+    pad: '5'
+    size: 0.35
+    drill: 0.20
+    at: [[0.0, 0.0]]
+  - ref: U_ISO6
+    pad: '5'
+    size: 0.35
+    drill: 0.20
+    at: [[0.0, 0.0]]
+  - ref: U_ISO7
+    pad: '5'
+    size: 0.35
+    drill: 0.20
+    at: [[0.0, 0.0]]
+  - ref: U_ISO8
+    pad: '5'
+    size: 0.35
+    drill: 0.20
+    at: [[0.0, 0.0]]
+
+# Exact eight-site advanced-process exception. Ordinary board minima in
+# design_rules remain binding elsewhere; native validator and JLC CAM/PCBA
+# approval are separate. This is not a manufacturing PASS.
+conditional_pofv:
+  profile: TMUX4827_YBH_B2_POFV
+  status: CONDITIONAL
+  refs: [U_ISO1, U_ISO2, U_ISO3, U_ISO4, U_ISO5, U_ISO6, U_ISO7, U_ISO8]
+
+placement:
+  post_anchors:
+    # Planned P2-movable USB sense pose; no P1/P2 placement acceptance.
+    Q_VBUS: [212.0, 74.5, 0]
+    C_PLL_100N: [220.0, 102.8, 0]
+    C_PLL_1U: [220.0, 105.0, 0]
+    FB_PLL: [223.0, 103.9, 180]
+    C_ADC_DIGITAL_BAD: [110.5, 97.25, 0]
+    C_ADC_DIGITAL_OK: [113.1, 107.0, 270]
+    C_ADC_3V3X_OK_VDD: [118.1, 107.0, 270]
+    C_ADC_PWR_BAD: [101.5, 107.75, 0]
+    C_ADC_READY: [95.25, 102.5, 0]
+    C_ADC_READY_BAD: [105.25, 106.0, 90]
+    C_ADC_START_DELAY: [108.0, 109.0, 0]
+    Q_ADC_DELAY_DISCH: [106.75, 103.0, 0]
+    Q_ADC_DIG_RST: [110.5, 103.0, 0]
+    Q_ADC_PWR_RST: [101.5, 102.0, 0]
+    R_ADC_1V8_OK_BOT: [113.0, 109.5, 90]
+    R_ADC_1V8_OK_TOP: [115.0, 110.5, 90]
+    R_ADC_3V3X_OK_BOT: [120.0, 110.5, 90]
+    R_ADC_3V3X_OK_TOP: [122.0, 109.5, 90]
+    R_ADC_DELAY_GATE_PD: [110.75, 106.0, 90]
+    R_ADC_DIGITAL_OK_PU: [117.5, 104.75, 90]
+    R_ADC_DIG_RST_PD: [108.25, 97.25, 0]
+    R_ADC_PWR_BAD_PD: [99.25, 107.75, 0]
+    R_ADC_READY_PD: [93.5, 103.0, 90]
+    R_ADC_START_DELAY: [105.25, 108.25, 90]
+    U_ADC_1V8_OK: [115.0, 107.5, 0]
+    U_ADC_3V3X_OK: [120.0, 107.5, 0]
+    U_ADC_DIGITAL_BAD: [110.5, 99.5, 0]
+    U_ADC_PWR_BAD: [101.5, 105.5, 0]
+    U_ADC_READY: [97.75, 101.25, 90]
+    U_ADC_READY_BAD: [108.0, 106.5, 0]
+    C_ADC_A_AREG_100N: [132.6, 97.75, 180]
+    C_ADC_A_AREG_1U: [132.1, 91.25, 90]
+    C_ADC_A_AVDD_100N: [134.1, 91.75, 90]
+    C_ADC_A_AVDD_10U: [137.1, 89.25, 90]
+    C_ADC_A_DREG_100N: [139.75, 92.1, 0]
+    C_ADC_A_DREG_1U: [136.75, 92.1, 0]
+    C_ADC_A_IOVDD_100N: [139.75, 90.6, 0]
+    C_ADC_A_IOVDD_10U: [141.25, 95.1, -90]
+    C_ADC_A_VREF_100N: [133.5, 96.1, 270]
+    C_ADC_A_VREF_10U: [131.8, 95.3, 270]
+    C_ADC_B_AREG_100N: [135.6, 111.75, 0]
+    C_ADC_B_AREG_1U: [136.1, 102.25, 0]
+    C_ADC_B_AVDD_100N: [132.1, 103.75, 90]
+    C_ADC_B_AVDD_10U: [132.1, 110.25, 180]
+    C_ADC_B_DREG_100N: [137.75, 104.1, 0]
+    C_ADC_B_DREG_1U: [134.75, 104.1, 180]
+    C_ADC_B_IOVDD_100N: [140.75, 106.6, -90]
+    C_ADC_B_IOVDD_10U: [140.25, 103.1, 90]
+    C_ADC_B_VREF_100N: [133.5, 108.1, 270]
+    C_ADC_B_VREF_10U: [131.8, 107.3, 270]
+    C_RST1: [124.2, 101.5, 0]
+    C_RST2: [93.25, 96.75, 90]
+    C_RST_T: [98.0, 98.25, 0]
+    C_VMID1_EXT_10U: [122.75, 92.25, -90]
+    C_VMID1_EXT_1U: [128.5, 95.0, -90]
+    C_VMID2_EXT_10U: [120.0, 95.5, -90]
+    C_VMID2_EXT_1U: [117.0, 93.5, 180]
+    Q_RST1: [102.35, 95.85, 180]
+    R_RESET_GPD: [103.75, 98.95, 180]
+    R_RESET_PU: [99.3, 95.1, 180]
+    R_RST_T: [95.5, 94.75, 180]
+    R_VMID1_BOT: [122.9, 96.4, 180]
+    R_VMID1_TOP: [125.25, 93.25, -90]
+    R_VMID2_BOT: [112.75, 95.75, 180]
+    R_VMID2_TOP: [116.75, 96.5, 180]
+    U_RST1: [120.95, 101.5, 0]
+    U_RST2: [93.25, 100.0, 0]
+    C_AUDIO: [24.7, 109.6, 90]
+    C_AUDIO_CT1: [22.7, 107.1, 0]
+    C_AUDIO_CT2: [22.7, 112.6, -90]
+    C_DUMP_LOGIC: [66.0, 95.9, 0]
+    C_DUMP_TIME1: [59.8, 93.1, 90]
+    C_DUMP_TIME2: [69.2, 93.4, 90]
+    C_DUMP_TIME3: [66.2, 89.9, 0]
+    C_DUMP_TIME4: [65.0, 97.8, 0]
+    C_DUMP_TIME5: [62.1, 93.9, -90]
+    C_DUMP_TIME6: [60.7, 89.7, 180]
+    C_DUMP_TIME7: [61.1, 97.7, -90]
+    C_DUMP_TIME8: [68.65, 97.35, -90]
+    C_IN1: [42.5, 96.5, 180]
+    C_IN2: [42.5, 100.0, 180]
+    C_IN3: [42.5, 103.5, 180]
+    C_IN_HF: [46.0, 92.5, 180]
+    C_LDO_EN: [78.2, 106.7, 0]
+    C_LDO_IN: [128.0, 119.2, 90]
+    C_LDO_NR4: [136.0, 126.0, 0]
+    C_LDO_NR5: [140.0, 126.0, 0]
+    C_LDO_OUT_1: [133.0, 122.2, 180]
+    C_LDO_OUT_2: [137.0, 117.2, 90]
+    C_OPA_BULK: [63.4, 108.3, 0]
+    C_OUT1: [51.0, 92.0, 0]
+    C_OUT2: [56.0, 92.5, 90]
+    C_OUT3: [50.5, 87.0, 90]
+    C_PWR: [74.0, 94.0, 90]
+    C_PWR_CT: [76.0, 96.5, 0]
+    C_PWR_CT2: [53.2, 101.3, 0]
+    C_PWR_CT3: [53.3, 138.2, 0]
+    C_VCC: [51.0, 95.5, -90]
+    C_VLDO: [52.5, 95.0, -90]
+    D_HOLD: [45.4, 110.95, 0]
+    D_IN: [34.0, 90.5, 0]
+    D_QIN_GS: [36.0, 102.5, 0]
+    F_IN: [31.5, 97.0, 90]
+    Q_DUMP: [54, 107, 270]
+    Q_IN: [36.0, 97.5, 0]
+    Q_PRE: [46.0, 106.85, 0]
+    Q_PRE_EN: [50.25, 106.35, 180]
+    R_ADC_BOT: [26.2, 107.6, 0]
+    R_ADC_TOP: [25.7, 111.6, 180]
+    R_AGND_JOIN: [47.5, 90.0, 90]
+    R_AUDIO_PD: [22.7, 105.1, 90]
+    R_AUDIO_PU: [26.2, 109.6, 90]
+    R_BUCK_FB_BOTTOM: [43.0, 92.5, 180]
+    R_BUCK_FB_TOP: [43.0, 94.0, 0]
+    R_DUMP: [51.75, 110.5, 0]
+    R_DUMP_PD: [54.0, 104.0, 180]
+    R_DUMP_TIME1: [64.3, 87.3, 0]
+    R_DUMP_TIME2: [68.85, 90.05, -90]
+    R_DUMP_TIME3: [63.4, 90.15, -90]
+    R_LDO_ILIM: [133.5, 115.2, 0]
+    R_LDO_PG_BOT_A: [30.8, 103.4, 0]
+    R_LDO_PG_BOT_B: [69.9, 102.8, 0]
+    R_LDO_PG_TOP: [137.0, 121.7, 90]
+    R_LDO_SET: [139.3, 121.1, 0]
+    R_OPA_BLEED1: [22.5, 119.5, 0]
+    R_OPA_BLEED2: [28.9, 101.8, 0]
+    R_PRE: [39.9, 108.15, 90]
+    R_PRE_G: [46.05, 103.5, 0]
+    R_PWR_BOT: [72.7, 92.0, 180]
+    R_PWR_PU: [78.5, 94.0, 0]
+    R_PWR_TOP: [76.0, 91.5, 0]
+    R_QIN_G: [36.0, 100.5, 0]
+    R_RT: [45.5, 90.0, 90]
+    U_AUDIO: [22.7, 109.6, 0]
+    U_BUCK: [47.5, 97.5, 0]
+    U_DUMP: [65.8, 93.4, 0]
+    U_LDO: [132.75, 118.35, 0]
+    U_LDO_EN: [78.2, 109.2, 0]
+    U_PWR: [76.0, 94.0, 0]
+  require_anchor: true
+  anchors:
+    # XMOS local-decoupling geometry seed. The preceding rigid transform was
+    # withdrawn: these non-rigid two-ring poses require fresh native checks of
+    # every supply fanout and ground return before they can earn P1/P2 credit.
+    U_XU: [208.5, 100.0, 90]
+    C_XU_VDD_5: [201.0, 109.4, 0]
+    C_XU_VDDIO_10: [203.5, 109.4, 0]
+    C_XU_VDD_11: [206.0, 109.4, 0]
+    C_XU_VDD_14: [208.5, 109.4, 0]
+    C_XU_VDDIO_17: [211.0, 109.4, 0]
+    C_XU_VDD_18: [213.5, 109.4, 0]
+    C_XU_VDD_68: [213.5, 90.6, 0]
+    C_XU_VDDIO_72: [210.5, 90.6, 0]
+    C_XU_VDD_85: [207.5, 90.6, 0]
+    C_XU_VDDIO_89: [204.5, 90.6, 0]
+    C_XU_VDD_95: [201.5, 90.6, 0]
+    C_XU_VDD_104: [198.6, 96.0, 0]
+    C_XU_VDD_105: [196.5, 97.1, 0]
+    C_XU_VDD_106: [198.6, 98.2, 0]
+    C_XU_VDDIO_109: [196.5, 99.3, 0]
+    C_XU_VDD_113: [198.6, 100.4, 0]
+    C_XU_VDDIO_121: [196.5, 101.5, 0]
+    C_XU_VDDIO_35: [218.0, 105.8, 90]
+    C_XU_VDD_39: [218.0, 103.2, 90]
+    C_XU_VDD_45: [218.0, 100.6, 90]
+    C_XU_VDD_50: [218.0, 98.0, 90]
+    # Tentative east/south move opens the native F.Cu USB launch diagnostic.
+    # It increases pad-1 to U_XU.54 distance by 0.3732 mm; decoupling and
+    # return geometry remain unqualified, as does the full USB route.
+    C_XU_VDD_54: [219.14, 96.94, 90]
+    C_XU_VDDIO_56: [218.0, 92.8, 90]
+    # Connector-side USB ESD placement starting point. It is not a USB routing
+    # or FULL assertion; the earlier rotated XMOS block was withdrawn.
+    U_USB_ESD: [217.0, 36.0, 0]
+    # Tentative USB CC/VBUS support-block poses for an isolated P1 geometry
+    # probe.  Any corridor using this block still needs measured pad entries.
+    U_USB_CC_ESD: [233.3, 30.2, 0]
+    U_USB_VBUS_ESD: [236.7, 30.2, 0]
+    C_USB_VBUS: [236.7, 33.7, 0]
+    R_USB_CC1: [231.5, 33.7, 0]
+    R_USB_CC2: [231.5, 36.4, 0]
+    R_USB_VBUS_BLEED: [236.7, 36.4, 0]
+    C_HOLD1: [30.85, 120.45, 0]
+    C_HOLD2: [42.95, 120.45, 0]
+    C_HOLD3: [55.05, 120.45, 0]
+    C_HOLD4: [67.15, 120.45, 0]
+    C_HOLD5: [30.85, 129.55, 0]
+    C_HOLD6: [42.95, 129.55, 0]
+    C_HOLD7: [55.05, 129.55, 0]
+    C_HOLD8: [67.15, 129.55, 0]
+    C_HOLD9: [82.85, 120.45, 0]
+    C_HOLD10: [94.95, 120.45, 0]
+    C_HOLD11: [107.05, 120.45, 0]
+    C_HOLD12: [119.15, 120.45, 0]
+    C_HOLD13: [82.85, 129.55, 0]
+    C_HOLD14: [94.95, 129.55, 0]
+    C_HOLD15: [107.05, 129.55, 0]
+    C_HOLD16: [119.15, 129.55, 0]
+    J1: [50, 26.86, 0]
+    J2: [72, 26.86, 0]
+    J3: [94, 26.86, 0]
+    J4: [116, 26.86, 0]
+    J5: [138, 26.86, 0]
+    J6: [160, 26.86, 0]
+    J7: [182, 26.86, 0]
+    J8: [204, 26.86, 0]
+    J_PWR: [30, 29.42, 0]
+    J_USB: [230, 22.995, 180]
+    J_JTAG: [228, 50, 90]
+  seeds:
+    D_HOLD: [28, 108]
+    R_PRE: [39, 108]
+    R_PRE_G: [43, 108]
+    Q_PRE: [43, 104]
+    Q_PRE_EN: [48, 106]
+    U_LDO: [133, 118]
+    C_LDO_IN: [128, 119]
+    C_LDO_OUT_1: [138, 116]
+    C_LDO_OUT_2: [138, 120]
+    R_LDO_SET: [135, 123]
+    C_LDO_NR4: [136, 126]
+    C_LDO_NR5: [140, 126]
+    U_ADC_A: [137, 96]
+    U_ADC_B: [137, 108]
+    C_VMID1_EXT_10U: [127, 89]
+    C_VMID1_EXT_1U: [130, 89]
+    C_VMID2_EXT_10U: [127, 102]
+    C_VMID2_EXT_1U: [130, 102]
+    C_ADC_A_AREG_100N: [128.0, 90]
+    C_ADC_A_AREG_1U: [131.2, 90]
+    C_ADC_A_AVDD_100N: [134.4, 90]
+    C_ADC_A_AVDD_10U: [137.6, 90]
+    C_ADC_A_DREG_100N: [140.8, 90]
+    C_ADC_A_DREG_1U: [128.0, 103]
+    C_ADC_A_IOVDD_100N: [131.2, 103]
+    C_ADC_A_IOVDD_10U: [134.4, 103]
+    C_ADC_A_VREF_100N: [137.6, 103]
+    C_ADC_A_VREF_10U: [140.8, 103]
+    C_ADC_B_AREG_100N: [128.0, 102]
+    C_ADC_B_AREG_1U: [131.2, 102]
+    C_ADC_B_AVDD_100N: [134.4, 102]
+    C_ADC_B_AVDD_10U: [137.6, 102]
+    C_ADC_B_DREG_100N: [140.8, 102]
+    C_ADC_B_DREG_1U: [128.0, 115]
+    C_ADC_B_IOVDD_100N: [131.2, 115]
+    C_ADC_B_IOVDD_10U: [134.4, 115]
+    C_ADC_B_VREF_100N: [137.6, 115]
+    C_ADC_B_VREF_10U: [140.8, 115]
+    U_ISO1: [23.3, 67.6]
+    U_ISO2: [60.4, 49.2]
+    U_ISO3: [82.4, 49.2]
+    U_ISO4: [104.4, 49.2]
+    U_ISO5: [126.4, 49.2]
+    U_ISO6: [148.4, 49.2]
+    U_ISO7: [170.4, 49.2]
+    U_ISO8: [202.7, 58.4]
+  regions:
+    adc_reference:
+    - 75
+    - 85
+    - 145
+    - 134
+    input_buck:
+    - 25
+    - 85
+    - 70
+    - 110
+    quiet_power:
+    - 25
+    - 105
+    - 75
+    - 134
+    hold_bank_left: [24, 113, 74, 137]
+    hold_bank_right: [76, 113, 126, 137]
+    digital_power:
+    - 145
+    - 85
+    - 185
+    - 134
+    xmos_core:
+    - 185
+    - 72
+    - 232
+    - 128
+    clock_flash_debug:
+    - 185
+    - 112
+    - 232
+    - 136
+    audio_clock_tdm:
+    - 140
+    - 72
+    - 190
+    - 112
+    usb_frontend:
+    - 200
+    - 35
+    - 236
+    - 70
+    usb_vbus_sense:
+    - 195
+    - 62
+    - 220
+    - 82
+    debug_connector:
+    - 218
+    - 35
+    - 238
+    - 65
+    analog_ch1:
+    - 25
+    - 42
+    - 47
+    - 84
+    analog_ch2:
+    - 47
+    - 42
+    - 69
+    - 84
+    analog_ch3:
+    - 69
+    - 42
+    - 91
+    - 84
+    analog_ch4:
+    - 91
+    - 42
+    - 113
+    - 84
+    analog_ch5:
+    - 113
+    - 42
+    - 135
+    - 84
+    analog_ch6:
+    - 135
+    - 42
+    - 157
+    - 84
+    analog_ch7:
+    - 157
+    - 42
+    - 179
+    - 84
+    analog_ch8:
+    - 179
+    - 42
+    - 201
+    - 84
+  patterns:
+  - match:
+    - J1
+    - J2
+    - J3
+    - J4
+    - J5
+    - J6
+    - J7
+    - J8
+    - C_A1N
+    - C_A1P
+    - C_A2N
+    - C_A2P
+    - C_A3N
+    - C_A3P
+    - C_A4N
+    - C_A4P
+    - C_A5N
+    - C_A5P
+    - C_A6N
+    - C_A6P
+    - C_A7N
+    - C_A7P
+    - C_A8N
+    - C_A8P
+    attrs:
+    - exclude_from_pos_files
+  - match:
+    - C_ADC_A_AREG_100N
+    - C_ADC_A_AREG_1U
+    - C_ADC_A_AVDD_100N
+    - C_ADC_A_AVDD_10U
+    - C_ADC_A_DREG_100N
+    - C_ADC_A_DREG_1U
+    - C_ADC_A_IOVDD_100N
+    - C_ADC_A_IOVDD_10U
+    - C_ADC_A_VREF_100N
+    - C_ADC_A_VREF_10U
+    - C_ADC_B_AREG_100N
+    - C_ADC_B_AREG_1U
+    - C_ADC_B_AVDD_100N
+    - C_ADC_B_AVDD_10U
+    - C_ADC_B_DREG_100N
+    - C_ADC_B_DREG_1U
+    - C_ADC_B_IOVDD_100N
+    - C_ADC_B_IOVDD_10U
+    - C_ADC_B_VREF_100N
+    - C_ADC_B_VREF_10U
+    - C_ADC_DIGITAL_BAD
+    - C_ADC_DIGITAL_OK
+    - C_ADC_3V3X_OK_VDD
+    - C_ADC_PWR_BAD
+    - C_ADC_READY
+    - C_ADC_READY_BAD
+    - C_ADC_START_DELAY
+    - C_RST1
+    - C_RST2
+    - C_RST_T
+    - C_VMID1_EXT_10U
+    - C_VMID1_EXT_1U
+    - C_VMID2_EXT_10U
+    - C_VMID2_EXT_1U
+    - Q_ADC_DELAY_DISCH
+    - Q_ADC_DIG_RST
+    - Q_ADC_PWR_RST
+    - Q_RST1
+    - R_ADC_1V8_OK_BOT
+    - R_ADC_1V8_OK_TOP
+    - R_ADC_3V3X_OK_BOT
+    - R_ADC_3V3X_OK_TOP
+    - R_ADC_DELAY_GATE_PD
+    - R_ADC_DIGITAL_OK_PU
+    - R_ADC_DIG_RST_PD
+    - R_ADC_PWR_BAD_PD
+    - R_ADC_READY_PD
+    - R_ADC_START_DELAY
+    - R_RESET_GPD
+    - R_RESET_PU
+    - R_RST_T
+    - R_VMID1_BOT
+    - R_VMID1_TOP
+    - R_VMID2_BOT
+    - R_VMID2_TOP
+    - U_ADC_1V8_OK
+    - U_ADC_3V3X_OK
+    - U_ADC_A
+    - U_ADC_B
+    - U_ADC_DIGITAL_BAD
+    - U_ADC_PWR_BAD
+    - U_ADC_READY
+    - U_ADC_READY_BAD
+    - U_RST1
+    - U_RST2
+    region: adc_reference
+  - match:
+    - C_A1N
+    - C_A1P
+    - C_ADC_AC1N1
+    - C_ADC_AC1N2
+    - C_ADC_AC1P1
+    - C_ADC_AC1P2
+    - C_ADC_CM1N
+    - C_ADC_CM1P
+    - C_FB1N
+    - C_FB1P
+    - C_FILTER1N1
+    - C_FILTER1N2
+    - C_FILTER1P1
+    - C_FILTER1P2
+    - C_ISO1
+    - C_OPA1
+    - C_SPOKE_DVDT1
+    - C_SPOKE_IN1
+    - C_SPOKE_OUT1
+    - J1
+    - R_ADC_PD1N
+    - R_ADC_PD1P
+    - R_B1N
+    - R_B1P
+    - R_IN1N
+    - R_IN1P
+    - R_OUT1N
+    - R_OUT1P
+    - R_SPOKE_ILIM1
+    - R_SPOKE_UVLO1
+    - R_X1N
+    - R_X1P
+    - U_AFE1
+    - U_ESD1
+    - U_ISO1
+    - U_SPOKE1
+    region: analog_ch1
+  - match:
+    - C_A2N
+    - C_A2P
+    - C_ADC_AC2N1
+    - C_ADC_AC2N2
+    - C_ADC_AC2P1
+    - C_ADC_AC2P2
+    - C_ADC_CM2N
+    - C_ADC_CM2P
+    - C_FB2N
+    - C_FB2P
+    - C_FILTER2N1
+    - C_FILTER2N2
+    - C_FILTER2P1
+    - C_FILTER2P2
+    - C_ISO2
+    - C_OPA2
+    - C_SPOKE_DVDT2
+    - C_SPOKE_IN2
+    - C_SPOKE_OUT2
+    - J2
+    - R_ADC_PD2N
+    - R_ADC_PD2P
+    - R_B2N
+    - R_B2P
+    - R_IN2N
+    - R_IN2P
+    - R_OUT2N
+    - R_OUT2P
+    - R_SPOKE_ILIM2
+    - R_SPOKE_UVLO2
+    - R_X2N
+    - R_X2P
+    - U_AFE2
+    - U_ESD2
+    - U_ISO2
+    - U_SPOKE2
+    region: analog_ch2
+  - match:
+    - C_A3N
+    - C_A3P
+    - C_ADC_AC3N1
+    - C_ADC_AC3N2
+    - C_ADC_AC3P1
+    - C_ADC_AC3P2
+    - C_ADC_CM3N
+    - C_ADC_CM3P
+    - C_FB3N
+    - C_FB3P
+    - C_FILTER3N1
+    - C_FILTER3N2
+    - C_FILTER3P1
+    - C_FILTER3P2
+    - C_ISO3
+    - C_OPA3
+    - C_SPOKE_DVDT3
+    - C_SPOKE_IN3
+    - C_SPOKE_OUT3
+    - J3
+    - R_ADC_PD3N
+    - R_ADC_PD3P
+    - R_B3N
+    - R_B3P
+    - R_IN3N
+    - R_IN3P
+    - R_OUT3N
+    - R_OUT3P
+    - R_SPOKE_ILIM3
+    - R_SPOKE_UVLO3
+    - R_X3N
+    - R_X3P
+    - U_AFE3
+    - U_ESD3
+    - U_ISO3
+    - U_SPOKE3
+    region: analog_ch3
+  - match:
+    - C_A4N
+    - C_A4P
+    - C_ADC_AC4N1
+    - C_ADC_AC4N2
+    - C_ADC_AC4P1
+    - C_ADC_AC4P2
+    - C_ADC_CM4N
+    - C_ADC_CM4P
+    - C_FB4N
+    - C_FB4P
+    - C_FILTER4N1
+    - C_FILTER4N2
+    - C_FILTER4P1
+    - C_FILTER4P2
+    - C_ISO4
+    - C_OPA4
+    - C_SPOKE_DVDT4
+    - C_SPOKE_IN4
+    - C_SPOKE_OUT4
+    - J4
+    - R_ADC_PD4N
+    - R_ADC_PD4P
+    - R_B4N
+    - R_B4P
+    - R_IN4N
+    - R_IN4P
+    - R_OUT4N
+    - R_OUT4P
+    - R_SPOKE_ILIM4
+    - R_SPOKE_UVLO4
+    - R_X4N
+    - R_X4P
+    - U_AFE4
+    - U_ESD4
+    - U_ISO4
+    - U_SPOKE4
+    region: analog_ch4
+  - match:
+    - C_A5N
+    - C_A5P
+    - C_ADC_AC5N1
+    - C_ADC_AC5N2
+    - C_ADC_AC5P1
+    - C_ADC_AC5P2
+    - C_ADC_CM5N
+    - C_ADC_CM5P
+    - C_FB5N
+    - C_FB5P
+    - C_FILTER5N1
+    - C_FILTER5N2
+    - C_FILTER5P1
+    - C_FILTER5P2
+    - C_ISO5
+    - C_OPA5
+    - C_SPOKE_DVDT5
+    - C_SPOKE_IN5
+    - C_SPOKE_OUT5
+    - J5
+    - R_ADC_PD5N
+    - R_ADC_PD5P
+    - R_B5N
+    - R_B5P
+    - R_IN5N
+    - R_IN5P
+    - R_OUT5N
+    - R_OUT5P
+    - R_SPOKE_ILIM5
+    - R_SPOKE_UVLO5
+    - R_X5N
+    - R_X5P
+    - U_AFE5
+    - U_ESD5
+    - U_ISO5
+    - U_SPOKE5
+    region: analog_ch5
+  - match:
+    - C_A6N
+    - C_A6P
+    - C_ADC_AC6N1
+    - C_ADC_AC6N2
+    - C_ADC_AC6P1
+    - C_ADC_AC6P2
+    - C_ADC_CM6N
+    - C_ADC_CM6P
+    - C_FB6N
+    - C_FB6P
+    - C_FILTER6N1
+    - C_FILTER6N2
+    - C_FILTER6P1
+    - C_FILTER6P2
+    - C_ISO6
+    - C_OPA6
+    - C_SPOKE_DVDT6
+    - C_SPOKE_IN6
+    - C_SPOKE_OUT6
+    - J6
+    - R_ADC_PD6N
+    - R_ADC_PD6P
+    - R_B6N
+    - R_B6P
+    - R_IN6N
+    - R_IN6P
+    - R_OUT6N
+    - R_OUT6P
+    - R_SPOKE_ILIM6
+    - R_SPOKE_UVLO6
+    - R_X6N
+    - R_X6P
+    - U_AFE6
+    - U_ESD6
+    - U_ISO6
+    - U_SPOKE6
+    region: analog_ch6
+  - match:
+    - C_A7N
+    - C_A7P
+    - C_ADC_AC7N1
+    - C_ADC_AC7N2
+    - C_ADC_AC7P1
+    - C_ADC_AC7P2
+    - C_ADC_CM7N
+    - C_ADC_CM7P
+    - C_FB7N
+    - C_FB7P
+    - C_FILTER7N1
+    - C_FILTER7N2
+    - C_FILTER7P1
+    - C_FILTER7P2
+    - C_ISO7
+    - C_OPA7
+    - C_SPOKE_DVDT7
+    - C_SPOKE_IN7
+    - C_SPOKE_OUT7
+    - J7
+    - R_ADC_PD7N
+    - R_ADC_PD7P
+    - R_B7N
+    - R_B7P
+    - R_IN7N
+    - R_IN7P
+    - R_OUT7N
+    - R_OUT7P
+    - R_SPOKE_ILIM7
+    - R_SPOKE_UVLO7
+    - R_X7N
+    - R_X7P
+    - U_AFE7
+    - U_ESD7
+    - U_ISO7
+    - U_SPOKE7
+    region: analog_ch7
+  - match:
+    - C_A8N
+    - C_A8P
+    - C_ADC_AC8N1
+    - C_ADC_AC8N2
+    - C_ADC_AC8P1
+    - C_ADC_AC8P2
+    - C_ADC_CM8N
+    - C_ADC_CM8P
+    - C_FB8N
+    - C_FB8P
+    - C_FILTER8N1
+    - C_FILTER8N2
+    - C_FILTER8P1
+    - C_FILTER8P2
+    - C_ISO8
+    - C_OPA8
+    - C_SPOKE_DVDT8
+    - C_SPOKE_IN8
+    - C_SPOKE_OUT8
+    - J8
+    - R_ADC_PD8N
+    - R_ADC_PD8P
+    - R_B8N
+    - R_B8P
+    - R_IN8N
+    - R_IN8P
+    - R_OUT8N
+    - R_OUT8P
+    - R_SPOKE_ILIM8
+    - R_SPOKE_UVLO8
+    - R_X8N
+    - R_X8P
+    - U_AFE8
+    - U_ESD8
+    - U_ISO8
+    - U_SPOKE8
+    region: analog_ch8
+  - match:
+    - C_ADC_CLOCK_OK
+    - C_ADC_I2C_A
+    - C_ADC_I2C_B
+    - C_ADC_OK_CT
+    - C_ADC_OK_VDD
+    - C_ADC_OUT
+    - C_AUDIO_OSC
+    - C_FSYNC_FF1
+    - C_FSYNC_FF2
+    - C_FSYNC_INV
+    - C_FSYNC_OR
+    - C_XLATE_A
+    - C_XLATE_B
+    - Q_TDM_GATE
+    - R_ADC_CLOCK_OK_PD
+    - R_ADC_DATA_PD
+    - R_ADC_I2C_SCL_A_PU
+    - R_ADC_I2C_SCL_B_PU
+    - R_ADC_I2C_SDA_A_PU
+    - R_ADC_I2C_SDA_B_PU
+    - R_ADC_OK_BOT
+    - R_ADC_OK_PU
+    - R_ADC_OK_TOP
+    - R_BCLK
+    - R_BCLK_RAW_PD
+    - R_FSYNC
+    - R_FSYNC_EXT_PD
+    - R_FSYNC_RAW_PD
+    - R_TDM_OE_PU
+    - U_ADC_CLOCK_OK
+    - U_ADC_I2C_XLATE
+    - U_ADC_OK
+    - U_ADC_OUT
+    - U_BCLK_INV
+    - U_FSYNC_FF1
+    - U_FSYNC_FF2
+    - U_FSYNC_OR
+    - U_TDM_XLATE
+    - Y_AUDIO
+    region: audio_clock_tdm
+  - match:
+    - C_FLASH
+    - C_XTAL_IN
+    - C_XTAL_OUT
+    - R_QSPI_CS
+    - R_XTAL_DRIVE
+    - R_XTAL_FB
+    - U_FLASH
+    - Y_XU
+    region: clock_flash_debug
+  - match:
+    - C_1V8_FF
+    - C_1V8_OK_VDD
+    - C_3V3X_FF
+    - C_CORE_FF
+    - C_CORE_EN_CT
+    - C_CORE_OK
+    - C_U_1V8_IN_1
+    - C_U_1V8_IN_2
+    - C_U_1V8_OUT_1
+    - C_U_3V3X_IN_1
+    - C_U_3V3X_IN_2
+    - C_U_3V3X_OUT_1
+    - C_U_CORE_IN_1
+    - C_U_CORE_IN_2
+    - C_U_CORE_OUT_1
+    - C_XU_3V3_OK_CT
+    - C_XU_3V3_OK_VDD
+    - L_U_1V8
+    - L_U_3V3X
+    - L_U_CORE
+    - R_1V8_FB_BOTTOM
+    - R_1V8_FB_TOP
+    - R_1V8_OK_BOT
+    - R_1V8_OK_TOP
+    - R_3V3X_FB_BOTTOM
+    - R_3V3X_FB_TOP
+    - R_CORE_EN_PU
+    - R_CORE_FB_BOTTOM
+    - R_CORE_FB_TOP
+    - R_XU_3V3_OK_BOT
+    - R_XU_3V3_OK_TOP
+    - R_XU_RST_PU
+    - U_1V8
+    - U_1V8_OK
+    - U_3V3X
+    - U_CORE
+    - U_CORE_OK
+    - U_XU_3V3_OK
+    region: digital_power
+  - match:
+    - C_IN1
+    - C_IN2
+    - C_IN3
+    - C_IN_HF
+    - C_OUT1
+    - C_OUT2
+    - C_OUT3
+    - C_VCC
+    - C_VLDO
+    - D_IN
+    - D_QIN_GS
+    - F_IN
+    - J_PWR
+    - Q_IN
+    - R_AGND_JOIN
+    - R_QIN_G
+    - R_RT
+    - R_BUCK_FB_TOP
+    - R_BUCK_FB_BOTTOM
+    - U_BUCK
+    region: input_buck
+  - match:
+    - C_HOLD1
+    - C_HOLD2
+    - C_HOLD3
+    - C_HOLD4
+    - C_HOLD5
+    - C_HOLD6
+    - C_HOLD7
+    - C_HOLD8
+    region: hold_bank_left
+  - match:
+    - C_HOLD9
+    - C_HOLD10
+    - C_HOLD11
+    - C_HOLD12
+    - C_HOLD13
+    - C_HOLD14
+    - C_HOLD15
+    - C_HOLD16
+    region: hold_bank_right
+  - match:
+    - C_AUDIO
+    - C_AUDIO_CT1
+    - C_AUDIO_CT2
+    - C_DUMP_LOGIC
+    - C_DUMP_TIME1
+    - C_DUMP_TIME2
+    - C_DUMP_TIME3
+    - C_DUMP_TIME4
+    - C_DUMP_TIME5
+    - C_DUMP_TIME6
+    - C_DUMP_TIME7
+    - C_DUMP_TIME8
+    - C_LDO_EN
+    - C_LDO_IN
+    - C_LDO_NR4
+    - C_LDO_NR5
+    - C_LDO_OUT_1
+    - C_LDO_OUT_2
+    - C_OPA_BULK
+    - C_PWR
+    - C_PWR_CT
+    - C_PWR_CT2
+    - C_PWR_CT3
+    - D_HOLD
+    - Q_DUMP
+    - Q_PRE
+    - Q_PRE_EN
+    - R_ADC_BOT
+    - R_ADC_TOP
+    - R_AUDIO_PD
+    - R_AUDIO_PU
+    - R_DUMP
+    - R_DUMP_PD
+    - R_DUMP_TIME1
+    - R_DUMP_TIME2
+    - R_DUMP_TIME3
+    - R_LDO_ILIM
+    - R_LDO_PG_BOT_A
+    - R_LDO_PG_BOT_B
+    - R_LDO_PG_TOP
+    - R_LDO_SET
+    - R_OPA_BLEED1
+    - R_OPA_BLEED2
+    - R_PRE
+    - R_PRE_G
+    - R_PWR_BOT
+    - R_PWR_PU
+    - R_PWR_TOP
+    - U_AUDIO
+    - U_DUMP
+    - U_LDO
+    - U_LDO_EN
+    - U_PWR
+    region: quiet_power
+  - match:
+    - C_USB_VBUS
+    - J_USB
+    - R_USB_CC1
+    - R_USB_CC2
+    - R_USB_VBUS_BLEED
+    - U_USB_CC_ESD
+    - U_USB_ESD
+    - U_USB_VBUS_ESD
+    region: usb_frontend
+  - match:
+    - Q_VBUS
+    - R_VBUS_B
+    - R_VBUS_BE
+    - R_VBUS_PU
+    region: usb_vbus_sense
+  - match:
+    - C_PLL_100N
+    - C_PLL_1U
+    - C_XU_USB18
+    - C_XU_USB33
+    - C_XU_VDDIO_10
+    - C_XU_VDDIO_109
+    - C_XU_VDDIO_121
+    - C_XU_VDDIO_17
+    - C_XU_VDDIO_35
+    - C_XU_VDDIO_56
+    - C_XU_VDDIO_72
+    - C_XU_VDDIO_89
+    - C_XU_VDD_104
+    - C_XU_VDD_105
+    - C_XU_VDD_106
+    - C_XU_VDD_11
+    - C_XU_VDD_113
+    - C_XU_VDD_14
+    - C_XU_VDD_18
+    - C_XU_VDD_39
+    - C_XU_VDD_45
+    - C_XU_VDD_5
+    - C_XU_VDD_50
+    - C_XU_VDD_54
+    - C_XU_VDD_68
+    - C_XU_VDD_85
+    - C_XU_VDD_95
+    - FB_PLL
+    - U_XU
+    region: xmos_core
+  - match:
+    - J1
+    - J2
+    - J3
+    - J4
+    - J5
+    - J6
+    - J7
+    - J8
+    model_override: ${KIPRJMOD}/../03_src/lib/3dmodels/wurth/J_Wurth_WR-MJ_615008160221.step
+  - match:
+    - C_A1N
+    - C_A1P
+    - C_A2N
+    - C_A2P
+    - C_A3N
+    - C_A3P
+    - C_A4N
+    - C_A4P
+    - C_A5N
+    - C_A5P
+    - C_A6N
+    - C_A6P
+    - C_A7N
+    - C_A7P
+    - C_A8N
+    - C_A8P
+    model_override: ${KIPRJMOD}/../03_src/lib/3dmodels/kicad/C_Rect_L7.2mm_W5.0mm_P5.00mm.step
+  - match:
+    - U_ADC_A
+    - U_ADC_B
+    model_override: ${KIPRJMOD}/../03_src/lib/3dmodels/derived/TI_RTW0024A_nominal.wrl
+  - match:
+    - U_ISO1
+    - U_ISO2
+    - U_ISO3
+    - U_ISO4
+    - U_ISO5
+    - U_ISO6
+    - U_ISO7
+    - U_ISO8
+    model_override: ${KIPRJMOD}/../03_src/lib/3dmodels/derived/TI_YBH0009_C02_envelope.wrl
+  - match:
+    - U_AUDIO
+    - U_PWR
+    model_override: ${KIPRJMOD}/../03_src/lib/3dmodels/derived/TI_DSE0006A_nominal.wrl
+  - match:
+    - J_JTAG
+    region: debug_connector
+  # Floating footprints may not occupy either pinned capacitor island.
+  forbid:
+  - rect: [24, 113, 74, 137]
+    margin: 0.25
+  - rect: [76, 113, 126, 137]
+    margin: 0.25
+  - rect: [74, 113, 76, 137]
+    margin: 0.25
+  legalize:
+    enable: true
+    clearance: 0.25
+    edge_margin: 1.0
+    hole_keepout: 2.6
+    ring_max: 120
+design_rules:
+  track_min_width: 0.15
+  min_clearance: 0.15
+  via_min_annulus: 0.13
+  hole_clearance: 0.25
+  hole_to_hole: 0.5
+  copper_edge_clearance: 0.3
+  via_min_size: 0.45
+  min_through_drill: 0.2
+  solder_mask_min_width: 0.0
+  solder_mask_expansion: 0.0
+zones:
+- net: GND
+  layers:
+  - In1.Cu
+  priority: 0
+  min_thickness: 0.2
+  clearance: 0.15
+  connect: solid
+silk:
+  min_text_height: 0.6
+  refdes:
+    size: 0.6
+    min_size: 0.45
+    fab_copy: true
+    clearance: 0.16
+    priority_refs: [C_XU_VDDIO_10, C_XU_VDD_45, C_XU_VDD_39]
+    preferred_offsets:
+      C_XU_VDD_45: [[2.2, -0.8]]
+    fab_only_refs: [C_XU_VDD_39]
+    priority_prefixes: UJQ
+  labels:
+  - match: TP*
+    from: value
+    strip: 'TP '
+    size: 0.6
+  captions: []
+asserts:
+  pad_net:
+  - ref: U_XU
+    pad: 59
+    net: USB_DN
+  - ref: U_XU
+    pad: 60
+    net: USB_DP

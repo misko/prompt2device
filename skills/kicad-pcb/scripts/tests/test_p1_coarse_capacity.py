@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import hashlib
 import sys
 import tempfile
 import unittest
@@ -30,6 +31,10 @@ def pad(board, ref, number, net, x, y, size=0.5):
     fp.SetValue('fixture')
     fp.SetLayer(pcbnew.F_Cu)
     fp.SetPosition(pcbnew.VECTOR2I(iu(x), iu(y)))
+    fp.Reference().SetPosition(pcbnew.VECTOR2I(iu(x), iu(y)))
+    fp.Value().SetPosition(pcbnew.VECTOR2I(iu(x), iu(y)))
+    fp.Reference().SetVisible(False)
+    fp.Value().SetVisible(False)
     item = pcbnew.PAD(fp)
     item.SetNumber(number)
     item.SetAttribute(pcbnew.PAD_ATTRIB_SMD)
@@ -109,6 +114,37 @@ class CoarseCapacityTest(unittest.TestCase):
                                      'to_reservation': 'signal_main'}}
         self.allocations[0]['boundary_witnesses'].append(witness)
         return witness
+
+    def add_shared_port(self):
+        self.interfaces['blocks'] = [
+            {'id': 'left', 'refs': ['J_LEFT']},
+            {'id': 'right', 'refs': ['J_RIGHT', 'R_MOVE']},
+            {'id': 'power', 'refs': ['J_G', 'J_G2']}]
+        self.floorplan['placement']['regions']['left'] = [0, 3, 5, 7]
+        endpoint = {'source_pad': 'J_RIGHT.1', 'native_pad': 'J_RIGHT.1',
+                    'net': 'TEST', 'block': 'right'}
+        obligation = {'status': 'P2_REQUIRED', **endpoint, 'port_id': 'joint',
+                      'layer': 'F.Cu', 'to_reservation': 'signal_main'}
+        port = {'id': 'joint', 'owner': 'board_integration',
+                'participants': ['left', 'right'],
+                'geometry': {'type': 'union_rectangles',
+                             'rectangles': [[4, 3, 7, 7], [7, 3, 8, 7]]},
+                'bbox': [6.2, 4.2, 6.5, 4.6], 'face': 'east',
+                'layers': ['F.Cu'], 'reservation_id': 'signal_main',
+                'reservation_bbox': [4, 4, 6.2, 6], 'affected': [endpoint],
+                'p2_obligations': [obligation],
+                'return_obligation': {'status': 'P2_REQUIRED', 'net': 'GND',
+                                      'port_id': 'joint', 'layers': ['F.Cu'],
+                                      'proof': 'continuous_filled_reference'}}
+        self.source['shared_transition_ports'] = [port]
+        self.allocations[0]['reservations'][0]['bbox'] = [4, 4, 6.2, 6]
+        witness = {'kind': 'shared_transition_port', 'port_id': 'joint',
+                   'source': 'J_RIGHT.1', 'native': 'J_RIGHT.1', 'net': 'TEST',
+                   'block': 'right', 'layer': 'F.Cu', 'face': 'east',
+                   'boundary_bbox': port['bbox'][:], 'reservation_id': 'signal_main',
+                   'p2_obligation': obligation.copy()}
+        self.allocations[0]['boundary_witnesses'].append(witness)
+        return port, witness
 
     def run_case(self, change=None):
         if change:
@@ -207,6 +243,108 @@ class CoarseCapacityTest(unittest.TestCase):
         self.assertEqual(len(result['allocations'][0]['p2_obligations']), 1)
         self.assertEqual(result['allocations'][0]['p2_obligations'][0]['native_pad'], 'J_RIGHT.1')
         self.assertFalse(result['p1_accepted'])
+
+    def test_shared_port_is_source_bound_and_never_claims_capacity(self):
+        self.add_shared_port()
+        result = self.run_case()
+        self.assertEqual(result['errors'], [])
+        self.assertEqual(result['allocations'][0]['witness_count'], 2)
+        self.assertNotIn('potential_slots', result['allocations'][0]['reservations'][0])
+        self.assertFalse(result['routing_realized'])
+        self.assertFalse(result['p1_accepted'])
+
+    def test_shared_port_witness_requires_named_source_record(self):
+        self.add_shared_port()
+        self.source.pop('shared_transition_ports')
+        result = self.run_case()
+        self.assertIn('undeclared shared transition port', result['allocations'][0]['reason'])
+
+    def test_shared_port_rejects_undeclared_endpoint_layer_and_scope(self):
+        port, witness = self.add_shared_port()
+        witness['net'] = 'GND'
+        result = self.run_case()
+        self.assertIn('net outside allocation', result['allocations'][0]['reason'])
+        self.setUp()
+        port, witness = self.add_shared_port()
+        port['affected'][0]['block'] = 'left'
+        result = self.run_case()
+        self.assertIn('exact source owner', '\n'.join(result['errors']))
+        self.setUp()
+        port, witness = self.add_shared_port()
+        witness['layer'] = 'B.Cu'
+        result = self.run_case()
+        self.assertIn('face/layer/geometry mismatch', result['allocations'][0]['reason'])
+        self.setUp()
+        port, witness = self.add_shared_port()
+        self.allocations[0]['reservations'][0]['bbox'] = [4, 3.9, 6.2, 6]
+        result = self.run_case()
+        self.assertIn('outside declared shared port scope', result['allocations'][0]['reason'])
+
+    def test_shared_port_rejects_foreign_region_footprint_and_port_collision(self):
+        port, witness = self.add_shared_port()
+        self.floorplan['placement']['regions']['intruder'] = [5, 4, 5.5, 5]
+        result = self.run_case()
+        self.assertIn('unowned overlap', '\n'.join(result['errors']))
+        self.setUp()
+        port, witness = self.add_shared_port()
+        self.interfaces['blocks'][1]['refs'].remove('R_MOVE')
+        result = self.run_case()
+        self.assertIn('foreign footprint R_MOVE', '\n'.join(result['errors']))
+        self.setUp()
+        port, witness = self.add_shared_port()
+        port['bbox'] = [5.5, 4.5, 6, 5]
+        witness['boundary_bbox'] = port['bbox'][:]
+        result = self.run_case()
+        self.assertIn('native footprint/pad R_MOVE', '\n'.join(result['errors']))
+
+    def test_shared_port_rejects_off_outline_and_missing_return(self):
+        port, witness = self.add_shared_port()
+        port['geometry']['rectangles'][1] = [6, 3, 11, 7]
+        result = self.run_case()
+        self.assertIn('off board outline', '\n'.join(result['errors']))
+        self.setUp()
+        port, witness = self.add_shared_port()
+        port.pop('return_obligation')
+        result = self.run_case()
+        self.assertIn('filled-reference return obligation missing', '\n'.join(result['errors']))
+
+    def test_shared_port_rejects_native_rule_area_and_p2_obligation_drift(self):
+        self.add_shared_port()
+        zone = pcbnew.ZONE(self.board)
+        zone.SetIsRuleArea(True)
+        zone.SetLayer(pcbnew.F_Cu)
+        polygon = zone.Outline()
+        polygon.NewOutline()
+        for x, y in ((6.1, 4.1), (6.6, 4.1), (6.6, 4.7), (6.1, 4.7)):
+            polygon.Append(pcbnew.VECTOR2I(iu(x), iu(y)))
+        self.board.Add(zone)
+        result = self.run_case()
+        self.assertIn('immutable native rule area intersects shared zone/port', '\n'.join(result['errors']))
+        self.setUp()
+        port, witness = self.add_shared_port()
+        witness['p2_obligation']['port_id'] = 'other'
+        result = self.run_case()
+        self.assertIn('P2 pad-to-port obligation missing', result['allocations'][0]['reason'])
+
+    def test_shared_port_rejects_scope_outside_zone_and_zone_only_rule_area(self):
+        port, witness = self.add_shared_port()
+        port['reservation_bbox'] = [4, 4, 8.5, 6]
+        result = self.run_case()
+        self.assertEqual(result['status'], 'FAIL')
+        self.assertIn('reservation scope outside declared zone', '\n'.join(result['errors']))
+        self.setUp()
+        self.add_shared_port()
+        zone = pcbnew.ZONE(self.board)
+        zone.SetIsRuleArea(True)
+        zone.SetLayer(pcbnew.F_Cu)
+        polygon = zone.Outline()
+        polygon.NewOutline()
+        for x, y in ((7.2, 3.5), (7.4, 3.5), (7.4, 3.8), (7.2, 3.8)):
+            polygon.Append(pcbnew.VECTOR2I(iu(x), iu(y)))
+        self.board.Add(zone)
+        result = self.run_case()
+        self.assertEqual(result['status'], 'FAIL')
+        self.assertIn('immutable native rule area intersects shared zone/port', '\n'.join(result['errors']))
 
     def test_virtual_face_rejects_other_source_region_at_face(self):
         self.add_virtual_right_face()
@@ -343,6 +481,119 @@ class CoarseCapacityTest(unittest.TestCase):
         self.assertEqual(result['allocations'][0]['reservation_count'], 1)
         self.assertEqual(result['status'], 'INCOMPLETE')
         self.assertFalse(result['p1_accepted'])
+
+
+class CrowUsbPartialPortTest(unittest.TestCase):
+    """Exact native partial Q_VBUS port; no XU port or P1/route claim."""
+
+    def setUp(self):
+        fixture = Path(__file__).parent / 'fixtures' / 'crow_usb_partial_port'
+        board_path = fixture / 'board.kicad_pcb'
+        self.assertEqual(hashlib.sha256(board_path.read_bytes()).hexdigest(),
+                         '60a903b5ae5c7c7ef084fb3bd5dd50abf26e1e0e134a928f46107a6c90934b17')
+        self.board = pcbnew.LoadBoard(str(board_path))
+        self.plan = json.loads((fixture / 'modular_plan.json').read_text())
+        self.floorplan = yaml.safe_load((fixture / 'floorplan.yaml').read_text())
+        self.source = yaml.safe_load((fixture / 'p1_corridor_requirements.yaml').read_text())
+        self.outline = pcbnew.SHAPE_POLY_SET()
+        self.assertTrue(self.board.GetBoardPolygonOutlines(self.outline, False))
+        _, self.pads = checker.graph.board_index(self.board)
+        endpoint = {'source_pad': 'Q_VBUS.3', 'native_pad': 'Q_VBUS.3',
+                    'net': 'VBUS_PRESENT_N', 'block': 'usb_vbus_sense'}
+        self.p2 = {'status': 'P2_REQUIRED', **endpoint, 'port_id': 'q_vbus_partial',
+                   'layer': 'F.Cu', 'to_reservation': 'q_vbus_partial_reservation'}
+        self.port = {'id': 'q_vbus_partial', 'owner': 'board_integration',
+                     'participants': ['usb_vbus_sense', 'xmos_core'],
+                     'geometry': {'type': 'union_rectangles',
+                                  'rectangles': [[215.42, 70, 217.5, 74.8]]},
+                     'bbox': [215.42, 74.2, 215.52, 74.8], 'face': 'west',
+                     'layers': ['F.Cu'], 'reservation_id': 'q_vbus_partial_reservation',
+                     'reservation_bbox': [215.52, 70, 217.5, 74.8],
+                     'affected': [endpoint], 'p2_obligations': [self.p2],
+                     'return_obligation': {'status': 'P2_REQUIRED', 'net': 'GND',
+                                           'port_id': 'q_vbus_partial', 'layers': ['F.Cu'],
+                                           'proof': 'continuous_filled_reference'}}
+
+    def check_port(self):
+        return checker._shared_ports(
+            {'shared_transition_ports': [self.port]}, self.plan, self.board,
+            self.outline, self.floorplan['placement']['regions'],
+            list(self.board.Zones()), {'usb_device_pair': {'VBUS_PRESENT_N'}},
+            {}, self.pads)
+
+    def test_exact_board_partial_port_remains_only_an_obligation(self):
+        ports = self.check_port()
+        witness = {'kind': 'shared_transition_port', 'port_id': 'q_vbus_partial',
+                   'source': 'Q_VBUS.3', 'native': 'Q_VBUS.3',
+                   'net': 'VBUS_PRESENT_N', 'block': 'usb_vbus_sense',
+                   'layer': 'F.Cu', 'face': 'west',
+                   'boundary_bbox': self.port['bbox'],
+                   'reservation_id': self.port['reservation_id'],
+                   'p2_obligation': self.p2}
+        checked = checker._coarse_witness(
+            self.board, witness, 'VBUS_PRESENT_N',
+            {('VBUS_PRESENT_N', 'usb_vbus_sense'): {'Q_VBUS.3'}},
+            {}, self.pads, self.outline,
+            self.floorplan['placement']['regions'], set(), ports)
+        self.assertEqual(checked['p2_obligation']['status'], 'P2_REQUIRED')
+        self.assertTrue(checker._witness_touches_reservation(
+            checked, {'bbox': self.port['reservation_bbox']}))
+        self.assertNotIn('capacity_slots', checked)
+
+    def test_exact_board_rejects_full_body_or_foreign_region(self):
+        # Q_VBUS's full native envelope reaches x=215.410715 mm.
+        self.port['bbox'][0] = 215.32
+        self.port['geometry']['rectangles'][0][0] = 215.32
+        with self.assertRaisesRegex(checker.ContractError, 'native footprint/pad Q_VBUS'):
+            self.check_port()
+        self.port['bbox'][0] = 215.42
+        self.floorplan['placement']['regions']['foreign'] = [216, 73, 216.5, 74]
+        with self.assertRaisesRegex(checker.ContractError, 'unowned overlap'):
+            self.check_port()
+
+    def test_exact_board_rejects_native_ref_owner_reassignment(self):
+        for block in self.plan['blocks']:
+            if block['id'] == 'usb_vbus_sense':
+                block['refs'].remove('Q_VBUS')
+            elif block['id'] == 'xmos_core':
+                block['refs'].append('Q_VBUS')
+        with self.assertRaisesRegex(checker.ContractError,
+                                    'affected native footprint/block owner mismatch'):
+            self.check_port()
+        # Exercise the complete schema-2 evaluator: a source validation error
+        # must be FAIL, never an INCOMPLETE result that could look admissible.
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            paths = {'source': root / 'source.yaml', 'interfaces': root / 'interfaces.json',
+                     'aliases': root / 'aliases.yaml', 'floorplan': root / 'floorplan.yaml',
+                     'contract': root / 'contract.json'}
+            self.source['shared_transition_ports'] = [self.port]
+            paths['source'].write_text(yaml.safe_dump(self.source))
+            paths['interfaces'].write_text(json.dumps(self.plan))
+            paths['aliases'].write_text(yaml.safe_dump({'pin_aliases': {}}))
+            paths['floorplan'].write_text(yaml.safe_dump(self.floorplan))
+            board_path = Path(__file__).parent / 'fixtures' / 'crow_usb_partial_port' / 'board.kicad_pcb'
+            hashes = {name: checker.digest(path) for name, path in paths.items() if name != 'contract'}
+            hashes['board'] = checker.digest(board_path)
+            allocations = [{'id': row['id'], 'coverage_nets': row['coverage_nets']}
+                           for row in self.source['allocations']]
+            allocations.append({'id': 'power_boundary_windows',
+                                'coverage_nets': self.source['power_boundary_windows']['coverage_nets']})
+            contract = {'schema': 2, 'kind': 'p1-coarse-reservations',
+                        'profile': 'crow-p1-coarse', 'allocations': allocations,
+                        **{name + '_sha256': value for name, value in hashes.items()}}
+            paths['contract'].write_text(json.dumps(contract))
+            report = checker.evaluate_coarse(
+                board_path, paths['contract'], checker.digest(paths['contract']),
+                source_path=paths['source'], interface_path=paths['interfaces'],
+                alias_path=paths['aliases'], floorplan_path=paths['floorplan'],
+                expected_source_sha256=hashes['source'],
+                expected_interface_sha256=hashes['interfaces'],
+                expected_alias_sha256=hashes['aliases'],
+                expected_floorplan_sha256=hashes['floorplan'])
+        self.assertEqual(report['status'], 'FAIL')
+        self.assertIn('affected native footprint/block owner mismatch', '\n'.join(report['errors']))
+        self.assertFalse(report['p1_accepted'])
 
 
 if __name__ == '__main__':

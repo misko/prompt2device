@@ -25,6 +25,12 @@ Schema 2 ``p1-coarse-reservations`` checks source-bound coverage, selected
 boundary witnesses and rough reservation capacity without all-terminal pockets.
 It requires an explicit source-owned ``p1_fixed_refs`` set; other P2-movable
 occupants are reported as relocation debt. It cannot accept P1 on its own.
+An optional source ``shared_transition_ports`` list authorizes a named
+``board_integration`` port across declared logical regions. Each record binds
+the union zone, participants, exact affected source/native ref.pad/net/block
+tuples, port bbox/face/layers, reservation scope, P2 pad-to-port obligations,
+and a P2 filled-reference return obligation. A matching witness can use only
+that port and never receives a rough capacity credit.
 """
 from __future__ import annotations
 
@@ -79,7 +85,7 @@ def _coarse_hash(path, label, errors):
 
 
 def _coarse_witness(board, witness, net, owned_pads, aliases, pads, outline,
-                    regions, fixed_refs):
+                    regions, fixed_refs, shared_ports):
     source = witness.get('source')
     native = witness.get('native')
     block = witness.get('block')
@@ -102,10 +108,10 @@ def _coarse_witness(board, witness, net, owned_pads, aliases, pads, outline,
         raise ContractError(f'{source}: witness boundary off board')
     region = rectangle(regions.get(block), f'{block} source region')
     region_span = min(region[2] - region[0], region[3] - region[1])
-    if area[2] - area[0] > region_span / 4 + 1e-6 or area[3] - area[1] > region_span / 4 + 1e-6:
+    kind = witness.get('kind', 'native_pad_face')
+    if kind != 'shared_transition_port' and (area[2] - area[0] > region_span / 4 + 1e-6 or area[3] - area[1] > region_span / 4 + 1e-6):
         raise ContractError(f'{source}: witness bbox is a nonlocal bridge across source region')
     ref = native.rsplit('.', 1)[0]
-    kind = witness.get('kind', 'native_pad_face')
     if kind == 'native_pad_face':
         if ref not in fixed_refs:
             raise ContractError(f'{source}: P2-movable owner requires virtual block-face witness')
@@ -140,6 +146,25 @@ def _coarse_witness(board, witness, net, owned_pads, aliases, pads, outline,
         if not any(p.IsOnLayer(i) for p in found for i in board.GetEnabledLayers().Seq()
                    if pcbnew.IsCopperLayer(i)):
             raise ContractError(f'{source}: virtual source pad has no native copper layer')
+    elif kind == 'shared_transition_port':
+        port = shared_ports.get(witness.get('port_id'))
+        if port is None:
+            raise ContractError(f'{source}: undeclared shared transition port')
+        exact_endpoint = {'source_pad': source, 'native_pad': native, 'net': net, 'block': block}
+        if exact_endpoint not in port['affected']:
+            raise ContractError(f'{source}: shared port endpoint/net/owner not source declared')
+        if layer not in port['layers'] or face != port['face'] or area != port['bbox']:
+            raise ContractError(f'{source}: shared port face/layer/geometry mismatch')
+        if witness.get('reservation_id') != port['reservation_id']:
+            raise ContractError(f'{source}: shared port reservation identity mismatch')
+        obligation = witness.get('p2_obligation')
+        expected_obligation = {'status': 'P2_REQUIRED', **exact_endpoint,
+                               'port_id': port['id'], 'layer': layer,
+                               'to_reservation': port['reservation_id']}
+        if obligation != expected_obligation:
+            raise ContractError(f'{source}: exact P2 pad-to-port obligation missing')
+        if not any(p.IsOnLayer(board.GetLayerID(layer)) for p in found):
+            raise ContractError(f'{source}: native source pad not on shared port layer')
     else:
         raise ContractError(f'{source}: unknown boundary witness kind')
     return {'source': source, 'native': native, 'net': net, 'block': block,
@@ -176,6 +201,103 @@ def _virtual_region_clearance(witness, reservation, regions):
             raise ContractError(f"{witness['source']}: virtual boundary enters {region_id} source region")
         if intersects(reserved, region):
             raise ContractError(f"{witness['source']}: virtual reservation enters {region_id} source region")
+
+
+def _shared_ports(source, interfaces, board, outline, regions, zones, coverage, aliases, pads):
+    """Validate source-owned, measured exceptions before any witness may use one."""
+    rows = source.get('shared_transition_ports', [])
+    if not isinstance(rows, list):
+        raise ContractError('shared transition ports malformed')
+    owner_rows = interfaces.get('blocks')
+    if rows and not isinstance(owner_rows, list):
+        raise ContractError('shared transition ports require modular block ownership')
+    owners = {}
+    for row in owner_rows or []:
+        for ref in row.get('refs', []):
+            if ref in owners:
+                raise ContractError(f'{ref}: duplicate modular footprint owner')
+            owners[ref] = row.get('id')
+    enabled = {board.GetLayerName(i) for i in board.GetEnabledLayers().Seq() if pcbnew.IsCopperLayer(i)}
+    ports = {}
+    for row in rows:
+        if not isinstance(row, dict):
+            raise ContractError('shared transition port record malformed')
+        ident = row.get('id')
+        if not isinstance(ident, str) or not ident or ident in ports or row.get('owner') != 'board_integration':
+            raise ContractError('shared transition port identity/owner invalid')
+        participants = row.get('participants')
+        if not isinstance(participants, list) or len(participants) < 2 or len(participants) != len(set(participants)) or not set(participants) <= set(regions):
+            raise ContractError(f'{ident}: shared port participants invalid')
+        geometry = row.get('geometry')
+        if not isinstance(geometry, dict) or geometry.get('type') != 'union_rectangles':
+            raise ContractError(f'{ident}: shared port union geometry missing')
+        zone_rects = geometry.get('rectangles')
+        if not isinstance(zone_rects, list) or not zone_rects:
+            raise ContractError(f'{ident}: shared port zone rectangles missing')
+        zone_rects = [rectangle(v, f'{ident} zone') for v in zone_rects]
+        bbox = rectangle(row.get('bbox'), f'{ident} port')
+        scope = rectangle(row.get('reservation_bbox'), f'{ident} reservation scope')
+        if any(not lane_inside_outline(outline, r) for r in zone_rects + [bbox, scope]):
+            raise ContractError(f'{ident}: shared port off board outline')
+        if not any(contains(r, bbox) for r in zone_rects):
+            raise ContractError(f'{ident}: port outside declared zone')
+        if not any(contains(r, scope) for r in zone_rects):
+            raise ContractError(f'{ident}: reservation scope outside declared zone')
+        for participant in participants:
+            if not any(intersects(r, rectangle(regions[participant], f'{participant} region')) for r in zone_rects):
+                raise ContractError(f'{ident}: participant does not intersect zone')
+        for region_id, value in regions.items():
+            if region_id not in participants and any(intersects(r, rectangle(value, f'{region_id} region')) for r in zone_rects + [scope]):
+                raise ContractError(f'{ident}: unowned overlap with {region_id} source region')
+        layers = row.get('layers')
+        if not isinstance(layers, list) or not layers or len(layers) != len(set(layers)) or not set(layers) <= enabled:
+            raise ContractError(f'{ident}: shared port layers unavailable')
+        face = row.get('face')
+        if face not in ('north', 'south', 'east', 'west') or not isinstance(row.get('reservation_id'), str):
+            raise ContractError(f'{ident}: shared port face/reservation missing')
+        if any(existing['reservation_id'] == row['reservation_id'] for existing in ports.values()):
+            raise ContractError(f'{ident}: shared port reservation identity reused')
+        affected = row.get('affected')
+        if not isinstance(affected, list) or not affected or any(not isinstance(e, dict) or set(e) != {'source_pad', 'native_pad', 'net', 'block'} for e in affected):
+            raise ContractError(f'{ident}: exact affected endpoints missing')
+        if len({tuple(sorted(e.items())) for e in affected}) != len(affected):
+            raise ContractError(f'{ident}: duplicate affected endpoint')
+        for e in affected:
+            if e['block'] not in participants or e['net'] not in set().union(*coverage.values()):
+                raise ContractError(f'{ident}: undeclared net/owner')
+            if not any(e['source_pad'] in item.get('endpoints', {}).get(e['block'], [])
+                       for item in interfaces['interfaces'] if item.get('net') == e['net']):
+                raise ContractError(f'{ident}: affected endpoint has no exact source owner')
+            if e['native_pad'] != graph.native_identity(e['source_pad'], aliases):
+                raise ContractError(f'{ident}: affected native alias mismatch')
+            if owners.get(e['native_pad'].rsplit('.', 1)[0]) != e['block']:
+                raise ContractError(f'{ident}: affected native footprint/block owner mismatch')
+            found = pads.get(e['native_pad'], [])
+            if not found or any(p.GetNetname() != e['net'] for p in found):
+                raise ContractError(f'{ident}: affected native pad/net mismatch')
+        expected_p2 = [{'status': 'P2_REQUIRED', **e, 'port_id': ident,
+                        'layer': layer, 'to_reservation': row['reservation_id']}
+                       for e in affected for layer in layers]
+        if row.get('p2_obligations') != expected_p2:
+            raise ContractError(f'{ident}: source P2 pad-to-port obligations incomplete')
+        for fp in board.GetFootprints():
+            ref = fp.GetReference()
+            body = box_mm(fp.GetBoundingBox(True, True))
+            pad_boxes = [box_mm(p.GetBoundingBox()) for p in fp.Pads()]
+            if any(intersects(shape, r) for shape in [body] + pad_boxes for r in zone_rects + [scope]):
+                if owners.get(ref) not in participants:
+                    raise ContractError(f'{ident}: foreign footprint {ref} intersects shared zone/reservation')
+            if any(intersects(shape, bbox) for shape in [body] + pad_boxes):
+                raise ContractError(f'{ident}: native footprint/pad {ref} intersects shared port')
+        for zone in zones:
+            if zone.GetIsRuleArea() and set(layers) & {board.GetLayerName(i) for i in zone.GetLayerSet().Seq()} and any(intersects(r, box_mm(zone.GetBoundingBox())) for r in zone_rects + [bbox, scope]):
+                raise ContractError(f'{ident}: immutable native rule area intersects shared zone/port')
+        expected_return = {'status': 'P2_REQUIRED', 'net': 'GND', 'port_id': ident,
+                           'layers': layers, 'proof': 'continuous_filled_reference'}
+        if row.get('return_obligation') != expected_return:
+            raise ContractError(f'{ident}: P2 filled-reference return obligation missing')
+        ports[ident] = {**row, 'bbox': bbox, 'reservation_bbox': scope, 'zone_rectangles': zone_rects}
+    return ports
 
 
 def _coarse_reservation(board, row, outline, fixed_refs, movable_refs, zones, native_pitch,
@@ -230,6 +352,7 @@ def evaluate_coarse(board_path, contract_path, expected_contract_sha256=None, *,
                     expected_source_sha256=None, expected_interface_sha256=None,
                     expected_alias_sha256=None, expected_floorplan_sha256=None):
     errors, results, hashes = [], [], {}
+    shared_ports_configured = False
     paths = {'board': board_path, 'contract': contract_path, 'source': source_path,
              'interfaces': interface_path, 'aliases': alias_path, 'floorplan': floorplan_path}
     for label, path in paths.items():
@@ -244,6 +367,7 @@ def evaluate_coarse(board_path, contract_path, expected_contract_sha256=None, *,
         try:
             contract = json.loads(Path(contract_path).read_text())
             source = yaml.safe_load(Path(source_path).read_text())
+            shared_ports_configured = isinstance(source, dict) and 'shared_transition_ports' in source
             interfaces = json.loads(Path(interface_path).read_text())
             aliases = graph.alias_inventory(yaml.safe_load(Path(alias_path).read_text()))
             floorplan = yaml.safe_load(Path(floorplan_path).read_text())
@@ -319,6 +443,9 @@ def evaluate_coarse(board_path, contract_path, expected_contract_sha256=None, *,
             if len(names) != len(set(names)) or set(names) != set(coverage):
                 raise ContractError('coarse allocation identities mismatch')
             zones = list(board.Zones())
+            shared_ports = _shared_ports(source, interfaces, board, outline, regions,
+                                         zones, coverage, aliases, pads)
+            used_port_endpoints = defaultdict(set)
             native = board.GetDesignSettings()
             native_pitch = pcbnew.ToMM(native.m_TrackMinWidth + native.m_MinClearance)
             if native_pitch <= 0:
@@ -351,7 +478,8 @@ def evaluate_coarse(board_path, contract_path, expected_contract_sha256=None, *,
                         if witness.get('net') not in coverage[name]:
                             raise ContractError(f'{name}: witness net outside allocation')
                         checked.append(_coarse_witness(board, witness, witness['net'], owned_pads,
-                                                       aliases, pads, outline, regions, fixed_refs))
+                                                       aliases, pads, outline, regions, fixed_refs,
+                                                       shared_ports))
                     if {w['net'] for w in checked} != coverage[name]:
                         raise ContractError(f'{name}: missing per-net boundary witness')
                     if len({(w['source'], w['net']) for w in checked}) != len(checked):
@@ -371,10 +499,27 @@ def evaluate_coarse(board_path, contract_path, expected_contract_sha256=None, *,
                                 not _witness_touches_reservation(verified, target)):
                             raise ContractError(f"{verified['source']}: block face does not contact assigned reservation")
                         _virtual_region_clearance(witness, target, regions)
+                        if witness.get('kind') == 'shared_transition_port':
+                            port = shared_ports[witness['port_id']]
+                            if (target.get('id') != port['reservation_id'] or
+                                    target.get('layer') not in port['layers'] or
+                                    set(target.get('nets', [])) != {e['net'] for e in port['affected']} or
+                                    not contains(port['reservation_bbox'], rectangle(target.get('bbox'), 'shared reservation'))):
+                                raise ContractError(f"{verified['source']}: reservation outside declared shared port scope")
+                            used_port_endpoints[port['id']].add((verified['source'], verified['native'],
+                                                                  verified['net'], verified['block'], verified['layer']))
                     measured = []
                     for reservation in reservations:
                         if not set(reservation.get('nets', [])) <= coverage[name]:
                             raise ContractError(f'{name}: reservation net outside allocation')
+                        associated = [p for p in shared_ports.values() if p['reservation_id'] == reservation.get('id')]
+                        if associated:
+                            if len(associated) != 1 or not contains(associated[0]['reservation_bbox'], rectangle(reservation.get('bbox'), 'shared reservation')):
+                                raise ContractError(f'{name}: reservation outside declared shared port scope')
+                            measured.append({'id': reservation['id'], 'status': 'INCOMPLETE',
+                                             'nets': reservation['nets'],
+                                             'reason': 'P2 pad-to-port, return, effective capacity and routing unproved'})
+                            continue
                         measured.append(_coarse_reservation(
                             board, reservation, outline, fixed_refs, movable_refs, zones, native_pitch,
                             power_boundary=name == 'power_boundary_windows',
@@ -390,9 +535,17 @@ def evaluate_coarse(board_path, contract_path, expected_contract_sha256=None, *,
                     definite_geometry_failure = ('off board outline' in reason or
                                                  'immutable native rule area' in reason or
                                                  'virtual boundary enters' in reason or
-                                                 'virtual reservation enters' in reason)
+                                                 'virtual reservation enters' in reason or
+                                                 any(w.get('kind') == 'shared_transition_port'
+                                                     for w in (allocation.get('boundary_witnesses') or [])
+                                                     if isinstance(w, dict)))
                     results.append({'id': name, 'status': 'FAIL' if definite_geometry_failure else 'INCOMPLETE',
                                     'reason': reason})
+            for ident, port in shared_ports.items():
+                expected_uses = {(e['source_pad'], e['native_pad'], e['net'], e['block'], layer)
+                                 for e in port['affected'] for layer in port['layers']}
+                if used_port_endpoints[ident] != expected_uses:
+                    errors.append(f'{ident}: shared port affected endpoint/layer denominator mismatch')
             for index, (left_name, left) in enumerate(reservations_seen):
                 for right_name, right in reservations_seen[index + 1:]:
                     if (left_name != right_name and left.get('layer') == right.get('layer') and
@@ -404,7 +557,10 @@ def evaluate_coarse(board_path, contract_path, expected_contract_sha256=None, *,
         except (ContractError, ValueError, TypeError, AttributeError, RuntimeError, KeyError) as exc:
             errors.append(str(exc))
     status = 'FAIL' if (any(row['status'] == 'FAIL' for row in results) or
-                        any('overlapping named allocations' in error for error in errors)) else 'INCOMPLETE'
+                        (shared_ports_configured and errors) or
+                        any('overlapping named allocations' in error or 'shared port' in error or
+                            'shared transition port' in error or 'unowned overlap' in error or
+                            'foreign footprint' in error for error in errors)) else 'INCOMPLETE'
     return {'schema': 2, 'kind': 'p1-coarse-reservation-screen', 'status': status,
             'hashes': hashes, 'errors': errors, 'allocations': results,
             'allocation_denominator': len(results), 'routing_realized': False,
