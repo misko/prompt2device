@@ -1,0 +1,260 @@
+{
+  "status": "STANDALONE_JTAG_DECLARATION_INCOMPLETE",
+  "scope": "RESEARCH_ONLY",
+  "p1_accepted": false,
+  "p2_proven": false,
+  "board_sha256": "fbfb3bda95f1ddc98e7d3d229550644d136dc7d6349ba19a4023eb13b07e7e27",
+  "checker_git_commit": "851a2efe",
+  "checker_sha256": "4060a59cd67936bcf7193114b786859f5a31aa8eeff2c49ab5f7713d970139e1",
+  "source_sha256": "b6ed302ba2ee2462dbc39de5ac1e851c528e9897478325aee0657e2e68d87799",
+  "floorplan_sha256": "1a05e7247604519d3c69b0d311ac607b7c63ba959973c2672ae43763974ce569",
+  "contract_sha256": "03e91be3e2c77a91d7ce8268d35681f52e5db44be550dd9f75643f298d688416",
+  "full_net_denominator": 59,
+  "allocation_net_denominator": 13,
+  "jtag_net_count": 4,
+  "jtag_endpoint_count": 8,
+  "validated_xu_handoffs": [
+    "U_XU.44",
+    "U_XU.51",
+    "U_XU.37",
+    "U_XU.36"
+  ],
+  "strip_bbox_mm": [
+    221,
+    65,
+    226,
+    84
+  ],
+  "fixed_pose_deg": 90,
+  "fixed_access": [
+    {
+      "net": "JTAG_TMS",
+      "fixed_pad": "J_JTAG.2",
+      "xu_pad": "U_XU.44",
+      "physical_pad_bbox": [
+        230.17,
+        46.57,
+        230.91,
+        49.36
+      ],
+      "reservation_id": "jtag_access_2",
+      "segments": [
+        [
+          230.91,
+          47.89,
+          231.21,
+          48.04
+        ],
+        [
+          231.06,
+          48.04,
+          231.21,
+          54.725
+        ],
+        [
+          225.325,
+          54.725,
+          231.21,
+          54.875
+        ],
+        [
+          225.325,
+          54.875,
+          225.475,
+          65.0
+        ]
+      ],
+      "segment_envelope": [
+        225.325,
+        47.89,
+        231.21,
+        65
+      ],
+      "native_obstacle_hits": [],
+      "status": "INCOMPLETE"
+    },
+    {
+      "net": "JTAG_TCK",
+      "fixed_pad": "J_JTAG.4",
+      "xu_pad": "U_XU.51",
+      "physical_pad_bbox": [
+        228.9,
+        46.57,
+        229.64,
+        49.36
+      ],
+      "reservation_id": "jtag_access_4",
+      "segments": [
+        [
+          229.195,
+          49.36,
+          229.345,
+          50.125
+        ],
+        [
+          224.775,
+          50.125,
+          229.345,
+          50.275
+        ],
+        [
+          224.775,
+          50.275,
+          224.925,
+          54.125
+        ],
+        [
+          222.525,
+          54.125,
+          224.925,
+          54.275
+        ],
+        [
+          222.525,
+          54.275,
+          222.675,
+          65.0
+        ]
+      ],
+      "segment_envelope": [
+        222.525,
+        49.36,
+        229.345,
+        65
+      ],
+      "native_obstacle_hits": [],
+      "status": "INCOMPLETE"
+    },
+    {
+      "net": "JTAG_TDO",
+      "fixed_pad": "J_JTAG.6",
+      "xu_pad": "U_XU.37",
+      "physical_pad_bbox": [
+        227.63,
+        46.57,
+        228.37,
+        49.36
+      ],
+      "reservation_id": "jtag_access_6",
+      "segments": [
+        [
+          227.925,
+          49.36,
+          228.075,
+          49.825
+        ],
+        [
+          224.475,
+          49.825,
+          228.075,
+          49.975
+        ],
+        [
+          224.475,
+          49.975,
+          224.625,
+          53.825
+        ],
+        [
+          221.925,
+          53.825,
+          224.625,
+          53.975
+        ],
+        [
+          221.925,
+          53.975,
+          222.075,
+          65.0
+        ]
+      ],
+      "segment_envelope": [
+        221.925,
+        49.36,
+        228.075,
+        65
+      ],
+      "native_obstacle_hits": [],
+      "status": "INCOMPLETE"
+    },
+    {
+      "net": "JTAG_TDI",
+      "fixed_pad": "J_JTAG.8",
+      "xu_pad": "U_XU.36",
+      "physical_pad_bbox": [
+        226.36,
+        46.57,
+        227.1,
+        49.36
+      ],
+      "reservation_id": "jtag_access_8",
+      "segments": [
+        [
+          226.655,
+          49.36,
+          226.805,
+          49.525
+        ],
+        [
+          224.175,
+          49.525,
+          226.805,
+          49.675
+        ],
+        [
+          224.175,
+          49.675,
+          224.325,
+          53.525
+        ],
+        [
+          221.625,
+          53.525,
+          224.325,
+          53.675
+        ],
+        [
+          221.625,
+          53.675,
+          221.775,
+          65.0
+        ]
+      ],
+      "segment_envelope": [
+        221.625,
+        49.36,
+        226.805,
+        65
+      ],
+      "native_obstacle_hits": [],
+      "status": "INCOMPLETE"
+    }
+  ],
+  "pairwise_segment_spacing_mm": {
+    "JTAG_TMS/JTAG_TCK": 0.60208,
+    "JTAG_TMS/JTAG_TDO": 1.025914,
+    "JTAG_TMS/JTAG_TDI": 1.45,
+    "JTAG_TCK/JTAG_TDO": 0.15,
+    "JTAG_TCK/JTAG_TDI": 0.45,
+    "JTAG_TDO/JTAG_TDI": 0.15
+  },
+  "p2_pad_to_face_obligation_count": 8,
+  "return_obligation": {
+    "status": "P2_REQUIRED",
+    "net": "GND",
+    "corridor_id": "jtag_strip",
+    "reference_layer": "In1.Cu",
+    "proof": "continuous_filled_reference"
+  },
+  "whole_allocation_status": "FAIL",
+  "whole_allocation": {
+    "id": "xmos_service_escape",
+    "status": "FAIL",
+    "reason": "U_XU.38: witness bbox is a nonlocal bridge across source region"
+  },
+  "whole_packet_errors": [
+    "qspi_gap: integration affected endpoint/layer denominator mismatch",
+    "jtag_strip: integration affected endpoint/layer denominator mismatch"
+  ],
+  "routing_realized": false
+}
