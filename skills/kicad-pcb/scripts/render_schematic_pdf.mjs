@@ -220,6 +220,155 @@ export const alignScaledTwoPortSymbols = (circuit, symbols) => {
   }
 }
 
+// This appendix deliberately derives its statement from the producer's source
+// ports and the freshly exported native netlist.  Keep these helpers free of
+// rendering dependencies so malformed connectivity cannot become typography.
+export const buildPinIndex = (circuit, ref, canonicalNetName) => {
+  const sourceComponents = circuit.filter((e) => e.type === "source_component" && e.name === ref)
+  if (sourceComponents.length !== 1) throw new Error(`${ref}: expected exactly one source_component, found ${sourceComponents.length}`)
+  const component = sourceComponents[0]
+  const ports = circuit.filter((e) => e.type === "source_port" && e.source_component_id === component.source_component_id)
+  const sourcePortIds = new Set()
+  for (const port of ports) {
+    if (typeof port.source_port_id !== "string" || !port.source_port_id.trim()) throw new Error(`${ref}: missing or malformed source_port_id`)
+    if (sourcePortIds.has(port.source_port_id)) throw new Error(`${ref}: duplicate source_port_id ${port.source_port_id}`)
+    sourcePortIds.add(port.source_port_id)
+  }
+  const nets = new Map()
+  for (const net of circuit.filter((e) => e.type === "source_net")) {
+    if (!net.source_net_id || typeof net.name !== "string" || !net.name) throw new Error(`${ref}: malformed source_net`)
+    if (nets.has(net.source_net_id)) throw new Error(`${ref}: duplicate source_net_id ${net.source_net_id}`)
+    nets.set(net.source_net_id, net.name)
+  }
+  const tracesByPort = new Map()
+  for (const trace of circuit.filter((e) => e.type === "source_trace")) {
+    const portIds = trace.connected_source_port_ids
+    const netIds = trace.connected_source_net_ids
+    const referencesSelected = Array.isArray(portIds)
+      ? portIds.some((portId) => typeof portId === "string" && sourcePortIds.has(portId))
+      : typeof portIds === "string" && sourcePortIds.has(portIds)
+    if (!referencesSelected) continue
+    if (!Array.isArray(portIds) || !Array.isArray(netIds)) throw new Error(`${ref}: malformed source_trace ${trace.source_trace_id ?? "<unknown>"}`)
+    if (portIds.some((portId) => typeof portId !== "string" || !portId.trim())) throw new Error(`${ref}: malformed source-port reference in trace ${trace.source_trace_id ?? "<unknown>"}`)
+    if (new Set(portIds).size !== portIds.length) throw new Error(`${ref}: duplicate source-port reference in trace ${trace.source_trace_id ?? "<unknown>"}`)
+    for (const portId of portIds) {
+      if (!sourcePortIds.has(portId)) continue
+      const items = tracesByPort.get(portId) ?? []
+      items.push(netIds)
+      tracesByPort.set(portId, items)
+    }
+  }
+  const seenPins = new Set()
+  const rows = ports.map((port) => {
+    if (!Number.isInteger(port.pin_number) || port.pin_number <= 0 || seenPins.has(port.pin_number)) throw new Error(`${ref}: duplicate or invalid pin number ${port.pin_number}`)
+    if (typeof port.name !== "string" || !port.name) throw new Error(`${ref}: pin ${port.pin_number} has no name`)
+    seenPins.add(port.pin_number)
+    const connected = tracesByPort.get(port.source_port_id) ?? []
+    const isNcName = port.name.endsWith("_NC")
+    if (connected.length === 0) {
+      if (!isNcName) throw new Error(`${ref}: untraced non-NC pin ${port.pin_number} ${port.name}`)
+      return { pin: port.pin_number, name: port.name, net: "NC", state: "NC" }
+    }
+    if (isNcName) throw new Error(`${ref}: traced _NC pin ${port.pin_number} ${port.name}`)
+    const netIds = new Set()
+    for (const ids of connected) {
+      if (ids.length !== 1 || typeof ids[0] !== "string") throw new Error(`${ref}: pin ${port.pin_number} has ambiguous source net`)
+      if (!nets.has(ids[0])) throw new Error(`${ref}: pin ${port.pin_number} references orphan source net ${ids[0]}`)
+      netIds.add(ids[0])
+    }
+    if (netIds.size !== 1) throw new Error(`${ref}: pin ${port.pin_number} has multiple source nets`)
+    return { pin: port.pin_number, name: port.name, net: canonicalNetName(nets.get([...netIds][0])), state: "CONNECTED" }
+  }).sort((a, b) => a.pin - b.pin)
+  if (rows.length === 0 || rows.some((row, index) => row.pin !== index + 1)) throw new Error(`${ref}: pins must be contiguous 1..${rows.length}`)
+  return rows
+}
+
+export const classifyXmosPin = (row) => {
+  const n = row.name
+  if (row.state === "NC") return "NC"
+  const unusedMipiSupply = (row.pin === 24 && n === "MIPI_VDD18") ||
+    (row.pin === 27 && n === "MIPI_VDD09")
+  if (unusedMipiSupply) {
+    if (row.net !== "GND") throw new Error(`MIPI supply pin ${row.pin} ${n} must be GND when MIPI is unused`)
+    return "unused MIPI supply — grounded per XMOS §14"
+  }
+  if (/^MIPI_VDD/.test(n)) throw new Error(`unexpected MIPI supply pin ${row.pin} ${n}`)
+  if (n === "EP" || n === "VSS" || /AGND$/.test(n) || /^LV_/.test(n) || row.net === "GND") return "GND / ground"
+  if (/^VDD/.test(n) || /^USB_VDD/.test(n) || n === "PLL_AVDD") return "power rail"
+  if (/^USB_/.test(n)) return "USB"
+  if (/^(TDI|TDO|TMS|TCK|RST_N)$/.test(n) || /^JTAG_/.test(row.net) || row.net === "XU_RESET_N") return "debug / reset"
+  if (/^(XIN|XOUT)$/.test(n) || /^XTAL_/.test(row.net)) return "crystal"
+  if (/^QSPI_/.test(row.net)) return "QSPI flash"
+  if (/^(TDM_|AUDIO_)/.test(row.net)) return "audio / TDM"
+  if (/^XU_I2C_/.test(row.net)) return "I2C"
+  // Bounded for the XU316 package: remaining connected digital pads in the
+  // reviewed artifact are X0D/X1D GPIOs or the USB VBUS sense pad.
+  if (/^X[01]D\d+/.test(n) || n === "USB_VBUS") return "GPIO / VBUS sense"
+  throw new Error(`unclassified XMOS pin ${row.pin} ${row.name} on ${row.net}`)
+}
+
+const netBlocks = (text) => {
+  const blocks = []
+  for (let i = 0; i < text.length; i += 1) {
+    if (text.startsWith("(net", i) && /[\s(]/.test(text[i + 4] ?? "")) {
+      let depth = 0; let quoted = false; let escaped = false; let end = -1
+      for (let j = i; j < text.length; j += 1) {
+        const ch = text[j]
+        if (quoted) { if (!escaped && ch === '"') quoted = false; escaped = !escaped && ch === "\\"; continue }
+        if (ch === '"') { quoted = true; continue }
+        if (ch === "(") depth += 1
+        if (ch === ")" && --depth === 0) { end = j + 1; break }
+      }
+      if (end < 0 || quoted) throw new Error("malformed native netlist net block")
+      blocks.push(text.slice(i, end)); i = end - 1
+    }
+  }
+  return blocks
+}
+
+export const parseNativePinMap = (netlistText, ref) => {
+  let depth = 0; let quoted = false; let escaped = false
+  for (const ch of netlistText) {
+    if (quoted) { if (!escaped && ch === '"') quoted = false; escaped = !escaped && ch === "\\"; continue }
+    if (ch === '"') { quoted = true; continue }
+    if (ch === "(") depth += 1
+    if (ch === ")" && --depth < 0) throw new Error("malformed native netlist parentheses")
+  }
+  if (quoted || depth !== 0) throw new Error("malformed native netlist quoting or parentheses")
+  const map = new Map()
+  for (const block of netBlocks(netlistText)) {
+    const name = /^\(net\s+\(code\s+"[^"]+"\)\s+\(name\s+"([^"]*)"\)/.exec(block)?.[1]
+    if (name === undefined) throw new Error("malformed native netlist net name")
+    const nodePattern = /\(node\s+\(ref\s+"([^"]+)"\)\s+\(pin\s+"([^"]+)"\)(?:\s+\([^()]*\))*\s*\)/g
+    const matches = [...block.matchAll(nodePattern)]
+    if (matches.length !== (block.match(/\(node\b/g) ?? []).length) {
+      throw new Error("malformed native netlist node block")
+    }
+    for (const match of matches) {
+      if (match[1] !== ref) continue
+      if (!/^\d+$/.test(match[2])) throw new Error(`${ref}: malformed native pin ${match[2]}`)
+      if (map.has(match[2])) throw new Error(`${ref}: duplicate native pin ${match[2]}`)
+      map.set(match[2], name)
+    }
+  }
+  return map
+}
+
+export const assertPinIndexNativeParity = (rows, nativeMap, ref) => {
+  if (nativeMap.size !== rows.length) throw new Error(`${ref}: native pin set has ${nativeMap.size}, expected ${rows.length}`)
+  for (const row of rows) {
+    const native = nativeMap.get(String(row.pin))
+    if (native === undefined) throw new Error(`${ref}: native netlist missing pin ${row.pin}`)
+    const expected = row.state === "NC" ? `unconnected-(${ref}-${row.name}-Pad${row.pin})` : row.net
+    if (native !== expected) throw new Error(`${ref}: pin ${row.pin} native ${native} != expected ${expected}`)
+  }
+  return crypto.createHash("sha256").update(rows.map((r) => `${r.pin}\0${r.name}\0${r.net}\0${r.state}`).join("\n")).digest("hex")
+}
+
+// Five pages keep the 129-pin appendix legible without leaving a one-row tail.
+// At 20 px pitch, 26 rows preserve generous table margins on 810 px landscape.
+export const PIN_INDEX_ROWS_PER_PAGE = 26
+
 const die = (message) => {
   process.stderr.write(`SCHEMATIC-RENDER FAIL: ${message}\n`)
   process.exit(2)
@@ -231,6 +380,7 @@ const usage = () => {
       "[--title <title>] [--net-aliases <net_aliases.txt>] " +
       "[--sheet-text-scale <sheet>:<factor>:<pins|all>] " +
       "[--detail-tiles <sheet>:<2|3>] " +
+      "[--pin-index <ref>:<native-netlist>] " +
       "[--toolchain-package <package.json>]\n",
   )
 }
@@ -249,7 +399,15 @@ let netAliasesPath = null
 let toolchainPackage = null
 const sheetTextScales = new Map()
 const detailTiles = new Map()
+let pinIndexOption = null
 for (let i = 2; i < args.length; i += 1) {
+  if (args[i] === "--pin-index" && args[i + 1]) {
+    const match = /^([A-Za-z][A-Za-z0-9_]*):(.+)$/.exec(args[i + 1])
+    if (!match || pinIndexOption !== null) die(`invalid or duplicate pin index: ${args[i + 1]}`)
+    pinIndexOption = { ref: match[1], netlistPath: path.resolve(match[2]) }
+    i += 1
+    continue
+  }
   if (args[i] === "--detail-tiles" && args[i + 1]) {
     const match = /^([a-z][a-z0-9_]*):([23])$/.exec(args[i + 1])
     if (!match || detailTiles.has(match[1])) die(`invalid or duplicate detail tiles: ${args[i + 1]}`)
@@ -367,6 +525,31 @@ const components = circuit.filter(
 )
 if (components.length === 0) die("input contains zero schematic components")
 
+let pinIndex = null
+if (pinIndexOption !== null) {
+  if (!fs.existsSync(pinIndexOption.netlistPath)) die(`missing native netlist: ${pinIndexOption.netlistPath}`)
+  let nativeText
+  try { nativeText = fs.readFileSync(pinIndexOption.netlistPath, "utf8") } catch (error) { die(`cannot read native netlist: ${error.message}`) }
+  try {
+    const rows = buildPinIndex(circuit, pinIndexOption.ref, canonicalNetName)
+    const nativeMap = parseNativePinMap(nativeText, pinIndexOption.ref)
+    const tupleHash = assertPinIndexNativeParity(rows, nativeMap, pinIndexOption.ref)
+    const matchingComponents = components.filter((component) => component.source_component_id === circuit.find((e) => e.type === "source_component" && e.name === pinIndexOption.ref).source_component_id)
+    if (matchingComponents.length !== 1) throw new Error(`${pinIndexOption.ref}: expected exactly one associated schematic_component, found ${matchingComponents.length}`)
+    const overview = matchingComponents[0]
+    const overviewSheet = sheets.find((sheet) => sheet.schematic_sheet_id === overview.schematic_sheet_id)
+    if (!overviewSheet) throw new Error(`${pinIndexOption.ref}: associated schematic component has no ordered sheet`)
+    const classified = rows.map((row) => ({ ...row, function: classifyXmosPin(row) }))
+    pinIndex = {
+      ref: pinIndexOption.ref, rows: classified, tupleHash,
+      circuitHash: crypto.createHash("sha256").update(fs.readFileSync(circuitPath)).digest("hex"),
+      netlistHash: crypto.createHash("sha256").update(fs.readFileSync(pinIndexOption.netlistPath)).digest("hex"),
+      overviewSheet,
+    }
+    process.stdout.write(`SCHEMATIC-RENDER pin index: ${pinIndex.ref} ${rows.length}/${nativeMap.size} native-pin tuples; circuit SHA-256 ${pinIndex.circuitHash}; native netlist SHA-256 ${pinIndex.netlistHash}; tuple SHA-256 ${tupleHash}\n`)
+  } catch (error) { die(`pin index: ${error.message}`) }
+}
+
 if (sheets.length > 0) {
   const sheetIds = new Set(sheets.map((sheet) => sheet.schematic_sheet_id))
   const unowned = components.filter(
@@ -455,6 +638,55 @@ const xmlEscape = (value) =>
     .replaceAll('"', "&quot;")
     .replaceAll("'", "&apos;")
 
+const renderPinIndexPages = (index, metadata) => {
+  const width = 1200
+  const height = 810
+  const base = (heading, pageNumber, body) => [
+    `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}">`,
+    '<rect width="100%" height="100%" fill="rgb(245, 241, 237)"/>',
+    `<text x="30" y="27" font-family="sans-serif" font-size="20px" font-weight="bold" fill="#840000">${xmlEscape(metadata.projectTitle)}</text>`,
+    `<text x="30" y="53" font-family="sans-serif" font-size="18px" font-weight="bold" fill="#840000">${xmlEscape(heading)}</text>`,
+    `<text x="30" y="76" font-family="sans-serif" font-size="11px" fill="#555">Page ${pageNumber} of ${metadata.totalPages} • overview page ${metadata.overviewPage} • source sheet ${xmlEscape(index.overviewSheet.schematic_sheet_id)} • circuit ${index.circuitHash.slice(0, 16)}… • native ${index.netlistHash.slice(0, 16)}…</text>`,
+    body, '</svg>',
+  ].join("\n")
+  const census = new Map()
+  for (const row of index.rows) census.set(row.function, (census.get(row.function) ?? 0) + 1)
+  const landing = base(`XMOS PIN INDEX — ${index.ref}`, metadata.landingPage, [
+    `<text x="50" y="135" font-family="sans-serif" font-size="26px" font-weight="bold">Semantic package-pin assignment appendix</text>`,
+    `<text x="50" y="180" font-family="sans-serif" font-size="16px">Overview: ${xmlEscape(index.overviewSheet.display_name ?? index.overviewSheet.name)} — source sheet ${index.overviewSheet.sheet_index} / ${xmlEscape(index.overviewSheet.schematic_sheet_id)}</text>`,
+    `<text x="50" y="215" font-family="monospace" font-size="14px">Circuit JSON SHA-256: ${index.circuitHash}</text>`,
+    `<text x="50" y="242" font-family="monospace" font-size="14px">Native netlist SHA-256: ${index.netlistHash}</text>`,
+    `<text x="50" y="269" font-family="monospace" font-size="14px">Pin tuples SHA-256: ${index.tupleHash}</text>`,
+    `<text x="50" y="310" font-family="sans-serif" font-size="18px" font-weight="bold">${index.rows.length}/${index.rows.length} source pins verified against the fresh native netlist</text>`,
+    ...[...census.entries()].sort((a, b) => a[0].localeCompare(b[0])).map(([name, count], i) => `<text x="70" y="${350 + i * 27}" font-family="sans-serif" font-size="15px">${count}  ${xmlEscape(name)}</text>`),
+  ].join("\n"))
+  const tables = []
+  for (let start = 0; start < index.rows.length; start += PIN_INDEX_ROWS_PER_PAGE) {
+    const section = index.rows.slice(start, start + PIN_INDEX_ROWS_PER_PAGE)
+    const tablePage = metadata.landingPage + tables.length + 1
+    const body = [
+      `<text x="30" y="111" font-family="sans-serif" font-size="16px" font-weight="bold">${xmlEscape(index.ref)} package pins ${start + 1}–${start + section.length} of ${index.rows.length} — semantic assignment, not a coordinate crop</text>`,
+      '<rect x="30" y="126" width="1140" height="26" fill="#e2d8cf"/>',
+      '<text x="45" y="145" font-family="sans-serif" font-size="18px" font-weight="bold">Pin</text>',
+      '<text x="125" y="145" font-family="sans-serif" font-size="18px" font-weight="bold">Package pin name</text>',
+      '<text x="460" y="145" font-family="sans-serif" font-size="18px" font-weight="bold">Net / NC</text>',
+      '<text x="820" y="145" font-family="sans-serif" font-size="18px" font-weight="bold">Function</text>',
+      ...section.flatMap((row, i) => {
+        const y = 172 + i * 20
+        return [
+          `<line x1="30" y1="${y + 6}" x2="1170" y2="${y + 6}" stroke="#c8c0b9" stroke-width="1"/>`,
+          `<text x="45" y="${y}" font-family="monospace" font-size="14px">${row.pin}</text>`,
+          `<text x="125" y="${y}" font-family="monospace" font-size="14px">${xmlEscape(row.name)}</text>`,
+          `<text x="460" y="${y}" font-family="monospace" font-size="14px">${xmlEscape(row.net)}</text>`,
+          `<text x="820" y="${y}" font-family="sans-serif" font-size="14px">${xmlEscape(row.function)}</text>`,
+        ]
+      }),
+    ].join("\n")
+    tables.push(base(`XMOS PIN INDEX — ${index.ref}`, tablePage, body))
+  }
+  return [landing, ...tables]
+}
+
 const scaleSheetText = (input, sheet) => {
   const setting = sheetTextScales.get(sheet.name)
   if (!setting) return input
@@ -500,8 +732,12 @@ const pages =
           sheet_index: 1,
         },
       ]
-const totalPages = pages.length + [...detailTiles.values()].reduce(
+const normalPages = pages.length + [...detailTiles.values()].reduce(
   (sum, grid) => sum + grid * grid, 0)
+const pinIndexPages = pinIndex ? 1 + Math.ceil(pinIndex.rows.length / PIN_INDEX_ROWS_PER_PAGE) : 0
+const totalPages = normalPages + pinIndexPages
+const overviewPage = pinIndex ? pages.slice(0, pages.findIndex((sheet) => sheet.schematic_sheet_id === pinIndex.overviewSheet.schematic_sheet_id)).reduce(
+  (number, sheet) => number + 1 + ((detailTiles.get(sheet.name) ?? 0) ** 2), 1) : null
 
 const HEADER_HEIGHT = 90
 const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), "schematic-render-"))
@@ -642,6 +878,25 @@ try {
           pagePdfs.push(detailPdfPath)
         }
       }
+    }
+  }
+
+  if (pinIndex) {
+    const appendix = renderPinIndexPages(pinIndex, {
+      projectTitle,
+      totalPages,
+      overviewPage,
+      landingPage: pagePdfs.length + 1,
+    })
+    for (const [index, svg] of appendix.entries()) {
+      const pageNumber = pagePdfs.length + 1
+      const stem = `page-${String(pageNumber).padStart(3, "0")}`
+      const svgPath = path.join(tempDir, `${stem}.svg`)
+      const pdfPath = path.join(tempDir, `${stem}.pdf`)
+      fs.writeFileSync(svgPath, svg)
+      process.stdout.write(`SCHEMATIC-RENDER page ${pageNumber}/${totalPages}: XMOS PIN INDEX ${index === 0 ? "landing" : `table ${index}/${appendix.length - 1}`}\n`)
+      run("rsvg-convert", ["-f", "pdf", "-o", pdfPath, svgPath], stem)
+      pagePdfs.push(pdfPath)
     }
   }
 

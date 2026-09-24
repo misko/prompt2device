@@ -203,28 +203,28 @@ $PY "$S/early_design_check.py" . --fault-envelope \
 # graded above; it does not re-evaluate TSX. Hence `|| true` — the GATE reports
 # the missing output by name rather than `set -e` stopping without context.
 rm -f 03_tscircuit/build/schematic.svg "$SCHPDF"
-NET_ALIAS_ARGS=()
-[ -f 03_tscircuit/net_aliases.txt ] \
-    && NET_ALIAS_ARGS=(--net-aliases 03_tscircuit/net_aliases.txt)
-node "$S/render_schematic_pdf.mjs" "$CJ" "$SCHPDF" \
-    --title "$SCHEMATIC_TITLE" "${NET_ALIAS_ARGS[@]}" \
-    --sheet-text-scale xmos_core:2.6:pins || true
-
-# [1a] M-FRESH verify — the pipeline asserts the artifacts it is about to grade
-# and to SHIP are the ones it just built. build_provenance.py finds the producer
-# under dist/ ITSELF (it does not take this script's word for it) and requires
-# the bytes to match, so a `touch` cannot forge freshness; it also requires the
-# producer to post-date [0b], the sources to be unmoved since, and the human
-# schematic to exist and post-date the circuit.json it depicts (F-RENDER).
-# Canon M1: the checker neither builds nor copies the things it grades.
-$PY "$S/build_provenance.py" verify . --board "$BOARD" --tsx "$TSX" \
-    --artifact "$CJ" --render "$SCHPDF" \
-    || { echo "GATE FAILED [1a] M-FRESH (build_provenance.py verify): the artifact the converter would read is NOT the one this build produced, or the human schematic the release ships is missing/older than it — every gate below would be green against stale content"; exit 1; }
 
 mkdir -p 04_kicad 06_build/netlists
 $PY "$S/circuit_json_to_kicad_sch.py" "$CJ" \
     -o "04_kicad/$BOARD.kicad_sch" --parts 02_parts
 kicad-cli sch export netlist --output "06_build/netlists/$BOARD.net" "04_kicad/$BOARD.kicad_sch"
+
+# Render only after the native netlist exists: the semantic appendix binds every
+# U_XU pin tuple to this exact export before it can write the atomic PDF.
+NET_ALIAS_ARGS=()
+[ -f 03_tscircuit/net_aliases.txt ] \
+    && NET_ALIAS_ARGS=(--net-aliases 03_tscircuit/net_aliases.txt)
+node "$S/render_schematic_pdf.mjs" "$CJ" "$SCHPDF" \
+    --title "$SCHEMATIC_TITLE" "${NET_ALIAS_ARGS[@]}" \
+    --sheet-text-scale xmos_core:2.6:pins \
+    --pin-index "U_XU:06_build/netlists/$BOARD.net" || true
+
+# [1a] M-FRESH follows both native export and the bound human render.  The
+# early deletion above still ensures any earlier producer failure leaves no
+# stale shippable PDF behind.
+$PY "$S/build_provenance.py" verify . --board "$BOARD" --tsx "$TSX" \
+    --artifact "$CJ" --render "$SCHPDF" \
+    || { echo "GATE FAILED [1a] M-FRESH (build_provenance.py verify): the artifact the converter would read is NOT the one this build produced, or the human schematic the release ships is missing/older than it — every gate below would be green against stale content"; exit 1; }
 
 # [1b] CHEAP SEMANTIC BATTERY at the schematic gate — seconds each, run HERE
 # and not first at seal (a defect authored at this stage and caught at seal
