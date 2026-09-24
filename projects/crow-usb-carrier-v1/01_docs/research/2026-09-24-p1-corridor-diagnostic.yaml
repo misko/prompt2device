@@ -1,0 +1,48 @@
+schema: 2
+kind: crow-p1-four-allocation-draft-corrected
+diagnostic_board: 569-forensic-only
+verdict: INCOMPLETE
+routing_realized: false
+endpoint_authority: 03_src/modular_plan.json#/interfaces
+geometry_rule: "geometry:null is not capacity evidence; it requires a fresh candidate measurement"
+usb_logical_physical_aliases: {J_USB.10: J_USB.A4, J_USB.15: J_USB.A9, J_USB.2: J_USB.B4, J_USB.7: J_USB.B9}
+allocations:
+  - id: usb_device_pair
+    status: INCOMPLETE
+    geometry: null
+    required_move: "Observe two connected J_USB→ESD→XU lanes after endpoint pockets are subtracted."
+    subrows:
+      - {net: USB_DP, endpoints: [J_USB.12, J_USB.4, U_USB_ESD.1, U_XU.60], layers: [F.Cu], slot_accounting: one_of_pair, required_minimum_width_mm: 0.56, measured_free_width_mm: null}
+      - {net: USB_DN, endpoints: [J_USB.13, J_USB.5, U_USB_ESD.2, U_XU.59], layers: [F.Cu], slot_accounting: one_of_pair, required_minimum_width_mm: 0.56, measured_free_width_mm: null}
+      - {net: VBUS_USB, endpoints: [C_USB_VBUS.1, J_USB.10, J_USB.15, J_USB.2, J_USB.7, R_USB_VBUS_BLEED.1, U_USB_VBUS_ESD.3, R_VBUS_B.1], geometry: null, slots: 1}
+      - {net: VBUS_PRESENT_N, endpoints: [Q_VBUS.3, R_VBUS_PU.2, U_XU.8], geometry: null, slots: 1}
+      - {net: CHASSIS, geometry: null, status: INCOMPLETE, reason: "measure RJ45 shell and CHASSIS-to-GND mechanical separation separately"}
+  - id: xmos_service_escape
+    status: INCOMPLETE
+    geometry: null
+    required_move: "Use connected JTAG→XU and flash/crystal→XU polygons; J_JTAG remains anchored."
+    subrows:
+      - {nets: [QSPI_CLK, QSPI_CS_N, QSPI_D0, QSPI_D1, QSPI_D2, QSPI_D3], endpoint_source: modular_plan.interfaces, slots: 6, pitch_mm: 0.45, minimum_width_mm: 2.70}
+      - {nets: [JTAG_TCK, JTAG_TDI, JTAG_TDO, JTAG_TMS, XU_RESET_N], endpoints: [J_JTAG.4, J_JTAG.8, J_JTAG.6, J_JTAG.2, J_JTAG.10, U_XU.51, U_XU.36, U_XU.37, U_XU.44, U_XU.38], slots: 5, pitch_mm: 0.45, minimum_width_mm: 2.25}
+      - {nets: [XTAL_IN, XTAL_OUT], endpoints: [R_XTAL_DRIVE.1, R_XTAL_FB.1, U_XU.34, C_XTAL_OUT.1, R_XTAL_FB.2, Y_XU.3, U_XU.33], slots: 2, status: INCOMPLETE}
+  - id: adc_timing_xmos_bundle
+    status: INCOMPLETE
+    geometry: null
+    required_move: "Measure ADC→TDM and TDM→XU necks and source-resistor pockets separately."
+    subrows:
+      - {nets: [ADC_BCLK, ADC_FSYNC, ADC_DOUT1], endpoints: [U_ADC_A.21, U_ADC_A.22, U_ADC_A.23, U_ADC_B.21, U_ADC_B.22, U_ADC_B.23, R_BCLK.2, R_FSYNC.2, R_ADC_DATA_PD.1, U_TDM_XLATE.10], slots: 3}
+      - {nets: [AUDIO_MCLK_1V8, TDM_BCLK_1V8, TDM_DATA_1V8, TDM_FSYNC_1V8], endpoints: [U_TDM_XLATE.4, U_TDM_XLATE.5, U_TDM_XLATE.6, U_TDM_XLATE.7, U_XU.23, U_XU.22, U_XU.107, U_XU.20], slots: 4}
+      - {nets: [ADC_I2C_SCL, ADC_I2C_SDA, ADC_READY, AUDIO_EN, XU_I2C_SCL_1V8, XU_I2C_SDA_1V8, ADC_DIGITAL_BAD], endpoint_source: modular_plan.interfaces, geometry: null, local_window_required: true}
+  - id: adc_analog_boundary
+    status: INCOMPLETE
+    geometry: null
+    banks:
+      - {id: channels_1_4_vmid1, nets: [ADC1N, ADC1P, ADC2N, ADC2P, ADC3N, ADC3P, ADC4N, ADC4P, VMID1_EXT], adc_pads: [U_ADC_A.13, U_ADC_A.12, U_ADC_A.11, U_ADC_A.10, U_ADC_A.9, U_ADC_A.8, U_ADC_A.7, U_ADC_A.6], counterparts: [C_ADC_AC1N1.2, C_ADC_AC1N2.2, C_ADC_CM1N.1, C_ADC_AC1P1.2, C_ADC_AC1P2.2, C_ADC_CM1P.1, C_ADC_AC2N1.2, C_ADC_AC2N2.2, C_ADC_CM2N.1, C_ADC_AC2P1.2, C_ADC_AC2P2.2, C_ADC_CM2P.1, C_ADC_AC3N1.2, C_ADC_AC3N2.2, C_ADC_CM3N.1, C_ADC_AC3P1.2, C_ADC_AC3P2.2, C_ADC_CM3P.1, C_ADC_AC4N1.2, C_ADC_AC4N2.2, C_ADC_CM4N.1, C_ADC_AC4P1.2, C_ADC_AC4P2.2, C_ADC_CM4P.1, R_B1N.2, R_B1P.2, R_B2N.2, R_B2P.2, R_B3N.2, R_B3P.2, R_B4N.2, R_B4P.2, C_VMID1_EXT_10U.1, C_VMID1_EXT_1U.1, R_VMID1_BOT.1, R_VMID1_TOP.2], slots: 9, pitch_mm: 0.56, required_minimum_width_mm: 5.04, measured_free_width_mm: null}
+      - {id: channels_5_8_vmid2, nets: [ADC5N, ADC5P, ADC6N, ADC6P, ADC7N, ADC7P, ADC8N, ADC8P, VMID2_EXT], adc_pads: [U_ADC_B.6, U_ADC_B.7, U_ADC_B.8, U_ADC_B.9, U_ADC_B.10, U_ADC_B.11, U_ADC_B.12, U_ADC_B.13], counterparts: [C_ADC_AC5N1.2, C_ADC_AC5N2.2, C_ADC_CM5N.1, C_ADC_AC5P1.2, C_ADC_AC5P2.2, C_ADC_CM5P.1, C_ADC_AC6N1.2, C_ADC_AC6N2.2, C_ADC_CM6N.1, C_ADC_AC6P1.2, C_ADC_AC6P2.2, C_ADC_CM6P.1, C_ADC_AC7N1.2, C_ADC_AC7N2.2, C_ADC_CM7N.1, C_ADC_AC7P1.2, C_ADC_AC7P2.2, C_ADC_CM7P.1, C_ADC_AC8N1.2, C_ADC_AC8N2.2, C_ADC_CM8N.1, C_ADC_AC8P1.2, C_ADC_AC8P2.2, C_ADC_CM8P.1, R_B5N.2, R_B5P.2, R_B6N.2, R_B6P.2, R_B7N.2, R_B7P.2, R_B8N.2, R_B8P.2, C_VMID2_EXT_10U.1, C_VMID2_EXT_1U.1, R_VMID2_BOT.1, R_VMID2_TOP.2], slots: 9, pitch_mm: 0.56, required_minimum_width_mm: 5.04, measured_free_width_mm: null}
+power_boundary_windows: {status: INCOMPLETE, geometry: null, endpoint_source: modular_plan.interfaces, nets: [GND, N0V9, N12V_PROTECTED, N1V8, N3V3X, N3V3_ADC, N5V_BUCK, N5V_LDO_HOLD, PWR_EN]}
+interface_coverage:
+  usb_device_pair: [USB_DN, USB_DP, VBUS_USB, VBUS_PRESENT_N, CHASSIS]
+  xmos_service_escape: [QSPI_CLK, QSPI_CS_N, QSPI_D0, QSPI_D1, QSPI_D2, QSPI_D3, JTAG_TCK, JTAG_TDI, JTAG_TDO, JTAG_TMS, XU_RESET_N, XTAL_IN, XTAL_OUT]
+  adc_timing_xmos_bundle: [ADC_BCLK, ADC_FSYNC, ADC_DOUT1, AUDIO_MCLK_1V8, TDM_BCLK_1V8, TDM_DATA_1V8, TDM_FSYNC_1V8, ADC_I2C_SCL, ADC_I2C_SDA, ADC_READY, AUDIO_EN, XU_I2C_SCL_1V8, XU_I2C_SDA_1V8, ADC_DIGITAL_BAD]
+  adc_analog_boundary: [ADC1N, ADC1P, ADC2N, ADC2P, ADC3N, ADC3P, ADC4N, ADC4P, ADC5N, ADC5P, ADC6N, ADC6P, ADC7N, ADC7P, ADC8N, ADC8P, VMID1_EXT, VMID2_EXT]
+  power_boundary_windows: [GND, N0V9, N12V_PROTECTED, N1V8, N3V3X, N3V3_ADC, N5V_BUCK, N5V_LDO_HOLD, PWR_EN]
