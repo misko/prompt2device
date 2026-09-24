@@ -313,6 +313,30 @@ class CoarseCapacityTest(unittest.TestCase):
         self.assertEqual(result['status'], 'FAIL')
         self.assertIn('native copper intersects', result['errors'][0])
 
+    def test_integration_corridor_ignores_movable_reference_text_not_body(self):
+        self.add_integration_corridor()
+        fp = next(f for f in self.board.GetFootprints() if f.GetReference() == 'U_L0')
+        fp.Reference().SetVisible(True)
+        fp.Reference().SetPosition(pcbnew.VECTOR2I(iu(5), iu(5)))
+        fp.Value().SetVisible(True)
+        fp.Value().SetPosition(pcbnew.VECTOR2I(iu(5), iu(5)))
+        result = self.run_case()
+        self.assertEqual(result['errors'], [])
+        self.assertEqual(result['status'], 'INCOMPLETE')
+
+    def test_integration_corridor_non_text_graphic_hit_fails(self):
+        self.add_integration_corridor()
+        fp = next(f for f in self.board.GetFootprints() if f.GetReference() == 'U_L0')
+        graphic = pcbnew.PCB_SHAPE(fp)
+        graphic.SetShape(pcbnew.SHAPE_T_SEGMENT)
+        graphic.SetStart(pcbnew.VECTOR2I(iu(4.5), iu(5)))
+        graphic.SetEnd(pcbnew.VECTOR2I(iu(5.5), iu(5)))
+        graphic.SetLayer(pcbnew.F_SilkS)
+        fp.Add(graphic)
+        result = self.run_case()
+        self.assertEqual(result['status'], 'FAIL')
+        self.assertIn('native footprint/pad', result['errors'][0])
+
     def run_case(self, change=None):
         if change:
             change()

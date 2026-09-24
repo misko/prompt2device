@@ -446,7 +446,7 @@ def _integration_corridors(source, interfaces, board, outline, regions, zones,
                 'reference_layer': reference, 'proof': 'continuous_filled_reference'}:
             raise ContractError(f'{ident}: integration P2 filled-reference return obligation missing')
         for fp in board.GetFootprints():
-            shapes = [box_mm(fp.GetBoundingBox(True, True))] + [box_mm(p.GetBoundingBox()) for p in fp.Pads()]
+            shapes = [_physical_envelope(fp)] + [box_mm(p.GetBoundingBox()) for p in fp.Pads()]
             if any(intersects(shape, area) or any(intersects(shape, f['bbox']) for f in normalized_faces)
                    for shape in shapes):
                 raise ContractError(f'{ident}: native footprint/pad {fp.GetReference()} intersects integration corridor/face')
@@ -461,6 +461,21 @@ def _integration_corridors(source, interfaces, board, outline, regions, zones,
                 raise ContractError(f'{ident}: immutable native rule area intersects integration corridor/face')
         corridors[ident] = {**row, 'bbox': area, 'faces': normalized_faces}
     return corridors
+
+
+def _physical_envelope(fp):
+    """Body plus both native courtyards; exclude movable reference/value text."""
+    body = list(box_mm(fp.GetBoundingBox(False, False)))
+    for layer in (pcbnew.F_CrtYd, pcbnew.B_CrtYd):
+        courtyard = fp.GetCourtyard(layer)
+        for index in range(courtyard.OutlineCount()):
+            outline = courtyard.COutline(index)
+            for point in range(outline.PointCount()):
+                native = outline.CPoint(point)
+                x, y = pcbnew.ToMM(native.x), pcbnew.ToMM(native.y)
+                body = [min(body[0], x), min(body[1], y),
+                        max(body[2], x), max(body[3], y)]
+    return tuple(body)
 
 
 def _coarse_reservation(board, row, outline, fixed_refs, movable_refs, zones, native_pitch,

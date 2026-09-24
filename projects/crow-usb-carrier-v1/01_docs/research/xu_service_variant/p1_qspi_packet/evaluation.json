@@ -1,0 +1,47 @@
+{
+  "schema": 2,
+  "kind": "p1-coarse-reservation-screen",
+  "status": "FAIL",
+  "hashes": {
+    "board": "fbfb3bda95f1ddc98e7d3d229550644d136dc7d6349ba19a4023eb13b07e7e27",
+    "contract": "b17a94fedafbc334bdc0721535c640fb786f4b632b1abddf487289fdb19fbda4",
+    "source": "9a13c0999d29f17280bb5d8ffb98a5e0d59afe3ee4511eb004e436bffc13ece4",
+    "interfaces": "7201aa55cffefca99f9f27e92711cbbcf28387432523a8c960b5cd71e973170e",
+    "aliases": "a6baba8bd4e389c146250a2a2ef5f7e9b09f63526e71dbdd05be8bca9b7b2c2e",
+    "floorplan": "cd52893214a87432b99bab41827a64680bd8a2f970342f126260157948b50925"
+  },
+  "errors": [
+    "qspi_gap: integration affected endpoint/layer denominator mismatch"
+  ],
+  "allocations": [
+    {
+      "id": "usb_device_pair",
+      "status": "INCOMPLETE",
+      "reason": "U_USB_ESD.1: P2-movable owner requires virtual block-face witness"
+    },
+    {
+      "id": "xmos_service_escape",
+      "status": "FAIL",
+      "reason": "U_XU.51: witness bbox is a nonlocal bridge across source region"
+    },
+    {
+      "id": "adc_timing_xmos_bundle",
+      "status": "INCOMPLETE",
+      "reason": "U_ADC_A.22: P2-movable owner requires virtual block-face witness"
+    },
+    {
+      "id": "adc_analog_boundary",
+      "status": "INCOMPLETE",
+      "reason": "C_ADC_AC1N1.2: witness bbox is a nonlocal bridge across source region"
+    },
+    {
+      "id": "power_boundary_windows",
+      "status": "INCOMPLETE",
+      "reason": "C_ADC_3V3X_OK_VDD.2: witness bbox is a nonlocal bridge across source region"
+    }
+  ],
+  "allocation_denominator": 5,
+  "routing_realized": false,
+  "p1_accepted": false,
+  "reason": "independent filled-reference, effective-capacity and P1 review not supplied"
+}
