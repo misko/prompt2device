@@ -53,7 +53,7 @@ parts:
     - U_DUMP.4
     - U_DUMP.5
     stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    route_rules: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
     applicability:
       status: limited
       reasons:
@@ -63,7 +63,7 @@ parts:
         package: SC-74A SOT753
         mode: dump
         stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        route_rules_sha256: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
         circuit_sha256: f639988220c02317f630b3b138b998605e5dccac74f49ab01f6b2013245e94c8
     extracted_constraints:
     - "U_DUMP.2: U_DUMP: DUMP_RC into A2, DUMP_GATE from Y4; pin 3 is GND and pin 5 is N5V_LDO_HOLD, so local bypass belongs at 5/3."
@@ -77,7 +77,7 @@ parts:
     - U_LDO_EN.4
     - U_LDO_EN.5
     stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    route_rules: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
     applicability:
       status: limited
       reasons:
@@ -87,7 +87,7 @@ parts:
         package: SC-74A SOT753
         mode: ldo en
         stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        route_rules_sha256: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
         circuit_sha256: b0c633e3d986c10b6c3820f61ba0473c7c21473f2e4004711902c1d515cf6a1f
     extracted_constraints:
     - "U_LDO_EN.2: U_LDO_EN: DUMP_GATE into A2, LDO_EN from Y4; pin 3 is GND and pin 5 is N5V_LDO_HOLD, so local bypass belongs at 5/3."
@@ -147,7 +147,7 @@ parts:
     - U_LDO.10
     - U_LDO.11
     stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    route_rules: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
     applicability:
       status: limited
       reasons:
@@ -157,7 +157,7 @@ parts:
         package: DFN-10-1EP_3x3mm_P0.5mm
         mode: LT3045 ADC 3.3 V low-noise regulator with Kelvin OUTS/SET network
         stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        route_rules_sha256: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
         circuit_sha256: 24b04a729bf660f8e0a2ebdf4ed0ae19a252b68afe86fc3484a57dd63d61ca87
     extracted_constraints:
     - "U_LDO.1: Place C_LDO_IN by IN1/2 and C_LDO_OUT_1/2 by OUT10 with short GND8/EP11 return; verify at least 10uF effective local COUT, ESR and ESL for the actual parts."
@@ -221,7 +221,7 @@ parts:
     - "U_AFE1.7"
     - "U_AFE1.8"
     stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    route_rules: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
     applicability:
       status: limited
       reasons:
@@ -231,7 +231,7 @@ parts:
         package: D SOIC-8 3.9x4.9mm P1.27mm
         mode: afe1
         stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        route_rules_sha256: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
         circuit_sha256: 365d58c2d9726c813acdff02530e191d9e262dbb85518a05ce17d4d802dab95d
     extracted_constraints:
     - "Place the 100-nF bypass from U_AFE1.8 (VPOS=N3V3_ADC) to U_AFE1.4 (VNEG=GND) close to this SOIC-8."
@@ -250,7 +250,7 @@ parts:
     - "U_AFE2.7"
     - "U_AFE2.8"
     stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    route_rules: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
     applicability:
       status: limited
       reasons:
@@ -260,7 +260,7 @@ parts:
         package: D SOIC-8 3.9x4.9mm P1.27mm
         mode: afe2
         stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        route_rules_sha256: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
         circuit_sha256: c97e8d057e8efe1fc11fa8fedc6f54d9afcb62fd4343d9782348f4fe154d815b
     extracted_constraints:
     - "Place the 100-nF bypass from U_AFE2.8 (VPOS=N3V3_ADC) to U_AFE2.4 (VNEG=GND) close to this SOIC-8."
@@ -279,7 +279,7 @@ parts:
     - "U_AFE3.7"
     - "U_AFE3.8"
     stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    route_rules: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
     applicability:
       status: limited
       reasons:
@@ -289,7 +289,7 @@ parts:
         package: D SOIC-8 3.9x4.9mm P1.27mm
         mode: afe3
         stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        route_rules_sha256: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
         circuit_sha256: 09c88f16974d94c6b578d34c2497f8bb4aa827396fa1c557b33aaa1d84dc6b79
     extracted_constraints:
     - "Place the 100-nF bypass from U_AFE3.8 (VPOS=N3V3_ADC) to U_AFE3.4 (VNEG=GND) close to this SOIC-8."
@@ -308,7 +308,7 @@ parts:
     - "U_AFE4.7"
     - "U_AFE4.8"
     stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    route_rules: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
     applicability:
       status: limited
       reasons:
@@ -318,7 +318,7 @@ parts:
         package: D SOIC-8 3.9x4.9mm P1.27mm
         mode: afe4
         stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        route_rules_sha256: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
         circuit_sha256: 2c0131c8992f09b1b788c207b805968458bceb1c677a638f87e2642f35dc207f
     extracted_constraints:
     - "Place the 100-nF bypass from U_AFE4.8 (VPOS=N3V3_ADC) to U_AFE4.4 (VNEG=GND) close to this SOIC-8."
@@ -337,7 +337,7 @@ parts:
     - "U_AFE5.7"
     - "U_AFE5.8"
     stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    route_rules: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
     applicability:
       status: limited
       reasons:
@@ -347,7 +347,7 @@ parts:
         package: D SOIC-8 3.9x4.9mm P1.27mm
         mode: afe5
         stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        route_rules_sha256: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
         circuit_sha256: 1ff091cef4a2b968b51594fd6d5f7deab9416b8d8ed9b610b75976a7837cd847
     extracted_constraints:
     - "Place the 100-nF bypass from U_AFE5.8 (VPOS=N3V3_ADC) to U_AFE5.4 (VNEG=GND) close to this SOIC-8."
@@ -366,7 +366,7 @@ parts:
     - "U_AFE6.7"
     - "U_AFE6.8"
     stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    route_rules: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
     applicability:
       status: limited
       reasons:
@@ -376,7 +376,7 @@ parts:
         package: D SOIC-8 3.9x4.9mm P1.27mm
         mode: afe6
         stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        route_rules_sha256: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
         circuit_sha256: c6e2d2194d27a1135a15b370d8258ebc72497c6576e259a64c91b908139806a5
     extracted_constraints:
     - "Place the 100-nF bypass from U_AFE6.8 (VPOS=N3V3_ADC) to U_AFE6.4 (VNEG=GND) close to this SOIC-8."
@@ -395,7 +395,7 @@ parts:
     - "U_AFE7.7"
     - "U_AFE7.8"
     stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    route_rules: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
     applicability:
       status: limited
       reasons:
@@ -405,7 +405,7 @@ parts:
         package: D SOIC-8 3.9x4.9mm P1.27mm
         mode: afe7
         stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        route_rules_sha256: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
         circuit_sha256: fa27b8397cd9393b0cc62214cf6ebbb3d53c9361430d354f5f24e00b0de347d8
     extracted_constraints:
     - "Place the 100-nF bypass from U_AFE7.8 (VPOS=N3V3_ADC) to U_AFE7.4 (VNEG=GND) close to this SOIC-8."
@@ -424,7 +424,7 @@ parts:
     - "U_AFE8.7"
     - "U_AFE8.8"
     stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    route_rules: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
     applicability:
       status: limited
       reasons:
@@ -434,7 +434,7 @@ parts:
         package: D SOIC-8 3.9x4.9mm P1.27mm
         mode: afe8
         stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        route_rules_sha256: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
         circuit_sha256: f5d359fbf6fade41bd536ab9ba03b81dd9ef158d1bf47f62470ced50725d4a5b
     extracted_constraints:
     - "Place the 100-nF bypass from U_AFE8.8 (VPOS=N3V3_ADC) to U_AFE8.4 (VNEG=GND) close to this SOIC-8."
@@ -491,7 +491,7 @@ parts:
     - "U_ADC_OUT.6"
     - "U_ADC_OUT.8"
     stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    route_rules: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
     applicability:
       status: limited
       reasons:
@@ -501,7 +501,7 @@ parts:
         package: VSSOP-8 DCU
         mode: adc out
         stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        route_rules_sha256: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
         circuit_sha256: 1616a7b5d46ba757bc317638b59f5552c481cc9ea38786485764535583c1441d
     extracted_constraints:
     - "Place C_ADC_OUT adjacent to U_ADC_OUT.8 (VCC=N3V3_ADC) with short return to U_ADC_OUT.4 (GND=GND); pad 1 is a tied-low unused input, not VCC."
@@ -565,7 +565,7 @@ parts:
     - "U_TDM_XLATE.15"
     - "U_TDM_XLATE.16"
     stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    route_rules: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
     applicability:
       status: limited
       reasons:
@@ -575,7 +575,7 @@ parts:
         package: TSSOP-16 PW
         mode: tdm xlate
         stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        route_rules_sha256: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
         circuit_sha256: c15c421eca39515999eef00ebdaef165831b008dbf5fa6dc77e1a85e73e26113
     extracted_constraints:
     - "Bypass U_TDM_XLATE.1 (VCCA=N1V8) and U_TDM_XLATE.16 (VCCB=N3V3X) separately with short return to ground pads 8/9; pads 10/11 are B-port signals, not supply/ground."
@@ -630,7 +630,7 @@ parts:
     - U_ADC_DIGITAL_BAD.4
     - U_ADC_DIGITAL_BAD.5
     stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    route_rules: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
     applicability:
       status: limited
       reasons:
@@ -640,7 +640,7 @@ parts:
         package: SC70-5 DCK
         mode: adc digital bad
         stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        route_rules_sha256: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
         circuit_sha256: a8db45453a50b1f71516e451ed0c47ebaf0a5473316c21442d12ac64d19f17d9
     extracted_constraints:
     - "U_ADC_DIGITAL_BAD.2: Bypass VCC5 (N3V3_ADC) to GND3 locally; A2=ADC_DIGITAL_OK and Y4=ADC_DIGITAL_BAD are inverter input and output."
@@ -654,7 +654,7 @@ parts:
     - U_ADC_PWR_BAD.4
     - U_ADC_PWR_BAD.5
     stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    route_rules: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
     applicability:
       status: limited
       reasons:
@@ -664,7 +664,7 @@ parts:
         package: SC70-5 DCK
         mode: adc pwr bad
         stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        route_rules_sha256: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
         circuit_sha256: 94b6fbd1e9a1759c492caac317fbd968cb40666e63fe5c632547631d42cecd2c
     extracted_constraints:
     - "U_ADC_PWR_BAD.2: Bypass VCC5 (N5V_LDO_HOLD) to GND3 locally; A2=PWR_EN and Y4=ADC_PWR_BAD are inverter input and output."
@@ -678,7 +678,7 @@ parts:
     - U_ADC_READY_BAD.4
     - U_ADC_READY_BAD.5
     stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    route_rules: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
     applicability:
       status: limited
       reasons:
@@ -688,7 +688,7 @@ parts:
         package: SC70-5 DCK
         mode: adc ready bad
         stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        route_rules_sha256: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
         circuit_sha256: 3c382657454708946ba9e5abf91163ffc78cc17d55d82716e8f9e705f5169ff9
     extracted_constraints:
     - "U_ADC_READY_BAD.2: Bypass VCC5 (N3V3_ADC) to GND3 locally; A2=ADC_READY and Y4=ADC_READY_BAD are inverter input and output."
@@ -702,7 +702,7 @@ parts:
     - U_BCLK_INV.4
     - U_BCLK_INV.5
     stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    route_rules: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
     applicability:
       status: limited
       reasons:
@@ -712,7 +712,7 @@ parts:
         package: SC70-5 DCK
         mode: bclk inv
         stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        route_rules_sha256: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
         circuit_sha256: 42afe863d2f3f98edfa684d793593d411f75e115ce129ac06ae0681b5fefaa9a
     extracted_constraints:
     - "U_BCLK_INV.2: Bypass VCC5 (N3V3X) to GND3 locally; A2=ADC_BCLK_RAW and Y4=ADC_BCLK_INV are inverter input and output."
@@ -772,7 +772,7 @@ parts:
     - U_RST2.7
     - U_RST2.8
     stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    route_rules: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
     applicability:
       status: limited
       reasons:
@@ -782,7 +782,7 @@ parts:
         package: DCT SSOP-8 2.95x2.8mm P0.65mm
         mode: rst2
         stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        route_rules_sha256: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
         circuit_sha256: d15ad96f189fc981111f8073362306baac119648b3b9226d3341b2b271829c9d
     extracted_constraints:
     - "U_RST2.1: VCC8 (N3V3_ADC) to GND4 needs local bypass; A1, B2 and active-low CLR3 are distinct trigger/clear inputs with source nets GND, ADC_START_DELAY and ADC_READY."
@@ -835,7 +835,7 @@ parts:
     - U_ADC_CLOCK_OK.4
     - U_ADC_CLOCK_OK.5
     stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    route_rules: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
     applicability:
       status: limited
       reasons:
@@ -845,7 +845,7 @@ parts:
         package: SC70-5 DCK
         mode: adc clock ok
         stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        route_rules_sha256: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
         circuit_sha256: cf22936b0dd612730229f5914db975eb874949b08b6630eac916b7f82caaee67
     extracted_constraints:
     - "U_ADC_CLOCK_OK.1: Bypass VCC5 (N3V3_ADC) to GND3 locally; OE_N1, A2 and Y4 are distinct enable/input/output nodes."
@@ -860,7 +860,7 @@ parts:
     - U_ADC_READY.4
     - U_ADC_READY.5
     stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    route_rules: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
     applicability:
       status: limited
       reasons:
@@ -870,7 +870,7 @@ parts:
         package: SC70-5 DCK
         mode: adc ready
         stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        route_rules_sha256: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
         circuit_sha256: 7bab2542f31da241bdd0f9ab74be86ae6658770fbd7be0a2acfb41ff5326d65e
     extracted_constraints:
     - "U_ADC_READY.1: Bypass VCC5 (N3V3_ADC) to GND3 locally; OE_N1, A2 and Y4 are distinct enable/input/output nodes."
@@ -923,7 +923,7 @@ parts:
     - "U_FSYNC_OR.5"
     - "U_FSYNC_OR.6"
     stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    route_rules: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
     applicability:
       status: limited
       reasons:
@@ -933,7 +933,7 @@ parts:
         package: SOT-23-6 DBV
         mode: fsync or
         stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        route_rules_sha256: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
         circuit_sha256: 14f30b77c119722693372cf0a540999a348e4fa480e34c0e41d1d6a0ef5d751a
     extracted_constraints:
     - "Place C_FSYNC_OR adjacent to U_FSYNC_OR.5 (VCC=N3V3X) with a short return to U_FSYNC_OR.2 (GND=GND); pins 1 and 3 are logic inputs, not supply/ground."
@@ -988,7 +988,7 @@ parts:
     - "U_FSYNC_FF1.7"
     - "U_FSYNC_FF1.8"
     stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    route_rules: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
     applicability:
       status: limited
       reasons:
@@ -998,7 +998,7 @@ parts:
         package: SM8-8 DCT
         mode: fsync ff1
         stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        route_rules_sha256: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
         circuit_sha256: fc5facbb91f497177f0b840656126a1247446529a74261fef7ff049e43399941
     extracted_constraints:
     - "Place C_FSYNC_FF1 beside U_FSYNC_FF1.8 (VCC=N3V3X) with a short ground return to U_FSYNC_FF1.4 (GND=GND)."
@@ -1015,7 +1015,7 @@ parts:
     - "U_FSYNC_FF2.7"
     - "U_FSYNC_FF2.8"
     stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    route_rules: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
     applicability:
       status: limited
       reasons:
@@ -1025,7 +1025,7 @@ parts:
         package: SM8-8 DCT
         mode: fsync ff2
         stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        route_rules_sha256: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
         circuit_sha256: 419b53bcd660db4e68c816228b3b1b13bf5a52425373c10ef8ece73b26b0e45f
     extracted_constraints:
     - "Place C_FSYNC_FF2 beside U_FSYNC_FF2.8 (VCC=N3V3X) with a short ground return to U_FSYNC_FF2.4 (GND=GND)."
@@ -1076,7 +1076,7 @@ parts:
     - "Y_AUDIO.3"
     - "Y_AUDIO.4"
     stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    route_rules: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
     applicability:
       status: limited
       reasons:
@@ -1086,7 +1086,7 @@ parts:
         package: 5.0x3.2mm SMD 4-pad, 1.2mm nominal height
         mode: 24.576 MHz audio clock source
         stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        route_rules_sha256: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
         circuit_sha256: f1beb33fbe91f974ea0e44f79ec0e1bc16a91fa5f1495b5d91d00703194aee7f
     extracted_constraints:
     - "Place C_AUDIO_OSC 10 nF locally between Y_AUDIO.4 (VDD=N3V3X) and Y_AUDIO.2 (GND=GND), per SCTF test circuit."
@@ -1145,7 +1145,7 @@ parts:
     - "U_ADC_I2C_XLATE.7"
     - "U_ADC_I2C_XLATE.8"
     stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    route_rules: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
     applicability:
       status: limited
       reasons:
@@ -1155,7 +1155,7 @@ parts:
         package: DCU0008A VSSOP8 P0.5mm
         mode: adc i2c xlate
         stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        route_rules_sha256: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
         circuit_sha256: 276b4d4e5c15d526e07a95268fef59a5f44da60c69c40e9d7016874c46ee5e70
     extracted_constraints:
     - "Put separate 100-nF bypass capacitors at U_ADC_I2C_XLATE.3 (VCCA=N1V8) and U_ADC_I2C_XLATE.7 (VCCB=N3V3_ADC), each with short return to U_ADC_I2C_XLATE.2 (GND=GND)."
@@ -1233,7 +1233,7 @@ parts:
     - "U_ADC_A.24"
     - "U_ADC_A.25"
     stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    route_rules: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
     applicability:
       status: limited
       reasons:
@@ -1243,7 +1243,7 @@ parts:
         package: RTW0024A WQFN24 4x4mm P0.5mm EP2.6mm
         mode: U_ADC_A four-channel audio ADC in shared TDM design
         stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        route_rules_sha256: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
         circuit_sha256: b466da5863990f31015e93724f1d43f62bb546c78940a131f7e67becd2093301
     extracted_constraints:
     - "Place local supply/regulator/reference capacitors at U_ADC_A.1 (AVDD=N3V3_ADC), U_ADC_A.19 (IOVDD=N3V3_ADC), U_ADC_A.2 (AREG=ADC_A_AREG), U_ADC_A.24 (DREG=ADC_A_DREG), and U_ADC_A.3 (VREF=ADC_A_VREF); return VREF capacitor directly to U_ADC_A.4 (AVSS=GND) without a via in the connection trace, and tie U_ADC_A.25 (EP_VSS=GND) to ground."
@@ -1275,7 +1275,7 @@ parts:
     - "U_ADC_B.24"
     - "U_ADC_B.25"
     stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    route_rules: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
     applicability:
       status: limited
       reasons:
@@ -1285,7 +1285,7 @@ parts:
         package: RTW0024A WQFN24 4x4mm P0.5mm EP2.6mm
         mode: U_ADC_B four-channel audio ADC in shared TDM design
         stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        route_rules_sha256: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
         circuit_sha256: 0f47f5b2466ba8790602e9469502e5bdb1eae957910c0866c237404541f293b8
     extracted_constraints:
     - "Place local supply/regulator/reference capacitors at U_ADC_B.1 (AVDD=N3V3_ADC), U_ADC_B.19 (IOVDD=N3V3_ADC), U_ADC_B.2 (AREG=ADC_B_AREG), U_ADC_B.24 (DREG=ADC_B_DREG), and U_ADC_B.3 (VREF=ADC_B_VREF); return VREF capacitor directly to U_ADC_B.4 (AVSS=GND) without a via in the connection trace, and tie U_ADC_B.25 (EP_VSS=GND) to ground."
@@ -1355,7 +1355,7 @@ parts:
     - "U_ISO1.8"
     - "U_ISO1.9"
     stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    route_rules: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
     applicability:
       status: limited
       reasons:
@@ -1365,7 +1365,7 @@ parts:
         package: TI_YBH0009_C02_TMUX4827 DSBGA-9 P0.4mm
         mode: U_ISO1 analog input isolation switch
         stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        route_rules_sha256: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
         circuit_sha256: 23995c7dfe33f6f2d5e41441f7b4702c8e2f2c91f46fc91972ac2c09ba1347d2
     extracted_constraints:
     - "Place C_ISO bypass adjacent to U_ISO1.8 (VDD=N5V_LDO_HOLD) with short return to U_ISO1.5 (GND=GND); pad 2 is SEL, not supply."
@@ -1383,7 +1383,7 @@ parts:
     - "U_ISO2.8"
     - "U_ISO2.9"
     stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    route_rules: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
     applicability:
       status: limited
       reasons:
@@ -1393,7 +1393,7 @@ parts:
         package: TI_YBH0009_C02_TMUX4827 DSBGA-9 P0.4mm
         mode: U_ISO2 analog input isolation switch
         stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        route_rules_sha256: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
         circuit_sha256: 0f2b5c4ed5ba5dd297030190144c11d0f14a4d6631aa9328c119081340abd64d
     extracted_constraints:
     - "Place C_ISO bypass adjacent to U_ISO2.8 (VDD=N5V_LDO_HOLD) with short return to U_ISO2.5 (GND=GND); pad 2 is SEL, not supply."
@@ -1411,7 +1411,7 @@ parts:
     - "U_ISO3.8"
     - "U_ISO3.9"
     stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    route_rules: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
     applicability:
       status: limited
       reasons:
@@ -1421,7 +1421,7 @@ parts:
         package: TI_YBH0009_C02_TMUX4827 DSBGA-9 P0.4mm
         mode: U_ISO3 analog input isolation switch
         stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        route_rules_sha256: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
         circuit_sha256: 82e8bd5f678ed060ffa1d010dd2cc088c85b055bdad28aad480afd47bc05ce9d
     extracted_constraints:
     - "Place C_ISO bypass adjacent to U_ISO3.8 (VDD=N5V_LDO_HOLD) with short return to U_ISO3.5 (GND=GND); pad 2 is SEL, not supply."
@@ -1439,7 +1439,7 @@ parts:
     - "U_ISO4.8"
     - "U_ISO4.9"
     stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    route_rules: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
     applicability:
       status: limited
       reasons:
@@ -1449,7 +1449,7 @@ parts:
         package: TI_YBH0009_C02_TMUX4827 DSBGA-9 P0.4mm
         mode: U_ISO4 analog input isolation switch
         stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        route_rules_sha256: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
         circuit_sha256: b0193764a87a31746d9700a44ce7a066eb8d12eb7366a0706e7b9978a213612a
     extracted_constraints:
     - "Place C_ISO bypass adjacent to U_ISO4.8 (VDD=N5V_LDO_HOLD) with short return to U_ISO4.5 (GND=GND); pad 2 is SEL, not supply."
@@ -1467,7 +1467,7 @@ parts:
     - "U_ISO5.8"
     - "U_ISO5.9"
     stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    route_rules: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
     applicability:
       status: limited
       reasons:
@@ -1477,7 +1477,7 @@ parts:
         package: TI_YBH0009_C02_TMUX4827 DSBGA-9 P0.4mm
         mode: U_ISO5 analog input isolation switch
         stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        route_rules_sha256: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
         circuit_sha256: 34bb4c9e0ef3f8981bc65048ed40b9a602ca6b109f43be5434d963f812703b74
     extracted_constraints:
     - "Place C_ISO bypass adjacent to U_ISO5.8 (VDD=N5V_LDO_HOLD) with short return to U_ISO5.5 (GND=GND); pad 2 is SEL, not supply."
@@ -1495,7 +1495,7 @@ parts:
     - "U_ISO6.8"
     - "U_ISO6.9"
     stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    route_rules: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
     applicability:
       status: limited
       reasons:
@@ -1505,7 +1505,7 @@ parts:
         package: TI_YBH0009_C02_TMUX4827 DSBGA-9 P0.4mm
         mode: U_ISO6 analog input isolation switch
         stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        route_rules_sha256: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
         circuit_sha256: 0386ae46d152836b2d0662abd6a618f9dd9ec0e8618ec5be3ef645c71bb8530a
     extracted_constraints:
     - "Place C_ISO bypass adjacent to U_ISO6.8 (VDD=N5V_LDO_HOLD) with short return to U_ISO6.5 (GND=GND); pad 2 is SEL, not supply."
@@ -1523,7 +1523,7 @@ parts:
     - "U_ISO7.8"
     - "U_ISO7.9"
     stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    route_rules: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
     applicability:
       status: limited
       reasons:
@@ -1533,7 +1533,7 @@ parts:
         package: TI_YBH0009_C02_TMUX4827 DSBGA-9 P0.4mm
         mode: U_ISO7 analog input isolation switch
         stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        route_rules_sha256: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
         circuit_sha256: 92d10ac9df4b8508182ab4f09347a9b57e8847d22cb9cd939798caf47085cdae
     extracted_constraints:
     - "Place C_ISO bypass adjacent to U_ISO7.8 (VDD=N5V_LDO_HOLD) with short return to U_ISO7.5 (GND=GND); pad 2 is SEL, not supply."
@@ -1551,7 +1551,7 @@ parts:
     - "U_ISO8.8"
     - "U_ISO8.9"
     stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    route_rules: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
     applicability:
       status: limited
       reasons:
@@ -1561,7 +1561,7 @@ parts:
         package: TI_YBH0009_C02_TMUX4827 DSBGA-9 P0.4mm
         mode: U_ISO8 analog input isolation switch
         stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        route_rules_sha256: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
         circuit_sha256: 6b0756e31f40ff4c11af2137227a34886d0c9f864ec3e20744db933db4196462
     extracted_constraints:
     - "Place C_ISO bypass adjacent to U_ISO8.8 (VDD=N5V_LDO_HOLD) with short return to U_ISO8.5 (GND=GND); pad 2 is SEL, not supply."
@@ -1618,7 +1618,7 @@ parts:
     - "U_ESD1.4"
     - "U_ESD1.5"
     stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    route_rules: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
     applicability:
       status: limited
       reasons:
@@ -1628,8 +1628,8 @@ parts:
         package: DRL SOT-553 P0.5mm
         mode: esd1
         stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
-        circuit_sha256: 0e647ce472ecc320acab1a7fd677842e7f77789a8c5ac91000d872864c336b2b
+        route_rules_sha256: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
+        circuit_sha256: 05b868920bfdc2f4e942c0cf479622b85ad984a3b33bd60f96a996d1e8609a29
     extracted_constraints:
     - "Place the shunt clamp at the associated external connector; bring the connector-side signal to protected U_ESD1.3 (IO1=AUDIO_P1), U_ESD1.5 (IO2=AUDIO_N1) before continuing to the circuit, without a long side stub."
     - "Give U_ESD1.4 (GND=GND) a short broad return and nearby ground via; pins 1/2 are NC."
@@ -1642,7 +1642,7 @@ parts:
     - "U_ESD2.4"
     - "U_ESD2.5"
     stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    route_rules: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
     applicability:
       status: limited
       reasons:
@@ -1652,8 +1652,8 @@ parts:
         package: DRL SOT-553 P0.5mm
         mode: esd2
         stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
-        circuit_sha256: 03b1afb36a1f695f62d043de5227f703818748a7139091eb781991f4228dd909
+        route_rules_sha256: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
+        circuit_sha256: 728f7b1eb7b0fb66ff5180e49bcce6fcbf6b599f7c8b6695431bc59a56a55493
     extracted_constraints:
     - "Place the shunt clamp at the associated external connector; bring the connector-side signal to protected U_ESD2.3 (IO1=AUDIO_P2), U_ESD2.5 (IO2=AUDIO_N2) before continuing to the circuit, without a long side stub."
     - "Give U_ESD2.4 (GND=GND) a short broad return and nearby ground via; pins 1/2 are NC."
@@ -1666,7 +1666,7 @@ parts:
     - "U_ESD3.4"
     - "U_ESD3.5"
     stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    route_rules: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
     applicability:
       status: limited
       reasons:
@@ -1676,8 +1676,8 @@ parts:
         package: DRL SOT-553 P0.5mm
         mode: esd3
         stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
-        circuit_sha256: f0b896e5fc658a4a558f6b95c5c1afa957b98aef4bd3a45b25f1dc58933cd02e
+        route_rules_sha256: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
+        circuit_sha256: 87f19492032d969e0c33c3f7080a1faa6df0d08bef4ed234d96a5b14a43af536
     extracted_constraints:
     - "Place the shunt clamp at the associated external connector; bring the connector-side signal to protected U_ESD3.3 (IO1=AUDIO_P3), U_ESD3.5 (IO2=AUDIO_N3) before continuing to the circuit, without a long side stub."
     - "Give U_ESD3.4 (GND=GND) a short broad return and nearby ground via; pins 1/2 are NC."
@@ -1690,7 +1690,7 @@ parts:
     - "U_ESD4.4"
     - "U_ESD4.5"
     stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    route_rules: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
     applicability:
       status: limited
       reasons:
@@ -1700,8 +1700,8 @@ parts:
         package: DRL SOT-553 P0.5mm
         mode: esd4
         stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
-        circuit_sha256: fcec22ac4966b4361b7b251372fc8e39e0a6a1e58ce3700bacc073006092784c
+        route_rules_sha256: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
+        circuit_sha256: 351c808a8ee23196d8d65fc0491f43c51a2f8d63319ba998860d10a98e05e90e
     extracted_constraints:
     - "Place the shunt clamp at the associated external connector; bring the connector-side signal to protected U_ESD4.3 (IO1=AUDIO_P4), U_ESD4.5 (IO2=AUDIO_N4) before continuing to the circuit, without a long side stub."
     - "Give U_ESD4.4 (GND=GND) a short broad return and nearby ground via; pins 1/2 are NC."
@@ -1714,7 +1714,7 @@ parts:
     - "U_ESD5.4"
     - "U_ESD5.5"
     stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    route_rules: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
     applicability:
       status: limited
       reasons:
@@ -1724,8 +1724,8 @@ parts:
         package: DRL SOT-553 P0.5mm
         mode: esd5
         stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
-        circuit_sha256: e0e76a32f22f755cbbc19d424f0ce72ed936b7ff4436ffed8bd74d4bc4f495a9
+        route_rules_sha256: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
+        circuit_sha256: 1859d301828aff2356c890d6a5803e644362ffd000dc410f7e8229d42103ff83
     extracted_constraints:
     - "Place the shunt clamp at the associated external connector; bring the connector-side signal to protected U_ESD5.3 (IO1=AUDIO_P5), U_ESD5.5 (IO2=AUDIO_N5) before continuing to the circuit, without a long side stub."
     - "Give U_ESD5.4 (GND=GND) a short broad return and nearby ground via; pins 1/2 are NC."
@@ -1738,7 +1738,7 @@ parts:
     - "U_ESD6.4"
     - "U_ESD6.5"
     stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    route_rules: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
     applicability:
       status: limited
       reasons:
@@ -1748,8 +1748,8 @@ parts:
         package: DRL SOT-553 P0.5mm
         mode: esd6
         stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
-        circuit_sha256: d1dfef33d1db87508cf1053ea6e08062947f44f2e8682db7cb89ab8e0fc04c72
+        route_rules_sha256: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
+        circuit_sha256: b18da8800f6d8cab8bc5fd4bf5af244e6ca1eff80fd810540d3b08d740f815ba
     extracted_constraints:
     - "Place the shunt clamp at the associated external connector; bring the connector-side signal to protected U_ESD6.3 (IO1=AUDIO_P6), U_ESD6.5 (IO2=AUDIO_N6) before continuing to the circuit, without a long side stub."
     - "Give U_ESD6.4 (GND=GND) a short broad return and nearby ground via; pins 1/2 are NC."
@@ -1762,7 +1762,7 @@ parts:
     - "U_ESD7.4"
     - "U_ESD7.5"
     stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    route_rules: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
     applicability:
       status: limited
       reasons:
@@ -1772,8 +1772,8 @@ parts:
         package: DRL SOT-553 P0.5mm
         mode: esd7
         stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
-        circuit_sha256: c222a5f862d7fd3ce68596ae2657e1099fdde7d3446a4e2b5873ad339f260e46
+        route_rules_sha256: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
+        circuit_sha256: e95d22b3122b23997b8366809ad65d819170eb4a374cb62d84a2fb69ab5c4e9a
     extracted_constraints:
     - "Place the shunt clamp at the associated external connector; bring the connector-side signal to protected U_ESD7.3 (IO1=AUDIO_P7), U_ESD7.5 (IO2=AUDIO_N7) before continuing to the circuit, without a long side stub."
     - "Give U_ESD7.4 (GND=GND) a short broad return and nearby ground via; pins 1/2 are NC."
@@ -1786,7 +1786,7 @@ parts:
     - "U_ESD8.4"
     - "U_ESD8.5"
     stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    route_rules: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
     applicability:
       status: limited
       reasons:
@@ -1796,8 +1796,8 @@ parts:
         package: DRL SOT-553 P0.5mm
         mode: esd8
         stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
-        circuit_sha256: f68e62a44a0735cf3cd7caac0ca9dea8bd5731aa538df31dc9b11d68c9dcdf7e
+        route_rules_sha256: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
+        circuit_sha256: 7b516b5e885a36771bdced7df4d5b902b9faf7bc29c4c38cd6f742469a6f0e79
     extracted_constraints:
     - "Place the shunt clamp at the associated external connector; bring the connector-side signal to protected U_ESD8.3 (IO1=AUDIO_P8), U_ESD8.5 (IO2=AUDIO_N8) before continuing to the circuit, without a long side stub."
     - "Give U_ESD8.4 (GND=GND) a short broad return and nearby ground via; pins 1/2 are NC."
@@ -1810,7 +1810,7 @@ parts:
     - "U_USB_CC_ESD.4"
     - "U_USB_CC_ESD.5"
     stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    route_rules: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
     applicability:
       status: limited
       reasons:
@@ -1820,8 +1820,8 @@ parts:
         package: DRL SOT-553 P0.5mm
         mode: usb cc esd
         stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
-        circuit_sha256: d4ab2bf984985066cc78482b767a0c6b05c891dda3578e3489401d106fd427fc
+        route_rules_sha256: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
+        circuit_sha256: 97ecb1b66ec3b386982e7d9486fb3b035023d9512834bcb2a98951bb1b78989f
     extracted_constraints:
     - "Place the shunt clamp at the associated external connector; bring the connector-side signal to protected U_USB_CC_ESD.3 (CC1=USB_CC1), U_USB_CC_ESD.5 (CC2=USB_CC2) before continuing to the circuit, without a long side stub."
     - "Give U_USB_CC_ESD.4 (GND=GND) a short broad return and nearby ground via; pins 1/2 are NC."
@@ -1833,7 +1833,7 @@ parts:
     - "U_USB_VBUS_ESD.3"
     - "U_USB_VBUS_ESD.4"
     stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    route_rules: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
     applicability:
       status: limited
       reasons:
@@ -1843,8 +1843,8 @@ parts:
         package: DRL SOT-553 P0.5mm
         mode: usb vbus esd
         stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
-        circuit_sha256: 85538a4951d8514523ee47d804fd0d6415f068648dc5b51da064bd5b1f941233
+        route_rules_sha256: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
+        circuit_sha256: 253f464e1d8047fcbb727143a014ea92db43041d8b758048095e10097c4e2128
     extracted_constraints:
     - "Place the shunt clamp at the associated external connector; bring the connector-side signal to protected U_USB_VBUS_ESD.3 (VBUS=VBUS_USB) before continuing to the circuit, without a long side stub."
     - "Give U_USB_VBUS_ESD.4 (GND=GND) a short broad return and nearby ground via; pins 1/2 are NC."
@@ -1903,7 +1903,7 @@ parts:
     - "U_USB_ESD.2"
     - "U_USB_ESD.3"
     stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    route_rules: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
     applicability:
       status: limited
       reasons:
@@ -1913,7 +1913,7 @@ parts:
         package: DRT 3-pin SOT, 1.0 x 0.8 mm
         mode: USB DP/DM shunt clamp between J_USB and U_XU
         stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        route_rules_sha256: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
         circuit_sha256: 801ab3feead74cafd3888b202cd7062b264a1096953afd33cbd76f3a477724c5
     extracted_constraints:
     - "Place DRT clamp beside J_USB with U_USB_ESD.1 (DP=USB_DP) and U_USB_ESD.2 (DM=USB_DN) on the USB data pair, then continue to U_XU without long stubs."
@@ -1977,7 +1977,7 @@ parts:
     - U_SPOKE1.10
     - U_SPOKE1.11
     stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    route_rules: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
     applicability:
       status: limited
       reasons:
@@ -1987,7 +1987,7 @@ parts:
         package: DRC0010J VSON-10 3x3mm 0.5mm pitch with exposed PowerPAD
         mode: U_SPOKE1 protected 12 V spoke eFuse
         stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        route_rules_sha256: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
         circuit_sha256: 3fbf72d70f9c0203c2fce1cdc0bce78b9da8175f6760d406316876a6e37439a0
     extracted_constraints:
     - "U_SPOKE1.1: Place C_SPOKE_IN1 across IN1 and system GND6 and C_SPOKE_OUT1 close to OUT10/system GND; keep input/output current loops short."
@@ -2005,7 +2005,7 @@ parts:
     - U_SPOKE2.10
     - U_SPOKE2.11
     stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    route_rules: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
     applicability:
       status: limited
       reasons:
@@ -2015,7 +2015,7 @@ parts:
         package: DRC0010J VSON-10 3x3mm 0.5mm pitch with exposed PowerPAD
         mode: U_SPOKE2 protected 12 V spoke eFuse
         stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        route_rules_sha256: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
         circuit_sha256: 46fc8f0218b822a9faed1ee48d3bed88fc298778bf7d946b32e751c137287401
     extracted_constraints:
     - "U_SPOKE2.1: Place C_SPOKE_IN2 across IN1 and system GND6 and C_SPOKE_OUT2 close to OUT10/system GND; keep input/output current loops short."
@@ -2033,7 +2033,7 @@ parts:
     - U_SPOKE3.10
     - U_SPOKE3.11
     stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    route_rules: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
     applicability:
       status: limited
       reasons:
@@ -2043,7 +2043,7 @@ parts:
         package: DRC0010J VSON-10 3x3mm 0.5mm pitch with exposed PowerPAD
         mode: U_SPOKE3 protected 12 V spoke eFuse
         stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        route_rules_sha256: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
         circuit_sha256: 4e3fc190de5f2392bdcc86ff79306859dd82524ab94b780807a70a57ea3e0e44
     extracted_constraints:
     - "U_SPOKE3.1: Place C_SPOKE_IN3 across IN1 and system GND6 and C_SPOKE_OUT3 close to OUT10/system GND; keep input/output current loops short."
@@ -2061,7 +2061,7 @@ parts:
     - U_SPOKE4.10
     - U_SPOKE4.11
     stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    route_rules: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
     applicability:
       status: limited
       reasons:
@@ -2071,7 +2071,7 @@ parts:
         package: DRC0010J VSON-10 3x3mm 0.5mm pitch with exposed PowerPAD
         mode: U_SPOKE4 protected 12 V spoke eFuse
         stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        route_rules_sha256: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
         circuit_sha256: cde5bb97543f6ebc6e5cb62111003fba3450c5d7ba808ad669268b4368a99c5a
     extracted_constraints:
     - "U_SPOKE4.1: Place C_SPOKE_IN4 across IN1 and system GND6 and C_SPOKE_OUT4 close to OUT10/system GND; keep input/output current loops short."
@@ -2089,7 +2089,7 @@ parts:
     - U_SPOKE5.10
     - U_SPOKE5.11
     stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    route_rules: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
     applicability:
       status: limited
       reasons:
@@ -2099,7 +2099,7 @@ parts:
         package: DRC0010J VSON-10 3x3mm 0.5mm pitch with exposed PowerPAD
         mode: U_SPOKE5 protected 12 V spoke eFuse
         stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        route_rules_sha256: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
         circuit_sha256: 7794848b4001556878e50d6de9c37e40d1387da6c00367cfb50a2d5828b8f3c7
     extracted_constraints:
     - "U_SPOKE5.1: Place C_SPOKE_IN5 across IN1 and system GND6 and C_SPOKE_OUT5 close to OUT10/system GND; keep input/output current loops short."
@@ -2117,7 +2117,7 @@ parts:
     - U_SPOKE6.10
     - U_SPOKE6.11
     stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    route_rules: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
     applicability:
       status: limited
       reasons:
@@ -2127,7 +2127,7 @@ parts:
         package: DRC0010J VSON-10 3x3mm 0.5mm pitch with exposed PowerPAD
         mode: U_SPOKE6 protected 12 V spoke eFuse
         stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        route_rules_sha256: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
         circuit_sha256: ad7f7c8e9fc5267e75126b1109de40bb58690f998e5ca89b369ee86c6051dc50
     extracted_constraints:
     - "U_SPOKE6.1: Place C_SPOKE_IN6 across IN1 and system GND6 and C_SPOKE_OUT6 close to OUT10/system GND; keep input/output current loops short."
@@ -2145,7 +2145,7 @@ parts:
     - U_SPOKE7.10
     - U_SPOKE7.11
     stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    route_rules: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
     applicability:
       status: limited
       reasons:
@@ -2155,7 +2155,7 @@ parts:
         package: DRC0010J VSON-10 3x3mm 0.5mm pitch with exposed PowerPAD
         mode: U_SPOKE7 protected 12 V spoke eFuse
         stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        route_rules_sha256: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
         circuit_sha256: 220a9f2a075dfbec025c9ff73eb209fc1718cd70ab5ef1c5cd003fe11249e2e3
     extracted_constraints:
     - "U_SPOKE7.1: Place C_SPOKE_IN7 across IN1 and system GND6 and C_SPOKE_OUT7 close to OUT10/system GND; keep input/output current loops short."
@@ -2173,7 +2173,7 @@ parts:
     - U_SPOKE8.10
     - U_SPOKE8.11
     stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    route_rules: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
     applicability:
       status: limited
       reasons:
@@ -2183,7 +2183,7 @@ parts:
         package: DRC0010J VSON-10 3x3mm 0.5mm pitch with exposed PowerPAD
         mode: U_SPOKE8 protected 12 V spoke eFuse
         stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        route_rules_sha256: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
         circuit_sha256: f46927f4740143764032910792a17b008516f6ac22e94a827e2d692351438b13
     extracted_constraints:
     - "U_SPOKE8.1: Place C_SPOKE_IN8 across IN1 and system GND6 and C_SPOKE_OUT8 close to OUT10/system GND; keep input/output current loops short."
@@ -2236,7 +2236,7 @@ parts:
     - U_CORE_OK.5
     - U_CORE_OK.6
     stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    route_rules: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
     applicability:
       status: limited
       reasons:
@@ -2246,7 +2246,7 @@ parts:
         package: SOT-23-6 DBV
         mode: core ok
         stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        route_rules_sha256: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
         circuit_sha256: 9ef19274966911f4557bc54c6e38b433489a950c039027aa2cbe417104cb3f3e
     extracted_constraints:
     - "U_CORE_OK.1: Place C_CORE_OK close from VDD6 (N1V8) to GND2; keep low-impedance supply and SENSE5 (N0V9) quiet."
@@ -2300,7 +2300,7 @@ parts:
     - U_RST1.2
     - U_RST1.3
     stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    route_rules: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
     applicability:
       status: limited
       reasons:
@@ -2310,7 +2310,7 @@ parts:
         package: DBZ SOT-23-3 P0.95mm
         mode: rst1
         stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        route_rules_sha256: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
         circuit_sha256: 68e44e91de3b72b5f0d4b950f2613a35666d359542f4613cbcd95465d4ccd02d
     extracted_constraints:
     - "U_RST1.1: VDD3 is N3V3_ADC and GND1 is return; keep their local supply low impedance and any bypass tight."
@@ -2369,7 +2369,7 @@ parts:
     - U_1V8_OK.5
     - U_1V8_OK.6
     stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    route_rules: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
     applicability:
       status: limited
       reasons:
@@ -2379,7 +2379,7 @@ parts:
         package: TI_DSE0006A
         mode: 1v8 ok
         stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        route_rules_sha256: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
         circuit_sha256: df307c6bed9d8d292b90bbf669ff1eb4f8cf9589b26c7b8475b5e36e84df59ab
     extracted_constraints:
     - "U_1V8_OK.1: Keep SENSE1 (U_1V8_OK_SENSE) and its divider local/quiet; place a local 100nF VDD4-to-GND2 bypass (VDD4=N5V_BUCK) on an uninterrupted ground return."
@@ -2395,7 +2395,7 @@ parts:
     - U_ADC_1V8_OK.4
     - U_ADC_1V8_OK.6
     stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    route_rules: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
     applicability:
       status: limited
       reasons:
@@ -2405,7 +2405,7 @@ parts:
         package: TI_DSE0006A
         mode: adc 1v8 ok
         stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        route_rules_sha256: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
         circuit_sha256: 7c6ae181aaecef77d62f4653ccd8f64dd1771ba947e285ec37bb401b0a7109f0
     extracted_constraints:
     - "U_ADC_1V8_OK.1: Keep SENSE1 (U_ADC_1V8_OK_SENSE) and its divider local/quiet; place a local 100nF VDD4-to-GND2 bypass (VDD4=N3V3_ADC) on an uninterrupted ground return."
@@ -2421,7 +2421,7 @@ parts:
     - U_ADC_3V3X_OK.4
     - U_ADC_3V3X_OK.6
     stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    route_rules: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
     applicability:
       status: limited
       reasons:
@@ -2431,7 +2431,7 @@ parts:
         package: TI_DSE0006A
         mode: adc 3v3x ok
         stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        route_rules_sha256: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
         circuit_sha256: 0e4a0b1db62aed10ba3687cf12137784cec30aa5f36bc4e5c8ef07d36479e8b5
     extracted_constraints:
     - "U_ADC_3V3X_OK.1: Keep SENSE1 (U_ADC_3V3X_OK_SENSE) and its divider local/quiet; place a local 100nF VDD4-to-GND2 bypass (VDD4=N3V3_ADC) on an uninterrupted ground return."
@@ -2448,7 +2448,7 @@ parts:
     - U_ADC_OK.5
     - U_ADC_OK.6
     stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    route_rules: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
     applicability:
       status: limited
       reasons:
@@ -2458,7 +2458,7 @@ parts:
         package: TI_DSE0006A
         mode: adc ok
         stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        route_rules_sha256: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
         circuit_sha256: 8717b3f950b1cd77f34d189b784253f2451931b73ffa22a98214b33a212d82fd
     extracted_constraints:
     - "U_ADC_OK.1: Keep SENSE1 (U_ADC_OK_SENSE) and its divider local/quiet; place a local 100nF VDD4-to-GND2 bypass (VDD4=N3V3X) on an uninterrupted ground return."
@@ -2475,7 +2475,7 @@ parts:
     - U_AUDIO.5
     - U_AUDIO.6
     stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    route_rules: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
     applicability:
       status: limited
       reasons:
@@ -2485,7 +2485,7 @@ parts:
         package: TI_DSE0006A
         mode: audio
         stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        route_rules_sha256: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
         circuit_sha256: 9c84ef7762eb87ae667e2253eb46b8977753fa51a425733d451ea5e4e2842841
     extracted_constraints:
     - "U_AUDIO.1: Keep SENSE1 (ADC_SENSE) and its divider local/quiet; place a local 100nF VDD4-to-GND2 bypass (VDD4=N5V_LDO_HOLD) on an uninterrupted ground return."
@@ -2502,7 +2502,7 @@ parts:
     - U_PWR.5
     - U_PWR.6
     stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    route_rules: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
     applicability:
       status: limited
       reasons:
@@ -2512,7 +2512,7 @@ parts:
         package: TI_DSE0006A
         mode: pwr
         stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        route_rules_sha256: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
         circuit_sha256: be2c4d97ec5b4515149f49601dfa42fb649f7dd6ec138f762ca9521a50e19b8c
     extracted_constraints:
     - "U_PWR.1: Keep SENSE1 (PWR_SENSE) and its divider local/quiet; place a local 100nF VDD4-to-GND2 bypass (VDD4=N5V_LDO_HOLD) on an uninterrupted ground return."
@@ -2529,7 +2529,7 @@ parts:
     - U_XU_3V3_OK.5
     - U_XU_3V3_OK.6
     stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    route_rules: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
     applicability:
       status: limited
       reasons:
@@ -2539,7 +2539,7 @@ parts:
         package: TI_DSE0006A
         mode: x3v3 ok
         stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        route_rules_sha256: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
         circuit_sha256: acca1a012c49c1725015c31285f7da0c1fc2161a625ade8bfb11419ec3c011c0
     extracted_constraints:
     - "U_XU_3V3_OK.1: Keep SENSE1 (U_XU_3V3_OK_SENSE) and its divider local/quiet; place a local 100nF VDD4-to-GND2 bypass (VDD4=N5V_BUCK) on an uninterrupted ground return."
@@ -2598,7 +2598,7 @@ parts:
     - U_1V8.6
     - U_1V8.7
     stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    route_rules: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
     applicability:
       status: limited
       reasons:
@@ -2608,7 +2608,7 @@ parts:
         package: DLC0008B VSON-HR-8 1.5x2.0mm, 0.5mm pitch, no center pad
         mode: U_1V8 synchronous buck rail
         stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        route_rules_sha256: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
         circuit_sha256: 8bd61601693e2e103e58a7eeddb00c474534a3594fbbd0f3626bd68b09859746
     extracted_constraints:
     - "U_1V8.1: Place input capacitors tightly between VIN7 (N5V_BUCK) and PGND5; keep SW6-to-inductor input short and output capacitor close to the inductor/output node."
@@ -2625,7 +2625,7 @@ parts:
     - U_3V3X.6
     - U_3V3X.7
     stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    route_rules: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
     applicability:
       status: limited
       reasons:
@@ -2635,7 +2635,7 @@ parts:
         package: DLC0008B VSON-HR-8 1.5x2.0mm, 0.5mm pitch, no center pad
         mode: U_3V3X synchronous buck rail
         stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        route_rules_sha256: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
         circuit_sha256: 0061731ff9c23f8bbf5b8a747671bbb9eef64d71f3d6778c3e0f2e3a02fc3cc4
     extracted_constraints:
     - "U_3V3X.1: Place input capacitors tightly between VIN7 (N5V_BUCK) and PGND5; keep SW6-to-inductor input short and output capacitor close to the inductor/output node."
@@ -2652,7 +2652,7 @@ parts:
     - U_CORE.6
     - U_CORE.7
     stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    route_rules: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
     applicability:
       status: limited
       reasons:
@@ -2662,7 +2662,7 @@ parts:
         package: DLC0008B VSON-HR-8 1.5x2.0mm, 0.5mm pitch, no center pad
         mode: U_CORE synchronous buck rail
         stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        route_rules_sha256: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
         circuit_sha256: 2d3332065339473f885a6062369f7429984b64e75a8a35ba901f6cfe8ec92cba
     extracted_constraints:
     - "U_CORE.1: Place input capacitors tightly between VIN7 (N5V_BUCK) and PGND5; keep SW6-to-inductor input short and output capacitor close to the inductor/output node."
@@ -2727,7 +2727,7 @@ parts:
     - U_BUCK.25
     - U_BUCK.27
     stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    route_rules: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
     applicability:
       status: limited
       reasons:
@@ -2737,7 +2737,7 @@ parts:
         package: RDH0030A enhanced HotRod B0QFN, 4 x 6 x 1.9 mm max
         mode: TPSM63603 adjustable 12 V-to-5 V main buck
         stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        route_rules_sha256: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
         circuit_sha256: a595ddb83ecaeb1eb0b121521bbf41a6edbfc31425c254993b62e285705f98f7
     extracted_constraints:
     - "U_BUCK.3: Keep input capacitor loop from VIN3/4/18/19 to PGND5/6/16/17/28/29 short and broad; VOUT7-10/12-15/30 to output capacitors is the separate high-current output loop."
@@ -2795,7 +2795,7 @@ parts:
     - "U_FLASH.7"
     - "U_FLASH.8"
     stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    route_rules: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
     applicability:
       status: limited
       reasons:
@@ -2805,7 +2805,7 @@ parts:
         package: SOIC-8 208mil (package code S)
         mode: flash
         stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        route_rules_sha256: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
         circuit_sha256: 80329ae0cadaa64eac794628421d272f5cf838842335f5130e22236974ba23c8
     extracted_constraints:
     - "Put C_FLASH from U_FLASH.8 (VCC=N1V8) to U_FLASH.4 (GND=GND) close to the flash; pad 1 is CE_N, not VCC."
@@ -2873,7 +2873,7 @@ parts:
     - "U_XU.128"
     - "U_XU.129"
     stackup: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-    route_rules: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+    route_rules: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
     applicability:
       status: limited
       reasons:
@@ -2883,7 +2883,7 @@ parts:
         package: TQFP-128 14x14mm P0.4 exposed pad
         mode: 'XMOS USB-audio MCU: USB, QSPI, TDM, clock and power distribution'
         stackup_sha256: fe02435edc94729cf0d3fa88b4c15c80eda76a7720ad2ed9fafd21619e999fb2
-        route_rules_sha256: a7d63c15f09a043564a30f939b4500016e584f6c9df9465e13624c14f1b0c30f
+        route_rules_sha256: 40463f44d280306fcd611d7c59c2ee37aef31cb12d42f4a7b95069c9dae6b893
         circuit_sha256: fe03bb5daa51f1c1c2259d4c97dbc82499c34ef1160f8ddb61fddd43f351fdfa
     extracted_constraints:
     - "Route USB differential pair U_XU.59 (USB_DN=USB_DN) / U_XU.60 (USB_DP=USB_DP) from the connector/ESD section with continuous reference and controlled pair geometry; keep local PHY supply bypass on U_XU.61 (USB_VDD33=N3V3X) and U_XU.62 (USB_VDD18=N1V8)."
