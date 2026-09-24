@@ -1150,14 +1150,6 @@ design_rules:
   min_through_drill: 0.2
   solder_mask_min_width: 0.0
   solder_mask_expansion: 0.0
-keepouts:
-  # P1 USB pair through-lane only. It intentionally terminates at the ESD and
-  # XMOS endpoint pockets; it is not a routed-pair, impedance, or return-path
-  # assertion. Tracks and vias remain allowed for later measured routing work.
-  - name: p1_usb_pair_through_lane
-    layers: [F.Cu]
-    deny: [footprints, pours]
-    rect: [216.1, 36.745, 217.4, 91.305]
 zones:
 - net: GND
   layers:

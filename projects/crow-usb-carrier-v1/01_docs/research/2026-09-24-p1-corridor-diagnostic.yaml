@@ -53,10 +53,10 @@ usb_feasibility:
     risk: "The long route avoids the forensic footprint boxes but has no USB high-speed signal-integrity or return-path proof. Its XU endpoint pocket intersects two local decouplers. The ESD and XU placements are floating, so a source rule area based on this board would not be stable."
   next_move: "Re-place USB ESD, XU and local bypass/CC parts together; then author a short connected lane with pad pockets and measure a fresh exact-hash native board."
 usb_authoring_probe:
-  status: INCOMPLETE
-  source_floorplan_reservation: 03_src/floorplan.yaml#/keepouts/p1_usb_pair_through_lane
+  status: REJECTED
+  source_revision: c6d2cf02664afe42eefb49202064cb1e965b31f8
   board_sha256: e3841ad0f4a39fcbd72b6817a1d409273e6e76e16cded9018a296f2f6af66341
-  probe_scope: "Direct generator probe only; not a P1 task-run, native DRC, routing, or acceptance result."
+  probe_scope: "Rejected direct generator probe only; not a P1 task-run, native DRC, routing, or acceptance result."
   fixed_block_anchors:
     U_XU: [208.5, 100.0, 90]
     U_USB_ESD: [217.0, 36.0, 0]
@@ -73,9 +73,10 @@ usb_authoring_probe:
     endpoint_pockets_required: [U_USB_ESD, U_XU]
     measured_capacity_slots: null
     reference_allocation: null
-    reason: "The strip ends outside both package courtyards. Pad fan-out, effective width including clearance, continuous In1 reference, and ESD return are unmeasured."
+    rejection_reason: "The 1.30-mm strip is below the 1.37-mm route-contract envelope. ESD pad centres are 0.700 mm versus 0.710 mm full-width demand. At the XU endpoint, pads 61-64 block access; remaining passages are 0.295 mm and 0.300 mm. With the rigid rotated support block, C_XU_VDD_104 blocks every tested 2.0 x 1.37 mm outward envelope."
   preserved_local_relationship:
     C_XU_VDD_104: "Retained at the rotated XMOS support-block pose; moving it away from U_XU.104 was rejected."
+  source_disposition: "The named through-lane rule area was removed from current floorplan.yaml. The six CC/VBUS service anchors remain as an independently collision-clean placement block."
   no_credit: [p1_acceptance, routing, connector_FULL, release, order]
 usb_logical_physical_aliases: {J_USB.10: J_USB.A4, J_USB.15: J_USB.A9, J_USB.2: J_USB.B4, J_USB.7: J_USB.B9}
 allocations:
