@@ -104,6 +104,7 @@ except Exception:                                            # pragma: no cover
         return {}
 from pcb_toolkit import apply_via_protection
 from pin_map_check import alias_map, load_parts, pin_name, sval
+sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "jlcpcb-fab/scripts"))
 
 MM = pcbnew.ToMM
 STD_FP_ROOT = "/usr/share/kicad/footprints"
@@ -2087,6 +2088,9 @@ class BoardBuilder:
         ds = self.board.GetDesignSettings()
         vals = dict(self.DS_DEFAULTS)
         vals.update(self.cfg.get("design_rules") or {})
+        from tmux4827_pofv import ABSOLUTE_FLOORS, activated
+        if activated(self.base, self.cfg):
+            vals.update(ABSOLUTE_FLOORS)
         # CAPABILITY-DERIVED silk DRC constraints. A fresh pcbnew BOARD()
         # defaults m_MinSilkTextHeight to 0.8mm — ABOVE the 0.6mm refdes
         # this generator emits — so every fresh board failed its own silk

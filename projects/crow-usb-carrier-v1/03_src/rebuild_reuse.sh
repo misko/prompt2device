@@ -182,6 +182,11 @@ cp "$SCH" "04_kicad/$BOARD.kicad_sch"
 $PY "$S/pin_map_check.py" . --board "04_kicad/$BOARD.kicad_pcb" \
     --circuit-json 03_tscircuit/build/circuit.json \
     || { echo "GATE FAILED [2a] P-PINMAP: reconcile pin identities before placement/routing work"; exit 1; }
+$PY "$S/generate_rules_generic.py" .
+$PY "$FS/generate_tmux4827_pofv.py" "04_kicad/$BOARD.kicad_pcb" --assembly 03_src/rules/assembly.yaml
+$PY "$FS/via_process_check.py" "04_kicad/$BOARD.kicad_pcb" --assembly 03_src/rules/assembly.yaml \
+    --json 06_build/verification/tmux4827_pofv_source_admission.json \
+    || { echo "GATE FAILED [2a] TMUX-POFV: exact eight protected B2 sites or ordinary floors defective"; exit 1; }
 
 # Candidate placement exists. FULL is the unchanged base PASS/zero-unknown bar
 # and blocks before any placement approval or route import. A separately

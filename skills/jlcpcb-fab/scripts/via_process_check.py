@@ -29,7 +29,9 @@ import sys
 from pathlib import Path
 
 import pcbnew
-from tmux4827_pofv import audit as audit_tmux, contract as tmux_contract, dru_rules as tmux_dru_rules
+from tmux4827_pofv import (ABSOLUTE_FLOORS, activated as tmux_activated,
+                           audit as audit_tmux, contract as tmux_contract,
+                           dru_rules as tmux_dru_rules)
 
 try:
     import yaml
@@ -186,12 +188,21 @@ def check(board_path: Path, assembly: str | None = None):
         tmux = tmux_contract(data, apath)
         if tmux is not None:
             profile, part, _ = tmux
+            floor = yaml.safe_load((apath.resolve().parents[1] / "floorplan.yaml").read_text()) or {}
+            tmux_activated(apath.resolve().parents[2], floor)
             out["fails"].extend(audit_tmux(board, profile, part))
             pro = board_path.with_suffix(".kicad_pro")
             project = json.loads(pro.read_text()) if pro.is_file() else {}
             physical = project.get("board", {}).get("design_settings", {}).get("rules", {})
-            if physical.get("min_via_diameter") != .45 or physical.get("min_via_annular_width") != .13:
-                out["fails"].append("TMUX-PRO: original ordinary 0.45/0.13 board minima must remain")
+            absolute = {"min_clearance": ABSOLUTE_FLOORS["min_clearance"],
+                        "min_via_diameter": ABSOLUTE_FLOORS["via_min_size"],
+                        "min_via_annular_width": ABSOLUTE_FLOORS["via_min_annulus"],
+                        "min_hole_clearance": ABSOLUTE_FLOORS["hole_clearance"]}
+            if any(physical.get(key) != value for key, value in absolute.items()):
+                out["fails"].append("TMUX-PRO: advanced absolute floors are missing or stale")
+            classes = project.get("net_settings", {}).get("classes", [])
+            if not classes or any(float(row.get("clearance", 0)) < .15 for row in classes):
+                out["fails"].append("TMUX-PRO: ordinary netclass clearance below 0.15")
             # The exact source-owned rules are required after the generic
             # generator.  Foreign relaxed rules could otherwise mask a DRC
             # error while the identity checker still passes.

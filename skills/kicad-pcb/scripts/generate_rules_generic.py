@@ -43,6 +43,8 @@ except ImportError:
 
 import dru_subject
 from fab_tier_util import FabTierError, resolve as resolve_tier
+sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "jlcpcb-fab/scripts"))
+from tmux4827_pofv import ABSOLUTE_FLOORS, activated, dru_rules as tmux_dru_rules
 
 
 def mm(v):
@@ -165,6 +167,8 @@ def main(argv=None):
         sys.exit(f"generate_rules_generic: no {nets_path}")
 
     nets = yaml.safe_load(nets_path.read_text(encoding="utf-8-sig")) or {}
+    floor = yaml.safe_load((src / "floorplan.yaml").read_text()) or {}
+    pofv = activated(root, floor)
     classes = nets.get("classes") or {}
     try:
         tier = resolve_tier(root)
@@ -194,6 +198,14 @@ def main(argv=None):
     dru = ki / f"{board}.kicad_dru"
 
     proj = json.loads(pro.read_text(encoding="utf-8-sig"))
+    if pofv:
+        absolute = proj.get("board", {}).get("design_settings", {}).get("rules", {})
+        for source_key, pro_key in (("min_clearance", "min_clearance"),
+                                    ("via_min_size", "min_via_diameter"),
+                                    ("via_min_annulus", "min_via_annular_width"),
+                                    ("hole_clearance", "min_hole_clearance")):
+            if abs(float(absolute.get(pro_key, -1)) - ABSOLUTE_FLOORS[source_key]) > 1e-9:
+                sys.exit(f"generate_rules_generic: conditional POFV absolute {pro_key} stale")
     ns = proj.setdefault("net_settings", {})
 
     # keep any existing Default class, replace the rest with ours
@@ -513,6 +525,8 @@ def main(argv=None):
     generated_names = ({f"{name}_width" for name in classes}
                        | {f"{name}_diffpair" for name in classes}
                        | scoped_names | clr_names)
+    if pofv:
+        generated_names |= {name for name, _ in extract_rules("\n".join(tmux_dru_rules()))}
     foreign, decisions = foreign_dru_rules(dru, generated_names,
                                            ki / f"{board}.kicad_pcb")
     report_foreign_decisions(decisions, board)

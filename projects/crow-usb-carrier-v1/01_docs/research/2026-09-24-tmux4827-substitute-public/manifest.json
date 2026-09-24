@@ -1,0 +1,140 @@
+{
+  "kind": "public-jlcsearch-capture",
+  "records": [
+    {
+      "bytes": 301,
+      "components": [
+        {
+          "lcsc": 22428234,
+          "mfr": "TMUX4827YBHR",
+          "package": "DSBGA-9",
+          "stock": 234
+        }
+      ],
+      "http_status": 200,
+      "query": "TMUX4827",
+      "retrieved_utc": "2026-09-24T15:35:13.113618+00:00",
+      "rows": 1,
+      "sha256": "ede7c6ce6d786c3d3c1326a8459f4d2551a85641e7056270a0fa09b59ff4e03f",
+      "url": "https://jlcsearch.tscircuit.com/components/list.json?search=TMUX4827&full=true"
+    },
+    {
+      "bytes": 17,
+      "components": [],
+      "http_status": 200,
+      "query": "TMUX4819",
+      "retrieved_utc": "2026-09-24T15:35:13.356725+00:00",
+      "rows": 0,
+      "sha256": "ac46fd24bd501fa7297f0a2945bcc7f5d655b9bcf8bfbf16718a9d25c0c2c018",
+      "url": "https://jlcsearch.tscircuit.com/components/list.json?search=TMUX4819&full=true"
+    },
+    {
+      "bytes": 302,
+      "components": [
+        {
+          "lcsc": 53182354,
+          "mfr": "TMUX4821DSGR",
+          "package": "WQFN-8",
+          "stock": 26
+        }
+      ],
+      "http_status": 200,
+      "query": "TMUX4821",
+      "retrieved_utc": "2026-09-24T15:35:13.965192+00:00",
+      "rows": 1,
+      "sha256": "a0b004b78a8d259e38f985da0bf4f5e84597e01478cb242370be1a0a6b310c89",
+      "url": "https://jlcsearch.tscircuit.com/components/list.json?search=TMUX4821&full=true"
+    },
+    {
+      "bytes": 17,
+      "components": [],
+      "http_status": 200,
+      "query": "TMUX2889",
+      "retrieved_utc": "2026-09-24T15:35:14.157863+00:00",
+      "rows": 0,
+      "sha256": "ac46fd24bd501fa7297f0a2945bcc7f5d655b9bcf8bfbf16718a9d25c0c2c018",
+      "url": "https://jlcsearch.tscircuit.com/components/list.json?search=TMUX2889&full=true"
+    },
+    {
+      "bytes": 1215,
+      "components": [
+        {
+          "lcsc": 105181,
+          "mfr": "TS5A22364DGSR",
+          "package": "VSSOP-10-0.5mm",
+          "stock": 7831
+        },
+        {
+          "lcsc": 2673434,
+          "mfr": "TS5A22364DRCR",
+          "package": "VSON-10-EP(3x3)",
+          "stock": 27
+        },
+        {
+          "lcsc": 125953,
+          "mfr": "TS5A22364QDGSRQ1",
+          "package": "VSSOP-10-0.5mm",
+          "stock": 6
+        }
+      ],
+      "http_status": 200,
+      "query": "TS5A22364",
+      "retrieved_utc": "2026-09-24T15:35:14.349687+00:00",
+      "rows": 3,
+      "sha256": "5ae24e037ef12bbc9f8e2415eef4d2be106279097311e814ebc837cdfec5c01b",
+      "url": "https://jlcsearch.tscircuit.com/components/list.json?search=TS5A22364&full=true"
+    },
+    {
+      "bytes": 410,
+      "components": [
+        {
+          "lcsc": 2673682,
+          "mfr": "MAX20327EWL+T",
+          "package": "WLP-9(1.6x1.6)",
+          "stock": 5
+        }
+      ],
+      "http_status": 200,
+      "query": "MAX20327",
+      "retrieved_utc": "2026-09-24T15:35:14.926096+00:00",
+      "rows": 1,
+      "sha256": "023d612d30afb10f461c8416c126e62f74fa407753827e5364b64948fe8e202f",
+      "url": "https://jlcsearch.tscircuit.com/components/list.json?search=MAX20327&full=true"
+    },
+    {
+      "bytes": 814,
+      "components": [
+        {
+          "lcsc": 579079,
+          "mfr": "ADG5436FBRUZ",
+          "package": "TSSOP-16",
+          "stock": 3
+        },
+        {
+          "lcsc": 657525,
+          "mfr": "ADG5436FBCPZ-RL7",
+          "package": "LFCSP-16(4x4)",
+          "stock": 3
+        }
+      ],
+      "http_status": 200,
+      "query": "ADG5436F",
+      "retrieved_utc": "2026-09-24T15:35:15.448967+00:00",
+      "rows": 2,
+      "sha256": "20f3cb066dc97201dd7c6d736cd7ab34306e6a3fb0b0cefdbbaa3c58047df8f4",
+      "url": "https://jlcsearch.tscircuit.com/components/list.json?search=ADG5436F&full=true"
+    },
+    {
+      "bytes": 17,
+      "components": [],
+      "http_status": 200,
+      "query": "MAX14505",
+      "retrieved_utc": "2026-09-24T15:35:16.013233+00:00",
+      "rows": 0,
+      "sha256": "ac46fd24bd501fa7297f0a2945bcc7f5d655b9bcf8bfbf16718a9d25c0c2c018",
+      "url": "https://jlcsearch.tscircuit.com/components/list.json?search=MAX14505&full=true"
+    }
+  ],
+  "schema": 1,
+  "upstream_inventory_timestamp": "unknown"
+}

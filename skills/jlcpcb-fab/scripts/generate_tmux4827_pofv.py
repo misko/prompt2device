@@ -13,8 +13,8 @@ from pathlib import Path
 import pcbnew as p
 import yaml
 
-from tmux4827_pofv import (AREA_PREFIX, REFS, area_bounds, audit,
-                           center_pads, contract, dru_rules)
+from tmux4827_pofv import (ABSOLUTE_FLOORS, AREA_PREFIX, REFS, activated,
+                           area_bounds, audit, center_pads, contract, dru_rules)
 
 
 def emit(board_path: Path, assembly_path: Path):
@@ -23,6 +23,9 @@ def emit(board_path: Path, assembly_path: Path):
     if selected is None:
         return False
     profile, part, _ = selected
+    floor = yaml.safe_load((assembly_path.resolve().parents[1] / "floorplan.yaml").read_text()) or {}
+    if not activated(assembly_path.resolve().parents[2], floor):
+        raise ValueError("TMUX-PROFILE: floorplan activation missing")
     board = p.LoadBoard(str(board_path))
     pro_path = board_path.with_suffix(".kicad_pro")
     if not pro_path.is_file():
@@ -32,35 +35,46 @@ def emit(board_path: Path, assembly_path: Path):
     project_text = pro_path.read_text()
     project = json.loads(project_text)
     incoming = project.get("board", {}).get("design_settings", {}).get("rules", {})
-    baseline = (incoming.get("min_via_diameter"), incoming.get("min_via_annular_width"))
-    if baseline != (.45, .13):
-        raise ValueError("TMUX-PROFILE: expected authored ordinary board floors 0.45/0.13 before profile")
+    expected = {"min_clearance": ABSOLUTE_FLOORS["min_clearance"],
+                "min_via_diameter": ABSOLUTE_FLOORS["via_min_size"],
+                "min_via_annular_width": ABSOLUTE_FLOORS["via_min_annulus"],
+                "min_hole_clearance": ABSOLUTE_FLOORS["hole_clearance"]}
+    if any(incoming.get(key) != value for key, value in expected.items()):
+        raise ValueError("TMUX-PROFILE: expected exact advanced absolute board floors")
+    classes = project.get("net_settings", {}).get("classes", [])
+    if not classes or any(float(row.get("clearance", 0)) < .15 for row in classes):
+        raise ValueError("TMUX-PROFILE: ordinary netclass clearance below 0.15")
     failures = audit(board, profile, part, require_areas=False, require_vias=False)
     if failures:
         raise ValueError("\n".join(failures))
-    centers = center_pads(board, part, [])
-    for zone in list(board.Zones()):
-        if zone.GetIsRuleArea() and zone.GetZoneName().startswith(AREA_PREFIX):
-            board.Remove(zone)
-    for ref in REFS:
-        z = p.ZONE(board)
-        z.SetIsRuleArea(True)
-        z.SetZoneName(AREA_PREFIX+ref)
-        z.SetLayer(p.F_Cu)
-        layers = p.LSET(); layers.AddLayer(p.F_Cu)
-        z.SetLayerSet(layers)
-        z.SetDoNotAllowTracks(False)
-        z.SetDoNotAllowVias(False)
-        z.SetDoNotAllowPads(False)
-        x0,y0,x1,y1 = area_bounds(centers[ref])
-        z.Outline().NewOutline()
-        for x,y in ((x0,y0),(x1,y0),(x1,y1),(x0,y1)):
-            z.Outline().Append(p.VECTOR2I_MM(x,y))
-        board.Add(z)
-    p.SaveBoard(str(board_path), board)
+    existing = [z for z in board.Zones() if z.GetIsRuleArea()
+                and z.GetZoneName().startswith(AREA_PREFIX)]
+    if existing:
+        # A replay must never silently repair a widened or moved exemption.
+        failures = audit(board, profile, part, require_vias=False)
+        if failures:
+            raise ValueError("\n".join(failures))
+    else:
+        bounds = {ref: area_bounds(pad) for ref, pad in center_pads(board, part, []).items()}
+        for ref in REFS:
+            z = p.ZONE(board)
+            z.SetIsRuleArea(True)
+            z.SetZoneName(AREA_PREFIX+ref)
+            z.SetLayer(p.F_Cu)
+            layers = p.LSET(); layers.AddLayer(p.F_Cu)
+            z.SetLayerSet(layers)
+            z.SetDoNotAllowTracks(False)
+            z.SetDoNotAllowVias(False)
+            z.SetDoNotAllowPads(False)
+            x0,y0,x1,y1 = bounds[ref]
+            z.Outline().NewOutline()
+            for x,y in ((x0,y0),(x1,y0),(x1,y1),(x0,y1)):
+                z.Outline().Append(p.VECTOR2I_MM(x,y))
+            board.Add(z)
+        p.SaveBoard(str(board_path), board)
 
     # pcbnew.SaveBoard may rewrite project netclasses. Restore the complete
-    # generic project, including its original ordinary .45/.13 board floors.
+    # generic project; exact ordinary constraints live in classes/custom rules.
     pro_path.write_text(project_text)
 
     dru_path = board_path.with_suffix(".kicad_dru")

@@ -39,8 +39,9 @@ def fixture(path):
         v=p.PCB_VIA(b);v.SetPosition(c.GetPosition());v.SetWidth(p.FromMM(.35));v.SetDrill(p.FromMM(.20));v.SetLayerPair(p.F_Cu,p.B_Cu);v.SetNet(nets["GND"]);v.SetPrimaryDrillFilledFlag(True);v.SetPrimaryDrillCappedFlag(True);b.Add(v)
     p.SaveBoard(str(path),b)
     project=json.loads(COUPON_PRO.read_text())
-    project["board"]["design_settings"]["rules"].update(min_via_diameter=.45,min_via_annular_width=.13)
-    project["board"]["design_settings"]["rules"]["min_clearance"] = .15
+    project["board"]["design_settings"]["rules"].update(
+        min_via_diameter=.25, min_via_annular_width=.075,
+        min_clearance=.09, min_hole_clearance=.10)
     project["net_settings"]["classes"][0]["clearance"] = .15
     path.with_suffix(".kicad_pro").write_text(json.dumps(project))
     path.with_suffix(".kicad_dru").write_text("(version 1)\n")
@@ -97,6 +98,41 @@ class TmuxProfile(unittest.TestCase):
             v=p.PCB_VIA(b);v.SetPosition(p.VECTOR2I_MM(2,2));v.SetWidth(p.FromMM(.35));v.SetDrill(p.FromMM(.2));v.SetLayerPair(p.F_Cu,p.B_Cu);v.SetNet(b.FindNet("GND"));v.SetPrimaryDrillFilledFlag(True);v.SetPrimaryDrillCappedFlag(True);b.Add(v)
         self.mutate(alter)
         self.assertTrue(any("outside exact" in s for s in self.result()))
+
+    def test_duplicate_at_b2_is_rejected(self):
+        def alter(b):
+            source = self.vias(b)[0]
+            duplicate = p.PCB_VIA(b)
+            duplicate.SetPosition(source.GetPosition())
+            duplicate.SetWidth(p.FromMM(.35)); duplicate.SetDrill(p.FromMM(.20))
+            duplicate.SetLayerPair(p.F_Cu, p.B_Cu); duplicate.SetNet(b.FindNet("GND"))
+            duplicate.SetPrimaryDrillFilledFlag(True)
+            duplicate.SetPrimaryDrillCappedFlag(True)
+            b.Add(duplicate)
+        self.mutate(alter)
+        self.assertTrue(any("expected exactly one centred via" in s for s in self.result()))
+
+    def test_native_ordinary_pth_annulus_and_hole_clearance(self):
+        def alter(b):
+            f = p.FOOTPRINT(b); f.SetReference("U_OTHER"); b.Add(f)
+            land = p.PAD(f); land.SetNumber("1"); land.SetAttribute(p.PAD_ATTRIB_PTH)
+            land.SetShape(p.PAD_SHAPE_CIRCLE); land.SetSize(p.VECTOR2I_MM(.35, .35))
+            land.SetDrillSize(p.VECTOR2I_MM(.20, .20))
+            land.SetPosition(p.VECTOR2I_MM(2, 2)); land.SetLayerSet(p.LSET.AllCuMask())
+            land.SetNet(b.FindNet("SIG1_1")); f.Add(land)
+            for x, net in ((3, "GND"), (3.45, "SIG1_1")):
+                v = p.PCB_VIA(b); v.SetPosition(p.VECTOR2I_MM(x, 2))
+                v.SetWidth(p.FromMM(.45)); v.SetDrill(p.FromMM(.20))
+                v.SetLayerPair(p.F_Cu, p.B_Cu); v.SetNet(b.FindNet(net)); b.Add(v)
+        self.mutate(alter)
+        out = Path(self.tmp.name) / "ordinary.json"
+        run = subprocess.run(["kicad-cli", "pcb", "drc", str(self.board),
+                              "--format", "json", "--all-track-errors", "-o", str(out)],
+                             capture_output=True, text=True)
+        self.assertEqual(run.returncode, 0, run.stderr)
+        kinds = {item["type"] for item in json.loads(out.read_text())["violations"]}
+        self.assertIn("annular_width", kinds)
+        self.assertIn("hole_clearance", kinds)
 
     def test_wrong_ref_pad_neighbor_and_area(self):
         for change in ("ref","pad","neighbor","area","stale_area","footprint"):
@@ -192,11 +228,11 @@ class TmuxProfile(unittest.TestCase):
         self.mutate(wrong_supply)
 
     def test_native_ordinary_via_floor_and_b2_clearance(self):
-        # Use exactly the authored ordinary board minima on input. The
-        # producer preserves ordinary board minima and emits the exact local scopes.
+        # Advanced absolute floors permit the exact sites; custom rules restore
+        # ordinary board constraints outside them.
         pro=self.board.with_suffix(".kicad_pro")
         saved=json.loads(pro.read_text())
-        self.assertEqual(saved["board"]["design_settings"]["rules"]["min_via_diameter"],.45)
+        self.assertEqual(saved["board"]["design_settings"]["rules"]["min_via_diameter"],.25)
         def drc():
             result=subprocess.run(["kicad-cli","pcb","drc",str(self.board),"-o",str(Path(self.tmp.name)/"drc.txt")],capture_output=True,text=True)
             self.assertEqual(result.returncode,0,result.stderr)

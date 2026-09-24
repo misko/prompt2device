@@ -23,6 +23,25 @@ GEOMETRY = {
     "paste_opening_mm": .25, "bga_via_to_pad_gap_mm": .10,
     "perimeter_pad_gap_mm": .15,
 }
+ABSOLUTE_FLOORS = {"min_clearance": .09, "via_min_size": .25,
+                   "via_min_annulus": .075, "hole_clearance": .10}
+
+
+def activated(root, floor):
+    """Bind the board's advanced absolute floors to its exact assembly profile."""
+    declaration = floor.get("conditional_pofv")
+    assembly_path = root / "03_src/rules/assembly.yaml"
+    assembly = yaml.safe_load(assembly_path.read_text()) or {} if assembly_path.is_file() else {}
+    profiles = (assembly.get("via_process") or {}).get("named_profiles") or []
+    if declaration is None:
+        if any(q.get("id") == ID for q in profiles if isinstance(q, dict)):
+            raise ValueError("TMUX-PROFILE: assembly profile lacks floorplan activation")
+        return False
+    if declaration != {"profile": ID, "status": "CONDITIONAL", "refs": list(REFS)}:
+        raise ValueError("TMUX-PROFILE: floorplan declaration must name exact eight conditional sites")
+    if contract(assembly, assembly_path) is None:
+        raise ValueError("TMUX-PROFILE: conditional floorplan has no assembly profile")
+    return True
 
 
 def mm(i):
@@ -222,7 +241,9 @@ def audit(board, profile, part, require_areas=True, require_vias=True):
 
 
 def dru_rules():
-    rules = ['(rule "tmux_ordinary_via_floor"\n  (condition "A.Type == \'Via\'")\n  (constraint via_diameter (min 0.45mm))\n  (constraint annular_width (min 0.13mm)))']
+    rules = ['(rule "tmux_ordinary_annular_floor"\n  (constraint annular_width (min 0.13mm)))',
+             '(rule "tmux_ordinary_via_floor"\n  (condition "A.Type == \'Via\'")\n  (constraint via_diameter (min 0.45mm))\n  (constraint annular_width (min 0.13mm)))',
+             '(rule "tmux_ordinary_hole_clearance"\n  (constraint hole_clearance (min 0.25mm)))']
     for ref in REFS:
         area=AREA_PREFIX+ref
         rules.append(f'''(rule "{area}_via"

@@ -93,6 +93,14 @@ thermal_vias:
     drill: 0.20
     at: [[0.0, 0.0]]
 
+# Exact eight-site advanced-process exception. Ordinary board minima in
+# design_rules remain binding elsewhere; native validator and JLC CAM/PCBA
+# approval are separate. This is not a manufacturing PASS.
+conditional_pofv:
+  profile: TMUX4827_YBH_B2_POFV
+  status: CONDITIONAL
+  refs: [U_ISO1, U_ISO2, U_ISO3, U_ISO4, U_ISO5, U_ISO6, U_ISO7, U_ISO8]
+
 placement:
   post_anchors:
     C_ADC_DIGITAL_BAD: [110.5, 97.25, 0]
