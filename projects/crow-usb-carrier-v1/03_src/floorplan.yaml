@@ -232,6 +232,33 @@ placement:
     U_PWR: [76.0, 94.0, 0]
   require_anchor: true
   anchors:
+    # XMOS local-decoupling geometry seed. The preceding rigid transform was
+    # withdrawn: these non-rigid two-ring poses require fresh native checks of
+    # every supply fanout and ground return before they can earn P1/P2 credit.
+    U_XU: [208.5, 100.0, 90]
+    C_XU_VDD_5: [201.0, 109.4, 0]
+    C_XU_VDDIO_10: [203.5, 109.4, 0]
+    C_XU_VDD_11: [206.0, 109.4, 0]
+    C_XU_VDD_14: [208.5, 109.4, 0]
+    C_XU_VDDIO_17: [211.0, 109.4, 0]
+    C_XU_VDD_18: [213.5, 109.4, 0]
+    C_XU_VDD_68: [213.5, 90.6, 0]
+    C_XU_VDDIO_72: [210.5, 90.6, 0]
+    C_XU_VDD_85: [207.5, 90.6, 0]
+    C_XU_VDDIO_89: [204.5, 90.6, 0]
+    C_XU_VDD_95: [201.5, 90.6, 0]
+    C_XU_VDD_104: [198.6, 96.0, 0]
+    C_XU_VDD_105: [196.5, 97.1, 0]
+    C_XU_VDD_106: [198.6, 98.2, 0]
+    C_XU_VDDIO_109: [196.5, 99.3, 0]
+    C_XU_VDD_113: [198.6, 100.4, 0]
+    C_XU_VDDIO_121: [196.5, 101.5, 0]
+    C_XU_VDDIO_35: [218.0, 105.8, 90]
+    C_XU_VDD_39: [218.0, 103.2, 90]
+    C_XU_VDD_45: [218.0, 100.6, 90]
+    C_XU_VDD_50: [218.0, 98.0, 90]
+    C_XU_VDD_54: [218.0, 95.4, 90]
+    C_XU_VDDIO_56: [218.0, 92.8, 90]
     # Connector-side USB ESD placement starting point. It is not a USB routing
     # or FULL assertion; the earlier rotated XMOS block was withdrawn.
     U_USB_ESD: [217.0, 36.0, 0]

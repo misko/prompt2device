@@ -10,6 +10,17 @@ electrical failure calculation; it nevertheless invalidates calling the poses
 a local support block. A future XMOS block must reconstruct each local
 decoupling and return relationship before a new P1 candidate.
 
+The current source now uses a replacement, non-rigid two-ring seed for `U_XU`
+and the 23 named VDD/VDDIO capacitors. Its native generator probe,
+`/tmp/crow-xmos-reconstruction.y2nxK8/04_kicad/crow_carrier.kicad_pcb`, has
+SHA-256 `5e74f6e3d4bff5a5fd258eedd6bbc800ac12f42ec626050c8cc751d87ce5d9fb`.
+Independent review confirmed all 24 anchors and no XMOS pad or courtyard
+collision. It improved every named capacitor-to-pin center distance to
+1.767–5.179 mm (median 2.560 mm). This is still a geometry seed: the remaining
+4–5 mm rows require explicit supply fanouts, local ground returns, and an
+electrical decoupling review. The PLL and USB-rail capacitors remain outside
+this seed pending their own local-placement and USB-escape work.
+
 An isolated generator-only probe produced a 569-footprint native board at
 `/tmp/crow-p1-xu90-probe.YKwzFE/04_kicad/crow_carrier.kicad_pcb`, SHA-256
 `c4092002b20f351118ad9c27caf88626970b63dcbb30608278efa0e706f4036a`.
