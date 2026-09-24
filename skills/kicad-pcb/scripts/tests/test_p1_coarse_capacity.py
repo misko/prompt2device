@@ -60,7 +60,7 @@ class CoarseCapacityTest(unittest.TestCase):
             edge.SetEnd(pcbnew.VECTOR2I(iu(b[0]), iu(b[1])))
             edge.SetLayer(pcbnew.Edge_Cuts)
             self.board.Add(edge)
-        for row in [('J_LEFT', '1', 'TEST', 2, 5, .5),
+        for row in [('J_LEFT', '1', 'TEST', 3.5, 5, .5),
                     ('J_RIGHT', '1', 'TEST', 8, 5, .5),
                     ('J_G', '1', 'GND', 2, 2, .5),
                     ('J_G2', '1', 'GND', 8, 2, .5),
@@ -75,7 +75,7 @@ class CoarseCapacityTest(unittest.TestCase):
             {'net': 'TEST', 'endpoints': {'left': ['J_LEFT.1'], 'right': ['J_RIGHT.1']}},
             {'net': 'GND', 'endpoints': {'power': ['J_G.1', 'J_G2.1']}}]}
         self.floorplan = {'placement': {
-            'anchors': {'J_LEFT': [2, 5, 0], 'J_G': [2, 2, 0]},
+            'anchors': {'J_LEFT': [3.5, 5, 0], 'J_G': [2, 2, 0]},
             'post_anchors': {'J_RIGHT': [8, 5, 0], 'J_G2': [8, 2, 0], 'R_MOVE': [5, 5, 0]},
             'seeds': {}, 'patterns': [],
             'regions': {'left': [0, 3, 4, 7], 'right': [6, 3, 10, 7],
@@ -84,9 +84,9 @@ class CoarseCapacityTest(unittest.TestCase):
             {'id': 'signal', 'coverage_nets': ['TEST'],
              'boundary_witnesses': [{'source': 'J_LEFT.1', 'native': 'J_LEFT.1', 'net': 'TEST',
                                      'block': 'left', 'layer': 'F.Cu', 'face': 'west',
-                                     'boundary_bbox': [1.5, 4.5, 2.5, 5.5], 'reservation_id': 'signal_main'}],
+                                     'boundary_bbox': [3, 4.5, 4, 5.5], 'reservation_id': 'signal_main'}],
              'reservations': [{'id': 'signal_main', 'kind': 'signal', 'layer': 'F.Cu',
-                               'bbox': [2.5, 4, 7.5, 6], 'axis': 'horizontal',
+                               'bbox': [4, 4, 7.5, 6], 'axis': 'horizontal',
                                'nets': ['TEST'], 'demand_slots': 2, 'slot_pitch_mm': .5}]},
             {'id': 'power_boundary_windows', 'coverage_nets': ['GND'],
              'boundary_witnesses': [{'source': 'J_G.1', 'native': 'J_G.1', 'net': 'GND',
@@ -187,7 +187,7 @@ class CoarseCapacityTest(unittest.TestCase):
         self.assertIn('native pad/net mismatch', result['allocations'][0]['reason'])
 
     def test_off_outline_reservation_and_wrong_face_fail_closed(self):
-        result = self.run_case(lambda: self.allocations[0]['reservations'][0].update(bbox=[2.5, 4, 10.5, 6]))
+        result = self.run_case(lambda: self.allocations[0]['reservations'][0].update(bbox=[4, 4, 10.5, 6]))
         self.assertIn('off board outline', result['allocations'][0]['reason'])
         self.setUp()
         result = self.run_case(lambda: self.allocations[0]['boundary_witnesses'][0].update(face='east'))
@@ -207,6 +207,28 @@ class CoarseCapacityTest(unittest.TestCase):
         self.assertEqual(len(result['allocations'][0]['p2_obligations']), 1)
         self.assertEqual(result['allocations'][0]['p2_obligations'][0]['native_pad'], 'J_RIGHT.1')
         self.assertFalse(result['p1_accepted'])
+
+    def test_virtual_face_rejects_other_source_region_at_face(self):
+        self.add_virtual_right_face()
+        self.floorplan['placement']['regions']['intruder'] = [7.6, 4.9, 8.1, 5.1]
+        result = self.run_case()
+        self.assertEqual(result['status'], 'FAIL')
+        self.assertIn('virtual boundary enters intruder source region',
+                      result['allocations'][0]['reason'])
+
+    def test_virtual_reservation_rejects_other_source_region_away_from_face(self):
+        self.add_virtual_right_face()
+        self.floorplan['placement']['regions']['intruder'] = [4.5, 4.5, 5, 5.5]
+        result = self.run_case()
+        self.assertEqual(result['status'], 'FAIL')
+        self.assertIn('virtual reservation enters intruder source region',
+                      result['allocations'][0]['reason'])
+
+    def test_fixed_physical_witness_does_not_use_virtual_region_rule(self):
+        self.floorplan['placement']['regions']['intruder'] = [3.2, 4.8, 3.8, 5.2]
+        result = self.run_case()
+        self.assertEqual(result['errors'], [])
+        self.assertEqual(result['allocations'][0]['witness_count'], 1)
 
     def test_virtual_face_rejects_bad_region_or_missing_obligation(self):
         witness = self.add_virtual_right_face()

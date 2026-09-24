@@ -159,6 +159,25 @@ def _witness_touches_reservation(witness, reservation):
     return shared and (abs(a[3] - b[1]) <= tol if face == 'north' else abs(a[1] - b[3]) <= tol)
 
 
+def _virtual_region_clearance(witness, reservation, regions):
+    """A virtual face and its exterior reservation cannot consume another cell.
+
+    Shared board-integration transitions need an explicit source authority and
+    separate model; there is no implicit exception for overlapping regions.
+    Physical witnesses have their fixed native pad/pose checks instead.
+    """
+    if witness.get('kind') != 'virtual_block_face':
+        return
+    boundary = rectangle(witness.get('boundary_bbox'), 'virtual boundary bbox')
+    reserved = rectangle(reservation.get('bbox'), 'virtual reservation bbox')
+    for region_id, value in regions.items():
+        region = rectangle(value, f'{region_id} source region')
+        if region_id != witness['block'] and intersects(boundary, region):
+            raise ContractError(f"{witness['source']}: virtual boundary enters {region_id} source region")
+        if intersects(reserved, region):
+            raise ContractError(f"{witness['source']}: virtual reservation enters {region_id} source region")
+
+
 def _coarse_reservation(board, row, outline, fixed_refs, movable_refs, zones, native_pitch,
                         *, power_boundary, power_like_nets):
     ident = row.get('id')
@@ -351,6 +370,7 @@ def evaluate_coarse(board_path, contract_path, expected_contract_sha256=None, *,
                                 verified['layer'] != target.get('layer') or
                                 not _witness_touches_reservation(verified, target)):
                             raise ContractError(f"{verified['source']}: block face does not contact assigned reservation")
+                        _virtual_region_clearance(witness, target, regions)
                     measured = []
                     for reservation in reservations:
                         if not set(reservation.get('nets', [])) <= coverage[name]:
@@ -368,7 +388,9 @@ def evaluate_coarse(board_path, contract_path, expected_contract_sha256=None, *,
                 except (ContractError, TypeError, KeyError, AttributeError) as exc:
                     reason = str(exc)
                     definite_geometry_failure = ('off board outline' in reason or
-                                                 'immutable native rule area' in reason)
+                                                 'immutable native rule area' in reason or
+                                                 'virtual boundary enters' in reason or
+                                                 'virtual reservation enters' in reason)
                     results.append({'id': name, 'status': 'FAIL' if definite_geometry_failure else 'INCOMPLETE',
                                     'reason': reason})
             for index, (left_name, left) in enumerate(reservations_seen):
