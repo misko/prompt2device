@@ -28,7 +28,8 @@ top-level fields:
 | `blocks[]` | Stable `id`, sorted owned `refs`, and nonempty `responsibilities` |
 | `interfaces[]` | One combined disposition per actual crossing net, with every `REF.pin` grouped by owning block, plus requirements |
 | `shared_responsibilities[]` | Stable id, one block or `board_integration` owner, and requirements |
-| `work_items[]` | P1–P5 child work inside `KICAD-PLACEMENT`, with blocks, dependencies, bounded attempts, backward repair targets, and output names |
+| `external_prerequisites[]` | Optional named physical evidence required by later child work; the current checker supports `connector_full` with a FULL phase receipt, binding receipt, and native board path |
+| `work_items[]` | P1–P5 child work inside `KICAD-PLACEMENT`, with blocks, dependencies, bounded attempts, backward repair targets, output names, and any external prerequisite ids |
 
 An omitted or duplicate component owner fails. So does an omitted crossing,
 invented net, unknown peer, or incomplete endpoint set. Ground and shared power
@@ -57,11 +58,36 @@ courtyard check as evidence that its electrical placement is complete.
 
 Use these scopes without forcing every block through a lockstep barrier:
 
-1. `P1_FLOORPLAN` allocates fixed features, regions, and corridors.
-2. `P2_BLOCK_PLACEMENT` places one block or a tightly coupled group.
-3. `P3_CRITICAL_LOCAL_ROUTES` proves selected critical paths after their own P2 dependency.
+1. `P1_FLOORPLAN` allocates fixed features, regions, coarse corridors, and boundary witnesses.
+2. `P2_BLOCK_PLACEMENT` places one block or a tightly coupled group and closes its local endpoint placement and access to the P1 boundary.
+3. `P3_CRITICAL_LOCAL_ROUTES` proves exact pad pockets, local escapes, filled reference and selected critical paths after their own P2 dependency.
 4. `P4_JOINT_PROOF` grades coupled blocks and shared corridors together.
 5. `P5_INTEGRATED_PLACEMENT_REVIEW` joins every declared P3/P4 proof before placement promotion.
+
+For a board with a named coarse corridor contract, bind the source, interface,
+footprint alias, floorplan, native board, and independently expected contract
+hashes. Name at least one source-owned `REF.pin` boundary witness for each
+covered net at the relevant block face, map it to the native pad/net/layer,
+and give each reservation a board-coordinate envelope and nonzero rough demand.
+Check the outline, fixed features, native rule areas, and potential capacity
+before spending P2 work. A movable part that occupies an envelope is relocation
+debt, not free routing space. A raw slot count only screens a reservation; it
+does not prove that all routes fit together. Record the required return-plane
+allocation and whether filled-reference proof is still absent. Keep the full
+cross-block endpoint list in the interface authority, while P2/P3 close every
+local terminal, pad access, effective rule clearance, return, and DRC detail.
+An edge connector's intentional body overhang needs its own mouth-to-outline
+and assembly evidence; a generic on-board witness does not waive that datum.
+The coarse checker reports a diagnostic, not engineering acceptance or a route.
+
+When a modular plan declares `connector_full`, every P3 item and the P5 item
+must name that external prerequisite. Before those items are ready, the
+checker reopens and regrades the FULL phase receipt, requires base PASS with
+zero unknowns, and verifies a binding receipt against the current task subject
+and exact receipt bytes. Its physical subject must be the planned native board
+or a governed coupon with its qualification receipt and exact planned-board
+binding. A recorded child attempt cannot replace this physical prerequisite.
+The checker repeats this prerequisite check at P5.
 
 A processing block may enter P3 while an independent connector block is still
 in P2. Dependencies state the real ordering. P5 must transitively depend on all
