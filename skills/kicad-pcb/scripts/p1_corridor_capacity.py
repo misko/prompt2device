@@ -78,7 +78,8 @@ def _coarse_hash(path, label, errors):
         return None
 
 
-def _coarse_witness(board, witness, net, owned_pads, aliases, pads, outline):
+def _coarse_witness(board, witness, net, owned_pads, aliases, pads, outline,
+                    regions, fixed_refs):
     source = witness.get('source')
     native = witness.get('native')
     block = witness.get('block')
@@ -103,6 +104,20 @@ def _coarse_witness(board, witness, net, owned_pads, aliases, pads, outline):
         raise ContractError(f'{source}: witness boundary off board')
     if not all(contains(area, box_mm(p.GetBoundingBox())) for p in found):
         raise ContractError(f'{source}: witness pad outside block-face boundary')
+    region = rectangle(regions.get(block), f'{block} source region')
+    region_span = min(region[2] - region[0], region[3] - region[1])
+    if area[2] - area[0] > region_span / 4 + 1e-6 or area[3] - area[1] > region_span / 4 + 1e-6:
+        raise ContractError(f'{source}: witness bbox is a nonlocal bridge across source region')
+    ref = native.rsplit('.', 1)[0]
+    if ref not in fixed_refs:
+        # P2-movable terminals must have a genuinely local boundary in their
+        # own source cell. Fixed edge connectors may sit outside that region;
+        # their native pose is independently bound by p1_fixed_refs.
+        halo = region_span / 10
+        permitted = (region[0] - halo, region[1] - halo,
+                     region[2] + halo, region[3] + halo)
+        if not contains(permitted, area):
+            raise ContractError(f'{source}: witness bbox leaves owning source region')
     return {'source': source, 'native': native, 'net': net, 'block': block,
             'face': face, 'layer': layer, 'boundary_bbox': area}
 
@@ -210,8 +225,11 @@ def evaluate_coarse(board_path, contract_path, expected_contract_sha256=None, *,
             anchors = placement.get('anchors')
             post_anchors = placement.get('post_anchors', {})
             seeds = placement.get('seeds', {})
+            regions = placement.get('regions', {})
             if not isinstance(anchors, dict) or not isinstance(post_anchors, dict) or not isinstance(seeds, dict):
                 raise ContractError('source-owned fixed/movable placement classification missing')
+            if not isinstance(regions, dict):
+                raise ContractError('source floorplan regions missing')
             # Generator precedence is post_anchors > anchors > seeds. A ref may
             # intentionally have a seed and a reviewed final post-anchor pose.
             # Validate P1-fixed refs against the effective pose below.
@@ -289,7 +307,7 @@ def evaluate_coarse(board_path, contract_path, expected_contract_sha256=None, *,
                         if witness.get('net') not in coverage[name]:
                             raise ContractError(f'{name}: witness net outside allocation')
                         checked.append(_coarse_witness(board, witness, witness['net'], owned_pads,
-                                                       aliases, pads, outline))
+                                                       aliases, pads, outline, regions, fixed_refs))
                     if {w['net'] for w in checked} != coverage[name]:
                         raise ContractError(f'{name}: missing per-net boundary witness')
                     if len({(w['source'], w['net']) for w in checked}) != len(checked):

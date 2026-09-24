@@ -77,7 +77,9 @@ class CoarseCapacityTest(unittest.TestCase):
         self.floorplan = {'placement': {
             'anchors': {'J_LEFT': [2, 5, 0], 'J_G': [2, 2, 0]},
             'post_anchors': {'J_RIGHT': [8, 5, 0], 'J_G2': [8, 2, 0], 'R_MOVE': [5, 5, 0]},
-            'seeds': {}, 'patterns': []}}
+            'seeds': {}, 'patterns': [],
+            'regions': {'left': [0, 3, 4, 7], 'right': [6, 3, 10, 7],
+                        'power': [0, 0, 4, 4]}}}
         self.allocations = [
             {'id': 'signal', 'coverage_nets': ['TEST'],
              'boundary_witnesses': [{'source': 'J_LEFT.1', 'native': 'J_LEFT.1', 'net': 'TEST',
@@ -176,6 +178,12 @@ class CoarseCapacityTest(unittest.TestCase):
         self.setUp()
         result = self.run_case(lambda: self.allocations[0]['boundary_witnesses'][0].update(face='east'))
         self.assertIn('block face does not contact', result['allocations'][0]['reason'])
+
+    def test_long_witness_bridge_cannot_claim_local_block_face(self):
+        self.allocations[0]['boundary_witnesses'][0]['boundary_bbox'] = [1.5, 4.5, 7.5, 5.5]
+        self.allocations[0]['reservations'][0]['bbox'] = [7.5, 4, 9.5, 6]
+        result = self.run_case()
+        self.assertIn('nonlocal bridge across source region', result['allocations'][0]['reason'])
 
     def test_native_rule_area_overlap_fails_closed(self):
         zone = pcbnew.ZONE(self.board)
