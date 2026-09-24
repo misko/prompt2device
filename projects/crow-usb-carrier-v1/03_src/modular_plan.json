@@ -3107,7 +3107,8 @@
       "id": "connector_full",
       "kind": "connector_full",
       "phase_receipt": "06_build/verification/connector_assembly_full_gate.json",
-      "binding_receipt": "06_build/verification/connector_full_p3_binding.json"
+      "binding_receipt": "06_build/verification/connector_full_p3_binding.json",
+      "board_path": "04_kicad/crow_carrier.kicad_pcb"
     }
   ]
 }

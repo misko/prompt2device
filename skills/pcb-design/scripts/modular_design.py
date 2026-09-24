@@ -40,10 +40,12 @@ def _fail(message: str) -> None:
     raise ModularDesignError(message)
 
 
-def _exact(row: Any, fields: set[str], where: str) -> Mapping[str, Any]:
+def _exact(row: Any, fields: set[str], where: str,
+           *, optional: set[str] | None = None) -> Mapping[str, Any]:
     if not isinstance(row, Mapping):
         _fail(f"{where}: expected a mapping")
-    missing, unknown = fields - set(row), set(row) - fields
+    optional = optional or set()
+    missing, unknown = fields - set(row), set(row) - (fields | optional)
     if missing or unknown:
         _fail(f"{where}: fields differ (missing={sorted(missing)}, unknown={sorted(unknown)})")
     return row
@@ -233,7 +235,8 @@ def observe_circuit(value: Any) -> dict[str, Any]:
 
 def _parse_plan(plan: Any) -> dict[str, Any]:
     plan = _exact(plan, {"schema", "stage_id", "blocks", "interfaces",
-                         "shared_responsibilities", "external_prerequisites", "work_items"}, "plan")
+                         "shared_responsibilities", "work_items"}, "plan",
+                  optional={"external_prerequisites"})
     if plan["schema"] != SCHEMA or isinstance(plan["schema"], bool):
         _fail("plan.schema: only schema 1 is supported")
     if plan["stage_id"] not in STAGE_IDS:
@@ -285,25 +288,32 @@ def _parse_plan(plan: Any) -> dict[str, Any]:
         _fail("interfaces: each crossing net must have one combined disposition")
 
     prerequisites: dict[str, dict[str, str]] = {}
-    for index, raw in enumerate(_list(plan["external_prerequisites"], "plan.external_prerequisites")):
-        row = _exact(raw, {"id", "kind", "phase_receipt", "binding_receipt"},
+    for index, raw in enumerate(_list(plan.get("external_prerequisites", []), "plan.external_prerequisites")):
+        row = _exact(raw, {"id", "kind", "phase_receipt", "binding_receipt", "board_path"},
                      f"external_prerequisites[{index}]")
         prerequisite_id = _token(row["id"], f"external_prerequisites[{index}].id")
+        if prerequisite_id != "connector_full":
+            _fail("external_prerequisites: connector_full is the only supported id")
         if prerequisite_id in prerequisites:
             _fail(f"external_prerequisites: duplicate id {prerequisite_id}")
         if row["kind"] != "connector_full":
             _fail(f"external_prerequisites[{index}].kind: only connector_full is supported")
-        phase_receipt, binding_receipt = _paths(
-            [row["phase_receipt"], row["binding_receipt"]],
-            f"external_prerequisites[{index}]", nonempty=True)
+        phase_receipt = _paths([row["phase_receipt"]],
+                               f"external_prerequisites[{index}].phase_receipt", nonempty=True)[0]
+        binding_receipt = _paths([row["binding_receipt"]],
+                                 f"external_prerequisites[{index}].binding_receipt", nonempty=True)[0]
+        board_path = _paths([row["board_path"]],
+                            f"external_prerequisites[{index}].board_path", nonempty=True)[0]
         prerequisites[prerequisite_id] = {"id": prerequisite_id, "kind": row["kind"],
                                           "phase_receipt": phase_receipt,
-                                          "binding_receipt": binding_receipt}
+                                          "binding_receipt": binding_receipt,
+                                          "board_path": board_path}
 
     items: dict[str, dict[str, Any]] = {}
     for index, raw in enumerate(_list(plan["work_items"], "plan.work_items", nonempty=True)):
         row = _exact(raw, {"id", "phase", "stage_id", "blocks", "depends_on",
-                           "max_attempts", "backtrack_to", "external_prerequisites", "evidence"}, f"work_items[{index}]")
+                           "max_attempts", "backtrack_to", "evidence"}, f"work_items[{index}]",
+                     optional={"external_prerequisites"})
         wid = _token(row["id"], f"work_items[{index}].id")
         if wid in items:
             _fail(f"work_items: duplicate id {wid}")
@@ -325,7 +335,7 @@ def _parse_plan(plan: Any) -> dict[str, Any]:
                       "max_attempts": attempts,
                       "backtrack_to": _strings(row["backtrack_to"], f"work_items[{index}].backtrack_to"),
                       "external_prerequisites": _strings(
-                          row["external_prerequisites"], f"work_items[{index}].external_prerequisites"),
+                          row.get("external_prerequisites", []), f"work_items[{index}].external_prerequisites"),
                       "evidence": _paths(row["evidence"], f"work_items[{index}].evidence", nonempty=True)}
     for item in items.values():
         for dependency in item["depends_on"]:
@@ -341,7 +351,9 @@ def _parse_plan(plan: Any) -> dict[str, Any]:
         for prerequisite_id in item["external_prerequisites"]:
             if prerequisite_id not in prerequisites:
                 _fail(f"work item {item['id']}: unknown external prerequisite {prerequisite_id}")
-        if item["phase"] == "P3_CRITICAL_LOCAL_ROUTES" and item["external_prerequisites"] != ("connector_full",):
+        if ("connector_full" in prerequisites and
+                item["phase"] == "P3_CRITICAL_LOCAL_ROUTES" and
+                item["external_prerequisites"] != ("connector_full",)):
             _fail(f"work item {item['id']}: every P3 task requires exactly connector_full")
     _acyclic(items)
     all_blocks = set(blocks)
@@ -357,7 +369,8 @@ def _parse_plan(plan: Any) -> dict[str, Any]:
     p5 = [row for row in items.values() if row["phase"] == "P5_INTEGRATED_PLACEMENT_REVIEW"]
     if len(p5) != 1 or set(p5[0]["blocks"]) != all_blocks:
         _fail("work_items: exactly one P5 integrated placement review covering every block is required")
-    if p5[0]["external_prerequisites"] != ("connector_full",):
+    if ("connector_full" in prerequisites and
+            p5[0]["external_prerequisites"] != ("connector_full",)):
         _fail("work_items: P5 requires exactly connector_full")
     required_ids = set(items) - {p5[0]["id"]}
     if not required_ids.issubset(_ancestors(p5[0]["id"], items)):
@@ -440,7 +453,8 @@ def _binding(path: Path, relative: str) -> dict[str, Any]:
     return {"path": relative, "sha256": _sha256(path), "size": path.stat().st_size}
 
 
-def _validate_connector_full(prerequisite: Mapping[str, str], evidence_root: Path | None) -> list[str]:
+def _validate_connector_full(prerequisite: Mapping[str, str], evidence_root: Path | None,
+                             task_subject: Mapping[str, Any]) -> list[str]:
     """Regrade FULL and bind it to an exact native board or coupon receipt.
 
     A task observation cannot replace this independent physical prerequisite.
@@ -456,16 +470,18 @@ def _validate_connector_full(prerequisite: Mapping[str, str], evidence_root: Pat
         binding = json.loads(binding_path.read_text())
     except (OSError, json.JSONDecodeError) as exc:
         return [f"connector_full: cannot read binding receipt: {exc}"]
-    expected = {"schema", "kind", "full_receipt", "subject"}
+    expected = {"schema", "kind", "full_receipt", "task_subject", "subject"}
     if not isinstance(binding, Mapping) or set(binding) != expected:
         return ["connector_full: binding receipt has an invalid schema"]
     if binding.get("schema") != 1 or binding.get("kind") != "connector-full-p3-binding":
         return ["connector_full: binding receipt kind/schema is invalid"]
+    if binding.get("task_subject") != task_subject:
+        return ["connector_full: binding does not match the current work subject"]
     full = binding.get("full_receipt")
     if not isinstance(full, Mapping) or set(full) != {"path", "sha256", "size"} or full != _binding(phase_path, prerequisite["phase_receipt"]):
         return ["connector_full: binding does not match the exact FULL receipt"]
     subject = binding.get("subject")
-    if not isinstance(subject, Mapping) or set(subject) not in ({"kind", "artifact"}, {"kind", "artifact", "coupon_receipt"}):
+    if not isinstance(subject, Mapping) or set(subject) not in ({"kind", "artifact"}, {"kind", "artifact", "coupon_receipt", "target_board"}):
         return ["connector_full: binding subject has an invalid schema"]
     kind, artifact = subject.get("kind"), subject.get("artifact")
     if kind not in {"native_board", "governed_coupon"} or not isinstance(artifact, Mapping) or set(artifact) != {"path", "sha256", "size"}:
@@ -476,7 +492,19 @@ def _validate_connector_full(prerequisite: Mapping[str, str], evidence_root: Pat
         return [f"connector_full: invalid subject artifact: {exc}"]
     if artifact != _binding(artifact_path, artifact["path"]):
         return ["connector_full: subject artifact bytes are stale"]
+    if kind == "native_board" and artifact["path"] != prerequisite["board_path"]:
+        return ["connector_full: native FULL board differs from the plan board"]
     if kind == "governed_coupon":
+        target = subject.get("target_board")
+        if not isinstance(target, Mapping) or set(target) != {"path", "sha256", "size"}:
+            return ["connector_full: governed coupon lacks its exact plan board"]
+        try:
+            target_path = _reopen_regular(evidence_root, target["path"], "connector_full")
+        except (TypeError, ModularDesignError) as exc:
+            return [f"connector_full: invalid governed-coupon plan board: {exc}"]
+        if (target["path"] != prerequisite["board_path"] or
+                target != _binding(target_path, target["path"])):
+            return ["connector_full: governed coupon does not bind the plan board"]
         coupon = subject.get("coupon_receipt")
         if not isinstance(coupon, Mapping) or set(coupon) != {"path", "sha256", "size"}:
             return ["connector_full: governed coupon lacks its exact qualification receipt"]
@@ -601,7 +629,8 @@ def evaluate(plan: Any, circuit: Any, observations: Sequence[Mapping[str, Any]] 
         for prerequisite_id in item["external_prerequisites"]:
             if prerequisite_id not in prerequisite_findings:
                 prerequisite = parsed["external_prerequisites"][prerequisite_id]
-                prerequisite_findings[prerequisite_id] = _validate_connector_full(prerequisite, evidence_root)
+                prerequisite_findings[prerequisite_id] = _validate_connector_full(
+                    prerequisite, evidence_root, subject.to_mapping())
             if prerequisite_findings[prerequisite_id]:
                 missing_prerequisites.append(prerequisite_id)
         evidence_seen = set(attempts[-1]["evidence"]) if attempts else set()

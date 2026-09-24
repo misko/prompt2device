@@ -70,7 +70,8 @@ def plan():
         "external_prerequisites": [
             {"id": "connector_full", "kind": "connector_full",
              "phase_receipt": "verification/connector_full.json",
-             "binding_receipt": "verification/connector_full_binding.json"}
+             "binding_receipt": "verification/connector_full_binding.json",
+             "board_path": "candidate.kicad_pcb"}
         ],
         # P2 processing can feed P3 before the independent connector P2 task;
         # this intentionally rejects a rigid all-P2-before-any-P3 schedule.
@@ -143,13 +144,14 @@ def file_binding(root, relative):
             "size": path.stat().st_size}
 
 
-def connector_full_fixture(root):
+def connector_full_fixture(root, source):
     phase = root / "verification/connector_full.json"; phase.parent.mkdir(parents=True, exist_ok=True)
     phase.write_text(json.dumps({"status": "PASS", "authority": {"base_status": "PASS"},
                                  "summary": {"base_unknown_count": 0}}))
     board = root / "candidate.kicad_pcb"; board.write_text("native candidate\n")
     binding = {"schema": 1, "kind": "connector-full-p3-binding",
                "full_receipt": file_binding(root, "verification/connector_full.json"),
+               "task_subject": work_subject(source, circuit()).to_mapping(),
                "subject": {"kind": "native_board", "artifact": file_binding(root, "candidate.kicad_pcb")}}
     (root / "verification/connector_full_binding.json").write_text(json.dumps(binding))
 
@@ -192,7 +194,7 @@ def t_connector_full_external_prerequisite():
     source = plan(); root, p1 = attempt(source, "p1", evidence=["floorplan_receipt"])
     _, p2 = attempt(source, "p2_processing", evidence=["processing_placement"], root=root)
     _, p3 = attempt(source, "p3_processing", evidence=["critical_route_receipt"], root=root)
-    connector_full_fixture(root)
+    connector_full_fixture(root, source)
     old = sys.modules.get("connector_assembly_phase_gate")
     sys.modules["connector_assembly_phase_gate"] = types.SimpleNamespace(
         regrade_phase_gate=lambda path, project, expected_phase: (expected_phase == "full", []))
@@ -208,6 +210,91 @@ def t_connector_full_external_prerequisite():
             del sys.modules["connector_assembly_phase_gate"]
         else:
             sys.modules["connector_assembly_phase_gate"] = old
+
+
+@test("connector FULL cannot use an unrelated board or stale task subject", kind="known_bad")
+def t_connector_full_rejects_unrelated_board_or_subject():
+    source = plan(); root, p1 = attempt(source, "p1", evidence=["floorplan_receipt"])
+    _, p2 = attempt(source, "p2_processing", evidence=["processing_placement"], root=root)
+    _, p3 = attempt(source, "p3_processing", evidence=["critical_route_receipt"], root=root)
+    connector_full_fixture(root, source)
+    old = sys.modules.get("connector_assembly_phase_gate")
+    sys.modules["connector_assembly_phase_gate"] = types.SimpleNamespace(
+        regrade_phase_gate=lambda path, project, expected_phase: (expected_phase == "full", []))
+    try:
+        binding_path = root / "verification/connector_full_binding.json"
+        binding = json.loads(binding_path.read_text())
+        other = root / "other.kicad_pcb"; other.write_text("unrelated board\n")
+        binding["subject"]["artifact"] = file_binding(root, "other.kicad_pcb")
+        binding_path.write_text(json.dumps(binding))
+        report = evaluate(source, circuit(), p1 + p2 + p3, evidence_root=root)
+        eq(report["work"]["p3_processing"]["state"], "BLOCKED", "unrelated board blocks P3")
+        connector_full_fixture(root, source)
+        binding = json.loads(binding_path.read_text())
+        binding["task_subject"] = {"semantic_sha256": "0" * 64, "raw_sha256": "0" * 64}
+        binding_path.write_text(json.dumps(binding))
+        report = evaluate(source, circuit(), p1 + p2 + p3, evidence_root=root)
+        eq(report["work"]["p3_processing"]["state"], "BLOCKED", "stale task subject blocks P3")
+    finally:
+        if old is None:
+            del sys.modules["connector_assembly_phase_gate"]
+        else:
+            sys.modules["connector_assembly_phase_gate"] = old
+
+
+@test("connector FULL coupon binding names the exact plan board", kind="known_bad")
+def t_connector_full_coupon_rejects_unrelated_plan_board():
+    source = plan(); root, p1 = attempt(source, "p1", evidence=["floorplan_receipt"])
+    _, p2 = attempt(source, "p2_processing", evidence=["processing_placement"], root=root)
+    _, p3 = attempt(source, "p3_processing", evidence=["critical_route_receipt"], root=root)
+    connector_full_fixture(root, source)
+    coupon_board = root / "coupon.kicad_pcb"; coupon_board.write_text("coupon board\n")
+    coupon_receipt = root / "verification/coupon.json"
+    coupon_receipt.write_text(json.dumps({"kind": "connector-qualification-coupon-receipt", "status": "PASS",
+                                          "inputs": {"coupon_board": file_binding(root, "coupon.kicad_pcb")}}))
+    binding_path = root / "verification/connector_full_binding.json"
+    binding = json.loads(binding_path.read_text())
+    binding["subject"] = {"kind": "governed_coupon", "artifact": file_binding(root, "coupon.kicad_pcb"),
+                          "coupon_receipt": file_binding(root, "verification/coupon.json"),
+                          "target_board": file_binding(root, "candidate.kicad_pcb")}
+    binding_path.write_text(json.dumps(binding))
+    old = sys.modules.get("connector_assembly_phase_gate")
+    sys.modules["connector_assembly_phase_gate"] = types.SimpleNamespace(
+        regrade_phase_gate=lambda path, project, expected_phase: (expected_phase == "full", []))
+    try:
+        report = evaluate(source, circuit(), p1 + p2 + p3, evidence_root=root)
+        eq(report["work"]["p3_processing"]["state"], "WORK_RECORDED", "bound coupon unlocks P3")
+        other = root / "other.kicad_pcb"; other.write_text("unrelated plan board\n")
+        binding["subject"]["target_board"] = file_binding(root, "other.kicad_pcb")
+        binding_path.write_text(json.dumps(binding))
+        report = evaluate(source, circuit(), p1 + p2 + p3, evidence_root=root)
+        eq(report["work"]["p3_processing"]["state"], "BLOCKED", "unrelated coupon target blocks P3")
+    finally:
+        if old is None:
+            del sys.modules["connector_assembly_phase_gate"]
+        else:
+            sys.modules["connector_assembly_phase_gate"] = old
+
+
+@test("legacy schema-1 plans retain their pre-prerequisite P3/P5 behavior")
+def t_legacy_plan_without_external_prerequisites():
+    source = plan()
+    source.pop("external_prerequisites")
+    for row in source["work_items"]:
+        row.pop("external_prerequisites")
+    root, p1 = attempt(source, "p1", evidence=["floorplan_receipt"])
+    _, p2 = attempt(source, "p2_processing", evidence=["processing_placement"], root=root)
+    report = evaluate(source, circuit(), p1 + p2, evidence_root=root)
+    eq(report["status"], "PASS", "legacy coverage verdict")
+    eq(report["work"]["p3_processing"]["state"], "READY",
+       "absent connector extension does not create a new legacy blocker")
+
+
+@test("connector prerequisite extension rejects an unprotected P3", kind="known_bad")
+def t_connector_extension_requires_every_p3():
+    source = plan()
+    next(row for row in source["work_items"] if row["id"] == "p3_processing")["external_prerequisites"] = []
+    rejects(lambda: evaluate(source, circuit()), "every P3 task requires exactly connector_full")
 
 
 @test("stale TaskAttempt subject and non-backward repair are refused", kind="known_bad")
