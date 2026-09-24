@@ -1,0 +1,472 @@
+{
+  "status": "GEOMETRY_PASS_WITH_ORIGIN_COURTYARD_ESCAPE_EXCEPTION",
+  "scope": "RESEARCH_ONLY_NO_PCB_EDIT_NO_P1_OR_P2_CLAIM",
+  "board_sha256": "fbfb3bda95f1ddc98e7d3d229550644d136dc7d6349ba19a4023eb13b07e7e27",
+  "trace_width_mm": 0.15,
+  "clearance_mm": 0.15,
+  "source_owned_strip_mm": [
+    221.0,
+    65.0,
+    226.0,
+    84.0
+  ],
+  "fixed_pose_current_deg": 90,
+  "origin_jtag_courtyard_mm": [
+    223.455,
+    45.955,
+    232.545,
+    54.045
+  ],
+  "origin_courtyard_note": "Every pad starts inside this courtyard; a literal no-origin-courtyard-crossing rule makes any surface escape impossible. Foreign courtyards are screened normally.",
+  "current_pose_doglegs": {
+    "name": "current_pose_90deg",
+    "routes": [
+      {
+        "net": "JTAG_TMS",
+        "source_pad": "J_JTAG.2",
+        "points_mm": [
+          [
+            230.91,
+            47.965
+          ],
+          [
+            231.135,
+            47.965
+          ],
+          [
+            231.135,
+            54.8
+          ],
+          [
+            225.4,
+            54.8
+          ],
+          [
+            225.4,
+            65.0
+          ]
+        ],
+        "segment_envelopes_mm": [
+          [
+            230.835,
+            47.89,
+            231.20999999999998,
+            48.040000000000006
+          ],
+          [
+            231.06,
+            47.89,
+            231.20999999999998,
+            54.875
+          ],
+          [
+            225.32500000000002,
+            54.724999999999994,
+            231.20999999999998,
+            54.875
+          ],
+          [
+            225.32500000000002,
+            54.724999999999994,
+            225.475,
+            65.075
+          ]
+        ],
+        "hits": {
+          "foreign_pads": [],
+          "foreign_bodies": [],
+          "foreign_courtyards": [],
+          "existing_f_copper": [],
+          "rule_areas": []
+        },
+        "clear_of_foreign_native_geometry": true
+      },
+      {
+        "net": "JTAG_TCK",
+        "source_pad": "J_JTAG.4",
+        "points_mm": [
+          [
+            229.27,
+            49.36
+          ],
+          [
+            229.27,
+            50.2
+          ],
+          [
+            224.85,
+            50.2
+          ],
+          [
+            224.85,
+            54.2
+          ],
+          [
+            222.6,
+            54.2
+          ],
+          [
+            222.6,
+            65.0
+          ]
+        ],
+        "segment_envelopes_mm": [
+          [
+            229.19500000000002,
+            49.285,
+            229.345,
+            50.275000000000006
+          ],
+          [
+            224.775,
+            50.125,
+            229.345,
+            50.275000000000006
+          ],
+          [
+            224.775,
+            50.125,
+            224.92499999999998,
+            54.275000000000006
+          ],
+          [
+            222.525,
+            54.125,
+            224.92499999999998,
+            54.275000000000006
+          ],
+          [
+            222.525,
+            54.125,
+            222.67499999999998,
+            65.075
+          ]
+        ],
+        "hits": {
+          "foreign_pads": [],
+          "foreign_bodies": [],
+          "foreign_courtyards": [],
+          "existing_f_copper": [],
+          "rule_areas": []
+        },
+        "clear_of_foreign_native_geometry": true
+      },
+      {
+        "net": "JTAG_TDO",
+        "source_pad": "J_JTAG.6",
+        "points_mm": [
+          [
+            228.0,
+            49.36
+          ],
+          [
+            228.0,
+            49.9
+          ],
+          [
+            224.55,
+            49.9
+          ],
+          [
+            224.55,
+            53.9
+          ],
+          [
+            222.0,
+            53.9
+          ],
+          [
+            222.0,
+            65.0
+          ]
+        ],
+        "segment_envelopes_mm": [
+          [
+            227.925,
+            49.285,
+            228.075,
+            49.975
+          ],
+          [
+            224.47500000000002,
+            49.824999999999996,
+            228.075,
+            49.975
+          ],
+          [
+            224.47500000000002,
+            49.824999999999996,
+            224.625,
+            53.975
+          ],
+          [
+            221.925,
+            53.824999999999996,
+            224.625,
+            53.975
+          ],
+          [
+            221.925,
+            53.824999999999996,
+            222.075,
+            65.075
+          ]
+        ],
+        "hits": {
+          "foreign_pads": [],
+          "foreign_bodies": [],
+          "foreign_courtyards": [],
+          "existing_f_copper": [],
+          "rule_areas": []
+        },
+        "clear_of_foreign_native_geometry": true
+      },
+      {
+        "net": "JTAG_TDI",
+        "source_pad": "J_JTAG.8",
+        "points_mm": [
+          [
+            226.73,
+            49.36
+          ],
+          [
+            226.73,
+            49.6
+          ],
+          [
+            224.25,
+            49.6
+          ],
+          [
+            224.25,
+            53.6
+          ],
+          [
+            221.7,
+            53.6
+          ],
+          [
+            221.7,
+            65.0
+          ]
+        ],
+        "segment_envelopes_mm": [
+          [
+            226.655,
+            49.285,
+            226.80499999999998,
+            49.675000000000004
+          ],
+          [
+            224.175,
+            49.525,
+            226.80499999999998,
+            49.675000000000004
+          ],
+          [
+            224.175,
+            49.525,
+            224.325,
+            53.675000000000004
+          ],
+          [
+            221.625,
+            53.525,
+            224.325,
+            53.675000000000004
+          ],
+          [
+            221.625,
+            53.525,
+            221.77499999999998,
+            65.075
+          ]
+        ],
+        "hits": {
+          "foreign_pads": [],
+          "foreign_bodies": [],
+          "foreign_courtyards": [],
+          "existing_f_copper": [],
+          "rule_areas": []
+        },
+        "clear_of_foreign_native_geometry": true
+      }
+    ],
+    "simultaneous_interroute_clear": true,
+    "interroute_hits": [],
+    "all_routes_clear": true
+  },
+  "rotated_pose_directs": {
+    "name": "candidate_pose_270deg",
+    "routes": [
+      {
+        "net": "JTAG_TMS",
+        "source_pad": "J_JTAG.2",
+        "points_mm": [
+          [
+            225.46,
+            53.43
+          ],
+          [
+            225.46,
+            65.0
+          ]
+        ],
+        "segment_envelopes_mm": [
+          [
+            225.38500000000002,
+            53.355,
+            225.535,
+            65.075
+          ]
+        ],
+        "hits": {
+          "foreign_pads": [],
+          "foreign_bodies": [],
+          "foreign_courtyards": [],
+          "existing_f_copper": [],
+          "rule_areas": []
+        },
+        "clear_of_foreign_native_geometry": true
+      },
+      {
+        "net": "JTAG_TCK",
+        "source_pad": "J_JTAG.4",
+        "points_mm": [
+          [
+            226.73000000000002,
+            53.43
+          ],
+          [
+            226.73000000000002,
+            65.0
+          ]
+        ],
+        "segment_envelopes_mm": [
+          [
+            226.65500000000003,
+            53.355,
+            226.805,
+            65.075
+          ]
+        ],
+        "hits": {
+          "foreign_pads": [],
+          "foreign_bodies": [],
+          "foreign_courtyards": [],
+          "existing_f_copper": [],
+          "rule_areas": []
+        },
+        "clear_of_foreign_native_geometry": true
+      },
+      {
+        "net": "JTAG_TDO",
+        "source_pad": "J_JTAG.6",
+        "points_mm": [
+          [
+            228.0,
+            53.43
+          ],
+          [
+            228.0,
+            65.0
+          ]
+        ],
+        "segment_envelopes_mm": [
+          [
+            227.925,
+            53.355,
+            228.075,
+            65.075
+          ]
+        ],
+        "hits": {
+          "foreign_pads": [],
+          "foreign_bodies": [],
+          "foreign_courtyards": [],
+          "existing_f_copper": [],
+          "rule_areas": []
+        },
+        "clear_of_foreign_native_geometry": true
+      },
+      {
+        "net": "JTAG_TDI",
+        "source_pad": "J_JTAG.8",
+        "points_mm": [
+          [
+            229.26999999999998,
+            53.43
+          ],
+          [
+            229.26999999999998,
+            65.0
+          ]
+        ],
+        "segment_envelopes_mm": [
+          [
+            229.195,
+            53.355,
+            229.34499999999997,
+            65.075
+          ]
+        ],
+        "hits": {
+          "foreign_pads": [],
+          "foreign_bodies": [],
+          "foreign_courtyards": [],
+          "existing_f_copper": [],
+          "rule_areas": []
+        },
+        "clear_of_foreign_native_geometry": true
+      }
+    ],
+    "simultaneous_interroute_clear": true,
+    "interroute_hits": [],
+    "all_routes_clear": true
+  },
+  "rotated_pose": {
+    "centre_mm": [
+      228.0,
+      50.0
+    ],
+    "orientation_deg": 270,
+    "strip_required_for_direct_routes_mm": [
+      221.0,
+      65.0,
+      231.0,
+      84.0
+    ],
+    "even_signal_pad_boxes_mm": {
+      "J_JTAG.2": [
+        225.09,
+        50.64,
+        225.83,
+        53.43
+      ],
+      "J_JTAG.4": [
+        226.36,
+        50.64,
+        227.1,
+        53.43
+      ],
+      "J_JTAG.6": [
+        227.63,
+        50.64,
+        228.37,
+        53.43
+      ],
+      "J_JTAG.8": [
+        228.9,
+        50.64,
+        229.64,
+        53.43
+      ]
+    }
+  },
+  "limits": [
+    "bbox clearance screen; it does not run KiCad DRC",
+    "no connector mating/service/assembly result",
+    "no filled-reference, impedance, return, source-ownership, P2 or P1 acceptance result",
+    "rotation is a virtual coordinate transform; the pinned board itself remains at 90 degrees"
+  ]
+}
