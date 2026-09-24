@@ -321,6 +321,8 @@ in the `02_parts` contract. These two are this folder's own.
 | `board.stackup.dielectrics[].epsilon_r` | `generate_board_generic.py` | validated and emitted dielectric relative permittivity |
 | `board.stackup.dielectrics[].loss_tangent` | `generate_board_generic.py` | validated and emitted dielectric loss tangent |
 | `design_rules.*` | `generate_board_generic.py` | pcbnew design-settings floors, applied through the `DS_KEYS` literal table; an explicit value below the fab tier is a generation error |
+| `conditional_pofv` | `tmux4827_pofv.py` | Crow's exact eight-site conditional TMUX4827 B2 profile is read before board/rule emission and audited again on the native board; this does not claim fabricator acceptance |
+| `conditional_pofv.*` | `tmux4827_pofv.py` | exact profile ID, CONDITIONAL status and U_ISO1..8 refs must match the assembly profile |
 | `thermal_vias.*` | `generate_board_generic.py` | fabrication-via fields and legacy heatsink-pad promotion; refs, owning pads, non-empty coordinates, size/drill geometry and optional item-level capping/filling are validated before true board vias are emitted |
 | `taps.connections[].via` | `route_and_stitch_generic.py` | optional per-tap via geometry (`size`, `drill`, `hole_to_copper`, `exact`) and item-level capping/filling; exact placement is restricted to deterministic plane drops |
 | `taps.connections[].via_protection` | `route_and_stitch_generic.py` | optional item-level capping/filling selection for the tap via; forbidden on unsupported escape taps and emitted onto the exact board via |

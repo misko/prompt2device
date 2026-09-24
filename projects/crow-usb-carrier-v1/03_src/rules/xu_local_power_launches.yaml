@@ -1,0 +1,17 @@
+# Deliberately inactive: a candidate must copy this declaration into an isolated
+# board replay. Canonical floorplan/rules do not consume it.
+status: placement_review_required
+launches:
+  - id: XU_VDD14_LOCAL
+    ref: U_XU
+    pad: '14'
+    net: N0V9
+    target: {ref: C_XU_VDD_14, pad: '1'}
+  - id: XU_VDDIO17_LOCAL
+    ref: U_XU
+    pad: '17'
+    net: N1V8
+    target: {ref: C_XU_VDDIO_17, pad: '1'}
+width_mm: 0.15
+ordinary_width_mm: 0.60
+layer: F.Cu
