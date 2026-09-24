@@ -1,0 +1,18 @@
+--- a/projects/crow-usb-carrier-v1/03_src/floorplan.yaml
++++ b/projects/crow-usb-carrier-v1/03_src/floorplan.yaml
+@@ -387,12 +387,13 @@
+     - 190
+     - 84
+     - 232
+-    - 114
++    - 110.5
+     clock_flash_debug:
+     - 190
+-    - 114
++    - 118.5
+     - 232
+     - 136
++    board_integration_qspi: [199.8, 110.5, 223.2, 118.5]
+     audio_clock_tdm:
+     - 140
+     - 72

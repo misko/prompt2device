@@ -1,0 +1,246 @@
+{
+  "assigned_footprint_count": 37,
+  "assigned_outside_owner": [],
+  "baseline": {
+    "footprints": 569,
+    "pads": 1872,
+    "zones": [
+      {
+        "bbox_mm": [
+          20.0,
+          20.0,
+          240.0,
+          140.0
+        ],
+        "layer": "In1.Cu",
+        "net": "GND",
+        "rule_area": false
+      }
+    ]
+  },
+  "corridor_native_footprint_hits": [],
+  "corridor_native_pad_hits": [],
+  "diagnostic_window_fits_corridor": true,
+  "gap_variant": {
+    "footprints": 569,
+    "pads": 1872,
+    "zones": [
+      {
+        "bbox_mm": [
+          20.0,
+          20.0,
+          240.0,
+          140.0
+        ],
+        "layer": "In1.Cu",
+        "net": "GND",
+        "rule_area": false
+      }
+    ]
+  },
+  "limits": [
+    "region is source-declared geometry; no P1 schema-2 handoff/capacity contract or native reservation exists",
+    "F.Cu pad-to-face access and filled-reference return remain P2_REQUIRED",
+    "JTAG north continuation through usb_frontend remains unowned",
+    "zero native rule areas prevents preservation check"
+  ],
+  "moved_footprints": [
+    {
+      "after": [
+        211.7,
+        131.199999,
+        0.0
+      ],
+      "before": [
+        211.7,
+        128.9,
+        0.0
+      ],
+      "ref": "C_FLASH"
+    },
+    {
+      "after": [
+        210.3,
+        123.3,
+        0.0
+      ],
+      "before": [
+        210.3,
+        121.1,
+        0.0
+      ],
+      "ref": "C_XTAL_IN"
+    },
+    {
+      "after": [
+        208.8,
+        131.1,
+        0.0
+      ],
+      "before": [
+        208.8,
+        128.9,
+        0.0
+      ],
+      "ref": "C_XTAL_OUT"
+    },
+    {
+      "after": [
+        212.5,
+        88.9,
+        0.0
+      ],
+      "before": [
+        209.3,
+        89.2,
+        0.0
+      ],
+      "ref": "C_XU_USB18"
+    },
+    {
+      "after": [
+        219.9,
+        100.5,
+        0.0
+      ],
+      "before": [
+        212.7,
+        89.2,
+        0.0
+      ],
+      "ref": "C_XU_USB33"
+    },
+    {
+      "after": [
+        213.2,
+        123.4,
+        0.0
+      ],
+      "before": [
+        213.2,
+        121.1,
+        0.0
+      ],
+      "ref": "R_QSPI_CS"
+    },
+    {
+      "after": [
+        212.0,
+        132.699999,
+        0.0
+      ],
+      "before": [
+        212.0,
+        130.4,
+        0.0
+      ],
+      "ref": "R_XTAL_DRIVE"
+    },
+    {
+      "after": [
+        210.0,
+        121.8,
+        0.0
+      ],
+      "before": [
+        210.0,
+        119.6,
+        0.0
+      ],
+      "ref": "R_XTAL_FB"
+    },
+    {
+      "after": [
+        218.5,
+        127.2,
+        0.0
+      ],
+      "before": [
+        218.5,
+        125.0,
+        0.0
+      ],
+      "ref": "U_FLASH"
+    },
+    {
+      "after": [
+        211.0,
+        127.25,
+        0.0
+      ],
+      "before": [
+        211.0,
+        125.0,
+        0.0
+      ],
+      "ref": "Y_XU"
+    }
+  ],
+  "nearest_clock_envelope_to_corridor_mm": 2.805,
+  "nearest_xu_envelope_to_corridor_mm": 0.615,
+  "p1_fixed_count": 27,
+  "p1_fixed_moved_refs": [],
+  "pad_identity_changed_refs": [],
+  "pad_position_changed_refs": [
+    "C_FLASH",
+    "C_XTAL_IN",
+    "C_XTAL_OUT",
+    "C_XU_USB18",
+    "C_XU_USB33",
+    "R_QSPI_CS",
+    "R_XTAL_DRIVE",
+    "R_XTAL_FB",
+    "U_FLASH",
+    "Y_XU"
+  ],
+  "pcbnew_version": "10.0.4",
+  "qspi_face": {
+    "claim": "raw vacant face only; no per-net capacity or pad-to-face proof",
+    "raw_margin_mm": 2.3,
+    "raw_width_mm": 5,
+    "required_width_mm": 2.7,
+    "segment_mm": [
+      [
+        200,
+        110.5
+      ],
+      [
+        205,
+        110.5
+      ]
+    ]
+  },
+  "region_overlaps": [],
+  "regions_mm": {
+    "board_integration_qspi": [
+      199.8,
+      110.5,
+      223.2,
+      118.5
+    ],
+    "clock_flash_debug": [
+      190,
+      118.5,
+      232,
+      136
+    ],
+    "xmos_core": [
+      190,
+      84,
+      232,
+      110.5
+    ]
+  },
+  "regions_outside_outline": [],
+  "rule_area_count": 0,
+  "schema": "crow-xu-qspi-gap-regeneration-v1",
+  "sha256": {
+    "gap_board": "fbfb3bda95f1ddc98e7d3d229550644d136dc7d6349ba19a4023eb13b07e7e27",
+    "gap_source": "cd52893214a87432b99bab41827a64680bd8a2f970342f126260157948b50925",
+    "generator": "8a5fa1d48d80138458601a097ab6260565841510a498e44cb9c5773652215b3c",
+    "netlist": "e7ef7dbd752b9431ade0933ca77ee998963bfe3871c3caf65cddc56442f1371d",
+    "rect_board": "c3b9d2885e1f475aad4744185eaa7258359a0d340e864e56418da5f61a0d3a6b",
+    "rect_source": "01aa2aa9fa6b264510e568236a265fefb36494b275de081a99b62229c8be3de8"
+  },
+  "status": "INCOMPLETE_RESEARCH"
+}
