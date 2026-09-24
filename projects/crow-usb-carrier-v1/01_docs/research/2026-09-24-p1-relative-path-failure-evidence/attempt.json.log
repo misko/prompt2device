@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "/tmp/crow-45-p1-runner-prep-terra/crow_45_p1_worker.py", line 96, in <module>
+    if __name__=='__main__': raise SystemExit(main())
+                                              ^^^^^^
+  File "/tmp/crow-45-p1-runner-prep-terra/crow_45_p1_worker.py", line 33, in main
+    shutil.copytree(project/d,work/d,ignore=shutil.ignore_patterns('node_modules','dist','task_runs'))
+  File "/usr/lib/python3.12/shutil.py", line 598, in copytree
+    with os.scandir(src) as itr:
+         ^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'projects/crow-usb-carrier-v1/02_parts'

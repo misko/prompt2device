@@ -1,23 +1,23 @@
 {
-  "blocker": "The 45-page current source retains 2/2 SOUND pre-route reviews and is a WIP DO-NOT-ORDER checkpoint. The original P1 launch-abort attempt is terminal FAIL and consumed; its exact archived attempt/envelope bytes remain historical. A new P1 root is prospectively governed only and requires independent clean-commit admission before any sole native attempt. No board/P2/P3/routing/physical E-FAULT/sourcing allocation/release/order acceptance is implied.",
+  "blocker": "The 45-page current source retains 2/2 SOUND pre-route reviews and is a WIP DO-NOT-ORDER checkpoint. The P1 relative-path campaign is terminal FAIL and consumed; its exact archived evidence remains immutable. A distinct prospective P1 root requires a fresh frozen packet and independent schema-2 admission before any one native attempt. No native board/P2/P3/routing/physical E-FAULT/sourcing allocation/release/order acceptance is implied.",
   "checkpoint": {
     "path": "06_build/checkpoints/schematic.json",
     "sha256": "917a45414c65cf43dbeef24704da01beda6b9711175cf9cec3af109ec027f4d6",
     "size": 1152
   },
-  "next_command": "From this clean commit, obtain independent source and native admission for the new P1 root, then dispatch at most its one fresh native attempt. Do not resume the old terminal P1 attempt or alter its historical evidence.",
+  "next_command": "From this clean commit, freeze the new P1 replacement packet and obtain independent source and native admission, then dispatch at most one new P1 native attempt. Do not resume either terminal P1 campaign or modify their evidence.",
   "phase": "placement",
   "project": "crow-usb-carrier-v1",
   "receipts": [
     {
-      "path": "01_docs/research/2026-09-24-p1-launch-abort-evidence/SHA256SUMS",
-      "sha256": "533a25d9db9823f2e8e6cbae9c40cf744058e85f48e931834fcd80ed1e3dd611",
-      "size": 159
+      "path": "01_docs/research/2026-09-24-p1-relative-path-failure-evidence/SHA256SUMS",
+      "sha256": "3a34d7e9ae355340e9b00afd926555f2a518ead1525564e6545c77f57f7e1ccb",
+      "size": 529
     },
     {
-      "path": "01_docs/research/2026-09-24-p1-launch-abort-owner-reassessment.md",
-      "sha256": "26feed724b5483a5fe0fb02696fcd39e1e6402a947e66f5e800f9c779fa98cbd",
-      "size": 5673
+      "path": "01_docs/research/2026-09-24-p1-relative-path-failure-owner-reassessment.md",
+      "sha256": "8cb6435b40c7f9c77f5a6fb429345046fe2678294856069f8af45fc052bb5942",
+      "size": 3151
     },
     {
       "path": "08_reviews/pre-route_schematic_render.md",
@@ -31,5 +31,5 @@
     }
   ],
   "schema": 1,
-  "state_id": "491069d2a9d5a0d859cdf83c5b42130139b783be2952f6ddc0ecf20928008da7"
+  "state_id": "64d1a53e29fe8fa50e12e4839429e48c4525f598fb048ff386bbfe6991c73fb2"
 }

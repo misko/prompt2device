@@ -266,6 +266,33 @@ findings:
   - 01_docs/decisions/0011-p1-floorplan-and-p2-placement-admission.md
   - 01_docs/pause_state.json
 
+- id: USB-P1-relative-path-failure-replacement
+  state: open
+  blocks_at_or_above: DESIGN_CLEAN
+  owner: placement-and-process
+  finding: >-
+    The one attempt of p1_floorplan_569_after_launch_abort is terminal FAIL and
+    consumed. Its worker resolved a project-relative input from an already
+    project-relative CWD, failed to find the nested 02_parts path, and produced
+    no board, handback, output, or project change. This is a launch path defect,
+    not evidence that the bounded attempt was unspent or that source changed.
+  closes_when: >-
+    Independently admit the distinct p1_floorplan_569_after_relative_path_abort
+    campaign on a clean frozen packet with corrected relative-path preflight,
+    then complete and review its sole P1 handback. Any failure remains consumed;
+    P2, P3, routing, promotion, release, and order remain outside this scope.
+  evidence:
+  - 01_docs/research/2026-09-24-p1-relative-path-failure-owner-reassessment.md
+  - 01_docs/research/2026-09-24-p1-relative-path-failure-evidence/attempt.json
+  - 01_docs/research/2026-09-24-p1-relative-path-failure-evidence/allocated-envelope.json
+  - 01_docs/research/2026-09-24-p1-relative-path-failure-evidence/attempt.json.log
+  - 01_docs/research/2026-09-24-p1-relative-path-failure-evidence/reviewed-envelope.schema2.json
+  - 01_docs/research/2026-09-24-p1-relative-path-failure-evidence/tool_manifest.json
+  - 01_docs/research/2026-09-24-p1-relative-path-failure-evidence/formal-admission-v4-terra.md
+  - 01_docs/research/2026-09-24-p1-relative-path-failure-evidence/SHA256SUMS
+  - 06_build/task_runs/p1_floorplan_569_after_launch_abort_r1-4d8a216d0d254c4db60305b0528ba3c9/attempt.json
+  - 01_docs/decisions/0011-p1-floorplan-and-p2-placement-admission.md
+
 - id: USB-P2-input-power-placement
   state: open
   blocks_at_or_above: DESIGN_CLEAN
