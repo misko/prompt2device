@@ -38,7 +38,8 @@ return_requirement: {net: GND, proof: continuous native filled reference plane u
 receipt_requirements:
   board_sha256: required
   expected_contract_sha256: required
-  exact_ref_pad_net_pockets: required
+  coarse_boundary_witnesses: required
+  exact_ref_pad_net_pockets: P3_required
   native_outline_rule_area_pour_check: required
   p1_accepted_must_remain_false: true
 
