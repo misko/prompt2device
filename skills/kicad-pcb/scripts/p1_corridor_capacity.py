@@ -94,32 +94,57 @@ def _coarse_witness(board, witness, net, owned_pads, aliases, pads, outline,
     if not isinstance(layer, str) or layer not in {board.GetLayerName(i) for i in board.GetEnabledLayers().Seq()
                                                    if pcbnew.IsCopperLayer(i)}:
         raise ContractError(f'{source}: witness layer unavailable')
-    if not all(p.IsOnLayer(board.GetLayerID(layer)) for p in found):
-        raise ContractError(f'{source}: witness pad not on declared layer')
     face = witness.get('face')
     if face not in ('north', 'south', 'east', 'west'):
         raise ContractError(f'{source}: witness block face missing')
     area = rectangle(witness.get('boundary_bbox'), f'{source} boundary bbox')
     if not lane_inside_outline(outline, area):
         raise ContractError(f'{source}: witness boundary off board')
-    if not all(contains(area, box_mm(p.GetBoundingBox())) for p in found):
-        raise ContractError(f'{source}: witness pad outside block-face boundary')
     region = rectangle(regions.get(block), f'{block} source region')
     region_span = min(region[2] - region[0], region[3] - region[1])
     if area[2] - area[0] > region_span / 4 + 1e-6 or area[3] - area[1] > region_span / 4 + 1e-6:
         raise ContractError(f'{source}: witness bbox is a nonlocal bridge across source region')
     ref = native.rsplit('.', 1)[0]
-    if ref not in fixed_refs:
-        # P2-movable terminals must have a genuinely local boundary in their
-        # own source cell. Fixed edge connectors may sit outside that region;
-        # their native pose is independently bound by p1_fixed_refs.
-        halo = region_span / 10
-        permitted = (region[0] - halo, region[1] - halo,
-                     region[2] + halo, region[3] + halo)
-        if not contains(permitted, area):
-            raise ContractError(f'{source}: witness bbox leaves owning source region')
+    kind = witness.get('kind', 'native_pad_face')
+    if kind == 'native_pad_face':
+        if ref not in fixed_refs:
+            raise ContractError(f'{source}: P2-movable owner requires virtual block-face witness')
+        if not all(p.IsOnLayer(board.GetLayerID(layer)) for p in found):
+            raise ContractError(f'{source}: physical witness pad not on declared layer')
+        if not all(contains(area, box_mm(p.GetBoundingBox())) for p in found):
+            raise ContractError(f'{source}: physical witness pad outside block-face boundary')
+        obligation = None
+    elif kind == 'virtual_block_face':
+        if ref in fixed_refs:
+            raise ContractError(f'{source}: fixed P1 ref cannot use virtual witness')
+        if witness.get('region_id') != block:
+            raise ContractError(f'{source}: virtual witness source-region identity mismatch')
+        if not contains(region, area):
+            raise ContractError(f'{source}: virtual witness leaves owning source region')
+        region_face = witness.get('region_face')
+        opposites = {'west': 'east', 'east': 'west', 'north': 'south', 'south': 'north'}
+        if region_face != opposites[face]:
+            raise ContractError(f'{source}: virtual region/reservation face mismatch')
+        edge_index = {'west': 0, 'north': 1, 'east': 2, 'south': 3}[region_face]
+        if abs(area[edge_index] - region[edge_index]) > 1e-6:
+            raise ContractError(f'{source}: virtual witness does not touch source region face')
+        if any(abs(area[i] - region[i]) <= 1e-6 for i in range(4) if i != edge_index):
+            raise ContractError(f'{source}: virtual witness touches ambiguous region corner')
+        obligation = witness.get('p2_obligation')
+        expected_obligation = {'status': 'P2_REQUIRED', 'source_pad': source,
+                               'native_pad': native, 'net': net, 'block': block,
+                               'region_face': region_face, 'layer': layer,
+                               'to_reservation': witness.get('reservation_id')}
+        if obligation != expected_obligation:
+            raise ContractError(f'{source}: explicit P2 pad-to-face obligation missing')
+        if not any(p.IsOnLayer(i) for p in found for i in board.GetEnabledLayers().Seq()
+                   if pcbnew.IsCopperLayer(i)):
+            raise ContractError(f'{source}: virtual source pad has no native copper layer')
+    else:
+        raise ContractError(f'{source}: unknown boundary witness kind')
     return {'source': source, 'native': native, 'net': net, 'block': block,
-            'face': face, 'layer': layer, 'boundary_bbox': area}
+            'face': face, 'layer': layer, 'boundary_bbox': area,
+            'kind': kind, 'p2_obligation': obligation}
 
 
 def _witness_touches_reservation(witness, reservation):
@@ -312,6 +337,11 @@ def evaluate_coarse(board_path, contract_path, expected_contract_sha256=None, *,
                         raise ContractError(f'{name}: missing per-net boundary witness')
                     if len({(w['source'], w['net']) for w in checked}) != len(checked):
                         raise ContractError(f'{name}: duplicate boundary witness')
+                    virtual_claims = [(w['net'], w['block'], w.get('region_face'),
+                                       w['layer'], w.get('reservation_id'))
+                                      for w in witnesses if w.get('kind') == 'virtual_block_face']
+                    if len(virtual_claims) != len(set(virtual_claims)):
+                        raise ContractError(f'{name}: duplicate virtual net-face claim')
                     reservation_map = {r.get('id'): r for r in reservations if isinstance(r, dict)}
                     if len(reservation_map) != len(reservations):
                         raise ContractError(f'{name}: duplicate reservation id')
@@ -333,6 +363,7 @@ def evaluate_coarse(board_path, contract_path, expected_contract_sha256=None, *,
                         raise ContractError(f'{name}: missing per-net reservation')
                     results.append({'id': name, 'status': 'FAIL' if any(r['status'] == 'FAIL' for r in measured) else 'INCOMPLETE',
                                     'witness_count': len(checked), 'reservation_count': len(measured),
+                                    'p2_obligations': [w['p2_obligation'] for w in checked if w['p2_obligation']],
                                     'reservations': measured})
                 except (ContractError, TypeError, KeyError, AttributeError) as exc:
                     reason = str(exc)

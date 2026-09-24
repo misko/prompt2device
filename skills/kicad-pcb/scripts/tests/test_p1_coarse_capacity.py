@@ -96,6 +96,20 @@ class CoarseCapacityTest(unittest.TestCase):
                                'bbox': [2.5, 1, 7.5, 3], 'nets': ['GND']}]},
         ]
 
+    def add_virtual_right_face(self):
+        self.floorplan['placement']['regions']['right'] = [7.5, 3, 10, 7]
+        witness = {'kind': 'virtual_block_face', 'source': 'J_RIGHT.1',
+                   'native': 'J_RIGHT.1', 'net': 'TEST', 'block': 'right',
+                   'region_id': 'right', 'region_face': 'west', 'face': 'east',
+                   'layer': 'F.Cu', 'boundary_bbox': [7.5, 4.8, 7.9, 5.2],
+                   'reservation_id': 'signal_main',
+                   'p2_obligation': {'status': 'P2_REQUIRED', 'source_pad': 'J_RIGHT.1',
+                                     'native_pad': 'J_RIGHT.1', 'net': 'TEST', 'block': 'right',
+                                     'region_face': 'west', 'layer': 'F.Cu',
+                                     'to_reservation': 'signal_main'}}
+        self.allocations[0]['boundary_witnesses'].append(witness)
+        return witness
+
     def run_case(self, change=None):
         if change:
             change()
@@ -184,6 +198,46 @@ class CoarseCapacityTest(unittest.TestCase):
         self.allocations[0]['reservations'][0]['bbox'] = [7.5, 4, 9.5, 6]
         result = self.run_case()
         self.assertIn('nonlocal bridge across source region', result['allocations'][0]['reason'])
+
+    def test_movable_virtual_face_defers_pad_to_face_to_p2(self):
+        self.add_virtual_right_face()
+        result = self.run_case()
+        self.assertEqual(result['errors'], [])
+        self.assertEqual(result['allocations'][0]['witness_count'], 2)
+        self.assertEqual(len(result['allocations'][0]['p2_obligations']), 1)
+        self.assertEqual(result['allocations'][0]['p2_obligations'][0]['native_pad'], 'J_RIGHT.1')
+        self.assertFalse(result['p1_accepted'])
+
+    def test_virtual_face_rejects_bad_region_or_missing_obligation(self):
+        witness = self.add_virtual_right_face()
+        witness['region_face'] = 'east'
+        result = self.run_case()
+        self.assertIn('region/reservation face mismatch', result['allocations'][0]['reason'])
+        self.setUp()
+        witness = self.add_virtual_right_face()
+        witness.pop('p2_obligation')
+        result = self.run_case()
+        self.assertIn('P2 pad-to-face obligation missing', result['allocations'][0]['reason'])
+
+    def test_virtual_face_rejects_corner_and_wrong_owner(self):
+        witness = self.add_virtual_right_face()
+        witness['boundary_bbox'] = [7.5, 3, 7.9, 3.4]
+        result = self.run_case()
+        self.assertIn('ambiguous region corner', result['allocations'][0]['reason'])
+        self.setUp()
+        witness = self.add_virtual_right_face()
+        witness['block'] = 'power'
+        result = self.run_case()
+        self.assertIn('source/block ownership mismatch', result['allocations'][0]['reason'])
+
+    def test_movable_pad_cannot_use_physical_witness_and_fixed_cannot_use_virtual(self):
+        self.source['p1_fixed_refs'].remove('J_LEFT')
+        result = self.run_case()
+        self.assertIn('P2-movable owner requires virtual', result['allocations'][0]['reason'])
+        self.setUp()
+        self.allocations[0]['boundary_witnesses'][0]['kind'] = 'virtual_block_face'
+        result = self.run_case()
+        self.assertIn('fixed P1 ref cannot use virtual', result['allocations'][0]['reason'])
 
     def test_native_rule_area_overlap_fails_closed(self):
         zone = pcbnew.ZONE(self.board)
