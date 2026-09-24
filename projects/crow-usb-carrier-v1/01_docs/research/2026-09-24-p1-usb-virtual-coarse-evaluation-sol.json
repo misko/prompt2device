@@ -1,0 +1,222 @@
+{
+  "allocation_denominator": 5,
+  "allocations": [
+    {
+      "id": "usb_device_pair",
+      "p2_obligations": [
+        {
+          "block": "usb_frontend",
+          "layer": "F.Cu",
+          "native_pad": "U_USB_ESD.1",
+          "net": "USB_DP",
+          "region_face": "north",
+          "source_pad": "U_USB_ESD.1",
+          "status": "P2_REQUIRED",
+          "to_reservation": "usb_pair_frontend"
+        },
+        {
+          "block": "usb_frontend",
+          "layer": "F.Cu",
+          "native_pad": "U_USB_ESD.2",
+          "net": "USB_DN",
+          "region_face": "north",
+          "source_pad": "U_USB_ESD.2",
+          "status": "P2_REQUIRED",
+          "to_reservation": "usb_pair_frontend"
+        },
+        {
+          "block": "xmos_core",
+          "layer": "F.Cu",
+          "native_pad": "U_XU.60",
+          "net": "USB_DP",
+          "region_face": "east",
+          "source_pad": "U_XU.60",
+          "status": "P2_REQUIRED",
+          "to_reservation": "usb_dp_xu"
+        },
+        {
+          "block": "xmos_core",
+          "layer": "F.Cu",
+          "native_pad": "U_XU.59",
+          "net": "USB_DN",
+          "region_face": "east",
+          "source_pad": "U_XU.59",
+          "status": "P2_REQUIRED",
+          "to_reservation": "usb_dn_xu"
+        },
+        {
+          "block": "usb_vbus_sense",
+          "layer": "F.Cu",
+          "native_pad": "R_VBUS_B.1",
+          "net": "VBUS_USB",
+          "region_face": "east",
+          "source_pad": "R_VBUS_B.1",
+          "status": "P2_REQUIRED",
+          "to_reservation": "vbus_sense"
+        },
+        {
+          "block": "usb_vbus_sense",
+          "layer": "F.Cu",
+          "native_pad": "Q_VBUS.3",
+          "net": "VBUS_PRESENT_N",
+          "region_face": "east",
+          "source_pad": "Q_VBUS.3",
+          "status": "P2_REQUIRED",
+          "to_reservation": "presence_sense"
+        },
+        {
+          "block": "xmos_core",
+          "layer": "F.Cu",
+          "native_pad": "U_XU.8",
+          "net": "VBUS_PRESENT_N",
+          "region_face": "east",
+          "source_pad": "U_XU.8",
+          "status": "P2_REQUIRED",
+          "to_reservation": "presence_xu"
+        }
+      ],
+      "reservation_count": 8,
+      "reservations": [
+        {
+          "current_slots": 1,
+          "demand_slots": 1,
+          "existing_copper_obstacle": false,
+          "fixed_obstacles": [],
+          "id": "usb_pair_j",
+          "movable_relocation_debt": [],
+          "nets": [
+            "USB_DP",
+            "USB_DN"
+          ],
+          "potential_slots": 1,
+          "reason": "rough capacity only; movable debt, effective rules, reference and P2 access unproved",
+          "status": "INCOMPLETE"
+        },
+        {
+          "current_slots": 1,
+          "demand_slots": 1,
+          "existing_copper_obstacle": false,
+          "fixed_obstacles": [],
+          "id": "usb_pair_frontend",
+          "movable_relocation_debt": [],
+          "nets": [
+            "USB_DP",
+            "USB_DN"
+          ],
+          "potential_slots": 1,
+          "reason": "rough capacity only; movable debt, effective rules, reference and P2 access unproved",
+          "status": "INCOMPLETE"
+        },
+        {
+          "current_slots": 2,
+          "demand_slots": 1,
+          "existing_copper_obstacle": false,
+          "fixed_obstacles": [],
+          "id": "usb_dp_xu",
+          "movable_relocation_debt": [],
+          "nets": [
+            "USB_DP"
+          ],
+          "potential_slots": 2,
+          "reason": "rough capacity only; movable debt, effective rules, reference and P2 access unproved",
+          "status": "INCOMPLETE"
+        },
+        {
+          "current_slots": 2,
+          "demand_slots": 1,
+          "existing_copper_obstacle": false,
+          "fixed_obstacles": [],
+          "id": "usb_dn_xu",
+          "movable_relocation_debt": [],
+          "nets": [
+            "USB_DN"
+          ],
+          "potential_slots": 2,
+          "reason": "rough capacity only; movable debt, effective rules, reference and P2 access unproved",
+          "status": "INCOMPLETE"
+        },
+        {
+          "id": "vbus_j",
+          "nets": [
+            "VBUS_USB"
+          ],
+          "reason": "current, return, thermal, or mechanical capacity unmeasured",
+          "status": "INCOMPLETE"
+        },
+        {
+          "id": "vbus_sense",
+          "nets": [
+            "VBUS_USB"
+          ],
+          "reason": "current, return, thermal, or mechanical capacity unmeasured",
+          "status": "INCOMPLETE"
+        },
+        {
+          "current_slots": 1,
+          "demand_slots": 1,
+          "existing_copper_obstacle": false,
+          "fixed_obstacles": [],
+          "id": "presence_sense",
+          "movable_relocation_debt": [],
+          "nets": [
+            "VBUS_PRESENT_N"
+          ],
+          "potential_slots": 1,
+          "reason": "rough capacity only; movable debt, effective rules, reference and P2 access unproved",
+          "status": "INCOMPLETE"
+        },
+        {
+          "current_slots": 4,
+          "demand_slots": 1,
+          "existing_copper_obstacle": false,
+          "fixed_obstacles": [],
+          "id": "presence_xu",
+          "movable_relocation_debt": [],
+          "nets": [
+            "VBUS_PRESENT_N"
+          ],
+          "potential_slots": 4,
+          "reason": "rough capacity only; movable debt, effective rules, reference and P2 access unproved",
+          "status": "INCOMPLETE"
+        }
+      ],
+      "status": "INCOMPLETE",
+      "witness_count": 10
+    },
+    {
+      "id": "xmos_service_escape",
+      "reason": "U_XU.4: P2-movable owner requires virtual block-face witness",
+      "status": "INCOMPLETE"
+    },
+    {
+      "id": "adc_timing_xmos_bundle",
+      "reason": "U_ADC_A.22: P2-movable owner requires virtual block-face witness",
+      "status": "INCOMPLETE"
+    },
+    {
+      "id": "adc_analog_boundary",
+      "reason": "C_ADC_AC1N1.2: witness bbox is a nonlocal bridge across source region",
+      "status": "INCOMPLETE"
+    },
+    {
+      "id": "power_boundary_windows",
+      "reason": "C_ADC_3V3X_OK_VDD.2: witness bbox is a nonlocal bridge across source region",
+      "status": "INCOMPLETE"
+    }
+  ],
+  "errors": [],
+  "hashes": {
+    "aliases": "a6baba8bd4e389c146250a2a2ef5f7e9b09f63526e71dbdd05be8bca9b7b2c2e",
+    "board": "60a903b5ae5c7c7ef084fb3bd5dd50abf26e1e0e134a928f46107a6c90934b17",
+    "contract": "b0b835173dfedb9a46a0c96dab22e0ff354c857e232591dc08d67401a6ddfe7e",
+    "floorplan": "a882f87682484c37c5766a9e37c5a0d93b38a8e5a775fb1ab4425011da40a275",
+    "interfaces": "7201aa55cffefca99f9f27e92711cbbcf28387432523a8c960b5cd71e973170e",
+    "source": "9ef85e5f4918dea0378203a97fa631ce2e73a690170235902a97a6c8e30527d8"
+  },
+  "kind": "p1-coarse-reservation-screen",
+  "p1_accepted": false,
+  "reason": "independent filled-reference, effective-capacity and P1 review not supplied",
+  "routing_realized": false,
+  "schema": 2,
+  "status": "INCOMPLETE"
+}
