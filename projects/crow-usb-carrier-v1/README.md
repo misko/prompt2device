@@ -35,4 +35,9 @@ board, P2 acceptance, or release status. Earlier 568-component generated
 artifacts remain historical evidence and must not be rebound; see
 [`01_docs/STATUS.md`](01_docs/STATUS.md) before any conductor admission.
 
+The current CJ is `1f01be73…` and is conditionally bound only to the reviewed
+source E-FAULT clarification; complete fitted-board waveform qualification is
+still required. The reviewed 18-pose power source backtrack is planned
+placement, not native acceptance.
+
 After the separately typed commission, architecture, and sourcing admission evidence is reviewed and its hold is removed, start the full conductor with `bash 03_src/rebuild_all.sh`. A fresh run deliberately stops at evidence and operator checkpoints. After accepting the exact schematic review checkpoint, continue without rebuilding TSX using `bash 03_src/rebuild_all.sh --resume-after-schematic-review`. A sealed release is immutable and does not by itself mean this board was ordered.

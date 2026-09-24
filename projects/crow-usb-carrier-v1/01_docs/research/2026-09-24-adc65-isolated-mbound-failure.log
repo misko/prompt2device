@@ -1,0 +1,214 @@
+CONNECTOR-CONTRACT INCOMPLETE assemblies=4 instances=11 coverage=26/45 unknown=19 ceiling=UNKNOWN output=/tmp/crow-adc65-efault-prep/projects/crow-usb-carrier-v1/06_build/verification/connector_assembly_contract.json
+[0g] CONNECTOR-CONTRACT INCOMPLETE: forwarding the explicit base rc=2 to the typed phase gate
+CONNECTOR-PHASE SOURCE PASS assemblies=4 instances=11 base_unknown=19 source_admitted=19 findings=0 output=/tmp/crow-adc65-efault-prep/projects/crow-usb-carrier-v1/06_build/verification/connector_assembly_source_gate.json
+RF-CONTRACT coverage: 1 applicability decision; 1 port(s), 1 cross-section(s), 1 claim(s); 0/3 review phase(s) requested
+RF-CONTRACT PASS: RF intent is complete
+[rf_context] $ /usr/bin/python3 /tmp/crow-adc65-efault-prep/skills/kicad-pcb/scripts/rf_context.py .
+RF-CONTEXT input: /tmp/crow-adc65-efault-prep/projects/crow-usb-carrier-v1/03_src/rules/rf.yaml
+RF-CONTEXT coverage: 1/1 context bundle; 7 source card(s)
+RF-CONTEXT PASS: ACTIVE -> /tmp/crow-adc65-efault-prep/projects/crow-usb-carrier-v1/06_build/rf/context
+[rf_context] rc=0, 0.256s / timeout 600s
+[rf_solver] $ /usr/bin/python3 /tmp/crow-adc65-efault-prep/skills/kicad-pcb/scripts/rf_solver.py .
+RF-SOLVER input: /tmp/crow-adc65-efault-prep/projects/crow-usb-carrier-v1/03_src/rules/rf.yaml
+RF-SOLVER coverage: 0/0 pending cross-sections; N-A
+RF-SOLVER PASS
+[rf_solver] rc=0, 0.052s / timeout 600s
+[rf_source] $ /usr/bin/python3 /tmp/crow-adc65-efault-prep/skills/kicad-pcb/scripts/rf_check.py source .
+RF-SOURCE input: /tmp/crow-adc65-efault-prep/projects/crow-usb-carrier-v1/03_src/route.yaml
+RF-SOURCE coverage: 0/0 RF nets graded
+RF-SOURCE PASS: CONTRACT_ONLY -> /tmp/crow-adc65-efault-prep/projects/crow-usb-carrier-v1/06_build/rf/source
+[rf_source] rc=0, 0.273s / timeout 600s
+input: project = /tmp/crow-adc65-efault-prep/projects/crow-usb-carrier-v1
+input: padmap  = /tmp/crow-adc65-efault-prep/projects/crow-usb-carrier-v1/03_tscircuit/parity_padmap.txt
+TSX-PRE PASS: 112/112 part.yaml have all multi-pin pad names tsx-safe or mapped (44 multi-pin)
+S-NETMERGE-SCHEMA PASS: label_survival has 0 pin-map row(s), 0 evidenced exemption(s)
+E-INV-SCHEMA PASS: 60/60 invariant row(s) are schema-valid in 03_src/rules/electrical_invariants.yaml
+CONTROL-PROTOCOL N-A: no /tmp/crow-adc65-efault-prep/projects/crow-usb-carrier-v1/03_src/rules/control_protocol.yaml
+CONTROL-PROFILE N-A: no /tmp/crow-adc65-efault-prep/projects/crow-usb-carrier-v1/03_src/rules/control_protocol.yaml; 0/0 generated consumer artifact(s) required
+  PASS D-SPEC/E-PATH eight_analog_spokes: 8 x 0.1 A, 8 simultaneous, 10.8-13.2 V at board_connector
+  PASS E-SURGE EXTERNAL_12V_INPUT: normal=13.2 V, TVS=15/24.4 V, 6 exposed part(s)
+  PASS E-CAP TPSM63603 N12V_PROTECTED input: 12.393/9.4 uF effective from 3 component(s)
+  PASS E-CAP TPSM63603 N5V_BUCK output: 33.311/25 uF effective from 3 component(s)
+  PASS E-CAP TPS62822 U_3V3X input: 4.131/3 uF effective from 2 component(s)
+  PASS E-CAP TPS62822 U_1V8 input: 4.131/3 uF effective from 2 component(s)
+  PASS E-CAP TPS62822 U_CORE input: 4.131/3 uF effective from 2 component(s)
+  PASS E-CAP TPS62822 U_3V3X output: 11.474/5 uF effective from 1 component(s)
+  PASS E-CAP TPS62822 U_1V8 output: 12.954/5 uF effective from 1 component(s)
+  PASS E-CAP TPS62822 U_CORE output: 12.954/5 uF effective from 1 component(s)
+  PASS E-CAP LT3045 input: 11.104/4.7 uF effective from 1 component(s)
+  PASS E-CAP LT3045 output: 25.909/10 uF effective from 2 component(s)
+  PASS E-CAP XU316 USB VBUS sense capacitance: 1.165/1 uF effective from 1 component(s)
+  PASS E-CAP TLV320ADC6140 A VREF bypass: 3.442/1 uF effective from 1 component(s)
+  PASS E-CAP TLV320ADC6140 B VREF bypass: 3.442/1 uF effective from 1 component(s)
+  PASS E-FAULT PREBUILD CONTRACT ONLY; CIRCUIT OWED external source/fuse: peak<=3.4 A, cumulative >2.85 A<=10 ms, persistent<=2.85 A; PFET steady/peak=120.0/141.1 C; nominal fuse I²t comparison=0.1156/3.152 A²s (not nonopening proof); supplier and first-article proof owed
+EARLY-DESIGN PASS: 5/5 gate families green
+  input: nets = 03_src/rules/nets.yaml
+  applicability: source phase; .kicad_pro/.kicad_dru/.kicad_pcb are future artifacts and are not opened
+  ok   A-SOURCE USB_HS: 2 net(s), min_width 0.41mm, current signal, intent/routing/verify readable
+  ok   A-SOURCE INPUT_TRUNK: 3 net(s), min_width 1.2mm, current 2.85A, intent/routing/verify readable
+  ok   A-SOURCE PARENT_5V: 1 net(s), min_width 1mm, current 1.9A, intent/routing/verify readable
+  ok   A-SOURCE DIGITAL_POWER: 6 net(s), min_width 0.6mm, current 1.2A, intent/routing/verify readable
+  ok   A-SOURCE POD_POWER: 8 net(s), min_width 0.5mm, current 0.1A, intent/routing/verify readable
+  ok   A-SOURCE QUIET_POWER: 3 net(s), min_width 0.5mm, current 0.25A, intent/routing/verify readable
+  coverage A-SOURCE: 6/6 net classes graded
+RULES SOURCE AUDIT: PASS (0 fails, 6/6 classes graded)
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+crow-usb-carrier-v1: PASS=2
+[source_schema_governance] $ /usr/bin/python3 /tmp/crow-adc65-efault-prep/skills/kicad-pcb/scripts/schema_reader_audit.py --root /tmp/crow-adc65-efault-prep
+G-ORPHAN schema-reader audit — input: /tmp/crow-adc65-efault-prep/skills/pcb-design/templates/contracts (claims) x 125 hand-authored source file(s) (denominator)
+  994/994 declared key(s) graded OK across 23 governed famil(ies): 876 PROVEN, 71 advisory, 47 OWED, 0 UNREAD, 0 UNPROVABLE; 0 ORPHAN key(s) in source with no row
+  the fleet's source declares 825 distinct schema key(s) under those rows; 103 row(s) are `*` SUBTREE claims covering 483 of them
+  family                                   rows obsv prov advi owed  bad
+  01_docs/findings.yaml                      48   15   47    1    0    0
+  02_parts/*/part.yaml                      138  341   70   42   26    0
+  03_src/floorplan.yaml                     150   71  145    0    5    0
+  03_src/mechanical/enclosure.yaml           12    0   12    0    0    0
+  03_src/route.yaml                          91  134   91    0    0    0
+  03_src/rules/assembly.yaml                 45   25   29   16    0    0
+  03_src/rules/assembly_locator.yaml         16    0   16    0    0    0
+  03_src/rules/connector_assembly_phases.yaml    9    9    9    0    0    0
+  03_src/rules/control_protocol.yaml         32    0   31    1    0    0
+  03_src/rules/critical_parts.yaml           19    0   19    0    0    0
+  03_src/rules/critical_paths.yaml           15    0   15    0    0    0
+  03_src/rules/electrical_invariants.yaml    26    8   26    0    0    0
+  03_src/rules/first_article.yaml            21    0   21    0    0    0
+  03_src/rules/integration.yaml              22   20   22    0    0    0
+  03_src/rules/mates.yaml                     6    0    5    1    0    0
+  03_src/rules/model_registration.yaml       25    0   24    1    0    0
+  03_src/rules/nets.yaml                     66   27   64    0    2    0
+  03_src/rules/policy_waivers.yaml            6    0    5    0    1    0
+  03_src/rules/power_stages.yaml              4    3    4    0    0    0
+  03_src/rules/power_tree.yaml              148  113  130    5   13    0
+  03_src/rules/protection_paths.yaml          4   13    4    0    0    0
+  03_src/rules/requirements.yaml              4   14    4    0    0    0
+  03_src/rules/rf.yaml                       87   32   83    4    0    0
+  OWED — a gate is INTENDED and absent (47):
+    02_parts/*/part.yaml `datasheet.drawing.sha256`: the package-drawing digest is a checkable provenance claim, but no reader recomputes it, so substituted drawing content is silent
+    02_parts/*/part.yaml `datasheet.local`: the in-tree PDF path. M-DEPEND grades that a sealed release carries its dossiers; nothing grades that this path RESOLVES, so a moved PDF is silent
+    02_parts/*/part.yaml `datasheet.revision`: the revision the pin map and limits were read from; a datasheet revving under a sealed release is exactly M-DEPEND's class and this field is where it would be caught
+    02_parts/*/part.yaml `electrical.*`: the rest of the block is per-part datasheet numbers with no consumer: coil pull-in/resistance over temperature, Vce(sat)/Vds points, r_on corners, dropout, tempco, `t_op`. Each is the kind of number a `part_value`/`node_level` invariant SHOULD cite, and the cooksense relay coil at 70 C is the worked case for why (it was checked by hand)
+    02_parts/*/part.yaml `escape.checked`: the date/method the escape was calibrated. 125 dossiers carry it; `escape_check.py` recomputes the geometry and never reads this, so a stale calibration note is invisible
+    02_parts/*/part.yaml `escape.loaded_side_escapes`: a second escape count for the loaded side, declared once and read by nothing
+    02_parts/*/part.yaml `escape.per_pin.<N>`: per-pin escape overrides; not declared by any dossier today, and P-ESC would not see one if it were
+    02_parts/*/part.yaml `escape.tier_conditional`: a declared conditional fab tier that no reader compares with `escape_check.py`'s independently computed `tier_conditional()` result; a stale declaration is currently silent
+    02_parts/*/part.yaml `i2c.address`: the device address; a bus with two parts at one address is checkable from the dossiers alone
+    02_parts/*/part.yaml `layout.reviewed`: the date the layout section was read. P-LAYOUT grades that `layout:` EXISTS and that `source:` is cited; nothing grades this, so an unreviewed copy of a sibling's block reads identically
+    02_parts/*/part.yaml `loading_caps.*`: a crystal's load-capacitor formula and per-leg value — an `electrical_invariants.yaml` `part_value` waiting to be written
+    02_parts/*/part.yaml `mechanical.*`: the per-FEATURE 3D bag: one entry per named feature the vendor model contains (`usb_c`, `buttons`, `ws2812`, `rp2040`, `crystal`, `rt9013`, `flash` on the RP2040-Zero), each carrying its `side`, its footprint (`extent_mm`/`centre_mm`/`body_mm`) and how proud it stands (`protrusion_mm`/`height_mm`), plus per-kind connector terms (`mating_face_y_mm`, `z_mm`, `shell_x_mm`, `cavity_centreline_above_pcb_top_mm`). BLANKET because the feature NAMES and their per-kind terms are both open; the four scalars above are enumerated OUT of it because they are not. Two facts in here are ARITHMETIC against those scalars and nothing performs it: `bottom_side_max_protrusion_mm` must be the max `protrusion_mm` over the `side: bottom` entries (max(0.850, 1.000, 0.700) = 1.000 today), and a `mating_face_y_mm` past the part outline is a carrier KEEPOUT the floorplan must honour (24.816 against an outline ending at 23.500 — 1.21 mm of receptacle hanging over the board edge)
+    02_parts/*/part.yaml `mechanical.bottom_side_max_protrusion_mm`: THE SEATABILITY NUMBER, and the load-bearing key of this block. Tallest feature on the CARRIER-FACING face, so non-zero means the part cannot be reflowed flat — a POPULATION decision, not a footprint note. RP2040-Zero declares 1.000 (the 12 MHz crystal, MEASURED off the vendor STEP) and pluto-rx2-8way-v2's `assembly.yaml` carries the matching `not_assembled` entry for `U_MCU`, whose evidence opens "MECHANICAL, and MEASURED rather than argued". `assembly_coverage.py` grades that entry's SHAPE — reason inside the closed vocabulary, dated evidence, the ref off the CPL — and never that the reason is TRUE. The intended gate is the one that makes the two homes able to DISAGREE OUT LOUD
+    02_parts/*/part.yaml `mechanical.pcb_thickness_mm`: the part's own laminate thickness — one term of the carrier stack and of `total_thickness_mm`'s sum, read by nothing
+    02_parts/*/part.yaml `mechanical.top_side_max_height_mm`: tallest feature on the face AWAY from the carrier: the enclosure/lid budget. Spent by a human today, and nothing reconciles it against the per-feature heights in the bag below
+    02_parts/*/part.yaml `mechanical.total_thickness_mm`: the stack, and it is DERIVED: bottom protrusion + laminate + top height (1.000 + 1.091 + 3.250 = 5.341 on the one dossier that declares it). A sum nothing re-adds is the `ratings.*` shape — assertable arithmetic with no assertion
+    02_parts/*/part.yaml `mechanical_pads.<NAME>.*`: shield/NPTH pads and their KiCad pad names — the field that decides whether a shell tab is a net or a hole, read by nothing
+    02_parts/*/part.yaml `on_live_board`: a claim that this exact part is on a shipped board — checkable against the sealed BOM and checked by nothing
+    02_parts/*/part.yaml `orientation.*`: the as-placed rotation and pin-1/pole marker evidence. The rotation AUTHORITY is `jlc_rotation_*`; this per-dossier claim is not cross-checked against it, which is the M-PROV shape
+    02_parts/*/part.yaml `pins.<N>.tie`: 84 pins name the net they must land on and NOTHING reads it — the `GND_ISO` field class. E-NETREF K13; the patch is in `schema_reader_audit.py`'s docstring
+    02_parts/*/part.yaml `power_pins.<NAME>.*`: a per-rail pin grouping on the one 128-pin MCU dossier. `pins:` is graded; this parallel structure is a second home for the same map and read by nobody
+    02_parts/*/part.yaml `ratings.*`: per-part electrical ratings (`i_sat`, `dcr_max`, `impedance_100mhz`, `voltage`, `dielectric`, ...). Unlike `limits:` these are the SELECTION criteria the part was chosen on, so they are assertable — an inductor's `i_sat` against the rail's `iout_max_A` is arithmetic nothing does
+    02_parts/*/part.yaml `sourcing.do_not_use`: an explicit ban on a code. Nothing reads it, so a banned code can be typed back into a BOM with every gate green
+    02_parts/*/part.yaml `sourcing.jlc_basic`: basic-vs-extended, which sets the assembly fee and the stock risk; `jlc_stock_check.py` queries the catalog and never reads this claim, so the two cannot be reconciled
+    02_parts/*/part.yaml `sourcing.mfr_substituted`: records that the manufacturer was substituted; `release_freshness_check.py --sourcing-supersede` grades the BOM/CPL delta of a substitution and does not read this
+    02_parts/*/part.yaml `superseded_by`: the retirement pointer of a replaced dossier; `status:` is read, this is not, so a superseded part names its replacement to nobody
+    03_src/floorplan.yaml `placement.escape_corridors`: mis-nested declaration: `generate_board_generic.py` reads top-level `escape_corridors`, so this placement child currently emits no corridor and must be migrated or explicitly supported
+    03_src/floorplan.yaml `placement.escape_corridors[].depth_mm`: child of the mis-nested corridor block; the actual `generate_board_generic.py` reader reaches only top-level `escape_corridors[].depth_mm`
+    03_src/floorplan.yaml `placement.escape_corridors[].layers`: child of the mis-nested corridor block, and no corridor reader consumes a `layers` field at either nesting
+    03_src/floorplan.yaml `placement.escape_corridors[].ref`: child of the mis-nested corridor block; the actual `generate_board_generic.py` reader reaches only top-level `escape_corridors[].ref`
+    03_src/floorplan.yaml `placement.escape_corridors[].side`: child of the mis-nested corridor block; the actual `generate_board_generic.py` reader reaches only top-level `escape_corridors[].side`
+    03_src/rules/nets.yaml `classes.<C>.exemptions`: *Validate* above says "every `exemptions[].area` names a rule area that exists on the board" — a sentence a human was supposed to check, and nothing does. Not declared by any board today
+    03_src/rules/nets.yaml `length_match.<G>.phase`: the block's own comment calls it "OPTIONAL reporting aid, never a gate" — and it does not reach the report either: `copper_length_audit.py` prints its phase conversion from constants it re-derives itself (6.105 ps/mm, 13.19 deg/mm), never from this declaration. A board writing `t_pd_ps_per_mm: 6.0` beside a gate using 6.105 has two homes for one number and nothing reconciles them
+    03_src/rules/policy_waivers.yaml `[].refs`: A WAIVER IS APPLIED BY `id` ALONE. `policy_audit.py` builds `waived_ids` from `w["id"]` and never reads `refs:`, and `waiver_provenance.py` reads `why`/`derived_from` only — so a waiver written for `refs: [J1]` silences that check for EVERY ref on the board, and the list reads as a scope it does not have. `policy_audit.py`'s own docstring documents the `{id, refs, why}` shape, which is a MENTION and exactly the R-LEN shape. Owed: honour `refs:` as the waiver's scope, or state in the schema that it is documentation
+    03_src/rules/power_tree.yaml `linear_rails[].element`: the pass element's refdes — the part whose Rds(on)/ESR sets the drop the envelope claims
+    03_src/rules/power_tree.yaml `linear_rails[].iout_max_A`: as `vin_min`; also absent from the trunk-current sum `rails[]` feeds
+    03_src/rules/power_tree.yaml `linear_rails[].kind`: the closed-ish vocabulary (`protection_pass`, load switch, link) that would decide WHICH bound applies, read by nothing
+    03_src/rules/power_tree.yaml `linear_rails[].ovlo_trip_V`: an over-voltage trip point, declared once and graded nowhere
+    03_src/rules/power_tree.yaml `linear_rails[].vin_max`: as `vin_min`
+    03_src/rules/power_tree.yaml `linear_rails[].vin_min`: see the note above: `power_topology.py` names `linear_rails` only in a docstring. Five cooksense rails carry a full envelope no gate reads
+    03_src/rules/power_tree.yaml `linear_rails[].vout_max`: as `vin_min`
+    03_src/rules/power_tree.yaml `linear_rails[].vout_min`: as `vin_min`; this is the number the Rds(on)/ESR drop arithmetic would be checked against
+    03_src/rules/power_tree.yaml `passive_distribution_faults[].energy_withstand_evidence_locator`: human evidence locator retained for review; the current reader grades the adjacent numeric bound but does not resolve this locator
+    03_src/rules/power_tree.yaml `passive_distribution_faults[].fault_current_withstand_evidence_locator`: human evidence locator retained for review; the current reader grades the adjacent numeric bound but does not resolve this locator
+    03_src/rules/power_tree.yaml `passive_distribution_faults[].post_trip_evidence_locator`: human evidence locator retained for review; the current reader grades the adjacent numeric bound but does not resolve this locator
+    03_src/rules/power_tree.yaml `passive_distribution_faults[].prospective_current_evidence_locator`: human evidence locator retained for review; the current reader grades the adjacent numeric bound but does not resolve this locator
+    03_src/rules/power_tree.yaml `passive_distribution_faults[].protected_path_sustained_current_evidence_locator`: human evidence locator retained for review; the current reader grades the adjacent numeric bound but does not resolve this locator
+  ADVISORY — declared read by nobody, with a reason (71):
+    01_docs/findings.yaml `findings[].finding`: concise human description; maturity derives from state and boundary, not prose interpretation
+    02_parts/*/part.yaml `configuration`: human-readable register/value summary for programmable parts. Load-bearing configuration values must also live in a dedicated machine-read rule such as `power_stages.yaml` or an executable firmware/readback gate; this free-form dossier block is not itself release authority
+    02_parts/*/part.yaml `configuration.*`: free-form children of the same human summary; every release-driving value needs a separately machine-read home
+    02_parts/*/part.yaml `datasheet.doc_id`: the vendor document number, for a human re-fetching it
+    02_parts/*/part.yaml `datasheet.drawing`: a human citation to the package drawing; `pin_audit.py` grades the figure/page citation in `verified`, not this parallel prose field
+    02_parts/*/part.yaml `datasheet.drawing.revision`: the human-readable package-drawing revision; no gate compares it with the vendored footprint
+    02_parts/*/part.yaml `datasheet.drawing.url`: the human retrieval URL for the cited package drawing; no gate fetches it
+    02_parts/*/part.yaml `datasheet.drawing_url`: legacy flat spelling of the human retrieval URL for a package drawing; no gate fetches it
+    02_parts/*/part.yaml `datasheet.fetched`: the date the PDF was pulled, for a human judging staleness
+    02_parts/*/part.yaml `datasheet.file`: as `pdf:`
+    02_parts/*/part.yaml `datasheet.interface_standard`: the governing interface specification used alongside the component datasheet (for example USB-IF USB 2.0); the human pin/electrical review consumes it, while no machine gate interprets arbitrary standards PDFs
+    02_parts/*/part.yaml `datasheet.interface_standard.*`: human provenance bag for that standard (`title`, `url`, vendored `local`, `sha256`, and cited `section`); the executable consequences belong in pin identities/electrical assertions, while no gate can derive them from an arbitrary standards PDF
+    02_parts/*/part.yaml `datasheet.lcsc_url`: the distributor page the PDF was reached through
+    02_parts/*/part.yaml `datasheet.note`: prose about the fetch
+    02_parts/*/part.yaml `datasheet.package_url`: a human retrieval link for the vendor package page; the executable package identity is `package`/`footprint`, and no gate reads this URL
+    02_parts/*/part.yaml `datasheet.pages`: page count, so a truncated download is visible to a reader
+    02_parts/*/part.yaml `datasheet.pdf`: an alternate spelling of `local:` on two dossiers; consolidate on `local:`
+    02_parts/*/part.yaml `datasheet.product_page`: the vendor landing page
+    02_parts/*/part.yaml `datasheet.provenance`: prose about where the PDF came from
+    02_parts/*/part.yaml `datasheet.url`: retrieval provenance for a human; P-AUTH selects review bytes only by the declared digest of a local PDF, never by a mutable URL
+    02_parts/*/part.yaml `design`: the free-prose design narrative (a `|` block on five converter dossiers); its numbers belong in `electrical:`/`limits:` where they can be asserted
+    02_parts/*/part.yaml `electrical.source`: the datasheet section the electrical block was read from, for a reviewer
+    02_parts/*/part.yaml `escape.pins`: descriptive total pin count for an asymmetric package; the exact footprint/pin map and worst-side escape count own the executable geometry
+    02_parts/*/part.yaml `footprint_proof`: human layout comparison note for candidate packages; exact native footprint geometry and process gates own fabrication evidence
+    02_parts/*/part.yaml `function`: a one-line human summary of what the part is for; the graded facts are `type`, `value` and the `asserts:` block
+    02_parts/*/part.yaml `gotchas`: warnings addressed to the next author to touch this part (128 dossiers). Machine-grading English here would be theatre; what IS graded is that the expensive facts it warns about live in `pins:`/`escape:`/`limits:`
+    02_parts/*/part.yaml `land_pattern.*`: the human derivation record for a vendored footprint — pad sizes, fillet balance, datums, the datasheet figure they came from. Its CONSEQUENCE is graded, hard, by `jlc_twin` against JLC's own CAD model (canon M1), which is a stronger check than reading this back would be
+    02_parts/*/part.yaml `layout.footprint_adjudication`: human record of why manufacturer land geometry supersedes a distributor CAD footprint; realized footprint/model checks own executable acceptance
+    02_parts/*/part.yaml `layout_refs[].fetched`: date a precedent was retrieved; useful staleness context, not a physical design fact
+    02_parts/*/part.yaml `layout_refs[].note`: human transfer/measurement notes for the precedent; executable constraints belong in `layout`
+    02_parts/*/part.yaml `layout_refs[].url`: retrieval link for the named precedent; `artifact` is the machine-graded identity and this URL is human provenance
+    02_parts/*/part.yaml `limits.*`: the open per-part absolute-maximum/rating fact bag. The EXECUTABLE channel for anything in here is an `asserts:` entry or an `electrical_invariants.yaml` `part_value`/`node_level` that cites it; the bag itself is a human's datasheet transcription and forcing a schema on it would only push the facts out of the tree
+    02_parts/*/part.yaml `note_dirname`: records why the directory name differs from the MPN; the MPN authority reads `mpn:`
+    02_parts/*/part.yaml `package_drawing`: retained TI package-drawing provenance for the TLV320ADC6140; pin geometry is graded by the native footprint and pin audit, not inferred from this metadata bag
+    02_parts/*/part.yaml `package_drawing.*`: human URL/local/hash/revision citations; no gate compares these fields to downloaded bytes
+    02_parts/*/part.yaml `pin_authority`: human-readable supplemental catalog/library provenance used to resolve an exact connector drawing ambiguity; executable pin identity remains in `pins:` and is independently graded against the realised schematic/netlist/PCB
+    02_parts/*/part.yaml `pin_authority.*`: source names, hashes, translations, and interpretation notes for the supplemental authority; these support human review but do not replace the machine-graded `pins:` map
+    02_parts/*/part.yaml `pins.<N>.note`: per-pin datasheet prose (274 pins). The CONSTRAINTS inside it belong in `electrical.pins.<N>`, which IS graded by `node_level`
+    02_parts/*/part.yaml `pins.<N>.type`: human-readable electrical pin category on the CH224K dossier; executable connection and stress constraints live in the netlist invariants and protection-path contract
+    02_parts/*/part.yaml `recommended_land.*`: manufacturer recommended-land provenance used by a human footprint review; accepted geometry must be re-measured on the realised footprint/board
+    02_parts/*/part.yaml `shared_tdm_note`: retained TI shared-TDM application-note provenance; executable bus connections and firmware configuration remain separately reviewed
+    02_parts/*/part.yaml `shared_tdm_note.*`: human URL/local/hash/doc-id citations; no gate executes the application note
+    02_parts/*/part.yaml `sourcing.rejected_catalog_near_matches`: human review record for catalog hits that resemble but do not equal the selected MPN; no gate consumes this prose, and that is intentional because executable exclusions belong in exact BOM identity, `assembly.yaml`, and footprint/twin adjudication
+    03_src/rules/assembly.yaml `assembly_scope.*`: human service-scope summary; CPL/BOM/board set identity and bought-process declarations are executable
+    03_src/rules/assembly.yaml `consigned[].lcsc`: catalog identity for human consignment logistics; BOM/dossier identity gates own the fitted exact code
+    03_src/rules/assembly.yaml `consigned[].msl`: human moisture-handling warning; an order/package handling gate is still needed before this can be release authority
+    03_src/rules/assembly.yaml `fiducials`: human PCBA planning summary; realised fiducials are owned and graded in the floorplan/board
+    03_src/rules/assembly.yaml `fiducials.*`: children of the human PCBA fiducial summary
+    03_src/rules/assembly.yaml `not_assembled[].lcsc`: catalog identity retained for human DNP evidence; fitted-code identity excludes these refs from the CPL
+    03_src/rules/assembly.yaml `not_assembled[].msl`: human handling note for a part not placed by JLC; downstream manual-assembly procedure owns execution
+    03_src/rules/assembly.yaml `order_time_requirements`: human order checklist; release and JLC uploader gates own the executable obligations
+    03_src/rules/assembly.yaml `pcb_process`: human process summary; exact capability declarations and the realised board own executable process selection
+    03_src/rules/assembly.yaml `sourcing_plan[].evidence_kind`: human classification of the mutable stock source; measured stock/date and the final allocation receipt own the executable decision
+    03_src/rules/assembly.yaml `sourcing_plan[].evidence_provider`: human-readable stock-source provider retained for review; no gate treats the provider name as an allocation receipt
+    03_src/rules/assembly.yaml `sourcing_plan[].evidence_url`: retrieval provenance for the public stock observation; the URL is mutable and cannot prove final JLC allocation
+    03_src/rules/assembly.yaml `sourcing_plan[].function`: human-readable function label; exact BOM/CPL ref and code identity are graded elsewhere
+    03_src/rules/assembly.yaml `sourcing_plan[].part`: human-readable MPN label; exact BOM/dossier identity is graded elsewhere
+    03_src/rules/assembly.yaml `sourcing_plan[].plan`: human fulfillment plan; measured stock/date and the closed order status own the release verdict
+    03_src/rules/assembly.yaml `sourcing_plan[].refs`: planning label only; population identity comes from board/BOM/CPL and `not_assembled`
+    03_src/rules/control_protocol.yaml `states.<STATE>.u1_V4_V3_V2_V1`: human cross-label between MCU and switch-pin order; electrical invariants and schematic pin-map parity own the connection
+    03_src/rules/mates.yaml `why`: human explanation of why this board consumes foreign facts; executable identity and uses are the rows below
+    03_src/rules/model_registration.yaml `groups[].authority`: human statement naming the native CAD/drawing authority behind mounted-side Fab and courtyard
+    03_src/rules/power_tree.yaml `linear_rails[].note`: per-rail prose, as `rails[].note`
+    03_src/rules/power_tree.yaml `pd_input_and_regulator`: human grouping of the selected PD controller, fixed PDO, regulator and input-gate design; executable voltage, surge, topology and fault bounds live in protection_paths, electrical_invariants and the graded rail records below
+    03_src/rules/power_tree.yaml `pd_input_and_regulator.*`: human-readable selection and calculation summary; every release-driving bound must also live in a dedicated machine-read field
+    03_src/rules/power_tree.yaml `rails[].note`: per-rail prose for a reviewer; the graded facts are the numbers beside it, and no gate resolves the sentence
+    03_src/rules/power_tree.yaml `rails[].transient_voltage_qualification`: human-readable first-article load-step/startup obligation; the steady-state arithmetic is machine-graded, while oscilloscope evidence is accepted at first article rather than inferred from prose
+    03_src/rules/rf.yaml `rf.ports[].reference_plane`: human measurement-plane label; claim evidence owns the executable test boundary
+    03_src/rules/rf.yaml `rf.receiver_rating_tension.*`: human risk summary; the user directive, ADR and first-article claims are authoritative
+    03_src/rules/rf.yaml `rf.switch_interface.*`: human control summary; schedule, invariants and schematic parity own executable behavior
+    03_src/rules/rf.yaml `rf.topology.*`: human architecture summary; exact connectivity is owned by electrical invariants, pin-map parity and port nets
+  UNGOVERNED file famil(ies) — no `### keys:` block anywhere, reported not failed (1):
+    03_src/rules/connector_assemblies.yaml
+G-ORPHAN: PASS — 994/994 declared keys graded OK (876 with a PROVEN reader, floor 876), 0 orphan, 1 ungoverned famil(ies)
+[source_schema_governance] rc=0, 1.203s / timeout 60s
+[adr_bound_governance] $ /usr/bin/python3 /tmp/crow-adc65-efault-prep/skills/kicad-pcb/scripts/adr_bound_provenance.py /tmp/crow-adc65-efault-prep --repo-root /tmp/crow-adc65-efault-prep --timeout 30
+FAIL B-SRC: pluto-rx2-8way-v5: expected in exactly one of projects/ or archived_projects/
+[adr_bound_governance] rc=1, 0.058s / timeout 60s
+GATE FAILED [0f] M-BOUND: make every new published inequality executable before build or review

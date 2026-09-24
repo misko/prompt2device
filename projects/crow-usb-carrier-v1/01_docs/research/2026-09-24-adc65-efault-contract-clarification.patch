@@ -1,0 +1,9 @@
+*** Begin Patch
+*** Update File: /home/mouse9911/gits/circuits-worktrees/crow-usb-carrier-v1-20260922/projects/crow-usb-carrier-v1/03_src/rules/power_tree.yaml
+@@
+-    qualification_evidence_owed: Exact isolated supply and cable load-line, source/output-capacitor discharge and repeated-fault waveforms must be qualified before procurement or release; no supply is selected.
++    qualification_evidence_owed: Exact isolated supply and cable load-line, source/output-capacitor discharge (including every fitted downstream capacitor, such as C_ADC_3V3X_OK_VDD) and repeated-fault waveforms at J_PWR must be qualified against this whole-episode envelope before procurement or release; no supply is selected.
+*** Update File: /home/mouse9911/gits/circuits-worktrees/crow-usb-carrier-v1-20260922/projects/crow-usb-carrier-v1/03_src/rules/protection_paths.yaml
+@@
+-        qualification_evidence_owed: Exact isolated supply and cable load-line, source/output-capacitor discharge and repeated-fault waveforms must be qualified before procurement or release; no supply is selected.
++        qualification_evidence_owed: Exact isolated supply and cable load-line, source/output-capacitor discharge (including every fitted downstream capacitor, such as C_ADC_3V3X_OK_VDD) and repeated-fault waveforms at J_PWR must be qualified against this whole-episode envelope before procurement or release; no supply is selected.

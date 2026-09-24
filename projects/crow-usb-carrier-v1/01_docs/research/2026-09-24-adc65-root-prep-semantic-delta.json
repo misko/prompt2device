@@ -1,0 +1,48 @@
+{
+  "components_added": [
+    "C_ADC_3V3X_OK_VDD"
+  ],
+  "components_changed": [],
+  "components_removed": [],
+  "new": {
+    "components": 569,
+    "path": "projects/crow-usb-carrier-v1/06_build/task_runs/crow-adc65-root-efault-prep-first-f8a0e4fac373484eb6155b03d62e06f8/outputs/circuit.json",
+    "pin_net_edges": 1641,
+    "pins": 1790,
+    "sha256": "1f01be73e0699cd62bc734aa189b25e9d66f1097b5ce6f52a8db30533ecc6448"
+  },
+  "old": {
+    "components": 568,
+    "path": "/tmp/crow-adc65-root-prep-preserved/checkpoint-files/03_tscircuit/build/circuit.json",
+    "pin_net_edges": 1639,
+    "pins": 1788,
+    "sha256": "2b9a33b6473029138362253c48a28406138221e2dbf28907fb1a6f5a3dfd5410"
+  },
+  "pin_net_edges_added": [
+    [
+      "C_ADC_3V3X_OK_VDD",
+      "1",
+      "N3V3_ADC"
+    ],
+    [
+      "C_ADC_3V3X_OK_VDD",
+      "2",
+      "GND"
+    ]
+  ],
+  "pin_net_edges_removed": [],
+  "pins_added": [
+    [
+      "C_ADC_3V3X_OK_VDD",
+      "1",
+      "pin1"
+    ],
+    [
+      "C_ADC_3V3X_OK_VDD",
+      "2",
+      "pin2"
+    ]
+  ],
+  "pins_removed": [],
+  "schema": 1
+}

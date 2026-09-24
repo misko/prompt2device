@@ -1,0 +1,452 @@
+{
+  "count": 89,
+  "scope": "47-row input_buck + quiet_power ownership denominator",
+  "rows": [
+    {
+      "ref": "C_IN1",
+      "source_placement_or_reservation": "PATCHED_18_SOURCE_POSE",
+      "p3_saved_copper_obligation": "Actual buck VIN/VOUT/quiet-return copper, switch-current loops, ground association, thermal and EMI behavior."
+    },
+    {
+      "ref": "C_IN2",
+      "source_placement_or_reservation": "PATCHED_18_SOURCE_POSE",
+      "p3_saved_copper_obligation": "Actual buck VIN/VOUT/quiet-return copper, switch-current loops, ground association, thermal and EMI behavior."
+    },
+    {
+      "ref": "C_IN3",
+      "source_placement_or_reservation": "PATCHED_18_SOURCE_POSE",
+      "p3_saved_copper_obligation": "Actual buck VIN/VOUT/quiet-return copper, switch-current loops, ground association, thermal and EMI behavior."
+    },
+    {
+      "ref": "C_IN_HF",
+      "source_placement_or_reservation": "PATCHED_18_SOURCE_POSE",
+      "p3_saved_copper_obligation": "Actual buck VIN/VOUT/quiet-return copper, switch-current loops, ground association, thermal and EMI behavior."
+    },
+    {
+      "ref": "C_OUT1",
+      "source_placement_or_reservation": "PATCHED_18_SOURCE_POSE",
+      "p3_saved_copper_obligation": "Actual buck VIN/VOUT/quiet-return copper, switch-current loops, ground association, thermal and EMI behavior."
+    },
+    {
+      "ref": "C_OUT2",
+      "source_placement_or_reservation": "PATCHED_18_SOURCE_POSE",
+      "p3_saved_copper_obligation": "Actual buck VIN/VOUT/quiet-return copper, switch-current loops, ground association, thermal and EMI behavior."
+    },
+    {
+      "ref": "C_OUT3",
+      "source_placement_or_reservation": "PATCHED_18_SOURCE_POSE",
+      "p3_saved_copper_obligation": "Actual buck VIN/VOUT/quiet-return copper, switch-current loops, ground association, thermal and EMI behavior."
+    },
+    {
+      "ref": "C_VCC",
+      "source_placement_or_reservation": "PATCHED_18_SOURCE_POSE",
+      "p3_saved_copper_obligation": "Actual buck VIN/VOUT/quiet-return copper, switch-current loops, ground association, thermal and EMI behavior."
+    },
+    {
+      "ref": "C_VLDO",
+      "source_placement_or_reservation": "PATCHED_18_SOURCE_POSE",
+      "p3_saved_copper_obligation": "Actual buck VIN/VOUT/quiet-return copper, switch-current loops, ground association, thermal and EMI behavior."
+    },
+    {
+      "ref": "D_IN",
+      "source_placement_or_reservation": "PRESERVED_EXISTING_SOURCE_RESERVATION",
+      "p3_saved_copper_obligation": "Actual input-protection current path, gate clamp/return and fuse/diode/FET thermal behavior."
+    },
+    {
+      "ref": "D_QIN_GS",
+      "source_placement_or_reservation": "PRESERVED_EXISTING_SOURCE_RESERVATION",
+      "p3_saved_copper_obligation": "Actual input-protection current path, gate clamp/return and fuse/diode/FET thermal behavior."
+    },
+    {
+      "ref": "F_IN",
+      "source_placement_or_reservation": "PRESERVED_EXISTING_SOURCE_RESERVATION",
+      "p3_saved_copper_obligation": "Actual input-protection current path, gate clamp/return and fuse/diode/FET thermal behavior."
+    },
+    {
+      "ref": "J_PWR",
+      "source_placement_or_reservation": "PRESERVED_FIXED_POWER_ANCHOR",
+      "p3_saved_copper_obligation": "Actual saved copper, return association, transient behavior and thermal/current path as applicable."
+    },
+    {
+      "ref": "Q_IN",
+      "source_placement_or_reservation": "PRESERVED_EXISTING_SOURCE_RESERVATION",
+      "p3_saved_copper_obligation": "Actual input-protection current path, gate clamp/return and fuse/diode/FET thermal behavior."
+    },
+    {
+      "ref": "R_AGND_JOIN",
+      "source_placement_or_reservation": "PATCHED_18_SOURCE_POSE",
+      "p3_saved_copper_obligation": "Actual buck VIN/VOUT/quiet-return copper, switch-current loops, ground association, thermal and EMI behavior."
+    },
+    {
+      "ref": "R_BUCK_FB_BOTTOM",
+      "source_placement_or_reservation": "PATCHED_18_SOURCE_POSE",
+      "p3_saved_copper_obligation": "Actual buck VIN/VOUT/quiet-return copper, switch-current loops, ground association, thermal and EMI behavior."
+    },
+    {
+      "ref": "R_BUCK_FB_TOP",
+      "source_placement_or_reservation": "PATCHED_18_SOURCE_POSE",
+      "p3_saved_copper_obligation": "Actual buck VIN/VOUT/quiet-return copper, switch-current loops, ground association, thermal and EMI behavior."
+    },
+    {
+      "ref": "R_QIN_G",
+      "source_placement_or_reservation": "PRESERVED_EXISTING_SOURCE_RESERVATION",
+      "p3_saved_copper_obligation": "Actual input-protection current path, gate clamp/return and fuse/diode/FET thermal behavior."
+    },
+    {
+      "ref": "R_RT",
+      "source_placement_or_reservation": "PATCHED_18_SOURCE_POSE",
+      "p3_saved_copper_obligation": "Actual buck VIN/VOUT/quiet-return copper, switch-current loops, ground association, thermal and EMI behavior."
+    },
+    {
+      "ref": "U_BUCK",
+      "source_placement_or_reservation": "PRESERVED_FIXED_POWER_ANCHOR",
+      "p3_saved_copper_obligation": "Actual buck VIN/VOUT/quiet-return copper, switch-current loops, ground association, thermal and EMI behavior."
+    },
+    {
+      "ref": "C_AUDIO",
+      "source_placement_or_reservation": "PRESERVED_EXISTING_SOURCE_RESERVATION",
+      "p3_saved_copper_obligation": "Actual saved copper, return association, transient behavior and thermal/current path as applicable."
+    },
+    {
+      "ref": "C_AUDIO_CT1",
+      "source_placement_or_reservation": "PRESERVED_EXISTING_SOURCE_RESERVATION",
+      "p3_saved_copper_obligation": "Actual saved copper, return association, transient behavior and thermal/current path as applicable."
+    },
+    {
+      "ref": "C_AUDIO_CT2",
+      "source_placement_or_reservation": "PRESERVED_EXISTING_SOURCE_RESERVATION",
+      "p3_saved_copper_obligation": "Actual saved copper, return association, transient behavior and thermal/current path as applicable."
+    },
+    {
+      "ref": "C_DUMP_LOGIC",
+      "source_placement_or_reservation": "PRESERVED_EXISTING_SOURCE_RESERVATION",
+      "p3_saved_copper_obligation": "Actual dump-control copper, timing return, discharge current and pulse/thermal behavior."
+    },
+    {
+      "ref": "C_DUMP_TIME1",
+      "source_placement_or_reservation": "PRESERVED_EXISTING_SOURCE_RESERVATION",
+      "p3_saved_copper_obligation": "Actual dump-control copper, timing return, discharge current and pulse/thermal behavior."
+    },
+    {
+      "ref": "C_DUMP_TIME2",
+      "source_placement_or_reservation": "PRESERVED_EXISTING_SOURCE_RESERVATION",
+      "p3_saved_copper_obligation": "Actual dump-control copper, timing return, discharge current and pulse/thermal behavior."
+    },
+    {
+      "ref": "C_DUMP_TIME3",
+      "source_placement_or_reservation": "PRESERVED_EXISTING_SOURCE_RESERVATION",
+      "p3_saved_copper_obligation": "Actual dump-control copper, timing return, discharge current and pulse/thermal behavior."
+    },
+    {
+      "ref": "C_DUMP_TIME4",
+      "source_placement_or_reservation": "PRESERVED_EXISTING_SOURCE_RESERVATION",
+      "p3_saved_copper_obligation": "Actual dump-control copper, timing return, discharge current and pulse/thermal behavior."
+    },
+    {
+      "ref": "C_DUMP_TIME5",
+      "source_placement_or_reservation": "PRESERVED_EXISTING_SOURCE_RESERVATION",
+      "p3_saved_copper_obligation": "Actual dump-control copper, timing return, discharge current and pulse/thermal behavior."
+    },
+    {
+      "ref": "C_DUMP_TIME6",
+      "source_placement_or_reservation": "PRESERVED_EXISTING_SOURCE_RESERVATION",
+      "p3_saved_copper_obligation": "Actual dump-control copper, timing return, discharge current and pulse/thermal behavior."
+    },
+    {
+      "ref": "C_DUMP_TIME7",
+      "source_placement_or_reservation": "PRESERVED_EXISTING_SOURCE_RESERVATION",
+      "p3_saved_copper_obligation": "Actual dump-control copper, timing return, discharge current and pulse/thermal behavior."
+    },
+    {
+      "ref": "C_DUMP_TIME8",
+      "source_placement_or_reservation": "PRESERVED_EXISTING_SOURCE_RESERVATION",
+      "p3_saved_copper_obligation": "Actual dump-control copper, timing return, discharge current and pulse/thermal behavior."
+    },
+    {
+      "ref": "C_HOLD1",
+      "source_placement_or_reservation": "PRESERVED_HOLD_BANK_ANCHOR",
+      "p3_saved_copper_obligation": "Actual held-rail copper, current sharing, pulse/thermal rise and capacitor return topology."
+    },
+    {
+      "ref": "C_HOLD10",
+      "source_placement_or_reservation": "PRESERVED_HOLD_BANK_ANCHOR",
+      "p3_saved_copper_obligation": "Actual held-rail copper, current sharing, pulse/thermal rise and capacitor return topology."
+    },
+    {
+      "ref": "C_HOLD11",
+      "source_placement_or_reservation": "PRESERVED_HOLD_BANK_ANCHOR",
+      "p3_saved_copper_obligation": "Actual held-rail copper, current sharing, pulse/thermal rise and capacitor return topology."
+    },
+    {
+      "ref": "C_HOLD12",
+      "source_placement_or_reservation": "PRESERVED_HOLD_BANK_ANCHOR",
+      "p3_saved_copper_obligation": "Actual held-rail copper, current sharing, pulse/thermal rise and capacitor return topology."
+    },
+    {
+      "ref": "C_HOLD13",
+      "source_placement_or_reservation": "PRESERVED_HOLD_BANK_ANCHOR",
+      "p3_saved_copper_obligation": "Actual held-rail copper, current sharing, pulse/thermal rise and capacitor return topology."
+    },
+    {
+      "ref": "C_HOLD14",
+      "source_placement_or_reservation": "PRESERVED_HOLD_BANK_ANCHOR",
+      "p3_saved_copper_obligation": "Actual held-rail copper, current sharing, pulse/thermal rise and capacitor return topology."
+    },
+    {
+      "ref": "C_HOLD15",
+      "source_placement_or_reservation": "PRESERVED_HOLD_BANK_ANCHOR",
+      "p3_saved_copper_obligation": "Actual held-rail copper, current sharing, pulse/thermal rise and capacitor return topology."
+    },
+    {
+      "ref": "C_HOLD16",
+      "source_placement_or_reservation": "PRESERVED_HOLD_BANK_ANCHOR",
+      "p3_saved_copper_obligation": "Actual held-rail copper, current sharing, pulse/thermal rise and capacitor return topology."
+    },
+    {
+      "ref": "C_HOLD2",
+      "source_placement_or_reservation": "PRESERVED_HOLD_BANK_ANCHOR",
+      "p3_saved_copper_obligation": "Actual held-rail copper, current sharing, pulse/thermal rise and capacitor return topology."
+    },
+    {
+      "ref": "C_HOLD3",
+      "source_placement_or_reservation": "PRESERVED_HOLD_BANK_ANCHOR",
+      "p3_saved_copper_obligation": "Actual held-rail copper, current sharing, pulse/thermal rise and capacitor return topology."
+    },
+    {
+      "ref": "C_HOLD4",
+      "source_placement_or_reservation": "PRESERVED_HOLD_BANK_ANCHOR",
+      "p3_saved_copper_obligation": "Actual held-rail copper, current sharing, pulse/thermal rise and capacitor return topology."
+    },
+    {
+      "ref": "C_HOLD5",
+      "source_placement_or_reservation": "PRESERVED_HOLD_BANK_ANCHOR",
+      "p3_saved_copper_obligation": "Actual held-rail copper, current sharing, pulse/thermal rise and capacitor return topology."
+    },
+    {
+      "ref": "C_HOLD6",
+      "source_placement_or_reservation": "PRESERVED_HOLD_BANK_ANCHOR",
+      "p3_saved_copper_obligation": "Actual held-rail copper, current sharing, pulse/thermal rise and capacitor return topology."
+    },
+    {
+      "ref": "C_HOLD7",
+      "source_placement_or_reservation": "PRESERVED_HOLD_BANK_ANCHOR",
+      "p3_saved_copper_obligation": "Actual held-rail copper, current sharing, pulse/thermal rise and capacitor return topology."
+    },
+    {
+      "ref": "C_HOLD8",
+      "source_placement_or_reservation": "PRESERVED_HOLD_BANK_ANCHOR",
+      "p3_saved_copper_obligation": "Actual held-rail copper, current sharing, pulse/thermal rise and capacitor return topology."
+    },
+    {
+      "ref": "C_HOLD9",
+      "source_placement_or_reservation": "PRESERVED_HOLD_BANK_ANCHOR",
+      "p3_saved_copper_obligation": "Actual held-rail copper, current sharing, pulse/thermal rise and capacitor return topology."
+    },
+    {
+      "ref": "C_LDO_EN",
+      "source_placement_or_reservation": "PRESERVED_EXISTING_SOURCE_RESERVATION",
+      "p3_saved_copper_obligation": "Actual LDO input/output/SET/OUTS/EP copper, Kelvin return, load path and thermal behavior as applicable."
+    },
+    {
+      "ref": "C_LDO_IN",
+      "source_placement_or_reservation": "PRESERVED_EXISTING_SOURCE_RESERVATION",
+      "p3_saved_copper_obligation": "Actual LDO input/output/SET/OUTS/EP copper, Kelvin return, load path and thermal behavior as applicable."
+    },
+    {
+      "ref": "C_LDO_NR4",
+      "source_placement_or_reservation": "PRESERVED_EXISTING_SOURCE_RESERVATION",
+      "p3_saved_copper_obligation": "Actual LDO input/output/SET/OUTS/EP copper, Kelvin return, load path and thermal behavior as applicable."
+    },
+    {
+      "ref": "C_LDO_NR5",
+      "source_placement_or_reservation": "PRESERVED_EXISTING_SOURCE_RESERVATION",
+      "p3_saved_copper_obligation": "Actual LDO input/output/SET/OUTS/EP copper, Kelvin return, load path and thermal behavior as applicable."
+    },
+    {
+      "ref": "C_LDO_OUT_1",
+      "source_placement_or_reservation": "PRESERVED_EXISTING_SOURCE_RESERVATION",
+      "p3_saved_copper_obligation": "Actual LDO input/output/SET/OUTS/EP copper, Kelvin return, load path and thermal behavior as applicable."
+    },
+    {
+      "ref": "C_LDO_OUT_2",
+      "source_placement_or_reservation": "PRESERVED_EXISTING_SOURCE_RESERVATION",
+      "p3_saved_copper_obligation": "Actual LDO input/output/SET/OUTS/EP copper, Kelvin return, load path and thermal behavior as applicable."
+    },
+    {
+      "ref": "C_OPA_BULK",
+      "source_placement_or_reservation": "PRESERVED_EXISTING_SOURCE_RESERVATION",
+      "p3_saved_copper_obligation": "Actual LDO input/output/SET/OUTS/EP copper, Kelvin return, load path and thermal behavior as applicable."
+    },
+    {
+      "ref": "C_PWR",
+      "source_placement_or_reservation": "PRESERVED_EXISTING_SOURCE_RESERVATION",
+      "p3_saved_copper_obligation": "Actual saved copper, return association, transient behavior and thermal/current path as applicable."
+    },
+    {
+      "ref": "C_PWR_CT",
+      "source_placement_or_reservation": "PRESERVED_EXISTING_SOURCE_RESERVATION",
+      "p3_saved_copper_obligation": "Actual saved copper, return association, transient behavior and thermal/current path as applicable."
+    },
+    {
+      "ref": "C_PWR_CT2",
+      "source_placement_or_reservation": "PRESERVED_EXISTING_SOURCE_RESERVATION",
+      "p3_saved_copper_obligation": "Actual saved copper, return association, transient behavior and thermal/current path as applicable."
+    },
+    {
+      "ref": "C_PWR_CT3",
+      "source_placement_or_reservation": "PRESERVED_EXISTING_SOURCE_RESERVATION",
+      "p3_saved_copper_obligation": "Actual saved copper, return association, transient behavior and thermal/current path as applicable."
+    },
+    {
+      "ref": "D_HOLD",
+      "source_placement_or_reservation": "PATCHED_18_SOURCE_POSE",
+      "p3_saved_copper_obligation": "Actual precharge/hold copper path, gate return, current sharing and pulse/thermal behavior."
+    },
+    {
+      "ref": "Q_DUMP",
+      "source_placement_or_reservation": "PRESERVED_EXISTING_SOURCE_RESERVATION",
+      "p3_saved_copper_obligation": "Actual dump-control copper, timing return, discharge current and pulse/thermal behavior."
+    },
+    {
+      "ref": "Q_PRE",
+      "source_placement_or_reservation": "PATCHED_18_SOURCE_POSE",
+      "p3_saved_copper_obligation": "Actual precharge/hold copper path, gate return, current sharing and pulse/thermal behavior."
+    },
+    {
+      "ref": "Q_PRE_EN",
+      "source_placement_or_reservation": "PATCHED_18_SOURCE_POSE",
+      "p3_saved_copper_obligation": "Actual precharge/hold copper path, gate return, current sharing and pulse/thermal behavior."
+    },
+    {
+      "ref": "R_ADC_BOT",
+      "source_placement_or_reservation": "PRESERVED_EXISTING_SOURCE_RESERVATION",
+      "p3_saved_copper_obligation": "Actual saved copper, return association, transient behavior and thermal/current path as applicable."
+    },
+    {
+      "ref": "R_ADC_TOP",
+      "source_placement_or_reservation": "PRESERVED_EXISTING_SOURCE_RESERVATION",
+      "p3_saved_copper_obligation": "Actual saved copper, return association, transient behavior and thermal/current path as applicable."
+    },
+    {
+      "ref": "R_AUDIO_PD",
+      "source_placement_or_reservation": "PRESERVED_EXISTING_SOURCE_RESERVATION",
+      "p3_saved_copper_obligation": "Actual saved copper, return association, transient behavior and thermal/current path as applicable."
+    },
+    {
+      "ref": "R_AUDIO_PU",
+      "source_placement_or_reservation": "PRESERVED_EXISTING_SOURCE_RESERVATION",
+      "p3_saved_copper_obligation": "Actual saved copper, return association, transient behavior and thermal/current path as applicable."
+    },
+    {
+      "ref": "R_DUMP",
+      "source_placement_or_reservation": "PRESERVED_EXISTING_SOURCE_RESERVATION",
+      "p3_saved_copper_obligation": "Actual dump-control copper, timing return, discharge current and pulse/thermal behavior."
+    },
+    {
+      "ref": "R_DUMP_PD",
+      "source_placement_or_reservation": "PRESERVED_EXISTING_SOURCE_RESERVATION",
+      "p3_saved_copper_obligation": "Actual dump-control copper, timing return, discharge current and pulse/thermal behavior."
+    },
+    {
+      "ref": "R_DUMP_TIME1",
+      "source_placement_or_reservation": "PRESERVED_EXISTING_SOURCE_RESERVATION",
+      "p3_saved_copper_obligation": "Actual dump-control copper, timing return, discharge current and pulse/thermal behavior."
+    },
+    {
+      "ref": "R_DUMP_TIME2",
+      "source_placement_or_reservation": "PRESERVED_EXISTING_SOURCE_RESERVATION",
+      "p3_saved_copper_obligation": "Actual dump-control copper, timing return, discharge current and pulse/thermal behavior."
+    },
+    {
+      "ref": "R_DUMP_TIME3",
+      "source_placement_or_reservation": "PRESERVED_EXISTING_SOURCE_RESERVATION",
+      "p3_saved_copper_obligation": "Actual dump-control copper, timing return, discharge current and pulse/thermal behavior."
+    },
+    {
+      "ref": "R_LDO_ILIM",
+      "source_placement_or_reservation": "PRESERVED_EXISTING_SOURCE_RESERVATION",
+      "p3_saved_copper_obligation": "Actual LDO input/output/SET/OUTS/EP copper, Kelvin return, load path and thermal behavior as applicable."
+    },
+    {
+      "ref": "R_LDO_PG_BOT_A",
+      "source_placement_or_reservation": "PRESERVED_EXISTING_SOURCE_RESERVATION",
+      "p3_saved_copper_obligation": "Actual LDO input/output/SET/OUTS/EP copper, Kelvin return, load path and thermal behavior as applicable."
+    },
+    {
+      "ref": "R_LDO_PG_BOT_B",
+      "source_placement_or_reservation": "PRESERVED_EXISTING_SOURCE_RESERVATION",
+      "p3_saved_copper_obligation": "Actual LDO input/output/SET/OUTS/EP copper, Kelvin return, load path and thermal behavior as applicable."
+    },
+    {
+      "ref": "R_LDO_PG_TOP",
+      "source_placement_or_reservation": "PRESERVED_EXISTING_SOURCE_RESERVATION",
+      "p3_saved_copper_obligation": "Actual LDO input/output/SET/OUTS/EP copper, Kelvin return, load path and thermal behavior as applicable."
+    },
+    {
+      "ref": "R_LDO_SET",
+      "source_placement_or_reservation": "PRESERVED_EXISTING_SOURCE_RESERVATION",
+      "p3_saved_copper_obligation": "Actual LDO input/output/SET/OUTS/EP copper, Kelvin return, load path and thermal behavior as applicable."
+    },
+    {
+      "ref": "R_OPA_BLEED1",
+      "source_placement_or_reservation": "PRESERVED_EXISTING_SOURCE_RESERVATION",
+      "p3_saved_copper_obligation": "Actual LDO input/output/SET/OUTS/EP copper, Kelvin return, load path and thermal behavior as applicable."
+    },
+    {
+      "ref": "R_OPA_BLEED2",
+      "source_placement_or_reservation": "PRESERVED_EXISTING_SOURCE_RESERVATION",
+      "p3_saved_copper_obligation": "Actual LDO input/output/SET/OUTS/EP copper, Kelvin return, load path and thermal behavior as applicable."
+    },
+    {
+      "ref": "R_PRE",
+      "source_placement_or_reservation": "PATCHED_18_SOURCE_POSE",
+      "p3_saved_copper_obligation": "Actual precharge/hold copper path, gate return, current sharing and pulse/thermal behavior."
+    },
+    {
+      "ref": "R_PRE_G",
+      "source_placement_or_reservation": "PATCHED_18_SOURCE_POSE",
+      "p3_saved_copper_obligation": "Actual precharge/hold copper path, gate return, current sharing and pulse/thermal behavior."
+    },
+    {
+      "ref": "R_PWR_BOT",
+      "source_placement_or_reservation": "PRESERVED_EXISTING_SOURCE_RESERVATION",
+      "p3_saved_copper_obligation": "Actual saved copper, return association, transient behavior and thermal/current path as applicable."
+    },
+    {
+      "ref": "R_PWR_PU",
+      "source_placement_or_reservation": "PRESERVED_EXISTING_SOURCE_RESERVATION",
+      "p3_saved_copper_obligation": "Actual saved copper, return association, transient behavior and thermal/current path as applicable."
+    },
+    {
+      "ref": "R_PWR_TOP",
+      "source_placement_or_reservation": "PRESERVED_EXISTING_SOURCE_RESERVATION",
+      "p3_saved_copper_obligation": "Actual saved copper, return association, transient behavior and thermal/current path as applicable."
+    },
+    {
+      "ref": "U_AUDIO",
+      "source_placement_or_reservation": "PRESERVED_EXISTING_SOURCE_RESERVATION",
+      "p3_saved_copper_obligation": "Actual saved copper, return association, transient behavior and thermal/current path as applicable."
+    },
+    {
+      "ref": "U_DUMP",
+      "source_placement_or_reservation": "PRESERVED_EXISTING_SOURCE_RESERVATION",
+      "p3_saved_copper_obligation": "Actual dump-control copper, timing return, discharge current and pulse/thermal behavior."
+    },
+    {
+      "ref": "U_LDO",
+      "source_placement_or_reservation": "PRESERVED_EXISTING_SOURCE_RESERVATION",
+      "p3_saved_copper_obligation": "Actual LDO input/output/SET/OUTS/EP copper, Kelvin return, load path and thermal behavior as applicable."
+    },
+    {
+      "ref": "U_LDO_EN",
+      "source_placement_or_reservation": "PRESERVED_EXISTING_SOURCE_RESERVATION",
+      "p3_saved_copper_obligation": "Actual LDO input/output/SET/OUTS/EP copper, Kelvin return, load path and thermal behavior as applicable."
+    },
+    {
+      "ref": "U_PWR",
+      "source_placement_or_reservation": "PRESERVED_EXISTING_SOURCE_RESERVATION",
+      "p3_saved_copper_obligation": "Actual saved copper, return association, transient behavior and thermal/current path as applicable."
+    }
+  ],
+  "claim_limit": "Source placement/reservation conditions only; no row closes a P3/FULL copper obligation."
+}

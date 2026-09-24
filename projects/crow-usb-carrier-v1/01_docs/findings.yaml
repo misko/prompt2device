@@ -250,7 +250,11 @@ findings:
     A bounded 430486-state local-cell
     allocation screen is retained as NO_CANDIDATE source research only; it
     is not a whole-board impossibility claim or an integrated-board defect.
-    Follow-on v2/v3 D-BACK results retain a useful output-bank partial but
+    A reviewed 18-pose constructive source patch is now adopted with all
+    47/47 declared numeric rows passing in source-only evidence and an
+    explicit 89-ref scope ledger. This is planned placement only: no native
+    board, saved copper, or physical qualification exists, and the old
+    47/47 board receipt remains historical rather than rebound. Follow-on v2/v3 D-BACK results retain a useful output-bank partial but
     stop at the VIN/precharge allocation frontier; their whole-cell handoff
     requires an explicitly owned allocation and complete 47-row regrade.
   closes_when: Explicitly reassess/backtrack the exhausted P2 work item, review
@@ -277,6 +281,9 @@ findings:
   - 01_docs/research/2026-09-23-p2-power-dback-v2-terminal.md
   - 01_docs/research/2026-09-23-p2-power-dback-v3-terminal.md
   - 01_docs/research/2026-09-23-p2-power-whole-cell-owner-handoff.md
+  - 01_docs/research/2026-09-24-p2-power-constructive-source-review-terra.md
+  - 01_docs/research/2026-09-24-p2-power-constructive-owner.patch
+  - 01_docs/research/2026-09-24-p2-power-full89-scope-ledger.json
 
 - id: USB-P2-remaining-block-placement
   state: open
@@ -325,9 +332,17 @@ findings:
     The qualification setup failure, later 4/4 qualification PASS, and first
     producer P-MOD failure/no-handback are preserved without reset or retry;
     no producer, native task, or fresh checkpoint is admitted here. A new
-    E-FAULT semantic review against the generated 569-component circuit JSON
-    and a matching public-stock request are owed. The shared template's stale
-    P-MOD order is a separate defect outside this project-only repair.
+    The generated 569-component CJ `1f01be73…` reached current-CJ P-MOD PASS
+    and then stopped fail-closed at the old E-FAULT digest. Its original
+    E-FAULT review is retained INCOMPLETE; the subsequent source addendum is
+    SOUND for conditional binding after a two-sentence clarification that
+    explicitly includes every fitted downstream capacitor in the existing
+    J_PWR whole-episode physical qualification obligation. This updates only
+    `power_tree.circuit_sha256` to the reviewed CJ, with no numeric waiver;
+    physical qualification remains owed. Sourcing remains unadmitted: the
+    formal screen is INCOMPLETE, while a fresh direct-public result is a PASS
+    screen only and does not allocate assembly or procurement. The shared
+    template's stale P-MOD order is a separate defect outside this project-only repair.
   closes_when: Complete a separately admitted fresh schematic campaign from
     the adopted source, including a generated 569-component circuit JSON,
     independent E-FAULT semantic review, matching stock request, source
@@ -354,6 +369,14 @@ findings:
   - 01_docs/research/2026-09-23-adc65-prebuild-admission-ledger.md
   - 01_docs/research/2026-09-23-adc65-isolated-qualification-pass.json
   - 01_docs/research/2026-09-23-adc65-first-producer-failure.json
+  - 01_docs/research/2026-09-24-adc65-efault-initial-review-incomplete-terra.md
+  - 01_docs/research/2026-09-24-adc65-efault-addendum-review-terra.md
+  - 01_docs/research/2026-09-24-adc65-efault-contract-clarification.patch
+  - 01_docs/research/2026-09-24-adc65-root-prep-semantic-delta.json
+  - 01_docs/research/2026-09-24-adc65-preserved-568-checkpoint-manifest.sha256
+  - 01_docs/research/2026-09-24-adc65-isolated-mbound-failure.json
+  - 01_docs/research/2026-09-24-sourcing-569-incomplete-review-terra.md
+  - 01_docs/research/2026-09-24-sourcing-569-direct-public-screen.json
 
 - id: USB-model-identity
   state: open

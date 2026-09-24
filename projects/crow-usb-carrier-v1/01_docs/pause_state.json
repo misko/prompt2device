@@ -1,45 +1,55 @@
 {
-  "blocker": "Reviewed source adoption changes the authoritative source to 569 components and 65 ADC-reference refs with planned C_ADC_3V3X_OK_VDD placement, but no producer or native task is admitted. All 568-component circuit JSON/schematic/checkpoint/power 47/47 measurement/review and graph subjects remain immutable history and stale for this changed subject. The original P-MOD producer failure/no-handback is retained; conductor repair is adopted but needs a separately admitted fresh campaign. New generated circuit JSON E-FAULT semantic review and matching stock request are owed. Full 89-ref power engineering remains open; connector FULL has 19 physical targets unmeasured; 499 unrouted items block P3, routing, P5, release and order.",
+  "blocker": "Current source has ADC65 CJ 1f01be73 (569 components) conditionally bound by reviewed E-FAULT source clarification; complete fitted-board physical waveform qualification remains owed. The reviewed 18-pose power source proposal passes 47/47 declared numeric observations and has an 89-ref ledger, but is planned source placement only with no native board or P2 acceptance. Historical 568 CJ/schematic/checkpoint, c3d90659 power measurement, reviews and graph subjects remain immutable and stale for the changed subject. Sourcing formal review is INCOMPLETE; direct-public PASS is screen-only. New full schematic review is owed; connector FULL 19 and 499 unrouted items still block P3, routing, P5, release and order.",
   "checkpoint": {
     "path": "06_build/checkpoints/schematic.json",
     "sha256": "2fb4dd626750114476150d550d88cf15c0d5a2deb5d8e971e1be67a2a7bde856",
     "size": 1152
   },
-  "next_command": "Prepare the new 569-component circuit JSON for independent E-FAULT semantic review and a matching public-stock request, then seek explicit admission for a fresh qualified schematic campaign. Do not reuse historical 568-component derived artifacts or run native work. Separately allocate complete power whole-cell scope and regrade all 47 rows plus qualitative obligations before P2 acceptance.",
+  "next_command": "Seek explicit admission for a fresh full schematic campaign from CJ 1f01be73 with new derived identities and independent schematic review. Before procurement or release, obtain complete fitted-board J_PWR waveform qualification. Keep direct-public sourcing screen separate from formal assembly allocation; require fresh sourcing admission. Do not run native placement. Complete the 89-ref power qualitative and later copper proof before P2 acceptance.",
   "phase": "placement",
   "project": "crow-usb-carrier-v1",
   "receipts": [
     {
-      "path": "01_docs/research/2026-09-23-adc-p2-complete65-source-review-terra.md",
-      "sha256": "9e5e055be68c28605a30929fed3db1c9c0479edbc1b7209a2f1018be3393d93a",
-      "size": 5849
+      "path": "01_docs/research/2026-09-24-adc65-efault-addendum-review-terra.md",
+      "sha256": "4105480acc0277d6674e48b4f06a95745988f29e67b8676cb2b17f9831ae6c30",
+      "size": 6024
     },
     {
-      "path": "01_docs/research/2026-09-23-adc65-first-producer-failure.json",
-      "sha256": "acd2c1d6616f11cc5c3c96d87f36338ef311fc2879e3da065075da9314c8faed",
-      "size": 3436
+      "path": "01_docs/research/2026-09-24-adc65-efault-initial-review-incomplete-terra.md",
+      "sha256": "c252da2db1f9ca50bcf7ab3b3533bdb157fcc3edc72d827c2884e29f518d8f4b",
+      "size": 9576
     },
     {
-      "path": "01_docs/research/2026-09-23-adc65-isolated-qualification-pass.json",
-      "sha256": "bf79c3fd84cadee72f015400ae722b1f9c86593e56569aff69c9c1640ec00395",
-      "size": 47269
+      "path": "01_docs/research/2026-09-24-adc65-preserved-568-checkpoint-manifest.sha256",
+      "sha256": "355107bdfe1ed4d7c782306b815bc50dc8aecbea64c997f0761f95a5db6bc971",
+      "size": 1543
     },
     {
-      "path": "01_docs/research/2026-09-23-adc65-pmod-current-cj-order-review-terra.md",
-      "sha256": "f45ab5e906222cf439b84a837d029ae311c8552a40df7f60c35dc353fc8acb08",
-      "size": 5905
+      "path": "01_docs/research/2026-09-24-adc65-root-prep-semantic-delta.json",
+      "sha256": "d40b780803bac8bf6cfd4a76b8ae0c06a9aea33e23199739b6799f8998ae622c",
+      "size": 1073
     },
     {
-      "path": "01_docs/research/2026-09-23-adc65-prebuild-admission-ledger.md",
-      "sha256": "c1103ef59c84354fe24efafef2130805ded2827e76a92d7457f1fc3357ace96c",
-      "size": 4027
+      "path": "01_docs/research/2026-09-24-p2-power-constructive-source-review-terra.md",
+      "sha256": "7fd8d4e9e52cf38fa5161b704ee842b33933f1344192555231b8ef7512ad45af",
+      "size": 8097
     },
     {
-      "path": "01_docs/research/2026-09-23-p2-power-whole-cell-owner-handoff.md",
-      "sha256": "9483b8ee36e89b980cf116baac8c94aacf3014cf8f6cfcb96d8b83fdb89c13f8",
-      "size": 3025
+      "path": "01_docs/research/2026-09-24-p2-power-full89-scope-ledger.json",
+      "sha256": "8e11ec0babb0508de29ae5a2bff4e7c38f65b4b9f4873b3d944894f0adb0088e",
+      "size": 22590
+    },
+    {
+      "path": "01_docs/research/2026-09-24-sourcing-569-direct-public-screen.json",
+      "sha256": "34fdd4c7758d08152bc5abd6e25101c7519f948b74c84dd9db610bd1c4f84485",
+      "size": 32482
+    },
+    {
+      "path": "01_docs/research/2026-09-24-sourcing-569-incomplete-review-terra.md",
+      "sha256": "73daf4dba2a1abb004aa86caa595d058f5f764de9d70099d3893fbcc2bf53406",
+      "size": 9605
     }
   ],
   "schema": 1,
-  "state_id": "596a117faf88ff313645b02a364820b1de8eddfe19e4c1f8ca0ec5d1dfa405ac"
+  "state_id": "87fb60bcc07324dcf188d8ec26940061c6792307aa8682831da995dc7b7deb60"
 }

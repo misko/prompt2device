@@ -58,7 +58,7 @@ paths:
         persistent_fault_current_max_A: 2.85
         retry_rearm: no_excess_retry_until_input_power_cycle_after_fault_removal
         episode_scope: entire_fault_episode_including_cap_discharge_and_retries
-        qualification_evidence_owed: Exact isolated supply and cable load-line, source/output-capacitor discharge and repeated-fault waveforms must be qualified before procurement or release; no supply is selected.
+        qualification_evidence_owed: Exact isolated supply and cable load-line, source/output-capacitor discharge (including every fitted downstream capacitor, such as C_ADC_3V3X_OK_VDD) and repeated-fault waveforms at J_PWR must be qualified against this whole-episode envelope before procurement or release; no supply is selected.
       requirements: Normal load, startup, and one branch-limited fault must not open F_IN. A shorted TVS or common-trunk fault must remain inside the bounded source episode. Fuse clearing is not admitted without separate Q_IN thermal/fuse coordination.
     downstream_consequence:
       spoke_ovp: disabled_by_OVP_to_RTN

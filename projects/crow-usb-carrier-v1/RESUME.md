@@ -1,12 +1,12 @@
 # Resume
 
-<!-- pause-state:596a117faf88ff313645b02a364820b1de8eddfe19e4c1f8ca0ec5d1dfa405ac -->
+<!-- pause-state:87fb60bcc07324dcf188d8ec26940061c6792307aa8682831da995dc7b7deb60 -->
 
 Canonical state: `01_docs/pause_state.json`
 
 1. Verify: `python3 skills/pcb-design/scripts/pause_state.py verify .`
-2. Confirm blocker: Reviewed source adoption changes the authoritative source to 569 components and 65 ADC-reference refs with planned C_ADC_3V3X_OK_VDD placement, but no producer or native task is admitted. All 568-component circuit JSON/schematic/checkpoint/power 47/47 measurement/review and graph subjects remain immutable history and stale for this changed subject. The original P-MOD producer failure/no-handback is retained; conductor repair is adopted but needs a separately admitted fresh campaign. New generated circuit JSON E-FAULT semantic review and matching stock request are owed. Full 89-ref power engineering remains open; connector FULL has 19 physical targets unmeasured; 499 unrouted items block P3, routing, P5, release and order.
-3. Resume with: `Prepare the new 569-component circuit JSON for independent E-FAULT semantic review and a matching public-stock request, then seek explicit admission for a fresh qualified schematic campaign. Do not reuse historical 568-component derived artifacts or run native work. Separately allocate complete power whole-cell scope and regrade all 47 rows plus qualitative obligations before P2 acceptance.`
+2. Confirm blocker: Current source has ADC65 CJ 1f01be73 (569 components) conditionally bound by reviewed E-FAULT source clarification; complete fitted-board physical waveform qualification remains owed. The reviewed 18-pose power source proposal passes 47/47 declared numeric observations and has an 89-ref ledger, but is planned source placement only with no native board or P2 acceptance. Historical 568 CJ/schematic/checkpoint, c3d90659 power measurement, reviews and graph subjects remain immutable and stale for the changed subject. Sourcing formal review is INCOMPLETE; direct-public PASS is screen-only. New full schematic review is owed; connector FULL 19 and 499 unrouted items still block P3, routing, P5, release and order.
+3. Resume with: `Seek explicit admission for a fresh full schematic campaign from CJ 1f01be73 with new derived identities and independent schematic review. Before procurement or release, obtain complete fitted-board J_PWR waveform qualification. Keep direct-public sourcing screen separate from formal assembly allocation; require fresh sourcing admission. Do not run native placement. Complete the 89-ref power qualitative and later copper proof before P2 acceptance.`
 
 The authenticated checkpoint is `06_build/checkpoints/schematic.json` at
 `2fb4dd626750114476150d550d88cf15c0d5a2deb5d8e971e1be67a2a7bde856`.
