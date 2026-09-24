@@ -1,0 +1,123 @@
+schema: 1
+status: PROPOSED_RESEARCH_ONLY
+owner: terra
+scope: >-
+  Source-model proposal only. It does not alter the canonical source, placement,
+  routing, native board, DRC state, connector qualification, or release state.
+
+module_change:
+  add:
+    id: usb_edge_connector
+    refs: [J_USB]
+    responsibility: >-
+      Own the Type-C receptacle's exact footprint, edge pose, contact-to-net
+      declaration, SBU NC declaration, shell contact, and handoff leaves.
+  retain:
+    id: usb_frontend
+    refs: [R_USB_CC1, R_USB_CC2, U_USB_ESD, U_USB_CC_ESD, U_USB_VBUS_ESD,
+           C_USB_VBUS, R_USB_VBUS_BLEED]
+    responsibility: >-
+      Own local protection, Rd, VBUS discharge/capacitance and their local
+      return connections; it does not instantiate or own J_USB.
+  source_shape:
+    - UsbReceptacle remains the sole J_USB component definition in usb_receptacle.tsx.
+    - UsbDeviceFrontend receives electrical net names but no receptacleFootprint prop and does not call UsbReceptacle.
+    - CrowCarrier instantiates UsbReceptacle once under usb_edge_connector and UsbDeviceFrontend once under usb_frontend.
+    - usb_edge_connector gets a dedicated schematic sheet/presentation domain and a floorplan region containing J_USB's actual edge pose.
+  proposed_regions:
+    usb_edge_connector: [220, 20, 240, 35]
+    usb_frontend: [200, 35, 236, 70]
+
+connector_census:
+  ref: J_USB
+  physical_ports: 17
+  electrically_connected_ports: 15
+  intentional_nc_ports: [J_USB.6, J_USB.14]
+  owner_endpoint_counts:
+    GND: {count: 5, endpoints: [J_USB.1, J_USB.8, J_USB.9, J_USB.16, J_USB.17]}
+    VBUS_USB: {count: 4, endpoints: [J_USB.2, J_USB.7, J_USB.10, J_USB.15]}
+    USB_CC1: {count: 1, endpoints: [J_USB.3]}
+    USB_DP: {count: 2, endpoints: [J_USB.4, J_USB.12]}
+    USB_DN: {count: 2, endpoints: [J_USB.5, J_USB.13]}
+    USB_CC2: {count: 1, endpoints: [J_USB.11]}
+  invariant: >-
+    Exactly one source instance owns all 17 physical ports; only 15 are net
+    leaves. The two SBU ports are explicit NC leaves, never omitted by a count.
+
+endpoint_trees:
+  - net: USB_DP
+    total_endpoints: 4
+    owners:
+      usb_edge_connector: [J_USB.4, J_USB.12]
+      usb_frontend: [U_USB_ESD.1]
+      xmos_core: [U_XU.60]
+    handoff_edges:
+      - {from: [J_USB.4, J_USB.12], to: U_USB_ESD.1, kind: protected_launch_tree}
+      - {from: U_USB_ESD.1, to: U_XU.60, kind: receiver_escape}
+  - net: USB_DN
+    total_endpoints: 4
+    owners:
+      usb_edge_connector: [J_USB.5, J_USB.13]
+      usb_frontend: [U_USB_ESD.2]
+      xmos_core: [U_XU.59]
+    handoff_edges:
+      - {from: [J_USB.5, J_USB.13], to: U_USB_ESD.2, kind: protected_launch_tree}
+      - {from: U_USB_ESD.2, to: U_XU.59, kind: receiver_escape}
+  - net: USB_CC1
+    total_endpoints: 3
+    owners:
+      usb_edge_connector: [J_USB.3]
+      usb_frontend: [R_USB_CC1.1, U_USB_CC_ESD.3]
+    handoff_edges:
+      - {from: J_USB.3, to: [R_USB_CC1.1, U_USB_CC_ESD.3], kind: edge_support_tree}
+  - net: USB_CC2
+    total_endpoints: 3
+    owners:
+      usb_edge_connector: [J_USB.11]
+      usb_frontend: [R_USB_CC2.1, U_USB_CC_ESD.5]
+    handoff_edges:
+      - {from: J_USB.11, to: [R_USB_CC2.1, U_USB_CC_ESD.5], kind: edge_support_tree}
+  - net: VBUS_USB
+    total_endpoints: 8
+    owners:
+      usb_edge_connector: [J_USB.2, J_USB.7, J_USB.10, J_USB.15]
+      usb_frontend: [U_USB_VBUS_ESD.3, C_USB_VBUS.1, R_USB_VBUS_BLEED.1]
+      usb_vbus_sense: [R_VBUS_B.1]
+    handoff_edges:
+      - {from: [J_USB.2, J_USB.7, J_USB.10, J_USB.15], to: [U_USB_VBUS_ESD.3, C_USB_VBUS.1, R_USB_VBUS_BLEED.1], kind: edge_support_tree}
+      - {from: [J_USB.2, J_USB.7, J_USB.10, J_USB.15], to: R_VBUS_B.1, kind: sense_branch}
+  - net: GND
+    disposition: global_plane_not_a_usb_local_corridor
+    edge_endpoints: [J_USB.1, J_USB.8, J_USB.9, J_USB.16, J_USB.17]
+    edge_endpoint_count: 5
+    invariant: >-
+      J_USB.17 is the shell endpoint. It is separately counted even when the
+      current source bonds shield and ground to the same net.
+
+reset_branch:
+  net: XU_RESET_N
+  total_endpoints: 5
+  owner_count: 3
+  owners:
+    debug_connector: [J_JTAG.10]
+    digital_power: [R_XU_RST_PU.2, U_CORE_OK.1, U_XU_3V3_OK.6]
+    xmos_core: [U_XU.38]
+  electrical_roles:
+    R_XU_RST_PU.2: 1V8_pull_up
+    U_CORE_OK.1: open_drain_assertor
+    U_XU_3V3_OK.6: open_drain_assertor
+    J_JTAG.10: external_open_drain_service_endpoint
+    U_XU.38: reset_receiver
+  topology: >-
+    A five-leaf wired-AND tree. Do not encode it as a two-owner point-to-point
+    handoff or as a serial path. The two supervisor outputs and JTAG endpoint
+    may assert low; R_XU_RST_PU provides the sole declared high source.
+  no_unrelated_branching: true
+
+acceptance_gates:
+  - source-netlist endpoint census has exactly the counts declared above
+  - J_USB is absent from usb_frontend refs and present once in usb_edge_connector refs
+  - J_USB.6 and J_USB.14 remain explicit NC in generated native output
+  - USB_DP and USB_DN retain their four-leaf trees and differential routing constraints
+  - XU_RESET_N retains its five-leaf, three-owner open-drain tree
+  - native board, exact edge clearance, connector FULL, routing, return/impedance and DRC require separate evidence
