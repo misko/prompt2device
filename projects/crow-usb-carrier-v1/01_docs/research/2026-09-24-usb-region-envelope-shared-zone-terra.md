@@ -1,104 +1,86 @@
-# USB region-envelope shared-zone measurement
+# USB region-envelope correction and rectilinear rejection
 
 **Research only; no source region, PCB, route, task, or P1 attempt changed.**
-This measurement identifies a source-model requirement for the USB device
-allocation.  It does not establish a route, pair capacity, pad access,
-continuous GND reference, or P1/P2 acceptance.
+This replaces the prior historical-board measurement in this file. That
+measurement used the rejected repaired-trial board and is retracted: it must
+not be used for USB virtual faces or any placement conclusion.
 
-## Subject and method
+## Exact subject and native measurements
 
-The source subject is `03_src/floorplan.yaml` SHA-256
-`a882f87682484c37c5766a9e37c5a0d93b38a8e5a775fb1ab4425011da40a275` at
-commit `e969f133`.  The native body/courtyard measurement used KiCad
-`FOOTPRINT.GetBoundingBox(True, True)` on the isolated repaired-trial board,
-SHA-256 `37b455203fcdae0c20880a94b17a4bcfb61103fa2b8b9df9ecf095c9c97aa519`.
-That board predates the current Q_VBUS post-anchor.  Its Q_VBUS pose is
-`[207.9,74.5,0]`; the current source pose is `[212.0,74.5,0]`.  I translated
-only Q_VBUS's native full box by +4.100 mm in X.  The documented isolated
-replay establishes that this post-anchor changes exactly that footprint pose;
-all other envelopes below are native measurements from the board.
+I copied the current source, generated one isolated board with
+`generate_board_generic.py`, and measured KiCad
+`FOOTPRINT.GetBoundingBox(True, True)` on that generated board. The input
+floorplan SHA-256 is
+`a882f87682484c37c5766a9e37c5a0d93b38a8e5a775fb1ab4425011da40a275`; the
+saved 569-footprint board SHA-256 is
+`60a903b5ae5c7c7ef084fb3bd5dd50abf26e1e0e134a928f46107a6c90934b17`.
+This is the current Q_VBUS-only source subject, with Q_VBUS at
+`[212.0,74.5,0]`; no historical-box translation is used.
 
-The current source rectangles are:
-
-| Region | Current rectangle `[x0,y0,x1,y1]` mm | Full-footprint union envelope `[x0,y0,x1,y1]` mm |
+| Region | Current rectangle `[x0,y0,x1,y1]` mm | Full native member-envelope `[x0,y0,x1,y1]` mm |
 | --- | --- | --- |
-| `usb_frontend` | `[200,35,236,70]` | `[207.554822,19.470000,235.345000,59.161600]` |
-| `usb_vbus_sense` | `[195,62,220,82]` | `[201.879822,66.538400,215.410715,77.961600]` |
-| `xmos_core` | `[185,72,232,128]` | `[192.008571,82.138400,228.334287,116.684463]` |
+| `usb_frontend` | `[200,35,236,70]` | `[209.803571,18.574900,242.991667,46.148571]` |
+| `usb_vbus_sense` | `[195,62,220,82]` | `[204.270238,66.538400,215.410715,77.761600]` |
+| `xmos_core` | `[185,72,232,128]` | `[187.222857,83.139313,229.886905,114.860688]` |
+| `clock_flash_debug` | `[185,112,232,136]` | `[200.617684,115.138399,221.791667,132.861600]` |
 
-The second envelope includes planned Q_VBUS.  Its translated full box is
-`[208.589286,72.367000,215.410715,77.961600]`; the other three sense boxes
-are R_VBUS_B `[204.270238,66.538400,209.329762,72.718250]`, R_VBUS_BE
-`[206.394286,68.538400,211.605715,72.718250]`, and R_VBUS_PU
-`[201.879822,71.505000,209.553572,74.018250]`.
+The USB pair terminals are U_USB_ESD.1/2 at `(216.650,36.425)` /
+`(217.350,36.425)` and U_XU.60/59 at `(216.1625,95.400)` /
+`(216.1625,95.800)`. The presence terminals are Q_VBUS.3 at
+`(212.9375,74.5)`, R_VBUS_PU.2 at `(208.010,72.000)`, and **U_XU.8 at
+`(205.100,107.6625)`**. The corrected U_XU.8 coordinate is material: the
+earlier `(200.8375,96.6)` value belongs to the wrong historical board.
 
-Thus the member envelopes have a 7.376800-mm Y gap between frontend and
-sense, and a 4.176800-mm Y gap between sense and XMOS.  The existing source
-rectangles nevertheless overlap frontend/sense across `[200,62,220,70]` and
-sense/XMOS across `[195,72,220,82]`.  The relevant native terminals are
-U_USB_ESD.1/2 at `(214.950,50.725)` / `(215.650,50.725)`, U_XU.60/59 at
-`(213.100,107.6625)` / `(212.700,107.6625)`, Q_VBUS.3 at
-`(212.9375,74.5)` after the planned move, and U_XU.8 at `(200.8375,96.6)`.
+## Tested joint rectilinear candidate — REJECTED
 
-## Concrete required adjustment: bounded USB transition shared zone
-
-A single exclusive rectangular partition is not safe: a full-width frontend
-trim at y=60.5 intersects fixed J_JTAG, and the current xmos top/side area is
-occupied by channel-8 footprints.  Define a source-owned
-`board_integration` **USB transition shared zone** with these only usable
-virtual faces:
+The requested candidate was evaluated without editing the source:
 
 ```yaml
-usb_transition_shared:
-  owner: board_integration
-  members: [usb_frontend, usb_vbus_sense, xmos_core]
-  transition_bbox_mm: [195.0, 60.5, 220.0, 81.0]
-  virtual_faces:
-    - {members: [usb_frontend, usb_vbus_sense], segment: [201.0, 60.5, 220.0, 60.5]}
-    - {members: [usb_vbus_sense, xmos_core], segment: [195.0, 81.0, 220.0, 81.0]}
-  status: P2_REQUIRED
+usb_frontend:      [200, 35, 236, 62]
+usb_vbus_sense:    [195, 62, 220, 82]
+xmos_core:         [190, 82, 232, 115]
+clock_flash_debug: [185,115, 232,136]
 ```
 
-This is deliberately a shared-zone requirement rather than an instruction to
-add the YAML above to the current rectangle-only schema.  It must supersede
-the two positive-area overlaps for USB virtual-face accounting: no USB pair
-or VBUS_PRESENT_N virtual witness may be credited from either current
-overlapping interior.  The two named segments are the only proposed faces.
-Their widths are 19.0 mm and 25.0 mm; those are geometric face lengths, not
-routing widths or capacity.
+It would remove the direct positive-area overlaps among these four edited
+rectangles, but it is not admissible. Its new or moved full-width boundaries
+intersect these native full footprint boxes:
 
-`transition_bbox_mm` is a bounded membership/accounting extent, **not** a
-new exclusive physical rectangle whose vertical sides may slice occupants.
-The future shared-zone schema must model those side extents as internal
-membership limits (or supply a footprint-clear staggered polygon) and may
-expose only the two audited horizontal faces.  This is why the adjustment
-removes overlap from USB virtual-face accounting without pretending that a
-single rectangle can repartition the whole placed board.
+| Candidate boundary | Intersecting full native footprints |
+| --- | --- |
+| frontend south y=62, x=200..236 | `R_B8P [198.470238,61.038400,203.934286,65.018250]`; `C_ADC_AC8N1 [194.225000,61.275000,208.377144,66.248250]`; `C_FILTER8N1 [196.049049,57.839313,200.950952,62.428250]` |
+| sense north y=62, x=195..220 | `C_A8P`, `U_SPOKE8`, plus the same R_B8P, C_ADC_AC8N1, and C_FILTER8N1 |
+| XMOS north y=82, x=190..232 | `C_SPOKE_OUT8 [184.608572,72.795000,191.591429,82.361600]` |
+| XMOS west x=190, y=82..115 | own `C_XU_VDD_105`, `C_XU_VDDIO_109`, and `C_XU_VDDIO_121`, plus `C_SPOKE_OUT8` |
+| XMOS south y=115, x=190..232 | none |
+| clock north y=115, x=185..232 | none |
+| sense south y=82, x=195..220 | none |
 
-Native full-box intersection checks find **zero** footprints on both named
-segments.  The exact 27-ref `p1_fixed_refs` authority was read from
-`p1_corridor_requirements.yaml` (SHA-256
-`9ef85e5f4918dea0378203a97fa631ce2e73a690170235902a97a6c8e30527d8`): zero
-of its 27 refs intersects either segment.  This preserves J1..J8, J_PWR,
-J_USB, J_JTAG, and C_HOLD1..16.
+No one of the exact 27 `p1_fixed_refs` crosses those tested boundary segments.
+That does not rescue the candidate: its own-XMOS and foreign analog footprints
+are full-body blockers. In particular, the west move from x=185 to x=190
+cuts three `xmos_core` member envelopes, so the candidate cannot be described
+as merely removing an ownership overlap.
 
-## Why a simple rectangle is rejected
+## Remaining source-region conflicts
 
-At y=60.5, the full-width `[200,236]` cut intersects `C_FILTER8N1`
-`[196.049049,57.839313,200.950952,62.428250]` and fixed J_JTAG
-`[225.090000,38.307684,230.910000,61.692315]`.  Restricting the upper face
-to x=201..220 clears both.  At y=81, the proposed lower x=195..220 segment
-is clear, but a full x=185..232 cut intersects C_SPOKE_DVDT8,
-C_SPOKE_OUT8, and R_SPOKE_UVLO8.  A direct x=195 sidewall through y=72..81
-also crosses C_A8N, R_IN8N, and U_AFE8; U_AFE8 is
-`[192.651191,73.540000,202.948810,80.648250]`.  These are full native
-envelopes, so a rectilinear carve-out cannot be represented safely without a
-staggered/polygon boundary and an owner model.
+The candidate also leaves or reveals positive-area source overlaps outside the
+four-cell relation. Those relevant to the USB side are `analog_ch8` with
+`usb_frontend [200,42,201,62]`, `usb_vbus_sense [195,62,201,82]`, and
+`xmos_core [190,82,201,84]`; and `debug_connector` with
+`usb_frontend [218,35,236,62]` and `usb_vbus_sense [218,62,220,65]`.
+It also retains the known ADC/audio, analog/audio, audio/digital-power,
+hold-bank/quiet-power, and input-buck/quiet-power overlaps. Therefore the
+candidate does not establish globally exclusive source cells.
 
-The shared-zone implementation must therefore record: (1) the two exact face
-segments above; (2) each member endpoint and a P2 pad-to-face obligation for
-USB_DP, USB_DN, and VBUS_PRESENT_N; (3) the local VBUS/current and continuous
-native GND-return obligations; and (4) all foreign full-footprint occupants
-of its transition bbox as retained obstacles, never as cleared capacity.  It
-must update the modular owner/witness model before any coarse checker can use
-these faces.  This observation does not authorize that implementation.
+## Disposition
+
+Do not promote a rectangular or shared-zone model from this result. A later
+source redesign must start with the exact current board and create a
+footprint-clear staggered polygon or a schema-supported explicit shared zone.
+It must name only faces that are clear on the exact board, preserve all 27
+fixed refs, enumerate foreign occupants as obstacles, and then separately
+prove short P2 pad-to-face geometry for USB_DP, USB_DN, and
+VBUS_PRESENT_N. The present virtual pad-to-face gaps of roughly 7–27 mm are
+not acceptable as those short obligations. No route, capacity, return, or
+P1/P2 claim follows from this rejection.
