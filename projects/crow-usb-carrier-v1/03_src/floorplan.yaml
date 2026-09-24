@@ -267,6 +267,14 @@ placement:
     # Connector-side USB ESD anchor reviewed with the rotated XMOS block.
     # It is a placement starting point, not a USB routing or FULL assertion.
     U_USB_ESD: [217.0, 36.0, 0]
+    # Tentative USB CC/VBUS support-block poses for an isolated P1 geometry
+    # probe.  Any corridor using this block still needs measured pad entries.
+    U_USB_CC_ESD: [233.3, 30.2, 0]
+    U_USB_VBUS_ESD: [236.7, 30.2, 0]
+    C_USB_VBUS: [236.7, 33.7, 0]
+    R_USB_CC1: [231.5, 33.7, 0]
+    R_USB_CC2: [231.5, 36.4, 0]
+    R_USB_VBUS_BLEED: [236.7, 36.4, 0]
     C_HOLD1: [30.85, 120.45, 0]
     C_HOLD2: [42.95, 120.45, 0]
     C_HOLD3: [55.05, 120.45, 0]
@@ -1142,6 +1150,14 @@ design_rules:
   min_through_drill: 0.2
   solder_mask_min_width: 0.0
   solder_mask_expansion: 0.0
+keepouts:
+  # P1 USB pair through-lane only. It intentionally terminates at the ESD and
+  # XMOS endpoint pockets; it is not a routed-pair, impedance, or return-path
+  # assertion. Tracks and vias remain allowed for later measured routing work.
+  - name: p1_usb_pair_through_lane
+    layers: [F.Cu]
+    deny: [footprints, pours]
+    rect: [216.1, 36.745, 217.4, 91.305]
 zones:
 - net: GND
   layers:

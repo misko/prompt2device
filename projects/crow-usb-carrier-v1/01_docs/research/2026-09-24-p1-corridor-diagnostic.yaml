@@ -52,6 +52,31 @@ usb_feasibility:
     nearby_shorter_approach_blockers: [R_USB_VBUS_BLEED, U_USB_CC_ESD, C_XU_VDDIO_56, C_PLL_100N, C_XU_VDDIO_121, C_XU_VDD_85]
     risk: "The long route avoids the forensic footprint boxes but has no USB high-speed signal-integrity or return-path proof. Its XU endpoint pocket intersects two local decouplers. The ESD and XU placements are floating, so a source rule area based on this board would not be stable."
   next_move: "Re-place USB ESD, XU and local bypass/CC parts together; then author a short connected lane with pad pockets and measure a fresh exact-hash native board."
+usb_authoring_probe:
+  status: INCOMPLETE
+  source_floorplan_reservation: 03_src/floorplan.yaml#/keepouts/p1_usb_pair_through_lane
+  board_sha256: e3841ad0f4a39fcbd72b6817a1d409273e6e76e16cded9018a296f2f6af66341
+  probe_scope: "Direct generator probe only; not a P1 task-run, native DRC, routing, or acceptance result."
+  fixed_block_anchors:
+    U_XU: [208.5, 100.0, 90]
+    U_USB_ESD: [217.0, 36.0, 0]
+    U_USB_CC_ESD: [233.3, 30.2, 0]
+    U_USB_VBUS_ESD: [236.7, 30.2, 0]
+    C_USB_VBUS: [236.7, 33.7, 0]
+    R_USB_CC1: [231.5, 33.7, 0]
+    R_USB_CC2: [231.5, 36.4, 0]
+    R_USB_VBUS_BLEED: [236.7, 36.4, 0]
+  external_through_lane:
+    rect_mm: [216.1, 36.745, 217.4, 91.305]
+    layer: F.Cu
+    denies: [footprints, pours]
+    endpoint_pockets_required: [U_USB_ESD, U_XU]
+    measured_capacity_slots: null
+    reference_allocation: null
+    reason: "The strip ends outside both package courtyards. Pad fan-out, effective width including clearance, continuous In1 reference, and ESD return are unmeasured."
+  preserved_local_relationship:
+    C_XU_VDD_104: "Retained at the rotated XMOS support-block pose; moving it away from U_XU.104 was rejected."
+  no_credit: [p1_acceptance, routing, connector_FULL, release, order]
 usb_logical_physical_aliases: {J_USB.10: J_USB.A4, J_USB.15: J_USB.A9, J_USB.2: J_USB.B4, J_USB.7: J_USB.B9}
 allocations:
   - id: usb_device_pair
