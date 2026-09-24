@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Conservative, hash-bound P1 placement corridor screen.
+"""Conservative, hash-bound P1 placement corridor screens.
 
 Contract JSON schema 1: ``board_sha256``, ``expected_interface_coverage``
 (allocation ID to net list), ``required_rule_areas`` (native name/bbox/layers
@@ -20,6 +20,11 @@ effective per-net width/clearance and pad access are not yet measured. A lane
 with enough raw slots therefore remains INCOMPLETE; a lane with too few fails.
 Rule-area or pour overlap also returns INCOMPLETE. This tool makes no route,
 DRC, connector FULL, or P1 engineering-acceptance claim.
+
+Schema 2 ``p1-coarse-reservations`` checks source-bound coverage, selected
+boundary witnesses and rough reservation capacity without all-terminal pockets.
+It requires an explicit source-owned ``p1_fixed_refs`` set; other P2-movable
+occupants are reported as relocation debt. It cannot accept P1 on its own.
 """
 from __future__ import annotations
 
@@ -28,7 +33,12 @@ import hashlib
 import json
 import math
 import sys
+from collections import defaultdict
 from pathlib import Path
+
+import yaml
+
+import p1_corridor_graph as graph
 
 try:
     import pcbnew
@@ -49,6 +59,262 @@ CROW_COVERAGE = {
     'power_boundary_windows': 'CHASSIS GND N0V9 N12V_PROTECTED N1V8 N3V3X N3V3_ADC N5V_BUCK N5V_LDO_HOLD PWR_EN',
 }
 CROW_COVERAGE = {name: set(value.split()) for name, value in CROW_COVERAGE.items()}
+
+
+def _coarse_hash(path, label, errors):
+    if path is None:
+        errors.append(f'{label} path missing')
+        return None
+    try:
+        return digest(Path(path))
+    except OSError as exc:
+        errors.append(f'{label} unavailable: {exc}')
+        return None
+
+
+def _coarse_witness(board, witness, net, owned_pads, aliases, pads, outline):
+    source = witness.get('source')
+    native = witness.get('native')
+    block = witness.get('block')
+    if not isinstance(source, str) or source not in owned_pads.get((net, block), set()):
+        raise ContractError(f'{net}: witness source/block ownership mismatch')
+    if native != graph.native_identity(source, aliases):
+        raise ContractError(f'{source}: witness source/native alias mismatch')
+    found = pads.get(native, [])
+    if not found or any(p.GetNetname() != net for p in found):
+        raise ContractError(f'{native}: witness native pad/net mismatch')
+    layer = witness.get('layer')
+    if not isinstance(layer, str) or layer not in {board.GetLayerName(i) for i in board.GetEnabledLayers().Seq()
+                                                   if pcbnew.IsCopperLayer(i)}:
+        raise ContractError(f'{source}: witness layer unavailable')
+    if not all(p.IsOnLayer(board.GetLayerID(layer)) for p in found):
+        raise ContractError(f'{source}: witness pad not on declared layer')
+    face = witness.get('face')
+    if face not in ('north', 'south', 'east', 'west'):
+        raise ContractError(f'{source}: witness block face missing')
+    area = rectangle(witness.get('boundary_bbox'), f'{source} boundary bbox')
+    if not lane_inside_outline(outline, area):
+        raise ContractError(f'{source}: witness boundary off board')
+    if not all(contains(area, box_mm(p.GetBoundingBox())) for p in found):
+        raise ContractError(f'{source}: witness pad outside block-face boundary')
+    return {'source': source, 'native': native, 'net': net, 'block': block,
+            'face': face, 'layer': layer, 'boundary_bbox': area}
+
+
+def _witness_touches_reservation(witness, reservation):
+    a = witness['boundary_bbox']
+    b = rectangle(reservation.get('bbox'), 'reservation bbox')
+    face = witness['face']
+    tol = 1e-6
+    if face in ('west', 'east'):
+        shared = min(a[3], b[3]) - max(a[1], b[1]) > tol
+        return shared and (abs(a[2] - b[0]) <= tol if face == 'west' else abs(a[0] - b[2]) <= tol)
+    shared = min(a[2], b[2]) - max(a[0], b[0]) > tol
+    return shared and (abs(a[3] - b[1]) <= tol if face == 'north' else abs(a[1] - b[3]) <= tol)
+
+
+def _coarse_reservation(board, row, outline, fixed_refs, movable_refs, zones, native_pitch):
+    ident = row.get('id')
+    layer = row.get('layer')
+    bbox = rectangle(row.get('bbox'), f'{ident} reservation')
+    if not isinstance(ident, str) or not ident:
+        raise ContractError('reservation id missing')
+    if not lane_inside_outline(outline, bbox):
+        raise ContractError(f'{ident}: reservation off board outline')
+    enabled = {board.GetLayerName(i) for i in board.GetEnabledLayers().Seq() if pcbnew.IsCopperLayer(i)}
+    if layer not in enabled:
+        raise ContractError(f'{ident}: reservation layer unavailable')
+    for zone in zones:
+        if zone.GetIsRuleArea() and layer in {board.GetLayerName(i) for i in zone.GetLayerSet().Seq()} and intersects(bbox, box_mm(zone.GetBoundingBox())):
+            raise ContractError(f'{ident}: immutable native rule area overlaps reservation')
+    nets = row.get('nets')
+    if not isinstance(nets, list) or not nets or len(nets) != len(set(nets)):
+        raise ContractError(f'{ident}: reservation net demand missing')
+    if row.get('kind') == 'power_or_mechanical':
+        return {'id': ident, 'status': 'INCOMPLETE', 'nets': nets,
+                'reason': 'current, return, thermal, or mechanical capacity unmeasured'}
+    if row.get('kind') != 'signal':
+        raise ContractError(f'{ident}: reservation kind missing')
+    axis = row.get('axis')
+    pitch, demand = row.get('slot_pitch_mm'), row.get('demand_slots')
+    if axis not in ('horizontal', 'vertical') or isinstance(pitch, bool) or not isinstance(pitch, (int, float)) or not math.isfinite(pitch) or pitch < native_pitch or isinstance(demand, bool) or not isinstance(demand, int) or demand < 1:
+        raise ContractError(f'{ident}: nonzero native-compatible rough demand missing')
+    # Relocatable P2 parts are excluded only from the *potential* bound. Their
+    # current intersection remains explicit debt, never a capacity credit.
+    potential = connected_capacity(bbox, layer_obstacles(board, layer, movable_refs), axis, pitch)
+    current = connected_capacity(bbox, layer_obstacles(board, layer, set()), axis, pitch)
+    movable_hits = sorted({fp.GetReference() for fp in board.GetFootprints()
+                           if fp.GetReference() in movable_refs and
+                           (intersects(bbox, box_mm(fp.GetBoundingBox(False, False))) or
+                            any(p.IsOnLayer(board.GetLayerID(layer)) and intersects(bbox, box_mm(p.GetBoundingBox())) for p in fp.Pads()))})
+    fixed_hits = sorted({name.split(':')[0] for name in potential['foreign_obstacles'] if name != 'existing-copper'})
+    status = 'FAIL' if potential['capacity_slots'] < demand else 'INCOMPLETE'
+    return {'id': ident, 'status': status, 'nets': nets, 'demand_slots': demand,
+            'potential_slots': potential['capacity_slots'], 'current_slots': current['capacity_slots'],
+            'fixed_obstacles': fixed_hits, 'movable_relocation_debt': movable_hits,
+            'existing_copper_obstacle': 'existing-copper' in potential['foreign_obstacles'],
+            'reason': 'fixed/raw neck below demand' if status == 'FAIL' else
+                      'rough capacity only; movable debt, effective rules, reference and P2 access unproved'}
+
+
+def evaluate_coarse(board_path, contract_path, expected_contract_sha256=None, *,
+                    source_path=None, interface_path=None, alias_path=None, floorplan_path=None,
+                    expected_source_sha256=None, expected_interface_sha256=None,
+                    expected_alias_sha256=None, expected_floorplan_sha256=None):
+    errors, results, hashes = [], [], {}
+    paths = {'board': board_path, 'contract': contract_path, 'source': source_path,
+             'interfaces': interface_path, 'aliases': alias_path, 'floorplan': floorplan_path}
+    for label, path in paths.items():
+        hashes[label] = _coarse_hash(path, label, errors)
+    expected = {'contract': expected_contract_sha256, 'source': expected_source_sha256,
+                'interfaces': expected_interface_sha256, 'aliases': expected_alias_sha256,
+                'floorplan': expected_floorplan_sha256}
+    for label, value in expected.items():
+        if value is None or value != hashes[label]:
+            errors.append(f'{label} not bound to independent expected digest')
+    if all(hashes.values()):
+        try:
+            contract = json.loads(Path(contract_path).read_text())
+            source = yaml.safe_load(Path(source_path).read_text())
+            interfaces = json.loads(Path(interface_path).read_text())
+            aliases = graph.alias_inventory(yaml.safe_load(Path(alias_path).read_text()))
+            floorplan = yaml.safe_load(Path(floorplan_path).read_text())
+            if contract.get('schema') != 2 or contract.get('kind') != 'p1-coarse-reservations':
+                raise ContractError('coarse contract kind/schema mismatch')
+            for label in ('board', 'source', 'interfaces', 'aliases', 'floorplan'):
+                if contract.get(label + '_sha256') != hashes[label]:
+                    errors.append(f'{label} hash drift in coarse contract')
+            coverage, terminals = graph.source_inventory(source, interfaces)
+            if source.get('schema') == 1 and contract.get('profile') != 'crow-p1-coarse':
+                raise ContractError('production P1 source requires crow-p1-coarse profile')
+            if contract.get('profile') == 'crow-p1-coarse':
+                if len(terminals) != 59 or coverage != CROW_COVERAGE:
+                    raise ContractError('crow-p1-coarse 59-net source coverage mismatch')
+            elif contract.get('profile') != 'fixture-coarse':
+                raise ContractError('unsupported coarse profile')
+            board = pcbnew.LoadBoard(str(board_path))
+            outline = pcbnew.SHAPE_POLY_SET()
+            if board is None or not board.GetBoardPolygonOutlines(outline, False) or outline.OutlineCount() != 1:
+                raise ContractError('native outline unavailable or unsupported')
+            refs, pads = graph.board_index(board)
+            placement = floorplan.get('placement', {})
+            anchors = placement.get('anchors')
+            post_anchors = placement.get('post_anchors', {})
+            seeds = placement.get('seeds', {})
+            if not isinstance(anchors, dict) or not isinstance(post_anchors, dict) or not isinstance(seeds, dict):
+                raise ContractError('source-owned fixed/movable placement classification missing')
+            if set(anchors) & (set(post_anchors) | set(seeds)) or set(post_anchors) & set(seeds):
+                raise ContractError('source placement role overlap')
+            patterns = placement.get('patterns', [])
+            if not isinstance(patterns, list) or any(not isinstance(p, dict) or not isinstance(p.get('match'), list) for p in patterns):
+                raise ContractError('source placement patterns malformed')
+            pattern_refs = {ref for pattern in patterns for ref in pattern['match']}
+            unknown = set(refs) - set(anchors) - set(post_anchors) - set(seeds) - pattern_refs
+            if unknown:
+                raise ContractError(f'unclassified native footprint roles: {sorted(unknown)[:5]}')
+            fixed_declared = source.get('p1_fixed_refs')
+            if (not isinstance(fixed_declared, list) or not fixed_declared or
+                    len(fixed_declared) != len(set(fixed_declared)) or
+                    any(ref not in refs or ref not in set(anchors) | set(post_anchors)
+                        for ref in fixed_declared)):
+                raise ContractError('source-owned p1_fixed_refs authority missing or invalid')
+            fixed_refs = set(fixed_declared)
+            for ref in fixed_refs:
+                expected_pose = (anchors | post_anchors)[ref]
+                actual_position = refs[ref].GetPosition()
+                actual_pose = (pcbnew.ToMM(actual_position.x), pcbnew.ToMM(actual_position.y),
+                               refs[ref].GetOrientationDegrees())
+                if len(expected_pose) != 3 or any(abs(float(a) - float(b)) > 1e-3
+                                                  for a, b in zip(expected_pose, actual_pose)):
+                    raise ContractError(f'{ref}: fixed P1 source/native pose mismatch')
+            movable_refs = set(refs) - fixed_refs
+            # Mechanical NPTH holes are fixed even if accidentally seeded as P2.
+            for ref, fp in refs.items():
+                if any(p.GetAttribute() == pcbnew.PAD_ATTRIB_NPTH for p in fp.Pads()):
+                    fixed_refs.add(ref)
+                    movable_refs.discard(ref)
+            owned_pads = defaultdict(set)
+            for item in interfaces['interfaces']:
+                for block, sources in item['endpoints'].items():
+                    owned_pads[(item['net'], block)].update(sources)
+            allocations = contract.get('allocations')
+            if not isinstance(allocations, list) or len(allocations) != len(coverage):
+                raise ContractError('coarse allocation denominator mismatch')
+            names = [r.get('id') for r in allocations if isinstance(r, dict)]
+            if len(names) != len(set(names)) or set(names) != set(coverage):
+                raise ContractError('coarse allocation identities mismatch')
+            zones = list(board.Zones())
+            native = board.GetDesignSettings()
+            native_pitch = pcbnew.ToMM(native.m_TrackMinWidth + native.m_MinClearance)
+            if native_pitch <= 0:
+                raise ContractError('native routing pitch unavailable')
+            reservations_seen = [(allocation.get('id'), reservation)
+                                 for allocation in allocations if isinstance(allocation, dict)
+                                 for reservation in allocation.get('reservations', [])
+                                 if isinstance(reservation, dict)]
+            for allocation in allocations:
+                name = allocation['id']
+                try:
+                    nets = allocation.get('coverage_nets')
+                    if not isinstance(nets, list) or len(nets) != len(set(nets)) or set(nets) != coverage[name]:
+                        raise ContractError(f'{name}: exact source net coverage mismatch')
+                    witnesses = allocation.get('boundary_witnesses')
+                    reservations = allocation.get('reservations')
+                    if not isinstance(witnesses, list) or not witnesses or not isinstance(reservations, list) or not reservations:
+                        raise ContractError(f'{name}: witness/reservation denominator missing')
+                    checked = []
+                    for witness in witnesses:
+                        if witness.get('net') not in coverage[name]:
+                            raise ContractError(f'{name}: witness net outside allocation')
+                        checked.append(_coarse_witness(board, witness, witness['net'], owned_pads,
+                                                       aliases, pads, outline))
+                    if {w['net'] for w in checked} != coverage[name]:
+                        raise ContractError(f'{name}: missing per-net boundary witness')
+                    if len({(w['source'], w['net']) for w in checked}) != len(checked):
+                        raise ContractError(f'{name}: duplicate boundary witness')
+                    reservation_map = {r.get('id'): r for r in reservations if isinstance(r, dict)}
+                    if len(reservation_map) != len(reservations):
+                        raise ContractError(f'{name}: duplicate reservation id')
+                    for witness, verified in zip(witnesses, checked):
+                        target = reservation_map.get(witness.get('reservation_id'))
+                        if (target is None or verified['net'] not in target.get('nets', []) or
+                                verified['layer'] != target.get('layer') or
+                                not _witness_touches_reservation(verified, target)):
+                            raise ContractError(f"{verified['source']}: block face does not contact assigned reservation")
+                    measured = []
+                    for reservation in reservations:
+                        if not set(reservation.get('nets', [])) <= coverage[name]:
+                            raise ContractError(f'{name}: reservation net outside allocation')
+                        measured.append(_coarse_reservation(board, reservation, outline,
+                                                             fixed_refs, movable_refs, zones, native_pitch))
+                    if {net for r in measured for net in r['nets']} != coverage[name]:
+                        raise ContractError(f'{name}: missing per-net reservation')
+                    results.append({'id': name, 'status': 'FAIL' if any(r['status'] == 'FAIL' for r in measured) else 'INCOMPLETE',
+                                    'witness_count': len(checked), 'reservation_count': len(measured),
+                                    'reservations': measured})
+                except (ContractError, TypeError, KeyError, AttributeError) as exc:
+                    reason = str(exc)
+                    definite_geometry_failure = ('off board outline' in reason or
+                                                 'immutable native rule area' in reason)
+                    results.append({'id': name, 'status': 'FAIL' if definite_geometry_failure else 'INCOMPLETE',
+                                    'reason': reason})
+            for index, (left_name, left) in enumerate(reservations_seen):
+                for right_name, right in reservations_seen[index + 1:]:
+                    if (left_name != right_name and left.get('layer') == right.get('layer') and
+                            intersects(rectangle(left.get('bbox'), 'reservation'), rectangle(right.get('bbox'), 'reservation'))):
+                        errors.append(f'overlapping named allocations on one layer: {left_name}/{right_name}')
+            if any('endpoint_pockets' in row or 'coverage_members' in row or 'through_lane' in row or
+                   row.get('local_endpoint_completion') in ('PASS', 'P1_REQUIRED') for row in allocations):
+                errors.append('coarse P1 contract attempts P2/P3 all-terminal proof')
+        except (ContractError, ValueError, TypeError, AttributeError, RuntimeError, KeyError) as exc:
+            errors.append(str(exc))
+    status = 'FAIL' if (any(row['status'] == 'FAIL' for row in results) or
+                        any('overlapping named allocations' in error for error in errors)) else 'INCOMPLETE'
+    return {'schema': 2, 'kind': 'p1-coarse-reservation-screen', 'status': status,
+            'hashes': hashes, 'errors': errors, 'allocations': results,
+            'allocation_denominator': len(results), 'routing_realized': False,
+            'p1_accepted': False,
+            'reason': 'independent filled-reference, effective-capacity and P1 review not supplied'}
 
 
 def digest(path: Path) -> str:
@@ -257,7 +523,22 @@ def measure_allocation(board, row, outline):
             'endpoint_pockets': len(pockets), 'layers': layer_rows}
 
 
-def evaluate(board_path: Path, contract_path: Path, expected_contract_sha256: str | None = None):
+def evaluate(board_path: Path, contract_path: Path, expected_contract_sha256: str | None = None, *,
+             source_path=None, interface_path=None, alias_path=None, floorplan_path=None,
+             expected_source_sha256=None, expected_interface_sha256=None,
+             expected_alias_sha256=None, expected_floorplan_sha256=None):
+    try:
+        candidate = json.loads(contract_path.read_text())
+        if isinstance(candidate, dict) and candidate.get('schema') == 2:
+            return evaluate_coarse(board_path, contract_path, expected_contract_sha256,
+                                   source_path=source_path, interface_path=interface_path,
+                                   alias_path=alias_path, floorplan_path=floorplan_path,
+                                   expected_source_sha256=expected_source_sha256,
+                                   expected_interface_sha256=expected_interface_sha256,
+                                   expected_alias_sha256=expected_alias_sha256,
+                                   expected_floorplan_sha256=expected_floorplan_sha256)
+    except (OSError, ValueError):
+        pass
     errors, rows = [], []
     try:
         board_hash = digest(board_path)
@@ -379,8 +660,22 @@ def main():
     parser.add_argument('contract', type=Path)
     parser.add_argument('output', type=Path)
     parser.add_argument('--expected-contract-sha256', required=True)
+    parser.add_argument('--source-requirements', type=Path)
+    parser.add_argument('--interfaces', type=Path)
+    parser.add_argument('--aliases', type=Path)
+    parser.add_argument('--floorplan', type=Path)
+    parser.add_argument('--expected-source-sha256')
+    parser.add_argument('--expected-interface-sha256')
+    parser.add_argument('--expected-alias-sha256')
+    parser.add_argument('--expected-floorplan-sha256')
     args = parser.parse_args()
-    result = evaluate(args.board, args.contract, args.expected_contract_sha256)
+    result = evaluate(args.board, args.contract, args.expected_contract_sha256,
+                      source_path=args.source_requirements, interface_path=args.interfaces,
+                      alias_path=args.aliases, floorplan_path=args.floorplan,
+                      expected_source_sha256=args.expected_source_sha256,
+                      expected_interface_sha256=args.expected_interface_sha256,
+                      expected_alias_sha256=args.expected_alias_sha256,
+                      expected_floorplan_sha256=args.expected_floorplan_sha256)
     args.output.write_text(json.dumps(result, indent=2, sort_keys=True) + '\n')
     return 0 if result['status'] == 'PASS' else 1
 
