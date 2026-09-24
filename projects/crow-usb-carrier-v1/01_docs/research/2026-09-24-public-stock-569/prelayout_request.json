@@ -1,0 +1,1232 @@
+{
+  "assembly": {
+    "path": "../../03_src/rules/assembly.yaml",
+    "sha256": "a9be61f176b35eefc46b8677a9de68c9f6f0ebabf0a136711a8279205ef44985",
+    "size": 13861
+  },
+  "authority_required": "jlcpcb_pcba_interface",
+  "build_quantity": 5,
+  "coverage": {
+    "graded": 88,
+    "total": 88
+  },
+  "excluded_refs": [
+    "C_A1N",
+    "C_A1P",
+    "C_A2N",
+    "C_A2P",
+    "C_A3N",
+    "C_A3P",
+    "C_A4N",
+    "C_A4P",
+    "C_A5N",
+    "C_A5P",
+    "C_A6N",
+    "C_A6P",
+    "C_A7N",
+    "C_A7P",
+    "C_A8N",
+    "C_A8P",
+    "J1",
+    "J2",
+    "J3",
+    "J4",
+    "J5",
+    "J6",
+    "J7",
+    "J8"
+  ],
+  "generated_at": "2026-09-24T00:52:49.937134+00:00",
+  "kind": "jlc-pcba-availability-request-v2",
+  "phase": "prelayout",
+  "procurement_policy": {
+    "path": "../../01_docs/sourcing/procurement-policy.yaml",
+    "sha256": "2385b85a974ab1ccc3204e5c3a50dca0d7250c3252276d4d8ffc132ea06723a0",
+    "size": 531
+  },
+  "procurement_policy_value": {
+    "currency": "USD",
+    "limits": {
+      "max_line_preorder_cash": "0.000000",
+      "max_line_surplus_cost": "0.000000",
+      "max_total_assembly_excess_cost": "0.000000",
+      "max_total_preorder_cash": "0.000000",
+      "max_total_surplus_cost": "0.000000"
+    },
+    "schema": 1,
+    "warnings": {
+      "surplus_ratio": "20.000000"
+    }
+  },
+  "required_status": "AVAILABLE",
+  "rows": [
+    {
+      "designators": [
+        "R_ADC_I2C_SCL_A_PU",
+        "R_ADC_I2C_SCL_B_PU",
+        "R_ADC_I2C_SDA_A_PU",
+        "R_ADC_I2C_SDA_B_PU",
+        "R_QSPI_CS"
+      ],
+      "per_board_qty": 5,
+      "requested_lcsc": "C105871",
+      "required_qty": 25
+    },
+    {
+      "designators": [
+        "R_USB_CC1",
+        "R_USB_CC2"
+      ],
+      "per_board_qty": 2,
+      "requested_lcsc": "C105872",
+      "required_qty": 10
+    },
+    {
+      "designators": [
+        "R_AGND_JOIN"
+      ],
+      "per_board_qty": 1,
+      "requested_lcsc": "C106231",
+      "required_qty": 5
+    },
+    {
+      "designators": [
+        "R_OPA_BLEED1",
+        "R_OPA_BLEED2"
+      ],
+      "per_board_qty": 2,
+      "requested_lcsc": "C106232",
+      "required_qty": 10
+    },
+    {
+      "designators": [
+        "C_PLL_1U"
+      ],
+      "per_board_qty": 1,
+      "requested_lcsc": "C106253",
+      "required_qty": 5
+    },
+    {
+      "designators": [
+        "C_1V8_FF",
+        "C_3V3X_FF",
+        "C_CORE_FF"
+      ],
+      "per_board_qty": 3,
+      "requested_lcsc": "C106996",
+      "required_qty": 15
+    },
+    {
+      "designators": [
+        "R_LDO_PG_BOT_B",
+        "R_VMID1_BOT",
+        "R_VMID1_TOP",
+        "R_VMID2_BOT",
+        "R_VMID2_TOP"
+      ],
+      "per_board_qty": 5,
+      "requested_lcsc": "C110776",
+      "required_qty": 25
+    },
+    {
+      "designators": [
+        "R_3V3X_FB_BOTTOM"
+      ],
+      "per_board_qty": 1,
+      "requested_lcsc": "C122538",
+      "required_qty": 5
+    },
+    {
+      "designators": [
+        "U_RST2"
+      ],
+      "per_board_qty": 1,
+      "requested_lcsc": "C123302",
+      "required_qty": 5
+    },
+    {
+      "designators": [
+        "C_FB1N",
+        "C_FB1P",
+        "C_FB2N",
+        "C_FB2P",
+        "C_FB3N",
+        "C_FB3P",
+        "C_FB4N",
+        "C_FB4P",
+        "C_FB5N",
+        "C_FB5P",
+        "C_FB6N",
+        "C_FB6P",
+        "C_FB7N",
+        "C_FB7P",
+        "C_FB8N",
+        "C_FB8P"
+      ],
+      "per_board_qty": 16,
+      "requested_lcsc": "C126514",
+      "required_qty": 80
+    },
+    {
+      "designators": [
+        "U_DUMP",
+        "U_LDO_EN"
+      ],
+      "per_board_qty": 2,
+      "requested_lcsc": "C131093",
+      "required_qty": 10
+    },
+    {
+      "designators": [
+        "R_BCLK",
+        "R_FSYNC"
+      ],
+      "per_board_qty": 2,
+      "requested_lcsc": "C138002",
+      "required_qty": 10
+    },
+    {
+      "designators": [
+        "R_LDO_ILIM",
+        "R_X1N",
+        "R_X1P",
+        "R_X2N",
+        "R_X2P",
+        "R_X3N",
+        "R_X3P",
+        "R_X4N",
+        "R_X4P",
+        "R_X5N",
+        "R_X5P",
+        "R_X6N",
+        "R_X6P",
+        "R_X7N",
+        "R_X7P",
+        "R_X8N",
+        "R_X8P"
+      ],
+      "per_board_qty": 17,
+      "requested_lcsc": "C138010",
+      "required_qty": 85
+    },
+    {
+      "designators": [
+        "R_SPOKE_UVLO1",
+        "R_SPOKE_UVLO2",
+        "R_SPOKE_UVLO3",
+        "R_SPOKE_UVLO4",
+        "R_SPOKE_UVLO5",
+        "R_SPOKE_UVLO6",
+        "R_SPOKE_UVLO7",
+        "R_SPOKE_UVLO8",
+        "R_VBUS_BE",
+        "R_XTAL_FB"
+      ],
+      "per_board_qty": 10,
+      "requested_lcsc": "C138033",
+      "required_qty": 50
+    },
+    {
+      "designators": [
+        "R_RT"
+      ],
+      "per_board_qty": 1,
+      "requested_lcsc": "C138057",
+      "required_qty": 5
+    },
+    {
+      "designators": [
+        "R_OUT1N",
+        "R_OUT1P",
+        "R_OUT2N",
+        "R_OUT2P",
+        "R_OUT3N",
+        "R_OUT3P",
+        "R_OUT4N",
+        "R_OUT4P",
+        "R_OUT5N",
+        "R_OUT5P",
+        "R_OUT6N",
+        "R_OUT6P",
+        "R_OUT7N",
+        "R_OUT7P",
+        "R_OUT8N",
+        "R_OUT8P"
+      ],
+      "per_board_qty": 16,
+      "requested_lcsc": "C138066",
+      "required_qty": 80
+    },
+    {
+      "designators": [
+        "U_1V8_OK",
+        "U_ADC_1V8_OK",
+        "U_ADC_3V3X_OK",
+        "U_ADC_OK",
+        "U_AUDIO",
+        "U_PWR",
+        "U_XU_3V3_OK"
+      ],
+      "per_board_qty": 7,
+      "requested_lcsc": "C1509297",
+      "required_qty": 35
+    },
+    {
+      "designators": [
+        "Q_PRE"
+      ],
+      "per_board_qty": 1,
+      "requested_lcsc": "C15127",
+      "required_qty": 5
+    },
+    {
+      "designators": [
+        "C_SPOKE_DVDT1",
+        "C_SPOKE_DVDT2",
+        "C_SPOKE_DVDT3",
+        "C_SPOKE_DVDT4",
+        "C_SPOKE_DVDT5",
+        "C_SPOKE_DVDT6",
+        "C_SPOKE_DVDT7",
+        "C_SPOKE_DVDT8"
+      ],
+      "per_board_qty": 8,
+      "requested_lcsc": "C15195",
+      "required_qty": 40
+    },
+    {
+      "designators": [
+        "C_1V8_OK_VDD",
+        "C_ADC_3V3X_OK_VDD",
+        "C_ADC_A_AREG_100N",
+        "C_ADC_A_AVDD_100N",
+        "C_ADC_A_DREG_100N",
+        "C_ADC_A_IOVDD_100N",
+        "C_ADC_A_VREF_100N",
+        "C_ADC_B_AREG_100N",
+        "C_ADC_B_AVDD_100N",
+        "C_ADC_B_DREG_100N",
+        "C_ADC_B_IOVDD_100N",
+        "C_ADC_B_VREF_100N",
+        "C_ADC_CLOCK_OK",
+        "C_ADC_DIGITAL_BAD",
+        "C_ADC_DIGITAL_OK",
+        "C_ADC_I2C_A",
+        "C_ADC_I2C_B",
+        "C_ADC_OK_VDD",
+        "C_ADC_OUT",
+        "C_ADC_PWR_BAD",
+        "C_ADC_READY",
+        "C_ADC_READY_BAD",
+        "C_AUDIO",
+        "C_CORE_OK",
+        "C_DUMP_LOGIC",
+        "C_FLASH",
+        "C_FSYNC_FF1",
+        "C_FSYNC_FF2",
+        "C_FSYNC_INV",
+        "C_FSYNC_OR",
+        "C_ISO1",
+        "C_ISO2",
+        "C_ISO3",
+        "C_ISO4",
+        "C_ISO5",
+        "C_ISO6",
+        "C_ISO7",
+        "C_ISO8",
+        "C_LDO_EN",
+        "C_OPA1",
+        "C_OPA2",
+        "C_OPA3",
+        "C_OPA4",
+        "C_OPA5",
+        "C_OPA6",
+        "C_OPA7",
+        "C_OPA8",
+        "C_PLL_100N",
+        "C_PWR",
+        "C_RST1",
+        "C_RST2",
+        "C_VLDO",
+        "C_XLATE_A",
+        "C_XLATE_B",
+        "C_XU_3V3_OK_VDD",
+        "C_XU_USB18",
+        "C_XU_USB33",
+        "C_XU_VDDIO_10",
+        "C_XU_VDDIO_109",
+        "C_XU_VDDIO_121",
+        "C_XU_VDDIO_17",
+        "C_XU_VDDIO_35",
+        "C_XU_VDDIO_56",
+        "C_XU_VDDIO_72",
+        "C_XU_VDDIO_89",
+        "C_XU_VDD_104",
+        "C_XU_VDD_105",
+        "C_XU_VDD_106",
+        "C_XU_VDD_11",
+        "C_XU_VDD_113",
+        "C_XU_VDD_14",
+        "C_XU_VDD_18",
+        "C_XU_VDD_39",
+        "C_XU_VDD_45",
+        "C_XU_VDD_5",
+        "C_XU_VDD_50",
+        "C_XU_VDD_54",
+        "C_XU_VDD_68",
+        "C_XU_VDD_85",
+        "C_XU_VDD_95"
+      ],
+      "per_board_qty": 80,
+      "requested_lcsc": "C1525",
+      "required_qty": 400
+    },
+    {
+      "designators": [
+        "C_U_1V8_IN_1",
+        "C_U_1V8_IN_2",
+        "C_U_3V3X_IN_1",
+        "C_U_3V3X_IN_2",
+        "C_U_CORE_IN_1",
+        "C_U_CORE_IN_2"
+      ],
+      "per_board_qty": 6,
+      "requested_lcsc": "C1713",
+      "required_qty": 30
+    },
+    {
+      "designators": [
+        "D_QIN_GS"
+      ],
+      "per_board_qty": 1,
+      "requested_lcsc": "C177013",
+      "required_qty": 5
+    },
+    {
+      "designators": [
+        "C_HOLD1",
+        "C_HOLD10",
+        "C_HOLD11",
+        "C_HOLD12",
+        "C_HOLD13",
+        "C_HOLD14",
+        "C_HOLD15",
+        "C_HOLD16",
+        "C_HOLD2",
+        "C_HOLD3",
+        "C_HOLD4",
+        "C_HOLD5",
+        "C_HOLD6",
+        "C_HOLD7",
+        "C_HOLD8",
+        "C_HOLD9"
+      ],
+      "per_board_qty": 16,
+      "requested_lcsc": "C178530",
+      "required_qty": 80
+    },
+    {
+      "designators": [
+        "L_U_1V8",
+        "L_U_3V3X",
+        "L_U_CORE"
+      ],
+      "per_board_qty": 3,
+      "requested_lcsc": "C18221164",
+      "required_qty": 15
+    },
+    {
+      "designators": [
+        "U_ADC_A",
+        "U_ADC_B"
+      ],
+      "per_board_qty": 2,
+      "requested_lcsc": "C1852023",
+      "required_qty": 10
+    },
+    {
+      "designators": [
+        "R_BUCK_FB_BOTTOM"
+      ],
+      "per_board_qty": 1,
+      "requested_lcsc": "C190095",
+      "required_qty": 5
+    },
+    {
+      "designators": [
+        "J_PWR"
+      ],
+      "per_board_qty": 1,
+      "requested_lcsc": "C192562",
+      "required_qty": 5
+    },
+    {
+      "designators": [
+        "C_LDO_NR4"
+      ],
+      "per_board_qty": 1,
+      "requested_lcsc": "C19666",
+      "required_qty": 5
+    },
+    {
+      "designators": [
+        "U_ESD1",
+        "U_ESD2",
+        "U_ESD3",
+        "U_ESD4",
+        "U_ESD5",
+        "U_ESD6",
+        "U_ESD7",
+        "U_ESD8",
+        "U_USB_CC_ESD",
+        "U_USB_VBUS_ESD"
+      ],
+      "per_board_qty": 10,
+      "requested_lcsc": "C1972959",
+      "required_qty": 50
+    },
+    {
+      "designators": [
+        "Q_DUMP",
+        "Q_TDM_GATE",
+        "Q_VBUS"
+      ],
+      "per_board_qty": 3,
+      "requested_lcsc": "C20917",
+      "required_qty": 15
+    },
+    {
+      "designators": [
+        "C_RST_T"
+      ],
+      "per_board_qty": 1,
+      "requested_lcsc": "C21120",
+      "required_qty": 5
+    },
+    {
+      "designators": [
+        "C_ADC_A_AREG_1U",
+        "C_ADC_A_DREG_1U",
+        "C_ADC_B_AREG_1U",
+        "C_ADC_B_DREG_1U",
+        "C_AUDIO_CT1",
+        "C_AUDIO_CT2",
+        "C_PWR_CT",
+        "C_PWR_CT2",
+        "C_PWR_CT3",
+        "C_VCC",
+        "C_VMID1_EXT_1U",
+        "C_VMID2_EXT_1U"
+      ],
+      "per_board_qty": 12,
+      "requested_lcsc": "C2167386",
+      "required_qty": 60
+    },
+    {
+      "designators": [
+        "C_ADC_A_AVDD_10U",
+        "C_ADC_A_IOVDD_10U",
+        "C_ADC_A_VREF_10U",
+        "C_ADC_B_AVDD_10U",
+        "C_ADC_B_IOVDD_10U",
+        "C_ADC_B_VREF_10U",
+        "C_VMID1_EXT_10U",
+        "C_VMID2_EXT_10U"
+      ],
+      "per_board_qty": 8,
+      "requested_lcsc": "C2167576",
+      "required_qty": 40
+    },
+    {
+      "designators": [
+        "U_ISO1",
+        "U_ISO2",
+        "U_ISO3",
+        "U_ISO4",
+        "U_ISO5",
+        "U_ISO6",
+        "U_ISO7",
+        "U_ISO8"
+      ],
+      "per_board_qty": 8,
+      "requested_lcsc": "C22428234",
+      "required_qty": 40
+    },
+    {
+      "designators": [
+        "U_CORE_OK"
+      ],
+      "per_board_qty": 1,
+      "requested_lcsc": "C24584",
+      "required_qty": 5
+    },
+    {
+      "designators": [
+        "U_ADC_OUT"
+      ],
+      "per_board_qty": 1,
+      "requested_lcsc": "C2675543",
+      "required_qty": 5
+    },
+    {
+      "designators": [
+        "U_ADC_CLOCK_OK",
+        "U_ADC_READY"
+      ],
+      "per_board_qty": 2,
+      "requested_lcsc": "C2675550",
+      "required_qty": 10
+    },
+    {
+      "designators": [
+        "R_3V3X_FB_TOP"
+      ],
+      "per_board_qty": 1,
+      "requested_lcsc": "C2686428",
+      "required_qty": 5
+    },
+    {
+      "designators": [
+        "F_IN"
+      ],
+      "per_board_qty": 1,
+      "requested_lcsc": "C27515",
+      "required_qty": 5
+    },
+    {
+      "designators": [
+        "U_FLASH"
+      ],
+      "per_board_qty": 1,
+      "requested_lcsc": "C2763561",
+      "required_qty": 5
+    },
+    {
+      "designators": [
+        "U_SPOKE1",
+        "U_SPOKE2",
+        "U_SPOKE3",
+        "U_SPOKE4",
+        "U_SPOKE5",
+        "U_SPOKE6",
+        "U_SPOKE7",
+        "U_SPOKE8"
+      ],
+      "per_board_qty": 8,
+      "requested_lcsc": "C2862873",
+      "required_qty": 40
+    },
+    {
+      "designators": [
+        "U_AFE1",
+        "U_AFE2",
+        "U_AFE3",
+        "U_AFE4",
+        "U_AFE5",
+        "U_AFE6",
+        "U_AFE7",
+        "U_AFE8"
+      ],
+      "per_board_qty": 8,
+      "requested_lcsc": "C2863402",
+      "required_qty": 40
+    },
+    {
+      "designators": [
+        "U_TDM_XLATE"
+      ],
+      "per_board_qty": 1,
+      "requested_lcsc": "C2867798",
+      "required_qty": 5
+    },
+    {
+      "designators": [
+        "Y_AUDIO"
+      ],
+      "per_board_qty": 1,
+      "requested_lcsc": "C2901534",
+      "required_qty": 5
+    },
+    {
+      "designators": [
+        "C_ADC_START_DELAY"
+      ],
+      "per_board_qty": 1,
+      "requested_lcsc": "C318640",
+      "required_qty": 5
+    },
+    {
+      "designators": [
+        "J_USB"
+      ],
+      "per_board_qty": 1,
+      "requested_lcsc": "C37616412",
+      "required_qty": 5
+    },
+    {
+      "designators": [
+        "U_FSYNC_OR"
+      ],
+      "per_board_qty": 1,
+      "requested_lcsc": "C43368",
+      "required_qty": 5
+    },
+    {
+      "designators": [
+        "U_1V8",
+        "U_3V3X",
+        "U_CORE"
+      ],
+      "per_board_qty": 3,
+      "requested_lcsc": "C473385",
+      "required_qty": 15
+    },
+    {
+      "designators": [
+        "R_XTAL_DRIVE"
+      ],
+      "per_board_qty": 1,
+      "requested_lcsc": "C482224",
+      "required_qty": 5
+    },
+    {
+      "designators": [
+        "C_IN_HF",
+        "C_SPOKE_IN1",
+        "C_SPOKE_IN2",
+        "C_SPOKE_IN3",
+        "C_SPOKE_IN4",
+        "C_SPOKE_IN5",
+        "C_SPOKE_IN6",
+        "C_SPOKE_IN7",
+        "C_SPOKE_IN8",
+        "C_SPOKE_OUT1",
+        "C_SPOKE_OUT2",
+        "C_SPOKE_OUT3",
+        "C_SPOKE_OUT4",
+        "C_SPOKE_OUT5",
+        "C_SPOKE_OUT6",
+        "C_SPOKE_OUT7",
+        "C_SPOKE_OUT8"
+      ],
+      "per_board_qty": 17,
+      "requested_lcsc": "C49678",
+      "required_qty": 85
+    },
+    {
+      "designators": [
+        "J_JTAG"
+      ],
+      "per_board_qty": 1,
+      "requested_lcsc": "C5155080",
+      "required_qty": 5
+    },
+    {
+      "designators": [
+        "U_BUCK"
+      ],
+      "per_board_qty": 1,
+      "requested_lcsc": "C5219327",
+      "required_qty": 5
+    },
+    {
+      "designators": [
+        "C_IN1",
+        "C_IN2",
+        "C_IN3"
+      ],
+      "per_board_qty": 3,
+      "requested_lcsc": "C597579",
+      "required_qty": 15
+    },
+    {
+      "designators": [
+        "R_ADC_DIGITAL_OK_PU",
+        "R_ADC_OK_PU",
+        "R_ADC_PD1N",
+        "R_ADC_PD1P",
+        "R_ADC_PD2N",
+        "R_ADC_PD2P",
+        "R_ADC_PD3N",
+        "R_ADC_PD3P",
+        "R_ADC_PD4N",
+        "R_ADC_PD4P",
+        "R_ADC_PD5N",
+        "R_ADC_PD5P",
+        "R_ADC_PD6N",
+        "R_ADC_PD6P",
+        "R_ADC_PD7N",
+        "R_ADC_PD7P",
+        "R_ADC_PD8N",
+        "R_ADC_PD8P",
+        "R_AUDIO_PU",
+        "R_CORE_EN_PU",
+        "R_IN1N",
+        "R_IN1P",
+        "R_IN2N",
+        "R_IN2P",
+        "R_IN3N",
+        "R_IN3P",
+        "R_IN4N",
+        "R_IN4P",
+        "R_IN5N",
+        "R_IN5P",
+        "R_IN6N",
+        "R_IN6P",
+        "R_IN7N",
+        "R_IN7P",
+        "R_IN8N",
+        "R_IN8P",
+        "R_PWR_PU",
+        "R_RESET_PU",
+        "R_TDM_OE_PU",
+        "R_VBUS_PU",
+        "R_XU_RST_PU"
+      ],
+      "per_board_qty": 41,
+      "requested_lcsc": "C60490",
+      "required_qty": 205
+    },
+    {
+      "designators": [
+        "R_ADC_CLOCK_OK_PD",
+        "R_ADC_DATA_PD",
+        "R_ADC_DELAY_GATE_PD",
+        "R_ADC_DIG_RST_PD",
+        "R_ADC_PWR_BAD_PD",
+        "R_ADC_READY_PD",
+        "R_ADC_START_DELAY",
+        "R_AUDIO_PD",
+        "R_B1N",
+        "R_B1P",
+        "R_B2N",
+        "R_B2P",
+        "R_B3N",
+        "R_B3P",
+        "R_B4N",
+        "R_B4P",
+        "R_B5N",
+        "R_B5P",
+        "R_B6N",
+        "R_B6P",
+        "R_B7N",
+        "R_B7P",
+        "R_B8N",
+        "R_B8P",
+        "R_BCLK_RAW_PD",
+        "R_DUMP_PD",
+        "R_DUMP_TIME1",
+        "R_DUMP_TIME2",
+        "R_DUMP_TIME3",
+        "R_FSYNC_EXT_PD",
+        "R_FSYNC_RAW_PD",
+        "R_LDO_PG_TOP",
+        "R_PRE_G",
+        "R_QIN_G",
+        "R_RESET_GPD",
+        "R_RST_T",
+        "R_VBUS_B"
+      ],
+      "per_board_qty": 37,
+      "requested_lcsc": "C60491",
+      "required_qty": 185
+    },
+    {
+      "designators": [
+        "U_XU"
+      ],
+      "per_board_qty": 1,
+      "requested_lcsc": "C6362698",
+      "required_qty": 5
+    },
+    {
+      "designators": [
+        "U_LDO"
+      ],
+      "per_board_qty": 1,
+      "requested_lcsc": "C666574",
+      "required_qty": 5
+    },
+    {
+      "designators": [
+        "R_LDO_SET"
+      ],
+      "per_board_qty": 1,
+      "requested_lcsc": "C705768",
+      "required_qty": 5
+    },
+    {
+      "designators": [
+        "Y_XU"
+      ],
+      "per_board_qty": 1,
+      "requested_lcsc": "C70590",
+      "required_qty": 5
+    },
+    {
+      "designators": [
+        "FB_PLL"
+      ],
+      "per_board_qty": 1,
+      "requested_lcsc": "C76884",
+      "required_qty": 5
+    },
+    {
+      "designators": [
+        "C_ADC_CM1N",
+        "C_ADC_CM1P",
+        "C_ADC_CM2N",
+        "C_ADC_CM2P",
+        "C_ADC_CM3N",
+        "C_ADC_CM3P",
+        "C_ADC_CM4N",
+        "C_ADC_CM4P",
+        "C_ADC_CM5N",
+        "C_ADC_CM5P",
+        "C_ADC_CM6N",
+        "C_ADC_CM6P",
+        "C_ADC_CM7N",
+        "C_ADC_CM7P",
+        "C_ADC_CM8N",
+        "C_ADC_CM8P",
+        "C_ADC_OK_CT",
+        "C_LDO_NR5",
+        "C_XU_3V3_OK_CT"
+      ],
+      "per_board_qty": 19,
+      "requested_lcsc": "C76947",
+      "required_qty": 95
+    },
+    {
+      "designators": [
+        "C_XTAL_IN",
+        "C_XTAL_OUT"
+      ],
+      "per_board_qty": 2,
+      "requested_lcsc": "C76960",
+      "required_qty": 10
+    },
+    {
+      "designators": [
+        "C_AUDIO_OSC",
+        "C_CORE_EN_CT"
+      ],
+      "per_board_qty": 2,
+      "requested_lcsc": "C77019",
+      "required_qty": 10
+    },
+    {
+      "designators": [
+        "Q_IN"
+      ],
+      "per_board_qty": 1,
+      "requested_lcsc": "C780842",
+      "required_qty": 5
+    },
+    {
+      "designators": [
+        "U_FSYNC_FF1",
+        "U_FSYNC_FF2"
+      ],
+      "per_board_qty": 2,
+      "requested_lcsc": "C79339",
+      "required_qty": 10
+    },
+    {
+      "designators": [
+        "U_ADC_DIGITAL_BAD",
+        "U_ADC_PWR_BAD",
+        "U_ADC_READY_BAD",
+        "U_BCLK_INV"
+      ],
+      "per_board_qty": 4,
+      "requested_lcsc": "C8207",
+      "required_qty": 20
+    },
+    {
+      "designators": [
+        "D_IN"
+      ],
+      "per_board_qty": 1,
+      "requested_lcsc": "C83846",
+      "required_qty": 5
+    },
+    {
+      "designators": [
+        "U_ADC_I2C_XLATE"
+      ],
+      "per_board_qty": 1,
+      "requested_lcsc": "C840107",
+      "required_qty": 5
+    },
+    {
+      "designators": [
+        "R_PRE"
+      ],
+      "per_board_qty": 1,
+      "requested_lcsc": "C844025",
+      "required_qty": 5
+    },
+    {
+      "designators": [
+        "R_DUMP"
+      ],
+      "per_board_qty": 1,
+      "requested_lcsc": "C844653",
+      "required_qty": 5
+    },
+    {
+      "designators": [
+        "C_ADC_AC1N1",
+        "C_ADC_AC1N2",
+        "C_ADC_AC1P1",
+        "C_ADC_AC1P2",
+        "C_ADC_AC2N1",
+        "C_ADC_AC2N2",
+        "C_ADC_AC2P1",
+        "C_ADC_AC2P2",
+        "C_ADC_AC3N1",
+        "C_ADC_AC3N2",
+        "C_ADC_AC3P1",
+        "C_ADC_AC3P2",
+        "C_ADC_AC4N1",
+        "C_ADC_AC4N2",
+        "C_ADC_AC4P1",
+        "C_ADC_AC4P2",
+        "C_ADC_AC5N1",
+        "C_ADC_AC5N2",
+        "C_ADC_AC5P1",
+        "C_ADC_AC5P2",
+        "C_ADC_AC6N1",
+        "C_ADC_AC6N2",
+        "C_ADC_AC6P1",
+        "C_ADC_AC6P2",
+        "C_ADC_AC7N1",
+        "C_ADC_AC7N2",
+        "C_ADC_AC7P1",
+        "C_ADC_AC7P2",
+        "C_ADC_AC8N1",
+        "C_ADC_AC8N2",
+        "C_ADC_AC8P1",
+        "C_ADC_AC8P2",
+        "C_LDO_IN",
+        "C_LDO_OUT_1",
+        "C_LDO_OUT_2",
+        "C_OPA_BULK",
+        "C_OUT1",
+        "C_OUT2",
+        "C_OUT3",
+        "C_U_1V8_OUT_1",
+        "C_U_3V3X_OUT_1",
+        "C_U_CORE_OUT_1"
+      ],
+      "per_board_qty": 42,
+      "requested_lcsc": "C84494",
+      "required_qty": 210
+    },
+    {
+      "designators": [
+        "Q_ADC_DELAY_DISCH",
+        "Q_ADC_DIG_RST",
+        "Q_ADC_PWR_RST",
+        "Q_PRE_EN",
+        "Q_RST1"
+      ],
+      "per_board_qty": 5,
+      "requested_lcsc": "C85047",
+      "required_qty": 25
+    },
+    {
+      "designators": [
+        "D_HOLD"
+      ],
+      "per_board_qty": 1,
+      "requested_lcsc": "C85098",
+      "required_qty": 5
+    },
+    {
+      "designators": [
+        "R_1V8_FB_BOTTOM",
+        "R_1V8_OK_BOT",
+        "R_ADC_1V8_OK_BOT",
+        "R_ADC_3V3X_OK_BOT",
+        "R_ADC_OK_BOT",
+        "R_CORE_FB_BOTTOM",
+        "R_XU_3V3_OK_BOT"
+      ],
+      "per_board_qty": 7,
+      "requested_lcsc": "C852472",
+      "required_qty": 35
+    },
+    {
+      "designators": [
+        "R_ADC_3V3X_OK_TOP",
+        "R_ADC_OK_TOP",
+        "R_XU_3V3_OK_TOP"
+      ],
+      "per_board_qty": 3,
+      "requested_lcsc": "C852555",
+      "required_qty": 15
+    },
+    {
+      "designators": [
+        "R_1V8_FB_TOP"
+      ],
+      "per_board_qty": 1,
+      "requested_lcsc": "C852631",
+      "required_qty": 5
+    },
+    {
+      "designators": [
+        "R_BUCK_FB_TOP"
+      ],
+      "per_board_qty": 1,
+      "requested_lcsc": "C852775",
+      "required_qty": 5
+    },
+    {
+      "designators": [
+        "R_CORE_FB_TOP"
+      ],
+      "per_board_qty": 1,
+      "requested_lcsc": "C852808",
+      "required_qty": 5
+    },
+    {
+      "designators": [
+        "R_1V8_OK_TOP",
+        "R_ADC_1V8_OK_TOP"
+      ],
+      "per_board_qty": 2,
+      "requested_lcsc": "C852832",
+      "required_qty": 10
+    },
+    {
+      "designators": [
+        "R_ADC_TOP"
+      ],
+      "per_board_qty": 1,
+      "requested_lcsc": "C861167",
+      "required_qty": 5
+    },
+    {
+      "designators": [
+        "R_PWR_TOP"
+      ],
+      "per_board_qty": 1,
+      "requested_lcsc": "C861313",
+      "required_qty": 5
+    },
+    {
+      "designators": [
+        "R_SPOKE_ILIM1",
+        "R_SPOKE_ILIM2",
+        "R_SPOKE_ILIM3",
+        "R_SPOKE_ILIM4",
+        "R_SPOKE_ILIM5",
+        "R_SPOKE_ILIM6",
+        "R_SPOKE_ILIM7",
+        "R_SPOKE_ILIM8"
+      ],
+      "per_board_qty": 8,
+      "requested_lcsc": "C861410",
+      "required_qty": 40
+    },
+    {
+      "designators": [
+        "C_USB_VBUS"
+      ],
+      "per_board_qty": 1,
+      "requested_lcsc": "C90791",
+      "required_qty": 5
+    },
+    {
+      "designators": [
+        "R_USB_VBUS_BLEED"
+      ],
+      "per_board_qty": 1,
+      "requested_lcsc": "C93943",
+      "required_qty": 5
+    },
+    {
+      "designators": [
+        "U_USB_ESD"
+      ],
+      "per_board_qty": 1,
+      "requested_lcsc": "C94934",
+      "required_qty": 5
+    },
+    {
+      "designators": [
+        "R_ADC_BOT",
+        "R_LDO_PG_BOT_A",
+        "R_PWR_BOT"
+      ],
+      "per_board_qty": 3,
+      "requested_lcsc": "C95204",
+      "required_qty": 15
+    },
+    {
+      "designators": [
+        "U_RST1"
+      ],
+      "per_board_qty": 1,
+      "requested_lcsc": "C96333",
+      "required_qty": 5
+    },
+    {
+      "designators": [
+        "C_DUMP_TIME1",
+        "C_DUMP_TIME2",
+        "C_DUMP_TIME3",
+        "C_DUMP_TIME4",
+        "C_DUMP_TIME5",
+        "C_DUMP_TIME6",
+        "C_DUMP_TIME7",
+        "C_DUMP_TIME8",
+        "C_FILTER1N1",
+        "C_FILTER1N2",
+        "C_FILTER1P1",
+        "C_FILTER1P2",
+        "C_FILTER2N1",
+        "C_FILTER2N2",
+        "C_FILTER2P1",
+        "C_FILTER2P2",
+        "C_FILTER3N1",
+        "C_FILTER3N2",
+        "C_FILTER3P1",
+        "C_FILTER3P2",
+        "C_FILTER4N1",
+        "C_FILTER4N2",
+        "C_FILTER4P1",
+        "C_FILTER4P2",
+        "C_FILTER5N1",
+        "C_FILTER5N2",
+        "C_FILTER5P1",
+        "C_FILTER5P2",
+        "C_FILTER6N1",
+        "C_FILTER6N2",
+        "C_FILTER6P1",
+        "C_FILTER6P2",
+        "C_FILTER7N1",
+        "C_FILTER7N2",
+        "C_FILTER7P1",
+        "C_FILTER7P2",
+        "C_FILTER8N1",
+        "C_FILTER8N2",
+        "C_FILTER8P1",
+        "C_FILTER8P2"
+      ],
+      "per_board_qty": 40,
+      "requested_lcsc": "C97907",
+      "required_qty": 200
+    }
+  ],
+  "schema": 2,
+  "subject": {
+    "path": "../../03_tscircuit/build/circuit.json",
+    "sha256": "1f01be73e0699cd62bc734aa189b25e9d66f1097b5ce6f52a8db30533ecc6448",
+    "size": 4859480
+  },
+  "subject_role": "circuit"
+}

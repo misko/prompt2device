@@ -1,11 +1,11 @@
 {
-  "blocker": "Current source has ADC65 CJ 1f01be73 (569 components) conditionally bound by reviewed E-FAULT source clarification; complete fitted-board physical waveform qualification remains owed. The reviewed 18-pose power source proposal passes 47/47 declared numeric observations and has an 89-ref ledger, but is planned source placement only with no native board or P2 acceptance. Historical 568 CJ/schematic/checkpoint, c3d90659 power measurement, reviews and graph subjects remain immutable and stale for the changed subject. Sourcing formal review is INCOMPLETE; direct-public PASS is screen-only. New full schematic review is owed; connector FULL 19 and 499 unrouted items still block P3, routing, P5, release and order.",
+  "blocker": "Current 569-component source passes canonical S-PART-FREEZE public prelayout: 4/4 accepted, 569/569 exact-source coverage and 88/88 public-catalog lines. This catalog evidence is current but unreserved; authenticated PCBA allocation, procurement and order remain open. Full schematic review from current CJ 1f01be73 is owed. Reviewed ADC65 E-FAULT source binding still owes complete fitted-board physical waveform qualification. Reviewed 18-pose power placement is source-only with no native P2 acceptance. Historical 568 CJ/schematic/checkpoint, c3d90659 measurement, reviews and graph subjects remain immutable and stale. Connector FULL 19 and 499 unrouted items block P3, routing, P5, release and order.",
   "checkpoint": {
     "path": "06_build/checkpoints/schematic.json",
     "sha256": "2fb4dd626750114476150d550d88cf15c0d5a2deb5d8e971e1be67a2a7bde856",
     "size": 1152
   },
-  "next_command": "Seek explicit admission for a fresh full schematic campaign from CJ 1f01be73 with new derived identities and independent schematic review. Before procurement or release, obtain complete fitted-board J_PWR waveform qualification. Keep direct-public sourcing screen separate from formal assembly allocation; require fresh sourcing admission. Do not run native placement. Complete the 89-ref power qualitative and later copper proof before P2 acceptance.",
+  "next_command": "Seek explicit admission for a fresh full schematic campaign from current CJ 1f01be73 and independent schematic review. Before procurement or release, obtain complete fitted-board J_PWR waveform qualification; before ordering, complete authenticated PCBA allocation/process evidence. Do not run native placement. Complete 89-ref power qualitative and later saved-copper proof before P2 acceptance.",
   "phase": "placement",
   "project": "crow-usb-carrier-v1",
   "receipts": [
@@ -15,41 +15,31 @@
       "size": 6024
     },
     {
-      "path": "01_docs/research/2026-09-24-adc65-efault-initial-review-incomplete-terra.md",
-      "sha256": "c252da2db1f9ca50bcf7ab3b3533bdb157fcc3edc72d827c2884e29f518d8f4b",
-      "size": 9576
-    },
-    {
-      "path": "01_docs/research/2026-09-24-adc65-preserved-568-checkpoint-manifest.sha256",
-      "sha256": "355107bdfe1ed4d7c782306b815bc50dc8aecbea64c997f0761f95a5db6bc971",
-      "size": 1543
-    },
-    {
-      "path": "01_docs/research/2026-09-24-adc65-root-prep-semantic-delta.json",
-      "sha256": "d40b780803bac8bf6cfd4a76b8ae0c06a9aea33e23199739b6799f8998ae622c",
-      "size": 1073
-    },
-    {
       "path": "01_docs/research/2026-09-24-p2-power-constructive-source-review-terra.md",
       "sha256": "7fd8d4e9e52cf38fa5161b704ee842b33933f1344192555231b8ef7512ad45af",
       "size": 8097
     },
     {
-      "path": "01_docs/research/2026-09-24-p2-power-full89-scope-ledger.json",
-      "sha256": "8e11ec0babb0508de29ae5a2bff4e7c38f65b4b9f4873b3d944894f0adb0088e",
-      "size": 22590
+      "path": "01_docs/research/2026-09-24-public-stock-569/S-PART-FREEZE.stage.json",
+      "sha256": "65638695dd265e1cd563f1d9acd69c6b2a6ed51615681d55f777d0cbaa362d6b",
+      "size": 775
     },
     {
-      "path": "01_docs/research/2026-09-24-sourcing-569-direct-public-screen.json",
-      "sha256": "34fdd4c7758d08152bc5abd6e25101c7519f948b74c84dd9db610bd1c4f84485",
-      "size": 32482
+      "path": "01_docs/research/2026-09-24-public-stock-569/compact-receipt.json",
+      "sha256": "0f7928fc4adf1feaa2a4b069d23516c0ebc4b042206308a95ab5b453374ef77f",
+      "size": 441
     },
     {
-      "path": "01_docs/research/2026-09-24-sourcing-569-incomplete-review-terra.md",
-      "sha256": "73daf4dba2a1abb004aa86caa595d058f5f764de9d70099d3893fbcc2bf53406",
-      "size": 9605
+      "path": "01_docs/research/2026-09-24-public-stock-569/manufacturing_readiness_prelayout.json",
+      "sha256": "a95cf60b8f57964cd8a01c1cd55fc6fbc3c3b093000f0ce6296ce70ca619c564",
+      "size": 272011
+    },
+    {
+      "path": "01_docs/research/2026-09-24-public-stock-569/terra-authoritative-public-review.md",
+      "sha256": "1b5fcfd977e1e7e661994b641fbf2341be073d13e6b5a8c1b659653a6c0cb4d7",
+      "size": 8578
     }
   ],
   "schema": 1,
-  "state_id": "87fb60bcc07324dcf188d8ec26940061c6792307aa8682831da995dc7b7deb60"
+  "state_id": "e36d19d386e7c0da7e76527ce9151f89158d9ec8d125de7e97f7b8b6bfca1515"
 }

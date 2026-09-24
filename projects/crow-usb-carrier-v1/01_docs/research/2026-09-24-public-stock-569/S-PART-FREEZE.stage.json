@@ -1,0 +1,25 @@
+{
+  "applicability": "APPLIES",
+  "applicability_reason": null,
+  "elapsed_s": 0.0,
+  "findings": [
+    {
+      "code": "S-PART-PROMOTION-DISABLED",
+      "detail": "manufacturing-readiness receipt is legacy authority; accepted bundle unchanged until one atomic pointer-last transaction exists"
+    }
+  ],
+  "finished_at": "2026-09-24T00:53:10.047198Z",
+  "graded": 0,
+  "outputs": [],
+  "resume": null,
+  "run_id": "20260924T005310Z-284a120f",
+  "schema": 1,
+  "stage_id": "S-PART-FREEZE",
+  "started_at": "2026-09-24T00:53:10.047198Z",
+  "status": "INCOMPLETE",
+  "subject": {
+    "raw_sha256": "62565d34c286dab03272b78b4300131547b66f7281519bd6bcbd92cb3f622c34",
+    "semantic_sha256": "b817611fcb295800f0792370e391dd645a825e7a1bf9bd99325e255fd0d2cd75"
+  },
+  "total": 4
+}
