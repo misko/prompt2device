@@ -211,6 +211,18 @@ class CoarseCapacityTest(unittest.TestCase):
         result = self.run_case(lambda: self.source.pop('p1_fixed_refs'))
         self.assertIn('p1_fixed_refs authority', '\n'.join(result['errors']))
 
+    def test_native_npth_cannot_bypass_source_fixed_pose_authority(self):
+        fp = next(f for f in self.board.GetFootprints() if f.GetReference() == 'R_MOVE')
+        next(iter(fp.Pads())).SetAttribute(pcbnew.PAD_ATTRIB_NPTH)
+        result = self.run_case()
+        self.assertIn('NPTH references missing p1_fixed_refs', '\n'.join(result['errors']))
+
+    def test_signal_allocation_cannot_hide_as_power_capacity(self):
+        self.allocations[0]['reservations'][0]['kind'] = 'power_or_mechanical'
+        result = self.run_case()
+        self.assertIn('only power_boundary_windows may omit signal capacity',
+                      result['allocations'][0]['reason'])
+
 
 if __name__ == '__main__':
     unittest.main()

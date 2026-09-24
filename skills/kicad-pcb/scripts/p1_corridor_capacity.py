@@ -113,7 +113,8 @@ def _witness_touches_reservation(witness, reservation):
     return shared and (abs(a[3] - b[1]) <= tol if face == 'north' else abs(a[1] - b[3]) <= tol)
 
 
-def _coarse_reservation(board, row, outline, fixed_refs, movable_refs, zones, native_pitch):
+def _coarse_reservation(board, row, outline, fixed_refs, movable_refs, zones, native_pitch,
+                        *, power_boundary):
     ident = row.get('id')
     layer = row.get('layer')
     bbox = rectangle(row.get('bbox'), f'{ident} reservation')
@@ -131,6 +132,8 @@ def _coarse_reservation(board, row, outline, fixed_refs, movable_refs, zones, na
     if not isinstance(nets, list) or not nets or len(nets) != len(set(nets)):
         raise ContractError(f'{ident}: reservation net demand missing')
     if row.get('kind') == 'power_or_mechanical':
+        if not power_boundary:
+            raise ContractError(f'{ident}: only power_boundary_windows may omit signal capacity')
         return {'id': ident, 'status': 'INCOMPLETE', 'nets': nets,
                 'reason': 'current, return, thermal, or mechanical capacity unmeasured'}
     if row.get('kind') != 'signal':
@@ -228,11 +231,14 @@ def evaluate_coarse(board_path, contract_path, expected_contract_sha256=None, *,
                                                   for a, b in zip(expected_pose, actual_pose)):
                     raise ContractError(f'{ref}: fixed P1 source/native pose mismatch')
             movable_refs = set(refs) - fixed_refs
-            # Mechanical NPTH holes are fixed even if accidentally seeded as P2.
-            for ref, fp in refs.items():
-                if any(p.GetAttribute() == pcbnew.PAD_ATTRIB_NPTH for p in fp.Pads()):
-                    fixed_refs.add(ref)
-                    movable_refs.discard(ref)
+            # A mechanical hole cannot be silently reclassified as movable.  It
+            # must be in the source-owned fixed set so its pose was validated
+            # above, rather than merely influencing the native capacity scan.
+            npth_refs = {ref for ref, fp in refs.items()
+                         if any(p.GetAttribute() == pcbnew.PAD_ATTRIB_NPTH for p in fp.Pads())}
+            omitted_npth = sorted(npth_refs - fixed_refs)
+            if omitted_npth:
+                raise ContractError(f'NPTH references missing p1_fixed_refs: {omitted_npth[:5]}')
             owned_pads = defaultdict(set)
             for item in interfaces['interfaces']:
                 for block, sources in item['endpoints'].items():
@@ -285,8 +291,9 @@ def evaluate_coarse(board_path, contract_path, expected_contract_sha256=None, *,
                     for reservation in reservations:
                         if not set(reservation.get('nets', [])) <= coverage[name]:
                             raise ContractError(f'{name}: reservation net outside allocation')
-                        measured.append(_coarse_reservation(board, reservation, outline,
-                                                             fixed_refs, movable_refs, zones, native_pitch))
+                        measured.append(_coarse_reservation(
+                            board, reservation, outline, fixed_refs, movable_refs, zones, native_pitch,
+                            power_boundary=name == 'power_boundary_windows'))
                     if {net for r in measured for net in r['nets']} != coverage[name]:
                         raise ContractError(f'{name}: missing per-net reservation')
                     results.append({'id': name, 'status': 'FAIL' if any(r['status'] == 'FAIL' for r in measured) else 'INCOMPLETE',
