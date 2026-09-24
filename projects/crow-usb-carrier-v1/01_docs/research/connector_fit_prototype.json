@@ -1,0 +1,56 @@
+{
+  "status": "NONQUALIFYING_GEOMETRY_SCREEN_ONLY",
+  "source": "skills/kicad-pcb/scripts/tests/fixtures/crow_usb_partial_port/board.kicad_pcb",
+  "source_sha256": "60a903b5ae5c7c7ef084fb3bd5dd50abf26e1e0e134a928f46107a6c90934b17",
+  "board": "connector_fit_prototype.kicad_pcb",
+  "board_sha256": "b371d378a3f4ef1ce939f4b40e83ed0b882bdfefd284537e06b69507dfbc7cad",
+  "connector_refs": [
+    "J1",
+    "J2",
+    "J3",
+    "J4",
+    "J5",
+    "J6",
+    "J7",
+    "J8",
+    "J_USB",
+    "J_PWR",
+    "J_JTAG"
+  ],
+  "exact_native_footprint_pad_pose_edge_parity": true,
+  "nominal_thickness_mm": 1.63,
+  "simultaneous_groups": {
+    "normal_service": [
+      "J1",
+      "J2",
+      "J3",
+      "J4",
+      "J5",
+      "J6",
+      "J7",
+      "J8",
+      "J_PWR",
+      "J_USB"
+    ],
+    "bench_service": [
+      "J1",
+      "J2",
+      "J3",
+      "J4",
+      "J5",
+      "J6",
+      "J7",
+      "J8",
+      "J_PWR",
+      "J_USB",
+      "J_JTAG"
+    ]
+  },
+  "qualification_blockers": [
+    "Exploratory rectangular outline is not an accepted final board outline.",
+    "No board restraint or mounting-hole coordinates are defined in the source.",
+    "No measured hand, cable, bend, or enclosure clearance envelopes exist.",
+    "Physical mating, reaction, tolerance, and repeated-use observations are absent."
+  ],
+  "gerbers_emitted": false
+}
