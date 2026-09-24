@@ -1,0 +1,328 @@
+{
+  "schema": "provisional-coarse-p1-analog-1",
+  "kind": "crow-p1-analog-coarse-allocation-proposal",
+  "status": "INCOMPLETE",
+  "p1_accepted": false,
+  "routing_realized": false,
+  "source_requirements_sha256": "240931bd91f2fb147b02f02f58bd6774f0859593c8616c22e81b734635c331f4",
+  "isolated_board_sha256": "4849d58d58c984401340e99cfbaf37e68345be34f87bcbd6bc33078ee2867285",
+  "endpoint_authority": "../../03_src/rules/p1_corridor_requirements.yaml#/allocations/adc_analog_boundary/endpoints",
+  "allocations": [
+    {
+      "id": "channels_1_4_vmid1",
+      "coverage_nets": [
+        "ADC1N",
+        "ADC1P",
+        "ADC2N",
+        "ADC2P",
+        "ADC3N",
+        "ADC3P",
+        "ADC4N",
+        "ADC4P",
+        "VMID1_EXT"
+      ],
+      "source_endpoint_count": 44,
+      "witnesses": [
+        {
+          "id": "analog_ch1_south",
+          "owner": "analog_ch1",
+          "face": "south",
+          "region_bbox": [
+            25,
+            42,
+            47,
+            84
+          ],
+          "bbox": [
+            31,
+            83.5,
+            41,
+            84
+          ],
+          "nets": [
+            "ADC1N",
+            "ADC1P",
+            "VMID1_EXT"
+          ]
+        },
+        {
+          "id": "analog_ch2_south",
+          "owner": "analog_ch2",
+          "face": "south",
+          "region_bbox": [
+            47,
+            42,
+            69,
+            84
+          ],
+          "bbox": [
+            53,
+            83.5,
+            63,
+            84
+          ],
+          "nets": [
+            "ADC2N",
+            "ADC2P",
+            "VMID1_EXT"
+          ]
+        },
+        {
+          "id": "analog_ch3_south",
+          "owner": "analog_ch3",
+          "face": "south",
+          "region_bbox": [
+            69,
+            42,
+            91,
+            84
+          ],
+          "bbox": [
+            75,
+            83.5,
+            85,
+            84
+          ],
+          "nets": [
+            "ADC3N",
+            "ADC3P",
+            "VMID1_EXT"
+          ]
+        },
+        {
+          "id": "analog_ch4_south",
+          "owner": "analog_ch4",
+          "face": "south",
+          "region_bbox": [
+            91,
+            42,
+            113,
+            84
+          ],
+          "bbox": [
+            97,
+            83.5,
+            107,
+            84
+          ],
+          "nets": [
+            "ADC4N",
+            "ADC4P",
+            "VMID1_EXT"
+          ]
+        },
+        {
+          "id": "adc_reference_north",
+          "owner": "adc_reference",
+          "face": "north",
+          "region_bbox": [
+            75,
+            85,
+            145,
+            134
+          ],
+          "bbox": [
+            100,
+            85,
+            112,
+            85.5
+          ],
+          "nets": [
+            "ADC1N",
+            "ADC1P",
+            "ADC2N",
+            "ADC2P",
+            "ADC3N",
+            "ADC3P",
+            "ADC4N",
+            "ADC4P",
+            "VMID1_EXT"
+          ]
+        }
+      ],
+      "reservations": [
+        {
+          "id": "channels_1_4_vmid1_north_trunk",
+          "layer": "F.Cu",
+          "axis": "horizontal",
+          "bbox": [
+            25,
+            71,
+            112.75,
+            85
+          ],
+          "purpose": "board_scale_branch_space",
+          "status": "P2_LOCAL_REWORK_REQUIRED"
+        }
+      ],
+      "demand": {
+        "slots": 9,
+        "slot_pitch_mm": 0.56,
+        "nominal_width_mm": 5.04
+      },
+      "local_endpoint_completion": "P2_P3_REQUIRED",
+      "status": "INCOMPLETE"
+    },
+    {
+      "id": "channels_5_8_vmid2",
+      "coverage_nets": [
+        "ADC5N",
+        "ADC5P",
+        "ADC6N",
+        "ADC6P",
+        "ADC7N",
+        "ADC7P",
+        "ADC8N",
+        "ADC8P",
+        "VMID2_EXT"
+      ],
+      "source_endpoint_count": 44,
+      "witnesses": [
+        {
+          "id": "analog_ch5_south",
+          "owner": "analog_ch5",
+          "face": "south",
+          "region_bbox": [
+            113,
+            42,
+            135,
+            84
+          ],
+          "bbox": [
+            119,
+            83.5,
+            129,
+            84
+          ],
+          "nets": [
+            "ADC5N",
+            "ADC5P",
+            "VMID2_EXT"
+          ]
+        },
+        {
+          "id": "analog_ch6_south",
+          "owner": "analog_ch6",
+          "face": "south",
+          "region_bbox": [
+            135,
+            42,
+            157,
+            84
+          ],
+          "bbox": [
+            141,
+            83.5,
+            151,
+            84
+          ],
+          "nets": [
+            "ADC6N",
+            "ADC6P",
+            "VMID2_EXT"
+          ]
+        },
+        {
+          "id": "analog_ch7_south",
+          "owner": "analog_ch7",
+          "face": "south",
+          "region_bbox": [
+            157,
+            42,
+            179,
+            84
+          ],
+          "bbox": [
+            163,
+            83.5,
+            173,
+            84
+          ],
+          "nets": [
+            "ADC7N",
+            "ADC7P",
+            "VMID2_EXT"
+          ]
+        },
+        {
+          "id": "analog_ch8_south",
+          "owner": "analog_ch8",
+          "face": "south",
+          "region_bbox": [
+            179,
+            42,
+            201,
+            84
+          ],
+          "bbox": [
+            185,
+            83.5,
+            195,
+            84
+          ],
+          "nets": [
+            "ADC8N",
+            "ADC8P",
+            "VMID2_EXT"
+          ]
+        },
+        {
+          "id": "adc_reference_north",
+          "owner": "adc_reference",
+          "face": "north",
+          "region_bbox": [
+            75,
+            85,
+            145,
+            134
+          ],
+          "bbox": [
+            130,
+            85,
+            142,
+            85.5
+          ],
+          "nets": [
+            "ADC5N",
+            "ADC5P",
+            "ADC6N",
+            "ADC6P",
+            "ADC7N",
+            "ADC7P",
+            "ADC8N",
+            "ADC8P",
+            "VMID2_EXT"
+          ]
+        }
+      ],
+      "reservations": [
+        {
+          "id": "channels_5_8_vmid2_north_trunk",
+          "layer": "F.Cu",
+          "axis": "horizontal",
+          "bbox": [
+            113.25,
+            71,
+            201,
+            85
+          ],
+          "purpose": "board_scale_branch_space",
+          "status": "P2_LOCAL_REWORK_REQUIRED"
+        }
+      ],
+      "demand": {
+        "slots": 9,
+        "slot_pitch_mm": 0.56,
+        "nominal_width_mm": 5.04
+      },
+      "local_endpoint_completion": "P2_P3_REQUIRED",
+      "status": "INCOMPLETE"
+    }
+  ],
+  "limits": [
+    "no pad pockets or routed traces",
+    "F.Cu capacity optimistic; effective width/clearance unmeasured",
+    "In1.Cu GND zone unfilled; reference unavailable",
+    "independent review absent"
+  ]
+}
