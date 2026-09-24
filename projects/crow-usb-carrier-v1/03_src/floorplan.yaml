@@ -103,6 +103,9 @@ conditional_pofv:
 
 placement:
   post_anchors:
+    C_PLL_100N: [220.0, 102.8, 0]
+    C_PLL_1U: [220.0, 105.0, 0]
+    FB_PLL: [223.0, 103.9, 180]
     C_ADC_DIGITAL_BAD: [110.5, 97.25, 0]
     C_ADC_DIGITAL_OK: [113.1, 107.0, 270]
     C_ADC_3V3X_OK_VDD: [118.1, 107.0, 270]
@@ -1171,6 +1174,10 @@ silk:
     min_size: 0.45
     fab_copy: true
     clearance: 0.16
+    priority_refs: [C_XU_VDDIO_10, C_XU_VDD_45, C_XU_VDD_39]
+    preferred_offsets:
+      C_XU_VDD_45: [[2.2, -0.8]]
+    fab_only_refs: [C_XU_VDD_39]
     priority_prefixes: UJQ
   labels:
   - match: TP*
