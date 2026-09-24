@@ -8,6 +8,9 @@ from __future__ import annotations
 
 import hashlib
 import json
+import re
+import tempfile
+import uuid
 from pathlib import Path
 
 import pcbnew
@@ -48,6 +51,51 @@ def edge_geometry(board):
     return sorted((pos(d.GetStart()), pos(d.GetEnd()), d.GetWidth()) for d in edges)
 
 
+def canonical_pcb_text(raw):
+    """Stabilize pcbnew's unordered footprint output and new clone UUIDs."""
+    parts = re.split(r'(?=^\t\((?:footprint|gr_line|embedded_fonts)\b)', raw, flags=re.M)
+    assert len(parts) == 17, "unexpected serialized board structure"
+    header, *items = parts
+    footprints = [item for item in items if item.startswith("\t(footprint ")]
+    edges = [item for item in items if item.startswith("\t(gr_line")]
+    tail = [item for item in items if item.startswith("\t(embedded_fonts")]
+    assert len(footprints) == 11 and len(edges) == 4 and len(tail) == 1
+    def ref(item):
+        match = re.search(r'\(property "Reference" "([^"]+)"', item)
+        assert match
+        return match.group(1)
+    assert {ref(item) for item in footprints} == set(REFS)
+    # Each edge is a line, and the start/end text is fixed by the source.
+    def edge_key(item):
+        match = re.search(r'\(start ([^)]+)\).*?\(end ([^)]+)\)', item, re.S)
+        assert match
+        return match.groups()
+    uuid_pattern = re.compile(r'\(uuid "[0-9a-f-]+"\)')
+    def order_arcs(item):
+        # pcbnew also iterates coincident footprint arcs in variable order.
+        chunks = re.split(r'(?=^\t\t\([a-z_]+\b)', item, flags=re.M)
+        ordered_chunks = []
+        arc_run = []
+        def flush():
+            ordered_chunks.extend(sorted(arc_run, key=lambda arc: uuid_pattern.sub("", arc)))
+            arc_run.clear()
+        for chunk in chunks:
+            if chunk.startswith("\t\t(fp_arc"):
+                arc_run.append(chunk)
+            else:
+                flush()
+                ordered_chunks.append(chunk)
+        flush()
+        return "".join(ordered_chunks)
+    ordered = header + "".join(order_arcs(item) for item in sorted(footprints, key=ref)) + "".join(sorted(edges, key=edge_key)) + tail[0]
+    # UUIDs have no cross-references in this extracted board. Their ordinal is
+    # stable after sorting and identifies each item uniquely on every run.
+    return uuid_pattern.sub(
+        lambda match, counter=iter(range(10000)): f'(uuid "{uuid.uuid5(uuid.NAMESPACE_URL, SOURCE_SHA256 + ":connector-fit:" + str(next(counter)))}")',
+        ordered,
+    )
+
+
 def main():
     actual_sha = hashlib.sha256(SOURCE.read_bytes()).hexdigest()
     assert actual_sha == SOURCE_SHA256, f"source changed: {actual_sha}"
@@ -82,15 +130,22 @@ def main():
     for drawing in source.GetDrawings():
         if drawing.GetLayerName() == "Edge.Cuts":
             coupon.Add(drawing.Duplicate())
-    pcbnew.SaveBoard(str(OUT), coupon)
-
-    saved = pcbnew.LoadBoard(str(OUT))
+    # KiCad may create a .kicad_pro while loading a board. Keep those sidecars
+    # inside a temporary directory and publish only the verified PCB bytes.
+    with tempfile.TemporaryDirectory(prefix="crow-connector-fit-") as tmp:
+        temporary_board = Path(tmp) / OUT.name
+        pcbnew.SaveBoard(str(temporary_board), coupon)
+        temporary_board.write_text(canonical_pcb_text(temporary_board.read_text()))
+        saved = pcbnew.LoadBoard(str(temporary_board))
+        board_bytes = temporary_board.read_bytes()
     saved_fp = {fp.GetReference(): fp for fp in saved.GetFootprints()}
     assert set(saved_fp) == set(REFS)
     assert edge_geometry(saved) == source_edges
     assert saved.GetDesignSettings().GetBoardThickness() == source.GetDesignSettings().GetBoardThickness()
     for ref in REFS:
         assert footprint_geometry(saved_fp[ref]) == footprint_geometry(source_fp[ref]), ref
+
+    OUT.write_bytes(board_bytes)
 
     contract = yaml.safe_load(GROUPS.read_text())
     groups = {group["id"]: group["members"] for group in contract["simultaneous_groups"]}

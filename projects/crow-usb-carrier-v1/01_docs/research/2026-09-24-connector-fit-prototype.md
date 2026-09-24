@@ -13,7 +13,9 @@ from the repository root to regenerate and check it. The script rejects source
 SHA, population, connector pose, thickness, or outline drift. After saving, it
 reloads the PCB and checks footprint identity, pose, all pad positions/sizes/
 orientations/shapes/drills/layers, thickness, and Edge.Cuts geometry against
-the source fixture.
+the source fixture. It orders cloned connector and arc records and assigns
+stable UUIDs, so the checked-in PCB and JSON are byte-identical on repeated
+runs with the pinned input. KiCad sidecars are confined to a temporary folder.
 
 This is **not a physical qualification coupon or fabrication package**. The
 220 × 120 mm rectangle is an exploratory canvas, not a final accepted board
