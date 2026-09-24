@@ -1,17 +1,18 @@
 # Project status
 
-<!-- pause-state:bb59a516a147e2373c0eef32ef5df23312d5fd4a27b79f825e48cc525ef267eb -->
+<!-- pause-state:3dfcfe852fb4e8c9efbc1d0cfeeb14dd60b47156352c3938f4201c35106d1a0d -->
 
 - Phase: `placement`
 - State: **PAUSED**
 - Checkpoint: `06_build/checkpoints/schematic.json` (`917a45414c65`)
-- Blocker: The distinct P1 root remains unaccepted. On the isolated QSPI-gap board, all 13 exact QSPI handoffs validate, but the whole 59-net schema-2 screen is FAIL: legacy U_XU.51 is an oversized nonlocal JTAG witness and its allocation aborts. A pinned one-part U_USB_ESD east-move trial places all seven USB support courtyards in a disjoint region and leaves an open JTAG strip, but fixed J_USB remains an unmodeled edge endpoint and XU_RESET_N has a third digital_power owner. Native DRC remains nonzero with 499 unconnected items; the USB launch has six sub-0.410-mm width violations without qualified impedance. Connector FULL has 19 physical unknowns and TMUX filled/capped process acceptance remains external. No P1/P2/P3/route/release or order result is accepted.
-- Next command: `Source-model a disjoint JTAG corridor for the four two-party JTAG nets, an explicit fixed J_USB edge/support handoff, and a separate XU_RESET_N digital-power branch; measure exact native faces, pad access and return without weakening 59-net coverage. Independently admit a fresh P1 packet after the remaining internal allocations are resolved. Keep connector FULL before P3/routing and TMUX process acceptance before release; do not promote scratch USB copper.`
+- Blocker: P1 remains unaccepted. On the isolated QSPI-gap board, all 13 QSPI handoffs validate, but the full 59-net schema-2 packet still FAILS. A four-net JTAG integration strip is native-open and validates four XU handoffs, yet fixed J_JTAG handoff is rejected and U_XU.38 reset remains a nonlocal witness. The crystal window includes only 3 of 7 exact pads and both XU crystal witnesses cross the QSPI integration owner. USB support can fit after a pinned one-part U_USB_ESD east move, but J_USB needs an explicit fixed edge owner and XU_RESET_N needs its three-owner branch. DRC remains nonzero with 499 unconnected items; USB has six unqualified sub-0.410-mm launch widths. Connector FULL has 19 physical unknowns and TMUX filled/capped process acceptance is external. No P1/P2/P3/route/release or order result is accepted.
+- Next command: `Model fixed J_JTAG-to-JTAG-strip access and the five-endpoint XU_RESET_N branch as distinct source-owned obligations; revise oscillator region/handoffs without crossing the QSPI owner. Implement and verify the separate J_USB edge owner and protected-launch trees on an isolated source variant. Then resolve remaining 59-net allocations and re-run native P1 before P2/P3. Connector FULL gates P3/routing; TMUX process acceptance gates release. Do not promote scratch USB copper.`
 
 ## Bound receipts
 
 - `01_docs/research/2026-09-24-p1-native-evidence-failure-evidence/SHA256SUMS` — `fc465fc54773`
 - `01_docs/research/2026-09-24-p1-native-evidence-failure-owner-reassessment.md` — `15ccef4423ee`
+- `01_docs/research/2026-09-24-usb-edge-endpoint-handoff-terra/README.md` — `3d8a88f17a61`
 - `01_docs/research/2026-09-24-usb-edge-endpoint-source-model-terra.md` — `583ed72ceb5b`
 - `01_docs/research/2026-09-24-usb-esd-east-region-trial-sol.md` — `4de0ec64fbff`
 - `01_docs/research/2026-09-24-usb-fcu-launch-diagnostic-summary.json` — `394b0d89ade9`
@@ -21,9 +22,12 @@
 - `01_docs/research/2026-09-24-xu-service-reservation-contract-recommendation-terra.md` — `5de4aa58c71b`
 - `01_docs/research/xu_service_variant/QSPI_GAP.md` — `6945f823ba36`
 - `01_docs/research/xu_service_variant/REGENERATION.md` — `1e05986d34c7`
+- `01_docs/research/xu_service_variant/XTAL_WINDOW_NATIVE_AUDIT.md` — `7ebc5a430185`
+- `01_docs/research/xu_service_variant/jtag_gap_trial/trial_receipt.json` — `ec31176866f4`
 - `01_docs/research/xu_service_variant/p1_integration_corridor_schema.md` — `9992b673c7d2`
 - `01_docs/research/xu_service_variant/p1_qspi_packet/README.md` — `aac745bb6a38`
 - `01_docs/research/xu_service_variant/p1_qspi_packet/evaluation.json` — `3ba0a91f8e3a`
+- `01_docs/research/xu_service_variant/xtal_window_native_audit.json` — `00f8087d59a7`
 - `03_src/diagnostics/usb_fcu_launch_probe.py` — `7a05b24297f6`
 - `08_reviews/pre-route_schematic_render.md` — `05ff9b639b7f`
 - `08_reviews/pre-route_topology.md` — `76dbfea927e5`

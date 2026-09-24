@@ -33,8 +33,8 @@ oscillator cell whose owned endpoint handoff does not cross
 filled `In1.Cu` return evidence. Until then, the oscillator window is not a
 valid local handoff or corridor and cannot support P1 acceptance.
 
-Reproduce from `/tmp/crow-qspi-corridor-packet` with KiCad 10 `pcbnew` and
-PyYAML:
+Reproduce from the repository root with KiCad 10 `pcbnew` and PyYAML after
+regenerating the pinned temporary board as described in [`QSPI_GAP.md`](QSPI_GAP.md):
 
 ```sh
 python3 projects/crow-usb-carrier-v1/01_docs/research/xu_service_variant/xtal_window_native_audit.py
