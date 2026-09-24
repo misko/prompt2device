@@ -1,10 +1,10 @@
 schema: 1
 verdict: approved
 scope: IC reference record semantics only
-reviewer: terra-admission-review
+reviewer: terra-p-prec-independent-review
 reviewed_at: '2026-09-24'
-packet_sha256: bded329a196c4a2e8ea281b199a287d47b1fd14ff0366ef95c07e609e37dbec6
-subject_sha256: 35cbb1f70ab6192f5230f8702ed9dd26935c2e14480498adf739aeb1a9f79914
+packet_sha256: a1878ac742bc0e03e674fb488ebba1428d5cffb0c0206f26ad56f80ef8a185ba
+subject_sha256: a8b79bc9ecd6f572ba531402abb4c841989b3dd8917333962aed6743197ec387
 reviewed_refs:
 - U_1V8
 - U_1V8_OK
@@ -76,6 +76,6 @@ reviewed_refs:
 - U_XU_3V3_OK
 - Y_AUDIO
 evidence:
-  path: 08_reviews/2026-09-24_ic-reference-semantic-review-terra.md
-  sha256: df943f7a6e6df82d949174449a8bdd53e33e05bba00ad063b7bb3ee377b0887d
-  locator: Verdict and review findings
+  path: 01_docs/research/2026-09-24-p-prec-rebind-admissibility-terra.md
+  sha256: bb11dfea3d4594386c72b52f06472c5e9e2075f6d34a1481667c1d2b3a83dedc
+  locator: Admission decision
