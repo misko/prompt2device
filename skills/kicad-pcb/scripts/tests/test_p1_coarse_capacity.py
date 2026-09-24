@@ -148,6 +148,15 @@ class CoarseCapacityTest(unittest.TestCase):
         self.assertEqual(result['status'], 'INCOMPLETE')
         self.assertIn('R_MOVE', result['allocations'][0]['reservations'][0]['movable_relocation_debt'])
 
+    def test_post_anchor_overrides_seed_and_anchor_for_fixed_pose(self):
+        self.floorplan['placement']['seeds']['J_RIGHT'] = [3, 3, 0]
+        self.floorplan['placement']['anchors']['J_RIGHT'] = [4, 4, 0]
+        self.source['p1_fixed_refs'].append('J_RIGHT')
+        result = self.run_case()
+        self.assertEqual(result['errors'], [])
+        self.assertEqual(result['allocations'][0]['reservation_count'], 1)
+        self.assertFalse(result['p1_accepted'])
+
     def test_missing_and_wrong_witness_fail_closed(self):
         result = self.run_case(lambda: self.allocations[0]['boundary_witnesses'].clear())
         self.assertIn('denominator missing', result['allocations'][0]['reason'])
@@ -220,8 +229,36 @@ class CoarseCapacityTest(unittest.TestCase):
     def test_signal_allocation_cannot_hide_as_power_capacity(self):
         self.allocations[0]['reservations'][0]['kind'] = 'power_or_mechanical'
         result = self.run_case()
-        self.assertIn('only power_boundary_windows may omit signal capacity',
+        self.assertIn('only source-authorized power-like nets may omit signal capacity',
                       result['allocations'][0]['reason'])
+
+    def test_source_authorized_usb_vbus_can_use_power_window(self):
+        native_net = pcbnew.NETINFO_ITEM(self.board, 'VBUS_USB')
+        self.board.Add(native_net)
+        for fp in self.board.GetFootprints():
+            if fp.GetReference() in ('J_LEFT', 'J_RIGHT'):
+                next(iter(fp.Pads())).SetNet(native_net)
+        source_row = self.source['allocations'][0]
+        source_row['id'] = 'usb_device_pair'
+        source_row['coverage_nets'] = ['VBUS_USB']
+        source_row['endpoints']['VBUS_USB'] = source_row['endpoints'].pop('TEST')
+        source_row['demands'] = [{'id': 'usb_local_power', 'nets': ['VBUS_USB'],
+                                  'status': 'INCOMPLETE'}]
+        self.interfaces['interfaces'][0]['net'] = 'VBUS_USB'
+        row = self.allocations[0]
+        row['id'] = 'usb_device_pair'
+        row['coverage_nets'] = ['VBUS_USB']
+        row['boundary_witnesses'][0]['net'] = 'VBUS_USB'
+        row['reservations'][0]['nets'] = ['VBUS_USB']
+        row['reservations'][0]['kind'] = 'power_or_mechanical'
+        row['reservations'][0].pop('axis')
+        row['reservations'][0].pop('demand_slots')
+        row['reservations'][0].pop('slot_pitch_mm')
+        result = self.run_case()
+        self.assertEqual(result['errors'], [])
+        self.assertEqual(result['allocations'][0]['reservation_count'], 1)
+        self.assertEqual(result['status'], 'INCOMPLETE')
+        self.assertFalse(result['p1_accepted'])
 
 
 if __name__ == '__main__':

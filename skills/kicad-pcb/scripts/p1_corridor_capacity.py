@@ -120,7 +120,7 @@ def _witness_touches_reservation(witness, reservation):
 
 
 def _coarse_reservation(board, row, outline, fixed_refs, movable_refs, zones, native_pitch,
-                        *, power_boundary):
+                        *, power_boundary, power_like_nets):
     ident = row.get('id')
     layer = row.get('layer')
     bbox = rectangle(row.get('bbox'), f'{ident} reservation')
@@ -138,8 +138,8 @@ def _coarse_reservation(board, row, outline, fixed_refs, movable_refs, zones, na
     if not isinstance(nets, list) or not nets or len(nets) != len(set(nets)):
         raise ContractError(f'{ident}: reservation net demand missing')
     if row.get('kind') == 'power_or_mechanical':
-        if not power_boundary:
-            raise ContractError(f'{ident}: only power_boundary_windows may omit signal capacity')
+        if not power_boundary and not set(nets) <= power_like_nets:
+            raise ContractError(f'{ident}: only source-authorized power-like nets may omit signal capacity')
         return {'id': ident, 'status': 'INCOMPLETE', 'nets': nets,
                 'reason': 'current, return, thermal, or mechanical capacity unmeasured'}
     if row.get('kind') != 'signal':
@@ -212,8 +212,9 @@ def evaluate_coarse(board_path, contract_path, expected_contract_sha256=None, *,
             seeds = placement.get('seeds', {})
             if not isinstance(anchors, dict) or not isinstance(post_anchors, dict) or not isinstance(seeds, dict):
                 raise ContractError('source-owned fixed/movable placement classification missing')
-            if set(anchors) & (set(post_anchors) | set(seeds)) or set(post_anchors) & set(seeds):
-                raise ContractError('source placement role overlap')
+            # Generator precedence is post_anchors > anchors > seeds. A ref may
+            # intentionally have a seed and a reviewed final post-anchor pose.
+            # Validate P1-fixed refs against the effective pose below.
             patterns = placement.get('patterns', [])
             if not isinstance(patterns, list) or any(not isinstance(p, dict) or not isinstance(p.get('match'), list) for p in patterns):
                 raise ContractError('source placement patterns malformed')
@@ -267,6 +268,15 @@ def evaluate_coarse(board_path, contract_path, expected_contract_sha256=None, *,
             for allocation in allocations:
                 name = allocation['id']
                 try:
+                    power_like_nets = set()
+                    if name == 'usb_device_pair':
+                        source_row = next((item for item in source['allocations'] if item.get('id') == name), {})
+                        local_power = [item for item in source_row.get('demands', [])
+                                       if item.get('id') == 'usb_local_power' and item.get('status') == 'INCOMPLETE']
+                        if len(local_power) == 1 and 'VBUS_USB' in local_power[0].get('nets', []):
+                            # VBUS_PRESENT_N shares the source demand but is a
+                            # logic signal and retains scalar signal capacity.
+                            power_like_nets.add('VBUS_USB')
                     nets = allocation.get('coverage_nets')
                     if not isinstance(nets, list) or len(nets) != len(set(nets)) or set(nets) != coverage[name]:
                         raise ContractError(f'{name}: exact source net coverage mismatch')
@@ -299,7 +309,8 @@ def evaluate_coarse(board_path, contract_path, expected_contract_sha256=None, *,
                             raise ContractError(f'{name}: reservation net outside allocation')
                         measured.append(_coarse_reservation(
                             board, reservation, outline, fixed_refs, movable_refs, zones, native_pitch,
-                            power_boundary=name == 'power_boundary_windows'))
+                            power_boundary=name == 'power_boundary_windows',
+                            power_like_nets=power_like_nets))
                     if {net for r in measured for net in r['nets']} != coverage[name]:
                         raise ContractError(f'{name}: missing per-net reservation')
                     results.append({'id': name, 'status': 'FAIL' if any(r['status'] == 'FAIL' for r in measured) else 'INCOMPLETE',
