@@ -297,7 +297,7 @@ class CoarseCapacityTest(unittest.TestCase):
         self.assertIn('boundary is not the physical pad',
                       self.run_case()['allocations'][0]['reason'])
 
-    def test_segmented_fixed_access_rejects_copper_zone(self):
+    def test_segmented_fixed_access_allows_unfilled_copper_zone(self):
         self.add_segmented_fixed_access()
         zone = pcbnew.ZONE(self.board)
         zone.SetLayer(pcbnew.F_Cu)
@@ -305,6 +305,24 @@ class CoarseCapacityTest(unittest.TestCase):
         polygon.NewOutline()
         for x, y in ((2.8, 4.25), (3.1, 4.25), (3.1, 4.35), (2.8, 4.35)):
             polygon.Append(pcbnew.VECTOR2I(iu(x), iu(y)))
+        self.board.Add(zone)
+        result = self.run_case()
+        self.assertEqual(result['errors'], [])
+        self.assertEqual(result['status'], 'INCOMPLETE')
+
+    def test_segmented_fixed_access_rejects_saved_filled_copper_zone(self):
+        self.add_segmented_fixed_access()
+        zone = pcbnew.ZONE(self.board)
+        zone.SetLayer(pcbnew.F_Cu)
+        polygon = zone.Outline()
+        polygon.NewOutline()
+        filled = pcbnew.SHAPE_POLY_SET()
+        filled.NewOutline()
+        for x, y in ((2.8, 4.25), (3.1, 4.25), (3.1, 4.35), (2.8, 4.35)):
+            point = pcbnew.VECTOR2I(iu(x), iu(y))
+            polygon.Append(point)
+            filled.Append(point)
+        zone.SetFilledPolysList(pcbnew.F_Cu, filled)
         self.board.Add(zone)
         self.assertIn('fixed access intersects existing copper',
                       self.run_case()['allocations'][0]['reason'])

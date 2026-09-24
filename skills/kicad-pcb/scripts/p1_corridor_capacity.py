@@ -285,6 +285,26 @@ def _fixed_access_shapes(target, witness, corridor, source_region):
     return shapes
 
 
+def _filled_zone_intersects(zone, layer_id, shape):
+    """Check saved copper polygons, never a refillable zone outline."""
+    if not zone.IsOnLayer(layer_id):
+        return False
+    try:
+        filled = zone.GetFilledPolysList(layer_id)
+        if filled.OutlineCount() == 0:
+            return False
+        access = pcbnew.SHAPE_POLY_SET()
+        access.NewOutline()
+        for x, y in ((shape[0], shape[1]), (shape[2], shape[1]),
+                     (shape[2], shape[3]), (shape[0], shape[3])):
+            access.Append(pcbnew.VECTOR2I(pcbnew.FromMM(x), pcbnew.FromMM(y)))
+        filled = filled.CloneDropTriangulation()
+        filled.BooleanIntersection(access)
+        return filled.OutlineCount() > 0 and filled.Area() > 0
+    except (AttributeError, RuntimeError, TypeError) as exc:
+        raise ContractError(f'saved zone fill geometry unreadable: {exc}') from exc
+
+
 def _virtual_region_clearance(witness, reservation, regions):
     """A virtual face and its exterior reservation cannot consume another cell.
 
@@ -821,8 +841,7 @@ def evaluate_coarse(board_path, contract_path, expected_contract_sha256=None, *,
                                        for item in board.GetTracks()):
                                     raise ContractError(f"{verified['source']}: fixed access intersects existing copper")
                                 if any(not zone.GetIsRuleArea() and
-                                       zone.IsOnLayer(board.GetLayerID(corridor['layer'])) and
-                                       any(intersects(shape, box_mm(zone.GetBoundingBox()))
+                                       any(_filled_zone_intersects(zone, board.GetLayerID(corridor['layer']), shape)
                                            for shape in shapes)
                                        for zone in zones):
                                     raise ContractError(f"{verified['source']}: fixed access intersects existing copper")
