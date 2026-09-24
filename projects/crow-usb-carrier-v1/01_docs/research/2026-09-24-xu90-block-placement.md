@@ -21,3 +21,11 @@ crystal, and ADC-timing reservation work. The four named corridor allocations
 remain incomplete until a fresh, hash-bound candidate demonstrates measured
 capacity and reference allocation. Connector FULL remains incomplete on its
 19 physical targets.
+
+`U_USB_ESD` is also anchored at `[217.0, 36.0, 0]`. This is a collision-clean
+connector-side starting point within `usb_frontend`, while retaining the fixed
+JTAG connector pose. The corresponding isolated generator probe has SHA-256
+`95d8878f8f6935cb6d0fa5904b8936b2a76afc7fca58a4efc60ab74402aa7afd` and
+verified all 57 ordinary anchors, 135 post anchors, 569 courtyards, and 1,807
+copper pads without an overlap. It does not demonstrate a short USB pair,
+ESD return implementation, capacity reservation, or connector FULL.
