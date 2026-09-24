@@ -22,16 +22,20 @@ gates:
   - 08_reviews/2026-09-22_admission_sol_source.md
 - id: USB-schematic
   required_for: DESIGN_CLEAN
-  state: pass
+  state: pending
   owner: electrical
-  closes_when: Generate complete native schematic and netlist from admitted source;
-    pass electrical gates and independent topology and rendered-schematic review.
+  closes_when: Generate a current 569-component schematic and netlist from admitted
+    source; pass electrical gates and formal independent topology and rendered-schematic
+    review. The archived readability-held subject is diagnostic only and cannot close this gate.
   evidence:
   - 03_tscircuit/src/crow_carrier.tsx
   - 08_reviews/2026-09-23_schematic-r2_terra_source.md
   - 08_reviews/2026-09-23_topology-r2_terra_source.md
   - 08_reviews/2026-09-23_schematic-land-carryover_terra_source.md
   - 08_reviews/2026-09-23_topology-land-carryover_terra_source.md
+  - 06_build/failed_schematic_subjects/2026-09-24-adc65-569-readability-hold-v2/SHA256SUMS
+  - 01_docs/research/crow-569-schematic-review-topology-terra-r1.md
+  - 01_docs/research/crow-569-schematic-review-render-terra-r1.md
 - id: USB-layout
   required_for: DESIGN_CLEAN
   state: pending

@@ -1,45 +1,30 @@
 {
-  "blocker": "Current 569-component source passes canonical S-PART-FREEZE public prelayout: 4/4 accepted, 569/569 exact-source coverage and 88/88 public-catalog lines. This catalog evidence is current but unreserved; authenticated PCBA allocation, procurement and order remain open. Full schematic review from current CJ 1f01be73 is owed. Reviewed ADC65 E-FAULT source binding still owes complete fitted-board physical waveform qualification. Reviewed 18-pose power placement is source-only with no native P2 acceptance. Historical 568 CJ/schematic/checkpoint, c3d90659 measurement, reviews and graph subjects remain immutable and stale. Connector FULL 19 and 499 unrouted items block P3, routing, P5, release and order.",
+  "blocker": "Current 569-component schematic subject is archived as noncanonical failed-review evidence: electrical observation is 569/569 with 0 ERC errors and 4173 warnings; topology diagnostic is SOUND but rendered schematic is DEFECTIVE for readability. Original producer remains ERROR; artifact-observation PASS is not producer acceptance. Fresh formal independent topology/render review is owed. FULL19, E-FAULT physical qualification, P2/P3, routing, release and order remain held.",
   "checkpoint": {
     "path": "06_build/checkpoints/schematic.json",
     "sha256": "2fb4dd626750114476150d550d88cf15c0d5a2deb5d8e971e1be67a2a7bde856",
     "size": 1152
   },
-  "next_command": "Seek explicit admission for a fresh full schematic campaign from current CJ 1f01be73 and independent schematic review. Before procurement or release, obtain complete fitted-board J_PWR waveform qualification; before ordering, complete authenticated PCBA allocation/process evidence. Do not run native placement. Complete 89-ref power qualitative and later saved-copper proof before P2 acceptance.",
+  "next_command": "Correct readability in a reviewed source proposal, then admit and run a fresh current-source schematic campaign with formal independent topology and render reviews. Do not treat archived payload or observation receipt as an accepted checkpoint; do not run native placement.",
   "phase": "placement",
   "project": "crow-usb-carrier-v1",
   "receipts": [
     {
-      "path": "01_docs/research/2026-09-24-adc65-efault-addendum-review-terra.md",
-      "sha256": "4105480acc0277d6674e48b4f06a95745988f29e67b8676cb2b17f9831ae6c30",
-      "size": 6024
+      "path": "01_docs/research/crow-569-schematic-review-render-terra-r1.md",
+      "sha256": "a0cac14bcdb959cfd19b38caa590bd54bb9051415c2e2679320d51fe0cbf81d9",
+      "size": 6188
     },
     {
-      "path": "01_docs/research/2026-09-24-p2-power-constructive-source-review-terra.md",
-      "sha256": "7fd8d4e9e52cf38fa5161b704ee842b33933f1344192555231b8ef7512ad45af",
-      "size": 8097
+      "path": "01_docs/research/crow-569-schematic-review-topology-terra-r1.md",
+      "sha256": "46a567c64f309dfca7ce7f47494f4b96207f75c81abbf4de1377087dd6790c1b",
+      "size": 6025
     },
     {
-      "path": "01_docs/research/2026-09-24-public-stock-569/S-PART-FREEZE.stage.json",
-      "sha256": "65638695dd265e1cd563f1d9acd69c6b2a6ed51615681d55f777d0cbaa362d6b",
-      "size": 775
-    },
-    {
-      "path": "01_docs/research/2026-09-24-public-stock-569/compact-receipt.json",
-      "sha256": "0f7928fc4adf1feaa2a4b069d23516c0ebc4b042206308a95ab5b453374ef77f",
-      "size": 441
-    },
-    {
-      "path": "01_docs/research/2026-09-24-public-stock-569/manufacturing_readiness_prelayout.json",
-      "sha256": "a95cf60b8f57964cd8a01c1cd55fc6fbc3c3b093000f0ce6296ce70ca619c564",
-      "size": 272011
-    },
-    {
-      "path": "01_docs/research/2026-09-24-public-stock-569/terra-authoritative-public-review.md",
-      "sha256": "1b5fcfd977e1e7e661994b641fbf2341be073d13e6b5a8c1b659653a6c0cb4d7",
-      "size": 8578
+      "path": "06_build/failed_schematic_subjects/2026-09-24-adc65-569-readability-hold-v2/SHA256SUMS",
+      "sha256": "eaa99fb6cc724930099c8205edfb1c4f77aa7891fec20aab9b3aa99744e2ed29",
+      "size": 2052
     }
   ],
   "schema": 1,
-  "state_id": "e36d19d386e7c0da7e76527ce9151f89158d9ec8d125de7e97f7b8b6bfca1515"
+  "state_id": "b5ae3b3566ea32911b364a4257eb865f101075d37cec682bce3e37e0916eda56"
 }
