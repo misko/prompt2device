@@ -15,18 +15,16 @@ receipt_requirements:
 allocations:
   - id: usb_device_pair
     owner: board_integration
-    coverage_nets: [USB_DP, USB_DN, VBUS_USB, VBUS_PRESENT_N, CHASSIS]
-    endpoint_owners: [usb_frontend, usb_vbus_sense, xmos_core, mechanical]
+    coverage_nets: [USB_DP, USB_DN, VBUS_USB, VBUS_PRESENT_N]
+    endpoint_owners: [usb_frontend, usb_vbus_sense, xmos_core]
     endpoints:
       USB_DP: {usb_frontend: [J_USB.12, J_USB.4, U_USB_ESD.1], xmos_core: [U_XU.60]}
       USB_DN: {usb_frontend: [J_USB.13, J_USB.5, U_USB_ESD.2], xmos_core: [U_XU.59]}
       VBUS_USB: {usb_frontend: [C_USB_VBUS.1, J_USB.10, J_USB.15, J_USB.2, J_USB.7, R_USB_VBUS_BLEED.1, U_USB_VBUS_ESD.3], usb_vbus_sense: [R_VBUS_B.1]}
       VBUS_PRESENT_N: {usb_vbus_sense: [Q_VBUS.3, R_VBUS_PU.2], xmos_core: [U_XU.8]}
-      CHASSIS: {mechanical: [J1.SHIELD, J2.SHIELD, J3.SHIELD, J4.SHIELD, J5.SHIELD, J6.SHIELD, J7.SHIELD, J8.SHIELD]}
     demands:
       - {id: usb_pair, nets: [USB_DP, USB_DN], layers: [F.Cu], slots: 1, slot_pitch_mm: 0.97, pair_center_spacing_mm: 0.56, required_width_mm: 0.97}
       - {id: usb_local_power, nets: [VBUS_USB, VBUS_PRESENT_N], status: INCOMPLETE, reason: local entry and sense geometry unallocated}
-      - {id: chassis, nets: [CHASSIS], status: INCOMPLETE, reason: shell-to-GND mechanical separation is separate}
     geometry: null
     limited_endpoint_evidence:
       source: ../../01_docs/research/2026-09-24-usb-fcu-launch-diagnostic-summary.json
@@ -112,8 +110,40 @@ allocations:
 
 power_boundary_windows:
   owner: board_integration
-  coverage_nets: [GND, N0V9, N12V_PROTECTED, N1V8, N3V3X, N3V3_ADC, N5V_BUCK, N5V_LDO_HOLD, PWR_EN]
+  coverage_nets: [CHASSIS, GND, N0V9, N12V_PROTECTED, N1V8, N3V3X, N3V3_ADC, N5V_BUCK, N5V_LDO_HOLD, PWR_EN]
   endpoints: {source: ../modular_plan.json#/interfaces}
   status: INCOMPLETE
-  geometry: null
-  reason: rail current, return, and thermal needs cannot be replaced with scalar corridor slots
+  endpoint_evidence:
+    CHASSIS:
+      native_required_pads: [J1.9, J1.10, J2.9, J2.10, J3.9, J3.10, J4.9, J4.10,
+        J5.9, J5.10, J6.9, J6.10, J7.9, J7.10, J8.9, J8.10]
+      proof: each listed native pad must be net CHASSIS; RJ45 shell copper remains distinct from GND
+    usb_shield:
+      net: GND
+      native_required_pads: [J_USB.SH]
+      multiplicity: 4
+      proof: all four physical J_USB.SH pads must be net GND; USB shield is a local GND feature, not CHASSIS
+  geometry:
+    schema: crow-power-boundary-windows-v1
+    coordinate_system: board-mm-bbox-[x0,y0,x1,y1]
+    status: INCOMPLETE
+    semantics: source-reservation-envelope-not-copper-lane-or-current-thermal-proof
+    windows:
+      - {id: gnd_input_return, net: GND, bbox: [25, 85, 70, 110], role: input-buck-local-return-reservation}
+      - {id: gnd_hold_return, net: GND, bbox: [24, 105, 126, 137], role: held-bank-and-quiet-power-return-reservation}
+      - {id: gnd_adc_return, net: GND, bbox: [125, 85, 145, 125], role: ldo-adc-local-return-reservation}
+      - {id: gnd_digital_return, net: GND, bbox: [145, 85, 185, 134], role: regulator-and-digital-local-return-reservation}
+      - {id: gnd_xu_return, net: GND, bbox: [199.825, 91.325, 217.175, 108.675], role: xmos-package-return-reservation}
+      - {id: n12v_protected_input_cell, net: N12V_PROTECTED, bbox: [25, 85, 70, 110], role: q_in-to-u_buck-input-cell}
+      - {id: n5v_buck_source_cell, net: N5V_BUCK, bbox: [25, 85, 70, 110], role: u_buck-output-and-local-output-bank}
+      - {id: n5v_buck_hold_entry, net: N5V_BUCK, bbox: [24, 105, 75, 134], role: precharge-and-held-rail-entry}
+      - {id: n5v_buck_digital_entry, net: N5V_BUCK, bbox: [145, 85, 185, 134], role: three-downstream-regulator-inputs}
+      - {id: n3v3_adc_ldo_adc_cell, net: N3V3_ADC, bbox: [125, 85, 145, 125], role: ldo-output-and-adc-entry}
+      - {id: n5v_ldo_hold_bank, net: N5V_LDO_HOLD, bbox: [24, 105, 126, 137], role: held-bank-and-quiet-load-reservation}
+      - {id: n0v9_xu_entry, net: N0V9, bbox: [185, 91.325, 201, 108.675], role: digital-power-to-xu-package-handoff}
+      - {id: n1v8_xu_entry, net: N1V8, bbox: [185, 91.325, 201, 108.675], role: digital-power-to-xu-package-handoff}
+      - {id: n3v3x_xu_entry, net: N3V3X, bbox: [185, 91.325, 201, 108.675], role: digital-power-to-xu-package-handoff}
+      - {id: pwr_en_power_source, net: PWR_EN, bbox: [70, 90, 80, 97], role: u_pwr-control-cell}
+      - {id: pwr_en_adc_entry, net: PWR_EN, bbox: [95, 103, 101, 107], role: u_adc_pwr_bad-entry-cell}
+      - {id: pwr_en_audio_entry, net: PWR_EN, bbox: [20, 108, 24, 112], role: u_audio-entry-cell}
+  reason: rail current, return, and thermal needs cannot be replaced with scalar corridor slots; all local copper remains P2 evidence
