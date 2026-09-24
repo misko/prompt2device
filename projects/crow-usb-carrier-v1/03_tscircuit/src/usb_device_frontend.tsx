@@ -30,12 +30,12 @@ function dataEsdFootprint() { return <footprint>
 </footprint> }
 
 // Explicit DRL lands: pinned footprinter does not recognize "sot553".
-// KiCad SOT-553 centers are reflected into tscircuit's y-up local frame.
+// TI DRL0005A centers and lands are reflected into tscircuit's y-up local frame.
 function auxiliaryEsdFootprint() { return <footprint>
-  {[[1,-0.7125,0.5],[2,-0.7125,0],[3,-0.7125,-0.5],
-    [4,0.7125,-0.5],[5,0.7125,0.5]].map(([pin,x,y]) =>
+  {[[1,-0.74,0.5],[2,-0.74,0],[3,-0.74,-0.5],
+    [4,0.74,-0.5],[5,0.74,0.5]].map(([pin,x,y]) =>
     <smtpad portHints={[String(pin)]} pcbX={x} pcbY={y}
-      width={0.675} height={0.35} shape="rect" />)}
+      width={0.67} height={0.30} shape="rect" />)}
 </footprint> }
 
 export function UsbDeviceFrontend({ nets, receptacleFootprint }:

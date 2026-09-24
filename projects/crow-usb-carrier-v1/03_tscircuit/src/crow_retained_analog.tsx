@@ -2,7 +2,7 @@ import { MurataGrm32e1210 } from "./z_power_aux_footprints"
 import { Fragment } from "react"
 import {
   CirrusCs5308pQfn48, Diodes2N7002kSot23, TiDrc0010j, TiRtw0024a,
-  PanasonicEeeFk8x10, Sot553, TiDck0005a, TiDse0006a, TiYbh0009C02Tmux4827,
+  PanasonicEeeFk8x10, TiDrl0005aTpd2e2u06, TiDck0005a, TiDse0006a, TiYbh0009C02Tmux4827,
   Wurth615008160221Rj45, YageoRt0603,
 } from "./z_analog_exact_footprints"
 
@@ -98,7 +98,7 @@ const Spoke = ({ index, n }: any) => (
     <C name={`C_SPOKE_IN${index}`} value="100nF" a="12V_PROTECTED" b="GND" mpn="CC0805KRX7R9BB104" jlc="C49678" footprint="0805" n={n} />
     <C name={`C_SPOKE_OUT${index}`} value="100nF" a={`12V_POD${index}`} b="GND" mpn="CC0805KRX7R9BB104" jlc="C49678" footprint="0805" n={n} />
     <Chip name={`U_ESD${index}`} manufacturerPartNumber="TPD2E2U06DRLR" jlc="C1972959"
-      footprint={<Sot553 />}
+      footprint={<TiDrl0005aTpd2e2u06 />}
       pinLabels={{ pin1: "NC1", pin2: "NC2", pin3: "IO1", pin4: "GND", pin5: "IO2" }}
       connections={{ pin3: n(`AUDIO_P${index}`), pin4: n("GND"), pin5: n(`AUDIO_N${index}`) }} />
   </>

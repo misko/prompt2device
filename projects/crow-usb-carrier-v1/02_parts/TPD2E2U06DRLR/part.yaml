@@ -14,7 +14,8 @@ datasheet:
   provenance: Downloaded directly from ti.com; the committed PDF matches the declared SHA-256 and includes the exact DRLR
     order row and DRL/SOT-553 pin map.
 package: DRL SOT-553 P0.5mm
-footprint: Package_TO_SOT_SMD:SOT-553
+footprint: crow_usb_analog:TI_DRL0005A_TPD2E2U06
+# TI SLLSEG9C DRL0005A example land pattern: 5 x 0.67 by 0.30 mm, 0.50 mm pitch; source footprint is exact-part scoped.
 escape:
   style: leaded
   pitch: 0.5

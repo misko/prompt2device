@@ -1612,7 +1612,7 @@ parts:
   applications:
   - refdes: U_ESD1
     mode: esd1
-    footprint: Package_TO_SOT_SMD:SOT-553
+    footprint: crow_usb_analog:TI_DRL0005A_TPD2E2U06
     critical_pins_or_nets:
     - "U_ESD1.3"
     - "U_ESD1.4"
@@ -1636,7 +1636,7 @@ parts:
     - "Verify both protected IO pads retain their distinct signal paths and common low-inductance ground return."
   - refdes: U_ESD2
     mode: esd2
-    footprint: Package_TO_SOT_SMD:SOT-553
+    footprint: crow_usb_analog:TI_DRL0005A_TPD2E2U06
     critical_pins_or_nets:
     - "U_ESD2.3"
     - "U_ESD2.4"
@@ -1660,7 +1660,7 @@ parts:
     - "Verify both protected IO pads retain their distinct signal paths and common low-inductance ground return."
   - refdes: U_ESD3
     mode: esd3
-    footprint: Package_TO_SOT_SMD:SOT-553
+    footprint: crow_usb_analog:TI_DRL0005A_TPD2E2U06
     critical_pins_or_nets:
     - "U_ESD3.3"
     - "U_ESD3.4"
@@ -1684,7 +1684,7 @@ parts:
     - "Verify both protected IO pads retain their distinct signal paths and common low-inductance ground return."
   - refdes: U_ESD4
     mode: esd4
-    footprint: Package_TO_SOT_SMD:SOT-553
+    footprint: crow_usb_analog:TI_DRL0005A_TPD2E2U06
     critical_pins_or_nets:
     - "U_ESD4.3"
     - "U_ESD4.4"
@@ -1708,7 +1708,7 @@ parts:
     - "Verify both protected IO pads retain their distinct signal paths and common low-inductance ground return."
   - refdes: U_ESD5
     mode: esd5
-    footprint: Package_TO_SOT_SMD:SOT-553
+    footprint: crow_usb_analog:TI_DRL0005A_TPD2E2U06
     critical_pins_or_nets:
     - "U_ESD5.3"
     - "U_ESD5.4"
@@ -1732,7 +1732,7 @@ parts:
     - "Verify both protected IO pads retain their distinct signal paths and common low-inductance ground return."
   - refdes: U_ESD6
     mode: esd6
-    footprint: Package_TO_SOT_SMD:SOT-553
+    footprint: crow_usb_analog:TI_DRL0005A_TPD2E2U06
     critical_pins_or_nets:
     - "U_ESD6.3"
     - "U_ESD6.4"
@@ -1756,7 +1756,7 @@ parts:
     - "Verify both protected IO pads retain their distinct signal paths and common low-inductance ground return."
   - refdes: U_ESD7
     mode: esd7
-    footprint: Package_TO_SOT_SMD:SOT-553
+    footprint: crow_usb_analog:TI_DRL0005A_TPD2E2U06
     critical_pins_or_nets:
     - "U_ESD7.3"
     - "U_ESD7.4"
@@ -1780,7 +1780,7 @@ parts:
     - "Verify both protected IO pads retain their distinct signal paths and common low-inductance ground return."
   - refdes: U_ESD8
     mode: esd8
-    footprint: Package_TO_SOT_SMD:SOT-553
+    footprint: crow_usb_analog:TI_DRL0005A_TPD2E2U06
     critical_pins_or_nets:
     - "U_ESD8.3"
     - "U_ESD8.4"
@@ -1804,7 +1804,7 @@ parts:
     - "Verify both protected IO pads retain their distinct signal paths and common low-inductance ground return."
   - refdes: U_USB_CC_ESD
     mode: usb cc esd
-    footprint: Package_TO_SOT_SMD:SOT-553
+    footprint: crow_usb_analog:TI_DRL0005A_TPD2E2U06
     critical_pins_or_nets:
     - "U_USB_CC_ESD.3"
     - "U_USB_CC_ESD.4"
@@ -1828,7 +1828,7 @@ parts:
     - "Verify both protected IO pads retain their distinct signal paths and common low-inductance ground return."
   - refdes: U_USB_VBUS_ESD
     mode: usb vbus esd
-    footprint: Package_TO_SOT_SMD:SOT-553
+    footprint: crow_usb_analog:TI_DRL0005A_TPD2E2U06
     critical_pins_or_nets:
     - "U_USB_VBUS_ESD.3"
     - "U_USB_VBUS_ESD.4"
