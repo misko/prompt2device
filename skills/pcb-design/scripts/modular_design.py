@@ -233,7 +233,7 @@ def observe_circuit(value: Any) -> dict[str, Any]:
 
 def _parse_plan(plan: Any) -> dict[str, Any]:
     plan = _exact(plan, {"schema", "stage_id", "blocks", "interfaces",
-                         "shared_responsibilities", "work_items"}, "plan")
+                         "shared_responsibilities", "external_prerequisites", "work_items"}, "plan")
     if plan["schema"] != SCHEMA or isinstance(plan["schema"], bool):
         _fail("plan.schema: only schema 1 is supported")
     if plan["stage_id"] not in STAGE_IDS:
@@ -284,10 +284,26 @@ def _parse_plan(plan: Any) -> dict[str, Any]:
     if len({row["net"] for row in interfaces}) != len(interfaces):
         _fail("interfaces: each crossing net must have one combined disposition")
 
+    prerequisites: dict[str, dict[str, str]] = {}
+    for index, raw in enumerate(_list(plan["external_prerequisites"], "plan.external_prerequisites")):
+        row = _exact(raw, {"id", "kind", "phase_receipt", "binding_receipt"},
+                     f"external_prerequisites[{index}]")
+        prerequisite_id = _token(row["id"], f"external_prerequisites[{index}].id")
+        if prerequisite_id in prerequisites:
+            _fail(f"external_prerequisites: duplicate id {prerequisite_id}")
+        if row["kind"] != "connector_full":
+            _fail(f"external_prerequisites[{index}].kind: only connector_full is supported")
+        phase_receipt, binding_receipt = _paths(
+            [row["phase_receipt"], row["binding_receipt"]],
+            f"external_prerequisites[{index}]", nonempty=True)
+        prerequisites[prerequisite_id] = {"id": prerequisite_id, "kind": row["kind"],
+                                          "phase_receipt": phase_receipt,
+                                          "binding_receipt": binding_receipt}
+
     items: dict[str, dict[str, Any]] = {}
     for index, raw in enumerate(_list(plan["work_items"], "plan.work_items", nonempty=True)):
         row = _exact(raw, {"id", "phase", "stage_id", "blocks", "depends_on",
-                           "max_attempts", "backtrack_to", "evidence"}, f"work_items[{index}]")
+                           "max_attempts", "backtrack_to", "external_prerequisites", "evidence"}, f"work_items[{index}]")
         wid = _token(row["id"], f"work_items[{index}].id")
         if wid in items:
             _fail(f"work_items: duplicate id {wid}")
@@ -308,6 +324,8 @@ def _parse_plan(plan: Any) -> dict[str, Any]:
                       "depends_on": _strings(row["depends_on"], f"work_items[{index}].depends_on"),
                       "max_attempts": attempts,
                       "backtrack_to": _strings(row["backtrack_to"], f"work_items[{index}].backtrack_to"),
+                      "external_prerequisites": _strings(
+                          row["external_prerequisites"], f"work_items[{index}].external_prerequisites"),
                       "evidence": _paths(row["evidence"], f"work_items[{index}].evidence", nonempty=True)}
     for item in items.values():
         for dependency in item["depends_on"]:
@@ -320,6 +338,11 @@ def _parse_plan(plan: Any) -> dict[str, Any]:
                 _fail(f"work item {item['id']}: unknown backtrack target {target}")
             if PHASE_RANK[items[target]["phase"]] >= PHASE_RANK[item["phase"]]:
                 _fail(f"work item {item['id']}: backtrack target {target} is not earlier")
+        for prerequisite_id in item["external_prerequisites"]:
+            if prerequisite_id not in prerequisites:
+                _fail(f"work item {item['id']}: unknown external prerequisite {prerequisite_id}")
+        if item["phase"] == "P3_CRITICAL_LOCAL_ROUTES" and item["external_prerequisites"] != ("connector_full",):
+            _fail(f"work item {item['id']}: every P3 task requires exactly connector_full")
     _acyclic(items)
     all_blocks = set(blocks)
     p1 = [row for row in items.values() if row["phase"] == "P1_FLOORPLAN"]
@@ -334,11 +357,14 @@ def _parse_plan(plan: Any) -> dict[str, Any]:
     p5 = [row for row in items.values() if row["phase"] == "P5_INTEGRATED_PLACEMENT_REVIEW"]
     if len(p5) != 1 or set(p5[0]["blocks"]) != all_blocks:
         _fail("work_items: exactly one P5 integrated placement review covering every block is required")
+    if p5[0]["external_prerequisites"] != ("connector_full",):
+        _fail("work_items: P5 requires exactly connector_full")
     required_ids = set(items) - {p5[0]["id"]}
     if not required_ids.issubset(_ancestors(p5[0]["id"], items)):
         _fail("work_items: P5 must depend transitively on every prior work item")
     return {"stage_id": plan["stage_id"], "blocks": blocks, "interfaces": interfaces,
-            "shared_responsibilities": shared, "work_items": items}
+            "shared_responsibilities": shared, "external_prerequisites": prerequisites,
+            "work_items": items}
 
 
 def _acyclic(items: Mapping[str, Mapping[str, Any]]) -> None:
@@ -408,6 +434,79 @@ def _reopen_regular(root: Path, relative: str, where: str) -> Path:
     if not resolved.is_relative_to(root) or not resolved.is_file():
         _fail(f"{where}: path is not a regular file below evidence_root: {relative}")
     return resolved
+
+
+def _binding(path: Path, relative: str) -> dict[str, Any]:
+    return {"path": relative, "sha256": _sha256(path), "size": path.stat().st_size}
+
+
+def _validate_connector_full(prerequisite: Mapping[str, str], evidence_root: Path | None) -> list[str]:
+    """Regrade FULL and bind it to an exact native board or coupon receipt.
+
+    A task observation cannot replace this independent physical prerequisite.
+    """
+    if evidence_root is None:
+        return ["connector_full: evidence_root is required"]
+    try:
+        phase_path = _reopen_regular(evidence_root, prerequisite["phase_receipt"], "connector_full")
+        binding_path = _reopen_regular(evidence_root, prerequisite["binding_receipt"], "connector_full")
+    except ModularDesignError as exc:
+        return [str(exc)]
+    try:
+        binding = json.loads(binding_path.read_text())
+    except (OSError, json.JSONDecodeError) as exc:
+        return [f"connector_full: cannot read binding receipt: {exc}"]
+    expected = {"schema", "kind", "full_receipt", "subject"}
+    if not isinstance(binding, Mapping) or set(binding) != expected:
+        return ["connector_full: binding receipt has an invalid schema"]
+    if binding.get("schema") != 1 or binding.get("kind") != "connector-full-p3-binding":
+        return ["connector_full: binding receipt kind/schema is invalid"]
+    full = binding.get("full_receipt")
+    if not isinstance(full, Mapping) or set(full) != {"path", "sha256", "size"} or full != _binding(phase_path, prerequisite["phase_receipt"]):
+        return ["connector_full: binding does not match the exact FULL receipt"]
+    subject = binding.get("subject")
+    if not isinstance(subject, Mapping) or set(subject) not in ({"kind", "artifact"}, {"kind", "artifact", "coupon_receipt"}):
+        return ["connector_full: binding subject has an invalid schema"]
+    kind, artifact = subject.get("kind"), subject.get("artifact")
+    if kind not in {"native_board", "governed_coupon"} or not isinstance(artifact, Mapping) or set(artifact) != {"path", "sha256", "size"}:
+        return ["connector_full: subject must bind a native board or governed coupon"]
+    try:
+        artifact_path = _reopen_regular(evidence_root, artifact["path"], "connector_full")
+    except (TypeError, ModularDesignError) as exc:
+        return [f"connector_full: invalid subject artifact: {exc}"]
+    if artifact != _binding(artifact_path, artifact["path"]):
+        return ["connector_full: subject artifact bytes are stale"]
+    if kind == "governed_coupon":
+        coupon = subject.get("coupon_receipt")
+        if not isinstance(coupon, Mapping) or set(coupon) != {"path", "sha256", "size"}:
+            return ["connector_full: governed coupon lacks its exact qualification receipt"]
+        try:
+            coupon_path = _reopen_regular(evidence_root, coupon["path"], "connector_full")
+        except (TypeError, ModularDesignError) as exc:
+            return [f"connector_full: invalid coupon receipt: {exc}"]
+        if coupon != _binding(coupon_path, coupon["path"]):
+            return ["connector_full: governed coupon receipt bytes are stale"]
+        try:
+            coupon_receipt = json.loads(coupon_path.read_text())
+        except (OSError, json.JSONDecodeError) as exc:
+            return [f"connector_full: cannot read coupon receipt: {exc}"]
+        if not isinstance(coupon_receipt, Mapping) or coupon_receipt.get("kind") != "connector-qualification-coupon-receipt" or coupon_receipt.get("status") != "PASS" or coupon_receipt.get("inputs", {}).get("coupon_board") != artifact:
+            return ["connector_full: coupon receipt does not pass and bind the coupon board"]
+    try:
+        import connector_assembly_phase_gate as phase_gate
+        valid, findings = phase_gate.regrade_phase_gate(phase_path, evidence_root, expected_phase="full")
+    except Exception as exc:  # fail closed on unavailable or invalid external verifier
+        return [f"connector_full: cannot regrade FULL receipt: {exc}"]
+    if not valid:
+        return [f"connector_full: FULL regrade failed: {'; '.join(findings)}"]
+    try:
+        phase = json.loads(phase_path.read_text())
+    except (OSError, json.JSONDecodeError) as exc:
+        return [f"connector_full: cannot read FULL receipt: {exc}"]
+    if (phase.get("status") != "PASS" or phase.get("authority", {}).get("base_status") != "PASS" or
+            phase.get("summary", {}).get("base_unknown_count") != 0):
+        return ["connector_full: FULL requires base PASS and zero unknowns"]
+    return []
 
 
 def evaluate(plan: Any, circuit: Any, observations: Sequence[Mapping[str, Any]] = (),
@@ -492,16 +591,24 @@ def evaluate(plan: Any, circuit: Any, observations: Sequence[Mapping[str, Any]] 
         rows.sort(key=lambda row: row["identity"])
     work = {}
     completed = set()
+    prerequisite_findings: dict[str, list[str]] = {}
     for wid in _work_order(parsed["work_items"]):
         item = parsed["work_items"][wid]
         attempts = obs_by_item.get(wid, [])
         last = attempts[-1]["status"] if attempts else None
         deps_missing = sorted(set(item["depends_on"]) - completed)
+        missing_prerequisites = []
+        for prerequisite_id in item["external_prerequisites"]:
+            if prerequisite_id not in prerequisite_findings:
+                prerequisite = parsed["external_prerequisites"][prerequisite_id]
+                prerequisite_findings[prerequisite_id] = _validate_connector_full(prerequisite, evidence_root)
+            if prerequisite_findings[prerequisite_id]:
+                missing_prerequisites.append(prerequisite_id)
         evidence_seen = set(attempts[-1]["evidence"]) if attempts else set()
         evidence_missing = sorted(set(item["evidence"]) - evidence_seen)
         if len(attempts) > item["max_attempts"]:
             state = "ATTEMPT_LIMIT_EXCEEDED"
-        elif deps_missing:
+        elif deps_missing or missing_prerequisites:
             state = "BLOCKED"
         elif last == "PASS" and not evidence_missing:
             state = "WORK_RECORDED"
@@ -512,7 +619,9 @@ def evaluate(plan: Any, circuit: Any, observations: Sequence[Mapping[str, Any]] 
             state = "READY"
         work[wid] = {"phase": item["phase"], "state": state,
                      "attempts": len(attempts), "max_attempts": item["max_attempts"],
-                     "blocked_by": deps_missing, "missing_evidence": evidence_missing,
+                     "blocked_by": deps_missing, "blocked_by_external": missing_prerequisites,
+                     "external_findings": {pid: prerequisite_findings[pid] for pid in missing_prerequisites},
+                     "missing_evidence": evidence_missing,
                      "backtrack_to": list(item["backtrack_to"]),
                      "engineering_acceptance": "NOT_EVALUATED"}
     return {"schema": SCHEMA, "status": "PASS" if not findings else "FAIL",

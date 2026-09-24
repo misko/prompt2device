@@ -2700,7 +2700,8 @@
       "id": "p1_floorplan_569_after_native_evidence_abort",
       "max_attempts": 1,
       "phase": "P1_FLOORPLAN",
-      "stage_id": "KICAD-PLACEMENT"
+      "stage_id": "KICAD-PLACEMENT",
+      "external_prerequisites": []
     },
     {
       "backtrack_to": [
@@ -2719,7 +2720,8 @@
       "id": "p2_input_power_r3_evidence_adoption",
       "max_attempts": 1,
       "phase": "P2_BLOCK_PLACEMENT",
-      "stage_id": "KICAD-PLACEMENT"
+      "stage_id": "KICAD-PLACEMENT",
+      "external_prerequisites": []
     },
     {
       "backtrack_to": [
@@ -2740,7 +2742,8 @@
       "id": "p2_analog_1_4",
       "max_attempts": 2,
       "phase": "P2_BLOCK_PLACEMENT",
-      "stage_id": "KICAD-PLACEMENT"
+      "stage_id": "KICAD-PLACEMENT",
+      "external_prerequisites": []
     },
     {
       "backtrack_to": [
@@ -2761,7 +2764,8 @@
       "id": "p2_analog_5_8",
       "max_attempts": 2,
       "phase": "P2_BLOCK_PLACEMENT",
-      "stage_id": "KICAD-PLACEMENT"
+      "stage_id": "KICAD-PLACEMENT",
+      "external_prerequisites": []
     },
     {
       "backtrack_to": [
@@ -2779,7 +2783,8 @@
       "id": "p2_adc_reference",
       "max_attempts": 2,
       "phase": "P2_BLOCK_PLACEMENT",
-      "stage_id": "KICAD-PLACEMENT"
+      "stage_id": "KICAD-PLACEMENT",
+      "external_prerequisites": []
     },
     {
       "backtrack_to": [
@@ -2798,7 +2803,8 @@
       "id": "p2_digital_power_core",
       "max_attempts": 2,
       "phase": "P2_BLOCK_PLACEMENT",
-      "stage_id": "KICAD-PLACEMENT"
+      "stage_id": "KICAD-PLACEMENT",
+      "external_prerequisites": []
     },
     {
       "backtrack_to": [
@@ -2817,7 +2823,8 @@
       "id": "p2_clock_flash_audio",
       "max_attempts": 2,
       "phase": "P2_BLOCK_PLACEMENT",
-      "stage_id": "KICAD-PLACEMENT"
+      "stage_id": "KICAD-PLACEMENT",
+      "external_prerequisites": []
     },
     {
       "backtrack_to": [
@@ -2837,7 +2844,8 @@
       "id": "p2_usb_service",
       "max_attempts": 2,
       "phase": "P2_BLOCK_PLACEMENT",
-      "stage_id": "KICAD-PLACEMENT"
+      "stage_id": "KICAD-PLACEMENT",
+      "external_prerequisites": []
     },
     {
       "backtrack_to": [
@@ -2859,7 +2867,10 @@
       "id": "p3_power_loops",
       "max_attempts": 2,
       "phase": "P3_CRITICAL_LOCAL_ROUTES",
-      "stage_id": "KICAD-PLACEMENT"
+      "stage_id": "KICAD-PLACEMENT",
+      "external_prerequisites": [
+        "connector_full"
+      ]
     },
     {
       "backtrack_to": [
@@ -2889,7 +2900,10 @@
       "id": "p3_analog_handoffs",
       "max_attempts": 2,
       "phase": "P3_CRITICAL_LOCAL_ROUTES",
-      "stage_id": "KICAD-PLACEMENT"
+      "stage_id": "KICAD-PLACEMENT",
+      "external_prerequisites": [
+        "connector_full"
+      ]
     },
     {
       "backtrack_to": [
@@ -2913,7 +2927,10 @@
       "id": "p3_timing_boot",
       "max_attempts": 2,
       "phase": "P3_CRITICAL_LOCAL_ROUTES",
-      "stage_id": "KICAD-PLACEMENT"
+      "stage_id": "KICAD-PLACEMENT",
+      "external_prerequisites": [
+        "connector_full"
+      ]
     },
     {
       "backtrack_to": [
@@ -2935,7 +2952,10 @@
       "id": "p3_usb_pair",
       "max_attempts": 2,
       "phase": "P3_CRITICAL_LOCAL_ROUTES",
-      "stage_id": "KICAD-PLACEMENT"
+      "stage_id": "KICAD-PLACEMENT",
+      "external_prerequisites": [
+        "connector_full"
+      ]
     },
     {
       "backtrack_to": [
@@ -2966,7 +2986,8 @@
       "id": "p4_analog_joint",
       "max_attempts": 2,
       "phase": "P4_JOINT_PROOF",
-      "stage_id": "KICAD-PLACEMENT"
+      "stage_id": "KICAD-PLACEMENT",
+      "external_prerequisites": []
     },
     {
       "backtrack_to": [
@@ -2993,7 +3014,8 @@
       "id": "p4_usb_digital_joint",
       "max_attempts": 2,
       "phase": "P4_JOINT_PROOF",
-      "stage_id": "KICAD-PLACEMENT"
+      "stage_id": "KICAD-PLACEMENT",
+      "external_prerequisites": []
     },
     {
       "backtrack_to": [
@@ -3034,7 +3056,8 @@
       "id": "p4_power_return_joint",
       "max_attempts": 2,
       "phase": "P4_JOINT_PROOF",
-      "stage_id": "KICAD-PLACEMENT"
+      "stage_id": "KICAD-PLACEMENT",
+      "external_prerequisites": []
     },
     {
       "backtrack_to": [
@@ -3073,7 +3096,18 @@
       "id": "p5_integrated_review",
       "max_attempts": 2,
       "phase": "P5_INTEGRATED_PLACEMENT_REVIEW",
-      "stage_id": "KICAD-PLACEMENT"
+      "stage_id": "KICAD-PLACEMENT",
+      "external_prerequisites": [
+        "connector_full"
+      ]
+    }
+  ],
+  "external_prerequisites": [
+    {
+      "id": "connector_full",
+      "kind": "connector_full",
+      "phase_receipt": "06_build/verification/connector_assembly_full_gate.json",
+      "binding_receipt": "06_build/verification/connector_full_p3_binding.json"
     }
   ]
 }

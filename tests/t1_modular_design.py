@@ -7,6 +7,7 @@ import hashlib
 import json
 import sys
 import tempfile
+import types
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
@@ -47,9 +48,10 @@ def circuit():
     ]
 
 
-def item(wid, phase, blocks, depends, back, evidence, stage="KICAD-PLACEMENT"):
+def item(wid, phase, blocks, depends, back, evidence, stage="KICAD-PLACEMENT", external=()):
     return {"id": wid, "phase": phase, "stage_id": stage, "blocks": blocks,
             "depends_on": depends, "max_attempts": 2, "backtrack_to": back,
+            "external_prerequisites": list(external),
             "evidence": evidence}
 
 
@@ -65,15 +67,20 @@ def plan():
         "shared_responsibilities": [
             {"id": "ground_return", "owner": "board_integration", "requirements": ["continuous return plane"]}
         ],
+        "external_prerequisites": [
+            {"id": "connector_full", "kind": "connector_full",
+             "phase_receipt": "verification/connector_full.json",
+             "binding_receipt": "verification/connector_full_binding.json"}
+        ],
         # P2 processing can feed P3 before the independent connector P2 task;
         # this intentionally rejects a rigid all-P2-before-any-P3 schedule.
         "work_items": [
             item("p1", "P1_FLOORPLAN", ["connector", "processing"], [], [], ["floorplan_receipt"]),
             item("p2_connector", "P2_BLOCK_PLACEMENT", ["connector"], ["p1"], ["p1"], ["connector_placement"]),
             item("p2_processing", "P2_BLOCK_PLACEMENT", ["processing"], ["p1"], ["p1"], ["processing_placement"]),
-            item("p3_processing", "P3_CRITICAL_LOCAL_ROUTES", ["processing"], ["p2_processing"], ["p2_processing"], ["critical_route_receipt"]),
+            item("p3_processing", "P3_CRITICAL_LOCAL_ROUTES", ["processing"], ["p2_processing"], ["p2_processing"], ["critical_route_receipt"], external=("connector_full",)),
             item("p4_joint", "P4_JOINT_PROOF", ["connector", "processing"], ["p2_connector", "p3_processing"], ["p1", "p2_connector", "p2_processing"], ["coupled_geometry_receipt"]),
-            item("p5", "P5_INTEGRATED_PLACEMENT_REVIEW", ["connector", "processing"], ["p4_joint"], ["p1", "p2_connector", "p2_processing"], ["independent_placement_review"]),
+            item("p5", "P5_INTEGRATED_PLACEMENT_REVIEW", ["connector", "processing"], ["p4_joint"], ["p1", "p2_connector", "p2_processing"], ["independent_placement_review"], external=("connector_full",)),
         ],
     }
 
@@ -130,6 +137,23 @@ def rejects(fn, phrase):
         raise AssertionError("malformed modular plan SHOULD HAVE FAILED")
 
 
+def file_binding(root, relative):
+    path = root / relative
+    return {"path": relative, "sha256": hashlib.sha256(path.read_bytes()).hexdigest(),
+            "size": path.stat().st_size}
+
+
+def connector_full_fixture(root):
+    phase = root / "verification/connector_full.json"; phase.parent.mkdir(parents=True, exist_ok=True)
+    phase.write_text(json.dumps({"status": "PASS", "authority": {"base_status": "PASS"},
+                                 "summary": {"base_unknown_count": 0}}))
+    board = root / "candidate.kicad_pcb"; board.write_text("native candidate\n")
+    binding = {"schema": 1, "kind": "connector-full-p3-binding",
+               "full_receipt": file_binding(root, "verification/connector_full.json"),
+               "subject": {"kind": "native_board", "artifact": file_binding(root, "candidate.kicad_pcb")}}
+    (root / "verification/connector_full_binding.json").write_text(json.dumps(binding))
+
+
 @test("valid decomposition covers actual refs and every crossing endpoint")
 def t_green():
     report = evaluate(plan(), circuit())
@@ -161,6 +185,29 @@ def t_dependency_shortcut():
     report = evaluate(source, circuit(), observations, evidence_root=root)
     eq(report["work"]["p2_connector"]["state"], "BLOCKED", "parent dependency is mandatory")
     eq(report["work"]["p4_joint"]["state"], "BLOCKED", "same-phase join remains blocked")
+
+
+@test("P3 and P5 require a freshly regraded, exactly bound connector FULL receipt")
+def t_connector_full_external_prerequisite():
+    source = plan(); root, p1 = attempt(source, "p1", evidence=["floorplan_receipt"])
+    _, p2 = attempt(source, "p2_processing", evidence=["processing_placement"], root=root)
+    _, p3 = attempt(source, "p3_processing", evidence=["critical_route_receipt"], root=root)
+    connector_full_fixture(root)
+    old = sys.modules.get("connector_assembly_phase_gate")
+    sys.modules["connector_assembly_phase_gate"] = types.SimpleNamespace(
+        regrade_phase_gate=lambda path, project, expected_phase: (expected_phase == "full", []))
+    try:
+        report = evaluate(source, circuit(), p1 + p2 + p3, evidence_root=root)
+        eq(report["work"]["p3_processing"]["state"], "WORK_RECORDED", "bound FULL unlocks P3")
+        (root / "candidate.kicad_pcb").write_text("changed native candidate\n")
+        stale = evaluate(source, circuit(), p1 + p2 + p3, evidence_root=root)
+        eq(stale["work"]["p3_processing"]["state"], "BLOCKED", "stale bound board blocks P3")
+        check(stale["work"]["p3_processing"]["external_findings"], "stale binding has finding")
+    finally:
+        if old is None:
+            del sys.modules["connector_assembly_phase_gate"]
+        else:
+            sys.modules["connector_assembly_phase_gate"] = old
 
 
 @test("stale TaskAttempt subject and non-backward repair are refused", kind="known_bad")
