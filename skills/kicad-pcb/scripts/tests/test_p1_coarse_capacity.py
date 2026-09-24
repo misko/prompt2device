@@ -337,6 +337,32 @@ class CoarseCapacityTest(unittest.TestCase):
         self.assertEqual(result['status'], 'FAIL')
         self.assertIn('native footprint/pad', result['errors'][0])
 
+    def test_integration_corridor_courtyard_only_intrusion_fails(self):
+        for layer in (pcbnew.F_CrtYd, pcbnew.B_CrtYd):
+            with self.subTest(layer=layer):
+                self.setUp()
+                self.add_integration_corridor()
+                fp = next(f for f in self.board.GetFootprints() if f.GetReference() == 'U_L0')
+                corridor = (4, 3, 6, 7)
+                self.assertFalse(checker.intersects(
+                    checker.box_mm(fp.GetBoundingBox(False, False)), corridor))
+                self.assertTrue(all(not checker.intersects(
+                    checker.box_mm(pad.GetBoundingBox()), corridor) for pad in fp.Pads()))
+                points = [(4.5, 4.5), (5.5, 4.5), (5.5, 5.5), (4.5, 5.5)]
+                for start, end in zip(points, points[1:] + points[:1]):
+                    edge = pcbnew.PCB_SHAPE(fp)
+                    edge.SetShape(pcbnew.SHAPE_T_SEGMENT)
+                    edge.SetStart(pcbnew.VECTOR2I(iu(start[0]), iu(start[1])))
+                    edge.SetEnd(pcbnew.VECTOR2I(iu(end[0]), iu(end[1])))
+                    edge.SetLayer(layer)
+                    edge.SetWidth(iu(.05))
+                    fp.Add(edge)
+                self.assertGreater(fp.GetCourtyard(layer).OutlineCount(), 0)
+                result = self.run_case()
+                self.assertEqual(result['status'], 'FAIL')
+                self.assertIn('native footprint/pad U_L0 intersects integration corridor/face',
+                              result['errors'][0])
+
     def run_case(self, change=None):
         if change:
             change()
