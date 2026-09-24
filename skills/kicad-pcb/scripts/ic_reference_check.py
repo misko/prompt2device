@@ -50,7 +50,8 @@ def source_bindings(project: Path) -> dict[str, str]:
     }
     rules = {
         key: nets.get(key) for key in ("fab_tier", "default_clearance",
-            "default_track_width", "classes", "scoped_floors", "scoped_clearances")
+        "default_track_width", "classes", "scoped_floors", "scoped_clearances",
+        "same_footprint_pad_clearances")
     }
     rules.update({"route_common": (route.get("route") or {}).get("common"),
                   "route_waves": (route.get("route") or {}).get("waves")})

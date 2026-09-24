@@ -184,6 +184,24 @@ def test_changed_stack_or_rule_or_circuit_stales_review(tmp_path):
     assert any("no selected IC has exact MPN/package" in x for x in check.evaluate(project)["findings"])
 
 
+def test_same_footprint_pad_clearance_change_stales_all_applicability(tmp_path):
+    project, _ = make_project(tmp_path)
+    nets_path = project / "03_src/rules/nets.yaml"
+    nets = yaml.safe_load(nets_path.read_text())
+    nets["same_footprint_pad_clearances"] = [{
+        "id": "package_gap", "refs": ["IC_A"], "clearance": "0.15mm"}]
+    nets_path.write_text(yaml.safe_dump(nets))
+    result = check.evaluate(project)
+    assert result["status"] == "FAIL"
+    assert sum("stale applicability reviewed_for binding" in finding
+               for finding in result["findings"]) == 2
+
+    refreshed = check.source_bindings(project)["route_rules_sha256"]
+    nets["same_footprint_pad_clearances"][0]["clearance"] = "0.10mm"
+    nets_path.write_text(yaml.safe_dump(nets))
+    assert check.source_bindings(project)["route_rules_sha256"] != refreshed
+
+
 def test_unavailable_design_file_with_inspected_docs_completes_coverage(tmp_path):
     project, packet = make_project(tmp_path)
     row = packet["parts"][0]
