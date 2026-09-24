@@ -103,6 +103,8 @@ conditional_pofv:
 
 placement:
   post_anchors:
+    # Planned P2-movable USB sense pose; no P1/P2 placement acceptance.
+    Q_VBUS: [212.0, 74.5, 0]
     C_PLL_100N: [220.0, 102.8, 0]
     C_PLL_1U: [220.0, 105.0, 0]
     FB_PLL: [223.0, 103.9, 180]
