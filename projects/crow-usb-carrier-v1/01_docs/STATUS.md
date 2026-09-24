@@ -1,15 +1,17 @@
 # Project status
 
-<!-- pause-state:a583be4ebe11a8177b290b84752c115cceb78450d6587dc6ff8e08442ed10e77 -->
+<!-- pause-state:491069d2a9d5a0d859cdf83c5b42130139b783be2952f6ddc0ecf20928008da7 -->
 
 - Phase: `placement`
 - State: **PAUSED**
 - Checkpoint: `06_build/checkpoints/schematic.json` (`917a45414c65`)
-- Blocker: The exact 45-page current source is checkpointed and its independent pre-route topology and render reviews are SOUND (packet manifest 818/818; PDF SHA-256 28ef51c4…). This is a WIP development checkpoint only and DO-NOT-ORDER. The prior 569/39-page producer FAIL/ERROR, defective render, and topology INCOMPLETE records remain immutable failed-subject evidence and are not reclassified. P1/P2/P3, native placement/routing, physical E-FAULT, sourcing/allocation, release, and order remain held.
-- Next command: `From the clean checkpoint commit, prepare and independently admit one fresh P1 source/native campaign; do not resume the old 39-page subject or any consumed producer/reviewer attempt.`
+- Blocker: The 45-page current source retains 2/2 SOUND pre-route reviews and is a WIP DO-NOT-ORDER checkpoint. The original P1 launch-abort attempt is terminal FAIL and consumed; its exact archived attempt/envelope bytes remain historical. A new P1 root is prospectively governed only and requires independent clean-commit admission before any sole native attempt. No board/P2/P3/routing/physical E-FAULT/sourcing allocation/release/order acceptance is implied.
+- Next command: `From this clean commit, obtain independent source and native admission for the new P1 root, then dispatch at most its one fresh native attempt. Do not resume the old terminal P1 attempt or alter its historical evidence.`
 
 ## Bound receipts
 
+- `01_docs/research/2026-09-24-p1-launch-abort-evidence/SHA256SUMS` — `533a25d9db98`
+- `01_docs/research/2026-09-24-p1-launch-abort-owner-reassessment.md` — `26feed724b54`
 - `08_reviews/pre-route_schematic_render.md` — `05ff9b639b7f`
 - `08_reviews/pre-route_topology.md` — `76dbfea927e5`
 

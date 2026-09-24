@@ -240,6 +240,32 @@ findings:
   - 08_reviews/2026-09-23_p1-r4-evidence-handoff_terra_review.md
   - 01_docs/research/2026-09-23-p1-r4-evidence-handoff-disposition.md
 
+- id: USB-P1-launch-abort-replacement
+  state: open
+  blocks_at_or_above: DESIGN_CLEAN
+  owner: placement-and-process
+  finding: >-
+    The sole attempt of the retired P1 work item p1_floorplan_r4_r3_plan_rebind
+    is terminal FAIL (SIGTERM, return code -15) and consumed. It wrote no board,
+    evidence, measurement, output, or project change. The launch/preflight
+    process defect requires a distinct, independently admitted one-attempt P1
+    campaign; it does not make the old bounded attempt retryable or reset any
+    historical budget.
+  closes_when: >-
+    Independently admit the distinct p1_floorplan_569_after_launch_abort subject
+    on a clean frozen source packet, complete its sole native P1 run and review
+    its declared handback. Any failure remains consumed and returns here; P2,
+    P3, routing, promotion, release, and order stay out of this finding's scope.
+  evidence:
+  - 01_docs/research/2026-09-24-p1-launch-abort-owner-reassessment.md
+  - 01_docs/research/2026-09-24-p1-launch-abort-evidence/attempt.json
+  - 01_docs/research/2026-09-24-p1-launch-abort-evidence/envelope.json
+  - 01_docs/research/2026-09-24-p1-launch-abort-evidence/SHA256SUMS
+  - 06_build/task_runs/crow-45-569-p1-one-attempt-terra-a7b5e6b970ce440e862f123b2a2d214f/attempt.json
+  - 06_build/task_runs/crow-45-569-p1-one-attempt-terra-a7b5e6b970ce440e862f123b2a2d214f/envelope.json
+  - 01_docs/decisions/0011-p1-floorplan-and-p2-placement-admission.md
+  - 01_docs/pause_state.json
+
 - id: USB-P2-input-power-placement
   state: open
   blocks_at_or_above: DESIGN_CLEAN

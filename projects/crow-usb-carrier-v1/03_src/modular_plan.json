@@ -1246,6 +1246,7 @@
       "disposition": "Shared reference plane owned by board integration; endpoints remain locally placed within their functional blocks.",
       "endpoints": {
         "adc_reference": [
+          "C_ADC_3V3X_OK_VDD.2",
           "C_ADC_A_AREG_100N.2",
           "C_ADC_A_AREG_1U.2",
           "C_ADC_A_AVDD_100N.2",
@@ -1268,7 +1269,6 @@
           "C_ADC_B_VREF_10U.2",
           "C_ADC_DIGITAL_BAD.2",
           "C_ADC_DIGITAL_OK.2",
-          "C_ADC_3V3X_OK_VDD.2",
           "C_ADC_PWR_BAD.2",
           "C_ADC_READY.2",
           "C_ADC_READY_BAD.2",
@@ -2000,6 +2000,7 @@
       "disposition": "Board-integrated power corridor for N3V3_ADC; source block owns generation and each destination block owns local entry capacitance.",
       "endpoints": {
         "adc_reference": [
+          "C_ADC_3V3X_OK_VDD.1",
           "C_ADC_A_AVDD_100N.1",
           "C_ADC_A_AVDD_10U.1",
           "C_ADC_A_IOVDD_100N.1",
@@ -2010,7 +2011,6 @@
           "C_ADC_B_IOVDD_10U.1",
           "C_ADC_DIGITAL_BAD.1",
           "C_ADC_DIGITAL_OK.1",
-          "C_ADC_3V3X_OK_VDD.1",
           "C_ADC_READY.1",
           "C_ADC_READY_BAD.1",
           "C_RST1.1",
@@ -2695,23 +2695,23 @@
       ],
       "depends_on": [],
       "evidence": [
-        "06_build/evidence/modular_work/p1_r4.json"
+        "06_build/evidence/modular_work/p1_floorplan_569_after_launch_abort.json"
       ],
-      "id": "p1_floorplan_r4_r3_plan_rebind",
+      "id": "p1_floorplan_569_after_launch_abort",
       "max_attempts": 1,
       "phase": "P1_FLOORPLAN",
       "stage_id": "KICAD-PLACEMENT"
     },
     {
       "backtrack_to": [
-        "p1_floorplan_r4_r3_plan_rebind"
+        "p1_floorplan_569_after_launch_abort"
       ],
       "blocks": [
         "input_buck",
         "quiet_power"
       ],
       "depends_on": [
-        "p1_floorplan_r4_r3_plan_rebind"
+        "p1_floorplan_569_after_launch_abort"
       ],
       "evidence": [
         "06_build/evidence/modular_work/p2_input_power_r3.json"
@@ -2723,7 +2723,7 @@
     },
     {
       "backtrack_to": [
-        "p1_floorplan_r4_r3_plan_rebind"
+        "p1_floorplan_569_after_launch_abort"
       ],
       "blocks": [
         "analog_ch1",
@@ -2732,7 +2732,7 @@
         "analog_ch4"
       ],
       "depends_on": [
-        "p1_floorplan_r4_r3_plan_rebind"
+        "p1_floorplan_569_after_launch_abort"
       ],
       "evidence": [
         "06_build/evidence/modular_work/p2_analog_1_4.json"
@@ -2744,7 +2744,7 @@
     },
     {
       "backtrack_to": [
-        "p1_floorplan_r4_r3_plan_rebind"
+        "p1_floorplan_569_after_launch_abort"
       ],
       "blocks": [
         "analog_ch5",
@@ -2753,7 +2753,7 @@
         "analog_ch8"
       ],
       "depends_on": [
-        "p1_floorplan_r4_r3_plan_rebind"
+        "p1_floorplan_569_after_launch_abort"
       ],
       "evidence": [
         "06_build/evidence/modular_work/p2_analog_5_8.json"
@@ -2765,13 +2765,13 @@
     },
     {
       "backtrack_to": [
-        "p1_floorplan_r4_r3_plan_rebind"
+        "p1_floorplan_569_after_launch_abort"
       ],
       "blocks": [
         "adc_reference"
       ],
       "depends_on": [
-        "p1_floorplan_r4_r3_plan_rebind"
+        "p1_floorplan_569_after_launch_abort"
       ],
       "evidence": [
         "06_build/evidence/modular_work/p2_adc_reference.json"
@@ -2783,14 +2783,14 @@
     },
     {
       "backtrack_to": [
-        "p1_floorplan_r4_r3_plan_rebind"
+        "p1_floorplan_569_after_launch_abort"
       ],
       "blocks": [
         "digital_power",
         "xmos_core"
       ],
       "depends_on": [
-        "p1_floorplan_r4_r3_plan_rebind"
+        "p1_floorplan_569_after_launch_abort"
       ],
       "evidence": [
         "06_build/evidence/modular_work/p2_digital_power_core.json"
@@ -2802,14 +2802,14 @@
     },
     {
       "backtrack_to": [
-        "p1_floorplan_r4_r3_plan_rebind"
+        "p1_floorplan_569_after_launch_abort"
       ],
       "blocks": [
         "audio_clock_tdm",
         "clock_flash_debug"
       ],
       "depends_on": [
-        "p1_floorplan_r4_r3_plan_rebind"
+        "p1_floorplan_569_after_launch_abort"
       ],
       "evidence": [
         "06_build/evidence/modular_work/p2_clock_flash_audio.json"
@@ -2821,7 +2821,7 @@
     },
     {
       "backtrack_to": [
-        "p1_floorplan_r4_r3_plan_rebind"
+        "p1_floorplan_569_after_launch_abort"
       ],
       "blocks": [
         "debug_connector",
@@ -2829,7 +2829,7 @@
         "usb_vbus_sense"
       ],
       "depends_on": [
-        "p1_floorplan_r4_r3_plan_rebind"
+        "p1_floorplan_569_after_launch_abort"
       ],
       "evidence": [
         "06_build/evidence/modular_work/p2_usb_service.json"
@@ -2997,7 +2997,7 @@
     },
     {
       "backtrack_to": [
-        "p1_floorplan_r4_r3_plan_rebind",
+        "p1_floorplan_569_after_launch_abort",
         "p2_adc_reference",
         "p2_digital_power_core",
         "p2_input_power_r3_evidence_adoption"
