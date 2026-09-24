@@ -1,11 +1,11 @@
 {
-  "blocker": "The distinct P1 root remains unaccepted. The isolated XU/clock and QSPI gap regenerations preserve 569 refs, 1,872 pad identities and all 27 fixed poses; the generic schema-2 checker now recognizes an integration corridor but Crow has no exact source handoff, P2 pad access/return, or 59-net corridor proof. The regenerated board retains 225 native clearance violations and 499 unconnected items. The scratch USB pair has six sub-0.410-mm neck segments that violate the canonical USB_HS width rule and lack a qualified impedance model. Connector FULL has 19 physical unknowns, TMUX filled/capped process acceptance is external, and no P2/P3/route/release or order result is accepted.",
+  "blocker": "The distinct P1 root remains unaccepted. On the isolated QSPI-gap board, all 13 exact QSPI handoffs validate, but the whole 59-net schema-2 screen is FAIL: legacy U_XU.51 is an oversized nonlocal JTAG witness and its allocation aborts. A pinned one-part U_USB_ESD east-move trial places all seven USB support courtyards in a disjoint region and leaves an open JTAG strip, but fixed J_USB remains an unmodeled edge endpoint and XU_RESET_N has a third digital_power owner. Native DRC remains nonzero with 499 unconnected items; the USB launch has six sub-0.410-mm width violations without qualified impedance. Connector FULL has 19 physical unknowns and TMUX filled/capped process acceptance remains external. No P1/P2/P3/route/release or order result is accepted.",
   "checkpoint": {
     "path": "06_build/checkpoints/schematic.json",
     "sha256": "917a45414c65cf43dbeef24704da01beda6b9711175cf9cec3af109ec027f4d6",
     "size": 1152
   },
-  "next_command": "Bind the isolated QSPI gap to exact Crow source ownership, handoffs and P2 pad/return obligations using the reviewed integration-corridor schema; independently review that packet and reassess all remaining P1 allocations before any fresh one-attempt native admission. Do not promote scratch USB copper or bypass connector FULL.",
+  "next_command": "Source-model a disjoint JTAG corridor for the four two-party JTAG nets, an explicit fixed J_USB edge/support handoff, and a separate XU_RESET_N digital-power branch; measure exact native faces, pad access and return without weakening 59-net coverage. Independently admit a fresh P1 packet after the remaining internal allocations are resolved. Keep connector FULL before P3/routing and TMUX process acceptance before release; do not promote scratch USB copper.",
   "phase": "placement",
   "project": "crow-usb-carrier-v1",
   "receipts": [
@@ -18,6 +18,16 @@
       "path": "01_docs/research/2026-09-24-p1-native-evidence-failure-owner-reassessment.md",
       "sha256": "15ccef4423eec9a519d452a133f3987a9c3adb5db94114aed1fe21fd1a6ef628",
       "size": 2800
+    },
+    {
+      "path": "01_docs/research/2026-09-24-usb-edge-endpoint-source-model-terra.md",
+      "sha256": "583ed72ceb5b0548a315e9688f3c9b6e940ae6e0758ec715d25d2fdb6380d639",
+      "size": 3670
+    },
+    {
+      "path": "01_docs/research/2026-09-24-usb-esd-east-region-trial-sol.md",
+      "sha256": "4de0ec64fbffebe706d3639d2a82226bb3391700886f8437a5d63ff00152ce49",
+      "size": 7595
     },
     {
       "path": "01_docs/research/2026-09-24-usb-fcu-launch-diagnostic-summary.json",
@@ -33,6 +43,11 @@
       "path": "01_docs/research/2026-09-24-usb-launch-em-input-inventory-terra.md",
       "sha256": "0bdd918292b9235bd54c75ff7d979dbcabedf04eb0635257369f7534fa5bf217",
       "size": 5510
+    },
+    {
+      "path": "01_docs/research/2026-09-24-xmos-service-remaining-net-blocker-terra.md",
+      "sha256": "edb09dcaab6afa7d9e8fa74441985f6cb5a6c0e69d99dcb6e66ab7b9cb575fcf",
+      "size": 1723
     },
     {
       "path": "01_docs/research/2026-09-24-xu-service-reservation-contract-recommendation-terra.md",
@@ -55,6 +70,16 @@
       "size": 1783
     },
     {
+      "path": "01_docs/research/xu_service_variant/p1_qspi_packet/README.md",
+      "sha256": "aac745bb6a38d886ec13799a0664153bb6a2aab1421cba692917645a8aee6dee",
+      "size": 4209
+    },
+    {
+      "path": "01_docs/research/xu_service_variant/p1_qspi_packet/evaluation.json",
+      "sha256": "3ba0a91f8e3a3463fc555c3833d9a9040db0c4ce37b95470e5e81cd396f01b2a",
+      "size": 1706
+    },
+    {
       "path": "03_src/diagnostics/usb_fcu_launch_probe.py",
       "sha256": "7a05b24297f627631363934e96966e72b2a7e7e409ecf1b491d245ebcef2f222",
       "size": 8732
@@ -71,5 +96,5 @@
     }
   ],
   "schema": 1,
-  "state_id": "b4b8ffe748a1645af70701b28dbb17a3e60cc5ea360cfb5352025f3edde60854"
+  "state_id": "bb59a516a147e2373c0eef32ef5df23312d5fd4a27b79f825e48cc525ef267eb"
 }
