@@ -30,6 +30,17 @@ via centers and B.Cu trunk midpoint lie in the same In1.Cu GND polygon.
 The prepared board still has many other unconnected nets. This is repeatable
 local copper and return geometry, not allocation-wide P1/P3 proof.
 
+The optional generic `connected_pins` seed-bank check now closes the
+all-terminal replay gap identified by the independent review. The isolated
+VBUS_PRESENT_N bank declares `[R_VBUS_PU.2, Q_VBUS.3, U_XU.8]`; after all
+banks emit, the shared checker requires each exact pad to exist on the bank
+net and to lie in KiCad's connected component of `R_VBUS_PU.2`. The updated
+isolated recipe passed full prep again with 9/9 banks, 33/33 primitives, and
+zero collision refusals. Its r0 board SHA-256 stayed
+`88496643cd29fce51e995997c828546f890d82a23f68744d9dc8a29896e82909`.
+Generic positive and missing-pad, wrong-net, and disconnected-pad fixtures
+pass; existing seed recipes without `connected_pins` retain their behavior.
+
 Reproduction on the isolated Q_VBUS source board, with the same repository
 checkout and collision checks enabled:
 

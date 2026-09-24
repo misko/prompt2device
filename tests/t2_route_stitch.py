@@ -3601,6 +3601,57 @@ def t_seed_stubs_serves():
        "the seed stub did not bond the pour-fed pin")
 
 
+@test("seed_stubs connected_pins proves exact native pad connectivity")
+def t_seed_stubs_connected_pins():
+    d, p, _ = seed_scratch([{"net": "PWR", "pin": "U1.1",
+                             "connected_pins": ["U1.1", "U2.1"],
+                             "segments": [{"layer": "B.Cu", "width": 0.2,
+                                           "pts": [[15, 10], [5, 10]]}],
+                             "vias": [[15, 10]]}])
+    r = must_pass(stitch(p), "seed with two connected exact pads")
+    contains(r.out, "seed_stubs: 1 bank(s) served", "connected bank served")
+
+
+@test("seed_stubs connected_pins waits for later banks before checking")
+def t_seed_stubs_connected_pins_later_bank():
+    _, p, _ = seed_scratch([
+        {"net": "PWR", "pin": "U1.1",
+         "connected_pins": ["U1.1", "U2.1"], "vias": [[15, 10]]},
+        {"net": "PWR", "pin": "U2.1",
+         "segments": [{"layer": "B.Cu", "width": 0.2,
+                       "pts": [[5, 10], [15, 10]]}]},
+    ])
+    r = must_pass(stitch(p), "later bank completes declared component")
+    contains(r.out, "seed_stubs: 2 bank(s) served", "both banks emitted")
+
+
+@test("seed_stubs connected_pins rejects a missing exact pad", kind="known_bad")
+def t_kb_seed_stubs_connected_pins_missing():
+    _, p, _ = seed_scratch([{"net": "PWR", "pin": "U1.1",
+                            "connected_pins": ["U1.1", "U2.404"],
+                            "vias": [[15, 10]]}])
+    r = must_fail(stitch(p), "seed with absent target pad", "U2 has no pad")
+    contains(r.out, "connected_pins", "missing exact-pad contract refused")
+
+
+@test("seed_stubs connected_pins rejects a wrong-net pad", kind="known_bad")
+def t_kb_seed_stubs_connected_pins_wrong_net():
+    _, p, _ = seed_scratch([{"net": "PWR", "pin": "U1.1",
+                            "connected_pins": ["U1.1", "U3.1"],
+                            "vias": [[15, 10]]}])
+    r = must_fail(stitch(p), "seed with foreign-net target", "not on bank net")
+    contains(r.out, "U3.1", "wrong-net exact pad identified")
+
+
+@test("seed_stubs connected_pins rejects same-net disconnected pad", kind="known_bad")
+def t_kb_seed_stubs_connected_pins_disconnected():
+    _, p, _ = seed_scratch([{"net": "PWR", "pin": "U1.1",
+                            "connected_pins": ["U1.1", "U2.1"],
+                            "vias": [[15, 10]]}])
+    r = must_fail(stitch(p), "seed with disconnected target", "is not connected")
+    contains(r.out, "U2.1", "disconnected exact pad identified")
+
+
 @test("seed_stubs is IDEMPOTENT: a second pass on the still-unfilled board "
       "emits no new copper")
 def t_seed_stubs_idempotent():

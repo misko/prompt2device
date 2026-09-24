@@ -6146,6 +6146,33 @@ def _pin_touched(ctx, px, py, code, tol=0.16, pad=None):
     return False
 
 
+def _seed_connected_pin_claim(ctx, index, stub, netname, pin):
+    """Resolve an optional exact native pad set before emitting a seed bank."""
+    identities = stub.get("connected_pins")
+    if identities is None:
+        return None
+    if (not pin or not isinstance(identities, list) or not identities or
+            any(not isinstance(value, str) or "." not in value or
+                not all(value.rsplit(".", 1)) for value in identities) or
+            len(identities) != len(set(identities)) or pin not in identities):
+        die(f"seed_stubs.stubs[{index}].connected_pins must be a nonempty "
+            "unique REF.PAD list including the bank pin")
+    resolved = []
+    for identity in identities:
+        ref, number = identity.rsplit(".", 1)
+        footprint = ctx.board.FindFootprintByReference(ref)
+        if footprint is None:
+            die(f"seed_stubs.stubs[{index}].connected_pins: no footprint {ref!r}")
+        found = [pad for pad in footprint.Pads() if pad.GetNumber() == number]
+        if not found:
+            die(f"seed_stubs.stubs[{index}].connected_pins: {ref} has no pad {number!r}")
+        if any(pad.GetNetname() != netname for pad in found):
+            die(f"seed_stubs.stubs[{index}].connected_pins: {identity} is not on "
+                f"bank net {netname!r}")
+        resolved.extend((identity, pad) for pad in found)
+    return resolved
+
+
 def _copper_item_identity(item):
     """Compact, best-effort identity for a collision refusal.
 
@@ -6292,6 +6319,7 @@ def p_seed_stubs(ctx, c):
         via: {size: 0.25, drill: 0.15}  # tier-derived when omitted
         stubs:
           - {net: LX1, pin: U1.18,
+             connected_pins: [U1.18, J1.1], # optional native component claim
              via: {size: 0.41, drill: 0.15}, # optional per-bank override
              segments: [{layer: F.Cu, width: 0.25, pts: [[x,y],[x,y]]}],
              vias: [[x,y]]}
@@ -6307,7 +6335,10 @@ def p_seed_stubs(ctx, c):
           skipped, so a rerun emits nothing;
       (d) refuse, don't guess: a colliding stub is recorded as a gate
           failure (escalate) rather than placed thin, and a `pin` on the
-          wrong net dies (a seed stub must NEVER bridge nets)."""
+          wrong net dies (a seed stub must NEVER bridge nets);
+      (e) when `connected_pins` is declared, validate every exact pad/net and
+          require all to join `pin` in native copper connectivity after all
+          banks have emitted; absent claims preserve legacy recipes."""
     pcbnew = ctx.pcbnew
     stubs = c.get("stubs") or []
     if not stubs:
@@ -6333,6 +6364,7 @@ def p_seed_stubs(ctx, c):
     occurrence = ctx.counts.get("seed_stubs_invocations", 0) + 1
     ctx.bump("seed_stubs_invocations")
     served = refused = placed = skipped = deferred = 0
+    connectivity_claims = []
     for i, stub in enumerate(stubs):
         defer_until = stub.get("defer_until_occurrence", 1)
         if isinstance(defer_until, bool) or not isinstance(defer_until, int) \
@@ -6366,6 +6398,7 @@ def p_seed_stubs(ctx, c):
                 die(f"seed_stubs.stubs[{i}]: pin {pin} is on net "
                     f"{pinpad.GetNetname()!r}, not {netname!r} — a seed stub "
                     f"must NEVER bridge nets")
+        connected_pins = _seed_connected_pin_claim(ctx, i, stub, netname, pin)
         prims, conflict = [], None
         stub_via = dict(via)
         override = stub.get("via", {}) or {}
@@ -6476,7 +6509,24 @@ def p_seed_stubs(ctx, c):
                 die(f"seed_stubs.stubs[{i}]: the stub placed for {pin} does "
                     f"not reach the pin pad — it connects nothing (check the "
                     f"first segment starts at the pad)")
+        if connected_pins is not None:
+            connectivity_claims.append((i, pin, pinpad, connected_pins))
         served += 1
+    if connectivity_claims:
+        # Check after every bank has emitted: a later bank can complete an
+        # earlier bank's declared same-net terminal path. KiCad's own copper
+        # connectivity, not geometric proximity or net-name equality, is the
+        # authority for this optional all-terminal claim.
+        ctx.board.BuildConnectivity()
+        connectivity = ctx.board.GetConnectivity()
+        for i, pin, pinpad, targets in connectivity_claims:
+            connected = {item.m_Uuid.AsString() for item in
+                         connectivity.GetConnectedItems(pinpad)
+                         if isinstance(item, pcbnew.PAD)}
+            for identity, pad in targets:
+                if pad.m_Uuid.AsString() not in connected:
+                    die(f"seed_stubs.stubs[{i}].connected_pins: {identity} "
+                        f"is not connected to bank pin {pin}")
     ctx.bump("seed_stubs", placed)
     print(f"seed_stubs: {served} bank(s) served ({placed} primitives/vias "
           f"placed, {skipped} idempotent-skip), {refused} refused, "

@@ -2,6 +2,7 @@
 stubs:
   - net: VBUS_PRESENT_N
     pin: R_VBUS_PU.2
+    connected_pins: [R_VBUS_PU.2, Q_VBUS.3, U_XU.8]
     segments:
       - {layer: F.Cu, width: 0.2, pts: [[208.01, 72.0], [214.5, 72.0], [214.5, 74.5]]}
       - {layer: F.Cu, width: 0.2, pts: [[212.9375, 74.5], [214.5, 74.5]]}
