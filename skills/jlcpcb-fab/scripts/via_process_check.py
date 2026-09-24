@@ -42,6 +42,55 @@ except ImportError:
 TOL_MM = 0.0015
 
 
+def intrinsic_pad_dru_rules(assembly_path: Path) -> list[str]:
+    """Return only source-declared, non-relaxing intrinsic pad rules.
+
+    The TMUX profile owns every clearance rule below the ordinary 0.15-mm
+    floor.  `generate_rules_generic.py` may additionally emit a 0.15-mm
+    package-land rule, but accept it here only when the exact bytes can be
+    re-derived from the current project's `nets.yaml`.  A hand-appended rule,
+    altered predicate, unknown reference, missing provenance, or sub-0.15
+    value remains in the residual and fails closed below.
+    """
+    root = assembly_path.resolve().parents[2]
+    path = root / "03_src" / "rules" / "nets.yaml"
+    data = yaml.safe_load(path.read_text(encoding="utf-8-sig")) or {}
+    specs = data.get("same_footprint_pad_clearances") or []
+    if not isinstance(specs, list):
+        raise ValueError("TMUX-DRU: same_footprint_pad_clearances must be a list")
+    out, seen = [], set()
+    for i, spec in enumerate(specs):
+        if not isinstance(spec, dict):
+            raise ValueError(f"TMUX-DRU: intrinsic source entry {i} is not a mapping")
+        ident = str(spec.get("id") or "").strip()
+        refs = spec.get("refs")
+        if (not re.fullmatch(r"[A-Za-z][A-Za-z0-9_]*", ident)
+                or not isinstance(refs, list) or not refs
+                or any(not isinstance(ref, str)
+                       or not re.fullmatch(r"[A-Za-z][A-Za-z0-9_]*", ref)
+                       for ref in refs)):
+            raise ValueError(f"TMUX-DRU: intrinsic source entry {i} has invalid id/refs")
+        if not str(spec.get("evidence") or "").strip() or not str(spec.get("why") or "").strip():
+            raise ValueError(f"TMUX-DRU: intrinsic source entry {i} lacks evidence/why")
+        try:
+            clearance = float(str(spec.get("clearance") or "").lower().replace("mm", "").strip())
+        except ValueError as exc:
+            raise ValueError(f"TMUX-DRU: intrinsic source entry {i} has invalid clearance") from exc
+        if not math.isfinite(clearance) or clearance < .15:
+            raise ValueError(f"TMUX-DRU: intrinsic source entry {i} clearance below 0.15mm")
+        for ref in refs:
+            name = f"intrinsic_pad_clr_{ident}_{ref}"
+            if ref in seen:
+                raise ValueError(f"TMUX-DRU: duplicate intrinsic source reference {ref}")
+            seen.add(ref)
+            condition = ("A.Type == 'Pad' && B.Type == 'Pad' && "
+                         f"A.memberOfFootprint('{ref}') && B.memberOfFootprint('{ref}')")
+            out.append(f'(rule "{name}"\n'
+                       f'  (condition "{condition}")\n'
+                       f'  (constraint clearance (min {round(clearance, 3)}mm)))')
+    return out
+
+
 def find_assembly(board_path: Path, explicit: str | None = None):
     if explicit:
         path = Path(explicit).resolve()
@@ -214,6 +263,23 @@ def check(board_path: Path, assembly: str | None = None):
                     out["fails"].append("TMUX-DRU: missing or altered generated rule " + rule.split('"')[1])
             residual = actual
             for rule in expected:
+                residual = residual.replace(rule, "", 1)
+            # Generic intrinsic pad rules are allowed only when their exact
+            # source-derived text matches.  Do not broadly admit arbitrary
+            # 0.15-mm clearance rules: a changed selector could otherwise
+            # swallow a TMUX POFV pair while this process gate read green.
+            for rule in intrinsic_pad_dru_rules(apath):
+                count = actual.count(rule)
+                if count == 0:
+                    # A board that does not use the optional generic feature
+                    # remains a valid TMUX fixture; its ordinary 0.15-mm
+                    # floor still binds.  Any present intrinsic rule, though,
+                    # must be the exact source-derived block.
+                    continue
+                if actual.count("\n" + rule) != 1 or count != 1:
+                    out["fails"].append("TMUX-DRU: missing or altered intrinsic rule "
+                                        + rule.split('"')[1])
+                    continue
                 residual = residual.replace(rule, "", 1)
             if re.search(r"\(\s*constraint\s+(?:clearance|physical_clearance|via_diameter|annular_width|hole_size|hole_clearance)\b", residual):
                 out["fails"].append("TMUX-DRU: foreign clearance/via/hole constraint")

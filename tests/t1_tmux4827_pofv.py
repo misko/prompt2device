@@ -17,7 +17,7 @@ FAB = ROOT / "skills/jlcpcb-fab/scripts"
 sys.path.insert(0, str(FAB))
 sys.path.insert(0, str(ROOT / "skills/kicad-pcb/scripts"))
 from generate_tmux4827_pofv import emit
-from via_process_check import check
+from via_process_check import check, intrinsic_pad_dru_rules
 from tmux4827_pofv import audit, contract, dru_rules
 from land_witness import Unsupported, read_rules
 import yaml
@@ -73,6 +73,20 @@ class TmuxProfile(unittest.TestCase):
         self.assertEqual(self.result(), [])
         self.assertTrue(emit(self.board, ASSEMBLY))
         self.assertEqual(self.result(), [])
+
+    def test_intrinsic_rule_requires_exact_source_derived_predicate(self):
+        """The process checker may admit the generic 0.15-mm package rule,
+        but only byte-for-byte from the current source declaration.  A
+        hand-edited selector must remain a foreign clearance constraint.
+        """
+        dru = self.board.with_suffix('.kicad_dru')
+        rule = intrinsic_pad_dru_rules(ASSEMBLY)[0]
+        dru.write_text(dru.read_text() + '\n' + rule + '\n')
+        self.assertEqual(self.result(), [])
+        dru.write_text(dru.read_text().replace("memberOfFootprint('U_XU')",
+                                                "memberOfFootprint('U_FORGED')", 1))
+        self.assertTrue(any('intrinsic rule' in msg or 'foreign clearance' in msg
+                            for msg in self.result()))
 
     def test_land_reader_excludes_only_verified_exact_via_block(self):
         with self.assertRaisesRegex(Unsupported, 'unsupported physical constraint'):
