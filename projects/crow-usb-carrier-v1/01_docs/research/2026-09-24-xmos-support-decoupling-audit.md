@@ -19,6 +19,12 @@ remaining rows are VDDIO121 5.179 mm, VDDIO109 4.868 mm, VDD105 4.819 mm,
 VDD18 4.288 mm, and VDDIO56 4.149 mm. The seed is current source placement
 intent only; it needs routed supply fanouts and ground-return evidence.
 
+`C_XU_VDD_54` subsequently moved from `[218.0, 95.4, 90]` to
+`[218.15, 95.60, 90]`. A read-only USB-via-neighborhood screen gives 0.220 mm
+courtyard clearance to the two proposed via circles and reduces its own
+pad-1-to-`U_XU.54` distance from 2.657594 to 2.628413 mm. This only preserves
+a candidate escape pocket; no copper or USB-via policy was changed.
+
 This is a geometry-defect screen, not an electrical limit: the source does not
 provide a numeric capacitor-to-pin maximum, and distance does not measure loop
 inductance, route length, return vias, plane impedance, or transient response.
