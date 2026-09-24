@@ -67,8 +67,17 @@ Use these scopes without forcing every block through a lockstep barrier:
 For a board with a named coarse corridor contract, bind the source, interface,
 footprint alias, floorplan, native board, and independently expected contract
 hashes. Name at least one source-owned `REF.pin` boundary witness for each
-covered net at the relevant block face, map it to the native pad/net/layer,
-and give each reservation a board-coordinate envelope and nonzero rough demand.
+covered net, verify its native pad alias and net, and give each reservation a
+board-coordinate envelope, layer, and nonzero rough demand. A physical
+`native_pad_face` witness belongs to an explicitly fixed P1 reference: its
+small boundary bbox contains the actual pad on the reserved layer. A
+P2-movable reference instead uses `virtual_block_face`: its small bbox lies on
+the named face of its owning source region and touches the reservation outside
+that region. Its pad identity and net are verified, but the pad need not be at
+the face or on the reserved layer. Record an explicit `P2_REQUIRED`
+pad-to-face obligation naming the pad, net, block, face, layer, and reservation;
+P2 must prove the local path and any layer transition. The virtual face is an
+allocation target, not a physical pad-access claim.
 Check the outline, fixed features, native rule areas, and potential capacity
 before spending P2 work. A movable part that occupies an envelope is relocation
 debt, not free routing space. A raw slot count only screens a reservation; it
@@ -78,7 +87,8 @@ cross-block endpoint list in the interface authority, while P2/P3 close every
 local terminal, pad access, effective rule clearance, return, and DRC detail.
 An edge connector's intentional body overhang needs its own mouth-to-outline
 and assembly evidence; a generic on-board witness does not waive that datum.
-The coarse checker reports a diagnostic, not engineering acceptance or a route.
+Viable raw capacity remains `INCOMPLETE` until later evidence closes these
+obligations; the coarse checker grants neither route nor engineering acceptance.
 
 When a modular plan declares `connector_full`, every P3 item and the P5 item
 must name that external prerequisite. Before those items are ready, the
