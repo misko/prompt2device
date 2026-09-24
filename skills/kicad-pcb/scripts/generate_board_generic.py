@@ -61,7 +61,7 @@ NOT read another project's config). Top-level keys:
               areas; `ref` derives a package-local area from realised copper
               pads plus optional `margin_mm`, so it follows placement changes.
               ONE zone spans all its layers via an LSET.
-  silk:       captions[], refdes {size, min_size, fab_copy, clearance, priority_prefixes, priority_refs, preferred_offsets},
+  silk:       captions[], refdes {size, min_size, fab_copy, clearance, priority_prefixes, priority_refs, preferred_offsets, fab_only_refs},
               labels {match, from: value|net} for functional captions
   asserts:    pad_net[] {ref, pad, net}, pad_order[] {ref, pads, axis},
               pad_bank_faces[] {ref, pads, toward_ref, toward_pads,
@@ -2632,6 +2632,25 @@ class BoardBuilder:
             die(f"silk.refdes.priority_refs names unknown or hole refdes: {unknown}")
         priority_rank = {r: i for i, r in enumerate(priority_refs)}
 
+        fab_only = rc.get("fab_only_refs", [])
+        if not isinstance(fab_only, list) or any(
+                not isinstance(r, str) or not r for r in fab_only):
+            die("silk.refdes.fab_only_refs must be a list of exact refdes")
+        if len(set(fab_only)) != len(fab_only):
+            die("silk.refdes.fab_only_refs contains duplicate refdes")
+        wildcard = sorted(r for r in fab_only if any(c in r for c in "*?[]"))
+        if wildcard:
+            die("silk.refdes.fab_only_refs forbids wildcard refdes: "
+                + ", ".join(wildcard))
+        unknown = sorted(set(fab_only) - eligible)
+        if unknown:
+            die("silk.refdes.fab_only_refs names unknown or hole refdes: "
+                + str(unknown))
+        if fab_only and not fab_copy:
+            die("silk.refdes.fab_only_refs requires silk.refdes.fab_copy: true")
+        fab_only = set(fab_only)
+        self.explicit_fab_only = sorted(fab_only)
+
         preferred = rc.get("preferred_offsets", {})
         if not isinstance(preferred, dict) or any(
                 not isinstance(r, str) or not r for r in preferred):
@@ -2683,6 +2702,15 @@ class BoardBuilder:
             if r in self.hole_refs:
                 ref.SetVisible(False)
                 continue
+            if r in fab_only:
+                # Keep the board-level F.Fab copy emitted above, while making
+                # this source-declared exception visible to the existing
+                # refdes_waiver.json consumer.  Do not run a fallback search:
+                # a declared F.Fab-only ref must never be reintroduced as a
+                # degraded silk field.
+                ref.SetVisible(False)
+                self.waived.append(r)
+                continue
             # Flip() correctly mirrors a footprint field and moves it to the
             # back.  The old unconditional F.SilkS assignment retained that
             # mirrored flag on the front, producing KiCad's
@@ -2718,6 +2746,9 @@ class BoardBuilder:
         self.say(f"refdes on silk: {n - len(self.waived)}/{n} placed, "
                  f"{len(self.waived)} waived to F.Fab: {sorted(self.waived)}; "
                  f"{nlab} functional labels, {crowded} crowded captions")
+        if self.explicit_fab_only:
+            self.say("refdes explicit F.Fab-only waivers: "
+                     + ", ".join(self.explicit_fab_only))
         # THE DENOMINATOR (canon M-COVER): every label with an owning part is
         # graded, and the ones ownership could not be satisfied for are named
         # with their measured lead — a degradation REPORTED, never silent.

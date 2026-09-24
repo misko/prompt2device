@@ -2176,6 +2176,31 @@ def build(options, name, blocked=False):
                 f.Reference().GetTextAngleDegrees(),f.Reference().GetTextSize().x,
                 f.Reference().GetTextThickness()) for f in saved.GetFootprints())}
 
+def fab_only_build(refs, name, fab_copy=True, include=True):
+    b = BoardBuilder.__new__(BoardBuilder)
+    rc = dict(size=0.7, min_size=0.7, fab_copy=fab_copy, priority_prefixes='J')
+    if include: rc['fab_only_refs'] = refs
+    b.board = pcbnew.BOARD(); b.silk_cfg = {'refdes': rc}
+    b.fps = {}; b.hole_refs = {'H1'}; b.tier = None
+    b.waived = []; b.log = []; b.X0=b.Y0=0; b.X1=b.Y1=100
+    b.OFF = [(0,-2)]; b.cfg = {}; b.base = Path(sys.argv[2]); b.out = b.base/(name+'.kicad_pcb')
+    for ref,x,y in [('C1',20,20),('R1',40,40),('H1',80,80)]:
+        fp=pcbnew.FOOTPRINT(b.board); fp.SetReference(ref)
+        fp.SetPosition(pcbnew.VECTOR2I_MM(x,y)); b.board.Add(fp); b.fps[ref]=fp
+        pad=pcbnew.PAD(fp); pad.SetNumber('1'); pad.SetShape(pcbnew.PAD_SHAPE_RECT)
+        pad.SetSize(pcbnew.VECTOR2I_MM(0.02,0.02)); pad.SetPosition(fp.GetPosition())
+        fp.Add(pad)
+    try: b.add_silk()
+    except FloorplanError as e: return {'error':str(e)}
+    b.write_waiver(); pcbnew.SaveBoard(str(b.out),b.board)
+    saved=pcbnew.LoadBoard(str(b.out))
+    return {'hidden':sorted(f.GetReference() for f in saved.GetFootprints()
+                      if not f.Reference().IsVisible()),
+            'fab_c1':sum(1 for t in saved.GetDrawings() if t.GetClass()=='PCB_TEXT'
+                         and t.GetText()=='C1' and t.IsOnLayer(pcbnew.F_Fab)),
+            'report':json.loads((b.out.parent/'refdes_waiver.json').read_text()),
+            'log':b.log}
+
 results={'default':build({},'default'), 'empty':build({'priority_refs':[]},'empty'),
     'priority':build({'priority_refs':['R_LAST','C1']},'priority'),
     'blocked':build({'priority_refs':['R_LAST']},'blocked',True),
@@ -2191,7 +2216,13 @@ results.update({
         {'R_LAST':[]}, {'R_LAST':'0,1'}, {'R_LAST':[[1]]}, {'R_LAST':[[1,2,3]]},
         {'R_LAST':[[True,1]]}, {'R_LAST':[['1',1]]}, {'R_LAST':[[float('nan'),1]]},
         {'R_LAST':[[float('inf'),1]]}, {'R_LAST':[[0,3]]},
-        {'R_LAST':[[0,1],[0,1]]}, {'R_LAST':[[0,1],[1,0]]}])]})
+        {'R_LAST':[[0,1],[0,1]]}, {'R_LAST':[[0,1],[1,0]]}])],
+    'fab_only':fab_only_build(['C1'],'fab_only'),
+    'fab_only_empty':fab_only_build([],'fab_only_empty'),
+    'fab_only_absent':fab_only_build([], 'fab_only_absent', include=False),
+    'invalid_fab_only':[fab_only_build(v,'bad_fab_only'+str(i)) for i,v in enumerate(
+        [None, 'C1', ['C1','C1'], ['UNKNOWN'], ['C*'], ['H1'], [1]])],
+    'fab_only_without_copy':fab_only_build(['C1'],'fab_only_no_copy',False)})
 print('@@'+json.dumps(results))
 """
 
@@ -2267,6 +2298,32 @@ def t_silk_preferred_offsets_invalid():
     for i,r in enumerate(p['invalid_offsets']):
         check('error' in r and 'silk.refdes.preferred_offsets' in r['error'],
               f'bad preferred offset {i} accepted: {r}')
+
+
+@test('exact F.Fab-only refdes waiver preserves identity, hides only silk, and reports it')
+def t_silk_fab_only_refdes_waiver():
+    p=_priority_probe(); r=p['fab_only']
+    eq(r['hidden'],['C1','H1'],'only the declared non-hole reference is hidden')
+    eq(r['fab_c1'],1,'declared waiver lost its F.Fab identity')
+    eq(r['report'],['C1'],'waiver report must name the exact source waiver')
+    check(any('explicit F.Fab-only waivers: C1' in line for line in r['log']),
+          'explicit waiver did not emit a generator report')
+
+
+@test('F.Fab-only refdes waiver preserves omitted behavior and rejects non-exact refs', kind='known_bad')
+def t_silk_fab_only_refdes_waiver_invalid():
+    p=_priority_probe()
+    # Empty has no waiver and all ordinary non-hole references remain silk-visible.
+    eq(p['fab_only_empty']['hidden'],['H1'],'empty F.Fab-only waiver changes behavior')
+    eq(p['fab_only_empty']['report'],[],'empty waiver emits a phantom report')
+    eq(p['fab_only_empty'],p['fab_only_absent'],
+       'omitted F.Fab-only waiver changes ordinary behavior')
+    eq(len(p['invalid_fab_only']),7,'hostile F.Fab-only waiver denominator')
+    for i,r in enumerate(p['invalid_fab_only']):
+        check('error' in r and 'silk.refdes.fab_only_refs' in r['error'],
+              f'bad F.Fab-only waiver {i} accepted: {r}')
+    check('error' in p['fab_only_without_copy'] and 'fab_copy' in p['fab_only_without_copy']['error'],
+          'F.Fab-only waiver without a retained F.Fab identity was accepted')
 
 
 @test('thermal spoke angles are exact selected-pad geometry with closed numeric bounds')
