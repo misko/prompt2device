@@ -36,6 +36,7 @@ gates:
   - 06_build/failed_schematic_subjects/2026-09-24-adc65-569-readability-hold-v2/SHA256SUMS
   - 01_docs/research/crow-569-schematic-review-topology-terra-r1.md
   - 01_docs/research/crow-569-schematic-review-render-terra-r1.md
+  - 06_build/failed_schematic_subjects/2026-09-24-adc65-569-39-page-readability-hold/SHA256SUMS
 - id: USB-layout
   required_for: DESIGN_CLEAN
   state: pending

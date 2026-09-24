@@ -1,0 +1,35 @@
+{
+  "files": {
+    "03_src/rebuild_all.sh": {
+      "sha256": "2a337ff8086cdd8e57b64a2bd0b39fed35384d434c6eaf9c99fbdb1a06546a9f",
+      "size": 36979
+    },
+    "03_tscircuit/build/circuit.json": {
+      "sha256": "1f01be73e0699cd62bc734aa189b25e9d66f1097b5ce6f52a8db30533ecc6448",
+      "size": 4859480
+    },
+    "03_tscircuit/build/schematic.pdf": {
+      "sha256": "28f6786549db410174ecde50128091891eb8778c7d97f1d10f23ec65fd0829fd",
+      "size": 1719749
+    },
+    "03_tscircuit/manifest.yaml": {
+      "sha256": "a7ffcb75ca6679763d7fe8577fa6aeaf77f0fd40d26cfa316aa2a1bc8ae92083",
+      "size": 7206
+    },
+    "04_kicad/crow_carrier.kicad_sch": {
+      "sha256": "74a9edc982039843bb2938ad3664a0fd67a442fb09068fcb1039dbfd47a989d4",
+      "size": 1991656
+    },
+    "06_build/build_provenance.json": {
+      "sha256": "be144f0db4204068c4dea556834770fe89cea5aae029426bf782aa5d886d672a",
+      "size": 1152
+    },
+    "06_build/netlists/crow_carrier.net": {
+      "sha256": "8a1ad62eeb9da4b9e8574269c07d613aaf3c956e09096ee4d2adc11595b9e502",
+      "size": 1220971
+    }
+  },
+  "name": "schematic",
+  "project": "crow-usb-carrier-v1",
+  "schema": 1
+}

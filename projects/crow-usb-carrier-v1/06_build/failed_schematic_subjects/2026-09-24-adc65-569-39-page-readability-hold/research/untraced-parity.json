@@ -1,0 +1,2772 @@
+{
+  "bound_inputs": {
+    "projects/crow-usb-carrier-v1/03_tscircuit/build/circuit.json": "1f01be73e0699cd62bc734aa189b25e9d66f1097b5ce6f52a8db30533ecc6448",
+    "projects/crow-usb-carrier-v1/06_build/checkpoints/schematic.json": "29060df769ecf08cb8e8c968d7b6b9f49a8263bff0a367498e1009807d43eba8",
+    "projects/crow-usb-carrier-v1/06_build/netlists/crow_carrier.net": "8a1ad62eeb9da4b9e8574269c07d613aaf3c956e09096ee4d2adc11595b9e502",
+    "projects/crow-usb-carrier-v1/06_build/task_runs/crow-39-topology-review-terra-r3-d1402de1aa024d16999397e7068524d8/outputs/review.md": "bcbbaf072a7680fd0efa58b8014f4d10bc68e5f769247e6fc872f3e8712b4b14",
+    "projects/crow-usb-carrier-v1/06_build/verification/native-source-pin-parity.json": "d40c324f8028803565e9da139eed4b1095c130fbd079070884f2e3b93b16328d"
+  },
+  "counts": {
+    "genuine_mismatches": 0,
+    "internal_and_native_unconnected": 0,
+    "internal_connection_record_ports_total": 29,
+    "internal_connection_record_ports_traced": 26,
+    "internal_connection_records": 7,
+    "internal_record_source_ports": 3,
+    "native_nets_total": 428,
+    "native_nodes_total": 1787,
+    "native_unconnected_nets": 146,
+    "source_only_internal_no_public_native_pin": 3,
+    "source_ports_total": 1790,
+    "source_traced_ports": 1641,
+    "source_untraced_ports": 149,
+    "unmatched_without_internal_record": 0,
+    "untraced_to_native_non_unconnected": 0,
+    "untraced_to_native_unconnected": 146
+  },
+  "electrical_conclusion": {
+    "basis": "Every exported public untraced port maps one-to-one to an intentional native unconnected-* net; all three absent public native nodes are documented J_USB source-only internal ports within one explicit four-port internal record. No untraced source port maps to a connected native net and none lacks both native and internal evidence.",
+    "limits": "This proves source/native unconnected-port representation parity only; it does not qualify ERC warnings, board layout, routing, physical USB shell behavior, or system electrical behavior.",
+    "material_electrical_defect_found": false
+  },
+  "internal_connection_records": {
+    "source_component_internal_connection_0": {
+      "source_component": "U_XU",
+      "source_port_ids": [
+        "source_port_1392",
+        "source_port_1398",
+        "source_port_1401",
+        "source_port_1405",
+        "source_port_1426",
+        "source_port_1432",
+        "source_port_1437",
+        "source_port_1441",
+        "source_port_1455",
+        "source_port_1472",
+        "source_port_1482",
+        "source_port_1491",
+        "source_port_1492",
+        "source_port_1493",
+        "source_port_1500"
+      ]
+    },
+    "source_component_internal_connection_1": {
+      "source_component": "U_XU",
+      "source_port_ids": [
+        "source_port_1397",
+        "source_port_1404"
+      ]
+    },
+    "source_component_internal_connection_2": {
+      "source_component": "U_XU",
+      "source_port_ids": [
+        "source_port_1422",
+        "source_port_1443"
+      ]
+    },
+    "source_component_internal_connection_3": {
+      "source_component": "U_XU",
+      "source_port_ids": [
+        "source_port_1459",
+        "source_port_1476"
+      ]
+    },
+    "source_component_internal_connection_4": {
+      "source_component": "U_XU",
+      "source_port_ids": [
+        "source_port_1496",
+        "source_port_1508"
+      ]
+    },
+    "source_component_internal_connection_5": {
+      "source_component": "Y_XU",
+      "source_port_ids": [
+        "source_port_1574",
+        "source_port_1576"
+      ]
+    },
+    "source_component_internal_connection_6": {
+      "source_component": "J_USB",
+      "source_port_ids": [
+        "source_port_1765",
+        "source_port_1766",
+        "source_port_1767",
+        "source_port_1768"
+      ]
+    }
+  },
+  "offset_resolution": {
+    "equation": "149 source untraced ports = 146 ports with native unconnected-* nodes + 3 source-only internal J_USB ports",
+    "explanation": "The seven internal-connection records contain 29 source ports in total, but 26 of those ports already have source traces and native connected-node representations. Only three untraced source ports are source-only J_USB internals with no public pin number. Therefore subtracting all 29 would wrongly remove 26 traced ports; the actual untraced-port relationship is 149 = 146 + 3.",
+    "three_source_only_ports": [
+      "source_port_1766",
+      "source_port_1767",
+      "source_port_1768"
+    ]
+  },
+  "ports": [
+    {
+      "classification": "intentional_nc",
+      "component": "U_BUCK",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "302",
+        "net_name": "unconnected-(U_BUCK-SW_NC-Pad11)",
+        "pin": "11",
+        "pinfunction": "SW_NC_11",
+        "ref": "U_BUCK"
+      },
+      "pin_number": 11,
+      "port_name": "SW_NC",
+      "source_component_id": "source_component_10",
+      "source_port_id": "source_port_33"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_BUCK",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "301",
+        "net_name": "unconnected-(U_BUCK-PG_NC-Pad26)",
+        "pin": "26",
+        "pinfunction": "PG_NC_26",
+        "ref": "U_BUCK"
+      },
+      "pin_number": 26,
+      "port_name": "PG_NC",
+      "source_component_id": "source_component_10",
+      "source_port_id": "source_port_48"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_SPOKE1",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "343",
+        "net_name": "unconnected-(U_SPOKE1-FLT-Pad9)",
+        "pin": "9",
+        "pinfunction": "FLT_9",
+        "ref": "U_SPOKE1"
+      },
+      "pin_number": 9,
+      "port_name": "FLT",
+      "source_component_id": "source_component_21",
+      "source_port_id": "source_port_89"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_ESD1",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "307",
+        "net_name": "unconnected-(U_ESD1-NC1-Pad1)",
+        "pin": "1",
+        "pinfunction": "NC1_1",
+        "ref": "U_ESD1"
+      },
+      "pin_number": 1,
+      "port_name": "NC1",
+      "source_component_id": "source_component_27",
+      "source_port_id": "source_port_102"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_ESD1",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "308",
+        "net_name": "unconnected-(U_ESD1-NC2-Pad2)",
+        "pin": "2",
+        "pinfunction": "NC2_2",
+        "ref": "U_ESD1"
+      },
+      "pin_number": 2,
+      "port_name": "NC2",
+      "source_component_id": "source_component_27",
+      "source_port_id": "source_port_103"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_SPOKE2",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "344",
+        "net_name": "unconnected-(U_SPOKE2-FLT-Pad9)",
+        "pin": "9",
+        "pinfunction": "FLT_9",
+        "ref": "U_SPOKE2"
+      },
+      "pin_number": 9,
+      "port_name": "FLT",
+      "source_component_id": "source_component_29",
+      "source_port_id": "source_port_125"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_ESD2",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "309",
+        "net_name": "unconnected-(U_ESD2-NC1-Pad1)",
+        "pin": "1",
+        "pinfunction": "NC1_1",
+        "ref": "U_ESD2"
+      },
+      "pin_number": 1,
+      "port_name": "NC1",
+      "source_component_id": "source_component_35",
+      "source_port_id": "source_port_138"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_ESD2",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "310",
+        "net_name": "unconnected-(U_ESD2-NC2-Pad2)",
+        "pin": "2",
+        "pinfunction": "NC2_2",
+        "ref": "U_ESD2"
+      },
+      "pin_number": 2,
+      "port_name": "NC2",
+      "source_component_id": "source_component_35",
+      "source_port_id": "source_port_139"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_SPOKE3",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "345",
+        "net_name": "unconnected-(U_SPOKE3-FLT-Pad9)",
+        "pin": "9",
+        "pinfunction": "FLT_9",
+        "ref": "U_SPOKE3"
+      },
+      "pin_number": 9,
+      "port_name": "FLT",
+      "source_component_id": "source_component_37",
+      "source_port_id": "source_port_161"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_ESD3",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "311",
+        "net_name": "unconnected-(U_ESD3-NC1-Pad1)",
+        "pin": "1",
+        "pinfunction": "NC1_1",
+        "ref": "U_ESD3"
+      },
+      "pin_number": 1,
+      "port_name": "NC1",
+      "source_component_id": "source_component_43",
+      "source_port_id": "source_port_174"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_ESD3",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "312",
+        "net_name": "unconnected-(U_ESD3-NC2-Pad2)",
+        "pin": "2",
+        "pinfunction": "NC2_2",
+        "ref": "U_ESD3"
+      },
+      "pin_number": 2,
+      "port_name": "NC2",
+      "source_component_id": "source_component_43",
+      "source_port_id": "source_port_175"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_SPOKE4",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "346",
+        "net_name": "unconnected-(U_SPOKE4-FLT-Pad9)",
+        "pin": "9",
+        "pinfunction": "FLT_9",
+        "ref": "U_SPOKE4"
+      },
+      "pin_number": 9,
+      "port_name": "FLT",
+      "source_component_id": "source_component_45",
+      "source_port_id": "source_port_197"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_ESD4",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "313",
+        "net_name": "unconnected-(U_ESD4-NC1-Pad1)",
+        "pin": "1",
+        "pinfunction": "NC1_1",
+        "ref": "U_ESD4"
+      },
+      "pin_number": 1,
+      "port_name": "NC1",
+      "source_component_id": "source_component_51",
+      "source_port_id": "source_port_210"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_ESD4",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "314",
+        "net_name": "unconnected-(U_ESD4-NC2-Pad2)",
+        "pin": "2",
+        "pinfunction": "NC2_2",
+        "ref": "U_ESD4"
+      },
+      "pin_number": 2,
+      "port_name": "NC2",
+      "source_component_id": "source_component_51",
+      "source_port_id": "source_port_211"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_SPOKE5",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "347",
+        "net_name": "unconnected-(U_SPOKE5-FLT-Pad9)",
+        "pin": "9",
+        "pinfunction": "FLT_9",
+        "ref": "U_SPOKE5"
+      },
+      "pin_number": 9,
+      "port_name": "FLT",
+      "source_component_id": "source_component_53",
+      "source_port_id": "source_port_233"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_ESD5",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "315",
+        "net_name": "unconnected-(U_ESD5-NC1-Pad1)",
+        "pin": "1",
+        "pinfunction": "NC1_1",
+        "ref": "U_ESD5"
+      },
+      "pin_number": 1,
+      "port_name": "NC1",
+      "source_component_id": "source_component_59",
+      "source_port_id": "source_port_246"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_ESD5",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "316",
+        "net_name": "unconnected-(U_ESD5-NC2-Pad2)",
+        "pin": "2",
+        "pinfunction": "NC2_2",
+        "ref": "U_ESD5"
+      },
+      "pin_number": 2,
+      "port_name": "NC2",
+      "source_component_id": "source_component_59",
+      "source_port_id": "source_port_247"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_SPOKE6",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "348",
+        "net_name": "unconnected-(U_SPOKE6-FLT-Pad9)",
+        "pin": "9",
+        "pinfunction": "FLT_9",
+        "ref": "U_SPOKE6"
+      },
+      "pin_number": 9,
+      "port_name": "FLT",
+      "source_component_id": "source_component_61",
+      "source_port_id": "source_port_269"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_ESD6",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "317",
+        "net_name": "unconnected-(U_ESD6-NC1-Pad1)",
+        "pin": "1",
+        "pinfunction": "NC1_1",
+        "ref": "U_ESD6"
+      },
+      "pin_number": 1,
+      "port_name": "NC1",
+      "source_component_id": "source_component_67",
+      "source_port_id": "source_port_282"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_ESD6",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "318",
+        "net_name": "unconnected-(U_ESD6-NC2-Pad2)",
+        "pin": "2",
+        "pinfunction": "NC2_2",
+        "ref": "U_ESD6"
+      },
+      "pin_number": 2,
+      "port_name": "NC2",
+      "source_component_id": "source_component_67",
+      "source_port_id": "source_port_283"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_SPOKE7",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "349",
+        "net_name": "unconnected-(U_SPOKE7-FLT-Pad9)",
+        "pin": "9",
+        "pinfunction": "FLT_9",
+        "ref": "U_SPOKE7"
+      },
+      "pin_number": 9,
+      "port_name": "FLT",
+      "source_component_id": "source_component_69",
+      "source_port_id": "source_port_305"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_ESD7",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "319",
+        "net_name": "unconnected-(U_ESD7-NC1-Pad1)",
+        "pin": "1",
+        "pinfunction": "NC1_1",
+        "ref": "U_ESD7"
+      },
+      "pin_number": 1,
+      "port_name": "NC1",
+      "source_component_id": "source_component_75",
+      "source_port_id": "source_port_318"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_ESD7",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "320",
+        "net_name": "unconnected-(U_ESD7-NC2-Pad2)",
+        "pin": "2",
+        "pinfunction": "NC2_2",
+        "ref": "U_ESD7"
+      },
+      "pin_number": 2,
+      "port_name": "NC2",
+      "source_component_id": "source_component_75",
+      "source_port_id": "source_port_319"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_SPOKE8",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "350",
+        "net_name": "unconnected-(U_SPOKE8-FLT-Pad9)",
+        "pin": "9",
+        "pinfunction": "FLT_9",
+        "ref": "U_SPOKE8"
+      },
+      "pin_number": 9,
+      "port_name": "FLT",
+      "source_component_id": "source_component_77",
+      "source_port_id": "source_port_341"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_ESD8",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "321",
+        "net_name": "unconnected-(U_ESD8-NC1-Pad1)",
+        "pin": "1",
+        "pinfunction": "NC1_1",
+        "ref": "U_ESD8"
+      },
+      "pin_number": 1,
+      "port_name": "NC1",
+      "source_component_id": "source_component_83",
+      "source_port_id": "source_port_354"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_ESD8",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "322",
+        "net_name": "unconnected-(U_ESD8-NC2-Pad2)",
+        "pin": "2",
+        "pinfunction": "NC2_2",
+        "ref": "U_ESD8"
+      },
+      "pin_number": 2,
+      "port_name": "NC2",
+      "source_component_id": "source_component_83",
+      "source_port_id": "source_port_355"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_ISO1",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "325",
+        "net_name": "unconnected-(U_ISO1-S1A_UNUSED-Pad1)",
+        "pin": "1",
+        "pinfunction": "S1A_UNUSED_1",
+        "ref": "U_ISO1"
+      },
+      "pin_number": 1,
+      "port_name": "S1A_UNUSED",
+      "source_component_id": "source_component_101",
+      "source_port_id": "source_port_399"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_ISO1",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "326",
+        "net_name": "unconnected-(U_ISO1-S2A_UNUSED-Pad3)",
+        "pin": "3",
+        "pinfunction": "S2A_UNUSED_3",
+        "ref": "U_ISO1"
+      },
+      "pin_number": 3,
+      "port_name": "S2A_UNUSED",
+      "source_component_id": "source_component_101",
+      "source_port_id": "source_port_401"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_ISO2",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "327",
+        "net_name": "unconnected-(U_ISO2-S1A_UNUSED-Pad1)",
+        "pin": "1",
+        "pinfunction": "S1A_UNUSED_1",
+        "ref": "U_ISO2"
+      },
+      "pin_number": 1,
+      "port_name": "S1A_UNUSED",
+      "source_component_id": "source_component_129",
+      "source_port_id": "source_port_468"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_ISO2",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "328",
+        "net_name": "unconnected-(U_ISO2-S2A_UNUSED-Pad3)",
+        "pin": "3",
+        "pinfunction": "S2A_UNUSED_3",
+        "ref": "U_ISO2"
+      },
+      "pin_number": 3,
+      "port_name": "S2A_UNUSED",
+      "source_component_id": "source_component_129",
+      "source_port_id": "source_port_470"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_ISO3",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "329",
+        "net_name": "unconnected-(U_ISO3-S1A_UNUSED-Pad1)",
+        "pin": "1",
+        "pinfunction": "S1A_UNUSED_1",
+        "ref": "U_ISO3"
+      },
+      "pin_number": 1,
+      "port_name": "S1A_UNUSED",
+      "source_component_id": "source_component_157",
+      "source_port_id": "source_port_537"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_ISO3",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "330",
+        "net_name": "unconnected-(U_ISO3-S2A_UNUSED-Pad3)",
+        "pin": "3",
+        "pinfunction": "S2A_UNUSED_3",
+        "ref": "U_ISO3"
+      },
+      "pin_number": 3,
+      "port_name": "S2A_UNUSED",
+      "source_component_id": "source_component_157",
+      "source_port_id": "source_port_539"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_ISO4",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "331",
+        "net_name": "unconnected-(U_ISO4-S1A_UNUSED-Pad1)",
+        "pin": "1",
+        "pinfunction": "S1A_UNUSED_1",
+        "ref": "U_ISO4"
+      },
+      "pin_number": 1,
+      "port_name": "S1A_UNUSED",
+      "source_component_id": "source_component_185",
+      "source_port_id": "source_port_606"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_ISO4",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "332",
+        "net_name": "unconnected-(U_ISO4-S2A_UNUSED-Pad3)",
+        "pin": "3",
+        "pinfunction": "S2A_UNUSED_3",
+        "ref": "U_ISO4"
+      },
+      "pin_number": 3,
+      "port_name": "S2A_UNUSED",
+      "source_component_id": "source_component_185",
+      "source_port_id": "source_port_608"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_ISO5",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "333",
+        "net_name": "unconnected-(U_ISO5-S1A_UNUSED-Pad1)",
+        "pin": "1",
+        "pinfunction": "S1A_UNUSED_1",
+        "ref": "U_ISO5"
+      },
+      "pin_number": 1,
+      "port_name": "S1A_UNUSED",
+      "source_component_id": "source_component_213",
+      "source_port_id": "source_port_675"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_ISO5",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "334",
+        "net_name": "unconnected-(U_ISO5-S2A_UNUSED-Pad3)",
+        "pin": "3",
+        "pinfunction": "S2A_UNUSED_3",
+        "ref": "U_ISO5"
+      },
+      "pin_number": 3,
+      "port_name": "S2A_UNUSED",
+      "source_component_id": "source_component_213",
+      "source_port_id": "source_port_677"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_ISO6",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "335",
+        "net_name": "unconnected-(U_ISO6-S1A_UNUSED-Pad1)",
+        "pin": "1",
+        "pinfunction": "S1A_UNUSED_1",
+        "ref": "U_ISO6"
+      },
+      "pin_number": 1,
+      "port_name": "S1A_UNUSED",
+      "source_component_id": "source_component_241",
+      "source_port_id": "source_port_744"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_ISO6",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "336",
+        "net_name": "unconnected-(U_ISO6-S2A_UNUSED-Pad3)",
+        "pin": "3",
+        "pinfunction": "S2A_UNUSED_3",
+        "ref": "U_ISO6"
+      },
+      "pin_number": 3,
+      "port_name": "S2A_UNUSED",
+      "source_component_id": "source_component_241",
+      "source_port_id": "source_port_746"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_ISO7",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "337",
+        "net_name": "unconnected-(U_ISO7-S1A_UNUSED-Pad1)",
+        "pin": "1",
+        "pinfunction": "S1A_UNUSED_1",
+        "ref": "U_ISO7"
+      },
+      "pin_number": 1,
+      "port_name": "S1A_UNUSED",
+      "source_component_id": "source_component_269",
+      "source_port_id": "source_port_813"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_ISO7",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "338",
+        "net_name": "unconnected-(U_ISO7-S2A_UNUSED-Pad3)",
+        "pin": "3",
+        "pinfunction": "S2A_UNUSED_3",
+        "ref": "U_ISO7"
+      },
+      "pin_number": 3,
+      "port_name": "S2A_UNUSED",
+      "source_component_id": "source_component_269",
+      "source_port_id": "source_port_815"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_ISO8",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "339",
+        "net_name": "unconnected-(U_ISO8-S1A_UNUSED-Pad1)",
+        "pin": "1",
+        "pinfunction": "S1A_UNUSED_1",
+        "ref": "U_ISO8"
+      },
+      "pin_number": 1,
+      "port_name": "S1A_UNUSED",
+      "source_component_id": "source_component_297",
+      "source_port_id": "source_port_882"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_ISO8",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "340",
+        "net_name": "unconnected-(U_ISO8-S2A_UNUSED-Pad3)",
+        "pin": "3",
+        "pinfunction": "S2A_UNUSED_3",
+        "ref": "U_ISO8"
+      },
+      "pin_number": 3,
+      "port_name": "S2A_UNUSED",
+      "source_component_id": "source_component_297",
+      "source_port_id": "source_port_884"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_LDO",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "341",
+        "net_name": "unconnected-(U_LDO-PG_NC-Pad4)",
+        "pin": "4",
+        "pinfunction": "PG_NC_4",
+        "ref": "U_LDO"
+      },
+      "pin_number": 4,
+      "port_name": "PG_NC",
+      "source_component_id": "source_component_330",
+      "source_port_id": "source_port_960"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_DUMP",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "306",
+        "net_name": "unconnected-(U_DUMP-NC-Pad1)",
+        "pin": "1",
+        "pinfunction": "NC_1",
+        "ref": "U_DUMP"
+      },
+      "pin_number": 1,
+      "port_name": "NC",
+      "source_component_id": "source_component_359",
+      "source_port_id": "source_port_1032"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_LDO_EN",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "342",
+        "net_name": "unconnected-(U_LDO_EN-NC-Pad1)",
+        "pin": "1",
+        "pinfunction": "NC_1",
+        "ref": "U_LDO_EN"
+      },
+      "pin_number": 1,
+      "port_name": "NC",
+      "source_component_id": "source_component_360",
+      "source_port_id": "source_port_1037"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_ADC_A",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "293",
+        "net_name": "unconnected-(U_ADC_A-MICBIAS_NC-Pad5)",
+        "pin": "5",
+        "pinfunction": "MICBIAS_NC_5",
+        "ref": "U_ADC_A"
+      },
+      "pin_number": 5,
+      "port_name": "MICBIAS_NC",
+      "source_component_id": "source_component_385",
+      "source_port_id": "source_port_1095"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_ADC_A",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "292",
+        "net_name": "unconnected-(U_ADC_A-GPIO1_NC-Pad20)",
+        "pin": "20",
+        "pinfunction": "GPIO1_NC_20",
+        "ref": "U_ADC_A"
+      },
+      "pin_number": 20,
+      "port_name": "GPIO1_NC",
+      "source_component_id": "source_component_385",
+      "source_port_id": "source_port_1110"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_ADC_B",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "295",
+        "net_name": "unconnected-(U_ADC_B-MICBIAS_NC-Pad5)",
+        "pin": "5",
+        "pinfunction": "MICBIAS_NC_5",
+        "ref": "U_ADC_B"
+      },
+      "pin_number": 5,
+      "port_name": "MICBIAS_NC",
+      "source_component_id": "source_component_396",
+      "source_port_id": "source_port_1140"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_ADC_B",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "294",
+        "net_name": "unconnected-(U_ADC_B-GPIO1_NC-Pad20)",
+        "pin": "20",
+        "pinfunction": "GPIO1_NC_20",
+        "ref": "U_ADC_B"
+      },
+      "pin_number": 20,
+      "port_name": "GPIO1_NC",
+      "source_component_id": "source_component_396",
+      "source_port_id": "source_port_1155"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_ADC_1V8_OK",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "290",
+        "net_name": "unconnected-(U_ADC_1V8_OK-CT-Pad5)",
+        "pin": "5",
+        "pinfunction": "CT_5",
+        "ref": "U_ADC_1V8_OK"
+      },
+      "pin_number": 5,
+      "port_name": "CT",
+      "source_component_id": "source_component_411",
+      "source_port_id": "source_port_1194"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_ADC_3V3X_OK",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "291",
+        "net_name": "unconnected-(U_ADC_3V3X_OK-CT-Pad5)",
+        "pin": "5",
+        "pinfunction": "CT_5",
+        "ref": "U_ADC_3V3X_OK"
+      },
+      "pin_number": 5,
+      "port_name": "CT",
+      "source_component_id": "source_component_414",
+      "source_port_id": "source_port_1204"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_ADC_DIGITAL_BAD",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "296",
+        "net_name": "unconnected-(U_ADC_DIGITAL_BAD-NC-Pad1)",
+        "pin": "1",
+        "pinfunction": "NC_1",
+        "ref": "U_ADC_DIGITAL_BAD"
+      },
+      "pin_number": 1,
+      "port_name": "NC",
+      "source_component_id": "source_component_421",
+      "source_port_id": "source_port_1221"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_ADC_PWR_BAD",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "298",
+        "net_name": "unconnected-(U_ADC_PWR_BAD-NC-Pad1)",
+        "pin": "1",
+        "pinfunction": "NC_1",
+        "ref": "U_ADC_PWR_BAD"
+      },
+      "pin_number": 1,
+      "port_name": "NC",
+      "source_component_id": "source_component_424",
+      "source_port_id": "source_port_1231"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_ADC_READY_BAD",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "299",
+        "net_name": "unconnected-(U_ADC_READY_BAD-NC-Pad1)",
+        "pin": "1",
+        "pinfunction": "NC_1",
+        "ref": "U_ADC_READY_BAD"
+      },
+      "pin_number": 1,
+      "port_name": "NC",
+      "source_component_id": "source_component_432",
+      "source_port_id": "source_port_1257"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_3V3X",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "288",
+        "net_name": "unconnected-(U_3V3X-NC-Pad4)",
+        "pin": "4",
+        "pinfunction": "NC_4",
+        "ref": "U_3V3X"
+      },
+      "pin_number": 4,
+      "port_name": "NC",
+      "source_component_id": "source_component_442",
+      "source_port_id": "source_port_1285"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_3V3X",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "289",
+        "net_name": "unconnected-(U_3V3X-PG-Pad8)",
+        "pin": "8",
+        "pinfunction": "PG_8",
+        "ref": "U_3V3X"
+      },
+      "pin_number": 8,
+      "port_name": "PG",
+      "source_component_id": "source_component_442",
+      "source_port_id": "source_port_1289"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_1V8",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "286",
+        "net_name": "unconnected-(U_1V8-NC-Pad4)",
+        "pin": "4",
+        "pinfunction": "NC_4",
+        "ref": "U_1V8"
+      },
+      "pin_number": 4,
+      "port_name": "NC",
+      "source_component_id": "source_component_450",
+      "source_port_id": "source_port_1307"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_1V8",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "287",
+        "net_name": "unconnected-(U_1V8-PG-Pad8)",
+        "pin": "8",
+        "pinfunction": "PG_8",
+        "ref": "U_1V8"
+      },
+      "pin_number": 8,
+      "port_name": "PG",
+      "source_component_id": "source_component_450",
+      "source_port_id": "source_port_1311"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_CORE",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "303",
+        "net_name": "unconnected-(U_CORE-NC-Pad4)",
+        "pin": "4",
+        "pinfunction": "NC_4",
+        "ref": "U_CORE"
+      },
+      "pin_number": 4,
+      "port_name": "NC",
+      "source_component_id": "source_component_458",
+      "source_port_id": "source_port_1329"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_CORE",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "304",
+        "net_name": "unconnected-(U_CORE-PG-Pad8)",
+        "pin": "8",
+        "pinfunction": "PG_8",
+        "ref": "U_CORE"
+      },
+      "pin_number": 8,
+      "port_name": "PG",
+      "source_component_id": "source_component_458",
+      "source_port_id": "source_port_1333"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_CORE_OK",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "305",
+        "net_name": "unconnected-(U_CORE_OK-CT_NC-Pad4)",
+        "pin": "4",
+        "pinfunction": "CT_NC_4",
+        "ref": "U_CORE_OK"
+      },
+      "pin_number": 4,
+      "port_name": "CT_NC",
+      "source_component_id": "source_component_472",
+      "source_port_id": "source_port_1367"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_XU",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "364",
+        "net_name": "unconnected-(U_XU-X0D00_NC-Pad6)",
+        "pin": "6",
+        "pinfunction": "X0D00_NC_6",
+        "ref": "U_XU"
+      },
+      "pin_number": 6,
+      "port_name": "X0D00_NC",
+      "source_component_id": "source_component_480",
+      "source_port_id": "source_port_1393"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_XU",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "365",
+        "net_name": "unconnected-(U_XU-X0D11_NC-Pad7)",
+        "pin": "7",
+        "pinfunction": "X0D11_NC_7",
+        "ref": "U_XU"
+      },
+      "pin_number": 7,
+      "port_name": "X0D11_NC",
+      "source_component_id": "source_component_480",
+      "source_port_id": "source_port_1394"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_XU",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "368",
+        "net_name": "unconnected-(U_XU-X0D16_NC-Pad9)",
+        "pin": "9",
+        "pinfunction": "X0D16_NC_9",
+        "ref": "U_XU"
+      },
+      "pin_number": 9,
+      "port_name": "X0D16_NC",
+      "source_component_id": "source_component_480",
+      "source_port_id": "source_port_1396"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_XU",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "414",
+        "net_name": "unconnected-(U_XU-X1D36_NC-Pad12)",
+        "pin": "12",
+        "pinfunction": "X1D36_NC_12",
+        "ref": "U_XU"
+      },
+      "pin_number": 12,
+      "port_name": "X1D36_NC",
+      "source_component_id": "source_component_480",
+      "source_port_id": "source_port_1399"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_XU",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "415",
+        "net_name": "unconnected-(U_XU-X1D37_NC-Pad13)",
+        "pin": "13",
+        "pinfunction": "X1D37_NC_13",
+        "ref": "U_XU"
+      },
+      "pin_number": 13,
+      "port_name": "X1D37_NC",
+      "source_component_id": "source_component_480",
+      "source_port_id": "source_port_1400"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_XU",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "416",
+        "net_name": "unconnected-(U_XU-X1D38_NC-Pad15)",
+        "pin": "15",
+        "pinfunction": "X1D38_NC_15",
+        "ref": "U_XU"
+      },
+      "pin_number": 15,
+      "port_name": "X1D38_NC",
+      "source_component_id": "source_component_480",
+      "source_port_id": "source_port_1402"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_XU",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "417",
+        "net_name": "unconnected-(U_XU-X1D39_NC-Pad16)",
+        "pin": "16",
+        "pinfunction": "X1D39_NC_16",
+        "ref": "U_XU"
+      },
+      "pin_number": 16,
+      "port_name": "X1D39_NC",
+      "source_component_id": "source_component_480",
+      "source_port_id": "source_port_1403"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_XU",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "389",
+        "net_name": "unconnected-(U_XU-X1D00_NC-Pad19)",
+        "pin": "19",
+        "pinfunction": "X1D00_NC_19",
+        "ref": "U_XU"
+      },
+      "pin_number": 19,
+      "port_name": "X1D00_NC",
+      "source_component_id": "source_component_480",
+      "source_port_id": "source_port_1406"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_XU",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "390",
+        "net_name": "unconnected-(U_XU-X1D09_NC-Pad21)",
+        "pin": "21",
+        "pinfunction": "X1D09_NC_21",
+        "ref": "U_XU"
+      },
+      "pin_number": 21,
+      "port_name": "X1D09_NC",
+      "source_component_id": "source_component_480",
+      "source_port_id": "source_port_1408"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_XU",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "358",
+        "net_name": "unconnected-(U_XU-MIPI_DN2_NC-Pad25)",
+        "pin": "25",
+        "pinfunction": "MIPI_DN2_NC_25",
+        "ref": "U_XU"
+      },
+      "pin_number": 25,
+      "port_name": "MIPI_DN2_NC",
+      "source_component_id": "source_component_480",
+      "source_port_id": "source_port_1412"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_XU",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "361",
+        "net_name": "unconnected-(U_XU-MIPI_DP2_NC-Pad26)",
+        "pin": "26",
+        "pinfunction": "MIPI_DP2_NC_26",
+        "ref": "U_XU"
+      },
+      "pin_number": 26,
+      "port_name": "MIPI_DP2_NC",
+      "source_component_id": "source_component_480",
+      "source_port_id": "source_port_1413"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_XU",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "357",
+        "net_name": "unconnected-(U_XU-MIPI_DN1_NC-Pad28)",
+        "pin": "28",
+        "pinfunction": "MIPI_DN1_NC_28",
+        "ref": "U_XU"
+      },
+      "pin_number": 28,
+      "port_name": "MIPI_DN1_NC",
+      "source_component_id": "source_component_480",
+      "source_port_id": "source_port_1415"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_XU",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "360",
+        "net_name": "unconnected-(U_XU-MIPI_DP1_NC-Pad29)",
+        "pin": "29",
+        "pinfunction": "MIPI_DP1_NC_29",
+        "ref": "U_XU"
+      },
+      "pin_number": 29,
+      "port_name": "MIPI_DP1_NC",
+      "source_component_id": "source_component_480",
+      "source_port_id": "source_port_1416"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_XU",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "356",
+        "net_name": "unconnected-(U_XU-MIPI_DN0_NC-Pad31)",
+        "pin": "31",
+        "pinfunction": "MIPI_DN0_NC_31",
+        "ref": "U_XU"
+      },
+      "pin_number": 31,
+      "port_name": "MIPI_DN0_NC",
+      "source_component_id": "source_component_480",
+      "source_port_id": "source_port_1418"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_XU",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "359",
+        "net_name": "unconnected-(U_XU-MIPI_DP0_NC-Pad32)",
+        "pin": "32",
+        "pinfunction": "MIPI_DP0_NC_32",
+        "ref": "U_XU"
+      },
+      "pin_number": 32,
+      "port_name": "MIPI_DP0_NC",
+      "source_component_id": "source_component_480",
+      "source_port_id": "source_port_1419"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_XU",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "366",
+        "net_name": "unconnected-(U_XU-X0D12_NC-Pad46)",
+        "pin": "46",
+        "pinfunction": "X0D12_NC_46",
+        "ref": "U_XU"
+      },
+      "pin_number": 46,
+      "port_name": "X0D12_NC",
+      "source_component_id": "source_component_480",
+      "source_port_id": "source_port_1433"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_XU",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "367",
+        "net_name": "unconnected-(U_XU-X0D13_NC-Pad47)",
+        "pin": "47",
+        "pinfunction": "X0D13_NC_47",
+        "ref": "U_XU"
+      },
+      "pin_number": 47,
+      "port_name": "X0D13_NC",
+      "source_component_id": "source_component_480",
+      "source_port_id": "source_port_1434"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_XU",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "369",
+        "net_name": "unconnected-(U_XU-X0D22_NC-Pad48)",
+        "pin": "48",
+        "pinfunction": "X0D22_NC_48",
+        "ref": "U_XU"
+      },
+      "pin_number": 48,
+      "port_name": "X0D22_NC",
+      "source_component_id": "source_component_480",
+      "source_port_id": "source_port_1435"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_XU",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "370",
+        "net_name": "unconnected-(U_XU-X0D23_NC-Pad49)",
+        "pin": "49",
+        "pinfunction": "X0D23_NC_49",
+        "ref": "U_XU"
+      },
+      "pin_number": 49,
+      "port_name": "X0D23_NC",
+      "source_component_id": "source_component_480",
+      "source_port_id": "source_port_1436"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_XU",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "391",
+        "net_name": "unconnected-(U_XU-X1D12_NC-Pad53)",
+        "pin": "53",
+        "pinfunction": "X1D12_NC_53",
+        "ref": "U_XU"
+      },
+      "pin_number": 53,
+      "port_name": "X1D12_NC",
+      "source_component_id": "source_component_480",
+      "source_port_id": "source_port_1440"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_XU",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "362",
+        "net_name": "unconnected-(U_XU-NC_NC-Pad55)",
+        "pin": "55",
+        "pinfunction": "NC_NC_55",
+        "ref": "U_XU"
+      },
+      "pin_number": 55,
+      "port_name": "NC_NC",
+      "source_component_id": "source_component_480",
+      "source_port_id": "source_port_1442"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_XU",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "402",
+        "net_name": "unconnected-(U_XU-X1D23_NC-Pad57)",
+        "pin": "57",
+        "pinfunction": "X1D23_NC_57",
+        "ref": "U_XU"
+      },
+      "pin_number": 57,
+      "port_name": "X1D23_NC",
+      "source_component_id": "source_component_480",
+      "source_port_id": "source_port_1444"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_XU",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "363",
+        "net_name": "unconnected-(U_XU-USB_ID_NC-Pad58)",
+        "pin": "58",
+        "pinfunction": "USB_ID_NC_58",
+        "ref": "U_XU"
+      },
+      "pin_number": 58,
+      "port_name": "USB_ID_NC",
+      "source_component_id": "source_component_480",
+      "source_port_id": "source_port_1445"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_XU",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "393",
+        "net_name": "unconnected-(U_XU-X1D14_NC-Pad63)",
+        "pin": "63",
+        "pinfunction": "X1D14_NC_63",
+        "ref": "U_XU"
+      },
+      "pin_number": 63,
+      "port_name": "X1D14_NC",
+      "source_component_id": "source_component_480",
+      "source_port_id": "source_port_1450"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_XU",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "392",
+        "net_name": "unconnected-(U_XU-X1D13_NC-Pad64)",
+        "pin": "64",
+        "pinfunction": "X1D13_NC_64",
+        "ref": "U_XU"
+      },
+      "pin_number": 64,
+      "port_name": "X1D13_NC",
+      "source_component_id": "source_component_480",
+      "source_port_id": "source_port_1451"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_XU",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "394",
+        "net_name": "unconnected-(U_XU-X1D15_NC-Pad65)",
+        "pin": "65",
+        "pinfunction": "X1D15_NC_65",
+        "ref": "U_XU"
+      },
+      "pin_number": 65,
+      "port_name": "X1D15_NC",
+      "source_component_id": "source_component_480",
+      "source_port_id": "source_port_1452"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_XU",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "395",
+        "net_name": "unconnected-(U_XU-X1D16_NC-Pad66)",
+        "pin": "66",
+        "pinfunction": "X1D16_NC_66",
+        "ref": "U_XU"
+      },
+      "pin_number": 66,
+      "port_name": "X1D16_NC",
+      "source_component_id": "source_component_480",
+      "source_port_id": "source_port_1453"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_XU",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "396",
+        "net_name": "unconnected-(U_XU-X1D17_NC-Pad67)",
+        "pin": "67",
+        "pinfunction": "X1D17_NC_67",
+        "ref": "U_XU"
+      },
+      "pin_number": 67,
+      "port_name": "X1D17_NC",
+      "source_component_id": "source_component_480",
+      "source_port_id": "source_port_1454"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_XU",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "397",
+        "net_name": "unconnected-(U_XU-X1D18_NC-Pad69)",
+        "pin": "69",
+        "pinfunction": "X1D18_NC_69",
+        "ref": "U_XU"
+      },
+      "pin_number": 69,
+      "port_name": "X1D18_NC",
+      "source_component_id": "source_component_480",
+      "source_port_id": "source_port_1456"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_XU",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "398",
+        "net_name": "unconnected-(U_XU-X1D19_NC-Pad70)",
+        "pin": "70",
+        "pinfunction": "X1D19_NC_70",
+        "ref": "U_XU"
+      },
+      "pin_number": 70,
+      "port_name": "X1D19_NC",
+      "source_component_id": "source_component_480",
+      "source_port_id": "source_port_1457"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_XU",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "399",
+        "net_name": "unconnected-(U_XU-X1D20_NC-Pad71)",
+        "pin": "71",
+        "pinfunction": "X1D20_NC_71",
+        "ref": "U_XU"
+      },
+      "pin_number": 71,
+      "port_name": "X1D20_NC",
+      "source_component_id": "source_component_480",
+      "source_port_id": "source_port_1458"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_XU",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "400",
+        "net_name": "unconnected-(U_XU-X1D21_NC-Pad73)",
+        "pin": "73",
+        "pinfunction": "X1D21_NC_73",
+        "ref": "U_XU"
+      },
+      "pin_number": 73,
+      "port_name": "X1D21_NC",
+      "source_component_id": "source_component_480",
+      "source_port_id": "source_port_1460"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_XU",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "401",
+        "net_name": "unconnected-(U_XU-X1D22_NC-Pad74)",
+        "pin": "74",
+        "pinfunction": "X1D22_NC_74",
+        "ref": "U_XU"
+      },
+      "pin_number": 74,
+      "port_name": "X1D22_NC",
+      "source_component_id": "source_component_480",
+      "source_port_id": "source_port_1461"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_XU",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "419",
+        "net_name": "unconnected-(U_XU-X1D49_NC-Pad75)",
+        "pin": "75",
+        "pinfunction": "X1D49_NC_75",
+        "ref": "U_XU"
+      },
+      "pin_number": 75,
+      "port_name": "X1D49_NC",
+      "source_component_id": "source_component_480",
+      "source_port_id": "source_port_1462"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_XU",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "420",
+        "net_name": "unconnected-(U_XU-X1D50_NC-Pad76)",
+        "pin": "76",
+        "pinfunction": "X1D50_NC_76",
+        "ref": "U_XU"
+      },
+      "pin_number": 76,
+      "port_name": "X1D50_NC",
+      "source_component_id": "source_component_480",
+      "source_port_id": "source_port_1463"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_XU",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "421",
+        "net_name": "unconnected-(U_XU-X1D51_NC-Pad77)",
+        "pin": "77",
+        "pinfunction": "X1D51_NC_77",
+        "ref": "U_XU"
+      },
+      "pin_number": 77,
+      "port_name": "X1D51_NC",
+      "source_component_id": "source_component_480",
+      "source_port_id": "source_port_1464"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_XU",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "422",
+        "net_name": "unconnected-(U_XU-X1D52_NC-Pad78)",
+        "pin": "78",
+        "pinfunction": "X1D52_NC_78",
+        "ref": "U_XU"
+      },
+      "pin_number": 78,
+      "port_name": "X1D52_NC",
+      "source_component_id": "source_component_480",
+      "source_port_id": "source_port_1465"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_XU",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "423",
+        "net_name": "unconnected-(U_XU-X1D53_NC-Pad79)",
+        "pin": "79",
+        "pinfunction": "X1D53_NC_79",
+        "ref": "U_XU"
+      },
+      "pin_number": 79,
+      "port_name": "X1D53_NC",
+      "source_component_id": "source_component_480",
+      "source_port_id": "source_port_1466"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_XU",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "424",
+        "net_name": "unconnected-(U_XU-X1D54_NC-Pad80)",
+        "pin": "80",
+        "pinfunction": "X1D54_NC_80",
+        "ref": "U_XU"
+      },
+      "pin_number": 80,
+      "port_name": "X1D54_NC",
+      "source_component_id": "source_component_480",
+      "source_port_id": "source_port_1467"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_XU",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "425",
+        "net_name": "unconnected-(U_XU-X1D55_NC-Pad81)",
+        "pin": "81",
+        "pinfunction": "X1D55_NC_81",
+        "ref": "U_XU"
+      },
+      "pin_number": 81,
+      "port_name": "X1D55_NC",
+      "source_component_id": "source_component_480",
+      "source_port_id": "source_port_1468"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_XU",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "426",
+        "net_name": "unconnected-(U_XU-X1D56_NC-Pad82)",
+        "pin": "82",
+        "pinfunction": "X1D56_NC_82",
+        "ref": "U_XU"
+      },
+      "pin_number": 82,
+      "port_name": "X1D56_NC",
+      "source_component_id": "source_component_480",
+      "source_port_id": "source_port_1469"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_XU",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "427",
+        "net_name": "unconnected-(U_XU-X1D57_NC-Pad83)",
+        "pin": "83",
+        "pinfunction": "X1D57_NC_83",
+        "ref": "U_XU"
+      },
+      "pin_number": 83,
+      "port_name": "X1D57_NC",
+      "source_component_id": "source_component_480",
+      "source_port_id": "source_port_1470"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_XU",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "428",
+        "net_name": "unconnected-(U_XU-X1D58_NC-Pad84)",
+        "pin": "84",
+        "pinfunction": "X1D58_NC_84",
+        "ref": "U_XU"
+      },
+      "pin_number": 84,
+      "port_name": "X1D58_NC",
+      "source_component_id": "source_component_480",
+      "source_port_id": "source_port_1471"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_XU",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "371",
+        "net_name": "unconnected-(U_XU-X0D24_NC-Pad86)",
+        "pin": "86",
+        "pinfunction": "X0D24_NC_86",
+        "ref": "U_XU"
+      },
+      "pin_number": 86,
+      "port_name": "X0D24_NC",
+      "source_component_id": "source_component_480",
+      "source_port_id": "source_port_1473"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_XU",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "372",
+        "net_name": "unconnected-(U_XU-X0D25_NC-Pad87)",
+        "pin": "87",
+        "pinfunction": "X0D25_NC_87",
+        "ref": "U_XU"
+      },
+      "pin_number": 87,
+      "port_name": "X0D25_NC",
+      "source_component_id": "source_component_480",
+      "source_port_id": "source_port_1474"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_XU",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "373",
+        "net_name": "unconnected-(U_XU-X0D26_NC-Pad88)",
+        "pin": "88",
+        "pinfunction": "X0D26_NC_88",
+        "ref": "U_XU"
+      },
+      "pin_number": 88,
+      "port_name": "X0D26_NC",
+      "source_component_id": "source_component_480",
+      "source_port_id": "source_port_1475"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_XU",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "374",
+        "net_name": "unconnected-(U_XU-X0D27_NC-Pad90)",
+        "pin": "90",
+        "pinfunction": "X0D27_NC_90",
+        "ref": "U_XU"
+      },
+      "pin_number": 90,
+      "port_name": "X0D27_NC",
+      "source_component_id": "source_component_480",
+      "source_port_id": "source_port_1477"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_XU",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "375",
+        "net_name": "unconnected-(U_XU-X0D28_NC-Pad91)",
+        "pin": "91",
+        "pinfunction": "X0D28_NC_91",
+        "ref": "U_XU"
+      },
+      "pin_number": 91,
+      "port_name": "X0D28_NC",
+      "source_component_id": "source_component_480",
+      "source_port_id": "source_port_1478"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_XU",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "376",
+        "net_name": "unconnected-(U_XU-X0D29_NC-Pad92)",
+        "pin": "92",
+        "pinfunction": "X0D29_NC_92",
+        "ref": "U_XU"
+      },
+      "pin_number": 92,
+      "port_name": "X0D29_NC",
+      "source_component_id": "source_component_480",
+      "source_port_id": "source_port_1479"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_XU",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "382",
+        "net_name": "unconnected-(U_XU-X0D37_NC-Pad96)",
+        "pin": "96",
+        "pinfunction": "X0D37_NC_96",
+        "ref": "U_XU"
+      },
+      "pin_number": 96,
+      "port_name": "X0D37_NC",
+      "source_component_id": "source_component_480",
+      "source_port_id": "source_port_1483"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_XU",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "383",
+        "net_name": "unconnected-(U_XU-X0D38_NC-Pad97)",
+        "pin": "97",
+        "pinfunction": "X0D38_NC_97",
+        "ref": "U_XU"
+      },
+      "pin_number": 97,
+      "port_name": "X0D38_NC",
+      "source_component_id": "source_component_480",
+      "source_port_id": "source_port_1484"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_XU",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "385",
+        "net_name": "unconnected-(U_XU-X0D40_NC-Pad98)",
+        "pin": "98",
+        "pinfunction": "X0D40_NC_98",
+        "ref": "U_XU"
+      },
+      "pin_number": 98,
+      "port_name": "X0D40_NC",
+      "source_component_id": "source_component_480",
+      "source_port_id": "source_port_1485"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_XU",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "384",
+        "net_name": "unconnected-(U_XU-X0D39_NC-Pad99)",
+        "pin": "99",
+        "pinfunction": "X0D39_NC_99",
+        "ref": "U_XU"
+      },
+      "pin_number": 99,
+      "port_name": "X0D39_NC",
+      "source_component_id": "source_component_480",
+      "source_port_id": "source_port_1486"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_XU",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "387",
+        "net_name": "unconnected-(U_XU-X0D42_NC-Pad100)",
+        "pin": "100",
+        "pinfunction": "X0D42_NC_100",
+        "ref": "U_XU"
+      },
+      "pin_number": 100,
+      "port_name": "X0D42_NC",
+      "source_component_id": "source_component_480",
+      "source_port_id": "source_port_1487"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_XU",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "386",
+        "net_name": "unconnected-(U_XU-X0D41_NC-Pad101)",
+        "pin": "101",
+        "pinfunction": "X0D41_NC_101",
+        "ref": "U_XU"
+      },
+      "pin_number": 101,
+      "port_name": "X0D41_NC",
+      "source_component_id": "source_component_480",
+      "source_port_id": "source_port_1488"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_XU",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "418",
+        "net_name": "unconnected-(U_XU-X1D43_NC-Pad102)",
+        "pin": "102",
+        "pinfunction": "X1D43_NC_102",
+        "ref": "U_XU"
+      },
+      "pin_number": 102,
+      "port_name": "X1D43_NC",
+      "source_component_id": "source_component_480",
+      "source_port_id": "source_port_1489"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_XU",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "388",
+        "net_name": "unconnected-(U_XU-X0D43_NC-Pad103)",
+        "pin": "103",
+        "pinfunction": "X0D43_NC_103",
+        "ref": "U_XU"
+      },
+      "pin_number": 103,
+      "port_name": "X0D43_NC",
+      "source_component_id": "source_component_480",
+      "source_port_id": "source_port_1490"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_XU",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "403",
+        "net_name": "unconnected-(U_XU-X1D25_NC-Pad108)",
+        "pin": "108",
+        "pinfunction": "X1D25_NC_108",
+        "ref": "U_XU"
+      },
+      "pin_number": 108,
+      "port_name": "X1D25_NC",
+      "source_component_id": "source_component_480",
+      "source_port_id": "source_port_1495"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_XU",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "404",
+        "net_name": "unconnected-(U_XU-X1D26_NC-Pad110)",
+        "pin": "110",
+        "pinfunction": "X1D26_NC_110",
+        "ref": "U_XU"
+      },
+      "pin_number": 110,
+      "port_name": "X1D26_NC",
+      "source_component_id": "source_component_480",
+      "source_port_id": "source_port_1497"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_XU",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "405",
+        "net_name": "unconnected-(U_XU-X1D27_NC-Pad111)",
+        "pin": "111",
+        "pinfunction": "X1D27_NC_111",
+        "ref": "U_XU"
+      },
+      "pin_number": 111,
+      "port_name": "X1D27_NC",
+      "source_component_id": "source_component_480",
+      "source_port_id": "source_port_1498"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_XU",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "406",
+        "net_name": "unconnected-(U_XU-X1D28_NC-Pad112)",
+        "pin": "112",
+        "pinfunction": "X1D28_NC_112",
+        "ref": "U_XU"
+      },
+      "pin_number": 112,
+      "port_name": "X1D28_NC",
+      "source_component_id": "source_component_480",
+      "source_port_id": "source_port_1499"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_XU",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "407",
+        "net_name": "unconnected-(U_XU-X1D29_NC-Pad114)",
+        "pin": "114",
+        "pinfunction": "X1D29_NC_114",
+        "ref": "U_XU"
+      },
+      "pin_number": 114,
+      "port_name": "X1D29_NC",
+      "source_component_id": "source_component_480",
+      "source_port_id": "source_port_1501"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_XU",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "408",
+        "net_name": "unconnected-(U_XU-X1D30_NC-Pad115)",
+        "pin": "115",
+        "pinfunction": "X1D30_NC_115",
+        "ref": "U_XU"
+      },
+      "pin_number": 115,
+      "port_name": "X1D30_NC",
+      "source_component_id": "source_component_480",
+      "source_port_id": "source_port_1502"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_XU",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "409",
+        "net_name": "unconnected-(U_XU-X1D31_NC-Pad116)",
+        "pin": "116",
+        "pinfunction": "X1D31_NC_116",
+        "ref": "U_XU"
+      },
+      "pin_number": 116,
+      "port_name": "X1D31_NC",
+      "source_component_id": "source_component_480",
+      "source_port_id": "source_port_1503"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_XU",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "410",
+        "net_name": "unconnected-(U_XU-X1D32_NC-Pad117)",
+        "pin": "117",
+        "pinfunction": "X1D32_NC_117",
+        "ref": "U_XU"
+      },
+      "pin_number": 117,
+      "port_name": "X1D32_NC",
+      "source_component_id": "source_component_480",
+      "source_port_id": "source_port_1504"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_XU",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "411",
+        "net_name": "unconnected-(U_XU-X1D33_NC-Pad118)",
+        "pin": "118",
+        "pinfunction": "X1D33_NC_118",
+        "ref": "U_XU"
+      },
+      "pin_number": 118,
+      "port_name": "X1D33_NC",
+      "source_component_id": "source_component_480",
+      "source_port_id": "source_port_1505"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_XU",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "412",
+        "net_name": "unconnected-(U_XU-X1D34_NC-Pad119)",
+        "pin": "119",
+        "pinfunction": "X1D34_NC_119",
+        "ref": "U_XU"
+      },
+      "pin_number": 119,
+      "port_name": "X1D34_NC",
+      "source_component_id": "source_component_480",
+      "source_port_id": "source_port_1506"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_XU",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "413",
+        "net_name": "unconnected-(U_XU-X1D35_NC-Pad120)",
+        "pin": "120",
+        "pinfunction": "X1D35_NC_120",
+        "ref": "U_XU"
+      },
+      "pin_number": 120,
+      "port_name": "X1D35_NC",
+      "source_component_id": "source_component_480",
+      "source_port_id": "source_port_1507"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_XU",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "377",
+        "net_name": "unconnected-(U_XU-X0D30_NC-Pad122)",
+        "pin": "122",
+        "pinfunction": "X0D30_NC_122",
+        "ref": "U_XU"
+      },
+      "pin_number": 122,
+      "port_name": "X0D30_NC",
+      "source_component_id": "source_component_480",
+      "source_port_id": "source_port_1509"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_XU",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "379",
+        "net_name": "unconnected-(U_XU-X0D32_NC-Pad123)",
+        "pin": "123",
+        "pinfunction": "X0D32_NC_123",
+        "ref": "U_XU"
+      },
+      "pin_number": 123,
+      "port_name": "X0D32_NC",
+      "source_component_id": "source_component_480",
+      "source_port_id": "source_port_1510"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_XU",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "378",
+        "net_name": "unconnected-(U_XU-X0D31_NC-Pad124)",
+        "pin": "124",
+        "pinfunction": "X0D31_NC_124",
+        "ref": "U_XU"
+      },
+      "pin_number": 124,
+      "port_name": "X0D31_NC",
+      "source_component_id": "source_component_480",
+      "source_port_id": "source_port_1511"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_XU",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "381",
+        "net_name": "unconnected-(U_XU-X0D34_NC-Pad125)",
+        "pin": "125",
+        "pinfunction": "X0D34_NC_125",
+        "ref": "U_XU"
+      },
+      "pin_number": 125,
+      "port_name": "X0D34_NC",
+      "source_component_id": "source_component_480",
+      "source_port_id": "source_port_1512"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_XU",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "380",
+        "net_name": "unconnected-(U_XU-X0D33_NC-Pad126)",
+        "pin": "126",
+        "pinfunction": "X0D33_NC_126",
+        "ref": "U_XU"
+      },
+      "pin_number": 126,
+      "port_name": "X0D33_NC",
+      "source_component_id": "source_component_480",
+      "source_port_id": "source_port_1513"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_FSYNC_FF1",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "323",
+        "net_name": "unconnected-(U_FSYNC_FF1-Q_N-Pad3)",
+        "pin": "3",
+        "pinfunction": "Q_N_3",
+        "ref": "U_FSYNC_FF1"
+      },
+      "pin_number": 3,
+      "port_name": "Q_N",
+      "source_component_id": "source_component_533",
+      "source_port_id": "source_port_1653"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_BCLK_INV",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "300",
+        "net_name": "unconnected-(U_BCLK_INV-NC-Pad1)",
+        "pin": "1",
+        "pinfunction": "NC_1",
+        "ref": "U_BCLK_INV"
+      },
+      "pin_number": 1,
+      "port_name": "NC",
+      "source_component_id": "source_component_534",
+      "source_port_id": "source_port_1659"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_FSYNC_FF2",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "324",
+        "net_name": "unconnected-(U_FSYNC_FF2-Q_N-Pad3)",
+        "pin": "3",
+        "pinfunction": "Q_N_3",
+        "ref": "U_FSYNC_FF2"
+      },
+      "pin_number": 3,
+      "port_name": "Q_N",
+      "source_component_id": "source_component_535",
+      "source_port_id": "source_port_1666"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_ADC_OUT",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "297",
+        "net_name": "unconnected-(U_ADC_OUT-1Y-Pad7)",
+        "pin": "7",
+        "pinfunction": "1Y_7",
+        "ref": "U_ADC_OUT"
+      },
+      "pin_number": 7,
+      "port_name": "1Y",
+      "source_component_id": "source_component_541",
+      "source_port_id": "source_port_1692"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "J_JTAG",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "283",
+        "net_name": "unconnected-(J_JTAG-KEY_NC-Pad7)",
+        "pin": "7",
+        "pinfunction": "KEY_NC_7",
+        "ref": "J_JTAG"
+      },
+      "pin_number": 7,
+      "port_name": "KEY_NC",
+      "source_component_id": "source_component_560",
+      "source_port_id": "source_port_1745"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "J_USB",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "ref_pinfunction_name",
+        "net_code": "284",
+        "net_name": "unconnected-(J_USB-A8_SBU1_NC-PadA8)",
+        "pin": "A8",
+        "pinfunction": "A8_SBU1_NC_A8",
+        "ref": "J_USB"
+      },
+      "pin_number": 6,
+      "port_name": "A8_SBU1_NC",
+      "source_component_id": "source_component_561",
+      "source_port_id": "source_port_1754"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "J_USB",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "ref_pinfunction_name",
+        "net_code": "285",
+        "net_name": "unconnected-(J_USB-B8_SBU2_NC-PadB8)",
+        "pin": "B8",
+        "pinfunction": "B8_SBU2_NC_B8",
+        "ref": "J_USB"
+      },
+      "pin_number": 14,
+      "port_name": "B8_SBU2_NC",
+      "source_component_id": "source_component_561",
+      "source_port_id": "source_port_1762"
+    },
+    {
+      "classification": "internal_connection_no_public_native_pin",
+      "component": "J_USB",
+      "intent": "source-only J_USB internal port: no public pin number; represented only by explicit source internal-connection record",
+      "internal_connection_id": "source_component_internal_connection_6",
+      "native_node": null,
+      "pin_number": null,
+      "port_name": "pin17_internal_1",
+      "source_component_id": "source_component_561",
+      "source_port_id": "source_port_1766"
+    },
+    {
+      "classification": "internal_connection_no_public_native_pin",
+      "component": "J_USB",
+      "intent": "source-only J_USB internal port: no public pin number; represented only by explicit source internal-connection record",
+      "internal_connection_id": "source_component_internal_connection_6",
+      "native_node": null,
+      "pin_number": null,
+      "port_name": "pin17_internal_2",
+      "source_component_id": "source_component_561",
+      "source_port_id": "source_port_1767"
+    },
+    {
+      "classification": "internal_connection_no_public_native_pin",
+      "component": "J_USB",
+      "intent": "source-only J_USB internal port: no public pin number; represented only by explicit source internal-connection record",
+      "internal_connection_id": "source_component_internal_connection_6",
+      "native_node": null,
+      "pin_number": null,
+      "port_name": "pin17_internal_3",
+      "source_component_id": "source_component_561",
+      "source_port_id": "source_port_1768"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_USB_CC_ESD",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "351",
+        "net_name": "unconnected-(U_USB_CC_ESD-NC1-Pad1)",
+        "pin": "1",
+        "pinfunction": "NC1_1",
+        "ref": "U_USB_CC_ESD"
+      },
+      "pin_number": 1,
+      "port_name": "NC1",
+      "source_component_id": "source_component_565",
+      "source_port_id": "source_port_1776"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_USB_CC_ESD",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "352",
+        "net_name": "unconnected-(U_USB_CC_ESD-NC2-Pad2)",
+        "pin": "2",
+        "pinfunction": "NC2_2",
+        "ref": "U_USB_CC_ESD"
+      },
+      "pin_number": 2,
+      "port_name": "NC2",
+      "source_component_id": "source_component_565",
+      "source_port_id": "source_port_1777"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_USB_VBUS_ESD",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "353",
+        "net_name": "unconnected-(U_USB_VBUS_ESD-NC1-Pad1)",
+        "pin": "1",
+        "pinfunction": "NC1_1",
+        "ref": "U_USB_VBUS_ESD"
+      },
+      "pin_number": 1,
+      "port_name": "NC1",
+      "source_component_id": "source_component_566",
+      "source_port_id": "source_port_1781"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_USB_VBUS_ESD",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "354",
+        "net_name": "unconnected-(U_USB_VBUS_ESD-NC2-Pad2)",
+        "pin": "2",
+        "pinfunction": "NC2_2",
+        "ref": "U_USB_VBUS_ESD"
+      },
+      "pin_number": 2,
+      "port_name": "NC2",
+      "source_component_id": "source_component_566",
+      "source_port_id": "source_port_1782"
+    },
+    {
+      "classification": "intentional_nc",
+      "component": "U_USB_VBUS_ESD",
+      "intent": "native KiCad unconnected net; source function is explicitly NC/unused/fault/status or internally grouped",
+      "internal_connection_id": null,
+      "native_node": {
+        "match_method": "exact_ref_pin",
+        "net_code": "355",
+        "net_name": "unconnected-(U_USB_VBUS_ESD-UNUSED_NC-Pad5)",
+        "pin": "5",
+        "pinfunction": "UNUSED_NC_5",
+        "ref": "U_USB_VBUS_ESD"
+      },
+      "pin_number": 5,
+      "port_name": "UNUSED_NC",
+      "source_component_id": "source_component_566",
+      "source_port_id": "source_port_1785"
+    }
+  ],
+  "schema": "crow-569-untraced-port-parity-terra/v1",
+  "scope": "READ_ONLY exact parity audit of frozen current CJ1f01be73 / netlist 8a1ad62e; no board evidence or project edits"
+}
