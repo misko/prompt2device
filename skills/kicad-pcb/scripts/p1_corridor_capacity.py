@@ -39,6 +39,10 @@ slot credit; geometry cannot establish native access or return continuity.
 A ``fixed_connector_access`` witness keeps a P1-fixed pad physical and binds a
 separate, disjoint access reservation to a named integration corridor. It is
 only a topology/geometry declaration and carries no routing capacity credit.
+``fixed_connector_access_segmented`` uses ordered, edge-joined rectangles in
+``segments`` instead of one access rectangle. The ``bbox`` is their exact
+envelope; native obstacles are checked against every segment. It remains
+INCOMPLETE and grants no capacity or P1 credit.
 """
 from __future__ import annotations
 
@@ -199,7 +203,7 @@ def _coarse_witness(board, witness, net, owned_pads, aliases, pads, outline,
             raise ContractError(f'{source}: integration P2 pad-to-face obligation missing')
         if not any(p.IsOnLayer(board.GetLayerID(layer)) for p in found):
             raise ContractError(f'{source}: native source pad not on integration layer')
-    elif kind == 'fixed_connector_access':
+    elif kind in ('fixed_connector_access', 'fixed_connector_access_segmented'):
         corridor = (integration_corridors or {}).get(witness.get('corridor_id'))
         if corridor is None:
             raise ContractError(f'{source}: undeclared fixed access corridor')
@@ -239,6 +243,43 @@ def _witness_touches_reservation(witness, reservation):
         return shared and (abs(a[2] - b[0]) <= tol if face == 'west' else abs(a[0] - b[2]) <= tol)
     shared = min(a[2], b[2]) - max(a[0], b[0]) > tol
     return shared and (abs(a[3] - b[1]) <= tol if face == 'north' else abs(a[1] - b[3]) <= tol)
+
+
+def _positive_edge_contact(a, b):
+    """Require a positive-length shared edge, without area overlap."""
+    tol = 1e-6
+    return not intersects(a, b) and (
+        ((abs(a[2] - b[0]) <= tol or abs(a[0] - b[2]) <= tol) and
+         min(a[3], b[3]) - max(a[1], b[1]) > tol) or
+        ((abs(a[3] - b[1]) <= tol or abs(a[1] - b[3]) <= tol) and
+         min(a[2], b[2]) - max(a[0], b[0]) > tol))
+
+
+def _fixed_access_shapes(target, witness, corridor, source_region):
+    """Return a checked access chain; legacy rectangle semantics stay intact."""
+    envelope = rectangle(target.get('bbox'), 'fixed connector access')
+    if target.get('kind') == 'fixed_connector_access':
+        return [envelope]
+    raw = target.get('segments')
+    if not isinstance(raw, list) or len(raw) < 2:
+        raise ContractError('segmented fixed access needs at least two segments')
+    shapes = [rectangle(value, 'fixed access segment') for value in raw]
+    actual = (min(s[0] for s in shapes), min(s[1] for s in shapes),
+              max(s[2] for s in shapes), max(s[3] for s in shapes))
+    if envelope != actual:
+        raise ContractError('segmented fixed access bbox differs from segment envelope')
+    if any(not contains(source_region, shape) for shape in shapes):
+        raise ContractError('segmented fixed access leaves source region')
+    if not _witness_touches_reservation(witness, {'bbox': shapes[0]}):
+        raise ContractError('segmented fixed access does not leave physical pad boundary')
+    for index, shape in enumerate(shapes):
+        if index and not _positive_edge_contact(shapes[index - 1], shape):
+            raise ContractError('segmented fixed access has disconnected or overlapping waypoints')
+        if index > 1 and any(intersects(shape, prior) for prior in shapes[:index - 1]):
+            raise ContractError('segmented fixed access self-overlaps')
+    if not _positive_edge_contact(shapes[-1], corridor):
+        raise ContractError('segmented fixed access does not contact integration corridor')
+    return shapes
 
 
 def _virtual_region_clearance(witness, reservation, regions):
@@ -706,7 +747,8 @@ def evaluate_coarse(board_path, contract_path, expected_contract_sha256=None, *,
                         target = reservation_map.get(witness.get('reservation_id'))
                         if (target is None or verified['net'] not in target.get('nets', []) or
                                 verified['layer'] != target.get('layer') or
-                                not _witness_touches_reservation(verified, target)):
+                                (witness.get('kind') != 'fixed_connector_access_segmented' and
+                                 not _witness_touches_reservation(verified, target))):
                             raise ContractError(f"{verified['source']}: block face does not contact assigned reservation")
                         _virtual_region_clearance(witness, target, regions)
                         if witness.get('kind') == 'shared_transition_port':
@@ -718,28 +760,35 @@ def evaluate_coarse(board_path, contract_path, expected_contract_sha256=None, *,
                                 raise ContractError(f"{verified['source']}: reservation outside declared shared port scope")
                             used_port_endpoints[port['id']].add((verified['source'], verified['native'],
                                                                   verified['net'], verified['block'], verified['layer']))
-                        if witness.get('kind') in ('integration_corridor_handoff', 'fixed_connector_access'):
+                        if witness.get('kind') in ('integration_corridor_handoff', 'fixed_connector_access',
+                                                   'fixed_connector_access_segmented'):
                             corridor = corridors[witness['corridor_id']]
-                            if witness.get('kind') == 'fixed_connector_access':
+                            if witness.get('kind') in ('fixed_connector_access', 'fixed_connector_access_segmented'):
                                 access = rectangle(target.get('bbox'), 'fixed connector access')
+                                segmented = witness['kind'] == 'fixed_connector_access_segmented'
                                 selected = next(f for f in corridor['faces'] if f['block'] == verified['block'])
                                 approach = {'north': 'south', 'south': 'north',
                                             'east': 'west', 'west': 'east'}[selected['region_face']]
                                 if (name != corridor['allocation_id'] or
-                                        target.get('kind') != 'fixed_connector_access' or
+                                        target.get('kind') != witness['kind'] or
                                         target.get('corridor_id') != corridor['id'] or
                                         target.get('layer') != corridor['layer'] or
                                         target.get('nets') != [verified['net']] or
                                         not contains(rectangle(regions[verified['block']], 'access source region'), access) or
                                         not intersects(access, selected['bbox']) or
-                                        not _witness_touches_reservation(
+                                        (not segmented and not _witness_touches_reservation(
                                             {'boundary_bbox': access, 'face': approach},
-                                            {'bbox': corridor['bbox']})):
+                                            {'bbox': corridor['bbox']}))):
                                     raise ContractError(f"{verified['source']}: fixed access does not join source face")
+                                shapes = _fixed_access_shapes(target, verified, corridor['bbox'],
+                                                               rectangle(regions[verified['block']], 'access source region'))
+                                if segmented and not intersects(shapes[-1], selected['bbox']):
+                                    raise ContractError(f"{verified['source']}: segmented fixed access misses source face")
                                 for other in reservations:
                                     if other is not target and other.get('id') != corridor['reservation_id'] and \
                                             other.get('layer') == corridor['layer'] and \
-                                            intersects(access, rectangle(other.get('bbox'), 'other reservation')):
+                                            any(intersects(shape, rectangle(other.get('bbox'), 'other reservation'))
+                                                for shape in shapes):
                                         raise ContractError(f"{verified['source']}: fixed access overlaps other reservation")
                                 # This reservation is intentionally exempt from rough-capacity
                                 # measurement, but it still has to be an empty physical access
@@ -754,21 +803,24 @@ def evaluate_coarse(board_path, contract_path, expected_contract_sha256=None, *,
                                     if (ref != verified['native'].rsplit('.', 1)[0] and
                                             ((side == 'F.Cu' and corridor['layer'] == 'F.Cu') or
                                              (side == 'B.Cu' and corridor['layer'] == 'B.Cu'))):
-                                        if intersects(access, _physical_envelope(fp)):
+                                        if any(intersects(shape, _physical_envelope(fp)) for shape in shapes):
                                             raise ContractError(f"{verified['source']}: fixed access intersects native body {ref}")
                                     for pad in fp.Pads():
                                         native_pad = f'{ref}.{pad.GetNumber()}'
                                         if (native_pad != verified['native'] and
                                                 pad.IsOnLayer(board.GetLayerID(corridor['layer'])) and
-                                                intersects(access, box_mm(pad.GetBoundingBox()))):
+                                                any(intersects(shape, box_mm(pad.GetBoundingBox()))
+                                                    for shape in shapes)):
                                             raise ContractError(f"{verified['source']}: fixed access intersects native pad {native_pad}")
                                 if any(item.IsOnLayer(board.GetLayerID(corridor['layer'])) and
-                                       intersects(access, box_mm(item.GetBoundingBox()))
+                                       any(intersects(shape, box_mm(item.GetBoundingBox()))
+                                           for shape in shapes)
                                        for item in board.GetTracks()):
                                     raise ContractError(f"{verified['source']}: fixed access intersects existing copper")
                                 if any(zone.GetIsRuleArea() and
                                        corridor['layer'] in {board.GetLayerName(i) for i in zone.GetLayerSet().Seq()} and
-                                       intersects(access, box_mm(zone.GetBoundingBox()))
+                                       any(intersects(shape, box_mm(zone.GetBoundingBox()))
+                                           for shape in shapes)
                                        for zone in zones):
                                     raise ContractError(f"{verified['source']}: fixed access overlaps immutable native rule area")
                             elif (name != corridor['allocation_id'] or
@@ -802,8 +854,8 @@ def evaluate_coarse(board_path, contract_path, expected_contract_sha256=None, *,
                                              'nets': reservation['nets'],
                                              'reason': 'P2 native pad-to-face, filled-reference return and effective capacity unproved'})
                             continue
-                        if reservation.get('kind') == 'fixed_connector_access':
-                            if sum(w.get('kind') == 'fixed_connector_access' and
+                        if reservation.get('kind') in ('fixed_connector_access', 'fixed_connector_access_segmented'):
+                            if sum(w.get('kind') == reservation.get('kind') and
                                    w.get('reservation_id') == reservation.get('id')
                                    for w in witnesses) != 1:
                                 raise ContractError(f'{name}: fixed connector access must serve exactly one endpoint')
@@ -838,7 +890,7 @@ def evaluate_coarse(board_path, contract_path, expected_contract_sha256=None, *,
                                                      for w in (allocation.get('boundary_witnesses') or [])
                                                      if isinstance(w, dict)) or
                                                  any(w.get('kind') == 'integration_corridor_handoff'
-                                                     or w.get('kind') == 'fixed_connector_access'
+                                                     or w.get('kind') in ('fixed_connector_access', 'fixed_connector_access_segmented')
                                                      for w in (allocation.get('boundary_witnesses') or [])
                                                      if isinstance(w, dict)) or
                                                  any(r.get('kind') == 'integration_corridor'
@@ -862,7 +914,7 @@ def evaluate_coarse(board_path, contract_path, expected_contract_sha256=None, *,
                     errors.append(f'{ident}: integration reservation denominator mismatch')
                 for name, reservation in reservations_seen:
                     if (reservation.get('id') != corridor['reservation_id'] and
-                            not (reservation.get('kind') == 'fixed_connector_access' and
+                            not (reservation.get('kind') in ('fixed_connector_access', 'fixed_connector_access_segmented') and
                                  reservation.get('corridor_id') == ident) and
                             set(reservation.get('nets', [])) & set(corridor['nets'])):
                         errors.append(f'{ident}: integration net double reservation credit in {name}')

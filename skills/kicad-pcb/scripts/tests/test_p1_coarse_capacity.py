@@ -236,6 +236,68 @@ class CoarseCapacityTest(unittest.TestCase):
             'bbox': [2.125, 3.55, 4, 4.5], 'nets': ['QSPI_CLK']})
         return witness
 
+    def add_segmented_fixed_access(self):
+        witness = self.add_fixed_connector_access()
+        witness['kind'] = 'fixed_connector_access_segmented'
+        access = self.allocations[0]['reservations'][-1]
+        access['kind'] = 'fixed_connector_access_segmented'
+        access['bbox'] = [2.125, 3.575, 4, 4.4]
+        access['segments'] = [[2.125, 3.575, 2.5, 3.825],
+                              [2.3, 3.825, 2.5, 4.4],
+                              [2.5, 4.2, 4, 4.4]]
+        return witness, access
+
+    def test_segmented_fixed_access_bypasses_envelope_obstacle_without_credit(self):
+        self.add_segmented_fixed_access()
+        pad(self.board, 'U_BLOCK', '1', 'OTHER', 3, 3.9, .2)
+        self.source['p1_fixed_refs'].append('U_BLOCK')
+        self.floorplan['placement']['post_anchors']['U_BLOCK'] = [3, 3.9, 0]
+        result = self.run_case()
+        self.assertEqual(result['errors'], [])
+        self.assertEqual(result['status'], 'INCOMPLETE')
+        self.assertFalse(result['p1_accepted'])
+        reservation = result['allocations'][0]['reservations'][-1]
+        self.assertEqual(reservation['status'], 'INCOMPLETE')
+        self.assertNotIn('capacity_slots', reservation)
+
+    def test_segmented_fixed_access_rejects_waypoint_and_native_obstacles(self):
+        _, access = self.add_segmented_fixed_access()
+        original = [part[:] for part in access['segments']]
+        access['segments'][1][1] = 3.9
+        self.assertIn('disconnected or overlapping waypoints',
+                      self.run_case()['allocations'][0]['reason'])
+        access['segments'] = [part[:] for part in original]
+        access['segments'][2][2] = 3.9
+        access['bbox'][2] = 3.9
+        self.assertIn('does not contact integration corridor',
+                      self.run_case()['allocations'][0]['reason'])
+        access['segments'] = [part[:] for part in original]
+        access['bbox'][2] = 4
+        pad(self.board, 'U_BLOCK', '1', 'OTHER', 3, 4.3, .2)
+        self.source['p1_fixed_refs'].append('U_BLOCK')
+        self.floorplan['placement']['post_anchors']['U_BLOCK'] = [3, 4.3, 0]
+        self.assertIn('fixed access intersects native body U_BLOCK',
+                      self.run_case()['allocations'][0]['reason'])
+
+    def test_segmented_fixed_access_rejects_false_envelope_and_wrong_denominator(self):
+        witness, access = self.add_segmented_fixed_access()
+        access['bbox'][0] = 2.0
+        self.assertIn('bbox differs from segment envelope',
+                      self.run_case()['allocations'][0]['reason'])
+        access['bbox'][0] = 2.125
+        witness['source'] = 'U_L1.1'
+        self.assertIn('witness source/block ownership mismatch',
+                      self.run_case()['allocations'][0]['reason'])
+
+    def test_segmented_fixed_access_rejects_competing_reservation(self):
+        self.add_segmented_fixed_access()
+        self.allocations[0]['reservations'].append({
+            'id': 'competing', 'kind': 'signal', 'layer': 'F.Cu',
+            'bbox': [2.8, 4.25, 3.1, 4.35], 'axis': 'horizontal',
+            'nets': ['QSPI_CLK'], 'demand_slots': 1, 'slot_pitch_mm': .5})
+        self.assertIn('fixed access overlaps other reservation',
+                      self.run_case()['allocations'][0]['reason'])
+
     def test_fixed_connector_access_preserves_native_pad_and_corridor_debt(self):
         self.add_fixed_connector_access()
         result = self.run_case()
