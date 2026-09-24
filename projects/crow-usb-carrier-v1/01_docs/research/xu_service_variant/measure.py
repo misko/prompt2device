@@ -193,7 +193,7 @@ def run(board_path):
     return {'schema': 'crow-xu-service-ownership-variant-v1',
             'status': 'INCOMPLETE_RESEARCH', 'source_commit': '9c73181c432b51558003a8be7e496cc8c6757d5a',
             'source_sha256': actual, 'board_sha256': BOARD_SHA, 'pcbnew_version': pcbnew.Version(),
-            'variant': 'two disjoint rectangles with exclusive measured faces',
+            'variant': 'two disjoint rectangles with diagnostic measured faces',
             'outline_mm': outer, 'cells_mm': CELLS, 'cell_intersections': cell_intersections,
             'source_keepouts_mm': source_keepouts,
             'native_rule_area_count': len(native_rule_areas),
