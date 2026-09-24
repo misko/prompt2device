@@ -1,28 +1,30 @@
 # Project status
 
-<!-- pause-state:3dfcfe852fb4e8c9efbc1d0cfeeb14dd60b47156352c3938f4201c35106d1a0d -->
+<!-- pause-state:5447218e447058e84d5926739113c933c6490d943bdc28c4f837f7bcab9f1ce2 -->
 
 - Phase: `placement`
 - State: **PAUSED**
 - Checkpoint: `06_build/checkpoints/schematic.json` (`917a45414c65`)
-- Blocker: P1 remains unaccepted. On the isolated QSPI-gap board, all 13 QSPI handoffs validate, but the full 59-net schema-2 packet still FAILS. A four-net JTAG integration strip is native-open and validates four XU handoffs, yet fixed J_JTAG handoff is rejected and U_XU.38 reset remains a nonlocal witness. The crystal window includes only 3 of 7 exact pads and both XU crystal witnesses cross the QSPI integration owner. USB support can fit after a pinned one-part U_USB_ESD east move, but J_USB needs an explicit fixed edge owner and XU_RESET_N needs its three-owner branch. DRC remains nonzero with 499 unconnected items; USB has six unqualified sub-0.410-mm launch widths. Connector FULL has 19 physical unknowns and TMUX filled/capped process acceptance is external. No P1/P2/P3/route/release or order result is accepted.
-- Next command: `Model fixed J_JTAG-to-JTAG-strip access and the five-endpoint XU_RESET_N branch as distinct source-owned obligations; revise oscillator region/handoffs without crossing the QSPI owner. Implement and verify the separate J_USB edge owner and protected-launch trees on an isolated source variant. Then resolve remaining 59-net allocations and re-run native P1 before P2/P3. Connector FULL gates P3/routing; TMUX process acceptance gates release. Do not promote scratch USB copper.`
+- Blocker: P1 remains unaccepted. On the isolated QSPI-gap board, all 13 QSPI handoffs validate, but the full 59-net schema-2 packet still FAILS. A four-net JTAG integration strip is native-open and validates four XU handoffs. Generic fixed-connector access is now represented fail-closed, but no exact J_JTAG access paths have been declared/proven; U_XU.38 reset remains a nonlocal witness. The reset net has five endpoints across three owners and no saved native copper. The crystal window contains only 3 of 7 pads; both XU crystal witnesses cross the QSPI owner. A pinned USB ESD move fits seven support courtyards, but J_USB edge region/outline remains unresolved pending connector FULL. Native DRC is nonzero with 499 unconnected items, and the USB launch has six unqualified sub-0.410-mm widths. Connector FULL has 19 physical unknowns; TMUX filled/capped process acceptance is external. No P1/P2/P3/route/release or order result is accepted.
+- Next command: `On an isolated variant, declare and native-check four disjoint fixed J_JTAG access reservations into the source-owned JTAG strip, keeping the 59-net denominator and separate five-endpoint XU_RESET_N branch. Revise oscillator region/handoffs without crossing the QSPI owner. Resolve the separate J_USB edge region/outline after connector FULL evidence, then rerun P1 and P2. Connector FULL gates P3/routing; TMUX process acceptance gates release. Do not promote scratch USB copper.`
 
 ## Bound receipts
 
 - `01_docs/research/2026-09-24-p1-native-evidence-failure-evidence/SHA256SUMS` — `fc465fc54773`
 - `01_docs/research/2026-09-24-p1-native-evidence-failure-owner-reassessment.md` — `15ccef4423ee`
-- `01_docs/research/2026-09-24-usb-edge-endpoint-handoff-terra/README.md` — `3d8a88f17a61`
+- `01_docs/research/2026-09-24-usb-edge-endpoint-handoff-terra/README.md` — `b5b81e83b3f9`
 - `01_docs/research/2026-09-24-usb-edge-endpoint-source-model-terra.md` — `583ed72ceb5b`
 - `01_docs/research/2026-09-24-usb-esd-east-region-trial-sol.md` — `4de0ec64fbff`
 - `01_docs/research/2026-09-24-usb-fcu-launch-diagnostic-summary.json` — `394b0d89ade9`
 - `01_docs/research/2026-09-24-usb-fcu-launch-diagnostic.md` — `42949404b4a3`
 - `01_docs/research/2026-09-24-usb-launch-em-input-inventory-terra.md` — `0bdd918292b9`
 - `01_docs/research/2026-09-24-xmos-service-remaining-net-blocker-terra.md` — `edb09dcaab6a`
+- `01_docs/research/2026-09-24-xu-reset-five-terminal-branch-terra.md` — `3af94c20e590`
 - `01_docs/research/2026-09-24-xu-service-reservation-contract-recommendation-terra.md` — `5de4aa58c71b`
 - `01_docs/research/xu_service_variant/QSPI_GAP.md` — `6945f823ba36`
 - `01_docs/research/xu_service_variant/REGENERATION.md` — `1e05986d34c7`
 - `01_docs/research/xu_service_variant/XTAL_WINDOW_NATIVE_AUDIT.md` — `7ebc5a430185`
+- `01_docs/research/xu_service_variant/jtag_gap_trial/FIXED_CONNECTOR_ACCESS.md` — `7317ee60c6fb`
 - `01_docs/research/xu_service_variant/jtag_gap_trial/trial_receipt.json` — `ec31176866f4`
 - `01_docs/research/xu_service_variant/p1_integration_corridor_schema.md` — `9992b673c7d2`
 - `01_docs/research/xu_service_variant/p1_qspi_packet/README.md` — `aac745bb6a38`
