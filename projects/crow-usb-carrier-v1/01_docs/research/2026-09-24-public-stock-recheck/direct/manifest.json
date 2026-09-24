@@ -1,0 +1,239 @@
+{
+  "kind": "crow-direct-public-recheck",
+  "records": [
+    {
+      "code": "C105872",
+      "mpn": "RC0402FR-075K1L",
+      "required_qty": 10,
+      "threshold": 160,
+      "url": "https://jlcpcb.com/api/overseas-pcb-order/v1/shoppingCart/smtGood/selectSmtComponentList",
+      "request_sha256": "d47e492aa1732c794fbc3fa32df44b6818f3a7776dd667dd29eab2fe764b2d6f",
+      "at_utc": "2026-09-24T16:20:05.492673+00:00",
+      "http_status": 200,
+      "raw_sha256": "7311dcf35c046855028e03cfc3e5376af139f3dd5f3dc71f81ac42b612c85f7c",
+      "hits": [
+        {
+          "code": "C105872",
+          "mpn": "RC0402FR-075K1L",
+          "stock": 2342267
+        }
+      ]
+    },
+    {
+      "code": "C106231",
+      "mpn": "RC0402FR-070RL",
+      "required_qty": 5,
+      "threshold": 155,
+      "url": "https://jlcpcb.com/api/overseas-pcb-order/v1/shoppingCart/smtGood/selectSmtComponentList",
+      "request_sha256": "5a2c3697d5637dc3b55629475280577f8e489035e505f5fb7282274b780a112b",
+      "at_utc": "2026-09-24T16:20:07.346536+00:00",
+      "http_status": 200,
+      "raw_sha256": "5fbb8cb2d3e65883c2e37c28f26215482dafd4b4de90c9fe0e0028aaec41f3e6",
+      "hits": [
+        {
+          "code": "C106231",
+          "mpn": "RC0402FR-070RL",
+          "stock": 477145
+        }
+      ]
+    },
+    {
+      "code": "C138002",
+      "mpn": "RC0402FR-0733RL",
+      "required_qty": 10,
+      "threshold": 160,
+      "url": "https://jlcpcb.com/api/overseas-pcb-order/v1/shoppingCart/smtGood/selectSmtComponentList",
+      "request_sha256": "17b914bb52efb83055bfb856d65f2d9d06468eec3da2bbc11cd9848c60540d0f",
+      "at_utc": "2026-09-24T16:20:09.068253+00:00",
+      "http_status": 200,
+      "raw_sha256": "791c84b202445bed15921105b1e31fcc32f174e6cdb4fb4a10acd92b8e9e5636",
+      "hits": [
+        {
+          "code": "C138002",
+          "mpn": "RC0402FR-0733RL",
+          "stock": 8206910
+        }
+      ]
+    },
+    {
+      "code": "C138033",
+      "mpn": "RC0402FR-071ML",
+      "required_qty": 50,
+      "threshold": 200,
+      "url": "https://jlcpcb.com/api/overseas-pcb-order/v1/shoppingCart/smtGood/selectSmtComponentList",
+      "request_sha256": "55e7471afe52f57ab54d4b7b3542a0ed33932f295039094364f4b2c381fa0691",
+      "at_utc": "2026-09-24T16:20:11.187547+00:00",
+      "http_status": 200,
+      "raw_sha256": "7768df66667c97a862d2431bb88ffcdfaee250e114d36df63358907fa6693d25",
+      "hits": [
+        {
+          "code": "C138033",
+          "mpn": "RC0402FR-071ML",
+          "stock": 1890718
+        }
+      ]
+    },
+    {
+      "code": "C1852023",
+      "mpn": "TLV320ADC6140IRTWT",
+      "required_qty": 10,
+      "threshold": 160,
+      "url": "https://jlcpcb.com/api/overseas-pcb-order/v1/shoppingCart/smtGood/selectSmtComponentList",
+      "request_sha256": "6fdf95ae1d720c55023307fe80ede8cce2afbaec50ef111d661f69ce899d455f",
+      "at_utc": "2026-09-24T16:20:12.818261+00:00",
+      "http_status": 200,
+      "raw_sha256": "68a98f8c401b664660516a754496d0d3166ca45f34f1c7246e14d549ed9fb3ba",
+      "hits": [
+        {
+          "code": "C1852023",
+          "mpn": "TLV320ADC6140IRTWT",
+          "stock": 188
+        }
+      ]
+    },
+    {
+      "code": "C192562",
+      "mpn": "43650-0200",
+      "required_qty": 5,
+      "threshold": 155,
+      "url": "https://jlcpcb.com/api/overseas-pcb-order/v1/shoppingCart/smtGood/selectSmtComponentList",
+      "request_sha256": "18b17820690b5a6dfad5a1527c66a656dd79b9771ccf0c9bc98b48e7a29d925c",
+      "at_utc": "2026-09-24T16:20:14.729041+00:00",
+      "http_status": 200,
+      "raw_sha256": "7cb561f3db5d068092b5c4558934860fbe7559232c87fec8a4fd7c8eedf9398b",
+      "hits": [
+        {
+          "code": "C192562",
+          "mpn": "436500200",
+          "stock": 3711
+        }
+      ]
+    },
+    {
+      "code": "C2675550",
+      "mpn": "SN74LVC1G125DCKT",
+      "required_qty": 10,
+      "threshold": 160,
+      "url": "https://jlcpcb.com/api/overseas-pcb-order/v1/shoppingCart/smtGood/selectSmtComponentList",
+      "request_sha256": "bf1567308b3eec46655d0b1a91dc92f7050b071e9e277cb590813cedba59df2b",
+      "at_utc": "2026-09-24T16:20:16.334513+00:00",
+      "http_status": 200,
+      "raw_sha256": "c5df1e1706aeb76abc6f3e2080e4782ce3e3ac2b1d17cdaf9d1a88c791680c36",
+      "hits": [
+        {
+          "code": "C2675550",
+          "mpn": "SN74LVC1G125DCKT",
+          "stock": 181
+        }
+      ]
+    },
+    {
+      "code": "C60490",
+      "mpn": "RC0402FR-0710KL",
+      "required_qty": 205,
+      "threshold": 355,
+      "url": "https://jlcpcb.com/api/overseas-pcb-order/v1/shoppingCart/smtGood/selectSmtComponentList",
+      "request_sha256": "bb8f64db277fcad955cc1f7d8313a1893001caf58cdcd7a4f78115a00ad64e49",
+      "at_utc": "2026-09-24T16:20:18.032268+00:00",
+      "http_status": 200,
+      "raw_sha256": "d41967b919c91243b9b16796b220e72002feda075bbe72018771e32f40e002a8",
+      "hits": [
+        {
+          "code": "C60490",
+          "mpn": "RC0402FR-0710KL",
+          "stock": 8714658
+        }
+      ]
+    },
+    {
+      "code": "C60491",
+      "mpn": "RC0402FR-07100KL",
+      "required_qty": 185,
+      "threshold": 335,
+      "url": "https://jlcpcb.com/api/overseas-pcb-order/v1/shoppingCart/smtGood/selectSmtComponentList",
+      "request_sha256": "d08d1e2325c97d6de176dfec785b3f05126fd75c5b1e6b07b918efc282938721",
+      "at_utc": "2026-09-24T16:20:19.623099+00:00",
+      "http_status": 200,
+      "raw_sha256": "d54eb6d7d4fa56def7470b894901dd50ae5a2a0446fe885984bb4d2321bf41bc",
+      "hits": [
+        {
+          "code": "C60491",
+          "mpn": "RC0402FR-07100KL",
+          "stock": 8843518
+        }
+      ]
+    },
+    {
+      "code": "C6362698",
+      "mpn": "XU316-1024-TQ128-C24",
+      "required_qty": 5,
+      "threshold": 5,
+      "url": "https://jlcpcb.com/api/overseas-pcb-order/v1/shoppingCart/smtGood/selectSmtComponentList",
+      "request_sha256": "4ca4ee3bdb4238b3b700d9d72cd9869ddd960d4be06ead5f9d4b1e2351f85656",
+      "at_utc": "2026-09-24T16:20:21.233157+00:00",
+      "http_status": 200,
+      "raw_sha256": "bb5dabed116ff70b4dfc09fe690362d0351a68f0d0292657d5210e4314f84f08",
+      "hits": [
+        {
+          "code": "C6362698",
+          "mpn": "XU316-1024-TQ128-C24",
+          "stock": 39
+        }
+      ]
+    },
+    {
+      "code": "C93943",
+      "mpn": "RC0402FR-0747KL",
+      "required_qty": 5,
+      "threshold": 155,
+      "url": "https://jlcpcb.com/api/overseas-pcb-order/v1/shoppingCart/smtGood/selectSmtComponentList",
+      "request_sha256": "128e33b7cef0aca3c935e54ee9c070feae240d7e10dafce76e3289a48529614e",
+      "at_utc": "2026-09-24T16:20:22.916102+00:00",
+      "http_status": 200,
+      "raw_sha256": "bc6172a14867e2bc6f950be9c874c26e125b46934da59d147845622bee1b54b3",
+      "hits": [
+        {
+          "code": "C93943",
+          "mpn": "RC0402FR-0747KL",
+          "stock": 5467373
+        }
+      ]
+    },
+    {
+      "code": "C22428234",
+      "mpn": "TMUX4827YBHR",
+      "required_qty": 40,
+      "threshold": 190,
+      "url": "https://jlcpcb.com/api/overseas-pcb-order/v1/shoppingCart/smtGood/selectSmtComponentList",
+      "request_sha256": "1417343c4fbbcdcafceb757c9fd0fd7aa0cacba1616139131b6fce32d482090e",
+      "at_utc": "2026-09-24T16:21:07.212309+00:00",
+      "http_status": 200,
+      "raw_sha256": "0ad746dc74759395558a63cd4a88b14de4d14ea2fbbf5884cbb1c4a13f6bcb00",
+      "hits": [
+        {
+          "code": "C22428234",
+          "mpn": "TMUX4827YBHR",
+          "stock": 5437
+        }
+      ]
+    },
+    {
+      "code": "C861313",
+      "mpn": "RT0603BRD0730K9L",
+      "required_qty": 5,
+      "threshold": 155,
+      "url": "https://jlcpcb.com/api/overseas-pcb-order/v1/shoppingCart/smtGood/selectSmtComponentList",
+      "request_sha256": "dfe9bb7d9b81a0a73cae3ef4e2d2c6b915a2b3e97d5cafd92ec1aecfef432ff3",
+      "at_utc": "2026-09-24T16:21:09.111343+00:00",
+      "http_status": 200,
+      "raw_sha256": "44c981f2c928ed491db7b0d119b46e6da7f78fd39c0c51e5dae8eddced989573",
+      "hits": [
+        {
+          "code": "C861313",
+          "mpn": "RT0603BRD0730K9L",
+          "stock": 3554
+        }
+      ]
+    }
+  ]
+}

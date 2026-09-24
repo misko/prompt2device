@@ -1,0 +1,3499 @@
+{
+  "circuit": {
+    "path": "projects/crow-usb-carrier-v1/03_tscircuit/build/circuit.json",
+    "sha256": "1f01be73e0699cd62bc734aa189b25e9d66f1097b5ce6f52a8db30533ecc6448"
+  },
+  "coverage": {
+    "catalog_observed": 83,
+    "total": 88,
+    "unknown": 5
+  },
+  "generated_at": "2026-09-24T16:18:49.362773+00:00",
+  "kind": "jlcsearch-screen-report-v1",
+  "network_requests": 88,
+  "provider": "tscircuit/jlcsearch (JLC-derived catalog; same supply pool)",
+  "report_only": true,
+  "request": {
+    "path": "projects/crow-usb-carrier-v1/06_build/sourcing/prelayout_request.json",
+    "sha256": "1a5f6df1a1e9c71f477b673236d0fdfc6b328e0f6ef3904564ed064e487ea270"
+  },
+  "rows": [
+    {
+      "catalog_part": {
+        "category": "Resistors",
+        "description": "-55\u2103~+155\u2103 4.7k\u03a9 50V 62.5mW Thick Film Resistor \u00b11% \u00b1100ppm/\u2103 0402 Chip Resistor - Surface Mount ROHS",
+        "is_basic": false,
+        "is_preferred": false,
+        "lcsc": 105871,
+        "mfr": "RC0402FR-074K7L",
+        "package": "0402",
+        "price": "1-999:0.0013,1000-2999:0.0011,3000-9999:0.001,10000-49999:0.001,50000-50199:0.0009,50200-:0.0009",
+        "stock": 6401,
+        "subcategory": "Chip Resistor - Surface Mount"
+      },
+      "designators": [
+        "R_ADC_I2C_SCL_A_PU",
+        "R_ADC_I2C_SCL_B_PU",
+        "R_ADC_I2C_SDA_A_PU",
+        "R_ADC_I2C_SDA_B_PU",
+        "R_QSPI_CS"
+      ],
+      "evidence": {
+        "cache_hit": false,
+        "fetched_at": "2026-09-24T16:18:09.742072+00:00",
+        "http_status": 200,
+        "provider": "tscircuit/jlcsearch (JLC-derived catalog; same supply pool)",
+        "raw_cache_path": "/tmp/crow-jlcsearch-refresh-cache-20260924/0a64b79557db7c5420afa0a6021b8aadb40afc24ee7b0a5b35246073a5afd242.json",
+        "raw_response_bytes": 427,
+        "raw_response_sha256": "d5855f339d22591d701e98752d7d06e8c240a76912ed3cb8a7027ac4a528f178",
+        "upstream_stock_timestamp": null,
+        "url": "https://jlcsearch.tscircuit.com/components/list.json?search=C105871"
+      },
+      "observed_stock": 6401,
+      "reason": "catalog observation only; PCBA fulfillment unverified",
+      "requested_lcsc": "C105871",
+      "required_qty": 25,
+      "selected_mpn": "RC0402FR-074K7L",
+      "status": "CATALOG_OBSERVED",
+      "stock_vs_required": "MEETS"
+    },
+    {
+      "designators": [
+        "R_USB_CC1",
+        "R_USB_CC2"
+      ],
+      "evidence": {
+        "cache_hit": false,
+        "fetched_at": "2026-09-24T16:18:10.194791+00:00",
+        "http_status": 200,
+        "provider": "tscircuit/jlcsearch (JLC-derived catalog; same supply pool)",
+        "raw_cache_path": "/tmp/crow-jlcsearch-refresh-cache-20260924/e2e504c9f535788deb3844c0984191a02a5ff011f1ad617e7a30baf04979372c.json",
+        "raw_response_bytes": 17,
+        "raw_response_sha256": "ac46fd24bd501fa7297f0a2945bcc7f5d655b9bcf8bfbf16718a9d25c0c2c018",
+        "upstream_stock_timestamp": null,
+        "url": "https://jlcsearch.tscircuit.com/components/list.json?search=C105872"
+      },
+      "observed_stock": null,
+      "reason": "selected code absent from search index",
+      "requested_lcsc": "C105872",
+      "required_qty": 10,
+      "selected_mpn": "RC0402FR-075K1L",
+      "status": "UNKNOWN",
+      "stock_vs_required": "UNKNOWN"
+    },
+    {
+      "designators": [
+        "R_AGND_JOIN"
+      ],
+      "evidence": {
+        "cache_hit": false,
+        "fetched_at": "2026-09-24T16:18:10.655185+00:00",
+        "http_status": 200,
+        "provider": "tscircuit/jlcsearch (JLC-derived catalog; same supply pool)",
+        "raw_cache_path": "/tmp/crow-jlcsearch-refresh-cache-20260924/949886a161a8f30a33a8d8ceafdfdb2f9fd0b5a661ce48541c16eff8507030af.json",
+        "raw_response_bytes": 17,
+        "raw_response_sha256": "ac46fd24bd501fa7297f0a2945bcc7f5d655b9bcf8bfbf16718a9d25c0c2c018",
+        "upstream_stock_timestamp": null,
+        "url": "https://jlcsearch.tscircuit.com/components/list.json?search=C106231"
+      },
+      "observed_stock": null,
+      "reason": "selected code absent from search index",
+      "requested_lcsc": "C106231",
+      "required_qty": 5,
+      "selected_mpn": "RC0402FR-070RL",
+      "status": "UNKNOWN",
+      "stock_vs_required": "UNKNOWN"
+    },
+    {
+      "catalog_part": {
+        "category": "Resistors",
+        "description": "-55\u2103~+155\u2103 100\u03a9 50V 62.5mW Thick Film Resistor \u00b11% \u00b1100ppm/\u2103 0402 Chip Resistor - Surface Mount ROHS",
+        "is_basic": false,
+        "is_preferred": false,
+        "lcsc": 106232,
+        "mfr": "RC0402FR-07100RL",
+        "package": "0402",
+        "price": "1-999:0.0013,1000-2999:0.0011,3000-9999:0.001,10000-49999:0.001,50000-50199:0.0009,50200-:0.0009",
+        "stock": 39225,
+        "subcategory": "Chip Resistor - Surface Mount"
+      },
+      "designators": [
+        "R_OPA_BLEED1",
+        "R_OPA_BLEED2"
+      ],
+      "evidence": {
+        "cache_hit": false,
+        "fetched_at": "2026-09-24T16:18:11.106006+00:00",
+        "http_status": 200,
+        "provider": "tscircuit/jlcsearch (JLC-derived catalog; same supply pool)",
+        "raw_cache_path": "/tmp/crow-jlcsearch-refresh-cache-20260924/4cf49737fcb5bbe68df4b466aa5c69460c096791ecdf174a1852dd577ce55fc3.json",
+        "raw_response_bytes": 428,
+        "raw_response_sha256": "621c7f532988a0c2f9988a054917f1bf7a924aff227d9ee59554ba3dc796a161",
+        "upstream_stock_timestamp": null,
+        "url": "https://jlcsearch.tscircuit.com/components/list.json?search=C106232"
+      },
+      "observed_stock": 39225,
+      "reason": "catalog observation only; PCBA fulfillment unverified",
+      "requested_lcsc": "C106232",
+      "required_qty": 10,
+      "selected_mpn": "RC0402FR-07100RL",
+      "status": "CATALOG_OBSERVED",
+      "stock_vs_required": "MEETS"
+    },
+    {
+      "catalog_part": {
+        "category": "Capacitors",
+        "description": "1uF 6.3V X5R \u00b110% 0402 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS",
+        "is_basic": false,
+        "is_preferred": false,
+        "lcsc": 106253,
+        "mfr": "CC0402KRX5R5BB105",
+        "package": "0402",
+        "price": "1-999:0.0043,1000-2999:0.0037,3000-9999:0.0033,10000-49999:0.0031,50000-50199:0.0029,50200-:0.0029",
+        "stock": 54748,
+        "subcategory": "Multilayer Ceramic Capacitors MLCC - SMD/SMT"
+      },
+      "designators": [
+        "C_PLL_1U"
+      ],
+      "evidence": {
+        "cache_hit": false,
+        "fetched_at": "2026-09-24T16:18:11.586811+00:00",
+        "http_status": 200,
+        "provider": "tscircuit/jlcsearch (JLC-derived catalog; same supply pool)",
+        "raw_cache_path": "/tmp/crow-jlcsearch-refresh-cache-20260924/d6f548a6e1a6f41eec3f32c073045e8b6282e2a79fec8242245664c26dcb1963.json",
+        "raw_response_bytes": 411,
+        "raw_response_sha256": "5521b7258a97493827e4799f26a39d08282cf08315869bfbf141ab23a324beea",
+        "upstream_stock_timestamp": null,
+        "url": "https://jlcsearch.tscircuit.com/components/list.json?search=C106253"
+      },
+      "observed_stock": 54748,
+      "reason": "catalog observation only; PCBA fulfillment unverified",
+      "requested_lcsc": "C106253",
+      "required_qty": 5,
+      "selected_mpn": "CC0402KRX5R5BB105",
+      "status": "CATALOG_OBSERVED",
+      "stock_vs_required": "MEETS"
+    },
+    {
+      "catalog_part": {
+        "category": "Capacitors",
+        "description": "120pF 50V NP0 \u00b15% 0402 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS",
+        "is_basic": false,
+        "is_preferred": false,
+        "lcsc": 106996,
+        "mfr": "CC0402JRNPO9BN121",
+        "package": "0402",
+        "price": "1-999:0.0041,1000-2999:0.0035,3000-9999:0.0031,10000-49999:0.0029,50000-50199:0.0027,50200-:0.0027",
+        "stock": 212877,
+        "subcategory": "Multilayer Ceramic Capacitors MLCC - SMD/SMT"
+      },
+      "designators": [
+        "C_1V8_FF",
+        "C_3V3X_FF",
+        "C_CORE_FF"
+      ],
+      "evidence": {
+        "cache_hit": false,
+        "fetched_at": "2026-09-24T16:18:12.053339+00:00",
+        "http_status": 200,
+        "provider": "tscircuit/jlcsearch (JLC-derived catalog; same supply pool)",
+        "raw_cache_path": "/tmp/crow-jlcsearch-refresh-cache-20260924/46fc15b7cc5fa6f902fea98f68502bf1caeac52989218bd7e8ad82ec5b0aecd4.json",
+        "raw_response_bytes": 412,
+        "raw_response_sha256": "caebbc589af529245a99c9a568d6ae5c60b57b423adeba39265d8a1cfb50ff3d",
+        "upstream_stock_timestamp": null,
+        "url": "https://jlcsearch.tscircuit.com/components/list.json?search=C106996"
+      },
+      "observed_stock": 212877,
+      "reason": "catalog observation only; PCBA fulfillment unverified",
+      "requested_lcsc": "C106996",
+      "required_qty": 15,
+      "selected_mpn": "CC0402JRNPO9BN121",
+      "status": "CATALOG_OBSERVED",
+      "stock_vs_required": "MEETS"
+    },
+    {
+      "catalog_part": {
+        "category": "Resistors",
+        "description": "-55\u2103~+155\u2103 100mW 1k\u03a9 75V Thin Film Resistor \u00b10.1% \u00b125ppm/\u2103 0603 Chip Resistor - Surface Mount ROHS",
+        "is_basic": false,
+        "is_preferred": false,
+        "lcsc": 110776,
+        "mfr": "RT0603BRD071KL",
+        "package": "0603",
+        "price": "1-199:0.0236,200-599:0.0188,600-4999:0.0166,5000-9999:0.015,10000-19999:0.0144,20000-:0.014",
+        "stock": 1745,
+        "subcategory": "Chip Resistor - Surface Mount"
+      },
+      "designators": [
+        "R_LDO_PG_BOT_B",
+        "R_VMID1_BOT",
+        "R_VMID1_TOP",
+        "R_VMID2_BOT",
+        "R_VMID2_TOP"
+      ],
+      "evidence": {
+        "cache_hit": false,
+        "fetched_at": "2026-09-24T16:18:12.516070+00:00",
+        "http_status": 200,
+        "provider": "tscircuit/jlcsearch (JLC-derived catalog; same supply pool)",
+        "raw_cache_path": "/tmp/crow-jlcsearch-refresh-cache-20260924/b7a5c4fac5243c1fd0cadda6e948026e59cc2662614f99e76ccb27ebafa3959c.json",
+        "raw_response_bytes": 418,
+        "raw_response_sha256": "389746388cb2dd21d8c0cd6d13d16ceaf8315922bd984655f9221ba543306bd0",
+        "upstream_stock_timestamp": null,
+        "url": "https://jlcsearch.tscircuit.com/components/list.json?search=C110776"
+      },
+      "observed_stock": 1745,
+      "reason": "catalog observation only; PCBA fulfillment unverified",
+      "requested_lcsc": "C110776",
+      "required_qty": 25,
+      "selected_mpn": "RT0603BRD071KL",
+      "status": "CATALOG_OBSERVED",
+      "stock_vs_required": "MEETS"
+    },
+    {
+      "catalog_part": {
+        "category": "Resistors",
+        "description": "-55\u2103~+155\u2103 100k\u03a9 100mW 75V Thin Film Resistor \u00b10.1% \u00b125ppm/\u2103 0603 Chip Resistor - Surface Mount ROHS",
+        "is_basic": false,
+        "is_preferred": false,
+        "lcsc": 122538,
+        "mfr": "RT0603BRD07100KL",
+        "package": "0603",
+        "price": "1-199:0.0246,200-599:0.0197,600-4999:0.0176,5000-9999:0.015,10000-19999:0.0144,20000-:0.014",
+        "stock": 24725,
+        "subcategory": "Chip Resistor - Surface Mount"
+      },
+      "designators": [
+        "R_3V3X_FB_BOTTOM"
+      ],
+      "evidence": {
+        "cache_hit": false,
+        "fetched_at": "2026-09-24T16:18:12.959259+00:00",
+        "http_status": 200,
+        "provider": "tscircuit/jlcsearch (JLC-derived catalog; same supply pool)",
+        "raw_cache_path": "/tmp/crow-jlcsearch-refresh-cache-20260924/a31e8ed3ff906fabe6d918c91bac21f7388aa88cebe4999ba8253c48f1b95e94.json",
+        "raw_response_bytes": 423,
+        "raw_response_sha256": "e52ec57fcf9ec181a07b95bccb419c99f31f750cb82eabed8d39a0d875d6ef73",
+        "upstream_stock_timestamp": null,
+        "url": "https://jlcsearch.tscircuit.com/components/list.json?search=C122538"
+      },
+      "observed_stock": 24725,
+      "reason": "catalog observation only; PCBA fulfillment unverified",
+      "requested_lcsc": "C122538",
+      "required_qty": 5,
+      "selected_mpn": "RT0603BRD07100KL",
+      "status": "CATALOG_OBSERVED",
+      "stock_vs_required": "MEETS"
+    },
+    {
+      "catalog_part": {
+        "category": "Logic",
+        "description": "-40\u2103~+125\u2103 1 1.65V~5.5V 18.5ns 20uA 32mA 32mA 74LVC Monostable Reset input\u3001Adjustable pulse width\u3001Retriggerable function Schmitt trigger SSOP-8 Monostable Multivibrators ROHS",
+        "is_basic": false,
+        "is_preferred": false,
+        "lcsc": 123302,
+        "mfr": "SN74LVC1G123DCTR",
+        "package": "SSOP-8",
+        "price": "1-9:0.5548,10-29:0.4686,30-99:0.41,100-499:0.3596,500-999:0.3449,1000-:0.3352",
+        "stock": 8800,
+        "subcategory": "Monostable Multivibrators"
+      },
+      "designators": [
+        "U_RST2"
+      ],
+      "evidence": {
+        "cache_hit": false,
+        "fetched_at": "2026-09-24T16:18:13.412200+00:00",
+        "http_status": 200,
+        "provider": "tscircuit/jlcsearch (JLC-derived catalog; same supply pool)",
+        "raw_cache_path": "/tmp/crow-jlcsearch-refresh-cache-20260924/5a0df8b00c0ddcd9a1ad2350a470f9ecc37fb46d2b674f1408c6f90ff4b5eaca.json",
+        "raw_response_bytes": 475,
+        "raw_response_sha256": "0dc9d5369c7cc21d1021125d646262151e39c3e98236aacb65506e08cd3315de",
+        "upstream_stock_timestamp": null,
+        "url": "https://jlcsearch.tscircuit.com/components/list.json?search=C123302"
+      },
+      "observed_stock": 8800,
+      "reason": "catalog observation only; PCBA fulfillment unverified",
+      "requested_lcsc": "C123302",
+      "required_qty": 5,
+      "selected_mpn": "SN74LVC1G123DCTR",
+      "status": "CATALOG_OBSERVED",
+      "stock_vs_required": "MEETS"
+    },
+    {
+      "catalog_part": {
+        "category": "Capacitors",
+        "description": "50V 680pF C0G \u00b15% 0402 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS",
+        "is_basic": false,
+        "is_preferred": false,
+        "lcsc": 126514,
+        "mfr": "GCM1555C1H681JA16D",
+        "package": "0402",
+        "price": "1-499:0.0103,500-1499:0.0084,1500-9999:0.0073,10000-19999:0.0067,20000-49999:0.0061,50000-:0.0058",
+        "stock": 47134,
+        "subcategory": "Multilayer Ceramic Capacitors MLCC - SMD/SMT"
+      },
+      "designators": [
+        "C_FB1N",
+        "C_FB1P",
+        "C_FB2N",
+        "C_FB2P",
+        "C_FB3N",
+        "C_FB3P",
+        "C_FB4N",
+        "C_FB4P",
+        "C_FB5N",
+        "C_FB5P",
+        "C_FB6N",
+        "C_FB6P",
+        "C_FB7N",
+        "C_FB7P",
+        "C_FB8N",
+        "C_FB8P"
+      ],
+      "evidence": {
+        "cache_hit": false,
+        "fetched_at": "2026-09-24T16:18:13.922045+00:00",
+        "http_status": 200,
+        "provider": "tscircuit/jlcsearch (JLC-derived catalog; same supply pool)",
+        "raw_cache_path": "/tmp/crow-jlcsearch-refresh-cache-20260924/4dde14f55b0b137fae00195db08042a35749601de1c07f62c8d303e7341883e3.json",
+        "raw_response_bytes": 411,
+        "raw_response_sha256": "5b2a42c8e22c698b3d356590d95662032d7e10605356f067ec05c7d2179881c4",
+        "upstream_stock_timestamp": null,
+        "url": "https://jlcsearch.tscircuit.com/components/list.json?search=C126514"
+      },
+      "observed_stock": 47134,
+      "reason": "catalog observation only; PCBA fulfillment unverified",
+      "requested_lcsc": "C126514",
+      "required_qty": 80,
+      "selected_mpn": "GCM1555C1H681JA16D",
+      "status": "CATALOG_OBSERVED",
+      "stock_vs_required": "MEETS"
+    },
+    {
+      "catalog_part": {
+        "category": "Logic",
+        "description": "-40\u2103~+125\u2103 1 1 1.65V~5.5V 32mA 32mA 4uA 6.5ns@5V,50pF 74LVC Schmitt trigger SOT-753 Inverters ROHS",
+        "is_basic": false,
+        "is_preferred": false,
+        "lcsc": 131093,
+        "mfr": "74LVC1G14GV,125",
+        "package": "SOT-753",
+        "price": "1-49:0.1507,50-149:0.1266,150-499:0.1146,500-2999:0.1056,3000-5999:0.0951,6000-:0.0915",
+        "stock": 5881,
+        "subcategory": "Inverters"
+      },
+      "designators": [
+        "U_DUMP",
+        "U_LDO_EN"
+      ],
+      "evidence": {
+        "cache_hit": false,
+        "fetched_at": "2026-09-24T16:18:14.368796+00:00",
+        "http_status": 200,
+        "provider": "tscircuit/jlcsearch (JLC-derived catalog; same supply pool)",
+        "raw_cache_path": "/tmp/crow-jlcsearch-refresh-cache-20260924/89c0cfe104b5e476c1080ee65410bfbac49250cbe552d5b96ae540b2be15273c.json",
+        "raw_response_bytes": 388,
+        "raw_response_sha256": "cae8e0f0eff7b92254a663286d7ef5485c1033836952d2f7a1ed0e287129a5f5",
+        "upstream_stock_timestamp": null,
+        "url": "https://jlcsearch.tscircuit.com/components/list.json?search=C131093"
+      },
+      "observed_stock": 5881,
+      "reason": "catalog observation only; PCBA fulfillment unverified",
+      "requested_lcsc": "C131093",
+      "required_qty": 10,
+      "selected_mpn": "74LVC1G14GV,125",
+      "status": "CATALOG_OBSERVED",
+      "stock_vs_required": "MEETS"
+    },
+    {
+      "catalog_part": {
+        "category": "Resistors",
+        "description": "-55\u2103~+155\u2103 33\u03a9 50V 62.5mW Thick Film Resistor \u00b11% \u00b1100ppm/\u2103 0402 Chip Resistor - Surface Mount ROHS",
+        "is_basic": false,
+        "is_preferred": false,
+        "lcsc": 138002,
+        "mfr": "RC0402FR-0733RL",
+        "package": "0402",
+        "price": "1-999:0.001,1000-2999:0.0008,3000-9999:0.0007,10000-49999:0.0007,50000-50199:0.0006,50200-:0.0006",
+        "stock": 47,
+        "subcategory": "Chip Resistor - Surface Mount"
+      },
+      "designators": [
+        "R_BCLK",
+        "R_FSYNC"
+      ],
+      "evidence": {
+        "cache_hit": false,
+        "fetched_at": "2026-09-24T16:18:14.829161+00:00",
+        "http_status": 200,
+        "provider": "tscircuit/jlcsearch (JLC-derived catalog; same supply pool)",
+        "raw_cache_path": "/tmp/crow-jlcsearch-refresh-cache-20260924/a5b3131bfcb20397994c04a930dbc27a3520fbac026fa8222d719390ead97584.json",
+        "raw_response_bytes": 424,
+        "raw_response_sha256": "0637a9890c1308f316747f54f5acbd9721fa22ca6f9847619141df008294978c",
+        "upstream_stock_timestamp": null,
+        "url": "https://jlcsearch.tscircuit.com/components/list.json?search=C138002"
+      },
+      "observed_stock": 47,
+      "reason": "catalog observation only; PCBA fulfillment unverified",
+      "requested_lcsc": "C138002",
+      "required_qty": 10,
+      "selected_mpn": "RC0402FR-0733RL",
+      "status": "CATALOG_OBSERVED",
+      "stock_vs_required": "MEETS"
+    },
+    {
+      "catalog_part": {
+        "category": "Resistors",
+        "description": "-55\u2103~+155\u2103 300\u03a9 50V 62.5mW Thick Film Resistor \u00b11% \u00b1100ppm/\u2103 0402 Chip Resistor - Surface Mount ROHS",
+        "is_basic": false,
+        "is_preferred": false,
+        "lcsc": 138010,
+        "mfr": "RC0402FR-07300RL",
+        "package": "0402",
+        "price": "1-999:0.001,1000-2999:0.0008,3000-9999:0.0007,10000-49999:0.0007,50000-50199:0.0006,50200-:0.0006",
+        "stock": 16657,
+        "subcategory": "Chip Resistor - Surface Mount"
+      },
+      "designators": [
+        "R_LDO_ILIM",
+        "R_X1N",
+        "R_X1P",
+        "R_X2N",
+        "R_X2P",
+        "R_X3N",
+        "R_X3P",
+        "R_X4N",
+        "R_X4P",
+        "R_X5N",
+        "R_X5P",
+        "R_X6N",
+        "R_X6P",
+        "R_X7N",
+        "R_X7P",
+        "R_X8N",
+        "R_X8P"
+      ],
+      "evidence": {
+        "cache_hit": false,
+        "fetched_at": "2026-09-24T16:18:15.296934+00:00",
+        "http_status": 200,
+        "provider": "tscircuit/jlcsearch (JLC-derived catalog; same supply pool)",
+        "raw_cache_path": "/tmp/crow-jlcsearch-refresh-cache-20260924/88dced53c91e4081ecb025a6e79f3ecaa07e881a42404ea870901ea70038da73.json",
+        "raw_response_bytes": 429,
+        "raw_response_sha256": "7221096e416e6f24ab542374828e18c190395740d6c3be62bfce10b8d8c9b091",
+        "upstream_stock_timestamp": null,
+        "url": "https://jlcsearch.tscircuit.com/components/list.json?search=C138010"
+      },
+      "observed_stock": 16657,
+      "reason": "catalog observation only; PCBA fulfillment unverified",
+      "requested_lcsc": "C138010",
+      "required_qty": 85,
+      "selected_mpn": "RC0402FR-07300RL",
+      "status": "CATALOG_OBSERVED",
+      "stock_vs_required": "MEETS"
+    },
+    {
+      "catalog_part": {
+        "category": "Resistors",
+        "description": "-55\u2103~+155\u2103 1M\u03a9 50V 62.5mW Thick Film Resistor \u00b11% \u00b1100ppm/\u2103 0402 Chip Resistor - Surface Mount ROHS",
+        "is_basic": false,
+        "is_preferred": false,
+        "lcsc": 138033,
+        "mfr": "RC0402FR-071ML",
+        "package": "0402",
+        "price": "1-999:0.001,1000-2999:0.0008,3000-9999:0.0007,10000-49999:0.0007,50000-50199:0.0006,50200-:0.0006",
+        "stock": 8,
+        "subcategory": "Chip Resistor - Surface Mount"
+      },
+      "designators": [
+        "R_SPOKE_UVLO1",
+        "R_SPOKE_UVLO2",
+        "R_SPOKE_UVLO3",
+        "R_SPOKE_UVLO4",
+        "R_SPOKE_UVLO5",
+        "R_SPOKE_UVLO6",
+        "R_SPOKE_UVLO7",
+        "R_SPOKE_UVLO8",
+        "R_VBUS_BE",
+        "R_XTAL_FB"
+      ],
+      "evidence": {
+        "cache_hit": false,
+        "fetched_at": "2026-09-24T16:18:15.739507+00:00",
+        "http_status": 200,
+        "provider": "tscircuit/jlcsearch (JLC-derived catalog; same supply pool)",
+        "raw_cache_path": "/tmp/crow-jlcsearch-refresh-cache-20260924/ec10e5257cd23050af6a91686107017b6dbb428ce98d7feb01043a606d8e343f.json",
+        "raw_response_bytes": 422,
+        "raw_response_sha256": "34b0afbe354f32973875214d8ee3b3e7c90e13ebe2955bc320bc3f3d86ee2df5",
+        "upstream_stock_timestamp": null,
+        "url": "https://jlcsearch.tscircuit.com/components/list.json?search=C138033"
+      },
+      "observed_stock": 8,
+      "reason": "catalog observation only; PCBA fulfillment unverified",
+      "requested_lcsc": "C138033",
+      "required_qty": 50,
+      "selected_mpn": "RC0402FR-071ML",
+      "status": "CATALOG_OBSERVED",
+      "stock_vs_required": "BELOW"
+    },
+    {
+      "catalog_part": {
+        "category": "Resistors",
+        "description": "-55\u2103~+155\u2103 13k\u03a9 50V 62.5mW Thick Film Resistor \u00b11% \u00b1100ppm/\u2103 0402 Chip Resistor - Surface Mount ROHS",
+        "is_basic": false,
+        "is_preferred": false,
+        "lcsc": 138057,
+        "mfr": "RC0402FR-0713KL",
+        "package": "0402",
+        "price": "1-999:0.001,1000-2999:0.0008,3000-9999:0.0007,10000-49999:0.0007,50000-50199:0.0006,50200-:0.0006",
+        "stock": 103161,
+        "subcategory": "Chip Resistor - Surface Mount"
+      },
+      "designators": [
+        "R_RT"
+      ],
+      "evidence": {
+        "cache_hit": false,
+        "fetched_at": "2026-09-24T16:18:16.192241+00:00",
+        "http_status": 200,
+        "provider": "tscircuit/jlcsearch (JLC-derived catalog; same supply pool)",
+        "raw_cache_path": "/tmp/crow-jlcsearch-refresh-cache-20260924/734df5262ef0b4eaaf719a9631d944ddfa504fb544bd553cae9b5590b8f4804d.json",
+        "raw_response_bytes": 429,
+        "raw_response_sha256": "3dfc646da2bac9017545c9cb68c2cb27e9c888009fcb6af659b9310f00cd6da4",
+        "upstream_stock_timestamp": null,
+        "url": "https://jlcsearch.tscircuit.com/components/list.json?search=C138057"
+      },
+      "observed_stock": 103161,
+      "reason": "catalog observation only; PCBA fulfillment unverified",
+      "requested_lcsc": "C138057",
+      "required_qty": 5,
+      "selected_mpn": "RC0402FR-0713KL",
+      "status": "CATALOG_OBSERVED",
+      "stock_vs_required": "MEETS"
+    },
+    {
+      "catalog_part": {
+        "category": "Resistors",
+        "description": "-55\u2103~+155\u2103 10\u03a9 50V 62.5mW Thick Film Resistor \u00b11% \u00b1200ppm/\u2103 0402 Chip Resistor - Surface Mount ROHS",
+        "is_basic": false,
+        "is_preferred": false,
+        "lcsc": 138066,
+        "mfr": "RC0402FR-0710RL",
+        "package": "0402",
+        "price": "1-999:0.0022,1000-2999:0.0018,3000-9999:0.0016,10000-49999:0.0015,50000-50199:0.0014,50200-:0.0014",
+        "stock": 11459,
+        "subcategory": "Chip Resistor - Surface Mount"
+      },
+      "designators": [
+        "R_OUT1N",
+        "R_OUT1P",
+        "R_OUT2N",
+        "R_OUT2P",
+        "R_OUT3N",
+        "R_OUT3P",
+        "R_OUT4N",
+        "R_OUT4P",
+        "R_OUT5N",
+        "R_OUT5P",
+        "R_OUT6N",
+        "R_OUT6P",
+        "R_OUT7N",
+        "R_OUT7P",
+        "R_OUT8N",
+        "R_OUT8P"
+      ],
+      "evidence": {
+        "cache_hit": false,
+        "fetched_at": "2026-09-24T16:18:16.614297+00:00",
+        "http_status": 200,
+        "provider": "tscircuit/jlcsearch (JLC-derived catalog; same supply pool)",
+        "raw_cache_path": "/tmp/crow-jlcsearch-refresh-cache-20260924/649d0f4c101cf11359f1c09ce51ea6706e445133f2ee75d72092e91399fc6d71.json",
+        "raw_response_bytes": 428,
+        "raw_response_sha256": "d74fae4fcdc0d984e0ce459487a95a651219e52142fedb2f04223ef79ad853cc",
+        "upstream_stock_timestamp": null,
+        "url": "https://jlcsearch.tscircuit.com/components/list.json?search=C138066"
+      },
+      "observed_stock": 11459,
+      "reason": "catalog observation only; PCBA fulfillment unverified",
+      "requested_lcsc": "C138066",
+      "required_qty": 80,
+      "selected_mpn": "RC0402FR-0710RL",
+      "status": "CATALOG_OBSERVED",
+      "stock_vs_required": "MEETS"
+    },
+    {
+      "catalog_part": {
+        "category": "Power Management (PMIC)",
+        "description": "-40\u2103~+125\u2103@(TJ) 1 1.5V~5.5V 2.1uA 30s Active Low Open Drain Simple Reset/Power-On Reset Yes WSON-6(1.5x1.5) Supervisor and Reset ICs ROHS",
+        "is_basic": false,
+        "is_preferred": false,
+        "lcsc": 1509297,
+        "mfr": "TPS389001DSER",
+        "package": "WSON-6(1.5x1.5)",
+        "price": "1-9:1.6367,10-29:1.3601,30-99:1.2072,100-499:1.0364,500-999:0.9599,1000-:0.9257",
+        "stock": 691,
+        "subcategory": "Supervisor And Reset ICs"
+      },
+      "designators": [
+        "U_1V8_OK",
+        "U_ADC_1V8_OK",
+        "U_ADC_3V3X_OK",
+        "U_ADC_OK",
+        "U_AUDIO",
+        "U_PWR",
+        "U_XU_3V3_OK"
+      ],
+      "evidence": {
+        "cache_hit": false,
+        "fetched_at": "2026-09-24T16:18:17.060517+00:00",
+        "http_status": 200,
+        "provider": "tscircuit/jlcsearch (JLC-derived catalog; same supply pool)",
+        "raw_cache_path": "/tmp/crow-jlcsearch-refresh-cache-20260924/4fe0f55a004bb14ab8366fb3809585f6195db5e91c664b26a20dc098827da16a.json",
+        "raw_response_bytes": 459,
+        "raw_response_sha256": "60cda99a327d89ac4e292950c1783538196688eb794572a79ce6543ec85c412c",
+        "upstream_stock_timestamp": null,
+        "url": "https://jlcsearch.tscircuit.com/components/list.json?search=C1509297"
+      },
+      "observed_stock": 691,
+      "reason": "catalog observation only; PCBA fulfillment unverified",
+      "requested_lcsc": "C1509297",
+      "required_qty": 35,
+      "selected_mpn": "TPS389001DSER",
+      "status": "CATALOG_OBSERVED",
+      "stock_vs_required": "MEETS"
+    },
+    {
+      "catalog_part": {
+        "category": "Transistors/Thyristors",
+        "description": "1 P-Channel 14nC@10V 30V 47m\u03a9@10V\u300160m\u03a9@4.5V\u300185m\u03a9@2.5V 4A 55pF 645pF 80pF 900mV SOT-23 MOSFETs ROHS",
+        "is_basic": true,
+        "is_preferred": false,
+        "lcsc": 15127,
+        "mfr": "AO3401A",
+        "package": "SOT-23",
+        "price": "1-99:0.0716,100-299:0.0596,300-2999:0.0532,3000-5999:0.0482,6000-8999:0.0464,9000-:0.0451",
+        "stock": 715902,
+        "subcategory": "MOSFETs"
+      },
+      "designators": [
+        "Q_PRE"
+      ],
+      "evidence": {
+        "cache_hit": false,
+        "fetched_at": "2026-09-24T16:18:17.485937+00:00",
+        "http_status": 200,
+        "provider": "tscircuit/jlcsearch (JLC-derived catalog; same supply pool)",
+        "raw_cache_path": "/tmp/crow-jlcsearch-refresh-cache-20260924/b7c95f169f5c867efa99e630b4a8102ea2f80005fccefde6cf65f8f6857101ee.json",
+        "raw_response_bytes": 400,
+        "raw_response_sha256": "6c3bdb873ec637a4a06cabcd48010ab3204b79a7a7dc374e231d0ac1f11c4c93",
+        "upstream_stock_timestamp": null,
+        "url": "https://jlcsearch.tscircuit.com/components/list.json?search=C15127"
+      },
+      "observed_stock": 715902,
+      "reason": "catalog observation only; PCBA fulfillment unverified",
+      "requested_lcsc": "C15127",
+      "required_qty": 5,
+      "selected_mpn": "AO3401A",
+      "status": "CATALOG_OBSERVED",
+      "stock_vs_required": "MEETS"
+    },
+    {
+      "catalog_part": {
+        "category": "Capacitors",
+        "description": "10nF 50V X7R \u00b110% 0402 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS",
+        "is_basic": true,
+        "is_preferred": false,
+        "lcsc": 15195,
+        "mfr": "CL05B103KB5NNNC",
+        "package": "0402",
+        "price": "1-999:0.0035,1000-2999:0.0032,3000-9999:0.003,10000-49999:0.0029,50000-50199:0.0028,50200-:0.0028",
+        "stock": 2532413,
+        "subcategory": "Multilayer Ceramic Capacitors MLCC - SMD/SMT"
+      },
+      "designators": [
+        "C_SPOKE_DVDT1",
+        "C_SPOKE_DVDT2",
+        "C_SPOKE_DVDT3",
+        "C_SPOKE_DVDT4",
+        "C_SPOKE_DVDT5",
+        "C_SPOKE_DVDT6",
+        "C_SPOKE_DVDT7",
+        "C_SPOKE_DVDT8"
+      ],
+      "evidence": {
+        "cache_hit": false,
+        "fetched_at": "2026-09-24T16:18:17.897432+00:00",
+        "http_status": 200,
+        "provider": "tscircuit/jlcsearch (JLC-derived catalog; same supply pool)",
+        "raw_cache_path": "/tmp/crow-jlcsearch-refresh-cache-20260924/e2b5ae470672f12724d60060464ccb8d78d923d17977b62c04b340f9a33acfcb.json",
+        "raw_response_bytes": 408,
+        "raw_response_sha256": "7cc31ae511b4153221c948795e28759fb31275f67c735f3723407ac73437a2a1",
+        "upstream_stock_timestamp": null,
+        "url": "https://jlcsearch.tscircuit.com/components/list.json?search=C15195"
+      },
+      "observed_stock": 2532413,
+      "reason": "catalog observation only; PCBA fulfillment unverified",
+      "requested_lcsc": "C15195",
+      "required_qty": 40,
+      "selected_mpn": "CL05B103KB5NNNC",
+      "status": "CATALOG_OBSERVED",
+      "stock_vs_required": "MEETS"
+    },
+    {
+      "catalog_part": {
+        "category": "Capacitors",
+        "description": "100nF 16V X7R \u00b110% 0402 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS",
+        "is_basic": true,
+        "is_preferred": false,
+        "lcsc": 1525,
+        "mfr": "CL05B104KO5NNNC",
+        "package": "0402",
+        "price": "1-999:0.006,1000-2999:0.0051,3000-9999:0.0047,10000-49999:0.0044,50000-99999:0.0043,100000-:0.0042",
+        "stock": 16407331,
+        "subcategory": "Multilayer Ceramic Capacitors MLCC - SMD/SMT"
+      },
+      "designators": [
+        "C_1V8_OK_VDD",
+        "C_ADC_3V3X_OK_VDD",
+        "C_ADC_A_AREG_100N",
+        "C_ADC_A_AVDD_100N",
+        "C_ADC_A_DREG_100N",
+        "C_ADC_A_IOVDD_100N",
+        "C_ADC_A_VREF_100N",
+        "C_ADC_B_AREG_100N",
+        "C_ADC_B_AVDD_100N",
+        "C_ADC_B_DREG_100N",
+        "C_ADC_B_IOVDD_100N",
+        "C_ADC_B_VREF_100N",
+        "C_ADC_CLOCK_OK",
+        "C_ADC_DIGITAL_BAD",
+        "C_ADC_DIGITAL_OK",
+        "C_ADC_I2C_A",
+        "C_ADC_I2C_B",
+        "C_ADC_OK_VDD",
+        "C_ADC_OUT",
+        "C_ADC_PWR_BAD",
+        "C_ADC_READY",
+        "C_ADC_READY_BAD",
+        "C_AUDIO",
+        "C_CORE_OK",
+        "C_DUMP_LOGIC",
+        "C_FLASH",
+        "C_FSYNC_FF1",
+        "C_FSYNC_FF2",
+        "C_FSYNC_INV",
+        "C_FSYNC_OR",
+        "C_ISO1",
+        "C_ISO2",
+        "C_ISO3",
+        "C_ISO4",
+        "C_ISO5",
+        "C_ISO6",
+        "C_ISO7",
+        "C_ISO8",
+        "C_LDO_EN",
+        "C_OPA1",
+        "C_OPA2",
+        "C_OPA3",
+        "C_OPA4",
+        "C_OPA5",
+        "C_OPA6",
+        "C_OPA7",
+        "C_OPA8",
+        "C_PLL_100N",
+        "C_PWR",
+        "C_RST1",
+        "C_RST2",
+        "C_VLDO",
+        "C_XLATE_A",
+        "C_XLATE_B",
+        "C_XU_3V3_OK_VDD",
+        "C_XU_USB18",
+        "C_XU_USB33",
+        "C_XU_VDDIO_10",
+        "C_XU_VDDIO_109",
+        "C_XU_VDDIO_121",
+        "C_XU_VDDIO_17",
+        "C_XU_VDDIO_35",
+        "C_XU_VDDIO_56",
+        "C_XU_VDDIO_72",
+        "C_XU_VDDIO_89",
+        "C_XU_VDD_104",
+        "C_XU_VDD_105",
+        "C_XU_VDD_106",
+        "C_XU_VDD_11",
+        "C_XU_VDD_113",
+        "C_XU_VDD_14",
+        "C_XU_VDD_18",
+        "C_XU_VDD_39",
+        "C_XU_VDD_45",
+        "C_XU_VDD_5",
+        "C_XU_VDD_50",
+        "C_XU_VDD_54",
+        "C_XU_VDD_68",
+        "C_XU_VDD_85",
+        "C_XU_VDD_95"
+      ],
+      "evidence": {
+        "cache_hit": false,
+        "fetched_at": "2026-09-24T16:18:18.308224+00:00",
+        "http_status": 200,
+        "provider": "tscircuit/jlcsearch (JLC-derived catalog; same supply pool)",
+        "raw_cache_path": "/tmp/crow-jlcsearch-refresh-cache-20260924/0ec2bbc93a442bed3f933f3bfe9e14fdf4f0f7cc0670f0f09959984a274a595d.json",
+        "raw_response_bytes": 410,
+        "raw_response_sha256": "a64ecfb1884c8884907da603c8c02ff36ebae95276ae784f1e107663a8780196",
+        "upstream_stock_timestamp": null,
+        "url": "https://jlcsearch.tscircuit.com/components/list.json?search=C1525"
+      },
+      "observed_stock": 16407331,
+      "reason": "catalog observation only; PCBA fulfillment unverified",
+      "requested_lcsc": "C1525",
+      "required_qty": 400,
+      "selected_mpn": "CL05B104KO5NNNC",
+      "status": "CATALOG_OBSERVED",
+      "stock_vs_required": "MEETS"
+    },
+    {
+      "catalog_part": {
+        "category": "Capacitors",
+        "description": "10uF 16V X5R \u00b110% 0805 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS",
+        "is_basic": false,
+        "is_preferred": false,
+        "lcsc": 1713,
+        "mfr": "CL21A106KOQNNNE",
+        "package": "0805",
+        "price": "1-199:0.0562,200-599:0.0484,600-1999:0.045,2000-9999:0.0425,10000-19999:0.0414,20000-:0.0407",
+        "stock": 83222,
+        "subcategory": "Multilayer Ceramic Capacitors MLCC - SMD/SMT"
+      },
+      "designators": [
+        "C_U_1V8_IN_1",
+        "C_U_1V8_IN_2",
+        "C_U_3V3X_IN_1",
+        "C_U_3V3X_IN_2",
+        "C_U_CORE_IN_1",
+        "C_U_CORE_IN_2"
+      ],
+      "evidence": {
+        "cache_hit": false,
+        "fetched_at": "2026-09-24T16:18:18.764605+00:00",
+        "http_status": 200,
+        "provider": "tscircuit/jlcsearch (JLC-derived catalog; same supply pool)",
+        "raw_cache_path": "/tmp/crow-jlcsearch-refresh-cache-20260924/cb3a6a450fa6e94dd71c4df44412d407da42965e7f70eccf966e057bfe64c273.json",
+        "raw_response_bytes": 401,
+        "raw_response_sha256": "f35c17fc002466eb3c55421d6a99ab1d4d079e56ee9eb22e63f2fa311b38249f",
+        "upstream_stock_timestamp": null,
+        "url": "https://jlcsearch.tscircuit.com/components/list.json?search=C1713"
+      },
+      "observed_stock": 83222,
+      "reason": "catalog observation only; PCBA fulfillment unverified",
+      "requested_lcsc": "C1713",
+      "required_qty": 30,
+      "selected_mpn": "CL21A106KOQNNNE",
+      "status": "CATALOG_OBSERVED",
+      "stock_vs_required": "MEETS"
+    },
+    {
+      "catalog_part": {
+        "category": "Diodes",
+        "description": "-65\u2103~+150\u2103 1 Independent 100nA@8V 11.4V~12.7V 12V 150\u03a9 25\u03a9 370mW SOD-123 Zener Diodes ROHS",
+        "is_basic": false,
+        "is_preferred": false,
+        "lcsc": 177013,
+        "mfr": "BZT52C12-13-F",
+        "package": "SOD-123",
+        "price": "1-99:0.0505,100-299:0.0396,300-999:0.0342,1000-4999:0.0301,5000-9999:0.0269,10000-:0.0253",
+        "stock": 7715,
+        "subcategory": "Zener Diodes"
+      },
+      "designators": [
+        "D_QIN_GS"
+      ],
+      "evidence": {
+        "cache_hit": false,
+        "fetched_at": "2026-09-24T16:18:19.246643+00:00",
+        "http_status": 200,
+        "provider": "tscircuit/jlcsearch (JLC-derived catalog; same supply pool)",
+        "raw_cache_path": "/tmp/crow-jlcsearch-refresh-cache-20260924/0a119a03837dde3ea6f0db458ae346f8242227828405f0f96aa7e5fbacb5a327.json",
+        "raw_response_bytes": 387,
+        "raw_response_sha256": "c1f077d1ea69d4588b2aff37ea29cd909d29f8f5f743bc038afaa03039227902",
+        "upstream_stock_timestamp": null,
+        "url": "https://jlcsearch.tscircuit.com/components/list.json?search=C177013"
+      },
+      "observed_stock": 7715,
+      "reason": "catalog observation only; PCBA fulfillment unverified",
+      "requested_lcsc": "C177013",
+      "required_qty": 5,
+      "selected_mpn": "BZT52C12-13-F",
+      "status": "CATALOG_OBSERVED",
+      "stock_vs_required": "MEETS"
+    },
+    {
+      "catalog_part": {
+        "category": "Capacitors",
+        "description": "-55\u2103~+105\u2103 10V 2000hrs@105\u2103 450mA@120Hz 470uF \u00b120% SMD Aluminum Electrolytic Capacitors - SMD ROHS",
+        "is_basic": false,
+        "is_preferred": false,
+        "lcsc": 178530,
+        "mfr": "EEEFK1A471P",
+        "package": "SMD",
+        "price": "1-49:0.3741,50-149:0.3044,150-499:0.2747,500-2499:0.218,2500-4999:0.2015,5000-:0.1915",
+        "stock": 968,
+        "subcategory": "Aluminum Electrolytic Capacitors - SMD"
+      },
+      "designators": [
+        "C_HOLD1",
+        "C_HOLD10",
+        "C_HOLD11",
+        "C_HOLD12",
+        "C_HOLD13",
+        "C_HOLD14",
+        "C_HOLD15",
+        "C_HOLD16",
+        "C_HOLD2",
+        "C_HOLD3",
+        "C_HOLD4",
+        "C_HOLD5",
+        "C_HOLD6",
+        "C_HOLD7",
+        "C_HOLD8",
+        "C_HOLD9"
+      ],
+      "evidence": {
+        "cache_hit": false,
+        "fetched_at": "2026-09-24T16:18:19.729783+00:00",
+        "http_status": 200,
+        "provider": "tscircuit/jlcsearch (JLC-derived catalog; same supply pool)",
+        "raw_cache_path": "/tmp/crow-jlcsearch-refresh-cache-20260924/35d4f147fc5d202519a73e6d4ede6a51c36b38b2f4674a22116b56e6de893946.json",
+        "raw_response_bytes": 415,
+        "raw_response_sha256": "1a059323a43f9d8785110d0d5d49a78b5d5852e641d290507bfaa1c96a0c5a85",
+        "upstream_stock_timestamp": null,
+        "url": "https://jlcsearch.tscircuit.com/components/list.json?search=C178530"
+      },
+      "observed_stock": 968,
+      "reason": "catalog observation only; PCBA fulfillment unverified",
+      "requested_lcsc": "C178530",
+      "required_qty": 80,
+      "selected_mpn": "EEEFK1A471P",
+      "status": "CATALOG_OBSERVED",
+      "stock_vs_required": "MEETS"
+    },
+    {
+      "catalog_part": {
+        "category": "Inductors, Coils, Chokes",
+        "description": "11.2A 470nH 6.6A 7.6m\u03a9 AEC-Q200 \u00b120% SMD,4x4mm Power Inductors ROHS",
+        "is_basic": false,
+        "is_preferred": false,
+        "lcsc": 18221164,
+        "mfr": "XFL4015-471MEC",
+        "package": "SMD,4x4mm",
+        "price": "1-9:1.6246,10-29:1.3533,30-99:1.2047,100-499:1.0368,500-999:0.9625,1000-:0.9286",
+        "stock": 2793,
+        "subcategory": "Power Inductors"
+      },
+      "designators": [
+        "L_U_1V8",
+        "L_U_3V3X",
+        "L_U_CORE"
+      ],
+      "evidence": {
+        "cache_hit": false,
+        "fetched_at": "2026-09-24T16:18:20.208177+00:00",
+        "http_status": 200,
+        "provider": "tscircuit/jlcsearch (JLC-derived catalog; same supply pool)",
+        "raw_cache_path": "/tmp/crow-jlcsearch-refresh-cache-20260924/41014312330eec78f074e1b91eaaf71bd49eae23239546bc5ab5d9f2132b9437.json",
+        "raw_response_bytes": 376,
+        "raw_response_sha256": "87a1864ab9d2ce8994e0c264deb68557c51ee61d278883e6375647a6e896489e",
+        "upstream_stock_timestamp": null,
+        "url": "https://jlcsearch.tscircuit.com/components/list.json?search=C18221164"
+      },
+      "observed_stock": 2793,
+      "reason": "catalog observation only; PCBA fulfillment unverified",
+      "requested_lcsc": "C18221164",
+      "required_qty": 15,
+      "selected_mpn": "XFL4015-471MEC",
+      "status": "CATALOG_OBSERVED",
+      "stock_vs_required": "MEETS"
+    },
+    {
+      "designators": [
+        "U_ADC_A",
+        "U_ADC_B"
+      ],
+      "evidence": {
+        "cache_hit": false,
+        "fetched_at": "2026-09-24T16:18:20.684029+00:00",
+        "http_status": 200,
+        "provider": "tscircuit/jlcsearch (JLC-derived catalog; same supply pool)",
+        "raw_cache_path": "/tmp/crow-jlcsearch-refresh-cache-20260924/787af47d888d097dc1ef76afc85710d59eda419c89b4e303c72f62ac25d85b8a.json",
+        "raw_response_bytes": 17,
+        "raw_response_sha256": "ac46fd24bd501fa7297f0a2945bcc7f5d655b9bcf8bfbf16718a9d25c0c2c018",
+        "upstream_stock_timestamp": null,
+        "url": "https://jlcsearch.tscircuit.com/components/list.json?search=C1852023"
+      },
+      "observed_stock": null,
+      "reason": "selected code absent from search index",
+      "requested_lcsc": "C1852023",
+      "required_qty": 10,
+      "selected_mpn": "TLV320ADC6140IRTWT",
+      "status": "UNKNOWN",
+      "stock_vs_required": "UNKNOWN"
+    },
+    {
+      "catalog_part": {
+        "category": "Resistors",
+        "description": "-55\u2103~+155\u2103 10k\u03a9 50V 62.5mW Thin Film Resistor \u00b10.1% \u00b125ppm/\u2103 0402 Chip Resistor - Surface Mount ROHS",
+        "is_basic": false,
+        "is_preferred": false,
+        "lcsc": 190095,
+        "mfr": "RT0402BRD0710KL",
+        "package": "0402",
+        "price": "1-499:0.0207,500-1499:0.0166,1500-9999:0.015,10000-19999:0.0129,20000-49999:0.0124,50000-:0.012",
+        "stock": 1013411,
+        "subcategory": "Chip Resistor - Surface Mount"
+      },
+      "designators": [
+        "R_BUCK_FB_BOTTOM"
+      ],
+      "evidence": {
+        "cache_hit": false,
+        "fetched_at": "2026-09-24T16:18:21.119514+00:00",
+        "http_status": 200,
+        "provider": "tscircuit/jlcsearch (JLC-derived catalog; same supply pool)",
+        "raw_cache_path": "/tmp/crow-jlcsearch-refresh-cache-20260924/37f4514f852eade5c9c4ada3d423bc76b3fe02b0835c8094ede2b4cbf71a7422.json",
+        "raw_response_bytes": 428,
+        "raw_response_sha256": "693a8fb4108857ecbee770834d39344bef96f6c56f2001db3aaf8ef8a96d089e",
+        "upstream_stock_timestamp": null,
+        "url": "https://jlcsearch.tscircuit.com/components/list.json?search=C190095"
+      },
+      "observed_stock": 1013411,
+      "reason": "catalog observation only; PCBA fulfillment unverified",
+      "requested_lcsc": "C190095",
+      "required_qty": 5,
+      "selected_mpn": "RT0402BRD0710KL",
+      "status": "CATALOG_OBSERVED",
+      "stock_vs_required": "MEETS"
+    },
+    {
+      "designators": [
+        "J_PWR"
+      ],
+      "evidence": {
+        "cache_hit": false,
+        "fetched_at": "2026-09-24T16:18:21.604140+00:00",
+        "http_status": 200,
+        "provider": "tscircuit/jlcsearch (JLC-derived catalog; same supply pool)",
+        "raw_cache_path": "/tmp/crow-jlcsearch-refresh-cache-20260924/3c35502dad1b55c7aec88add0452423301ecd0f47a0984bf2b726663b66619bf.json",
+        "raw_response_bytes": 476,
+        "raw_response_sha256": "bffb7ef5cf0e9c89c889214230cb631558a5b478724cf028aed00a940ea0b300",
+        "upstream_stock_timestamp": null,
+        "url": "https://jlcsearch.tscircuit.com/components/list.json?search=C192562"
+      },
+      "observed_stock": null,
+      "reason": "selected MPN mismatch or ambiguous catalog result",
+      "requested_lcsc": "C192562",
+      "required_qty": 5,
+      "selected_mpn": "43650-0200",
+      "status": "UNKNOWN",
+      "stock_vs_required": "UNKNOWN"
+    },
+    {
+      "catalog_part": {
+        "category": "Capacitors",
+        "description": "16V 4.7uF X5R \u00b110% 0603 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS",
+        "is_basic": true,
+        "is_preferred": false,
+        "lcsc": 19666,
+        "mfr": "CL10A475KO8NNNC",
+        "package": "0603",
+        "price": "1-99:0.0236,100-299:0.0209,300-999:0.0196,1000-3999:0.0186,4000-7999:0.0183,8000-:0.0179",
+        "stock": 1373603,
+        "subcategory": "Multilayer Ceramic Capacitors MLCC - SMD/SMT"
+      },
+      "designators": [
+        "C_LDO_NR4"
+      ],
+      "evidence": {
+        "cache_hit": false,
+        "fetched_at": "2026-09-24T16:18:22.026231+00:00",
+        "http_status": 200,
+        "provider": "tscircuit/jlcsearch (JLC-derived catalog; same supply pool)",
+        "raw_cache_path": "/tmp/crow-jlcsearch-refresh-cache-20260924/6f299fd789f025cf648697da2445c74902e69b5067d30d3ed802186be28f572c.json",
+        "raw_response_bytes": 400,
+        "raw_response_sha256": "7d6e3367fc11d73b4f9c4b97700cb1d64821bd8c7a34b961b28f04712e68ef26",
+        "upstream_stock_timestamp": null,
+        "url": "https://jlcsearch.tscircuit.com/components/list.json?search=C19666"
+      },
+      "observed_stock": 1373603,
+      "reason": "catalog observation only; PCBA fulfillment unverified",
+      "requested_lcsc": "C19666",
+      "required_qty": 5,
+      "selected_mpn": "CL10A475KO8NNNC",
+      "status": "CATALOG_OBSERVED",
+      "stock_vs_required": "MEETS"
+    },
+    {
+      "catalog_part": {
+        "category": "Circuit Protection",
+        "description": "-40\u2103~+125\u2103 1.5pF 10nA 12.4V 2 5.5A@8/20us 5.5V 6.5V 85W@8/20us ESD IEC 61000-4-2\u3001IEC 61000-4-5 SOT-553-5 ESD and Surge Protection (TVS/ESD) ROHS",
+        "is_basic": false,
+        "is_preferred": false,
+        "lcsc": 1972959,
+        "mfr": "TPD2E2U06DRLR",
+        "package": "SOT-553-5",
+        "price": "1-49:0.329,50-149:0.2636,150-499:0.2355,500-2499:0.2005,2500-3999:0.1849,4000-:0.1755",
+        "stock": 11422,
+        "subcategory": "ESD And Surge Protection (TVS/ESD)"
+      },
+      "designators": [
+        "U_ESD1",
+        "U_ESD2",
+        "U_ESD3",
+        "U_ESD4",
+        "U_ESD5",
+        "U_ESD6",
+        "U_ESD7",
+        "U_ESD8",
+        "U_USB_CC_ESD",
+        "U_USB_VBUS_ESD"
+      ],
+      "evidence": {
+        "cache_hit": false,
+        "fetched_at": "2026-09-24T16:18:22.474517+00:00",
+        "http_status": 200,
+        "provider": "tscircuit/jlcsearch (JLC-derived catalog; same supply pool)",
+        "raw_cache_path": "/tmp/crow-jlcsearch-refresh-cache-20260924/d7a6d8d4f1155eff6aa445e753bf4140ebec0f6b807a0b37414401bc0a4f79a9.json",
+        "raw_response_bytes": 475,
+        "raw_response_sha256": "2c1731c330f4c678e455b06feeda8f3399f9a796d7bc09985cb0f46fcb193b70",
+        "upstream_stock_timestamp": null,
+        "url": "https://jlcsearch.tscircuit.com/components/list.json?search=C1972959"
+      },
+      "observed_stock": 11422,
+      "reason": "catalog observation only; PCBA fulfillment unverified",
+      "requested_lcsc": "C1972959",
+      "required_qty": 50,
+      "selected_mpn": "TPD2E2U06DRLR",
+      "status": "CATALOG_OBSERVED",
+      "stock_vs_required": "MEETS"
+    },
+    {
+      "catalog_part": {
+        "category": "Transistors/Thyristors",
+        "description": "-55\u2103~+150\u2103 1 N-channel 1.45V 1.4W 30V 48m\u03a9@2.5V 5.7A 50pF 630pF 75pF 7nC@10V N-Channel SOT-23 MOSFETs ROHS",
+        "is_basic": true,
+        "is_preferred": false,
+        "lcsc": 20917,
+        "mfr": "AO3400A",
+        "package": "SOT-23",
+        "price": "1-49:0.0846,50-149:0.0682,150-499:0.0598,500-2999:0.0529,3000-5999:0.0505,6000-:0.0489",
+        "stock": 1535925,
+        "subcategory": "MOSFETs"
+      },
+      "designators": [
+        "Q_DUMP",
+        "Q_TDM_GATE",
+        "Q_VBUS"
+      ],
+      "evidence": {
+        "cache_hit": false,
+        "fetched_at": "2026-09-24T16:18:22.937802+00:00",
+        "http_status": 200,
+        "provider": "tscircuit/jlcsearch (JLC-derived catalog; same supply pool)",
+        "raw_cache_path": "/tmp/crow-jlcsearch-refresh-cache-20260924/4e6037d0de5fdc405a39b77689d715787b77d5d325e6ea7afb3e3d02a49ae01b.json",
+        "raw_response_bytes": 404,
+        "raw_response_sha256": "200213f874491f63d28a262a0328900c634fd52f987c264318f51764c6bc7880",
+        "upstream_stock_timestamp": null,
+        "url": "https://jlcsearch.tscircuit.com/components/list.json?search=C20917"
+      },
+      "observed_stock": 1535925,
+      "reason": "catalog observation only; PCBA fulfillment unverified",
+      "requested_lcsc": "C20917",
+      "required_qty": 15,
+      "selected_mpn": "AO3400A",
+      "status": "CATALOG_OBSERVED",
+      "stock_vs_required": "MEETS"
+    },
+    {
+      "catalog_part": {
+        "category": "Capacitors",
+        "description": "220nF 25V X7R \u00b110% 0603 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS",
+        "is_basic": true,
+        "is_preferred": false,
+        "lcsc": 21120,
+        "mfr": "CL10B224KA8NNNC",
+        "package": "0603",
+        "price": "1-999:0.0097,1000-3999:0.0082,4000-7999:0.007,8000-47999:0.0065,48000-99999:0.0063,100000-:0.0062",
+        "stock": 408387,
+        "subcategory": "Multilayer Ceramic Capacitors MLCC - SMD/SMT"
+      },
+      "designators": [
+        "C_RST_T"
+      ],
+      "evidence": {
+        "cache_hit": false,
+        "fetched_at": "2026-09-24T16:18:23.362491+00:00",
+        "http_status": 200,
+        "provider": "tscircuit/jlcsearch (JLC-derived catalog; same supply pool)",
+        "raw_cache_path": "/tmp/crow-jlcsearch-refresh-cache-20260924/cb401ceee711e731596710e579e3ac2df6aa7bca67d9e7f58cd1f5c8e85e8e42.json",
+        "raw_response_bytes": 408,
+        "raw_response_sha256": "a1058c235ce3600869af0364b51801652a3695fc7d963be13bc8a8b9c18c4e98",
+        "upstream_stock_timestamp": null,
+        "url": "https://jlcsearch.tscircuit.com/components/list.json?search=C21120"
+      },
+      "observed_stock": 408387,
+      "reason": "catalog observation only; PCBA fulfillment unverified",
+      "requested_lcsc": "C21120",
+      "required_qty": 5,
+      "selected_mpn": "CL10B224KA8NNNC",
+      "status": "CATALOG_OBSERVED",
+      "stock_vs_required": "MEETS"
+    },
+    {
+      "catalog_part": {
+        "category": "Capacitors",
+        "description": "16V 1uF X7R \u00b110% 0603 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS",
+        "is_basic": false,
+        "is_preferred": false,
+        "lcsc": 2167386,
+        "mfr": "C0603C105K4RACTU",
+        "package": "0603",
+        "price": "1-199:0.044,200-599:0.0365,600-3999:0.0324,4000-7999:0.03,8000-19999:0.0279,20000-:0.0267",
+        "stock": 4116,
+        "subcategory": "Multilayer Ceramic Capacitors MLCC - SMD/SMT"
+      },
+      "designators": [
+        "C_ADC_A_AREG_1U",
+        "C_ADC_A_DREG_1U",
+        "C_ADC_B_AREG_1U",
+        "C_ADC_B_DREG_1U",
+        "C_AUDIO_CT1",
+        "C_AUDIO_CT2",
+        "C_PWR_CT",
+        "C_PWR_CT2",
+        "C_PWR_CT3",
+        "C_VCC",
+        "C_VMID1_EXT_1U",
+        "C_VMID2_EXT_1U"
+      ],
+      "evidence": {
+        "cache_hit": false,
+        "fetched_at": "2026-09-24T16:18:23.796876+00:00",
+        "http_status": 200,
+        "provider": "tscircuit/jlcsearch (JLC-derived catalog; same supply pool)",
+        "raw_cache_path": "/tmp/crow-jlcsearch-refresh-cache-20260924/10bb7ffdb33fcc1985b1bdd8ac7a26758ffbe9510bd79dfd3e0b102bc9894d09.json",
+        "raw_response_bytes": 400,
+        "raw_response_sha256": "7ff5574d618f78aad898b5fb786cd4ec40270187d33ae2c1635f52a1e5fb20f1",
+        "upstream_stock_timestamp": null,
+        "url": "https://jlcsearch.tscircuit.com/components/list.json?search=C2167386"
+      },
+      "observed_stock": 4116,
+      "reason": "catalog observation only; PCBA fulfillment unverified",
+      "requested_lcsc": "C2167386",
+      "required_qty": 60,
+      "selected_mpn": "C0603C105K4RACTU",
+      "status": "CATALOG_OBSERVED",
+      "stock_vs_required": "MEETS"
+    },
+    {
+      "catalog_part": {
+        "category": "Capacitors",
+        "description": "10V 10uF X7R \u00b110% 0805 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS",
+        "is_basic": false,
+        "is_preferred": false,
+        "lcsc": 2167576,
+        "mfr": "C0805C106K8RACTU",
+        "package": "0805",
+        "price": "1-49:0.3113,50-149:0.262,150-499:0.2408,500-2499:0.2145,2500-4999:0.2028,5000-:0.1958",
+        "stock": 7722,
+        "subcategory": "Multilayer Ceramic Capacitors MLCC - SMD/SMT"
+      },
+      "designators": [
+        "C_ADC_A_AVDD_10U",
+        "C_ADC_A_IOVDD_10U",
+        "C_ADC_A_VREF_10U",
+        "C_ADC_B_AVDD_10U",
+        "C_ADC_B_IOVDD_10U",
+        "C_ADC_B_VREF_10U",
+        "C_VMID1_EXT_10U",
+        "C_VMID2_EXT_10U"
+      ],
+      "evidence": {
+        "cache_hit": false,
+        "fetched_at": "2026-09-24T16:18:24.242133+00:00",
+        "http_status": 200,
+        "provider": "tscircuit/jlcsearch (JLC-derived catalog; same supply pool)",
+        "raw_cache_path": "/tmp/crow-jlcsearch-refresh-cache-20260924/2c31cb273ba4a35014265d50a3b3d868e90dfba8bd98a7a16a9a2659f71ef645.json",
+        "raw_response_bytes": 397,
+        "raw_response_sha256": "2e50f309dfc3f1fa115bca0ed8c5e8adc114db2234308aef99bf21130043995d",
+        "upstream_stock_timestamp": null,
+        "url": "https://jlcsearch.tscircuit.com/components/list.json?search=C2167576"
+      },
+      "observed_stock": 7722,
+      "reason": "catalog observation only; PCBA fulfillment unverified",
+      "requested_lcsc": "C2167576",
+      "required_qty": 40,
+      "selected_mpn": "C0805C106K8RACTU",
+      "status": "CATALOG_OBSERVED",
+      "stock_vs_required": "MEETS"
+    },
+    {
+      "catalog_part": {
+        "category": "Interface",
+        "description": "",
+        "is_basic": false,
+        "is_preferred": false,
+        "lcsc": 22428234,
+        "mfr": "TMUX4827YBHR",
+        "package": "DSBGA-9",
+        "price": "1-9:3.4816,10-29:3.0101,30-99:2.7291,100-499:2.4449,500-999:2.3141,1000-:2.2559",
+        "stock": 234,
+        "subcategory": "Analog Switches, Multiplexers"
+      },
+      "designators": [
+        "U_ISO1",
+        "U_ISO2",
+        "U_ISO3",
+        "U_ISO4",
+        "U_ISO5",
+        "U_ISO6",
+        "U_ISO7",
+        "U_ISO8"
+      ],
+      "evidence": {
+        "cache_hit": false,
+        "fetched_at": "2026-09-24T16:18:24.701328+00:00",
+        "http_status": 200,
+        "provider": "tscircuit/jlcsearch (JLC-derived catalog; same supply pool)",
+        "raw_cache_path": "/tmp/crow-jlcsearch-refresh-cache-20260924/b358a641e6d530f81589cba619f6d8cb497b68ea93fa16ced3867e4f0a51c6c5.json",
+        "raw_response_bytes": 301,
+        "raw_response_sha256": "ede7c6ce6d786c3d3c1326a8459f4d2551a85641e7056270a0fa09b59ff4e03f",
+        "upstream_stock_timestamp": null,
+        "url": "https://jlcsearch.tscircuit.com/components/list.json?search=C22428234"
+      },
+      "observed_stock": 234,
+      "reason": "catalog observation only; PCBA fulfillment unverified",
+      "requested_lcsc": "C22428234",
+      "required_qty": 40,
+      "selected_mpn": "TMUX4827YBHR",
+      "status": "CATALOG_OBSERVED",
+      "stock_vs_required": "MEETS"
+    },
+    {
+      "catalog_part": {
+        "category": "Power Management (PMIC)",
+        "description": "-40\u2103~+125\u2103@(Tj) 1 1.7V~6.5V 2.4uA 20ms 840mV Active Low No Open Drain Voltage Monitor Yes SOT-23-6 Supervisor and Reset ICs ROHS",
+        "is_basic": false,
+        "is_preferred": false,
+        "lcsc": 24584,
+        "mfr": "TPS3808G09DBVR",
+        "package": "SOT-23-6",
+        "price": "1-9:0.5174,10-29:0.4182,30-99:0.3759,100-499:0.3238,500-999:0.301,1000-:0.2864",
+        "stock": 6045,
+        "subcategory": "Supervisor And Reset ICs"
+      },
+      "designators": [
+        "U_CORE_OK"
+      ],
+      "evidence": {
+        "cache_hit": false,
+        "fetched_at": "2026-09-24T16:18:25.189867+00:00",
+        "http_status": 200,
+        "provider": "tscircuit/jlcsearch (JLC-derived catalog; same supply pool)",
+        "raw_cache_path": "/tmp/crow-jlcsearch-refresh-cache-20260924/b82e75ee391875767f1648823750a5197c2a99999d255abbc2e8d9c52d62c092.json",
+        "raw_response_bytes": 442,
+        "raw_response_sha256": "d15e757f10d95a7add4be7128a71ea58a002eb84fdf8c1b31396a4a467b7d114",
+        "upstream_stock_timestamp": null,
+        "url": "https://jlcsearch.tscircuit.com/components/list.json?search=C24584"
+      },
+      "observed_stock": 6045,
+      "reason": "catalog observation only; PCBA fulfillment unverified",
+      "requested_lcsc": "C24584",
+      "required_qty": 5,
+      "selected_mpn": "TPS3808G09DBVR",
+      "status": "CATALOG_OBSERVED",
+      "stock_vs_required": "MEETS"
+    },
+    {
+      "catalog_part": {
+        "category": "Logic",
+        "description": "-40\u2103~+85\u2103 0.8V~3.6V 0.9uA 1 2.4ns@3.3V,5pF 3 4mA 4mA 74AUP Unidirectional VSSOP-8 Buffers, Drivers, Receivers, Transceivers ROHS",
+        "is_basic": false,
+        "is_preferred": false,
+        "lcsc": 2675543,
+        "mfr": "SN74AUP3G34DCUR",
+        "package": "VSSOP-8",
+        "price": "1-49:0.3923,50-149:0.3122,150-499:0.2685,500-2999:0.2255,3000-5999:0.2065,6000-:0.1951",
+        "stock": 395,
+        "subcategory": "Buffers, Drivers, Receivers, Transceivers"
+      },
+      "designators": [
+        "U_ADC_OUT"
+      ],
+      "evidence": {
+        "cache_hit": false,
+        "fetched_at": "2026-09-24T16:18:25.658808+00:00",
+        "http_status": 200,
+        "provider": "tscircuit/jlcsearch (JLC-derived catalog; same supply pool)",
+        "raw_cache_path": "/tmp/crow-jlcsearch-refresh-cache-20260924/229aa897d0a592b52811de4ad4e0d974802c1536c1fc243757a81550fea66792.json",
+        "raw_response_bytes": 450,
+        "raw_response_sha256": "e5bd98290a1210abea701a7f08c4a3fb3a646d6c5900da433c94bbd52d6182aa",
+        "upstream_stock_timestamp": null,
+        "url": "https://jlcsearch.tscircuit.com/components/list.json?search=C2675543"
+      },
+      "observed_stock": 395,
+      "reason": "catalog observation only; PCBA fulfillment unverified",
+      "requested_lcsc": "C2675543",
+      "required_qty": 5,
+      "selected_mpn": "SN74AUP3G34DCUR",
+      "status": "CATALOG_OBSERVED",
+      "stock_vs_required": "MEETS"
+    },
+    {
+      "catalog_part": {
+        "category": "Logic",
+        "description": "-40\u2103~+125\u2103 1 1 1.65V~5.5V 10uA 3.1ns@3.3V,15pF 32mA 32mA 74LVC Tri-State SC-70-5 Buffers, Drivers, Receivers, Transceivers ROHS",
+        "is_basic": false,
+        "is_preferred": false,
+        "lcsc": 2675550,
+        "mfr": "SN74LVC1G125DCKT",
+        "package": "SC-70-5",
+        "price": "1-99:0.0454,100-249:0.0446,250-999:0.0422,1000-1019:0.0417,1020-1039:0.0417,1040-:0.0417",
+        "stock": 7,
+        "subcategory": "Buffers, Drivers, Receivers, Transceivers"
+      },
+      "designators": [
+        "U_ADC_CLOCK_OK",
+        "U_ADC_READY"
+      ],
+      "evidence": {
+        "cache_hit": false,
+        "fetched_at": "2026-09-24T16:18:26.160480+00:00",
+        "http_status": 200,
+        "provider": "tscircuit/jlcsearch (JLC-derived catalog; same supply pool)",
+        "raw_cache_path": "/tmp/crow-jlcsearch-refresh-cache-20260924/77c64b0818e23c819e9a8bba304bc4ca671e0ab68b86aa7d29b7d498747d0ddc.json",
+        "raw_response_bytes": 450,
+        "raw_response_sha256": "dfd5f64620e75866111b70d09764cb34a93df197c8450eb8e74ce428c23d3810",
+        "upstream_stock_timestamp": null,
+        "url": "https://jlcsearch.tscircuit.com/components/list.json?search=C2675550"
+      },
+      "observed_stock": 7,
+      "reason": "catalog observation only; PCBA fulfillment unverified",
+      "requested_lcsc": "C2675550",
+      "required_qty": 10,
+      "selected_mpn": "SN74LVC1G125DCKT",
+      "status": "CATALOG_OBSERVED",
+      "stock_vs_required": "BELOW"
+    },
+    {
+      "catalog_part": {
+        "category": "Resistors",
+        "description": "-55\u2103~+155\u2103 100mW 453k\u03a9 75V Thin Film Resistor \u00b10.1% \u00b125ppm/\u2103 0603 Chip Resistor - Surface Mount ROHS",
+        "is_basic": false,
+        "is_preferred": false,
+        "lcsc": 2686428,
+        "mfr": "ARG03BTC4533",
+        "package": "0603",
+        "price": "1-199:0.0246,200-599:0.0196,600-4999:0.0168,5000-9999:0.0152,10000-19999:0.0137,20000-:0.013",
+        "stock": 14299,
+        "subcategory": "Chip Resistor - Surface Mount"
+      },
+      "designators": [
+        "R_3V3X_FB_TOP"
+      ],
+      "evidence": {
+        "cache_hit": false,
+        "fetched_at": "2026-09-24T16:18:26.654606+00:00",
+        "http_status": 200,
+        "provider": "tscircuit/jlcsearch (JLC-derived catalog; same supply pool)",
+        "raw_cache_path": "/tmp/crow-jlcsearch-refresh-cache-20260924/a71dab07b2c1c3a62c2b54f78cc25a5ec382f5edb0a64ba402602538abb8f2d2.json",
+        "raw_response_bytes": 421,
+        "raw_response_sha256": "3ee6a16c1bffd99e3db31a291f045161b001db02cbde732630d75aa8b0f700f7",
+        "upstream_stock_timestamp": null,
+        "url": "https://jlcsearch.tscircuit.com/components/list.json?search=C2686428"
+      },
+      "observed_stock": 14299,
+      "reason": "catalog observation only; PCBA fulfillment unverified",
+      "requested_lcsc": "C2686428",
+      "required_qty": 5,
+      "selected_mpn": "ARG03BTC4533",
+      "status": "CATALOG_OBSERVED",
+      "stock_vs_required": "MEETS"
+    },
+    {
+      "catalog_part": {
+        "category": "Circuit Protection",
+        "description": "-55\u2103~+125\u2103 0.0551 125V 125V 2.5mm 4A 50A 6.1mm Surface Mount Fuse 2410 Disposable fuses ROHS",
+        "is_basic": false,
+        "is_preferred": false,
+        "lcsc": 27515,
+        "mfr": "0451004.MRL",
+        "package": "2410",
+        "price": "1-49:0.259,50-149:0.2086,150-999:0.187,1000-1999:0.1302,2000-4999:0.1182,5000-:0.111",
+        "stock": 22966,
+        "subcategory": "Disposable Fuses"
+      },
+      "designators": [
+        "F_IN"
+      ],
+      "evidence": {
+        "cache_hit": false,
+        "fetched_at": "2026-09-24T16:18:27.097198+00:00",
+        "http_status": 200,
+        "provider": "tscircuit/jlcsearch (JLC-derived catalog; same supply pool)",
+        "raw_cache_path": "/tmp/crow-jlcsearch-refresh-cache-20260924/39e41a8b152e7b83289b944a1b38ce6d8e80262fc896fea3d93a3cf4690138f6.json",
+        "raw_response_bytes": 393,
+        "raw_response_sha256": "e133c490ab3c96eb284af66bb51daca97e1bfb472a25e35aa185b7e3ec3ce143",
+        "upstream_stock_timestamp": null,
+        "url": "https://jlcsearch.tscircuit.com/components/list.json?search=C27515"
+      },
+      "observed_stock": 22966,
+      "reason": "catalog observation only; PCBA fulfillment unverified",
+      "requested_lcsc": "C27515",
+      "required_qty": 5,
+      "selected_mpn": "0451004.MRL",
+      "status": "CATALOG_OBSERVED",
+      "stock_vs_required": "MEETS"
+    },
+    {
+      "catalog_part": {
+        "category": "Memory",
+        "description": "-40\u2103~+85\u2103 1.7V~1.95V 100,000 cycles 10uA 120ms@(32KB) 128Mbit 133MHz 20 Years 3ms SPI SOIC-8-208mil NOR FLASH ROHS",
+        "is_basic": false,
+        "is_preferred": false,
+        "lcsc": 2763561,
+        "mfr": "W25Q128JWSIQ",
+        "package": "SOIC-8-208mil",
+        "price": "1-9:3.7451,10-29:3.2391,30-89:2.9382,90-539:2.6339,540-989:2.4924,990-:2.429",
+        "stock": 275,
+        "subcategory": "NOR FLASH"
+      },
+      "designators": [
+        "U_FLASH"
+      ],
+      "evidence": {
+        "cache_hit": false,
+        "fetched_at": "2026-09-24T16:18:27.539573+00:00",
+        "http_status": 200,
+        "provider": "tscircuit/jlcsearch (JLC-derived catalog; same supply pool)",
+        "raw_cache_path": "/tmp/crow-jlcsearch-refresh-cache-20260924/a8d7d8e9d71a0faec1ade64edcc6aea722a57a1c595e7641382b06f017abf4e8.json",
+        "raw_response_bytes": 398,
+        "raw_response_sha256": "d94f8d401a40db140f9316281737c5cc627d1ba8906dad9dcd3481a27931a431",
+        "upstream_stock_timestamp": null,
+        "url": "https://jlcsearch.tscircuit.com/components/list.json?search=C2763561"
+      },
+      "observed_stock": 275,
+      "reason": "catalog observation only; PCBA fulfillment unverified",
+      "requested_lcsc": "C2763561",
+      "required_qty": 5,
+      "selected_mpn": "W25Q128JWSIQ",
+      "status": "CATALOG_OBSERVED",
+      "stock_vs_required": "MEETS"
+    },
+    {
+      "catalog_part": {
+        "category": "Circuit Protection",
+        "description": "-40\u2103~+125\u2103 0.9mm 1 3mm 3mm 4.5V~60V 478m\u03a9 Integrated FET Surface Mount SON-10(3x3) Surge Protection Devices (SPDs) ROHS",
+        "is_basic": false,
+        "is_preferred": false,
+        "lcsc": 2862873,
+        "mfr": "TPS26625DRCR",
+        "package": "SON-10(3x3)",
+        "price": "1-9:2.2581,10-29:1.9198,30-99:1.7083,100-499:1.4903,500-999:1.3926,1000-:1.3503",
+        "stock": 528,
+        "subcategory": "Surge Protection Devices (SPDs)"
+      },
+      "designators": [
+        "U_SPOKE1",
+        "U_SPOKE2",
+        "U_SPOKE3",
+        "U_SPOKE4",
+        "U_SPOKE5",
+        "U_SPOKE6",
+        "U_SPOKE7",
+        "U_SPOKE8"
+      ],
+      "evidence": {
+        "cache_hit": false,
+        "fetched_at": "2026-09-24T16:18:27.976583+00:00",
+        "http_status": 200,
+        "provider": "tscircuit/jlcsearch (JLC-derived catalog; same supply pool)",
+        "raw_cache_path": "/tmp/crow-jlcsearch-refresh-cache-20260924/4a8c1813760ae65d3dd8fda1ef6997c92297d66a7b02fec828e5a5d1955934e6.json",
+        "raw_response_bytes": 439,
+        "raw_response_sha256": "f2097a5901dee7f5d65fa4ad5e5c2b5ade4fa562149af84b90605ece388c5d2b",
+        "upstream_stock_timestamp": null,
+        "url": "https://jlcsearch.tscircuit.com/components/list.json?search=C2862873"
+      },
+      "observed_stock": 528,
+      "reason": "catalog observation only; PCBA fulfillment unverified",
+      "requested_lcsc": "C2862873",
+      "required_qty": 40,
+      "selected_mpn": "TPS26625DRCR",
+      "status": "CATALOG_OBSERVED",
+      "stock_vs_required": "MEETS"
+    },
+    {
+      "catalog_part": {
+        "category": "Amplifiers/Comparators",
+        "description": "-2.75V~-900mV\u3001900mV~2.75V -40\u2103~+125\u2103 0.2pA 0.2pA 1.45mA 1.5uV/\u2103 1.8V~5.5V 10V/us 114dB 2 20MHz 40uV 65mA 7nV/\u221aHz@10kHz EMI filtering/RF suppression\u3001ESD protection\u3001Built-in compensation\u3001Reverse-phase input protection\u3001Enable/shutdown function Rail-to-Rail Input, Rail-to-Rail Output SOIC-8 Precision Op Amps ROHS",
+        "is_basic": false,
+        "is_preferred": false,
+        "lcsc": 2863402,
+        "mfr": "OPA2320AIDR",
+        "package": "SOIC-8",
+        "price": "1-9:2.0808,10-29:1.7912,30-99:1.6106,100-499:1.4252,500-999:1.3422,1000-:1.3048",
+        "stock": 1954,
+        "subcategory": "Operational Amplifier"
+      },
+      "designators": [
+        "U_AFE1",
+        "U_AFE2",
+        "U_AFE3",
+        "U_AFE4",
+        "U_AFE5",
+        "U_AFE6",
+        "U_AFE7",
+        "U_AFE8"
+      ],
+      "evidence": {
+        "cache_hit": false,
+        "fetched_at": "2026-09-24T16:18:28.392617+00:00",
+        "http_status": 200,
+        "provider": "tscircuit/jlcsearch (JLC-derived catalog; same supply pool)",
+        "raw_cache_path": "/tmp/crow-jlcsearch-refresh-cache-20260924/0d472b5de5d892bb553e9eeeae3f6f0df6910673c5bed684a5ad10920fab478d.json",
+        "raw_response_bytes": 632,
+        "raw_response_sha256": "ebb9db21bf10017baf949f706de73591b9d4adeb719ee1eb85cb05bd59d30b56",
+        "upstream_stock_timestamp": null,
+        "url": "https://jlcsearch.tscircuit.com/components/list.json?search=C2863402"
+      },
+      "observed_stock": 1954,
+      "reason": "catalog observation only; PCBA fulfillment unverified",
+      "requested_lcsc": "C2863402",
+      "required_qty": 40,
+      "selected_mpn": "OPA2320AIDR",
+      "status": "CATALOG_OBSERVED",
+      "stock_vs_required": "MEETS"
+    },
+    {
+      "catalog_part": {
+        "category": "Logic",
+        "description": "-40\u2103~+125\u2103 2 2 380Mbps 650mV~3.6V 650mV~3.6V Power-Off Protection Tri-State TSSOP-16 Translators, Level Shifters ROHS",
+        "is_basic": false,
+        "is_preferred": false,
+        "lcsc": 2867798,
+        "mfr": "SN74AXC4T245PWR",
+        "package": "TSSOP-16",
+        "price": "1-49:0.4138,50-149:0.3379,150-499:0.3054,500-1999:0.2649,2000-3999:0.2468,4000-:0.2359",
+        "stock": 690,
+        "subcategory": "Translators, Level Shifters"
+      },
+      "designators": [
+        "U_TDM_XLATE"
+      ],
+      "evidence": {
+        "cache_hit": false,
+        "fetched_at": "2026-09-24T16:18:28.868529+00:00",
+        "http_status": 200,
+        "provider": "tscircuit/jlcsearch (JLC-derived catalog; same supply pool)",
+        "raw_cache_path": "/tmp/crow-jlcsearch-refresh-cache-20260924/5896de71958b6a26e1b632fb6c28de381169e852fe194ea9c43ba1e7c93fdb4e.json",
+        "raw_response_bytes": 426,
+        "raw_response_sha256": "95638e210717594a3c109f0c0561423062f1b28ab8d3a4a59b9f01e1c1c003f5",
+        "upstream_stock_timestamp": null,
+        "url": "https://jlcsearch.tscircuit.com/components/list.json?search=C2867798"
+      },
+      "observed_stock": 690,
+      "reason": "catalog observation only; PCBA fulfillment unverified",
+      "requested_lcsc": "C2867798",
+      "required_qty": 5,
+      "selected_mpn": "SN74AXC4T245PWR",
+      "status": "CATALOG_OBSERVED",
+      "stock_vs_required": "MEETS"
+    },
+    {
+      "catalog_part": {
+        "category": "Crystals, Oscillators, Resonators",
+        "description": "-40\u2103~+85\u2103 1.62V~3.63V 10mA 24.576MHz CMOS \u00b120ppm \u00b130ppm SMD5032-4P Crystal Oscillators ROHS",
+        "is_basic": false,
+        "is_preferred": false,
+        "lcsc": 2901534,
+        "mfr": "SX5M24.576M20F30TNN",
+        "package": "SMD5032-4P",
+        "price": "1-9:0.4198,10-29:0.3726,30-99:0.3498,100-499:0.3254,500-999:0.3124,1000-:0.3043",
+        "stock": 1120,
+        "subcategory": "Crystal Oscillators"
+      },
+      "designators": [
+        "Y_AUDIO"
+      ],
+      "evidence": {
+        "cache_hit": false,
+        "fetched_at": "2026-09-24T16:18:29.353451+00:00",
+        "http_status": 200,
+        "provider": "tscircuit/jlcsearch (JLC-derived catalog; same supply pool)",
+        "raw_cache_path": "/tmp/crow-jlcsearch-refresh-cache-20260924/f8c0f3f3075bf0e6445a6f11f83b64d7b8486d0e2684a8eb0a4a6529e27f922c.json",
+        "raw_response_bytes": 422,
+        "raw_response_sha256": "ef585b6180d10d78bee685f51d14e611e3b737d200c8305fe69809fa082721d7",
+        "upstream_stock_timestamp": null,
+        "url": "https://jlcsearch.tscircuit.com/components/list.json?search=C2901534"
+      },
+      "observed_stock": 1120,
+      "reason": "catalog observation only; PCBA fulfillment unverified",
+      "requested_lcsc": "C2901534",
+      "required_qty": 5,
+      "selected_mpn": "SX5M24.576M20F30TNN",
+      "status": "CATALOG_OBSERVED",
+      "stock_vs_required": "MEETS"
+    },
+    {
+      "catalog_part": {
+        "category": "Capacitors",
+        "description": "25V 470nF X7R \u00b110% 0603 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS",
+        "is_basic": false,
+        "is_preferred": false,
+        "lcsc": 318640,
+        "mfr": "CL10B474KA8NFNC",
+        "package": "0603",
+        "price": "1-499:0.0133,500-1499:0.0111,1500-3999:0.01,4000-23999:0.0082,24000-47999:0.0076,48000-:0.0073",
+        "stock": 7980,
+        "subcategory": "Multilayer Ceramic Capacitors MLCC - SMD/SMT"
+      },
+      "designators": [
+        "C_ADC_START_DELAY"
+      ],
+      "evidence": {
+        "cache_hit": false,
+        "fetched_at": "2026-09-24T16:18:29.818572+00:00",
+        "http_status": 200,
+        "provider": "tscircuit/jlcsearch (JLC-derived catalog; same supply pool)",
+        "raw_cache_path": "/tmp/crow-jlcsearch-refresh-cache-20260924/d5c4a77055338497c3f82b9c461dd3c330bf1e8f735ee2917bae559dbc298cb5.json",
+        "raw_response_bytes": 405,
+        "raw_response_sha256": "d3f850296b364e39b669d2bf994e8a2c3aed309857b2272d5c5683121eb64178",
+        "upstream_stock_timestamp": null,
+        "url": "https://jlcsearch.tscircuit.com/components/list.json?search=C318640"
+      },
+      "observed_stock": 7980,
+      "reason": "catalog observation only; PCBA fulfillment unverified",
+      "requested_lcsc": "C318640",
+      "required_qty": 5,
+      "selected_mpn": "CL10B474KA8NFNC",
+      "status": "CATALOG_OBSERVED",
+      "stock_vs_required": "MEETS"
+    },
+    {
+      "catalog_part": {
+        "category": "Global Sourcing Parts",
+        "description": "-25\u2103~+85\u2103 1 48V 5A Black Female Type-C USB 2.0 SMD USB Connectors ROHS",
+        "is_basic": false,
+        "is_preferred": false,
+        "lcsc": 37616412,
+        "mfr": "USB4215-03-A",
+        "package": "SMD",
+        "price": "1-9:0.893,10-29:0.7267,30-99:0.6444,100-499:0.562,500-1199:0.5119,1200-:0.4861",
+        "stock": 1285,
+        "subcategory": "Global Sourcing Parts"
+      },
+      "designators": [
+        "J_USB"
+      ],
+      "evidence": {
+        "cache_hit": false,
+        "fetched_at": "2026-09-24T16:18:30.284181+00:00",
+        "http_status": 200,
+        "provider": "tscircuit/jlcsearch (JLC-derived catalog; same supply pool)",
+        "raw_cache_path": "/tmp/crow-jlcsearch-refresh-cache-20260924/d914cb91fedf6e9226b34d1366fdb305282bbf7df27b4aa3ceaf603d370920b4.json",
+        "raw_response_bytes": 375,
+        "raw_response_sha256": "d4694044864b9b9f64567008ab9cabe6f32085e5f0e86ac4eade50bb7ae9e993",
+        "upstream_stock_timestamp": null,
+        "url": "https://jlcsearch.tscircuit.com/components/list.json?search=C37616412"
+      },
+      "observed_stock": 1285,
+      "reason": "catalog observation only; PCBA fulfillment unverified",
+      "requested_lcsc": "C37616412",
+      "required_qty": 5,
+      "selected_mpn": "USB4215-03-A",
+      "status": "CATALOG_OBSERVED",
+      "stock_vs_required": "MEETS"
+    },
+    {
+      "catalog_part": {
+        "category": "Logic",
+        "description": "-40\u2103~+85\u2103 1 1.2V\u30011.9V\u30012.4V\u30013.8V 1.65V~5.5V 1.7V~2V 10uA 3 300mV\u3001400mV\u3001450mV\u3001550mV 32mA 32mA 4.5ns@5V,50pF 700mV~800mV 74LVC Series Local shutdown mode OR Gate SOT-23-6 Logic Gates ROHS",
+        "is_basic": false,
+        "is_preferred": false,
+        "lcsc": 43368,
+        "mfr": "SN74LVC1G332DBVR",
+        "package": "SOT-23-6",
+        "price": "1-49:0.2519,50-149:0.2018,150-499:0.1803,500-2999:0.1535,3000-5999:0.1335,6000-:0.1263",
+        "stock": 5053,
+        "subcategory": "Logic Gates"
+      },
+      "designators": [
+        "U_FSYNC_OR"
+      ],
+      "evidence": {
+        "cache_hit": false,
+        "fetched_at": "2026-09-24T16:18:30.738008+00:00",
+        "http_status": 200,
+        "provider": "tscircuit/jlcsearch (JLC-derived catalog; same supply pool)",
+        "raw_cache_path": "/tmp/crow-jlcsearch-refresh-cache-20260924/d651970f6be27658062c1837476b0b4e1bb06d06e02bfd8dcb33ca1e71b6fbbc.json",
+        "raw_response_bytes": 489,
+        "raw_response_sha256": "198cc0c201b23d4436bb14a681cbbdfbb389fe9c922bfb260024f9180e85663c",
+        "upstream_stock_timestamp": null,
+        "url": "https://jlcsearch.tscircuit.com/components/list.json?search=C43368"
+      },
+      "observed_stock": 5053,
+      "reason": "catalog observation only; PCBA fulfillment unverified",
+      "requested_lcsc": "C43368",
+      "required_qty": 5,
+      "selected_mpn": "SN74LVC1G332DBVR",
+      "status": "CATALOG_OBSERVED",
+      "stock_vs_required": "MEETS"
+    },
+    {
+      "catalog_part": {
+        "category": "Power Management (PMIC)",
+        "description": "-40\u2103~+125\u2103@(TJ) 1 2.2MHz 2.4V~5.5V 2A 4uA 600mV~4V Adjustable Buck Buck Built-in Yes VSON-8(1.5x2) DC-DC Converters ROHS",
+        "is_basic": false,
+        "is_preferred": false,
+        "lcsc": 473385,
+        "mfr": "TPS62822DLCR",
+        "package": "VSON-8(1.5x2)",
+        "price": "1-9:0.4133,10-29:0.3205,30-99:0.2815,100-499:0.2311,500-999:0.2099,1000-:0.1953",
+        "stock": 1979,
+        "subcategory": "DC-DC Converters"
+      },
+      "designators": [
+        "U_1V8",
+        "U_3V3X",
+        "U_CORE"
+      ],
+      "evidence": {
+        "cache_hit": false,
+        "fetched_at": "2026-09-24T16:18:31.203320+00:00",
+        "http_status": 200,
+        "provider": "tscircuit/jlcsearch (JLC-derived catalog; same supply pool)",
+        "raw_cache_path": "/tmp/crow-jlcsearch-refresh-cache-20260924/b478cd6acb2d1cd815a8758b430a63718c1ae91af4bc115f2736a1b8271db616.json",
+        "raw_response_bytes": 431,
+        "raw_response_sha256": "6320acef322e86784ce4648a11afd33ca36787ae37355f832dcb7a02df8513ec",
+        "upstream_stock_timestamp": null,
+        "url": "https://jlcsearch.tscircuit.com/components/list.json?search=C473385"
+      },
+      "observed_stock": 1979,
+      "reason": "catalog observation only; PCBA fulfillment unverified",
+      "requested_lcsc": "C473385",
+      "required_qty": 15,
+      "selected_mpn": "TPS62822DLCR",
+      "status": "CATALOG_OBSERVED",
+      "stock_vs_required": "MEETS"
+    },
+    {
+      "catalog_part": {
+        "category": "Resistors",
+        "description": "-55\u2103~+155\u2103 50V 62.5mW 680\u03a9 Thick Film Resistor \u00b11% \u00b1100ppm/\u2103 0402 Chip Resistor - Surface Mount ROHS",
+        "is_basic": false,
+        "is_preferred": false,
+        "lcsc": 482224,
+        "mfr": "CRCW0402680RFKED",
+        "package": "0402",
+        "price": "1-999:0.0047,1000-2999:0.0037,3000-9999:0.0032,10000-49999:0.0029,50000-99999:0.0026,100000-:0.0024",
+        "stock": 7760,
+        "subcategory": "Chip Resistor - Surface Mount"
+      },
+      "designators": [
+        "R_XTAL_DRIVE"
+      ],
+      "evidence": {
+        "cache_hit": false,
+        "fetched_at": "2026-09-24T16:18:31.650382+00:00",
+        "http_status": 200,
+        "provider": "tscircuit/jlcsearch (JLC-derived catalog; same supply pool)",
+        "raw_cache_path": "/tmp/crow-jlcsearch-refresh-cache-20260924/7e2c66e3024471fa34b2891a0aac8612a0d718c2dcee37a179ee840740ff181c.json",
+        "raw_response_bytes": 430,
+        "raw_response_sha256": "520a557f09ed1a0e8af7cc99d0e93a331d9f4a79ec2ff53af695eda087965e43",
+        "upstream_stock_timestamp": null,
+        "url": "https://jlcsearch.tscircuit.com/components/list.json?search=C482224"
+      },
+      "observed_stock": 7760,
+      "reason": "catalog observation only; PCBA fulfillment unverified",
+      "requested_lcsc": "C482224",
+      "required_qty": 5,
+      "selected_mpn": "CRCW0402680RFKED",
+      "status": "CATALOG_OBSERVED",
+      "stock_vs_required": "MEETS"
+    },
+    {
+      "catalog_part": {
+        "category": "Capacitors",
+        "description": "100nF 50V X7R \u00b110% 0805 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS",
+        "is_basic": true,
+        "is_preferred": false,
+        "lcsc": 49678,
+        "mfr": "CC0805KRX7R9BB104",
+        "package": "0805",
+        "price": "1-999:0.015,1000-3999:0.0134,4000-7999:0.0126,8000-47999:0.0121,48000-99999:0.0118,100000-:0.0117",
+        "stock": 7277425,
+        "subcategory": "Multilayer Ceramic Capacitors MLCC - SMD/SMT"
+      },
+      "designators": [
+        "C_IN_HF",
+        "C_SPOKE_IN1",
+        "C_SPOKE_IN2",
+        "C_SPOKE_IN3",
+        "C_SPOKE_IN4",
+        "C_SPOKE_IN5",
+        "C_SPOKE_IN6",
+        "C_SPOKE_IN7",
+        "C_SPOKE_IN8",
+        "C_SPOKE_OUT1",
+        "C_SPOKE_OUT2",
+        "C_SPOKE_OUT3",
+        "C_SPOKE_OUT4",
+        "C_SPOKE_OUT5",
+        "C_SPOKE_OUT6",
+        "C_SPOKE_OUT7",
+        "C_SPOKE_OUT8"
+      ],
+      "evidence": {
+        "cache_hit": false,
+        "fetched_at": "2026-09-24T16:18:32.072470+00:00",
+        "http_status": 200,
+        "provider": "tscircuit/jlcsearch (JLC-derived catalog; same supply pool)",
+        "raw_cache_path": "/tmp/crow-jlcsearch-refresh-cache-20260924/5c820840e505d4d200ea40123520322105ed7c72201fe5293d1f1a319f1e2c1a.json",
+        "raw_response_bytes": 411,
+        "raw_response_sha256": "a16952702c8b83572d23e76b87be09b62fa1c54c064bd742819aee6a12ea7b9b",
+        "upstream_stock_timestamp": null,
+        "url": "https://jlcsearch.tscircuit.com/components/list.json?search=C49678"
+      },
+      "observed_stock": 7277425,
+      "reason": "catalog observation only; PCBA fulfillment unverified",
+      "requested_lcsc": "C49678",
+      "required_qty": 85,
+      "selected_mpn": "CC0805KRX7R9BB104",
+      "status": "CATALOG_OBSERVED",
+      "stock_vs_required": "MEETS"
+    },
+    {
+      "catalog_part": {
+        "category": "Connectors",
+        "description": "-55\u2103~+125\u2103 1.27mm 10P 2 2x5P 3.05mm 3.4A Black Gold Phosphor bronze Pin Header Surface Mount,Vertical SMD,P=1.27mm Pin Headers ROHS",
+        "is_basic": false,
+        "is_preferred": false,
+        "lcsc": 5155080,
+        "mfr": "FTSH-105-01-L-DV-K",
+        "package": "SMD,P=1.27mm",
+        "price": "1-9:1.2838,10-29:1.082,30-99:0.9722,100-499:0.8478,500-999:0.7913,1000-:0.7671",
+        "stock": 2108,
+        "subcategory": "Pin Headers"
+      },
+      "designators": [
+        "J_JTAG"
+      ],
+      "evidence": {
+        "cache_hit": false,
+        "fetched_at": "2026-09-24T16:18:32.543923+00:00",
+        "http_status": 200,
+        "provider": "tscircuit/jlcsearch (JLC-derived catalog; same supply pool)",
+        "raw_cache_path": "/tmp/crow-jlcsearch-refresh-cache-20260924/92b18cd01420729b6b87f8064f4d6e66f84c5319ff39d35fde5f32a72e45c6de.json",
+        "raw_response_bytes": 429,
+        "raw_response_sha256": "b144f8b3aa7dc74a83210383a96b68692f4b5622035f017a9933dd0a11dc42a9",
+        "upstream_stock_timestamp": null,
+        "url": "https://jlcsearch.tscircuit.com/components/list.json?search=C5155080"
+      },
+      "observed_stock": 2108,
+      "reason": "catalog observation only; PCBA fulfillment unverified",
+      "requested_lcsc": "C5155080",
+      "required_qty": 5,
+      "selected_mpn": "FTSH-105-01-L-DV-K",
+      "status": "CATALOG_OBSERVED",
+      "stock_vs_required": "MEETS"
+    },
+    {
+      "catalog_part": {
+        "category": "Global Sourcing Parts",
+        "description": "-40\u2103~+125\u2103 1V~16V 2.2MHz 3A 3V~36V 9uA Adjustable Buck Buck\u3001Buck-Boost Built-in Yes B0QFN-30(4x6) DC-DC Converters ROHS",
+        "is_basic": false,
+        "is_preferred": false,
+        "lcsc": 5219327,
+        "mfr": "TPSM63603RDHR",
+        "package": "B0QFN-30(4x6)",
+        "price": "1-9:13.5629,10-29:11.8802,30-99:10.8548,100-101:9.9941,102-103:9.9941,104-:9.9941",
+        "stock": 309,
+        "subcategory": "Global Sourcing Parts"
+      },
+      "designators": [
+        "U_BUCK"
+      ],
+      "evidence": {
+        "cache_hit": false,
+        "fetched_at": "2026-09-24T16:18:32.965365+00:00",
+        "http_status": 200,
+        "provider": "tscircuit/jlcsearch (JLC-derived catalog; same supply pool)",
+        "raw_cache_path": "/tmp/crow-jlcsearch-refresh-cache-20260924/0609ede9cef8fa3e40245327018ce227f0fcfc02f6ecd7e995ed397ac5df022e.json",
+        "raw_response_bytes": 438,
+        "raw_response_sha256": "a9f4a64ae09df41c3d967683582eb58fb5d23adb51ba03ae0f1a1501d12d0456",
+        "upstream_stock_timestamp": null,
+        "url": "https://jlcsearch.tscircuit.com/components/list.json?search=C5219327"
+      },
+      "observed_stock": 309,
+      "reason": "catalog observation only; PCBA fulfillment unverified",
+      "requested_lcsc": "C5219327",
+      "required_qty": 5,
+      "selected_mpn": "TPSM63603RDHR",
+      "status": "CATALOG_OBSERVED",
+      "stock_vs_required": "MEETS"
+    },
+    {
+      "catalog_part": {
+        "category": "Capacitors",
+        "description": "10uF 50V X7R \u00b110% 1210 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS",
+        "is_basic": false,
+        "is_preferred": false,
+        "lcsc": 597579,
+        "mfr": "12105C106K4Z2A",
+        "package": "1210",
+        "price": "1-49:0.3105,50-149:0.2465,150-999:0.2192,1000-1999:0.1773,2000-4999:0.1621,5000-:0.153",
+        "stock": 269,
+        "subcategory": "Multilayer Ceramic Capacitors MLCC - SMD/SMT"
+      },
+      "designators": [
+        "C_IN1",
+        "C_IN2",
+        "C_IN3"
+      ],
+      "evidence": {
+        "cache_hit": false,
+        "fetched_at": "2026-09-24T16:18:33.403435+00:00",
+        "http_status": 200,
+        "provider": "tscircuit/jlcsearch (JLC-derived catalog; same supply pool)",
+        "raw_cache_path": "/tmp/crow-jlcsearch-refresh-cache-20260924/5b8e5e60fc56d0541e5fd955a97f38b7f65d3598c93170b97ebd206f6136c326.json",
+        "raw_response_bytes": 394,
+        "raw_response_sha256": "9662a3e645bd553269492f820310f7e1eca52a9d640f3d59fe38ebfc038b9cd7",
+        "upstream_stock_timestamp": null,
+        "url": "https://jlcsearch.tscircuit.com/components/list.json?search=C597579"
+      },
+      "observed_stock": 269,
+      "reason": "catalog observation only; PCBA fulfillment unverified",
+      "requested_lcsc": "C597579",
+      "required_qty": 15,
+      "selected_mpn": "12105C106K4Z2A",
+      "status": "CATALOG_OBSERVED",
+      "stock_vs_required": "MEETS"
+    },
+    {
+      "catalog_part": {
+        "category": "Resistors",
+        "description": "-55\u2103~+155\u2103 10k\u03a9 50V 62.5mW Thick Film Resistor \u00b11% \u00b1100ppm/\u2103 0402 Chip Resistor - Surface Mount ROHS",
+        "is_basic": false,
+        "is_preferred": false,
+        "lcsc": 60490,
+        "mfr": "RC0402FR-0710KL",
+        "package": "0402",
+        "price": "1-999:0.0013,1000-2999:0.0011,3000-9999:0.001,10000-49999:0.001,50000-50199:0.0009,50200-:0.0009",
+        "stock": 32,
+        "subcategory": "Chip Resistor - Surface Mount"
+      },
+      "designators": [
+        "R_ADC_DIGITAL_OK_PU",
+        "R_ADC_OK_PU",
+        "R_ADC_PD1N",
+        "R_ADC_PD1P",
+        "R_ADC_PD2N",
+        "R_ADC_PD2P",
+        "R_ADC_PD3N",
+        "R_ADC_PD3P",
+        "R_ADC_PD4N",
+        "R_ADC_PD4P",
+        "R_ADC_PD5N",
+        "R_ADC_PD5P",
+        "R_ADC_PD6N",
+        "R_ADC_PD6P",
+        "R_ADC_PD7N",
+        "R_ADC_PD7P",
+        "R_ADC_PD8N",
+        "R_ADC_PD8P",
+        "R_AUDIO_PU",
+        "R_CORE_EN_PU",
+        "R_IN1N",
+        "R_IN1P",
+        "R_IN2N",
+        "R_IN2P",
+        "R_IN3N",
+        "R_IN3P",
+        "R_IN4N",
+        "R_IN4P",
+        "R_IN5N",
+        "R_IN5P",
+        "R_IN6N",
+        "R_IN6P",
+        "R_IN7N",
+        "R_IN7P",
+        "R_IN8N",
+        "R_IN8P",
+        "R_PWR_PU",
+        "R_RESET_PU",
+        "R_TDM_OE_PU",
+        "R_VBUS_PU",
+        "R_XU_RST_PU"
+      ],
+      "evidence": {
+        "cache_hit": false,
+        "fetched_at": "2026-09-24T16:18:33.893302+00:00",
+        "http_status": 200,
+        "provider": "tscircuit/jlcsearch (JLC-derived catalog; same supply pool)",
+        "raw_cache_path": "/tmp/crow-jlcsearch-refresh-cache-20260924/8e4723e4952ba2e53fd4d91ee38e41712ab233b56b1f36434cb4f37008061646.json",
+        "raw_response_bytes": 423,
+        "raw_response_sha256": "be6f405893461a52cdb974ffa7388ac8e07c07c93fbcd8fbab19618d494031b7",
+        "upstream_stock_timestamp": null,
+        "url": "https://jlcsearch.tscircuit.com/components/list.json?search=C60490"
+      },
+      "observed_stock": 32,
+      "reason": "catalog observation only; PCBA fulfillment unverified",
+      "requested_lcsc": "C60490",
+      "required_qty": 205,
+      "selected_mpn": "RC0402FR-0710KL",
+      "status": "CATALOG_OBSERVED",
+      "stock_vs_required": "BELOW"
+    },
+    {
+      "catalog_part": {
+        "category": "Resistors",
+        "description": "-55\u2103~+155\u2103 100k\u03a9 50V 62.5mW Thick Film Resistor \u00b11% \u00b1100ppm/\u2103 0402 Chip Resistor - Surface Mount ROHS",
+        "is_basic": false,
+        "is_preferred": false,
+        "lcsc": 60491,
+        "mfr": "RC0402FR-07100KL",
+        "package": "0402",
+        "price": "1-999:0.0013,1000-2999:0.0011,3000-9999:0.001,10000-49999:0.001,50000-50199:0.0009,50200-:0.0009",
+        "stock": 17,
+        "subcategory": "Chip Resistor - Surface Mount"
+      },
+      "designators": [
+        "R_ADC_CLOCK_OK_PD",
+        "R_ADC_DATA_PD",
+        "R_ADC_DELAY_GATE_PD",
+        "R_ADC_DIG_RST_PD",
+        "R_ADC_PWR_BAD_PD",
+        "R_ADC_READY_PD",
+        "R_ADC_START_DELAY",
+        "R_AUDIO_PD",
+        "R_B1N",
+        "R_B1P",
+        "R_B2N",
+        "R_B2P",
+        "R_B3N",
+        "R_B3P",
+        "R_B4N",
+        "R_B4P",
+        "R_B5N",
+        "R_B5P",
+        "R_B6N",
+        "R_B6P",
+        "R_B7N",
+        "R_B7P",
+        "R_B8N",
+        "R_B8P",
+        "R_BCLK_RAW_PD",
+        "R_DUMP_PD",
+        "R_DUMP_TIME1",
+        "R_DUMP_TIME2",
+        "R_DUMP_TIME3",
+        "R_FSYNC_EXT_PD",
+        "R_FSYNC_RAW_PD",
+        "R_LDO_PG_TOP",
+        "R_PRE_G",
+        "R_QIN_G",
+        "R_RESET_GPD",
+        "R_RST_T",
+        "R_VBUS_B"
+      ],
+      "evidence": {
+        "cache_hit": false,
+        "fetched_at": "2026-09-24T16:18:34.323842+00:00",
+        "http_status": 200,
+        "provider": "tscircuit/jlcsearch (JLC-derived catalog; same supply pool)",
+        "raw_cache_path": "/tmp/crow-jlcsearch-refresh-cache-20260924/89ce52ee0951a8d6a71995639d21e5cedb57240697326400d090418333184886.json",
+        "raw_response_bytes": 425,
+        "raw_response_sha256": "279bf4422c687abe96799fbf3f96b3d24eb6a4924ed932f86d9b4f435f66b2f9",
+        "upstream_stock_timestamp": null,
+        "url": "https://jlcsearch.tscircuit.com/components/list.json?search=C60491"
+      },
+      "observed_stock": 17,
+      "reason": "catalog observation only; PCBA fulfillment unverified",
+      "requested_lcsc": "C60491",
+      "required_qty": 185,
+      "selected_mpn": "RC0402FR-07100KL",
+      "status": "CATALOG_OBSERVED",
+      "stock_vs_required": "BELOW"
+    },
+    {
+      "designators": [
+        "U_XU"
+      ],
+      "evidence": {
+        "cache_hit": false,
+        "fetched_at": "2026-09-24T16:18:34.796282+00:00",
+        "http_status": 200,
+        "provider": "tscircuit/jlcsearch (JLC-derived catalog; same supply pool)",
+        "raw_cache_path": "/tmp/crow-jlcsearch-refresh-cache-20260924/d12e3d89a8fbf8d20e699c40465c4dfa8cd8b44e9affa3dfa27f86747258a747.json",
+        "raw_response_bytes": 17,
+        "raw_response_sha256": "ac46fd24bd501fa7297f0a2945bcc7f5d655b9bcf8bfbf16718a9d25c0c2c018",
+        "upstream_stock_timestamp": null,
+        "url": "https://jlcsearch.tscircuit.com/components/list.json?search=C6362698"
+      },
+      "observed_stock": null,
+      "reason": "selected code absent from search index",
+      "requested_lcsc": "C6362698",
+      "required_qty": 5,
+      "selected_mpn": "XU316-1024-TQ128-C24",
+      "status": "UNKNOWN",
+      "stock_vs_required": "UNKNOWN"
+    },
+    {
+      "catalog_part": {
+        "category": "Power Management (PMIC)",
+        "description": "-40\u2103~+125\u2103@(Tj) 0.8uVrms 0V~15V 1 20V 450mV@(500mA) 500mA 76dB@(1MHz) Adjustable Positive Under Voltage Lockout\u3001PG Pin\u3001Over Current Protection\u3001Over Temperature Protection\u3001Enable\u3001Short Circuit Protection DFN-10-EP(3x3) Voltage Regulators - Linear, Low Drop Out (LDO) Regulators ROHS",
+        "is_basic": false,
+        "is_preferred": false,
+        "lcsc": 666574,
+        "mfr": "LT3045EDD#PBF",
+        "package": "DFN-10-EP(3x3)",
+        "price": "1-9:8.3394,10-29:7.2949,30-120:6.0959,121-122:5.5623,123-124:5.5623,125-:5.5623",
+        "stock": 985,
+        "subcategory": "Voltage Regulators - Linear, Low Drop Out (LDO) Regulators"
+      },
+      "designators": [
+        "U_LDO"
+      ],
+      "evidence": {
+        "cache_hit": false,
+        "fetched_at": "2026-09-24T16:18:35.271967+00:00",
+        "http_status": 200,
+        "provider": "tscircuit/jlcsearch (JLC-derived catalog; same supply pool)",
+        "raw_cache_path": "/tmp/crow-jlcsearch-refresh-cache-20260924/1f0a32e0ddf53bb36489ae5fcab85e6d715e01e8f27bca781ae909a71a43737c.json",
+        "raw_response_bytes": 645,
+        "raw_response_sha256": "3f2a7ac876cc10cc4049ca31b5ad2674c20e2b74198e22fbd107b53527268486",
+        "upstream_stock_timestamp": null,
+        "url": "https://jlcsearch.tscircuit.com/components/list.json?search=C666574"
+      },
+      "observed_stock": 985,
+      "reason": "catalog observation only; PCBA fulfillment unverified",
+      "requested_lcsc": "C666574",
+      "required_qty": 5,
+      "selected_mpn": "LT3045EDD#PBF",
+      "status": "CATALOG_OBSERVED",
+      "stock_vs_required": "MEETS"
+    },
+    {
+      "catalog_part": {
+        "category": "Resistors",
+        "description": "-55\u2103~+155\u2103 100mW 33k\u03a9 75V Thin Film Resistor \u00b10.1% \u00b125ppm/\u2103 0603 Chip Resistor - Surface Mount ROHS",
+        "is_basic": false,
+        "is_preferred": false,
+        "lcsc": 705768,
+        "mfr": "RT0603BRD0733KL",
+        "package": "0603",
+        "price": "1-199:0.0319,200-599:0.0271,600-4999:0.0243,5000-9999:0.022,10000-19999:0.0207,20000-:0.0199",
+        "stock": 10014,
+        "subcategory": "Chip Resistor - Surface Mount"
+      },
+      "designators": [
+        "R_LDO_SET"
+      ],
+      "evidence": {
+        "cache_hit": false,
+        "fetched_at": "2026-09-24T16:18:35.754094+00:00",
+        "http_status": 200,
+        "provider": "tscircuit/jlcsearch (JLC-derived catalog; same supply pool)",
+        "raw_cache_path": "/tmp/crow-jlcsearch-refresh-cache-20260924/6739a3eb721718a299f2b6d0d3932717af8b8f4a5401bcdd0099b69d1db6c2cb.json",
+        "raw_response_bytes": 422,
+        "raw_response_sha256": "4530113a4964aa3b73c912831cf9cd479a1d2528f6ba92fbeb9db7b4a8df948c",
+        "upstream_stock_timestamp": null,
+        "url": "https://jlcsearch.tscircuit.com/components/list.json?search=C705768"
+      },
+      "observed_stock": 10014,
+      "reason": "catalog observation only; PCBA fulfillment unverified",
+      "requested_lcsc": "C705768",
+      "required_qty": 5,
+      "selected_mpn": "RT0603BRD0733KL",
+      "status": "CATALOG_OBSERVED",
+      "stock_vs_required": "MEETS"
+    },
+    {
+      "catalog_part": {
+        "category": "Crystals, Oscillators, Resonators",
+        "description": "-40\u2103~+85\u2103 12pF 24MHz Crystal Oscillator \u00b110ppm \u00b120ppm SMD3225-4P Crystals ROHS",
+        "is_basic": false,
+        "is_preferred": false,
+        "lcsc": 70590,
+        "mfr": "X322524MOB4SI",
+        "package": "SMD3225-4P",
+        "price": "1-49:0.0944,50-149:0.0755,150-499:0.0659,500-2999:0.058,3000-5999:0.0503,6000-:0.0485",
+        "stock": 94151,
+        "subcategory": "Crystals"
+      },
+      "designators": [
+        "Y_XU"
+      ],
+      "evidence": {
+        "cache_hit": false,
+        "fetched_at": "2026-09-24T16:18:36.182149+00:00",
+        "http_status": 200,
+        "provider": "tscircuit/jlcsearch (JLC-derived catalog; same supply pool)",
+        "raw_cache_path": "/tmp/crow-jlcsearch-refresh-cache-20260924/1519797e72291da4abae5b4ca104a488f513729290adab71027c9fa95209c6c3.json",
+        "raw_response_bytes": 397,
+        "raw_response_sha256": "5af8ab028114389a0e6f2644e4143d9ecd255967c20f5ac5d533838ae1572dc6",
+        "upstream_stock_timestamp": null,
+        "url": "https://jlcsearch.tscircuit.com/components/list.json?search=C70590"
+      },
+      "observed_stock": 94151,
+      "reason": "catalog observation only; PCBA fulfillment unverified",
+      "requested_lcsc": "C70590",
+      "required_qty": 5,
+      "selected_mpn": "X322524MOB4SI",
+      "status": "CATALOG_OBSERVED",
+      "stock_vs_required": "MEETS"
+    },
+    {
+      "catalog_part": {
+        "category": "Filters",
+        "description": "1 300mA 520m\u03a9 600\u03a9@100MHz \u00b125% 0402 Ferrite Beads ROHS",
+        "is_basic": false,
+        "is_preferred": false,
+        "lcsc": 76884,
+        "mfr": "BLM15AG601SN1D",
+        "package": "0402",
+        "price": "1-999:0.0149,1000-2999:0.0132,3000-9999:0.0123,10000-49999:0.0101,50000-99999:0.0096,100000-:0.0094",
+        "stock": 216039,
+        "subcategory": "Ferrite Beads"
+      },
+      "designators": [
+        "FB_PLL"
+      ],
+      "evidence": {
+        "cache_hit": false,
+        "fetched_at": "2026-09-24T16:18:36.651810+00:00",
+        "http_status": 200,
+        "provider": "tscircuit/jlcsearch (JLC-derived catalog; same supply pool)",
+        "raw_cache_path": "/tmp/crow-jlcsearch-refresh-cache-20260924/877c0428464badca6d00b2f8081d86946e004fdd074fd7213ceeb4119a71d33f.json",
+        "raw_response_bytes": 359,
+        "raw_response_sha256": "b118f50fbc32e2fef237d984c4c2165c3148c8bf4312c60c017cdf0121de881a",
+        "upstream_stock_timestamp": null,
+        "url": "https://jlcsearch.tscircuit.com/components/list.json?search=C76884"
+      },
+      "observed_stock": 216039,
+      "reason": "catalog observation only; PCBA fulfillment unverified",
+      "requested_lcsc": "C76884",
+      "required_qty": 5,
+      "selected_mpn": "BLM15AG601SN1D",
+      "status": "CATALOG_OBSERVED",
+      "stock_vs_required": "MEETS"
+    },
+    {
+      "catalog_part": {
+        "category": "Capacitors",
+        "description": "1nF 50V C0G \u00b15% 0402 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS",
+        "is_basic": false,
+        "is_preferred": false,
+        "lcsc": 76947,
+        "mfr": "GRM1555C1H102JA01D",
+        "package": "0402",
+        "price": "1-999:0.0073,1000-2999:0.0063,3000-9999:0.0059,10000-49999:0.0054,50000-99999:0.0053,100000-:0.0052",
+        "stock": 36065,
+        "subcategory": "Multilayer Ceramic Capacitors MLCC - SMD/SMT"
+      },
+      "designators": [
+        "C_ADC_CM1N",
+        "C_ADC_CM1P",
+        "C_ADC_CM2N",
+        "C_ADC_CM2P",
+        "C_ADC_CM3N",
+        "C_ADC_CM3P",
+        "C_ADC_CM4N",
+        "C_ADC_CM4P",
+        "C_ADC_CM5N",
+        "C_ADC_CM5P",
+        "C_ADC_CM6N",
+        "C_ADC_CM6P",
+        "C_ADC_CM7N",
+        "C_ADC_CM7P",
+        "C_ADC_CM8N",
+        "C_ADC_CM8P",
+        "C_ADC_OK_CT",
+        "C_LDO_NR5",
+        "C_XU_3V3_OK_CT"
+      ],
+      "evidence": {
+        "cache_hit": false,
+        "fetched_at": "2026-09-24T16:18:37.148410+00:00",
+        "http_status": 200,
+        "provider": "tscircuit/jlcsearch (JLC-derived catalog; same supply pool)",
+        "raw_cache_path": "/tmp/crow-jlcsearch-refresh-cache-20260924/d10c005e4797a9674a12f1a2fcc4217507bb35cbd2ef06c594a4147827701339.json",
+        "raw_response_bytes": 410,
+        "raw_response_sha256": "f1eaab216932d3517efacb2d5fee64081b42dbdf9586001f1bdbd43d8bb330c2",
+        "upstream_stock_timestamp": null,
+        "url": "https://jlcsearch.tscircuit.com/components/list.json?search=C76947"
+      },
+      "observed_stock": 36065,
+      "reason": "catalog observation only; PCBA fulfillment unverified",
+      "requested_lcsc": "C76947",
+      "required_qty": 95,
+      "selected_mpn": "GRM1555C1H102JA01D",
+      "status": "CATALOG_OBSERVED",
+      "stock_vs_required": "MEETS"
+    },
+    {
+      "catalog_part": {
+        "category": "Capacitors",
+        "description": "22pF 50V C0G \u00b15% 0402 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS",
+        "is_basic": false,
+        "is_preferred": false,
+        "lcsc": 76960,
+        "mfr": "GRM1555C1H220JA01D",
+        "package": "0402",
+        "price": "1-499:0.0337,500-1499:0.0295,1500-9999:0.0271,10000-19999:0.0256,20000-49999:0.0245,50000-:0.0238",
+        "stock": 19542,
+        "subcategory": "Multilayer Ceramic Capacitors MLCC - SMD/SMT"
+      },
+      "designators": [
+        "C_XTAL_IN",
+        "C_XTAL_OUT"
+      ],
+      "evidence": {
+        "cache_hit": false,
+        "fetched_at": "2026-09-24T16:18:37.592384+00:00",
+        "http_status": 200,
+        "provider": "tscircuit/jlcsearch (JLC-derived catalog; same supply pool)",
+        "raw_cache_path": "/tmp/crow-jlcsearch-refresh-cache-20260924/d5699d2381c09c3fa9c53eae67e53df88dac70b3e285b271f520d5d214a317df.json",
+        "raw_response_bytes": 409,
+        "raw_response_sha256": "a6e001711c9f25a218093893408bbaf5a7bd5fd7bfca0598321f58a6a1c339ac",
+        "upstream_stock_timestamp": null,
+        "url": "https://jlcsearch.tscircuit.com/components/list.json?search=C76960"
+      },
+      "observed_stock": 19542,
+      "reason": "catalog observation only; PCBA fulfillment unverified",
+      "requested_lcsc": "C76960",
+      "required_qty": 10,
+      "selected_mpn": "GRM1555C1H220JA01D",
+      "status": "CATALOG_OBSERVED",
+      "stock_vs_required": "MEETS"
+    },
+    {
+      "catalog_part": {
+        "category": "Capacitors",
+        "description": "10nF 50V X7R \u00b110% 0402 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS",
+        "is_basic": false,
+        "is_preferred": false,
+        "lcsc": 77019,
+        "mfr": "GRM155R71H103KA88D",
+        "package": "0402",
+        "price": "1-999:0.004,1000-2999:0.0034,3000-9999:0.003,10000-49999:0.0029,50000-50199:0.0027,50200-:0.0027",
+        "stock": 35748,
+        "subcategory": "Multilayer Ceramic Capacitors MLCC - SMD/SMT"
+      },
+      "designators": [
+        "C_AUDIO_OSC",
+        "C_CORE_EN_CT"
+      ],
+      "evidence": {
+        "cache_hit": false,
+        "fetched_at": "2026-09-24T16:18:38.079303+00:00",
+        "http_status": 200,
+        "provider": "tscircuit/jlcsearch (JLC-derived catalog; same supply pool)",
+        "raw_cache_path": "/tmp/crow-jlcsearch-refresh-cache-20260924/7507156e73e7971f08cc04ef72964ada8aa342d8b884a2663546e85cc4f45215.json",
+        "raw_response_bytes": 409,
+        "raw_response_sha256": "f0e005211ebfcaef4528db0bc98ef04d5a8173036b3b576ec16841aa55e01c3b",
+        "upstream_stock_timestamp": null,
+        "url": "https://jlcsearch.tscircuit.com/components/list.json?search=C77019"
+      },
+      "observed_stock": 35748,
+      "reason": "catalog observation only; PCBA fulfillment unverified",
+      "requested_lcsc": "C77019",
+      "required_qty": 10,
+      "selected_mpn": "GRM155R71H103KA88D",
+      "status": "CATALOG_OBSERVED",
+      "stock_vs_required": "MEETS"
+    },
+    {
+      "catalog_part": {
+        "category": "Transistors/Thyristors",
+        "description": "-55\u2103~+150\u2103 1 P-Channel 143pF 2.1W 2.569nF 33m\u03a9@4.5V 3V 53.1nC@10V 60V 7.7A PowerDI3333-8 MOSFETs ROHS",
+        "is_basic": false,
+        "is_preferred": false,
+        "lcsc": 780842,
+        "mfr": "DMP6023LFG-13",
+        "package": "PowerDI3333-8",
+        "price": "1-9:0.8753,10-29:0.7273,30-99:0.6524,100-499:0.5792,500-999:0.5337,1000-:0.5109",
+        "stock": 809,
+        "subcategory": "MOSFETs"
+      },
+      "designators": [
+        "Q_IN"
+      ],
+      "evidence": {
+        "cache_hit": false,
+        "fetched_at": "2026-09-24T16:18:38.539155+00:00",
+        "http_status": 200,
+        "provider": "tscircuit/jlcsearch (JLC-derived catalog; same supply pool)",
+        "raw_cache_path": "/tmp/crow-jlcsearch-refresh-cache-20260924/44b6fdcab2d27415199fd3332230c096841b97afc6a3b093e58bbffc8fd83566.json",
+        "raw_response_bytes": 403,
+        "raw_response_sha256": "0c0e6270f6c0e41ad4677f7f9ae60e06f1da6eb2dccad5ad61cb12eb8acb278e",
+        "upstream_stock_timestamp": null,
+        "url": "https://jlcsearch.tscircuit.com/components/list.json?search=C780842"
+      },
+      "observed_stock": 809,
+      "reason": "catalog observation only; PCBA fulfillment unverified",
+      "requested_lcsc": "C780842",
+      "required_qty": 5,
+      "selected_mpn": "DMP6023LFG-13",
+      "status": "CATALOG_OBSERVED",
+      "stock_vs_required": "MEETS"
+    },
+    {
+      "catalog_part": {
+        "category": "Logic",
+        "description": "-40\u2103~+125\u2103 1 1 1.3ns 1.65V~5.5V 10uA 200MHz 32mA 32mA 4.4ns@5V,50pF 500ps 5pF 74LVC Series Complementary D-Type Rising Edge Set and Reset MSOP-8 Flip Flops ROHS",
+        "is_basic": false,
+        "is_preferred": false,
+        "lcsc": 79339,
+        "mfr": "SN74LVC2G74DCTR",
+        "package": "MSOP-8",
+        "price": "1-9:0.5922,10-29:0.4767,30-99:0.4263,100-499:0.3645,500-999:0.3368,1000-:0.3205",
+        "stock": 672,
+        "subcategory": "Flip Flops"
+      },
+      "designators": [
+        "U_FSYNC_FF1",
+        "U_FSYNC_FF2"
+      ],
+      "evidence": {
+        "cache_hit": false,
+        "fetched_at": "2026-09-24T16:18:38.962410+00:00",
+        "http_status": 200,
+        "provider": "tscircuit/jlcsearch (JLC-derived catalog; same supply pool)",
+        "raw_cache_path": "/tmp/crow-jlcsearch-refresh-cache-20260924/354ca6509468e62d1fcfb29d45a4f2854713f4803314041d68f1eacdae493712.json",
+        "raw_response_bytes": 441,
+        "raw_response_sha256": "03b614be6673740ca2f95ab840d5b7668dfa89c7aa758e1d883d48b40a6b5c41",
+        "upstream_stock_timestamp": null,
+        "url": "https://jlcsearch.tscircuit.com/components/list.json?search=C79339"
+      },
+      "observed_stock": 672,
+      "reason": "catalog observation only; PCBA fulfillment unverified",
+      "requested_lcsc": "C79339",
+      "required_qty": 10,
+      "selected_mpn": "SN74LVC2G74DCTR",
+      "status": "CATALOG_OBSERVED",
+      "stock_vs_required": "MEETS"
+    },
+    {
+      "catalog_part": {
+        "category": "Logic",
+        "description": "-40\u2103~+125\u2103 1 1 1.65V~5.5V 1.7V~2V 10uA 3.7ns@5V,50pF 32mA 32mA 700mV~800mV 74LVC \u7535\u6e90\u5173\u65ad\u4fdd\u62a4 SC-70-5 Inverters ROHS",
+        "is_basic": false,
+        "is_preferred": false,
+        "lcsc": 8207,
+        "mfr": "SN74LVC1G04DCKR",
+        "package": "SC-70-5",
+        "price": "1-99:0.0998,100-299:0.0794,300-2999:0.0694,3000-5999:0.0588,6000-8999:0.0528,9000-:0.0497",
+        "stock": 144105,
+        "subcategory": "Inverters"
+      },
+      "designators": [
+        "U_ADC_DIGITAL_BAD",
+        "U_ADC_PWR_BAD",
+        "U_ADC_READY_BAD",
+        "U_BCLK_INV"
+      ],
+      "evidence": {
+        "cache_hit": false,
+        "fetched_at": "2026-09-24T16:18:39.433245+00:00",
+        "http_status": 200,
+        "provider": "tscircuit/jlcsearch (JLC-derived catalog; same supply pool)",
+        "raw_cache_path": "/tmp/crow-jlcsearch-refresh-cache-20260924/cb167c85ce2bcc45f86a7309881a07a1945c386825569a2e505bf21fa6dd2542.json",
+        "raw_response_bytes": 415,
+        "raw_response_sha256": "9577c0ff77b2ad8b8f07ef101a54570396303204bb0909b3b8166bd8c64ea74b",
+        "upstream_stock_timestamp": null,
+        "url": "https://jlcsearch.tscircuit.com/components/list.json?search=C8207"
+      },
+      "observed_stock": 144105,
+      "reason": "catalog observation only; PCBA fulfillment unverified",
+      "requested_lcsc": "C8207",
+      "required_qty": 20,
+      "selected_mpn": "SN74LVC1G04DCKR",
+      "status": "CATALOG_OBSERVED",
+      "stock_vs_required": "MEETS"
+    },
+    {
+      "catalog_part": {
+        "category": "Circuit Protection",
+        "description": "-65\u2103~+150\u2103 15V 16.7V 1uA 24.4V 24.6A 600W IEC 61000-4-2\u3001IEC 61000-4-4 TVS Unidirectional DO-214AA ESD and Surge Protection (TVS/ESD) ROHS",
+        "is_basic": false,
+        "is_preferred": false,
+        "lcsc": 83846,
+        "mfr": "SMBJ15A",
+        "package": "DO-214AA",
+        "price": "1-49:0.1292,50-149:0.1009,150-499:0.0868,500-2999:0.076,3000-5999:0.0676,6000-:0.0633",
+        "stock": 51527,
+        "subcategory": "ESD And Surge Protection (TVS/ESD)"
+      },
+      "designators": [
+        "D_IN"
+      ],
+      "evidence": {
+        "cache_hit": false,
+        "fetched_at": "2026-09-24T16:18:39.897477+00:00",
+        "http_status": 200,
+        "provider": "tscircuit/jlcsearch (JLC-derived catalog; same supply pool)",
+        "raw_cache_path": "/tmp/crow-jlcsearch-refresh-cache-20260924/50ae5f64020570fda6ce7f8ee11ecb0127ad8e708a8970b1675feb27fa3bf1ca.json",
+        "raw_response_bytes": 459,
+        "raw_response_sha256": "fa6769833d6784f657a367b7ede25c77c122c25f43d1d78129e0515766305d4d",
+        "upstream_stock_timestamp": null,
+        "url": "https://jlcsearch.tscircuit.com/components/list.json?search=C83846"
+      },
+      "observed_stock": 51527,
+      "reason": "catalog observation only; PCBA fulfillment unverified",
+      "requested_lcsc": "C83846",
+      "required_qty": 5,
+      "selected_mpn": "SMBJ15A",
+      "status": "CATALOG_OBSERVED",
+      "stock_vs_required": "MEETS"
+    },
+    {
+      "catalog_part": {
+        "category": "Logic",
+        "description": "-40\u2103~+85\u2103 1 1.65V~3.6V 2 2.3V~5.5V 24Mbps Auto Direction Detection Bidirectional Open-drain VSSOP-8-0.5mm Translators, Level Shifters ROHS",
+        "is_basic": false,
+        "is_preferred": false,
+        "lcsc": 840107,
+        "mfr": "TCA9406DCUR",
+        "package": "VSSOP-8-0.5mm",
+        "price": "1-9:0.5613,10-29:0.4539,30-99:0.4003,100-499:0.3482,500-999:0.3157,1000-:0.2994",
+        "stock": 1258,
+        "subcategory": "Translators, Level Shifters"
+      },
+      "designators": [
+        "U_ADC_I2C_XLATE"
+      ],
+      "evidence": {
+        "cache_hit": false,
+        "fetched_at": "2026-09-24T16:18:40.306082+00:00",
+        "http_status": 200,
+        "provider": "tscircuit/jlcsearch (JLC-derived catalog; same supply pool)",
+        "raw_cache_path": "/tmp/crow-jlcsearch-refresh-cache-20260924/a7cdf3f5d2b655a22665ab1cbe2e0b8ec085a6b6d92bd31fb90cd6f33beac3d7.json",
+        "raw_response_bytes": 441,
+        "raw_response_sha256": "f6fa84f377b18b8f30f928d07aa4471102b662c128a1d7a1944de83df37c0b96",
+        "upstream_stock_timestamp": null,
+        "url": "https://jlcsearch.tscircuit.com/components/list.json?search=C840107"
+      },
+      "observed_stock": 1258,
+      "reason": "catalog observation only; PCBA fulfillment unverified",
+      "requested_lcsc": "C840107",
+      "required_qty": 5,
+      "selected_mpn": "TCA9406DCUR",
+      "status": "CATALOG_OBSERVED",
+      "stock_vs_required": "MEETS"
+    },
+    {
+      "catalog_part": {
+        "category": "Resistors",
+        "description": "-55\u2103~+155\u2103 22\u03a9 750mW Thick Film Resistor \u00b11% \u00b1100ppm/\u2103 1206 Chip Resistor - Surface Mount ROHS",
+        "is_basic": false,
+        "is_preferred": false,
+        "lcsc": 844025,
+        "mfr": "CRCW120622R0FKEAHP",
+        "package": "1206",
+        "price": "1-99:0.0807,100-299:0.0656,300-999:0.058,1000-4999:0.0523,5000-9999:0.0477,10000-:0.0454",
+        "stock": 9422,
+        "subcategory": "Chip Resistor - Surface Mount"
+      },
+      "designators": [
+        "R_PRE"
+      ],
+      "evidence": {
+        "cache_hit": false,
+        "fetched_at": "2026-09-24T16:18:40.853054+00:00",
+        "http_status": 200,
+        "provider": "tscircuit/jlcsearch (JLC-derived catalog; same supply pool)",
+        "raw_cache_path": "/tmp/crow-jlcsearch-refresh-cache-20260924/5abff4393d40851f5ae0031de278ce1d8d726515845b5068dcd7dc74802199fd.json",
+        "raw_response_bytes": 415,
+        "raw_response_sha256": "b86c407ff915ae9f3a54e144070a75b25d9ba012eacdeedf28003c60fc6b831e",
+        "upstream_stock_timestamp": null,
+        "url": "https://jlcsearch.tscircuit.com/components/list.json?search=C844025"
+      },
+      "observed_stock": 9422,
+      "reason": "catalog observation only; PCBA fulfillment unverified",
+      "requested_lcsc": "C844025",
+      "required_qty": 5,
+      "selected_mpn": "CRCW120622R0FKEAHP",
+      "status": "CATALOG_OBSERVED",
+      "stock_vs_required": "MEETS"
+    },
+    {
+      "catalog_part": {
+        "category": "Resistors",
+        "description": "-55\u2103~+155\u2103 1\u03a9 750mW Thick Film Resistor \u00b11% \u00b1100ppm/\u2103 1206 Chip Resistor - Surface Mount ROHS",
+        "is_basic": false,
+        "is_preferred": false,
+        "lcsc": 844653,
+        "mfr": "CRCW12061R00FKEAHP",
+        "package": "1206",
+        "price": "1-49:0.1208,50-149:0.1001,150-499:0.0899,500-2499:0.082,2500-4999:0.0654,5000-:0.0624",
+        "stock": 4531,
+        "subcategory": "Chip Resistor - Surface Mount"
+      },
+      "designators": [
+        "R_DUMP"
+      ],
+      "evidence": {
+        "cache_hit": false,
+        "fetched_at": "2026-09-24T16:18:41.334195+00:00",
+        "http_status": 200,
+        "provider": "tscircuit/jlcsearch (JLC-derived catalog; same supply pool)",
+        "raw_cache_path": "/tmp/crow-jlcsearch-refresh-cache-20260924/f2bd1d99a709b68629e4c329f9fa1d4de4f4563dfb3b6d1bb1bad02b64d13771.json",
+        "raw_response_bytes": 411,
+        "raw_response_sha256": "f45bc5e712a5eb04e380aa5501d818ccbdf17ac019f817fb6f3eb1b0efda2fb0",
+        "upstream_stock_timestamp": null,
+        "url": "https://jlcsearch.tscircuit.com/components/list.json?search=C844653"
+      },
+      "observed_stock": 4531,
+      "reason": "catalog observation only; PCBA fulfillment unverified",
+      "requested_lcsc": "C844653",
+      "required_qty": 5,
+      "selected_mpn": "CRCW12061R00FKEAHP",
+      "status": "CATALOG_OBSERVED",
+      "stock_vs_required": "MEETS"
+    },
+    {
+      "catalog_part": {
+        "category": "Capacitors",
+        "description": "10V 47uF X7R \u00b110% 1210 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS",
+        "is_basic": false,
+        "is_preferred": false,
+        "lcsc": 84494,
+        "mfr": "GRM32ER71A476KE15L",
+        "package": "1210",
+        "price": "1-49:0.5088,50-149:0.4469,150-999:0.4169,1000-1999:0.39,2000-4999:0.3827,5000-:0.3781",
+        "stock": 20757,
+        "subcategory": "Multilayer Ceramic Capacitors MLCC - SMD/SMT"
+      },
+      "designators": [
+        "C_ADC_AC1N1",
+        "C_ADC_AC1N2",
+        "C_ADC_AC1P1",
+        "C_ADC_AC1P2",
+        "C_ADC_AC2N1",
+        "C_ADC_AC2N2",
+        "C_ADC_AC2P1",
+        "C_ADC_AC2P2",
+        "C_ADC_AC3N1",
+        "C_ADC_AC3N2",
+        "C_ADC_AC3P1",
+        "C_ADC_AC3P2",
+        "C_ADC_AC4N1",
+        "C_ADC_AC4N2",
+        "C_ADC_AC4P1",
+        "C_ADC_AC4P2",
+        "C_ADC_AC5N1",
+        "C_ADC_AC5N2",
+        "C_ADC_AC5P1",
+        "C_ADC_AC5P2",
+        "C_ADC_AC6N1",
+        "C_ADC_AC6N2",
+        "C_ADC_AC6P1",
+        "C_ADC_AC6P2",
+        "C_ADC_AC7N1",
+        "C_ADC_AC7N2",
+        "C_ADC_AC7P1",
+        "C_ADC_AC7P2",
+        "C_ADC_AC8N1",
+        "C_ADC_AC8N2",
+        "C_ADC_AC8P1",
+        "C_ADC_AC8P2",
+        "C_LDO_IN",
+        "C_LDO_OUT_1",
+        "C_LDO_OUT_2",
+        "C_OPA_BULK",
+        "C_OUT1",
+        "C_OUT2",
+        "C_OUT3",
+        "C_U_1V8_OUT_1",
+        "C_U_3V3X_OUT_1",
+        "C_U_CORE_OUT_1"
+      ],
+      "evidence": {
+        "cache_hit": false,
+        "fetched_at": "2026-09-24T16:18:41.766840+00:00",
+        "http_status": 200,
+        "provider": "tscircuit/jlcsearch (JLC-derived catalog; same supply pool)",
+        "raw_cache_path": "/tmp/crow-jlcsearch-refresh-cache-20260924/593c3c770300368b4df0e3e61ab50b869836e0e5125717dc9e253a7594d43b76.json",
+        "raw_response_bytes": 398,
+        "raw_response_sha256": "27466645b55950107f5fd2d662090e47913f3c99ef90140e3e0376b40a7ab114",
+        "upstream_stock_timestamp": null,
+        "url": "https://jlcsearch.tscircuit.com/components/list.json?search=C84494"
+      },
+      "observed_stock": 20757,
+      "reason": "catalog observation only; PCBA fulfillment unverified",
+      "requested_lcsc": "C84494",
+      "required_qty": 210,
+      "selected_mpn": "GRM32ER71A476KE15L",
+      "status": "CATALOG_OBSERVED",
+      "stock_vs_required": "MEETS"
+    },
+    {
+      "catalog_part": {
+        "category": "Transistors/Thyristors",
+        "description": "-55\u2103~+150\u2103 1 N-channel 1.2\u03a9@10V\u30011.4\u03a9@5V 1.6V 2.9pF 300pC@4.5V 30pF 380mA 4.2pF 540mW 60V SOT-23 MOSFETs ROHS",
+        "is_basic": false,
+        "is_preferred": false,
+        "lcsc": 85047,
+        "mfr": "2N7002K-7",
+        "package": "SOT-23",
+        "price": "1-199:0.0412,200-599:0.0326,600-2999:0.0288,3000-8999:0.0238,9000-20999:0.0227,21000-:0.0218",
+        "stock": 406978,
+        "subcategory": "MOSFETs"
+      },
+      "designators": [
+        "Q_ADC_DELAY_DISCH",
+        "Q_ADC_DIG_RST",
+        "Q_ADC_PWR_RST",
+        "Q_PRE_EN",
+        "Q_RST1"
+      ],
+      "evidence": {
+        "cache_hit": false,
+        "fetched_at": "2026-09-24T16:18:42.220063+00:00",
+        "http_status": 200,
+        "provider": "tscircuit/jlcsearch (JLC-derived catalog; same supply pool)",
+        "raw_cache_path": "/tmp/crow-jlcsearch-refresh-cache-20260924/399bdca4a22f40d9b78bc2ff655f0921bab7ab2d2fa7fa9338f7c47dca37d586.json",
+        "raw_response_bytes": 417,
+        "raw_response_sha256": "8d46dd3aae4c50ec235e5c9d784171952d704b5412199e4a300e696ef6cc7a53",
+        "upstream_stock_timestamp": null,
+        "url": "https://jlcsearch.tscircuit.com/components/list.json?search=C85047"
+      },
+      "observed_stock": 406978,
+      "reason": "catalog observation only; PCBA fulfillment unverified",
+      "requested_lcsc": "C85047",
+      "required_qty": 25,
+      "selected_mpn": "2N7002K-7",
+      "status": "CATALOG_OBSERVED",
+      "stock_vs_required": "MEETS"
+    },
+    {
+      "catalog_part": {
+        "category": "Diodes",
+        "description": "-55\u2103~+150\u2103 1 Independent 3A 40V 500mV@3A 500uA@40V 80A SMA(DO-214AC) Schottky Diodes ROHS",
+        "is_basic": false,
+        "is_preferred": false,
+        "lcsc": 85098,
+        "mfr": "B340A-13-F",
+        "package": "SMA(DO-214AC)",
+        "price": "1-99:0.0817,100-299:0.0659,300-999:0.0578,1000-4999:0.0511,5000-9999:0.0487,10000-:0.0472",
+        "stock": 97876,
+        "subcategory": "Schottky Diodes"
+      },
+      "designators": [
+        "D_HOLD"
+      ],
+      "evidence": {
+        "cache_hit": false,
+        "fetched_at": "2026-09-24T16:18:42.655365+00:00",
+        "http_status": 200,
+        "provider": "tscircuit/jlcsearch (JLC-derived catalog; same supply pool)",
+        "raw_cache_path": "/tmp/crow-jlcsearch-refresh-cache-20260924/55fd7f290f3a27f5768f838f27a5612c54b27f9e0b7f45241a362c7a053f4407.json",
+        "raw_response_bytes": 390,
+        "raw_response_sha256": "40fc2cca001930f92b5b5935f95e0782ce82bda6a880e318de18f02c5daac6f0",
+        "upstream_stock_timestamp": null,
+        "url": "https://jlcsearch.tscircuit.com/components/list.json?search=C85098"
+      },
+      "observed_stock": 97876,
+      "reason": "catalog observation only; PCBA fulfillment unverified",
+      "requested_lcsc": "C85098",
+      "required_qty": 5,
+      "selected_mpn": "B340A-13-F",
+      "status": "CATALOG_OBSERVED",
+      "stock_vs_required": "MEETS"
+    },
+    {
+      "catalog_part": {
+        "category": "Resistors",
+        "description": "-55\u2103~+155\u2103 100k\u03a9 50V 62.5mW Thin Film Resistor \u00b10.1% \u00b125ppm/\u2103 0402 Chip Resistor - Surface Mount ROHS",
+        "is_basic": false,
+        "is_preferred": false,
+        "lcsc": 852472,
+        "mfr": "RT0402BRD07100KL",
+        "package": "0402",
+        "price": "1-499:0.0246,500-1499:0.0205,1500-9999:0.0188,10000-19999:0.0175,20000-49999:0.017,50000-:0.0166",
+        "stock": 470011,
+        "subcategory": "Chip Resistor - Surface Mount"
+      },
+      "designators": [
+        "R_1V8_FB_BOTTOM",
+        "R_1V8_OK_BOT",
+        "R_ADC_1V8_OK_BOT",
+        "R_ADC_3V3X_OK_BOT",
+        "R_ADC_OK_BOT",
+        "R_CORE_FB_BOTTOM",
+        "R_XU_3V3_OK_BOT"
+      ],
+      "evidence": {
+        "cache_hit": false,
+        "fetched_at": "2026-09-24T16:18:43.127325+00:00",
+        "http_status": 200,
+        "provider": "tscircuit/jlcsearch (JLC-derived catalog; same supply pool)",
+        "raw_cache_path": "/tmp/crow-jlcsearch-refresh-cache-20260924/b30379861c22153e726dda0c5e046d89b0d87073e6e95f12e6ddfe0c08e007db.json",
+        "raw_response_bytes": 430,
+        "raw_response_sha256": "055871cbb3f24178ca3b64350c185ca6ad727e494b7349f9ac9e22f73be9a38c",
+        "upstream_stock_timestamp": null,
+        "url": "https://jlcsearch.tscircuit.com/components/list.json?search=C852472"
+      },
+      "observed_stock": 470011,
+      "reason": "catalog observation only; PCBA fulfillment unverified",
+      "requested_lcsc": "C852472",
+      "required_qty": 35,
+      "selected_mpn": "RT0402BRD07100KL",
+      "status": "CATALOG_OBSERVED",
+      "stock_vs_required": "MEETS"
+    },
+    {
+      "catalog_part": {
+        "category": "Resistors",
+        "description": "-55\u2103~+155\u2103 169k\u03a9 50V 62.5mW Thin Film Resistor \u00b10.1% \u00b125ppm/\u2103 0402 Chip Resistor - Surface Mount ROHS",
+        "is_basic": false,
+        "is_preferred": false,
+        "lcsc": 852555,
+        "mfr": "RT0402BRD07169KL",
+        "package": "0402",
+        "price": "1-499:0.0267,500-1499:0.0227,1500-9999:0.0202,10000-19999:0.0184,20000-49999:0.0173,50000-:0.0166",
+        "stock": 2061,
+        "subcategory": "Chip Resistor - Surface Mount"
+      },
+      "designators": [
+        "R_ADC_3V3X_OK_TOP",
+        "R_ADC_OK_TOP",
+        "R_XU_3V3_OK_TOP"
+      ],
+      "evidence": {
+        "cache_hit": false,
+        "fetched_at": "2026-09-24T16:18:43.560734+00:00",
+        "http_status": 200,
+        "provider": "tscircuit/jlcsearch (JLC-derived catalog; same supply pool)",
+        "raw_cache_path": "/tmp/crow-jlcsearch-refresh-cache-20260924/0380190ccbd376aa688c6b484d0048716163c516dad754ecb7eb9452441e8133.json",
+        "raw_response_bytes": 429,
+        "raw_response_sha256": "0a13966ad7d3084553f2e3f38c01250313d6b01ee07aba51f589bff98147cc71",
+        "upstream_stock_timestamp": null,
+        "url": "https://jlcsearch.tscircuit.com/components/list.json?search=C852555"
+      },
+      "observed_stock": 2061,
+      "reason": "catalog observation only; PCBA fulfillment unverified",
+      "requested_lcsc": "C852555",
+      "required_qty": 15,
+      "selected_mpn": "RT0402BRD07169KL",
+      "status": "CATALOG_OBSERVED",
+      "stock_vs_required": "MEETS"
+    },
+    {
+      "catalog_part": {
+        "category": "Resistors",
+        "description": "-55\u2103~+155\u2103 210k\u03a9 50V 62.5mW Thin Film Resistor \u00b10.1% \u00b125ppm/\u2103 0402 Chip Resistor - Surface Mount ROHS",
+        "is_basic": false,
+        "is_preferred": false,
+        "lcsc": 852631,
+        "mfr": "RT0402BRD07210KL",
+        "package": "0402",
+        "price": "1-499:0.0262,500-1499:0.0222,1500-9999:0.0199,10000-19999:0.0184,20000-49999:0.0173,50000-:0.0166",
+        "stock": 2568,
+        "subcategory": "Chip Resistor - Surface Mount"
+      },
+      "designators": [
+        "R_1V8_FB_TOP"
+      ],
+      "evidence": {
+        "cache_hit": false,
+        "fetched_at": "2026-09-24T16:18:44.004436+00:00",
+        "http_status": 200,
+        "provider": "tscircuit/jlcsearch (JLC-derived catalog; same supply pool)",
+        "raw_cache_path": "/tmp/crow-jlcsearch-refresh-cache-20260924/ebd2fe3ecb20760a7f1f6a118fe9c0264f51e00615e5bc3504eb1659704d2df4.json",
+        "raw_response_bytes": 429,
+        "raw_response_sha256": "18673084f6adfbdc3c5e1cfbc25048f7407a957e93a0346feea1c9bd2a6e236b",
+        "upstream_stock_timestamp": null,
+        "url": "https://jlcsearch.tscircuit.com/components/list.json?search=C852631"
+      },
+      "observed_stock": 2568,
+      "reason": "catalog observation only; PCBA fulfillment unverified",
+      "requested_lcsc": "C852631",
+      "required_qty": 5,
+      "selected_mpn": "RT0402BRD07210KL",
+      "status": "CATALOG_OBSERVED",
+      "stock_vs_required": "MEETS"
+    },
+    {
+      "catalog_part": {
+        "category": "Resistors",
+        "description": "-55\u2103~+155\u2103 40.2k\u03a9 50V 62.5mW Thin Film Resistor \u00b10.1% \u00b125ppm/\u2103 0402 Chip Resistor - Surface Mount ROHS",
+        "is_basic": false,
+        "is_preferred": false,
+        "lcsc": 852775,
+        "mfr": "RT0402BRD0740K2L",
+        "package": "0402",
+        "price": "1-499:0.0261,500-1499:0.022,1500-9999:0.0197,10000-19999:0.0184,20000-49999:0.0173,50000-:0.0166",
+        "stock": 52309,
+        "subcategory": "Chip Resistor - Surface Mount"
+      },
+      "designators": [
+        "R_BUCK_FB_TOP"
+      ],
+      "evidence": {
+        "cache_hit": false,
+        "fetched_at": "2026-09-24T16:18:44.462162+00:00",
+        "http_status": 200,
+        "provider": "tscircuit/jlcsearch (JLC-derived catalog; same supply pool)",
+        "raw_cache_path": "/tmp/crow-jlcsearch-refresh-cache-20260924/0225749ddd60a05767821d71604a6887c225381677f71817c8ec01d6a16bc9ab.json",
+        "raw_response_bytes": 430,
+        "raw_response_sha256": "70a3620caae17cf3dcae925ffb6c6e85f0a945b7f23b0318ccdd13aa3a1b1f10",
+        "upstream_stock_timestamp": null,
+        "url": "https://jlcsearch.tscircuit.com/components/list.json?search=C852775"
+      },
+      "observed_stock": 52309,
+      "reason": "catalog observation only; PCBA fulfillment unverified",
+      "requested_lcsc": "C852775",
+      "required_qty": 5,
+      "selected_mpn": "RT0402BRD0740K2L",
+      "status": "CATALOG_OBSERVED",
+      "stock_vs_required": "MEETS"
+    },
+    {
+      "catalog_part": {
+        "category": "Resistors",
+        "description": "-55\u2103~+155\u2103 49.9k\u03a9 50V 62.5mW Thin Film Resistor \u00b10.1% \u00b125ppm/\u2103 0402 Chip Resistor - Surface Mount ROHS",
+        "is_basic": false,
+        "is_preferred": false,
+        "lcsc": 852808,
+        "mfr": "RT0402BRD0749K9L",
+        "package": "0402",
+        "price": "1-199:0.0277,200-599:0.0232,600-1999:0.0205,2000-9999:0.0189,10000-19999:0.0166,20000-:0.0159",
+        "stock": 18071,
+        "subcategory": "Chip Resistor - Surface Mount"
+      },
+      "designators": [
+        "R_CORE_FB_TOP"
+      ],
+      "evidence": {
+        "cache_hit": false,
+        "fetched_at": "2026-09-24T16:18:44.899924+00:00",
+        "http_status": 200,
+        "provider": "tscircuit/jlcsearch (JLC-derived catalog; same supply pool)",
+        "raw_cache_path": "/tmp/crow-jlcsearch-refresh-cache-20260924/9fd68fb287a15dd25f991f8c6e4519fea42f147722cb150f29ef4fc60a8f7838.json",
+        "raw_response_bytes": 427,
+        "raw_response_sha256": "b80726c80e3e6cf9072066cfe23000b6176b34f5c38361d7c3f43ce13c24d6a6",
+        "upstream_stock_timestamp": null,
+        "url": "https://jlcsearch.tscircuit.com/components/list.json?search=C852808"
+      },
+      "observed_stock": 18071,
+      "reason": "catalog observation only; PCBA fulfillment unverified",
+      "requested_lcsc": "C852808",
+      "required_qty": 5,
+      "selected_mpn": "RT0402BRD0749K9L",
+      "status": "CATALOG_OBSERVED",
+      "stock_vs_required": "MEETS"
+    },
+    {
+      "catalog_part": {
+        "category": "Resistors",
+        "description": "-55\u2103~+155\u2103 50V 52.3k\u03a9 62.5mW Thin Film Resistor \u00b10.1% \u00b125ppm/\u2103 0402 Chip Resistor - Surface Mount ROHS",
+        "is_basic": false,
+        "is_preferred": false,
+        "lcsc": 852832,
+        "mfr": "RT0402BRD0752K3L",
+        "package": "0402",
+        "price": "1-499:0.0259,500-1499:0.0218,1500-9999:0.0197,10000-19999:0.0184,20000-49999:0.0173,50000-:0.0166",
+        "stock": 18421,
+        "subcategory": "Chip Resistor - Surface Mount"
+      },
+      "designators": [
+        "R_1V8_OK_TOP",
+        "R_ADC_1V8_OK_TOP"
+      ],
+      "evidence": {
+        "cache_hit": false,
+        "fetched_at": "2026-09-24T16:18:45.329321+00:00",
+        "http_status": 200,
+        "provider": "tscircuit/jlcsearch (JLC-derived catalog; same supply pool)",
+        "raw_cache_path": "/tmp/crow-jlcsearch-refresh-cache-20260924/8a8b5a7aa1cb8d0c0981c9f8fdc908518897f043637bcc381cce2bba5f1abfff.json",
+        "raw_response_bytes": 431,
+        "raw_response_sha256": "f27163af7323d483a73b2cb4581a6d30a4d4e08d6e9537a6cf994b586854eaf0",
+        "upstream_stock_timestamp": null,
+        "url": "https://jlcsearch.tscircuit.com/components/list.json?search=C852832"
+      },
+      "observed_stock": 18421,
+      "reason": "catalog observation only; PCBA fulfillment unverified",
+      "requested_lcsc": "C852832",
+      "required_qty": 10,
+      "selected_mpn": "RT0402BRD0752K3L",
+      "status": "CATALOG_OBSERVED",
+      "stock_vs_required": "MEETS"
+    },
+    {
+      "catalog_part": {
+        "category": "Resistors",
+        "description": "-55\u2103~+155\u2103 100mW 17.4k\u03a9 75V Thin Film Resistor \u00b10.1% \u00b125ppm/\u2103 0603 Chip Resistor - Surface Mount ROHS",
+        "is_basic": false,
+        "is_preferred": false,
+        "lcsc": 861167,
+        "mfr": "RT0603BRD0717K4L",
+        "package": "0603",
+        "price": "1-199:0.0318,200-599:0.0267,600-4999:0.0238,5000-9999:0.0222,10000-19999:0.0207,20000-:0.0199",
+        "stock": 3348,
+        "subcategory": "Chip Resistor - Surface Mount"
+      },
+      "designators": [
+        "R_ADC_TOP"
+      ],
+      "evidence": {
+        "cache_hit": false,
+        "fetched_at": "2026-09-24T16:18:45.782989+00:00",
+        "http_status": 200,
+        "provider": "tscircuit/jlcsearch (JLC-derived catalog; same supply pool)",
+        "raw_cache_path": "/tmp/crow-jlcsearch-refresh-cache-20260924/59dbbe57c9b8abcb5f250dadfdcb0c12f9b0c8186e77cbbb92935e682521aad0.json",
+        "raw_response_bytes": 425,
+        "raw_response_sha256": "8e8bfc01f4f382665696f974277e55b0a9baf4c71c7231d46ab2c8966bb7ff38",
+        "upstream_stock_timestamp": null,
+        "url": "https://jlcsearch.tscircuit.com/components/list.json?search=C861167"
+      },
+      "observed_stock": 3348,
+      "reason": "catalog observation only; PCBA fulfillment unverified",
+      "requested_lcsc": "C861167",
+      "required_qty": 5,
+      "selected_mpn": "RT0603BRD0717K4L",
+      "status": "CATALOG_OBSERVED",
+      "stock_vs_required": "MEETS"
+    },
+    {
+      "catalog_part": {
+        "category": "Resistors",
+        "description": "-55\u2103~+155\u2103 100mW 30.9k\u03a9 75V Thin Film Resistor \u00b10.1% \u00b125ppm/\u2103 0603 Chip Resistor - Surface Mount ROHS",
+        "is_basic": false,
+        "is_preferred": false,
+        "lcsc": 861313,
+        "mfr": "RT0603BRD0730K9L",
+        "package": "0603",
+        "price": "1-199:0.0318,200-599:0.0267,600-4999:0.0238,5000-9999:0.0222,10000-19999:0.0207,20000-:0.0199",
+        "stock": 201,
+        "subcategory": "Chip Resistor - Surface Mount"
+      },
+      "designators": [
+        "R_PWR_TOP"
+      ],
+      "evidence": {
+        "cache_hit": false,
+        "fetched_at": "2026-09-24T16:18:46.247737+00:00",
+        "http_status": 200,
+        "provider": "tscircuit/jlcsearch (JLC-derived catalog; same supply pool)",
+        "raw_cache_path": "/tmp/crow-jlcsearch-refresh-cache-20260924/e5922b3277320dab442e1e9b9325dc807e0dd8eb9d8b3843037f5f43c660e8dc.json",
+        "raw_response_bytes": 424,
+        "raw_response_sha256": "7d94969e0afd80ccf593173c639b1de7b69dcbaed46cf9ad568079714b8d2b9b",
+        "upstream_stock_timestamp": null,
+        "url": "https://jlcsearch.tscircuit.com/components/list.json?search=C861313"
+      },
+      "observed_stock": 201,
+      "reason": "catalog observation only; PCBA fulfillment unverified",
+      "requested_lcsc": "C861313",
+      "required_qty": 5,
+      "selected_mpn": "RT0603BRD0730K9L",
+      "status": "CATALOG_OBSERVED",
+      "stock_vs_required": "MEETS"
+    },
+    {
+      "catalog_part": {
+        "category": "Resistors",
+        "description": "-55\u2103~+155\u2103 100mW 44.2k\u03a9 75V Thin Film Resistor \u00b10.1% \u00b125ppm/\u2103 0603 Chip Resistor - Surface Mount ROHS",
+        "is_basic": false,
+        "is_preferred": false,
+        "lcsc": 861410,
+        "mfr": "RT0603BRD0744K2L",
+        "package": "0603",
+        "price": "1-199:0.0319,200-599:0.0267,600-4999:0.024,5000-9999:0.0222,10000-19999:0.0207,20000-:0.0199",
+        "stock": 3899,
+        "subcategory": "Chip Resistor - Surface Mount"
+      },
+      "designators": [
+        "R_SPOKE_ILIM1",
+        "R_SPOKE_ILIM2",
+        "R_SPOKE_ILIM3",
+        "R_SPOKE_ILIM4",
+        "R_SPOKE_ILIM5",
+        "R_SPOKE_ILIM6",
+        "R_SPOKE_ILIM7",
+        "R_SPOKE_ILIM8"
+      ],
+      "evidence": {
+        "cache_hit": false,
+        "fetched_at": "2026-09-24T16:18:46.673575+00:00",
+        "http_status": 200,
+        "provider": "tscircuit/jlcsearch (JLC-derived catalog; same supply pool)",
+        "raw_cache_path": "/tmp/crow-jlcsearch-refresh-cache-20260924/e6bad9525106edd25c246aab0fffd64c2b8541f9303698c23842eb9df32288eb.json",
+        "raw_response_bytes": 424,
+        "raw_response_sha256": "3f4700684ec3ac51b5e9672b73f02e726cd93b0dffa21a879728b245a9fa8675",
+        "upstream_stock_timestamp": null,
+        "url": "https://jlcsearch.tscircuit.com/components/list.json?search=C861410"
+      },
+      "observed_stock": 3899,
+      "reason": "catalog observation only; PCBA fulfillment unverified",
+      "requested_lcsc": "C861410",
+      "required_qty": 40,
+      "selected_mpn": "RT0603BRD0744K2L",
+      "status": "CATALOG_OBSERVED",
+      "stock_vs_required": "MEETS"
+    },
+    {
+      "catalog_part": {
+        "category": "Capacitors",
+        "description": "16V 4.7uF X7R \u00b110% 0805 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS",
+        "is_basic": false,
+        "is_preferred": false,
+        "lcsc": 90791,
+        "mfr": "GCM21BR71C475KA73L",
+        "package": "0805",
+        "price": "1-199:0.062,200-599:0.0539,600-2999:0.0502,3000-8999:0.0472,9000-20999:0.0461,21000-:0.0454",
+        "stock": 16631,
+        "subcategory": "Multilayer Ceramic Capacitors MLCC - SMD/SMT"
+      },
+      "designators": [
+        "C_USB_VBUS"
+      ],
+      "evidence": {
+        "cache_hit": false,
+        "fetched_at": "2026-09-24T16:18:47.128188+00:00",
+        "http_status": 200,
+        "provider": "tscircuit/jlcsearch (JLC-derived catalog; same supply pool)",
+        "raw_cache_path": "/tmp/crow-jlcsearch-refresh-cache-20260924/1e8f66aab2a3d6dded211327f201e801f2450df301267ffd157d6e93616b5cc6.json",
+        "raw_response_bytes": 405,
+        "raw_response_sha256": "b67725b706c032e9674999e594f05dac0e2aaa7a58b140d95c535c4967e5efe8",
+        "upstream_stock_timestamp": null,
+        "url": "https://jlcsearch.tscircuit.com/components/list.json?search=C90791"
+      },
+      "observed_stock": 16631,
+      "reason": "catalog observation only; PCBA fulfillment unverified",
+      "requested_lcsc": "C90791",
+      "required_qty": 5,
+      "selected_mpn": "GCM21BR71C475KA73L",
+      "status": "CATALOG_OBSERVED",
+      "stock_vs_required": "MEETS"
+    },
+    {
+      "catalog_part": {
+        "category": "Resistors",
+        "description": "-55\u2103~+155\u2103 47k\u03a9 50V 62.5mW Thick Film Resistor \u00b11% \u00b1100ppm/\u2103 0402 Chip Resistor - Surface Mount ROHS",
+        "is_basic": false,
+        "is_preferred": false,
+        "lcsc": 93943,
+        "mfr": "RC0402FR-0747KL",
+        "package": "0402",
+        "price": "1-999:0.001,1000-2999:0.0008,3000-9999:0.0007,10000-49999:0.0007,50000-50199:0.0006,50200-:0.0006",
+        "stock": 10,
+        "subcategory": "Chip Resistor - Surface Mount"
+      },
+      "designators": [
+        "R_USB_VBUS_BLEED"
+      ],
+      "evidence": {
+        "cache_hit": false,
+        "fetched_at": "2026-09-24T16:18:47.552988+00:00",
+        "http_status": 200,
+        "provider": "tscircuit/jlcsearch (JLC-derived catalog; same supply pool)",
+        "raw_cache_path": "/tmp/crow-jlcsearch-refresh-cache-20260924/868c08b96dc3534c5fb43d0979775cf3601b69f9104165725de22dbe398c9ad5.json",
+        "raw_response_bytes": 424,
+        "raw_response_sha256": "e52082912738056e4b2d8af4a0a51e82b1123cf46ce6ecfc84d4662259e5c85b",
+        "upstream_stock_timestamp": null,
+        "url": "https://jlcsearch.tscircuit.com/components/list.json?search=C93943"
+      },
+      "observed_stock": 10,
+      "reason": "catalog observation only; PCBA fulfillment unverified",
+      "requested_lcsc": "C93943",
+      "required_qty": 5,
+      "selected_mpn": "RC0402FR-0747KL",
+      "status": "CATALOG_OBSERVED",
+      "stock_vs_required": "MEETS"
+    },
+    {
+      "catalog_part": {
+        "category": "Circuit Protection",
+        "description": "-40\u2103~+85\u2103 0.7pF 2 3.6V 4.5V 45W@8/20us 5A@8/20us 8V ESD IEC 61000-4-2\u3001IEC 61000-4-5 Unidirectional SOT(9x3) ESD and Surge Protection (TVS/ESD) ROHS",
+        "is_basic": false,
+        "is_preferred": false,
+        "lcsc": 94934,
+        "mfr": "TPD2EUSB30ADRTR",
+        "package": "SOT(9x3)",
+        "price": "1-49:0.3589,50-149:0.2856,150-499:0.2542,500-2999:0.215,3000-5999:0.1976,6000-:0.1871",
+        "stock": 5439,
+        "subcategory": "ESD And Surge Protection (TVS/ESD)"
+      },
+      "designators": [
+        "U_USB_ESD"
+      ],
+      "evidence": {
+        "cache_hit": false,
+        "fetched_at": "2026-09-24T16:18:48.020632+00:00",
+        "http_status": 200,
+        "provider": "tscircuit/jlcsearch (JLC-derived catalog; same supply pool)",
+        "raw_cache_path": "/tmp/crow-jlcsearch-refresh-cache-20260924/c29950008d5be8ea79cff39b8eb2090453395c693a60d999de767d491c5f4903.json",
+        "raw_response_bytes": 476,
+        "raw_response_sha256": "038d6474db9f726cb5e8e3219d2545d9158aefc24c361f78c4d05e906b0340cf",
+        "upstream_stock_timestamp": null,
+        "url": "https://jlcsearch.tscircuit.com/components/list.json?search=C94934"
+      },
+      "observed_stock": 5439,
+      "reason": "catalog observation only; PCBA fulfillment unverified",
+      "requested_lcsc": "C94934",
+      "required_qty": 5,
+      "selected_mpn": "TPD2EUSB30ADRTR",
+      "status": "CATALOG_OBSERVED",
+      "stock_vs_required": "MEETS"
+    },
+    {
+      "catalog_part": {
+        "category": "Resistors",
+        "description": "-55\u2103~+155\u2103 100mW 10k\u03a9 75V Thin Film Resistor \u00b10.1% \u00b125ppm/\u2103 0603 Chip Resistor - Surface Mount ROHS",
+        "is_basic": false,
+        "is_preferred": false,
+        "lcsc": 95204,
+        "mfr": "RT0603BRD0710KL",
+        "package": "0603",
+        "price": "1-199:0.0241,200-599:0.0192,600-4999:0.0171,5000-9999:0.015,10000-19999:0.0144,20000-:0.014",
+        "stock": 389486,
+        "subcategory": "Chip Resistor - Surface Mount"
+      },
+      "designators": [
+        "R_ADC_BOT",
+        "R_LDO_PG_BOT_A",
+        "R_PWR_BOT"
+      ],
+      "evidence": {
+        "cache_hit": false,
+        "fetched_at": "2026-09-24T16:18:48.463033+00:00",
+        "http_status": 200,
+        "provider": "tscircuit/jlcsearch (JLC-derived catalog; same supply pool)",
+        "raw_cache_path": "/tmp/crow-jlcsearch-refresh-cache-20260924/625e22bdcfd50444baaa837092c40bfcec9ee0cba5670c05c4d6dcca4c5fa58f.json",
+        "raw_response_bytes": 421,
+        "raw_response_sha256": "f275c8463b6c87537577015c7e0bbd61e33f81c16ee1da65fbce5678759de195",
+        "upstream_stock_timestamp": null,
+        "url": "https://jlcsearch.tscircuit.com/components/list.json?search=C95204"
+      },
+      "observed_stock": 389486,
+      "reason": "catalog observation only; PCBA fulfillment unverified",
+      "requested_lcsc": "C95204",
+      "required_qty": 15,
+      "selected_mpn": "RT0603BRD0710KL",
+      "status": "CATALOG_OBSERVED",
+      "stock_vs_required": "MEETS"
+    },
+    {
+      "catalog_part": {
+        "category": "Power Management (PMIC)",
+        "description": "-40\u2103~+85\u2103 1 150nA 2.93V 200ms 900mV~6.5V Active Low Push-pull Voltage monitor SOT-23 Supervisor and Reset ICs ROHS",
+        "is_basic": false,
+        "is_preferred": false,
+        "lcsc": 96333,
+        "mfr": "TPS3839K33DBZR",
+        "package": "SOT-23",
+        "price": "1-9:0.7582,10-29:0.6134,30-99:0.5206,100-499:0.4491,500-999:0.4051,1000-:0.384",
+        "stock": 316,
+        "subcategory": "Supervisor And Reset ICs"
+      },
+      "designators": [
+        "U_RST1"
+      ],
+      "evidence": {
+        "cache_hit": false,
+        "fetched_at": "2026-09-24T16:18:48.899566+00:00",
+        "http_status": 200,
+        "provider": "tscircuit/jlcsearch (JLC-derived catalog; same supply pool)",
+        "raw_cache_path": "/tmp/crow-jlcsearch-refresh-cache-20260924/21c459c35243b844daf59b8ce245b06b75f227a922f743e6992c0863bc467766.json",
+        "raw_response_bytes": 425,
+        "raw_response_sha256": "ff674def1362de7e87b8021996b6d8221c51f286a79d76a618d52d1ee5dc76bb",
+        "upstream_stock_timestamp": null,
+        "url": "https://jlcsearch.tscircuit.com/components/list.json?search=C96333"
+      },
+      "observed_stock": 316,
+      "reason": "catalog observation only; PCBA fulfillment unverified",
+      "requested_lcsc": "C96333",
+      "required_qty": 5,
+      "selected_mpn": "TPS3839K33DBZR",
+      "status": "CATALOG_OBSERVED",
+      "stock_vs_required": "MEETS"
+    },
+    {
+      "catalog_part": {
+        "category": "Capacitors",
+        "description": "15nF 50V C0G \u00b15% 0805 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS",
+        "is_basic": false,
+        "is_preferred": false,
+        "lcsc": 97907,
+        "mfr": "GRM2195C1H153JA01D",
+        "package": "0805",
+        "price": "1-99:0.0807,100-299:0.0694,300-999:0.0637,1000-3999:0.0593,4000-7999:0.0547,8000-:0.0529",
+        "stock": 37639,
+        "subcategory": "Multilayer Ceramic Capacitors MLCC - SMD/SMT"
+      },
+      "designators": [
+        "C_DUMP_TIME1",
+        "C_DUMP_TIME2",
+        "C_DUMP_TIME3",
+        "C_DUMP_TIME4",
+        "C_DUMP_TIME5",
+        "C_DUMP_TIME6",
+        "C_DUMP_TIME7",
+        "C_DUMP_TIME8",
+        "C_FILTER1N1",
+        "C_FILTER1N2",
+        "C_FILTER1P1",
+        "C_FILTER1P2",
+        "C_FILTER2N1",
+        "C_FILTER2N2",
+        "C_FILTER2P1",
+        "C_FILTER2P2",
+        "C_FILTER3N1",
+        "C_FILTER3N2",
+        "C_FILTER3P1",
+        "C_FILTER3P2",
+        "C_FILTER4N1",
+        "C_FILTER4N2",
+        "C_FILTER4P1",
+        "C_FILTER4P2",
+        "C_FILTER5N1",
+        "C_FILTER5N2",
+        "C_FILTER5P1",
+        "C_FILTER5P2",
+        "C_FILTER6N1",
+        "C_FILTER6N2",
+        "C_FILTER6P1",
+        "C_FILTER6P2",
+        "C_FILTER7N1",
+        "C_FILTER7N2",
+        "C_FILTER7P1",
+        "C_FILTER7P2",
+        "C_FILTER8N1",
+        "C_FILTER8N2",
+        "C_FILTER8P1",
+        "C_FILTER8P2"
+      ],
+      "evidence": {
+        "cache_hit": false,
+        "fetched_at": "2026-09-24T16:18:49.362381+00:00",
+        "http_status": 200,
+        "provider": "tscircuit/jlcsearch (JLC-derived catalog; same supply pool)",
+        "raw_cache_path": "/tmp/crow-jlcsearch-refresh-cache-20260924/2afa5da2f29b9545d9cec22368a8c1863e4b573c3dfe7bcccf7b030c7921ada7.json",
+        "raw_response_bytes": 400,
+        "raw_response_sha256": "f0b24ccd10c2b1b4d8dfdaf0aa55863f39c6a534022b3e3c4839c0fe99467c0c",
+        "upstream_stock_timestamp": null,
+        "url": "https://jlcsearch.tscircuit.com/components/list.json?search=C97907"
+      },
+      "observed_stock": 37639,
+      "reason": "catalog observation only; PCBA fulfillment unverified",
+      "requested_lcsc": "C97907",
+      "required_qty": 200,
+      "selected_mpn": "GRM2195C1H153JA01D",
+      "status": "CATALOG_OBSERVED",
+      "stock_vs_required": "MEETS"
+    }
+  ]
+}
