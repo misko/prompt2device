@@ -1,0 +1,1232 @@
+{
+  "assigned_native_footprints": [
+    {
+      "bbox_mm": [
+        208.265,
+        127.415,
+        210.135,
+        128.385
+      ],
+      "crosses_boundary_y114": false,
+      "inside_owner": true,
+      "owner": "clock_flash_debug",
+      "ref": "C_FLASH"
+    },
+    {
+      "bbox_mm": [
+        219.065,
+        102.315,
+        220.935,
+        103.285
+      ],
+      "crosses_boundary_y114": false,
+      "inside_owner": true,
+      "owner": "xmos_core",
+      "ref": "C_PLL_100N"
+    },
+    {
+      "bbox_mm": [
+        219.065,
+        104.515,
+        220.935,
+        105.485
+      ],
+      "crosses_boundary_y114": false,
+      "inside_owner": true,
+      "owner": "xmos_core",
+      "ref": "C_PLL_1U"
+    },
+    {
+      "bbox_mm": [
+        206.865,
+        119.615,
+        208.735,
+        120.585
+      ],
+      "crosses_boundary_y114": false,
+      "inside_owner": true,
+      "owner": "clock_flash_debug",
+      "ref": "C_XTAL_IN"
+    },
+    {
+      "bbox_mm": [
+        205.265,
+        127.415,
+        207.135,
+        128.385
+      ],
+      "crosses_boundary_y114": false,
+      "inside_owner": true,
+      "owner": "clock_flash_debug",
+      "ref": "C_XTAL_OUT"
+    },
+    {
+      "bbox_mm": [
+        205.665,
+        110.315,
+        207.535,
+        111.285
+      ],
+      "crosses_boundary_y114": false,
+      "inside_owner": true,
+      "owner": "xmos_core",
+      "ref": "C_XU_USB18"
+    },
+    {
+      "bbox_mm": [
+        205.665,
+        88.715,
+        207.535,
+        89.685
+      ],
+      "crosses_boundary_y114": false,
+      "inside_owner": true,
+      "owner": "xmos_core",
+      "ref": "C_XU_USB33"
+    },
+    {
+      "bbox_mm": [
+        202.565,
+        108.915,
+        204.435,
+        109.885
+      ],
+      "crosses_boundary_y114": false,
+      "inside_owner": true,
+      "owner": "xmos_core",
+      "ref": "C_XU_VDDIO_10"
+    },
+    {
+      "bbox_mm": [
+        195.565,
+        98.815,
+        197.435,
+        99.785
+      ],
+      "crosses_boundary_y114": false,
+      "inside_owner": true,
+      "owner": "xmos_core",
+      "ref": "C_XU_VDDIO_109"
+    },
+    {
+      "bbox_mm": [
+        195.565,
+        101.015,
+        197.435,
+        101.985
+      ],
+      "crosses_boundary_y114": false,
+      "inside_owner": true,
+      "owner": "xmos_core",
+      "ref": "C_XU_VDDIO_121"
+    },
+    {
+      "bbox_mm": [
+        210.065,
+        108.915,
+        211.935,
+        109.885
+      ],
+      "crosses_boundary_y114": false,
+      "inside_owner": true,
+      "owner": "xmos_core",
+      "ref": "C_XU_VDDIO_17"
+    },
+    {
+      "bbox_mm": [
+        217.515,
+        104.865,
+        218.485,
+        106.735
+      ],
+      "crosses_boundary_y114": false,
+      "inside_owner": true,
+      "owner": "xmos_core",
+      "ref": "C_XU_VDDIO_35"
+    },
+    {
+      "bbox_mm": [
+        217.515,
+        91.865,
+        218.485,
+        93.735
+      ],
+      "crosses_boundary_y114": false,
+      "inside_owner": true,
+      "owner": "xmos_core",
+      "ref": "C_XU_VDDIO_56"
+    },
+    {
+      "bbox_mm": [
+        209.565,
+        90.115,
+        211.435,
+        91.085
+      ],
+      "crosses_boundary_y114": false,
+      "inside_owner": true,
+      "owner": "xmos_core",
+      "ref": "C_XU_VDDIO_72"
+    },
+    {
+      "bbox_mm": [
+        203.565,
+        90.115,
+        205.435,
+        91.085
+      ],
+      "crosses_boundary_y114": false,
+      "inside_owner": true,
+      "owner": "xmos_core",
+      "ref": "C_XU_VDDIO_89"
+    },
+    {
+      "bbox_mm": [
+        197.665,
+        95.515,
+        199.535,
+        96.485
+      ],
+      "crosses_boundary_y114": false,
+      "inside_owner": true,
+      "owner": "xmos_core",
+      "ref": "C_XU_VDD_104"
+    },
+    {
+      "bbox_mm": [
+        195.565,
+        96.615,
+        197.435,
+        97.585
+      ],
+      "crosses_boundary_y114": false,
+      "inside_owner": true,
+      "owner": "xmos_core",
+      "ref": "C_XU_VDD_105"
+    },
+    {
+      "bbox_mm": [
+        197.665,
+        97.715,
+        199.535,
+        98.685
+      ],
+      "crosses_boundary_y114": false,
+      "inside_owner": true,
+      "owner": "xmos_core",
+      "ref": "C_XU_VDD_106"
+    },
+    {
+      "bbox_mm": [
+        205.065,
+        108.915,
+        206.935,
+        109.885
+      ],
+      "crosses_boundary_y114": false,
+      "inside_owner": true,
+      "owner": "xmos_core",
+      "ref": "C_XU_VDD_11"
+    },
+    {
+      "bbox_mm": [
+        197.665,
+        99.915,
+        199.535,
+        100.885
+      ],
+      "crosses_boundary_y114": false,
+      "inside_owner": true,
+      "owner": "xmos_core",
+      "ref": "C_XU_VDD_113"
+    },
+    {
+      "bbox_mm": [
+        207.565,
+        108.915,
+        209.435,
+        109.885
+      ],
+      "crosses_boundary_y114": false,
+      "inside_owner": true,
+      "owner": "xmos_core",
+      "ref": "C_XU_VDD_14"
+    },
+    {
+      "bbox_mm": [
+        212.565,
+        108.915,
+        214.435,
+        109.885
+      ],
+      "crosses_boundary_y114": false,
+      "inside_owner": true,
+      "owner": "xmos_core",
+      "ref": "C_XU_VDD_18"
+    },
+    {
+      "bbox_mm": [
+        217.515,
+        102.265,
+        218.485,
+        104.135
+      ],
+      "crosses_boundary_y114": false,
+      "inside_owner": true,
+      "owner": "xmos_core",
+      "ref": "C_XU_VDD_39"
+    },
+    {
+      "bbox_mm": [
+        217.515,
+        99.665,
+        218.485,
+        101.535
+      ],
+      "crosses_boundary_y114": false,
+      "inside_owner": true,
+      "owner": "xmos_core",
+      "ref": "C_XU_VDD_45"
+    },
+    {
+      "bbox_mm": [
+        200.065,
+        108.915,
+        201.935,
+        109.885
+      ],
+      "crosses_boundary_y114": false,
+      "inside_owner": true,
+      "owner": "xmos_core",
+      "ref": "C_XU_VDD_5"
+    },
+    {
+      "bbox_mm": [
+        217.515,
+        97.065,
+        218.485,
+        98.935
+      ],
+      "crosses_boundary_y114": false,
+      "inside_owner": true,
+      "owner": "xmos_core",
+      "ref": "C_XU_VDD_50"
+    },
+    {
+      "bbox_mm": [
+        218.655,
+        96.005,
+        219.625,
+        97.875
+      ],
+      "crosses_boundary_y114": false,
+      "inside_owner": true,
+      "owner": "xmos_core",
+      "ref": "C_XU_VDD_54"
+    },
+    {
+      "bbox_mm": [
+        212.565,
+        90.115,
+        214.435,
+        91.085
+      ],
+      "crosses_boundary_y114": false,
+      "inside_owner": true,
+      "owner": "xmos_core",
+      "ref": "C_XU_VDD_68"
+    },
+    {
+      "bbox_mm": [
+        206.565,
+        90.115,
+        208.435,
+        91.085
+      ],
+      "crosses_boundary_y114": false,
+      "inside_owner": true,
+      "owner": "xmos_core",
+      "ref": "C_XU_VDD_85"
+    },
+    {
+      "bbox_mm": [
+        200.565,
+        90.115,
+        202.435,
+        91.085
+      ],
+      "crosses_boundary_y114": false,
+      "inside_owner": true,
+      "owner": "xmos_core",
+      "ref": "C_XU_VDD_95"
+    },
+    {
+      "bbox_mm": [
+        222.045,
+        103.405,
+        223.955,
+        104.395
+      ],
+      "crosses_boundary_y114": false,
+      "inside_owner": true,
+      "owner": "xmos_core",
+      "ref": "FB_PLL"
+    },
+    {
+      "bbox_mm": [
+        209.845,
+        119.605,
+        211.755,
+        120.595
+      ],
+      "crosses_boundary_y114": false,
+      "inside_owner": true,
+      "owner": "clock_flash_debug",
+      "ref": "R_QSPI_CS"
+    },
+    {
+      "bbox_mm": [
+        208.545,
+        128.905,
+        210.455,
+        129.895
+      ],
+      "crosses_boundary_y114": false,
+      "inside_owner": true,
+      "owner": "clock_flash_debug",
+      "ref": "R_XTAL_DRIVE"
+    },
+    {
+      "bbox_mm": [
+        206.545,
+        118.105,
+        208.455,
+        119.095
+      ],
+      "crosses_boundary_y114": false,
+      "inside_owner": true,
+      "owner": "clock_flash_debug",
+      "ref": "R_XTAL_FB"
+    },
+    {
+      "bbox_mm": [
+        211.325,
+        120.97,
+        220.675,
+        126.925
+      ],
+      "crosses_boundary_y114": false,
+      "inside_owner": true,
+      "owner": "clock_flash_debug",
+      "ref": "U_FLASH"
+    },
+    {
+      "bbox_mm": [
+        199.825,
+        91.325,
+        217.175,
+        108.675
+      ],
+      "crosses_boundary_y114": false,
+      "inside_owner": true,
+      "owner": "xmos_core",
+      "ref": "U_XU"
+    },
+    {
+      "bbox_mm": [
+        206.075,
+        122.125,
+        210.925,
+        125.875
+      ],
+      "crosses_boundary_y114": false,
+      "inside_owner": true,
+      "owner": "clock_flash_debug",
+      "ref": "Y_XU"
+    }
+  ],
+  "board_sha256": "60a903b5ae5c7c7ef084fb3bd5dd50abf26e1e0e134a928f46107a6c90934b17",
+  "boundaries": {
+    "clock_south": {
+      "native_footprint_hits": [],
+      "native_pad_hits": [],
+      "segment": [
+        [
+          190,
+          136
+        ],
+        [
+          232,
+          136
+        ]
+      ],
+      "source_keepout_hits": []
+    },
+    "clock_west": {
+      "native_footprint_hits": [],
+      "native_pad_hits": [],
+      "segment": [
+        [
+          190,
+          114
+        ],
+        [
+          190,
+          136
+        ]
+      ],
+      "source_keepout_hits": []
+    },
+    "xmos_clock": {
+      "native_footprint_hits": [],
+      "native_pad_hits": [],
+      "segment": [
+        [
+          190,
+          114
+        ],
+        [
+          232,
+          114
+        ]
+      ],
+      "source_keepout_hits": []
+    },
+    "xmos_north": {
+      "native_footprint_hits": [],
+      "native_pad_hits": [],
+      "segment": [
+        [
+          190,
+          84
+        ],
+        [
+          232,
+          84
+        ]
+      ],
+      "source_keepout_hits": []
+    },
+    "xmos_west": {
+      "native_footprint_hits": [],
+      "native_pad_hits": [],
+      "segment": [
+        [
+          190,
+          84
+        ],
+        [
+          190,
+          114
+        ]
+      ],
+      "source_keepout_hits": []
+    }
+  },
+  "cell_intersections": [],
+  "cells_mm": {
+    "clock_flash_debug": [
+      190,
+      114,
+      232,
+      136
+    ],
+    "xmos_core": [
+      190,
+      84,
+      232,
+      114
+    ]
+  },
+  "endpoints": [
+    {
+      "fixed_p1": false,
+      "native_pads": [
+        {
+          "center_mm": [
+            219.5875,
+            124.635
+          ],
+          "net": "QSPI_CLK"
+        }
+      ],
+      "net": "QSPI_CLK",
+      "p2_local_return": "P2_REQUIRED",
+      "p2_pad_to_face": "P2_REQUIRED",
+      "proposed_face": "qspi",
+      "ref_pad": "U_FLASH.6",
+      "source_owner": "clock_flash_debug"
+    },
+    {
+      "fixed_p1": false,
+      "native_pads": [
+        {
+          "center_mm": [
+            203.5,
+            107.6625
+          ],
+          "net": "QSPI_CLK"
+        }
+      ],
+      "net": "QSPI_CLK",
+      "p2_local_return": "P2_REQUIRED",
+      "p2_pad_to_face": "P2_REQUIRED",
+      "proposed_face": "qspi",
+      "ref_pad": "U_XU.4",
+      "source_owner": "xmos_core"
+    },
+    {
+      "fixed_p1": false,
+      "native_pads": [
+        {
+          "center_mm": [
+            211.31,
+            120.1
+          ],
+          "net": "QSPI_CS_N"
+        }
+      ],
+      "net": "QSPI_CS_N",
+      "p2_local_return": "P2_REQUIRED",
+      "p2_pad_to_face": "P2_REQUIRED",
+      "proposed_face": "qspi",
+      "ref_pad": "R_QSPI_CS.2",
+      "source_owner": "clock_flash_debug"
+    },
+    {
+      "fixed_p1": false,
+      "native_pads": [
+        {
+          "center_mm": [
+            212.4125,
+            122.095
+          ],
+          "net": "QSPI_CS_N"
+        }
+      ],
+      "net": "QSPI_CS_N",
+      "p2_local_return": "P2_REQUIRED",
+      "p2_pad_to_face": "P2_REQUIRED",
+      "proposed_face": "qspi",
+      "ref_pad": "U_FLASH.1",
+      "source_owner": "clock_flash_debug"
+    },
+    {
+      "fixed_p1": false,
+      "native_pads": [
+        {
+          "center_mm": [
+            202.7,
+            107.6625
+          ],
+          "net": "QSPI_CS_N"
+        }
+      ],
+      "net": "QSPI_CS_N",
+      "p2_local_return": "P2_REQUIRED",
+      "p2_pad_to_face": "P2_REQUIRED",
+      "proposed_face": "qspi",
+      "ref_pad": "U_XU.2",
+      "source_owner": "xmos_core"
+    },
+    {
+      "fixed_p1": false,
+      "native_pads": [
+        {
+          "center_mm": [
+            219.5875,
+            125.905
+          ],
+          "net": "QSPI_D0"
+        }
+      ],
+      "net": "QSPI_D0",
+      "p2_local_return": "P2_REQUIRED",
+      "p2_pad_to_face": "P2_REQUIRED",
+      "proposed_face": "qspi",
+      "ref_pad": "U_FLASH.5",
+      "source_owner": "clock_flash_debug"
+    },
+    {
+      "fixed_p1": false,
+      "native_pads": [
+        {
+          "center_mm": [
+            200.8375,
+            105.8
+          ],
+          "net": "QSPI_D0"
+        }
+      ],
+      "net": "QSPI_D0",
+      "p2_local_return": "P2_REQUIRED",
+      "p2_pad_to_face": "P2_REQUIRED",
+      "proposed_face": "qspi",
+      "ref_pad": "U_XU.127",
+      "source_owner": "xmos_core"
+    },
+    {
+      "fixed_p1": false,
+      "native_pads": [
+        {
+          "center_mm": [
+            212.4125,
+            123.365
+          ],
+          "net": "QSPI_D1"
+        }
+      ],
+      "net": "QSPI_D1",
+      "p2_local_return": "P2_REQUIRED",
+      "p2_pad_to_face": "P2_REQUIRED",
+      "proposed_face": "qspi",
+      "ref_pad": "U_FLASH.2",
+      "source_owner": "clock_flash_debug"
+    },
+    {
+      "fixed_p1": false,
+      "native_pads": [
+        {
+          "center_mm": [
+            200.8375,
+            106.2
+          ],
+          "net": "QSPI_D1"
+        }
+      ],
+      "net": "QSPI_D1",
+      "p2_local_return": "P2_REQUIRED",
+      "p2_pad_to_face": "P2_REQUIRED",
+      "proposed_face": "qspi",
+      "ref_pad": "U_XU.128",
+      "source_owner": "xmos_core"
+    },
+    {
+      "fixed_p1": false,
+      "native_pads": [
+        {
+          "center_mm": [
+            212.4125,
+            124.635
+          ],
+          "net": "QSPI_D2"
+        }
+      ],
+      "net": "QSPI_D2",
+      "p2_local_return": "P2_REQUIRED",
+      "p2_pad_to_face": "P2_REQUIRED",
+      "proposed_face": "qspi",
+      "ref_pad": "U_FLASH.3",
+      "source_owner": "clock_flash_debug"
+    },
+    {
+      "fixed_p1": false,
+      "native_pads": [
+        {
+          "center_mm": [
+            202.3,
+            107.6625
+          ],
+          "net": "QSPI_D2"
+        }
+      ],
+      "net": "QSPI_D2",
+      "p2_local_return": "P2_REQUIRED",
+      "p2_pad_to_face": "P2_REQUIRED",
+      "proposed_face": "qspi",
+      "ref_pad": "U_XU.1",
+      "source_owner": "xmos_core"
+    },
+    {
+      "fixed_p1": false,
+      "native_pads": [
+        {
+          "center_mm": [
+            219.5875,
+            123.365
+          ],
+          "net": "QSPI_D3"
+        }
+      ],
+      "net": "QSPI_D3",
+      "p2_local_return": "P2_REQUIRED",
+      "p2_pad_to_face": "P2_REQUIRED",
+      "proposed_face": "qspi",
+      "ref_pad": "U_FLASH.7",
+      "source_owner": "clock_flash_debug"
+    },
+    {
+      "fixed_p1": false,
+      "native_pads": [
+        {
+          "center_mm": [
+            203.1,
+            107.6625
+          ],
+          "net": "QSPI_D3"
+        }
+      ],
+      "net": "QSPI_D3",
+      "p2_local_return": "P2_REQUIRED",
+      "p2_pad_to_face": "P2_REQUIRED",
+      "proposed_face": "qspi",
+      "ref_pad": "U_XU.3",
+      "source_owner": "xmos_core"
+    },
+    {
+      "fixed_p1": true,
+      "native_pads": [
+        {
+          "center_mm": [
+            229.27,
+            47.965
+          ],
+          "net": "JTAG_TCK"
+        }
+      ],
+      "net": "JTAG_TCK",
+      "p2_local_return": "fixed endpoint",
+      "p2_pad_to_face": "fixed endpoint",
+      "proposed_face": "jtag_reset",
+      "ref_pad": "J_JTAG.4",
+      "source_owner": "debug_connector"
+    },
+    {
+      "fixed_p1": false,
+      "native_pads": [
+        {
+          "center_mm": [
+            216.1625,
+            99.0
+          ],
+          "net": "JTAG_TCK"
+        }
+      ],
+      "net": "JTAG_TCK",
+      "p2_local_return": "P2_REQUIRED",
+      "p2_pad_to_face": "P2_REQUIRED",
+      "proposed_face": "jtag_reset",
+      "ref_pad": "U_XU.51",
+      "source_owner": "xmos_core"
+    },
+    {
+      "fixed_p1": true,
+      "native_pads": [
+        {
+          "center_mm": [
+            226.73,
+            47.965
+          ],
+          "net": "JTAG_TDI"
+        }
+      ],
+      "net": "JTAG_TDI",
+      "p2_local_return": "fixed endpoint",
+      "p2_pad_to_face": "fixed endpoint",
+      "proposed_face": "jtag_reset",
+      "ref_pad": "J_JTAG.8",
+      "source_owner": "debug_connector"
+    },
+    {
+      "fixed_p1": false,
+      "native_pads": [
+        {
+          "center_mm": [
+            216.1625,
+            105.0
+          ],
+          "net": "JTAG_TDI"
+        }
+      ],
+      "net": "JTAG_TDI",
+      "p2_local_return": "P2_REQUIRED",
+      "p2_pad_to_face": "P2_REQUIRED",
+      "proposed_face": "jtag_reset",
+      "ref_pad": "U_XU.36",
+      "source_owner": "xmos_core"
+    },
+    {
+      "fixed_p1": true,
+      "native_pads": [
+        {
+          "center_mm": [
+            228.0,
+            47.965
+          ],
+          "net": "JTAG_TDO"
+        }
+      ],
+      "net": "JTAG_TDO",
+      "p2_local_return": "fixed endpoint",
+      "p2_pad_to_face": "fixed endpoint",
+      "proposed_face": "jtag_reset",
+      "ref_pad": "J_JTAG.6",
+      "source_owner": "debug_connector"
+    },
+    {
+      "fixed_p1": false,
+      "native_pads": [
+        {
+          "center_mm": [
+            216.1625,
+            104.6
+          ],
+          "net": "JTAG_TDO"
+        }
+      ],
+      "net": "JTAG_TDO",
+      "p2_local_return": "P2_REQUIRED",
+      "p2_pad_to_face": "P2_REQUIRED",
+      "proposed_face": "jtag_reset",
+      "ref_pad": "U_XU.37",
+      "source_owner": "xmos_core"
+    },
+    {
+      "fixed_p1": true,
+      "native_pads": [
+        {
+          "center_mm": [
+            230.54,
+            47.965
+          ],
+          "net": "JTAG_TMS"
+        }
+      ],
+      "net": "JTAG_TMS",
+      "p2_local_return": "fixed endpoint",
+      "p2_pad_to_face": "fixed endpoint",
+      "proposed_face": "jtag_reset",
+      "ref_pad": "J_JTAG.2",
+      "source_owner": "debug_connector"
+    },
+    {
+      "fixed_p1": false,
+      "native_pads": [
+        {
+          "center_mm": [
+            216.1625,
+            101.8
+          ],
+          "net": "JTAG_TMS"
+        }
+      ],
+      "net": "JTAG_TMS",
+      "p2_local_return": "P2_REQUIRED",
+      "p2_pad_to_face": "P2_REQUIRED",
+      "proposed_face": "jtag_reset",
+      "ref_pad": "U_XU.44",
+      "source_owner": "xmos_core"
+    },
+    {
+      "fixed_p1": true,
+      "native_pads": [
+        {
+          "center_mm": [
+            225.46,
+            47.965
+          ],
+          "net": "XU_RESET_N"
+        }
+      ],
+      "net": "XU_RESET_N",
+      "p2_local_return": "fixed endpoint",
+      "p2_pad_to_face": "fixed endpoint",
+      "proposed_face": "jtag_reset",
+      "ref_pad": "J_JTAG.10",
+      "source_owner": "debug_connector"
+    },
+    {
+      "fixed_p1": false,
+      "native_pads": [
+        {
+          "center_mm": [
+            170.71,
+            100.4
+          ],
+          "net": "XU_RESET_N"
+        }
+      ],
+      "net": "XU_RESET_N",
+      "p2_local_return": "P2_REQUIRED",
+      "p2_pad_to_face": "P2_REQUIRED",
+      "proposed_face": "jtag_reset",
+      "ref_pad": "R_XU_RST_PU.2",
+      "source_owner": "digital_power"
+    },
+    {
+      "fixed_p1": false,
+      "native_pads": [
+        {
+          "center_mm": [
+            157.0625,
+            120.25
+          ],
+          "net": "XU_RESET_N"
+        }
+      ],
+      "net": "XU_RESET_N",
+      "p2_local_return": "P2_REQUIRED",
+      "p2_pad_to_face": "P2_REQUIRED",
+      "proposed_face": "jtag_reset",
+      "ref_pad": "U_CORE_OK.1",
+      "source_owner": "digital_power"
+    },
+    {
+      "fixed_p1": false,
+      "native_pads": [
+        {
+          "center_mm": [
+            165.6,
+            109.0
+          ],
+          "net": "XU_RESET_N"
+        }
+      ],
+      "net": "XU_RESET_N",
+      "p2_local_return": "P2_REQUIRED",
+      "p2_pad_to_face": "P2_REQUIRED",
+      "proposed_face": "jtag_reset",
+      "ref_pad": "U_XU_3V3_OK.6",
+      "source_owner": "digital_power"
+    },
+    {
+      "fixed_p1": false,
+      "native_pads": [
+        {
+          "center_mm": [
+            216.1625,
+            104.2
+          ],
+          "net": "XU_RESET_N"
+        }
+      ],
+      "net": "XU_RESET_N",
+      "p2_local_return": "P2_REQUIRED",
+      "p2_pad_to_face": "P2_REQUIRED",
+      "proposed_face": "jtag_reset",
+      "ref_pad": "U_XU.38",
+      "source_owner": "xmos_core"
+    },
+    {
+      "fixed_p1": false,
+      "native_pads": [
+        {
+          "center_mm": [
+            208.99,
+            129.4
+          ],
+          "net": "XTAL_IN"
+        }
+      ],
+      "net": "XTAL_IN",
+      "p2_local_return": "P2_REQUIRED",
+      "p2_pad_to_face": "P2_REQUIRED",
+      "proposed_face": "crystal",
+      "ref_pad": "R_XTAL_DRIVE.1",
+      "source_owner": "clock_flash_debug"
+    },
+    {
+      "fixed_p1": false,
+      "native_pads": [
+        {
+          "center_mm": [
+            206.99,
+            118.6
+          ],
+          "net": "XTAL_IN"
+        }
+      ],
+      "net": "XTAL_IN",
+      "p2_local_return": "P2_REQUIRED",
+      "p2_pad_to_face": "P2_REQUIRED",
+      "proposed_face": "crystal",
+      "ref_pad": "R_XTAL_FB.1",
+      "source_owner": "clock_flash_debug"
+    },
+    {
+      "fixed_p1": false,
+      "native_pads": [
+        {
+          "center_mm": [
+            216.1625,
+            105.8
+          ],
+          "net": "XTAL_IN"
+        }
+      ],
+      "net": "XTAL_IN",
+      "p2_local_return": "P2_REQUIRED",
+      "p2_pad_to_face": "P2_REQUIRED",
+      "proposed_face": "crystal",
+      "ref_pad": "U_XU.34",
+      "source_owner": "xmos_core"
+    },
+    {
+      "fixed_p1": false,
+      "native_pads": [
+        {
+          "center_mm": [
+            205.72,
+            127.9
+          ],
+          "net": "XTAL_OUT"
+        }
+      ],
+      "net": "XTAL_OUT",
+      "p2_local_return": "P2_REQUIRED",
+      "p2_pad_to_face": "P2_REQUIRED",
+      "proposed_face": "crystal",
+      "ref_pad": "C_XTAL_OUT.1",
+      "source_owner": "clock_flash_debug"
+    },
+    {
+      "fixed_p1": false,
+      "native_pads": [
+        {
+          "center_mm": [
+            208.01,
+            118.6
+          ],
+          "net": "XTAL_OUT"
+        }
+      ],
+      "net": "XTAL_OUT",
+      "p2_local_return": "P2_REQUIRED",
+      "p2_pad_to_face": "P2_REQUIRED",
+      "proposed_face": "crystal",
+      "ref_pad": "R_XTAL_FB.2",
+      "source_owner": "clock_flash_debug"
+    },
+    {
+      "fixed_p1": false,
+      "native_pads": [
+        {
+          "center_mm": [
+            209.6,
+            123.15
+          ],
+          "net": "XTAL_OUT"
+        }
+      ],
+      "net": "XTAL_OUT",
+      "p2_local_return": "P2_REQUIRED",
+      "p2_pad_to_face": "P2_REQUIRED",
+      "proposed_face": "crystal",
+      "ref_pad": "Y_XU.3",
+      "source_owner": "clock_flash_debug"
+    },
+    {
+      "fixed_p1": false,
+      "native_pads": [
+        {
+          "center_mm": [
+            216.1625,
+            106.2
+          ],
+          "net": "XTAL_OUT"
+        }
+      ],
+      "net": "XTAL_OUT",
+      "p2_local_return": "P2_REQUIRED",
+      "p2_pad_to_face": "P2_REQUIRED",
+      "proposed_face": "crystal",
+      "ref_pad": "U_XU.33",
+      "source_owner": "xmos_core"
+    }
+  ],
+  "faces": {
+    "jtag_reset": {
+      "foreign_source_region_hits": [],
+      "inside_outline": true,
+      "measured_width_mm": 3.0,
+      "native_footprint_hits": [],
+      "native_pad_hits": [],
+      "native_rule_area_hits": [],
+      "owners": [
+        "xmos_core",
+        "board_integration"
+      ],
+      "required_width_mm": 2.25,
+      "reservation": [
+        222,
+        82,
+        225,
+        86
+      ],
+      "segment": [
+        [
+          222,
+          84
+        ],
+        [
+          225,
+          84
+        ]
+      ],
+      "source_keepout_hits": [],
+      "width_margin_mm": 0.75
+    },
+    "qspi": {
+      "foreign_source_region_hits": [],
+      "inside_outline": true,
+      "measured_width_mm": 5.0,
+      "native_footprint_hits": [],
+      "native_pad_hits": [],
+      "native_rule_area_hits": [],
+      "owners": [
+        "xmos_core",
+        "clock_flash_debug"
+      ],
+      "required_width_mm": 2.7,
+      "reservation": [
+        200,
+        111.9,
+        205,
+        117.9
+      ],
+      "segment": [
+        [
+          200,
+          114
+        ],
+        [
+          205,
+          114
+        ]
+      ],
+      "source_keepout_hits": [],
+      "width_margin_mm": 2.3
+    }
+  },
+  "limits": [
+    "native board is source-derived evidence, not a fresh variant regeneration",
+    "reservations are diagnostic windows, not source-owned floorplan regions",
+    "current source and generated board contain no rule areas; preservation under a later rule-area addition is unproven",
+    "pad-to-face routes, return continuity and local crystal window remain P2_REQUIRED",
+    "north JTAG continuation crosses unallocated/USB frontend territory and is not proved"
+  ],
+  "native_rule_area_count": 0,
+  "outline_mm": [
+    20.0,
+    20.0,
+    240.0,
+    140.0
+  ],
+  "p1_fixed_native_missing": [],
+  "p1_fixed_ref_count": 27,
+  "p1_fixed_reservation_hits": {
+    "jtag_reset": [],
+    "qspi": []
+  },
+  "pcbnew_version": "10.0.4",
+  "schema": "crow-xu-service-ownership-variant-v1",
+  "source_commit": "9c73181c432b51558003a8be7e496cc8c6757d5a",
+  "source_keepouts_mm": {},
+  "source_sha256": {
+    "03_src/floorplan.yaml": "a882f87682484c37c5766a9e37c5a0d93b38a8e5a775fb1ab4425011da40a275",
+    "03_src/modular_plan.json": "7201aa55cffefca99f9f27e92711cbbcf28387432523a8c960b5cd71e973170e",
+    "03_src/rules/p1_corridor_requirements.yaml": "9ef85e5f4918dea0378203a97fa631ce2e73a690170235902a97a6c8e30527d8"
+  },
+  "status": "INCOMPLETE_RESEARCH",
+  "variant": "two disjoint rectangles with exclusive measured faces"
+}
