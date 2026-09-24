@@ -1,14 +1,24 @@
 {
-  "blocker": "P1 remains unaccepted. On the isolated QSPI-gap board, all 13 QSPI handoffs validate, but the full 59-net schema-2 packet still FAILS. A four-net JTAG integration strip is native-open and validates four XU handoffs. Generic fixed-connector access is now represented fail-closed, but no exact J_JTAG access paths have been declared/proven; U_XU.38 reset remains a nonlocal witness. The reset net has five endpoints across three owners and no saved native copper. The crystal window contains only 3 of 7 pads; both XU crystal witnesses cross the QSPI owner. A pinned USB ESD move fits seven support courtyards, but J_USB edge region/outline remains unresolved pending connector FULL. Native DRC is nonzero with 499 unconnected items, and the USB launch has six unqualified sub-0.410-mm widths. Connector FULL has 19 physical unknowns; TMUX filled/capped process acceptance is external. No P1/P2/P3/route/release or order result is accepted.",
+  "blocker": "P1 remains unaccepted. All 13 QSPI handoffs validate on the isolated QSPI-gap board, but the full 59-net schema-2 packet FAILS. The four-net JTAG strip has raw space and four XU handoffs validate. Generic fixed-connector access is now fail-closed, yet the current single-rectangle contract cannot admit all four J_JTAG pads: TMS/TCK/TDO rectangles hit intervening header pads; TDI has a pad-clear side-contact candidate with only 0.02 mm raw gap and no clearance/return proof. U_XU.38 reset remains a nonlocal witness; its five endpoints span three owners with no saved copper. The crystal window includes only 3 of 7 pads, and XU crystal witnesses cross the QSPI owner. J_USB edge region/outline is unresolved pending connector FULL. Native DRC is nonzero with 499 unconnected items; USB has six unqualified sub-0.410-mm launch widths. Connector FULL has 19 physical unknowns and TMUX filled/capped process acceptance is external. No P1/P2/P3/route/release or order result is accepted.",
   "checkpoint": {
     "path": "06_build/checkpoints/schematic.json",
     "sha256": "917a45414c65cf43dbeef24704da01beda6b9711175cf9cec3af109ec027f4d6",
     "size": 1152
   },
-  "next_command": "On an isolated variant, declare and native-check four disjoint fixed J_JTAG access reservations into the source-owned JTAG strip, keeping the 59-net denominator and separate five-endpoint XU_RESET_N branch. Revise oscillator region/handoffs without crossing the QSPI owner. Resolve the separate J_USB edge region/outline after connector FULL evidence, then rerun P1 and P2. Connector FULL gates P3/routing; TMUX process acceptance gates release. Do not promote scratch USB copper.",
+  "next_command": "Design a source-owned segmented/waypoint J_JTAG access contract or re-evaluate fixed connector placement; prove all four simultaneous native pad escapes, effective clearance and In1.Cu return without weakening the 59-net denominator. Model the separate five-endpoint XU_RESET_N branch and revise oscillator handoffs without crossing the QSPI owner. Resolve J_USB edge/outline after connector FULL, then rerun P1/P2. Connector FULL gates P3/routing; TMUX process acceptance gates release. Do not promote scratch USB copper.",
   "phase": "placement",
   "project": "crow-usb-carrier-v1",
   "receipts": [
+    {
+      "path": "01_docs/research/2026-09-24-jtag-fixed-access-blocker-sol.md",
+      "sha256": "8ccc15c9c5873a679bc7c88a20f6f4ee94859c7057db893b75f2071cec419098",
+      "size": 3748
+    },
+    {
+      "path": "01_docs/research/2026-09-24-jtag-fixed-access-rectangle-obstruction-terra.md",
+      "sha256": "a85ea3ef537b844363dbb595881702b70a0f3e6da9c3a1394f495366c0d5e9a8",
+      "size": 4401
+    },
     {
       "path": "01_docs/research/2026-09-24-p1-native-evidence-failure-evidence/SHA256SUMS",
       "sha256": "fc465fc5477362db2427c4443eb1551f949f3cb10cbeaba685971836397679c4",
@@ -63,6 +73,11 @@
       "path": "01_docs/research/2026-09-24-xu-service-reservation-contract-recommendation-terra.md",
       "sha256": "5de4aa58c71b3ee5a05d7abb05832fdc664be08b38871f582f09d549389eaaa9",
       "size": 3571
+    },
+    {
+      "path": "01_docs/research/jtag_fixed_access_probe_sol.json",
+      "sha256": "5f73551e562d8c1c48fdda3a978e2f730e2334fbd37e658a586320a6f9f85b55",
+      "size": 8494
     },
     {
       "path": "01_docs/research/xu_service_variant/QSPI_GAP.md",
@@ -126,5 +141,5 @@
     }
   ],
   "schema": 1,
-  "state_id": "5447218e447058e84d5926739113c933c6490d943bdc28c4f837f7bcab9f1ce2"
+  "state_id": "f17e02f640e587d7b75ed22a4f7c43ea480c1e98ac20c99f2b7cb79fd7d90919"
 }
