@@ -29,23 +29,37 @@ pads are the immediate copper obstruction; the courtyard is a separate
 placement/body-clearance constraint that an access definition must state
 explicitly for its origin footprint.
 
-## Result: rectangle contract fails
+## Side-contact correction
 
-For any one signal, an axis-aligned access rectangle that touches its source
-pad and reaches the strip must include the signal pad's x interval and cross
-from below `49.36` mm to at least `65` mm.  It therefore includes the paired
-lower-row pad's identical x interval at `y=50.64..53.43` mm.  Each of the four
-single-net rectangles consequently intersects a foreign pad before questions
-of inter-net rectangle overlap arise.
+The initial stronger claim, that every access rectangle necessarily includes
+its paired lower-row pad, is false under the checker's strict-positive-area
+intersection rule.  A rectangle may touch a source pad's **left** x edge and
+extend only leftward.  In particular, `J_JTAG.8` has the candidate rectangle
+`[225.85,49.36,226.36,65]` mm: it reaches the strip (`x<=226`), touches pad 8
+only at `x=226.36`, avoids pad 9 by `0.02` mm, and only boundary-touches pad
+7.  It has no positive-area pad intersection under that narrow predicate.
 
-This is a structural failure of a *single-bbox-per-net* access contract.  It
-does not show that four physical tracks cannot be routed.  A dogleg can, in
-principle, leave a signal pad sideways in the `1.28`-mm gap between the two
+The correction does not rescue the other three signals as a *single* rectangle.
+To reach the strip, a leftward rectangle from pad 6 must span the lower pad 7;
+one from pad 4 must span lower pads 5 and 7; and one from pad 2 must span lower
+pads 3, 5, and 7.  These are positive-area intersections at
+`y=50.64..53.43` mm.  A rightward rectangle is no better because its bbox must
+still extend back to the strip at `x<=226`.
+
+Thus a single-bbox-per-net contract has a demonstrated obstruction for TMS,
+TCK, and TDO, but not a universal pad-overlap proof for TDI.  The TDI
+side-contact rectangle is still not a body/pad/courtyard-clear access proof:
+it has zero clearance to pad 7 and only `0.02` mm to pad 9, lies within the
+origin header's courtyard, and has not been tested against all native copper
+objects or simultaneous reservations.
+
+None of this shows that four physical tracks cannot be routed.  A dogleg can,
+in principle, leave a signal pad sideways in the `1.28`-mm gap between the two
 rows and use the `0.53`-mm raw inter-column gaps below.  At the declared
-`0.15`-mm track and clearance class, one channel consumes `0.45` mm, leaving
-only `0.08` mm raw lateral margin.  Simultaneous doglegs, endpoint-courtyard
-treatment, all other native obstacles, effective clearances, and the In1.Cu
-return remain unproven.
+`0.15`-mm track and clearance class, the raw gap becomes `0.23` mm after
+clearance from both neighboring pads, enough for one `0.15`-mm track with
+`0.08` mm remaining.  Simultaneous doglegs, endpoint-courtyard treatment, all
+other native obstacles, and the In1.Cu return remain unproven.
 
 If the contract requires a path clear of the origin footprint's entire
 courtyard with no explicit source-pad escape exception, it is internally
