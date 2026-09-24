@@ -232,40 +232,8 @@ placement:
     U_PWR: [76.0, 94.0, 0]
   require_anchor: true
   anchors:
-    # Reviewed 90-degree rigid transform of the XMOS and its direct power/PLL
-    # support cluster.  Ordinary anchors make the full block an input to the
-    # legalizer; do not replace these with post_anchors.
-    U_XU: [208.5, 100.0, 90]
-    C_PLL_100N: [208.5, 110.0, 90]
-    C_PLL_1U: [198.7, 101.7, 90]
-    C_XU_USB18: [198.7, 98.3, 90]
-    C_XU_USB33: [208.5, 90.0, 90]
-    C_XU_VDDIO_10: [218.3, 98.3, 90]
-    C_XU_VDDIO_109: [218.3, 101.7, 90]
-    C_XU_VDDIO_121: [204.9, 109.9, 90]
-    C_XU_VDDIO_17: [204.9, 90.1, 90]
-    C_XU_VDDIO_35: [212.1, 90.1, 90]
-    C_XU_VDDIO_56: [212.1, 109.9, 90]
-    C_XU_VDDIO_72: [199.0, 105.5, 90]
-    C_XU_VDDIO_89: [199.0, 94.5, 90]
-    C_XU_VDD_104: [218.0, 94.5, 90]
-    C_XU_VDD_105: [218.0, 105.5, 90]
-    C_XU_VDD_106: [197.2, 102.0, 90]
-    C_XU_VDD_11: [197.2, 98.0, 90]
-    C_XU_VDD_113: [219.8, 98.0, 90]
-    C_XU_VDD_14: [219.8, 102.0, 90]
-    C_XU_VDD_18: [208.5, 112.5, 90]
-    C_XU_VDD_39: [197.7, 106.3, 90]
-    C_XU_VDD_45: [197.7, 93.7, 90]
-    C_XU_VDD_5: [208.5, 87.5, 90]
-    C_XU_VDD_50: [219.3, 93.7, 90]
-    C_XU_VDD_54: [219.3, 106.3, 90]
-    C_XU_VDD_68: [204.1, 112.2, 90]
-    C_XU_VDD_85: [200.1, 110.0, 90]
-    C_XU_VDD_95: [195.7, 102.3, 90]
-    FB_PLL: [195.7, 97.7, 90]
-    # Connector-side USB ESD anchor reviewed with the rotated XMOS block.
-    # It is a placement starting point, not a USB routing or FULL assertion.
+    # Connector-side USB ESD placement starting point. It is not a USB routing
+    # or FULL assertion; the earlier rotated XMOS block was withdrawn.
     U_USB_ESD: [217.0, 36.0, 0]
     # Tentative USB CC/VBUS support-block poses for an isolated P1 geometry
     # probe.  Any corridor using this block still needs measured pad entries.

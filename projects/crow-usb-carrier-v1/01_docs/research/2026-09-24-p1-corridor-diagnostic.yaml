@@ -74,8 +74,8 @@ usb_authoring_probe:
     measured_capacity_slots: null
     reference_allocation: null
     rejection_reason: "The 1.30-mm strip is below the 1.37-mm route-contract envelope. ESD pad centres are 0.700 mm versus 0.710 mm full-width demand. At the XU endpoint, pads 61-64 block access; remaining passages are 0.295 mm and 0.300 mm. With the rigid rotated support block, C_XU_VDD_104 blocks every tested 2.0 x 1.37 mm outward envelope."
-  preserved_local_relationship:
-    C_XU_VDD_104: "Retained at the rotated XMOS support-block pose; moving it away from U_XU.104 was rejected."
+  decoupling_correction:
+    C_XU_VDD_104: "The probe measures C_XU_VDD_104.1 to U_XU.104 at 17.2388 mm. The source cannot claim this is local decoupling; a full rotated-support-block relationship audit is required."
   source_disposition: "The named through-lane rule area was removed from current floorplan.yaml. The six CC/VBUS service anchors remain as an independently collision-clean placement block."
   no_credit: [p1_acceptance, routing, connector_FULL, release, order]
 usb_logical_physical_aliases: {J_USB.10: J_USB.A4, J_USB.15: J_USB.A9, J_USB.2: J_USB.B4, J_USB.7: J_USB.B9}
