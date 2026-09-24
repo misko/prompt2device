@@ -23,10 +23,25 @@ module_change:
     - UsbReceptacle remains the sole J_USB component definition in usb_receptacle.tsx.
     - UsbDeviceFrontend receives electrical net names but no receptacleFootprint prop and does not call UsbReceptacle.
     - CrowCarrier instantiates UsbReceptacle once under usb_edge_connector and UsbDeviceFrontend once under usb_frontend.
-    - usb_edge_connector gets a dedicated schematic sheet/presentation domain and a floorplan region containing J_USB's actual edge pose.
-  proposed_regions:
-    usb_edge_connector: [220, 20, 240, 35]
-    usb_frontend: [200, 35, 236, 70]
+    - usb_edge_connector gets a dedicated schematic sheet/presentation domain; its floorplan region and any outline exception remain unresolved until connector FULL.
+  region_disposition:
+    usb_edge_connector:
+      status: UNRESOLVED_PENDING_CONNECTOR_FULL
+      rejected_candidate: [220, 20, 240, 35]
+      rejection: >-
+        The candidate excludes the measured J_USB F.CrtYd north extent by
+        0.55 mm, so it cannot represent the connector's native envelope.
+      native_courtyard_bbox_mm: [224.955, 19.450, 235.045, 27.800]
+      evidence:
+        board_identifier: fbfb3bda
+        extractor: 2026-09-24-usb-debug-courtyard-bbox-sol.py
+      next_evidence: >-
+        Freeze the selected native board and determine a floorplan region plus
+        any board-outline/edge exception that contains the actual courtyard and
+        satisfies connector FULL. Do not derive a final rectangle from the
+        nominal origin or a source-only pose.
+    usb_frontend:
+      existing_support_region: [200, 35, 236, 70]
 
 connector_census:
   ref: J_USB
@@ -120,4 +135,5 @@ acceptance_gates:
   - J_USB.6 and J_USB.14 remain explicit NC in generated native output
   - USB_DP and USB_DN retain their four-leaf trees and differential routing constraints
   - XU_RESET_N retains its five-leaf, three-owner open-drain tree
+  - a USB edge region/outline exception containing the measured [224.955, 19.450, 235.045, 27.800] mm F.CrtYd envelope requires connector FULL evidence
   - native board, exact edge clearance, connector FULL, routing, return/impedance and DRC require separate evidence

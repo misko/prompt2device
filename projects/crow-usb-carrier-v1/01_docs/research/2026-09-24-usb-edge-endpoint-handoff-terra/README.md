@@ -21,6 +21,14 @@ two intentional SBU NC leaves. It also models the data and support nets as
 trees, so the ESD pads remain shunt leaves rather than invented series
 components.
 
+The earlier research-only edge-region candidate `[220, 20, 240, 35]` is
+withdrawn. On pinned native board `fbfb3bda`, extractor
+`2026-09-24-usb-debug-courtyard-bbox-sol.py` measures the J_USB F.CrtYd bbox as
+`[224.955, 19.450, 235.045, 27.800]` mm. The candidate starts at y=20 and
+therefore excludes the courtyard by 0.550 mm at its north edge. This proposal
+deliberately leaves the final edge region and any outline exception unresolved
+until connector FULL evaluates that complete native envelope.
+
 The paired data trees each have four endpoints: two connector contacts, one
 ESD shunt pad and one XMOS PHY pin. `VBUS_USB` has eight declared endpoints:
 four connector contacts, three local-support endpoints and the one VBUS-sense
@@ -42,9 +50,11 @@ handoff would lose either an assertion source or the pull-up.
 2. Instantiate `UsbReceptacle` once at carrier level in a new
    `usb_edge_connector` presentation/schematic sheet, using the same seven
    canonical nets. Keep the frontend support block separate.
-3. Add `usb_edge_connector` to the modular plan, floorplan regions and
-   handoff records. Transfer every `J_USB.*` endpoint from `usb_frontend` to
-   that owner, preserving the endpoint trees in the YAML proposal.
+3. Add `usb_edge_connector` to the modular plan and handoff records. Transfer
+   every `J_USB.*` endpoint from `usb_frontend` to that owner, preserving the
+   endpoint trees in the YAML proposal. Select its floorplan region and any
+   outline exception only after connector FULL checks the complete native
+   courtyard envelope.
 4. Regenerate the native artifact and independently check the generated
    census, explicit SBU NC annotations, J_USB edge envelope, protection launch,
    USB differential routing/return, and native DRC.
