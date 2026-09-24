@@ -211,6 +211,63 @@ class CoarseCapacityTest(unittest.TestCase):
                                                  'bbox': [4, 3, 6, 7], 'nets': nets}]}
         return corridor
 
+    def add_fixed_connector_access(self):
+        corridor = self.add_integration_corridor()
+        self.source['p1_fixed_refs'].append('U_L0')
+        corridor['faces'][0]['bbox'] = [3.8, 4.25, 4, 5.2]
+        for item in self.allocations[0]['boundary_witnesses']:
+            if item['block'] == 'left':
+                item['boundary_bbox'] = corridor['faces'][0]['bbox'][:]
+        witness = next(w for w in self.allocations[0]['boundary_witnesses']
+                       if w['source'] == 'U_L0.1')
+        witness.update(kind='fixed_connector_access', face='west',
+                       boundary_bbox=[1.875, 3.575, 2.125, 3.825],
+                       reservation_id='fixed_left_access')
+        self.allocations[0]['reservations'].append({
+            'id': 'fixed_left_access', 'kind': 'fixed_connector_access',
+            'corridor_id': 'qspi', 'layer': 'F.Cu',
+            'bbox': [2.125, 3.55, 4, 4.5], 'nets': ['QSPI_CLK']})
+        return witness
+
+    def test_fixed_connector_access_preserves_native_pad_and_corridor_debt(self):
+        self.add_fixed_connector_access()
+        result = self.run_case()
+        self.assertEqual(result['errors'], [])
+        self.assertEqual(result['status'], 'INCOMPLETE')
+        self.assertFalse(result['p1_accepted'])
+        self.assertEqual(result['allocations'][0]['reservations'][-1]['status'], 'INCOMPLETE')
+
+    def test_fixed_connector_access_rejects_movable_or_wrong_pad(self):
+        witness = self.add_fixed_connector_access()
+        self.source['p1_fixed_refs'].remove('U_L0')
+        result = self.run_case()
+        self.assertIn('fixed access requires P1-fixed ref', result['allocations'][0]['reason'])
+        self.source['p1_fixed_refs'].append('U_L0')
+        witness['boundary_bbox'] = [2.5, 3.575, 2.75, 3.825]
+        result = self.run_case()
+        self.assertIn('does not contain physical pad', result['allocations'][0]['reason'])
+
+    def test_fixed_connector_access_rejects_detached_or_wrong_corridor(self):
+        witness = self.add_fixed_connector_access()
+        access = self.allocations[0]['reservations'][-1]
+        access['bbox'] = [2.125, 3.55, 3.9, 4.5]
+        result = self.run_case()
+        self.assertIn('does not join source face', result['allocations'][0]['reason'])
+        access['bbox'] = [2.125, 3.55, 4, 4.5]
+        witness['corridor_id'] = 'missing'
+        result = self.run_case()
+        self.assertIn('undeclared fixed access corridor', result['allocations'][0]['reason'])
+
+    def test_fixed_connector_access_rejects_other_reservation_overlap(self):
+        self.add_fixed_connector_access()
+        self.allocations[0]['reservations'].append({
+            'id': 'competing', 'kind': 'signal', 'layer': 'F.Cu',
+            'bbox': [3, 3.6, 3.5, 4.4], 'axis': 'horizontal',
+            'nets': ['QSPI_CLK'], 'demand_slots': 1, 'slot_pitch_mm': .5})
+        result = self.run_case()
+        self.assertIn('fixed access overlaps other reservation',
+                      result['allocations'][0]['reason'])
+
     def test_integration_corridor_is_declared_debt_without_capacity_credit(self):
         self.add_integration_corridor()
         result = self.run_case()

@@ -36,6 +36,9 @@ An optional ``integration_corridors`` source list binds an empty, disjoint
 endpoints/net demand and P2 pad-to-face/filled-reference obligations. Its
 matching ``integration_corridor`` reservation remains INCOMPLETE without raw
 slot credit; geometry cannot establish native access or return continuity.
+A ``fixed_connector_access`` witness keeps a P1-fixed pad physical and binds a
+separate, disjoint access reservation to a named integration corridor. It is
+only a topology/geometry declaration and carries no routing capacity credit.
 """
 from __future__ import annotations
 
@@ -196,6 +199,29 @@ def _coarse_witness(board, witness, net, owned_pads, aliases, pads, outline,
             raise ContractError(f'{source}: integration P2 pad-to-face obligation missing')
         if not any(p.IsOnLayer(board.GetLayerID(layer)) for p in found):
             raise ContractError(f'{source}: native source pad not on integration layer')
+    elif kind == 'fixed_connector_access':
+        corridor = (integration_corridors or {}).get(witness.get('corridor_id'))
+        if corridor is None:
+            raise ContractError(f'{source}: undeclared fixed access corridor')
+        if ref not in fixed_refs:
+            raise ContractError(f'{source}: fixed access requires P1-fixed ref')
+        if layer != corridor['layer']:
+            raise ContractError(f'{source}: fixed access layer mismatch')
+        endpoint = {'source_pad': source, 'native_pad': native, 'net': net, 'block': block}
+        if endpoint not in corridor['affected']:
+            raise ContractError(f'{source}: fixed access endpoint not corridor declared')
+        if not all(p.IsOnLayer(board.GetLayerID(layer)) and
+                   contains(area, box_mm(p.GetBoundingBox())) for p in found):
+            raise ContractError(f'{source}: fixed access does not contain physical pad on layer')
+        if not contains(region, area):
+            raise ContractError(f'{source}: fixed access pad boundary leaves source region')
+        obligation = witness.get('p2_obligation')
+        selected = next(f for f in corridor['faces'] if f['block'] == block)
+        expected = {'status': 'P2_REQUIRED', **endpoint,
+                    'corridor_id': corridor['id'], 'region_face': selected['region_face'],
+                    'layer': layer, 'to_reservation': corridor['reservation_id']}
+        if obligation != expected:
+            raise ContractError(f'{source}: fixed access P2 pad-to-corridor obligation missing')
     else:
         raise ContractError(f'{source}: unknown boundary witness kind')
     return {'source': source, 'native': native, 'net': net, 'block': block,
@@ -692,9 +718,30 @@ def evaluate_coarse(board_path, contract_path, expected_contract_sha256=None, *,
                                 raise ContractError(f"{verified['source']}: reservation outside declared shared port scope")
                             used_port_endpoints[port['id']].add((verified['source'], verified['native'],
                                                                   verified['net'], verified['block'], verified['layer']))
-                        if witness.get('kind') == 'integration_corridor_handoff':
+                        if witness.get('kind') in ('integration_corridor_handoff', 'fixed_connector_access'):
                             corridor = corridors[witness['corridor_id']]
-                            if (name != corridor['allocation_id'] or
+                            if witness.get('kind') == 'fixed_connector_access':
+                                access = rectangle(target.get('bbox'), 'fixed connector access')
+                                selected = next(f for f in corridor['faces'] if f['block'] == verified['block'])
+                                approach = {'north': 'south', 'south': 'north',
+                                            'east': 'west', 'west': 'east'}[selected['region_face']]
+                                if (name != corridor['allocation_id'] or
+                                        target.get('kind') != 'fixed_connector_access' or
+                                        target.get('corridor_id') != corridor['id'] or
+                                        target.get('layer') != corridor['layer'] or
+                                        target.get('nets') != [verified['net']] or
+                                        not contains(rectangle(regions[verified['block']], 'access source region'), access) or
+                                        not intersects(access, selected['bbox']) or
+                                        not _witness_touches_reservation(
+                                            {'boundary_bbox': access, 'face': approach},
+                                            {'bbox': corridor['bbox']})):
+                                    raise ContractError(f"{verified['source']}: fixed access does not join source face")
+                                for other in reservations:
+                                    if other is not target and other.get('id') != corridor['reservation_id'] and \
+                                            other.get('layer') == corridor['layer'] and \
+                                            intersects(access, rectangle(other.get('bbox'), 'other reservation')):
+                                        raise ContractError(f"{verified['source']}: fixed access overlaps other reservation")
+                            elif (name != corridor['allocation_id'] or
                                     target.get('id') != corridor['reservation_id'] or
                                     target.get('kind') != 'integration_corridor' or
                                     target.get('corridor_id') != corridor['id'] or
@@ -725,6 +772,15 @@ def evaluate_coarse(board_path, contract_path, expected_contract_sha256=None, *,
                                              'nets': reservation['nets'],
                                              'reason': 'P2 native pad-to-face, filled-reference return and effective capacity unproved'})
                             continue
+                        if reservation.get('kind') == 'fixed_connector_access':
+                            if sum(w.get('kind') == 'fixed_connector_access' and
+                                   w.get('reservation_id') == reservation.get('id')
+                                   for w in witnesses) != 1:
+                                raise ContractError(f'{name}: fixed connector access must serve exactly one endpoint')
+                            measured.append({'id': reservation['id'], 'status': 'INCOMPLETE',
+                                             'nets': reservation['nets'],
+                                             'reason': 'fixed pad access, effective capacity and routing unproved'})
+                            continue
                         if associated:
                             if len(associated) != 1 or not contains(associated[0]['reservation_bbox'], rectangle(reservation.get('bbox'), 'shared reservation')):
                                 raise ContractError(f'{name}: reservation outside declared shared port scope')
@@ -752,6 +808,7 @@ def evaluate_coarse(board_path, contract_path, expected_contract_sha256=None, *,
                                                      for w in (allocation.get('boundary_witnesses') or [])
                                                      if isinstance(w, dict)) or
                                                  any(w.get('kind') == 'integration_corridor_handoff'
+                                                     or w.get('kind') == 'fixed_connector_access'
                                                      for w in (allocation.get('boundary_witnesses') or [])
                                                      if isinstance(w, dict)) or
                                                  any(r.get('kind') == 'integration_corridor'
@@ -775,6 +832,8 @@ def evaluate_coarse(board_path, contract_path, expected_contract_sha256=None, *,
                     errors.append(f'{ident}: integration reservation denominator mismatch')
                 for name, reservation in reservations_seen:
                     if (reservation.get('id') != corridor['reservation_id'] and
+                            not (reservation.get('kind') == 'fixed_connector_access' and
+                                 reservation.get('corridor_id') == ident) and
                             set(reservation.get('nets', [])) & set(corridor['nets'])):
                         errors.append(f'{ident}: integration net double reservation credit in {name}')
                     if (reservation.get('id') != corridor['reservation_id'] and
