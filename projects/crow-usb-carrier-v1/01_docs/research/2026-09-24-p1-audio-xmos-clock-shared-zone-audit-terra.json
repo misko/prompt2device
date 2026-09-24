@@ -1,0 +1,257 @@
+{
+  "checker_gap": "schema-2 accepts rectangle-only direct-owner virtual witnesses; this source-owned union needs explicit board_integration shared-zone authority",
+  "fixed_refs": {
+    "count": 27,
+    "exact_current_authority": true,
+    "zone_intersections": []
+  },
+  "hashes": {
+    "board": "37b455203fcdae0c20880a94b17a4bcfb61103fa2b8b9df9ecf095c9c97aa519",
+    "modular_plan": "7201aa55cffefca99f9f27e92711cbbcf28387432523a8c960b5cd71e973170e",
+    "variant": "2f4c1e2e4d2555e230d8505780c7ace18abd3defb3596c36ba8f1fa213f2781b"
+  },
+  "kind": "crow-p1-shared-zone-variant-audit",
+  "p1_accepted": false,
+  "reason": "outer shared-zone boundary intersects full native footprint envelopes; no virtual face, reservation, capacity, return, or P1 claim is valid",
+  "routing_realized": false,
+  "schema": 1,
+  "status": "REJECTED",
+  "zone": {
+    "boundary_intersections": [
+      {
+        "axis": "x",
+        "refs": [
+          "C_ADC_AC6N2",
+          "C_ADC_A_AVDD_10U",
+          "C_ADC_A_DREG_100N",
+          "C_ADC_A_VREF_100N",
+          "C_ADC_A_VREF_10U",
+          "C_ADC_B_AVDD_10U",
+          "C_ADC_B_DREG_100N",
+          "C_ADC_B_VREF_100N",
+          "C_SPOKE_DVDT6",
+          "R_ADC_PD6N",
+          "R_SPOKE_UVLO6",
+          "U_ADC_A",
+          "U_ADC_B",
+          "U_ESD6"
+        ],
+        "span_mm": [
+          72.0,
+          112.0
+        ],
+        "value_mm": 140.0
+      },
+      {
+        "axis": "y",
+        "refs": [
+          "C_A6N",
+          "C_A7N",
+          "C_ADC_AC6N2",
+          "C_ADC_AC7N2",
+          "C_ADC_AC8N2",
+          "C_ADC_CM6N",
+          "C_ADC_CM6P",
+          "C_ADC_CM8P",
+          "C_ISO6",
+          "C_ISO7",
+          "C_SPOKE_DVDT6",
+          "C_SPOKE_DVDT7",
+          "C_SPOKE_DVDT8",
+          "R_ADC_PD6N",
+          "R_ADC_PD8N",
+          "R_IN7N",
+          "R_OUT6P",
+          "R_OUT7P",
+          "U_ESD6",
+          "U_ESD7",
+          "U_ESD8"
+        ],
+        "span_mm": [
+          140.0,
+          185.0
+        ],
+        "value_mm": 72.0
+      },
+      {
+        "axis": "y",
+        "refs": [
+          "C_A8N",
+          "C_ADC_AC8N2",
+          "C_ADC_CM8N",
+          "C_ADC_CM8P",
+          "C_ISO8",
+          "C_SPOKE_DVDT8",
+          "U_ESD8"
+        ],
+        "span_mm": [
+          185.0,
+          190.0
+        ],
+        "value_mm": 72.0
+      },
+      {
+        "axis": "y",
+        "refs": [
+          "C_A8N",
+          "C_ADC_CM8N",
+          "C_ISO8",
+          "R_OUT8P",
+          "R_VBUS_B",
+          "R_VBUS_BE",
+          "R_VBUS_PU"
+        ],
+        "span_mm": [
+          190.0,
+          232.0
+        ],
+        "value_mm": 72.0
+      },
+      {
+        "axis": "y",
+        "refs": [
+          "C_1V8_FF",
+          "C_1V8_OK_VDD",
+          "C_3V3X_FF",
+          "C_ADC_A_VREF_100N",
+          "C_ADC_B_VREF_100N",
+          "C_CORE_FF",
+          "C_U_1V8_IN_1",
+          "C_U_3V3X_IN_1",
+          "L_U_1V8",
+          "L_U_CORE"
+        ],
+        "span_mm": [
+          140.0,
+          185.0
+        ],
+        "value_mm": 112.0
+      }
+    ],
+    "foreign_footprints": [
+      "C_1V8_FF",
+      "C_1V8_OK_VDD",
+      "C_3V3X_FF",
+      "C_A6N",
+      "C_A7N",
+      "C_A8N",
+      "C_ADC_AC6N2",
+      "C_ADC_AC7N2",
+      "C_ADC_AC8N2",
+      "C_ADC_A_AVDD_10U",
+      "C_ADC_A_DREG_100N",
+      "C_ADC_A_VREF_100N",
+      "C_ADC_A_VREF_10U",
+      "C_ADC_B_AVDD_10U",
+      "C_ADC_B_DREG_100N",
+      "C_ADC_B_VREF_100N",
+      "C_ADC_CM6N",
+      "C_ADC_CM6P",
+      "C_ADC_CM8N",
+      "C_ADC_CM8P",
+      "C_CORE_FF",
+      "C_CORE_OK",
+      "C_ISO6",
+      "C_ISO7",
+      "C_ISO8",
+      "C_OPA6",
+      "C_OPA7",
+      "C_OPA8",
+      "C_SPOKE_DVDT6",
+      "C_SPOKE_DVDT7",
+      "C_SPOKE_DVDT8",
+      "C_SPOKE_OUT6",
+      "C_SPOKE_OUT7",
+      "C_SPOKE_OUT8",
+      "C_U_1V8_IN_1",
+      "C_U_1V8_OUT_1",
+      "C_U_3V3X_IN_1",
+      "C_U_3V3X_IN_2",
+      "C_U_CORE_IN_1",
+      "C_U_CORE_OUT_1",
+      "C_XU_3V3_OK_VDD",
+      "L_U_1V8",
+      "L_U_CORE",
+      "Q_VBUS",
+      "R_1V8_FB_BOTTOM",
+      "R_1V8_FB_TOP",
+      "R_1V8_OK_BOT",
+      "R_1V8_OK_TOP",
+      "R_ADC_PD6N",
+      "R_ADC_PD8N",
+      "R_CORE_FB_BOTTOM",
+      "R_IN6N",
+      "R_IN7N",
+      "R_IN8N",
+      "R_OUT6P",
+      "R_OUT7P",
+      "R_OUT8P",
+      "R_SPOKE_ILIM6",
+      "R_SPOKE_ILIM7",
+      "R_SPOKE_ILIM8",
+      "R_SPOKE_UVLO6",
+      "R_SPOKE_UVLO7",
+      "R_SPOKE_UVLO8",
+      "R_VBUS_B",
+      "R_VBUS_BE",
+      "R_VBUS_PU",
+      "R_XU_3V3_OK_TOP",
+      "R_XU_RST_PU",
+      "U_1V8_OK",
+      "U_3V3X",
+      "U_ADC_A",
+      "U_ADC_B",
+      "U_AFE6",
+      "U_AFE7",
+      "U_AFE8",
+      "U_ESD6",
+      "U_ESD7",
+      "U_ESD8",
+      "U_XU_3V3_OK"
+    ],
+    "full_footprint_intersections": 155,
+    "member_blocks": [
+      "audio_clock_tdm",
+      "clock_flash_debug",
+      "xmos_core"
+    ],
+    "member_owners": {
+      "audio_clock_tdm": 39,
+      "clock_flash_debug": 8,
+      "xmos_core": 29
+    },
+    "outer_edge_count": 12,
+    "owner": "board_integration",
+    "owners": {
+      "adc_reference": 9,
+      "analog_ch6": 15,
+      "analog_ch7": 12,
+      "analog_ch8": 15,
+      "audio_clock_tdm": 39,
+      "clock_flash_debug": 8,
+      "digital_power": 24,
+      "usb_vbus_sense": 4,
+      "xmos_core": 29
+    },
+    "rectangles": [
+      [
+        140.0,
+        72.0,
+        190.0,
+        112.0
+      ],
+      [
+        185.0,
+        72.0,
+        232.0,
+        128.0
+      ],
+      [
+        185.0,
+        112.0,
+        232.0,
+        136.0
+      ]
+    ]
+  }
+}

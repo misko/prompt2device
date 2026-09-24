@@ -1,0 +1,76 @@
+# Isolated source-floorplan research only.  This file is deliberately not
+# imported by floorplan.yaml or p1_corridor_requirements.yaml.
+schema: 1
+kind: crow-p1-shared-zone-floorplan-variant
+status: REJECTED
+p1_accepted: false
+routing_realized: false
+base:
+  floorplan_sha256: 4a457c731c204084a83aa817a29ca8fc8acc07097723adefedc296eb4db37b98
+  board: ../../06_build/modular/repaired-trial/crow_carrier.kicad_pcb
+  board_sha256: 37b455203fcdae0c20880a94b17a4bcfb61103fa2b8b9fdec9c97aa519
+  modular_plan_sha256: 7201aa55cffefca99f9f27e92711cbbcf28387432523a8c960b5cd71e973170e
+fixed_refs:
+  - J1
+  - J2
+  - J3
+  - J4
+  - J5
+  - J6
+  - J7
+  - J8
+  - J_PWR
+  - J_USB
+  - J_JTAG
+  - C_HOLD1
+  - C_HOLD2
+  - C_HOLD3
+  - C_HOLD4
+  - C_HOLD5
+  - C_HOLD6
+  - C_HOLD7
+  - C_HOLD8
+  - C_HOLD9
+  - C_HOLD10
+  - C_HOLD11
+  - C_HOLD12
+  - C_HOLD13
+  - C_HOLD14
+  - C_HOLD15
+  - C_HOLD16
+replaces_regions: [audio_clock_tdm, xmos_core, clock_flash_debug]
+shared_zone:
+  id: audio_xmos_clock_service
+  owner: board_integration
+  members: [audio_clock_tdm, xmos_core, clock_flash_debug]
+  # The exact union of the three replaced rectangles.  A union (or an
+  # equivalent polygon) is necessary: a single bounding rectangle would claim
+  # unrelated space.  Internal overlaps are owned once by board_integration.
+  geometry:
+    type: union_rectangles
+    rectangles:
+      - [140, 72, 190, 112]
+      - [185, 72, 232, 128]
+      - [185, 112, 232, 136]
+  net_scope:
+    - AUDIO_MCLK_1V8
+    - TDM_BCLK_1V8
+    - TDM_DATA_1V8
+    - TDM_FSYNC_1V8
+    - QSPI_CLK
+    - QSPI_CS_N
+    - QSPI_D0
+    - QSPI_D1
+    - QSPI_D2
+    - QSPI_D3
+    - XTAL_IN
+    - XTAL_OUT
+  prohibited_straight_cuts:
+    - {axis: y, value_mm: 112, reason: crosses XU decoupler envelopes}
+    - {axis: x, value_mm: 145, reason: crosses ADC/timing/analog envelopes}
+  required_p2_obligations:
+    - {kind: pad_access, blocks: [audio_clock_tdm, xmos_core, clock_flash_debug]}
+    - {kind: local_supply_return, block: xmos_core}
+    - {kind: qspi_crystal_coexistence, blocks: [xmos_core, clock_flash_debug]}
+    - {kind: filled_reference, net: GND}
+nonclaims: [coarse_reservation, virtual_face, capacity, route, DRC, P1_acceptance]
