@@ -1,0 +1,114 @@
+{
+  "added_tracks": 8,
+  "added_vias": 0,
+  "baseline_drc_json_sha256": "c3649ad7d694e966c99a8bb7e133e79b3be03458bc73b1ce84a6678a9f908b57",
+  "baseline_pre_drc_board_sha256": "ce589f8a4889854946ef9a1c234ed57de89bfbf220e60f72cd6d818734d8813e",
+  "baseline_saved_board_sha256": "28f33b87f767721bd16e2b59ee4beb0c9561799b63048416559924fa2500e6f6",
+  "baseline_schematic_parity": 0,
+  "baseline_unconnected": 499,
+  "baseline_violations": {
+    "annular_width": 8,
+    "clearance": 80,
+    "hole_clearance": 64,
+    "via_diameter": 8
+  },
+  "candidate_drc_json_sha256": "710f544dbbdce42a34634a666305e446ff99225774efb67fd1fa33d6b7671417",
+  "candidate_dru_sha256": "f029d3f1918e558cd3f250c7589bd9ecec0ac5617a96d2fdaccc65ce4177bcba",
+  "candidate_fp_lib_table_sha256": "5601fde400e769f779b9b51b9ed00508c53182a188e75c031549ce14bf4098b0",
+  "candidate_pre_drc_board_sha256": "96bc87ee506a129b1fb8f23c9d824d6285171e0318abe97993aa6bba79b7cff2",
+  "candidate_pro_sha256": "fef7f040636689d7ddf6a54abbf596b6bf5534a2fe059996ba6767ab8462bbb5",
+  "candidate_saved_board_sha256": "f34d2dd2bf8146b15bf9c3e587637fb2025642eaf0bc2fa900fffc5cfd2ea2ef",
+  "candidate_schematic_parity": 0,
+  "candidate_unconnected": 499,
+  "candidate_violations": {
+    "annular_width": 8,
+    "clearance": 80,
+    "hole_clearance": 64,
+    "track_dangling": 2,
+    "via_diameter": 8
+  },
+  "in1_gnd_samples": [
+    {
+      "in1_gnd_filled": true,
+      "x": 217.0,
+      "y": 95.24
+    },
+    {
+      "in1_gnd_filled": true,
+      "x": 217.5,
+      "y": 95.24
+    },
+    {
+      "in1_gnd_filled": true,
+      "x": 218.0,
+      "y": 95.24
+    },
+    {
+      "in1_gnd_filled": true,
+      "x": 222.0,
+      "y": 95.24
+    },
+    {
+      "in1_gnd_filled": true,
+      "x": 230.0,
+      "y": 95.24
+    },
+    {
+      "in1_gnd_filled": true,
+      "x": 217.0,
+      "y": 95.8
+    },
+    {
+      "in1_gnd_filled": true,
+      "x": 222.0,
+      "y": 95.8
+    },
+    {
+      "in1_gnd_filled": true,
+      "x": 230.0,
+      "y": 95.8
+    }
+  ],
+  "skew_mm": 0.16,
+  "source_floorplan_sha256": "1eb9fc598a40094716413ef6996bfcf2efe3dd021eff15cd452e670aa24fffdb",
+  "source_netlist_sha256": "f3b4e039a695eeec34843174e9430d4bb5c65c4773ed3fa2a9998a18a0654d0e",
+  "source_nets_sha256": "c2de0a8645d156eb219f9ebe65f6978b8123965f7e112d56ee91d12d2d06e109",
+  "source_schematic_sha256": "89f474a884c2aa8dc75bd582035d1f94ebadf3875817110ae38147580250aa32",
+  "status": "DIAGNOSTIC_ONLY_INCOMPLETE",
+  "track_lengths_mm": {
+    "USB_DN": 13.1,
+    "USB_DP": 13.26
+  },
+  "usb_findings": [
+    {
+      "description": "Track has unconnected end",
+      "items": [
+        {
+          "description": "Track [USB_DN] on F.Cu, length 12.5750 mm",
+          "pos": {
+            "x": 217.425,
+            "y": 95.8
+          },
+          "uuid": "4dd7bb17-c38f-4c05-9a3c-6488b30c9f75"
+        }
+      ],
+      "severity": "warning",
+      "type": "track_dangling"
+    },
+    {
+      "description": "Track has unconnected end",
+      "items": [
+        {
+          "description": "Track [USB_DP] on F.Cu, length 12.5750 mm",
+          "pos": {
+            "x": 217.425,
+            "y": 95.24
+          },
+          "uuid": "fe115fba-a9c2-4157-9ee5-00e64fdc9564"
+        }
+      ],
+      "severity": "warning",
+      "type": "track_dangling"
+    }
+  ]
+}

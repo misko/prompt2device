@@ -1,11 +1,11 @@
 {
-  "blocker": "The 45-page current source retains 2/2 SOUND pre-route reviews and is a WIP DO-NOT-ORDER checkpoint. The P1 native-evidence campaign is terminal FAIL and consumed: its mixed-board-SHA candidate and any placement/capacity PASS are forensic and non-creditable. A distinct prospective P1 root requires a fresh frozen packet and independent schema-2 admission before any one native attempt. No accepted board/P2/P3/routing/physical E-FAULT/sourcing allocation/release/order result is implied.",
+  "blocker": "The 45-page current source retains 2/2 SOUND pre-route reviews and is a WIP DO-NOT-ORDER checkpoint. The P1 native-evidence campaign is terminal FAIL and consumed: its mixed-board-SHA candidate and any placement/capacity PASS are forensic and non-creditable. A distinct prospective P1 root requires a fresh frozen packet and independent schema-2 admission before any one native attempt. No accepted board/P2/P3/routing/physical E-FAULT/sourcing allocation/release/order result is implied. The isolated USB F.Cu launch probe is DRC-clear only locally and still has two intentional dangling ends; C_XU_VDD_54 decoupling/ground return, full USB route/SI, all existing board DRC/unconnected debt, and connector FULL remain open.",
   "checkpoint": {
     "path": "06_build/checkpoints/schematic.json",
     "sha256": "917a45414c65cf43dbeef24704da01beda6b9711175cf9cec3af109ec027f4d6",
     "size": 1152
   },
-  "next_command": "From this clean commit, freeze the new P1 replacement packet and obtain independent source and native admission with candidate-bound receipt hashes and explicit corridor/ownership evidence, then dispatch at most one new P1 native attempt. Do not resume terminal P1 campaigns or promote their forensic candidate.",
+  "next_command": "Review the source-defined USB launch diagnostic and C_XU_VDD_54 decoupling debt; then freeze a distinct P1 replacement packet and obtain independent schema-2 admission before any governed native attempt. Do not resume terminal P1 campaigns or promote diagnostic copper.",
   "phase": "placement",
   "project": "crow-usb-carrier-v1",
   "receipts": [
@@ -20,6 +20,21 @@
       "size": 2800
     },
     {
+      "path": "01_docs/research/2026-09-24-usb-fcu-launch-diagnostic-summary.json",
+      "sha256": "394b0d89ade9cbfc67e8392493a9578c77aea644a7abb6cf1043f7fa6de893ee",
+      "size": 3285
+    },
+    {
+      "path": "01_docs/research/2026-09-24-usb-fcu-launch-diagnostic.md",
+      "sha256": "42949404b4a3aebaf4ec5c2b61bf39ae4e0fd71efc216ca7df5797fbf69636be",
+      "size": 4259
+    },
+    {
+      "path": "03_src/diagnostics/usb_fcu_launch_probe.py",
+      "sha256": "7a05b24297f627631363934e96966e72b2a7e7e409ecf1b491d245ebcef2f222",
+      "size": 8732
+    },
+    {
       "path": "08_reviews/pre-route_schematic_render.md",
       "sha256": "05ff9b639b7f1104f367f34ec292244190e13b11687b35b0438150e9867382e0",
       "size": 2369
@@ -31,5 +46,5 @@
     }
   ],
   "schema": 1,
-  "state_id": "ee6afe67f3b16cb92593feca948c5bb7f7607622e9311169650cf48b6c5620cd"
+  "state_id": "62700921718c40a623662e762099c820e39c156cece28cb32c2bd659d9fdf482"
 }
