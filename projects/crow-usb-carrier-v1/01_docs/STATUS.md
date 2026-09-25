@@ -1,12 +1,12 @@
 # Project status
 
-<!-- pause-state:c0459bd22505a7aa59af86c16af37d54bbfab272aab129d01c80af5141d94de0 -->
+<!-- pause-state:22f93e51e77f56ac1dfea5ed55bc45565a8419fe427c5d2749c5f5eb153c62f1 -->
 
 - Phase: `prototype-layout-diagnostic`
 - State: **PAUSED**
 - Checkpoint: `03_src/rules/critical_part_selection.yaml` (`15288355fcc7`)
-- Blocker: The exact-pair 3313A rule is tested but unadopted. Frozen-board P1 remains INCOMPLETE: JTAG accesses narrow below Default width, reset geometry is unfinished, and timing pad access/allocation is unproved. Affected P2, USB complete route/return, connector FULL, prototype-only ESD, stack/order and release remain open.
-- Next command: `On the frozen expanded placement, resolve source-backed JTAG/reset and timing pad access; rerun independent P1 and affected P2 checks. Then review the unadopted 3313A USB four-leaf merge/ESD/XU transition and In1.Cu return before one bounded native route experiment. Preserve D15 failed history and D18 physical/release holds; do not regenerate D15 or order.`
+- Blocker: 3313A exact-pair clearance is tested but unadopted. Current source has incomplete P1 reset/USB ownership and timing bundle access/return; affected P2, connector FULL, prototype-only ESD, stack/order and release remain open. The 0.15-mm JTAG access geometry is a screened proposal, not a routed/native P1 pass.
+- Next command: `On the frozen expanded placement, make one source-backed P1 candidate for the five-terminal reset tree and owned USB fixed-connector corridor, then test native pad access and the complete P1 denominator. Separately resolve timing-neighbour access and local GND return for affected P2. Keep 3313A source unadopted until full USB topology/return review; D18 allows no private route experiment before independent P1 and affected P2 admission. Preserve D15 failed history and physical/release holds.`
 
 ## Bound receipts
 
@@ -15,12 +15,16 @@
 - `01_docs/decisions/0013-usb-esd-prototype-boundary.md` — `ed83de26a0c3`
 - `01_docs/decisions/0018-evidence-scheduling-and-private-design-work.md` — `3844ed14d92b`
 - `01_docs/findings.yaml` — `27cbf04b140a`
-- `01_docs/journal/placement.md` — `7e522f50f925`
+- `01_docs/journal/placement.md` — `cc7a04e10e5a`
 - `01_docs/research/2026-09-24-public-stock-569/public-stock.json` — `aa9491bf6df4`
 - `01_docs/research/2026-09-25-early-pair-preflight/expanded_locked.json` — `00dba81709ab`
 - `01_docs/research/2026-09-25-early-pair-preflight/historical_d15.json` — `dd3264b35baa`
 - `01_docs/research/2026-09-25-early-pair-preflight/replay.json` — `a78a74a4f228`
-- `01_docs/research/2026-09-25-expanded-service-timing-capacity-sol/README.md` — `ad12ca96b0ae`
+- `01_docs/research/2026-09-25-expanded-locked-p1p2-single-experiment-no-go-terra.md` — `1209860e291b`
+- `01_docs/research/2026-09-25-expanded-service-reset-access-sol/README.md` — `50422032d2fd`
+- `01_docs/research/2026-09-25-expanded-service-reset-access-sol/probe.py` — `9ad727e43a2a`
+- `01_docs/research/2026-09-25-expanded-service-reset-access-sol/result.json` — `3dc4584cc1ab`
+- `01_docs/research/2026-09-25-expanded-service-timing-capacity-sol/README.md` — `6e3284fc9f4c`
 - `01_docs/research/2026-09-25-expanded-service-timing-capacity-sol/measure.py` — `7812eb60ee26`
 - `01_docs/research/2026-09-25-expanded-service-timing-capacity-sol/measurement.json` — `93bb33a0e1ef`
 - `01_docs/research/2026-09-25-ti-prototype-p-prec-isolated-check-sol.md` — `980eebc12250`

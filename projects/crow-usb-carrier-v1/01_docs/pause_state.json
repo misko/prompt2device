@@ -1,11 +1,11 @@
 {
-  "blocker": "The exact-pair 3313A rule is tested but unadopted. Frozen-board P1 remains INCOMPLETE: JTAG accesses narrow below Default width, reset geometry is unfinished, and timing pad access/allocation is unproved. Affected P2, USB complete route/return, connector FULL, prototype-only ESD, stack/order and release remain open.",
+  "blocker": "3313A exact-pair clearance is tested but unadopted. Current source has incomplete P1 reset/USB ownership and timing bundle access/return; affected P2, connector FULL, prototype-only ESD, stack/order and release remain open. The 0.15-mm JTAG access geometry is a screened proposal, not a routed/native P1 pass.",
   "checkpoint": {
     "path": "03_src/rules/critical_part_selection.yaml",
     "sha256": "15288355fcc731ff8b1b0e35a1ae47b9faf66140223cfea0d31c91d99e9dc1ba",
     "size": 1148
   },
-  "next_command": "On the frozen expanded placement, resolve source-backed JTAG/reset and timing pad access; rerun independent P1 and affected P2 checks. Then review the unadopted 3313A USB four-leaf merge/ESD/XU transition and In1.Cu return before one bounded native route experiment. Preserve D15 failed history and D18 physical/release holds; do not regenerate D15 or order.",
+  "next_command": "On the frozen expanded placement, make one source-backed P1 candidate for the five-terminal reset tree and owned USB fixed-connector corridor, then test native pad access and the complete P1 denominator. Separately resolve timing-neighbour access and local GND return for affected P2. Keep 3313A source unadopted until full USB topology/return review; D18 allows no private route experiment before independent P1 and affected P2 admission. Preserve D15 failed history and physical/release holds.",
   "phase": "prototype-layout-diagnostic",
   "project": "crow-usb-carrier-v1",
   "receipts": [
@@ -36,8 +36,8 @@
     },
     {
       "path": "01_docs/journal/placement.md",
-      "sha256": "7e522f50f9252423d7f0a0aa4fad4342455a71672db909f7a98158b064ac5f37",
-      "size": 8352
+      "sha256": "cc7a04e10e5a8308de8eb1197242f7695cda282db0234b7c130a11524994a444",
+      "size": 9899
     },
     {
       "path": "01_docs/research/2026-09-24-public-stock-569/public-stock.json",
@@ -60,9 +60,29 @@
       "size": 43990
     },
     {
+      "path": "01_docs/research/2026-09-25-expanded-locked-p1p2-single-experiment-no-go-terra.md",
+      "sha256": "1209860e291b2b0dadc2bef693524b8af9735543310b4ecf971da7dc2341f159",
+      "size": 4002
+    },
+    {
+      "path": "01_docs/research/2026-09-25-expanded-service-reset-access-sol/README.md",
+      "sha256": "50422032d2fd76d2bf82e25cab25618970b5c6519728719a04f73be095da8a86",
+      "size": 4315
+    },
+    {
+      "path": "01_docs/research/2026-09-25-expanded-service-reset-access-sol/probe.py",
+      "sha256": "9ad727e43a2a3eb0fb92bc6ce598a540024a03bc650b3385e6a0f3ac42c34899",
+      "size": 6283
+    },
+    {
+      "path": "01_docs/research/2026-09-25-expanded-service-reset-access-sol/result.json",
+      "sha256": "3dc4584cc1abd64a0b8112e29f7ae87d47ae09238e4bb8c7cf0a5fb763bb9d7f",
+      "size": 3222
+    },
+    {
       "path": "01_docs/research/2026-09-25-expanded-service-timing-capacity-sol/README.md",
-      "sha256": "ad12ca96b0aea5abb488a424d22ff9bbfc028632289797187eedcd97a9929762",
-      "size": 5616
+      "sha256": "6e3284fc9f4cc154919aced897bb74a7bab21e49cdb70cd791930afe259bf4e2",
+      "size": 5773
     },
     {
       "path": "01_docs/research/2026-09-25-expanded-service-timing-capacity-sol/measure.py",
@@ -141,5 +161,5 @@
     }
   ],
   "schema": 1,
-  "state_id": "c0459bd22505a7aa59af86c16af37d54bbfab272aab129d01c80af5141d94de0"
+  "state_id": "22f93e51e77f56ac1dfea5ed55bc45565a8419fe427c5d2749c5f5eb153c62f1"
 }

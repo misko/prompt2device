@@ -1,0 +1,138 @@
+{
+  "claim": "source proposal only; no reset tree, copper route, P1 admission or filled return",
+  "input_hashes": {
+    "board": "fe8d2c9a9922eeab2371d0187da9407ac590687a77b03a8a099c35a75b5ddd16",
+    "capacity_helper": "fdbf97c70a105205423a7b4430f584344346a2250ddb63a0f71260e7cb284dd0",
+    "contract": "9faaed39333c0db45c188003d2ac6bacc69562f259f8332d0d6a79db7d25037f",
+    "floorplan": "8a805d92d4f57c3a0db00a45d1c9aef57958eb0c219d44f9ca89e5531021d8b4",
+    "modular_plan": "02be5ad6ea879ac04d5dfd9e2e09d5226f85c85fa83d72628aa40cf93de6b4d8",
+    "rules_custom": "00ab83d8484368f132392523972c1f41fc9073423d3c600feec962684f9c3b0a",
+    "rules_project": "7977bc9edb88e1ef723eb256f07949871493dfda3d2c2491dd5d5b6087ddc094",
+    "source": "e8ff456de1868386890dbb5413bb20dc054b5d711b7c9b97d8b02a6b4695ae92"
+  },
+  "jtag_authored_access": {
+    "jtag_access_2": {
+      "at_015_native_hits": [],
+      "at_015_other_path_hits": [],
+      "naive_020_native_hits": [
+        "J_JTAG.1"
+      ],
+      "naive_020_other_path_hits": [],
+      "segment_count": 4
+    },
+    "jtag_access_4": {
+      "at_015_native_hits": [],
+      "at_015_other_path_hits": [],
+      "naive_020_native_hits": [
+        "J_JTAG.9"
+      ],
+      "naive_020_other_path_hits": [
+        "jtag_access_6"
+      ],
+      "segment_count": 5
+    },
+    "jtag_access_6": {
+      "at_015_native_hits": [],
+      "at_015_other_path_hits": [],
+      "naive_020_native_hits": [],
+      "naive_020_other_path_hits": [
+        "jtag_access_4",
+        "jtag_access_8"
+      ],
+      "segment_count": 5
+    },
+    "jtag_access_8": {
+      "at_015_native_hits": [],
+      "at_015_other_path_hits": [],
+      "naive_020_native_hits": [
+        "J_JTAG.10"
+      ],
+      "naive_020_other_path_hits": [
+        "jtag_access_6"
+      ],
+      "segment_count": 5
+    }
+  },
+  "reset_digital_gap_proposal": {
+    "axis": "horizontal",
+    "bbox_mm": [
+      185.0,
+      100.0,
+      190.0,
+      110.5
+    ],
+    "cleared_aperture_mm": 10.2,
+    "native_obstacles": [],
+    "reservation_overlaps": []
+  },
+  "reset_endpoints": {
+    "J_JTAG.10": {
+      "bbox_mm": [
+        225.09,
+        46.57,
+        225.83,
+        49.36
+      ],
+      "net": "XU_RESET_N"
+    },
+    "R_XU_RST_PU.2": {
+      "bbox_mm": [
+        160.04,
+        107.48,
+        160.58,
+        108.12
+      ],
+      "net": "XU_RESET_N"
+    },
+    "U_CORE_OK.1": {
+      "bbox_mm": [
+        151.0,
+        120.15,
+        152.325,
+        120.75
+      ],
+      "net": "XU_RESET_N"
+    },
+    "U_XU.38": {
+      "bbox_mm": [
+        215.425,
+        103.875,
+        216.9,
+        104.125
+      ],
+      "net": "XU_RESET_N"
+    },
+    "U_XU_3V3_OK.6": {
+      "bbox_mm": [
+        165.25,
+        116.295,
+        165.95,
+        116.545
+      ],
+      "net": "XU_RESET_N"
+    }
+  },
+  "reset_fixed_access_proposal": {
+    "native_clearance_hits": [],
+    "other_access_clearance_hits": [],
+    "segments_mm": [
+      [
+        221.175,
+        47.89,
+        225.09,
+        48.04
+      ],
+      [
+        221.175,
+        48.04,
+        221.325,
+        65.0
+      ]
+    ]
+  },
+  "rules": {
+    "absolute_min_track_mm": 0.15,
+    "default_clearance_mm": 0.15,
+    "default_track_mm": 0.2
+  }
+}

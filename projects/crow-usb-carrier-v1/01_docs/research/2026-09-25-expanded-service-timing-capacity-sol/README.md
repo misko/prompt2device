@@ -47,8 +47,10 @@ reservation overlap in their interiors. Their face spans and both 0.15-mm
 edge margins were measured separately; these nominal face counts also omit
 pad-to-face escape. All four *authored* fixed-JTAG access chains consist of
 four or five segments with a 0.15-mm narrowest segment. They are source
-reservations, **not native copper tracks**. Since a Default trace is 0.20 mm,
-none proves an effective fixed-pad connection under the current rules.
+reservations, **not native copper tracks**. They cannot fit a 0.20-mm Default
+width trace. The project's absolute minimum is 0.15 mm and the custom rules
+do not impose a separate Default minimum, so a narrow native track may be
+eligible; its exact clearance, corner joins and full stroke still need proof.
 The reset tree has five validated native endpoints but `geometry: null` and
 no reserved branch capacity. Thus the 6/4/2 free trunk apertures cannot
 establish a complete 13-net service capacity lower bound.
