@@ -1,0 +1,75 @@
+{
+  "connector_geometry_unchanged": true,
+  "data_stub": {
+    "end_mm": [
+      199.805,
+      97.6
+    ],
+    "layer": "F.Cu",
+    "length_mm": 1.0325,
+    "net": "TDM_DATA_1V8",
+    "pad": "U_XU.107",
+    "start_mm": [
+      200.8375,
+      97.6
+    ],
+    "width_mm": 0.15
+  },
+  "drc": {
+    "baseline_types": {
+      "lib_footprint_issues": 142
+    },
+    "baseline_unconnected": 499,
+    "candidate_types": {
+      "lib_footprint_issues": 142,
+      "track_dangling": 1
+    },
+    "candidate_unconnected": 499,
+    "new_types": {
+      "track_dangling": 1
+    }
+  },
+  "fixed_reference_count": 33,
+  "fixed_reference_poses_unchanged": true,
+  "gnd_transition": {
+    "fcu_segments_mm": [
+      [
+        197.84,
+        99.1
+      ],
+      [
+        197.55,
+        98.5
+      ],
+      [
+        197.2,
+        98.2
+      ]
+    ],
+    "in1_filled_polygon": 8,
+    "source_pad": "C_XU_VDD_106.2",
+    "via_diameter_mm": 0.6,
+    "via_drill_mm": 0.3,
+    "via_mm": [
+      197.2,
+      98.2
+    ]
+  },
+  "input_hashes": {
+    "board": "fe8d2c9a9922eeab2371d0187da9407ac590687a77b03a8a099c35a75b5ddd16",
+    "p1_fixed_refs": "e8ff456de1868386890dbb5413bb20dc054b5d711b7c9b97d8b02a6b4695ae92",
+    "project": "7977bc9edb88e1ef723eb256f07949871493dfda3d2c2491dd5d5b6087ddc094",
+    "rules": "00ab83d8484368f132392523972c1f41fc9073423d3c600feec962684f9c3b0a"
+  },
+  "kind": "expanded-tdm-data-local-return-opportunity",
+  "limitations": [
+    "DATA end intentionally dangling; no route",
+    "local plane overlap is not continuous-return proof",
+    "no timing, impedance, crosstalk, via-inductance, source/receiver, USB, P1, or P2 credit"
+  ],
+  "p1_accepted": false,
+  "p2_accepted": false,
+  "routing_realized": false,
+  "schema": 1,
+  "status": "P2_GEOMETRY_ONLY"
+}
