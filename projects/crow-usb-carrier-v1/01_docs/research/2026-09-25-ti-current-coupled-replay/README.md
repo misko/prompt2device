@@ -13,9 +13,10 @@ The trial PCB SHA-256 is
 Its private receipt, native DRC and source copy are under
 `06_build/prototype_board_diagnostic/current-ti-coupled-replay-20260925/`.
 Both boards used identical effective `.kicad_pro` and `.kicad_dru` bytes,
-including the TMUX POFV rules. Their native DRC reports **0 violations,
-499 unconnected items and 0 schematic parity issues**. Count parity and pin
-map checks pass on the trial.
+including the TMUX POFV rules. Their native DRC reports **0 violations and
+499 unconnected items**. The empty KiCad schematic-parity lists do not
+establish a performed parity test. Separate count-parity and pin-map checks
+pass on the trial.
 
 The [exact native comparison](comparison.json) confirms 45 expected footprint
 pose changes, no other pose changes, all 27 P1-fixed poses unchanged and every
@@ -73,8 +74,9 @@ geometry on the same current-source board. It moves `U_ISO1` to
 `[27.05, 74.6, 0]`, `U_AUDIO` to `[28.7, 109.85, 0]`, and `R_AUDIO_PD` to
 `[28.45, 106.1, 90]` (mm, degrees). The current exact saved PCB is
 `0bd3ac8dd8c80177958c009a0644f0bc723bcee7ad7085c2fb76c09c5df958f5`.
-Count and pin-map parity pass; native DRC remains **0 violations, 499 open,
-0 schematic parity** under unchanged effective rules. All **11/11 `AUDIO_EN`
+Count and pin-map parity pass; native DRC remains **0 violations and 499 open**
+under unchanged effective rules. KiCad schematic parity is not established by
+that report. All **11/11 `AUDIO_EN`
 native terminals** now lie inside their declared source-owner regions. A
 native comparison confirms exactly these three of 569 footprint poses changed;
 all 27 P1-fixed poses, 1,872 pad identities/local geometries, and the 14
@@ -100,9 +102,11 @@ the missing restraint geometry on this same source candidate. It adds six
 `[212,45]`, `[30,82]`, `[130,132]`, and `[230,130]` mm. The current private
 PCB SHA-256 is `009ecf6383f07129653758fdc0855c793d8915e4ae5b0980278e7a5fa4fc47c7`.
 Exactly H1–H6 are added; all previous 569 footprint poses and pad identities
-are unchanged. Count/pin-map parity and native DRC pass at **0 violations,
-499 open, 0 schematic parity**. Hole centers are at least 8 mm from the
-rectangle outline. The smallest measured gap between a mounting footprint's
+are unchanged. The separate count/pin-map parity checks pass; native DRC
+reports **0 violations and 499 open connections**. KiCad could not fetch a
+fully annotated schematic netlist, so its schematic-parity test did not run;
+the empty JSON parity list is not a parity pass. Hole centers are at least
+8 mm from the rectangle outline. The smallest measured gap between a mounting footprint's
 courtyard box and another component's courtyard box is only **1.513 mm**
 (H5 to C_HOLD16); H2 is **2.007 mm** from J4/J5. These are screening
 measurements, not screw-head, washer, standoff, connector-body, or fixture

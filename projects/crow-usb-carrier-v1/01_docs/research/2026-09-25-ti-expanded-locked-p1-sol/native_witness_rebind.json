@@ -1,0 +1,19 @@
+{
+  "board_binding_changed": true,
+  "board_sha256": "fe8d2c9a9922eeab2371d0187da9407ac590687a77b03a8a099c35a75b5ddd16",
+  "engineering_acceptance": false,
+  "geometry_changes": [],
+  "independent_review_required": true,
+  "input_contract_semantic_sha256": "6c69225fc19a214093ff1204915de060e2e9e98ba56c5c6406e371ba77223a75",
+  "invalidated_reviews": [
+    "placement",
+    "geometry",
+    "P1",
+    "routing",
+    "release"
+  ],
+  "kind": "p1-native-witness-diagnostic",
+  "observed_contract_board_sha256": "009ecf6383f07129653758fdc0855c793d8915e4ae5b0980278e7a5fa4fc47c7",
+  "p1_accepted": false,
+  "selection_review": "NOT_EVALUATED_BY_GEOMETRY_DIAGNOSTIC"
+}

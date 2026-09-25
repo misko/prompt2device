@@ -1,0 +1,16 @@
+# Expanded-outline locked Crow P1 diagnostic
+
+**Research-only `INCOMPLETE`; no P1, connector, routing, release, or order acceptance.** The single private candidate is `06_build/prototype_board_diagnostic/current-ti-mounting-expanded-locked-20260925/`, derived from the exact six-hole private board SHA-256 `009ecf6383f07129653758fdc0855c793d8915e4ae5b0980278e7a5fa4fc47c7`. Its final native board SHA-256 is `fe8d2c9a9922eeab2371d0187da9407ac590687a77b03a8a099c35a75b5ddd16`.
+
+The private floorplan extends the outline to x=10..240, y=20..150 mm and places H1 `(30,40)`, H2 `(130,40)`, H3 `(211.5,45)`, H4 `(18,82)`, H5 `(130,142)`, H6 `(230,130)`. It narrows only the diagnostic planning edges needed for the provisional Ø8 mm hole envelope: `analog_ch1` and `analog_ch5` start at y=44, and `clock_flash_debug` ends at x=225. Sixty-nine `post_anchors` bind the electrical refs that the first unlocked replay moved to their exact native six-hole poses. One copied `C_FILTER5P2` coordinate is serialized as 131.7 mm so KiCad imports the original 131.699999 mm native integer position; the exact integer-coordinate comparison confirms **all 569 electrical footprint poses unchanged**. No route was added.
+
+`generate_board_generic.py` regenerated the board, `generate_rules_generic.py` regenerated `.kicad_pro` and `.kicad_dru`, and the TMUX B2 POFV generator restored the eight protected areas. The separate count-parity check passes 569/569 against circuit JSON and netlist; pin-map parity passes 799 physical identities. Refilled native DRC reports **zero violations and 499 unrouted connections**. KiCad could not fetch a fully annotated schematic netlist, so its schematic-parity test did not run; the empty JSON parity list is not a parity pass. The complete `p1_corridor_capacity` evaluation with `diagnose_all=True` reports `INCOMPLETE`, `routing_realized=false`, `p1_accepted=false`, zero global errors, zero independent diagnostics, and all five allocations `INCOMPLETE`. Its prior nine virtual power-window witnesses and all ten power reservation geometries are byte-for-byte unchanged in the contract copy. The exact timing denominator remains 14 nets/54 terminals, including four supported two-terminal crossings and 11-terminal AUDIO_EN. The ADC7 portal still has null capacity.
+
+`build_trial.py` pins the final private board/floorplan and previous P1 packet hashes, rebinds native witnesses through the shared integration helper, checks that the power-window geometry did not change, and runs the full P1 evaluator. `verify_candidate.py` independently checks the board hashes, all 569 native poses, six hole poses, DRC counts, and the no-credit P1 receipt:
+
+```sh
+python3 projects/crow-usb-carrier-v1/01_docs/research/2026-09-25-ti-expanded-locked-p1-sol/build_trial.py
+python3 projects/crow-usb-carrier-v1/01_docs/research/2026-09-25-ti-expanded-locked-p1-sol/verify_candidate.py
+```
+
+The private output's `receipt.json` records final board, floorplan, rules, DRC, and no-credit state. The final P1 source SHA-256 is `e8ff456de1868386890dbb5413bb20dc054b5d711b7c9b97d8b02a6b4695ae92`; the contract SHA-256 is `9faaed39333c0db45c188003d2ac6bacc69562f259f8332d0d6a79db7d25037f`. The research packet is tracked; the private board remains ignored. Canonical source and board were not edited.

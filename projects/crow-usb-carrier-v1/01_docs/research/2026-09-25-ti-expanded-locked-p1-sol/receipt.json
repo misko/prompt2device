@@ -1,0 +1,20 @@
+{
+  "allocations": {
+    "adc_analog_boundary": "INCOMPLETE",
+    "adc_timing_xmos_bundle": "INCOMPLETE",
+    "power_boundary_windows": "INCOMPLETE",
+    "usb_device_pair": "INCOMPLETE",
+    "xmos_service_escape": "INCOMPLETE"
+  },
+  "board_sha256": "fe8d2c9a9922eeab2371d0187da9407ac590687a77b03a8a099c35a75b5ddd16",
+  "contract_sha256": "9faaed39333c0db45c188003d2ac6bacc69562f259f8332d0d6a79db7d25037f",
+  "diagnostics": [],
+  "errors": [],
+  "floorplan_sha256": "8a805d92d4f57c3a0db00a45d1c9aef57958eb0c219d44f9ca89e5531021d8b4",
+  "p1_accepted": false,
+  "power_witness_count": 10,
+  "routing_realized": false,
+  "source_sha256": "e8ff456de1868386890dbb5413bb20dc054b5d711b7c9b97d8b02a6b4695ae92",
+  "status": "INCOMPLETE",
+  "unchanged_virtual_power_windows": 9
+}
