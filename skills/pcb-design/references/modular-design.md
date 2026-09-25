@@ -64,6 +64,14 @@ when other parts owned by that block sit elsewhere. Represent those attachments
 in coupled placement/proof groups; do not use a block-center seed or a clean
 courtyard check as evidence that its electrical placement is complete.
 
+After the first native placement, census every footprint's full body/courtyard
+envelope and pads against its functional owner and all planning regions before
+building P1 corridors. Report owner escapes, foreign planning intersections,
+and actual cross-owner native collisions separately; a rectangle overlap is
+not a copper collision. Resolve native collisions and name any intentional
+remote physical pockets or connector overhangs before treating a broad block
+region as exclusive. Re-run the census after a coupled floorplan move.
+
 Use these scopes without forcing every block through a lockstep barrier:
 
 1. `P1_FLOORPLAN` allocates fixed features, regions, coarse corridors, and boundary witnesses.
