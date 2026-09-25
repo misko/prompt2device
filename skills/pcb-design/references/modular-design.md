@@ -72,6 +72,15 @@ not a copper collision. Resolve native collisions and name any intentional
 remote physical pockets or connector overhangs before treating a broad block
 region as exclusive. Re-run the census after a coupled floorplan move.
 
+For an isolated placement trial, generate its native board from the current
+governed circuit/netlist and run the same post-generation transforms and
+project-local `.kicad_pro`/`.kicad_dru` rules as the normal board rebuild before
+comparing DRC issue identities. Preserve the exact input and rule hashes in the
+trial receipt. A bare PCB checked without its process rule areas is only a
+geometry probe; it cannot reject or admit a placement under the product's
+native DRC. Compare named issues as well as totals, since equal counts can
+hide a changed defect.
+
 Use these scopes without forcing every block through a lockstep barrier:
 
 1. `P1_FLOORPLAN` allocates fixed features, regions, coarse corridors, and boundary witnesses.
