@@ -128,8 +128,8 @@ validate exact inputs and applicability
   -> run bounded work with progress
   -> reopen outputs through the owning gate
      PASS       persist, commit, journal, advance
-     FAIL       change owning source, regenerate, regrade
-     INCOMPLETE persist what is owed and pause visibly
+     FAIL       classify cause; repair source or checker; regrade affected evidence
+     INCOMPLETE identify the missing evidence and the action it actually blocks
      timeout    preserve the previous accepted bundle and diagnose
      plateau    classify the cause and backtrack to its upstream owner
 ```
@@ -137,6 +137,9 @@ validate exact inputs and applicability
 Triage findings through the [deficiency workflow](references/lifecycle-and-backtrack.md#8-deficiency-triage).
 Record supported non-blocking improvements in `01_docs/DEFICIENCIES.md` and
 continue; reopen them only on new evidence or at next-release planning.
+
+Diagnostic screens do not grant admission: coarse P1 `INCOMPLETE` needs engineering review, not repeated generation.
+Use [evidence scheduling](references/modular-design.md#evidence-scheduling) to assign missing proof to its owning stage.
 
 ## Core invariants
 
@@ -155,8 +158,8 @@ continue; reopen them only on new evidence or at next-release planning.
 7. Separate claims: generated, DRC-clean, layout-sealed, fabrication-staged,
    release-sealed, published, order-ready, first-article-passed, and production
    authorized are different states.
-8. Commit at green boundaries. Backtracking changes the owning source and
-   invalidates every downstream artifact whose semantic input changed.
+8. Commit at green boundaries; invalidate downstream artifacts when semantic inputs change.
+   Checker-only repairs revalidate unchanged geometry with new evidence; preserve historical receipts.
 9. Treat human schematic readability and registered 3D mating direction as
    real gates, not decoration after machine checks.
 10. Start with the cheapest fabrication tier that satisfies locked facts.
@@ -272,11 +275,9 @@ tools cannot handle; keep nonblocking convenience work in the deficiency list.
 
 ## Human reports
 
-For investigations and option comparisons, follow
-[the project report contract](references/project-reports.md) under
-`01_docs/reports/`. Distinguish measured/cited facts, inferences, proposals and
-owed tests. Adopt decisions into their owning ADR/source; reports do not grant
-design authority.
+For investigations and option comparisons, follow [the project report contract](references/project-reports.md)
+under `01_docs/reports/`. Distinguish measured/cited facts, inferences, proposals and owed tests.
+Adopt decisions into their owning ADR/source; reports do not grant design authority.
 
 ## Validate changes to this skill
 
@@ -289,8 +290,7 @@ python3 tests/t1_skill_progressive_disclosure.py
 python3 tests/t1_pcb_documentation.py
 ```
 
-Run the applicable pipeline unit suites before changing execution authority.
-Preserve previous behavior through Git history, not a second live legacy skill.
+Run applicable pipeline unit suites before changing execution authority; preserve history in Git, not a second live legacy skill.
 
 ## Report
 

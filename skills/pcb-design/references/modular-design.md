@@ -217,6 +217,43 @@ A failed engineering prerequisite keeps dependent work undispatched, even if
 delivery of its failure report passed. Do not execute a dependent task merely
 to record that it is blocked, or infer admission from `WORK_RECORDED`.
 
+## Evidence scheduling
+
+Before launching work, name the engineering question, its existing acceptance
+consumer, and which next action each possible result changes. Use the current
+findings ledger and candidate record; do not create a second status registry.
+
+| Evidence | Needed to proceed | Deferred work |
+|---|---|---|
+| Critical IC/interface feasibility | Before committing the stack and full placement: exact pads, escape envelope, generated width/clearance/via rules, reference-plane plan and applicable precedent | Realized route, SI and physical qualification |
+| P1 engineering admission | Independent exact-subject review of anchors, outlines, ownership, usable corridor capacity, native parity/clearance and model coverage | P2 local distances and P3 realized copper/return |
+| P2/P3 design work | Applicable engineering dependencies plus a bounded candidate/write scope; raw diagnostics never grant admission | Physical observations that require an article, when the project's explicit research authority permits deferral |
+| Physical connector/ESD qualification | At its stated qualification/release boundary, with a reviewed article and measurement plan | Never replace observations with CAD, a nominal impedance result or a checker PASS |
+
+The schema-2 P1 coarse screen deliberately emits only FAIL or INCOMPLETE and
+`p1_accepted: false`. Review its concrete conflicts and capacity gaps; do not
+turn its fixed status into a regeneration loop or mistake absence of conflicts
+for engineering approval. An independent P1 review can carry explicit P2/P3
+debt forward only after the actual P1 obligations are proved.
+
+Before commissioning a separate mechanical coupon, compare its represented
+connector/neighbor field and retest risk with a routed engineering article.
+Include only omissions/dummies justified by service-envelope evidence; neither
+an empty connector strip nor all-board population is an automatic requirement.
+A combined article may serve connector and electrical qualification if its
+sample count, nondestructive-before-destructive test order and failure criteria
+are reviewed. Preparation, fabrication authorization and qualification are
+separate decisions. Existing release/order gates remain binding.
+
+A project may explicitly authorize bounded private design investigation before
+physical FULL. That authorization must retain the real P1/P2 prerequisites,
+freeze relevant mechanical assumptions, and specify nets, layers, mutable
+objects, stop criteria and independent review. It does not remove `connector_full`
+from ordinary P3/P5 dependencies, promote a prototype, or authorize fabrication.
+It is not an ordinary P3 dispatch or route/promotion receipt. If the executable
+path cannot enforce those bounds, keep dispatch blocked and state the missing
+admission; prose alone is not an executable route permit.
+
 ## Planning readiness and the native candidate loop
 
 Keep permission to investigate separate from engineering acceptance. P1
@@ -307,6 +344,14 @@ the raw checker result. For example, missing per-net witnesses can prevent an
 allocation from accounting for otherwise valid branches. Do not create one
 repair task per consequential error. Unknown errors retain their independent
 visibility; grouping is not proof that they are harmless.
+
+For checker-only corrections, keep board/source/sidecar identities fixed and
+run only the affected checks with a separately reviewed checker digest. Record
+the new result alongside the original result; preserve historical failed
+receipts and consumed attempt budgets. A changed checker does not confer
+previously absent P1, route or release authority. Regenerate only when relevant
+source, geometry, effective rules or generator inputs change. Do not create a
+new candidate merely to restate an already measured unchanged board.
 
 Reuse evidence only when its declared input identities still match. A board
 or placement change invalidates board-bound geometry, P1 and downstream

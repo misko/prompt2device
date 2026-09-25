@@ -53,6 +53,18 @@ conditions. The packet is research evidence only. Constraints enter source
 through normal review, and native P3 critical-route proof remains owned by the
 board.
 
+Before locking a critical package and stack for full placement, join that
+research to a small native feasibility screen: the actual footprint pads,
+intended trace/pair/via dimensions, generated project rules, nearby obstacles
+and reference-plane access must fit together. For a controlled pair, inspect
+both endpoints and every intervening protector/connector transition; a vendor
+cross-section solve alone does not prove a pad escape. Run applicable native
+process checks at this point so a rule-generator/process-checker conflict is
+found before a full-board trial. Record the result in the existing IC research
+and source decision, with unresolved route/SI/physical work explicitly deferred.
+Reuse one dossier across identical ICs and prioritize native trials by interface
+risk; this is not a requirement to build a separate coupon for every IC.
+
 ## Sources, in authority order
 
 ### 1. The datasheet's Layout Guidelines / Layout Example section

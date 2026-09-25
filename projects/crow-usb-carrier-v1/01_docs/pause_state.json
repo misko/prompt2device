@@ -5,7 +5,7 @@
     "sha256": "15288355fcc731ff8b1b0e35a1ae47b9faf66140223cfea0d31c91d99e9dc1ba",
     "size": 1148
   },
-  "next_command": "Resolve the incomplete P1 source corridor/edge model on the isolated TI board, obtain independent P1 attempt admission, and qualify connector physical targets on a governed board or coupon before routing; do not promote the diagnostic board or order.",
+  "next_command": "Follow D18 on the existing expanded-locked placement reference: establish complete USB-path feasibility under actual package/stack/rules, then close independent P1 capacity and affected P2 gaps. Coarse INCOMPLETE is diagnostic, not admission. Current routing and ordinary P3/P5 remain blocked; do not regenerate D15 for a checker-only change, run D17, fabricate, or order.",
   "phase": "prototype-layout-diagnostic",
   "project": "crow-usb-carrier-v1",
   "receipts": [
@@ -25,9 +25,19 @@
       "size": 2109
     },
     {
+      "path": "01_docs/decisions/0018-evidence-scheduling-and-private-design-work.md",
+      "sha256": "3844ed14d92b080f194eee9194d79817c23d77bac9a85ef334a0b68145a0266c",
+      "size": 4347
+    },
+    {
       "path": "01_docs/findings.yaml",
       "sha256": "27cbf04b140aeff0bfe56201fc6c1c29b80d9e7ba0de7044ecf23d63efed1175",
       "size": 34727
+    },
+    {
+      "path": "01_docs/journal/placement.md",
+      "sha256": "98d6f56751f68e514fe6d616bab8f1723ffe75b41d74a2a2eec8cd2d2845489a",
+      "size": 2995
     },
     {
       "path": "01_docs/research/2026-09-24-public-stock-569/public-stock.json",
@@ -56,5 +66,5 @@
     }
   ],
   "schema": 1,
-  "state_id": "1896991cafd219f0816ac63bbf37b847ffcf89f22b496ef5018027db2c532206"
+  "state_id": "66a8866441a930316ce77b5ece3f8e6b45f47b62597a480c2a6c9fc35dd2f659"
 }
