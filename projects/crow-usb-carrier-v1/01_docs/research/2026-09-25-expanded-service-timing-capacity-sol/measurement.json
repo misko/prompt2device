@@ -1,0 +1,392 @@
+{
+  "claim": "read-only rectangular F.Cu screen; no P1 admission or route proof",
+  "endpoints": {
+    "adc_timing_xmos_bundle": {
+      "members": {
+        "ADC_BCLK": [
+          "U_ADC_A.22",
+          "U_ADC_B.22",
+          "R_BCLK.2"
+        ],
+        "ADC_DIGITAL_BAD": [
+          "Q_ADC_DIG_RST.1",
+          "R_ADC_DIG_RST_PD.1",
+          "U_ADC_DIGITAL_BAD.4",
+          "U_ADC_READY.1",
+          "U_ADC_CLOCK_OK.1"
+        ],
+        "ADC_DOUT1": [
+          "U_ADC_A.21",
+          "U_ADC_B.21",
+          "R_ADC_DATA_PD.1",
+          "U_TDM_XLATE.10"
+        ],
+        "ADC_FSYNC": [
+          "U_ADC_A.23",
+          "U_ADC_B.23",
+          "R_FSYNC.2"
+        ],
+        "ADC_I2C_SCL": [
+          "U_ADC_A.17",
+          "U_ADC_B.17",
+          "R_ADC_I2C_SCL_B_PU.1",
+          "U_ADC_I2C_XLATE.8"
+        ],
+        "ADC_I2C_SDA": [
+          "U_ADC_A.18",
+          "U_ADC_B.18",
+          "R_ADC_I2C_SDA_B_PU.1",
+          "U_ADC_I2C_XLATE.1"
+        ],
+        "ADC_READY": [
+          "R_ADC_READY_PD.1",
+          "R_ADC_START_DELAY.1",
+          "U_ADC_READY.4",
+          "U_ADC_READY_BAD.2",
+          "U_RST2.3",
+          "U_ADC_I2C_XLATE.6"
+        ],
+        "AUDIO_EN": [
+          "U_ISO1.2",
+          "U_ISO2.2",
+          "U_ISO3.2",
+          "U_ISO4.2",
+          "U_ISO5.2",
+          "U_ISO6.2",
+          "U_ISO7.2",
+          "U_ISO8.2",
+          "R_AUDIO_PD.1",
+          "R_AUDIO_PU.2",
+          "U_AUDIO.6"
+        ],
+        "AUDIO_MCLK_1V8": [
+          "U_TDM_XLATE.6",
+          "U_XU.23"
+        ],
+        "TDM_BCLK_1V8": [
+          "U_TDM_XLATE.4",
+          "U_XU.22"
+        ],
+        "TDM_DATA_1V8": [
+          "U_TDM_XLATE.7",
+          "U_XU.107"
+        ],
+        "TDM_FSYNC_1V8": [
+          "U_TDM_XLATE.5",
+          "U_XU.20"
+        ],
+        "XU_I2C_SCL_1V8": [
+          "R_ADC_I2C_SCL_A_PU.1",
+          "U_ADC_I2C_XLATE.5",
+          "U_XU.93"
+        ],
+        "XU_I2C_SDA_1V8": [
+          "R_ADC_I2C_SDA_A_PU.1",
+          "U_ADC_I2C_XLATE.4",
+          "U_XU.94"
+        ]
+      },
+      "nets": 14,
+      "terminals": 54
+    },
+    "xmos_service_escape": {
+      "members": {
+        "JTAG_TCK": [
+          "J_JTAG.4",
+          "U_XU.51"
+        ],
+        "JTAG_TDI": [
+          "J_JTAG.8",
+          "U_XU.36"
+        ],
+        "JTAG_TDO": [
+          "J_JTAG.6",
+          "U_XU.37"
+        ],
+        "JTAG_TMS": [
+          "J_JTAG.2",
+          "U_XU.44"
+        ],
+        "QSPI_CLK": [
+          "U_FLASH.6",
+          "U_XU.4"
+        ],
+        "QSPI_CS_N": [
+          "R_QSPI_CS.2",
+          "U_FLASH.1",
+          "U_XU.2"
+        ],
+        "QSPI_D0": [
+          "U_FLASH.5",
+          "U_XU.127"
+        ],
+        "QSPI_D1": [
+          "U_FLASH.2",
+          "U_XU.128"
+        ],
+        "QSPI_D2": [
+          "U_FLASH.3",
+          "U_XU.1"
+        ],
+        "QSPI_D3": [
+          "U_FLASH.7",
+          "U_XU.3"
+        ],
+        "XTAL_IN": [
+          "R_XTAL_DRIVE.1",
+          "R_XTAL_FB.1",
+          "U_XU.34"
+        ],
+        "XTAL_OUT": [
+          "C_XTAL_OUT.1",
+          "R_XTAL_FB.2",
+          "Y_XU.3",
+          "U_XU.33"
+        ],
+        "XU_RESET_N": [
+          "J_JTAG.10",
+          "R_XU_RST_PU.2",
+          "U_CORE_OK.1",
+          "U_XU_3V3_OK.6",
+          "U_XU.38"
+        ]
+      },
+      "nets": 13,
+      "terminals": 33
+    }
+  },
+  "hashes": {
+    "board": "fe8d2c9a9922eeab2371d0187da9407ac590687a77b03a8a099c35a75b5ddd16",
+    "contract": "9faaed39333c0db45c188003d2ac6bacc69562f259f8332d0d6a79db7d25037f",
+    "floorplan": "8a805d92d4f57c3a0db00a45d1c9aef57958eb0c219d44f9ca89e5531021d8b4",
+    "modular_plan": "02be5ad6ea879ac04d5dfd9e2e09d5226f85c85fa83d72628aa40cf93de6b4d8",
+    "rules_custom": "00ab83d8484368f132392523972c1f41fc9073423d3c600feec962684f9c3b0a",
+    "rules_project": "7977bc9edb88e1ef723eb256f07949871493dfda3d2c2491dd5d5b6087ddc094",
+    "source": "e8ff456de1868386890dbb5413bb20dc054b5d711b7c9b97d8b02a6b4695ae92"
+  },
+  "jtag_authored_access": {
+    "jtag_access_2": {
+      "min_segment_width_mm": 0.15,
+      "segment_count": 4
+    },
+    "jtag_access_4": {
+      "min_segment_width_mm": 0.15,
+      "segment_count": 5
+    },
+    "jtag_access_6": {
+      "min_segment_width_mm": 0.15,
+      "segment_count": 5
+    },
+    "jtag_access_8": {
+      "min_segment_width_mm": 0.15,
+      "segment_count": 5
+    }
+  },
+  "native_track_count": 14,
+  "rules": {
+    "absolute_min_track_mm": 0.15,
+    "default_clearance_mm": 0.15,
+    "default_track_mm": 0.2
+  },
+  "sections": {
+    "jtag_strip_trunk": {
+      "axis": "vertical",
+      "box_mm": [
+        221,
+        65,
+        226,
+        84
+      ],
+      "limiting_sections": [
+        {
+          "at_mm": 74.5,
+          "max_free_width_mm": 4.7,
+          "reachable_width_mm": 4.7
+        }
+      ],
+      "max_parallel_default_traces": 13,
+      "native_obstacles": [],
+      "other_reservation_overlaps": [],
+      "rectangular_aperture_mm": 4.7,
+      "required_nets": 4
+    },
+    "qspi_gap_trunk": {
+      "axis": "vertical",
+      "box_mm": [
+        219.2,
+        110.5,
+        223.2,
+        118.5
+      ],
+      "limiting_sections": [
+        {
+          "at_mm": 114.5,
+          "max_free_width_mm": 3.7,
+          "reachable_width_mm": 3.7
+        }
+      ],
+      "max_parallel_default_traces": 11,
+      "native_obstacles": [],
+      "other_reservation_overlaps": [],
+      "rectangular_aperture_mm": 3.7,
+      "required_nets": 6
+    },
+    "timing_boundary_neck": {
+      "axis": "horizontal",
+      "box_mm": [
+        188,
+        94,
+        190,
+        99.84
+      ],
+      "limiting_sections": [
+        {
+          "at_mm": 189.0,
+          "max_free_width_mm": 5.54,
+          "reachable_width_mm": 5.54
+        }
+      ],
+      "max_parallel_default_traces": 16,
+      "native_obstacles": [],
+      "other_reservation_overlaps": [],
+      "rectangular_aperture_mm": 5.54,
+      "required_nets": 4
+    },
+    "timing_direct_west": {
+      "axis": "horizontal",
+      "box_mm": [
+        182.475,
+        94,
+        199.825,
+        100
+      ],
+      "limiting_sections": [
+        {
+          "at_mm": 195.5025,
+          "max_free_width_mm": 1.53,
+          "reachable_width_mm": 1.53
+        },
+        {
+          "at_mm": 196.02,
+          "max_free_width_mm": 1.53,
+          "reachable_width_mm": 1.53
+        },
+        {
+          "at_mm": 196.5,
+          "max_free_width_mm": 1.53,
+          "reachable_width_mm": 1.53
+        }
+      ],
+      "max_parallel_default_traces": 4,
+      "native_obstacles": [
+        "C_XU_VDDIO_109:body",
+        "C_XU_VDDIO_109:pad1",
+        "C_XU_VDDIO_109:pad2",
+        "C_XU_VDD_104:body",
+        "C_XU_VDD_104:pad1",
+        "C_XU_VDD_104:pad2",
+        "C_XU_VDD_105:body",
+        "C_XU_VDD_105:pad1",
+        "C_XU_VDD_105:pad2",
+        "C_XU_VDD_106:body",
+        "C_XU_VDD_106:pad1",
+        "C_XU_VDD_106:pad2",
+        "C_XU_VDD_113:body",
+        "C_XU_VDD_113:pad1",
+        "C_XU_VDD_113:pad2"
+      ],
+      "other_reservation_overlaps": [],
+      "rectangular_aperture_mm": 1.53,
+      "required_nets": 4
+    },
+    "xtal_handoff": {
+      "axis": "vertical",
+      "box_mm": [
+        217.2,
+        107,
+        218.95,
+        110.5
+      ],
+      "limiting_sections": [
+        {
+          "at_mm": 108.75,
+          "max_free_width_mm": 1.45,
+          "reachable_width_mm": 1.45
+        }
+      ],
+      "max_parallel_default_traces": 4,
+      "native_obstacles": [],
+      "other_reservation_overlaps": [],
+      "rectangular_aperture_mm": 1.45,
+      "required_nets": 2
+    }
+  },
+  "service_faces": {
+    "jtag_strip": [
+      {
+        "bbox": [
+          221.1,
+          64.7,
+          225.9,
+          65
+        ],
+        "block": "debug_connector",
+        "span_mm": 4.8
+      },
+      {
+        "bbox": [
+          221.1,
+          84,
+          223.9,
+          84.3
+        ],
+        "block": "xmos_core",
+        "span_mm": 2.8
+      }
+    ],
+    "qspi_gap": [
+      {
+        "bbox": [
+          219.2,
+          110.2,
+          222.8,
+          110.5
+        ],
+        "block": "xmos_core",
+        "span_mm": 3.6
+      },
+      {
+        "bbox": [
+          219.25,
+          118.5,
+          222.8,
+          118.8
+        ],
+        "block": "clock_flash_debug",
+        "span_mm": 3.55
+      }
+    ],
+    "xtal_south_cap": [
+      {
+        "bbox": [
+          217.196,
+          107.2,
+          217.2,
+          108.7
+        ],
+        "block": "xmos_core",
+        "span_mm": 1.5
+      },
+      {
+        "bbox": [
+          217.35,
+          110.5,
+          218.8,
+          110.6
+        ],
+        "block": "clock_flash_debug",
+        "span_mm": 1.45
+      }
+    ]
+  }
+}
