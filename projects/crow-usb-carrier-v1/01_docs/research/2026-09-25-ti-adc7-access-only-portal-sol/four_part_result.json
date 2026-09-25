@@ -1,0 +1,94 @@
+{
+  "hashes": {
+    "three_part_board": "c9b758d69867b274f0592bd2eceb9a26d64a80dd2daafa8ab9516d23d5925502",
+    "four_part_board": "046019a13094764baef313d62611b137e0f0af971079734c71ab050dbf46b3a0",
+    "portal": "f1952e27cebd1eb3fa3b1ebc4863ed7d408f4b04d603a8c76454a063eff719ae",
+    "base_source": "6fa9b9aee4a1651a1e2f75c4d629d077b29504f4033b6062f6fb25187c0d3fcf",
+    "interfaces": "02be5ad6ea879ac04d5dfd9e2e09d5226f85c85fa83d72628aa40cf93de6b4d8",
+    "floorplan": "7d95376bbfa3bc9dd0bf59bc7e91d02d86c31235f6145f4d09b49a31f81769d0",
+    "aliases": "a6baba8bd4e389c146250a2a2ef5f7e9b09f63526e71dbdd05be8bca9b7b2c2e",
+    "merged_source": "553b062a963f139cac9a9d987635861e56849dc040fc2602f9be8891a12ea9d7",
+    "four_part_contract": "409f8221f8afcbdd372b9bd46912dffdb34f8e415f56538afbf4e22ea5e7e357"
+  },
+  "status": "FAIL",
+  "errors": [
+    "adc7_local_portal: overlaps ordinary reservation analog_5_8"
+  ],
+  "p1_accepted": false,
+  "routing_realized": false,
+  "local_portal_screen": {
+    "id": "adc7_local_portal",
+    "status": "INCOMPLETE",
+    "bbox_mm": [
+      166.0,
+      83.9,
+      167.12,
+      85.0
+    ],
+    "capacity_slots": null,
+    "p2_obligation_count": 8,
+    "return_obligation": {
+      "status": "P2_REQUIRED",
+      "net": "GND",
+      "portal_id": "adc7_local_portal",
+      "reference_layer": "In1.Cu",
+      "proof": "continuous_filled_reference"
+    },
+    "exact_native_terminals": [
+      [
+        "ADC7N",
+        "C_ADC_AC7N1.2"
+      ],
+      [
+        "ADC7N",
+        "C_ADC_AC7N2.2"
+      ],
+      [
+        "ADC7N",
+        "C_ADC_CM7N.1"
+      ],
+      [
+        "ADC7N",
+        "U_ADC_B.11"
+      ],
+      [
+        "ADC7P",
+        "C_ADC_AC7P1.2"
+      ],
+      [
+        "ADC7P",
+        "C_ADC_AC7P2.2"
+      ],
+      [
+        "ADC7P",
+        "C_ADC_CM7P.1"
+      ],
+      [
+        "ADC7P",
+        "U_ADC_B.10"
+      ]
+    ]
+  },
+  "three_part_margin": {
+    "nearest_ref": "Y_AUDIO",
+    "nearest_physical_or_pad_gap_mm": 0.105,
+    "Y_AUDIO_physical_bbox_mm": [
+      164.705,
+      85.105,
+      170.295,
+      89.295
+    ],
+    "Y_AUDIO_to_portal_y85_mm": 0.105
+  },
+  "four_part_margin": {
+    "nearest_ref": "Y_AUDIO",
+    "nearest_physical_or_pad_gap_mm": 0.255,
+    "Y_AUDIO_physical_bbox_mm": [
+      164.705,
+      85.255,
+      170.295,
+      89.445
+    ],
+    "Y_AUDIO_to_portal_y85_mm": 0.255
+  }
+}

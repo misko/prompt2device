@@ -36,7 +36,7 @@ class AccessOnlyPortalTest(unittest.TestCase):
         self.outline = pcbnew.SHAPE_POLY_SET()
         self.assertTrue(self.board.GetBoardPolygonOutlines(self.outline, False))
         self.interfaces = json.loads((CROW / '03_src/modular_plan.json').read_text())
-        self.regions = yaml.safe_load((CROW / '03_src/floorplan.yaml').read_text())['placement']['regions']
+        self.regions = yaml.safe_load((CROW / '01_docs/research/2026-09-25-ti-usb-linked-two-physical-sol/floorplan.yaml').read_text())['placement']['regions']
         self.source = yaml.safe_load(SOURCE.read_text())
         self.coverage, _ = checker.graph.source_inventory(self.source, self.interfaces)
         self.aliases = checker.graph.alias_inventory(
@@ -69,12 +69,13 @@ class AccessOnlyPortalTest(unittest.TestCase):
         packet = yaml.safe_load((CROW / '01_docs/research/2026-09-25-ti-adc7-access-only-portal-sol/portal.yaml').read_text())
         self.assertEqual(packet, {'access_only_portals': [self.row]})
 
-    def screen(self):
+    def screen(self, contract_allocations=None, physical_cells=None):
         source = dict(self.source, access_only_portals=[self.row])
         return checker._access_only_portals(source, self.interfaces, self.board,
                                             self.outline, self.regions,
                                             list(self.board.Zones()), self.coverage,
-                                            self.aliases, self.pads)
+                                            self.aliases, self.pads,
+                                            contract_allocations, physical_cells)
 
     def test_exact_candidate_is_debt_only(self):
         result = self.screen()
@@ -164,6 +165,28 @@ class AccessOnlyPortalTest(unittest.TestCase):
         with self.assertRaisesRegex(checker.ContractError, 'off board outline'):
             self.screen()
 
+    def test_same_layer_cross_record_claims_fail(self):
+        ordinary = [{'id': 'unrelated', 'reservations': [
+            {'id': 'power_window', 'kind': 'power_or_mechanical',
+             'layer': 'F.Cu', 'bbox': [166, 84, 167, 85], 'nets': ['GND']}]}]
+        with self.assertRaisesRegex(checker.ContractError, 'overlaps ordinary reservation power_window'):
+            self.screen(ordinary)
+        ordinary[0]['reservations'][0]['layer'] = 'B.Cu'
+        self.assertEqual(self.screen(ordinary)[0]['status'], 'INCOMPLETE')
+        self.source['integration_corridors'].append(
+            {'id': 'foreign_corridor', 'layer': 'F.Cu', 'region_id': 'analog_ch7'})
+        with self.assertRaisesRegex(checker.ContractError, 'overlaps integration corridor foreign_corridor'):
+            self.screen()
+        self.source['integration_corridors'].pop()
+        self.source['linked_paths'][0]['stages'][0]['region_id'] = 'analog_ch7'
+        with self.assertRaisesRegex(checker.ContractError, 'overlaps linked physical stage'):
+            self.screen()
+        self.source['linked_paths'][0]['stages'][0]['region_id'] = 'board_integration_usb_edge'
+        foreign_cell = {'audio_cell': {'owner_block': 'audio_clock_tdm',
+                                       'bbox': [166, 84, 167, 85]}}
+        with self.assertRaisesRegex(checker.ContractError, 'overlaps foreign physical cell audio_cell'):
+            self.screen(physical_cells=foreign_cell)
+
     def test_p2_return_and_capacity_claim_fail(self):
         self.row['p2_obligations'].pop()
         with self.assertRaisesRegex(checker.ContractError, 'P2/filled-return debt invalid'):
@@ -221,6 +244,14 @@ class AccessOnlyPortalTest(unittest.TestCase):
         self.assertEqual(result['p1_accepted'], baseline['p1_accepted'])
         self.assertFalse(result['routing_realized'])
         self.assertEqual(result['access_only_portals'][0]['capacity_slots'], None)
+        fixture.allocations[1]['reservations'].append(
+            {'id': 'foreign_power_window', 'kind': 'power_or_mechanical',
+             'layer': 'F.Cu', 'bbox': [10, 10, 10.2, 10.2], 'nets': ['GND']})
+        conflict = fixture.run_case()
+        self.assertEqual(conflict['status'], 'FAIL')
+        self.assertIn('overlaps ordinary reservation foreign_power_window',
+                      '\n'.join(conflict['errors']))
+        self.assertFalse(conflict['p1_accepted'])
 
 
 if __name__ == '__main__':

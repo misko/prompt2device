@@ -764,7 +764,8 @@ def _linked_native_pad_census(ident, expected, pads, nets):
 
 
 def _access_only_portals(source, interfaces, board, outline, regions, zones,
-                         coverage, aliases, pads):
+                         coverage, aliases, pads, contract_allocations=None,
+                         physical_cells=None):
     """Screen local access geometry without creating a reservation or P1 credit."""
     if 'access_only_portals' not in source:
         return []
@@ -866,6 +867,37 @@ def _access_only_portals(source, interfaces, board, outline, regions, zones,
                            if name != transit and intersects(portal, rectangle(area, f'{name} region'))}
         if actual_overlaps != set(overlaps):
             raise ContractError(f'{ident}: access-only portal foreign planning overlap mismatch')
+        if contract_allocations is not None:
+            if not isinstance(contract_allocations, list):
+                raise ContractError(f'{ident}: ordinary allocation inventory malformed')
+            for allocation_row in contract_allocations:
+                for reservation in allocation_row.get('reservations', []):
+                    if reservation.get('layer') != layer:
+                        continue
+                    if 'bbox' not in reservation:
+                        if reservation.get('kind') == 'unresolved_multiterminal_branch':
+                            continue
+                        raise ContractError(f'{ident}: ordinary reservation geometry missing')
+                    if intersects(portal, rectangle(reservation['bbox'], 'ordinary reservation')):
+                        raise ContractError(f'{ident}: overlaps ordinary reservation {reservation.get("id")}')
+        for corridor in source.get('integration_corridors', []):
+            if corridor.get('layer') == layer and intersects(
+                    portal, rectangle(regions[corridor['region_id']], 'integration region')):
+                raise ContractError(f'{ident}: overlaps integration corridor {corridor.get("id")}')
+        for path in source.get('linked_paths', []):
+            for stage in path.get('stages', []):
+                if stage.get('kind') == 'physical_corridor' and stage.get('layer') == layer and intersects(
+                        portal, rectangle(regions[stage['region_id']], 'linked stage region')):
+                    raise ContractError(f'{ident}: overlaps linked physical stage {stage.get("id")}')
+        for port in source.get('shared_transition_ports', []):
+            shapes = [port[key] for key in ('bbox', 'reservation_bbox')]
+            shapes.extend(port.get('geometry', {}).get('rectangles', []))
+            if layer in port.get('layers', []) and any(
+                    intersects(portal, rectangle(shape, 'shared port scope')) for shape in shapes):
+                raise ContractError(f'{ident}: overlaps shared transition port {port.get("id")}')
+        for cell_id, cell in (physical_cells or {}).items():
+            if cell['owner_block'] != transit and intersects(portal, cell['bbox']):
+                raise ContractError(f'{ident}: overlaps foreign physical cell {cell_id}')
         for fp in board.GetFootprints():
             if any(intersects(portal, shape) for shape in
                    [_physical_envelope(fp)] + [box_mm(p.GetBoundingBox()) for p in fp.Pads()]):
@@ -1489,7 +1521,8 @@ def evaluate_coarse(board_path, contract_path, expected_contract_sha256=None, *,
             physical_cells = _physical_cells(source, interfaces, board, outline, regions, patterns)
             portals = _access_only_portals(source, interfaces, board, outline,
                                            regions, list(board.Zones()), coverage,
-                                           aliases, pads)
+                                           aliases, pads, contract.get('allocations'),
+                                           physical_cells)
             pattern_refs = {ref for pattern in patterns for ref in pattern['match']}
             unknown = set(refs) - set(anchors) - set(post_anchors) - set(seeds) - pattern_refs
             if unknown:
