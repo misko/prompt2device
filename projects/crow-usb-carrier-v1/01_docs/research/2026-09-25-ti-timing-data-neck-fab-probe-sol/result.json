@@ -1,0 +1,106 @@
+{
+  "board_sha256": "d2aea41931ffb0fff9e5c3cce46121d1e1a8379ce56fafaba749eb75e5076237",
+  "diagnostic_max_length_mm": 1.05,
+  "drc": {
+    "baseline_types": {
+      "annular_width": 8,
+      "clearance": 224,
+      "drill_out_of_range": 14,
+      "hole_clearance": 28,
+      "lib_footprint_issues": 199,
+      "silk_over_copper": 19,
+      "silk_overlap": 11,
+      "text_height": 199,
+      "via_dangling": 1,
+      "via_diameter": 8
+    },
+    "baseline_unconnected": 499,
+    "baseline_violations": 711,
+    "neck_track_items": [
+      {
+        "description": "Track has unconnected end",
+        "items": [
+          {
+            "description": "Track [TDM_DATA_1V8] on F.Cu, length 1.0325 mm",
+            "pos": {
+              "x": 200.8375,
+              "y": 97.6
+            },
+            "uuid": "8d2f831e-bd45-4e0f-9f42-0659d20a8107"
+          }
+        ],
+        "severity": "warning",
+        "type": "track_dangling"
+      }
+    ],
+    "neck_types": {
+      "annular_width": 8,
+      "clearance": 224,
+      "drill_out_of_range": 14,
+      "hole_clearance": 28,
+      "lib_footprint_issues": 199,
+      "silk_over_copper": 19,
+      "silk_overlap": 11,
+      "text_height": 199,
+      "track_dangling": 1,
+      "via_dangling": 1,
+      "via_diameter": 8
+    },
+    "neck_unconnected": 499,
+    "neck_violations": 712
+  },
+  "electrical_qualified": false,
+  "end_mm": [
+    199.805,
+    97.6
+  ],
+  "full_shape_contained": true,
+  "full_stroke_bbox_mm": [
+    199.73000000000002,
+    97.52499999999999,
+    200.9125,
+    97.675
+  ],
+  "input_board_sha256": "53e6fb7809910946c36053e7ceeb77e7fc866456ff77775ed4c59b3e49278555",
+  "kind": "isolated-tdm-data-local-neck-fabrication-probe",
+  "layer": "F.Cu",
+  "length_mm": 1.0325,
+  "limitations": [
+    "not a source-backed XMOS electrical neck width or length",
+    "no local GND transition, full route, timing, USB, or crystal proof"
+  ],
+  "net": "TDM_DATA_1V8",
+  "p1_accepted": false,
+  "p2_accepted": false,
+  "pad": "U_XU.107",
+  "reference": {
+    "common_filled_polygon": 8,
+    "filled": true,
+    "layer": "In1.Cu",
+    "nearest_existing_plane_access": {
+      "at_mm": [
+        202.7,
+        58.4
+      ],
+      "distance_to_pad_mm": 39.2442,
+      "kind": "GND via"
+    },
+    "neck_box_uncovered_area_mm2": 0,
+    "net": "GND"
+  },
+  "rule_area_bbox_mm": [
+    199.7,
+    97.49,
+    200.95,
+    97.71
+  ],
+  "rule_sha256": "c45d2f184eecf94f85f58e24bc72f8c932717385543b6ae6b3cc4a940b2c7029",
+  "schema": 1,
+  "scratch_project_sha256": "79c93994f7c8dcfb2305c6fa871da2eb2390b15d803ef44e0c44dadadc92c029",
+  "start_mm": [
+    200.8375,
+    97.6
+  ],
+  "status": "FAB_GEOMETRY_ONLY_RETURN_ACCESS_UNPROVED",
+  "width_mm": 0.15
+}

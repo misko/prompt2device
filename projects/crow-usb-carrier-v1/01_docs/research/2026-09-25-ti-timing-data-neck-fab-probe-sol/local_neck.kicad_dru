@@ -1,0 +1,4 @@
+(version 1)
+(rule "TDM_DATA_107_local_width"
+  (condition "A.NetName == 'TDM_DATA_1V8' && A.insideArea('TDM_DATA_107_NECK')")
+  (constraint track_width (min 0.15mm)))
