@@ -11,7 +11,7 @@ pad and the empty port point.
 
 The replay used unified diagnostic packet commit `9f8ca953`, its exact board
 `01_docs/research/2026-09-25-ti-vmid-coupled-ch8-sol/candidate.kicad_pcb`,
-SHA-256 `d0c065dc16de081a5410b7a22e474f0a99c6fdeb0b7dd1f6c37422ace4a9fc7`,
+SHA-256 `d0c065dc16de081a5410b7a22e474f0a99c6fdeb0b7dd1f6c37422ace4a9fcf7`,
 and the packet's source/floorplan/interface hashes:
 
 | input | SHA-256 |
