@@ -7,8 +7,9 @@ its published H1/Er, a masked **0.180-mm artwork/base width, 0.100-mm gap**
 request returned **89.9172598796 Ω**, `dResultValid=1`. For a 6-layer
 `JLC06161H-3313E` *hypothesis*, **0.120/0.100 mm** returned
 **87.4366551479 Ω**, also valid. The request retained `HZ0=108.0` from an
-earlier 4-layer trial; its semantics in this forward-calculation mode were not
-verified. These numbers cannot yet select a 90-ohm rule. No source/board edit,
+earlier 4-layer trial. Its physical meaning remains undocumented, while the
+later controlled 108-to-90 replay left this forward result unchanged. These
+numbers cannot yet select a 90-ohm rule. No source/board edit,
 stock check, login, file upload or vendor contact was performed.
 
 The exact unauthenticated public [JLC template endpoint](https://jlcpcb.com/api/jlcTools/impedance/selectPageImpedanceDefaultTemplate)
@@ -68,3 +69,31 @@ advantage over the 4L cross-section for this USB escape. A correctly bound
 frontend/vendor 90-ohm calculation and exact-board electrical/assembly
 validation remain prerequisites to a source-rule proposal. Neither stack is
 selected, and the unsupported six-track neck remains unqualified.
+
+## Public frontend mapping replay — 2026-09-25
+
+The new [replay verifier](replay_frontend_binding.py) fetches the unauthenticated
+public calculator page, its current script, selected 4L template, outer-layer
+picture definition, copper/mask configuration, and two numerical calculation
+responses. It writes the exact request/response and HTTP `Date` headers to
+[the capture](frontend_binding_capture.json). The captured frontend script
+SHA-256 is `dd57ca32426d511d6fe392ae66c205c872601a9837a56763b78c6d334ad7aec5`.
+The replay reproduced **89.9172598796 Ω** at 0.180/0.100 mm using a fresh
+UUID `accessId`; this demonstrates that the old 7628G `accessId` was an
+impedance-list instance key, not a stack identifier. The frontend constructs
+its list from `templateList[n].basicDataList`, computes L1–L2 height from
+that selected template index, and passes the resulting numeric argument
+object to `/calc`. The script checks those frontend operations and the
+selected 3313A template values before computing. This is a reproducible
+public **template-derived request**, though it is not a captured human UI
+click or a vendor production impedance commitment.
+
+The public picture definition supplies `HZ0=108.0` as a **hidden** parameter
+(`displayStatus=4`). No official public text found defines its physical
+meaning. In this controlled `dCalculateMode=3` forward calculation,
+changing only `HZ0` to 90.0 returned the *same* 89.9172598796 Ω; the earlier
+120.0 trial also did. Thus its semantics remain unknown, but the fixed-width
+output is empirically insensitive over those tested values. The capture's
+HTTP dates now establish when these endpoint responses were received. These
+findings narrow the prior provenance caveat; they do not select 3313A or
+qualify a board route.

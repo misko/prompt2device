@@ -93,3 +93,13 @@ Both named templates are still special, and the 0.100-mm pair gap still
 requires a separate source-rule and complete board/fabrication review. The
 less disruptive 4L hypothesis merits verification first, without selection
 or route/release credit.
+
+### Additional public frontend finding — 2026-09-25
+
+The [subsequent replay](2026-09-25-jlc-3313-uniform-usb-solve-sol/README.md#public-frontend-mapping-replay--2026-09-25)
+captured JLC's public current template-to-numeric-argument flow and repeated
+the 4L 3313A fixed-geometry output with a fresh UI-style UUID `accessId`.
+It also found `HZ0=108` in the hidden picture definition and showed the
+forward result unchanged when `HZ0` was set to 90. Its physical meaning
+remains undocumented in the public material. The replay preserves HTTP Date
+headers but is not a captured human UI session or fabrication commitment.
