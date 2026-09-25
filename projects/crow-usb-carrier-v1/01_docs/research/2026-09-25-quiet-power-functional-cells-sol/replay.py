@@ -31,12 +31,14 @@ EXPECTED = {
 }
 NETS = ('N1V8', 'N3V3X', 'N3V3_ADC', 'N5V_BUCK')
 REMOTE_XU = {'C_XU_VDDIO_35.1', 'C_XU_VDDIO_56.1', 'C_XU_USB33.1'}
-TARGETS = {'C_LDO_OUT_1.1': 'quiet_ldo', 'R_PWR_TOP.1': 'quiet_power'}
 PWR = {'U_PWR', 'R_PWR_TOP', 'R_PWR_BOT', 'R_PWR_PU', 'C_PWR', 'C_PWR_CT'}
 LDO = {'U_LDO', 'C_LDO_OUT_1', 'C_LDO_OUT_2', 'C_LDO_IN', 'C_LDO_NR4',
        'C_LDO_NR5', 'R_LDO_ILIM', 'R_LDO_PG_TOP', 'R_LDO_SET'}
-PRE_SWITCH = {'Q_PRE', 'R_PRE', 'R_DUMP', 'D_HOLD'}
-PRE_GATE = {'R_PRE_G', 'Q_PRE_EN', 'Q_DUMP'}
+PRE_SWITCH = {'Q_PRE'}
+PRE_RESISTOR = {'R_PRE'}
+PRE_GATE = {'R_PRE_G'}
+PRE_DRIVER = {'Q_PRE_EN', 'Q_DUMP'}
+HOLD_SWITCH = {'D_HOLD', 'R_DUMP'}
 BUCK_EDGE = {'C_PWR_CT2', 'R_DUMP_PD'}
 
 
@@ -46,7 +48,7 @@ def hull(boxes):
             max(box[2] for box in boxes), max(box[3] for box in boxes)]
 
 
-def branch(net, interfaces, aliases, pads, regions, cells):
+def branch(net, interfaces, aliases, pads, regions, cells, group_for):
     item = next(row for row in interfaces['interfaces'] if row['net'] == net)
     endpoint_rows = sorted((source_pad, checker.graph.native_identity(source_pad, aliases),
                             net, block)
@@ -60,8 +62,8 @@ def branch(net, interfaces, aliases, pads, regions, cells):
                  'net': net, 'block': block}
         if native_pad in REMOTE_XU:
             entry['physical_cell_id'] = 'xmos_core_east'
-        if native_pad in TARGETS:
-            entry['physical_cell_id'] = TARGETS[native_pad]
+        if block == 'quiet_power' and group_for[entry['native_pad'].rsplit('.', 1)[0]] != 'quiet_power':
+            entry['physical_cell_id'] = group_for[entry['native_pad'].rsplit('.', 1)[0]]
         entries.append(entry)
         cell_id = entry.get('physical_cell_id')
         foreign = sorted(name for name, area in regions.items()
@@ -108,11 +110,16 @@ def main():
     quiet = {ref for ref, owner in owners.items() if owner == 'quiet_power'}
     if len(quiet) != 69:
         raise SystemExit('69 quiet-power owner denominator drift')
-    fixed_groups = [PWR, LDO, PRE_SWITCH, PRE_GATE, BUCK_EDGE]
+    fixed_groups = [PWR, LDO, PRE_SWITCH, PRE_RESISTOR, PRE_GATE,
+                    PRE_DRIVER, HOLD_SWITCH, BUCK_EDGE]
     if any(not group <= quiet for group in fixed_groups) or len(set.union(*fixed_groups)) != sum(map(len, fixed_groups)):
         raise SystemExit('named functional group ownership/uniqueness drift')
     groups = {'quiet_power': set(PWR), 'quiet_ldo': set(LDO),
-              'quiet_pre_switch': set(PRE_SWITCH), 'quiet_pre_gate': set(PRE_GATE),
+              'quiet_pre_switch': set(PRE_SWITCH),
+              'quiet_pre_resistor': set(PRE_RESISTOR),
+              'quiet_pre_gate': set(PRE_GATE),
+              'quiet_pre_driver': set(PRE_DRIVER),
+              'quiet_hold_switch': set(HOLD_SWITCH),
               'quiet_buck_edge': set(BUCK_EDGE),
               'hold_bank_left': {f'C_HOLD{i}' for i in range(1, 9)} | {'C_PWR_CT3', 'R_OPA_BLEED1'},
               'hold_bank_right': {f'C_HOLD{i}' for i in range(9, 17)}}
@@ -160,33 +167,38 @@ def main():
     if not board.GetBoardPolygonOutlines(outline, False):
         raise SystemExit('native outline unavailable')
     try:
-        checker._physical_cells(source, plan, board, outline, regions, patterns)
+        candidate_cells = checker._physical_cells(source, plan, board, outline, regions, patterns)
     except checker.ContractError as exc:
         physical_result = {'accepted': False, 'reason': str(exc)}
     else:
         physical_result = {'accepted': True, 'reason': None}
-    # Existing six cells are valid.  The proposed quiet cells have not passed
-    # _physical_cells, so they must not be supplied as authority to branches.
+    # Use the proposed cells only if _physical_cells admitted the complete
+    # partition; otherwise retain the six previously validated baseline cells.
     baseline_regions = yaml.safe_load((BASE / 'floorplan.yaml').read_text())['placement']['regions']
     baseline_cells = checker._physical_cells(
         yaml.safe_load((BASE / 'p1_requirements.yaml').read_text()), plan,
         board, outline, baseline_regions,
         yaml.safe_load((BASE / 'floorplan.yaml').read_text())['placement']['patterns'])
+    branch_cells = candidate_cells if physical_result['accepted'] else baseline_cells
     _, pads = checker.graph.board_index(board)
     aliases = checker.graph.alias_inventory(yaml.safe_load(
         (PROJECT / '02_parts/USB4215-03-A/part.yaml').read_text()))
     coverage, _ = checker.graph.source_inventory(source, plan)
     power = {}
     untagged_quiet_endpoints = []
+    tagged_quiet_endpoints = []
     for net in NETS:
-        row = branch(net, plan, aliases, pads, regions, baseline_cells)
+        row = branch(net, plan, aliases, pads, regions, branch_cells, group_for)
         for entry in row['endpoints']:
             if entry['block'] == 'quiet_power' and 'physical_cell_id' not in entry:
                 untagged_quiet_endpoints.append({'net': net, 'native_pad': entry['native_pad']})
+            if entry['block'] == 'quiet_power' and 'physical_cell_id' in entry:
+                tagged_quiet_endpoints.append({'net': net, 'native_pad': entry['native_pad'],
+                                               'physical_cell_id': entry['physical_cell_id']})
         try:
             checker._unresolved_branches(
                 {'unresolved_multiterminal_branches': [row]}, plan, board,
-                regions, coverage, aliases, pads, baseline_cells, patterns)
+                regions, coverage, aliases, pads, branch_cells, patterns)
         except checker.ContractError as exc:
             power[net] = {'accepted': False, 'reason': str(exc),
                           'terminal_count': row['terminal_count']}
@@ -202,16 +214,17 @@ def main():
     primary_foreign = sorted(ref for ref, box in envelopes.items()
                              if owners[ref] != 'quiet_power' and
                              checker.intersects(primary_hull, box))
-    if len(untagged_quiet_endpoints) != 9 or len(primary_foreign) != 21 or any(
-            owners[ref] != 'adc_reference' for ref in primary_foreign):
-        raise SystemExit('two-tag primary owner lower bound drift')
+    if len(untagged_quiet_endpoints) != 1 or len(tagged_quiet_endpoints) != 10:
+        raise SystemExit('complete quiet-power branch tagging drift')
     result = {
         'status': 'FAIL', 'p1_accepted': False, 'board_sha256': EXPECTED[BOARD],
         'native_ref_count': 569, 'quiet_power_ref_count': 69,
         'groups': {name: {'refs': sorted(members), 'bbox': regions[name]}
                    for name, members in groups.items()},
         'physical_cells': physical_result,
-        'two_tag_primary_lower_bound': {
+        'complete_quiet_power_branch_tags': {
+            'tagged': sorted(tagged_quiet_endpoints,
+                             key=lambda entry: (entry['net'], entry['native_pad'])),
             'untagged_quiet_power_endpoints': sorted(
                 untagged_quiet_endpoints, key=lambda entry: (entry['net'], entry['native_pad'])),
             'minimum_primary_pad_hull_mm': primary_hull,
@@ -221,11 +234,16 @@ def main():
             'quiet_ref': 'Q_PRE', 'quiet_bbox': list(q_box),
             'input_ref': 'C_IN3', 'input_bbox': list(i_box),
             'y_gap_mm': qpre_gap},
-        'power_branches_without_unvalidated_cells': power,
+        'power_branches': power,
     }
+    if (not physical_result['accepted'] or
+            any(not power[net]['accepted'] for net in ('N1V8', 'N3V3X')) or
+            power['N3V3_ADC']['reason'] != 'U_AFE2.8: branch pad outside source owner region' or
+            power['N5V_BUCK']['reason'] != 'U_BUCK.10: branch pad outside source owner region'):
+        raise SystemExit('refined partition/branch outcome drift')
     (HERE / 'result.json').write_text(json.dumps(result, indent=2, sort_keys=True) + '\n')
     print(json.dumps({'physical_cells': physical_result, 'power_branches': power,
-                      'two_tag_primary_lower_bound': result['two_tag_primary_lower_bound'],
+                      'complete_quiet_power_branch_tags': result['complete_quiet_power_branch_tags'],
                       'qpre_cin3_clearance': result['reviewed_qpre_cin3_clearance']}, indent=2))
 
 

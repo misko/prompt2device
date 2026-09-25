@@ -1,61 +1,53 @@
-# Quiet-power functional-cell candidate and two-tag conflict
+# Quiet-power physical-cell refinement on reviewed TI board
 
-Research-only negative packet. `replay.py` pins the **reviewed Q_PRE repair**
-board SHA-256 `e07ed8bc663fdfd4ce39477165b656b0dcf2bfbae54d84ec501bfccf326d22ef`,
-the unified TI electrical source, floorplan and modular plan. It applies the
-reviewed `Q_PRE` post-anchor `(46,107.15,0°)` in memory. All **569** native
-references retain their exact modular electrical owners and original netlist;
-the 27 fixed poses are unchanged. It writes `result.json`, never canonical
-source or PCB. Reproduce with `python3 replay.py` from this directory.
+**Research only; no route, current/return, capacity or P1 credit.**
+`replay.py` pins the reviewed Q_PRE-repair TI board SHA-256
+`e07ed8bc663fdfd4ce39477165b656b0dcf2bfbae54d84ec501bfccf326d22ef`
+and the unified source/floorplan/modular-plan inputs. The candidate applies
+Q_PRE's reviewed `(46,107.15,0°)` source pose in memory. It retains every
+native pad/net, all **569** modular owners, and all fixed component poses;
+canonical Crow files are untouched. Run `python3 replay.py` here to regenerate
+[`result.json`](result.json).
 
-The candidate partitions all **69 `quiet_power` references exactly once**
-into ten functional occupied groups: PWR controller, LDO, pre-switch,
-pre-gate, buck edge, dump timing, audio control, pre support, mid control,
-and the two hold banks. Each group uses the hull of its members' native full
-body/courtyard envelopes. It tightens `adc_reference` to the hull of its 65
-members, narrows the broad `input_buck` planning rectangle, and rebinds the
-affected placement patterns to their proposed cells. The group membership,
-rectangles and full checker outcomes are in `result.json`. These are
-*disposable candidate cells*; none are accepted source authority.
+One bounded functional partition refinement assigns all **69 `quiet_power`
+references exactly once** to 13 occupied cells: PWR controller, LDO, buck
+edge, dump timing, audio control, mid control, both hold banks,
+and five small pre-switch/hold-control cells. Small occupied pockets are used
+only where neighboring full native envelopes defeat a broad rectangle; this
+is not a 69-singleton construction. The candidate tightens `adc_reference`
+to its 65-member native hull, recuts `input_buck`, and splits affected
+placement patterns. The *actual* `_physical_cells` checker accepts all cells,
+including full body/pad containment, disjoint foreign occupancy, owner/ref
+denominator and pattern checks. Cell IDs, member lists and exact bboxes are
+in the result. This receipt does not prove copper or a connected route.
 
-Actual `_physical_cells` rejects the candidate at
-`quiet_pre_switch: unassigned native footprint/pad Q_DUMP enters physical cell`.
-This first group conflict could be refined by repartitioning, so it is **not**
-the impossibility proof. In particular, the previously reported native
-`Q_PRE`/`C_IN3` overlap is repaired on this board: their full-envelope y gap
-is **0.260 mm**. The earlier board's overlap must not be cited as a current
-blocker.
+The reviewed Q_PRE move removes the old Q_PRE/C_IN3 envelope overlap: the
+current native y gap is **0.260 mm**. The old collision was a stale-board
+artifact and is not a blocker here.
 
-The decisive full-denominator constraint is the instruction to tag **only**
-`C_LDO_OUT_1.1` and `R_PWR_TOP.1`. The other nine `quiet_power` endpoints on
-the four exact power nets remain untagged, so the branch checker requires all
-nine pads inside the **single primary** `quiet_power` rectangle:
+For the four power nets, the candidate adds `physical_cell_id` to **all ten**
+quiet-power endpoints outside the proposed primary `quiet_power` cell. The
+only untagged quiet-power power endpoint is `R_PWR_TOP.1`, inside that primary
+cell. `C_LDO_OUT_1.1` is tagged; `R_PWR_TOP.1` needs no tag because it lies
+inside the primary cell. Nine additional endpoints need tags to retain the
+full 171-terminal denominator:
 
-| Net | Untagged quiet-power pads |
+| Net | Tagged quiet-power endpoints |
 | --- | --- |
-| `N3V3_ADC` | `C_LDO_OUT_2.1`, `C_OPA_BULK.1`, `R_ADC_TOP.1`, `R_DUMP.1`, `R_LDO_PG_TOP.1`, `R_OPA_BLEED1.1`, `U_LDO.10`, `U_LDO.9` |
-| `N5V_BUCK` | `D_HOLD.2` |
+| `N3V3_ADC` (68 terminals) | `C_LDO_OUT_1.1`, `C_LDO_OUT_2.1`, `C_OPA_BULK.1`, `R_ADC_TOP.1`, `R_DUMP.1`, `R_LDO_PG_TOP.1`, `R_OPA_BLEED1.1`, `U_LDO.10`, `U_LDO.9` |
+| `N5V_BUCK` (34 terminals) | `D_HOLD.2` |
 
-Their minimum enclosing pad rectangle is
-`[21.72,106.85,138.45,122.48]` mm. It intersects **21 full native
-`adc_reference` envelopes**, including `U_ADC_B`. Shrinking the ADC planning
-region cannot remove those occupied bodies. Under the present fail-closed
-`physical_cells` grammar, every occupied primary quiet-power cell would
-reject the foreign ADC footprints. A source-only partition with exactly the
-two requested branch tags is therefore impossible on this board without
-moving or falsely reassigning components. This is independent of how the ten
-candidate groups are subdivided or connected.
+The actual isolated unresolved-branch checker accepts `N1V8` **42/42** and
+`N3V3X` **27/27** with the three previously validated XU tags. It rejects
+`N3V3_ADC` at **`U_AFE2.8`**, whose pad x maximum is **69.25 mm** while its
+`analog_ch2` primary region ends at **69.00 mm**. It rejects `N5V_BUCK` at
+**`U_BUCK.10`**, whose pad y maximum is **100.70 mm** while the proposed
+`input_buck` region ends at **100.50 mm**. Both failures are outside the
+validated quiet-power cells; the checker stops at the first violation on
+each net. The four branches preserve exact source/native terminals, all
+P2 pad-to-tree and filled-return duties, P3 tree duties, and null capacity.
 
-Using only the six already validated physical cells as branch authority,
-the actual isolated four-net checker accepts `N1V8` (42/42) and `N3V3X`
-(27/27) with the three existing XU tags. It rejects `N3V3_ADC` (68/68) at
-the unvalidated `C_LDO_OUT_1.1` cell, and `N5V_BUCK` (34/34) at untagged
-`D_HOLD.2` outside the proposed primary cell. The full 171-terminal
-denominator, all P2 pad-to-tree, P3 tree, current/return and null-capacity
-debt remain; no route or P1 acceptance is asserted.
-
-**Next action:** either permit exact `physical_cell_id` tags for the additional
-nine quiet-power power endpoints and validate a complete connected 69-member
-cell partition, or move the blocking physical clusters before repeating the
-two-tag constraint. Do not promote this candidate or infer capacity from its
-planning rectangles.
+**Next action:** resolve these two newly exposed foreign-owner/source-region
+failures in a separate coupled floorplan review, including all endpoints that
+any recut would displace. This packet stops at that conflict set. Do not
+promote its cells or infer P1 acceptance from their geometric validation.
