@@ -1,0 +1,126 @@
+access_only_portals:
+- id: adc7_local_portal
+  allocation_id: adc_analog_boundary
+  nets:
+  - ADC7N
+  - ADC7P
+  electrical_owners:
+  - adc_reference
+  - analog_ch7
+  transit_owner: analog_ch7
+  planning_overlaps:
+  - audio_clock_tdm
+  portal_bbox:
+  - 166
+  - 83.9
+  - 167.12
+  - 85
+  owner_face: north
+  layer: F.Cu
+  reference_layer: In1.Cu
+  affected:
+  - source_pad: U_ADC_B.11
+    native_pad: U_ADC_B.11
+    net: ADC7N
+    block: adc_reference
+  - source_pad: C_ADC_AC7N1.2
+    native_pad: C_ADC_AC7N1.2
+    net: ADC7N
+    block: analog_ch7
+  - source_pad: C_ADC_AC7N2.2
+    native_pad: C_ADC_AC7N2.2
+    net: ADC7N
+    block: analog_ch7
+  - source_pad: C_ADC_CM7N.1
+    native_pad: C_ADC_CM7N.1
+    net: ADC7N
+    block: analog_ch7
+  - source_pad: U_ADC_B.10
+    native_pad: U_ADC_B.10
+    net: ADC7P
+    block: adc_reference
+  - source_pad: C_ADC_AC7P1.2
+    native_pad: C_ADC_AC7P1.2
+    net: ADC7P
+    block: analog_ch7
+  - source_pad: C_ADC_AC7P2.2
+    native_pad: C_ADC_AC7P2.2
+    net: ADC7P
+    block: analog_ch7
+  - source_pad: C_ADC_CM7P.1
+    native_pad: C_ADC_CM7P.1
+    net: ADC7P
+    block: analog_ch7
+  p2_obligations:
+  - status: P2_REQUIRED
+    source_pad: U_ADC_B.11
+    native_pad: U_ADC_B.11
+    net: ADC7N
+    block: adc_reference
+    portal_id: adc7_local_portal
+    layer: F.Cu
+    proof: native_pad_to_remote_route
+  - status: P2_REQUIRED
+    source_pad: C_ADC_AC7N1.2
+    native_pad: C_ADC_AC7N1.2
+    net: ADC7N
+    block: analog_ch7
+    portal_id: adc7_local_portal
+    layer: F.Cu
+    proof: native_pad_to_local_port
+  - status: P2_REQUIRED
+    source_pad: C_ADC_AC7N2.2
+    native_pad: C_ADC_AC7N2.2
+    net: ADC7N
+    block: analog_ch7
+    portal_id: adc7_local_portal
+    layer: F.Cu
+    proof: native_pad_to_local_port
+  - status: P2_REQUIRED
+    source_pad: C_ADC_CM7N.1
+    native_pad: C_ADC_CM7N.1
+    net: ADC7N
+    block: analog_ch7
+    portal_id: adc7_local_portal
+    layer: F.Cu
+    proof: native_pad_to_local_port
+  - status: P2_REQUIRED
+    source_pad: U_ADC_B.10
+    native_pad: U_ADC_B.10
+    net: ADC7P
+    block: adc_reference
+    portal_id: adc7_local_portal
+    layer: F.Cu
+    proof: native_pad_to_remote_route
+  - status: P2_REQUIRED
+    source_pad: C_ADC_AC7P1.2
+    native_pad: C_ADC_AC7P1.2
+    net: ADC7P
+    block: analog_ch7
+    portal_id: adc7_local_portal
+    layer: F.Cu
+    proof: native_pad_to_local_port
+  - status: P2_REQUIRED
+    source_pad: C_ADC_AC7P2.2
+    native_pad: C_ADC_AC7P2.2
+    net: ADC7P
+    block: analog_ch7
+    portal_id: adc7_local_portal
+    layer: F.Cu
+    proof: native_pad_to_local_port
+  - status: P2_REQUIRED
+    source_pad: C_ADC_CM7P.1
+    native_pad: C_ADC_CM7P.1
+    net: ADC7P
+    block: analog_ch7
+    portal_id: adc7_local_portal
+    layer: F.Cu
+    proof: native_pad_to_local_port
+  return_obligation:
+    status: P2_REQUIRED
+    net: GND
+    portal_id: adc7_local_portal
+    reference_layer: In1.Cu
+    proof: continuous_filled_reference
+  status: INCOMPLETE
+  capacity_slots: null

@@ -65,6 +65,11 @@ physical corridor or a geometry-free unresolved virtual span. Exact
 intermediate pads join them. Each physical stage reports separate rough
 capacity, never a sum; P2 access/return and P1 remain INCOMPLETE. Paths with
 branches or additional stages fail closed until separately implemented.
+Opt-in ``access_only_portals`` screen a body/copper-free local boundary where
+a planning region overlaps a true endpoint owner's transit space. Electrical
+owners, transit owner and non-electrical planning overlaps are distinct. Every
+native net terminal and P2/filled-return obligation is exact; this record
+creates no reservation, capacity slot, routing claim or P1 acceptance.
 """
 from __future__ import annotations
 
@@ -758,6 +763,137 @@ def _linked_native_pad_census(ident, expected, pads, nets):
                             f'(missing={missing}, extra={extra})')
 
 
+def _access_only_portals(source, interfaces, board, outline, regions, zones,
+                         coverage, aliases, pads):
+    """Screen local access geometry without creating a reservation or P1 credit."""
+    if 'access_only_portals' not in source:
+        return []
+    rows = source['access_only_portals']
+    if not isinstance(rows, list) or not rows or not isinstance(interfaces.get('blocks'), list):
+        raise ContractError('access-only portals malformed')
+    owners = {ref: block['id'] for block in interfaces['blocks'] for ref in block.get('refs', [])}
+    if len(owners) != sum(len(block.get('refs', [])) for block in interfaces['blocks']):
+        raise ContractError('access-only portal duplicate modular footprint owner')
+    by_net = {item['net']: item for item in interfaces['interfaces']}
+    enabled = {board.GetLayerName(i) for i in board.GetEnabledLayers().Seq()
+               if pcbnew.IsCopperLayer(i)}
+    required = {'id', 'allocation_id', 'nets', 'electrical_owners', 'transit_owner',
+                'planning_overlaps', 'portal_bbox', 'owner_face', 'layer',
+                'reference_layer', 'affected', 'p2_obligations',
+                'return_obligation', 'status', 'capacity_slots'}
+    used_ids, used_nets, screened = set(), set(), []
+    for row in rows:
+        if not isinstance(row, dict) or set(row) != required:
+            raise ContractError('access-only portal schema/outcome fields invalid')
+        ident, allocation, nets = row['id'], row['allocation_id'], row['nets']
+        transit, overlaps = row['transit_owner'], row['planning_overlaps']
+        if (not isinstance(ident, str) or not ident or ident in used_ids or
+                allocation not in coverage or not isinstance(nets, list) or not nets or
+                len(nets) != len(set(nets)) or not set(nets) <= coverage[allocation] or
+                used_nets & set(nets) or not isinstance(transit, str) or transit not in regions or
+                not isinstance(overlaps, list) or not overlaps or
+                len(overlaps) != len(set(overlaps)) or
+                any(not isinstance(name, str) or name not in regions or name == transit
+                    for name in overlaps) or
+                row['status'] != 'INCOMPLETE' or row['capacity_slots'] is not None):
+            raise ContractError(f'{ident}: access-only portal identity/net/role invalid')
+        used_ids.add(ident)
+        used_nets.update(nets)
+        source_alloc = next((a for a in source['allocations'] if a.get('id') == allocation), None)
+        if source_alloc is None:
+            raise ContractError(f'{ident}: access-only portal source allocation missing')
+        expected = set()
+        electrical = set()
+        for net in nets:
+            item = by_net.get(net)
+            if item is None or not isinstance(item.get('endpoints'), dict):
+                raise ContractError(f'{ident}: access-only portal modular net missing')
+            source_owners = source_alloc.get('endpoints', {}).get(net)
+            if not isinstance(source_owners, dict):
+                raise ContractError(f'{ident}: access-only portal source/modular owner denominator mismatch')
+            if any(not isinstance(refs, list) or len(refs) != len(set(refs))
+                   for owner_rows in (item['endpoints'], source_owners)
+                   for refs in owner_rows.values()):
+                raise ContractError(f'{ident}: access-only portal duplicate source terminal')
+            if any(len([pad for refs in owner_rows.values() for pad in refs]) !=
+                   len({pad for refs in owner_rows.values() for pad in refs})
+                   for owner_rows in (item['endpoints'], source_owners)):
+                raise ContractError(f'{ident}: access-only portal duplicate source terminal')
+            if ({owner: set(refs) for owner, refs in source_owners.items()} !=
+                    {owner: set(refs) for owner, refs in item['endpoints'].items()}):
+                raise ContractError(f'{ident}: access-only portal source/modular owner denominator mismatch')
+            electrical.update(item['endpoints'])
+            for block, sources in item['endpoints'].items():
+                for source_pad in sources:
+                    expected.add((source_pad, graph.native_identity(source_pad, aliases), net, block))
+        if (not isinstance(row['electrical_owners'], list) or
+                len(row['electrical_owners']) != len(set(row['electrical_owners'])) or
+                set(row['electrical_owners']) != electrical or transit not in electrical or
+                electrical & set(overlaps)):
+            raise ContractError(f'{ident}: access-only portal electrical/planning owner mismatch')
+        affected = row['affected']
+        if (not isinstance(affected, list) or any(not isinstance(e, dict) or
+                set(e) != {'source_pad', 'native_pad', 'net', 'block'} for e in affected) or
+                len(affected) != len(expected) or
+                {(e['source_pad'], e['native_pad'], e['net'], e['block']) for e in affected} != expected):
+            raise ContractError(f'{ident}: access-only portal exact endpoint denominator mismatch')
+        _linked_native_pad_census(ident, expected, pads, set(nets))
+        layer, reference = row['layer'], row['reference_layer']
+        if layer not in enabled or reference not in enabled or layer == reference:
+            raise ContractError(f'{ident}: access-only portal layer/reference invalid')
+        if any(owners.get(native.rsplit('.', 1)[0]) != block or
+               not all(p.IsOnLayer(board.GetLayerID(layer)) for p in pads[native])
+               for _, native, _, block in expected):
+            raise ContractError(f'{ident}: access-only portal native owner/layer mismatch')
+        portal = rectangle(row['portal_bbox'], f'{ident} portal')
+        if not lane_inside_outline(outline, portal):
+            raise ContractError(f'{ident}: access-only portal off board outline')
+        owner_area = rectangle(regions[transit], f'{transit} owner region')
+        face = row['owner_face']
+        if face not in ('north', 'south', 'east', 'west'):
+            raise ContractError(f'{ident}: access-only portal owner face invalid')
+        if face == 'north':
+            touches = portal[1] < owner_area[3] < portal[3] and max(portal[0], owner_area[0]) < min(portal[2], owner_area[2])
+        elif face == 'south':
+            touches = portal[1] < owner_area[1] < portal[3] and max(portal[0], owner_area[0]) < min(portal[2], owner_area[2])
+        elif face == 'east':
+            touches = portal[0] < owner_area[2] < portal[2] and max(portal[1], owner_area[1]) < min(portal[3], owner_area[3])
+        else:
+            touches = portal[0] < owner_area[0] < portal[2] and max(portal[1], owner_area[1]) < min(portal[3], owner_area[3])
+        if not touches:
+            raise ContractError(f'{ident}: access-only portal lacks positive owner-edge contact')
+        actual_overlaps = {name for name, area in regions.items()
+                           if name != transit and intersects(portal, rectangle(area, f'{name} region'))}
+        if actual_overlaps != set(overlaps):
+            raise ContractError(f'{ident}: access-only portal foreign planning overlap mismatch')
+        for fp in board.GetFootprints():
+            if any(intersects(portal, shape) for shape in
+                   [_physical_envelope(fp)] + [box_mm(p.GetBoundingBox()) for p in fp.Pads()]):
+                raise ContractError(f'{ident}: native footprint/pad {fp.GetReference()} enters access-only portal')
+        if any(intersects(portal, box_mm(track.GetBoundingBox())) for track in board.GetTracks()):
+            raise ContractError(f'{ident}: native copper enters access-only portal')
+        for zone in zones:
+            if zone.GetIsRuleArea() and intersects(portal, box_mm(zone.GetBoundingBox())):
+                raise ContractError(f'{ident}: native rule area enters access-only portal')
+            if not zone.GetIsRuleArea() and _filled_zone_intersects(zone, board.GetLayerID(layer), portal):
+                raise ContractError(f'{ident}: filled signal copper enters access-only portal')
+        expected_p2 = [{'status': 'P2_REQUIRED', **e, 'portal_id': ident,
+                        'layer': layer, 'proof': ('native_pad_to_local_port' if e['block'] == transit
+                                                else 'native_pad_to_remote_route')}
+                       for e in affected]
+        if row['p2_obligations'] != expected_p2 or row['return_obligation'] != {
+                'status': 'P2_REQUIRED', 'net': 'GND', 'portal_id': ident,
+                'reference_layer': reference, 'proof': 'continuous_filled_reference'}:
+            raise ContractError(f'{ident}: access-only portal P2/filled-return debt invalid')
+        if any(intersects(portal, prior['bbox']) and layer == prior['layer'] for prior in screened):
+            raise ContractError(f'{ident}: access-only portals overlap')
+        screened.append({'id': ident, 'status': 'INCOMPLETE', 'nets': nets,
+                         'bbox': portal, 'layer': layer, 'capacity_slots': None,
+                         'p2_obligations': expected_p2,
+                         'return_obligation': row['return_obligation']})
+    return screened
+
+
 def _linked_paths(source, contract, interfaces, board, outline, regions, zones,
                   coverage, aliases, pads, owned_pads, fixed_refs, movable_refs,
                   shared_ports, physical_cells, native_pitch):
@@ -1293,7 +1429,8 @@ def evaluate_coarse(board_path, contract_path, expected_contract_sha256=None, *,
                     diagnose_all=False):
     errors, results, hashes = [], [], {}
     diagnostics = []
-    shared_ports_configured = integration_configured = linked_configured = False
+    shared_ports_configured = integration_configured = linked_configured = portal_configured = False
+    portals = []
     paths = {'board': board_path, 'contract': contract_path, 'source': source_path,
              'interfaces': interface_path, 'aliases': alias_path, 'floorplan': floorplan_path}
     for label, path in paths.items():
@@ -1311,6 +1448,7 @@ def evaluate_coarse(board_path, contract_path, expected_contract_sha256=None, *,
             shared_ports_configured = isinstance(source, dict) and 'shared_transition_ports' in source
             integration_configured = isinstance(source, dict) and 'integration_corridors' in source
             linked_configured = isinstance(source, dict) and 'linked_paths' in source
+            portal_configured = isinstance(source, dict) and 'access_only_portals' in source
             branch_configured = isinstance(source, dict) and 'unresolved_multiterminal_branches' in source
             interfaces = json.loads(Path(interface_path).read_text())
             aliases = graph.alias_inventory(yaml.safe_load(Path(alias_path).read_text()))
@@ -1349,6 +1487,9 @@ def evaluate_coarse(board_path, contract_path, expected_contract_sha256=None, *,
             if not isinstance(patterns, list) or any(not isinstance(p, dict) or not isinstance(p.get('match'), list) for p in patterns):
                 raise ContractError('source placement patterns malformed')
             physical_cells = _physical_cells(source, interfaces, board, outline, regions, patterns)
+            portals = _access_only_portals(source, interfaces, board, outline,
+                                           regions, list(board.Zones()), coverage,
+                                           aliases, pads)
             pattern_refs = {ref for pattern in patterns for ref in pattern['match']}
             unknown = set(refs) - set(anchors) - set(post_anchors) - set(seeds) - pattern_refs
             if unknown:
@@ -1730,7 +1871,7 @@ def evaluate_coarse(board_path, contract_path, expected_contract_sha256=None, *,
             errors.append(str(exc))
     status = 'FAIL' if (any(row['status'] == 'FAIL' for row in results) or
                         ((shared_ports_configured or integration_configured or
-                          linked_configured or branch_configured) and errors) or
+                          linked_configured or branch_configured or portal_configured) and errors) or
                         any('overlapping named allocations' in error or 'shared port' in error or
                             'shared transition port' in error or 'unowned overlap' in error or
                             'foreign footprint' in error for error in errors)) else 'INCOMPLETE'
@@ -1741,6 +1882,8 @@ def evaluate_coarse(board_path, contract_path, expected_contract_sha256=None, *,
             'reason': 'independent filled-reference, effective-capacity and P1 review not supplied'}
     if diagnose_all:
         result['diagnostics'] = diagnostics
+    if portal_configured:
+        result['access_only_portals'] = portals
     return result
 
 
