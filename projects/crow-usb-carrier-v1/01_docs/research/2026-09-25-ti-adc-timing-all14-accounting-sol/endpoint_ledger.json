@@ -1,0 +1,625 @@
+{
+  "board_sha256": "8e620def0b403fda7635135672afec923c2c23bc9844b3f96102e96d4d5eca10",
+  "branchable_endpoint_count": 35,
+  "branchable_net_count": 9,
+  "endpoint_count": 54,
+  "net_count": 14,
+  "nets": [
+    {
+      "accounting": "schema_branch",
+      "capacity_slots": null,
+      "endpoints": [
+        {
+          "block": "audio_clock_tdm",
+          "native_pad": "R_BCLK.2",
+          "net": "ADC_BCLK",
+          "source_pad": "R_BCLK.2"
+        },
+        {
+          "block": "adc_reference",
+          "native_pad": "U_ADC_A.22",
+          "net": "ADC_BCLK",
+          "source_pad": "U_ADC_A.22"
+        },
+        {
+          "block": "adc_reference",
+          "native_pad": "U_ADC_B.22",
+          "net": "ADC_BCLK",
+          "source_pad": "U_ADC_B.22"
+        }
+      ],
+      "foreign_regions": [],
+      "net": "ADC_BCLK",
+      "outside_owner": [],
+      "p2_debt": "native_pad_to_unplaced_tree_and_filled_In1_Cu_return",
+      "p3_debt": "one_connected_native_net_without_unrelated_branches",
+      "terminal_count": 3
+    },
+    {
+      "accounting": "schema_branch",
+      "capacity_slots": null,
+      "endpoints": [
+        {
+          "block": "audio_clock_tdm",
+          "native_pad": "R_FSYNC.2",
+          "net": "ADC_FSYNC",
+          "source_pad": "R_FSYNC.2"
+        },
+        {
+          "block": "adc_reference",
+          "native_pad": "U_ADC_A.23",
+          "net": "ADC_FSYNC",
+          "source_pad": "U_ADC_A.23"
+        },
+        {
+          "block": "adc_reference",
+          "native_pad": "U_ADC_B.23",
+          "net": "ADC_FSYNC",
+          "source_pad": "U_ADC_B.23"
+        }
+      ],
+      "foreign_regions": [],
+      "net": "ADC_FSYNC",
+      "outside_owner": [],
+      "p2_debt": "native_pad_to_unplaced_tree_and_filled_In1_Cu_return",
+      "p3_debt": "one_connected_native_net_without_unrelated_branches",
+      "terminal_count": 3
+    },
+    {
+      "accounting": "schema_branch",
+      "capacity_slots": null,
+      "endpoints": [
+        {
+          "block": "audio_clock_tdm",
+          "native_pad": "R_ADC_DATA_PD.1",
+          "net": "ADC_DOUT1",
+          "source_pad": "R_ADC_DATA_PD.1"
+        },
+        {
+          "block": "adc_reference",
+          "native_pad": "U_ADC_A.21",
+          "net": "ADC_DOUT1",
+          "source_pad": "U_ADC_A.21"
+        },
+        {
+          "block": "adc_reference",
+          "native_pad": "U_ADC_B.21",
+          "net": "ADC_DOUT1",
+          "source_pad": "U_ADC_B.21"
+        },
+        {
+          "block": "audio_clock_tdm",
+          "native_pad": "U_TDM_XLATE.10",
+          "net": "ADC_DOUT1",
+          "source_pad": "U_TDM_XLATE.10"
+        }
+      ],
+      "foreign_regions": [
+        {
+          "block": "audio_clock_tdm",
+          "foreign_regions": [
+            "analog_ch7"
+          ],
+          "native_pad": "R_ADC_DATA_PD.1",
+          "source_pad": "R_ADC_DATA_PD.1"
+        }
+      ],
+      "net": "ADC_DOUT1",
+      "outside_owner": [],
+      "p2_debt": "native_pad_to_unplaced_tree_and_filled_In1_Cu_return",
+      "p3_debt": "one_connected_native_net_without_unrelated_branches",
+      "terminal_count": 4
+    },
+    {
+      "accounting": "schema_gap_two_terminal",
+      "capacity_slots": null,
+      "endpoints": [
+        {
+          "block": "audio_clock_tdm",
+          "native_pad": "U_TDM_XLATE.6",
+          "net": "AUDIO_MCLK_1V8",
+          "source_pad": "U_TDM_XLATE.6"
+        },
+        {
+          "block": "xmos_core",
+          "native_pad": "U_XU.23",
+          "net": "AUDIO_MCLK_1V8",
+          "source_pad": "U_XU.23"
+        }
+      ],
+      "foreign_regions": [],
+      "net": "AUDIO_MCLK_1V8",
+      "outside_owner": [],
+      "p2_debt": "native_pad_to_unplaced_tree_and_filled_In1_Cu_return",
+      "p3_debt": "one_connected_native_net_without_unrelated_branches",
+      "terminal_count": 2
+    },
+    {
+      "accounting": "schema_gap_two_terminal",
+      "capacity_slots": null,
+      "endpoints": [
+        {
+          "block": "audio_clock_tdm",
+          "native_pad": "U_TDM_XLATE.4",
+          "net": "TDM_BCLK_1V8",
+          "source_pad": "U_TDM_XLATE.4"
+        },
+        {
+          "block": "xmos_core",
+          "native_pad": "U_XU.22",
+          "net": "TDM_BCLK_1V8",
+          "source_pad": "U_XU.22"
+        }
+      ],
+      "foreign_regions": [],
+      "net": "TDM_BCLK_1V8",
+      "outside_owner": [],
+      "p2_debt": "native_pad_to_unplaced_tree_and_filled_In1_Cu_return",
+      "p3_debt": "one_connected_native_net_without_unrelated_branches",
+      "terminal_count": 2
+    },
+    {
+      "accounting": "schema_gap_two_terminal",
+      "capacity_slots": null,
+      "endpoints": [
+        {
+          "block": "audio_clock_tdm",
+          "native_pad": "U_TDM_XLATE.7",
+          "net": "TDM_DATA_1V8",
+          "source_pad": "U_TDM_XLATE.7"
+        },
+        {
+          "block": "xmos_core",
+          "native_pad": "U_XU.107",
+          "net": "TDM_DATA_1V8",
+          "source_pad": "U_XU.107"
+        }
+      ],
+      "foreign_regions": [],
+      "net": "TDM_DATA_1V8",
+      "outside_owner": [],
+      "p2_debt": "native_pad_to_unplaced_tree_and_filled_In1_Cu_return",
+      "p3_debt": "one_connected_native_net_without_unrelated_branches",
+      "terminal_count": 2
+    },
+    {
+      "accounting": "schema_gap_two_terminal",
+      "capacity_slots": null,
+      "endpoints": [
+        {
+          "block": "audio_clock_tdm",
+          "native_pad": "U_TDM_XLATE.5",
+          "net": "TDM_FSYNC_1V8",
+          "source_pad": "U_TDM_XLATE.5"
+        },
+        {
+          "block": "xmos_core",
+          "native_pad": "U_XU.20",
+          "net": "TDM_FSYNC_1V8",
+          "source_pad": "U_XU.20"
+        }
+      ],
+      "foreign_regions": [],
+      "net": "TDM_FSYNC_1V8",
+      "outside_owner": [],
+      "p2_debt": "native_pad_to_unplaced_tree_and_filled_In1_Cu_return",
+      "p3_debt": "one_connected_native_net_without_unrelated_branches",
+      "terminal_count": 2
+    },
+    {
+      "accounting": "schema_branch",
+      "capacity_slots": null,
+      "endpoints": [
+        {
+          "block": "audio_clock_tdm",
+          "native_pad": "R_ADC_I2C_SCL_B_PU.1",
+          "net": "ADC_I2C_SCL",
+          "source_pad": "R_ADC_I2C_SCL_B_PU.1"
+        },
+        {
+          "block": "adc_reference",
+          "native_pad": "U_ADC_A.17",
+          "net": "ADC_I2C_SCL",
+          "source_pad": "U_ADC_A.17"
+        },
+        {
+          "block": "adc_reference",
+          "native_pad": "U_ADC_B.17",
+          "net": "ADC_I2C_SCL",
+          "source_pad": "U_ADC_B.17"
+        },
+        {
+          "block": "audio_clock_tdm",
+          "native_pad": "U_ADC_I2C_XLATE.8",
+          "net": "ADC_I2C_SCL",
+          "source_pad": "U_ADC_I2C_XLATE.8"
+        }
+      ],
+      "foreign_regions": [],
+      "net": "ADC_I2C_SCL",
+      "outside_owner": [],
+      "p2_debt": "native_pad_to_unplaced_tree_and_filled_In1_Cu_return",
+      "p3_debt": "one_connected_native_net_without_unrelated_branches",
+      "terminal_count": 4
+    },
+    {
+      "accounting": "schema_branch",
+      "capacity_slots": null,
+      "endpoints": [
+        {
+          "block": "audio_clock_tdm",
+          "native_pad": "R_ADC_I2C_SDA_B_PU.1",
+          "net": "ADC_I2C_SDA",
+          "source_pad": "R_ADC_I2C_SDA_B_PU.1"
+        },
+        {
+          "block": "adc_reference",
+          "native_pad": "U_ADC_A.18",
+          "net": "ADC_I2C_SDA",
+          "source_pad": "U_ADC_A.18"
+        },
+        {
+          "block": "adc_reference",
+          "native_pad": "U_ADC_B.18",
+          "net": "ADC_I2C_SDA",
+          "source_pad": "U_ADC_B.18"
+        },
+        {
+          "block": "audio_clock_tdm",
+          "native_pad": "U_ADC_I2C_XLATE.1",
+          "net": "ADC_I2C_SDA",
+          "source_pad": "U_ADC_I2C_XLATE.1"
+        }
+      ],
+      "foreign_regions": [],
+      "net": "ADC_I2C_SDA",
+      "outside_owner": [],
+      "p2_debt": "native_pad_to_unplaced_tree_and_filled_In1_Cu_return",
+      "p3_debt": "one_connected_native_net_without_unrelated_branches",
+      "terminal_count": 4
+    },
+    {
+      "accounting": "schema_branch",
+      "capacity_slots": null,
+      "endpoints": [
+        {
+          "block": "adc_reference",
+          "native_pad": "R_ADC_READY_PD.1",
+          "net": "ADC_READY",
+          "source_pad": "R_ADC_READY_PD.1"
+        },
+        {
+          "block": "adc_reference",
+          "native_pad": "R_ADC_START_DELAY.1",
+          "net": "ADC_READY",
+          "source_pad": "R_ADC_START_DELAY.1"
+        },
+        {
+          "block": "audio_clock_tdm",
+          "native_pad": "U_ADC_I2C_XLATE.6",
+          "net": "ADC_READY",
+          "source_pad": "U_ADC_I2C_XLATE.6"
+        },
+        {
+          "block": "adc_reference",
+          "native_pad": "U_ADC_READY.4",
+          "net": "ADC_READY",
+          "source_pad": "U_ADC_READY.4"
+        },
+        {
+          "block": "adc_reference",
+          "native_pad": "U_ADC_READY_BAD.2",
+          "net": "ADC_READY",
+          "source_pad": "U_ADC_READY_BAD.2"
+        },
+        {
+          "block": "adc_reference",
+          "native_pad": "U_RST2.3",
+          "net": "ADC_READY",
+          "source_pad": "U_RST2.3"
+        }
+      ],
+      "foreign_regions": [],
+      "net": "ADC_READY",
+      "outside_owner": [],
+      "p2_debt": "native_pad_to_unplaced_tree_and_filled_In1_Cu_return",
+      "p3_debt": "one_connected_native_net_without_unrelated_branches",
+      "terminal_count": 6
+    },
+    {
+      "accounting": "schema_gap_outside_owner",
+      "capacity_slots": null,
+      "endpoints": [
+        {
+          "block": "quiet_power",
+          "native_pad": "R_AUDIO_PD.1",
+          "net": "AUDIO_EN",
+          "source_pad": "R_AUDIO_PD.1"
+        },
+        {
+          "block": "quiet_power",
+          "native_pad": "R_AUDIO_PU.2",
+          "net": "AUDIO_EN",
+          "source_pad": "R_AUDIO_PU.2"
+        },
+        {
+          "block": "quiet_power",
+          "native_pad": "U_AUDIO.6",
+          "net": "AUDIO_EN",
+          "source_pad": "U_AUDIO.6"
+        },
+        {
+          "block": "analog_ch1",
+          "native_pad": "U_ISO1.2",
+          "net": "AUDIO_EN",
+          "source_pad": "U_ISO1.2"
+        },
+        {
+          "block": "analog_ch2",
+          "native_pad": "U_ISO2.2",
+          "net": "AUDIO_EN",
+          "source_pad": "U_ISO2.2"
+        },
+        {
+          "block": "analog_ch3",
+          "native_pad": "U_ISO3.2",
+          "net": "AUDIO_EN",
+          "source_pad": "U_ISO3.2"
+        },
+        {
+          "block": "analog_ch4",
+          "native_pad": "U_ISO4.2",
+          "net": "AUDIO_EN",
+          "source_pad": "U_ISO4.2"
+        },
+        {
+          "block": "analog_ch5",
+          "native_pad": "U_ISO5.2",
+          "net": "AUDIO_EN",
+          "source_pad": "U_ISO5.2"
+        },
+        {
+          "block": "analog_ch6",
+          "native_pad": "U_ISO6.2",
+          "net": "AUDIO_EN",
+          "source_pad": "U_ISO6.2"
+        },
+        {
+          "block": "analog_ch7",
+          "native_pad": "U_ISO7.2",
+          "net": "AUDIO_EN",
+          "source_pad": "U_ISO7.2"
+        },
+        {
+          "block": "analog_ch8",
+          "native_pad": "U_ISO8.2",
+          "net": "AUDIO_EN",
+          "source_pad": "U_ISO8.2"
+        }
+      ],
+      "foreign_regions": [
+        {
+          "block": "quiet_power",
+          "foreign_regions": [
+            "input_buck"
+          ],
+          "native_pad": "R_AUDIO_PU.2",
+          "source_pad": "R_AUDIO_PU.2"
+        }
+      ],
+      "net": "AUDIO_EN",
+      "outside_owner": [
+        {
+          "native_pad": "R_AUDIO_PD.1",
+          "owner": "quiet_power",
+          "owner_region_mm": [
+            25,
+            105,
+            75,
+            134
+          ],
+          "pad_bbox_mm": [
+            22.38,
+            105.34,
+            23.02,
+            105.88
+          ],
+          "source_pad": "R_AUDIO_PD.1"
+        },
+        {
+          "native_pad": "U_AUDIO.6",
+          "owner": "quiet_power",
+          "owner_region_mm": [
+            25,
+            105,
+            75,
+            134
+          ],
+          "pad_bbox_mm": [
+            22.95,
+            108.975,
+            23.65,
+            109.225
+          ],
+          "source_pad": "U_AUDIO.6"
+        },
+        {
+          "native_pad": "U_ISO1.2",
+          "owner": "analog_ch1",
+          "owner_region_mm": [
+            25,
+            42,
+            47,
+            84
+          ],
+          "pad_bbox_mm": [
+            23.175,
+            67.075,
+            23.425,
+            67.325
+          ],
+          "source_pad": "U_ISO1.2"
+        },
+        {
+          "native_pad": "U_ISO8.2",
+          "owner": "analog_ch8",
+          "owner_region_mm": [
+            179,
+            42,
+            201,
+            84
+          ],
+          "pad_bbox_mm": [
+            202.575,
+            57.875,
+            202.825,
+            58.125
+          ],
+          "source_pad": "U_ISO8.2"
+        }
+      ],
+      "p2_debt": "native_pad_to_unplaced_tree_and_filled_In1_Cu_return",
+      "p3_debt": "one_connected_native_net_without_unrelated_branches",
+      "terminal_count": 11
+    },
+    {
+      "accounting": "schema_branch",
+      "capacity_slots": null,
+      "endpoints": [
+        {
+          "block": "audio_clock_tdm",
+          "native_pad": "R_ADC_I2C_SCL_A_PU.1",
+          "net": "XU_I2C_SCL_1V8",
+          "source_pad": "R_ADC_I2C_SCL_A_PU.1"
+        },
+        {
+          "block": "audio_clock_tdm",
+          "native_pad": "U_ADC_I2C_XLATE.5",
+          "net": "XU_I2C_SCL_1V8",
+          "source_pad": "U_ADC_I2C_XLATE.5"
+        },
+        {
+          "block": "xmos_core",
+          "native_pad": "U_XU.93",
+          "net": "XU_I2C_SCL_1V8",
+          "source_pad": "U_XU.93"
+        }
+      ],
+      "foreign_regions": [
+        {
+          "block": "audio_clock_tdm",
+          "foreign_regions": [
+            "analog_ch7"
+          ],
+          "native_pad": "R_ADC_I2C_SCL_A_PU.1",
+          "source_pad": "R_ADC_I2C_SCL_A_PU.1"
+        }
+      ],
+      "net": "XU_I2C_SCL_1V8",
+      "outside_owner": [],
+      "p2_debt": "native_pad_to_unplaced_tree_and_filled_In1_Cu_return",
+      "p3_debt": "one_connected_native_net_without_unrelated_branches",
+      "terminal_count": 3
+    },
+    {
+      "accounting": "schema_branch",
+      "capacity_slots": null,
+      "endpoints": [
+        {
+          "block": "audio_clock_tdm",
+          "native_pad": "R_ADC_I2C_SDA_A_PU.1",
+          "net": "XU_I2C_SDA_1V8",
+          "source_pad": "R_ADC_I2C_SDA_A_PU.1"
+        },
+        {
+          "block": "audio_clock_tdm",
+          "native_pad": "U_ADC_I2C_XLATE.4",
+          "net": "XU_I2C_SDA_1V8",
+          "source_pad": "U_ADC_I2C_XLATE.4"
+        },
+        {
+          "block": "xmos_core",
+          "native_pad": "U_XU.94",
+          "net": "XU_I2C_SDA_1V8",
+          "source_pad": "U_XU.94"
+        }
+      ],
+      "foreign_regions": [
+        {
+          "block": "audio_clock_tdm",
+          "foreign_regions": [
+            "analog_ch7"
+          ],
+          "native_pad": "R_ADC_I2C_SDA_A_PU.1",
+          "source_pad": "R_ADC_I2C_SDA_A_PU.1"
+        }
+      ],
+      "net": "XU_I2C_SDA_1V8",
+      "outside_owner": [],
+      "p2_debt": "native_pad_to_unplaced_tree_and_filled_In1_Cu_return",
+      "p3_debt": "one_connected_native_net_without_unrelated_branches",
+      "terminal_count": 3
+    },
+    {
+      "accounting": "schema_branch",
+      "capacity_slots": null,
+      "endpoints": [
+        {
+          "block": "adc_reference",
+          "native_pad": "Q_ADC_DIG_RST.1",
+          "net": "ADC_DIGITAL_BAD",
+          "source_pad": "Q_ADC_DIG_RST.1"
+        },
+        {
+          "block": "adc_reference",
+          "native_pad": "R_ADC_DIG_RST_PD.1",
+          "net": "ADC_DIGITAL_BAD",
+          "source_pad": "R_ADC_DIG_RST_PD.1"
+        },
+        {
+          "block": "audio_clock_tdm",
+          "native_pad": "U_ADC_CLOCK_OK.1",
+          "net": "ADC_DIGITAL_BAD",
+          "source_pad": "U_ADC_CLOCK_OK.1"
+        },
+        {
+          "block": "adc_reference",
+          "native_pad": "U_ADC_DIGITAL_BAD.4",
+          "net": "ADC_DIGITAL_BAD",
+          "source_pad": "U_ADC_DIGITAL_BAD.4"
+        },
+        {
+          "block": "adc_reference",
+          "native_pad": "U_ADC_READY.1",
+          "net": "ADC_DIGITAL_BAD",
+          "source_pad": "U_ADC_READY.1"
+        }
+      ],
+      "foreign_regions": [
+        {
+          "block": "audio_clock_tdm",
+          "foreign_regions": [
+            "analog_ch7"
+          ],
+          "native_pad": "U_ADC_CLOCK_OK.1",
+          "source_pad": "U_ADC_CLOCK_OK.1"
+        }
+      ],
+      "net": "ADC_DIGITAL_BAD",
+      "outside_owner": [],
+      "p2_debt": "native_pad_to_unplaced_tree_and_filled_In1_Cu_return",
+      "p3_debt": "one_connected_native_net_without_unrelated_branches",
+      "terminal_count": 5
+    }
+  ],
+  "p1_accepted": false,
+  "schema": 1,
+  "schema_gap_red_checks": {
+    "AUDIO_EN": "R_AUDIO_PD.1: branch pad outside source owner region",
+    "AUDIO_MCLK_1V8": "timing_audio_mclk_1v8_unplaced_tree: exact branch endpoint denominator mismatch",
+    "TDM_BCLK_1V8": "timing_tdm_bclk_1v8_unplaced_tree: exact branch endpoint denominator mismatch",
+    "TDM_DATA_1V8": "timing_tdm_data_1v8_unplaced_tree: exact branch endpoint denominator mismatch",
+    "TDM_FSYNC_1V8": "timing_tdm_fsync_1v8_unplaced_tree: exact branch endpoint denominator mismatch"
+  },
+  "status": "INCOMPLETE"
+}
