@@ -1126,18 +1126,18 @@ def execute_attempt(
     enforcement_errors.extend(scope_preflight)
 
     try:
-        if envelope.schema == 2 and envelope.repair and _continuation is None:
+        before_valid, before_failures = verify_input_packet(envelope, root)
+        if not before_valid:
+            enforcement_errors.extend(
+                f"input packet stale before execution: {row}"
+                for row in before_failures)
+        if not enforcement_errors and envelope.schema == 2 and envelope.repair and _continuation is None:
             if attempt_index != 0:
                 raise ValueError("initial task attempt index must be zero")
             if envelope.repair["finding_id"] is not None:
                 from decision_progress import reserve_launch
                 _continuation = {"nonimproving": 0, "investigation_reservation": reserve_launch(
                     root, envelope.repair["finding_id"], envelope.subject.semantic_sha256)}
-        before_valid, before_failures = verify_input_packet(envelope, root)
-        if not before_valid:
-            enforcement_errors.extend(
-                f"input packet stale before execution: {row}"
-                for row in before_failures)
         try:
             before_snapshot = _tree_snapshot(
                 root, ignored=frozenset(ignored))
