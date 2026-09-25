@@ -1,0 +1,202 @@
+{
+  "source_candidate_sha256": "c9b758d69867b274f0592bd2eceb9a26d64a80dd2daafa8ab9516d23d5925502",
+  "four_part_candidate_sha256": "046019a13094764baef313d62611b137e0f0af971079734c71ab050dbf46b3a0",
+  "outline_mm": [
+    20,
+    20,
+    240,
+    140
+  ],
+  "moved_poses_mm": {
+    "Y_AUDIO": [
+      167.5,
+      87.35
+    ],
+    "C_ADC_I2C_B": [
+      172.8,
+      95.0
+    ]
+  },
+  "held_cap_poses_mm": {
+    "C_ADC_I2C_A": [
+      168.0,
+      97.6
+    ],
+    "C_ADC_CLOCK_OK": [
+      164.6,
+      76.2
+    ]
+  },
+  "fixed_count": 27,
+  "fixed_poses_identical": true,
+  "pad_net_layer_identity_identical": true,
+  "new_physical_overlap_pairs": [],
+  "new_physical_or_pad_overlap_pairs": [],
+  "baseline_physical_overlap_pairs": 3,
+  "candidate_physical_overlap_pairs": 3,
+  "baseline_physical_or_pad_overlap_pairs": 3,
+  "candidate_physical_or_pad_overlap_pairs": 3,
+  "physical_and_pad_audio_cell_containment": true,
+  "port_obstacles": {
+    "adc7": {
+      "physical": [],
+      "full_text_inclusive": [
+        "Y_AUDIO"
+      ]
+    },
+    "adc8": {
+      "physical": [],
+      "full_text_inclusive": []
+    },
+    "tdm_neck": {
+      "physical": [],
+      "full_text_inclusive": [
+        "C_XU_VDDIO_109",
+        "C_XU_VDD_105"
+      ]
+    }
+  },
+  "Y_AUDIO_physical_bbox_mm": [
+    164.705,
+    85.255,
+    170.295,
+    89.445
+  ],
+  "C_ADC_I2C_B_physical_bbox_mm": [
+    171.845,
+    94.495,
+    173.755,
+    95.505
+  ],
+  "adc7_portal_to_Y_courtyard_margin_mm": 0.255,
+  "related_pad_center_distances_mm": {
+    "baseline": {
+      "Y_AUDIO.3->U_TDM_XLATE.11": 15.73646,
+      "Y_AUDIO.4->C_AUDIO_OSC.1": 6.066515,
+      "C_ADC_I2C_A.1->U_ADC_I2C_XLATE.3": 2.05022,
+      "C_ADC_I2C_B.1->U_ADC_I2C_XLATE.7": 7.920063,
+      "C_ADC_CLOCK_OK.1->U_ADC_CLOCK_OK.5": 1.25016
+    },
+    "candidate": {
+      "Y_AUDIO.3->U_TDM_XLATE.11": 15.643247,
+      "Y_AUDIO.4->C_AUDIO_OSC.1": 5.982483,
+      "C_ADC_I2C_A.1->U_ADC_I2C_XLATE.3": 2.05022,
+      "C_ADC_I2C_B.1->U_ADC_I2C_XLATE.7": 1.670748,
+      "C_ADC_CLOCK_OK.1->U_ADC_CLOCK_OK.5": 1.25016
+    }
+  },
+  "native_drc": {
+    "baseline": {
+      "violation_count": 12,
+      "types": [
+        "silk_over_copper",
+        "silk_over_copper",
+        "silk_over_copper",
+        "silk_over_copper",
+        "silk_over_copper",
+        "silk_overlap",
+        "silk_overlap",
+        "silk_overlap",
+        "silk_overlap",
+        "silk_overlap",
+        "silk_overlap",
+        "silk_overlap"
+      ],
+      "unconnected_items": 499
+    },
+    "candidate": {
+      "violation_count": 15,
+      "types": [
+        "silk_over_copper",
+        "silk_over_copper",
+        "silk_over_copper",
+        "silk_over_copper",
+        "silk_over_copper",
+        "silk_overlap",
+        "silk_overlap",
+        "silk_overlap",
+        "silk_overlap",
+        "silk_overlap",
+        "silk_overlap",
+        "silk_overlap",
+        "silk_overlap",
+        "silk_overlap",
+        "silk_overlap"
+      ],
+      "unconnected_items": 499
+    },
+    "silk_warning_delta": 3,
+    "new_warning_inventory": [
+      {
+        "description": "Silkscreen clearance",
+        "items": [
+          {
+            "description": "Reference field of C_ADC_I2C_B",
+            "pos": {
+              "x": 172.8,
+              "y": 106.0
+            },
+            "uuid": "6e8e202f-38c2-4036-b9e6-a8da7577f977"
+          },
+          {
+            "description": "Reference field of C_U_CORE_OUT_1",
+            "pos": {
+              "x": 177.1,
+              "y": 105.8
+            },
+            "uuid": "d07e0994-1ed5-4123-b9e4-41540eafc525"
+          }
+        ],
+        "severity": "warning",
+        "type": "silk_overlap"
+      },
+      {
+        "description": "Silkscreen clearance",
+        "items": [
+          {
+            "description": "Reference field of C_ADC_I2C_B",
+            "pos": {
+              "x": 172.8,
+              "y": 106.0
+            },
+            "uuid": "6e8e202f-38c2-4036-b9e6-a8da7577f977"
+          },
+          {
+            "description": "Reference field of C_CORE_OK",
+            "pos": {
+              "x": 173.0,
+              "y": 107.5
+            },
+            "uuid": "8c212647-5ca9-4837-9c60-50ac23a066e5"
+          }
+        ],
+        "severity": "warning",
+        "type": "silk_overlap"
+      },
+      {
+        "description": "Silkscreen clearance",
+        "items": [
+          {
+            "description": "Reference field of R_1V8_FB_TOP",
+            "pos": {
+              "x": 169.5,
+              "y": 105.5
+            },
+            "uuid": "1343fba8-26ac-4b3d-b5c7-ff6a5f8af34e"
+          },
+          {
+            "description": "Reference field of C_ADC_I2C_B",
+            "pos": {
+              "x": 172.8,
+              "y": 106.0
+            },
+            "uuid": "6e8e202f-38c2-4036-b9e6-a8da7577f977"
+          }
+        ],
+        "severity": "warning",
+        "type": "silk_overlap"
+      }
+    ]
+  },
+  "p1_accepted": false
+}
