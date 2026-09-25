@@ -1,0 +1,169 @@
+{
+  "full_envelope_hits": [
+    "R_SPOKE_ILIM8",
+    "U_SPOKE8"
+  ],
+  "gnd_return_same_filled_in1_outline_ids": [
+    8
+  ],
+  "gnd_rtn_distinct": true,
+  "layers": [
+    "F.Cu",
+    "F.Cu",
+    "F.Cu",
+    "In2.Cu",
+    "F.Cu"
+  ],
+  "native_ilim_pads_connected": true,
+  "native_profile": {
+    "added_issue_details": [
+      {
+        "description": "Clearance violation (netclass 'POD_POWER' clearance 0.2000 mm; actual 0.1000 mm)",
+        "items": [
+          {
+            "description": "Via [SPOKE_ILIM8] on F.Cu - B.Cu",
+            "pos": {
+              "x": 191.95,
+              "y": 45.15
+            }
+          },
+          {
+            "description": "Track [N12V_POD8] on B.Cu, length 2.2500 mm",
+            "pos": {
+              "x": 191.4,
+              "y": 45.8
+            }
+          }
+        ],
+        "type": "clearance"
+      },
+      {
+        "description": "Clearance violation (netclass 'POD_POWER' clearance 0.2000 mm; actual 0.1337 mm)",
+        "items": [
+          {
+            "description": "Via [N12V_POD8] on F.Cu - B.Cu",
+            "pos": {
+              "x": 191.4,
+              "y": 45.8
+            }
+          },
+          {
+            "description": "Track [SPOKE_ILIM8] on In2.Cu, length 5.0515 mm",
+            "pos": {
+              "x": 191.95,
+              "y": 45.15
+            }
+          }
+        ],
+        "type": "clearance"
+      }
+    ],
+    "added_issue_identities": 2,
+    "added_issue_summaries": [
+      [
+        "clearance",
+        "Clearance violation (netclass 'POD_POWER' clearance 0.2000 mm; actual 0.1000 mm)"
+      ],
+      [
+        "clearance",
+        "Clearance violation (netclass 'POD_POWER' clearance 0.2000 mm; actual 0.1337 mm)"
+      ]
+    ],
+    "removed_issue_identities": 0,
+    "removed_issue_summaries": [],
+    "unconnected": [
+      499,
+      499
+    ],
+    "via_process_fails": [
+      [],
+      []
+    ],
+    "violations": [
+      199,
+      201
+    ]
+  },
+  "new_copper_boxes_mm": [
+    [
+      191.3,
+      47.9,
+      192.100001,
+      48.100001
+    ],
+    [
+      191.9,
+      45.05,
+      192.100001,
+      48.100001
+    ],
+    [
+      191.85,
+      45.05,
+      192.100001,
+      45.250001
+    ],
+    [
+      191.65,
+      44.85,
+      192.250001,
+      45.450001
+    ],
+    [
+      191.725,
+      45.05,
+      192.050001,
+      50.300001
+    ],
+    [
+      191.525,
+      49.9,
+      192.125001,
+      50.500001
+    ],
+    [
+      191.725,
+      50.1,
+      191.925001,
+      51.100001
+    ]
+  ],
+  "path_vertices_mm": [
+    [
+      191.4,
+      48.0
+    ],
+    [
+      192.0,
+      48.0
+    ],
+    [
+      192.0,
+      45.15
+    ],
+    [
+      191.95,
+      45.15
+    ],
+    [
+      191.825,
+      50.2
+    ],
+    [
+      191.825,
+      51.0
+    ]
+  ],
+  "pinned_board_sha256": "28412ec5054d3b322ea03e37516aa969551beb1e2083b2fa0d2662863969dff4",
+  "prior_input_output_gnd_witnesses_connected": true,
+  "profile_sha256": "7977bc9edb88e1ef723eb256f07949871493dfda3d2c2491dd5d5b6087ddc094",
+  "qualified_ilim_loop_area_mm2": null,
+  "schema": 1,
+  "signal_centerline_length_mm": 9.351547,
+  "status": "ILIM_NORTH_VIA_NATIVE_TRIAL",
+  "via_outer_drill_mm": [
+    0.6,
+    0.3
+  ],
+  "width_mm": 0.2
+}

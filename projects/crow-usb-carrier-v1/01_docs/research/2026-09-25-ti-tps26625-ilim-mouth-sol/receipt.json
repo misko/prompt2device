@@ -1,0 +1,141 @@
+{
+  "copper_obstacle_count": 26,
+  "first_mouth_east_box_mm": [
+    191.7,
+    47.5,
+    191.95,
+    47.95
+  ],
+  "first_mouth_extreme_gaps_mm": {
+    "U_SPOKE8.11": 0.825011,
+    "U_SPOKE8.6": 0.219848,
+    "U_SPOKE8.8": 0.138243,
+    "track:GND": 0.150023
+  },
+  "first_mouth_extreme_mm": [
+    191.95,
+    47.95
+  ],
+  "first_mouth_restrictions_mm": {
+    "east_gnd_vertical_via_center_x_max": 191.95,
+    "south_gnd_horizontal_via_center_y_max": 47.95,
+    "u8_clearance_at_joint_max": 0.138243
+  },
+  "foreign_full_envelope_refs": [
+    "C_SPOKE_DVDT8",
+    "C_SPOKE_OUT8",
+    "C_SPOKE_IN8"
+  ],
+  "grid_mm": {
+    "sites": 53721,
+    "step": 0.025,
+    "x": [
+      190.5,
+      194.0
+    ],
+    "y": [
+      42.0,
+      51.5
+    ]
+  },
+  "launch_center_clear_sites": 25114,
+  "nets_yaml_sha256": "18033487a097b6d29abe3f9d8517879931cf80d278d8973adcf276010a5b7190",
+  "pinned_board_sha256": "28412ec5054d3b322ea03e37516aa969551beb1e2083b2fa0d2662863969dff4",
+  "reachable_and_via_clear_coordinates_mm": [
+    [
+      190.5,
+      45.325
+    ],
+    [
+      190.5,
+      45.35
+    ],
+    [
+      190.5,
+      45.375
+    ],
+    [
+      190.5,
+      45.4
+    ],
+    [
+      190.5,
+      45.425
+    ],
+    [
+      190.5,
+      45.45
+    ],
+    [
+      190.5,
+      45.475
+    ],
+    [
+      190.5,
+      45.5
+    ],
+    [
+      190.5,
+      45.525
+    ],
+    [
+      190.5,
+      45.55
+    ],
+    [
+      190.5,
+      45.575
+    ],
+    [
+      190.5,
+      45.6
+    ],
+    [
+      190.5,
+      45.625
+    ],
+    [
+      190.5,
+      45.65
+    ],
+    [
+      190.5,
+      45.675
+    ],
+    [
+      190.5,
+      45.7
+    ],
+    [
+      190.5,
+      45.725
+    ],
+    [
+      190.5,
+      45.75
+    ],
+    [
+      190.5,
+      45.775
+    ],
+    [
+      190.5,
+      45.8
+    ]
+  ],
+  "reachable_and_via_clear_sites": 384,
+  "schema": 1,
+  "scope": "F.Cu necessary condition for a 0.20-mm launch and 0.60-mm via; eight-neighbor reachability overapproximates centerline passage. Remote clear via centers require a complete multilayer route check.",
+  "source_default_clearance_mm": 0.15,
+  "source_default_track_width_mm": 0.2,
+  "status": "IMMEDIATE_MOUTH_BLOCKED_REMOTE_CENTERS_EXIST",
+  "u7_reachable_center_bbox_mm": [
+    190.5,
+    44.35,
+    192.15,
+    48.15
+  ],
+  "u7_reachable_launch_center_sites_eight_neighbor_overapprox": 3265,
+  "u7_reachable_on_screen_boundary_sites": 38,
+  "via_center_clear_sites": 17494
+}
