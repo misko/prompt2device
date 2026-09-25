@@ -89,6 +89,19 @@ Use these scopes without forcing every block through a lockstep barrier:
 4. `P4_JOINT_PROOF` grades coupled blocks and shared corridors together.
 5. `P5_INTEGRATED_PLACEMENT_REVIEW` joins every declared P3/P4 proof before placement promotion.
 
+Before counting a P3 route, sweep the *full copper width* of every segment
+against the routed block's physical cell, foreign planning regions, and the
+native body/courtyard envelopes of nearby components, including the route's
+own launch and receive parts. Name the unavoidable pad-to-outside launch
+separately; an unrestricted same-footprint body crossing is not an escape
+proof. Record the smallest positive margins and check that they remain useful
+after assembly/placement tolerances, as well as native pad/copper clearance,
+filled-reference continuity and endpoint connectivity. Native DRC alone does
+not reject a track under a component body or across a planning boundary.
+When several local route variants trade one such conflict for another, return
+to coupled support-part placement instead of tuning a trace in an unaccepted
+floorplan.
+
 For a board with a named coarse corridor contract, bind the source, interface,
 footprint alias, floorplan, native board, and independently expected contract
 hashes. Name at least one source-owned `REF.pin` boundary witness for each
