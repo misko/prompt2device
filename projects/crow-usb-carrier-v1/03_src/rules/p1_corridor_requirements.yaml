@@ -719,3 +719,90 @@ physical_cells:
   owner_block: xmos_core
   refs: []
   transit: true
+
+# Exact reset terminal tree remains unplaced; no corridor, tee, or capacity is claimed.
+unresolved_multiterminal_branches:
+- id: xu_reset_five_terminal
+  owner: board_integration
+  allocation_id: xmos_service_escape
+  net: XU_RESET_N
+  layer: F.Cu
+  reference_layer: In1.Cu
+  reservation_id: reset_unresolved_tree
+  terminal_count: 5
+  minimum_tree_edges: 4
+  endpoints:
+  - source_pad: J_JTAG.10
+    native_pad: J_JTAG.10
+    net: XU_RESET_N
+    block: debug_connector
+  - source_pad: R_XU_RST_PU.2
+    native_pad: R_XU_RST_PU.2
+    net: XU_RESET_N
+    block: digital_power
+  - source_pad: U_CORE_OK.1
+    native_pad: U_CORE_OK.1
+    net: XU_RESET_N
+    block: digital_power
+  - source_pad: U_XU.38
+    native_pad: U_XU.38
+    net: XU_RESET_N
+    block: xmos_core
+  - source_pad: U_XU_3V3_OK.6
+    native_pad: U_XU_3V3_OK.6
+    net: XU_RESET_N
+    block: digital_power
+  physical_blockers: []
+  p2_obligations:
+  - status: P2_REQUIRED
+    source_pad: J_JTAG.10
+    native_pad: J_JTAG.10
+    net: XU_RESET_N
+    block: debug_connector
+    branch_id: xu_reset_five_terminal
+    layer: F.Cu
+    proof: native_pad_to_unplaced_tree
+  - status: P2_REQUIRED
+    source_pad: R_XU_RST_PU.2
+    native_pad: R_XU_RST_PU.2
+    net: XU_RESET_N
+    block: digital_power
+    branch_id: xu_reset_five_terminal
+    layer: F.Cu
+    proof: native_pad_to_unplaced_tree
+  - status: P2_REQUIRED
+    source_pad: U_CORE_OK.1
+    native_pad: U_CORE_OK.1
+    net: XU_RESET_N
+    block: digital_power
+    branch_id: xu_reset_five_terminal
+    layer: F.Cu
+    proof: native_pad_to_unplaced_tree
+  - status: P2_REQUIRED
+    source_pad: U_XU.38
+    native_pad: U_XU.38
+    net: XU_RESET_N
+    block: xmos_core
+    branch_id: xu_reset_five_terminal
+    layer: F.Cu
+    proof: native_pad_to_unplaced_tree
+  - status: P2_REQUIRED
+    source_pad: U_XU_3V3_OK.6
+    native_pad: U_XU_3V3_OK.6
+    net: XU_RESET_N
+    block: digital_power
+    branch_id: xu_reset_five_terminal
+    layer: F.Cu
+    proof: native_pad_to_unplaced_tree
+  tree_obligation:
+    status: P3_REQUIRED
+    net: XU_RESET_N
+    terminal_count: 5
+    minimum_tree_edges: 4
+    proof: one_connected_native_net_without_unrelated_branches
+  return_obligation:
+    status: P2_REQUIRED
+    net: GND
+    branch_id: xu_reset_five_terminal
+    reference_layer: In1.Cu
+    proof: continuous_filled_reference_under_actual_tree

@@ -380,7 +380,7 @@ placement:
     hold_bank_right: [76, 113, 126, 137]
     digital_power:
     - 145
-    - 85
+    - 99.84
     - 185
     - 134
     xmos_core:
@@ -398,10 +398,10 @@ placement:
     - 232
     - 136
     audio_clock_tdm:
-    - 140
+    - 145
     - 72
     - 190
-    - 112
+    - 99.84
     usb_frontend:
     - 200
     - 35
