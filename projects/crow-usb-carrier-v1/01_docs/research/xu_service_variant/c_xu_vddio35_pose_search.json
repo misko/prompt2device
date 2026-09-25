@@ -1,0 +1,101 @@
+{
+  "schema": 1,
+  "kind": "crow-c-xu-vddio35-in-memory-pose-search",
+  "status": "NO_SHORT_RETURN-PROVEN_POSE",
+  "hashes": {
+    "board": "fbfb3bda95f1ddc98e7d3d229550644d136dc7d6349ba19a4023eb13b07e7e27",
+    "floorplan": "cd52893214a87432b99bab41827a64680bd8a2f970342f126260157948b50925",
+    "source": "9a13c0999d29f17280bb5d8ffb98a5e0d59afe3ee4511eb004e436bffc13ece4"
+  },
+  "search": {
+    "region_mm": [
+      217.2,
+      84.0,
+      232.0,
+      105.5
+    ],
+    "handoff_exclusion_mm": [
+      217.2,
+      105.5,
+      218.95,
+      118.5
+    ],
+    "grid_mm": 0.05,
+    "clearance_mm": 0.15,
+    "candidate_count": 355074
+  },
+  "original": {
+    "at_mm": [
+      218.0,
+      105.8
+    ],
+    "rotation_deg": 90,
+    "envelope_mm": [
+      217.495,
+      104.845,
+      218.505,
+      106.755
+    ],
+    "u_xu_35_center_mm": [
+      216.1625,
+      105.4
+    ],
+    "n1v8_pad_center_mm": [
+      218.0,
+      106.28
+    ],
+    "u_xu_35_to_n1v8_pad_mm": 2.037353
+  },
+  "nearest_clearance_aware_pose": {
+    "at_mm": [
+      222.1,
+      102.7
+    ],
+    "rotation_deg": 0,
+    "envelope_mm": [
+      221.145,
+      102.195,
+      223.055,
+      103.205
+    ],
+    "n1v8_pad_center_mm": [
+      221.62,
+      102.7
+    ],
+    "gnd_pad_center_mm": [
+      222.58,
+      102.7
+    ],
+    "u_xu_35_to_n1v8_pad_mm": 6.088867,
+    "pad_bboxes_mm": {
+      "1": [
+        221.34,
+        102.39,
+        221.9,
+        103.01
+      ],
+      "2": [
+        222.3,
+        102.39,
+        222.86,
+        103.01
+      ]
+    },
+    "native_body_courtyard_hits": [],
+    "native_pad_hits": [],
+    "p1_fixed_ref_hits": [],
+    "distance_increase_mm": 4.051514
+  },
+  "direct_gnd_return": {
+    "nearest_existing_gnd_via_mm": 48.556198,
+    "finding": "No local native GND via exists; a new adjacent via and filled In1.Cu proof are P2 debt."
+  },
+  "conclusion": "The nearest clearance-aware in-region pose is materially farther from U_XU.35 than the pinned pose and has no existing adjacent GND via. It is a collision-free geometric fallback only, not evidence that the required short local N1V8 connection or direct GND return is preserved.",
+  "not_claimed": [
+    "P2 placement approval",
+    "routing",
+    "In1 filled return",
+    "DRC",
+    "P1 acceptance"
+  ]
+}
