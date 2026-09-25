@@ -1,0 +1,760 @@
+{
+  "adc7_portal_mm": [
+    166.0,
+    83.9,
+    167.12,
+    85.0
+  ],
+  "candidate_sha256": "d0c065dc16de081a5410b7a22e474f0a99c6fdeb0b7dd1f6c37422ace4a9fcf7",
+  "fixed_poses_identical": true,
+  "fixed_ref_count": 27,
+  "gnd_reference": [
+    {
+      "filled": false,
+      "layers": [
+        "In1.Cu"
+      ],
+      "net": "GND"
+    }
+  ],
+  "inputs_sha256": {
+    "board": "046019a13094764baef313d62611b137e0f0af971079734c71ab050dbf46b3a0",
+    "floorplan": "7d95376bbfa3bc9dd0bf59bc7e91d02d86c31235f6145f4d09b49a31f81769d0",
+    "helper": "0827824c749206fc11194f27daa6e732a3253b348054a6d93218e960fe138a93",
+    "source": "60b7062e53bfd930ee7e9e2a8694b87098b1a5625d4a48c06eddb2f8bd8b5be7"
+  },
+  "kind": "isolated-coupled-vmid-channel8-placement",
+  "limitations": "No traces, vias, copper fill, source recut, P1 capacity, or return path is established. 0.56-mm mouths are envelope separations, not routed width.",
+  "moved": [
+    {
+      "from_mm": [
+        189.0,
+        57.1
+      ],
+      "move_mm": 0.559017,
+      "nearest_envelopes_mm": [
+        [
+          0.19,
+          "R_OUT8N"
+        ],
+        [
+          0.36,
+          "C_ADC_AC8P2"
+        ],
+        [
+          0.49,
+          "R_B8N"
+        ]
+      ],
+      "owner": "analog_ch8",
+      "owner_edge_margins_mm": [
+        8.055,
+        12.205,
+        6.155,
+        24.205
+      ],
+      "physical_bbox_mm": [
+        187.055,
+        54.205,
+        194.845,
+        59.795
+      ],
+      "ref": "C_A8P",
+      "to_mm": [
+        188.45,
+        57.0
+      ]
+    },
+    {
+      "from_mm": [
+        197.0,
+        63.0
+      ],
+      "move_mm": 3.000417,
+      "nearest_envelopes_mm": [
+        [
+          0.56,
+          "C_A8P"
+        ],
+        [
+          0.68,
+          "R_B8P"
+        ],
+        [
+          0.98,
+          "C_FILTER8N1"
+        ]
+      ],
+      "owner": "analog_ch8",
+      "owner_edge_margins_mm": [
+        16.405,
+        16.505,
+        0.005,
+        22.005
+      ],
+      "physical_bbox_mm": [
+        195.405,
+        58.505,
+        200.995,
+        61.995
+      ],
+      "ref": "C_ADC_AC8N1",
+      "to_mm": [
+        198.2,
+        60.25
+      ]
+    },
+    {
+      "from_mm": [
+        198.5,
+        59.9
+      ],
+      "move_mm": 3.65821,
+      "nearest_envelopes_mm": [
+        [
+          0.56,
+          "C_A8P"
+        ],
+        [
+          0.63,
+          "U_ISO8"
+        ],
+        [
+          0.98,
+          "C_ADC_AC8N1"
+        ]
+      ],
+      "owner": "analog_ch8",
+      "owner_edge_margins_mm": [
+        16.405,
+        13.475,
+        2.105,
+        26.475
+      ],
+      "physical_bbox_mm": [
+        195.405,
+        55.475,
+        198.895,
+        57.525
+      ],
+      "ref": "C_FILTER8N1",
+      "to_mm": [
+        197.15,
+        56.5
+      ]
+    },
+    {
+      "from_mm": [
+        185.2,
+        54.8
+      ],
+      "move_mm": 0.45,
+      "nearest_envelopes_mm": [
+        [
+          0.26,
+          "R_X8N"
+        ],
+        [
+          0.33,
+          "C_ADC_AC8P2"
+        ],
+        [
+          0.56,
+          "C_A8P"
+        ]
+      ],
+      "owner": "analog_ch8",
+      "owner_edge_margins_mm": [
+        4.005,
+        11.775,
+        14.505,
+        28.175
+      ],
+      "physical_bbox_mm": [
+        183.005,
+        53.775,
+        186.495,
+        55.825
+      ],
+      "ref": "C_FILTER8N2",
+      "to_mm": [
+        184.75,
+        54.8
+      ]
+    },
+    {
+      "from_mm": [
+        197.7,
+        56.6
+      ],
+      "move_mm": 8.637129,
+      "nearest_envelopes_mm": [
+        [
+          2.13,
+          "U_ISO8"
+        ],
+        [
+          3.969887,
+          "R_OUT8N"
+        ],
+        [
+          4.099585,
+          "C_SPOKE_IN8"
+        ]
+      ],
+      "owner": "analog_ch8",
+      "owner_edge_margins_mm": [
+        17.755,
+        4.975,
+        0.755,
+        34.975
+      ],
+      "physical_bbox_mm": [
+        196.755,
+        46.975,
+        200.245,
+        49.025
+      ],
+      "ref": "C_FILTER8P2",
+      "to_mm": [
+        198.5,
+        48.0
+      ]
+    },
+    {
+      "from_mm": [
+        191.8,
+        52.7
+      ],
+      "move_mm": 0.1,
+      "nearest_envelopes_mm": [
+        [
+          0.58,
+          "C_A8P"
+        ],
+        [
+          0.78,
+          "R_B8N"
+        ],
+        [
+          0.98,
+          "R_OUT8N"
+        ]
+      ],
+      "owner": "analog_ch8",
+      "owner_edge_margins_mm": [
+        11.055,
+        9.575,
+        7.455,
+        30.375
+      ],
+      "physical_bbox_mm": [
+        190.055,
+        51.575,
+        193.545,
+        53.625
+      ],
+      "ref": "C_SPOKE_IN8",
+      "to_mm": [
+        191.8,
+        52.6
+      ]
+    },
+    {
+      "from_mm": [
+        47.0,
+        63.0
+      ],
+      "move_mm": 5.728001,
+      "nearest_envelopes_mm": [
+        [
+          0.56,
+          "C_FILTER1P1"
+        ],
+        [
+          0.87,
+          "R_SPOKE_UVLO1"
+        ],
+        [
+          1.03,
+          "C_A1N"
+        ]
+      ],
+      "owner": "analog_ch1",
+      "owner_edge_margins_mm": [
+        19.425,
+        25.985,
+        0.625,
+        14.985
+      ],
+      "physical_bbox_mm": [
+        44.425,
+        67.985,
+        46.375,
+        69.015
+      ],
+      "ref": "R_B1P",
+      "to_mm": [
+        45.4,
+        68.5
+      ]
+    },
+    {
+      "from_mm": [
+        69.0,
+        63.0
+      ],
+      "move_mm": 5.728001,
+      "nearest_envelopes_mm": [
+        [
+          0.56,
+          "C_FILTER2P1"
+        ],
+        [
+          0.87,
+          "R_OUT2P"
+        ],
+        [
+          1.03,
+          "C_A2N"
+        ]
+      ],
+      "owner": "analog_ch2",
+      "owner_edge_margins_mm": [
+        19.425,
+        25.985,
+        0.625,
+        14.985
+      ],
+      "physical_bbox_mm": [
+        66.425,
+        67.985,
+        68.375,
+        69.015
+      ],
+      "ref": "R_B2P",
+      "to_mm": [
+        67.4,
+        68.5
+      ]
+    },
+    {
+      "from_mm": [
+        91.0,
+        63.0
+      ],
+      "move_mm": 5.728001,
+      "nearest_envelopes_mm": [
+        [
+          0.56,
+          "C_FILTER3P1"
+        ],
+        [
+          0.87,
+          "R_OUT3P"
+        ],
+        [
+          1.03,
+          "C_A3N"
+        ]
+      ],
+      "owner": "analog_ch3",
+      "owner_edge_margins_mm": [
+        19.425,
+        25.985,
+        0.625,
+        14.985
+      ],
+      "physical_bbox_mm": [
+        88.425,
+        67.985,
+        90.375,
+        69.015
+      ],
+      "ref": "R_B3P",
+      "to_mm": [
+        89.4,
+        68.5
+      ]
+    },
+    {
+      "from_mm": [
+        113.0,
+        63.0
+      ],
+      "move_mm": 5.728001,
+      "nearest_envelopes_mm": [
+        [
+          0.56,
+          "C_FILTER4P1"
+        ],
+        [
+          0.87,
+          "R_OUT4P"
+        ],
+        [
+          1.03,
+          "C_A4N"
+        ]
+      ],
+      "owner": "analog_ch4",
+      "owner_edge_margins_mm": [
+        19.425,
+        25.985,
+        0.625,
+        14.985
+      ],
+      "physical_bbox_mm": [
+        110.425,
+        67.985,
+        112.375,
+        69.015
+      ],
+      "ref": "R_B4P",
+      "to_mm": [
+        111.4,
+        68.5
+      ]
+    },
+    {
+      "from_mm": [
+        135.0,
+        63.0
+      ],
+      "move_mm": 5.728001,
+      "nearest_envelopes_mm": [
+        [
+          0.56,
+          "C_FILTER5P1"
+        ],
+        [
+          0.87,
+          "R_OUT5P"
+        ],
+        [
+          1.03,
+          "C_A5N"
+        ]
+      ],
+      "owner": "analog_ch5",
+      "owner_edge_margins_mm": [
+        19.425,
+        25.985,
+        0.625,
+        14.985
+      ],
+      "physical_bbox_mm": [
+        132.425,
+        67.985,
+        134.375,
+        69.015
+      ],
+      "ref": "R_B5P",
+      "to_mm": [
+        133.4,
+        68.5
+      ]
+    },
+    {
+      "from_mm": [
+        157.0,
+        63.0
+      ],
+      "move_mm": 5.728001,
+      "nearest_envelopes_mm": [
+        [
+          0.56,
+          "C_FILTER6P1"
+        ],
+        [
+          0.87,
+          "R_OUT6P"
+        ],
+        [
+          1.03,
+          "C_A6N"
+        ]
+      ],
+      "owner": "analog_ch6",
+      "owner_edge_margins_mm": [
+        19.425,
+        25.985,
+        0.625,
+        14.985
+      ],
+      "physical_bbox_mm": [
+        154.425,
+        67.985,
+        156.375,
+        69.015
+      ],
+      "ref": "R_B6P",
+      "to_mm": [
+        155.4,
+        68.5
+      ]
+    },
+    {
+      "from_mm": [
+        179.0,
+        63.0
+      ],
+      "move_mm": 5.728001,
+      "nearest_envelopes_mm": [
+        [
+          0.56,
+          "C_FILTER7P1"
+        ],
+        [
+          0.87,
+          "R_OUT7P"
+        ],
+        [
+          1.03,
+          "C_A7N"
+        ]
+      ],
+      "owner": "analog_ch7",
+      "owner_edge_margins_mm": [
+        19.425,
+        25.985,
+        0.625,
+        14.985
+      ],
+      "physical_bbox_mm": [
+        176.425,
+        67.985,
+        178.375,
+        69.015
+      ],
+      "ref": "R_B7P",
+      "to_mm": [
+        177.4,
+        68.5
+      ]
+    },
+    {
+      "from_mm": [
+        201.0,
+        63.0
+      ],
+      "move_mm": 7.520804,
+      "nearest_envelopes_mm": [
+        [
+          0.58,
+          "U_SPOKE8"
+        ],
+        [
+          0.68,
+          "C_ADC_AC8N1"
+        ],
+        [
+          0.69,
+          "C_A8P"
+        ]
+      ],
+      "owner": "analog_ch8",
+      "owner_edge_margins_mm": [
+        13.775,
+        18.485,
+        6.275,
+        22.485
+      ],
+      "physical_bbox_mm": [
+        192.775,
+        60.485,
+        194.725,
+        61.515
+      ],
+      "ref": "R_B8P",
+      "to_mm": [
+        193.75,
+        61.0
+      ]
+    },
+    {
+      "from_mm": [
+        202.7,
+        58.4
+      ],
+      "move_mm": 6.545991,
+      "nearest_envelopes_mm": [
+        [
+          0.63,
+          "C_FILTER8N1"
+        ],
+        [
+          0.68,
+          "R_OUT8N"
+        ],
+        [
+          2.13,
+          "C_FILTER8P2"
+        ]
+      ],
+      "owner": "analog_ch8",
+      "owner_edge_margins_mm": [
+        18.155,
+        9.155,
+        0.155,
+        29.155
+      ],
+      "physical_bbox_mm": [
+        197.155,
+        51.155,
+        200.845,
+        54.845
+      ],
+      "ref": "U_ISO8",
+      "to_mm": [
+        199.0,
+        53.0
+      ]
+    }
+  ],
+  "outline_and_stack_unmodified": true,
+  "p1_accepted": false,
+  "p2_accepted": false,
+  "pad_net_layer_shape_and_relative_pose_identical": true,
+  "portal_nearest_envelopes_mm": [
+    [
+      0.255,
+      "Y_AUDIO"
+    ],
+    [
+      2.218479,
+      "C_ADC_OK_CT"
+    ],
+    [
+      2.895,
+      "C_FSYNC_INV"
+    ],
+    [
+      3.070513,
+      "C_FSYNC_FF2"
+    ],
+    [
+      3.193407,
+      "R_ADC_I2C_SDA_A_PU"
+    ]
+  ],
+  "related_pad_distances": [
+    {
+      "new_mm": 7.846177,
+      "old_mm": 9.141663,
+      "pads": [
+        "C_ADC_AC8N1.1",
+        "U_ISO8.6"
+      ]
+    },
+    {
+      "new_mm": 13.957539,
+      "old_mm": 11.810521,
+      "pads": [
+        "C_ADC_AC8N1.2",
+        "C_ADC_CM8N.1"
+      ]
+    },
+    {
+      "new_mm": 4.005509,
+      "old_mm": 8.770981,
+      "pads": [
+        "C_A8P.2",
+        "R_B8P.1"
+      ]
+    },
+    {
+      "new_mm": 4.455334,
+      "old_mm": 5.657959,
+      "pads": [
+        "C_FILTER8N1.1",
+        "U_ISO8.9"
+      ]
+    },
+    {
+      "new_mm": 5.501136,
+      "old_mm": 5.970134,
+      "pads": [
+        "C_FILTER8P2.1",
+        "U_ISO8.7"
+      ]
+    },
+    {
+      "new_mm": 2.016953,
+      "old_mm": 1.857848,
+      "pads": [
+        "C_FILTER8N2.1",
+        "R_X8N.2"
+      ]
+    },
+    {
+      "new_mm": 9.665532,
+      "old_mm": 9.568307,
+      "pads": [
+        "C_SPOKE_IN8.1",
+        "U_SPOKE8.1"
+      ]
+    },
+    {
+      "new_mm": 12.404519,
+      "old_mm": 8.770981,
+      "pads": [
+        "R_B1P.1",
+        "C_A1P.2"
+      ]
+    },
+    {
+      "new_mm": 12.404519,
+      "old_mm": 8.770981,
+      "pads": [
+        "R_B2P.1",
+        "C_A2P.2"
+      ]
+    },
+    {
+      "new_mm": 12.404519,
+      "old_mm": 8.770981,
+      "pads": [
+        "R_B3P.1",
+        "C_A3P.2"
+      ]
+    },
+    {
+      "new_mm": 12.404519,
+      "old_mm": 8.770981,
+      "pads": [
+        "R_B4P.1",
+        "C_A4P.2"
+      ]
+    },
+    {
+      "new_mm": 12.404519,
+      "old_mm": 8.770981,
+      "pads": [
+        "R_B5P.1",
+        "C_A5P.2"
+      ]
+    },
+    {
+      "new_mm": 12.404519,
+      "old_mm": 8.770981,
+      "pads": [
+        "R_B6P.1",
+        "C_A6P.2"
+      ]
+    },
+    {
+      "new_mm": 12.404519,
+      "old_mm": 8.770981,
+      "pads": [
+        "R_B7P.1",
+        "C_A7P.2"
+      ]
+    }
+  ],
+  "return_credit": false,
+  "route_credit": false,
+  "schema": 1,
+  "status": "GEOMETRY_SCREEN_ONLY",
+  "unchanged_nonlisted_poses": true
+}
