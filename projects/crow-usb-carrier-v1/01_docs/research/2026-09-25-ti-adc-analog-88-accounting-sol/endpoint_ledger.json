@@ -1,0 +1,974 @@
+{
+  "access_only_portal_sha256": "f1952e27cebd1eb3fa3b1ebc4863ed7d408f4b04d603a8c76454a063eff719ae",
+  "board_sha256": "046019a13094764baef313d62611b137e0f0af971079734c71ab050dbf46b3a0",
+  "branchable_endpoint_count": 64,
+  "branchable_net_count": 16,
+  "endpoint_count": 88,
+  "net_count": 18,
+  "nets": [
+    {
+      "accounting": "schema_branch",
+      "capacity_slots": null,
+      "endpoints": [
+        {
+          "block": "analog_ch1",
+          "native_pad": "C_ADC_AC1N1.2",
+          "net": "ADC1N",
+          "source_pad": "C_ADC_AC1N1.2"
+        },
+        {
+          "block": "analog_ch1",
+          "native_pad": "C_ADC_AC1N2.2",
+          "net": "ADC1N",
+          "source_pad": "C_ADC_AC1N2.2"
+        },
+        {
+          "block": "analog_ch1",
+          "native_pad": "C_ADC_CM1N.1",
+          "net": "ADC1N",
+          "source_pad": "C_ADC_CM1N.1"
+        },
+        {
+          "block": "adc_reference",
+          "native_pad": "U_ADC_A.13",
+          "net": "ADC1N",
+          "source_pad": "U_ADC_A.13"
+        }
+      ],
+      "foreign_regions": [],
+      "net": "ADC1N",
+      "outside_owner": [],
+      "p2_debt": "native_pad_to_unplaced_tree_and_filled_In1_Cu_return",
+      "p3_debt": "one_connected_native_net_without_unrelated_branches",
+      "terminal_count": 4
+    },
+    {
+      "accounting": "schema_branch",
+      "capacity_slots": null,
+      "endpoints": [
+        {
+          "block": "analog_ch1",
+          "native_pad": "C_ADC_AC1P1.2",
+          "net": "ADC1P",
+          "source_pad": "C_ADC_AC1P1.2"
+        },
+        {
+          "block": "analog_ch1",
+          "native_pad": "C_ADC_AC1P2.2",
+          "net": "ADC1P",
+          "source_pad": "C_ADC_AC1P2.2"
+        },
+        {
+          "block": "analog_ch1",
+          "native_pad": "C_ADC_CM1P.1",
+          "net": "ADC1P",
+          "source_pad": "C_ADC_CM1P.1"
+        },
+        {
+          "block": "adc_reference",
+          "native_pad": "U_ADC_A.12",
+          "net": "ADC1P",
+          "source_pad": "U_ADC_A.12"
+        }
+      ],
+      "foreign_regions": [],
+      "net": "ADC1P",
+      "outside_owner": [],
+      "p2_debt": "native_pad_to_unplaced_tree_and_filled_In1_Cu_return",
+      "p3_debt": "one_connected_native_net_without_unrelated_branches",
+      "terminal_count": 4
+    },
+    {
+      "accounting": "schema_branch",
+      "capacity_slots": null,
+      "endpoints": [
+        {
+          "block": "analog_ch2",
+          "native_pad": "C_ADC_AC2N1.2",
+          "net": "ADC2N",
+          "source_pad": "C_ADC_AC2N1.2"
+        },
+        {
+          "block": "analog_ch2",
+          "native_pad": "C_ADC_AC2N2.2",
+          "net": "ADC2N",
+          "source_pad": "C_ADC_AC2N2.2"
+        },
+        {
+          "block": "analog_ch2",
+          "native_pad": "C_ADC_CM2N.1",
+          "net": "ADC2N",
+          "source_pad": "C_ADC_CM2N.1"
+        },
+        {
+          "block": "adc_reference",
+          "native_pad": "U_ADC_A.11",
+          "net": "ADC2N",
+          "source_pad": "U_ADC_A.11"
+        }
+      ],
+      "foreign_regions": [],
+      "net": "ADC2N",
+      "outside_owner": [],
+      "p2_debt": "native_pad_to_unplaced_tree_and_filled_In1_Cu_return",
+      "p3_debt": "one_connected_native_net_without_unrelated_branches",
+      "terminal_count": 4
+    },
+    {
+      "accounting": "schema_branch",
+      "capacity_slots": null,
+      "endpoints": [
+        {
+          "block": "analog_ch2",
+          "native_pad": "C_ADC_AC2P1.2",
+          "net": "ADC2P",
+          "source_pad": "C_ADC_AC2P1.2"
+        },
+        {
+          "block": "analog_ch2",
+          "native_pad": "C_ADC_AC2P2.2",
+          "net": "ADC2P",
+          "source_pad": "C_ADC_AC2P2.2"
+        },
+        {
+          "block": "analog_ch2",
+          "native_pad": "C_ADC_CM2P.1",
+          "net": "ADC2P",
+          "source_pad": "C_ADC_CM2P.1"
+        },
+        {
+          "block": "adc_reference",
+          "native_pad": "U_ADC_A.10",
+          "net": "ADC2P",
+          "source_pad": "U_ADC_A.10"
+        }
+      ],
+      "foreign_regions": [],
+      "net": "ADC2P",
+      "outside_owner": [],
+      "p2_debt": "native_pad_to_unplaced_tree_and_filled_In1_Cu_return",
+      "p3_debt": "one_connected_native_net_without_unrelated_branches",
+      "terminal_count": 4
+    },
+    {
+      "accounting": "schema_branch",
+      "capacity_slots": null,
+      "endpoints": [
+        {
+          "block": "analog_ch3",
+          "native_pad": "C_ADC_AC3N1.2",
+          "net": "ADC3N",
+          "source_pad": "C_ADC_AC3N1.2"
+        },
+        {
+          "block": "analog_ch3",
+          "native_pad": "C_ADC_AC3N2.2",
+          "net": "ADC3N",
+          "source_pad": "C_ADC_AC3N2.2"
+        },
+        {
+          "block": "analog_ch3",
+          "native_pad": "C_ADC_CM3N.1",
+          "net": "ADC3N",
+          "source_pad": "C_ADC_CM3N.1"
+        },
+        {
+          "block": "adc_reference",
+          "native_pad": "U_ADC_A.9",
+          "net": "ADC3N",
+          "source_pad": "U_ADC_A.9"
+        }
+      ],
+      "foreign_regions": [],
+      "net": "ADC3N",
+      "outside_owner": [],
+      "p2_debt": "native_pad_to_unplaced_tree_and_filled_In1_Cu_return",
+      "p3_debt": "one_connected_native_net_without_unrelated_branches",
+      "terminal_count": 4
+    },
+    {
+      "accounting": "schema_branch",
+      "capacity_slots": null,
+      "endpoints": [
+        {
+          "block": "analog_ch3",
+          "native_pad": "C_ADC_AC3P1.2",
+          "net": "ADC3P",
+          "source_pad": "C_ADC_AC3P1.2"
+        },
+        {
+          "block": "analog_ch3",
+          "native_pad": "C_ADC_AC3P2.2",
+          "net": "ADC3P",
+          "source_pad": "C_ADC_AC3P2.2"
+        },
+        {
+          "block": "analog_ch3",
+          "native_pad": "C_ADC_CM3P.1",
+          "net": "ADC3P",
+          "source_pad": "C_ADC_CM3P.1"
+        },
+        {
+          "block": "adc_reference",
+          "native_pad": "U_ADC_A.8",
+          "net": "ADC3P",
+          "source_pad": "U_ADC_A.8"
+        }
+      ],
+      "foreign_regions": [],
+      "net": "ADC3P",
+      "outside_owner": [],
+      "p2_debt": "native_pad_to_unplaced_tree_and_filled_In1_Cu_return",
+      "p3_debt": "one_connected_native_net_without_unrelated_branches",
+      "terminal_count": 4
+    },
+    {
+      "accounting": "schema_branch",
+      "capacity_slots": null,
+      "endpoints": [
+        {
+          "block": "analog_ch4",
+          "native_pad": "C_ADC_AC4N1.2",
+          "net": "ADC4N",
+          "source_pad": "C_ADC_AC4N1.2"
+        },
+        {
+          "block": "analog_ch4",
+          "native_pad": "C_ADC_AC4N2.2",
+          "net": "ADC4N",
+          "source_pad": "C_ADC_AC4N2.2"
+        },
+        {
+          "block": "analog_ch4",
+          "native_pad": "C_ADC_CM4N.1",
+          "net": "ADC4N",
+          "source_pad": "C_ADC_CM4N.1"
+        },
+        {
+          "block": "adc_reference",
+          "native_pad": "U_ADC_A.7",
+          "net": "ADC4N",
+          "source_pad": "U_ADC_A.7"
+        }
+      ],
+      "foreign_regions": [],
+      "net": "ADC4N",
+      "outside_owner": [],
+      "p2_debt": "native_pad_to_unplaced_tree_and_filled_In1_Cu_return",
+      "p3_debt": "one_connected_native_net_without_unrelated_branches",
+      "terminal_count": 4
+    },
+    {
+      "accounting": "schema_branch",
+      "capacity_slots": null,
+      "endpoints": [
+        {
+          "block": "analog_ch4",
+          "native_pad": "C_ADC_AC4P1.2",
+          "net": "ADC4P",
+          "source_pad": "C_ADC_AC4P1.2"
+        },
+        {
+          "block": "analog_ch4",
+          "native_pad": "C_ADC_AC4P2.2",
+          "net": "ADC4P",
+          "source_pad": "C_ADC_AC4P2.2"
+        },
+        {
+          "block": "analog_ch4",
+          "native_pad": "C_ADC_CM4P.1",
+          "net": "ADC4P",
+          "source_pad": "C_ADC_CM4P.1"
+        },
+        {
+          "block": "adc_reference",
+          "native_pad": "U_ADC_A.6",
+          "net": "ADC4P",
+          "source_pad": "U_ADC_A.6"
+        }
+      ],
+      "foreign_regions": [],
+      "net": "ADC4P",
+      "outside_owner": [],
+      "p2_debt": "native_pad_to_unplaced_tree_and_filled_In1_Cu_return",
+      "p3_debt": "one_connected_native_net_without_unrelated_branches",
+      "terminal_count": 4
+    },
+    {
+      "accounting": "schema_branch",
+      "capacity_slots": null,
+      "endpoints": [
+        {
+          "block": "analog_ch5",
+          "native_pad": "C_ADC_AC5N1.2",
+          "net": "ADC5N",
+          "source_pad": "C_ADC_AC5N1.2"
+        },
+        {
+          "block": "analog_ch5",
+          "native_pad": "C_ADC_AC5N2.2",
+          "net": "ADC5N",
+          "source_pad": "C_ADC_AC5N2.2"
+        },
+        {
+          "block": "analog_ch5",
+          "native_pad": "C_ADC_CM5N.1",
+          "net": "ADC5N",
+          "source_pad": "C_ADC_CM5N.1"
+        },
+        {
+          "block": "adc_reference",
+          "native_pad": "U_ADC_B.7",
+          "net": "ADC5N",
+          "source_pad": "U_ADC_B.7"
+        }
+      ],
+      "foreign_regions": [],
+      "net": "ADC5N",
+      "outside_owner": [],
+      "p2_debt": "native_pad_to_unplaced_tree_and_filled_In1_Cu_return",
+      "p3_debt": "one_connected_native_net_without_unrelated_branches",
+      "terminal_count": 4
+    },
+    {
+      "accounting": "schema_branch",
+      "capacity_slots": null,
+      "endpoints": [
+        {
+          "block": "analog_ch5",
+          "native_pad": "C_ADC_AC5P1.2",
+          "net": "ADC5P",
+          "source_pad": "C_ADC_AC5P1.2"
+        },
+        {
+          "block": "analog_ch5",
+          "native_pad": "C_ADC_AC5P2.2",
+          "net": "ADC5P",
+          "source_pad": "C_ADC_AC5P2.2"
+        },
+        {
+          "block": "analog_ch5",
+          "native_pad": "C_ADC_CM5P.1",
+          "net": "ADC5P",
+          "source_pad": "C_ADC_CM5P.1"
+        },
+        {
+          "block": "adc_reference",
+          "native_pad": "U_ADC_B.6",
+          "net": "ADC5P",
+          "source_pad": "U_ADC_B.6"
+        }
+      ],
+      "foreign_regions": [],
+      "net": "ADC5P",
+      "outside_owner": [],
+      "p2_debt": "native_pad_to_unplaced_tree_and_filled_In1_Cu_return",
+      "p3_debt": "one_connected_native_net_without_unrelated_branches",
+      "terminal_count": 4
+    },
+    {
+      "accounting": "schema_branch",
+      "capacity_slots": null,
+      "endpoints": [
+        {
+          "block": "analog_ch6",
+          "native_pad": "C_ADC_AC6N1.2",
+          "net": "ADC6N",
+          "source_pad": "C_ADC_AC6N1.2"
+        },
+        {
+          "block": "analog_ch6",
+          "native_pad": "C_ADC_AC6N2.2",
+          "net": "ADC6N",
+          "source_pad": "C_ADC_AC6N2.2"
+        },
+        {
+          "block": "analog_ch6",
+          "native_pad": "C_ADC_CM6N.1",
+          "net": "ADC6N",
+          "source_pad": "C_ADC_CM6N.1"
+        },
+        {
+          "block": "adc_reference",
+          "native_pad": "U_ADC_B.9",
+          "net": "ADC6N",
+          "source_pad": "U_ADC_B.9"
+        }
+      ],
+      "foreign_regions": [],
+      "net": "ADC6N",
+      "outside_owner": [],
+      "p2_debt": "native_pad_to_unplaced_tree_and_filled_In1_Cu_return",
+      "p3_debt": "one_connected_native_net_without_unrelated_branches",
+      "terminal_count": 4
+    },
+    {
+      "accounting": "schema_branch",
+      "capacity_slots": null,
+      "endpoints": [
+        {
+          "block": "analog_ch6",
+          "native_pad": "C_ADC_AC6P1.2",
+          "net": "ADC6P",
+          "source_pad": "C_ADC_AC6P1.2"
+        },
+        {
+          "block": "analog_ch6",
+          "native_pad": "C_ADC_AC6P2.2",
+          "net": "ADC6P",
+          "source_pad": "C_ADC_AC6P2.2"
+        },
+        {
+          "block": "analog_ch6",
+          "native_pad": "C_ADC_CM6P.1",
+          "net": "ADC6P",
+          "source_pad": "C_ADC_CM6P.1"
+        },
+        {
+          "block": "adc_reference",
+          "native_pad": "U_ADC_B.8",
+          "net": "ADC6P",
+          "source_pad": "U_ADC_B.8"
+        }
+      ],
+      "foreign_regions": [],
+      "net": "ADC6P",
+      "outside_owner": [],
+      "p2_debt": "native_pad_to_unplaced_tree_and_filled_In1_Cu_return",
+      "p3_debt": "one_connected_native_net_without_unrelated_branches",
+      "terminal_count": 4
+    },
+    {
+      "accounting": "schema_branch",
+      "capacity_slots": null,
+      "endpoints": [
+        {
+          "block": "analog_ch7",
+          "native_pad": "C_ADC_AC7N1.2",
+          "net": "ADC7N",
+          "source_pad": "C_ADC_AC7N1.2"
+        },
+        {
+          "block": "analog_ch7",
+          "native_pad": "C_ADC_AC7N2.2",
+          "net": "ADC7N",
+          "source_pad": "C_ADC_AC7N2.2"
+        },
+        {
+          "block": "analog_ch7",
+          "native_pad": "C_ADC_CM7N.1",
+          "net": "ADC7N",
+          "source_pad": "C_ADC_CM7N.1"
+        },
+        {
+          "block": "adc_reference",
+          "native_pad": "U_ADC_B.11",
+          "net": "ADC7N",
+          "source_pad": "U_ADC_B.11"
+        }
+      ],
+      "foreign_regions": [],
+      "net": "ADC7N",
+      "outside_owner": [],
+      "p2_debt": "native_pad_to_unplaced_tree_and_filled_In1_Cu_return",
+      "p3_debt": "one_connected_native_net_without_unrelated_branches",
+      "terminal_count": 4
+    },
+    {
+      "accounting": "schema_branch",
+      "capacity_slots": null,
+      "endpoints": [
+        {
+          "block": "analog_ch7",
+          "native_pad": "C_ADC_AC7P1.2",
+          "net": "ADC7P",
+          "source_pad": "C_ADC_AC7P1.2"
+        },
+        {
+          "block": "analog_ch7",
+          "native_pad": "C_ADC_AC7P2.2",
+          "net": "ADC7P",
+          "source_pad": "C_ADC_AC7P2.2"
+        },
+        {
+          "block": "analog_ch7",
+          "native_pad": "C_ADC_CM7P.1",
+          "net": "ADC7P",
+          "source_pad": "C_ADC_CM7P.1"
+        },
+        {
+          "block": "adc_reference",
+          "native_pad": "U_ADC_B.10",
+          "net": "ADC7P",
+          "source_pad": "U_ADC_B.10"
+        }
+      ],
+      "foreign_regions": [],
+      "net": "ADC7P",
+      "outside_owner": [],
+      "p2_debt": "native_pad_to_unplaced_tree_and_filled_In1_Cu_return",
+      "p3_debt": "one_connected_native_net_without_unrelated_branches",
+      "terminal_count": 4
+    },
+    {
+      "accounting": "schema_branch",
+      "capacity_slots": null,
+      "endpoints": [
+        {
+          "block": "analog_ch8",
+          "native_pad": "C_ADC_AC8N1.2",
+          "net": "ADC8N",
+          "source_pad": "C_ADC_AC8N1.2"
+        },
+        {
+          "block": "analog_ch8",
+          "native_pad": "C_ADC_AC8N2.2",
+          "net": "ADC8N",
+          "source_pad": "C_ADC_AC8N2.2"
+        },
+        {
+          "block": "analog_ch8",
+          "native_pad": "C_ADC_CM8N.1",
+          "net": "ADC8N",
+          "source_pad": "C_ADC_CM8N.1"
+        },
+        {
+          "block": "adc_reference",
+          "native_pad": "U_ADC_B.13",
+          "net": "ADC8N",
+          "source_pad": "U_ADC_B.13"
+        }
+      ],
+      "foreign_regions": [
+        {
+          "block": "analog_ch8",
+          "foreign_regions": [
+            "usb_vbus_sense"
+          ],
+          "native_pad": "C_ADC_AC8N1.2",
+          "source_pad": "C_ADC_AC8N1.2"
+        }
+      ],
+      "net": "ADC8N",
+      "outside_owner": [],
+      "p2_debt": "native_pad_to_unplaced_tree_and_filled_In1_Cu_return",
+      "p3_debt": "one_connected_native_net_without_unrelated_branches",
+      "terminal_count": 4
+    },
+    {
+      "accounting": "schema_branch",
+      "capacity_slots": null,
+      "endpoints": [
+        {
+          "block": "analog_ch8",
+          "native_pad": "C_ADC_AC8P1.2",
+          "net": "ADC8P",
+          "source_pad": "C_ADC_AC8P1.2"
+        },
+        {
+          "block": "analog_ch8",
+          "native_pad": "C_ADC_AC8P2.2",
+          "net": "ADC8P",
+          "source_pad": "C_ADC_AC8P2.2"
+        },
+        {
+          "block": "analog_ch8",
+          "native_pad": "C_ADC_CM8P.1",
+          "net": "ADC8P",
+          "source_pad": "C_ADC_CM8P.1"
+        },
+        {
+          "block": "adc_reference",
+          "native_pad": "U_ADC_B.12",
+          "net": "ADC8P",
+          "source_pad": "U_ADC_B.12"
+        }
+      ],
+      "foreign_regions": [],
+      "net": "ADC8P",
+      "outside_owner": [],
+      "p2_debt": "native_pad_to_unplaced_tree_and_filled_In1_Cu_return",
+      "p3_debt": "one_connected_native_net_without_unrelated_branches",
+      "terminal_count": 4
+    },
+    {
+      "accounting": "schema_gap_outside_owner",
+      "capacity_slots": null,
+      "endpoints": [
+        {
+          "block": "adc_reference",
+          "native_pad": "C_VMID1_EXT_10U.1",
+          "net": "VMID1_EXT",
+          "source_pad": "C_VMID1_EXT_10U.1"
+        },
+        {
+          "block": "adc_reference",
+          "native_pad": "C_VMID1_EXT_1U.1",
+          "net": "VMID1_EXT",
+          "source_pad": "C_VMID1_EXT_1U.1"
+        },
+        {
+          "block": "analog_ch1",
+          "native_pad": "R_B1N.2",
+          "net": "VMID1_EXT",
+          "source_pad": "R_B1N.2"
+        },
+        {
+          "block": "analog_ch1",
+          "native_pad": "R_B1P.2",
+          "net": "VMID1_EXT",
+          "source_pad": "R_B1P.2"
+        },
+        {
+          "block": "analog_ch2",
+          "native_pad": "R_B2N.2",
+          "net": "VMID1_EXT",
+          "source_pad": "R_B2N.2"
+        },
+        {
+          "block": "analog_ch2",
+          "native_pad": "R_B2P.2",
+          "net": "VMID1_EXT",
+          "source_pad": "R_B2P.2"
+        },
+        {
+          "block": "analog_ch3",
+          "native_pad": "R_B3N.2",
+          "net": "VMID1_EXT",
+          "source_pad": "R_B3N.2"
+        },
+        {
+          "block": "analog_ch3",
+          "native_pad": "R_B3P.2",
+          "net": "VMID1_EXT",
+          "source_pad": "R_B3P.2"
+        },
+        {
+          "block": "analog_ch4",
+          "native_pad": "R_B4N.2",
+          "net": "VMID1_EXT",
+          "source_pad": "R_B4N.2"
+        },
+        {
+          "block": "analog_ch4",
+          "native_pad": "R_B4P.2",
+          "net": "VMID1_EXT",
+          "source_pad": "R_B4P.2"
+        },
+        {
+          "block": "adc_reference",
+          "native_pad": "R_VMID1_BOT.1",
+          "net": "VMID1_EXT",
+          "source_pad": "R_VMID1_BOT.1"
+        },
+        {
+          "block": "adc_reference",
+          "native_pad": "R_VMID1_TOP.2",
+          "net": "VMID1_EXT",
+          "source_pad": "R_VMID1_TOP.2"
+        }
+      ],
+      "foreign_regions": [
+        {
+          "block": "analog_ch1",
+          "foreign_regions": [
+            "analog_ch2"
+          ],
+          "native_pad": "R_B1P.2",
+          "source_pad": "R_B1P.2"
+        },
+        {
+          "block": "analog_ch2",
+          "foreign_regions": [
+            "analog_ch3"
+          ],
+          "native_pad": "R_B2P.2",
+          "source_pad": "R_B2P.2"
+        },
+        {
+          "block": "analog_ch3",
+          "foreign_regions": [
+            "analog_ch4"
+          ],
+          "native_pad": "R_B3P.2",
+          "source_pad": "R_B3P.2"
+        },
+        {
+          "block": "analog_ch4",
+          "foreign_regions": [
+            "analog_ch5"
+          ],
+          "native_pad": "R_B4P.2",
+          "source_pad": "R_B4P.2"
+        }
+      ],
+      "net": "VMID1_EXT",
+      "outside_owner": [
+        {
+          "native_pad": "R_B1P.2",
+          "owner": "analog_ch1",
+          "owner_region_mm": [
+            25,
+            42,
+            47,
+            84
+          ],
+          "pad_bbox_mm": [
+            47.24,
+            62.68,
+            47.78,
+            63.32
+          ],
+          "source_pad": "R_B1P.2"
+        },
+        {
+          "native_pad": "R_B2P.2",
+          "owner": "analog_ch2",
+          "owner_region_mm": [
+            47,
+            42,
+            69,
+            84
+          ],
+          "pad_bbox_mm": [
+            69.24,
+            62.68,
+            69.78,
+            63.32
+          ],
+          "source_pad": "R_B2P.2"
+        },
+        {
+          "native_pad": "R_B3P.2",
+          "owner": "analog_ch3",
+          "owner_region_mm": [
+            69,
+            42,
+            91,
+            84
+          ],
+          "pad_bbox_mm": [
+            91.24,
+            62.68,
+            91.78,
+            63.32
+          ],
+          "source_pad": "R_B3P.2"
+        },
+        {
+          "native_pad": "R_B4P.2",
+          "owner": "analog_ch4",
+          "owner_region_mm": [
+            91,
+            42,
+            113,
+            84
+          ],
+          "pad_bbox_mm": [
+            113.24,
+            62.68,
+            113.78,
+            63.32
+          ],
+          "source_pad": "R_B4P.2"
+        }
+      ],
+      "p2_debt": "native_pad_to_unplaced_tree_and_filled_In1_Cu_return",
+      "p3_debt": "one_connected_native_net_without_unrelated_branches",
+      "terminal_count": 12
+    },
+    {
+      "accounting": "schema_gap_outside_owner",
+      "capacity_slots": null,
+      "endpoints": [
+        {
+          "block": "adc_reference",
+          "native_pad": "C_VMID2_EXT_10U.1",
+          "net": "VMID2_EXT",
+          "source_pad": "C_VMID2_EXT_10U.1"
+        },
+        {
+          "block": "adc_reference",
+          "native_pad": "C_VMID2_EXT_1U.1",
+          "net": "VMID2_EXT",
+          "source_pad": "C_VMID2_EXT_1U.1"
+        },
+        {
+          "block": "analog_ch5",
+          "native_pad": "R_B5N.2",
+          "net": "VMID2_EXT",
+          "source_pad": "R_B5N.2"
+        },
+        {
+          "block": "analog_ch5",
+          "native_pad": "R_B5P.2",
+          "net": "VMID2_EXT",
+          "source_pad": "R_B5P.2"
+        },
+        {
+          "block": "analog_ch6",
+          "native_pad": "R_B6N.2",
+          "net": "VMID2_EXT",
+          "source_pad": "R_B6N.2"
+        },
+        {
+          "block": "analog_ch6",
+          "native_pad": "R_B6P.2",
+          "net": "VMID2_EXT",
+          "source_pad": "R_B6P.2"
+        },
+        {
+          "block": "analog_ch7",
+          "native_pad": "R_B7N.2",
+          "net": "VMID2_EXT",
+          "source_pad": "R_B7N.2"
+        },
+        {
+          "block": "analog_ch7",
+          "native_pad": "R_B7P.2",
+          "net": "VMID2_EXT",
+          "source_pad": "R_B7P.2"
+        },
+        {
+          "block": "analog_ch8",
+          "native_pad": "R_B8N.2",
+          "net": "VMID2_EXT",
+          "source_pad": "R_B8N.2"
+        },
+        {
+          "block": "analog_ch8",
+          "native_pad": "R_B8P.2",
+          "net": "VMID2_EXT",
+          "source_pad": "R_B8P.2"
+        },
+        {
+          "block": "adc_reference",
+          "native_pad": "R_VMID2_BOT.1",
+          "net": "VMID2_EXT",
+          "source_pad": "R_VMID2_BOT.1"
+        },
+        {
+          "block": "adc_reference",
+          "native_pad": "R_VMID2_TOP.2",
+          "net": "VMID2_EXT",
+          "source_pad": "R_VMID2_TOP.2"
+        }
+      ],
+      "foreign_regions": [
+        {
+          "block": "analog_ch5",
+          "foreign_regions": [
+            "analog_ch6"
+          ],
+          "native_pad": "R_B5P.2",
+          "source_pad": "R_B5P.2"
+        },
+        {
+          "block": "analog_ch6",
+          "foreign_regions": [
+            "analog_ch7"
+          ],
+          "native_pad": "R_B6P.2",
+          "source_pad": "R_B6P.2"
+        },
+        {
+          "block": "analog_ch7",
+          "foreign_regions": [
+            "analog_ch8"
+          ],
+          "native_pad": "R_B7P.2",
+          "source_pad": "R_B7P.2"
+        },
+        {
+          "block": "analog_ch8",
+          "foreign_regions": [
+            "usb_vbus_sense"
+          ],
+          "native_pad": "R_B8P.2",
+          "source_pad": "R_B8P.2"
+        }
+      ],
+      "net": "VMID2_EXT",
+      "outside_owner": [
+        {
+          "native_pad": "R_B5P.2",
+          "owner": "analog_ch5",
+          "owner_region_mm": [
+            113,
+            42,
+            135,
+            84
+          ],
+          "pad_bbox_mm": [
+            135.24,
+            62.68,
+            135.78,
+            63.32
+          ],
+          "source_pad": "R_B5P.2"
+        },
+        {
+          "native_pad": "R_B6P.2",
+          "owner": "analog_ch6",
+          "owner_region_mm": [
+            135,
+            42,
+            157,
+            84
+          ],
+          "pad_bbox_mm": [
+            157.24,
+            62.68,
+            157.78,
+            63.32
+          ],
+          "source_pad": "R_B6P.2"
+        },
+        {
+          "native_pad": "R_B7P.2",
+          "owner": "analog_ch7",
+          "owner_region_mm": [
+            157,
+            42,
+            179,
+            84
+          ],
+          "pad_bbox_mm": [
+            179.24,
+            62.68,
+            179.78,
+            63.32
+          ],
+          "source_pad": "R_B7P.2"
+        },
+        {
+          "native_pad": "R_B8P.2",
+          "owner": "analog_ch8",
+          "owner_region_mm": [
+            179,
+            42,
+            201,
+            84
+          ],
+          "pad_bbox_mm": [
+            201.24,
+            62.68,
+            201.78,
+            63.32
+          ],
+          "source_pad": "R_B8P.2"
+        }
+      ],
+      "p2_debt": "native_pad_to_unplaced_tree_and_filled_In1_Cu_return",
+      "p3_debt": "one_connected_native_net_without_unrelated_branches",
+      "terminal_count": 12
+    }
+  ],
+  "p1_accepted": false,
+  "schema": 1,
+  "schema_gap_red_checks": {
+    "VMID1_EXT": "R_B1P.2: branch pad outside source owner region",
+    "VMID2_EXT": "R_B5P.2: branch pad outside source owner region"
+  },
+  "status": "INCOMPLETE"
+}
