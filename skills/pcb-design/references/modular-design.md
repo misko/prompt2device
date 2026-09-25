@@ -115,6 +115,13 @@ owner or a two-terminal crossing has no valid corridor, repair the source
 ownership or handoff instead of inventing a branch. Neither model substitutes
 for a later route, return-path, mechanical, or independent P1 review.
 
+When placement changes trigger automatic reference-label movement, check that
+affected visible labels still identify their own footprints in the assembly
+view. Zero silkscreen DRC overlap does not establish that association. If the
+placer falls back to a distant or ambiguously near-other-part label, revise
+the placement or supply an explicit, checked assembly-label mapping before
+calling the block placement ready.
+
 If a narrow local opening is useful before its complete inter-block route can
 be allocated, schema-2 `access_only_portals` can record the exact native pads,
 their electrical owners, the transit owner and any named non-electrical
