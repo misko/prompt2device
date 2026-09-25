@@ -20,5 +20,5 @@ Reproduce from repository root:
 ```sh
 python3 projects/crow-usb-carrier-v1/01_docs/research/2026-09-25-ti-two-terminal-timing-sol/build_trial.py
 python3 -m unittest discover -s skills/kicad-pcb/scripts/tests -p 'test_p1_*.py' -q
-python3 -m unittest discover -s projects/crow-usb-carrier-v1/01_docs/research/2026-09-25-ti-two-terminal-timing-sol -p 'test_packet.py' -q
+python3 projects/crow-usb-carrier-v1/01_docs/research/2026-09-25-ti-two-terminal-timing-sol/test_packet.py
 ```

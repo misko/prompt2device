@@ -43,6 +43,9 @@ exact board and connector ([measurement plan](2026-09-25-j8-edge-overhang-eviden
 Even a measured cell would remain `INCOMPLETE`; connector FULL requires the
 separate mate/service/group qualification. Do not treat the digital connector
 fit prototype or an unrelated USB coupon as physical J8 evidence.
+The overhang blocks a candidate that opts `analog_ch8` into typed physical
+cells; the current formal P1 root does not declare those cells, so J8 alone
+does not bar that root's evaluation ([scope audit](2026-09-25-ti-ch8-j8-physical-cell-decision-terra.md)).
 
 ## Execution order
 
