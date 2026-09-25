@@ -1,0 +1,41 @@
+{
+  "audio_physical_blockers": [],
+  "audio_reservation_status": "INCOMPLETE",
+  "audio_terminal_count": 11,
+  "board_sha256": "d0c065dc16de081a5410b7a22e474f0a99c6fdeb0b7dd1f6c37422ace4a9fcf7",
+  "changed_region": {
+    "after": [
+      27,
+      85,
+      70,
+      110
+    ],
+    "before": [
+      25,
+      85,
+      70,
+      110
+    ]
+  },
+  "checker_sha256": "f2e865eac4bd264f2a01eee322638f66951c066fbca57398fc8e1393800349c1",
+  "coarse_sha256": "3ca74774d0c45ceae63dbadb10d189d02ad695e561ce402a834863c9225aaaf4",
+  "floorplan_sha256": "b01cd1885c9995b3220ed8b8754450bc1e2c2a436be47308ee222585b7001350",
+  "global_errors": [],
+  "input_buck_removed_owner_envelopes": [],
+  "input_buck_removed_owner_pads": [],
+  "interface_sha256": "02be5ad6ea879ac04d5dfd9e2e09d5226f85c85fa83d72628aa40cf93de6b4d8",
+  "native_refs": 569,
+  "p1_accepted": false,
+  "r_audio_pu_envelope_mm": [
+    25.685,
+    108.625,
+    26.715,
+    110.575
+  ],
+  "r_audio_pu_native_envelope_collisions": [],
+  "r_audio_pu_to_recut_input_buck_gap_mm": 0.285,
+  "routing_realized": false,
+  "source_sha256": "fa37ee4f3760ed1369a6d7c3a5f05de6142efb5e2be6a36ac8bed9f5e180d3b8",
+  "status": "INCOMPLETE",
+  "timing_status": "INCOMPLETE"
+}
