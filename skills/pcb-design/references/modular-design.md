@@ -133,6 +133,13 @@ reservation or physical stage. Resolve any overlap in the source allocation
 before treating the portal as a valid local access screen; a planning-region
 overlap alone does not make that region an electrical owner.
 
+For a shared power handoff, keep the net's complete source/native terminal
+denominator separate from the small set of pads that physically enter the
+port. Record local P2 connection debt for every terminal, entry-pad access,
+current and thermal limits, and the filled return. A one-pad port declaration
+cannot stand in for a many-terminal power tree; leave the handoff unallocated
+until the source contract accounts for both sets.
+
 When a modular plan declares `connector_full`, every P3 item and the P5 item
 must name that external prerequisite unless it explicitly supplies `p3_scope`.
 That optional closed mapping contains `affected_work_items` (P3 ids) and
