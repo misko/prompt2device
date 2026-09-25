@@ -85,7 +85,8 @@
             217,
             95.65
           ],
-          "reservation_id": "usb_trunk"
+          "reservation_id": "usb_trunk",
+          "physical_cell_id": "xmos_core"
         },
         {
           "source": "U_XU.59",
@@ -100,7 +101,8 @@
             217,
             96
           ],
-          "reservation_id": "usb_trunk"
+          "reservation_id": "usb_trunk",
+          "physical_cell_id": "xmos_core"
         },
         {
           "source": "J_USB.2",
@@ -160,7 +162,8 @@
             205.4,
             108.5
           ],
-          "reservation_id": "presence_xu_entry"
+          "reservation_id": "presence_xu_entry",
+          "physical_cell_id": "xmos_core"
         }
       ],
       "reservations": [
@@ -314,7 +317,8 @@
             221.02,
             99.145
           ],
-          "reservation_id": "jtag_north"
+          "reservation_id": "jtag_north",
+          "physical_cell_id": "xmos_core"
         },
         {
           "source": "U_XU.36",
@@ -329,7 +333,8 @@
             221.02,
             105.145
           ],
-          "reservation_id": "jtag_north"
+          "reservation_id": "jtag_north",
+          "physical_cell_id": "xmos_core"
         },
         {
           "source": "U_XU.37",
@@ -344,7 +349,8 @@
             221.02,
             104.745
           ],
-          "reservation_id": "jtag_north"
+          "reservation_id": "jtag_north",
+          "physical_cell_id": "xmos_core"
         },
         {
           "source": "U_XU.44",
@@ -359,7 +365,8 @@
             221.02,
             101.945
           ],
-          "reservation_id": "jtag_north"
+          "reservation_id": "jtag_north",
+          "physical_cell_id": "xmos_core"
         },
         {
           "source": "U_XU.38",
@@ -374,7 +381,8 @@
             221.02,
             104.345
           ],
-          "reservation_id": "jtag_north"
+          "reservation_id": "jtag_north",
+          "physical_cell_id": "xmos_core"
         },
         {
           "kind": "integration_corridor_handoff",
@@ -402,8 +410,10 @@
             "corridor_id": "qspi_gap",
             "region_face": "south",
             "layer": "F.Cu",
-            "to_reservation": "qspi_gap_trunk"
-          }
+            "to_reservation": "qspi_gap_trunk",
+            "physical_cell_id": "xmos_core_qspi_south"
+          },
+          "physical_cell_id": "xmos_core_qspi_south"
         },
         {
           "kind": "integration_corridor_handoff",
@@ -460,8 +470,10 @@
             "corridor_id": "qspi_gap",
             "region_face": "south",
             "layer": "F.Cu",
-            "to_reservation": "qspi_gap_trunk"
-          }
+            "to_reservation": "qspi_gap_trunk",
+            "physical_cell_id": "xmos_core_qspi_south"
+          },
+          "physical_cell_id": "xmos_core_qspi_south"
         },
         {
           "kind": "integration_corridor_handoff",
@@ -547,8 +559,10 @@
             "corridor_id": "qspi_gap",
             "region_face": "south",
             "layer": "F.Cu",
-            "to_reservation": "qspi_gap_trunk"
-          }
+            "to_reservation": "qspi_gap_trunk",
+            "physical_cell_id": "xmos_core_qspi_south"
+          },
+          "physical_cell_id": "xmos_core_qspi_south"
         },
         {
           "kind": "integration_corridor_handoff",
@@ -605,8 +619,10 @@
             "corridor_id": "qspi_gap",
             "region_face": "south",
             "layer": "F.Cu",
-            "to_reservation": "qspi_gap_trunk"
-          }
+            "to_reservation": "qspi_gap_trunk",
+            "physical_cell_id": "xmos_core_qspi_south"
+          },
+          "physical_cell_id": "xmos_core_qspi_south"
         },
         {
           "kind": "integration_corridor_handoff",
@@ -663,8 +679,10 @@
             "corridor_id": "qspi_gap",
             "region_face": "south",
             "layer": "F.Cu",
-            "to_reservation": "qspi_gap_trunk"
-          }
+            "to_reservation": "qspi_gap_trunk",
+            "physical_cell_id": "xmos_core_qspi_south"
+          },
+          "physical_cell_id": "xmos_core_qspi_south"
         },
         {
           "kind": "integration_corridor_handoff",
@@ -721,8 +739,10 @@
             "corridor_id": "qspi_gap",
             "region_face": "south",
             "layer": "F.Cu",
-            "to_reservation": "qspi_gap_trunk"
-          }
+            "to_reservation": "qspi_gap_trunk",
+            "physical_cell_id": "xmos_core_qspi_south"
+          },
+          "physical_cell_id": "xmos_core_qspi_south"
         },
         {
           "kind": "integration_corridor_handoff",
@@ -779,8 +799,10 @@
             "corridor_id": "xtal_south_cap",
             "region_face": "east",
             "layer": "F.Cu",
-            "to_reservation": "xtal_handoff"
-          }
+            "to_reservation": "xtal_handoff",
+            "physical_cell_id": "xmos_core"
+          },
+          "physical_cell_id": "xmos_core"
         },
         {
           "kind": "integration_corridor_handoff",
@@ -866,8 +888,10 @@
             "corridor_id": "xtal_south_cap",
             "region_face": "east",
             "layer": "F.Cu",
-            "to_reservation": "xtal_handoff"
-          }
+            "to_reservation": "xtal_handoff",
+            "physical_cell_id": "xmos_core"
+          },
+          "physical_cell_id": "xmos_core"
         },
         {
           "kind": "integration_corridor_handoff",
@@ -1219,7 +1243,8 @@
             203.645,
             93.095
           ],
-          "reservation_id": "control_cell"
+          "reservation_id": "control_cell",
+          "physical_cell_id": "xmos_core"
         },
         {
           "source": "U_XU.94",
@@ -1234,7 +1259,8 @@
             203.245,
             93.095
           ],
-          "reservation_id": "control_cell"
+          "reservation_id": "control_cell",
+          "physical_cell_id": "xmos_core"
         },
         {
           "source": "Q_ADC_DIG_RST.1",
@@ -1979,8 +2005,8 @@
   ],
   "proposal_note": "Diagnostic assembly from five coarse proposals. Witness bboxes and power windows require review; no P1 claim.",
   "board_sha256": "fbfb3bda95f1ddc98e7d3d229550644d136dc7d6349ba19a4023eb13b07e7e27",
-  "source_sha256": "e819c423f211cc0b52fa222984d49bed79d47533fc679c2677eedde1067a0fd7",
+  "source_sha256": "a159d4ac25f8c13a81ea79e76ad5eac023349a169119feadf7ff04d8e7c15c36",
   "interfaces_sha256": "7201aa55cffefca99f9f27e92711cbbcf28387432523a8c960b5cd71e973170e",
   "aliases_sha256": "a6baba8bd4e389c146250a2a2ef5f7e9b09f63526e71dbdd05be8bca9b7b2c2e",
-  "floorplan_sha256": "5a0d898ba66f531861c372878480bc07890d34f1daf681b1e70fd5add3b202f2"
+  "floorplan_sha256": "41632157eda6c65721d33d8aa04c6295569f1a8d8d926de25c8cf95b465e890e"
 }

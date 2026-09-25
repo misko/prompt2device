@@ -1170,7 +1170,7 @@ placement:
     xmos_core_east:
     - 217.2
     - 84
-    - 221.0
+    - 224.0
     - 107.0
     xmos_core_qspi_south:
     - 218.95
@@ -1804,7 +1804,6 @@ placement:
     - C_XU_VDD_68
     - C_XU_VDD_85
     - C_XU_VDD_95
-    - FB_PLL
     - U_XU
     region: xmos_core
   - match:
@@ -1866,6 +1865,7 @@ placement:
     - C_XU_VDD_45
     - C_XU_VDD_50
     - C_XU_VDD_54
+    - FB_PLL
     region: xmos_core_east
   forbid:
   - rect:

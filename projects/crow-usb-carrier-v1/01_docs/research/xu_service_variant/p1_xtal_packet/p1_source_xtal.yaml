@@ -829,6 +829,7 @@ integration_corridors:
     - 110.2
     - 222.8
     - 110.5
+    physical_cell_id: xmos_core_qspi_south
   - block: clock_flash_debug
     region_face: north
     bbox:
@@ -909,6 +910,7 @@ integration_corridors:
     region_face: south
     layer: F.Cu
     to_reservation: qspi_gap_trunk
+    physical_cell_id: xmos_core_qspi_south
   - status: P2_REQUIRED
     source_pad: U_FLASH.6
     native_pad: U_FLASH.6
@@ -927,6 +929,7 @@ integration_corridors:
     region_face: south
     layer: F.Cu
     to_reservation: qspi_gap_trunk
+    physical_cell_id: xmos_core_qspi_south
   - status: P2_REQUIRED
     source_pad: R_QSPI_CS.2
     native_pad: R_QSPI_CS.2
@@ -954,6 +957,7 @@ integration_corridors:
     region_face: south
     layer: F.Cu
     to_reservation: qspi_gap_trunk
+    physical_cell_id: xmos_core_qspi_south
   - status: P2_REQUIRED
     source_pad: U_FLASH.5
     native_pad: U_FLASH.5
@@ -972,6 +976,7 @@ integration_corridors:
     region_face: south
     layer: F.Cu
     to_reservation: qspi_gap_trunk
+    physical_cell_id: xmos_core_qspi_south
   - status: P2_REQUIRED
     source_pad: U_FLASH.2
     native_pad: U_FLASH.2
@@ -990,6 +995,7 @@ integration_corridors:
     region_face: south
     layer: F.Cu
     to_reservation: qspi_gap_trunk
+    physical_cell_id: xmos_core_qspi_south
   - status: P2_REQUIRED
     source_pad: U_FLASH.3
     native_pad: U_FLASH.3
@@ -1008,6 +1014,7 @@ integration_corridors:
     region_face: south
     layer: F.Cu
     to_reservation: qspi_gap_trunk
+    physical_cell_id: xmos_core_qspi_south
   - status: P2_REQUIRED
     source_pad: U_FLASH.7
     native_pad: U_FLASH.7
@@ -1032,6 +1039,7 @@ integration_corridors:
   - clock_flash_debug
   faces:
   - block: xmos_core
+    physical_cell_id: xmos_core
     region_face: east
     bbox:
     - 217.196
@@ -1090,6 +1098,7 @@ integration_corridors:
     region_face: east
     layer: F.Cu
     to_reservation: xtal_handoff
+    physical_cell_id: xmos_core
   - status: P2_REQUIRED
     source_pad: R_XTAL_DRIVE.1
     native_pad: R_XTAL_DRIVE.1
@@ -1117,6 +1126,7 @@ integration_corridors:
     region_face: east
     layer: F.Cu
     to_reservation: xtal_handoff
+    physical_cell_id: xmos_core
   - status: P2_REQUIRED
     source_pad: C_XTAL_OUT.1
     native_pad: C_XTAL_OUT.1
@@ -1150,3 +1160,45 @@ integration_corridors:
     corridor_id: xtal_south_cap
     reference_layer: In1.Cu
     proof: continuous_filled_reference
+physical_cells:
+- id: xmos_core
+  owner_block: xmos_core
+  refs:
+  - C_XU_USB18
+  - C_XU_VDDIO_10
+  - C_XU_VDDIO_109
+  - C_XU_VDDIO_121
+  - C_XU_VDDIO_17
+  - C_XU_VDDIO_72
+  - C_XU_VDDIO_89
+  - C_XU_VDD_104
+  - C_XU_VDD_105
+  - C_XU_VDD_106
+  - C_XU_VDD_11
+  - C_XU_VDD_113
+  - C_XU_VDD_14
+  - C_XU_VDD_18
+  - C_XU_VDD_5
+  - C_XU_VDD_68
+  - C_XU_VDD_85
+  - C_XU_VDD_95
+  - U_XU
+  transit: false
+- id: xmos_core_east
+  owner_block: xmos_core
+  refs:
+  - C_PLL_100N
+  - C_PLL_1U
+  - C_XU_USB33
+  - C_XU_VDDIO_35
+  - C_XU_VDDIO_56
+  - C_XU_VDD_39
+  - C_XU_VDD_45
+  - C_XU_VDD_50
+  - C_XU_VDD_54
+  - FB_PLL
+  transit: false
+- id: xmos_core_qspi_south
+  owner_block: xmos_core
+  refs: []
+  transit: true

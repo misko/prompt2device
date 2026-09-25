@@ -10,14 +10,14 @@
     "/home/mouse9911/gits/circuits-worktrees/crow-usb-carrier-v1-20260922/projects/crow-usb-carrier-v1/02_parts/USB4215-03-A/part.yaml": "a6baba8bd4e389c146250a2a2ef5f7e9b09f63526e71dbdd05be8bca9b7b2c2e"
   },
   "outputs": {
-    "source": "e819c423f211cc0b52fa222984d49bed79d47533fc679c2677eedde1067a0fd7",
-    "floorplan": "5a0d898ba66f531861c372878480bc07890d34f1daf681b1e70fd5add3b202f2",
-    "contract": "b5a2d8d18dd3849679dfd3e8142947e2dfc42bc742d3d9c4c0a65653b575db59"
+    "source": "a159d4ac25f8c13a81ea79e76ad5eac023349a169119feadf7ff04d8e7c15c36",
+    "floorplan": "41632157eda6c65721d33d8aa04c6295569f1a8d8d926de25c8cf95b465e890e",
+    "contract": "99bb672774e24cc0e1fbc443a9de727304b812ba3168dcdfbce00e4959d2702c"
   },
   "hashes": {
     "board": "fbfb3bda95f1ddc98e7d3d229550644d136dc7d6349ba19a4023eb13b07e7e27",
-    "source": "e819c423f211cc0b52fa222984d49bed79d47533fc679c2677eedde1067a0fd7",
-    "floorplan": "5a0d898ba66f531861c372878480bc07890d34f1daf681b1e70fd5add3b202f2",
+    "source": "a159d4ac25f8c13a81ea79e76ad5eac023349a169119feadf7ff04d8e7c15c36",
+    "floorplan": "41632157eda6c65721d33d8aa04c6295569f1a8d8d926de25c8cf95b465e890e",
     "interfaces": "7201aa55cffefca99f9f27e92711cbbcf28387432523a8c960b5cd71e973170e",
     "aliases": "a6baba8bd4e389c146250a2a2ef5f7e9b09f63526e71dbdd05be8bca9b7b2c2e"
   },
@@ -71,16 +71,69 @@
       ]
     },
     "combined": {
-      "status": "FAIL",
-      "reason": "qspi_gap: integration face lacks positive non-corner shared edge"
+      "status": "VALID_DECLARATION",
+      "native_witness_counts": {
+        "qspi_gap": 13,
+        "xtal_south_cap": 7
+      }
+    }
+  },
+  "coverage_net_count": 59,
+  "physical_cells": {
+    "xmos_core": {
+      "owner_block": "xmos_core",
+      "ref_count": 19,
+      "transit": false
+    },
+    "xmos_core_east": {
+      "owner_block": "xmos_core",
+      "ref_count": 10,
+      "transit": false
+    },
+    "xmos_core_qspi_south": {
+      "owner_block": "xmos_core",
+      "ref_count": 0,
+      "transit": true
     }
   },
   "whole_allocation": {
     "status": "FAIL",
     "errors": [
-      "qspi_gap: integration face lacks positive non-corner shared edge"
+      "qspi_gap: integration affected endpoint/layer denominator mismatch",
+      "xtal_south_cap: integration affected endpoint/layer denominator mismatch"
     ],
-    "xmos_service": null
+    "allocations": [
+      {
+        "id": "usb_device_pair",
+        "status": "INCOMPLETE",
+        "reason": "U_USB_ESD.1: P2-movable owner requires virtual block-face witness"
+      },
+      {
+        "id": "xmos_service_escape",
+        "status": "FAIL",
+        "reason": "U_XU.51: witness bbox is a nonlocal bridge across source region"
+      },
+      {
+        "id": "adc_timing_xmos_bundle",
+        "status": "INCOMPLETE",
+        "reason": "U_ADC_A.22: P2-movable owner requires virtual block-face witness"
+      },
+      {
+        "id": "adc_analog_boundary",
+        "status": "INCOMPLETE",
+        "reason": "C_ADC_AC1N1.2: witness bbox is a nonlocal bridge across source region"
+      },
+      {
+        "id": "power_boundary_windows",
+        "status": "INCOMPLETE",
+        "reason": "C_ADC_3V3X_OK_VDD.2: witness bbox is a nonlocal bridge across source region"
+      }
+    ],
+    "xmos_service": {
+      "id": "xmos_service_escape",
+      "status": "FAIL",
+      "reason": "U_XU.51: witness bbox is a nonlocal bridge across source region"
+    }
   },
   "p1_accepted": false
 }

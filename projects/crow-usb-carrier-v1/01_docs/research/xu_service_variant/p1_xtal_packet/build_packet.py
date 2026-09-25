@@ -26,7 +26,8 @@ INPUTS = {
 }
 REGION = [217.2, 107.0, 218.95, 118.5]
 FACES = [
-    {'block': 'xmos_core', 'region_face': 'east', 'bbox': [217.196, 107.2, 217.2, 108.7]},
+    {'block': 'xmos_core', 'physical_cell_id': 'xmos_core',
+     'region_face': 'east', 'bbox': [217.196, 107.2, 217.2, 108.7]},
     {'block': 'clock_flash_debug', 'region_face': 'north', 'bbox': [217.35, 118.5, 218.8, 118.8]},
 ]
 
@@ -42,13 +43,13 @@ def run():
     floor = yaml.safe_load((PARENT / 'floorplan_qspi_gap.yaml').read_text())
     regions = floor['placement']['regions']
     regions['xmos_core'] = [190, 84, 217.2, 110.5]
-    regions['xmos_core_east'] = [217.2, 84, 221.0, 107.0]
+    regions['xmos_core_east'] = [217.2, 84, 224.0, 107.0]
     regions['xmos_core_qspi_south'] = [218.95, 107.0, 232.0, 110.5]
     regions['clock_oscillator_handoff'] = REGION
     regions['board_integration_qspi'] = [219.2, 110.5, 223.2, 118.5]
     east_refs = {'C_XU_VDD_54', 'C_XU_VDD_50', 'C_XU_USB33', 'C_XU_VDD_45',
                  'C_XU_VDDIO_56', 'C_PLL_1U', 'C_PLL_100N',
-                 'C_XU_VDD_39', 'C_XU_VDDIO_35'}
+                 'C_XU_VDD_39', 'C_XU_VDDIO_35', 'FB_PLL'}
     found = set()
     for pattern in floor['placement']['patterns']:
         for ref in east_refs & set(pattern['match']):
@@ -63,6 +64,13 @@ def run():
     xmos_refs = next(b['refs'] for b in plan['blocks'] if b['id'] == 'xmos_core')
     if not east_refs <= set(xmos_refs):
         raise RuntimeError('east physical cell is not entirely xmos_core-owned')
+    source['physical_cells'] = [
+        {'id': 'xmos_core', 'owner_block': 'xmos_core',
+         'refs': sorted(set(xmos_refs) - east_refs), 'transit': False},
+        {'id': 'xmos_core_east', 'owner_block': 'xmos_core',
+         'refs': sorted(east_refs), 'transit': False},
+        {'id': 'xmos_core_qspi_south', 'owner_block': 'xmos_core',
+         'refs': [], 'transit': True}]
     rows = []
     for net in ('XTAL_IN', 'XTAL_OUT'):
         interface = next(i for i in plan['interfaces'] if i['net'] == net)
@@ -73,9 +81,12 @@ def run():
         raise RuntimeError('XTAL endpoint denominator drift')
     by_block = {f['block']: f for f in FACES}
     def obligation(e):
-        return {'status': 'P2_REQUIRED', **e, 'corridor_id': 'xtal_south_cap',
-                'region_face': by_block[e['block']]['region_face'], 'layer': 'F.Cu',
-                'to_reservation': 'xtal_handoff'}
+        value = {'status': 'P2_REQUIRED', **e, 'corridor_id': 'xtal_south_cap',
+                 'region_face': by_block[e['block']]['region_face'], 'layer': 'F.Cu',
+                 'to_reservation': 'xtal_handoff'}
+        if e['block'] == 'xmos_core':
+            value['physical_cell_id'] = 'xmos_core'
+        return value
     xtal = {'id': 'xtal_south_cap', 'owner': 'board_integration',
             'region_id': 'clock_oscillator_handoff',
             'allocation_id': 'xmos_service_escape',
@@ -90,6 +101,13 @@ def run():
     source['integration_corridors'].append(xtal)
     qspi = source['integration_corridors'][0]
     qspi['faces'][0]['bbox'] = [219.2, 110.2, 222.8, 110.5]
+    qspi['faces'][0]['physical_cell_id'] = 'xmos_core_qspi_south'
+    for item in qspi['p2_obligations']:
+        if item['block'] == 'xmos_core':
+            item['physical_cell_id'] = 'xmos_core_qspi_south'
+    for item in xtal['p2_obligations']:
+        if item['block'] == 'xmos_core':
+            item['physical_cell_id'] = 'xmos_core'
     contract = json.loads((PARENT / 'coarse_contract.json').read_text())
     allocation = next(a for a in contract['allocations'] if a['id'] == 'xmos_service_escape')
     allocation['boundary_witnesses'] = [w for w in allocation['boundary_witnesses']
@@ -113,6 +131,14 @@ def run():
     for w in allocation['boundary_witnesses']:
         if w.get('corridor_id') == 'qspi_gap' and w['block'] == 'xmos_core':
             w['boundary_bbox'] = qspi['faces'][0]['bbox']
+            w['physical_cell_id'] = 'xmos_core_qspi_south'
+            w['p2_obligation']['physical_cell_id'] = 'xmos_core_qspi_south'
+    for owner_allocation in contract['allocations']:
+        for witness in owner_allocation.get('boundary_witnesses', []):
+            if witness.get('block') == 'xmos_core' and 'physical_cell_id' not in witness:
+                witness['physical_cell_id'] = 'xmos_core'
+                if witness.get('p2_obligation') is not None:
+                    witness['p2_obligation']['physical_cell_id'] = 'xmos_core'
     for r in allocation['reservations']:
         if r['id'] == 'qspi_gap_trunk':
             r['bbox'] = regions['board_integration_qspi']
@@ -141,14 +167,18 @@ def run():
         raise RuntimeError('native outline unavailable')
     _, pads = checker.graph.board_index(board)
     aliases = checker.graph.alias_inventory(yaml.safe_load(ALIASES.read_text()))
-    coverage, _ = checker.graph.source_inventory(source, plan)
+    coverage, terminals = checker.graph.source_inventory(source, plan)
+    if len(terminals) != 59 or len(coverage) != 5:
+        raise RuntimeError('Crow 59-net source denominator drift')
+    cells = checker._physical_cells(source, plan, board, outline, regions,
+                                    floor['placement']['patterns'])
     failures = {}
     # Isolate the XTAL declaration to separate its native validation from QSPI.
     only_xtal = {**source, 'integration_corridors': [xtal]}
     try:
         checked = checker._integration_corridors(
             only_xtal, plan, board, outline, regions, list(board.Zones()),
-            coverage, aliases, pads, {})
+            coverage, aliases, pads, {}, cells)
         owned = {}
         for item in plan['interfaces']:
             for block, source_pads in item['endpoints'].items():
@@ -160,7 +190,8 @@ def run():
                 continue
             exact = checker._coarse_witness(
                 board, witness, witness['net'], owned, aliases, pads,
-                outline, regions, set(source['p1_fixed_refs']), {}, checked)
+                outline, regions, set(source['p1_fixed_refs']), {}, checked,
+                physical_cells=cells)
             if not checker._witness_touches_reservation(exact, reservation):
                 raise checker.ContractError(f'{exact["source"]}: XTAL face misses reservation')
             verified.append((exact['source'], exact['native'], exact['net'], exact['block']))
@@ -173,9 +204,31 @@ def run():
     except checker.ContractError as exc:
         failures['xtal_only'] = {'status': 'FAIL', 'reason': str(exc)}
     try:
-        checker._integration_corridors(source, plan, board, outline, regions,
-                                      list(board.Zones()), coverage, aliases, pads, {})
-        failures['combined'] = {'status': 'VALID_DECLARATION'}
+        checked = checker._integration_corridors(source, plan, board, outline,
+                                                regions, list(board.Zones()),
+                                                coverage, aliases, pads, {}, cells)
+        verified_by_corridor = {}
+        reservation_by_id = {r['id']: r for r in allocation['reservations']}
+        for witness in allocation['boundary_witnesses']:
+            if witness.get('kind') != 'integration_corridor_handoff':
+                continue
+            exact = checker._coarse_witness(
+                board, witness, witness['net'], owned, aliases, pads,
+                outline, regions, set(source['p1_fixed_refs']), {}, checked,
+                physical_cells=cells)
+            if not checker._witness_touches_reservation(
+                    exact, reservation_by_id[witness['reservation_id']]):
+                raise checker.ContractError(f'{exact["source"]}: corridor face misses reservation')
+            verified_by_corridor.setdefault(witness['corridor_id'], set()).add(
+                (exact['source'], exact['native'], exact['net'], exact['block']))
+        for corridor_id, corridor in checked.items():
+            expected = {(e['source_pad'], e['native_pad'], e['net'], e['block'])
+                        for e in corridor['affected']}
+            if verified_by_corridor.get(corridor_id) != expected:
+                raise checker.ContractError(f'{corridor_id}: exact witness denominator mismatch')
+        failures['combined'] = {'status': 'VALID_DECLARATION',
+                                'native_witness_counts': {key: len(value)
+                                                          for key, value in verified_by_corridor.items()}}
     except checker.ContractError as exc:
         failures['combined'] = {'status': 'FAIL', 'reason': str(exc)}
     result = checker.evaluate_coarse(
@@ -186,19 +239,36 @@ def run():
         expected_interface_sha256=hashes['interfaces'],
         expected_alias_sha256=hashes['aliases'],
         expected_floorplan_sha256=hashes['floorplan'])
+    expected_errors = [
+        'qspi_gap: integration affected endpoint/layer denominator mismatch',
+        'xtal_south_cap: integration affected endpoint/layer denominator mismatch']
+    xmos_result = next(a for a in result['allocations'] if a['id'] == 'xmos_service_escape')
     if (failures['xtal_only']['status'] != 'VALID_DECLARATION' or
             failures['xtal_only']['endpoint_count'] != 7 or
-            failures['combined'] != {'status': 'FAIL',
-                                     'reason': 'qspi_gap: integration face lacks positive non-corner shared edge'} or
+            failures['combined'] != {'status': 'VALID_DECLARATION',
+                                     'native_witness_counts': {'qspi_gap': 13,
+                                                               'xtal_south_cap': 7}} or
             result['status'] != 'FAIL' or result['p1_accepted'] or
-            result['errors'] != [failures['combined']['reason']]):
-        raise RuntimeError('XTAL schema-probe native outcome drift')
+            result['errors'] != expected_errors or
+            xmos_result['reason'] != 'U_XU.51: witness bbox is a nonlocal bridge across source region'):
+        raise RuntimeError(f'XTAL schema-probe native outcome drift: {failures}; '
+                           f'{result["status"]}: {result["errors"]}; '
+                           f'{result["allocations"]}')
     receipt = {'kind': 'crow-xtal-source-model-schema-probe', 'schema': 1,
                'inputs': {str(k): v for k, v in INPUTS.items()},
                'outputs': {k: sha(v) for k, v in out.items()},
                'hashes': hashes, 'native_declarations': failures,
+               'coverage_net_count': len(terminals),
+               'physical_cells': {key: {'owner_block': value['owner_block'],
+                                        'ref_count': len(value['refs']),
+                                        'transit': value['transit']}
+                                  for key, value in cells.items()},
                'whole_allocation': {'status': result['status'],
                                     'errors': result['errors'],
+                                    'allocations': [
+                                        {'id': a['id'], 'status': a['status'],
+                                         'reason': a.get('reason')}
+                                        for a in result['allocations']],
                                     'xmos_service': next((a for a in result['allocations']
                                                          if a['id'] == 'xmos_service_escape'), None)},
                'p1_accepted': result['p1_accepted']}
