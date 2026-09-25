@@ -43,6 +43,10 @@ only a topology/geometry declaration and carries no routing capacity credit.
 ``segments`` instead of one access rectangle. The ``bbox`` is their exact
 envelope; native obstacles are checked against every segment. It remains
 INCOMPLETE and grants no capacity or P1 credit.
+An ``unresolved_multiterminal_branch`` binds every exact native endpoint of
+one cross-owner net and its return/tree obligations, while recording pad-level
+source-region conflicts. Its reservation deliberately has no geometry or
+capacity and remains INCOMPLETE.
 """
 from __future__ import annotations
 
@@ -97,7 +101,8 @@ def _coarse_hash(path, label, errors):
 
 
 def _coarse_witness(board, witness, net, owned_pads, aliases, pads, outline,
-                    regions, fixed_refs, shared_ports, integration_corridors=None):
+                    regions, fixed_refs, shared_ports, integration_corridors=None,
+                    unresolved_branches=None):
     source = witness.get('source')
     native = witness.get('native')
     block = witness.get('block')
@@ -203,6 +208,24 @@ def _coarse_witness(board, witness, net, owned_pads, aliases, pads, outline,
             raise ContractError(f'{source}: integration P2 pad-to-face obligation missing')
         if not any(p.IsOnLayer(board.GetLayerID(layer)) for p in found):
             raise ContractError(f'{source}: native source pad not on integration layer')
+    elif kind == 'unresolved_multiterminal_branch':
+        branch = (unresolved_branches or {}).get(witness.get('branch_id'))
+        if branch is None or branch['net'] != net or branch['layer'] != layer:
+            raise ContractError(f'{source}: unresolved branch identity mismatch')
+        endpoint = {'source_pad':source,'native_pad':native,'net':net,'block':block}
+        if endpoint not in branch['endpoints']:
+            raise ContractError(f'{source}: unresolved branch endpoint mismatch')
+        if not all(p.IsOnLayer(board.GetLayerID(layer)) and
+                   area == box_mm(p.GetBoundingBox()) for p in found):
+            raise ContractError(f'{source}: unresolved branch boundary is not native pad')
+        if not contains(region, area):
+            raise ContractError(f'{source}: unresolved branch pad leaves owner region')
+        if witness.get('reservation_id') != branch['reservation_id']:
+            raise ContractError(f'{source}: unresolved branch reservation mismatch')
+        obligation = witness.get('p2_obligation')
+        if obligation != next(o for o in branch['p2_obligations']
+                              if o['source_pad'] == source):
+            raise ContractError(f'{source}: unresolved branch P2 obligation mismatch')
     elif kind in ('fixed_connector_access', 'fixed_connector_access_segmented'):
         corridor = (integration_corridors or {}).get(witness.get('corridor_id'))
         if corridor is None:
@@ -322,6 +345,89 @@ def _virtual_region_clearance(witness, reservation, regions):
             raise ContractError(f"{witness['source']}: virtual boundary enters {region_id} source region")
         if intersects(reserved, region):
             raise ContractError(f"{witness['source']}: virtual reservation enters {region_id} source region")
+
+
+def _unresolved_branches(source, interfaces, board, regions, coverage, aliases, pads):
+    """Validate exact multi-terminal ownership without claiming route geometry.
+
+    An unresolved branch has no bbox, slots, or copper credit.  Its blocker
+    inventory names every native pad that intersects a foreign source region.
+    This is an admission debt record, not a physical corridor exception.
+    """
+    rows = source.get('unresolved_multiterminal_branches', [])
+    if not isinstance(rows, list):
+        raise ContractError('unresolved branch list invalid')
+    declared = {}
+    iface_by_net = {item['net']: item for item in interfaces['interfaces']}
+    for row in rows:
+        if not isinstance(row, dict):
+            raise ContractError('unresolved branch record invalid')
+        ident = row.get('id')
+        net = row.get('net')
+        allocation = row.get('allocation_id')
+        layer = row.get('layer')
+        reference_layer = row.get('reference_layer')
+        copper_layers = {board.GetLayerName(i) for i in board.GetEnabledLayers().Seq()
+                         if pcbnew.IsCopperLayer(i)}
+        if (not isinstance(ident, str) or not ident or ident in declared or
+                row.get('owner') != 'board_integration' or
+                net not in iface_by_net or net not in coverage.get(allocation, set()) or
+                not isinstance(layer, str) or layer not in copper_layers or
+                not isinstance(reference_layer, str) or reference_layer not in copper_layers or
+                reference_layer == layer):
+            raise ContractError('unresolved branch identity/owner/net/layer invalid')
+        expected = {(source_pad, graph.native_identity(source_pad, aliases), net, block)
+                    for block, names in iface_by_net[net]['endpoints'].items()
+                    for source_pad in names}
+        if len({block for _,_,_,block in expected}) < 2:
+            raise ContractError(f'{ident}: branch must cross source owners')
+        entries = row.get('endpoints')
+        if (not isinstance(entries, list) or len(expected) < 3 or
+                len(entries) != len(expected) or
+                {(e.get('source_pad'), e.get('native_pad'), e.get('net'), e.get('block'))
+                 for e in entries if isinstance(e, dict)} != expected):
+            raise ContractError(f'{ident}: exact branch endpoint denominator mismatch')
+        if row.get('terminal_count') != len(expected) or row.get('minimum_tree_edges') != len(expected)-1:
+            raise ContractError(f'{ident}: branch tree lower bound mismatch')
+        if (row.get('tree_obligation') != {'status':'P3_REQUIRED', 'net':net,
+                'terminal_count':len(expected),'minimum_tree_edges':len(expected)-1,
+                'proof':'one_connected_native_net_without_unrelated_branches'} or
+                row.get('return_obligation') != {'status':'P2_REQUIRED', 'net':'GND',
+                'branch_id':ident,'reference_layer':row.get('reference_layer'),
+                'proof':'continuous_filled_reference_under_actual_tree'}):
+            raise ContractError(f'{ident}: P2 return/P3 tree obligation missing')
+        reservation_id = row.get('reservation_id')
+        if not isinstance(reservation_id, str) or not reservation_id:
+            raise ContractError(f'{ident}: unresolved branch reservation id missing')
+        required = [{'status':'P2_REQUIRED','source_pad':s,'native_pad':n,
+                     'net':net,'block':block,'branch_id':ident,'layer':layer,
+                     'proof':'native_pad_to_unplaced_tree'}
+                    for s,n,_,block in sorted(expected)]
+        if row.get('p2_obligations') != required:
+            raise ContractError(f'{ident}: exact P2 pad-to-tree obligations missing')
+        blockers = []
+        for source_pad,native_pad,_,block in sorted(expected):
+            found = pads.get(native_pad, [])
+            if (not found or any(p.GetNetname()!=net or
+                    not p.IsOnLayer(board.GetLayerID(layer)) for p in found)):
+                raise ContractError(f'{native_pad}: unresolved branch native pad/layer mismatch')
+            owner_region = rectangle(regions.get(block), f'{block} branch owner region')
+            for pad in found:
+                native_box = box_mm(pad.GetBoundingBox())
+                if not contains(owner_region, native_box):
+                    raise ContractError(f'{native_pad}: branch pad outside source owner region')
+                foreign = sorted(name for name,value in regions.items()
+                                 if name != block and intersects(native_box,
+                                     rectangle(value, f'{name} foreign source region')))
+                if foreign:
+                    blockers.append({'source_pad':source_pad,'native_pad':native_pad,
+                                     'block':block,'foreign_regions':foreign})
+        if row.get('physical_blockers') != blockers:
+            raise ContractError(f'{ident}: physical source-region blocker inventory mismatch')
+        if row.get('capacity_slots') is not None or 'bbox' in row:
+            raise ContractError(f'{ident}: unresolved branch cannot claim geometry/capacity')
+        declared[ident] = row
+    return declared
 
 
 def _shared_ports(source, interfaces, board, outline, regions, zones, coverage, aliases, pads):
@@ -634,6 +740,7 @@ def evaluate_coarse(board_path, contract_path, expected_contract_sha256=None, *,
             source = yaml.safe_load(Path(source_path).read_text())
             shared_ports_configured = isinstance(source, dict) and 'shared_transition_ports' in source
             integration_configured = isinstance(source, dict) and 'integration_corridors' in source
+            branch_configured = isinstance(source, dict) and 'unresolved_multiterminal_branches' in source
             interfaces = json.loads(Path(interface_path).read_text())
             aliases = graph.alias_inventory(yaml.safe_load(Path(alias_path).read_text()))
             floorplan = yaml.safe_load(Path(floorplan_path).read_text())
@@ -713,8 +820,10 @@ def evaluate_coarse(board_path, contract_path, expected_contract_sha256=None, *,
                                          zones, coverage, aliases, pads)
             corridors = _integration_corridors(source, interfaces, board, outline, regions,
                                                zones, coverage, aliases, pads, shared_ports)
+            branches = _unresolved_branches(source, interfaces, board, regions, coverage, aliases, pads)
             used_port_endpoints = defaultdict(set)
             used_corridor_endpoints = defaultdict(set)
+            used_branches = defaultdict(set)
             native = board.GetDesignSettings()
             native_pitch = pcbnew.ToMM(native.m_TrackMinWidth + native.m_MinClearance)
             if native_pitch <= 0:
@@ -726,8 +835,19 @@ def evaluate_coarse(board_path, contract_path, expected_contract_sha256=None, *,
             all_ids = [r.get('id') for _, r in reservations_seen]
             if len(all_ids) != len(set(all_ids)):
                 raise ContractError('duplicate global reservation id')
+            for branch in branches.values():
+                matches = [(name,r) for name,r in reservations_seen
+                           if branch['net'] in r.get('nets', [])]
+                if len(matches) != 1 or matches[0][0] != branch['allocation_id'] or \
+                        matches[0][1].get('id') != branch['reservation_id']:
+                    raise ContractError(f"{branch['id']}: unresolved branch net has competing reservation")
             if {p['reservation_id'] for p in shared_ports.values()} & {c['reservation_id'] for c in corridors.values()}:
                 raise ContractError('shared port/integration corridor reservation identity reused')
+            special_ids = ([p['reservation_id'] for p in shared_ports.values()] +
+                           [c['reservation_id'] for c in corridors.values()] +
+                           [b['reservation_id'] for b in branches.values()])
+            if len(special_ids) != len(set(special_ids)):
+                raise ContractError('special source reservation identity reused')
             for allocation in allocations:
                 name = allocation['id']
                 try:
@@ -753,7 +873,7 @@ def evaluate_coarse(board_path, contract_path, expected_contract_sha256=None, *,
                             raise ContractError(f'{name}: witness net outside allocation')
                         checked.append(_coarse_witness(board, witness, witness['net'], owned_pads,
                                                        aliases, pads, outline, regions, fixed_refs,
-                                                       shared_ports, corridors))
+                                                       shared_ports, corridors, branches))
                     if {w['net'] for w in checked} != coverage[name]:
                         raise ContractError(f'{name}: missing per-net boundary witness')
                     if len({(w['source'], w['net']) for w in checked}) != len(checked):
@@ -770,10 +890,23 @@ def evaluate_coarse(board_path, contract_path, expected_contract_sha256=None, *,
                         target = reservation_map.get(witness.get('reservation_id'))
                         if (target is None or verified['net'] not in target.get('nets', []) or
                                 verified['layer'] != target.get('layer') or
-                                (witness.get('kind') != 'fixed_connector_access_segmented' and
+                                (witness.get('kind') not in ('fixed_connector_access_segmented',
+                                    'unresolved_multiterminal_branch') and
                                  not _witness_touches_reservation(verified, target))):
                             raise ContractError(f"{verified['source']}: block face does not contact assigned reservation")
                         _virtual_region_clearance(witness, target, regions)
+                        if witness.get('kind') == 'unresolved_multiterminal_branch':
+                            branch = branches[witness['branch_id']]
+                            if (name != branch['allocation_id'] or
+                                    target.get('kind') != 'unresolved_multiterminal_branch' or
+                                    target.get('branch_id') != branch['id'] or
+                                    target.get('id') != branch['reservation_id'] or
+                                    target.get('nets') != [branch['net']] or
+                                    target.get('layer') != branch['layer'] or
+                                    any(key in target for key in
+                                        ('bbox','segments','capacity_slots','demand_slots','slot_pitch_mm'))):
+                                raise ContractError(f"{verified['source']}: unresolved branch cannot reserve geometry/capacity")
+                            used_branches[branch['id']].add(verified['source'])
                         if witness.get('kind') == 'shared_transition_port':
                             port = shared_ports[witness['port_id']]
                             if (target.get('id') != port['reservation_id'] or
@@ -885,6 +1018,19 @@ def evaluate_coarse(board_path, contract_path, expected_contract_sha256=None, *,
                             raise ContractError(f'{name}: reservation net outside allocation')
                         associated = [p for p in shared_ports.values() if p['reservation_id'] == reservation.get('id')]
                         integration = [c for c in corridors.values() if c['reservation_id'] == reservation.get('id')]
+                        branch = [b for b in branches.values() if b['reservation_id'] == reservation.get('id')]
+                        if branch or reservation.get('kind') == 'unresolved_multiterminal_branch':
+                            if len(branch) != 1 or sum(w.get('reservation_id') == reservation.get('id')
+                                                        for w in witnesses) != 1:
+                                raise ContractError(f'{name}: unresolved branch witness/reservation denominator mismatch')
+                            measured.append({'id':reservation['id'],'status':'INCOMPLETE',
+                                'nets':reservation['nets'],'capacity_slots':None,
+                                'physical_blockers':branch[0]['physical_blockers'],
+                                'p2_obligations':branch[0]['p2_obligations'],
+                                'return_obligation':branch[0]['return_obligation'],
+                                'tree_obligation':branch[0]['tree_obligation'],
+                                'reason':'five-terminal tree, source-region conflict, physical route and filled return unproved'})
+                            continue
                         if integration or reservation.get('kind') == 'integration_corridor':
                             if (len(integration) != 1 or name != integration[0]['allocation_id'] or
                                     'status' in reservation or
@@ -936,7 +1082,8 @@ def evaluate_coarse(board_path, contract_path, expected_contract_sha256=None, *,
                                                      for w in (allocation.get('boundary_witnesses') or [])
                                                      if isinstance(w, dict)) or
                                                  any(w.get('kind') == 'integration_corridor_handoff'
-                                                     or w.get('kind') in ('fixed_connector_access', 'fixed_connector_access_segmented')
+                                                     or w.get('kind') in ('fixed_connector_access', 'fixed_connector_access_segmented',
+                                                                          'unresolved_multiterminal_branch')
                                                      for w in (allocation.get('boundary_witnesses') or [])
                                                      if isinstance(w, dict)) or
                                                  any(r.get('kind') == 'integration_corridor'
@@ -965,11 +1112,19 @@ def evaluate_coarse(board_path, contract_path, expected_contract_sha256=None, *,
                             set(reservation.get('nets', [])) & set(corridor['nets'])):
                         errors.append(f'{ident}: integration net double reservation credit in {name}')
                     if (reservation.get('id') != corridor['reservation_id'] and
+                            reservation.get('kind') != 'unresolved_multiterminal_branch' and
                             intersects(rectangle(reservation.get('bbox'), 'reservation'), corridor['bbox'])):
                         errors.append(f'{ident}: integration corridor overlaps reservation in {name}')
+            for ident, branch in branches.items():
+                if len(used_branches[ident]) != 1:
+                    errors.append(f'{ident}: unresolved branch representative witness denominator mismatch')
+                if sum(r.get('id') == branch['reservation_id'] for _,r in reservations_seen) != 1:
+                    errors.append(f'{ident}: unresolved branch reservation denominator mismatch')
             for index, (left_name, left) in enumerate(reservations_seen):
                 for right_name, right in reservations_seen[index + 1:]:
-                    if (left_name != right_name and left.get('layer') == right.get('layer') and
+                    if (left.get('kind') != 'unresolved_multiterminal_branch' and
+                            right.get('kind') != 'unresolved_multiterminal_branch' and
+                            left_name != right_name and left.get('layer') == right.get('layer') and
                             intersects(rectangle(left.get('bbox'), 'reservation'), rectangle(right.get('bbox'), 'reservation'))):
                         errors.append(f'overlapping named allocations on one layer: {left_name}/{right_name}')
             if any('endpoint_pockets' in row or 'coverage_members' in row or 'through_lane' in row or
@@ -978,7 +1133,7 @@ def evaluate_coarse(board_path, contract_path, expected_contract_sha256=None, *,
         except (ContractError, ValueError, TypeError, AttributeError, RuntimeError, KeyError) as exc:
             errors.append(str(exc))
     status = 'FAIL' if (any(row['status'] == 'FAIL' for row in results) or
-                        ((shared_ports_configured or integration_configured) and errors) or
+                        ((shared_ports_configured or integration_configured or branch_configured) and errors) or
                         any('overlapping named allocations' in error or 'shared port' in error or
                             'shared transition port' in error or 'unowned overlap' in error or
                             'foreign footprint' in error for error in errors)) else 'INCOMPLETE'

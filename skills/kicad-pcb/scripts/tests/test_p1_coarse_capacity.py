@@ -1095,5 +1095,62 @@ class CrowUsbPartialPortTest(unittest.TestCase):
         self.assertFalse(report['p1_accepted'])
 
 
+class UnresolvedBranchTest(unittest.TestCase):
+    def setUp(self):
+        self.board = pcbnew.BOARD()
+        for ref,x,y in [('J_A',2,2),('J_B',5,5),('J_C',6,5)]:
+            pad(self.board,ref,'1','TREE',x,y,.4)
+        self.regions = {'a':[1,1,3,3], 'b':[4,4,7,6], 'foreign':[5.7,4.7,6.5,5.5]}
+        self.interfaces = {'interfaces':[{'net':'TREE','endpoints':
+            {'a':['J_A.1'],'b':['J_B.1','J_C.1']}}]}
+        self.endpoints = [{'source_pad':p,'native_pad':p,'net':'TREE','block':block}
+            for p,block in [('J_A.1','a'),('J_B.1','b'),('J_C.1','b')]]
+        self.obligations = [{'status':'P2_REQUIRED',**e,'branch_id':'tree',
+            'layer':'F.Cu','proof':'native_pad_to_unplaced_tree'} for e in self.endpoints]
+        self.branch = {'id':'tree','owner':'board_integration','allocation_id':'signal',
+            'net':'TREE','layer':'F.Cu','reference_layer':'B.Cu',
+            'reservation_id':'unplaced','terminal_count':3,'minimum_tree_edges':2,
+            'endpoints':self.endpoints,'p2_obligations':self.obligations,
+            'physical_blockers':[{'source_pad':'J_C.1','native_pad':'J_C.1',
+                'block':'b','foreign_regions':['foreign']}],
+            'tree_obligation':{'status':'P3_REQUIRED','net':'TREE',
+                'terminal_count':3,'minimum_tree_edges':2,
+                'proof':'one_connected_native_net_without_unrelated_branches'},
+            'return_obligation':{'status':'P2_REQUIRED','net':'GND',
+                'branch_id':'tree','reference_layer':'B.Cu',
+                'proof':'continuous_filled_reference_under_actual_tree'}}
+        _,self.pads = checker.graph.board_index(self.board)
+
+    def validate(self):
+        return checker._unresolved_branches(
+            {'unresolved_multiterminal_branches':[self.branch]},self.interfaces,
+            self.board,self.regions,{'signal':{'TREE'}},{},self.pads)
+
+    def test_exact_tree_is_explicitly_unresolved(self):
+        self.assertEqual(set(self.validate()),{'tree'})
+        self.assertEqual(self.branch['physical_blockers'][0]['foreign_regions'],['foreign'])
+        self.assertNotIn('bbox',self.branch)
+        self.assertNotIn('capacity_slots',self.branch)
+
+    def test_missing_terminal_or_tree_edge_rejected(self):
+        omitted = self.branch['endpoints'].pop()
+        with self.assertRaisesRegex(checker.ContractError,'endpoint denominator'):
+            self.validate()
+        self.branch['endpoints'].append(omitted)
+        self.branch['minimum_tree_edges']=1
+        with self.assertRaisesRegex(checker.ContractError,'tree lower bound'):
+            self.validate()
+
+    def test_unreported_overlap_and_fake_geometry_rejected(self):
+        self.branch['physical_blockers']=[]
+        with self.assertRaisesRegex(checker.ContractError,'blocker inventory'):
+            self.validate()
+        self.branch['physical_blockers']=[{'source_pad':'J_C.1','native_pad':'J_C.1',
+            'block':'b','foreign_regions':['foreign']}]
+        self.branch['bbox']=[1,1,7,6]
+        with self.assertRaisesRegex(checker.ContractError,'cannot claim geometry'):
+            self.validate()
+
+
 if __name__ == '__main__':
     unittest.main()
