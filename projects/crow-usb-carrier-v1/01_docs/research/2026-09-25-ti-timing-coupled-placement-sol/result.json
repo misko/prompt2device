@@ -1,0 +1,664 @@
+{
+  "candidate_board_sha256": "53e6fb7809910946c36053e7ceeb77e7fc866456ff77775ed4c59b3e49278555",
+  "fixed_ref_count": 27,
+  "input_sha256": {
+    "board": "d0c065dc16de081a5410b7a22e474f0a99c6fdeb0b7dd1f6c37422ace4a9fcf7",
+    "floorplan": "7d95376bbfa3bc9dd0bf59bc7e91d02d86c31235f6145f4d09b49a31f81769d0",
+    "source": "f6f132891712bfcb1cec4d1df6714748337040ba5c42ae3fecd14fb9c35d1222"
+  },
+  "kind": "bounded-coupled-p2-placement-probe",
+  "limitations": [
+    "courtyard aperture is not exact pad access",
+    "0.45 mm is rough source pitch, not effective net-class proof",
+    "saved In1.Cu GND zone remains unfilled; no continuous return proof"
+  ],
+  "mouths": {
+    "translator_west_four": {
+      "axis": "horizontal",
+      "bbox_mm": [
+        172.5,
+        94.2,
+        174.305,
+        96.8
+      ],
+      "connected_width_mm": 2.6,
+      "cross_sections": [
+        {
+          "max_free_width_mm": 2.6,
+          "reachable_width_mm": 2.6,
+          "station_mm": 173.4025
+        }
+      ],
+      "demand_slots": 4,
+      "intersecting_native_envelopes": [],
+      "raw_slots": 5,
+      "screen_pitch_mm": 0.45
+    },
+    "xu_south_three": {
+      "axis": "vertical",
+      "bbox_mm": [
+        209.5,
+        108.5,
+        212.5,
+        109.7
+      ],
+      "connected_width_mm": 2.995,
+      "cross_sections": [
+        {
+          "max_free_width_mm": 3.0,
+          "reachable_width_mm": 3.0,
+          "station_mm": 108.5225
+        },
+        {
+          "max_free_width_mm": 2.995,
+          "reachable_width_mm": 2.995,
+          "station_mm": 109.1225
+        }
+      ],
+      "demand_slots": 3,
+      "intersecting_native_envelopes": [
+        "C_XU_VDDIO_17"
+      ],
+      "raw_slots": 6,
+      "screen_pitch_mm": 0.45
+    },
+    "xu_west_data": {
+      "axis": "horizontal",
+      "bbox_mm": [
+        197.5,
+        97.1,
+        199.805,
+        98.5
+      ],
+      "connected_width_mm": 1.4,
+      "cross_sections": [
+        {
+          "max_free_width_mm": 1.4,
+          "reachable_width_mm": 1.4,
+          "station_mm": 198.6525
+        }
+      ],
+      "demand_slots": 1,
+      "intersecting_native_envelopes": [],
+      "raw_slots": 3,
+      "screen_pitch_mm": 0.45
+    }
+  },
+  "moves": {
+    "C_ADC_I2C_B": {
+      "from": [
+        172.8,
+        95.0,
+        0.0
+      ],
+      "owner_region": "audio_clock_tdm",
+      "to": [
+        172.8,
+        98.6,
+        0.0
+      ]
+    },
+    "C_XU_USB18": {
+      "from": [
+        198.6,
+        93.1,
+        0.0
+      ],
+      "owner_region": "xmos_core",
+      "to": [
+        198.6,
+        92.9,
+        0.0
+      ]
+    },
+    "C_XU_USB33": {
+      "from": [
+        222.1,
+        94.2,
+        0.0
+      ],
+      "owner_region": "xmos_core_east",
+      "to": [
+        222.1,
+        94.0,
+        0.0
+      ]
+    },
+    "C_XU_VDDIO_10": {
+      "from": [
+        203.5,
+        109.4,
+        0.0
+      ],
+      "owner_region": "xmos_core",
+      "to": [
+        203.5,
+        109.2,
+        0.0
+      ]
+    },
+    "C_XU_VDDIO_109": {
+      "from": [
+        196.5,
+        99.3,
+        0.0
+      ],
+      "owner_region": "xmos_core",
+      "to": [
+        196.5,
+        99.1,
+        0.0
+      ]
+    },
+    "C_XU_VDDIO_121": {
+      "from": [
+        196.5,
+        101.5,
+        0.0
+      ],
+      "owner_region": "xmos_core",
+      "to": [
+        196.5,
+        101.3,
+        0.0
+      ]
+    },
+    "C_XU_VDDIO_17": {
+      "from": [
+        211.0,
+        109.4,
+        0.0
+      ],
+      "owner_region": "xmos_core",
+      "to": [
+        209.0,
+        109.5,
+        -90.0
+      ]
+    },
+    "C_XU_VDDIO_35": {
+      "from": [
+        218.0,
+        105.8,
+        90.0
+      ],
+      "owner_region": "xmos_core_east",
+      "to": [
+        218.0,
+        105.6,
+        90.0
+      ]
+    },
+    "C_XU_VDDIO_56": {
+      "from": [
+        218.0,
+        92.8,
+        90.0
+      ],
+      "owner_region": "xmos_core_east",
+      "to": [
+        218.0,
+        92.6,
+        90.0
+      ]
+    },
+    "C_XU_VDDIO_72": {
+      "from": [
+        210.5,
+        90.6,
+        0.0
+      ],
+      "owner_region": "xmos_core",
+      "to": [
+        210.5,
+        90.4,
+        0.0
+      ]
+    },
+    "C_XU_VDDIO_89": {
+      "from": [
+        204.5,
+        90.6,
+        0.0
+      ],
+      "owner_region": "xmos_core",
+      "to": [
+        204.5,
+        90.4,
+        0.0
+      ]
+    },
+    "C_XU_VDD_104": {
+      "from": [
+        198.6,
+        96.0,
+        0.0
+      ],
+      "owner_region": "xmos_core",
+      "to": [
+        198.6,
+        95.8,
+        0.0
+      ]
+    },
+    "C_XU_VDD_105": {
+      "from": [
+        196.5,
+        97.1,
+        0.0
+      ],
+      "owner_region": "xmos_core",
+      "to": [
+        196.5,
+        96.3,
+        180.0
+      ]
+    },
+    "C_XU_VDD_106": {
+      "from": [
+        198.6,
+        98.2,
+        0.0
+      ],
+      "owner_region": "xmos_core",
+      "to": [
+        198.6,
+        99.1,
+        180.0
+      ]
+    },
+    "C_XU_VDD_11": {
+      "from": [
+        206.0,
+        109.4,
+        0.0
+      ],
+      "owner_region": "xmos_core",
+      "to": [
+        206.0,
+        109.2,
+        0.0
+      ]
+    },
+    "C_XU_VDD_113": {
+      "from": [
+        198.6,
+        100.4,
+        0.0
+      ],
+      "owner_region": "xmos_core",
+      "to": [
+        198.6,
+        100.2,
+        0.0
+      ]
+    },
+    "C_XU_VDD_14": {
+      "from": [
+        208.5,
+        109.4,
+        0.0
+      ],
+      "owner_region": "xmos_core",
+      "to": [
+        207.8,
+        109.5,
+        -90.0
+      ]
+    },
+    "C_XU_VDD_18": {
+      "from": [
+        213.5,
+        109.4,
+        0.0
+      ],
+      "owner_region": "xmos_core",
+      "to": [
+        213.5,
+        109.2,
+        0.0
+      ]
+    },
+    "C_XU_VDD_39": {
+      "from": [
+        218.0,
+        103.2,
+        90.0
+      ],
+      "owner_region": "xmos_core_east",
+      "to": [
+        218.0,
+        103.0,
+        90.0
+      ]
+    },
+    "C_XU_VDD_45": {
+      "from": [
+        218.0,
+        100.6,
+        90.0
+      ],
+      "owner_region": "xmos_core_east",
+      "to": [
+        218.0,
+        100.4,
+        90.0
+      ]
+    },
+    "C_XU_VDD_5": {
+      "from": [
+        201.0,
+        109.4,
+        0.0
+      ],
+      "owner_region": "xmos_core",
+      "to": [
+        201.0,
+        109.2,
+        0.0
+      ]
+    },
+    "C_XU_VDD_50": {
+      "from": [
+        218.0,
+        98.0,
+        90.0
+      ],
+      "owner_region": "xmos_core_east",
+      "to": [
+        218.0,
+        97.8,
+        90.0
+      ]
+    },
+    "C_XU_VDD_54": {
+      "from": [
+        219.14,
+        96.94,
+        90.0
+      ],
+      "owner_region": "xmos_core_east",
+      "to": [
+        219.14,
+        96.74,
+        90.0
+      ]
+    },
+    "C_XU_VDD_68": {
+      "from": [
+        213.5,
+        90.6,
+        0.0
+      ],
+      "owner_region": "xmos_core",
+      "to": [
+        213.5,
+        90.4,
+        0.0
+      ]
+    },
+    "C_XU_VDD_85": {
+      "from": [
+        207.5,
+        90.6,
+        0.0
+      ],
+      "owner_region": "xmos_core",
+      "to": [
+        207.5,
+        90.4,
+        0.0
+      ]
+    },
+    "C_XU_VDD_95": {
+      "from": [
+        201.5,
+        90.6,
+        0.0
+      ],
+      "owner_region": "xmos_core",
+      "to": [
+        201.5,
+        90.4,
+        0.0
+      ]
+    },
+    "U_XU": {
+      "from": [
+        208.5,
+        100.0,
+        90.0
+      ],
+      "owner_region": "xmos_core",
+      "to": [
+        208.5,
+        99.8,
+        90.0
+      ]
+    }
+  },
+  "new_envelope_collisions": [],
+  "new_fcu_pad_bbox_overlaps": [],
+  "new_source_region_violations": [],
+  "owner_pin_distance_mm": {
+    "C_XU_VDDIO_10": {
+      "after": 3.3635,
+      "before": 3.3635
+    },
+    "C_XU_VDDIO_109": {
+      "after": 4.8681,
+      "before": 4.8681
+    },
+    "C_XU_VDDIO_121": {
+      "after": 5.1786,
+      "before": 5.1786
+    },
+    "C_XU_VDDIO_17": {
+      "after": 1.5861,
+      "before": 2.5162
+    },
+    "C_XU_VDDIO_35": {
+      "after": 2.0374,
+      "before": 2.0374
+    },
+    "C_XU_VDDIO_56": {
+      "after": 4.1491,
+      "before": 4.1491
+    },
+    "C_XU_VDDIO_72": {
+      "after": 2.5599,
+      "before": 2.5599
+    },
+    "C_XU_VDDIO_89": {
+      "after": 2.0458,
+      "before": 2.0458
+    },
+    "C_XU_VDD_104": {
+      "after": 2.7829,
+      "before": 2.7829
+    },
+    "C_XU_VDD_105": {
+      "after": 3.8898,
+      "before": 4.8185
+    },
+    "C_XU_VDD_106": {
+      "after": 2.5882,
+      "before": 2.8328
+    },
+    "C_XU_VDD_11": {
+      "after": 1.9045,
+      "before": 1.9045
+    },
+    "C_XU_VDD_113": {
+      "after": 2.7248,
+      "before": 2.7248
+    },
+    "C_XU_VDD_14": {
+      "after": 1.5861,
+      "before": 1.8136
+    },
+    "C_XU_VDD_18": {
+      "after": 4.2878,
+      "before": 4.2878
+    },
+    "C_XU_VDD_39": {
+      "after": 1.8414,
+      "before": 1.8414
+    },
+    "C_XU_VDD_45": {
+      "after": 1.8652,
+      "before": 1.8652
+    },
+    "C_XU_VDD_5": {
+      "after": 3.8004,
+      "before": 3.8004
+    },
+    "C_XU_VDD_50": {
+      "after": 2.0549,
+      "before": 2.0549
+    },
+    "C_XU_VDD_54": {
+      "after": 3.0017,
+      "before": 3.0017
+    },
+    "C_XU_VDD_68": {
+      "after": 1.8026,
+      "before": 1.8026
+    },
+    "C_XU_VDD_85": {
+      "after": 1.7667,
+      "before": 1.7667
+    },
+    "C_XU_VDD_95": {
+      "after": 2.4169,
+      "before": 2.4169
+    }
+  },
+  "p1_accepted": false,
+  "routing_realized": false,
+  "schema": 1,
+  "status": "GEOMETRY_PROBE_ONLY",
+  "timing_endpoints": {
+    "AUDIO_MCLK_1V8": [
+      {
+        "bbox_mm": [
+          174.6,
+          95.675,
+          176.075,
+          96.075
+        ],
+        "centre_mm": [
+          175.3375,
+          95.875
+        ],
+        "pad": "U_TDM_XLATE.6"
+      },
+      {
+        "bbox_mm": [
+          210.975,
+          106.725,
+          211.225,
+          108.2
+        ],
+        "centre_mm": [
+          211.1,
+          107.4625
+        ],
+        "pad": "U_XU.23"
+      }
+    ],
+    "TDM_BCLK_1V8": [
+      {
+        "bbox_mm": [
+          174.6,
+          94.375,
+          176.075,
+          94.775
+        ],
+        "centre_mm": [
+          175.3375,
+          94.575
+        ],
+        "pad": "U_TDM_XLATE.4"
+      },
+      {
+        "bbox_mm": [
+          210.575,
+          106.725,
+          210.825,
+          108.2
+        ],
+        "centre_mm": [
+          210.7,
+          107.4625
+        ],
+        "pad": "U_XU.22"
+      }
+    ],
+    "TDM_DATA_1V8": [
+      {
+        "bbox_mm": [
+          174.6,
+          96.325,
+          176.075,
+          96.725
+        ],
+        "centre_mm": [
+          175.3375,
+          96.525
+        ],
+        "pad": "U_TDM_XLATE.7"
+      },
+      {
+        "bbox_mm": [
+          200.1,
+          97.475,
+          201.575,
+          97.725
+        ],
+        "centre_mm": [
+          200.8375,
+          97.6
+        ],
+        "pad": "U_XU.107"
+      }
+    ],
+    "TDM_FSYNC_1V8": [
+      {
+        "bbox_mm": [
+          174.6,
+          95.025,
+          176.075,
+          95.425
+        ],
+        "centre_mm": [
+          175.3375,
+          95.225
+        ],
+        "pad": "U_TDM_XLATE.5"
+      },
+      {
+        "bbox_mm": [
+          209.775,
+          106.725,
+          210.025,
+          108.2
+        ],
+        "centre_mm": [
+          209.9,
+          107.4625
+        ],
+        "pad": "U_XU.20"
+      }
+    ]
+  },
+  "zones": [
+    {
+      "layers": [
+        "In1.Cu"
+      ],
+      "net": "GND",
+      "saved_filled": false
+    }
+  ]
+}
