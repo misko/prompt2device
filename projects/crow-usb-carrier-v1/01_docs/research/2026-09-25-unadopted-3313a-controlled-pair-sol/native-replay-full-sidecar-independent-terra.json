@@ -1,0 +1,117 @@
+{
+  "base_sha256": {
+    "03_src/floorplan.yaml": "2f7843ada9eb08d19d268f0d6671079a8cf367629b2b3331119088927415b634",
+    "03_src/route.yaml": "f49ca740665ce4cfdceb1c82701ddae548f140c8ee1735746040c523c96c8608",
+    "03_src/rules/nets.yaml": "18033487a097b6d29abe3f9d8517879931cf80d278d8973adcf276010a5b7190",
+    "03_src/rules/rf.yaml": "833a8c022648859e65ba3b727bffd14c868214936a9751f12c5a15ecd3ea376c",
+    "04_kicad/crow_carrier.kicad_pcb": "fe8d2c9a9922eeab2371d0187da9407ac590687a77b03a8a099c35a75b5ddd16"
+  },
+  "controls": [
+    {
+      "board_sha256": "baeee13033c2673062c5edc655b7989e7838020be1f6808445f333791a8ec48f",
+      "case": "pair_100",
+      "clearance": [],
+      "drc_sha256": "ba5d25d36f183e2875ff59863e882e9c3f09ba1cba894ed74fb7ecb38f6c3ff5",
+      "dru_sha256": "ae6e5d96330db5da49d4966e028e83f00e76acda8586d0409c1e823f16511356"
+    },
+    {
+      "board_sha256": "8b335a48207e94713c001e36ca51d97105dabbbd7c734bd73c79a94dcd4b9072",
+      "case": "pair_099",
+      "clearance": [
+        "[clearance]: Clearance violation (rule 'controlled_pair_clr_USB_DEVICE' clearance 0.1000 mm; actual 0.0990 mm)"
+      ],
+      "drc_sha256": "bf273d3a5a788bf2133427692772d893e28ace817765433ee29cf66e95be1416",
+      "dru_sha256": "ae6e5d96330db5da49d4966e028e83f00e76acda8586d0409c1e823f16511356"
+    },
+    {
+      "board_sha256": "94b81f6f3308d2e74a4d0207d6d01e18af3bafd51ab019fc4fdfea706d866683",
+      "case": "foreign_140",
+      "clearance": [
+        "[clearance]: Clearance violation (rule 'generic_copper_clearance' clearance 0.1500 mm; actual 0.1400 mm)"
+      ],
+      "drc_sha256": "401df528c191ac8aed3c2ab107f3cdda8b0124004e9ac6a8d63193294f53cdee",
+      "dru_sha256": "ae6e5d96330db5da49d4966e028e83f00e76acda8586d0409c1e823f16511356"
+    },
+    {
+      "board_sha256": "f8b1428ffc532ca75fe690ddd25d4af5f3c5515c1fd3a236b4f33efc2be7fced",
+      "case": "back_pair_140",
+      "clearance": [
+        "[clearance]: Clearance violation (rule 'generic_copper_clearance' clearance 0.1500 mm; actual 0.1400 mm)"
+      ],
+      "drc_sha256": "84952d915b5673e775b6d3667552ee1e23f7403de562969d2227f674d6483606",
+      "dru_sha256": "ae6e5d96330db5da49d4966e028e83f00e76acda8586d0409c1e823f16511356"
+    },
+    {
+      "board_sha256": "531618e5137adbbd38805d4cf10d007be2bbd8d84721798538cdf608b27f1ddc",
+      "case": "full_pair_100",
+      "clearance": [],
+      "drc_sha256": "4f8d1906c7d1583aa79838d3ac6d6b0cbde5a97097d16957cfee22326ec9fa19",
+      "dru_sha256": "e0da36acec3fa9325dc8d662c3136006cb3fda5de07ecfe0ddce627696890a14"
+    },
+    {
+      "board_sha256": "85b5bf16d8b564a3cf2d08c44055b71a45919a5289b763b2745429f8d0d67230",
+      "case": "full_pair_099",
+      "clearance": [
+        "[clearance]: Clearance violation (rule 'controlled_pair_clr_USB_DEVICE' clearance 0.1000 mm; actual 0.0990 mm)"
+      ],
+      "drc_sha256": "d6ed7785f73391110ca462f1570eb9a2f41095ee8db9312f503c7460b5c1e003",
+      "dru_sha256": "e0da36acec3fa9325dc8d662c3136006cb3fda5de07ecfe0ddce627696890a14"
+    },
+    {
+      "board_sha256": "1a04e862a1618a2b2d17dcfc282e60e85ff461dce5973197717f07bd6b0b69f2",
+      "case": "full_foreign_140",
+      "clearance": [
+        "[clearance]: Clearance violation (netclass 'USB_HS' clearance 0.1500 mm; actual 0.1400 mm)"
+      ],
+      "drc_sha256": "37528b4990f1da6d6addc137f97536d8570d155c522389e8fac0be2e1ea247c7",
+      "dru_sha256": "e0da36acec3fa9325dc8d662c3136006cb3fda5de07ecfe0ddce627696890a14"
+    },
+    {
+      "board_sha256": "74b0fc16c6a9af0239974c66caad1ebb6391189793f07601a8a30ce9c1fc6ea3",
+      "case": "full_in1_pair_140",
+      "clearance": [
+        "[clearance]: Clearance violation (rule 'controlled_pair_clr_USB_DEVICE_In1_Cu' clearance 0.1500 mm; actual 0.1400 mm)"
+      ],
+      "drc_sha256": "0024b4e098b67aad20304aa6f60092237cb77942d01b967e86a2927426debdb5",
+      "dru_sha256": "e0da36acec3fa9325dc8d662c3136006cb3fda5de07ecfe0ddce627696890a14"
+    },
+    {
+      "board_sha256": "74cb6dd79a79f4708db13ba7c0703272ade6b3b21bb1eaabd9e731ec30077d69",
+      "case": "full_in2_pair_140",
+      "clearance": [
+        "[clearance]: Clearance violation (rule 'controlled_pair_clr_USB_DEVICE_In2_Cu' clearance 0.1500 mm; actual 0.1400 mm)"
+      ],
+      "drc_sha256": "4f9dd0ba32fb70f397c5fb1d5005ac3cb997d5e1da649ba6eee6e1a4bec0279e",
+      "dru_sha256": "e0da36acec3fa9325dc8d662c3136006cb3fda5de07ecfe0ddce627696890a14"
+    },
+    {
+      "board_sha256": "686569af8698acdfc92a44d6dcc99083b97bf176c8babbf0116b84b716395941",
+      "case": "full_back_pair_140",
+      "clearance": [
+        "[clearance]: Clearance violation (rule 'controlled_pair_clr_USB_DEVICE_B_Cu' clearance 0.1500 mm; actual 0.1400 mm)"
+      ],
+      "drc_sha256": "c707ea7c753ca722bb6406df5039e1e2d76b7bc34d61a1da6f08c526ab3c3db2",
+      "dru_sha256": "e0da36acec3fa9325dc8d662c3136006cb3fda5de07ecfe0ddce627696890a14"
+    }
+  ],
+  "generated_rule_sha256": "e37b434e38b8683b9b3f8e21e92f82931647bfc388aae1861d1849cda046ebf5",
+  "kicad_cli_version": "10.0.4",
+  "negative_sources": [
+    {
+      "case": "widened_selector",
+      "generator_rejected": true
+    },
+    {
+      "case": "second_pair",
+      "generator_rejected": true
+    },
+    {
+      "case": "back_layer",
+      "generator_rejected": true
+    }
+  ],
+  "pcbnew_version": "10.0.4",
+  "proposal_sha256": "707d8b94075190bf601aba410738b5fbefbd7036ca539ff967c9ae1fd90f7d82",
+  "replay_sha256": "3b01efdf4f4456f9e4ffb751218e5a1a013bf1801a2cb192fdb06585893154ba",
+  "status": "PASS"
+}

@@ -166,8 +166,67 @@ def pair_scoped_dru_rules(assembly_path: Path, board, floor: dict) -> list[str]:
     return out
 
 
+def controlled_pair_dru_rules(assembly_path: Path, board) -> list[str]:
+    """Re-derive one exact source-declared F.Cu pair rule for TMUX guard."""
+    root = assembly_path.resolve().parents[2]
+    data = yaml.safe_load((root / "03_src/rules/nets.yaml").read_text(encoding="utf-8-sig")) or {}
+    floor = yaml.safe_load((root / "03_src/floorplan.yaml").read_text(encoding="utf-8-sig")) or {}
+    specs = data.get("controlled_pair_clearances") or []
+    if not isinstance(specs, list) or len(specs) > 1:
+        raise ValueError("TMUX-DRU: controlled pair needs at most one declaration")
+    tmux_nets = {pad.GetNetname() for fp in board.GetFootprints()
+                 if fp.GetReference() in TMUX_REFS for pad in fp.Pads()}
+    out = []
+    for spec in specs:
+        if not isinstance(spec, dict) or set(spec) != {"pair", "nets_a", "nets_b", "layer", "clearance", "why"}:
+            raise ValueError("TMUX-DRU: controlled pair fields invalid")
+        pair, a, b = spec["pair"], spec["nets_a"], spec["nets_b"]
+        contract = (data.get("length_match") or {}).get(pair, {})
+        members = contract.get("members", {})
+        if (not re.fullmatch(r"[A-Za-z][A-Za-z0-9_]*", str(pair))
+                or a != members.get("P") or b != members.get("N")
+                or contract.get("no_vias") is not True
+                or not isinstance(a, list) or not isinstance(b, list)
+                or len(a) != 1 or len(b) != 1 or a == b
+                or not all(re.fullmatch(r"[A-Za-z][A-Za-z0-9_]*", str(n)) for n in a+b)
+                or set(a+b) & tmux_nets or spec["layer"] != "F.Cu"
+                or floor.get("board", {}).get("layers") != 4
+                or not str(spec["why"]).strip()):
+            raise ValueError("TMUX-DRU: controlled pair widens selector or layer")
+        classes = [row for row in (data.get("classes") or {}).values()
+                   if isinstance(row, dict) and set(row.get("nets") or []) == set(a+b)]
+        if len(classes) != 1 or classes[0].get("nets") != a+b:
+            raise ValueError("TMUX-DRU: controlled pair lacks one exact netclass")
+        try:
+            value = round(float(str(spec["clearance"]).lower().replace("mm", "").strip()), 3)
+        except (TypeError, ValueError) as exc:
+            raise ValueError("TMUX-DRU: controlled pair clearance invalid") from exc
+        if not math.isfinite(value) or value < ABSOLUTE_FLOORS["min_clearance"]:
+            raise ValueError("TMUX-DRU: controlled pair below absolute floor")
+        try:
+            gap = float(str(classes[0]["diff_pair"]["gap"]).lower().replace("mm", "").strip())
+            ordinary = float(str(classes[0]["clearance"]).lower().replace("mm", "").strip())
+        except (KeyError, TypeError, ValueError) as exc:
+            raise ValueError("TMUX-DRU: controlled pair class geometry unresolved") from exc
+        if (not math.isfinite(gap) or not math.isfinite(ordinary)
+                or abs(gap-value) > 1e-6 or ordinary < .15 or ordinary <= value):
+            raise ValueError("TMUX-DRU: controlled pair class gap/foreign floor mismatch")
+        condition = (f"((A.NetName == '{a[0]}') && (B.NetName == '{b[0]}')) || "
+                     f"((A.NetName == '{b[0]}') && (B.NetName == '{a[0]}'))")
+        out.append(f'(rule "controlled_pair_clr_{pair}"\n'
+                   f'  (layer "F.Cu")\n'
+                   f'  (condition "{condition}")\n'
+                   f'  (constraint clearance (min {value}mm)))')
+        for layer in ("In1.Cu", "In2.Cu", "B.Cu"):
+            out.append(f'(rule "controlled_pair_clr_{pair}_{layer.replace(".", "_")}"\n'
+                       f'  (layer "{layer}")\n'
+                       f'  (condition "{condition}")\n'
+                       f'  (constraint clearance (min {round(ordinary, 3)}mm)))')
+    return out
+
+
 def audit_dru_constraints(actual: str, expected: list[str], intrinsic: list[str],
-                          pair_scoped: list[str]) -> list[str]:
+                          pair_scoped: list[str], controlled_pair: list[str] | None = None) -> list[str]:
     """Keep the historical foreign-constraint veto after exact rule removal."""
     fails = []
     residual = actual
@@ -186,6 +245,11 @@ def audit_dru_constraints(actual: str, expected: list[str], intrinsic: list[str]
     for rule in pair_scoped:
         if actual.count("\n" + rule) != 1 or actual.count(rule) != 1:
             fails.append("TMUX-DRU: missing or altered exact pair rule " + rule.split('"')[1])
+            continue
+        residual = residual.replace(rule, "", 1)
+    for rule in controlled_pair or []:
+        if actual.count("\n" + rule) != 1 or actual.count(rule) != 1:
+            fails.append("TMUX-DRU: missing or altered controlled pair rule " + rule.split('"')[1])
             continue
         residual = residual.replace(rule, "", 1)
     if re.search(r"\(\s*constraint\s+(?:clearance|physical_clearance|via_diameter|annular_width|hole_size|hole_clearance)\b", residual):
@@ -363,7 +427,8 @@ def check(board_path: Path, assembly: str | None = None):
             # and intrinsic rules; every other clearance still fails closed.
             out["fails"].extend(audit_dru_constraints(
                 actual, tmux_dru_rules(), intrinsic_pad_dru_rules(apath),
-                pair_scoped_dru_rules(apath, board, floor)))
+                pair_scoped_dru_rules(apath, board, floor),
+                controlled_pair_dru_rules(apath, board)))
     except (ValueError, KeyError, TypeError, OSError) as exc:
         out["fails"].append(f"TMUX-PROFILE: {exc}")
 

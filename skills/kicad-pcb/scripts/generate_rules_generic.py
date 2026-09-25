@@ -168,6 +168,7 @@ def main(argv=None):
 
     nets = yaml.safe_load(nets_path.read_text(encoding="utf-8-sig")) or {}
     floor = yaml.safe_load((src / "floorplan.yaml").read_text()) or {}
+    floor_layers = floor.get("board", {}).get("layers")
     pofv = activated(root, floor)
     classes = nets.get("classes") or {}
     try:
@@ -313,9 +314,14 @@ def main(argv=None):
             f'  (condition "A.NetClass == \'{name}\'")\n'
             f'  (constraint track_width (min {w}mm)))')
         if dp:
+            controlled_here = any(
+                isinstance(spec, dict) and
+                (spec.get("nets_a") or []) + (spec.get("nets_b") or []) == (c.get("nets") or [])
+                for spec in nets.get("controlled_pair_clearances") or [])
             gap_rule = (
                 f'(rule "{name}_diffpair"\n'
-                f'  (condition "A.NetClass == \'{name}\'")\n'
+                + ('  (layer "F.Cu")\n' if controlled_here else '')
+                + f'  (condition "A.NetClass == \'{name}\'")\n'
                 f'  (constraint diff_pair_gap (min {round(dp_gap-0.005,3)}mm) '
                 f'(opt {dp_gap}mm))')
             if dp_unc is not None:
@@ -520,6 +526,60 @@ def main(argv=None):
             f'{constraints})')
     dru_rules += scoped_rules + clr_rules
 
+    # A controlled pair can need one uniform clearance over its entire signal
+    # layer. Keep this distinct from overlap-based rule areas: both operands
+    # must be the exact declared pair, and the rule is confined to one layer.
+    controlled_rules, controlled_names = [], set()
+    controlled_specs = nets.get("controlled_pair_clearances") or []
+    if not isinstance(controlled_specs, list) or len(controlled_specs) > 1:
+        sys.exit("generate_rules_generic: controlled_pair_clearances supports at most one declared pair")
+    for i, spec in enumerate(controlled_specs):
+        if not isinstance(spec, dict) or set(spec) != {"pair", "nets_a", "nets_b", "layer", "clearance", "why"}:
+            sys.exit(f"generate_rules_generic: controlled_pair_clearances[{i}] has invalid fields")
+        pair = spec["pair"]
+        contract = (nets.get("length_match") or {}).get(pair, {})
+        members = contract.get("members", {})
+        a, b = spec["nets_a"], spec["nets_b"]
+        if (pair in controlled_names or not re.fullmatch(r"[A-Za-z][A-Za-z0-9_]*", str(pair))
+                or a != members.get("P") or b != members.get("N")
+                or contract.get("no_vias") is not True
+                or not isinstance(a, list) or not isinstance(b, list)
+                or len(a) != 1 or len(b) != 1 or a == b
+                or not all(re.fullmatch(r"[A-Za-z][A-Za-z0-9_]*", str(n)) for n in a+b)):
+            sys.exit(f"generate_rules_generic: controlled_pair_clearances[{i}] selector widens or is not one declared pair")
+        if spec["layer"] != "F.Cu" or not str(spec["why"]).strip():
+            sys.exit(f"generate_rules_generic: controlled_pair_clearances[{i}] requires justified F.Cu scope")
+        if floor_layers != 4:
+            sys.exit(f"generate_rules_generic: controlled_pair_clearances[{i}] requires declared four-layer stack")
+        value = mm(spec["clearance"])
+        if value is None or (tier is not None and value < float(tier["min_space"])):
+            sys.exit(f"generate_rules_generic: controlled_pair_clearances[{i}] below fabrication floor")
+        matching = [row for row in classes.values() if isinstance(row, dict)
+                    and set(row.get("nets") or []) == set(a+b)]
+        if len(matching) != 1 or matching[0].get("nets") != a+b \
+                or mm(matching[0].get("clearance")) is None \
+                or mm(matching[0].get("clearance")) <= value \
+                or mm(matching[0].get("clearance")) < 0.15 \
+                or mm((matching[0].get("diff_pair") or {}).get("gap")) != value:
+            sys.exit(f"generate_rules_generic: controlled_pair_clearances[{i}] class gap/foreign floor mismatch")
+        controlled_names.add(pair)
+        condition = (f"((A.NetName == '{a[0]}') && (B.NetName == '{b[0]}')) || "
+                     f"((A.NetName == '{b[0]}') && (B.NetName == '{a[0]}'))")
+        controlled_rules.append(
+            f'(rule "controlled_pair_clr_{pair}"\n'
+            f'  (layer "F.Cu")\n'
+            f'  (condition "{condition}")\n'
+            f'  (constraint clearance (min {value}mm)))')
+        # KiCad's netclass differential gap is layer-independent. Explicitly
+        # restore the class copper floor on every other layer.
+        for layer in ("In1.Cu", "In2.Cu", "B.Cu"):
+            controlled_rules.append(
+                f'(rule "controlled_pair_clr_{pair}_{layer.replace(".", "_")}"\n'
+                f'  (layer "{layer}")\n'
+                f'  (condition "{condition}")\n'
+                f'  (constraint clearance (min {mm(matching[0]["clearance"])}mm)))')
+    dru_rules += controlled_rules
+
     # INTRINSIC PACKAGE PAD CLEARANCES.  A package's own SMD lands can have a
     # documented copper spacing that is tighter than a board's conservative
     # default.  This is deliberately NOT an insideArea rule: an area scopes
@@ -578,7 +638,10 @@ def main(argv=None):
     # wholesale rewrite does not clobber them — emit them LAST for precedence.
     generated_names = ({f"{name}_width" for name in classes}
                        | {f"{name}_diffpair" for name in classes}
-                       | scoped_names | clr_names | intrinsic_names)
+                       | scoped_names | clr_names | intrinsic_names
+                       | {f"controlled_pair_clr_{name}" for name in controlled_names}
+                       | {f"controlled_pair_clr_{name}_{layer.replace('.', '_')}"
+                          for name in controlled_names for layer in ("In1.Cu", "In2.Cu", "B.Cu")})
     if pofv:
         generated_names |= {name for name, _ in extract_rules("\n".join(tmux_dru_rules()))}
     foreign, decisions = foreign_dru_rules(dru, generated_names,

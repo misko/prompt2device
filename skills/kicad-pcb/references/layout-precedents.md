@@ -78,6 +78,19 @@ a different neck or escape needs its own evidence. Geometry the checker cannot
 model, missing terminals, or unresolved rules remain INCOMPLETE. Route, return and transition SI proof
 still belong to the later exact-board review.
 
+When a controlled pair needs one clearance along its whole signal layer,
+declare the exact two nets, layer, pair gap and reason in the source rules.
+Keep its ordinary netclass clearance for every other net; a local
+`scoped_clearances` rule area is for a measured local exception, not a substitute
+for the pair's full path. The differential-pair gap in KiCad's netclass is not
+layer-scoped, so generate explicit ordinary-clearance rules for that pair on
+other copper layers. Test the complete generated project/rules with native DRC:
+the intended gap must pass on the signal layer, a smaller gap and a foreign-net
+gap must fail there, and the relaxed gap must fail on the other copper layers.
+Keep a new stack/pair combination as research until those controls and the
+actual pad-access and return-path checks pass; the rule itself grants no route
+or signal-integrity acceptance.
+
 ## Sources, in authority order
 
 ### 1. The datasheet's Layout Guidelines / Layout Example section

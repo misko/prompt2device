@@ -9,7 +9,8 @@ import yaml
 
 SCRIPTS = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(SCRIPTS))
-from via_process_check import audit_dru_constraints, pair_scoped_dru_rules  # noqa: E402
+from via_process_check import (audit_dru_constraints, pair_scoped_dru_rules,
+                               controlled_pair_dru_rules)  # noqa: E402
 
 
 class Box:
@@ -132,6 +133,56 @@ class PairScopedTest(unittest.TestCase):
         foreign = '(rule "foreign"\n  (condition "true")\n  (constraint clearance (min 0.01mm)))'
         failures = audit_dru_constraints("(version 1)\n" + rule + "\n" + foreign, [], [], [rule])
         self.assertEqual(failures, ["TMUX-DRU: foreign clearance/via/hole constraint"])
+
+
+class ControlledPairTest(unittest.TestCase):
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory()
+        rules = Path(self.tmp.name) / "03_src/rules"
+        rules.mkdir(parents=True)
+        self.assembly = rules / "assembly.yaml"
+        self.assembly.write_text("{}\n")
+        self.nets = rules / "nets.yaml"
+        (rules.parent / "floorplan.yaml").write_text("board:\n  layers: 4\n")
+        self.board = Board(Area("unused", [0, 0, 1, 1]))
+        self.spec = {"pair": "USB_DEVICE", "nets_a": ["USB_DP"],
+                     "nets_b": ["USB_DN"], "layer": "F.Cu",
+                     "clearance": "0.100mm", "why": "measured hypothesis"}
+        self.write_source()
+
+    def tearDown(self): self.tmp.cleanup()
+
+    def write_source(self, specs=None):
+        self.nets.write_text(yaml.safe_dump({
+            "classes": {"USB_HS": {"nets": ["USB_DP", "USB_DN"],
+                                    "clearance": "0.150mm", "diff_pair": {"gap": "0.100mm"}}},
+            "length_match": {"USB_DEVICE": {"members": {"P": ["USB_DP"],
+                                                       "N": ["USB_DN"]}, "no_vias": True}},
+            "controlled_pair_clearances": [self.spec] if specs is None else specs}))
+
+    def test_exact_rule_and_tamper(self):
+        rules = controlled_pair_dru_rules(self.assembly, self.board)
+        self.assertEqual(len(rules), 4)
+        rule = rules[0]
+        self.assertIn('(layer "F.Cu")', rule)
+        self.assertEqual(audit_dru_constraints('(version 1)\n'+'\n'.join(rules), [], [], [], rules), [])
+        altered = rule.replace("USB_DN", "GND")
+        self.assertTrue(audit_dru_constraints('(version 1)\n'+altered+'\n'+'\n'.join(rules[1:]), [], [], [], rules))
+
+    def test_rejects_widened_selector_layer_and_second_pair(self):
+        self.spec["nets_b"] = ["USB_DN", "OTHER"]
+        self.write_source()
+        with self.assertRaisesRegex(ValueError, "widens selector"):
+            controlled_pair_dru_rules(self.assembly, self.board)
+        self.spec["nets_b"] = ["USB_DN"]
+        self.spec["layer"] = "B.Cu"
+        self.write_source()
+        with self.assertRaisesRegex(ValueError, "widens selector"):
+            controlled_pair_dru_rules(self.assembly, self.board)
+        self.spec["layer"] = "F.Cu"
+        self.write_source([self.spec, self.spec])
+        with self.assertRaisesRegex(ValueError, "at most one"):
+            controlled_pair_dru_rules(self.assembly, self.board)
 
 
 if __name__ == "__main__":

@@ -173,6 +173,24 @@ def _pair_footprints(project: Path, board: Any, route_cfg: Mapping[str, Any],
                             if isinstance(row, dict) and
                             (not row.get("nets") or
                              {pnet, nnet} & set(row.get("nets") or []))]
+        contract = length.get(name)
+        controlled = [row for row in nets_cfg.get("controlled_pair_clearances") or []
+                      if isinstance(row, dict) and row.get("pair") == name]
+        controlled_pair = (len(controlled) == 1 and
+                           controlled[0].get("nets_a") == [pnet] and
+                           controlled[0].get("nets_b") == [nnet] and
+                           controlled[0].get("layer") == layer_names[0] and
+                           contract.get("no_vias") is True if isinstance(contract, dict) else False)
+        if controlled and not controlled_pair:
+            unknown.append(f"{label}: controlled pair rule declaration unresolved")
+        if controlled_pair:
+            try:
+                if abs(_mm(controlled[0]["clearance"]) - gap) > 1e-6:
+                    unknown.append(f"{label}: controlled pair clearance differs from gap")
+                else:
+                    pair_clearance = gap
+            except (KeyError, TypeError, ValueError):
+                unknown.append(f"{label}: controlled pair clearance unresolved")
         if relevant_scopes:
             unknown.append(f"{label}: scoped pair width/clearance needs local rule-area evaluation")
         elif gap + 1e-6 < pair_clearance:

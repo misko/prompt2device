@@ -1,11 +1,11 @@
 {
-  "blocker": "Static USB endpoint screen: canonical 0.410-mm centered launches leave 0.145-mm Type-C and 0.070-mm XU foreign clearance against 0.150 required. Historical D15 0.180/0.100 pair clearance is XU-area-only. Full path, return, P1/P2, connector FULL and prototype-only ESD qualification remain open; 499 opens are inherited from the frozen unrouted board.",
+  "blocker": "The exact-pair 3313A rule is tested but unadopted. Frozen-board P1 remains INCOMPLETE: JTAG accesses narrow below Default width, reset geometry is unfinished, and timing pad access/allocation is unproved. Affected P2, USB complete route/return, connector FULL, prototype-only ESD, stack/order and release remain open.",
   "checkpoint": {
     "path": "03_src/rules/critical_part_selection.yaml",
     "sha256": "15288355fcc731ff8b1b0e35a1ae47b9faf66140223cfea0d31c91d99e9dc1ba",
     "size": 1148
   },
-  "next_command": "Prepare one unadopted same-placement 3313A USB pair-domain source proposal: 0.180-mm width, intended DP/DN-only 0.100-mm clearance, foreign clearance 0.150 mm unchanged. Review complete connector/ESD/XU domain and transition model before any new native experiment; retain D18 P1/P2 prerequisites. Do not replay D15/D17, adopt a stack, route, fabricate or order from this static screen. Use the new read-only pair-footprint command before full placement and review any scoped-rule INCOMPLETE; it grants no route or stage admission.",
+  "next_command": "On the frozen expanded placement, resolve source-backed JTAG/reset and timing pad access; rerun independent P1 and affected P2 checks. Then review the unadopted 3313A USB four-leaf merge/ESD/XU transition and In1.Cu return before one bounded native route experiment. Preserve D15 failed history and D18 physical/release holds; do not regenerate D15 or order.",
   "phase": "prototype-layout-diagnostic",
   "project": "crow-usb-carrier-v1",
   "receipts": [
@@ -36,8 +36,8 @@
     },
     {
       "path": "01_docs/journal/placement.md",
-      "sha256": "fcb1fa2dc6442a38cc463553fd9aa55c572a4b03e9e4e9b3c3cada3899763651",
-      "size": 6373
+      "sha256": "7e522f50f9252423d7f0a0aa4fad4342455a71672db909f7a98158b064ac5f37",
+      "size": 8352
     },
     {
       "path": "01_docs/research/2026-09-24-public-stock-569/public-stock.json",
@@ -60,6 +60,21 @@
       "size": 43990
     },
     {
+      "path": "01_docs/research/2026-09-25-expanded-service-timing-capacity-sol/README.md",
+      "sha256": "ad12ca96b0aea5abb488a424d22ff9bbfc028632289797187eedcd97a9929762",
+      "size": 5616
+    },
+    {
+      "path": "01_docs/research/2026-09-25-expanded-service-timing-capacity-sol/measure.py",
+      "sha256": "7812eb60ee262117f979872dee32fa4cadc2f5038dbc04d7e918b296bbfeefff",
+      "size": 8132
+    },
+    {
+      "path": "01_docs/research/2026-09-25-expanded-service-timing-capacity-sol/measurement.json",
+      "sha256": "93bb33a0e1ef2635af90d197361884c9106937f1fcf45be708d0c36cdeb6bd04",
+      "size": 8829
+    },
+    {
       "path": "01_docs/research/2026-09-25-ti-prototype-p-prec-isolated-check-sol.md",
       "sha256": "980eebc12250c20eb71ed7a09b9a90e53a7b81bfd4a94d3260c241521c79740f",
       "size": 2007
@@ -73,6 +88,36 @@
       "path": "01_docs/research/2026-09-25-ti-unrouted-diagnostic-board-sol.md",
       "sha256": "f84f08170719d7feae844338d89d47af9fc5c35507201f1d2c4afa79e6b5c0e8",
       "size": 4644
+    },
+    {
+      "path": "01_docs/research/2026-09-25-unadopted-3313a-controlled-pair-sol/README.md",
+      "sha256": "5dad1c08fbb1b32339d8792844f7ef91d48844475cf43f28ce945c0497a760d8",
+      "size": 2743
+    },
+    {
+      "path": "01_docs/research/2026-09-25-unadopted-3313a-controlled-pair-sol/native-replay-full-sidecar-20260925.json",
+      "sha256": "ec9cfedff7b1c6d408e71355c53f87686ed3d1150120d515467ead1e15a589fd",
+      "size": 5483
+    },
+    {
+      "path": "01_docs/research/2026-09-25-unadopted-3313a-controlled-pair-sol/native-replay-full-sidecar-independent-terra.json",
+      "sha256": "2ef86d1c3b69c4e00e9013d9588bd0bc048ef33983a8936f8b27d0bd79358819",
+      "size": 5483
+    },
+    {
+      "path": "01_docs/research/2026-09-25-unadopted-3313a-controlled-pair-sol/replay.py",
+      "sha256": "3b01efdf4f4456f9e4ffb751218e5a1a013bf1801a2cb192fdb06585893154ba",
+      "size": 8035
+    },
+    {
+      "path": "01_docs/research/2026-09-25-unadopted-3313a-controlled-pair-sol/source_diff.patch",
+      "sha256": "707d8b94075190bf601aba410738b5fbefbd7036ca539ff967c9ae1fd90f7d82",
+      "size": 5741
+    },
+    {
+      "path": "01_docs/research/2026-09-25-unadopted-3313a-usb-pair-domain-sol.md",
+      "sha256": "1d24b5c4790aba026390cfa8b1b7a1efb3cd47c0aeba1f4d32028eed922a856d",
+      "size": 4639
     },
     {
       "path": "01_docs/research/2026-09-25-usb-path-feasibility-sol/README.md",
@@ -96,5 +141,5 @@
     }
   ],
   "schema": 1,
-  "state_id": "9896617e997ea678514d368a445b7d54876bbb90b9377739d201886f992c4215"
+  "state_id": "c0459bd22505a7aa59af86c16af37d54bbfab272aab129d01c80af5141d94de0"
 }

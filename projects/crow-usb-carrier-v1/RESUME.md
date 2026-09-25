@@ -1,12 +1,12 @@
 # Resume
 
-<!-- pause-state:9896617e997ea678514d368a445b7d54876bbb90b9377739d201886f992c4215 -->
+<!-- pause-state:c0459bd22505a7aa59af86c16af37d54bbfab272aab129d01c80af5141d94de0 -->
 
 Canonical state: `01_docs/pause_state.json`
 
 1. Verify: `python3 skills/pcb-design/scripts/pause_state.py verify .`
-2. Confirm blocker: Static USB endpoint screen: canonical 0.410-mm centered launches leave 0.145-mm Type-C and 0.070-mm XU foreign clearance against 0.150 required. Historical D15 0.180/0.100 pair clearance is XU-area-only. Full path, return, P1/P2, connector FULL and prototype-only ESD qualification remain open; 499 opens are inherited from the frozen unrouted board.
-3. Resume with: `Prepare one unadopted same-placement 3313A USB pair-domain source proposal: 0.180-mm width, intended DP/DN-only 0.100-mm clearance, foreign clearance 0.150 mm unchanged. Review complete connector/ESD/XU domain and transition model before any new native experiment; retain D18 P1/P2 prerequisites. Do not replay D15/D17, adopt a stack, route, fabricate or order from this static screen. Use the new read-only pair-footprint command before full placement and review any scoped-rule INCOMPLETE; it grants no route or stage admission.`
+2. Confirm blocker: The exact-pair 3313A rule is tested but unadopted. Frozen-board P1 remains INCOMPLETE: JTAG accesses narrow below Default width, reset geometry is unfinished, and timing pad access/allocation is unproved. Affected P2, USB complete route/return, connector FULL, prototype-only ESD, stack/order and release remain open.
+3. Resume with: `On the frozen expanded placement, resolve source-backed JTAG/reset and timing pad access; rerun independent P1 and affected P2 checks. Then review the unadopted 3313A USB four-leaf merge/ESD/XU transition and In1.Cu return before one bounded native route experiment. Preserve D15 failed history and D18 physical/release holds; do not regenerate D15 or order.`
 
 The authenticated checkpoint is `03_src/rules/critical_part_selection.yaml` at
 `15288355fcc731ff8b1b0e35a1ae47b9faf66140223cfea0d31c91d99e9dc1ba`.
