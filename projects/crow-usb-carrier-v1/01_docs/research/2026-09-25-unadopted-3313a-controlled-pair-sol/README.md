@@ -2,6 +2,8 @@
 
 **Status: research only, unadopted.** This packet binds the exact expanded-locked private board/source to a four-file 3313A stack, USB class, route wave and RF *hypothesis* [patch](source_diff.patch), SHA-256 `707d8b94075190bf601aba410738b5fbefbd7036ca539ff967c9ae1fd90f7d82`. It does not change canonical Crow source or board, supersede D15's failed historical receipt, admit D18 P1/P2, route, fabricate or order.
 
+The [source adoption gate addendum](source_adoption_gate.md) pins the frozen KiCad input sidecars, records the replay's stale-sidecar rejection and identifies the remaining 3313A calculation sensitivity gate. The replay now asserts those sidecar hashes before scratch work; historical capture files retain their original script identity.
+
 Run from the repository root:
 
 ```sh

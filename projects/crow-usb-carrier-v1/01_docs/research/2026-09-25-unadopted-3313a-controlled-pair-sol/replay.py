@@ -23,10 +23,16 @@ HASHES = {
     '03_src/route.yaml': 'f49ca740665ce4cfdceb1c82701ddae548f140c8ee1735746040c523c96c8608',
     '03_src/rules/rf.yaml': '833a8c022648859e65ba3b727bffd14c868214936a9751f12c5a15ecd3ea376c',
     '04_kicad/crow_carrier.kicad_pcb': 'fe8d2c9a9922eeab2371d0187da9407ac590687a77b03a8a099c35a75b5ddd16',
+    '04_kicad/crow_carrier.kicad_pro': '7977bc9edb88e1ef723eb256f07949871493dfda3d2c2491dd5d5b6087ddc094',
+    '04_kicad/crow_carrier.kicad_dru': '00ab83d8484368f132392523972c1f41fc9073423d3c600feec962684f9c3b0a',
 }
 parser = argparse.ArgumentParser(description=__doc__)
 parser.add_argument('--write-result', type=Path,
                     help='write a new immutable capture path; existing paths are refused')
+parser.add_argument('--base', type=Path, default=BASE,
+                    help='frozen input copy to verify; defaults to the expanded-locked board')
+parser.add_argument('--verify-inputs-only', action='store_true',
+                    help='verify all frozen hashes and exit before any proposal replay')
 args = parser.parse_args()
 
 def sha(path): return hashlib.sha256(path.read_bytes()).hexdigest()
@@ -38,19 +44,22 @@ def run(cmd, **kw):
     return out
 
 for rel, expected in HASHES.items():
-    actual = sha(BASE / rel)
+    actual = sha(args.base / rel)
     if actual != expected: raise RuntimeError(f'base hash drift: {rel}: {actual}')
+if args.verify_inputs_only:
+    print('FROZEN_3313_INPUT_HASHES_PASS')
+    sys.exit(0)
 
 rows = []
 with tempfile.TemporaryDirectory(prefix='crow3313-coupon-') as raw:
     tmp = Path(raw)
     (tmp/'03_src/rules').mkdir(parents=True)
     (tmp/'04_kicad').mkdir()
-    (tmp/'02_parts').symlink_to(BASE/'02_parts')
+    (tmp/'02_parts').symlink_to(args.base/'02_parts')
     for rel in list(HASHES)[:4] + ['03_src/rules/assembly.yaml']:
-        shutil.copy2(BASE/rel, tmp/rel)
+        shutil.copy2(args.base/rel, tmp/rel)
     for suffix in ('pcb', 'pro', 'dru'):
-        shutil.copy2(BASE/f'04_kicad/crow_carrier.kicad_{suffix}',
+        shutil.copy2(args.base/f'04_kicad/crow_carrier.kicad_{suffix}',
                      tmp/f'04_kicad/crow_carrier.kicad_{suffix}')
     run(['patch', '-p1', '-d', str(tmp), '--input', str(HERE/'source_diff.patch')])
     run([sys.executable, str(ROOT/'skills/kicad-pcb/scripts/generate_rules_generic.py'), str(tmp)])
