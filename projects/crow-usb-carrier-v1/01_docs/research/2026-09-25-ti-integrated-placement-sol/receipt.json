@@ -42,8 +42,8 @@
     "trial_pairs": []
   },
   "debts": [
-    "U_ISO8.4 ISO8P pad against relocated GND via: new 0.100 mm clearance versus 0.200 mm requirement",
-    "five new source-generated reference text-height DRC errors",
+    "Pre-existing 0.100 mm versus 0.200 mm ISO8 GND-via clearance deficit persists at U_ISO8.4 ISO8P after moving from U_ISO8.2 AUDIO_EN",
+    "five source-generated reference text-height DRC warnings change identity; total unchanged",
     "ADC8 coupling-cap owner/USB margin is only 0.005 mm in the 15-part component study",
     "28 timing-probe reference fields placed on F.Fab are not source-encoded here",
     "In1.Cu GND zone is unfilled; no continuous return or traces are proved",
@@ -54,6 +54,7 @@
   "native_drc": {
     "baseline_unconnected": 499,
     "baseline_violations": 699,
+    "clearance_interpretation": "The same 0.100 mm actual versus 0.200 mm required via/pad deficit persists; identity moves from U_ISO8.2 AUDIO_EN to U_ISO8.4 ISO8P.",
     "new_issue_rows": [
       {
         "description": "Clearance violation ( clearance 0.2000 mm; actual 0.1000 mm)",
@@ -156,6 +157,106 @@
     ],
     "new_non_silk_issues": 6,
     "new_silk_issues": 0,
+    "removed_issue_rows": [
+      {
+        "description": "Clearance violation ( clearance 0.2000 mm; actual 0.1000 mm)",
+        "items": [
+          {
+            "description": "Via [GND] on F.Cu - B.Cu",
+            "pos": {
+              "x": 202.7,
+              "y": 58.4
+            },
+            "uuid": "73d7e49b-aa47-4dee-91bb-157b30e92c04"
+          },
+          {
+            "description": "Pad 2 [AUDIO_EN] of U_ISO8 on F.Cu",
+            "pos": {
+              "x": 202.7,
+              "y": 58.0
+            },
+            "uuid": "a1f46825-63d6-47ba-8867-a15fd0f08c1c"
+          }
+        ],
+        "severity": "error",
+        "type": "clearance"
+      },
+      {
+        "description": "Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.6000 mm)",
+        "items": [
+          {
+            "description": "Reference field of R_ADC_OK_BOT",
+            "pos": {
+              "x": 157.3,
+              "y": 101.8
+            },
+            "uuid": "02b1c716-019f-4d8c-8012-1c3daa8b4ee1"
+          }
+        ],
+        "severity": "warning",
+        "type": "text_height"
+      },
+      {
+        "description": "Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.6000 mm)",
+        "items": [
+          {
+            "description": "Reference field of C_FSYNC_FF1",
+            "pos": {
+              "x": 168.5,
+              "y": 102.3
+            },
+            "uuid": "ea38ba1f-63d9-4a38-8781-eb7563429b61"
+          }
+        ],
+        "severity": "warning",
+        "type": "text_height"
+      },
+      {
+        "description": "Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.6000 mm)",
+        "items": [
+          {
+            "description": "Reference field of C_XU_VDD_54",
+            "pos": {
+              "x": 224.54,
+              "y": 96.94
+            },
+            "uuid": "428111ef-a11c-4c74-b6c1-54a9de00529e"
+          }
+        ],
+        "severity": "warning",
+        "type": "text_height"
+      },
+      {
+        "description": "Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.4500 mm)",
+        "items": [
+          {
+            "description": "Reference field of C_XU_VDDIO_17",
+            "pos": {
+              "x": 211.0,
+              "y": 110.4
+            },
+            "uuid": "ff0ae053-5c0a-46d2-9c57-5aee23c60032"
+          }
+        ],
+        "severity": "warning",
+        "type": "text_height"
+      },
+      {
+        "description": "Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.6000 mm)",
+        "items": [
+          {
+            "description": "Reference field of C_DUMP_LOGIC",
+            "pos": {
+              "x": 66.0,
+              "y": 101.1
+            },
+            "uuid": "4ed66520-baea-44c1-b5c6-020a2d38b453"
+          }
+        ],
+        "severity": "warning",
+        "type": "text_height"
+      }
+    ],
     "removed_issues": 6,
     "trial_unconnected": 499,
     "trial_violations": 699
@@ -323,7 +424,7 @@
   "route_credit": false,
   "schema": 1,
   "source_regenerated_timing_fab_reference_fields": [],
-  "status": "REJECTED_NEW_NATIVE_DRC",
+  "status": "REJECTED_PERSISTENT_NATIVE_CLEARANCE",
   "timing_mouths": {
     "translator_west_four": {
       "bbox_mm": [

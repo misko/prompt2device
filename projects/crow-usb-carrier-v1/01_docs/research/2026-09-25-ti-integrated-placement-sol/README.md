@@ -26,14 +26,15 @@ respectively. These are aperture screens, not routable capacity or return
 evidence.
 
 **Hard stop:** native `kicad-cli pcb drc --format json` gives 699 violations
-and 499 unconnected items on each regenerated board, but issue identity
-comparison shows one *new* clearance error at `U_ISO8.4` (`ISO8P`) versus a
-GND via at `(199.0,53.0)` mm: actual clearance **0.100 mm** versus **0.200 mm**
-required. A previous `U_ISO8.2`/GND-via clearance error disappears; equal
-totals hide the new fault. Five new `text_height` warnings (C_FSYNC_FF1,
-C_XU_VDD_54, C_XU_VDDIO_17, R_ADC_PD5P, R_IN7P) replace five old warnings.
-This source-generated via/pad interaction rejects the integrated placement;
-the study stops here without relocating a via or claiming acceptance.
+and 499 unconnected items on each regenerated board. The same
+**0.100-mm actual versus 0.200-mm required** GND-via/signal-pad clearance
+deficit persists: it is at `U_ISO8.2` (`AUDIO_EN`) and via `(202.7,58.4)` mm
+in the baseline, then at `U_ISO8.4` (`ISO8P`) and via `(199.0,53.0)` mm in
+the union. This is a changed DRC identity, not the first occurrence of the
+defect or an increased violation count. Five `text_height` warning identities
+(C_FSYNC_FF1, C_XU_VDD_54, C_XU_VDDIO_17, R_ADC_PD5P, R_IN7P) replace five
+old warnings. The persistent native clearance failure rejects the integrated
+placement; this study stops without claiming acceptance.
 
 The [receipt](receipt.json) preserves all changed issue descriptions and native
 coordinates, 23 moved XU bypass pad-to-owning-pin distances (none worsened),

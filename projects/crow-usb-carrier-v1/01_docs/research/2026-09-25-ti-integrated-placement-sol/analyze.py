@@ -127,7 +127,15 @@ def main():
     bc=before['counts'];ac=after['counts']
     if after['cross_owner_native_interactions'] or ac['cross_owner_native_interaction_pairs']!=0:
         raise SystemExit('cross-owner native collision')
-    receipt={'schema':1,'status':'REJECTED_NEW_NATIVE_DRC','p1_accepted':False,'p2_accepted':False,
+    removed_issue_rows=[v for v in old['violations'] if (v['type'],v['description'],
+                        tuple(sorted(i['uuid'] for i in v['items']))) in old_issues-new_issues]
+    old_clearance=[v for v in removed_issue_rows if v['type']=='clearance']
+    new_clearance=[v for v in new_issue_rows if v['type']=='clearance']
+    if len(old_clearance)!=1 or len(new_clearance)!=1 or \
+       'actual 0.1000 mm' not in old_clearance[0]['description'] or \
+       old_clearance[0]['description']!=new_clearance[0]['description']:
+        raise SystemExit('persistent ISO8 clearance identity/magnitude drift')
+    receipt={'schema':1,'status':'REJECTED_PERSISTENT_NATIVE_CLEARANCE','p1_accepted':False,'p2_accepted':False,
              'route_credit':False,'return_credit':False,
              'board_sha256':EXPECTED,'fixed_ref_count':27,'footprint_count':569,
              'pose_union_count_excluding_qpre':len(expected['move_union']),
@@ -144,11 +152,12 @@ def main():
                            'new_non_silk_issues':len(new_non_silk),
                            'new_silk_issues':len(new_issues-old_issues)-len(new_non_silk),
                            'removed_issues':len(old_issues-new_issues),
-                           'new_issue_rows':new_issue_rows},
+                           'new_issue_rows':new_issue_rows,'removed_issue_rows':removed_issue_rows,
+                           'clearance_interpretation':'The same 0.100 mm actual versus 0.200 mm required via/pad deficit persists; identity moves from U_ISO8.2 AUDIO_EN to U_ISO8.4 ISO8P.'},
              'timing_native_probe_fab_label_count':len(fab_group),
              'source_regenerated_timing_fab_reference_fields':fab_rows,
-             'debts':['U_ISO8.4 ISO8P pad against relocated GND via: new 0.100 mm clearance versus 0.200 mm requirement',
-                      'five new source-generated reference text-height DRC errors',
+             'debts':['Pre-existing 0.100 mm versus 0.200 mm ISO8 GND-via clearance deficit persists at U_ISO8.4 ISO8P after moving from U_ISO8.2 AUDIO_EN',
+                      'five source-generated reference text-height DRC warnings change identity; total unchanged',
                       'ADC8 coupling-cap owner/USB margin is only 0.005 mm in the 15-part component study',
                       '28 timing-probe reference fields placed on F.Fab are not source-encoded here',
                       'In1.Cu GND zone is unfilled; no continuous return or traces are proved',
