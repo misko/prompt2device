@@ -1,12 +1,12 @@
 # Project status
 
-<!-- pause-state:b3e6d4386d4d672943059f054b6408756e57503b3d92cdfc076304eac60f5011 -->
+<!-- pause-state:77b7c52c5f9ca79533a21692662739ff7f17dcc0d32270ea2861474bb8b2f107 -->
 
 - Phase: `placement`
 - State: **PAUSED**
 - Checkpoint: `06_build/checkpoints/schematic.json` (`917a45414c65`)
-- Blocker: P1 remains unaccepted. The pinned QSPI-gap board has a reviewed four-net segmented JTAG declaration with all eight handoffs and the full 59-net source denominator. A separate unresolved XU_RESET_N declaration now binds all five exact native pads across three owners without geometry or capacity credit; its physical blocker inventory records two digital_power pads inside audio_clock_tdm. The whole schema-2 packet advances past reset and FAILS at nonlocal U_XU.34 on XTAL. A native 0.15/0.15 XTAL dogleg candidate preserves C_XU_VDDIO_35 and shifts the QSPI owner/face east, but source-region split, P2 copper/return and oscillator electrical proof are not admitted. Native DRC remains nonzero with 499 unconnected items and six unqualified sub-0.410-mm USB launch widths. J_USB edge region/outline awaits connector FULL (19 physical unknowns); TMUX filled/capped process acceptance remains external. No P1/P2/P3/route/release or order result is accepted.
-- Next command: `Build and independently validate an isolated seven-endpoint XTAL handoff packet with the retained C_XU_VDDIO_35 pose, disjoint west/east XMOS cells, a source-owned oscillator transition, and QSPI face shifted to x=219.2; keep the full 59-net denominator. Repair the two reset source-region overlaps before P1 admission. Then regenerate native board, prove P2 pad access, effective clearance and filled In1.Cu return, and rerun all P1 allocations. Connector FULL gates P3/routing; TMUX process acceptance gates release. Do not promote scratch copper.`
+- Blocker: P1 remains unaccepted. The pinned QSPI-gap board has a 59-net research source packet with three native-valid integration corridors (QSPI, XTAL, fixed JTAG), including 20 QSPI/XTAL and eight JTAG exact witnesses; the whole allocation still FAILS at nonlocal U_XU.38 reset. A separate reset-region repair gives both foreign digital_power reset pads exclusive ownership, but the five-terminal reset tree has no P2/P3 route or filled-return proof. The tighter JTAG source layout leaves J_USB.4 nonlocal and USB row INCOMPLETE. Native DRC remains nonzero with 499 unconnected items and six unqualified sub-0.410-mm USB launch widths. Connector FULL has 19 physical unknowns; TMUX filled/capped process acceptance is external. No P1/P2/P3/routing/release or order result is accepted.
+- Next command: `Independently review the combined QSPI/XTAL/JTAG source packet, then integrate the exact five-terminal reset branch with the disjoint audio/digital region repair; resolve the J_USB.4 source handoff without changing the fixed connector pose, and rerun all 59-net P1 allocations. Keep P1 false until native pad access, effective clearance and filled In1.Cu return are proved. Connector FULL gates P3/routing; TMUX process acceptance gates release. Do not promote scratch copper.`
 
 ## Bound receipts
 
@@ -24,6 +24,7 @@
 - `01_docs/research/2026-09-24-usb-launch-em-input-inventory-terra.md` — `0bdd918292b9`
 - `01_docs/research/2026-09-24-xmos-service-remaining-net-blocker-terra.md` — `edb09dcaab6a`
 - `01_docs/research/2026-09-24-xu-reset-five-terminal-branch-terra.md` — `3af94c20e590`
+- `01_docs/research/2026-09-24-xu-reset-region-repair-terra/native_region_audit.json` — `797a732f23ab`
 - `01_docs/research/2026-09-24-xu-service-reservation-contract-recommendation-terra.md` — `5de4aa58c71b`
 - `01_docs/research/jtag_fixed_access_probe_sol.json` — `5f73551e562d`
 - `01_docs/research/jtag_native_dogleg_probe_terra.json` — `8a526c09a13f`
@@ -42,6 +43,8 @@
 - `01_docs/research/xu_service_variant/p1_integration_corridor_schema.md` — `9992b673c7d2`
 - `01_docs/research/xu_service_variant/p1_qspi_packet/README.md` — `aac745bb6a38`
 - `01_docs/research/xu_service_variant/p1_qspi_packet/evaluation.json` — `3ba0a91f8e3a`
+- `01_docs/research/xu_service_variant/p1_xtal_jtag_packet/validation.json` — `30d6a45b8432`
+- `01_docs/research/xu_service_variant/p1_xtal_packet/validation.json` — `df3aa871ff10`
 - `01_docs/research/xu_service_variant/xtal_south_cap_handoff.json` — `3dc3510d8a9f`
 - `01_docs/research/xu_service_variant/xtal_window_native_audit.json` — `00f8087d59a7`
 - `03_src/diagnostics/usb_fcu_launch_probe.py` — `7a05b24297f6`
