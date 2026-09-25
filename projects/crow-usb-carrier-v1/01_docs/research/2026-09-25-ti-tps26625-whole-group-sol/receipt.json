@@ -1,0 +1,358 @@
+{
+  "adc8n_route_geometry": {
+    "full_footprint_envelope_hits": {
+      "C_ADC_AC8N1": {
+        "full_envelope_mm": [
+          195.205,
+          57.905,
+          200.795,
+          61.395
+        ],
+        "segment_hits_mm": [
+          [
+            [
+              199.8,
+              59.65
+            ],
+            [
+              197.75,
+              61.7
+            ]
+          ]
+        ]
+      },
+      "C_ADC_CM8N": {
+        "full_envelope_mm": [
+          187.045,
+          65.995,
+          188.955,
+          67.005
+        ],
+        "segment_hits_mm": [
+          [
+            [
+              187.9,
+              66.099999
+            ],
+            [
+              187.5,
+              66.5
+            ]
+          ],
+          [
+            [
+              187.5,
+              66.5
+            ],
+            [
+              187.52,
+              66.5
+            ]
+          ],
+          [
+            [
+              187.9,
+              65.8
+            ],
+            [
+              187.9,
+              66.099999
+            ]
+          ]
+        ]
+      }
+    },
+    "nearest_other_full_envelope_gaps_mm": [
+      {
+        "gap_mm": 0.205001,
+        "ref": "C_A8N"
+      },
+      {
+        "gap_mm": 0.285001,
+        "ref": "R_B8P"
+      },
+      {
+        "gap_mm": 0.645001,
+        "ref": "C_ADC_CM8P"
+      },
+      {
+        "gap_mm": 0.755001,
+        "ref": "C_ADC_AC8N2"
+      },
+      {
+        "gap_mm": 1.805001,
+        "ref": "C_A8P"
+      }
+    ],
+    "post_launch_cap_full_gap_mm": 0.205001,
+    "whole_route_usb_region_gap_mm": 0.200001
+  },
+  "contacts": {
+    "DVDT_to_CDVDT": {
+      "a": "U_SPOKE8.8",
+      "b": "C_SPOKE_DVDT8.1",
+      "direct_native_copper_gap_mm": 5.619506,
+      "net": "SPOKE_DVDT8"
+    },
+    "EP11_to_CDVDT": {
+      "a": "U_SPOKE8.11",
+      "b": "C_SPOKE_DVDT8.2",
+      "direct_native_copper_gap_mm": 2.61566,
+      "net": "SPOKE_RTN8"
+    },
+    "EP11_to_RILIM": {
+      "a": "U_SPOKE8.11",
+      "b": "R_SPOKE_ILIM8.2",
+      "direct_native_copper_gap_mm": 3.636474,
+      "net": "SPOKE_RTN8"
+    },
+    "GND_to_CIN": {
+      "a": "U_SPOKE8.6",
+      "b": "C_SPOKE_IN8.2",
+      "direct_native_copper_gap_mm": 3.661193,
+      "net": "GND"
+    },
+    "GND_to_COUT": {
+      "a": "U_SPOKE8.6",
+      "b": "C_SPOKE_OUT8.2",
+      "direct_native_copper_gap_mm": 3.186949,
+      "net": "GND"
+    },
+    "ILIM_to_RILIM": {
+      "a": "U_SPOKE8.7",
+      "b": "R_SPOKE_ILIM8.1",
+      "direct_native_copper_gap_mm": 1.51245,
+      "net": "SPOKE_ILIM8"
+    },
+    "IN_to_CIN": {
+      "a": "U_SPOKE8.1",
+      "b": "C_SPOKE_IN8.1",
+      "direct_native_copper_gap_mm": 1.655273,
+      "net": "N12V_PROTECTED"
+    },
+    "IN_to_RUVLO": {
+      "a": "U_SPOKE8.1",
+      "b": "R_SPOKE_UVLO8.1",
+      "direct_native_copper_gap_mm": 2.741088,
+      "net": "N12V_PROTECTED"
+    },
+    "OUT_to_COUT": {
+      "a": "U_SPOKE8.10",
+      "b": "C_SPOKE_OUT8.1",
+      "direct_native_copper_gap_mm": 1.050108,
+      "net": "N12V_POD8"
+    },
+    "RTN5_to_CDVDT": {
+      "a": "U_SPOKE8.5",
+      "b": "C_SPOKE_DVDT8.2",
+      "direct_native_copper_gap_mm": 1.74774,
+      "net": "SPOKE_RTN8"
+    },
+    "RTN5_to_RILIM": {
+      "a": "U_SPOKE8.5",
+      "b": "R_SPOKE_ILIM8.2",
+      "direct_native_copper_gap_mm": 5.563658,
+      "net": "SPOKE_RTN8"
+    },
+    "UVLO_to_RUVLO": {
+      "a": "U_SPOKE8.2",
+      "b": "R_SPOKE_UVLO8.2",
+      "direct_native_copper_gap_mm": 1.720274,
+      "net": "SPOKE_UVLO8"
+    }
+  },
+  "direct_copper_gap_target_mm": 2.5,
+  "filled_board_sha256_observation": "d313f9d3efab1b26f32f5ea2d3c0e334694b43ffd69d8d0040b2e9979e196fd1",
+  "filled_return": {
+    "same_filled_polygon_outlines": [
+      8
+    ],
+    "uncovered_0p20mm_ribbon_area_mm2_by_segment": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "fixed_27_preserved": true,
+  "footprint_count": 569,
+  "foreign_region_route_gaps_mm": {
+    "adc_reference": 2.0,
+    "analog_ch1": 2.0,
+    "analog_ch2": 2.0,
+    "analog_ch3": 2.0,
+    "analog_ch4": 2.0,
+    "analog_ch5": 2.0,
+    "analog_ch6": 2.0,
+    "analog_ch7": 2.0,
+    "audio_clock_tdm": 2.0,
+    "board_integration_jtag": 2.0,
+    "board_integration_qspi": 2.0,
+    "clock_flash_debug": 2.0,
+    "clock_oscillator_handoff": 2.0,
+    "clock_oscillator_local": 2.0,
+    "clock_qspi_transit": 2.0,
+    "debug_connector": 2.0,
+    "digital_power": 2.0,
+    "hold_bank_left": 2.0,
+    "hold_bank_right": 2.0,
+    "input_buck": 2.0,
+    "quiet_power": 2.0,
+    "usb_frontend": 2.0,
+    "usb_vbus_sense": 0.200001,
+    "xmos_core": 2.0,
+    "xmos_core_east": 2.0,
+    "xmos_core_qspi_south": 2.0
+  },
+  "gnd_rtn_distinct": true,
+  "group_foreign_source_region_intersections": {
+    "C_SPOKE_DVDT8": [],
+    "C_SPOKE_IN8": [],
+    "C_SPOKE_OUT8": [],
+    "R_SPOKE_ILIM8": [],
+    "R_SPOKE_UVLO8": [],
+    "U_SPOKE8": []
+  },
+  "group_full_envelope_collisions": {
+    "C_SPOKE_DVDT8": [],
+    "C_SPOKE_IN8": [],
+    "C_SPOKE_OUT8": [],
+    "R_SPOKE_ILIM8": [],
+    "R_SPOKE_UVLO8": [],
+    "U_SPOKE8": []
+  },
+  "group_full_envelopes_mm": {
+    "C_SPOKE_DVDT8": [
+      184.845,
+      48.395,
+      186.755,
+      49.405
+    ],
+    "C_SPOKE_IN8": [
+      188.005,
+      42.975,
+      191.495,
+      45.025
+    ],
+    "C_SPOKE_OUT8": [
+      192.455,
+      45.675,
+      195.945,
+      47.725
+    ],
+    "R_SPOKE_ILIM8": [
+      192.475,
+      48.725,
+      195.525,
+      50.275
+    ],
+    "R_SPOKE_UVLO8": [
+      184.825,
+      46.285,
+      186.775,
+      47.315
+    ],
+    "U_SPOKE8": [
+      187.805,
+      45.305,
+      192.195,
+      49.695
+    ]
+  },
+  "group_poses_mm": {
+    "C_SPOKE_DVDT8": [
+      185.8,
+      48.9,
+      0
+    ],
+    "C_SPOKE_IN8": [
+      189.75,
+      44.0,
+      0
+    ],
+    "C_SPOKE_OUT8": [
+      194.2,
+      46.7,
+      0
+    ],
+    "R_SPOKE_ILIM8": [
+      194.0,
+      49.5,
+      0
+    ],
+    "R_SPOKE_UVLO8": [
+      185.8,
+      46.8,
+      0
+    ],
+    "U_SPOKE8": [
+      190.0,
+      47.5,
+      0
+    ]
+  },
+  "input_sha256": {
+    "generic_generator": "8a5fa1d48d80138458601a097ab6260565841510a498e44cb9c5773652215b3c",
+    "netlist": "a40b45c27b2169ed4f3dd43d72a1f4f7112d829985f98918a8855ed76735e9bd",
+    "poses": "76ba7ace1275fe1a8d6bc69d452037672519d70a21b8b02fff67f8c7d8a647bb",
+    "source": "0032b1202f5742b6575198d27ea50629826d49cf81cf12a31fead8a2929d9868",
+    "southwest_board": "0b9d017706845ad4d77c2b579dd36f2e34c0ecf55a7b699ace4fca97465c5b93"
+  },
+  "local_spoke_rtn_copper_island_proven": false,
+  "native_connected_adc8n_pads": [
+    "C_ADC_AC8N1.2",
+    "C_ADC_CM8N.1"
+  ],
+  "native_pad_identities_preserved": true,
+  "native_profile": {
+    "added_issue_identities": 0,
+    "removed_issue_identities": 0,
+    "unconnected": [
+      499,
+      499
+    ],
+    "via_process_fails": [
+      [],
+      []
+    ],
+    "violations": [
+      199,
+      199
+    ]
+  },
+  "schema": 1,
+  "source_generated_unfilled_board_sha256_observation": "895a608c242c99eda00805364c1795160e871b12dfff1d69849a64b5b76a8020",
+  "source_owner_pattern_by_ref": {
+    "C_SPOKE_DVDT8": [
+      "analog_ch8"
+    ],
+    "C_SPOKE_IN8": [
+      "analog_ch8"
+    ],
+    "C_SPOKE_OUT8": [
+      "analog_ch8"
+    ],
+    "R_SPOKE_ILIM8": [
+      "analog_ch8"
+    ],
+    "R_SPOKE_UVLO8": [
+      "analog_ch8"
+    ],
+    "U_SPOKE8": [
+      "analog_ch8"
+    ]
+  },
+  "source_pose_delta_refs": [
+    "C_SPOKE_DVDT8",
+    "C_SPOKE_IN8",
+    "C_SPOKE_OUT8",
+    "R_SPOKE_ILIM8",
+    "R_SPOKE_UVLO8",
+    "U_SPOKE8"
+  ],
+  "status": "REJECTED_SUPPORT_CONTACT_TARGET"
+}
