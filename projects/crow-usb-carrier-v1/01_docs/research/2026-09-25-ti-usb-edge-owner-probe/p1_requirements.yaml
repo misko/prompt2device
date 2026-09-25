@@ -1342,16 +1342,16 @@ integration_corridors:
   - block: usb_edge_connector
     region_face: south
     bbox:
-    - 229.2
+    - 229
     - 27.8
-    - 230.8
+    - 231
     - 28
   - block: usb_frontend
     region_face: north
     bbox:
-    - 229.2
+    - 229
     - 29
-    - 230.8
+    - 231
     - 29.2
   layer: F.Cu
   reference_layer: In1.Cu

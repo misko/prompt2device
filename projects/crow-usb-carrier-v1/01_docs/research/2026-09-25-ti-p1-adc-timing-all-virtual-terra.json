@@ -16,174 +16,64 @@
       ],
       "boundary_witnesses": [
         {
-          "source": "J_USB.12",
-          "native": "J_USB.B6",
-          "net": "USB_DP",
-          "block": "usb_edge_connector",
-          "face": "north",
-          "layer": "F.Cu",
-          "boundary_bbox": [
-            229.1,
-            26.1,
-            229.4,
-            27.25
-          ],
-          "reservation_id": "usb_edge_access_b6",
-          "kind": "fixed_connector_access",
-          "corridor_id": "usb_edge_access",
-          "p2_obligation": {
-            "status": "P2_REQUIRED",
-            "source_pad": "J_USB.12",
-            "native_pad": "J_USB.B6",
-            "net": "USB_DP",
-            "block": "usb_edge_connector",
-            "corridor_id": "usb_edge_access",
-            "region_face": "south",
-            "layer": "F.Cu",
-            "to_reservation": "usb_edge_access_trunk"
-          }
-        },
-        {
           "source": "J_USB.4",
           "native": "J_USB.A6",
           "net": "USB_DP",
-          "block": "usb_edge_connector",
+          "block": "usb_frontend",
           "face": "north",
           "layer": "F.Cu",
           "boundary_bbox": [
-            230.1,
-            26.1,
-            230.4,
-            27.25
+            229.9,
+            25.9,
+            230.6,
+            28
           ],
-          "reservation_id": "usb_edge_access_a6",
-          "kind": "fixed_connector_access",
-          "corridor_id": "usb_edge_access",
-          "p2_obligation": {
-            "status": "P2_REQUIRED",
-            "source_pad": "J_USB.4",
-            "native_pad": "J_USB.A6",
-            "net": "USB_DP",
-            "block": "usb_edge_connector",
-            "corridor_id": "usb_edge_access",
-            "region_face": "south",
-            "layer": "F.Cu",
-            "to_reservation": "usb_edge_access_trunk"
-          }
+          "reservation_id": "usb_entry"
+        },
+        {
+          "source": "J_USB.5",
+          "native": "J_USB.A7",
+          "net": "USB_DN",
+          "block": "usb_frontend",
+          "face": "north",
+          "layer": "F.Cu",
+          "boundary_bbox": [
+            229.5,
+            25.9,
+            230,
+            28
+          ],
+          "reservation_id": "usb_entry"
         },
         {
           "source": "U_USB_ESD.1",
           "native": "U_USB_ESD.1",
           "net": "USB_DP",
           "block": "usb_frontend",
-          "face": "south",
-          "layer": "F.Cu",
-          "region_face": "north",
-          "boundary_bbox": [
-            229,
-            29,
-            231,
-            29.2
-          ],
-          "reservation_id": "usb_edge_access_trunk",
-          "kind": "integration_corridor_handoff",
-          "corridor_id": "usb_edge_access",
-          "p2_obligation": {
-            "status": "P2_REQUIRED",
-            "source_pad": "U_USB_ESD.1",
-            "native_pad": "U_USB_ESD.1",
-            "net": "USB_DP",
-            "block": "usb_frontend",
-            "corridor_id": "usb_edge_access",
-            "region_face": "north",
-            "layer": "F.Cu",
-            "to_reservation": "usb_edge_access_trunk"
-          }
-        },
-        {
-          "source": "J_USB.13",
-          "native": "J_USB.B7",
-          "net": "USB_DN",
-          "block": "usb_edge_connector",
           "face": "north",
           "layer": "F.Cu",
           "boundary_bbox": [
-            230.6,
-            26.1,
-            230.9,
-            27.25
+            216.4,
+            36.15,
+            216.95,
+            36.77
           ],
-          "reservation_id": "usb_edge_access_b7",
-          "kind": "fixed_connector_access",
-          "corridor_id": "usb_edge_access",
-          "p2_obligation": {
-            "status": "P2_REQUIRED",
-            "source_pad": "J_USB.13",
-            "native_pad": "J_USB.B7",
-            "net": "USB_DN",
-            "block": "usb_edge_connector",
-            "corridor_id": "usb_edge_access",
-            "region_face": "south",
-            "layer": "F.Cu",
-            "to_reservation": "usb_edge_access_trunk"
-          }
-        },
-        {
-          "source": "J_USB.5",
-          "native": "J_USB.A7",
-          "net": "USB_DN",
-          "block": "usb_edge_connector",
-          "face": "north",
-          "layer": "F.Cu",
-          "boundary_bbox": [
-            229.6,
-            26.1,
-            229.9,
-            27.25
-          ],
-          "reservation_id": "usb_edge_access_a7",
-          "kind": "fixed_connector_access",
-          "corridor_id": "usb_edge_access",
-          "p2_obligation": {
-            "status": "P2_REQUIRED",
-            "source_pad": "J_USB.5",
-            "native_pad": "J_USB.A7",
-            "net": "USB_DN",
-            "block": "usb_edge_connector",
-            "corridor_id": "usb_edge_access",
-            "region_face": "south",
-            "layer": "F.Cu",
-            "to_reservation": "usb_edge_access_trunk"
-          }
+          "reservation_id": "usb_trunk"
         },
         {
           "source": "U_USB_ESD.2",
           "native": "U_USB_ESD.2",
           "net": "USB_DN",
           "block": "usb_frontend",
-          "face": "south",
+          "face": "north",
           "layer": "F.Cu",
-          "region_face": "north",
           "boundary_bbox": [
-            229,
-            29,
-            231,
-            29.2
+            217.1,
+            36.15,
+            217.65,
+            36.77
           ],
-          "reservation_id": "usb_edge_access_trunk",
-          "kind": "integration_corridor_handoff",
-          "corridor_id": "usb_edge_access",
-          "p2_obligation": {
-            "status": "P2_REQUIRED",
-            "source_pad": "U_USB_ESD.2",
-            "native_pad": "U_USB_ESD.2",
-            "net": "USB_DN",
-            "block": "usb_frontend",
-            "corridor_id": "usb_edge_access",
-            "region_face": "north",
-            "layer": "F.Cu",
-            "to_reservation": "usb_edge_access_trunk"
-          }
+          "reservation_id": "usb_trunk"
         },
         {
           "source": "U_XU.60",
@@ -221,7 +111,7 @@
           "source": "J_USB.2",
           "native": "J_USB.A4",
           "net": "VBUS_USB",
-          "block": "usb_edge_connector",
+          "block": "usb_frontend",
           "face": "north",
           "layer": "F.Cu",
           "boundary_bbox": [
@@ -281,10 +171,64 @@
       ],
       "reservations": [
         {
+          "id": "usb_entry",
+          "kind": "signal",
+          "bbox": [
+            217.85,
+            28,
+            230.5,
+            29.3
+          ],
+          "layer": "F.Cu",
+          "axis": "horizontal",
+          "nets": [
+            "USB_DP",
+            "USB_DN"
+          ],
+          "demand_slots": 1,
+          "slot_pitch_mm": 0.97
+        },
+        {
+          "id": "usb_bend",
+          "kind": "signal",
+          "bbox": [
+            217.85,
+            29.3,
+            219.15,
+            35.2
+          ],
+          "layer": "F.Cu",
+          "axis": "vertical",
+          "nets": [
+            "USB_DP",
+            "USB_DN"
+          ],
+          "demand_slots": 1,
+          "slot_pitch_mm": 0.97
+        },
+        {
+          "id": "usb_trunk",
+          "kind": "signal",
+          "bbox": [
+            216.1,
+            36.77,
+            217.4,
+            91.3
+          ],
+          "layer": "F.Cu",
+          "axis": "vertical",
+          "nets": [
+            "USB_DP",
+            "USB_DN"
+          ],
+          "demand_slots": 1,
+          "slot_pitch_mm": 0.97
+        },
+        {
           "id": "vbus_entry",
           "kind": "power_or_mechanical",
           "bbox": [
-            231.1,
+            225,
             28,
             239,
             37
@@ -341,84 +285,6 @@
           ],
           "demand_slots": 1,
           "slot_pitch_mm": 0.45
-        },
-        {
-          "id": "usb_edge_access_trunk",
-          "kind": "integration_corridor",
-          "corridor_id": "usb_edge_access",
-          "owner": "board_integration",
-          "region_id": "board_integration_usb_edge",
-          "layer": "F.Cu",
-          "bbox": [
-            229,
-            28,
-            231,
-            29
-          ],
-          "nets": [
-            "USB_DP",
-            "USB_DN"
-          ]
-        },
-        {
-          "id": "usb_edge_access_b6",
-          "kind": "fixed_connector_access",
-          "corridor_id": "usb_edge_access",
-          "layer": "F.Cu",
-          "bbox": [
-            229.1,
-            27.25,
-            229.4,
-            28
-          ],
-          "nets": [
-            "USB_DP"
-          ]
-        },
-        {
-          "id": "usb_edge_access_a6",
-          "kind": "fixed_connector_access",
-          "corridor_id": "usb_edge_access",
-          "layer": "F.Cu",
-          "bbox": [
-            230.1,
-            27.25,
-            230.4,
-            28
-          ],
-          "nets": [
-            "USB_DP"
-          ]
-        },
-        {
-          "id": "usb_edge_access_b7",
-          "kind": "fixed_connector_access",
-          "corridor_id": "usb_edge_access",
-          "layer": "F.Cu",
-          "bbox": [
-            230.6,
-            27.25,
-            230.9,
-            28
-          ],
-          "nets": [
-            "USB_DN"
-          ]
-        },
-        {
-          "id": "usb_edge_access_a7",
-          "kind": "fixed_connector_access",
-          "corridor_id": "usb_edge_access",
-          "layer": "F.Cu",
-          "bbox": [
-            229.6,
-            27.25,
-            229.9,
-            28
-          ],
-          "nets": [
-            "USB_DN"
-          ]
         }
       ],
       "local_endpoint_completion": "P2_P3_REQUIRED"
@@ -1612,12 +1478,25 @@
           "face": "west",
           "layer": "F.Cu",
           "boundary_bbox": [
-            136.605,
-            93.78,
-            140,
-            94.42
+            144.9,
+            94.0,
+            145,
+            94.19999999999999
           ],
-          "reservation_id": "adc_common"
+          "reservation_id": "adc_common",
+          "kind": "virtual_block_face",
+          "region_id": "adc_reference",
+          "region_face": "east",
+          "p2_obligation": {
+            "status": "P2_REQUIRED",
+            "source_pad": "U_ADC_A.22",
+            "native_pad": "U_ADC_A.22",
+            "net": "ADC_BCLK",
+            "block": "adc_reference",
+            "region_face": "east",
+            "layer": "F.Cu",
+            "to_reservation": "adc_common"
+          }
         },
         {
           "source": "U_ADC_A.23",
@@ -1627,12 +1506,25 @@
           "face": "west",
           "layer": "F.Cu",
           "boundary_bbox": [
-            136.105,
-            93.78,
-            140,
-            94.42
+            144.9,
+            94.0,
+            145,
+            94.19999999999999
           ],
-          "reservation_id": "adc_common"
+          "reservation_id": "adc_common",
+          "kind": "virtual_block_face",
+          "region_id": "adc_reference",
+          "region_face": "east",
+          "p2_obligation": {
+            "status": "P2_REQUIRED",
+            "source_pad": "U_ADC_A.23",
+            "native_pad": "U_ADC_A.23",
+            "net": "ADC_FSYNC",
+            "block": "adc_reference",
+            "region_face": "east",
+            "layer": "F.Cu",
+            "to_reservation": "adc_common"
+          }
         },
         {
           "source": "U_ADC_A.21",
@@ -1642,12 +1534,25 @@
           "face": "west",
           "layer": "F.Cu",
           "boundary_bbox": [
-            137.105,
-            93.78,
-            140,
-            94.42
+            144.9,
+            94.0,
+            145,
+            94.19999999999999
           ],
-          "reservation_id": "adc_common"
+          "reservation_id": "adc_common",
+          "kind": "virtual_block_face",
+          "region_id": "adc_reference",
+          "region_face": "east",
+          "p2_obligation": {
+            "status": "P2_REQUIRED",
+            "source_pad": "U_ADC_A.21",
+            "native_pad": "U_ADC_A.21",
+            "net": "ADC_DOUT1",
+            "block": "adc_reference",
+            "region_face": "east",
+            "layer": "F.Cu",
+            "to_reservation": "adc_common"
+          }
         },
         {
           "source": "U_TDM_XLATE.6",
@@ -1657,12 +1562,25 @@
           "face": "west",
           "layer": "F.Cu",
           "boundary_bbox": [
-            174.98,
-            97.755,
-            182.475,
-            98.195
+            189.9,
+            97.875,
+            190,
+            98.07499999999999
           ],
-          "reservation_id": "tdm_west"
+          "reservation_id": "tdm_west",
+          "kind": "virtual_block_face",
+          "region_id": "audio_clock_tdm",
+          "region_face": "east",
+          "p2_obligation": {
+            "status": "P2_REQUIRED",
+            "source_pad": "U_TDM_XLATE.6",
+            "native_pad": "U_TDM_XLATE.6",
+            "net": "AUDIO_MCLK_1V8",
+            "block": "audio_clock_tdm",
+            "region_face": "east",
+            "layer": "F.Cu",
+            "to_reservation": "tdm_west"
+          }
         },
         {
           "source": "U_TDM_XLATE.4",
@@ -1672,12 +1590,25 @@
           "face": "west",
           "layer": "F.Cu",
           "boundary_bbox": [
-            174.98,
-            96.455,
-            182.475,
-            96.895
+            189.9,
+            96.575,
+            190,
+            96.77499999999999
           ],
-          "reservation_id": "tdm_west"
+          "reservation_id": "tdm_west",
+          "kind": "virtual_block_face",
+          "region_id": "audio_clock_tdm",
+          "region_face": "east",
+          "p2_obligation": {
+            "status": "P2_REQUIRED",
+            "source_pad": "U_TDM_XLATE.4",
+            "native_pad": "U_TDM_XLATE.4",
+            "net": "TDM_BCLK_1V8",
+            "block": "audio_clock_tdm",
+            "region_face": "east",
+            "layer": "F.Cu",
+            "to_reservation": "tdm_west"
+          }
         },
         {
           "source": "U_TDM_XLATE.7",
@@ -1687,12 +1618,25 @@
           "face": "west",
           "layer": "F.Cu",
           "boundary_bbox": [
-            174.98,
-            98.405,
-            182.475,
-            98.845
+            189.9,
+            98.525,
+            190,
+            98.725
           ],
-          "reservation_id": "tdm_west"
+          "reservation_id": "tdm_west",
+          "kind": "virtual_block_face",
+          "region_id": "audio_clock_tdm",
+          "region_face": "east",
+          "p2_obligation": {
+            "status": "P2_REQUIRED",
+            "source_pad": "U_TDM_XLATE.7",
+            "native_pad": "U_TDM_XLATE.7",
+            "net": "TDM_DATA_1V8",
+            "block": "audio_clock_tdm",
+            "region_face": "east",
+            "layer": "F.Cu",
+            "to_reservation": "tdm_west"
+          }
         },
         {
           "source": "U_TDM_XLATE.5",
@@ -1702,12 +1646,25 @@
           "face": "west",
           "layer": "F.Cu",
           "boundary_bbox": [
-            174.98,
-            97.105,
-            182.475,
-            97.545
+            189.9,
+            97.22500000000001,
+            190,
+            97.425
           ],
-          "reservation_id": "tdm_west"
+          "reservation_id": "tdm_west",
+          "kind": "virtual_block_face",
+          "region_id": "audio_clock_tdm",
+          "region_face": "east",
+          "p2_obligation": {
+            "status": "P2_REQUIRED",
+            "source_pad": "U_TDM_XLATE.5",
+            "native_pad": "U_TDM_XLATE.5",
+            "net": "TDM_FSYNC_1V8",
+            "block": "audio_clock_tdm",
+            "region_face": "east",
+            "layer": "F.Cu",
+            "to_reservation": "tdm_west"
+          }
         },
         {
           "source": "U_ADC_A.17",
@@ -1717,12 +1674,25 @@
           "face": "west",
           "layer": "F.Cu",
           "boundary_bbox": [
-            138.58,
-            90.98,
+            144.9,
+            93.0875,
             145,
-            95.395
+            93.2875
           ],
-          "reservation_id": "control_cell"
+          "reservation_id": "control_cell",
+          "kind": "virtual_block_face",
+          "region_id": "adc_reference",
+          "region_face": "east",
+          "p2_obligation": {
+            "status": "P2_REQUIRED",
+            "source_pad": "U_ADC_A.17",
+            "native_pad": "U_ADC_A.17",
+            "net": "ADC_I2C_SCL",
+            "block": "adc_reference",
+            "region_face": "east",
+            "layer": "F.Cu",
+            "to_reservation": "control_cell"
+          }
         },
         {
           "source": "U_ADC_A.18",
@@ -1732,12 +1702,25 @@
           "face": "west",
           "layer": "F.Cu",
           "boundary_bbox": [
-            138.58,
-            90.98,
+            144.9,
+            92.8375,
             145,
-            94.895
+            93.0375
           ],
-          "reservation_id": "control_cell"
+          "reservation_id": "control_cell",
+          "kind": "virtual_block_face",
+          "region_id": "adc_reference",
+          "region_face": "east",
+          "p2_obligation": {
+            "status": "P2_REQUIRED",
+            "source_pad": "U_ADC_A.18",
+            "native_pad": "U_ADC_A.18",
+            "net": "ADC_I2C_SDA",
+            "block": "adc_reference",
+            "region_face": "east",
+            "layer": "F.Cu",
+            "to_reservation": "control_cell"
+          }
         },
         {
           "source": "R_ADC_READY_PD.1",
@@ -1747,12 +1730,25 @@
           "face": "west",
           "layer": "F.Cu",
           "boundary_bbox": [
-            93.16,
-            90.98,
+            144.9,
+            97.29,
             145,
-            103.8
+            97.49
           ],
-          "reservation_id": "control_cell"
+          "reservation_id": "control_cell",
+          "kind": "virtual_block_face",
+          "region_id": "adc_reference",
+          "region_face": "east",
+          "p2_obligation": {
+            "status": "P2_REQUIRED",
+            "source_pad": "R_ADC_READY_PD.1",
+            "native_pad": "R_ADC_READY_PD.1",
+            "net": "ADC_READY",
+            "block": "adc_reference",
+            "region_face": "east",
+            "layer": "F.Cu",
+            "to_reservation": "control_cell"
+          }
         },
         {
           "source": "U_ISO1.2",
@@ -1762,12 +1758,25 @@
           "face": "west",
           "layer": "F.Cu",
           "boundary_bbox": [
-            23.155,
-            67.055,
-            145,
-            85.02
+            46.9,
+            75.9375,
+            47,
+            76.13749999999999
           ],
-          "reservation_id": "control_cell"
+          "reservation_id": "control_cell",
+          "kind": "virtual_block_face",
+          "region_id": "analog_ch1",
+          "region_face": "east",
+          "p2_obligation": {
+            "status": "P2_REQUIRED",
+            "source_pad": "U_ISO1.2",
+            "native_pad": "U_ISO1.2",
+            "net": "AUDIO_EN",
+            "block": "analog_ch1",
+            "region_face": "east",
+            "layer": "F.Cu",
+            "to_reservation": "control_cell"
+          }
         },
         {
           "source": "U_XU.93",
@@ -1777,13 +1786,27 @@
           "face": "east",
           "layer": "F.Cu",
           "boundary_bbox": [
-            183,
-            90.98,
-            203.645,
-            93.095
+            190,
+            91.9375,
+            190.1,
+            92.13749999999999
           ],
           "reservation_id": "control_cell",
-          "physical_cell_id": "xmos_core"
+          "physical_cell_id": "xmos_core",
+          "kind": "virtual_block_face",
+          "region_id": "xmos_core",
+          "region_face": "west",
+          "p2_obligation": {
+            "status": "P2_REQUIRED",
+            "source_pad": "U_XU.93",
+            "native_pad": "U_XU.93",
+            "net": "XU_I2C_SCL_1V8",
+            "block": "xmos_core",
+            "region_face": "west",
+            "layer": "F.Cu",
+            "to_reservation": "control_cell",
+            "physical_cell_id": "xmos_core"
+          }
         },
         {
           "source": "U_XU.94",
@@ -1793,13 +1816,27 @@
           "face": "east",
           "layer": "F.Cu",
           "boundary_bbox": [
-            183,
-            90.98,
-            203.245,
-            93.095
+            190,
+            91.9375,
+            190.1,
+            92.13749999999999
           ],
           "reservation_id": "control_cell",
-          "physical_cell_id": "xmos_core"
+          "physical_cell_id": "xmos_core",
+          "kind": "virtual_block_face",
+          "region_id": "xmos_core",
+          "region_face": "west",
+          "p2_obligation": {
+            "status": "P2_REQUIRED",
+            "source_pad": "U_XU.94",
+            "native_pad": "U_XU.94",
+            "net": "XU_I2C_SDA_1V8",
+            "block": "xmos_core",
+            "region_face": "west",
+            "layer": "F.Cu",
+            "to_reservation": "control_cell",
+            "physical_cell_id": "xmos_core"
+          }
         },
         {
           "source": "Q_ADC_DIG_RST.1",
@@ -1809,12 +1846,25 @@
           "face": "west",
           "layer": "F.Cu",
           "boundary_bbox": [
-            109.03,
-            90.98,
+            144.9,
+            96.625,
             145,
-            102.47
+            96.82499999999999
           ],
-          "reservation_id": "control_cell"
+          "reservation_id": "control_cell",
+          "kind": "virtual_block_face",
+          "region_id": "adc_reference",
+          "region_face": "east",
+          "p2_obligation": {
+            "status": "P2_REQUIRED",
+            "source_pad": "Q_ADC_DIG_RST.1",
+            "native_pad": "Q_ADC_DIG_RST.1",
+            "net": "ADC_DIGITAL_BAD",
+            "block": "adc_reference",
+            "region_face": "east",
+            "layer": "F.Cu",
+            "to_reservation": "control_cell"
+          }
         }
       ],
       "reservations": [
@@ -2542,10 +2592,30 @@
       "local_endpoint_completion": "P2_P3_REQUIRED"
     }
   ],
-  "proposal_note": "Isolated fixed J_USB.A6 access probe only; intentionally not source-admitted. No connector relocation, P-OUT/FULL waiver, capacity or P1 claim.",
+  "proposal_note": "Research-only rebased 59-net coarse geometry specimen from 2026-09-24 unified candidate onto exact private TI unrouted board. Retains unverified legacy rectangles for fail-closed measurement; no P1 or capacity acceptance.",
   "board_sha256": "8e620def0b403fda7635135672afec923c2c23bc9844b3f96102e96d4d5eca10",
-  "source_sha256": "2fcb937dc86127709bd076533ae5fd547f8ca024c7753a201ce6ffacc637017b",
-  "interfaces_sha256": "02be5ad6ea879ac04d5dfd9e2e09d5226f85c85fa83d72628aa40cf93de6b4d8",
+  "source_sha256": "191e5580a6ddf56bc9670aff3593c9e9a02d91e75c0c79998b500955050e82a3",
+  "interfaces_sha256": "75c3a517cea50dd6b5745fae96b051d334debd48aac143becaca3d5fe3fc35dc",
   "aliases_sha256": "a6baba8bd4e389c146250a2a2ef5f7e9b09f63526e71dbdd05be8bca9b7b2c2e",
-  "floorplan_sha256": "8a17bcb36b839224804b08ef735fda95273316d62773f96544701b8b244f1b26"
+  "floorplan_sha256": "0032b1202f5742b6575198d27ea50629826d49cf81cf12a31fead8a2929d9868",
+  "_screen": {
+    "kind": "isolated_adc_timing_all_p2_virtual",
+    "converted": [
+      "U_ADC_A.22",
+      "U_ADC_A.23",
+      "U_ADC_A.21",
+      "U_TDM_XLATE.6",
+      "U_TDM_XLATE.4",
+      "U_TDM_XLATE.7",
+      "U_TDM_XLATE.5",
+      "U_ADC_A.17",
+      "U_ADC_A.18",
+      "R_ADC_READY_PD.1",
+      "U_ISO1.2",
+      "U_XU.93",
+      "U_XU.94",
+      "Q_ADC_DIG_RST.1"
+    ],
+    "fixed_retained": []
+  }
 }
