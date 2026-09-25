@@ -86,6 +86,23 @@ def plan():
     }
 
 
+def scoped_plan():
+    source = plan()
+    source["external_prerequisites"][0]["p3_scope"] = {
+        "affected_work_items": ["p3_connector"],
+        "independent_work_items": [{"id": "p3_processing",
+                                    "rationale": "Processing local routes stay clear of connector assembly geometry."}],
+    }
+    connector_route = item("p3_connector", "P3_CRITICAL_LOCAL_ROUTES", ["connector"],
+                           ["p2_connector"], ["p2_connector"], ["connector_route_receipt"],
+                           external=("connector_full",))
+    source["work_items"].insert(-2, connector_route)
+    next(row for row in source["work_items"] if row["id"] == "p3_processing")["external_prerequisites"] = []
+    joint = next(row for row in source["work_items"] if row["id"] == "p4_joint")
+    joint["depends_on"] = sorted(joint["depends_on"] + ["p3_connector"])
+    return source
+
+
 def attempt(source, wid, status="PASS", evidence=(), index=0, root=None):
     root = root or Path(tempfile.mkdtemp(prefix="modular-work-"))
     attempt_path = root / "runs" / f"{wid}-{index}" / "attempt.json"
@@ -295,6 +312,105 @@ def t_connector_extension_requires_every_p3():
     source = plan()
     next(row for row in source["work_items"] if row["id"] == "p3_processing")["external_prerequisites"] = []
     rejects(lambda: evaluate(source, circuit()), "every P3 task requires exactly connector_full")
+
+
+@test("scoped independent P3 work can proceed while affected P3 and P5 await connector FULL")
+def t_scoped_connector_prerequisite():
+    source = scoped_plan()
+    root, p1 = attempt(source, "p1", evidence=["floorplan_receipt"])
+    _, p2_connector = attempt(source, "p2_connector", evidence=["connector_placement"], root=root)
+    _, p2_processing = attempt(source, "p2_processing", evidence=["processing_placement"], root=root)
+    observations = p1 + p2_connector + p2_processing
+    report = evaluate(source, circuit(), observations, evidence_root=root)
+    eq(report["work"]["p3_processing"]["state"], "READY", "independent P3 readiness")
+    eq(report["work"]["p3_processing"]["blocked_by_external"], [], "independent scope")
+    eq(report["work"]["p3_connector"]["state"], "BLOCKED", "affected P3 waits for FULL")
+    eq(report["work"]["p5"]["blocked_by_external"], ["connector_full"], "P5 remains gated")
+    eq(report["work"]["p3_processing"]["engineering_acceptance"], "NOT_EVALUATED", "claim limit")
+    _, p3_processing = attempt(source, "p3_processing", evidence=["critical_route_receipt"], root=root)
+    progressed = evaluate(source, circuit(), observations + p3_processing, evidence_root=root)
+    eq(progressed["work"]["p3_processing"]["state"], "WORK_RECORDED", "independent work record")
+    eq(progressed["work"]["p3_processing"]["engineering_acceptance"], "NOT_EVALUATED", "no acceptance shortcut")
+
+
+@test("scoped affected P3 and P5 still require exact current connector FULL")
+def t_scoped_connector_full_binding():
+    source = scoped_plan()
+    root, p1 = attempt(source, "p1", evidence=["floorplan_receipt"])
+    _, p2_connector = attempt(source, "p2_connector", evidence=["connector_placement"], root=root)
+    _, p2_processing = attempt(source, "p2_processing", evidence=["processing_placement"], root=root)
+    _, p3_connector = attempt(source, "p3_connector", evidence=["connector_route_receipt"], root=root)
+    _, p3_processing = attempt(source, "p3_processing", evidence=["critical_route_receipt"], root=root)
+    _, p4 = attempt(source, "p4_joint", evidence=["coupled_geometry_receipt"], root=root)
+    _, p5 = attempt(source, "p5", evidence=["independent_placement_review"], root=root)
+    observations = p1 + p2_connector + p2_processing + p3_connector + p3_processing + p4 + p5
+    connector_full_fixture(root, source)
+    old = sys.modules.get("connector_assembly_phase_gate")
+    sys.modules["connector_assembly_phase_gate"] = types.SimpleNamespace(
+        regrade_phase_gate=lambda path, project, expected_phase: (expected_phase == "full", []))
+    try:
+        report = evaluate(source, circuit(), observations, evidence_root=root)
+        eq(report["work"]["p3_connector"]["state"], "WORK_RECORDED", "affected P3 with FULL")
+        eq(report["work"]["p5"]["state"], "WORK_RECORDED", "integrated review with FULL")
+        (root / "candidate.kicad_pcb").write_text("changed native candidate\n")
+        stale = evaluate(source, circuit(), observations, evidence_root=root)
+        eq(stale["work"]["p3_connector"]["state"], "BLOCKED", "stale FULL blocks affected P3")
+        eq(stale["work"]["p5"]["state"], "BLOCKED", "stale FULL blocks P5")
+        eq(stale["work"]["p3_processing"]["state"], "WORK_RECORDED", "independent P3 remains recorded")
+    finally:
+        if old is None:
+            del sys.modules["connector_assembly_phase_gate"]
+        else:
+            sys.modules["connector_assembly_phase_gate"] = old
+
+
+@test("P3 scope must completely and consistently classify every local route", kind="known_bad")
+def t_scoped_connector_rejects_omissions_and_conflicts():
+    source = scoped_plan()
+    scope = source["external_prerequisites"][0]["p3_scope"]
+    scope["independent_work_items"] = []
+    rejects(lambda: evaluate(source, circuit()), "partition every P3 task")
+
+    source = scoped_plan()
+    scope = source["external_prerequisites"][0]["p3_scope"]
+    scope["independent_work_items"][0]["id"] = "p3_connector"
+    rejects(lambda: evaluate(source, circuit()), "partition every P3 task")
+
+    source = scoped_plan()
+    scope = source["external_prerequisites"][0]["p3_scope"]
+    scope["affected_work_items"] = ["p3_connector", "p3_processing"]
+    rejects(lambda: evaluate(source, circuit()), "partition every P3 task")
+
+    source = scoped_plan()
+    scope = source["external_prerequisites"][0]["p3_scope"]
+    scope["independent_work_items"][0]["rationale"] = " "
+    rejects(lambda: evaluate(source, circuit()), "expected non-empty trimmed text")
+
+    source = scoped_plan()
+    next(row for row in source["work_items"] if row["id"] == "p3_connector")["external_prerequisites"] = []
+    rejects(lambda: evaluate(source, circuit()), "differs from its P3 scope")
+
+    source = scoped_plan()
+    next(row for row in source["work_items"] if row["id"] == "p3_processing")["external_prerequisites"] = ["connector_full"]
+    rejects(lambda: evaluate(source, circuit()), "differs from its P3 scope")
+
+
+@test("all-independent P3 scope is explicit and a scope edit invalidates old attempts")
+def t_scoped_connector_empty_affected_and_subject_identity():
+    source = plan()
+    source["external_prerequisites"][0]["p3_scope"] = {
+        "affected_work_items": [],
+        "independent_work_items": [{"id": "p3_processing", "rationale": "Local processing route is clear of connector geometry."}],
+    }
+    next(row for row in source["work_items"] if row["id"] == "p3_processing")["external_prerequisites"] = []
+    root, p1 = attempt(source, "p1", evidence=["floorplan_receipt"])
+    _, p2 = attempt(source, "p2_processing", evidence=["processing_placement"], root=root)
+    report = evaluate(source, circuit(), p1 + p2, evidence_root=root)
+    eq(report["work"]["p3_processing"]["state"], "READY", "all-independent scope")
+    eq(report["work"]["p5"]["blocked_by_external"], ["connector_full"], "P5 remains gated")
+    changed = copy.deepcopy(source)
+    changed["external_prerequisites"][0]["p3_scope"]["independent_work_items"][0]["rationale"] += " Reviewed again."
+    rejects(lambda: evaluate(changed, circuit(), p1 + p2, evidence_root=root), "stale subject")
 
 
 @test("stale TaskAttempt subject and non-backward repair are refused", kind="known_bad")

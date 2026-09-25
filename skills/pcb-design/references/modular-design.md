@@ -7,6 +7,14 @@ before placement begins. This is a procedure within `PCB-ARCHITECTURE`, `KICAD-S
 `KICAD-PLACEMENT`, and `KICAD-ROUTING`; it adds no lifecycle stage and grants no
 gate reuse.
 
+## Contents
+
+1. Establish block ownership and interfaces
+2. Bind IC research before placement work
+3. Schedule child work
+4. Planning readiness and the native candidate loop
+5. Backtrack and evidence boundaries
+
 ## Establish block ownership and interfaces
 
 Derive blocks from the requirements, selected-part layout guidance, mechanical
@@ -91,7 +99,16 @@ Viable raw capacity remains `INCOMPLETE` until later evidence closes these
 obligations; the coarse checker grants neither route nor engineering acceptance.
 
 When a modular plan declares `connector_full`, every P3 item and the P5 item
-must name that external prerequisite. Before those items are ready, the
+must name that external prerequisite unless it explicitly supplies `p3_scope`.
+That optional closed mapping contains `affected_work_items` (P3 ids) and
+`independent_work_items` (records with `id` and nonblank `rationale`). Together
+they must partition every P3 item exactly once. Affected items must declare
+`connector_full`; independent items must omit it. Review the independence
+rationale against actual connector, mate, tool and service envelopes; a
+different block name alone is not independence evidence. The declaration is
+planning authority, not an independently verified physical claim. Legacy plans
+without scope retain the blanket dependency. P5 always requires FULL.
+Before dependent items are ready, the
 checker reopens and regrades the FULL phase receipt, requires base PASS with
 zero unknowns, and verifies a binding receipt against the current task subject
 and exact receipt bytes. Its physical subject must be the planned native board
@@ -118,6 +135,59 @@ geometry, routing, DRC, and review remain decisions of their existing gates.
 A failed engineering prerequisite keeps dependent work undispatched, even if
 delivery of its failure report passed. Do not execute a dependent task merely
 to record that it is blocked, or infer admission from `WORK_RECORDED`.
+
+## Planning readiness and the native candidate loop
+
+Keep permission to investigate separate from engineering acceptance. P1
+establishes exact source ownership, fixed mechanical constraints, applicable
+rules, plausible reservations and explicit P2/P3 questions. It does not prove
+pad access, simultaneous routing capacity or a filled return. Preserve a
+coarse checker's FAIL/INCOMPLETE result; never relabel it PASS to dispatch work.
+Classify its cause as a demonstrated planning conflict, a representation
+limitation, or an unresolved realization obligation. Use one census of the
+affected interfaces when a checker stops at its first refusal.
+
+A bounded, isolated placement/routing experiment may investigate those
+questions without promoting the candidate or entering canonical routing.
+Use the existing task runtime and route-candidate transaction, exact prepared
+rules and native quick/full checks. Name the source snapshot, required nets,
+fixed refs, mutable group, decision question and deadline before launching.
+Missing inputs or an unbounded mechanical uncertainty do not authorize an
+experiment that depends on them. The ordinary P2/P3 dependency graph and
+engineering promotion gates retain their authority.
+
+For each coupled group: generate placement and critical copper from source,
+grade connectivity and DRC by class, inspect the required filled reference,
+then integrate the reviewed source recipe into one current candidate. One
+owner writes that candidate. Keep failed experiments and prior accepted
+artifacts separate. A quick result only guides the next experiment; full
+applicable checks and independent review precede promotion. Logical blocks
+need not be rectangular islands, and tightly coupled parts may share a
+placement/proof group while retaining their exact modular owners.
+
+For an investigation-only experiment, declare its bounded decision in the
+existing findings ledger, then use the existing runner (example deadline):
+
+```bash
+python3 skills/kicad-pcb/scripts/pcb_flow.py run PROJECT --stage placement \
+  --investigation FINDING_ID --budget-s 900 --timeout-s 900 -- \
+  python3 SOURCE_RECIPE --output FRESH_CANDIDATE_DIRECTORY
+```
+
+The runner applies source admission before reserving an investigation attempt.
+The recipe must refuse an existing output directory and bind the prepared
+board and rule bytes. Assess the reserved launch in the same ledger before
+another attempt; failed dispatch still consumes a reservation if one was made.
+This command is bounded execution, not a TaskAttempt completion receipt or an
+output sandbox. It cannot satisfy unmet modular dependencies. Use normal
+task delivery for admitted P2/P3 work and full native grading for acceptance.
+
+Use the existing findings investigation and D-BACK records across all attempts.
+Count a resolved engineering decision or native proof as progress; a new
+checker, report, source hash or worker does not reset the same question's
+attempt budget. Report required connections, DRC classes, filled-return proof
+and unresolved external dependencies on the current candidate. Add a checker
+only when a named acceptance decision lacks an adequate existing check.
 
 ## Backtrack and evidence boundaries
 

@@ -105,7 +105,7 @@ actual applicability.
 | 4 | `KICAD-RF-CONTEXT` | kicad-pcb | RF | `parts_locked` | `rf_context` |
 | 5 | `KICAD-RF-SOURCE` | kicad-pcb | RF | `rf_context` | `rf_source_clearance` |
 | 6 | `KICAD-SCHEMATIC` | kicad-pcb | always | `parts_locked`, `rf_source_clearance` | `schematic_reviewed` |
-| 7 | `KICAD-PLACEMENT` | kicad-pcb | always | `schematic_reviewed`, selected-IC research packet | `placement_reviewed` |
+| 7 | `KICAD-PLACEMENT` | kicad-pcb | always | `schematic_reviewed` | `placement_reviewed` |
 | 8 | `KICAD-MATING-IMPORT` | kicad-pcb | foreign mating | `placement_reviewed` | `mating_clearance` |
 | 9 | `KICAD-ROUTING` | kicad-pcb | always | `mating_clearance`, `placement_reviewed` | `routed_board` |
 | 10 | `KICAD-RF-REALIZED` | kicad-pcb | RF | `routed_board` | `rf_realized_clearance` |
@@ -244,6 +244,14 @@ probe, P4 joint proof, and P5 integrated review are dependency-linked child
 tasks of `KICAD-PLACEMENT`. P3 may invoke routing tools on isolated diagnostic
 geometry; it does not enter top-level `KICAD-ROUTING` or satisfy
 `placement_reviewed`.
+
+The modular procedure distinguishes provisional planning from native proof.
+Bounded isolated experiments can resolve P1 representation limits or owed
+P2/P3 realization without promoting their outputs. The canonical conductor
+still requires its engineering gates. Scoped connector prerequisites permit
+independent local work; they do not waive affected work or the integrated P5
+FULL requirement. Use the existing candidate transaction and findings ledger,
+not a second lifecycle or a replacement progress ledger.
 
 `modular_design.py` checks this child graph and reopens identity-bound
 `TaskAttempt` completion files. It leaves every engineering acceptance field

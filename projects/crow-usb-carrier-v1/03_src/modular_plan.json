@@ -2928,9 +2928,7 @@
       "max_attempts": 2,
       "phase": "P3_CRITICAL_LOCAL_ROUTES",
       "stage_id": "KICAD-PLACEMENT",
-      "external_prerequisites": [
-        "connector_full"
-      ]
+      "external_prerequisites": []
     },
     {
       "backtrack_to": [
@@ -2953,6 +2951,34 @@
       "max_attempts": 2,
       "phase": "P3_CRITICAL_LOCAL_ROUTES",
       "stage_id": "KICAD-PLACEMENT",
+      "external_prerequisites": [
+        "connector_full"
+      ]
+    },
+    {
+      "id": "p3_debug_service",
+      "phase": "P3_CRITICAL_LOCAL_ROUTES",
+      "stage_id": "KICAD-PLACEMENT",
+      "blocks": [
+        "clock_flash_debug",
+        "debug_connector",
+        "digital_power",
+        "xmos_core"
+      ],
+      "depends_on": [
+        "p2_clock_flash_audio",
+        "p2_digital_power_core",
+        "p2_usb_service"
+      ],
+      "max_attempts": 2,
+      "backtrack_to": [
+        "p2_clock_flash_audio",
+        "p2_digital_power_core",
+        "p2_usb_service"
+      ],
+      "evidence": [
+        "06_build/evidence/modular_work/p3_debug_service.json"
+      ],
       "external_prerequisites": [
         "connector_full"
       ]
@@ -3004,6 +3030,7 @@
         "xmos_core"
       ],
       "depends_on": [
+        "p3_debug_service",
         "p3_power_loops",
         "p3_timing_boot",
         "p3_usb_pair"
@@ -3108,7 +3135,21 @@
       "kind": "connector_full",
       "phase_receipt": "06_build/verification/connector_assembly_full_gate.json",
       "binding_receipt": "06_build/verification/connector_full_p3_binding.json",
-      "board_path": "04_kicad/crow_carrier.kicad_pcb"
+      "board_path": "04_kicad/crow_carrier.kicad_pcb",
+      "p3_scope": {
+        "affected_work_items": [
+          "p3_analog_handoffs",
+          "p3_debug_service",
+          "p3_power_loops",
+          "p3_usb_pair"
+        ],
+        "independent_work_items": [
+          {
+            "id": "p3_timing_boot",
+            "rationale": "Local IC timing/boot proof covers QSPI_CLK, QSPI_CS_N, QSPI_D0..D3, XTAL_IN/OUT, AUDIO_MCLK_1V8, ADC_BCLK/FSYNC/DOUT1 and TDM_BCLK_1V8/DATA_1V8/FSYNC_1V8 under fixed native connector geometry and applicable rules. It excludes J_JTAG, all JTAG nets, XU_RESET_N, J_USB, USB pair/CC/VBUS and connector qualification; p3_debug_service owns the debug/reset service proof. Any candidate entering unresolved mate/tool/service space must backtrack its independence scope. Partial XTAL evidence cannot complete the timing/boot task, and P5 still requires connector FULL."
+          }
+        ]
+      }
     }
   ]
 }

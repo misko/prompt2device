@@ -287,10 +287,10 @@ def _parse_plan(plan: Any) -> dict[str, Any]:
     if len({row["net"] for row in interfaces}) != len(interfaces):
         _fail("interfaces: each crossing net must have one combined disposition")
 
-    prerequisites: dict[str, dict[str, str]] = {}
+    prerequisites: dict[str, dict[str, Any]] = {}
     for index, raw in enumerate(_list(plan.get("external_prerequisites", []), "plan.external_prerequisites")):
         row = _exact(raw, {"id", "kind", "phase_receipt", "binding_receipt", "board_path"},
-                     f"external_prerequisites[{index}]")
+                     f"external_prerequisites[{index}]", optional={"p3_scope"})
         prerequisite_id = _token(row["id"], f"external_prerequisites[{index}].id")
         if prerequisite_id != "connector_full":
             _fail("external_prerequisites: connector_full is the only supported id")
@@ -308,6 +308,29 @@ def _parse_plan(plan: Any) -> dict[str, Any]:
                                           "phase_receipt": phase_receipt,
                                           "binding_receipt": binding_receipt,
                                           "board_path": board_path}
+        if "p3_scope" in row:
+            scope = _exact(row["p3_scope"], {"affected_work_items", "independent_work_items"},
+                           f"external_prerequisites[{index}].p3_scope")
+            affected = _strings(scope["affected_work_items"],
+                                f"external_prerequisites[{index}].p3_scope.affected_work_items",
+                                pattern=TOKEN)
+            independent: dict[str, str] = {}
+            for scope_index, raw_independent in enumerate(_list(
+                    scope["independent_work_items"],
+                    f"external_prerequisites[{index}].p3_scope.independent_work_items")):
+                where = f"external_prerequisites[{index}].p3_scope.independent_work_items[{scope_index}]"
+                entry = _exact(raw_independent, {"id", "rationale"}, where)
+                item_id = _token(entry["id"], f"{where}.id")
+                rationale = entry["rationale"]
+                if not isinstance(rationale, str) or not rationale.strip() or rationale != rationale.strip():
+                    _fail(f"{where}.rationale: expected non-empty trimmed text")
+                if item_id in independent:
+                    _fail(f"{where}.id: duplicate independent P3 work item {item_id}")
+                independent[item_id] = rationale
+            if list(independent) != sorted(independent):
+                _fail(f"external_prerequisites[{index}].p3_scope.independent_work_items: ids must be sorted")
+            prerequisites[prerequisite_id]["p3_scope"] = {
+                "affected_work_items": affected, "independent_work_items": independent}
 
     items: dict[str, dict[str, Any]] = {}
     for index, raw in enumerate(_list(plan["work_items"], "plan.work_items", nonempty=True)):
@@ -351,10 +374,23 @@ def _parse_plan(plan: Any) -> dict[str, Any]:
         for prerequisite_id in item["external_prerequisites"]:
             if prerequisite_id not in prerequisites:
                 _fail(f"work item {item['id']}: unknown external prerequisite {prerequisite_id}")
-        if ("connector_full" in prerequisites and
-                item["phase"] == "P3_CRITICAL_LOCAL_ROUTES" and
-                item["external_prerequisites"] != ("connector_full",)):
-            _fail(f"work item {item['id']}: every P3 task requires exactly connector_full")
+    if "connector_full" in prerequisites:
+        p3_items = {item["id"]: item for item in items.values()
+                    if item["phase"] == "P3_CRITICAL_LOCAL_ROUTES"}
+        scope = prerequisites["connector_full"].get("p3_scope")
+        if scope is None:
+            for item in p3_items.values():
+                if item["external_prerequisites"] != ("connector_full",):
+                    _fail(f"work item {item['id']}: every P3 task requires exactly connector_full")
+        else:
+            affected = set(scope["affected_work_items"])
+            independent = set(scope["independent_work_items"])
+            if affected & independent or affected | independent != set(p3_items):
+                _fail("connector_full.p3_scope: affected and independent work items must partition every P3 task")
+            for wid, item in p3_items.items():
+                expected = ("connector_full",) if wid in affected else ()
+                if item["external_prerequisites"] != expected:
+                    _fail(f"work item {wid}: connector_full prerequisite differs from its P3 scope")
     _acyclic(items)
     all_blocks = set(blocks)
     p1 = [row for row in items.values() if row["phase"] == "P1_FLOORPLAN"]
@@ -453,7 +489,7 @@ def _binding(path: Path, relative: str) -> dict[str, Any]:
     return {"path": relative, "sha256": _sha256(path), "size": path.stat().st_size}
 
 
-def _validate_connector_full(prerequisite: Mapping[str, str], evidence_root: Path | None,
+def _validate_connector_full(prerequisite: Mapping[str, Any], evidence_root: Path | None,
                              task_subject: Mapping[str, Any]) -> list[str]:
     """Regrade FULL and bind it to an exact native board or coupon receipt.
 

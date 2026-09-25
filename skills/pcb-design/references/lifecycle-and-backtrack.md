@@ -167,6 +167,14 @@ and unfinished work belonging to a later stage. Keep the original gate result;
 the diagnostic census cannot advance the pipeline. Choose a coherent repair
 from the complete causes rather than commissioning one repair per reported row.
 
+For modular placement, track that decision against one current native
+candidate. Record required connections proved, DRC findings by class, required
+filled-reference proof and external dependencies. A decreasing aggregate count
+cannot offset a newly introduced critical violation. A checker extension or
+new worker may enable an experiment, but does not itself prove its physical
+result or reset the cumulative attempt limits. Reuse isolated quick/full
+candidate grading before authoring another geometric approximation.
+
 Before changing a checker because a synthetic fixture behaves unexpectedly,
 verify what its real consumer constructed. For native CAD, inspect the exported
 geometry and transforms, not only the fixture's intended dimensions. Compare

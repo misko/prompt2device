@@ -253,8 +253,8 @@ project's normative two-commit seal. Never mutate a sealed directory. Before a
 material push, require `P-PUBLISH PASS` from `pcb_publication_gate.py` against
 the exact base/head pair.
 
-After three non-improving iterations, stop local repair. Record the repeated
-finding set, verify the causal artifact, and use `D-BACK` to reopen its owner.
+After three non-improving iterations on one engineering decision, use `D-BACK`.
+New schemas, reports or agents do not reset it; use the native loop in `references/modular-design.md`.
 For recurring engineering investigations, apply the decision-progress protocol
 in `references/lifecycle-and-backtrack.md`; a new model or handoff is not a reset.
 A fresh agent resumes from committed source, the live beacon, journal, and
