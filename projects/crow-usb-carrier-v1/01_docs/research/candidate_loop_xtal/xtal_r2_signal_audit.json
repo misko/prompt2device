@@ -1,0 +1,67 @@
+{
+  "board_sha256": "bf4a4122247acfefcf2337c6a01b7a2f729179e217950d90e9e1aec4e7c03d32",
+  "claim_limit": "Exact pad-center track graph only; DRC, ground-pad returns, crystal electrical/loop checks, and P1/P2 acceptance remain independent.",
+  "drc_sha256": "6097ba179efbd17e1c0c64a334ff0d106077f9fac420a1b5724d82bb920b4109",
+  "ground": {
+    "In1_Cu_zone_count": 1,
+    "filled_polygon_count": 9,
+    "oscillator_GND_open_count": 5,
+    "oscillator_GND_open_rows": [
+      [
+        "Pad 2 [GND] of C_XU_VDD_18 on F.Cu",
+        "Pad 4 [GND] of Y_XU on F.Cu"
+      ],
+      [
+        "Pad 4 [GND] of U_FLASH on F.Cu",
+        "Pad 2 [GND] of C_XTAL_IN on F.Cu"
+      ],
+      [
+        "Pad 4 [GND] of Y_XU on F.Cu",
+        "Pad 2 [GND] of Y_XU on F.Cu"
+      ],
+      [
+        "Pad 2 [GND] of Y_XU on F.Cu",
+        "Pad 2 [GND] of C_XTAL_OUT on F.Cu"
+      ],
+      [
+        "Pad 2 [GND] of C_XTAL_IN on F.Cu",
+        "Pad 2 [GND] of C_XTAL_OUT on F.Cu"
+      ]
+    ]
+  },
+  "kind": "crow-xtal-r2-saved-board-component-audit",
+  "nets": {
+    "XTAL_IN": {
+      "F_Cu_segments": 8,
+      "connected_by_exact_endpoints": true,
+      "pad_count": 3,
+      "pads": [
+        "R_XTAL_DRIVE.1",
+        "R_XTAL_FB.1",
+        "U_XU.34"
+      ]
+    },
+    "XTAL_IN_R": {
+      "F_Cu_segments": 5,
+      "connected_by_exact_endpoints": true,
+      "pad_count": 3,
+      "pads": [
+        "C_XTAL_IN.1",
+        "R_XTAL_DRIVE.2",
+        "Y_XU.1"
+      ]
+    },
+    "XTAL_OUT": {
+      "F_Cu_segments": 10,
+      "connected_by_exact_endpoints": true,
+      "pad_count": 4,
+      "pads": [
+        "C_XTAL_OUT.1",
+        "R_XTAL_FB.2",
+        "U_XU.33",
+        "Y_XU.3"
+      ]
+    }
+  },
+  "schema": 1
+}

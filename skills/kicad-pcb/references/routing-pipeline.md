@@ -140,6 +140,15 @@ Run the (free) ordering fix first; swap the package if stragglers survive.
 
 ## Loop economics: quick vs the full cycle, and when grind_driver escalates
 
+Keep report-row counts distinct from native connectivity totals. Crow's native
+crystal trial (2026-09-24) emitted 499 unconnected DRC rows before and after,
+while the saved boards' native unconnected count improved from 1321 to 1314.
+An absent net in that report did not prove it connected. For progress, rebuild
+native connectivity and the ratsnest, record `GetUnconnectedCount(False)`, and
+check exact required pad components separately. Bind measurements to the saved
+board and rule bytes, including saved fill when claimed. Neither a count delta
+nor successful command exit replaces the full acceptance gates.
+
 Measured on the v4 usb-hub-3s clean-room canary (112 parts, 2026-07-21):
 one FULL cycle — rebuild chain + `kicad-cli` severity-all DRC + a frontier
 agent reading the report — runs **~8-10 minutes**, and the whole grind

@@ -1,0 +1,277 @@
+{
+  "baseline_drc": {
+    "command": [
+      "kicad-cli",
+      "pcb",
+      "drc",
+      "--severity-all",
+      "--refill-zones",
+      "--save-board",
+      "--schematic-parity",
+      "--format",
+      "json",
+      "-o",
+      "/home/mouse9911/gits/circuits-worktrees/crow-usb-carrier-v1-20260922/projects/crow-usb-carrier-v1/06_build/candidates/xtal-r2/baseline_drc.json",
+      "/home/mouse9911/gits/circuits-worktrees/crow-usb-carrier-v1-20260922/projects/crow-usb-carrier-v1/06_build/candidates/xtal-r2/04_kicad/crow_carrier.kicad_pcb"
+    ],
+    "counts": {
+      "schematic_parity": 0,
+      "unconnected_items": 499,
+      "violations": 239
+    },
+    "exit": 0,
+    "oscillator_related_unconnected_items": 6,
+    "oscillator_unconnected_items": {
+      "XTAL_IN": 0,
+      "XTAL_IN_R": 0,
+      "XTAL_OUT": 0
+    },
+    "report_sha256": "2823db52f58ff734da2c70ddc08e871ea166e9c46d54fdc6996577a968b5df57",
+    "saved_board_sha256": "57adb50491aa52c70d1eb0f201cd68218d71f37c467a7c85c707d8fcb3b23580",
+    "status": "MEASURED",
+    "stderr_tail": "",
+    "violation_types": {
+      "clearance": 40,
+      "lib_footprint_issues": 199
+    }
+  },
+  "candidate_drc": {
+    "command": [
+      "kicad-cli",
+      "pcb",
+      "drc",
+      "--severity-all",
+      "--refill-zones",
+      "--save-board",
+      "--schematic-parity",
+      "--format",
+      "json",
+      "-o",
+      "/home/mouse9911/gits/circuits-worktrees/crow-usb-carrier-v1-20260922/projects/crow-usb-carrier-v1/06_build/candidates/xtal-r2/candidate_drc.json",
+      "/home/mouse9911/gits/circuits-worktrees/crow-usb-carrier-v1-20260922/projects/crow-usb-carrier-v1/06_build/candidates/xtal-r2/04_kicad/xtal_compact_candidate.kicad_pcb"
+    ],
+    "counts": {
+      "schematic_parity": 0,
+      "unconnected_items": 499,
+      "violations": 248
+    },
+    "exit": 0,
+    "oscillator_related_unconnected_items": 5,
+    "oscillator_unconnected_items": {
+      "XTAL_IN": 0,
+      "XTAL_IN_R": 0,
+      "XTAL_OUT": 0
+    },
+    "report_sha256": "6097ba179efbd17e1c0c64a334ff0d106077f9fac420a1b5724d82bb920b4109",
+    "saved_board_sha256": "bf4a4122247acfefcf2337c6a01b7a2f729179e217950d90e9e1aec4e7c03d32",
+    "status": "MEASURED",
+    "stderr_tail": "",
+    "violation_types": {
+      "clearance": 40,
+      "lib_footprint_issues": 199,
+      "silk_over_copper": 5,
+      "silk_overlap": 4
+    }
+  },
+  "candidate_dru_sha256": "fe9ed48569699cb881114c0bf4bba0061d65199ef659dadda6842d2431782ef5",
+  "candidate_pro_sha256": "7977bc9edb88e1ef723eb256f07949871493dfda3d2c2491dd5d5b6087ddc094",
+  "claim_limit": "Provisional compact P2 experiment; P1 cell/redrawn ownership, crystal loading and loop, actual return, and engineering acceptance remain open.",
+  "geometry": {
+    "added_FCu_segments": 23,
+    "changed_pose_count": 5,
+    "courtyard_overlaps": [],
+    "fixed_and_other_pose_count": 564,
+    "in1_GND_zone_present": true,
+    "moved_refs": {
+      "C_XTAL_IN": [
+        218.0,
+        118.6,
+        0
+      ],
+      "C_XTAL_OUT": [
+        215.8,
+        117.0,
+        0
+      ],
+      "R_XTAL_DRIVE": [
+        218.0,
+        117.0,
+        180
+      ],
+      "R_XTAL_FB": [
+        216.6,
+        115.4,
+        180
+      ],
+      "Y_XU": [
+        216.6,
+        112.5,
+        0
+      ]
+    },
+    "native_zone_inventory": [
+      [
+        "GND",
+        [
+          "In1.Cu"
+        ]
+      ]
+    ],
+    "route_chains": {
+      "XTAL_IN": [
+        [
+          [
+            216.1625,
+            105.8
+          ],
+          [
+            217.2,
+            105.8
+          ],
+          [
+            217.2,
+            104.59
+          ],
+          [
+            218.8,
+            104.59
+          ],
+          [
+            218.8,
+            107.1
+          ],
+          [
+            218.8,
+            115.4
+          ],
+          [
+            217.11,
+            115.4
+          ]
+        ],
+        [
+          [
+            218.8,
+            115.4
+          ],
+          [
+            218.8,
+            117.0
+          ],
+          [
+            218.51,
+            117.0
+          ]
+        ]
+      ],
+      "XTAL_IN_R": [
+        [
+          [
+            215.5,
+            113.35
+          ],
+          [
+            214.6,
+            113.35
+          ],
+          [
+            214.6,
+            118.0
+          ],
+          [
+            217.49,
+            118.0
+          ],
+          [
+            217.49,
+            117.0
+          ]
+        ],
+        [
+          [
+            217.49,
+            118.0
+          ],
+          [
+            217.52,
+            118.6
+          ]
+        ]
+      ],
+      "XTAL_OUT": [
+        [
+          [
+            216.1625,
+            106.2
+          ],
+          [
+            217.2,
+            106.2
+          ],
+          [
+            217.2,
+            110.2
+          ],
+          [
+            217.7,
+            110.7
+          ],
+          [
+            217.7,
+            111.65
+          ],
+          [
+            216.6,
+            111.65
+          ],
+          [
+            216.6,
+            114.89
+          ],
+          [
+            216.09,
+            115.4
+          ],
+          [
+            216.09,
+            116.2
+          ],
+          [
+            215.32,
+            116.97
+          ],
+          [
+            215.32,
+            117.0
+          ]
+        ]
+      ]
+    },
+    "width_mm": 0.2
+  },
+  "imported_recipe_sha256": "fb13df7decc97e6f6850263a62ae5d3a1b600c01aff391b340ff40ad1645ddc3",
+  "input_sha256": {
+    "02_parts/TMUX4827YBHR/part.yaml": "9ab2d3500a6018a4e3860b7d56cbe5d7025d134a989dd07d4fdcfba5dd011ea1",
+    "02_parts/TMUX4827YBHR/qualification/coupon.kicad_pcb": "6f39a73aad46444e6b2256ced0b64a1dea5b9792801c3f705f8b691727ce83b6",
+    "03_src/floorplan.yaml": "cd52893214a87432b99bab41827a64680bd8a2f970342f126260157948b50925",
+    "03_src/lib/crow_usb_analog.pretty/TI_YBH0009_C02_TMUX4827.kicad_mod": "54b81c012d1fe62b93ccb83b877aca3f6452764e1c5bf11a055750eef1662d58",
+    "03_src/rules/assembly.yaml": "a9be61f176b35eefc46b8677a9de68c9f6f0ebabf0a136711a8279205ef44985",
+    "03_src/rules/nets.yaml": "18033487a097b6d29abe3f9d8517879931cf80d278d8973adcf276010a5b7190",
+    "04_kicad/crow_carrier.kicad_pcb": "fbfb3bda95f1ddc98e7d3d229550644d136dc7d6349ba19a4023eb13b07e7e27",
+    "04_kicad/crow_carrier.kicad_pro": "3d1cb7206c4101b1be96ee85e994a5e694ef871a47f6356a70bdfa1576641cf1",
+    "04_kicad/crow_carrier.kicad_sch": "2d5f02da91e745f0a4732f75e6092f053c87488ca3a16711caa752e693985997"
+  },
+  "kind": "crow-xtal-compact-native-experiment",
+  "metric_semantics": "DRC emitted 499 unconnected rows in each report, which is not the native total. Separate native connectivity and signal-component audits own those claims. No global clearance-set equivalence is claimed.",
+  "prepared_dru_sha256": "fe9ed48569699cb881114c0bf4bba0061d65199ef659dadda6842d2431782ef5",
+  "prepared_pro_sha256": "7977bc9edb88e1ef723eb256f07949871493dfda3d2c2491dd5d5b6087ddc094",
+  "recipe_sha256": "87f5d6b87b9dcd88134bc9107f5ca0318f22c4134bc43fd02c7bc53532cd15f1",
+  "rule_generation_command": [
+    "/usr/bin/python3",
+    "/home/mouse9911/gits/circuits-worktrees/crow-usb-carrier-v1-20260922/skills/kicad-pcb/scripts/generate_rules_generic.py",
+    "/home/mouse9911/gits/circuits-worktrees/crow-usb-carrier-v1-20260922/projects/crow-usb-carrier-v1/06_build/candidates/xtal-r2"
+  ],
+  "rule_generator_sha256": "3f423340be27471ce7edca2b66a633dd0898b0a172b7abf12fa944e83690f026",
+  "schema": 1,
+  "status": "DIAGNOSTIC_ONLY"
+}

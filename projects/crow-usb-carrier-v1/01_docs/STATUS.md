@@ -1,15 +1,16 @@
 # Project status
 
-<!-- pause-state:77b7c52c5f9ca79533a21692662739ff7f17dcc0d32270ea2861474bb8b2f107 -->
+<!-- pause-state:080e0d2a88b585a91c81726d3fa9e34275079869eb28d1659c1437fa8400aac4 -->
 
 - Phase: `placement`
 - State: **PAUSED**
 - Checkpoint: `06_build/checkpoints/schematic.json` (`917a45414c65`)
-- Blocker: P1 remains unaccepted. The pinned QSPI-gap board has a 59-net research source packet with three native-valid integration corridors (QSPI, XTAL, fixed JTAG), including 20 QSPI/XTAL and eight JTAG exact witnesses; the whole allocation still FAILS at nonlocal U_XU.38 reset. A separate reset-region repair gives both foreign digital_power reset pads exclusive ownership, but the five-terminal reset tree has no P2/P3 route or filled-return proof. The tighter JTAG source layout leaves J_USB.4 nonlocal and USB row INCOMPLETE. Native DRC remains nonzero with 499 unconnected items and six unqualified sub-0.410-mm USB launch widths. Connector FULL has 19 physical unknowns; TMUX filled/capped process acceptance is external. No P1/P2/P3/routing/release or order result is accepted.
-- Next command: `Independently review the combined QSPI/XTAL/JTAG source packet, then integrate the exact five-terminal reset branch with the disjoint audio/digital region repair; resolve the J_USB.4 source handoff without changing the fixed connector pose, and rerun all 59-net P1 allocations. Keep P1 false until native pad access, effective clearance and filled In1.Cu return are proved. Connector FULL gates P3/routing; TMUX process acceptance gates release. Do not promote scratch copper.`
+- Blocker: P1/P2/P3 and release remain unaccepted. Scoped P3 prerequisites now separate local timing/boot from FULL-dependent JTAG/reset service; the new plan subject does not admit historical observations. Two bounded isolated native oscillator trials are assessed and the investigation is REASSESS at its 2/2 limit. The compact trial moves five oscillator parts, preserves 564 other poses, and connects all ten signal pads across XTAL_IN/OUT/IN_R. Native unconnected count improves 1321 to 1314; the 499 DRC report rows are not the native total. Four oscillator GND terminals remain individually isolated, saved In1 plane samples do not prove return, and nine new silkscreen findings remain. Existing 40 clearance-class and 199 library findings persist in that isolated rule context. No candidate copper is promoted. Reset/USB integration, six unqualified USB launch widths, connector FULL (19 physical unknowns) and external TMUX process acceptance remain open. Historical corridor packets retain their original plan bindings.
+- Next command: `Reassess USB-XTAL-native-realization from its two native results without resetting history. Review a coupled oscillator source-placement change with real ground connections, full filled-return proof, source allocation and silk handling; classify electrical loop/loading requirements before further geometry attempts. Then integrate the reviewed group into one candidate and resolve reset/USB from native evidence. Keep canonical P1/P2/P3 and release gates intact; independent local experiments do not complete modular tasks. Connector FULL and TMUX process acceptance retain their affected acceptance boundaries.`
 
 ## Bound receipts
 
+- `01_docs/findings.yaml` — `ea2865490793`
 - `01_docs/research/2026-09-24-jtag-fixed-access-blocker-sol.md` — `8ccc15c9c587`
 - `01_docs/research/2026-09-24-jtag-fixed-access-rectangle-obstruction-terra.md` — `a85ea3ef537b`
 - `01_docs/research/2026-09-24-jtag-native-dogleg-physical-feasibility-terra.md` — `6a931bc0c1c7`
@@ -26,6 +27,10 @@
 - `01_docs/research/2026-09-24-xu-reset-five-terminal-branch-terra.md` — `3af94c20e590`
 - `01_docs/research/2026-09-24-xu-reset-region-repair-terra/native_region_audit.json` — `797a732f23ab`
 - `01_docs/research/2026-09-24-xu-service-reservation-contract-recommendation-terra.md` — `5de4aa58c71b`
+- `01_docs/research/candidate_loop_xtal/r1_result.json` — `45ad819f30b4`
+- `01_docs/research/candidate_loop_xtal/r2_result.json` — `68a9121c2916`
+- `01_docs/research/candidate_loop_xtal/xtal_r2_return_terra.json` — `c5f17a4310f2`
+- `01_docs/research/candidate_loop_xtal/xtal_r2_signal_audit.json` — `b80ffd3d3265`
 - `01_docs/research/jtag_fixed_access_probe_sol.json` — `5f73551e562d`
 - `01_docs/research/jtag_native_dogleg_probe_terra.json` — `8a526c09a13f`
 - `01_docs/research/jtag_segmented_packet/README.md` — `69f5922ec931`
@@ -48,6 +53,7 @@
 - `01_docs/research/xu_service_variant/xtal_south_cap_handoff.json` — `3dc3510d8a9f`
 - `01_docs/research/xu_service_variant/xtal_window_native_audit.json` — `00f8087d59a7`
 - `03_src/diagnostics/usb_fcu_launch_probe.py` — `7a05b24297f6`
+- `03_src/modular_plan.json` — `53860229e527`
 - `08_reviews/pre-route_schematic_render.md` — `05ff9b639b7f`
 - `08_reviews/pre-route_topology.md` — `76dbfea927e5`
 

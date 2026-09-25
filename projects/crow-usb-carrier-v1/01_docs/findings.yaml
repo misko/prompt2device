@@ -505,6 +505,9 @@ findings:
     oscillator constraints satisfied.
   evidence:
   - 01_docs/research/xu_service_variant/xtal_south_cap_handoff.json
+  - 01_docs/research/candidate_loop_xtal/r2_result.json
+  - 01_docs/research/candidate_loop_xtal/xtal_r2_signal_audit.json
+  - 01_docs/research/candidate_loop_xtal/xtal_r2_return_terra.json
   investigation:
     schema: 1
     requirement:
@@ -528,6 +531,8 @@ findings:
     launches:
     - id: launch-30c141f82bce4d3c98714d4a1787535b
       subject_sha256: 81acf15c7871cc8d39aad0314684087fb89af3dc03fbb33f9e1b660437092425
+    - id: launch-85f881af852d485ca34f7b670f030958
+      subject_sha256: 81acf15c7871cc8d39aad0314684087fb89af3dc03fbb33f9e1b660437092425
     history:
     - id: launch-30c141f82bce4d3c98714d4a1787535b
       subject_sha256: 81acf15c7871cc8d39aad0314684087fb89af3dc03fbb33f9e1b660437092425
@@ -545,12 +550,35 @@ findings:
       evidence:
       - path: 01_docs/research/candidate_loop_xtal/r1_result.json
         sha256: 45ad819f30b44549d1bc537efb808af312b4fd2733a4f9b1fb3ade52fee06589
+    - id: launch-85f881af852d485ca34f7b670f030958
+      subject_sha256: 81acf15c7871cc8d39aad0314684087fb89af3dc03fbb33f9e1b660437092425
+      origin: executed
+      hypothesis: A compact source-authored oscillator/support group can connect all
+        crystal signal pads under the same native rules.
+      result: Independent native connectivity proves all ten pads connected across
+        three oscillator signal nets; unconnected native count improves 1321 to 1314
+        despite DRC emitting 499 rows in both runs. Five moved poses, 564 unchanged.
+        Four oscillator GND terminals remain individually isolated; plane-center/midpoint
+        projection is not return proof. Nine new silk warnings and existing clearances
+        remain. Retain only diagnostic evidence and reopen coupled oscillator placement/ground
+        return; no accepted board promotion.
+      model_domain: within
+      progress:
+      - native_decision
+      evidence:
+      - path: 01_docs/research/candidate_loop_xtal/r2_result.json
+        sha256: 68a9121c29166b7ce1beaae1a53b352c8067439f8375541004494c2cb4e36ab7
+      - path: 01_docs/research/candidate_loop_xtal/xtal_r2_signal_audit.json
+        sha256: b80ffd3d3265023c1fb5b168e9500f38ea20c9068857b855b670f7121c0140a0
+      - path: 01_docs/research/candidate_loop_xtal/xtal_r2_return_terra.json
+        sha256: c5f17a4310f2fb0473756197dd340d39ceb3b086efab420a5cb5666d229b045b
     next:
-      action: investigate
-      hypothesis: A compact source-authored oscillator/support placement near fixed
-        XU pins can close the XTAL nets under the same rules.
-      on_support: Retain full local recipe for independent electrical/return review
-        and future integration; no automatic P3 completion.
-      on_reject: Stop these two geometry trials and reopen the coupled floorplan from
-        measured obstacles.
-      uncertainty: bounded
+      action: reassess
+      hypothesis: The compact signal geometry is physically connectable, but source
+        placement, four GND connections, silk and electrical loop/return must be reviewed
+        together.
+      on_support: Reopen the coupled oscillator source placement and ground-return
+        work with this evidence; preserve the same cumulative investigation history.
+      on_reject: Reject the compact candidate and reconsider oscillator placement
+        from the actual native obstacles and XMOS constraints.
+      uncertainty: decision_limiting
