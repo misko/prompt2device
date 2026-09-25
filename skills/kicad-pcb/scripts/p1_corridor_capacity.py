@@ -271,6 +271,8 @@ def _coarse_witness(board, witness, net, owned_pads, aliases, pads, outline,
         expected = {'status': 'P2_REQUIRED', **endpoint,
                     'corridor_id': corridor['id'], 'region_face': selected['region_face'],
                     'layer': layer, 'to_reservation': corridor['reservation_id']}
+        if cell_id is not None:
+            expected['physical_cell_id'] = cell_id
         if obligation != expected:
             raise ContractError(f'{source}: fixed access P2 pad-to-corridor obligation missing')
     else:

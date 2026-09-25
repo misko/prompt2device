@@ -408,6 +408,28 @@ class CoarseCapacityTest(unittest.TestCase):
         self.assertFalse(result['p1_accepted'])
         self.assertEqual(result['allocations'][0]['reservations'][-1]['status'], 'INCOMPLETE')
 
+    def test_fixed_connector_access_requires_physical_cell_in_p2_debt(self):
+        witness = self.add_fixed_connector_access()
+        self.floorplan['placement']['regions']['power'] = [0, 0, 4, 3]
+        self.source['physical_cells'] = [
+            {'id': 'left', 'owner_block': 'left',
+             'refs': ['J_LEFT'] + [f'U_L{i}' for i in range(6)], 'transit': False}]
+        corridor = self.source['integration_corridors'][0]
+        corridor['faces'][0]['physical_cell_id'] = 'left'
+        for obligation in corridor['p2_obligations']:
+            if obligation['block'] == 'left':
+                obligation['physical_cell_id'] = 'left'
+        for candidate in self.allocations[0]['boundary_witnesses']:
+            if candidate['block'] == 'left':
+                candidate['physical_cell_id'] = 'left'
+                candidate['p2_obligation']['physical_cell_id'] = 'left'
+        result = self.run_case()
+        self.assertEqual(result['errors'], [])
+        self.assertEqual(result['status'], 'INCOMPLETE')
+        witness['p2_obligation'].pop('physical_cell_id')
+        self.assertIn('fixed access P2 pad-to-corridor obligation missing',
+                      self.run_case()['allocations'][0]['reason'])
+
     def test_fixed_connector_access_rejects_movable_or_wrong_pad(self):
         witness = self.add_fixed_connector_access()
         self.source['p1_fixed_refs'].remove('U_L0')
