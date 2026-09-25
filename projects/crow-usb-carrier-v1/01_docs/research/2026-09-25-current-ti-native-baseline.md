@@ -27,7 +27,8 @@ routing or saved filled-return proof.
 Using the same current modular plan, current region declarations and native
 full-envelope census for both exact boards, cross-owner interaction pairs fall
 **1 → 0**: only the archived `C_IN3`/`Q_PRE` courtyard-corner pair disappears.
-Body and pad overlap pairs remain 0. The other census counts remain 128
+Their current native full-envelope vertical gap is **0.260 mm**. Body and pad
+overlap pairs remain 0. The other census counts remain 128
 outside-owner refs and 148 refs entering foreign planning regions. These
 counts differ from the later 15-part research placement because that board
 changed additional poses; it is not the current-source baseline.
