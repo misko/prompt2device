@@ -1,0 +1,151 @@
+{
+  "adc_reference_native_hull_mm": [
+    90.455,
+    87.505,
+    142.275,
+    112.255
+  ],
+  "adc_reference_ref_count": 65,
+  "board_sha256": "d0c065dc16de081a5410b7a22e474f0a99c6fdeb0b7dd1f6c37422ace4a9fcf7",
+  "clusters": {
+    "ldo": {
+      "foreign_native_envelopes": [],
+      "foreign_regions": [
+        "adc_reference"
+      ],
+      "native_envelope_hull_mm": [
+        126.255,
+        114.405,
+        140.955,
+        126.775
+      ],
+      "refs": [
+        "U_LDO",
+        "C_LDO_OUT_1",
+        "C_LDO_OUT_2",
+        "C_LDO_IN",
+        "C_LDO_NR4",
+        "C_LDO_NR5",
+        "R_LDO_ILIM",
+        "R_LDO_PG_TOP",
+        "R_LDO_SET"
+      ]
+    },
+    "pwr": {
+      "foreign_native_envelopes": [],
+      "foreign_regions": [
+        "adc_reference"
+      ],
+      "native_envelope_hull_mm": [
+        71.175,
+        90.725,
+        79.475,
+        97.275
+      ],
+      "refs": [
+        "U_PWR",
+        "R_PWR_TOP",
+        "R_PWR_BOT",
+        "R_PWR_PU",
+        "C_PWR",
+        "C_PWR_CT"
+      ]
+    }
+  },
+  "foreign_envelope_count": 58,
+  "foreign_envelopes_in_adc_native_hull": [],
+  "foreign_envelopes_in_minimum_pad_hull": [
+    "C_ADC_3V3X_OK_VDD",
+    "C_ADC_A_AREG_100N",
+    "C_ADC_A_AREG_1U",
+    "C_ADC_A_AVDD_100N",
+    "C_ADC_A_DREG_1U",
+    "C_ADC_A_VREF_100N",
+    "C_ADC_A_VREF_10U",
+    "C_ADC_B_AREG_100N",
+    "C_ADC_B_AREG_1U",
+    "C_ADC_B_AVDD_100N",
+    "C_ADC_B_AVDD_10U",
+    "C_ADC_B_DREG_1U",
+    "C_ADC_B_VREF_100N",
+    "C_ADC_B_VREF_10U",
+    "C_ADC_DIGITAL_BAD",
+    "C_ADC_DIGITAL_OK",
+    "C_ADC_PWR_BAD",
+    "C_ADC_READY",
+    "C_ADC_READY_BAD",
+    "C_ADC_START_DELAY",
+    "C_RST1",
+    "C_RST2",
+    "C_RST_T",
+    "C_VMID1_EXT_10U",
+    "C_VMID1_EXT_1U",
+    "C_VMID2_EXT_10U",
+    "C_VMID2_EXT_1U",
+    "Q_ADC_DELAY_DISCH",
+    "Q_ADC_DIG_RST",
+    "Q_ADC_PWR_RST",
+    "Q_RST1",
+    "R_ADC_1V8_OK_BOT",
+    "R_ADC_1V8_OK_TOP",
+    "R_ADC_3V3X_OK_BOT",
+    "R_ADC_3V3X_OK_TOP",
+    "R_ADC_DELAY_GATE_PD",
+    "R_ADC_DIGITAL_OK_PU",
+    "R_ADC_DIG_RST_PD",
+    "R_ADC_PWR_BAD_PD",
+    "R_ADC_READY_PD",
+    "R_ADC_START_DELAY",
+    "R_RESET_GPD",
+    "R_RESET_PU",
+    "R_RST_T",
+    "R_VMID1_BOT",
+    "R_VMID1_TOP",
+    "R_VMID2_BOT",
+    "R_VMID2_TOP",
+    "U_ADC_1V8_OK",
+    "U_ADC_3V3X_OK",
+    "U_ADC_A",
+    "U_ADC_B",
+    "U_ADC_DIGITAL_BAD",
+    "U_ADC_PWR_BAD",
+    "U_ADC_READY",
+    "U_ADC_READY_BAD",
+    "U_RST1",
+    "U_RST2"
+  ],
+  "minimal_common_cell_checker_rejection": "quiet_power: unassigned native footprint/pad C_ADC_B_AVDD_10U enters physical cell",
+  "minimum_common_owner_pad_hull_mm": [
+    74.775,
+    91.025,
+    135.5,
+    123.65
+  ],
+  "native_ref_count": 569,
+  "quiet_power_ref_count": 69,
+  "regions_intersecting_target_body_hull": [
+    "adc_reference",
+    "hold_bank_right",
+    "quiet_power"
+  ],
+  "target_full_envelope_hull_mm": [
+    74.475,
+    90.725,
+    135.795,
+    123.945
+  ],
+  "target_pad_bboxes_mm": {
+    "C_LDO_OUT_1.1": [
+      134.1,
+      120.75,
+      135.5,
+      123.65
+    ],
+    "R_PWR_TOP.1": [
+      74.775,
+      91.025,
+      75.575,
+      91.975
+    ]
+  }
+}
