@@ -4,63 +4,68 @@ review_stage: pre-route
 review_kind: topology
 design_verdict: SOUND
 order_verdict: DO-NOT-ORDER
-netlist_sha256: 7ab8c90f46ff4f25a9af50f43659a6b304e3c15932875519fa916fd018b1d8cc
-parts_sha256: 833913d1c3d68cec43ab53f34e63b48cbf0e38bd3ec5a5115abfbaa5e23c2a0e
-design_rules_sha256: 8211187b0a0bb0ab38799ade9459944f0226cdf0180a75bcfdb94ca385a1a0c1
+usb_esd_electrical_status: PROVISIONAL-UNPROVEN
+netlist_sha256: d6f6bb95cb57fb783a27758b7e0f93636c430a99e5d88261873d142aaa0f1094
+parts_sha256: 8f7742744fdd43c1089176e27316ebc3995556d295140ceb06586d98c62d45d8
+design_rules_sha256: c5f9432e8640b78c5fdc1425b4cb04095a9d97cd0d7b83a6bef01fe27c33fc31
 
-I independently reviewed the frozen 45-page subject, its KiCad electrical
-netlist, the full 112-dossier part set, the design rules, and the declared
-source contracts. The topology lens finds no connectivity, selected-part pin,
-or component-rating contradiction that makes the reviewed circuit unsound.
+I independently reviewed the fresh KiCad electrical netlist, selected-part
+source, and semantic design rules for the provisional U_USB_ESD change. The
+schematic-stage checkpoint verifies 7/7 pinned files. This verdict concerns
+connectivity and source-stage ratings; it does not approve the delivered
+schematic's readability or any board geometry.
 
-## Packet integrity
+## Electrical delta and USB protection
 
-The packet manifest contains 818 records. I recomputed every record's byte
-digest and size against the frozen packet: all 818 matched. The manifest byte
-digest recomputed to
-`28262111bc66b3e360d11dcfc30d2d5862ea4a2f1f6bebe789d6ada07a4ce6ac`.
-I also reran the supplied canonicalization functions. They reproduce the
-three bound digests above for the electrical netlist, all selected part files,
-and the semantic design-rule projection.
+I exported the preceding tracked KiCad schematic to a separate netlist and
+compared its native component and `ref.pad -> net` maps with the current
+netlist. Both contain 569 components, 1,787 physical pin assignments and 428
+nets. No component reference was added or removed, and no pad-to-net tuple
+changed. The only component identity/footprint delta is U_USB_ESD:
+TI TPD2EUSB30ADRTR/DRT-3 became Nexperia PESD2USB3UV-TR/SOT23. Its pins
+remain 1=USB_DP, 2=USB_DN, 3=GND. The current USB_DP net joins J_USB A6/B6,
+U_USB_ESD.1, and U_XU.60; USB_DN joins J_USB A7/B7, U_USB_ESD.2, and
+U_XU.59. The reversible contacts do not cross or short together. VBUS_USB,
+CC1/CC2 terminations and their separate protection remain on their preceding
+nets. The route topology also declares the new device as a two-line shunt,
+with protected pads 1/2 and return pad 3.
 
-## Topology and ratings review
+I checked that assignment against the retained [Nexperia PESD2USB3UV-T
+primary datasheet](https://assets.nexperia.com/documents/data-sheet/PESD2USB3UV-T.pdf),
+Table 2: pads 1/2 are individual cathodes, pad 3 is the common anode. The manufacturer lists this part for USB2.0, but its 3.3-V reverse
+standoff is below Crow's 3.394-V worst-case N3V3X DC setpoint and 3.60-V
+XU316 USB_VDD33 at-pin ceiling. Those are supply limits, not demonstrated
+D+/D- high or idle voltages. The XMOS primary used here does not state a
+worst-case USB line high/idle voltage, so the DC leakage margin is
+**PROVISIONAL/UNPROVEN**, not an electrical drop-in finding. No known DC
+incompatibility has been demonstrated either. Closing this selection requires
+an authoritative worst-case line level no higher than 3.3 V, or a protector
+with reverse standoff at least as high as the transmitter maximum (3.60 V
+under the conservative rail ceiling), before electrical acceptance.
 
-The Type-C device connection ties both reversible D+ contacts together and
-both D- contacts together, then carries them through the selected two-line
-USB ESD array to the XU316 USB pins. VBUS remains a separate presence-sense
-domain; it is not joined to carrier power. CC1 and CC2 each retain their own
-termination and protection path. The connector, protector, and controller
-pin mappings agree with their pinned dossiers.
+The 4.2-8-V breakdown range and 0.83-pF typical/1.0-pF maximum capacitance
+differ materially from the former TI selection. A typical TLP clamp value
+cannot establish XU316 powered or unpowered pin survival. Realized USB
+high-speed eye/insertion loss, the low-inductance ground return, and
+transient coordination remain separate open qualifications. The selected
+pin graph is coherent, which is the limited basis for this topology SOUND
+verdict; it does not certify the provisional protection device electrically.
 
-The external input passes through the fuse and reverse-protection MOSFET to
-the protected 12 V domain. That domain feeds the 5 V module and eight
-independent TPS26625 spoke branches. The 5 V, 3.3 V, 1.8 V, and 0.9 V rail
-domains terminate at the intended converter, bypass, supervisor, and load
-pins. The selected device ratings cover their declared source-stage rail
-envelopes. The conditional external-source/fault contract remains a required
-qualification, rather than a claim that an actual supply/cable system is
-approved.
+## Unchanged circuit and scope
 
-The reset and clock-enable logic uses the two rail supervisors' open-drain
-outputs with the stated pull-up and clamp network. The netlist places the ADC
-reset inputs, clock gate, and raw-clock pulldowns on their documented nodes;
-loss of either qualifying digital rail consequently inhibits the held-domain
-clock drive. The recently included 3.3 V ADC supervisor bypass is across the
-correct supply and ground pins, and its 16 V capacitor rating is adequate for
-the declared rail.
+The complete pad-net comparison preserves the external-input fuse and reverse
+protection, the protected 12-V trunk and eight spoke branches, the converter
+and bypass rail domains, supervisors and held-domain clock inhibit, ADC
+clock/data interfaces, and flash QSPI pins. The power-tree edit changes only
+the strict source-circuit fingerprint after the part swap; it does not author
+a new physical power connection or relax its conditional external-source and
+fault obligations. The fresh electrical checks report zero ERC errors and
+9/9 closure; these support the reviewed netlist, not PCB realization.
 
-The two ADCs share the defined BCLK and frame-sync nets, with data connected
-through the stated level translator to the XU316. Flash power, QSPI clock,
-chip select, and all four data connections terminate at the correct W25Q128JW
-pins and XU316 pins. The 1.8 V flash supply is within the dossier's 1.7--1.95
-V operating range. ERC reports zero errors; retained warnings are not treated
-as physical-layout evidence.
-
-## Scope limits and order hold
-
-This is a pre-route connectivity and ratings judgment only. It does not
-approve placement, copper return paths, controlled impedance, thermal
-performance, fault-energy behavior with a real source and cable, assembly
-allocation, firmware configuration, first-article measurements, or release.
-Those open boundaries require the stated downstream reviews and qualification;
-therefore the purchase hold remains in force.
+This SOUND verdict is limited to pre-route topology and source-stage ratings.
+The current review does not grant connector FULL, P1/P2/P3, USB transient or
+signal-integrity qualification, 3D model registration, fabrication, or JLC
+assembly allocation. The exact U_USB_ESD model and route/return remain owed;
+source-selected part stock is not a purchase allocation. The prior accepted
+route contract still names the TI part and must be reviewed afresh. The
+purchase hold remains DO-NOT-ORDER.
