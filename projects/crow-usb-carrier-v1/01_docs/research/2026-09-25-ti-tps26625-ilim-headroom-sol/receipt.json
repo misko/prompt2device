@@ -1,0 +1,331 @@
+{
+  "adc8n_copper_preserved": true,
+  "baseline_direct_native_pad_copper_gaps_mm": {
+    "DVDT_to_CDVDT": 2.838134,
+    "EP11_to_CDVDT": 2.352905,
+    "EP11_to_RILIM": 1.825561,
+    "GND_to_CIN": 3.661193,
+    "GND_to_COUT": 3.563231,
+    "ILIM_to_RILIM": 2.405089,
+    "IN_to_CIN": 1.655273,
+    "IN_to_RUVLO": 2.040709,
+    "OUT_to_COUT": 1.450194,
+    "RTN5_to_CDVDT": 4.277343,
+    "RTN5_to_RILIM": 2.185362,
+    "UVLO_to_RUVLO": 1.020811
+  },
+  "diagnostic_projected_loop_area_mm2": {
+    "ilim_rtn": 5.204687,
+    "input_with_straight_in1_stitch_chord": 14.840625,
+    "output": 8.37
+  },
+  "direct_native_pad_copper_gaps_mm": {
+    "DVDT_to_CDVDT": 2.946166,
+    "EP11_to_CDVDT": 2.395018,
+    "EP11_to_RILIM": 1.825561,
+    "GND_to_CIN": 3.661193,
+    "GND_to_COUT": 3.563231,
+    "ILIM_to_RILIM": 2.405089,
+    "IN_to_CIN": 1.655273,
+    "IN_to_RUVLO": 2.040709,
+    "OUT_to_COUT": 1.450194,
+    "RTN5_to_CDVDT": 4.30664,
+    "RTN5_to_RILIM": 2.185362,
+    "UVLO_to_RUVLO": 1.020811
+  },
+  "fixed_27_preserved": true,
+  "gnd_cin_fcu_length_mm": 1.315295,
+  "gnd_cout_fcu_length_mm": 5.95,
+  "gnd_return_same_filled_in1_outline_ids": [
+    8
+  ],
+  "gnd_rtn_separate": true,
+  "gnd_stitch_centers_mm": [
+    [
+      192.0,
+      43.8
+    ],
+    [
+      192.7,
+      48.5
+    ]
+  ],
+  "gnd_stitches_contact_one_filled_in1_polygon": true,
+  "group_envelope_collisions": {
+    "C_SPOKE_DVDT8": [],
+    "C_SPOKE_IN8": [],
+    "C_SPOKE_OUT8": [],
+    "R_SPOKE_ILIM8": [],
+    "R_SPOKE_UVLO8": [],
+    "U_SPOKE8": []
+  },
+  "group_full_boxes_mm": {
+    "C_SPOKE_DVDT8": [
+      192.945,
+      48.995,
+      194.855,
+      50.005
+    ],
+    "C_SPOKE_IN8": [
+      188.005,
+      42.975,
+      191.495,
+      45.025
+    ],
+    "C_SPOKE_OUT8": [
+      192.855,
+      45.675,
+      196.345,
+      47.725
+    ],
+    "R_SPOKE_ILIM8": [
+      189.475,
+      50.225,
+      192.525,
+      51.775
+    ],
+    "R_SPOKE_UVLO8": [
+      185.525,
+      46.285,
+      187.475,
+      47.315
+    ],
+    "U_SPOKE8": [
+      187.805,
+      45.305,
+      192.195,
+      49.695
+    ]
+  },
+  "ilim_first_via_effective_shape_gaps_mm": {
+    "GND_return": 0.260253,
+    "POD8_output": 0.950011,
+    "U_SPOKE8.11": 1.075011,
+    "U_SPOKE8.6": 0.490417,
+    "U_SPOKE8.8": 0.249267
+  },
+  "ilim_first_via_mm": [
+    192.2,
+    47.8
+  ],
+  "ilim_signal_centerline_length_mm": 4.053741,
+  "input_projection_uses_straight_in1_via_to_via_chord_not_measured_return_path": true,
+  "moved_ref": "C_SPOKE_DVDT8",
+  "named_connectivity": {
+    "cin_gnd": true,
+    "cout_gnd": true,
+    "dvdt_rtn": true,
+    "ilim": true,
+    "ilim_rtn": true,
+    "in": true,
+    "out": true,
+    "u3_ovp_rtn": true,
+    "u5_rtn": true
+  },
+  "native_profile": {
+    "added_issue_identities": 0,
+    "added_issue_summaries": [],
+    "removed_issue_identities": 0,
+    "unconnected": [
+      499,
+      499
+    ],
+    "via_process_fails": [
+      [],
+      []
+    ],
+    "violations": [
+      199,
+      199
+    ]
+  },
+  "new_copper_boxes_mm": [
+    [
+      190.6,
+      43.7,
+      192.100001,
+      44.100001
+    ],
+    [
+      191.3,
+      48.4,
+      192.800001,
+      48.600001
+    ],
+    [
+      192.6,
+      48.4,
+      195.650001,
+      48.600001
+    ],
+    [
+      195.45,
+      46.6,
+      195.650001,
+      48.600001
+    ],
+    [
+      190.075,
+      49.7,
+      190.275001,
+      51.100001
+    ],
+    [
+      189.9,
+      49.525,
+      190.275001,
+      49.900001
+    ],
+    [
+      189.9,
+      47.4,
+      190.100001,
+      49.725001
+    ],
+    [
+      189.9,
+      49.4,
+      193.520001,
+      49.600001
+    ],
+    [
+      189.9,
+      47.4,
+      190.100001,
+      49.600001
+    ],
+    [
+      188.5,
+      47.4,
+      190.100001,
+      47.600001
+    ],
+    [
+      188.5,
+      48.4,
+      189.100001,
+      48.600001
+    ],
+    [
+      188.9,
+      47.4,
+      190.100001,
+      48.600001
+    ],
+    [
+      191.7,
+      43.5,
+      192.300001,
+      44.100001
+    ],
+    [
+      192.4,
+      48.2,
+      193.000001,
+      48.800001
+    ],
+    [
+      187.75,
+      43.4,
+      188.950001,
+      46.625001
+    ],
+    [
+      191.15,
+      46.05,
+      193.900001,
+      46.550001
+    ],
+    [
+      193.4,
+      46.05,
+      193.900001,
+      46.950001
+    ],
+    [
+      191.3,
+      47.7,
+      192.300001,
+      48.100001
+    ],
+    [
+      191.9,
+      47.5,
+      192.500001,
+      48.100001
+    ],
+    [
+      191.725,
+      47.7,
+      192.300001,
+      50.300001
+    ],
+    [
+      191.525,
+      49.9,
+      192.125001,
+      50.500001
+    ],
+    [
+      191.725,
+      50.1,
+      191.925001,
+      51.100001
+    ]
+  ],
+  "new_pose_mm": [
+    193.9,
+    49.5,
+    180
+  ],
+  "old_pose_mm": [
+    193.9,
+    49.3,
+    180.0
+  ],
+  "ordinary_via_centers_mm": {
+    "GND": [
+      [
+        192.0,
+        43.8
+      ],
+      [
+        192.7,
+        48.5
+      ]
+    ],
+    "N12V_POD8": [],
+    "SPOKE_ILIM8": [
+      [
+        192.2,
+        47.8
+      ],
+      [
+        191.825,
+        50.2
+      ]
+    ]
+  },
+  "output_signal_centerline_length_mm": 2.65,
+  "owner_region_mm": [
+    179,
+    42,
+    201,
+    84
+  ],
+  "pad_identity_preserved": true,
+  "pinned_board_sha256": "28412ec5054d3b322ea03e37516aa969551beb1e2083b2fa0d2662863969dff4",
+  "project_in_ilim_gap_ceilings_mm": [
+    2.5,
+    2.5
+  ],
+  "schema": 1,
+  "source_input_sha256": {
+    "generic_generator": "8a5fa1d48d80138458601a097ab6260565841510a498e44cb9c5773652215b3c",
+    "netlist": "a40b45c27b2169ed4f3dd43d72a1f4f7112d829985f98918a8855ed76735e9bd",
+    "poses": "76ba7ace1275fe1a8d6bc69d452037672519d70a21b8b02fff67f8c7d8a647bb",
+    "source": "0032b1202f5742b6575198d27ea50629826d49cf81cf12a31fead8a2929d9868",
+    "southwest_board": "0b9d017706845ad4d77c2b579dd36f2e34c0ecf55a7b699ace4fca97465c5b93"
+  },
+  "status": "NATIVE_LOCAL_ROUTE_WITNESS"
+}

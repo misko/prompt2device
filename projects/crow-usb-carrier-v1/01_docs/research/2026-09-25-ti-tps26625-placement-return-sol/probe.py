@@ -99,7 +99,7 @@ def main():
   if any(c[0]<owner[0] or c[1]<owner[1] or c[2]>owner[2] or c[3]>owner[3] for c in copper_boxes):
    raise RuntimeError('new copper outside analog_ch8 source owner')
   # Native effective-shape mouth screen before invoking the costly profile.
-  mouth=next(q for q in added if isinstance(q,p.PCB_VIA) and q.GetNetname()=='SPOKE_ILIM8' and abs(base.mm(q.GetPosition().y)-47.9)<1e-6)
+  mouth=next(q for q in added if isinstance(q,p.PCB_VIA) and q.GetNetname()=='SPOKE_ILIM8' and abs(base.mm(q.GetPosition().y)-ILIM[1][1])<1e-6)
   shape=mouth.GetEffectiveShape(p.F_Cu)
   mouth_gaps={f'U_SPOKE8.{n}':gap(shape,base.pad(b,'U_SPOKE8',n).GetEffectiveShape(p.F_Cu))
               for n in ('6','8','11')}
