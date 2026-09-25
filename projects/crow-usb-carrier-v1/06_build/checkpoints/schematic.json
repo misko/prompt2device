@@ -1,32 +1,32 @@
 {
   "files": {
     "03_src/rebuild_all.sh": {
-      "sha256": "a526b190d386ff4bd90eccbd3d016a4664f2968e4af1848387844f0a974cc38c",
-      "size": 36824
+      "sha256": "46bd42a9a3e7689396baecb853c169e9f816628086b9c23a0c5b65655f503686",
+      "size": 37767
     },
     "03_tscircuit/build/circuit.json": {
-      "sha256": "1f01be73e0699cd62bc734aa189b25e9d66f1097b5ce6f52a8db30533ecc6448",
+      "sha256": "ff30fe8a46bc44befa7533038bbf17d2ed0aed2e2b263b87dbd36f8fb5f3d41a",
       "size": 4859480
     },
     "03_tscircuit/build/schematic.pdf": {
-      "sha256": "28ef51c44eda16f9571c2b9426430ce303138c5d503d59c6a38ac5db8ac6d5c3",
-      "size": 1875296
+      "sha256": "41989418b96805c04e7b833b2e17d8c53dfbc18d8be1eaa866ec09de9c6947a2",
+      "size": 1875028
     },
     "03_tscircuit/manifest.yaml": {
       "sha256": "a7ffcb75ca6679763d7fe8577fa6aeaf77f0fd40d26cfa316aa2a1bc8ae92083",
       "size": 7206
     },
     "04_kicad/crow_carrier.kicad_sch": {
-      "sha256": "89f474a884c2aa8dc75bd582035d1f94ebadf3875817110ae38147580250aa32",
-      "size": 1991656
+      "sha256": "3794e0f05bf8acd3532d392b38026d6cb59b23af0d43119c2e02f5e7bbf6f28e",
+      "size": 1991795
     },
     "06_build/build_provenance.json": {
-      "sha256": "0fa553c78c3e7dfe9a2f0013e1208b3077031f3b86e0468fd58933a58374e9ef",
+      "sha256": "d41c162a2ce716c35166a48cc38b9f76879659553855224058188e035ab63938",
       "size": 1152
     },
     "06_build/netlists/crow_carrier.net": {
-      "sha256": "f3b4e039a695eeec34843174e9430d4bb5c65c4773ed3fa2a9998a18a0654d0e",
-      "size": 1220971
+      "sha256": "43132fc71a715d230738a65e9acbc89f55030e53a4541c34468127c048331c93",
+      "size": 1221250
     }
   },
   "name": "schematic",

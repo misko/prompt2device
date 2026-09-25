@@ -52,3 +52,7 @@ layout_refs:
   reached: true
   artifact: Nexperia PESD2USB3UV-T Tables 2-6 and Figures 13-14
   why: Exact manufacturer primary fixes pinout, ratings, package and reflow lands, not Crow electrical or native PCB acceptance.
+- tier: 2
+  reached: false
+  artifact: Exact PESD2USB3UV editable manufacturer reference design files
+  why: No exact editable routed reference board was retained; connector-to-clamp signal path and low-inductance return require native PCB review.
