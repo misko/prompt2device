@@ -22,5 +22,10 @@ source/receiver margin, P1/P2 capacity, or acceptance.
 Reproduce from the worktree root:
 
 ```sh
-/usr/bin/python3 projects/crow-usb-carrier-v1/01_docs/research/2026-09-25-expanded-tdm-data-local-return-terra/probe.py
+/usr/bin/python3 projects/crow-usb-carrier-v1/01_docs/research/2026-09-25-expanded-tdm-data-local-return-terra/probe.py > /tmp/crow-expanded-tdm-return.json
+cmp /tmp/crow-expanded-tdm-return.json projects/crow-usb-carrier-v1/01_docs/research/2026-09-25-expanded-tdm-data-local-return-terra/result.json
 ```
+
+The default replay writes no repository file. To retain an additional result,
+pass `--write-result NEW_PATH`; it refuses an existing path, including the
+committed `result.json`.

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Reproduce a local, non-credit TDM DATA return opportunity."""
-import hashlib, json, shutil, subprocess, tempfile
+import argparse, hashlib, json, shutil, subprocess, tempfile
 from collections import Counter
 from pathlib import Path
 import pcbnew, yaml
@@ -9,7 +9,6 @@ HERE = Path(__file__).resolve().parent
 PROJECT = HERE.parents[2]
 BASE = PROJECT / '06_build/prototype_board_diagnostic/current-ti-mounting-expanded-locked-20260925/04_kicad/crow_carrier.kicad_pcb'
 P1 = PROJECT / '01_docs/research/2026-09-25-ti-expanded-locked-p1-sol/p1_requirements.yaml'
-OUT = HERE / 'result.json'
 BASE_SHA = 'fe8d2c9a9922eeab2371d0187da9407ac590687a77b03a8a099c35a75b5ddd16'
 P1_SHA = 'e8ff456de1868386890dbb5413bb20dc054b5d711b7c9b97d8b02a6b4695ae92'
 START, END, VIA = (200.8375, 97.6), (199.805, 97.6), (197.2, 98.2)
@@ -27,6 +26,12 @@ def run_drc(folder, stem):
     subprocess.run(['kicad-cli','pcb','drc','--refill-zones','--format','json','-o',str(report),str(folder/(stem+'.kicad_pcb'))], check=True, capture_output=True, text=True)
     return json.loads(report.read_text())
 
+parser = argparse.ArgumentParser(description=__doc__)
+parser.add_argument('--write-result', type=Path, metavar='NEW_PATH',
+                    help='write the JSON to a new path; refuses an existing path')
+args = parser.parse_args()
+if args.write_result is not None and args.write_result.exists():
+    raise SystemExit(f'refusing to overwrite existing result path: {args.write_result}')
 if sha(BASE) != BASE_SHA or sha(P1) != P1_SHA: raise SystemExit('bound input drift')
 fixed = yaml.safe_load(P1.read_text())['p1_fixed_refs']
 if len(fixed) != 33: raise SystemExit('P1 fixed-reference denominator drift')
@@ -57,4 +62,8 @@ new = Counter(x['type'] for x in after['violations']) - Counter(x['type'] for x 
 bad = {k:v for k,v in new.items() if k in {'clearance','track_width','shorting_items','hole_clearance','via_dangling'}}
 if bad: raise SystemExit('new native violation: '+str(bad))
 result = {'schema':1,'kind':'expanded-tdm-data-local-return-opportunity','status':'P2_GEOMETRY_ONLY','p1_accepted':False,'p2_accepted':False,'routing_realized':False,'input_hashes':{'board':sha(BASE),'p1_fixed_refs':sha(P1),'project':sha(BASE.with_suffix('.kicad_pro')),'rules':sha(BASE.with_suffix('.kicad_dru'))},'fixed_reference_count':len(fixed),'fixed_reference_poses_unchanged':True,'connector_geometry_unchanged':True,'data_stub':{'net':'TDM_DATA_1V8','pad':'U_XU.107','layer':'F.Cu','width_mm':WIDTH,'start_mm':START,'end_mm':END,'length_mm':1.0325},'gnd_transition':{'source_pad':'C_XU_VDD_106.2','via_mm':VIA,'via_diameter_mm':.60,'via_drill_mm':.30,'fcu_segments_mm':list(GND_PATH),'in1_filled_polygon':inside[0]},'drc':{'baseline_types':types(before),'candidate_types':types(after),'new_types':dict(new),'baseline_unconnected':len(before['unconnected_items']),'candidate_unconnected':len(after['unconnected_items'])},'limitations':['DATA end intentionally dangling; no route','local plane overlap is not continuous-return proof','no timing, impedance, crosstalk, via-inductance, source/receiver, USB, P1, or P2 credit']}
-OUT.write_text(json.dumps(result,indent=2,sort_keys=True)+'\n'); print(json.dumps({'status':result['status'],'new_drc_types':dict(new),'via_polygon':inside[0]}))
+serialized = json.dumps(result, indent=2, sort_keys=True) + '\n'
+if args.write_result is not None:
+    args.write_result.parent.mkdir(parents=True, exist_ok=True)
+    args.write_result.write_text(serialized)
+print(serialized, end='')
