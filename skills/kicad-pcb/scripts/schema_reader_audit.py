@@ -284,7 +284,9 @@ ADVISORY, OWED = "ADVISORY", "OWED"
 #: THE RATCHET (see the docstring). Committed integers; a drop below either is
 #: a hard FAIL, and `t_governed_family_floor_is_pinned` refuses a lowering.
 GOVERNED_FLOOR = 24
-PROVEN_FLOOR = 926
+PROVEN_FLOOR = 937
+#: 926 -> 937 PROVEN: re-pin after Crow's intrinsic-pad rule and semantic
+#: E-FAULT binding rows, plus previously admitted source-selected reader rows.
 #: 23 -> 24 governed, 876 -> 926 PROVEN: bind all 50 source-selected IC
 #: reference research keys to the invoked P-PREC/P-LAYOUT checker.
 #: 874 -> 876 PROVEN: declare existing floater-exclusion rect/margin readers.

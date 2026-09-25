@@ -472,12 +472,12 @@ def t_ungoverned_family_is_named_not_failed():
 
 
 # --------------------------------------------------------------- real bytes
-@test("the REAL fleet denominator: 23 governed families over the real projects, "
+@test("the REAL fleet denominator: 24 governed families over the real projects, "
       "with the observed-key count and the blanket count both printed")
 def t_real_fleet_denominator():
     r = run([KPY, str(SRA), "--root", str(ROOT)])
     must_pass(r, "G-ORPHAN on the real repo")
-    contains(r.out, "23 governed famil")
+    contains(r.out, "24 governed famil")
     contains(r.out, "0 ORPHAN key(s) in source with no row")
     m = re.search(r"declares (\d+) distinct schema key\(s\) under those rows; "
                   r"(\d+) row\(s\) are", r.out)
@@ -488,6 +488,20 @@ def t_real_fleet_denominator():
     # the families with no `### keys:` block are named, not silent
     for fam in ("twin_adjudications.yaml",):
         contains(r.out, fam)
+
+
+@test("Crow intrinsic-pad and semantic E-FAULT keys name their actual readers")
+def t_crow_recent_reader_bindings():
+    r = run([KPY, str(SRA), "--root", str(ROOT), "--families"])
+    must_pass(r, "G-ORPHAN Crow reader bindings")
+    for key, reader in (
+        ("same_footprint_pad_clearances", "generate_rules_generic.py"),
+        ("same_footprint_pad_clearances[].evidence", "generate_rules_generic.py"),
+        ("same_footprint_pad_clearances[].why", "generate_rules_generic.py"),
+        ("external_source_fuse.circuit_semantic_sha256", "early_design_check.py"),
+    ):
+        check(re.search(r"^\s*" + re.escape(key) + r"\s+" + re.escape(reader) + r"\s*$",
+                        r.out, re.M), f"missing proven Crow reader binding: {key} → {reader}")
 
 
 @test("REAL FINDING — a policy waiver is applied by `id` ALONE: policy_audit.py "

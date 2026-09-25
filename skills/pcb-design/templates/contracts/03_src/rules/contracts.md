@@ -534,6 +534,12 @@ TWO ORPHANS THIS FOLDER'S OWN PROSE HAD HIDDEN, both found by the first run:
 | `scoped_clearances[].hole_clearance` | `generate_rules_generic.py, route_and_stitch_generic.py` | optional drill-to-copper gap emitted and consumed under the same ordered, symmetric area/net predicate as `clearance`; must still clear the tier's `min_space` |
 | `scoped_clearances[].pads_only` | `generate_rules_generic.py, tier_preflight.py` | optional strict boolean; true restricts BOTH items to pads and cannot authorize reduced route clearance; absent/false preserves legacy all-item behavior |
 | `scoped_clearances[].why` | `generate_rules_generic.py` | REQUIRED evidence (canon M4) — for a STRONGER reason than the width case: a width relaxation is bounded below by ampacity, which A-AMP grades independently from `current:`, while an isolation relaxation has NO downstream grader at all (DRC simply stops reporting what the rule permits) |
+| `same_footprint_pad_clearances` | `generate_rules_generic.py` | exact-reference intrinsic-pad clearance declarations; the generator validates entries and emits bounded rules |
+| `same_footprint_pad_clearances[].id` | `generate_rules_generic.py` | stable identifier for generated exact-reference intrinsic-pad rules |
+| `same_footprint_pad_clearances[].refs` | `generate_rules_generic.py` | non-empty exact-reference list; both operands must name the one reference |
+| `same_footprint_pad_clearances[].clearance` | `generate_rules_generic.py` | package-internal pad-to-pad copper floor, never below tier `min_space` |
+| `same_footprint_pad_clearances[].evidence` | `generate_rules_generic.py` | mandatory source evidence for the intrinsic override |
+| `same_footprint_pad_clearances[].why` | `generate_rules_generic.py` | mandatory rationale for the intrinsic override |
 | `length_match.<G>.adr` | `copper_length_audit.py` | R-LEN: the ADR that emitted the intent |
 | `length_match.<G>.intent` | `copper_length_audit.py` | R-LEN group intent |
 | `length_match.<G>.members.<M>` | `copper_length_audit.py, net_reference_audit.py` | the ORDERED net chain measured (E-NETREF K12) |
@@ -607,7 +613,7 @@ TWO ORPHANS THIS FOLDER'S OWN PROSE HAD HIDDEN, both found by the first run:
 | `external_source_fuse.qualification_status` | `early_design_check.py` | closed conditional status; supplier and first-article evidence remain owed |
 | `external_source_fuse.post_fuse_cap_discharge_status` | `early_design_check.py` | local capacitor discharge remains explicitly unqualified |
 | `external_source_fuse.nominal_fuse_i2t_role` | `early_design_check.py` | nominal melting I²t is comparison only, never a guaranteed non-opening threshold |
-| `external_source_fuse.circuit_sha256` | `early_design_check.py` | pins the fresh source circuit used for exact ref/MPN/value/net validation |
+| `external_source_fuse.circuit_semantic_sha256` | `early_design_check.py` | binds every generated circuit row except the sole validated path-fingerprint metadata row before exact ref/MPN/value/net validation |
 | `external_source_fuse.bound_refs` | `early_design_check.py` | closed J_PWR/F_IN/Q_IN/gate/TVS/buck/eight-spoke/post-fuse capacitor denominator |
 | `external_source_fuse.source.*` | `early_design_check.py` | 2.185 A delivery, 11.4–13.2 V, 3.4 A instantaneous peak, one-episode cumulative >2.85 A time, rearm and recovery contract |
 | `external_source_fuse.fuse.*` | `early_design_check.py` | hot continuous allocation and nominal fuse I²t comparison |
