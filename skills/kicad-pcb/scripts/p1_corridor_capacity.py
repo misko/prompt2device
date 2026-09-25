@@ -73,6 +73,9 @@ a planning region overlaps a true endpoint owner's transit space. Electrical
 owners, transit owner and non-electrical planning overlaps are distinct. Every
 native net terminal and P2/filled-return obligation is exact; this record
 creates no reservation, capacity slot, routing claim or P1 acceptance.
+Opt-in ``branch_owner_pockets`` bind sparse, complete native footprint envelopes
+to exact unresolved-branch endpoints. They are not physical cells or route
+reservations and retain every terminal, P2 access, P3 tree and return debt.
 """
 from __future__ import annotations
 
@@ -128,7 +131,7 @@ def _coarse_hash(path, label, errors):
 
 def _coarse_witness(board, witness, net, owned_pads, aliases, pads, outline,
                     regions, fixed_refs, shared_ports, integration_corridors=None,
-                    unresolved_branches=None, physical_cells=None):
+                    unresolved_branches=None, physical_cells=None, owner_pockets=None):
     source = witness.get('source')
     native = witness.get('native')
     block = witness.get('block')
@@ -156,10 +159,15 @@ def _coarse_witness(board, witness, net, owned_pads, aliases, pads, outline,
             raise ContractError(f'{source}: physical cell owner mismatch')
     elif any(c['owner_block'] == block for c in cells.values()):
         raise ContractError(f'{source}: physical cell identity missing')
+    pocket_id = witness.get('branch_owner_pocket_id')
+    if pocket_id is not None and cell_id is not None:
+        raise ContractError(f'{source}: branch owner pocket cannot be a physical cell')
     region_id = cell_id or block
     region = rectangle(regions.get(region_id), f'{region_id} source region')
     region_span = min(region[2] - region[0], region[3] - region[1])
     kind = witness.get('kind', 'native_pad_face')
+    if pocket_id is not None and kind not in UNRESOLVED_KINDS:
+        raise ContractError(f'{source}: branch owner pocket cannot serve another witness')
     if kind != 'shared_transition_port' and not (kind == 'integration_corridor_handoff' and cell_id is not None) and (area[2] - area[0] > region_span / 4 + 1e-6 or area[3] - area[1] > region_span / 4 + 1e-6):
         raise ContractError(f'{source}: witness bbox is a nonlocal bridge across source region')
     ref = native.rsplit('.', 1)[0]
@@ -259,9 +267,25 @@ def _coarse_witness(board, witness, net, owned_pads, aliases, pads, outline,
         if (branch is None or branch['_kind'] != kind or
                 branch['net'] != net or branch['layer'] != layer):
             raise ContractError(f'{source}: unresolved branch identity mismatch')
+        if any('branch_owner_pocket_id' in e for e in branch['endpoints']) and set(witness) != {
+                'kind', 'branch_id', 'source', 'native', 'net', 'block', 'layer',
+                'face', 'boundary_bbox', 'reservation_id', 'p2_obligation',
+                *({'branch_owner_pocket_id'} if pocket_id is not None else set())}:
+            raise ContractError(f'{source}: pocketed branch witness fields invalid')
         endpoint = {'source_pad':source,'native_pad':native,'net':net,'block':block}
-        if endpoint not in branch['endpoints']:
+        matched = [e for e in branch['endpoints'] if all(e.get(k) == v for k,v in endpoint.items())]
+        if len(matched) != 1:
             raise ContractError(f'{source}: unresolved branch endpoint mismatch')
+        selected_pocket = matched[0].get('branch_owner_pocket_id')
+        if pocket_id != selected_pocket:
+            raise ContractError(f'{source}: unresolved branch owner pocket witness mismatch')
+        if pocket_id is not None:
+            pocket = (owner_pockets or {}).get(pocket_id)
+            if (pocket is None or pocket['owner_block'] != block or
+                    native.rsplit('.', 1)[0] not in pocket['refs'] or
+                    branch['id'] not in pocket['branch_ids']):
+                raise ContractError(f'{source}: unresolved branch owner pocket invalid')
+            region = pocket['bbox']
         if not all(p.IsOnLayer(board.GetLayerID(layer)) and
                    area == box_mm(p.GetBoundingBox()) for p in found):
             raise ContractError(f'{source}: unresolved branch boundary is not native pad')
@@ -418,8 +442,66 @@ UNRESOLVED_KINDS = frozenset({'unresolved_multiterminal_branch',
                               'unresolved_two_terminal_crossing'})
 
 
+def _branch_owner_pockets(source, interfaces, board, outline, regions, hashes,
+                          patterns=None):
+    """Validate sparse branch locations without assigning a whole owner cell."""
+    rows = source.get('branch_owner_pockets')
+    if rows is None:
+        return {}
+    if not isinstance(rows, list) or not rows or not isinstance(interfaces.get('blocks'), list):
+        raise ContractError('branch owner pockets require modular block ownership')
+    blocks = {b['id']: set(b['refs']) for b in interfaces['blocks']}
+    native = {fp.GetReference(): fp for fp in board.GetFootprints()}
+    patterns = patterns or []
+    pockets, assigned = {}, set()
+    keys = {'id', 'owner_block', 'refs', 'bbox', 'branch_ids',
+            'board_sha256', 'floorplan_sha256', 'alias_sha256'}
+    for row in rows:
+        if not isinstance(row, dict) or set(row) != keys:
+            raise ContractError('branch owner pocket fields invalid')
+        ident, owner, refs, branch_ids = (row['id'], row['owner_block'],
+                                          row['refs'], row['branch_ids'])
+        if (not isinstance(ident, str) or not ident or ident in pockets or
+                not isinstance(owner, str) or owner not in blocks or
+                not isinstance(refs, list) or not refs or
+                any(not isinstance(ref, str) for ref in refs) or
+                len(refs) != len(set(refs)) or
+                not isinstance(branch_ids, list) or not branch_ids or
+                any(not isinstance(branch, str) or not branch for branch in branch_ids) or
+                len(branch_ids) != len(set(branch_ids)) or
+                not set(refs) <= blocks[owner] or
+                any(ref not in native or ref in assigned for ref in refs)):
+            raise ContractError(f'{ident}: branch owner pocket owner/ref/branch invalid')
+        if any(row[key + '_sha256'] != hashes[key] for key in ('board', 'floorplan', 'alias')):
+            raise ContractError(f'{ident}: branch owner pocket hash drift')
+        area = rectangle(row['bbox'], f'{ident} branch owner pocket')
+        if not lane_inside_outline(outline, area):
+            raise ContractError(f'{ident}: branch owner pocket off board outline')
+        for ref in refs:
+            fp = native[ref]
+            if any(pattern.get('region') not in (None, owner, ident)
+                   for pattern in patterns if ref in pattern['match']):
+                raise ContractError(f'{ident}: source pattern disagrees with owner pocket {ref}')
+            if not contains(area, _physical_envelope(fp)) or any(
+                    not contains(area, box_mm(p.GetBoundingBox())) for p in fp.Pads()):
+                raise ContractError(f'{ident}: native body/pad {ref} clipped by owner pocket')
+        for ref, fp in native.items():
+            if ref not in refs and (intersects(area, _physical_envelope(fp)) or any(
+                    intersects(area, box_mm(p.GetBoundingBox())) for p in fp.Pads())):
+                raise ContractError(f'{ident}: foreign native body/pad {ref} enters owner pocket')
+        for region_id, value in regions.items():
+            if region_id != owner and intersects(area, rectangle(value, f'{region_id} source region')):
+                raise ContractError(f'{ident}: foreign source region {region_id} enters owner pocket')
+        if any(intersects(area, pocket['bbox']) for pocket in pockets.values()):
+            raise ContractError(f'{ident}: branch owner pockets overlap')
+        assigned.update(refs)
+        pockets[ident] = {'id': ident, 'owner_block': owner, 'refs': set(refs),
+                          'branch_ids': set(branch_ids), 'bbox': area}
+    return pockets
+
+
 def _unresolved_branches(source, interfaces, board, regions, coverage, aliases, pads,
-                         physical_cells=None, patterns=None):
+                         physical_cells=None, patterns=None, owner_pockets=None):
     """Validate exact multi-terminal ownership without claiming route geometry.
 
     An unresolved branch has no bbox, slots, or copper credit.  Its blocker
@@ -434,12 +516,23 @@ def _unresolved_branches(source, interfaces, board, regions, coverage, aliases, 
         raise ContractError('unresolved branch list invalid')
     declared = {}
     cells = physical_cells or {}
+    pockets = owner_pockets or {}
+    used_pockets = defaultdict(set)
     patterns = patterns or []
     native_refs = {fp.GetReference(): fp for fp in board.GetFootprints()}
     iface_by_net = {item['net']: item for item in interfaces['interfaces']}
     for kind, row in ((kind, row) for kind, rows in groups for row in rows):
         if not isinstance(row, dict):
             raise ContractError('unresolved branch record invalid')
+        pocketed = any(isinstance(e, dict) and 'branch_owner_pocket_id' in e
+                       for e in row.get('endpoints', []) if isinstance(row.get('endpoints'), list))
+        if pocketed and (kind != 'unresolved_multiterminal_branch' or
+                set(row) != {'id', 'owner', 'allocation_id', 'net', 'layer',
+                             'reference_layer', 'reservation_id', 'endpoints',
+                             'terminal_count', 'minimum_tree_edges',
+                             'physical_blockers', 'capacity_slots', 'p2_obligations',
+                             'tree_obligation', 'return_obligation'}):
+            raise ContractError('pocketed branch source fields invalid')
         if kind == 'unresolved_two_terminal_crossing' and set(row) != {
                 'id', 'owner', 'allocation_id', 'net', 'layer', 'reference_layer',
                 'reservation_id', 'endpoints', 'terminal_count', 'minimum_tree_edges',
@@ -482,9 +575,14 @@ def _unresolved_branches(source, interfaces, board, regions, coverage, aliases, 
             if not isinstance(entry, dict):
                 raise ContractError(f'{ident}: branch endpoint record invalid')
             cell_id = entry.get('physical_cell_id')
+            pocket_id = entry.get('branch_owner_pocket_id')
             allowed = {'source_pad', 'native_pad', 'net', 'block'}
             if cell_id is not None:
                 allowed.add('physical_cell_id')
+            if pocket_id is not None:
+                allowed.add('branch_owner_pocket_id')
+            if cell_id is not None and pocket_id is not None:
+                raise ContractError(f'{ident}: branch cannot use physical cell and owner pocket')
             if set(entry) != allowed or entry['source_pad'] in entry_by_source:
                 raise ContractError(f'{ident}: branch endpoint physical cell declaration invalid')
             entry_by_source[entry['source_pad']] = entry
@@ -514,7 +612,9 @@ def _unresolved_branches(source, interfaces, board, regions, coverage, aliases, 
             raise ContractError(f'{ident}: unresolved branch reservation id missing')
         required = [{'status':'P2_REQUIRED','source_pad':s,'native_pad':n,
                      'net':net,'block':block,'branch_id':ident,'layer':layer,
-                     'proof':'native_pad_to_unplaced_tree'}
+                     'proof':'native_pad_to_unplaced_tree',
+                     **({'branch_owner_pocket_id':entry_by_source[s]['branch_owner_pocket_id']}
+                        if 'branch_owner_pocket_id' in entry_by_source[s] else {})}
                     for s,n,_,block in sorted(expected)]
         if row.get('p2_obligations') != required:
             raise ContractError(f'{ident}: exact P2 pad-to-tree obligations missing')
@@ -526,8 +626,16 @@ def _unresolved_branches(source, interfaces, board, regions, coverage, aliases, 
                 raise ContractError(f'{native_pad}: unresolved branch native pad/layer mismatch')
             entry = entry_by_source[source_pad]
             cell_id = entry.get('physical_cell_id')
+            pocket_id = entry.get('branch_owner_pocket_id')
             ref = native_pad.rsplit('.', 1)[0]
-            if cell_id is not None:
+            if pocket_id is not None:
+                pocket = pockets.get(pocket_id)
+                if (pocket is None or pocket['owner_block'] != block or
+                        ref not in pocket['refs'] or ident not in pocket['branch_ids']):
+                    raise ContractError(f'{native_pad}: branch owner pocket owner/ref/branch mismatch')
+                owner_region = pocket['bbox']
+                used_pockets[pocket_id].add((ident, ref))
+            elif cell_id is not None:
                 cell = cells.get(cell_id)
                 if (not isinstance(cell_id, str) or not cell or
                         cell['owner_block'] != block or ref not in cell['refs'] or
@@ -562,6 +670,10 @@ def _unresolved_branches(source, interfaces, board, regions, coverage, aliases, 
         if row.get('capacity_slots') is not None or 'bbox' in row:
             raise ContractError(f'{ident}: unresolved branch cannot claim geometry/capacity')
         declared[ident] = {**row, '_kind': kind}
+    for pocket_id, pocket in pockets.items():
+        if used_pockets[pocket_id] != {(branch, ref) for branch in pocket['branch_ids']
+                                       for ref in pocket['refs']}:
+            raise ContractError(f'{pocket_id}: branch owner pocket endpoint use incomplete')
     return declared
 
 
@@ -1476,7 +1588,7 @@ def _coarse_reservation(board, row, outline, fixed_refs, movable_refs, zones, na
 def _independent_coarse_diagnostics(allocations, coverage, board, owned_pads, aliases,
                                     pads, outline, regions, fixed_refs, movable_refs,
                                     shared_ports, corridors, branches, physical_cells,
-                                    zones, native_pitch, source):
+                                    zones, native_pitch, source, owner_pockets=None):
     """Report one local defect per item without relaxing the normal verdict.
 
     Cross-item endpoint denominators and overlap accounting remain the normal
@@ -1498,7 +1610,8 @@ def _independent_coarse_diagnostics(allocations, coverage, board, owned_pads, al
                     raise ContractError(f'{name}: witness net outside allocation')
                 verified = _coarse_witness(board, witness, witness['net'], owned_pads,
                                            aliases, pads, outline, regions, fixed_refs,
-                                           shared_ports, corridors, branches, physical_cells)
+                                           shared_ports, corridors, branches, physical_cells,
+                                           owner_pockets)
                 target = reservation_map.get(witness.get('reservation_id'))
                 if (target is None or verified['net'] not in target.get('nets', []) or
                         verified['layer'] != target.get('layer') or
@@ -1548,7 +1661,7 @@ def evaluate_coarse(board_path, contract_path, expected_contract_sha256=None, *,
                     diagnose_all=False):
     errors, results, hashes = [], [], {}
     diagnostics = []
-    shared_ports_configured = integration_configured = linked_configured = portal_configured = False
+    shared_ports_configured = integration_configured = linked_configured = portal_configured = pocket_configured = False
     portals = []
     paths = {'board': board_path, 'contract': contract_path, 'source': source_path,
              'interfaces': interface_path, 'aliases': alias_path, 'floorplan': floorplan_path}
@@ -1568,6 +1681,7 @@ def evaluate_coarse(board_path, contract_path, expected_contract_sha256=None, *,
             integration_configured = isinstance(source, dict) and 'integration_corridors' in source
             linked_configured = isinstance(source, dict) and 'linked_paths' in source
             portal_configured = isinstance(source, dict) and 'access_only_portals' in source
+            pocket_configured = isinstance(source, dict) and 'branch_owner_pockets' in source
             branch_configured = isinstance(source, dict) and any(
                 key in source for key in ('unresolved_multiterminal_branches',
                                          'unresolved_two_terminal_crossings'))
@@ -1608,6 +1722,10 @@ def evaluate_coarse(board_path, contract_path, expected_contract_sha256=None, *,
             if not isinstance(patterns, list) or any(not isinstance(p, dict) or not isinstance(p.get('match'), list) for p in patterns):
                 raise ContractError('source placement patterns malformed')
             physical_cells = _physical_cells(source, interfaces, board, outline, regions, patterns)
+            owner_pockets = _branch_owner_pockets(source, interfaces, board, outline,
+                                                   regions, {'board': hashes['board'],
+                                                             'floorplan': hashes['floorplan'],
+                                                             'alias': hashes['aliases']}, patterns)
             portals = _access_only_portals(source, interfaces, board, outline,
                                            regions, list(board.Zones()), coverage,
                                            aliases, pads, contract.get('allocations'),
@@ -1657,7 +1775,7 @@ def evaluate_coarse(board_path, contract_path, expected_contract_sha256=None, *,
                                                zones, coverage, aliases, pads, shared_ports,
                                                physical_cells)
             branches = _unresolved_branches(source, interfaces, board, regions, coverage,
-                                            aliases, pads, physical_cells, patterns)
+                                            aliases, pads, physical_cells, patterns, owner_pockets)
             used_port_endpoints = defaultdict(set)
             used_corridor_endpoints = defaultdict(set)
             used_branches = defaultdict(set)
@@ -1693,7 +1811,7 @@ def evaluate_coarse(board_path, contract_path, expected_contract_sha256=None, *,
                 diagnostics = _independent_coarse_diagnostics(
                     allocations, coverage, board, owned_pads, aliases, pads, outline,
                     regions, fixed_refs, movable_refs, shared_ports, corridors, branches,
-                    physical_cells, zones, native_pitch, source)
+                    physical_cells, zones, native_pitch, source, owner_pockets)
             for allocation in allocations:
                 name = allocation['id']
                 try:
@@ -1724,7 +1842,8 @@ def evaluate_coarse(board_path, contract_path, expected_contract_sha256=None, *,
                             raise ContractError(f'{name}: witness net outside allocation')
                         checked.append(_coarse_witness(board, witness, witness['net'], owned_pads,
                                                        aliases, pads, outline, regions, fixed_refs,
-                                                       shared_ports, corridors, branches, physical_cells))
+                                                       shared_ports, corridors, branches, physical_cells,
+                                                       owner_pockets))
                     if {w['net'] for w in checked} | linked_nets != coverage[name]:
                         raise ContractError(f'{name}: missing per-net boundary witness')
                     if len({(w['source'], w['net']) for w in checked}) != len(checked):
@@ -1748,6 +1867,9 @@ def evaluate_coarse(board_path, contract_path, expected_contract_sha256=None, *,
                         _virtual_region_clearance(witness, target, regions)
                         if witness.get('kind') in UNRESOLVED_KINDS:
                             branch = branches[witness['branch_id']]
+                            if any('branch_owner_pocket_id' in e for e in branch['endpoints']) and (
+                                    set(target) != {'id', 'kind', 'branch_id', 'layer', 'nets'}):
+                                raise ContractError(f"{verified['source']}: pocketed branch reservation fields invalid")
                             if (branch['_kind'] == 'unresolved_two_terminal_crossing' and
                                     set(target) != {'id', 'kind', 'branch_id', 'layer', 'nets'}):
                                 raise ContractError(f"{verified['source']}: two-terminal reservation fields invalid")
@@ -2000,7 +2122,8 @@ def evaluate_coarse(board_path, contract_path, expected_contract_sha256=None, *,
             errors.append(str(exc))
     status = 'FAIL' if (any(row['status'] == 'FAIL' for row in results) or
                         ((shared_ports_configured or integration_configured or
-                          linked_configured or branch_configured or portal_configured) and errors) or
+                          linked_configured or branch_configured or portal_configured or
+                          pocket_configured) and errors) or
                         any('overlapping named allocations' in error or 'shared port' in error or
                             'shared transition port' in error or 'unowned overlap' in error or
                             'foreign footprint' in error for error in errors)) else 'INCOMPLETE'
