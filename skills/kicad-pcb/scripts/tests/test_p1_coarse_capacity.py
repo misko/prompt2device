@@ -1141,6 +1141,16 @@ class UnresolvedBranchTest(unittest.TestCase):
         with self.assertRaisesRegex(checker.ContractError,'tree lower bound'):
             self.validate()
 
+    def test_undeclared_native_terminal_rejected(self):
+        # The source interface is the authoritative five/three-terminal set;
+        # a board-only fourth pad would make the promised tree false even if
+        # every declared terminal is still present.
+        pad(self.board, 'J_EXTRA', '1', 'TREE', 7, 5, .4)
+        _, self.pads = checker.graph.board_index(self.board)
+        with self.assertRaisesRegex(checker.ContractError,
+                                    'exact native branch terminal set'):
+            self.validate()
+
     def test_unreported_overlap_and_fake_geometry_rejected(self):
         self.branch['physical_blockers']=[]
         with self.assertRaisesRegex(checker.ContractError,'blocker inventory'):

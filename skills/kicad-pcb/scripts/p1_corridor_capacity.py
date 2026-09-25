@@ -387,6 +387,18 @@ def _unresolved_branches(source, interfaces, board, regions, coverage, aliases, 
                 {(e.get('source_pad'), e.get('native_pad'), e.get('net'), e.get('block'))
                  for e in entries if isinstance(e, dict)} != expected):
             raise ContractError(f'{ident}: exact branch endpoint denominator mismatch')
+        # Declaring each expected terminal is not enough: the native net must
+        # not carry a sixth, undeclared terminal that turns the stated tree
+        # into a different electrical obligation.  Keep the physical count as
+        # well as the identities, since a malformed footprint can repeat a
+        # pad number.
+        expected_native = {native_pad for _, native_pad, _, _ in expected}
+        actual_native = [fp.GetReference() + '.' + pad.GetNumber()
+                         for fp in board.GetFootprints() for pad in fp.Pads()
+                         if pad.GetNetname() == net]
+        if (len(actual_native) != len(expected_native) or
+                set(actual_native) != expected_native):
+            raise ContractError(f'{ident}: exact native branch terminal set mismatch')
         if row.get('terminal_count') != len(expected) or row.get('minimum_tree_edges') != len(expected)-1:
             raise ContractError(f'{ident}: branch tree lower bound mismatch')
         if (row.get('tree_obligation') != {'status':'P3_REQUIRED', 'net':net,

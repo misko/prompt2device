@@ -27,7 +27,7 @@ PINNED = {
     'contract':'03e91be3e2c77a91d7ce8268d35681f52e5db44be550dd9f75643f298d688416',
     'interfaces':'7201aa55cffefca99f9f27e92711cbbcf28387432523a8c960b5cd71e973170e',
     'aliases':'a6baba8bd4e389c146250a2a2ef5f7e9b09f63526e71dbdd05be8bca9b7b2c2e',
-    'checker':'2aa98dea8a963d20a32213461bcaab2a81044f688685830f54cda08aa3eca044',
+    'checker':'878a8ce6d6736a0093e0500106c97917b6b533dc20b0cbd9ba615d08f81f8fb2',
 }
 
 
