@@ -1,0 +1,201 @@
+{
+  "schema": 1,
+  "kind": "crow-xtal-region-handoff-search",
+  "status": "REQUIRES_REGION_SHIFT_AND_C_XU_VDDIO_35_MOVE",
+  "hashes": {
+    "board": "fbfb3bda95f1ddc98e7d3d229550644d136dc7d6349ba19a4023eb13b07e7e27",
+    "floorplan": "cd52893214a87432b99bab41827a64680bd8a2f970342f126260157948b50925",
+    "source": "9a13c0999d29f17280bb5d8ffb98a5e0d59afe3ee4511eb004e436bffc13ece4"
+  },
+  "exact_endpoint_count": 7,
+  "exact_endpoints": [
+    {
+      "ref_pad": "U_XU.34",
+      "net": "XTAL_IN",
+      "pad_bbox_mm": [
+        215.425,
+        105.675,
+        216.9,
+        105.925
+      ]
+    },
+    {
+      "ref_pad": "R_XTAL_DRIVE.1",
+      "net": "XTAL_IN",
+      "pad_bbox_mm": [
+        211.22,
+        132.379999,
+        211.76,
+        133.019999
+      ]
+    },
+    {
+      "ref_pad": "R_XTAL_FB.1",
+      "net": "XTAL_IN",
+      "pad_bbox_mm": [
+        209.22,
+        121.48,
+        209.76,
+        122.12
+      ]
+    },
+    {
+      "ref_pad": "U_XU.33",
+      "net": "XTAL_OUT",
+      "pad_bbox_mm": [
+        215.425,
+        106.075,
+        216.9,
+        106.325
+      ]
+    },
+    {
+      "ref_pad": "C_XTAL_OUT.1",
+      "net": "XTAL_OUT",
+      "pad_bbox_mm": [
+        208.04,
+        130.79,
+        208.6,
+        131.41
+      ]
+    },
+    {
+      "ref_pad": "R_XTAL_FB.2",
+      "net": "XTAL_OUT",
+      "pad_bbox_mm": [
+        210.24,
+        121.48,
+        210.78,
+        122.12
+      ]
+    },
+    {
+      "ref_pad": "Y_XU.3",
+      "net": "XTAL_OUT",
+      "pad_bbox_mm": [
+        211.4,
+        125.8,
+        212.8,
+        127.0
+      ]
+    }
+  ],
+  "native_oscillator_envelopes_mm": {
+    "C_XTAL_IN": [
+      209.345,
+      122.795,
+      211.255,
+      123.805
+    ],
+    "C_XTAL_OUT": [
+      207.845,
+      130.595,
+      209.755,
+      131.605
+    ],
+    "R_XTAL_DRIVE": [
+      211.025,
+      132.184999,
+      212.975,
+      133.214999
+    ],
+    "R_XTAL_FB": [
+      209.025,
+      121.285,
+      210.975,
+      122.315
+    ],
+    "U_XU": [
+      199.805,
+      91.305,
+      217.195,
+      108.695
+    ],
+    "Y_XU": [
+      208.555,
+      125.355,
+      213.445,
+      129.145
+    ]
+  },
+  "p1_fixed_ref_count": 27,
+  "p1_fixed_refs_intersecting_proposal": [],
+  "current_qspi_region_mm": [
+    199.8,
+    110.5,
+    223.2,
+    118.5
+  ],
+  "proposed_source_regions_mm": {
+    "xmos_core_west": [
+      190.0,
+      84.0,
+      217.2,
+      110.5
+    ],
+    "xmos_core_east": [
+      217.2,
+      84.0,
+      232.0,
+      105.5
+    ],
+    "clock_oscillator_handoff": [
+      217.2,
+      105.5,
+      218.95,
+      118.5
+    ],
+    "board_integration_qspi": [
+      219.0,
+      110.5,
+      223.2,
+      118.5
+    ],
+    "clock_flash_debug": [
+      190,
+      118.5,
+      232,
+      136
+    ]
+  },
+  "current_qspi_blocks_handoff": true,
+  "shifted_qspi_region_native_hits": [],
+  "shifted_qspi_region_native_copper_hits": [],
+  "handoff_native_hits_before_move": [
+    "C_XU_VDDIO_35"
+  ],
+  "required_component_move": {
+    "ref": "C_XU_VDDIO_35",
+    "current_envelope_mm": [
+      217.495,
+      104.845,
+      218.505,
+      106.755
+    ],
+    "reason": "its native body/courtyard blocks the two XTAL pads' east exit",
+    "fixed": "C_XU_VDDIO_35 is absent from p1_fixed_refs; its replacement pose needs P2 proof"
+  },
+  "required_region_move": {
+    "from": [
+      199.8,
+      110.5,
+      223.2,
+      118.5
+    ],
+    "to": [
+      219.0,
+      110.5,
+      223.2,
+      118.5
+    ],
+    "reason": "moving the QSPI left edge to its existing x=219.0 face frees the source-owned x=217.2..218.95 oscillator handoff",
+    "qspi_raw_width_mm": 4.2,
+    "qspi_declared_demand_mm": 2.7
+  },
+  "remaining_debt": [
+    "P2 pad escape and clearance for U_XU.33/U_XU.34 and the moved C_XU_VDDIO_35",
+    "P2 placement and route of all oscillator parts; this study does not approve a pose or copper",
+    "continuous filled In1.Cu GND reference beneath both XTAL lanes",
+    "P3 oscillator electrical/length/guard validation and all P1 allocation review"
+  ]
+}
