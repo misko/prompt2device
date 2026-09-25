@@ -23,6 +23,7 @@ FILES = {
     'floorplan': PACKET / 'floorplan.yaml',
     'contract': PACKET / 'coarse.json',
     'modular_plan': PACKET / 'modular_plan.json',
+    'capacity_helper': ROOT / 'skills/kicad-pcb/scripts/p1_corridor_capacity.py',
 }
 EXPECTED = {
     'board': 'fe8d2c9a9922eeab2371d0187da9407ac590687a77b03a8a099c35a75b5ddd16',
@@ -32,6 +33,7 @@ EXPECTED = {
     'floorplan': '8a805d92d4f57c3a0db00a45d1c9aef57958eb0c219d44f9ca89e5531021d8b4',
     'contract': '9faaed39333c0db45c188003d2ac6bacc69562f259f8332d0d6a79db7d25037f',
     'modular_plan': '02be5ad6ea879ac04d5dfd9e2e09d5226f85c85fa83d72628aa40cf93de6b4d8',
+    'capacity_helper': 'fdbf97c70a105205423a7b4430f584344346a2250ddb63a0f71260e7cb284dd0',
 }
 HELPER = ROOT / 'skills/kicad-pcb/scripts/p1_corridor_capacity.py'
 sys.path.insert(0, str(HELPER.parent))

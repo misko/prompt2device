@@ -17,6 +17,7 @@ coarse contract `9faaed39333c0db45c188003d2ac6bacc69562f259f8332d0d6a79db7d25037
 modular plan `02be5ad6ea879ac04d5dfd9e2e09d5226f85c85fa83d72628aa40cf93de6b4d8`;
 KiCad project rules `7977bc9edb88e1ef723eb256f07949871493dfda3d2c2491dd5d5b6087ddc094`;
 custom rules `00ab83d8484368f132392523972c1f41fc9073423d3c600feec962684f9c3b0a`.
+The maintained capacity helper is `fdbf97c70a105205423a7b4430f584344346a2250ddb63a0f71260e7cb284dd0`.
 The board is the existing ignored private diagnostic at
 `06_build/prototype_board_diagnostic/current-ti-mounting-expanded-locked-20260925/04_kicad/crow_carrier.kicad_pcb`.
 It has 14 existing native vias and no routed service or timing trace. The
