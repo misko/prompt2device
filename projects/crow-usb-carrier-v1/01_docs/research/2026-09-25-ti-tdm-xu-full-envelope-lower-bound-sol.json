@@ -1,0 +1,388 @@
+{
+  "analog_exclusion_regions": {
+    "analog_ch7": [
+      157,
+      42,
+      179,
+      84
+    ],
+    "analog_ch8": [
+      179,
+      42,
+      201,
+      84
+    ]
+  },
+  "cases": [
+    {
+      "baseline_connected_width_mm": 0.0,
+      "baseline_slots": 0,
+      "demand_slots": 4,
+      "first_relaxed_witnesses": [
+        {
+          "connected_width_mm": 2.5384,
+          "refs": [
+            "C_XU_USB18",
+            "C_XU_VDD_104",
+            "R_ADC_I2C_SCL_B_PU"
+          ],
+          "slots": 5
+        },
+        {
+          "connected_width_mm": 2.60675,
+          "refs": [
+            "C_XU_VDD_104",
+            "C_XU_VDD_105",
+            "R_ADC_I2C_SCL_B_PU"
+          ],
+          "slots": 5
+        }
+      ],
+      "lane_mm": [
+        182.475,
+        94,
+        199.825,
+        100
+      ],
+      "minimum_removed_count": 3,
+      "optimistic_removal_sweep": [
+        {
+          "four_slot_combinations": 0,
+          "removed_count": 0,
+          "tested": 1
+        },
+        {
+          "four_slot_combinations": 0,
+          "removed_count": 1,
+          "tested": 7
+        },
+        {
+          "four_slot_combinations": 0,
+          "removed_count": 2,
+          "tested": 21
+        },
+        {
+          "four_slot_combinations": 2,
+          "removed_count": 3,
+          "tested": 35
+        }
+      ],
+      "pitch_mm": 0.45,
+      "relevant_full_bboxes_mm": {
+        "C_XU_USB18": [
+          191.151428,
+          92.5384,
+          201.034524,
+          95.10825
+        ],
+        "C_XU_VDDIO_109": [
+          187.222857,
+          98.7384,
+          198.934524,
+          101.30825
+        ],
+        "C_XU_VDD_104": [
+          192.001251,
+          91.539313,
+          201.034524,
+          98.00825
+        ],
+        "C_XU_VDD_105": [
+          188.579999,
+          96.5384,
+          198.934524,
+          99.10825
+        ],
+        "C_XU_VDD_106": [
+          192.401251,
+          97.715,
+          201.034524,
+          100.20825
+        ],
+        "C_XU_VDD_113": [
+          196.165476,
+          99.915,
+          201.034524,
+          106.598749
+        ],
+        "R_ADC_I2C_SCL_B_PU": [
+          168.508334,
+          91.005,
+          183.502321,
+          100.960688
+        ]
+      },
+      "relevant_full_footprints": [
+        "C_XU_USB18",
+        "C_XU_VDDIO_109",
+        "C_XU_VDD_104",
+        "C_XU_VDD_105",
+        "C_XU_VDD_106",
+        "C_XU_VDD_113",
+        "R_ADC_I2C_SCL_B_PU"
+      ]
+    },
+    {
+      "baseline_connected_width_mm": 0.0,
+      "baseline_slots": 0,
+      "demand_slots": 4,
+      "first_relaxed_witnesses": [
+        {
+          "connected_width_mm": 2.9384,
+          "refs": [
+            "C_XU_USB18",
+            "C_XU_VDD_104",
+            "R_ADC_I2C_SCL_B_PU"
+          ],
+          "slots": 6
+        },
+        {
+          "connected_width_mm": 2.60675,
+          "refs": [
+            "C_XU_VDD_104",
+            "C_XU_VDD_105",
+            "R_ADC_I2C_SCL_B_PU"
+          ],
+          "slots": 5
+        }
+      ],
+      "lane_mm": [
+        182.475,
+        93.6,
+        199.825,
+        100
+      ],
+      "minimum_removed_count": 3,
+      "optimistic_removal_sweep": [
+        {
+          "four_slot_combinations": 0,
+          "removed_count": 0,
+          "tested": 1
+        },
+        {
+          "four_slot_combinations": 0,
+          "removed_count": 1,
+          "tested": 7
+        },
+        {
+          "four_slot_combinations": 0,
+          "removed_count": 2,
+          "tested": 21
+        },
+        {
+          "four_slot_combinations": 2,
+          "removed_count": 3,
+          "tested": 35
+        }
+      ],
+      "pitch_mm": 0.45,
+      "relevant_full_bboxes_mm": {
+        "C_XU_USB18": [
+          191.151428,
+          92.5384,
+          201.034524,
+          95.10825
+        ],
+        "C_XU_VDDIO_109": [
+          187.222857,
+          98.7384,
+          198.934524,
+          101.30825
+        ],
+        "C_XU_VDD_104": [
+          192.001251,
+          91.539313,
+          201.034524,
+          98.00825
+        ],
+        "C_XU_VDD_105": [
+          188.579999,
+          96.5384,
+          198.934524,
+          99.10825
+        ],
+        "C_XU_VDD_106": [
+          192.401251,
+          97.715,
+          201.034524,
+          100.20825
+        ],
+        "C_XU_VDD_113": [
+          196.165476,
+          99.915,
+          201.034524,
+          106.598749
+        ],
+        "R_ADC_I2C_SCL_B_PU": [
+          168.508334,
+          91.005,
+          183.502321,
+          100.960688
+        ]
+      },
+      "relevant_full_footprints": [
+        "C_XU_USB18",
+        "C_XU_VDDIO_109",
+        "C_XU_VDD_104",
+        "C_XU_VDD_105",
+        "C_XU_VDD_106",
+        "C_XU_VDD_113",
+        "R_ADC_I2C_SCL_B_PU"
+      ]
+    }
+  ],
+  "endpoint_trunk_exemptions": [
+    "U_TDM_XLATE",
+    "U_XU"
+  ],
+  "fixed_ref_count": 27,
+  "fixed_ref_poses": {
+    "C_HOLD1": [
+      30.85,
+      120.45,
+      0.0
+    ],
+    "C_HOLD10": [
+      94.95,
+      120.45,
+      0.0
+    ],
+    "C_HOLD11": [
+      107.05,
+      120.45,
+      0.0
+    ],
+    "C_HOLD12": [
+      119.15,
+      120.45,
+      0.0
+    ],
+    "C_HOLD13": [
+      82.85,
+      129.55,
+      0.0
+    ],
+    "C_HOLD14": [
+      94.95,
+      129.55,
+      0.0
+    ],
+    "C_HOLD15": [
+      107.05,
+      129.55,
+      0.0
+    ],
+    "C_HOLD16": [
+      119.15,
+      129.55,
+      0.0
+    ],
+    "C_HOLD2": [
+      42.95,
+      120.45,
+      0.0
+    ],
+    "C_HOLD3": [
+      55.05,
+      120.45,
+      0.0
+    ],
+    "C_HOLD4": [
+      67.15,
+      120.45,
+      0.0
+    ],
+    "C_HOLD5": [
+      30.85,
+      129.55,
+      0.0
+    ],
+    "C_HOLD6": [
+      42.95,
+      129.55,
+      0.0
+    ],
+    "C_HOLD7": [
+      55.05,
+      129.55,
+      0.0
+    ],
+    "C_HOLD8": [
+      67.15,
+      129.55,
+      0.0
+    ],
+    "C_HOLD9": [
+      82.85,
+      120.45,
+      0.0
+    ],
+    "J1": [
+      50.0,
+      26.86,
+      0.0
+    ],
+    "J2": [
+      72.0,
+      26.86,
+      0.0
+    ],
+    "J3": [
+      94.0,
+      26.86,
+      0.0
+    ],
+    "J4": [
+      116.0,
+      26.86,
+      0.0
+    ],
+    "J5": [
+      138.0,
+      26.86,
+      0.0
+    ],
+    "J6": [
+      160.0,
+      26.86,
+      0.0
+    ],
+    "J7": [
+      182.0,
+      26.86,
+      0.0
+    ],
+    "J8": [
+      204.0,
+      26.86,
+      0.0
+    ],
+    "J_JTAG": [
+      228.0,
+      50.0,
+      90.0
+    ],
+    "J_PWR": [
+      30.0,
+      29.42,
+      0.0
+    ],
+    "J_USB": [
+      230.0,
+      22.995,
+      180.0
+    ]
+  },
+  "hashes": {
+    "board": "8e620def0b403fda7635135672afec923c2c23bc9844b3f96102e96d4d5eca10",
+    "capacity_helper": "2cdd5a2dc58680409391f89f8619a564c2de0b591aa27618d665dfe9a1797e8e",
+    "floorplan": "0032b1202f5742b6575198d27ea50629826d49cf81cf12a31fead8a2929d9868",
+    "rules": "191e5580a6ddf56bc9670aff3593c9e9a02d91e75c0c79998b500955050e82a3"
+  },
+  "kind": "ti-tdm-xu-full-envelope-lower-bound",
+  "limitation": "Footprint removal is an optimistic relaxation, not a legal relocation. This proves only that zero, one or two moved non-endpoint refs cannot open either specified full-envelope rectangle while other poses stay fixed.",
+  "p1_accepted": false,
+  "routing_realized": false,
+  "schema": 1,
+  "status": "INCOMPLETE"
+}
