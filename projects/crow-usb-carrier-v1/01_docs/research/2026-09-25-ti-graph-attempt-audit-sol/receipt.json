@@ -1,0 +1,70 @@
+{
+  "counterfactual_only": {
+    "attempts": 1,
+    "max_attempts": 1,
+    "one_failed_current_subject_attempt": "BACKTRACK_REQUIRED"
+  },
+  "coverage": {
+    "components_observed": 569,
+    "components_singly_owned": 569,
+    "crossing_nets_exactly_declared": 59,
+    "crossing_nets_observed": 59,
+    "shared_responsibilities": 6
+  },
+  "current_subject": {
+    "raw_sha256": "20ec22e99fe07229ceb685aef61a89c172ed5f98c7267029edbbdc2c418db9f2",
+    "semantic_sha256": "a2f3ca6aa5bb96dc8841c9fa03ff73b22679a07b0186cf566e85f10d2b3d6f34"
+  },
+  "graph_status": "PASS",
+  "historical_attempts": [
+    {
+      "is_current_root": false,
+      "path": "01_docs/research/2026-09-24-p1-launch-abort-evidence/attempt.json",
+      "sha256": "382f8798074233eef808f79fc868f155fa31972fde956c23cd6f645b6af99314",
+      "status": "FAIL",
+      "subject_matches_current": false,
+      "task_id": "p1_floorplan_r4_r3_plan_rebind"
+    },
+    {
+      "is_current_root": false,
+      "path": "01_docs/research/2026-09-24-p1-relative-path-failure-evidence/attempt.json",
+      "sha256": "c7e782d07766bf28ff3780603963e33cff4f8dca1b99f6e2b3663f3c73ee1700",
+      "status": "FAIL",
+      "subject_matches_current": false,
+      "task_id": "p1_floorplan_569_after_launch_abort"
+    },
+    {
+      "is_current_root": false,
+      "path": "01_docs/research/2026-09-24-p1-native-evidence-failure-evidence/attempt.json",
+      "sha256": "a794713fd51c128c3d61cd460f39a9c011d4bc1c65b6e3cbc0dd7e33d4714069",
+      "status": "FAIL",
+      "subject_matches_current": false,
+      "task_id": "p1_floorplan_569_after_relative_path_abort"
+    }
+  ],
+  "inputs": {
+    "adc8n_route_note": "a5cc0c860c5f1c7ba572fabc7cddb3cbeded176f877ab4e0524db39042447ffb",
+    "circuit": "580ac31b0de8d376d888caa1a342ae43c0636fbd13c74048392173acf718cb6d",
+    "plan": "75c3a517cea50dd6b5745fae96b051d334debd48aac143becaca3d5fe3fc35dc",
+    "unified_result": "e4915c32115f3cc500fc58ef0646be2c9f7c3f0a9b9dcb9944f314dcfe8c5332"
+  },
+  "kind": "crow-ti-graph-attempt-audit",
+  "p1_root": {
+    "attempts": 0,
+    "backtrack_to": [],
+    "blocked_by": [],
+    "blocked_by_external": [],
+    "engineering_acceptance": "NOT_EVALUATED",
+    "external_findings": {},
+    "max_attempts": 1,
+    "missing_evidence": [
+      "06_build/evidence/modular_work/p1_floorplan_569_after_native_evidence_abort.json"
+    ],
+    "phase": "P1_FLOORPLAN",
+    "state": "READY"
+  },
+  "recording_decision": "NO_TASK_ATTEMPT_WRITTEN_OR_OBSERVED",
+  "status": "RESEARCH_ONLY",
+  "ti_research_p1_accepted": false,
+  "ti_research_status": "FAIL"
+}
