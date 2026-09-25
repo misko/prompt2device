@@ -1,0 +1,534 @@
+{
+  "adc7_portal": {
+    "bbox_mm": [
+      166,
+      83.9,
+      167.12,
+      85
+    ],
+    "native_obstacles": []
+  },
+  "board_sha256": {
+    "base": "3c3893e65100d51078e5f915e473585e4f38e3d6d34ef607992dcf6f2fc54cc8",
+    "ti": "8e620def0b403fda7635135672afec923c2c23bc9844b3f96102e96d4d5eca10",
+    "trial": "20373950748ac51113b115b2d12d169160c24024a2a000572bb70c67b0f60919"
+  },
+  "cross_owner_census": {
+    "baseline": {
+      "board_footprints": 569,
+      "cross_owner_body_overlap_pairs": 0,
+      "cross_owner_native_interaction_pairs": 0,
+      "cross_owner_pad_overlap_pairs": 0,
+      "fixed_refs": 27,
+      "foreign_planning_incidences": 160,
+      "foreign_planning_refs": 149,
+      "fully_owner_contained": 445,
+      "module_refs": 569,
+      "outside_owner": 124
+    },
+    "baseline_pairs": [],
+    "trial": {
+      "board_footprints": 569,
+      "cross_owner_body_overlap_pairs": 0,
+      "cross_owner_native_interaction_pairs": 0,
+      "cross_owner_pad_overlap_pairs": 0,
+      "fixed_refs": 27,
+      "foreign_planning_incidences": 150,
+      "foreign_planning_refs": 139,
+      "fully_owner_contained": 454,
+      "module_refs": 569,
+      "outside_owner": 115
+    },
+    "trial_pairs": []
+  },
+  "debts": [
+    "U_ISO8.4 ISO8P pad against relocated GND via: new 0.100 mm clearance versus 0.200 mm requirement",
+    "five new source-generated reference text-height DRC errors",
+    "ADC8 coupling-cap owner/USB margin is only 0.005 mm in the 15-part component study",
+    "28 timing-probe reference fields placed on F.Fab are not source-encoded here",
+    "In1.Cu GND zone is unfilled; no continuous return or traces are proved",
+    "Frozen TI roundrect USB ESD pads differ from the rect style in the current ordinary netlist; governed TSX status requires shape-sensitive rebaseline before promotion"
+  ],
+  "fixed_ref_count": 27,
+  "footprint_count": 569,
+  "native_drc": {
+    "baseline_unconnected": 499,
+    "baseline_violations": 699,
+    "new_issue_rows": [
+      {
+        "description": "Clearance violation ( clearance 0.2000 mm; actual 0.1000 mm)",
+        "items": [
+          {
+            "description": "Pad 4 [ISO8P] of U_ISO8 on F.Cu",
+            "pos": {
+              "x": 198.6,
+              "y": 53.0
+            },
+            "uuid": "5f0be916-707e-49e7-adc9-82a8224f102f"
+          },
+          {
+            "description": "Via [GND] on F.Cu - B.Cu",
+            "pos": {
+              "x": 199.0,
+              "y": 53.0
+            },
+            "uuid": "73d7e49b-aa47-4dee-91bb-157b30e92c04"
+          }
+        ],
+        "severity": "error",
+        "type": "clearance"
+      },
+      {
+        "description": "Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.4500 mm)",
+        "items": [
+          {
+            "description": "Reference field of C_FSYNC_FF1",
+            "pos": {
+              "x": 163.5,
+              "y": 86.3
+            },
+            "uuid": "ea38ba1f-63d9-4a38-8781-eb7563429b61"
+          }
+        ],
+        "severity": "warning",
+        "type": "text_height"
+      },
+      {
+        "description": "Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.4500 mm)",
+        "items": [
+          {
+            "description": "Reference field of C_XU_VDD_54",
+            "pos": {
+              "x": 222.739999,
+              "y": 96.74
+            },
+            "uuid": "428111ef-a11c-4c74-b6c1-54a9de00529e"
+          }
+        ],
+        "severity": "warning",
+        "type": "text_height"
+      },
+      {
+        "description": "Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.6000 mm)",
+        "items": [
+          {
+            "description": "Reference field of C_XU_VDDIO_17",
+            "pos": {
+              "x": 209.0,
+              "y": 112.4
+            },
+            "uuid": "ff0ae053-5c0a-46d2-9c57-5aee23c60032"
+          }
+        ],
+        "severity": "warning",
+        "type": "text_height"
+      },
+      {
+        "description": "Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.4500 mm)",
+        "items": [
+          {
+            "description": "Reference field of R_ADC_PD5P",
+            "pos": {
+              "x": 114.6,
+              "y": 76.4
+            },
+            "uuid": "226adb9f-e464-41bb-808b-629222bf7e96"
+          }
+        ],
+        "severity": "warning",
+        "type": "text_height"
+      },
+      {
+        "description": "Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.4500 mm)",
+        "items": [
+          {
+            "description": "Reference field of R_IN7P",
+            "pos": {
+              "x": 157.7,
+              "y": 57.6
+            },
+            "uuid": "1031feef-70ba-4406-8f45-ca611deb630b"
+          }
+        ],
+        "severity": "warning",
+        "type": "text_height"
+      }
+    ],
+    "new_non_silk_issues": 6,
+    "new_silk_issues": 0,
+    "removed_issues": 6,
+    "trial_unconnected": 499,
+    "trial_violations": 699
+  },
+  "p1_accepted": false,
+  "p2_accepted": false,
+  "pad_identity_and_relative_geometry_preserved": true,
+  "pose_union_count_excluding_qpre": 45,
+  "pose_union_count_including_qpre": 46,
+  "related_distances": [
+    {
+      "pads": [
+        "Y_AUDIO.3",
+        "U_TDM_XLATE.11"
+      ],
+      "ti_mm": 16.565826,
+      "trial_mm": 15.643247
+    },
+    {
+      "pads": [
+        "Y_AUDIO.4",
+        "C_AUDIO_OSC.1"
+      ],
+      "ti_mm": 6.875536,
+      "trial_mm": 5.982483
+    },
+    {
+      "pads": [
+        "C_ADC_I2C_A.1",
+        "U_ADC_I2C_XLATE.3"
+      ],
+      "ti_mm": 13.605712,
+      "trial_mm": 2.05022
+    },
+    {
+      "pads": [
+        "C_ADC_I2C_B.1",
+        "U_ADC_I2C_XLATE.7"
+      ],
+      "ti_mm": 7.920063,
+      "trial_mm": 3.923187
+    },
+    {
+      "pads": [
+        "C_ADC_CLOCK_OK.1",
+        "U_ADC_CLOCK_OK.5"
+      ],
+      "ti_mm": 12.965604,
+      "trial_mm": 1.25016
+    },
+    {
+      "pads": [
+        "C_ADC_AC8N1.1",
+        "U_ISO8.6"
+      ],
+      "ti_mm": 9.141663,
+      "trial_mm": 7.846177
+    },
+    {
+      "pads": [
+        "C_ADC_AC8N1.2",
+        "C_ADC_CM8N.1"
+      ],
+      "ti_mm": 11.810521,
+      "trial_mm": 13.957539
+    },
+    {
+      "pads": [
+        "C_A8P.2",
+        "R_B8P.1"
+      ],
+      "ti_mm": 8.770981,
+      "trial_mm": 4.005509
+    },
+    {
+      "pads": [
+        "C_FILTER8N1.1",
+        "U_ISO8.9"
+      ],
+      "ti_mm": 5.657959,
+      "trial_mm": 4.455334
+    },
+    {
+      "pads": [
+        "C_FILTER8P2.1",
+        "U_ISO8.7"
+      ],
+      "ti_mm": 5.970134,
+      "trial_mm": 5.501136
+    },
+    {
+      "pads": [
+        "C_FILTER8N2.1",
+        "R_X8N.2"
+      ],
+      "ti_mm": 1.857848,
+      "trial_mm": 2.016953
+    },
+    {
+      "pads": [
+        "C_SPOKE_IN8.1",
+        "U_SPOKE8.1"
+      ],
+      "ti_mm": 9.568307,
+      "trial_mm": 9.665532
+    },
+    {
+      "pads": [
+        "R_B1P.1",
+        "C_A1P.2"
+      ],
+      "ti_mm": 8.770981,
+      "trial_mm": 12.404519
+    },
+    {
+      "pads": [
+        "R_B2P.1",
+        "C_A2P.2"
+      ],
+      "ti_mm": 8.770981,
+      "trial_mm": 12.404519
+    },
+    {
+      "pads": [
+        "R_B3P.1",
+        "C_A3P.2"
+      ],
+      "ti_mm": 8.770981,
+      "trial_mm": 12.404519
+    },
+    {
+      "pads": [
+        "R_B4P.1",
+        "C_A4P.2"
+      ],
+      "ti_mm": 8.770981,
+      "trial_mm": 12.404519
+    },
+    {
+      "pads": [
+        "R_B5P.1",
+        "C_A5P.2"
+      ],
+      "ti_mm": 8.770981,
+      "trial_mm": 12.404519
+    },
+    {
+      "pads": [
+        "R_B6P.1",
+        "C_A6P.2"
+      ],
+      "ti_mm": 8.770981,
+      "trial_mm": 12.404519
+    },
+    {
+      "pads": [
+        "R_B7P.1",
+        "C_A7P.2"
+      ],
+      "ti_mm": 8.770981,
+      "trial_mm": 12.404519
+    }
+  ],
+  "return_credit": false,
+  "route_credit": false,
+  "schema": 1,
+  "source_regenerated_timing_fab_reference_fields": [],
+  "status": "REJECTED_NEW_NATIVE_DRC",
+  "timing_mouths": {
+    "translator_west_four": {
+      "bbox_mm": [
+        172.5,
+        94.2,
+        174.305,
+        96.8
+      ],
+      "connected_width_mm": 2.6,
+      "cross_sections": [
+        {
+          "max_free_width_mm": 2.6,
+          "reachable_width_mm": 2.6,
+          "station_mm": 173.4025
+        }
+      ],
+      "demand_slots": 4,
+      "intersecting_native_envelopes": [],
+      "raw_slots": 5
+    },
+    "xu_south_three": {
+      "bbox_mm": [
+        209.5,
+        108.5,
+        212.5,
+        109.7
+      ],
+      "connected_width_mm": 2.995,
+      "cross_sections": [
+        {
+          "max_free_width_mm": 3.0,
+          "reachable_width_mm": 3.0,
+          "station_mm": 108.5225
+        },
+        {
+          "max_free_width_mm": 2.995,
+          "reachable_width_mm": 2.995,
+          "station_mm": 109.1225
+        }
+      ],
+      "demand_slots": 3,
+      "intersecting_native_envelopes": [
+        "C_XU_VDDIO_17:native"
+      ],
+      "raw_slots": 6
+    },
+    "xu_west_data": {
+      "bbox_mm": [
+        197.5,
+        97.1,
+        199.805,
+        98.5
+      ],
+      "connected_width_mm": 1.4,
+      "cross_sections": [
+        {
+          "max_free_width_mm": 1.4,
+          "reachable_width_mm": 1.4,
+          "station_mm": 198.6525
+        }
+      ],
+      "demand_slots": 1,
+      "intersecting_native_envelopes": [],
+      "raw_slots": 3
+    }
+  },
+  "timing_native_probe_fab_label_count": 28,
+  "xu_bypass_distances": [
+    {
+      "ref": "C_XU_VDDIO_10",
+      "ti_mm": 3.363526,
+      "trial_mm": 3.363526,
+      "xu_pin": "10"
+    },
+    {
+      "ref": "C_XU_VDDIO_109",
+      "ti_mm": 4.868091,
+      "trial_mm": 4.868091,
+      "xu_pin": "109"
+    },
+    {
+      "ref": "C_XU_VDDIO_121",
+      "ti_mm": 5.178639,
+      "trial_mm": 5.178639,
+      "xu_pin": "121"
+    },
+    {
+      "ref": "C_XU_VDDIO_17",
+      "ti_mm": 2.516209,
+      "trial_mm": 1.586129,
+      "xu_pin": "17"
+    },
+    {
+      "ref": "C_XU_VDDIO_35",
+      "ti_mm": 2.037353,
+      "trial_mm": 2.037353,
+      "xu_pin": "35"
+    },
+    {
+      "ref": "C_XU_VDDIO_56",
+      "ti_mm": 4.149073,
+      "trial_mm": 4.149073,
+      "xu_pin": "56"
+    },
+    {
+      "ref": "C_XU_VDDIO_72",
+      "ti_mm": 2.559943,
+      "trial_mm": 2.559943,
+      "xu_pin": "72"
+    },
+    {
+      "ref": "C_XU_VDDIO_89",
+      "ti_mm": 2.045802,
+      "trial_mm": 2.045802,
+      "xu_pin": "89"
+    },
+    {
+      "ref": "C_XU_VDD_104",
+      "ti_mm": 2.782949,
+      "trial_mm": 2.782949,
+      "xu_pin": "104"
+    },
+    {
+      "ref": "C_XU_VDD_105",
+      "ti_mm": 4.818538,
+      "trial_mm": 3.889769,
+      "xu_pin": "105"
+    },
+    {
+      "ref": "C_XU_VDD_106",
+      "ti_mm": 2.832809,
+      "trial_mm": 2.588205,
+      "xu_pin": "106"
+    },
+    {
+      "ref": "C_XU_VDD_11",
+      "ti_mm": 1.904549,
+      "trial_mm": 1.904549,
+      "xu_pin": "11"
+    },
+    {
+      "ref": "C_XU_VDD_113",
+      "ti_mm": 2.72485,
+      "trial_mm": 2.72485,
+      "xu_pin": "113"
+    },
+    {
+      "ref": "C_XU_VDD_14",
+      "ti_mm": 1.813644,
+      "trial_mm": 1.586129,
+      "xu_pin": "14"
+    },
+    {
+      "ref": "C_XU_VDD_18",
+      "ti_mm": 4.287809,
+      "trial_mm": 4.287809,
+      "xu_pin": "18"
+    },
+    {
+      "ref": "C_XU_VDD_39",
+      "ti_mm": 1.841414,
+      "trial_mm": 1.841414,
+      "xu_pin": "39"
+    },
+    {
+      "ref": "C_XU_VDD_45",
+      "ti_mm": 1.865156,
+      "trial_mm": 1.865156,
+      "xu_pin": "45"
+    },
+    {
+      "ref": "C_XU_VDD_5",
+      "ti_mm": 3.800435,
+      "trial_mm": 3.800435,
+      "xu_pin": "5"
+    },
+    {
+      "ref": "C_XU_VDD_50",
+      "ti_mm": 2.054947,
+      "trial_mm": 2.054947,
+      "xu_pin": "50"
+    },
+    {
+      "ref": "C_XU_VDD_54",
+      "ti_mm": 3.001651,
+      "trial_mm": 3.001651,
+      "xu_pin": "54"
+    },
+    {
+      "ref": "C_XU_VDD_68",
+      "ti_mm": 1.802583,
+      "trial_mm": 1.802583,
+      "xu_pin": "68"
+    },
+    {
+      "ref": "C_XU_VDD_85",
+      "ti_mm": 1.766722,
+      "trial_mm": 1.766722,
+      "xu_pin": "85"
+    },
+    {
+      "ref": "C_XU_VDD_95",
+      "ti_mm": 2.416879,
+      "trial_mm": 2.416879,
+      "xu_pin": "95"
+    }
+  ]
+}
