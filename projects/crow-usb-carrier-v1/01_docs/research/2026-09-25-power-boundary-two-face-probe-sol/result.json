@@ -1,0 +1,90 @@
+{
+  "attempts": {
+    "analog_ch2_only": {
+      "physical_cells": {
+        "accepted": true,
+        "reason": null
+      },
+      "power_branches": {
+        "N1V8": {
+          "accepted": true,
+          "reason": null,
+          "terminal_count": 42
+        },
+        "N3V3X": {
+          "accepted": true,
+          "reason": null,
+          "terminal_count": 27
+        },
+        "N3V3_ADC": {
+          "accepted": false,
+          "reason": "U_AFE3.8: branch pad outside source owner region",
+          "terminal_count": 68
+        },
+        "N5V_BUCK": {
+          "accepted": false,
+          "reason": "U_BUCK.10: branch pad outside source owner region",
+          "terminal_count": 34
+        }
+      }
+    },
+    "baseline_cells": {
+      "physical_cells": {
+        "accepted": true,
+        "reason": null
+      },
+      "power_branches": {
+        "N1V8": {
+          "accepted": true,
+          "reason": null,
+          "terminal_count": 42
+        },
+        "N3V3X": {
+          "accepted": true,
+          "reason": null,
+          "terminal_count": 27
+        },
+        "N3V3_ADC": {
+          "accepted": false,
+          "reason": "U_AFE2.8: branch pad outside source owner region",
+          "terminal_count": 68
+        },
+        "N5V_BUCK": {
+          "accepted": false,
+          "reason": "U_BUCK.10: branch pad outside source owner region",
+          "terminal_count": 34
+        }
+      }
+    },
+    "both_boundaries": {
+      "physical_cells": {
+        "accepted": false,
+        "reason": "quiet_buck_edge: physical cell overlaps foreign region input_buck"
+      },
+      "power_branches": null
+    }
+  },
+  "board_sha256": "e07ed8bc663fdfd4ce39477165b656b0dcf2bfbae54d84ec501bfccf326d22ef",
+  "boundary_deltas_mm": {
+    "analog_ch2_xmax": [
+      69,
+      69.25
+    ],
+    "input_buck_ymax": [
+      100.5,
+      100.7
+    ]
+  },
+  "cell_count": 13,
+  "input_buck_quiet_buck_edge_overlap_mm": [
+    51.675,
+    100.525,
+    54.975,
+    100.7
+  ],
+  "native_ref_count": 569,
+  "p1_accepted": false,
+  "quiet_power_ref_count": 69,
+  "routing_realized": false,
+  "status": "INCOMPLETE"
+}
