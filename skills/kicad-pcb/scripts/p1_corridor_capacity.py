@@ -402,7 +402,8 @@ def _virtual_region_clearance(witness, reservation, regions):
             raise ContractError(f"{witness['source']}: virtual reservation enters {region_id} source region")
 
 
-def _unresolved_branches(source, interfaces, board, regions, coverage, aliases, pads):
+def _unresolved_branches(source, interfaces, board, regions, coverage, aliases, pads,
+                         physical_cells=None, patterns=None):
     """Validate exact multi-terminal ownership without claiming route geometry.
 
     An unresolved branch has no bbox, slots, or copper credit.  Its blocker
@@ -413,6 +414,9 @@ def _unresolved_branches(source, interfaces, board, regions, coverage, aliases, 
     if not isinstance(rows, list):
         raise ContractError('unresolved branch list invalid')
     declared = {}
+    cells = physical_cells or {}
+    patterns = patterns or []
+    native_refs = {fp.GetReference(): fp for fp in board.GetFootprints()}
     iface_by_net = {item['net']: item for item in interfaces['interfaces']}
     for row in rows:
         if not isinstance(row, dict):
@@ -442,6 +446,17 @@ def _unresolved_branches(source, interfaces, board, regions, coverage, aliases, 
                 {(e.get('source_pad'), e.get('native_pad'), e.get('net'), e.get('block'))
                  for e in entries if isinstance(e, dict)} != expected):
             raise ContractError(f'{ident}: exact branch endpoint denominator mismatch')
+        entry_by_source = {}
+        for entry in entries:
+            if not isinstance(entry, dict):
+                raise ContractError(f'{ident}: branch endpoint record invalid')
+            cell_id = entry.get('physical_cell_id')
+            allowed = {'source_pad', 'native_pad', 'net', 'block'}
+            if cell_id is not None:
+                allowed.add('physical_cell_id')
+            if set(entry) != allowed or entry['source_pad'] in entry_by_source:
+                raise ContractError(f'{ident}: branch endpoint physical cell declaration invalid')
+            entry_by_source[entry['source_pad']] = entry
         # Declaring each expected terminal is not enough: the native net must
         # not carry a sixth, undeclared terminal that turns the stated tree
         # into a different electrical obligation.  Keep the physical count as
@@ -478,13 +493,35 @@ def _unresolved_branches(source, interfaces, board, regions, coverage, aliases, 
             if (not found or any(p.GetNetname()!=net or
                     not p.IsOnLayer(board.GetLayerID(layer)) for p in found)):
                 raise ContractError(f'{native_pad}: unresolved branch native pad/layer mismatch')
-            owner_region = rectangle(regions.get(block), f'{block} branch owner region')
+            entry = entry_by_source[source_pad]
+            cell_id = entry.get('physical_cell_id')
+            ref = native_pad.rsplit('.', 1)[0]
+            if cell_id is not None:
+                cell = cells.get(cell_id)
+                if (not isinstance(cell_id, str) or not cell or
+                        cell['owner_block'] != block or ref not in cell['refs'] or
+                        cell_id not in regions or
+                        tuple(cell['bbox']) != rectangle(regions[cell_id],
+                                                         f'{cell_id} branch physical cell')):
+                    raise ContractError(f'{native_pad}: branch physical cell owner/ref/region mismatch')
+                owner_region = rectangle(regions[cell_id], f'{cell_id} branch physical cell')
+                fp = native_refs.get(ref)
+                if (fp is None or not contains(owner_region, _physical_envelope(fp)) or
+                        any(not contains(owner_region, box_mm(p.GetBoundingBox()))
+                            for p in fp.Pads()) or
+                        any(pattern.get('region') not in (None, cell_id)
+                            for pattern in patterns if ref in pattern['match'])):
+                    raise ContractError(f'{native_pad}: branch physical cell body/pad/pattern mismatch')
+            else:
+                owner_region = rectangle(regions.get(block), f'{block} branch owner region')
             for pad in found:
                 native_box = box_mm(pad.GetBoundingBox())
                 if not contains(owner_region, native_box):
                     raise ContractError(f'{native_pad}: branch pad outside source owner region')
                 foreign = sorted(name for name,value in regions.items()
-                                 if name != block and intersects(native_box,
+                                 if name != block and name != cell_id and
+                                 not (name in cells and cells[name]['owner_block'] == block) and
+                                 intersects(native_box,
                                      rectangle(value, f'{name} foreign source region')))
                 if foreign:
                     blockers.append({'source_pad':source_pad,'native_pad':native_pad,
@@ -1586,7 +1623,8 @@ def evaluate_coarse(board_path, contract_path, expected_contract_sha256=None, *,
             corridors = _integration_corridors(source, interfaces, board, outline, regions,
                                                zones, coverage, aliases, pads, shared_ports,
                                                physical_cells)
-            branches = _unresolved_branches(source, interfaces, board, regions, coverage, aliases, pads)
+            branches = _unresolved_branches(source, interfaces, board, regions, coverage,
+                                            aliases, pads, physical_cells, patterns)
             used_port_endpoints = defaultdict(set)
             used_corridor_endpoints = defaultdict(set)
             used_branches = defaultdict(set)

@@ -1370,5 +1370,72 @@ class UnresolvedBranchTest(unittest.TestCase):
             self.validate()
 
 
+class UnresolvedBranchPhysicalCellTest(unittest.TestCase):
+    def setUp(self):
+        UnresolvedBranchTest.setUp(self)
+        self.regions.update(b=[4,4,5.5,6], b_east=[5.6,4,7,6],
+                            foreign=[8,8,9,9])
+        self.branch['physical_blockers'] = []
+        self.branch['endpoints'][2]['physical_cell_id'] = 'b_east'
+        self.cells = {'b': {'owner_block':'b', 'refs':{'J_B'}, 'transit':False,
+                            'bbox':(4,4,5.5,6)},
+                      'b_east': {'owner_block':'b', 'refs':{'J_C'}, 'transit':False,
+                                 'bbox':(5.6,4,7,6)}}
+        self.patterns = [{'match':['J_C'], 'region':'b_east'}]
+
+    def validate(self):
+        return checker._unresolved_branches(
+            {'unresolved_multiterminal_branches':[self.branch]},self.interfaces,
+            self.board,self.regions,{'signal':{'TREE'}},{},self.pads,
+            self.cells,self.patterns)
+
+    def test_remote_cell_preserves_exact_tree_and_obligations(self):
+        self.assertEqual(set(self.validate()), {'tree'})
+        self.assertEqual(len(self.branch['endpoints']), 3)
+        self.assertEqual(len(self.branch['p2_obligations']), 3)
+        self.assertEqual(self.branch['minimum_tree_edges'], 2)
+        self.assertIsNone(self.branch.get('capacity_slots'))
+
+    def test_missing_or_wrong_cell_fails_closed(self):
+        del self.branch['endpoints'][2]['physical_cell_id']
+        with self.assertRaisesRegex(checker.ContractError, 'outside source owner region'):
+            self.validate()
+        self.branch['endpoints'][2]['physical_cell_id'] = 'b'
+        with self.assertRaisesRegex(checker.ContractError, 'owner/ref/region mismatch'):
+            self.validate()
+        self.branch['endpoints'][2]['physical_cell_id'] = 'a_unknown'
+        with self.assertRaisesRegex(checker.ContractError, 'owner/ref/region mismatch'):
+            self.validate()
+
+    def test_wrong_owner_region_body_and_pattern_fail_closed(self):
+        self.cells['b_east']['owner_block'] = 'a'
+        with self.assertRaisesRegex(checker.ContractError, 'owner/ref/region mismatch'):
+            self.validate()
+        self.cells['b_east']['owner_block'] = 'b'
+        self.cells['b_east']['bbox'] = (5.8,4,7,6)
+        with self.assertRaisesRegex(checker.ContractError, 'owner/ref/region mismatch'):
+            self.validate()
+        self.cells['b_east']['bbox'] = (5.6,4,7,6)
+        self.regions['b_east'] = [5.9,4,7,6]
+        self.cells['b_east']['bbox'] = (5.9,4,7,6)
+        with self.assertRaisesRegex(checker.ContractError, 'body/pad/pattern mismatch'):
+            self.validate()
+        self.regions['b_east'] = [5.6,4,7,6]
+        self.cells['b_east']['bbox'] = (5.6,4,7,6)
+        self.patterns[0]['region'] = 'b'
+        with self.assertRaisesRegex(checker.ContractError, 'body/pad/pattern mismatch'):
+            self.validate()
+
+    def test_extra_endpoint_field_or_undeclared_native_pad_rejected(self):
+        self.branch['endpoints'][2]['unknown'] = 'claim'
+        with self.assertRaisesRegex(checker.ContractError, 'physical cell declaration invalid'):
+            self.validate()
+        del self.branch['endpoints'][2]['unknown']
+        pad(self.board, 'J_EXTRA', '1', 'TREE', 8, 5, .4)
+        _, self.pads = checker.graph.board_index(self.board)
+        with self.assertRaisesRegex(checker.ContractError, 'exact native branch terminal set'):
+            self.validate()
+
+
 if __name__ == '__main__':
     unittest.main()
