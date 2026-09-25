@@ -135,7 +135,7 @@ def main():
        'actual 0.1000 mm' not in old_clearance[0]['description'] or \
        old_clearance[0]['description']!=new_clearance[0]['description']:
         raise SystemExit('persistent ISO8 clearance identity/magnitude drift')
-    receipt={'schema':1,'status':'REJECTED_PERSISTENT_NATIVE_CLEARANCE','p1_accepted':False,'p2_accepted':False,
+    receipt={'schema':1,'status':'RESEARCH_ONLY_INCOMPLETE_BARE_BOARD_DRC_CONTEXT','p1_accepted':False,'p2_accepted':False,
              'route_credit':False,'return_credit':False,
              'board_sha256':EXPECTED,'fixed_ref_count':27,'footprint_count':569,
              'pose_union_count_excluding_qpre':len(expected['move_union']),
@@ -146,21 +146,23 @@ def main():
                                    'trial_pairs':after['cross_owner_native_interactions']},
              'adc7_portal':{'bbox_mm':portal,'native_obstacles':portal_hits},
              'timing_mouths':mouths,'related_distances':related,'xu_bypass_distances':bypass,
-             'native_drc':{'baseline_violations':len(old['violations']),'trial_violations':len(new['violations']),
+             'native_drc':{'context':'Bare-board default rules without TI project/POFV producer; superseded by exact profile replay in ../2026-09-25-ti-iso8-profile-replay-sol/receipt.json',
+                           'baseline_violations':len(old['violations']),'trial_violations':len(new['violations']),
                            'baseline_unconnected':len(old['unconnected_items']),
                            'trial_unconnected':len(new['unconnected_items']),
                            'new_non_silk_issues':len(new_non_silk),
                            'new_silk_issues':len(new_issues-old_issues)-len(new_non_silk),
                            'removed_issues':len(old_issues-new_issues),
                            'new_issue_rows':new_issue_rows,'removed_issue_rows':removed_issue_rows,
-                           'clearance_interpretation':'The same 0.100 mm actual versus 0.200 mm required via/pad deficit persists; identity moves from U_ISO8.2 AUDIO_EN to U_ISO8.4 ISO8P.'},
+                           'clearance_interpretation':'Bare-board defaults flag the same 0.100-mm gap against 0.200 mm at U_ISO8.2 then U_ISO8.4. Exact TI POFV rules authorize 0.100 mm at those named sites; full-profile DRC has no ISO8 clearance issue.'},
              'timing_native_probe_fab_label_count':len(fab_group),
              'source_regenerated_timing_fab_reference_fields':fab_rows,
-             'debts':['Pre-existing 0.100 mm versus 0.200 mm ISO8 GND-via clearance deficit persists at U_ISO8.4 ISO8P after moving from U_ISO8.2 AUDIO_EN',
-                      'five source-generated reference text-height DRC warnings change identity; total unchanged',
+             'debts':['Bare-board DRC omits conditional POFV rule authority; see exact full-profile replay for valid ISO8 clearance result',
+                      'five bare-board text-height warning identities change; exact full-profile DRC issue sets are identical',
                       'ADC8 coupling-cap owner/USB margin is only 0.005 mm in the 15-part component study',
                       '28 timing-probe reference fields placed on F.Fab are not source-encoded here',
                       'In1.Cu GND zone is unfilled; no continuous return or traces are proved',
+                      'Conditional B2 POFV still needs vendor/CAM/PCBA acceptance',
                       'Frozen TI roundrect USB ESD pads differ from the rect style in the current ordinary netlist; governed TSX status requires shape-sensitive rebaseline before promotion']}
     (HERE/'receipt.json').write_text(json.dumps(receipt,indent=2,sort_keys=True)+'\n')
     print(json.dumps({'board':EXPECTED['trial'],'poses':len(trial_changed),'cross_owner':ac['cross_owner_native_interaction_pairs'],

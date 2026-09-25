@@ -42,11 +42,12 @@
     "trial_pairs": []
   },
   "debts": [
-    "Pre-existing 0.100 mm versus 0.200 mm ISO8 GND-via clearance deficit persists at U_ISO8.4 ISO8P after moving from U_ISO8.2 AUDIO_EN",
-    "five source-generated reference text-height DRC warnings change identity; total unchanged",
+    "Bare-board DRC omits conditional POFV rule authority; see exact full-profile replay for valid ISO8 clearance result",
+    "five bare-board text-height warning identities change; exact full-profile DRC issue sets are identical",
     "ADC8 coupling-cap owner/USB margin is only 0.005 mm in the 15-part component study",
     "28 timing-probe reference fields placed on F.Fab are not source-encoded here",
     "In1.Cu GND zone is unfilled; no continuous return or traces are proved",
+    "Conditional B2 POFV still needs vendor/CAM/PCBA acceptance",
     "Frozen TI roundrect USB ESD pads differ from the rect style in the current ordinary netlist; governed TSX status requires shape-sensitive rebaseline before promotion"
   ],
   "fixed_ref_count": 27,
@@ -54,7 +55,8 @@
   "native_drc": {
     "baseline_unconnected": 499,
     "baseline_violations": 699,
-    "clearance_interpretation": "The same 0.100 mm actual versus 0.200 mm required via/pad deficit persists; identity moves from U_ISO8.2 AUDIO_EN to U_ISO8.4 ISO8P.",
+    "clearance_interpretation": "Bare-board defaults flag the same 0.100-mm gap against 0.200 mm at U_ISO8.2 then U_ISO8.4. Exact TI POFV rules authorize 0.100 mm at those named sites; full-profile DRC has no ISO8 clearance issue.",
+    "context": "Bare-board default rules without TI project/POFV producer; superseded by exact profile replay in ../2026-09-25-ti-iso8-profile-replay-sol/receipt.json",
     "new_issue_rows": [
       {
         "description": "Clearance violation ( clearance 0.2000 mm; actual 0.1000 mm)",
@@ -424,7 +426,7 @@
   "route_credit": false,
   "schema": 1,
   "source_regenerated_timing_fab_reference_fields": [],
-  "status": "REJECTED_PERSISTENT_NATIVE_CLEARANCE",
+  "status": "RESEARCH_ONLY_INCOMPLETE_BARE_BOARD_DRC_CONTEXT",
   "timing_mouths": {
     "translator_west_four": {
       "bbox_mm": [

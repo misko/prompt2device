@@ -1,6 +1,6 @@
-# Integrated TI placement union: rejected native DRC screen
+# Integrated TI placement union: research-only geometry screen
 
-This is a reproducible **research-only rejection**, not a P1 or P2 board. The
+This is a reproducible **research-only placement**, not a P1 or P2 board. The
 frozen TI prototype board is SHA-256 `8e620def0b403fda7635135672afec923c2c23bc9844b3f96102e96d4d5eca10`.
 `build.py` uses its pinned TI floorplan, parts, library, and netlist. It imports
 only the reviewed `Q_PRE=(46.0,107.15,0°)` anchor from the current canonical
@@ -25,18 +25,19 @@ The three rough timing mouth screens retain connected widths **2.600 mm**
 respectively. These are aperture screens, not routable capacity or return
 evidence.
 
-**Hard stop:** native `kicad-cli pcb drc --format json` gives 699 violations
-and 499 unconnected items on each regenerated board. The same
-**0.100-mm actual versus 0.200-mm required** GND-via/signal-pad clearance
-deficit persists: it is at `U_ISO8.2` (`AUDIO_EN`) and via `(202.7,58.4)` mm
-in the baseline, then at `U_ISO8.4` (`ISO8P`) and via `(199.0,53.0)` mm in
-the union. This is a changed DRC identity, not the first occurrence of the
-defect or an increased violation count. Five `text_height` warning identities
-(C_FSYNC_FF1, C_XU_VDD_54, C_XU_VDDIO_17, R_ADC_PD5P, R_IN7P) replace five
-old warnings. The persistent native clearance failure rejects the integrated
-placement; this study stops without claiming acceptance.
+The original bare-board `kicad-cli pcb drc --format json` screen gives 699
+issues and 499 unconnected items on each board. It flags the intentional
+0.100-mm B2 via-to-signal-pad gap against 0.200-mm *default* clearance, with
+the issue identity moving from `U_ISO8.2` to `U_ISO8.4`. That screen omitted
+the project `.kicad_pro`, `.kicad_dru`, and post-generator POFV rule areas.
+The [exact TI profile replay](../2026-09-25-ti-iso8-profile-replay-sol/README.md)
+applies all three and independently validates all 14 protected vias. Both
+boards then have **213 identical native DRC issue identities**, 499 opens,
+and no ISO8 clearance error. No via move is needed. The profile replay
+supersedes the bare-board clearance interpretation; conditional vendor/CAM/
+PCBA acceptance remains open.
 
-The [receipt](receipt.json) preserves all changed issue descriptions and native
+The [receipt](receipt.json) preserves the incomplete bare-board issue identities and native
 coordinates, 23 moved XU bypass pad-to-owning-pin distances (none worsened),
 and ADC/clock related-pad distances. The ADC8 cap's owner/USB margin remains
 only **0.005 mm** in the 15-part research placement. The timing native probe's
