@@ -1,0 +1,228 @@
+{
+  "best_by_min_foreign_gap_mm": {
+    "0.2": {
+      "end_y_mm": 46.075,
+      "nearest_foreign": {
+        "gap_mm": 0.205077,
+        "name": "U_SPOKE8.2"
+      },
+      "powerpad_gap_mm": 0.207091,
+      "u1_center_contained": true,
+      "u1_overlap_area_mm2": 0.11889504,
+      "u1_pad_fraction": 0.845498,
+      "uvlo_pad_gap_mm": 0.205077,
+      "x_mm": 188.4
+    },
+    "0.25": {
+      "end_y_mm": 46.025,
+      "nearest_foreign": {
+        "gap_mm": 0.255065,
+        "name": "U_SPOKE8.2"
+      },
+      "powerpad_gap_mm": 0.269714,
+      "u1_center_contained": true,
+      "u1_overlap_area_mm2": 0.09134743,
+      "u1_pad_fraction": 0.649599,
+      "uvlo_pad_gap_mm": 0.255065,
+      "x_mm": 188.35
+    },
+    "0.3": {
+      "end_y_mm": 45.975,
+      "nearest_foreign": {
+        "gap_mm": 0.306883,
+        "name": "U_SPOKE8.2"
+      },
+      "powerpad_gap_mm": 0.333434,
+      "u1_center_contained": false,
+      "u1_overlap_area_mm2": 0.05713992,
+      "u1_pad_fraction": 0.406339,
+      "uvlo_pad_gap_mm": 0.306883,
+      "x_mm": 188.3
+    },
+    "0.35": {
+      "end_y_mm": 45.925,
+      "nearest_foreign": {
+        "gap_mm": 0.352019,
+        "name": "U_SPOKE8.11"
+      },
+      "powerpad_gap_mm": 0.352019,
+      "u1_center_contained": false,
+      "u1_overlap_area_mm2": 0.03658616,
+      "u1_pad_fraction": 0.260175,
+      "uvlo_pad_gap_mm": 0.356779,
+      "x_mm": 188.3
+    },
+    "0.4": {
+      "end_y_mm": 45.875,
+      "nearest_foreign": {
+        "gap_mm": 0.410705,
+        "name": "U_SPOKE8.2"
+      },
+      "powerpad_gap_mm": 0.418029,
+      "u1_center_contained": false,
+      "u1_overlap_area_mm2": 0.01433692,
+      "u1_pad_fraction": 0.101954,
+      "uvlo_pad_gap_mm": 0.410705,
+      "x_mm": 188.25
+    }
+  },
+  "best_in_grid": {
+    "end_y_mm": 46.075,
+    "nearest_foreign": {
+      "gap_mm": 0.205077,
+      "name": "U_SPOKE8.2"
+    },
+    "powerpad_gap_mm": 0.207091,
+    "u1_center_contained": true,
+    "u1_overlap_area_mm2": 0.11889504,
+    "u1_pad_fraction": 0.845498,
+    "uvlo_pad_gap_mm": 0.205077,
+    "x_mm": 188.4
+  },
+  "candidate_grid": {
+    "endpoint_y_mm": [
+      45.85,
+      46.2,
+      0.025
+    ],
+    "fixed_cap_endpoint_y_mm": 44.0,
+    "width_mm": 1.2,
+    "x_mm": [
+      187.9,
+      188.5,
+      0.05
+    ]
+  },
+  "center_contained_best_by_min_foreign_gap_mm": {
+    "0.2": {
+      "end_y_mm": 46.075,
+      "nearest_foreign": {
+        "gap_mm": 0.205077,
+        "name": "U_SPOKE8.2"
+      },
+      "powerpad_gap_mm": 0.207091,
+      "u1_center_contained": true,
+      "u1_overlap_area_mm2": 0.11889504,
+      "u1_pad_fraction": 0.845498,
+      "uvlo_pad_gap_mm": 0.205077,
+      "x_mm": 188.4
+    },
+    "0.25": {
+      "end_y_mm": 46.025,
+      "nearest_foreign": {
+        "gap_mm": 0.255065,
+        "name": "U_SPOKE8.2"
+      },
+      "powerpad_gap_mm": 0.269714,
+      "u1_center_contained": true,
+      "u1_overlap_area_mm2": 0.09134743,
+      "u1_pad_fraction": 0.649599,
+      "uvlo_pad_gap_mm": 0.255065,
+      "x_mm": 188.35
+    },
+    "0.3": null,
+    "0.35": null,
+    "0.4": null
+  },
+  "current_route": {
+    "end_y_mm": 45.9,
+    "nearest_foreign": {
+      "gap_mm": 0.362182,
+      "name": "U_SPOKE8.11"
+    },
+    "powerpad_gap_mm": 0.362182,
+    "u1_center_contained": false,
+    "u1_overlap_area_mm2": 0.02724777,
+    "u1_pad_fraction": 0.193767,
+    "uvlo_pad_gap_mm": 0.381774,
+    "x_mm": 188.3
+  },
+  "frozen_nets_yaml_sha256": "18033487a097b6d29abe3f9d8517879931cf80d278d8973adcf276010a5b7190",
+  "geometry_only": true,
+  "overlap_method": "KiCad TransformShapeToPolygon on native roundrect pad and 1.20mm track at 0.005mm inside error, BooleanIntersection area",
+  "pad_u1_box_mm": [
+    188.3,
+    46.38,
+    188.9,
+    46.62
+  ],
+  "pad_u1_native_roundrect_area_mm2": 0.14062127,
+  "passing_contact_and_0p2_clearance": 113,
+  "prior_board_sha256": "9f5a3b11a5c6cf42e9979bc5f4d74eb202af4f79fbe6f0bc9dd85e576d0b9ede",
+  "schema": 1,
+  "screened": 195,
+  "source_class": {
+    "allocated_current": "2.85A",
+    "clearance_mm": 0.2,
+    "min_width_mm": 1.2,
+    "name": "INPUT_TRUNK"
+  },
+  "status": "BOUNDED_NATIVE_GEOMETRY_SCREEN",
+  "top_five": [
+    {
+      "end_y_mm": 46.075,
+      "nearest_foreign": {
+        "gap_mm": 0.205077,
+        "name": "U_SPOKE8.2"
+      },
+      "powerpad_gap_mm": 0.207091,
+      "u1_center_contained": true,
+      "u1_overlap_area_mm2": 0.11889504,
+      "u1_pad_fraction": 0.845498,
+      "uvlo_pad_gap_mm": 0.205077,
+      "x_mm": 188.4
+    },
+    {
+      "end_y_mm": 46.05,
+      "nearest_foreign": {
+        "gap_mm": 0.214415,
+        "name": "U_SPOKE8.11"
+      },
+      "powerpad_gap_mm": 0.214415,
+      "u1_center_contained": true,
+      "u1_overlap_area_mm2": 0.11204398,
+      "u1_pad_fraction": 0.796778,
+      "uvlo_pad_gap_mm": 0.230071,
+      "x_mm": 188.4
+    },
+    {
+      "end_y_mm": 46.075,
+      "nearest_foreign": {
+        "gap_mm": 0.205077,
+        "name": "U_SPOKE8.2"
+      },
+      "powerpad_gap_mm": 0.255156,
+      "u1_center_contained": true,
+      "u1_overlap_area_mm2": 0.10766725,
+      "u1_pad_fraction": 0.765654,
+      "uvlo_pad_gap_mm": 0.205077,
+      "x_mm": 188.35
+    },
+    {
+      "end_y_mm": 46.025,
+      "nearest_foreign": {
+        "gap_mm": 0.22238,
+        "name": "U_SPOKE8.11"
+      },
+      "powerpad_gap_mm": 0.22238,
+      "u1_center_contained": true,
+      "u1_overlap_area_mm2": 0.10314417,
+      "u1_pad_fraction": 0.733489,
+      "uvlo_pad_gap_mm": 0.255065,
+      "x_mm": 188.4
+    },
+    {
+      "end_y_mm": 46.05,
+      "nearest_foreign": {
+        "gap_mm": 0.230071,
+        "name": "U_SPOKE8.2"
+      },
+      "powerpad_gap_mm": 0.262114,
+      "u1_center_contained": true,
+      "u1_overlap_area_mm2": 0.1004699,
+      "u1_pad_fraction": 0.714472,
+      "uvlo_pad_gap_mm": 0.230071,
+      "x_mm": 188.35
+    }
+  ]
+}

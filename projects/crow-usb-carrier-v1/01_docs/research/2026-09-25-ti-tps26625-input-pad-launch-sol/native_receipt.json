@@ -1,0 +1,155 @@
+{
+  "filled_board_sha256_observation": "f8bedaf71630bf805e46b7ad11f7f291f2b4312787fe77a1294b3db0468c0ec6",
+  "fixed_27_preserved": true,
+  "footprint_count": 569,
+  "input_loop": {
+    "closure_chords": [
+      "C_SPOKE_IN8.1\u2192C_SPOKE_IN8.2 internal capacitor",
+      "U_SPOKE8.6\u2192U_SPOKE8.1 internal device"
+    ],
+    "gnd_return_track_length_mm": 7.4,
+    "polygon_vertices_mm": [
+      [
+        188.6,
+        46.5
+      ],
+      [
+        188.35,
+        46.025
+      ],
+      [
+        188.35,
+        44.0
+      ],
+      [
+        188.8,
+        44.0
+      ],
+      [
+        190.7,
+        44.0
+      ],
+      [
+        192.5,
+        44.0
+      ],
+      [
+        192.5,
+        48.5
+      ],
+      [
+        191.4,
+        48.5
+      ]
+    ],
+    "projected_centerline_area_mm2": 15.315625,
+    "same_filled_in1_gnd_outline_ids": [
+      8
+    ]
+  },
+  "input_trunk_source_min_width_mm": 1.2,
+  "native_connected_gnd_pads": [
+    "C_ADC_CM8N.2",
+    "C_FILTER8N1.2",
+    "C_SPOKE_IN8.2",
+    "C_SPOKE_OUT8.2",
+    "J1.2",
+    "J1.6",
+    "J1.8",
+    "J2.2",
+    "J2.6",
+    "J2.8",
+    "J3.2",
+    "J3.6",
+    "J3.8",
+    "J4.2",
+    "J4.6",
+    "J4.8",
+    "J5.2",
+    "J5.6",
+    "J5.8",
+    "J6.2",
+    "J6.6",
+    "J6.8",
+    "J7.2",
+    "J7.6",
+    "J7.8",
+    "J8.2",
+    "J8.6",
+    "J8.8",
+    "J_PWR.2",
+    "J_USB.SH",
+    "U_ISO1.5",
+    "U_ISO2.5",
+    "U_ISO3.5",
+    "U_ISO4.5",
+    "U_ISO5.5",
+    "U_ISO6.5",
+    "U_ISO7.5",
+    "U_ISO8.5",
+    "U_LDO.11",
+    "U_SPOKE8.6"
+  ],
+  "native_connected_rtn_pads": [
+    "C_SPOKE_DVDT8.2",
+    "R_SPOKE_ILIM8.2",
+    "U_SPOKE8.11",
+    "U_SPOKE8.3",
+    "U_SPOKE8.5"
+  ],
+  "native_connected_supply_pads": [
+    "C_SPOKE_IN8.1",
+    "U_SPOKE8.1"
+  ],
+  "native_profile": {
+    "added_issue_identities": 0,
+    "new_issue_types": [],
+    "removed_issue_identities": 0,
+    "unconnected": [
+      499,
+      499
+    ],
+    "via_process_fails": [
+      [],
+      []
+    ],
+    "violations": [
+      199,
+      199
+    ]
+  },
+  "native_u1_center_contained": true,
+  "native_u1_to_cin1_direct_pad_copper_gap_mm": 1.655273,
+  "prior_reviewed_board_sha256": "9f5a3b11a5c6cf42e9979bc5f4d74eb202af4f79fbe6f0bc9dd85e576d0b9ede",
+  "schema": 1,
+  "source_generated_unfilled_board_sha256_observation": "944806e1759e73f468076caf053a42ab0abb76a6736dcf3ef75c4fca27c7ebea",
+  "source_input_sha256": {
+    "generic_generator": "8a5fa1d48d80138458601a097ab6260565841510a498e44cb9c5773652215b3c",
+    "netlist": "a40b45c27b2169ed4f3dd43d72a1f4f7112d829985f98918a8855ed76735e9bd",
+    "poses": "76ba7ace1275fe1a8d6bc69d452037672519d70a21b8b02fff67f8c7d8a647bb",
+    "source": "0032b1202f5742b6575198d27ea50629826d49cf81cf12a31fead8a2929d9868",
+    "southwest_board": "0b9d017706845ad4d77c2b579dd36f2e34c0ecf55a7b699ace4fca97465c5b93"
+  },
+  "status": "INPUT_LOOP_NATIVE_TRIAL",
+  "supply_track": {
+    "end_mm": [
+      188.35,
+      44.0
+    ],
+    "layer": "F.Cu",
+    "native_track_centerline_length_mm": 2.025,
+    "nearby_foreign_pad_effective_shape_gaps_mm": {
+      "C_SPOKE_IN8.2": 1.250061,
+      "R_SPOKE_UVLO8.2": 0.606688,
+      "U_SPOKE8.11": 0.269653,
+      "U_SPOKE8.2": 0.255065
+    },
+    "net": "N12V_PROTECTED",
+    "pad_center_path_surrogate_mm": 3.011773,
+    "start_mm": [
+      188.35,
+      46.025
+    ],
+    "width_mm": 1.2
+  }
+}
