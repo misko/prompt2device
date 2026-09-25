@@ -1,0 +1,198 @@
+{
+  "analog_region_recuts": {
+    "analog_ch3": {
+      "displaced_native_refs": [
+        "R_IN3P",
+        "U_ESD3"
+      ],
+      "nearest_displaced_envelopes_mm": {
+        "R_IN3P": [
+          68.725,
+          58.685,
+          70.675,
+          59.715
+        ],
+        "U_ESD3": [
+          68.755,
+          70.21,
+          71.245,
+          72.395
+        ]
+      },
+      "old_left_mm": 69,
+      "required_left_mm": 69.545
+    },
+    "analog_ch4": {
+      "displaced_native_refs": [
+        "R_IN4P",
+        "U_ESD4"
+      ],
+      "nearest_displaced_envelopes_mm": {
+        "R_IN4P": [
+          90.725,
+          58.685,
+          92.675,
+          59.715
+        ],
+        "U_ESD4": [
+          90.755,
+          70.21,
+          93.245,
+          72.395
+        ]
+      },
+      "old_left_mm": 91,
+      "required_left_mm": 91.545
+    }
+  },
+  "board_sha256": "e07ed8bc663fdfd4ce39477165b656b0dcf2bfbae54d84ec501bfccf326d22ef",
+  "checker_sha256": "f2e865eac4bd264f2a01eee322638f66951c066fbca57398fc8e1393800349c1",
+  "full_power_terminal_counts": {
+    "N1V8": 42,
+    "N3V3X": 27,
+    "N3V3_ADC": 68,
+    "N5V_BUCK": 34
+  },
+  "input_buck_rectangular_pocket_closure": [
+    {
+      "bbox_mm": [
+        44.75,
+        94.005,
+        49.995,
+        100.995
+      ],
+      "foreign_refs": [],
+      "new_same_owner_refs": [
+        "C_IN1",
+        "C_IN2"
+      ],
+      "refs": [
+        "U_BUCK"
+      ]
+    },
+    {
+      "bbox_mm": [
+        40.155,
+        94.005,
+        49.995,
+        101.645
+      ],
+      "foreign_refs": [],
+      "new_same_owner_refs": [
+        "R_BUCK_FB_TOP"
+      ],
+      "refs": [
+        "C_IN1",
+        "C_IN2",
+        "U_BUCK"
+      ]
+    },
+    {
+      "bbox_mm": [
+        40.155,
+        93.485,
+        49.995,
+        101.645
+      ],
+      "foreign_refs": [],
+      "new_same_owner_refs": [
+        "C_IN_HF",
+        "C_OUT1"
+      ],
+      "refs": [
+        "C_IN1",
+        "C_IN2",
+        "R_BUCK_FB_TOP",
+        "U_BUCK"
+      ]
+    },
+    {
+      "bbox_mm": [
+        40.155,
+        90.255,
+        53.795,
+        101.645
+      ],
+      "foreign_refs": [
+        "C_PWR_CT2"
+      ],
+      "new_same_owner_refs": [
+        "C_VCC",
+        "C_VLDO",
+        "R_AGND_JOIN",
+        "R_BUCK_FB_BOTTOM",
+        "R_RT"
+      ],
+      "refs": [
+        "C_IN1",
+        "C_IN2",
+        "C_IN_HF",
+        "C_OUT1",
+        "R_BUCK_FB_TOP",
+        "U_BUCK"
+      ]
+    }
+  ],
+  "native_ref_count": 569,
+  "p1_accepted": false,
+  "pocket_trials": {
+    "U_AFE2": {
+      "foreign_regions": [
+        "analog_ch3"
+      ],
+      "full_native_envelope_mm": [
+        62.055,
+        73.54,
+        69.545,
+        79.145
+      ],
+      "net": "N3V3_ADC",
+      "other_native_intersections": [],
+      "owner": "analog_ch2",
+      "pocket": {
+        "accepted": false,
+        "reason": "u_afe2_branch_pocket: foreign source region analog_ch3 enters owner pocket"
+      }
+    },
+    "U_AFE3": {
+      "foreign_regions": [
+        "analog_ch4"
+      ],
+      "full_native_envelope_mm": [
+        84.055,
+        73.54,
+        91.545,
+        79.145
+      ],
+      "net": "N3V3_ADC",
+      "other_native_intersections": [],
+      "owner": "analog_ch3",
+      "pocket": {
+        "accepted": false,
+        "reason": "u_afe3_branch_pocket: foreign source region analog_ch4 enters owner pocket"
+      }
+    },
+    "U_BUCK": {
+      "foreign_regions": [],
+      "full_native_envelope_mm": [
+        44.75,
+        94.005,
+        49.995,
+        100.995
+      ],
+      "net": "N5V_BUCK",
+      "other_native_intersections": [
+        "C_IN1",
+        "C_IN2"
+      ],
+      "owner": "input_buck",
+      "pocket": {
+        "accepted": false,
+        "reason": "u_buck_branch_pocket: foreign native body/pad C_IN2 enters owner pocket"
+      }
+    }
+  },
+  "quiet_power_cell_count": 13,
+  "routing_realized": false,
+  "status": "INCOMPLETE"
+}
