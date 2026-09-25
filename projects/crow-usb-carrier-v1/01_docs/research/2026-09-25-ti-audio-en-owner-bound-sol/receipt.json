@@ -1,0 +1,271 @@
+{
+  "board_sha256": "d0c065dc16de081a5410b7a22e474f0a99c6fdeb0b7dd1f6c37422ace4a9fcf7",
+  "ct1_south_to_clear_resistor_mm": 0.625,
+  "ct1_to_audio_overlap_after_clearance_mm": [
+    2.49,
+    0.15
+  ],
+  "floorplan_sha256": "7d95376bbfa3bc9dd0bf59bc7e91d02d86c31235f6145f4d09b49a31f81769d0",
+  "kind": "crow-audio-en-owner-lower-bound",
+  "minimal_rectangular_owner_recut_mm": {
+    "analog_ch1": [
+      21.455,
+      42,
+      47,
+      84
+    ],
+    "quiet_power": [
+      21.455,
+      104.125,
+      75,
+      134
+    ]
+  },
+  "minimal_resistor_south_move_mm": 0.875,
+  "modular_plan_sha256": "02be5ad6ea879ac04d5dfd9e2e09d5226f85c85fa83d72628aa40cf93de6b4d8",
+  "new_foreign_native_pads_in_recut": {
+    "analog_ch1": [],
+    "quiet_power": [
+      "C_IN3.1",
+      "C_IN3.2"
+    ]
+  },
+  "p1_accepted": false,
+  "p2_accepted": false,
+  "prior_source_generated_trial_status": "REJECTED_LOCALITY_DRC_FOREIGN",
+  "prior_trial_foreign_body_regions": {
+    "R_AUDIO_PD": [
+      "input_buck"
+    ],
+    "U_AUDIO": [
+      "hold_bank_left"
+    ],
+    "U_ISO1": []
+  },
+  "prior_trial_new_drc_errors": [
+    [
+      "Via [GND] on F.Cu - B.Cu",
+      "Pad 2 [AUDIO_EN] of U_ISO1 on F.Cu"
+    ],
+    [
+      "Pad 4 [ISO5P] of U_ISO5 on F.Cu",
+      "Via [GND] on F.Cu - B.Cu"
+    ]
+  ],
+  "resistor_to_ct1_overlap_mm": [
+    1.03,
+    0.625
+  ],
+  "route_credit": false,
+  "same_net_local_distances": [
+    {
+      "native_pad_center_distance_mm": 1.400143,
+      "net": "N5V_LDO_HOLD",
+      "pads": [
+        "U_AUDIO.4",
+        "C_AUDIO.1"
+      ]
+    },
+    {
+      "native_pad_center_distance_mm": 2.853178,
+      "net": "AUDIO_CT",
+      "pads": [
+        "U_AUDIO.5",
+        "C_AUDIO_CT1.1"
+      ]
+    },
+    {
+      "native_pad_center_distance_mm": 2.304479,
+      "net": "AUDIO_CT",
+      "pads": [
+        "U_AUDIO.5",
+        "C_AUDIO_CT2.1"
+      ]
+    },
+    {
+      "native_pad_center_distance_mm": 11.313461,
+      "net": "N5V_LDO_HOLD",
+      "pads": [
+        "U_ISO1.8",
+        "C_ISO1.1"
+      ]
+    },
+    {
+      "native_pad_center_distance_mm": 4.935626,
+      "net": "AUDIO_EN",
+      "pads": [
+        "R_AUDIO_PD.1",
+        "R_AUDIO_PU.2"
+      ]
+    }
+  ],
+  "source_trial_receipt_sha256": "7c8ec15519826804269f6cd4c5f7f5dea5fad0f706c7b3fc7add83704d0e68f2",
+  "status": "NO_SMALL_EXCLUSIVE_REPAIR_PROVED",
+  "targets": [
+    {
+      "audio_en_pad": "R_AUDIO_PD.1",
+      "audio_en_pad_bbox_mm": [
+        22.38,
+        105.34,
+        23.02,
+        105.88
+      ],
+      "body_bbox_mm": [
+        22.185,
+        104.125,
+        23.215,
+        106.075
+      ],
+      "body_owner_contained": false,
+      "minimum_translation_for_body_mm": {
+        "east": 2.815,
+        "south": 0.875
+      },
+      "nearest_native_envelopes_mm": [
+        [
+          0.25,
+          "C_AUDIO_CT1"
+        ],
+        [
+          1.641371,
+          "R_ADC_BOT"
+        ],
+        [
+          2.275,
+          "U_AUDIO"
+        ],
+        [
+          2.750509,
+          "C_AUDIO"
+        ],
+        [
+          3.550127,
+          "R_AUDIO_PU"
+        ]
+      ],
+      "origin_mm": [
+        22.7,
+        105.1
+      ],
+      "owner": "quiet_power",
+      "owner_region_mm": [
+        25,
+        105,
+        75,
+        134
+      ],
+      "pad_owner_contained": false,
+      "ref": "R_AUDIO_PD"
+    },
+    {
+      "audio_en_pad": "U_AUDIO.6",
+      "audio_en_pad_bbox_mm": [
+        22.95,
+        108.975,
+        23.65,
+        109.225
+      ],
+      "body_bbox_mm": [
+        21.455,
+        108.35,
+        23.945,
+        110.645
+      ],
+      "body_owner_contained": false,
+      "minimum_translation_for_body_mm": {
+        "east": 3.545,
+        "south": 0
+      },
+      "nearest_native_envelopes_mm": [
+        [
+          0.25,
+          "C_AUDIO"
+        ],
+        [
+          0.292062,
+          "R_ADC_TOP"
+        ],
+        [
+          0.43,
+          "C_AUDIO_CT2"
+        ],
+        [
+          0.475,
+          "C_AUDIO_CT1"
+        ],
+        [
+          0.73,
+          "R_ADC_BOT"
+        ]
+      ],
+      "origin_mm": [
+        22.7,
+        109.6
+      ],
+      "owner": "quiet_power",
+      "owner_region_mm": [
+        25,
+        105,
+        75,
+        134
+      ],
+      "pad_owner_contained": false,
+      "ref": "U_AUDIO"
+    },
+    {
+      "audio_en_pad": "U_ISO1.2",
+      "audio_en_pad_bbox_mm": [
+        23.175,
+        67.075,
+        23.425,
+        67.325
+      ],
+      "body_bbox_mm": [
+        21.455,
+        65.755,
+        25.145,
+        69.445
+      ],
+      "body_owner_contained": false,
+      "minimum_translation_for_body_mm": {
+        "east": 3.545,
+        "south": 0
+      },
+      "nearest_native_envelopes_mm": [
+        [
+          0.48,
+          "R_ADC_PD1P"
+        ],
+        [
+          0.765,
+          "U_ESD1"
+        ],
+        [
+          1.464138,
+          "C_ADC_AC1P1"
+        ],
+        [
+          2.18,
+          "R_ADC_PD1N"
+        ],
+        [
+          2.24,
+          "R_IN1P"
+        ]
+      ],
+      "origin_mm": [
+        23.3,
+        67.6
+      ],
+      "owner": "analog_ch1",
+      "owner_region_mm": [
+        25,
+        42,
+        47,
+        84
+      ],
+      "pad_owner_contained": false,
+      "ref": "U_ISO1"
+    }
+  ]
+}
