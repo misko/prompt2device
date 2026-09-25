@@ -27,6 +27,17 @@ drawing does not mandate square corners, so the native roundrect footprint
 does not require a D13 change. Shape-sensitive placement work must use the
 fresh TI native source/profile rather than the stale ordinary netlist.
 
+J8's existing connector contract already selects Würth `615008160221` with
+Telegärtner `100009141` as mate. Its 0.045-mm nominal envelope overhang can be
+recorded as CAD-bound planning evidence, but a checker-consumable named J8
+edge-cell exception needs measured edge registration/seating bound to that
+exact board and connector ([measurement plan](2026-09-25-j8-edge-overhang-evidence-plan-terra.md),
+[schema proposal](2026-09-25-j8-edge-cell-contract-proposal-sol.md),
+[independent contract review](2026-09-25-j8-edge-cell-contract-review-terra.md)).
+Even a measured cell would remain `INCOMPLETE`; connector FULL requires the
+separate mate/service/group qualification. Do not treat the digital connector
+fit prototype or an unrelated USB coupon as physical J8 evidence.
+
 ## Execution order
 
 1. Decide the available board/mate envelope. Keep current fixed connector and
