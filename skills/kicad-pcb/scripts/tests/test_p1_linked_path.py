@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import json
+import copy
 import sys
 import tempfile
 import unittest
@@ -202,6 +203,53 @@ class LinkedPathTest(unittest.TestCase):
                                 expected_alias_sha256=hashes['aliases.yaml'],
                                 expected_floorplan_sha256=hashes['floorplan.yaml'])
 
+    def make_second_physical(self):
+        self.floorplan['placement']['regions']['gap2'] = [7, 10, 9, 13]
+        path = self.source['linked_paths'][0]
+        virtual = path['stages'][1]
+        affected = virtual['affected']
+        face_for = {'front': 'south', 'xmos': 'north'}
+        physical = {'id': 'xu_stage', 'kind': 'physical_corridor',
+                    'owner': 'board_integration', 'region_id': 'gap2',
+                    'allocation_id': 'signal', 'participants': ['front', 'xmos'],
+                    'faces': [{'block': 'front', 'region_face': 'south',
+                               'bbox': [7, 9.8, 9, 10]},
+                              {'block': 'xmos', 'region_face': 'north',
+                               'bbox': [7, 13, 9, 13.2]}],
+                    'layer': 'F.Cu', 'reference_layer': 'B.Cu',
+                    'nets': ['DP', 'DN'], 'reservation_id': 'xu_stage_trunk',
+                    'affected': affected,
+                    'p2_obligations': [
+                        {'status': 'P2_REQUIRED', **e, 'corridor_id': 'xu_stage',
+                         'region_face': face_for[e['block']], 'layer': 'F.Cu',
+                         'to_reservation': 'xu_stage_trunk'} for e in affected],
+                    'return_obligation': {'status': 'P2_REQUIRED', 'net': 'GND',
+                                          'corridor_id': 'xu_stage',
+                                          'reference_layer': 'B.Cu',
+                                          'proof': 'continuous_filled_reference'},
+                    'fixed_accesses': [], 'axis': 'vertical',
+                    'slot_pitch_mm': .5, 'demand_slots': 2}
+        path['stages'][1] = physical
+        for join in path['joins']:
+            join['to'] = 'xu_stage'
+
+    def add_pad(self, ref, number, net, dx):
+        fp = next(fp for fp in self.board.GetFootprints() if fp.GetReference() == ref)
+        pad = pcbnew.PAD(fp)
+        pad.SetNumber(str(number))
+        pad.SetAttribute(pcbnew.PAD_ATTRIB_SMD)
+        pad.SetShape(pcbnew.PAD_SHAPE_RECT)
+        pad.SetSize(pcbnew.VECTOR2I(iu(.4), iu(.4)))
+        pos = fp.GetPosition()
+        pad.SetPosition(pcbnew.VECTOR2I(pos.x + iu(dx), pos.y))
+        pad.SetLayerSet(pcbnew.LSET.FrontMask())
+        native_net = self.board.FindNet(net)
+        if native_net is None:
+            native_net = pcbnew.NETINFO_ITEM(self.board, net)
+            self.board.Add(native_net)
+        pad.SetNet(native_net)
+        fp.Add(pad)
+
     def test_valid_series_stays_incomplete_without_capacity_credit(self):
         result = self.run_case()
         self.assertEqual(result['errors'], [])
@@ -246,6 +294,119 @@ class LinkedPathTest(unittest.TestCase):
         virtual['geometry'] = None
         virtual['return_obligation'] = {}
         self.assertIn('virtual P2/filled-return', '\n'.join(self.run_case()['errors']))
+
+    def test_two_physical_stages_remain_incomplete_without_summed_credit(self):
+        self.make_second_physical()
+        result = self.run_case()
+        self.assertEqual(result['errors'], [])
+        linked = result['allocations'][0]['linked_paths'][0]
+        self.assertEqual(linked['status'], 'INCOMPLETE')
+        self.assertIsNone(linked['capacity_slots'])
+        self.assertIn('rough_capacity', linked['stages'][1])
+
+    def test_each_physical_stage_requires_one_slot_per_net(self):
+        self.source['linked_paths'][0]['stages'][0]['demand_slots'] = 1
+        self.assertIn('physical stage rough capacity declaration invalid',
+                      '\n'.join(self.run_case()['errors']))
+        self.make_second_physical()
+        self.source['linked_paths'][0]['stages'][0]['demand_slots'] = 2
+        self.source['linked_paths'][0]['stages'][1]['demand_slots'] = 1
+        self.assertIn('second physical stage rough capacity declaration invalid',
+                      '\n'.join(self.run_case()['errors']))
+
+    def test_second_physical_face_gap_and_missing_return_fail(self):
+        self.make_second_physical()
+        self.floorplan['placement']['regions']['gap2'] = [7, 10.1, 9, 13]
+        self.assertIn('integration face lacks positive non-corner shared edge',
+                      '\n'.join(self.run_case()['errors']))
+        self.floorplan['placement']['regions']['gap2'] = [7, 10, 9, 13]
+        self.source['linked_paths'][0]['stages'][1]['return_obligation'] = {}
+        self.assertIn('integration P2 filled-reference return obligation missing',
+                      '\n'.join(self.run_case()['errors']))
+
+    def test_second_physical_native_obstacle_fails(self):
+        self.make_second_physical()
+        footprint(self.board, 'OB', 8, 11, [('1', 'ALT', 0)])
+        self.source['p1_fixed_refs'].append('OB')
+        self.floorplan['placement']['anchors']['OB'] = [8, 11, 0]
+        self.assertIn('native footprint/pad OB intersects integration corridor/face',
+                      '\n'.join(self.run_case()['errors']))
+
+    def test_extra_intermediate_pad_is_branch_and_fails(self):
+        self.add_pad('E', 3, 'DP', 0)
+        self.interfaces['interfaces'][0]['endpoints']['front'].append('E.3')
+        self.source['allocations'][0]['endpoints']['DP']['front'].append('E.3')
+        path = self.source['linked_paths'][0]
+        for stage in path['stages']:
+            endpoint = {'source_pad': 'E.3', 'native_pad': 'E.3',
+                        'net': 'DP', 'block': 'front'}
+            stage['affected'].append(endpoint)
+            if stage['kind'] == 'physical_corridor':
+                stage['p2_obligations'].append({
+                    'status': 'P2_REQUIRED', **endpoint,
+                    'corridor_id': stage['id'], 'region_face': 'north',
+                    'layer': 'F.Cu', 'to_reservation': stage['reservation_id']})
+            else:
+                stage['p2_obligations'].append({
+                    'status': 'P2_REQUIRED', **endpoint,
+                    'stage_id': stage['id'], 'layer': 'F.Cu',
+                    'to_reservation': path['reservation_id']})
+        path['joins'].append({'from': 'edge_stage', 'to': 'xu_pending',
+                              'owner': 'front', 'net': 'DP', 'source_pad': 'E.3',
+                              'kind': 'pad_anchored_virtual_interstage'})
+        self.assertIn('interstage join multiplicity invalid',
+                      '\n'.join(self.run_case()['errors']))
+
+    def test_different_net_path_cannot_reuse_physical_stage(self):
+        for ref in ('J', 'E', 'X'):
+            self.add_pad(ref, 3, 'ALT', 0)
+        self.interfaces['interfaces'].append(
+            {'net': 'ALT', 'endpoints': {'edge': ['J.3'],
+                                        'front': ['E.3'], 'xmos': ['X.3']}})
+        self.source['allocations'].append(
+            {'id': 'signal_alt', 'coverage_nets': ['ALT'],
+             'demands': [{'id': 'alt', 'nets': ['ALT']}],
+             'endpoints': {'ALT': {'edge': ['J.3'], 'front': ['E.3'],
+                                   'xmos': ['X.3']}}})
+        self.allocations.append(
+            {'id': 'signal_alt', 'coverage_nets': ['ALT'],
+             'boundary_witnesses': [], 'reservations': [],
+             'linked_paths': [{'id': 'series_alt', 'kind': 'linked_path',
+                               'nets': ['ALT'], 'status': 'INCOMPLETE'}]})
+        alt = copy.deepcopy(self.source['linked_paths'][0])
+        alt.update(id='series_alt', allocation_id='signal_alt', nets=['ALT'],
+                   reservation_id='series_alt')
+        first, second = alt['stages']
+        first.update(id='edge_stage_alt', allocation_id='signal_alt',
+                     nets=['ALT'], reservation_id='edge_stage_alt_trunk',
+                     demand_slots=1)
+        first['affected'] = [
+            {'source_pad': 'J.3', 'native_pad': 'J.3', 'net': 'ALT', 'block': 'edge'},
+            {'source_pad': 'E.3', 'native_pad': 'E.3', 'net': 'ALT', 'block': 'front'}]
+        first['p2_obligations'] = [
+            {'status': 'P2_REQUIRED', **e, 'corridor_id': 'edge_stage_alt',
+             'region_face': 'south' if e['block'] == 'edge' else 'north',
+             'layer': 'F.Cu', 'to_reservation': 'edge_stage_alt_trunk'}
+            for e in first['affected']]
+        first['fixed_accesses'] = [
+            {'source_pad': 'J.3', 'native_pad': 'J.3', 'net': 'ALT',
+             'block': 'edge', 'face': 'north', 'bbox': [7.8, 4.2, 8.2, 5]}]
+        first['return_obligation']['corridor_id'] = 'edge_stage_alt'
+        second.update(id='xu_pending_alt', nets=['ALT'])
+        second['affected'] = [
+            {'source_pad': 'E.3', 'native_pad': 'E.3', 'net': 'ALT', 'block': 'front'},
+            {'source_pad': 'X.3', 'native_pad': 'X.3', 'net': 'ALT', 'block': 'xmos'}]
+        second['p2_obligations'] = [
+            {'status': 'P2_REQUIRED', **e, 'stage_id': 'xu_pending_alt',
+             'layer': 'F.Cu', 'to_reservation': 'series_alt'}
+            for e in second['affected']]
+        second['return_obligation']['stage_id'] = 'xu_pending_alt'
+        alt['joins'] = [{'from': 'edge_stage_alt', 'to': 'xu_pending_alt',
+                         'owner': 'front', 'net': 'ALT', 'source_pad': 'E.3',
+                         'kind': 'pad_anchored_virtual_interstage'}]
+        self.source['linked_paths'].append(alt)
+        self.assertIn('linked physical stage identity reused',
+                      '\n'.join(self.run_case()['errors']))
 
 
 if __name__ == '__main__':

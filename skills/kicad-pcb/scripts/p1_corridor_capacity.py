@@ -58,13 +58,13 @@ capacity and remains INCOMPLETE.
 Schema-2 ``--diagnose-all`` adds one independent validation error per boundary
 witness or reservation to a ``diagnostics`` array. It does not replace the
 normal fail-closed verdict or prove cross-item endpoint/overlap accounting.
-An opt-in ``linked_paths`` first slice accounts for one same-net series path
-with exactly three modular owners: a native-checked physical corridor and a
-geometry-free unresolved virtual span, joined at exact intermediate pads.
-It preserves exact terminal/P2/return denominators, reports rough capacity
-only for the physical stage, and remains INCOMPLETE while the virtual span
-exists. Paths with branches, additional stages or physical downstream spans
-fail closed until separately implemented.
+An opt-in ``linked_paths`` slice accounts for one same-net series path with
+exactly three modular owners and two ordered stages. The first is a native-
+checked physical corridor; the second is either another independently checked
+physical corridor or a geometry-free unresolved virtual span. Exact
+intermediate pads join them. Each physical stage reports separate rough
+capacity, never a sum; P2 access/return and P1 remain INCOMPLETE. Paths with
+branches or additional stages fail closed until separately implemented.
 """
 from __future__ import annotations
 
@@ -738,7 +738,7 @@ def _integration_corridors(source, interfaces, board, outline, regions, zones,
 def _linked_paths(source, contract, interfaces, board, outline, regions, zones,
                   coverage, aliases, pads, owned_pads, fixed_refs, movable_refs,
                   shared_ports, physical_cells, native_pitch):
-    """First-slice series path: exact physical edge stage, then unresolved span.
+    """Three-owner series path with independently validated stage geometry.
 
     The path is one allocation reservation, not two credits. Legacy corridor
     records are untouched, and a virtual span can never establish P1 capacity.
@@ -755,6 +755,8 @@ def _linked_paths(source, contract, interfaces, board, outline, regions, zones,
         raise ContractError('linked paths require modular block ownership')
     owners = {ref: block['id'] for block in interfaces['blocks'] for ref in block.get('refs', [])}
     result, used_ids, used_nets = {}, set(), set()
+    used_stage_ids, used_reservation_ids, used_regions = set(), set(), set()
+    used_stage_areas, used_access_areas = [], []
     enabled = {board.GetLayerName(i) for i in board.GetEnabledLayers().Seq()
                if pcbnew.IsCopperLayer(i)}
     ordinary = [(a['id'], r) for a in contract['allocations']
@@ -788,34 +790,78 @@ def _linked_paths(source, contract, interfaces, board, outline, regions, zones,
             raise ContractError(f'{ident}: linked path net has competing ordinary credit/witness')
         if any(r.get('id') == path['reservation_id'] for _, r in ordinary):
             raise ContractError(f'{ident}: linked path reservation id reused')
-        physical, virtual = stages
+        physical, second = stages
         if (not isinstance(physical, dict) or physical.get('kind') != 'physical_corridor' or
                 physical.get('participants') != order[:2] or
                 physical.get('allocation_id') != allocation_id or
                 physical.get('nets') != nets or physical.get('layer') != path['layer'] or
                 physical.get('reference_layer') != path['reference_layer'] or
-                not isinstance(virtual, dict) or virtual.get('kind') != 'unresolved_virtual_span' or
-                virtual.get('participants') != order[1:] or virtual.get('nets') != nets or
-                virtual.get('layer') != path['layer'] or
-                virtual.get('reference_layer') != path['reference_layer'] or
-                virtual.get('status') != 'INCOMPLETE'):
+                not isinstance(second, dict) or second.get('kind') not in
+                ('unresolved_virtual_span', 'physical_corridor') or
+                second.get('participants') != order[1:] or second.get('nets') != nets or
+                second.get('layer') != path['layer'] or
+                second.get('reference_layer') != path['reference_layer'] or
+                second.get('id') == physical.get('id')):
             raise ContractError(f'{ident}: linked stage order/identity invalid')
-        if (set(virtual) != {'id', 'kind', 'participants', 'nets', 'layer',
-                             'reference_layer', 'affected', 'geometry',
-                             'capacity_slots', 'status', 'p2_obligations',
-                             'return_obligation'} or
-                virtual['geometry'] is not None or virtual['capacity_slots'] is not None):
+        second_physical = second['kind'] == 'physical_corridor'
+        physical_stages = [physical, second] if second_physical else [physical]
+        stage_ids = [stage.get('id') for stage in stages]
+        reservation_ids = [path['reservation_id']] + [stage.get('reservation_id')
+                                                    for stage in physical_stages]
+        region_ids = [stage.get('region_id') for stage in physical_stages]
+        if (any(not isinstance(value, str) or not value for value in
+                stage_ids + reservation_ids + region_ids) or
+                len(set(stage_ids)) != len(stage_ids) or
+                len(set(reservation_ids)) != len(reservation_ids) or
+                len(set(region_ids)) != len(region_ids) or
+                set(stage_ids) & used_stage_ids or
+                set(reservation_ids) & used_reservation_ids or
+                set(region_ids) & used_regions):
+            raise ContractError(f'{ident}: linked physical stage identity reused')
+        if not second_physical and (
+                set(second) != {'id', 'kind', 'participants', 'nets', 'layer',
+                                'reference_layer', 'affected', 'geometry',
+                                'capacity_slots', 'status', 'p2_obligations',
+                                'return_obligation'} or
+                second['geometry'] is not None or second['capacity_slots'] is not None or
+                second['status'] != 'INCOMPLETE'):
             raise ContractError(f'{ident}: virtual span must be geometry/capacity free')
+        if second_physical and (
+                second.get('allocation_id') != allocation_id or
+                second.get('owner') != 'board_integration' or
+                second.get('reservation_id') in
+                (physical.get('reservation_id'), path['reservation_id']) or
+                second.get('region_id') == physical.get('region_id')):
+            raise ContractError(f'{ident}: second physical stage identity invalid')
         physical_source = dict(source, integration_corridors=[physical])
         corridor = _integration_corridors(physical_source, interfaces, board,
                                           outline, regions, zones, coverage,
                                           aliases, pads, shared_ports,
                                           physical_cells)[physical['id']]
+        second_corridor = None
+        if second_physical:
+            second_source = dict(source, integration_corridors=[second])
+            second_corridor = _integration_corridors(
+                second_source, interfaces, board, outline, regions, zones,
+                coverage, aliases, pads, shared_ports, physical_cells)[second['id']]
+            if intersects(corridor['bbox'], second_corridor['bbox']):
+                raise ContractError(f'{ident}: physical stages overlap')
+            if second.get('fixed_accesses') != []:
+                raise ContractError(f'{ident}: second physical stage fixed accesses unsupported')
+            if any(e['native_pad'].rsplit('.', 1)[0] in fixed_refs
+                   for e in second['affected']):
+                raise ContractError(f'{ident}: second physical stage has unhandled fixed endpoint')
+        stage_areas = [corridor['bbox']] + ([second_corridor['bbox']] if second_physical else [])
+        if any(layer == path['layer'] and intersects(area, prior)
+               for area in stage_areas
+               for layer, prior in used_stage_areas + used_access_areas):
+            raise ContractError(f'{ident}: linked physical stage overlaps another linked path')
         for _, reservation in ordinary:
             if (reservation.get('layer') == path['layer'] and
                     reservation.get('kind') != 'unresolved_multiterminal_branch' and
-                    intersects(rectangle(reservation.get('bbox'), 'ordinary reservation'),
-                               corridor['bbox'])):
+                    any(intersects(rectangle(reservation.get('bbox'), 'ordinary reservation'),
+                                   stage['bbox']) for stage in
+                        ([corridor, second_corridor] if second_physical else [corridor]))):
                 raise ContractError(f'{ident}: physical stage overlaps ordinary reservation')
         if (not isinstance(physical.get('fixed_accesses'), list) or
                 not isinstance(physical.get('axis'), str) or
@@ -872,6 +918,9 @@ def _linked_paths(source, contract, interfaces, board, outline, regions, zones,
             for other_source, other_area in access_shapes:
                 if intersects(area, other_area):
                     raise ContractError(f'{source_pad}: fixed access overlaps {other_source}')
+            if any(layer == path['layer'] and intersects(area, prior)
+                   for layer, prior in used_stage_areas + used_access_areas):
+                raise ContractError(f'{source_pad}: fixed access overlaps another linked path')
             for _, reservation in ordinary:
                 if (reservation.get('layer') == path['layer'] and
                         reservation.get('kind') != 'unresolved_multiterminal_branch' and
@@ -896,37 +945,39 @@ def _linked_paths(source, contract, interfaces, board, outline, regions, zones,
             if any(zone.GetIsRuleArea() and intersects(area, box_mm(zone.GetBoundingBox()))
                    for zone in zones):
                 raise ContractError(f'{source_pad}: fixed access intersects rule area')
-        if (not isinstance(virtual['affected'], list) or
+        if (not isinstance(second['affected'], list) or
                 any(not isinstance(e, dict) or set(e) !=
-                    {'source_pad', 'native_pad', 'net', 'block'} for e in virtual['affected'])):
-            raise ContractError(f'{ident}: virtual endpoint records malformed')
-        expected_virtual = set()
+                    {'source_pad', 'native_pad', 'net', 'block'} for e in second['affected'])):
+            raise ContractError(f'{ident}: second-stage endpoint records malformed')
+        expected_second = set()
         for item in interfaces['interfaces']:
             if item['net'] in nets:
                 for owner in order[1:]:
                     for source_pad in item['endpoints'].get(owner, []):
-                        expected_virtual.add((source_pad, graph.native_identity(source_pad, aliases),
+                        expected_second.add((source_pad, graph.native_identity(source_pad, aliases),
                                               item['net'], owner))
-        actual_virtual = {(e['source_pad'], e['native_pad'], e['net'], e['block'])
-                          for e in virtual['affected']}
-        if actual_virtual != expected_virtual or len(actual_virtual) != len(virtual['affected']):
-            raise ContractError(f'{ident}: virtual endpoint denominator mismatch')
-        for e in virtual['affected']:
+        actual_second = {(e['source_pad'], e['native_pad'], e['net'], e['block'])
+                         for e in second['affected']}
+        if actual_second != expected_second or len(actual_second) != len(second['affected']):
+            label = 'second physical' if second_physical else 'virtual'
+            raise ContractError(f'{ident}: {label} endpoint denominator mismatch')
+        for e in second['affected']:
             if (owners.get(e['native_pad'].rsplit('.', 1)[0]) != e['block'] or
                     not pads.get(e['native_pad']) or
                     any(p.GetNetname() != e['net'] or
                         not p.IsOnLayer(board.GetLayerID(path['layer']))
                         for p in pads[e['native_pad']])):
-                raise ContractError(f"{e['source_pad']}: virtual native owner/pad/net/layer mismatch")
-        expected_p2 = [{'status': 'P2_REQUIRED', **e,
-                        'stage_id': virtual['id'], 'layer': path['layer'],
-                        'to_reservation': path['reservation_id']}
-                       for e in virtual['affected']]
-        if virtual['p2_obligations'] != expected_p2 or virtual['return_obligation'] != {
-                'status': 'P2_REQUIRED', 'net': 'GND', 'stage_id': virtual['id'],
-                'reference_layer': path['reference_layer'],
-                'proof': 'continuous_filled_reference'}:
-            raise ContractError(f'{ident}: virtual P2/filled-return obligations incomplete')
+                raise ContractError(f"{e['source_pad']}: second-stage native owner/pad/net/layer mismatch")
+        if not second_physical:
+            expected_p2 = [{'status': 'P2_REQUIRED', **e,
+                            'stage_id': second['id'], 'layer': path['layer'],
+                            'to_reservation': path['reservation_id']}
+                           for e in second['affected']]
+            if second['p2_obligations'] != expected_p2 or second['return_obligation'] != {
+                    'status': 'P2_REQUIRED', 'net': 'GND', 'stage_id': second['id'],
+                    'reference_layer': path['reference_layer'],
+                    'proof': 'continuous_filled_reference'}:
+                raise ContractError(f'{ident}: virtual P2/filled-return obligations incomplete')
         expected_all = set()
         for item in interfaces['interfaces']:
             if item['net'] in nets:
@@ -941,9 +992,13 @@ def _linked_paths(source, contract, interfaces, board, outline, regions, zones,
         if actual_all != expected_all:
             raise ContractError(f'{ident}: path terminal denominator mismatch')
         physical_set = {(e['source_pad'], e['net'], e['block']) for e in physical['affected']}
-        virtual_set = {(e['source_pad'], e['net'], e['block']) for e in virtual['affected']}
-        shared = physical_set & virtual_set
-        expected_joins = [{'from': physical['id'], 'to': virtual['id'],
+        second_set = {(e['source_pad'], e['net'], e['block']) for e in second['affected']}
+        shared = physical_set & second_set
+        if ({owner for _, _, owner in shared} != {order[1]} or
+                {net: sum(1 for _, shared_net, _ in shared if shared_net == net)
+                 for net in nets} != {net: 1 for net in nets}):
+            raise ContractError(f'{ident}: interstage join multiplicity invalid')
+        expected_joins = [{'from': physical['id'], 'to': second['id'],
                            'owner': order[1], 'net': net, 'source_pad': source_pad,
                            'kind': 'pad_anchored_virtual_interstage'}
                           for source_pad, net, owner in sorted(shared)]
@@ -953,7 +1008,7 @@ def _linked_paths(source, contract, interfaces, board, outline, regions, zones,
         if (isinstance(pitch, bool) or not isinstance(pitch, (int, float)) or
                 not math.isfinite(pitch) or pitch < native_pitch or
                 isinstance(demand, bool) or
-                not isinstance(demand, int) or demand < 1):
+                not isinstance(demand, int) or demand < len(nets)):
             raise ContractError(f'{ident}: physical stage rough capacity declaration invalid')
         rough = _coarse_reservation(board, {'id': physical['id'], 'kind': 'signal',
                                           'layer': path['layer'], 'bbox': corridor['bbox'],
@@ -963,12 +1018,38 @@ def _linked_paths(source, contract, interfaces, board, outline, regions, zones,
                                     power_boundary=False, power_like_nets=set())
         if rough['status'] == 'FAIL':
             raise ContractError(f'{ident}: physical stage raw capacity below demand')
+        if second_physical:
+            pitch2, demand2 = second.get('slot_pitch_mm'), second.get('demand_slots')
+            if (second.get('axis') not in ('horizontal', 'vertical') or
+                    isinstance(pitch2, bool) or not isinstance(pitch2, (int, float)) or
+                    not math.isfinite(pitch2) or pitch2 < native_pitch or
+                    isinstance(demand2, bool) or not isinstance(demand2, int) or
+                    demand2 < len(nets)):
+                raise ContractError(f'{ident}: second physical stage rough capacity declaration invalid')
+            rough2 = _coarse_reservation(
+                board, {'id': second['id'], 'kind': 'signal',
+                        'layer': path['layer'], 'bbox': second_corridor['bbox'],
+                        'axis': second['axis'], 'nets': nets,
+                        'demand_slots': demand2, 'slot_pitch_mm': pitch2},
+                outline, fixed_refs, movable_refs, zones, native_pitch,
+                power_boundary=False, power_like_nets=set())
+            if rough2['status'] == 'FAIL':
+                raise ContractError(f'{ident}: second physical stage raw capacity below demand')
+            second_result = {'id': second['id'], 'status': 'INCOMPLETE',
+                             'rough_capacity': rough2}
+        else:
+            second_result = {'id': second['id'], 'status': 'INCOMPLETE',
+                             'capacity_slots': None}
         result[allocation_id] = {'id': ident, 'status': 'INCOMPLETE', 'nets': nets,
                                  'capacity_slots': None,
                                  'stages': [{'id': physical['id'], 'status': 'INCOMPLETE',
                                              'rough_capacity': rough},
-                                            {'id': virtual['id'], 'status': 'INCOMPLETE',
-                                             'capacity_slots': None}]}
+                                            second_result]}
+        used_stage_ids.update(stage_ids)
+        used_reservation_ids.update(reservation_ids)
+        used_regions.update(region_ids)
+        used_stage_areas.extend((path['layer'], area) for area in stage_areas)
+        used_access_areas.extend((path['layer'], area) for _, area in access_shapes)
     if len(claimed) != len(rows) or len(result) != len(rows):
         raise ContractError('linked path allocation denominator mismatch')
     return result

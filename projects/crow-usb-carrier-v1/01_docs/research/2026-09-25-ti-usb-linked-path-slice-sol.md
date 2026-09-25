@@ -39,3 +39,8 @@ virtual stage, rejects a second same-net top-level reservation, and rejects
 missing endpoints, joins, native obstacles, geometry on the virtual stage,
 and incomplete P2 or return duties. It cannot certify routing, impedance,
 filled reference, connector mating, P-OUT, FULL, P2, or P1.
+
+**Superseded capacity declaration:** this historical first-slice packet
+declared one slot for a two-net pair. The stricter linked-path checker now
+rejects it as undercounted; the separate two-physical-stage packet declares
+two slots per physical stage and retains this record as provenance only.
