@@ -60,8 +60,13 @@ def main():
             via_report=json.loads(via_json.read_text())
             if via_report['fails']:raise SystemExit(f'V-PROCESS failures: {via_report["fails"]}')
             native=p.LoadBoard(str(board))
-            zones=sorted(z.GetZoneName() for z in native.Zones() if z.GetIsRuleArea() and
-                         z.GetZoneName().startswith('tmux4827_b2_pofv_'))
+            areas={z.GetZoneName():[p.ToMM(z.GetBoundingBox().GetLeft()),
+                                    p.ToMM(z.GetBoundingBox().GetTop()),
+                                    p.ToMM(z.GetBoundingBox().GetRight()),
+                                    p.ToMM(z.GetBoundingBox().GetBottom())]
+                   for z in native.Zones() if z.GetIsRuleArea() and
+                   z.GetZoneName().startswith('tmux4827_b2_pofv_')}
+            zones=sorted(areas)
             wanted=[f'tmux4827_b2_pofv_U_ISO{i}' for i in range(1,9)]
             if zones!=wanted:raise SystemExit(f'POFV rule area identity drift: {zones}')
             fp=next(f for f in native.GetFootprints() if f.GetReference()=='U_ISO8')
@@ -80,9 +85,10 @@ def main():
             iso=[v for v in drc['violations'] if any('U_ISO8' in i['description'] for i in v['items'])
                  and v['type'] in ('clearance','hole_clearance')]
             if iso:raise SystemExit(f'U_ISO8 native via clearance remains: {iso}')
-            rows[name]={'augmented_board_sha256':sha(board),'augmented_dru_sha256':sha(temp/'crow_carrier.kicad_dru'),
+            rows[name]={'augmented_dru_sha256':sha(temp/'crow_carrier.kicad_dru'),
                         'project_sha256':sha(temp/'crow_carrier.kicad_pro'),
-                        'rule_areas':zones,'u_iso8_5_via_mm':[p.ToMM(via.GetPosition().x),
+                        'rule_areas':zones,'rule_area_bounds_mm':areas,
+                        'u_iso8_5_via_mm':[p.ToMM(via.GetPosition().x),
                                                               p.ToMM(via.GetPosition().y)],
                         'u_iso8_via_diameter_mm':.35,'u_iso8_via_drill_mm':.20,
                         'via_process_census':via_report['census'],
@@ -99,6 +105,7 @@ def main():
              'issue_identity_delta':{'added':0,'removed':0},
              'authority':'Exact conditional TMUX4827_YBH_B2_POFV profile generates eight pad-bound rule areas and 0.10-mm via-to-adjacent-pad clearance; V-PROCESS validates Type-VII 0.35/0.20 sites.',
              'bare_board_harness_defect':'Generic board generation and kicad-cli DRC without TI .kicad_pro/.kicad_dru and POFV producer reported the allowed 0.10-mm ISO8 via gap against the 0.20-mm default rule.',
+             'augmented_board_hash_policy':'No augmented board byte SHA is claimed: pcbnew creates fresh UUIDs for the eight newly emitted rule areas on each replay. Input board bytes and semantic area names/bounds are pinned instead.',
              'offpad_via_repair':'Rejected without edit: profile audit requires exactly one 0.35/0.20 GND via centred on each U_ISO*.5 within 0.0015 mm; an off-pad via plus neck violates this source-governed profile and adds unproved return geometry.',
              'qualification':['Conditional POFV vendor/CAM/PCBA acceptance is still owed',
                               'ADC8 cap owner pinch, 28 reference labels, unfilled return and 499 opens remain',

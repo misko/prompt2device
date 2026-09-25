@@ -17,8 +17,8 @@ eight `U_ISO*.5` B2 sites at 0.35-mm copper/0.20-mm drill and six `U_LDO`
 sites at 0.50/0.20 mm. The candidate's `U_ISO8.5` GND via is centred at
 `(199.0,53.0)` mm. The baseline and union each have **213 DRC issues and 499
 unconnected items**, no ISO8 clearance item, and *identical* issue identities
-(+0/−0). The [receipt](receipt.json) binds the augmented board/project/rule
-hashes, native rule-area identities, via process census, and exact delta.
+(+0/−0). The [receipt](receipt.json) binds the input and project-rule hashes,
+native rule-area names and bounds, via process census, and exact delta.
 
 No via relocation is justified. The exact source profile requires one
 0.35/0.20-mm GND via centred on each `U_ISO*.5` pad within 0.0015 mm; an
@@ -32,5 +32,12 @@ This removes only the *claimed ISO8 DRC blocker* from the integrated placement
 assessment. The 0.005-mm ADC8 cap owner margin, 28 source-unencoded F.Fab
 reference-field moves, unfilled In1.Cu return, 499 opens, and vendor/CAM/PCBA
 acceptance remain. There is no route, return, P1, or P2 acceptance here.
+
+The producer creates fresh KiCad UUIDs for the eight rule-area objects on
+each run, so byte hashes of the augmented temporary boards are not stable.
+The replay pins the input board/project/source hashes and checks the emitted
+area names and native bounds, centred via geometry, exact generated `.dru`,
+process census, and DRC issue identities. Two consecutive replays produced
+the same receipt SHA-256 `9417ca44def604e5142988c1efb5b27e561c0fa027b6a082f291e12410e35484`.
 
 Reproduce from this directory with `python3 replay.py`.

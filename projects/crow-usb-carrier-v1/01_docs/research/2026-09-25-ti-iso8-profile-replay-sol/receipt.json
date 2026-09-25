@@ -1,9 +1,9 @@
 {
+  "augmented_board_hash_policy": "No augmented board byte SHA is claimed: pcbnew creates fresh UUIDs for the eight newly emitted rule areas on each replay. Input board bytes and semantic area names/bounds are pinned instead.",
   "authority": "Exact conditional TMUX4827_YBH_B2_POFV profile generates eight pad-bound rule areas and 0.10-mm via-to-adjacent-pad clearance; V-PROCESS validates Type-VII 0.35/0.20 sites.",
   "bare_board_harness_defect": "Generic board generation and kicad-cli DRC without TI .kicad_pro/.kicad_dru and POFV producer reported the allowed 0.10-mm ISO8 via gap against the 0.20-mm default rule.",
   "boards": {
     "baseline": {
-      "augmented_board_sha256": "a0fe82451c12bcf5ae956ae1d569c744ee10df3cb872898bc4d8d4ad864bf642",
       "augmented_dru_sha256": "00ab83d8484368f132392523972c1f41fc9073423d3c600feec962684f9c3b0a",
       "drc": {
         "u_iso8_clearance_issues": [],
@@ -11,6 +11,56 @@
         "violations": 213
       },
       "project_sha256": "7977bc9edb88e1ef723eb256f07949871493dfda3d2c2491dd5d5b6087ddc094",
+      "rule_area_bounds_mm": {
+        "tmux4827_b2_pofv_U_ISO1": [
+          23.295,
+          67.595,
+          23.305,
+          67.604999
+        ],
+        "tmux4827_b2_pofv_U_ISO2": [
+          60.394999,
+          49.195,
+          60.405,
+          49.205
+        ],
+        "tmux4827_b2_pofv_U_ISO3": [
+          82.395,
+          49.195,
+          82.405,
+          49.205
+        ],
+        "tmux4827_b2_pofv_U_ISO4": [
+          104.395,
+          49.195,
+          104.405,
+          49.205
+        ],
+        "tmux4827_b2_pofv_U_ISO5": [
+          126.395,
+          49.195,
+          126.405,
+          49.205
+        ],
+        "tmux4827_b2_pofv_U_ISO6": [
+          148.395,
+          49.195,
+          148.405,
+          49.205
+        ],
+        "tmux4827_b2_pofv_U_ISO7": [
+          170.395,
+          49.195,
+          170.405,
+          49.205
+        ],
+        "tmux4827_b2_pofv_U_ISO8": [
+          202.695,
+          58.394999,
+          202.704999,
+          58.405
+        ]
+      },
       "rule_areas": [
         "tmux4827_b2_pofv_U_ISO1",
         "tmux4827_b2_pofv_U_ISO2",
@@ -33,7 +83,6 @@
       }
     },
     "candidate": {
-      "augmented_board_sha256": "0fdb75502e537977ce78a292de7d93cd462aebaeb688d25954c4efd3ae1713e6",
       "augmented_dru_sha256": "00ab83d8484368f132392523972c1f41fc9073423d3c600feec962684f9c3b0a",
       "drc": {
         "u_iso8_clearance_issues": [],
@@ -41,6 +90,56 @@
         "violations": 213
       },
       "project_sha256": "7977bc9edb88e1ef723eb256f07949871493dfda3d2c2491dd5d5b6087ddc094",
+      "rule_area_bounds_mm": {
+        "tmux4827_b2_pofv_U_ISO1": [
+          23.295,
+          67.595,
+          23.305,
+          67.604999
+        ],
+        "tmux4827_b2_pofv_U_ISO2": [
+          60.394999,
+          49.195,
+          60.405,
+          49.205
+        ],
+        "tmux4827_b2_pofv_U_ISO3": [
+          82.395,
+          49.195,
+          82.405,
+          49.205
+        ],
+        "tmux4827_b2_pofv_U_ISO4": [
+          104.395,
+          49.195,
+          104.405,
+          49.205
+        ],
+        "tmux4827_b2_pofv_U_ISO5": [
+          126.395,
+          49.195,
+          126.405,
+          49.205
+        ],
+        "tmux4827_b2_pofv_U_ISO6": [
+          148.395,
+          49.195,
+          148.405,
+          49.205
+        ],
+        "tmux4827_b2_pofv_U_ISO7": [
+          170.395,
+          49.195,
+          170.405,
+          49.205
+        ],
+        "tmux4827_b2_pofv_U_ISO8": [
+          198.995,
+          52.995,
+          199.005,
+          53.005
+        ]
+      },
       "rule_areas": [
         "tmux4827_b2_pofv_U_ISO1",
         "tmux4827_b2_pofv_U_ISO2",
