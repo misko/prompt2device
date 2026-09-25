@@ -72,6 +72,10 @@ SCHPDF=03_tscircuit/build/schematic.pdf
 PIPELINE_EVIDENCE=06_build/verification/pipeline
 mkdir -p "$PIPELINE_EVIDENCE/bundles"
 
+# Resolve selected critical parts before any schematic or connector producer.
+$PY "$CS/critical_part_selection_admission.py" . \
+    || { rc=$?; echo "GATE INCOMPLETE [0s] CRITICAL-SELECTION: close exact source identity, public stock and due-at-selection findings before producer spend" >&2; exit "$rc"; }
+
 # [0g] Compile the unchanged base fact lock first. Its explicit rc=2 is handed
 # only to the additive source-phase classifier; it is never relabeled or
 # swallowed. Source may defer closed, policy-bound physical qualification

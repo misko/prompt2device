@@ -21,7 +21,7 @@ export function usbFrontendConnections(n: Nets) {
   }
 }
 
-// Nexperia PESD2USB3UV-T Figure 14 exact SOT23 reflow lands in the
+// Nexperia PESD2USB5UX-T Figure 14 exact SOT23 reflow lands in the
 // tscircuit y-up frame; pins 1/2 form the paired side and common-anode pin 3
 // is isolated. The land drawing is unlabeled; numbering follows Table 2 and
 // Figure 13 after a rotation. No unverified generic STEP model is attached.
@@ -51,8 +51,8 @@ export function UsbDeviceFrontend({ nets, receptacleFootprint }:
     <resistor name="R_USB_CC2" resistance="5.1k" footprint="0402"
       manufacturerPartNumber="RC0402FR-075K1L" supplierPartNumbers={{jlcpcb:["C105872"]}}
       connections={c.cc2} schSheetName="usb" schSectionName="USB interface" schX={-4} schY={-9} />
-    <chip name="U_USB_ESD" manufacturerPartNumber="PESD2USB3UV-TR"
-      supplierPartNumbers={{jlcpcb:["C3704436"]}} pinLabels={{pin1:"DP",pin2:"DM",pin3:"GND"}}
+    <chip name="U_USB_ESD" manufacturerPartNumber="PESD2USB5UX-TR"
+      supplierPartNumbers={{jlcpcb:["C3709087"]}} pinLabels={{pin1:"DP",pin2:"DM",pin3:"GND"}}
       connections={c.esd} footprint={dataEsdFootprint()}
       schSheetName="usb" schSectionName="USB interface" schX={1} schY={2} />
     <chip name="U_USB_CC_ESD" manufacturerPartNumber="TPD2E2U06DRLR"

@@ -89,6 +89,10 @@ compile_connector_base() {
 PIPELINE_EVIDENCE=06_build/verification/pipeline
 mkdir -p "$PIPELINE_EVIDENCE/bundles"
 
+# Deterministic replay uses the same early selection decision as full build.
+$PY "$CS/critical_part_selection_admission.py" . \
+    || { rc=$?; echo "GATE INCOMPLETE CRITICAL-SELECTION: close exact source identity, public stock and due-at-selection findings before replay" >&2; exit "$rc"; }
+
 # Deterministic replay preserves the same additive phase split as the full
 # driver. The base rc=2 remains explicit and is forwarded only to SOURCE.
 compile_connector_base "[0g]"

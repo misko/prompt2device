@@ -1,0 +1,59 @@
+mpn: PESD2USB5UX-TR
+manufacturer: Nexperia
+type: two_channel_usb_data_esd_protection_array
+status: provisional_source_selection
+datasheet:
+  doc_id: PESD2USB5UX-T
+  revision: '2020-09-09'
+  url: https://assets.nexperia.com/documents/data-sheet/PESD2USB5UX-T.pdf
+  local: PESD2USB5UX-T.pdf
+  sha256: 6e86f26606d8dd9bd563f172b68f5db53f8ee1d9b7c1105a88598d9d7344b112
+  fetched: '2026-09-25'
+package: SOT23 (TO-236AB), 2.9 x 1.3 x 1.0 mm body
+footprint: crow_usb_analog:Nexperia_PESD2USB5UX_SOT23
+pins:
+  '1': K1_USB_DP
+  '2': K2_USB_DN
+  '3': CA_GND
+escape:
+  style: leaded
+  pitch: 1.9
+  tier_required: jlc_4layer_default
+  checked: Nexperia 2020-09-09 PDF Figure 14 reflow lands; pin identities from Table 2 and Figure 13, paired side rotated to top. Native route, stencil and placement remain pending.
+limits:
+  reverse_standoff_V: 5.0
+  breakdown_min_V: 7.2
+  breakdown_max_V: 11.0
+  capacitance_typ_pF: 0.47
+  capacitance_max_pF: 0.60
+  iec_contact_kV: 8
+  surge_8_20_A: 4
+sourcing:
+  lcsc: C3709087
+gotchas:
+- Pins 1/2 are separate protected cathodes on USB_DP/USB_DN; pin 3 is common-anode GND.
+- JLC exact C3709087 public page lists SMT Assembly and Economic and Standard PCBA. Public stock is dated and not reserved.
+- Manufacturer datasheet names PESD2USB5UX-T; JLC's -TR suffix is the reel listing and shares the exact SOT23 pin map.
+- 5.0-V reverse standoff covers Crow's conservative 3.60-V XU316 USB supply ceiling for steady-state leakage, but USB pin transient stress is unproven.
+- Higher 7.2-11-V breakdown and lower 8-kV IEC/4-A surge ratings than 3UV make powered/unpowered XU316 coordination and system ESD explicit open gates; typical TLP clamp is not a pin-stress guarantee.
+- 0.60-pF maximum shunt capacitance still needs realized USB high-speed insertion-loss and eye review.
+- Connector FULL, P1/P3 placement/return, and exact assembly mask/stencil remain pending.
+verified: Primary datasheet Tables 2-6 and Figures 13-14 inspected 2026-09-25; exact public catalog page identifies C3709087 as SMT Economic/Standard. This is a provisional source candidate only.
+layout:
+  source: PESD2USB5UX-T.pdf Figures 13-14, Table 2
+  reviewed: '2026-09-25'
+  route_topology:
+    kind: shunt
+    signal_pads: ['1', '2']
+    return_pads: ['3']
+    source: Nexperia PESD2USB5UX-T Table 2, cathodes 1/2 and common anode 3.
+  notes: Place close to J_USB, avoid long signal stubs and give pin 3 a short low-inductance ground return; native realization remains owed.
+layout_refs:
+- tier: 1
+  reached: true
+  artifact: Nexperia PESD2USB5UX-T Tables 2-6 and Figures 13-14
+  why: Exact manufacturer primary fixes pinout, ratings, package and reflow lands, not Crow electrical or native PCB acceptance.
+- tier: 2
+  reached: false
+  artifact: Exact PESD2USB5UX editable manufacturer reference design files
+  why: No exact editable routed reference board was retained; connector-to-clamp signal path and low-inductance return require native PCB review.
