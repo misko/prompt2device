@@ -44,6 +44,10 @@ transit cells have no refs and must edge-connect to occupied same-owner cells.
 Owners using this extension must assign all modular refs exactly once, include
 their primary region when present, and name cells explicitly on witnesses,
 corridor faces and P2 obligations. No source alias or P1 credit is implied.
+On the exact reviewed Crow board, ``physical_cell_edge_attachments`` can admit
+only the nominal 0.045-mm north F.CrtYd projection of fixed J_PWR/J1--J8 in
+a one-ref physical cell. Material, pads, drills and all other geometry stay
+inboard. This affects physical-cell containment only, never route or P1 credit.
 A ``fixed_connector_access`` witness keeps a P1-fixed pad physical and binds a
 separate, disjoint access reservation to a named integration corridor. It is
 only a topology/geometry declaration and carries no routing capacity credit.
@@ -1468,16 +1472,117 @@ def _physical_envelope(fp):
     return tuple(body)
 
 
-def _physical_cells(source, interfaces, board, outline, regions, patterns):
+_EDGE_BOARD_SHA256 = 'd0c065dc16de081a5410b7a22e474f0a99c6fdeb0b7dd1f6c37422ace4a9fcf7'
+_EDGE_OUTLINE_SHA256 = '8c777cc8717eb7d54ee6581a199d69d0184c0ceb184e2639e6fdecba3822cb6c'
+_EDGE_PROJECT_ROOT = Path(__file__).resolve().parents[3] / 'projects/crow-usb-carrier-v1'
+_EDGE_PARTS = {
+    'J_PWR': ('crow_usb_power_aux.pretty/Molex_43650-0200.kicad_mod',
+              '43650-0200/Molex_436501000_SD_revD8.pdf',
+              'a5270e0a7273bf96318cc832753a160d61d49ecf18b1bc6f184506f53bd45ce2',
+              'b8942b95bc3fe4c02171de9e714d99b2688055e249ba1524e3c2a8c3cf78eaa3',
+              (30.0, 29.42, 0.0), 'Molex_43650-0200'),
+    **{f'J{n}': ('crow_usb_analog.pretty/Wurth_615008160221_RJ45.kicad_mod',
+                 '615008160221/Wurth_615008160221_rev001003.pdf',
+                 'c8286c258474bde37022ef16730c7976e488d5fd7312699870ed54ee0dccc7d6',
+                 '6ed18749211d4e6cbffd99cd0b90461dfe4ec6d70f558ceceeb5901651f0e048',
+                 (50.0 + 22.0 * (n-1), 26.86, 0.0),
+                 'Wurth_615008160221_RJ45') for n in range(1, 9)},
+}
+
+
+def _edge_outline_digest(outline):
+    if outline.OutlineCount() != 1 or outline.HoleCount(0):
+        raise ContractError('edge attachment outline topology invalid')
+    points = sorted((point.x, point.y) for point in outline.Outline(0).CPoints())
+    return hashlib.sha256(json.dumps(points, separators=(',', ':')).encode()).hexdigest()
+
+
+def _physical_cell_edge_attachments(source, board, outline, board_sha256):
+    """Verify exact nominal drawing-only north-edge attachments for cell use."""
+    rows = source.get('physical_cell_edge_attachments')
+    if rows is None:
+        return {}
+    if not isinstance(rows, list) or not rows or board_sha256 != _EDGE_BOARD_SHA256:
+        raise ContractError('edge attachment board hash missing or unreviewed')
+    outline_hash = _edge_outline_digest(outline)
+    if (outline_hash != _EDGE_OUTLINE_SHA256 or
+            box_mm(outline.BBox()) != (20.0, 20.0, 240.0, 140.0)):
+        raise ContractError('edge attachment native outline drift')
+    native = {fp.GetReference(): fp for fp in board.GetFootprints()}
+    allowed = {'ref', 'physical_cell_id', 'edge', 'board_sha256', 'outline_sha256',
+               'footprint_sha256', 'drawing_sha256', 'pose_mm',
+               'maximum_courtyard_projection_mm'}
+    result = {}
+    for row in rows:
+        if not isinstance(row, dict) or set(row) != allowed:
+            raise ContractError('physical-cell edge attachment fields invalid')
+        ref, cell_id = row['ref'], row['physical_cell_id']
+        if (ref not in _EDGE_PARTS or ref in result or not isinstance(cell_id, str) or
+                not cell_id or row['edge'] != 'north' or
+                row['board_sha256'] != _EDGE_BOARD_SHA256 or
+                row['outline_sha256'] != _EDGE_OUTLINE_SHA256 or
+                row['maximum_courtyard_projection_mm'] != 0.045 or
+                ref not in source.get('p1_fixed_refs', [])):
+            raise ContractError(f'{ref}: physical-cell edge attachment identity/direction invalid')
+        fp_rel, drawing_rel, fp_hash, drawing_hash, pose, lib_item = _EDGE_PARTS[ref]
+        footprint_path = _EDGE_PROJECT_ROOT / '03_src/lib' / fp_rel
+        drawing_path = _EDGE_PROJECT_ROOT / '02_parts' / drawing_rel
+        if (row['footprint_sha256'] != fp_hash or row['drawing_sha256'] != drawing_hash or
+                digest(footprint_path) != fp_hash or digest(drawing_path) != drawing_hash):
+            raise ContractError(f'{ref}: physical-cell footprint/drawing hash drift')
+        fp = native.get(ref)
+        if fp is None:
+            raise ContractError(f'{ref}: physical-cell native footprint missing')
+        actual_pose = (pcbnew.ToMM(fp.GetPosition().x), pcbnew.ToMM(fp.GetPosition().y),
+                       fp.GetOrientationDegrees())
+        if (row['pose_mm'] != list(pose) or actual_pose != pose or
+                str(fp.GetFPID().GetLibItemName()) != lib_item):
+            raise ContractError(f'{ref}: physical-cell fixed pose/footprint mismatch')
+        courtyard = fp.GetCourtyard(pcbnew.F_CrtYd)
+        if courtyard.OutlineCount() != 1 or courtyard.HasHoles():
+            raise ContractError(f'{ref}: physical-cell courtyard has extra exterior lobe')
+        court_box = box_mm(courtyard.BBox())
+        outline_box = box_mm(outline.BBox())
+        if (round(outline_box[1] - court_box[1], 6) != 0.045 or
+                court_box[0] < outline_box[0] or court_box[2] > outline_box[2] or
+                court_box[3] > outline_box[3]):
+            raise ContractError(f'{ref}: physical-cell courtyard projection exceeds north limit')
+        fab = [box_mm(item.GetBoundingBox()) for item in fp.GraphicalItems()
+               if item.GetLayer() == pcbnew.F_Fab and item.GetClass() != 'PCB_TEXT']
+        if not fab or any(not lane_inside_outline(outline, box) for box in fab):
+            raise ContractError(f'{ref}: physical-cell F.Fab material leaves board')
+        for pad in fp.Pads():
+            if not lane_inside_outline(outline, box_mm(pad.GetBoundingBox())):
+                raise ContractError(f'{ref}: physical-cell pad leaves board material')
+            if pad.HasHole():
+                # A circumscribed disk safely bounds circular and rotated slot drills.
+                drill = pad.GetDrillSize()
+                radius = math.hypot(pcbnew.ToMM(drill.x), pcbnew.ToMM(drill.y)) / 2
+                center = pad.GetPosition()
+                x, y = pcbnew.ToMM(center.x), pcbnew.ToMM(center.y)
+                if not lane_inside_outline(outline, (x-radius, y-radius,
+                                                     x+radius, y+radius)):
+                    raise ContractError(f'{ref}: physical-cell drill/slot leaves board material')
+        result[ref] = {'physical_cell_id': cell_id, 'courtyard_bbox': court_box}
+    return result
+
+
+def _physical_cells(source, interfaces, board, outline, regions, patterns,
+                    board_sha256=None):
     """Bind disjoint physical regions to exact modular owners, never aliases."""
     rows = source.get('physical_cells')
     if rows is None:
+        if 'physical_cell_edge_attachments' in source:
+            raise ContractError('physical-cell edge attachment lacks physical cells')
         return {}
     if not isinstance(rows, list) or not rows or not isinstance(interfaces.get('blocks'), list):
         raise ContractError('physical cells require modular block ownership')
     blocks = {b.get('id'): set(b.get('refs', [])) for b in interfaces['blocks']}
     native = {fp.GetReference(): fp for fp in board.GetFootprints()}
     cells, assigned = {}, set()
+    edge_attachments = _physical_cell_edge_attachments(source, board, outline,
+                                                        board_sha256)
+    used_edge = set()
     for row in rows:
         if not isinstance(row, dict) or set(row) != {'id', 'owner_block', 'refs', 'transit'}:
             raise ContractError('physical cell record malformed')
@@ -1491,7 +1596,19 @@ def _physical_cells(source, interfaces, board, outline, regions, patterns):
         if not set(refs) <= blocks[owner] or any(ref in assigned or ref not in native for ref in refs):
             raise ContractError(f'{ident}: physical cell ref ownership/uniqueness mismatch')
         area = rectangle(regions[ident], f'{ident} physical cell')
-        if not lane_inside_outline(outline, area):
+        edge = next(((ref, edge_attachments[ref]) for ref in refs
+                     if ref in edge_attachments), None)
+        if edge is not None:
+            ref, attachment = edge
+            if (len(refs) != 1 or attachment['physical_cell_id'] != ident or
+                    area != _physical_envelope(native[ref]) or
+                    area[1] != attachment['courtyard_bbox'][1] or
+                    area[0] < 20.0 or area[2] > 240.0 or area[3] > 140.0 or
+                    not lane_inside_outline(outline, (area[0], 20.0,
+                                                      area[2], area[3]))):
+                raise ContractError(f'{ident}: edge cell must contain only exact fixed connector')
+            used_edge.add(ref)
+        elif not lane_inside_outline(outline, area):
             raise ContractError(f'{ident}: physical cell off board outline')
         for ref in refs:
             fp = native[ref]
@@ -1535,6 +1652,8 @@ def _physical_cells(source, interfaces, board, outline, regions, patterns):
                 if other and other['owner_block'] == cell['owner_block']:
                     raise ContractError(f'{ident}: physical cells overlap {other_id}')
                 raise ContractError(f'{ident}: physical cell overlaps foreign region {other_id}')
+    if used_edge != set(edge_attachments):
+        raise ContractError('physical-cell edge attachment lacks exact one-ref cell')
     return cells
 
 
@@ -1721,7 +1840,8 @@ def evaluate_coarse(board_path, contract_path, expected_contract_sha256=None, *,
             patterns = placement.get('patterns', [])
             if not isinstance(patterns, list) or any(not isinstance(p, dict) or not isinstance(p.get('match'), list) for p in patterns):
                 raise ContractError('source placement patterns malformed')
-            physical_cells = _physical_cells(source, interfaces, board, outline, regions, patterns)
+            physical_cells = _physical_cells(source, interfaces, board, outline,
+                                             regions, patterns, hashes['board'])
             owner_pockets = _branch_owner_pockets(source, interfaces, board, outline,
                                                    regions, {'board': hashes['board'],
                                                              'floorplan': hashes['floorplan'],
