@@ -397,7 +397,8 @@ def main() -> int:
     try:
         if args.print_bindings:
             selected, findings = selected_components(args.project)
-            packet = yaml.safe_load((args.project / "03_src/rules/ic_reference_research.yaml").read_text()) or {}
+            packet_path = args.project / "03_src/rules/ic_reference_research.yaml"
+            packet = (yaml.safe_load(packet_path.read_text()) or {}) if packet_path.is_file() else {}
             binding_schema = packet.get("binding_schema", 1)
             bindings = source_bindings(args.project, binding_schema=binding_schema)
             result = {"source": bindings, "binding_schema": binding_schema,
