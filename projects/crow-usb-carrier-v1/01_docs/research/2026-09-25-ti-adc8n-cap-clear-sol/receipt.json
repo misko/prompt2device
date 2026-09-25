@@ -1,0 +1,286 @@
+{
+  "all_569_footprint_pose_pad_ledgers_preserved": true,
+  "candidate_filled_board_sha256_observation": "c79879554a0afdcb6e9484b8b60f661f525df347033c7ce26382054c56b8eca9",
+  "cap_full_envelope_mm": [
+    195.205,
+    58.305,
+    200.795,
+    61.795
+  ],
+  "filled_return": {
+    "same_filled_polygon_outline_indices": [
+      8
+    ],
+    "uncovered_0p20mm_ribbon_area_mm2_by_segment": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "full_profile": {
+    "added_violation_identities": 0,
+    "baseline_unconnected": 499,
+    "baseline_v_process_fails": [],
+    "baseline_violations": 199,
+    "candidate_unconnected": 499,
+    "candidate_v_process_fails": [],
+    "candidate_violations": 199,
+    "removed_violation_identities": 0
+  },
+  "gnd_stitch_connected_pads": [
+    {
+      "named_gnd_pad": "C_FILTER8N1.2",
+      "via_center_mm": [
+        200.4,
+        57.8
+      ]
+    },
+    {
+      "named_gnd_pad": "C_ADC_CM8N.2",
+      "via_center_mm": [
+        188.95,
+        66.5
+      ]
+    }
+  ],
+  "input_sha256": {
+    "assembly": "76071a9190ae3923a7a1b4b709a5b3160ce1f06b8d8fb22292ce1cea23664cf3",
+    "board": "0b9d017706845ad4d77c2b579dd36f2e34c0ecf55a7b699ace4fca97465c5b93",
+    "dru": "00ab83d8484368f132392523972c1f41fc9073423d3c600feec962684f9c3b0a",
+    "pro": "7977bc9edb88e1ef723eb256f07949871493dfda3d2c2491dd5d5b6087ddc094",
+    "producer": "b3906f63e07e9f04ada58e757f4095989f6933eca98d93b0f1165e91064529b7"
+  },
+  "launch_gnd_via_and_neck_to_cap_full_gap_mm": [
+    0.205001,
+    0.405001
+  ],
+  "launch_gnd_via_mm": [
+    200.4,
+    57.8
+  ],
+  "minimum_native_different_net_copper_gap": {
+    "minimum_effective_shape_copper_gap_mm": 0.190001,
+    "obstacle": "C_ADC_CM8N.2",
+    "segment_mm": [
+      [
+        190.75,
+        65.9
+      ],
+      [
+        187.9,
+        65.9
+      ]
+    ]
+  },
+  "native_connected_adc8n_pads": [
+    "C_ADC_AC8N1.2",
+    "C_ADC_CM8N.1"
+  ],
+  "north_route": {
+    "layer": "F.Cu",
+    "length_mm": 20.016804,
+    "segment_count": 8,
+    "vertices_mm": [
+      [
+        199.8,
+        60.05
+      ],
+      [
+        199.8,
+        58.05
+      ],
+      [
+        195.05,
+        58.05
+      ],
+      [
+        195.05,
+        61.6
+      ],
+      [
+        190.75,
+        65.9
+      ],
+      [
+        187.9,
+        65.9
+      ],
+      [
+        187.9,
+        66.1
+      ],
+      [
+        187.5,
+        66.5
+      ],
+      [
+        187.52,
+        66.5
+      ]
+    ],
+    "width_mm": 0.2
+  },
+  "other_native_full_envelope_hits": {
+    "C_ADC_AC8N1": {
+      "full_envelope_mm": [
+        195.205,
+        58.305,
+        200.795,
+        61.795
+      ],
+      "segment_hits_mm": [
+        [
+          [
+            199.8,
+            60.05
+          ],
+          [
+            199.8,
+            58.05
+          ]
+        ]
+      ]
+    },
+    "C_ADC_CM8N": {
+      "full_envelope_mm": [
+        187.045,
+        65.995,
+        188.955,
+        67.005
+      ],
+      "segment_hits_mm": [
+        [
+          [
+            187.5,
+            66.5
+          ],
+          [
+            187.52,
+            66.5
+          ]
+        ],
+        [
+          [
+            187.9,
+            66.099999
+          ],
+          [
+            187.5,
+            66.5
+          ]
+        ],
+        [
+          [
+            190.75,
+            65.9
+          ],
+          [
+            187.9,
+            65.9
+          ]
+        ],
+        [
+          [
+            187.9,
+            65.9
+          ],
+          [
+            187.9,
+            66.099999
+          ]
+        ]
+      ]
+    },
+    "U_SPOKE8": {
+      "full_envelope_mm": [
+        187.805,
+        60.805,
+        192.195,
+        65.195
+      ],
+      "segment_hits_mm": [
+        [
+          [
+            195.05,
+            61.6
+          ],
+          [
+            190.75,
+            65.9
+          ]
+        ]
+      ]
+    }
+  },
+  "post_launch_shape_clearances": {
+    "full_route_min_usb_gap_mm": 0.147488,
+    "named_own_pad_launch_mm": [
+      [
+        199.8,
+        60.05
+      ],
+      [
+        199.8,
+        58.05
+      ]
+    ],
+    "post_launch_cap_copper_hits": 0,
+    "post_launch_min_cap_full_gap_mm": 0.055001,
+    "usb_copper_hits": 0
+  },
+  "prior_probe_sha256": "f7cd97bbf5a018e958f4b5d1132d21c38e16a997c970ec230e1ccfb2c794fc8c",
+  "receiver_gnd_via_mm": [
+    188.95,
+    66.5
+  ],
+  "schema": 1,
+  "south_throat_screens": [
+    {
+      "cap_gap_mm": 0.0,
+      "centerline_y_mm": 61.88,
+      "hits_cap_full": true,
+      "hits_usb": false,
+      "usb_gap_mm": 0.020001
+    },
+    {
+      "cap_gap_mm": 1e-06,
+      "centerline_y_mm": 61.895,
+      "hits_cap_full": false,
+      "hits_usb": false,
+      "usb_gap_mm": 0.005001
+    },
+    {
+      "cap_gap_mm": 0.002501,
+      "centerline_y_mm": 61.8975,
+      "hits_cap_full": false,
+      "hits_usb": false,
+      "usb_gap_mm": 0.002501
+    },
+    {
+      "cap_gap_mm": 0.005001,
+      "centerline_y_mm": 61.9,
+      "hits_cap_full": false,
+      "hits_usb": false,
+      "usb_gap_mm": 1e-06
+    }
+  ],
+  "status": "LOCAL_RESEARCH_GEOMETRY_ONLY",
+  "u_spoke8_body_mm": [
+    187.825,
+    60.825,
+    192.175,
+    65.175
+  ],
+  "u_spoke8_body_under_adc8n_trace": true,
+  "usb_vbus_sense_mm": [
+    195.0,
+    62.0,
+    220.0,
+    82.0
+  ]
+}
