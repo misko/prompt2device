@@ -35473,10 +35473,10 @@
     "source_component_id": "source_component_564",
     "ftype": "simple_chip",
     "name": "U_USB_ESD",
-    "manufacturer_part_number": "PESD2USB3UV-TR",
+    "manufacturer_part_number": "TPD2EUSB30ADRTR",
     "supplier_part_numbers": {
       "jlcpcb": [
-        "C3704436"
+        "C94934"
       ]
     },
     "source_group_id": "source_group_4"
@@ -91923,7 +91923,7 @@
   {
     "type": "schematic_text",
     "schematic_text_id": "schematic_text_192",
-    "text": "PESD2USB3UV-TR",
+    "text": "TPD2EUSB30ADRTR",
     "schematic_component_id": "schematic_component_564",
     "anchor": "left",
     "rotation": 0,
@@ -179842,6 +179842,6 @@
   },
   {
     "type": "source_project_metadata",
-    "source_filesystem_md5_hash": "aa701d3f3496b689beda5e0a59b36a98"
+    "source_filesystem_md5_hash": "a5d5bb9052c7b2ebc952efb82de475c7"
   }
 ]

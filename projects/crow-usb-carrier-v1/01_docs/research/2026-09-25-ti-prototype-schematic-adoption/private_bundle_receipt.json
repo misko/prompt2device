@@ -1,0 +1,36 @@
+{
+  "artifacts": {
+    "circuit.json": "580ac31b0de8d376d888caa1a342ae43c0636fbd13c74048392173acf718cb6d",
+    "crow_carrier.kicad_sch": "758e29b0d9606a6b8f123a2dca474ce62871a85e08fb2fb9024c5a7a3d04610d",
+    "crow_carrier.net": "a40b45c27b2169ed4f3dd43d72a1f4f7112d829985f98918a8855ed76735e9bd",
+    "schematic.pdf": "d2e54c1195a217b231fbc2ab058e051b01dc8e45b534c65d38006978af386eed"
+  },
+  "git_head_at_build": "dddf4f63e3a5a42aa01e1f0c27f32811c38027d5",
+  "inputs": {
+    "01_docs/findings.yaml": "27cbf04b140aeff0bfe56201fc6c1c29b80d9e7ba0de7044ecf23d63efed1175",
+    "01_docs/research/2026-09-24-public-stock-569/public-stock.json": "aa9491bf6df447b646bb6985921cf489ed07c3d01893f2fd2829b13759acf142",
+    "01_docs/research/2026-09-25-ti-usb-esd-prototype-test-plan.md": "2a17265c6afe1408f1b78149e80c89547cc8be8b1e805e92443adb7d35b6411a",
+    "02_parts/TPD2EUSB30ADRTR/part.yaml": "091b698cfc5bd7f72766c80388ab1efe3331c025254bedea1d628de6b465a387",
+    "03_src/rules/assembly.yaml": "76071a9190ae3923a7a1b4b709a5b3160ce1f06b8d8fb22292ce1cea23664cf3",
+    "03_src/rules/critical_part_selection.yaml": "15288355fcc731ff8b1b0e35a1ae47b9faf66140223cfea0d31c91d99e9dc1ba",
+    "03_tscircuit/bun.lock": "ec4d9604ff7f7f165c515e4ecac75d4ec3a9d2b6f7fb1be33030f6223218828f",
+    "03_tscircuit/net_aliases.txt": "3acce4349a0e8223290a17ede047dad85463fe72fab6b0a71128a4a0d40417d4",
+    "03_tscircuit/package.json": "1c49fa4d04a6a6f6aeef1c4da307b3b57123637ed2b0e51e9bae5c5052e66286",
+    "03_tscircuit/src/crow_carrier.tsx": "4375269b77e4e712cccf542c421da3c66ab7f71df58693afb326a8d8c7d8ff63",
+    "03_tscircuit/src/crow_retained_analog.tsx": "dffe430700b81882aab6e8353d09020d9a7e6219c257f108a10b7741a408ff85",
+    "03_tscircuit/src/crow_usb_digital.tsx": "ab17c95715b9fc590d2660ed7ccdcc110069479d08629e848835bd89551d9068",
+    "03_tscircuit/src/crow_usb_input_power.tsx": "3b4833b4dd643d8ff779c1b05a553a432f4b8e17792877ce86ba9da2a7a3e006",
+    "03_tscircuit/src/usb_device_frontend.tsx": "62611f919a9e41d3a13a7f9df91e000761026f6d55719d1c3bccb8623980f477",
+    "03_tscircuit/src/usb_receptacle.tsx": "18b90fb630e1578252805212272cbaf2f98793c33794a9debb15d236023d0e7f",
+    "03_tscircuit/src/z_analog_exact_footprints.tsx": "214b2364aea7a22f27198dffa1aa3ae929326e78a226569a7149562833dcae68",
+    "03_tscircuit/src/z_analog_schematic_presentation.tsx": "3b517afa647c7d4599ca25f633c2e39ff6b9e4b191fefeb5c105aedd9d93a658",
+    "03_tscircuit/src/z_power_aux_footprints.tsx": "01fe8232aa3fb3dbadc388a32b35a4ff56c66379b9d915aa71b750024dc3a506",
+    "03_tscircuit/src/z_schematic_presentation.tsx": "a595afcaf5dc2e00846558fe7fc3dfb7367f9c1baaec389fd131d619072faea0",
+    "03_tscircuit/src/z_tpsm_rdh0030a.tsx": "58f048a6600791840a21e3c445990b364cd288e9a8f2a08c97732bbd7d3a64ac",
+    "08_reviews/2026-09-25_ti-usb-esd-prototype-only_terra.md": "48f056d1aa96f7af99f56ac2b992716686d344a84e753496bf4db322fd7a5a91"
+  },
+  "schema": 1,
+  "scope": "private source/schematic evidence only; no layout, release, fabrication, order, or electrical qualification claim",
+  "selection_gate": "skills/pcb-design/scripts/critical_part_selection_admission.py --require-prototype",
+  "status": "PROTOTYPE_ONLY"
+}

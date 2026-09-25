@@ -18,14 +18,20 @@ part-selection stock screen, reopen inventory, or change canonical Crow source.
 | Connector physical FULL | A four-layer, 1.60-mm nominal edge-registration coupon candidate exists, but is unmeasured, lacks an exact mate/edge tolerance, and does not establish equivalence to the board's 1.63-mm KiCad target ([coupon](usb4215_edge_registration_coupon_4l_target_terra/process_target_measurement_record.md)). | Bind the intended mating plug/enclosure and fabricator stackup, then set measurable edge/slot/seating limits before any physical qualification. No coupon or PCB fabrication is authorized by this note. |
 | USB ESD release boundary | The selected TI TVS remains `PROTOTYPE_ONLY`; public XMOS records do not give a powered/rail-off USB-pad transient envelope for numeric coordination ([D13 analysis](2026-09-24-ti-xu316-usb-esd-coordination-sol.md)). XMOS's XU316 reference schematics name `NUP4114`, but do not publish the missing limit or a transferable Crow qualification ([reference review](2026-09-25-xmos-xu316-usb-esd-reference-topology-terra.md), [alternate part disposition](2026-09-25-nup4114-alternate-disposition-sol.md)). | Obtain applicable XMOS limits or an owner-approved exact-board powered/off stress qualification. Until then design-clean/release remains blocked regardless of routing. |
 
-The checked-in ordinary netlist still names the earlier Nexperia USB ESD part.
-An isolated governed TSX rebuild produces the selected TI part, and its fresh
-native board matches the frozen TI research board on all 569 footprint and pad
-identities and shapes; the reviewed `Q_PRE` pose is the only board pose change
-([source-to-native audit](2026-09-25-ti-usb-esd-pad-authority-sol.md)). TI's land
-drawing does not mandate square corners, so the native roundrect footprint
-does not require a D13 change. Shape-sensitive placement work must use the
-fresh TI native source/profile rather than the stale ordinary netlist.
+The guarded prototype-only schematic adoption has now replaced the stale
+Nexperia generated circuit, PDF, native schematic, and netlist with one exact
+TI bundle ([receipt and netlist](2026-09-25-ti-prototype-schematic-adoption/README.md),
+[independent post-execution review](2026-09-25-prototype-schematic-adoption-postexecution-review-terra.md)).
+E-FAULT, P-PREC and ERC pass on that schematic subject. The ordinary schematic
+checkpoint, pinned reuse schematic, PCB and release remain unchanged and
+unaccepted; ordinary critical-selection admission still rejects
+`PROTOTYPE_ONLY`. The native TI board matches the frozen TI research board on
+all 569 footprint and pad identities and shapes, with the reviewed `Q_PRE`
+pose the only board pose change ([source-to-native audit](2026-09-25-ti-usb-esd-pad-authority-sol.md)).
+TI's land drawing does not mandate square corners, so the native roundrect
+footprint does not require a D13 change. Future shape-sensitive placement work
+must bind this TI source/profile and obtain fresh canonical topology/render
+review before ordinary schematic-stage promotion.
 
 J8's existing connector contract already selects Würth `615008160221` with
 Telegärtner `100009141` as mate. Its 0.045-mm nominal envelope overhang can be
