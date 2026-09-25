@@ -1,0 +1,633 @@
+{
+  "board_target": {
+    "copper_layers": 4,
+    "nominal_thickness_mm": 1.63,
+    "outline_mm": [
+      10,
+      20,
+      240,
+      150
+    ],
+    "size_mm": [
+      230,
+      130
+    ]
+  },
+  "connector_full_credit": false,
+  "connectors": [
+    {
+      "courtyard_bbox_mm": [
+        44.895,
+        19.975,
+        62.245,
+        34.475
+      ],
+      "footprint": "crow_usb_analog:Wurth_615008160221_RJ45",
+      "nearest_nominal_nonconnector_courtyards": [
+        {
+          "bbox_mm": [
+            58.575,
+            47.375,
+            62.225,
+            51.025
+          ],
+          "center_to_bbox_mm": 22.235014,
+          "ref": "U_ISO2"
+        },
+        {
+          "bbox_mm": [
+            29.675,
+            45.475,
+            37.125,
+            50.925
+          ],
+          "center_to_bbox_mm": 22.633688,
+          "ref": "U_AFE1"
+        },
+        {
+          "bbox_mm": [
+            55.045,
+            51.205,
+            56.955,
+            52.195
+          ],
+          "center_to_bbox_mm": 24.862241,
+          "ref": "R_X2P"
+        }
+      ],
+      "pose_mm_deg": [
+        50.0,
+        26.86,
+        0.0
+      ],
+      "ref": "J1"
+    },
+    {
+      "courtyard_bbox_mm": [
+        66.895,
+        19.975,
+        84.245,
+        34.475
+      ],
+      "footprint": "crow_usb_analog:Wurth_615008160221_RJ45",
+      "nearest_nominal_nonconnector_courtyards": [
+        {
+          "bbox_mm": [
+            80.575,
+            47.375,
+            84.225,
+            51.025
+          ],
+          "center_to_bbox_mm": 22.235014,
+          "ref": "U_ISO3"
+        },
+        {
+          "bbox_mm": [
+            58.575,
+            47.375,
+            62.225,
+            51.025
+          ],
+          "center_to_bbox_mm": 22.724785,
+          "ref": "U_ISO2"
+        },
+        {
+          "bbox_mm": [
+            77.045,
+            51.205,
+            78.955,
+            52.195
+          ],
+          "center_to_bbox_mm": 24.862241,
+          "ref": "R_X3P"
+        }
+      ],
+      "pose_mm_deg": [
+        72.0,
+        26.86,
+        0.0
+      ],
+      "ref": "J2"
+    },
+    {
+      "courtyard_bbox_mm": [
+        88.895,
+        19.975,
+        106.245,
+        34.475
+      ],
+      "footprint": "crow_usb_analog:Wurth_615008160221_RJ45",
+      "nearest_nominal_nonconnector_courtyards": [
+        {
+          "bbox_mm": [
+            102.575,
+            47.375,
+            106.225,
+            51.025
+          ],
+          "center_to_bbox_mm": 22.235014,
+          "ref": "U_ISO4"
+        },
+        {
+          "bbox_mm": [
+            80.575,
+            47.375,
+            84.225,
+            51.025
+          ],
+          "center_to_bbox_mm": 22.724785,
+          "ref": "U_ISO3"
+        },
+        {
+          "bbox_mm": [
+            99.045,
+            51.205,
+            100.955,
+            52.195
+          ],
+          "center_to_bbox_mm": 24.862241,
+          "ref": "R_X4P"
+        }
+      ],
+      "pose_mm_deg": [
+        94.0,
+        26.86,
+        0.0
+      ],
+      "ref": "J3"
+    },
+    {
+      "courtyard_bbox_mm": [
+        110.895,
+        19.975,
+        128.245,
+        34.475
+      ],
+      "footprint": "crow_usb_analog:Wurth_615008160221_RJ45",
+      "nearest_nominal_nonconnector_courtyards": [
+        {
+          "bbox_mm": [
+            124.575,
+            47.375,
+            128.225,
+            51.025
+          ],
+          "center_to_bbox_mm": 22.235014,
+          "ref": "U_ISO5"
+        },
+        {
+          "bbox_mm": [
+            102.575,
+            47.375,
+            106.225,
+            51.025
+          ],
+          "center_to_bbox_mm": 22.724785,
+          "ref": "U_ISO4"
+        },
+        {
+          "bbox_mm": [
+            121.045,
+            51.205,
+            122.955,
+            52.195
+          ],
+          "center_to_bbox_mm": 24.862241,
+          "ref": "R_X5P"
+        }
+      ],
+      "pose_mm_deg": [
+        116.0,
+        26.86,
+        0.0
+      ],
+      "ref": "J4"
+    },
+    {
+      "courtyard_bbox_mm": [
+        132.895,
+        19.975,
+        150.245,
+        34.475
+      ],
+      "footprint": "crow_usb_analog:Wurth_615008160221_RJ45",
+      "nearest_nominal_nonconnector_courtyards": [
+        {
+          "bbox_mm": [
+            146.575,
+            47.375,
+            150.225,
+            51.025
+          ],
+          "center_to_bbox_mm": 22.235014,
+          "ref": "U_ISO6"
+        },
+        {
+          "bbox_mm": [
+            124.575,
+            47.375,
+            128.225,
+            51.025
+          ],
+          "center_to_bbox_mm": 22.724785,
+          "ref": "U_ISO5"
+        },
+        {
+          "bbox_mm": [
+            143.045,
+            51.205,
+            144.955,
+            52.195
+          ],
+          "center_to_bbox_mm": 24.862241,
+          "ref": "R_X6P"
+        }
+      ],
+      "pose_mm_deg": [
+        138.0,
+        26.86,
+        0.0
+      ],
+      "ref": "J5"
+    },
+    {
+      "courtyard_bbox_mm": [
+        154.895,
+        19.975,
+        172.245,
+        34.475
+      ],
+      "footprint": "crow_usb_analog:Wurth_615008160221_RJ45",
+      "nearest_nominal_nonconnector_courtyards": [
+        {
+          "bbox_mm": [
+            156.275,
+            46.375,
+            163.725,
+            51.825
+          ],
+          "center_to_bbox_mm": 19.515,
+          "ref": "U_AFE7"
+        },
+        {
+          "bbox_mm": [
+            168.575,
+            47.375,
+            172.225,
+            51.025
+          ],
+          "center_to_bbox_mm": 22.235014,
+          "ref": "U_ISO7"
+        },
+        {
+          "bbox_mm": [
+            146.575,
+            47.375,
+            150.225,
+            51.025
+          ],
+          "center_to_bbox_mm": 22.724785,
+          "ref": "U_ISO6"
+        }
+      ],
+      "pose_mm_deg": [
+        160.0,
+        26.86,
+        0.0
+      ],
+      "ref": "J6"
+    },
+    {
+      "courtyard_bbox_mm": [
+        176.895,
+        19.975,
+        194.245,
+        34.475
+      ],
+      "footprint": "crow_usb_analog:Wurth_615008160221_RJ45",
+      "nearest_nominal_nonconnector_courtyards": [
+        {
+          "bbox_mm": [
+            168.575,
+            47.375,
+            172.225,
+            51.025
+          ],
+          "center_to_bbox_mm": 22.724785,
+          "ref": "U_ISO7"
+        },
+        {
+          "bbox_mm": [
+            187.045,
+            51.205,
+            188.955,
+            52.195
+          ],
+          "center_to_bbox_mm": 24.862241,
+          "ref": "R_X8P"
+        },
+        {
+          "bbox_mm": [
+            196.775,
+            46.995,
+            200.225,
+            49.005
+          ],
+          "center_to_bbox_mm": 24.974364,
+          "ref": "C_FILTER8P2"
+        }
+      ],
+      "pose_mm_deg": [
+        182.0,
+        26.86,
+        0.0
+      ],
+      "ref": "J7"
+    },
+    {
+      "courtyard_bbox_mm": [
+        198.895,
+        19.975,
+        216.245,
+        34.475
+      ],
+      "footprint": "crow_usb_analog:Wurth_615008160221_RJ45",
+      "nearest_nominal_nonconnector_courtyards": [
+        {
+          "bbox_mm": [
+            216.175,
+            35.275,
+            217.825,
+            36.725
+          ],
+          "center_to_bbox_mm": 14.800096,
+          "ref": "U_USB_ESD"
+        },
+        {
+          "bbox_mm": [
+            196.775,
+            46.995,
+            200.225,
+            49.005
+          ],
+          "center_to_bbox_mm": 20.485821,
+          "ref": "C_FILTER8P2"
+        },
+        {
+          "bbox_mm": [
+            197.175,
+            51.175,
+            200.825,
+            54.825
+          ],
+          "center_to_bbox_mm": 24.521416,
+          "ref": "U_ISO8"
+        }
+      ],
+      "pose_mm_deg": [
+        204.0,
+        26.86,
+        0.0
+      ],
+      "ref": "J8"
+    },
+    {
+      "courtyard_bbox_mm": [
+        223.475,
+        45.975,
+        232.525,
+        54.025
+      ],
+      "footprint": "crow_usb_digital:Samtec_FTSH_105_01_L_DV_K",
+      "nearest_nominal_nonconnector_courtyards": [
+        {
+          "bbox_mm": [
+            230.545,
+            35.905,
+            232.455,
+            36.895
+          ],
+          "center_to_bbox_mm": 13.349833,
+          "ref": "R_USB_CC2"
+        },
+        {
+          "bbox_mm": [
+            235.745,
+            35.905,
+            237.655,
+            36.895
+          ],
+          "center_to_bbox_mm": 15.222551,
+          "ref": "R_USB_VBUS_BLEED"
+        },
+        {
+          "bbox_mm": [
+            230.545,
+            33.205,
+            232.455,
+            34.195
+          ],
+          "center_to_bbox_mm": 16.008593,
+          "ref": "R_USB_CC1"
+        }
+      ],
+      "pose_mm_deg": [
+        228.0,
+        50.0,
+        90.0
+      ],
+      "ref": "J_JTAG"
+    },
+    {
+      "courtyard_bbox_mm": [
+        26.145,
+        19.975,
+        36.855,
+        30.935
+      ],
+      "footprint": "crow_usb_power_aux:Molex_43650-0200",
+      "nearest_nominal_nonconnector_courtyards": [
+        {
+          "bbox_mm": [
+            29.675,
+            45.475,
+            37.125,
+            50.925
+          ],
+          "center_to_bbox_mm": 16.055,
+          "ref": "U_AFE1"
+        },
+        {
+          "bbox_mm": [
+            29.245,
+            52.505,
+            31.155,
+            53.495
+          ],
+          "center_to_bbox_mm": 23.085,
+          "ref": "R_X1P"
+        },
+        {
+          "bbox_mm": [
+            36.075,
+            51.695,
+            39.525,
+            53.705
+          ],
+          "center_to_bbox_mm": 23.088552,
+          "ref": "C_SPOKE_IN1"
+        }
+      ],
+      "pose_mm_deg": [
+        30.0,
+        29.42,
+        0.0
+      ],
+      "ref": "J_PWR"
+    },
+    {
+      "courtyard_bbox_mm": [
+        224.975,
+        19.47,
+        235.025,
+        27.78
+      ],
+      "footprint": "crow_usb_carrier_v1:GCT_USB4215_03_A",
+      "nearest_nominal_nonconnector_courtyards": [
+        {
+          "bbox_mm": [
+            232.075,
+            29.225,
+            234.525,
+            31.175
+          ],
+          "center_to_bbox_mm": 6.56647,
+          "ref": "U_USB_CC_ESD"
+        },
+        {
+          "bbox_mm": [
+            235.475,
+            29.225,
+            237.925,
+            31.175
+          ],
+          "center_to_bbox_mm": 8.293885,
+          "ref": "U_USB_VBUS_ESD"
+        },
+        {
+          "bbox_mm": [
+            230.545,
+            33.205,
+            232.455,
+            34.195
+          ],
+          "center_to_bbox_mm": 10.224535,
+          "ref": "R_USB_CC1"
+        }
+      ],
+      "pose_mm_deg": [
+        230.0,
+        22.995,
+        180.0
+      ],
+      "ref": "J_USB"
+    }
+  ],
+  "fabrication_payload": false,
+  "mounting_holes": [
+    {
+      "courtyard_bbox_mm": [
+        26.525,
+        36.525,
+        33.475,
+        43.475
+      ],
+      "footprint": "MountingHole:MountingHole_3.2mm_M3",
+      "pose_mm_deg": [
+        30.0,
+        40.0,
+        0.0
+      ],
+      "ref": "H1"
+    },
+    {
+      "courtyard_bbox_mm": [
+        126.525,
+        36.525,
+        133.475,
+        43.475
+      ],
+      "footprint": "MountingHole:MountingHole_3.2mm_M3",
+      "pose_mm_deg": [
+        130.0,
+        40.0,
+        0.0
+      ],
+      "ref": "H2"
+    },
+    {
+      "courtyard_bbox_mm": [
+        208.025,
+        41.525,
+        214.975,
+        48.475
+      ],
+      "footprint": "MountingHole:MountingHole_3.2mm_M3",
+      "pose_mm_deg": [
+        211.5,
+        45.0,
+        0.0
+      ],
+      "ref": "H3"
+    },
+    {
+      "courtyard_bbox_mm": [
+        14.525,
+        78.525,
+        21.475,
+        85.475
+      ],
+      "footprint": "MountingHole:MountingHole_3.2mm_M3",
+      "pose_mm_deg": [
+        18.0,
+        82.0,
+        0.0
+      ],
+      "ref": "H4"
+    },
+    {
+      "courtyard_bbox_mm": [
+        126.525,
+        138.525,
+        133.475,
+        145.475
+      ],
+      "footprint": "MountingHole:MountingHole_3.2mm_M3",
+      "pose_mm_deg": [
+        130.0,
+        142.0,
+        0.0
+      ],
+      "ref": "H5"
+    },
+    {
+      "courtyard_bbox_mm": [
+        226.525,
+        126.525,
+        233.475,
+        133.475
+      ],
+      "footprint": "MountingHole:MountingHole_3.2mm_M3",
+      "pose_mm_deg": [
+        230.0,
+        130.0,
+        0.0
+      ],
+      "ref": "H6"
+    }
+  ],
+  "screen_limit": "Courtyard bounding boxes screen only nominal placed-neighbor proximity; they are not assembled body, mate, cable, fixture, force, tolerance, or enclosure evidence.",
+  "source_board": "06_build/prototype_board_diagnostic/current-ti-mounting-expanded-locked-20260925/04_kicad/crow_carrier.kicad_pcb",
+  "source_board_sha256": "fe8d2c9a9922eeab2371d0187da9407ac590687a77b03a8a099c35a75b5ddd16",
+  "status": "RESEARCH_MECHANICAL_ARTICLE_CANDIDATE_NO_FAB"
+}
