@@ -1,18 +1,18 @@
 {
-  "blocker": "P1/P2/P3 and release remain unaccepted. Rebased source now declares disjoint QSPI and XTAL handoffs, fixed JTAG access, and a five-terminal unresolved reset branch. The full P1 checker is INCOMPLETE with no global errors; USB J_USB.4 still crosses its source region, and connector edge geometry extends 0.55 mm beyond the board outline. The oscillator r2 scratch poses intersect the required empty handoff, so no candidate copper or placement was promoted. Four oscillator GND terminals, filled return, crystal performance, six USB launch widths, connector FULL physical facts, and TMUX external process acceptance remain open.",
+  "blocker": "P1/P2/P3 and release remain unaccepted. A source-generated 569-ref architecture B board now places all five oscillator parts in a clock-owned cell near XMOS while QSPI, XTAL and JTAG corridors stay empty; this is source allocation and placement intent only. The full P1 checker is INCOMPLETE with no global errors; USB J_USB.4 still crosses its source region and the USB-C courtyard projects 0.55 mm beyond the board outline. The oscillator has no source-routed signal copper or proven local GND egress; filled return, performance, silk and clearance remain open. Six USB launch widths, connector FULL physical facts, and TMUX external process acceptance also remain open.",
   "checkpoint": {
     "path": "06_build/checkpoints/schematic.json",
     "sha256": "917a45414c65cf43dbeef24704da01beda6b9711175cf9cec3af109ec027f4d6",
     "size": 1152
   },
-  "next_command": "Resolve the USB fixed-connector edge owner and support-cell geometry from exact public physical evidence; keep FULL-dependent claims pending. Regenerate a source-owned P1 candidate and review all 59 crossings. Then perform a bounded source-generated P2 oscillator placement entirely inside clock_flash_debug, prove the three oscillator signal nets, four local GND egress paths, continuous filled In1 return, clearance and silk before any P3 or release claim.",
+  "next_command": "Resolve the USB fixed-connector edge owner and support-cell geometry from exact public physical evidence while retaining FULL-dependent claims as pending. In parallel, create one bounded source-generated oscillator P2 candidate from the reviewed architecture B anchors: route XTAL_IN, XTAL_OUT and XTAL_IN_R, connect four local GND terminals to the filled In1 reference, and check native connectivity, DRC, silk and XMOS loop constraints. Keep the capped scratch investigation history and do not mark P1/P2/P3 or release accepted until their exact gates pass.",
   "phase": "placement",
   "project": "crow-usb-carrier-v1",
   "receipts": [
     {
       "path": "01_docs/findings.yaml",
-      "sha256": "bd12196e2892e428f9776c6d9fdcc0840e0fdb778ea4b73145305cf72404d80c",
-      "size": 33410
+      "sha256": "cc9069fb18a4e697a24aa2cd1f9fd5d4b1934270430ec7f6bd6b9bd12c91dc23",
+      "size": 33472
     },
     {
       "path": "01_docs/research/2026-09-24-jtag-fixed-access-blocker-sol.md",
@@ -231,8 +231,8 @@
     },
     {
       "path": "03_src/floorplan.yaml",
-      "sha256": "aa20999d51001d5315b9456d1d8123446664a54a98a855928d6a8ac71efc814f",
-      "size": 25453
+      "sha256": "0032b1202f5742b6575198d27ea50629826d49cf81cf12a31fead8a2929d9868",
+      "size": 25860
     },
     {
       "path": "03_src/modular_plan.json",
@@ -241,8 +241,13 @@
     },
     {
       "path": "03_src/rules/p1_corridor_requirements.yaml",
-      "sha256": "f65ba88b0bb9275cd239df30d7b360c4bf78c9e1f0d549ce9f0fb995e07481d5",
-      "size": 27472
+      "sha256": "191e5580a6ddf56bc9670aff3593c9e9a02d91e75c0c79998b500955050e82a3",
+      "size": 28410
+    },
+    {
+      "path": "08_reviews/2026-09-24_xtal-architecture-b_terra_review.md",
+      "sha256": "c02452874e598bc34d4a1c29ae3a1344db5f16dd91f48a833ffe4a0af50faac9",
+      "size": 2217
     },
     {
       "path": "08_reviews/2026-09-24_xtal-source-corridor_terra_review.md",
@@ -261,5 +266,5 @@
     }
   ],
   "schema": 1,
-  "state_id": "7ffb40a64ef3aa675dc0bce0b93aef0a8abe37533c186e66628c8d3b3c18016a"
+  "state_id": "6ecfaadefd6f6818c47141c5c61fd33a1b307893db80a7964223ae8a80e6d8f8"
 }

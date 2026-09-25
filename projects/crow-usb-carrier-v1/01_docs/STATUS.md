@@ -1,16 +1,16 @@
 # Project status
 
-<!-- pause-state:7ffb40a64ef3aa675dc0bce0b93aef0a8abe37533c186e66628c8d3b3c18016a -->
+<!-- pause-state:6ecfaadefd6f6818c47141c5c61fd33a1b307893db80a7964223ae8a80e6d8f8 -->
 
 - Phase: `placement`
 - State: **PAUSED**
 - Checkpoint: `06_build/checkpoints/schematic.json` (`917a45414c65`)
-- Blocker: P1/P2/P3 and release remain unaccepted. Rebased source now declares disjoint QSPI and XTAL handoffs, fixed JTAG access, and a five-terminal unresolved reset branch. The full P1 checker is INCOMPLETE with no global errors; USB J_USB.4 still crosses its source region, and connector edge geometry extends 0.55 mm beyond the board outline. The oscillator r2 scratch poses intersect the required empty handoff, so no candidate copper or placement was promoted. Four oscillator GND terminals, filled return, crystal performance, six USB launch widths, connector FULL physical facts, and TMUX external process acceptance remain open.
-- Next command: `Resolve the USB fixed-connector edge owner and support-cell geometry from exact public physical evidence; keep FULL-dependent claims pending. Regenerate a source-owned P1 candidate and review all 59 crossings. Then perform a bounded source-generated P2 oscillator placement entirely inside clock_flash_debug, prove the three oscillator signal nets, four local GND egress paths, continuous filled In1 return, clearance and silk before any P3 or release claim.`
+- Blocker: P1/P2/P3 and release remain unaccepted. A source-generated 569-ref architecture B board now places all five oscillator parts in a clock-owned cell near XMOS while QSPI, XTAL and JTAG corridors stay empty; this is source allocation and placement intent only. The full P1 checker is INCOMPLETE with no global errors; USB J_USB.4 still crosses its source region and the USB-C courtyard projects 0.55 mm beyond the board outline. The oscillator has no source-routed signal copper or proven local GND egress; filled return, performance, silk and clearance remain open. Six USB launch widths, connector FULL physical facts, and TMUX external process acceptance also remain open.
+- Next command: `Resolve the USB fixed-connector edge owner and support-cell geometry from exact public physical evidence while retaining FULL-dependent claims as pending. In parallel, create one bounded source-generated oscillator P2 candidate from the reviewed architecture B anchors: route XTAL_IN, XTAL_OUT and XTAL_IN_R, connect four local GND terminals to the filled In1 reference, and check native connectivity, DRC, silk and XMOS loop constraints. Keep the capped scratch investigation history and do not mark P1/P2/P3 or release accepted until their exact gates pass.`
 
 ## Bound receipts
 
-- `01_docs/findings.yaml` — `bd12196e2892`
+- `01_docs/findings.yaml` — `cc9069fb18a4`
 - `01_docs/research/2026-09-24-jtag-fixed-access-blocker-sol.md` — `8ccc15c9c587`
 - `01_docs/research/2026-09-24-jtag-fixed-access-rectangle-obstruction-terra.md` — `a85ea3ef537b`
 - `01_docs/research/2026-09-24-jtag-native-dogleg-physical-feasibility-terra.md` — `6a931bc0c1c7`
@@ -54,9 +54,10 @@
 - `01_docs/research/xu_service_variant/xtal_south_cap_handoff.json` — `3dc3510d8a9f`
 - `01_docs/research/xu_service_variant/xtal_window_native_audit.json` — `00f8087d59a7`
 - `03_src/diagnostics/usb_fcu_launch_probe.py` — `7a05b24297f6`
-- `03_src/floorplan.yaml` — `aa20999d5100`
+- `03_src/floorplan.yaml` — `0032b1202f57`
 - `03_src/modular_plan.json` — `75c3a517cea5`
-- `03_src/rules/p1_corridor_requirements.yaml` — `f65ba88b0bb9`
+- `03_src/rules/p1_corridor_requirements.yaml` — `191e5580a6dd`
+- `08_reviews/2026-09-24_xtal-architecture-b_terra_review.md` — `c02452874e59`
 - `08_reviews/2026-09-24_xtal-source-corridor_terra_review.md` — `56b26c0afa2e`
 - `08_reviews/pre-route_schematic_render.md` — `05ff9b639b7f`
 - `08_reviews/pre-route_topology.md` — `76dbfea927e5`
