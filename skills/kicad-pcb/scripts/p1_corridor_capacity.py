@@ -1473,6 +1473,9 @@ def _physical_envelope(fp):
 
 
 _EDGE_BOARD_SHA256 = 'd0c065dc16de081a5410b7a22e474f0a99c6fdeb0b7dd1f6c37422ace4a9fcf7'
+_EDGE_POWER_BOARD_SHA256 = 'e07ed8bc663fdfd4ce39477165b656b0dcf2bfbae54d84ec501bfccf326d22ef'
+_EDGE_REVIEWED_BOARD_SHA256 = frozenset({_EDGE_BOARD_SHA256,
+                                         _EDGE_POWER_BOARD_SHA256})
 _EDGE_OUTLINE_SHA256 = '8c777cc8717eb7d54ee6581a199d69d0184c0ceb184e2639e6fdecba3822cb6c'
 _EDGE_PROJECT_ROOT = Path(__file__).resolve().parents[3] / 'projects/crow-usb-carrier-v1'
 _EDGE_PARTS = {
@@ -1502,7 +1505,8 @@ def _physical_cell_edge_attachments(source, board, outline, board_sha256):
     rows = source.get('physical_cell_edge_attachments')
     if rows is None:
         return {}
-    if not isinstance(rows, list) or not rows or board_sha256 != _EDGE_BOARD_SHA256:
+    if (not isinstance(rows, list) or not rows or
+            board_sha256 not in _EDGE_REVIEWED_BOARD_SHA256):
         raise ContractError('edge attachment board hash missing or unreviewed')
     outline_hash = _edge_outline_digest(outline)
     if (outline_hash != _EDGE_OUTLINE_SHA256 or
@@ -1519,7 +1523,7 @@ def _physical_cell_edge_attachments(source, board, outline, board_sha256):
         ref, cell_id = row['ref'], row['physical_cell_id']
         if (ref not in _EDGE_PARTS or ref in result or not isinstance(cell_id, str) or
                 not cell_id or row['edge'] != 'north' or
-                row['board_sha256'] != _EDGE_BOARD_SHA256 or
+                row['board_sha256'] != board_sha256 or
                 row['outline_sha256'] != _EDGE_OUTLINE_SHA256 or
                 row['maximum_courtyard_projection_mm'] != 0.045 or
                 ref not in source.get('p1_fixed_refs', [])):

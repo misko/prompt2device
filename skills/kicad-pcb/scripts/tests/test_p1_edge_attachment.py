@@ -18,6 +18,8 @@ checker = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(checker)
 BOARD = (Path(__file__).resolve().parents[4] / 'projects/crow-usb-carrier-v1/'
          '01_docs/research/2026-09-25-ti-vmid-coupled-ch8-sol/candidate.kicad_pcb')
+POWER_BOARD = (Path(__file__).resolve().parents[4] / 'projects/crow-usb-carrier-v1/'
+               '01_docs/research/2026-09-25-ti-cin3-qpre-owner-repair-sol/candidate.kicad_pcb')
 
 
 def attachment(ref, cell_id=None):
@@ -61,6 +63,38 @@ class EdgeAttachment(unittest.TestCase):
                 self.assertEqual(set(cells), {source['physical_cells'][0]['id']})
                 self.assertFalse(checker.lane_inside_outline(
                     self.outline, cells[source['physical_cells'][0]['id']]['bbox']))
+
+    def test_separately_pinned_power_board_has_same_nine_edge_cells(self):
+        self.assertEqual(checker.digest(POWER_BOARD), checker._EDGE_POWER_BOARD_SHA256)
+        board = pcbnew.LoadBoard(str(POWER_BOARD))
+        outline = pcbnew.SHAPE_POLY_SET()
+        self.assertTrue(board.GetBoardPolygonOutlines(outline, False))
+        self.assertEqual(checker._edge_outline_digest(outline), checker._EDGE_OUTLINE_SHA256)
+        native = {fp.GetReference(): fp for fp in board.GetFootprints()}
+        self.assertEqual(len(native), 569)
+        for ref in checker._EDGE_PARTS:
+            with self.subTest(ref=ref):
+                self.assertEqual(checker._physical_envelope(native[ref]),
+                                 checker._physical_envelope(self.native[ref]))
+                source = self.source(ref)
+                source['physical_cell_edge_attachments'][0]['board_sha256'] = (
+                    checker._EDGE_POWER_BOARD_SHA256)
+                cell_id = source['physical_cells'][0]['id']
+                area = list(checker._physical_envelope(native[ref]))
+                cells = checker._physical_cells(
+                    source, {'blocks': [{'id': 'owner', 'refs': [ref]}]},
+                    board, outline, {cell_id: area},
+                    [{'match': [ref], 'region': cell_id}],
+                    checker._EDGE_POWER_BOARD_SHA256)
+                self.assertEqual(set(cells), {cell_id})
+        stale = self.source('J_PWR')
+        cell_id = stale['physical_cells'][0]['id']
+        with self.assertRaisesRegex(checker.ContractError, 'identity/direction'):
+            checker._physical_cells(
+                stale, {'blocks': [{'id': 'owner', 'refs': ['J_PWR']}]}, board,
+                outline, {cell_id: list(checker._physical_envelope(native['J_PWR']))},
+                [{'match': ['J_PWR'], 'region': cell_id}],
+                checker._EDGE_POWER_BOARD_SHA256)
 
     def test_wrong_authority_and_claims_fail_closed(self):
         for label, mutate in {
