@@ -1,270 +1,30 @@
 {
-  "blocker": "P1/P2/P3 and release remain unaccepted. A source-generated 569-ref architecture B board now places all five oscillator parts in a clock-owned cell near XMOS while QSPI, XTAL and JTAG corridors stay empty; this is source allocation and placement intent only. The full P1 checker is INCOMPLETE with no global errors; USB J_USB.4 still crosses its source region and the USB-C courtyard projects 0.55 mm beyond the board outline. The oscillator has no source-routed signal copper or proven local GND egress; filled return, performance, silk and clearance remain open. Six USB launch widths, connector FULL physical facts, and TMUX external process acceptance also remain open.",
+  "blocker": "Critical USB ESD selection is unaccepted: public XU316 records do not define powered or rail-off USB DP/DM transient limits; 5UX component data and public stock cannot establish exact-board pin survival.",
   "checkpoint": {
-    "path": "06_build/checkpoints/schematic.json",
-    "sha256": "917a45414c65cf43dbeef24704da01beda6b9711175cf9cec3af109ec027f4d6",
-    "size": 1152
+    "path": "03_src/rules/critical_part_selection.yaml",
+    "sha256": "c5dd2302a6faa6020458335aaf51da24a8bf93e74c3c3804393b540fb869616f",
+    "size": 727
   },
-  "next_command": "Resolve the USB fixed-connector edge owner and support-cell geometry from exact public physical evidence while retaining FULL-dependent claims as pending. In parallel, create one bounded source-generated oscillator P2 candidate from the reviewed architecture B anchors: route XTAL_IN, XTAL_OUT and XTAL_IN_R, connect four local GND terminals to the filled In1 reference, and check native connectivity, DRC, silk and XMOS loop constraints. Keep the capped scratch investigation history and do not mark P1/P2/P3 or release accepted until their exact gates pass.",
-  "phase": "placement",
+  "next_command": "Search the bounded public XMOS XU316 reference set for exact USB protection evidence, then decide whether a separate engineering prototype and measured ESD/USB test is required before release; rerun critical_part_selection_admission.py only on new evidence.",
+  "phase": "sourcing",
   "project": "crow-usb-carrier-v1",
   "receipts": [
     {
       "path": "01_docs/findings.yaml",
-      "sha256": "cc9069fb18a4e697a24aa2cd1f9fd5d4b1934270430ec7f6bd6b9bd12c91dc23",
-      "size": 33472
+      "sha256": "c6873217e959db13ea1a1f3831ff77275dcafb46d8c52ec6d1927123e02c1600",
+      "size": 34364
     },
     {
-      "path": "01_docs/research/2026-09-24-jtag-fixed-access-blocker-sol.md",
-      "sha256": "8ccc15c9c5873a679bc7c88a20f6f4ee94859c7057db893b75f2071cec419098",
-      "size": 3748
+      "path": "01_docs/research/2026-09-24-pesd2usb5ux-xu316-transient-hold-terra.md",
+      "sha256": "22ea9288ce35bf2042c1134a4fda6eb6740007df4d03ee24a348d3b06c45e2e9",
+      "size": 4116
     },
     {
-      "path": "01_docs/research/2026-09-24-jtag-fixed-access-rectangle-obstruction-terra.md",
-      "sha256": "a85ea3ef537b844363dbb595881702b70a0f3e6da9c3a1394f495366c0d5e9a8",
-      "size": 4401
-    },
-    {
-      "path": "01_docs/research/2026-09-24-jtag-native-dogleg-physical-feasibility-terra.md",
-      "sha256": "6a931bc0c1c7c8a125da902439eeb322f32aec68516971d776b8fe40d831d225",
-      "size": 3034
-    },
-    {
-      "path": "01_docs/research/2026-09-24-p1-native-evidence-failure-evidence/SHA256SUMS",
-      "sha256": "fc465fc5477362db2427c4443eb1551f949f3cb10cbeaba685971836397679c4",
-      "size": 572
-    },
-    {
-      "path": "01_docs/research/2026-09-24-p1-native-evidence-failure-owner-reassessment.md",
-      "sha256": "15ccef4423eec9a519d452a133f3987a9c3adb5db94114aed1fe21fd1a6ef628",
-      "size": 2800
-    },
-    {
-      "path": "01_docs/research/2026-09-24-segmented-fixed-access-checker-sol.md",
-      "sha256": "18c9cbdb0fce0c76981a73f207bcbdc311e23d986349f4463228d145d37b3a28",
-      "size": 2143
-    },
-    {
-      "path": "01_docs/research/2026-09-24-usb-edge-endpoint-handoff-terra/README.md",
-      "sha256": "b5b81e83b3f918ee53e2367cbc82f92f4ed62ee70983b35f2f575b002f42f09a",
-      "size": 4884
-    },
-    {
-      "path": "01_docs/research/2026-09-24-usb-edge-endpoint-source-model-terra.md",
-      "sha256": "583ed72ceb5b0548a315e9688f3c9b6e940ae6e0758ec715d25d2fdb6380d639",
-      "size": 3670
-    },
-    {
-      "path": "01_docs/research/2026-09-24-usb-edge-source-current-diagnosis-sol.md",
-      "sha256": "b7b079ac74ccba708e0f5fa92a0fa5d2cc1ec4ecd72f22514b2f840be282965f",
-      "size": 4341
-    },
-    {
-      "path": "01_docs/research/2026-09-24-usb-esd-east-region-trial-sol.md",
-      "sha256": "4de0ec64fbffebe706d3639d2a82226bb3391700886f8437a5d63ff00152ce49",
-      "size": 7595
-    },
-    {
-      "path": "01_docs/research/2026-09-24-usb-fcu-launch-diagnostic-summary.json",
-      "sha256": "394b0d89ade9cbfc67e8392493a9578c77aea644a7abb6cf1043f7fa6de893ee",
-      "size": 3285
-    },
-    {
-      "path": "01_docs/research/2026-09-24-usb-fcu-launch-diagnostic.md",
-      "sha256": "42949404b4a3aebaf4ec5c2b61bf39ae4e0fd71efc216ca7df5797fbf69636be",
-      "size": 4259
-    },
-    {
-      "path": "01_docs/research/2026-09-24-usb-launch-em-input-inventory-terra.md",
-      "sha256": "0bdd918292b9235bd54c75ff7d979dbcabedf04eb0635257369f7534fa5bf217",
-      "size": 5510
-    },
-    {
-      "path": "01_docs/research/2026-09-24-xmos-service-remaining-net-blocker-terra.md",
-      "sha256": "edb09dcaab6afa7d9e8fa74441985f6cb5a6c0e69d99dcb6e66ab7b9cb575fcf",
-      "size": 1723
-    },
-    {
-      "path": "01_docs/research/2026-09-24-xu-reset-five-terminal-branch-terra.md",
-      "sha256": "3af94c20e590651bf224bc4a804c8d4756f76711e678d1e61b76d9c4b2c40971",
-      "size": 6752
-    },
-    {
-      "path": "01_docs/research/2026-09-24-xu-reset-region-repair-terra/native_region_audit.json",
-      "sha256": "797a732f23abfe4a7e22b887a9e8c343f88e92db7fc1957ebbae3f3021b05cac",
-      "size": 740
-    },
-    {
-      "path": "01_docs/research/2026-09-24-xu-service-reservation-contract-recommendation-terra.md",
-      "sha256": "5de4aa58c71b3ee5a05d7abb05832fdc664be08b38871f582f09d549389eaaa9",
-      "size": 3571
-    },
-    {
-      "path": "01_docs/research/candidate_loop_xtal/r1_result.json",
-      "sha256": "45ad819f30b44549d1bc537efb808af312b4fd2733a4f9b1fb3ade52fee06589",
-      "size": 5596
-    },
-    {
-      "path": "01_docs/research/candidate_loop_xtal/r2_result.json",
-      "sha256": "68a9121c29166b7ce1beaae1a53b352c8067439f8375541004494c2cb4e36ab7",
-      "size": 7512
-    },
-    {
-      "path": "01_docs/research/candidate_loop_xtal/xtal_r2_return_terra.json",
-      "sha256": "c5f17a4310f2fb0473756197dd340d39ceb3b086efab420a5cb5666d229b045b",
-      "size": 11144
-    },
-    {
-      "path": "01_docs/research/candidate_loop_xtal/xtal_r2_signal_audit.json",
-      "sha256": "b80ffd3d3265023c1fb5b168e9500f38ea20c9068857b855b670f7121c0140a0",
-      "size": 1706
-    },
-    {
-      "path": "01_docs/research/jtag_fixed_access_probe_sol.json",
-      "sha256": "5f73551e562d8c1c48fdda3a978e2f730e2334fbd37e658a586320a6f9f85b55",
-      "size": 8494
-    },
-    {
-      "path": "01_docs/research/jtag_native_dogleg_probe_terra.json",
-      "sha256": "8a526c09a13fa4e35e7886a64cf3f717ab6fecfcd4b738754d2d1949a8ac4888",
-      "size": 9862
-    },
-    {
-      "path": "01_docs/research/jtag_segmented_packet/README.md",
-      "sha256": "69f5922ec931e96baf767f817a6eda6dbb8a0f8acd1394ddc59b80fa30053e7d",
-      "size": 4527
-    },
-    {
-      "path": "01_docs/research/jtag_segmented_packet/result.json",
-      "sha256": "ecbbdbaba0188f6a2e845b165028d15b86f4f3e103580da107cad1fb724dc15f",
-      "size": 5688
-    },
-    {
-      "path": "01_docs/research/reset_branch_packet/README.md",
-      "sha256": "e066b2e53b08d56b1bfcd8eee00b32fcc6a58eac240343cbc7d6aae882ed4594",
-      "size": 3232
-    },
-    {
-      "path": "01_docs/research/reset_branch_packet/result.json",
-      "sha256": "d44bc4e77662205638f81eaeb096a8bf1e1d37951f1fccbd615ad53306ba5b2d",
-      "size": 4704
-    },
-    {
-      "path": "01_docs/research/xu_service_variant/C_XU_VDDIO35_POSE_SEARCH.md",
-      "sha256": "cdd8da6631e883b8756d7b9e4e0cf7655bee3afcb60dec7bb78b81f5dfbec751",
-      "size": 1566
-    },
-    {
-      "path": "01_docs/research/xu_service_variant/QSPI_GAP.md",
-      "sha256": "6945f823ba36188fc39760b9e85ddb548040d640930fc6c7c2b560e2d9a8b01c",
-      "size": 3775
-    },
-    {
-      "path": "01_docs/research/xu_service_variant/REGENERATION.md",
-      "sha256": "1e05986d34c7e05cfeafa55b1d179149506bc47dd420d5942fd9c23c314521b6",
-      "size": 4447
-    },
-    {
-      "path": "01_docs/research/xu_service_variant/XTAL_REGION_HANDOFF_SEARCH.md",
-      "sha256": "25fadedf39be8c88c95f16f496f19feaa47554583e082fb7beb57e057add9acc",
-      "size": 2576
-    },
-    {
-      "path": "01_docs/research/xu_service_variant/XTAL_SOUTH_CAP_HANDOFF.md",
-      "sha256": "2caf261007ee88dd7fbd8784ab698e175fec0fc9418031c0438e9fc4ce5b479f",
-      "size": 1701
-    },
-    {
-      "path": "01_docs/research/xu_service_variant/XTAL_WINDOW_NATIVE_AUDIT.md",
-      "sha256": "7ebc5a430185f7b4dba266c414774838f46beea44458be596ffaa9b68cecee05",
-      "size": 2392
-    },
-    {
-      "path": "01_docs/research/xu_service_variant/jtag_gap_trial/FIXED_CONNECTOR_ACCESS.md",
-      "sha256": "7317ee60c6fbda763da4eaf2ab79c68e59b80775ae9c1b504fdeb1905ce9768e",
-      "size": 2135
-    },
-    {
-      "path": "01_docs/research/xu_service_variant/jtag_gap_trial/trial_receipt.json",
-      "sha256": "ec31176866f4501a98dad51b5a88dbfffa1d9b51b55c55e9b5d3a26fcff7ac5f",
-      "size": 1666
-    },
-    {
-      "path": "01_docs/research/xu_service_variant/p1_integration_corridor_schema.md",
-      "sha256": "9992b673c7d2f507de9e57a46f9f953cccc7a47812ff6f62bb2e5fec96d6265c",
-      "size": 1783
-    },
-    {
-      "path": "01_docs/research/xu_service_variant/p1_qspi_packet/README.md",
-      "sha256": "aac745bb6a38d886ec13799a0664153bb6a2aab1421cba692917645a8aee6dee",
-      "size": 4209
-    },
-    {
-      "path": "01_docs/research/xu_service_variant/p1_qspi_packet/evaluation.json",
-      "sha256": "3ba0a91f8e3a3463fc555c3833d9a9040db0c4ce37b95470e5e81cd396f01b2a",
-      "size": 1706
-    },
-    {
-      "path": "01_docs/research/xu_service_variant/p1_xtal_jtag_packet/validation.json",
-      "sha256": "30d6a45b8432f99765a6a1b5ef3bfa582b21e22a78309fd4e6e8136ec8f5ab3f",
-      "size": 4023
-    },
-    {
-      "path": "01_docs/research/xu_service_variant/p1_xtal_packet/validation.json",
-      "sha256": "df3aa871ff1011cdc1cd17bc063ef59fcbd54a838419f8069f6e2d7affd0cf15",
-      "size": 4913
-    },
-    {
-      "path": "01_docs/research/xu_service_variant/xtal_south_cap_handoff.json",
-      "sha256": "3dc3510d8a9fb597e275982a1dd8fa39d4c900927ca8e9a8d23daf62b56666f5",
-      "size": 2953
-    },
-    {
-      "path": "01_docs/research/xu_service_variant/xtal_window_native_audit.json",
-      "sha256": "00f8087d59a74f1c62991dbbaf7412d5defc8f3518272db7e54909d52bb30f22",
-      "size": 3471
-    },
-    {
-      "path": "03_src/diagnostics/usb_fcu_launch_probe.py",
-      "sha256": "7a05b24297f627631363934e96966e72b2a7e7e409ecf1b491d245ebcef2f222",
-      "size": 8732
-    },
-    {
-      "path": "03_src/floorplan.yaml",
-      "sha256": "0032b1202f5742b6575198d27ea50629826d49cf81cf12a31fead8a2929d9868",
-      "size": 25860
-    },
-    {
-      "path": "03_src/modular_plan.json",
-      "sha256": "75c3a517cea50dd6b5745fae96b051d334debd48aac143becaca3d5fe3fc35dc",
-      "size": 90456
-    },
-    {
-      "path": "03_src/rules/p1_corridor_requirements.yaml",
-      "sha256": "191e5580a6ddf56bc9670aff3593c9e9a02d91e75c0c79998b500955050e82a3",
-      "size": 28410
-    },
-    {
-      "path": "08_reviews/2026-09-24_xtal-architecture-b_terra_review.md",
-      "sha256": "c02452874e598bc34d4a1c29ae3a1344db5f16dd91f48a833ffe4a0af50faac9",
-      "size": 2217
-    },
-    {
-      "path": "08_reviews/2026-09-24_xtal-source-corridor_terra_review.md",
-      "sha256": "56b26c0afa2e1c5ac4ae41b28e6283b3d7372d52c4a7b0009db9f90b3f46ee72",
-      "size": 3119
-    },
-    {
-      "path": "08_reviews/pre-route_schematic_render.md",
-      "sha256": "05ff9b639b7f1104f367f34ec292244190e13b11687b35b0438150e9867382e0",
-      "size": 2369
-    },
-    {
-      "path": "08_reviews/pre-route_topology.md",
-      "sha256": "76dbfea927e585cc02c07fbb1291f0a12edcec40b21286fe045cdd4f01230e5e",
-      "size": 3477
+      "path": "01_docs/research/2026-09-24-usb-esd-selection-recovery-strategy.md",
+      "sha256": "5580719edde3781804bbfc3ad8fa8840aef373aab0f753ea4db5f2a4e2b19b3f",
+      "size": 3164
     }
   ],
   "schema": 1,
-  "state_id": "6ecfaadefd6f6818c47141c5c61fd33a1b307893db80a7964223ae8a80e6d8f8"
+  "state_id": "9b64b7187cbb52ededba3690929ac49f09aa9d6aa60328b756643a28e9b95342"
 }

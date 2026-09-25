@@ -1,12 +1,12 @@
 # Resume
 
-<!-- pause-state:6ecfaadefd6f6818c47141c5c61fd33a1b307893db80a7964223ae8a80e6d8f8 -->
+<!-- pause-state:9b64b7187cbb52ededba3690929ac49f09aa9d6aa60328b756643a28e9b95342 -->
 
 Canonical state: `01_docs/pause_state.json`
 
 1. Verify: `python3 skills/pcb-design/scripts/pause_state.py verify .`
-2. Confirm blocker: P1/P2/P3 and release remain unaccepted. A source-generated 569-ref architecture B board now places all five oscillator parts in a clock-owned cell near XMOS while QSPI, XTAL and JTAG corridors stay empty; this is source allocation and placement intent only. The full P1 checker is INCOMPLETE with no global errors; USB J_USB.4 still crosses its source region and the USB-C courtyard projects 0.55 mm beyond the board outline. The oscillator has no source-routed signal copper or proven local GND egress; filled return, performance, silk and clearance remain open. Six USB launch widths, connector FULL physical facts, and TMUX external process acceptance also remain open.
-3. Resume with: `Resolve the USB fixed-connector edge owner and support-cell geometry from exact public physical evidence while retaining FULL-dependent claims as pending. In parallel, create one bounded source-generated oscillator P2 candidate from the reviewed architecture B anchors: route XTAL_IN, XTAL_OUT and XTAL_IN_R, connect four local GND terminals to the filled In1 reference, and check native connectivity, DRC, silk and XMOS loop constraints. Keep the capped scratch investigation history and do not mark P1/P2/P3 or release accepted until their exact gates pass.`
+2. Confirm blocker: Critical USB ESD selection is unaccepted: public XU316 records do not define powered or rail-off USB DP/DM transient limits; 5UX component data and public stock cannot establish exact-board pin survival.
+3. Resume with: `Search the bounded public XMOS XU316 reference set for exact USB protection evidence, then decide whether a separate engineering prototype and measured ESD/USB test is required before release; rerun critical_part_selection_admission.py only on new evidence.`
 
-The authenticated checkpoint is `06_build/checkpoints/schematic.json` at
-`917a45414c65cf43dbeef24704da01beda6b9711175cf9cec3af109ec027f4d6`.
+The authenticated checkpoint is `03_src/rules/critical_part_selection.yaml` at
+`c5dd2302a6faa6020458335aaf51da24a8bf93e74c3c3804393b540fb869616f`.

@@ -61,6 +61,8 @@ findings:
     only when the pin stress envelope is supported by evidence.
   evidence:
   - 01_docs/research/2026-09-25-usb-esd-5ux-provisional-source-sol.md
+  - 01_docs/research/2026-09-24-pesd2usb5ux-xu316-transient-hold-terra.md
+  - 01_docs/research/2026-09-24-usb-esd-selection-recovery-strategy.md
 - id: USB-capacitance
   state: closed
   blocks_at_or_above: DESIGN_CLEAN
