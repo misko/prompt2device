@@ -772,7 +772,7 @@ class CoarseCapacityTest(unittest.TestCase):
         self.assertIn('native footprint/pad U_L0 intersects integration corridor/face',
                       result['errors'][0])
 
-    def run_case(self, change=None):
+    def run_case(self, change=None, *, diagnose_all=False):
         if change:
             change()
         paths = {name: self.root / name for name in
@@ -798,7 +798,28 @@ class CoarseCapacityTest(unittest.TestCase):
                                 expected_source_sha256=hashes['source.yaml'],
                                 expected_interface_sha256=hashes['interfaces.json'],
                                 expected_alias_sha256=hashes['aliases.yaml'],
-                                expected_floorplan_sha256=hashes['floorplan.yaml'])
+                                expected_floorplan_sha256=hashes['floorplan.yaml'],
+                                diagnose_all=diagnose_all)
+
+    def test_diagnostic_mode_collects_independent_items_without_changing_verdict(self):
+        self.allocations[0]['boundary_witnesses'][0]['boundary_bbox'] = [0, 4.5, 4, 5.5]
+        self.allocations[1]['boundary_witnesses'][0]['boundary_bbox'] = [0, 0, 3, 3]
+        self.allocations[0]['reservations'][0]['bbox'] = [0, 0, 11, 2]
+        self.allocations[1]['reservations'][0]['bbox'] = [0, 0, 12, 2]
+        normal = self.run_case()
+        detailed = self.run_case(diagnose_all=True)
+        self.assertNotIn('diagnostics', normal)
+        self.assertEqual({k: v for k, v in detailed.items() if k != 'diagnostics'}, normal)
+        self.assertEqual({(d['allocation'], d['kind']) for d in detailed['diagnostics']},
+                         {('signal', 'boundary_witness'), ('power_boundary_windows', 'boundary_witness'),
+                          ('signal', 'reservation'), ('power_boundary_windows', 'reservation')})
+        self.assertEqual(len(detailed['diagnostics']), 4)
+        self.assertTrue(all(d['reason'] for d in detailed['diagnostics']))
+
+    def test_diagnostic_mode_clean_fixture_has_no_local_errors(self):
+        result = self.run_case(diagnose_all=True)
+        self.assertEqual(result['diagnostics'], [])
+        self.assertEqual(result['status'], 'INCOMPLETE')
 
     def test_movable_obstruction_is_named_debt_without_false_p1_failure(self):
         result = self.run_case()

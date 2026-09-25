@@ -55,6 +55,9 @@ An ``unresolved_multiterminal_branch`` binds every exact native endpoint of
 one cross-owner net and its return/tree obligations, while recording pad-level
 source-region conflicts. Its reservation deliberately has no geometry or
 capacity and remains INCOMPLETE.
+Schema-2 ``--diagnose-all`` adds one independent validation error per boundary
+witness or reservation to a ``diagnostics`` array. It does not replace the
+normal fail-closed verdict or prove cross-item endpoint/overlap accounting.
 """
 from __future__ import annotations
 
@@ -854,11 +857,81 @@ def _coarse_reservation(board, row, outline, fixed_refs, movable_refs, zones, na
                       'rough capacity only; movable debt, effective rules, reference and P2 access unproved'}
 
 
+def _independent_coarse_diagnostics(allocations, coverage, board, owned_pads, aliases,
+                                    pads, outline, regions, fixed_refs, movable_refs,
+                                    shared_ports, corridors, branches, physical_cells,
+                                    zones, native_pitch, source):
+    """Report one local defect per item without relaxing the normal verdict.
+
+    Cross-item endpoint denominators and overlap accounting remain the normal
+    evaluator's responsibility. An invalid item must not hide its independent
+    neighbors merely because the allocation loop is fail-fast.
+    """
+    findings = []
+    for allocation in allocations:
+        name = allocation['id']
+        witnesses = allocation.get('boundary_witnesses', [])
+        reservations = allocation.get('reservations', [])
+        if not isinstance(witnesses, list) or not isinstance(reservations, list):
+            continue
+        reservation_map = {r.get('id'): r for r in reservations if isinstance(r, dict)}
+        for index, witness in enumerate(witnesses):
+            source_pad = witness.get('source') if isinstance(witness, dict) else None
+            try:
+                if not isinstance(witness, dict) or witness.get('net') not in coverage[name]:
+                    raise ContractError(f'{name}: witness net outside allocation')
+                verified = _coarse_witness(board, witness, witness['net'], owned_pads,
+                                           aliases, pads, outline, regions, fixed_refs,
+                                           shared_ports, corridors, branches, physical_cells)
+                target = reservation_map.get(witness.get('reservation_id'))
+                if (target is None or verified['net'] not in target.get('nets', []) or
+                        verified['layer'] != target.get('layer') or
+                        (witness.get('kind') not in ('fixed_connector_access_segmented',
+                                                    'unresolved_multiterminal_branch') and
+                         not _witness_touches_reservation(verified, target))):
+                    raise ContractError(f"{verified['source']}: block face does not contact assigned reservation")
+                _virtual_region_clearance(witness, target, regions)
+            except (ContractError, TypeError, KeyError, AttributeError, ValueError) as exc:
+                findings.append({'allocation': name, 'kind': 'boundary_witness',
+                                 'index': index, 'source': source_pad, 'reason': str(exc)})
+        power_like_nets = set()
+        if name == 'usb_device_pair':
+            source_row = next((item for item in source['allocations'] if item.get('id') == name), {})
+            if any(item.get('id') == 'usb_local_power' and item.get('status') == 'INCOMPLETE'
+                   and 'VBUS_USB' in item.get('nets', []) for item in source_row.get('demands', [])):
+                power_like_nets.add('VBUS_USB')
+        for index, reservation in enumerate(reservations):
+            ident = reservation.get('id') if isinstance(reservation, dict) else None
+            try:
+                if not isinstance(reservation, dict) or not set(reservation.get('nets', [])) <= coverage[name]:
+                    raise ContractError(f'{name}: reservation net outside allocation')
+                # Special reservations have source-bound cross-item semantics;
+                # independently validate their rectangle here and leave their
+                # full accounting to the unchanged evaluator below.
+                if reservation.get('kind') in ('integration_corridor', 'fixed_connector_access',
+                                               'fixed_connector_access_segmented',
+                                               'unresolved_multiterminal_branch') or any(
+                        p['reservation_id'] == ident for p in shared_ports.values()):
+                    if reservation.get('kind') != 'unresolved_multiterminal_branch':
+                        rectangle(reservation.get('bbox'), f'{ident} reservation')
+                else:
+                    _coarse_reservation(board, reservation, outline, fixed_refs,
+                                        movable_refs, zones, native_pitch,
+                                        power_boundary=name == 'power_boundary_windows',
+                                        power_like_nets=power_like_nets)
+            except (ContractError, TypeError, KeyError, AttributeError, ValueError) as exc:
+                findings.append({'allocation': name, 'kind': 'reservation',
+                                 'index': index, 'id': ident, 'reason': str(exc)})
+    return findings
+
+
 def evaluate_coarse(board_path, contract_path, expected_contract_sha256=None, *,
                     source_path=None, interface_path=None, alias_path=None, floorplan_path=None,
                     expected_source_sha256=None, expected_interface_sha256=None,
-                    expected_alias_sha256=None, expected_floorplan_sha256=None):
+                    expected_alias_sha256=None, expected_floorplan_sha256=None,
+                    diagnose_all=False):
     errors, results, hashes = [], [], {}
+    diagnostics = []
     shared_ports_configured = integration_configured = False
     paths = {'board': board_path, 'contract': contract_path, 'source': source_path,
              'interfaces': interface_path, 'aliases': alias_path, 'floorplan': floorplan_path}
@@ -986,6 +1059,11 @@ def evaluate_coarse(board_path, contract_path, expected_contract_sha256=None, *,
                            [b['reservation_id'] for b in branches.values()])
             if len(special_ids) != len(set(special_ids)):
                 raise ContractError('special source reservation identity reused')
+            if diagnose_all:
+                diagnostics = _independent_coarse_diagnostics(
+                    allocations, coverage, board, owned_pads, aliases, pads, outline,
+                    regions, fixed_refs, movable_refs, shared_ports, corridors, branches,
+                    physical_cells, zones, native_pitch, source)
             for allocation in allocations:
                 name = allocation['id']
                 try:
@@ -1277,11 +1355,14 @@ def evaluate_coarse(board_path, contract_path, expected_contract_sha256=None, *,
                         any('overlapping named allocations' in error or 'shared port' in error or
                             'shared transition port' in error or 'unowned overlap' in error or
                             'foreign footprint' in error for error in errors)) else 'INCOMPLETE'
-    return {'schema': 2, 'kind': 'p1-coarse-reservation-screen', 'status': status,
+    result = {'schema': 2, 'kind': 'p1-coarse-reservation-screen', 'status': status,
             'hashes': hashes, 'errors': errors, 'allocations': results,
             'allocation_denominator': len(results), 'routing_realized': False,
             'p1_accepted': False,
             'reason': 'independent filled-reference, effective-capacity and P1 review not supplied'}
+    if diagnose_all:
+        result['diagnostics'] = diagnostics
+    return result
 
 
 def digest(path: Path) -> str:
@@ -1493,7 +1574,8 @@ def measure_allocation(board, row, outline):
 def evaluate(board_path: Path, contract_path: Path, expected_contract_sha256: str | None = None, *,
              source_path=None, interface_path=None, alias_path=None, floorplan_path=None,
              expected_source_sha256=None, expected_interface_sha256=None,
-             expected_alias_sha256=None, expected_floorplan_sha256=None):
+             expected_alias_sha256=None, expected_floorplan_sha256=None,
+             diagnose_all=False):
     try:
         candidate = json.loads(contract_path.read_text())
         if isinstance(candidate, dict) and candidate.get('schema') == 2:
@@ -1503,7 +1585,8 @@ def evaluate(board_path: Path, contract_path: Path, expected_contract_sha256: st
                                    expected_source_sha256=expected_source_sha256,
                                    expected_interface_sha256=expected_interface_sha256,
                                    expected_alias_sha256=expected_alias_sha256,
-                                   expected_floorplan_sha256=expected_floorplan_sha256)
+                                   expected_floorplan_sha256=expected_floorplan_sha256,
+                                   diagnose_all=diagnose_all)
     except (OSError, ValueError):
         pass
     errors, rows = [], []
@@ -1635,6 +1718,8 @@ def main():
     parser.add_argument('--expected-interface-sha256')
     parser.add_argument('--expected-alias-sha256')
     parser.add_argument('--expected-floorplan-sha256')
+    parser.add_argument('--diagnose-all', action='store_true',
+                        help='schema-2 only: report independent per-item defects without changing the verdict')
     args = parser.parse_args()
     result = evaluate(args.board, args.contract, args.expected_contract_sha256,
                       source_path=args.source_requirements, interface_path=args.interfaces,
@@ -1642,7 +1727,8 @@ def main():
                       expected_source_sha256=args.expected_source_sha256,
                       expected_interface_sha256=args.expected_interface_sha256,
                       expected_alias_sha256=args.expected_alias_sha256,
-                      expected_floorplan_sha256=args.expected_floorplan_sha256)
+                      expected_floorplan_sha256=args.expected_floorplan_sha256,
+                      diagnose_all=args.diagnose_all)
     args.output.write_text(json.dumps(result, indent=2, sort_keys=True) + '\n')
     return 0 if result['status'] == 'PASS' else 1
 
