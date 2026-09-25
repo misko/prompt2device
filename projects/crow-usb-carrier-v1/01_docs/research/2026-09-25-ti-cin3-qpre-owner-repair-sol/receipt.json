@@ -1,0 +1,147 @@
+{
+  "Q_PRE": {
+    "foreign_planning_regions": [
+      "input_buck"
+    ],
+    "nearest_envelopes_mm": [
+      [
+        0.26,
+        "C_IN3"
+      ],
+      [
+        0.26,
+        "D_HOLD"
+      ],
+      [
+        0.53,
+        "Q_PRE_EN"
+      ],
+      [
+        1.39,
+        "R_PRE_G"
+      ],
+      [
+        1.512415,
+        "R_DUMP"
+      ],
+      [
+        2.95,
+        "R_PRE"
+      ],
+      [
+        3.76,
+        "C_IN2"
+      ]
+    ],
+    "old_envelope_mm": [
+      44.025,
+      105.105,
+      47.975,
+      108.595
+    ],
+    "old_origin_mm": [
+      46.0,
+      106.85
+    ],
+    "owner_contained": true,
+    "trial_envelope_mm": [
+      44.025,
+      105.405,
+      47.975,
+      108.895
+    ],
+    "trial_origin_mm": [
+      46.0,
+      107.15
+    ]
+  },
+  "added_full_envelope_pairs": [],
+  "baseline_pose_diff_from_exact": [],
+  "fixed_ref_count": 27,
+  "footprint_count": 569,
+  "kind": "source-controlled-qpre-cin3-courtyard-repair",
+  "limitation": "0.26 mm is a measured native envelope gap, not assembly or routing proof. Planning regions remain overlapping and GND return is unproved.",
+  "native_drc": {
+    "baseline_unconnected": 499,
+    "baseline_violations": 699,
+    "trial_unconnected": 499,
+    "trial_violations": 699,
+    "violation_identity_sets_equal": true
+  },
+  "old_Q_PRE_pad_overlap_pairs": [],
+  "p1_accepted": false,
+  "p2_accepted": false,
+  "pad_net_layer_shape_relative_pose_identical": true,
+  "related_pad_center_distances": [
+    {
+      "after_mm": 2.741898,
+      "before_mm": 2.44704,
+      "pads": [
+        "Q_PRE.1",
+        "R_PRE_G.1"
+      ]
+    },
+    {
+      "after_mm": 3.299455,
+      "before_mm": 3.561798,
+      "pads": [
+        "Q_PRE.2",
+        "D_HOLD.1"
+      ]
+    },
+    {
+      "after_mm": 4.837614,
+      "before_mm": 4.553296,
+      "pads": [
+        "Q_PRE.2",
+        "R_PRE_G.2"
+      ]
+    },
+    {
+      "after_mm": 7.052681,
+      "before_mm": 7.039376,
+      "pads": [
+        "Q_PRE.3",
+        "R_PRE.2"
+      ]
+    },
+    {
+      "after_mm": 3.5,
+      "before_mm": 3.5,
+      "pads": [
+        "C_IN3.1",
+        "C_IN2.1"
+      ]
+    },
+    {
+      "after_mm": 3.5,
+      "before_mm": 3.5,
+      "pads": [
+        "C_IN3.2",
+        "C_IN2.2"
+      ]
+    }
+  ],
+  "removed_full_envelope_pairs": [
+    [
+      "C_IN3",
+      "Q_PRE"
+    ]
+  ],
+  "return_credit": false,
+  "route_credit": false,
+  "schema": 1,
+  "sha256": {
+    "baseline": "612d319fdafd5b9eaa085f64c7752f94a0953a659f9b883cd5008b6504eeab71",
+    "exact": "d0c065dc16de081a5410b7a22e474f0a99c6fdeb0b7dd1f6c37422ace4a9fcf7",
+    "floorplan": "7d95376bbfa3bc9dd0bf59bc7e91d02d86c31235f6145f4d09b49a31f81769d0",
+    "helper": "e060924188e4e68d1e7a4f7416b3eb7c92dba29b14b8de1c929f2f70f82a0eb6",
+    "source": "f6f132891712bfcb1cec4d1df6714748337040ba5c42ae3fecd14fb9c35d1222",
+    "trial": "e07ed8bc663fdfd4ce39477165b656b0dcf2bfbae54d84ec501bfccf326d22ef"
+  },
+  "status": "GEOMETRY_SCREEN_ONLY",
+  "trial_Q_PRE_pad_overlap_pairs": [],
+  "trial_pose_diff_from_exact": [
+    "Q_PRE"
+  ]
+}
