@@ -1,0 +1,2404 @@
+{
+  "schema": 2,
+  "kind": "p1-coarse-reservations",
+  "profile": "crow-p1-coarse",
+  "status": "INCOMPLETE",
+  "p1_accepted": false,
+  "routing_realized": false,
+  "allocations": [
+    {
+      "id": "usb_device_pair",
+      "coverage_nets": [
+        "USB_DP",
+        "USB_DN",
+        "VBUS_USB",
+        "VBUS_PRESENT_N"
+      ],
+      "boundary_witnesses": [
+        {
+          "source": "J_USB.4",
+          "native": "J_USB.A6",
+          "net": "USB_DP",
+          "block": "usb_frontend",
+          "face": "north",
+          "layer": "F.Cu",
+          "boundary_bbox": [
+            229.9,
+            25.9,
+            230.6,
+            28
+          ],
+          "reservation_id": "usb_entry"
+        },
+        {
+          "source": "J_USB.5",
+          "native": "J_USB.A7",
+          "net": "USB_DN",
+          "block": "usb_frontend",
+          "face": "north",
+          "layer": "F.Cu",
+          "boundary_bbox": [
+            229.5,
+            25.9,
+            230,
+            28
+          ],
+          "reservation_id": "usb_entry"
+        },
+        {
+          "source": "U_USB_ESD.1",
+          "native": "U_USB_ESD.1",
+          "net": "USB_DP",
+          "block": "usb_frontend",
+          "face": "north",
+          "layer": "F.Cu",
+          "boundary_bbox": [
+            216.4,
+            36.15,
+            216.95,
+            36.77
+          ],
+          "reservation_id": "usb_trunk"
+        },
+        {
+          "source": "U_USB_ESD.2",
+          "native": "U_USB_ESD.2",
+          "net": "USB_DN",
+          "block": "usb_frontend",
+          "face": "north",
+          "layer": "F.Cu",
+          "boundary_bbox": [
+            217.1,
+            36.15,
+            217.65,
+            36.77
+          ],
+          "reservation_id": "usb_trunk"
+        },
+        {
+          "source": "U_XU.60",
+          "native": "U_XU.60",
+          "net": "USB_DP",
+          "block": "xmos_core",
+          "face": "south",
+          "layer": "F.Cu",
+          "boundary_bbox": [
+            215.3,
+            91.3,
+            217,
+            95.65
+          ],
+          "reservation_id": "usb_trunk",
+          "physical_cell_id": "xmos_core"
+        },
+        {
+          "source": "U_XU.59",
+          "native": "U_XU.59",
+          "net": "USB_DN",
+          "block": "xmos_core",
+          "face": "south",
+          "layer": "F.Cu",
+          "boundary_bbox": [
+            215.3,
+            91.3,
+            217,
+            96
+          ],
+          "reservation_id": "usb_trunk",
+          "physical_cell_id": "xmos_core"
+        },
+        {
+          "source": "J_USB.2",
+          "native": "J_USB.A4",
+          "net": "VBUS_USB",
+          "block": "usb_frontend",
+          "face": "north",
+          "layer": "F.Cu",
+          "boundary_bbox": [
+            232,
+            25.9,
+            232.8,
+            28
+          ],
+          "reservation_id": "vbus_entry"
+        },
+        {
+          "source": "R_VBUS_B.1",
+          "native": "R_VBUS_B.1",
+          "net": "VBUS_USB",
+          "block": "usb_vbus_sense",
+          "face": "south",
+          "layer": "F.Cu",
+          "boundary_bbox": [
+            205.9,
+            70.3,
+            206.7,
+            71.15
+          ],
+          "reservation_id": "vbus_sense_entry"
+        },
+        {
+          "source": "Q_VBUS.3",
+          "native": "Q_VBUS.3",
+          "net": "VBUS_PRESENT_N",
+          "block": "usb_vbus_sense",
+          "face": "north",
+          "layer": "F.Cu",
+          "boundary_bbox": [
+            208,
+            74,
+            209.7,
+            76
+          ],
+          "reservation_id": "presence_sense"
+        },
+        {
+          "source": "U_XU.8",
+          "native": "U_XU.8",
+          "net": "VBUS_PRESENT_N",
+          "block": "xmos_core",
+          "face": "south",
+          "layer": "F.Cu",
+          "boundary_bbox": [
+            204.8,
+            106.8,
+            205.4,
+            108.5
+          ],
+          "reservation_id": "presence_xu_entry",
+          "physical_cell_id": "xmos_core"
+        }
+      ],
+      "reservations": [
+        {
+          "id": "usb_entry",
+          "kind": "signal",
+          "bbox": [
+            217.85,
+            28,
+            230.5,
+            29.3
+          ],
+          "layer": "F.Cu",
+          "axis": "horizontal",
+          "nets": [
+            "USB_DP",
+            "USB_DN"
+          ],
+          "demand_slots": 1,
+          "slot_pitch_mm": 0.97
+        },
+        {
+          "id": "usb_bend",
+          "kind": "signal",
+          "bbox": [
+            217.85,
+            29.3,
+            219.15,
+            35.2
+          ],
+          "layer": "F.Cu",
+          "axis": "vertical",
+          "nets": [
+            "USB_DP",
+            "USB_DN"
+          ],
+          "demand_slots": 1,
+          "slot_pitch_mm": 0.97
+        },
+        {
+          "id": "usb_trunk",
+          "kind": "signal",
+          "bbox": [
+            216.1,
+            36.77,
+            217.4,
+            91.3
+          ],
+          "layer": "F.Cu",
+          "axis": "vertical",
+          "nets": [
+            "USB_DP",
+            "USB_DN"
+          ],
+          "demand_slots": 1,
+          "slot_pitch_mm": 0.97
+        },
+        {
+          "id": "vbus_entry",
+          "kind": "power_or_mechanical",
+          "bbox": [
+            225,
+            28,
+            239,
+            37
+          ],
+          "layer": "F.Cu",
+          "nets": [
+            "VBUS_USB"
+          ]
+        },
+        {
+          "id": "vbus_sense_entry",
+          "kind": "power_or_mechanical",
+          "bbox": [
+            205.8,
+            69,
+            207,
+            70.3
+          ],
+          "layer": "F.Cu",
+          "nets": [
+            "VBUS_USB"
+          ]
+        },
+        {
+          "id": "presence_sense",
+          "kind": "signal",
+          "bbox": [
+            207.7,
+            76,
+            209.2,
+            91.3
+          ],
+          "layer": "F.Cu",
+          "axis": "vertical",
+          "nets": [
+            "VBUS_PRESENT_N"
+          ],
+          "demand_slots": 1,
+          "slot_pitch_mm": 0.45
+        },
+        {
+          "id": "presence_xu_entry",
+          "kind": "signal",
+          "bbox": [
+            204.8,
+            91.3,
+            205.4,
+            106.8
+          ],
+          "layer": "F.Cu",
+          "axis": "vertical",
+          "nets": [
+            "VBUS_PRESENT_N"
+          ],
+          "demand_slots": 1,
+          "slot_pitch_mm": 0.45
+        }
+      ],
+      "local_endpoint_completion": "P2_P3_REQUIRED"
+    },
+    {
+      "id": "xmos_service_escape",
+      "coverage_nets": [
+        "QSPI_CLK",
+        "QSPI_CS_N",
+        "QSPI_D0",
+        "QSPI_D1",
+        "QSPI_D2",
+        "QSPI_D3",
+        "JTAG_TCK",
+        "JTAG_TDI",
+        "JTAG_TDO",
+        "JTAG_TMS",
+        "XU_RESET_N",
+        "XTAL_IN",
+        "XTAL_OUT"
+      ],
+      "boundary_witnesses": [
+        {
+          "kind": "integration_corridor_handoff",
+          "corridor_id": "jtag_strip",
+          "source": "U_XU.44",
+          "native": "U_XU.44",
+          "net": "JTAG_TMS",
+          "block": "xmos_core",
+          "face": "south",
+          "layer": "F.Cu",
+          "region_face": "north",
+          "boundary_bbox": [
+            221.1,
+            84,
+            223.9,
+            84.3
+          ],
+          "reservation_id": "jtag_strip_trunk",
+          "p2_obligation": {
+            "status": "P2_REQUIRED",
+            "source_pad": "U_XU.44",
+            "native_pad": "U_XU.44",
+            "net": "JTAG_TMS",
+            "block": "xmos_core",
+            "corridor_id": "jtag_strip",
+            "region_face": "north",
+            "layer": "F.Cu",
+            "to_reservation": "jtag_strip_trunk",
+            "physical_cell_id": "xmos_core_east"
+          },
+          "physical_cell_id": "xmos_core_east"
+        },
+        {
+          "kind": "integration_corridor_handoff",
+          "corridor_id": "jtag_strip",
+          "source": "U_XU.51",
+          "native": "U_XU.51",
+          "net": "JTAG_TCK",
+          "block": "xmos_core",
+          "face": "south",
+          "layer": "F.Cu",
+          "region_face": "north",
+          "boundary_bbox": [
+            221.1,
+            84,
+            223.9,
+            84.3
+          ],
+          "reservation_id": "jtag_strip_trunk",
+          "p2_obligation": {
+            "status": "P2_REQUIRED",
+            "source_pad": "U_XU.51",
+            "native_pad": "U_XU.51",
+            "net": "JTAG_TCK",
+            "block": "xmos_core",
+            "corridor_id": "jtag_strip",
+            "region_face": "north",
+            "layer": "F.Cu",
+            "to_reservation": "jtag_strip_trunk",
+            "physical_cell_id": "xmos_core_east"
+          },
+          "physical_cell_id": "xmos_core_east"
+        },
+        {
+          "kind": "integration_corridor_handoff",
+          "corridor_id": "jtag_strip",
+          "source": "U_XU.37",
+          "native": "U_XU.37",
+          "net": "JTAG_TDO",
+          "block": "xmos_core",
+          "face": "south",
+          "layer": "F.Cu",
+          "region_face": "north",
+          "boundary_bbox": [
+            221.1,
+            84,
+            223.9,
+            84.3
+          ],
+          "reservation_id": "jtag_strip_trunk",
+          "p2_obligation": {
+            "status": "P2_REQUIRED",
+            "source_pad": "U_XU.37",
+            "native_pad": "U_XU.37",
+            "net": "JTAG_TDO",
+            "block": "xmos_core",
+            "corridor_id": "jtag_strip",
+            "region_face": "north",
+            "layer": "F.Cu",
+            "to_reservation": "jtag_strip_trunk",
+            "physical_cell_id": "xmos_core_east"
+          },
+          "physical_cell_id": "xmos_core_east"
+        },
+        {
+          "kind": "integration_corridor_handoff",
+          "corridor_id": "jtag_strip",
+          "source": "U_XU.36",
+          "native": "U_XU.36",
+          "net": "JTAG_TDI",
+          "block": "xmos_core",
+          "face": "south",
+          "layer": "F.Cu",
+          "region_face": "north",
+          "boundary_bbox": [
+            221.1,
+            84,
+            223.9,
+            84.3
+          ],
+          "reservation_id": "jtag_strip_trunk",
+          "p2_obligation": {
+            "status": "P2_REQUIRED",
+            "source_pad": "U_XU.36",
+            "native_pad": "U_XU.36",
+            "net": "JTAG_TDI",
+            "block": "xmos_core",
+            "corridor_id": "jtag_strip",
+            "region_face": "north",
+            "layer": "F.Cu",
+            "to_reservation": "jtag_strip_trunk",
+            "physical_cell_id": "xmos_core_east"
+          },
+          "physical_cell_id": "xmos_core_east"
+        },
+        {
+          "kind": "fixed_connector_access_segmented",
+          "corridor_id": "jtag_strip",
+          "source": "J_JTAG.2",
+          "native": "J_JTAG.2",
+          "net": "JTAG_TMS",
+          "block": "debug_connector",
+          "face": "west",
+          "layer": "F.Cu",
+          "region_face": "south",
+          "boundary_bbox": [
+            230.17,
+            46.57,
+            230.91,
+            49.36
+          ],
+          "reservation_id": "jtag_access_2",
+          "p2_obligation": {
+            "status": "P2_REQUIRED",
+            "source_pad": "J_JTAG.2",
+            "native_pad": "J_JTAG.2",
+            "net": "JTAG_TMS",
+            "block": "debug_connector",
+            "corridor_id": "jtag_strip",
+            "region_face": "south",
+            "layer": "F.Cu",
+            "to_reservation": "jtag_strip_trunk"
+          }
+        },
+        {
+          "kind": "fixed_connector_access_segmented",
+          "corridor_id": "jtag_strip",
+          "source": "J_JTAG.4",
+          "native": "J_JTAG.4",
+          "net": "JTAG_TCK",
+          "block": "debug_connector",
+          "face": "north",
+          "layer": "F.Cu",
+          "region_face": "south",
+          "boundary_bbox": [
+            228.9,
+            46.57,
+            229.64,
+            49.36
+          ],
+          "reservation_id": "jtag_access_4",
+          "p2_obligation": {
+            "status": "P2_REQUIRED",
+            "source_pad": "J_JTAG.4",
+            "native_pad": "J_JTAG.4",
+            "net": "JTAG_TCK",
+            "block": "debug_connector",
+            "corridor_id": "jtag_strip",
+            "region_face": "south",
+            "layer": "F.Cu",
+            "to_reservation": "jtag_strip_trunk"
+          }
+        },
+        {
+          "kind": "fixed_connector_access_segmented",
+          "corridor_id": "jtag_strip",
+          "source": "J_JTAG.6",
+          "native": "J_JTAG.6",
+          "net": "JTAG_TDO",
+          "block": "debug_connector",
+          "face": "north",
+          "layer": "F.Cu",
+          "region_face": "south",
+          "boundary_bbox": [
+            227.63,
+            46.57,
+            228.37,
+            49.36
+          ],
+          "reservation_id": "jtag_access_6",
+          "p2_obligation": {
+            "status": "P2_REQUIRED",
+            "source_pad": "J_JTAG.6",
+            "native_pad": "J_JTAG.6",
+            "net": "JTAG_TDO",
+            "block": "debug_connector",
+            "corridor_id": "jtag_strip",
+            "region_face": "south",
+            "layer": "F.Cu",
+            "to_reservation": "jtag_strip_trunk"
+          }
+        },
+        {
+          "kind": "fixed_connector_access_segmented",
+          "corridor_id": "jtag_strip",
+          "source": "J_JTAG.8",
+          "native": "J_JTAG.8",
+          "net": "JTAG_TDI",
+          "block": "debug_connector",
+          "face": "north",
+          "layer": "F.Cu",
+          "region_face": "south",
+          "boundary_bbox": [
+            226.36,
+            46.57,
+            227.1,
+            49.36
+          ],
+          "reservation_id": "jtag_access_8",
+          "p2_obligation": {
+            "status": "P2_REQUIRED",
+            "source_pad": "J_JTAG.8",
+            "native_pad": "J_JTAG.8",
+            "net": "JTAG_TDI",
+            "block": "debug_connector",
+            "corridor_id": "jtag_strip",
+            "region_face": "south",
+            "layer": "F.Cu",
+            "to_reservation": "jtag_strip_trunk"
+          }
+        },
+        {
+          "kind": "integration_corridor_handoff",
+          "corridor_id": "qspi_gap",
+          "source": "U_XU.4",
+          "native": "U_XU.4",
+          "net": "QSPI_CLK",
+          "block": "xmos_core",
+          "layer": "F.Cu",
+          "region_face": "south",
+          "face": "north",
+          "boundary_bbox": [
+            219.2,
+            110.2,
+            222.8,
+            110.5
+          ],
+          "reservation_id": "qspi_gap_trunk",
+          "p2_obligation": {
+            "status": "P2_REQUIRED",
+            "source_pad": "U_XU.4",
+            "native_pad": "U_XU.4",
+            "net": "QSPI_CLK",
+            "block": "xmos_core",
+            "corridor_id": "qspi_gap",
+            "region_face": "south",
+            "layer": "F.Cu",
+            "to_reservation": "qspi_gap_trunk",
+            "physical_cell_id": "xmos_core_qspi_south"
+          },
+          "physical_cell_id": "xmos_core_qspi_south"
+        },
+        {
+          "kind": "integration_corridor_handoff",
+          "corridor_id": "qspi_gap",
+          "source": "U_FLASH.6",
+          "native": "U_FLASH.6",
+          "net": "QSPI_CLK",
+          "block": "clock_flash_debug",
+          "layer": "F.Cu",
+          "region_face": "north",
+          "face": "south",
+          "boundary_bbox": [
+            219.25,
+            118.5,
+            222.8,
+            118.8
+          ],
+          "reservation_id": "qspi_gap_trunk",
+          "p2_obligation": {
+            "status": "P2_REQUIRED",
+            "source_pad": "U_FLASH.6",
+            "native_pad": "U_FLASH.6",
+            "net": "QSPI_CLK",
+            "block": "clock_flash_debug",
+            "corridor_id": "qspi_gap",
+            "region_face": "north",
+            "layer": "F.Cu",
+            "to_reservation": "qspi_gap_trunk",
+            "physical_cell_id": "clock_qspi_transit"
+          },
+          "physical_cell_id": "clock_qspi_transit"
+        },
+        {
+          "kind": "integration_corridor_handoff",
+          "corridor_id": "qspi_gap",
+          "source": "U_XU.2",
+          "native": "U_XU.2",
+          "net": "QSPI_CS_N",
+          "block": "xmos_core",
+          "layer": "F.Cu",
+          "region_face": "south",
+          "face": "north",
+          "boundary_bbox": [
+            219.2,
+            110.2,
+            222.8,
+            110.5
+          ],
+          "reservation_id": "qspi_gap_trunk",
+          "p2_obligation": {
+            "status": "P2_REQUIRED",
+            "source_pad": "U_XU.2",
+            "native_pad": "U_XU.2",
+            "net": "QSPI_CS_N",
+            "block": "xmos_core",
+            "corridor_id": "qspi_gap",
+            "region_face": "south",
+            "layer": "F.Cu",
+            "to_reservation": "qspi_gap_trunk",
+            "physical_cell_id": "xmos_core_qspi_south"
+          },
+          "physical_cell_id": "xmos_core_qspi_south"
+        },
+        {
+          "kind": "integration_corridor_handoff",
+          "corridor_id": "qspi_gap",
+          "source": "R_QSPI_CS.2",
+          "native": "R_QSPI_CS.2",
+          "net": "QSPI_CS_N",
+          "block": "clock_flash_debug",
+          "layer": "F.Cu",
+          "region_face": "north",
+          "face": "south",
+          "boundary_bbox": [
+            219.25,
+            118.5,
+            222.8,
+            118.8
+          ],
+          "reservation_id": "qspi_gap_trunk",
+          "p2_obligation": {
+            "status": "P2_REQUIRED",
+            "source_pad": "R_QSPI_CS.2",
+            "native_pad": "R_QSPI_CS.2",
+            "net": "QSPI_CS_N",
+            "block": "clock_flash_debug",
+            "corridor_id": "qspi_gap",
+            "region_face": "north",
+            "layer": "F.Cu",
+            "to_reservation": "qspi_gap_trunk",
+            "physical_cell_id": "clock_qspi_transit"
+          },
+          "physical_cell_id": "clock_qspi_transit"
+        },
+        {
+          "kind": "integration_corridor_handoff",
+          "corridor_id": "qspi_gap",
+          "source": "U_FLASH.1",
+          "native": "U_FLASH.1",
+          "net": "QSPI_CS_N",
+          "block": "clock_flash_debug",
+          "layer": "F.Cu",
+          "region_face": "north",
+          "face": "south",
+          "boundary_bbox": [
+            219.25,
+            118.5,
+            222.8,
+            118.8
+          ],
+          "reservation_id": "qspi_gap_trunk",
+          "p2_obligation": {
+            "status": "P2_REQUIRED",
+            "source_pad": "U_FLASH.1",
+            "native_pad": "U_FLASH.1",
+            "net": "QSPI_CS_N",
+            "block": "clock_flash_debug",
+            "corridor_id": "qspi_gap",
+            "region_face": "north",
+            "layer": "F.Cu",
+            "to_reservation": "qspi_gap_trunk",
+            "physical_cell_id": "clock_qspi_transit"
+          },
+          "physical_cell_id": "clock_qspi_transit"
+        },
+        {
+          "kind": "integration_corridor_handoff",
+          "corridor_id": "qspi_gap",
+          "source": "U_XU.127",
+          "native": "U_XU.127",
+          "net": "QSPI_D0",
+          "block": "xmos_core",
+          "layer": "F.Cu",
+          "region_face": "south",
+          "face": "north",
+          "boundary_bbox": [
+            219.2,
+            110.2,
+            222.8,
+            110.5
+          ],
+          "reservation_id": "qspi_gap_trunk",
+          "p2_obligation": {
+            "status": "P2_REQUIRED",
+            "source_pad": "U_XU.127",
+            "native_pad": "U_XU.127",
+            "net": "QSPI_D0",
+            "block": "xmos_core",
+            "corridor_id": "qspi_gap",
+            "region_face": "south",
+            "layer": "F.Cu",
+            "to_reservation": "qspi_gap_trunk",
+            "physical_cell_id": "xmos_core_qspi_south"
+          },
+          "physical_cell_id": "xmos_core_qspi_south"
+        },
+        {
+          "kind": "integration_corridor_handoff",
+          "corridor_id": "qspi_gap",
+          "source": "U_FLASH.5",
+          "native": "U_FLASH.5",
+          "net": "QSPI_D0",
+          "block": "clock_flash_debug",
+          "layer": "F.Cu",
+          "region_face": "north",
+          "face": "south",
+          "boundary_bbox": [
+            219.25,
+            118.5,
+            222.8,
+            118.8
+          ],
+          "reservation_id": "qspi_gap_trunk",
+          "p2_obligation": {
+            "status": "P2_REQUIRED",
+            "source_pad": "U_FLASH.5",
+            "native_pad": "U_FLASH.5",
+            "net": "QSPI_D0",
+            "block": "clock_flash_debug",
+            "corridor_id": "qspi_gap",
+            "region_face": "north",
+            "layer": "F.Cu",
+            "to_reservation": "qspi_gap_trunk",
+            "physical_cell_id": "clock_qspi_transit"
+          },
+          "physical_cell_id": "clock_qspi_transit"
+        },
+        {
+          "kind": "integration_corridor_handoff",
+          "corridor_id": "qspi_gap",
+          "source": "U_XU.128",
+          "native": "U_XU.128",
+          "net": "QSPI_D1",
+          "block": "xmos_core",
+          "layer": "F.Cu",
+          "region_face": "south",
+          "face": "north",
+          "boundary_bbox": [
+            219.2,
+            110.2,
+            222.8,
+            110.5
+          ],
+          "reservation_id": "qspi_gap_trunk",
+          "p2_obligation": {
+            "status": "P2_REQUIRED",
+            "source_pad": "U_XU.128",
+            "native_pad": "U_XU.128",
+            "net": "QSPI_D1",
+            "block": "xmos_core",
+            "corridor_id": "qspi_gap",
+            "region_face": "south",
+            "layer": "F.Cu",
+            "to_reservation": "qspi_gap_trunk",
+            "physical_cell_id": "xmos_core_qspi_south"
+          },
+          "physical_cell_id": "xmos_core_qspi_south"
+        },
+        {
+          "kind": "integration_corridor_handoff",
+          "corridor_id": "qspi_gap",
+          "source": "U_FLASH.2",
+          "native": "U_FLASH.2",
+          "net": "QSPI_D1",
+          "block": "clock_flash_debug",
+          "layer": "F.Cu",
+          "region_face": "north",
+          "face": "south",
+          "boundary_bbox": [
+            219.25,
+            118.5,
+            222.8,
+            118.8
+          ],
+          "reservation_id": "qspi_gap_trunk",
+          "p2_obligation": {
+            "status": "P2_REQUIRED",
+            "source_pad": "U_FLASH.2",
+            "native_pad": "U_FLASH.2",
+            "net": "QSPI_D1",
+            "block": "clock_flash_debug",
+            "corridor_id": "qspi_gap",
+            "region_face": "north",
+            "layer": "F.Cu",
+            "to_reservation": "qspi_gap_trunk",
+            "physical_cell_id": "clock_qspi_transit"
+          },
+          "physical_cell_id": "clock_qspi_transit"
+        },
+        {
+          "kind": "integration_corridor_handoff",
+          "corridor_id": "qspi_gap",
+          "source": "U_XU.1",
+          "native": "U_XU.1",
+          "net": "QSPI_D2",
+          "block": "xmos_core",
+          "layer": "F.Cu",
+          "region_face": "south",
+          "face": "north",
+          "boundary_bbox": [
+            219.2,
+            110.2,
+            222.8,
+            110.5
+          ],
+          "reservation_id": "qspi_gap_trunk",
+          "p2_obligation": {
+            "status": "P2_REQUIRED",
+            "source_pad": "U_XU.1",
+            "native_pad": "U_XU.1",
+            "net": "QSPI_D2",
+            "block": "xmos_core",
+            "corridor_id": "qspi_gap",
+            "region_face": "south",
+            "layer": "F.Cu",
+            "to_reservation": "qspi_gap_trunk",
+            "physical_cell_id": "xmos_core_qspi_south"
+          },
+          "physical_cell_id": "xmos_core_qspi_south"
+        },
+        {
+          "kind": "integration_corridor_handoff",
+          "corridor_id": "qspi_gap",
+          "source": "U_FLASH.3",
+          "native": "U_FLASH.3",
+          "net": "QSPI_D2",
+          "block": "clock_flash_debug",
+          "layer": "F.Cu",
+          "region_face": "north",
+          "face": "south",
+          "boundary_bbox": [
+            219.25,
+            118.5,
+            222.8,
+            118.8
+          ],
+          "reservation_id": "qspi_gap_trunk",
+          "p2_obligation": {
+            "status": "P2_REQUIRED",
+            "source_pad": "U_FLASH.3",
+            "native_pad": "U_FLASH.3",
+            "net": "QSPI_D2",
+            "block": "clock_flash_debug",
+            "corridor_id": "qspi_gap",
+            "region_face": "north",
+            "layer": "F.Cu",
+            "to_reservation": "qspi_gap_trunk",
+            "physical_cell_id": "clock_qspi_transit"
+          },
+          "physical_cell_id": "clock_qspi_transit"
+        },
+        {
+          "kind": "integration_corridor_handoff",
+          "corridor_id": "qspi_gap",
+          "source": "U_XU.3",
+          "native": "U_XU.3",
+          "net": "QSPI_D3",
+          "block": "xmos_core",
+          "layer": "F.Cu",
+          "region_face": "south",
+          "face": "north",
+          "boundary_bbox": [
+            219.2,
+            110.2,
+            222.8,
+            110.5
+          ],
+          "reservation_id": "qspi_gap_trunk",
+          "p2_obligation": {
+            "status": "P2_REQUIRED",
+            "source_pad": "U_XU.3",
+            "native_pad": "U_XU.3",
+            "net": "QSPI_D3",
+            "block": "xmos_core",
+            "corridor_id": "qspi_gap",
+            "region_face": "south",
+            "layer": "F.Cu",
+            "to_reservation": "qspi_gap_trunk",
+            "physical_cell_id": "xmos_core_qspi_south"
+          },
+          "physical_cell_id": "xmos_core_qspi_south"
+        },
+        {
+          "kind": "integration_corridor_handoff",
+          "corridor_id": "qspi_gap",
+          "source": "U_FLASH.7",
+          "native": "U_FLASH.7",
+          "net": "QSPI_D3",
+          "block": "clock_flash_debug",
+          "layer": "F.Cu",
+          "region_face": "north",
+          "face": "south",
+          "boundary_bbox": [
+            219.25,
+            118.5,
+            222.8,
+            118.8
+          ],
+          "reservation_id": "qspi_gap_trunk",
+          "p2_obligation": {
+            "status": "P2_REQUIRED",
+            "source_pad": "U_FLASH.7",
+            "native_pad": "U_FLASH.7",
+            "net": "QSPI_D3",
+            "block": "clock_flash_debug",
+            "corridor_id": "qspi_gap",
+            "region_face": "north",
+            "layer": "F.Cu",
+            "to_reservation": "qspi_gap_trunk",
+            "physical_cell_id": "clock_qspi_transit"
+          },
+          "physical_cell_id": "clock_qspi_transit"
+        },
+        {
+          "kind": "integration_corridor_handoff",
+          "corridor_id": "xtal_south_cap",
+          "source": "U_XU.34",
+          "native": "U_XU.34",
+          "net": "XTAL_IN",
+          "block": "xmos_core",
+          "layer": "F.Cu",
+          "region_face": "east",
+          "face": "west",
+          "boundary_bbox": [
+            217.196,
+            107.2,
+            217.2,
+            108.7
+          ],
+          "reservation_id": "xtal_handoff",
+          "p2_obligation": {
+            "status": "P2_REQUIRED",
+            "source_pad": "U_XU.34",
+            "native_pad": "U_XU.34",
+            "net": "XTAL_IN",
+            "block": "xmos_core",
+            "corridor_id": "xtal_south_cap",
+            "region_face": "east",
+            "layer": "F.Cu",
+            "to_reservation": "xtal_handoff",
+            "physical_cell_id": "xmos_core"
+          },
+          "physical_cell_id": "xmos_core"
+        },
+        {
+          "kind": "integration_corridor_handoff",
+          "corridor_id": "xtal_south_cap",
+          "source": "R_XTAL_DRIVE.1",
+          "native": "R_XTAL_DRIVE.1",
+          "net": "XTAL_IN",
+          "block": "clock_flash_debug",
+          "layer": "F.Cu",
+          "region_face": "north",
+          "face": "south",
+          "boundary_bbox": [
+            217.35,
+            110.5,
+            218.8,
+            110.6
+          ],
+          "reservation_id": "xtal_handoff",
+          "p2_obligation": {
+            "status": "P2_REQUIRED",
+            "source_pad": "R_XTAL_DRIVE.1",
+            "native_pad": "R_XTAL_DRIVE.1",
+            "net": "XTAL_IN",
+            "block": "clock_flash_debug",
+            "corridor_id": "xtal_south_cap",
+            "region_face": "north",
+            "layer": "F.Cu",
+            "to_reservation": "xtal_handoff",
+            "physical_cell_id": "clock_oscillator_local"
+          },
+          "physical_cell_id": "clock_oscillator_local"
+        },
+        {
+          "kind": "integration_corridor_handoff",
+          "corridor_id": "xtal_south_cap",
+          "source": "R_XTAL_FB.1",
+          "native": "R_XTAL_FB.1",
+          "net": "XTAL_IN",
+          "block": "clock_flash_debug",
+          "layer": "F.Cu",
+          "region_face": "north",
+          "face": "south",
+          "boundary_bbox": [
+            217.35,
+            110.5,
+            218.8,
+            110.6
+          ],
+          "reservation_id": "xtal_handoff",
+          "p2_obligation": {
+            "status": "P2_REQUIRED",
+            "source_pad": "R_XTAL_FB.1",
+            "native_pad": "R_XTAL_FB.1",
+            "net": "XTAL_IN",
+            "block": "clock_flash_debug",
+            "corridor_id": "xtal_south_cap",
+            "region_face": "north",
+            "layer": "F.Cu",
+            "to_reservation": "xtal_handoff",
+            "physical_cell_id": "clock_oscillator_local"
+          },
+          "physical_cell_id": "clock_oscillator_local"
+        },
+        {
+          "kind": "integration_corridor_handoff",
+          "corridor_id": "xtal_south_cap",
+          "source": "U_XU.33",
+          "native": "U_XU.33",
+          "net": "XTAL_OUT",
+          "block": "xmos_core",
+          "layer": "F.Cu",
+          "region_face": "east",
+          "face": "west",
+          "boundary_bbox": [
+            217.196,
+            107.2,
+            217.2,
+            108.7
+          ],
+          "reservation_id": "xtal_handoff",
+          "p2_obligation": {
+            "status": "P2_REQUIRED",
+            "source_pad": "U_XU.33",
+            "native_pad": "U_XU.33",
+            "net": "XTAL_OUT",
+            "block": "xmos_core",
+            "corridor_id": "xtal_south_cap",
+            "region_face": "east",
+            "layer": "F.Cu",
+            "to_reservation": "xtal_handoff",
+            "physical_cell_id": "xmos_core"
+          },
+          "physical_cell_id": "xmos_core"
+        },
+        {
+          "kind": "integration_corridor_handoff",
+          "corridor_id": "xtal_south_cap",
+          "source": "C_XTAL_OUT.1",
+          "native": "C_XTAL_OUT.1",
+          "net": "XTAL_OUT",
+          "block": "clock_flash_debug",
+          "layer": "F.Cu",
+          "region_face": "north",
+          "face": "south",
+          "boundary_bbox": [
+            217.35,
+            110.5,
+            218.8,
+            110.6
+          ],
+          "reservation_id": "xtal_handoff",
+          "p2_obligation": {
+            "status": "P2_REQUIRED",
+            "source_pad": "C_XTAL_OUT.1",
+            "native_pad": "C_XTAL_OUT.1",
+            "net": "XTAL_OUT",
+            "block": "clock_flash_debug",
+            "corridor_id": "xtal_south_cap",
+            "region_face": "north",
+            "layer": "F.Cu",
+            "to_reservation": "xtal_handoff",
+            "physical_cell_id": "clock_oscillator_local"
+          },
+          "physical_cell_id": "clock_oscillator_local"
+        },
+        {
+          "kind": "integration_corridor_handoff",
+          "corridor_id": "xtal_south_cap",
+          "source": "R_XTAL_FB.2",
+          "native": "R_XTAL_FB.2",
+          "net": "XTAL_OUT",
+          "block": "clock_flash_debug",
+          "layer": "F.Cu",
+          "region_face": "north",
+          "face": "south",
+          "boundary_bbox": [
+            217.35,
+            110.5,
+            218.8,
+            110.6
+          ],
+          "reservation_id": "xtal_handoff",
+          "p2_obligation": {
+            "status": "P2_REQUIRED",
+            "source_pad": "R_XTAL_FB.2",
+            "native_pad": "R_XTAL_FB.2",
+            "net": "XTAL_OUT",
+            "block": "clock_flash_debug",
+            "corridor_id": "xtal_south_cap",
+            "region_face": "north",
+            "layer": "F.Cu",
+            "to_reservation": "xtal_handoff",
+            "physical_cell_id": "clock_oscillator_local"
+          },
+          "physical_cell_id": "clock_oscillator_local"
+        },
+        {
+          "kind": "integration_corridor_handoff",
+          "corridor_id": "xtal_south_cap",
+          "source": "Y_XU.3",
+          "native": "Y_XU.3",
+          "net": "XTAL_OUT",
+          "block": "clock_flash_debug",
+          "layer": "F.Cu",
+          "region_face": "north",
+          "face": "south",
+          "boundary_bbox": [
+            217.35,
+            110.5,
+            218.8,
+            110.6
+          ],
+          "reservation_id": "xtal_handoff",
+          "p2_obligation": {
+            "status": "P2_REQUIRED",
+            "source_pad": "Y_XU.3",
+            "native_pad": "Y_XU.3",
+            "net": "XTAL_OUT",
+            "block": "clock_flash_debug",
+            "corridor_id": "xtal_south_cap",
+            "region_face": "north",
+            "layer": "F.Cu",
+            "to_reservation": "xtal_handoff",
+            "physical_cell_id": "clock_oscillator_local"
+          },
+          "physical_cell_id": "clock_oscillator_local"
+        },
+        {
+          "kind": "unresolved_multiterminal_branch",
+          "branch_id": "xu_reset_five_terminal",
+          "source": "U_XU.38",
+          "native": "U_XU.38",
+          "net": "XU_RESET_N",
+          "block": "xmos_core",
+          "face": "north",
+          "layer": "F.Cu",
+          "boundary_bbox": [
+            215.425,
+            104.075,
+            216.9,
+            104.325
+          ],
+          "reservation_id": "reset_unresolved_tree",
+          "p2_obligation": {
+            "status": "P2_REQUIRED",
+            "source_pad": "U_XU.38",
+            "native_pad": "U_XU.38",
+            "net": "XU_RESET_N",
+            "block": "xmos_core",
+            "branch_id": "xu_reset_five_terminal",
+            "layer": "F.Cu",
+            "proof": "native_pad_to_unplaced_tree"
+          },
+          "physical_cell_id": "xmos_core"
+        }
+      ],
+      "reservations": [
+        {
+          "id": "jtag_strip_trunk",
+          "kind": "integration_corridor",
+          "corridor_id": "jtag_strip",
+          "owner": "board_integration",
+          "region_id": "board_integration_jtag",
+          "layer": "F.Cu",
+          "bbox": [
+            221,
+            65,
+            226,
+            84
+          ],
+          "nets": [
+            "JTAG_TMS",
+            "JTAG_TCK",
+            "JTAG_TDO",
+            "JTAG_TDI"
+          ]
+        },
+        {
+          "id": "jtag_access_2",
+          "kind": "fixed_connector_access_segmented",
+          "corridor_id": "jtag_strip",
+          "layer": "F.Cu",
+          "bbox": [
+            225.325,
+            47.89,
+            231.21,
+            65
+          ],
+          "segments": [
+            [
+              230.91,
+              47.89,
+              231.21,
+              48.04
+            ],
+            [
+              231.06,
+              48.04,
+              231.21,
+              54.725
+            ],
+            [
+              225.325,
+              54.725,
+              231.21,
+              54.875
+            ],
+            [
+              225.325,
+              54.875,
+              225.475,
+              65
+            ]
+          ],
+          "nets": [
+            "JTAG_TMS"
+          ]
+        },
+        {
+          "id": "jtag_access_4",
+          "kind": "fixed_connector_access_segmented",
+          "corridor_id": "jtag_strip",
+          "layer": "F.Cu",
+          "bbox": [
+            222.525,
+            49.36,
+            229.345,
+            65
+          ],
+          "segments": [
+            [
+              229.195,
+              49.36,
+              229.345,
+              50.125
+            ],
+            [
+              224.775,
+              50.125,
+              229.345,
+              50.275
+            ],
+            [
+              224.775,
+              50.275,
+              224.925,
+              54.125
+            ],
+            [
+              222.525,
+              54.125,
+              224.925,
+              54.275
+            ],
+            [
+              222.525,
+              54.275,
+              222.675,
+              65
+            ]
+          ],
+          "nets": [
+            "JTAG_TCK"
+          ]
+        },
+        {
+          "id": "jtag_access_6",
+          "kind": "fixed_connector_access_segmented",
+          "corridor_id": "jtag_strip",
+          "layer": "F.Cu",
+          "bbox": [
+            221.925,
+            49.36,
+            228.075,
+            65
+          ],
+          "segments": [
+            [
+              227.925,
+              49.36,
+              228.075,
+              49.825
+            ],
+            [
+              224.475,
+              49.825,
+              228.075,
+              49.975
+            ],
+            [
+              224.475,
+              49.975,
+              224.625,
+              53.825
+            ],
+            [
+              221.925,
+              53.825,
+              224.625,
+              53.975
+            ],
+            [
+              221.925,
+              53.975,
+              222.075,
+              65
+            ]
+          ],
+          "nets": [
+            "JTAG_TDO"
+          ]
+        },
+        {
+          "id": "jtag_access_8",
+          "kind": "fixed_connector_access_segmented",
+          "corridor_id": "jtag_strip",
+          "layer": "F.Cu",
+          "bbox": [
+            221.625,
+            49.36,
+            226.805,
+            65
+          ],
+          "segments": [
+            [
+              226.655,
+              49.36,
+              226.805,
+              49.525
+            ],
+            [
+              224.175,
+              49.525,
+              226.805,
+              49.675
+            ],
+            [
+              224.175,
+              49.675,
+              224.325,
+              53.525
+            ],
+            [
+              221.625,
+              53.525,
+              224.325,
+              53.675
+            ],
+            [
+              221.625,
+              53.675,
+              221.775,
+              65
+            ]
+          ],
+          "nets": [
+            "JTAG_TDI"
+          ]
+        },
+        {
+          "id": "qspi_gap_trunk",
+          "kind": "integration_corridor",
+          "corridor_id": "qspi_gap",
+          "owner": "board_integration",
+          "region_id": "board_integration_qspi",
+          "layer": "F.Cu",
+          "bbox": [
+            219.2,
+            110.5,
+            223.2,
+            118.5
+          ],
+          "nets": [
+            "QSPI_CLK",
+            "QSPI_CS_N",
+            "QSPI_D0",
+            "QSPI_D1",
+            "QSPI_D2",
+            "QSPI_D3"
+          ]
+        },
+        {
+          "id": "xtal_handoff",
+          "kind": "integration_corridor",
+          "corridor_id": "xtal_south_cap",
+          "owner": "board_integration",
+          "region_id": "clock_oscillator_handoff",
+          "layer": "F.Cu",
+          "bbox": [
+            217.2,
+            107,
+            218.95,
+            110.5
+          ],
+          "nets": [
+            "XTAL_IN",
+            "XTAL_OUT"
+          ]
+        },
+        {
+          "id": "reset_unresolved_tree",
+          "kind": "unresolved_multiterminal_branch",
+          "branch_id": "xu_reset_five_terminal",
+          "layer": "F.Cu",
+          "nets": [
+            "XU_RESET_N"
+          ]
+        }
+      ],
+      "local_endpoint_completion": "P2_P3_REQUIRED"
+    },
+    {
+      "id": "adc_timing_xmos_bundle",
+      "coverage_nets": [
+        "ADC_BCLK",
+        "ADC_FSYNC",
+        "ADC_DOUT1",
+        "AUDIO_MCLK_1V8",
+        "TDM_BCLK_1V8",
+        "TDM_DATA_1V8",
+        "TDM_FSYNC_1V8",
+        "ADC_I2C_SCL",
+        "ADC_I2C_SDA",
+        "ADC_READY",
+        "AUDIO_EN",
+        "XU_I2C_SCL_1V8",
+        "XU_I2C_SDA_1V8",
+        "ADC_DIGITAL_BAD"
+      ],
+      "boundary_witnesses": [
+        {
+          "source": "U_TDM_XLATE.6",
+          "native": "U_TDM_XLATE.6",
+          "net": "AUDIO_MCLK_1V8",
+          "block": "audio_clock_tdm",
+          "face": "west",
+          "layer": "F.Cu",
+          "boundary_bbox": [
+            187.9,
+            94.1,
+            188.0,
+            99.7
+          ],
+          "region_face": "east",
+          "reservation_id": "tdm_xu_lower_neck_reservation",
+          "kind": "integration_corridor_handoff",
+          "corridor_id": "tdm_xu_lower_neck",
+          "p2_obligation": {
+            "status": "P2_REQUIRED",
+            "source_pad": "U_TDM_XLATE.6",
+            "native_pad": "U_TDM_XLATE.6",
+            "net": "AUDIO_MCLK_1V8",
+            "block": "audio_clock_tdm",
+            "corridor_id": "tdm_xu_lower_neck",
+            "region_face": "east",
+            "layer": "F.Cu",
+            "to_reservation": "tdm_xu_lower_neck_reservation"
+          }
+        },
+        {
+          "source": "U_XU.23",
+          "native": "U_XU.23",
+          "net": "AUDIO_MCLK_1V8",
+          "block": "xmos_core",
+          "face": "east",
+          "layer": "F.Cu",
+          "boundary_bbox": [
+            190.0,
+            94.1,
+            190.1,
+            99.7
+          ],
+          "region_face": "west",
+          "reservation_id": "tdm_xu_lower_neck_reservation",
+          "kind": "integration_corridor_handoff",
+          "corridor_id": "tdm_xu_lower_neck",
+          "physical_cell_id": "xmos_core",
+          "p2_obligation": {
+            "status": "P2_REQUIRED",
+            "source_pad": "U_XU.23",
+            "native_pad": "U_XU.23",
+            "net": "AUDIO_MCLK_1V8",
+            "block": "xmos_core",
+            "corridor_id": "tdm_xu_lower_neck",
+            "region_face": "west",
+            "layer": "F.Cu",
+            "to_reservation": "tdm_xu_lower_neck_reservation",
+            "physical_cell_id": "xmos_core"
+          }
+        },
+        {
+          "source": "U_TDM_XLATE.4",
+          "native": "U_TDM_XLATE.4",
+          "net": "TDM_BCLK_1V8",
+          "block": "audio_clock_tdm",
+          "face": "west",
+          "layer": "F.Cu",
+          "boundary_bbox": [
+            187.9,
+            94.1,
+            188.0,
+            99.7
+          ],
+          "region_face": "east",
+          "reservation_id": "tdm_xu_lower_neck_reservation",
+          "kind": "integration_corridor_handoff",
+          "corridor_id": "tdm_xu_lower_neck",
+          "p2_obligation": {
+            "status": "P2_REQUIRED",
+            "source_pad": "U_TDM_XLATE.4",
+            "native_pad": "U_TDM_XLATE.4",
+            "net": "TDM_BCLK_1V8",
+            "block": "audio_clock_tdm",
+            "corridor_id": "tdm_xu_lower_neck",
+            "region_face": "east",
+            "layer": "F.Cu",
+            "to_reservation": "tdm_xu_lower_neck_reservation"
+          }
+        },
+        {
+          "source": "U_XU.22",
+          "native": "U_XU.22",
+          "net": "TDM_BCLK_1V8",
+          "block": "xmos_core",
+          "face": "east",
+          "layer": "F.Cu",
+          "boundary_bbox": [
+            190.0,
+            94.1,
+            190.1,
+            99.7
+          ],
+          "region_face": "west",
+          "reservation_id": "tdm_xu_lower_neck_reservation",
+          "kind": "integration_corridor_handoff",
+          "corridor_id": "tdm_xu_lower_neck",
+          "physical_cell_id": "xmos_core",
+          "p2_obligation": {
+            "status": "P2_REQUIRED",
+            "source_pad": "U_XU.22",
+            "native_pad": "U_XU.22",
+            "net": "TDM_BCLK_1V8",
+            "block": "xmos_core",
+            "corridor_id": "tdm_xu_lower_neck",
+            "region_face": "west",
+            "layer": "F.Cu",
+            "to_reservation": "tdm_xu_lower_neck_reservation",
+            "physical_cell_id": "xmos_core"
+          }
+        },
+        {
+          "source": "U_TDM_XLATE.7",
+          "native": "U_TDM_XLATE.7",
+          "net": "TDM_DATA_1V8",
+          "block": "audio_clock_tdm",
+          "face": "west",
+          "layer": "F.Cu",
+          "boundary_bbox": [
+            187.9,
+            94.1,
+            188.0,
+            99.7
+          ],
+          "region_face": "east",
+          "reservation_id": "tdm_xu_lower_neck_reservation",
+          "kind": "integration_corridor_handoff",
+          "corridor_id": "tdm_xu_lower_neck",
+          "p2_obligation": {
+            "status": "P2_REQUIRED",
+            "source_pad": "U_TDM_XLATE.7",
+            "native_pad": "U_TDM_XLATE.7",
+            "net": "TDM_DATA_1V8",
+            "block": "audio_clock_tdm",
+            "corridor_id": "tdm_xu_lower_neck",
+            "region_face": "east",
+            "layer": "F.Cu",
+            "to_reservation": "tdm_xu_lower_neck_reservation"
+          }
+        },
+        {
+          "source": "U_XU.107",
+          "native": "U_XU.107",
+          "net": "TDM_DATA_1V8",
+          "block": "xmos_core",
+          "face": "east",
+          "layer": "F.Cu",
+          "boundary_bbox": [
+            190.0,
+            94.1,
+            190.1,
+            99.7
+          ],
+          "region_face": "west",
+          "reservation_id": "tdm_xu_lower_neck_reservation",
+          "kind": "integration_corridor_handoff",
+          "corridor_id": "tdm_xu_lower_neck",
+          "physical_cell_id": "xmos_core",
+          "p2_obligation": {
+            "status": "P2_REQUIRED",
+            "source_pad": "U_XU.107",
+            "native_pad": "U_XU.107",
+            "net": "TDM_DATA_1V8",
+            "block": "xmos_core",
+            "corridor_id": "tdm_xu_lower_neck",
+            "region_face": "west",
+            "layer": "F.Cu",
+            "to_reservation": "tdm_xu_lower_neck_reservation",
+            "physical_cell_id": "xmos_core"
+          }
+        },
+        {
+          "source": "U_TDM_XLATE.5",
+          "native": "U_TDM_XLATE.5",
+          "net": "TDM_FSYNC_1V8",
+          "block": "audio_clock_tdm",
+          "face": "west",
+          "layer": "F.Cu",
+          "boundary_bbox": [
+            187.9,
+            94.1,
+            188.0,
+            99.7
+          ],
+          "region_face": "east",
+          "reservation_id": "tdm_xu_lower_neck_reservation",
+          "kind": "integration_corridor_handoff",
+          "corridor_id": "tdm_xu_lower_neck",
+          "p2_obligation": {
+            "status": "P2_REQUIRED",
+            "source_pad": "U_TDM_XLATE.5",
+            "native_pad": "U_TDM_XLATE.5",
+            "net": "TDM_FSYNC_1V8",
+            "block": "audio_clock_tdm",
+            "corridor_id": "tdm_xu_lower_neck",
+            "region_face": "east",
+            "layer": "F.Cu",
+            "to_reservation": "tdm_xu_lower_neck_reservation"
+          }
+        },
+        {
+          "source": "U_XU.20",
+          "native": "U_XU.20",
+          "net": "TDM_FSYNC_1V8",
+          "block": "xmos_core",
+          "face": "east",
+          "layer": "F.Cu",
+          "boundary_bbox": [
+            190.0,
+            94.1,
+            190.1,
+            99.7
+          ],
+          "region_face": "west",
+          "reservation_id": "tdm_xu_lower_neck_reservation",
+          "kind": "integration_corridor_handoff",
+          "corridor_id": "tdm_xu_lower_neck",
+          "physical_cell_id": "xmos_core",
+          "p2_obligation": {
+            "status": "P2_REQUIRED",
+            "source_pad": "U_XU.20",
+            "native_pad": "U_XU.20",
+            "net": "TDM_FSYNC_1V8",
+            "block": "xmos_core",
+            "corridor_id": "tdm_xu_lower_neck",
+            "region_face": "west",
+            "layer": "F.Cu",
+            "to_reservation": "tdm_xu_lower_neck_reservation",
+            "physical_cell_id": "xmos_core"
+          }
+        }
+      ],
+      "reservations": [
+        {
+          "id": "tdm_xu_lower_neck_reservation",
+          "kind": "integration_corridor",
+          "corridor_id": "tdm_xu_lower_neck",
+          "owner": "board_integration",
+          "region_id": "board_integration_tdm_xu_lower_neck",
+          "layer": "F.Cu",
+          "bbox": [
+            188.0,
+            94.0,
+            190.0,
+            99.84
+          ],
+          "nets": [
+            "AUDIO_MCLK_1V8",
+            "TDM_BCLK_1V8",
+            "TDM_DATA_1V8",
+            "TDM_FSYNC_1V8"
+          ]
+        }
+      ],
+      "local_endpoint_completion": "P2_P3_REQUIRED"
+    },
+    {
+      "id": "adc_analog_boundary",
+      "coverage_nets": [
+        "ADC1N",
+        "ADC1P",
+        "ADC2N",
+        "ADC2P",
+        "ADC3N",
+        "ADC3P",
+        "ADC4N",
+        "ADC4P",
+        "ADC5N",
+        "ADC5P",
+        "ADC6N",
+        "ADC6P",
+        "ADC7N",
+        "ADC7P",
+        "ADC8N",
+        "ADC8P",
+        "VMID1_EXT",
+        "VMID2_EXT"
+      ],
+      "boundary_witnesses": [
+        {
+          "source": "C_ADC_AC1N1.2",
+          "native": "C_ADC_AC1N1.2",
+          "net": "ADC1N",
+          "block": "analog_ch1",
+          "face": "north",
+          "layer": "F.Cu",
+          "boundary_bbox": [
+            44.08,
+            61.53,
+            45.52,
+            71
+          ],
+          "reservation_id": "analog_1_4"
+        },
+        {
+          "source": "C_ADC_AC1P1.2",
+          "native": "C_ADC_AC1P1.2",
+          "net": "ADC1P",
+          "block": "analog_ch1",
+          "face": "north",
+          "layer": "F.Cu",
+          "boundary_bbox": [
+            30.08,
+            61.53,
+            31.52,
+            71
+          ],
+          "reservation_id": "analog_1_4"
+        },
+        {
+          "source": "C_ADC_AC2N1.2",
+          "native": "C_ADC_AC2N1.2",
+          "net": "ADC2N",
+          "block": "analog_ch2",
+          "face": "north",
+          "layer": "F.Cu",
+          "boundary_bbox": [
+            66.08,
+            61.53,
+            67.52,
+            71
+          ],
+          "reservation_id": "analog_1_4"
+        },
+        {
+          "source": "C_ADC_AC2P1.2",
+          "native": "C_ADC_AC2P1.2",
+          "net": "ADC2P",
+          "block": "analog_ch2",
+          "face": "north",
+          "layer": "F.Cu",
+          "boundary_bbox": [
+            52.08,
+            61.53,
+            53.52,
+            71
+          ],
+          "reservation_id": "analog_1_4"
+        },
+        {
+          "source": "C_ADC_AC3N1.2",
+          "native": "C_ADC_AC3N1.2",
+          "net": "ADC3N",
+          "block": "analog_ch3",
+          "face": "north",
+          "layer": "F.Cu",
+          "boundary_bbox": [
+            88.08,
+            61.53,
+            89.52,
+            71
+          ],
+          "reservation_id": "analog_1_4"
+        },
+        {
+          "source": "C_ADC_AC3P1.2",
+          "native": "C_ADC_AC3P1.2",
+          "net": "ADC3P",
+          "block": "analog_ch3",
+          "face": "north",
+          "layer": "F.Cu",
+          "boundary_bbox": [
+            74.08,
+            61.53,
+            75.52,
+            71
+          ],
+          "reservation_id": "analog_1_4"
+        },
+        {
+          "source": "C_ADC_AC4N1.2",
+          "native": "C_ADC_AC4N1.2",
+          "net": "ADC4N",
+          "block": "analog_ch4",
+          "face": "north",
+          "layer": "F.Cu",
+          "boundary_bbox": [
+            110.08,
+            61.53,
+            111.52,
+            71
+          ],
+          "reservation_id": "analog_1_4"
+        },
+        {
+          "source": "C_ADC_AC4P1.2",
+          "native": "C_ADC_AC4P1.2",
+          "net": "ADC4P",
+          "block": "analog_ch4",
+          "face": "north",
+          "layer": "F.Cu",
+          "boundary_bbox": [
+            96.08,
+            61.53,
+            97.52,
+            71
+          ],
+          "reservation_id": "analog_1_4"
+        },
+        {
+          "source": "C_ADC_AC5N1.2",
+          "native": "C_ADC_AC5N1.2",
+          "net": "ADC5N",
+          "block": "analog_ch5",
+          "face": "north",
+          "layer": "F.Cu",
+          "boundary_bbox": [
+            132.08,
+            61.53,
+            133.52,
+            71
+          ],
+          "reservation_id": "analog_5_8"
+        },
+        {
+          "source": "C_ADC_AC5P1.2",
+          "native": "C_ADC_AC5P1.2",
+          "net": "ADC5P",
+          "block": "analog_ch5",
+          "face": "north",
+          "layer": "F.Cu",
+          "boundary_bbox": [
+            118.08,
+            61.53,
+            119.52,
+            71
+          ],
+          "reservation_id": "analog_5_8"
+        },
+        {
+          "source": "C_ADC_AC6N1.2",
+          "native": "C_ADC_AC6N1.2",
+          "net": "ADC6N",
+          "block": "analog_ch6",
+          "face": "north",
+          "layer": "F.Cu",
+          "boundary_bbox": [
+            154.08,
+            61.53,
+            155.52,
+            71
+          ],
+          "reservation_id": "analog_5_8"
+        },
+        {
+          "source": "C_ADC_AC6P1.2",
+          "native": "C_ADC_AC6P1.2",
+          "net": "ADC6P",
+          "block": "analog_ch6",
+          "face": "north",
+          "layer": "F.Cu",
+          "boundary_bbox": [
+            140.08,
+            61.53,
+            141.52,
+            71
+          ],
+          "reservation_id": "analog_5_8"
+        },
+        {
+          "source": "C_ADC_AC7N1.2",
+          "native": "C_ADC_AC7N1.2",
+          "net": "ADC7N",
+          "block": "analog_ch7",
+          "face": "north",
+          "layer": "F.Cu",
+          "boundary_bbox": [
+            176.08,
+            61.53,
+            177.52,
+            71
+          ],
+          "reservation_id": "analog_5_8"
+        },
+        {
+          "source": "C_ADC_AC7P1.2",
+          "native": "C_ADC_AC7P1.2",
+          "net": "ADC7P",
+          "block": "analog_ch7",
+          "face": "north",
+          "layer": "F.Cu",
+          "boundary_bbox": [
+            162.08,
+            61.53,
+            163.52,
+            71
+          ],
+          "reservation_id": "analog_5_8"
+        },
+        {
+          "source": "C_ADC_AC8N1.2",
+          "native": "C_ADC_AC8N1.2",
+          "net": "ADC8N",
+          "block": "analog_ch8",
+          "face": "north",
+          "layer": "F.Cu",
+          "boundary_bbox": [
+            198.08,
+            61.53,
+            199.52,
+            71
+          ],
+          "reservation_id": "analog_5_8"
+        },
+        {
+          "source": "C_ADC_AC8P1.2",
+          "native": "C_ADC_AC8P1.2",
+          "net": "ADC8P",
+          "block": "analog_ch8",
+          "face": "north",
+          "layer": "F.Cu",
+          "boundary_bbox": [
+            184.08,
+            61.53,
+            185.52,
+            71
+          ],
+          "reservation_id": "analog_5_8"
+        },
+        {
+          "source": "R_B1N.2",
+          "native": "R_B1N.2",
+          "net": "VMID1_EXT",
+          "block": "analog_ch1",
+          "face": "north",
+          "layer": "F.Cu",
+          "boundary_bbox": [
+            34.52,
+            52.86,
+            35.1,
+            71
+          ],
+          "reservation_id": "analog_1_4"
+        },
+        {
+          "source": "R_B5N.2",
+          "native": "R_B5N.2",
+          "net": "VMID2_EXT",
+          "block": "analog_ch5",
+          "face": "north",
+          "layer": "F.Cu",
+          "boundary_bbox": [
+            122.52,
+            52.86,
+            123.1,
+            71
+          ],
+          "reservation_id": "analog_5_8"
+        }
+      ],
+      "reservations": [
+        {
+          "id": "analog_1_4",
+          "kind": "signal",
+          "layer": "F.Cu",
+          "bbox": [
+            25,
+            71,
+            112.75,
+            85
+          ],
+          "nets": [
+            "ADC1N",
+            "ADC1P",
+            "ADC2N",
+            "ADC2P",
+            "ADC3N",
+            "ADC3P",
+            "ADC4N",
+            "ADC4P",
+            "VMID1_EXT"
+          ],
+          "axis": "horizontal",
+          "demand_slots": 9,
+          "slot_pitch_mm": 0.56
+        },
+        {
+          "id": "analog_5_8",
+          "kind": "signal",
+          "layer": "F.Cu",
+          "bbox": [
+            113.25,
+            71,
+            201,
+            85
+          ],
+          "nets": [
+            "ADC5N",
+            "ADC5P",
+            "ADC6N",
+            "ADC6P",
+            "ADC7N",
+            "ADC7P",
+            "ADC8N",
+            "ADC8P",
+            "VMID2_EXT"
+          ],
+          "axis": "horizontal",
+          "demand_slots": 9,
+          "slot_pitch_mm": 0.56
+        }
+      ],
+      "local_endpoint_completion": "P2_P3_REQUIRED"
+    },
+    {
+      "id": "power_boundary_windows",
+      "coverage_nets": [
+        "CHASSIS",
+        "GND",
+        "N0V9",
+        "N12V_PROTECTED",
+        "N1V8",
+        "N3V3X",
+        "N3V3_ADC",
+        "N5V_BUCK",
+        "N5V_LDO_HOLD",
+        "PWR_EN"
+      ],
+      "boundary_witnesses": [
+        {
+          "source": "J1.10",
+          "native": "J1.10",
+          "net": "CHASSIS",
+          "block": "analog_ch1",
+          "face": "north",
+          "layer": "F.Cu",
+          "boundary_bbox": [
+            45.4,
+            23.24,
+            46.94,
+            27.5
+          ],
+          "reservation_id": "power_chassis"
+        },
+        {
+          "source": "C_ADC_3V3X_OK_VDD.2",
+          "native": "C_ADC_3V3X_OK_VDD.2",
+          "net": "GND",
+          "block": "adc_reference",
+          "face": "east",
+          "layer": "F.Cu",
+          "boundary_bbox": [
+            70,
+            107.18,
+            118.43,
+            107.78
+          ],
+          "reservation_id": "power_gnd"
+        },
+        {
+          "source": "C_CORE_FF.1",
+          "native": "C_CORE_FF.1",
+          "net": "N0V9",
+          "block": "digital_power",
+          "face": "west",
+          "layer": "F.Cu",
+          "boundary_bbox": [
+            160.22,
+            108.655,
+            199.825,
+            109.83
+          ],
+          "reservation_id": "power_n0v9"
+        },
+        {
+          "source": "C_SPOKE_IN1.1",
+          "native": "C_SPOKE_IN1.1",
+          "net": "N12V_PROTECTED",
+          "block": "analog_ch1",
+          "face": "north",
+          "layer": "F.Cu",
+          "boundary_bbox": [
+            36.33,
+            51.955,
+            37.37,
+            85
+          ],
+          "reservation_id": "power_n12v_protected"
+        },
+        {
+          "source": "R_ADC_1V8_OK_TOP.1",
+          "native": "R_ADC_1V8_OK_TOP.1",
+          "net": "N1V8",
+          "block": "adc_reference",
+          "face": "west",
+          "layer": "F.Cu",
+          "boundary_bbox": [
+            114.66,
+            108.655,
+            199.825,
+            111.3
+          ],
+          "reservation_id": "power_n1v8"
+        },
+        {
+          "source": "R_ADC_3V3X_OK_TOP.1",
+          "native": "R_ADC_3V3X_OK_TOP.1",
+          "net": "N3V3X",
+          "block": "adc_reference",
+          "face": "west",
+          "layer": "F.Cu",
+          "boundary_bbox": [
+            121.66,
+            108.655,
+            199.825,
+            110.3
+          ],
+          "reservation_id": "power_n3v3x"
+        },
+        {
+          "source": "C_ADC_3V3X_OK_VDD.1",
+          "native": "C_ADC_3V3X_OK_VDD.1",
+          "net": "N3V3_ADC",
+          "block": "adc_reference",
+          "face": "west",
+          "layer": "F.Cu",
+          "boundary_bbox": [
+            117.77,
+            106.22,
+            125,
+            106.82
+          ],
+          "reservation_id": "power_n3v3_adc"
+        },
+        {
+          "source": "C_1V8_OK_VDD.1",
+          "native": "C_1V8_OK_VDD.1",
+          "net": "N5V_BUCK",
+          "block": "digital_power",
+          "face": "east",
+          "layer": "F.Cu",
+          "boundary_bbox": [
+            70,
+            105.77,
+            164.22,
+            106.43
+          ],
+          "reservation_id": "power_n5v_buck"
+        },
+        {
+          "source": "C_ISO1.1",
+          "native": "C_ISO1.1",
+          "net": "N5V_LDO_HOLD",
+          "block": "analog_ch1",
+          "face": "north",
+          "layer": "F.Cu",
+          "boundary_bbox": [
+            33.62,
+            71.57,
+            34.22,
+            105
+          ],
+          "reservation_id": "power_n5v_ldo_hold"
+        },
+        {
+          "source": "U_ADC_PWR_BAD.2",
+          "native": "U_ADC_PWR_BAD.2",
+          "net": "PWR_EN",
+          "block": "adc_reference",
+          "face": "east",
+          "layer": "F.Cu",
+          "boundary_bbox": [
+            80,
+            96.98,
+            100.895,
+            105.72
+          ],
+          "reservation_id": "power_pwr_en"
+        }
+      ],
+      "reservations": [
+        {
+          "id": "power_chassis",
+          "kind": "power_or_mechanical",
+          "layer": "F.Cu",
+          "bbox": [
+            25,
+            27.5,
+            210,
+            31
+          ],
+          "nets": [
+            "CHASSIS"
+          ]
+        },
+        {
+          "id": "power_gnd",
+          "kind": "power_or_mechanical",
+          "layer": "F.Cu",
+          "bbox": [
+            25,
+            85,
+            70,
+            110
+          ],
+          "nets": [
+            "GND"
+          ]
+        },
+        {
+          "id": "power_n0v9",
+          "kind": "power_or_mechanical",
+          "layer": "F.Cu",
+          "bbox": [
+            199.825,
+            91.325,
+            201,
+            108.675
+          ],
+          "nets": [
+            "N0V9"
+          ]
+        },
+        {
+          "id": "power_n12v_protected",
+          "kind": "power_or_mechanical",
+          "layer": "F.Cu",
+          "bbox": [
+            25,
+            85,
+            70,
+            110
+          ],
+          "nets": [
+            "N12V_PROTECTED"
+          ]
+        },
+        {
+          "id": "power_n1v8",
+          "kind": "power_or_mechanical",
+          "layer": "F.Cu",
+          "bbox": [
+            199.825,
+            91.325,
+            201,
+            108.675
+          ],
+          "nets": [
+            "N1V8"
+          ]
+        },
+        {
+          "id": "power_n3v3x",
+          "kind": "power_or_mechanical",
+          "layer": "F.Cu",
+          "bbox": [
+            199.825,
+            91.325,
+            201,
+            108.675
+          ],
+          "nets": [
+            "N3V3X"
+          ]
+        },
+        {
+          "id": "power_n3v3_adc",
+          "kind": "power_or_mechanical",
+          "layer": "F.Cu",
+          "bbox": [
+            125,
+            85,
+            139.99,
+            125
+          ],
+          "nets": [
+            "N3V3_ADC"
+          ]
+        },
+        {
+          "id": "power_n5v_buck",
+          "kind": "power_or_mechanical",
+          "layer": "F.Cu",
+          "bbox": [
+            25,
+            85,
+            70,
+            110
+          ],
+          "nets": [
+            "N5V_BUCK"
+          ]
+        },
+        {
+          "id": "power_n5v_ldo_hold",
+          "kind": "power_or_mechanical",
+          "layer": "F.Cu",
+          "bbox": [
+            24,
+            105,
+            126,
+            137
+          ],
+          "nets": [
+            "N5V_LDO_HOLD"
+          ]
+        },
+        {
+          "id": "power_pwr_en",
+          "kind": "power_or_mechanical",
+          "layer": "F.Cu",
+          "bbox": [
+            70,
+            90,
+            80,
+            97
+          ],
+          "nets": [
+            "PWR_EN"
+          ]
+        }
+      ],
+      "local_endpoint_completion": "P2_P3_REQUIRED"
+    }
+  ],
+  "proposal_note": "Research-only rebased 59-net coarse geometry specimen from 2026-09-24 unified candidate onto exact private TI unrouted board. Retains unverified legacy rectangles for fail-closed measurement; no P1 or capacity acceptance.",
+  "board_sha256": "8e620def0b403fda7635135672afec923c2c23bc9844b3f96102e96d4d5eca10",
+  "source_sha256": "b444ace7a46140bc26e1b8159678b68a5804ab8669572eb9dad3b2dae42e71ba",
+  "interfaces_sha256": "75c3a517cea50dd6b5745fae96b051d334debd48aac143becaca3d5fe3fc35dc",
+  "aliases_sha256": "a6baba8bd4e389c146250a2a2ef5f7e9b09f63526e71dbdd05be8bca9b7b2c2e",
+  "floorplan_sha256": "e1dbcaab1e9882277f367932f628c64561accad3a1f781e119272292a799de11",
+  "_screen": "isolated adc timing re-cut transition strips; no P1 claim"
+}

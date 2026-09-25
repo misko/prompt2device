@@ -1,0 +1,179 @@
+{
+  "board_sha256": "8e620def0b403fda7635135672afec923c2c23bc9844b3f96102e96d4d5eca10",
+  "p1_fixed_ref_count": 27,
+  "lane_mm": [
+    188.0,
+    94.0,
+    190.0,
+    99.84
+  ],
+  "endpoint_denominator": [
+    {
+      "source_pad": "U_TDM_XLATE.6",
+      "native_pad": "U_TDM_XLATE.6",
+      "net": "AUDIO_MCLK_1V8",
+      "block": "audio_clock_tdm"
+    },
+    {
+      "source_pad": "U_XU.23",
+      "native_pad": "U_XU.23",
+      "net": "AUDIO_MCLK_1V8",
+      "block": "xmos_core"
+    },
+    {
+      "source_pad": "U_TDM_XLATE.4",
+      "native_pad": "U_TDM_XLATE.4",
+      "net": "TDM_BCLK_1V8",
+      "block": "audio_clock_tdm"
+    },
+    {
+      "source_pad": "U_XU.22",
+      "native_pad": "U_XU.22",
+      "net": "TDM_BCLK_1V8",
+      "block": "xmos_core"
+    },
+    {
+      "source_pad": "U_TDM_XLATE.7",
+      "native_pad": "U_TDM_XLATE.7",
+      "net": "TDM_DATA_1V8",
+      "block": "audio_clock_tdm"
+    },
+    {
+      "source_pad": "U_XU.107",
+      "native_pad": "U_XU.107",
+      "net": "TDM_DATA_1V8",
+      "block": "xmos_core"
+    },
+    {
+      "source_pad": "U_TDM_XLATE.5",
+      "native_pad": "U_TDM_XLATE.5",
+      "net": "TDM_FSYNC_1V8",
+      "block": "audio_clock_tdm"
+    },
+    {
+      "source_pad": "U_XU.20",
+      "native_pad": "U_XU.20",
+      "net": "TDM_FSYNC_1V8",
+      "block": "xmos_core"
+    }
+  ],
+  "p2_obligations": [
+    {
+      "status": "P2_REQUIRED",
+      "source_pad": "U_TDM_XLATE.6",
+      "native_pad": "U_TDM_XLATE.6",
+      "net": "AUDIO_MCLK_1V8",
+      "block": "audio_clock_tdm",
+      "corridor_id": "tdm_xu_lower_neck",
+      "region_face": "east",
+      "layer": "F.Cu",
+      "to_reservation": "tdm_xu_lower_neck_reservation"
+    },
+    {
+      "status": "P2_REQUIRED",
+      "source_pad": "U_XU.23",
+      "native_pad": "U_XU.23",
+      "net": "AUDIO_MCLK_1V8",
+      "block": "xmos_core",
+      "corridor_id": "tdm_xu_lower_neck",
+      "region_face": "west",
+      "layer": "F.Cu",
+      "to_reservation": "tdm_xu_lower_neck_reservation",
+      "physical_cell_id": "xmos_core"
+    },
+    {
+      "status": "P2_REQUIRED",
+      "source_pad": "U_TDM_XLATE.4",
+      "native_pad": "U_TDM_XLATE.4",
+      "net": "TDM_BCLK_1V8",
+      "block": "audio_clock_tdm",
+      "corridor_id": "tdm_xu_lower_neck",
+      "region_face": "east",
+      "layer": "F.Cu",
+      "to_reservation": "tdm_xu_lower_neck_reservation"
+    },
+    {
+      "status": "P2_REQUIRED",
+      "source_pad": "U_XU.22",
+      "native_pad": "U_XU.22",
+      "net": "TDM_BCLK_1V8",
+      "block": "xmos_core",
+      "corridor_id": "tdm_xu_lower_neck",
+      "region_face": "west",
+      "layer": "F.Cu",
+      "to_reservation": "tdm_xu_lower_neck_reservation",
+      "physical_cell_id": "xmos_core"
+    },
+    {
+      "status": "P2_REQUIRED",
+      "source_pad": "U_TDM_XLATE.7",
+      "native_pad": "U_TDM_XLATE.7",
+      "net": "TDM_DATA_1V8",
+      "block": "audio_clock_tdm",
+      "corridor_id": "tdm_xu_lower_neck",
+      "region_face": "east",
+      "layer": "F.Cu",
+      "to_reservation": "tdm_xu_lower_neck_reservation"
+    },
+    {
+      "status": "P2_REQUIRED",
+      "source_pad": "U_XU.107",
+      "native_pad": "U_XU.107",
+      "net": "TDM_DATA_1V8",
+      "block": "xmos_core",
+      "corridor_id": "tdm_xu_lower_neck",
+      "region_face": "west",
+      "layer": "F.Cu",
+      "to_reservation": "tdm_xu_lower_neck_reservation",
+      "physical_cell_id": "xmos_core"
+    },
+    {
+      "status": "P2_REQUIRED",
+      "source_pad": "U_TDM_XLATE.5",
+      "native_pad": "U_TDM_XLATE.5",
+      "net": "TDM_FSYNC_1V8",
+      "block": "audio_clock_tdm",
+      "corridor_id": "tdm_xu_lower_neck",
+      "region_face": "east",
+      "layer": "F.Cu",
+      "to_reservation": "tdm_xu_lower_neck_reservation"
+    },
+    {
+      "status": "P2_REQUIRED",
+      "source_pad": "U_XU.20",
+      "native_pad": "U_XU.20",
+      "net": "TDM_FSYNC_1V8",
+      "block": "xmos_core",
+      "corridor_id": "tdm_xu_lower_neck",
+      "region_face": "west",
+      "layer": "F.Cu",
+      "to_reservation": "tdm_xu_lower_neck_reservation",
+      "physical_cell_id": "xmos_core"
+    }
+  ],
+  "return_obligation": {
+    "status": "P2_REQUIRED",
+    "net": "GND",
+    "corridor_id": "tdm_xu_lower_neck",
+    "reference_layer": "In1.Cu",
+    "proof": "continuous_filled_reference"
+  },
+  "source_cell_validation": "integration corridor has no body/courtyard error; its four-net exact endpoint and P2 denominator was accepted",
+  "complete_allocation_rejection": "adc_timing_xmos_bundle: missing per-net boundary witness",
+  "checker_returncode": 1,
+  "strict_full_bbox_blockers": {
+    "C_XU_VDD_105": [
+      188.579999,
+      96.5384,
+      198.934524,
+      99.10825
+    ],
+    "C_XU_VDDIO_109": [
+      187.222857,
+      98.7384,
+      198.934524,
+      101.30825
+    ]
+  },
+  "p1_accepted": false
+}
