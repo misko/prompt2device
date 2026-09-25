@@ -1,0 +1,86 @@
+{
+  "kind": "crow-xtal-source-model-schema-probe",
+  "schema": 1,
+  "inputs": {
+    "/tmp/crow-xu-qspi-gap-sol/project/04_kicad/crow_carrier.kicad_pcb": "fbfb3bda95f1ddc98e7d3d229550644d136dc7d6349ba19a4023eb13b07e7e27",
+    "/home/mouse9911/gits/circuits-worktrees/crow-usb-carrier-v1-20260922/projects/crow-usb-carrier-v1/01_docs/research/xu_service_variant/p1_qspi_packet/p1_source_variant.yaml": "9a13c0999d29f17280bb5d8ffb98a5e0d59afe3ee4511eb004e436bffc13ece4",
+    "/home/mouse9911/gits/circuits-worktrees/crow-usb-carrier-v1-20260922/projects/crow-usb-carrier-v1/01_docs/research/xu_service_variant/p1_qspi_packet/floorplan_qspi_gap.yaml": "cd52893214a87432b99bab41827a64680bd8a2f970342f126260157948b50925",
+    "/home/mouse9911/gits/circuits-worktrees/crow-usb-carrier-v1-20260922/projects/crow-usb-carrier-v1/01_docs/research/xu_service_variant/p1_qspi_packet/coarse_contract.json": "b17a94fedafbc334bdc0721535c640fb786f4b632b1abddf487289fdb19fbda4",
+    "/home/mouse9911/gits/circuits-worktrees/crow-usb-carrier-v1-20260922/projects/crow-usb-carrier-v1/03_src/modular_plan.json": "7201aa55cffefca99f9f27e92711cbbcf28387432523a8c960b5cd71e973170e",
+    "/home/mouse9911/gits/circuits-worktrees/crow-usb-carrier-v1-20260922/projects/crow-usb-carrier-v1/02_parts/USB4215-03-A/part.yaml": "a6baba8bd4e389c146250a2a2ef5f7e9b09f63526e71dbdd05be8bca9b7b2c2e"
+  },
+  "outputs": {
+    "source": "e819c423f211cc0b52fa222984d49bed79d47533fc679c2677eedde1067a0fd7",
+    "floorplan": "5a0d898ba66f531861c372878480bc07890d34f1daf681b1e70fd5add3b202f2",
+    "contract": "b5a2d8d18dd3849679dfd3e8142947e2dfc42bc742d3d9c4c0a65653b575db59"
+  },
+  "hashes": {
+    "board": "fbfb3bda95f1ddc98e7d3d229550644d136dc7d6349ba19a4023eb13b07e7e27",
+    "source": "e819c423f211cc0b52fa222984d49bed79d47533fc679c2677eedde1067a0fd7",
+    "floorplan": "5a0d898ba66f531861c372878480bc07890d34f1daf681b1e70fd5add3b202f2",
+    "interfaces": "7201aa55cffefca99f9f27e92711cbbcf28387432523a8c960b5cd71e973170e",
+    "aliases": "a6baba8bd4e389c146250a2a2ef5f7e9b09f63526e71dbdd05be8bca9b7b2c2e"
+  },
+  "native_declarations": {
+    "xtal_only": {
+      "status": "VALID_DECLARATION",
+      "endpoint_count": 7,
+      "native_witnesses": [
+        [
+          "U_XU.34",
+          "U_XU.34",
+          "XTAL_IN",
+          "xmos_core"
+        ],
+        [
+          "R_XTAL_DRIVE.1",
+          "R_XTAL_DRIVE.1",
+          "XTAL_IN",
+          "clock_flash_debug"
+        ],
+        [
+          "R_XTAL_FB.1",
+          "R_XTAL_FB.1",
+          "XTAL_IN",
+          "clock_flash_debug"
+        ],
+        [
+          "U_XU.33",
+          "U_XU.33",
+          "XTAL_OUT",
+          "xmos_core"
+        ],
+        [
+          "C_XTAL_OUT.1",
+          "C_XTAL_OUT.1",
+          "XTAL_OUT",
+          "clock_flash_debug"
+        ],
+        [
+          "R_XTAL_FB.2",
+          "R_XTAL_FB.2",
+          "XTAL_OUT",
+          "clock_flash_debug"
+        ],
+        [
+          "Y_XU.3",
+          "Y_XU.3",
+          "XTAL_OUT",
+          "clock_flash_debug"
+        ]
+      ]
+    },
+    "combined": {
+      "status": "FAIL",
+      "reason": "qspi_gap: integration face lacks positive non-corner shared edge"
+    }
+  },
+  "whole_allocation": {
+    "status": "FAIL",
+    "errors": [
+      "qspi_gap: integration face lacks positive non-corner shared edge"
+    ],
+    "xmos_service": null
+  },
+  "p1_accepted": false
+}
