@@ -1,0 +1,41 @@
+{
+  "kind": "research-one-pad-shared-power-port-receipt",
+  "checker_sha256": "05cf56078391cf4e092411dce2c81062ee28b86f7b606abb43af9774eed736d4",
+  "board_sha256": "d0c065dc16de081a5410b7a22e474f0a99c6fdeb0b7dd1f6c37422ace4a9fcf7",
+  "baseline_contract_sha256": "18936dc3f3dd6e01637182b2dab57cb472a31bfa2eb345a20bd4f7867708777f",
+  "status": "FAIL",
+  "p1_accepted": false,
+  "routing_realized": false,
+  "one_pad_cases": [
+    {
+      "net": "N1V8",
+      "selected_endpoint": "R_ADC_1V8_OK_TOP.1",
+      "full_endpoint_denominator": 42,
+      "result_sha256": "555b2f7e26d21c1fbad3109a35b30404390598093f481cfe8696290cd0e51e09",
+      "rejection": "probe_n1v8: power port exact endpoint denominator missing for N1V8"
+    },
+    {
+      "net": "N3V3X",
+      "selected_endpoint": "R_ADC_3V3X_OK_TOP.1",
+      "full_endpoint_denominator": 27,
+      "result_sha256": "66027c10f23158a263207732596aa6e13c4c1f8f299407440d56090f17d92360",
+      "rejection": "probe_n3v3x: power port exact endpoint denominator missing for N3V3X"
+    },
+    {
+      "net": "N3V3_ADC",
+      "selected_endpoint": "C_ADC_3V3X_OK_VDD.1",
+      "full_endpoint_denominator": 68,
+      "result_sha256": "d89269ad955c564db29a736ee7478ef51b33f974fd99370a260d26a97a548d62",
+      "rejection": "probe_n3v3_adc: power port exact endpoint denominator missing for N3V3_ADC"
+    },
+    {
+      "net": "N5V_BUCK",
+      "selected_endpoint": "C_1V8_OK_VDD.1",
+      "full_endpoint_denominator": 34,
+      "result_sha256": "c08cfe83292858cec614b90a80cdb06b40083d3bb69a8c8162df59f6d7d060c1",
+      "rejection": "probe_n5v_buck: power port exact endpoint denominator missing for N5V_BUCK"
+    }
+  ],
+  "scope": "The full denominator rule applies only to power_boundary_windows and VBUS_USB local-power shared ports. It does not alter signal shared-port semantics.",
+  "admission": "REJECT: no one-pad power shared-port declaration may receive a boundary or capacity credit."
+}

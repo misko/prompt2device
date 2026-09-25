@@ -75,6 +75,17 @@ without a pad-to-port path; that path is merely a one-pad P2 obligation.  See
 probe would silently replace 171 endpoint debts with four selected debts.  It
 must not be promoted.
 
+The checker now rejects this exact fail-open pattern.  The reproducible
+[builder](build_one_pad_shared_port_overlay.py) pins the packet, board,
+aliases, and checker, writes its overlay under `/tmp` by default, and makes an
+independent one-pad run for each of the four nets with `--only-net`.  The
+checked [receipt](one_pad_shared_port_receipt.json) records all four expected
+denominator rejections against checker SHA-256
+`05cf56078391cf4e092411dce2c81062ee28b86f7b606abb43af9774eed736d4`.
+This rule is deliberately limited to `power_boundary_windows` and the
+`VBUS_USB` local-power case; ordinary signal shared ports retain their
+selected-entry semantics.
+
 ## Fail-closed repair ledger
 
 1. Retain the five local virtual witnesses only with their exact P2
