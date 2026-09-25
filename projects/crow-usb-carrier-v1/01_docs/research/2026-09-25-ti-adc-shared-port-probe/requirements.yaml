@@ -1,0 +1,1596 @@
+schema: 1
+kind: crow-p1-corridor-requirements
+status: INCOMPLETE
+endpoint_authority: ../modular_plan.json#/interfaces
+native_measurement_tool: ../../../../skills/kicad-pcb/scripts/p1_corridor_capacity.py
+p1_fixed_refs:
+- J1
+- J2
+- J3
+- J4
+- J5
+- J6
+- J7
+- J8
+- J_PWR
+- J_USB
+- J_JTAG
+- C_HOLD1
+- C_HOLD2
+- C_HOLD3
+- C_HOLD4
+- C_HOLD5
+- C_HOLD6
+- C_HOLD7
+- C_HOLD8
+- C_HOLD9
+- C_HOLD10
+- C_HOLD11
+- C_HOLD12
+- C_HOLD13
+- C_HOLD14
+- C_HOLD15
+- C_HOLD16
+return_requirement:
+  net: GND
+  proof: continuous native filled reference plane under each signal lane
+receipt_requirements:
+  board_sha256: required
+  expected_contract_sha256: required
+  coarse_boundary_witnesses: required
+  exact_ref_pad_net_pockets: P3_required
+  native_outline_rule_area_pour_check: required
+  p1_accepted_must_remain_false: true
+allocations:
+- id: usb_device_pair
+  owner: board_integration
+  coverage_nets:
+  - USB_DP
+  - USB_DN
+  - VBUS_USB
+  - VBUS_PRESENT_N
+  endpoint_owners:
+  - usb_frontend
+  - usb_vbus_sense
+  - xmos_core
+  endpoints:
+    USB_DP:
+      usb_frontend:
+      - J_USB.12
+      - J_USB.4
+      - U_USB_ESD.1
+      xmos_core:
+      - U_XU.60
+    USB_DN:
+      usb_frontend:
+      - J_USB.13
+      - J_USB.5
+      - U_USB_ESD.2
+      xmos_core:
+      - U_XU.59
+    VBUS_USB:
+      usb_frontend:
+      - C_USB_VBUS.1
+      - J_USB.10
+      - J_USB.15
+      - J_USB.2
+      - J_USB.7
+      - R_USB_VBUS_BLEED.1
+      - U_USB_VBUS_ESD.3
+      usb_vbus_sense:
+      - R_VBUS_B.1
+    VBUS_PRESENT_N:
+      usb_vbus_sense:
+      - Q_VBUS.3
+      - R_VBUS_PU.2
+      xmos_core:
+      - U_XU.8
+  demands:
+  - id: usb_pair
+    nets:
+    - USB_DP
+    - USB_DN
+    layers:
+    - F.Cu
+    slots: 1
+    slot_pitch_mm: 0.97
+    pair_center_spacing_mm: 0.56
+    required_width_mm: 0.97
+  - id: usb_local_power
+    nets:
+    - VBUS_USB
+    - VBUS_PRESENT_N
+    status: INCOMPLETE
+    reason: local entry and sense geometry unallocated
+  geometry: null
+  limited_endpoint_evidence:
+    source: ../../01_docs/research/2026-09-24-usb-fcu-launch-diagnostic-summary.json
+    fact: isolated direct F.Cu U_XU launch diagnostic added eight scratch track segments
+      and zero vias
+    does_not_prove:
+    - J_USB_to_ESD_to_XU_corridor
+    - return
+    - impedance
+    - SI
+    - decoupling
+    - routing
+    - p1_acceptance
+- id: xmos_service_escape
+  owner: board_integration
+  coverage_nets:
+  - QSPI_CLK
+  - QSPI_CS_N
+  - QSPI_D0
+  - QSPI_D1
+  - QSPI_D2
+  - QSPI_D3
+  - JTAG_TCK
+  - JTAG_TDI
+  - JTAG_TDO
+  - JTAG_TMS
+  - XU_RESET_N
+  - XTAL_IN
+  - XTAL_OUT
+  endpoint_owners:
+  - clock_flash_debug
+  - debug_connector
+  - digital_power
+  - xmos_core
+  endpoints:
+    QSPI_CLK:
+      clock_flash_debug:
+      - U_FLASH.6
+      xmos_core:
+      - U_XU.4
+    QSPI_CS_N:
+      clock_flash_debug:
+      - R_QSPI_CS.2
+      - U_FLASH.1
+      xmos_core:
+      - U_XU.2
+    QSPI_D0:
+      clock_flash_debug:
+      - U_FLASH.5
+      xmos_core:
+      - U_XU.127
+    QSPI_D1:
+      clock_flash_debug:
+      - U_FLASH.2
+      xmos_core:
+      - U_XU.128
+    QSPI_D2:
+      clock_flash_debug:
+      - U_FLASH.3
+      xmos_core:
+      - U_XU.1
+    QSPI_D3:
+      clock_flash_debug:
+      - U_FLASH.7
+      xmos_core:
+      - U_XU.3
+    JTAG_TCK:
+      debug_connector:
+      - J_JTAG.4
+      xmos_core:
+      - U_XU.51
+    JTAG_TDI:
+      debug_connector:
+      - J_JTAG.8
+      xmos_core:
+      - U_XU.36
+    JTAG_TDO:
+      debug_connector:
+      - J_JTAG.6
+      xmos_core:
+      - U_XU.37
+    JTAG_TMS:
+      debug_connector:
+      - J_JTAG.2
+      xmos_core:
+      - U_XU.44
+    XU_RESET_N:
+      debug_connector:
+      - J_JTAG.10
+      digital_power:
+      - R_XU_RST_PU.2
+      - U_CORE_OK.1
+      - U_XU_3V3_OK.6
+      xmos_core:
+      - U_XU.38
+    XTAL_IN:
+      clock_flash_debug:
+      - R_XTAL_DRIVE.1
+      - R_XTAL_FB.1
+      xmos_core:
+      - U_XU.34
+    XTAL_OUT:
+      clock_flash_debug:
+      - C_XTAL_OUT.1
+      - R_XTAL_FB.2
+      - Y_XU.3
+      xmos_core:
+      - U_XU.33
+  demands:
+  - id: qspi
+    nets:
+    - QSPI_CLK
+    - QSPI_CS_N
+    - QSPI_D0
+    - QSPI_D1
+    - QSPI_D2
+    - QSPI_D3
+    layers:
+    - F.Cu
+    slots: 6
+    slot_pitch_mm: 0.45
+    required_width_mm: 2.7
+  - id: jtag_four
+    nets:
+    - JTAG_TMS
+    - JTAG_TCK
+    - JTAG_TDO
+    - JTAG_TDI
+    layers:
+    - F.Cu
+    slots: 4
+    slot_pitch_mm: 0.45
+    required_width_mm: 1.8
+  - id: reset_branch
+    nets:
+    - XU_RESET_N
+    layers:
+    - F.Cu
+    status: INCOMPLETE
+    reason: three-owner reset fan-in and connector branch unallocated
+  - id: crystal
+    nets:
+    - XTAL_IN
+    - XTAL_OUT
+    status: INCOMPLETE
+    reason: oscillator local window unmeasured
+  geometry: null
+- id: adc_timing_xmos_bundle
+  owner: board_integration
+  coverage_nets:
+  - ADC_BCLK
+  - ADC_FSYNC
+  - ADC_DOUT1
+  - AUDIO_MCLK_1V8
+  - TDM_BCLK_1V8
+  - TDM_DATA_1V8
+  - TDM_FSYNC_1V8
+  - ADC_I2C_SCL
+  - ADC_I2C_SDA
+  - ADC_READY
+  - AUDIO_EN
+  - XU_I2C_SCL_1V8
+  - XU_I2C_SDA_1V8
+  - ADC_DIGITAL_BAD
+  endpoint_owners:
+  - adc_reference
+  - audio_clock_tdm
+  - xmos_core
+  - quiet_power
+  - analog_ch1
+  - analog_ch2
+  - analog_ch3
+  - analog_ch4
+  - analog_ch5
+  - analog_ch6
+  - analog_ch7
+  - analog_ch8
+  endpoints:
+    ADC_BCLK:
+      adc_reference:
+      - U_ADC_A.22
+      - U_ADC_B.22
+      audio_clock_tdm:
+      - R_BCLK.2
+    ADC_FSYNC:
+      adc_reference:
+      - U_ADC_A.23
+      - U_ADC_B.23
+      audio_clock_tdm:
+      - R_FSYNC.2
+    ADC_DOUT1:
+      adc_reference:
+      - U_ADC_A.21
+      - U_ADC_B.21
+      audio_clock_tdm:
+      - R_ADC_DATA_PD.1
+      - U_TDM_XLATE.10
+    AUDIO_MCLK_1V8:
+      audio_clock_tdm:
+      - U_TDM_XLATE.6
+      xmos_core:
+      - U_XU.23
+    TDM_BCLK_1V8:
+      audio_clock_tdm:
+      - U_TDM_XLATE.4
+      xmos_core:
+      - U_XU.22
+    TDM_DATA_1V8:
+      audio_clock_tdm:
+      - U_TDM_XLATE.7
+      xmos_core:
+      - U_XU.107
+    TDM_FSYNC_1V8:
+      audio_clock_tdm:
+      - U_TDM_XLATE.5
+      xmos_core:
+      - U_XU.20
+    ADC_I2C_SCL:
+      adc_reference:
+      - U_ADC_A.17
+      - U_ADC_B.17
+      audio_clock_tdm:
+      - R_ADC_I2C_SCL_B_PU.1
+      - U_ADC_I2C_XLATE.8
+    ADC_I2C_SDA:
+      adc_reference:
+      - U_ADC_A.18
+      - U_ADC_B.18
+      audio_clock_tdm:
+      - R_ADC_I2C_SDA_B_PU.1
+      - U_ADC_I2C_XLATE.1
+    ADC_READY:
+      adc_reference:
+      - R_ADC_READY_PD.1
+      - R_ADC_START_DELAY.1
+      - U_ADC_READY.4
+      - U_ADC_READY_BAD.2
+      - U_RST2.3
+      audio_clock_tdm:
+      - U_ADC_I2C_XLATE.6
+    AUDIO_EN:
+      analog_ch1:
+      - U_ISO1.2
+      analog_ch2:
+      - U_ISO2.2
+      analog_ch3:
+      - U_ISO3.2
+      analog_ch4:
+      - U_ISO4.2
+      analog_ch5:
+      - U_ISO5.2
+      analog_ch6:
+      - U_ISO6.2
+      analog_ch7:
+      - U_ISO7.2
+      analog_ch8:
+      - U_ISO8.2
+      quiet_power:
+      - R_AUDIO_PD.1
+      - R_AUDIO_PU.2
+      - U_AUDIO.6
+    XU_I2C_SCL_1V8:
+      audio_clock_tdm:
+      - R_ADC_I2C_SCL_A_PU.1
+      - U_ADC_I2C_XLATE.5
+      xmos_core:
+      - U_XU.93
+    XU_I2C_SDA_1V8:
+      audio_clock_tdm:
+      - R_ADC_I2C_SDA_A_PU.1
+      - U_ADC_I2C_XLATE.4
+      xmos_core:
+      - U_XU.94
+    ADC_DIGITAL_BAD:
+      adc_reference:
+      - Q_ADC_DIG_RST.1
+      - R_ADC_DIG_RST_PD.1
+      - U_ADC_DIGITAL_BAD.4
+      - U_ADC_READY.1
+      audio_clock_tdm:
+      - U_ADC_CLOCK_OK.1
+  demands:
+  - id: adc_to_tdm
+    nets:
+    - ADC_BCLK
+    - ADC_FSYNC
+    - ADC_DOUT1
+    layers:
+    - F.Cu
+    slots: 3
+    slot_pitch_mm: 0.45
+    required_width_mm: 1.35
+  - id: tdm_to_xmos
+    nets:
+    - AUDIO_MCLK_1V8
+    - TDM_BCLK_1V8
+    - TDM_DATA_1V8
+    - TDM_FSYNC_1V8
+    layers:
+    - F.Cu
+    slots: 4
+    slot_pitch_mm: 0.45
+    required_width_mm: 1.8
+  - id: local_control
+    nets:
+    - ADC_I2C_SCL
+    - ADC_I2C_SDA
+    - ADC_READY
+    - AUDIO_EN
+    - XU_I2C_SCL_1V8
+    - XU_I2C_SDA_1V8
+    - ADC_DIGITAL_BAD
+    status: INCOMPLETE
+    reason: local windows unmeasured
+  geometry: null
+- id: adc_analog_boundary
+  owner: board_integration
+  coverage_nets:
+  - ADC1N
+  - ADC1P
+  - ADC2N
+  - ADC2P
+  - ADC3N
+  - ADC3P
+  - ADC4N
+  - ADC4P
+  - ADC5N
+  - ADC5P
+  - ADC6N
+  - ADC6P
+  - ADC7N
+  - ADC7P
+  - ADC8N
+  - ADC8P
+  - VMID1_EXT
+  - VMID2_EXT
+  endpoint_owners:
+  - adc_reference
+  - analog_ch1
+  - analog_ch2
+  - analog_ch3
+  - analog_ch4
+  - analog_ch5
+  - analog_ch6
+  - analog_ch7
+  - analog_ch8
+  endpoints:
+    ADC1N:
+      adc_reference:
+      - U_ADC_A.13
+      analog_ch1:
+      - C_ADC_AC1N1.2
+      - C_ADC_AC1N2.2
+      - C_ADC_CM1N.1
+    ADC1P:
+      adc_reference:
+      - U_ADC_A.12
+      analog_ch1:
+      - C_ADC_AC1P1.2
+      - C_ADC_AC1P2.2
+      - C_ADC_CM1P.1
+    ADC2N:
+      adc_reference:
+      - U_ADC_A.11
+      analog_ch2:
+      - C_ADC_AC2N1.2
+      - C_ADC_AC2N2.2
+      - C_ADC_CM2N.1
+    ADC2P:
+      adc_reference:
+      - U_ADC_A.10
+      analog_ch2:
+      - C_ADC_AC2P1.2
+      - C_ADC_AC2P2.2
+      - C_ADC_CM2P.1
+    ADC3N:
+      adc_reference:
+      - U_ADC_A.9
+      analog_ch3:
+      - C_ADC_AC3N1.2
+      - C_ADC_AC3N2.2
+      - C_ADC_CM3N.1
+    ADC3P:
+      adc_reference:
+      - U_ADC_A.8
+      analog_ch3:
+      - C_ADC_AC3P1.2
+      - C_ADC_AC3P2.2
+      - C_ADC_CM3P.1
+    ADC4N:
+      adc_reference:
+      - U_ADC_A.7
+      analog_ch4:
+      - C_ADC_AC4N1.2
+      - C_ADC_AC4N2.2
+      - C_ADC_CM4N.1
+    ADC4P:
+      adc_reference:
+      - U_ADC_A.6
+      analog_ch4:
+      - C_ADC_AC4P1.2
+      - C_ADC_AC4P2.2
+      - C_ADC_CM4P.1
+    ADC5N:
+      adc_reference:
+      - U_ADC_B.7
+      analog_ch5:
+      - C_ADC_AC5N1.2
+      - C_ADC_AC5N2.2
+      - C_ADC_CM5N.1
+    ADC5P:
+      adc_reference:
+      - U_ADC_B.6
+      analog_ch5:
+      - C_ADC_AC5P1.2
+      - C_ADC_AC5P2.2
+      - C_ADC_CM5P.1
+    ADC6N:
+      adc_reference:
+      - U_ADC_B.9
+      analog_ch6:
+      - C_ADC_AC6N1.2
+      - C_ADC_AC6N2.2
+      - C_ADC_CM6N.1
+    ADC6P:
+      adc_reference:
+      - U_ADC_B.8
+      analog_ch6:
+      - C_ADC_AC6P1.2
+      - C_ADC_AC6P2.2
+      - C_ADC_CM6P.1
+    ADC7N:
+      adc_reference:
+      - U_ADC_B.11
+      analog_ch7:
+      - C_ADC_AC7N1.2
+      - C_ADC_AC7N2.2
+      - C_ADC_CM7N.1
+    ADC7P:
+      adc_reference:
+      - U_ADC_B.10
+      analog_ch7:
+      - C_ADC_AC7P1.2
+      - C_ADC_AC7P2.2
+      - C_ADC_CM7P.1
+    ADC8N:
+      adc_reference:
+      - U_ADC_B.13
+      analog_ch8:
+      - C_ADC_AC8N1.2
+      - C_ADC_AC8N2.2
+      - C_ADC_CM8N.1
+    ADC8P:
+      adc_reference:
+      - U_ADC_B.12
+      analog_ch8:
+      - C_ADC_AC8P1.2
+      - C_ADC_AC8P2.2
+      - C_ADC_CM8P.1
+    VMID1_EXT:
+      adc_reference:
+      - C_VMID1_EXT_10U.1
+      - C_VMID1_EXT_1U.1
+      - R_VMID1_BOT.1
+      - R_VMID1_TOP.2
+      analog_ch1:
+      - R_B1N.2
+      - R_B1P.2
+      analog_ch2:
+      - R_B2N.2
+      - R_B2P.2
+      analog_ch3:
+      - R_B3N.2
+      - R_B3P.2
+      analog_ch4:
+      - R_B4N.2
+      - R_B4P.2
+    VMID2_EXT:
+      adc_reference:
+      - C_VMID2_EXT_10U.1
+      - C_VMID2_EXT_1U.1
+      - R_VMID2_BOT.1
+      - R_VMID2_TOP.2
+      analog_ch5:
+      - R_B5N.2
+      - R_B5P.2
+      analog_ch6:
+      - R_B6N.2
+      - R_B6P.2
+      analog_ch7:
+      - R_B7N.2
+      - R_B7P.2
+      analog_ch8:
+      - R_B8N.2
+      - R_B8P.2
+  demands:
+  - id: channels_1_4_vmid1
+    nets:
+    - ADC1N
+    - ADC1P
+    - ADC2N
+    - ADC2P
+    - ADC3N
+    - ADC3P
+    - ADC4N
+    - ADC4P
+    - VMID1_EXT
+    layers:
+    - F.Cu
+    slots: 9
+    slot_pitch_mm: 0.56
+    required_width_mm: 5.04
+  - id: channels_5_8_vmid2
+    nets:
+    - ADC5N
+    - ADC5P
+    - ADC6N
+    - ADC6P
+    - ADC7N
+    - ADC7P
+    - ADC8N
+    - ADC8P
+    - VMID2_EXT
+    layers:
+    - F.Cu
+    slots: 9
+    slot_pitch_mm: 0.56
+    required_width_mm: 5.04
+  geometry: null
+power_boundary_windows:
+  owner: board_integration
+  coverage_nets:
+  - CHASSIS
+  - GND
+  - N0V9
+  - N12V_PROTECTED
+  - N1V8
+  - N3V3X
+  - N3V3_ADC
+  - N5V_BUCK
+  - N5V_LDO_HOLD
+  - PWR_EN
+  endpoints:
+    source: ../modular_plan.json#/interfaces
+  status: INCOMPLETE
+  endpoint_evidence:
+    CHASSIS:
+      native_required_pads:
+      - J1.9
+      - J1.10
+      - J2.9
+      - J2.10
+      - J3.9
+      - J3.10
+      - J4.9
+      - J4.10
+      - J5.9
+      - J5.10
+      - J6.9
+      - J6.10
+      - J7.9
+      - J7.10
+      - J8.9
+      - J8.10
+      proof: each listed native pad must be net CHASSIS; RJ45 shell copper remains
+        distinct from GND
+    usb_shield:
+      net: GND
+      native_required_pads:
+      - J_USB.SH
+      multiplicity: 4
+      proof: all four physical J_USB.SH pads must be net GND; USB shield is a local
+        GND feature, not CHASSIS
+  geometry:
+    schema: crow-power-boundary-windows-v1
+    coordinate_system: board-mm-bbox-[x0,y0,x1,y1]
+    status: INCOMPLETE
+    semantics: source-reservation-envelope-not-copper-lane-or-current-thermal-proof
+    windows:
+    - id: gnd_input_return
+      net: GND
+      bbox:
+      - 25
+      - 85
+      - 70
+      - 110
+      role: input-buck-local-return-reservation
+    - id: gnd_hold_return
+      net: GND
+      bbox:
+      - 24
+      - 105
+      - 126
+      - 137
+      role: held-bank-and-quiet-power-return-reservation
+    - id: gnd_adc_return
+      net: GND
+      bbox:
+      - 125
+      - 85
+      - 145
+      - 125
+      role: ldo-adc-local-return-reservation
+    - id: gnd_digital_return
+      net: GND
+      bbox:
+      - 145
+      - 85
+      - 185
+      - 134
+      role: regulator-and-digital-local-return-reservation
+    - id: gnd_xu_return
+      net: GND
+      bbox:
+      - 199.825
+      - 91.325
+      - 217.175
+      - 108.675
+      role: xmos-package-return-reservation
+    - id: n12v_protected_input_cell
+      net: N12V_PROTECTED
+      bbox:
+      - 25
+      - 85
+      - 70
+      - 110
+      role: q_in-to-u_buck-input-cell
+    - id: n5v_buck_source_cell
+      net: N5V_BUCK
+      bbox:
+      - 25
+      - 85
+      - 70
+      - 110
+      role: u_buck-output-and-local-output-bank
+    - id: n5v_buck_hold_entry
+      net: N5V_BUCK
+      bbox:
+      - 24
+      - 105
+      - 75
+      - 134
+      role: precharge-and-held-rail-entry
+    - id: n5v_buck_digital_entry
+      net: N5V_BUCK
+      bbox:
+      - 145
+      - 85
+      - 185
+      - 134
+      role: three-downstream-regulator-inputs
+    - id: n3v3_adc_ldo_adc_cell
+      net: N3V3_ADC
+      bbox:
+      - 125
+      - 85
+      - 145
+      - 125
+      role: ldo-output-and-adc-entry
+    - id: n5v_ldo_hold_bank
+      net: N5V_LDO_HOLD
+      bbox:
+      - 24
+      - 105
+      - 126
+      - 137
+      role: held-bank-and-quiet-load-reservation
+    - id: n0v9_xu_entry
+      net: N0V9
+      bbox:
+      - 185
+      - 91.325
+      - 201
+      - 108.675
+      role: digital-power-to-xu-package-handoff
+    - id: n1v8_xu_entry
+      net: N1V8
+      bbox:
+      - 185
+      - 91.325
+      - 201
+      - 108.675
+      role: digital-power-to-xu-package-handoff
+    - id: n3v3x_xu_entry
+      net: N3V3X
+      bbox:
+      - 185
+      - 91.325
+      - 201
+      - 108.675
+      role: digital-power-to-xu-package-handoff
+    - id: pwr_en_power_source
+      net: PWR_EN
+      bbox:
+      - 70
+      - 90
+      - 80
+      - 97
+      role: u_pwr-control-cell
+    - id: pwr_en_adc_entry
+      net: PWR_EN
+      bbox:
+      - 95
+      - 103
+      - 101
+      - 107
+      role: u_adc_pwr_bad-entry-cell
+    - id: pwr_en_audio_entry
+      net: PWR_EN
+      bbox:
+      - 20
+      - 108
+      - 24
+      - 112
+      role: u_audio-entry-cell
+  reason: rail current, return, and thermal needs cannot be replaced with scalar corridor
+    slots; all local copper remains P2 evidence
+integration_corridors:
+- id: qspi_gap
+  owner: board_integration
+  region_id: board_integration_qspi
+  allocation_id: xmos_service_escape
+  participants:
+  - xmos_core
+  - clock_flash_debug
+  faces:
+  - block: xmos_core
+    region_face: south
+    bbox:
+    - 219.2
+    - 110.2
+    - 222.8
+    - 110.5
+    physical_cell_id: xmos_core_qspi_south
+  - block: clock_flash_debug
+    region_face: north
+    bbox:
+    - 219.25
+    - 118.5
+    - 222.8
+    - 118.8
+    physical_cell_id: clock_qspi_transit
+  layer: F.Cu
+  reference_layer: In1.Cu
+  nets:
+  - QSPI_CLK
+  - QSPI_CS_N
+  - QSPI_D0
+  - QSPI_D1
+  - QSPI_D2
+  - QSPI_D3
+  reservation_id: qspi_gap_trunk
+  affected:
+  - source_pad: U_XU.4
+    native_pad: U_XU.4
+    net: QSPI_CLK
+    block: xmos_core
+  - source_pad: U_FLASH.6
+    native_pad: U_FLASH.6
+    net: QSPI_CLK
+    block: clock_flash_debug
+  - source_pad: U_XU.2
+    native_pad: U_XU.2
+    net: QSPI_CS_N
+    block: xmos_core
+  - source_pad: R_QSPI_CS.2
+    native_pad: R_QSPI_CS.2
+    net: QSPI_CS_N
+    block: clock_flash_debug
+  - source_pad: U_FLASH.1
+    native_pad: U_FLASH.1
+    net: QSPI_CS_N
+    block: clock_flash_debug
+  - source_pad: U_XU.127
+    native_pad: U_XU.127
+    net: QSPI_D0
+    block: xmos_core
+  - source_pad: U_FLASH.5
+    native_pad: U_FLASH.5
+    net: QSPI_D0
+    block: clock_flash_debug
+  - source_pad: U_XU.128
+    native_pad: U_XU.128
+    net: QSPI_D1
+    block: xmos_core
+  - source_pad: U_FLASH.2
+    native_pad: U_FLASH.2
+    net: QSPI_D1
+    block: clock_flash_debug
+  - source_pad: U_XU.1
+    native_pad: U_XU.1
+    net: QSPI_D2
+    block: xmos_core
+  - source_pad: U_FLASH.3
+    native_pad: U_FLASH.3
+    net: QSPI_D2
+    block: clock_flash_debug
+  - source_pad: U_XU.3
+    native_pad: U_XU.3
+    net: QSPI_D3
+    block: xmos_core
+  - source_pad: U_FLASH.7
+    native_pad: U_FLASH.7
+    net: QSPI_D3
+    block: clock_flash_debug
+  p2_obligations:
+  - status: P2_REQUIRED
+    source_pad: U_XU.4
+    native_pad: U_XU.4
+    net: QSPI_CLK
+    block: xmos_core
+    corridor_id: qspi_gap
+    region_face: south
+    layer: F.Cu
+    to_reservation: qspi_gap_trunk
+    physical_cell_id: xmos_core_qspi_south
+  - status: P2_REQUIRED
+    source_pad: U_FLASH.6
+    native_pad: U_FLASH.6
+    net: QSPI_CLK
+    block: clock_flash_debug
+    corridor_id: qspi_gap
+    region_face: north
+    layer: F.Cu
+    to_reservation: qspi_gap_trunk
+    physical_cell_id: clock_qspi_transit
+  - status: P2_REQUIRED
+    source_pad: U_XU.2
+    native_pad: U_XU.2
+    net: QSPI_CS_N
+    block: xmos_core
+    corridor_id: qspi_gap
+    region_face: south
+    layer: F.Cu
+    to_reservation: qspi_gap_trunk
+    physical_cell_id: xmos_core_qspi_south
+  - status: P2_REQUIRED
+    source_pad: R_QSPI_CS.2
+    native_pad: R_QSPI_CS.2
+    net: QSPI_CS_N
+    block: clock_flash_debug
+    corridor_id: qspi_gap
+    region_face: north
+    layer: F.Cu
+    to_reservation: qspi_gap_trunk
+    physical_cell_id: clock_qspi_transit
+  - status: P2_REQUIRED
+    source_pad: U_FLASH.1
+    native_pad: U_FLASH.1
+    net: QSPI_CS_N
+    block: clock_flash_debug
+    corridor_id: qspi_gap
+    region_face: north
+    layer: F.Cu
+    to_reservation: qspi_gap_trunk
+    physical_cell_id: clock_qspi_transit
+  - status: P2_REQUIRED
+    source_pad: U_XU.127
+    native_pad: U_XU.127
+    net: QSPI_D0
+    block: xmos_core
+    corridor_id: qspi_gap
+    region_face: south
+    layer: F.Cu
+    to_reservation: qspi_gap_trunk
+    physical_cell_id: xmos_core_qspi_south
+  - status: P2_REQUIRED
+    source_pad: U_FLASH.5
+    native_pad: U_FLASH.5
+    net: QSPI_D0
+    block: clock_flash_debug
+    corridor_id: qspi_gap
+    region_face: north
+    layer: F.Cu
+    to_reservation: qspi_gap_trunk
+    physical_cell_id: clock_qspi_transit
+  - status: P2_REQUIRED
+    source_pad: U_XU.128
+    native_pad: U_XU.128
+    net: QSPI_D1
+    block: xmos_core
+    corridor_id: qspi_gap
+    region_face: south
+    layer: F.Cu
+    to_reservation: qspi_gap_trunk
+    physical_cell_id: xmos_core_qspi_south
+  - status: P2_REQUIRED
+    source_pad: U_FLASH.2
+    native_pad: U_FLASH.2
+    net: QSPI_D1
+    block: clock_flash_debug
+    corridor_id: qspi_gap
+    region_face: north
+    layer: F.Cu
+    to_reservation: qspi_gap_trunk
+    physical_cell_id: clock_qspi_transit
+  - status: P2_REQUIRED
+    source_pad: U_XU.1
+    native_pad: U_XU.1
+    net: QSPI_D2
+    block: xmos_core
+    corridor_id: qspi_gap
+    region_face: south
+    layer: F.Cu
+    to_reservation: qspi_gap_trunk
+    physical_cell_id: xmos_core_qspi_south
+  - status: P2_REQUIRED
+    source_pad: U_FLASH.3
+    native_pad: U_FLASH.3
+    net: QSPI_D2
+    block: clock_flash_debug
+    corridor_id: qspi_gap
+    region_face: north
+    layer: F.Cu
+    to_reservation: qspi_gap_trunk
+    physical_cell_id: clock_qspi_transit
+  - status: P2_REQUIRED
+    source_pad: U_XU.3
+    native_pad: U_XU.3
+    net: QSPI_D3
+    block: xmos_core
+    corridor_id: qspi_gap
+    region_face: south
+    layer: F.Cu
+    to_reservation: qspi_gap_trunk
+    physical_cell_id: xmos_core_qspi_south
+  - status: P2_REQUIRED
+    source_pad: U_FLASH.7
+    native_pad: U_FLASH.7
+    net: QSPI_D3
+    block: clock_flash_debug
+    corridor_id: qspi_gap
+    region_face: north
+    layer: F.Cu
+    to_reservation: qspi_gap_trunk
+    physical_cell_id: clock_qspi_transit
+  return_obligation:
+    status: P2_REQUIRED
+    net: GND
+    corridor_id: qspi_gap
+    reference_layer: In1.Cu
+    proof: continuous_filled_reference
+- id: xtal_south_cap
+  owner: board_integration
+  region_id: clock_oscillator_handoff
+  allocation_id: xmos_service_escape
+  participants:
+  - xmos_core
+  - clock_flash_debug
+  faces:
+  - block: xmos_core
+    physical_cell_id: xmos_core
+    region_face: east
+    bbox:
+    - 217.196
+    - 107.2
+    - 217.2
+    - 108.7
+  - block: clock_flash_debug
+    region_face: north
+    bbox:
+    - 217.35
+    - 110.5
+    - 218.8
+    - 110.6
+    physical_cell_id: clock_oscillator_local
+  layer: F.Cu
+  reference_layer: In1.Cu
+  nets:
+  - XTAL_IN
+  - XTAL_OUT
+  reservation_id: xtal_handoff
+  affected:
+  - source_pad: U_XU.34
+    native_pad: U_XU.34
+    net: XTAL_IN
+    block: xmos_core
+  - source_pad: R_XTAL_DRIVE.1
+    native_pad: R_XTAL_DRIVE.1
+    net: XTAL_IN
+    block: clock_flash_debug
+  - source_pad: R_XTAL_FB.1
+    native_pad: R_XTAL_FB.1
+    net: XTAL_IN
+    block: clock_flash_debug
+  - source_pad: U_XU.33
+    native_pad: U_XU.33
+    net: XTAL_OUT
+    block: xmos_core
+  - source_pad: C_XTAL_OUT.1
+    native_pad: C_XTAL_OUT.1
+    net: XTAL_OUT
+    block: clock_flash_debug
+  - source_pad: R_XTAL_FB.2
+    native_pad: R_XTAL_FB.2
+    net: XTAL_OUT
+    block: clock_flash_debug
+  - source_pad: Y_XU.3
+    native_pad: Y_XU.3
+    net: XTAL_OUT
+    block: clock_flash_debug
+  p2_obligations:
+  - status: P2_REQUIRED
+    source_pad: U_XU.34
+    native_pad: U_XU.34
+    net: XTAL_IN
+    block: xmos_core
+    corridor_id: xtal_south_cap
+    region_face: east
+    layer: F.Cu
+    to_reservation: xtal_handoff
+    physical_cell_id: xmos_core
+  - status: P2_REQUIRED
+    source_pad: R_XTAL_DRIVE.1
+    native_pad: R_XTAL_DRIVE.1
+    net: XTAL_IN
+    block: clock_flash_debug
+    corridor_id: xtal_south_cap
+    region_face: north
+    layer: F.Cu
+    to_reservation: xtal_handoff
+    physical_cell_id: clock_oscillator_local
+  - status: P2_REQUIRED
+    source_pad: R_XTAL_FB.1
+    native_pad: R_XTAL_FB.1
+    net: XTAL_IN
+    block: clock_flash_debug
+    corridor_id: xtal_south_cap
+    region_face: north
+    layer: F.Cu
+    to_reservation: xtal_handoff
+    physical_cell_id: clock_oscillator_local
+  - status: P2_REQUIRED
+    source_pad: U_XU.33
+    native_pad: U_XU.33
+    net: XTAL_OUT
+    block: xmos_core
+    corridor_id: xtal_south_cap
+    region_face: east
+    layer: F.Cu
+    to_reservation: xtal_handoff
+    physical_cell_id: xmos_core
+  - status: P2_REQUIRED
+    source_pad: C_XTAL_OUT.1
+    native_pad: C_XTAL_OUT.1
+    net: XTAL_OUT
+    block: clock_flash_debug
+    corridor_id: xtal_south_cap
+    region_face: north
+    layer: F.Cu
+    to_reservation: xtal_handoff
+    physical_cell_id: clock_oscillator_local
+  - status: P2_REQUIRED
+    source_pad: R_XTAL_FB.2
+    native_pad: R_XTAL_FB.2
+    net: XTAL_OUT
+    block: clock_flash_debug
+    corridor_id: xtal_south_cap
+    region_face: north
+    layer: F.Cu
+    to_reservation: xtal_handoff
+    physical_cell_id: clock_oscillator_local
+  - status: P2_REQUIRED
+    source_pad: Y_XU.3
+    native_pad: Y_XU.3
+    net: XTAL_OUT
+    block: clock_flash_debug
+    corridor_id: xtal_south_cap
+    region_face: north
+    layer: F.Cu
+    to_reservation: xtal_handoff
+    physical_cell_id: clock_oscillator_local
+  return_obligation:
+    status: P2_REQUIRED
+    net: GND
+    corridor_id: xtal_south_cap
+    reference_layer: In1.Cu
+    proof: continuous_filled_reference
+- id: jtag_strip
+  owner: board_integration
+  region_id: board_integration_jtag
+  allocation_id: xmos_service_escape
+  participants:
+  - debug_connector
+  - xmos_core
+  faces:
+  - block: debug_connector
+    region_face: south
+    bbox:
+    - 221.1
+    - 64.7
+    - 225.9
+    - 65
+  - block: xmos_core
+    region_face: north
+    bbox:
+    - 221.1
+    - 84
+    - 223.9
+    - 84.3
+    physical_cell_id: xmos_core_east
+  layer: F.Cu
+  reference_layer: In1.Cu
+  nets:
+  - JTAG_TMS
+  - JTAG_TCK
+  - JTAG_TDO
+  - JTAG_TDI
+  reservation_id: jtag_strip_trunk
+  affected:
+  - source_pad: J_JTAG.2
+    native_pad: J_JTAG.2
+    net: JTAG_TMS
+    block: debug_connector
+  - source_pad: U_XU.44
+    native_pad: U_XU.44
+    net: JTAG_TMS
+    block: xmos_core
+  - source_pad: J_JTAG.4
+    native_pad: J_JTAG.4
+    net: JTAG_TCK
+    block: debug_connector
+  - source_pad: U_XU.51
+    native_pad: U_XU.51
+    net: JTAG_TCK
+    block: xmos_core
+  - source_pad: J_JTAG.6
+    native_pad: J_JTAG.6
+    net: JTAG_TDO
+    block: debug_connector
+  - source_pad: U_XU.37
+    native_pad: U_XU.37
+    net: JTAG_TDO
+    block: xmos_core
+  - source_pad: J_JTAG.8
+    native_pad: J_JTAG.8
+    net: JTAG_TDI
+    block: debug_connector
+  - source_pad: U_XU.36
+    native_pad: U_XU.36
+    net: JTAG_TDI
+    block: xmos_core
+  p2_obligations:
+  - status: P2_REQUIRED
+    source_pad: J_JTAG.2
+    native_pad: J_JTAG.2
+    net: JTAG_TMS
+    block: debug_connector
+    corridor_id: jtag_strip
+    region_face: south
+    layer: F.Cu
+    to_reservation: jtag_strip_trunk
+  - status: P2_REQUIRED
+    source_pad: U_XU.44
+    native_pad: U_XU.44
+    net: JTAG_TMS
+    block: xmos_core
+    corridor_id: jtag_strip
+    region_face: north
+    layer: F.Cu
+    to_reservation: jtag_strip_trunk
+    physical_cell_id: xmos_core_east
+  - status: P2_REQUIRED
+    source_pad: J_JTAG.4
+    native_pad: J_JTAG.4
+    net: JTAG_TCK
+    block: debug_connector
+    corridor_id: jtag_strip
+    region_face: south
+    layer: F.Cu
+    to_reservation: jtag_strip_trunk
+  - status: P2_REQUIRED
+    source_pad: U_XU.51
+    native_pad: U_XU.51
+    net: JTAG_TCK
+    block: xmos_core
+    corridor_id: jtag_strip
+    region_face: north
+    layer: F.Cu
+    to_reservation: jtag_strip_trunk
+    physical_cell_id: xmos_core_east
+  - status: P2_REQUIRED
+    source_pad: J_JTAG.6
+    native_pad: J_JTAG.6
+    net: JTAG_TDO
+    block: debug_connector
+    corridor_id: jtag_strip
+    region_face: south
+    layer: F.Cu
+    to_reservation: jtag_strip_trunk
+  - status: P2_REQUIRED
+    source_pad: U_XU.37
+    native_pad: U_XU.37
+    net: JTAG_TDO
+    block: xmos_core
+    corridor_id: jtag_strip
+    region_face: north
+    layer: F.Cu
+    to_reservation: jtag_strip_trunk
+    physical_cell_id: xmos_core_east
+  - status: P2_REQUIRED
+    source_pad: J_JTAG.8
+    native_pad: J_JTAG.8
+    net: JTAG_TDI
+    block: debug_connector
+    corridor_id: jtag_strip
+    region_face: south
+    layer: F.Cu
+    to_reservation: jtag_strip_trunk
+  - status: P2_REQUIRED
+    source_pad: U_XU.36
+    native_pad: U_XU.36
+    net: JTAG_TDI
+    block: xmos_core
+    corridor_id: jtag_strip
+    region_face: north
+    layer: F.Cu
+    to_reservation: jtag_strip_trunk
+    physical_cell_id: xmos_core_east
+  return_obligation:
+    status: P2_REQUIRED
+    net: GND
+    corridor_id: jtag_strip
+    reference_layer: In1.Cu
+    proof: continuous_filled_reference
+physical_cells:
+- id: clock_flash_debug
+  owner_block: clock_flash_debug
+  refs:
+  - C_FLASH
+  - R_QSPI_CS
+  - U_FLASH
+  transit: false
+- id: clock_oscillator_local
+  owner_block: clock_flash_debug
+  refs:
+  - C_XTAL_IN
+  - C_XTAL_OUT
+  - R_XTAL_DRIVE
+  - R_XTAL_FB
+  - Y_XU
+  transit: false
+- id: clock_qspi_transit
+  owner_block: clock_flash_debug
+  refs: []
+  transit: true
+- id: xmos_core
+  owner_block: xmos_core
+  refs:
+  - C_XU_USB18
+  - C_XU_VDDIO_10
+  - C_XU_VDDIO_109
+  - C_XU_VDDIO_121
+  - C_XU_VDDIO_17
+  - C_XU_VDDIO_72
+  - C_XU_VDDIO_89
+  - C_XU_VDD_104
+  - C_XU_VDD_105
+  - C_XU_VDD_106
+  - C_XU_VDD_11
+  - C_XU_VDD_113
+  - C_XU_VDD_14
+  - C_XU_VDD_18
+  - C_XU_VDD_5
+  - C_XU_VDD_68
+  - C_XU_VDD_85
+  - C_XU_VDD_95
+  - U_XU
+  transit: false
+- id: xmos_core_east
+  owner_block: xmos_core
+  refs:
+  - C_PLL_100N
+  - C_PLL_1U
+  - C_XU_USB33
+  - C_XU_VDDIO_35
+  - C_XU_VDDIO_56
+  - C_XU_VDD_39
+  - C_XU_VDD_45
+  - C_XU_VDD_50
+  - C_XU_VDD_54
+  - FB_PLL
+  transit: false
+- id: xmos_core_qspi_south
+  owner_block: xmos_core
+  refs: []
+  transit: true
+unresolved_multiterminal_branches:
+- id: xu_reset_five_terminal
+  owner: board_integration
+  allocation_id: xmos_service_escape
+  net: XU_RESET_N
+  layer: F.Cu
+  reference_layer: In1.Cu
+  reservation_id: reset_unresolved_tree
+  terminal_count: 5
+  minimum_tree_edges: 4
+  endpoints:
+  - source_pad: J_JTAG.10
+    native_pad: J_JTAG.10
+    net: XU_RESET_N
+    block: debug_connector
+  - source_pad: R_XU_RST_PU.2
+    native_pad: R_XU_RST_PU.2
+    net: XU_RESET_N
+    block: digital_power
+  - source_pad: U_CORE_OK.1
+    native_pad: U_CORE_OK.1
+    net: XU_RESET_N
+    block: digital_power
+  - source_pad: U_XU.38
+    native_pad: U_XU.38
+    net: XU_RESET_N
+    block: xmos_core
+  - source_pad: U_XU_3V3_OK.6
+    native_pad: U_XU_3V3_OK.6
+    net: XU_RESET_N
+    block: digital_power
+  physical_blockers: []
+  p2_obligations:
+  - status: P2_REQUIRED
+    source_pad: J_JTAG.10
+    native_pad: J_JTAG.10
+    net: XU_RESET_N
+    block: debug_connector
+    branch_id: xu_reset_five_terminal
+    layer: F.Cu
+    proof: native_pad_to_unplaced_tree
+  - status: P2_REQUIRED
+    source_pad: R_XU_RST_PU.2
+    native_pad: R_XU_RST_PU.2
+    net: XU_RESET_N
+    block: digital_power
+    branch_id: xu_reset_five_terminal
+    layer: F.Cu
+    proof: native_pad_to_unplaced_tree
+  - status: P2_REQUIRED
+    source_pad: U_CORE_OK.1
+    native_pad: U_CORE_OK.1
+    net: XU_RESET_N
+    block: digital_power
+    branch_id: xu_reset_five_terminal
+    layer: F.Cu
+    proof: native_pad_to_unplaced_tree
+  - status: P2_REQUIRED
+    source_pad: U_XU.38
+    native_pad: U_XU.38
+    net: XU_RESET_N
+    block: xmos_core
+    branch_id: xu_reset_five_terminal
+    layer: F.Cu
+    proof: native_pad_to_unplaced_tree
+  - status: P2_REQUIRED
+    source_pad: U_XU_3V3_OK.6
+    native_pad: U_XU_3V3_OK.6
+    net: XU_RESET_N
+    block: digital_power
+    branch_id: xu_reset_five_terminal
+    layer: F.Cu
+    proof: native_pad_to_unplaced_tree
+  tree_obligation:
+    status: P3_REQUIRED
+    net: XU_RESET_N
+    terminal_count: 5
+    minimum_tree_edges: 4
+    proof: one_connected_native_net_without_unrelated_branches
+  return_obligation:
+    status: P2_REQUIRED
+    net: GND
+    branch_id: xu_reset_five_terminal
+    reference_layer: In1.Cu
+    proof: continuous_filled_reference_under_actual_tree
+shared_transition_ports:
+- id: adc_audio_timing_port
+  owner: board_integration
+  participants:
+  - adc_reference
+  - audio_clock_tdm
+  geometry:
+    type: union_rectangles
+    rectangles:
+    - - 144.9
+      - 92
+      - 153
+      - 99.5
+  bbox:
+  - 148.9
+  - 92.1
+  - 149.0
+  - 92.3
+  reservation_bbox:
+  - 149
+  - 92
+  - 153
+  - 99.5
+  layers:
+  - F.Cu
+  face: west
+  reservation_id: adc_audio_shared_trunk
+  affected:
+  - source_pad: U_ADC_A.22
+    native_pad: U_ADC_A.22
+    net: ADC_BCLK
+    block: adc_reference
+  - source_pad: U_ADC_A.23
+    native_pad: U_ADC_A.23
+    net: ADC_FSYNC
+    block: adc_reference
+  - source_pad: U_ADC_A.21
+    native_pad: U_ADC_A.21
+    net: ADC_DOUT1
+    block: adc_reference
+  - source_pad: U_ADC_A.17
+    native_pad: U_ADC_A.17
+    net: ADC_I2C_SCL
+    block: adc_reference
+  - source_pad: U_ADC_A.18
+    native_pad: U_ADC_A.18
+    net: ADC_I2C_SDA
+    block: adc_reference
+  - source_pad: R_ADC_READY_PD.1
+    native_pad: R_ADC_READY_PD.1
+    net: ADC_READY
+    block: adc_reference
+  - source_pad: Q_ADC_DIG_RST.1
+    native_pad: Q_ADC_DIG_RST.1
+    net: ADC_DIGITAL_BAD
+    block: adc_reference
+  p2_obligations:
+  - status: P2_REQUIRED
+    source_pad: U_ADC_A.22
+    native_pad: U_ADC_A.22
+    net: ADC_BCLK
+    block: adc_reference
+    port_id: adc_audio_timing_port
+    layer: F.Cu
+    to_reservation: adc_audio_shared_trunk
+  - status: P2_REQUIRED
+    source_pad: U_ADC_A.23
+    native_pad: U_ADC_A.23
+    net: ADC_FSYNC
+    block: adc_reference
+    port_id: adc_audio_timing_port
+    layer: F.Cu
+    to_reservation: adc_audio_shared_trunk
+  - status: P2_REQUIRED
+    source_pad: U_ADC_A.21
+    native_pad: U_ADC_A.21
+    net: ADC_DOUT1
+    block: adc_reference
+    port_id: adc_audio_timing_port
+    layer: F.Cu
+    to_reservation: adc_audio_shared_trunk
+  - status: P2_REQUIRED
+    source_pad: U_ADC_A.17
+    native_pad: U_ADC_A.17
+    net: ADC_I2C_SCL
+    block: adc_reference
+    port_id: adc_audio_timing_port
+    layer: F.Cu
+    to_reservation: adc_audio_shared_trunk
+  - status: P2_REQUIRED
+    source_pad: U_ADC_A.18
+    native_pad: U_ADC_A.18
+    net: ADC_I2C_SDA
+    block: adc_reference
+    port_id: adc_audio_timing_port
+    layer: F.Cu
+    to_reservation: adc_audio_shared_trunk
+  - status: P2_REQUIRED
+    source_pad: R_ADC_READY_PD.1
+    native_pad: R_ADC_READY_PD.1
+    net: ADC_READY
+    block: adc_reference
+    port_id: adc_audio_timing_port
+    layer: F.Cu
+    to_reservation: adc_audio_shared_trunk
+  - status: P2_REQUIRED
+    source_pad: Q_ADC_DIG_RST.1
+    native_pad: Q_ADC_DIG_RST.1
+    net: ADC_DIGITAL_BAD
+    block: adc_reference
+    port_id: adc_audio_timing_port
+    layer: F.Cu
+    to_reservation: adc_audio_shared_trunk
+  return_obligation:
+    status: P2_REQUIRED
+    net: GND
+    port_id: adc_audio_timing_port
+    layers:
+    - F.Cu
+    proof: continuous_filled_reference

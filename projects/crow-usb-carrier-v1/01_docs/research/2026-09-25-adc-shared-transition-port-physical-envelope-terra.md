@@ -16,16 +16,18 @@ shared-port occupancy. That keeps the body and F/B courtyards, and separately
 keeps pad checks, while excluding movable text. Focused tests prove a
 text-only overlap passes and physical body, pad, and courtyard overlaps fail.
 
-The isolated candidate remains outside canonical source:
+The isolated candidate is retained under
+`01_docs/research/2026-09-25-ti-adc-shared-port-probe/` and remains outside
+canonical source:
 
-- candidate: `/tmp/crow-ti-adc-transition/shared-port-01/candidate.json`, SHA
+- candidate: `candidate.json`, SHA
   `801cf1662da36dc704458df194889fee23098aa0f1e317cd5cf1a4dc19eabed5`;
-- source requirements: `/tmp/crow-ti-adc-transition/shared-port-01/requirements.yaml`, SHA
+- source requirements: `requirements.yaml`, SHA
   `62c8e8f9b3e2a264a76c30fcc68107e4de28d98c00f5ee4f7a3be863d059c648`;
-- floorplan: `/tmp/crow-ti-adc-transition/shared-port-01/floorplan.yaml`, SHA
+- floorplan: `floorplan.yaml`, SHA
   `c2f107c315a3a1750f700dcbadbe556ae8206b7e99937d044c62def4104a6b21`;
 - exact board SHA: `8e620def0b403fda7635135672afec923c2c23bc9844b3f96102e96d4d5eca10`;
-- result: `/tmp/crow-ti-adc-transition/shared-port-01/result_physical_envelope.json`, SHA
+- result: `result_physical_envelope.json`, SHA
   `a36f2a055cf8b5c3c2f478eaacb2c0990933a65c36163fa1a84d0463a79110f9`.
 
 The bound `--diagnose-all` run reports `INCOMPLETE` with no global errors. It
