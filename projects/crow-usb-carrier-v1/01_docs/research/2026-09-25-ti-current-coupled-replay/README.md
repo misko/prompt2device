@@ -46,6 +46,22 @@ P1 authority. The next source task is to regenerate complete endpoint and
 boundary records from this exact board, then obtain independent review before
 any formal P1 attempt.
 
+The reproducible [native-pad rebind diagnostic](p1_rebind_comparison.json) now
+isolates that first source defect. Of the old unresolved-branch witnesses,
+only `U_XU.38` changed native bbox (its Y range moved by 0.20 mm). Rebinding
+that bbox on the exact trial board changes XMOS service from `FAIL` to
+`INCOMPLETE`, eliminates its one item diagnostic and four derivative global
+errors, and leaves **nine global timing branch denominator errors and nine
+power-boundary item diagnostics**. The timing errors arise because the timing
+allocation still fails as a whole; its five primary source gaps are four
+two-terminal crossings and `AUDIO_EN` owner containment. The power witnesses
+remain eight nonlocal rectangles and one movable-owner witness with no virtual
+block face. This repair changes only a private scratch contract, never the
+canonical source or board, and grants no route or P1 credit. Reproduce with
+`/usr/bin/python3 diagnose_p1_rebind.py` from this directory. The next
+material board task is resolving the `AUDIO_EN` owner geometry and proving
+timing access on this same board, followed by source-author review.
+
 Reproduce the current private baseline using
 `03_src/rebuild_prototype_board_diagnostic.py`, then run `python3 replay.py`
 from this directory once in a fresh private output root and
