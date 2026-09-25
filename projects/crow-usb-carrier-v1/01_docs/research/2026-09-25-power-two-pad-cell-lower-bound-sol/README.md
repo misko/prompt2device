@@ -29,20 +29,28 @@ fit a tighter `[90.455,87.505,142.275,112.255]` hull with **zero foreign
 envelopes**. That recut is a necessary local source-region step, but it does
 not by itself admit the two branch pads.
 
-The present branch checker tests every endpoint against `regions[block]`
-directly and has no `physical_cell_id` path. Separate quiet-power PWR and LDO
-cells therefore cannot satisfy the two branches under the current schema.
-Also, once any `physical_cells` record is added for `quiet_power`, the checker
-requires an exact, connected partition of **all 69** quiet-power references,
-including the hold banks and U_LDO_EN; two isolated cluster rows cannot pass.
-The existing broad `quiet_power`, `input_buck`, and hold-bank source regions
-must be reconciled with that disjoint partition. These are lower bounds, not a
-claim that an entire connected partition is feasible.
+**Correction to the original packet:** the current checker already accepts an
+endpoint `physical_cell_id` in an unresolved branch, while preserving the
+electrical `block`. The earlier
+[`ti-power-branch-physical-cell-sol`](../2026-09-25-ti-power-branch-physical-cell-sol/README.md)
+replay proves this for three XU pads and admits complete `N1V8`/`N3V3X`
+branches. The remaining barrier is **absence of a validated, complete
+quiet-power cell partition**, not missing checker syntax. An untagged pad
+still uses `regions[block]`. Simply naming two new local cells is insufficient:
+after recutting `adc_reference` to the native 65-member hull above and making
+the U_PWR hull the `quiet_power` primary cell and U_LDO hull a second cell,
+the real `_physical_cells` checker rejects the trial with
+`quiet_power: physical cell ref denominator incomplete`. It requires an exact,
+connected partition of **all 69** quiet-power references, including the hold
+banks and U_LDO_EN, before either pad can use `physical_cell_id`. The broad
+`quiet_power`, `input_buck`, and hold-bank source regions must be reconciled
+with that disjoint partition. These are lower bounds, not a claim that the
+entire connected partition is feasible.
 
-**Next action:** add fail-closed branch endpoint support for named physical
-cells, then design and native-check a connected 69-member quiet-power cell
-partition together with the tighter ADC region and adjacent input/hold-bank
-region boundaries. Retain null branch capacity and all P2/P3/current/return
-debt. Under the existing checker and exact board, no source-only P1 recut is
-honest; a physical board repack would otherwise have to clear the 58-body
-common-rectangle obstruction. No route or P1 credit is claimed here.
+**Next action:** design and native-check a connected 69-member quiet-power
+cell partition together with the tighter ADC region and adjacent input/hold
+region boundaries, then tag the two branch endpoints with their validated
+cell IDs. Retain null branch capacity and all P2/P3/current/return debt. A
+*single common rectangular cell* remains impossible on this board because of
+the 58-body obstruction; separate cells are supported but not yet completely
+modeled or admitted. No route or P1 credit is claimed here.

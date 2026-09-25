@@ -100,6 +100,26 @@ def main():
             'foreign_native_envelopes': sorted(ref for ref, box in envelopes.items()
                                                if owners[ref] != 'quiet_power' and checker.intersects(area, box)),
         }
+    # Both local rectangles are physically clear after the ADC-region trim,
+    # but the real checker must reject an incomplete quiet-power partition.
+    local_regions = dict(regions, adc_reference=adc_hull,
+                         quiet_power=clusters['pwr']['native_envelope_hull_mm'],
+                         quiet_power_ldo=clusters['ldo']['native_envelope_hull_mm'])
+    local_rows = [
+        {'id': 'quiet_power', 'owner_block': 'quiet_power',
+         'refs': CLUSTERS['pwr'], 'transit': False},
+        {'id': 'quiet_power_ldo', 'owner_block': 'quiet_power',
+         'refs': CLUSTERS['ldo'], 'transit': False},
+    ]
+    try:
+        checker._physical_cells({'physical_cells': local_rows}, plan, board,
+                                outline, local_regions, [])
+    except checker.ContractError as exc:
+        local_rejection = str(exc)
+        if local_rejection != 'quiet_power: physical cell ref denominator incomplete':
+            raise SystemExit(f'unexpected local-cell rejection: {exc}')
+    else:
+        raise SystemExit('incomplete quiet-power cells were accepted')
     report = {
         'board_sha256': EXPECTED[BOARD], 'native_ref_count': len(native),
         'quiet_power_ref_count': len(quiet_refs),
@@ -108,6 +128,7 @@ def main():
         'foreign_envelopes_in_minimum_pad_hull': foreign,
         'foreign_envelope_count': len(foreign),
         'minimal_common_cell_checker_rejection': rejected_reason,
+        'two_local_cell_checker_rejection': local_rejection,
         'adc_reference_ref_count': len(adc_refs),
         'adc_reference_native_hull_mm': adc_hull,
         'foreign_envelopes_in_adc_native_hull': sorted(
