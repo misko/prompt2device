@@ -58,6 +58,13 @@ capacity and remains INCOMPLETE.
 Schema-2 ``--diagnose-all`` adds one independent validation error per boundary
 witness or reservation to a ``diagnostics`` array. It does not replace the
 normal fail-closed verdict or prove cross-item endpoint/overlap accounting.
+An opt-in ``linked_paths`` first slice accounts for one same-net series path
+with exactly three modular owners: a native-checked physical corridor and a
+geometry-free unresolved virtual span, joined at exact intermediate pads.
+It preserves exact terminal/P2/return denominators, reports rough capacity
+only for the physical stage, and remains INCOMPLETE while the virtual span
+exists. Paths with branches, additional stages or physical downstream spans
+fail closed until separately implemented.
 """
 from __future__ import annotations
 
@@ -728,6 +735,245 @@ def _integration_corridors(source, interfaces, board, outline, regions, zones,
     return corridors
 
 
+def _linked_paths(source, contract, interfaces, board, outline, regions, zones,
+                  coverage, aliases, pads, owned_pads, fixed_refs, movable_refs,
+                  shared_ports, physical_cells, native_pitch):
+    """First-slice series path: exact physical edge stage, then unresolved span.
+
+    The path is one allocation reservation, not two credits. Legacy corridor
+    records are untouched, and a virtual span can never establish P1 capacity.
+    """
+    rows = source.get('linked_paths')
+    claimed = [a for a in contract['allocations'] if a.get('linked_paths')]
+    if rows is None:
+        if claimed:
+            raise ContractError('linked path contract lacks source declaration')
+        return {}
+    if not isinstance(rows, list) or not rows:
+        raise ContractError('linked paths malformed')
+    if not isinstance(interfaces.get('blocks'), list):
+        raise ContractError('linked paths require modular block ownership')
+    owners = {ref: block['id'] for block in interfaces['blocks'] for ref in block.get('refs', [])}
+    result, used_ids, used_nets = {}, set(), set()
+    enabled = {board.GetLayerName(i) for i in board.GetEnabledLayers().Seq()
+               if pcbnew.IsCopperLayer(i)}
+    ordinary = [(a['id'], r) for a in contract['allocations']
+                for r in a.get('reservations', [])]
+    for path in rows:
+        if not isinstance(path, dict) or set(path) != {
+                'id', 'allocation_id', 'nets', 'owner_order', 'reservation_id',
+                'layer', 'reference_layer', 'stages', 'joins'}:
+            raise ContractError('linked path record malformed')
+        ident, allocation_id, nets = path['id'], path['allocation_id'], path['nets']
+        order, stages = path['owner_order'], path['stages']
+        if (not isinstance(ident, str) or not ident or ident in used_ids or
+                allocation_id not in coverage or not isinstance(nets, list) or
+                not nets or len(nets) != len(set(nets)) or
+                not set(nets) <= coverage[allocation_id] or used_nets & set(nets) or
+                not isinstance(order, list) or len(order) != 3 or len(set(order)) != 3 or
+                any(owner not in regions for owner in order) or
+                not isinstance(stages, list) or len(stages) != 2 or
+                path['layer'] not in enabled or path['reference_layer'] not in enabled or
+                path['layer'] == path['reference_layer'] or
+                not isinstance(path['reservation_id'], str) or not path['reservation_id']):
+            raise ContractError(f'{ident}: linked path identity/order/net/layer invalid')
+        used_ids.add(ident)
+        used_nets.update(nets)
+        alloc = next(a for a in contract['allocations'] if a['id'] == allocation_id)
+        if alloc.get('linked_paths') != [{'id': ident, 'kind': 'linked_path',
+                                          'nets': nets, 'status': 'INCOMPLETE'}]:
+            raise ContractError(f'{ident}: linked path contract declaration mismatch')
+        if any(set(r.get('nets', [])) & set(nets) for _, r in ordinary) or any(
+                w.get('net') in nets for w in alloc.get('boundary_witnesses', [])):
+            raise ContractError(f'{ident}: linked path net has competing ordinary credit/witness')
+        if any(r.get('id') == path['reservation_id'] for _, r in ordinary):
+            raise ContractError(f'{ident}: linked path reservation id reused')
+        physical, virtual = stages
+        if (not isinstance(physical, dict) or physical.get('kind') != 'physical_corridor' or
+                physical.get('participants') != order[:2] or
+                physical.get('allocation_id') != allocation_id or
+                physical.get('nets') != nets or physical.get('layer') != path['layer'] or
+                physical.get('reference_layer') != path['reference_layer'] or
+                not isinstance(virtual, dict) or virtual.get('kind') != 'unresolved_virtual_span' or
+                virtual.get('participants') != order[1:] or virtual.get('nets') != nets or
+                virtual.get('layer') != path['layer'] or
+                virtual.get('reference_layer') != path['reference_layer'] or
+                virtual.get('status') != 'INCOMPLETE'):
+            raise ContractError(f'{ident}: linked stage order/identity invalid')
+        if (set(virtual) != {'id', 'kind', 'participants', 'nets', 'layer',
+                             'reference_layer', 'affected', 'geometry',
+                             'capacity_slots', 'status', 'p2_obligations',
+                             'return_obligation'} or
+                virtual['geometry'] is not None or virtual['capacity_slots'] is not None):
+            raise ContractError(f'{ident}: virtual span must be geometry/capacity free')
+        physical_source = dict(source, integration_corridors=[physical])
+        corridor = _integration_corridors(physical_source, interfaces, board,
+                                          outline, regions, zones, coverage,
+                                          aliases, pads, shared_ports,
+                                          physical_cells)[physical['id']]
+        for _, reservation in ordinary:
+            if (reservation.get('layer') == path['layer'] and
+                    reservation.get('kind') != 'unresolved_multiterminal_branch' and
+                    intersects(rectangle(reservation.get('bbox'), 'ordinary reservation'),
+                               corridor['bbox'])):
+                raise ContractError(f'{ident}: physical stage overlaps ordinary reservation')
+        if (not isinstance(physical.get('fixed_accesses'), list) or
+                not isinstance(physical.get('axis'), str) or
+                physical.get('axis') not in ('horizontal', 'vertical')):
+            raise ContractError(f'{ident}: physical stage access/capacity declaration missing')
+        access_by_source = {}
+        for access in physical['fixed_accesses']:
+            if (not isinstance(access, dict) or set(access) !=
+                    {'source_pad', 'native_pad', 'net', 'block', 'face', 'bbox'} or
+                    access['source_pad'] in access_by_source):
+                raise ContractError(f'{ident}: fixed access malformed or duplicate')
+            access_by_source[access['source_pad']] = access
+        fixed_affected = {e['source_pad'] for e in physical['affected']
+                          if e['native_pad'].rsplit('.', 1)[0] in fixed_refs}
+        if set(access_by_source) != fixed_affected:
+            raise ContractError(f'{ident}: fixed access endpoint denominator mismatch')
+        access_shapes = []
+        for endpoint in physical['affected']:
+            source_pad = endpoint['source_pad']
+            if source_pad not in access_by_source:
+                continue
+            access = access_by_source[source_pad]
+            if any(access[k] != endpoint[k] for k in
+                   ('source_pad', 'native_pad', 'net', 'block')):
+                raise ContractError(f'{source_pad}: fixed access endpoint mismatch')
+            obligation = next(o for o in physical['p2_obligations']
+                              if o['source_pad'] == source_pad)
+            native_pad = endpoint['native_pad']
+            pad_box = box_mm(pads[native_pad][0].GetBoundingBox())
+            witness = {'source': source_pad, 'native': native_pad,
+                       'net': endpoint['net'], 'block': endpoint['block'],
+                       'layer': path['layer'], 'face': access['face'],
+                       'boundary_bbox': pad_box,
+                       'kind': 'fixed_connector_access',
+                       'corridor_id': physical['id'], 'p2_obligation': obligation}
+            if next(f for f in corridor['faces'] if f['block'] == endpoint['block']).get('physical_cell_id'):
+                witness['physical_cell_id'] = next(
+                    f['physical_cell_id'] for f in corridor['faces']
+                    if f['block'] == endpoint['block'])
+            _coarse_witness(board, witness, endpoint['net'], owned_pads,
+                            aliases, pads, outline, regions, fixed_refs,
+                            shared_ports, {physical['id']: corridor}, {}, physical_cells)
+            area = rectangle(access['bbox'], f'{source_pad} fixed access')
+            face = next(f for f in corridor['faces'] if f['block'] == endpoint['block'])
+            approach = {'north': 'south', 'south': 'north',
+                        'east': 'west', 'west': 'east'}[face['region_face']]
+            if (not contains(rectangle(regions[witness.get('physical_cell_id') or endpoint['block']],
+                                       'fixed access owner'), area) or
+                    not _witness_touches_reservation(witness, {'bbox': area}) or
+                    not intersects(area, face['bbox']) or
+                    not _witness_touches_reservation(
+                        {'boundary_bbox': area, 'face': approach}, {'bbox': corridor['bbox']})):
+                raise ContractError(f'{source_pad}: fixed access does not join source face')
+            for other_source, other_area in access_shapes:
+                if intersects(area, other_area):
+                    raise ContractError(f'{source_pad}: fixed access overlaps {other_source}')
+            for _, reservation in ordinary:
+                if (reservation.get('layer') == path['layer'] and
+                        reservation.get('kind') != 'unresolved_multiterminal_branch' and
+                        intersects(area, rectangle(reservation.get('bbox'), 'ordinary reservation'))):
+                    raise ContractError(f'{source_pad}: fixed access overlaps ordinary reservation')
+            access_shapes.append((source_pad, area))
+            for fp in board.GetFootprints():
+                ref = fp.GetReference()
+                if ref != native_pad.rsplit('.', 1)[0] and intersects(area, _physical_envelope(fp)):
+                    raise ContractError(f'{source_pad}: fixed access intersects native body {ref}')
+                if any(f'{ref}.{pad.GetNumber()}' != native_pad and
+                       pad.IsOnLayer(board.GetLayerID(path['layer'])) and
+                       intersects(area, box_mm(pad.GetBoundingBox())) for pad in fp.Pads()):
+                    raise ContractError(f'{source_pad}: fixed access intersects foreign pad {ref}')
+            if any(item.IsOnLayer(board.GetLayerID(path['layer'])) and
+                   intersects(area, box_mm(item.GetBoundingBox())) for item in board.GetTracks()):
+                raise ContractError(f'{source_pad}: fixed access intersects native copper')
+            if any(not zone.GetIsRuleArea() and
+                   _filled_zone_intersects(zone, board.GetLayerID(path['layer']), area)
+                   for zone in zones):
+                raise ContractError(f'{source_pad}: fixed access intersects filled copper')
+            if any(zone.GetIsRuleArea() and intersects(area, box_mm(zone.GetBoundingBox()))
+                   for zone in zones):
+                raise ContractError(f'{source_pad}: fixed access intersects rule area')
+        if (not isinstance(virtual['affected'], list) or
+                any(not isinstance(e, dict) or set(e) !=
+                    {'source_pad', 'native_pad', 'net', 'block'} for e in virtual['affected'])):
+            raise ContractError(f'{ident}: virtual endpoint records malformed')
+        expected_virtual = set()
+        for item in interfaces['interfaces']:
+            if item['net'] in nets:
+                for owner in order[1:]:
+                    for source_pad in item['endpoints'].get(owner, []):
+                        expected_virtual.add((source_pad, graph.native_identity(source_pad, aliases),
+                                              item['net'], owner))
+        actual_virtual = {(e['source_pad'], e['native_pad'], e['net'], e['block'])
+                          for e in virtual['affected']}
+        if actual_virtual != expected_virtual or len(actual_virtual) != len(virtual['affected']):
+            raise ContractError(f'{ident}: virtual endpoint denominator mismatch')
+        for e in virtual['affected']:
+            if (owners.get(e['native_pad'].rsplit('.', 1)[0]) != e['block'] or
+                    not pads.get(e['native_pad']) or
+                    any(p.GetNetname() != e['net'] or
+                        not p.IsOnLayer(board.GetLayerID(path['layer']))
+                        for p in pads[e['native_pad']])):
+                raise ContractError(f"{e['source_pad']}: virtual native owner/pad/net/layer mismatch")
+        expected_p2 = [{'status': 'P2_REQUIRED', **e,
+                        'stage_id': virtual['id'], 'layer': path['layer'],
+                        'to_reservation': path['reservation_id']}
+                       for e in virtual['affected']]
+        if virtual['p2_obligations'] != expected_p2 or virtual['return_obligation'] != {
+                'status': 'P2_REQUIRED', 'net': 'GND', 'stage_id': virtual['id'],
+                'reference_layer': path['reference_layer'],
+                'proof': 'continuous_filled_reference'}:
+            raise ContractError(f'{ident}: virtual P2/filled-return obligations incomplete')
+        expected_all = set()
+        for item in interfaces['interfaces']:
+            if item['net'] in nets:
+                if set(item['endpoints']) != set(order):
+                    raise ContractError(f'{ident}: path owner denominator mismatch')
+                for owner in order:
+                    for source_pad in item['endpoints'][owner]:
+                        expected_all.add((source_pad, graph.native_identity(source_pad, aliases),
+                                          item['net'], owner))
+        actual_all = {(e['source_pad'], e['native_pad'], e['net'], e['block'])
+                      for stage in stages for e in stage['affected']}
+        if actual_all != expected_all:
+            raise ContractError(f'{ident}: path terminal denominator mismatch')
+        physical_set = {(e['source_pad'], e['net'], e['block']) for e in physical['affected']}
+        virtual_set = {(e['source_pad'], e['net'], e['block']) for e in virtual['affected']}
+        shared = physical_set & virtual_set
+        expected_joins = [{'from': physical['id'], 'to': virtual['id'],
+                           'owner': order[1], 'net': net, 'source_pad': source_pad,
+                           'kind': 'pad_anchored_virtual_interstage'}
+                          for source_pad, net, owner in sorted(shared)]
+        if path['joins'] != expected_joins or {owner for _, _, owner in shared} != {order[1]}:
+            raise ContractError(f'{ident}: missing or parallel interstage join')
+        pitch, demand = physical.get('slot_pitch_mm'), physical.get('demand_slots')
+        if (isinstance(pitch, bool) or not isinstance(pitch, (int, float)) or
+                not math.isfinite(pitch) or pitch < native_pitch or
+                isinstance(demand, bool) or
+                not isinstance(demand, int) or demand < 1):
+            raise ContractError(f'{ident}: physical stage rough capacity declaration invalid')
+        rough = _coarse_reservation(board, {'id': physical['id'], 'kind': 'signal',
+                                          'layer': path['layer'], 'bbox': corridor['bbox'],
+                                          'axis': physical['axis'], 'nets': nets,
+                                          'demand_slots': demand, 'slot_pitch_mm': pitch},
+                                    outline, fixed_refs, movable_refs, zones, native_pitch,
+                                    power_boundary=False, power_like_nets=set())
+        if rough['status'] == 'FAIL':
+            raise ContractError(f'{ident}: physical stage raw capacity below demand')
+        result[allocation_id] = {'id': ident, 'status': 'INCOMPLETE', 'nets': nets,
+                                 'capacity_slots': None,
+                                 'stages': [{'id': physical['id'], 'status': 'INCOMPLETE',
+                                             'rough_capacity': rough},
+                                            {'id': virtual['id'], 'status': 'INCOMPLETE',
+                                             'capacity_slots': None}]}
+    if len(claimed) != len(rows) or len(result) != len(rows):
+        raise ContractError('linked path allocation denominator mismatch')
+    return result
+
+
 def _physical_envelope(fp):
     """Body plus both native courtyards; exclude movable reference/value text."""
     body = list(box_mm(fp.GetBoundingBox(False, False)))
@@ -932,7 +1178,7 @@ def evaluate_coarse(board_path, contract_path, expected_contract_sha256=None, *,
                     diagnose_all=False):
     errors, results, hashes = [], [], {}
     diagnostics = []
-    shared_ports_configured = integration_configured = False
+    shared_ports_configured = integration_configured = linked_configured = False
     paths = {'board': board_path, 'contract': contract_path, 'source': source_path,
              'interfaces': interface_path, 'aliases': alias_path, 'floorplan': floorplan_path}
     for label, path in paths.items():
@@ -949,6 +1195,7 @@ def evaluate_coarse(board_path, contract_path, expected_contract_sha256=None, *,
             source = yaml.safe_load(Path(source_path).read_text())
             shared_ports_configured = isinstance(source, dict) and 'shared_transition_ports' in source
             integration_configured = isinstance(source, dict) and 'integration_corridors' in source
+            linked_configured = isinstance(source, dict) and 'linked_paths' in source
             branch_configured = isinstance(source, dict) and 'unresolved_multiterminal_branches' in source
             interfaces = json.loads(Path(interface_path).read_text())
             aliases = graph.alias_inventory(yaml.safe_load(Path(alias_path).read_text()))
@@ -1059,6 +1306,10 @@ def evaluate_coarse(board_path, contract_path, expected_contract_sha256=None, *,
                            [b['reservation_id'] for b in branches.values()])
             if len(special_ids) != len(set(special_ids)):
                 raise ContractError('special source reservation identity reused')
+            linked = _linked_paths(source, contract, interfaces, board, outline,
+                                   regions, zones, coverage, aliases, pads,
+                                   owned_pads, fixed_refs, movable_refs,
+                                   shared_ports, physical_cells, native_pitch)
             if diagnose_all:
                 diagnostics = _independent_coarse_diagnostics(
                     allocations, coverage, board, owned_pads, aliases, pads, outline,
@@ -1067,6 +1318,8 @@ def evaluate_coarse(board_path, contract_path, expected_contract_sha256=None, *,
             for allocation in allocations:
                 name = allocation['id']
                 try:
+                    linked_row = linked.get(name)
+                    linked_nets = set(linked_row['nets']) if linked_row else set()
                     power_like_nets = set()
                     if name == 'usb_device_pair':
                         source_row = next((item for item in source['allocations'] if item.get('id') == name), {})
@@ -1081,7 +1334,10 @@ def evaluate_coarse(board_path, contract_path, expected_contract_sha256=None, *,
                         raise ContractError(f'{name}: exact source net coverage mismatch')
                     witnesses = allocation.get('boundary_witnesses')
                     reservations = allocation.get('reservations')
-                    if not isinstance(witnesses, list) or not witnesses or not isinstance(reservations, list) or not reservations:
+                    if (not isinstance(witnesses, list) or
+                            (not witnesses and not linked_row) or
+                            not isinstance(reservations, list) or
+                            (not reservations and not linked_row)):
                         raise ContractError(f'{name}: witness/reservation denominator missing')
                     checked = []
                     for witness in witnesses:
@@ -1090,7 +1346,7 @@ def evaluate_coarse(board_path, contract_path, expected_contract_sha256=None, *,
                         checked.append(_coarse_witness(board, witness, witness['net'], owned_pads,
                                                        aliases, pads, outline, regions, fixed_refs,
                                                        shared_ports, corridors, branches, physical_cells))
-                    if {w['net'] for w in checked} != coverage[name]:
+                    if {w['net'] for w in checked} | linked_nets != coverage[name]:
                         raise ContractError(f'{name}: missing per-net boundary witness')
                     if len({(w['source'], w['net']) for w in checked}) != len(checked):
                         raise ContractError(f'{name}: duplicate boundary witness')
@@ -1284,12 +1540,15 @@ def evaluate_coarse(board_path, contract_path, expected_contract_sha256=None, *,
                             board, reservation, outline, fixed_refs, movable_refs, zones, native_pitch,
                             power_boundary=name == 'power_boundary_windows',
                             power_like_nets=power_like_nets))
-                    if {net for r in measured for net in r['nets']} != coverage[name]:
+                    if {net for r in measured for net in r['nets']} | linked_nets != coverage[name]:
                         raise ContractError(f'{name}: missing per-net reservation')
-                    results.append({'id': name, 'status': 'FAIL' if any(r['status'] == 'FAIL' for r in measured) else 'INCOMPLETE',
+                    row_result = {'id': name, 'status': 'FAIL' if any(r['status'] == 'FAIL' for r in measured) else 'INCOMPLETE',
                                     'witness_count': len(checked), 'reservation_count': len(measured),
                                     'p2_obligations': [w['p2_obligation'] for w in checked if w['p2_obligation']],
-                                    'reservations': measured})
+                                    'reservations': measured}
+                    if linked_row:
+                        row_result['linked_paths'] = [linked_row]
+                    results.append(row_result)
                 except (ContractError, TypeError, KeyError, AttributeError) as exc:
                     reason = str(exc)
                     definite_geometry_failure = ('off board outline' in reason or
@@ -1307,8 +1566,12 @@ def evaluate_coarse(board_path, contract_path, expected_contract_sha256=None, *,
                                                  any(r.get('kind') == 'integration_corridor'
                                                      for r in (allocation.get('reservations') or [])
                                                      if isinstance(r, dict)))
-                    results.append({'id': name, 'status': 'FAIL' if definite_geometry_failure else 'INCOMPLETE',
-                                    'reason': reason})
+                    row_result = {'id': name,
+                                  'status': 'FAIL' if definite_geometry_failure else 'INCOMPLETE',
+                                  'reason': reason}
+                    if linked_row:
+                        row_result['linked_paths'] = [linked_row]
+                    results.append(row_result)
             for ident, port in shared_ports.items():
                 expected_uses = {(e['source_pad'], e['native_pad'], e['net'], e['block'], layer)
                                  for e in port['affected'] for layer in port['layers']}
@@ -1351,7 +1614,8 @@ def evaluate_coarse(board_path, contract_path, expected_contract_sha256=None, *,
         except (ContractError, ValueError, TypeError, AttributeError, RuntimeError, KeyError) as exc:
             errors.append(str(exc))
     status = 'FAIL' if (any(row['status'] == 'FAIL' for row in results) or
-                        ((shared_ports_configured or integration_configured or branch_configured) and errors) or
+                        ((shared_ports_configured or integration_configured or
+                          linked_configured or branch_configured) and errors) or
                         any('overlapping named allocations' in error or 'shared port' in error or
                             'shared transition port' in error or 'unowned overlap' in error or
                             'foreign footprint' in error for error in errors)) else 'INCOMPLETE'
