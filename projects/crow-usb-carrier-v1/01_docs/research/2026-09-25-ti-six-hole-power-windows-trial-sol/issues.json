@@ -1,0 +1,169 @@
+{
+  "allocations": {
+    "adc_analog_boundary": {
+      "reason": null,
+      "status": "INCOMPLETE"
+    },
+    "adc_timing_xmos_bundle": {
+      "reason": null,
+      "status": "INCOMPLETE"
+    },
+    "power_boundary_windows": {
+      "reason": null,
+      "status": "INCOMPLETE"
+    },
+    "usb_device_pair": {
+      "reason": null,
+      "status": "INCOMPLETE"
+    },
+    "xmos_service_escape": {
+      "reason": null,
+      "status": "INCOMPLETE"
+    }
+  },
+  "board_sha256": "009ecf6383f07129653758fdc0855c793d8915e4ae5b0980278e7a5fa4fc47c7",
+  "contract_sha256": "6609dfb1a54febabf274a61353b9403078476c27b11ef67f31dd2e74ffda6ddf",
+  "diagnostics": [],
+  "errors": [],
+  "p1_accepted": false,
+  "proposed_windows": {
+    "GND": [
+      "west",
+      [
+        75,
+        90,
+        75.5,
+        92
+      ],
+      [
+        70,
+        90,
+        75,
+        92
+      ]
+    ],
+    "N0V9": [
+      "south",
+      [
+        150,
+        133.5,
+        154,
+        134
+      ],
+      [
+        150,
+        134,
+        154,
+        136
+      ]
+    ],
+    "N12V_PROTECTED": [
+      "south",
+      [
+        36,
+        83.5,
+        38,
+        84
+      ],
+      [
+        36,
+        84,
+        38,
+        85
+      ]
+    ],
+    "N1V8": [
+      "south",
+      [
+        134,
+        133.5,
+        136,
+        134
+      ],
+      [
+        134,
+        134,
+        136,
+        136
+      ]
+    ],
+    "N3V3X": [
+      "south",
+      [
+        138,
+        133.5,
+        140,
+        134
+      ],
+      [
+        138,
+        134,
+        140,
+        136
+      ]
+    ],
+    "N3V3_ADC": [
+      "west",
+      [
+        75,
+        98,
+        75.5,
+        100
+      ],
+      [
+        70,
+        98,
+        75,
+        100
+      ]
+    ],
+    "N5V_BUCK": [
+      "south",
+      [
+        160,
+        133.5,
+        164,
+        134
+      ],
+      [
+        160,
+        134,
+        164,
+        136
+      ]
+    ],
+    "N5V_LDO_HOLD": [
+      "south",
+      [
+        40,
+        83.5,
+        42,
+        84
+      ],
+      [
+        40,
+        84,
+        42,
+        85
+      ]
+    ],
+    "PWR_EN": [
+      "west",
+      [
+        75,
+        94,
+        75.5,
+        96
+      ],
+      [
+        70,
+        94,
+        75,
+        96
+      ]
+    ]
+  },
+  "routing_realized": false,
+  "source_sha256": "e8ff456de1868386890dbb5413bb20dc054b5d711b7c9b97d8b02a6b4695ae92",
+  "status": "INCOMPLETE"
+}
