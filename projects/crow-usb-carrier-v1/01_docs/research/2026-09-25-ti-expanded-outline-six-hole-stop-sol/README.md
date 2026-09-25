@@ -1,0 +1,11 @@
+# Expanded-outline six-hole Crow candidate: pose gate stop
+
+**Research-only STOP.** The specified 230 × 130 mm outline (`x=10..240`, `y=20..150`) and six hole centers passed a provisional Ø8 mm hardware screen (assumed Ø7 mm washer plus 0.5 mm radial margin). The private output is `06_build/prototype_board_diagnostic/current-ti-mounting-expanded-20260925/`; the exact generated board SHA-256 is `294d913efd9395af113c6cc427b5dfed20b8db6501f213685d28aacdd85ee94b`. The six-hole input board SHA-256 is `009ecf6383f07129653758fdc0855c793d8915e4ae5b0980278e7a5fa4fc47c7`.
+
+The diagnostic floorplan sets H1 `(30,40)`, H2 `(130,40)`, H3 `(211.5,45)`, H4 `(18,82)`, H5 `(130,142)`, H6 `(230,130)`. It moves `analog_ch1` and `analog_ch5` north region edges from y=42 to y=44 to keep the Ø8 envelopes clear, and trims the unused `clock_flash_debug` east region edge from x=232 to x=225 for H6. No electrical pose change was authorized. The nine power-window geometries were not edited.
+
+The prebuild rectangle-distance screen, using every existing electrical F.CrtYd bounding box, all regions, all nine prior power reservations, and board edges, found each proposed center at least 4 mm from each tested geometry. The tightest relevant native courtyard distances were H1–U_AFE1 5.455 mm, H2–J4 5.772 mm, H3–U_USB_ESD 9.477 mm, H4–U_ISO1 9.098 mm, H5–C_HOLD16 9.526 mm, and H6–U_FLASH 14.305 mm. This screen is not a hardware qualification.
+
+The native board generator completed with 569 electrical footprints, six holes, zero reported pad overlaps, and zero fixed courtyard overlaps. `count_parity.py` passed 569/569 against both circuit JSON and netlist; `pin_map_check.py` passed 799 declared physical pin identities. **The generated board fails the required pose gate:** 69 of 569 electrical footprint poses differ from the exact six-hole input. `U_ESD5` moved 15.8 mm, `U_FLASH`, `R_QSPI_CS`, and `C_FLASH` each moved 3.5 mm, and many channel-1/channel-5 parts moved 1 mm. [pose_drift.json](pose_drift.json) lists every native before/after pose.
+
+Work stopped at that first failed condition. Rules generation, native DRC, and complete P1 coarse evaluation were not run on this invalid candidate. No P1, routing, connector, release, or order credit is claimed. The canonical project and original six-hole private source/board were not edited; nothing was committed.
