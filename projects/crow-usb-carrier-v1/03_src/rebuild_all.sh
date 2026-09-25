@@ -267,11 +267,12 @@ $PY "$FS/manufacturing_readiness.py" grade . --phase selection \
 
 # J-PCBA-PRELAYOUT — D11 permits public records for design continuation only.
 # The exact request must still reproduce from the current generated circuit;
-# the public stock sidecar must pass the D7/D10 thresholds before layout spend.
+# D12 pins the initial full-board public screen; the current request must still
+# match its exact identities and D7/D10 thresholds before layout spend.
 # An authenticated PCBA response is not part of this project authority.
 PCBA_DIR=06_build/sourcing
 PCBA_REQUEST="$PCBA_DIR/prelayout_request.json"
-PUBLIC_STOCK="$PCBA_DIR/public-stock.json"
+PUBLIC_STOCK=01_docs/research/2026-09-24-public-stock-569/public-stock.json
 PUBLIC_DECISION=01_docs/decisions/0010-public-records-design-admission.md
 BUILD_QUANTITY=$(awk '$1 == "build_quantity:" {print $2; exit}' 03_src/rules/assembly.yaml)
 SOURCING_AUTHORITY=$(awk '$1 == "sourcing_authority:" {print $2; exit}' 03_src/rules/assembly.yaml)
@@ -298,7 +299,7 @@ $PY "$FS/jlc_pcba_availability.py" verify-request "$PCBA_REQUEST" \
     --build-quantity "$BUILD_QUANTITY" --phase prelayout \
     || { echo "GATE INCOMPLETE [1c] J-PCBA-PRELAYOUT: saved public request is stale against the current circuit and policy"; exit 2; }
 if [ ! -f "$PUBLIC_STOCK" ]; then
-    echo "GATE INCOMPLETE [1c] J-PCBA-PRELAYOUT: fresh public-stock.json is required for the exact request; no allocation is claimed"
+    echo "GATE INCOMPLETE [1c] J-PCBA-PRELAYOUT: D12 initial public-stock receipt is missing; no allocation is claimed"
     exit 2
 fi
 $PY "$FS/manufacturing_readiness.py" grade . --phase prelayout \
@@ -308,7 +309,7 @@ $PY "$FS/manufacturing_readiness.py" grade . --phase prelayout \
     --json 06_build/verification/manufacturing_readiness_prelayout.json \
     --stage-bundle "$PIPELINE_EVIDENCE/bundles/part_freeze" \
     --stage-result "$PIPELINE_EVIDENCE/S-PART-FREEZE.stage.json" \
-    || { echo "GATE FAILED [1c] J-PCBA-PRELAYOUT: exact public catalog screen is missing, stale, substituted, or insufficient"; exit 1; }
+    || { echo "GATE FAILED [1c] J-PCBA-PRELAYOUT: locked public catalog screen is missing, mismatched, substituted, or initially insufficient"; exit 1; }
 
 # [2] ERC gate — 0 ERRORS. TWO RUNS, AND THE SPLIT IS THE CANON'S, NOT A
 # SOFTENING. Canon S4 and the kicad-pcb golden rules both say the gate is

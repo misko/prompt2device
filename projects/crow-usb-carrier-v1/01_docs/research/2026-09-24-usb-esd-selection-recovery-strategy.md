@@ -1,5 +1,10 @@
 # Crow release recovery at USB ESD selection
 
+**Historical 5UX branch, superseded for stock selection by D12.** Crow has
+returned to the original TI part using its initial public-stock lock. The
+TI/XU transient question remains an independent open electrical finding; this
+note does not designate 5UX as current source.
+
 ## Current stop
 
 The full and reuse conductors both stop at `CRITICAL-SELECTION` before a

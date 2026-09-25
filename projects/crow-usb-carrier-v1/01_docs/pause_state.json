@@ -1,30 +1,40 @@
 {
-  "blocker": "Critical USB ESD selection is unaccepted: public XU316 records do not define powered or rail-off USB DP/DM transient limits; 5UX component data and public stock cannot establish exact-board pin survival.",
+  "blocker": "Crow selected TI USB ESD stock is locked to the initial 307-versus-155 public screen. Electrical selection still holds on the open XU316 powered/rail-off transient finding; no later stock recheck may force a source change.",
   "checkpoint": {
     "path": "03_src/rules/critical_part_selection.yaml",
-    "sha256": "c5dd2302a6faa6020458335aaf51da24a8bf93e74c3c3804393b540fb869616f",
-    "size": 727
+    "sha256": "eb3f74a6a2b821128b194ca0a283716e64a3f4c00ea4a352917f69b5f8463a57",
+    "size": 915
   },
-  "next_command": "Search the bounded public XMOS XU316 reference set for exact USB protection evidence, then decide whether a separate engineering prototype and measured ESD/USB test is required before release; rerun critical_part_selection_admission.py only on new evidence.",
+  "next_command": "Complete independent TI/XU316 USB transient suitability review from public primary records; if still unbounded, define a prototype-only exact-board ESD test before accepting selection. Then rerun critical_part_selection_admission.py and the full conductor on a coherent TI source.",
   "phase": "sourcing",
   "project": "crow-usb-carrier-v1",
   "receipts": [
     {
+      "path": "01_docs/BRIEF.md",
+      "sha256": "45906e341218cefe404f69063ea28faa2f379ba37c76d84d18fd3735b705f2dc",
+      "size": 21354
+    },
+    {
+      "path": "01_docs/decisions/0012-initial-public-stock-lock.md",
+      "sha256": "acffa297e45cb2ff6621d11dfa4b2da6300ebdcb0944103d7c4ae2c340ae4e7d",
+      "size": 1852
+    },
+    {
       "path": "01_docs/findings.yaml",
-      "sha256": "c6873217e959db13ea1a1f3831ff77275dcafb46d8c52ec6d1927123e02c1600",
-      "size": 34364
+      "sha256": "08a4b74f61707f885fb71987c093a3ea3b8d4d640f4939308ed0f24f0b423f80",
+      "size": 34505
     },
     {
-      "path": "01_docs/research/2026-09-24-pesd2usb5ux-xu316-transient-hold-terra.md",
-      "sha256": "22ea9288ce35bf2042c1134a4fda6eb6740007df4d03ee24a348d3b06c45e2e9",
-      "size": 4116
+      "path": "01_docs/research/2026-09-24-public-stock-569/public-stock.json",
+      "sha256": "aa9491bf6df447b646bb6985921cf489ed07c3d01893f2fd2829b13759acf142",
+      "size": 32455
     },
     {
-      "path": "01_docs/research/2026-09-24-usb-esd-selection-recovery-strategy.md",
-      "sha256": "5580719edde3781804bbfc3ad8fa8840aef373aab0f753ea4db5f2a4e2b19b3f",
-      "size": 3164
+      "path": "01_docs/research/2026-09-24-ti-usb-esd-stock-lock-reinstatement.md",
+      "sha256": "2a9c1feacebf9de51f4aaed0c7f07e0bd8562f4be0d4a5b418b257f656b372df",
+      "size": 1493
     }
   ],
   "schema": 1,
-  "state_id": "9b64b7187cbb52ededba3690929ac49f09aa9d6aa60328b756643a28e9b95342"
+  "state_id": "bc21b3e8c3cc4a67cdb7fd6b8d0acbd8aad2698ede3ac384542fb850b4940e63"
 }

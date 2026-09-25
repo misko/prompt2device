@@ -18,7 +18,7 @@ rf:
     - 0
     - 2400000000
     z0_ohm: 90
-    launch: GCT USB4215-03-A through PESD2USB5UX to XU316 pins 60/59
+    launch: GCT USB4215-03-A through TPD2EUSB30A to XU316 pins 60/59
     termination: XU316 integrated USB PHY; no external parallel resistor added
     reference_layer: In1.Cu
   cross_sections:

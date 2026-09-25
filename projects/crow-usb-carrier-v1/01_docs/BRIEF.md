@@ -179,3 +179,8 @@ Impact: waive the150-extra-unit public-stock reserve only for the selected XMOS 
 > Please only use public records and jlcsearch
 
 Impact: use public records and jlcsearch for sourcing investigation and public-catalog pre-layout design admission. Do not require or attempt authenticated JLC access or BOM uploads for this engineering workflow. Continue the design using exact public-stock evidence under D7/D10 and preserve D9 manual assembly. This changes the evidence boundary for design continuation; it does not establish supplier allocation, assembly attrition, final pricing or order readiness. No purchasing, supplier contact or credential access is authorized. See decision0010.
+
+### D12 — 2026-09-24 — initial stock check locks part selection
+> once we do the stock check at the start lets not worry about it again. its locked in
+
+Impact: for Crow, one dated exact public-stock screen at part selection applies D7's five-board plus-150-unit threshold (and the XMOS exception). Subsequent inventory movement does not reopen an unchanged selected part or force a redesign. The original TI USB data ESD part passed the retained direct JLC screen at 307 versus 155 and may be restored as the selected candidate; later 29-unit stock does not undo that source decision. Recheck a new MPN/LCSC or quantity at its own initial selection. This does not reserve stock, prove eventual JLC assembly allocation, authorize an order, or accept electrical/physical behavior. See decision0012.

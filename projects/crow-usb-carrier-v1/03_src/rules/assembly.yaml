@@ -46,6 +46,11 @@ sourcing_authority: public-observations  # D11: public design screen only; order
 public_stock_surplus: 150  # D7 user-confirmed absolute buffer per aggregated LCSC line
 public_stock_surplus_overrides:
   - {lcsc: C6362698, mpn: XU316-1024-TQ128-C24, surplus: 0, directive: D10}
+public_stock_selection_snapshot:  # D12: immutable first full-board screen; no rolling redesign
+  path: 01_docs/research/2026-09-24-public-stock-569/public-stock.json
+  sha256: aa9491bf6df447b646bb6985921cf489ed07c3d01893f2fd2829b13759acf142
+  initial_checked_at: '2026-09-24T00:45:18.073286Z'
+  max_age_hours: 24
 
 pcb_process: "Proposed JLC advanced order: selectively fill/cap the complete 0.20 mm drill family for LT3045 EP and TMUX4827 B2; uploader/vendor acceptance required"
 via_process:
