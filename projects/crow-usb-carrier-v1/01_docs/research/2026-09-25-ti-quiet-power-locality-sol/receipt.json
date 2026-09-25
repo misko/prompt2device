@@ -1,0 +1,172 @@
+{
+  "adc_reference_region_mm": [
+    75,
+    85,
+    145,
+    134
+  ],
+  "board_sha256": "d0c065dc16de081a5410b7a22e474f0a99c6fdeb0b7dd1f6c37422ace4a9fcf7",
+  "first_minimum_move": {
+    "first_native_conflict": {
+      "intersection_mm": [
+        69.41,
+        120.455,
+        72.995,
+        123.945
+      ],
+      "ref": "C_HOLD4"
+    },
+    "projected_envelope_mm": [
+      69.41,
+      120.455,
+      75.0,
+      123.945
+    ],
+    "ref": "C_LDO_OUT_1",
+    "shift_mm": [
+      -60.795,
+      0
+    ]
+  },
+  "floorplan_sha256": "7d95376bbfa3bc9dd0bf59bc7e91d02d86c31235f6145f4d09b49a31f81769d0",
+  "native_ref_count": 569,
+  "p1_accepted": false,
+  "placement_modified": false,
+  "quiet_power_region_mm": [
+    25,
+    105,
+    75,
+    134
+  ],
+  "status": "HARD_CONFLICT_RESEARCH_ONLY",
+  "targets": {
+    "C_LDO_OUT_1": {
+      "foreign_adc_reference_overlap_mm": [
+        130.205,
+        120.455,
+        135.795,
+        123.945
+      ],
+      "minimum_axis_shift_to_contain_in_quiet_power_mm": [
+        -60.795,
+        0
+      ],
+      "native_envelope_mm": [
+        130.205,
+        120.455,
+        135.795,
+        123.945
+      ],
+      "native_pads": {
+        "1": {
+          "center": [
+            134.8,
+            122.2
+          ],
+          "net": "N3V3_ADC"
+        },
+        "2": {
+          "center": [
+            131.2,
+            122.2
+          ],
+          "net": "GND"
+        }
+      },
+      "nearby_envelope_gaps_mm": {
+        "C_LDO_IN": 0.46,
+        "C_LDO_NR4": 1.28,
+        "C_LDO_OUT_2": 0.46,
+        "R_LDO_PG_TOP": 0.69,
+        "U_LDO": 0.31
+      },
+      "related_pad_distances_mm": [
+        {
+          "center_distance_mm": 4.395,
+          "from": "C_LDO_OUT_1.1",
+          "from_net": "N3V3_ADC",
+          "to": "U_LDO.9",
+          "to_net": "N3V3_ADC"
+        },
+        {
+          "center_distance_mm": 4.89,
+          "from": "C_LDO_OUT_1.1",
+          "from_net": "N3V3_ADC",
+          "to": "U_LDO.10",
+          "to_net": "N3V3_ADC"
+        },
+        {
+          "center_distance_mm": 3.883,
+          "from": "C_LDO_OUT_1.1",
+          "from_net": "N3V3_ADC",
+          "to": "C_LDO_OUT_2.1",
+          "to_net": "N3V3_ADC"
+        },
+        {
+          "center_distance_mm": 4.15,
+          "from": "C_LDO_OUT_1.2",
+          "from_net": "GND",
+          "to": "U_LDO.11",
+          "to_net": "GND"
+        }
+      ]
+    },
+    "R_PWR_TOP": {
+      "foreign_adc_reference_overlap_mm": [
+        75,
+        90.725,
+        77.525,
+        92.275
+      ],
+      "minimum_axis_shift_to_contain_in_quiet_power_mm": [
+        -2.525,
+        14.275
+      ],
+      "native_envelope_mm": [
+        74.475,
+        90.725,
+        77.525,
+        92.275
+      ],
+      "native_pads": {
+        "1": {
+          "center": [
+            75.175,
+            91.5
+          ],
+          "net": "N5V_BUCK"
+        },
+        "2": {
+          "center": [
+            76.825,
+            91.5
+          ],
+          "net": "PWR_SENSE"
+        }
+      },
+      "nearby_envelope_gaps_mm": {
+        "C_PWR": 0.77,
+        "C_PWR_CT": 3.45,
+        "R_PWR_BOT": 0.25,
+        "R_PWR_PU": 1.21,
+        "U_PWR": 0.475
+      },
+      "related_pad_distances_mm": [
+        {
+          "center_distance_mm": 2.427,
+          "from": "R_PWR_TOP.2",
+          "from_net": "PWR_SENSE",
+          "to": "U_PWR.1",
+          "to_net": "PWR_SENSE"
+        },
+        {
+          "center_distance_mm": 3.338,
+          "from": "R_PWR_TOP.2",
+          "from_net": "PWR_SENSE",
+          "to": "R_PWR_BOT.1",
+          "to_net": "PWR_SENSE"
+        }
+      ]
+    }
+  }
+}
