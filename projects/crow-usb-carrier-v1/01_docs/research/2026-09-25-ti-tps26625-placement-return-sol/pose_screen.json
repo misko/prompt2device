@@ -1,0 +1,121 @@
+{
+  "adc8n_copper_preserved": true,
+  "baseline_direct_native_pad_copper_gaps_mm": {
+    "DVDT_to_CDVDT": 2.838134,
+    "EP11_to_CDVDT": 2.352905,
+    "EP11_to_RILIM": 1.825561,
+    "GND_to_CIN": 3.661193,
+    "GND_to_COUT": 3.563231,
+    "ILIM_to_RILIM": 2.405089,
+    "IN_to_CIN": 1.655273,
+    "IN_to_RUVLO": 2.040709,
+    "OUT_to_COUT": 1.450194,
+    "RTN5_to_CDVDT": 4.277343,
+    "RTN5_to_RILIM": 2.185362,
+    "UVLO_to_RUVLO": 1.020811
+  },
+  "direct_native_pad_copper_gaps_mm": {
+    "DVDT_to_CDVDT": 2.946166,
+    "EP11_to_CDVDT": 2.395018,
+    "EP11_to_RILIM": 1.825561,
+    "GND_to_CIN": 3.661193,
+    "GND_to_COUT": 3.563231,
+    "ILIM_to_RILIM": 2.405089,
+    "IN_to_CIN": 1.655273,
+    "IN_to_RUVLO": 2.040709,
+    "OUT_to_COUT": 1.450194,
+    "RTN5_to_CDVDT": 4.30664,
+    "RTN5_to_RILIM": 2.185362,
+    "UVLO_to_RUVLO": 1.020811
+  },
+  "fixed_27_preserved": true,
+  "group_envelope_collisions": {
+    "C_SPOKE_DVDT8": [],
+    "C_SPOKE_IN8": [],
+    "C_SPOKE_OUT8": [],
+    "R_SPOKE_ILIM8": [],
+    "R_SPOKE_UVLO8": [],
+    "U_SPOKE8": []
+  },
+  "group_full_boxes_mm": {
+    "C_SPOKE_DVDT8": [
+      192.945,
+      48.995,
+      194.855,
+      50.005
+    ],
+    "C_SPOKE_IN8": [
+      188.005,
+      42.975,
+      191.495,
+      45.025
+    ],
+    "C_SPOKE_OUT8": [
+      192.855,
+      45.675,
+      196.345,
+      47.725
+    ],
+    "R_SPOKE_ILIM8": [
+      189.475,
+      50.225,
+      192.525,
+      51.775
+    ],
+    "R_SPOKE_UVLO8": [
+      185.525,
+      46.285,
+      187.475,
+      47.315
+    ],
+    "U_SPOKE8": [
+      187.805,
+      45.305,
+      192.195,
+      49.695
+    ]
+  },
+  "ilim_first_via_effective_shape_gaps_mm": {
+    "GND_return": 0.200011,
+    "POD8_output": 1.050048,
+    "U_SPOKE8.11": 0.975036,
+    "U_SPOKE8.6": 0.349425,
+    "U_SPOKE8.8": 0.212035
+  },
+  "ilim_first_via_mm": [
+    192.1,
+    47.9
+  ],
+  "moved_ref": "C_SPOKE_DVDT8",
+  "new_pose_mm": [
+    193.9,
+    49.5,
+    180
+  ],
+  "old_pose_mm": [
+    193.9,
+    49.3,
+    180.0
+  ],
+  "owner_region_mm": [
+    179,
+    42,
+    201,
+    84
+  ],
+  "pad_identity_preserved": true,
+  "pinned_board_sha256": "28412ec5054d3b322ea03e37516aa969551beb1e2083b2fa0d2662863969dff4",
+  "project_in_ilim_gap_ceilings_mm": [
+    2.5,
+    2.5
+  ],
+  "schema": 1,
+  "source_input_sha256": {
+    "generic_generator": "8a5fa1d48d80138458601a097ab6260565841510a498e44cb9c5773652215b3c",
+    "netlist": "a40b45c27b2169ed4f3dd43d72a1f4f7112d829985f98918a8855ed76735e9bd",
+    "poses": "76ba7ace1275fe1a8d6bc69d452037672519d70a21b8b02fff67f8c7d8a647bb",
+    "source": "0032b1202f5742b6575198d27ea50629826d49cf81cf12a31fead8a2929d9868",
+    "southwest_board": "0b9d017706845ad4d77c2b579dd36f2e34c0ecf55a7b699ace4fca97465c5b93"
+  },
+  "status": "POSE_AND_MOUTH_SCREEN"
+}
