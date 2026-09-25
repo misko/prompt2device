@@ -1,11 +1,11 @@
 {
-  "blocker": "The frozen-board reset candidate fails P1: three digital-power witnesses exceed the locality bound (10.2 versus 8.54 mm), and current source accounting rejects XU_RESET_N across its JTAG and reset-power corridors. USB edge ownership is checker-expressible but P1/P2 and route/return are incomplete. 3313A remains unadopted; connector FULL, prototype-only ESD, stack/order and release remain open.",
+  "blocker": "The frozen expanded board has no admitted P1/P2 integrated candidate. Its shared reset/JTAG screen is INCOMPLETE despite zero checker errors; USB 7628G full-width launches miss 0.150-mm foreign clearance at Type-C and XMOS, while the narrower 3313A source remains unadopted. The isolated C105 timing move improves local geometry but all 14 timing nets/54 pad duties remain INCOMPLETE. D18 private routing needs independent P1 and affected P2 first. Connector FULL, prototype-only TI ESD, production stack, release and order holds remain open.",
   "checkpoint": {
     "path": "03_src/rules/critical_part_selection.yaml",
     "sha256": "15288355fcc731ff8b1b0e35a1ae47b9faf66140223cfea0d31c91d99e9dc1ba",
     "size": 1148
   },
-  "next_command": "Define and test a minimal branch-aware P1 representation for one shared five-terminal reset net over two physical corridors without double credit; retain the locality check and five-terminal/four-edge denominator. Then retry one source-backed reset/USB owner candidate on the frozen placement and regrade all P1 plus affected P2. Resolve timing-neighbour access and local GND return before any D18 private route experiment. Preserve D15 failed history and physical/release holds.",
+  "next_command": "Decide the 3313A research source/stack hypothesis from the pinned public sensitivity and exact rule packet; preserve D15 FAILED_RESEARCH. Then create one separately authorized, source-generated unrouted candidate on the frozen placement reference that integrates the reviewed shared-reset and C105 proposals, reopens source/native parity, and independently grades all P1 plus affected P2. Do not launch D18 private routing until those admissions and connector-neighbour assumptions are met.",
   "phase": "prototype-layout-diagnostic",
   "project": "crow-usb-carrier-v1",
   "receipts": [
@@ -100,6 +100,36 @@
       "size": 8829
     },
     {
+      "path": "01_docs/research/2026-09-25-expanded-tdm-c105-placement-sol/README.md",
+      "sha256": "11fe8bb7f044a15cf7dddf06249eb0442f4d6ab8d499efb5761a353df26d1478",
+      "size": 2101
+    },
+    {
+      "path": "01_docs/research/2026-09-25-expanded-tdm-c105-placement-sol/receipt.json",
+      "sha256": "beac75216c5dab7a12642678d6d6839248c22086492d8af3e746e6ca0f7c6de9",
+      "size": 2539
+    },
+    {
+      "path": "01_docs/research/2026-09-25-expanded-tdm-c105-placement-sol/replay.py",
+      "sha256": "f9f2eb559274b51917cbfb15c622856981f1e44a2c93828fad241865fc573a32",
+      "size": 11177
+    },
+    {
+      "path": "01_docs/research/2026-09-25-jlc-3313-uniform-usb-solve-sol/mask_sensitivity_capture.json",
+      "sha256": "9e08ce38014bde96465cea15ce70a48c0cf0efaa7b17c19ea5a8b7f808bdae18",
+      "size": 27540
+    },
+    {
+      "path": "01_docs/research/2026-09-25-jlc-3313-uniform-usb-solve-sol/mask_sensitivity_receipt.md",
+      "sha256": "854ab55b0602dbb73dbc46b84817fd1430a313768fb35412924dd0e066385a88",
+      "size": 3571
+    },
+    {
+      "path": "01_docs/research/2026-09-25-reset-two-corridor-schema-probe-sol/README-linked.md",
+      "sha256": "2d8ed4470f930a8915442f2e968f884247ab61fbae87c163fc5732ab5c307b71",
+      "size": 2774
+    },
+    {
       "path": "01_docs/research/2026-09-25-reset-two-corridor-schema-probe-sol/README.md",
       "sha256": "5c4dd4568f12ec1231450d4fd18b66e9cb26276f2ba11d0d4f97dbba70f0dd37",
       "size": 3465
@@ -108,6 +138,16 @@
       "path": "01_docs/research/2026-09-25-reset-two-corridor-schema-probe-sol/build.py",
       "sha256": "9c23a3c6099fa25d989ed6e32f6b0594412d9d7a32bd5f9510ad475f8f9b36b0",
       "size": 9060
+    },
+    {
+      "path": "01_docs/research/2026-09-25-reset-two-corridor-schema-probe-sol/build_linked.py",
+      "sha256": "69f064a7185accb2868926fc88fcb4fd0d03fd78d0751fe03e8b1a7f8d6611aa",
+      "size": 7388
+    },
+    {
+      "path": "01_docs/research/2026-09-25-reset-two-corridor-schema-probe-sol/linked-summary.json",
+      "sha256": "5fd498e74fd113911c4d673b689f33f6bf01df30f3cec5ec0f64baacb01f1733",
+      "size": 14061
     },
     {
       "path": "01_docs/research/2026-09-25-reset-two-corridor-schema-probe-sol/summary.json",
@@ -131,8 +171,8 @@
     },
     {
       "path": "01_docs/research/2026-09-25-unadopted-3313a-controlled-pair-sol/README.md",
-      "sha256": "5dad1c08fbb1b32339d8792844f7ef91d48844475cf43f28ce945c0497a760d8",
-      "size": 2743
+      "sha256": "7caae0d954d662e8f07135b440ea406244fe2864786146e17cf91a6d3295618a",
+      "size": 3082
     },
     {
       "path": "01_docs/research/2026-09-25-unadopted-3313a-controlled-pair-sol/native-replay-full-sidecar-20260925.json",
@@ -146,8 +186,13 @@
     },
     {
       "path": "01_docs/research/2026-09-25-unadopted-3313a-controlled-pair-sol/replay.py",
-      "sha256": "3b01efdf4f4456f9e4ffb751218e5a1a013bf1801a2cb192fdb06585893154ba",
-      "size": 8035
+      "sha256": "e1473de36945a3852934a163817ae0eac7e72892f279c2ca118b081321b9a2d1",
+      "size": 8660
+    },
+    {
+      "path": "01_docs/research/2026-09-25-unadopted-3313a-controlled-pair-sol/source_adoption_gate.md",
+      "sha256": "f2c8cc83a871fd08870b135dd0de4e62533c938b663406817ec50e132f1615d1",
+      "size": 5416
     },
     {
       "path": "01_docs/research/2026-09-25-unadopted-3313a-controlled-pair-sol/source_diff.patch",
@@ -181,5 +226,5 @@
     }
   ],
   "schema": 1,
-  "state_id": "21369c3a8de425ba304e976627b95cf46141eef91066f418dbb9b91ccd361408"
+  "state_id": "9fca6b57b9e65fe03e121c8b5c0b80c0a29b08462a3e57b333b4ecfc60d70378"
 }
