@@ -156,6 +156,23 @@ route:
   no_critical_routes: null
   # - {name: USB_UP, p: USB_UP_P, n: USB_UP_N, wave: usb,
   #    allowed_layers: [F.Cu], no_vias: true}
+  # Optional strict native proof for a signal fanout whose topology and return
+  # reference must remain fixed after routing. V1 accepts only rectangular SMD
+  # terminals, straight one-layer tracks, and zero vias; every native pad on
+  # the net must be named, every tee must be listed, and saved (not refilled)
+  # reference copper must cover the full projected signal copper. Omit this
+  # key when that intentionally narrow contract does not apply.
+  # critical_trees:
+  #   - net: RESET_N
+  #     pads: [J_RESET.1, U_CTRL.7, U_OK.1]
+  #     signal_layer: F.Cu
+  #     reference_layer: In1.Cu
+  #     reference_net: GND
+  #     reference_anchor: J_GND.1
+  #     max_vias: 0
+  #     tees:
+  #       - {at: [25.0, 42.0], layer: F.Cu, degree: 3,
+  #          why: reset fanout}
   # Routability is an admission contract, not a router. Declare topology for
   # every shunt/series part on a critical pair and executable layer roles on
   # dense mixed-layer boards. The matching part.yaml owns the part-class kind.
