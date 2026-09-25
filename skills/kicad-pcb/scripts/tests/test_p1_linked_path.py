@@ -232,6 +232,7 @@ class LinkedPathTest(unittest.TestCase):
         path['stages'][1] = physical
         for join in path['joins']:
             join['to'] = 'xu_stage'
+            join['kind'] = 'pad_anchored_physical_interstage'
 
     def add_pad(self, ref, number, net, dx):
         fp = next(fp for fp in self.board.GetFootprints() if fp.GetReference() == ref)
@@ -303,6 +304,12 @@ class LinkedPathTest(unittest.TestCase):
         self.assertEqual(linked['status'], 'INCOMPLETE')
         self.assertIsNone(linked['capacity_slots'])
         self.assertIn('rough_capacity', linked['stages'][1])
+
+    def test_physical_join_rejects_virtual_kind(self):
+        self.make_second_physical()
+        self.source['linked_paths'][0]['joins'][0]['kind'] = 'pad_anchored_virtual_interstage'
+        self.assertIn('missing or parallel interstage join',
+                      '\n'.join(self.run_case()['errors']))
 
     def test_each_physical_stage_requires_one_slot_per_net(self):
         self.source['linked_paths'][0]['stages'][0]['demand_slots'] = 1

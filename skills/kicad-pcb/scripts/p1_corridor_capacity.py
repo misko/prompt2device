@@ -1000,7 +1000,8 @@ def _linked_paths(source, contract, interfaces, board, outline, regions, zones,
             raise ContractError(f'{ident}: interstage join multiplicity invalid')
         expected_joins = [{'from': physical['id'], 'to': second['id'],
                            'owner': order[1], 'net': net, 'source_pad': source_pad,
-                           'kind': 'pad_anchored_virtual_interstage'}
+                           'kind': ('pad_anchored_physical_interstage' if second_physical
+                                    else 'pad_anchored_virtual_interstage')}
                           for source_pad, net, owner in sorted(shared)]
         if path['joins'] != expected_joins or {owner for _, _, owner in shared} != {order[1]}:
             raise ContractError(f'{ident}: missing or parallel interstage join')

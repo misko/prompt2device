@@ -10,10 +10,10 @@ and public connector alias dossier
 `02_parts/USB4215-03-A/part.yaml` SHA-256
 `a6baba8bd4e389c146250a2a2ef5f7e9b09f63526e71dbdd05be8bca9b7b2c2e`.
 Its candidate source, floorplan, contract and checker result SHA-256 values are,
-respectively, `d1466d733fffda2863c9f1750c888eb5176a185ad1efaf1a92ddd2868dcccddc`,
+respectively, `6fa9b9aee4a1651a1e2f75c4d629d077b29504f4033b6062f6fb25187c0d3fcf`,
 `7d95376bbfa3bc9dd0bf59bc7e91d02d86c31235f6145f4d09b49a31f81769d0`,
-`b4c2a9126a43068358b7863e55fd326b6822386137bc44d073b5a844e321eaf0`,
-and `cbcddc39af1335e28122e7140fbdb748ea7c7d9763948c12c31e0c2abcd7a609`.
+`8a04d8e2370e90e572a0cd196e47b33642a42f879bcbb974822f9377fbd1ce1d`,
+and `12cc178f3fe480dea4fd3f9e2ddd6a197e5e799be411516a7df7ae76e619c778`.
 
 The ordered `usb_edge_connector → usb_frontend → xmos_core` path contains
 exactly one top-level reservation for `USB_DP` and `USB_DN`. The existing edge
@@ -21,7 +21,9 @@ stage `[229,28,231,29]` has two rough 0.97-mm slots for two demanded signals
 and four native J_USB fixed-pad access segments. The second physical stage
 `[215.5,40,218.5,84]` has three rough slots for the same two demanded signals,
 with exact ESD-to-XU endpoints, P2 face obligations, and filled In1.Cu return
-debt. The ESD pads are the single typed join per net. The checker reports no
+debt. The ESD pads are the single `pad_anchored_physical_interstage` join per
+net; the earlier virtual slice retains `pad_anchored_virtual_interstage` and
+no geometry or capacity claim. The checker reports no
 global errors with `--diagnose-all`, both stage measurements remain
 `INCOMPLETE`, and the linked path has `capacity_slots: null` rather than
 summed capacity. Native routes, impedance, P2 access, and the filled return

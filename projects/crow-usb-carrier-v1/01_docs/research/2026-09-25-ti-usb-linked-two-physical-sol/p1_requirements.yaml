@@ -1753,10 +1753,10 @@ linked_paths:
     owner: usb_frontend
     net: USB_DP
     source_pad: U_USB_ESD.1
-    kind: pad_anchored_virtual_interstage
+    kind: pad_anchored_physical_interstage
   - from: usb_edge_access
     to: usb_frontend_xmos
     owner: usb_frontend
     net: USB_DN
     source_pad: U_USB_ESD.2
-    kind: pad_anchored_virtual_interstage
+    kind: pad_anchored_physical_interstage
