@@ -44,3 +44,33 @@ The timing-mouth and ADC portal apertures do not alter this conclusion.  The
 candidate's 2.600 mm, 1.400 mm, and 2.995 mm mouths are rough aperture results
 only; the 0.005 mm ADC8 owner/USB margin, unfilled return, reference-field
 debt, and the TI USB-ESD shape rebaseline remain open.
+
+## Correction: full-profile replay supersedes the ISO8 rejection
+
+The preceding clearance interpretation used a bare-board DRC harness and is
+withdrawn.  The governed `TMUX4827_YBH_B2_POFV` authority in
+`assembly.yaml` binds the exact eight U_ISO pad-5 GND vias to Type-VII
+filled-and-capped POFV: 0.35 mm copper, 0.20 mm drill, 0.075 mm annulus, and
+a deliberately scoped 0.100 mm via-to-pads 2/4/6/8 clearance.  Its native
+DRU rule also requires the named, pad-bound POFV area; the isolated boards
+used above contained neither those generated areas nor the matching project
+and DRU files.
+
+I independently reran
+`2026-09-25-ti-iso8-profile-replay-sol/replay.py`.  It applies the producer,
+then the independent process census: both SHA-pinned boards have all eight
+areas, the expected eight 0.350/0.200 filled+capped B2 vias and six
+0.500/0.200 LDO vias, 213 DRC issues, 499 opens, no ISO8 clearance issue,
+and an exact zero added/removed DRC-identity delta.  The candidate U_ISO8.5
+via is correctly centred at `(199.0,53.0)` mm.  This removes the alleged ISO8
+native DRC blocker; it does not grant P1/P2, route, return, or vendor/CAM/PCBA
+acceptance.
+
+I also reviewed the TI pad-authority trace `f9d05e6d`.  Its fresh governed
+native TI witness and frozen board agree on TI identity, 0.30 mm pad extents,
+centres, and KiCad roundrect ratio 0.25.  The TSX `rect` declaration is not
+the final KiCad copper-shape authority.  Since the TI drawing supplies no
+corner-radius requirement and the fresh native witness matches the frozen
+board, this does not reopen D13.  Shape-sensitive future work must retain the
+hash-bound fresh TI native rebaseline rather than use the stale Nexperia
+ordinary netlist.
