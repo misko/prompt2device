@@ -1,0 +1,54 @@
+mpn: PESD2USB3UV-TR
+manufacturer: Nexperia
+type: two_channel_usb_data_esd_protection_array
+status: provisional_source_selection
+datasheet:
+  doc_id: PESD2USB3UV-T
+  revision: '2020-09-09'
+  url: https://assets.nexperia.com/documents/data-sheet/PESD2USB3UV-T.pdf
+  local: PESD2USB3UV-T.pdf
+  sha256: f63451e4af9a93292621f2731a58dc46b3601931e97ae66d636b5e633bd48ab4
+  fetched: '2026-09-25'
+package: SOT23 (TO-236AB), 2.9 x 1.3 x 1.0 mm body
+footprint: crow_usb_analog:Nexperia_PESD2USB3UV_SOT23
+pins:
+  '1': K1_USB_DP
+  '2': K2_USB_DN
+  '3': CA_GND
+escape:
+  style: leaded
+  pitch: 1.9
+  tier_required: jlc_4layer_default
+  checked: Nexperia 2020-09-09 PDF Figure 14 reflow lands; pin identities from Table 2 and Figure 13, with the paired side rotated to the top. Generic STEP registration is unverified and omitted; route, stencil and placement are pending.
+limits:
+  reverse_standoff_V: 3.3
+  breakdown_min_V: 4.2
+  breakdown_max_V: 8.0
+  capacitance_typ_pF: 0.83
+  capacitance_max_pF: 1.0
+  iec_contact_kV: 18
+  surge_8_20_A: 8
+sourcing:
+  lcsc: C3704436
+gotchas:
+- Pins 1/2 are separate protected cathodes on USB_DP/USB_DN; pin 3 is common-anode GND.
+- JLC exact C3704436 page lists SMT Assembly and Economic and Standard PCBA. Public stock is dated and not reserved.
+- The manufacturer datasheet names PESD2USB3UV-T; JLC's -TR suffix is the reel ordering alias, independently checked against the public catalog.
+- TLP clamp is a test-condition typical value, not proof of XU316 pin survival, especially unpowered.
+- One-pF maximum shunt capacitance needs USB high-speed insertion-loss and eye review on the realized pair.
+- Connector FULL, P1/P3 placement/return, system ESD, and exact assembly mask/stencil remain pending.
+verified: Primary datasheet Tables 2-6 and Figures 13-14 inspected 2026-09-25; public exact-code stock 110907 observed 2026-09-25T02:23:18Z, threshold 155. Provisional source candidate only.
+layout:
+  source: PESD2USB3UV-T.pdf Figures 13-14, Table 2
+  reviewed: '2026-09-25'
+  route_topology:
+    kind: shunt
+    signal_pads: ['1', '2']
+    return_pads: ['3']
+    source: Nexperia PESD2USB3UV-T Table 2, cathodes 1/2 and common anode 3.
+  notes: Place close to J_USB, avoid long signal stubs, and give pin 3 a short low-inductance ground return; native realization remains owed.
+layout_refs:
+- tier: 1
+  reached: true
+  artifact: Nexperia PESD2USB3UV-T Tables 2-6 and Figures 13-14
+  why: Exact manufacturer primary fixes pinout, ratings, package and reflow lands, not Crow electrical or native PCB acceptance.

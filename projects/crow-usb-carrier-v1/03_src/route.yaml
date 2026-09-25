@@ -290,7 +290,7 @@ route:
       why: USB4215-03-A native pad aliases preserve both reversible data contact sets.
     topology:
     - ref: U_USB_ESD
-      part_mpn: TPD2EUSB30ADRTR
+      part_mpn: PESD2USB3UV-TR
       kind: shunt
       signal_pads:
       - '1'
