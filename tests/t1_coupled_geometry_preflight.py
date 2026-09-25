@@ -124,6 +124,7 @@ def fixture():
     }
     (project / "03_src/route.yaml").write_text(json.dumps(route))
     (project / "03_src/rules/nets.yaml").write_text(json.dumps(nets))
+    (project / "03_src/floorplan.yaml").write_text("{}\n")
     build = project / "06_build"; build.mkdir()
     prepared = build / "prepared.kicad_pcb"
     make_board(prepared)
@@ -360,10 +361,242 @@ def t_placement_composition():
     check(not valid and any("coupled check status differs" in row
                             for row in failures),
           "placement cannot misstate coupled report status")
+    eq(receipt["checks"]["pair_footprint"]["status"], "N-A",
+       "ordinary fixture has no controlled pair")
+    forged_pair = json.loads(json.dumps(receipt))
+    forged_pair["checks"]["pair_footprint"]["status"] = "PASS"
+    forged_pair_path = root / "placement-pair-forged.json"
+    placement._atomic_json(forged_pair_path, forged_pair)
+    valid, failures = placement.verify(forged_pair_path)
+    check(not valid and any("pair footprint report differs" in row
+                            for row in failures),
+          "placement cannot launder pair footprint report")
     receipt_path = root / "placement.json"
     placement._atomic_json(receipt_path, receipt)
     eq(placement.verify(receipt_path), (True, []),
        "placement receipt independently reopens coupled evidence")
+
+
+def pair_footprint_fixture(*, xu_pitch=.8, xu_neighbor_gap=None,
+                           omit_esd=False, scoped=False, rotate=False,
+                           unnetted_neighbor=False, duplicate_foreign=False):
+    root = tmpdir("pair_footprint_")
+    project = root / "project"
+    (project / "03_src/rules").mkdir(parents=True)
+    dossier = project / "02_parts/CONNECTOR/part.yaml"
+    dossier.parent.mkdir(parents=True)
+    dossier.write_text(json.dumps({"mpn": "CONNECTOR", "pin_aliases": {
+        "A6": {"schematic": "4", "footprint": "A6"},
+        "A7": {"schematic": "5", "footprint": "A7"},
+        "B6": {"schematic": "12", "footprint": "B6"},
+        "B7": {"schematic": "13", "footprint": "B7"}}}))
+    paths = {side: [{"id": name, "segments": [{"net": net,
+              "from": source, "to": f"U1.{pin}"}]} for name, source in starts]
+             for side, net, pin, starts in (
+                 ("P", "DP", "60", [("a", "J1.4"), ("b", "J1.12"),
+                                     ("esd", "D1.1")]),
+                 ("N", "DN", "59", [("a", "J1.5"), ("b", "J1.13"),
+                                     ("esd", "D1.2")]))}
+    route = {"route": {"preflight_critical_pairs": [{
+        "name": "USB", "p": "DP", "n": "DN", "wave": "usb"}],
+        "waves": [{"name": "usb", "track_width": .41,
+                   "diff_pair_gap": .15, "layers": ["F.Cu"]}]}}
+    nets = {"default_clearance": ".15mm", "classes": {"USB": {
+        "nets": ["DP", "DN"], "min_width": ".41mm",
+        "clearance": ".15mm", "diff_pair": {"width": ".41mm",
+                                            "gap": ".15mm"}}},
+        "length_match": {"USB": {"members": {"P": ["DP"], "N": ["DN"]},
+                                 "paths": paths}},
+        "same_footprint_pad_clearances": [{"refs": ["U1"],
+                                            "clearance": ".15mm"}]}
+    if scoped:
+        nets["scoped_clearances"] = [{"zone": "XU_LOCAL", "nets_a": ["DP"],
+                                       "nets_b": ["DN"], "clearance": ".1mm"}]
+    (project / "03_src/route.yaml").write_text(json.dumps(route))
+    (project / "03_src/rules/nets.yaml").write_text(json.dumps(nets))
+    board = pcbnew.BOARD()
+    nets_native = {}
+    for name in ("DP", "DN", "GND"):
+        net = pcbnew.NETINFO_ITEM(board, name)
+        board.Add(net); nets_native[name] = net
+    def footprint(ref, value):
+        fp = pcbnew.FOOTPRINT(board)
+        fp.SetReference(ref); fp.SetValue(value); board.Add(fp)
+        return fp
+    def pad(fp, number, net, x, y, size=(.25, 1.475), angle=90,
+            shape=pcbnew.PAD_SHAPE_ROUNDRECT):
+        item = pcbnew.PAD(fp)
+        item.SetNumber(number); item.SetAttribute(pcbnew.PAD_ATTRIB_SMD)
+        item.SetShape(shape); item.SetSize(vec(*size))
+        if shape == pcbnew.PAD_SHAPE_ROUNDRECT:
+            item.SetRoundRectRadiusRatio(.2)
+        item.SetOrientationDegrees(angle)
+        layers = pcbnew.LSET(); layers.AddLayer(pcbnew.F_Cu)
+        item.SetLayerSet(layers); fp.Add(item)
+        item.SetPosition(vec(x, y))
+        if net:
+            item.SetNet(nets_native[net])
+        return item
+    j = footprint("J1", "CONNECTOR")
+    for number, net, x in (("A6", "DP", 1), ("A7", "DN", 2),
+                           ("B6", "DP", 3), ("B7", "DN", 4)):
+        pad(j, number, net, x, 1, size=(.3, 1), angle=0)
+    d = footprint("D1", "ESD")
+    if not omit_esd:
+        pad(d, "1", "DP", 1, 5, size=(.3, .3), angle=0)
+    pad(d, "2", "DN", 2, 5, size=(.3, .3), angle=0)
+    u = footprint("U1", "PHY")
+    if rotate:
+        pad(u, "59", "DN", 10, 10, size=(1.475, .25), angle=0)
+        pad(u, "60", "DP", 10, 10 + xu_pitch,
+            size=(1.475, .25), angle=0)
+    else:
+        pad(u, "59", "DN", 10, 10)
+        pad(u, "60", "DP", 10, 10 + xu_pitch)
+    if xu_neighbor_gap is not None:
+        pad(u, "58", "" if unnetted_neighbor else "GND", 10,
+            10 - (.25 + xu_neighbor_gap))
+        if duplicate_foreign:
+            pad(u, "58", "GND", 20, 20)
+    return root, project, board, route, nets
+
+
+@test("early pair footprint uses all alias-resolved connector and ESD leaves")
+def t_pair_footprint_aliases_and_missing():
+    _, project, board, route, nets = pair_footprint_fixture()
+    clean = placement._pair_footprints(project, board, route, nets)
+    eq(clean["status"], "PASS", "wide centered terminals")
+    eq(len(clean["pairs"]), 8, "four connector, two ESD, two PHY pads")
+    check(all(row["source_declared"] for row in clean["pairs"]),
+          "all source aliases resolved")
+    _, project, board, route, nets = pair_footprint_fixture(omit_esd=True)
+    missing = placement._pair_footprints(project, board, route, nets)
+    eq(missing["status"], "INCOMPLETE", "missing source ESD leaf")
+    check(any("D1.1" in row for row in missing["unresolved"]),
+          "missing exact endpoint named")
+    _, project, board, route, nets = pair_footprint_fixture()
+    route["route"]["preflight_critical_pairs"][0]["name"] = "USB"
+    next(row for row in nets["length_match"]["USB"]["paths"]["P"]
+         if row["id"] == "esd")["segments"] = []
+    undeclared = placement._pair_footprints(project, board, route, nets)
+    eq(undeclared["status"], "INCOMPLETE", "stale source omits ESD leaf")
+    check(any("D1.1" in row for row in undeclared["unresolved"]),
+          "undeclared native terminal exposed")
+
+
+@test("centered native envelope detects rotated pitch and foreign pad clearance")
+def t_pair_footprint_geometry():
+    _, project, board, route, nets = pair_footprint_fixture(xu_pitch=.4,
+                                                               rotate=True)
+    tight = placement._pair_footprints(project, board, route, nets)
+    eq(tight["status"], "FAIL", "rotated roundrect centered launch")
+    check(any("U1.59 conflicts with U1.60" in row for row in tight["findings"]),
+          "pair gap applied at rotated pad")
+    _, project, board, route, nets = pair_footprint_fixture(
+        xu_neighbor_gap=.10)
+    foreign = placement._pair_footprints(project, board, route, nets)
+    eq(foreign["status"], "FAIL", "pad gap below global clearance")
+    check(any("pad copper U1.59 to U1.58 below 0.150" in row
+              for row in foreign["findings"]), "D15-like pad copper gap")
+    _, project, board, route, nets = pair_footprint_fixture(
+        xu_neighbor_gap=.15, unnetted_neighbor=True)
+    blank = placement._pair_footprints(project, board, route, nets)
+    eq(blank["status"], "FAIL", "unnetted pad remains foreign copper")
+    check(any("launch envelope at U1.59 conflicts with U1.58" in row
+              for row in blank["findings"]), "pad exception cannot waive track gap")
+    _, project, board, route, nets = pair_footprint_fixture(
+        xu_neighbor_gap=.15, unnetted_neighbor=True, duplicate_foreign=True)
+    duplicate = placement._pair_footprints(project, board, route, nets)
+    eq(duplicate["status"], "FAIL", "same-number foreign pads both screened")
+    check(any("launch envelope at U1.59 conflicts with U1.58" in row
+              for row in duplicate["findings"]), "near duplicate pad not collapsed")
+    _, project, board, route, nets = pair_footprint_fixture(xu_pitch=.45)
+    nets["classes"]["USB"]["diff_pair"]["gap"] = ".10mm"
+    route["route"]["waves"][0]["diff_pair_gap"] = .10
+    gap = placement._pair_footprints(project, board, route, nets)
+    eq(gap["status"], "FAIL", "class clearance exceeds nominal pair gap")
+    check(any("U1.59 conflicts with U1.60 (0.150 mm clearance)" in row
+              for row in gap["findings"]), "effective pair track-to-pad clearance")
+    _, project, board, route, nets = pair_footprint_fixture(xu_pitch=.8)
+    nets["classes"]["USB"]["diff_pair"]["gap"] = ".10mm"
+    route["route"]["waves"][0]["diff_pair_gap"] = .10
+    wide = placement._pair_footprints(project, board, route, nets)
+    eq(wide["status"], "FAIL", "source rule conflict independent of geometry")
+    check(any("below unscoped effective clearance" in row
+              for row in wide["findings"]), "numeric source rule conflict")
+
+
+@test("partial scoped pair rules and ordinary boards cannot fabricate a pass")
+def t_pair_footprint_scope_and_na():
+    _, project, board, route, nets = pair_footprint_fixture(scoped=True)
+    nets["classes"]["USB"]["diff_pair"]["gap"] = ".10mm"
+    route["route"]["waves"][0]["diff_pair_gap"] = .10
+    scoped = placement._pair_footprints(project, board, route, nets)
+    eq(scoped["status"], "INCOMPLETE", "scoped rule requires local evaluation")
+    check(any("uncovered terminal centers" in row for row in scoped["findings"]),
+          "partial scoped exception exposes global gap at other terminals")
+    _, project, board, route, nets = pair_footprint_fixture()
+    nets["default_clearance"] = ".20mm"
+    classed = placement._pair_footprints(project, board, route, nets)
+    eq(classed["status"], "PASS", "Default does not widen two explicit pair nets")
+    route["route"]["preflight_critical_pairs"] = []
+    omitted = placement._pair_footprints(project, board, route, nets)
+    eq(omitted["status"], "INCOMPLETE", "length pair cannot disappear from route")
+    nets["length_match"] = {}
+    nets["classes"] = {}
+    ordinary = placement._pair_footprints(project, board, route, nets)
+    eq(ordinary["status"], "N-A", "no pair declaration")
+
+
+@test("early pair CLI reads a small native board without changing input files")
+def t_pair_footprint_cli_read_only():
+    root, project, board, _, _ = pair_footprint_fixture()
+    board_path = root / "small.kicad_pcb"
+    pcbnew.SaveBoard(str(board_path), board)
+    before = {str(path): path.read_bytes() for path in root.rglob("*")
+              if path.is_file()}
+    result = subprocess.run(
+        ["/usr/bin/python3", str(Path(placement.__file__).resolve()),
+         "pair-footprint", str(project), "--board", str(board_path)],
+        text=True, capture_output=True)
+    eq(result.returncode, 0, result.stderr)
+    eq(json.loads(result.stdout)["status"], "PASS", "early CLI verdict")
+    after = {str(path): path.read_bytes() for path in root.rglob("*")
+             if path.is_file()}
+    eq(after, before, "early CLI leaves project and board bytes untouched")
+
+
+@test("pair report regrade resolves project identity from named-board source")
+def t_pair_footprint_named_board_verify():
+    root, project, board, _, _ = pair_footprint_fixture()
+    board_path = root / "small.kicad_pcb"
+    pcbnew.SaveBoard(str(board_path), board)
+    scoped = project / "03_src/demo"
+    (scoped / "rules").mkdir(parents=True)
+    route_path = project / "03_src/route.yaml"
+    nets_path = project / "03_src/rules/nets.yaml"
+    target_route = scoped / "route.yaml"
+    target_nets = scoped / "rules/nets.yaml"
+    route_path.rename(target_route)
+    nets_path.rename(target_nets)
+    rows = {name: {"status": "N-A"}
+            for name in placement.AUTHORITATIVE_CHECKS}
+    rows["pair_footprint"] = placement._pair_footprints(
+        project, board, json.loads(target_route.read_text()),
+        json.loads(target_nets.read_text()))
+    inputs = {"board": placement._record(board_path),
+              "route": placement._record(target_route),
+              "nets": placement._record(target_nets),
+              "checker_placement": placement._record(Path(placement.__file__))}
+    for dossier in (project / "02_parts").glob("*/part.yaml"):
+        inputs["pair_part_" + dossier.parent.name] = placement._record(dossier)
+    receipt = {"schema": 2, "kind": "placement-routability-receipt-v2",
+               "verdict": "ACCEPTED", "subject": inputs["board"],
+               "inputs": inputs, "checks": rows,
+               "coverage": {"passing": len(rows), "total": len(rows)}}
+    path = root / "named.json"
+    placement._atomic_json(path, receipt)
+    eq(placement.verify(path), (True, []), "named-board alias regrade")
 
 
 if __name__ == "__main__":
