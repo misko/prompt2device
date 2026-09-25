@@ -31,7 +31,7 @@ from pathlib import Path
 import pcbnew
 from tmux4827_pofv import (ABSOLUTE_FLOORS, activated as tmux_activated,
                            audit as audit_tmux, contract as tmux_contract,
-                           dru_rules as tmux_dru_rules)
+                           dru_rules as tmux_dru_rules, REFS as TMUX_REFS)
 
 try:
     import yaml
@@ -89,6 +89,108 @@ def intrinsic_pad_dru_rules(assembly_path: Path) -> list[str]:
                        f'  (condition "{condition}")\n'
                        f'  (constraint clearance (min {round(clearance, 3)}mm)))')
     return out
+
+
+def pair_scoped_dru_rules(assembly_path: Path, board, floor: dict) -> list[str]:
+    """Re-derive only exact, F.Cu pair rules that cannot match a TMUX pad.
+
+    This is intentionally narrower than the generic rule generator.  Its
+    legacy one-sided `nets` scope and its hole-clearance feature remain foreign
+    to the TMUX process guard.  Both the copied source and the native area are
+    checked before removing any rule text from the foreign-constraint scan.
+    """
+    root = assembly_path.resolve().parents[2]
+    data = yaml.safe_load((root / "03_src/rules/nets.yaml").read_text(encoding="utf-8-sig")) or {}
+    specs = data.get("scoped_clearances") or []
+    if not isinstance(specs, list):
+        raise ValueError("TMUX-DRU: scoped_clearances must be a list")
+    areas = floor.get("keepouts") or []
+    if not isinstance(areas, list):
+        raise ValueError("TMUX-DRU: floorplan keepouts must be a list")
+    tmux_nets = {pad.GetNetname() for fp in board.GetFootprints()
+                 if fp.GetReference() in TMUX_REFS for pad in fp.Pads()}
+    if not tmux_nets or "GND" not in tmux_nets:
+        raise ValueError("TMUX-DRU: native TMUX pad net census unavailable")
+    out, seen = [], set()
+    for i, spec in enumerate(specs):
+        if not isinstance(spec, dict):
+            raise ValueError(f"TMUX-DRU: scoped source entry {i} is not a mapping")
+        if not (spec.get("nets_a") or spec.get("nets_b")):
+            continue  # Legacy/wide rules remain in the residual foreign scan.
+        if (set(spec) != {"zone", "nets_a", "nets_b", "clearance", "why"}
+                or not str(spec["why"]).strip()):
+            raise ValueError(f"TMUX-DRU: pair source entry {i} has extra/missing fields")
+        zone = spec["zone"]
+        a, b = spec["nets_a"], spec["nets_b"]
+        valid = lambda name: isinstance(name, str) and re.fullmatch(r"[A-Za-z][A-Za-z0-9_]*", name)
+        if (not valid(zone) or zone in seen or not isinstance(a, list) or not isinstance(b, list)
+                or len(a) != 1 or len(b) != 1 or not all(valid(n) for n in a + b)
+                or len(set(a + b)) != len(a + b) or set(a + b) & tmux_nets):
+            raise ValueError(f"TMUX-DRU: pair source entry {i} widens selector or reaches TMUX nets")
+        seen.add(zone)
+        matches = [item for item in areas if isinstance(item, dict) and item.get("name") == zone]
+        if len(matches) != 1 or set(matches[0]) != {"name", "layers", "deny", "rect"} or \
+                matches[0]["layers"] != ["F.Cu"] or matches[0]["deny"] != []:
+            raise ValueError(f"TMUX-DRU: pair area {zone} is not one permissive F.Cu area")
+        rect = matches[0]["rect"]
+        if (not isinstance(rect, list) or len(rect) != 4
+                or any(isinstance(v, bool) or not isinstance(v, (int, float)) or not math.isfinite(v) for v in rect)
+                or rect[0] >= rect[2] or rect[1] >= rect[3]):
+            raise ValueError(f"TMUX-DRU: pair area {zone} has invalid bounds")
+        native = [z for z in board.Zones() if z.GetZoneName() == zone]
+        if len(native) != 1 or not native[0].GetIsRuleArea() or \
+                [board.GetLayerName(layer) for layer in native[0].GetLayerSet().Seq()] != ["F.Cu"] or \
+                any((native[0].GetDoNotAllowTracks(), native[0].GetDoNotAllowVias(),
+                     native[0].GetDoNotAllowPads(), native[0].GetDoNotAllowFootprints(),
+                     native[0].GetDoNotAllowZoneFills())):
+            raise ValueError(f"TMUX-DRU: native pair area {zone} differs")
+        box = native[0].GetBoundingBox()
+        if [box.GetLeft(), box.GetTop(), box.GetRight(), box.GetBottom()] != \
+                [pcbnew.FromMM(value) for value in rect]:
+            raise ValueError(f"TMUX-DRU: native pair area {zone} bounds drift")
+        try:
+            clearance = round(float(str(spec["clearance"]).lower().replace("mm", "").strip()), 3)
+        except (TypeError, ValueError) as exc:
+            raise ValueError(f"TMUX-DRU: pair source entry {i} clearance invalid") from exc
+        if not math.isfinite(clearance) or clearance < ABSOLUTE_FLOORS["min_clearance"]:
+            raise ValueError(f"TMUX-DRU: pair source entry {i} below absolute floor")
+        a_on_a = " || ".join(f"A.NetName == '{n}'" for n in a)
+        b_on_b = " || ".join(f"B.NetName == '{n}'" for n in b)
+        a_on_b = " || ".join(f"A.NetName == '{n}'" for n in b)
+        b_on_a = " || ".join(f"B.NetName == '{n}'" for n in a)
+        clause = f"(({a_on_a}) && ({b_on_b})) || (({a_on_b}) && ({b_on_a}))"
+        condition = f"A.insideArea('{zone}') && B.insideArea('{zone}') && ({clause})"
+        out.append(f'(rule "scoped_clr_{zone}"\n'
+                   f'  (condition "{condition}")\n'
+                   f'  (constraint clearance (min {clearance}mm)))')
+    return out
+
+
+def audit_dru_constraints(actual: str, expected: list[str], intrinsic: list[str],
+                          pair_scoped: list[str]) -> list[str]:
+    """Keep the historical foreign-constraint veto after exact rule removal."""
+    fails = []
+    residual = actual
+    for rule in expected:
+        if actual.count("\n" + rule) != 1 or actual.count(rule) != 1:
+            fails.append("TMUX-DRU: missing or altered generated rule " + rule.split('"')[1])
+        residual = residual.replace(rule, "", 1)
+    for rule in intrinsic:
+        count = actual.count(rule)
+        if count == 0:
+            continue  # Existing boards may omit this optional generic feature.
+        if actual.count("\n" + rule) != 1 or count != 1:
+            fails.append("TMUX-DRU: missing or altered intrinsic rule " + rule.split('"')[1])
+            continue
+        residual = residual.replace(rule, "", 1)
+    for rule in pair_scoped:
+        if actual.count("\n" + rule) != 1 or actual.count(rule) != 1:
+            fails.append("TMUX-DRU: missing or altered exact pair rule " + rule.split('"')[1])
+            continue
+        residual = residual.replace(rule, "", 1)
+    if re.search(r"\(\s*constraint\s+(?:clearance|physical_clearance|via_diameter|annular_width|hole_size|hole_clearance)\b", residual):
+        fails.append("TMUX-DRU: foreign clearance/via/hole constraint")
+    return fails
 
 
 def find_assembly(board_path: Path, explicit: str | None = None):
@@ -257,32 +359,11 @@ def check(board_path: Path, assembly: str | None = None):
             # error while the identity checker still passes.
             dru = board_path.with_suffix(".kicad_dru")
             actual = dru.read_text() if dru.is_file() else ""
-            expected = tmux_dru_rules()
-            for rule in expected:
-                if actual.count("\n" + rule) != 1 or actual.count(rule) != 1:
-                    out["fails"].append("TMUX-DRU: missing or altered generated rule " + rule.split('"')[1])
-            residual = actual
-            for rule in expected:
-                residual = residual.replace(rule, "", 1)
-            # Generic intrinsic pad rules are allowed only when their exact
-            # source-derived text matches.  Do not broadly admit arbitrary
-            # 0.15-mm clearance rules: a changed selector could otherwise
-            # swallow a TMUX POFV pair while this process gate read green.
-            for rule in intrinsic_pad_dru_rules(apath):
-                count = actual.count(rule)
-                if count == 0:
-                    # A board that does not use the optional generic feature
-                    # remains a valid TMUX fixture; its ordinary 0.15-mm
-                    # floor still binds.  Any present intrinsic rule, though,
-                    # must be the exact source-derived block.
-                    continue
-                if actual.count("\n" + rule) != 1 or count != 1:
-                    out["fails"].append("TMUX-DRU: missing or altered intrinsic rule "
-                                        + rule.split('"')[1])
-                    continue
-                residual = residual.replace(rule, "", 1)
-            if re.search(r"\(\s*constraint\s+(?:clearance|physical_clearance|via_diameter|annular_width|hole_size|hole_clearance)\b", residual):
-                out["fails"].append("TMUX-DRU: foreign clearance/via/hole constraint")
+            # Exact source/native-bound pair rules may join the existing TMUX
+            # and intrinsic rules; every other clearance still fails closed.
+            out["fails"].extend(audit_dru_constraints(
+                actual, tmux_dru_rules(), intrinsic_pad_dru_rules(apath),
+                pair_scoped_dru_rules(apath, board, floor)))
     except (ValueError, KeyError, TypeError, OSError) as exc:
         out["fails"].append(f"TMUX-PROFILE: {exc}")
 
