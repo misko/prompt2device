@@ -1,0 +1,178 @@
+{
+  "board_sha256": "e07ed8bc663fdfd4ce39477165b656b0dcf2bfbae54d84ec501bfccf326d22ef",
+  "candidate_cells": {
+    "analog_ch2_full": {
+      "bbox_mm": [
+        46.725,
+        19.955,
+        84.268081,
+        79.145
+      ],
+      "owner": "analog_ch2",
+      "refs": [
+        "C_A2N",
+        "C_A2P",
+        "C_ADC_AC2N1",
+        "C_ADC_AC2N2",
+        "C_ADC_AC2P1",
+        "C_ADC_AC2P2",
+        "C_ADC_CM2N",
+        "C_ADC_CM2P",
+        "C_FB2N",
+        "C_FB2P",
+        "C_FILTER2N1",
+        "C_FILTER2N2",
+        "C_FILTER2P1",
+        "C_FILTER2P2",
+        "C_ISO2",
+        "C_OPA2",
+        "C_SPOKE_DVDT2",
+        "C_SPOKE_IN2",
+        "C_SPOKE_OUT2",
+        "J2",
+        "R_ADC_PD2N",
+        "R_ADC_PD2P",
+        "R_B2N",
+        "R_B2P",
+        "R_IN2N",
+        "R_IN2P",
+        "R_OUT2N",
+        "R_OUT2P",
+        "R_SPOKE_ILIM2",
+        "R_SPOKE_UVLO2",
+        "R_X2N",
+        "R_X2P",
+        "U_AFE2",
+        "U_ESD2",
+        "U_ISO2",
+        "U_SPOKE2"
+      ]
+    },
+    "analog_ch3_full": {
+      "bbox_mm": [
+        68.725,
+        19.955,
+        106.268081,
+        79.145
+      ],
+      "owner": "analog_ch3",
+      "refs": [
+        "C_A3N",
+        "C_A3P",
+        "C_ADC_AC3N1",
+        "C_ADC_AC3N2",
+        "C_ADC_AC3P1",
+        "C_ADC_AC3P2",
+        "C_ADC_CM3N",
+        "C_ADC_CM3P",
+        "C_FB3N",
+        "C_FB3P",
+        "C_FILTER3N1",
+        "C_FILTER3N2",
+        "C_FILTER3P1",
+        "C_FILTER3P2",
+        "C_ISO3",
+        "C_OPA3",
+        "C_SPOKE_DVDT3",
+        "C_SPOKE_IN3",
+        "C_SPOKE_OUT3",
+        "J3",
+        "R_ADC_PD3N",
+        "R_ADC_PD3P",
+        "R_B3N",
+        "R_B3P",
+        "R_IN3N",
+        "R_IN3P",
+        "R_OUT3N",
+        "R_OUT3P",
+        "R_SPOKE_ILIM3",
+        "R_SPOKE_UVLO3",
+        "R_X3N",
+        "R_X3P",
+        "U_AFE3",
+        "U_ESD3",
+        "U_ISO3",
+        "U_SPOKE3"
+      ]
+    },
+    "analog_ch4_full": {
+      "bbox_mm": [
+        90.725,
+        19.955,
+        128.268081,
+        79.145
+      ],
+      "owner": "analog_ch4",
+      "refs": [
+        "C_A4N",
+        "C_A4P",
+        "C_ADC_AC4N1",
+        "C_ADC_AC4N2",
+        "C_ADC_AC4P1",
+        "C_ADC_AC4P2",
+        "C_ADC_CM4N",
+        "C_ADC_CM4P",
+        "C_FB4N",
+        "C_FB4P",
+        "C_FILTER4N1",
+        "C_FILTER4N2",
+        "C_FILTER4P1",
+        "C_FILTER4P2",
+        "C_ISO4",
+        "C_OPA4",
+        "C_SPOKE_DVDT4",
+        "C_SPOKE_IN4",
+        "C_SPOKE_OUT4",
+        "J4",
+        "R_ADC_PD4N",
+        "R_ADC_PD4P",
+        "R_B4N",
+        "R_B4P",
+        "R_IN4N",
+        "R_IN4P",
+        "R_OUT4N",
+        "R_OUT4P",
+        "R_SPOKE_ILIM4",
+        "R_SPOKE_UVLO4",
+        "R_X4N",
+        "R_X4P",
+        "U_AFE4",
+        "U_ESD4",
+        "U_ISO4",
+        "U_SPOKE4"
+      ]
+    }
+  },
+  "checker_sha256": "f2e865eac4bd264f2a01eee322638f66951c066fbca57398fc8e1393800349c1",
+  "edge_connector_envelopes": {
+    "analog_ch2": {
+      "J2": [
+        66.875,
+        19.955,
+        84.268081,
+        34.495
+      ]
+    },
+    "analog_ch3": {
+      "J3": [
+        88.875,
+        19.955,
+        106.268081,
+        34.495
+      ]
+    },
+    "analog_ch4": {
+      "J4": [
+        110.875,
+        19.955,
+        128.268081,
+        34.495
+      ]
+    }
+  },
+  "first_checker_failure": "analog_ch2_full: physical cell off board outline",
+  "native_ref_count": 569,
+  "p1_accepted": false,
+  "routing_realized": false,
+  "status": "INCOMPLETE"
+}
