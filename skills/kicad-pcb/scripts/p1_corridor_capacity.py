@@ -2332,7 +2332,15 @@ def evaluate_coarse(board_path, contract_path, expected_contract_sha256=None, *,
             'hashes': hashes, 'errors': errors, 'allocations': results,
             'allocation_denominator': len(results), 'routing_realized': False,
             'p1_accepted': False,
-            'reason': 'independent filled-reference, effective-capacity and P1 review not supplied'}
+            'reason': 'independent filled-reference, effective-capacity and P1 review not supplied',
+            'unproved_by_screen': [
+                'P1 effective corridor capacity and reference allocation evidence',
+                'independent P1 engineering review',
+                'P2 local pad access and adjacency evidence',
+                'connector FULL physical qualification',
+                'P3 realized copper return, connectivity and route acceptance',
+                'release and physical qualification',
+            ]}
     if diagnose_all:
         result['diagnostics'] = diagnostics
     if portal_configured:
@@ -2686,7 +2694,10 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('board', type=Path)
     parser.add_argument('contract', type=Path)
-    parser.add_argument('output', type=Path)
+    parser.add_argument('output', type=Path, nargs='?',
+                        help='receipt destination; omit only with --check-only')
+    parser.add_argument('--check-only', action='store_true',
+                        help='print a fresh diagnostic without writing or replacing a receipt')
     parser.add_argument('--expected-contract-sha256', required=True)
     parser.add_argument('--source-requirements', type=Path)
     parser.add_argument('--interfaces', type=Path)
@@ -2703,6 +2714,11 @@ def main():
     parser.add_argument('--diagnose-all', action='store_true',
                         help='schema-2 only: report independent per-item defects without changing the verdict')
     args = parser.parse_args()
+    if args.check_only:
+        if args.output is not None:
+            parser.error('output must be omitted with --check-only')
+    elif args.output is None:
+        parser.error('output is required unless --check-only is used')
     result = evaluate(args.board, args.contract, args.expected_contract_sha256,
                       source_path=args.source_requirements, interface_path=args.interfaces,
                       alias_path=args.aliases, floorplan_path=args.floorplan,
@@ -2713,7 +2729,11 @@ def main():
                       edge_authority_path=args.edge_authority,
                       expected_edge_authority_sha256=args.expected_edge_authority_sha256,
                       diagnose_all=args.diagnose_all)
-    args.output.write_text(json.dumps(result, indent=2, sort_keys=True) + '\n')
+    rendered = json.dumps(result, indent=2, sort_keys=True) + '\n'
+    if args.check_only:
+        print(rendered, end='')
+    else:
+        args.output.write_text(rendered)
     return 0 if result['status'] == 'PASS' else 1
 
 

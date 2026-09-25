@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 import hashlib
+import subprocess
 import sys
 import tempfile
 import unittest
@@ -869,6 +870,57 @@ class CoarseCapacityTest(unittest.TestCase):
         result = self.run_case(diagnose_all=True)
         self.assertEqual(result['diagnostics'], [])
         self.assertEqual(result['status'], 'INCOMPLETE')
+
+    def test_check_only_replays_without_rewriting_historical_receipt(self):
+        expected = self.run_case()
+        self.assertEqual(expected['status'], 'INCOMPLETE')
+        self.assertFalse(expected['p1_accepted'])
+        self.assertIn('independent P1 engineering review', expected['unproved_by_screen'])
+        paths = {name: self.root / name for name in
+                 ('board.kicad_pcb', 'contract.json', 'source.yaml', 'interfaces.json',
+                  'aliases.yaml', 'floorplan.yaml')}
+        historical = self.root / 'historical_failed_receipt.json'
+        historical.write_bytes(b'{"status":"FAILED_RESEARCH"}\n')
+        before = historical.read_bytes()
+        files_before_replay = set(self.root.iterdir())
+        command = [sys.executable, str(Path(checker.__file__)),
+                   str(paths['board.kicad_pcb']), str(paths['contract.json']),
+                   '--check-only', '--expected-contract-sha256', checker.digest(paths['contract.json']),
+                   '--source-requirements', str(paths['source.yaml']),
+                   '--interfaces', str(paths['interfaces.json']),
+                   '--aliases', str(paths['aliases.yaml']),
+                   '--floorplan', str(paths['floorplan.yaml']),
+                   '--expected-source-sha256', checker.digest(paths['source.yaml']),
+                   '--expected-interface-sha256', checker.digest(paths['interfaces.json']),
+                   '--expected-alias-sha256', checker.digest(paths['aliases.yaml']),
+                   '--expected-floorplan-sha256', checker.digest(paths['floorplan.yaml'])]
+        replay = subprocess.run(command, capture_output=True, text=True)
+        self.assertEqual(replay.returncode, 1, replay.stderr)
+        self.assertEqual(json.loads(replay.stdout), expected)
+        self.assertEqual(historical.read_bytes(), before)
+        self.assertEqual(set(self.root.iterdir()), files_before_replay)
+
+        ordinary = self.root / 'ordinary_receipt.json'
+        saved = subprocess.run(command[:4] + [str(ordinary)] + command[5:],
+                               capture_output=True, text=True)
+        self.assertEqual(saved.returncode, replay.returncode, saved.stderr)
+        self.assertEqual(ordinary.read_text(), replay.stdout)
+
+        with_output = subprocess.run(command[:4] + [str(historical)] + command[4:],
+                                     capture_output=True, text=True)
+        self.assertEqual(with_output.returncode, 2)
+        self.assertIn('output must be omitted', with_output.stderr)
+        self.assertEqual(historical.read_bytes(), before)
+
+        # Independent expected digests reject a source edit even if the old
+        # contract and the historical receipt are left in place.
+        paths['source.yaml'].write_text(paths['source.yaml'].read_text() + '\n# changed\n')
+        stale = subprocess.run(command, capture_output=True, text=True)
+        self.assertNotEqual(stale.returncode, 0)
+        stale_result = json.loads(stale.stdout)
+        self.assertFalse(stale_result['p1_accepted'])
+        self.assertIn('source not bound to independent expected digest', stale_result['errors'])
+        self.assertEqual(historical.read_bytes(), before)
 
     def test_movable_obstruction_is_named_debt_without_false_p1_failure(self):
         result = self.run_case()
