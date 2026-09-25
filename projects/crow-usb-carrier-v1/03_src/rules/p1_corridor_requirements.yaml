@@ -202,10 +202,11 @@ integration_corridors:
   - block: clock_flash_debug
     region_face: north
     bbox:
-    - 219.0
+    - 219.25
     - 118.5
     - 222.8
     - 118.8
+    physical_cell_id: clock_qspi_transit
   layer: F.Cu
   reference_layer: In1.Cu
   nets:
@@ -289,6 +290,7 @@ integration_corridors:
     region_face: north
     layer: F.Cu
     to_reservation: qspi_gap_trunk
+    physical_cell_id: clock_qspi_transit
   - status: P2_REQUIRED
     source_pad: U_XU.2
     native_pad: U_XU.2
@@ -308,6 +310,7 @@ integration_corridors:
     region_face: north
     layer: F.Cu
     to_reservation: qspi_gap_trunk
+    physical_cell_id: clock_qspi_transit
   - status: P2_REQUIRED
     source_pad: U_FLASH.1
     native_pad: U_FLASH.1
@@ -317,6 +320,7 @@ integration_corridors:
     region_face: north
     layer: F.Cu
     to_reservation: qspi_gap_trunk
+    physical_cell_id: clock_qspi_transit
   - status: P2_REQUIRED
     source_pad: U_XU.127
     native_pad: U_XU.127
@@ -336,6 +340,7 @@ integration_corridors:
     region_face: north
     layer: F.Cu
     to_reservation: qspi_gap_trunk
+    physical_cell_id: clock_qspi_transit
   - status: P2_REQUIRED
     source_pad: U_XU.128
     native_pad: U_XU.128
@@ -355,6 +360,7 @@ integration_corridors:
     region_face: north
     layer: F.Cu
     to_reservation: qspi_gap_trunk
+    physical_cell_id: clock_qspi_transit
   - status: P2_REQUIRED
     source_pad: U_XU.1
     native_pad: U_XU.1
@@ -374,6 +380,7 @@ integration_corridors:
     region_face: north
     layer: F.Cu
     to_reservation: qspi_gap_trunk
+    physical_cell_id: clock_qspi_transit
   - status: P2_REQUIRED
     source_pad: U_XU.3
     native_pad: U_XU.3
@@ -393,6 +400,7 @@ integration_corridors:
     region_face: north
     layer: F.Cu
     to_reservation: qspi_gap_trunk
+    physical_cell_id: clock_qspi_transit
   return_obligation:
     status: P2_REQUIRED
     net: GND
@@ -419,9 +427,10 @@ integration_corridors:
     region_face: north
     bbox:
     - 217.35
-    - 118.5
+    - 110.5
     - 218.8
-    - 118.8
+    - 110.6
+    physical_cell_id: clock_oscillator_local
   layer: F.Cu
   reference_layer: In1.Cu
   nets:
@@ -477,6 +486,7 @@ integration_corridors:
     region_face: north
     layer: F.Cu
     to_reservation: xtal_handoff
+    physical_cell_id: clock_oscillator_local
   - status: P2_REQUIRED
     source_pad: R_XTAL_FB.1
     native_pad: R_XTAL_FB.1
@@ -486,6 +496,7 @@ integration_corridors:
     region_face: north
     layer: F.Cu
     to_reservation: xtal_handoff
+    physical_cell_id: clock_oscillator_local
   - status: P2_REQUIRED
     source_pad: U_XU.33
     native_pad: U_XU.33
@@ -505,6 +516,7 @@ integration_corridors:
     region_face: north
     layer: F.Cu
     to_reservation: xtal_handoff
+    physical_cell_id: clock_oscillator_local
   - status: P2_REQUIRED
     source_pad: R_XTAL_FB.2
     native_pad: R_XTAL_FB.2
@@ -514,6 +526,7 @@ integration_corridors:
     region_face: north
     layer: F.Cu
     to_reservation: xtal_handoff
+    physical_cell_id: clock_oscillator_local
   - status: P2_REQUIRED
     source_pad: Y_XU.3
     native_pad: Y_XU.3
@@ -523,6 +536,7 @@ integration_corridors:
     region_face: north
     layer: F.Cu
     to_reservation: xtal_handoff
+    physical_cell_id: clock_oscillator_local
   return_obligation:
     status: P2_REQUIRED
     net: GND
@@ -678,6 +692,18 @@ integration_corridors:
     reference_layer: In1.Cu
     proof: continuous_filled_reference
 physical_cells:
+- id: clock_flash_debug
+  owner_block: clock_flash_debug
+  refs: [C_FLASH, R_QSPI_CS, U_FLASH]
+  transit: false
+- id: clock_oscillator_local
+  owner_block: clock_flash_debug
+  refs: [C_XTAL_IN, C_XTAL_OUT, R_XTAL_DRIVE, R_XTAL_FB, Y_XU]
+  transit: false
+- id: clock_qspi_transit
+  owner_block: clock_flash_debug
+  refs: []
+  transit: true
 - id: xmos_core
   owner_block: xmos_core
   refs:

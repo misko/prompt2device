@@ -105,6 +105,12 @@ placement:
   post_anchors:
     # Planned P2-movable USB sense pose; no P1/P2 placement acceptance.
     Q_VBUS: [212.0, 74.5, 0]
+    # Provisional compact oscillator placement; native route and return remain open.
+    C_XTAL_IN: [218.0, 118.6, 0]
+    C_XTAL_OUT: [215.8, 117.0, 0]
+    R_XTAL_DRIVE: [218.0, 117.0, 180]
+    R_XTAL_FB: [216.6, 115.4, 180]
+    Y_XU: [216.6, 112.5, 0]
     C_PLL_100N: [220.0, 102.8, 0]
     C_PLL_1U: [220.0, 105.0, 0]
     FB_PLL: [223.0, 103.9, 180]
@@ -390,11 +396,13 @@ placement:
     - 110.5
     xmos_core_east: [217.2, 84, 224, 107]
     xmos_core_qspi_south: [218.95, 107, 232, 110.5]
-    clock_oscillator_handoff: [217.2, 107, 218.95, 118.5]
+    clock_oscillator_handoff: [217.2, 107, 218.95, 110.5]
+    clock_oscillator_local: [214, 110.5, 219.1, 119.2]
     board_integration_qspi: [219.2, 110.5, 223.2, 118.5]
+    clock_qspi_transit: [219.2, 118.5, 223.2, 119.2]
     clock_flash_debug:
     - 190
-    - 118.5
+    - 119.2
     - 232
     - 136
     audio_clock_tdm:
@@ -900,14 +908,16 @@ placement:
     region: audio_clock_tdm
   - match:
     - C_FLASH
+    - R_QSPI_CS
+    - U_FLASH
+    region: clock_flash_debug
+  - match:
     - C_XTAL_IN
     - C_XTAL_OUT
-    - R_QSPI_CS
     - R_XTAL_DRIVE
     - R_XTAL_FB
-    - U_FLASH
     - Y_XU
-    region: clock_flash_debug
+    region: clock_oscillator_local
   - match:
     - C_1V8_FF
     - C_1V8_OK_VDD
