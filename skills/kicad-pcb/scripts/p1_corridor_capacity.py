@@ -564,7 +564,7 @@ def _shared_ports(source, interfaces, board, outline, regions, zones, coverage, 
             raise ContractError(f'{ident}: source P2 pad-to-port obligations incomplete')
         for fp in board.GetFootprints():
             ref = fp.GetReference()
-            body = box_mm(fp.GetBoundingBox(True, True))
+            body = _physical_envelope(fp)
             pad_boxes = [box_mm(p.GetBoundingBox()) for p in fp.Pads()]
             if any(intersects(shape, r) for shape in [body] + pad_boxes for r in zone_rects + [scope]):
                 if owners.get(ref) not in participants:

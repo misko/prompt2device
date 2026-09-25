@@ -1187,13 +1187,45 @@ class CrowUsbPartialPortTest(unittest.TestCase):
             checked, {'bbox': self.port['reservation_bbox']}))
         self.assertNotIn('capacity_slots', checked)
 
-    def test_exact_board_rejects_full_body_or_foreign_region(self):
-        # Q_VBUS's full native envelope reaches x=215.410715 mm.
-        self.port['bbox'][0] = 215.32
-        self.port['geometry']['rectangles'][0][0] = 215.32
+    def test_exact_board_ignores_reference_text_outside_physical_envelope(self):
+        fp = next(f for f in self.board.GetFootprints() if f.GetReference() == 'Q_VBUS')
+        fp.Reference().SetVisible(True)
+        fp.Reference().SetPosition(pcbnew.VECTOR2I(iu(215.47), iu(74.5)))
+        self.assertTrue(checker.intersects(
+            checker.box_mm(fp.GetBoundingBox(True, True)), self.port['bbox']))
+        self.assertFalse(checker.intersects(checker._physical_envelope(fp), self.port['bbox']))
+        self.check_port()
+
+    def test_exact_board_rejects_physical_body_overlap(self):
+        # The physical body ends at x=213.955 mm; text is intentionally irrelevant.
+        self.port['geometry']['rectangles'][0][0] = 213.8
+        self.port['bbox'] = [213.9, 74.2, 213.95, 74.8]
         with self.assertRaisesRegex(checker.ContractError, 'native footprint/pad Q_VBUS'):
             self.check_port()
-        self.port['bbox'][0] = 215.42
+
+    def test_exact_board_rejects_pad_overlap(self):
+        # Pad 3 is [212.2, 74.2, 213.675, 74.8] mm.
+        self.port['geometry']['rectangles'][0][0] = 212.1
+        self.port['bbox'] = [212.3, 74.3, 212.4, 74.4]
+        with self.assertRaisesRegex(checker.ContractError, 'native footprint/pad Q_VBUS'):
+            self.check_port()
+
+    def test_exact_board_rejects_courtyard_overlap(self):
+        fp = next(f for f in self.board.GetFootprints() if f.GetReference() == 'Q_VBUS')
+        points = [(215.35, 74.1), (215.6, 74.1), (215.6, 74.9), (215.35, 74.9)]
+        for start, end in zip(points, points[1:] + points[:1]):
+            edge = pcbnew.PCB_SHAPE(fp)
+            edge.SetShape(pcbnew.SHAPE_T_SEGMENT)
+            edge.SetStart(pcbnew.VECTOR2I(iu(start[0]), iu(start[1])))
+            edge.SetEnd(pcbnew.VECTOR2I(iu(end[0]), iu(end[1])))
+            edge.SetLayer(pcbnew.F_CrtYd)
+            edge.SetWidth(iu(.05))
+            fp.Add(edge)
+        self.assertTrue(checker.intersects(checker._physical_envelope(fp), self.port['bbox']))
+        with self.assertRaisesRegex(checker.ContractError, 'native footprint/pad Q_VBUS'):
+            self.check_port()
+
+    def test_exact_board_rejects_foreign_region(self):
         self.floorplan['placement']['regions']['foreign'] = [216, 73, 216.5, 74]
         with self.assertRaisesRegex(checker.ContractError, 'unowned overlap'):
             self.check_port()
