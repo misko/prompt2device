@@ -77,3 +77,19 @@ finish and panel/assembly pathway. The 6L option is physically closer to
 XMOS's example; the 4L special 3313A is less disruptive **if** a vendor solve
 lands at W≤0.250 mm with a manufacturable gap and the required return. Neither
 has passed those conditions, and neither carries release or route credit.
+
+## Dated calculation correction — 2026-09-25
+
+The later [public JLC fixed-geometry packet](2026-09-25-jlc-3313-uniform-usb-solve-sol/README.md)
+records non-null backend outputs after this feasibility screen: 89.9172598796 Ω
+for a 4L 3313A **hypothesis** at W/G=0.180/0.100 mm, and 87.4366551479 Ω
+for a 6L 3313E **hypothesis** at W/G=0.120/0.100 mm. This updates the earlier
+statement that no numeric calculation was obtained. It does **not** establish
+an official 90-ohm width recommendation or authenticated named-stack solve:
+the calculation `accessId` was reused from the prior 7628G trial, no current
+frontend template-to-calculation mapping was captured, `HZ0=108.0` was
+retained with unknown semantics, and the raw HTTP capture lacks a timestamp.
+Both named templates are still special, and the 0.100-mm pair gap still
+requires a separate source-rule and complete board/fabrication review. The
+less disruptive 4L hypothesis merits verification first, without selection
+or route/release credit.
