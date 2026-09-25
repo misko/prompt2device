@@ -13,7 +13,9 @@ gate reuse.
 2. Bind IC research before placement work
 3. Schedule child work
 4. Planning readiness and the native candidate loop
-5. Backtrack and evidence boundaries
+5. Single-candidate operator workflow
+6. Backtrack and evidence boundaries
+7. Bounded integration research adapter
 
 ## Establish block ownership and interfaces
 
@@ -247,12 +249,9 @@ applicable checks and independent review precede promotion. Logical blocks
 need not be rectangular islands, and tightly coupled parts may share a
 placement/proof group while retaining their exact modular owners.
 
-Run independent checks together against that one candidate and retain their
-complete conflict set. Mark dependent checks unevaluated when their inputs fail;
-do not invent success or cascade misleading errors. Review a material integrated
-change, rather than commissioning a new review for each unchanged diagnostic.
-Changes to rules, exception authority or safety-critical claims still need their
-own applicable independent review before use.
+Use the single-candidate workflow below to evaluate and adopt an integrated
+change. Changes to rules, exception authority or safety-critical claims still
+need their own applicable independent review before use.
 
 For an investigation-only experiment, declare its bounded decision in the
 existing findings ledger, then use the existing runner (example deadline):
@@ -277,6 +276,52 @@ checker, report, source hash or worker does not reset the same question's
 attempt budget. Report required connections, DRC classes, filled-return proof
 and unresolved external dependencies on the current candidate. Add a checker
 only when a named acceptance decision lacks an adequate existing check.
+
+## Single-candidate operator workflow
+
+The existing integration spec/input packet and its resulting research receipt
+identify a candidate; the findings ledger owns outstanding work. `pause_state`
+owns the resume checkpoint and generated status views. These are distinct
+responsibilities, not competing copies of a board's acceptance status. Keep one
+active candidate in the existing handoff; historical receipts remain immutable
+evidence, not additional live revisions.
+
+| Operator step | Existing mechanism | Required outcome |
+|---|---|---|
+| Prepare | Exact source/input packet and bounded producer | One board, its effective rules and its owning source; no mixed-revision inputs |
+| Evaluate | Existing native/P1/modular checks composed in the candidate diagnostic | Full raw findings, grouped primary causes and explicit unevaluated checks |
+| Repair | Source recipe plus existing decision-progress budget | Measurable improvement to the same engineering question; preserve the prior accepted state |
+| Adopt | Owning project conductor and applicable independent reviews | Reopen the exact candidate bytes and satisfy the existing admission predicates |
+| Release | Existing staging, review, seal and publication procedure | Self-contained archive and the separate release/order verdicts |
+
+Keep intent and measurement separate. Owners, required net terminals, region
+constraints, fixed refs, exceptions and return duties are source declarations.
+Native pad bboxes, pad/net/layer census and placement poses are measurements.
+Regenerate measurements after source changes; never enlarge an owner region,
+invent a terminal or rewrite a reviewed hash to make the measurement pass.
+Proposed measurements must remain visibly unreviewed until the owning review
+accepts their exact subject.
+
+Group known consequential findings under the primary failure while retaining
+the raw checker result. For example, missing per-net witnesses can prevent an
+allocation from accounting for otherwise valid branches. Do not create one
+repair task per consequential error. Unknown errors retain their independent
+visibility; grouping is not proof that they are harmless.
+
+Reuse evidence only when its declared input identities still match. A board
+or placement change invalidates board-bound geometry, P1 and downstream
+route/review evidence. It does not by itself reopen an unchanged initial-stock
+selection decision. Changes to part identity, quantity, pin map or footprint
+still follow selection admission. Missing dependency declarations mean the
+evidence cannot be assumed reusable. Never refresh acceptance from producer
+output hashes.
+
+The diagnostic adapter does not promote boards. In particular, the experimental
+`route_candidate_workspace.publish_accepted_bundle` remains disabled until its
+authoritative regrade requirement is implemented. Use the existing project
+conductor's admitted path; if that path refuses, expose the unresolved admission
+instead of updating an accepted pointer. A `prototype_only` candidate retains
+its scoped research restrictions throughout this workflow.
 
 ## Backtrack and evidence boundaries
 
@@ -330,6 +375,29 @@ to their reviewed hashes. Baseline and candidate diagnostics remain separate.
 This first slice keeps PRO/DRU, floorplan, interfaces and aliases pinned to the
 input packet. Changing them requires preparing a new coherent input packet;
 the adapter does not automatically integrate a placement source edit.
+
+Before preparing that packet, inspect stale native-pad witnesses without
+launching another producer:
+
+```bash
+python3 skills/pcb-design/scripts/integration_candidate.py diagnose-native-witnesses \
+  PATH_TO_CANDIDATE.kicad_pcb PATH_TO_OLD_CONTRACT.json
+```
+
+This read-only diagnostic returns a proposed contract copy, exact observed
+board identity, bbox differences and review debt. Only unresolved-branch
+native-pad witnesses are regenerated; region faces, reservations, ownership,
+aliases and safety intent require their owning source edits. Missing, duplicate
+or wrong-net/layer native pads refuse a proposal. The output is a draft for
+review, not an approved contract, and does not refresh the caller's expected
+review hashes. Native DRC, routing, source admission and the other domain checks
+still run through their existing owners.
+
+P1 diagnostics also expose grouped missing per-net witnesses and attributable
+branch-accounting consequences alongside the complete raw result. This changes
+the repair queue, never the checker verdict. The Crow
+`2026-09-25-ti-current-coupled-replay/diagnose_p1_rebind.py` pilot uses these
+shared helpers instead of maintaining its own pad-repair loop.
 
 Assess the reserved launch through the existing investigation protocol before
 another producer run. Diagnostic receipts and task PASS never close engineering

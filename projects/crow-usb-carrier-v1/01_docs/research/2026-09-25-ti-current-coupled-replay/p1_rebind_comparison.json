@@ -1,4 +1,21 @@
 {
+  "adapter_sha256": "a0250b54ee7a8190ed01d27b8de85e30fbeb8571393be250fb1fa3043bce18c4",
+  "audio_en_owner_probe": {
+    "before": {
+      "board_sha256": "bdd5bccb2617d7bbe1de9cd27cda1a0e2f68467bedd169704473a010286a948b",
+      "outside_owner": [
+        "R_AUDIO_PD.1",
+        "U_AUDIO.6",
+        "U_ISO1.2"
+      ],
+      "terminal_count": 11
+    },
+    "three_pose": {
+      "board_sha256": "0bd3ac8dd8c80177958c009a0644f0bc723bcee7ad7085c2fb76c09c5df958f5",
+      "outside_owner": [],
+      "terminal_count": 11
+    }
+  },
   "board_sha256": "bdd5bccb2617d7bbe1de9cd27cda1a0e2f68467bedd169704473a010286a948b",
   "cases": {
     "before": {
@@ -17,7 +34,7 @@
         "xmos_service_escape": "FAIL"
       },
       "changed_native_witnesses": [],
-      "contract_sha256": "f273208944b4a99b4a026e363dc5dd54825184ebf7a439ad420a11754a49c579",
+      "contract_sha256": "1ca0ecf24e208fafc0e86682ba0bd90b487979a2ebd6ad16e646cd5d8372c4be",
       "diagnostics": [
         {
           "allocation": "xmos_service_escape",
@@ -105,6 +122,122 @@
         "timing_xu_i2c_sda_1v8_unplaced_tree: unresolved branch representative witness denominator mismatch",
         "timing_adc_digital_bad_unplaced_tree: unresolved branch representative witness denominator mismatch"
       ],
+      "finding_groups": {
+        "consequent_branch_errors": [
+          "timing_adc_bclk_unplaced_tree: unresolved branch representative witness denominator mismatch",
+          "timing_adc_fsync_unplaced_tree: unresolved branch representative witness denominator mismatch",
+          "timing_adc_dout1_unplaced_tree: unresolved branch representative witness denominator mismatch",
+          "timing_adc_i2c_scl_unplaced_tree: unresolved branch representative witness denominator mismatch",
+          "timing_adc_i2c_sda_unplaced_tree: unresolved branch representative witness denominator mismatch",
+          "timing_adc_ready_unplaced_tree: unresolved branch representative witness denominator mismatch",
+          "timing_xu_i2c_scl_1v8_unplaced_tree: unresolved branch representative witness denominator mismatch",
+          "timing_xu_i2c_sda_1v8_unplaced_tree: unresolved branch representative witness denominator mismatch",
+          "timing_adc_digital_bad_unplaced_tree: unresolved branch representative witness denominator mismatch"
+        ],
+        "other_findings": [
+          "qspi_gap: integration affected endpoint/layer denominator mismatch",
+          "xtal_south_cap: integration affected endpoint/layer denominator mismatch",
+          "jtag_strip: integration affected endpoint/layer denominator mismatch",
+          "xu_reset_five_terminal: unresolved branch representative witness denominator mismatch",
+          {
+            "allocation": "xmos_service_escape",
+            "index": 28,
+            "kind": "boundary_witness",
+            "reason": "U_XU.38: unresolved branch boundary is not native pad",
+            "source": "U_XU.38"
+          },
+          {
+            "allocation": "power_boundary_windows",
+            "index": 1,
+            "kind": "boundary_witness",
+            "reason": "C_ADC_3V3X_OK_VDD.2: witness bbox is a nonlocal bridge across source region",
+            "source": "C_ADC_3V3X_OK_VDD.2"
+          },
+          {
+            "allocation": "power_boundary_windows",
+            "index": 2,
+            "kind": "boundary_witness",
+            "reason": "C_CORE_FF.1: witness bbox is a nonlocal bridge across source region",
+            "source": "C_CORE_FF.1"
+          },
+          {
+            "allocation": "power_boundary_windows",
+            "index": 3,
+            "kind": "boundary_witness",
+            "reason": "C_SPOKE_IN1.1: witness bbox is a nonlocal bridge across source region",
+            "source": "C_SPOKE_IN1.1"
+          },
+          {
+            "allocation": "power_boundary_windows",
+            "index": 4,
+            "kind": "boundary_witness",
+            "reason": "R_ADC_1V8_OK_TOP.1: witness bbox is a nonlocal bridge across source region",
+            "source": "R_ADC_1V8_OK_TOP.1"
+          },
+          {
+            "allocation": "power_boundary_windows",
+            "index": 5,
+            "kind": "boundary_witness",
+            "reason": "R_ADC_3V3X_OK_TOP.1: witness bbox is a nonlocal bridge across source region",
+            "source": "R_ADC_3V3X_OK_TOP.1"
+          },
+          {
+            "allocation": "power_boundary_windows",
+            "index": 6,
+            "kind": "boundary_witness",
+            "reason": "C_ADC_3V3X_OK_VDD.1: P2-movable owner requires virtual block-face witness",
+            "source": "C_ADC_3V3X_OK_VDD.1"
+          },
+          {
+            "allocation": "power_boundary_windows",
+            "index": 7,
+            "kind": "boundary_witness",
+            "reason": "C_1V8_OK_VDD.1: witness bbox is a nonlocal bridge across source region",
+            "source": "C_1V8_OK_VDD.1"
+          },
+          {
+            "allocation": "power_boundary_windows",
+            "index": 8,
+            "kind": "boundary_witness",
+            "reason": "C_ISO1.1: witness bbox is a nonlocal bridge across source region",
+            "source": "C_ISO1.1"
+          },
+          {
+            "allocation": "power_boundary_windows",
+            "index": 9,
+            "kind": "boundary_witness",
+            "reason": "U_ADC_PWR_BAD.2: witness bbox is a nonlocal bridge across source region",
+            "source": "U_ADC_PWR_BAD.2"
+          }
+        ],
+        "primary_missing_per_net_witnesses": [
+          {
+            "allocation": "adc_timing_xmos_bundle",
+            "net": "AUDIO_MCLK_1V8",
+            "reason": "missing per-net boundary witness"
+          },
+          {
+            "allocation": "adc_timing_xmos_bundle",
+            "net": "TDM_BCLK_1V8",
+            "reason": "missing per-net boundary witness"
+          },
+          {
+            "allocation": "adc_timing_xmos_bundle",
+            "net": "TDM_DATA_1V8",
+            "reason": "missing per-net boundary witness"
+          },
+          {
+            "allocation": "adc_timing_xmos_bundle",
+            "net": "TDM_FSYNC_1V8",
+            "reason": "missing per-net boundary witness"
+          },
+          {
+            "allocation": "adc_timing_xmos_bundle",
+            "net": "AUDIO_EN",
+            "reason": "missing per-net boundary witness"
+          }
+        ]
+      },
       "p1_accepted": false,
       "status": "FAIL"
     },
@@ -141,7 +274,7 @@
           ]
         }
       ],
-      "contract_sha256": "9a3a66cd58c2e893fb9d1a4f223c0e4b799626ae3c3c6d799781bffb6fbc0c51",
+      "contract_sha256": "91c1636325b4b9911828c7bd153b179045af07725b58547741edd7d27ff78a4e",
       "diagnostics": [
         {
           "allocation": "power_boundary_windows",
@@ -218,6 +351,111 @@
         "timing_xu_i2c_sda_1v8_unplaced_tree: unresolved branch representative witness denominator mismatch",
         "timing_adc_digital_bad_unplaced_tree: unresolved branch representative witness denominator mismatch"
       ],
+      "finding_groups": {
+        "consequent_branch_errors": [
+          "timing_adc_bclk_unplaced_tree: unresolved branch representative witness denominator mismatch",
+          "timing_adc_fsync_unplaced_tree: unresolved branch representative witness denominator mismatch",
+          "timing_adc_dout1_unplaced_tree: unresolved branch representative witness denominator mismatch",
+          "timing_adc_i2c_scl_unplaced_tree: unresolved branch representative witness denominator mismatch",
+          "timing_adc_i2c_sda_unplaced_tree: unresolved branch representative witness denominator mismatch",
+          "timing_adc_ready_unplaced_tree: unresolved branch representative witness denominator mismatch",
+          "timing_xu_i2c_scl_1v8_unplaced_tree: unresolved branch representative witness denominator mismatch",
+          "timing_xu_i2c_sda_1v8_unplaced_tree: unresolved branch representative witness denominator mismatch",
+          "timing_adc_digital_bad_unplaced_tree: unresolved branch representative witness denominator mismatch"
+        ],
+        "other_findings": [
+          {
+            "allocation": "power_boundary_windows",
+            "index": 1,
+            "kind": "boundary_witness",
+            "reason": "C_ADC_3V3X_OK_VDD.2: witness bbox is a nonlocal bridge across source region",
+            "source": "C_ADC_3V3X_OK_VDD.2"
+          },
+          {
+            "allocation": "power_boundary_windows",
+            "index": 2,
+            "kind": "boundary_witness",
+            "reason": "C_CORE_FF.1: witness bbox is a nonlocal bridge across source region",
+            "source": "C_CORE_FF.1"
+          },
+          {
+            "allocation": "power_boundary_windows",
+            "index": 3,
+            "kind": "boundary_witness",
+            "reason": "C_SPOKE_IN1.1: witness bbox is a nonlocal bridge across source region",
+            "source": "C_SPOKE_IN1.1"
+          },
+          {
+            "allocation": "power_boundary_windows",
+            "index": 4,
+            "kind": "boundary_witness",
+            "reason": "R_ADC_1V8_OK_TOP.1: witness bbox is a nonlocal bridge across source region",
+            "source": "R_ADC_1V8_OK_TOP.1"
+          },
+          {
+            "allocation": "power_boundary_windows",
+            "index": 5,
+            "kind": "boundary_witness",
+            "reason": "R_ADC_3V3X_OK_TOP.1: witness bbox is a nonlocal bridge across source region",
+            "source": "R_ADC_3V3X_OK_TOP.1"
+          },
+          {
+            "allocation": "power_boundary_windows",
+            "index": 6,
+            "kind": "boundary_witness",
+            "reason": "C_ADC_3V3X_OK_VDD.1: P2-movable owner requires virtual block-face witness",
+            "source": "C_ADC_3V3X_OK_VDD.1"
+          },
+          {
+            "allocation": "power_boundary_windows",
+            "index": 7,
+            "kind": "boundary_witness",
+            "reason": "C_1V8_OK_VDD.1: witness bbox is a nonlocal bridge across source region",
+            "source": "C_1V8_OK_VDD.1"
+          },
+          {
+            "allocation": "power_boundary_windows",
+            "index": 8,
+            "kind": "boundary_witness",
+            "reason": "C_ISO1.1: witness bbox is a nonlocal bridge across source region",
+            "source": "C_ISO1.1"
+          },
+          {
+            "allocation": "power_boundary_windows",
+            "index": 9,
+            "kind": "boundary_witness",
+            "reason": "U_ADC_PWR_BAD.2: witness bbox is a nonlocal bridge across source region",
+            "source": "U_ADC_PWR_BAD.2"
+          }
+        ],
+        "primary_missing_per_net_witnesses": [
+          {
+            "allocation": "adc_timing_xmos_bundle",
+            "net": "AUDIO_MCLK_1V8",
+            "reason": "missing per-net boundary witness"
+          },
+          {
+            "allocation": "adc_timing_xmos_bundle",
+            "net": "TDM_BCLK_1V8",
+            "reason": "missing per-net boundary witness"
+          },
+          {
+            "allocation": "adc_timing_xmos_bundle",
+            "net": "TDM_DATA_1V8",
+            "reason": "missing per-net boundary witness"
+          },
+          {
+            "allocation": "adc_timing_xmos_bundle",
+            "net": "TDM_FSYNC_1V8",
+            "reason": "missing per-net boundary witness"
+          },
+          {
+            "allocation": "adc_timing_xmos_bundle",
+            "net": "AUDIO_EN",
+            "reason": "missing per-net boundary witness"
+          }
+        ]
+      },
       "p1_accepted": false,
       "status": "FAIL"
     }
@@ -225,6 +463,13 @@
   "checker_sha256": "5c4eba1e1286c6dd69e8f553e99117ba70acdd5c45740eb9678bdf5b5a529e10",
   "engineering_acceptance": false,
   "expected_hashes_self_derived": true,
+  "invalidated_reviews": [
+    "placement",
+    "geometry",
+    "P1",
+    "routing",
+    "release"
+  ],
   "p1_accepted": false,
   "source_sha256": "f6f132891712bfcb1cec4d1df6714748337040ba5c42ae3fecd14fb9c35d1222"
 }

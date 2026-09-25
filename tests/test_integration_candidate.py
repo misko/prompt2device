@@ -343,6 +343,113 @@ def copy_spec(spec):
     return json.loads(json.dumps(spec))
 
 
+def test_native_witness_proposal_is_read_only_and_revokes_claims():
+    project = ROOT / "projects/crow-usb-carrier-v1"
+    board = project / "01_docs/research/2026-09-25-ti-vmid-coupled-ch8-sol/candidate.kicad_pcb"
+    contract_path = project / "01_docs/research/2026-09-25-ti-unified-p1-diagnostic-sol/coarse.json"
+    contract = json.loads(contract_path.read_text())
+    original = copy_spec(contract)
+    board_bytes, contract_bytes = board.read_bytes(), contract_path.read_bytes()
+    witness = next(w for allocation in contract["allocations"]
+                   for w in allocation.get("boundary_witnesses", [])
+                   if w.get("kind") == "unresolved_multiterminal_branch")
+    witness["boundary_bbox"] = [0, 0, 1, 1]
+    contract["status"] = "PASS"
+    contract["p1_accepted"] = True
+    contract["routing_realized"] = True
+    report = candidate.propose_native_witnesses(board, contract)
+    assert report["geometry_changes"]
+    assert report["proposed_contract"]["status"] == "INCOMPLETE"
+    assert report["proposed_contract"]["p1_accepted"] is False
+    assert report["proposed_contract"]["routing_realized"] is False
+    assert report["invalidated_reviews"] == ["placement", "geometry", "P1", "routing", "release"]
+    assert report["independent_review_required"] is True
+    assert witness["boundary_bbox"] == [0, 0, 1, 1]
+    assert board.read_bytes() == board_bytes and contract_path.read_bytes() == contract_bytes
+    clean = candidate.propose_native_witnesses(board, report["proposed_contract"])
+    assert clean["geometry_changes"] == []
+    assert clean["board_binding_changed"] is False
+    assert clean["invalidated_reviews"] == []
+    assert original["p1_accepted"] is False
+    output = io.StringIO()
+    with redirect_stdout(output):
+        assert candidate.main(["diagnose-native-witnesses", str(board), str(contract_path)]) == 0
+    cli = json.loads(output.getvalue())
+    assert cli["input_contract_sha256"] == sha(contract_path)
+    assert cli["engineering_acceptance"] is False
+    assert board.read_bytes() == board_bytes and contract_path.read_bytes() == contract_bytes
+
+
+def test_native_witness_rejects_missing_duplicate_and_wrong_net(tmp_path):
+    board = tmp_path / "board.kicad_pcb"
+    board.write_text("native test board")
+    class Box:
+        def GetLeft(self): return 0
+        def GetTop(self): return 0
+        def GetRight(self): return 1
+        def GetBottom(self): return 1
+    class Pad:
+        def __init__(self, net="N"): self.net = net
+        def GetNumber(self): return "1"
+        def GetNetname(self): return self.net
+        def IsOnLayer(self, _): return True
+        def GetBoundingBox(self): return Box()
+    class Footprint:
+        def __init__(self, pads): self.pads = pads
+        def GetReference(self): return "U1"
+        def Pads(self): return self.pads
+    class Board:
+        def __init__(self, pads): self.pads = pads
+        def GetFootprints(self): return [Footprint(self.pads)]
+        def GetLayerID(self, _): return 0
+    class FakePcbnew:
+        pads = []
+        @classmethod
+        def LoadBoard(cls, _): return Board(cls.pads)
+        @staticmethod
+        def IsCopperLayer(_): return True
+        @staticmethod
+        def ToMM(value): return value
+    prior_pcbnew = sys.modules.get("pcbnew")
+    sys.modules["pcbnew"] = FakePcbnew
+    contract = {"allocations": [{"id": "a", "boundary_witnesses": [{
+        "kind": "unresolved_multiterminal_branch", "native": "U1.1", "net": "N",
+        "layer": "F.Cu", "boundary_bbox": [0, 0, 1, 1]}]}]}
+    try:
+        for pads, fragment in (([], "found 0"), ([Pad(), Pad()], "found 2"),
+                               ([Pad("WRONG")], "pad/net mismatch")):
+            FakePcbnew.pads = pads
+            with raises(ValueError, fragment):
+                candidate.propose_native_witnesses(board, contract)
+    finally:
+        if prior_pcbnew is None:
+            sys.modules.pop("pcbnew", None)
+        else:
+            sys.modules["pcbnew"] = prior_pcbnew
+
+
+def test_findings_group_primary_and_consequent_without_dropping_unknown():
+    contract = {"allocations": [{"id": "a", "coverage_nets": ["N", "M"],
+                                 "boundary_witnesses": [{"net": "M"}],
+                                 "reservations": [{"kind": "unresolved_multiterminal_branch",
+                                                   "branch_id": "tree-n", "nets": ["N"]}]}]}
+    result = {"errors": ["tree-n: unresolved branch representative witness denominator mismatch",
+                         "unknown: independent finding",
+                         "other-tree: unresolved branch representative witness denominator mismatch"],
+              "allocations": [{"id": "a", "status": "FAIL",
+                               "reason": "a: missing per-net boundary witness"}],
+              "diagnostics": [{"reason": "stale native pad"}]}
+    grouped = candidate.summarize_p1_findings(result, contract)
+    assert grouped["primary_missing_per_net_witnesses"] == [
+        {"allocation": "a", "net": "N", "reason": "missing per-net boundary witness"}]
+    assert grouped["consequent_branch_errors"] == [result["errors"][0]]
+    assert result["errors"][1:] == grouped["other_findings"][:2]
+    assert grouped["raw_errors"] == result["errors"]
+    assert grouped["raw_allocations"] == result["allocations"]
+    bad = candidate._safe_finding_groups({"errors": "malformed", "status": "FAIL"}, contract)
+    assert bad["status"] == "UNEVALUATED"
+
+
 if __name__ == "__main__":
     tests = [test_bounded_trial_collects_separate_diagnostics_without_acceptance,
              test_bad_packet_never_mutates_budget_or_attempt,
@@ -362,3 +469,10 @@ if __name__ == "__main__":
             print(f"PASS {test.__name__}")
     test_crow_d0_packet_and_e07_mismatch_are_read_only()
     print("PASS test_crow_d0_packet_and_e07_mismatch_are_read_only")
+    test_native_witness_proposal_is_read_only_and_revokes_claims()
+    print("PASS test_native_witness_proposal_is_read_only_and_revokes_claims")
+    with tempfile.TemporaryDirectory(prefix="native-witness-errors-") as directory:
+        test_native_witness_rejects_missing_duplicate_and_wrong_net(Path(directory))
+    print("PASS test_native_witness_rejects_missing_duplicate_and_wrong_net")
+    test_findings_group_primary_and_consequent_without_dropping_unknown()
+    print("PASS test_findings_group_primary_and_consequent_without_dropping_unknown")

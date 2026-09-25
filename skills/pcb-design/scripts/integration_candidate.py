@@ -9,6 +9,7 @@ an expected authority hash.
 from __future__ import annotations
 
 import argparse
+import copy
 import hashlib
 import json
 import os
@@ -31,10 +32,157 @@ OPTIONAL = frozenset({"edge_authority"})
 TOOLS = frozenset({"producer", "p1_checker", "modular_checker"})
 HEX = re.compile(r"[0-9a-f]{64}\Z")
 SAFE = re.compile(r"[A-Za-z0-9][A-Za-z0-9._-]{0,127}\Z")
+UNRESOLVED_WITNESSES = frozenset({"unresolved_multiterminal_branch",
+                                  "unresolved_two_terminal_crossing"})
 
 
 def _sha(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def propose_native_witnesses(board_path: Path, contract: dict[str, Any]) -> dict[str, Any]:
+    """Propose only unresolved-branch pad bboxes from this exact native board.
+
+    The returned contract is an in-memory copy. Its observed board digest is
+    useful for a subsequent independent review, but is not a reviewed digest.
+    Ambiguous pad identities or mismatched nets fail before any proposal exists.
+    """
+    try:
+        import pcbnew
+    except ImportError:
+        sys.path.append("/usr/lib/python3/dist-packages")
+        import pcbnew
+    board_path = Path(board_path)
+    board_hash = _sha(board_path)
+    board = pcbnew.LoadBoard(str(board_path))
+    if board is None:
+        raise ValueError("native board could not be loaded")
+    if not isinstance(contract, dict) or not isinstance(contract.get("allocations"), list):
+        raise ValueError("contract allocations missing")
+    pads: dict[str, list[Any]] = {}
+    for footprint in board.GetFootprints():
+        ref = footprint.GetReference()
+        for pad in footprint.Pads():
+            pads.setdefault(f"{ref}.{pad.GetNumber()}", []).append(pad)
+    proposed = copy.deepcopy(contract)
+    changes = []
+    for allocation in proposed["allocations"]:
+        if not isinstance(allocation, dict) or not isinstance(allocation.get("boundary_witnesses", []), list):
+            raise ValueError("malformed allocation witnesses")
+        for index, witness in enumerate(allocation.get("boundary_witnesses", [])):
+            if not isinstance(witness, dict) or witness.get("kind") not in UNRESOLVED_WITNESSES:
+                continue
+            native, net, layer = witness.get("native"), witness.get("net"), witness.get("layer")
+            if not all(isinstance(value, str) and value for value in (native, net, layer)):
+                raise ValueError(f"{allocation.get('id')} witness {index}: malformed native pad/net/layer")
+            found = pads.get(native, [])
+            if len(found) != 1:
+                raise ValueError(f"{native}: expected one exact native pad, found {len(found)}")
+            pad = found[0]
+            if pad.GetNetname() != net:
+                raise ValueError(f"{native}: native pad/net mismatch ({pad.GetNetname()} != {net})")
+            try:
+                layer_id = board.GetLayerID(layer)
+                on_layer = pad.IsOnLayer(layer_id)
+            except (AttributeError, ValueError) as exc:
+                raise ValueError(f"{native}: invalid native layer {layer}") from exc
+            if not on_layer or not pcbnew.IsCopperLayer(layer_id):
+                raise ValueError(f"{native}: pad absent from copper layer {layer}")
+            box = pad.GetBoundingBox()
+            bbox = [pcbnew.ToMM(value) for value in
+                    (box.GetLeft(), box.GetTop(), box.GetRight(), box.GetBottom())]
+            previous = witness.get("boundary_bbox")
+            if previous != bbox:
+                changes.append({"allocation": allocation.get("id"), "index": index,
+                                "source": witness.get("source"), "native": native,
+                                "net": net, "old_bbox": previous, "proposed_bbox": bbox})
+                witness["boundary_bbox"] = bbox
+    previous_board_hash = contract.get("board_sha256")
+    board_changed = previous_board_hash != board_hash
+    proposed["board_sha256"] = board_hash
+    # A diagnostic proposal must never inherit an acceptance claim.
+    proposed["p1_accepted"] = False
+    proposed["routing_realized"] = False
+    proposed["status"] = "INCOMPLETE"
+    for claim in ("engineering_acceptance", "release_admitted", "order_admitted",
+                  "reviewed_contract_for_this_board", "replay_hashes_pinned"):
+        if claim in proposed:
+            proposed[claim] = False
+    return {"kind": "p1-native-witness-diagnostic", "board_sha256": board_hash,
+            "input_contract_semantic_sha256": hashlib.sha256(
+                json.dumps(contract, sort_keys=True, separators=(",", ":")).encode()).hexdigest(),
+            "observed_contract_board_sha256": previous_board_hash,
+            "board_binding_changed": board_changed,
+            "geometry_changes": changes, "proposed_contract": proposed,
+            "invalidated_reviews": (["placement", "geometry", "P1", "routing", "release"]
+                                    if board_changed or changes else []),
+            "selection_review": "NOT_EVALUATED_BY_GEOMETRY_DIAGNOSTIC",
+            "independent_review_required": True, "engineering_acceptance": False,
+            "p1_accepted": False}
+
+
+def summarize_p1_findings(result: dict[str, Any], contract: dict[str, Any]) -> dict[str, Any]:
+    """Group likely root witness gaps without dropping checker findings."""
+    errors = result.get("errors", [])
+    diagnostics = result.get("diagnostics", [])
+    if not isinstance(errors, list) or not isinstance(diagnostics, list):
+        raise ValueError("P1 findings must be arrays")
+    missing = []
+    missing_by_allocation = {}
+    allocation_findings = result.get("allocations", [])
+    reasons = {row.get("id"): row.get("reason") for row in allocation_findings
+               if isinstance(row, dict)}
+    for allocation in contract.get("allocations", []):
+        if not isinstance(allocation, dict):
+            continue
+        name = allocation.get("id")
+        if reasons.get(name) != f"{name}: missing per-net boundary witness" and not any(
+                isinstance(error, str) and error == f"{name}: missing per-net boundary witness"
+                for error in errors):
+            continue
+        covered = {w.get("net") for w in allocation.get("boundary_witnesses", [])
+                   if isinstance(w, dict)}
+        for net in allocation.get("coverage_nets", []):
+            if net not in covered:
+                missing.append({"allocation": name, "net": net,
+                                "reason": "missing per-net boundary witness"})
+                missing_by_allocation.setdefault(name, set()).add(net)
+    branch_ids = {w.get("branch_id") for allocation in contract.get("allocations", [])
+                  if isinstance(allocation, dict)
+                  for w in allocation.get("boundary_witnesses", [])
+                  if isinstance(w, dict) and w.get("kind") in UNRESOLVED_WITNESSES}
+    consequent_ids = {reservation.get("branch_id") for allocation in contract.get("allocations", [])
+                      if isinstance(allocation, dict)
+                      for reservation in allocation.get("reservations", [])
+                      if isinstance(reservation, dict) and
+                      reservation.get("kind") in UNRESOLVED_WITNESSES and
+                      allocation.get("id") in missing_by_allocation}
+    consequent, other = [], []
+    for error in errors:
+        if isinstance(error, str) and "unresolved branch representative witness denominator mismatch" in error and error.split(":", 1)[0] in consequent_ids:
+            consequent.append(error)
+        elif isinstance(error, str) and "missing per-net boundary witness" in error:
+            continue
+        else:
+            other.append(error)
+    for finding in diagnostics:
+        other.append(finding)
+    return {"primary_missing_per_net_witnesses": missing,
+            "consequent_branch_errors": consequent,
+            "other_findings": other,
+            "raw_errors": copy.deepcopy(errors),
+            "raw_diagnostics": copy.deepcopy(diagnostics),
+            "raw_allocations": copy.deepcopy(allocation_findings),
+            "observed_branch_witness_ids": sorted(ident for ident in branch_ids if isinstance(ident, str)),
+            "engineering_acceptance": False}
+
+
+def _safe_finding_groups(observed: dict[str, Any], contract: dict[str, Any]) -> dict[str, Any]:
+    try:
+        return summarize_p1_findings(observed, contract)
+    except (TypeError, ValueError, KeyError, AttributeError) as exc:
+        return {"status": "UNEVALUATED", "reason": f"{type(exc).__name__}: {exc}",
+                "engineering_acceptance": False}
 
 
 def _path(root: Path, relative: str, label: str) -> Path:
@@ -205,7 +353,8 @@ def _diagnostics(paths: dict[str, Path], files: dict[str, Any], board: Path | No
                     result[label] = {**observed, "board_sha256": _sha(checked_board),
                                      "engineering_acceptance": False,
                                      "reviewed_contract_for_this_board": True,
-                                     "replay_hashes_pinned": True}
+                                     "replay_hashes_pinned": True,
+                                     "finding_groups": _safe_finding_groups(observed, candidate_contract_data)}
                     continue
                 if (contract_hash != files["p1_contract"]["sha256"] or
                         source_hash != files["p1_source"]["sha256"]):
@@ -223,7 +372,9 @@ def _diagnostics(paths: dict[str, Path], files: dict[str, Any], board: Path | No
             result[label] = {**observed, "board_sha256": _sha(checked_board),
                              "engineering_acceptance": False,
                              "reviewed_contract_for_this_board":
-                                 _sha(checked_board) == files["board"]["sha256"]}
+                                 _sha(checked_board) == files["board"]["sha256"],
+                             "finding_groups": _safe_finding_groups(
+                                 observed, json.loads(paths["p1_contract"].read_text()))}
     except Exception as exc:
         result["baseline_p1"] = {"status": "UNEVALUATED", "reason": f"{type(exc).__name__}: {exc}"}
         result["candidate_p1"] = {"status": "UNEVALUATED", "reason": f"{type(exc).__name__}: {exc}"}
@@ -354,6 +505,23 @@ def run(project: Path, spec: dict[str, Any]) -> dict[str, Any]:
 
 
 def main(argv: list[str] | None = None) -> int:
+    if argv is None:
+        argv = sys.argv[1:]
+    if argv and argv[0] == "diagnose-native-witnesses":
+        parser = argparse.ArgumentParser(description="Read-only native unresolved-branch witness proposal")
+        parser.add_argument("command")
+        parser.add_argument("board", type=Path)
+        parser.add_argument("contract", type=Path)
+        args = parser.parse_args(argv)
+        try:
+            contract = json.loads(args.contract.read_text())
+            report = propose_native_witnesses(args.board, contract)
+            report["input_contract_sha256"] = _sha(args.contract)
+        except Exception as exc:
+            print(f"NATIVE WITNESS DIAGNOSTIC REFUSED: {type(exc).__name__}: {exc}", file=sys.stderr)
+            return 2
+        print(json.dumps(report, indent=2, sort_keys=True))
+        return 0
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("project", type=Path)
     parser.add_argument("spec", type=Path)

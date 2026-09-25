@@ -62,6 +62,12 @@ canonical source or board, and grants no route or P1 credit. Reproduce with
 material board task is resolving the `AUDIO_EN` owner geometry and proving
 timing access on this same board, followed by source-author review.
 
+This diagnostic now calls the shared `integration_candidate.py` proposal and
+finding grouper. The saved report retains all raw errors and item findings;
+its repair view shows **five missing timing witnesses**, **nine consequential
+branch errors**, and **nine independent power findings**. The proposal only
+measures native geometry. It does not refresh a review hash or accept P1.
+
 One [three-pose private trial](audio_en_three_pose.py) addresses that owner
 geometry on the same current-source board. It moves `U_ISO1` to
 `[27.05, 74.6, 0]`, `U_AUDIO` to `[28.7, 109.85, 0]`, and `R_AUDIO_PD` to
@@ -79,6 +85,11 @@ four timing nets lack two-terminal source records, and the nine old power
 witness findings remain. Reproduce in a fresh private output directory with
 `/usr/bin/python3 audio_en_three_pose.py`; the script refuses to overwrite an
 existing candidate.
+
+The same native pilot confirms `AUDIO_EN` has 11 exact terminals on both
+private boards and improves source-owner containment from **8/11 to 11/11**.
+The placement still needs integrated independent review and route/return
+proof before any adoption.
 
 Reproduce the current private baseline using
 `03_src/rebuild_prototype_board_diagnostic.py`, then run `python3 replay.py`

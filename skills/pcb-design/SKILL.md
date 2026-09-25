@@ -255,12 +255,12 @@ in `references/lifecycle-and-backtrack.md`; a new model or handoff is not a rese
 A fresh agent resumes from committed source, the live beacon, journal, and
 content-addressed handoff—not from hidden conversation history.
 
-Keep one integration candidate per active design decision. Each task binds the
-same source, native board, netlist and effective rule inputs; a result from a
-different candidate must be regenerated or explicitly revalidated before
-integration. Name the owning engineering gate/review that can close the task:
-another diagnostic report is not that gate. Use the existing findings budget
-for recurring experiments even while no formal modular attempt has run.
+Use the [single-candidate operator workflow](references/modular-design.md#single-candidate-operator-workflow):
+prepare, evaluate, repair, adopt through the owning conductor, then release.
+Bind source, board, netlist and effective rules in the existing candidate record.
+Derive native geometry without changing design intent or refreshing approval;
+invalidate affected reviews when their subject changes. Keep the existing
+findings budget and acceptance consumer; add no parallel status registry.
 
 Use the existing project driver and owning checks; fix authoritative source
 and rerun affected mandatory gates. The [stage graph](references/pipeline-stage-contract.md)
