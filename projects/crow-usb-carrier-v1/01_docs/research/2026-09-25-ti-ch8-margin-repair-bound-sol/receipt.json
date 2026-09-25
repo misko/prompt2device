@@ -1,0 +1,222 @@
+{
+  "board_unchanged": true,
+  "cap_grid_counts": {
+    "body_clear": 12905,
+    "owner_and_usb_margin": 47664,
+    "related_1_5x": 29,
+    "related_1_5x_and_0_56_body_mouth": 0,
+    "within_6mm": 0
+  },
+  "cap_grid_step_mm": 0.1,
+  "cap_origin_mm": [
+    198.2,
+    60.25
+  ],
+  "cap_physical_bbox_mm": [
+    195.405,
+    58.505,
+    200.995,
+    61.995
+  ],
+  "compact_trial": {
+    "cap_bbox_mm": [
+      194.805,
+      57.855000000000004,
+      200.39499999999998,
+      61.345
+    ],
+    "cap_origin_mm": [
+      197.6,
+      59.6
+    ],
+    "east_owner_margin_mm": 0.605,
+    "nearest_static_envelopes_mm": [
+      [
+        0.0,
+        "C_A8P"
+      ],
+      [
+        0.08,
+        "R_B8P"
+      ],
+      [
+        0.33,
+        "C_FILTER8N1"
+      ],
+      [
+        2.61,
+        "U_SPOKE8"
+      ],
+      [
+        3.01,
+        "U_ISO8"
+      ],
+      [
+        3.84,
+        "R_OUT8N"
+      ]
+    ],
+    "usb_separation_mm": 0.655
+  },
+  "current_owner_mm": [
+    179,
+    42,
+    201,
+    84
+  ],
+  "current_usb_mm": [
+    195,
+    62,
+    215,
+    82
+  ],
+  "fixed_ref_count": 27,
+  "illustrative_margin_mm": 0.56,
+  "illustrative_max_related_distance_ratio": 1.5,
+  "kind": "adc8-cap-positive-mouth-and-two-cell-recut-bound",
+  "limitations": "Grid keeps 14 other candidate moves fixed; 0.56-mm margin and 1.5x locality are exploratory. Two-cell recut leaves all other source regions unchanged. No trace/return/zone fill is proved.",
+  "minimum_body_gap_mm": 0.15,
+  "nearest_grid_pose_1_5x": {
+    "cm8n1_mm": 17.708145,
+    "iso6_mm": 12.301626,
+    "move_mm": 14.063872,
+    "nearest_gap_mm": 0.24,
+    "nearest_ref": "R_X8P",
+    "worst_related_ratio": 1.499353,
+    "x_mm": 189.5,
+    "y_mm": 49.2
+  },
+  "p1_accepted": false,
+  "p2_accepted": false,
+  "return_credit": false,
+  "routing_realized": false,
+  "schema": 1,
+  "sha256": {
+    "board": "d0c065dc16de081a5410b7a22e474f0a99c6fdeb0b7dd1f6c37422ace4a9fcf7",
+    "floorplan": "7d95376bbfa3bc9dd0bf59bc7e91d02d86c31235f6145f4d09b49a31f81769d0",
+    "helper": "0827824c749206fc11194f27daa6e732a3253b348054a6d93218e960fe138a93",
+    "modular_plan": "02be5ad6ea879ac04d5dfd9e2e09d5226f85c85fa83d72628aa40cf93de6b4d8",
+    "source": "60b7062e53bfd930ee7e9e2a8694b87098b1a5625d4a48c06eddb2f8bd8b5be7"
+  },
+  "status": "REJECTED_BOUNDED_REPAIR",
+  "two_cell_recut": {
+    "analog_ch8_mm": [
+      179,
+      42,
+      202.105,
+      84
+    ],
+    "block_member_counts": {
+      "analog_ch8": 36,
+      "usb_vbus_sense": 4
+    },
+    "divider_x_mm": 202.105,
+    "owner_or_foreign_failures": [
+      {
+        "contained": true,
+        "foreign_regions": [
+          "audio_clock_tdm"
+        ],
+        "owner": "analog_ch8",
+        "physical_bbox_mm": [
+          187.445,
+          71.395,
+          189.355,
+          72.405
+        ],
+        "ref": "C_ISO8"
+      },
+      {
+        "contained": true,
+        "foreign_regions": [
+          "audio_clock_tdm"
+        ],
+        "owner": "analog_ch8",
+        "physical_bbox_mm": [
+          184.045,
+          71.195,
+          185.955,
+          72.205
+        ],
+        "ref": "C_SPOKE_DVDT8"
+      },
+      {
+        "contained": true,
+        "foreign_regions": [
+          "audio_clock_tdm"
+        ],
+        "owner": "analog_ch8",
+        "physical_bbox_mm": [
+          186.355,
+          72.775,
+          189.845,
+          74.825
+        ],
+        "ref": "C_SPOKE_OUT8"
+      },
+      {
+        "contained": false,
+        "foreign_regions": [
+          "usb_frontend"
+        ],
+        "owner": "analog_ch8",
+        "physical_bbox_mm": [
+          198.875,
+          19.955,
+          216.268081,
+          34.495
+        ],
+        "ref": "J8"
+      },
+      {
+        "contained": false,
+        "foreign_regions": [
+          "analog_ch7"
+        ],
+        "owner": "analog_ch8",
+        "physical_bbox_mm": [
+          178.725,
+          58.685,
+          180.675,
+          59.715
+        ],
+        "ref": "R_IN8P"
+      },
+      {
+        "contained": true,
+        "foreign_regions": [
+          "audio_clock_tdm"
+        ],
+        "owner": "analog_ch8",
+        "physical_bbox_mm": [
+          183.225,
+          72.485,
+          185.175,
+          73.515
+        ],
+        "ref": "R_SPOKE_UVLO8"
+      },
+      {
+        "contained": false,
+        "foreign_regions": [
+          "audio_clock_tdm",
+          "analog_ch7"
+        ],
+        "owner": "analog_ch8",
+        "physical_bbox_mm": [
+          178.755,
+          70.21,
+          181.245,
+          72.395
+        ],
+        "ref": "U_ESD8"
+      }
+    ],
+    "usb_vbus_sense_mm": [
+      202.105,
+      62,
+      215,
+      82
+    ]
+  }
+}
