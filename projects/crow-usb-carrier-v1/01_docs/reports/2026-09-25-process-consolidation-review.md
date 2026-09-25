@@ -12,7 +12,7 @@ evidence_status: INCOMPLETE
 
 ## Executive conclusion
 
-**PROPOSED:** Keep the existing Crow project, selected parts, schematic and useful placement work. Establish one reproducible integration candidate from current authored source; do not start a new electrical design or erase failed experiments. Refactor the execution seams and duplicated guidance before adding more checker models. This report proposes changes; it changes no gate or board authority.
+**PROPOSED:** Keep the existing Crow project, selected parts, schematic and useful placement work. Establish one reproducible integration candidate from current authored source; do not start a new electrical design or erase failed experiments. Refactor the execution seams and duplicated guidance before adding more checker models. The implementation status below distinguishes the delivered first slice from the remaining proposal; no board or release authority changes.
 
 **INFERRED:** The main inefficiency is fragmented execution and promotion. The skills already require one writer, bounded attempts, backtracking and separate evidence claims. Research repeatedly developed outside the formal work graph, while reusable code accumulated project-specific authority and integrated board acceptance did not advance.
 
@@ -28,7 +28,7 @@ This is an architectural and execution-path review, not a line-by-line correctne
 
 **CITED:** STATUS records `prototype-layout-diagnostic`, ordinary release held by prototype-only USB ESD qualification, and an isolated board with 499 opens. The formal P1 item records 0/1 attempts and no engineering acceptance. The e07 Q_PRE board and d0 timing board are distinct research subjects; neither should silently supply the other's board-bound evidence.
 
-**OWED:** The refactor has not been implemented or benchmarked. No time or token savings are measured. Previous eight-hour time buckets were chronological summaries inferred from commits, not measured task labor or agent-token accounting.
+**OWED:** The initial refactor is implemented and tested as recorded below; the integrated Crow trial and performance comparison remain outstanding. No time or token savings are measured. Previous eight-hour time buckets were chronological summaries inferred from commits, not measured task labor or agent-token accounting.
 
 ## Findings
 
@@ -91,6 +91,22 @@ This pseudocode describes the proposed composition, not new API names or permiss
 | End-to-end Crow block trial | One source-generated board, one coherent result, exact endpoint denominator and measurable closure of the chosen block objective; no global regression. |
 
 Record actual elapsed task/tool time, producer runs, repeated checker calls, independent reviews and resolved engineering objectives for the same trial before and after. Token totals require available usage telemetry and must not be inferred from commits. Run existing skill authority/documentation checks and affected runtime, modular, candidate and P1 tests. Only broaden refactoring if this vertical slice demonstrates benefit.
+
+## Initial implementation status
+
+**CITED:** Commit `3e0e13b1` consolidates the operating guidance, distinguishes functional ownership from diagnostic planning bounds and exclusive physical cells, and marks the root proposal as historical. The core skill remains within its 300-line disclosure budget. Existing sourcing decisions and ordinary qualification gates remain in force.
+
+**CITED:** Commits `5e4090c5` and `1dfd1c54` extract the connector-edge authority into project rules and add trust-boundary negative controls. Independent review `ab2ee11f` approves the extraction under the explicit trusted-caller digest boundary. Hash pinning proves record identity, not reviewer authenticity. Named legacy Crow coverage profiles remain supported; this is not a wholesale generic-checker rewrite.
+
+**MEASURED:** The edge review reports 174/174 P1 tests and 1090/1090 schema-reader checks passing. Root independently ran the runtime suite (38/38), modular suite (19/19), investigation-budget suite (18/18), documentation suite (15/15), and progressive-disclosure suite (14/14); skill authority also passes. These are software and policy regression results, not board qualification.
+
+**CITED:** Commit `6b17770b` adds the bounded integration research adapter over existing task runtime, investigation accounting and experiment storage. Input and tool identities are checked before reservation, selection/pause/source checks precede dispatch, and baseline diagnostics are distinct from candidate diagnostics. Changed-board replay requires separately pinned board/source/contract identities. This slice keeps rules, floorplan, interfaces and aliases unchanged; it does not automatically integrate changed placement source. Writer scope detects violations but is not a sandbox.
+
+**CITED:** Terra independently reviewed `6b17770b` and returned PASS for the bounded diagnostic scope, with no material fail-open found. Changed floorplan/rule authority remains outside that scope.
+
+**MEASURED:** Root ran all 11 integration tests successfully. Controls cover stale or mixed subjects, failure, timeout, foreign writes, stale repair inputs, missing output, eligibility and pause refusal. SOL also exercised the real Crow checker read-only: the existing timing branch witness failures remain (9 errors / 9 diagnostics, no P1 acceptance). The actual Crow launch was refused by its existing investigation budget; no ledger reset, board alteration, accepted-pointer promotion or engineering acceptance occurred.
+
+**OWED:** Broader conductor deduplication, automatic engineering milestone closure, canonical candidate promotion, a generated unified status view, and a measured Crow block improvement are not delivered by this first slice. The next board task remains selecting one current-source integration candidate and resolving one coupled objective through the existing gates.
 
 ## Source register
 

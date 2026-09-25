@@ -295,3 +295,49 @@ coverage `PASS` does not establish geometric coexistence. Use the existing
 placement receipt and independently reopened coupled-geometry witness for that
 claim. Keep partial shared-net work diagnostic unless the route ownership
 contract explicitly accepts the complete required scope.
+
+## Bounded integration research adapter
+
+Run `python3 skills/pcb-design/scripts/integration_candidate.py PROJECT SPEC.json`
+from the repository. This adapter composes existing investigation accounting,
+TaskAttempt execution and the experiment store; it is not an ordinary board
+producer or a new engineering acceptance gate.
+
+The schema-1 spec names the existing finding's `decision_id`, a unique
+`experiment_id`, an argv `command` invoking the pinned producer, `timeout_s`,
+a fresh `output_root` beneath `06_build`, and `next_acceptance_consumer`.
+Its `files` mapping supplies exact `{path, sha256}` records for `board`,
+`netlist`, `circuit`, `floorplan`, `p1_source`, `p1_contract`, `interfaces`,
+`aliases`, `modular_plan`, `pro`, `dru`, `route_config`, `producer`,
+`p1_checker` and `modular_checker`; add `edge_authority` when applicable.
+Data paths are project-relative; the three tool roles also accept `repo:` paths.
+Expected authority hashes come from the caller's reviewed packet, not from
+producer assertions. Hash identity alone does not establish independent review.
+
+Selection eligibility, any existing pause record, source admission and the
+existing investigation budget are checked before dispatch. Prototype-only
+eligibility grants research scope only. It cannot authorize an ordinary
+producer, release, fabrication or order. The adapter checks writer-scope changes
+but is not a sandbox: use trusted producers and an isolated checkout when
+physical protection from unintended writes is required.
+
+The producer writes `candidate_inputs.json` under its output directory, with
+observed `{path, sha256}` records for `board`, `p1_source` and `p1_contract`.
+The board must be inside that directory. A changed board invalidates the old
+P1 contract; the first receipt records this review debt. An independently
+reviewed replay can add `expected_candidate`, mapping those same three roles
+to their reviewed hashes. Baseline and candidate diagnostics remain separate.
+This first slice keeps PRO/DRU, floorplan, interfaces and aliases pinned to the
+input packet. Changing them requires preparing a new coherent input packet;
+the adapter does not automatically integrate a placement source edit.
+
+Assess the reserved launch through the existing investigation protocol before
+another producer run. Diagnostic receipts and task PASS never close engineering
+milestones or promote the accepted candidate. Failure, timeout and missing
+candidate output are retained as rejected attempts. The next named acceptance
+consumer owns actual engineering review and the existing downstream gates.
+
+`tests/test_integration_candidate.py` provides executable specs, failure controls
+and a read-only Crow d0/e07 mismatch example. The current Crow example refuses
+launch under its existing investigation budget; it is not a successful Crow
+integration trial.
