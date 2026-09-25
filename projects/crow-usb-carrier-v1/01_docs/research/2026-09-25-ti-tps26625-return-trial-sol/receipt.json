@@ -1,0 +1,534 @@
+{
+  "adc8n_route_geometry": {
+    "full_footprint_envelope_hits": {
+      "C_ADC_AC8N1": {
+        "full_envelope_mm": [
+          195.205,
+          57.905,
+          200.795,
+          61.395
+        ],
+        "segment_hits_mm": [
+          [
+            [
+              199.8,
+              59.65
+            ],
+            [
+              197.75,
+              61.7
+            ]
+          ]
+        ]
+      },
+      "C_ADC_CM8N": {
+        "full_envelope_mm": [
+          187.045,
+          65.995,
+          188.955,
+          67.005
+        ],
+        "segment_hits_mm": [
+          [
+            [
+              187.9,
+              66.099999
+            ],
+            [
+              187.5,
+              66.5
+            ]
+          ],
+          [
+            [
+              187.9,
+              65.8
+            ],
+            [
+              187.9,
+              66.099999
+            ]
+          ],
+          [
+            [
+              187.5,
+              66.5
+            ],
+            [
+              187.52,
+              66.5
+            ]
+          ]
+        ]
+      }
+    },
+    "nearest_other_full_envelope_gaps_mm": [
+      {
+        "gap_mm": 0.205001,
+        "ref": "C_A8N"
+      },
+      {
+        "gap_mm": 0.285001,
+        "ref": "R_B8P"
+      },
+      {
+        "gap_mm": 0.645001,
+        "ref": "C_ADC_CM8P"
+      },
+      {
+        "gap_mm": 0.755001,
+        "ref": "C_ADC_AC8N2"
+      },
+      {
+        "gap_mm": 1.805001,
+        "ref": "C_A8P"
+      }
+    ],
+    "post_launch_cap_full_gap_mm": 0.205001,
+    "whole_route_usb_region_gap_mm": 0.200001
+  },
+  "contacts": {
+    "DVDT_to_CDVDT": {
+      "a": "U_SPOKE8.8",
+      "b": "C_SPOKE_DVDT8.1",
+      "direct_native_copper_gap_mm": 2.838134,
+      "net": "SPOKE_DVDT8"
+    },
+    "EP11_to_CDVDT": {
+      "a": "U_SPOKE8.11",
+      "b": "C_SPOKE_DVDT8.2",
+      "direct_native_copper_gap_mm": 2.352905,
+      "net": "SPOKE_RTN8"
+    },
+    "EP11_to_RILIM": {
+      "a": "U_SPOKE8.11",
+      "b": "R_SPOKE_ILIM8.2",
+      "direct_native_copper_gap_mm": 1.825561,
+      "net": "SPOKE_RTN8"
+    },
+    "GND_to_CIN": {
+      "a": "U_SPOKE8.6",
+      "b": "C_SPOKE_IN8.2",
+      "direct_native_copper_gap_mm": 3.661193,
+      "net": "GND"
+    },
+    "GND_to_COUT": {
+      "a": "U_SPOKE8.6",
+      "b": "C_SPOKE_OUT8.2",
+      "direct_native_copper_gap_mm": 3.563231,
+      "net": "GND"
+    },
+    "ILIM_to_RILIM": {
+      "a": "U_SPOKE8.7",
+      "b": "R_SPOKE_ILIM8.1",
+      "direct_native_copper_gap_mm": 2.405089,
+      "net": "SPOKE_ILIM8"
+    },
+    "IN_to_CIN": {
+      "a": "U_SPOKE8.1",
+      "b": "C_SPOKE_IN8.1",
+      "direct_native_copper_gap_mm": 1.655273,
+      "net": "N12V_PROTECTED"
+    },
+    "IN_to_RUVLO": {
+      "a": "U_SPOKE8.1",
+      "b": "R_SPOKE_UVLO8.1",
+      "direct_native_copper_gap_mm": 2.040709,
+      "net": "N12V_PROTECTED"
+    },
+    "OUT_to_COUT": {
+      "a": "U_SPOKE8.10",
+      "b": "C_SPOKE_OUT8.1",
+      "direct_native_copper_gap_mm": 1.450194,
+      "net": "N12V_POD8"
+    },
+    "RTN5_to_CDVDT": {
+      "a": "U_SPOKE8.5",
+      "b": "C_SPOKE_DVDT8.2",
+      "direct_native_copper_gap_mm": 4.277343,
+      "net": "SPOKE_RTN8"
+    },
+    "RTN5_to_RILIM": {
+      "a": "U_SPOKE8.5",
+      "b": "R_SPOKE_ILIM8.2",
+      "direct_native_copper_gap_mm": 2.185362,
+      "net": "SPOKE_RTN8"
+    },
+    "UVLO_to_RUVLO": {
+      "a": "U_SPOKE8.2",
+      "b": "R_SPOKE_UVLO8.2",
+      "direct_native_copper_gap_mm": 1.020811,
+      "net": "SPOKE_UVLO8"
+    }
+  },
+  "existing_project_direct_gap_ceilings_mm": {
+    "ILIM_to_RILIM": 2.5,
+    "IN_to_CIN": 2.5
+  },
+  "filled_board_sha256_observation": "9f5a3b11a5c6cf42e9979bc5f4d74eb202af4f79fbe6f0bc9dd85e576d0b9ede",
+  "filled_return": {
+    "same_filled_polygon_outlines": [
+      8
+    ],
+    "uncovered_0p20mm_ribbon_area_mm2_by_segment": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "fixed_27_preserved": true,
+  "footprint_count": 569,
+  "foreign_region_route_gaps_mm": {
+    "adc_reference": 2.0,
+    "analog_ch1": 2.0,
+    "analog_ch2": 2.0,
+    "analog_ch3": 2.0,
+    "analog_ch4": 2.0,
+    "analog_ch5": 2.0,
+    "analog_ch6": 2.0,
+    "analog_ch7": 2.0,
+    "audio_clock_tdm": 2.0,
+    "board_integration_jtag": 2.0,
+    "board_integration_qspi": 2.0,
+    "clock_flash_debug": 2.0,
+    "clock_oscillator_handoff": 2.0,
+    "clock_oscillator_local": 2.0,
+    "clock_qspi_transit": 2.0,
+    "debug_connector": 2.0,
+    "digital_power": 2.0,
+    "hold_bank_left": 2.0,
+    "hold_bank_right": 2.0,
+    "input_buck": 2.0,
+    "quiet_power": 2.0,
+    "usb_frontend": 2.0,
+    "usb_vbus_sense": 0.200001,
+    "xmos_core": 2.0,
+    "xmos_core_east": 2.0,
+    "xmos_core_qspi_south": 2.0
+  },
+  "gnd_local_return_same_filled_in1_polygon_outlines": [
+    8
+  ],
+  "gnd_local_stitch_center_mm": [
+    195.55,
+    48.5
+  ],
+  "gnd_rtn_distinct": true,
+  "group_foreign_source_region_intersections": {
+    "C_SPOKE_DVDT8": [],
+    "C_SPOKE_IN8": [],
+    "C_SPOKE_OUT8": [],
+    "R_SPOKE_ILIM8": [],
+    "R_SPOKE_UVLO8": [],
+    "U_SPOKE8": []
+  },
+  "group_full_envelope_collisions": {
+    "C_SPOKE_DVDT8": [],
+    "C_SPOKE_IN8": [],
+    "C_SPOKE_OUT8": [],
+    "R_SPOKE_ILIM8": [],
+    "R_SPOKE_UVLO8": [],
+    "U_SPOKE8": []
+  },
+  "group_full_envelopes_mm": {
+    "C_SPOKE_DVDT8": [
+      192.945,
+      48.795,
+      194.855,
+      49.805
+    ],
+    "C_SPOKE_IN8": [
+      188.005,
+      42.975,
+      191.495,
+      45.025
+    ],
+    "C_SPOKE_OUT8": [
+      192.855,
+      45.675,
+      196.345,
+      47.725
+    ],
+    "R_SPOKE_ILIM8": [
+      189.475,
+      50.225,
+      192.525,
+      51.775
+    ],
+    "R_SPOKE_UVLO8": [
+      185.525,
+      46.285,
+      187.475,
+      47.315
+    ],
+    "U_SPOKE8": [
+      187.805,
+      45.305,
+      192.195,
+      49.695
+    ]
+  },
+  "group_poses_mm": {
+    "C_SPOKE_DVDT8": [
+      193.9,
+      49.3,
+      180
+    ],
+    "C_SPOKE_IN8": [
+      189.75,
+      44.0,
+      0
+    ],
+    "C_SPOKE_OUT8": [
+      194.6,
+      46.7,
+      0
+    ],
+    "R_SPOKE_ILIM8": [
+      191.0,
+      51.0,
+      180
+    ],
+    "R_SPOKE_UVLO8": [
+      186.5,
+      46.8,
+      0
+    ],
+    "U_SPOKE8": [
+      190.0,
+      47.5,
+      0
+    ]
+  },
+  "input_sha256": {
+    "generic_generator": "8a5fa1d48d80138458601a097ab6260565841510a498e44cb9c5773652215b3c",
+    "netlist": "a40b45c27b2169ed4f3dd43d72a1f4f7112d829985f98918a8855ed76735e9bd",
+    "poses": "76ba7ace1275fe1a8d6bc69d452037672519d70a21b8b02fff67f8c7d8a647bb",
+    "source": "0032b1202f5742b6575198d27ea50629826d49cf81cf12a31fead8a2929d9868",
+    "southwest_board": "0b9d017706845ad4d77c2b579dd36f2e34c0ecf55a7b699ace4fca97465c5b93"
+  },
+  "local_return_path_lengths_mm": {
+    "gnd_cin_to_u6": 7.4,
+    "gnd_cout_to_join": 4.85,
+    "rtn_dvdt_to_ep11": 3.42,
+    "rtn_rilim_to_ep11": 3.572487,
+    "rtn_u3_to_ep11": 1.4,
+    "rtn_u5_to_ep11": 1.814214
+  },
+  "local_return_paths": {
+    "gnd_cin_to_u6": [
+      "GND",
+      [
+        [
+          190.7,
+          44.0
+        ],
+        [
+          192.5,
+          44.0
+        ],
+        [
+          192.5,
+          48.5
+        ],
+        [
+          191.4,
+          48.5
+        ]
+      ]
+    ],
+    "gnd_cout_to_join": [
+      "GND",
+      [
+        [
+          195.55,
+          46.7
+        ],
+        [
+          195.55,
+          48.5
+        ],
+        [
+          192.5,
+          48.5
+        ]
+      ]
+    ],
+    "rtn_dvdt_to_ep11": [
+      "SPOKE_RTN8",
+      [
+        [
+          193.42,
+          49.3
+        ],
+        [
+          190.0,
+          49.3
+        ]
+      ]
+    ],
+    "rtn_rilim_to_ep11": [
+      "SPOKE_RTN8",
+      [
+        [
+          190.175,
+          51.0
+        ],
+        [
+          190.175,
+          49.8
+        ],
+        [
+          190.0,
+          49.625
+        ],
+        [
+          190.0,
+          47.5
+        ]
+      ]
+    ],
+    "rtn_u3_to_ep11": [
+      "SPOKE_RTN8",
+      [
+        [
+          188.6,
+          47.5
+        ],
+        [
+          190.0,
+          47.5
+        ]
+      ]
+    ],
+    "rtn_u5_to_ep11": [
+      "SPOKE_RTN8",
+      [
+        [
+          188.6,
+          48.5
+        ],
+        [
+          189.0,
+          48.5
+        ],
+        [
+          190.0,
+          47.5
+        ]
+      ]
+    ]
+  },
+  "local_spoke_rtn_copper_island_proven": false,
+  "native_connected_adc8n_pads": [
+    "C_ADC_AC8N1.2",
+    "C_ADC_CM8N.1"
+  ],
+  "native_local_return_connected_pads": {
+    "U_SPOKE8.11": [
+      "C_SPOKE_DVDT8.2",
+      "R_SPOKE_ILIM8.2",
+      "U_SPOKE8.11",
+      "U_SPOKE8.3",
+      "U_SPOKE8.5"
+    ],
+    "U_SPOKE8.6": [
+      "C_ADC_CM8N.2",
+      "C_FILTER8N1.2",
+      "C_SPOKE_IN8.2",
+      "C_SPOKE_OUT8.2",
+      "J1.2",
+      "J1.6",
+      "J1.8",
+      "J2.2",
+      "J2.6",
+      "J2.8",
+      "J3.2",
+      "J3.6",
+      "J3.8",
+      "J4.2",
+      "J4.6",
+      "J4.8",
+      "J5.2",
+      "J5.6",
+      "J5.8",
+      "J6.2",
+      "J6.6",
+      "J6.8",
+      "J7.2",
+      "J7.6",
+      "J7.8",
+      "J8.2",
+      "J8.6",
+      "J8.8",
+      "J_PWR.2",
+      "J_USB.SH",
+      "J_USB.SH",
+      "J_USB.SH",
+      "J_USB.SH",
+      "U_ISO1.5",
+      "U_ISO2.5",
+      "U_ISO3.5",
+      "U_ISO4.5",
+      "U_ISO5.5",
+      "U_ISO6.5",
+      "U_ISO7.5",
+      "U_ISO8.5",
+      "U_LDO.11",
+      "U_SPOKE8.6"
+    ]
+  },
+  "native_pad_identities_preserved": true,
+  "native_profile": {
+    "added_issue_identities": 0,
+    "removed_issue_identities": 0,
+    "unconnected": [
+      499,
+      499
+    ],
+    "via_process_fails": [
+      [],
+      []
+    ],
+    "violations": [
+      199,
+      199
+    ]
+  },
+  "schema": 1,
+  "source_generated_unfilled_board_sha256_observation": "944806e1759e73f468076caf053a42ab0abb76a6736dcf3ef75c4fca27c7ebea",
+  "source_owner_pattern_by_ref": {
+    "C_SPOKE_DVDT8": [
+      "analog_ch8"
+    ],
+    "C_SPOKE_IN8": [
+      "analog_ch8"
+    ],
+    "C_SPOKE_OUT8": [
+      "analog_ch8"
+    ],
+    "R_SPOKE_ILIM8": [
+      "analog_ch8"
+    ],
+    "R_SPOKE_UVLO8": [
+      "analog_ch8"
+    ],
+    "U_SPOKE8": [
+      "analog_ch8"
+    ]
+  },
+  "source_pose_delta_refs": [
+    "C_SPOKE_DVDT8",
+    "C_SPOKE_IN8",
+    "C_SPOKE_OUT8",
+    "R_SPOKE_ILIM8",
+    "R_SPOKE_UVLO8",
+    "U_SPOKE8"
+  ],
+  "status": "RESEARCH_PARTIAL_RETURN_TRIAL"
+}
