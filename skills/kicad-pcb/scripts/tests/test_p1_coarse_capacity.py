@@ -1359,6 +1359,56 @@ class UnresolvedBranchTest(unittest.TestCase):
                                     'exact native branch terminal set'):
             self.validate()
 
+    def test_distinct_source_aliases_cannot_collapse_to_one_native_terminal(self):
+        self.board = pcbnew.BOARD()
+        for ref, number, x, y in [('J_USB','1',2,2), ('J_B','1',5,5),
+                                  ('J_C','1',6,5)]:
+            pad(self.board, ref, number, 'TREE', x, y, .4)
+        _, self.pads = checker.graph.board_index(self.board)
+        self.interfaces['interfaces'][0]['endpoints'] = {
+            'a':['J_USB.A1','J_USB.B1'], 'b':['J_B.1','J_C.1']}
+        self.branch['endpoints'] = [
+            {'source_pad':source, 'native_pad':native, 'net':'TREE', 'block':block}
+            for source, native, block in [('J_USB.A1','J_USB.1','a'),
+                                           ('J_USB.B1','J_USB.1','a'),
+                                           ('J_B.1','J_B.1','b'),
+                                           ('J_C.1','J_C.1','b')]]
+        self.branch['p2_obligations'] = [
+            {'status':'P2_REQUIRED', **entry, 'branch_id':'tree',
+             'layer':'F.Cu', 'proof':'native_pad_to_unplaced_tree'}
+            for entry in sorted(self.branch['endpoints'], key=lambda e:e['source_pad'])]
+        self.branch['terminal_count'] = 4
+        self.branch['minimum_tree_edges'] = 3
+        self.branch['tree_obligation']['terminal_count'] = 4
+        self.branch['tree_obligation']['minimum_tree_edges'] = 3
+        aliases = {'A1':'1', 'B1':'1'}
+        with self.assertRaisesRegex(checker.ContractError, 'terminal alias collision'):
+            checker._unresolved_branches(
+                {'unresolved_multiterminal_branches':[self.branch]}, self.interfaces,
+                self.board, self.regions, {'signal':{'TREE'}}, aliases, self.pads)
+
+        # Separate fused connector contacts on the same net remain valid when
+        # each schematic contact maps to its own exact native pad.
+        usb_fp = self.board.FindFootprintByReference('J_USB')
+        second = pcbnew.PAD(usb_fp)
+        second.SetNumber('2')
+        second.SetAttribute(pcbnew.PAD_ATTRIB_SMD)
+        second.SetShape(pcbnew.PAD_SHAPE_RECT)
+        second.SetSize(pcbnew.VECTOR2I(iu(.4), iu(.4)))
+        second.SetPosition(pcbnew.VECTOR2I(iu(2.5), iu(2)))
+        second.SetLayerSet(pcbnew.LSET.FrontMask())
+        second.SetNet(self.board.FindNet('TREE'))
+        usb_fp.Add(second)
+        _, self.pads = checker.graph.board_index(self.board)
+        aliases['B1'] = '2'
+        self.branch['endpoints'][1]['native_pad'] = 'J_USB.2'
+        next(row for row in self.branch['p2_obligations']
+             if row['source_pad'] == 'J_USB.B1')['native_pad'] = 'J_USB.2'
+        self.assertEqual(set(checker._unresolved_branches(
+            {'unresolved_multiterminal_branches':[self.branch]}, self.interfaces,
+            self.board, self.regions, {'signal':{'TREE'}}, aliases, self.pads)),
+            {'tree'})
+
     def test_unreported_overlap_and_fake_geometry_rejected(self):
         self.branch['physical_blockers']=[]
         with self.assertRaisesRegex(checker.ContractError,'blocker inventory'):

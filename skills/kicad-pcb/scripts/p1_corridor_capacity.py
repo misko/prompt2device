@@ -435,9 +435,13 @@ def _unresolved_branches(source, interfaces, board, regions, coverage, aliases, 
                 not isinstance(reference_layer, str) or reference_layer not in copper_layers or
                 reference_layer == layer):
             raise ContractError('unresolved branch identity/owner/net/layer invalid')
-        expected = {(source_pad, graph.native_identity(source_pad, aliases), net, block)
-                    for block, names in iface_by_net[net]['endpoints'].items()
-                    for source_pad in names}
+        expected_rows = [(source_pad, graph.native_identity(source_pad, aliases), net, block)
+                         for block, names in iface_by_net[net]['endpoints'].items()
+                         for source_pad in names]
+        if (len(expected_rows) != len({item[0] for item in expected_rows}) or
+                len(expected_rows) != len({item[1] for item in expected_rows})):
+            raise ContractError(f'{ident}: branch source/native terminal alias collision')
+        expected = set(expected_rows)
         if len({block for _,_,_,block in expected}) < 2:
             raise ContractError(f'{ident}: branch must cross source owners')
         entries = row.get('endpoints')
