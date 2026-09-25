@@ -1,6 +1,25 @@
 # Decision packet — channel-8 physical cells and fixed J8
 
-**Disposition: the fixed J8 overhang alone blocks current-schema source admission; do not start a P1 attempt.** This packet is read-only. The reviewed three-support pose moves only `R_SPOKE_UVLO8`, `C_SPOKE_OUT8`, and `C_SPOKE_DVDT8`; it cannot change the J8/outline contradiction or turn a planning datum into mechanical authority.
+**Disposition: the fixed J8 overhang alone blocks a typed `analog_ch8` physical-cell admission, not the current formal P1 root.** This packet is read-only. The reviewed three-support pose moves only `R_SPOKE_UVLO8`, `C_SPOKE_OUT8`, and `C_SPOKE_DVDT8`; it cannot change the J8/outline contradiction or turn a planning datum into mechanical authority.
+
+## Scope correction
+
+The live `p1_corridor_requirements.yaml` remains `INCOMPLETE` and declares `physical_cells` only for `clock_flash_debug` and `xmos_core`; it declares none for `analog_ch8`. The checker's optional-cell path therefore does not evaluate J8 unless a candidate opts `analog_ch8` into that extension. Existing channel-8 branch checks use the primary modular `regions[analog_ch8]`, and their current exact endpoints are ADC/ISO/VMID pads rather than J8. Accordingly, J8's overhang does not independently prevent dispatching or evaluating the present formal P1 root; the existing root still has its unrelated incomplete/failed obligations. It does prevent a current-schema typed channel-8 cell candidate, and remains an unresolved P2 connector-placement/return and connector-FULL concern.
+
+Reproducible source check:
+
+```sh
+python3 - <<'PY'
+import yaml
+d=yaml.safe_load(open('03_src/rules/p1_corridor_requirements.yaml'))
+print(d['status'])
+print(sorted({x['owner_block'] for x in d['physical_cells']}))
+print([x['id'] for x in d['physical_cells'] if x['owner_block']=='analog_ch8'])
+PY
+# INCOMPLETE
+# ['clock_flash_debug', 'xmos_core']
+# []
+```
 
 ## Exact lower bound
 
