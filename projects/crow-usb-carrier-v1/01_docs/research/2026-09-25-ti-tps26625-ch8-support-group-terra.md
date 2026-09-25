@@ -56,18 +56,21 @@ ceilings implementing TI's qualitative guidance.  They are not TI limits and
 the current source has no corresponding numeric ceiling for C(OUT), C(dVdT),
 UVLO, or their GND/RTN return contacts.
 
-## One fail-closed target for the next refloorplan
+## Exploratory target and current review boundary
 
 Treat the six references above as one movable **support group**.  A candidate
 must move the eFuse and every listed support component together, retain its
 existing functional `analog_ch8` ownership, and prove each paired contact
-above with native pad identities and a local RTN island.  The measured
-acceptance target is a direct copper-gap ceiling of **2.5 mm** for every
-listed pin-to-support contact, including U.6-to-C(IN/COUT) GND returns and
-the U.5/.11 RTN-to-R(ILIM)/C(dVdT) returns.  This uniformly extends the
-two existing project ceilings as a *research target*; adopting it for the
-other loops requires an explicit source decision because TI does not supply
-that number.
+above with native pad identities and a local RTN island.  The first screen
+explored a direct copper-gap ceiling of **2.5 mm** for every listed contact.
+That was a deliberately strict *research proxy* extending the two existing
+project ceilings; the [reviewed trial](2026-09-25-ti-tps26625-whole-group-review-terra.md)
+failed it. It is **not** an adopted source or P2 acceptance rule, and TI does
+not supply that number. The current
+[evidence rubric](2026-09-25-ti-tps26625-six-member-acceptance-rubric-terra.md)
+retains only the existing IN/ILIM project ceilings and requires actual native
+routed GND/RTN loops, measured paths and loop areas, and PowerPAD/RTN island
+proof for the other contacts.
 
 The same candidate must show: C(IN) and C(OUT) loop areas, short
 IN/OUT high-current paths, RTN island/PowerPAD continuity, full native
