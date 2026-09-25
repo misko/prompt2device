@@ -1,0 +1,83 @@
+{
+  "source_board_sha256": "8e620def0b403fda7635135672afec923c2c23bc9844b3f96102e96d4d5eca10",
+  "candidate_board_sha256": "9366c5b66e836f5003f4ff675eef32148ffd5433a88731e148347bae53290ba4",
+  "outline_mm": [
+    20,
+    20,
+    240,
+    156
+  ],
+  "size_mm": [
+    220,
+    136
+  ],
+  "fixed_count": 27,
+  "fixed_poses_identical": true,
+  "pad_net_layer_identity_identical": true,
+  "new_full_bbox_overlap_pairs": [],
+  "baseline_overlap_pairs": 2110,
+  "candidate_overlap_pairs": 2062,
+  "receiving_cell_mm": [
+    145,
+    140,
+    190,
+    156
+  ],
+  "moved_full_bboxes_mm": {
+    "Y_AUDIO": [
+      145.00035,
+      140.000313,
+      167.96165,
+      145.436
+    ],
+    "C_ADC_I2C_A": [
+      168.000476,
+      140.0,
+      174.895688,
+      146.730178
+    ],
+    "C_ADC_CLOCK_OK": [
+      168.000313,
+      146.729535,
+      174.895524,
+      155.79725
+    ]
+  },
+  "port_obstacles": {
+    "adc7": [],
+    "adc8": [],
+    "tdm_neck": [
+      "C_XU_VDDIO_109",
+      "C_XU_VDD_105"
+    ]
+  },
+  "related_pad_center_distances_mm": {
+    "baseline": {
+      "Y_AUDIO.3->U_TDM_XLATE.11": 16.565826,
+      "Y_AUDIO.4->C_AUDIO_OSC.1": 6.875536,
+      "C_ADC_I2C_A.1->U_ADC_I2C_XLATE.3": 13.605712,
+      "C_ADC_CLOCK_OK.1->U_ADC_CLOCK_OK.5": 12.965604
+    },
+    "candidate": {
+      "Y_AUDIO.3->U_TDM_XLATE.11": 51.869557,
+      "Y_AUDIO.4->C_AUDIO_OSC.1": 55.088453,
+      "C_ADC_I2C_A.1->U_ADC_I2C_XLATE.3": 44.999314,
+      "C_ADC_CLOCK_OK.1->U_ADC_CLOCK_OK.5": 76.744727
+    }
+  },
+  "native_drc": {
+    "baseline": {
+      "exit_code": 0,
+      "violations": 0,
+      "unconnected_items": 499,
+      "types": []
+    },
+    "candidate": {
+      "exit_code": 0,
+      "violations": 0,
+      "unconnected_items": 499,
+      "types": []
+    },
+    "delta_pass": true
+  }
+}
