@@ -82,7 +82,8 @@ allocations:
       XTAL_OUT: {clock_flash_debug: [C_XTAL_OUT.1, R_XTAL_FB.2, Y_XU.3], xmos_core: [U_XU.33]}
     demands:
       - {id: qspi, nets: [QSPI_CLK, QSPI_CS_N, QSPI_D0, QSPI_D1, QSPI_D2, QSPI_D3], layers: [F.Cu], slots: 6, slot_pitch_mm: 0.45, required_width_mm: 2.70}
-      - {id: jtag_reset, nets: [JTAG_TCK, JTAG_TDI, JTAG_TDO, JTAG_TMS, XU_RESET_N], layers: [F.Cu], slots: 5, slot_pitch_mm: 0.45, required_width_mm: 2.25}
+      - {id: jtag_four, nets: [JTAG_TMS, JTAG_TCK, JTAG_TDO, JTAG_TDI], layers: [F.Cu], slots: 4, slot_pitch_mm: 0.45, required_width_mm: 1.80}
+      - {id: reset_branch, nets: [XU_RESET_N], layers: [F.Cu], status: INCOMPLETE, reason: three-owner reset fan-in and connector branch unallocated}
       - {id: crystal, nets: [XTAL_IN, XTAL_OUT], status: INCOMPLETE, reason: oscillator local window unmeasured}
     geometry: null
 
@@ -526,6 +527,154 @@ integration_corridors:
     status: P2_REQUIRED
     net: GND
     corridor_id: xtal_south_cap
+    reference_layer: In1.Cu
+    proof: continuous_filled_reference
+# Fixed JTAG connector access remains P2-required and gives no P1 credit.
+- id: jtag_strip
+  owner: board_integration
+  region_id: board_integration_jtag
+  allocation_id: xmos_service_escape
+  participants:
+  - debug_connector
+  - xmos_core
+  faces:
+  - block: debug_connector
+    region_face: south
+    bbox:
+    - 221.1
+    - 64.7
+    - 225.9
+    - 65
+  - block: xmos_core
+    region_face: north
+    bbox:
+    - 221.1
+    - 84
+    - 223.9
+    - 84.3
+    physical_cell_id: xmos_core_east
+  layer: F.Cu
+  reference_layer: In1.Cu
+  nets:
+  - JTAG_TMS
+  - JTAG_TCK
+  - JTAG_TDO
+  - JTAG_TDI
+  reservation_id: jtag_strip_trunk
+  affected:
+  - source_pad: J_JTAG.2
+    native_pad: J_JTAG.2
+    net: JTAG_TMS
+    block: debug_connector
+  - source_pad: U_XU.44
+    native_pad: U_XU.44
+    net: JTAG_TMS
+    block: xmos_core
+  - source_pad: J_JTAG.4
+    native_pad: J_JTAG.4
+    net: JTAG_TCK
+    block: debug_connector
+  - source_pad: U_XU.51
+    native_pad: U_XU.51
+    net: JTAG_TCK
+    block: xmos_core
+  - source_pad: J_JTAG.6
+    native_pad: J_JTAG.6
+    net: JTAG_TDO
+    block: debug_connector
+  - source_pad: U_XU.37
+    native_pad: U_XU.37
+    net: JTAG_TDO
+    block: xmos_core
+  - source_pad: J_JTAG.8
+    native_pad: J_JTAG.8
+    net: JTAG_TDI
+    block: debug_connector
+  - source_pad: U_XU.36
+    native_pad: U_XU.36
+    net: JTAG_TDI
+    block: xmos_core
+  p2_obligations:
+  - status: P2_REQUIRED
+    source_pad: J_JTAG.2
+    native_pad: J_JTAG.2
+    net: JTAG_TMS
+    block: debug_connector
+    corridor_id: jtag_strip
+    region_face: south
+    layer: F.Cu
+    to_reservation: jtag_strip_trunk
+  - status: P2_REQUIRED
+    source_pad: U_XU.44
+    native_pad: U_XU.44
+    net: JTAG_TMS
+    block: xmos_core
+    corridor_id: jtag_strip
+    region_face: north
+    layer: F.Cu
+    to_reservation: jtag_strip_trunk
+    physical_cell_id: xmos_core_east
+  - status: P2_REQUIRED
+    source_pad: J_JTAG.4
+    native_pad: J_JTAG.4
+    net: JTAG_TCK
+    block: debug_connector
+    corridor_id: jtag_strip
+    region_face: south
+    layer: F.Cu
+    to_reservation: jtag_strip_trunk
+  - status: P2_REQUIRED
+    source_pad: U_XU.51
+    native_pad: U_XU.51
+    net: JTAG_TCK
+    block: xmos_core
+    corridor_id: jtag_strip
+    region_face: north
+    layer: F.Cu
+    to_reservation: jtag_strip_trunk
+    physical_cell_id: xmos_core_east
+  - status: P2_REQUIRED
+    source_pad: J_JTAG.6
+    native_pad: J_JTAG.6
+    net: JTAG_TDO
+    block: debug_connector
+    corridor_id: jtag_strip
+    region_face: south
+    layer: F.Cu
+    to_reservation: jtag_strip_trunk
+  - status: P2_REQUIRED
+    source_pad: U_XU.37
+    native_pad: U_XU.37
+    net: JTAG_TDO
+    block: xmos_core
+    corridor_id: jtag_strip
+    region_face: north
+    layer: F.Cu
+    to_reservation: jtag_strip_trunk
+    physical_cell_id: xmos_core_east
+  - status: P2_REQUIRED
+    source_pad: J_JTAG.8
+    native_pad: J_JTAG.8
+    net: JTAG_TDI
+    block: debug_connector
+    corridor_id: jtag_strip
+    region_face: south
+    layer: F.Cu
+    to_reservation: jtag_strip_trunk
+  - status: P2_REQUIRED
+    source_pad: U_XU.36
+    native_pad: U_XU.36
+    net: JTAG_TDI
+    block: xmos_core
+    corridor_id: jtag_strip
+    region_face: north
+    layer: F.Cu
+    to_reservation: jtag_strip_trunk
+    physical_cell_id: xmos_core_east
+  return_obligation:
+    status: P2_REQUIRED
+    net: GND
+    corridor_id: jtag_strip
     reference_layer: In1.Cu
     proof: continuous_filled_reference
 physical_cells:
