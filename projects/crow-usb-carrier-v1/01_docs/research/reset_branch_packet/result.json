@@ -1,0 +1,157 @@
+{
+  "status": "UNRESOLVED_MULTITERMINAL_BRANCH_INCOMPLETE",
+  "p1_accepted": false,
+  "p2_proven": false,
+  "p3_proven": false,
+  "board_sha256": "fbfb3bda95f1ddc98e7d3d229550644d136dc7d6349ba19a4023eb13b07e7e27",
+  "source_sha256": "3424c40ab46b8d25eec5ae2e931263b0e15f375f8b9ef6dbd023fb4e10c08cb2",
+  "floorplan_sha256": "1a05e7247604519d3c69b0d311ac607b7c63ba959973c2672ae43763974ce569",
+  "contract_sha256": "014985c3898c2df10c336869effef87dabe62ace24b4447885b05cf4deedded2",
+  "checker_sha256": "2aa98dea8a963d20a32213461bcaab2a81044f688685830f54cda08aa3eca044",
+  "full_net_denominator": 59,
+  "branch": {
+    "id": "xu_reset_five_terminal",
+    "owner": "board_integration",
+    "allocation_id": "xmos_service_escape",
+    "net": "XU_RESET_N",
+    "layer": "F.Cu",
+    "reference_layer": "In1.Cu",
+    "reservation_id": "reset_unresolved_tree",
+    "terminal_count": 5,
+    "minimum_tree_edges": 4,
+    "endpoints": [
+      {
+        "source_pad": "J_JTAG.10",
+        "native_pad": "J_JTAG.10",
+        "net": "XU_RESET_N",
+        "block": "debug_connector"
+      },
+      {
+        "source_pad": "R_XU_RST_PU.2",
+        "native_pad": "R_XU_RST_PU.2",
+        "net": "XU_RESET_N",
+        "block": "digital_power"
+      },
+      {
+        "source_pad": "U_CORE_OK.1",
+        "native_pad": "U_CORE_OK.1",
+        "net": "XU_RESET_N",
+        "block": "digital_power"
+      },
+      {
+        "source_pad": "U_XU.38",
+        "native_pad": "U_XU.38",
+        "net": "XU_RESET_N",
+        "block": "xmos_core"
+      },
+      {
+        "source_pad": "U_XU_3V3_OK.6",
+        "native_pad": "U_XU_3V3_OK.6",
+        "net": "XU_RESET_N",
+        "block": "digital_power"
+      }
+    ],
+    "physical_blockers": [
+      {
+        "source_pad": "R_XU_RST_PU.2",
+        "native_pad": "R_XU_RST_PU.2",
+        "block": "digital_power",
+        "foreign_regions": [
+          "audio_clock_tdm"
+        ]
+      },
+      {
+        "source_pad": "U_XU_3V3_OK.6",
+        "native_pad": "U_XU_3V3_OK.6",
+        "block": "digital_power",
+        "foreign_regions": [
+          "audio_clock_tdm"
+        ]
+      }
+    ],
+    "p2_obligations": [
+      {
+        "status": "P2_REQUIRED",
+        "source_pad": "J_JTAG.10",
+        "native_pad": "J_JTAG.10",
+        "net": "XU_RESET_N",
+        "block": "debug_connector",
+        "branch_id": "xu_reset_five_terminal",
+        "layer": "F.Cu",
+        "proof": "native_pad_to_unplaced_tree"
+      },
+      {
+        "status": "P2_REQUIRED",
+        "source_pad": "R_XU_RST_PU.2",
+        "native_pad": "R_XU_RST_PU.2",
+        "net": "XU_RESET_N",
+        "block": "digital_power",
+        "branch_id": "xu_reset_five_terminal",
+        "layer": "F.Cu",
+        "proof": "native_pad_to_unplaced_tree"
+      },
+      {
+        "status": "P2_REQUIRED",
+        "source_pad": "U_CORE_OK.1",
+        "native_pad": "U_CORE_OK.1",
+        "net": "XU_RESET_N",
+        "block": "digital_power",
+        "branch_id": "xu_reset_five_terminal",
+        "layer": "F.Cu",
+        "proof": "native_pad_to_unplaced_tree"
+      },
+      {
+        "status": "P2_REQUIRED",
+        "source_pad": "U_XU.38",
+        "native_pad": "U_XU.38",
+        "net": "XU_RESET_N",
+        "block": "xmos_core",
+        "branch_id": "xu_reset_five_terminal",
+        "layer": "F.Cu",
+        "proof": "native_pad_to_unplaced_tree"
+      },
+      {
+        "status": "P2_REQUIRED",
+        "source_pad": "U_XU_3V3_OK.6",
+        "native_pad": "U_XU_3V3_OK.6",
+        "net": "XU_RESET_N",
+        "block": "digital_power",
+        "branch_id": "xu_reset_five_terminal",
+        "layer": "F.Cu",
+        "proof": "native_pad_to_unplaced_tree"
+      }
+    ],
+    "tree_obligation": {
+      "status": "P3_REQUIRED",
+      "net": "XU_RESET_N",
+      "terminal_count": 5,
+      "minimum_tree_edges": 4,
+      "proof": "one_connected_native_net_without_unrelated_branches"
+    },
+    "return_obligation": {
+      "status": "P2_REQUIRED",
+      "net": "GND",
+      "branch_id": "xu_reset_five_terminal",
+      "reference_layer": "In1.Cu",
+      "proof": "continuous_filled_reference_under_actual_tree"
+    }
+  },
+  "native_pad_bbox": [
+    215.425,
+    104.075,
+    216.9,
+    104.325
+  ],
+  "whole_packet_status": "FAIL",
+  "whole_service_allocation": {
+    "id": "xmos_service_escape",
+    "status": "FAIL",
+    "reason": "U_XU.34: witness bbox is a nonlocal bridge across source region"
+  },
+  "whole_packet_errors": [
+    "qspi_gap: integration affected endpoint/layer denominator mismatch",
+    "jtag_strip: integration affected endpoint/layer denominator mismatch",
+    "xu_reset_five_terminal: unresolved branch representative witness denominator mismatch"
+  ],
+  "routing_realized": false
+}
