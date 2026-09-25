@@ -1,0 +1,172 @@
+{
+  "board_footprints": 569,
+  "checker_exact_minimum_cell_error": "analog_ch8_j8: physical cell off board outline",
+  "checker_outline_clipped_cell_error": "J8: native footprint/pad leaves physical cell analog_ch8_j8",
+  "current_foreign_region_hits": {
+    "C_A8N": [
+      "usb_vbus_sense"
+    ],
+    "C_FILTER8P1": [
+      "usb_vbus_sense"
+    ],
+    "C_ISO8": [
+      "audio_clock_tdm"
+    ],
+    "C_SPOKE_DVDT8": [
+      "audio_clock_tdm"
+    ],
+    "C_SPOKE_OUT8": [
+      "audio_clock_tdm"
+    ],
+    "R_IN8N": [
+      "usb_vbus_sense"
+    ],
+    "R_IN8P": [
+      "analog_ch7"
+    ],
+    "R_OUT8P": [
+      "usb_vbus_sense"
+    ],
+    "R_SPOKE_UVLO8": [
+      "audio_clock_tdm"
+    ],
+    "U_AFE8": [
+      "usb_vbus_sense"
+    ],
+    "U_ESD8": [
+      "analog_ch7",
+      "audio_clock_tdm"
+    ]
+  },
+  "current_regions": {
+    "analog_ch7": [
+      157,
+      42,
+      179,
+      84
+    ],
+    "analog_ch8": [
+      179,
+      42,
+      201,
+      84
+    ],
+    "audio_clock_tdm": [
+      145,
+      72,
+      190,
+      99.84
+    ],
+    "usb_frontend": [
+      200,
+      35,
+      238.5,
+      40
+    ],
+    "usb_vbus_sense": [
+      195,
+      62,
+      220,
+      82
+    ]
+  },
+  "debts": [
+    "A current-schema physical cell cannot both contain fixed J8 full native envelope and stay in the outline",
+    "Eleven analog_ch8 refs intersect current foreign planning regions, requiring coupled source recuts or placement repair",
+    "Cells exactly equal to native bounds reserve no route/return margin and grant no capacity",
+    "ADC8N/P/VMID2/AUDIO_EN endpoint-to-cell and filled return obligations remain unproved"
+  ],
+  "fixed_ref_count": 27,
+  "full_member_ref_ids": {
+    "C_A8N": "analog_ch8_c_a8n",
+    "C_A8P": "analog_ch8_c_a8p",
+    "C_ADC_AC8N1": "analog_ch8",
+    "C_ADC_AC8N2": "analog_ch8_c_adc_ac8n2",
+    "C_ADC_AC8P1": "analog_ch8_c_adc_ac8p1",
+    "C_ADC_AC8P2": "analog_ch8_c_adc_ac8p2",
+    "C_ADC_CM8N": "analog_ch8_c_adc_cm8n",
+    "C_ADC_CM8P": "analog_ch8_c_adc_cm8p",
+    "C_FB8N": "analog_ch8_c_fb8n",
+    "C_FB8P": "analog_ch8_c_fb8p",
+    "C_FILTER8N1": "analog_ch8_c_filter8n1",
+    "C_FILTER8N2": "analog_ch8_c_filter8n2",
+    "C_FILTER8P1": "analog_ch8_c_filter8p1",
+    "C_FILTER8P2": "analog_ch8_c_filter8p2",
+    "C_ISO8": "analog_ch8_c_iso8",
+    "C_OPA8": "analog_ch8_c_opa8",
+    "C_SPOKE_DVDT8": "analog_ch8_c_spoke_dvdt8",
+    "C_SPOKE_IN8": "analog_ch8_c_spoke_in8",
+    "C_SPOKE_OUT8": "analog_ch8_c_spoke_out8",
+    "J8": "analog_ch8_j8",
+    "R_ADC_PD8N": "analog_ch8_r_adc_pd8n",
+    "R_ADC_PD8P": "analog_ch8_r_adc_pd8p",
+    "R_B8N": "analog_ch8_r_b8n",
+    "R_B8P": "analog_ch8_r_b8p",
+    "R_IN8N": "analog_ch8_r_in8n",
+    "R_IN8P": "analog_ch8_r_in8p",
+    "R_OUT8N": "analog_ch8_r_out8n",
+    "R_OUT8P": "analog_ch8_r_out8p",
+    "R_SPOKE_ILIM8": "analog_ch8_r_spoke_ilim8",
+    "R_SPOKE_UVLO8": "analog_ch8_r_spoke_uvlo8",
+    "R_X8N": "analog_ch8_r_x8n",
+    "R_X8P": "analog_ch8_r_x8p",
+    "U_AFE8": "analog_ch8_u_afe8",
+    "U_ESD8": "analog_ch8_u_esd8",
+    "U_ISO8": "analog_ch8_u_iso8",
+    "U_SPOKE8": "analog_ch8_u_spoke8"
+  },
+  "functional_owner": "analog_ch8",
+  "input_sha256": {
+    "board": "0b9d017706845ad4d77c2b579dd36f2e34c0ecf55a7b699ace4fca97465c5b93",
+    "checker": "e060924188e4e68d1e7a4f7416b3eb7c92dba29b14b8de1c929f2f70f82a0eb6",
+    "floorplan": "c2a6562c1a012e692109b852158af2ef73a432f712a62ae87cbd8e49c4c4ecd6",
+    "modular": "75c3a517cea50dd6b5745fae96b051d334debd48aac143becaca3d5fe3fc35dc",
+    "p1_source": "191e5580a6ddf56bc9670aff3593c9e9a02d91e75c0c79998b500955050e82a3"
+  },
+  "j8": {
+    "body_mm": [
+      198.891919,
+      19.975,
+      216.268081,
+      34.475
+    ],
+    "fixed": true,
+    "full_envelope_mm": [
+      198.875,
+      19.955,
+      216.268081,
+      34.495
+    ],
+    "minimum_cell_bbox_mm": [
+      198.875,
+      19.955,
+      216.268081,
+      34.495
+    ],
+    "minimum_pad_y_mm": 23.26,
+    "outboard_body_mm": 0.025,
+    "outboard_full_envelope_mm": 0.045,
+    "pad_count": 12
+  },
+  "member_count": 36,
+  "minimum_cell_native_footprint_hits": {},
+  "native_outline_bbox_mm": [
+    20.0,
+    20.0,
+    240.0,
+    140.0
+  ],
+  "outboard_minimum_cells": [
+    "J8"
+  ],
+  "p1_accepted": false,
+  "p2_accepted": false,
+  "primary_cell_cap_bbox_mm": [
+    195.205,
+    58.305,
+    200.795,
+    61.795
+  ],
+  "schema": 1,
+  "status": "UNSAT_CURRENT_PHYSICAL_CELL_SCHEMA"
+}

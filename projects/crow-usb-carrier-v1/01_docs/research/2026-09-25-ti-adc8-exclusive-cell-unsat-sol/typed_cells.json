@@ -1,0 +1,731 @@
+{
+  "kind": "minimum-bound-typed-cell-proposal",
+  "physical_cells": [
+    {
+      "id": "analog_ch8",
+      "owner_block": "analog_ch8",
+      "refs": [
+        "C_ADC_AC8N1"
+      ],
+      "transit": false
+    },
+    {
+      "id": "analog_ch8_j8",
+      "owner_block": "analog_ch8",
+      "refs": [
+        "J8"
+      ],
+      "transit": false
+    },
+    {
+      "id": "analog_ch8_c_a8n",
+      "owner_block": "analog_ch8",
+      "refs": [
+        "C_A8N"
+      ],
+      "transit": false
+    },
+    {
+      "id": "analog_ch8_c_a8p",
+      "owner_block": "analog_ch8",
+      "refs": [
+        "C_A8P"
+      ],
+      "transit": false
+    },
+    {
+      "id": "analog_ch8_c_adc_ac8n2",
+      "owner_block": "analog_ch8",
+      "refs": [
+        "C_ADC_AC8N2"
+      ],
+      "transit": false
+    },
+    {
+      "id": "analog_ch8_c_adc_ac8p1",
+      "owner_block": "analog_ch8",
+      "refs": [
+        "C_ADC_AC8P1"
+      ],
+      "transit": false
+    },
+    {
+      "id": "analog_ch8_c_adc_ac8p2",
+      "owner_block": "analog_ch8",
+      "refs": [
+        "C_ADC_AC8P2"
+      ],
+      "transit": false
+    },
+    {
+      "id": "analog_ch8_c_adc_cm8n",
+      "owner_block": "analog_ch8",
+      "refs": [
+        "C_ADC_CM8N"
+      ],
+      "transit": false
+    },
+    {
+      "id": "analog_ch8_c_adc_cm8p",
+      "owner_block": "analog_ch8",
+      "refs": [
+        "C_ADC_CM8P"
+      ],
+      "transit": false
+    },
+    {
+      "id": "analog_ch8_c_fb8n",
+      "owner_block": "analog_ch8",
+      "refs": [
+        "C_FB8N"
+      ],
+      "transit": false
+    },
+    {
+      "id": "analog_ch8_c_fb8p",
+      "owner_block": "analog_ch8",
+      "refs": [
+        "C_FB8P"
+      ],
+      "transit": false
+    },
+    {
+      "id": "analog_ch8_c_filter8n1",
+      "owner_block": "analog_ch8",
+      "refs": [
+        "C_FILTER8N1"
+      ],
+      "transit": false
+    },
+    {
+      "id": "analog_ch8_c_filter8n2",
+      "owner_block": "analog_ch8",
+      "refs": [
+        "C_FILTER8N2"
+      ],
+      "transit": false
+    },
+    {
+      "id": "analog_ch8_c_filter8p1",
+      "owner_block": "analog_ch8",
+      "refs": [
+        "C_FILTER8P1"
+      ],
+      "transit": false
+    },
+    {
+      "id": "analog_ch8_c_filter8p2",
+      "owner_block": "analog_ch8",
+      "refs": [
+        "C_FILTER8P2"
+      ],
+      "transit": false
+    },
+    {
+      "id": "analog_ch8_c_iso8",
+      "owner_block": "analog_ch8",
+      "refs": [
+        "C_ISO8"
+      ],
+      "transit": false
+    },
+    {
+      "id": "analog_ch8_c_opa8",
+      "owner_block": "analog_ch8",
+      "refs": [
+        "C_OPA8"
+      ],
+      "transit": false
+    },
+    {
+      "id": "analog_ch8_c_spoke_dvdt8",
+      "owner_block": "analog_ch8",
+      "refs": [
+        "C_SPOKE_DVDT8"
+      ],
+      "transit": false
+    },
+    {
+      "id": "analog_ch8_c_spoke_in8",
+      "owner_block": "analog_ch8",
+      "refs": [
+        "C_SPOKE_IN8"
+      ],
+      "transit": false
+    },
+    {
+      "id": "analog_ch8_c_spoke_out8",
+      "owner_block": "analog_ch8",
+      "refs": [
+        "C_SPOKE_OUT8"
+      ],
+      "transit": false
+    },
+    {
+      "id": "analog_ch8_r_adc_pd8n",
+      "owner_block": "analog_ch8",
+      "refs": [
+        "R_ADC_PD8N"
+      ],
+      "transit": false
+    },
+    {
+      "id": "analog_ch8_r_adc_pd8p",
+      "owner_block": "analog_ch8",
+      "refs": [
+        "R_ADC_PD8P"
+      ],
+      "transit": false
+    },
+    {
+      "id": "analog_ch8_r_b8n",
+      "owner_block": "analog_ch8",
+      "refs": [
+        "R_B8N"
+      ],
+      "transit": false
+    },
+    {
+      "id": "analog_ch8_r_b8p",
+      "owner_block": "analog_ch8",
+      "refs": [
+        "R_B8P"
+      ],
+      "transit": false
+    },
+    {
+      "id": "analog_ch8_r_in8n",
+      "owner_block": "analog_ch8",
+      "refs": [
+        "R_IN8N"
+      ],
+      "transit": false
+    },
+    {
+      "id": "analog_ch8_r_in8p",
+      "owner_block": "analog_ch8",
+      "refs": [
+        "R_IN8P"
+      ],
+      "transit": false
+    },
+    {
+      "id": "analog_ch8_r_out8n",
+      "owner_block": "analog_ch8",
+      "refs": [
+        "R_OUT8N"
+      ],
+      "transit": false
+    },
+    {
+      "id": "analog_ch8_r_out8p",
+      "owner_block": "analog_ch8",
+      "refs": [
+        "R_OUT8P"
+      ],
+      "transit": false
+    },
+    {
+      "id": "analog_ch8_r_spoke_ilim8",
+      "owner_block": "analog_ch8",
+      "refs": [
+        "R_SPOKE_ILIM8"
+      ],
+      "transit": false
+    },
+    {
+      "id": "analog_ch8_r_spoke_uvlo8",
+      "owner_block": "analog_ch8",
+      "refs": [
+        "R_SPOKE_UVLO8"
+      ],
+      "transit": false
+    },
+    {
+      "id": "analog_ch8_r_x8n",
+      "owner_block": "analog_ch8",
+      "refs": [
+        "R_X8N"
+      ],
+      "transit": false
+    },
+    {
+      "id": "analog_ch8_r_x8p",
+      "owner_block": "analog_ch8",
+      "refs": [
+        "R_X8P"
+      ],
+      "transit": false
+    },
+    {
+      "id": "analog_ch8_u_afe8",
+      "owner_block": "analog_ch8",
+      "refs": [
+        "U_AFE8"
+      ],
+      "transit": false
+    },
+    {
+      "id": "analog_ch8_u_esd8",
+      "owner_block": "analog_ch8",
+      "refs": [
+        "U_ESD8"
+      ],
+      "transit": false
+    },
+    {
+      "id": "analog_ch8_u_iso8",
+      "owner_block": "analog_ch8",
+      "refs": [
+        "U_ISO8"
+      ],
+      "transit": false
+    },
+    {
+      "id": "analog_ch8_u_spoke8",
+      "owner_block": "analog_ch8",
+      "refs": [
+        "U_SPOKE8"
+      ],
+      "transit": false
+    }
+  ],
+  "placement_pattern_replacements": [
+    {
+      "match": [
+        "C_ADC_AC8N1"
+      ],
+      "region": "analog_ch8"
+    },
+    {
+      "match": [
+        "J8"
+      ],
+      "region": "analog_ch8_j8"
+    },
+    {
+      "match": [
+        "C_A8N"
+      ],
+      "region": "analog_ch8_c_a8n"
+    },
+    {
+      "match": [
+        "C_A8P"
+      ],
+      "region": "analog_ch8_c_a8p"
+    },
+    {
+      "match": [
+        "C_ADC_AC8N2"
+      ],
+      "region": "analog_ch8_c_adc_ac8n2"
+    },
+    {
+      "match": [
+        "C_ADC_AC8P1"
+      ],
+      "region": "analog_ch8_c_adc_ac8p1"
+    },
+    {
+      "match": [
+        "C_ADC_AC8P2"
+      ],
+      "region": "analog_ch8_c_adc_ac8p2"
+    },
+    {
+      "match": [
+        "C_ADC_CM8N"
+      ],
+      "region": "analog_ch8_c_adc_cm8n"
+    },
+    {
+      "match": [
+        "C_ADC_CM8P"
+      ],
+      "region": "analog_ch8_c_adc_cm8p"
+    },
+    {
+      "match": [
+        "C_FB8N"
+      ],
+      "region": "analog_ch8_c_fb8n"
+    },
+    {
+      "match": [
+        "C_FB8P"
+      ],
+      "region": "analog_ch8_c_fb8p"
+    },
+    {
+      "match": [
+        "C_FILTER8N1"
+      ],
+      "region": "analog_ch8_c_filter8n1"
+    },
+    {
+      "match": [
+        "C_FILTER8N2"
+      ],
+      "region": "analog_ch8_c_filter8n2"
+    },
+    {
+      "match": [
+        "C_FILTER8P1"
+      ],
+      "region": "analog_ch8_c_filter8p1"
+    },
+    {
+      "match": [
+        "C_FILTER8P2"
+      ],
+      "region": "analog_ch8_c_filter8p2"
+    },
+    {
+      "match": [
+        "C_ISO8"
+      ],
+      "region": "analog_ch8_c_iso8"
+    },
+    {
+      "match": [
+        "C_OPA8"
+      ],
+      "region": "analog_ch8_c_opa8"
+    },
+    {
+      "match": [
+        "C_SPOKE_DVDT8"
+      ],
+      "region": "analog_ch8_c_spoke_dvdt8"
+    },
+    {
+      "match": [
+        "C_SPOKE_IN8"
+      ],
+      "region": "analog_ch8_c_spoke_in8"
+    },
+    {
+      "match": [
+        "C_SPOKE_OUT8"
+      ],
+      "region": "analog_ch8_c_spoke_out8"
+    },
+    {
+      "match": [
+        "R_ADC_PD8N"
+      ],
+      "region": "analog_ch8_r_adc_pd8n"
+    },
+    {
+      "match": [
+        "R_ADC_PD8P"
+      ],
+      "region": "analog_ch8_r_adc_pd8p"
+    },
+    {
+      "match": [
+        "R_B8N"
+      ],
+      "region": "analog_ch8_r_b8n"
+    },
+    {
+      "match": [
+        "R_B8P"
+      ],
+      "region": "analog_ch8_r_b8p"
+    },
+    {
+      "match": [
+        "R_IN8N"
+      ],
+      "region": "analog_ch8_r_in8n"
+    },
+    {
+      "match": [
+        "R_IN8P"
+      ],
+      "region": "analog_ch8_r_in8p"
+    },
+    {
+      "match": [
+        "R_OUT8N"
+      ],
+      "region": "analog_ch8_r_out8n"
+    },
+    {
+      "match": [
+        "R_OUT8P"
+      ],
+      "region": "analog_ch8_r_out8p"
+    },
+    {
+      "match": [
+        "R_SPOKE_ILIM8"
+      ],
+      "region": "analog_ch8_r_spoke_ilim8"
+    },
+    {
+      "match": [
+        "R_SPOKE_UVLO8"
+      ],
+      "region": "analog_ch8_r_spoke_uvlo8"
+    },
+    {
+      "match": [
+        "R_X8N"
+      ],
+      "region": "analog_ch8_r_x8n"
+    },
+    {
+      "match": [
+        "R_X8P"
+      ],
+      "region": "analog_ch8_r_x8p"
+    },
+    {
+      "match": [
+        "U_AFE8"
+      ],
+      "region": "analog_ch8_u_afe8"
+    },
+    {
+      "match": [
+        "U_ESD8"
+      ],
+      "region": "analog_ch8_u_esd8"
+    },
+    {
+      "match": [
+        "U_ISO8"
+      ],
+      "region": "analog_ch8_u_iso8"
+    },
+    {
+      "match": [
+        "U_SPOKE8"
+      ],
+      "region": "analog_ch8_u_spoke8"
+    }
+  ],
+  "region_rectangles_mm": {
+    "analog_ch8": [
+      195.205,
+      58.305,
+      200.795,
+      61.795
+    ],
+    "analog_ch8_c_a8n": [
+      189.605,
+      66.105,
+      197.395,
+      71.695
+    ],
+    "analog_ch8_c_a8p": [
+      187.055,
+      54.205,
+      194.845,
+      59.795
+    ],
+    "analog_ch8_c_adc_ac8n2": [
+      183.705,
+      67.355,
+      189.295,
+      70.845
+    ],
+    "analog_ch8_c_adc_ac8p1": [
+      180.205,
+      61.255,
+      185.795,
+      64.745
+    ],
+    "analog_ch8_c_adc_ac8p2": [
+      181.105,
+      56.155,
+      186.695,
+      59.645
+    ],
+    "analog_ch8_c_adc_cm8n": [
+      187.045,
+      65.995,
+      188.955,
+      67.005
+    ],
+    "analog_ch8_c_adc_cm8p": [
+      184.845,
+      65.995,
+      186.755,
+      67.005
+    ],
+    "analog_ch8_c_fb8n": [
+      182.045,
+      65.094999,
+      183.955,
+      66.104999
+    ],
+    "analog_ch8_c_fb8p": [
+      182.045,
+      59.895,
+      183.955,
+      60.905
+    ],
+    "analog_ch8_c_filter8n1": [
+      195.405,
+      55.475,
+      198.895,
+      57.525
+    ],
+    "analog_ch8_c_filter8n2": [
+      183.005,
+      53.775,
+      186.495,
+      55.825
+    ],
+    "analog_ch8_c_filter8p1": [
+      197.655,
+      65.375,
+      201.145,
+      67.425
+    ],
+    "analog_ch8_c_filter8p2": [
+      196.755,
+      46.975,
+      200.245,
+      49.025
+    ],
+    "analog_ch8_c_iso8": [
+      187.445,
+      71.395,
+      189.355,
+      72.405
+    ],
+    "analog_ch8_c_opa8": [
+      190.745,
+      72.295,
+      192.655,
+      73.305
+    ],
+    "analog_ch8_c_spoke_dvdt8": [
+      184.045,
+      71.195,
+      185.955,
+      72.205
+    ],
+    "analog_ch8_c_spoke_in8": [
+      190.055,
+      51.575,
+      193.545,
+      53.625
+    ],
+    "analog_ch8_c_spoke_out8": [
+      186.355,
+      72.775,
+      189.845,
+      74.825
+    ],
+    "analog_ch8_j8": [
+      198.875,
+      19.955,
+      216.268081,
+      34.495
+    ],
+    "analog_ch8_r_adc_pd8n": [
+      181.325,
+      68.885,
+      183.275,
+      69.915
+    ],
+    "analog_ch8_r_adc_pd8p": [
+      179.625,
+      65.885,
+      181.575,
+      66.915
+    ],
+    "analog_ch8_r_b8n": [
+      187.325,
+      52.685,
+      189.275,
+      53.715
+    ],
+    "analog_ch8_r_b8p": [
+      192.775,
+      60.485,
+      194.725,
+      61.515
+    ],
+    "analog_ch8_r_in8n": [
+      194.525,
+      71.985,
+      196.475,
+      73.015
+    ],
+    "analog_ch8_r_in8p": [
+      178.725,
+      58.685,
+      180.675,
+      59.715
+    ],
+    "analog_ch8_r_out8n": [
+      194.525,
+      52.985,
+      196.475,
+      54.015
+    ],
+    "analog_ch8_r_out8p": [
+      197.825,
+      69.885,
+      199.775,
+      70.915
+    ],
+    "analog_ch8_r_spoke_ilim8": [
+      190.475,
+      73.525,
+      193.525,
+      75.075
+    ],
+    "analog_ch8_r_spoke_uvlo8": [
+      183.225,
+      72.485,
+      185.175,
+      73.515
+    ],
+    "analog_ch8_r_x8n": [
+      183.225,
+      52.485,
+      185.175,
+      53.515
+    ],
+    "analog_ch8_r_x8p": [
+      187.025,
+      51.185,
+      188.975,
+      52.215
+    ],
+    "analog_ch8_u_afe8": [
+      194.055,
+      73.54,
+      201.545,
+      79.145
+    ],
+    "analog_ch8_u_esd8": [
+      178.755,
+      70.21,
+      181.245,
+      72.395
+    ],
+    "analog_ch8_u_iso8": [
+      197.155,
+      51.155,
+      200.845,
+      54.845
+    ],
+    "analog_ch8_u_spoke8": [
+      187.805,
+      60.805,
+      192.195,
+      65.195
+    ]
+  },
+  "schema": 1,
+  "status": "REJECTED_UNDER_CURRENT_CHECKER"
+}
