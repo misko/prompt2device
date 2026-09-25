@@ -23,6 +23,11 @@ EXPECTED = {
     "poses": "76ba7ace1275fe1a8d6bc69d452037672519d70a21b8b02fff67f8c7d8a647bb",
     "pro": "7977bc9edb88e1ef723eb256f07949871493dfda3d2c2491dd5d5b6087ddc094",
     "dru": "00ab83d8484368f132392523972c1f41fc9073423d3c600feec962684f9c3b0a",
+    "netlist": "a40b45c27b2169ed4f3dd43d72a1f4f7112d829985f98918a8855ed76735e9bd",
+    "circuit": "580ac31b0de8d376d888caa1a342ae43c0636fbd13c74048392173acf718cb6d",
+    "board_generator": "8a5fa1d48d80138458601a097ab6260565841510a498e44cb9c5773652215b3c",
+    "rules_generator": "3f423340be27471ce7edca2b66a633dd0898b0a172b7abf12fa944e83690f026",
+    "pofv_generator": "b3906f63e07e9f04ada58e757f4095989f6933eca98d93b0f1165e91064529b7",
 }
 
 
@@ -44,7 +49,12 @@ def main() -> None:
     if {"board": sha(baseline), "floorplan": sha(base_floorplan),
         "poses": sha(POSES),
         "pro": sha(source / "04_kicad/crow_carrier.kicad_pro"),
-        "dru": sha(source / "04_kicad/crow_carrier.kicad_dru")} != EXPECTED:
+        "dru": sha(source / "04_kicad/crow_carrier.kicad_dru"),
+        "netlist": sha(source / "06_build/netlists/crow_carrier.net"),
+        "circuit": sha(source / "03_tscircuit/build/circuit.json"),
+        "board_generator": sha(REPO / "skills/kicad-pcb/scripts/generate_board_generic.py"),
+        "rules_generator": sha(REPO / "skills/kicad-pcb/scripts/generate_rules_generic.py"),
+        "pofv_generator": sha(REPO / "skills/jlcpcb-fab/scripts/generate_tmux4827_pofv.py")} != EXPECTED:
         raise RuntimeError("baseline, pose set or effective rule bytes changed")
     if OUTPUT.exists():
         raise RuntimeError("refusing to overwrite the private replay")
