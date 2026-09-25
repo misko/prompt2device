@@ -178,3 +178,395 @@ power_boundary_windows:
       - {id: pwr_en_adc_entry, net: PWR_EN, bbox: [95, 103, 101, 107], role: u_adc_pwr_bad-entry-cell}
       - {id: pwr_en_audio_entry, net: PWR_EN, bbox: [20, 108, 24, 112], role: u_audio-entry-cell}
   reason: rail current, return, and thermal needs cannot be replaced with scalar corridor slots; all local copper remains P2 evidence
+
+# Disjoint QSPI and XTAL ownership reservations; P2 pad access and filled
+# In1.Cu return remain required. Source geometry grants no P1 credit.
+integration_corridors:
+- id: qspi_gap
+  owner: board_integration
+  region_id: board_integration_qspi
+  allocation_id: xmos_service_escape
+  participants:
+  - xmos_core
+  - clock_flash_debug
+  faces:
+  - block: xmos_core
+    region_face: south
+    bbox:
+    - 219.2
+    - 110.2
+    - 222.8
+    - 110.5
+    physical_cell_id: xmos_core_qspi_south
+  - block: clock_flash_debug
+    region_face: north
+    bbox:
+    - 219.0
+    - 118.5
+    - 222.8
+    - 118.8
+  layer: F.Cu
+  reference_layer: In1.Cu
+  nets:
+  - QSPI_CLK
+  - QSPI_CS_N
+  - QSPI_D0
+  - QSPI_D1
+  - QSPI_D2
+  - QSPI_D3
+  reservation_id: qspi_gap_trunk
+  affected:
+  - source_pad: U_XU.4
+    native_pad: U_XU.4
+    net: QSPI_CLK
+    block: xmos_core
+  - source_pad: U_FLASH.6
+    native_pad: U_FLASH.6
+    net: QSPI_CLK
+    block: clock_flash_debug
+  - source_pad: U_XU.2
+    native_pad: U_XU.2
+    net: QSPI_CS_N
+    block: xmos_core
+  - source_pad: R_QSPI_CS.2
+    native_pad: R_QSPI_CS.2
+    net: QSPI_CS_N
+    block: clock_flash_debug
+  - source_pad: U_FLASH.1
+    native_pad: U_FLASH.1
+    net: QSPI_CS_N
+    block: clock_flash_debug
+  - source_pad: U_XU.127
+    native_pad: U_XU.127
+    net: QSPI_D0
+    block: xmos_core
+  - source_pad: U_FLASH.5
+    native_pad: U_FLASH.5
+    net: QSPI_D0
+    block: clock_flash_debug
+  - source_pad: U_XU.128
+    native_pad: U_XU.128
+    net: QSPI_D1
+    block: xmos_core
+  - source_pad: U_FLASH.2
+    native_pad: U_FLASH.2
+    net: QSPI_D1
+    block: clock_flash_debug
+  - source_pad: U_XU.1
+    native_pad: U_XU.1
+    net: QSPI_D2
+    block: xmos_core
+  - source_pad: U_FLASH.3
+    native_pad: U_FLASH.3
+    net: QSPI_D2
+    block: clock_flash_debug
+  - source_pad: U_XU.3
+    native_pad: U_XU.3
+    net: QSPI_D3
+    block: xmos_core
+  - source_pad: U_FLASH.7
+    native_pad: U_FLASH.7
+    net: QSPI_D3
+    block: clock_flash_debug
+  p2_obligations:
+  - status: P2_REQUIRED
+    source_pad: U_XU.4
+    native_pad: U_XU.4
+    net: QSPI_CLK
+    block: xmos_core
+    corridor_id: qspi_gap
+    region_face: south
+    layer: F.Cu
+    to_reservation: qspi_gap_trunk
+    physical_cell_id: xmos_core_qspi_south
+  - status: P2_REQUIRED
+    source_pad: U_FLASH.6
+    native_pad: U_FLASH.6
+    net: QSPI_CLK
+    block: clock_flash_debug
+    corridor_id: qspi_gap
+    region_face: north
+    layer: F.Cu
+    to_reservation: qspi_gap_trunk
+  - status: P2_REQUIRED
+    source_pad: U_XU.2
+    native_pad: U_XU.2
+    net: QSPI_CS_N
+    block: xmos_core
+    corridor_id: qspi_gap
+    region_face: south
+    layer: F.Cu
+    to_reservation: qspi_gap_trunk
+    physical_cell_id: xmos_core_qspi_south
+  - status: P2_REQUIRED
+    source_pad: R_QSPI_CS.2
+    native_pad: R_QSPI_CS.2
+    net: QSPI_CS_N
+    block: clock_flash_debug
+    corridor_id: qspi_gap
+    region_face: north
+    layer: F.Cu
+    to_reservation: qspi_gap_trunk
+  - status: P2_REQUIRED
+    source_pad: U_FLASH.1
+    native_pad: U_FLASH.1
+    net: QSPI_CS_N
+    block: clock_flash_debug
+    corridor_id: qspi_gap
+    region_face: north
+    layer: F.Cu
+    to_reservation: qspi_gap_trunk
+  - status: P2_REQUIRED
+    source_pad: U_XU.127
+    native_pad: U_XU.127
+    net: QSPI_D0
+    block: xmos_core
+    corridor_id: qspi_gap
+    region_face: south
+    layer: F.Cu
+    to_reservation: qspi_gap_trunk
+    physical_cell_id: xmos_core_qspi_south
+  - status: P2_REQUIRED
+    source_pad: U_FLASH.5
+    native_pad: U_FLASH.5
+    net: QSPI_D0
+    block: clock_flash_debug
+    corridor_id: qspi_gap
+    region_face: north
+    layer: F.Cu
+    to_reservation: qspi_gap_trunk
+  - status: P2_REQUIRED
+    source_pad: U_XU.128
+    native_pad: U_XU.128
+    net: QSPI_D1
+    block: xmos_core
+    corridor_id: qspi_gap
+    region_face: south
+    layer: F.Cu
+    to_reservation: qspi_gap_trunk
+    physical_cell_id: xmos_core_qspi_south
+  - status: P2_REQUIRED
+    source_pad: U_FLASH.2
+    native_pad: U_FLASH.2
+    net: QSPI_D1
+    block: clock_flash_debug
+    corridor_id: qspi_gap
+    region_face: north
+    layer: F.Cu
+    to_reservation: qspi_gap_trunk
+  - status: P2_REQUIRED
+    source_pad: U_XU.1
+    native_pad: U_XU.1
+    net: QSPI_D2
+    block: xmos_core
+    corridor_id: qspi_gap
+    region_face: south
+    layer: F.Cu
+    to_reservation: qspi_gap_trunk
+    physical_cell_id: xmos_core_qspi_south
+  - status: P2_REQUIRED
+    source_pad: U_FLASH.3
+    native_pad: U_FLASH.3
+    net: QSPI_D2
+    block: clock_flash_debug
+    corridor_id: qspi_gap
+    region_face: north
+    layer: F.Cu
+    to_reservation: qspi_gap_trunk
+  - status: P2_REQUIRED
+    source_pad: U_XU.3
+    native_pad: U_XU.3
+    net: QSPI_D3
+    block: xmos_core
+    corridor_id: qspi_gap
+    region_face: south
+    layer: F.Cu
+    to_reservation: qspi_gap_trunk
+    physical_cell_id: xmos_core_qspi_south
+  - status: P2_REQUIRED
+    source_pad: U_FLASH.7
+    native_pad: U_FLASH.7
+    net: QSPI_D3
+    block: clock_flash_debug
+    corridor_id: qspi_gap
+    region_face: north
+    layer: F.Cu
+    to_reservation: qspi_gap_trunk
+  return_obligation:
+    status: P2_REQUIRED
+    net: GND
+    corridor_id: qspi_gap
+    reference_layer: In1.Cu
+    proof: continuous_filled_reference
+- id: xtal_south_cap
+  owner: board_integration
+  region_id: clock_oscillator_handoff
+  allocation_id: xmos_service_escape
+  participants:
+  - xmos_core
+  - clock_flash_debug
+  faces:
+  - block: xmos_core
+    physical_cell_id: xmos_core
+    region_face: east
+    bbox:
+    - 217.196
+    - 107.2
+    - 217.2
+    - 108.7
+  - block: clock_flash_debug
+    region_face: north
+    bbox:
+    - 217.35
+    - 118.5
+    - 218.8
+    - 118.8
+  layer: F.Cu
+  reference_layer: In1.Cu
+  nets:
+  - XTAL_IN
+  - XTAL_OUT
+  reservation_id: xtal_handoff
+  affected:
+  - source_pad: U_XU.34
+    native_pad: U_XU.34
+    net: XTAL_IN
+    block: xmos_core
+  - source_pad: R_XTAL_DRIVE.1
+    native_pad: R_XTAL_DRIVE.1
+    net: XTAL_IN
+    block: clock_flash_debug
+  - source_pad: R_XTAL_FB.1
+    native_pad: R_XTAL_FB.1
+    net: XTAL_IN
+    block: clock_flash_debug
+  - source_pad: U_XU.33
+    native_pad: U_XU.33
+    net: XTAL_OUT
+    block: xmos_core
+  - source_pad: C_XTAL_OUT.1
+    native_pad: C_XTAL_OUT.1
+    net: XTAL_OUT
+    block: clock_flash_debug
+  - source_pad: R_XTAL_FB.2
+    native_pad: R_XTAL_FB.2
+    net: XTAL_OUT
+    block: clock_flash_debug
+  - source_pad: Y_XU.3
+    native_pad: Y_XU.3
+    net: XTAL_OUT
+    block: clock_flash_debug
+  p2_obligations:
+  - status: P2_REQUIRED
+    source_pad: U_XU.34
+    native_pad: U_XU.34
+    net: XTAL_IN
+    block: xmos_core
+    corridor_id: xtal_south_cap
+    region_face: east
+    layer: F.Cu
+    to_reservation: xtal_handoff
+    physical_cell_id: xmos_core
+  - status: P2_REQUIRED
+    source_pad: R_XTAL_DRIVE.1
+    native_pad: R_XTAL_DRIVE.1
+    net: XTAL_IN
+    block: clock_flash_debug
+    corridor_id: xtal_south_cap
+    region_face: north
+    layer: F.Cu
+    to_reservation: xtal_handoff
+  - status: P2_REQUIRED
+    source_pad: R_XTAL_FB.1
+    native_pad: R_XTAL_FB.1
+    net: XTAL_IN
+    block: clock_flash_debug
+    corridor_id: xtal_south_cap
+    region_face: north
+    layer: F.Cu
+    to_reservation: xtal_handoff
+  - status: P2_REQUIRED
+    source_pad: U_XU.33
+    native_pad: U_XU.33
+    net: XTAL_OUT
+    block: xmos_core
+    corridor_id: xtal_south_cap
+    region_face: east
+    layer: F.Cu
+    to_reservation: xtal_handoff
+    physical_cell_id: xmos_core
+  - status: P2_REQUIRED
+    source_pad: C_XTAL_OUT.1
+    native_pad: C_XTAL_OUT.1
+    net: XTAL_OUT
+    block: clock_flash_debug
+    corridor_id: xtal_south_cap
+    region_face: north
+    layer: F.Cu
+    to_reservation: xtal_handoff
+  - status: P2_REQUIRED
+    source_pad: R_XTAL_FB.2
+    native_pad: R_XTAL_FB.2
+    net: XTAL_OUT
+    block: clock_flash_debug
+    corridor_id: xtal_south_cap
+    region_face: north
+    layer: F.Cu
+    to_reservation: xtal_handoff
+  - status: P2_REQUIRED
+    source_pad: Y_XU.3
+    native_pad: Y_XU.3
+    net: XTAL_OUT
+    block: clock_flash_debug
+    corridor_id: xtal_south_cap
+    region_face: north
+    layer: F.Cu
+    to_reservation: xtal_handoff
+  return_obligation:
+    status: P2_REQUIRED
+    net: GND
+    corridor_id: xtal_south_cap
+    reference_layer: In1.Cu
+    proof: continuous_filled_reference
+physical_cells:
+- id: xmos_core
+  owner_block: xmos_core
+  refs:
+  - C_XU_USB18
+  - C_XU_VDDIO_10
+  - C_XU_VDDIO_109
+  - C_XU_VDDIO_121
+  - C_XU_VDDIO_17
+  - C_XU_VDDIO_72
+  - C_XU_VDDIO_89
+  - C_XU_VDD_104
+  - C_XU_VDD_105
+  - C_XU_VDD_106
+  - C_XU_VDD_11
+  - C_XU_VDD_113
+  - C_XU_VDD_14
+  - C_XU_VDD_18
+  - C_XU_VDD_5
+  - C_XU_VDD_68
+  - C_XU_VDD_85
+  - C_XU_VDD_95
+  - U_XU
+  transit: false
+- id: xmos_core_east
+  owner_block: xmos_core
+  refs:
+  - C_PLL_100N
+  - C_PLL_1U
+  - C_XU_USB33
+  - C_XU_VDDIO_35
+  - C_XU_VDDIO_56
+  - C_XU_VDD_39
+  - C_XU_VDD_45
+  - C_XU_VDD_50
+  - C_XU_VDD_54
+  - FB_PLL
+  transit: false
+- id: xmos_core_qspi_south
+  owner_block: xmos_core
+  refs: []
+  transit: true

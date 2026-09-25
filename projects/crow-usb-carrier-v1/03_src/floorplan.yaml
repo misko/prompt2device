@@ -384,13 +384,17 @@ placement:
     - 185
     - 134
     xmos_core:
-    - 185
-    - 72
-    - 232
-    - 128
+    - 190
+    - 84
+    - 217.2
+    - 110.5
+    xmos_core_east: [217.2, 84, 224, 107]
+    xmos_core_qspi_south: [218.95, 107, 232, 110.5]
+    clock_oscillator_handoff: [217.2, 107, 218.95, 118.5]
+    board_integration_qspi: [219.2, 110.5, 223.2, 118.5]
     clock_flash_debug:
-    - 185
-    - 112
+    - 190
+    - 118.5
     - 232
     - 136
     audio_clock_tdm:
@@ -1057,16 +1061,11 @@ placement:
     - R_VBUS_PU
     region: usb_vbus_sense
   - match:
-    - C_PLL_100N
-    - C_PLL_1U
     - C_XU_USB18
-    - C_XU_USB33
     - C_XU_VDDIO_10
     - C_XU_VDDIO_109
     - C_XU_VDDIO_121
     - C_XU_VDDIO_17
-    - C_XU_VDDIO_35
-    - C_XU_VDDIO_56
     - C_XU_VDDIO_72
     - C_XU_VDDIO_89
     - C_XU_VDD_104
@@ -1076,17 +1075,25 @@ placement:
     - C_XU_VDD_113
     - C_XU_VDD_14
     - C_XU_VDD_18
-    - C_XU_VDD_39
-    - C_XU_VDD_45
     - C_XU_VDD_5
-    - C_XU_VDD_50
-    - C_XU_VDD_54
     - C_XU_VDD_68
     - C_XU_VDD_85
     - C_XU_VDD_95
-    - FB_PLL
     - U_XU
     region: xmos_core
+  # Physical split of the same modular xmos_core owner; no pose change.
+  - match:
+    - C_PLL_100N
+    - C_PLL_1U
+    - C_XU_USB33
+    - C_XU_VDDIO_35
+    - C_XU_VDDIO_56
+    - C_XU_VDD_39
+    - C_XU_VDD_45
+    - C_XU_VDD_50
+    - C_XU_VDD_54
+    - FB_PLL
+    region: xmos_core_east
   - match:
     - J1
     - J2

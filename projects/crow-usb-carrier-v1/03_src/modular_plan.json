@@ -496,7 +496,8 @@
       ],
       "responsibilities": [
         "Keep the crystal loop compact and isolate it from USB and regulator switch nodes.",
-        "Own the 24 MHz crystal loop, boot flash, and JTAG signal integration with debug_connector."
+        "Own the 24 MHz crystal loop, boot flash, and JTAG signal integration with debug_connector.",
+        "P3 timing/boot evidence must prove the local XTAL_IN_R connection among R_XTAL_DRIVE.2, Y_XU.1, and C_XTAL_IN.1, including its ground return; this local net does not consume a cross-block P1 corridor."
       ]
     },
     {
@@ -3146,7 +3147,7 @@
         "independent_work_items": [
           {
             "id": "p3_timing_boot",
-            "rationale": "Local IC timing/boot proof covers QSPI_CLK, QSPI_CS_N, QSPI_D0..D3, XTAL_IN/OUT, AUDIO_MCLK_1V8, ADC_BCLK/FSYNC/DOUT1 and TDM_BCLK_1V8/DATA_1V8/FSYNC_1V8 under fixed native connector geometry and applicable rules. It excludes J_JTAG, all JTAG nets, XU_RESET_N, J_USB, USB pair/CC/VBUS and connector qualification; p3_debug_service owns the debug/reset service proof. Any candidate entering unresolved mate/tool/service space must backtrack its independence scope. Partial XTAL evidence cannot complete the timing/boot task, and P5 still requires connector FULL."
+            "rationale": "Local IC timing/boot proof covers QSPI_CLK, QSPI_CS_N, QSPI_D0..D3, XTAL_IN/OUT, AUDIO_MCLK_1V8, ADC_BCLK/FSYNC/DOUT1 and TDM_BCLK_1V8/DATA_1V8/FSYNC_1V8 under fixed native connector geometry and applicable rules. The local XTAL_IN_R path and oscillator GND returns are additional timing/boot obligations without adding a cross-block net to the 15-net P3 set. It excludes J_JTAG, all JTAG nets, XU_RESET_N, J_USB, USB pair/CC/VBUS and connector qualification; p3_debug_service owns the debug/reset service proof. Any candidate entering unresolved mate/tool/service space must backtrack its independence scope. Partial XTAL evidence cannot complete the timing/boot task, and P5 still requires connector FULL."
           }
         ]
       }
