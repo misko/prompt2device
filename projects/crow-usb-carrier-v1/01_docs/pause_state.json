@@ -1,11 +1,11 @@
 {
-  "blocker": "3313A exact-pair clearance is tested but unadopted. Current source has incomplete P1 reset/USB ownership and timing bundle access/return; affected P2, connector FULL, prototype-only ESD, stack/order and release remain open. The 0.15-mm JTAG access geometry is a screened proposal, not a routed/native P1 pass.",
+  "blocker": "The frozen-board reset candidate fails P1: three digital-power witnesses exceed the locality bound (10.2 versus 8.54 mm), and current source accounting rejects XU_RESET_N across its JTAG and reset-power corridors. USB edge ownership is checker-expressible but P1/P2 and route/return are incomplete. 3313A remains unadopted; connector FULL, prototype-only ESD, stack/order and release remain open.",
   "checkpoint": {
     "path": "03_src/rules/critical_part_selection.yaml",
     "sha256": "15288355fcc731ff8b1b0e35a1ae47b9faf66140223cfea0d31c91d99e9dc1ba",
     "size": 1148
   },
-  "next_command": "On the frozen expanded placement, make one source-backed P1 candidate for the five-terminal reset tree and owned USB fixed-connector corridor, then test native pad access and the complete P1 denominator. Separately resolve timing-neighbour access and local GND return for affected P2. Keep 3313A source unadopted until full USB topology/return review; D18 allows no private route experiment before independent P1 and affected P2 admission. Preserve D15 failed history and physical/release holds.",
+  "next_command": "Define and test a minimal branch-aware P1 representation for one shared five-terminal reset net over two physical corridors without double credit; retain the locality check and five-terminal/four-edge denominator. Then retry one source-backed reset/USB owner candidate on the frozen placement and regrade all P1 plus affected P2. Resolve timing-neighbour access and local GND return before any D18 private route experiment. Preserve D15 failed history and physical/release holds.",
   "phase": "prototype-layout-diagnostic",
   "project": "crow-usb-carrier-v1",
   "receipts": [
@@ -36,8 +36,8 @@
     },
     {
       "path": "01_docs/journal/placement.md",
-      "sha256": "cc7a04e10e5a8308de8eb1197242f7695cda282db0234b7c130a11524994a444",
-      "size": 9899
+      "sha256": "72e483c6fed2f72257ecea5c420703340b2dbc5cc4221acaa145a21718f8d5b5",
+      "size": 11659
     },
     {
       "path": "01_docs/research/2026-09-24-public-stock-569/public-stock.json",
@@ -63,6 +63,11 @@
       "path": "01_docs/research/2026-09-25-expanded-locked-p1p2-single-experiment-no-go-terra.md",
       "sha256": "1209860e291b2b0dadc2bef693524b8af9735543310b4ecf971da7dc2341f159",
       "size": 4002
+    },
+    {
+      "path": "01_docs/research/2026-09-25-expanded-locked-usb-edge-ownership-proposal-terra.md",
+      "sha256": "5b04898fa6fe038210bf15a241a70e3b8aac658c9d7377ee8a604438ba8166cb",
+      "size": 3590
     },
     {
       "path": "01_docs/research/2026-09-25-expanded-service-reset-access-sol/README.md",
@@ -93,6 +98,21 @@
       "path": "01_docs/research/2026-09-25-expanded-service-timing-capacity-sol/measurement.json",
       "sha256": "93bb33a0e1ef2635af90d197361884c9106937f1fcf45be708d0c36cdeb6bd04",
       "size": 8829
+    },
+    {
+      "path": "01_docs/research/2026-09-25-reset-two-corridor-schema-probe-sol/README.md",
+      "sha256": "5c4dd4568f12ec1231450d4fd18b66e9cb26276f2ba11d0d4f97dbba70f0dd37",
+      "size": 3465
+    },
+    {
+      "path": "01_docs/research/2026-09-25-reset-two-corridor-schema-probe-sol/build.py",
+      "sha256": "9c23a3c6099fa25d989ed6e32f6b0594412d9d7a32bd5f9510ad475f8f9b36b0",
+      "size": 9060
+    },
+    {
+      "path": "01_docs/research/2026-09-25-reset-two-corridor-schema-probe-sol/summary.json",
+      "sha256": "c517898f46597110b6f296cd4de970b369c89af0db34c56674cf48a90b9524fb",
+      "size": 1830
     },
     {
       "path": "01_docs/research/2026-09-25-ti-prototype-p-prec-isolated-check-sol.md",
@@ -161,5 +181,5 @@
     }
   ],
   "schema": 1,
-  "state_id": "22f93e51e77f56ac1dfea5ed55bc45565a8419fe427c5d2749c5f5eb153c62f1"
+  "state_id": "21369c3a8de425ba304e976627b95cf46141eef91066f418dbb9b91ccd361408"
 }

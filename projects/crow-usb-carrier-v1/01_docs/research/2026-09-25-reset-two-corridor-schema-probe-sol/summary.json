@@ -1,0 +1,46 @@
+{
+  "diagnostics": [
+    {
+      "allocation": "xmos_service_escape",
+      "index": 30,
+      "kind": "boundary_witness",
+      "reason": "R_XU_RST_PU.2: witness bbox is a nonlocal bridge across source region",
+      "source": "R_XU_RST_PU.2"
+    },
+    {
+      "allocation": "xmos_service_escape",
+      "index": 31,
+      "kind": "boundary_witness",
+      "reason": "U_CORE_OK.1: witness bbox is a nonlocal bridge across source region",
+      "source": "U_CORE_OK.1"
+    },
+    {
+      "allocation": "xmos_service_escape",
+      "index": 32,
+      "kind": "boundary_witness",
+      "reason": "U_XU_3V3_OK.6: witness bbox is a nonlocal bridge across source region",
+      "source": "U_XU_3V3_OK.6"
+    }
+  ],
+  "errors": [
+    "qspi_gap: integration affected endpoint/layer denominator mismatch",
+    "xtal_south_cap: integration affected endpoint/layer denominator mismatch",
+    "jtag_strip: integration affected endpoint/layer denominator mismatch",
+    "jtag_strip: integration net double reservation credit in xmos_service_escape",
+    "reset_power_gap: integration affected endpoint/layer denominator mismatch",
+    "reset_power_gap: integration net double reservation credit in xmos_service_escape",
+    "reset_power_gap: integration net double reservation credit in xmos_service_escape"
+  ],
+  "service": {
+    "id": "xmos_service_escape",
+    "reason": "R_XU_RST_PU.2: witness bbox is a nonlocal bridge across source region",
+    "status": "FAIL"
+  },
+  "sha256": {
+    "board": "fe8d2c9a9922eeab2371d0187da9407ac590687a77b03a8a099c35a75b5ddd16",
+    "contract": "79f5aff51c6d4636bdac7b12581927e2c21c507f63560b25b29708756f3320d6",
+    "floor": "fd6f9149f2ffe2cecd86cbbf59d8510a33553fc0f34feaac076764f5ce272f62",
+    "source": "309217715caf72145a26866a0fd218b46bce0df4ac00e7d1fcc65297b2d83d80"
+  },
+  "status": "FAIL"
+}
