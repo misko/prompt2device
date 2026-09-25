@@ -1,0 +1,456 @@
+{
+  "endpoints": {
+    "AUDIO_MCLK_1V8": [
+      {
+        "bbox_mm": [
+          174.6,
+          95.675,
+          176.075,
+          96.075
+        ],
+        "centre_mm": [
+          175.3375,
+          95.875
+        ],
+        "pad": "U_TDM_XLATE.6"
+      },
+      {
+        "bbox_mm": [
+          210.975,
+          106.925,
+          211.225,
+          108.4
+        ],
+        "centre_mm": [
+          211.1,
+          107.6625
+        ],
+        "pad": "U_XU.23"
+      }
+    ],
+    "TDM_BCLK_1V8": [
+      {
+        "bbox_mm": [
+          174.6,
+          94.375,
+          176.075,
+          94.775
+        ],
+        "centre_mm": [
+          175.3375,
+          94.575
+        ],
+        "pad": "U_TDM_XLATE.4"
+      },
+      {
+        "bbox_mm": [
+          210.575,
+          106.925,
+          210.825,
+          108.4
+        ],
+        "centre_mm": [
+          210.7,
+          107.6625
+        ],
+        "pad": "U_XU.22"
+      }
+    ],
+    "TDM_DATA_1V8": [
+      {
+        "bbox_mm": [
+          174.6,
+          96.325,
+          176.075,
+          96.725
+        ],
+        "centre_mm": [
+          175.3375,
+          96.525
+        ],
+        "pad": "U_TDM_XLATE.7"
+      },
+      {
+        "bbox_mm": [
+          200.1,
+          97.675,
+          201.575,
+          97.925
+        ],
+        "centre_mm": [
+          200.8375,
+          97.8
+        ],
+        "pad": "U_XU.107"
+      }
+    ],
+    "TDM_FSYNC_1V8": [
+      {
+        "bbox_mm": [
+          174.6,
+          95.025,
+          176.075,
+          95.425
+        ],
+        "centre_mm": [
+          175.3375,
+          95.225
+        ],
+        "pad": "U_TDM_XLATE.5"
+      },
+      {
+        "bbox_mm": [
+          209.775,
+          106.925,
+          210.025,
+          108.4
+        ],
+        "centre_mm": [
+          209.9,
+          107.6625
+        ],
+        "pad": "U_XU.20"
+      }
+    ]
+  },
+  "fixed_ref_count": 27,
+  "fixed_refs": [
+    "C_HOLD1",
+    "C_HOLD10",
+    "C_HOLD11",
+    "C_HOLD12",
+    "C_HOLD13",
+    "C_HOLD14",
+    "C_HOLD15",
+    "C_HOLD16",
+    "C_HOLD2",
+    "C_HOLD3",
+    "C_HOLD4",
+    "C_HOLD5",
+    "C_HOLD6",
+    "C_HOLD7",
+    "C_HOLD8",
+    "C_HOLD9",
+    "J1",
+    "J2",
+    "J3",
+    "J4",
+    "J5",
+    "J6",
+    "J7",
+    "J8",
+    "J_JTAG",
+    "J_PWR",
+    "J_USB"
+  ],
+  "hashes": {
+    "board": "d0c065dc16de081a5410b7a22e474f0a99c6fdeb0b7dd1f6c37422ace4a9fcf7",
+    "floorplan": "7d95376bbfa3bc9dd0bf59bc7e91d02d86c31235f6145f4d09b49a31f81769d0",
+    "source": "f6f132891712bfcb1cec4d1df6714748337040ba5c42ae3fecd14fb9c35d1222"
+  },
+  "kind": "tdm-full-envelope-mouth-screen",
+  "method": "F.Cu native courtyard/body and pad bbox event-strip aperture diagnostic; no trace, bend, same-net access, SI, or return proof",
+  "mouths": {
+    "translator_west_four": {
+      "axis": "horizontal",
+      "bbox_mm": [
+        172.5,
+        94.2,
+        174.305,
+        96.8
+      ],
+      "connected_width_mm": 1.295,
+      "cross_sections": [
+        {
+          "max_free_width_mm": 1.295,
+          "reachable_width_mm": 1.295,
+          "station_mm": 172.55
+        },
+        {
+          "max_free_width_mm": 1.295,
+          "reachable_width_mm": 1.295,
+          "station_mm": 172.8
+        },
+        {
+          "max_free_width_mm": 1.295,
+          "reachable_width_mm": 1.295,
+          "station_mm": 173.28
+        },
+        {
+          "max_free_width_mm": 1.295,
+          "reachable_width_mm": 1.295,
+          "station_mm": 173.6575
+        },
+        {
+          "max_free_width_mm": 2.6,
+          "reachable_width_mm": 1.295,
+          "station_mm": 174.03
+        }
+      ],
+      "demand_slots": 4,
+      "fixed_ref_hits": [],
+      "intersecting_native_envelopes": [
+        "C_ADC_I2C_B:courtyard_or_body",
+        "C_ADC_I2C_B:pad1",
+        "C_ADC_I2C_B:pad2"
+      ],
+      "native_fcu_rule_area_hits": [],
+      "raw_slots": 2,
+      "screen_pitch_mm": 0.45,
+      "source_regions_intersected": [
+        "audio_clock_tdm"
+      ]
+    },
+    "xu_south_three": {
+      "axis": "vertical",
+      "bbox_mm": [
+        209.5,
+        108.7,
+        212.5,
+        109.9
+      ],
+      "connected_width_mm": 0.545,
+      "cross_sections": [
+        {
+          "max_free_width_mm": 3.0,
+          "reachable_width_mm": 3.0,
+          "station_mm": 108.7975
+        },
+        {
+          "max_free_width_mm": 0.545,
+          "reachable_width_mm": 0.545,
+          "station_mm": 108.9925
+        },
+        {
+          "max_free_width_mm": 0.545,
+          "reachable_width_mm": 0.545,
+          "station_mm": 109.4
+        },
+        {
+          "max_free_width_mm": 0.545,
+          "reachable_width_mm": 0.545,
+          "station_mm": 109.805
+        }
+      ],
+      "demand_slots": 3,
+      "fixed_ref_hits": [],
+      "intersecting_native_envelopes": [
+        "C_XU_VDDIO_17:courtyard_or_body",
+        "C_XU_VDDIO_17:pad1",
+        "C_XU_VDDIO_17:pad2"
+      ],
+      "native_fcu_rule_area_hits": [],
+      "raw_slots": 1,
+      "screen_pitch_mm": 0.45,
+      "source_regions_intersected": [
+        "xmos_core"
+      ]
+    },
+    "xu_west_data": {
+      "axis": "horizontal",
+      "bbox_mm": [
+        197.5,
+        97.695,
+        199.805,
+        98.705
+      ],
+      "connected_width_mm": 0.0,
+      "cross_sections": [
+        {
+          "max_free_width_mm": 1.01,
+          "reachable_width_mm": 1.01,
+          "station_mm": 197.5725
+        },
+        {
+          "max_free_width_mm": 0,
+          "reachable_width_mm": 0,
+          "station_mm": 197.7425
+        },
+        {
+          "max_free_width_mm": 0,
+          "reachable_width_mm": 0,
+          "station_mm": 198.12
+        },
+        {
+          "max_free_width_mm": 0,
+          "reachable_width_mm": 0,
+          "station_mm": 198.6
+        },
+        {
+          "max_free_width_mm": 0,
+          "reachable_width_mm": 0,
+          "station_mm": 199.08
+        },
+        {
+          "max_free_width_mm": 0,
+          "reachable_width_mm": 0,
+          "station_mm": 199.4575
+        },
+        {
+          "max_free_width_mm": 1.01,
+          "reachable_width_mm": 0.0,
+          "station_mm": 199.68
+        }
+      ],
+      "demand_slots": 1,
+      "fixed_ref_hits": [],
+      "intersecting_native_envelopes": [
+        "C_XU_VDD_106:courtyard_or_body",
+        "C_XU_VDD_106:pad1",
+        "C_XU_VDD_106:pad2"
+      ],
+      "native_fcu_rule_area_hits": [],
+      "raw_slots": 0,
+      "screen_pitch_mm": 0.45,
+      "source_regions_intersected": [
+        "xmos_core"
+      ]
+    }
+  },
+  "owner_regions": {
+    "audio_clock_tdm": [
+      145,
+      72,
+      190,
+      99.84
+    ],
+    "xmos_core": [
+      190,
+      84,
+      217.2,
+      110.5
+    ]
+  },
+  "p1_accepted": false,
+  "routing_realized": false,
+  "schema": 1,
+  "status": "STOP_COUPLED_PLACEMENT",
+  "zones": [
+    {
+      "bbox_mm": [
+        170.395,
+        49.195,
+        170.405,
+        49.205
+      ],
+      "layers": [
+        "F.Cu"
+      ],
+      "net": "",
+      "rule_area": true,
+      "saved_filled": false
+    },
+    {
+      "bbox_mm": [
+        126.395,
+        49.195,
+        126.405,
+        49.205
+      ],
+      "layers": [
+        "F.Cu"
+      ],
+      "net": "",
+      "rule_area": true,
+      "saved_filled": false
+    },
+    {
+      "bbox_mm": [
+        148.395,
+        49.195,
+        148.405,
+        49.205
+      ],
+      "layers": [
+        "F.Cu"
+      ],
+      "net": "",
+      "rule_area": true,
+      "saved_filled": false
+    },
+    {
+      "bbox_mm": [
+        23.295,
+        67.595,
+        23.305,
+        67.605
+      ],
+      "layers": [
+        "F.Cu"
+      ],
+      "net": "",
+      "rule_area": true,
+      "saved_filled": false
+    },
+    {
+      "bbox_mm": [
+        60.395,
+        49.195,
+        60.405,
+        49.205
+      ],
+      "layers": [
+        "F.Cu"
+      ],
+      "net": "",
+      "rule_area": true,
+      "saved_filled": false
+    },
+    {
+      "bbox_mm": [
+        104.395,
+        49.195,
+        104.405,
+        49.205
+      ],
+      "layers": [
+        "F.Cu"
+      ],
+      "net": "",
+      "rule_area": true,
+      "saved_filled": false
+    },
+    {
+      "bbox_mm": [
+        202.695,
+        58.395,
+        202.705,
+        58.405
+      ],
+      "layers": [
+        "F.Cu"
+      ],
+      "net": "",
+      "rule_area": true,
+      "saved_filled": false
+    },
+    {
+      "bbox_mm": [
+        82.395,
+        49.195,
+        82.405,
+        49.205
+      ],
+      "layers": [
+        "F.Cu"
+      ],
+      "net": "",
+      "rule_area": true,
+      "saved_filled": false
+    },
+    {
+      "bbox_mm": [
+        20.0,
+        20.0,
+        240.0,
+        140.0
+      ],
+      "layers": [
+        "In1.Cu"
+      ],
+      "net": "GND",
+      "rule_area": false,
+      "saved_filled": false
+    }
+  ]
+}
