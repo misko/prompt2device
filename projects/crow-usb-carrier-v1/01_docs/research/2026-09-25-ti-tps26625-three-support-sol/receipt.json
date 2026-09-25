@@ -1,0 +1,555 @@
+{
+  "adc8n_copper_preserved": true,
+  "baseline_direct_native_pad_copper_gaps_mm": {
+    "DVDT_to_CDVDT": 2.838134,
+    "EP11_to_CDVDT": 2.352905,
+    "EP11_to_RILIM": 1.825561,
+    "GND_to_CIN": 3.661193,
+    "GND_to_COUT": 3.563231,
+    "ILIM_to_RILIM": 2.405089,
+    "IN_to_CIN": 1.655273,
+    "IN_to_RUVLO": 2.040709,
+    "OUT_to_COUT": 1.450194,
+    "RTN5_to_CDVDT": 4.277343,
+    "RTN5_to_RILIM": 2.185362,
+    "UVLO_to_RUVLO": 1.020811
+  },
+  "diagnostic_projected_loop_area_mm2": {
+    "dvdt_rtn": 8.5225,
+    "ilim_rtn": 5.204687,
+    "input_with_straight_in1_stitch_chord": 14.840625,
+    "output": 9.03,
+    "uvlo_input": 3.444875
+  },
+  "direct_native_pad_copper_gaps_mm": {
+    "DVDT_to_CDVDT": 3.060607,
+    "EP11_to_CDVDT": 2.568053,
+    "EP11_to_RILIM": 1.825561,
+    "GND_to_CIN": 3.661193,
+    "GND_to_COUT": 3.84796,
+    "ILIM_to_RILIM": 2.405089,
+    "IN_to_CIN": 1.655273,
+    "IN_to_RUVLO": 2.068175,
+    "OUT_to_COUT": 1.750487,
+    "RTN5_to_CDVDT": 4.488829,
+    "RTN5_to_RILIM": 2.185362,
+    "UVLO_to_RUVLO": 1.020811
+  },
+  "dvdt_first_via_to_cout_full_envelope_axis_gap_mm": 0.355,
+  "fixed_27_preserved": true,
+  "foreign_region_intersections": {
+    "C_SPOKE_DVDT8": [],
+    "C_SPOKE_IN8": [],
+    "C_SPOKE_OUT8": [],
+    "R_SPOKE_ILIM8": [],
+    "R_SPOKE_UVLO8": [],
+    "U_SPOKE8": []
+  },
+  "gnd_cin_fcu_length_mm": 1.315295,
+  "gnd_cout_fcu_length_mm": 6.25,
+  "gnd_return_same_filled_in1_outline_ids": [
+    8
+  ],
+  "gnd_rtn_separate": true,
+  "gnd_stitch_centers_mm": [
+    [
+      192.0,
+      43.8
+    ],
+    [
+      192.7,
+      48.5
+    ]
+  ],
+  "gnd_stitches_contact_one_filled_in1_polygon": true,
+  "group_envelope_collisions": {
+    "C_SPOKE_DVDT8": [],
+    "C_SPOKE_IN8": [],
+    "C_SPOKE_OUT8": [],
+    "R_SPOKE_ILIM8": [],
+    "R_SPOKE_UVLO8": [],
+    "U_SPOKE8": []
+  },
+  "group_full_boxes_mm": {
+    "C_SPOKE_DVDT8": [
+      193.145,
+      48.895,
+      195.055,
+      49.905
+    ],
+    "C_SPOKE_IN8": [
+      188.005,
+      42.975,
+      191.495,
+      45.025
+    ],
+    "C_SPOKE_OUT8": [
+      193.155,
+      45.675,
+      196.645,
+      47.725
+    ],
+    "R_SPOKE_ILIM8": [
+      189.475,
+      50.225,
+      192.525,
+      51.775
+    ],
+    "R_SPOKE_UVLO8": [
+      185.525,
+      46.585,
+      187.475,
+      47.615
+    ],
+    "U_SPOKE8": [
+      187.805,
+      45.305,
+      192.195,
+      49.695
+    ]
+  },
+  "ilim_first_via_effective_shape_gaps_mm": {
+    "GND_return": 0.260253,
+    "POD8_output": 0.950011,
+    "U_SPOKE8.11": 1.075011,
+    "U_SPOKE8.6": 0.490417,
+    "U_SPOKE8.8": 0.249267
+  },
+  "ilim_first_via_mm": [
+    192.2,
+    47.8
+  ],
+  "ilim_signal_centerline_length_mm": 4.053741,
+  "input_projection_uses_straight_in1_via_to_via_chord_not_measured_return_path": true,
+  "moved_refs": [
+    "C_SPOKE_DVDT8",
+    "C_SPOKE_OUT8",
+    "R_SPOKE_UVLO8"
+  ],
+  "named_connectivity": {
+    "cin_gnd": true,
+    "cout_gnd": true,
+    "dvdt": true,
+    "dvdt_rtn": true,
+    "ilim": true,
+    "ilim_rtn": true,
+    "in": true,
+    "out": true,
+    "u3_ovp_rtn": true,
+    "u5_rtn": true,
+    "uvlo": true,
+    "uvlo_feed": true
+  },
+  "native_profile": {
+    "added_issue_details": [],
+    "added_issue_identities": 0,
+    "added_issue_summaries": [],
+    "removed_issue_identities": 0,
+    "unconnected": [
+      499,
+      499
+    ],
+    "via_process_fails": [
+      [],
+      []
+    ],
+    "violations": [
+      199,
+      199
+    ]
+  },
+  "new_control_paths": {
+    "dvdt": {
+      "layers": [
+        "F.Cu",
+        "In2.Cu",
+        "F.Cu"
+      ],
+      "length_mm": 5.919326,
+      "vertices_mm": [
+        [
+          191.4,
+          47.5
+        ],
+        [
+          192.5,
+          47.05
+        ],
+        [
+          195.5,
+          49.4
+        ],
+        [
+          194.58,
+          49.4
+        ]
+      ],
+      "width_mm": 0.2
+    },
+    "uvlo": {
+      "layers": [
+        "F.Cu"
+      ],
+      "length_mm": 1.593142,
+      "vertices_mm": [
+        [
+          188.6,
+          47.0
+        ],
+        [
+          187.01,
+          47.1
+        ]
+      ],
+      "width_mm": 0.2
+    },
+    "uvlo_feed": {
+      "layers": [
+        "F.Cu",
+        "B.Cu",
+        "F.Cu"
+      ],
+      "length_mm": 3.85,
+      "vertices_mm": [
+        [
+          185.8,
+          47.1
+        ],
+        [
+          185.8,
+          45.8
+        ],
+        [
+          187.3,
+          45.8
+        ],
+        [
+          188.35,
+          45.8
+        ]
+      ],
+      "width_mm": 1.2
+    }
+  },
+  "new_copper_boxes_mm": [
+    [
+      190.6,
+      43.7,
+      192.100001,
+      44.100001
+    ],
+    [
+      191.3,
+      48.4,
+      192.800001,
+      48.600001
+    ],
+    [
+      192.6,
+      48.4,
+      195.950001,
+      48.600001
+    ],
+    [
+      195.75,
+      46.6,
+      195.950001,
+      48.600001
+    ],
+    [
+      190.075,
+      49.7,
+      190.275001,
+      51.100001
+    ],
+    [
+      189.9,
+      49.525,
+      190.275001,
+      49.900001
+    ],
+    [
+      189.9,
+      47.4,
+      190.100001,
+      49.725001
+    ],
+    [
+      189.9,
+      49.3,
+      193.720001,
+      49.500001
+    ],
+    [
+      189.9,
+      47.4,
+      190.100001,
+      49.500001
+    ],
+    [
+      188.5,
+      47.4,
+      190.100001,
+      47.600001
+    ],
+    [
+      188.5,
+      48.4,
+      189.100001,
+      48.600001
+    ],
+    [
+      188.9,
+      47.4,
+      190.100001,
+      48.600001
+    ],
+    [
+      191.7,
+      43.5,
+      192.300001,
+      44.100001
+    ],
+    [
+      192.4,
+      48.2,
+      193.000001,
+      48.800001
+    ],
+    [
+      187.75,
+      43.4,
+      188.950001,
+      46.625001
+    ],
+    [
+      191.15,
+      46.05,
+      194.200001,
+      46.550001
+    ],
+    [
+      193.7,
+      46.05,
+      194.200001,
+      46.950001
+    ],
+    [
+      191.3,
+      47.7,
+      192.300001,
+      48.100001
+    ],
+    [
+      191.9,
+      47.5,
+      192.500001,
+      48.100001
+    ],
+    [
+      191.725,
+      47.7,
+      192.300001,
+      50.300001
+    ],
+    [
+      191.525,
+      49.9,
+      192.125001,
+      50.500001
+    ],
+    [
+      191.725,
+      50.1,
+      191.925001,
+      51.100001
+    ],
+    [
+      191.3,
+      46.95,
+      192.600001,
+      47.600001
+    ],
+    [
+      192.2,
+      46.75,
+      192.800001,
+      47.350001
+    ],
+    [
+      192.4,
+      46.95,
+      195.600001,
+      49.500001
+    ],
+    [
+      195.2,
+      49.1,
+      195.800001,
+      49.700001
+    ],
+    [
+      194.48,
+      49.3,
+      195.600001,
+      49.500001
+    ],
+    [
+      186.91,
+      46.9,
+      188.700001,
+      47.200001
+    ],
+    [
+      185.2,
+      45.2,
+      186.400001,
+      47.700001
+    ],
+    [
+      185.5,
+      45.5,
+      186.100001,
+      46.100001
+    ],
+    [
+      185.2,
+      45.2,
+      187.900001,
+      46.400001
+    ],
+    [
+      187.0,
+      45.5,
+      187.600001,
+      46.100001
+    ],
+    [
+      186.7,
+      45.2,
+      188.950001,
+      46.400001
+    ]
+  ],
+  "new_poses_mm": {
+    "C_SPOKE_DVDT8": [
+      194.1,
+      49.4,
+      180
+    ],
+    "C_SPOKE_OUT8": [
+      194.9,
+      46.7,
+      0
+    ],
+    "R_SPOKE_UVLO8": [
+      186.5,
+      47.1,
+      0
+    ]
+  },
+  "old_poses_mm": {
+    "C_SPOKE_DVDT8": [
+      193.9,
+      49.3,
+      180.0
+    ],
+    "C_SPOKE_OUT8": [
+      194.6,
+      46.7,
+      0.0
+    ],
+    "R_SPOKE_UVLO8": [
+      186.5,
+      46.8,
+      0.0
+    ]
+  },
+  "ordinary_via_centers_mm": {
+    "GND": [
+      [
+        192.0,
+        43.8
+      ],
+      [
+        192.7,
+        48.5
+      ]
+    ],
+    "N12V_POD8": [],
+    "N12V_PROTECTED": [
+      [
+        185.8,
+        45.8
+      ],
+      [
+        187.3,
+        45.8
+      ]
+    ],
+    "SPOKE_DVDT8": [
+      [
+        192.5,
+        47.05
+      ],
+      [
+        195.5,
+        49.4
+      ]
+    ],
+    "SPOKE_ILIM8": [
+      [
+        192.2,
+        47.8
+      ],
+      [
+        191.825,
+        50.2
+      ]
+    ]
+  },
+  "output_signal_centerline_length_mm": 2.95,
+  "owner_region_mm": [
+    179,
+    42,
+    201,
+    84
+  ],
+  "pad_identity_preserved": true,
+  "pinned_board_sha256": "28412ec5054d3b322ea03e37516aa969551beb1e2083b2fa0d2662863969dff4",
+  "project_in_ilim_gap_ceilings_mm": [
+    2.5,
+    2.5
+  ],
+  "schema": 1,
+  "source_input_sha256": {
+    "generic_generator": "8a5fa1d48d80138458601a097ab6260565841510a498e44cb9c5773652215b3c",
+    "netlist": "a40b45c27b2169ed4f3dd43d72a1f4f7112d829985f98918a8855ed76735e9bd",
+    "poses": "76ba7ace1275fe1a8d6bc69d452037672519d70a21b8b02fff67f8c7d8a647bb",
+    "source": "0032b1202f5742b6575198d27ea50629826d49cf81cf12a31fead8a2929d9868",
+    "southwest_board": "0b9d017706845ad4d77c2b579dd36f2e34c0ecf55a7b699ace4fca97465c5b93"
+  },
+  "source_owner_patterns": {
+    "C_SPOKE_DVDT8": [
+      "analog_ch8"
+    ],
+    "C_SPOKE_IN8": [
+      "analog_ch8"
+    ],
+    "C_SPOKE_OUT8": [
+      "analog_ch8"
+    ],
+    "R_SPOKE_ILIM8": [
+      "analog_ch8"
+    ],
+    "R_SPOKE_UVLO8": [
+      "analog_ch8"
+    ],
+    "U_SPOKE8": [
+      "analog_ch8"
+    ]
+  },
+  "status": "NATIVE_LOCAL_ROUTE_WITNESS",
+  "u1_center_contained_launch_preserved": true,
+  "uvlo_full_width_feed_to_resistor_pad2_copper_gap_mm": 0.690734
+}

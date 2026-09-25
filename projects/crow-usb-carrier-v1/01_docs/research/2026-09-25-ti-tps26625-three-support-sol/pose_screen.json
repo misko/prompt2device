@@ -1,0 +1,179 @@
+{
+  "adc8n_copper_preserved": true,
+  "baseline_direct_native_pad_copper_gaps_mm": {
+    "DVDT_to_CDVDT": 2.838134,
+    "EP11_to_CDVDT": 2.352905,
+    "EP11_to_RILIM": 1.825561,
+    "GND_to_CIN": 3.661193,
+    "GND_to_COUT": 3.563231,
+    "ILIM_to_RILIM": 2.405089,
+    "IN_to_CIN": 1.655273,
+    "IN_to_RUVLO": 2.040709,
+    "OUT_to_COUT": 1.450194,
+    "RTN5_to_CDVDT": 4.277343,
+    "RTN5_to_RILIM": 2.185362,
+    "UVLO_to_RUVLO": 1.020811
+  },
+  "direct_native_pad_copper_gaps_mm": {
+    "DVDT_to_CDVDT": 3.060607,
+    "EP11_to_CDVDT": 2.568053,
+    "EP11_to_RILIM": 1.825561,
+    "GND_to_CIN": 3.661193,
+    "GND_to_COUT": 3.84796,
+    "ILIM_to_RILIM": 2.405089,
+    "IN_to_CIN": 1.655273,
+    "IN_to_RUVLO": 2.068175,
+    "OUT_to_COUT": 1.750487,
+    "RTN5_to_CDVDT": 4.488829,
+    "RTN5_to_RILIM": 2.185362,
+    "UVLO_to_RUVLO": 1.020811
+  },
+  "dvdt_first_via_to_cout_full_envelope_axis_gap_mm": 0.355,
+  "fixed_27_preserved": true,
+  "foreign_region_intersections": {
+    "C_SPOKE_DVDT8": [],
+    "C_SPOKE_IN8": [],
+    "C_SPOKE_OUT8": [],
+    "R_SPOKE_ILIM8": [],
+    "R_SPOKE_UVLO8": [],
+    "U_SPOKE8": []
+  },
+  "group_envelope_collisions": {
+    "C_SPOKE_DVDT8": [],
+    "C_SPOKE_IN8": [],
+    "C_SPOKE_OUT8": [],
+    "R_SPOKE_ILIM8": [],
+    "R_SPOKE_UVLO8": [],
+    "U_SPOKE8": []
+  },
+  "group_full_boxes_mm": {
+    "C_SPOKE_DVDT8": [
+      193.145,
+      48.895,
+      195.055,
+      49.905
+    ],
+    "C_SPOKE_IN8": [
+      188.005,
+      42.975,
+      191.495,
+      45.025
+    ],
+    "C_SPOKE_OUT8": [
+      193.155,
+      45.675,
+      196.645,
+      47.725
+    ],
+    "R_SPOKE_ILIM8": [
+      189.475,
+      50.225,
+      192.525,
+      51.775
+    ],
+    "R_SPOKE_UVLO8": [
+      185.525,
+      46.585,
+      187.475,
+      47.615
+    ],
+    "U_SPOKE8": [
+      187.805,
+      45.305,
+      192.195,
+      49.695
+    ]
+  },
+  "ilim_first_via_effective_shape_gaps_mm": {
+    "GND_return": 0.260253,
+    "POD8_output": 0.950011,
+    "U_SPOKE8.11": 1.075011,
+    "U_SPOKE8.6": 0.490417,
+    "U_SPOKE8.8": 0.249267
+  },
+  "ilim_first_via_mm": [
+    192.2,
+    47.8
+  ],
+  "moved_refs": [
+    "C_SPOKE_DVDT8",
+    "C_SPOKE_OUT8",
+    "R_SPOKE_UVLO8"
+  ],
+  "new_poses_mm": {
+    "C_SPOKE_DVDT8": [
+      194.1,
+      49.4,
+      180
+    ],
+    "C_SPOKE_OUT8": [
+      194.9,
+      46.7,
+      0
+    ],
+    "R_SPOKE_UVLO8": [
+      186.5,
+      47.1,
+      0
+    ]
+  },
+  "old_poses_mm": {
+    "C_SPOKE_DVDT8": [
+      193.9,
+      49.3,
+      180.0
+    ],
+    "C_SPOKE_OUT8": [
+      194.6,
+      46.7,
+      0.0
+    ],
+    "R_SPOKE_UVLO8": [
+      186.5,
+      46.8,
+      0.0
+    ]
+  },
+  "owner_region_mm": [
+    179,
+    42,
+    201,
+    84
+  ],
+  "pad_identity_preserved": true,
+  "pinned_board_sha256": "28412ec5054d3b322ea03e37516aa969551beb1e2083b2fa0d2662863969dff4",
+  "project_in_ilim_gap_ceilings_mm": [
+    2.5,
+    2.5
+  ],
+  "schema": 1,
+  "source_input_sha256": {
+    "generic_generator": "8a5fa1d48d80138458601a097ab6260565841510a498e44cb9c5773652215b3c",
+    "netlist": "a40b45c27b2169ed4f3dd43d72a1f4f7112d829985f98918a8855ed76735e9bd",
+    "poses": "76ba7ace1275fe1a8d6bc69d452037672519d70a21b8b02fff67f8c7d8a647bb",
+    "source": "0032b1202f5742b6575198d27ea50629826d49cf81cf12a31fead8a2929d9868",
+    "southwest_board": "0b9d017706845ad4d77c2b579dd36f2e34c0ecf55a7b699ace4fca97465c5b93"
+  },
+  "source_owner_patterns": {
+    "C_SPOKE_DVDT8": [
+      "analog_ch8"
+    ],
+    "C_SPOKE_IN8": [
+      "analog_ch8"
+    ],
+    "C_SPOKE_OUT8": [
+      "analog_ch8"
+    ],
+    "R_SPOKE_ILIM8": [
+      "analog_ch8"
+    ],
+    "R_SPOKE_UVLO8": [
+      "analog_ch8"
+    ],
+    "U_SPOKE8": [
+      "analog_ch8"
+    ]
+  },
+  "status": "POSE_AND_MOUTH_SCREEN",
+  "uvlo_full_width_feed_to_resistor_pad2_copper_gap_mm": 0.690734
+}
