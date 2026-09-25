@@ -115,6 +115,17 @@ owner or a two-terminal crossing has no valid corridor, repair the source
 ownership or handoff instead of inventing a branch. Neither model substitutes
 for a later route, return-path, mechanical, or independent P1 review.
 
+If a narrow local opening is useful before its complete inter-block route can
+be allocated, schema-2 `access_only_portals` can record the exact native pads,
+their electrical owners, the transit owner and any named non-electrical
+planning overlap. Keep its capacity null and its result `INCOMPLETE`; it
+receives no reservation, route or P1 credit. Require local pad-to-port and
+remote-route obligations plus filled-return debt. Check the portal against
+native bodies, pads, copper, rule areas, foreign cells, and every same-layer
+reservation or physical stage. Resolve any overlap in the source allocation
+before treating the portal as a valid local access screen; a planning-region
+overlap alone does not make that region an electrical owner.
+
 When a modular plan declares `connector_full`, every P3 item and the P5 item
 must name that external prerequisite unless it explicitly supplies `p3_scope`.
 That optional closed mapping contains `affected_work_items` (P3 ids) and
