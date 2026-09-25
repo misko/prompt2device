@@ -1,16 +1,16 @@
 # Project status
 
-<!-- pause-state:080e0d2a88b585a91c81726d3fa9e34275079869eb28d1659c1437fa8400aac4 -->
+<!-- pause-state:7ffb40a64ef3aa675dc0bce0b93aef0a8abe37533c186e66628c8d3b3c18016a -->
 
 - Phase: `placement`
 - State: **PAUSED**
 - Checkpoint: `06_build/checkpoints/schematic.json` (`917a45414c65`)
-- Blocker: P1/P2/P3 and release remain unaccepted. Scoped P3 prerequisites now separate local timing/boot from FULL-dependent JTAG/reset service; the new plan subject does not admit historical observations. Two bounded isolated native oscillator trials are assessed and the investigation is REASSESS at its 2/2 limit. The compact trial moves five oscillator parts, preserves 564 other poses, and connects all ten signal pads across XTAL_IN/OUT/IN_R. Native unconnected count improves 1321 to 1314; the 499 DRC report rows are not the native total. Four oscillator GND terminals remain individually isolated, saved In1 plane samples do not prove return, and nine new silkscreen findings remain. Existing 40 clearance-class and 199 library findings persist in that isolated rule context. No candidate copper is promoted. Reset/USB integration, six unqualified USB launch widths, connector FULL (19 physical unknowns) and external TMUX process acceptance remain open. Historical corridor packets retain their original plan bindings.
-- Next command: `Reassess USB-XTAL-native-realization from its two native results without resetting history. Review a coupled oscillator source-placement change with real ground connections, full filled-return proof, source allocation and silk handling; classify electrical loop/loading requirements before further geometry attempts. Then integrate the reviewed group into one candidate and resolve reset/USB from native evidence. Keep canonical P1/P2/P3 and release gates intact; independent local experiments do not complete modular tasks. Connector FULL and TMUX process acceptance retain their affected acceptance boundaries.`
+- Blocker: P1/P2/P3 and release remain unaccepted. Rebased source now declares disjoint QSPI and XTAL handoffs, fixed JTAG access, and a five-terminal unresolved reset branch. The full P1 checker is INCOMPLETE with no global errors; USB J_USB.4 still crosses its source region, and connector edge geometry extends 0.55 mm beyond the board outline. The oscillator r2 scratch poses intersect the required empty handoff, so no candidate copper or placement was promoted. Four oscillator GND terminals, filled return, crystal performance, six USB launch widths, connector FULL physical facts, and TMUX external process acceptance remain open.
+- Next command: `Resolve the USB fixed-connector edge owner and support-cell geometry from exact public physical evidence; keep FULL-dependent claims pending. Regenerate a source-owned P1 candidate and review all 59 crossings. Then perform a bounded source-generated P2 oscillator placement entirely inside clock_flash_debug, prove the three oscillator signal nets, four local GND egress paths, continuous filled In1 return, clearance and silk before any P3 or release claim.`
 
 ## Bound receipts
 
-- `01_docs/findings.yaml` — `ea2865490793`
+- `01_docs/findings.yaml` — `bd12196e2892`
 - `01_docs/research/2026-09-24-jtag-fixed-access-blocker-sol.md` — `8ccc15c9c587`
 - `01_docs/research/2026-09-24-jtag-fixed-access-rectangle-obstruction-terra.md` — `a85ea3ef537b`
 - `01_docs/research/2026-09-24-jtag-native-dogleg-physical-feasibility-terra.md` — `6a931bc0c1c7`
@@ -19,6 +19,7 @@
 - `01_docs/research/2026-09-24-segmented-fixed-access-checker-sol.md` — `18c9cbdb0fce`
 - `01_docs/research/2026-09-24-usb-edge-endpoint-handoff-terra/README.md` — `b5b81e83b3f9`
 - `01_docs/research/2026-09-24-usb-edge-endpoint-source-model-terra.md` — `583ed72ceb5b`
+- `01_docs/research/2026-09-24-usb-edge-source-current-diagnosis-sol.md` — `b7b079ac74cc`
 - `01_docs/research/2026-09-24-usb-esd-east-region-trial-sol.md` — `4de0ec64fbff`
 - `01_docs/research/2026-09-24-usb-fcu-launch-diagnostic-summary.json` — `394b0d89ade9`
 - `01_docs/research/2026-09-24-usb-fcu-launch-diagnostic.md` — `42949404b4a3`
@@ -53,7 +54,10 @@
 - `01_docs/research/xu_service_variant/xtal_south_cap_handoff.json` — `3dc3510d8a9f`
 - `01_docs/research/xu_service_variant/xtal_window_native_audit.json` — `00f8087d59a7`
 - `03_src/diagnostics/usb_fcu_launch_probe.py` — `7a05b24297f6`
-- `03_src/modular_plan.json` — `53860229e527`
+- `03_src/floorplan.yaml` — `aa20999d5100`
+- `03_src/modular_plan.json` — `75c3a517cea5`
+- `03_src/rules/p1_corridor_requirements.yaml` — `f65ba88b0bb9`
+- `08_reviews/2026-09-24_xtal-source-corridor_terra_review.md` — `56b26c0afa2e`
 - `08_reviews/pre-route_schematic_render.md` — `05ff9b639b7f`
 - `08_reviews/pre-route_topology.md` — `76dbfea927e5`
 

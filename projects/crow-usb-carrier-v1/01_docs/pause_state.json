@@ -1,18 +1,18 @@
 {
-  "blocker": "P1/P2/P3 and release remain unaccepted. Scoped P3 prerequisites now separate local timing/boot from FULL-dependent JTAG/reset service; the new plan subject does not admit historical observations. Two bounded isolated native oscillator trials are assessed and the investigation is REASSESS at its 2/2 limit. The compact trial moves five oscillator parts, preserves 564 other poses, and connects all ten signal pads across XTAL_IN/OUT/IN_R. Native unconnected count improves 1321 to 1314; the 499 DRC report rows are not the native total. Four oscillator GND terminals remain individually isolated, saved In1 plane samples do not prove return, and nine new silkscreen findings remain. Existing 40 clearance-class and 199 library findings persist in that isolated rule context. No candidate copper is promoted. Reset/USB integration, six unqualified USB launch widths, connector FULL (19 physical unknowns) and external TMUX process acceptance remain open. Historical corridor packets retain their original plan bindings.",
+  "blocker": "P1/P2/P3 and release remain unaccepted. Rebased source now declares disjoint QSPI and XTAL handoffs, fixed JTAG access, and a five-terminal unresolved reset branch. The full P1 checker is INCOMPLETE with no global errors; USB J_USB.4 still crosses its source region, and connector edge geometry extends 0.55 mm beyond the board outline. The oscillator r2 scratch poses intersect the required empty handoff, so no candidate copper or placement was promoted. Four oscillator GND terminals, filled return, crystal performance, six USB launch widths, connector FULL physical facts, and TMUX external process acceptance remain open.",
   "checkpoint": {
     "path": "06_build/checkpoints/schematic.json",
     "sha256": "917a45414c65cf43dbeef24704da01beda6b9711175cf9cec3af109ec027f4d6",
     "size": 1152
   },
-  "next_command": "Reassess USB-XTAL-native-realization from its two native results without resetting history. Review a coupled oscillator source-placement change with real ground connections, full filled-return proof, source allocation and silk handling; classify electrical loop/loading requirements before further geometry attempts. Then integrate the reviewed group into one candidate and resolve reset/USB from native evidence. Keep canonical P1/P2/P3 and release gates intact; independent local experiments do not complete modular tasks. Connector FULL and TMUX process acceptance retain their affected acceptance boundaries.",
+  "next_command": "Resolve the USB fixed-connector edge owner and support-cell geometry from exact public physical evidence; keep FULL-dependent claims pending. Regenerate a source-owned P1 candidate and review all 59 crossings. Then perform a bounded source-generated P2 oscillator placement entirely inside clock_flash_debug, prove the three oscillator signal nets, four local GND egress paths, continuous filled In1 return, clearance and silk before any P3 or release claim.",
   "phase": "placement",
   "project": "crow-usb-carrier-v1",
   "receipts": [
     {
       "path": "01_docs/findings.yaml",
-      "sha256": "ea2865490793cde5278a27c9b07d8299ff5cb9c5c899945d7025695cf920e6f7",
-      "size": 33347
+      "sha256": "bd12196e2892e428f9776c6d9fdcc0840e0fdb778ea4b73145305cf72404d80c",
+      "size": 33410
     },
     {
       "path": "01_docs/research/2026-09-24-jtag-fixed-access-blocker-sol.md",
@@ -53,6 +53,11 @@
       "path": "01_docs/research/2026-09-24-usb-edge-endpoint-source-model-terra.md",
       "sha256": "583ed72ceb5b0548a315e9688f3c9b6e940ae6e0758ec715d25d2fdb6380d639",
       "size": 3670
+    },
+    {
+      "path": "01_docs/research/2026-09-24-usb-edge-source-current-diagnosis-sol.md",
+      "sha256": "b7b079ac74ccba708e0f5fa92a0fa5d2cc1ec4ecd72f22514b2f840be282965f",
+      "size": 4341
     },
     {
       "path": "01_docs/research/2026-09-24-usb-esd-east-region-trial-sol.md",
@@ -225,9 +230,24 @@
       "size": 8732
     },
     {
+      "path": "03_src/floorplan.yaml",
+      "sha256": "aa20999d51001d5315b9456d1d8123446664a54a98a855928d6a8ac71efc814f",
+      "size": 25453
+    },
+    {
       "path": "03_src/modular_plan.json",
-      "sha256": "53860229e527e1f4828b237d980435f62112873a47df650387c36d7bb8f04d4b",
-      "size": 90098
+      "sha256": "75c3a517cea50dd6b5745fae96b051d334debd48aac143becaca3d5fe3fc35dc",
+      "size": 90456
+    },
+    {
+      "path": "03_src/rules/p1_corridor_requirements.yaml",
+      "sha256": "f65ba88b0bb9275cd239df30d7b360c4bf78c9e1f0d549ce9f0fb995e07481d5",
+      "size": 27472
+    },
+    {
+      "path": "08_reviews/2026-09-24_xtal-source-corridor_terra_review.md",
+      "sha256": "56b26c0afa2e1c5ac4ae41b28e6283b3d7372d52c4a7b0009db9f90b3f46ee72",
+      "size": 3119
     },
     {
       "path": "08_reviews/pre-route_schematic_render.md",
@@ -241,5 +261,5 @@
     }
   ],
   "schema": 1,
-  "state_id": "080e0d2a88b585a91c81726d3fa9e34275079869eb28d1659c1437fa8400aac4"
+  "state_id": "7ffb40a64ef3aa675dc0bce0b93aef0a8abe37533c186e66628c8d3b3c18016a"
 }
