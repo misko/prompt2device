@@ -1,0 +1,58 @@
+{
+  "board_sha256": "8e620def0b403fda7635135672afec923c2c23bc9844b3f96102e96d4d5eca10",
+  "checker_sha256": "2cdd5a2dc58680409391f89f8619a564c2de0b591aa27618d665dfe9a1797e8e",
+  "source_sha256": "78cf07ba79fa0d3e2dabc4c21494e796b84b94cd96a5f99a147703c55a18c4c8",
+  "floorplan_sha256": "bc4306831ba5703c27ec5f36f58e19fadd844e445391e8c51933fd1dff595267",
+  "alias_sha256": "a6baba8bd4e389c146250a2a2ef5f7e9b09f63526e71dbdd05be8bca9b7b2c2e",
+  "full_vbus_endpoints": {
+    "usb_frontend": [
+      "C_USB_VBUS.1",
+      "R_USB_VBUS_BLEED.1",
+      "U_USB_VBUS_ESD.3"
+    ],
+    "usb_vbus_sense": [
+      "R_VBUS_B.1"
+    ],
+    "usb_edge_connector": [
+      "J_USB.10",
+      "J_USB.15",
+      "J_USB.2",
+      "J_USB.7"
+    ]
+  },
+  "native_connector_pad_boxes_mm": {
+    "J_USB.10": [
+      227.3,
+      26.1,
+      227.9,
+      27.25
+    ],
+    "J_USB.15": [
+      232.1,
+      26.1,
+      232.7,
+      27.25
+    ],
+    "J_USB.2": [
+      232.1,
+      26.1,
+      232.7,
+      27.25
+    ],
+    "J_USB.7": [
+      227.3,
+      26.1,
+      227.9,
+      27.25
+    ]
+  },
+  "ordinary_credit_rejection": "vbus_edge_series: linked path net has competing ordinary credit/witness",
+  "after_removing_ordinary_vbus_credit": "vbus_edge_stage: native footprint/pad U_USB_CC_ESD intersects integration corridor/face",
+  "concurrent_data_vbus_path_rejection": "usb_data_series: linked path contract declaration mismatch",
+  "wrong_A4_B4_alias_rejection": "J_USB.2: witness source/native alias mismatch",
+  "fused_site_access_boxes_identical": {
+    "A4_B9": true,
+    "B4_A9": true
+  },
+  "p1_accepted": false
+}
