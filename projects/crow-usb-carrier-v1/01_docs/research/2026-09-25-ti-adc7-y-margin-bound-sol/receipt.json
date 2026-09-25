@@ -1,0 +1,97 @@
+{
+  "candidate_board_sha256": "c9b758d69867b274f0592bd2eceb9a26d64a80dd2daafa8ab9516d23d5925502",
+  "tested_y_range_mm": [
+    87.2,
+    88.5
+  ],
+  "step_mm": 0.01,
+  "fixed_two_cap_origins_mm": {
+    "C_ADC_I2C_A": [
+      168.0,
+      97.6
+    ],
+    "C_ADC_CLOCK_OK": [
+      164.6,
+      76.2
+    ]
+  },
+  "best_y_only": {
+    "y_mm": 87.2,
+    "portal_margin_mm": 0.105,
+    "colliders": [],
+    "clock_distance_mm": 15.73646,
+    "support_distance_mm": 6.066515
+  },
+  "first_failed_step": {
+    "y_mm": 87.21,
+    "portal_margin_mm": 0.115,
+    "colliders": [
+      "C_ADC_I2C_B"
+    ],
+    "clock_distance_mm": 15.730219,
+    "support_distance_mm": 6.060833
+  },
+  "physical_boxes_mm": {
+    "Y_AUDIO_at_best": [
+      164.705,
+      85.105,
+      170.295,
+      89.295
+    ],
+    "C_ADC_I2C_B": [
+      164.245,
+      89.295,
+      166.155,
+      90.305
+    ],
+    "C_AUDIO_OSC": [
+      170.745,
+      88.995,
+      172.655,
+      90.005
+    ]
+  },
+  "sideways_bounds_at_y_above_87_2": {
+    "avoid_C_ADC_I2C_B_min_origin_mm": 168.95,
+    "avoid_C_AUDIO_OSC_max_origin_mm": 167.95
+  },
+  "Y_pad_vertical_gap_at_best_mm": 0.4,
+  "native_drc_best": {
+    "violations": 12,
+    "types": [
+      "silk_over_copper",
+      "silk_over_copper",
+      "silk_over_copper",
+      "silk_over_copper",
+      "silk_over_copper",
+      "silk_overlap",
+      "silk_overlap",
+      "silk_overlap",
+      "silk_overlap",
+      "silk_overlap",
+      "silk_overlap",
+      "silk_overlap"
+    ],
+    "unconnected_count": 499
+  },
+  "native_drc_first_failed_step": {
+    "violations": 12,
+    "types": [
+      "silk_over_copper",
+      "silk_over_copper",
+      "silk_over_copper",
+      "silk_over_copper",
+      "silk_over_copper",
+      "silk_overlap",
+      "silk_overlap",
+      "silk_overlap",
+      "silk_overlap",
+      "silk_overlap",
+      "silk_overlap",
+      "silk_overlap"
+    ],
+    "unconnected_count": 499
+  },
+  "drc_warning_count_delta": 0,
+  "p1_accepted": false
+}
