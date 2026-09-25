@@ -31,11 +31,20 @@ required “by/local/compact” geometry: both are about 13 mm before a route an
 return are considered. The board is unrouted, so pad distance cannot prove a
 short trace or return.
 
-To clear the ADC7 portal without worsening local intent, do not move its three
-physical blockers independently. The minimum coupled placement scope is seven
-references: `Y_AUDIO` with `C_AUDIO_OSC`; `C_ADC_I2C_A` and
-`C_ADC_I2C_B` with `U_ADC_I2C_XLATE`; and `C_ADC_CLOCK_OK` with
-`U_ADC_CLOCK_OK`. The second I2C capacitor must travel with the translator
-because the TI guidance binds both supply sides. This is a refloorplan scope,
-not permission to claim the resulting pads locally routed; it still needs
-native envelope, pad-access, return, and routed verification.
+## Corrected relocation scope
+
+The minimum move to clear the **physical** ADC7 portal is one reference:
+`Y_AUDIO` from `(167.5,85.92)` to `(167.5,87.10)`. The exact-board candidate
+uses checker `_physical_envelope`, clears the portal, creates no new physical
+collision, and improves the oscillator/bypass pad distances. The apparent
+`C_ADC_I2C_A` and `C_ADC_CLOCK_OK` portal hits were text-only
+`GetBoundingBox(True, True)` overhangs; their physical envelopes do not block
+the portal and their pad distances remain unchanged.
+
+The seven-reference set is instead the minimum **qualitative-locality debt
+closure scope** for a later refloorplan: `Y_AUDIO` with `C_AUDIO_OSC`; both
+I2C capacitors with `U_ADC_I2C_XLATE`; and `C_ADC_CLOCK_OK` with
+`U_ADC_CLOCK_OK`. The second I2C capacitor travels with the translator because
+the TI guidance binds both supply sides. This remains a placement scope, not
+permission to claim pads locally routed; native envelope, pad-access, return,
+and routed verification remain required.
