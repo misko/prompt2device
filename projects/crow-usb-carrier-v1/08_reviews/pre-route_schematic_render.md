@@ -2,20 +2,30 @@ review_stage: pre-route
 review_kind: schematic_render
 design_verdict: SOUND
 order_verdict: DO-NOT-ORDER
+schematic_pdf_sha256: 41989418b96805c04e7b833b2e17d8c53dfbc18d8be1eaa866ec09de9c6947a2
+netlist_sha256: d6f6bb95cb57fb783a27758b7e0f93636c430a99e5d88261873d142aaa0f1094
+parts_sha256: 8f7742744fdd43c1089176e27316ebc3995556d295140ceb06586d98c62d45d8
+design_rules_sha256: c5f9432e8640b78c5fdc1425b4cb04095a9d97cd0d7b83a6bef01fe27c33fc31
 
-# Independent frozen-packet render review
+# Independent schematic-render review
 
-The frozen packet was reviewed fresh for this schematic-render/readability lens. The packet-manifest checksum matched, and all 818 manifest file hashes were recomputed and matched. The supplied subject record was itself a manifest-verified artifact. The schematic PDF is a non-encrypted 45-page PDF, and its SHA-256 is `28ef51c44eda16f9571c2b9426430ce303138c5d503d59c6a38ac5db8ac6d5c3`.
+I reviewed the current 45-page, non-encrypted PDF at normal page scale and
+inspected its page raster overview for all pages. Page titles, page numbers,
+symbols, nets, labels, component values, and the XMOS pin-index appendix render
+without observed clipping or missing drawing regions. The dense XMOS overview
+and its following tabular pin-index pages remain legible in their intended
+overview/detail roles.
 
-All 45 supplied page rasters, page 01 through page 45, were visually inspected. The expected title, page number, and drawing content render on every page. Normal-scale text, symbols, wires, labels, and table content are legible for their intended overview or detail role. There is no observed clipping of page titles, drawing regions, connection labels, page metadata, table headers, table rows, or page edges.
+Page 39, **USB FRONTEND**, was inspected at detailed page scale against the
+current generated circuit and netlist. It visibly identifies
+`U_USB_ESD` as `PESD2USB3UV-TR`; pins 1 and 2 are labelled DP and DM on
+`USB_DP` and `USB_DN`, and pin 3 is labelled GND. The page keeps VBUS,
+CC1, CC2, D+/D-, shield, and ground labels distinct and visibly shows the
+reversible connector contacts. The selected clamp, connector, CC shunt, VBUS
+shunt, capacitor, and bleed resistor are readable without page-edge clipping.
 
-Page 30 is the XMOS CORE overview: it deliberately presents the full 129-pin package at landscape page fit, so dense pin text is contextual rather than a substitute for a coordinate-detail view. Its title, package perimeter, external labels, and pin labelling render without clipping. Pages 40–45 provide the associated XMOS pin index at normal readable scale: the overview/context page (40) states 129/129 source pins verified, and pages 41–45 enumerate pins 1–129 in readable tables. The appendix wording for the unused MIPI supplies is explicit and consistent: two unused MIPI supplies are grounded per XMOS §14; the rows identify MIPI_VDD18 and MIPI_VDD09 as GND, while the MIPI data pins designated NC remain NC.
-
-Required report bindings:
-
-schematic_pdf_sha256: 28ef51c44eda16f9571c2b9426430ce303138c5d503d59c6a38ac5db8ac6d5c3
-netlist_sha256: 7ab8c90f46ff4f25a9af50f43659a6b304e3c15932875519fa916fd018b1d8cc
-parts_sha256: 833913d1c3d68cec43ab53f34e63b48cbf0e38bd3ec5a5115abfbaa5e23c2a0e
-design_rules_sha256: 8211187b0a0bb0ab38799ade9459944f0226cdf0180a75bcfdb94ca385a1a0c1
-
-This SOUND verdict is limited to the pre-route schematic-render lens: packet integrity and visual readability pass. Board layout/routing, electrical acceptance, qualification, sourcing, firmware, first-article, release, and procurement authorization remain downstream holds; therefore the required order verdict remains DO-NOT-ORDER.
+This SOUND verdict is limited to legibility and render-to-current-artifact
+consistency. It does not approve the USB protector electrically, its native
+footprint/placement/return, high-speed signal integrity, connector FULL,
+sourcing, P1/P2/P3, routing, first article, release, or procurement. The
+order verdict remains DO-NOT-ORDER.
