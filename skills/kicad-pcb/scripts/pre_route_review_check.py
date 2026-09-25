@@ -173,6 +173,32 @@ def config(project: Path) -> dict:
     return ((doc.get("flow") or {}).get("pre_route_reviews") or {})
 
 
+def check_critical_part_selection(project: Path, errors: list[str]) -> dict:
+    """Grade the one typed critical-part-selection ledger, if adopted.
+
+    Selection suitability is not a topology or readability verdict.  The
+    pcb-design admission checker owns its schema and independently binds the
+    source component, dossier, findings, reviewer evidence, and stock record.
+    PR-REVIEW only prevents a SOUND schematic header from bypassing that
+    already-declared selection obligation.
+    """
+    scripts = Path(__file__).resolve().parents[2] / "pcb-design/scripts"
+    sys.path.insert(0, str(scripts))
+    try:
+        from critical_part_selection_admission import InputError, evaluate
+        report = evaluate(project, project / "03_src/rules/critical_part_selection.yaml")
+    except InputError as exc:
+        errors.append(f"CRITICAL-SELECTION: malformed declaration: {exc}")
+        return {"status": "INPUT-FAIL", "coverage": "0/0", "findings": []}
+    except (ImportError, OSError, UnicodeError, ValueError) as exc:
+        errors.append(f"CRITICAL-SELECTION: cannot evaluate declaration: {exc}")
+        return {"status": "INPUT-FAIL", "coverage": "0/0", "findings": []}
+    if report["status"] == "FAIL":
+        for finding in report["findings"]:
+            errors.append(f"CRITICAL-SELECTION: {finding}")
+    return report
+
+
 def resolve(project: Path, value: str) -> Path:
     path = Path(value)
     return path if path.is_absolute() else project / path
@@ -221,6 +247,7 @@ def main(argv=None) -> int:
         p.relative_to(project).as_posix().encode() + b"\0" + p.read_bytes() + b"\0"
         for p in parts)).hexdigest()
     rules_hash = design_rules_digest(project)
+    selection_report = check_critical_part_selection(project, errors)
 
     if args.phase == "schematic":
         netlist = resolve(project, args.netlist or cfg.get("netlist", ""))
@@ -325,6 +352,8 @@ def main(argv=None) -> int:
 
     print(f"PR-REVIEW coverage: {graded_reviews}/{expected_reviews} "
           "required review artifact(s) graded")
+    print(f"PR-REVIEW critical-selection: {selection_report['status']} "
+          f"{selection_report['coverage']}")
     if errors:
         for item in errors:
             print(f"FAIL PR-REVIEW: {item}")

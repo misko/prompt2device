@@ -202,6 +202,44 @@ def test_same_footprint_pad_clearance_change_stales_all_applicability(tmp_path):
     assert check.source_bindings(project)["route_rules_sha256"] != refreshed
 
 
+def test_rf_port_prose_does_not_change_stackup_binding_but_targets_do(tmp_path):
+    project, _ = make_project(tmp_path)
+    path = project / "03_src/rules/rf.yaml"
+    rf = yaml.safe_load(path.read_text())
+    rf["rf"]["ports"] = [{
+        "id": "USB", "nets": ["USB_DP", "USB_DN"], "band_hz": [0, 2400000000],
+        "z0_ohm": 90, "reference_layer": "In1.Cu",
+        "launch": "old protector", "termination": "integrated PHY",
+    }]
+    path.write_text(yaml.safe_dump(rf))
+    initial = check.source_bindings(project, binding_schema=2)["stackup_sha256"]
+    legacy = check.source_bindings(project)["stackup_sha256"]
+
+    rf["rf"]["ports"][0]["launch"] = "new protector"
+    rf["rf"]["ports"][0]["termination"] = "integrated USB PHY"
+    path.write_text(yaml.safe_dump(rf))
+    assert check.source_bindings(project, binding_schema=2)["stackup_sha256"] == initial
+    assert check.source_bindings(project)["stackup_sha256"] != legacy
+
+    rf["rf"]["ports"][0]["z0_ohm"] = 95
+    path.write_text(yaml.safe_dump(rf))
+    assert check.source_bindings(project, binding_schema=2)["stackup_sha256"] != initial
+
+
+def test_binding_schema_two_requires_deliberate_packet_rebind(tmp_path):
+    project, packet = make_project(tmp_path)
+    assert check.evaluate(project)["status"] == "COVERAGE_PASS"
+    packet["binding_schema"] = 2
+    write_packet(project, packet)
+    assert check.evaluate(project)["status"] == "FAIL"
+    assert any("stale applicability" in finding for finding in check.evaluate(project)["findings"])
+    new_bindings = check.source_bindings(project, binding_schema=2)
+    for app in packet["parts"][0]["applications"]:
+        app["applicability"]["reviewed_for"].update(new_bindings)
+    write_packet(project, packet)
+    assert check.evaluate(project)["status"] == "COVERAGE_PASS"
+
+
 def test_unavailable_design_file_with_inspected_docs_completes_coverage(tmp_path):
     project, packet = make_project(tmp_path)
     row = packet["parts"][0]

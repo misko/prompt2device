@@ -12,6 +12,7 @@ belongs here.
 | File | What |
 |---|---|
 | `critical_paths.yaml` | Optional nonempty schema-1 short-path and clamp-dominance contract. Exact endpoints, length/pad-span ceilings, via-free layer, and downstream targets; the independent shared saved-copper checker refuses unsupported topology. Required when a project conductor declares this gate. |
+| `critical_part_selection.yaml` | Optional schema-1 early critical-part admission. A new JLC high-speed board should scaffold `status: pending` and must resolve it to reviewed selections or reviewed not-applicable before the full/reuse conductor can launch a schematic producer. Exact authored identity, independent suitability decision, tagged findings, and current public stock are checked; later engineering gates retain authority. |
 | `assembly_locator.yaml` | Optional A-LOCATOR schema1 for independently reviewed silkscreen omissions: title, owner, orientation and exact exception identities. Shared exporter generates the exact-board viewer/data/atlas; placement/release gates require the source waiver set and all artifact identities to agree. No automatic waiver or order authority. |
 | `integration.yaml` | P-MOD module-first architecture record. REQUIRED on newly commissioned/adopted projects: every complex subsystem selects a real module or carries an evidenced D-MOD bare-IC exception ADR; absence is UNMIGRATED, never PASS |
 | `ic_reference_research.yaml` | Source-selected IC reference search and exact-instance applicability. `ic_reference_check.py` checks all selected circuit/netlist ICs and is invoked after netlist generation; an independent packet/source-bound semantic receipt is required before P1 board generation. Coverage is not engineering approval. |
@@ -450,6 +451,33 @@ TWO ORPHANS THIS FOLDER'S OWN PROSE HAD HIDDEN, both found by the first run:
   and left five pass-through/load-switch rails behind, where "Vout IS Vin minus
   an Rds(on)/ESR drop" is checkable arithmetic that nothing checks. `name:` IS
   graded (E-NETREF K6, advisory); the numbers are OWED.
+
+### keys: 03_src/rules/critical_part_selection.yaml
+
+| key | reader | why |
+|---|---|---|
+| `schema` | `critical_part_selection_admission.py` | exact version 1 |
+| `status` | `critical_part_selection_admission.py` | pending blocks; selections or reviewed not_applicable can pass |
+| `assembly` | `critical_part_selection_admission.py` | existing build quantity and exact stock surplus policy |
+| `findings` | `critical_part_selection_admission.py` | source ledger for exhaustive tagged selection obligations |
+| `applicability.decision_owner` | `critical_part_selection_admission.py` | reviewed not-applicable decision owner |
+| `applicability.reviewer` | `critical_part_selection_admission.py` | separate not-applicable reviewer |
+| `applicability.evidence.path` | `critical_part_selection_admission.py` | in-project not-applicable evidence |
+| `applicability.evidence.sha256` | `critical_part_selection_admission.py` | exact evidence digest |
+| `selections[].ref` | `critical_part_selection_admission.py` | exact selected ref |
+| `selections[].mpn` | `critical_part_selection_admission.py` | exact manufacturer identity |
+| `selections[].lcsc` | `critical_part_selection_admission.py` | exact public catalog identity |
+| `selections[].dossier` | `critical_part_selection_admission.py` | exact dossier |
+| `selections[].source.path` | `critical_part_selection_admission.py` | authored JSX source path |
+| `selections[].source.sha256` | `critical_part_selection_admission.py` | authored JSX digest |
+| `selections[].suitability.status` | `critical_part_selection_admission.py` | accepted or incomplete independent selection decision |
+| `selections[].suitability.decision_owner` | `critical_part_selection_admission.py` | selection decision owner |
+| `selections[].suitability.reviewer` | `critical_part_selection_admission.py` | separate selection reviewer required for accepted; provisional incomplete may omit |
+| `selections[].suitability.evidence.path` | `critical_part_selection_admission.py` | in-project suitability evidence |
+| `selections[].suitability.evidence.sha256` | `critical_part_selection_admission.py` | exact suitability evidence digest |
+| `selections[].due_at_selection_findings` | `critical_part_selection_admission.py` | closed exact finding IDs; tagged omissions hold |
+| `selections[].stock.path` | `critical_part_selection_admission.py` | exact public MPN/LCSC/ref stock line |
+| `selections[].stock.max_age_hours` | `critical_part_selection_admission.py` | freshness limit |
 
 ### keys: 03_src/rules/connector_assembly_phases.yaml
 
@@ -1206,6 +1234,7 @@ PASS does not measure clamp function or environmental/transient survival.
 | key | reader | why |
 |---|---|---|
 | `schema` | `ic_reference_check.py` | requires schema 1 |
+| `binding_schema` | `ic_reference_check.py` | optional version 1 or 2 of the stackup/route digest; existing packets default to 1, while version 2 excludes descriptive RF port prose without silently accepting a legacy binding |
 | `engineering_status` | `ic_reference_check.py` | stays INCOMPLETE; reference coverage is not physical layout proof |
 | `parts` | `ic_reference_check.py` | exact selected-IC MPN/package groups from circuit and netlist |
 | `parts[].mpn` | `ic_reference_check.py` | exact selected manufacturer part number |

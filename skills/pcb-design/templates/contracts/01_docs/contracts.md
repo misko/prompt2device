@@ -247,6 +247,8 @@ binding exception unless the commission locked a production-cost or size cap.
 | `findings[].finding` | ADVISORY | concise human description; maturity derives from state and boundary, not prose interpretation |
 | `findings[].closes_when` | `project_state.py` | objective closure condition required on every row |
 | `findings[].evidence` | `project_state.py` | existing evidence paths required for closed or waived findings |
+| `findings[].critical_selection.ref` | `critical_part_selection_admission.py` | optional exact ref; every tagged finding must appear in that ref's early selection declaration |
+| `findings[].critical_selection.due_stage` | `critical_part_selection_admission.py` | exact `selection` stage must be closed before producer |
 | `findings[].investigation` | `decision_progress.py` | optional closed schema-1 decision-control record; no change to maturity or engineering predicates |
 | `findings[].investigation.schema` | `decision_progress.py` | exact version 1 |
 | `findings[].investigation.requirement` | `decision_progress.py` | exact path/sha256/locator authority binding; identity, not semantic proof |

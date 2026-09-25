@@ -34,19 +34,31 @@ def digest(value: object) -> str:
                                      ensure_ascii=False).encode()).hexdigest()
 
 
-def source_bindings(project: Path) -> dict[str, str]:
+def source_bindings(project: Path, *, binding_schema: int = 1) -> dict[str, str]:
+    if binding_schema not in (1, 2) or isinstance(binding_schema, bool):
+        raise ValueError("IC binding_schema must be 1 or 2")
     floor = yaml.safe_load((project / "03_src/floorplan.yaml").read_text()) or {}
     nets = yaml.safe_load((project / "03_src/rules/nets.yaml").read_text()) or {}
     route = yaml.safe_load((project / "03_src/route.yaml").read_text()) or {}
     rf_path = project / "03_src/rules/rf.yaml"
     rf = (yaml.safe_load(rf_path.read_text()) or {}) if rf_path.is_file() else {}
+    rf_ports = (rf.get("rf") or {}).get("ports")
+    if binding_schema == 2:
+        # Schema 2 binds electrical targets, while selected MPNs and nets are
+        # already bound by the instance/circuit records. Legacy packets retain
+        # their exact schema-1 digest until deliberately migrated.
+        rf_ports = [
+            {key: port.get(key) for key in
+             ("id", "nets", "band_hz", "z0_ohm", "reference_layer")}
+            for port in (rf_ports or [])
+        ]
     board = floor.get("board") or {}
     stack = {
         "layers": board.get("layers"), "stackup": board.get("stackup"),
         "design_rules": floor.get("design_rules"), "zones": floor.get("zones"),
         "keepouts": floor.get("keepouts"),
         "rf_cross_sections": (rf.get("rf") or {}).get("cross_sections"),
-        "rf_ports": (rf.get("rf") or {}).get("ports"),
+        "rf_ports": rf_ports,
     }
     rules = {
         key: nets.get(key) for key in ("fab_tier", "default_clearance",
@@ -211,8 +223,9 @@ def evaluate(project: Path, allow_unmigrated: bool = False) -> dict:
                 "findings": [] if allow_unmigrated else ["missing ic_reference_research.yaml"]}
     try:
         selected, findings = selected_components(project)
-        bindings = source_bindings(project)
         packet = yaml.safe_load(packet_path.read_text()) or {}
+        binding_schema = packet.get("binding_schema", 1) if isinstance(packet, dict) else 1
+        bindings = source_bindings(project, binding_schema=binding_schema)
     except Exception as exc:
         return {"status": "FAIL", "coverage": {"selected_ic": None, "applications": 0},
                 "findings": [f"unreadable source/packet: {exc}"]}
@@ -384,12 +397,15 @@ def main() -> int:
     try:
         if args.print_bindings:
             selected, findings = selected_components(args.project)
-            result = {"source": source_bindings(args.project),
+            packet = yaml.safe_load((args.project / "03_src/rules/ic_reference_research.yaml").read_text()) or {}
+            binding_schema = packet.get("binding_schema", 1)
+            bindings = source_bindings(args.project, binding_schema=binding_schema)
+            result = {"source": bindings, "binding_schema": binding_schema,
                       "instances": {x["refdes"]: {"mpn": x["mpn"],
                                    "package": x["package"],
                                    "footprint": x["footprint"],
                                    "circuit_sha256": x["circuit_sha256"]} for x in selected},
-                      "subject_sha256": subject_digest(selected, source_bindings(args.project)),
+                      "subject_sha256": subject_digest(selected, bindings),
                       "findings": findings}
             print(json.dumps(result, indent=2, sort_keys=True))
             return 1 if findings else 0

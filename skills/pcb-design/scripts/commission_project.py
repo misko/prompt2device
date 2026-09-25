@@ -311,6 +311,12 @@ def _build_plan(
         Path("03_src"),
         excluded=(frozenset() if foreign_mating else frozenset({Path("rules/mates.yaml")})),
     )
+    if profile_mapping["signal_integrity"] == "high_speed_digital":
+        _add_file(
+            plan,
+            Path("03_src/rules/critical_part_selection.yaml"),
+            b"schema: 1\nstatus: pending\nselections: []\n",
+        )
 
     brief_template = PCB_TEMPLATES / "01_docs/BRIEF.md"
     _add_file(

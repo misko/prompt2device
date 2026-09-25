@@ -40,6 +40,19 @@ preliminary request and Circuit JSON. It adds no admission edge or stage.
 Project sourcing-policy and provider gates still control progression; adopted
 part changes follow the existing modular backtrack dependencies.
 
+For newly commissioned JLC high-speed boards, `PCB-SOURCING` also has a
+critical-part selection checkpoint. Commissioning seeds
+`03_src/rules/critical_part_selection.yaml` as `pending`. Before either build
+driver starts a schematic or connector producer, the checkpoint requires exact
+authored MPN/LCSC identity, a matching dossier, current public stock against
+the project's assembly quantity and surplus, an independent suitability
+decision, and closure of every selection-tagged finding. A reviewed
+`not_applicable` decision is possible when no critical part is selected. The
+checkpoint is an execution edge inside sourcing, not a new lifecycle stage or
+a claim of routed/transient/first-article qualification. On failure, return to
+part research/selection, update the selected source and findings, and rerun
+from this checkpoint; the old schematic and placement receipts stay historical.
+
 ## Lifecycle graph
 
 ```mermaid

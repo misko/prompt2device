@@ -4,6 +4,7 @@ import hashlib
 import json
 import re
 import sys
+from datetime import datetime, timezone
 from pathlib import Path
 
 import yaml
@@ -16,6 +17,13 @@ GATE = SCRIPTS / "pre_route_review_check.py"
 
 def sha(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def parts_sha(root):
+    return hashlib.sha256(b"".join(
+        path.relative_to(root).as_posix().encode() + b"\0" + path.read_bytes() + b"\0"
+        for path in sorted((root / "02_parts").glob("*/part.yaml"))
+    )).hexdigest()
 
 
 def netlist_sha(path):
@@ -72,11 +80,57 @@ def design_rules_sha(root):
     return hashlib.sha256(payload).hexdigest()
 
 
-def fixture():
+def fixture(critical_selection_state=None):
     d = tmpdir("prreview_")
     for rel in ("02_parts/X", "03_src/rules", "03_tscircuit/build", "04_kicad", "06_build/pre_route"):
         (d / rel).mkdir(parents=True, exist_ok=True)
     (d / "02_parts/X/part.yaml").write_text("mpn: X\npins: {1: A, 2: B}\n")
+    if critical_selection_state is not None:
+        source = d / "03_tscircuit/src/usb.tsx"
+        source.parent.mkdir(parents=True, exist_ok=True)
+        source.write_text('''<chip name="U_ESD"
+  manufacturerPartNumber="PART-5V" supplierPartNumbers={{jlcpcb:["C123"]}}
+  connections={pins} />\n''')
+        dossier = d / "02_parts/PART-5V/part.yaml"
+        dossier.parent.mkdir(parents=True, exist_ok=True)
+        dossier.write_text("mpn: PART-5V\nsourcing: {lcsc: C123}\n")
+        assembly = d / "03_src/rules/assembly.yaml"
+        assembly.write_text("build_quantity: 5\npublic_stock_surplus: 2\n")
+        review = d / "01_docs/selection-review.md"
+        review.parent.mkdir(parents=True, exist_ok=True)
+        review.write_text("Independent electrical selection review\n")
+        findings = d / "01_docs/findings.yaml"
+        findings.write_text(yaml.safe_dump({"schema": 1, "findings": [{
+            "id": "ESD-DC", "state": critical_selection_state,
+            "critical_selection": {"ref": "U_ESD", "due_stage": "selection"},
+            "evidence": ["01_docs/selection-review.md"],
+        }]}, sort_keys=False))
+        stock = d / "06_build/sourcing/selection-stock.json"
+        stock.parent.mkdir(parents=True, exist_ok=True)
+        stock.write_text(json.dumps({
+            "generated_at": datetime.now(timezone.utc).isoformat(), "verdict": "PASS",
+            "lines": [{"lcsc": "C123", "mpn": "PART-5V", "designators": "U_ESD",
+                       "qty": 1, "required_qty": 5, "stock_threshold": 7,
+                       "applied_surplus": 2, "stock": 10, "status": "OK"}],
+        }))
+        declaration = {
+            "schema": 1, "assembly": "03_src/rules/assembly.yaml",
+            "findings": "01_docs/findings.yaml", "selections": [{
+                "ref": "U_ESD", "mpn": "PART-5V", "lcsc": "C123",
+                "dossier": "02_parts/PART-5V/part.yaml",
+                "source": {"path": "03_tscircuit/src/usb.tsx",
+                           "sha256": sha(source)},
+                "suitability": {"status": "accepted", "decision_owner": "author",
+                                "reviewer": "independent",
+                                "evidence": {"path": "01_docs/selection-review.md",
+                                             "sha256": sha(review)}},
+                "due_at_selection_findings": ["ESD-DC"],
+                "stock": {"path": "06_build/sourcing/selection-stock.json",
+                          "max_age_hours": 24},
+            }],
+        }
+        (d / "03_src/rules/critical_part_selection.yaml").write_text(
+            yaml.safe_dump(declaration, sort_keys=False))
     board = d / "04_kicad/demo.kicad_pcb"
     netlist = d / "04_kicad/demo.net"
     board.write_text("(kicad_pcb pre-route-placement)\n")
@@ -94,9 +148,7 @@ def fixture():
         '(node (ref "U1") (pin "1")))))\n')
     schematic_pdf = d / "03_tscircuit/build/schematic.pdf"
     schematic_pdf.write_bytes(b"%PDF-1.4\nfixture readable schematic\n")
-    parts_hash = hashlib.sha256(
-        b"02_parts/X/part.yaml\0" + (d / "02_parts/X/part.yaml").read_bytes() + b"\0"
-    ).hexdigest()
+    parts_hash = parts_sha(d)
     paths = {k: f"06_build/pre_route/{k}.md"
              for k in ("topology", "pin", "layout", "render")}
     cfg = {"project": {"board": "04_kicad/demo.kicad_pcb"},
@@ -273,6 +325,24 @@ def t_stale_parts_bind_both_schematic_reviews():
              "topology part binding")
     contains(result.out, "schematic_render: parts_sha256 is stale",
              "readability part binding")
+
+
+@test("PR-REVIEW blocks SOUND schematic headers when the adopted typed "
+      "critical-selection ledger carries an unresolved due finding", kind="known_bad")
+def t_due_critical_selection_blocks_schematic():
+    d, _ = fixture("open")
+    result = must_fail(run([KPY, GATE, d, "--phase", "schematic"]),
+                       "open due critical selection", "CRITICAL-SELECTION")
+    contains(result.out, "due-at-selection finding 'ESD-DC' is 'open'",
+             "typed selection finding is reported")
+
+
+@test("PR-REVIEW accepts a closed due critical-selection finding without "
+      "turning the topology or readability header into a suitability verdict")
+def t_closed_critical_selection_allows_schematic():
+    d, _ = fixture("closed")
+    must_pass(run([KPY, GATE, d, "--phase", "schematic"]),
+              "closed typed critical selection")
 
 
 @test("PR-REVIEW refuses an absent adoption block instead of silently passing",

@@ -84,6 +84,17 @@ The repository does not yet have a single commission-admission compositor;
 manual hold removal is not evidence. IMP-235 tracks that missing executable
 boundary.
 
+New JLC-assembled high-speed projects start with a pending
+`03_src/rules/critical_part_selection.yaml`. Declare each selected critical
+protection, clock, power, or interface ref before the full or reuse conductor;
+use an independently reviewed `not_applicable` decision only when there is no
+such selection. The early gate binds authored source identity, exact dossier, fresh
+public stock receipt, independent suitability decision, and all ledger findings
+tagged `critical_selection: {ref: REF, due_stage: selection}`. A missing
+declaration preserves behavior for existing boards, so migration requires an
+explicit board policy decision; absence is not evidence of critical-part
+selection. Later electrical, layout, and assembly gates retain their authority.
+
 ## Plan is not execution
 
 The router is a pure disclosure tool. It selects procedures and validates that

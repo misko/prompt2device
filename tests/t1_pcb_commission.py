@@ -55,7 +55,8 @@ def file_snapshot(root: Path) -> dict[str, tuple[bytes, int]]:
     }
 
 
-def expected_paths(*, foreign_mating: bool, enclosure: bool) -> set[str]:
+def expected_paths(*, foreign_mating: bool, enclosure: bool,
+                   high_speed_digital: bool = False) -> set[str]:
     expected: set[str] = set()
     contract_root = TEMPLATES / "contracts"
     for source in contract_root.rglob("*"):
@@ -89,6 +90,8 @@ def expected_paths(*, foreign_mating: bool, enclosure: bool) -> set[str]:
             "03_src/mechanical/mechanical-intent-v2.yaml",
             "07_enclosure_releases/contracts.md",
         })
+    if high_speed_digital:
+        expected.add("03_src/rules/critical_part_selection.yaml")
     return expected
 
 
@@ -235,6 +238,24 @@ def t_rf_enclosure_mating():
         "foreign_mating": True,
         "target": "release",
     }, "RF capability profile")
+
+
+@test("high-speed commission seeds a fail-closed critical part selection")
+def t_high_speed_selection_pending():
+    base = tmpdir("pcb-commission-high-speed-")
+    projects = base / "projects"
+    projects.mkdir()
+    brief = write_brief(base, b"Build a high-speed USB carrier.")
+    must_pass(invoke(projects, brief, extra=(
+        "--signal-integrity", "high_speed_digital",
+    )), "high-speed commission")
+    project = projects / "fresh-board"
+    eq(paths_below(project), expected_paths(
+        foreign_mating=False, enclosure=False, high_speed_digital=True),
+       "high-speed conditional template census")
+    eq((project / "03_src/rules/critical_part_selection.yaml").read_bytes(),
+       b"schema: 1\nstatus: pending\nselections: []\n",
+       "fail-closed critical part declaration")
 
 
 @test("unsupported non-JLC profile creates nothing", kind="known_bad")
