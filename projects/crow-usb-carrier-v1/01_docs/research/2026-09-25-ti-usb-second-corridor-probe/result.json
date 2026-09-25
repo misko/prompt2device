@@ -1,0 +1,417 @@
+{
+  "allocation_denominator": 5,
+  "allocations": [
+    {
+      "id": "usb_device_pair",
+      "reason": "J_USB.2: witness bbox is a nonlocal bridge across source region",
+      "status": "FAIL"
+    },
+    {
+      "id": "xmos_service_escape",
+      "reason": "J_JTAG.2: fixed access boundary is not the physical pad",
+      "status": "FAIL"
+    },
+    {
+      "id": "adc_timing_xmos_bundle",
+      "reason": "U_ADC_A.22: P2-movable owner requires virtual block-face witness",
+      "status": "INCOMPLETE"
+    },
+    {
+      "id": "adc_analog_boundary",
+      "reason": "C_ADC_AC1N1.2: witness bbox is a nonlocal bridge across source region",
+      "status": "INCOMPLETE"
+    },
+    {
+      "id": "power_boundary_windows",
+      "reason": "C_ADC_3V3X_OK_VDD.2: witness bbox is a nonlocal bridge across source region",
+      "status": "INCOMPLETE"
+    }
+  ],
+  "diagnostics": [
+    {
+      "allocation": "usb_device_pair",
+      "index": 8,
+      "kind": "boundary_witness",
+      "reason": "J_USB.2: witness bbox is a nonlocal bridge across source region",
+      "source": "J_USB.2"
+    },
+    {
+      "allocation": "usb_device_pair",
+      "index": 9,
+      "kind": "boundary_witness",
+      "reason": "R_VBUS_B.1: P2-movable owner requires virtual block-face witness",
+      "source": "R_VBUS_B.1"
+    },
+    {
+      "allocation": "usb_device_pair",
+      "index": 10,
+      "kind": "boundary_witness",
+      "reason": "Q_VBUS.3: P2-movable owner requires virtual block-face witness",
+      "source": "Q_VBUS.3"
+    },
+    {
+      "allocation": "usb_device_pair",
+      "index": 11,
+      "kind": "boundary_witness",
+      "reason": "U_XU.8: P2-movable owner requires virtual block-face witness",
+      "source": "U_XU.8"
+    },
+    {
+      "allocation": "usb_device_pair",
+      "index": 12,
+      "kind": "boundary_witness",
+      "reason": "U_USB_ESD.1: witness bbox is a nonlocal bridge across source region",
+      "source": "U_USB_ESD.1"
+    },
+    {
+      "allocation": "usb_device_pair",
+      "index": 13,
+      "kind": "boundary_witness",
+      "reason": "U_USB_ESD.2: witness bbox is a nonlocal bridge across source region",
+      "source": "U_USB_ESD.2"
+    },
+    {
+      "allocation": "xmos_service_escape",
+      "index": 4,
+      "kind": "boundary_witness",
+      "reason": "J_JTAG.2: fixed access boundary is not the physical pad",
+      "source": "J_JTAG.2"
+    },
+    {
+      "allocation": "xmos_service_escape",
+      "index": 5,
+      "kind": "boundary_witness",
+      "reason": "J_JTAG.4: fixed access boundary is not the physical pad",
+      "source": "J_JTAG.4"
+    },
+    {
+      "allocation": "xmos_service_escape",
+      "index": 6,
+      "kind": "boundary_witness",
+      "reason": "J_JTAG.6: fixed access boundary is not the physical pad",
+      "source": "J_JTAG.6"
+    },
+    {
+      "allocation": "xmos_service_escape",
+      "index": 7,
+      "kind": "boundary_witness",
+      "reason": "J_JTAG.8: fixed access boundary is not the physical pad",
+      "source": "J_JTAG.8"
+    },
+    {
+      "allocation": "adc_timing_xmos_bundle",
+      "index": 0,
+      "kind": "boundary_witness",
+      "reason": "U_ADC_A.22: P2-movable owner requires virtual block-face witness",
+      "source": "U_ADC_A.22"
+    },
+    {
+      "allocation": "adc_timing_xmos_bundle",
+      "index": 1,
+      "kind": "boundary_witness",
+      "reason": "U_ADC_A.23: P2-movable owner requires virtual block-face witness",
+      "source": "U_ADC_A.23"
+    },
+    {
+      "allocation": "adc_timing_xmos_bundle",
+      "index": 2,
+      "kind": "boundary_witness",
+      "reason": "U_ADC_A.21: P2-movable owner requires virtual block-face witness",
+      "source": "U_ADC_A.21"
+    },
+    {
+      "allocation": "adc_timing_xmos_bundle",
+      "index": 3,
+      "kind": "boundary_witness",
+      "reason": "U_TDM_XLATE.6: witness bbox is a nonlocal bridge across source region",
+      "source": "U_TDM_XLATE.6"
+    },
+    {
+      "allocation": "adc_timing_xmos_bundle",
+      "index": 4,
+      "kind": "boundary_witness",
+      "reason": "U_TDM_XLATE.4: witness bbox is a nonlocal bridge across source region",
+      "source": "U_TDM_XLATE.4"
+    },
+    {
+      "allocation": "adc_timing_xmos_bundle",
+      "index": 5,
+      "kind": "boundary_witness",
+      "reason": "U_TDM_XLATE.7: witness bbox is a nonlocal bridge across source region",
+      "source": "U_TDM_XLATE.7"
+    },
+    {
+      "allocation": "adc_timing_xmos_bundle",
+      "index": 6,
+      "kind": "boundary_witness",
+      "reason": "U_TDM_XLATE.5: witness bbox is a nonlocal bridge across source region",
+      "source": "U_TDM_XLATE.5"
+    },
+    {
+      "allocation": "adc_timing_xmos_bundle",
+      "index": 7,
+      "kind": "boundary_witness",
+      "reason": "U_ADC_A.17: P2-movable owner requires virtual block-face witness",
+      "source": "U_ADC_A.17"
+    },
+    {
+      "allocation": "adc_timing_xmos_bundle",
+      "index": 8,
+      "kind": "boundary_witness",
+      "reason": "U_ADC_A.18: P2-movable owner requires virtual block-face witness",
+      "source": "U_ADC_A.18"
+    },
+    {
+      "allocation": "adc_timing_xmos_bundle",
+      "index": 9,
+      "kind": "boundary_witness",
+      "reason": "R_ADC_READY_PD.1: witness bbox is a nonlocal bridge across source region",
+      "source": "R_ADC_READY_PD.1"
+    },
+    {
+      "allocation": "adc_timing_xmos_bundle",
+      "index": 10,
+      "kind": "boundary_witness",
+      "reason": "U_ISO1.2: witness bbox is a nonlocal bridge across source region",
+      "source": "U_ISO1.2"
+    },
+    {
+      "allocation": "adc_timing_xmos_bundle",
+      "index": 11,
+      "kind": "boundary_witness",
+      "reason": "U_XU.93: witness bbox is a nonlocal bridge across source region",
+      "source": "U_XU.93"
+    },
+    {
+      "allocation": "adc_timing_xmos_bundle",
+      "index": 12,
+      "kind": "boundary_witness",
+      "reason": "U_XU.94: witness bbox is a nonlocal bridge across source region",
+      "source": "U_XU.94"
+    },
+    {
+      "allocation": "adc_timing_xmos_bundle",
+      "index": 13,
+      "kind": "boundary_witness",
+      "reason": "Q_ADC_DIG_RST.1: witness bbox is a nonlocal bridge across source region",
+      "source": "Q_ADC_DIG_RST.1"
+    },
+    {
+      "allocation": "adc_analog_boundary",
+      "index": 0,
+      "kind": "boundary_witness",
+      "reason": "C_ADC_AC1N1.2: witness bbox is a nonlocal bridge across source region",
+      "source": "C_ADC_AC1N1.2"
+    },
+    {
+      "allocation": "adc_analog_boundary",
+      "index": 1,
+      "kind": "boundary_witness",
+      "reason": "C_ADC_AC1P1.2: witness bbox is a nonlocal bridge across source region",
+      "source": "C_ADC_AC1P1.2"
+    },
+    {
+      "allocation": "adc_analog_boundary",
+      "index": 2,
+      "kind": "boundary_witness",
+      "reason": "C_ADC_AC2N1.2: witness bbox is a nonlocal bridge across source region",
+      "source": "C_ADC_AC2N1.2"
+    },
+    {
+      "allocation": "adc_analog_boundary",
+      "index": 3,
+      "kind": "boundary_witness",
+      "reason": "C_ADC_AC2P1.2: witness bbox is a nonlocal bridge across source region",
+      "source": "C_ADC_AC2P1.2"
+    },
+    {
+      "allocation": "adc_analog_boundary",
+      "index": 4,
+      "kind": "boundary_witness",
+      "reason": "C_ADC_AC3N1.2: witness bbox is a nonlocal bridge across source region",
+      "source": "C_ADC_AC3N1.2"
+    },
+    {
+      "allocation": "adc_analog_boundary",
+      "index": 5,
+      "kind": "boundary_witness",
+      "reason": "C_ADC_AC3P1.2: witness bbox is a nonlocal bridge across source region",
+      "source": "C_ADC_AC3P1.2"
+    },
+    {
+      "allocation": "adc_analog_boundary",
+      "index": 6,
+      "kind": "boundary_witness",
+      "reason": "C_ADC_AC4N1.2: witness bbox is a nonlocal bridge across source region",
+      "source": "C_ADC_AC4N1.2"
+    },
+    {
+      "allocation": "adc_analog_boundary",
+      "index": 7,
+      "kind": "boundary_witness",
+      "reason": "C_ADC_AC4P1.2: witness bbox is a nonlocal bridge across source region",
+      "source": "C_ADC_AC4P1.2"
+    },
+    {
+      "allocation": "adc_analog_boundary",
+      "index": 8,
+      "kind": "boundary_witness",
+      "reason": "C_ADC_AC5N1.2: witness bbox is a nonlocal bridge across source region",
+      "source": "C_ADC_AC5N1.2"
+    },
+    {
+      "allocation": "adc_analog_boundary",
+      "index": 9,
+      "kind": "boundary_witness",
+      "reason": "C_ADC_AC5P1.2: witness bbox is a nonlocal bridge across source region",
+      "source": "C_ADC_AC5P1.2"
+    },
+    {
+      "allocation": "adc_analog_boundary",
+      "index": 10,
+      "kind": "boundary_witness",
+      "reason": "C_ADC_AC6N1.2: witness bbox is a nonlocal bridge across source region",
+      "source": "C_ADC_AC6N1.2"
+    },
+    {
+      "allocation": "adc_analog_boundary",
+      "index": 11,
+      "kind": "boundary_witness",
+      "reason": "C_ADC_AC6P1.2: witness bbox is a nonlocal bridge across source region",
+      "source": "C_ADC_AC6P1.2"
+    },
+    {
+      "allocation": "adc_analog_boundary",
+      "index": 12,
+      "kind": "boundary_witness",
+      "reason": "C_ADC_AC7N1.2: witness bbox is a nonlocal bridge across source region",
+      "source": "C_ADC_AC7N1.2"
+    },
+    {
+      "allocation": "adc_analog_boundary",
+      "index": 13,
+      "kind": "boundary_witness",
+      "reason": "C_ADC_AC7P1.2: witness bbox is a nonlocal bridge across source region",
+      "source": "C_ADC_AC7P1.2"
+    },
+    {
+      "allocation": "adc_analog_boundary",
+      "index": 14,
+      "kind": "boundary_witness",
+      "reason": "C_ADC_AC8N1.2: witness bbox is a nonlocal bridge across source region",
+      "source": "C_ADC_AC8N1.2"
+    },
+    {
+      "allocation": "adc_analog_boundary",
+      "index": 15,
+      "kind": "boundary_witness",
+      "reason": "C_ADC_AC8P1.2: witness bbox is a nonlocal bridge across source region",
+      "source": "C_ADC_AC8P1.2"
+    },
+    {
+      "allocation": "adc_analog_boundary",
+      "index": 16,
+      "kind": "boundary_witness",
+      "reason": "R_B1N.2: witness bbox is a nonlocal bridge across source region",
+      "source": "R_B1N.2"
+    },
+    {
+      "allocation": "adc_analog_boundary",
+      "index": 17,
+      "kind": "boundary_witness",
+      "reason": "R_B5N.2: witness bbox is a nonlocal bridge across source region",
+      "source": "R_B5N.2"
+    },
+    {
+      "allocation": "power_boundary_windows",
+      "index": 1,
+      "kind": "boundary_witness",
+      "reason": "C_ADC_3V3X_OK_VDD.2: witness bbox is a nonlocal bridge across source region",
+      "source": "C_ADC_3V3X_OK_VDD.2"
+    },
+    {
+      "allocation": "power_boundary_windows",
+      "index": 2,
+      "kind": "boundary_witness",
+      "reason": "C_CORE_FF.1: witness bbox is a nonlocal bridge across source region",
+      "source": "C_CORE_FF.1"
+    },
+    {
+      "allocation": "power_boundary_windows",
+      "index": 3,
+      "kind": "boundary_witness",
+      "reason": "C_SPOKE_IN1.1: witness bbox is a nonlocal bridge across source region",
+      "source": "C_SPOKE_IN1.1"
+    },
+    {
+      "allocation": "power_boundary_windows",
+      "index": 4,
+      "kind": "boundary_witness",
+      "reason": "R_ADC_1V8_OK_TOP.1: witness bbox is a nonlocal bridge across source region",
+      "source": "R_ADC_1V8_OK_TOP.1"
+    },
+    {
+      "allocation": "power_boundary_windows",
+      "index": 5,
+      "kind": "boundary_witness",
+      "reason": "R_ADC_3V3X_OK_TOP.1: witness bbox is a nonlocal bridge across source region",
+      "source": "R_ADC_3V3X_OK_TOP.1"
+    },
+    {
+      "allocation": "power_boundary_windows",
+      "index": 6,
+      "kind": "boundary_witness",
+      "reason": "C_ADC_3V3X_OK_VDD.1: P2-movable owner requires virtual block-face witness",
+      "source": "C_ADC_3V3X_OK_VDD.1"
+    },
+    {
+      "allocation": "power_boundary_windows",
+      "index": 7,
+      "kind": "boundary_witness",
+      "reason": "C_1V8_OK_VDD.1: witness bbox is a nonlocal bridge across source region",
+      "source": "C_1V8_OK_VDD.1"
+    },
+    {
+      "allocation": "power_boundary_windows",
+      "index": 8,
+      "kind": "boundary_witness",
+      "reason": "C_ISO1.1: witness bbox is a nonlocal bridge across source region",
+      "source": "C_ISO1.1"
+    },
+    {
+      "allocation": "power_boundary_windows",
+      "index": 9,
+      "kind": "boundary_witness",
+      "reason": "U_ADC_PWR_BAD.2: witness bbox is a nonlocal bridge across source region",
+      "source": "U_ADC_PWR_BAD.2"
+    }
+  ],
+  "errors": [
+    "qspi_gap: integration affected endpoint/layer denominator mismatch",
+    "xtal_south_cap: integration affected endpoint/layer denominator mismatch",
+    "jtag_strip: integration affected endpoint/layer denominator mismatch",
+    "usb_edge_access: integration affected endpoint/layer denominator mismatch",
+    "usb_edge_access: integration net double reservation credit in usb_device_pair",
+    "usb_frontend_to_xmos: integration affected endpoint/layer denominator mismatch",
+    "usb_frontend_to_xmos: integration net double reservation credit in usb_device_pair",
+    "usb_frontend_to_xmos: integration net double reservation credit in usb_device_pair",
+    "usb_frontend_to_xmos: integration net double reservation credit in usb_device_pair",
+    "usb_frontend_to_xmos: integration net double reservation credit in usb_device_pair",
+    "usb_frontend_to_xmos: integration net double reservation credit in usb_device_pair",
+    "xu_reset_five_terminal: unresolved branch representative witness denominator mismatch"
+  ],
+  "hashes": {
+    "aliases": "a6baba8bd4e389c146250a2a2ef5f7e9b09f63526e71dbdd05be8bca9b7b2c2e",
+    "board": "8e620def0b403fda7635135672afec923c2c23bc9844b3f96102e96d4d5eca10",
+    "contract": "42f7e9be13a9943000703ebf4475e14fdace561e8d0c4e4804b7edfddf179d7a",
+    "floorplan": "3451138d908c3695b8a2cf3e7636a5de079c67cff50026d1842f700dcda1eee0",
+    "interfaces": "02be5ad6ea879ac04d5dfd9e2e09d5226f85c85fa83d72628aa40cf93de6b4d8",
+    "source": "fed75fe370fca9444c76962fc3ed553b2490ecee48445cd924347a3e2e6ccbe4"
+  },
+  "kind": "p1-coarse-reservation-screen",
+  "p1_accepted": false,
+  "reason": "independent filled-reference, effective-capacity and P1 review not supplied",
+  "routing_realized": false,
+  "schema": 2,
+  "status": "FAIL"
+}
