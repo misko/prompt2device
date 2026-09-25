@@ -24,6 +24,11 @@ source-owned `physical_cell_edge_attachments` rows are requests, never
 independent approval. Without the file and expected digest, any such request
 fails closed.
 
+The synthetic non-Crow unit fixture computes a disposable manifest digest to
+exercise parsing and geometry only. The Crow acceptance tests instead use the
+literal reviewed digest above and reject an edited manifest even if source
+fields contain its newly computed hash.
+
 This grant concerns physical-cell containment only. It does not qualify an
 assembled edge, connector FULL, return continuity, routing, capacity, P2/P3,
 P1 acceptance, fabrication or release.

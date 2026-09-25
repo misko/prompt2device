@@ -149,6 +149,27 @@ class EdgeAttachment(unittest.TestCase):
             checker._physical_cell_edge_attachments(self.source(), self.board,
                                                     self.outline, '0'*64, AUTHORITY)
 
+    def test_source_cannot_replace_literal_reviewed_digest(self):
+        # A valid JSON edit is still a different approval subject. The source
+        # may repeat the edited file's hash, but the caller's reviewed literal
+        # above remains the only accepted authority digest.
+        with tempfile.TemporaryDirectory() as directory:
+            edited = Path(directory) / 'edited_authority.json'
+            edited.write_bytes(AUTHORITY_PATH.read_bytes() + b'\n')
+            source = self.source()
+            source['edge_authority_path'] = str(edited)
+            source['edge_authority_sha256'] = checker.digest(edited)
+            self.assertNotEqual(source['edge_authority_sha256'], AUTHORITY_SHA256)
+            with self.assertRaisesRegex(checker.ContractError, 'digest mismatch'):
+                checker._load_edge_authority(edited, AUTHORITY_SHA256)
+            cell_id = source['physical_cells'][0]['id']
+            with self.assertRaisesRegex(checker.ContractError, 'independently pinned authority'):
+                checker._physical_cells(
+                    source, {'blocks': [{'id': 'owner', 'refs': ['J1']}]},
+                    self.board, self.outline,
+                    {cell_id: list(checker._physical_envelope(self.native['J1']))},
+                    [{'match': ['J1'], 'region': cell_id}], D0_SHA256)
+
     def test_non_crow_synthetic_project_authority(self):
         def mm(value):
             return pcbnew.FromMM(value)
@@ -216,6 +237,8 @@ class EdgeAttachment(unittest.TestCase):
             manifest.write_text(json.dumps(record))
             with self.assertRaises(checker.ContractError):
                 checker._load_edge_authority(manifest, None)
+            # This disposable parser fixture has no independent review. Its
+            # derived digest tests generic mechanics, never approval policy.
             authority = checker._load_edge_authority(manifest, checker.digest(manifest))
             item = record['connectors'][0]
             claim = {'ref': 'J_SYN', 'physical_cell_id': 'synthetic_edge',
