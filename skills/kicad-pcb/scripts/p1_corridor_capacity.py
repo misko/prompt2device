@@ -44,10 +44,11 @@ transit cells have no refs and must edge-connect to occupied same-owner cells.
 Owners using this extension must assign all modular refs exactly once, include
 their primary region when present, and name cells explicitly on witnesses,
 corridor faces and P2 obligations. No source alias or P1 credit is implied.
-On the exact reviewed Crow board, ``physical_cell_edge_attachments`` can admit
-only the nominal 0.045-mm north F.CrtYd projection of fixed J_PWR/J1--J8 in
-a one-ref physical cell. Material, pads, drills and all other geometry stay
-inboard. This affects physical-cell containment only, never route or P1 credit.
+An independently pinned project ``physical_cell_edge_authority`` can admit
+only a reviewed north F.CrtYd projection in an exact one-ref fixed-connector
+cell. Source ``physical_cell_edge_attachments`` merely requests that narrow
+authority; material, pads, drills and all other geometry stay inboard. This
+affects physical-cell containment only, never route or P1 credit.
 A ``fixed_connector_access`` witness keeps a P1-fixed pad physical and binds a
 separate, disjoint access reservation to a named integration corridor. It is
 only a topology/geometry declaration and carries no routing capacity credit.
@@ -1472,27 +1473,6 @@ def _physical_envelope(fp):
     return tuple(body)
 
 
-_EDGE_BOARD_SHA256 = 'd0c065dc16de081a5410b7a22e474f0a99c6fdeb0b7dd1f6c37422ace4a9fcf7'
-_EDGE_POWER_BOARD_SHA256 = 'e07ed8bc663fdfd4ce39477165b656b0dcf2bfbae54d84ec501bfccf326d22ef'
-_EDGE_REVIEWED_BOARD_SHA256 = frozenset({_EDGE_BOARD_SHA256,
-                                         _EDGE_POWER_BOARD_SHA256})
-_EDGE_OUTLINE_SHA256 = '8c777cc8717eb7d54ee6581a199d69d0184c0ceb184e2639e6fdecba3822cb6c'
-_EDGE_PROJECT_ROOT = Path(__file__).resolve().parents[3] / 'projects/crow-usb-carrier-v1'
-_EDGE_PARTS = {
-    'J_PWR': ('crow_usb_power_aux.pretty/Molex_43650-0200.kicad_mod',
-              '43650-0200/Molex_436501000_SD_revD8.pdf',
-              'a5270e0a7273bf96318cc832753a160d61d49ecf18b1bc6f184506f53bd45ce2',
-              'b8942b95bc3fe4c02171de9e714d99b2688055e249ba1524e3c2a8c3cf78eaa3',
-              (30.0, 29.42, 0.0), 'Molex_43650-0200'),
-    **{f'J{n}': ('crow_usb_analog.pretty/Wurth_615008160221_RJ45.kicad_mod',
-                 '615008160221/Wurth_615008160221_rev001003.pdf',
-                 'c8286c258474bde37022ef16730c7976e488d5fd7312699870ed54ee0dccc7d6',
-                 '6ed18749211d4e6cbffd99cd0b90461dfe4ec6d70f558ceceeb5901651f0e048',
-                 (50.0 + 22.0 * (n-1), 26.86, 0.0),
-                 'Wurth_615008160221_RJ45') for n in range(1, 9)},
-}
-
-
 def _edge_outline_digest(outline):
     if outline.OutlineCount() != 1 or outline.HoleCount(0):
         raise ContractError('edge attachment outline topology invalid')
@@ -1500,19 +1480,108 @@ def _edge_outline_digest(outline):
     return hashlib.sha256(json.dumps(points, separators=(',', ':')).encode()).hexdigest()
 
 
-def _physical_cell_edge_attachments(source, board, outline, board_sha256):
-    """Verify exact nominal drawing-only north-edge attachments for cell use."""
+def _load_edge_authority(path, expected_sha256):
+    """Load separately reviewed project evidence, never an unpinned source claim."""
+    if path is None or not isinstance(expected_sha256, str) or len(expected_sha256) != 64:
+        raise ContractError('physical-cell edge authority requires independent expected digest')
+    path = Path(path)
+    try:
+        actual_sha256 = digest(path)
+    except OSError as exc:
+        raise ContractError(f'physical-cell edge authority unavailable: {exc}') from exc
+    if actual_sha256 != expected_sha256:
+        raise ContractError('physical-cell edge authority digest mismatch')
+    try:
+        record = json.loads(path.read_text())
+    except (OSError, ValueError) as exc:
+        raise ContractError(f'physical-cell edge authority unreadable: {exc}') from exc
+    if (not isinstance(record, dict) or set(record) != {
+            'schema', 'kind', 'scope', 'board_subjects', 'review_provenance', 'connectors'} or
+            record['schema'] != 1 or
+            record['kind'] != 'physical-cell-north-edge-courtyard-authority' or
+            record['scope'] != 'single-fixed-connector-courtyard-only'):
+        raise ContractError('physical-cell edge authority schema/scope invalid')
+    subjects = record['board_subjects']
+    reviews = record['review_provenance']
+    connectors = record['connectors']
+    if (not isinstance(subjects, list) or not subjects or
+            not isinstance(reviews, list) or not reviews or
+            not isinstance(connectors, list) or not connectors):
+        raise ContractError('physical-cell edge authority evidence denominator invalid')
+    seen = set()
+    for row in subjects:
+        if (not isinstance(row, dict) or set(row) != {
+                'board_sha256', 'outline_sha256', 'outline_bbox_mm'} or
+                not all(isinstance(row[k], str) and len(row[k]) == 64
+                        for k in ('board_sha256', 'outline_sha256')) or
+                row['board_sha256'] in seen):
+            raise ContractError('physical-cell edge authority board subject invalid')
+        rectangle(row['outline_bbox_mm'], 'edge authority outline')
+        seen.add(row['board_sha256'])
+    reviewed_subjects = set()
+    for row in reviews:
+        if (not isinstance(row, dict) or set(row) != {'path', 'sha256', 'board_sha256'} or
+                not isinstance(row['path'], str) or not row['path'] or
+                not isinstance(row['sha256'], str) or len(row['sha256']) != 64 or
+                row['board_sha256'] not in seen or
+                row['board_sha256'] in reviewed_subjects):
+            raise ContractError('physical-cell edge authority review provenance invalid')
+        try:
+            if digest(path.parent / row['path']) != row['sha256']:
+                raise ContractError('physical-cell edge authority review provenance drift')
+        except OSError as exc:
+            raise ContractError(f'physical-cell edge authority review unavailable: {exc}') from exc
+        reviewed_subjects.add(row['board_sha256'])
+    if reviewed_subjects != seen:
+        raise ContractError('physical-cell edge authority board review denominator incomplete')
+    seen = set()
+    fields = {'ref', 'edge', 'pose_mm', 'footprint_lib_item', 'footprint_path',
+              'footprint_sha256', 'drawing_path', 'drawing_sha256',
+              'maximum_courtyard_projection_mm'}
+    for row in connectors:
+        if (not isinstance(row, dict) or set(row) != fields or
+                not isinstance(row['ref'], str) or not row['ref'] or row['ref'] in seen or
+                row['edge'] != 'north' or not isinstance(row['footprint_lib_item'], str) or
+                not row['footprint_lib_item'] or
+                not isinstance(row['pose_mm'], list) or len(row['pose_mm']) != 3 or
+                any(isinstance(v, bool) or not isinstance(v, (int, float)) or
+                    not math.isfinite(v) for v in row['pose_mm']) or
+                not isinstance(row['maximum_courtyard_projection_mm'], (int, float)) or
+                isinstance(row['maximum_courtyard_projection_mm'], bool) or
+                not 0 < row['maximum_courtyard_projection_mm'] <= 0.05):
+            raise ContractError('physical-cell edge authority connector invalid')
+        for file_kind in ('footprint', 'drawing'):
+            rel, sha = row[file_kind + '_path'], row[file_kind + '_sha256']
+            if (not isinstance(rel, str) or not rel or
+                    not isinstance(sha, str) or len(sha) != 64):
+                raise ContractError('physical-cell edge authority file record invalid')
+            try:
+                if digest(path.parent / rel) != sha:
+                    raise ContractError(f'physical-cell edge authority {file_kind} drift')
+            except OSError as exc:
+                raise ContractError(f'physical-cell edge authority {file_kind} unavailable: {exc}') from exc
+        seen.add(row['ref'])
+    return record
+
+
+def _physical_cell_edge_attachments(source, board, outline, board_sha256,
+                                    authority=None):
+    """Verify reviewed north-edge drawing-only attachment and live geometry."""
     rows = source.get('physical_cell_edge_attachments')
     if rows is None:
         return {}
-    if (not isinstance(rows, list) or not rows or
-            board_sha256 not in _EDGE_REVIEWED_BOARD_SHA256):
+    if not isinstance(rows, list) or not rows or authority is None:
+        raise ContractError('edge attachment independently pinned authority missing')
+    subject = next((item for item in authority['board_subjects']
+                    if item['board_sha256'] == board_sha256), None)
+    if subject is None:
         raise ContractError('edge attachment board hash missing or unreviewed')
-    outline_hash = _edge_outline_digest(outline)
-    if (outline_hash != _EDGE_OUTLINE_SHA256 or
-            box_mm(outline.BBox()) != (20.0, 20.0, 240.0, 140.0)):
+    outline_box = box_mm(outline.BBox())
+    if (_edge_outline_digest(outline) != subject['outline_sha256'] or
+            outline_box != tuple(subject['outline_bbox_mm'])):
         raise ContractError('edge attachment native outline drift')
     native = {fp.GetReference(): fp for fp in board.GetFootprints()}
+    approved = {item['ref']: item for item in authority['connectors']}
     allowed = {'ref', 'physical_cell_id', 'edge', 'board_sha256', 'outline_sha256',
                'footprint_sha256', 'drawing_sha256', 'pose_mm',
                'maximum_courtyard_projection_mm'}
@@ -1521,33 +1590,31 @@ def _physical_cell_edge_attachments(source, board, outline, board_sha256):
         if not isinstance(row, dict) or set(row) != allowed:
             raise ContractError('physical-cell edge attachment fields invalid')
         ref, cell_id = row['ref'], row['physical_cell_id']
-        if (ref not in _EDGE_PARTS or ref in result or not isinstance(cell_id, str) or
+        part = approved.get(ref)
+        if (part is None or ref in result or not isinstance(cell_id, str) or
                 not cell_id or row['edge'] != 'north' or
                 row['board_sha256'] != board_sha256 or
-                row['outline_sha256'] != _EDGE_OUTLINE_SHA256 or
-                row['maximum_courtyard_projection_mm'] != 0.045 or
+                row['outline_sha256'] != subject['outline_sha256'] or
+                row['maximum_courtyard_projection_mm'] != part['maximum_courtyard_projection_mm'] or
                 ref not in source.get('p1_fixed_refs', [])):
             raise ContractError(f'{ref}: physical-cell edge attachment identity/direction invalid')
-        fp_rel, drawing_rel, fp_hash, drawing_hash, pose, lib_item = _EDGE_PARTS[ref]
-        footprint_path = _EDGE_PROJECT_ROOT / '03_src/lib' / fp_rel
-        drawing_path = _EDGE_PROJECT_ROOT / '02_parts' / drawing_rel
-        if (row['footprint_sha256'] != fp_hash or row['drawing_sha256'] != drawing_hash or
-                digest(footprint_path) != fp_hash or digest(drawing_path) != drawing_hash):
+        if (row['footprint_sha256'] != part['footprint_sha256'] or
+                row['drawing_sha256'] != part['drawing_sha256']):
             raise ContractError(f'{ref}: physical-cell footprint/drawing hash drift')
         fp = native.get(ref)
         if fp is None:
             raise ContractError(f'{ref}: physical-cell native footprint missing')
         actual_pose = (pcbnew.ToMM(fp.GetPosition().x), pcbnew.ToMM(fp.GetPosition().y),
                        fp.GetOrientationDegrees())
-        if (row['pose_mm'] != list(pose) or actual_pose != pose or
-                str(fp.GetFPID().GetLibItemName()) != lib_item):
+        if (row['pose_mm'] != part['pose_mm'] or actual_pose != tuple(part['pose_mm']) or
+                str(fp.GetFPID().GetLibItemName()) != part['footprint_lib_item']):
             raise ContractError(f'{ref}: physical-cell fixed pose/footprint mismatch')
         courtyard = fp.GetCourtyard(pcbnew.F_CrtYd)
         if courtyard.OutlineCount() != 1 or courtyard.HasHoles():
             raise ContractError(f'{ref}: physical-cell courtyard has extra exterior lobe')
         court_box = box_mm(courtyard.BBox())
-        outline_box = box_mm(outline.BBox())
-        if (round(outline_box[1] - court_box[1], 6) != 0.045 or
+        if (round(outline_box[1] - court_box[1], 6) !=
+                part['maximum_courtyard_projection_mm'] or
                 court_box[0] < outline_box[0] or court_box[2] > outline_box[2] or
                 court_box[3] > outline_box[3]):
             raise ContractError(f'{ref}: physical-cell courtyard projection exceeds north limit')
@@ -1572,7 +1639,7 @@ def _physical_cell_edge_attachments(source, board, outline, board_sha256):
 
 
 def _physical_cells(source, interfaces, board, outline, regions, patterns,
-                    board_sha256=None):
+                    board_sha256=None, edge_authority=None):
     """Bind disjoint physical regions to exact modular owners, never aliases."""
     rows = source.get('physical_cells')
     if rows is None:
@@ -1585,7 +1652,7 @@ def _physical_cells(source, interfaces, board, outline, regions, patterns,
     native = {fp.GetReference(): fp for fp in board.GetFootprints()}
     cells, assigned = {}, set()
     edge_attachments = _physical_cell_edge_attachments(source, board, outline,
-                                                        board_sha256)
+                                                        board_sha256, edge_authority)
     used_edge = set()
     for row in rows:
         if not isinstance(row, dict) or set(row) != {'id', 'owner_block', 'refs', 'transit'}:
@@ -1604,11 +1671,13 @@ def _physical_cells(source, interfaces, board, outline, regions, patterns,
                      if ref in edge_attachments), None)
         if edge is not None:
             ref, attachment = edge
+            native_outline = box_mm(outline.BBox())
             if (len(refs) != 1 or attachment['physical_cell_id'] != ident or
                     area != _physical_envelope(native[ref]) or
                     area[1] != attachment['courtyard_bbox'][1] or
-                    area[0] < 20.0 or area[2] > 240.0 or area[3] > 140.0 or
-                    not lane_inside_outline(outline, (area[0], 20.0,
+                    area[0] < native_outline[0] or area[2] > native_outline[2] or
+                    area[3] > native_outline[3] or
+                    not lane_inside_outline(outline, (area[0], native_outline[1],
                                                       area[2], area[3]))):
                 raise ContractError(f'{ident}: edge cell must contain only exact fixed connector')
             used_edge.add(ref)
@@ -1781,6 +1850,7 @@ def evaluate_coarse(board_path, contract_path, expected_contract_sha256=None, *,
                     source_path=None, interface_path=None, alias_path=None, floorplan_path=None,
                     expected_source_sha256=None, expected_interface_sha256=None,
                     expected_alias_sha256=None, expected_floorplan_sha256=None,
+                    edge_authority_path=None, expected_edge_authority_sha256=None,
                     diagnose_all=False):
     errors, results, hashes = [], [], {}
     diagnostics = []
@@ -1844,8 +1914,15 @@ def evaluate_coarse(board_path, contract_path, expected_contract_sha256=None, *,
             patterns = placement.get('patterns', [])
             if not isinstance(patterns, list) or any(not isinstance(p, dict) or not isinstance(p.get('match'), list) for p in patterns):
                 raise ContractError('source placement patterns malformed')
+            edge_authority = (_load_edge_authority(edge_authority_path,
+                                                   expected_edge_authority_sha256)
+                              if edge_authority_path is not None or
+                              expected_edge_authority_sha256 is not None else None)
+            if edge_authority is not None:
+                hashes['edge_authority'] = expected_edge_authority_sha256
             physical_cells = _physical_cells(source, interfaces, board, outline,
-                                             regions, patterns, hashes['board'])
+                                             regions, patterns, hashes['board'],
+                                             edge_authority)
             owner_pockets = _branch_owner_pockets(source, interfaces, board, outline,
                                                    regions, {'board': hashes['board'],
                                                              'floorplan': hashes['floorplan'],
@@ -2473,6 +2550,7 @@ def evaluate(board_path: Path, contract_path: Path, expected_contract_sha256: st
              source_path=None, interface_path=None, alias_path=None, floorplan_path=None,
              expected_source_sha256=None, expected_interface_sha256=None,
              expected_alias_sha256=None, expected_floorplan_sha256=None,
+             edge_authority_path=None, expected_edge_authority_sha256=None,
              diagnose_all=False):
     try:
         candidate = json.loads(contract_path.read_text())
@@ -2484,6 +2562,8 @@ def evaluate(board_path: Path, contract_path: Path, expected_contract_sha256: st
                                    expected_interface_sha256=expected_interface_sha256,
                                    expected_alias_sha256=expected_alias_sha256,
                                    expected_floorplan_sha256=expected_floorplan_sha256,
+                                   edge_authority_path=edge_authority_path,
+                                   expected_edge_authority_sha256=expected_edge_authority_sha256,
                                    diagnose_all=diagnose_all)
     except (OSError, ValueError):
         pass
@@ -2616,6 +2696,10 @@ def main():
     parser.add_argument('--expected-interface-sha256')
     parser.add_argument('--expected-alias-sha256')
     parser.add_argument('--expected-floorplan-sha256')
+    parser.add_argument('--edge-authority', type=Path,
+                        help='independently reviewed physical-cell edge authority JSON')
+    parser.add_argument('--expected-edge-authority-sha256',
+                        help='trusted caller digest for edge authority, never inferred from source')
     parser.add_argument('--diagnose-all', action='store_true',
                         help='schema-2 only: report independent per-item defects without changing the verdict')
     args = parser.parse_args()
@@ -2626,6 +2710,8 @@ def main():
                       expected_interface_sha256=args.expected_interface_sha256,
                       expected_alias_sha256=args.expected_alias_sha256,
                       expected_floorplan_sha256=args.expected_floorplan_sha256,
+                      edge_authority_path=args.edge_authority,
+                      expected_edge_authority_sha256=args.expected_edge_authority_sha256,
                       diagnose_all=args.diagnose_all)
     args.output.write_text(json.dumps(result, indent=2, sort_keys=True) + '\n')
     return 0 if result['status'] == 'PASS' else 1

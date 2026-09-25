@@ -1,0 +1,176 @@
+{
+  "board_subjects": [
+    {
+      "board_sha256": "d0c065dc16de081a5410b7a22e474f0a99c6fdeb0b7dd1f6c37422ace4a9fcf7",
+      "outline_bbox_mm": [
+        20,
+        20,
+        240,
+        140
+      ],
+      "outline_sha256": "8c777cc8717eb7d54ee6581a199d69d0184c0ceb184e2639e6fdecba3822cb6c"
+    },
+    {
+      "board_sha256": "e07ed8bc663fdfd4ce39477165b656b0dcf2bfbae54d84ec501bfccf326d22ef",
+      "outline_bbox_mm": [
+        20,
+        20,
+        240,
+        140
+      ],
+      "outline_sha256": "8c777cc8717eb7d54ee6581a199d69d0184c0ceb184e2639e6fdecba3822cb6c"
+    }
+  ],
+  "connectors": [
+    {
+      "drawing_path": "../../02_parts/43650-0200/Molex_436501000_SD_revD8.pdf",
+      "drawing_sha256": "b8942b95bc3fe4c02171de9e714d99b2688055e249ba1524e3c2a8c3cf78eaa3",
+      "edge": "north",
+      "footprint_lib_item": "Molex_43650-0200",
+      "footprint_path": "../../03_src/lib/crow_usb_power_aux.pretty/Molex_43650-0200.kicad_mod",
+      "footprint_sha256": "a5270e0a7273bf96318cc832753a160d61d49ecf18b1bc6f184506f53bd45ce2",
+      "maximum_courtyard_projection_mm": 0.045,
+      "pose_mm": [
+        30.0,
+        29.42,
+        0.0
+      ],
+      "ref": "J_PWR"
+    },
+    {
+      "drawing_path": "../../02_parts/615008160221/Wurth_615008160221_rev001003.pdf",
+      "drawing_sha256": "6ed18749211d4e6cbffd99cd0b90461dfe4ec6d70f558ceceeb5901651f0e048",
+      "edge": "north",
+      "footprint_lib_item": "Wurth_615008160221_RJ45",
+      "footprint_path": "../../03_src/lib/crow_usb_analog.pretty/Wurth_615008160221_RJ45.kicad_mod",
+      "footprint_sha256": "c8286c258474bde37022ef16730c7976e488d5fd7312699870ed54ee0dccc7d6",
+      "maximum_courtyard_projection_mm": 0.045,
+      "pose_mm": [
+        50.0,
+        26.86,
+        0.0
+      ],
+      "ref": "J1"
+    },
+    {
+      "drawing_path": "../../02_parts/615008160221/Wurth_615008160221_rev001003.pdf",
+      "drawing_sha256": "6ed18749211d4e6cbffd99cd0b90461dfe4ec6d70f558ceceeb5901651f0e048",
+      "edge": "north",
+      "footprint_lib_item": "Wurth_615008160221_RJ45",
+      "footprint_path": "../../03_src/lib/crow_usb_analog.pretty/Wurth_615008160221_RJ45.kicad_mod",
+      "footprint_sha256": "c8286c258474bde37022ef16730c7976e488d5fd7312699870ed54ee0dccc7d6",
+      "maximum_courtyard_projection_mm": 0.045,
+      "pose_mm": [
+        72.0,
+        26.86,
+        0.0
+      ],
+      "ref": "J2"
+    },
+    {
+      "drawing_path": "../../02_parts/615008160221/Wurth_615008160221_rev001003.pdf",
+      "drawing_sha256": "6ed18749211d4e6cbffd99cd0b90461dfe4ec6d70f558ceceeb5901651f0e048",
+      "edge": "north",
+      "footprint_lib_item": "Wurth_615008160221_RJ45",
+      "footprint_path": "../../03_src/lib/crow_usb_analog.pretty/Wurth_615008160221_RJ45.kicad_mod",
+      "footprint_sha256": "c8286c258474bde37022ef16730c7976e488d5fd7312699870ed54ee0dccc7d6",
+      "maximum_courtyard_projection_mm": 0.045,
+      "pose_mm": [
+        94.0,
+        26.86,
+        0.0
+      ],
+      "ref": "J3"
+    },
+    {
+      "drawing_path": "../../02_parts/615008160221/Wurth_615008160221_rev001003.pdf",
+      "drawing_sha256": "6ed18749211d4e6cbffd99cd0b90461dfe4ec6d70f558ceceeb5901651f0e048",
+      "edge": "north",
+      "footprint_lib_item": "Wurth_615008160221_RJ45",
+      "footprint_path": "../../03_src/lib/crow_usb_analog.pretty/Wurth_615008160221_RJ45.kicad_mod",
+      "footprint_sha256": "c8286c258474bde37022ef16730c7976e488d5fd7312699870ed54ee0dccc7d6",
+      "maximum_courtyard_projection_mm": 0.045,
+      "pose_mm": [
+        116.0,
+        26.86,
+        0.0
+      ],
+      "ref": "J4"
+    },
+    {
+      "drawing_path": "../../02_parts/615008160221/Wurth_615008160221_rev001003.pdf",
+      "drawing_sha256": "6ed18749211d4e6cbffd99cd0b90461dfe4ec6d70f558ceceeb5901651f0e048",
+      "edge": "north",
+      "footprint_lib_item": "Wurth_615008160221_RJ45",
+      "footprint_path": "../../03_src/lib/crow_usb_analog.pretty/Wurth_615008160221_RJ45.kicad_mod",
+      "footprint_sha256": "c8286c258474bde37022ef16730c7976e488d5fd7312699870ed54ee0dccc7d6",
+      "maximum_courtyard_projection_mm": 0.045,
+      "pose_mm": [
+        138.0,
+        26.86,
+        0.0
+      ],
+      "ref": "J5"
+    },
+    {
+      "drawing_path": "../../02_parts/615008160221/Wurth_615008160221_rev001003.pdf",
+      "drawing_sha256": "6ed18749211d4e6cbffd99cd0b90461dfe4ec6d70f558ceceeb5901651f0e048",
+      "edge": "north",
+      "footprint_lib_item": "Wurth_615008160221_RJ45",
+      "footprint_path": "../../03_src/lib/crow_usb_analog.pretty/Wurth_615008160221_RJ45.kicad_mod",
+      "footprint_sha256": "c8286c258474bde37022ef16730c7976e488d5fd7312699870ed54ee0dccc7d6",
+      "maximum_courtyard_projection_mm": 0.045,
+      "pose_mm": [
+        160.0,
+        26.86,
+        0.0
+      ],
+      "ref": "J6"
+    },
+    {
+      "drawing_path": "../../02_parts/615008160221/Wurth_615008160221_rev001003.pdf",
+      "drawing_sha256": "6ed18749211d4e6cbffd99cd0b90461dfe4ec6d70f558ceceeb5901651f0e048",
+      "edge": "north",
+      "footprint_lib_item": "Wurth_615008160221_RJ45",
+      "footprint_path": "../../03_src/lib/crow_usb_analog.pretty/Wurth_615008160221_RJ45.kicad_mod",
+      "footprint_sha256": "c8286c258474bde37022ef16730c7976e488d5fd7312699870ed54ee0dccc7d6",
+      "maximum_courtyard_projection_mm": 0.045,
+      "pose_mm": [
+        182.0,
+        26.86,
+        0.0
+      ],
+      "ref": "J7"
+    },
+    {
+      "drawing_path": "../../02_parts/615008160221/Wurth_615008160221_rev001003.pdf",
+      "drawing_sha256": "6ed18749211d4e6cbffd99cd0b90461dfe4ec6d70f558ceceeb5901651f0e048",
+      "edge": "north",
+      "footprint_lib_item": "Wurth_615008160221_RJ45",
+      "footprint_path": "../../03_src/lib/crow_usb_analog.pretty/Wurth_615008160221_RJ45.kicad_mod",
+      "footprint_sha256": "c8286c258474bde37022ef16730c7976e488d5fd7312699870ed54ee0dccc7d6",
+      "maximum_courtyard_projection_mm": 0.045,
+      "pose_mm": [
+        204.0,
+        26.86,
+        0.0
+      ],
+      "ref": "J8"
+    }
+  ],
+  "kind": "physical-cell-north-edge-courtyard-authority",
+  "review_provenance": [
+    {
+      "board_sha256": "d0c065dc16de081a5410b7a22e474f0a99c6fdeb0b7dd1f6c37422ace4a9fcf7",
+      "path": "../../08_reviews/2026-09-25-edge-attachment-checker-terra.md",
+      "sha256": "99e6bf861a75d400efe55e470e4be5d266fbf014e56f65187fcd631e60472629"
+    },
+    {
+      "board_sha256": "e07ed8bc663fdfd4ce39477165b656b0dcf2bfbae54d84ec501bfccf326d22ef",
+      "path": "../../08_reviews/2026-09-25-edge-attachment-e07-rebase-terra.md",
+      "sha256": "56038037434083ec71d7a06eb551afc96cb22d3f905bd0fc76ab0e601a683a99"
+    }
+  ],
+  "schema": 1,
+  "scope": "single-fixed-connector-courtyard-only"
+}
