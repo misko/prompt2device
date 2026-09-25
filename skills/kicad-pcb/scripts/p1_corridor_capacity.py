@@ -36,6 +36,14 @@ An optional ``integration_corridors`` source list binds an empty, disjoint
 endpoints/net demand and P2 pad-to-face/filled-reference obligations. Its
 matching ``integration_corridor`` reservation remains INCOMPLETE without raw
 slot credit; geometry cannot establish native access or return continuity.
+Optional ``physical_cells`` partition one modular owner into disjoint named
+floorplan regions. Corridor faces and witnesses name a physical cell while
+their exact endpoint ``block`` remains the modular owner. Each row has ``id``
+(a floorplan region key), ``owner_block``, exact ``refs`` and ``transit``;
+transit cells have no refs and must edge-connect to occupied same-owner cells.
+Owners using this extension must assign all modular refs exactly once, include
+their primary region when present, and name cells explicitly on witnesses,
+corridor faces and P2 obligations. No source alias or P1 credit is implied.
 A ``fixed_connector_access`` witness keeps a P1-fixed pad physical and binds a
 separate, disjoint access reservation to a named integration corridor. It is
 only a topology/geometry declaration and carries no routing capacity credit.
@@ -102,7 +110,7 @@ def _coarse_hash(path, label, errors):
 
 def _coarse_witness(board, witness, net, owned_pads, aliases, pads, outline,
                     regions, fixed_refs, shared_ports, integration_corridors=None,
-                    unresolved_branches=None):
+                    unresolved_branches=None, physical_cells=None):
     source = witness.get('source')
     native = witness.get('native')
     block = witness.get('block')
@@ -123,10 +131,18 @@ def _coarse_witness(board, witness, net, owned_pads, aliases, pads, outline,
     area = rectangle(witness.get('boundary_bbox'), f'{source} boundary bbox')
     if not lane_inside_outline(outline, area):
         raise ContractError(f'{source}: witness boundary off board')
-    region = rectangle(regions.get(block), f'{block} source region')
+    cell_id = witness.get('physical_cell_id')
+    cells = physical_cells or {}
+    if cell_id is not None:
+        if cell_id not in cells or cells[cell_id]['owner_block'] != block:
+            raise ContractError(f'{source}: physical cell owner mismatch')
+    elif any(c['owner_block'] == block for c in cells.values()):
+        raise ContractError(f'{source}: physical cell identity missing')
+    region_id = cell_id or block
+    region = rectangle(regions.get(region_id), f'{region_id} source region')
     region_span = min(region[2] - region[0], region[3] - region[1])
     kind = witness.get('kind', 'native_pad_face')
-    if kind != 'shared_transition_port' and (area[2] - area[0] > region_span / 4 + 1e-6 or area[3] - area[1] > region_span / 4 + 1e-6):
+    if kind != 'shared_transition_port' and not (kind == 'integration_corridor_handoff' and cell_id is not None) and (area[2] - area[0] > region_span / 4 + 1e-6 or area[3] - area[1] > region_span / 4 + 1e-6):
         raise ContractError(f'{source}: witness bbox is a nonlocal bridge across source region')
     ref = native.rsplit('.', 1)[0]
     if kind == 'native_pad_face':
@@ -140,7 +156,7 @@ def _coarse_witness(board, witness, net, owned_pads, aliases, pads, outline,
     elif kind == 'virtual_block_face':
         if ref in fixed_refs:
             raise ContractError(f'{source}: fixed P1 ref cannot use virtual witness')
-        if witness.get('region_id') != block:
+        if witness.get('region_id') != region_id:
             raise ContractError(f'{source}: virtual witness source-region identity mismatch')
         if not contains(region, area):
             raise ContractError(f'{source}: virtual witness leaves owning source region')
@@ -158,6 +174,8 @@ def _coarse_witness(board, witness, net, owned_pads, aliases, pads, outline,
                                'native_pad': native, 'net': net, 'block': block,
                                'region_face': region_face, 'layer': layer,
                                'to_reservation': witness.get('reservation_id')}
+        if cell_id is not None:
+            expected_obligation['physical_cell_id'] = cell_id
         if obligation != expected_obligation:
             raise ContractError(f'{source}: explicit P2 pad-to-face obligation missing')
         if not any(p.IsOnLayer(i) for p in found for i in board.GetEnabledLayers().Seq()
@@ -192,7 +210,8 @@ def _coarse_witness(board, witness, net, owned_pads, aliases, pads, outline,
             raise ContractError(f'{source}: integration reservation/layer mismatch')
         faces = {item['block']: item for item in corridor['faces']}
         selected = faces.get(block)
-        if selected is None or witness.get('region_face') != selected['region_face'] or area != selected['bbox']:
+        if (selected is None or witness.get('physical_cell_id') != selected.get('physical_cell_id') or
+                witness.get('region_face') != selected['region_face'] or area != selected['bbox']):
             raise ContractError(f'{source}: integration owner/face mismatch')
         opposites = {'north': 'south', 'south': 'north', 'east': 'west', 'west': 'east'}
         if face != opposites[selected['region_face']]:
@@ -204,6 +223,8 @@ def _coarse_witness(board, witness, net, owned_pads, aliases, pads, outline,
         expected = {'status': 'P2_REQUIRED', **endpoint,
                     'corridor_id': corridor['id'], 'region_face': selected['region_face'],
                     'layer': layer, 'to_reservation': corridor['reservation_id']}
+        if cell_id is not None:
+            expected['physical_cell_id'] = cell_id
         if obligation != expected:
             raise ContractError(f'{source}: integration P2 pad-to-face obligation missing')
         if not any(p.IsOnLayer(board.GetLayerID(layer)) for p in found):
@@ -255,6 +276,7 @@ def _coarse_witness(board, witness, net, owned_pads, aliases, pads, outline,
     else:
         raise ContractError(f'{source}: unknown boundary witness kind')
     return {'source': source, 'native': native, 'net': net, 'block': block,
+            'physical_cell_id': cell_id,
             'face': face, 'layer': layer, 'boundary_bbox': area,
             'kind': kind, 'p2_obligation': obligation}
 
@@ -341,7 +363,7 @@ def _virtual_region_clearance(witness, reservation, regions):
     reserved = rectangle(reservation.get('bbox'), 'virtual reservation bbox')
     for region_id, value in regions.items():
         region = rectangle(value, f'{region_id} source region')
-        if region_id != witness['block'] and intersects(boundary, region):
+        if region_id != witness.get('physical_cell_id', witness['block']) and intersects(boundary, region):
             raise ContractError(f"{witness['source']}: virtual boundary enters {region_id} source region")
         if intersects(reserved, region):
             raise ContractError(f"{witness['source']}: virtual reservation enters {region_id} source region")
@@ -540,7 +562,7 @@ def _shared_ports(source, interfaces, board, outline, regions, zones, coverage, 
 
 
 def _integration_corridors(source, interfaces, board, outline, regions, zones,
-                           coverage, aliases, pads, shared_ports):
+                           coverage, aliases, pads, shared_ports, physical_cells=None):
     """Validate a disjoint source cell; declarations are P2 debt, never proof."""
     rows = source.get('integration_corridors', [])
     if not isinstance(rows, list):
@@ -548,6 +570,7 @@ def _integration_corridors(source, interfaces, board, outline, regions, zones,
     blocks = interfaces.get('blocks')
     if rows and not isinstance(blocks, list):
         raise ContractError('integration corridors require modular block ownership')
+    cells = physical_cells or {}
     owners = {}
     for block in blocks or []:
         for ref in block.get('refs', []):
@@ -598,7 +621,14 @@ def _integration_corridors(source, interfaces, board, outline, regions, zones,
             block, direction = face.get('block'), face.get('region_face')
             if direction not in ('north', 'south', 'east', 'west'):
                 raise ContractError(f'{ident}: integration face direction invalid')
-            owner = rectangle(regions[block], f'{block} region')
+            cell_id = face.get('physical_cell_id')
+            if cell_id is not None:
+                if cell_id not in cells or cells[cell_id]['owner_block'] != block:
+                    raise ContractError(f'{ident}: integration physical cell owner mismatch')
+            elif any(c['owner_block'] == block for c in cells.values()):
+                raise ContractError(f'{ident}: integration physical cell identity missing')
+            region_id_for_face = cell_id or block
+            owner = rectangle(regions[region_id_for_face], f'{region_id_for_face} region')
             boundary = rectangle(face.get('bbox'), f'{ident} {block} face')
             edge = {'west': 0, 'north': 1, 'east': 2, 'south': 3}[direction]
             if (not contains(owner, boundary) or
@@ -611,7 +641,7 @@ def _integration_corridors(source, interfaces, board, outline, regions, zones,
                         {'bbox': area})):
                 raise ContractError(f'{ident}: integration face lacks positive non-corner shared edge')
             for foreign_id, foreign in regions.items():
-                if foreign_id != block and intersects(boundary, rectangle(foreign, f'{foreign_id} region')):
+                if foreign_id != region_id_for_face and intersects(boundary, rectangle(foreign, f'{foreign_id} region')):
                     raise ContractError(f'{ident}: integration face overlaps foreign region {foreign_id}')
             normalized_faces.append({**face, 'bbox': boundary})
         for port in shared_ports.values():
@@ -643,9 +673,15 @@ def _integration_corridors(source, interfaces, board, outline, regions, zones,
                         for p in pads[native_pad])):
                 raise ContractError(f'{ident}: integration native owner/pad/net/layer mismatch')
         face_by_block = {f['block']: f for f in normalized_faces}
-        expected_p2 = [{'status': 'P2_REQUIRED', **e, 'corridor_id': ident,
-                        'region_face': face_by_block[e['block']]['region_face'],
-                        'layer': layer, 'to_reservation': reservation_id} for e in affected]
+        expected_p2 = []
+        for e in affected:
+            selected = face_by_block[e['block']]
+            obligation = {'status': 'P2_REQUIRED', **e, 'corridor_id': ident,
+                          'region_face': selected['region_face'],
+                          'layer': layer, 'to_reservation': reservation_id}
+            if selected.get('physical_cell_id') is not None:
+                obligation['physical_cell_id'] = selected['physical_cell_id']
+            expected_p2.append(obligation)
         if row.get('p2_obligations') != expected_p2:
             raise ContractError(f'{ident}: integration P2 pad-to-face obligations incomplete')
         reference = row.get('reference_layer')
@@ -681,6 +717,76 @@ def _physical_envelope(fp):
             body = [min(body[0], x0), min(body[1], y0),
                     max(body[2], x1), max(body[3], y1)]
     return tuple(body)
+
+
+def _physical_cells(source, interfaces, board, outline, regions, patterns):
+    """Bind disjoint physical regions to exact modular owners, never aliases."""
+    rows = source.get('physical_cells')
+    if rows is None:
+        return {}
+    if not isinstance(rows, list) or not rows or not isinstance(interfaces.get('blocks'), list):
+        raise ContractError('physical cells require modular block ownership')
+    blocks = {b.get('id'): set(b.get('refs', [])) for b in interfaces['blocks']}
+    native = {fp.GetReference(): fp for fp in board.GetFootprints()}
+    cells, assigned = {}, set()
+    for row in rows:
+        if not isinstance(row, dict) or set(row) != {'id', 'owner_block', 'refs', 'transit'}:
+            raise ContractError('physical cell record malformed')
+        ident, owner, refs = row['id'], row['owner_block'], row['refs']
+        if (not isinstance(ident, str) or not ident or ident in cells or ident not in regions or
+                not isinstance(owner, str) or owner not in blocks or owner == 'board_integration' or
+                not isinstance(refs, list) or len(refs) != len(set(refs)) or
+                not all(isinstance(ref, str) for ref in refs) or
+                not isinstance(row['transit'], bool) or row['transit'] != (not refs)):
+            raise ContractError('physical cell identity/owner/refs invalid')
+        if not set(refs) <= blocks[owner] or any(ref in assigned or ref not in native for ref in refs):
+            raise ContractError(f'{ident}: physical cell ref ownership/uniqueness mismatch')
+        area = rectangle(regions[ident], f'{ident} physical cell')
+        if not lane_inside_outline(outline, area):
+            raise ContractError(f'{ident}: physical cell off board outline')
+        for ref in refs:
+            fp = native[ref]
+            if not contains(area, _physical_envelope(fp)) or any(
+                    not contains(area, box_mm(p.GetBoundingBox())) for p in fp.Pads()):
+                raise ContractError(f'{ref}: native footprint/pad leaves physical cell {ident}')
+            if any(pattern.get('region') not in (None, ident)
+                   for pattern in patterns if ref in pattern['match']):
+                raise ContractError(f'{ref}: floorplan pattern disagrees with physical cell {ident}')
+        for ref, fp in native.items():
+            if ref not in refs and (intersects(area, _physical_envelope(fp)) or any(
+                    intersects(area, box_mm(p.GetBoundingBox())) for p in fp.Pads())):
+                raise ContractError(f'{ident}: unassigned native footprint/pad {ref} enters physical cell')
+        assigned.update(refs)
+        cells[ident] = {'owner_block': owner, 'refs': set(refs),
+                        'transit': row['transit'], 'bbox': area}
+    for owner in {c['owner_block'] for c in cells.values()}:
+        if assigned & blocks[owner] != blocks[owner]:
+            raise ContractError(f'{owner}: physical cell ref denominator incomplete')
+        if owner in regions and owner not in cells:
+            raise ContractError(f'{owner}: primary physical cell missing')
+        group = [c for c in cells.values() if c['owner_block'] == owner]
+        reached = {id(c) for c in group if c['refs']}
+        if not reached:
+            raise ContractError(f'{owner}: physical cells have no occupied anchor')
+        while True:
+            expanded = reached | {id(c) for c in group if any(
+                _positive_edge_contact(c['bbox'], peer['bbox'])
+                for peer in group if id(peer) in reached)}
+            if expanded == reached:
+                break
+            reached = expanded
+        if len(reached) != len(group):
+            raise ContractError(f'{owner}: physical transit cell disconnected')
+    for ident, cell in cells.items():
+        for other_id, value in regions.items():
+            if other_id == ident:
+                continue
+            other = cells.get(other_id)
+            if intersects(cell['bbox'], rectangle(value, f'{other_id} source region')):
+                if other and other['owner_block'] == cell['owner_block']:
+                    raise ContractError(f'{ident}: physical cells overlap {other_id}')
+                raise ContractError(f'{ident}: physical cell overlaps foreign region {other_id}')
+    return cells
 
 
 def _coarse_reservation(board, row, outline, fixed_refs, movable_refs, zones, native_pitch,
@@ -789,6 +895,7 @@ def evaluate_coarse(board_path, contract_path, expected_contract_sha256=None, *,
             patterns = placement.get('patterns', [])
             if not isinstance(patterns, list) or any(not isinstance(p, dict) or not isinstance(p.get('match'), list) for p in patterns):
                 raise ContractError('source placement patterns malformed')
+            physical_cells = _physical_cells(source, interfaces, board, outline, regions, patterns)
             pattern_refs = {ref for pattern in patterns for ref in pattern['match']}
             unknown = set(refs) - set(anchors) - set(post_anchors) - set(seeds) - pattern_refs
             if unknown:
@@ -831,7 +938,8 @@ def evaluate_coarse(board_path, contract_path, expected_contract_sha256=None, *,
             shared_ports = _shared_ports(source, interfaces, board, outline, regions,
                                          zones, coverage, aliases, pads)
             corridors = _integration_corridors(source, interfaces, board, outline, regions,
-                                               zones, coverage, aliases, pads, shared_ports)
+                                               zones, coverage, aliases, pads, shared_ports,
+                                               physical_cells)
             branches = _unresolved_branches(source, interfaces, board, regions, coverage, aliases, pads)
             used_port_endpoints = defaultdict(set)
             used_corridor_endpoints = defaultdict(set)
@@ -885,7 +993,7 @@ def evaluate_coarse(board_path, contract_path, expected_contract_sha256=None, *,
                             raise ContractError(f'{name}: witness net outside allocation')
                         checked.append(_coarse_witness(board, witness, witness['net'], owned_pads,
                                                        aliases, pads, outline, regions, fixed_refs,
-                                                       shared_ports, corridors, branches))
+                                                       shared_ports, corridors, branches, physical_cells))
                     if {w['net'] for w in checked} != coverage[name]:
                         raise ContractError(f'{name}: missing per-net boundary witness')
                     if len({(w['source'], w['net']) for w in checked}) != len(checked):
@@ -942,14 +1050,14 @@ def evaluate_coarse(board_path, contract_path, expected_contract_sha256=None, *,
                                         target.get('corridor_id') != corridor['id'] or
                                         target.get('layer') != corridor['layer'] or
                                         target.get('nets') != [verified['net']] or
-                                        not contains(rectangle(regions[verified['block']], 'access source region'), access) or
+                                        not contains(rectangle(regions[verified['physical_cell_id'] or verified['block']], 'access source region'), access) or
                                         not intersects(access, selected['bbox']) or
                                         (not segmented and not _witness_touches_reservation(
                                             {'boundary_bbox': access, 'face': approach},
                                             {'bbox': corridor['bbox']}))):
                                     raise ContractError(f"{verified['source']}: fixed access does not join source face")
                                 shapes = _fixed_access_shapes(target, verified, corridor['bbox'],
-                                                               rectangle(regions[verified['block']], 'access source region'))
+                                                               rectangle(regions[verified['physical_cell_id'] or verified['block']], 'access source region'))
                                 if segmented and not intersects(shapes[-1], selected['bbox']):
                                     raise ContractError(f"{verified['source']}: segmented fixed access misses source face")
                                 for other in reservations:

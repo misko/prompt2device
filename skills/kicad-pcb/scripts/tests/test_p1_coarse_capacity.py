@@ -211,6 +211,26 @@ class CoarseCapacityTest(unittest.TestCase):
                                                  'bbox': [4, 3, 6, 7], 'nets': nets}]}
         return corridor
 
+    def add_physical_cell_corridor(self):
+        corridor = self.add_integration_corridor()
+        self.floorplan['placement']['regions']['left'] = [0, 3, 3, 7]
+        self.floorplan['placement']['regions']['left_face'] = [3, 3, 4, 7]
+        self.floorplan['placement']['regions']['power'] = [0, 0, 4, 3]
+        self.source['physical_cells'] = [
+            {'id': 'left', 'owner_block': 'left',
+             'refs': [f'U_L{i}' for i in range(6)], 'transit': False},
+            {'id': 'left_face', 'owner_block': 'left',
+             'refs': ['J_LEFT'], 'transit': False}]
+        corridor['faces'][0]['physical_cell_id'] = 'left_face'
+        for obligation in corridor['p2_obligations']:
+            if obligation['block'] == 'left':
+                obligation['physical_cell_id'] = 'left_face'
+        for witness in self.allocations[0]['boundary_witnesses']:
+            if witness['block'] == 'left':
+                witness['physical_cell_id'] = 'left_face'
+                witness['p2_obligation']['physical_cell_id'] = 'left_face'
+        return corridor
+
     def add_fixed_connector_access(self):
         corridor = self.add_integration_corridor()
         self.source['p1_fixed_refs'].append('U_L0')
@@ -464,6 +484,73 @@ class CoarseCapacityTest(unittest.TestCase):
         self.assertEqual(reservation['status'], 'INCOMPLETE')
         self.assertNotIn('potential_slots', reservation)
         self.assertEqual(len(result['allocations'][0]['p2_obligations']), 12)
+
+    def test_physical_cells_keep_modular_endpoint_owner_and_debt(self):
+        self.add_physical_cell_corridor()
+        result = self.run_case()
+        self.assertEqual(result['errors'], [])
+        self.assertEqual(result['status'], 'INCOMPLETE')
+        self.assertFalse(result['p1_accepted'])
+        self.assertEqual(len(result['allocations'][0]['p2_obligations']), 12)
+
+    def test_physical_cell_rejects_missing_and_wrong_face_binding(self):
+        corridor = self.add_physical_cell_corridor()
+        corridor['faces'][0].pop('physical_cell_id')
+        self.assertIn('physical cell identity missing', self.run_case()['errors'][0])
+        self.setUp()
+        corridor = self.add_physical_cell_corridor()
+        corridor['faces'][0]['physical_cell_id'] = 'right'
+        self.assertIn('physical cell owner mismatch', self.run_case()['errors'][0])
+        self.setUp()
+        self.add_physical_cell_corridor()
+        self.allocations[0]['boundary_witnesses'][0].pop('physical_cell_id')
+        result = self.run_case()
+        self.assertIn('physical cell identity missing', result['allocations'][0]['reason'])
+
+    def test_physical_cell_rejects_wrong_modular_owner_and_ref_denominator(self):
+        self.add_physical_cell_corridor()
+        self.source['physical_cells'][1]['owner_block'] = 'right'
+        self.assertIn('ref ownership', self.run_case()['errors'][0])
+        self.setUp()
+        self.add_physical_cell_corridor()
+        self.source['physical_cells'][0]['refs'].pop()
+        self.assertIn('unassigned native footprint/pad U_L5', self.run_case()['errors'][0])
+        self.setUp()
+        self.add_physical_cell_corridor()
+        self.source['physical_cells'][1]['refs'].append('U_L0')
+        self.assertIn('ref ownership/uniqueness mismatch', self.run_case()['errors'][0])
+        self.setUp()
+        self.add_physical_cell_corridor()
+        self.allocations[0]['boundary_witnesses'][0]['block'] = 'left_face'
+        self.assertIn('source/block ownership mismatch',
+                      self.run_case()['allocations'][0]['reason'])
+
+    def test_physical_cell_rejects_overlap_and_foreign_region(self):
+        self.add_physical_cell_corridor()
+        self.floorplan['placement']['regions']['left_face'] = [2.9, 3, 4, 7]
+        self.assertIn('physical cells overlap', self.run_case()['errors'][0])
+        self.setUp()
+        self.add_physical_cell_corridor()
+        self.floorplan['placement']['regions']['foreign'] = [3.5, 6, 4.5, 6.5]
+        self.assertIn('physical cell overlaps foreign region', self.run_case()['errors'][0])
+
+    def test_physical_cell_rejects_disconnected_transit(self):
+        self.add_physical_cell_corridor()
+        self.floorplan['placement']['regions']['isolated'] = [8, 0, 9, 1]
+        self.source['physical_cells'].append(
+            {'id': 'isolated', 'owner_block': 'left', 'refs': [], 'transit': True})
+        self.assertIn('physical transit cell disconnected', self.run_case()['errors'][0])
+
+    def test_physical_cell_rejects_unassigned_native_occupant_and_pattern_drift(self):
+        self.add_physical_cell_corridor()
+        pad(self.board, 'U_FOREIGN', '1', 'OTHER', 3.5, 6)
+        self.floorplan['placement']['post_anchors']['U_FOREIGN'] = [3.5, 6, 0]
+        self.assertIn('unassigned native footprint/pad U_FOREIGN', self.run_case()['errors'][0])
+        self.setUp()
+        self.add_physical_cell_corridor()
+        self.floorplan['placement']['patterns'].append(
+            {'match': ['J_LEFT'], 'region': 'left'})
+        self.assertIn('floorplan pattern disagrees', self.run_case()['errors'][0])
 
     def test_integration_corridor_missing_return_or_endpoint_fails(self):
         row = self.add_integration_corridor()
