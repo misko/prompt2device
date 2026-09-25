@@ -311,6 +311,32 @@ class LinkedPathTest(unittest.TestCase):
         self.assertIn('missing or parallel interstage join',
                       '\n'.join(self.run_case()['errors']))
 
+    def test_extra_native_linked_net_pad_fails(self):
+        self.add_pad('E', 3, 'DP', 0)
+        self.assertIn('linked native net pad multiset mismatch',
+                      '\n'.join(self.run_case()['errors']))
+
+    def test_duplicate_native_pad_number_fails(self):
+        self.add_pad('E', 1, 'DP', 0)
+        self.assertIn('linked native net pad multiset mismatch',
+                      '\n'.join(self.run_case()['errors']))
+
+    def test_source_alias_collision_fails_closed(self):
+        terminals = {('J_USB.2', 'J_USB.A4', 'DP', 'edge'),
+                     ('J_USB.15', 'J_USB.A4', 'DP', 'edge')}
+        with self.assertRaisesRegex(checker.ContractError, 'linked native alias collision'):
+            checker._linked_native_pad_census('series', terminals, {}, {'DP'})
+
+    def test_physical_stage_cannot_claim_outcome_fields(self):
+        self.source['linked_paths'][0]['stages'][0]['status'] = 'PASS'
+        self.assertIn('physical stage schema/outcome fields invalid',
+                      '\n'.join(self.run_case()['errors']))
+        del self.source['linked_paths'][0]['stages'][0]['status']
+        self.make_second_physical()
+        self.source['linked_paths'][0]['stages'][1]['capacity_slots'] = 999
+        self.assertIn('second physical stage schema/outcome fields invalid',
+                      '\n'.join(self.run_case()['errors']))
+
     def test_each_physical_stage_requires_one_slot_per_net(self):
         self.source['linked_paths'][0]['stages'][0]['demand_slots'] = 1
         self.assertIn('physical stage rough capacity declaration invalid',

@@ -74,7 +74,7 @@ import importlib.util
 import json
 import math
 import sys
-from collections import defaultdict
+from collections import Counter, defaultdict
 from pathlib import Path
 
 import yaml
@@ -735,6 +735,29 @@ def _integration_corridors(source, interfaces, board, outline, regions, zones,
     return corridors
 
 
+def _linked_native_pad_census(ident, expected, pads, nets):
+    """Bind every linked-net source terminal to exactly one native pad instance.
+
+    Manufacturer-fused contacts with distinct native pad IDs remain distinct
+    terminals. Mapping two source IDs to one native ID has no same-land proof
+    in this first-slice schema and therefore fails closed.
+    """
+    by_native = {}
+    for source_pad, native_pad, net, _ in expected:
+        prior = by_native.setdefault(native_pad, source_pad)
+        if prior != source_pad:
+            raise ContractError(f'{ident}: linked native alias collision {prior}/{source_pad}')
+    wanted = Counter((net, native_pad) for _, native_pad, net, _ in expected)
+    actual = Counter((pad.GetNetname(), native_pad)
+                     for native_pad, instances in pads.items()
+                     for pad in instances if pad.GetNetname() in nets)
+    if actual != wanted:
+        missing = sorted((wanted - actual).elements())
+        extra = sorted((actual - wanted).elements())
+        raise ContractError(f'{ident}: linked native net pad multiset mismatch '
+                            f'(missing={missing}, extra={extra})')
+
+
 def _linked_paths(source, contract, interfaces, board, outline, regions, zones,
                   coverage, aliases, pads, owned_pads, fixed_refs, movable_refs,
                   shared_ports, physical_cells, native_pitch):
@@ -791,7 +814,14 @@ def _linked_paths(source, contract, interfaces, board, outline, regions, zones,
         if any(r.get('id') == path['reservation_id'] for _, r in ordinary):
             raise ContractError(f'{ident}: linked path reservation id reused')
         physical, second = stages
-        if (not isinstance(physical, dict) or physical.get('kind') != 'physical_corridor' or
+        physical_keys = {'id', 'kind', 'owner', 'region_id', 'allocation_id',
+                         'participants', 'faces', 'layer', 'reference_layer',
+                         'nets', 'reservation_id', 'affected', 'p2_obligations',
+                         'return_obligation', 'fixed_accesses', 'axis',
+                         'slot_pitch_mm', 'demand_slots'}
+        if not isinstance(physical, dict) or set(physical) != physical_keys:
+            raise ContractError(f'{ident}: physical stage schema/outcome fields invalid')
+        if (physical.get('kind') != 'physical_corridor' or
                 physical.get('participants') != order[:2] or
                 physical.get('allocation_id') != allocation_id or
                 physical.get('nets') != nets or physical.get('layer') != path['layer'] or
@@ -804,6 +834,8 @@ def _linked_paths(source, contract, interfaces, board, outline, regions, zones,
                 second.get('id') == physical.get('id')):
             raise ContractError(f'{ident}: linked stage order/identity invalid')
         second_physical = second['kind'] == 'physical_corridor'
+        if second_physical and set(second) != physical_keys:
+            raise ContractError(f'{ident}: second physical stage schema/outcome fields invalid')
         physical_stages = [physical, second] if second_physical else [physical]
         stage_ids = [stage.get('id') for stage in stages]
         reservation_ids = [path['reservation_id']] + [stage.get('reservation_id')
@@ -991,6 +1023,7 @@ def _linked_paths(source, contract, interfaces, board, outline, regions, zones,
                       for stage in stages for e in stage['affected']}
         if actual_all != expected_all:
             raise ContractError(f'{ident}: path terminal denominator mismatch')
+        _linked_native_pad_census(ident, expected_all, pads, set(nets))
         physical_set = {(e['source_pad'], e['net'], e['block']) for e in physical['affected']}
         second_set = {(e['source_pad'], e['net'], e['block']) for e in second['affected']}
         shared = physical_set & second_set

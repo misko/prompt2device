@@ -49,3 +49,11 @@ Invoke `skills/kicad-pcb/scripts/p1_corridor_capacity.py` with
 rejects physical demand below net count, branched intermediate joins, and
 cross-linked reuse of stage/access geometry or IDs. These are source admission
 checks, not copper proof.
+
+The later native-pad census replays unchanged on this exact board: every
+`USB_DP`/`USB_DN` native pad instance matches the linked source terminal
+multiset, including all four J_USB data contacts. It rejects extra pads,
+duplicate native pad numbers, and two logical source IDs mapped to one native
+ID. The GCT fused-contact authority in `part.yaml` uses distinct A/B native
+IDs at coincident lands; the checker does not infer a same-land alias exception
+from coincidence alone.
