@@ -215,7 +215,8 @@ placement:
     F_IN: [31.5, 97.0, 90]
     Q_DUMP: [54, 107, 270]
     Q_IN: [36.0, 97.5, 0]
-    Q_PRE: [46.0, 106.85, 0]
+    # Reviewed 0.30 mm shift clears the C_IN3 courtyard corner; P1/P2 remain open.
+    Q_PRE: [46.0, 107.15, 0]
     Q_PRE_EN: [50.25, 106.35, 180]
     R_ADC_BOT: [26.2, 107.6, 0]
     R_ADC_TOP: [25.7, 111.6, 180]
