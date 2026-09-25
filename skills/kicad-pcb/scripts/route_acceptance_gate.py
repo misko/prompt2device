@@ -7,6 +7,8 @@ critical connectivity/topology, route ownership, and every realized via.
 series-via ampacity, and native KiCad DRC/parity.  The compositor owns no
 engineering predicate; it calls the existing domain checkers and records their
 structured results under one promotion decision.
+Optional ``route.critical_trees`` applies a strict native single-net tree and
+saved filled-reference check in both modes; it grants no credit when absent.
 """
 from __future__ import annotations
 
@@ -23,6 +25,7 @@ import yaml
 
 import copper_length_audit
 import critical_route_check
+import critical_tree_check
 import realized_via_aspect_check
 import reference_plane_check
 import route_acceptance_core
@@ -76,6 +79,8 @@ def _required_checks(mode: str, critical_nets: list[str],
     if critical_nets:
         required.update({"critical_connectivity", "simple_conductor"})
     route = route_cfg.get("route") or {}
+    if "critical_trees" in route:
+        required.add("critical_trees")
     if route.get("ownership"):
         required.add("route_ownership")
     if prepared is not None:
@@ -306,6 +311,14 @@ def grade(project: Path, board: Path, *, mode: str,
 
     checks["simple_conductor"] = _simple_conductor(
         project, board, critical_nets, route_cfg)
+
+    try:
+        tree_report = critical_tree_check.inspect(
+            board, (route_cfg.get("route") or {}).get("critical_trees"))
+        checks["critical_trees"] = _status(
+            tree_report["status"], tree_report["detail"], report=tree_report)
+    except Exception as exc:
+        checks["critical_trees"] = _status("INCOMPLETE", str(exc))
 
     try:
         board_nets, pad_counts = route_ownership_preflight._load_board_facts(board)
