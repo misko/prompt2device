@@ -1,12 +1,12 @@
 # Project status
 
-<!-- pause-state:9fca6b57b9e65fe03e121c8b5c0b80c0a29b08462a3e57b333b4ecfc60d70378 -->
+<!-- pause-state:6d2ad48c3e9821ac63b0ee0e1ef7467613b05868a5fbc125745f73a13cc870a6 -->
 
 - Phase: `prototype-layout-diagnostic`
 - State: **PAUSED**
-- Checkpoint: `03_src/rules/critical_part_selection.yaml` (`15288355fcc7`)
-- Blocker: The frozen expanded board has no admitted P1/P2 integrated candidate. Its shared reset/JTAG screen is INCOMPLETE despite zero checker errors; USB 7628G full-width launches miss 0.150-mm foreign clearance at Type-C and XMOS, while the narrower 3313A source remains unadopted. The isolated C105 timing move improves local geometry but all 14 timing nets/54 pad duties remain INCOMPLETE. D18 private routing needs independent P1 and affected P2 first. Connector FULL, prototype-only TI ESD, production stack, release and order holds remain open.
-- Next command: `Decide the 3313A research source/stack hypothesis from the pinned public sensitivity and exact rule packet; preserve D15 FAILED_RESEARCH. Then create one separately authorized, source-generated unrouted candidate on the frozen placement reference that integrates the reviewed shared-reset and C105 proposals, reopens source/native parity, and independently grades all P1 plus affected P2. Do not launch D18 private routing until those admissions and connector-neighbour assumptions are met.`
+- Checkpoint: `01_docs/research/2026-09-25-d19-integrated-unrouted-sol/p1-same-board-diagnostic.md` (`60071e8e73cd`)
+- Blocker: D19 one-shot board remains historical FAILED_RESEARCH; checker-only correction passes on unchanged bytes, but all five exact-board P1 allocations and affected P2 are INCOMPLETE. USB four-leaf/ESD/XU pad access and filled return, shared five-terminal reset/JTAG handoff, and 14 timing reservations/54 pad duties are unproved. D18 private route needs independent P1 and affected P2 admission. Connector FULL, prototype-only TI ESD, production 3313A stack, release and order holds remain.
+- Next command: `Use the exact D19 board and generated 3313A sidecars for a bounded USB physical P1/P2 review first: measure four-leaf merge, ESD shunt, XU launch, foreign clearance and filled In1 return; then resolve shared reset/JTAG and timing/power/analog duties. Preserve D19 FAILED_RESEARCH and all five INCOMPLETE coarse results; do not route until independent admissions under D18.`
 
 ## Bound receipts
 
@@ -14,9 +14,14 @@
 - `01_docs/decisions/0012-initial-public-stock-lock.md` — `acffa297e45c`
 - `01_docs/decisions/0013-usb-esd-prototype-boundary.md` — `ed83de26a0c3`
 - `01_docs/decisions/0018-evidence-scheduling-and-private-design-work.md` — `3844ed14d92b`
+- `01_docs/decisions/0019-one-integrated-unrouted-research-candidate.md` — `0687020e1544`
 - `01_docs/findings.yaml` — `27cbf04b140a`
 - `01_docs/journal/placement.md` — `72e483c6fed2`
 - `01_docs/research/2026-09-24-public-stock-569/public-stock.json` — `aa9491bf6df4`
+- `01_docs/research/2026-09-25-d19-integrated-unrouted-sol/README.md` — `20f0a072dcee`
+- `01_docs/research/2026-09-25-d19-integrated-unrouted-sol/checker-only-result-20260925.json` — `265990744c75`
+- `01_docs/research/2026-09-25-d19-integrated-unrouted-sol/p1-same-board-diagnostic.md` — `60071e8e73cd`
+- `01_docs/research/2026-09-25-d19-integrated-unrouted-sol/p1_same_board_diagnostic.py` — `09e23aa7479f`
 - `01_docs/research/2026-09-25-early-pair-preflight/expanded_locked.json` — `00dba81709ab`
 - `01_docs/research/2026-09-25-early-pair-preflight/historical_d15.json` — `dd3264b35baa`
 - `01_docs/research/2026-09-25-early-pair-preflight/replay.json` — `a78a74a4f228`
@@ -51,6 +56,13 @@
 - `01_docs/research/2026-09-25-unadopted-3313a-usb-pair-domain-sol.md` — `1d24b5c4790a`
 - `01_docs/research/2026-09-25-usb-path-feasibility-sol/README.md` — `c1d467cbba92`
 - `01_docs/research/2026-09-25-usb-path-feasibility-sol/measure.py` — `967b9c3efb9e`
+- `06_build/prototype_board_diagnostic/d19-integrated-native-candidate-20260925/native_postgen_receipt.json` — `a119396aa766`
+- `06_build/prototype_board_diagnostic/d19-integrated-native-candidate-20260925/project/04_kicad/crow_carrier.kicad_dru` — `32a4dbacf8b1`
+- `06_build/prototype_board_diagnostic/d19-integrated-native-candidate-20260925/project/04_kicad/crow_carrier.kicad_pcb` — `ffb51cc31c5b`
+- `06_build/prototype_board_diagnostic/d19-integrated-native-candidate-20260925/project/04_kicad/crow_carrier.kicad_pro` — `2d0bf4d9c14f`
+- `06_build/prototype_board_diagnostic/d19-p1-coarse-diagnostic-20260925/coarse.json` — `c70591086ad7`
+- `06_build/prototype_board_diagnostic/d19-p1-coarse-diagnostic-20260925/full_result.json` — `cce8e5cee3c0`
+- `06_build/prototype_board_diagnostic/d19-p1-coarse-diagnostic-20260925/summary.json` — `6aa5ba2e5202`
 - `08_reviews/2026-09-25_ti-usb-esd-prototype-only_terra.md` — `48f056d1aa96`
 - `08_reviews/2026-09-25_usb-complete-path-feasibility_terra.md` — `54278b66a7e4`
 

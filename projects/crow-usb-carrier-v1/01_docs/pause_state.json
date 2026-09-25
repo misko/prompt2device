@@ -1,11 +1,11 @@
 {
-  "blocker": "The frozen expanded board has no admitted P1/P2 integrated candidate. Its shared reset/JTAG screen is INCOMPLETE despite zero checker errors; USB 7628G full-width launches miss 0.150-mm foreign clearance at Type-C and XMOS, while the narrower 3313A source remains unadopted. The isolated C105 timing move improves local geometry but all 14 timing nets/54 pad duties remain INCOMPLETE. D18 private routing needs independent P1 and affected P2 first. Connector FULL, prototype-only TI ESD, production stack, release and order holds remain open.",
+  "blocker": "D19 one-shot board remains historical FAILED_RESEARCH; checker-only correction passes on unchanged bytes, but all five exact-board P1 allocations and affected P2 are INCOMPLETE. USB four-leaf/ESD/XU pad access and filled return, shared five-terminal reset/JTAG handoff, and 14 timing reservations/54 pad duties are unproved. D18 private route needs independent P1 and affected P2 admission. Connector FULL, prototype-only TI ESD, production 3313A stack, release and order holds remain.",
   "checkpoint": {
-    "path": "03_src/rules/critical_part_selection.yaml",
-    "sha256": "15288355fcc731ff8b1b0e35a1ae47b9faf66140223cfea0d31c91d99e9dc1ba",
-    "size": 1148
+    "path": "01_docs/research/2026-09-25-d19-integrated-unrouted-sol/p1-same-board-diagnostic.md",
+    "sha256": "60071e8e73cd533184678f5c7e74fb3c80898972310e8ae8d0feda738a898f68",
+    "size": 3169
   },
-  "next_command": "Decide the 3313A research source/stack hypothesis from the pinned public sensitivity and exact rule packet; preserve D15 FAILED_RESEARCH. Then create one separately authorized, source-generated unrouted candidate on the frozen placement reference that integrates the reviewed shared-reset and C105 proposals, reopens source/native parity, and independently grades all P1 plus affected P2. Do not launch D18 private routing until those admissions and connector-neighbour assumptions are met.",
+  "next_command": "Use the exact D19 board and generated 3313A sidecars for a bounded USB physical P1/P2 review first: measure four-leaf merge, ESD shunt, XU launch, foreign clearance and filled In1 return; then resolve shared reset/JTAG and timing/power/analog duties. Preserve D19 FAILED_RESEARCH and all five INCOMPLETE coarse results; do not route until independent admissions under D18.",
   "phase": "prototype-layout-diagnostic",
   "project": "crow-usb-carrier-v1",
   "receipts": [
@@ -30,6 +30,11 @@
       "size": 4347
     },
     {
+      "path": "01_docs/decisions/0019-one-integrated-unrouted-research-candidate.md",
+      "sha256": "0687020e15448b80bf0fac8cc1d04e43f9868dc9fa353aad77dfe88416ecf230",
+      "size": 7153
+    },
+    {
       "path": "01_docs/findings.yaml",
       "sha256": "27cbf04b140aeff0bfe56201fc6c1c29b80d9e7ba0de7044ecf23d63efed1175",
       "size": 34727
@@ -43,6 +48,26 @@
       "path": "01_docs/research/2026-09-24-public-stock-569/public-stock.json",
       "sha256": "aa9491bf6df447b646bb6985921cf489ed07c3d01893f2fd2829b13759acf142",
       "size": 32455
+    },
+    {
+      "path": "01_docs/research/2026-09-25-d19-integrated-unrouted-sol/README.md",
+      "sha256": "20f0a072dceeb86304578ddc445ca129889af2070df5a45a124e006308f7f542",
+      "size": 6186
+    },
+    {
+      "path": "01_docs/research/2026-09-25-d19-integrated-unrouted-sol/checker-only-result-20260925.json",
+      "sha256": "265990744c755f64dbf771df2e65e9e5d38bb73f3eff86bf1bdc537d4681d769",
+      "size": 1621
+    },
+    {
+      "path": "01_docs/research/2026-09-25-d19-integrated-unrouted-sol/p1-same-board-diagnostic.md",
+      "sha256": "60071e8e73cd533184678f5c7e74fb3c80898972310e8ae8d0feda738a898f68",
+      "size": 3169
+    },
+    {
+      "path": "01_docs/research/2026-09-25-d19-integrated-unrouted-sol/p1_same_board_diagnostic.py",
+      "sha256": "09e23aa7479fbe83fdc4ab3a9eeec1d97660407abee9c9e4298fe61761b12717",
+      "size": 6820
     },
     {
       "path": "01_docs/research/2026-09-25-early-pair-preflight/expanded_locked.json",
@@ -215,6 +240,41 @@
       "size": 5024
     },
     {
+      "path": "06_build/prototype_board_diagnostic/d19-integrated-native-candidate-20260925/native_postgen_receipt.json",
+      "sha256": "a119396aa76658a6603e8155abcd65f1f0923d84f711263183c495d1ae6575a5",
+      "size": 522
+    },
+    {
+      "path": "06_build/prototype_board_diagnostic/d19-integrated-native-candidate-20260925/project/04_kicad/crow_carrier.kicad_dru",
+      "sha256": "32a4dbacf8b1b2b8be93aa0a8308de483f183344bed98f42209ed62f82920992",
+      "size": 41664
+    },
+    {
+      "path": "06_build/prototype_board_diagnostic/d19-integrated-native-candidate-20260925/project/04_kicad/crow_carrier.kicad_pcb",
+      "sha256": "ffb51cc31c5b1b0caada7e360c727848a1117b9cd94f6160fde2ca18ceb8625f",
+      "size": 2402430
+    },
+    {
+      "path": "06_build/prototype_board_diagnostic/d19-integrated-native-candidate-20260925/project/04_kicad/crow_carrier.kicad_pro",
+      "sha256": "2d0bf4d9c14fedee82e1ba22f06d05a4ba97e7b7fe39a66e086ec1c48b408c1a",
+      "size": 14512
+    },
+    {
+      "path": "06_build/prototype_board_diagnostic/d19-p1-coarse-diagnostic-20260925/coarse.json",
+      "sha256": "c70591086ad77f1c2ed915b231bf55a7293dab1118fda19d5a9743249849ed3f",
+      "size": 83988
+    },
+    {
+      "path": "06_build/prototype_board_diagnostic/d19-p1-coarse-diagnostic-20260925/full_result.json",
+      "sha256": "cce8e5cee3c091b7a2a72f719acdb0a071818764121437032c68f92dcdec3d37",
+      "size": 126738
+    },
+    {
+      "path": "06_build/prototype_board_diagnostic/d19-p1-coarse-diagnostic-20260925/summary.json",
+      "sha256": "6aa5ba2e5202be9d3b20128b79b90ccfe316e94d08d440768291b10c760f7b0c",
+      "size": 1874
+    },
+    {
       "path": "08_reviews/2026-09-25_ti-usb-esd-prototype-only_terra.md",
       "sha256": "48f056d1aa96f7af99f56ac2b992716686d344a84e753496bf4db322fd7a5a91",
       "size": 5420
@@ -226,5 +286,5 @@
     }
   ],
   "schema": 1,
-  "state_id": "9fca6b57b9e65fe03e121c8b5c0b80c0a29b08462a3e57b333b4ecfc60d70378"
+  "state_id": "6d2ad48c3e9821ac63b0ee0e1ef7467613b05868a5fbc125745f73a13cc870a6"
 }
