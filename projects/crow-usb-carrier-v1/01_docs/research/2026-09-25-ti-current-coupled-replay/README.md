@@ -76,6 +76,9 @@ geometry on the same current-source board. It moves `U_ISO1` to
 Count and pin-map parity pass; native DRC remains **0 violations, 499 open,
 0 schematic parity** under unchanged effective rules. All **11/11 `AUDIO_EN`
 native terminals** now lie inside their declared source-owner regions. A
+native comparison confirms exactly these three of 569 footprint poses changed;
+all 27 P1-fixed poses, 1,872 pad identities/local geometries, and the 14
+existing board tracks remain unchanged. A
 scratch exact unresolved-branch record for this net passes the checker’s
 native endpoint, owner, blocker and P2/P3 obligation validation. Three quiet
 power pads still intersect the overlapping `input_buck` planning region and

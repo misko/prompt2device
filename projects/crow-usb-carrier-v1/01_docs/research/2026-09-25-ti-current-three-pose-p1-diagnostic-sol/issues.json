@@ -1,0 +1,121 @@
+{
+  "allocation_status": {
+    "adc_analog_boundary": "INCOMPLETE",
+    "adc_timing_xmos_bundle": "INCOMPLETE",
+    "power_boundary_windows": "INCOMPLETE",
+    "usb_device_pair": "INCOMPLETE",
+    "xmos_service_escape": "INCOMPLETE"
+  },
+  "board_sha256": "0bd3ac8dd8c80177958c009a0644f0bc723bcee7ad7085c2fb76c09c5df958f5",
+  "contract_sha256": "cdf20223e49b6e491eec76ca3b95182bcc6b4b4fa67727af20e5ef1971e216cc",
+  "exact_accounting": {
+    "adc7_portal": {
+      "capacity_slots": null,
+      "nets": 2,
+      "terminals": 8
+    },
+    "analog": {
+      "exact_unplaced_branches": 18,
+      "nets": 18,
+      "terminals": 88
+    },
+    "timing": {
+      "exact_unplaced_branches": 14,
+      "nets": 14,
+      "terminals": 54,
+      "two_terminal_crossings": 4,
+      "two_terminal_nets": [
+        "AUDIO_MCLK_1V8",
+        "TDM_BCLK_1V8",
+        "TDM_DATA_1V8",
+        "TDM_FSYNC_1V8"
+      ]
+    },
+    "usb": {
+      "linked_dp_dn_paths": 1,
+      "presence_tree_terminals": 3,
+      "vbus_tree_terminals": 8
+    }
+  },
+  "p1_accepted": false,
+  "remaining_issues": {
+    "allocation_reasons": {
+      "adc_analog_boundary": null,
+      "adc_timing_xmos_bundle": null,
+      "power_boundary_windows": "C_ADC_3V3X_OK_VDD.2: witness bbox is a nonlocal bridge across source region",
+      "usb_device_pair": null,
+      "xmos_service_escape": null
+    },
+    "global_denominator_errors": [],
+    "p2_p3_debt": "No native routes, local pad access, filled return, or connected-net proof",
+    "power_witness_diagnostics": [
+      {
+        "allocation": "power_boundary_windows",
+        "index": 1,
+        "kind": "boundary_witness",
+        "reason": "C_ADC_3V3X_OK_VDD.2: witness bbox is a nonlocal bridge across source region",
+        "source": "C_ADC_3V3X_OK_VDD.2"
+      },
+      {
+        "allocation": "power_boundary_windows",
+        "index": 2,
+        "kind": "boundary_witness",
+        "reason": "C_CORE_FF.1: witness bbox is a nonlocal bridge across source region",
+        "source": "C_CORE_FF.1"
+      },
+      {
+        "allocation": "power_boundary_windows",
+        "index": 3,
+        "kind": "boundary_witness",
+        "reason": "C_SPOKE_IN1.1: witness bbox is a nonlocal bridge across source region",
+        "source": "C_SPOKE_IN1.1"
+      },
+      {
+        "allocation": "power_boundary_windows",
+        "index": 4,
+        "kind": "boundary_witness",
+        "reason": "R_ADC_1V8_OK_TOP.1: witness bbox is a nonlocal bridge across source region",
+        "source": "R_ADC_1V8_OK_TOP.1"
+      },
+      {
+        "allocation": "power_boundary_windows",
+        "index": 5,
+        "kind": "boundary_witness",
+        "reason": "R_ADC_3V3X_OK_TOP.1: witness bbox is a nonlocal bridge across source region",
+        "source": "R_ADC_3V3X_OK_TOP.1"
+      },
+      {
+        "allocation": "power_boundary_windows",
+        "index": 6,
+        "kind": "boundary_witness",
+        "reason": "C_ADC_3V3X_OK_VDD.1: P2-movable owner requires virtual block-face witness",
+        "source": "C_ADC_3V3X_OK_VDD.1"
+      },
+      {
+        "allocation": "power_boundary_windows",
+        "index": 7,
+        "kind": "boundary_witness",
+        "reason": "C_1V8_OK_VDD.1: witness bbox is a nonlocal bridge across source region",
+        "source": "C_1V8_OK_VDD.1"
+      },
+      {
+        "allocation": "power_boundary_windows",
+        "index": 8,
+        "kind": "boundary_witness",
+        "reason": "C_ISO1.1: witness bbox is a nonlocal bridge across source region",
+        "source": "C_ISO1.1"
+      },
+      {
+        "allocation": "power_boundary_windows",
+        "index": 9,
+        "kind": "boundary_witness",
+        "reason": "U_ADC_PWR_BAD.2: witness bbox is a nonlocal bridge across source region",
+        "source": "U_ADC_PWR_BAD.2"
+      }
+    ],
+    "timing_owner_containment": []
+  },
+  "routing_realized": false,
+  "source_sha256": "8bb5f71b36f6723005bf2a346ddba8acb00d530fd5cd5787128e0c27ca297749",
+  "status": "INCOMPLETE"
+}
