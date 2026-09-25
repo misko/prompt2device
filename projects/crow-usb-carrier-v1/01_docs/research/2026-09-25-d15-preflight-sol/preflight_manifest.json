@@ -1,0 +1,110 @@
+{
+  "allowed_area_bbox_mm": [
+    215.3,
+    95.0,
+    217.1,
+    95.8
+  ],
+  "authority_sha256": {
+    "01_docs/decisions/0015-private-4l-3313a-unrouted-screen.md": "08d5df0d44838006ba973eb678f53527d07fb2c8fbd46be495b5d5471757cf87",
+    "01_docs/research/2026-09-25-d15-pair-clearance-review-terra.md": "88814f1f3c1e3febf04327df20d15f7af74321c91b4427afbb95c02dfdf46139",
+    "01_docs/research/2026-09-25-jlc-3313-uniform-usb-solve-sol/README.md": "8f4ed771078e613161f4a46c61bb1950190c46266114b4f38da77ea8cbab1952",
+    "01_docs/research/2026-09-25-jlc-3313-uniform-usb-solve-sol/frontend_binding_capture.json": "71ec96168517575b0896011f63d52ec5fcb66c67641a4d85dab12483c2d182b3",
+    "01_docs/research/2026-09-25-private-4l-3313a-unrouted-diagnostic-terra.md": "762488de0ac335c6d37d22d420a41e2d270b1df3fbadff1db00c4376de6fe17e",
+    "01_docs/research/2026-09-25-ti-expanded-native-parity-probe/replay.py": "846ae8d93cfc3ebbb227759da70839e2c75c3031c15c3733fdf39daab81e91f2"
+  },
+  "baseline_expected": {
+    "copper_zones": 1,
+    "drc_violations": 0,
+    "electrical_footprints": 569,
+    "filled_zones": 0,
+    "gnd_vias": 14,
+    "holes": 6,
+    "pads": 1810,
+    "rule_areas": 8,
+    "schematic_parity_issues": 0,
+    "unconnected_items": 499
+  },
+  "changed_source_files": [
+    "03_src/floorplan.yaml",
+    "03_src/rules/nets.yaml",
+    "03_src/rules/rf.yaml",
+    "03_src/rules/route_fab_overrides.txt"
+  ],
+  "decision": "0015",
+  "generation_executed": false,
+  "generators_sha256": {
+    "03_src/rebuild_prototype_board_diagnostic.py": "cd8cef4ebedf821f232a386db3d0211f3dd53499e3cc93383542850b9502bc1a",
+    "skills/jlcpcb-fab/scripts/generate_tmux4827_pofv.py": "b3906f63e07e9f04ada58e757f4095989f6933eca98d93b0f1165e91064529b7",
+    "skills/kicad-pcb/scripts/generate_board_generic.py": "8a5fa1d48d80138458601a097ab6260565841510a498e44cb9c5773652215b3c",
+    "skills/kicad-pcb/scripts/generate_rules_generic.py": "3f423340be27471ce7edca2b66a633dd0898b0a172b7abf12fa944e83690f026"
+  },
+  "independent_preflight_signed": false,
+  "kicad_cli_version": "10.0.4",
+  "native_xu_pad_bbox_mm": {
+    "58": [
+      215.425,
+      95.875,
+      216.9,
+      96.125
+    ],
+    "59": [
+      215.425,
+      95.475,
+      216.9,
+      95.725
+    ],
+    "60": [
+      215.425,
+      95.075,
+      216.9,
+      95.325
+    ],
+    "61": [
+      215.425,
+      94.675,
+      216.9,
+      94.925
+    ]
+  },
+  "prepared": "06_build/prototype_board_diagnostic/current-ti-4l-3313a-preflight-20260925",
+  "prepared_files_sha256": {
+    "03_src/floorplan.yaml": "1d81af9b92af6753e4ad9a66266289b692ddb04f5232b20cdc14ddfc3b4f21cc",
+    "03_src/rules/connector_assemblies.yaml": "af77d53db29565b29ac945310e75f603fd89d2f3ad88e5c20446fa5f809da228",
+    "03_src/rules/connector_assembly_phases.yaml": "ebf9b3d5542cb650cf15fff8e7c3dd4e36fde9e1dd074c95a5555ab685de5d1f",
+    "03_src/rules/nets.yaml": "19e6b342e7a1493a761d39d99729ef91d714470e4b1f00d85a04938e8c6c6422",
+    "03_src/rules/physical_cell_edge_authority.json": "0b60dece42aca3e84b085fd0c30847dd358a5f96dd2e26773a6b75eb22b494b4",
+    "03_src/rules/rf.yaml": "0490a9a4449fbe01182f22b0c0570896002279528d4aa96219433171d4a368f3",
+    "03_src/rules/route_fab_overrides.txt": "263c5cfd2b7a895b803d66274290000177050e7e289de6c88b3e80e9b0b43bcf",
+    "03_tscircuit/build/circuit.json": "580ac31b0de8d376d888caa1a342ae43c0636fbd13c74048392173acf718cb6d",
+    "04_kicad/crow_carrier.kicad_dru": "00ab83d8484368f132392523972c1f41fc9073423d3c600feec962684f9c3b0a",
+    "04_kicad/crow_carrier.kicad_pcb": "fe8d2c9a9922eeab2371d0187da9407ac590687a77b03a8a099c35a75b5ddd16",
+    "04_kicad/crow_carrier.kicad_pro": "7977bc9edb88e1ef723eb256f07949871493dfda3d2c2491dd5d5b6087ddc094",
+    "04_kicad/fp-lib-table": "f7d3e5557b95cf52fb52294c497f6cf2680f0c750acc550b1b9d808973dc8b55",
+    "06_build/netlists/crow_carrier.net": "a40b45c27b2169ed4f3dd43d72a1f4f7112d829985f98918a8855ed76735e9bd"
+  },
+  "prepared_lib_tree_sha256": "f2e98dd48c28fc6a752f2ff891ca15e07e1c3dfec18238eb8f9693027f604c32",
+  "prepared_parts_tree_sha256": "deba369168c879f45d39ee12ac6d452b5f742ae7906fcdffde64de304e12082e",
+  "reference": "06_build/prototype_board_diagnostic/current-ti-mounting-expanded-locked-20260925",
+  "reference_files_sha256": {
+    "03_src/floorplan.yaml": "2f7843ada9eb08d19d268f0d6671079a8cf367629b2b3331119088927415b634",
+    "03_src/rules/connector_assemblies.yaml": "af77d53db29565b29ac945310e75f603fd89d2f3ad88e5c20446fa5f809da228",
+    "03_src/rules/connector_assembly_phases.yaml": "ebf9b3d5542cb650cf15fff8e7c3dd4e36fde9e1dd074c95a5555ab685de5d1f",
+    "03_src/rules/nets.yaml": "18033487a097b6d29abe3f9d8517879931cf80d278d8973adcf276010a5b7190",
+    "03_src/rules/physical_cell_edge_authority.json": "0b60dece42aca3e84b085fd0c30847dd358a5f96dd2e26773a6b75eb22b494b4",
+    "03_src/rules/rf.yaml": "833a8c022648859e65ba3b727bffd14c868214936a9751f12c5a15ecd3ea376c",
+    "03_src/rules/route_fab_overrides.txt": "d8285ec77a25583b21afa136de614faa4257008250f370e2b5d08d359ef6a1d9",
+    "03_tscircuit/build/circuit.json": "580ac31b0de8d376d888caa1a342ae43c0636fbd13c74048392173acf718cb6d",
+    "04_kicad/crow_carrier.kicad_dru": "00ab83d8484368f132392523972c1f41fc9073423d3c600feec962684f9c3b0a",
+    "04_kicad/crow_carrier.kicad_pcb": "fe8d2c9a9922eeab2371d0187da9407ac590687a77b03a8a099c35a75b5ddd16",
+    "04_kicad/crow_carrier.kicad_pro": "7977bc9edb88e1ef723eb256f07949871493dfda3d2c2491dd5d5b6087ddc094",
+    "04_kicad/fp-lib-table": "f7d3e5557b95cf52fb52294c497f6cf2680f0c750acc550b1b9d808973dc8b55",
+    "06_build/netlists/crow_carrier.net": "a40b45c27b2169ed4f3dd43d72a1f4f7112d829985f98918a8855ed76735e9bd"
+  },
+  "reference_lib_tree_sha256": "f2e98dd48c28fc6a752f2ff891ca15e07e1c3dfec18238eb8f9693027f604c32",
+  "reference_parts_tree_sha256": "deba369168c879f45d39ee12ac6d452b5f742ae7906fcdffde64de304e12082e",
+  "route_executed": false,
+  "source_diff_sha256": "a5d1eb64a2a1daf9e9e07a743f81f0a0ac4f0c11f68df7aa261c8cfe02e23861",
+  "stage_credit": false,
+  "status": "PREFLIGHT_ONLY_NO_GENERATION"
+}

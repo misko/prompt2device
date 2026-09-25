@@ -1,0 +1,53 @@
+{
+  "assembly_credit": false,
+  "connector_full_credit": false,
+  "date": "2026-09-25",
+  "decision": "D15",
+  "fabrication_credit": false,
+  "failure_cause": "Existing V-PROCESS checker treats D15-authorized scoped USB_DP/USB_DN DRU clearance as a foreign clearance constraint. No checker/source/rule was changed.",
+  "generation_runs_actual": 1,
+  "independent_preflight_review_sha256": "9a705c4fc39875136a1c726b0f7fba34090772726ecadbc4e547327e25c07c5c",
+  "initial_invocation_rejected_before_write": "relative netlist path resolved twice; frozen board hash verified unchanged before corrected invocation",
+  "native_count_parity": "PASS 569/569 circuit and netlist",
+  "native_drc_disposable_refill": {
+    "schematic_parity_issues": 0,
+    "schematic_parity_performed": true,
+    "sha256": "d8684666a0df22d253c1bb289ec978558bff891275f407c541a02be7a8621936",
+    "unconnected_items": 499,
+    "violations": 0
+  },
+  "native_pin_map": "PASS 799 physical identities",
+  "no_retry": true,
+  "object_diff_sha256": "58da1e2a69308f9c66030a6a8d1e86cf4df5214dc6a9fd42eaee8cff066c4582",
+  "object_gate_findings": [],
+  "object_gate_pass": true,
+  "order_credit": false,
+  "p1_credit": false,
+  "p2_credit": false,
+  "p3_credit": false,
+  "p5_credit": false,
+  "preflight_manifest_sha256": "e7112828c27072c78b6b6ca771648a6f66c0034a8d4827be4fc780e789d11ad2",
+  "private_candidate": "projects/crow-usb-carrier-v1/06_build/prototype_board_diagnostic/current-ti-4l-3313a-preflight-20260925",
+  "release_credit": false,
+  "route_credit": false,
+  "saved_board_sha256": "ee34cf62a436fbebcd9afbdd0f046e5b9796e6a9ab60a8283d2e297a177b1db6",
+  "saved_dru_sha256": "ddb17c62f3beb2e0a03cf18acbb1148c36f60d516937c96660cfb44d146520a3",
+  "saved_pro_sha256": "2d0bf4d9c14fedee82e1ba22f06d05a4ba97e7b7fe39a66e086ec1c48b408c1a",
+  "schema": 1,
+  "status": "FAILED_RESEARCH",
+  "v_process": {
+    "census": {
+      "0.350/0.200;cap=1;fill=1": 8,
+      "0.500/0.200;cap=1;fill=1": 6
+    },
+    "coverage": {
+      "V-FLAGS": "14/14 vias graded",
+      "V-SELECT": "14/14 vias compared with drill families",
+      "V-VIP": "14/14 via-in-pad sites graded"
+    },
+    "fails": [
+      "TMUX-DRU: foreign clearance/via/hole constraint"
+    ],
+    "sha256": "34b95b0d65350657b78a57250971c8ef9eed7e49a78e7c42f3b9d1cf018569b6"
+  }
+}

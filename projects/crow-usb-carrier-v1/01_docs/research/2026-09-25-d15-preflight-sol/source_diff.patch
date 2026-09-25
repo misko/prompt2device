@@ -1,0 +1,148 @@
+--- frozen/03_src/floorplan.yaml
++++ prepared/03_src/floorplan.yaml
+@@ -12,8 +12,8 @@
+   edge_width: 0.1
+   layers: 4
+   stackup:
+-    nominal_thickness_mm: 1.63
+-    thickness_tolerance_mm: 0.163
++    nominal_thickness_mm: 1.58
++    thickness_tolerance_mm: 0.158
+     copper_thickness_mm:
+     - 0.04064
+     - 0.0152
+@@ -21,19 +21,19 @@
+     - 0.04064
+     dielectrics:
+     - type: prepreg
+-      thickness_mm: 0.5124
+-      material: NP-155F 7628+7628+1080 composite; JLC04161H-7628G
+-      epsilon_r: 4.2366666667
++      thickness_mm: 0.2064
++      material: NP-155F 3313 RC57% 4.2mil composite; JLC04161H-3313A
++      epsilon_r: 4.1
+       loss_tangent: 0.02
+     - type: core
+-      thickness_mm: 0.5
++      thickness_mm: 1.065
+       material: NP-155F core
+-      epsilon_r: 4.48
++      epsilon_r: 4.38
+       loss_tangent: 0.02
+     - type: prepreg
+-      thickness_mm: 0.5124
+-      material: NP-155F 7628+7628+1080 composite; JLC04161H-7628G
+-      epsilon_r: 4.2366666667
++      thickness_mm: 0.2064
++      material: NP-155F 3313 RC57% 4.2mil composite; JLC04161H-3313A
++      epsilon_r: 4.1
+       loss_tangent: 0.02
+     mask_thickness_mm: 0.01524
+     dielectric_constraints: true
+@@ -2405,6 +2405,11 @@
+     edge_margin: 1.0
+     hole_keepout: 2.6
+     ring_max: 120
++keepouts:
++- name: usb_pair_xu_launch
++  layers: [F.Cu]
++  deny: []
++  rect: [215.3, 95.0, 217.1, 95.8]
+ design_rules:
+   track_min_width: 0.15
+   min_clearance: 0.15
+--- frozen/03_src/rules/nets.yaml
++++ prepared/03_src/rules/nets.yaml
+@@ -18,11 +18,11 @@
+   USB_HS:
+     nets: [USB_DP, USB_DN]
+     current: signal
+-    min_width: 0.410mm
++    min_width: 0.180mm
+     clearance: 0.150mm
+     via_diameter: 0.6mm
+     via_drill: 0.3mm
+-    diff_pair: {width: 0.410mm, gap: 0.150mm}
++    diff_pair: {width: 0.180mm, gap: 0.100mm}
+     intent: Nominal 90 ohm masked F.Cu pair over continuous In1.Cu; exact geometry in rf.yaml.
+     routing: Coupled pair; source and connector escapes require exact-board review.
+     verify: Native differential-pair recognition, geometry, continuous return and at most 1 mm skew.
+@@ -66,6 +66,18 @@
+     intent: Retained analog held rail and ADC supply distribution.
+     routing: Keep charging, discharge and regulator loops away from analog input returns.
+     verify: Quiet-rail load/hold-up/dropout and current-return review.
++
++scoped_clearances:
++  - zone: usb_pair_xu_launch
++    nets_a: [USB_DP]
++    nets_b: [USB_DN]
++    clearance: 0.100mm
++    why: >-
++      D15 private unrouted JLC04161H-3313A USB-pair launch screen only. The
++      0.100-mm exception applies only between exact USB_DP and USB_DN items
++      both overlapping the tight F.Cu U_XU.59/.60 launch area. Foreign pads,
++      tracks, vias and zones retain the generic 0.150-mm clearance. No copper
++      route or fabrication acceptance follows.
+ 
+ # Realized-copper authority for the reversible USB-C pair.  Each signal net is
+ # a tree: two receptacle contacts and the shunt ESD signal pad are leaves, and
+--- frozen/03_src/rules/rf.yaml
++++ prepared/03_src/rules/rf.yaml
+@@ -23,27 +23,27 @@
+     reference_layer: In1.Cu
+   cross_sections:
+   - id: USB2_L1_OVER_L2_MASKED
+-    status: locked
+-    stackup_source: 'JLCPCB JLC04161H-7628G (c9cc086852034b99bdf5d61bf940f3cc), 4-layer
+-      nominal 1.6 mm, 1 oz outer / 0.5 oz inner. Exact vendor response: 01_docs/research/2026-09-22-usb-impedance-evidence.md.'
+-    solver: 'JLCPCB DiffEdgeCoupledCoatedMicrostrip1B returned 89.6111388098 ohm for
+-      0.410/0.150 mm with plated copper and soldermask. Exact input/output and model:
+-      01_docs/research/2026-09-22-usb-impedance-evidence.md.'
++    status: PRIVATE_UNROUTED_SCREEN
++    stackup_source: 'Private special JLC04161H-3313A hypothesis, 4-layer, finished 1.58 mm +/-10%, 1 oz outer / 0.5 oz inner. Public template: 01_docs/research/2026-09-25-jlc-3313-uniform-usb-solve-sol/README.md; no order commitment.'
++    solver: 'Public fixed-geometry DiffEdgeCoupledCoatedMicrostrip1B output 89.9172598796 ohm at 0.180/0.100 mm with stated plated copper and mask. Not an authenticated production-stack recommendation; 01_docs/research/2026-09-25-jlc-3313-uniform-usb-solve-sol/README.md.'
+     copper_layer: F.Cu
+     reference_layer: In1.Cu
+-    dielectric_height_mm: 0.5124
+-    dk: 4.2366666667
++    dielectric_height_mm: 0.2064
++    dk: 4.1
+     target_z0_ohm: 90
+-    width_mm: 0.41
+-    gap_mm: 0.15
++    width_mm: 0.18
++    gap_mm: 0.10
+   performance_claims:
+   - id: USB2-CLAIM-ZDIFF
+-    claim: The nominal masked L1-over-L2 geometry calculates to 89.611 ohm on the
+-      selected JLC stack.
+-    acceptance: JLC order review and coupon/TDR result are 90 ohm +/-10%; no unreviewed
+-      stack, width, gap, copper or mask substitution is accepted.
+-    evidence: 01_docs/research/2026-09-22-usb-impedance-evidence.md retains exact
+-      vendor request/response. Board and fabrication verification remain owed.
++    claim: Public fixed-geometry masked L1-over-L2 calculation is 89.9172598796 ohm
++      for the special JLC04161H-3313A hypothesis at 0.180/0.100 mm; no named-stack
++      production impedance or routed-board performance is accepted.
++    acceptance: Research-only fixed-geometry screen; no production impedance, board
++      performance, P1/P3, fabrication or release acceptance. A future source proposal
++      requires exact JLC stack/order review and coupon/TDR within 90 ohm +/-10%.
++    evidence: 01_docs/research/2026-09-25-jlc-3313-uniform-usb-solve-sol/README.md
++      and frontend_binding_capture.json retain the public template-derived numeric
++      request/response. Production stack, board and fabrication verification remain owed.
+   first_article:
+     measurements:
+     - Differential TDR or impedance coupon measurement for the ordered stackup
+--- frozen/03_src/rules/route_fab_overrides.txt
++++ prepared/03_src/rules/route_fab_overrides.txt
+@@ -1,7 +1,7 @@
+-# Candidate advanced routing floors for the unchanged 1.63 mm four-layer stack.
+-# The 0.20 mm mechanical drill gives 1.63/0.20 = 8.15:1 nominal and
+-# 1.793/0.20 = 8.965:1 at maximum declared thickness, within the 10:1 ceiling. Do not substitute the tier minimum 0.15 mm drill: it would
+-# be 10.87:1 and outside that ceiling at this thickness.
++# D15 private unrouted 1.58 mm four-layer 3313A stack screen only.
++# The unchanged 0.20 mm mechanical drill gives 1.58/0.20 = 7.90:1 nominal and
++# 1.738/0.20 = 8.69:1 at maximum declared thickness, within the 10:1 ceiling. Do not substitute the tier minimum 0.15 mm drill: it would
++# be 11.59:1 and outside that ceiling at this thickness.
+ clearance = 0.09
+ track_width = 0.09
+ via_diameter = 0.50

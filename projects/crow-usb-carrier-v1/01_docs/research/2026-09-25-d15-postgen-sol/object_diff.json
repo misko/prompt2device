@@ -1,0 +1,60 @@
+{
+  "allowed_new_rule_area": "usb_pair_xu_launch",
+  "electrical_footprints": 569,
+  "fab_credit": false,
+  "file_sha256": {
+    "03_src/floorplan.yaml": {
+      "candidate": "1d81af9b92af6753e4ad9a66266289b692ddb04f5232b20cdc14ddfc3b4f21cc",
+      "reference": "2f7843ada9eb08d19d268f0d6671079a8cf367629b2b3331119088927415b634"
+    },
+    "03_src/rules/nets.yaml": {
+      "candidate": "19e6b342e7a1493a761d39d99729ef91d714470e4b1f00d85a04938e8c6c6422",
+      "reference": "18033487a097b6d29abe3f9d8517879931cf80d278d8973adcf276010a5b7190"
+    },
+    "03_src/rules/rf.yaml": {
+      "candidate": "0490a9a4449fbe01182f22b0c0570896002279528d4aa96219433171d4a368f3",
+      "reference": "833a8c022648859e65ba3b727bffd14c868214936a9751f12c5a15ecd3ea376c"
+    },
+    "03_src/rules/route_fab_overrides.txt": {
+      "candidate": "263c5cfd2b7a895b803d66274290000177050e7e289de6c88b3e80e9b0b43bcf",
+      "reference": "d8285ec77a25583b21afa136de614faa4257008250f370e2b5d08d359ef6a1d9"
+    },
+    "03_tscircuit/build/circuit.json": {
+      "candidate": "580ac31b0de8d376d888caa1a342ae43c0636fbd13c74048392173acf718cb6d",
+      "reference": "580ac31b0de8d376d888caa1a342ae43c0636fbd13c74048392173acf718cb6d"
+    },
+    "04_kicad/crow_carrier.kicad_dru": {
+      "candidate": "ddb17c62f3beb2e0a03cf18acbb1148c36f60d516937c96660cfb44d146520a3",
+      "reference": "00ab83d8484368f132392523972c1f41fc9073423d3c600feec962684f9c3b0a"
+    },
+    "04_kicad/crow_carrier.kicad_pcb": {
+      "candidate": "ee34cf62a436fbebcd9afbdd0f046e5b9796e6a9ab60a8283d2e297a177b1db6",
+      "reference": "fe8d2c9a9922eeab2371d0187da9407ac590687a77b03a8a099c35a75b5ddd16"
+    },
+    "04_kicad/crow_carrier.kicad_pro": {
+      "candidate": "2d0bf4d9c14fedee82e1ba22f06d05a4ba97e7b7fe39a66e086ec1c48b408c1a",
+      "reference": "7977bc9edb88e1ef723eb256f07949871493dfda3d2c2491dd5d5b6087ddc094"
+    },
+    "04_kicad/fp-lib-table": {
+      "candidate": "f7d3e5557b95cf52fb52294c497f6cf2680f0c750acc550b1b9d808973dc8b55",
+      "reference": "f7d3e5557b95cf52fb52294c497f6cf2680f0c750acc550b1b9d808973dc8b55"
+    },
+    "06_build/netlists/crow_carrier.net": {
+      "candidate": "a40b45c27b2169ed4f3dd43d72a1f4f7112d829985f98918a8855ed76735e9bd",
+      "reference": "a40b45c27b2169ed4f3dd43d72a1f4f7112d829985f98918a8855ed76735e9bd"
+    }
+  },
+  "footprint_or_pad_delta_refs": [],
+  "footprints_total": 575,
+  "native_non_hole_pads": 1872,
+  "object_gate_findings": [],
+  "object_gate_pass": true,
+  "order_credit": false,
+  "p1_credit": false,
+  "release_credit": false,
+  "route_credit": false,
+  "saved_tracks": 14,
+  "saved_zone_count": 10,
+  "saved_zone_fills": 0,
+  "status": "FAILED_RESEARCH"
+}
