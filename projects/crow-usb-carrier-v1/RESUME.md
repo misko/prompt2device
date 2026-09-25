@@ -1,12 +1,12 @@
 # Resume
 
-<!-- pause-state:bc21b3e8c3cc4a67cdb7fd6b8d0acbd8aad2698ede3ac384542fb850b4940e63 -->
+<!-- pause-state:1896991cafd219f0816ac63bbf37b847ffcf89f22b496ef5018027db2c532206 -->
 
 Canonical state: `01_docs/pause_state.json`
 
 1. Verify: `python3 skills/pcb-design/scripts/pause_state.py verify .`
-2. Confirm blocker: Crow selected TI USB ESD stock is locked to the initial 307-versus-155 public screen. Electrical selection still holds on the open XU316 powered/rail-off transient finding; no later stock recheck may force a source change.
-3. Resume with: `Complete independent TI/XU316 USB transient suitability review from public primary records; if still unbounded, define a prototype-only exact-board ESD test before accepting selection. Then rerun critical_part_selection_admission.py and the full conductor on a coherent TI source.`
+2. Confirm blocker: The TI schematic prototype is sound for topology and source checks, but ordinary build/release remains held at PROTOTYPE_ONLY with XU316 transient unqualified. The isolated unrouted TI board has 499 opens; P1 geometry and connector edge/fit are unaccepted, and connector FULL has 19 physical unknowns.
+3. Resume with: `Resolve the incomplete P1 source corridor/edge model on the isolated TI board, obtain independent P1 attempt admission, and qualify connector physical targets on a governed board or coupon before routing; do not promote the diagnostic board or order.`
 
 The authenticated checkpoint is `03_src/rules/critical_part_selection.yaml` at
-`eb3f74a6a2b821128b194ca0a283716e64a3f4c00ea4a352917f69b5f8463a57`.
+`15288355fcc731ff8b1b0e35a1ae47b9faf66140223cfea0d31c91d99e9dc1ba`.

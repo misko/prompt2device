@@ -1,18 +1,18 @@
 {
-  "blocker": "Crow selected TI USB ESD stock is locked to the initial 307-versus-155 public screen. Electrical selection still holds on the open XU316 powered/rail-off transient finding; no later stock recheck may force a source change.",
+  "blocker": "The TI schematic prototype is sound for topology and source checks, but ordinary build/release remains held at PROTOTYPE_ONLY with XU316 transient unqualified. The isolated unrouted TI board has 499 opens; P1 geometry and connector edge/fit are unaccepted, and connector FULL has 19 physical unknowns.",
   "checkpoint": {
     "path": "03_src/rules/critical_part_selection.yaml",
-    "sha256": "eb3f74a6a2b821128b194ca0a283716e64a3f4c00ea4a352917f69b5f8463a57",
-    "size": 915
+    "sha256": "15288355fcc731ff8b1b0e35a1ae47b9faf66140223cfea0d31c91d99e9dc1ba",
+    "size": 1148
   },
-  "next_command": "Complete independent TI/XU316 USB transient suitability review from public primary records; if still unbounded, define a prototype-only exact-board ESD test before accepting selection. Then rerun critical_part_selection_admission.py and the full conductor on a coherent TI source.",
-  "phase": "sourcing",
+  "next_command": "Resolve the incomplete P1 source corridor/edge model on the isolated TI board, obtain independent P1 attempt admission, and qualify connector physical targets on a governed board or coupon before routing; do not promote the diagnostic board or order.",
+  "phase": "prototype-layout-diagnostic",
   "project": "crow-usb-carrier-v1",
   "receipts": [
     {
       "path": "01_docs/BRIEF.md",
-      "sha256": "45906e341218cefe404f69063ea28faa2f379ba37c76d84d18fd3735b705f2dc",
-      "size": 21354
+      "sha256": "d58ce4e0f783f4bf69dc865978480a9533f55b74e046d76b1639483886bba0b1",
+      "size": 21910
     },
     {
       "path": "01_docs/decisions/0012-initial-public-stock-lock.md",
@@ -20,9 +20,14 @@
       "size": 1852
     },
     {
+      "path": "01_docs/decisions/0013-usb-esd-prototype-boundary.md",
+      "sha256": "ed83de26a0c33124da3397d2ab4c267f01d90e0c1479a938b72ec4fff9215350",
+      "size": 2109
+    },
+    {
       "path": "01_docs/findings.yaml",
-      "sha256": "08a4b74f61707f885fb71987c093a3ea3b8d4d640f4939308ed0f24f0b423f80",
-      "size": 34505
+      "sha256": "27cbf04b140aeff0bfe56201fc6c1c29b80d9e7ba0de7044ecf23d63efed1175",
+      "size": 34727
     },
     {
       "path": "01_docs/research/2026-09-24-public-stock-569/public-stock.json",
@@ -30,11 +35,26 @@
       "size": 32455
     },
     {
-      "path": "01_docs/research/2026-09-24-ti-usb-esd-stock-lock-reinstatement.md",
-      "sha256": "2a9c1feacebf9de51f4aaed0c7f07e0bd8562f4be0d4a5b418b257f656b372df",
-      "size": 1493
+      "path": "01_docs/research/2026-09-25-ti-prototype-p-prec-isolated-check-sol.md",
+      "sha256": "980eebc12250c20eb71ed7a09b9a90e53a7b81bfd4a94d3260c241521c79740f",
+      "size": 2007
+    },
+    {
+      "path": "01_docs/research/2026-09-25-ti-prototype-source-schematic-checks-terra.md",
+      "sha256": "153cc44ff65091ab09ddafeaad61c3aa49ead8e99e344d4c80b9cf7100b9496e",
+      "size": 4058
+    },
+    {
+      "path": "01_docs/research/2026-09-25-ti-unrouted-diagnostic-board-sol.md",
+      "sha256": "f84f08170719d7feae844338d89d47af9fc5c35507201f1d2c4afa79e6b5c0e8",
+      "size": 4644
+    },
+    {
+      "path": "08_reviews/2026-09-25_ti-usb-esd-prototype-only_terra.md",
+      "sha256": "48f056d1aa96f7af99f56ac2b992716686d344a84e753496bf4db322fd7a5a91",
+      "size": 5420
     }
   ],
   "schema": 1,
-  "state_id": "bc21b3e8c3cc4a67cdb7fd6b8d0acbd8aad2698ede3ac384542fb850b4940e63"
+  "state_id": "1896991cafd219f0816ac63bbf37b847ffcf89f22b496ef5018027db2c532206"
 }
