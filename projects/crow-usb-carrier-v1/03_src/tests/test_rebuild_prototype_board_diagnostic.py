@@ -27,6 +27,19 @@ class PrototypeBoardDiagnosticTests(unittest.TestCase):
             effective.write_text(dru.read_text() + '(rule "foreign" (constraint clearance (min 0mm)))\n')
             with self.assertRaisesRegex(RuntimeError, "unexpected effective DRU rules"):
                 MODULE.check_effective_dru(dru, effective)
+            # A same-name rule with different constraints must also fail the
+            # exact effective-profile pin, not just the name census.
+            original = MODULE.SEED_SHA256
+            try:
+                MODULE.SEED_SHA256 = {"seed_pro": MODULE.digest(pro),
+                                      "seed_dru": MODULE.digest(dru)}
+                MODULE.check_rule_seed(pro, dru)
+                effective.write_text(dru.read_text().replace("0.2mm", "0.1mm"))
+                self.assertEqual(MODULE.check_effective_dru(dru, effective), {"known"})
+                with self.assertRaisesRegex(RuntimeError, "unreviewed KiCad rule seed"):
+                    MODULE.check_rule_seed(pro, effective)
+            finally:
+                MODULE.SEED_SHA256 = original
 
     def test_canonical_output_path_is_refused_before_creation(self):
         with tempfile.TemporaryDirectory() as tmp:
