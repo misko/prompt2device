@@ -37,6 +37,15 @@ remains tight, and the combined P1 source branch model needs a fresh exact
 board contract and independent review. USB ESD remains `prototype_only` and
 connector FULL still has 19 physical unknowns.
 
+A read-only scratch application of the older d0 unified P1 model to this
+board, with its diagnostic regions and the current 45 poses, returned `FAIL`
+(13 global errors and 10 item diagnostics). Its service/branch endpoint
+witnesses and power handoffs do not transfer unchanged. The scratch contract's
+expected hash was self-derived solely to inspect failures; it is not reviewed
+P1 authority. The next source task is to regenerate complete endpoint and
+boundary records from this exact board, then obtain independent review before
+any formal P1 attempt.
+
 Reproduce the current private baseline using
 `03_src/rebuild_prototype_board_diagnostic.py`, then run `python3 replay.py`
 from this directory once in a fresh private output root and
