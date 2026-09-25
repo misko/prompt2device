@@ -1,0 +1,32 @@
+schema: 1
+kind: research-only-xu-reset-source-region-repair
+status: INCOMPLETE_RESEARCH
+p1_accepted: false
+routing_realized: false
+pin:
+  board: /tmp/crow-xu-qspi-gap-sol/project/04_kicad/crow_carrier.kicad_pcb
+  board_sha256: fbfb3bda95f1ddc98e7d3d229550644d136dc7d6349ba19a4023eb13b07e7e27
+  source_floorplan: ../xu_service_variant/p1_qspi_packet/floorplan_qspi_gap.yaml
+  source_floorplan_sha256: cd52893214a87432b99bab41827a64680bd8a2f970342f126260157948b50925
+  modular_plan: ../../../03_src/modular_plan.json
+  modular_plan_sha256: 7201aa55cffefca99f9f27e92711cbbcf28387432523a8c960b5cd71e973170e
+region_changes:
+  audio_clock_tdm:
+    before: [140.0, 72.0, 190.0, 112.0]
+    after: [145.0, 72.0, 190.0, 99.84]
+  digital_power:
+    before: [145.0, 85.0, 185.0, 134.0]
+    after: [145.0, 99.84, 185.0, 134.0]
+native_boundary:
+  audio_owner_max_y_mm: 99.795
+  audio_owner_max_ref: U_TDM_XLATE
+  digital_owner_min_y_mm: 99.885
+  digital_owner_min_ref: R_XU_3V3_OK_TOP
+  separation_mm: 0.090
+resolved_foreign_pads:
+  - native_pad: R_XU_RST_PU.2
+    bbox_mm: [170.440, 100.080, 170.980, 100.720]
+  - native_pad: U_XU_3V3_OK.6
+    bbox_mm: [165.250, 108.875, 165.950, 109.125]
+derived_floorplan_sha256: 3b8383139c6f2ae8d8e4e37bf1c666ed89778c097b7c1c39e041544bb61feb20
+derived_contract_sha256: 1124f32bd78005ef0bc73ab51f62dfddd2395726207bf186456da9a1a109e370

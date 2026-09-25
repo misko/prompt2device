@@ -1,0 +1,20 @@
+{
+  "status": "PASS_RESEARCH_ONLY",
+  "p1_accepted": false,
+  "routing_realized": false,
+  "board_sha256": "fbfb3bda95f1ddc98e7d3d229550644d136dc7d6349ba19a4023eb13b07e7e27",
+  "floorplan_sha256": "3b8383139c6f2ae8d8e4e37bf1c666ed89778c097b7c1c39e041544bb61feb20",
+  "modular_plan_sha256": "7201aa55cffefca99f9f27e92711cbbcf28387432523a8c960b5cd71e973170e",
+  "coverage_net_count": 59,
+  "coverage_denominator_preserved": true,
+  "changed_regions": {
+    "audio_clock_tdm": [145.0, 72.0, 190.0, 99.84],
+    "digital_power": [145.0, 99.84, 185.0, 134.0]
+  },
+  "audio_digital_interior_overlap": false,
+  "owner_envelope_or_pad_escape": {
+    "audio_clock_tdm": [],
+    "digital_power": []
+  },
+  "two_foreign_pad_conflicts_resolved": true
+}
