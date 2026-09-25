@@ -332,6 +332,22 @@ def _fixed_access_shapes(target, witness, corridor, source_region):
     return shapes
 
 
+def _is_geometry_free_branch_reservation(reservation, branches):
+    """Only a declared, geometry-free branch may bypass fixed-access overlap."""
+    if reservation.get('kind') != 'unresolved_multiterminal_branch':
+        return False
+    matches = [branch for branch in branches.values()
+               if branch['reservation_id'] == reservation.get('id')]
+    if (len(matches) != 1 or
+            reservation.get('branch_id') != matches[0]['id'] or
+            reservation.get('nets') != [matches[0]['net']] or
+            reservation.get('layer') != matches[0]['layer'] or
+            any(key in reservation for key in
+                ('bbox', 'segments', 'capacity_slots', 'demand_slots', 'slot_pitch_mm'))):
+        raise ContractError('unresolved branch cannot reserve geometry/capacity')
+    return True
+
+
 def _filled_zone_intersects(zone, layer_id, shape):
     """Check saved copper polygons, never a refillable zone outline."""
     if not zone.IsOnLayer(layer_id):
@@ -1065,6 +1081,8 @@ def evaluate_coarse(board_path, contract_path, expected_contract_sha256=None, *,
                                 for other in reservations:
                                     if other is target or other.get('id') == corridor['reservation_id'] or \
                                             other.get('layer') != corridor['layer']:
+                                        continue
+                                    if _is_geometry_free_branch_reservation(other, branches):
                                         continue
                                     if other.get('kind') == 'fixed_connector_access_segmented':
                                         peers = [(peer_raw, peer_verified)

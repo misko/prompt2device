@@ -461,6 +461,24 @@ class CoarseCapacityTest(unittest.TestCase):
         self.assertIn('fixed access overlaps other reservation',
                       result['allocations'][0]['reason'])
 
+    def test_fixed_access_skips_only_declared_geometry_free_branch(self):
+        branch = {'id': 'reset_tree', 'reservation_id': 'reset_unplaced',
+                  'net': 'RESET', 'layer': 'F.Cu'}
+        reservation = {'id': 'reset_unplaced', 'kind': 'unresolved_multiterminal_branch',
+                       'branch_id': 'reset_tree', 'layer': 'F.Cu', 'nets': ['RESET']}
+        self.assertTrue(checker._is_geometry_free_branch_reservation(
+            reservation, {'reset_tree': branch}))
+        for extra in ({'bbox': [3, 3, 4, 4]}, {'segments': [[3, 3, 4, 4]]},
+                      {'capacity_slots': 1}, {'demand_slots': 1}):
+            with self.subTest(extra=extra):
+                with self.assertRaisesRegex(checker.ContractError,
+                                            'cannot reserve geometry/capacity'):
+                    checker._is_geometry_free_branch_reservation(
+                        {**reservation, **extra}, {'reset_tree': branch})
+        with self.assertRaisesRegex(checker.ContractError,
+                                    'cannot reserve geometry/capacity'):
+            checker._is_geometry_free_branch_reservation(reservation, {})
+
     def test_fixed_connector_access_rejects_native_pad_obstacle(self):
         self.add_fixed_connector_access()
         pad(self.board, 'U_BLOCK', '1', 'OTHER', 3, 4, .2)
