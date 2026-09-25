@@ -115,6 +115,11 @@ seam and creates no accepted bundle.
 
 ## P-FEASIBILITY
 
+Run the [controlled-pair footprint screen](../../kicad-pcb/references/placement-and-proximity.md#package-choice-is-a-placementrouting-decision)
+before committing package/stack rules to full placement. Its early command
+requires no routed witness and grants no stage admission. The same check is
+repeated by the compositor below.
+
 Run on the exact placed board before route preparation. The existing
 `placement_routability_preflight.py` compositor records a typed
 `P-FEASIBILITY` shadow result. It combines physical placement, critical

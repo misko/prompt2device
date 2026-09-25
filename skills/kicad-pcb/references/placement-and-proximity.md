@@ -80,6 +80,29 @@ variant of the same die routes trivially at ~90 mm² cost — same ports,
 firmware unchanged; only the pin-number map changes (verify against the
 datasheet, anchor-check GND/VDD/UPDI-class pins against the old netlist).
 
+For controlled pairs, screen the actual interface footprints before committing
+to full-board placement:
+
+```text
+placement_routability_preflight.py pair-footprint PROJECT --board INTERFACE_BOARD
+```
+
+This read-only command prints JSON to stdout (exit 0 for PASS/N-A, 1 for FAIL,
+2 for INCOMPLETE). It uses the project's board-scoped route and net contracts;
+`--board-name NAME` selects a named board. The native board can be a small
+interface fixture or the existing board; include every declared pair terminal
+and neighboring pads, including duplicate connector contacts and shunt leaves.
+Keep the source/native pin aliases in the part dossiers. Missing terminal or
+unsupported rule/geometry evidence is INCOMPLETE, not permission to proceed.
+
+The screen checks a uniform centered launch envelope and source pair-rule
+consistency. FAIL rejects that strategy; it does not prove no legal offset,
+neck, or different stack exists. PASS does not prove a complete route, filled
+reference, impedance, skew, physical fit, or P1 admission. Scoped exceptions
+require local evidence; do not expand an exception or weaken foreign clearance
+merely to silence the screen. Fix the owning source proposal and rerun the
+same read-only check. Preserve earlier receipts and unchanged board geometry.
+
 ## Placement-freeze routability receipt
 
 Physical legality is necessary but not sufficient on a dense or high-speed
@@ -95,7 +118,8 @@ This is a compositor inside the existing placement stage. It reuses
 `placement_gates.py`, `critical_route_check.py`, and
 `route_ownership_preflight.py`, then grades source-owned `route.routability`
 declarations for layer roles/class eligibility and high-speed endpoint
-topology. Part dossiers own the reusable classification
+topology. Its `pair_footprint` check automatically repeats the same early
+controlled-pair screen on the full placed board. Part dossiers own the reusable classification
 `layout.route_topology.kind`; `route.yaml` owns the exact footprint instance,
 pads, critical pairs and reason.
 

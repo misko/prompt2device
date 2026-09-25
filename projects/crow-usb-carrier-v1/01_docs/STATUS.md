@@ -1,12 +1,12 @@
 # Project status
 
-<!-- pause-state:511e69787f451bfc33161a9672f6e655b853f4df102040d780acb480b90753dc -->
+<!-- pause-state:9896617e997ea678514d368a445b7d54876bbb90b9377739d201886f992c4215 -->
 
 - Phase: `prototype-layout-diagnostic`
 - State: **PAUSED**
 - Checkpoint: `03_src/rules/critical_part_selection.yaml` (`15288355fcc7`)
 - Blocker: Static USB endpoint screen: canonical 0.410-mm centered launches leave 0.145-mm Type-C and 0.070-mm XU foreign clearance against 0.150 required. Historical D15 0.180/0.100 pair clearance is XU-area-only. Full path, return, P1/P2, connector FULL and prototype-only ESD qualification remain open; 499 opens are inherited from the frozen unrouted board.
-- Next command: `Prepare one unadopted same-placement 3313A USB pair-domain source proposal: 0.180-mm width, intended DP/DN-only 0.100-mm clearance, foreign clearance 0.150 mm unchanged. Review complete connector/ESD/XU domain and transition model before any new native experiment; retain D18 P1/P2 prerequisites. Do not replay D15/D17, adopt a stack, route, fabricate or order from this static screen.`
+- Next command: `Prepare one unadopted same-placement 3313A USB pair-domain source proposal: 0.180-mm width, intended DP/DN-only 0.100-mm clearance, foreign clearance 0.150 mm unchanged. Review complete connector/ESD/XU domain and transition model before any new native experiment; retain D18 P1/P2 prerequisites. Do not replay D15/D17, adopt a stack, route, fabricate or order from this static screen. Use the new read-only pair-footprint command before full placement and review any scoped-rule INCOMPLETE; it grants no route or stage admission.`
 
 ## Bound receipts
 
@@ -15,8 +15,11 @@
 - `01_docs/decisions/0013-usb-esd-prototype-boundary.md` — `ed83de26a0c3`
 - `01_docs/decisions/0018-evidence-scheduling-and-private-design-work.md` — `3844ed14d92b`
 - `01_docs/findings.yaml` — `27cbf04b140a`
-- `01_docs/journal/placement.md` — `53faff99237c`
+- `01_docs/journal/placement.md` — `fcb1fa2dc644`
 - `01_docs/research/2026-09-24-public-stock-569/public-stock.json` — `aa9491bf6df4`
+- `01_docs/research/2026-09-25-early-pair-preflight/expanded_locked.json` — `00dba81709ab`
+- `01_docs/research/2026-09-25-early-pair-preflight/historical_d15.json` — `dd3264b35baa`
+- `01_docs/research/2026-09-25-early-pair-preflight/replay.json` — `a78a74a4f228`
 - `01_docs/research/2026-09-25-ti-prototype-p-prec-isolated-check-sol.md` — `980eebc12250`
 - `01_docs/research/2026-09-25-ti-prototype-source-schematic-checks-terra.md` — `153cc44ff650`
 - `01_docs/research/2026-09-25-ti-unrouted-diagnostic-board-sol.md` — `f84f08170719`

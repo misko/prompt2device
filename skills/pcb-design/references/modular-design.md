@@ -58,6 +58,13 @@ handoff to its research owner and keeps P1 incomplete. An independent semantic
 review of the completed packet must pass before board generation. P1 uses
 reviewed package/stack constraints; P3 owns native proof of each critical route.
 
+Before committing to those constraints, run the controlled-pair footprint/rule
+screen described in [layout precedents](../../kicad-pcb/references/layout-precedents.md)
+on a native interface fixture or existing board. Do not wait for all blocks to
+be placed to discover an incompatible trace width or pair-clearance scope.
+This early screen does not require a full-board placement receipt or routed
+witness; it also grants neither P1 admission nor route authority.
+
 ## Schedule child work
 
 Functional ownership does not require physical colocation. Place interface

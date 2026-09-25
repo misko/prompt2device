@@ -1,0 +1,93 @@
+{
+  "detail": "8 terminal pad(s) screened; centered uniform strategy only",
+  "findings": [
+    "USB_DEVICE (USB_DP/USB_DN): centered 0.410 mm launch envelope at J_USB.A6 conflicts with J_USB.A7 (0.150 mm clearance); uniform centered launch unsupported",
+    "USB_DEVICE (USB_DP/USB_DN): centered 0.410 mm launch envelope at J_USB.A6 conflicts with J_USB.B7 (0.150 mm clearance); uniform centered launch unsupported",
+    "USB_DEVICE (USB_DP/USB_DN): centered 0.410 mm launch envelope at J_USB.A7 conflicts with J_USB.A6 (0.150 mm clearance); uniform centered launch unsupported",
+    "USB_DEVICE (USB_DP/USB_DN): centered 0.410 mm launch envelope at J_USB.A7 conflicts with J_USB.B6 (0.150 mm clearance); uniform centered launch unsupported",
+    "USB_DEVICE (USB_DP/USB_DN): centered 0.410 mm launch envelope at J_USB.B6 conflicts with J_USB.A7 (0.150 mm clearance); uniform centered launch unsupported",
+    "USB_DEVICE (USB_DP/USB_DN): centered 0.410 mm launch envelope at J_USB.B6 conflicts with J_USB.A8 (0.150 mm clearance); uniform centered launch unsupported",
+    "USB_DEVICE (USB_DP/USB_DN): centered 0.410 mm launch envelope at J_USB.B7 conflicts with J_USB.A5 (0.150 mm clearance); uniform centered launch unsupported",
+    "USB_DEVICE (USB_DP/USB_DN): centered 0.410 mm launch envelope at J_USB.B7 conflicts with J_USB.A6 (0.150 mm clearance); uniform centered launch unsupported",
+    "USB_DEVICE (USB_DP/USB_DN): centered 0.410 mm launch envelope at U_XU.59 conflicts with U_XU.58 (0.150 mm clearance); uniform centered launch unsupported",
+    "USB_DEVICE (USB_DP/USB_DN): centered 0.410 mm launch envelope at U_XU.59 conflicts with U_XU.60 (0.150 mm clearance); uniform centered launch unsupported",
+    "USB_DEVICE (USB_DP/USB_DN): centered 0.410 mm launch envelope at U_XU.60 conflicts with U_XU.59 (0.150 mm clearance); uniform centered launch unsupported",
+    "USB_DEVICE (USB_DP/USB_DN): centered 0.410 mm launch envelope at U_XU.60 conflicts with U_XU.61 (0.150 mm clearance); uniform centered launch unsupported"
+  ],
+  "pairs": [
+    {
+      "gap_mm": 0.15,
+      "net": "USB_DP",
+      "pad": "J_USB.A6",
+      "pair": "USB_DEVICE",
+      "source_declared": true,
+      "status": "FAIL",
+      "width_mm": 0.41
+    },
+    {
+      "gap_mm": 0.15,
+      "net": "USB_DN",
+      "pad": "J_USB.A7",
+      "pair": "USB_DEVICE",
+      "source_declared": true,
+      "status": "FAIL",
+      "width_mm": 0.41
+    },
+    {
+      "gap_mm": 0.15,
+      "net": "USB_DP",
+      "pad": "J_USB.B6",
+      "pair": "USB_DEVICE",
+      "source_declared": true,
+      "status": "FAIL",
+      "width_mm": 0.41
+    },
+    {
+      "gap_mm": 0.15,
+      "net": "USB_DN",
+      "pad": "J_USB.B7",
+      "pair": "USB_DEVICE",
+      "source_declared": true,
+      "status": "FAIL",
+      "width_mm": 0.41
+    },
+    {
+      "gap_mm": 0.15,
+      "net": "USB_DP",
+      "pad": "U_USB_ESD.1",
+      "pair": "USB_DEVICE",
+      "source_declared": true,
+      "status": "PASS",
+      "width_mm": 0.41
+    },
+    {
+      "gap_mm": 0.15,
+      "net": "USB_DN",
+      "pad": "U_USB_ESD.2",
+      "pair": "USB_DEVICE",
+      "source_declared": true,
+      "status": "PASS",
+      "width_mm": 0.41
+    },
+    {
+      "gap_mm": 0.15,
+      "net": "USB_DN",
+      "pad": "U_XU.59",
+      "pair": "USB_DEVICE",
+      "source_declared": true,
+      "status": "FAIL",
+      "width_mm": 0.41
+    },
+    {
+      "gap_mm": 0.15,
+      "net": "USB_DP",
+      "pad": "U_XU.60",
+      "pair": "USB_DEVICE",
+      "source_declared": true,
+      "status": "FAIL",
+      "width_mm": 0.41
+    }
+  ],
+  "status": "FAIL",
+  "unresolved": []
+}

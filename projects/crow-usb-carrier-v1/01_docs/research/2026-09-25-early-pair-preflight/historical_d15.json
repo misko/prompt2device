@@ -1,0 +1,85 @@
+{
+  "detail": "8 terminal pad(s) screened; centered uniform strategy only",
+  "findings": [
+    "USB_DEVICE (USB_DP/USB_DN): declared 0.100 mm pair gap is below 0.150 mm class clearance outside scoped rule area(s); uncovered terminal centers: J_USB.A6, J_USB.A7, J_USB.B6, J_USB.B7, U_USB_ESD.1, U_USB_ESD.2"
+  ],
+  "pairs": [
+    {
+      "gap_mm": 0.1,
+      "net": "USB_DP",
+      "pad": "J_USB.A6",
+      "pair": "USB_DEVICE",
+      "source_declared": true,
+      "status": "PASS",
+      "width_mm": 0.18
+    },
+    {
+      "gap_mm": 0.1,
+      "net": "USB_DN",
+      "pad": "J_USB.A7",
+      "pair": "USB_DEVICE",
+      "source_declared": true,
+      "status": "PASS",
+      "width_mm": 0.18
+    },
+    {
+      "gap_mm": 0.1,
+      "net": "USB_DP",
+      "pad": "J_USB.B6",
+      "pair": "USB_DEVICE",
+      "source_declared": true,
+      "status": "PASS",
+      "width_mm": 0.18
+    },
+    {
+      "gap_mm": 0.1,
+      "net": "USB_DN",
+      "pad": "J_USB.B7",
+      "pair": "USB_DEVICE",
+      "source_declared": true,
+      "status": "PASS",
+      "width_mm": 0.18
+    },
+    {
+      "gap_mm": 0.1,
+      "net": "USB_DP",
+      "pad": "U_USB_ESD.1",
+      "pair": "USB_DEVICE",
+      "source_declared": true,
+      "status": "PASS",
+      "width_mm": 0.18
+    },
+    {
+      "gap_mm": 0.1,
+      "net": "USB_DN",
+      "pad": "U_USB_ESD.2",
+      "pair": "USB_DEVICE",
+      "source_declared": true,
+      "status": "PASS",
+      "width_mm": 0.18
+    },
+    {
+      "gap_mm": 0.1,
+      "net": "USB_DN",
+      "pad": "U_XU.59",
+      "pair": "USB_DEVICE",
+      "source_declared": true,
+      "status": "PASS",
+      "width_mm": 0.18
+    },
+    {
+      "gap_mm": 0.1,
+      "net": "USB_DP",
+      "pad": "U_XU.60",
+      "pair": "USB_DEVICE",
+      "source_declared": true,
+      "status": "PASS",
+      "width_mm": 0.18
+    }
+  ],
+  "status": "INCOMPLETE",
+  "unresolved": [
+    "USB_DEVICE (USB_DP/USB_DN): class and wave pair width/gap differ",
+    "USB_DEVICE (USB_DP/USB_DN): scoped pair width/clearance needs local rule-area evaluation"
+  ]
+}

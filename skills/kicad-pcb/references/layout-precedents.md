@@ -65,6 +65,19 @@ and source decision, with unresolved route/SI/physical work explicitly deferred.
 Reuse one dossier across identical ICs and prioritize native trials by interface
 risk; this is not a requirement to build a separate coupon for every IC.
 
+For declared controlled pairs, run the early `pair-footprint` command in
+[the placement preflight](placement-and-proximity.md#package-choice-is-a-placementrouting-decision)
+on the actual interface footprints before committing to full-board placement.
+Use the same footprint and net identities as the design, including duplicated
+connector contacts and protector shunt leaves. A nominal impedance calculation
+is only one input: compare its width against native pad access, and its gap
+against the effective clearance rules throughout the intended pair domain.
+Do not copy example trace dimensions across stacks or silently widen a local
+clearance exception. A failed centered-launch check backtracks that strategy;
+a different neck or escape needs its own evidence. Geometry the checker cannot
+model, missing terminals, or unresolved rules remain INCOMPLETE. Route, return and transition SI proof
+still belong to the later exact-board review.
+
 ## Sources, in authority order
 
 ### 1. The datasheet's Layout Guidelines / Layout Example section
