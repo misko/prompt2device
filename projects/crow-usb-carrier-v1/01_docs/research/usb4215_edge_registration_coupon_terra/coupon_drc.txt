@@ -1,0 +1,50 @@
+** Drc report for usb4215_edge_registration_coupon.kicad_pcb **
+** Created on 2026-09-24T23:11:39 **
+** Report includes: Errors, Warnings **
+
+** Found 0 DRC violations **
+
+** Found 8 unconnected pads **
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(10.6800 mm, 2.1000 mm): PTH pad SH [GND] of J_EDGE
+    @(10.6800 mm, 6.1000 mm): PTH pad SH [GND] of J_EDGE
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(10.6800 mm, 6.1000 mm): PTH pad SH [GND] of J_EDGE
+    @(11.8000 mm, 6.6750 mm): Pad B1 [GND] of J_EDGE on F.Cu
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(11.8000 mm, 6.6750 mm): Pad B1 [GND] of J_EDGE on F.Cu
+    @(18.2000 mm, 6.6750 mm): Pad A1 [GND] of J_EDGE on F.Cu
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(18.2000 mm, 6.6750 mm): Pad A1 [GND] of J_EDGE on F.Cu
+    @(19.3200 mm, 6.1000 mm): PTH pad SH [GND] of J_EDGE
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(19.3200 mm, 6.1000 mm): PTH pad SH [GND] of J_EDGE
+    @(19.3200 mm, 2.1000 mm): PTH pad SH [GND] of J_EDGE
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(12.6000 mm, 6.6750 mm): Pad A9 [VBUS] of J_EDGE on F.Cu
+    @(17.4000 mm, 6.6750 mm): Pad B9 [VBUS] of J_EDGE on F.Cu
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(14.2500 mm, 6.6750 mm): Pad B6 [USB_DP] of J_EDGE on F.Cu
+    @(15.2500 mm, 6.6750 mm): Pad A6 [USB_DP] of J_EDGE on F.Cu
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(14.7500 mm, 6.6750 mm): Pad A7 [USB_DN] of J_EDGE on F.Cu
+    @(15.7500 mm, 6.6750 mm): Pad B7 [USB_DN] of J_EDGE on F.Cu
+
+** Found 0 Footprint errors **
+
+** Ignored checks **
+    - Footprint has no courtyard defined
+    - Track endpoint not centered on via
+    - Tuning profile track geometries
+    - Footprint doesn't match symbol's footprint filters
+    - Footprint component type doesn't match footprint pads
+
+** End of Report **
