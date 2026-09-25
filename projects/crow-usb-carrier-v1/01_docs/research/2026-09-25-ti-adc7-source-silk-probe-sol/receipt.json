@@ -1,0 +1,98 @@
+{
+  "source_packet": "projects/crow-usb-carrier-v1/06_build/ti_unrouted_diagnostic/20260925T051055Z-source-packet/project",
+  "source_floorplan_sha256": "0032b1202f5742b6575198d27ea50629826d49cf81cf12a31fead8a2929d9868",
+  "source_netlist_sha256": "a40b45c27b2169ed4f3dd43d72a1f4f7112d829985f98918a8855ed76735e9bd",
+  "four_part_input_sha256": "046019a13094764baef313d62611b137e0f0af971079734c71ab050dbf46b3a0",
+  "generated_board_sha256": "138c3ff35c7c680abf77b4f220ef494ff50b0090c74009401dcfbdb2e2c29d45",
+  "footprint_count": 569,
+  "fixed_ref_count": 27,
+  "all_footprint_poses_identical_to_four_part": true,
+  "all_pad_net_layer_identities_identical_to_four_part": true,
+  "warning_involved_refdes_visible_on_f_silks": [
+    "C_ADC_CLOCK_OK",
+    "C_ADC_CM7N",
+    "C_ADC_I2C_A",
+    "C_ADC_I2C_B",
+    "C_AUDIO_OSC",
+    "C_CORE_OK",
+    "C_U_CORE_OUT_1",
+    "R_1V8_FB_TOP",
+    "R_3V3X_FB_BOTTOM",
+    "R_ADC_PD7N",
+    "R_TDM_OE_PU",
+    "U_ADC_CLOCK_OK",
+    "U_ADC_I2C_XLATE"
+  ],
+  "native_drc_violations": 0,
+  "unconnected_items": 499,
+  "affected_refdes_with_ambiguous_ownership": {
+    "R_ADC_PD7N": {
+      "own_mm": 1.98,
+      "nearest_other_ref": "R_ADC_PD7P",
+      "other_mm": 1.63,
+      "lead_mm": -0.35
+    },
+    "U_ADC_CLOCK_OK": {
+      "own_mm": 4.24,
+      "nearest_other_ref": "R_SPOKE_UVLO7",
+      "other_mm": 3.04,
+      "lead_mm": -1.2
+    },
+    "U_ADC_I2C_XLATE": {
+      "own_mm": 4.24,
+      "nearest_other_ref": "C_ADC_I2C_B",
+      "other_mm": 3.37,
+      "lead_mm": -0.87
+    },
+    "C_ADC_CLOCK_OK": {
+      "own_mm": 9.2,
+      "nearest_other_ref": "R_IN7N",
+      "other_mm": 3.71,
+      "lead_mm": -5.49
+    },
+    "C_ADC_CM7N": {
+      "own_mm": 11.31,
+      "nearest_other_ref": "R_IN7N",
+      "other_mm": 2.06,
+      "lead_mm": -9.25
+    },
+    "C_ADC_I2C_B": {
+      "own_mm": 6.0,
+      "nearest_other_ref": "C_ADC_I2C_A",
+      "other_mm": 5.88,
+      "lead_mm": -0.12
+    },
+    "C_AUDIO_OSC": {
+      "own_mm": 7.07,
+      "nearest_other_ref": "Y_AUDIO",
+      "other_mm": 2.96,
+      "lead_mm": -4.11
+    },
+    "C_CORE_OK": {
+      "own_mm": 8.49,
+      "nearest_other_ref": "R_3V3X_FB_BOTTOM",
+      "other_mm": 3.42,
+      "lead_mm": -5.07
+    },
+    "C_U_CORE_OUT_1": {
+      "own_mm": 8.49,
+      "nearest_other_ref": "U_3V3X",
+      "other_mm": 7.32,
+      "lead_mm": -1.17
+    },
+    "R_1V8_FB_TOP": {
+      "own_mm": 4.24,
+      "nearest_other_ref": "R_3V3X_FB_BOTTOM",
+      "other_mm": 3.21,
+      "lead_mm": -1.03
+    },
+    "R_TDM_OE_PU": {
+      "own_mm": 11.31,
+      "nearest_other_ref": "U_TDM_XLATE",
+      "other_mm": 6.04,
+      "lead_mm": -5.27
+    }
+  },
+  "source_only_reproduction": true,
+  "p2_placement_accepted": false
+}

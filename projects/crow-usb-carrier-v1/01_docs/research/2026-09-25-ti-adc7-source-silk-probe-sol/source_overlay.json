@@ -1,0 +1,9 @@
+{
+  "post_anchors": {
+    "Y_AUDIO": [167.5, 87.35, 0],
+    "C_ADC_I2C_A": [168.0, 97.6, 0],
+    "C_ADC_I2C_B": [172.8, 95.0, 0],
+    "C_ADC_CLOCK_OK": [164.6, 76.2, 0]
+  },
+  "prepend_priority_refs": ["R_ADC_PD7N"]
+}
