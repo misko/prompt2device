@@ -6,6 +6,19 @@ and the 59-net source candidate described in
 `2026-09-25-ti-p1-coarse-contract-screen-sol.md`. No variant changes the
 canonical P1 source, board, placement or routing, and none earns P1 credit.
 
+The new opt-in `p1_corridor_capacity.py --diagnose-all` run on that unchanged
+candidate is saved as `2026-09-25-ti-p1-coarse-all-diagnostics.json` (SHA-256
+`6937a3d7d1f09ba7744242586f87d6d90137a2fb73d375b9c1b39e3a71ee62aa`).
+It reports **51 independent boundary-witness defects in one pass**: USB 10,
+ADC timing 14, ADC analog 18, and power/mechanical 9. The XMOS service row
+has no independently invalid witness/reservation in this pass, but remains
+INCOMPLETE on its separate capacity/return/P2 obligations. There are zero
+global errors. Removing the optional `diagnostics` field makes the result
+identical to the preexisting saved evaluation, so the admission verdict has
+not changed. This inventory allows group-level source repair instead of one
+probe per offending pad; it does not check cross-item corridor accounting
+beyond the normal evaluator.
+
 | Variant | Contract SHA-256 | Checker result | Next exposed defect |
 | --- | --- | --- | --- |
 | `2026-09-25-ti-p1-adc-timing-virtual-terra.json` | `6f613de0cebd6219bf6e0cf4c6dae3a8f0560e5dee1e5a87ae1ba9c9ab62eecf` | `INCOMPLETE`, zero global errors | `U_ADC_A.22` accepts a typed east-region virtual face; `U_ADC_A.23` then needs its own virtual face. |
