@@ -1,0 +1,291 @@
+{
+  "board_sha256": "e07ed8bc663fdfd4ce39477165b656b0dcf2bfbae54d84ec501bfccf326d22ef",
+  "groups": {
+    "hold_bank_left": {
+      "bbox": [
+        21.525,
+        116.105,
+        72.995,
+        138.975
+      ],
+      "refs": [
+        "C_HOLD1",
+        "C_HOLD2",
+        "C_HOLD3",
+        "C_HOLD4",
+        "C_HOLD5",
+        "C_HOLD6",
+        "C_HOLD7",
+        "C_HOLD8",
+        "C_PWR_CT3",
+        "R_OPA_BLEED1"
+      ]
+    },
+    "hold_bank_right": {
+      "bbox": [
+        76.76,
+        116.105,
+        124.995,
+        133.895
+      ],
+      "refs": [
+        "C_HOLD10",
+        "C_HOLD11",
+        "C_HOLD12",
+        "C_HOLD13",
+        "C_HOLD14",
+        "C_HOLD15",
+        "C_HOLD16",
+        "C_HOLD9"
+      ]
+    },
+    "quiet_audio_control": {
+      "bbox": [
+        21.175,
+        101.285,
+        32.325,
+        114.125
+      ],
+      "refs": [
+        "C_AUDIO",
+        "C_AUDIO_CT1",
+        "C_AUDIO_CT2",
+        "R_ADC_BOT",
+        "R_ADC_TOP",
+        "R_AUDIO_PD",
+        "R_AUDIO_PU",
+        "R_LDO_PG_BOT_A",
+        "R_OPA_BLEED2",
+        "U_AUDIO"
+      ]
+    },
+    "quiet_buck_edge": {
+      "bbox": [
+        51.675,
+        100.525,
+        54.975,
+        104.515
+      ],
+      "refs": [
+        "C_PWR_CT2",
+        "R_DUMP_PD"
+      ]
+    },
+    "quiet_dump_timing": {
+      "bbox": [
+        58.775,
+        86.785,
+        70.225,
+        99.445
+      ],
+      "refs": [
+        "C_DUMP_LOGIC",
+        "C_DUMP_TIME1",
+        "C_DUMP_TIME2",
+        "C_DUMP_TIME3",
+        "C_DUMP_TIME4",
+        "C_DUMP_TIME5",
+        "C_DUMP_TIME6",
+        "C_DUMP_TIME7",
+        "C_DUMP_TIME8",
+        "R_DUMP_TIME1",
+        "R_DUMP_TIME2",
+        "R_DUMP_TIME3",
+        "U_DUMP"
+      ]
+    },
+    "quiet_ldo": {
+      "bbox": [
+        126.255,
+        114.405,
+        140.955,
+        126.775
+      ],
+      "refs": [
+        "C_LDO_IN",
+        "C_LDO_NR4",
+        "C_LDO_NR5",
+        "C_LDO_OUT_1",
+        "C_LDO_OUT_2",
+        "R_LDO_ILIM",
+        "R_LDO_PG_TOP",
+        "R_LDO_SET",
+        "U_LDO"
+      ]
+    },
+    "quiet_mid_control": {
+      "bbox": [
+        60.605,
+        102.025,
+        80.295,
+        110.945
+      ],
+      "refs": [
+        "C_LDO_EN",
+        "C_OPA_BULK",
+        "R_LDO_PG_BOT_B",
+        "U_LDO_EN"
+      ]
+    },
+    "quiet_power": {
+      "bbox": [
+        71.175,
+        90.725,
+        79.475,
+        97.275
+      ],
+      "refs": [
+        "C_PWR",
+        "C_PWR_CT",
+        "R_PWR_BOT",
+        "R_PWR_PU",
+        "R_PWR_TOP",
+        "U_PWR"
+      ]
+    },
+    "quiet_pre_gate": {
+      "bbox": [
+        45.075,
+        102.985,
+        55.745,
+        108.975
+      ],
+      "refs": [
+        "Q_DUMP",
+        "Q_PRE_EN",
+        "R_PRE_G"
+      ]
+    },
+    "quiet_pre_switch": {
+      "bbox": [
+        38.725,
+        105.405,
+        54.075,
+        112.745
+      ],
+      "refs": [
+        "D_HOLD",
+        "Q_PRE",
+        "R_DUMP",
+        "R_PRE"
+      ]
+    }
+  },
+  "native_ref_count": 569,
+  "p1_accepted": false,
+  "physical_cells": {
+    "accepted": false,
+    "reason": "quiet_pre_switch: unassigned native footprint/pad Q_DUMP enters physical cell"
+  },
+  "power_branches_without_unvalidated_cells": {
+    "N1V8": {
+      "accepted": true,
+      "reason": null,
+      "terminal_count": 42
+    },
+    "N3V3X": {
+      "accepted": true,
+      "reason": null,
+      "terminal_count": 27
+    },
+    "N3V3_ADC": {
+      "accepted": false,
+      "reason": "C_LDO_OUT_1.1: branch physical cell owner/ref/region mismatch",
+      "terminal_count": 68
+    },
+    "N5V_BUCK": {
+      "accepted": false,
+      "reason": "D_HOLD.2: branch pad outside source owner region",
+      "terminal_count": 34
+    }
+  },
+  "quiet_power_ref_count": 69,
+  "reviewed_qpre_cin3_clearance": {
+    "input_bbox": [
+      40.155,
+      101.855,
+      44.845,
+      105.145
+    ],
+    "input_ref": "C_IN3",
+    "quiet_bbox": [
+      44.025,
+      105.405,
+      47.975,
+      108.895
+    ],
+    "quiet_ref": "Q_PRE",
+    "y_gap_mm": 0.26
+  },
+  "status": "FAIL",
+  "two_tag_primary_lower_bound": {
+    "foreign_native_envelope_count": 21,
+    "foreign_native_envelope_refs": [
+      "C_ADC_3V3X_OK_VDD",
+      "C_ADC_B_AREG_100N",
+      "C_ADC_B_AVDD_10U",
+      "C_ADC_B_VREF_100N",
+      "C_ADC_B_VREF_10U",
+      "C_ADC_DIGITAL_OK",
+      "C_ADC_PWR_BAD",
+      "C_ADC_READY_BAD",
+      "C_ADC_START_DELAY",
+      "R_ADC_1V8_OK_BOT",
+      "R_ADC_1V8_OK_TOP",
+      "R_ADC_3V3X_OK_BOT",
+      "R_ADC_3V3X_OK_TOP",
+      "R_ADC_DELAY_GATE_PD",
+      "R_ADC_PWR_BAD_PD",
+      "R_ADC_START_DELAY",
+      "U_ADC_1V8_OK",
+      "U_ADC_3V3X_OK",
+      "U_ADC_B",
+      "U_ADC_PWR_BAD",
+      "U_ADC_READY_BAD"
+    ],
+    "minimum_primary_pad_hull_mm": [
+      21.72,
+      106.85,
+      138.45,
+      122.48
+    ],
+    "untagged_quiet_power_endpoints": [
+      {
+        "native_pad": "C_LDO_OUT_2.1",
+        "net": "N3V3_ADC"
+      },
+      {
+        "native_pad": "C_OPA_BULK.1",
+        "net": "N3V3_ADC"
+      },
+      {
+        "native_pad": "R_ADC_TOP.1",
+        "net": "N3V3_ADC"
+      },
+      {
+        "native_pad": "R_DUMP.1",
+        "net": "N3V3_ADC"
+      },
+      {
+        "native_pad": "R_LDO_PG_TOP.1",
+        "net": "N3V3_ADC"
+      },
+      {
+        "native_pad": "R_OPA_BLEED1.1",
+        "net": "N3V3_ADC"
+      },
+      {
+        "native_pad": "U_LDO.10",
+        "net": "N3V3_ADC"
+      },
+      {
+        "native_pad": "U_LDO.9",
+        "net": "N3V3_ADC"
+      },
+      {
+        "native_pad": "D_HOLD.2",
+        "net": "N5V_BUCK"
+      }
+    ]
+  }
+}
