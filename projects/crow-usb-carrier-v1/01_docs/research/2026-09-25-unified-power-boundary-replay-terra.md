@@ -106,4 +106,22 @@ selected-entry semantics.
    the remaining endpoints, and (d) a P2 filled-return/current/thermal proof.
    The port must remain `INCOMPLETE` until those receipts exist.
 
+## Exact unresolved-branch replay
+
+[`build_power_unresolved_branch_overlay.py`](build_power_unresolved_branch_overlay.py)
+implements the current-schema alternative without a shared port.  It retains
+the five local virtual repairs and adds four `unresolved_multiterminal_branch`
+records with all 171 native terminals, 171 P2 pad-to-unplaced-tree obligations,
+four filled-reference obligations, and 167 minimum P3 tree edges.  Its concise
+[receipt](power_unresolved_branch_receipt.json) records the replay.
+
+The current checker fails before it evaluates any allocation:
+`C_XU_VDDIO_35.1: branch pad outside source owner region`.  This is the
+`xmos_core`/`xmos_core_east` physical-cell split.  `unresolved_multiterminal_branch`
+accepts only the broad block rectangle and has no `physical_cell_id` authority.
+The resulting zero power diagnostics are therefore vacuous, and timing/global
+allocation results are unavailable.  The four exact branches cannot be used
+with the existing checker schema; adding them to canonical source would be an
+unresolved global failure, not a repair.
+
 No canonical requirements, board, stock, or dispatch state was changed.

@@ -1,0 +1,21 @@
+{
+  "kind": "research-unified-power-unresolved-branch-receipt",
+  "status": "FAIL",
+  "p1_accepted": false,
+  "routing_realized": false,
+  "checker_sha256": "05cf56078391cf4e092411dce2c81062ee28b86f7b606abb43af9774eed736d4",
+  "board_sha256": "d0c065dc16de081a5410b7a22e474f0a99c6fdeb0b7dd1f6c37422ace4a9fcf7",
+  "baseline_contract_sha256": "18936dc3f3dd6e01637182b2dab57cb472a31bfa2eb345a20bd4f7867708777f",
+  "overlay_result_sha256": "9db6d0423620c8d94a881b7dcaa0e4a5fe55e7bcc2f027db615a3e4ac5c157c3",
+  "branches": [
+    {"net": "N1V8", "terminals": 42, "p2_terminal_obligations": 42, "minimum_tree_edges": 41},
+    {"net": "N3V3X", "terminals": 27, "p2_terminal_obligations": 27, "minimum_tree_edges": 26},
+    {"net": "N3V3_ADC", "terminals": 68, "p2_terminal_obligations": 68, "minimum_tree_edges": 67},
+    {"net": "N5V_BUCK", "terminals": 34, "p2_terminal_obligations": 34, "minimum_tree_edges": 33}
+  ],
+  "total_terminals": 171,
+  "power_diagnostics": [],
+  "power_allocation_status": "NOT_EVALUATED",
+  "global_failure": "C_XU_VDDIO_35.1: branch pad outside source owner region",
+  "interpretation": "Zero power diagnostics is vacuous: global unresolved-branch validation stops allocation evaluation before timing/global diagnostics are reached. Existing schema lacks physical-cell ownership for unresolved branches."
+}
