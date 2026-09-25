@@ -1,0 +1,371 @@
+(version 1)
+(rule "USB_HS_width"
+  (condition "A.NetClass == 'USB_HS'")
+  (constraint track_width (min 0.41mm)))
+(rule "USB_HS_diffpair"
+  (condition "A.NetClass == 'USB_HS'")
+  (constraint diff_pair_gap (min 0.145mm) (opt 0.15mm)))
+(rule "INPUT_TRUNK_width"
+  (condition "A.NetClass == 'INPUT_TRUNK'")
+  (constraint track_width (min 1.2mm)))
+(rule "PARENT_5V_width"
+  (condition "A.NetClass == 'PARENT_5V'")
+  (constraint track_width (min 1.0mm)))
+(rule "DIGITAL_POWER_width"
+  (condition "A.NetClass == 'DIGITAL_POWER'")
+  (constraint track_width (min 0.6mm)))
+(rule "POD_POWER_width"
+  (condition "A.NetClass == 'POD_POWER'")
+  (constraint track_width (min 0.5mm)))
+(rule "QUIET_POWER_width"
+  (condition "A.NetClass == 'QUIET_POWER'")
+  (constraint track_width (min 0.5mm)))
+(rule "intrinsic_pad_clr_jlc_1oz_smd_pad_015_U_XU"
+  (condition "A.Type == 'Pad' && B.Type == 'Pad' && A.memberOfFootprint('U_XU') && B.memberOfFootprint('U_XU')")
+  (constraint clearance (min 0.15mm)))
+(rule "intrinsic_pad_clr_jlc_1oz_smd_pad_015_U_ISO1"
+  (condition "A.Type == 'Pad' && B.Type == 'Pad' && A.memberOfFootprint('U_ISO1') && B.memberOfFootprint('U_ISO1')")
+  (constraint clearance (min 0.15mm)))
+(rule "intrinsic_pad_clr_jlc_1oz_smd_pad_015_U_ISO2"
+  (condition "A.Type == 'Pad' && B.Type == 'Pad' && A.memberOfFootprint('U_ISO2') && B.memberOfFootprint('U_ISO2')")
+  (constraint clearance (min 0.15mm)))
+(rule "intrinsic_pad_clr_jlc_1oz_smd_pad_015_U_ISO3"
+  (condition "A.Type == 'Pad' && B.Type == 'Pad' && A.memberOfFootprint('U_ISO3') && B.memberOfFootprint('U_ISO3')")
+  (constraint clearance (min 0.15mm)))
+(rule "intrinsic_pad_clr_jlc_1oz_smd_pad_015_U_ISO4"
+  (condition "A.Type == 'Pad' && B.Type == 'Pad' && A.memberOfFootprint('U_ISO4') && B.memberOfFootprint('U_ISO4')")
+  (constraint clearance (min 0.15mm)))
+(rule "intrinsic_pad_clr_jlc_1oz_smd_pad_015_U_ISO5"
+  (condition "A.Type == 'Pad' && B.Type == 'Pad' && A.memberOfFootprint('U_ISO5') && B.memberOfFootprint('U_ISO5')")
+  (constraint clearance (min 0.15mm)))
+(rule "intrinsic_pad_clr_jlc_1oz_smd_pad_015_U_ISO6"
+  (condition "A.Type == 'Pad' && B.Type == 'Pad' && A.memberOfFootprint('U_ISO6') && B.memberOfFootprint('U_ISO6')")
+  (constraint clearance (min 0.15mm)))
+(rule "intrinsic_pad_clr_jlc_1oz_smd_pad_015_U_ISO7"
+  (condition "A.Type == 'Pad' && B.Type == 'Pad' && A.memberOfFootprint('U_ISO7') && B.memberOfFootprint('U_ISO7')")
+  (constraint clearance (min 0.15mm)))
+(rule "intrinsic_pad_clr_jlc_1oz_smd_pad_015_U_ISO8"
+  (condition "A.Type == 'Pad' && B.Type == 'Pad' && A.memberOfFootprint('U_ISO8') && B.memberOfFootprint('U_ISO8')")
+  (constraint clearance (min 0.15mm)))
+# BEGIN TMUX4827_YBH_B2_POFV
+(rule "tmux_ordinary_annular_floor"
+  (constraint annular_width (min 0.13mm)))
+(rule "tmux_ordinary_via_floor"
+  (condition "A.Type == 'Via'")
+  (constraint via_diameter (min 0.45mm))
+  (constraint annular_width (min 0.13mm)))
+(rule "tmux_ordinary_hole_clearance"
+  (constraint hole_clearance (min 0.25mm)))
+(rule "tmux4827_b2_pofv_U_ISO1_via"
+  (condition "A.Type == 'Via' && A.NetName == 'GND' && A.insideArea('tmux4827_b2_pofv_U_ISO1')")
+  (constraint via_diameter (min 0.35mm))
+  (constraint annular_width (min 0.075mm))
+  (constraint hole_size (min 0.20mm)))
+(rule "tmux4827_b2_pofv_U_ISO1_pad_2"
+  (condition "((A.Type == 'Pad' && B.Type == 'Pad' && A.Reference == 'U_ISO1' && B.Reference == 'U_ISO1' && A.Pad_Number == '5' && B.Pad_Number == '2') || (A.Type == 'Pad' && B.Type == 'Pad' && A.Reference == 'U_ISO1' && B.Reference == 'U_ISO1' && A.Pad_Number == '2' && B.Pad_Number == '5')) && A.NetName != B.NetName")
+  (constraint clearance (min 0.10mm)))
+(rule "tmux4827_b2_pofv_U_ISO1_via_pad_2"
+  (condition "((A.Type == 'Via' && A.NetName == 'GND' && A.insideArea('tmux4827_b2_pofv_U_ISO1') && B.Type == 'Pad' && B.Reference == 'U_ISO1' && B.Pad_Number == '2') || (B.Type == 'Via' && B.NetName == 'GND' && B.insideArea('tmux4827_b2_pofv_U_ISO1') && A.Type == 'Pad' && A.Reference == 'U_ISO1' && A.Pad_Number == '2')) && A.NetName != B.NetName")
+  (constraint clearance (min 0.10mm))
+  (constraint hole_clearance (min 0.175mm)))
+(rule "tmux4827_b2_pofv_U_ISO1_pad_4"
+  (condition "((A.Type == 'Pad' && B.Type == 'Pad' && A.Reference == 'U_ISO1' && B.Reference == 'U_ISO1' && A.Pad_Number == '5' && B.Pad_Number == '4') || (A.Type == 'Pad' && B.Type == 'Pad' && A.Reference == 'U_ISO1' && B.Reference == 'U_ISO1' && A.Pad_Number == '4' && B.Pad_Number == '5')) && A.NetName != B.NetName")
+  (constraint clearance (min 0.10mm)))
+(rule "tmux4827_b2_pofv_U_ISO1_via_pad_4"
+  (condition "((A.Type == 'Via' && A.NetName == 'GND' && A.insideArea('tmux4827_b2_pofv_U_ISO1') && B.Type == 'Pad' && B.Reference == 'U_ISO1' && B.Pad_Number == '4') || (B.Type == 'Via' && B.NetName == 'GND' && B.insideArea('tmux4827_b2_pofv_U_ISO1') && A.Type == 'Pad' && A.Reference == 'U_ISO1' && A.Pad_Number == '4')) && A.NetName != B.NetName")
+  (constraint clearance (min 0.10mm))
+  (constraint hole_clearance (min 0.175mm)))
+(rule "tmux4827_b2_pofv_U_ISO1_pad_6"
+  (condition "((A.Type == 'Pad' && B.Type == 'Pad' && A.Reference == 'U_ISO1' && B.Reference == 'U_ISO1' && A.Pad_Number == '5' && B.Pad_Number == '6') || (A.Type == 'Pad' && B.Type == 'Pad' && A.Reference == 'U_ISO1' && B.Reference == 'U_ISO1' && A.Pad_Number == '6' && B.Pad_Number == '5')) && A.NetName != B.NetName")
+  (constraint clearance (min 0.10mm)))
+(rule "tmux4827_b2_pofv_U_ISO1_via_pad_6"
+  (condition "((A.Type == 'Via' && A.NetName == 'GND' && A.insideArea('tmux4827_b2_pofv_U_ISO1') && B.Type == 'Pad' && B.Reference == 'U_ISO1' && B.Pad_Number == '6') || (B.Type == 'Via' && B.NetName == 'GND' && B.insideArea('tmux4827_b2_pofv_U_ISO1') && A.Type == 'Pad' && A.Reference == 'U_ISO1' && A.Pad_Number == '6')) && A.NetName != B.NetName")
+  (constraint clearance (min 0.10mm))
+  (constraint hole_clearance (min 0.175mm)))
+(rule "tmux4827_b2_pofv_U_ISO1_pad_8"
+  (condition "((A.Type == 'Pad' && B.Type == 'Pad' && A.Reference == 'U_ISO1' && B.Reference == 'U_ISO1' && A.Pad_Number == '5' && B.Pad_Number == '8') || (A.Type == 'Pad' && B.Type == 'Pad' && A.Reference == 'U_ISO1' && B.Reference == 'U_ISO1' && A.Pad_Number == '8' && B.Pad_Number == '5')) && A.NetName != B.NetName")
+  (constraint clearance (min 0.10mm)))
+(rule "tmux4827_b2_pofv_U_ISO1_via_pad_8"
+  (condition "((A.Type == 'Via' && A.NetName == 'GND' && A.insideArea('tmux4827_b2_pofv_U_ISO1') && B.Type == 'Pad' && B.Reference == 'U_ISO1' && B.Pad_Number == '8') || (B.Type == 'Via' && B.NetName == 'GND' && B.insideArea('tmux4827_b2_pofv_U_ISO1') && A.Type == 'Pad' && A.Reference == 'U_ISO1' && A.Pad_Number == '8')) && A.NetName != B.NetName")
+  (constraint clearance (min 0.10mm))
+  (constraint hole_clearance (min 0.175mm)))
+(rule "tmux_perimeter_U_ISO1_7_8"
+  (condition "(A.Type == 'Pad' && B.Type == 'Pad' && A.Reference == 'U_ISO1' && B.Reference == 'U_ISO1' && A.Pad_Number == '7' && B.Pad_Number == '8' && A.NetName == 'FILTER1P' && B.NetName == 'N5V_LDO_HOLD') || (B.Type == 'Pad' && A.Type == 'Pad' && B.Reference == 'U_ISO1' && A.Reference == 'U_ISO1' && B.Pad_Number == '7' && A.Pad_Number == '8' && B.NetName == 'FILTER1P' && A.NetName == 'N5V_LDO_HOLD')")
+  (constraint clearance (min 0.15mm)))
+(rule "tmux_perimeter_U_ISO1_9_8"
+  (condition "(A.Type == 'Pad' && B.Type == 'Pad' && A.Reference == 'U_ISO1' && B.Reference == 'U_ISO1' && A.Pad_Number == '9' && B.Pad_Number == '8' && A.NetName == 'FILTER1N' && B.NetName == 'N5V_LDO_HOLD') || (B.Type == 'Pad' && A.Type == 'Pad' && B.Reference == 'U_ISO1' && A.Reference == 'U_ISO1' && B.Pad_Number == '9' && A.Pad_Number == '8' && B.NetName == 'FILTER1N' && A.NetName == 'N5V_LDO_HOLD')")
+  (constraint clearance (min 0.15mm)))
+(rule "tmux4827_b2_pofv_U_ISO2_via"
+  (condition "A.Type == 'Via' && A.NetName == 'GND' && A.insideArea('tmux4827_b2_pofv_U_ISO2')")
+  (constraint via_diameter (min 0.35mm))
+  (constraint annular_width (min 0.075mm))
+  (constraint hole_size (min 0.20mm)))
+(rule "tmux4827_b2_pofv_U_ISO2_pad_2"
+  (condition "((A.Type == 'Pad' && B.Type == 'Pad' && A.Reference == 'U_ISO2' && B.Reference == 'U_ISO2' && A.Pad_Number == '5' && B.Pad_Number == '2') || (A.Type == 'Pad' && B.Type == 'Pad' && A.Reference == 'U_ISO2' && B.Reference == 'U_ISO2' && A.Pad_Number == '2' && B.Pad_Number == '5')) && A.NetName != B.NetName")
+  (constraint clearance (min 0.10mm)))
+(rule "tmux4827_b2_pofv_U_ISO2_via_pad_2"
+  (condition "((A.Type == 'Via' && A.NetName == 'GND' && A.insideArea('tmux4827_b2_pofv_U_ISO2') && B.Type == 'Pad' && B.Reference == 'U_ISO2' && B.Pad_Number == '2') || (B.Type == 'Via' && B.NetName == 'GND' && B.insideArea('tmux4827_b2_pofv_U_ISO2') && A.Type == 'Pad' && A.Reference == 'U_ISO2' && A.Pad_Number == '2')) && A.NetName != B.NetName")
+  (constraint clearance (min 0.10mm))
+  (constraint hole_clearance (min 0.175mm)))
+(rule "tmux4827_b2_pofv_U_ISO2_pad_4"
+  (condition "((A.Type == 'Pad' && B.Type == 'Pad' && A.Reference == 'U_ISO2' && B.Reference == 'U_ISO2' && A.Pad_Number == '5' && B.Pad_Number == '4') || (A.Type == 'Pad' && B.Type == 'Pad' && A.Reference == 'U_ISO2' && B.Reference == 'U_ISO2' && A.Pad_Number == '4' && B.Pad_Number == '5')) && A.NetName != B.NetName")
+  (constraint clearance (min 0.10mm)))
+(rule "tmux4827_b2_pofv_U_ISO2_via_pad_4"
+  (condition "((A.Type == 'Via' && A.NetName == 'GND' && A.insideArea('tmux4827_b2_pofv_U_ISO2') && B.Type == 'Pad' && B.Reference == 'U_ISO2' && B.Pad_Number == '4') || (B.Type == 'Via' && B.NetName == 'GND' && B.insideArea('tmux4827_b2_pofv_U_ISO2') && A.Type == 'Pad' && A.Reference == 'U_ISO2' && A.Pad_Number == '4')) && A.NetName != B.NetName")
+  (constraint clearance (min 0.10mm))
+  (constraint hole_clearance (min 0.175mm)))
+(rule "tmux4827_b2_pofv_U_ISO2_pad_6"
+  (condition "((A.Type == 'Pad' && B.Type == 'Pad' && A.Reference == 'U_ISO2' && B.Reference == 'U_ISO2' && A.Pad_Number == '5' && B.Pad_Number == '6') || (A.Type == 'Pad' && B.Type == 'Pad' && A.Reference == 'U_ISO2' && B.Reference == 'U_ISO2' && A.Pad_Number == '6' && B.Pad_Number == '5')) && A.NetName != B.NetName")
+  (constraint clearance (min 0.10mm)))
+(rule "tmux4827_b2_pofv_U_ISO2_via_pad_6"
+  (condition "((A.Type == 'Via' && A.NetName == 'GND' && A.insideArea('tmux4827_b2_pofv_U_ISO2') && B.Type == 'Pad' && B.Reference == 'U_ISO2' && B.Pad_Number == '6') || (B.Type == 'Via' && B.NetName == 'GND' && B.insideArea('tmux4827_b2_pofv_U_ISO2') && A.Type == 'Pad' && A.Reference == 'U_ISO2' && A.Pad_Number == '6')) && A.NetName != B.NetName")
+  (constraint clearance (min 0.10mm))
+  (constraint hole_clearance (min 0.175mm)))
+(rule "tmux4827_b2_pofv_U_ISO2_pad_8"
+  (condition "((A.Type == 'Pad' && B.Type == 'Pad' && A.Reference == 'U_ISO2' && B.Reference == 'U_ISO2' && A.Pad_Number == '5' && B.Pad_Number == '8') || (A.Type == 'Pad' && B.Type == 'Pad' && A.Reference == 'U_ISO2' && B.Reference == 'U_ISO2' && A.Pad_Number == '8' && B.Pad_Number == '5')) && A.NetName != B.NetName")
+  (constraint clearance (min 0.10mm)))
+(rule "tmux4827_b2_pofv_U_ISO2_via_pad_8"
+  (condition "((A.Type == 'Via' && A.NetName == 'GND' && A.insideArea('tmux4827_b2_pofv_U_ISO2') && B.Type == 'Pad' && B.Reference == 'U_ISO2' && B.Pad_Number == '8') || (B.Type == 'Via' && B.NetName == 'GND' && B.insideArea('tmux4827_b2_pofv_U_ISO2') && A.Type == 'Pad' && A.Reference == 'U_ISO2' && A.Pad_Number == '8')) && A.NetName != B.NetName")
+  (constraint clearance (min 0.10mm))
+  (constraint hole_clearance (min 0.175mm)))
+(rule "tmux_perimeter_U_ISO2_7_8"
+  (condition "(A.Type == 'Pad' && B.Type == 'Pad' && A.Reference == 'U_ISO2' && B.Reference == 'U_ISO2' && A.Pad_Number == '7' && B.Pad_Number == '8' && A.NetName == 'FILTER2P' && B.NetName == 'N5V_LDO_HOLD') || (B.Type == 'Pad' && A.Type == 'Pad' && B.Reference == 'U_ISO2' && A.Reference == 'U_ISO2' && B.Pad_Number == '7' && A.Pad_Number == '8' && B.NetName == 'FILTER2P' && A.NetName == 'N5V_LDO_HOLD')")
+  (constraint clearance (min 0.15mm)))
+(rule "tmux_perimeter_U_ISO2_9_8"
+  (condition "(A.Type == 'Pad' && B.Type == 'Pad' && A.Reference == 'U_ISO2' && B.Reference == 'U_ISO2' && A.Pad_Number == '9' && B.Pad_Number == '8' && A.NetName == 'FILTER2N' && B.NetName == 'N5V_LDO_HOLD') || (B.Type == 'Pad' && A.Type == 'Pad' && B.Reference == 'U_ISO2' && A.Reference == 'U_ISO2' && B.Pad_Number == '9' && A.Pad_Number == '8' && B.NetName == 'FILTER2N' && A.NetName == 'N5V_LDO_HOLD')")
+  (constraint clearance (min 0.15mm)))
+(rule "tmux4827_b2_pofv_U_ISO3_via"
+  (condition "A.Type == 'Via' && A.NetName == 'GND' && A.insideArea('tmux4827_b2_pofv_U_ISO3')")
+  (constraint via_diameter (min 0.35mm))
+  (constraint annular_width (min 0.075mm))
+  (constraint hole_size (min 0.20mm)))
+(rule "tmux4827_b2_pofv_U_ISO3_pad_2"
+  (condition "((A.Type == 'Pad' && B.Type == 'Pad' && A.Reference == 'U_ISO3' && B.Reference == 'U_ISO3' && A.Pad_Number == '5' && B.Pad_Number == '2') || (A.Type == 'Pad' && B.Type == 'Pad' && A.Reference == 'U_ISO3' && B.Reference == 'U_ISO3' && A.Pad_Number == '2' && B.Pad_Number == '5')) && A.NetName != B.NetName")
+  (constraint clearance (min 0.10mm)))
+(rule "tmux4827_b2_pofv_U_ISO3_via_pad_2"
+  (condition "((A.Type == 'Via' && A.NetName == 'GND' && A.insideArea('tmux4827_b2_pofv_U_ISO3') && B.Type == 'Pad' && B.Reference == 'U_ISO3' && B.Pad_Number == '2') || (B.Type == 'Via' && B.NetName == 'GND' && B.insideArea('tmux4827_b2_pofv_U_ISO3') && A.Type == 'Pad' && A.Reference == 'U_ISO3' && A.Pad_Number == '2')) && A.NetName != B.NetName")
+  (constraint clearance (min 0.10mm))
+  (constraint hole_clearance (min 0.175mm)))
+(rule "tmux4827_b2_pofv_U_ISO3_pad_4"
+  (condition "((A.Type == 'Pad' && B.Type == 'Pad' && A.Reference == 'U_ISO3' && B.Reference == 'U_ISO3' && A.Pad_Number == '5' && B.Pad_Number == '4') || (A.Type == 'Pad' && B.Type == 'Pad' && A.Reference == 'U_ISO3' && B.Reference == 'U_ISO3' && A.Pad_Number == '4' && B.Pad_Number == '5')) && A.NetName != B.NetName")
+  (constraint clearance (min 0.10mm)))
+(rule "tmux4827_b2_pofv_U_ISO3_via_pad_4"
+  (condition "((A.Type == 'Via' && A.NetName == 'GND' && A.insideArea('tmux4827_b2_pofv_U_ISO3') && B.Type == 'Pad' && B.Reference == 'U_ISO3' && B.Pad_Number == '4') || (B.Type == 'Via' && B.NetName == 'GND' && B.insideArea('tmux4827_b2_pofv_U_ISO3') && A.Type == 'Pad' && A.Reference == 'U_ISO3' && A.Pad_Number == '4')) && A.NetName != B.NetName")
+  (constraint clearance (min 0.10mm))
+  (constraint hole_clearance (min 0.175mm)))
+(rule "tmux4827_b2_pofv_U_ISO3_pad_6"
+  (condition "((A.Type == 'Pad' && B.Type == 'Pad' && A.Reference == 'U_ISO3' && B.Reference == 'U_ISO3' && A.Pad_Number == '5' && B.Pad_Number == '6') || (A.Type == 'Pad' && B.Type == 'Pad' && A.Reference == 'U_ISO3' && B.Reference == 'U_ISO3' && A.Pad_Number == '6' && B.Pad_Number == '5')) && A.NetName != B.NetName")
+  (constraint clearance (min 0.10mm)))
+(rule "tmux4827_b2_pofv_U_ISO3_via_pad_6"
+  (condition "((A.Type == 'Via' && A.NetName == 'GND' && A.insideArea('tmux4827_b2_pofv_U_ISO3') && B.Type == 'Pad' && B.Reference == 'U_ISO3' && B.Pad_Number == '6') || (B.Type == 'Via' && B.NetName == 'GND' && B.insideArea('tmux4827_b2_pofv_U_ISO3') && A.Type == 'Pad' && A.Reference == 'U_ISO3' && A.Pad_Number == '6')) && A.NetName != B.NetName")
+  (constraint clearance (min 0.10mm))
+  (constraint hole_clearance (min 0.175mm)))
+(rule "tmux4827_b2_pofv_U_ISO3_pad_8"
+  (condition "((A.Type == 'Pad' && B.Type == 'Pad' && A.Reference == 'U_ISO3' && B.Reference == 'U_ISO3' && A.Pad_Number == '5' && B.Pad_Number == '8') || (A.Type == 'Pad' && B.Type == 'Pad' && A.Reference == 'U_ISO3' && B.Reference == 'U_ISO3' && A.Pad_Number == '8' && B.Pad_Number == '5')) && A.NetName != B.NetName")
+  (constraint clearance (min 0.10mm)))
+(rule "tmux4827_b2_pofv_U_ISO3_via_pad_8"
+  (condition "((A.Type == 'Via' && A.NetName == 'GND' && A.insideArea('tmux4827_b2_pofv_U_ISO3') && B.Type == 'Pad' && B.Reference == 'U_ISO3' && B.Pad_Number == '8') || (B.Type == 'Via' && B.NetName == 'GND' && B.insideArea('tmux4827_b2_pofv_U_ISO3') && A.Type == 'Pad' && A.Reference == 'U_ISO3' && A.Pad_Number == '8')) && A.NetName != B.NetName")
+  (constraint clearance (min 0.10mm))
+  (constraint hole_clearance (min 0.175mm)))
+(rule "tmux_perimeter_U_ISO3_7_8"
+  (condition "(A.Type == 'Pad' && B.Type == 'Pad' && A.Reference == 'U_ISO3' && B.Reference == 'U_ISO3' && A.Pad_Number == '7' && B.Pad_Number == '8' && A.NetName == 'FILTER3P' && B.NetName == 'N5V_LDO_HOLD') || (B.Type == 'Pad' && A.Type == 'Pad' && B.Reference == 'U_ISO3' && A.Reference == 'U_ISO3' && B.Pad_Number == '7' && A.Pad_Number == '8' && B.NetName == 'FILTER3P' && A.NetName == 'N5V_LDO_HOLD')")
+  (constraint clearance (min 0.15mm)))
+(rule "tmux_perimeter_U_ISO3_9_8"
+  (condition "(A.Type == 'Pad' && B.Type == 'Pad' && A.Reference == 'U_ISO3' && B.Reference == 'U_ISO3' && A.Pad_Number == '9' && B.Pad_Number == '8' && A.NetName == 'FILTER3N' && B.NetName == 'N5V_LDO_HOLD') || (B.Type == 'Pad' && A.Type == 'Pad' && B.Reference == 'U_ISO3' && A.Reference == 'U_ISO3' && B.Pad_Number == '9' && A.Pad_Number == '8' && B.NetName == 'FILTER3N' && A.NetName == 'N5V_LDO_HOLD')")
+  (constraint clearance (min 0.15mm)))
+(rule "tmux4827_b2_pofv_U_ISO4_via"
+  (condition "A.Type == 'Via' && A.NetName == 'GND' && A.insideArea('tmux4827_b2_pofv_U_ISO4')")
+  (constraint via_diameter (min 0.35mm))
+  (constraint annular_width (min 0.075mm))
+  (constraint hole_size (min 0.20mm)))
+(rule "tmux4827_b2_pofv_U_ISO4_pad_2"
+  (condition "((A.Type == 'Pad' && B.Type == 'Pad' && A.Reference == 'U_ISO4' && B.Reference == 'U_ISO4' && A.Pad_Number == '5' && B.Pad_Number == '2') || (A.Type == 'Pad' && B.Type == 'Pad' && A.Reference == 'U_ISO4' && B.Reference == 'U_ISO4' && A.Pad_Number == '2' && B.Pad_Number == '5')) && A.NetName != B.NetName")
+  (constraint clearance (min 0.10mm)))
+(rule "tmux4827_b2_pofv_U_ISO4_via_pad_2"
+  (condition "((A.Type == 'Via' && A.NetName == 'GND' && A.insideArea('tmux4827_b2_pofv_U_ISO4') && B.Type == 'Pad' && B.Reference == 'U_ISO4' && B.Pad_Number == '2') || (B.Type == 'Via' && B.NetName == 'GND' && B.insideArea('tmux4827_b2_pofv_U_ISO4') && A.Type == 'Pad' && A.Reference == 'U_ISO4' && A.Pad_Number == '2')) && A.NetName != B.NetName")
+  (constraint clearance (min 0.10mm))
+  (constraint hole_clearance (min 0.175mm)))
+(rule "tmux4827_b2_pofv_U_ISO4_pad_4"
+  (condition "((A.Type == 'Pad' && B.Type == 'Pad' && A.Reference == 'U_ISO4' && B.Reference == 'U_ISO4' && A.Pad_Number == '5' && B.Pad_Number == '4') || (A.Type == 'Pad' && B.Type == 'Pad' && A.Reference == 'U_ISO4' && B.Reference == 'U_ISO4' && A.Pad_Number == '4' && B.Pad_Number == '5')) && A.NetName != B.NetName")
+  (constraint clearance (min 0.10mm)))
+(rule "tmux4827_b2_pofv_U_ISO4_via_pad_4"
+  (condition "((A.Type == 'Via' && A.NetName == 'GND' && A.insideArea('tmux4827_b2_pofv_U_ISO4') && B.Type == 'Pad' && B.Reference == 'U_ISO4' && B.Pad_Number == '4') || (B.Type == 'Via' && B.NetName == 'GND' && B.insideArea('tmux4827_b2_pofv_U_ISO4') && A.Type == 'Pad' && A.Reference == 'U_ISO4' && A.Pad_Number == '4')) && A.NetName != B.NetName")
+  (constraint clearance (min 0.10mm))
+  (constraint hole_clearance (min 0.175mm)))
+(rule "tmux4827_b2_pofv_U_ISO4_pad_6"
+  (condition "((A.Type == 'Pad' && B.Type == 'Pad' && A.Reference == 'U_ISO4' && B.Reference == 'U_ISO4' && A.Pad_Number == '5' && B.Pad_Number == '6') || (A.Type == 'Pad' && B.Type == 'Pad' && A.Reference == 'U_ISO4' && B.Reference == 'U_ISO4' && A.Pad_Number == '6' && B.Pad_Number == '5')) && A.NetName != B.NetName")
+  (constraint clearance (min 0.10mm)))
+(rule "tmux4827_b2_pofv_U_ISO4_via_pad_6"
+  (condition "((A.Type == 'Via' && A.NetName == 'GND' && A.insideArea('tmux4827_b2_pofv_U_ISO4') && B.Type == 'Pad' && B.Reference == 'U_ISO4' && B.Pad_Number == '6') || (B.Type == 'Via' && B.NetName == 'GND' && B.insideArea('tmux4827_b2_pofv_U_ISO4') && A.Type == 'Pad' && A.Reference == 'U_ISO4' && A.Pad_Number == '6')) && A.NetName != B.NetName")
+  (constraint clearance (min 0.10mm))
+  (constraint hole_clearance (min 0.175mm)))
+(rule "tmux4827_b2_pofv_U_ISO4_pad_8"
+  (condition "((A.Type == 'Pad' && B.Type == 'Pad' && A.Reference == 'U_ISO4' && B.Reference == 'U_ISO4' && A.Pad_Number == '5' && B.Pad_Number == '8') || (A.Type == 'Pad' && B.Type == 'Pad' && A.Reference == 'U_ISO4' && B.Reference == 'U_ISO4' && A.Pad_Number == '8' && B.Pad_Number == '5')) && A.NetName != B.NetName")
+  (constraint clearance (min 0.10mm)))
+(rule "tmux4827_b2_pofv_U_ISO4_via_pad_8"
+  (condition "((A.Type == 'Via' && A.NetName == 'GND' && A.insideArea('tmux4827_b2_pofv_U_ISO4') && B.Type == 'Pad' && B.Reference == 'U_ISO4' && B.Pad_Number == '8') || (B.Type == 'Via' && B.NetName == 'GND' && B.insideArea('tmux4827_b2_pofv_U_ISO4') && A.Type == 'Pad' && A.Reference == 'U_ISO4' && A.Pad_Number == '8')) && A.NetName != B.NetName")
+  (constraint clearance (min 0.10mm))
+  (constraint hole_clearance (min 0.175mm)))
+(rule "tmux_perimeter_U_ISO4_7_8"
+  (condition "(A.Type == 'Pad' && B.Type == 'Pad' && A.Reference == 'U_ISO4' && B.Reference == 'U_ISO4' && A.Pad_Number == '7' && B.Pad_Number == '8' && A.NetName == 'FILTER4P' && B.NetName == 'N5V_LDO_HOLD') || (B.Type == 'Pad' && A.Type == 'Pad' && B.Reference == 'U_ISO4' && A.Reference == 'U_ISO4' && B.Pad_Number == '7' && A.Pad_Number == '8' && B.NetName == 'FILTER4P' && A.NetName == 'N5V_LDO_HOLD')")
+  (constraint clearance (min 0.15mm)))
+(rule "tmux_perimeter_U_ISO4_9_8"
+  (condition "(A.Type == 'Pad' && B.Type == 'Pad' && A.Reference == 'U_ISO4' && B.Reference == 'U_ISO4' && A.Pad_Number == '9' && B.Pad_Number == '8' && A.NetName == 'FILTER4N' && B.NetName == 'N5V_LDO_HOLD') || (B.Type == 'Pad' && A.Type == 'Pad' && B.Reference == 'U_ISO4' && A.Reference == 'U_ISO4' && B.Pad_Number == '9' && A.Pad_Number == '8' && B.NetName == 'FILTER4N' && A.NetName == 'N5V_LDO_HOLD')")
+  (constraint clearance (min 0.15mm)))
+(rule "tmux4827_b2_pofv_U_ISO5_via"
+  (condition "A.Type == 'Via' && A.NetName == 'GND' && A.insideArea('tmux4827_b2_pofv_U_ISO5')")
+  (constraint via_diameter (min 0.35mm))
+  (constraint annular_width (min 0.075mm))
+  (constraint hole_size (min 0.20mm)))
+(rule "tmux4827_b2_pofv_U_ISO5_pad_2"
+  (condition "((A.Type == 'Pad' && B.Type == 'Pad' && A.Reference == 'U_ISO5' && B.Reference == 'U_ISO5' && A.Pad_Number == '5' && B.Pad_Number == '2') || (A.Type == 'Pad' && B.Type == 'Pad' && A.Reference == 'U_ISO5' && B.Reference == 'U_ISO5' && A.Pad_Number == '2' && B.Pad_Number == '5')) && A.NetName != B.NetName")
+  (constraint clearance (min 0.10mm)))
+(rule "tmux4827_b2_pofv_U_ISO5_via_pad_2"
+  (condition "((A.Type == 'Via' && A.NetName == 'GND' && A.insideArea('tmux4827_b2_pofv_U_ISO5') && B.Type == 'Pad' && B.Reference == 'U_ISO5' && B.Pad_Number == '2') || (B.Type == 'Via' && B.NetName == 'GND' && B.insideArea('tmux4827_b2_pofv_U_ISO5') && A.Type == 'Pad' && A.Reference == 'U_ISO5' && A.Pad_Number == '2')) && A.NetName != B.NetName")
+  (constraint clearance (min 0.10mm))
+  (constraint hole_clearance (min 0.175mm)))
+(rule "tmux4827_b2_pofv_U_ISO5_pad_4"
+  (condition "((A.Type == 'Pad' && B.Type == 'Pad' && A.Reference == 'U_ISO5' && B.Reference == 'U_ISO5' && A.Pad_Number == '5' && B.Pad_Number == '4') || (A.Type == 'Pad' && B.Type == 'Pad' && A.Reference == 'U_ISO5' && B.Reference == 'U_ISO5' && A.Pad_Number == '4' && B.Pad_Number == '5')) && A.NetName != B.NetName")
+  (constraint clearance (min 0.10mm)))
+(rule "tmux4827_b2_pofv_U_ISO5_via_pad_4"
+  (condition "((A.Type == 'Via' && A.NetName == 'GND' && A.insideArea('tmux4827_b2_pofv_U_ISO5') && B.Type == 'Pad' && B.Reference == 'U_ISO5' && B.Pad_Number == '4') || (B.Type == 'Via' && B.NetName == 'GND' && B.insideArea('tmux4827_b2_pofv_U_ISO5') && A.Type == 'Pad' && A.Reference == 'U_ISO5' && A.Pad_Number == '4')) && A.NetName != B.NetName")
+  (constraint clearance (min 0.10mm))
+  (constraint hole_clearance (min 0.175mm)))
+(rule "tmux4827_b2_pofv_U_ISO5_pad_6"
+  (condition "((A.Type == 'Pad' && B.Type == 'Pad' && A.Reference == 'U_ISO5' && B.Reference == 'U_ISO5' && A.Pad_Number == '5' && B.Pad_Number == '6') || (A.Type == 'Pad' && B.Type == 'Pad' && A.Reference == 'U_ISO5' && B.Reference == 'U_ISO5' && A.Pad_Number == '6' && B.Pad_Number == '5')) && A.NetName != B.NetName")
+  (constraint clearance (min 0.10mm)))
+(rule "tmux4827_b2_pofv_U_ISO5_via_pad_6"
+  (condition "((A.Type == 'Via' && A.NetName == 'GND' && A.insideArea('tmux4827_b2_pofv_U_ISO5') && B.Type == 'Pad' && B.Reference == 'U_ISO5' && B.Pad_Number == '6') || (B.Type == 'Via' && B.NetName == 'GND' && B.insideArea('tmux4827_b2_pofv_U_ISO5') && A.Type == 'Pad' && A.Reference == 'U_ISO5' && A.Pad_Number == '6')) && A.NetName != B.NetName")
+  (constraint clearance (min 0.10mm))
+  (constraint hole_clearance (min 0.175mm)))
+(rule "tmux4827_b2_pofv_U_ISO5_pad_8"
+  (condition "((A.Type == 'Pad' && B.Type == 'Pad' && A.Reference == 'U_ISO5' && B.Reference == 'U_ISO5' && A.Pad_Number == '5' && B.Pad_Number == '8') || (A.Type == 'Pad' && B.Type == 'Pad' && A.Reference == 'U_ISO5' && B.Reference == 'U_ISO5' && A.Pad_Number == '8' && B.Pad_Number == '5')) && A.NetName != B.NetName")
+  (constraint clearance (min 0.10mm)))
+(rule "tmux4827_b2_pofv_U_ISO5_via_pad_8"
+  (condition "((A.Type == 'Via' && A.NetName == 'GND' && A.insideArea('tmux4827_b2_pofv_U_ISO5') && B.Type == 'Pad' && B.Reference == 'U_ISO5' && B.Pad_Number == '8') || (B.Type == 'Via' && B.NetName == 'GND' && B.insideArea('tmux4827_b2_pofv_U_ISO5') && A.Type == 'Pad' && A.Reference == 'U_ISO5' && A.Pad_Number == '8')) && A.NetName != B.NetName")
+  (constraint clearance (min 0.10mm))
+  (constraint hole_clearance (min 0.175mm)))
+(rule "tmux_perimeter_U_ISO5_7_8"
+  (condition "(A.Type == 'Pad' && B.Type == 'Pad' && A.Reference == 'U_ISO5' && B.Reference == 'U_ISO5' && A.Pad_Number == '7' && B.Pad_Number == '8' && A.NetName == 'FILTER5P' && B.NetName == 'N5V_LDO_HOLD') || (B.Type == 'Pad' && A.Type == 'Pad' && B.Reference == 'U_ISO5' && A.Reference == 'U_ISO5' && B.Pad_Number == '7' && A.Pad_Number == '8' && B.NetName == 'FILTER5P' && A.NetName == 'N5V_LDO_HOLD')")
+  (constraint clearance (min 0.15mm)))
+(rule "tmux_perimeter_U_ISO5_9_8"
+  (condition "(A.Type == 'Pad' && B.Type == 'Pad' && A.Reference == 'U_ISO5' && B.Reference == 'U_ISO5' && A.Pad_Number == '9' && B.Pad_Number == '8' && A.NetName == 'FILTER5N' && B.NetName == 'N5V_LDO_HOLD') || (B.Type == 'Pad' && A.Type == 'Pad' && B.Reference == 'U_ISO5' && A.Reference == 'U_ISO5' && B.Pad_Number == '9' && A.Pad_Number == '8' && B.NetName == 'FILTER5N' && A.NetName == 'N5V_LDO_HOLD')")
+  (constraint clearance (min 0.15mm)))
+(rule "tmux4827_b2_pofv_U_ISO6_via"
+  (condition "A.Type == 'Via' && A.NetName == 'GND' && A.insideArea('tmux4827_b2_pofv_U_ISO6')")
+  (constraint via_diameter (min 0.35mm))
+  (constraint annular_width (min 0.075mm))
+  (constraint hole_size (min 0.20mm)))
+(rule "tmux4827_b2_pofv_U_ISO6_pad_2"
+  (condition "((A.Type == 'Pad' && B.Type == 'Pad' && A.Reference == 'U_ISO6' && B.Reference == 'U_ISO6' && A.Pad_Number == '5' && B.Pad_Number == '2') || (A.Type == 'Pad' && B.Type == 'Pad' && A.Reference == 'U_ISO6' && B.Reference == 'U_ISO6' && A.Pad_Number == '2' && B.Pad_Number == '5')) && A.NetName != B.NetName")
+  (constraint clearance (min 0.10mm)))
+(rule "tmux4827_b2_pofv_U_ISO6_via_pad_2"
+  (condition "((A.Type == 'Via' && A.NetName == 'GND' && A.insideArea('tmux4827_b2_pofv_U_ISO6') && B.Type == 'Pad' && B.Reference == 'U_ISO6' && B.Pad_Number == '2') || (B.Type == 'Via' && B.NetName == 'GND' && B.insideArea('tmux4827_b2_pofv_U_ISO6') && A.Type == 'Pad' && A.Reference == 'U_ISO6' && A.Pad_Number == '2')) && A.NetName != B.NetName")
+  (constraint clearance (min 0.10mm))
+  (constraint hole_clearance (min 0.175mm)))
+(rule "tmux4827_b2_pofv_U_ISO6_pad_4"
+  (condition "((A.Type == 'Pad' && B.Type == 'Pad' && A.Reference == 'U_ISO6' && B.Reference == 'U_ISO6' && A.Pad_Number == '5' && B.Pad_Number == '4') || (A.Type == 'Pad' && B.Type == 'Pad' && A.Reference == 'U_ISO6' && B.Reference == 'U_ISO6' && A.Pad_Number == '4' && B.Pad_Number == '5')) && A.NetName != B.NetName")
+  (constraint clearance (min 0.10mm)))
+(rule "tmux4827_b2_pofv_U_ISO6_via_pad_4"
+  (condition "((A.Type == 'Via' && A.NetName == 'GND' && A.insideArea('tmux4827_b2_pofv_U_ISO6') && B.Type == 'Pad' && B.Reference == 'U_ISO6' && B.Pad_Number == '4') || (B.Type == 'Via' && B.NetName == 'GND' && B.insideArea('tmux4827_b2_pofv_U_ISO6') && A.Type == 'Pad' && A.Reference == 'U_ISO6' && A.Pad_Number == '4')) && A.NetName != B.NetName")
+  (constraint clearance (min 0.10mm))
+  (constraint hole_clearance (min 0.175mm)))
+(rule "tmux4827_b2_pofv_U_ISO6_pad_6"
+  (condition "((A.Type == 'Pad' && B.Type == 'Pad' && A.Reference == 'U_ISO6' && B.Reference == 'U_ISO6' && A.Pad_Number == '5' && B.Pad_Number == '6') || (A.Type == 'Pad' && B.Type == 'Pad' && A.Reference == 'U_ISO6' && B.Reference == 'U_ISO6' && A.Pad_Number == '6' && B.Pad_Number == '5')) && A.NetName != B.NetName")
+  (constraint clearance (min 0.10mm)))
+(rule "tmux4827_b2_pofv_U_ISO6_via_pad_6"
+  (condition "((A.Type == 'Via' && A.NetName == 'GND' && A.insideArea('tmux4827_b2_pofv_U_ISO6') && B.Type == 'Pad' && B.Reference == 'U_ISO6' && B.Pad_Number == '6') || (B.Type == 'Via' && B.NetName == 'GND' && B.insideArea('tmux4827_b2_pofv_U_ISO6') && A.Type == 'Pad' && A.Reference == 'U_ISO6' && A.Pad_Number == '6')) && A.NetName != B.NetName")
+  (constraint clearance (min 0.10mm))
+  (constraint hole_clearance (min 0.175mm)))
+(rule "tmux4827_b2_pofv_U_ISO6_pad_8"
+  (condition "((A.Type == 'Pad' && B.Type == 'Pad' && A.Reference == 'U_ISO6' && B.Reference == 'U_ISO6' && A.Pad_Number == '5' && B.Pad_Number == '8') || (A.Type == 'Pad' && B.Type == 'Pad' && A.Reference == 'U_ISO6' && B.Reference == 'U_ISO6' && A.Pad_Number == '8' && B.Pad_Number == '5')) && A.NetName != B.NetName")
+  (constraint clearance (min 0.10mm)))
+(rule "tmux4827_b2_pofv_U_ISO6_via_pad_8"
+  (condition "((A.Type == 'Via' && A.NetName == 'GND' && A.insideArea('tmux4827_b2_pofv_U_ISO6') && B.Type == 'Pad' && B.Reference == 'U_ISO6' && B.Pad_Number == '8') || (B.Type == 'Via' && B.NetName == 'GND' && B.insideArea('tmux4827_b2_pofv_U_ISO6') && A.Type == 'Pad' && A.Reference == 'U_ISO6' && A.Pad_Number == '8')) && A.NetName != B.NetName")
+  (constraint clearance (min 0.10mm))
+  (constraint hole_clearance (min 0.175mm)))
+(rule "tmux_perimeter_U_ISO6_7_8"
+  (condition "(A.Type == 'Pad' && B.Type == 'Pad' && A.Reference == 'U_ISO6' && B.Reference == 'U_ISO6' && A.Pad_Number == '7' && B.Pad_Number == '8' && A.NetName == 'FILTER6P' && B.NetName == 'N5V_LDO_HOLD') || (B.Type == 'Pad' && A.Type == 'Pad' && B.Reference == 'U_ISO6' && A.Reference == 'U_ISO6' && B.Pad_Number == '7' && A.Pad_Number == '8' && B.NetName == 'FILTER6P' && A.NetName == 'N5V_LDO_HOLD')")
+  (constraint clearance (min 0.15mm)))
+(rule "tmux_perimeter_U_ISO6_9_8"
+  (condition "(A.Type == 'Pad' && B.Type == 'Pad' && A.Reference == 'U_ISO6' && B.Reference == 'U_ISO6' && A.Pad_Number == '9' && B.Pad_Number == '8' && A.NetName == 'FILTER6N' && B.NetName == 'N5V_LDO_HOLD') || (B.Type == 'Pad' && A.Type == 'Pad' && B.Reference == 'U_ISO6' && A.Reference == 'U_ISO6' && B.Pad_Number == '9' && A.Pad_Number == '8' && B.NetName == 'FILTER6N' && A.NetName == 'N5V_LDO_HOLD')")
+  (constraint clearance (min 0.15mm)))
+(rule "tmux4827_b2_pofv_U_ISO7_via"
+  (condition "A.Type == 'Via' && A.NetName == 'GND' && A.insideArea('tmux4827_b2_pofv_U_ISO7')")
+  (constraint via_diameter (min 0.35mm))
+  (constraint annular_width (min 0.075mm))
+  (constraint hole_size (min 0.20mm)))
+(rule "tmux4827_b2_pofv_U_ISO7_pad_2"
+  (condition "((A.Type == 'Pad' && B.Type == 'Pad' && A.Reference == 'U_ISO7' && B.Reference == 'U_ISO7' && A.Pad_Number == '5' && B.Pad_Number == '2') || (A.Type == 'Pad' && B.Type == 'Pad' && A.Reference == 'U_ISO7' && B.Reference == 'U_ISO7' && A.Pad_Number == '2' && B.Pad_Number == '5')) && A.NetName != B.NetName")
+  (constraint clearance (min 0.10mm)))
+(rule "tmux4827_b2_pofv_U_ISO7_via_pad_2"
+  (condition "((A.Type == 'Via' && A.NetName == 'GND' && A.insideArea('tmux4827_b2_pofv_U_ISO7') && B.Type == 'Pad' && B.Reference == 'U_ISO7' && B.Pad_Number == '2') || (B.Type == 'Via' && B.NetName == 'GND' && B.insideArea('tmux4827_b2_pofv_U_ISO7') && A.Type == 'Pad' && A.Reference == 'U_ISO7' && A.Pad_Number == '2')) && A.NetName != B.NetName")
+  (constraint clearance (min 0.10mm))
+  (constraint hole_clearance (min 0.175mm)))
+(rule "tmux4827_b2_pofv_U_ISO7_pad_4"
+  (condition "((A.Type == 'Pad' && B.Type == 'Pad' && A.Reference == 'U_ISO7' && B.Reference == 'U_ISO7' && A.Pad_Number == '5' && B.Pad_Number == '4') || (A.Type == 'Pad' && B.Type == 'Pad' && A.Reference == 'U_ISO7' && B.Reference == 'U_ISO7' && A.Pad_Number == '4' && B.Pad_Number == '5')) && A.NetName != B.NetName")
+  (constraint clearance (min 0.10mm)))
+(rule "tmux4827_b2_pofv_U_ISO7_via_pad_4"
+  (condition "((A.Type == 'Via' && A.NetName == 'GND' && A.insideArea('tmux4827_b2_pofv_U_ISO7') && B.Type == 'Pad' && B.Reference == 'U_ISO7' && B.Pad_Number == '4') || (B.Type == 'Via' && B.NetName == 'GND' && B.insideArea('tmux4827_b2_pofv_U_ISO7') && A.Type == 'Pad' && A.Reference == 'U_ISO7' && A.Pad_Number == '4')) && A.NetName != B.NetName")
+  (constraint clearance (min 0.10mm))
+  (constraint hole_clearance (min 0.175mm)))
+(rule "tmux4827_b2_pofv_U_ISO7_pad_6"
+  (condition "((A.Type == 'Pad' && B.Type == 'Pad' && A.Reference == 'U_ISO7' && B.Reference == 'U_ISO7' && A.Pad_Number == '5' && B.Pad_Number == '6') || (A.Type == 'Pad' && B.Type == 'Pad' && A.Reference == 'U_ISO7' && B.Reference == 'U_ISO7' && A.Pad_Number == '6' && B.Pad_Number == '5')) && A.NetName != B.NetName")
+  (constraint clearance (min 0.10mm)))
+(rule "tmux4827_b2_pofv_U_ISO7_via_pad_6"
+  (condition "((A.Type == 'Via' && A.NetName == 'GND' && A.insideArea('tmux4827_b2_pofv_U_ISO7') && B.Type == 'Pad' && B.Reference == 'U_ISO7' && B.Pad_Number == '6') || (B.Type == 'Via' && B.NetName == 'GND' && B.insideArea('tmux4827_b2_pofv_U_ISO7') && A.Type == 'Pad' && A.Reference == 'U_ISO7' && A.Pad_Number == '6')) && A.NetName != B.NetName")
+  (constraint clearance (min 0.10mm))
+  (constraint hole_clearance (min 0.175mm)))
+(rule "tmux4827_b2_pofv_U_ISO7_pad_8"
+  (condition "((A.Type == 'Pad' && B.Type == 'Pad' && A.Reference == 'U_ISO7' && B.Reference == 'U_ISO7' && A.Pad_Number == '5' && B.Pad_Number == '8') || (A.Type == 'Pad' && B.Type == 'Pad' && A.Reference == 'U_ISO7' && B.Reference == 'U_ISO7' && A.Pad_Number == '8' && B.Pad_Number == '5')) && A.NetName != B.NetName")
+  (constraint clearance (min 0.10mm)))
+(rule "tmux4827_b2_pofv_U_ISO7_via_pad_8"
+  (condition "((A.Type == 'Via' && A.NetName == 'GND' && A.insideArea('tmux4827_b2_pofv_U_ISO7') && B.Type == 'Pad' && B.Reference == 'U_ISO7' && B.Pad_Number == '8') || (B.Type == 'Via' && B.NetName == 'GND' && B.insideArea('tmux4827_b2_pofv_U_ISO7') && A.Type == 'Pad' && A.Reference == 'U_ISO7' && A.Pad_Number == '8')) && A.NetName != B.NetName")
+  (constraint clearance (min 0.10mm))
+  (constraint hole_clearance (min 0.175mm)))
+(rule "tmux_perimeter_U_ISO7_7_8"
+  (condition "(A.Type == 'Pad' && B.Type == 'Pad' && A.Reference == 'U_ISO7' && B.Reference == 'U_ISO7' && A.Pad_Number == '7' && B.Pad_Number == '8' && A.NetName == 'FILTER7P' && B.NetName == 'N5V_LDO_HOLD') || (B.Type == 'Pad' && A.Type == 'Pad' && B.Reference == 'U_ISO7' && A.Reference == 'U_ISO7' && B.Pad_Number == '7' && A.Pad_Number == '8' && B.NetName == 'FILTER7P' && A.NetName == 'N5V_LDO_HOLD')")
+  (constraint clearance (min 0.15mm)))
+(rule "tmux_perimeter_U_ISO7_9_8"
+  (condition "(A.Type == 'Pad' && B.Type == 'Pad' && A.Reference == 'U_ISO7' && B.Reference == 'U_ISO7' && A.Pad_Number == '9' && B.Pad_Number == '8' && A.NetName == 'FILTER7N' && B.NetName == 'N5V_LDO_HOLD') || (B.Type == 'Pad' && A.Type == 'Pad' && B.Reference == 'U_ISO7' && A.Reference == 'U_ISO7' && B.Pad_Number == '9' && A.Pad_Number == '8' && B.NetName == 'FILTER7N' && A.NetName == 'N5V_LDO_HOLD')")
+  (constraint clearance (min 0.15mm)))
+(rule "tmux4827_b2_pofv_U_ISO8_via"
+  (condition "A.Type == 'Via' && A.NetName == 'GND' && A.insideArea('tmux4827_b2_pofv_U_ISO8')")
+  (constraint via_diameter (min 0.35mm))
+  (constraint annular_width (min 0.075mm))
+  (constraint hole_size (min 0.20mm)))
+(rule "tmux4827_b2_pofv_U_ISO8_pad_2"
+  (condition "((A.Type == 'Pad' && B.Type == 'Pad' && A.Reference == 'U_ISO8' && B.Reference == 'U_ISO8' && A.Pad_Number == '5' && B.Pad_Number == '2') || (A.Type == 'Pad' && B.Type == 'Pad' && A.Reference == 'U_ISO8' && B.Reference == 'U_ISO8' && A.Pad_Number == '2' && B.Pad_Number == '5')) && A.NetName != B.NetName")
+  (constraint clearance (min 0.10mm)))
+(rule "tmux4827_b2_pofv_U_ISO8_via_pad_2"
+  (condition "((A.Type == 'Via' && A.NetName == 'GND' && A.insideArea('tmux4827_b2_pofv_U_ISO8') && B.Type == 'Pad' && B.Reference == 'U_ISO8' && B.Pad_Number == '2') || (B.Type == 'Via' && B.NetName == 'GND' && B.insideArea('tmux4827_b2_pofv_U_ISO8') && A.Type == 'Pad' && A.Reference == 'U_ISO8' && A.Pad_Number == '2')) && A.NetName != B.NetName")
+  (constraint clearance (min 0.10mm))
+  (constraint hole_clearance (min 0.175mm)))
+(rule "tmux4827_b2_pofv_U_ISO8_pad_4"
+  (condition "((A.Type == 'Pad' && B.Type == 'Pad' && A.Reference == 'U_ISO8' && B.Reference == 'U_ISO8' && A.Pad_Number == '5' && B.Pad_Number == '4') || (A.Type == 'Pad' && B.Type == 'Pad' && A.Reference == 'U_ISO8' && B.Reference == 'U_ISO8' && A.Pad_Number == '4' && B.Pad_Number == '5')) && A.NetName != B.NetName")
+  (constraint clearance (min 0.10mm)))
+(rule "tmux4827_b2_pofv_U_ISO8_via_pad_4"
+  (condition "((A.Type == 'Via' && A.NetName == 'GND' && A.insideArea('tmux4827_b2_pofv_U_ISO8') && B.Type == 'Pad' && B.Reference == 'U_ISO8' && B.Pad_Number == '4') || (B.Type == 'Via' && B.NetName == 'GND' && B.insideArea('tmux4827_b2_pofv_U_ISO8') && A.Type == 'Pad' && A.Reference == 'U_ISO8' && A.Pad_Number == '4')) && A.NetName != B.NetName")
+  (constraint clearance (min 0.10mm))
+  (constraint hole_clearance (min 0.175mm)))
+(rule "tmux4827_b2_pofv_U_ISO8_pad_6"
+  (condition "((A.Type == 'Pad' && B.Type == 'Pad' && A.Reference == 'U_ISO8' && B.Reference == 'U_ISO8' && A.Pad_Number == '5' && B.Pad_Number == '6') || (A.Type == 'Pad' && B.Type == 'Pad' && A.Reference == 'U_ISO8' && B.Reference == 'U_ISO8' && A.Pad_Number == '6' && B.Pad_Number == '5')) && A.NetName != B.NetName")
+  (constraint clearance (min 0.10mm)))
+(rule "tmux4827_b2_pofv_U_ISO8_via_pad_6"
+  (condition "((A.Type == 'Via' && A.NetName == 'GND' && A.insideArea('tmux4827_b2_pofv_U_ISO8') && B.Type == 'Pad' && B.Reference == 'U_ISO8' && B.Pad_Number == '6') || (B.Type == 'Via' && B.NetName == 'GND' && B.insideArea('tmux4827_b2_pofv_U_ISO8') && A.Type == 'Pad' && A.Reference == 'U_ISO8' && A.Pad_Number == '6')) && A.NetName != B.NetName")
+  (constraint clearance (min 0.10mm))
+  (constraint hole_clearance (min 0.175mm)))
+(rule "tmux4827_b2_pofv_U_ISO8_pad_8"
+  (condition "((A.Type == 'Pad' && B.Type == 'Pad' && A.Reference == 'U_ISO8' && B.Reference == 'U_ISO8' && A.Pad_Number == '5' && B.Pad_Number == '8') || (A.Type == 'Pad' && B.Type == 'Pad' && A.Reference == 'U_ISO8' && B.Reference == 'U_ISO8' && A.Pad_Number == '8' && B.Pad_Number == '5')) && A.NetName != B.NetName")
+  (constraint clearance (min 0.10mm)))
+(rule "tmux4827_b2_pofv_U_ISO8_via_pad_8"
+  (condition "((A.Type == 'Via' && A.NetName == 'GND' && A.insideArea('tmux4827_b2_pofv_U_ISO8') && B.Type == 'Pad' && B.Reference == 'U_ISO8' && B.Pad_Number == '8') || (B.Type == 'Via' && B.NetName == 'GND' && B.insideArea('tmux4827_b2_pofv_U_ISO8') && A.Type == 'Pad' && A.Reference == 'U_ISO8' && A.Pad_Number == '8')) && A.NetName != B.NetName")
+  (constraint clearance (min 0.10mm))
+  (constraint hole_clearance (min 0.175mm)))
+(rule "tmux_perimeter_U_ISO8_7_8"
+  (condition "(A.Type == 'Pad' && B.Type == 'Pad' && A.Reference == 'U_ISO8' && B.Reference == 'U_ISO8' && A.Pad_Number == '7' && B.Pad_Number == '8' && A.NetName == 'FILTER8P' && B.NetName == 'N5V_LDO_HOLD') || (B.Type == 'Pad' && A.Type == 'Pad' && B.Reference == 'U_ISO8' && A.Reference == 'U_ISO8' && B.Pad_Number == '7' && A.Pad_Number == '8' && B.NetName == 'FILTER8P' && A.NetName == 'N5V_LDO_HOLD')")
+  (constraint clearance (min 0.15mm)))
+(rule "tmux_perimeter_U_ISO8_9_8"
+  (condition "(A.Type == 'Pad' && B.Type == 'Pad' && A.Reference == 'U_ISO8' && B.Reference == 'U_ISO8' && A.Pad_Number == '9' && B.Pad_Number == '8' && A.NetName == 'FILTER8N' && B.NetName == 'N5V_LDO_HOLD') || (B.Type == 'Pad' && A.Type == 'Pad' && B.Reference == 'U_ISO8' && A.Reference == 'U_ISO8' && B.Pad_Number == '9' && A.Pad_Number == '8' && B.NetName == 'FILTER8N' && A.NetName == 'N5V_LDO_HOLD')")
+  (constraint clearance (min 0.15mm)))
+# END TMUX4827_YBH_B2_POFV

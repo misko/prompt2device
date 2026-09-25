@@ -1,0 +1,157 @@
+{
+  "adc8n_native_connected_pads": [
+    "C_ADC_AC8N1.2",
+    "C_ADC_CM8N.1"
+  ],
+  "adc8n_route_clearance": {
+    "minimum_effective_shape_copper_gap_mm": 0.190001,
+    "obstacle": "C_ADC_CM8N.2",
+    "segment_mm": [
+      [
+        193.9,
+        65.9
+      ],
+      [
+        187.9,
+        65.9
+      ]
+    ]
+  },
+  "bare_board_sha256_observation": "bfbb4fb6e6aa744e27aeb2f13b7c80c2f36e25240f5c508a2bd01941fe9220ab",
+  "baseline": {
+    "unconnected": 499,
+    "violations": 199
+  },
+  "endpoint_pads": [
+    "C_ADC_AC8N1.2",
+    "C_ADC_CM8N.1"
+  ],
+  "filled_board_sha256_observation": "faf6a41d395d9ef5c899524e56303957e4e24f691d1f128610ceced994193072",
+  "filled_return_geometry": {
+    "common_filled_outline_indices": [
+      8
+    ],
+    "filled_polygon_count": 9,
+    "uncovered_0p20mm_route_ribbon_area_mm2_by_segment": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "fixed_27_pose_unchanged": true,
+  "gnd_in1_zone_count": 1,
+  "gnd_in1_zone_filled": [
+    true
+  ],
+  "gnd_stitch": {
+    "center_mm": [
+      199.8,
+      58.0
+    ],
+    "diameter_mm": 0.6,
+    "drill_mm": 0.3,
+    "fcu_neck_length_mm": 2.267157,
+    "fcu_neck_to": "C_FILTER8N1.2",
+    "receiver_center_mm": [
+      188.95,
+      66.5
+    ],
+    "receiver_neck_length_mm": 0.47,
+    "receiver_neck_to": "C_ADC_CM8N.2"
+  },
+  "gnd_stitch_native_connectivity": [
+    {
+      "connected_gnd_pad_count": 37,
+      "named_gnd_pad": "C_FILTER8N1.2",
+      "via_center_mm": [
+        199.8,
+        58.0
+      ]
+    },
+    {
+      "connected_gnd_pad_count": 37,
+      "named_gnd_pad": "C_ADC_CM8N.2",
+      "via_center_mm": [
+        188.95,
+        66.5
+      ]
+    }
+  ],
+  "grid_obstacle_count": 39,
+  "input_sha256": {
+    "assembly": "76071a9190ae3923a7a1b4b709a5b3160ce1f06b8d8fb22292ce1cea23664cf3",
+    "board": "0b9d017706845ad4d77c2b579dd36f2e34c0ecf55a7b699ace4fca97465c5b93",
+    "dru": "00ab83d8484368f132392523972c1f41fc9073423d3c600feec962684f9c3b0a",
+    "pro": "7977bc9edb88e1ef723eb256f07949871493dfda3d2c2491dd5d5b6087ddc094",
+    "producer": "b3906f63e07e9f04ada58e757f4095989f6933eca98d93b0f1165e91064529b7"
+  },
+  "issue_delta": {
+    "added": [],
+    "removed": []
+  },
+  "original_569_footprint_pose_pad_ledgers_unchanged": true,
+  "pofv_rule_area_names": [
+    "tmux4827_b2_pofv_U_ISO1",
+    "tmux4827_b2_pofv_U_ISO2",
+    "tmux4827_b2_pofv_U_ISO3",
+    "tmux4827_b2_pofv_U_ISO4",
+    "tmux4827_b2_pofv_U_ISO5",
+    "tmux4827_b2_pofv_U_ISO6",
+    "tmux4827_b2_pofv_U_ISO7",
+    "tmux4827_b2_pofv_U_ISO8"
+  ],
+  "route": {
+    "layer": "F.Cu",
+    "length_mm": 15.179545,
+    "segments": 6,
+    "vertices_mm": [
+      [
+        199.8,
+        60.05
+      ],
+      [
+        199.8,
+        60.0
+      ],
+      [
+        193.9,
+        65.9
+      ],
+      [
+        187.9,
+        65.9
+      ],
+      [
+        187.9,
+        66.1
+      ],
+      [
+        187.5,
+        66.5
+      ],
+      [
+        187.52,
+        66.5
+      ]
+    ],
+    "width_mm": 0.2
+  },
+  "routed": {
+    "unconnected": 499,
+    "violations": 199
+  },
+  "schema": 1,
+  "status": "RESEARCH_ONLY",
+  "unconnected_pair_identity_delta": {
+    "adc8n_reported_in_either": false,
+    "added": 9,
+    "removed": 9
+  },
+  "via_process": {
+    "baseline_fails": [],
+    "candidate_fails": []
+  }
+}
