@@ -1,0 +1,19 @@
+# ADC8N local route outside the USB VBUS planning cell
+
+**Result:** a bounded 0.20-mm F.Cu reroute joins `C_ADC_AC8N1.2` to `C_ADC_CM8N.1` on the exact southwest-cap TI research board without entering `usb_vbus_sense=[195,62,220,82]` mm. This corrects the source-region intersection of the [first local route](../2026-09-25-ti-adc8n-local-route-sol/README.md); it does **not** make the 36-member channel-8 physical-cell allocation or the complete ADC8N tree valid. No source, canonical board, J8 exception, P1, or P2 admission is changed.
+
+The route leaves `C_ADC_AC8N1.2` at `(199.80,60.05)`, reaches `(198.0,61.8)`, travels west to `(194.6,61.8)`, then turns toward `C_ADC_CM8N.1` at `(187.52,66.50)`. Full native F.Cu trace copper is at least **0.100001 mm** outside the USB planning rectangle; the limiting segment is the westward y=61.8 segment. This is a measured planning-region gap, **not** a manufacturing clearance rule. The original route has one native trace-shape intersection with that rectangle; the new route has zero. Exact vertices are in [receipt.json](receipt.json).
+
+| Screen | New USB-avoiding route | First local route |
+| --- | ---: | ---: |
+| F.Cu centerline length | **15.179545 mm**, eight segments | 15.179545 mm, six segments |
+| 0.20-mm trace copper / USB region | No intersection, 0.100001-mm gap | One intersecting segment |
+| Minimum native different-net copper gap | **0.190001 mm** to `C_ADC_CM8N.2`, 0.040001 mm above the 0.150-mm rule | 0.190001 mm to the same pad |
+| Full-profile filled-board DRC | 199 violations / 499 opens, +0/−0 violation identities against filled baseline | 199 / 499, +0/−0 |
+| In1.Cu GND return | Same filled polygon under every 0.20-mm trace ribbon; zero uncovered area on all eight segments | Same result on six segments |
+
+The new [filled-profile candidate](candidate_filled_profile.kicad_pcb) retains the two ordinary 0.60/0.30-mm GND stitches and short F.Cu necks from the first packet: launch `(199.8,58.0)` to `C_FILTER8N1.2`, receiver `(188.95,66.5)` to `C_ADC_CM8N.2`. Baseline and candidate V-PROCESS failures are zero. Native connectivity joins the exact two ADC8N pads. Every original 569-footprint pose and pad number/net/layer/shape/position ledger is unchanged, including all 27 P1-fixed refs. The one In1.Cu GND zone is filled; the route vertices, both stitches, and an existing GND via `(199.0,53.0)` occupy filled polygon outline 8 of 9. The reroute removes no other ADC8N tree obligation: `C_ADC_AC8N2.2` and `U_ADC_B.13` still need integration. As before, KiCad's DRC unconnected list does not enumerate ADC8N; 499 unchanged is not complete-net evidence. The [candidate DRC JSON](candidate_drc.json) and receipt retain the exact profile result.
+
+The [reproducer](reroute_probe.py) imports the hash-pinned first probe and reuses its archived TI `.pro`/`.dru`, frozen TI assembly, POFV producer, via-process checker, and native geometry/return tests. It regenerates filled baseline and candidate under the complete profile, checks every native signal-track shape against the USB rectangle (including the 0.20-mm width), asserts the original route's positive USB-intersection control, and rejects any new DRC violation, incomplete return ribbon, sub-rule copper gap, or pose/pad drift. Run `python3 reroute_probe.py` while the frozen TI source packet remains at its path recorded by the first probe. KiCad creates new UUIDs for generated tracks/vias/POFV areas; the committed board hash is an immutable observation, while the route coordinates and semantic validations are reproducible.
+
+The reroute is local geometry only. It has just 0.100 mm planning clearance to the USB cell, and the channel-8/J8 exclusive-cell contradiction, other source-region overlaps, complete F.Cu analog demand, filled return across future branches, SI, assembly, and production checks remain open. This packet grants no P1/P2 or connector FULL credit.
