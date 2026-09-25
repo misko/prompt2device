@@ -44,14 +44,17 @@ For newly commissioned JLC high-speed boards, `PCB-SOURCING` also has a
 critical-part selection checkpoint. Commissioning seeds
 `03_src/rules/critical_part_selection.yaml` as `pending`. Before either build
 driver starts a schematic or connector producer, the checkpoint requires exact
-authored MPN/LCSC identity, a matching dossier, current public stock against
-the project's assembly quantity and surplus, an independent suitability
+authored MPN/LCSC identity, a matching dossier, public stock against
+the project's assembly quantity and surplus at the declared check time, an independent suitability
 decision, and closure of every selection-tagged finding. A reviewed
 `not_applicable` decision is possible when no critical part is selected. The
 checkpoint is an execution edge inside sourcing, not a new lifecycle stage or
 a claim of routed/transient/first-article qualification. On failure, return to
 part research/selection, update the selected source and findings, and rerun
 from this checkpoint; the old schematic and placement receipts stay historical.
+An explicitly hash-pinned initial stock snapshot can lock that design-selection
+decision against later inventory movement. Current JLC order allocation
+remains a separate sourcing claim and does not redefine the circuit.
 
 ## Lifecycle graph
 

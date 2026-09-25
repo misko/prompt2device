@@ -286,7 +286,9 @@ def _catalog_prelayout_check(request_path: Path | None,
                              allow_blocked_sourcing: bool = False,
                              expected_min_surplus: int | None = None,
                              expected_overrides: dict | None = None,
-                             exact_rows: list[dict[str, Any]] | None = None) -> dict[str, Any]:
+                             exact_rows: list[dict[str, Any]] | None = None,
+                             selection_snapshot: dict | None = None,
+                             project: Path | None = None) -> dict[str, Any]:
     """Verify a user-accepted public-catalog pre-layout negative filter.
 
     This deliberately cannot be used for the order phase.  It proves only
@@ -332,13 +334,44 @@ def _catalog_prelayout_check(request_path: Path | None,
         failures.append(f"catalog verdict is {evidence.get('verdict')!r}, not PASS")
     if evidence.get("predicts_jlc_assembly_allocation") is not False:
         failures.append("catalog evidence does not preserve its non-allocation scope")
+    age_reference = datetime.now(timezone.utc)
+    max_age = timedelta(hours=24)
+    if selection_snapshot is not None:
+        try:
+            if not isinstance(selection_snapshot, dict) or project is None:
+                raise ValueError("snapshot needs project and mapping")
+            declared = selection_snapshot.get("path")
+            if not isinstance(declared, str) or not declared.strip():
+                raise ValueError("snapshot needs project-relative path")
+            pinned_path = (project / declared).resolve()
+            if (project.resolve() not in pinned_path.parents or
+                    pinned_path != evidence_path.resolve()):
+                raise ValueError("snapshot path differs from current catalog evidence")
+            digest = selection_snapshot.get("sha256")
+            if not isinstance(digest, str) or not re.fullmatch(r"[0-9a-f]{64}", digest):
+                raise ValueError("snapshot needs exact SHA-256")
+            if hashlib.sha256(evidence_path.read_bytes()).hexdigest() != digest:
+                failures.append("catalog initial snapshot digest changed")
+            checked = datetime.fromisoformat(
+                str(selection_snapshot.get("initial_checked_at") or "").replace("Z", "+00:00"))
+            if checked.tzinfo is None:
+                raise ValueError("initial_checked_at needs timezone")
+            age_reference = checked.astimezone(timezone.utc)
+            if age_reference > datetime.now(timezone.utc):
+                failures.append("catalog initial check is future-dated")
+            hours = selection_snapshot.get("max_age_hours")
+            if isinstance(hours, bool) or not isinstance(hours, int) or hours <= 0:
+                raise ValueError("snapshot max_age_hours must be positive integer")
+            max_age = timedelta(hours=hours)
+        except (ValueError, OSError) as exc:
+            failures.append(f"catalog initial snapshot invalid: {exc}")
     try:
         generated = datetime.fromisoformat(str(evidence.get("generated_at") or "").replace("Z", "+00:00"))
         if generated.tzinfo is None:
             raise ValueError("timezone missing")
-        age = datetime.now(timezone.utc) - generated.astimezone(timezone.utc)
-        if age < timedelta(0) or age > timedelta(hours=24):
-            failures.append("catalog evidence is future-dated or older than 24 hours")
+        age = age_reference - generated.astimezone(timezone.utc)
+        if age < timedelta(0) or age > max_age:
+            failures.append("catalog evidence is future-dated or stale at stock check time")
     except ValueError as exc:
         failures.append(f"catalog generated_at is invalid: {exc}")
     request_rows = request.get("rows") or []
@@ -466,7 +499,8 @@ def _catalog_prelayout_check(request_path: Path | None,
     return {
         "status": "FAIL" if failures else "PASS",
         "detail": ("; ".join(failures) if failures else
-                   f"{len(wanted)}/{len(wanted)} exact public-source lines are current "
+                   f"{len(wanted)}/{len(wanted)} exact public-source lines passed "
+                   f"{'pinned initial' if selection_snapshot is not None else 'rolling'} stock screen "
                    f"({len(replaced)} approved distributor observation(s), "
                    f"{len(blocked)} blocked); user accepted for pre-layout only"),
         "output": "public stock design screen only; original JLC observations retained; final JLC uploader allocation and economics remain mandatory",
@@ -627,7 +661,9 @@ def grade(project: Path, *, phase: str, release: Path | None = None,
                 allow_blocked_sourcing=allow_blocked_sourcing,
                 expected_min_surplus=configured_surplus,
                 expected_overrides=overrides,
-                exact_rows=exact['rows'])
+                exact_rows=exact['rows'],
+                selection_snapshot=assembly_rules.get("public_stock_selection_snapshot"),
+                project=project)
             if (sourcing_authority is not None and
                     sourcing_authority != "public-observations"):
                 checks["public_catalog_prelayout"] = {

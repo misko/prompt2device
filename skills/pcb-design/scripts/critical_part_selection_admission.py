@@ -4,7 +4,7 @@
 Projects without 03_src/rules/critical_part_selection.yaml keep their existing
 conductor behavior. A declaration binds the selected TSX component, exact
 part dossier, independent suitability decision, all tagged selection findings,
-and a fresh public stock observation. It admits only the recorded selection
+and a current or pinned-initial public stock observation. It admits only the recorded selection
 decision, not later electrical, physical, or PCBA qualification.
 """
 from __future__ import annotations
@@ -59,16 +59,23 @@ def exact_source_component(source: str, ref: str, mpn: str, lcsc: str) -> bool:
     return False
 
 
-def fresh_timestamp(value: object, max_age_hours: int) -> bool:
+def utc_timestamp(value: object) -> datetime | None:
     if not isinstance(value, str):
-        return False
+        return None
     try:
         observed = datetime.fromisoformat(value.replace("Z", "+00:00"))
     except ValueError:
-        return False
+        return None
     if observed.tzinfo is None:
+        return None
+    return observed.astimezone(timezone.utc)
+
+
+def fresh_timestamp(value: object, max_age_hours: int, *, as_of: datetime | None = None) -> bool:
+    observed = utc_timestamp(value)
+    if observed is None:
         return False
-    seconds = (datetime.now(timezone.utc) - observed.astimezone(timezone.utc)).total_seconds()
+    seconds = ((as_of or datetime.now(timezone.utc)) - observed).total_seconds()
     return -300 <= seconds <= 3600 * max_age_hours
 
 
@@ -201,14 +208,30 @@ def evaluate(project: Path, declaration: Path) -> dict:
             raise InputError(f"{label}.stock must name public receipt and freshness")
         stock_path = project_path(project, stock.get("path"), f"{label}.stock.path")
         max_age = positive_int(stock.get("max_age_hours"), f"{label}.stock.max_age_hours")
+        policy = stock.get("policy", "rolling")
+        if policy not in ("rolling", "initial_snapshot"):
+            raise InputError(f"{label}.stock.policy must be rolling or initial_snapshot")
+        stock_bytes = stock_path.read_bytes()
+        checked_at = None
+        if policy == "initial_snapshot":
+            snapshot_sha = stock.get("sha256")
+            if not isinstance(snapshot_sha, str) or not re.fullmatch(r"[0-9a-f]{64}", snapshot_sha):
+                raise InputError(f"{label}.stock.sha256 must pin the initial receipt")
+            if hashlib.sha256(stock_bytes).hexdigest() != snapshot_sha:
+                findings.append(f"{ref}: initial public stock receipt digest changed")
+            checked_at = utc_timestamp(stock.get("initial_checked_at"))
+            if checked_at is None:
+                raise InputError(f"{label}.stock.initial_checked_at needs UTC timestamp")
+            if checked_at > datetime.now(timezone.utc):
+                findings.append(f"{ref}: initial stock check is dated in the future")
         try:
-            receipt = json.loads(stock_path.read_text())
+            receipt = json.loads(stock_bytes)
         except (OSError, json.JSONDecodeError) as exc:
             raise InputError(f"{label}.stock receipt unreadable: {exc}") from exc
         if not isinstance(receipt, dict) or not isinstance(receipt.get("lines"), list):
             raise InputError(f"{label}.stock receipt needs lines list")
-        if not fresh_timestamp(receipt.get("generated_at"), max_age):
-            findings.append(f"{ref}: public stock observation is stale or undated")
+        if not fresh_timestamp(receipt.get("generated_at"), max_age, as_of=checked_at):
+            findings.append(f"{ref}: public stock observation was stale or undated at check time")
         if receipt.get("verdict") != "PASS":
             findings.append(f"{ref}: public stock receipt verdict is not PASS")
         matches = [line for line in receipt["lines"] if isinstance(line, dict)

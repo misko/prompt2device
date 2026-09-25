@@ -97,6 +97,51 @@ class CriticalSelectionTest(unittest.TestCase):
         self.assertEqual(report["status"], "FAIL")
         self.assertTrue(any("public stock 6 below 7" in f for f in report["findings"]))
 
+    def set_initial_snapshot(self, stock):
+        stock_path = self.project / "06_build/sourcing/selection-stock.json"
+        stock_path.write_text(json.dumps(stock))
+        manifest = yaml.safe_load(self.declaration.read_text())
+        manifest["selections"][0]["stock"].update({
+            "policy": "initial_snapshot",
+            "sha256": hashlib.sha256(stock_path.read_bytes()).hexdigest(),
+            "initial_checked_at": "2026-01-01T13:00:00Z",
+        })
+        self.declaration.write_text(yaml.safe_dump(manifest))
+
+    def test_initial_snapshot_stays_valid_after_inventory_age_expires(self):
+        stock_path = self.project / "06_build/sourcing/selection-stock.json"
+        stock = json.loads(stock_path.read_text())
+        stock["generated_at"] = "2026-01-01T12:00:00Z"
+        self.set_initial_snapshot(stock)
+        self.assertEqual(self.grade()["status"], "PASS")
+        manifest = yaml.safe_load(self.declaration.read_text())
+        manifest["selections"][0]["stock"]["policy"] = "rolling"
+        self.declaration.write_text(yaml.safe_dump(manifest))
+        self.assertEqual(self.grade()["status"], "FAIL")
+
+    def test_initial_snapshot_refuses_mutated_receipt_or_changed_threshold(self):
+        stock_path = self.project / "06_build/sourcing/selection-stock.json"
+        stock = json.loads(stock_path.read_text())
+        stock["generated_at"] = "2026-01-01T12:00:00Z"
+        self.set_initial_snapshot(stock)
+        stock["lines"][0]["stock"] = 99
+        stock_path.write_text(json.dumps(stock))
+        self.assertIn("U_ESD: initial public stock receipt digest changed",
+                      self.grade()["findings"])
+        self.set_initial_snapshot(stock)
+        self.write_yaml("03_src/rules/assembly.yaml", {
+            "build_quantity": 5, "public_stock_surplus": 150,
+        })
+        self.assertTrue(any("stock threshold disagrees" in item
+                            for item in self.grade()["findings"]))
+
+    def test_initial_snapshot_must_have_been_fresh_at_initial_check(self):
+        stock = json.loads((self.project / "06_build/sourcing/selection-stock.json").read_text())
+        stock["generated_at"] = "2025-12-28T12:00:00Z"
+        self.set_initial_snapshot(stock)
+        self.assertTrue(any("stale or undated at check time" in item
+                            for item in self.grade()["findings"]))
+
     def test_unresolved_due_at_selection_electrical_finding_blocks(self):
         self.write_yaml("01_docs/findings.yaml", {
             "schema": 1, "findings": [{"id": "ESD-DC", "state": "open",

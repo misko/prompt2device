@@ -94,6 +94,11 @@ tagged `critical_selection: {ref: REF, due_stage: selection}`. A missing
 declaration preserves behavior for existing boards, so migration requires an
 explicit board policy decision; absence is not evidence of critical-part
 selection. Later electrical, layout, and assembly gates retain their authority.
+The stock subrecord defaults to rolling freshness. A project that locks the
+initial exact-part stock decision can set `policy: initial_snapshot`, pin the
+receipt `sha256`, and give `initial_checked_at` in UTC; the gate checks receipt
+freshness at that initial review time and keeps grading the pinned identity and
+assembly threshold without reopening it for later inventory fluctuations.
 
 ## Plan is not execution
 

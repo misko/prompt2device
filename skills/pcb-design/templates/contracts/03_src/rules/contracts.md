@@ -12,7 +12,7 @@ belongs here.
 | File | What |
 |---|---|
 | `critical_paths.yaml` | Optional nonempty schema-1 short-path and clamp-dominance contract. Exact endpoints, length/pad-span ceilings, via-free layer, and downstream targets; the independent shared saved-copper checker refuses unsupported topology. Required when a project conductor declares this gate. |
-| `critical_part_selection.yaml` | Optional schema-1 early critical-part admission. A new JLC high-speed board should scaffold `status: pending` and must resolve it to reviewed selections or reviewed not-applicable before the full/reuse conductor can launch a schematic producer. Exact authored identity, independent suitability decision, tagged findings, and current public stock are checked; later engineering gates retain authority. |
+| `critical_part_selection.yaml` | Optional schema-1 early critical-part admission. A new JLC high-speed board should scaffold `status: pending` and must resolve it to reviewed selections or reviewed not-applicable before the full/reuse conductor can launch a schematic producer. Exact authored identity, independent suitability decision, tagged findings, and public stock are checked; optional `initial_snapshot` pins the first check instead of imposing rolling inventory freshness. Later engineering gates retain authority. |
 | `assembly_locator.yaml` | Optional A-LOCATOR schema1 for independently reviewed silkscreen omissions: title, owner, orientation and exact exception identities. Shared exporter generates the exact-board viewer/data/atlas; placement/release gates require the source waiver set and all artifact identities to agree. No automatic waiver or order authority. |
 | `integration.yaml` | P-MOD module-first architecture record. REQUIRED on newly commissioned/adopted projects: every complex subsystem selects a real module or carries an evidenced D-MOD bare-IC exception ADR; absence is UNMIGRATED, never PASS |
 | `ic_reference_research.yaml` | Source-selected IC reference search and exact-instance applicability. `ic_reference_check.py` checks all selected circuit/netlist ICs and is invoked after netlist generation; an independent packet/source-bound semantic receipt is required before P1 board generation. Coverage is not engineering approval. |
@@ -478,6 +478,9 @@ TWO ORPHANS THIS FOLDER'S OWN PROSE HAD HIDDEN, both found by the first run:
 | `selections[].due_at_selection_findings` | `critical_part_selection_admission.py` | closed exact finding IDs; tagged omissions hold |
 | `selections[].stock.path` | `critical_part_selection_admission.py` | exact public MPN/LCSC/ref stock line |
 | `selections[].stock.max_age_hours` | `critical_part_selection_admission.py` | freshness limit |
+| `selections[].stock.policy` | `critical_part_selection_admission.py` | optional rolling (default) or immutable initial_snapshot |
+| `selections[].stock.sha256` | `critical_part_selection_admission.py` | initial_snapshot exact receipt bytes, refusing replacement |
+| `selections[].stock.initial_checked_at` | `critical_part_selection_admission.py` | initial_snapshot review time; generated_at must have been fresh then, without later rolling recheck |
 
 ### keys: 03_src/rules/connector_assembly_phases.yaml
 
@@ -987,6 +990,10 @@ TWO ORPHANS THIS FOLDER'S OWN PROSE HAD HIDDEN, both found by the first run:
 | `build_quantity` | jlc_pcba_availability.py, release_freshness_check.py | quantity multiplier bound into prelayout availability and final allocation receipts; legacy catalog grading also reads it |
 | `sourcing_authority` | `manufacturing_readiness.py` | selects explicit public-observations authority for the prelayout design screen; Crow's driver also fails closed on absence or another value |
 | `public_stock_surplus` | jlc_stock_check.py, release_freshness_check.py | non-negative absolute public-catalog buffer added once per aggregated LCSC BOM line; new projects configure 150 |
+| `public_stock_selection_snapshot.path` | `manufacturing_readiness.py` | optional project-relative exact full-catalog prelayout receipt path, required to equal the receipt graded by the conductor |
+| `public_stock_selection_snapshot.sha256` | `manufacturing_readiness.py` | pins immutable initial full-catalog receipt bytes |
+| `public_stock_selection_snapshot.initial_checked_at` | `manufacturing_readiness.py` | reviewed initial UTC check time; no rolling prelayout age after initial check |
+| `public_stock_selection_snapshot.max_age_hours` | `manufacturing_readiness.py` | maximum observation age at initial check; does not relax exact code, quantity, or order allocation gates |
 | `public_stock_surplus_overrides` | stock_surplus_policy.py | validates the optional exact-part list and Crow D10 authority; no global surplus change |
 | `public_stock_surplus_overrides[].*` | stock_surplus_policy.py | closed lcsc/mpn/surplus/directive fields; only accepted Crow D10 C6362698/XU316 zero-surplus override; consumers additionally bind U_XU designator and quantity |
 | `not_assembled[].refs` | `assembly_coverage.py` | non-empty exact DNP population set, compared with board and CPL |
