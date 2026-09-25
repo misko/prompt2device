@@ -1,0 +1,389 @@
+{
+  "source_board_sha256": "8e620def0b403fda7635135672afec923c2c23bc9844b3f96102e96d4d5eca10",
+  "candidate_board_sha256": "c9b758d69867b274f0592bd2eceb9a26d64a80dd2daafa8ab9516d23d5925502",
+  "outline_unchanged_mm": [
+    20,
+    20,
+    240,
+    140
+  ],
+  "moved_origin_mm": {
+    "Y_AUDIO": [
+      167.5,
+      87.2
+    ],
+    "C_ADC_I2C_A": [
+      168.0,
+      97.6
+    ],
+    "C_ADC_CLOCK_OK": [
+      164.6,
+      76.2
+    ]
+  },
+  "fixed_count": 27,
+  "fixed_poses_identical": true,
+  "pad_net_layer_identity_identical": true,
+  "new_physical_overlap_pairs": [],
+  "baseline_physical_overlap_pairs": 3,
+  "candidate_physical_overlap_pairs": 3,
+  "audio_region_mm": [
+    145,
+    72,
+    190,
+    99.84
+  ],
+  "physical_and_pad_containment": true,
+  "portal_obstacles": {
+    "adc7": {
+      "physical": [],
+      "full_text_inclusive": [
+        "Y_AUDIO"
+      ]
+    },
+    "adc8": {
+      "physical": [],
+      "full_text_inclusive": []
+    },
+    "tdm_neck": {
+      "physical": [],
+      "full_text_inclusive": [
+        "C_XU_VDDIO_109",
+        "C_XU_VDD_105"
+      ]
+    }
+  },
+  "Y_AUDIO_physical_bbox_mm": [
+    164.705,
+    85.105,
+    170.295,
+    89.295
+  ],
+  "Y_AUDIO_full_bbox_mm": [
+    156.01935,
+    83.839313,
+    178.98065,
+    89.275
+  ],
+  "related_pad_center_distances_mm": {
+    "baseline": {
+      "Y_AUDIO.3->U_TDM_XLATE.11": 16.565826,
+      "Y_AUDIO.4->C_AUDIO_OSC.1": 6.875536,
+      "C_ADC_I2C_A.1->U_ADC_I2C_XLATE.3": 13.605712,
+      "C_ADC_CLOCK_OK.1->U_ADC_CLOCK_OK.5": 12.965604
+    },
+    "candidate": {
+      "Y_AUDIO.3->U_TDM_XLATE.11": 15.73646,
+      "Y_AUDIO.4->C_AUDIO_OSC.1": 6.066515,
+      "C_ADC_I2C_A.1->U_ADC_I2C_XLATE.3": 2.05022,
+      "C_ADC_CLOCK_OK.1->U_ADC_CLOCK_OK.5": 1.25016
+    }
+  },
+  "native_drc": {
+    "baseline": {
+      "exit_code": 0,
+      "violation_count": 0,
+      "unconnected_count": 499,
+      "types": []
+    },
+    "candidate": {
+      "exit_code": 0,
+      "violation_count": 12,
+      "unconnected_count": 499,
+      "types": [
+        "silk_over_copper",
+        "silk_over_copper",
+        "silk_over_copper",
+        "silk_over_copper",
+        "silk_over_copper",
+        "silk_overlap",
+        "silk_overlap",
+        "silk_overlap",
+        "silk_overlap",
+        "silk_overlap",
+        "silk_overlap",
+        "silk_overlap"
+      ]
+    },
+    "delta_pass": false,
+    "new_silk_warning_inventory": [
+      {
+        "description": "Silkscreen clearance",
+        "items": [
+          {
+            "description": "Reference field of R_3V3X_FB_BOTTOM",
+            "pos": {
+              "x": 174.8,
+              "y": 103.7
+            },
+            "uuid": "b44b5c05-3e27-47ba-bfcc-439693e3c549"
+          },
+          {
+            "description": "Reference field of C_ADC_I2C_A",
+            "pos": {
+              "x": 172.0,
+              "y": 101.6
+            },
+            "uuid": "b5c7ba76-d1a2-483f-8238-eac8b7d3cc16"
+          }
+        ],
+        "severity": "warning",
+        "type": "silk_overlap"
+      },
+      {
+        "description": "Silkscreen clearance",
+        "items": [
+          {
+            "description": "Reference field of R_TDM_OE_PU",
+            "pos": {
+              "x": 171.5,
+              "y": 100.8
+            },
+            "uuid": "807a2e7b-9243-4899-8f19-251a21e0967b"
+          },
+          {
+            "description": "Reference field of C_ADC_I2C_A",
+            "pos": {
+              "x": 172.0,
+              "y": 101.6
+            },
+            "uuid": "b5c7ba76-d1a2-483f-8238-eac8b7d3cc16"
+          }
+        ],
+        "severity": "warning",
+        "type": "silk_overlap"
+      },
+      {
+        "description": "Silkscreen clearance",
+        "items": [
+          {
+            "description": "Segment of C_ADC_I2C_A on F.Silkscreen",
+            "pos": {
+              "x": 167.892164,
+              "y": 97.96
+            },
+            "uuid": "23403552-795f-4ce2-969a-699b002c97bb"
+          },
+          {
+            "description": "Reference field of U_ADC_I2C_XLATE",
+            "pos": {
+              "x": 169.1,
+              "y": 98.2
+            },
+            "uuid": "53a4f89f-91c0-4b0d-a8aa-7306a5e67c21"
+          }
+        ],
+        "severity": "warning",
+        "type": "silk_overlap"
+      },
+      {
+        "description": "Silkscreen clearance",
+        "items": [
+          {
+            "description": "Reference field of C_AUDIO_OSC",
+            "pos": {
+              "x": 171.7,
+              "y": 99.5
+            },
+            "uuid": "6b53d910-593d-4b33-9b3e-0acab73ac32d"
+          },
+          {
+            "description": "Reference field of C_ADC_I2C_A",
+            "pos": {
+              "x": 172.0,
+              "y": 101.6
+            },
+            "uuid": "b5c7ba76-d1a2-483f-8238-eac8b7d3cc16"
+          }
+        ],
+        "severity": "warning",
+        "type": "silk_overlap"
+      },
+      {
+        "description": "Silkscreen clearance",
+        "items": [
+          {
+            "description": "Segment of C_ADC_CLOCK_OK on F.Silkscreen",
+            "pos": {
+              "x": 164.492164,
+              "y": 75.84
+            },
+            "uuid": "749e4adb-0b74-4fd7-8efb-16d8b92d8fd1"
+          },
+          {
+            "description": "Reference field of U_ADC_CLOCK_OK",
+            "pos": {
+              "x": 163.0,
+              "y": 75.899999
+            },
+            "uuid": "efede377-d499-41e9-abc1-e97e38f0dacd"
+          }
+        ],
+        "severity": "warning",
+        "type": "silk_overlap"
+      },
+      {
+        "description": "Silkscreen clearance",
+        "items": [
+          {
+            "description": "Reference field of C_ADC_CLOCK_OK",
+            "pos": {
+              "x": 160.6,
+              "y": 72.2
+            },
+            "uuid": "151ee9c1-9ee7-4ded-8918-69d07dde6610"
+          },
+          {
+            "description": "Reference field of C_ADC_CM7N",
+            "pos": {
+              "x": 160.0,
+              "y": 72.5
+            },
+            "uuid": "f305d27f-4973-4087-981e-89f7447b60ff"
+          }
+        ],
+        "severity": "warning",
+        "type": "silk_overlap"
+      },
+      {
+        "description": "Silkscreen clearance",
+        "items": [
+          {
+            "description": "Reference field of C_ADC_CLOCK_OK",
+            "pos": {
+              "x": 160.6,
+              "y": 72.2
+            },
+            "uuid": "151ee9c1-9ee7-4ded-8918-69d07dde6610"
+          },
+          {
+            "description": "Segment of R_ADC_PD7N on F.Silkscreen",
+            "pos": {
+              "x": 160.146359,
+              "y": 69.78
+            },
+            "uuid": "ecfb32a8-9cae-4f74-9cd5-a962424fc238"
+          }
+        ],
+        "severity": "warning",
+        "type": "silk_overlap"
+      },
+      {
+        "description": "Silkscreen clipped by solder mask",
+        "items": [
+          {
+            "description": "Reference field of U_ADC_I2C_XLATE",
+            "pos": {
+              "x": 169.1,
+              "y": 98.2
+            },
+            "uuid": "53a4f89f-91c0-4b0d-a8aa-7306a5e67c21"
+          },
+          {
+            "description": "Pad 1 [N1V8] of C_ADC_I2C_A on F.Cu",
+            "pos": {
+              "x": 167.52,
+              "y": 97.6
+            },
+            "uuid": "44a257e5-67d5-4b87-afc3-fdea06a307d1"
+          }
+        ],
+        "severity": "warning",
+        "type": "silk_over_copper"
+      },
+      {
+        "description": "Silkscreen clipped by solder mask",
+        "items": [
+          {
+            "description": "Reference field of U_ADC_I2C_XLATE",
+            "pos": {
+              "x": 169.1,
+              "y": 98.2
+            },
+            "uuid": "53a4f89f-91c0-4b0d-a8aa-7306a5e67c21"
+          },
+          {
+            "description": "Pad 2 [GND] of C_ADC_I2C_A on F.Cu",
+            "pos": {
+              "x": 168.48,
+              "y": 97.6
+            },
+            "uuid": "3025dc61-ef6f-4ea4-b739-6fbef2cda4cc"
+          }
+        ],
+        "severity": "warning",
+        "type": "silk_over_copper"
+      },
+      {
+        "description": "Silkscreen clipped by solder mask",
+        "items": [
+          {
+            "description": "Reference field of U_ADC_CLOCK_OK",
+            "pos": {
+              "x": 163.0,
+              "y": 75.899999
+            },
+            "uuid": "efede377-d499-41e9-abc1-e97e38f0dacd"
+          },
+          {
+            "description": "Pad 1 [N3V3_ADC] of C_ADC_CLOCK_OK on F.Cu",
+            "pos": {
+              "x": 164.12,
+              "y": 76.2
+            },
+            "uuid": "0f73541f-d128-4e38-a90b-57f64b207031"
+          }
+        ],
+        "severity": "warning",
+        "type": "silk_over_copper"
+      },
+      {
+        "description": "Silkscreen clipped by solder mask",
+        "items": [
+          {
+            "description": "Reference field of U_ADC_CLOCK_OK",
+            "pos": {
+              "x": 163.0,
+              "y": 75.899999
+            },
+            "uuid": "efede377-d499-41e9-abc1-e97e38f0dacd"
+          },
+          {
+            "description": "Pad 2 [GND] of C_ADC_CLOCK_OK on F.Cu",
+            "pos": {
+              "x": 165.08,
+              "y": 76.2
+            },
+            "uuid": "8ce53436-e45c-4ebd-97da-9d3945a6f72e"
+          }
+        ],
+        "severity": "warning",
+        "type": "silk_over_copper"
+      },
+      {
+        "description": "Silkscreen clipped by solder mask",
+        "items": [
+          {
+            "description": "Reference field of C_ADC_CLOCK_OK",
+            "pos": {
+              "x": 160.6,
+              "y": 72.2
+            },
+            "uuid": "151ee9c1-9ee7-4ded-8918-69d07dde6610"
+          },
+          {
+            "description": "Pad 2 [GND] of R_ADC_PD7N on F.Cu",
+            "pos": {
+              "x": 160.81,
+              "y": 69.4
+            },
+            "uuid": "acf73b85-9dd5-4717-9077-41afdb5adc92"
+          }
+        ],
+        "severity": "warning",
+        "type": "silk_over_copper"
+      }
+    ]
+  },
+  "p1_accepted": false
+}
