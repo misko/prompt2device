@@ -105,6 +105,14 @@ def test_bounded_trial_collects_separate_diagnostics_without_acceptance(tmp_path
     assert receipt["attempt_status"] == "PASS"
     assert receipt["diagnostics"]["modular"]["status"] == "FAIL"
     assert receipt["diagnostics"]["candidate_p1"]["status"] == "INCOMPLETE"
+    assert receipt["diagnostic_causes"]["design_violation_review"] == "REQUIRES_INDEPENDENT_EVIDENCE"
+    assert receipt["diagnostic_causes"]["checker_limit_review"] == "REQUIRES_INDEPENDENT_EVIDENCE"
+    assert receipt["consumer_handoff"]["first_action"] == "ASSESS_RESERVED_LAUNCH"
+    assert receipt["consumer_handoff"]["consumer"] == spec["next_acceptance_consumer"]
+    assert receipt["consumer_handoff"]["candidate"] == receipt["candidate_board"]
+    assert receipt["consumer_handoff"]["board_progress"] == "NOT_ESTABLISHED_BY_THIS_DIAGNOSTIC"
+    assert receipt["consumer_handoff"]["current_decision"] == "ASSESS_PENDING"
+    assert receipt["consumer_handoff"]["execution_gate"] == "RECHECK_PAUSE_STATE_DECISION_BUDGET_AND_SOURCE_ADMISSION"
     assert receipt["engineering_acceptance"] is False
     assert receipt["p1_accepted"] is False
     assert receipt["candidate_board"]["sha256"] == spec["files"]["board"]["sha256"]
@@ -163,6 +171,8 @@ def test_failed_producer_retains_prior_pointer_and_counts_same_decision(tmp_path
     assert receipt["attempt_status"] == "FAIL"
     assert json.loads((store / "experiments/trial1.json").read_text())["outcome"] == "REJECTED"
     assert (store / "accepted.json").read_text() == '{"id":"previous"}\n'
+    assert receipt["consumer_handoff"]["candidate"] is None
+    assert receipt["consumer_handoff"]["after_assessment"] == "REASSESS_FAILED_PRODUCER_AND_DECISION"
     assert decision_evaluate(root, "coupled_choice")["investigations"][0]["attempts"] == 1
 
 
@@ -179,6 +189,7 @@ def test_changed_board_is_recorded_but_old_p1_contract_cannot_grade_it(tmp_path)
     assert receipt["diagnostics"]["baseline_p1"]["status"] == "INCOMPLETE"
     assert receipt["diagnostics"]["candidate_p1"]["status"] == "UNEVALUATED"
     assert "stale for produced board" in receipt["diagnostics"]["candidate_p1"]["reason"]
+    assert receipt["consumer_handoff"]["after_assessment"] == "REVIEW_EVALUATION_AND_BINDINGS_FOR_EXACT_CANDIDATE"
 
 
 def test_changed_board_with_separately_pinned_replay_runs_p1_diagnostic(tmp_path):
@@ -207,6 +218,7 @@ def test_changed_board_with_separately_pinned_replay_runs_p1_diagnostic(tmp_path
     assert receipt["candidate_inputs"]["p1_contract"]["sha256"] == contract_hash
     assert receipt["diagnostics"]["candidate_p1"]["status"] == "INCOMPLETE"
     assert receipt["diagnostics"]["candidate_p1"]["replay_hashes_pinned"] is True
+    assert receipt["consumer_handoff"]["after_assessment"] == "REVIEW_EXACT_CANDIDATE_IN_EXISTING_BOARD_WORKFLOW"
     assert receipt["engineering_acceptance"] is False
 
 
@@ -450,6 +462,56 @@ def test_findings_group_primary_and_consequent_without_dropping_unknown():
     assert bad["status"] == "UNEVALUATED"
 
 
+def test_cause_summary_retains_mixed_missing_unknown_and_unevaluated():
+    contract = {"allocations": [{"id": "a", "coverage_nets": ["N"],
+                                 "boundary_witnesses": [], "reservations": []}]}
+    raw = {"status": "FAIL", "errors": ["a: missing per-net boundary witness",
+                                        "clearance conflict may be a design violation or checker limit"],
+           "diagnostics": [], "allocations": [{"id": "a", "reason":
+                                                 "a: missing per-net boundary witness"}]}
+    grouped = candidate.summarize_p1_findings(raw, contract)
+    causes = candidate.diagnostic_causes({"baseline_p1": {**raw, "finding_groups": grouped},
+                                          "candidate_p1": {"status": "UNEVALUATED",
+                                                           "reason": "stale contract"},
+                                          "modular": {"status": "FAIL", "findings": ["owner overlap"]}})
+    assert {row["cause"] for row in causes["supported_causes"]} == {
+        "MISSING_EVIDENCE", "UNEVALUATED"}
+    assert any(row.get("allocation") == "a" and row.get("net") == "N"
+               for row in causes["supported_causes"])
+    assert any(row["finding"] == raw["errors"][1]
+               for row in causes["unclassified_findings"])
+    assert any(row["finding"] == "owner overlap"
+               for row in causes["unclassified_findings"])
+    assert causes["engineering_acceptance"] is False
+    assert any(row["check"] == "baseline_p1" and row["cause"] == "MISSING_EVIDENCE"
+               for row in causes["supported_causes"])
+
+
+def test_cause_summary_does_not_promote_unverified_group_or_checker_text():
+    causes = candidate.diagnostic_causes({
+        "baseline_p1": {"status": "FAIL", "finding_groups": {
+            "status": "UNEVALUATED", "reason": "malformed arrays"},
+            "errors": ["tool limitation asserted without evidence"]},
+        "candidate_p1": {"status": "UNEVALUATED", "reason": "stale replay",
+                         "errors": ["partial result before stale replay"]}})
+    assert {row["cause"] for row in causes["supported_causes"]} == {"UNEVALUATED"}
+    assert causes["design_violation_review"] == "REQUIRES_INDEPENDENT_EVIDENCE"
+    assert causes["checker_limit_review"] == "REQUIRES_INDEPENDENT_EVIDENCE"
+    assert causes["unclassified_findings"] == [
+        {"check": "baseline_p1", "finding": "tool limitation asserted without evidence"},
+        {"check": "candidate_p1", "finding": "partial result before stale replay"}]
+
+
+def test_incomplete_without_errors_retains_proof_debt():
+    causes = candidate.diagnostic_causes({"candidate_p1": {
+        "status": "INCOMPLETE", "errors": [], "diagnostics": [],
+        "finding_groups": {"primary_missing_per_net_witnesses": [],
+                           "other_findings": [], "consequent_branch_errors": []}}})
+    assert causes["supported_causes"] == [{"check": "candidate_p1",
+                                            "cause": "MISSING_EVIDENCE",
+                                            "basis": "checker reports incomplete proof; exact missing obligations require review"}]
+
+
 if __name__ == "__main__":
     tests = [test_bounded_trial_collects_separate_diagnostics_without_acceptance,
              test_bad_packet_never_mutates_budget_or_attempt,
@@ -476,3 +538,9 @@ if __name__ == "__main__":
     print("PASS test_native_witness_rejects_missing_duplicate_and_wrong_net")
     test_findings_group_primary_and_consequent_without_dropping_unknown()
     print("PASS test_findings_group_primary_and_consequent_without_dropping_unknown")
+    test_cause_summary_retains_mixed_missing_unknown_and_unevaluated()
+    print("PASS test_cause_summary_retains_mixed_missing_unknown_and_unevaluated")
+    test_cause_summary_does_not_promote_unverified_group_or_checker_text()
+    print("PASS test_cause_summary_does_not_promote_unverified_group_or_checker_text")
+    test_incomplete_without_errors_retains_proof_debt()
+    print("PASS test_incomplete_without_errors_retains_proof_debt")

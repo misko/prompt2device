@@ -352,6 +352,40 @@ allocation from accounting for otherwise valid branches. Do not create one
 repair task per consequential error. Unknown errors retain their independent
 visibility; grouping is not proof that they are harmless.
 
+Classify from inspected evidence, not the wording of an error alone. A rejected
+source representation does not prove an impossible physical topology. A
+demonstrated design/source violation, a demonstrated checker limitation, and
+missing evidence can coexist; retain each applicable cause and mark aborted
+checks unevaluated. A synthetic counterexample can expose a checker problem,
+but does not establish that the product board satisfies the affected constraint.
+Keep the reviewed explanation and exact evidence in the existing finding.
+
+Choose workflow repairs by the decision they enable:
+
+| Evidence | Action |
+|---|---|
+| Demonstrated correctness defect | Scope a fix to its affected consumer and add a regression control; recurrence on other boards is not required |
+| Current board question needs a missing reusable operation | Trial the smallest extension with a bounded test and named integration consumer |
+| Project-specific geometry or placement choice | Keep the recipe in project source; generalize only when reuse is demonstrated |
+| Optional process convenience with no blocked decision | Defer; do not confuse it with an unresolved electrical or manufacturing concern |
+| Unknown cause or impact | Investigate the evidence and scope before choosing a repair or deferral |
+
+After a tooling repair passes its focused controls, hand the reviewed result to
+the existing candidate owner and named acceptance consumer. The next task is
+integration or the specific evidence preventing it, subject to existing admission
+and pause controls. Do not start another tooling task without a concrete failure
+that prevents this handoff. Record software correctness separately from native
+board improvement: a changed checker or fewer messages on identical board bytes
+can improve evidence without demonstrating a better physical board. Native
+improvement needs matching source/board/rule identities, the affected checks,
+a measured delta and regression review; it still does not grant stage acceptance.
+
+Evaluate reusable changes with independent valid and invalid examples beyond
+the originating board before claiming general performance. Compare missed
+violations, unnecessary stops, and time/tokens to an independently reviewed
+integrated candidate. Preserve the same proof obligations in the comparison;
+synthetic decision tests alone establish neither PCB validity nor time savings.
+
 For checker-only corrections, keep board/source/sidecar identities fixed and
 run only the affected checks with a separately reviewed checker digest. Record
 the new result alongside the original result; preserve historical failed

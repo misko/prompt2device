@@ -185,6 +185,88 @@ def _safe_finding_groups(observed: dict[str, Any], contract: dict[str, Any]) -> 
                 "engineering_acceptance": False}
 
 
+def diagnostic_causes(diagnostics: dict[str, Any]) -> dict[str, Any]:
+    """Report supported diagnostic causes without treating checker text as proof.
+
+    Missing evidence is reported for absent per-net witnesses when the exact
+    checker finding and contract agree, or for a checker-reported INCOMPLETE
+    proof whose specific obligations still need review. Other failures need an
+    owning review to distinguish a design violation from a checker limitation.
+    Categories are independent: an unevaluated candidate does not erase a
+    missing-evidence finding on the baseline.
+    """
+    causes = []
+    unresolved = []
+    for check, observed in diagnostics.items():
+        if not isinstance(observed, dict):
+            unresolved.append({"check": check, "finding": "malformed diagnostic result"})
+            continue
+        if observed.get("status") == "UNEVALUATED":
+            causes.append({"check": check, "cause": "UNEVALUATED",
+                           "basis": observed.get("reason", "check did not complete")})
+            for key in ("errors", "diagnostics", "findings"):
+                for row in observed.get(key, []) if isinstance(observed.get(key), list) else []:
+                    unresolved.append({"check": check, "finding": copy.deepcopy(row)})
+            continue
+        groups = observed.get("finding_groups")
+        if isinstance(groups, dict):
+            for row in groups.get("primary_missing_per_net_witnesses", []):
+                causes.append({"check": check, "cause": "MISSING_EVIDENCE",
+                               "basis": "checker finding and contract coverage agree",
+                               "allocation": row["allocation"], "net": row["net"]})
+            for row in groups.get("other_findings", []):
+                unresolved.append({"check": check, "finding": copy.deepcopy(row)})
+            for row in groups.get("consequent_branch_errors", []):
+                unresolved.append({"check": check, "finding": copy.deepcopy(row),
+                                   "relation": "possible consequence; not independently cleared"})
+            if groups.get("status") == "UNEVALUATED":
+                causes.append({"check": check, "cause": "UNEVALUATED",
+                               "basis": groups.get("reason", "finding grouping failed")})
+                for key in ("errors", "diagnostics", "findings"):
+                    for row in observed.get(key, []) if isinstance(observed.get(key), list) else []:
+                        unresolved.append({"check": check, "finding": copy.deepcopy(row)})
+        else:
+            for key in ("errors", "diagnostics", "findings"):
+                for row in observed.get(key, []) if isinstance(observed.get(key), list) else []:
+                    unresolved.append({"check": check, "finding": copy.deepcopy(row)})
+        if observed.get("status") == "INCOMPLETE" and not any(
+                row["check"] == check and row["cause"] == "MISSING_EVIDENCE" for row in causes):
+            causes.append({"check": check, "cause": "MISSING_EVIDENCE",
+                           "basis": "checker reports incomplete proof; exact missing obligations require review"})
+    return {"supported_causes": causes, "unclassified_findings": unresolved,
+            "design_violation_review": "REQUIRES_INDEPENDENT_EVIDENCE",
+            "checker_limit_review": "REQUIRES_INDEPENDENT_EVIDENCE",
+            "engineering_acceptance": False}
+
+
+def consumer_handoff(receipt: dict[str, Any]) -> dict[str, Any]:
+    """Describe the next existing owner action; make no board progress claim."""
+    candidate = receipt["candidate_board"]
+    usable = receipt["research_status"] == "INCOMPLETE" and candidate is not None
+    candidate_check = receipt["diagnostics"].get("candidate_p1", {})
+    binding_owed = usable and candidate_check.get("status") == "UNEVALUATED"
+    progress = receipt["decision_progress"]["decision"]
+    return {"status": "RESEARCH_ONLY" if usable else "REJECTED_ATTEMPT",
+            "first_action": "ASSESS_RESERVED_LAUNCH",
+            "assessment_ledger": "01_docs/findings.yaml",
+            "decision_id": receipt["decision_id"],
+            "reservation_id": receipt["reservation_id"],
+            "consumer": receipt["next_acceptance_consumer"],
+            "candidate": copy.deepcopy(candidate) if usable else None,
+            "after_assessment": ("REVIEW_EVALUATION_AND_BINDINGS_FOR_EXACT_CANDIDATE"
+                                 if binding_owed else
+                                 "REVIEW_EXACT_CANDIDATE_IN_EXISTING_BOARD_WORKFLOW"
+                                 if usable else "REASSESS_FAILED_PRODUCER_AND_DECISION"),
+            "current_decision": progress,
+            "execution_gate": "RECHECK_PAUSE_STATE_DECISION_BUDGET_AND_SOURCE_ADMISSION",
+            "independent_authority_required": True,
+            "required_review": ("Inspect exact native candidate and source; run affected native, "
+                                "P1/P2/P3 and regression checks; compare with baseline; submit to "
+                                "existing independent stage review" if usable else None),
+            "board_progress": "NOT_ESTABLISHED_BY_THIS_DIAGNOSTIC",
+            "engineering_acceptance": False}
+
+
 def _path(root: Path, relative: str, label: str) -> Path:
     if not isinstance(relative, str) or not relative or ".." in PurePosixPath(relative).parts:
         raise ValueError(f"{label}: project-relative path required")
@@ -488,11 +570,13 @@ def run(project: Path, spec: dict[str, Any]) -> dict[str, Any]:
                                     "sha256": candidate_hash} if candidate_hash else None),
                "attempt_path": attempt_path, "attempt_status": attempt.status,
                "research_status": research_status, "assessment_owed": True,
-               "diagnostics": diagnostics, "decision_progress": progress,
+               "diagnostics": diagnostics, "diagnostic_causes": diagnostic_causes(diagnostics),
+               "decision_progress": progress,
                "selection_status": selection["status"],
                "next_acceptance_consumer": spec["next_acceptance_consumer"],
                "engineering_acceptance": False, "p1_accepted": False,
                "release_admitted": False, "order_admitted": False}
+    receipt["consumer_handoff"] = consumer_handoff(receipt)
     receipt_path = root / f"06_build/task_runs/integration-{ident}/research_receipt.json"
     receipt_path.write_text(json.dumps(receipt, indent=2, sort_keys=True) + "\n")
     store_script = Path(__file__).resolve().parents[2] / "kicad-pcb/scripts"
