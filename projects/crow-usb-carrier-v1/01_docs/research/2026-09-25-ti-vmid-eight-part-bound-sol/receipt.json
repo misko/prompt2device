@@ -1,0 +1,584 @@
+{
+  "adc8_cap": {
+    "best_related_distance_pose": {
+      "min_other_envelope_gap_mm": 0.23,
+      "move_mm": 13.752818,
+      "origin_mm": [
+        193.5,
+        49.7
+      ],
+      "physical_bbox_mm": [
+        190.705,
+        47.955,
+        196.295,
+        51.445
+      ],
+      "related_pad_distances_mm": {
+        "1": 14.340502,
+        "2": 18.514006
+      },
+      "worst_related_distance_ratio": 1.568697
+    },
+    "body_clear_grid_count": 15376,
+    "foreign_region_mm": [
+      195,
+      62,
+      215,
+      82
+    ],
+    "nearest_body_clear_pose": {
+      "min_other_envelope_gap_mm": 0.24,
+      "move_mm": 12.0,
+      "origin_mm": [
+        197.0,
+        51.0
+      ],
+      "physical_bbox_mm": [
+        194.205,
+        49.255,
+        199.795,
+        52.745
+      ],
+      "related_pad_distances_mm": {
+        "1": 10.824509,
+        "2": 19.169987
+      },
+      "worst_related_distance_ratio": 1.623128
+    },
+    "original_origin_mm": [
+      197.0,
+      63.0
+    ],
+    "original_physical_bbox_mm": [
+      194.205,
+      61.255,
+      199.795,
+      64.745
+    ],
+    "owner_and_foreign_clear_grid_count": 50325,
+    "owner_region_mm": [
+      179,
+      42,
+      201,
+      84
+    ],
+    "ref": "C_ADC_AC8N1",
+    "related_pads": {
+      "1": {
+        "baseline_distance_mm": 9.141662868428266,
+        "pad_offset_mm": [
+          -1.8000000000000114,
+          0.0
+        ],
+        "partner": "U_ISO8.6",
+        "partner_center_mm": [
+          203.1,
+          58.4
+        ]
+      },
+      "2": {
+        "baseline_distance_mm": 11.810520733650995,
+        "pad_offset_mm": [
+          1.8000000000000114,
+          0.0
+        ],
+        "partner": "C_ADC_CM8N.1",
+        "partner_center_mm": [
+          187.52,
+          66.5
+        ]
+      }
+    },
+    "within_locality_grid_count": 0
+  },
+  "fixed_ref_count": 27,
+  "fixed_ref_poses_identical": true,
+  "gnd_reference": [
+    {
+      "filled": false,
+      "layers": [
+        "In1.Cu"
+      ],
+      "net": "GND"
+    }
+  ],
+  "grid_step_mm": 0.1,
+  "hashes": {
+    "floorplan": "7d95376bbfa3bc9dd0bf59bc7e91d02d86c31235f6145f4d09b49a31f81769d0",
+    "four_board": "046019a13094764baef313d62611b137e0f0af971079734c71ab050dbf46b3a0",
+    "helper": "0827824c749206fc11194f27daa6e732a3253b348054a6d93218e960fe138a93",
+    "interfaces": "02be5ad6ea879ac04d5dfd9e2e09d5226f85c85fa83d72628aa40cf93de6b4d8",
+    "source": "60b7062e53bfd930ee7e9e2a8694b87098b1a5625d4a48c06eddb2f8bd8b5be7",
+    "ti_board": "8e620def0b403fda7635135672afec923c2c23bc9844b3f96102e96d4d5eca10"
+  },
+  "illustrative_max_related_pad_distance_ratio": 1.5,
+  "illustrative_route_mouth_mm": 0.56,
+  "kind": "ti-vmid-eight-resistor-adc8-cap-placement-bound",
+  "limitation": "0.1-mm grid, unchanged rotations and all other poses fixed. No actual trace/return room or DRC-validated combined placement is proved.",
+  "minimum_physical_gap_mm": 0.15,
+  "moved_pad_shapes_inside_screened_envelopes": true,
+  "p1_accepted": false,
+  "p2_accepted": false,
+  "pad_net_layer_identity_identical": true,
+  "resistors": [
+    {
+      "legal_local_count": 180,
+      "nearest_legal_local": {
+        "bias_partner_center_mm": 12.293905,
+        "bias_partner_ratio": 1.401657,
+        "east_owner_margin_mm": 0.025,
+        "min_other_envelope_gap_mm": 0.16,
+        "move_mm": 5.197115,
+        "origin_mm": [
+          46.0,
+          68.1
+        ],
+        "physical_bbox_mm": [
+          45.025,
+          67.585,
+          46.975,
+          68.615
+        ]
+      },
+      "nearest_route_mouth_screen": {
+        "bias_partner_center_mm": 12.404519,
+        "bias_partner_ratio": 1.414268,
+        "east_owner_margin_mm": 0.625,
+        "min_other_envelope_gap_mm": 0.56,
+        "move_mm": 5.728001,
+        "origin_mm": [
+          45.4,
+          68.5
+        ],
+        "physical_bbox_mm": [
+          44.425,
+          67.985,
+          46.375,
+          69.015
+        ]
+      },
+      "original_bias_partner_center_mm": 8.770981,
+      "original_origin_mm": [
+        47.0,
+        63.0
+      ],
+      "original_physical_bbox_mm": [
+        46.025,
+        62.485,
+        47.975,
+        63.515
+      ],
+      "owner_region_mm": [
+        25,
+        42,
+        47,
+        84
+      ],
+      "ref": "R_B1P",
+      "route_mouth_screen_count": 20,
+      "west_shift_lower_bound_mm": 0.975
+    },
+    {
+      "legal_local_count": 180,
+      "nearest_legal_local": {
+        "bias_partner_center_mm": 12.293905,
+        "bias_partner_ratio": 1.401657,
+        "east_owner_margin_mm": 0.025,
+        "min_other_envelope_gap_mm": 0.16,
+        "move_mm": 5.197115,
+        "origin_mm": [
+          68.0,
+          68.1
+        ],
+        "physical_bbox_mm": [
+          67.025,
+          67.585,
+          68.975,
+          68.615
+        ]
+      },
+      "nearest_route_mouth_screen": {
+        "bias_partner_center_mm": 12.404519,
+        "bias_partner_ratio": 1.414268,
+        "east_owner_margin_mm": 0.625,
+        "min_other_envelope_gap_mm": 0.56,
+        "move_mm": 5.728001,
+        "origin_mm": [
+          67.4,
+          68.5
+        ],
+        "physical_bbox_mm": [
+          66.425,
+          67.985,
+          68.375,
+          69.015
+        ]
+      },
+      "original_bias_partner_center_mm": 8.770981,
+      "original_origin_mm": [
+        69.0,
+        63.0
+      ],
+      "original_physical_bbox_mm": [
+        68.025,
+        62.485,
+        69.975,
+        63.515
+      ],
+      "owner_region_mm": [
+        47,
+        42,
+        69,
+        84
+      ],
+      "ref": "R_B2P",
+      "route_mouth_screen_count": 20,
+      "west_shift_lower_bound_mm": 0.975
+    },
+    {
+      "legal_local_count": 180,
+      "nearest_legal_local": {
+        "bias_partner_center_mm": 12.293905,
+        "bias_partner_ratio": 1.401657,
+        "east_owner_margin_mm": 0.025,
+        "min_other_envelope_gap_mm": 0.16,
+        "move_mm": 5.197115,
+        "origin_mm": [
+          90.0,
+          68.1
+        ],
+        "physical_bbox_mm": [
+          89.025,
+          67.585,
+          90.975,
+          68.615
+        ]
+      },
+      "nearest_route_mouth_screen": {
+        "bias_partner_center_mm": 12.404519,
+        "bias_partner_ratio": 1.414268,
+        "east_owner_margin_mm": 0.625,
+        "min_other_envelope_gap_mm": 0.56,
+        "move_mm": 5.728001,
+        "origin_mm": [
+          89.4,
+          68.5
+        ],
+        "physical_bbox_mm": [
+          88.425,
+          67.985,
+          90.375,
+          69.015
+        ]
+      },
+      "original_bias_partner_center_mm": 8.770981,
+      "original_origin_mm": [
+        91.0,
+        63.0
+      ],
+      "original_physical_bbox_mm": [
+        90.025,
+        62.485,
+        91.975,
+        63.515
+      ],
+      "owner_region_mm": [
+        69,
+        42,
+        91,
+        84
+      ],
+      "ref": "R_B3P",
+      "route_mouth_screen_count": 20,
+      "west_shift_lower_bound_mm": 0.975
+    },
+    {
+      "legal_local_count": 180,
+      "nearest_legal_local": {
+        "bias_partner_center_mm": 12.293905,
+        "bias_partner_ratio": 1.401657,
+        "east_owner_margin_mm": 0.025,
+        "min_other_envelope_gap_mm": 0.16,
+        "move_mm": 5.197115,
+        "origin_mm": [
+          112.0,
+          68.1
+        ],
+        "physical_bbox_mm": [
+          111.025,
+          67.585,
+          112.975,
+          68.615
+        ]
+      },
+      "nearest_route_mouth_screen": {
+        "bias_partner_center_mm": 12.404519,
+        "bias_partner_ratio": 1.414268,
+        "east_owner_margin_mm": 0.625,
+        "min_other_envelope_gap_mm": 0.56,
+        "move_mm": 5.728001,
+        "origin_mm": [
+          111.4,
+          68.5
+        ],
+        "physical_bbox_mm": [
+          110.425,
+          67.985,
+          112.375,
+          69.015
+        ]
+      },
+      "original_bias_partner_center_mm": 8.770981,
+      "original_origin_mm": [
+        113.0,
+        63.0
+      ],
+      "original_physical_bbox_mm": [
+        112.025,
+        62.485,
+        113.975,
+        63.515
+      ],
+      "owner_region_mm": [
+        91,
+        42,
+        113,
+        84
+      ],
+      "ref": "R_B4P",
+      "route_mouth_screen_count": 20,
+      "west_shift_lower_bound_mm": 0.975
+    },
+    {
+      "legal_local_count": 180,
+      "nearest_legal_local": {
+        "bias_partner_center_mm": 12.293905,
+        "bias_partner_ratio": 1.401657,
+        "east_owner_margin_mm": 0.025,
+        "min_other_envelope_gap_mm": 0.16,
+        "move_mm": 5.197115,
+        "origin_mm": [
+          134.0,
+          68.1
+        ],
+        "physical_bbox_mm": [
+          133.025,
+          67.585,
+          134.975,
+          68.615
+        ]
+      },
+      "nearest_route_mouth_screen": {
+        "bias_partner_center_mm": 12.404519,
+        "bias_partner_ratio": 1.414268,
+        "east_owner_margin_mm": 0.625,
+        "min_other_envelope_gap_mm": 0.56,
+        "move_mm": 5.728001,
+        "origin_mm": [
+          133.4,
+          68.5
+        ],
+        "physical_bbox_mm": [
+          132.425,
+          67.985,
+          134.375,
+          69.015
+        ]
+      },
+      "original_bias_partner_center_mm": 8.770981,
+      "original_origin_mm": [
+        135.0,
+        63.0
+      ],
+      "original_physical_bbox_mm": [
+        134.025,
+        62.485,
+        135.975,
+        63.515
+      ],
+      "owner_region_mm": [
+        113,
+        42,
+        135,
+        84
+      ],
+      "ref": "R_B5P",
+      "route_mouth_screen_count": 20,
+      "west_shift_lower_bound_mm": 0.975
+    },
+    {
+      "legal_local_count": 180,
+      "nearest_legal_local": {
+        "bias_partner_center_mm": 12.293905,
+        "bias_partner_ratio": 1.401657,
+        "east_owner_margin_mm": 0.025,
+        "min_other_envelope_gap_mm": 0.16,
+        "move_mm": 5.197115,
+        "origin_mm": [
+          156.0,
+          68.1
+        ],
+        "physical_bbox_mm": [
+          155.025,
+          67.585,
+          156.975,
+          68.615
+        ]
+      },
+      "nearest_route_mouth_screen": {
+        "bias_partner_center_mm": 12.404519,
+        "bias_partner_ratio": 1.414268,
+        "east_owner_margin_mm": 0.625,
+        "min_other_envelope_gap_mm": 0.56,
+        "move_mm": 5.728001,
+        "origin_mm": [
+          155.4,
+          68.5
+        ],
+        "physical_bbox_mm": [
+          154.425,
+          67.985,
+          156.375,
+          69.015
+        ]
+      },
+      "original_bias_partner_center_mm": 8.770981,
+      "original_origin_mm": [
+        157.0,
+        63.0
+      ],
+      "original_physical_bbox_mm": [
+        156.025,
+        62.485,
+        157.975,
+        63.515
+      ],
+      "owner_region_mm": [
+        135,
+        42,
+        157,
+        84
+      ],
+      "ref": "R_B6P",
+      "route_mouth_screen_count": 20,
+      "west_shift_lower_bound_mm": 0.975
+    },
+    {
+      "legal_local_count": 180,
+      "nearest_legal_local": {
+        "bias_partner_center_mm": 12.293905,
+        "bias_partner_ratio": 1.401657,
+        "east_owner_margin_mm": 0.025,
+        "min_other_envelope_gap_mm": 0.16,
+        "move_mm": 5.197115,
+        "origin_mm": [
+          178.0,
+          68.1
+        ],
+        "physical_bbox_mm": [
+          177.025,
+          67.585,
+          178.975,
+          68.615
+        ]
+      },
+      "nearest_route_mouth_screen": {
+        "bias_partner_center_mm": 12.404519,
+        "bias_partner_ratio": 1.414268,
+        "east_owner_margin_mm": 0.625,
+        "min_other_envelope_gap_mm": 0.56,
+        "move_mm": 5.728001,
+        "origin_mm": [
+          177.4,
+          68.5
+        ],
+        "physical_bbox_mm": [
+          176.425,
+          67.985,
+          178.375,
+          69.015
+        ]
+      },
+      "original_bias_partner_center_mm": 8.770981,
+      "original_origin_mm": [
+        179.0,
+        63.0
+      ],
+      "original_physical_bbox_mm": [
+        178.025,
+        62.485,
+        179.975,
+        63.515
+      ],
+      "owner_region_mm": [
+        157,
+        42,
+        179,
+        84
+      ],
+      "ref": "R_B7P",
+      "route_mouth_screen_count": 20,
+      "west_shift_lower_bound_mm": 0.975
+    },
+    {
+      "legal_local_count": 180,
+      "nearest_legal_local": {
+        "bias_partner_center_mm": 12.293905,
+        "bias_partner_ratio": 1.401657,
+        "east_owner_margin_mm": 0.025,
+        "min_other_envelope_gap_mm": 0.16,
+        "move_mm": 5.197115,
+        "origin_mm": [
+          200.0,
+          68.1
+        ],
+        "physical_bbox_mm": [
+          199.025,
+          67.585,
+          200.975,
+          68.615
+        ]
+      },
+      "nearest_route_mouth_screen": {
+        "bias_partner_center_mm": 12.404519,
+        "bias_partner_ratio": 1.414268,
+        "east_owner_margin_mm": 0.625,
+        "min_other_envelope_gap_mm": 0.56,
+        "move_mm": 5.728001,
+        "origin_mm": [
+          199.4,
+          68.5
+        ],
+        "physical_bbox_mm": [
+          198.425,
+          67.985,
+          200.375,
+          69.015
+        ]
+      },
+      "original_bias_partner_center_mm": 8.770981,
+      "original_origin_mm": [
+        201.0,
+        63.0
+      ],
+      "original_physical_bbox_mm": [
+        200.025,
+        62.485,
+        201.975,
+        63.515
+      ],
+      "owner_region_mm": [
+        179,
+        42,
+        201,
+        84
+      ],
+      "ref": "R_B8P",
+      "route_mouth_screen_count": 20,
+      "west_shift_lower_bound_mm": 0.975
+    }
+  ],
+  "routing_realized": false,
+  "schema": 1,
+  "status": "REJECTED_LOCALITY_SCREEN"
+}
