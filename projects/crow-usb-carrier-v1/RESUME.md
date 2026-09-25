@@ -1,12 +1,12 @@
 # Resume
 
-<!-- pause-state:66a8866441a930316ce77b5ece3f8e6b45f47b62597a480c2a6c9fc35dd2f659 -->
+<!-- pause-state:511e69787f451bfc33161a9672f6e655b853f4df102040d780acb480b90753dc -->
 
 Canonical state: `01_docs/pause_state.json`
 
 1. Verify: `python3 skills/pcb-design/scripts/pause_state.py verify .`
-2. Confirm blocker: The TI schematic prototype is sound for topology and source checks, but ordinary build/release remains held at PROTOTYPE_ONLY with XU316 transient unqualified. The isolated unrouted TI board has 499 opens; P1 geometry and connector edge/fit are unaccepted, and connector FULL has 19 physical unknowns.
-3. Resume with: `Follow D18 on the existing expanded-locked placement reference: establish complete USB-path feasibility under actual package/stack/rules, then close independent P1 capacity and affected P2 gaps. Coarse INCOMPLETE is diagnostic, not admission. Current routing and ordinary P3/P5 remain blocked; do not regenerate D15 for a checker-only change, run D17, fabricate, or order.`
+2. Confirm blocker: Static USB endpoint screen: canonical 0.410-mm centered launches leave 0.145-mm Type-C and 0.070-mm XU foreign clearance against 0.150 required. Historical D15 0.180/0.100 pair clearance is XU-area-only. Full path, return, P1/P2, connector FULL and prototype-only ESD qualification remain open; 499 opens are inherited from the frozen unrouted board.
+3. Resume with: `Prepare one unadopted same-placement 3313A USB pair-domain source proposal: 0.180-mm width, intended DP/DN-only 0.100-mm clearance, foreign clearance 0.150 mm unchanged. Review complete connector/ESD/XU domain and transition model before any new native experiment; retain D18 P1/P2 prerequisites. Do not replay D15/D17, adopt a stack, route, fabricate or order from this static screen.`
 
 The authenticated checkpoint is `03_src/rules/critical_part_selection.yaml` at
 `15288355fcc731ff8b1b0e35a1ae47b9faf66140223cfea0d31c91d99e9dc1ba`.
