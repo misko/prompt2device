@@ -1,0 +1,272 @@
+{
+  "filled_candidate_board_sha256_observation": "def5fc38455e8540dbc90c60cd4308bf6417ecfb7431a5ff78ac086934cc2da8",
+  "filled_return": {
+    "same_filled_polygon_outlines": [
+      8
+    ],
+    "uncovered_0p20mm_ribbon_area_mm2_by_segment": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "fixed_27_preserved": true,
+  "footprint_count": 569,
+  "geometry": {
+    "full_footprint_envelope_hits": {
+      "C_ADC_AC8N1": {
+        "full_envelope_mm": [
+          195.205,
+          58.105,
+          200.795,
+          61.595
+        ],
+        "segment_hits_mm": [
+          [
+            [
+              199.8,
+              59.85
+            ],
+            [
+              197.85,
+              61.8
+            ]
+          ]
+        ]
+      },
+      "C_ADC_CM8N": {
+        "full_envelope_mm": [
+          187.045,
+          65.995,
+          188.955,
+          67.005
+        ],
+        "segment_hits_mm": [
+          [
+            [
+              191.7,
+              65.9
+            ],
+            [
+              187.9,
+              65.9
+            ]
+          ],
+          [
+            [
+              187.5,
+              66.5
+            ],
+            [
+              187.52,
+              66.5
+            ]
+          ],
+          [
+            [
+              187.9,
+              65.9
+            ],
+            [
+              187.9,
+              66.099999
+            ]
+          ],
+          [
+            [
+              187.9,
+              66.099999
+            ],
+            [
+              187.5,
+              66.5
+            ]
+          ]
+        ]
+      }
+    },
+    "nearest_other_full_envelope_gaps_mm": [
+      {
+        "gap_mm": 0.048494,
+        "ref": "U_SPOKE8"
+      },
+      {
+        "gap_mm": 0.105001,
+        "ref": "C_A8N"
+      },
+      {
+        "gap_mm": 0.194704,
+        "ref": "R_B8P"
+      },
+      {
+        "gap_mm": 0.645001,
+        "ref": "C_ADC_CM8P"
+      },
+      {
+        "gap_mm": 0.755001,
+        "ref": "C_ADC_AC8N2"
+      }
+    ],
+    "post_launch_cap_full_gap_mm": 0.105001,
+    "whole_route_usb_region_gap_mm": 0.100001
+  },
+  "gnd_stitch_connected_pads": [
+    {
+      "named_gnd_pad": "C_FILTER8N1.2",
+      "via_center_mm": [
+        199.8,
+        57.6
+      ]
+    },
+    {
+      "named_gnd_pad": "C_ADC_CM8N.2",
+      "via_center_mm": [
+        188.95,
+        66.5
+      ]
+    }
+  ],
+  "gnd_stitches_mm": [
+    [
+      199.8,
+      57.6
+    ],
+    [
+      188.95,
+      66.5
+    ]
+  ],
+  "input_sha256": {
+    "generic_generator": "8a5fa1d48d80138458601a097ab6260565841510a498e44cb9c5773652215b3c",
+    "netlist": "a40b45c27b2169ed4f3dd43d72a1f4f7112d829985f98918a8855ed76735e9bd",
+    "poses": "76ba7ace1275fe1a8d6bc69d452037672519d70a21b8b02fff67f8c7d8a647bb",
+    "source": "0032b1202f5742b6575198d27ea50629826d49cf81cf12a31fead8a2929d9868",
+    "southwest_board": "0b9d017706845ad4d77c2b579dd36f2e34c0ecf55a7b699ace4fca97465c5b93"
+  },
+  "minimum_native_different_net_copper_gap": {
+    "minimum_effective_shape_copper_gap_mm": 0.190001,
+    "obstacle": "C_ADC_CM8N.2",
+    "segment_mm": [
+      [
+        191.7,
+        65.9
+      ],
+      [
+        187.9,
+        65.9
+      ]
+    ]
+  },
+  "native_connected_adc8n_pads": [
+    "C_ADC_AC8N1.2",
+    "C_ADC_CM8N.1"
+  ],
+  "pofv_rule_area_names": [
+    "tmux4827_b2_pofv_U_ISO1",
+    "tmux4827_b2_pofv_U_ISO2",
+    "tmux4827_b2_pofv_U_ISO3",
+    "tmux4827_b2_pofv_U_ISO4",
+    "tmux4827_b2_pofv_U_ISO5",
+    "tmux4827_b2_pofv_U_ISO6",
+    "tmux4827_b2_pofv_U_ISO7",
+    "tmux4827_b2_pofv_U_ISO8"
+  ],
+  "profile": {
+    "added_violation_identities_old_to_shifted": 0,
+    "added_violation_identities_shifted_to_routed": 0,
+    "removed_violation_identities_old_to_shifted": 0,
+    "removed_violation_identities_shifted_to_routed": 0,
+    "unconnected": [
+      499,
+      499,
+      499
+    ],
+    "via_process_fails": [
+      [],
+      [],
+      []
+    ],
+    "violations": [
+      199,
+      199,
+      199
+    ]
+  },
+  "related_pad_center_locality_old_new": {
+    "cap_adc8n_to_cm8n_1_mm": [
+      13.870865,
+      13.964988
+    ],
+    "cap_iso8n_to_u_iso8_6_mm": [
+      7.742254,
+      7.560589
+    ]
+  },
+  "route": {
+    "layer": "F.Cu",
+    "length_mm": 15.777464,
+    "segments": 8,
+    "vertices_mm": [
+      [
+        199.8,
+        59.85
+      ],
+      [
+        197.85,
+        61.8
+      ],
+      [
+        194.8,
+        61.8
+      ],
+      [
+        194.8,
+        62.8
+      ],
+      [
+        191.7,
+        65.9
+      ],
+      [
+        187.9,
+        65.9
+      ],
+      [
+        187.9,
+        66.1
+      ],
+      [
+        187.5,
+        66.5
+      ],
+      [
+        187.52,
+        66.5
+      ]
+    ],
+    "width_mm": 0.2
+  },
+  "schema": 1,
+  "shifted_cap_full_envelope_mm": [
+    195.205,
+    58.105,
+    200.795,
+    61.595
+  ],
+  "shifted_cap_other_full_envelope_hits": [],
+  "shifted_cap_support_full_envelope_gaps_mm": {
+    "C_A8P": 0.36,
+    "C_FILTER8N1": 0.58,
+    "R_B8P": 0.48
+  },
+  "source_generated_unfilled_board_sha256_observation": "a90fcc2c4bffca2cc76339259db096a7169598cce41fea8fa2add73a1564a6d8",
+  "source_pose_delta_refs": [
+    "C_ADC_AC8N1"
+  ],
+  "status": "RESEARCH_LOCAL_GEOMETRY_ONLY"
+}
