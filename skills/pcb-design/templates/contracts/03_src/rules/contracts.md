@@ -470,11 +470,14 @@ TWO ORPHANS THIS FOLDER'S OWN PROSE HAD HIDDEN, both found by the first run:
 | `selections[].dossier` | `critical_part_selection_admission.py` | exact dossier |
 | `selections[].source.path` | `critical_part_selection_admission.py` | authored JSX source path |
 | `selections[].source.sha256` | `critical_part_selection_admission.py` | authored JSX digest |
-| `selections[].suitability.status` | `critical_part_selection_admission.py` | accepted or incomplete independent selection decision |
+| `selections[].suitability.status` | `critical_part_selection_admission.py` | accepted, prototype_only, or incomplete independent selection decision; only explicit `--require-prototype` admits a bounded prototype producer, while ordinary and release gates refuse it |
 | `selections[].suitability.decision_owner` | `critical_part_selection_admission.py` | selection decision owner |
-| `selections[].suitability.reviewer` | `critical_part_selection_admission.py` | separate selection reviewer required for accepted; provisional incomplete may omit |
+| `selections[].suitability.reviewer` | `critical_part_selection_admission.py` | separate selection reviewer required for accepted and prototype_only; incomplete may omit |
 | `selections[].suitability.evidence.path` | `critical_part_selection_admission.py` | in-project suitability evidence |
 | `selections[].suitability.evidence.sha256` | `critical_part_selection_admission.py` | exact suitability evidence digest |
+| `selections[].suitability.test_plan.path` | `critical_part_selection_admission.py` | prototype-only in-project bounded system test plan |
+| `selections[].suitability.test_plan.sha256` | `critical_part_selection_admission.py` | exact prototype test-plan digest |
+| `selections[].suitability.deferred_findings` | `critical_part_selection_admission.py` | prototype-only requires nonempty open DESIGN_CLEAN-blocking findings outside selection; release review, rehearsal, seal and publication refuse prototype-only |
 | `selections[].due_at_selection_findings` | `critical_part_selection_admission.py` | closed exact finding IDs; tagged omissions hold |
 | `selections[].stock.path` | `critical_part_selection_admission.py` | exact public MPN/LCSC/ref stock line |
 | `selections[].stock.max_age_hours` | `critical_part_selection_admission.py` | freshness limit |

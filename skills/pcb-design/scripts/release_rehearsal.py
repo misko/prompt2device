@@ -22,6 +22,8 @@ from typing import Any
 
 import yaml
 
+from critical_part_selection_admission import release_selection_errors
+
 
 HERE = Path(__file__).resolve().parent
 REPO = HERE.parents[2]
@@ -65,6 +67,9 @@ def _release_files(release: Path) -> list[Path]:
 def init_manifest(release: Path, project: Path | None = None) -> Path:
     release = release.resolve()
     project = (project or _project_for(release)).resolve()
+    selection_errors = release_selection_errors(project)
+    if selection_errors:
+        raise ValueError("critical selection release hold: " + "; ".join(selection_errors))
     manifest = release / "MANIFEST.txt"
     if manifest.exists() or manifest.is_symlink():
         raise ValueError(f"refusing to overwrite existing {manifest}")
@@ -141,6 +146,9 @@ def rehearse(release: Path, project: Path | None = None,
              rule_prose_supersede: str | None = None) -> dict[str, Any]:
     release = release.resolve()
     project = (project or _project_for(release)).resolve()
+    selection_errors = release_selection_errors(project)
+    if selection_errors:
+        raise ValueError("critical selection release hold: " + "; ".join(selection_errors))
     manifest = release / "MANIFEST.txt"
     readme = release / "ORDER_README.md"
     if not manifest.is_file() or not readme.is_file():
@@ -235,6 +243,10 @@ def verify(path: Path) -> tuple[bool, list[str]]:
             receipt.get("kind") != "release-rehearsal-receipt-v1"):
         failures.append("unsupported receipt schema/kind")
     release = Path(str(receipt.get("release") or ""))
+    try:
+        failures.extend(release_selection_errors(_project_for(release)))
+    except ValueError as exc:
+        failures.append(f"critical selection project cannot be resolved: {exc}")
     for name, record in sorted((receipt.get("inputs") or {}).items()):
         source = release / name
         if not source.is_file() or _record(source) != record:

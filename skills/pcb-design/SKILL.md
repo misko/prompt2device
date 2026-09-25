@@ -99,6 +99,11 @@ initial exact-part stock decision can set `policy: initial_snapshot`, pin the
 receipt `sha256`, and give `initial_checked_at` in UTC; the gate checks receipt
 freshness at that initial review time and keeps grading the pinned identity and
 assembly threshold without reopening it for later inventory fluctuations.
+An independently reviewed `prototype_only` suitability may be used only by a
+bounded research producer that explicitly passes `--require-prototype` to the
+critical-part checker. It must bind a test plan and name an open `DESIGN_CLEAN` release-blocking
+finding for each deferred qualification. Ordinary rebuilds reject this status;
+release review, rehearsal, seal, order and publication regrade and refuse it.
 
 ## Plan is not execution
 

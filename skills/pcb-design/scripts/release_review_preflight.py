@@ -34,6 +34,7 @@ from publication_transport_gate import (  # noqa: E402
 from release_required_check import (  # noqa: E402
     RELEASE_REVIEW_OUTPUTS, check_release_review_inputs,
 )
+from critical_part_selection_admission import release_selection_errors  # noqa: E402
 
 
 RECIPE = "release-review-packet"
@@ -304,6 +305,11 @@ def assess(repo_root: str | Path, project: str | Path, release: str | Path,
         repo = Path(repo_root).resolve()
         project_path = _inside(Path(project), repo, "project")
         release_path = _inside(Path(release), project_path, "release")
+        selection_errors = release_selection_errors(project_path)
+        if selection_errors:
+            return Admission("REFUSED", tuple(Finding("RP-SELECTION", item)
+                                               for item in selection_errors),
+                             census, deferred)
         commission_file = _inside(
             Path(commission_path) if Path(commission_path).is_absolute()
             else project_path / commission_path, project_path, "commission")

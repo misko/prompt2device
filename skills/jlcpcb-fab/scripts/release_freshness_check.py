@@ -283,6 +283,15 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from release_index import (_NAME_RE, _version_key,            # noqa: E402,F401
                            earlier_releases as _earlier_releases,
                            parse_release_name, slug)          # noqa: F401
+sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "pcb-design/scripts"))
+from critical_part_selection_admission import release_selection_errors  # noqa: E402
+
+
+def _critical_selection_project_for(release_dir: Path) -> Path:
+    for parent in release_dir.resolve().parents:
+        if (parent / "03_src").is_dir() and (parent / "04_kicad").is_dir():
+            return parent
+    raise ValueError(f"cannot locate project authority above {release_dir}")
 
 
 def _artifacts(release_dir: Path):
@@ -2792,6 +2801,15 @@ def main(argv=None):
     if not release_dir.is_dir():
         print(f"FATAL: not a directory: {release_dir}", file=sys.stderr)
         return 2
+    try:
+        selection_errors = release_selection_errors(
+            _critical_selection_project_for(release_dir))
+    except ValueError as exc:
+        selection_errors = [str(exc)]
+    if selection_errors:
+        for item in selection_errors:
+            print(f"CRITICAL-SELECTION RELEASE HOLD: {item}")
+        return 1
     releases_root = (Path(args.releases_root).resolve()
                      if args.releases_root else release_dir.parent)
     if args.sourcing_authority == "auto":

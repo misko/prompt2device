@@ -17,10 +17,15 @@ selections:
     initial_checked_at: '2026-09-24T00:45:18.073286Z'
     max_age_hours: 24
   suitability:
-    status: incomplete
+    status: prototype_only
     decision_owner: electrical
+    reviewer: independent-electrical-terra
     evidence:
-      path: 01_docs/research/2026-09-24-ti-usb-esd-stock-lock-reinstatement.md
-      sha256: 2a9c1feacebf9de51f4aaed0c7f07e0bd8562f4be0d4a5b418b257f656b372df
-  due_at_selection_findings:
-  - USB-ESD-selection-transient
+      path: 08_reviews/2026-09-25_ti-usb-esd-prototype-only_terra.md
+      sha256: 48f056d1aa96f7af99f56ac2b992716686d344a84e753496bf4db322fd7a5a91
+    test_plan:
+      path: 01_docs/research/2026-09-25-ti-usb-esd-prototype-test-plan.md
+      sha256: 2a17265c6afe1408f1b78149e80c89547cc8be8b1e805e92443adb7d35b6411a
+    deferred_findings:
+    - USB-ESD-selection-transient
+  due_at_selection_findings: []

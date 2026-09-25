@@ -154,6 +154,7 @@ def evaluate(project: Path, declaration: Path) -> dict:
     if not isinstance(overrides, list):
         raise InputError("assembly.public_stock_surplus_overrides must be a list")
     seen_refs: set[str] = set()
+    prototype_refs: list[str] = []
     for index, row in enumerate(rows):
         label = f"selections[{index}]"
         if not isinstance(row, dict):
@@ -182,13 +183,33 @@ def evaluate(project: Path, declaration: Path) -> dict:
             findings.append(f"{ref}: exact MPN/LCSC not bound on one source component")
         suitability = row.get("suitability")
         if not isinstance(suitability, dict):
-            raise InputError(f"{label}.suitability needs accepted or incomplete status")
-        if suitability.get("status") not in ("accepted", "incomplete"):
-            raise InputError(f"{label}.suitability.status must be accepted or incomplete")
+            raise InputError(f"{label}.suitability needs accepted, prototype_only or incomplete status")
+        if suitability.get("status") not in ("accepted", "prototype_only", "incomplete"):
+            raise InputError(f"{label}.suitability.status must be accepted, prototype_only or incomplete")
         reviewed_decision(project, suitability, f"{ref}.suitability", findings,
-                          require_reviewer=suitability["status"] == "accepted")
-        if suitability["status"] != "accepted":
+                          require_reviewer=suitability["status"] != "incomplete")
+        if suitability["status"] == "incomplete":
             findings.append(f"{ref}: independent selection suitability is incomplete")
+        deferred = suitability.get("deferred_findings")
+        if suitability["status"] == "prototype_only":
+            prototype_refs.append(ref)
+            bound_evidence(project, suitability.get("test_plan"),
+                           f"{ref}.suitability.test_plan", findings)
+            if (not isinstance(deferred, list) or not deferred or
+                    any(not isinstance(x, str) or not x for x in deferred) or
+                    len(deferred) != len(set(deferred))):
+                raise InputError(f"{label}.suitability.deferred_findings needs unique finding IDs")
+            for ident in deferred:
+                item = by_id.get(ident)
+                if item is None:
+                    findings.append(f"{ref}: deferred release finding {ident!r} absent")
+                elif (item.get("state") != "open" or
+                      item.get("blocks_at_or_above") != "DESIGN_CLEAN" or
+                      item.get("critical_selection") is not None):
+                    findings.append(f"{ref}: deferred finding {ident!r} must be open, "
+                                    "DESIGN_CLEAN-blocking and outside selection")
+        elif deferred is not None:
+            raise InputError(f"{label}.suitability.deferred_findings is only for prototype_only")
         due = row.get("due_at_selection_findings")
         if (not isinstance(due, list) or any(not isinstance(x, str) or not x for x in due)
                 or len(due) != len(set(due))):
@@ -258,15 +279,52 @@ def evaluate(project: Path, declaration: Path) -> dict:
             findings.append(f"{ref}: public stock {observed} below {required + surplus} or line not OK")
     for omitted_ref in sorted(set(tagged) - seen_refs):
         findings.append(f"{omitted_ref}: tagged selection findings have no critical selection declaration")
-    return {"status": "PASS" if not findings else "FAIL",
+    return {"status": ("FAIL" if findings else
+                        "PROTOTYPE_ONLY" if prototype_refs else "PASS"),
             "coverage": f"{len(rows)}/{len(rows)}", "findings": findings,
-            "declaration": str(declaration)}
+            "declaration": str(declaration), "prototype_refs": prototype_refs}
+
+
+def release_selection_errors(project: Path) -> list[str]:
+    """Reject unfinished declared selections at every release boundary.
+
+    A missing manifest cannot hide a tagged selection obligation or an open
+    DESIGN_CLEAN finding. Boards without either retain their legacy path.
+    """
+    project = project.resolve()
+    declaration = project / "03_src/rules/critical_part_selection.yaml"
+    try:
+        report = evaluate(project, declaration)
+        ledger_path = project / "01_docs/findings.yaml"
+        ledger = mapping(ledger_path, "findings ledger") if ledger_path.is_file() else None
+        rows = ledger.get("findings") if ledger is not None else []
+        if not isinstance(rows, list):
+            raise InputError("findings ledger needs findings list")
+        errors = []
+        if report["status"] == "NOT_APPLICABLE":
+            if any(isinstance(row, dict) and row.get("critical_selection") is not None
+                   for row in rows):
+                errors.append("critical selection declaration missing for tagged findings")
+        elif report["status"] != "PASS":
+            errors.extend([f"critical selection {report['status']}: {item}"
+                           for item in report["findings"]] or [
+                               f"critical selection {report['status']} is not fully accepted"])
+        for row in rows:
+            if not isinstance(row, dict):
+                raise InputError("malformed finding in ledger")
+            if row.get("state") == "open" and row.get("blocks_at_or_above") == "DESIGN_CLEAN":
+                errors.append(f"open DESIGN_CLEAN finding {row.get('id')!r} blocks release")
+        return errors
+    except (InputError, OSError, UnicodeError, ValueError) as exc:
+        return [f"critical selection input invalid: {exc}"]
 
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("project")
     parser.add_argument("--declaration", default="03_src/rules/critical_part_selection.yaml")
+    parser.add_argument("--require-prototype", action="store_true",
+                        help="bounded prototype producer: accept only PROTOTYPE_ONLY, never PASS or N-A")
     args = parser.parse_args()
     project = Path(args.project).resolve()
     declaration = (project / args.declaration).resolve()
@@ -281,7 +339,11 @@ def main() -> int:
           f"declaration={report['declaration']}")
     for item in report["findings"]:
         print(f"  {item}")
-    return 0 if report["status"] != "FAIL" else 1
+    for ref in report.get("prototype_refs", []):
+        print(f"  {ref}: prototype design continuation only; release finding remains open")
+    if args.require_prototype:
+        return 0 if report["status"] == "PROTOTYPE_ONLY" else 1
+    return 0 if report["status"] in ("PASS", "NOT_APPLICABLE") else 1
 
 
 if __name__ == "__main__":

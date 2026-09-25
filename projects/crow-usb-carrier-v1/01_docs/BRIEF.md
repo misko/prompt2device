@@ -184,3 +184,7 @@ Impact: use public records and jlcsearch for sourcing investigation and public-c
 > once we do the stock check at the start lets not worry about it again. its locked in
 
 Impact: for Crow, one dated exact public-stock screen at part selection applies D7's five-board plus-150-unit threshold (and the XMOS exception). Subsequent inventory movement does not reopen an unchanged selected part or force a redesign. The original TI USB data ESD part passed the retained direct JLC screen at 307 versus 155 and may be restored as the selected candidate; later 29-unit stock does not undo that source decision. Recheck a new MPN/LCSC or quantity at its own initial selection. This does not reserve stock, prove eventual JLC assembly allocation, authorize an order, or accept electrical/physical behavior. See decision0012.
+
+### D13 — 2026-09-25 — USB ESD schematic-only prototype boundary
+
+Impact: the locked TI ESD candidate is admitted only for a separately gated engineering schematic prototype. The XU316 powered/rail-off transient and exact-board ESD finding remains open and blocks design-clean/release maturity; ordinary full/reuse, release, and manufacturing order paths refuse the prototype status. The independent review and bounded test plan are hash-bound in critical selection. No prototype fabrication or order is authorized by this decision. See decision0013.

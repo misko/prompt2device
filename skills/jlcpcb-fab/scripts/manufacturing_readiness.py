@@ -41,6 +41,7 @@ from pipeline_stage_evidence import (  # noqa: E402
 )
 from process_runner import run_bounded  # noqa: E402
 from jlc_pcba_availability import verify_receipt  # noqa: E402
+from critical_part_selection_admission import release_selection_errors  # noqa: E402
 
 
 def _record(path: Path) -> dict[str, Any]:
@@ -614,6 +615,10 @@ def grade(project: Path, *, phase: str, release: Path | None = None,
                 catalog_request is None):
             raise ValueError('distributor evidence requires explicit public prelayout mode and both inputs')
     project = project.resolve()
+    if phase == "order":
+        selection_errors = release_selection_errors(project)
+        if selection_errors:
+            raise ValueError("critical selection order hold: " + "; ".join(selection_errors))
     circuit = _find_circuit(project)
     assembly = project / "03_src/rules/assembly.yaml"
     if not assembly.is_file():

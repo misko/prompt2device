@@ -1,58 +1,59 @@
 # Crow release recovery at USB ESD selection
 
-**Historical 5UX branch, superseded for stock selection by D12.** Crow has
-returned to the original TI part using its initial public-stock lock. The
-TI/XU transient question remains an independent open electrical finding; this
-note does not designate 5UX as current source.
+**Updated 2026-09-25 for D12.** Crow uses the original TI
+`TPD2EUSB30ADRTR / C94934` candidate and its pinned initial public-stock
+receipt. The later 5UX investigation is historical; it is not current source.
 
 ## Current stop
 
 The full and reuse conductors both stop at `CRITICAL-SELECTION` before a
-schematic producer. The exact 5UX source identity, dossier and observed public
+schematic producer. The exact TI source identity, dossier and locked initial
 stock pass; `suitability: incomplete` and the open
 `USB-ESD-selection-transient` finding fail. This is the earliest live release
 boundary. The existing generated circuit and native schematic are diagnostic
 and do not renew the accepted schematic/PDF checkpoint.
 
-The independent [5UX/XU316 transient screen](2026-09-24-pesd2usb5ux-xu316-transient-hold-terra.md)
+The independent [TI/XU316 prototype review](../../08_reviews/2026-09-25_ti-usb-esd-prototype-only_terra.md)
 finds no published XU316 USB DP/DM transient limit for powered and rail-off
-states. Nexperia's typical component clamp and IEC rating cannot establish
-voltage at the XU pads on Crow. Repeating part search or layout attempts
-without a new limit or test evidence will not close this finding.
+states. TI's component clamp and IEC rating cannot establish voltage at the
+XU pads on Crow. The initial stock pass is locked by
+[D12](../decisions/0012-initial-public-stock-lock.md); subsequent stock changes
+do not reopen this selected part. Repeating part search or layout attempts
+without a new electrical limit or test evidence will not close the finding.
 
 ## Bounded recovery
 
-1. Search only public XMOS primary design files, schematic/manual revisions and
-   application guidance for the exact XU316 USB interface and an explicitly
-   recommended protection topology or powered/rail-off stress envelope. Record
-   exact document revision and page/figure. Stop this search when those
-   sources are exhausted; a similar board's part is precedent, not an exact
-   Crow qualification. The [XMOS multichannel hardware manual](https://www.xmos.com/documentation/XM-014727-PC/html/doc/rst/index.html)
-   lists eight public reference schematics, but direct retrieval returned
-   HTTP 406 here, so their component identities have not been verified.
-2. If no public limit exists, retain 5UX as provisional and prepare an
-   **engineering prototype**, separate from a release. Its test plan must
-   specify connector contact-discharge level and polarity, powered and
-   VBUS/rail-off states, XU-side DP/DM and USB supply measurements, ground
-   return geometry, pre/post USB enumeration and leakage checks, and pass/fail
-   authority. Fabrication or ordering remains a separate decision. A passing
-   prototype supports a bounded empirical claim; it does not turn a typical
-   clamp graph into a guaranteed silicon limit.
-3. Reopen selection only on new evidence. Independently review an exact-part
-   decision, close the tagged finding with a hash-bound record, refresh the
-   public stock receipt against Crow's five-board plus-150 policy, then allow
-   the conductor to advance. If the evidence rejects 5UX, replace only the
-   source candidate and repeat this same selection checkpoint.
+1. Keep the exact TI identity and initial-stock receipt pinned. A new MPN,
+   LCSC code, quantity, footprint, pin map or source hash starts a fresh
+   selection review; unchanged stock alone does not.
+2. Add a typed, independently reviewed **prototype-only** source decision and
+   a separate bounded producer path. This may generate a fresh schematic and
+   candidate layout for an engineering test article, while the XU316 transient
+   finding stays open. The ordinary full/reuse pipeline and every release
+   preflight, rehearsal and publication gate must reject this state. Verify
+   the rejection with negative integration tests before enabling the path.
+3. Before any prototype fabrication, approve an exact-board test plan covering
+   discharge level and polarity, powered and rail-off states, XU-side DP/DM
+   and USB supply observations, return geometry, and pre/post functional and
+   leakage checks. Fabrication or ordering is a separate decision. A passing
+   test supports only its measured board and conditions, and cannot by itself
+   invent a published silicon stress limit.
+4. Use new public primary electrical evidence or reviewed exact-board test
+   results to decide whether the TI candidate can be accepted for a stated
+   release target. Close the finding only with a hash-bound independent review;
+   otherwise revise the protection design and repeat its selection checkpoint.
 
-After selection, the shortest release path is fresh E-FAULT/IC applicability,
-then one coherent 569-part circuit/netlist/PDF checkpoint with independent
-topology and render reviews; rebind route authority to that exact part; then
-P1/P2 source-cell and connector FULL proof, P3 native routing/return/SI, and
-the ordinary assembly and release checks. Historical UV reviews and scratch
-boards do not transfer to 5UX.
+After the prototype lane is guarded, the shortest design path is fresh
+E-FAULT/IC applicability, then one coherent 569-part circuit/netlist/PDF
+checkpoint with independent topology and render reviews; rebind route
+authority to the exact TI part; then P1/P2 source-cell and connector FULL
+proof, P3 native routing/return/SI. Electrical qualification and the ordinary
+assembly/release checks still have to close before a release claim. Historical
+5UX reviews and scratch boards do not transfer to TI.
 
 ## Work limit while held
 
-Do not launch another full schematic, placement or route attempt while this
-selection gate is red. Read-only public reference research and prototype test
-planning are useful; neither spends a P1/P2/P3 attempt or claims release.
+Do not launch the ordinary full/reuse schematic, placement or route conductor
+while selection remains red. A separately guarded prototype producer may run
+after its release guard and negative tests exist; its output cannot claim P1,
+P2, P3, release, or order readiness.

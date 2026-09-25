@@ -61,6 +61,7 @@ ROOT = Path(__file__).resolve().parents[3]
 FAB_SCRIPTS = ROOT / "skills" / "jlcpcb-fab" / "scripts"
 sys.path.insert(0, str(FAB_SCRIPTS))
 import release_index  # noqa: E402
+from critical_part_selection_admission import release_selection_errors  # noqa: E402
 
 
 REQUIRED_REVIEWS = (
@@ -747,6 +748,9 @@ def review_binding_errors(project, release, board_hash, head, root):
 def grade_board(project, board, head, root, check_worktree, release_override=None):
     errors = []
     project_rel = project.relative_to(root).as_posix()
+    selection_errors = release_selection_errors(project)
+    if selection_errors:
+        return [f"CRITICAL-SELECTION: {item}" for item in selection_errors], None
     try:
         release = (Path(release_override).resolve() if release_override
                    else release_index.latest_release(project, board))

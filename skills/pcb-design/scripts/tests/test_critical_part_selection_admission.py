@@ -1,5 +1,7 @@
 from datetime import datetime, timezone
+from contextlib import redirect_stdout
 import hashlib
+import io
 import json
 import os
 from pathlib import Path
@@ -16,6 +18,7 @@ SCRIPTS = Path(__file__).resolve().parents[1]
 REPO = SCRIPTS.parents[2]
 sys.path.insert(0, str(SCRIPTS))
 from critical_part_selection_admission import evaluate  # noqa: E402
+from critical_part_selection_admission import release_selection_errors  # noqa: E402
 
 
 class CriticalSelectionTest(unittest.TestCase):
@@ -187,6 +190,195 @@ class CriticalSelectionTest(unittest.TestCase):
     def test_absent_declaration_preserves_existing_behavior(self):
         self.declaration.unlink()
         self.assertEqual(self.grade()["status"], "NOT_APPLICABLE")
+
+    def test_release_guard_rejects_missing_manifest_with_tagged_finding(self):
+        self.declaration.unlink()
+        self.assertIn("critical selection declaration missing for tagged findings",
+                      release_selection_errors(self.project))
+
+    def test_release_guard_rejects_deleted_prototype_manifest(self):
+        self.prototype_manifest()
+        self.declaration.unlink()
+        self.assertIn("open DESIGN_CLEAN finding 'ESD-SYSTEM' blocks release",
+                      release_selection_errors(self.project))
+
+    def prototype_manifest(self):
+        manifest = yaml.safe_load(self.declaration.read_text())
+        suitability = manifest["selections"][0]["suitability"]
+        suitability["status"] = "prototype_only"
+        suitability["reviewer"] = "independent-reviewer"
+        suitability["deferred_findings"] = ["ESD-SYSTEM"]
+        plan = self.write("01_docs/prototype-test-plan.md", "Powered and rail-off system test plan\n")
+        suitability["test_plan"] = {
+            "path": "01_docs/prototype-test-plan.md",
+            "sha256": hashlib.sha256(plan.read_bytes()).hexdigest(),
+        }
+        self.declaration.write_text(yaml.safe_dump(manifest))
+        self.write_yaml("01_docs/findings.yaml", {
+            "schema": 1, "findings": [
+                {"id": "ESD-DC", "state": "closed",
+                 "critical_selection": {"ref": "U_ESD", "due_stage": "selection"},
+                 "evidence": ["01_docs/selection-review.md"]},
+                {"id": "ESD-SYSTEM", "state": "open",
+                 "blocks_at_or_above": "DESIGN_CLEAN",
+                 "finding": "Exact-board powered and unpowered ESD remains unqualified"},
+            ],
+        })
+
+    def test_prototype_is_typed_and_requires_explicit_cli_opt_in(self):
+        self.prototype_manifest()
+        report = self.grade()
+        self.assertEqual("PROTOTYPE_ONLY", report["status"])
+        self.assertEqual([], report["findings"])
+        checker = SCRIPTS / "critical_part_selection_admission.py"
+        default = subprocess.run([sys.executable, str(checker), str(self.project)],
+                                 capture_output=True, text=True)
+        required = subprocess.run([sys.executable, str(checker), str(self.project),
+                                   "--require-prototype"], capture_output=True, text=True)
+        self.assertEqual(1, default.returncode)
+        self.assertEqual(0, required.returncode)
+        self.assertIn("CRITICAL-SELECTION PROTOTYPE_ONLY", required.stdout)
+        self.assertTrue(release_selection_errors(self.project))
+        sys.path.insert(0, str(REPO / "skills/kicad-pcb/scripts"))
+        import pre_route_review_check as pr_review
+        review_errors = []
+        self.assertEqual("PROTOTYPE_ONLY",
+                         pr_review.check_critical_part_selection(
+                             self.project, review_errors)["status"])
+        self.assertEqual([], review_errors)
+        self.write_yaml("03_src/route.yaml", {"flow": {"pre_route_reviews": {
+            "netlist": "06_build/netlists/absent.net",
+            "topology": "08_reviews/absent.md",
+            "schematic": "08_reviews/absent-render.md",
+        }}})
+        output = io.StringIO()
+        with redirect_stdout(output):
+            pr_review.main([str(self.project), "--phase", "schematic"])
+        self.assertIn("PR-REVIEW critical-selection: PROTOTYPE_ONLY", output.getvalue())
+        self.write("01_docs/prototype-test-plan.md", "Changed plan\n")
+        self.assertEqual("FAIL", self.grade()["status"])
+
+    def test_require_prototype_refuses_accepted_and_absent_declarations(self):
+        checker = SCRIPTS / "critical_part_selection_admission.py"
+        command = [sys.executable, str(checker), str(self.project), "--require-prototype"]
+        self.assertEqual(1, subprocess.run(command, capture_output=True).returncode)
+        self.declaration.unlink()
+        self.assertEqual(1, subprocess.run(command, capture_output=True).returncode)
+
+    def test_prototype_requires_open_untagged_release_blocker_and_reviewer(self):
+        self.prototype_manifest()
+        manifest = yaml.safe_load(self.declaration.read_text())
+        manifest["selections"][0]["suitability"].pop("reviewer")
+        self.declaration.write_text(yaml.safe_dump(manifest))
+        with self.assertRaisesRegex(ValueError, "reviewer distinct from decision_owner"):
+            self.grade()
+        manifest["selections"][0]["suitability"]["reviewer"] = "independent-reviewer"
+        manifest["selections"][0]["suitability"].pop("test_plan")
+        self.declaration.write_text(yaml.safe_dump(manifest))
+        with self.assertRaisesRegex(ValueError, "test_plan needs path and sha256"):
+            self.grade()
+        plan = self.project / "01_docs/prototype-test-plan.md"
+        manifest["selections"][0]["suitability"]["test_plan"] = {
+            "path": "01_docs/prototype-test-plan.md",
+            "sha256": hashlib.sha256(plan.read_bytes()).hexdigest(),
+        }
+        self.declaration.write_text(yaml.safe_dump(manifest))
+        for change in ({"state": "closed"}, {"blocks_at_or_above": "FIRST_ARTICLE"},
+                       {"critical_selection": {"ref": "U_ESD", "due_stage": "selection"}}):
+            with self.subTest(change=change):
+                ledger = yaml.safe_load((self.project / "01_docs/findings.yaml").read_text())
+                ledger["findings"][1].update(change)
+                self.write_yaml("01_docs/findings.yaml", ledger)
+                self.assertEqual("FAIL", self.grade()["status"])
+                self.prototype_manifest()
+
+    def test_prototype_cannot_leave_selection_tagged_finding_open(self):
+        self.prototype_manifest()
+        ledger = yaml.safe_load((self.project / "01_docs/findings.yaml").read_text())
+        ledger["findings"][0]["state"] = "open"
+        self.write_yaml("01_docs/findings.yaml", ledger)
+        self.assertEqual("FAIL", self.grade()["status"])
+
+    def test_release_guard_keeps_open_design_clean_hold_after_manifest_mutation(self):
+        self.prototype_manifest()
+        manifest = yaml.safe_load(self.declaration.read_text())
+        suitability = manifest["selections"][0]["suitability"]
+        suitability["status"] = "accepted"
+        suitability.pop("deferred_findings")
+        suitability.pop("test_plan")
+        self.declaration.write_text(yaml.safe_dump(manifest))
+        self.assertEqual("PASS", self.grade()["status"])
+        self.assertIn("open DESIGN_CLEAN finding 'ESD-SYSTEM' blocks release",
+                      release_selection_errors(self.project))
+
+    def test_release_review_rehearsal_seal_and_publication_refuse_incomplete_selection(self):
+        import pcb_publication_gate as publication
+        import release_rehearsal as rehearsal
+        import release_review_preflight as preflight
+        sys.path.insert(0, str(REPO / "skills/jlcpcb-fab/scripts"))
+        import manufacturing_readiness as readiness
+        import release_freshness_check as freshness
+
+        release = self.project / "07_releases/v0"
+        release.mkdir(parents=True)
+        (self.project / "04_kicad").mkdir()
+        manifest = yaml.safe_load(self.declaration.read_text())
+        manifest["selections"][0]["suitability"]["status"] = "incomplete"
+        manifest["selections"][0]["suitability"].pop("reviewer")
+        self.declaration.write_text(yaml.safe_dump(manifest))
+        selection_errors = release_selection_errors(self.project)
+        self.assertTrue(selection_errors)
+        admission = preflight.assess(
+            self.project.parent, self.project, release, None,
+            "missing-commission.json", "missing-packet.json", live_paths=[],
+            transport_base="HEAD~1")
+        self.assertEqual("REFUSED", admission.status)
+        self.assertTrue(any(row.code == "RP-SELECTION" for row in admission.findings))
+        with self.assertRaisesRegex(ValueError, "critical selection release hold"):
+            rehearsal.rehearse(release, self.project)
+        receipt = self.write_json("06_build/release_rehearsal/forged.json", {
+            "schema": 1, "kind": "release-rehearsal-receipt-v1",
+            "verdict": "ACCEPTED", "release": str(release), "inputs": {}, "checks": {},
+        })
+        valid, failures = rehearsal.verify(receipt)
+        self.assertFalse(valid)
+        self.assertTrue(any("critical selection" in item for item in failures))
+        errors, _ = publication.grade_board(
+            self.project, self.project / "04_kicad/board.kicad_pcb", "HEAD",
+            self.project.parent, True)
+        self.assertTrue(any("CRITICAL-SELECTION" in item for item in errors))
+        with self.assertRaisesRegex(ValueError, "critical selection order hold"):
+            readiness.grade(self.project, phase="order", release=release)
+        output = io.StringIO()
+        with redirect_stdout(output):
+            self.assertEqual(1, freshness.main([str(release), "--claim", "sourcing"]))
+        self.assertIn("CRITICAL-SELECTION RELEASE HOLD", output.getvalue())
+        staged_release = self.project / "06_build/release_staging/noncanonical-v0"
+        staged_release.mkdir(parents=True)
+        output = io.StringIO()
+        with redirect_stdout(output):
+            self.assertEqual(1, freshness.main([str(staged_release), "--claim", "sourcing"]))
+        self.assertIn("CRITICAL-SELECTION RELEASE HOLD", output.getvalue())
+        self.prototype_manifest()
+        self.assertEqual("PROTOTYPE_ONLY", self.grade()["status"])
+        admission = preflight.assess(
+            self.project.parent, self.project, release, None,
+            "missing-commission.json", "missing-packet.json", live_paths=[],
+            transport_base="HEAD~1")
+        self.assertEqual("REFUSED", admission.status)
+        with self.assertRaisesRegex(ValueError, "critical selection release hold"):
+            rehearsal.rehearse(release, self.project)
+        self.assertFalse(rehearsal.verify(receipt)[0])
+        errors, _ = publication.grade_board(
+            self.project, self.project / "04_kicad/board.kicad_pcb", "HEAD",
+            self.project.parent, True)
+        self.assertTrue(any("PROTOTYPE_ONLY" in item for item in errors))
+        with self.assertRaisesRegex(ValueError, "critical selection order hold"):
+            readiness.grade(self.project, phase="order", release=release)
+        output = io.StringIO()
+        with redirect_stdout(output):
+            self.assertEqual(1, freshness.main([str(release), "--claim", "design"]))
+        self.assertIn("PROTOTYPE_ONLY", output.getvalue())
 
     def test_pending_scaffold_blocks_without_other_inputs(self):
         self.declaration.write_text("schema: 1\nstatus: pending\nselections: []\n")
