@@ -1,0 +1,106 @@
+{
+  "added_track": {
+    "end_mm": [
+      199.805,
+      97.6
+    ],
+    "layer": "F.Cu",
+    "net": "TDM_DATA_1V8",
+    "start_mm": [
+      200.8375,
+      97.6
+    ],
+    "start_pad": "U_XU.107",
+    "width_mm": 0.2
+  },
+  "drc": {
+    "after_types": {
+      "annular_width": 8,
+      "clearance": 225,
+      "drill_out_of_range": 14,
+      "hole_clearance": 28,
+      "lib_footprint_issues": 199,
+      "silk_over_copper": 19,
+      "silk_overlap": 11,
+      "text_height": 199,
+      "track_dangling": 1,
+      "via_dangling": 14,
+      "via_diameter": 8
+    },
+    "after_unconnected": 499,
+    "after_violations": 726,
+    "before_types": {
+      "annular_width": 8,
+      "clearance": 224,
+      "drill_out_of_range": 14,
+      "hole_clearance": 28,
+      "lib_footprint_issues": 199,
+      "silk_over_copper": 19,
+      "silk_overlap": 11,
+      "text_height": 199,
+      "via_dangling": 14,
+      "via_diameter": 8
+    },
+    "before_unconnected": 499,
+    "before_violations": 724,
+    "new_data_track_items": [
+      {
+        "description": "Clearance violation ( clearance 0.2000 mm; actual 0.1750 mm)",
+        "items": [
+          {
+            "description": "Pad 108 [unconnected-(U_XU-X1D25_NC-Pad108)] of U_XU on F.Cu",
+            "pos": {
+              "x": 200.8375,
+              "y": 98.0
+            },
+            "uuid": "616fe5d9-5c18-4518-8f9f-3d27c4765a76"
+          },
+          {
+            "description": "Track [TDM_DATA_1V8] on F.Cu, length 1.0325 mm",
+            "pos": {
+              "x": 200.8375,
+              "y": 97.6
+            },
+            "uuid": "8d2f831e-bd45-4e0f-9f42-0659d20a8107"
+          }
+        ],
+        "severity": "error",
+        "type": "clearance"
+      },
+      {
+        "description": "Track has unconnected end",
+        "items": [
+          {
+            "description": "Track [TDM_DATA_1V8] on F.Cu, length 1.0325 mm",
+            "pos": {
+              "x": 200.8375,
+              "y": 97.6
+            },
+            "uuid": "8d2f831e-bd45-4e0f-9f42-0659d20a8107"
+          }
+        ],
+        "severity": "warning",
+        "type": "track_dangling"
+      }
+    ]
+  },
+  "fixture_board_sha256": "5a793498738c61c7e71ede55d8fe3efa6c6533bf08fe9efedec3545ab4288b93",
+  "geometry_mm": {
+    "adjacent_pad": "U_XU.108",
+    "adjacent_pad_half_height": 0.125,
+    "pad_pitch": 0.4,
+    "resulting_gap": 0.175,
+    "trace_half_width": 0.1
+  },
+  "input_board_sha256": "53e6fb7809910946c36053e7ceeb77e7fc866456ff77775ed4c59b3e49278555",
+  "kind": "tdm-data-native-clearance-stop",
+  "native_rule_mm": {
+    "clearance": 0.2,
+    "minimum_track_width": 0.2
+  },
+  "p1_accepted": false,
+  "return_assessment": "Not attempted after first native F.Cu clearance contradiction; no legal timing route exists in this fixture.",
+  "routing_accepted": false,
+  "schema": 1,
+  "status": "STOP_DATA_WEST_PAD_ESCAPE_CLEARANCE"
+}
