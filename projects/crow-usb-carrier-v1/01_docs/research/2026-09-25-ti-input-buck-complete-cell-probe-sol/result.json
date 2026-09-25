@@ -1,0 +1,114 @@
+{
+  "accepted_preexisting_cell_count_after_in_memory_move": 19,
+  "board_outline_bbox_mm": [
+    20.0,
+    20.0,
+    240.0,
+    140.0
+  ],
+  "board_sha256": "e07ed8bc663fdfd4ce39477165b656b0dcf2bfbae54d84ec501bfccf326d22ef",
+  "branch_checks_run": false,
+  "checker_sha256": "f2e865eac4bd264f2a01eee322638f66951c066fbca57398fc8e1393800349c1",
+  "full_power_terminal_counts": {
+    "N1V8": 42,
+    "N3V3X": 27,
+    "N3V3_ADC": 68,
+    "N5V_BUCK": 34
+  },
+  "input_buck_groups": {
+    "input_buck": {
+      "bbox_mm": [
+        40.155,
+        84.205,
+        53.795,
+        101.645
+      ],
+      "refs": [
+        "C_IN1",
+        "C_IN2",
+        "C_IN_HF",
+        "C_OUT1",
+        "C_OUT3",
+        "C_VCC",
+        "C_VLDO",
+        "R_AGND_JOIN",
+        "R_BUCK_FB_BOTTOM",
+        "R_BUCK_FB_TOP",
+        "R_RT",
+        "U_BUCK"
+      ]
+    },
+    "input_buck_cin3": {
+      "bbox_mm": [
+        40.155,
+        101.855,
+        44.845,
+        105.145
+      ],
+      "refs": [
+        "C_IN3"
+      ]
+    },
+    "input_buck_front": {
+      "bbox_mm": [
+        29.625,
+        88.205,
+        38.145,
+        101.015
+      ],
+      "refs": [
+        "D_IN",
+        "F_IN",
+        "Q_IN",
+        "R_QIN_G"
+      ]
+    },
+    "input_buck_gate": {
+      "bbox_mm": [
+        33.58,
+        101.305,
+        38.395,
+        103.695
+      ],
+      "refs": [
+        "D_QIN_GS"
+      ]
+    },
+    "input_buck_jpwr": {
+      "bbox_mm": [
+        26.125,
+        19.955,
+        36.875,
+        30.955
+      ],
+      "refs": [
+        "J_PWR"
+      ]
+    },
+    "input_buck_out2": {
+      "bbox_mm": [
+        54.255,
+        89.705,
+        57.745,
+        95.295
+      ],
+      "refs": [
+        "C_OUT2"
+      ]
+    }
+  },
+  "input_buck_partition_ref_count": 20,
+  "jpwr_full_native_envelope_mm": [
+    26.125,
+    19.955,
+    36.875,
+    30.955
+  ],
+  "jpwr_north_overhang_mm": 0.045,
+  "native_ref_count": 569,
+  "p1_accepted": false,
+  "physical_cells_rejection": "input_buck_jpwr: physical cell off board outline",
+  "quiet_power_ref_count": 69,
+  "routing_realized": false,
+  "status": "INCOMPLETE"
+}
