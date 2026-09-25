@@ -158,8 +158,9 @@ route:
   #    allowed_layers: [F.Cu], no_vias: true}
   # Optional strict native proof for a signal fanout whose topology and return
   # reference must remain fixed after routing. V1 accepts only rectangular SMD
-  # terminals, straight one-layer tracks, and zero vias; every native pad on
-  # the net must be named, every tee must be listed, and saved (not refilled)
+  # terminals with one track endpoint at each native pad centre, straight
+  # one-layer tracks, and zero vias; every native pad on the net must be
+  # named, every tee must be listed, and saved (not refilled)
   # reference copper must cover the full projected signal copper. Omit this
   # key when that intentionally narrow contract does not apply.
   # critical_trees:

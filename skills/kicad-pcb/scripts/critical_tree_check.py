@@ -2,8 +2,9 @@
 """Strict native proof for declared, single-layer, zero-via signal trees.
 
 This intentionally narrow contract rejects copper shapes it cannot model.
-It validates straight tracks with explicit endpoint junctions, SMD terminal
-pads at track endpoints, exact tee inventory, and saved filled reference copper.
+It validates straight tracks with explicit endpoint junctions, rectangular SMD
+terminal pads with exactly one track endpoint at each pad centre, exact tee
+inventory, and saved filled reference copper.
 It does not infer a route from a source bbox or an unfilled zone outline.
 
 Optional ``route.yaml`` declaration::
