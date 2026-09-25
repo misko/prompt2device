@@ -62,6 +62,24 @@ canonical source or board, and grants no route or P1 credit. Reproduce with
 material board task is resolving the `AUDIO_EN` owner geometry and proving
 timing access on this same board, followed by source-author review.
 
+One [three-pose private trial](audio_en_three_pose.py) addresses that owner
+geometry on the same current-source board. It moves `U_ISO1` to
+`[27.05, 74.6, 0]`, `U_AUDIO` to `[28.7, 109.85, 0]`, and `R_AUDIO_PD` to
+`[28.45, 106.1, 90]` (mm, degrees). The current exact saved PCB is
+`0bd3ac8dd8c80177958c009a0644f0bc723bcee7ad7085c2fb76c09c5df958f5`.
+Count and pin-map parity pass; native DRC remains **0 violations, 499 open,
+0 schematic parity** under unchanged effective rules. All **11/11 `AUDIO_EN`
+native terminals** now lie inside their declared source-owner regions. A
+scratch exact unresolved-branch record for this net passes the checker’s
+native endpoint, owner, blocker and P2/P3 obligation validation. Three quiet
+power pads still intersect the overlapping `input_buck` planning region and
+are explicitly listed as physical blockers. This candidate is neither routed
+nor adopted as canonical source; it has no P1/P2 or release credit. The other
+four timing nets lack two-terminal source records, and the nine old power
+witness findings remain. Reproduce in a fresh private output directory with
+`/usr/bin/python3 audio_en_three_pose.py`; the script refuses to overwrite an
+existing candidate.
+
 Reproduce the current private baseline using
 `03_src/rebuild_prototype_board_diagnostic.py`, then run `python3 replay.py`
 from this directory once in a fresh private output root and
