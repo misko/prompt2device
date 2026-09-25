@@ -1,0 +1,53 @@
+{
+  "conclusion": "Both 0.15-mm controls receive the board-setup 0.20-mm track-width error; the committed width exception did not apply outside its named area.",
+  "controls": [
+    {
+      "area": "outside",
+      "net": "TDM_DATA_1V8",
+      "track_items": [
+        {
+          "description": "Track width (board setup constraints min width 0.2000 mm; actual 0.1500 mm)",
+          "type": "track_width"
+        },
+        {
+          "description": "Track has unconnected end",
+          "type": "track_dangling"
+        },
+        {
+          "description": "Track has unconnected end",
+          "type": "track_dangling"
+        }
+      ],
+      "unconnected": 499,
+      "violations": 714
+    },
+    {
+      "area": "outside",
+      "net": "TDM_BCLK_1V8",
+      "track_items": [
+        {
+          "description": "Track width (board setup constraints min width 0.2000 mm; actual 0.1500 mm)",
+          "type": "track_width"
+        },
+        {
+          "description": "Track has unconnected end",
+          "type": "track_dangling"
+        }
+      ],
+      "unconnected": 499,
+      "violations": 714
+    }
+  ],
+  "coordinates_mm": [
+    [
+      198.0,
+      97.6
+    ],
+    [
+      198.5,
+      97.6
+    ]
+  ],
+  "kicad_cli_version": "10.0.4",
+  "kind": "local-neck-rule-scope-adversarial-control"
+}
