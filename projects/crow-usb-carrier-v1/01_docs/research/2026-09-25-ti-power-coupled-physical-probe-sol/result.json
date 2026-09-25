@@ -1,0 +1,233 @@
+{
+  "board_sha256": "e07ed8bc663fdfd4ce39477165b656b0dcf2bfbae54d84ec501bfccf326d22ef",
+  "buck_move": {
+    "candidate_core_bbox_mm": [
+      40.155,
+      84.205,
+      53.795,
+      101.645
+    ],
+    "candidate_core_refs": [
+      "C_IN1",
+      "C_IN2",
+      "C_IN_HF",
+      "C_OUT1",
+      "C_OUT3",
+      "C_VCC",
+      "C_VLDO",
+      "R_AGND_JOIN",
+      "R_BUCK_FB_BOTTOM",
+      "R_BUCK_FB_TOP",
+      "R_RT",
+      "U_BUCK"
+    ],
+    "core_checker_failure": "input_buck: physical cell ref denominator incomplete",
+    "core_foreign_native_intersections": [],
+    "delta_mm": [
+      0,
+      1.13
+    ],
+    "input_buck_unassigned_refs": [
+      "C_IN3",
+      "C_OUT2",
+      "D_IN",
+      "D_QIN_GS",
+      "F_IN",
+      "J_PWR",
+      "Q_IN",
+      "R_QIN_G"
+    ],
+    "new_envelope_mm": [
+      51.675,
+      101.655,
+      54.725,
+      103.205
+    ],
+    "quiet_cells_accepted": 19,
+    "ref": "C_PWR_CT2"
+  },
+  "channel_pad_audit": {
+    "analog_ch3": {
+      "left_edge_crossers": [
+        {
+          "bbox_mm": [
+            68.92,
+            58.88,
+            69.46,
+            59.52
+          ],
+          "native_pad": "R_IN3P.1"
+        },
+        {
+          "bbox_mm": [
+            68.925,
+            70.75,
+            69.595,
+            71.05
+          ],
+          "native_pad": "U_ESD3.1"
+        },
+        {
+          "bbox_mm": [
+            68.925,
+            71.25,
+            69.595,
+            71.55
+          ],
+          "native_pad": "U_ESD3.2"
+        },
+        {
+          "bbox_mm": [
+            68.925,
+            71.75,
+            69.595,
+            72.05
+          ],
+          "native_pad": "U_ESD3.3"
+        }
+      ],
+      "lost_region_overlap": [
+        "R_IN3P.1"
+      ],
+      "preexisting_outside_count": 18,
+      "preexisting_outside_pads": [
+        "J3.1",
+        "J3.10",
+        "J3.2",
+        "J3.3",
+        "J3.4",
+        "J3.5",
+        "J3.6",
+        "J3.7",
+        "J3.8",
+        "J3.9",
+        "R_IN3P.1",
+        "U_AFE3.5",
+        "U_AFE3.6",
+        "U_AFE3.7",
+        "U_AFE3.8",
+        "U_ESD3.1",
+        "U_ESD3.2",
+        "U_ESD3.3"
+      ]
+    },
+    "analog_ch4": {
+      "left_edge_crossers": [
+        {
+          "bbox_mm": [
+            90.92,
+            58.88,
+            91.46,
+            59.52
+          ],
+          "native_pad": "R_IN4P.1"
+        },
+        {
+          "bbox_mm": [
+            90.925,
+            70.75,
+            91.595,
+            71.05
+          ],
+          "native_pad": "U_ESD4.1"
+        },
+        {
+          "bbox_mm": [
+            90.925,
+            71.25,
+            91.595,
+            71.55
+          ],
+          "native_pad": "U_ESD4.2"
+        },
+        {
+          "bbox_mm": [
+            90.925,
+            71.75,
+            91.595,
+            72.05
+          ],
+          "native_pad": "U_ESD4.3"
+        }
+      ],
+      "lost_region_overlap": [
+        "R_IN4P.1"
+      ],
+      "preexisting_outside_count": 18,
+      "preexisting_outside_pads": [
+        "J4.1",
+        "J4.10",
+        "J4.2",
+        "J4.3",
+        "J4.4",
+        "J4.5",
+        "J4.6",
+        "J4.7",
+        "J4.8",
+        "J4.9",
+        "R_IN4P.1",
+        "U_AFE4.5",
+        "U_AFE4.6",
+        "U_AFE4.7",
+        "U_AFE4.8",
+        "U_ESD4.1",
+        "U_ESD4.2",
+        "U_ESD4.3"
+      ]
+    }
+  },
+  "channel_recut_mm": {
+    "analog_ch2": {
+      "old": [
+        47,
+        42,
+        69,
+        84
+      ],
+      "proposed": [
+        47,
+        42,
+        69.545,
+        84
+      ]
+    },
+    "analog_ch3": {
+      "old": [
+        69,
+        42,
+        91,
+        84
+      ],
+      "proposed": [
+        69.545,
+        42,
+        91.545,
+        84
+      ]
+    },
+    "analog_ch4": {
+      "old": [
+        91,
+        42,
+        113,
+        84
+      ],
+      "proposed": [
+        91.545,
+        42,
+        113,
+        84
+      ]
+    }
+  },
+  "checker_sha256": "f2e865eac4bd264f2a01eee322638f66951c066fbca57398fc8e1393800349c1",
+  "full_power_terminal_counts": {
+    "N1V8": 42,
+    "N3V3X": 27,
+    "N3V3_ADC": 68,
+    "N5V_BUCK": 34
+  },
+  "p1_accepted": false,
+  "routing_realized": false,
+  "status": "INCOMPLETE"
+}
