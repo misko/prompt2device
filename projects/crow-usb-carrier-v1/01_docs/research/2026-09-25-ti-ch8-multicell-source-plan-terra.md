@@ -18,9 +18,11 @@ exactly once across its cells, contains each assigned native envelope/pad in
 that one cell, and permits empty same-owner transit cells only when they
 positive-edge-connect the occupied cells
 (`skills/kicad-pcb/scripts/p1_corridor_capacity.py:1292--1329`).  A cell may
-not overlap any foreign source region (1330--1338).  An **endpoint owner
-region** is therefore the physical-cell id named by a future witness or P2
-obligation; its `block` remains `analog_ch8`.
+not overlap any foreign source region (1330--1338).  A supported coarse
+witness or integration face may name a physical-cell id while its `block`
+remains `analog_ch8`.  The current unresolved-branch checker instead tests
+the primary functional region `regions['analog_ch8']`; it has no
+`physical_cell_id` field.
 
 ## Complete channel-8 pocket denominator
 
@@ -38,8 +40,10 @@ again wherever its rectangle would contain an unassigned body/pad.
 | `analog_ch8_core` | `C_A8N`, `C_ADC_AC8N2`, `C_ADC_AC8P1`, `C_ADC_AC8P2`, `C_ADC_CM8N`, `C_ADC_CM8P`, `C_FB8N`, `C_FB8P`, `C_FILTER8P1`, `C_OPA8`, `R_ADC_PD8N`, `R_ADC_PD8P`, `R_B8N`, `R_IN8N`, `R_OUT8N`, `R_OUT8P`, `R_SPOKE_ILIM8`, `R_X8N`, `R_X8P`, `U_AFE8`, `U_SPOKE8` |
 
 Each occupied pocket requires a region key and a `physical_cells` row with
-`owner_block: analog_ch8`; every same-owner gap needed to form a connected
-partition needs an explicit no-ref transit row.  `placement.patterns` must use
+`owner_block: analog_ch8`.  Disconnected occupied pockets are permitted;
+declare a no-ref transit row only when a needed transit region is present, in
+which case it must edge-connect to an occupied same-owner cell.
+`placement.patterns` must use
 the physical cell id for each assigned ref, because the checker rejects a
 pattern/cell disagreement.  The current broad `analog_ch8` rectangle cannot
 remain as an overlapping catch-all: its id must become one occupied cell or be
@@ -89,9 +93,11 @@ region rule.
 2. Run `_physical_cells` before any corridor declaration.  Reject on a missing
    or duplicate member, a noncontained envelope/pad, any unassigned body in a
    cell, a pattern mismatch, a foreign-region overlap, or disconnected transit.
-3. Bind `C_ADC_AC8N1.2`, `C_ADC_AC8N2.2`, and `C_ADC_CM8N.1` to the selected
-   channel-8 physical cell only after step 2.  Add P2 pad-to-face and
-   filled-return obligations; do not use the virtual face as pad-access proof.
+3. Keep the unresolved ADC8N tree's endpoint containment check against the
+   primary `regions['analog_ch8']`; the current branch schema cannot bind those
+   endpoints to a physical cell.  Use physical-cell ids only on checker-
+   supported witnesses/integration faces, with P2 pad-to-face and filled-return
+   obligations; do not use a virtual face as pad-access proof.
 4. Recheck all board invariants: original/four-part ancestry, 27 fixed refs,
    outline, layers, rotations, pad identity/net/layer, native envelope/pad
    collisions, and DRC delta.  Then require actual cap/ISO entry, route and
