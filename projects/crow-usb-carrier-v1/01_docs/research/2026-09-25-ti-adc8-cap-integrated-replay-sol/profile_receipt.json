@@ -1,0 +1,188 @@
+{
+  "augmented_board_hash_policy": "No augmented board byte SHA is claimed: pcbnew creates fresh UUIDs for the eight newly emitted rule areas on each replay. Input board bytes and semantic area names/bounds are pinned instead.",
+  "authority": "Exact conditional TMUX4827_YBH_B2_POFV profile generates eight pad-bound rule areas and 0.10-mm via-to-adjacent-pad clearance; V-PROCESS validates Type-VII 0.35/0.20 sites.",
+  "bare_board_harness_defect": "Generic board generation and kicad-cli DRC without TI .kicad_pro/.kicad_dru and POFV producer reported the allowed 0.10-mm ISO8 via gap against the 0.20-mm default rule.",
+  "boards": {
+    "baseline": {
+      "augmented_dru_sha256": "00ab83d8484368f132392523972c1f41fc9073423d3c600feec962684f9c3b0a",
+      "drc": {
+        "u_iso8_clearance_issues": [],
+        "unconnected": 499,
+        "violations": 213
+      },
+      "project_sha256": "7977bc9edb88e1ef723eb256f07949871493dfda3d2c2491dd5d5b6087ddc094",
+      "rule_area_bounds_mm": {
+        "tmux4827_b2_pofv_U_ISO1": [
+          23.295,
+          67.595,
+          23.305,
+          67.604999
+        ],
+        "tmux4827_b2_pofv_U_ISO2": [
+          60.394999,
+          49.195,
+          60.405,
+          49.205
+        ],
+        "tmux4827_b2_pofv_U_ISO3": [
+          82.395,
+          49.195,
+          82.405,
+          49.205
+        ],
+        "tmux4827_b2_pofv_U_ISO4": [
+          104.395,
+          49.195,
+          104.405,
+          49.205
+        ],
+        "tmux4827_b2_pofv_U_ISO5": [
+          126.395,
+          49.195,
+          126.405,
+          49.205
+        ],
+        "tmux4827_b2_pofv_U_ISO6": [
+          148.395,
+          49.195,
+          148.405,
+          49.205
+        ],
+        "tmux4827_b2_pofv_U_ISO7": [
+          170.395,
+          49.195,
+          170.405,
+          49.205
+        ],
+        "tmux4827_b2_pofv_U_ISO8": [
+          198.995,
+          52.995,
+          199.005,
+          53.005
+        ]
+      },
+      "rule_areas": [
+        "tmux4827_b2_pofv_U_ISO1",
+        "tmux4827_b2_pofv_U_ISO2",
+        "tmux4827_b2_pofv_U_ISO3",
+        "tmux4827_b2_pofv_U_ISO4",
+        "tmux4827_b2_pofv_U_ISO5",
+        "tmux4827_b2_pofv_U_ISO6",
+        "tmux4827_b2_pofv_U_ISO7",
+        "tmux4827_b2_pofv_U_ISO8"
+      ],
+      "u_iso8_5_via_mm": [
+        199.0,
+        53.0
+      ],
+      "u_iso8_via_diameter_mm": 0.35,
+      "u_iso8_via_drill_mm": 0.2,
+      "via_process_census": {
+        "0.350/0.200;cap=1;fill=1": 8,
+        "0.500/0.200;cap=1;fill=1": 6
+      }
+    },
+    "candidate": {
+      "augmented_dru_sha256": "00ab83d8484368f132392523972c1f41fc9073423d3c600feec962684f9c3b0a",
+      "drc": {
+        "u_iso8_clearance_issues": [],
+        "unconnected": 499,
+        "violations": 213
+      },
+      "project_sha256": "7977bc9edb88e1ef723eb256f07949871493dfda3d2c2491dd5d5b6087ddc094",
+      "rule_area_bounds_mm": {
+        "tmux4827_b2_pofv_U_ISO1": [
+          23.295,
+          67.595,
+          23.305,
+          67.604999
+        ],
+        "tmux4827_b2_pofv_U_ISO2": [
+          60.394999,
+          49.195,
+          60.405,
+          49.205
+        ],
+        "tmux4827_b2_pofv_U_ISO3": [
+          82.395,
+          49.195,
+          82.405,
+          49.205
+        ],
+        "tmux4827_b2_pofv_U_ISO4": [
+          104.395,
+          49.195,
+          104.405,
+          49.205
+        ],
+        "tmux4827_b2_pofv_U_ISO5": [
+          126.395,
+          49.195,
+          126.405,
+          49.205
+        ],
+        "tmux4827_b2_pofv_U_ISO6": [
+          148.395,
+          49.195,
+          148.405,
+          49.205
+        ],
+        "tmux4827_b2_pofv_U_ISO7": [
+          170.395,
+          49.195,
+          170.405,
+          49.205
+        ],
+        "tmux4827_b2_pofv_U_ISO8": [
+          198.995,
+          52.995,
+          199.005,
+          53.005
+        ]
+      },
+      "rule_areas": [
+        "tmux4827_b2_pofv_U_ISO1",
+        "tmux4827_b2_pofv_U_ISO2",
+        "tmux4827_b2_pofv_U_ISO3",
+        "tmux4827_b2_pofv_U_ISO4",
+        "tmux4827_b2_pofv_U_ISO5",
+        "tmux4827_b2_pofv_U_ISO6",
+        "tmux4827_b2_pofv_U_ISO7",
+        "tmux4827_b2_pofv_U_ISO8"
+      ],
+      "u_iso8_5_via_mm": [
+        199.0,
+        53.0
+      ],
+      "u_iso8_via_diameter_mm": 0.35,
+      "u_iso8_via_drill_mm": 0.2,
+      "via_process_census": {
+        "0.350/0.200;cap=1;fill=1": 8,
+        "0.500/0.200;cap=1;fill=1": 6
+      }
+    }
+  },
+  "input_sha256": {
+    "assembly": "76071a9190ae3923a7a1b4b709a5b3160ce1f06b8d8fb22292ce1cea23664cf3",
+    "baseline": "20373950748ac51113b115b2d12d169160c24024a2a000572bb70c67b0f60919",
+    "candidate": "0b9d017706845ad4d77c2b579dd36f2e34c0ecf55a7b699ace4fca97465c5b93",
+    "dru": "00ab83d8484368f132392523972c1f41fc9073423d3c600feec962684f9c3b0a",
+    "pro": "7977bc9edb88e1ef723eb256f07949871493dfda3d2c2491dd5d5b6087ddc094",
+    "process_checker": "cea702ce45081e9ff6a1c4409f636fb921941dba92e09d0bfe6f449470cb1054",
+    "producer": "b3906f63e07e9f04ada58e757f4095989f6933eca98d93b0f1165e91064529b7",
+    "profile_lib": "db5f49000a70af11997b80e246eefd13632a364681bd19835c37477bee16fc18",
+    "source": "0032b1202f5742b6575198d27ea50629826d49cf81cf12a31fead8a2929d9868"
+  },
+  "issue_identity_delta": {
+    "added": 0,
+    "removed": 0
+  },
+  "offpad_via_repair": "Rejected without edit: profile audit requires exactly one 0.35/0.20 GND via centred on each U_ISO*.5 within 0.0015 mm; an off-pad via plus neck violates this source-governed profile and adds unproved return geometry.",
+  "qualification": [
+    "Conditional POFV vendor/CAM/PCBA acceptance is still owed",
+    "ADC8 cap owner pinch, 28 reference labels, unfilled return and 499 opens remain",
+    "No P1/P2 or route/return credit from this DRC comparison"
+  ],
+  "schema": 1,
+  "status": "FULL_PROFILE_DRC_DELTA_CLEAN_RESEARCH_ONLY"
+}

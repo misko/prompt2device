@@ -1,0 +1,138 @@
+{
+  "board_sha256": {
+    "baseline": "20373950748ac51113b115b2d12d169160c24024a2a000572bb70c67b0f60919",
+    "trial": "0b9d017706845ad4d77c2b579dd36f2e34c0ecf55a7b699ace4fca97465c5b93"
+  },
+  "cap_envelope_mm": [
+    195.205,
+    58.305,
+    200.795,
+    61.795
+  ],
+  "cap_full_envelope_hits": [],
+  "cap_nearest_envelope_gaps_mm": [
+    [
+      0.36,
+      "C_A8P"
+    ],
+    [
+      0.48,
+      "R_B8P"
+    ],
+    [
+      0.78,
+      "C_FILTER8N1"
+    ],
+    [
+      3.01,
+      "U_SPOKE8"
+    ],
+    [
+      3.46,
+      "U_ISO8"
+    ],
+    [
+      3.58,
+      "C_FILTER8P1"
+    ],
+    [
+      4.29,
+      "R_OUT8N"
+    ],
+    [
+      4.31,
+      "C_A8N"
+    ]
+  ],
+  "cap_owner_usb_margins_mm": {
+    "owner_east_mm": 0.205,
+    "usb_north_mm": 0.205
+  },
+  "cap_pad_hits": [],
+  "fixed_ref_count": 27,
+  "footprint_count": 569,
+  "full_profile_drc": {
+    "baseline": {
+      "u_iso8_clearance_issues": [],
+      "unconnected": 499,
+      "violations": 213
+    },
+    "issue_identity_delta": {
+      "added": 0,
+      "removed": 0
+    },
+    "trial": {
+      "u_iso8_clearance_issues": [],
+      "unconnected": 499,
+      "violations": 213
+    }
+  },
+  "global_census_counts": {
+    "board_footprints": 569,
+    "cross_owner_body_overlap_pairs": 0,
+    "cross_owner_native_interaction_pairs": 0,
+    "cross_owner_pad_overlap_pairs": 0,
+    "fixed_refs": 27,
+    "foreign_planning_incidences": 150,
+    "foreign_planning_refs": 139,
+    "fully_owner_contained": 454,
+    "module_refs": 569,
+    "outside_owner": 115
+  },
+  "global_cross_owner_native_pairs": [],
+  "gnd_zones": [
+    {
+      "filled": false,
+      "layers": [
+        "In1.Cu"
+      ]
+    }
+  ],
+  "p1_accepted": false,
+  "p2_accepted": false,
+  "pad_identity_preserved": true,
+  "pose_delta": {
+    "C_ADC_AC8N1": {
+      "new": [
+        198.0,
+        60.05,
+        0.0
+      ],
+      "old": [
+        198.2,
+        60.25,
+        0.0
+      ]
+    }
+  },
+  "profile_receipt_sha256": "97baa8f8b7c0008b4ef972ccee2b892509cc0981cfb40537edeadbf79088474e",
+  "related_pad_distances": [
+    {
+      "new_mm": 7.742254,
+      "old_mm": 7.846177,
+      "pads": [
+        "C_ADC_AC8N1.1",
+        "U_ISO8.6"
+      ]
+    },
+    {
+      "new_mm": 13.870865,
+      "old_mm": 13.957539,
+      "pads": [
+        "C_ADC_AC8N1.2",
+        "C_ADC_CM8N.1"
+      ]
+    }
+  ],
+  "schema": 1,
+  "source_regenerated_fab_reference_fields": [],
+  "status": "GEOMETRY_IMPROVED_RESEARCH_ONLY",
+  "timing_probe_fab_reference_fields_expected": 28,
+  "unresolved": [
+    "0.205 mm is source rectangle margin only, not routing/assembly tolerance",
+    "ADC8 signal/return escape and nearby support gaps need route proof",
+    "28 timing label placements on F.Fab are not source encoded",
+    "GND zone remains unfilled and 499 opens remain",
+    "conditional B2 POFV and USB ESD shape/vendor acceptance remain separate"
+  ]
+}
