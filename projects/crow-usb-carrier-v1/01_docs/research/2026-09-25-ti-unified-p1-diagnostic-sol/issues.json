@@ -1,0 +1,252 @@
+{
+  "allocation_status": {
+    "adc_analog_boundary": "INCOMPLETE",
+    "adc_timing_xmos_bundle": "FAIL",
+    "power_boundary_windows": "INCOMPLETE",
+    "usb_device_pair": "INCOMPLETE",
+    "xmos_service_escape": "INCOMPLETE"
+  },
+  "board_sha256": "d0c065dc16de081a5410b7a22e474f0a99c6fdeb0b7dd1f6c37422ace4a9fcf7",
+  "contract_sha256": "18936dc3f3dd6e01637182b2dab57cb472a31bfa2eb345a20bd4f7867708777f",
+  "exact_accounting": {
+    "adc7_portal": {
+      "capacity_slots": null,
+      "nets": 2,
+      "terminals": 8
+    },
+    "analog": {
+      "exact_unplaced_branches": 18,
+      "nets": 18,
+      "terminals": 88
+    },
+    "timing": {
+      "exact_unplaced_branches": 9,
+      "nets": 14,
+      "terminals": 54
+    },
+    "usb": {
+      "linked_dp_dn_paths": 1,
+      "presence_tree_terminals": 3,
+      "vbus_tree_terminals": 8
+    }
+  },
+  "p1_accepted": false,
+  "remaining_issues": {
+    "allocation_reasons": {
+      "adc_analog_boundary": null,
+      "adc_timing_xmos_bundle": "adc_timing_xmos_bundle: missing per-net boundary witness",
+      "power_boundary_windows": "C_ADC_3V3X_OK_VDD.2: witness bbox is a nonlocal bridge across source region",
+      "usb_device_pair": null,
+      "xmos_service_escape": null
+    },
+    "global_denominator_errors": [
+      "timing_adc_bclk_unplaced_tree: unresolved branch representative witness denominator mismatch",
+      "timing_adc_fsync_unplaced_tree: unresolved branch representative witness denominator mismatch",
+      "timing_adc_dout1_unplaced_tree: unresolved branch representative witness denominator mismatch",
+      "timing_adc_i2c_scl_unplaced_tree: unresolved branch representative witness denominator mismatch",
+      "timing_adc_i2c_sda_unplaced_tree: unresolved branch representative witness denominator mismatch",
+      "timing_adc_ready_unplaced_tree: unresolved branch representative witness denominator mismatch",
+      "timing_xu_i2c_scl_1v8_unplaced_tree: unresolved branch representative witness denominator mismatch",
+      "timing_xu_i2c_sda_1v8_unplaced_tree: unresolved branch representative witness denominator mismatch",
+      "timing_adc_digital_bad_unplaced_tree: unresolved branch representative witness denominator mismatch"
+    ],
+    "p2_p3_debt": "No native routes, local pad access, filled return, or connected-net proof",
+    "power_witness_diagnostics": [
+      {
+        "allocation": "power_boundary_windows",
+        "index": 1,
+        "kind": "boundary_witness",
+        "reason": "C_ADC_3V3X_OK_VDD.2: witness bbox is a nonlocal bridge across source region",
+        "source": "C_ADC_3V3X_OK_VDD.2"
+      },
+      {
+        "allocation": "power_boundary_windows",
+        "index": 2,
+        "kind": "boundary_witness",
+        "reason": "C_CORE_FF.1: witness bbox is a nonlocal bridge across source region",
+        "source": "C_CORE_FF.1"
+      },
+      {
+        "allocation": "power_boundary_windows",
+        "index": 3,
+        "kind": "boundary_witness",
+        "reason": "C_SPOKE_IN1.1: witness bbox is a nonlocal bridge across source region",
+        "source": "C_SPOKE_IN1.1"
+      },
+      {
+        "allocation": "power_boundary_windows",
+        "index": 4,
+        "kind": "boundary_witness",
+        "reason": "R_ADC_1V8_OK_TOP.1: witness bbox is a nonlocal bridge across source region",
+        "source": "R_ADC_1V8_OK_TOP.1"
+      },
+      {
+        "allocation": "power_boundary_windows",
+        "index": 5,
+        "kind": "boundary_witness",
+        "reason": "R_ADC_3V3X_OK_TOP.1: witness bbox is a nonlocal bridge across source region",
+        "source": "R_ADC_3V3X_OK_TOP.1"
+      },
+      {
+        "allocation": "power_boundary_windows",
+        "index": 6,
+        "kind": "boundary_witness",
+        "reason": "C_ADC_3V3X_OK_VDD.1: P2-movable owner requires virtual block-face witness",
+        "source": "C_ADC_3V3X_OK_VDD.1"
+      },
+      {
+        "allocation": "power_boundary_windows",
+        "index": 7,
+        "kind": "boundary_witness",
+        "reason": "C_1V8_OK_VDD.1: witness bbox is a nonlocal bridge across source region",
+        "source": "C_1V8_OK_VDD.1"
+      },
+      {
+        "allocation": "power_boundary_windows",
+        "index": 8,
+        "kind": "boundary_witness",
+        "reason": "C_ISO1.1: witness bbox is a nonlocal bridge across source region",
+        "source": "C_ISO1.1"
+      },
+      {
+        "allocation": "power_boundary_windows",
+        "index": 9,
+        "kind": "boundary_witness",
+        "reason": "U_ADC_PWR_BAD.2: witness bbox is a nonlocal bridge across source region",
+        "source": "U_ADC_PWR_BAD.2"
+      }
+    ],
+    "timing_owner_containment": [
+      {
+        "capacity_slots": null,
+        "category": "owner_containment",
+        "endpoints": [
+          {
+            "block": "quiet_power",
+            "native_pad": "R_AUDIO_PD.1",
+            "net": "AUDIO_EN",
+            "source_pad": "R_AUDIO_PD.1"
+          },
+          {
+            "block": "quiet_power",
+            "native_pad": "R_AUDIO_PU.2",
+            "net": "AUDIO_EN",
+            "source_pad": "R_AUDIO_PU.2"
+          },
+          {
+            "block": "quiet_power",
+            "native_pad": "U_AUDIO.6",
+            "net": "AUDIO_EN",
+            "source_pad": "U_AUDIO.6"
+          },
+          {
+            "block": "analog_ch1",
+            "native_pad": "U_ISO1.2",
+            "net": "AUDIO_EN",
+            "source_pad": "U_ISO1.2"
+          },
+          {
+            "block": "analog_ch2",
+            "native_pad": "U_ISO2.2",
+            "net": "AUDIO_EN",
+            "source_pad": "U_ISO2.2"
+          },
+          {
+            "block": "analog_ch3",
+            "native_pad": "U_ISO3.2",
+            "net": "AUDIO_EN",
+            "source_pad": "U_ISO3.2"
+          },
+          {
+            "block": "analog_ch4",
+            "native_pad": "U_ISO4.2",
+            "net": "AUDIO_EN",
+            "source_pad": "U_ISO4.2"
+          },
+          {
+            "block": "analog_ch5",
+            "native_pad": "U_ISO5.2",
+            "net": "AUDIO_EN",
+            "source_pad": "U_ISO5.2"
+          },
+          {
+            "block": "analog_ch6",
+            "native_pad": "U_ISO6.2",
+            "net": "AUDIO_EN",
+            "source_pad": "U_ISO6.2"
+          },
+          {
+            "block": "analog_ch7",
+            "native_pad": "U_ISO7.2",
+            "net": "AUDIO_EN",
+            "source_pad": "U_ISO7.2"
+          },
+          {
+            "block": "analog_ch8",
+            "native_pad": "U_ISO8.2",
+            "net": "AUDIO_EN",
+            "source_pad": "U_ISO8.2"
+          }
+        ],
+        "foreign_regions": [
+          {
+            "block": "quiet_power",
+            "foreign_regions": [
+              "input_buck"
+            ],
+            "native_pad": "R_AUDIO_PU.2",
+            "source_pad": "R_AUDIO_PU.2"
+          }
+        ],
+        "net": "AUDIO_EN",
+        "outside_owner": [
+          {
+            "native_pad": "R_AUDIO_PD.1",
+            "owner": "quiet_power",
+            "pad_bbox_mm": [
+              22.38,
+              105.34,
+              23.02,
+              105.88
+            ],
+            "source_pad": "R_AUDIO_PD.1"
+          },
+          {
+            "native_pad": "U_AUDIO.6",
+            "owner": "quiet_power",
+            "pad_bbox_mm": [
+              22.95,
+              108.975,
+              23.65,
+              109.225
+            ],
+            "source_pad": "U_AUDIO.6"
+          },
+          {
+            "native_pad": "U_ISO1.2",
+            "owner": "analog_ch1",
+            "pad_bbox_mm": [
+              23.175,
+              67.075,
+              23.425,
+              67.325
+            ],
+            "source_pad": "U_ISO1.2"
+          }
+        ],
+        "p2_debt": "native_pad_to_tree_and_continuous_filled_In1_Cu_return",
+        "p3_debt": "one_connected_native_net_without_unrelated_branches",
+        "terminal_count": 11
+      }
+    ],
+    "timing_schema_two_terminal": [
+      "AUDIO_MCLK_1V8",
+      "TDM_BCLK_1V8",
+      "TDM_DATA_1V8",
+      "TDM_FSYNC_1V8"
+    ]
+  },
+  "routing_realized": false,
+  "source_sha256": "f6f132891712bfcb1cec4d1df6714748337040ba5c42ae3fecd14fb9c35d1222",
+  "status": "FAIL"
+}
