@@ -1,0 +1,2490 @@
+{
+  "access_only_portals": [
+    {
+      "bbox": [
+        166.0,
+        83.9,
+        167.12,
+        85.0
+      ],
+      "capacity_slots": null,
+      "id": "adc7_local_portal",
+      "layer": "F.Cu",
+      "nets": [
+        "ADC7N",
+        "ADC7P"
+      ],
+      "p2_obligations": [
+        {
+          "block": "adc_reference",
+          "layer": "F.Cu",
+          "native_pad": "U_ADC_B.11",
+          "net": "ADC7N",
+          "portal_id": "adc7_local_portal",
+          "proof": "native_pad_to_remote_route",
+          "source_pad": "U_ADC_B.11",
+          "status": "P2_REQUIRED"
+        },
+        {
+          "block": "analog_ch7",
+          "layer": "F.Cu",
+          "native_pad": "C_ADC_AC7N1.2",
+          "net": "ADC7N",
+          "portal_id": "adc7_local_portal",
+          "proof": "native_pad_to_local_port",
+          "source_pad": "C_ADC_AC7N1.2",
+          "status": "P2_REQUIRED"
+        },
+        {
+          "block": "analog_ch7",
+          "layer": "F.Cu",
+          "native_pad": "C_ADC_AC7N2.2",
+          "net": "ADC7N",
+          "portal_id": "adc7_local_portal",
+          "proof": "native_pad_to_local_port",
+          "source_pad": "C_ADC_AC7N2.2",
+          "status": "P2_REQUIRED"
+        },
+        {
+          "block": "analog_ch7",
+          "layer": "F.Cu",
+          "native_pad": "C_ADC_CM7N.1",
+          "net": "ADC7N",
+          "portal_id": "adc7_local_portal",
+          "proof": "native_pad_to_local_port",
+          "source_pad": "C_ADC_CM7N.1",
+          "status": "P2_REQUIRED"
+        },
+        {
+          "block": "adc_reference",
+          "layer": "F.Cu",
+          "native_pad": "U_ADC_B.10",
+          "net": "ADC7P",
+          "portal_id": "adc7_local_portal",
+          "proof": "native_pad_to_remote_route",
+          "source_pad": "U_ADC_B.10",
+          "status": "P2_REQUIRED"
+        },
+        {
+          "block": "analog_ch7",
+          "layer": "F.Cu",
+          "native_pad": "C_ADC_AC7P1.2",
+          "net": "ADC7P",
+          "portal_id": "adc7_local_portal",
+          "proof": "native_pad_to_local_port",
+          "source_pad": "C_ADC_AC7P1.2",
+          "status": "P2_REQUIRED"
+        },
+        {
+          "block": "analog_ch7",
+          "layer": "F.Cu",
+          "native_pad": "C_ADC_AC7P2.2",
+          "net": "ADC7P",
+          "portal_id": "adc7_local_portal",
+          "proof": "native_pad_to_local_port",
+          "source_pad": "C_ADC_AC7P2.2",
+          "status": "P2_REQUIRED"
+        },
+        {
+          "block": "analog_ch7",
+          "layer": "F.Cu",
+          "native_pad": "C_ADC_CM7P.1",
+          "net": "ADC7P",
+          "portal_id": "adc7_local_portal",
+          "proof": "native_pad_to_local_port",
+          "source_pad": "C_ADC_CM7P.1",
+          "status": "P2_REQUIRED"
+        }
+      ],
+      "return_obligation": {
+        "net": "GND",
+        "portal_id": "adc7_local_portal",
+        "proof": "continuous_filled_reference",
+        "reference_layer": "In1.Cu",
+        "status": "P2_REQUIRED"
+      },
+      "status": "INCOMPLETE"
+    }
+  ],
+  "allocation_denominator": 5,
+  "allocations": [
+    {
+      "id": "usb_device_pair",
+      "linked_paths": [
+        {
+          "capacity_slots": null,
+          "id": "usb_data_series",
+          "nets": [
+            "USB_DP",
+            "USB_DN"
+          ],
+          "stages": [
+            {
+              "id": "usb_edge_access",
+              "rough_capacity": {
+                "current_slots": 2,
+                "demand_slots": 2,
+                "existing_copper_obstacle": false,
+                "fixed_obstacles": [],
+                "id": "usb_edge_access",
+                "movable_relocation_debt": [],
+                "nets": [
+                  "USB_DP",
+                  "USB_DN"
+                ],
+                "potential_slots": 2,
+                "reason": "rough capacity only; movable debt, effective rules, reference and P2 access unproved",
+                "status": "INCOMPLETE"
+              },
+              "status": "INCOMPLETE"
+            },
+            {
+              "id": "usb_frontend_xmos",
+              "rough_capacity": {
+                "current_slots": 3,
+                "demand_slots": 2,
+                "existing_copper_obstacle": false,
+                "fixed_obstacles": [],
+                "id": "usb_frontend_xmos",
+                "movable_relocation_debt": [],
+                "nets": [
+                  "USB_DP",
+                  "USB_DN"
+                ],
+                "potential_slots": 3,
+                "reason": "rough capacity only; movable debt, effective rules, reference and P2 access unproved",
+                "status": "INCOMPLETE"
+              },
+              "status": "INCOMPLETE"
+            }
+          ],
+          "status": "INCOMPLETE"
+        }
+      ],
+      "p2_obligations": [
+        {
+          "block": "usb_edge_connector",
+          "branch_id": "vbus_unplaced_tree",
+          "layer": "F.Cu",
+          "native_pad": "J_USB.A4",
+          "net": "VBUS_USB",
+          "proof": "native_pad_to_unplaced_tree",
+          "source_pad": "J_USB.2",
+          "status": "P2_REQUIRED"
+        },
+        {
+          "block": "usb_vbus_sense",
+          "branch_id": "presence_unplaced_tree",
+          "layer": "F.Cu",
+          "native_pad": "Q_VBUS.3",
+          "net": "VBUS_PRESENT_N",
+          "proof": "native_pad_to_unplaced_tree",
+          "source_pad": "Q_VBUS.3",
+          "status": "P2_REQUIRED"
+        }
+      ],
+      "reservation_count": 2,
+      "reservations": [
+        {
+          "capacity_slots": null,
+          "id": "vbus_tree",
+          "nets": [
+            "VBUS_USB"
+          ],
+          "p2_obligations": [
+            {
+              "block": "usb_frontend",
+              "branch_id": "vbus_unplaced_tree",
+              "layer": "F.Cu",
+              "native_pad": "C_USB_VBUS.1",
+              "net": "VBUS_USB",
+              "proof": "native_pad_to_unplaced_tree",
+              "source_pad": "C_USB_VBUS.1",
+              "status": "P2_REQUIRED"
+            },
+            {
+              "block": "usb_edge_connector",
+              "branch_id": "vbus_unplaced_tree",
+              "layer": "F.Cu",
+              "native_pad": "J_USB.B4",
+              "net": "VBUS_USB",
+              "proof": "native_pad_to_unplaced_tree",
+              "source_pad": "J_USB.10",
+              "status": "P2_REQUIRED"
+            },
+            {
+              "block": "usb_edge_connector",
+              "branch_id": "vbus_unplaced_tree",
+              "layer": "F.Cu",
+              "native_pad": "J_USB.B9",
+              "net": "VBUS_USB",
+              "proof": "native_pad_to_unplaced_tree",
+              "source_pad": "J_USB.15",
+              "status": "P2_REQUIRED"
+            },
+            {
+              "block": "usb_edge_connector",
+              "branch_id": "vbus_unplaced_tree",
+              "layer": "F.Cu",
+              "native_pad": "J_USB.A4",
+              "net": "VBUS_USB",
+              "proof": "native_pad_to_unplaced_tree",
+              "source_pad": "J_USB.2",
+              "status": "P2_REQUIRED"
+            },
+            {
+              "block": "usb_edge_connector",
+              "branch_id": "vbus_unplaced_tree",
+              "layer": "F.Cu",
+              "native_pad": "J_USB.A9",
+              "net": "VBUS_USB",
+              "proof": "native_pad_to_unplaced_tree",
+              "source_pad": "J_USB.7",
+              "status": "P2_REQUIRED"
+            },
+            {
+              "block": "usb_frontend",
+              "branch_id": "vbus_unplaced_tree",
+              "layer": "F.Cu",
+              "native_pad": "R_USB_VBUS_BLEED.1",
+              "net": "VBUS_USB",
+              "proof": "native_pad_to_unplaced_tree",
+              "source_pad": "R_USB_VBUS_BLEED.1",
+              "status": "P2_REQUIRED"
+            },
+            {
+              "block": "usb_vbus_sense",
+              "branch_id": "vbus_unplaced_tree",
+              "layer": "F.Cu",
+              "native_pad": "R_VBUS_B.1",
+              "net": "VBUS_USB",
+              "proof": "native_pad_to_unplaced_tree",
+              "source_pad": "R_VBUS_B.1",
+              "status": "P2_REQUIRED"
+            },
+            {
+              "block": "usb_frontend",
+              "branch_id": "vbus_unplaced_tree",
+              "layer": "F.Cu",
+              "native_pad": "U_USB_VBUS_ESD.3",
+              "net": "VBUS_USB",
+              "proof": "native_pad_to_unplaced_tree",
+              "source_pad": "U_USB_VBUS_ESD.3",
+              "status": "P2_REQUIRED"
+            }
+          ],
+          "physical_blockers": [],
+          "reason": "five-terminal tree, source-region conflict, physical route and filled return unproved",
+          "return_obligation": {
+            "branch_id": "vbus_unplaced_tree",
+            "net": "GND",
+            "proof": "continuous_filled_reference_under_actual_tree",
+            "reference_layer": "In1.Cu",
+            "status": "P2_REQUIRED"
+          },
+          "status": "INCOMPLETE",
+          "tree_obligation": {
+            "minimum_tree_edges": 7,
+            "net": "VBUS_USB",
+            "proof": "one_connected_native_net_without_unrelated_branches",
+            "status": "P3_REQUIRED",
+            "terminal_count": 8
+          }
+        },
+        {
+          "capacity_slots": null,
+          "id": "presence_tree",
+          "nets": [
+            "VBUS_PRESENT_N"
+          ],
+          "p2_obligations": [
+            {
+              "block": "usb_vbus_sense",
+              "branch_id": "presence_unplaced_tree",
+              "layer": "F.Cu",
+              "native_pad": "Q_VBUS.3",
+              "net": "VBUS_PRESENT_N",
+              "proof": "native_pad_to_unplaced_tree",
+              "source_pad": "Q_VBUS.3",
+              "status": "P2_REQUIRED"
+            },
+            {
+              "block": "usb_vbus_sense",
+              "branch_id": "presence_unplaced_tree",
+              "layer": "F.Cu",
+              "native_pad": "R_VBUS_PU.2",
+              "net": "VBUS_PRESENT_N",
+              "proof": "native_pad_to_unplaced_tree",
+              "source_pad": "R_VBUS_PU.2",
+              "status": "P2_REQUIRED"
+            },
+            {
+              "block": "xmos_core",
+              "branch_id": "presence_unplaced_tree",
+              "layer": "F.Cu",
+              "native_pad": "U_XU.8",
+              "net": "VBUS_PRESENT_N",
+              "proof": "native_pad_to_unplaced_tree",
+              "source_pad": "U_XU.8",
+              "status": "P2_REQUIRED"
+            }
+          ],
+          "physical_blockers": [],
+          "reason": "five-terminal tree, source-region conflict, physical route and filled return unproved",
+          "return_obligation": {
+            "branch_id": "presence_unplaced_tree",
+            "net": "GND",
+            "proof": "continuous_filled_reference_under_actual_tree",
+            "reference_layer": "In1.Cu",
+            "status": "P2_REQUIRED"
+          },
+          "status": "INCOMPLETE",
+          "tree_obligation": {
+            "minimum_tree_edges": 2,
+            "net": "VBUS_PRESENT_N",
+            "proof": "one_connected_native_net_without_unrelated_branches",
+            "status": "P3_REQUIRED",
+            "terminal_count": 3
+          }
+        }
+      ],
+      "status": "INCOMPLETE",
+      "witness_count": 2
+    },
+    {
+      "id": "xmos_service_escape",
+      "p2_obligations": [
+        {
+          "block": "xmos_core",
+          "corridor_id": "jtag_strip",
+          "layer": "F.Cu",
+          "native_pad": "U_XU.44",
+          "net": "JTAG_TMS",
+          "physical_cell_id": "xmos_core_east",
+          "region_face": "north",
+          "source_pad": "U_XU.44",
+          "status": "P2_REQUIRED",
+          "to_reservation": "jtag_strip_trunk"
+        },
+        {
+          "block": "xmos_core",
+          "corridor_id": "jtag_strip",
+          "layer": "F.Cu",
+          "native_pad": "U_XU.51",
+          "net": "JTAG_TCK",
+          "physical_cell_id": "xmos_core_east",
+          "region_face": "north",
+          "source_pad": "U_XU.51",
+          "status": "P2_REQUIRED",
+          "to_reservation": "jtag_strip_trunk"
+        },
+        {
+          "block": "xmos_core",
+          "corridor_id": "jtag_strip",
+          "layer": "F.Cu",
+          "native_pad": "U_XU.37",
+          "net": "JTAG_TDO",
+          "physical_cell_id": "xmos_core_east",
+          "region_face": "north",
+          "source_pad": "U_XU.37",
+          "status": "P2_REQUIRED",
+          "to_reservation": "jtag_strip_trunk"
+        },
+        {
+          "block": "xmos_core",
+          "corridor_id": "jtag_strip",
+          "layer": "F.Cu",
+          "native_pad": "U_XU.36",
+          "net": "JTAG_TDI",
+          "physical_cell_id": "xmos_core_east",
+          "region_face": "north",
+          "source_pad": "U_XU.36",
+          "status": "P2_REQUIRED",
+          "to_reservation": "jtag_strip_trunk"
+        },
+        {
+          "block": "debug_connector",
+          "corridor_id": "jtag_strip",
+          "layer": "F.Cu",
+          "native_pad": "J_JTAG.2",
+          "net": "JTAG_TMS",
+          "region_face": "south",
+          "source_pad": "J_JTAG.2",
+          "status": "P2_REQUIRED",
+          "to_reservation": "jtag_strip_trunk"
+        },
+        {
+          "block": "debug_connector",
+          "corridor_id": "jtag_strip",
+          "layer": "F.Cu",
+          "native_pad": "J_JTAG.4",
+          "net": "JTAG_TCK",
+          "region_face": "south",
+          "source_pad": "J_JTAG.4",
+          "status": "P2_REQUIRED",
+          "to_reservation": "jtag_strip_trunk"
+        },
+        {
+          "block": "debug_connector",
+          "corridor_id": "jtag_strip",
+          "layer": "F.Cu",
+          "native_pad": "J_JTAG.6",
+          "net": "JTAG_TDO",
+          "region_face": "south",
+          "source_pad": "J_JTAG.6",
+          "status": "P2_REQUIRED",
+          "to_reservation": "jtag_strip_trunk"
+        },
+        {
+          "block": "debug_connector",
+          "corridor_id": "jtag_strip",
+          "layer": "F.Cu",
+          "native_pad": "J_JTAG.8",
+          "net": "JTAG_TDI",
+          "region_face": "south",
+          "source_pad": "J_JTAG.8",
+          "status": "P2_REQUIRED",
+          "to_reservation": "jtag_strip_trunk"
+        },
+        {
+          "block": "xmos_core",
+          "corridor_id": "qspi_gap",
+          "layer": "F.Cu",
+          "native_pad": "U_XU.4",
+          "net": "QSPI_CLK",
+          "physical_cell_id": "xmos_core_qspi_south",
+          "region_face": "south",
+          "source_pad": "U_XU.4",
+          "status": "P2_REQUIRED",
+          "to_reservation": "qspi_gap_trunk"
+        },
+        {
+          "block": "clock_flash_debug",
+          "corridor_id": "qspi_gap",
+          "layer": "F.Cu",
+          "native_pad": "U_FLASH.6",
+          "net": "QSPI_CLK",
+          "physical_cell_id": "clock_qspi_transit",
+          "region_face": "north",
+          "source_pad": "U_FLASH.6",
+          "status": "P2_REQUIRED",
+          "to_reservation": "qspi_gap_trunk"
+        },
+        {
+          "block": "xmos_core",
+          "corridor_id": "qspi_gap",
+          "layer": "F.Cu",
+          "native_pad": "U_XU.2",
+          "net": "QSPI_CS_N",
+          "physical_cell_id": "xmos_core_qspi_south",
+          "region_face": "south",
+          "source_pad": "U_XU.2",
+          "status": "P2_REQUIRED",
+          "to_reservation": "qspi_gap_trunk"
+        },
+        {
+          "block": "clock_flash_debug",
+          "corridor_id": "qspi_gap",
+          "layer": "F.Cu",
+          "native_pad": "R_QSPI_CS.2",
+          "net": "QSPI_CS_N",
+          "physical_cell_id": "clock_qspi_transit",
+          "region_face": "north",
+          "source_pad": "R_QSPI_CS.2",
+          "status": "P2_REQUIRED",
+          "to_reservation": "qspi_gap_trunk"
+        },
+        {
+          "block": "clock_flash_debug",
+          "corridor_id": "qspi_gap",
+          "layer": "F.Cu",
+          "native_pad": "U_FLASH.1",
+          "net": "QSPI_CS_N",
+          "physical_cell_id": "clock_qspi_transit",
+          "region_face": "north",
+          "source_pad": "U_FLASH.1",
+          "status": "P2_REQUIRED",
+          "to_reservation": "qspi_gap_trunk"
+        },
+        {
+          "block": "xmos_core",
+          "corridor_id": "qspi_gap",
+          "layer": "F.Cu",
+          "native_pad": "U_XU.127",
+          "net": "QSPI_D0",
+          "physical_cell_id": "xmos_core_qspi_south",
+          "region_face": "south",
+          "source_pad": "U_XU.127",
+          "status": "P2_REQUIRED",
+          "to_reservation": "qspi_gap_trunk"
+        },
+        {
+          "block": "clock_flash_debug",
+          "corridor_id": "qspi_gap",
+          "layer": "F.Cu",
+          "native_pad": "U_FLASH.5",
+          "net": "QSPI_D0",
+          "physical_cell_id": "clock_qspi_transit",
+          "region_face": "north",
+          "source_pad": "U_FLASH.5",
+          "status": "P2_REQUIRED",
+          "to_reservation": "qspi_gap_trunk"
+        },
+        {
+          "block": "xmos_core",
+          "corridor_id": "qspi_gap",
+          "layer": "F.Cu",
+          "native_pad": "U_XU.128",
+          "net": "QSPI_D1",
+          "physical_cell_id": "xmos_core_qspi_south",
+          "region_face": "south",
+          "source_pad": "U_XU.128",
+          "status": "P2_REQUIRED",
+          "to_reservation": "qspi_gap_trunk"
+        },
+        {
+          "block": "clock_flash_debug",
+          "corridor_id": "qspi_gap",
+          "layer": "F.Cu",
+          "native_pad": "U_FLASH.2",
+          "net": "QSPI_D1",
+          "physical_cell_id": "clock_qspi_transit",
+          "region_face": "north",
+          "source_pad": "U_FLASH.2",
+          "status": "P2_REQUIRED",
+          "to_reservation": "qspi_gap_trunk"
+        },
+        {
+          "block": "xmos_core",
+          "corridor_id": "qspi_gap",
+          "layer": "F.Cu",
+          "native_pad": "U_XU.1",
+          "net": "QSPI_D2",
+          "physical_cell_id": "xmos_core_qspi_south",
+          "region_face": "south",
+          "source_pad": "U_XU.1",
+          "status": "P2_REQUIRED",
+          "to_reservation": "qspi_gap_trunk"
+        },
+        {
+          "block": "clock_flash_debug",
+          "corridor_id": "qspi_gap",
+          "layer": "F.Cu",
+          "native_pad": "U_FLASH.3",
+          "net": "QSPI_D2",
+          "physical_cell_id": "clock_qspi_transit",
+          "region_face": "north",
+          "source_pad": "U_FLASH.3",
+          "status": "P2_REQUIRED",
+          "to_reservation": "qspi_gap_trunk"
+        },
+        {
+          "block": "xmos_core",
+          "corridor_id": "qspi_gap",
+          "layer": "F.Cu",
+          "native_pad": "U_XU.3",
+          "net": "QSPI_D3",
+          "physical_cell_id": "xmos_core_qspi_south",
+          "region_face": "south",
+          "source_pad": "U_XU.3",
+          "status": "P2_REQUIRED",
+          "to_reservation": "qspi_gap_trunk"
+        },
+        {
+          "block": "clock_flash_debug",
+          "corridor_id": "qspi_gap",
+          "layer": "F.Cu",
+          "native_pad": "U_FLASH.7",
+          "net": "QSPI_D3",
+          "physical_cell_id": "clock_qspi_transit",
+          "region_face": "north",
+          "source_pad": "U_FLASH.7",
+          "status": "P2_REQUIRED",
+          "to_reservation": "qspi_gap_trunk"
+        },
+        {
+          "block": "xmos_core",
+          "corridor_id": "xtal_south_cap",
+          "layer": "F.Cu",
+          "native_pad": "U_XU.34",
+          "net": "XTAL_IN",
+          "physical_cell_id": "xmos_core",
+          "region_face": "east",
+          "source_pad": "U_XU.34",
+          "status": "P2_REQUIRED",
+          "to_reservation": "xtal_handoff"
+        },
+        {
+          "block": "clock_flash_debug",
+          "corridor_id": "xtal_south_cap",
+          "layer": "F.Cu",
+          "native_pad": "R_XTAL_DRIVE.1",
+          "net": "XTAL_IN",
+          "physical_cell_id": "clock_oscillator_local",
+          "region_face": "north",
+          "source_pad": "R_XTAL_DRIVE.1",
+          "status": "P2_REQUIRED",
+          "to_reservation": "xtal_handoff"
+        },
+        {
+          "block": "clock_flash_debug",
+          "corridor_id": "xtal_south_cap",
+          "layer": "F.Cu",
+          "native_pad": "R_XTAL_FB.1",
+          "net": "XTAL_IN",
+          "physical_cell_id": "clock_oscillator_local",
+          "region_face": "north",
+          "source_pad": "R_XTAL_FB.1",
+          "status": "P2_REQUIRED",
+          "to_reservation": "xtal_handoff"
+        },
+        {
+          "block": "xmos_core",
+          "corridor_id": "xtal_south_cap",
+          "layer": "F.Cu",
+          "native_pad": "U_XU.33",
+          "net": "XTAL_OUT",
+          "physical_cell_id": "xmos_core",
+          "region_face": "east",
+          "source_pad": "U_XU.33",
+          "status": "P2_REQUIRED",
+          "to_reservation": "xtal_handoff"
+        },
+        {
+          "block": "clock_flash_debug",
+          "corridor_id": "xtal_south_cap",
+          "layer": "F.Cu",
+          "native_pad": "C_XTAL_OUT.1",
+          "net": "XTAL_OUT",
+          "physical_cell_id": "clock_oscillator_local",
+          "region_face": "north",
+          "source_pad": "C_XTAL_OUT.1",
+          "status": "P2_REQUIRED",
+          "to_reservation": "xtal_handoff"
+        },
+        {
+          "block": "clock_flash_debug",
+          "corridor_id": "xtal_south_cap",
+          "layer": "F.Cu",
+          "native_pad": "R_XTAL_FB.2",
+          "net": "XTAL_OUT",
+          "physical_cell_id": "clock_oscillator_local",
+          "region_face": "north",
+          "source_pad": "R_XTAL_FB.2",
+          "status": "P2_REQUIRED",
+          "to_reservation": "xtal_handoff"
+        },
+        {
+          "block": "clock_flash_debug",
+          "corridor_id": "xtal_south_cap",
+          "layer": "F.Cu",
+          "native_pad": "Y_XU.3",
+          "net": "XTAL_OUT",
+          "physical_cell_id": "clock_oscillator_local",
+          "region_face": "north",
+          "source_pad": "Y_XU.3",
+          "status": "P2_REQUIRED",
+          "to_reservation": "xtal_handoff"
+        },
+        {
+          "block": "xmos_core",
+          "branch_id": "xu_reset_five_terminal",
+          "layer": "F.Cu",
+          "native_pad": "U_XU.38",
+          "net": "XU_RESET_N",
+          "proof": "native_pad_to_unplaced_tree",
+          "source_pad": "U_XU.38",
+          "status": "P2_REQUIRED"
+        }
+      ],
+      "reservation_count": 8,
+      "reservations": [
+        {
+          "id": "jtag_strip_trunk",
+          "nets": [
+            "JTAG_TMS",
+            "JTAG_TCK",
+            "JTAG_TDO",
+            "JTAG_TDI"
+          ],
+          "reason": "P2 native pad-to-face, filled-reference return and effective capacity unproved",
+          "status": "INCOMPLETE"
+        },
+        {
+          "id": "jtag_access_2",
+          "nets": [
+            "JTAG_TMS"
+          ],
+          "reason": "fixed pad access, effective capacity and routing unproved",
+          "status": "INCOMPLETE"
+        },
+        {
+          "id": "jtag_access_4",
+          "nets": [
+            "JTAG_TCK"
+          ],
+          "reason": "fixed pad access, effective capacity and routing unproved",
+          "status": "INCOMPLETE"
+        },
+        {
+          "id": "jtag_access_6",
+          "nets": [
+            "JTAG_TDO"
+          ],
+          "reason": "fixed pad access, effective capacity and routing unproved",
+          "status": "INCOMPLETE"
+        },
+        {
+          "id": "jtag_access_8",
+          "nets": [
+            "JTAG_TDI"
+          ],
+          "reason": "fixed pad access, effective capacity and routing unproved",
+          "status": "INCOMPLETE"
+        },
+        {
+          "id": "qspi_gap_trunk",
+          "nets": [
+            "QSPI_CLK",
+            "QSPI_CS_N",
+            "QSPI_D0",
+            "QSPI_D1",
+            "QSPI_D2",
+            "QSPI_D3"
+          ],
+          "reason": "P2 native pad-to-face, filled-reference return and effective capacity unproved",
+          "status": "INCOMPLETE"
+        },
+        {
+          "id": "xtal_handoff",
+          "nets": [
+            "XTAL_IN",
+            "XTAL_OUT"
+          ],
+          "reason": "P2 native pad-to-face, filled-reference return and effective capacity unproved",
+          "status": "INCOMPLETE"
+        },
+        {
+          "capacity_slots": null,
+          "id": "reset_unresolved_tree",
+          "nets": [
+            "XU_RESET_N"
+          ],
+          "p2_obligations": [
+            {
+              "block": "debug_connector",
+              "branch_id": "xu_reset_five_terminal",
+              "layer": "F.Cu",
+              "native_pad": "J_JTAG.10",
+              "net": "XU_RESET_N",
+              "proof": "native_pad_to_unplaced_tree",
+              "source_pad": "J_JTAG.10",
+              "status": "P2_REQUIRED"
+            },
+            {
+              "block": "digital_power",
+              "branch_id": "xu_reset_five_terminal",
+              "layer": "F.Cu",
+              "native_pad": "R_XU_RST_PU.2",
+              "net": "XU_RESET_N",
+              "proof": "native_pad_to_unplaced_tree",
+              "source_pad": "R_XU_RST_PU.2",
+              "status": "P2_REQUIRED"
+            },
+            {
+              "block": "digital_power",
+              "branch_id": "xu_reset_five_terminal",
+              "layer": "F.Cu",
+              "native_pad": "U_CORE_OK.1",
+              "net": "XU_RESET_N",
+              "proof": "native_pad_to_unplaced_tree",
+              "source_pad": "U_CORE_OK.1",
+              "status": "P2_REQUIRED"
+            },
+            {
+              "block": "xmos_core",
+              "branch_id": "xu_reset_five_terminal",
+              "layer": "F.Cu",
+              "native_pad": "U_XU.38",
+              "net": "XU_RESET_N",
+              "proof": "native_pad_to_unplaced_tree",
+              "source_pad": "U_XU.38",
+              "status": "P2_REQUIRED"
+            },
+            {
+              "block": "digital_power",
+              "branch_id": "xu_reset_five_terminal",
+              "layer": "F.Cu",
+              "native_pad": "U_XU_3V3_OK.6",
+              "net": "XU_RESET_N",
+              "proof": "native_pad_to_unplaced_tree",
+              "source_pad": "U_XU_3V3_OK.6",
+              "status": "P2_REQUIRED"
+            }
+          ],
+          "physical_blockers": [],
+          "reason": "five-terminal tree, source-region conflict, physical route and filled return unproved",
+          "return_obligation": {
+            "branch_id": "xu_reset_five_terminal",
+            "net": "GND",
+            "proof": "continuous_filled_reference_under_actual_tree",
+            "reference_layer": "In1.Cu",
+            "status": "P2_REQUIRED"
+          },
+          "status": "INCOMPLETE",
+          "tree_obligation": {
+            "minimum_tree_edges": 4,
+            "net": "XU_RESET_N",
+            "proof": "one_connected_native_net_without_unrelated_branches",
+            "status": "P3_REQUIRED",
+            "terminal_count": 5
+          }
+        }
+      ],
+      "status": "INCOMPLETE",
+      "witness_count": 29
+    },
+    {
+      "id": "adc_timing_xmos_bundle",
+      "reason": "adc_timing_xmos_bundle: missing per-net boundary witness",
+      "status": "FAIL"
+    },
+    {
+      "id": "adc_analog_boundary",
+      "p2_obligations": [
+        {
+          "block": "analog_ch1",
+          "branch_id": "analog_adc1n_unplaced_tree",
+          "layer": "F.Cu",
+          "native_pad": "C_ADC_AC1N1.2",
+          "net": "ADC1N",
+          "proof": "native_pad_to_unplaced_tree",
+          "source_pad": "C_ADC_AC1N1.2",
+          "status": "P2_REQUIRED"
+        },
+        {
+          "block": "analog_ch1",
+          "branch_id": "analog_adc1p_unplaced_tree",
+          "layer": "F.Cu",
+          "native_pad": "C_ADC_AC1P1.2",
+          "net": "ADC1P",
+          "proof": "native_pad_to_unplaced_tree",
+          "source_pad": "C_ADC_AC1P1.2",
+          "status": "P2_REQUIRED"
+        },
+        {
+          "block": "analog_ch2",
+          "branch_id": "analog_adc2n_unplaced_tree",
+          "layer": "F.Cu",
+          "native_pad": "C_ADC_AC2N1.2",
+          "net": "ADC2N",
+          "proof": "native_pad_to_unplaced_tree",
+          "source_pad": "C_ADC_AC2N1.2",
+          "status": "P2_REQUIRED"
+        },
+        {
+          "block": "analog_ch2",
+          "branch_id": "analog_adc2p_unplaced_tree",
+          "layer": "F.Cu",
+          "native_pad": "C_ADC_AC2P1.2",
+          "net": "ADC2P",
+          "proof": "native_pad_to_unplaced_tree",
+          "source_pad": "C_ADC_AC2P1.2",
+          "status": "P2_REQUIRED"
+        },
+        {
+          "block": "analog_ch3",
+          "branch_id": "analog_adc3n_unplaced_tree",
+          "layer": "F.Cu",
+          "native_pad": "C_ADC_AC3N1.2",
+          "net": "ADC3N",
+          "proof": "native_pad_to_unplaced_tree",
+          "source_pad": "C_ADC_AC3N1.2",
+          "status": "P2_REQUIRED"
+        },
+        {
+          "block": "analog_ch3",
+          "branch_id": "analog_adc3p_unplaced_tree",
+          "layer": "F.Cu",
+          "native_pad": "C_ADC_AC3P1.2",
+          "net": "ADC3P",
+          "proof": "native_pad_to_unplaced_tree",
+          "source_pad": "C_ADC_AC3P1.2",
+          "status": "P2_REQUIRED"
+        },
+        {
+          "block": "analog_ch4",
+          "branch_id": "analog_adc4n_unplaced_tree",
+          "layer": "F.Cu",
+          "native_pad": "C_ADC_AC4N1.2",
+          "net": "ADC4N",
+          "proof": "native_pad_to_unplaced_tree",
+          "source_pad": "C_ADC_AC4N1.2",
+          "status": "P2_REQUIRED"
+        },
+        {
+          "block": "analog_ch4",
+          "branch_id": "analog_adc4p_unplaced_tree",
+          "layer": "F.Cu",
+          "native_pad": "C_ADC_AC4P1.2",
+          "net": "ADC4P",
+          "proof": "native_pad_to_unplaced_tree",
+          "source_pad": "C_ADC_AC4P1.2",
+          "status": "P2_REQUIRED"
+        },
+        {
+          "block": "analog_ch5",
+          "branch_id": "analog_adc5n_unplaced_tree",
+          "layer": "F.Cu",
+          "native_pad": "C_ADC_AC5N1.2",
+          "net": "ADC5N",
+          "proof": "native_pad_to_unplaced_tree",
+          "source_pad": "C_ADC_AC5N1.2",
+          "status": "P2_REQUIRED"
+        },
+        {
+          "block": "analog_ch5",
+          "branch_id": "analog_adc5p_unplaced_tree",
+          "layer": "F.Cu",
+          "native_pad": "C_ADC_AC5P1.2",
+          "net": "ADC5P",
+          "proof": "native_pad_to_unplaced_tree",
+          "source_pad": "C_ADC_AC5P1.2",
+          "status": "P2_REQUIRED"
+        },
+        {
+          "block": "analog_ch6",
+          "branch_id": "analog_adc6n_unplaced_tree",
+          "layer": "F.Cu",
+          "native_pad": "C_ADC_AC6N1.2",
+          "net": "ADC6N",
+          "proof": "native_pad_to_unplaced_tree",
+          "source_pad": "C_ADC_AC6N1.2",
+          "status": "P2_REQUIRED"
+        },
+        {
+          "block": "analog_ch6",
+          "branch_id": "analog_adc6p_unplaced_tree",
+          "layer": "F.Cu",
+          "native_pad": "C_ADC_AC6P1.2",
+          "net": "ADC6P",
+          "proof": "native_pad_to_unplaced_tree",
+          "source_pad": "C_ADC_AC6P1.2",
+          "status": "P2_REQUIRED"
+        },
+        {
+          "block": "analog_ch7",
+          "branch_id": "analog_adc7n_unplaced_tree",
+          "layer": "F.Cu",
+          "native_pad": "C_ADC_AC7N1.2",
+          "net": "ADC7N",
+          "proof": "native_pad_to_unplaced_tree",
+          "source_pad": "C_ADC_AC7N1.2",
+          "status": "P2_REQUIRED"
+        },
+        {
+          "block": "analog_ch7",
+          "branch_id": "analog_adc7p_unplaced_tree",
+          "layer": "F.Cu",
+          "native_pad": "C_ADC_AC7P1.2",
+          "net": "ADC7P",
+          "proof": "native_pad_to_unplaced_tree",
+          "source_pad": "C_ADC_AC7P1.2",
+          "status": "P2_REQUIRED"
+        },
+        {
+          "block": "analog_ch8",
+          "branch_id": "analog_adc8n_unplaced_tree",
+          "layer": "F.Cu",
+          "native_pad": "C_ADC_AC8N1.2",
+          "net": "ADC8N",
+          "proof": "native_pad_to_unplaced_tree",
+          "source_pad": "C_ADC_AC8N1.2",
+          "status": "P2_REQUIRED"
+        },
+        {
+          "block": "analog_ch8",
+          "branch_id": "analog_adc8p_unplaced_tree",
+          "layer": "F.Cu",
+          "native_pad": "C_ADC_AC8P1.2",
+          "net": "ADC8P",
+          "proof": "native_pad_to_unplaced_tree",
+          "source_pad": "C_ADC_AC8P1.2",
+          "status": "P2_REQUIRED"
+        },
+        {
+          "block": "adc_reference",
+          "branch_id": "analog_vmid1_ext_unplaced_tree",
+          "layer": "F.Cu",
+          "native_pad": "C_VMID1_EXT_10U.1",
+          "net": "VMID1_EXT",
+          "proof": "native_pad_to_unplaced_tree",
+          "source_pad": "C_VMID1_EXT_10U.1",
+          "status": "P2_REQUIRED"
+        },
+        {
+          "block": "adc_reference",
+          "branch_id": "analog_vmid2_ext_unplaced_tree",
+          "layer": "F.Cu",
+          "native_pad": "C_VMID2_EXT_10U.1",
+          "net": "VMID2_EXT",
+          "proof": "native_pad_to_unplaced_tree",
+          "source_pad": "C_VMID2_EXT_10U.1",
+          "status": "P2_REQUIRED"
+        }
+      ],
+      "reservation_count": 18,
+      "reservations": [
+        {
+          "capacity_slots": null,
+          "id": "analog_adc1n_tree",
+          "nets": [
+            "ADC1N"
+          ],
+          "p2_obligations": [
+            {
+              "block": "analog_ch1",
+              "branch_id": "analog_adc1n_unplaced_tree",
+              "layer": "F.Cu",
+              "native_pad": "C_ADC_AC1N1.2",
+              "net": "ADC1N",
+              "proof": "native_pad_to_unplaced_tree",
+              "source_pad": "C_ADC_AC1N1.2",
+              "status": "P2_REQUIRED"
+            },
+            {
+              "block": "analog_ch1",
+              "branch_id": "analog_adc1n_unplaced_tree",
+              "layer": "F.Cu",
+              "native_pad": "C_ADC_AC1N2.2",
+              "net": "ADC1N",
+              "proof": "native_pad_to_unplaced_tree",
+              "source_pad": "C_ADC_AC1N2.2",
+              "status": "P2_REQUIRED"
+            },
+            {
+              "block": "analog_ch1",
+              "branch_id": "analog_adc1n_unplaced_tree",
+              "layer": "F.Cu",
+              "native_pad": "C_ADC_CM1N.1",
+              "net": "ADC1N",
+              "proof": "native_pad_to_unplaced_tree",
+              "source_pad": "C_ADC_CM1N.1",
+              "status": "P2_REQUIRED"
+            },
+            {
+              "block": "adc_reference",
+              "branch_id": "analog_adc1n_unplaced_tree",
+              "layer": "F.Cu",
+              "native_pad": "U_ADC_A.13",
+              "net": "ADC1N",
+              "proof": "native_pad_to_unplaced_tree",
+              "source_pad": "U_ADC_A.13",
+              "status": "P2_REQUIRED"
+            }
+          ],
+          "physical_blockers": [],
+          "reason": "five-terminal tree, source-region conflict, physical route and filled return unproved",
+          "return_obligation": {
+            "branch_id": "analog_adc1n_unplaced_tree",
+            "net": "GND",
+            "proof": "continuous_filled_reference_under_actual_tree",
+            "reference_layer": "In1.Cu",
+            "status": "P2_REQUIRED"
+          },
+          "status": "INCOMPLETE",
+          "tree_obligation": {
+            "minimum_tree_edges": 3,
+            "net": "ADC1N",
+            "proof": "one_connected_native_net_without_unrelated_branches",
+            "status": "P3_REQUIRED",
+            "terminal_count": 4
+          }
+        },
+        {
+          "capacity_slots": null,
+          "id": "analog_adc1p_tree",
+          "nets": [
+            "ADC1P"
+          ],
+          "p2_obligations": [
+            {
+              "block": "analog_ch1",
+              "branch_id": "analog_adc1p_unplaced_tree",
+              "layer": "F.Cu",
+              "native_pad": "C_ADC_AC1P1.2",
+              "net": "ADC1P",
+              "proof": "native_pad_to_unplaced_tree",
+              "source_pad": "C_ADC_AC1P1.2",
+              "status": "P2_REQUIRED"
+            },
+            {
+              "block": "analog_ch1",
+              "branch_id": "analog_adc1p_unplaced_tree",
+              "layer": "F.Cu",
+              "native_pad": "C_ADC_AC1P2.2",
+              "net": "ADC1P",
+              "proof": "native_pad_to_unplaced_tree",
+              "source_pad": "C_ADC_AC1P2.2",
+              "status": "P2_REQUIRED"
+            },
+            {
+              "block": "analog_ch1",
+              "branch_id": "analog_adc1p_unplaced_tree",
+              "layer": "F.Cu",
+              "native_pad": "C_ADC_CM1P.1",
+              "net": "ADC1P",
+              "proof": "native_pad_to_unplaced_tree",
+              "source_pad": "C_ADC_CM1P.1",
+              "status": "P2_REQUIRED"
+            },
+            {
+              "block": "adc_reference",
+              "branch_id": "analog_adc1p_unplaced_tree",
+              "layer": "F.Cu",
+              "native_pad": "U_ADC_A.12",
+              "net": "ADC1P",
+              "proof": "native_pad_to_unplaced_tree",
+              "source_pad": "U_ADC_A.12",
+              "status": "P2_REQUIRED"
+            }
+          ],
+          "physical_blockers": [],
+          "reason": "five-terminal tree, source-region conflict, physical route and filled return unproved",
+          "return_obligation": {
+            "branch_id": "analog_adc1p_unplaced_tree",
+            "net": "GND",
+            "proof": "continuous_filled_reference_under_actual_tree",
+            "reference_layer": "In1.Cu",
+            "status": "P2_REQUIRED"
+          },
+          "status": "INCOMPLETE",
+          "tree_obligation": {
+            "minimum_tree_edges": 3,
+            "net": "ADC1P",
+            "proof": "one_connected_native_net_without_unrelated_branches",
+            "status": "P3_REQUIRED",
+            "terminal_count": 4
+          }
+        },
+        {
+          "capacity_slots": null,
+          "id": "analog_adc2n_tree",
+          "nets": [
+            "ADC2N"
+          ],
+          "p2_obligations": [
+            {
+              "block": "analog_ch2",
+              "branch_id": "analog_adc2n_unplaced_tree",
+              "layer": "F.Cu",
+              "native_pad": "C_ADC_AC2N1.2",
+              "net": "ADC2N",
+              "proof": "native_pad_to_unplaced_tree",
+              "source_pad": "C_ADC_AC2N1.2",
+              "status": "P2_REQUIRED"
+            },
+            {
+              "block": "analog_ch2",
+              "branch_id": "analog_adc2n_unplaced_tree",
+              "layer": "F.Cu",
+              "native_pad": "C_ADC_AC2N2.2",
+              "net": "ADC2N",
+              "proof": "native_pad_to_unplaced_tree",
+              "source_pad": "C_ADC_AC2N2.2",
+              "status": "P2_REQUIRED"
+            },
+            {
+              "block": "analog_ch2",
+              "branch_id": "analog_adc2n_unplaced_tree",
+              "layer": "F.Cu",
+              "native_pad": "C_ADC_CM2N.1",
+              "net": "ADC2N",
+              "proof": "native_pad_to_unplaced_tree",
+              "source_pad": "C_ADC_CM2N.1",
+              "status": "P2_REQUIRED"
+            },
+            {
+              "block": "adc_reference",
+              "branch_id": "analog_adc2n_unplaced_tree",
+              "layer": "F.Cu",
+              "native_pad": "U_ADC_A.11",
+              "net": "ADC2N",
+              "proof": "native_pad_to_unplaced_tree",
+              "source_pad": "U_ADC_A.11",
+              "status": "P2_REQUIRED"
+            }
+          ],
+          "physical_blockers": [],
+          "reason": "five-terminal tree, source-region conflict, physical route and filled return unproved",
+          "return_obligation": {
+            "branch_id": "analog_adc2n_unplaced_tree",
+            "net": "GND",
+            "proof": "continuous_filled_reference_under_actual_tree",
+            "reference_layer": "In1.Cu",
+            "status": "P2_REQUIRED"
+          },
+          "status": "INCOMPLETE",
+          "tree_obligation": {
+            "minimum_tree_edges": 3,
+            "net": "ADC2N",
+            "proof": "one_connected_native_net_without_unrelated_branches",
+            "status": "P3_REQUIRED",
+            "terminal_count": 4
+          }
+        },
+        {
+          "capacity_slots": null,
+          "id": "analog_adc2p_tree",
+          "nets": [
+            "ADC2P"
+          ],
+          "p2_obligations": [
+            {
+              "block": "analog_ch2",
+              "branch_id": "analog_adc2p_unplaced_tree",
+              "layer": "F.Cu",
+              "native_pad": "C_ADC_AC2P1.2",
+              "net": "ADC2P",
+              "proof": "native_pad_to_unplaced_tree",
+              "source_pad": "C_ADC_AC2P1.2",
+              "status": "P2_REQUIRED"
+            },
+            {
+              "block": "analog_ch2",
+              "branch_id": "analog_adc2p_unplaced_tree",
+              "layer": "F.Cu",
+              "native_pad": "C_ADC_AC2P2.2",
+              "net": "ADC2P",
+              "proof": "native_pad_to_unplaced_tree",
+              "source_pad": "C_ADC_AC2P2.2",
+              "status": "P2_REQUIRED"
+            },
+            {
+              "block": "analog_ch2",
+              "branch_id": "analog_adc2p_unplaced_tree",
+              "layer": "F.Cu",
+              "native_pad": "C_ADC_CM2P.1",
+              "net": "ADC2P",
+              "proof": "native_pad_to_unplaced_tree",
+              "source_pad": "C_ADC_CM2P.1",
+              "status": "P2_REQUIRED"
+            },
+            {
+              "block": "adc_reference",
+              "branch_id": "analog_adc2p_unplaced_tree",
+              "layer": "F.Cu",
+              "native_pad": "U_ADC_A.10",
+              "net": "ADC2P",
+              "proof": "native_pad_to_unplaced_tree",
+              "source_pad": "U_ADC_A.10",
+              "status": "P2_REQUIRED"
+            }
+          ],
+          "physical_blockers": [],
+          "reason": "five-terminal tree, source-region conflict, physical route and filled return unproved",
+          "return_obligation": {
+            "branch_id": "analog_adc2p_unplaced_tree",
+            "net": "GND",
+            "proof": "continuous_filled_reference_under_actual_tree",
+            "reference_layer": "In1.Cu",
+            "status": "P2_REQUIRED"
+          },
+          "status": "INCOMPLETE",
+          "tree_obligation": {
+            "minimum_tree_edges": 3,
+            "net": "ADC2P",
+            "proof": "one_connected_native_net_without_unrelated_branches",
+            "status": "P3_REQUIRED",
+            "terminal_count": 4
+          }
+        },
+        {
+          "capacity_slots": null,
+          "id": "analog_adc3n_tree",
+          "nets": [
+            "ADC3N"
+          ],
+          "p2_obligations": [
+            {
+              "block": "analog_ch3",
+              "branch_id": "analog_adc3n_unplaced_tree",
+              "layer": "F.Cu",
+              "native_pad": "C_ADC_AC3N1.2",
+              "net": "ADC3N",
+              "proof": "native_pad_to_unplaced_tree",
+              "source_pad": "C_ADC_AC3N1.2",
+              "status": "P2_REQUIRED"
+            },
+            {
+              "block": "analog_ch3",
+              "branch_id": "analog_adc3n_unplaced_tree",
+              "layer": "F.Cu",
+              "native_pad": "C_ADC_AC3N2.2",
+              "net": "ADC3N",
+              "proof": "native_pad_to_unplaced_tree",
+              "source_pad": "C_ADC_AC3N2.2",
+              "status": "P2_REQUIRED"
+            },
+            {
+              "block": "analog_ch3",
+              "branch_id": "analog_adc3n_unplaced_tree",
+              "layer": "F.Cu",
+              "native_pad": "C_ADC_CM3N.1",
+              "net": "ADC3N",
+              "proof": "native_pad_to_unplaced_tree",
+              "source_pad": "C_ADC_CM3N.1",
+              "status": "P2_REQUIRED"
+            },
+            {
+              "block": "adc_reference",
+              "branch_id": "analog_adc3n_unplaced_tree",
+              "layer": "F.Cu",
+              "native_pad": "U_ADC_A.9",
+              "net": "ADC3N",
+              "proof": "native_pad_to_unplaced_tree",
+              "source_pad": "U_ADC_A.9",
+              "status": "P2_REQUIRED"
+            }
+          ],
+          "physical_blockers": [],
+          "reason": "five-terminal tree, source-region conflict, physical route and filled return unproved",
+          "return_obligation": {
+            "branch_id": "analog_adc3n_unplaced_tree",
+            "net": "GND",
+            "proof": "continuous_filled_reference_under_actual_tree",
+            "reference_layer": "In1.Cu",
+            "status": "P2_REQUIRED"
+          },
+          "status": "INCOMPLETE",
+          "tree_obligation": {
+            "minimum_tree_edges": 3,
+            "net": "ADC3N",
+            "proof": "one_connected_native_net_without_unrelated_branches",
+            "status": "P3_REQUIRED",
+            "terminal_count": 4
+          }
+        },
+        {
+          "capacity_slots": null,
+          "id": "analog_adc3p_tree",
+          "nets": [
+            "ADC3P"
+          ],
+          "p2_obligations": [
+            {
+              "block": "analog_ch3",
+              "branch_id": "analog_adc3p_unplaced_tree",
+              "layer": "F.Cu",
+              "native_pad": "C_ADC_AC3P1.2",
+              "net": "ADC3P",
+              "proof": "native_pad_to_unplaced_tree",
+              "source_pad": "C_ADC_AC3P1.2",
+              "status": "P2_REQUIRED"
+            },
+            {
+              "block": "analog_ch3",
+              "branch_id": "analog_adc3p_unplaced_tree",
+              "layer": "F.Cu",
+              "native_pad": "C_ADC_AC3P2.2",
+              "net": "ADC3P",
+              "proof": "native_pad_to_unplaced_tree",
+              "source_pad": "C_ADC_AC3P2.2",
+              "status": "P2_REQUIRED"
+            },
+            {
+              "block": "analog_ch3",
+              "branch_id": "analog_adc3p_unplaced_tree",
+              "layer": "F.Cu",
+              "native_pad": "C_ADC_CM3P.1",
+              "net": "ADC3P",
+              "proof": "native_pad_to_unplaced_tree",
+              "source_pad": "C_ADC_CM3P.1",
+              "status": "P2_REQUIRED"
+            },
+            {
+              "block": "adc_reference",
+              "branch_id": "analog_adc3p_unplaced_tree",
+              "layer": "F.Cu",
+              "native_pad": "U_ADC_A.8",
+              "net": "ADC3P",
+              "proof": "native_pad_to_unplaced_tree",
+              "source_pad": "U_ADC_A.8",
+              "status": "P2_REQUIRED"
+            }
+          ],
+          "physical_blockers": [],
+          "reason": "five-terminal tree, source-region conflict, physical route and filled return unproved",
+          "return_obligation": {
+            "branch_id": "analog_adc3p_unplaced_tree",
+            "net": "GND",
+            "proof": "continuous_filled_reference_under_actual_tree",
+            "reference_layer": "In1.Cu",
+            "status": "P2_REQUIRED"
+          },
+          "status": "INCOMPLETE",
+          "tree_obligation": {
+            "minimum_tree_edges": 3,
+            "net": "ADC3P",
+            "proof": "one_connected_native_net_without_unrelated_branches",
+            "status": "P3_REQUIRED",
+            "terminal_count": 4
+          }
+        },
+        {
+          "capacity_slots": null,
+          "id": "analog_adc4n_tree",
+          "nets": [
+            "ADC4N"
+          ],
+          "p2_obligations": [
+            {
+              "block": "analog_ch4",
+              "branch_id": "analog_adc4n_unplaced_tree",
+              "layer": "F.Cu",
+              "native_pad": "C_ADC_AC4N1.2",
+              "net": "ADC4N",
+              "proof": "native_pad_to_unplaced_tree",
+              "source_pad": "C_ADC_AC4N1.2",
+              "status": "P2_REQUIRED"
+            },
+            {
+              "block": "analog_ch4",
+              "branch_id": "analog_adc4n_unplaced_tree",
+              "layer": "F.Cu",
+              "native_pad": "C_ADC_AC4N2.2",
+              "net": "ADC4N",
+              "proof": "native_pad_to_unplaced_tree",
+              "source_pad": "C_ADC_AC4N2.2",
+              "status": "P2_REQUIRED"
+            },
+            {
+              "block": "analog_ch4",
+              "branch_id": "analog_adc4n_unplaced_tree",
+              "layer": "F.Cu",
+              "native_pad": "C_ADC_CM4N.1",
+              "net": "ADC4N",
+              "proof": "native_pad_to_unplaced_tree",
+              "source_pad": "C_ADC_CM4N.1",
+              "status": "P2_REQUIRED"
+            },
+            {
+              "block": "adc_reference",
+              "branch_id": "analog_adc4n_unplaced_tree",
+              "layer": "F.Cu",
+              "native_pad": "U_ADC_A.7",
+              "net": "ADC4N",
+              "proof": "native_pad_to_unplaced_tree",
+              "source_pad": "U_ADC_A.7",
+              "status": "P2_REQUIRED"
+            }
+          ],
+          "physical_blockers": [],
+          "reason": "five-terminal tree, source-region conflict, physical route and filled return unproved",
+          "return_obligation": {
+            "branch_id": "analog_adc4n_unplaced_tree",
+            "net": "GND",
+            "proof": "continuous_filled_reference_under_actual_tree",
+            "reference_layer": "In1.Cu",
+            "status": "P2_REQUIRED"
+          },
+          "status": "INCOMPLETE",
+          "tree_obligation": {
+            "minimum_tree_edges": 3,
+            "net": "ADC4N",
+            "proof": "one_connected_native_net_without_unrelated_branches",
+            "status": "P3_REQUIRED",
+            "terminal_count": 4
+          }
+        },
+        {
+          "capacity_slots": null,
+          "id": "analog_adc4p_tree",
+          "nets": [
+            "ADC4P"
+          ],
+          "p2_obligations": [
+            {
+              "block": "analog_ch4",
+              "branch_id": "analog_adc4p_unplaced_tree",
+              "layer": "F.Cu",
+              "native_pad": "C_ADC_AC4P1.2",
+              "net": "ADC4P",
+              "proof": "native_pad_to_unplaced_tree",
+              "source_pad": "C_ADC_AC4P1.2",
+              "status": "P2_REQUIRED"
+            },
+            {
+              "block": "analog_ch4",
+              "branch_id": "analog_adc4p_unplaced_tree",
+              "layer": "F.Cu",
+              "native_pad": "C_ADC_AC4P2.2",
+              "net": "ADC4P",
+              "proof": "native_pad_to_unplaced_tree",
+              "source_pad": "C_ADC_AC4P2.2",
+              "status": "P2_REQUIRED"
+            },
+            {
+              "block": "analog_ch4",
+              "branch_id": "analog_adc4p_unplaced_tree",
+              "layer": "F.Cu",
+              "native_pad": "C_ADC_CM4P.1",
+              "net": "ADC4P",
+              "proof": "native_pad_to_unplaced_tree",
+              "source_pad": "C_ADC_CM4P.1",
+              "status": "P2_REQUIRED"
+            },
+            {
+              "block": "adc_reference",
+              "branch_id": "analog_adc4p_unplaced_tree",
+              "layer": "F.Cu",
+              "native_pad": "U_ADC_A.6",
+              "net": "ADC4P",
+              "proof": "native_pad_to_unplaced_tree",
+              "source_pad": "U_ADC_A.6",
+              "status": "P2_REQUIRED"
+            }
+          ],
+          "physical_blockers": [],
+          "reason": "five-terminal tree, source-region conflict, physical route and filled return unproved",
+          "return_obligation": {
+            "branch_id": "analog_adc4p_unplaced_tree",
+            "net": "GND",
+            "proof": "continuous_filled_reference_under_actual_tree",
+            "reference_layer": "In1.Cu",
+            "status": "P2_REQUIRED"
+          },
+          "status": "INCOMPLETE",
+          "tree_obligation": {
+            "minimum_tree_edges": 3,
+            "net": "ADC4P",
+            "proof": "one_connected_native_net_without_unrelated_branches",
+            "status": "P3_REQUIRED",
+            "terminal_count": 4
+          }
+        },
+        {
+          "capacity_slots": null,
+          "id": "analog_adc5n_tree",
+          "nets": [
+            "ADC5N"
+          ],
+          "p2_obligations": [
+            {
+              "block": "analog_ch5",
+              "branch_id": "analog_adc5n_unplaced_tree",
+              "layer": "F.Cu",
+              "native_pad": "C_ADC_AC5N1.2",
+              "net": "ADC5N",
+              "proof": "native_pad_to_unplaced_tree",
+              "source_pad": "C_ADC_AC5N1.2",
+              "status": "P2_REQUIRED"
+            },
+            {
+              "block": "analog_ch5",
+              "branch_id": "analog_adc5n_unplaced_tree",
+              "layer": "F.Cu",
+              "native_pad": "C_ADC_AC5N2.2",
+              "net": "ADC5N",
+              "proof": "native_pad_to_unplaced_tree",
+              "source_pad": "C_ADC_AC5N2.2",
+              "status": "P2_REQUIRED"
+            },
+            {
+              "block": "analog_ch5",
+              "branch_id": "analog_adc5n_unplaced_tree",
+              "layer": "F.Cu",
+              "native_pad": "C_ADC_CM5N.1",
+              "net": "ADC5N",
+              "proof": "native_pad_to_unplaced_tree",
+              "source_pad": "C_ADC_CM5N.1",
+              "status": "P2_REQUIRED"
+            },
+            {
+              "block": "adc_reference",
+              "branch_id": "analog_adc5n_unplaced_tree",
+              "layer": "F.Cu",
+              "native_pad": "U_ADC_B.7",
+              "net": "ADC5N",
+              "proof": "native_pad_to_unplaced_tree",
+              "source_pad": "U_ADC_B.7",
+              "status": "P2_REQUIRED"
+            }
+          ],
+          "physical_blockers": [],
+          "reason": "five-terminal tree, source-region conflict, physical route and filled return unproved",
+          "return_obligation": {
+            "branch_id": "analog_adc5n_unplaced_tree",
+            "net": "GND",
+            "proof": "continuous_filled_reference_under_actual_tree",
+            "reference_layer": "In1.Cu",
+            "status": "P2_REQUIRED"
+          },
+          "status": "INCOMPLETE",
+          "tree_obligation": {
+            "minimum_tree_edges": 3,
+            "net": "ADC5N",
+            "proof": "one_connected_native_net_without_unrelated_branches",
+            "status": "P3_REQUIRED",
+            "terminal_count": 4
+          }
+        },
+        {
+          "capacity_slots": null,
+          "id": "analog_adc5p_tree",
+          "nets": [
+            "ADC5P"
+          ],
+          "p2_obligations": [
+            {
+              "block": "analog_ch5",
+              "branch_id": "analog_adc5p_unplaced_tree",
+              "layer": "F.Cu",
+              "native_pad": "C_ADC_AC5P1.2",
+              "net": "ADC5P",
+              "proof": "native_pad_to_unplaced_tree",
+              "source_pad": "C_ADC_AC5P1.2",
+              "status": "P2_REQUIRED"
+            },
+            {
+              "block": "analog_ch5",
+              "branch_id": "analog_adc5p_unplaced_tree",
+              "layer": "F.Cu",
+              "native_pad": "C_ADC_AC5P2.2",
+              "net": "ADC5P",
+              "proof": "native_pad_to_unplaced_tree",
+              "source_pad": "C_ADC_AC5P2.2",
+              "status": "P2_REQUIRED"
+            },
+            {
+              "block": "analog_ch5",
+              "branch_id": "analog_adc5p_unplaced_tree",
+              "layer": "F.Cu",
+              "native_pad": "C_ADC_CM5P.1",
+              "net": "ADC5P",
+              "proof": "native_pad_to_unplaced_tree",
+              "source_pad": "C_ADC_CM5P.1",
+              "status": "P2_REQUIRED"
+            },
+            {
+              "block": "adc_reference",
+              "branch_id": "analog_adc5p_unplaced_tree",
+              "layer": "F.Cu",
+              "native_pad": "U_ADC_B.6",
+              "net": "ADC5P",
+              "proof": "native_pad_to_unplaced_tree",
+              "source_pad": "U_ADC_B.6",
+              "status": "P2_REQUIRED"
+            }
+          ],
+          "physical_blockers": [],
+          "reason": "five-terminal tree, source-region conflict, physical route and filled return unproved",
+          "return_obligation": {
+            "branch_id": "analog_adc5p_unplaced_tree",
+            "net": "GND",
+            "proof": "continuous_filled_reference_under_actual_tree",
+            "reference_layer": "In1.Cu",
+            "status": "P2_REQUIRED"
+          },
+          "status": "INCOMPLETE",
+          "tree_obligation": {
+            "minimum_tree_edges": 3,
+            "net": "ADC5P",
+            "proof": "one_connected_native_net_without_unrelated_branches",
+            "status": "P3_REQUIRED",
+            "terminal_count": 4
+          }
+        },
+        {
+          "capacity_slots": null,
+          "id": "analog_adc6n_tree",
+          "nets": [
+            "ADC6N"
+          ],
+          "p2_obligations": [
+            {
+              "block": "analog_ch6",
+              "branch_id": "analog_adc6n_unplaced_tree",
+              "layer": "F.Cu",
+              "native_pad": "C_ADC_AC6N1.2",
+              "net": "ADC6N",
+              "proof": "native_pad_to_unplaced_tree",
+              "source_pad": "C_ADC_AC6N1.2",
+              "status": "P2_REQUIRED"
+            },
+            {
+              "block": "analog_ch6",
+              "branch_id": "analog_adc6n_unplaced_tree",
+              "layer": "F.Cu",
+              "native_pad": "C_ADC_AC6N2.2",
+              "net": "ADC6N",
+              "proof": "native_pad_to_unplaced_tree",
+              "source_pad": "C_ADC_AC6N2.2",
+              "status": "P2_REQUIRED"
+            },
+            {
+              "block": "analog_ch6",
+              "branch_id": "analog_adc6n_unplaced_tree",
+              "layer": "F.Cu",
+              "native_pad": "C_ADC_CM6N.1",
+              "net": "ADC6N",
+              "proof": "native_pad_to_unplaced_tree",
+              "source_pad": "C_ADC_CM6N.1",
+              "status": "P2_REQUIRED"
+            },
+            {
+              "block": "adc_reference",
+              "branch_id": "analog_adc6n_unplaced_tree",
+              "layer": "F.Cu",
+              "native_pad": "U_ADC_B.9",
+              "net": "ADC6N",
+              "proof": "native_pad_to_unplaced_tree",
+              "source_pad": "U_ADC_B.9",
+              "status": "P2_REQUIRED"
+            }
+          ],
+          "physical_blockers": [],
+          "reason": "five-terminal tree, source-region conflict, physical route and filled return unproved",
+          "return_obligation": {
+            "branch_id": "analog_adc6n_unplaced_tree",
+            "net": "GND",
+            "proof": "continuous_filled_reference_under_actual_tree",
+            "reference_layer": "In1.Cu",
+            "status": "P2_REQUIRED"
+          },
+          "status": "INCOMPLETE",
+          "tree_obligation": {
+            "minimum_tree_edges": 3,
+            "net": "ADC6N",
+            "proof": "one_connected_native_net_without_unrelated_branches",
+            "status": "P3_REQUIRED",
+            "terminal_count": 4
+          }
+        },
+        {
+          "capacity_slots": null,
+          "id": "analog_adc6p_tree",
+          "nets": [
+            "ADC6P"
+          ],
+          "p2_obligations": [
+            {
+              "block": "analog_ch6",
+              "branch_id": "analog_adc6p_unplaced_tree",
+              "layer": "F.Cu",
+              "native_pad": "C_ADC_AC6P1.2",
+              "net": "ADC6P",
+              "proof": "native_pad_to_unplaced_tree",
+              "source_pad": "C_ADC_AC6P1.2",
+              "status": "P2_REQUIRED"
+            },
+            {
+              "block": "analog_ch6",
+              "branch_id": "analog_adc6p_unplaced_tree",
+              "layer": "F.Cu",
+              "native_pad": "C_ADC_AC6P2.2",
+              "net": "ADC6P",
+              "proof": "native_pad_to_unplaced_tree",
+              "source_pad": "C_ADC_AC6P2.2",
+              "status": "P2_REQUIRED"
+            },
+            {
+              "block": "analog_ch6",
+              "branch_id": "analog_adc6p_unplaced_tree",
+              "layer": "F.Cu",
+              "native_pad": "C_ADC_CM6P.1",
+              "net": "ADC6P",
+              "proof": "native_pad_to_unplaced_tree",
+              "source_pad": "C_ADC_CM6P.1",
+              "status": "P2_REQUIRED"
+            },
+            {
+              "block": "adc_reference",
+              "branch_id": "analog_adc6p_unplaced_tree",
+              "layer": "F.Cu",
+              "native_pad": "U_ADC_B.8",
+              "net": "ADC6P",
+              "proof": "native_pad_to_unplaced_tree",
+              "source_pad": "U_ADC_B.8",
+              "status": "P2_REQUIRED"
+            }
+          ],
+          "physical_blockers": [],
+          "reason": "five-terminal tree, source-region conflict, physical route and filled return unproved",
+          "return_obligation": {
+            "branch_id": "analog_adc6p_unplaced_tree",
+            "net": "GND",
+            "proof": "continuous_filled_reference_under_actual_tree",
+            "reference_layer": "In1.Cu",
+            "status": "P2_REQUIRED"
+          },
+          "status": "INCOMPLETE",
+          "tree_obligation": {
+            "minimum_tree_edges": 3,
+            "net": "ADC6P",
+            "proof": "one_connected_native_net_without_unrelated_branches",
+            "status": "P3_REQUIRED",
+            "terminal_count": 4
+          }
+        },
+        {
+          "capacity_slots": null,
+          "id": "analog_adc7n_tree",
+          "nets": [
+            "ADC7N"
+          ],
+          "p2_obligations": [
+            {
+              "block": "analog_ch7",
+              "branch_id": "analog_adc7n_unplaced_tree",
+              "layer": "F.Cu",
+              "native_pad": "C_ADC_AC7N1.2",
+              "net": "ADC7N",
+              "proof": "native_pad_to_unplaced_tree",
+              "source_pad": "C_ADC_AC7N1.2",
+              "status": "P2_REQUIRED"
+            },
+            {
+              "block": "analog_ch7",
+              "branch_id": "analog_adc7n_unplaced_tree",
+              "layer": "F.Cu",
+              "native_pad": "C_ADC_AC7N2.2",
+              "net": "ADC7N",
+              "proof": "native_pad_to_unplaced_tree",
+              "source_pad": "C_ADC_AC7N2.2",
+              "status": "P2_REQUIRED"
+            },
+            {
+              "block": "analog_ch7",
+              "branch_id": "analog_adc7n_unplaced_tree",
+              "layer": "F.Cu",
+              "native_pad": "C_ADC_CM7N.1",
+              "net": "ADC7N",
+              "proof": "native_pad_to_unplaced_tree",
+              "source_pad": "C_ADC_CM7N.1",
+              "status": "P2_REQUIRED"
+            },
+            {
+              "block": "adc_reference",
+              "branch_id": "analog_adc7n_unplaced_tree",
+              "layer": "F.Cu",
+              "native_pad": "U_ADC_B.11",
+              "net": "ADC7N",
+              "proof": "native_pad_to_unplaced_tree",
+              "source_pad": "U_ADC_B.11",
+              "status": "P2_REQUIRED"
+            }
+          ],
+          "physical_blockers": [],
+          "reason": "five-terminal tree, source-region conflict, physical route and filled return unproved",
+          "return_obligation": {
+            "branch_id": "analog_adc7n_unplaced_tree",
+            "net": "GND",
+            "proof": "continuous_filled_reference_under_actual_tree",
+            "reference_layer": "In1.Cu",
+            "status": "P2_REQUIRED"
+          },
+          "status": "INCOMPLETE",
+          "tree_obligation": {
+            "minimum_tree_edges": 3,
+            "net": "ADC7N",
+            "proof": "one_connected_native_net_without_unrelated_branches",
+            "status": "P3_REQUIRED",
+            "terminal_count": 4
+          }
+        },
+        {
+          "capacity_slots": null,
+          "id": "analog_adc7p_tree",
+          "nets": [
+            "ADC7P"
+          ],
+          "p2_obligations": [
+            {
+              "block": "analog_ch7",
+              "branch_id": "analog_adc7p_unplaced_tree",
+              "layer": "F.Cu",
+              "native_pad": "C_ADC_AC7P1.2",
+              "net": "ADC7P",
+              "proof": "native_pad_to_unplaced_tree",
+              "source_pad": "C_ADC_AC7P1.2",
+              "status": "P2_REQUIRED"
+            },
+            {
+              "block": "analog_ch7",
+              "branch_id": "analog_adc7p_unplaced_tree",
+              "layer": "F.Cu",
+              "native_pad": "C_ADC_AC7P2.2",
+              "net": "ADC7P",
+              "proof": "native_pad_to_unplaced_tree",
+              "source_pad": "C_ADC_AC7P2.2",
+              "status": "P2_REQUIRED"
+            },
+            {
+              "block": "analog_ch7",
+              "branch_id": "analog_adc7p_unplaced_tree",
+              "layer": "F.Cu",
+              "native_pad": "C_ADC_CM7P.1",
+              "net": "ADC7P",
+              "proof": "native_pad_to_unplaced_tree",
+              "source_pad": "C_ADC_CM7P.1",
+              "status": "P2_REQUIRED"
+            },
+            {
+              "block": "adc_reference",
+              "branch_id": "analog_adc7p_unplaced_tree",
+              "layer": "F.Cu",
+              "native_pad": "U_ADC_B.10",
+              "net": "ADC7P",
+              "proof": "native_pad_to_unplaced_tree",
+              "source_pad": "U_ADC_B.10",
+              "status": "P2_REQUIRED"
+            }
+          ],
+          "physical_blockers": [],
+          "reason": "five-terminal tree, source-region conflict, physical route and filled return unproved",
+          "return_obligation": {
+            "branch_id": "analog_adc7p_unplaced_tree",
+            "net": "GND",
+            "proof": "continuous_filled_reference_under_actual_tree",
+            "reference_layer": "In1.Cu",
+            "status": "P2_REQUIRED"
+          },
+          "status": "INCOMPLETE",
+          "tree_obligation": {
+            "minimum_tree_edges": 3,
+            "net": "ADC7P",
+            "proof": "one_connected_native_net_without_unrelated_branches",
+            "status": "P3_REQUIRED",
+            "terminal_count": 4
+          }
+        },
+        {
+          "capacity_slots": null,
+          "id": "analog_adc8n_tree",
+          "nets": [
+            "ADC8N"
+          ],
+          "p2_obligations": [
+            {
+              "block": "analog_ch8",
+              "branch_id": "analog_adc8n_unplaced_tree",
+              "layer": "F.Cu",
+              "native_pad": "C_ADC_AC8N1.2",
+              "net": "ADC8N",
+              "proof": "native_pad_to_unplaced_tree",
+              "source_pad": "C_ADC_AC8N1.2",
+              "status": "P2_REQUIRED"
+            },
+            {
+              "block": "analog_ch8",
+              "branch_id": "analog_adc8n_unplaced_tree",
+              "layer": "F.Cu",
+              "native_pad": "C_ADC_AC8N2.2",
+              "net": "ADC8N",
+              "proof": "native_pad_to_unplaced_tree",
+              "source_pad": "C_ADC_AC8N2.2",
+              "status": "P2_REQUIRED"
+            },
+            {
+              "block": "analog_ch8",
+              "branch_id": "analog_adc8n_unplaced_tree",
+              "layer": "F.Cu",
+              "native_pad": "C_ADC_CM8N.1",
+              "net": "ADC8N",
+              "proof": "native_pad_to_unplaced_tree",
+              "source_pad": "C_ADC_CM8N.1",
+              "status": "P2_REQUIRED"
+            },
+            {
+              "block": "adc_reference",
+              "branch_id": "analog_adc8n_unplaced_tree",
+              "layer": "F.Cu",
+              "native_pad": "U_ADC_B.13",
+              "net": "ADC8N",
+              "proof": "native_pad_to_unplaced_tree",
+              "source_pad": "U_ADC_B.13",
+              "status": "P2_REQUIRED"
+            }
+          ],
+          "physical_blockers": [],
+          "reason": "five-terminal tree, source-region conflict, physical route and filled return unproved",
+          "return_obligation": {
+            "branch_id": "analog_adc8n_unplaced_tree",
+            "net": "GND",
+            "proof": "continuous_filled_reference_under_actual_tree",
+            "reference_layer": "In1.Cu",
+            "status": "P2_REQUIRED"
+          },
+          "status": "INCOMPLETE",
+          "tree_obligation": {
+            "minimum_tree_edges": 3,
+            "net": "ADC8N",
+            "proof": "one_connected_native_net_without_unrelated_branches",
+            "status": "P3_REQUIRED",
+            "terminal_count": 4
+          }
+        },
+        {
+          "capacity_slots": null,
+          "id": "analog_adc8p_tree",
+          "nets": [
+            "ADC8P"
+          ],
+          "p2_obligations": [
+            {
+              "block": "analog_ch8",
+              "branch_id": "analog_adc8p_unplaced_tree",
+              "layer": "F.Cu",
+              "native_pad": "C_ADC_AC8P1.2",
+              "net": "ADC8P",
+              "proof": "native_pad_to_unplaced_tree",
+              "source_pad": "C_ADC_AC8P1.2",
+              "status": "P2_REQUIRED"
+            },
+            {
+              "block": "analog_ch8",
+              "branch_id": "analog_adc8p_unplaced_tree",
+              "layer": "F.Cu",
+              "native_pad": "C_ADC_AC8P2.2",
+              "net": "ADC8P",
+              "proof": "native_pad_to_unplaced_tree",
+              "source_pad": "C_ADC_AC8P2.2",
+              "status": "P2_REQUIRED"
+            },
+            {
+              "block": "analog_ch8",
+              "branch_id": "analog_adc8p_unplaced_tree",
+              "layer": "F.Cu",
+              "native_pad": "C_ADC_CM8P.1",
+              "net": "ADC8P",
+              "proof": "native_pad_to_unplaced_tree",
+              "source_pad": "C_ADC_CM8P.1",
+              "status": "P2_REQUIRED"
+            },
+            {
+              "block": "adc_reference",
+              "branch_id": "analog_adc8p_unplaced_tree",
+              "layer": "F.Cu",
+              "native_pad": "U_ADC_B.12",
+              "net": "ADC8P",
+              "proof": "native_pad_to_unplaced_tree",
+              "source_pad": "U_ADC_B.12",
+              "status": "P2_REQUIRED"
+            }
+          ],
+          "physical_blockers": [],
+          "reason": "five-terminal tree, source-region conflict, physical route and filled return unproved",
+          "return_obligation": {
+            "branch_id": "analog_adc8p_unplaced_tree",
+            "net": "GND",
+            "proof": "continuous_filled_reference_under_actual_tree",
+            "reference_layer": "In1.Cu",
+            "status": "P2_REQUIRED"
+          },
+          "status": "INCOMPLETE",
+          "tree_obligation": {
+            "minimum_tree_edges": 3,
+            "net": "ADC8P",
+            "proof": "one_connected_native_net_without_unrelated_branches",
+            "status": "P3_REQUIRED",
+            "terminal_count": 4
+          }
+        },
+        {
+          "capacity_slots": null,
+          "id": "analog_vmid1_ext_tree",
+          "nets": [
+            "VMID1_EXT"
+          ],
+          "p2_obligations": [
+            {
+              "block": "adc_reference",
+              "branch_id": "analog_vmid1_ext_unplaced_tree",
+              "layer": "F.Cu",
+              "native_pad": "C_VMID1_EXT_10U.1",
+              "net": "VMID1_EXT",
+              "proof": "native_pad_to_unplaced_tree",
+              "source_pad": "C_VMID1_EXT_10U.1",
+              "status": "P2_REQUIRED"
+            },
+            {
+              "block": "adc_reference",
+              "branch_id": "analog_vmid1_ext_unplaced_tree",
+              "layer": "F.Cu",
+              "native_pad": "C_VMID1_EXT_1U.1",
+              "net": "VMID1_EXT",
+              "proof": "native_pad_to_unplaced_tree",
+              "source_pad": "C_VMID1_EXT_1U.1",
+              "status": "P2_REQUIRED"
+            },
+            {
+              "block": "analog_ch1",
+              "branch_id": "analog_vmid1_ext_unplaced_tree",
+              "layer": "F.Cu",
+              "native_pad": "R_B1N.2",
+              "net": "VMID1_EXT",
+              "proof": "native_pad_to_unplaced_tree",
+              "source_pad": "R_B1N.2",
+              "status": "P2_REQUIRED"
+            },
+            {
+              "block": "analog_ch1",
+              "branch_id": "analog_vmid1_ext_unplaced_tree",
+              "layer": "F.Cu",
+              "native_pad": "R_B1P.2",
+              "net": "VMID1_EXT",
+              "proof": "native_pad_to_unplaced_tree",
+              "source_pad": "R_B1P.2",
+              "status": "P2_REQUIRED"
+            },
+            {
+              "block": "analog_ch2",
+              "branch_id": "analog_vmid1_ext_unplaced_tree",
+              "layer": "F.Cu",
+              "native_pad": "R_B2N.2",
+              "net": "VMID1_EXT",
+              "proof": "native_pad_to_unplaced_tree",
+              "source_pad": "R_B2N.2",
+              "status": "P2_REQUIRED"
+            },
+            {
+              "block": "analog_ch2",
+              "branch_id": "analog_vmid1_ext_unplaced_tree",
+              "layer": "F.Cu",
+              "native_pad": "R_B2P.2",
+              "net": "VMID1_EXT",
+              "proof": "native_pad_to_unplaced_tree",
+              "source_pad": "R_B2P.2",
+              "status": "P2_REQUIRED"
+            },
+            {
+              "block": "analog_ch3",
+              "branch_id": "analog_vmid1_ext_unplaced_tree",
+              "layer": "F.Cu",
+              "native_pad": "R_B3N.2",
+              "net": "VMID1_EXT",
+              "proof": "native_pad_to_unplaced_tree",
+              "source_pad": "R_B3N.2",
+              "status": "P2_REQUIRED"
+            },
+            {
+              "block": "analog_ch3",
+              "branch_id": "analog_vmid1_ext_unplaced_tree",
+              "layer": "F.Cu",
+              "native_pad": "R_B3P.2",
+              "net": "VMID1_EXT",
+              "proof": "native_pad_to_unplaced_tree",
+              "source_pad": "R_B3P.2",
+              "status": "P2_REQUIRED"
+            },
+            {
+              "block": "analog_ch4",
+              "branch_id": "analog_vmid1_ext_unplaced_tree",
+              "layer": "F.Cu",
+              "native_pad": "R_B4N.2",
+              "net": "VMID1_EXT",
+              "proof": "native_pad_to_unplaced_tree",
+              "source_pad": "R_B4N.2",
+              "status": "P2_REQUIRED"
+            },
+            {
+              "block": "analog_ch4",
+              "branch_id": "analog_vmid1_ext_unplaced_tree",
+              "layer": "F.Cu",
+              "native_pad": "R_B4P.2",
+              "net": "VMID1_EXT",
+              "proof": "native_pad_to_unplaced_tree",
+              "source_pad": "R_B4P.2",
+              "status": "P2_REQUIRED"
+            },
+            {
+              "block": "adc_reference",
+              "branch_id": "analog_vmid1_ext_unplaced_tree",
+              "layer": "F.Cu",
+              "native_pad": "R_VMID1_BOT.1",
+              "net": "VMID1_EXT",
+              "proof": "native_pad_to_unplaced_tree",
+              "source_pad": "R_VMID1_BOT.1",
+              "status": "P2_REQUIRED"
+            },
+            {
+              "block": "adc_reference",
+              "branch_id": "analog_vmid1_ext_unplaced_tree",
+              "layer": "F.Cu",
+              "native_pad": "R_VMID1_TOP.2",
+              "net": "VMID1_EXT",
+              "proof": "native_pad_to_unplaced_tree",
+              "source_pad": "R_VMID1_TOP.2",
+              "status": "P2_REQUIRED"
+            }
+          ],
+          "physical_blockers": [],
+          "reason": "five-terminal tree, source-region conflict, physical route and filled return unproved",
+          "return_obligation": {
+            "branch_id": "analog_vmid1_ext_unplaced_tree",
+            "net": "GND",
+            "proof": "continuous_filled_reference_under_actual_tree",
+            "reference_layer": "In1.Cu",
+            "status": "P2_REQUIRED"
+          },
+          "status": "INCOMPLETE",
+          "tree_obligation": {
+            "minimum_tree_edges": 11,
+            "net": "VMID1_EXT",
+            "proof": "one_connected_native_net_without_unrelated_branches",
+            "status": "P3_REQUIRED",
+            "terminal_count": 12
+          }
+        },
+        {
+          "capacity_slots": null,
+          "id": "analog_vmid2_ext_tree",
+          "nets": [
+            "VMID2_EXT"
+          ],
+          "p2_obligations": [
+            {
+              "block": "adc_reference",
+              "branch_id": "analog_vmid2_ext_unplaced_tree",
+              "layer": "F.Cu",
+              "native_pad": "C_VMID2_EXT_10U.1",
+              "net": "VMID2_EXT",
+              "proof": "native_pad_to_unplaced_tree",
+              "source_pad": "C_VMID2_EXT_10U.1",
+              "status": "P2_REQUIRED"
+            },
+            {
+              "block": "adc_reference",
+              "branch_id": "analog_vmid2_ext_unplaced_tree",
+              "layer": "F.Cu",
+              "native_pad": "C_VMID2_EXT_1U.1",
+              "net": "VMID2_EXT",
+              "proof": "native_pad_to_unplaced_tree",
+              "source_pad": "C_VMID2_EXT_1U.1",
+              "status": "P2_REQUIRED"
+            },
+            {
+              "block": "analog_ch5",
+              "branch_id": "analog_vmid2_ext_unplaced_tree",
+              "layer": "F.Cu",
+              "native_pad": "R_B5N.2",
+              "net": "VMID2_EXT",
+              "proof": "native_pad_to_unplaced_tree",
+              "source_pad": "R_B5N.2",
+              "status": "P2_REQUIRED"
+            },
+            {
+              "block": "analog_ch5",
+              "branch_id": "analog_vmid2_ext_unplaced_tree",
+              "layer": "F.Cu",
+              "native_pad": "R_B5P.2",
+              "net": "VMID2_EXT",
+              "proof": "native_pad_to_unplaced_tree",
+              "source_pad": "R_B5P.2",
+              "status": "P2_REQUIRED"
+            },
+            {
+              "block": "analog_ch6",
+              "branch_id": "analog_vmid2_ext_unplaced_tree",
+              "layer": "F.Cu",
+              "native_pad": "R_B6N.2",
+              "net": "VMID2_EXT",
+              "proof": "native_pad_to_unplaced_tree",
+              "source_pad": "R_B6N.2",
+              "status": "P2_REQUIRED"
+            },
+            {
+              "block": "analog_ch6",
+              "branch_id": "analog_vmid2_ext_unplaced_tree",
+              "layer": "F.Cu",
+              "native_pad": "R_B6P.2",
+              "net": "VMID2_EXT",
+              "proof": "native_pad_to_unplaced_tree",
+              "source_pad": "R_B6P.2",
+              "status": "P2_REQUIRED"
+            },
+            {
+              "block": "analog_ch7",
+              "branch_id": "analog_vmid2_ext_unplaced_tree",
+              "layer": "F.Cu",
+              "native_pad": "R_B7N.2",
+              "net": "VMID2_EXT",
+              "proof": "native_pad_to_unplaced_tree",
+              "source_pad": "R_B7N.2",
+              "status": "P2_REQUIRED"
+            },
+            {
+              "block": "analog_ch7",
+              "branch_id": "analog_vmid2_ext_unplaced_tree",
+              "layer": "F.Cu",
+              "native_pad": "R_B7P.2",
+              "net": "VMID2_EXT",
+              "proof": "native_pad_to_unplaced_tree",
+              "source_pad": "R_B7P.2",
+              "status": "P2_REQUIRED"
+            },
+            {
+              "block": "analog_ch8",
+              "branch_id": "analog_vmid2_ext_unplaced_tree",
+              "layer": "F.Cu",
+              "native_pad": "R_B8N.2",
+              "net": "VMID2_EXT",
+              "proof": "native_pad_to_unplaced_tree",
+              "source_pad": "R_B8N.2",
+              "status": "P2_REQUIRED"
+            },
+            {
+              "block": "analog_ch8",
+              "branch_id": "analog_vmid2_ext_unplaced_tree",
+              "layer": "F.Cu",
+              "native_pad": "R_B8P.2",
+              "net": "VMID2_EXT",
+              "proof": "native_pad_to_unplaced_tree",
+              "source_pad": "R_B8P.2",
+              "status": "P2_REQUIRED"
+            },
+            {
+              "block": "adc_reference",
+              "branch_id": "analog_vmid2_ext_unplaced_tree",
+              "layer": "F.Cu",
+              "native_pad": "R_VMID2_BOT.1",
+              "net": "VMID2_EXT",
+              "proof": "native_pad_to_unplaced_tree",
+              "source_pad": "R_VMID2_BOT.1",
+              "status": "P2_REQUIRED"
+            },
+            {
+              "block": "adc_reference",
+              "branch_id": "analog_vmid2_ext_unplaced_tree",
+              "layer": "F.Cu",
+              "native_pad": "R_VMID2_TOP.2",
+              "net": "VMID2_EXT",
+              "proof": "native_pad_to_unplaced_tree",
+              "source_pad": "R_VMID2_TOP.2",
+              "status": "P2_REQUIRED"
+            }
+          ],
+          "physical_blockers": [],
+          "reason": "five-terminal tree, source-region conflict, physical route and filled return unproved",
+          "return_obligation": {
+            "branch_id": "analog_vmid2_ext_unplaced_tree",
+            "net": "GND",
+            "proof": "continuous_filled_reference_under_actual_tree",
+            "reference_layer": "In1.Cu",
+            "status": "P2_REQUIRED"
+          },
+          "status": "INCOMPLETE",
+          "tree_obligation": {
+            "minimum_tree_edges": 11,
+            "net": "VMID2_EXT",
+            "proof": "one_connected_native_net_without_unrelated_branches",
+            "status": "P3_REQUIRED",
+            "terminal_count": 12
+          }
+        }
+      ],
+      "status": "INCOMPLETE",
+      "witness_count": 18
+    },
+    {
+      "id": "power_boundary_windows",
+      "reason": "C_ADC_3V3X_OK_VDD.2: witness bbox is a nonlocal bridge across source region",
+      "status": "INCOMPLETE"
+    }
+  ],
+  "diagnostics": [
+    {
+      "allocation": "power_boundary_windows",
+      "index": 1,
+      "kind": "boundary_witness",
+      "reason": "C_ADC_3V3X_OK_VDD.2: witness bbox is a nonlocal bridge across source region",
+      "source": "C_ADC_3V3X_OK_VDD.2"
+    },
+    {
+      "allocation": "power_boundary_windows",
+      "index": 2,
+      "kind": "boundary_witness",
+      "reason": "C_CORE_FF.1: witness bbox is a nonlocal bridge across source region",
+      "source": "C_CORE_FF.1"
+    },
+    {
+      "allocation": "power_boundary_windows",
+      "index": 3,
+      "kind": "boundary_witness",
+      "reason": "C_SPOKE_IN1.1: witness bbox is a nonlocal bridge across source region",
+      "source": "C_SPOKE_IN1.1"
+    },
+    {
+      "allocation": "power_boundary_windows",
+      "index": 4,
+      "kind": "boundary_witness",
+      "reason": "R_ADC_1V8_OK_TOP.1: witness bbox is a nonlocal bridge across source region",
+      "source": "R_ADC_1V8_OK_TOP.1"
+    },
+    {
+      "allocation": "power_boundary_windows",
+      "index": 5,
+      "kind": "boundary_witness",
+      "reason": "R_ADC_3V3X_OK_TOP.1: witness bbox is a nonlocal bridge across source region",
+      "source": "R_ADC_3V3X_OK_TOP.1"
+    },
+    {
+      "allocation": "power_boundary_windows",
+      "index": 6,
+      "kind": "boundary_witness",
+      "reason": "C_ADC_3V3X_OK_VDD.1: P2-movable owner requires virtual block-face witness",
+      "source": "C_ADC_3V3X_OK_VDD.1"
+    },
+    {
+      "allocation": "power_boundary_windows",
+      "index": 7,
+      "kind": "boundary_witness",
+      "reason": "C_1V8_OK_VDD.1: witness bbox is a nonlocal bridge across source region",
+      "source": "C_1V8_OK_VDD.1"
+    },
+    {
+      "allocation": "power_boundary_windows",
+      "index": 8,
+      "kind": "boundary_witness",
+      "reason": "C_ISO1.1: witness bbox is a nonlocal bridge across source region",
+      "source": "C_ISO1.1"
+    },
+    {
+      "allocation": "power_boundary_windows",
+      "index": 9,
+      "kind": "boundary_witness",
+      "reason": "U_ADC_PWR_BAD.2: witness bbox is a nonlocal bridge across source region",
+      "source": "U_ADC_PWR_BAD.2"
+    }
+  ],
+  "errors": [
+    "timing_adc_bclk_unplaced_tree: unresolved branch representative witness denominator mismatch",
+    "timing_adc_fsync_unplaced_tree: unresolved branch representative witness denominator mismatch",
+    "timing_adc_dout1_unplaced_tree: unresolved branch representative witness denominator mismatch",
+    "timing_adc_i2c_scl_unplaced_tree: unresolved branch representative witness denominator mismatch",
+    "timing_adc_i2c_sda_unplaced_tree: unresolved branch representative witness denominator mismatch",
+    "timing_adc_ready_unplaced_tree: unresolved branch representative witness denominator mismatch",
+    "timing_xu_i2c_scl_1v8_unplaced_tree: unresolved branch representative witness denominator mismatch",
+    "timing_xu_i2c_sda_1v8_unplaced_tree: unresolved branch representative witness denominator mismatch",
+    "timing_adc_digital_bad_unplaced_tree: unresolved branch representative witness denominator mismatch",
+    "timing_audio_mclk_1v8_unplaced_connection: unresolved branch representative witness denominator mismatch",
+    "timing_tdm_bclk_1v8_unplaced_connection: unresolved branch representative witness denominator mismatch",
+    "timing_tdm_data_1v8_unplaced_connection: unresolved branch representative witness denominator mismatch",
+    "timing_tdm_fsync_1v8_unplaced_connection: unresolved branch representative witness denominator mismatch"
+  ],
+  "hashes": {
+    "aliases": "a6baba8bd4e389c146250a2a2ef5f7e9b09f63526e71dbdd05be8bca9b7b2c2e",
+    "board": "d0c065dc16de081a5410b7a22e474f0a99c6fdeb0b7dd1f6c37422ace4a9fcf7",
+    "contract": "2dcafdf5a7f0af5b33c456deeaba9f888316d9a7b46d4109dbe11f36f79bee64",
+    "floorplan": "7d95376bbfa3bc9dd0bf59bc7e91d02d86c31235f6145f4d09b49a31f81769d0",
+    "interfaces": "02be5ad6ea879ac04d5dfd9e2e09d5226f85c85fa83d72628aa40cf93de6b4d8",
+    "source": "554f6ddb73bc26120d82aa5e75a6c31bd9205b4275ab574ee9edab4782e0f239"
+  },
+  "kind": "p1-coarse-reservation-screen",
+  "p1_accepted": false,
+  "reason": "independent filled-reference, effective-capacity and P1 review not supplied",
+  "routing_realized": false,
+  "schema": 2,
+  "status": "FAIL"
+}

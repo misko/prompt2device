@@ -55,6 +55,9 @@ An ``unresolved_multiterminal_branch`` binds every exact native endpoint of
 one cross-owner net and its return/tree obligations, while recording pad-level
 source-region conflicts. Its reservation deliberately has no geometry or
 capacity and remains INCOMPLETE.
+An opt-in ``unresolved_two_terminal_crossings`` record uses the same exact
+no-credit checks for precisely two native terminals on distinct owners. Its
+matching witness/reservation kind is ``unresolved_two_terminal_crossing``.
 Schema-2 ``--diagnose-all`` adds one independent validation error per boundary
 witness or reservation to a ``diagnostics`` array. It does not replace the
 normal fail-closed verdict or prove cross-item endpoint/overlap accounting.
@@ -244,9 +247,17 @@ def _coarse_witness(board, witness, net, owned_pads, aliases, pads, outline,
             raise ContractError(f'{source}: integration P2 pad-to-face obligation missing')
         if not any(p.IsOnLayer(board.GetLayerID(layer)) for p in found):
             raise ContractError(f'{source}: native source pad not on integration layer')
-    elif kind == 'unresolved_multiterminal_branch':
+    elif kind in UNRESOLVED_KINDS:
+        if kind == 'unresolved_two_terminal_crossing' and set(witness) not in (
+                {'kind', 'branch_id', 'source', 'native', 'net', 'block', 'layer',
+                 'face', 'boundary_bbox', 'reservation_id', 'p2_obligation'},
+                {'kind', 'branch_id', 'source', 'native', 'net', 'block', 'layer',
+                 'face', 'boundary_bbox', 'reservation_id', 'p2_obligation',
+                 'physical_cell_id'}):
+            raise ContractError(f'{source}: two-terminal witness fields invalid')
         branch = (unresolved_branches or {}).get(witness.get('branch_id'))
-        if branch is None or branch['net'] != net or branch['layer'] != layer:
+        if (branch is None or branch['_kind'] != kind or
+                branch['net'] != net or branch['layer'] != layer):
             raise ContractError(f'{source}: unresolved branch identity mismatch')
         endpoint = {'source_pad':source,'native_pad':native,'net':net,'block':block}
         if endpoint not in branch['endpoints']:
@@ -349,11 +360,12 @@ def _fixed_access_shapes(target, witness, corridor, source_region):
 
 def _is_geometry_free_branch_reservation(reservation, branches):
     """Only a declared, geometry-free branch may bypass fixed-access overlap."""
-    if reservation.get('kind') != 'unresolved_multiterminal_branch':
+    if reservation.get('kind') not in UNRESOLVED_KINDS:
         return False
     matches = [branch for branch in branches.values()
                if branch['reservation_id'] == reservation.get('id')]
     if (len(matches) != 1 or
+            reservation.get('kind') != matches[0].get('_kind', 'unresolved_multiterminal_branch') or
             reservation.get('branch_id') != matches[0]['id'] or
             reservation.get('nets') != [matches[0]['net']] or
             reservation.get('layer') != matches[0]['layer'] or
@@ -402,6 +414,10 @@ def _virtual_region_clearance(witness, reservation, regions):
             raise ContractError(f"{witness['source']}: virtual reservation enters {region_id} source region")
 
 
+UNRESOLVED_KINDS = frozenset({'unresolved_multiterminal_branch',
+                              'unresolved_two_terminal_crossing'})
+
+
 def _unresolved_branches(source, interfaces, board, regions, coverage, aliases, pads,
                          physical_cells=None, patterns=None):
     """Validate exact multi-terminal ownership without claiming route geometry.
@@ -410,17 +426,26 @@ def _unresolved_branches(source, interfaces, board, regions, coverage, aliases, 
     inventory names every native pad that intersects a foreign source region.
     This is an admission debt record, not a physical corridor exception.
     """
-    rows = source.get('unresolved_multiterminal_branches', [])
-    if not isinstance(rows, list):
+    groups = (('unresolved_multiterminal_branch',
+               source.get('unresolved_multiterminal_branches', [])),
+              ('unresolved_two_terminal_crossing',
+               source.get('unresolved_two_terminal_crossings', [])))
+    if any(not isinstance(rows, list) for _, rows in groups):
         raise ContractError('unresolved branch list invalid')
     declared = {}
     cells = physical_cells or {}
     patterns = patterns or []
     native_refs = {fp.GetReference(): fp for fp in board.GetFootprints()}
     iface_by_net = {item['net']: item for item in interfaces['interfaces']}
-    for row in rows:
+    for kind, row in ((kind, row) for kind, rows in groups for row in rows):
         if not isinstance(row, dict):
             raise ContractError('unresolved branch record invalid')
+        if kind == 'unresolved_two_terminal_crossing' and set(row) != {
+                'id', 'owner', 'allocation_id', 'net', 'layer', 'reference_layer',
+                'reservation_id', 'endpoints', 'terminal_count', 'minimum_tree_edges',
+                'physical_blockers', 'capacity_slots', 'p2_obligations',
+                'tree_obligation', 'return_obligation'}:
+            raise ContractError('two-terminal crossing source fields invalid')
         ident = row.get('id')
         net = row.get('net')
         allocation = row.get('allocation_id')
@@ -445,7 +470,9 @@ def _unresolved_branches(source, interfaces, board, regions, coverage, aliases, 
         if len({block for _,_,_,block in expected}) < 2:
             raise ContractError(f'{ident}: branch must cross source owners')
         entries = row.get('endpoints')
-        if (not isinstance(entries, list) or len(expected) < 3 or
+        if (not isinstance(entries, list) or
+                (len(expected) != 2 if kind == 'unresolved_two_terminal_crossing'
+                 else len(expected) < 3) or
                 len(entries) != len(expected) or
                 {(e.get('source_pad'), e.get('native_pad'), e.get('net'), e.get('block'))
                  for e in entries if isinstance(e, dict)} != expected):
@@ -534,7 +561,7 @@ def _unresolved_branches(source, interfaces, board, regions, coverage, aliases, 
             raise ContractError(f'{ident}: physical source-region blocker inventory mismatch')
         if row.get('capacity_slots') is not None or 'bbox' in row:
             raise ContractError(f'{ident}: unresolved branch cannot claim geometry/capacity')
-        declared[ident] = row
+        declared[ident] = {**row, '_kind': kind}
     return declared
 
 
@@ -935,7 +962,7 @@ def _access_only_portals(source, interfaces, board, outline, regions, zones,
                     if reservation.get('layer') != layer:
                         continue
                     if 'bbox' not in reservation:
-                        if reservation.get('kind') == 'unresolved_multiterminal_branch':
+                        if reservation.get('kind') in UNRESOLVED_KINDS:
                             continue
                         raise ContractError(f'{ident}: ordinary reservation geometry missing')
                     if intersects(portal, rectangle(reservation['bbox'], 'ordinary reservation')):
@@ -1118,7 +1145,7 @@ def _linked_paths(source, contract, interfaces, board, outline, regions, zones,
             raise ContractError(f'{ident}: linked physical stage overlaps another linked path')
         for _, reservation in ordinary:
             if (reservation.get('layer') == path['layer'] and
-                    reservation.get('kind') != 'unresolved_multiterminal_branch' and
+                    reservation.get('kind') not in UNRESOLVED_KINDS and
                     any(intersects(rectangle(reservation.get('bbox'), 'ordinary reservation'),
                                    stage['bbox']) for stage in
                         ([corridor, second_corridor] if second_physical else [corridor]))):
@@ -1183,7 +1210,7 @@ def _linked_paths(source, contract, interfaces, board, outline, regions, zones,
                 raise ContractError(f'{source_pad}: fixed access overlaps another linked path')
             for _, reservation in ordinary:
                 if (reservation.get('layer') == path['layer'] and
-                        reservation.get('kind') != 'unresolved_multiterminal_branch' and
+                        reservation.get('kind') not in UNRESOLVED_KINDS and
                         intersects(area, rectangle(reservation.get('bbox'), 'ordinary reservation'))):
                     raise ContractError(f'{source_pad}: fixed access overlaps ordinary reservation')
             access_shapes.append((source_pad, area))
@@ -1475,8 +1502,8 @@ def _independent_coarse_diagnostics(allocations, coverage, board, owned_pads, al
                 target = reservation_map.get(witness.get('reservation_id'))
                 if (target is None or verified['net'] not in target.get('nets', []) or
                         verified['layer'] != target.get('layer') or
-                        (witness.get('kind') not in ('fixed_connector_access_segmented',
-                                                    'unresolved_multiterminal_branch') and
+                        (witness.get('kind') not in ({'fixed_connector_access_segmented'} |
+                                                     UNRESOLVED_KINDS) and
                          not _witness_touches_reservation(verified, target))):
                     raise ContractError(f"{verified['source']}: block face does not contact assigned reservation")
                 _virtual_region_clearance(witness, target, regions)
@@ -1499,9 +1526,9 @@ def _independent_coarse_diagnostics(allocations, coverage, board, owned_pads, al
                 # full accounting to the unchanged evaluator below.
                 if reservation.get('kind') in ('integration_corridor', 'fixed_connector_access',
                                                'fixed_connector_access_segmented',
-                                               'unresolved_multiterminal_branch') or any(
+                                               *UNRESOLVED_KINDS) or any(
                         p['reservation_id'] == ident for p in shared_ports.values()):
-                    if reservation.get('kind') != 'unresolved_multiterminal_branch':
+                    if reservation.get('kind') not in UNRESOLVED_KINDS:
                         rectangle(reservation.get('bbox'), f'{ident} reservation')
                 else:
                     _coarse_reservation(board, reservation, outline, fixed_refs,
@@ -1541,7 +1568,9 @@ def evaluate_coarse(board_path, contract_path, expected_contract_sha256=None, *,
             integration_configured = isinstance(source, dict) and 'integration_corridors' in source
             linked_configured = isinstance(source, dict) and 'linked_paths' in source
             portal_configured = isinstance(source, dict) and 'access_only_portals' in source
-            branch_configured = isinstance(source, dict) and 'unresolved_multiterminal_branches' in source
+            branch_configured = isinstance(source, dict) and any(
+                key in source for key in ('unresolved_multiterminal_branches',
+                                         'unresolved_two_terminal_crossings'))
             interfaces = json.loads(Path(interface_path).read_text())
             aliases = graph.alias_inventory(yaml.safe_load(Path(alias_path).read_text()))
             floorplan = yaml.safe_load(Path(floorplan_path).read_text())
@@ -1713,14 +1742,18 @@ def evaluate_coarse(board_path, contract_path, expected_contract_sha256=None, *,
                         if (target is None or verified['net'] not in target.get('nets', []) or
                                 verified['layer'] != target.get('layer') or
                                 (witness.get('kind') not in ('fixed_connector_access_segmented',
-                                    'unresolved_multiterminal_branch') and
+                                    *UNRESOLVED_KINDS) and
                                  not _witness_touches_reservation(verified, target))):
                             raise ContractError(f"{verified['source']}: block face does not contact assigned reservation")
                         _virtual_region_clearance(witness, target, regions)
-                        if witness.get('kind') == 'unresolved_multiterminal_branch':
+                        if witness.get('kind') in UNRESOLVED_KINDS:
                             branch = branches[witness['branch_id']]
+                            if (branch['_kind'] == 'unresolved_two_terminal_crossing' and
+                                    set(target) != {'id', 'kind', 'branch_id', 'layer', 'nets'}):
+                                raise ContractError(f"{verified['source']}: two-terminal reservation fields invalid")
                             if (name != branch['allocation_id'] or
-                                    target.get('kind') != 'unresolved_multiterminal_branch' or
+                                    target.get('kind') != branch['_kind'] or
+                                    witness.get('kind') != branch['_kind'] or
                                     target.get('branch_id') != branch['id'] or
                                     target.get('id') != branch['reservation_id'] or
                                     target.get('nets') != [branch['net']] or
@@ -1843,7 +1876,7 @@ def evaluate_coarse(board_path, contract_path, expected_contract_sha256=None, *,
                         associated = [p for p in shared_ports.values() if p['reservation_id'] == reservation.get('id')]
                         integration = [c for c in corridors.values() if c['reservation_id'] == reservation.get('id')]
                         branch = [b for b in branches.values() if b['reservation_id'] == reservation.get('id')]
-                        if branch or reservation.get('kind') == 'unresolved_multiterminal_branch':
+                        if branch or reservation.get('kind') in UNRESOLVED_KINDS:
                             if len(branch) != 1 or sum(w.get('reservation_id') == reservation.get('id')
                                                         for w in witnesses) != 1:
                                 raise ContractError(f'{name}: unresolved branch witness/reservation denominator mismatch')
@@ -1853,7 +1886,9 @@ def evaluate_coarse(board_path, contract_path, expected_contract_sha256=None, *,
                                 'p2_obligations':branch[0]['p2_obligations'],
                                 'return_obligation':branch[0]['return_obligation'],
                                 'tree_obligation':branch[0]['tree_obligation'],
-                                'reason':'five-terminal tree, source-region conflict, physical route and filled return unproved'})
+                                'reason':('two-terminal source crossing, physical route and filled return unproved'
+                                          if branch[0]['_kind'] == 'unresolved_two_terminal_crossing' else
+                                          'five-terminal tree, source-region conflict, physical route and filled return unproved')})
                             continue
                         if integration or reservation.get('kind') == 'integration_corridor':
                             if (len(integration) != 1 or name != integration[0]['allocation_id'] or
@@ -1910,7 +1945,7 @@ def evaluate_coarse(board_path, contract_path, expected_contract_sha256=None, *,
                                                      if isinstance(w, dict)) or
                                                  any(w.get('kind') == 'integration_corridor_handoff'
                                                      or w.get('kind') in ('fixed_connector_access', 'fixed_connector_access_segmented',
-                                                                          'unresolved_multiterminal_branch')
+                                                                          *UNRESOLVED_KINDS)
                                                      for w in (allocation.get('boundary_witnesses') or [])
                                                      if isinstance(w, dict)) or
                                                  any(r.get('kind') == 'integration_corridor'
@@ -1943,7 +1978,7 @@ def evaluate_coarse(board_path, contract_path, expected_contract_sha256=None, *,
                             set(reservation.get('nets', [])) & set(corridor['nets'])):
                         errors.append(f'{ident}: integration net double reservation credit in {name}')
                     if (reservation.get('id') != corridor['reservation_id'] and
-                            reservation.get('kind') != 'unresolved_multiterminal_branch' and
+                            reservation.get('kind') not in UNRESOLVED_KINDS and
                             intersects(rectangle(reservation.get('bbox'), 'reservation'), corridor['bbox'])):
                         errors.append(f'{ident}: integration corridor overlaps reservation in {name}')
             for ident, branch in branches.items():
@@ -1953,8 +1988,8 @@ def evaluate_coarse(board_path, contract_path, expected_contract_sha256=None, *,
                     errors.append(f'{ident}: unresolved branch reservation denominator mismatch')
             for index, (left_name, left) in enumerate(reservations_seen):
                 for right_name, right in reservations_seen[index + 1:]:
-                    if (left.get('kind') != 'unresolved_multiterminal_branch' and
-                            right.get('kind') != 'unresolved_multiterminal_branch' and
+                    if (left.get('kind') not in UNRESOLVED_KINDS and
+                            right.get('kind') not in UNRESOLVED_KINDS and
                             left_name != right_name and left.get('layer') == right.get('layer') and
                             intersects(rectangle(left.get('bbox'), 'reservation'), rectangle(right.get('bbox'), 'reservation'))):
                         errors.append(f'overlapping named allocations on one layer: {left_name}/{right_name}')

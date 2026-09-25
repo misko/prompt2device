@@ -772,6 +772,55 @@ class CoarseCapacityTest(unittest.TestCase):
         self.assertIn('native footprint/pad U_L0 intersects integration corridor/face',
                       result['errors'][0])
 
+    def test_two_terminal_crossing_full_allocation_stays_no_credit(self):
+        entries = [{'source_pad':s, 'native_pad':s, 'net':'TEST', 'block':block}
+                   for s, block in [('J_LEFT.1','left'), ('J_RIGHT.1','right')]]
+        duties = [{'status':'P2_REQUIRED', **entry, 'branch_id':'two',
+                   'layer':'F.Cu', 'proof':'native_pad_to_unplaced_tree'}
+                  for entry in entries]
+        row = {'id':'two', 'owner':'board_integration', 'allocation_id':'signal',
+               'net':'TEST', 'layer':'F.Cu', 'reference_layer':'B.Cu',
+               'reservation_id':'two_reservation', 'endpoints':entries,
+               'terminal_count':2, 'minimum_tree_edges':1,
+               'physical_blockers':[], 'capacity_slots':None,
+               'p2_obligations':duties,
+               'tree_obligation':{'status':'P3_REQUIRED', 'net':'TEST',
+                                  'terminal_count':2, 'minimum_tree_edges':1,
+                                  'proof':'one_connected_native_net_without_unrelated_branches'},
+               'return_obligation':{'status':'P2_REQUIRED', 'net':'GND',
+                                    'branch_id':'two', 'reference_layer':'B.Cu',
+                                    'proof':'continuous_filled_reference_under_actual_tree'}}
+        self.source['unresolved_two_terminal_crossings'] = [row]
+        self.allocations[0]['boundary_witnesses'] = [{
+            'kind':'unresolved_two_terminal_crossing', 'branch_id':'two',
+            'source':'J_LEFT.1', 'native':'J_LEFT.1', 'net':'TEST', 'block':'left',
+            'layer':'F.Cu', 'face':'west', 'boundary_bbox':[3.25,4.75,3.75,5.25],
+            'reservation_id':'two_reservation', 'p2_obligation':duties[0]}]
+        self.allocations[0]['reservations'] = [{
+            'id':'two_reservation', 'kind':'unresolved_two_terminal_crossing',
+            'branch_id':'two', 'layer':'F.Cu', 'nets':['TEST']}]
+        result = self.run_case()
+        self.assertEqual(result['errors'], [])
+        self.assertEqual(result['status'], 'INCOMPLETE')
+        self.assertFalse(result['p1_accepted'])
+        measured = result['allocations'][0]['reservations'][0]
+        self.assertEqual(measured['status'], 'INCOMPLETE')
+        self.assertIsNone(measured['capacity_slots'])
+        self.assertEqual(len(measured['p2_obligations']), 2)
+        self.allocations[0]['reservations'][0]['demand_slots'] = 1
+        damaged = self.run_case()
+        self.assertEqual(damaged['status'], 'FAIL')
+        self.assertIn('two-terminal reservation fields invalid',
+                      damaged['allocations'][0]['reason'])
+        del self.allocations[0]['reservations'][0]['demand_slots']
+        self.allocations[0]['reservations'][0]['status'] = 'PASS'
+        self.assertIn('two-terminal reservation fields invalid',
+                      self.run_case()['allocations'][0]['reason'])
+        del self.allocations[0]['reservations'][0]['status']
+        self.allocations[0]['boundary_witnesses'][0]['capacity_slots'] = 1
+        self.assertIn('two-terminal witness fields invalid',
+                      self.run_case()['allocations'][0]['reason'])
+
     def run_case(self, change=None, *, diagnose_all=False):
         if change:
             change()
@@ -1485,6 +1534,72 @@ class UnresolvedBranchPhysicalCellTest(unittest.TestCase):
         _, self.pads = checker.graph.board_index(self.board)
         with self.assertRaisesRegex(checker.ContractError, 'exact native branch terminal set'):
             self.validate()
+
+
+class UnresolvedTwoTerminalTest(unittest.TestCase):
+    def setUp(self):
+        UnresolvedBranchTest.setUp(self)
+        self.board.Remove(self.board.FindFootprintByReference('J_C'))
+        _, self.pads = checker.graph.board_index(self.board)
+        self.interfaces['interfaces'][0]['endpoints']['b'] = ['J_B.1']
+        self.branch['endpoints'] = self.branch['endpoints'][:2]
+        self.branch['p2_obligations'] = self.branch['p2_obligations'][:2]
+        self.branch['terminal_count'] = 2
+        self.branch['minimum_tree_edges'] = 1
+        self.branch['tree_obligation']['terminal_count'] = 2
+        self.branch['tree_obligation']['minimum_tree_edges'] = 1
+        self.branch['physical_blockers'] = []
+        self.branch['capacity_slots'] = None
+
+    def validate(self):
+        return checker._unresolved_branches(
+            {'unresolved_two_terminal_crossings':[self.branch]}, self.interfaces,
+            self.board, self.regions, {'signal':{'TREE'}}, {}, self.pads)
+
+    def test_exact_two_owner_crossing_is_no_credit(self):
+        rows = self.validate()
+        self.assertEqual(rows['tree']['_kind'], 'unresolved_two_terminal_crossing')
+        self.assertEqual(rows['tree']['terminal_count'], 2)
+        self.assertEqual(rows['tree']['minimum_tree_edges'], 1)
+        self.assertIsNone(rows['tree']['capacity_slots'])
+
+    def test_third_terminal_or_one_owner_rejected(self):
+        pad(self.board, 'J_EXTRA', '1', 'TREE', 6, 5, .4)
+        _, self.pads = checker.graph.board_index(self.board)
+        with self.assertRaisesRegex(checker.ContractError, 'exact native branch terminal set'):
+            self.validate()
+        self.board.Remove(self.board.FindFootprintByReference('J_EXTRA'))
+        _, self.pads = checker.graph.board_index(self.board)
+        self.interfaces['interfaces'][0]['endpoints'] = {'a':['J_A.1','J_B.1']}
+        with self.assertRaisesRegex(checker.ContractError, 'cross source owners'):
+            self.validate()
+
+    def test_wrong_obligations_or_success_credit_rejected(self):
+        self.branch['p2_obligations'].pop()
+        with self.assertRaisesRegex(checker.ContractError, 'exact P2'):
+            self.validate()
+        self.branch['p2_obligations'] = self.obligations[:2]
+        self.branch['return_obligation']['status'] = 'PASS'
+        with self.assertRaisesRegex(checker.ContractError, 'P2 return/P3'):
+            self.validate()
+        self.branch['return_obligation']['status'] = 'P2_REQUIRED'
+        self.branch['capacity_slots'] = 1
+        with self.assertRaisesRegex(checker.ContractError, 'cannot claim geometry/capacity'):
+            self.validate()
+        self.branch['capacity_slots'] = None
+        self.branch['status'] = 'PASS'
+        with self.assertRaisesRegex(checker.ContractError, 'source fields invalid'):
+            self.validate()
+
+    def test_wrong_tree_edge_count_or_legacy_key_rejected(self):
+        self.branch['minimum_tree_edges'] = 2
+        with self.assertRaisesRegex(checker.ContractError, 'tree lower bound'):
+            self.validate()
+        self.branch['minimum_tree_edges'] = 1
+        with self.assertRaisesRegex(checker.ContractError, 'endpoint denominator'):
+            checker._unresolved_branches(
+                {'unresolved_multiterminal_branches':[self.branch]}, self.interfaces,
+                self.board, self.regions, {'signal':{'TREE'}}, {}, self.pads)
 
 
 if __name__ == '__main__':
