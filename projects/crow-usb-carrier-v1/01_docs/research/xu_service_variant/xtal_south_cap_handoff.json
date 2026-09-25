@@ -1,0 +1,158 @@
+{
+  "schema": 1,
+  "kind": "crow-xtal-south-cap-handoff-screen",
+  "status": "GEOMETRIC_DOGLEG_FEASIBLE_P2_REQUIRED",
+  "hashes": {
+    "board": "fbfb3bda95f1ddc98e7d3d229550644d136dc7d6349ba19a4023eb13b07e7e27",
+    "floorplan": "cd52893214a87432b99bab41827a64680bd8a2f970342f126260157948b50925",
+    "source": "9a13c0999d29f17280bb5d8ffb98a5e0d59afe3ee4511eb004e436bffc13ece4"
+  },
+  "trace_contract": {
+    "layer": "F.Cu",
+    "width_mm": 0.15,
+    "clearance_mm": 0.15,
+    "pair_clearance_mm": 0.15
+  },
+  "retained_cap": {
+    "ref": "C_XU_VDDIO_35",
+    "envelope_mm": [
+      217.495,
+      104.845,
+      218.505,
+      106.755
+    ],
+    "pads": {
+      "1": {
+        "net": "N1V8",
+        "bbox_mm": [
+          217.69,
+          106.0,
+          218.31,
+          106.56
+        ]
+      },
+      "2": {
+        "net": "GND",
+        "bbox_mm": [
+          217.69,
+          105.04,
+          218.31,
+          105.6
+        ]
+      }
+    }
+  },
+  "routes": {
+    "XTAL_IN": [
+      [
+        216.1625,
+        105.8
+      ],
+      [
+        217.2,
+        105.8
+      ],
+      [
+        217.2,
+        104.59
+      ],
+      [
+        218.8,
+        104.59
+      ],
+      [
+        218.8,
+        107.1
+      ]
+    ],
+    "XTAL_OUT": [
+      [
+        216.1625,
+        106.2
+      ],
+      [
+        217.2,
+        106.2
+      ],
+      [
+        217.2,
+        107.1
+      ]
+    ]
+  },
+  "obstacle_radius_mm": 0.22499999999999998,
+  "native_footprint_courtyard_hits": {
+    "XTAL_IN": [],
+    "XTAL_OUT": []
+  },
+  "native_fixed_ref_hits": {
+    "XTAL_IN": [],
+    "XTAL_OUT": []
+  },
+  "native_other_u_xu_pad_hits": {
+    "XTAL_IN": [],
+    "XTAL_OUT": []
+  },
+  "native_track_hits": {
+    "XTAL_IN": [],
+    "XTAL_OUT": []
+  },
+  "pair_0p15_clearance_hits": [],
+  "proposed_regions_mm": {
+    "xmos_core_west": [
+      190.0,
+      84.0,
+      217.2,
+      110.5
+    ],
+    "xmos_core_east": [
+      217.2,
+      84.0,
+      232.0,
+      107.0
+    ],
+    "clock_oscillator_handoff": [
+      217.2,
+      107.0,
+      218.95,
+      118.5
+    ],
+    "board_integration_qspi": [
+      219.2,
+      110.5,
+      223.2,
+      118.5
+    ],
+    "clock_flash_debug": [
+      190.0,
+      118.5,
+      232.0,
+      136.0
+    ]
+  },
+  "shifted_qspi": {
+    "region_mm": [
+      219.2,
+      110.5,
+      223.2,
+      118.5
+    ],
+    "xmos_face_mm": [
+      219.2,
+      110.2,
+      222.8,
+      110.5
+    ],
+    "raw_owner_gap_to_handoff_mm": 0.25,
+    "face_raw_width_mm": 3.6,
+    "declared_qspi_demand_mm": 2.7,
+    "native_obstacle_hits": [],
+    "native_track_hits": []
+  },
+  "debt": [
+    "This is a swept-envelope screen, not routed board or DRC.",
+    "The 0.25 mm source-region gap to QSPI is ownership geometry, not electrical clearance proof.",
+    "P2 must prove XTAL pad escapes, actual copper, DRC, and continuous filled In1.Cu GND reference.",
+    "P3 oscillator electrical/length/guard checks and P1 review remain open."
+  ]
+}
