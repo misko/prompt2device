@@ -492,3 +492,65 @@ findings:
   evidence:
   - 01_docs/research/2026-09-23-model-binding-census-sol.md
   - 01_docs/research/2026-09-23-upstream-contract-and-model-repairs.md
+- id: USB-XTAL-native-realization
+  state: open
+  blocks_at_or_above: DESIGN_CLEAN
+  owner: layout
+  finding: The previous corridor investigations established only declarations. This
+    bounded native experiment tests the retained XMOS crystal placement under exact
+    prepared rules; USB-P1-placement-backtrack and its historical evidence remain
+    open. It supplies no modular task completion or promotion.
+  closes_when: A reviewed source-generated crystal placement/routing candidate proves
+    native connectivity, applicable clearance and continuous reference, with XMOS
+    oscillator constraints satisfied.
+  evidence:
+  - 01_docs/research/xu_service_variant/xtal_south_cap_handoff.json
+  investigation:
+    schema: 1
+    requirement:
+      path: 03_src/rules/ic_reference_research.yaml
+      sha256: a1878ac742bc0e03e674fb488ebba1428d5cffb0c0206f26ad56f80ef8a185ba
+      locator: 'U_XU application layout constraints: place Y_XU, R_XTAL_DRIVE, R_XTAL_FB,
+        C_XTAL_IN and C_XTAL_OUT tightly around XIN/XOUT'
+    due_stage: KICAD-PLACEMENT
+    operating_states:
+    - pre_route_crystal_candidate
+    question: Can the exact retained crystal placement support native connected copper
+      and the required return under the pinned rules, or must its local placement
+      be reopened?
+    milestones:
+      native_decision: A saved native candidate and exact baseline/candidate DRC/connectivity
+        evidence decide whether the retained placement needs backtracking.
+      filled_return: Saved fill geometry proves the declared reference coverage, or
+        an explicit native failure requires a different route/placement.
+    max_nonimproving_attempts: 2
+    max_attempts: 2
+    launches:
+    - id: launch-30c141f82bce4d3c98714d4a1787535b
+      subject_sha256: 81acf15c7871cc8d39aad0314684087fb89af3dc03fbb33f9e1b660437092425
+    history:
+    - id: launch-30c141f82bce4d3c98714d4a1787535b
+      subject_sha256: 81acf15c7871cc8d39aad0314684087fb89af3dc03fbb33f9e1b660437092425
+      origin: executed
+      hypothesis: Screened local doglegs can escape the fixed XU pads under unchanged
+        prepared rules.
+      result: Native experiment preserved 569 poses and added six F.Cu tracks. Clearance-class
+        count stayed 40; unrelated refill report signatures vary, so exact global
+        non-regression is unproven. It retained 499 open items; the three rows mentioning
+        oscillator footprints are GND opens, not a signal-net count. Two dangling
+        XTAL tracks were added. Complete crystal connectivity and filled return remain
+        unproven; no milestone credit.
+      model_domain: within
+      progress: []
+      evidence:
+      - path: 01_docs/research/candidate_loop_xtal/r1_result.json
+        sha256: 45ad819f30b44549d1bc537efb808af312b4fd2733a4f9b1fb3ade52fee06589
+    next:
+      action: investigate
+      hypothesis: A compact source-authored oscillator/support placement near fixed
+        XU pins can close the XTAL nets under the same rules.
+      on_support: Retain full local recipe for independent electrical/return review
+        and future integration; no automatic P3 completion.
+      on_reject: Stop these two geometry trials and reopen the coupled floorplan from
+        measured obstacles.
+      uncertainty: bounded

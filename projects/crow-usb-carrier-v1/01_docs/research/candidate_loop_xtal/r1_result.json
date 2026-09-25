@@ -1,0 +1,140 @@
+{
+  "baseline_drc": {
+    "command": [
+      "kicad-cli",
+      "pcb",
+      "drc",
+      "--severity-all",
+      "--refill-zones",
+      "--schematic-parity",
+      "--format",
+      "json",
+      "-o",
+      "/home/mouse9911/gits/circuits-worktrees/crow-usb-carrier-v1-20260922/projects/crow-usb-carrier-v1/06_build/candidates/xtal-r1/baseline_drc.json",
+      "/home/mouse9911/gits/circuits-worktrees/crow-usb-carrier-v1-20260922/projects/crow-usb-carrier-v1/06_build/candidates/xtal-r1/04_kicad/crow_carrier.kicad_pcb"
+    ],
+    "counts": {
+      "schematic_parity": 0,
+      "unconnected_items": 499,
+      "violations": 239
+    },
+    "exit": 0,
+    "report_sha256": "59064f50c494b0c107896bcf406907b44e83c46fc77498ff7a470692f0c65f1b",
+    "status": "MEASURED",
+    "stderr_tail": "",
+    "violation_types": {
+      "clearance": 40,
+      "lib_footprint_issues": 199
+    },
+    "xtal_unconnected_items": 3
+  },
+  "candidate_board_sha256": "f07e867093e2452dfc377e49bcfe9af361960aeeefd930d77795ea54e756e2e0",
+  "candidate_drc": {
+    "command": [
+      "kicad-cli",
+      "pcb",
+      "drc",
+      "--severity-all",
+      "--refill-zones",
+      "--schematic-parity",
+      "--format",
+      "json",
+      "-o",
+      "/home/mouse9911/gits/circuits-worktrees/crow-usb-carrier-v1-20260922/projects/crow-usb-carrier-v1/06_build/candidates/xtal-r1/candidate_drc.json",
+      "/home/mouse9911/gits/circuits-worktrees/crow-usb-carrier-v1-20260922/projects/crow-usb-carrier-v1/06_build/candidates/xtal-r1/04_kicad/xtal_escape_candidate.kicad_pcb"
+    ],
+    "counts": {
+      "schematic_parity": 0,
+      "unconnected_items": 499,
+      "violations": 241
+    },
+    "exit": 0,
+    "report_sha256": "462897c9b55630e87a413a1044a7e622f2d058ba4e3febd91d817aea6e092b77",
+    "status": "MEASURED",
+    "stderr_tail": "",
+    "violation_types": {
+      "clearance": 40,
+      "lib_footprint_issues": 199,
+      "track_dangling": 2
+    },
+    "xtal_unconnected_items": 3
+  },
+  "candidate_dru_sha256": "fe9ed48569699cb881114c0bf4bba0061d65199ef659dadda6842d2431782ef5",
+  "candidate_pro_sha256": "7977bc9edb88e1ef723eb256f07949871493dfda3d2c2491dd5d5b6087ddc094",
+  "claim_limit": "Local F.Cu pad escapes only; crystal endpoints, loading, loop, return, and P1/P2 acceptance remain open.",
+  "decision": "Local escape trial leaves full crystal connectivity and return unproven. Reopen oscillator/support placement and assess native copper; do not extend corridor schema.",
+  "geometry": {
+    "added_tracks": 6,
+    "footprints_unchanged": 569,
+    "initial_tracks": 14,
+    "layer": "F.Cu",
+    "routes": {
+      "XTAL_IN": [
+        [
+          216.1625,
+          105.8
+        ],
+        [
+          217.2,
+          105.8
+        ],
+        [
+          217.2,
+          104.59
+        ],
+        [
+          218.8,
+          104.59
+        ],
+        [
+          218.8,
+          107.1
+        ]
+      ],
+      "XTAL_OUT": [
+        [
+          216.1625,
+          106.2
+        ],
+        [
+          217.2,
+          106.2
+        ],
+        [
+          217.2,
+          107.1
+        ]
+      ]
+    },
+    "width_mm": 0.2
+  },
+  "input_sha256": {
+    "02_parts/TMUX4827YBHR/part.yaml": "9ab2d3500a6018a4e3860b7d56cbe5d7025d134a989dd07d4fdcfba5dd011ea1",
+    "02_parts/TMUX4827YBHR/qualification/coupon.kicad_pcb": "6f39a73aad46444e6b2256ced0b64a1dea5b9792801c3f705f8b691727ce83b6",
+    "03_src/floorplan.yaml": "cd52893214a87432b99bab41827a64680bd8a2f970342f126260157948b50925",
+    "03_src/lib/crow_usb_analog.pretty/TI_YBH0009_C02_TMUX4827.kicad_mod": "54b81c012d1fe62b93ccb83b877aca3f6452764e1c5bf11a055750eef1662d58",
+    "03_src/rules/assembly.yaml": "a9be61f176b35eefc46b8677a9de68c9f6f0ebabf0a136711a8279205ef44985",
+    "03_src/rules/nets.yaml": "18033487a097b6d29abe3f9d8517879931cf80d278d8973adcf276010a5b7190",
+    "04_kicad/crow_carrier.kicad_pcb": "fbfb3bda95f1ddc98e7d3d229550644d136dc7d6349ba19a4023eb13b07e7e27",
+    "04_kicad/crow_carrier.kicad_pro": "3d1cb7206c4101b1be96ee85e994a5e694ef871a47f6356a70bdfa1576641cf1",
+    "04_kicad/crow_carrier.kicad_sch": "2d5f02da91e745f0a4732f75e6092f053c87488ca3a16711caa752e693985997"
+  },
+  "kind": "crow-xtal-native-escape-experiment",
+  "metric_semantics": {
+    "clearance_comparison": "Both runs report 40 clearance-class findings; unrelated U_ISO row signatures differ after refill. No candidate clearance row names XTAL copper. Exact global non-regression is not proved.",
+    "xtal_unconnected_items": "Legacy recipe key counts DRC rows mentioning XTAL-named footprints, including GND. Terra inspected all three rows: these are oscillator-associated GND opens, not an exact XTAL_IN/OUT disconnection count."
+  },
+  "prepared_board_sha256": "fbfb3bda95f1ddc98e7d3d229550644d136dc7d6349ba19a4023eb13b07e7e27",
+  "prepared_dru_sha256": "fe9ed48569699cb881114c0bf4bba0061d65199ef659dadda6842d2431782ef5",
+  "prepared_pro_sha256": "7977bc9edb88e1ef723eb256f07949871493dfda3d2c2491dd5d5b6087ddc094",
+  "recipe_sha256": "fb13df7decc97e6f6850263a62ae5d3a1b600c01aff391b340ff40ad1645ddc3",
+  "rule_generation_command": [
+    "/usr/bin/python3",
+    "/home/mouse9911/gits/circuits-worktrees/crow-usb-carrier-v1-20260922/skills/kicad-pcb/scripts/generate_rules_generic.py",
+    "/home/mouse9911/gits/circuits-worktrees/crow-usb-carrier-v1-20260922/projects/crow-usb-carrier-v1/06_build/candidates/xtal-r1"
+  ],
+  "rule_generator_sha256": "3f423340be27471ce7edca2b66a633dd0898b0a172b7abf12fa944e83690f026",
+  "schema": 1,
+  "source_board_sha256": "fbfb3bda95f1ddc98e7d3d229550644d136dc7d6349ba19a4023eb13b07e7e27",
+  "status": "DIAGNOSTIC_ONLY"
+}
