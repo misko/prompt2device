@@ -900,6 +900,34 @@ class CoarseCapacityTest(unittest.TestCase):
         self.assertFalse(result['routing_realized'])
         self.assertFalse(result['p1_accepted'])
 
+    def test_power_shared_port_cannot_replace_full_net_with_one_pad(self):
+        port, _ = self.add_shared_port()
+        outline = pcbnew.SHAPE_POLY_SET()
+        self.assertTrue(self.board.GetBoardPolygonOutlines(outline, False))
+        _, pads = checker.graph.board_index(self.board)
+        args = (self.interfaces, self.board, outline,
+                self.floorplan['placement']['regions'], list(self.board.Zones()),
+                {'power_boundary_windows': {'TEST'}}, {}, pads)
+        # The same local affected subset remains valid for a signal port.
+        self.assertIn('joint', checker._shared_ports(self.source, *args))
+        power_source = dict(self.source, power_boundary_windows={'coverage_nets': ['TEST']})
+        with self.assertRaisesRegex(checker.ContractError,
+                                    'power port exact endpoint denominator missing for TEST'):
+            checker._shared_ports(power_source, *args)
+        # Merely listing the other modular pad is insufficient if native
+        # copper has an additional undeclared terminal on that power net.
+        second = {'source_pad': 'J_LEFT.1', 'native_pad': 'J_LEFT.1',
+                  'net': 'TEST', 'block': 'left'}
+        port['affected'].append(second)
+        port['p2_obligations'].append({'status': 'P2_REQUIRED', **second,
+                                      'port_id': 'joint', 'layer': 'F.Cu',
+                                      'to_reservation': 'signal_main'})
+        pad(self.board, 'J_EXTRA', '1', 'TEST', 9, 9)
+        _, pads = checker.graph.board_index(self.board)
+        with self.assertRaisesRegex(checker.ContractError,
+                                    'native net pad multiset mismatch'):
+            checker._shared_ports(power_source, *args[:-1], pads)
+
     def test_shared_port_witness_requires_named_source_record(self):
         self.add_shared_port()
         self.source.pop('shared_transition_ports')

@@ -512,6 +512,14 @@ def _shared_ports(source, interfaces, board, outline, regions, zones, coverage, 
                 raise ContractError(f'{ref}: duplicate modular footprint owner')
             owners[ref] = row.get('id')
     enabled = {board.GetLayerName(i) for i in board.GetEnabledLayers().Seq() if pcbnew.IsCopperLayer(i)}
+    # A local signal port may name only the pads entering that port.  A power
+    # window represents the whole net's boundary/current obligation, so a
+    # selected pad must not stand in for its other native terminals.
+    power_nets = set(source.get('power_boundary_windows', {}).get('coverage_nets', []))
+    for allocation in source.get('allocations', []):
+        for demand in allocation.get('demands', []):
+            if demand.get('id') == 'usb_local_power':
+                power_nets.update(net for net in demand.get('nets', []) if net == 'VBUS_USB')
     ports = {}
     for row in rows:
         if not isinstance(row, dict):
@@ -556,6 +564,17 @@ def _shared_ports(source, interfaces, board, outline, regions, zones, coverage, 
             raise ContractError(f'{ident}: exact affected endpoints missing')
         if len({tuple(sorted(e.items())) for e in affected}) != len(affected):
             raise ContractError(f'{ident}: duplicate affected endpoint')
+        for net in {e['net'] for e in affected} & power_nets:
+            item = next((item for item in interfaces['interfaces'] if item.get('net') == net), None)
+            if item is None or not isinstance(item.get('endpoints'), dict):
+                raise ContractError(f'{ident}: power port modular denominator missing')
+            expected = {(source_pad, graph.native_identity(source_pad, aliases), net, block)
+                        for block, names in item['endpoints'].items() for source_pad in names}
+            declared = {(e['source_pad'], e['native_pad'], e['net'], e['block'])
+                        for e in affected if e['net'] == net}
+            if len(declared) != len(expected) or declared != expected:
+                raise ContractError(f'{ident}: power port exact endpoint denominator missing for {net}')
+            _linked_native_pad_census(ident, expected, pads, {net})
         for e in affected:
             if e['block'] not in participants or e['net'] not in set().union(*coverage.values()):
                 raise ContractError(f'{ident}: undeclared net/owner')
