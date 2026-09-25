@@ -1,0 +1,62 @@
+{
+  "source_board_sha256": "8e620def0b403fda7635135672afec923c2c23bc9844b3f96102e96d4d5eca10",
+  "copy_board_sha256": "7a5ae3bfc7052d2ecf55c473d7d769260b85d9dca1ae64d8656c0f61f0b13c38",
+  "copy_path": "/tmp/crow-adc7-isolated-move.kicad_pcb",
+  "fixed_count": 27,
+  "fixed_unchanged": true,
+  "pad_net_identities_unchanged": true,
+  "new_full_bbox_overlap_pairs": [],
+  "moves": {
+    "Y_AUDIO": {
+      "origin_mm": [
+        195.5,
+        118.0
+      ],
+      "full_bbox_mm": [
+        184.01935,
+        114.639313,
+        206.98065,
+        120.075
+      ]
+    },
+    "C_ADC_I2C_A": {
+      "origin_mm": [
+        183.0,
+        104.0
+      ],
+      "full_bbox_mm": [
+        180.565476,
+        103.515,
+        187.460688,
+        110.245178
+      ]
+    },
+    "C_ADC_CLOCK_OK": {
+      "origin_mm": [
+        163.5,
+        90.0
+      ],
+      "full_bbox_mm": [
+        159.039313,
+        82.940535,
+        165.934524,
+        92.00825
+      ]
+    }
+  },
+  "port_target_intersections": {
+    "adc7": [],
+    "adc8": [],
+    "tdm_neck": []
+  },
+  "all_port_obstacles": {
+    "adc7": [],
+    "adc8": [],
+    "tdm_neck": [
+      "C_XU_VDDIO_109",
+      "C_XU_VDD_105"
+    ]
+  },
+  "baseline_pairs": 2110,
+  "copy_pairs": 2071
+}
