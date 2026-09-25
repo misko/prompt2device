@@ -1,0 +1,76 @@
+{
+  "candidate_board_sha256": "96400bef6d86291628a1bee36890055cdb8d76e789abf53da4d5eaa6836d2aa5",
+  "drc": {
+    "baseline": {
+      "unconnected": 499,
+      "violations": {}
+    },
+    "candidate": {
+      "unconnected": 499,
+      "violations": {}
+    }
+  },
+  "fixed_refs_unchanged": 33,
+  "inputs": {
+    "aliases": "a6baba8bd4e389c146250a2a2ef5f7e9b09f63526e71dbdd05be8bca9b7b2c2e",
+    "board": "fe8d2c9a9922eeab2371d0187da9407ac590687a77b03a8a099c35a75b5ddd16",
+    "checker": "c6609198e3daa5fc9718436194945f4cb0f39f4e9095ec991674479f798e7b46",
+    "coarse": "9faaed39333c0db45c188003d2ac6bacc69562f259f8332d0d6a79db7d25037f",
+    "floor": "8a805d92d4f57c3a0db00a45d1c9aef57958eb0c219d44f9ca89e5531021d8b4",
+    "fp_lib_table": "f7d3e5557b95cf52fb52294c497f6cf2680f0c750acc550b1b9d808973dc8b55",
+    "interfaces": "02be5ad6ea879ac04d5dfd9e2e09d5226f85c85fa83d72628aa40cf93de6b4d8",
+    "mouth_helper": "d6281ffae7273c956aefaf3a394cf1f782aaf6b1f3493449999af52bc254bad6",
+    "native_floor": "2f7843ada9eb08d19d268f0d6671079a8cf367629b2b3331119088927415b634",
+    "p1": "e8ff456de1868386890dbb5413bb20dc054b5d711b7c9b97d8b02a6b4695ae92",
+    "project": "7977bc9edb88e1ef723eb256f07949871493dfda3d2c2491dd5d5b6087ddc094",
+    "rebinder": "48102e1322cbb3a0cbae297909a35fe6c4adcf7b7a37c4a269a35048eef5e905",
+    "rules": "00ab83d8484368f132392523972c1f41fc9073423d3c600feec962684f9c3b0a"
+  },
+  "kind": "expanded-tdm-c105-p2-placement-probe",
+  "move": {
+    "from": [
+      196.5,
+      96.3,
+      180.0
+    ],
+    "owner_pad_distance_mm": [
+      3.8898,
+      2.1223
+    ],
+    "ref": "C_XU_VDD_105",
+    "to": [
+      198.25,
+      97.05,
+      180.0
+    ]
+  },
+  "neck_bbox_mm": [
+    188,
+    94,
+    190,
+    99.84
+  ],
+  "neck_connected_width_mm": [
+    1.6768,
+    4.5384
+  ],
+  "new_courtyard_intersections": [],
+  "p1_accepted": false,
+  "p2_accepted": false,
+  "proof_debt": [
+    "canonical 03_src C105 anchor is (196.5,97.1,0), unlike the frozen private board; generation and parity required before adoption",
+    "no source-generated production board or P2 placement review",
+    "rough slots do not prove four exact pad entrances or continuous path",
+    "filled In1.Cu return along a connected route unproved",
+    "no timing, SI, XU local-power return, or final silk proof"
+  ],
+  "rough_slots": [
+    3,
+    10
+  ],
+  "routing_realized": false,
+  "source_floorplan_sha256": "9c3edf47db1bacbed36d4d4cb85327b20e487da5b4f9f47424a256d56746d8ed",
+  "status": "INCOMPLETE",
+  "timing_nets": 14,
+  "timing_p2_duties": 54
+}
