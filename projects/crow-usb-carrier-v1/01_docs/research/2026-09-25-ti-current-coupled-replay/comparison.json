@@ -1,0 +1,80 @@
+{
+  "baseline": {
+    "adc7_portal_hits": [
+      "Y_AUDIO:native",
+      "Y_AUDIO:pad4"
+    ],
+    "owner_counts": {
+      "board_footprints": 569,
+      "cross_owner_body_overlap_pairs": 0,
+      "cross_owner_native_interaction_pairs": 0,
+      "cross_owner_pad_overlap_pairs": 0,
+      "fixed_refs": 27,
+      "foreign_planning_incidences": 159,
+      "foreign_planning_refs": 148,
+      "fully_owner_contained": 441,
+      "module_refs": 569,
+      "outside_owner": 128
+    },
+    "rough_timing_slots": {
+      "translator_west_four": 5,
+      "xu_south_three": 0,
+      "xu_west_data": 1
+    }
+  },
+  "board_sha256": {
+    "base": "c5229350807edd85ce95eadd4ec8e4190941b0dd27edcf0a54a6defda145e6b8",
+    "trial": "bdd5bccb2617d7bbe1de9cd27cda1a0e2f68467bedd169704473a010286a948b"
+  },
+  "fixed_refs_unchanged": 27,
+  "input_sha256": {
+    "current_floorplan": "c2a6562c1a012e692109b852158af2ef73a432f712a62ae87cbd8e49c4c4ecd6",
+    "modular_plan": "75c3a517cea50dd6b5745fae96b051d334debd48aac143becaca3d5fe3fc35dc",
+    "mouth_screen": "d6281ffae7273c956aefaf3a394cf1f782aaf6b1f3493449999af52bc254bad6",
+    "native_census": "a510d37980aed74cab3c8bc070926311ee0a7a116fa7b5dc652b6d3225d7a398",
+    "pose_targets": "76ba7ace1275fe1a8d6bc69d452037672519d70a21b8b02fff67f8c7d8a647bb"
+  },
+  "native_drc": {
+    "schematic_parity": [
+      0,
+      0
+    ],
+    "unconnected": [
+      499,
+      499
+    ],
+    "violations": [
+      0,
+      0
+    ]
+  },
+  "p1_accepted": false,
+  "p2_accepted": false,
+  "pad_identity_and_local_geometry_preserved": true,
+  "pose_changes": 45,
+  "release_admitted": false,
+  "return_credit": false,
+  "route_credit": false,
+  "schema": 1,
+  "status": "RESEARCH_IMPROVEMENT_NO_ENGINEERING_CREDIT",
+  "trial": {
+    "adc7_portal_hits": [],
+    "owner_counts": {
+      "board_footprints": 569,
+      "cross_owner_body_overlap_pairs": 0,
+      "cross_owner_native_interaction_pairs": 0,
+      "cross_owner_pad_overlap_pairs": 0,
+      "fixed_refs": 27,
+      "foreign_planning_incidences": 149,
+      "foreign_planning_refs": 138,
+      "fully_owner_contained": 450,
+      "module_refs": 569,
+      "outside_owner": 119
+    },
+    "rough_timing_slots": {
+      "translator_west_four": 5,
+      "xu_south_three": 6,
+      "xu_west_data": 3
+    }
+  }
+}
