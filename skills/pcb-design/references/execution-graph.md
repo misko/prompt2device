@@ -56,6 +56,19 @@ An explicitly hash-pinned initial stock snapshot can lock that design-selection
 decision against later inventory movement. Current JLC order allocation
 remains a separate sourcing claim and does not redefine the circuit.
 
+Stock defaults to rolling freshness. To adopt an initial snapshot, declare
+`policy: initial_snapshot`, the receipt `sha256`, and UTC `initial_checked_at`.
+The gate grades freshness at that review time while retaining exact identity
+and assembly thresholds. Migration of an older project without a declaration
+requires an explicit policy decision; omission proves no selection check.
+An independently reviewed `prototype_only` suitability is admitted only by a
+bounded research producer passing `--require-prototype`. It binds a test plan
+and an open `DESIGN_CLEAN` blocking finding for every deferred qualification.
+Ordinary rebuilds, release review, rehearsal, seal, order and publication
+regrade and reject that status. Source regeneration instructions never override
+this restriction. The prototype path creates research evidence, not ordinary
+schematic, placement or release acceptance.
+
 ## Lifecycle graph
 
 ```mermaid

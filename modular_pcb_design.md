@@ -1,9 +1,10 @@
 # Modular PCB design: implementation plan
 
-Status: implementation and isolated Crow trial in progress. The procedure and
-diagnostic work graph are being integrated into the owning skills; existing
-engineering gates and project conductors retain acceptance authority. This
-document does not promote a PCB or grant selective gate reuse.
+Status: historical implementation proposal. For current operation use
+[the modular procedure](skills/pcb-design/references/modular-design.md) and
+[execution graph](skills/pcb-design/references/execution-graph.md).
+The proposal below is retained for rationale, not as a second task queue or
+operating procedure. It does not promote a PCB or grant selective gate reuse.
 
 ## Objective
 

@@ -10,11 +10,10 @@ artifacts through explicit development and backtrack cycles. Make every
 stronger claim—release, order, first article, production—only at its own
 evidence boundary.
 
-Current deliverables include native and rendered schematics, KiCad PCB source,
-Gerber/drill/BOM/CPL fabrication payloads, PCB renders and STEP assemblies, and
-optional printable enclosure artifacts. The existing board-level JLC digital
-twin is a verification instrument. Governed firmware releases and an integrated
-product-level digital twin remain future work under IMP-234 and IMP-236.
+Deliver native/rendered schematics, KiCad source, Gerber/drill/BOM/CPL payloads,
+PCB renders, STEP assemblies and optional enclosure artifacts. The JLC digital
+twin verifies the board; governed firmware and a product-level digital twin
+remain future work under IMP-234 and IMP-236.
 
 `pcb-design` owns lifecycle composition. It delegates electrical and layout
 mechanics to `kicad-pcb`, manufacturing mechanics to `jlcpcb-fab`, and optional
@@ -65,51 +64,26 @@ python3 skills/pcb-design/scripts/skill_reference_router.py \
   --json
 ```
 
-Then ask the agent:
+Resolve the brief's fact locks, capability profile and architecture before
+building. The commissioning hold spans commission, architecture and sourcing;
+do not invoke a rebuild conductor while it exists. Each stage produces its
+own evidence. Manual hold removal is not admission; IMP-235 tracks the missing
+commission-admission compositor.
 
-```text
-Read and follow skills/pcb-design/SKILL.md for projects/<name>. Preserve the
-original brief, resolve the commission fact locks, and stop at the first
-evidence or operator checkpoint. Do not add firmware unless the brief
-explicitly asks.
-```
-
-The first useful outcome is not copper. It is an agreed brief, explicit
-capability profile, closed fact locks, and a traceable architecture boundary.
-Do not invoke either rebuild conductor while the commissioning hold exists.
-The bootstrap hold spans commission, architecture, and sourcing admission even
-though its initial status is `PCB-COMMISSION INCOMPLETE`; the typed stages still
-produce their own evidence in order.
-The repository does not yet have a single commission-admission compositor;
-manual hold removal is not evidence. IMP-235 tracks that missing executable
-boundary.
-
-New JLC-assembled high-speed projects start with a pending
-`03_src/rules/critical_part_selection.yaml`. Declare each selected critical
-protection, clock, power, or interface ref before the full or reuse conductor;
-use an independently reviewed `not_applicable` decision only when there is no
-such selection. The early gate binds authored source identity, exact dossier, fresh
-public stock receipt, independent suitability decision, and all ledger findings
-tagged `critical_selection: {ref: REF, due_stage: selection}`. A missing
-declaration preserves behavior for existing boards, so migration requires an
-explicit board policy decision; absence is not evidence of critical-part
-selection. Later electrical, layout, and assembly gates retain their authority.
-The stock subrecord defaults to rolling freshness. A project that locks the
-initial exact-part stock decision can set `policy: initial_snapshot`, pin the
-receipt `sha256`, and give `initial_checked_at` in UTC; the gate checks receipt
-freshness at that initial review time and keeps grading the pinned identity and
-assembly threshold without reopening it for later inventory fluctuations.
-An independently reviewed `prototype_only` suitability may be used only by a
-bounded research producer that explicitly passes `--require-prototype` to the
-critical-part checker. It must bind a test plan and name an open `DESIGN_CLEAN` release-blocking
-finding for each deferred qualification. Ordinary rebuilds reject this status;
-release review, rehearsal, seal, order and publication regrade and refuse it.
+New JLC high-speed projects declare critical selections before either build
+conductor; missing declarations on older projects are not selection evidence.
+Use the [sourcing admission procedure](references/execution-graph.md) for exact
+identity, independent suitability and stock policy. An adopted initial stock
+snapshot stays locked against later inventory fluctuations.
+`prototype_only` permits only the explicitly scoped research producer with
+its reviewed test plan and open release-blocking findings. Ordinary rebuild,
+release and order paths still reject it. This restriction takes precedence
+over the full/reuse instructions below; research does not remove the hold.
 
 ## Plan is not execution
 
-The router is a pure disclosure tool. It selects procedures and validates that
-their semantic dependencies compose. It does not open a board, run a gate,
-prove applicability, promote an artifact, review a release, or publish.
+The router selects composable procedures. It does not run gates, prove
+applicability, promote artifacts, review releases, or publish.
 
 Read [the execution graph](references/execution-graph.md) before operating a
 project. It distinguishes:
@@ -281,6 +255,13 @@ in `references/lifecycle-and-backtrack.md`; a new model or handoff is not a rese
 A fresh agent resumes from committed source, the live beacon, journal, and
 content-addressed handoff—not from hidden conversation history.
 
+Keep one integration candidate per active design decision. Each task binds the
+same source, native board, netlist and effective rule inputs; a result from a
+different candidate must be regenerated or explicitly revalidated before
+integration. Name the owning engineering gate/review that can close the task:
+another diagnostic report is not that gate. Use the existing findings budget
+for recurring experiments even while no formal modular attempt has run.
+
 Use the existing project driver and owning checks; fix authoritative source
 and rerun affected mandatory gates. The [stage graph](references/pipeline-stage-contract.md)
 is diagnostic, not reuse permission. [Issue accounting](references/execution-runtime.md)
@@ -291,13 +272,11 @@ tools cannot handle; keep nonblocking convenience work in the deficiency list.
 
 ## Human reports
 
-When the user asks for an investigation, design study, issue analysis, or
-option comparison, follow
-[the project report contract](references/project-reports.md). Keep the editable
-Markdown under `01_docs/reports/`. Mark measurements, cited specifications,
-inferences, proposals, and owed tests explicitly. Distill an accepted decision
-into its owning ADR or executable source; a polished report never becomes
-silent design authority.
+For investigations and option comparisons, follow
+[the project report contract](references/project-reports.md) under
+`01_docs/reports/`. Distinguish measured/cited facts, inferences, proposals and
+owed tests. Adopt decisions into their owning ADR/source; reports do not grant
+design authority.
 
 ## Validate changes to this skill
 

@@ -34,17 +34,20 @@ must bind this TI source/profile and obtain fresh canonical topology/render
 review before ordinary schematic-stage promotion.
 
 J8's existing connector contract already selects Würth `615008160221` with
-Telegärtner `100009141` as mate. Its 0.045-mm nominal envelope overhang can be
-recorded as CAD-bound planning evidence, but a checker-consumable named J8
-edge-cell exception needs measured edge registration/seating bound to that
-exact board and connector ([measurement plan](2026-09-25-j8-edge-overhang-evidence-plan-terra.md),
+Telegärtner `100009141` as mate. The earlier proposal required measured
+registration for a cell exception; the later reviewed authority distinguishes
+nominal P1 courtyard containment from physical qualification. The exact
+0.045-mm courtyard-only attachment may support P1 cell checking under its
+reviewed board/geometry binding. Physical edge registration/seating remains
+owed for connector FULL on the exact board and connector
+([measurement plan](2026-09-25-j8-edge-overhang-evidence-plan-terra.md),
 [schema proposal](2026-09-25-j8-edge-cell-contract-proposal-sol.md),
 [independent contract review](2026-09-25-j8-edge-cell-contract-review-terra.md)).
-Even a measured cell would remain `INCOMPLETE`; connector FULL requires the
+Cell checking alone remains `INCOMPLETE`; connector FULL requires the
 separate mate/service/group qualification. Do not treat the digital connector
 fit prototype or an unrelated USB coupon as physical J8 evidence.
-The overhang blocks a candidate that opts `analog_ch8` into typed physical
-cells; the current formal P1 root does not declare those cells, so J8 alone
+The overhang blocks typed cells without the reviewed scoped attachment;
+the current formal P1 root does not declare those cells, so J8 alone
 does not bar that root's evaluation ([scope audit](2026-09-25-ti-ch8-j8-physical-cell-decision-terra.md)).
 
 ## Execution order

@@ -56,6 +56,9 @@ seal, supersede, or publication read the owning `pcb-design` procedure.
 Require the exact board identity, layer count, declared fabrication tier,
 full-severity DRC, zero unconnected items, schematic parity, and applicable RF
 fabrication contract. A clean visual render is not board acceptance.
+An early drawing-bound connector courtyard attachment is only a placement
+containment claim. It does not satisfy physical connector FULL, model or
+orientation registration, uploader review, or order qualification.
 
 ### 2. Export atomically
 

@@ -72,6 +72,13 @@ not a copper collision. Resolve native collisions and name any intentional
 remote physical pockets or connector overhangs before treating a broad block
 region as exclusive. Re-run the census after a coupled floorplan move.
 
+Functional ownership, planning bounds and exclusive proof geometry are separate.
+Do not opt a whole functional owner into `physical_cells` merely to make its
+planning rectangle contain a remote endpoint. Use cells only when the intended
+acceptance claim relies on exclusive space; then keep their full declared-owner
+coverage and native occupancy checks. Existing strict cell failures cannot be
+silenced by relabeling an exclusive allocation as a planning region.
+
 For an isolated placement trial, generate its native board from the current
 governed circuit/netlist and run the same post-generation transforms and
 project-local `.kicad_pro`/`.kicad_dru` rules as the normal board rebuild before
@@ -224,6 +231,9 @@ questions without promoting the candidate or entering canonical routing.
 Use the existing task runtime and route-candidate transaction, exact prepared
 rules and native quick/full checks. Name the source snapshot, required nets,
 fixed refs, mutable group, decision question and deadline before launching.
+Also name the milestone's acceptance consumer: an existing engineering gate or
+independent review with explicit closure criteria. Coarse P1 `INCOMPLETE` and
+modular `WORK_RECORDED` do not close that engineering milestone.
 Missing inputs or an unbounded mechanical uncertainty do not authorize an
 experiment that depends on them. The ordinary P2/P3 dependency graph and
 engineering promotion gates retain their authority.
@@ -236,6 +246,13 @@ artifacts separate. A quick result only guides the next experiment; full
 applicable checks and independent review precede promotion. Logical blocks
 need not be rectangular islands, and tightly coupled parts may share a
 placement/proof group while retaining their exact modular owners.
+
+Run independent checks together against that one candidate and retain their
+complete conflict set. Mark dependent checks unevaluated when their inputs fail;
+do not invent success or cascade misleading errors. Review a material integrated
+change, rather than commissioning a new review for each unchanged diagnostic.
+Changes to rules, exception authority or safety-critical claims still need their
+own applicable independent review before use.
 
 For an investigation-only experiment, declare its bounded decision in the
 existing findings ledger, then use the existing runner (example deadline):

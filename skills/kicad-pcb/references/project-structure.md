@@ -45,6 +45,15 @@ Fix source and rerun. Routing experiments occur in transaction-local build
 workspaces; only an independently accepted chain is promoted under
 `03_src/route/` and replayed into `04_kicad`.
 
+A research candidate is a source-derived, separately identified subject with
+its own exact board, rules and receipts. One coordinator owns integration;
+workers return changes against that subject. A review receipt records a scoped
+claim about its inputs, not permission to overwrite generated current state.
+Retain reproducible source/evidence through the existing experiment store or
+project-governed records before deleting disposable workspace files. Only a
+reviewed source change followed by the owning rebuild/promotion path changes
+the canonical board; only release sealing creates an immutable release.
+
 Do not keep `*_old`, `*_v2`, backup, or experiment siblings. Git preserves
 iterations; one canonical current artifact prevents ambiguous writers and
 release inputs.
