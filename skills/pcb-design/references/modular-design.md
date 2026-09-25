@@ -98,6 +98,23 @@ and assembly evidence; a generic on-board witness does not waive that datum.
 Viable raw capacity remains `INCOMPLETE` until later evidence closes these
 obligations; the coarse checker grants neither route nor engineering acceptance.
 
+When a crossing net visits three ordered block owners, do not count each
+inter-block span as a separate top-level route. The schema-2 coarse checker
+supports an opt-in `linked_paths` series model with one reservation, exact
+source-to-native pad coverage, one intermediate pad join per net, and either a
+physical then unresolved stage or two physical stages. Each physical stage
+must independently clear native obstacles and demand at least one rough slot
+per signal net; each stage retains its own P2 pad-access and filled-return
+obligations. The linked result remains `INCOMPLETE` and has no aggregated
+capacity. A branched net, including fused connector contacts, needs an exact
+`unresolved_multiterminal_branches` tree when its physical launch cannot yet
+be proved and the checker can verify at least three owner-contained native
+endpoints. Keep every native endpoint and P2/P3 obligation in that tree and
+leave its geometry and capacity null. If an endpoint lies outside its declared
+owner or a two-terminal crossing has no valid corridor, repair the source
+ownership or handoff instead of inventing a branch. Neither model substitutes
+for a later route, return-path, mechanical, or independent P1 review.
+
 When a modular plan declares `connector_full`, every P3 item and the P5 item
 must name that external prerequisite unless it explicitly supplies `p3_scope`.
 That optional closed mapping contains `affected_work_items` (P3 ids) and
