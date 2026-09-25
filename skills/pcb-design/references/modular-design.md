@@ -152,7 +152,14 @@ physical then unresolved stage or two physical stages. Each physical stage
 must independently clear native obstacles and demand at least one rough slot
 per signal net; each stage retains its own P2 pad-access and filled-return
 obligations. The linked result remains `INCOMPLETE` and has no aggregated
-capacity. A branched net, including fused connector contacts, needs an exact
+capacity. Where one linked first stage shares a physical corridor with an
+ordinary reservation, declare that exact host, keep the net sets disjoint,
+and screen their joint slot demand. A segmented fixed-pad access is checked
+piece by piece; the shared corridor and its two-stage path retain separate
+P2 access/return debts and one exact terminal/tree obligation, without
+counting the same physical width twice. This permits one bounded final-owner
+fanout, not arbitrary branching or another P1 acceptance path. A branched
+net outside that bounded shape, including fused connector contacts, needs an exact
 `unresolved_multiterminal_branches` tree when its physical launch cannot yet
 be proved and the checker can verify at least three owner-contained native
 endpoints. Keep every native endpoint and P2/P3 obligation in that tree and

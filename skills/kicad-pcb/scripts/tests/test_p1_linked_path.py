@@ -441,6 +441,167 @@ class LinkedPathTest(unittest.TestCase):
         self.assertIn('linked physical stage identity reused',
                       '\n'.join(self.run_case()['errors']))
 
+    def test_segmented_fixed_access_for_physical_stage_pending(self):
+        """A source-bound L-shaped fixed access should retain one path credit."""
+        self.make_second_physical()
+        self.source['linked_paths'][0]['stages'][0]['fixed_accesses'][0].update(
+            bbox=[7.3, 4.2, 8.0, 5],
+            segments=[[7.3, 4.2, 7.7, 4.5],
+                      [7.3, 4.5, 8.0, 4.9],
+                      [7.6, 4.9, 8.0, 5]])
+        result = self.run_case()
+        self.assertEqual(result['errors'], [])
+
+    def make_shared_host_case(self):
+        """One disjoint-net ordinary host and one linked three-terminal net."""
+        self.make_second_physical()
+        path=self.source['linked_paths'][0]
+        path['nets']=['DP']
+        path['joins']=[j for j in path['joins'] if j['net']=='DP']
+        for stage in path['stages']:
+            stage['nets']=['DP']
+            stage['affected']=[e for e in stage['affected'] if e['net']=='DP']
+            stage['p2_obligations']=[e for e in stage['p2_obligations'] if e['net']=='DP']
+            if stage['kind']=='physical_corridor':
+                stage['fixed_accesses']=[e for e in stage['fixed_accesses'] if e['net']=='DP']
+        path['stages'][0]['faces'][1]['bbox']=[7.8,6,8.2,6.2]
+        self.source['allocations'][0]['coverage_nets']=['DP']
+        self.source['allocations'][0]['demands'][0]['nets']=['DP']
+        del self.source['allocations'][0]['endpoints']['DN']
+        self.interfaces['interfaces']=[e for e in self.interfaces['interfaces'] if e['net']!='DN']
+        self.allocations[0]['coverage_nets']=['DP']
+        self.allocations[0]['linked_paths'][0]['nets']=['DP']
+        for ref in ('J', 'E'):
+            self.add_pad(ref, 3, 'ALT', 0)
+        self.interfaces['interfaces'].append(
+            {'net':'ALT','endpoints':{'edge':['J.3'],'front':['E.3']}})
+        allocation = self.source['allocations'][0]
+        allocation['coverage_nets'].append('ALT')
+        allocation['demands'].append({'id':'host_demand','nets':['ALT'],'slots':1})
+        allocation['endpoints']['ALT']={'edge':['J.3'],'front':['E.3']}
+        affected=[{'source_pad':f'{ref}.3','native_pad':f'{ref}.3',
+                   'net':'ALT','block':owner}
+                  for ref,owner in [('J','edge'),('E','front')]]
+        host=copy.deepcopy(self.source['linked_paths'][0]['stages'][0])
+        host.update(id='host',nets=['ALT'],reservation_id='host_trunk',
+                    affected=affected)
+        for key in ('kind','fixed_accesses','axis','slot_pitch_mm','demand_slots'):
+            del host[key]
+        host['p2_obligations']=[{'status':'P2_REQUIRED',**e,'corridor_id':'host',
+            'region_face':'south' if e['block']=='edge' else 'north',
+            'layer':'F.Cu','to_reservation':'host_trunk'} for e in affected]
+        host['return_obligation']['corridor_id']='host'
+        self.source['integration_corridors']=[host]
+        row=self.allocations[0]
+        row['coverage_nets'].append('ALT')
+        row['reservations'] += [
+            {'id':'host_trunk','kind':'integration_corridor','corridor_id':'host',
+             'owner':'board_integration','region_id':'gap','layer':'F.Cu',
+             'bbox':[7,5,9,6],'nets':['ALT']},
+            {'id':'host_access','kind':'fixed_connector_access',
+             'corridor_id':'host','layer':'F.Cu','bbox':[7.8,4.2,8.2,5],
+             'nets':['ALT']}]
+        row['boundary_witnesses'] += [
+            {'kind':'fixed_connector_access','corridor_id':'host',
+             'source':'J.3','native':'J.3','net':'ALT','block':'edge',
+             'face':'north','layer':'F.Cu','region_face':'south',
+             'boundary_bbox':[7.8,3.8,8.2,4.2],
+             'reservation_id':'host_access','p2_obligation':host['p2_obligations'][0]},
+            {'kind':'integration_corridor_handoff','corridor_id':'host',
+             'source':'E.3','native':'E.3','net':'ALT','block':'front',
+             'face':'south','layer':'F.Cu','region_face':'north',
+             'boundary_bbox':[7.8,6,8.2,6.2],
+             'reservation_id':'host_trunk','p2_obligation':host['p2_obligations'][1]}]
+        baseline=self.run_case()
+        self.assertIn('physical stage overlaps ordinary reservation',
+                      '\n'.join(baseline['errors']))
+        path['terminal_count']=3
+        path['minimum_tree_edges']=2
+        path['tree_obligation']={'status':'P3_REQUIRED','net':'DP',
+            'terminal_count':3,'minimum_tree_edges':2,
+            'proof':'one_connected_native_net_without_unrelated_branches'}
+        self.source['linked_paths'][0]['stages'][0]['shared_with']='host_trunk'
+
+    def test_linked_stage_explicit_host_sharing_pending(self):
+        self.make_shared_host_case()
+        result=self.run_case()
+        self.assertEqual(result['errors'], [], result['allocations'])
+        rough=result['allocations'][0]['linked_paths'][0]['stages'][0]['rough_capacity']
+        self.assertEqual(rough['nets'], ['ALT', 'DP'])
+        self.assertEqual(rough['demand_slots'], 2)
+
+    def test_branch_declaration_without_shared_host_fails(self):
+        self.make_shared_host_case()
+        del self.source['linked_paths'][0]['stages'][0]['shared_with']
+        self.assertIn('branch declaration requires shared host',
+                      '\n'.join(self.run_case()['errors']))
+
+    def test_shared_host_selector_geometry_and_net_tamper_fail(self):
+        self.make_shared_host_case()
+        first=self.source['linked_paths'][0]['stages'][0]
+        first['shared_with']='unknown_host'
+        self.assertIn('shared host reservation identity/owner invalid',
+                      '\n'.join(self.run_case()['errors']))
+        first['shared_with']='host_trunk'
+        first['faces'][0]['bbox']=[7.1,4.8,9,5]
+        self.assertIn('shared host source/geometry mismatch',
+                      '\n'.join(self.run_case()['errors']))
+        first['faces'][0]['bbox']=[7,4.8,9,5]
+        self.allocations[0]['reservations'][0]['nets']=['DP']
+        self.assertIn('linked path net has competing ordinary credit/witness',
+                      '\n'.join(self.run_case()['errors']))
+
+    def test_shared_host_joint_demand_and_tree_tamper_fail(self):
+        self.make_shared_host_case()
+        path=self.source['linked_paths'][0]
+        first=path['stages'][0]
+        first['demand_slots']=1
+        self.assertIn('physical stage rough capacity declaration invalid',
+                      '\n'.join(self.run_case()['errors']))
+        first['demand_slots']=2
+        path['terminal_count']=4
+        self.assertIn('shared branch terminal/tree denominator mismatch',
+                      '\n'.join(self.run_case()['errors']))
+        path['terminal_count']=3
+        path['minimum_tree_edges']=1
+        self.assertIn('shared branch terminal/tree denominator mismatch',
+                      '\n'.join(self.run_case()['errors']))
+        path['minimum_tree_edges']=2
+        path['stages'][1]['affected'].pop()
+        self.assertIn('integration endpoint denominator mismatch',
+                      '\n'.join(self.run_case()['errors']))
+
+    def test_shared_host_p2_and_return_tamper_fail(self):
+        self.make_shared_host_case()
+        first=self.source['linked_paths'][0]['stages'][0]
+        first['p2_obligations'].pop()
+        self.assertIn('integration P2 pad-to-face obligations incomplete',
+                      '\n'.join(self.run_case()['errors']))
+        endpoint=first['affected'][-1]
+        first['p2_obligations'].append({'status':'P2_REQUIRED',**endpoint,
+            'corridor_id':first['id'],'region_face':'north',
+            'layer':'F.Cu','to_reservation':first['reservation_id']})
+        first['return_obligation']={}
+        self.assertIn('integration P2 filled-reference return obligation missing',
+                      '\n'.join(self.run_case()['errors']))
+
+    def test_segmented_fixed_access_disconnection_and_pad_hit_fail(self):
+        self.make_second_physical()
+        access=self.source['linked_paths'][0]['stages'][0]['fixed_accesses'][0]
+        access.update(bbox=[7.3,4.2,8.0,5],
+                      segments=[[7.3,4.2,7.7,4.5],
+                                [7.3,4.5,8.0,4.9],
+                                [7.6,4.9,8.0,5]])
+        access['segments'][1][1]=4.55
+        self.assertIn('disconnected or overlapping waypoints',
+                      '\n'.join(self.run_case()['errors']))
+        access['segments'][1][1]=4.5
+        footprint(self.board,'OB',7.5,4.3,[('1','ALT',0)])
+        self.source['p1_fixed_refs'].append('OB')
+        self.floorplan['placement']['anchors']['OB']=[7.5,4.3,0]
+        self.assertIn('fixed access intersects native body OB',
+                      '\n'.join(self.run_case()['errors']))
+
 
 if __name__ == '__main__':
     unittest.main()

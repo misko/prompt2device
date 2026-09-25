@@ -71,8 +71,13 @@ exactly three modular owners and two ordered stages. The first is a native-
 checked physical corridor; the second is either another independently checked
 physical corridor or a geometry-free unresolved virtual span. Exact
 intermediate pads join them. Each physical stage reports separate rough
-capacity, never a sum; P2 access/return and P1 remain INCOMPLETE. Paths with
-branches or additional stages fail closed until separately implemented.
+capacity, never a sum. A first stage may explicitly share one exact ordinary
+host corridor with disjoint nets: its rough demand then counts the host and
+linked nets jointly, without duplicate reservation credit. That form binds
+the full terminal count, minimum tree edges and a P3 native-tree obligation;
+it permits fanout at the final owner but not another junction or stage. P2
+access/return and P1 remain INCOMPLETE. Other multi-junction or additional-
+stage paths fail closed until separately implemented.
 Opt-in ``access_only_portals`` screen a body/copper-free local boundary where
 a planning region overlaps a true endpoint owner's transit space. Electrical
 owners, transit owner and non-electrical planning overlaps are distinct. Every
@@ -1133,10 +1138,12 @@ def _access_only_portals(source, interfaces, board, outline, regions, zones,
 def _linked_paths(source, contract, interfaces, board, outline, regions, zones,
                   coverage, aliases, pads, owned_pads, fixed_refs, movable_refs,
                   shared_ports, physical_cells, native_pitch):
-    """Three-owner series path with independently validated stage geometry.
+    """Three-owner linked path with independently validated stage geometry.
 
     The path is one allocation reservation, not two credits. Legacy corridor
-    records are untouched, and a virtual span can never establish P1 capacity.
+    records are untouched. An exact disjoint-net ordinary host may share the
+    first physical stage with joint rough demand and one linked branch tree
+    obligation. A virtual span can never establish P1 capacity.
     """
     rows = source.get('linked_paths')
     claimed = [a for a in contract['allocations'] if a.get('linked_paths')]
@@ -1156,10 +1163,12 @@ def _linked_paths(source, contract, interfaces, board, outline, regions, zones,
                if pcbnew.IsCopperLayer(i)}
     ordinary = [(a['id'], r) for a in contract['allocations']
                 for r in a.get('reservations', [])]
+    shared_hosts_used = set()
     for path in rows:
-        if not isinstance(path, dict) or set(path) != {
-                'id', 'allocation_id', 'nets', 'owner_order', 'reservation_id',
-                'layer', 'reference_layer', 'stages', 'joins'}:
+        path_keys = {'id', 'allocation_id', 'nets', 'owner_order', 'reservation_id',
+                     'layer', 'reference_layer', 'stages', 'joins'}
+        branch_keys = {'terminal_count', 'minimum_tree_edges', 'tree_obligation'}
+        if not isinstance(path, dict) or set(path) not in (path_keys, path_keys | branch_keys):
             raise ContractError('linked path record malformed')
         ident, allocation_id, nets = path['id'], path['allocation_id'], path['nets']
         order, stages = path['owner_order'], path['stages']
@@ -1191,8 +1200,51 @@ def _linked_paths(source, contract, interfaces, board, outline, regions, zones,
                          'nets', 'reservation_id', 'affected', 'p2_obligations',
                          'return_obligation', 'fixed_accesses', 'axis',
                          'slot_pitch_mm', 'demand_slots'}
-        if not isinstance(physical, dict) or set(physical) != physical_keys:
+        shared_host_id = physical.get('shared_with') if isinstance(physical, dict) else None
+        if not isinstance(physical, dict) or set(physical) not in (
+                physical_keys, physical_keys | {'shared_with'}):
             raise ContractError(f'{ident}: physical stage schema/outcome fields invalid')
+        if shared_host_id is None and set(path) != path_keys:
+            raise ContractError(f'{ident}: branch declaration requires shared host')
+        shared_host = None
+        host_demand_slots = 0
+        if shared_host_id is not None:
+            if (not isinstance(shared_host_id, str) or not shared_host_id or
+                    shared_host_id in shared_hosts_used or len(nets) != 1 or
+                    set(path) != path_keys | branch_keys):
+                raise ContractError(f'{ident}: shared stage branch declaration invalid')
+            shared_hosts_used.add(shared_host_id)
+            matches = [(name, r) for name, r in ordinary if r.get('id') == shared_host_id]
+            host_source = [r for r in source.get('integration_corridors', [])
+                           if r.get('reservation_id') == shared_host_id]
+            if (len(matches) != 1 or matches[0][0] != allocation_id or
+                    len(host_source) != 1):
+                raise ContractError(f'{ident}: shared host reservation identity/owner invalid')
+            shared_host = matches[0][1]
+            host = host_source[0]
+            if (shared_host.get('kind') != 'integration_corridor' or
+                    shared_host.get('corridor_id') != host.get('id') or
+                    shared_host.get('layer') != physical.get('layer') or
+                    host.get('layer') != physical.get('layer') or
+                    host.get('reference_layer') != physical.get('reference_layer') or
+                    shared_host.get('region_id') != physical.get('region_id') or
+                    host.get('region_id') != physical.get('region_id') or
+                    shared_host.get('bbox') != regions.get(physical.get('region_id')) or
+                    host.get('participants') != physical.get('participants') or
+                    host.get('faces') != physical.get('faces') or
+                    host.get('nets') != shared_host.get('nets')):
+                raise ContractError(f'{ident}: shared host source/geometry mismatch')
+            host_nets = set(shared_host['nets'])
+            if not host_nets or host_nets & set(nets):
+                raise ContractError(f'{ident}: shared host net is duplicate or empty')
+            host_demands = [d for d in next(a for a in source['allocations']
+                                             if a['id'] == allocation_id).get('demands', [])
+                            if set(d.get('nets', [])) == host_nets]
+            if (len(host_demands) != 1 or
+                    type(host_demands[0].get('slots')) is not int or
+                    host_demands[0]['slots'] < len(host_nets)):
+                raise ContractError(f'{ident}: shared host demand missing')
+            host_demand_slots = host_demands[0]['slots']
         if (physical.get('kind') != 'physical_corridor' or
                 physical.get('participants') != order[:2] or
                 physical.get('allocation_id') != allocation_id or
@@ -1263,6 +1315,7 @@ def _linked_paths(source, contract, interfaces, board, outline, regions, zones,
         for _, reservation in ordinary:
             if (reservation.get('layer') == path['layer'] and
                     reservation.get('kind') not in UNRESOLVED_KINDS and
+                    reservation is not shared_host and
                     any(intersects(rectangle(reservation.get('bbox'), 'ordinary reservation'),
                                    stage['bbox']) for stage in
                         ([corridor, second_corridor] if second_physical else [corridor]))):
@@ -1273,8 +1326,9 @@ def _linked_paths(source, contract, interfaces, board, outline, regions, zones,
             raise ContractError(f'{ident}: physical stage access/capacity declaration missing')
         access_by_source = {}
         for access in physical['fixed_accesses']:
-            if (not isinstance(access, dict) or set(access) !=
-                    {'source_pad', 'native_pad', 'net', 'block', 'face', 'bbox'} or
+            access_keys = {'source_pad', 'native_pad', 'net', 'block', 'face', 'bbox'}
+            if (not isinstance(access, dict) or set(access) not in
+                    (access_keys, access_keys | {'segments'}) or
                     access['source_pad'] in access_by_source):
                 raise ContractError(f'{ident}: fixed access malformed or duplicate')
             access_by_source[access['source_pad']] = access
@@ -1309,46 +1363,57 @@ def _linked_paths(source, contract, interfaces, board, outline, regions, zones,
                             aliases, pads, outline, regions, fixed_refs,
                             shared_ports, {physical['id']: corridor}, {}, physical_cells)
             area = rectangle(access['bbox'], f'{source_pad} fixed access')
+            owner_region = rectangle(
+                regions[witness.get('physical_cell_id') or endpoint['block']],
+                'fixed access owner')
+            target = {'kind': ('fixed_connector_access_segmented' if 'segments' in access
+                               else 'fixed_connector_access'), 'bbox': area}
+            if 'segments' in access:
+                target['segments'] = access['segments']
+            shapes = _fixed_access_shapes(target, witness, corridor['bbox'], owner_region)
             face = next(f for f in corridor['faces'] if f['block'] == endpoint['block'])
             approach = {'north': 'south', 'south': 'north',
                         'east': 'west', 'west': 'east'}[face['region_face']]
-            if (not contains(rectangle(regions[witness.get('physical_cell_id') or endpoint['block']],
-                                       'fixed access owner'), area) or
+            if (not contains(owner_region, area) or
                     not _witness_touches_reservation(witness, {'bbox': area}) or
                     not intersects(area, face['bbox']) or
                     not _witness_touches_reservation(
                         {'boundary_bbox': area, 'face': approach}, {'bbox': corridor['bbox']})):
                 raise ContractError(f'{source_pad}: fixed access does not join source face')
             for other_source, other_area in access_shapes:
-                if intersects(area, other_area):
+                if any(intersects(shape, other_area) for shape in shapes):
                     raise ContractError(f'{source_pad}: fixed access overlaps {other_source}')
-            if any(layer == path['layer'] and intersects(area, prior)
+            if any(layer == path['layer'] and any(intersects(shape, prior) for shape in shapes)
                    for layer, prior in used_stage_areas + used_access_areas):
                 raise ContractError(f'{source_pad}: fixed access overlaps another linked path')
             for _, reservation in ordinary:
                 if (reservation.get('layer') == path['layer'] and
                         reservation.get('kind') not in UNRESOLVED_KINDS and
-                        intersects(area, rectangle(reservation.get('bbox'), 'ordinary reservation'))):
+                        any(intersects(shape, other) for shape in shapes
+                            for other in (reservation.get('segments', [])
+                                          if reservation.get('kind') == 'fixed_connector_access_segmented'
+                                          else [rectangle(reservation.get('bbox'), 'ordinary reservation')]))):
                     raise ContractError(f'{source_pad}: fixed access overlaps ordinary reservation')
-            access_shapes.append((source_pad, area))
-            for fp in board.GetFootprints():
-                ref = fp.GetReference()
-                if ref != native_pad.rsplit('.', 1)[0] and intersects(area, _physical_envelope(fp)):
-                    raise ContractError(f'{source_pad}: fixed access intersects native body {ref}')
-                if any(f'{ref}.{pad.GetNumber()}' != native_pad and
-                       pad.IsOnLayer(board.GetLayerID(path['layer'])) and
-                       intersects(area, box_mm(pad.GetBoundingBox())) for pad in fp.Pads()):
-                    raise ContractError(f'{source_pad}: fixed access intersects foreign pad {ref}')
-            if any(item.IsOnLayer(board.GetLayerID(path['layer'])) and
-                   intersects(area, box_mm(item.GetBoundingBox())) for item in board.GetTracks()):
-                raise ContractError(f'{source_pad}: fixed access intersects native copper')
-            if any(not zone.GetIsRuleArea() and
-                   _filled_zone_intersects(zone, board.GetLayerID(path['layer']), area)
-                   for zone in zones):
-                raise ContractError(f'{source_pad}: fixed access intersects filled copper')
-            if any(zone.GetIsRuleArea() and intersects(area, box_mm(zone.GetBoundingBox()))
-                   for zone in zones):
-                raise ContractError(f'{source_pad}: fixed access intersects rule area')
+            access_shapes.extend((source_pad, shape) for shape in shapes)
+            for shape in shapes:
+                for fp in board.GetFootprints():
+                    ref = fp.GetReference()
+                    if ref != native_pad.rsplit('.', 1)[0] and intersects(shape, _physical_envelope(fp)):
+                        raise ContractError(f'{source_pad}: fixed access intersects native body {ref}')
+                    if any(f'{ref}.{pad.GetNumber()}' != native_pad and
+                           pad.IsOnLayer(board.GetLayerID(path['layer'])) and
+                           intersects(shape, box_mm(pad.GetBoundingBox())) for pad in fp.Pads()):
+                        raise ContractError(f'{source_pad}: fixed access intersects foreign pad {ref}')
+                if any(item.IsOnLayer(board.GetLayerID(path['layer'])) and
+                       intersects(shape, box_mm(item.GetBoundingBox())) for item in board.GetTracks()):
+                    raise ContractError(f'{source_pad}: fixed access intersects native copper')
+                if any(not zone.GetIsRuleArea() and
+                       _filled_zone_intersects(zone, board.GetLayerID(path['layer']), shape)
+                       for zone in zones):
+                    raise ContractError(f'{source_pad}: fixed access intersects filled copper')
+                if any(zone.GetIsRuleArea() and intersects(shape, box_mm(zone.GetBoundingBox()))
+                       for zone in zones):
+                    raise ContractError(f'{source_pad}: fixed access intersects rule area')
         if (not isinstance(second['affected'], list) or
                 any(not isinstance(e, dict) or set(e) !=
                     {'source_pad', 'native_pad', 'net', 'block'} for e in second['affected'])):
@@ -1396,6 +1461,16 @@ def _linked_paths(source, contract, interfaces, board, outline, regions, zones,
         if actual_all != expected_all:
             raise ContractError(f'{ident}: path terminal denominator mismatch')
         _linked_native_pad_census(ident, expected_all, pads, set(nets))
+        if shared_host is not None:
+            terminals = len(expected_all)
+            if (path['terminal_count'] != terminals or
+                    path['minimum_tree_edges'] != terminals - 1 or
+                    path['tree_obligation'] != {
+                        'status': 'P3_REQUIRED', 'net': nets[0],
+                        'terminal_count': terminals,
+                        'minimum_tree_edges': terminals - 1,
+                        'proof': 'one_connected_native_net_without_unrelated_branches'}):
+                raise ContractError(f'{ident}: shared branch terminal/tree denominator mismatch')
         physical_set = {(e['source_pad'], e['net'], e['block']) for e in physical['affected']}
         second_set = {(e['source_pad'], e['net'], e['block']) for e in second['affected']}
         shared = physical_set & second_set
@@ -1414,11 +1489,12 @@ def _linked_paths(source, contract, interfaces, board, outline, regions, zones,
         if (isinstance(pitch, bool) or not isinstance(pitch, (int, float)) or
                 not math.isfinite(pitch) or pitch < native_pitch or
                 isinstance(demand, bool) or
-                not isinstance(demand, int) or demand < len(nets)):
+                not isinstance(demand, int) or demand < len(nets) + host_demand_slots):
             raise ContractError(f'{ident}: physical stage rough capacity declaration invalid')
         rough = _coarse_reservation(board, {'id': physical['id'], 'kind': 'signal',
                                           'layer': path['layer'], 'bbox': corridor['bbox'],
-                                          'axis': physical['axis'], 'nets': nets,
+                                          'axis': physical['axis'],
+                                          'nets': shared_host['nets'] + nets if shared_host else nets,
                                           'demand_slots': demand, 'slot_pitch_mm': pitch},
                                     outline, fixed_refs, movable_refs, zones, native_pitch,
                                     power_boundary=False, power_like_nets=set())
