@@ -1,0 +1,22 @@
+{
+  "allocation_denominator": 0,
+  "allocations": [],
+  "diagnostics": [],
+  "errors": [
+    "adc_reference: unassigned native footprint/pad C_LDO_NR5 enters physical cell"
+  ],
+  "hashes": {
+    "aliases": "a6baba8bd4e389c146250a2a2ef5f7e9b09f63526e71dbdd05be8bca9b7b2c2e",
+    "board": "8e620def0b403fda7635135672afec923c2c23bc9844b3f96102e96d4d5eca10",
+    "contract": "eaf86cb9b380fd1cd91ebd9b476d6bb8da70cbdb8dbb488111d8494dda643e28",
+    "floorplan": "2d91046aebcea87e22191866599ae2f2224998402ed2c8cbd592f08d5e9bb8dd",
+    "interfaces": "75c3a517cea50dd6b5745fae96b051d334debd48aac143becaca3d5fe3fc35dc",
+    "source": "dee200a2a98f50209be8e95041bad325f86575939e4d18f04a7e09fef3ceab4d"
+  },
+  "kind": "p1-coarse-reservation-screen",
+  "p1_accepted": false,
+  "reason": "independent filled-reference, effective-capacity and P1 review not supplied",
+  "routing_realized": false,
+  "schema": 2,
+  "status": "FAIL"
+}
