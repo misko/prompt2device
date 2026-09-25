@@ -1,0 +1,180 @@
+{
+  "analog_ch7_ch8_port_zones_avoided": true,
+  "baseline_physical_collision_pair_count": 3,
+  "candidate_physical_collision_pair_count": 3,
+  "candidate_poses_mm_deg": {
+    "C_XU_USB18": [
+      198.6,
+      91.5,
+      0.0
+    ],
+    "C_XU_VDD_104": [
+      197.3,
+      88.9,
+      0.0
+    ],
+    "R_ADC_I2C_SCL_B_PU": [
+      170.8,
+      91.5,
+      0.0
+    ]
+  },
+  "candidate_resistor_reference_text_mm": [
+    150.0,
+    90.0
+  ],
+  "endpoint_trunk_exemptions": [
+    "U_TDM_XLATE",
+    "U_XU"
+  ],
+  "fixed_poses_identical": true,
+  "fixed_ref_count": 27,
+  "full_bbox_mm": {
+    "C_XU_USB18": [
+      191.151428,
+      90.9384,
+      201.034524,
+      93.50825
+    ],
+    "C_XU_VDD_104": [
+      190.701251,
+      84.439313,
+      199.734524,
+      90.90825
+    ],
+    "R_ADC_I2C_SCL_B_PU": [
+      146.297679,
+      89.539313,
+      173.091667,
+      93.51825
+    ]
+  },
+  "gnd_reference": [
+    {
+      "filled": false,
+      "layers": [
+        "In1.Cu"
+      ],
+      "net": "GND"
+    }
+  ],
+  "hashes": {
+    "capacity_helper": "2cdd5a2dc58680409391f89f8619a564c2de0b591aa27618d665dfe9a1797e8e",
+    "floorplan": "0032b1202f5742b6575198d27ea50629826d49cf81cf12a31fead8a2929d9868",
+    "original_board": "8e620def0b403fda7635135672afec923c2c23bc9844b3f96102e96d4d5eca10",
+    "rules": "191e5580a6ddf56bc9670aff3593c9e9a02d91e75c0c79998b500955050e82a3",
+    "variant_board": "84222b009b4d3ed898bc12636d4940d3c8f93c0c1a443d6ae26f8671b04e8c77"
+  },
+  "kind": "ti-tdm-xu-three-reference-research",
+  "lane": {
+    "bbox_mm": [
+      182.475,
+      93.6,
+      199.825,
+      100.0
+    ],
+    "capacity_slots": 6,
+    "connected_width_mm": 2.9384,
+    "demand_slots": 4,
+    "foreign_full_footprints": [
+      "C_XU_VDDIO_109",
+      "C_XU_VDD_105",
+      "C_XU_VDD_106",
+      "C_XU_VDD_113"
+    ],
+    "slot_pitch_mm": 0.45
+  },
+  "limitation": "Raw full-envelope corridor only; terminal fanout, routed topology, XU decoupling loop integrity and filled GND return are not proved.",
+  "native_drc_delta": {
+    "baseline_unconnected_items": 499,
+    "baseline_violations": 14,
+    "candidate_unconnected_items": 499,
+    "candidate_violations": 14,
+    "violation_set_identical": true
+  },
+  "nearest_same_net_xu_pad": {
+    "candidate": {
+      "C_XU_USB18": {
+        "nearest_xu_pad": "89",
+        "pad_center_distance_mm": 7.030064,
+        "power_net": "N1V8"
+      },
+      "C_XU_VDD_104": {
+        "nearest_xu_pad": "95",
+        "pad_center_distance_mm": 6.81108,
+        "power_net": "N0V9"
+      }
+    },
+    "original": {
+      "C_XU_USB18": {
+        "nearest_xu_pad": "109",
+        "pad_center_distance_mm": 6.134721,
+        "power_net": "N1V8"
+      },
+      "C_XU_VDD_104": {
+        "nearest_xu_pad": "104",
+        "pad_center_distance_mm": 2.782949,
+        "power_net": "N0V9"
+      }
+    }
+  },
+  "new_physical_collision_pairs": [],
+  "original_band_lane": {
+    "bbox_mm": [
+      182.475,
+      94.0,
+      199.825,
+      100.0
+    ],
+    "capacity_slots": 5,
+    "connected_width_mm": 2.5384,
+    "demand_slots": 4,
+    "slot_pitch_mm": 0.45
+  },
+  "original_poses_mm_deg": {
+    "C_XU_USB18": [
+      198.6,
+      93.1,
+      0.0
+    ],
+    "C_XU_VDD_104": [
+      198.6,
+      96.0,
+      0.0
+    ],
+    "R_ADC_I2C_SCL_B_PU": [
+      170.8,
+      91.5,
+      0.0
+    ]
+  },
+  "original_resistor_reference_text_mm": [
+    179.8,
+    100.5
+  ],
+  "p1_accepted": false,
+  "pad_net_layer_identity_identical": true,
+  "physical_bbox_mm": {
+    "C_XU_USB18": [
+      197.645,
+      90.995,
+      199.555,
+      92.005
+    ],
+    "C_XU_VDD_104": [
+      196.345,
+      88.395,
+      198.255,
+      89.405
+    ],
+    "R_ADC_I2C_SCL_B_PU": [
+      169.825,
+      90.985,
+      171.775,
+      92.015
+    ]
+  },
+  "routing_realized": false,
+  "schema": 1,
+  "status": "INCOMPLETE"
+}
