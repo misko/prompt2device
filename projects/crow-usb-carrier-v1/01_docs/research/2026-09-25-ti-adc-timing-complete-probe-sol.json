@@ -1,0 +1,944 @@
+{
+  "coverage_nets": [
+    "ADC_BCLK",
+    "ADC_FSYNC",
+    "ADC_DOUT1",
+    "AUDIO_MCLK_1V8",
+    "TDM_BCLK_1V8",
+    "TDM_DATA_1V8",
+    "TDM_FSYNC_1V8",
+    "ADC_I2C_SCL",
+    "ADC_I2C_SDA",
+    "ADC_READY",
+    "AUDIO_EN",
+    "XU_I2C_SCL_1V8",
+    "XU_I2C_SDA_1V8",
+    "ADC_DIGITAL_BAD"
+  ],
+  "endpoint_count": 54,
+  "hashes": {
+    "board": "8e620def0b403fda7635135672afec923c2c23bc9844b3f96102e96d4d5eca10",
+    "capacity_checker": "2cdd5a2dc58680409391f89f8619a564c2de0b591aa27618d665dfe9a1797e8e",
+    "modular_plan": "75c3a517cea50dd6b5745fae96b051d334debd48aac143becaca3d5fe3fc35dc",
+    "source": "191e5580a6ddf56bc9670aff3593c9e9a02d91e75c0c79998b500955050e82a3"
+  },
+  "kind": "ti-adc-timing-complete-endpoint-research",
+  "lane_screens": [
+    {
+      "bbox_mm": [
+        140.0,
+        92.5,
+        174.35,
+        111.0
+      ],
+      "demand_slots": 3,
+      "foreign_obstacles": [
+        "C_ADC_A_DREG_100N:body",
+        "C_ADC_A_IOVDD_10U:body",
+        "C_ADC_A_IOVDD_10U:pad1",
+        "C_ADC_A_IOVDD_10U:pad2",
+        "C_ADC_B_IOVDD_100N:body",
+        "C_ADC_B_IOVDD_100N:pad1",
+        "C_ADC_B_IOVDD_100N:pad2",
+        "C_ADC_B_IOVDD_10U:body",
+        "C_ADC_B_IOVDD_10U:pad1",
+        "C_ADC_B_IOVDD_10U:pad2",
+        "C_U_1V8_OUT_1:body",
+        "C_U_1V8_OUT_1:pad1",
+        "C_U_1V8_OUT_1:pad2",
+        "C_U_CORE_OUT_1:body",
+        "C_U_CORE_OUT_1:pad1",
+        "C_U_CORE_OUT_1:pad2",
+        "L_U_1V8:body",
+        "L_U_1V8:pad1",
+        "L_U_1V8:pad2",
+        "R_1V8_FB_BOTTOM:body",
+        "R_1V8_FB_BOTTOM:pad1",
+        "R_1V8_FB_BOTTOM:pad2",
+        "R_1V8_FB_TOP:body",
+        "R_1V8_FB_TOP:pad1",
+        "R_1V8_FB_TOP:pad2",
+        "R_3V3X_FB_BOTTOM:body",
+        "R_3V3X_FB_BOTTOM:pad1",
+        "R_3V3X_FB_BOTTOM:pad2",
+        "R_ADC_I2C_SDA_B_PU:body",
+        "R_ADC_I2C_SDA_B_PU:pad1",
+        "R_ADC_I2C_SDA_B_PU:pad2",
+        "R_ADC_OK_BOT:body",
+        "R_ADC_OK_BOT:pad1",
+        "R_ADC_OK_BOT:pad2",
+        "R_BCLK:body",
+        "R_BCLK:pad1",
+        "R_BCLK:pad2",
+        "R_CORE_FB_BOTTOM:body",
+        "R_CORE_FB_BOTTOM:pad1",
+        "R_CORE_FB_BOTTOM:pad2",
+        "R_CORE_FB_TOP:body",
+        "R_CORE_FB_TOP:pad1",
+        "R_CORE_FB_TOP:pad2",
+        "R_TDM_OE_PU:body",
+        "R_TDM_OE_PU:pad1",
+        "R_TDM_OE_PU:pad2",
+        "R_XU_RST_PU:body",
+        "R_XU_RST_PU:pad1",
+        "R_XU_RST_PU:pad2",
+        "U_ADC_I2C_XLATE:body",
+        "U_ADC_I2C_XLATE:pad1",
+        "U_ADC_I2C_XLATE:pad2",
+        "U_ADC_I2C_XLATE:pad3",
+        "U_ADC_I2C_XLATE:pad4",
+        "U_ADC_I2C_XLATE:pad5",
+        "U_ADC_I2C_XLATE:pad6",
+        "U_ADC_I2C_XLATE:pad7",
+        "U_ADC_I2C_XLATE:pad8",
+        "U_BCLK_INV:body",
+        "U_BCLK_INV:pad3",
+        "U_BCLK_INV:pad4",
+        "U_FSYNC_FF1:body",
+        "U_FSYNC_FF1:pad1",
+        "U_FSYNC_FF1:pad2",
+        "U_FSYNC_FF1:pad3",
+        "U_FSYNC_FF1:pad4",
+        "U_FSYNC_FF1:pad5",
+        "U_FSYNC_FF1:pad6",
+        "U_FSYNC_FF1:pad7",
+        "U_FSYNC_FF1:pad8",
+        "U_TDM_XLATE:body"
+      ],
+      "id": "adc_to_tdm_broad",
+      "minimum_cross_section": {
+        "blockers": [
+          {
+            "bbox_mm": [
+              138.815,
+              91.615,
+              140.685,
+              92.585
+            ],
+            "ref": "C_ADC_A_DREG_100N:body"
+          },
+          {
+            "bbox_mm": [
+              139.245,
+              101.375,
+              141.255,
+              104.825
+            ],
+            "ref": "C_ADC_B_IOVDD_10U:body"
+          },
+          {
+            "bbox_mm": [
+              139.525,
+              103.55,
+              140.975,
+              104.55
+            ],
+            "ref": "C_ADC_B_IOVDD_10U:pad1"
+          },
+          {
+            "bbox_mm": [
+              139.525,
+              101.65,
+              140.975,
+              102.65
+            ],
+            "ref": "C_ADC_B_IOVDD_10U:pad2"
+          },
+          {
+            "bbox_mm": [
+              140.265,
+              105.665,
+              141.235,
+              107.535
+            ],
+            "ref": "C_ADC_B_IOVDD_100N:body"
+          },
+          {
+            "bbox_mm": [
+              140.245,
+              93.375,
+              142.255,
+              96.825
+            ],
+            "ref": "C_ADC_A_IOVDD_10U:body"
+          }
+        ],
+        "free_y_intervals_mm": [
+          [
+            92.585,
+            93.375
+          ],
+          [
+            96.825,
+            101.375
+          ],
+          [
+            104.825,
+            105.665
+          ],
+          [
+            107.535,
+            111.0
+          ]
+        ],
+        "reachable_width_mm": 4.55,
+        "x_mm": 140.3525
+      },
+      "raw_capacity_slots": 10,
+      "raw_connected_width_mm": 4.55,
+      "status": "INCOMPLETE"
+    },
+    {
+      "bbox_mm": [
+        182.475,
+        94.0,
+        199.825,
+        100.0
+      ],
+      "demand_slots": 4,
+      "foreign_obstacles": [
+        "C_XU_VDDIO_109:body",
+        "C_XU_VDDIO_109:pad1",
+        "C_XU_VDDIO_109:pad2",
+        "C_XU_VDD_104:body",
+        "C_XU_VDD_104:pad1",
+        "C_XU_VDD_104:pad2",
+        "C_XU_VDD_105:body",
+        "C_XU_VDD_105:pad1",
+        "C_XU_VDD_105:pad2",
+        "C_XU_VDD_106:body",
+        "C_XU_VDD_106:pad1",
+        "C_XU_VDD_106:pad2",
+        "C_XU_VDD_113:body"
+      ],
+      "id": "tdm_to_xu_west",
+      "minimum_cross_section": {
+        "blockers": [
+          {
+            "bbox_mm": [
+              197.665,
+              99.915,
+              199.535,
+              100.885
+            ],
+            "ref": "C_XU_VDD_113:body"
+          },
+          {
+            "bbox_mm": [
+              197.665,
+              95.515,
+              199.535,
+              96.485
+            ],
+            "ref": "C_XU_VDD_104:body"
+          },
+          {
+            "bbox_mm": [
+              197.665,
+              97.715,
+              199.535,
+              98.685
+            ],
+            "ref": "C_XU_VDD_106:body"
+          }
+        ],
+        "free_y_intervals_mm": [
+          [
+            94.0,
+            95.515
+          ],
+          [
+            96.485,
+            97.715
+          ],
+          [
+            98.685,
+            99.915
+          ]
+        ],
+        "reachable_width_mm": 1.515,
+        "x_mm": 197.7525
+      },
+      "raw_capacity_slots": 3,
+      "raw_connected_width_mm": 1.515,
+      "status": "FAIL"
+    }
+  ],
+  "net_count": 14,
+  "p1_accepted": false,
+  "reason": "54/54 native endpoints verified, but no complete 14-net physical reservation/branch graph or GND return proof",
+  "red_missing_adc_b_rejected": true,
+  "routing_realized": false,
+  "schema": 1,
+  "status": "INCOMPLETE",
+  "terminals": [
+    {
+      "center_mm": [
+        136.75,
+        94.1
+      ],
+      "layer": "F.Cu",
+      "native": "U_ADC_A.22",
+      "net": "ADC_BCLK",
+      "owner": "adc_reference",
+      "source": "U_ADC_A.22"
+    },
+    {
+      "center_mm": [
+        136.75,
+        106.1
+      ],
+      "layer": "F.Cu",
+      "native": "U_ADC_B.22",
+      "net": "ADC_BCLK",
+      "owner": "adc_reference",
+      "source": "U_ADC_B.22"
+    },
+    {
+      "center_mm": [
+        164.31,
+        92.4
+      ],
+      "layer": "F.Cu",
+      "native": "R_BCLK.2",
+      "net": "ADC_BCLK",
+      "owner": "audio_clock_tdm",
+      "source": "R_BCLK.2"
+    },
+    {
+      "center_mm": [
+        136.25,
+        94.1
+      ],
+      "layer": "F.Cu",
+      "native": "U_ADC_A.23",
+      "net": "ADC_FSYNC",
+      "owner": "adc_reference",
+      "source": "U_ADC_A.23"
+    },
+    {
+      "center_mm": [
+        136.25,
+        106.1
+      ],
+      "layer": "F.Cu",
+      "native": "U_ADC_B.23",
+      "net": "ADC_FSYNC",
+      "owner": "adc_reference",
+      "source": "U_ADC_B.23"
+    },
+    {
+      "center_mm": [
+        176.01,
+        85.9
+      ],
+      "layer": "F.Cu",
+      "native": "R_FSYNC.2",
+      "net": "ADC_FSYNC",
+      "owner": "audio_clock_tdm",
+      "source": "R_FSYNC.2"
+    },
+    {
+      "center_mm": [
+        137.25,
+        94.1
+      ],
+      "layer": "F.Cu",
+      "native": "U_ADC_A.21",
+      "net": "ADC_DOUT1",
+      "owner": "adc_reference",
+      "source": "U_ADC_A.21"
+    },
+    {
+      "center_mm": [
+        137.25,
+        106.1
+      ],
+      "layer": "F.Cu",
+      "native": "U_ADC_B.21",
+      "net": "ADC_DOUT1",
+      "owner": "adc_reference",
+      "source": "U_ADC_B.21"
+    },
+    {
+      "center_mm": [
+        169.99,
+        80.7
+      ],
+      "layer": "F.Cu",
+      "native": "R_ADC_DATA_PD.1",
+      "net": "ADC_DOUT1",
+      "owner": "audio_clock_tdm",
+      "source": "R_ADC_DATA_PD.1"
+    },
+    {
+      "center_mm": [
+        181.0625,
+        96.525
+      ],
+      "layer": "F.Cu",
+      "native": "U_TDM_XLATE.10",
+      "net": "ADC_DOUT1",
+      "owner": "audio_clock_tdm",
+      "source": "U_TDM_XLATE.10"
+    },
+    {
+      "center_mm": [
+        175.3375,
+        95.875
+      ],
+      "layer": "F.Cu",
+      "native": "U_TDM_XLATE.6",
+      "net": "AUDIO_MCLK_1V8",
+      "owner": "audio_clock_tdm",
+      "source": "U_TDM_XLATE.6"
+    },
+    {
+      "center_mm": [
+        211.1,
+        107.6625
+      ],
+      "layer": "F.Cu",
+      "native": "U_XU.23",
+      "net": "AUDIO_MCLK_1V8",
+      "owner": "xmos_core",
+      "source": "U_XU.23"
+    },
+    {
+      "center_mm": [
+        175.3375,
+        94.575
+      ],
+      "layer": "F.Cu",
+      "native": "U_TDM_XLATE.4",
+      "net": "TDM_BCLK_1V8",
+      "owner": "audio_clock_tdm",
+      "source": "U_TDM_XLATE.4"
+    },
+    {
+      "center_mm": [
+        210.7,
+        107.6625
+      ],
+      "layer": "F.Cu",
+      "native": "U_XU.22",
+      "net": "TDM_BCLK_1V8",
+      "owner": "xmos_core",
+      "source": "U_XU.22"
+    },
+    {
+      "center_mm": [
+        175.3375,
+        96.525
+      ],
+      "layer": "F.Cu",
+      "native": "U_TDM_XLATE.7",
+      "net": "TDM_DATA_1V8",
+      "owner": "audio_clock_tdm",
+      "source": "U_TDM_XLATE.7"
+    },
+    {
+      "center_mm": [
+        200.8375,
+        97.8
+      ],
+      "layer": "F.Cu",
+      "native": "U_XU.107",
+      "net": "TDM_DATA_1V8",
+      "owner": "xmos_core",
+      "source": "U_XU.107"
+    },
+    {
+      "center_mm": [
+        175.3375,
+        95.225
+      ],
+      "layer": "F.Cu",
+      "native": "U_TDM_XLATE.5",
+      "net": "TDM_FSYNC_1V8",
+      "owner": "audio_clock_tdm",
+      "source": "U_TDM_XLATE.5"
+    },
+    {
+      "center_mm": [
+        209.9,
+        107.6625
+      ],
+      "layer": "F.Cu",
+      "native": "U_XU.20",
+      "net": "TDM_FSYNC_1V8",
+      "owner": "xmos_core",
+      "source": "U_XU.20"
+    },
+    {
+      "center_mm": [
+        138.9,
+        95.25
+      ],
+      "layer": "F.Cu",
+      "native": "U_ADC_A.17",
+      "net": "ADC_I2C_SCL",
+      "owner": "adc_reference",
+      "source": "U_ADC_A.17"
+    },
+    {
+      "center_mm": [
+        138.9,
+        107.25
+      ],
+      "layer": "F.Cu",
+      "native": "U_ADC_B.17",
+      "net": "ADC_I2C_SCL",
+      "owner": "adc_reference",
+      "source": "U_ADC_B.17"
+    },
+    {
+      "center_mm": [
+        170.29,
+        91.5
+      ],
+      "layer": "F.Cu",
+      "native": "R_ADC_I2C_SCL_B_PU.1",
+      "net": "ADC_I2C_SCL",
+      "owner": "audio_clock_tdm",
+      "source": "R_ADC_I2C_SCL_B_PU.1"
+    },
+    {
+      "center_mm": [
+        170.65,
+        94.55
+      ],
+      "layer": "F.Cu",
+      "native": "U_ADC_I2C_XLATE.8",
+      "net": "ADC_I2C_SCL",
+      "owner": "audio_clock_tdm",
+      "source": "U_ADC_I2C_XLATE.8"
+    },
+    {
+      "center_mm": [
+        138.9,
+        94.75
+      ],
+      "layer": "F.Cu",
+      "native": "U_ADC_A.18",
+      "net": "ADC_I2C_SDA",
+      "owner": "adc_reference",
+      "source": "U_ADC_A.18"
+    },
+    {
+      "center_mm": [
+        138.9,
+        106.75
+      ],
+      "layer": "F.Cu",
+      "native": "U_ADC_B.18",
+      "net": "ADC_I2C_SDA",
+      "owner": "adc_reference",
+      "source": "U_ADC_B.18"
+    },
+    {
+      "center_mm": [
+        168.19,
+        92.8
+      ],
+      "layer": "F.Cu",
+      "native": "R_ADC_I2C_SDA_B_PU.1",
+      "net": "ADC_I2C_SDA",
+      "owner": "audio_clock_tdm",
+      "source": "R_ADC_I2C_SDA_B_PU.1"
+    },
+    {
+      "center_mm": [
+        167.55,
+        94.55
+      ],
+      "layer": "F.Cu",
+      "native": "U_ADC_I2C_XLATE.1",
+      "net": "ADC_I2C_SDA",
+      "owner": "audio_clock_tdm",
+      "source": "U_ADC_I2C_XLATE.1"
+    },
+    {
+      "center_mm": [
+        93.5,
+        103.51
+      ],
+      "layer": "F.Cu",
+      "native": "R_ADC_READY_PD.1",
+      "net": "ADC_READY",
+      "owner": "adc_reference",
+      "source": "R_ADC_READY_PD.1"
+    },
+    {
+      "center_mm": [
+        105.25,
+        108.76
+      ],
+      "layer": "F.Cu",
+      "native": "R_ADC_START_DELAY.1",
+      "net": "ADC_READY",
+      "owner": "adc_reference",
+      "source": "R_ADC_START_DELAY.1"
+    },
+    {
+      "center_mm": [
+        98.4,
+        100.15
+      ],
+      "layer": "F.Cu",
+      "native": "U_ADC_READY.4",
+      "net": "ADC_READY",
+      "owner": "adc_reference",
+      "source": "U_ADC_READY.4"
+    },
+    {
+      "center_mm": [
+        106.9,
+        106.5
+      ],
+      "layer": "F.Cu",
+      "native": "U_ADC_READY_BAD.2",
+      "net": "ADC_READY",
+      "owner": "adc_reference",
+      "source": "U_ADC_READY_BAD.2"
+    },
+    {
+      "center_mm": [
+        91.55,
+        100.325
+      ],
+      "layer": "F.Cu",
+      "native": "U_RST2.3",
+      "net": "ADC_READY",
+      "owner": "adc_reference",
+      "source": "U_RST2.3"
+    },
+    {
+      "center_mm": [
+        170.65,
+        95.55
+      ],
+      "layer": "F.Cu",
+      "native": "U_ADC_I2C_XLATE.6",
+      "net": "ADC_READY",
+      "owner": "audio_clock_tdm",
+      "source": "U_ADC_I2C_XLATE.6"
+    },
+    {
+      "center_mm": [
+        23.3,
+        67.2
+      ],
+      "layer": "F.Cu",
+      "native": "U_ISO1.2",
+      "net": "AUDIO_EN",
+      "owner": "analog_ch1",
+      "source": "U_ISO1.2"
+    },
+    {
+      "center_mm": [
+        60.4,
+        48.8
+      ],
+      "layer": "F.Cu",
+      "native": "U_ISO2.2",
+      "net": "AUDIO_EN",
+      "owner": "analog_ch2",
+      "source": "U_ISO2.2"
+    },
+    {
+      "center_mm": [
+        82.4,
+        48.8
+      ],
+      "layer": "F.Cu",
+      "native": "U_ISO3.2",
+      "net": "AUDIO_EN",
+      "owner": "analog_ch3",
+      "source": "U_ISO3.2"
+    },
+    {
+      "center_mm": [
+        104.4,
+        48.8
+      ],
+      "layer": "F.Cu",
+      "native": "U_ISO4.2",
+      "net": "AUDIO_EN",
+      "owner": "analog_ch4",
+      "source": "U_ISO4.2"
+    },
+    {
+      "center_mm": [
+        126.4,
+        48.8
+      ],
+      "layer": "F.Cu",
+      "native": "U_ISO5.2",
+      "net": "AUDIO_EN",
+      "owner": "analog_ch5",
+      "source": "U_ISO5.2"
+    },
+    {
+      "center_mm": [
+        148.4,
+        48.8
+      ],
+      "layer": "F.Cu",
+      "native": "U_ISO6.2",
+      "net": "AUDIO_EN",
+      "owner": "analog_ch6",
+      "source": "U_ISO6.2"
+    },
+    {
+      "center_mm": [
+        170.4,
+        48.8
+      ],
+      "layer": "F.Cu",
+      "native": "U_ISO7.2",
+      "net": "AUDIO_EN",
+      "owner": "analog_ch7",
+      "source": "U_ISO7.2"
+    },
+    {
+      "center_mm": [
+        202.7,
+        58.0
+      ],
+      "layer": "F.Cu",
+      "native": "U_ISO8.2",
+      "net": "AUDIO_EN",
+      "owner": "analog_ch8",
+      "source": "U_ISO8.2"
+    },
+    {
+      "center_mm": [
+        22.7,
+        105.61
+      ],
+      "layer": "F.Cu",
+      "native": "R_AUDIO_PD.1",
+      "net": "AUDIO_EN",
+      "owner": "quiet_power",
+      "source": "R_AUDIO_PD.1"
+    },
+    {
+      "center_mm": [
+        26.2,
+        109.09
+      ],
+      "layer": "F.Cu",
+      "native": "R_AUDIO_PU.2",
+      "net": "AUDIO_EN",
+      "owner": "quiet_power",
+      "source": "R_AUDIO_PU.2"
+    },
+    {
+      "center_mm": [
+        23.3,
+        109.1
+      ],
+      "layer": "F.Cu",
+      "native": "U_AUDIO.6",
+      "net": "AUDIO_EN",
+      "owner": "quiet_power",
+      "source": "U_AUDIO.6"
+    },
+    {
+      "center_mm": [
+        171.59,
+        82.1
+      ],
+      "layer": "F.Cu",
+      "native": "R_ADC_I2C_SCL_A_PU.1",
+      "net": "XU_I2C_SCL_1V8",
+      "owner": "audio_clock_tdm",
+      "source": "R_ADC_I2C_SCL_A_PU.1"
+    },
+    {
+      "center_mm": [
+        170.65,
+        96.05
+      ],
+      "layer": "F.Cu",
+      "native": "U_ADC_I2C_XLATE.5",
+      "net": "XU_I2C_SCL_1V8",
+      "owner": "audio_clock_tdm",
+      "source": "U_ADC_I2C_XLATE.5"
+    },
+    {
+      "center_mm": [
+        203.5,
+        92.3375
+      ],
+      "layer": "F.Cu",
+      "native": "U_XU.93",
+      "net": "XU_I2C_SCL_1V8",
+      "owner": "xmos_core",
+      "source": "U_XU.93"
+    },
+    {
+      "center_mm": [
+        163.69,
+        80.3
+      ],
+      "layer": "F.Cu",
+      "native": "R_ADC_I2C_SDA_A_PU.1",
+      "net": "XU_I2C_SDA_1V8",
+      "owner": "audio_clock_tdm",
+      "source": "R_ADC_I2C_SDA_A_PU.1"
+    },
+    {
+      "center_mm": [
+        167.55,
+        96.05
+      ],
+      "layer": "F.Cu",
+      "native": "U_ADC_I2C_XLATE.4",
+      "net": "XU_I2C_SDA_1V8",
+      "owner": "audio_clock_tdm",
+      "source": "U_ADC_I2C_XLATE.4"
+    },
+    {
+      "center_mm": [
+        203.1,
+        92.3375
+      ],
+      "layer": "F.Cu",
+      "native": "U_XU.94",
+      "net": "XU_I2C_SDA_1V8",
+      "owner": "xmos_core",
+      "source": "U_XU.94"
+    },
+    {
+      "center_mm": [
+        109.5,
+        102.05
+      ],
+      "layer": "F.Cu",
+      "native": "Q_ADC_DIG_RST.1",
+      "net": "ADC_DIGITAL_BAD",
+      "owner": "adc_reference",
+      "source": "Q_ADC_DIG_RST.1"
+    },
+    {
+      "center_mm": [
+        107.74,
+        97.25
+      ],
+      "layer": "F.Cu",
+      "native": "R_ADC_DIG_RST_PD.1",
+      "net": "ADC_DIGITAL_BAD",
+      "owner": "adc_reference",
+      "source": "R_ADC_DIG_RST_PD.1"
+    },
+    {
+      "center_mm": [
+        111.6,
+        100.15
+      ],
+      "layer": "F.Cu",
+      "native": "U_ADC_DIGITAL_BAD.4",
+      "net": "ADC_DIGITAL_BAD",
+      "owner": "adc_reference",
+      "source": "U_ADC_DIGITAL_BAD.4"
+    },
+    {
+      "center_mm": [
+        97.1,
+        102.35
+      ],
+      "layer": "F.Cu",
+      "native": "U_ADC_READY.1",
+      "net": "ADC_DIGITAL_BAD",
+      "owner": "adc_reference",
+      "source": "U_ADC_READY.1"
+    },
+    {
+      "center_mm": [
+        161.9,
+        77.45
+      ],
+      "layer": "F.Cu",
+      "native": "U_ADC_CLOCK_OK.1",
+      "net": "ADC_DIGITAL_BAD",
+      "owner": "audio_clock_tdm",
+      "source": "U_ADC_CLOCK_OK.1"
+    }
+  ],
+  "zones": [
+    {
+      "filled": false,
+      "layers": [
+        "F.Cu"
+      ],
+      "net": "",
+      "rule_area": true
+    },
+    {
+      "filled": false,
+      "layers": [
+        "F.Cu"
+      ],
+      "net": "",
+      "rule_area": true
+    },
+    {
+      "filled": false,
+      "layers": [
+        "F.Cu"
+      ],
+      "net": "",
+      "rule_area": true
+    },
+    {
+      "filled": false,
+      "layers": [
+        "F.Cu"
+      ],
+      "net": "",
+      "rule_area": true
+    },
+    {
+      "filled": false,
+      "layers": [
+        "F.Cu"
+      ],
+      "net": "",
+      "rule_area": true
+    },
+    {
+      "filled": false,
+      "layers": [
+        "F.Cu"
+      ],
+      "net": "",
+      "rule_area": true
+    },
+    {
+      "filled": false,
+      "layers": [
+        "F.Cu"
+      ],
+      "net": "",
+      "rule_area": true
+    },
+    {
+      "filled": false,
+      "layers": [
+        "F.Cu"
+      ],
+      "net": "",
+      "rule_area": true
+    },
+    {
+      "filled": false,
+      "layers": [
+        "In1.Cu"
+      ],
+      "net": "GND",
+      "rule_area": false
+    }
+  ]
+}
