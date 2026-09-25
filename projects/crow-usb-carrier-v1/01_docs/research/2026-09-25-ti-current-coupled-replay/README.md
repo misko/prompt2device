@@ -94,6 +94,24 @@ private boards and improves source-owner containment from **8/11 to 11/11**.
 The placement still needs integrated independent review and route/return
 proof before any adoption.
 
+A subsequent [six-hole mechanical-support trial](mounting_six_trial.py) tests
+the missing restraint geometry on this same source candidate. It adds six
+`MountingHole_3.2mm_M3` board-only footprints at `[30,40]`, `[130,40]`,
+`[212,45]`, `[30,82]`, `[130,132]`, and `[230,130]` mm. The current private
+PCB SHA-256 is `009ecf6383f07129653758fdc0855c793d8915e4ae5b0980278e7a5fa4fc47c7`.
+Exactly H1–H6 are added; all previous 569 footprint poses and pad identities
+are unchanged. Count/pin-map parity and native DRC pass at **0 violations,
+499 open, 0 schematic parity**. Hole centers are at least 8 mm from the
+rectangle outline. The smallest measured gap between a mounting footprint's
+courtyard box and another component's courtyard box is only **1.513 mm**
+(H5 to C_HOLD16); H2 is **2.007 mm** from J4/J5. These are screening
+measurements, not screw-head, washer, standoff, connector-body, or fixture
+clearance. The candidate has no tested restraint, enclosure fit, connector
+FULL, P1 acceptance, fabrication authority, or release. A reviewed mechanical
+specification must settle hardware envelopes, fixture load paths, service
+access, and hole positions before any adoption. The script refuses to
+overwrite its private output.
+
 Reproduce the current private baseline using
 `03_src/rebuild_prototype_board_diagnostic.py`, then run `python3 replay.py`
 from this directory once in a fresh private output root and
