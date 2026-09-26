@@ -188,3 +188,10 @@ Impact: for Crow, one dated exact public-stock screen at part selection applies 
 ### D13 — 2026-09-25 — USB ESD schematic-only prototype boundary
 
 Impact: the locked TI ESD candidate is admitted only for a separately gated engineering schematic prototype. The XU316 powered/rail-off transient and exact-board ESD finding remains open and blocks design-clean/release maturity; ordinary full/reuse, release, and manufacturing order paths refuse the prototype status. The independent review and bounded test plan are hash-bound in critical selection. No prototype fabrication or order is authorized by this decision. See decision0013.
+
+### D14 — 2026-09-25 — clean restart; stop at the first issue
+> Can we start the board again from scratch and lets pause at the first sign of issues . we want this to work seemlessly
+
+Working interpretation: restart placement and routing, retaining the brief, selected parts, locked stock policy and schematic as inputs subject to validation. Preserve all existing boards and evidence as history; do not carry forward their placement, routes or admissions as a new layout. Stop on the first concrete input, engineering or tooling issue; do not silently repair it, change the scope, or launch another research attempt. Report the cause and proposed next action before continuing.
+
+Restart input check: `critical_part_selection_admission.py projects/crow-usb-carrier-v1` returned `PROTOTYPE_ONLY` (1/1 selections, ordinary-mode exit 1). U_USB_ESD remains TPD2EUSB30ADRTR/C94934 with deferred XU316 transient protection evidence. This is not a stock failure or proof that the component fails electrically. The existing ordinary build/reuse path rejects this maturity; bounded prototype research is a different path. Restart is PAUSED at this first issue, before creating any fresh placement or board. Next discussion: resolve the electrical evidence and intended prototype-versus-release boundary before selecting the restart execution path. No new layout has been generated.

@@ -1,18 +1,18 @@
 {
-  "blocker": "D19 one-shot board remains historical FAILED_RESEARCH; checker-only correction passes on unchanged bytes, but all five exact-board P1 allocations and affected P2 are INCOMPLETE. USB four-leaf/ESD/XU pad access and filled return, shared five-terminal reset/JTAG handoff, and 14 timing reservations/54 pad duties are unproved. D18 private route needs independent P1 and affected P2 admission. Connector FULL, prototype-only TI ESD, production 3313A stack, release and order holds remain.",
+  "blocker": "Clean layout restart paused at first input issue: U_USB_ESD critical selection is PROTOTYPE_ONLY (ordinary admission exit 1). XU316 transient protection evidence is deferred; locked stock is not the issue. No fresh layout generated.",
   "checkpoint": {
-    "path": "01_docs/research/2026-09-25-d19-integrated-unrouted-sol/p1-same-board-diagnostic.md",
-    "sha256": "60071e8e73cd533184678f5c7e74fb3c80898972310e8ae8d0feda738a898f68",
-    "size": 3169
+    "path": "01_docs/BRIEF.md",
+    "sha256": "72d51682c4f5cceb2aabccf4b4b13a73c5961ffa06058ba6b7ea93042c585acb",
+    "size": 23288
   },
-  "next_command": "Use the exact D19 board and generated 3313A sidecars for a bounded USB physical P1/P2 review first: measure four-leaf merge, ESD shunt, XU launch, foreign clearance and filled In1 return; then resolve shared reset/JTAG and timing/power/analog duties. Preserve D19 FAILED_RESEARCH and all five INCOMPLETE coarse results; do not route until independent admissions under D18.",
-  "phase": "prototype-layout-diagnostic",
+  "next_command": "Discuss and resolve USB ESD electrical evidence and prototype-versus-release scope before choosing the clean restart path. Do not continue placement, generate a board, or repair the gate automatically.",
+  "phase": "restart-input-review",
   "project": "crow-usb-carrier-v1",
   "receipts": [
     {
       "path": "01_docs/BRIEF.md",
-      "sha256": "d58ce4e0f783f4bf69dc865978480a9533f55b74e046d76b1639483886bba0b1",
-      "size": 21910
+      "sha256": "72d51682c4f5cceb2aabccf4b4b13a73c5961ffa06058ba6b7ea93042c585acb",
+      "size": 23288
     },
     {
       "path": "01_docs/decisions/0012-initial-public-stock-lock.md",
@@ -240,6 +240,11 @@
       "size": 5024
     },
     {
+      "path": "03_src/rules/critical_part_selection.yaml",
+      "sha256": "15288355fcc731ff8b1b0e35a1ae47b9faf66140223cfea0d31c91d99e9dc1ba",
+      "size": 1148
+    },
+    {
       "path": "06_build/prototype_board_diagnostic/d19-integrated-native-candidate-20260925/native_postgen_receipt.json",
       "sha256": "a119396aa76658a6603e8155abcd65f1f0923d84f711263183c495d1ae6575a5",
       "size": 522
@@ -286,5 +291,5 @@
     }
   ],
   "schema": 1,
-  "state_id": "6d2ad48c3e9821ac63b0ee0e1ef7467613b05868a5fbc125745f73a13cc870a6"
+  "state_id": "cc6e6ea13cdc2033f3d002e814c23185cb236815c6fe548bcd6660d95e10b5ef"
 }

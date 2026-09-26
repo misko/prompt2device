@@ -1,16 +1,16 @@
 # Project status
 
-<!-- pause-state:6d2ad48c3e9821ac63b0ee0e1ef7467613b05868a5fbc125745f73a13cc870a6 -->
+<!-- pause-state:cc6e6ea13cdc2033f3d002e814c23185cb236815c6fe548bcd6660d95e10b5ef -->
 
-- Phase: `prototype-layout-diagnostic`
+- Phase: `restart-input-review`
 - State: **PAUSED**
-- Checkpoint: `01_docs/research/2026-09-25-d19-integrated-unrouted-sol/p1-same-board-diagnostic.md` (`60071e8e73cd`)
-- Blocker: D19 one-shot board remains historical FAILED_RESEARCH; checker-only correction passes on unchanged bytes, but all five exact-board P1 allocations and affected P2 are INCOMPLETE. USB four-leaf/ESD/XU pad access and filled return, shared five-terminal reset/JTAG handoff, and 14 timing reservations/54 pad duties are unproved. D18 private route needs independent P1 and affected P2 admission. Connector FULL, prototype-only TI ESD, production 3313A stack, release and order holds remain.
-- Next command: `Use the exact D19 board and generated 3313A sidecars for a bounded USB physical P1/P2 review first: measure four-leaf merge, ESD shunt, XU launch, foreign clearance and filled In1 return; then resolve shared reset/JTAG and timing/power/analog duties. Preserve D19 FAILED_RESEARCH and all five INCOMPLETE coarse results; do not route until independent admissions under D18.`
+- Checkpoint: `01_docs/BRIEF.md` (`72d51682c4f5`)
+- Blocker: Clean layout restart paused at first input issue: U_USB_ESD critical selection is PROTOTYPE_ONLY (ordinary admission exit 1). XU316 transient protection evidence is deferred; locked stock is not the issue. No fresh layout generated.
+- Next command: `Discuss and resolve USB ESD electrical evidence and prototype-versus-release scope before choosing the clean restart path. Do not continue placement, generate a board, or repair the gate automatically.`
 
 ## Bound receipts
 
-- `01_docs/BRIEF.md` — `d58ce4e0f783`
+- `01_docs/BRIEF.md` — `72d51682c4f5`
 - `01_docs/decisions/0012-initial-public-stock-lock.md` — `acffa297e45c`
 - `01_docs/decisions/0013-usb-esd-prototype-boundary.md` — `ed83de26a0c3`
 - `01_docs/decisions/0018-evidence-scheduling-and-private-design-work.md` — `3844ed14d92b`
@@ -56,6 +56,7 @@
 - `01_docs/research/2026-09-25-unadopted-3313a-usb-pair-domain-sol.md` — `1d24b5c4790a`
 - `01_docs/research/2026-09-25-usb-path-feasibility-sol/README.md` — `c1d467cbba92`
 - `01_docs/research/2026-09-25-usb-path-feasibility-sol/measure.py` — `967b9c3efb9e`
+- `03_src/rules/critical_part_selection.yaml` — `15288355fcc7`
 - `06_build/prototype_board_diagnostic/d19-integrated-native-candidate-20260925/native_postgen_receipt.json` — `a119396aa766`
 - `06_build/prototype_board_diagnostic/d19-integrated-native-candidate-20260925/project/04_kicad/crow_carrier.kicad_dru` — `32a4dbacf8b1`
 - `06_build/prototype_board_diagnostic/d19-integrated-native-candidate-20260925/project/04_kicad/crow_carrier.kicad_pcb` — `ffb51cc31c5b`
