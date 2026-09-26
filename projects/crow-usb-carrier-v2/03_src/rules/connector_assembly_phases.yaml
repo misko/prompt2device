@@ -1,0 +1,6 @@
+# Additive lifecycle policy for connector physical qualification. This file
+# cannot make the base connector receipt PASS. It may classify only the closed
+# physical/realized unknown classes accepted by connector_assembly_phase_gate.py.
+schema: 1
+phase_policy_id: replace-with-project-connector-phase-policy
+source_deferrals: []

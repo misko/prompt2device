@@ -1,0 +1,31 @@
+# crow-usb-carrier-v2
+
+PCB commissioning scaffold. The original request lives in [`01_docs/BRIEF.md`](01_docs/BRIEF.md); the [restart handoff](01_docs/RESTART.md) records retained constraints and first open decisions. Current work lives in [`01_docs/STATUS.md`](01_docs/STATUS.md).
+
+## Capability
+
+- target: `release`
+- signal integrity: `high_speed_digital`
+- assembly: `jlcpcb`
+- firmware: `forbidden`
+- foreign mating: `false`
+- enclosure seed: `false`
+
+The machine-readable authority is [`01_docs/capability-profile.json`](01_docs/capability-profile.json).
+
+## Start
+
+Run this from the project root. If this project is outside the circuits checkout, export `CIRCUITS_ROOT=/absolute/path/to/circuits` first.
+
+```bash
+export CIRCUITS_ROOT="${CIRCUITS_ROOT:-$(git rev-parse --show-toplevel 2>/dev/null)}"
+test -f "$CIRCUITS_ROOT/skills/pcb-design/SKILL.md" || { \
+  echo "set CIRCUITS_ROOT to the circuits checkout" >&2; exit 2; }
+python3 "$CIRCUITS_ROOT/skills/pcb-design/scripts/skill_reference_router.py" \
+  --profile "$PWD/01_docs/capability-profile.json" \
+  --at-stage PCB-COMMISSION --json
+```
+
+This is a scaffold, not a passed commission. Read [`01_docs/COMMISSIONING-HOLD.md`](01_docs/COMMISSIONING-HOLD.md), preserve the original brief, close its fact locks, and replace or explicitly adopt every seeded example. Do not run either rebuild conductor while the hold exists; both fail closed.
+
+After the separately typed commission, architecture, and sourcing admission evidence is reviewed and its hold is removed, start the full conductor with `bash 03_src/rebuild_all.sh`. A fresh run deliberately stops at evidence and operator checkpoints. After accepting the exact schematic review checkpoint, continue without rebuilding TSX using `bash 03_src/rebuild_all.sh --resume-after-schematic-review`. A sealed release is immutable and does not by itself mean this board was ordered.
