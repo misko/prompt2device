@@ -1,0 +1,163 @@
+{
+  "applicability": {
+    "evidence": [
+      "01_docs/capability-profile.json",
+      "06_build/checkpoints/commissioned_brief.json",
+      "08_reviews/2026-10-05-commission.md"
+    ],
+    "rationale": "Commissioned two-board flat non-RF scope. USB/clock/TDM, analog, cable, mechanical, EMC/site and sourcing obligations still apply.",
+    "rf": false
+  },
+  "dispositions": [
+    {
+      "evidence": [
+        "06_build/checkpoints/assembly_verified.json",
+        "08_reviews/2026-10-23-first-run-d3-assembly.md"
+      ],
+      "id": "ASSEMBLY-DESIGN-VERIFIED",
+      "reason": "Actual current assembly issue and separate check cover 38 models, 169 mounted references, both boards and all 54 full-assembly limitations. This resolves the local assembly-design gate, not physical work or vendor agreement."
+    },
+    {
+      "evidence": [
+        "03_src/recovery/first-run-d3-staging/fabrication/reference-index.md",
+        "08_reviews/2026-10-23-first-run-d3-fabrication.md"
+      ],
+      "id": "CURRENT-DOCUMENT-USABILITY",
+      "reason": "Use current native overviews, readable reference headings and exact per-reference index/CSV jointly; do not guess dense or long locator labels. Current 5/10 instructions supersede historical work quantities without altering controls."
+    },
+    {
+      "evidence": [
+        "03_src/release/first-run-d3/handoff.md",
+        "03_src/recovery/first-run-d3-staging/fabrication/assembly-instructions.md",
+        "01_docs/reports/first-run/JLC-PCBA-READINESS.md"
+      ],
+      "id": "UNPROGRAMMED-PROTOTYPE-NOT-WORKING-ARRAY",
+      "reason": "Firmware/fixture, flashing, power/rail/clock/thermal/audio/retention and physical first-article qualification remain unperformed. They gate claims of working-qualified hardware/deployment, not every purchase of unprogrammed prototypes. If programming or functional acceptance is requested, agree executable firmware/test prerequisites for that service."
+    },
+    {
+      "evidence": [
+        "03_src/release/first-run-d3/handoff.md",
+        "03_src/recovery/ls43-mating/controls.md"
+      ],
+      "id": "HARNESS-AND-DEPLOYMENT-QUALIFICATION",
+      "reason": "Original eight-channel capacity, dedicated cable pair/resistance/length controls and environmental/acoustic/EMC/site/roof obligations remain. External hardware is outside PCB pricing, not selected/owned/free/waived. System/site owners select and qualify it before deployment; contrary evidence reopens causal owners."
+    },
+    {
+      "evidence": [
+        "01_docs/first-run-d3-release-scope.md",
+        "03_src/release/first-run-d3/handoff.md"
+      ],
+      "id": "RELEASE-AND-SEAL-OWNERS-SEPARATE",
+      "reason": "This source/candidate does not claim release acceptance or an immutable Git seal. Later root-issued receipts bind exact bytes outside the candidate; pipeline placeholders are not permanent order holds after actual completion."
+    },
+    {
+      "evidence": [
+        "03_src/recovery/first-run-d3-copper/REPORT.md",
+        "06_build/recovery/first-run-d3-copper/author/thermal-screen-final.json",
+        "08_reviews/2026-10-23-first-run-d3-copper.md",
+        "08_reviews/2026-10-23-first-run-d3-routing.md",
+        "08_reviews/2026-10-23-first-run-d3-layout.md"
+      ],
+      "id": "D3-COOLING-COPPER-AND-HISTORICAL-THERMAL-SUPERSESSION",
+      "reason": "Accepted net-isolated D3 outer cooling copper supersedes the old tiny-land transfer of typical 55 K/W and approximately 86 C. Reference-informed allocation 110 K/W plus 20 C neighboring-board allowance gives 131.975 C at 0.4725 W and 60 C local air, not a measured or guaranteed temperature; restricted 130/+20 and failing 150/+20 sensitivities and physical falsifiers remain. No mission, firmware duty or circuit relief."
+    }
+  ],
+  "holds": [
+    {
+      "closure": "Purchaser obtains explicit user authority for the exact accepted/sealed 5-carrier/10-pod packet and actual scope/cost; publication additionally requires repository-delta and redistribution-rights review.",
+      "evidence": [
+        "01_docs/first-run-d3-release-scope.md",
+        "03_src/release/first-run-d3/handoff.md"
+      ],
+      "id": "PURCHASING-AUTHORITY",
+      "reason": "No vendor contact, upload, purchase or publication is authorized by local design/release acceptance."
+    },
+    {
+      "closure": "Procurement/assembly owner confirms all exact MPNs, usable pool allocation, lead time, packaging, MOQ and feeder/attrition needs for 1,000 installed parts; retains actual purchased minima separately; substitutes reopen engineering.",
+      "evidence": [
+        "03_src/recovery/first-run-d3-staging/fabrication/sourcing.json",
+        "01_docs/sourcing/first-run-basis.md",
+        "03_src/recovery/first-run-sourcing/batch.json"
+      ],
+      "id": "EXACT-SUPPLY-AND-ALLOCATION",
+      "reason": "38 adequate dated supplier offers are not reservations, usable JLC pools or an accepted consignment/global-sourcing route; no attrition extras inferred."
+    },
+    {
+      "closure": "Assembly owner checks exact same-MPN matching and every center/side/rotation/pin-1/cathode against current native boards and actual vendor previews before commitment.",
+      "evidence": [
+        "03_src/recovery/first-run-d3-staging/fabrication/population.json",
+        "03_src/recovery/first-run-d3-staging/fabrication/assembly-instructions.md"
+      ],
+      "id": "VENDOR-MATCH-AND-ORIENTATION",
+      "reason": "Local BOM/CPL encoding, identity, centroid and angle checks are not vendor matching, reel convention or placement-preview approval."
+    },
+    {
+      "closure": "Fabrication/assembly process owner obtains explicit exact-job production-stencil agreement preserving exclusions, or separately authors/reviews a compatible process revision; no silent edits.",
+      "evidence": [
+        "03_src/recovery/first-run-d3-staging/fabrication/process.md",
+        "03_src/recovery/first-run-d3-staging/fabrication/assembly-instructions.md",
+        "01_docs/reports/first-run/JLC-PCBA-READINESS.md"
+      ],
+      "id": "STENCIL-POLICY-RECONCILIATION",
+      "reason": "JLC internally optimizes production stencil apertures while this accepted process prohibits automatic paste changes; exact agreement is absent."
+    },
+    {
+      "closure": "Fabrication/assembly owner confirms carrier 7628A and pod 7628, full plots/drills and exclusions, actual stack/finish, panel/rail/fiducial/fixture/DFM scope and preserves all datums/contours; conflicting offers reopen causal engineering.",
+      "evidence": [
+        "03_src/recovery/first-run-d3-staging/fabrication/process.md",
+        "03_src/recovery/first-run-d3-staging/fabrication/assembly-instructions.md",
+        "01_docs/reports/first-run/JLC-PCBA-READINESS.md"
+      ],
+      "id": "PROCESS-STACK-RAILS-DFM",
+      "reason": "Published service capability and nominal CAD do not confirm this exact construction, precision process, finish, rails/fiducials/fixtures or edge-mounted handling/DFM."
+    },
+    {
+      "closure": "Fabrication/assembly/metrology owners agree every conjunctive limit, measurement method/uncertainty and traceable records before execution; inspect actual lots/units and quarantine failure rather than force, ream or weaken limits.",
+      "evidence": [
+        "03_src/recovery/ls43-mating/controls.md",
+        "03_src/recovery/ls33-mating/module-controls.md",
+        "08_reviews/2026-10-23-first-run-d3-assembly.md",
+        "03_src/recovery/first-run-d3-staging/fabrication/process.md",
+        "03_src/recovery/first-run-d3-staging/fabrication/assembly-instructions.md",
+        "01_docs/reports/first-run/JLC-PCBA-READINESS.md"
+      ],
+      "id": "FINISHED-MECHANICAL-AGREEMENT",
+      "reason": "Complete coupled LS43/LS33 incoming/finished hole, pitch, web, annulus, edge, registered top, pose, seat, pool, underside and service limits are design-owned controls, not automatic supplier guarantees."
+    },
+    {
+      "closure": "Purchaser/assembly owner names JLC or a qualified separate manual assembler and obtains acceptance of each Pico D1-only, RJ/PJ/RECOM and acoustic hand-solder operation, supply route, inspection and responsibility before commitment.",
+      "evidence": [
+        "03_src/recovery/first-run-d3-staging/fabrication/process.md",
+        "03_src/recovery/first-run-d3-staging/fabrication/assembly-instructions.md",
+        "01_docs/reports/first-run/JLC-PCBA-READINESS.md"
+      ],
+      "id": "MANUAL-ROUTE-UNSELECTED",
+      "reason": "The user has selected no manual completion route; header-only factory/all-consigned SMT is a proposal, not turnkey acceptance or an unassembled-kit promise."
+    },
+    {
+      "closure": "Assembly owner agrees compatible profiles, incoming identities, special handling, unpowered inspection, lot/serial/rework and metrology records; executes under complete retained maker/LS43/LS33 instructions after authorization.",
+      "evidence": [
+        "03_src/recovery/first-run-d3-staging/fabrication/process.md",
+        "03_src/recovery/first-run-d3-staging/fabrication/assembly-instructions.md",
+        "01_docs/reports/first-run/JLC-PCBA-READINESS.md",
+        "03_src/recovery/ls43-mating/controls.md",
+        "03_src/recovery/ls33-mating/module-controls.md",
+        "08_reviews/2026-10-23-first-run-d3-assembly.md",
+        "02_parts/P040/manufacturer.pdf",
+        "03_src/recovery/first-run-r3-engineering/REPORT.md"
+      ],
+      "id": "CONTROLLED-ASSEMBLY-READINESS",
+      "reason": "Exact original SC0915 Rev3 D1-only preparation, all castellations/pools, PJ fill/retention, protected hand-only acoustics and compatible at-most-two R3 reflows require qualified execution/inspection; none is performed."
+    },
+    {
+      "closure": "Purchaser obtains itemized exact 5/10 quote and user approval of actual cost/scope; external host/storage/PSU/adapters/cables/enclosure/roof costs are outside requested comparison, not free or technically waived.",
+      "evidence": [
+        "03_src/release/first-run-d3/handoff.md",
+        "01_docs/sourcing/first-run-basis.md"
+      ],
+      "id": "ACTUAL-QUOTE-AND-SCOPE",
+      "reason": "PCB components plus bare fab/setup $530\u20131,350 and separate assembly/manual $500\u20131,400 are unquoted estimates, not a cap or accepted offer."
+    }
+  ],
+  "version": 1
+}

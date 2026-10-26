@@ -1,0 +1,1674 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<export version="E">
+  <design>
+    <source>/tmp/vnext-import-ixwa5i7b/producer/03_src/recovery/first-run-r3-source/crow-pod.kicad_sch</source>
+    <date>2026-10-22T22:44:09</date>
+    <tool>Eeschema 10.0.4-10.0.4~ubuntu24.04.1</tool>
+    <sheet number="1" name="/" tstamps="/">
+      <title_block>
+        <title>crow-pod — PROTOTYPE / NOT FOR FABRICATION</title>
+        <company/>
+        <rev/>
+        <date/>
+        <source>crow-pod.kicad_sch</source>
+        <comment number="1" value=""/>
+        <comment number="2" value=""/>
+        <comment number="3" value=""/>
+        <comment number="4" value=""/>
+        <comment number="5" value=""/>
+        <comment number="6" value=""/>
+        <comment number="7" value=""/>
+        <comment number="8" value=""/>
+        <comment number="9" value=""/>
+      </title_block>
+    </sheet>
+  </design>
+  <components>
+    <comp ref="BZ1">
+      <value>CPE-203</value>
+      <footprint>CrowPhysical:CPE-203</footprint>
+      <fields>
+        <field name="Manufacturer">Same Sky</field>
+        <field name="MPN">CPE-203</field>
+        <field name="Assembly">Hand solder only; plus-marked lead to pad1</field>
+        <field name="Footprint">CrowPhysical:CPE-203</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="CrowPod" part="BZ1" description=""/>
+      <property name="Manufacturer" value="Same Sky"/>
+      <property name="MPN" value="CPE-203"/>
+      <property name="Assembly" value="Hand solder only; plus-marked lead to pad1"/>
+      <property name="Sheetname" value="Root"/>
+      <property name="Sheetfile" value="crow-pod.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>03b24c51-942d-5bac-8917-015767e5981f</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="C1">
+      <value>2.2uF 35V X7R 20%</value>
+      <footprint>Capacitor_SMD:C_0805_2012Metric</footprint>
+      <fields>
+        <field name="Manufacturer">TDK</field>
+        <field name="MPN">C2012X7R1V225K125AE</field>
+        <field name="Assembly">SMT</field>
+        <field name="Footprint">Capacitor_SMD:C_0805_2012Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="CrowPod" part="C1" description=""/>
+      <property name="Manufacturer" value="TDK"/>
+      <property name="MPN" value="C2012X7R1V225K125AE"/>
+      <property name="Assembly" value="SMT"/>
+      <property name="Sheetname" value="Root"/>
+      <property name="Sheetfile" value="crow-pod.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>755c5cee-5542-5d7c-a4ff-e378322c0dc7</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="C2">
+      <value>10uF 10V X7R 20%</value>
+      <footprint>Capacitor_SMD:C_0805_2012Metric</footprint>
+      <fields>
+        <field name="Manufacturer">Murata</field>
+        <field name="MPN">GRM21BR71A106MA73L</field>
+        <field name="Assembly">SMT</field>
+        <field name="Footprint">Capacitor_SMD:C_0805_2012Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="CrowPod" part="C2" description=""/>
+      <property name="Manufacturer" value="Murata"/>
+      <property name="MPN" value="GRM21BR71A106MA73L"/>
+      <property name="Assembly" value="SMT"/>
+      <property name="Sheetname" value="Root"/>
+      <property name="Sheetfile" value="crow-pod.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>8ff35d33-6ff1-57d2-a932-23c5d2499992</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="C3">
+      <value>1uF 10V X7R</value>
+      <footprint>Capacitor_SMD:C_0805_2012Metric</footprint>
+      <fields>
+        <field name="Manufacturer">Murata</field>
+        <field name="MPN">GRM21BR71A105KA01L</field>
+        <field name="Assembly">SMT</field>
+        <field name="Footprint">Capacitor_SMD:C_0805_2012Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="CrowPod" part="C3" description=""/>
+      <property name="Manufacturer" value="Murata"/>
+      <property name="MPN" value="GRM21BR71A105KA01L"/>
+      <property name="Assembly" value="SMT"/>
+      <property name="Sheetname" value="Root"/>
+      <property name="Sheetfile" value="crow-pod.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>2eceb71c-f8a3-5666-a6b6-347ed8007d22</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="C4">
+      <value>47uF 10V X7R 20%</value>
+      <footprint>Capacitor_SMD:C_1210_3225Metric</footprint>
+      <fields>
+        <field name="Manufacturer">Murata</field>
+        <field name="MPN">GRM32ER71A476KE15L</field>
+        <field name="Assembly">SMT</field>
+        <field name="Footprint">Capacitor_SMD:C_1210_3225Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="CrowPod" part="C4" description=""/>
+      <property name="Manufacturer" value="Murata"/>
+      <property name="MPN" value="GRM32ER71A476KE15L"/>
+      <property name="Assembly" value="SMT"/>
+      <property name="Sheetname" value="Root"/>
+      <property name="Sheetfile" value="crow-pod.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>2c8030b9-20f2-54f7-bab4-e09389ec9a83</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="C5">
+      <value>100nF 10V X7R</value>
+      <footprint>Capacitor_SMD:C_0805_2012Metric</footprint>
+      <fields>
+        <field name="Manufacturer">Samsung Electro-Mechanics</field>
+        <field name="MPN">CL21B104KBCNNNC</field>
+        <field name="Assembly">SMT</field>
+        <field name="Footprint">Capacitor_SMD:C_0805_2012Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="CrowPod" part="C5" description=""/>
+      <property name="Manufacturer" value="Samsung Electro-Mechanics"/>
+      <property name="MPN" value="CL21B104KBCNNNC"/>
+      <property name="Assembly" value="SMT"/>
+      <property name="Sheetname" value="Root"/>
+      <property name="Sheetfile" value="crow-pod.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>87f04027-02c3-5821-aaa5-c11c11296220</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="D1">
+      <value>Littelfuse SMBJ15A</value>
+      <footprint>Diode_SMD:D_SMB</footprint>
+      <fields>
+        <field name="Manufacturer">Littelfuse</field>
+        <field name="MPN">SMBJ15A</field>
+        <field name="Assembly">SMT</field>
+        <field name="Footprint">Diode_SMD:D_SMB</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="CrowPod" part="D1" description=""/>
+      <property name="Manufacturer" value="Littelfuse"/>
+      <property name="MPN" value="SMBJ15A"/>
+      <property name="Assembly" value="SMT"/>
+      <property name="Sheetname" value="Root"/>
+      <property name="Sheetfile" value="crow-pod.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>118ee17c-1f2f-5d82-a06f-603b69a79f59</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="D2">
+      <value>BAT54S-7-F</value>
+      <footprint>Package_TO_SOT_SMD:SOT-23</footprint>
+      <fields>
+        <field name="Manufacturer">Diodes Incorporated</field>
+        <field name="MPN">BAT54S-7-F</field>
+        <field name="Assembly">SMT</field>
+        <field name="Footprint">Package_TO_SOT_SMD:SOT-23</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="CrowPod" part="D2" description=""/>
+      <property name="Manufacturer" value="Diodes Incorporated"/>
+      <property name="MPN" value="BAT54S-7-F"/>
+      <property name="Assembly" value="SMT"/>
+      <property name="Sheetname" value="Root"/>
+      <property name="Sheetfile" value="crow-pod.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>a71b5945-b915-5b23-9fbc-09715bce800c</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="3"/>
+            <pin num="2"/>
+            <pin num="1"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="D3">
+      <value>BAT54S-7-F</value>
+      <footprint>Package_TO_SOT_SMD:SOT-23</footprint>
+      <fields>
+        <field name="Manufacturer">Diodes Incorporated</field>
+        <field name="MPN">BAT54S-7-F</field>
+        <field name="Assembly">SMT</field>
+        <field name="Footprint">Package_TO_SOT_SMD:SOT-23</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="CrowPod" part="D3" description=""/>
+      <property name="Manufacturer" value="Diodes Incorporated"/>
+      <property name="MPN" value="BAT54S-7-F"/>
+      <property name="Assembly" value="SMT"/>
+      <property name="Sheetname" value="Root"/>
+      <property name="Sheetfile" value="crow-pod.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>aaa295cf-efcb-5eee-8b62-ea18a5da7cf6</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="3"/>
+            <pin num="2"/>
+            <pin num="1"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="D4">
+      <value>SP0504BAHTG</value>
+      <footprint>CrowPhysical:SP0504BAHTG</footprint>
+      <fields>
+        <field name="Manufacturer">Littelfuse</field>
+        <field name="MPN">SP0504BAHTG</field>
+        <field name="Assembly">SMT</field>
+        <field name="Footprint">CrowPhysical:SP0504BAHTG</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="CrowPod" part="D4" description=""/>
+      <property name="Manufacturer" value="Littelfuse"/>
+      <property name="MPN" value="SP0504BAHTG"/>
+      <property name="Assembly" value="SMT"/>
+      <property name="Sheetname" value="Root"/>
+      <property name="Sheetfile" value="crow-pod.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>24d50bfa-9663-5851-a7fa-62ae28bb6591</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+            <pin num="3"/>
+            <pin num="4"/>
+            <pin num="5"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="F1">
+      <value>1206L010/30WR</value>
+      <footprint>Fuse:Fuse_1206_3216Metric</footprint>
+      <fields>
+        <field name="Manufacturer">Littelfuse</field>
+        <field name="MPN">1206L010/30WR</field>
+        <field name="Assembly">SMT</field>
+        <field name="Footprint">Fuse:Fuse_1206_3216Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="CrowPod" part="F1" description=""/>
+      <property name="Manufacturer" value="Littelfuse"/>
+      <property name="MPN" value="1206L010/30WR"/>
+      <property name="Assembly" value="SMT"/>
+      <property name="Sheetname" value="Root"/>
+      <property name="Sheetfile" value="crow-pod.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>b2e6645e-d7f2-515d-8802-5ef620e31750</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="J1">
+      <value>RJHSE-5080</value>
+      <footprint>CrowPhysical:RJHSE-5080</footprint>
+      <fields>
+        <field name="Manufacturer">Amphenol</field>
+        <field name="MPN">RJHSE-5080</field>
+        <field name="Assembly">Through-hole hand solder</field>
+        <field name="Footprint">CrowPhysical:RJHSE-5080</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="CrowPod" part="J1" description=""/>
+      <property name="Manufacturer" value="Amphenol"/>
+      <property name="MPN" value="RJHSE-5080"/>
+      <property name="Assembly" value="Through-hole hand solder"/>
+      <property name="Sheetname" value="Root"/>
+      <property name="Sheetfile" value="crow-pod.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>77ee268e-553f-53d7-bf7d-160dbe150c39</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+            <pin num="3"/>
+            <pin num="4"/>
+            <pin num="5"/>
+            <pin num="6"/>
+            <pin num="7"/>
+            <pin num="8"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="MIC1">
+      <value>CMA-4544PF-W electret capsule</value>
+      <footprint>CrowPhysical:CMA-4544PF-W</footprint>
+      <fields>
+        <field name="Manufacturer">Same Sky</field>
+        <field name="MPN">CMA-4544PF-W</field>
+        <field name="Assembly">Hand solder only; case/green marking to ground</field>
+        <field name="Footprint">CrowPhysical:CMA-4544PF-W</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="CrowPod" part="MIC1" description=""/>
+      <property name="Manufacturer" value="Same Sky"/>
+      <property name="MPN" value="CMA-4544PF-W"/>
+      <property name="Assembly" value="Hand solder only; case/green marking to ground"/>
+      <property name="Sheetname" value="Root"/>
+      <property name="Sheetfile" value="crow-pod.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>ed20d65a-99ca-5e68-92e1-e40cde209fb2</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="PWR1">
+      <value>PWR_FLAG</value>
+      <fields>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="CrowPod" part="PWR1" description=""/>
+      <property name="Sheetname" value="Root"/>
+      <property name="Sheetfile" value="crow-pod.kicad_sch"/>
+      <property name="exclude_from_bom"/>
+      <property name="exclude_from_board"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>42b8d578-e41c-5bec-8b41-5304f0898f01</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="PWR2">
+      <value>PWR_FLAG</value>
+      <fields>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="CrowPod" part="PWR2" description=""/>
+      <property name="Sheetname" value="Root"/>
+      <property name="Sheetfile" value="crow-pod.kicad_sch"/>
+      <property name="exclude_from_bom"/>
+      <property name="exclude_from_board"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>97d81a35-ab78-594c-bd39-e35e27d3cb32</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="PWR3">
+      <value>PWR_FLAG</value>
+      <fields>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="CrowPod" part="PWR3" description=""/>
+      <property name="Sheetname" value="Root"/>
+      <property name="Sheetfile" value="crow-pod.kicad_sch"/>
+      <property name="exclude_from_bom"/>
+      <property name="exclude_from_board"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>522e198d-0f17-57b2-9d7a-659f0f8dbf34</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="Q1">
+      <value>DMN3023L-7</value>
+      <footprint>Package_TO_SOT_SMD:SOT-23</footprint>
+      <fields>
+        <field name="Manufacturer">Diodes Incorporated</field>
+        <field name="MPN">DMN3023L-7</field>
+        <field name="Assembly">SMT</field>
+        <field name="Footprint">Package_TO_SOT_SMD:SOT-23</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="CrowPod" part="Q1" description=""/>
+      <property name="Manufacturer" value="Diodes Incorporated"/>
+      <property name="MPN" value="DMN3023L-7"/>
+      <property name="Assembly" value="SMT"/>
+      <property name="Sheetname" value="Root"/>
+      <property name="Sheetfile" value="crow-pod.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>cf735009-c651-58e9-8b28-9189c7ea0610</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="3"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="Q2">
+      <value>MMBT3906LT1G</value>
+      <footprint>Package_TO_SOT_SMD:SOT-23</footprint>
+      <fields>
+        <field name="Manufacturer">onsemi</field>
+        <field name="MPN">MMBT3906LT1G</field>
+        <field name="Assembly">SMT</field>
+        <field name="Footprint">Package_TO_SOT_SMD:SOT-23</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="CrowPod" part="Q2" description=""/>
+      <property name="Manufacturer" value="onsemi"/>
+      <property name="MPN" value="MMBT3906LT1G"/>
+      <property name="Assembly" value="SMT"/>
+      <property name="Sheetname" value="Root"/>
+      <property name="Sheetfile" value="crow-pod.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>649a89f4-f799-5d6a-9186-8760413aa4e8</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="3"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R1">
+      <value>2.2k 1%</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <fields>
+        <field name="Manufacturer">Vishay</field>
+        <field name="MPN">CRCW06032K20FKEA</field>
+        <field name="Assembly">SMT</field>
+        <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="CrowPod" part="R1" description=""/>
+      <property name="Manufacturer" value="Vishay"/>
+      <property name="MPN" value="CRCW06032K20FKEA"/>
+      <property name="Assembly" value="SMT"/>
+      <property name="Sheetname" value="Root"/>
+      <property name="Sheetfile" value="crow-pod.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>69455c50-e163-52c6-a761-7e634df92732</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R2">
+      <value>100k 1%</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <fields>
+        <field name="Manufacturer">Vishay</field>
+        <field name="MPN">CRCW0603100KFKEA</field>
+        <field name="Assembly">SMT</field>
+        <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="CrowPod" part="R2" description=""/>
+      <property name="Manufacturer" value="Vishay"/>
+      <property name="MPN" value="CRCW0603100KFKEA"/>
+      <property name="Assembly" value="SMT"/>
+      <property name="Sheetname" value="Root"/>
+      <property name="Sheetfile" value="crow-pod.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>a2cb57de-afa6-52ce-9776-ae578c3c12df</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R3">
+      <value>10k 1%</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <fields>
+        <field name="Manufacturer">Vishay</field>
+        <field name="MPN">CRCW060310K0FKEA</field>
+        <field name="Assembly">SMT</field>
+        <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="CrowPod" part="R3" description=""/>
+      <property name="Manufacturer" value="Vishay"/>
+      <property name="MPN" value="CRCW060310K0FKEA"/>
+      <property name="Assembly" value="SMT"/>
+      <property name="Sheetname" value="Root"/>
+      <property name="Sheetfile" value="crow-pod.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>dd9a7f46-7b3b-5dcd-93cc-c7e41c149684</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R4">
+      <value>10k 1%</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <fields>
+        <field name="Manufacturer">Vishay</field>
+        <field name="MPN">CRCW060310K0FKEA</field>
+        <field name="Assembly">SMT</field>
+        <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="CrowPod" part="R4" description=""/>
+      <property name="Manufacturer" value="Vishay"/>
+      <property name="MPN" value="CRCW060310K0FKEA"/>
+      <property name="Assembly" value="SMT"/>
+      <property name="Sheetname" value="Root"/>
+      <property name="Sheetfile" value="crow-pod.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>b897bc7b-814c-5440-988f-a51b35546709</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R5">
+      <value>1k 1%</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <fields>
+        <field name="Manufacturer">Vishay</field>
+        <field name="MPN">CRCW06031K00FKEAHP</field>
+        <field name="Assembly">SMT</field>
+        <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="CrowPod" part="R5" description=""/>
+      <property name="Manufacturer" value="Vishay"/>
+      <property name="MPN" value="CRCW06031K00FKEAHP"/>
+      <property name="Assembly" value="SMT"/>
+      <property name="Sheetname" value="Root"/>
+      <property name="Sheetfile" value="crow-pod.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>3183fc12-2544-56d9-87ae-7c338f35a4dd</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R6">
+      <value>39k 1%</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <fields>
+        <field name="Manufacturer">Vishay</field>
+        <field name="MPN">CRCW060339K0FKEA</field>
+        <field name="Assembly">SMT</field>
+        <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="CrowPod" part="R6" description=""/>
+      <property name="Manufacturer" value="Vishay"/>
+      <property name="MPN" value="CRCW060339K0FKEA"/>
+      <property name="Assembly" value="SMT"/>
+      <property name="Sheetname" value="Root"/>
+      <property name="Sheetfile" value="crow-pod.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>4ba7d126-1db9-5010-b0a7-4bd020863093</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="2"/>
+            <pin num="1"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R7">
+      <value>10k 1%</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <fields>
+        <field name="Manufacturer">Vishay</field>
+        <field name="MPN">CRCW060310K0FKEA</field>
+        <field name="Assembly">SMT</field>
+        <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="CrowPod" part="R7" description=""/>
+      <property name="Manufacturer" value="Vishay"/>
+      <property name="MPN" value="CRCW060310K0FKEA"/>
+      <property name="Assembly" value="SMT"/>
+      <property name="Sheetname" value="Root"/>
+      <property name="Sheetfile" value="crow-pod.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>d240401a-4230-5f6d-bd70-0d29e15a99a2</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="2"/>
+            <pin num="1"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R8">
+      <value>10k 1%</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <fields>
+        <field name="Manufacturer">Vishay</field>
+        <field name="MPN">CRCW060310K0FKEA</field>
+        <field name="Assembly">SMT</field>
+        <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="CrowPod" part="R8" description=""/>
+      <property name="Manufacturer" value="Vishay"/>
+      <property name="MPN" value="CRCW060310K0FKEA"/>
+      <property name="Assembly" value="SMT"/>
+      <property name="Sheetname" value="Root"/>
+      <property name="Sheetfile" value="crow-pod.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>875735e0-5db5-5c19-910e-03f58af1d60c</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="2"/>
+            <pin num="1"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R9">
+      <value>1k 1% 0.125W</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <fields>
+        <field name="Manufacturer">Vishay</field>
+        <field name="MPN">CRCW06031K00FKEAHP</field>
+        <field name="Assembly">SMT</field>
+        <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="CrowPod" part="R9" description=""/>
+      <property name="Manufacturer" value="Vishay"/>
+      <property name="MPN" value="CRCW06031K00FKEAHP"/>
+      <property name="Assembly" value="SMT"/>
+      <property name="Sheetname" value="Root"/>
+      <property name="Sheetfile" value="crow-pod.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>74eed9b6-d8bc-550f-8284-28dd14028579</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R10">
+      <value>1k 1% 0.125W</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <fields>
+        <field name="Manufacturer">Vishay</field>
+        <field name="MPN">CRCW06031K00FKEAHP</field>
+        <field name="Assembly">SMT</field>
+        <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="CrowPod" part="R10" description=""/>
+      <property name="Manufacturer" value="Vishay"/>
+      <property name="MPN" value="CRCW06031K00FKEAHP"/>
+      <property name="Assembly" value="SMT"/>
+      <property name="Sheetname" value="Root"/>
+      <property name="Sheetfile" value="crow-pod.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>ba524d17-b588-5b20-9525-baa1c50cfc39</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R11">
+      <value>10k 1%</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <fields>
+        <field name="Manufacturer">Vishay</field>
+        <field name="MPN">CRCW060310K0FKEA</field>
+        <field name="Assembly">SMT</field>
+        <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="CrowPod" part="R11" description=""/>
+      <property name="Manufacturer" value="Vishay"/>
+      <property name="MPN" value="CRCW060310K0FKEA"/>
+      <property name="Assembly" value="SMT"/>
+      <property name="Sheetname" value="Root"/>
+      <property name="Sheetfile" value="crow-pod.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>052b70f8-80c5-5a6f-9c22-191079b7b646</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R12">
+      <value>10k 1%</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <fields>
+        <field name="Manufacturer">Vishay</field>
+        <field name="MPN">CRCW060310K0FKEA</field>
+        <field name="Assembly">SMT</field>
+        <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="CrowPod" part="R12" description=""/>
+      <property name="Manufacturer" value="Vishay"/>
+      <property name="MPN" value="CRCW060310K0FKEA"/>
+      <property name="Assembly" value="SMT"/>
+      <property name="Sheetname" value="Root"/>
+      <property name="Sheetfile" value="crow-pod.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>6415d179-0081-5b58-802a-b71593f77a5f</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R13">
+      <value>100k 1%</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <fields>
+        <field name="Manufacturer">Vishay</field>
+        <field name="MPN">CRCW0603100KFKEA</field>
+        <field name="Assembly">SMT</field>
+        <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="CrowPod" part="R13" description=""/>
+      <property name="Manufacturer" value="Vishay"/>
+      <property name="MPN" value="CRCW0603100KFKEA"/>
+      <property name="Assembly" value="SMT"/>
+      <property name="Sheetname" value="Root"/>
+      <property name="Sheetfile" value="crow-pod.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>2dfcc3cc-bade-5797-b432-1328de8360dc</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R14">
+      <value>330R 1% 0.125W</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <fields>
+        <field name="Manufacturer">Vishay</field>
+        <field name="MPN">CRCW0603330RFKEAHP</field>
+        <field name="Assembly">SMT</field>
+        <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="CrowPod" part="R14" description=""/>
+      <property name="Manufacturer" value="Vishay"/>
+      <property name="MPN" value="CRCW0603330RFKEAHP"/>
+      <property name="Assembly" value="SMT"/>
+      <property name="Sheetname" value="Root"/>
+      <property name="Sheetfile" value="crow-pod.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>56ae5c50-af9d-5fdc-9059-f10f20b4f3e2</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="U1">
+      <value>TPS70933DBVR</value>
+      <footprint>Package_TO_SOT_SMD:SOT-23-5</footprint>
+      <fields>
+        <field name="Manufacturer">Texas Instruments</field>
+        <field name="MPN">TPS70933DBVR</field>
+        <field name="Assembly">SMT</field>
+        <field name="Footprint">Package_TO_SOT_SMD:SOT-23-5</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="CrowPod" part="U1" description=""/>
+      <property name="Manufacturer" value="Texas Instruments"/>
+      <property name="MPN" value="TPS70933DBVR"/>
+      <property name="Assembly" value="SMT"/>
+      <property name="Sheetname" value="Root"/>
+      <property name="Sheetfile" value="crow-pod.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>c76320d3-58d1-5c41-aa87-3ed68490e2e8</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+            <pin num="3"/>
+            <pin num="4"/>
+            <pin num="5"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="U2">
+      <value>TLV9062IDR</value>
+      <footprint>Package_SO:SOIC-8_3.9x4.9mm_P1.27mm</footprint>
+      <fields>
+        <field name="Manufacturer">Texas Instruments</field>
+        <field name="MPN">TLV9062IDR</field>
+        <field name="Assembly">SMT</field>
+        <field name="Footprint">Package_SO:SOIC-8_3.9x4.9mm_P1.27mm</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="CrowPod" part="U2" description=""/>
+      <property name="Manufacturer" value="Texas Instruments"/>
+      <property name="MPN" value="TLV9062IDR"/>
+      <property name="Assembly" value="SMT"/>
+      <property name="Sheetname" value="Root"/>
+      <property name="Sheetfile" value="crow-pod.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>f52101ba-5d07-5803-8cdf-9251deb45f63</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="3"/>
+            <pin num="2"/>
+            <pin num="5"/>
+            <pin num="6"/>
+            <pin num="8"/>
+            <pin num="4"/>
+            <pin num="1"/>
+            <pin num="7"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+  </components>
+  <libparts>
+    <libpart lib="CrowPod" part="BZ1">
+      <fields>
+        <field name="Reference">BZ</field>
+        <field name="Value">CPE-203</field>
+        <field name="Footprint">CrowPhysical:CPE-203</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+        <field name="Manufacturer">Same Sky</field>
+        <field name="MPN">CPE-203</field>
+        <field name="Assembly">Hand solder only; plus-marked lead to pad1</field>
+      </fields>
+      <pins>
+        <pin num="1" name="+" type="passive"/>
+        <pin num="2" name="-" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="CrowPod" part="C1">
+      <fields>
+        <field name="Reference">C</field>
+        <field name="Value">2.2uF 35V X7R 20%</field>
+        <field name="Footprint">Capacitor_SMD:C_0805_2012Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+        <field name="Manufacturer">TDK</field>
+        <field name="MPN">C2012X7R1V225K125AE</field>
+        <field name="Assembly">SMT</field>
+      </fields>
+      <pins>
+        <pin num="1" name="A" type="passive"/>
+        <pin num="2" name="B" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="CrowPod" part="C2">
+      <fields>
+        <field name="Reference">C</field>
+        <field name="Value">10uF 10V X7R 20%</field>
+        <field name="Footprint">Capacitor_SMD:C_0805_2012Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+        <field name="Manufacturer">Murata</field>
+        <field name="MPN">GRM21BR71A106MA73L</field>
+        <field name="Assembly">SMT</field>
+      </fields>
+      <pins>
+        <pin num="1" name="A" type="passive"/>
+        <pin num="2" name="B" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="CrowPod" part="C3">
+      <fields>
+        <field name="Reference">C</field>
+        <field name="Value">1uF 10V X7R</field>
+        <field name="Footprint">Capacitor_SMD:C_0805_2012Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+        <field name="Manufacturer">Murata</field>
+        <field name="MPN">GRM21BR71A105KA01L</field>
+        <field name="Assembly">SMT</field>
+      </fields>
+      <pins>
+        <pin num="1" name="A" type="passive"/>
+        <pin num="2" name="B" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="CrowPod" part="C4">
+      <fields>
+        <field name="Reference">C</field>
+        <field name="Value">47uF 10V X7R 20%</field>
+        <field name="Footprint">Capacitor_SMD:C_1210_3225Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+        <field name="Manufacturer">Murata</field>
+        <field name="MPN">GRM32ER71A476KE15L</field>
+        <field name="Assembly">SMT</field>
+      </fields>
+      <pins>
+        <pin num="1" name="A" type="passive"/>
+        <pin num="2" name="B" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="CrowPod" part="C5">
+      <fields>
+        <field name="Reference">C</field>
+        <field name="Value">100nF 10V X7R</field>
+        <field name="Footprint">Capacitor_SMD:C_0805_2012Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+        <field name="Manufacturer">Samsung Electro-Mechanics</field>
+        <field name="MPN">CL21B104KBCNNNC</field>
+        <field name="Assembly">SMT</field>
+      </fields>
+      <pins>
+        <pin num="1" name="A" type="passive"/>
+        <pin num="2" name="B" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="CrowPod" part="D1">
+      <fields>
+        <field name="Reference">D</field>
+        <field name="Value">Littelfuse SMBJ15A</field>
+        <field name="Footprint">Diode_SMD:D_SMB</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+        <field name="Manufacturer">Littelfuse</field>
+        <field name="MPN">SMBJ15A</field>
+        <field name="Assembly">SMT</field>
+      </fields>
+      <pins>
+        <pin num="1" name="K" type="passive"/>
+        <pin num="2" name="A" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="CrowPod" part="D2">
+      <fields>
+        <field name="Reference">D</field>
+        <field name="Value">BAT54S-7-F</field>
+        <field name="Footprint">Package_TO_SOT_SMD:SOT-23</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+        <field name="Manufacturer">Diodes Incorporated</field>
+        <field name="MPN">BAT54S-7-F</field>
+        <field name="Assembly">SMT</field>
+      </fields>
+      <pins>
+        <pin num="1" name="A" type="passive"/>
+        <pin num="2" name="K" type="passive"/>
+        <pin num="3" name="COM" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="CrowPod" part="D3">
+      <fields>
+        <field name="Reference">D</field>
+        <field name="Value">BAT54S-7-F</field>
+        <field name="Footprint">Package_TO_SOT_SMD:SOT-23</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+        <field name="Manufacturer">Diodes Incorporated</field>
+        <field name="MPN">BAT54S-7-F</field>
+        <field name="Assembly">SMT</field>
+      </fields>
+      <pins>
+        <pin num="1" name="A" type="passive"/>
+        <pin num="2" name="K" type="passive"/>
+        <pin num="3" name="COM" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="CrowPod" part="D4">
+      <fields>
+        <field name="Reference">D</field>
+        <field name="Value">SP0504BAHTG</field>
+        <field name="Footprint">CrowPhysical:SP0504BAHTG</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+        <field name="Manufacturer">Littelfuse</field>
+        <field name="MPN">SP0504BAHTG</field>
+        <field name="Assembly">SMT</field>
+      </fields>
+      <pins>
+        <pin num="1" name="IO1" type="passive"/>
+        <pin num="2" name="GND" type="passive"/>
+        <pin num="3" name="IO2" type="passive"/>
+        <pin num="4" name="IO3" type="passive"/>
+        <pin num="5" name="IO4" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="CrowPod" part="F1">
+      <fields>
+        <field name="Reference">F</field>
+        <field name="Value">1206L010/30WR</field>
+        <field name="Footprint">Fuse:Fuse_1206_3216Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+        <field name="Manufacturer">Littelfuse</field>
+        <field name="MPN">1206L010/30WR</field>
+        <field name="Assembly">SMT</field>
+      </fields>
+      <pins>
+        <pin num="1" name="A" type="passive"/>
+        <pin num="2" name="B" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="CrowPod" part="J1">
+      <fields>
+        <field name="Reference">J</field>
+        <field name="Value">RJHSE-5080</field>
+        <field name="Footprint">CrowPhysical:RJHSE-5080</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+        <field name="Manufacturer">Amphenol</field>
+        <field name="MPN">RJHSE-5080</field>
+        <field name="Assembly">Through-hole hand solder</field>
+      </fields>
+      <pins>
+        <pin num="1" name="contact_1" type="passive"/>
+        <pin num="2" name="contact_2" type="passive"/>
+        <pin num="3" name="contact_3" type="passive"/>
+        <pin num="4" name="contact_4" type="passive"/>
+        <pin num="5" name="contact_5" type="passive"/>
+        <pin num="6" name="contact_6" type="passive"/>
+        <pin num="7" name="contact_7" type="passive"/>
+        <pin num="8" name="contact_8" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="CrowPod" part="MIC1">
+      <fields>
+        <field name="Reference">MIC</field>
+        <field name="Value">CMA-4544PF-W electret capsule</field>
+        <field name="Footprint">CrowPhysical:CMA-4544PF-W</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+        <field name="Manufacturer">Same Sky</field>
+        <field name="MPN">CMA-4544PF-W</field>
+        <field name="Assembly">Hand solder only; case/green marking to ground</field>
+      </fields>
+      <pins>
+        <pin num="1" name="MIC+" type="passive"/>
+        <pin num="2" name="MIC-" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="CrowPod" part="PWR1">
+      <fields>
+        <field name="Reference">PWR</field>
+        <field name="Value">PWR_FLAG</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="pwr" type="power_out"/>
+      </pins>
+    </libpart>
+    <libpart lib="CrowPod" part="PWR2">
+      <fields>
+        <field name="Reference">PWR</field>
+        <field name="Value">PWR_FLAG</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="pwr" type="power_out"/>
+      </pins>
+    </libpart>
+    <libpart lib="CrowPod" part="PWR3">
+      <fields>
+        <field name="Reference">PWR</field>
+        <field name="Value">PWR_FLAG</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="pwr" type="power_out"/>
+      </pins>
+    </libpart>
+    <libpart lib="CrowPod" part="Q1">
+      <fields>
+        <field name="Reference">Q</field>
+        <field name="Value">DMN3023L-7</field>
+        <field name="Footprint">Package_TO_SOT_SMD:SOT-23</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+        <field name="Manufacturer">Diodes Incorporated</field>
+        <field name="MPN">DMN3023L-7</field>
+        <field name="Assembly">SMT</field>
+      </fields>
+      <pins>
+        <pin num="1" name="G" type="input"/>
+        <pin num="2" name="S" type="passive"/>
+        <pin num="3" name="D" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="CrowPod" part="Q2">
+      <fields>
+        <field name="Reference">Q</field>
+        <field name="Value">MMBT3906LT1G</field>
+        <field name="Footprint">Package_TO_SOT_SMD:SOT-23</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+        <field name="Manufacturer">onsemi</field>
+        <field name="MPN">MMBT3906LT1G</field>
+        <field name="Assembly">SMT</field>
+      </fields>
+      <pins>
+        <pin num="1" name="B" type="input"/>
+        <pin num="2" name="E" type="passive"/>
+        <pin num="3" name="C" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="CrowPod" part="R1">
+      <fields>
+        <field name="Reference">R</field>
+        <field name="Value">2.2k 1%</field>
+        <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+        <field name="Manufacturer">Vishay</field>
+        <field name="MPN">CRCW06032K20FKEA</field>
+        <field name="Assembly">SMT</field>
+      </fields>
+      <pins>
+        <pin num="1" name="A" type="passive"/>
+        <pin num="2" name="B" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="CrowPod" part="R10">
+      <fields>
+        <field name="Reference">R</field>
+        <field name="Value">1k 1% 0.125W</field>
+        <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+        <field name="Manufacturer">Vishay</field>
+        <field name="MPN">CRCW06031K00FKEAHP</field>
+        <field name="Assembly">SMT</field>
+      </fields>
+      <pins>
+        <pin num="1" name="A" type="passive"/>
+        <pin num="2" name="B" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="CrowPod" part="R11">
+      <fields>
+        <field name="Reference">R</field>
+        <field name="Value">10k 1%</field>
+        <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+        <field name="Manufacturer">Vishay</field>
+        <field name="MPN">CRCW060310K0FKEA</field>
+        <field name="Assembly">SMT</field>
+      </fields>
+      <pins>
+        <pin num="1" name="A" type="passive"/>
+        <pin num="2" name="B" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="CrowPod" part="R12">
+      <fields>
+        <field name="Reference">R</field>
+        <field name="Value">10k 1%</field>
+        <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+        <field name="Manufacturer">Vishay</field>
+        <field name="MPN">CRCW060310K0FKEA</field>
+        <field name="Assembly">SMT</field>
+      </fields>
+      <pins>
+        <pin num="1" name="A" type="passive"/>
+        <pin num="2" name="B" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="CrowPod" part="R13">
+      <fields>
+        <field name="Reference">R</field>
+        <field name="Value">100k 1%</field>
+        <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+        <field name="Manufacturer">Vishay</field>
+        <field name="MPN">CRCW0603100KFKEA</field>
+        <field name="Assembly">SMT</field>
+      </fields>
+      <pins>
+        <pin num="1" name="A" type="passive"/>
+        <pin num="2" name="B" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="CrowPod" part="R14">
+      <fields>
+        <field name="Reference">R</field>
+        <field name="Value">330R 1% 0.125W</field>
+        <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+        <field name="Manufacturer">Vishay</field>
+        <field name="MPN">CRCW0603330RFKEAHP</field>
+        <field name="Assembly">SMT</field>
+      </fields>
+      <pins>
+        <pin num="1" name="A" type="passive"/>
+        <pin num="2" name="B" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="CrowPod" part="R2">
+      <fields>
+        <field name="Reference">R</field>
+        <field name="Value">100k 1%</field>
+        <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+        <field name="Manufacturer">Vishay</field>
+        <field name="MPN">CRCW0603100KFKEA</field>
+        <field name="Assembly">SMT</field>
+      </fields>
+      <pins>
+        <pin num="1" name="A" type="passive"/>
+        <pin num="2" name="B" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="CrowPod" part="R3">
+      <fields>
+        <field name="Reference">R</field>
+        <field name="Value">10k 1%</field>
+        <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+        <field name="Manufacturer">Vishay</field>
+        <field name="MPN">CRCW060310K0FKEA</field>
+        <field name="Assembly">SMT</field>
+      </fields>
+      <pins>
+        <pin num="1" name="A" type="passive"/>
+        <pin num="2" name="B" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="CrowPod" part="R4">
+      <fields>
+        <field name="Reference">R</field>
+        <field name="Value">10k 1%</field>
+        <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+        <field name="Manufacturer">Vishay</field>
+        <field name="MPN">CRCW060310K0FKEA</field>
+        <field name="Assembly">SMT</field>
+      </fields>
+      <pins>
+        <pin num="1" name="A" type="passive"/>
+        <pin num="2" name="B" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="CrowPod" part="R5">
+      <fields>
+        <field name="Reference">R</field>
+        <field name="Value">1k 1%</field>
+        <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+        <field name="Manufacturer">Vishay</field>
+        <field name="MPN">CRCW06031K00FKEAHP</field>
+        <field name="Assembly">SMT</field>
+      </fields>
+      <pins>
+        <pin num="1" name="A" type="passive"/>
+        <pin num="2" name="B" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="CrowPod" part="R6">
+      <fields>
+        <field name="Reference">R</field>
+        <field name="Value">39k 1%</field>
+        <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+        <field name="Manufacturer">Vishay</field>
+        <field name="MPN">CRCW060339K0FKEA</field>
+        <field name="Assembly">SMT</field>
+      </fields>
+      <pins>
+        <pin num="1" name="A" type="passive"/>
+        <pin num="2" name="B" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="CrowPod" part="R7">
+      <fields>
+        <field name="Reference">R</field>
+        <field name="Value">10k 1%</field>
+        <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+        <field name="Manufacturer">Vishay</field>
+        <field name="MPN">CRCW060310K0FKEA</field>
+        <field name="Assembly">SMT</field>
+      </fields>
+      <pins>
+        <pin num="1" name="A" type="passive"/>
+        <pin num="2" name="B" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="CrowPod" part="R8">
+      <fields>
+        <field name="Reference">R</field>
+        <field name="Value">10k 1%</field>
+        <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+        <field name="Manufacturer">Vishay</field>
+        <field name="MPN">CRCW060310K0FKEA</field>
+        <field name="Assembly">SMT</field>
+      </fields>
+      <pins>
+        <pin num="1" name="A" type="passive"/>
+        <pin num="2" name="B" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="CrowPod" part="R9">
+      <fields>
+        <field name="Reference">R</field>
+        <field name="Value">1k 1% 0.125W</field>
+        <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+        <field name="Manufacturer">Vishay</field>
+        <field name="MPN">CRCW06031K00FKEAHP</field>
+        <field name="Assembly">SMT</field>
+      </fields>
+      <pins>
+        <pin num="1" name="A" type="passive"/>
+        <pin num="2" name="B" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="CrowPod" part="U1">
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">TPS70933DBVR</field>
+        <field name="Footprint">Package_TO_SOT_SMD:SOT-23-5</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+        <field name="Manufacturer">Texas Instruments</field>
+        <field name="MPN">TPS70933DBVR</field>
+        <field name="Assembly">SMT</field>
+      </fields>
+      <pins>
+        <pin num="1" name="IN" type="power_in"/>
+        <pin num="2" name="GND" type="power_in"/>
+        <pin num="3" name="EN" type="input"/>
+        <pin num="4" name="NC" type="no_connect"/>
+        <pin num="5" name="OUT" type="power_out"/>
+      </pins>
+    </libpart>
+    <libpart lib="CrowPod" part="U2">
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">TLV9062IDR</field>
+        <field name="Footprint">Package_SO:SOIC-8_3.9x4.9mm_P1.27mm</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+        <field name="Manufacturer">Texas Instruments</field>
+        <field name="MPN">TLV9062IDR</field>
+        <field name="Assembly">SMT</field>
+      </fields>
+      <pins>
+        <pin num="1" name="OUTA" type="output"/>
+        <pin num="2" name="INA-" type="input"/>
+        <pin num="3" name="INA+" type="input"/>
+        <pin num="4" name="V-" type="power_in"/>
+        <pin num="5" name="INB+" type="input"/>
+        <pin num="6" name="INB-" type="input"/>
+        <pin num="7" name="OUTB" type="output"/>
+        <pin num="8" name="V+" type="power_in"/>
+      </pins>
+    </libpart>
+  </libparts>
+  <libraries>
+    <library logical="CrowPod">
+      <uri>${KIPRJMOD}/CrowPod.kicad_sym</uri>
+    </library>
+  </libraries>
+  <nets>
+    <net code="1" name="/3V3" class="Default">
+      <node ref="C2" pin="1" pinfunction="A_1" pintype="passive"/>
+      <node ref="C5" pin="1" pinfunction="A_1" pintype="passive"/>
+      <node ref="D2" pin="2" pinfunction="K_2" pintype="passive"/>
+      <node ref="D3" pin="2" pinfunction="K_2" pintype="passive"/>
+      <node ref="Q2" pin="2" pinfunction="E_2" pintype="passive"/>
+      <node ref="R1" pin="1" pinfunction="A_1" pintype="passive"/>
+      <node ref="R11" pin="1" pinfunction="A_1" pintype="passive"/>
+      <node ref="R14" pin="1" pinfunction="A_1" pintype="passive"/>
+      <node ref="R3" pin="1" pinfunction="A_1" pintype="passive"/>
+      <node ref="U1" pin="5" pinfunction="OUT_5" pintype="power_out"/>
+      <node ref="U2" pin="8" pinfunction="V+_8" pintype="power_in"/>
+    </net>
+    <net code="2" name="/12V" class="Default">
+      <node ref="BZ1" pin="1" pinfunction="+_1" pintype="passive"/>
+      <node ref="C1" pin="1" pinfunction="A_1" pintype="passive"/>
+      <node ref="D1" pin="1" pinfunction="K_1" pintype="passive"/>
+      <node ref="F1" pin="2" pinfunction="B_2" pintype="passive"/>
+      <node ref="PWR2" pin="1" pinfunction="pwr_1" pintype="power_out"/>
+      <node ref="U1" pin="1" pinfunction="IN_1" pintype="power_in"/>
+    </net>
+    <net code="3" name="/12V_RAW" class="Default">
+      <node ref="F1" pin="1" pinfunction="A_1" pintype="passive"/>
+      <node ref="J1" pin="3" pinfunction="contact_3_3" pintype="passive"/>
+      <node ref="J1" pin="4" pinfunction="contact_4_4" pintype="passive"/>
+      <node ref="PWR1" pin="1" pinfunction="pwr_1" pintype="power_out"/>
+    </net>
+    <net code="4" name="/AMP_M" class="Default">
+      <node ref="D3" pin="3" pinfunction="COM_3" pintype="passive"/>
+      <node ref="R10" pin="1" pinfunction="A_1" pintype="passive"/>
+      <node ref="R8" pin="1" pinfunction="A_1" pintype="passive"/>
+      <node ref="U2" pin="7" pinfunction="OUTB_7" pintype="output"/>
+    </net>
+    <net code="5" name="/AMP_P" class="Default">
+      <node ref="D2" pin="3" pinfunction="COM_3" pintype="passive"/>
+      <node ref="R6" pin="1" pinfunction="A_1" pintype="passive"/>
+      <node ref="R7" pin="1" pinfunction="A_1" pintype="passive"/>
+      <node ref="R9" pin="1" pinfunction="A_1" pintype="passive"/>
+      <node ref="U2" pin="1" pinfunction="OUTA_1" pintype="output"/>
+    </net>
+    <net code="6" name="/AUDIO_M" class="Default">
+      <node ref="D4" pin="3" pinfunction="IO2_3" pintype="passive"/>
+      <node ref="J1" pin="2" pinfunction="contact_2_2" pintype="passive"/>
+      <node ref="R10" pin="2" pinfunction="B_2" pintype="passive"/>
+    </net>
+    <net code="7" name="/AUDIO_P" class="Default">
+      <node ref="D4" pin="1" pinfunction="IO1_1" pintype="passive"/>
+      <node ref="J1" pin="1" pinfunction="contact_1_1" pintype="passive"/>
+      <node ref="R9" pin="2" pinfunction="B_2" pintype="passive"/>
+    </net>
+    <net code="8" name="/BUZZ_N" class="Default">
+      <node ref="D4" pin="4" pinfunction="IO3_4" pintype="passive"/>
+      <node ref="J1" pin="7" pinfunction="contact_7_7" pintype="passive"/>
+      <node ref="R11" pin="2" pinfunction="B_2" pintype="passive"/>
+      <node ref="R12" pin="1" pinfunction="A_1" pintype="passive"/>
+    </net>
+    <net code="9" name="/BZ_BASE" class="Default">
+      <node ref="Q2" pin="1" pinfunction="B_1" pintype="input"/>
+      <node ref="R12" pin="2" pinfunction="B_2" pintype="passive"/>
+    </net>
+    <net code="10" name="/BZ_GATE" class="Default">
+      <node ref="Q1" pin="1" pinfunction="G_1" pintype="input"/>
+      <node ref="Q2" pin="3" pinfunction="C_3" pintype="passive"/>
+      <node ref="R13" pin="1" pinfunction="A_1" pintype="passive"/>
+    </net>
+    <net code="11" name="/BZ_LOW" class="Default">
+      <node ref="BZ1" pin="2" pinfunction="-_2" pintype="passive"/>
+      <node ref="Q1" pin="3" pinfunction="D_3" pintype="passive"/>
+    </net>
+    <net code="12" name="/GND" class="Default">
+      <node ref="C1" pin="2" pinfunction="B_2" pintype="passive"/>
+      <node ref="C2" pin="2" pinfunction="B_2" pintype="passive"/>
+      <node ref="C4" pin="2" pinfunction="B_2" pintype="passive"/>
+      <node ref="C5" pin="2" pinfunction="B_2" pintype="passive"/>
+      <node ref="D1" pin="2" pinfunction="A_2" pintype="passive"/>
+      <node ref="D2" pin="1" pinfunction="A_1" pintype="passive"/>
+      <node ref="D3" pin="1" pinfunction="A_1" pintype="passive"/>
+      <node ref="D4" pin="2" pinfunction="GND_2" pintype="passive"/>
+      <node ref="J1" pin="5" pinfunction="contact_5_5" pintype="passive"/>
+      <node ref="J1" pin="6" pinfunction="contact_6_6" pintype="passive"/>
+      <node ref="J1" pin="8" pinfunction="contact_8_8" pintype="passive"/>
+      <node ref="MIC1" pin="2" pinfunction="MIC-_2" pintype="passive"/>
+      <node ref="PWR3" pin="1" pinfunction="pwr_1" pintype="power_out"/>
+      <node ref="Q1" pin="2" pinfunction="S_2" pintype="passive"/>
+      <node ref="R13" pin="2" pinfunction="B_2" pintype="passive"/>
+      <node ref="R14" pin="2" pinfunction="B_2" pintype="passive"/>
+      <node ref="R4" pin="2" pinfunction="B_2" pintype="passive"/>
+      <node ref="U1" pin="2" pinfunction="GND_2" pintype="power_in"/>
+      <node ref="U2" pin="4" pinfunction="V-_4" pintype="power_in"/>
+    </net>
+    <net code="13" name="/INV_A" class="Default">
+      <node ref="R5" pin="1" pinfunction="A_1" pintype="passive"/>
+      <node ref="R6" pin="2" pinfunction="B_2" pintype="passive"/>
+      <node ref="U2" pin="2" pinfunction="INA-_2" pintype="input"/>
+    </net>
+    <net code="14" name="/INV_B" class="Default">
+      <node ref="R7" pin="2" pinfunction="B_2" pintype="passive"/>
+      <node ref="R8" pin="2" pinfunction="B_2" pintype="passive"/>
+      <node ref="U2" pin="6" pinfunction="INB-_6" pintype="input"/>
+    </net>
+    <net code="15" name="/MIC_AC" class="Default">
+      <node ref="C3" pin="2" pinfunction="B_2" pintype="passive"/>
+      <node ref="R2" pin="1" pinfunction="A_1" pintype="passive"/>
+      <node ref="U2" pin="3" pinfunction="INA+_3" pintype="input"/>
+    </net>
+    <net code="16" name="/MIC_NODE" class="Default">
+      <node ref="C3" pin="1" pinfunction="A_1" pintype="passive"/>
+      <node ref="MIC1" pin="1" pinfunction="MIC+_1" pintype="passive"/>
+      <node ref="R1" pin="2" pinfunction="B_2" pintype="passive"/>
+    </net>
+    <net code="17" name="/VMID" class="Default">
+      <node ref="C4" pin="1" pinfunction="A_1" pintype="passive"/>
+      <node ref="R2" pin="2" pinfunction="B_2" pintype="passive"/>
+      <node ref="R3" pin="2" pinfunction="B_2" pintype="passive"/>
+      <node ref="R4" pin="1" pinfunction="A_1" pintype="passive"/>
+      <node ref="R5" pin="2" pinfunction="B_2" pintype="passive"/>
+      <node ref="U2" pin="5" pinfunction="INB+_5" pintype="input"/>
+    </net>
+    <net code="18" name="unconnected-(D4-IO4-Pad5)" class="Default">
+      <node ref="D4" pin="5" pinfunction="IO4_5" pintype="passive+no_connect"/>
+    </net>
+    <net code="19" name="unconnected-(U1-EN-Pad3)" class="Default">
+      <node ref="U1" pin="3" pinfunction="EN_3" pintype="input+no_connect"/>
+    </net>
+    <net code="20" name="unconnected-(U1-NC-Pad4)" class="Default">
+      <node ref="U1" pin="4" pinfunction="NC_4" pintype="no_connect"/>
+    </net>
+  </nets>
+</export>

@@ -4,6 +4,10 @@ The separate [vNext PCB skill and orchestrator](vnext/README.md) package is
 available alongside the reference workflow below; existing projects keep their
 accepted toolchain until an explicit migration.
 
+The [Crow carrier + pod public design package](projects/crow-array/README.md)
+provides native designs and fabrication exports for the 5-carrier/10-pod prototype
+batch. It is a subset of the local sealed release, **not order authorization**.
+
 **Prompt to device:** give an agent a plain-language hardware brief, work
 through explicit design, review, and physical-test cycles, and finish with the
 artifacts needed to manufacture the device—not merely a plausible CAD image.

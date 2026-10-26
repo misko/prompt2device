@@ -1,0 +1,27 @@
+{
+  "boards": {
+    "carrier": {
+      "native_refill_unchanged": true,
+      "pdfs": 4,
+      "plots": 13,
+      "schematic_parity": 0,
+      "unconnected": 0,
+      "violations": 0
+    },
+    "pod": {
+      "native_refill_unchanged": true,
+      "pdfs": 4,
+      "plots": 13,
+      "schematic_parity": 0,
+      "unconnected": 0,
+      "violations": 0
+    }
+  },
+  "kicad": "10.0.4",
+  "order": "DO-NOT-ORDER",
+  "original_archive_accessed": false,
+  "package_id": "crow-prototype-v3-first-run-5c10p-public-v1",
+  "package_manifest_sha256": "cda4e4da019cba206f0cbf4e477f2ce9b5629c024e9a8c9af78aeb994bd8316f",
+  "scope": "public native 2D replot only; not full sealed replay or engineering acceptance",
+  "verifier_sha256": "5baa504bddc8f57bf7cb04e4cf1a9862147e82a2fcf5647989d3cd1ae450cdd2"
+}

@@ -1,0 +1,43 @@
+# Crow v3 — public design package
+
+**DO-NOT-ORDER.** Public derivative; not the original sealed archive and not a complete offline replay.
+
+Scope: 5 carriers and 10 pods, not five complete eight-pod arrays. Original seal records SOUND design acceptance; physical qualification, firmware, current stock and exact-job approval are not established here.
+
+## Designs and exports
+
+| Board | Native schematic | Native PCB | Schematic PDF | PCB PDF | Gerbers |
+|---|---|---|---|---|---|
+| carrier | [schematic](native/design/03_src/recovery/first-run-r3-source/crow-carrier.kicad_sch) | [PCB](native/source/carrier/carrier.kicad_pcb) | [PDF](pdf/carrier/schematic.pdf) | [PDF](pdf/carrier/pcb.pdf) | [ZIP](fab/carrier/carrier-gerbers.zip) |
+| pod | [schematic](native/design/03_src/recovery/first-run-r3-source/crow-pod.kicad_sch) | [PCB](native/source/pod/pod.kicad_pcb) | [PDF](pdf/pod/schematic.pdf) | [PDF](pdf/pod/pcb.pdf) | [ZIP](fab/pod/pod-gerbers.zip) |
+
+BOM, CPL and population policies: [fab/assembly](fab/assembly). Factory and consigned files describe distinct proposed routes; do not combine or submit them as an approved turnkey order.
+
+Open with KiCad 10.0.4. Local symbol/footprint tables and native settings are included. Keep the native directory structure. Optional standard KiCad 3D models are external; the registered populated assembly is deliberately excluded.
+
+## Active ordering holds
+
+- **PURCHASING-AUTHORITY** — No vendor contact, upload, purchase or publication is authorized by local design/release acceptance. Closure: Purchaser obtains explicit user authority for the exact accepted/sealed 5-carrier/10-pod packet and actual scope/cost; publication additionally requires repository-delta and redistribution-rights review.
+- **EXACT-SUPPLY-AND-ALLOCATION** — 38 adequate dated supplier offers are not reservations, usable JLC pools or an accepted consignment/global-sourcing route; no attrition extras inferred. Closure: Procurement/assembly owner confirms all exact MPNs, usable pool allocation, lead time, packaging, MOQ and feeder/attrition needs for 1,000 installed parts; retains actual purchased minima separately; substitutes reopen engineering.
+- **VENDOR-MATCH-AND-ORIENTATION** — Local BOM/CPL encoding, identity, centroid and angle checks are not vendor matching, reel convention or placement-preview approval. Closure: Assembly owner checks exact same-MPN matching and every center/side/rotation/pin-1/cathode against current native boards and actual vendor previews before commitment.
+- **STENCIL-POLICY-RECONCILIATION** — JLC internally optimizes production stencil apertures while this accepted process prohibits automatic paste changes; exact agreement is absent. Closure: Fabrication/assembly process owner obtains explicit exact-job production-stencil agreement preserving exclusions, or separately authors/reviews a compatible process revision; no silent edits.
+- **PROCESS-STACK-RAILS-DFM** — Published service capability and nominal CAD do not confirm this exact construction, precision process, finish, rails/fiducials/fixtures or edge-mounted handling/DFM. Closure: Fabrication/assembly owner confirms carrier 7628A and pod 7628, full plots/drills and exclusions, actual stack/finish, panel/rail/fiducial/fixture/DFM scope and preserves all datums/contours; conflicting offers reopen causal engineering.
+- **FINISHED-MECHANICAL-AGREEMENT** — Complete coupled LS43/LS33 incoming/finished hole, pitch, web, annulus, edge, registered top, pose, seat, pool, underside and service limits are design-owned controls, not automatic supplier guarantees. Closure: Fabrication/assembly/metrology owners agree every conjunctive limit, measurement method/uncertainty and traceable records before execution; inspect actual lots/units and quarantine failure rather than force, ream or weaken limits.
+- **MANUAL-ROUTE-UNSELECTED** — The user has selected no manual completion route; header-only factory/all-consigned SMT is a proposal, not turnkey acceptance or an unassembled-kit promise. Closure: Purchaser/assembly owner names JLC or a qualified separate manual assembler and obtains acceptance of each Pico D1-only, RJ/PJ/RECOM and acoustic hand-solder operation, supply route, inspection and responsibility before commitment.
+- **CONTROLLED-ASSEMBLY-READINESS** — Exact original SC0915 Rev3 D1-only preparation, all castellations/pools, PJ fill/retention, protected hand-only acoustics and compatible at-most-two R3 reflows require qualified execution/inspection; none is performed. Closure: Assembly owner agrees compatible profiles, incoming identities, special handling, unpowered inspection, lot/serial/rework and metrology records; executes under complete retained maker/LS43/LS33 instructions after authorization.
+- **ACTUAL-QUOTE-AND-SCOPE** — PCB components plus bare fab/setup $530–1,350 and separate assembly/manual $500–1,400 are unquoted estimates, not a cap or accepted offer. Closure: Purchaser obtains itemized exact 5/10 quote and user approval of actual cost/scope; external host/storage/PSU/adapters/cables/enclosure/roof costs are outside requested comparison, not free or technically waived.
+
+The user authorized this separate public derivative on 2026-10-25. Historical statements denying publication authority describe the earlier seal; they do not grant or remove purchasing authority.
+
+## Evidence and limits
+
+- [Exact original current status](evidence/CURRENT-STATUS.json).
+- [Independent post-seal review](evidence/post-seal-review.md) and [final seal receipt](evidence/sealed-release-receipt.json), retained separately from the original seal to avoid a circular hash claim.
+- [Historical release review](evidence/verification/release-review.md) and [receipt](evidence/verification/release_reviewed.json).
+- [Original seal record](evidence/seal.json) and [archive inventory](evidence/archive-manifest.json). These inventory omitted files too; neither is a manifest of this public subset.
+- [Historical handoff](historical/HANDOFF.md) and [order instructions](historical/ORDER-INSTRUCTIONS.md). Their full-replay commands require the original archive and must not be run as subset instructions.
+- [External dependencies](EXTERNAL-DEPENDENCIES.json), [licenses](THIRD-PARTY-NOTICES.md), and [public inventory](publication.json).
+
+All copied payload bytes match their pinned upstream identities. Verification of this subset checks preservation, inventory, native local dependencies and Gerber ZIP/plot consistency, not independent engineering acceptance. No new seal, live sourcing result or complete-replay claim is made.
+
+From the repository root: `python3 -B projects/crow-array/publication.py verify`.

@@ -1,0 +1,806 @@
+{
+  "excluded_families": [
+    "vendor PDFs and HTML",
+    "runtime binaries",
+    "populated 3D assemblies and model assets",
+    "full authoring/replay source and engineering evidence closure"
+  ],
+  "not_complete_offline_replay": true,
+  "optional_native_3d": {
+    "note": "Native optional library previews are not the reviewed registered assembly.",
+    "upstream": "https://gitlab.com/kicad/libraries/kicad-packages3D",
+    "variable": "KICAD10_3DMODEL_DIR"
+  },
+  "vendor_sources": [
+    {
+      "note": "Related dossier URLs; identical bytes are not guaranteed available upstream.",
+      "origin": "source/project/02_parts/P001/manufacturer.pdf",
+      "sha256": "bdfc5532113e5df5ca3a469553b64c8903751c5d3ea2a3a382262f6093b9fd14",
+      "source_urls": [
+        "https://media.digikey.com/pdf/Data%20Sheets/Littelfuse%20PDFs/451_453SERIES.pdf",
+        "https://www.digikey.com/en/products/detail/littelfuse-inc/0451001-MRL/700818",
+        "https://www.littelfuse.com/assetdocs/fuse-451-and-453-datasheet?assetguid=533cd5cc-956c-4243-867f-6ab5a62f6ba1"
+      ]
+    },
+    {
+      "note": "Related dossier URLs; identical bytes are not guaranteed available upstream.",
+      "origin": "source/project/02_parts/P002/manufacturer.pdf",
+      "sha256": "efbee653f29f401dafc83bb47b65efd54d6025e20c98035af1919cec7a0bdd15",
+      "source_urls": [
+        "https://assets.rs-online.com/image/upload/v1763384924/Datasheets/9ca19f8994fcacc41b8085e84a228883.pdf",
+        "https://www.digikey.com/en/products/detail/littelfuse-inc/1206L010-30WR/6346986",
+        "https://www.littelfuse.com/assetdocs/littelfuse-ptc-1206l-datasheet?assetguid=2b6a1515-d4ee-4c83-8bd4-152b4901b8f5"
+      ]
+    },
+    {
+      "note": "Related dossier URLs; identical bytes are not guaranteed available upstream.",
+      "origin": "source/project/02_parts/P003/manufacturer.pdf",
+      "sha256": "5d395ffed99cf08fcc81d619f0456378b06ce958a6e2990bdc783ccfeb429f0c",
+      "source_urls": [
+        "https://www.digikey.com/en/products/detail/diodes-incorporated/1N5819HW-7-F/814970",
+        "https://www.diodes.com/datasheet/download/1N5819HW.pdf"
+      ]
+    },
+    {
+      "note": "Related dossier URLs; identical bytes are not guaranteed available upstream.",
+      "origin": "source/project/02_parts/P004/manufacturer.pdf",
+      "sha256": "1ea3fb87c7a018d96a49ef20f9d355191db8df35c609831bdf0d3a6808f1956b",
+      "source_urls": [
+        "https://abracon.com/Oscillators/ASFL1.pdf",
+        "https://www.digikey.com/en/products/detail/abracon-llc/ASFL1-12-288MHZ-L-T/2623937"
+      ]
+    },
+    {
+      "note": "Related dossier URLs; identical bytes are not guaranteed available upstream.",
+      "origin": "source/project/02_parts/P005/manufacturer.pdf",
+      "sha256": "50b04e4e17bcf5db62164f6e5422e91546d0cace0ab2efed61660c3044b4fef0",
+      "source_urls": [
+        "https://www.digikey.com/en/products/detail/diodes-incorporated/BAT54S-7-F/717925",
+        "https://www.diodes.com/datasheet/download/BAT54.pdf"
+      ]
+    },
+    {
+      "note": "Related dossier URLs; identical bytes are not guaranteed available upstream.",
+      "origin": "source/project/02_parts/P006/manufacturer.pdf",
+      "sha256": "0fbd7d137524820f0160594065cbceb8c6b3188757c328416d08fceb7418202f",
+      "source_urls": [
+        "https://www.digikey.com/en/products/detail/diodes-incorporated/BZT52C3V9-7-F/717735",
+        "https://www.diodes.com/_files/datasheets/ds18004.pdf"
+      ]
+    },
+    {
+      "note": "Related dossier URLs; identical bytes are not guaranteed available upstream.",
+      "origin": "source/project/02_parts/P007/manufacturer.pdf",
+      "sha256": "6ed9764dc7ab6b06f327f3f7a755f1c4cc520cf08f6b9fdb0735807352d73b10",
+      "source_urls": [
+        "https://cms.nacsemi.com/content/AuthDatasheets/TDKC-S-A0001055701-1.pdf",
+        "https://www.digikey.com/en/products/detail/tdk/C2012X7R1V225K125AE/3283652"
+      ]
+    },
+    {
+      "note": "Related dossier URLs; identical bytes are not guaranteed available upstream.",
+      "origin": "source/project/02_parts/P008/manufacturer.pdf",
+      "sha256": "6b97cbe1c653105bb0ec59b722d382d40c2d54e239d6f5b34a8beb36c2b1e24d",
+      "source_urls": [
+        "https://www.digikey.com/en/products/detail/tdk/C3216X7R1V106K160AC/3956465",
+        "https://www.rxelectronics.sg/datasheet/cf/c3216x7r1v106k160ac.pdf"
+      ]
+    },
+    {
+      "note": "Related dossier URLs; identical bytes are not guaranteed available upstream.",
+      "origin": "source/project/02_parts/P009/manufacturer.pdf",
+      "sha256": "9a57e4dc176c949d44b68d7a86985722fde8276ce1e826cdebb15f1f5286b787",
+      "source_urls": [
+        "https://jlcpcb.com/partdetail/CL21B104KBCNNNC/C1711",
+        "https://media.digikey.com/pdf/Data%20Sheets/Samsung%20PDFs/CL21B104KBCNNN_Spec.pdf"
+      ]
+    },
+    {
+      "note": "Related dossier URLs; identical bytes are not guaranteed available upstream.",
+      "origin": "source/project/02_parts/P010/manufacturer.pdf",
+      "sha256": "cd1742fd5fcfe60889599d96a2fcfe53c06130897386efb1080283250d845aaf",
+      "source_urls": [
+        "https://media.digikey.com/pdf/Data%20Sheets/Samsung%20PDFs/CL21C222JBFNNNG.pdf",
+        "https://www.digikey.com/en/products/detail/samsung-electro-mechanics/CL21C222JBFNNNE/3894585"
+      ]
+    },
+    {
+      "note": "Related dossier URLs; identical bytes are not guaranteed available upstream.",
+      "origin": "source/project/02_parts/P011/manufacturer.pdf",
+      "sha256": "7eae05e3d158295cdc22c519afc36ea9a7940d4a60f3d3403d6e02be709126d7",
+      "source_urls": [
+        "https://www.digikey.com/en/products/detail/same-sky-formerly-cui-devices/CMA-4544PF-W/1869981",
+        "https://www.sameskydevices.com/product/resource/cma-4544pf-w.pdf"
+      ]
+    },
+    {
+      "note": "Related dossier URLs; identical bytes are not guaranteed available upstream.",
+      "origin": "source/project/02_parts/P012/manufacturer.pdf",
+      "sha256": "a5800687bf95c2b0e4160f15207bf68fca92eb0c8404b5e1313cb154eda00502",
+      "source_urls": [
+        "https://www.digikey.com/en/products/detail/same-sky-formerly-cui-devices/CPE-203/1738900",
+        "https://www.sameskydevices.com/product/resource/cpe-203.pdf"
+      ]
+    },
+    {
+      "note": "Related dossier URLs; identical bytes are not guaranteed available upstream.",
+      "origin": "source/project/02_parts/P013/manufacturer.pdf",
+      "sha256": "59f13d58254ffac7c17b54cf0328b961d83a0636e47276e4b7c99224903caec3",
+      "source_urls": [
+        "https://www.digikey.com/en/products/detail/vishay-dale/CRCW0603100KFKEA/1174896",
+        "https://www.vishay.com/docs/20035/dcrcwe3.pdf"
+      ]
+    },
+    {
+      "note": "Related dossier URLs; identical bytes are not guaranteed available upstream.",
+      "origin": "source/project/02_parts/P014/manufacturer.pdf",
+      "sha256": "59f13d58254ffac7c17b54cf0328b961d83a0636e47276e4b7c99224903caec3",
+      "source_urls": [
+        "https://www.digikey.com/en/products/detail/vishay-dale/CRCW060310K0FKEA/1179924",
+        "https://www.vishay.com/docs/20035/dcrcwe3.pdf"
+      ]
+    },
+    {
+      "note": "Related dossier URLs; identical bytes are not guaranteed available upstream.",
+      "origin": "source/project/02_parts/P015/manufacturer.pdf",
+      "sha256": "ced31f53657014e75d54b847ef542cb27f6d2dc7b0e5ce6fb1380eba4729f198",
+      "source_urls": [
+        "https://www.digikey.com/en/products/detail/vishay-dale/CRCW06031K00FKEAHP/2222249",
+        "https://www.vishay.com/docs/20043/crcwhpe3.pdf"
+      ]
+    },
+    {
+      "note": "Related dossier URLs; identical bytes are not guaranteed available upstream.",
+      "origin": "source/project/02_parts/P016/manufacturer.pdf",
+      "sha256": "59f13d58254ffac7c17b54cf0328b961d83a0636e47276e4b7c99224903caec3",
+      "source_urls": [
+        "https://www.digikey.com/en/products/detail/vishay-dale/CRCW06032K20FKEA/1179845",
+        "https://www.vishay.com/docs/20035/dcrcwe3.pdf"
+      ]
+    },
+    {
+      "note": "Related dossier URLs; identical bytes are not guaranteed available upstream.",
+      "origin": "source/project/02_parts/P017/manufacturer.pdf",
+      "sha256": "59f13d58254ffac7c17b54cf0328b961d83a0636e47276e4b7c99224903caec3",
+      "source_urls": [
+        "https://www.digikey.com/en/products/detail/vishay-dale/CRCW06032K70FKEA/1179856",
+        "https://www.vishay.com/docs/20035/dcrcwe3.pdf"
+      ]
+    },
+    {
+      "note": "Related dossier URLs; identical bytes are not guaranteed available upstream.",
+      "origin": "source/project/02_parts/P018/manufacturer.pdf",
+      "sha256": "ced31f53657014e75d54b847ef542cb27f6d2dc7b0e5ce6fb1380eba4729f198",
+      "source_urls": [
+        "https://www.digikey.com/en/products/detail/vishay-dale/CRCW0603330RFKEAHP/2226124",
+        "https://www.vishay.com/docs/20043/crcwhpe3.pdf"
+      ]
+    },
+    {
+      "note": "Related dossier URLs; identical bytes are not guaranteed available upstream.",
+      "origin": "source/project/02_parts/P019/manufacturer.pdf",
+      "sha256": "59f13d58254ffac7c17b54cf0328b961d83a0636e47276e4b7c99224903caec3",
+      "source_urls": [
+        "https://www.digikey.com/en/products/detail/vishay-dale/CRCW060339K0FKEA/1179990",
+        "https://www.vishay.com/docs/20035/dcrcwe3.pdf"
+      ]
+    },
+    {
+      "note": "Related dossier URLs; identical bytes are not guaranteed available upstream.",
+      "origin": "source/project/02_parts/P020/manufacturer.pdf",
+      "sha256": "59f13d58254ffac7c17b54cf0328b961d83a0636e47276e4b7c99224903caec3",
+      "source_urls": [
+        "https://www.digikey.com/en/products/detail/vishay-dale/CRCW06034K70FKEA/1179885",
+        "https://www.vishay.com/docs/20035/dcrcwe3.pdf"
+      ]
+    },
+    {
+      "note": "Related dossier URLs; identical bytes are not guaranteed available upstream.",
+      "origin": "source/project/02_parts/P021/manufacturer.pdf",
+      "sha256": "4e3cc6c0827092e2e65396b80b7bdfb3b8e992dffc7287186bc70877692c3506",
+      "source_urls": [
+        "https://www.digikey.com/en/products/detail/diodes-incorporated/DMN3023L-7/5453119",
+        "https://www.diodes.com/datasheet/download/DMN3023L.pdf"
+      ]
+    },
+    {
+      "note": "Related dossier URLs; identical bytes are not guaranteed available upstream.",
+      "origin": "source/project/02_parts/P022/manufacturer.pdf",
+      "sha256": "67062302ce88be39e400d74f087290e51eec102b6773cf883d637840ab12cbbc",
+      "source_urls": [
+        "https://search.murata.co.jp/Ceramy/image/img/A01X/G101/ENG/GRM21BR71A105KA01-01A.pdf",
+        "https://www.digikey.com/en/products/detail/murata-electronics/GRM21BR71A105KA01L/587408"
+      ]
+    },
+    {
+      "note": "Related dossier URLs; identical bytes are not guaranteed available upstream.",
+      "origin": "source/project/02_parts/P023/manufacturer.pdf",
+      "sha256": "cb87ca0990a51df8ee26df3467f16238fe31b35720fd6ee9c3d99ea29418c86c",
+      "source_urls": [
+        "https://search.murata.co.jp/Ceramy/image/img/A01X/G101/ENG/GRM21BR71A106MA73-01A.pdf",
+        "https://www.digikey.com/en/products/detail/murata-electronics/GRM21BR71A106MA73L/5027601"
+      ]
+    },
+    {
+      "note": "Related dossier URLs; identical bytes are not guaranteed available upstream.",
+      "origin": "source/project/02_parts/P024/manufacturer.pdf",
+      "sha256": "f142f110ea58b0ce63645ce0b12706ed8603412552746eb199a435069281eddd",
+      "source_urls": [
+        "https://search.murata.co.jp/Ceramy/image/img/A01X/G101/ENG/GRM31MR71E225KA93-01A.pdf",
+        "https://www.digikey.com/en/products/detail/murata-electronics/GRM31MR71E225KA93L/702632"
+      ]
+    },
+    {
+      "note": "Related dossier URLs; identical bytes are not guaranteed available upstream.",
+      "origin": "source/project/02_parts/P025/manufacturer.pdf",
+      "sha256": "fcfd574517a8f3407cb5b2820a8db221e807a5879b254ed8cfbad52be2ab1a72",
+      "source_urls": [
+        "https://datasheet.octopart.com/GRM32ER71A476KE15K-Murata-datasheet-141281599.pdf",
+        "https://www.lcsc.com/product-detail/C84494.html"
+      ]
+    },
+    {
+      "note": "Related dossier URLs; identical bytes are not guaranteed available upstream.",
+      "origin": "source/project/02_parts/P026/manufacturer.pdf",
+      "sha256": "7b8905aa3483dad8f7d41caeb216d7e60f288c81ff365109443d753d585c775e",
+      "source_urls": [
+        "https://www.lcsc.com/product-detail/C53444.html",
+        "https://www.onsemi.com/download/data-sheet/pdf/mmbt3906lt1-d.pdf"
+      ]
+    },
+    {
+      "note": "Related dossier URLs; identical bytes are not guaranteed available upstream.",
+      "origin": "source/project/02_parts/P027/manufacturer.pdf",
+      "sha256": "c42b9dfac5d8a4f684edc45edc8a3b2b82d3e26ea352f1e019044ed8aad4ab50",
+      "source_urls": [
+        "https://www.digikey.com/en/products/detail/texas-instruments/PCM1864DBT/5213896",
+        "https://www.ti.com/lit/ds/symlink/pcm1864.pdf"
+      ]
+    },
+    {
+      "note": "Related dossier URLs; identical bytes are not guaranteed available upstream.",
+      "origin": "source/project/02_parts/P028/manufacturer.pdf",
+      "sha256": "56a30d312d4f2bfed8b2845cfb376438b24763cab6313966d9e5183ae9bdde59",
+      "source_urls": [
+        "https://www.digikey.com/en/products/detail/same-sky-formerly-cui-devices/PJ-102AH/408448",
+        "https://www.sameskydevices.com/product/resource/pj-102ah.pdf"
+      ]
+    },
+    {
+      "note": "Related dossier URLs; identical bytes are not guaranteed available upstream.",
+      "origin": "source/project/02_parts/P029/manufacturer.pdf",
+      "sha256": "d3855b95007832c025518b4ee2073697aabee0b6be311484ea9a1aa7b3c53b96",
+      "source_urls": [
+        "https://recom-power.com/pdf/Innoline/R-78E-0.5.pdf",
+        "https://www.digikey.com/en/products/detail/recom-power/R-78E5-0-0-5/2834904"
+      ]
+    },
+    {
+      "note": "Related dossier URLs; identical bytes are not guaranteed available upstream.",
+      "origin": "source/project/02_parts/P030/manufacturer.pdf",
+      "sha256": "8804624d68b9151473bf3fcefd220887045be3422c30c835fa9bde1fc223bce1",
+      "source_urls": [
+        "https://cdn.amphenol-cs.com/media/wysiwyg/files/documentation/s6032c_rjhse.pdf",
+        "https://cdn.amphenol-cs.com/media/wysiwyg/files/drawing/p-rjhse-5080.pdf",
+        "https://www.mouser.com/en/ProductDetail/Amphenol-Commercial-Products/RJHSE-5080?qs=45ZVNqY9IiK7WwaeGAp0Ag%3D%3D"
+      ]
+    },
+    {
+      "note": "Related dossier URLs; identical bytes are not guaranteed available upstream.",
+      "origin": "source/project/02_parts/P030/rjhse-x080-reva-2019-user.pdf",
+      "sha256": "e96d3f6cde115981be470e0edd3159dfda3ebe1a453db0c45d525e629668a756",
+      "source_urls": [
+        "https://cdn.amphenol-cs.com/media/wysiwyg/files/documentation/s6032c_rjhse.pdf",
+        "https://cdn.amphenol-cs.com/media/wysiwyg/files/drawing/p-rjhse-5080.pdf",
+        "https://www.mouser.com/en/ProductDetail/Amphenol-Commercial-Products/RJHSE-5080?qs=45ZVNqY9IiK7WwaeGAp0Ag%3D%3D"
+      ]
+    },
+    {
+      "note": "Related dossier URLs; identical bytes are not guaranteed available upstream.",
+      "origin": "source/project/02_parts/P031/manufacturer.pdf",
+      "sha256": "757ff485227493b9fcc0c2c96c4dea9de020e1d8b2b11e2aa4f9ee8b25aa89eb",
+      "source_urls": [
+        "https://datasheets.raspberrypi.com/pico/pico-datasheet.pdf",
+        "https://www.digikey.com/en/products/detail/raspberry-pi/SC0915/13684020"
+      ]
+    },
+    {
+      "note": "Related dossier URLs; identical bytes are not guaranteed available upstream.",
+      "origin": "source/project/02_parts/P032/manufacturer.pdf",
+      "sha256": "4e7ea0ef4a74de638b88fb027adc9750d9a4c71a0a162c125032205a939e6b71",
+      "source_urls": [
+        "https://e2e.ti.com/cfs-file/__key/communityserver-discussions-components-files/196/Littelfuse_5F00_TVS_5F00_Diode_5F00_SMBJ_5F00_Datasheet.pdf_2D00_1108540.pdf",
+        "https://www.digikey.com/en/products/detail/littelfuse-inc/SMBJ15A/285980",
+        "https://www.littelfuse.com/assetdocs/tvs-diodes-smbj-series-datasheet?assetguid=ba555e99-a12d-4f72-a0b6-86b06c67171e"
+      ]
+    },
+    {
+      "note": "Related dossier URLs; identical bytes are not guaranteed available upstream.",
+      "origin": "source/project/02_parts/P033/manufacturer.pdf",
+      "sha256": "ab5676c97059410564d72be5062ba1e238f673435193c67a971ad10fb7fd1866",
+      "source_urls": [
+        "https://datasheet4u.com/pdf/1305392/SP0503BAHTG.pdf",
+        "https://www.digikey.com/en/products/detail/littelfuse-inc/SP0504BAHTG/1154431",
+        "https://www.littelfuse.com/assetdocs/tvs-diode-array-spasp050xba-lead-freegreen-datasheet?assetguid=15a03de1-f0c6-457a-95f1-55d449fdd756"
+      ]
+    },
+    {
+      "note": "Related dossier URLs; identical bytes are not guaranteed available upstream.",
+      "origin": "source/project/02_parts/P034/manufacturer.pdf",
+      "sha256": "6042805475958630851bf8f949f4c0c3d9aa672c8c0a321645b7626177660288",
+      "source_urls": [
+        "https://www.digikey.com/en/products/detail/vishay-general-semiconductor-diodes-division/SS34-E3-57T/1091554",
+        "https://www.vishay.com/docs/88751/ss32.pdf",
+        "https://www.vishay.com/en/product/88751/tab/quality/"
+      ]
+    },
+    {
+      "note": "Related dossier URLs; identical bytes are not guaranteed available upstream.",
+      "origin": "source/project/02_parts/P035/manufacturer.pdf",
+      "sha256": "8b707789a11c350e9809ed787292705093172be3bfebc4b09466cfaa28f01312",
+      "source_urls": [
+        "https://www.digikey.com/en/products/detail/texas-instruments/TLV9062IDR/7364940",
+        "https://www.ti.com/lit/ds/symlink/tlv9062.pdf"
+      ]
+    },
+    {
+      "note": "Related dossier URLs; identical bytes are not guaranteed available upstream.",
+      "origin": "source/project/02_parts/P036/manufacturer.pdf",
+      "sha256": "8c14e3efae738a27b857b789aa87369de9037a8ef3616a9f71a423587cdc6949",
+      "source_urls": [
+        "https://www.lcsc.com/product-detail/C89347.html",
+        "https://www.ti.com/lit/ds/symlink/tps709.pdf"
+      ]
+    },
+    {
+      "note": "Related dossier URLs; identical bytes are not guaranteed available upstream.",
+      "origin": "source/project/02_parts/P037/manufacturer.pdf",
+      "sha256": "b81a9e25fae676e43e97d0c9cdd0b21a61524d2857700588c6aa63bfa7dfa07b",
+      "source_urls": [
+        "https://www.ctscorp.com/Files/DataSheets/Passives/FCP/Clock-Oscillators/clock-ocillators-CB3_CB3LV-datasheet.pdf",
+        "https://www.digikey.com/en/products/detail/cts-frequency-controls/CB3LV-3I-12M288000/4308709"
+      ]
+    },
+    {
+      "note": "Related dossier URLs; identical bytes are not guaranteed available upstream.",
+      "origin": "source/project/02_parts/P038/manufacturer.pdf",
+      "sha256": "59f13d58254ffac7c17b54cf0328b961d83a0636e47276e4b7c99224903caec3",
+      "source_urls": [
+        "https://www.digikey.com/en/products/detail/vishay-dale/CRCW060368R0FKEA/1174535",
+        "https://www.vishay.com/docs/20035/dcrcwe3.pdf"
+      ]
+    },
+    {
+      "note": "Related dossier URLs; identical bytes are not guaranteed available upstream.",
+      "origin": "source/project/02_parts/P039/manufacturer.pdf",
+      "sha256": "59f13d58254ffac7c17b54cf0328b961d83a0636e47276e4b7c99224903caec3",
+      "source_urls": [
+        "https://www.digikey.com/en/products/detail/vishay-dale/CRCW060356R0FKEA/1174525",
+        "https://www.vishay.com/docs/20035/dcrcwe3.pdf"
+      ]
+    },
+    {
+      "note": "Related dossier URLs; identical bytes are not guaranteed available upstream.",
+      "origin": "source/project/02_parts/P040/manufacturer.pdf",
+      "sha256": "78825b819853a63f57cc18214f321d2f1da9dc205a7e58af7db18ae73563e378",
+      "source_urls": [
+        "https://industrial.panasonic.com/cdbs/www-data/pdf/RDA0000/AOA0000C304.pdf",
+        "https://www.digikey.com/en/products/detail/panasonic-industry/ERJ-3EKF68R0V/1746805"
+      ]
+    },
+    {
+      "note": "Related dossier URLs; identical bytes are not guaranteed available upstream.",
+      "origin": "source/project/02_parts/first-run/P001/manufacturer.pdf",
+      "sha256": "bdfc5532113e5df5ca3a469553b64c8903751c5d3ea2a3a382262f6093b9fd14",
+      "source_urls": [
+        "https://media.digikey.com/pdf/Data%20Sheets/Littelfuse%20PDFs/451_453SERIES.pdf",
+        "https://www.digikey.com/en/products/detail/littelfuse-inc/0451001-MRL/700818",
+        "https://www.littelfuse.com/assetdocs/fuse-451-and-453-datasheet?assetguid=533cd5cc-956c-4243-867f-6ab5a62f6ba1"
+      ]
+    },
+    {
+      "note": "Related dossier URLs; identical bytes are not guaranteed available upstream.",
+      "origin": "source/project/02_parts/first-run/P002/manufacturer.pdf",
+      "sha256": "efbee653f29f401dafc83bb47b65efd54d6025e20c98035af1919cec7a0bdd15",
+      "source_urls": [
+        "https://assets.rs-online.com/image/upload/v1763384924/Datasheets/9ca19f8994fcacc41b8085e84a228883.pdf",
+        "https://www.digikey.com/en/products/detail/littelfuse-inc/1206L010-30WR/6346986",
+        "https://www.littelfuse.com/assetdocs/littelfuse-ptc-1206l-datasheet?assetguid=2b6a1515-d4ee-4c83-8bd4-152b4901b8f5"
+      ]
+    },
+    {
+      "note": "Related dossier URLs; identical bytes are not guaranteed available upstream.",
+      "origin": "source/project/02_parts/first-run/P003/manufacturer.pdf",
+      "sha256": "5d395ffed99cf08fcc81d619f0456378b06ce958a6e2990bdc783ccfeb429f0c",
+      "source_urls": [
+        "https://www.digikey.com/en/products/detail/diodes-incorporated/1N5819HW-7-F/814970",
+        "https://www.diodes.com/datasheet/download/1N5819HW.pdf"
+      ]
+    },
+    {
+      "note": "Related dossier URLs; identical bytes are not guaranteed available upstream.",
+      "origin": "source/project/02_parts/first-run/P005/manufacturer.pdf",
+      "sha256": "50b04e4e17bcf5db62164f6e5422e91546d0cace0ab2efed61660c3044b4fef0",
+      "source_urls": [
+        "https://www.digikey.com/en/products/detail/diodes-incorporated/BAT54S-7-F/717925",
+        "https://www.diodes.com/datasheet/download/BAT54.pdf",
+        "https://www.mouser.com/en/ProductDetail/Diodes-Incorporated/BAT54S-7-F?qs=SrifhsLOLf4kNGw4QqCzrA%3D%3D"
+      ]
+    },
+    {
+      "note": "Related dossier URLs; identical bytes are not guaranteed available upstream.",
+      "origin": "source/project/02_parts/first-run/P006/manufacturer.pdf",
+      "sha256": "0fbd7d137524820f0160594065cbceb8c6b3188757c328416d08fceb7418202f",
+      "source_urls": [
+        "https://www.digikey.com/en/products/detail/diodes-incorporated/BZT52C3V9-7-F/717735",
+        "https://www.diodes.com/_files/datasheets/ds18004.pdf"
+      ]
+    },
+    {
+      "note": "Related dossier URLs; identical bytes are not guaranteed available upstream.",
+      "origin": "source/project/02_parts/first-run/P007/manufacturer.pdf",
+      "sha256": "6ed9764dc7ab6b06f327f3f7a755f1c4cc520cf08f6b9fdb0735807352d73b10",
+      "source_urls": [
+        "https://cms.nacsemi.com/content/AuthDatasheets/TDKC-S-A0001055701-1.pdf",
+        "https://www.digikey.com/en/products/detail/tdk/C2012X7R1V225K125AE/3283652"
+      ]
+    },
+    {
+      "note": "Related dossier URLs; identical bytes are not guaranteed available upstream.",
+      "origin": "source/project/02_parts/first-run/P008/manufacturer.pdf",
+      "sha256": "6b97cbe1c653105bb0ec59b722d382d40c2d54e239d6f5b34a8beb36c2b1e24d",
+      "source_urls": [
+        "https://www.digikey.com/en/products/detail/tdk/C3216X7R1V106K160AC/3956465",
+        "https://www.rxelectronics.sg/datasheet/cf/c3216x7r1v106k160ac.pdf"
+      ]
+    },
+    {
+      "note": "Related dossier URLs; identical bytes are not guaranteed available upstream.",
+      "origin": "source/project/02_parts/first-run/P009/manufacturer.pdf",
+      "sha256": "9a57e4dc176c949d44b68d7a86985722fde8276ce1e826cdebb15f1f5286b787",
+      "source_urls": [
+        "https://jlcpcb.com/partdetail/CL21B104KBCNNNC/C1711",
+        "https://media.digikey.com/pdf/Data%20Sheets/Samsung%20PDFs/CL21B104KBCNNN_Spec.pdf",
+        "https://www.digikey.com.au/en/products/detail/samsung-electro-mechanics/CL21B104KBCNNNC/3886661"
+      ]
+    },
+    {
+      "note": "Related dossier URLs; identical bytes are not guaranteed available upstream.",
+      "origin": "source/project/02_parts/first-run/P010/manufacturer.pdf",
+      "sha256": "cd1742fd5fcfe60889599d96a2fcfe53c06130897386efb1080283250d845aaf",
+      "source_urls": [
+        "https://media.digikey.com/pdf/Data%20Sheets/Samsung%20PDFs/CL21C222JBFNNNG.pdf",
+        "https://www.digikey.com/en/products/detail/samsung-electro-mechanics/CL21C222JBFNNNE/3894585",
+        "https://www.lcsc.com/product-image/C28260.html?whichImg=0"
+      ]
+    },
+    {
+      "note": "Related dossier URLs; identical bytes are not guaranteed available upstream.",
+      "origin": "source/project/02_parts/first-run/P011/manufacturer.pdf",
+      "sha256": "7eae05e3d158295cdc22c519afc36ea9a7940d4a60f3d3403d6e02be709126d7",
+      "source_urls": [
+        "https://www.digikey.com/en/products/detail/same-sky-formerly-cui-devices/CMA-4544PF-W/1869981",
+        "https://www.sameskydevices.com/product/resource/cma-4544pf-w.pdf"
+      ]
+    },
+    {
+      "note": "Related dossier URLs; identical bytes are not guaranteed available upstream.",
+      "origin": "source/project/02_parts/first-run/P012/manufacturer.pdf",
+      "sha256": "a5800687bf95c2b0e4160f15207bf68fca92eb0c8404b5e1313cb154eda00502",
+      "source_urls": [
+        "https://www.digikey.com/en/products/detail/same-sky-formerly-cui-devices/CPE-203/1738900",
+        "https://www.sameskydevices.com/product/resource/cpe-203.pdf"
+      ]
+    },
+    {
+      "note": "Related dossier URLs; identical bytes are not guaranteed available upstream.",
+      "origin": "source/project/02_parts/first-run/P013/manufacturer.pdf",
+      "sha256": "59f13d58254ffac7c17b54cf0328b961d83a0636e47276e4b7c99224903caec3",
+      "source_urls": [
+        "https://www.digikey.com/en/products/detail/vishay-dale/CRCW0603100KFKEA/1174896",
+        "https://www.vishay.com/docs/20035/dcrcwe3.pdf"
+      ]
+    },
+    {
+      "note": "Related dossier URLs; identical bytes are not guaranteed available upstream.",
+      "origin": "source/project/02_parts/first-run/P014/manufacturer.pdf",
+      "sha256": "59f13d58254ffac7c17b54cf0328b961d83a0636e47276e4b7c99224903caec3",
+      "source_urls": [
+        "https://www.digikey.com/en/products/detail/vishay-dale/CRCW060310K0FKEA/1179924",
+        "https://www.vishay.com/docs/20035/dcrcwe3.pdf"
+      ]
+    },
+    {
+      "note": "Related dossier URLs; identical bytes are not guaranteed available upstream.",
+      "origin": "source/project/02_parts/first-run/P015/manufacturer.pdf",
+      "sha256": "ced31f53657014e75d54b847ef542cb27f6d2dc7b0e5ce6fb1380eba4729f198",
+      "source_urls": [
+        "https://www.digikey.com/en/products/detail/vishay-dale/CRCW06031K00FKEAHP/2222249",
+        "https://www.vishay.com/docs/20043/crcwhpe3.pdf"
+      ]
+    },
+    {
+      "note": "Related dossier URLs; identical bytes are not guaranteed available upstream.",
+      "origin": "source/project/02_parts/first-run/P016/manufacturer.pdf",
+      "sha256": "59f13d58254ffac7c17b54cf0328b961d83a0636e47276e4b7c99224903caec3",
+      "source_urls": [
+        "https://www.digikey.com/en/products/detail/vishay-dale/CRCW06032K20FKEA/1179845",
+        "https://www.vishay.com/docs/20035/dcrcwe3.pdf"
+      ]
+    },
+    {
+      "note": "Related dossier URLs; identical bytes are not guaranteed available upstream.",
+      "origin": "source/project/02_parts/first-run/P017/manufacturer.pdf",
+      "sha256": "59f13d58254ffac7c17b54cf0328b961d83a0636e47276e4b7c99224903caec3",
+      "source_urls": [
+        "https://www.digikey.com/en/products/detail/vishay-dale/CRCW06032K70FKEA/1179856",
+        "https://www.vishay.com/docs/20035/dcrcwe3.pdf"
+      ]
+    },
+    {
+      "note": "Related dossier URLs; identical bytes are not guaranteed available upstream.",
+      "origin": "source/project/02_parts/first-run/P018/manufacturer.pdf",
+      "sha256": "ced31f53657014e75d54b847ef542cb27f6d2dc7b0e5ce6fb1380eba4729f198",
+      "source_urls": [
+        "https://www.digikey.com/en/products/detail/vishay-dale/CRCW0603330RFKEAHP/2226124",
+        "https://www.vishay.com/docs/20043/crcwhpe3.pdf"
+      ]
+    },
+    {
+      "note": "Related dossier URLs; identical bytes are not guaranteed available upstream.",
+      "origin": "source/project/02_parts/first-run/P019/manufacturer.pdf",
+      "sha256": "59f13d58254ffac7c17b54cf0328b961d83a0636e47276e4b7c99224903caec3",
+      "source_urls": [
+        "https://www.digikey.com/en/products/detail/vishay-dale/CRCW060339K0FKEA/1179990",
+        "https://www.vishay.com/docs/20035/dcrcwe3.pdf"
+      ]
+    },
+    {
+      "note": "Related dossier URLs; identical bytes are not guaranteed available upstream.",
+      "origin": "source/project/02_parts/first-run/P020/manufacturer.pdf",
+      "sha256": "59f13d58254ffac7c17b54cf0328b961d83a0636e47276e4b7c99224903caec3",
+      "source_urls": [
+        "https://www.digikey.com/en/products/detail/vishay-dale/CRCW06034K70FKEA/1179885",
+        "https://www.vishay.com/docs/20035/dcrcwe3.pdf"
+      ]
+    },
+    {
+      "note": "Related dossier URLs; identical bytes are not guaranteed available upstream.",
+      "origin": "source/project/02_parts/first-run/P021/manufacturer.pdf",
+      "sha256": "4e3cc6c0827092e2e65396b80b7bdfb3b8e992dffc7287186bc70877692c3506",
+      "source_urls": [
+        "https://www.digikey.com/en/products/detail/diodes-incorporated/DMN3023L-7/5453119",
+        "https://www.diodes.com/datasheet/download/DMN3023L.pdf"
+      ]
+    },
+    {
+      "note": "Related dossier URLs; identical bytes are not guaranteed available upstream.",
+      "origin": "source/project/02_parts/first-run/P022/manufacturer.pdf",
+      "sha256": "67062302ce88be39e400d74f087290e51eec102b6773cf883d637840ab12cbbc",
+      "source_urls": [
+        "https://search.murata.co.jp/Ceramy/image/img/A01X/G101/ENG/GRM21BR71A105KA01-01A.pdf",
+        "https://www.digikey.com/en/products/detail/murata-electronics/GRM21BR71A105KA01L/587408"
+      ]
+    },
+    {
+      "note": "Related dossier URLs; identical bytes are not guaranteed available upstream.",
+      "origin": "source/project/02_parts/first-run/P023/manufacturer.pdf",
+      "sha256": "cb87ca0990a51df8ee26df3467f16238fe31b35720fd6ee9c3d99ea29418c86c",
+      "source_urls": [
+        "https://search.murata.co.jp/Ceramy/image/img/A01X/G101/ENG/GRM21BR71A106MA73-01A.pdf",
+        "https://www.digikey.com/en/products/detail/murata-electronics/GRM21BR71A106MA73L/5027601"
+      ]
+    },
+    {
+      "note": "Related dossier URLs; identical bytes are not guaranteed available upstream.",
+      "origin": "source/project/02_parts/first-run/P024/manufacturer.pdf",
+      "sha256": "f142f110ea58b0ce63645ce0b12706ed8603412552746eb199a435069281eddd",
+      "source_urls": [
+        "https://search.murata.co.jp/Ceramy/image/img/A01X/G101/ENG/GRM31MR71E225KA93-01A.pdf",
+        "https://www.digikey.com/en/products/detail/murata-electronics/GRM31MR71E225KA93L/702632"
+      ]
+    },
+    {
+      "note": "Related dossier URLs; identical bytes are not guaranteed available upstream.",
+      "origin": "source/project/02_parts/first-run/P025/manufacturer.pdf",
+      "sha256": "fcfd574517a8f3407cb5b2820a8db221e807a5879b254ed8cfbad52be2ab1a72",
+      "source_urls": [
+        "https://datasheet.octopart.com/GRM32ER71A476KE15K-Murata-datasheet-141281599.pdf",
+        "https://www.lcsc.com/product-detail/C84494.html"
+      ]
+    },
+    {
+      "note": "Related dossier URLs; identical bytes are not guaranteed available upstream.",
+      "origin": "source/project/02_parts/first-run/P026/manufacturer.pdf",
+      "sha256": "7b8905aa3483dad8f7d41caeb216d7e60f288c81ff365109443d753d585c775e",
+      "source_urls": [
+        "https://www.lcsc.com/product-detail/C53444.html",
+        "https://www.onsemi.com/download/data-sheet/pdf/mmbt3906lt1-d.pdf"
+      ]
+    },
+    {
+      "note": "Related dossier URLs; identical bytes are not guaranteed available upstream.",
+      "origin": "source/project/02_parts/first-run/P027/manufacturer.pdf",
+      "sha256": "c42b9dfac5d8a4f684edc45edc8a3b2b82d3e26ea352f1e019044ed8aad4ab50",
+      "source_urls": [
+        "https://www.digikey.com/en/products/detail/texas-instruments/PCM1864DBT/5213896",
+        "https://www.ti.com/lit/ds/symlink/pcm1864.pdf"
+      ]
+    },
+    {
+      "note": "Related dossier URLs; identical bytes are not guaranteed available upstream.",
+      "origin": "source/project/02_parts/first-run/P028/manufacturer.pdf",
+      "sha256": "56a30d312d4f2bfed8b2845cfb376438b24763cab6313966d9e5183ae9bdde59",
+      "source_urls": [
+        "https://www.digikey.com/en/products/detail/same-sky-formerly-cui-devices/PJ-102AH/408448",
+        "https://www.sameskydevices.com/product/resource/pj-102ah.pdf"
+      ]
+    },
+    {
+      "note": "Related dossier URLs; identical bytes are not guaranteed available upstream.",
+      "origin": "source/project/02_parts/first-run/P029/manufacturer.pdf",
+      "sha256": "d3855b95007832c025518b4ee2073697aabee0b6be311484ea9a1aa7b3c53b96",
+      "source_urls": [
+        "https://recom-power.com/pdf/Innoline/R-78E-0.5.pdf",
+        "https://www.digikey.com/en/products/detail/recom-power/R-78E5-0-0-5/2834904"
+      ]
+    },
+    {
+      "note": "Related dossier URLs; identical bytes are not guaranteed available upstream.",
+      "origin": "source/project/02_parts/first-run/P030/manufacturer.pdf",
+      "sha256": "8804624d68b9151473bf3fcefd220887045be3422c30c835fa9bde1fc223bce1",
+      "source_urls": [
+        "https://cdn.amphenol-cs.com/media/wysiwyg/files/documentation/s6032c_rjhse.pdf",
+        "https://cdn.amphenol-cs.com/media/wysiwyg/files/drawing/p-rjhse-5080.pdf",
+        "https://www.amphenol-cs.com/product/rjhse5080.html",
+        "https://www.digikey.com/en/products/detail/amphenol-cs-commercial-products/RJHSE5080/1242687",
+        "https://www.mouser.com/en/ProductDetail/Amphenol-Commercial-Products/RJHSE-5080?qs=45ZVNqY9IiK7WwaeGAp0Ag%3D%3D"
+      ]
+    },
+    {
+      "note": "Related dossier URLs; identical bytes are not guaranteed available upstream.",
+      "origin": "source/project/02_parts/first-run/P030/rjhse-x080-reva-2019-user.pdf",
+      "sha256": "e96d3f6cde115981be470e0edd3159dfda3ebe1a453db0c45d525e629668a756",
+      "source_urls": [
+        "https://cdn.amphenol-cs.com/media/wysiwyg/files/documentation/s6032c_rjhse.pdf",
+        "https://cdn.amphenol-cs.com/media/wysiwyg/files/drawing/p-rjhse-5080.pdf",
+        "https://www.amphenol-cs.com/product/rjhse5080.html",
+        "https://www.digikey.com/en/products/detail/amphenol-cs-commercial-products/RJHSE5080/1242687",
+        "https://www.mouser.com/en/ProductDetail/Amphenol-Commercial-Products/RJHSE-5080?qs=45ZVNqY9IiK7WwaeGAp0Ag%3D%3D"
+      ]
+    },
+    {
+      "note": "Related dossier URLs; identical bytes are not guaranteed available upstream.",
+      "origin": "source/project/02_parts/first-run/P031/manufacturer.pdf",
+      "sha256": "757ff485227493b9fcc0c2c96c4dea9de020e1d8b2b11e2aa4f9ee8b25aa89eb",
+      "source_urls": [
+        "https://datasheets.raspberrypi.com/pico/pico-datasheet.pdf",
+        "https://www.digikey.com/en/products/detail/raspberry-pi/SC0915/13684020"
+      ]
+    },
+    {
+      "note": "Related dossier URLs; identical bytes are not guaranteed available upstream.",
+      "origin": "source/project/02_parts/first-run/P032/manufacturer.pdf",
+      "sha256": "4e7ea0ef4a74de638b88fb027adc9750d9a4c71a0a162c125032205a939e6b71",
+      "source_urls": [
+        "https://e2e.ti.com/cfs-file/__key/communityserver-discussions-components-files/196/Littelfuse_5F00_TVS_5F00_Diode_5F00_SMBJ_5F00_Datasheet.pdf_2D00_1108540.pdf",
+        "https://www.digikey.com/en/products/detail/littelfuse-inc/SMBJ15A/285980",
+        "https://www.littelfuse.com/assetdocs/tvs-diodes-smbj-series-datasheet?assetguid=ba555e99-a12d-4f72-a0b6-86b06c67171e"
+      ]
+    },
+    {
+      "note": "Related dossier URLs; identical bytes are not guaranteed available upstream.",
+      "origin": "source/project/02_parts/first-run/P033/manufacturer.pdf",
+      "sha256": "ab5676c97059410564d72be5062ba1e238f673435193c67a971ad10fb7fd1866",
+      "source_urls": [
+        "https://datasheet4u.com/pdf/1305392/SP0503BAHTG.pdf",
+        "https://www.digikey.com/en/products/detail/littelfuse-inc/SP0504BAHTG/1154431",
+        "https://www.littelfuse.com/assetdocs/tvs-diode-array-spasp050xba-lead-freegreen-datasheet?assetguid=15a03de1-f0c6-457a-95f1-55d449fdd756"
+      ]
+    },
+    {
+      "note": "Related dossier URLs; identical bytes are not guaranteed available upstream.",
+      "origin": "source/project/02_parts/first-run/P034/manufacturer.pdf",
+      "sha256": "6042805475958630851bf8f949f4c0c3d9aa672c8c0a321645b7626177660288",
+      "source_urls": [
+        "https://www.digikey.com/en/products/detail/vishay-general-semiconductor-diodes-division/SS34-E3-57T/1091554",
+        "https://www.vishay.com/docs/88751/ss32.pdf",
+        "https://www.vishay.com/en/product/88751/tab/quality/"
+      ]
+    },
+    {
+      "note": "Related dossier URLs; identical bytes are not guaranteed available upstream.",
+      "origin": "source/project/02_parts/first-run/P035/manufacturer.pdf",
+      "sha256": "8b707789a11c350e9809ed787292705093172be3bfebc4b09466cfaa28f01312",
+      "source_urls": [
+        "https://www.digikey.com/en/products/detail/texas-instruments/TLV9062IDR/7364940",
+        "https://www.ti.com/lit/ds/symlink/tlv9062.pdf"
+      ]
+    },
+    {
+      "note": "Related dossier URLs; identical bytes are not guaranteed available upstream.",
+      "origin": "source/project/02_parts/first-run/P036/manufacturer.pdf",
+      "sha256": "8c14e3efae738a27b857b789aa87369de9037a8ef3616a9f71a423587cdc6949",
+      "source_urls": [
+        "https://www.digikey.com/en/products/detail/texas-instruments/TPS70933DBVR/3767550",
+        "https://www.lcsc.com/product-detail/C89347.html",
+        "https://www.ti.com/lit/ds/symlink/tps709.pdf"
+      ]
+    },
+    {
+      "note": "Related dossier URLs; identical bytes are not guaranteed available upstream.",
+      "origin": "source/project/02_parts/first-run/P037/manufacturer.pdf",
+      "sha256": "b81a9e25fae676e43e97d0c9cdd0b21a61524d2857700588c6aa63bfa7dfa07b",
+      "source_urls": [
+        "https://www.ctscorp.com/Files/DataSheets/Passives/FCP/Clock-Oscillators/clock-ocillators-CB3_CB3LV-datasheet.pdf",
+        "https://www.digikey.com/en/products/detail/cts-frequency-controls/CB3LV-3I-12M288000/4308709"
+      ]
+    },
+    {
+      "note": "Related dossier URLs; identical bytes are not guaranteed available upstream.",
+      "origin": "source/project/02_parts/first-run/P039/manufacturer.pdf",
+      "sha256": "59f13d58254ffac7c17b54cf0328b961d83a0636e47276e4b7c99224903caec3",
+      "source_urls": [
+        "https://www.digikey.com/en/products/detail/vishay-dale/CRCW060356R0FKEA/1174525",
+        "https://www.vishay.com/docs/20035/dcrcwe3.pdf"
+      ]
+    },
+    {
+      "note": "Related dossier URLs; identical bytes are not guaranteed available upstream.",
+      "origin": "source/project/02_parts/first-run-r3-evidence/AOA0000C304.pdf",
+      "sha256": "78825b819853a63f57cc18214f321d2f1da9dc205a7e58af7db18ae73563e378",
+      "source_urls": []
+    },
+    {
+      "note": "Related dossier URLs; identical bytes are not guaranteed available upstream.",
+      "origin": "source/project/02_parts/first-run-r3-evidence/DMM0000COL14.pdf",
+      "sha256": "e45fce2af6de6c7145f0fc725e979ccbb69d586e004956b209d9f49d3a99490f",
+      "source_urls": []
+    },
+    {
+      "note": "Related dossier URLs; identical bytes are not guaranteed available upstream.",
+      "origin": "source/project/02_parts/first-run-r3-evidence/DMM0000COL17.pdf",
+      "sha256": "fc707b230cce91d464bc3aaf1ed614fa5b412f40cbe7df7cab1541d2c164a882",
+      "source_urls": []
+    },
+    {
+      "note": "Related dossier URLs; identical bytes are not guaranteed available upstream.",
+      "origin": "source/project/02_parts/first-run-r3-evidence/ERJ3EKF-maker-list.html",
+      "sha256": "7654a791717497e26bda0a07f8e814ba9d4776990911e15a7e82a402cfd0c328",
+      "source_urls": []
+    },
+    {
+      "note": "Related dossier URLs; identical bytes are not guaranteed available upstream.",
+      "origin": "source/project/02_parts/first-run-r3-evidence/ERJ3EKF68R0V-maker.html",
+      "sha256": "0224c881ffd0ab9a01945954c73fb8565d4f8c371ee2504f8e4e30db28880d5b",
+      "source_urls": []
+    },
+    {
+      "note": "Related dossier URLs; identical bytes are not guaranteed available upstream.",
+      "origin": "source/project/02_parts/mechanical-ls27/pico-r3/Pico-R3.step",
+      "sha256": "ea5c693afee3de73e9fcaab1892a5ed44bf789438b9b1e5906e9c4f9859cab8b",
+      "source_urls": [
+        "https://pip-assets.raspberrypi.com/categories/610-raspberry-pi-pico/documents/RP-008311-DS-1-Pico-R3-step.zip",
+        "https://www.raspberrypi.com/documentation/microcontrollers/pico-series.html"
+      ]
+    },
+    {
+      "note": "Related dossier URLs; identical bytes are not guaranteed available upstream.",
+      "origin": "source/project/02_parts/mechanical-ls33/10-02333.pdf",
+      "sha256": "42f1d8056cf1e6649eb53525acbce9898c1d39857c0b939f8a876f14ac37d07b",
+      "source_urls": []
+    },
+    {
+      "note": "Related dossier URLs; identical bytes are not guaranteed available upstream.",
+      "origin": "source/project/02_parts/mechanical-ls33/ass-7232.pdf",
+      "sha256": "765c4ad43783472780030d4ab67f09b377394f8c7fe88f3ec80fde9563dd703d",
+      "source_urls": []
+    },
+    {
+      "note": "Related dossier URLs; identical bytes are not guaranteed available upstream.",
+      "origin": "source/project/02_parts/mechanical-ls33/pp3-002a.pdf",
+      "sha256": "5bba86239296510fb2898520a9d144573844c6cf9d4751a4087f1f14cadd589d",
+      "source_urls": []
+    }
+  ]
+}

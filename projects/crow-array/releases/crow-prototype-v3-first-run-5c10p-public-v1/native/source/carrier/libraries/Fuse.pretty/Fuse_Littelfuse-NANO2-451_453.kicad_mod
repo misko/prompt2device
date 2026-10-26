@@ -1,0 +1,232 @@
+(footprint "Fuse_Littelfuse-NANO2-451_453"
+	(version 20260206)
+	(generator "pcbnew")
+	(generator_version "10.0")
+	(layer "F.Cu")
+	(descr "Littelfuse NANO2 https://www.littelfuse.com/~/media/electronics/datasheets/fuses/littelfuse_fuse_451_453_datasheet.pdf.pdf")
+	(tags "Fuse Nano2")
+	(property "Reference" "F1"
+		(at 1.7 0 270)
+		(unlocked yes)
+		(layer "F.SilkS")
+		(uuid "20a7e80d-9b64-4daf-9a72-fea8d8ebbf85")
+		(effects
+			(font
+				(size 0.75 0.75)
+				(thickness 0.1)
+			)
+		)
+	)
+	(property "Value" "0451001.MRL 1A"
+		(at 0 2.7 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "5878eaf2-f2a7-472c-8544-552bb0492f2c")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "80cef7b0-2cf2-4077-9ce1-cc0b7733f9a5")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "4e420b6a-0f7c-465f-abd3-d77b587b9b1f")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Manufacturer" "Littelfuse"
+		(at 0 0 0)
+		(layer "F.SilkS")
+		(hide yes)
+		(uuid "3e365486-7673-51ff-978a-15827a9a76c8")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "MPN" "0451001.MRL"
+		(at 0 0 0)
+		(layer "F.SilkS")
+		(hide yes)
+		(uuid "17f09379-e51a-577f-9e7b-da7e61acf50c")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Assembly" "SMT"
+		(at 0 0 0)
+		(layer "F.SilkS")
+		(hide yes)
+		(uuid "de1ab9a8-cb5c-5be6-957e-b9220dbf6d39")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr smd)
+	(duplicate_pad_numbers_are_jumpers no)
+	(fp_line
+		(start -1.215 -1.455)
+		(end 1.215 -1.455)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "5995f7bd-f50c-561e-9567-abf2a6fa7301")
+	)
+	(fp_line
+		(start -1.215 1.455)
+		(end 1.215 1.455)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "a785cc52-e9c7-52c9-b70d-3390ae63d526")
+	)
+	(fp_line
+		(start -3.69 -1.83)
+		(end 3.69 -1.83)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "04356940-9b86-5ba0-a418-874068af6144")
+	)
+	(fp_line
+		(start -3.69 1.83)
+		(end -3.69 -1.83)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "c8864a76-5dff-5a52-9287-c5e4d94ec8ac")
+	)
+	(fp_line
+		(start 3.69 -1.83)
+		(end 3.69 1.83)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "d13220be-5c8f-5a85-bf44-12bbe730ab70")
+	)
+	(fp_line
+		(start 3.69 1.83)
+		(end -3.69 1.83)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "7f668e4d-b4a2-5433-a08b-89045f79047b")
+	)
+	(fp_line
+		(start -3.05 -1.345)
+		(end -3.05 1.345)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "e1ceb496-9679-55cc-9728-23d109642d9f")
+	)
+	(fp_line
+		(start -3.05 -1.345)
+		(end 3.05 -1.345)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "fd62db2f-2745-5806-baa1-9de6b13c02d6")
+	)
+	(fp_line
+		(start -3.05 1.345)
+		(end 3.05 1.345)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "81d2f456-c9e2-5195-8d5a-d8bb1064238f")
+	)
+	(fp_line
+		(start 3.05 1.345)
+		(end 3.05 -1.345)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "e998c372-9ab7-503f-a1fe-77a24c009a7a")
+	)
+	(fp_text user "${REFERENCE}"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(uuid "5b1e8ddc-868a-58b6-a029-e24f571937e1")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(pad "1" smd rect
+		(at -2.455 0)
+		(size 1.96 3.15)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(uuid "55565586-3694-5188-8fa8-4d2e6947552b")
+	)
+	(pad "2" smd rect
+		(at 2.455 0)
+		(size 1.96 3.15)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(uuid "6f012276-23ed-58cb-8c35-031cf1dbda6d")
+	)
+	(embedded_fonts no)
+	(model "${KICAD10_3DMODEL_DIR}/Fuse.3dshapes/Fuse_Littelfuse-NANO2-451_453.step"
+		(offset
+			(xyz 0 0 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
+	)
+)

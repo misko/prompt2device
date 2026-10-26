@@ -1,0 +1,12 @@
+(fp_lib_table
+(lib (name "Capacitor_SMD") (type "KiCad") (uri "${KIPRJMOD}/libraries/Capacitor_SMD.pretty") (options "") (descr "Bound selected library"))
+(lib (name "Connector_BarrelJack") (type "KiCad") (uri "${KIPRJMOD}/libraries/Connector_BarrelJack.pretty") (options "") (descr "Bound selected library"))
+(lib (name "Converter_DCDC") (type "KiCad") (uri "${KIPRJMOD}/libraries/Converter_DCDC.pretty") (options "") (descr "Bound selected library"))
+(lib (name "CrowPhysical") (type "KiCad") (uri "${KIPRJMOD}/CrowPhysical.pretty") (options "") (descr "Bound selected library"))
+(lib (name "Diode_SMD") (type "KiCad") (uri "${KIPRJMOD}/libraries/Diode_SMD.pretty") (options "") (descr "Bound selected library"))
+(lib (name "Fuse") (type "KiCad") (uri "${KIPRJMOD}/libraries/Fuse.pretty") (options "") (descr "Bound selected library"))
+(lib (name "Module") (type "KiCad") (uri "${KIPRJMOD}/libraries/Module.pretty") (options "") (descr "Bound selected library"))
+(lib (name "Package_SO") (type "KiCad") (uri "${KIPRJMOD}/libraries/Package_SO.pretty") (options "") (descr "Bound selected library"))
+(lib (name "Package_TO_SOT_SMD") (type "KiCad") (uri "${KIPRJMOD}/libraries/Package_TO_SOT_SMD.pretty") (options "") (descr "Bound selected library"))
+(lib (name "Resistor_SMD") (type "KiCad") (uri "${KIPRJMOD}/libraries/Resistor_SMD.pretty") (options "") (descr "Bound selected library"))
+)

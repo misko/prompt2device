@@ -1,0 +1,22 @@
+name: Crow public derivative integrity
+on:
+  pull_request:
+    paths: ['projects/crow-array/**', '.github/workflows/crow-publication.yml']
+  push:
+    paths: ['projects/crow-array/**', '.github/workflows/crow-publication.yml']
+permissions:
+  contents: read
+jobs:
+  public-package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Verify both boards, exact upstream bindings and public scope
+        run: python3 -B projects/crow-array/publication.py verify
+      - name: Negative controls against changed and self-rehashed packages
+        run: python3 -B -m unittest discover -s projects/crow-array -p test_publication.py

@@ -1,0 +1,54 @@
+{
+  "boards": {
+    "carrier": {
+      "quantity": 5,
+      "version": "rev-a-first-run-r3-d3"
+    },
+    "pod": {
+      "quantity": 10,
+      "version": "rev-a-first-run"
+    }
+  },
+  "committed_owning_replay": true,
+  "contract_sha256": "bc7155dd30c98e8ebd8949ec5d090e0cc7a44dc3b606b9ea9734a06df8293e58",
+  "design_verdict": "SOUND",
+  "files": 5299,
+  "guidance": {
+    "skills/pcb-design/procedures/release/seal-tooling.md": "0d05e684fa0b0b313df972580481d7069cf661f58c751c5968631999a8776946",
+    "skills/pcb-design/workflow/stages/release-seal.md": "b94c4cd1381cbb5b165f5c74ff73eaf680139a755a274d0f7476936746ca0b32"
+  },
+  "order_verdict": "DO-NOT-ORDER",
+  "release_id": "crow-prototype-v3-first-run-5c10p",
+  "repository": "09_release/crow-prototype-v3-first-run-5c10p",
+  "review": "08_reviews/2026-10-23-first-run-seal.md",
+  "review_sha256": "7babb5bd84b559dc82d4205fda1f5687b2cc4971f5abfbed61848453e5690a8d",
+  "role": "sealed_release",
+  "seal_commit": "a74470eaee97effcfab69fb43fdf302f0cac1865",
+  "seal_record_sha256": "c2b89fdaf364b7538cd58bf0e52a150c8bde3b9cd1f2b52f2010adfafc398a50",
+  "source_commit": "08bd3a485c23039bb1c27bdcfb8521bf454c935a",
+  "stage_spec": {
+    "blocks": [
+      "first_article",
+      "publication"
+    ],
+    "cost": "bounded",
+    "id": "PCB-RELEASE-SEAL",
+    "invalidated_by": [
+      "release_claim",
+      "source_commit"
+    ],
+    "lifecycle": "release_seal",
+    "owner": "pcb-design",
+    "produces": [
+      "sealed_release"
+    ],
+    "requires": [
+      "release_reviewed"
+    ],
+    "schema": 1,
+    "timeout_s": 3600,
+    "work_class": "local"
+  },
+  "tool_sha256": "39690252c830590ca531f0c9a7e3f9848f0e008e5eddca13bcda5a111298a4d3",
+  "version": 1
+}

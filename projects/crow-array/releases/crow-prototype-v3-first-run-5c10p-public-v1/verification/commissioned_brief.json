@@ -1,0 +1,27 @@
+{
+  "identities": {
+    "architecture": "2e64dd6ff24ed2830c9834e57ddea696da65df85b1f2afae4076e7b624121876",
+    "commission": "1a05eeb7604294156535a894a3b6ef00a99e781bfb571dbd401c9d952d4cdf28",
+    "graph": "b282d68e8a7765beb9599689220cf3de2ba04bd4ed763d98708538fadabda76c",
+    "instruction": "9a7d8008f7ce45d4e2433f9e71be2967335ea7b4bae7026876444713bcb601a2",
+    "part_recheck": "340d45af651bef1c035b5ca2bea4998262fb25b2e83a7db3db88b768376ce937",
+    "pcb_skill": "3455a0dcc84d6a21fc14f15c44bbb2635080d0f6d059e15d385edd0a731a6ad8",
+    "project_binding": "d7cca31f7de2658a7d0cdb376260d6a17b5f9129ea6f8882790ec238b2ca015a",
+    "source_snapshot": "ed70b979b918bf271519253ee584822253de433a6f5c019eea41e68e7ddd035f",
+    "sourcing": "cb47be14e2f9765314982260b4c4770d05ce139fb2bb27f1f6b5c37bc44cc085",
+    "verifier": "4d1f2f05e4ba06107baea3c0876b149aa5190b7d654263a3cf7176053c79c3fa"
+  },
+  "prerequisites": {},
+  "review": "08_reviews/2026-10-05-commission.md",
+  "review_sha256": "955f21222ff881cb41c54bacaff10de6a33086240bd670a59ffb605285a9c43c",
+  "role": "commissioned_brief",
+  "schema": 1,
+  "stage": "PCB-COMMISSION",
+  "subjects": {
+    "01_docs/BRIEF.md": "2fd110154d1234840a285f95d1b87f92219a32dbe1b8bcd7dc4ae18386c86699",
+    "01_docs/capability-profile.json": "d9b204845b556dbe77b7c00593d9bb377fad2ccb00c3cb244360cda40866577b",
+    "01_docs/inputs/PROMPT.md": "ffc7683516e2022a1bf6e2e1c834d2fbf460f8a1e17ac97b869a5bbb0542240c",
+    "01_docs/inputs/USER_DECISIONS.md": "c1fa2df564fba7ae4d5cf3a62d28db11ecb124b7f0d1e5b1c3f7a67014609309",
+    "03_src/rules/requirements.yaml": "56a9ee7d78f66c410bf244cdbac312d89c166164f25c2757a5722b85bb96658b"
+  }
+}

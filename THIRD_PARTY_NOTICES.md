@@ -13,6 +13,14 @@ unresolved; availability for download alone is not recorded permission.
 
 ## KiCad libraries
 
+The [Crow public derivative](projects/crow-array/README.md) includes selected KiCad
+footprint collections under its native `libraries/` directories. Their retained
+[license and design exception](projects/crow-array/licenses/KiCad-LICENSE.md),
+package-specific notices, source paths and per-file hashes are included. These
+collections remain attributed to the KiCad library contributors under CC-BY-SA
+4.0 with the design exception; the repository MIT license does not replace it.
+The public subset excludes vendor PDFs/HTML, runtime binaries and model assets.
+
 The vendored [KiCad 10.0.4 package-model subset](projects/pluto-rx2-8way-v5/03_src/lib/3dmodels/kicad-10.0.4/README.md)
 contains eight unmodified STEP models from the KiCad library contributors.
 Its README records upstream paths, the pinned tag, and SHA-256 hashes, and

@@ -1,5 +1,15 @@
 # Crow v3 publication checkpoint — 2026-10-25
 
+Update: the user selected option 1. The [public derivative](../projects/crow-array/README.md)
+now contains both native designs, PDFs, fabrication/assembly data and selected
+verification records. Its dedicated verifier and 15 negative tests pass;
+independent publication review and isolated native 2D replot checks pass.
+The full original sealed archive remains local and unchanged. No ordering holds
+are closed. Main-branch integration remains separate from this review-branch
+publication; the legacy regression failure below is not silently waived.
+
+The following records the initial preflight and why the complete archive is held.
+
 Publication target: this existing `misko/prompt2device` repository. The isolated
 publication branch imports reusable vNext first. No Crow archive, vendor documents,
 runtime bundle or manufacturing files are published by that import.
