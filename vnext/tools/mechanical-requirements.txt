@@ -1,0 +1,4 @@
+# Isolated solid-kernel runtime; KiCad uses the system interpreter separately.
+cadquery==2.8.0
+cadquery-ocp==7.9.3.1.1
+vtk==9.6.2

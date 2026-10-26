@@ -1,0 +1,168 @@
+(footprint "CTS_CB3LV_7050"
+	(version 20260206)
+	(generator "pcbnew")
+	(generator_version "10.0")
+	(layer "F.Cu")
+	(descr "CTS CB3/CB3LV Rev K page4 recommended top-view land: 1.8x2.0 pads, 5.08x4.20 pitch")
+	(property "Reference" "X1"
+		(at 0 -1.7 0)
+		(layer "F.SilkS")
+		(uuid "e4526cc9-564a-4f3a-9b84-7c9e70cf3788")
+		(effects
+			(font
+				(size 0.75 0.75)
+				(thickness 0.1)
+			)
+		)
+	)
+	(property "Value" "CB3LV-3I-12M288000"
+		(at 0 3.65 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "bc5a85fa-0b29-462d-b0c2-0586c1be7e3f")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "fd2cc0e6-cfbf-4740-b922-96a63b930af3")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "7e9cb437-64bc-4099-bfe6-ffccaf132d57")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(property "Manufacturer" "CTS-Frequency Controls"
+		(at 0 0 0)
+		(layer "F.SilkS")
+		(hide yes)
+		(uuid "0a3ac269-f4f3-5926-8006-3d4b0bf83b91")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "MPN" "CB3LV-3I-12M288000"
+		(at 0 0 0)
+		(layer "F.SilkS")
+		(hide yes)
+		(uuid "5250e1e4-f08d-51a4-8c47-8876dec186d9")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Assembly" "SMT"
+		(at 0 0 0)
+		(layer "F.SilkS")
+		(hide yes)
+		(uuid "42306fd1-4ea3-5c1e-b0e0-937cc2e49c92")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr smd)
+	(duplicate_pad_numbers_are_jumpers no)
+	(fp_line
+		(start -1.45 -2.65)
+		(end 1.45 -2.65)
+		(stroke
+			(width 0.12)
+			(type default)
+		)
+		(layer "F.SilkS")
+		(uuid "817b6964-ba5f-57ff-b0a1-69c7a9937e06")
+	)
+	(fp_line
+		(start -1.45 2.65)
+		(end 1.45 2.65)
+		(stroke
+			(width 0.12)
+			(type default)
+		)
+		(layer "F.SilkS")
+		(uuid "fc887308-1905-5c64-ba8e-4f7e3abacc29")
+	)
+	(fp_rect
+		(start -3.85 -3.45)
+		(end 3.85 3.45)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(fill no)
+		(layer "F.CrtYd")
+		(uuid "667a2245-7934-5109-bad2-451e7d1ce162")
+	)
+	(fp_rect
+		(start -3.5 -2.5)
+		(end 3.5 2.5)
+		(stroke
+			(width 0.1)
+			(type default)
+		)
+		(fill no)
+		(layer "F.Fab")
+		(uuid "05544e45-4ab9-514f-a264-c0b2be17bd1d")
+	)
+	(fp_circle
+		(center -3.75 3.35)
+		(end -3.65 3.35)
+		(stroke
+			(width 0.1)
+			(type default)
+		)
+		(fill no)
+		(layer "F.Fab")
+		(uuid "72616dd4-6229-5c63-91b0-5fb3efa47dfb")
+	)
+	(pad "1" smd rect
+		(at -2.54 2.1)
+		(size 1.8 2)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(uuid "0d82ce35-de4e-57dd-89a8-974fd951830a")
+	)
+	(pad "2" smd rect
+		(at 2.54 2.1)
+		(size 1.8 2)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(uuid "92ab8a09-1211-5b74-9bde-f89e122b3590")
+	)
+	(pad "3" smd rect
+		(at 2.54 -2.1)
+		(size 1.8 2)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(uuid "587d95d0-a6dd-5d64-a318-bd29324257f2")
+	)
+	(pad "4" smd rect
+		(at -2.54 -2.1)
+		(size 1.8 2)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(uuid "589fe27b-91b9-5c48-b028-f5f466a0115b")
+	)
+	(embedded_fonts no)
+)

@@ -1,0 +1,38 @@
+{
+  "schema": 1,
+  "stages": [
+    {"stage_id": "PCB-COMMISSION", "backing": "local_procedure", "procedure": "skills/pcb-design/workflow/stages/commission.md", "validations": ["initial-checkpoint", "brief-reconstruction"]},
+    {"stage_id": "PCB-ARCHITECTURE", "backing": "local_procedure", "procedure": "skills/pcb-design/workflow/stages/architecture.md", "validations": []},
+    {"stage_id": "PCB-SOURCING", "backing": "local_procedure", "procedure": "skills/pcb-design/workflow/stages/sourcing.md", "validations": []},
+    {"stage_id": "KICAD-RF-CONTEXT", "backing": "legacy", "validations": []},
+    {"stage_id": "KICAD-RF-SOURCE", "backing": "legacy", "validations": []},
+    {"stage_id": "KICAD-SCHEMATIC", "backing": "local_procedure", "procedure": "skills/pcb-design/workflow/stages/schematic.md", "validations": ["initial-checkpoint"]},
+    {"stage_id": "KICAD-PLACEMENT", "backing": "local_procedure", "procedure": "skills/pcb-design/workflow/stages/placement.md", "validations": []},
+    {"stage_id": "KICAD-MATING-IMPORT", "backing": "local_procedure", "procedure": "skills/pcb-design/workflow/stages/mating-clearance.md", "validations": []},
+    {"stage_id": "KICAD-ROUTING", "backing": "local_procedure", "procedure": "skills/pcb-design/workflow/stages/routing.md", "validations": []},
+    {"stage_id": "KICAD-RF-REALIZED", "backing": "legacy", "validations": []},
+    {"stage_id": "KICAD-LAYOUT-SEAL", "backing": "local_procedure", "procedure": "skills/pcb-design/workflow/stages/layout-seal.md", "validations": []},
+    {"stage_id": "JLC-FABRICATION", "backing": "local_procedure", "procedure": "skills/pcb-design/workflow/stages/fabrication.md", "validations": []},
+    {"stage_id": "JLC-ASSEMBLY-VERIFY", "backing": "local_procedure", "procedure": "skills/pcb-design/workflow/stages/assembly-verify.md", "validations": []},
+    {"stage_id": "JLC-RF-FAB-REVIEW", "backing": "legacy", "validations": []},
+    {"stage_id": "PCB-RELEASE-REVIEW", "backing": "local_procedure", "procedure": "skills/pcb-design/workflow/stages/release-review.md", "validations": []},
+    {"stage_id": "PCB-RELEASE-SEAL", "backing": "local_procedure", "procedure": "skills/pcb-design/workflow/stages/release-seal.md", "validations": []},
+    {"stage_id": "PCB-PUBLICATION", "backing": "legacy", "validations": []},
+    {"stage_id": "PCB-FIRST-ARTICLE", "backing": "legacy", "validations": []},
+    {"stage_id": "PCB-PRODUCTION", "backing": "legacy", "validations": []}
+  ],
+  "validations": [
+    {
+      "id": "initial-checkpoint",
+      "type": "checkpoint",
+      "evidence": "tests/checkpoints/evidence/initial-validation.json",
+      "scope": "Three checkpoint calibrations (including synthetic schematic) and one supervised commission hold handoff; no engineering acceptance"
+    },
+    {
+      "id": "brief-reconstruction",
+      "type": "from_brief",
+      "evidence": "tests/checkpoints/evidence/brief-reconstruction.json",
+      "scope": "Intake reconstruction only; not stage admission or full replay"
+    }
+  ]
+}

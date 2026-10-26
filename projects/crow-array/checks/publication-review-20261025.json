@@ -1,0 +1,27 @@
+{
+  "date_local": "2026-10-25",
+  "record_type": "Coordinator transcription of independent read-only reviewer result",
+  "reviewer": "/root/first_run_release_plan/release_integrated",
+  "reviewer_model": "SOL 6.1 high",
+  "verdict": "PASS",
+  "scope": "Public derivative preservation, redistribution boundary, handoff and verifier; not engineering reacceptance",
+  "subjects": {
+    "publication.py": "1b5b60b5f8068e8694d7a382ba906bf91ef0b15b1a70c613f035ef186712378f",
+    "publication-policy.json": "43b6546f60173abbc51c5442e62bb28d5e237df0d93f50edc9117e1235c9af0e",
+    "releases/crow-prototype-v3-first-run-5c10p-public-v1/publication.json": "cda4e4da019cba206f0cbf4e477f2ce9b5629c024e9a8c9af78aeb994bd8316f"
+  },
+  "observations": [
+    "All 251 copied payload files independently compared directly to sealed or post-seal origins; exact bytes match.",
+    "256 inventoried payload files plus manifest; eight PDFs are board-generated; vendor document, runtime and populated-model families excluded.",
+    "Current 5-carrier/10-pod scope, all nine exact ordering holds, source provenance and incomplete-replay boundary are explicit.",
+    "Local native library tables/resources resolve by reference inspection; actual CAD smoke check belongs to coordinator.",
+    "In-memory attacker-rehash tests against README, KiCad license content and license metadata are rejected after repairs.",
+    "Read the 15 negative-test definitions; reviewer did not execute file-mutating fixture tests. Coordinator separately executed all 15 successfully."
+  ],
+  "resolved_findings": [
+    "Generated handoff/license/dependency content now bound to trusted publication-policy outside package manifest.",
+    "Per-file license metadata enforced for all copied and generated entries."
+  ],
+  "open_findings": [],
+  "limitations": ["No new electrical/mechanical acceptance", "No firmware or physical qualification", "Full sealed archive remains local", "No order authorization"]
+}

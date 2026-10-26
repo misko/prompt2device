@@ -1,0 +1,22 @@
+{
+  "scope": "Offline, manually normalized historical observations, not new CAD measurements or engineering acceptance. Source paths are relative to the retained isolated work directory. Hashes bind original full handoffs, not these summaries. Existing prose reassessments are not treated as absent; the counterfactual asks whether ordinary dispatch remains available and whether recovery can keep renewing its deadline.",
+  "milestone": "Complete carrier and pod routing without functional regressions",
+  "selected_carrier_sha256": "e7ff7440b99d03f1887f671a24f100cbdd2540169d297aa45c464147a9ce7c4c",
+  "baseline": {"carrier_opens": 33, "complete_analog_legs": 6, "pod_opens": 0, "accepted_roles": 6},
+  "checkpoints": [
+    {"id":"C49","result":"unchanged","source_sha256":"916716ee86a8b8b44c0e2c7aa19430a217984130d9c11c70eee4e7fc8bb2bc50","observation":"No new admission; selected carrier 33 joins; physical proposal unaccepted."},
+    {"id":"C50","result":"unchanged","source_sha256":"b09fe63dc4595496ce47f4162664959b01997c0ac14c1f47d63bc0d39dde94d0","observation":"Two native drafts rejected: 40 joins and 5/16 legs versus retained 33 and 6/16."},
+    {"id":"C51","result":"unchanged","source_sha256":"353c3d4ac621199beb4576de1fc54feaac1488c3a1ad717d06b2b7a4475fac8d","observation":"No saved SES or imported native; independent selection NONE; selected carrier unchanged."},
+    {"id":"C52","result":"unchanged","source_sha256":"59b75c4d3feea113d90af77d704185bc9e8dd9b063b0542eeb47c9e228840ee4","observation":"Synthetic bridge failed before router entry; hardware unchanged."},
+    {"id":"C53","result":"prerequisite","source_sha256":"86c305d61334dfe69d27137b1026b52b8c54854d61aca68671050076742b76a5","observation":"Synthetic timeout delivery capability PASS; explicitly not board quality or ROUTE."},
+    {"id":"C54","result":"unchanged","source_sha256":"ee6f8b523564ee8cde76ff9dae3c70ae0f0a704b6a4f607646b04e8d32a018dc","observation":"Producer delivered SES; native import failed; NONE selected."},
+    {"id":"C55","result":"prerequisite","source_sha256":"3df4dc786ac36aefc370e31688e6b44b166b62bfd7252852effa8a559069169e","observation":"Compatibility helper adopted; imported native rejected: 127 joins, 0/16 legs."},
+    {"id":"C56","result":"prerequisite","source_sha256":"73e0c8787ff3298ed45cfde87159772dcafea1f067c4fbe12af61200893da6a1","observation":"Scoped preparation modules adopted; strict consumer integration OPEN; selected board unchanged."},
+    {"id":"C57","result":"unchanged","source_sha256":"32a4fb0579fece7eb6c75d7a25f0638e54a10418cb2004e33ad6c83e25b8272f","observation":"Consumer draft not adopted; native full-chain proof NOT_PROVEN."},
+    {"id":"C58","result":"prerequisite","source_sha256":"e1ff63196508cb6231f4c017ec9feba96e2859afd44eb95f9220598705d6ba95","observation":"Scoped strict consumer adopted; explicitly no hardware or producer acceptance."},
+    {"id":"C59","result":"prerequisite","source_sha256":"ebf66826eb65a08b3318a91459613869edb9f32940c2868f615ac78ddae7b925","observation":"Synthetic producer/preparation/consumer capability adopted; no hardware trial, selection or ROUTE."},
+    {"id":"C60","result":"prerequisite","source_sha256":"5aa285db242859a92c7a4af549837b36b26272455cd1d2fd2a7288693c01814e","observation":"Compatibility helper adopted; actual native rejected: 200 joins, 5/16 legs, prior function lost."},
+    {"id":"C61","result":"prerequisite","source_sha256":"26abac3d871e2156358f1a65a80a1008f78e9628b397286cadc3487df51f8d8d","observation":"Read-only diagnosis and planning; explicitly no PCB advance or adopted correction."}
+  ],
+  "source_path_pattern": "project/reviews/continuation{number}-final/RUN-HANDOFF.snapshot.md"
+}

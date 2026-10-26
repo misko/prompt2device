@@ -1,0 +1,167 @@
+# First-run independent placement review — 2026-10-22
+
+PASS for the exact renewed placement only. Fresh owning replay and direct source/geometry comparisons support all six criteria below. No mating, routing, layout, fabrication, assembly, procurement or physical qualification acceptance is issued here. The coordinator must separately issue/check the owning receipt.
+
+Actual carrier and pod previews were inspected. The unchanged constraints and every repeated cell were reopened; prior LS42 geometry is a comparison subject, not a copied verdict. Panasonic carrierR3 identity is current, but the larger registered model is a separate mandatory mating subject.
+
+```json
+{
+  "schema": 1,
+  "stage": "KICAD-PLACEMENT",
+  "author": "Astra coordinator inputs and independent SOL6.1-high physical author",
+  "reviewer": "Independent SOL6.1-high FR3 reviewer",
+  "verdict": "PASS",
+  "inputs": "03_src/recovery/first-run-physical-inputs/placement.json",
+  "plan": "03_src/recovery/first-run-physical/plan.json",
+  "output": "06_build/recovery/first-run-physical/placement1",
+  "subjects": {
+    "01_docs/ASSEMBLY-PLAN.md": "581fd2da97195293d7fe13053816db8835599509cfd177311d58c9de1ae5419c",
+    "01_docs/DETAIL_DESIGN.md": "c5c0c9860a4f13ab70fa6f2b6d1f3e55ee39e0f8465d7cf11b37cc8c5da5f3f7",
+    "01_docs/LS13-ADOPTION.md": "1270ffe8293e1a5ff1a712b7d1de8e617f941bef19cffd9efec83c99fc4c4cd5",
+    "01_docs/first-run-physical-scope.md": "2a050c0fc2cc2c27cd823c7462a38282f364a39d783d79f8fc1366c0b68a43b4",
+    "01_docs/ls14-placement-scope.md": "6c03d88d59173987c66cc59a40c9ffc768b195da7a94e0d6b90ad2c43028120e",
+    "01_docs/ls4-keepout-scope.md": "9a3214cdef0587363b69efe40ea3bafa39b8d2f0dbc595d248499a70121b694e",
+    "01_docs/ls42-rj-clearance-revision.md": "a739fd33b90647f1c328f2f2707c2a00ec7716b1e47bec0e4fa9737692a11580",
+    "01_docs/placement-contract.json": "150c7cb16090e700d4ef239e77713bc5dccd0151af71fad155ebf5b987e7ae0c",
+    "01_docs/placement-scope.md": "1492342710de2092f199c29cca149ac45367e26a0c7715ec3e5f06fa8bbfabc7",
+    "01_docs/reports/2026-10-05-placement-inputs.md": "fcc895404bccba10135e42db97499cd1e85515d9cd76cb693e273adead2222ef",
+    "01_docs/reports/2026-10-06-ls3-library.md": "bfc69c8a374166ed9b31982979f645b0d34a0244ad1364faca1bf72c4402f7b7",
+    "02_parts/P030/rjhse-x080-reva-2019-user.pdf": "e96d3f6cde115981be470e0edd3159dfda3ebe1a453db0c45d525e629668a756",
+    "02_parts/P031/manufacturer.pdf": "757ff485227493b9fcc0c2c96c4dea9de020e1d8b2b11e2aa4f9ee8b25aa89eb",
+    "02_parts/mechanical-ls33/10-02333.pdf": "42f1d8056cf1e6649eb53525acbce9898c1d39857c0b939f8a876f14ac37d07b",
+    "03_src/placement/constraints-proposed.json": "1aef10baa8a97eb667137e4ba75291395f52cc9acc41a07fc22a8933a0dd9a89",
+    "03_src/placement/prepare_inputs.py": "1cddca784a392819b79f02208db80284f288b4e5f4a8e847627437603ea3172b",
+    "03_src/recovery/first-run-physical-inputs/adopt_inputs.py": "7d38e8e11e9adc4d1f8f300acf9684bec9988fe63fc6bcaca8481d795def1e25",
+    "03_src/recovery/first-run-physical-inputs/placement.json": "1988669352adac9059dd24da7ea2dfead186076e9afcb565f2d1cd8004046239",
+    "03_src/recovery/first-run-physical/plan.json": "ecfba91821c6304edca88a5e9eee1c1da7042811e4ba1757857085404ccd4502",
+    "03_src/recovery/first-run-r3-source/CrowPhysical.pretty/CMA-4544PF-W.kicad_mod": "5ec6c226cbba3c0bd86af9199bcae469fac6fecf5588d29bc1299e5b8f0a6c9b",
+    "03_src/recovery/first-run-r3-source/CrowPhysical.pretty/CPE-203.kicad_mod": "7fdbfe03eb3c373c2307b0b0c34b2786d30de67fba15bb7c9f9f19606c013eaa",
+    "03_src/recovery/first-run-r3-source/CrowPhysical.pretty/CTS_CB3LV_7050.kicad_mod": "ce164dcdd65f6a83665e0baf24b70311b7dcc17a570432bd1c8d8b4047ab30c9",
+    "03_src/recovery/first-run-r3-source/CrowPhysical.pretty/RJHSE-5080.kicad_mod": "2e488c20c58165738796c5e7cdf866b4a3c0bb65e5bd452294f86817562b60b2",
+    "03_src/recovery/first-run-r3-source/CrowPhysical.pretty/SP0504BAHTG.kicad_mod": "cffc5244bae8ab8f2be816861aa3fc1c48c247ac4c3fa6e2eac73f311dfb5267",
+    "03_src/recovery/first-run-r3-source/crow-carrier-intent.json": "7a3910f8dc8423047cce821750882c8f76d4ccfcee29d858b6b0509470f8c767",
+    "03_src/recovery/first-run-r3-source/crow-pod-intent.json": "f687195ca7b2a2aa2f380c863381b1f48f5930ea8e4854cd398d8768ade965eb",
+    "03_src/recovery/first-run-r3-source/libraries/Capacitor_SMD.pretty/C_0805_2012Metric.kicad_mod": "62775a51fe74ba7f1b572de327bdbd3fc92582721b2abcaa47787865590d89cb",
+    "03_src/recovery/first-run-r3-source/libraries/Capacitor_SMD.pretty/C_1206_3216Metric.kicad_mod": "b2e4a08e3aaf40bc587090190c0e3969e962d7ae962c172cce0581ae8327651c",
+    "03_src/recovery/first-run-r3-source/libraries/Capacitor_SMD.pretty/C_1210_3225Metric.kicad_mod": "e1dae516e079b70c4736d001fb81bfb4ef5f9c2a37c8175223a44f83a04ff75f",
+    "03_src/recovery/first-run-r3-source/libraries/Connector_BarrelJack.pretty/BarrelJack_CUI_PJ-102AH_Horizontal.kicad_mod": "3a786375b8c16b3685b313dc6c8500d14b64ce34aadb09fb2a7cacce76843f40",
+    "03_src/recovery/first-run-r3-source/libraries/Converter_DCDC.pretty/Converter_DCDC_RECOM_R-78E-0.5_THT.kicad_mod": "82f4b86f02388342c22b1b529c02a44aaf5ae6ec14c04b3f1b5368475d6e712a",
+    "03_src/recovery/first-run-r3-source/libraries/Diode_SMD.pretty/D_SMB.kicad_mod": "e25e9f4acef5b55585afebc48c685e151fd0d2f33a5c3c61f9fdf0389e19ae67",
+    "03_src/recovery/first-run-r3-source/libraries/Diode_SMD.pretty/D_SMC.kicad_mod": "f17a366cbe28020fc5f12a4a5cecd11590af4d96b61ad8d82c33dc2393a3b64b",
+    "03_src/recovery/first-run-r3-source/libraries/Diode_SMD.pretty/D_SOD-123.kicad_mod": "fd16785935b01254e1076f490e12f0f096da73cf087adefce51225585c62557a",
+    "03_src/recovery/first-run-r3-source/libraries/Fuse.pretty/Fuse_1206_3216Metric.kicad_mod": "8f4307d8c771db71526ed8ccf7c762824636660adec3635905932cc5e1d02280",
+    "03_src/recovery/first-run-r3-source/libraries/Fuse.pretty/Fuse_Littelfuse-NANO2-451_453.kicad_mod": "4d7971c5346420f32946d8f6f19189db0074a717fa4ad9566c72a60c7c21cb84",
+    "03_src/recovery/first-run-r3-source/libraries/Module.pretty/RaspberryPi_Pico_Common_Unspecified.kicad_mod": "33791fb55439f47d12d8dd6c9925ebf18c24e50cb7e6d2e89d0606e97b44daf5",
+    "03_src/recovery/first-run-r3-source/libraries/Package_SO.pretty/SOIC-8_3.9x4.9mm_P1.27mm.kicad_mod": "074ecb2092b24fa4b4b9cdd7c926fc587b0d7d6d21e7341e57935fd42d36894f",
+    "03_src/recovery/first-run-r3-source/libraries/Package_SO.pretty/TSSOP-30_4.4x7.8mm_P0.5mm.kicad_mod": "6acd828c91c1267bc0a0e00758acbde74375c79f643934f2805ee64ae96209d7",
+    "03_src/recovery/first-run-r3-source/libraries/Package_TO_SOT_SMD.pretty/SOT-23-5.kicad_mod": "455a3f7c3e5eb5b8847eaa5df23e18651e78ab9f75afd09a0883758a0d901761",
+    "03_src/recovery/first-run-r3-source/libraries/Package_TO_SOT_SMD.pretty/SOT-23.kicad_mod": "0d88c86c1b6d8c1aae4aa8c09386264c089d4451a128b6ccd63ed253f4300b15",
+    "03_src/recovery/first-run-r3-source/libraries/Resistor_SMD.pretty/R_0603_1608Metric.kicad_mod": "7190ac4a00125b807e54129ef0d87d87f2a658eeb74d025a7028203419b09f23",
+    "03_src/recovery/ls12-clock/revision56/CONSTRUCTION-REQUIREMENTS.md": "a50a274adb69c7d8bb3ea9ae5dc56fe8531bbe96fddf3c38b4b0d69327338ee9",
+    "03_src/recovery/ls14-placement/adopt_inputs.py": "4ffd2aa36e3d8d0d67eb747258c26ac90d0bce6250692f01c854198309d85dfb",
+    "03_src/recovery/ls30-relief/candidate2/candidate.json": "939e0a4b6bfa96ac6149a841f8ff881aa3d6a7bffc51522700310abe4a1af8e9",
+    "03_src/recovery/ls33-mating/module-controls.md": "82ab308061003d8025bce030936dfec8aca838371a3509e32bfaef05774e08c8",
+    "03_src/recovery/ls33-usb-notch/candidate2/candidate.json": "7401540c89c39ee741acfc4c2301e029087e7c35d2578155d6350a03cdbc5c33",
+    "03_src/recovery/ls38-assembly/corrections.md": "38a70271732665268724f886eb6d824994a3e5b0fb3a743207c781588e2dd1d3",
+    "03_src/recovery/ls4-keepouts/adopt.py": "af7d25968013de27d6ececc2c5492d0a3c37a8bf7d5c8887a4131b243865fd5c",
+    "03_src/recovery/ls4-keepouts/inputs.json": "ce40bf6cee799970855c59fb10fe5cf99fa2b29ba28045ec5508395beab547e8",
+    "06_build/checkpoints/schematic_reviewed.json": "0d846cab2167ff2cde962b16606ae2ac49eb3fb404454da2fd935661306393af",
+    "06_build/recovery/first-run-physical/placement1/carrier.json": "005f2f6d6dfeb0b1652cfca10f14dedf5d150cab6d14eeb294c1768c34f48591",
+    "06_build/recovery/first-run-physical/placement1/carrier.kicad_pcb": "ccd6a8b89970ec590513cbf8e87018c1a1aac3c318a0289a12c041d82a463ca0",
+    "06_build/recovery/first-run-physical/placement1/carrier.svg": "209eac483b1a678559e3acef09a290f41b2c67ee352f695bb33badc72a058820",
+    "06_build/recovery/first-run-physical/placement1/checks.json": "2640e87af8c26b2b816134b2606ed7eedc59416d50d7c5a212976090ff97dee5",
+    "06_build/recovery/first-run-physical/placement1/pod.json": "9d91e60295ce64d965f4efa68ba4a44ece3c2964333e686679e6bdf2d40381fb",
+    "06_build/recovery/first-run-physical/placement1/pod.kicad_pcb": "3c96eab409eb160381fdfa584ab6bc5319c25ee34ba8d22b27c1557e402d0498",
+    "06_build/recovery/first-run-physical/placement1/pod.svg": "5f65012effe5a45c4aa3f8641f96c518dd24ec7753a1cb0332f444d6297ae2fd",
+    "06_build/recovery/first-run-r3-native/carrier/native.xml": "56a79ca17f25fd2e8f3eebd07e9ccc617dd69b1ea6fc83b50bb222a2b0016907",
+    "06_build/recovery/first-run-r3-native/pod/native.xml": "45542053ada3c533cd4f081df0cdedcd6111658e6943797f3969ac4b7d8f303b",
+    "06_build/recovery/ls30-parity-review/review.md": "57ee2f0080a5aee7670542fe43db7ab43b6fe3d99ef894bf8b27739c98f75922",
+    "06_build/recovery/ls30-relief-3d/tolerance.json": "7b662710e0a9d39bc5bbeb6547733a8eb83c6e3cc13fce2af93bddf86d61190f",
+    "08_reviews/2026-10-07-ls12-clock-review.md": "bb9c22dbc2b7a7a916daacd0ed6f7b832ec2463f4b3ce852247ef91295c75a08",
+    "08_reviews/2026-10-07-ls13-schematic.md": "ac020283aad7a0cd6bd34f23bd37126620b40a8340ecf7e052239cb09617b455",
+    "08_reviews/2026-10-22-first-run-r3-qualification.md": "f2ccafd4bca382817c6c31703f82e07d6947af9387b15081cf6b6c235ee8b401",
+    "08_reviews/2026-10-22-first-run-schematic-costscope.md": "b1d4d24921f2a2db95d3600bfe327c1e2b59e77de556d7cef3cde4a9b818b768",
+    "08_reviews/ls33-usb-engineering.md": "0d8a74d482b3d56210781a32b3c022880b55490cc0e7971b90422d3daf348be5",
+    "08_reviews/ls42-service-engineering.md": "c49a33bedf3782926d3107b8bee0b25d65a204e25163f45c200719ec45d812ce",
+    "03_src/recovery/ls42-notches/plan.json": "ecfba91821c6304edca88a5e9eee1c1da7042811e4ba1757857085404ccd4502",
+    "03_src/recovery/ls38-placement/inputs-v2.json": "3f58242bfe27532df9c291e86de1aeece3e71a7aabcf30f2ed79a8a27e84c1a6",
+    "03_src/recovery/ls43-mating/controls.md": "275e474cd6d9299e2b9791ba002f12e9ab1acba53e0eb7b048b4c6257dc529c4",
+    "03_src/recovery/first-run-r3-engineering/model-proposal.json": "644c47d216a546a59f9f900f50d05f5b521c0a1d3468e7519d90dfa4663ea398",
+    "03_src/recovery/first-run-r3-physical2/carrier/carrier.kicad_pcb": "a306cc51bcbf5c874a9c86848df6c35015134dd45ebf91c1ec865895bcecf16e",
+    "03_src/recovery/first-run-r3-physical2/pod/pod.kicad_pcb": "791814ab6baf3ff10da15ebcd2be4e424d2b6682987557886b7763292e89855e",
+    "06_build/recovery/first-run-physical-review/carrier-placement.png": "6a4cba89c3da6bb662b399c28759267e8daee8e28b2beff89d4eed3ff6af4656",
+    "06_build/recovery/first-run-physical-review/pod-placement.png": "788c6c38890f47361bf91ba94d635b9d53200c0945ea48fcae0af7c500b38776"
+  },
+  "checks": {
+    "completeness": {
+      "verdict": "PASS",
+      "evidence": [
+        "03_src/recovery/first-run-physical-inputs/placement.json",
+        "03_src/recovery/first-run-physical/plan.json",
+        "06_build/recovery/first-run-physical/placement1/checks.json",
+        "06_build/recovery/first-run-physical/placement1/carrier.json",
+        "06_build/recovery/first-run-physical/placement1/pod.json"
+      ],
+      "rationale": "Fresh owning verify completes both boards: all138carrier and31pod physical circuit references exactly once in placement/functional blocks, plus four mounting holes per board. Both actual native geometry snapshots independently compare exactly equal LS42; the142/35snapshot entries include mounts, not additional circuit parts. Eight carrier port cells and the actual pod were individually inspected in fresh native SVG previews; none is accepted by representative-cell inference."
+    },
+    "mechanical": {
+      "verdict": "PASS",
+      "evidence": [
+        "06_build/recovery/first-run-physical/placement1/carrier.svg",
+        "06_build/recovery/first-run-physical/placement1/pod.svg",
+        "03_src/recovery/first-run-physical-inputs/placement.json",
+        "03_src/recovery/ls43-mating/controls.md",
+        "08_reviews/2026-10-22-first-run-r3-qualification.md"
+      ],
+      "rationale": "Current native edges,200x100/85x78outlines, four mounts each, nine radiused RJ recesses and USB recess, top-side poses and U3ownedkeepouts are retained. Native checks have zero body/courtyard/edge/mount/access failures across11declaredaccess checks. LS38source-owned fourNPTHrelief recipes and actual annulus/web/service/seat controls remain conjunctive. This accepts placement geometry only: the Panasonic1.80x1.00x.65occupiedmodel, registered full3D neighbors/engagement and finished-process feasibility require the separate fresh mating stage. No enclosure/roof/plug-floor fit is inferred."
+    },
+    "electrical": {
+      "verdict": "PASS",
+      "evidence": [
+        "03_src/recovery/first-run-physical-inputs/placement.json",
+        "06_build/recovery/first-run-physical/placement1/carrier.json",
+        "06_build/recovery/first-run-physical/placement1/pod.json",
+        "06_build/checkpoints/schematic_reviewed.json",
+        "08_reviews/2026-10-22-first-run-r3-qualification.md"
+      ],
+      "rationale": "Fresh source/native upstream replay passes corrected schematic receipt. Independently checked all accepted footprint files byteequal originals and both observed pad/net/value/pose snapshots equal LS42. All65pin-centreproximity constraints pass, including sourceR3andbranchdampers, oscillatorC4, ADCsupplies and poddecoupling. CarrierR3remains68ohm andexisting0603land; its maker/MPNmetadata changes no electrical pad. Connector protection remains at ports, ADCconditioning atreceivers, podmic/gain separatefrombuzzerloop. Pin-centre distance is not routed-length or analog/SIqualification."
+    },
+    "routability": {
+      "verdict": "PASS",
+      "evidence": [
+        "03_src/recovery/first-run-physical/plan.json",
+        "06_build/recovery/first-run-physical/placement1/carrier.svg",
+        "06_build/recovery/first-run-physical/placement1/pod.svg",
+        "03_src/recovery/first-run-r3-physical2/carrier/carrier.kicad_pcb",
+        "03_src/recovery/first-run-r3-physical2/pod/pod.kicad_pcb",
+        "08_reviews/2026-10-22-first-run-r3-qualification.md"
+      ],
+      "rationale": "Inspected all eight port escapes, both inward-facing ADCmacros and local X1/R3/R4/R5SCKIcluster, Pico/edgeconnectors and podanalog/buzzerseparation. F.Cu localescapes with shared continuous In1/In2GND and B.Cu longerpaths remain credible. Retained actualLS44copper on byte-protected samepadgeometry supplies concrete whole-board feasibility, not inherited routing acceptance. No critical escape reservations are silently treated as positive proof (zero declared); fresh routing/plane/refill/DRC and LS20/44completeclock/return evidence remain owning gates, including current7628A stack rather than historicalh=.18assumption."
+    },
+    "reproducibility": {
+      "verdict": "PASS",
+      "evidence": [
+        "03_src/recovery/first-run-physical-inputs/placement.json",
+        "03_src/recovery/first-run-physical/plan.json",
+        "06_build/recovery/first-run-physical/placement1/checks.json",
+        "06_build/recovery/first-run-physical/placement1/carrier.kicad_pcb",
+        "06_build/recovery/first-run-physical/placement1/pod.kicad_pcb",
+        "01_docs/placement-contract.json"
+      ],
+      "rationale": "Independent owningROOT/tools/placement.py SHA934bdcb7724586eafcd5205f4b644f1f85271b4c69a5d6794c9ccce8fbaa11ee verify exit0 regenerated canonical nativeboards, observed snapshots and previews and replayed exactarchivedschematic-v1 acceptance. Newplan is byteequal LS42; rules andNPTHrecipes equal LS38; source/library paths retarget explicitnewacceptance. An initial invocation of identicalbytes in the historicalcopy refused its missingROOT-relativeupstreamarchive; no subjects mutated and no engineering retry occurred. Successful invocation uses correctfrozenroot context, not monkeypatch or refreshedhistoricalreceipt."
+    },
+    "applicability": {
+      "verdict": "PASS",
+      "evidence": [
+        "01_docs/first-run-physical-scope.md",
+        "01_docs/placement-contract.json",
+        "03_src/recovery/first-run-physical-inputs/placement.json",
+        "03_src/recovery/first-run-physical/plan.json",
+        "06_build/checkpoints/schematic_reviewed.json"
+      ],
+      "rationale": "FR3explicitly resumes current schematic reflection and selects complete two-board source; supported four-layer, top-side quarterturn rectangular/recess geometry applies. Quantity5carriers/10pods does not change percarrier eight-portcapacity. No bottom-side/flex/RF/environmental/enclosure or manufactured-article claim. Current source/plan/inputsupersede historicalidentity only through explicitnewcontract, not blanketoldPASS; mating/routing/layout and orderprocess/physicalqualification remain pending."
+    }
+  }
+}
+```
+

@@ -1,0 +1,24 @@
+{
+  "command": [
+    "kicad-cli",
+    "pcb",
+    "drc",
+    "--format",
+    "json",
+    "--units",
+    "mm",
+    "--severity-all",
+    "--all-track-errors",
+    "--refill-zones",
+    "--save-board",
+    "--exit-code-violations",
+    "--schematic-parity",
+    "--output",
+    "../drc.json",
+    "pod.kicad_pcb"
+  ],
+  "exit_code": 0,
+  "native_sha256": "791814ab6baf3ff10da15ebcd2be4e424d2b6682987557886b7763292e89855e",
+  "schematic_sha256": "da2857f3f806582406b4ebac83a1217584508861ce2c6cd26edde3037b879fbe",
+  "version": 1
+}

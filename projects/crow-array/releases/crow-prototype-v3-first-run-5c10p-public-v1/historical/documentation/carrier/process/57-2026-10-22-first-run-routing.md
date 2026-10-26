@@ -1,0 +1,206 @@
+# First-run independent routing review — 2026-10-22
+
+PASS for the exact complete carrier/pod routing candidate only. Fresh owning build/verify and independent actual-final copper, return, geometry and source-delta checks support the five criteria. This is not layout, fabrication, assembly, ordering, release or physical qualification acceptance. The coordinator alone issues/checks the owning receipt.
+
+I inspected all eight individual copper layers of the actual refilled boards, not only composite previews. The independent final audit reopens current native boards and compares complete copper definitions, native setup and settings against the protected LS44-derived source and renewed placement. All four MCLK paths, six digital return transitions, nine direct ESD returns, nine nominal/expanded RJ recesses and the qualified R3 sensitivity are explicitly covered. Pod native has retained nominal four-layer/1.6-mm setup without an explicit detailed stackup block; the selected 7628 construction remains an exact-order design requirement, not invented native per-ply evidence.
+
+Routing has zero physical faults/opens, but intentionally retains395carrier/88pod presentation/library findings:138/31 library lookup,62/13 silk-over-copper,57/13 silk-overlap and138/31 text height. These require current document-only finishing, bound local libraries, usable references and strict-zero layout-v2 parity; they are not waived here. Both producers deterministically promote every listed severity to error. Source projects already have all62 listed severities set to error; the independent settings comparison is exact, not a suppression allowance.
+
+The current corrected mating receipt is459fb6546d1d9f96e22720632ba58425fcef1e33643fa5f29bfe91cd8eb2417c. Historical engineering remains reusable only because the actual corresponding copper/setup/pose facts are independently unchanged and current return/clearance checks are fresh. Panasonic R3 uses the new qualified identity/model and independent±6% sensitivity, never the old Vishay envelope or historical h=.18 construction assertion.
+
+```json
+{
+  "schema": 1,
+  "stage": "KICAD-ROUTING",
+  "author": "Astra coordinator and SOL6.1-high FR3 physical source author",
+  "reviewer": "Independent SOL6.1-high FR3 reviewer",
+  "verdict": "PASS",
+  "manifest": "03_src/recovery/first-run-physical/routing/manifest.json",
+  "output": "06_build/recovery/first-run-physical/routing1",
+  "subjects": {
+    "01_docs/first-run-physical-scope.md": "2a050c0fc2cc2c27cd823c7462a38282f364a39d783d79f8fc1366c0b68a43b4",
+    "01_docs/routing-contract.json": "36f926180607fe7233c1d59e8ab5e1da3a1e0a24a053493c180ae9bad941c048",
+    "03_src/recovery/first-run-physical-inputs/mating-requirements.json": "d4d57ee7d5e131acc328067304d159e53413f39f8e20363517fcd744d6f8001f",
+    "03_src/recovery/first-run-physical/identity.json": "7def6921162503ea667e8a9398c57e5371038aa2cc4a323a628bf94981b91063",
+    "03_src/recovery/first-run-physical/prepare_route.py": "b9672d11169f8b3ed8dfd2be12fa47067d6e7661c47ddd69f91ebe9659bda415",
+    "03_src/recovery/first-run-physical/routing/carrier/carrier.kicad_pcb": "c7d0e56ea2f11d29144485ae9766b2b71ad046df1d42036864e19c78c9f47d29",
+    "03_src/recovery/first-run-physical/routing/carrier/carrier.kicad_pro": "2f23ae4cac9d2a53237ce2fa53170226739aa8bc2e4164fbb0e2842c464f5d1b",
+    "03_src/recovery/first-run-physical/routing/identity.json": "e46ffe359abb310940254590a4f59c0f52fc46af007aca5c5944d3211e92a9e2",
+    "03_src/recovery/first-run-physical/routing/manifest.json": "678f6a132897e7629c4aae690f056a9d8ac6c6bb341f27c93595bbaaa78242ec",
+    "03_src/recovery/first-run-physical/routing/pod/pod.kicad_pcb": "8b3bb5121797e51a76aa2f6a10a9966722da831678fb34cc225113cc33df389c",
+    "03_src/recovery/first-run-physical/routing/pod/pod.kicad_pro": "7dbf4a82b026f04bb3bd29037c55106d50abb59c5f664f5a83fccc4fad6b6cbe",
+    "06_build/checkpoints/mating_clearance.json": "459fb6546d1d9f96e22720632ba58425fcef1e33643fa5f29bfe91cd8eb2417c",
+    "06_build/checkpoints/placement_reviewed.json": "df208faf3707205bd9fedc17c4ff04f4cbb634b0de10b12f38477094cfcaaf77",
+    "06_build/recovery/first-run-physical/routing1/carrier-drc.json": "42949d86c0a390ccb2668469f315b29aba6f65989d2c69b8316d5571e1f5cb58",
+    "06_build/recovery/first-run-physical/routing1/carrier.kicad_pcb": "c7d0e56ea2f11d29144485ae9766b2b71ad046df1d42036864e19c78c9f47d29",
+    "06_build/recovery/first-run-physical/routing1/carrier.kicad_pro": "2f23ae4cac9d2a53237ce2fa53170226739aa8bc2e4164fbb0e2842c464f5d1b",
+    "06_build/recovery/first-run-physical/routing1/carrier.svg": "3b1bf22c98618ef90e288c336ec90ae7987fa8b1cdc2386c8df1821aab8f5871",
+    "06_build/recovery/first-run-physical/routing1/checks.json": "bc1218cfb02e0cc8e36689c36b06b03a127eb19a55ccf057977485e71b600d1a",
+    "06_build/recovery/first-run-physical/routing1/pod-drc.json": "eb83b597532638ad6051bc67e4972dd02b4278d8799d0b5234f4814a5e159581",
+    "06_build/recovery/first-run-physical/routing1/pod.kicad_pcb": "8b3bb5121797e51a76aa2f6a10a9966722da831678fb34cc225113cc33df389c",
+    "06_build/recovery/first-run-physical/routing1/pod.kicad_pro": "7dbf4a82b026f04bb3bd29037c55106d50abb59c5f664f5a83fccc4fad6b6cbe",
+    "06_build/recovery/first-run-physical/routing1/pod.svg": "c01b4c7098b5aebef2fd0b2a2da17e673cafd53217d593825f73ac7d944161b7",
+    "01_docs/first-run-authority.md": "22bdb51e4a45997b133dbedff32737312ee389486d63898a2ed69974649cfeab",
+    "02_parts/first-run-r3-evidence/AOA0000C304.pdf": "78825b819853a63f57cc18214f321d2f1da9dc205a7e58af7db18ae73563e378",
+    "02_parts/first-run-r3-evidence/DMM0000COL17.pdf": "fc707b230cce91d464bc3aaf1ed614fa5b412f40cbe7df7cab1541d2c164a882",
+    "02_parts/first-run-r3-evidence/DMM0000COL14.pdf": "e45fce2af6de6c7145f0fc725e979ccbb69d586e004956b209d9f49d3a99490f",
+    "02_parts/first-run-r3-evidence/ERJ3EKF68R0V-maker.html": "0224c881ffd0ab9a01945954c73fb8565d4f8c371ee2504f8e4e30db28880d5b",
+    "02_parts/first-run-r3-evidence/ERJ3EKF-maker-list.html": "7654a791717497e26bda0a07f8e814ba9d4776990911e15a7e82a402cfd0c328",
+    "02_parts/first-run-r3-evidence/prior-JLC-exact.json": "75128547241fe624bb309b53383c9ac156e00834450934c41d792f7f74ad789a",
+    "02_parts/first-run-r3-evidence/observations.json": "7962958213c453aec970d092abc4039311d4382d653d2033e2544355a7d871ed",
+    "03_src/recovery/first-run-r3-source/author.py": "8159a20715f35186d8e014dbbd7cf7382c79a43e4d8d9820f4bf7aa3f3747987",
+    "03_src/recovery/first-run-r3-source/ordering.json": "c2f1372dbc01f7d18767f2b457e46de922b59f6cb42f9af4d6478ab2963b901d",
+    "03_src/recovery/first-run-r3-source/drawing.py": "b4be36423511cf39c6e5dfa7046d8520a4c14d09c19d49927ebc28a54b2edd56",
+    "03_src/recovery/first-run-r3-source/crow-carrier-intent.json": "7a3910f8dc8423047cce821750882c8f76d4ccfcee29d858b6b0509470f8c767",
+    "03_src/recovery/first-run-r3-source/crow-pod-intent.json": "f687195ca7b2a2aa2f380c863381b1f48f5930ea8e4854cd398d8768ade965eb",
+    "03_src/recovery/first-run-r3-source/crow-carrier.kicad_sch": "d40d964423d4a02fe02c0e856e7e64e65e115f4b215f5c78f6f1333b9d32b414",
+    "03_src/recovery/first-run-r3-source/crow-pod.kicad_sch": "da2857f3f806582406b4ebac83a1217584508861ce2c6cd26edde3037b879fbe",
+    "03_src/recovery/first-run-r3-source/crow-carrier-bom.csv": "c52f46828a2d0a4a7265c32af333a7044b7fbfc697599f4acd36168f9744dec3",
+    "03_src/recovery/first-run-r3-source/crow-pod-bom.csv": "2bf108d606fc6287126bc083d2d4fb9b39f0f6b2ced50cbec2f3eddf32130650",
+    "03_src/recovery/first-run-r3-engineering/REPORT.md": "ad781d217e520a2094973d35da4e5b6496f2224fb03ca080aede7012771c382d",
+    "03_src/recovery/first-run-r3-engineering/check.py": "f2c1ba0a4054418c69233704ca1084e025dd6aa15c44a078e3af1e29749e6fe4",
+    "03_src/recovery/first-run-r3-engineering/v2-calculations.json": "269f22118bf5e738176f1b73f0e0adc88ece3fb990b5d90baaaae7473e0cb9c9",
+    "03_src/recovery/first-run-r3-engineering/v2-native-clock-geometry.json": "39a3b60246075751e8f5367036e9468e7825009084a2060d445fbf444b8cc4f1",
+    "03_src/recovery/first-run-r3-engineering/v2-clock-sensitivity.json": "d958a3c69eaea669fa06d74a12db04d092a9a36b67e1a22ee891f1150d500209",
+    "03_src/recovery/first-run-r3-engineering/model-proposal.json": "644c47d216a546a59f9f900f50d05f5b521c0a1d3468e7519d90dfa4663ea398",
+    "06_build/recovery/first-run-r3-native/carrier/native.xml": "56a79ca17f25fd2e8f3eebd07e9ccc617dd69b1ea6fc83b50bb222a2b0016907",
+    "06_build/recovery/first-run-r3-native/carrier/native.pdf": "e4bf549fbb87671295eb5ac2ad7c6c55f59c427bd86ee4d9dd626f48077254b6",
+    "06_build/recovery/first-run-r3-native/carrier/receipt.json": "dae99a3c024a814be59f6de445e84b47359742aa41bd6880fda2e77478d9e3d4",
+    "06_build/recovery/first-run-r3-native/pod/native.xml": "45542053ada3c533cd4f081df0cdedcd6111658e6943797f3969ac4b7d8f303b",
+    "06_build/recovery/first-run-r3-native/pod/receipt.json": "d4bf5b71ee03e901252027136b146d934b606da20102e11e4747c866e5abae65",
+    "06_build/recovery/ls44-layout/build1/carrier/native/carrier.kicad_pcb": "bbb12bcd67bf42567a30900708d26a1cae0b979d3c319874c4cd82e7b913a0c4",
+    "06_build/recovery/ls47-release/archive1/mechanical/scene.json": "054b35dd7c9e4076db9f92120838f246fd3afd01f2ba7bf278b63f263cc22075",
+    "03_src/recovery/ls46-assembly/assembly.json": "ae9204cd09811bee62e9c91eb0a3346dea65a6642a9544b4729fc6ad05e066f8",
+    "03_src/recovery/ls43-mating/controls.md": "275e474cd6d9299e2b9791ba002f12e9ab1acba53e0eb7b048b4c6257dc529c4",
+    "01_docs/reports/2026-10-08-ls20-engineering.md": "f16eebca233ae0ff599b3f2a0a452f3988d781d8211e94d8f3530b1b41ae8a4f",
+    "08_reviews/2026-10-10-ls44-layout.md": "46e02ce495e61ab6abcce2167d6afdc698b5bece9bb11c7c87b54f01d864bdff",
+    "03_src/adopted/ls13/author.py": "0c5a9bb65ada6250964e2670e92a5bc1824ccd7c2e35bbcb7a2f4667d0342414",
+    "03_src/adopted/ls13/ordering.json": "0e7e1f502e92cadd2a5fd748f0d53fa79c3d57c0a006961a15c21758b7412754",
+    "06_build/recovery/ls13-source/carrier/native.xml": "064504d5472515b0e25018b7f7e9ed251913b244b41137df99f785a22849ce46",
+    "06_build/recovery/ls13-source/pod/native.xml": "9367e91002912ef12df6131250d45ec1c943678d70eb41de7254db91ffccc90d",
+    "02_parts/P040/part.yaml": "c54aabf76b20df2aa54ba89f0793ddbd0d1786db0317c6126c015b00c9d12b37",
+    "02_parts/P040/manufacturer.pdf": "78825b819853a63f57cc18214f321d2f1da9dc205a7e58af7db18ae73563e378",
+    "03_src/recovery/first-run-r3-physical2/identity.json": "788de03787008f20e9d5af57386baa0d0dca12c537f5b0836d4e6d5ed8f407b5",
+    "03_src/recovery/first-run-r3-physical2/carrier/carrier.kicad_pcb": "a306cc51bcbf5c874a9c86848df6c35015134dd45ebf91c1ec865895bcecf16e",
+    "03_src/recovery/first-run-r3-physical2/pod/pod.kicad_pcb": "791814ab6baf3ff10da15ebcd2be4e424d2b6682987557886b7763292e89855e",
+    "06_build/recovery/first-run-r3-parity2/carrier/parity.json": "4e24dfbaf27e99719f6d6890c38bcceaf0746741704e891ee2b2c75748304d65",
+    "06_build/recovery/first-run-r3-parity2/carrier/drc.json": "040e57d43cb6e98dfd65283abd0b16c072cad4ce32b3b59d081cd5c8db49413d",
+    "06_build/recovery/first-run-r3-parity2/pod/parity.json": "c22a768f19d9deb60c129c9df655aeb4ce576e443c60dccb06b3edb040ff085f",
+    "06_build/recovery/first-run-r3-parity2/pod/drc.json": "b2d6402b56a53839a404835ca398d0a93c7583a332c76dbb0ffdde609fa04a4c",
+    "06_build/recovery/first-run-physical/routing-verify-result.json": "91562fc44113aa34e26b4e307f89310b7fd23ca306abbe48f680941448f952cf",
+    "06_build/recovery/first-run-physical/routing-verify-result-command.json": "ec2854bfcdb256a16a4df683e3777a6043af36fdbddae7daa3fbc72c61304614",
+    "06_build/recovery/first-run-physical/routing-build-result.json": "bc1218cfb02e0cc8e36689c36b06b03a127eb19a55ccf057977485e71b600d1a",
+    "06_build/recovery/first-run-physical/routing-build-result-command.json": "576d64b796a2e11d8ffdb40b8b99562ece10da9a73c6d6cb39b8fa13797b148d",
+    "08_reviews/2026-10-22-first-run-r3-qualification.md": "f2ccafd4bca382817c6c31703f82e07d6947af9387b15081cf6b6c235ee8b401",
+    "08_reviews/2026-10-22-first-run-placement.md": "897cfb02f3988eb1a73fe68892052c5acbd1ee1344db282df32b36cfbfed14e0",
+    "08_reviews/2026-10-22-first-run-mating-complete.md": "fd1a67cd66e87eca209d21208933ca88415818dac3d01e23e70139b255f92106",
+    "03_src/recovery/first-run-physical/assembly.json": "5efbae1f7491bc839ee024221d976f5722bce0ac169f8e7d78e73dc654577911",
+    "03_src/recovery/first-run-physical/plan.json": "ecfba91821c6304edca88a5e9eee1c1da7042811e4ba1757857085404ccd4502",
+    "06_build/recovery/first-run-physical/fit1/checks.json": "623fec25802f67faed2bad45060d6faa2196ef8b5bc1e8332c01df5177001034",
+    "06_build/recovery/first-run-physical/scene1/scene.json": "dc8f21192e007f66895e4cd8f8e0ede3112e6eeb95b97b8b00ef9c319f6f146e",
+    "03_src/recovery/ls33-mating/module-controls.md": "82ab308061003d8025bce030936dfec8aca838371a3509e32bfaef05774e08c8",
+    "03_src/recovery/ls34-mating/connector-controls.md": "8d6f46e0c19b468cafffd48e0ab59fc739c7e3ec0c44ad4ef2769baac510dc5d",
+    "08_reviews/2026-10-08-ls19-comparison.md": "7c6dc150b5a8819f159e49d8026a718d1ea3a3c6807de46f8ece8eb3bf313e45",
+    "08_reviews/2026-10-08-ls20-routing.md": "443f1a2fc229ba12ce8fb61bb6b1efe98cc2310fa4c116c64eb323d75ff15200",
+    "08_reviews/ls39-ground-return.md": "e27938867f5b79fa01ddd72fd2af1cfad6bfda1fa353ca5fc11f6302daec8d0d",
+    "08_reviews/2026-10-10-ls43-routing.md": "ef6bfa267355ee73f450bae2bdd03893d7baf70a73a382ab493d4e25d3d7b146",
+    "06_build/recovery/first-run-physical-review/routing_audit.py": "add0fe404fdb8944db85491abccd71b05328298ec47b5d991125e9f2fa357ba6",
+    "06_build/recovery/first-run-physical-review/routing_geometry.py": "0c83086628999d882f87427b51a0f063ecf12f7702729683809aa5ac81962014",
+    "01_docs/first-run-source-selection.md": "5759cf5569fce04271bdc1f58b106f565256e9603ff668274780b53062e119ab",
+    "01_docs/DETAIL_DESIGN.md": "c5c0c9860a4f13ab70fa6f2b6d1f3e55ee39e0f8465d7cf11b37cc8c5da5f3f7",
+    "06_build/recovery/first-run-physical/route-diagnostics1/report.json": "f8d14873396fc43bda294bfa4af09afeb7337fa3021342a388e8b307176c56e3",
+    "06_build/recovery/first-run-physical/placement1/carrier.kicad_pcb": "ccd6a8b89970ec590513cbf8e87018c1a1aac3c318a0289a12c041d82a463ca0",
+    "06_build/recovery/first-run-physical/placement1/pod.kicad_pcb": "3c96eab409eb160381fdfa584ab6bc5319c25ee34ba8d22b27c1557e402d0498",
+    "06_build/recovery/first-run-physical-review/routing-final/carrier-In1.Cu.png": "167b9ebae23d609002bdc4c8cfad03ff0cd090c397a7f112ac6388ec063c5006",
+    "06_build/recovery/first-run-physical-review/routing-final/pod-In2.Cu.png": "b0afce4e98c865c82d57b3cb666867b1bb0dc7e7d1a714028e37000b563b3b37",
+    "06_build/recovery/first-run-physical-review/routing-final/carrier-F.Cu.svg": "fef41598cb440e361a7fab5ed3aeec49f38bd002db8a23b747321cb8c85b24fc",
+    "06_build/recovery/first-run-physical-review/routing-final/pod-F.Cu.png": "93bd158442e6af0b64931d012e19e079c34fdd151c2d868975a11955100e0c4e",
+    "06_build/recovery/first-run-physical-review/routing-final/pod-In2.Cu.svg": "b191e5db8de34c65730d44c39c3ff0406a139bb45df659cafe77912fc1e64222",
+    "06_build/recovery/first-run-physical-review/routing-final/carrier-B.Cu.svg": "0f0b27df3e95ed25cc52a2af05e5ea2ef64d79a4e162b42f3b9ab4e0afbedca8",
+    "06_build/recovery/first-run-physical-review/routing-final/pod-F.Cu.svg": "8bd3cf8f6b776693c5c8b31e5828a9958d090ece2c06067ef9202191d650d47f",
+    "06_build/recovery/first-run-physical-review/routing-final/carrier-B.Cu.png": "5ba5ad954aa52293ad091b3fc6b3e3e4a1d17d8c231b9848223f607b041f4b43",
+    "06_build/recovery/first-run-physical-review/routing-final/audit.json": "448977f3ab52a888fa84807141b9055654e81f155b1c221260d930750738b27c",
+    "06_build/recovery/first-run-physical-review/routing-final/pod-In1.Cu.png": "8777ea2091c74bd9b7cea37090621feb0aaca99eeb49a4815a7cf45eccdeb42f",
+    "06_build/recovery/first-run-physical-review/routing-final/carrier-In2.Cu.png": "bbb1cc74be57d3f5dbdaf66f6a31d3dc4d2cdc348190c2c592fd2e7249ec1723",
+    "06_build/recovery/first-run-physical-review/routing-final/carrier-In1.Cu.svg": "47355ed009489a4bfaa9e0d2684d27f10076b3bc42e3f7e47582aae2e3cca1f6",
+    "06_build/recovery/first-run-physical-review/routing-final/pod-B.Cu.svg": "4199e2d0213fc2694b68dcdfcf1a2194b9b717e762da5fa2ab7e64f208222673",
+    "06_build/recovery/first-run-physical-review/routing-final/pod-In1.Cu.svg": "54e73bbab8cd6bc1876b7c4440cd11023f1b4c35fc88e25ef57d9ffad55b7b24",
+    "06_build/recovery/first-run-physical-review/routing-final/pod-B.Cu.png": "61b5bfacbc809a002f171627f56a330ccc1e2f05b491d272feb8f7ec7c93a750",
+    "06_build/recovery/first-run-physical-review/routing-final/carrier-In2.Cu.svg": "1626cc3a5138da9aab39a3702f2b337568bb1cf1f72caf85300e63e38c77deb8",
+    "06_build/recovery/first-run-physical-review/routing-final/carrier-F.Cu.png": "c91f2c6bdb374dec077511f88b4b4a9d683d04f3af15aa4b2f09fc83ec262b42"
+  },
+  "checks": {
+    "completeness": {
+      "verdict": "PASS",
+      "evidence": [
+        "06_build/recovery/first-run-physical/routing1/checks.json",
+        "06_build/recovery/first-run-physical/routing1/carrier-drc.json",
+        "06_build/recovery/first-run-physical/routing1/pod-drc.json",
+        "06_build/recovery/first-run-physical/routing-verify-result.json",
+        "06_build/checkpoints/placement_reviewed.json",
+        "06_build/checkpoints/mating_clearance.json"
+      ],
+      "rationale": "Fresh complete carrier/pod owning build and verify preserve the exact renewed placement and current registered mating acceptance. Both actual refilled boards have zero physical DRC faults, zero opens and no ignored checks/exclusions. The raw395carrier/88pod findings are explicitly:138/31missing local-library lookups,62/13silk-over-copper,57/13silk-overlap and138/31text-height. Every physical source reference/native net/pad is covered; these named presentation/library findings must close in layout without a copper waiver. Producer promotes every listed severity to error deterministically, not a saved ignore setting. Routing's empty schematic-parity field is not executed native parity; upgraded layout-v2 must perform it."
+    },
+    "physical": {
+      "verdict": "PASS",
+      "evidence": [
+        "06_build/recovery/first-run-physical-review/routing-final/audit.json",
+        "06_build/recovery/first-run-physical-review/routing-final/carrier-F.Cu.png",
+        "06_build/recovery/first-run-physical-review/routing-final/carrier-In1.Cu.png",
+        "06_build/recovery/first-run-physical-review/routing-final/carrier-In2.Cu.png",
+        "06_build/recovery/first-run-physical-review/routing-final/carrier-B.Cu.png",
+        "06_build/recovery/first-run-physical-review/routing-final/pod-F.Cu.png",
+        "06_build/recovery/first-run-physical-review/routing-final/pod-In1.Cu.png",
+        "06_build/recovery/first-run-physical-review/routing-final/pod-In2.Cu.png",
+        "06_build/recovery/first-run-physical-review/routing-final/pod-B.Cu.png",
+        "06_build/recovery/first-run-physical-review/routing_audit.py",
+        "06_build/recovery/first-run-physical-review/routing_geometry.py",
+        "03_src/recovery/first-run-physical/plan.json",
+        "03_src/recovery/ls43-mating/controls.md"
+      ],
+      "rationale": "Independently inspected all eight actual final individual copper layers, complete local escapes and each repeated port cell. Independent final-native audit proves 1349/227 unchanged track/via definitions,518/90pads, unchanged setup/stack/settings and strict current-placement physical identity. All nine actual plan-centered RJ voids and conservative .25-mm expanded rectangles have zero pad/track/via hits on every layer; both inner GND fills remain single connected outlines with local antipads/Pico exclusion. Frozen routing_geometry tool (SHA0c83086628999d882f87427b51a0f063ecf12f7702729683809aa5ac81962014; byte-equal review archive) finds zero via-hole/SMD overlaps, zero .15-mm allocated annulus-gap findings and zero carrier U3 rectangle incursions. The .15 allocation and156.91,2.05..173.09,53.05rectangle retain explicit LS20/LS35 authority, not universal geometry rules. Finished web/edge/annulus and actual process remain conjunctive mating/fabrication controls."
+    },
+    "electrical": {
+      "verdict": "PASS",
+      "evidence": [
+        "06_build/recovery/first-run-physical-review/routing-final/audit.json",
+        "01_docs/reports/2026-10-08-ls20-engineering.md",
+        "08_reviews/2026-10-22-first-run-r3-qualification.md",
+        "03_src/recovery/first-run-r3-engineering/v2-clock-sensitivity.json",
+        "03_src/recovery/first-run-r3-engineering/REPORT.md",
+        "08_reviews/2026-10-08-ls19-comparison.md",
+        "08_reviews/ls39-ground-return.md"
+      ],
+      "rationale": "Reopened actual whole-board copper and exact unchanged setup: F.Cu MCLK2.441117/6.575/11.566663/11.532348mm,total32.115128,zero vias; independent ≤25-µm center/edge sampling has zero uncovered points over both actual GND planes. Six BCK/LRCK/TDM transitions have filled ground ties, true maximum1.74039mm (not1.5); all nine direct .15-mm ESD pad2-to-via escapes are covered into both planes. Current Panasonic commonR3±6%/branches±4% sensitivity on exact same graph retains sampled physical overshoot26.254mV/finer26.226mV, valid high/low24.802932/33.119646ns and skew.366211ns; 27.32305pF stress remains below30pF conditional rating. Use native nominal carrier7628A outer gap .2944mm with.8/1.2 sensitivities, not oldh=.18; CTS15pF edge/current rows are not30pF guarantees. Simultaneous local3.0–3.6V rails and SINGLE100mV combined residual remain falsifiable prototype assumptions, not coupled-PDN proof. Unchanged all16ADClegs,8cable/ESD cells,I2C,buzzer control/defaultoff,protected12V and podmic/buzzer returns were checked with full-layer continuity, not only clock. 630mA board/50mA-pod/300mA5V/140mAexternal3V3 planning and modeled94.9C podLDO at60C remain conditional; RECOMcase≤90C and physical clock/rail/thermal/EMC/capture qualification are later. No R3DCshunt added, nor mission-lifetime/RF-parasitic guarantee invented."
+    },
+    "interfaces": {
+      "verdict": "PASS",
+      "evidence": [
+        "06_build/checkpoints/mating_clearance.json",
+        "08_reviews/2026-10-22-first-run-mating-complete.md",
+        "06_build/checkpoints/placement_reviewed.json",
+        "03_src/recovery/ls43-mating/controls.md",
+        "03_src/recovery/ls33-mating/module-controls.md",
+        "03_src/recovery/first-run-physical/assembly.json",
+        "06_build/recovery/first-run-physical/fit1/checks.json",
+        "06_build/recovery/first-run-physical-review/routing-final/audit.json"
+      ],
+      "rationale": "Current owning registered mating receipt—not historical LS43 approval—covers five exact groups with30feature/54limitation dispositions on current169-reference scene. Fresh source/final native comparison preserves all nine RJ voids,USB recess,full contact/NPTH/group/keepout identity and larger PanasonicR3. The full mating9918pair/1400service proof and qualified rounded-land overlap remain unchanged by copper presentation reconciliation. All LS33/LS43 custom finished-hole/annulus/pose/pool/seat/frontanchor/service/underside controls and exact selected accessories stay conjunctive. No floor/peg-depth fiction, whole-owner exemption, arbitrary enclosure/hardware fit or performed retention/assembly claim."
+    },
+    "reproducibility": {
+      "verdict": "PASS",
+      "evidence": [
+        "06_build/recovery/first-run-physical/routing-verify-result.json",
+        "03_src/recovery/first-run-physical/prepare_route.py",
+        "03_src/recovery/first-run-physical/routing/identity.json",
+        "06_build/recovery/first-run-physical/routing1/checks.json",
+        "06_build/recovery/first-run-physical-review/routing-final/audit.json",
+        "01_docs/routing-contract.json"
+      ],
+      "rationale": "Fresh frozen-root owning verify reconstructs from editable current source, refills zones and compares complete native forms, settings, plots and all-severity DRC; only documented ordering/timestamps are ignored. Independent final local audit separately reopens actual boards, compares exact copper definitions/setup/settings and current placement geometry, and recomputes return/notch/geometry results. Adapter changes only footprint presentation to match renewed placement, preserving actual Panasonic metadata; it does not normalize away a current identity mismatch. No old review/receipt hash is refreshed and no generation-only report is called stage admission."
+    }
+  }
+}
+```
+

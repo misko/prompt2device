@@ -1,0 +1,1315 @@
+{
+  "archive_sha256": "97d98924da353325c3297f1886abdf5d305ede273d3100a5ce056f19ea15df56",
+  "boards": {
+    "carrier": {
+      "quantity": 5,
+      "version": "rev-a-first-run-r3-d3"
+    },
+    "pod": {
+      "quantity": 10,
+      "version": "rev-a-first-run"
+    }
+  },
+  "files": {
+    "EXTERNAL-DEPENDENCIES.json": {
+      "license": "MIT",
+      "origin": null,
+      "sha256": "aeb340e7bd0d2da919f5154c583b3ee175f564393f3f43380f2b324b2971a076"
+    },
+    "KiCad-LICENSE.md": {
+      "license": "CC-BY-SA-4.0 WITH KiCad-design-exception",
+      "origin": null,
+      "sha256": "45d2bce75e5a4208f5afb01b8fb2c406e700371c4fe2b5f5cd5c443d46db4d8f"
+    },
+    "LICENSE": {
+      "license": "MIT",
+      "origin": null,
+      "sha256": "aaa4f23c02ec48abcc35a8d133fde8e8d2ed1e96ef8f87d70a78249f73e3600b"
+    },
+    "README.md": {
+      "license": "MIT",
+      "origin": null,
+      "sha256": "5302f461b27ac62d9c0f4d1815061a7c01b0d92e6ae65e5a7734d6f7d27a4289"
+    },
+    "THIRD-PARTY-NOTICES.md": {
+      "license": "MIT",
+      "origin": null,
+      "sha256": "eb75f6d47cde6a18a30d0064e678dfda8b53151925a64644156aecb76123cccc"
+    },
+    "evidence/CURRENT-STATUS.json": {
+      "license": "MIT",
+      "origin": "release/CURRENT-STATUS.json",
+      "sha256": "a257a3e63eb3be3a73f431da051e55af8a7cdd65660d94f0f66398f645355331"
+    },
+    "evidence/CURRENT-STATUS.md": {
+      "license": "MIT",
+      "origin": "release/CURRENT-STATUS.md",
+      "sha256": "99910ff801e2fe46858a6f0ba503ae0d6eacdf8b1189e01da7e213021d47e9b3"
+    },
+    "evidence/archive-manifest.json": {
+      "license": "MIT",
+      "origin": "release/archive/release.json",
+      "sha256": "97d98924da353325c3297f1886abdf5d305ede273d3100a5ce056f19ea15df56"
+    },
+    "evidence/post-seal-review.md": {
+      "license": "MIT",
+      "origin": "post-seal/08_reviews/2026-10-23-first-run-seal.md",
+      "sha256": "7babb5bd84b559dc82d4205fda1f5687b2cc4971f5abfbed61848453e5690a8d"
+    },
+    "evidence/seal.json": {
+      "license": "MIT",
+      "origin": "release/seal.json",
+      "sha256": "c2b89fdaf364b7538cd58bf0e52a150c8bde3b9cd1f2b52f2010adfafc398a50"
+    },
+    "evidence/sealed-release-receipt.json": {
+      "license": "MIT",
+      "origin": "post-seal/06_build/checkpoints/sealed_release.json",
+      "sha256": "f0e1fdf90dd6b6c181fac99741bdfbca32aa86ff250f4a020e3092f691ae5b0e"
+    },
+    "evidence/verification/release-review.md": {
+      "license": "MIT",
+      "origin": "release/verification/release-review.md",
+      "sha256": "5c8b7bc9965b13c8301fe427ac8ecf4e409b487efc8c5d8ef69cf84887e5fc3d"
+    },
+    "evidence/verification/release_reviewed.json": {
+      "license": "MIT",
+      "origin": "release/verification/release_reviewed.json",
+      "sha256": "80e50a6f541273be7c4dc523ab4cb71b8f5dd23bb4cf514136198ed291cad75f"
+    },
+    "fab/assembly/carrier-consigned-bom.csv": {
+      "license": "MIT",
+      "origin": "release/archive/fab/assembly/carrier-consigned-bom.csv",
+      "sha256": "2ea7d9d48c968f1cfe5fb89e560aaf8e82f9bc1753119901c9d07d64fb0a5bed"
+    },
+    "fab/assembly/carrier-consigned-cpl.csv": {
+      "license": "MIT",
+      "origin": "release/archive/fab/assembly/carrier-consigned-cpl.csv",
+      "sha256": "5ec2189b87b2d7e1e78fb4664c195c674405d136d1bab3f55ed1630b468a5f86"
+    },
+    "fab/assembly/carrier-factory-bom.csv": {
+      "license": "MIT",
+      "origin": "release/archive/fab/assembly/carrier-factory-bom.csv",
+      "sha256": "a3224323d6f04783cf2407df773b5b228511ae898d9c7342301bbee93e8a97bc"
+    },
+    "fab/assembly/carrier-factory-cpl.csv": {
+      "license": "MIT",
+      "origin": "release/archive/fab/assembly/carrier-factory-cpl.csv",
+      "sha256": "15f642d2cc6414ce169ee29bbe91493296a3c185cf38e4aeff1ee99400f1af07"
+    },
+    "fab/assembly/demand.csv": {
+      "license": "MIT",
+      "origin": "release/archive/fab/assembly/demand.csv",
+      "sha256": "bb707f71c9c0cbdd4cc1e681b250c42b90c7122eb6ac3018c7cbe550aa482194"
+    },
+    "fab/assembly/pod-consigned-bom.csv": {
+      "license": "MIT",
+      "origin": "release/archive/fab/assembly/pod-consigned-bom.csv",
+      "sha256": "1fc16a98b0021600c07f243164629a1ef82829a61ed1813ab74a3bbaa2b9d750"
+    },
+    "fab/assembly/pod-consigned-cpl.csv": {
+      "license": "MIT",
+      "origin": "release/archive/fab/assembly/pod-consigned-cpl.csv",
+      "sha256": "0cc90cfdfc4b3deb3e00662af3c33880f08b1e259f3c1f015fbb61abd56d52f8"
+    },
+    "fab/assembly/pod-factory-bom.csv": {
+      "license": "MIT",
+      "origin": "release/archive/fab/assembly/pod-factory-bom.csv",
+      "sha256": "a3224323d6f04783cf2407df773b5b228511ae898d9c7342301bbee93e8a97bc"
+    },
+    "fab/assembly/pod-factory-cpl.csv": {
+      "license": "MIT",
+      "origin": "release/archive/fab/assembly/pod-factory-cpl.csv",
+      "sha256": "15f642d2cc6414ce169ee29bbe91493296a3c185cf38e4aeff1ee99400f1af07"
+    },
+    "fab/assembly/population.csv": {
+      "license": "MIT",
+      "origin": "release/archive/fab/assembly/population.csv",
+      "sha256": "9ec8d2ad097e15ab5cc3cce0d9929e3f61d97bcc5c57ffd78c5563d592657d5f"
+    },
+    "fab/assembly/population.json": {
+      "license": "MIT",
+      "origin": "release/archive/fab/assembly/population.json",
+      "sha256": "ceaed6e2999de4db930d978fab79c62c9be20bb2369e67d9b9aea5ffad9dc685"
+    },
+    "fab/assembly/positions.csv": {
+      "license": "MIT",
+      "origin": "release/archive/fab/assembly/positions.csv",
+      "sha256": "3992ebef5a76e3278510a39b00709ad9ed72732cd2076cc5db3b5a803d657b95"
+    },
+    "fab/carrier/carrier-gerbers.zip": {
+      "license": "MIT",
+      "origin": "release/archive/fab/carrier/carrier-gerbers.zip",
+      "sha256": "ebbd44cb6ce3cc0e9c3226c17741308e3b07e9a1548ec66a1aeaa0a1fd81819d"
+    },
+    "fab/carrier/drc-execution.json": {
+      "license": "MIT",
+      "origin": "release/archive/fab/carrier/drc-execution.json",
+      "sha256": "5e7f1c6440a01a2d974bf18ace7ab39f643f1d8e705d31e7406609ff2d637bc9"
+    },
+    "fab/carrier/drc.json": {
+      "license": "MIT",
+      "origin": "release/archive/fab/carrier/drc.json",
+      "sha256": "999379b2a514557b78eec284127c621958fe7872b8475e9ef6b0e58863262d4e"
+    },
+    "fab/carrier/plots/carrier-B_Cu.gbr": {
+      "license": "MIT",
+      "origin": "release/archive/fab/carrier/plots/carrier-B_Cu.gbr",
+      "sha256": "21cc03943ffa2dc59f632cd7e8730d292c8abcf0614d21ba8995a3cfe13a1f23"
+    },
+    "fab/carrier/plots/carrier-B_Mask.gbr": {
+      "license": "MIT",
+      "origin": "release/archive/fab/carrier/plots/carrier-B_Mask.gbr",
+      "sha256": "69f708c86218d6dd1a088acddb41948bcb5dd9e693171871ad5db62e527135a9"
+    },
+    "fab/carrier/plots/carrier-B_Paste.gbr": {
+      "license": "MIT",
+      "origin": "release/archive/fab/carrier/plots/carrier-B_Paste.gbr",
+      "sha256": "6536d036b78f7fdafae9b51d02a44ac49ea40c066e1d17c72dcd31c16c0b9d9e"
+    },
+    "fab/carrier/plots/carrier-B_Silkscreen.gbr": {
+      "license": "MIT",
+      "origin": "release/archive/fab/carrier/plots/carrier-B_Silkscreen.gbr",
+      "sha256": "1ef18f4f95dec93c84267da562021eebbe3070533fec3c7bb5d3c9411478db7a"
+    },
+    "fab/carrier/plots/carrier-Edge_Cuts.gbr": {
+      "license": "MIT",
+      "origin": "release/archive/fab/carrier/plots/carrier-Edge_Cuts.gbr",
+      "sha256": "d1b4995acb79f25c924aebe112e7ea2c33b570e52688a9594ea59af8778e8280"
+    },
+    "fab/carrier/plots/carrier-F_Cu.gbr": {
+      "license": "MIT",
+      "origin": "release/archive/fab/carrier/plots/carrier-F_Cu.gbr",
+      "sha256": "7150aad1ee5bddc71f7f4e0cf1485cc0223b0b76a67f0150d97444131d2201fe"
+    },
+    "fab/carrier/plots/carrier-F_Mask.gbr": {
+      "license": "MIT",
+      "origin": "release/archive/fab/carrier/plots/carrier-F_Mask.gbr",
+      "sha256": "8b8cc1cd14e93b4bcd2578cd2d35ad5d43f1c35a29bd0132d21fad834b0d8b25"
+    },
+    "fab/carrier/plots/carrier-F_Paste.gbr": {
+      "license": "MIT",
+      "origin": "release/archive/fab/carrier/plots/carrier-F_Paste.gbr",
+      "sha256": "65ba9b98c21ca942694829ed93dd1199996614ef610a759be3161e3fd8fd012c"
+    },
+    "fab/carrier/plots/carrier-F_Silkscreen.gbr": {
+      "license": "MIT",
+      "origin": "release/archive/fab/carrier/plots/carrier-F_Silkscreen.gbr",
+      "sha256": "ea91cb591ad3eda802bb90097df1a3f2ddb6fd69c5871ab4f6e4474fa8572ed6"
+    },
+    "fab/carrier/plots/carrier-In1_Cu.gbr": {
+      "license": "MIT",
+      "origin": "release/archive/fab/carrier/plots/carrier-In1_Cu.gbr",
+      "sha256": "6f441f5e17f5c7fb4c8f8debd895a7bdbe3efa7a671c8c20e542f5270a455c7a"
+    },
+    "fab/carrier/plots/carrier-In2_Cu.gbr": {
+      "license": "MIT",
+      "origin": "release/archive/fab/carrier/plots/carrier-In2_Cu.gbr",
+      "sha256": "0ed1e023f77a81b8333433c16658c0df167efeaaf9ab0b05a06226cd3d9e125f"
+    },
+    "fab/carrier/plots/carrier-NPTH.drl": {
+      "license": "MIT",
+      "origin": "release/archive/fab/carrier/plots/carrier-NPTH.drl",
+      "sha256": "dcce7c9500c7e3c29b4b9174eebf88a35befa3810d4f3f6335f14cbaea17acda"
+    },
+    "fab/carrier/plots/carrier-PTH.drl": {
+      "license": "MIT",
+      "origin": "release/archive/fab/carrier/plots/carrier-PTH.drl",
+      "sha256": "8d8d64feedea1992846aa0a4427282d012f11691e582208bd74564a87fb8b644"
+    },
+    "fab/carrier/plots/carrier-job.gbrjob": {
+      "license": "MIT",
+      "origin": "release/archive/fab/carrier/plots/carrier-job.gbrjob",
+      "sha256": "c9ac43905a864246b7dd84424dfb160e48471b0e72947ca2c474c723d4c3a841"
+    },
+    "fab/pod/drc-execution.json": {
+      "license": "MIT",
+      "origin": "release/archive/fab/pod/drc-execution.json",
+      "sha256": "c4d7448e7820db72c40e854da8d59dbd04628fc25e4e058c523c3d44e6e53105"
+    },
+    "fab/pod/drc.json": {
+      "license": "MIT",
+      "origin": "release/archive/fab/pod/drc.json",
+      "sha256": "0f121b863ace3b2e533ae61da8e5f5c05419f003f66379770f933b71e1055691"
+    },
+    "fab/pod/plots/pod-B_Cu.gbr": {
+      "license": "MIT",
+      "origin": "release/archive/fab/pod/plots/pod-B_Cu.gbr",
+      "sha256": "36bc37c9cbc9b8a2a3af31ab0fbadfbdb320f67ab13701b909f07f0e02786eed"
+    },
+    "fab/pod/plots/pod-B_Mask.gbr": {
+      "license": "MIT",
+      "origin": "release/archive/fab/pod/plots/pod-B_Mask.gbr",
+      "sha256": "2bd0afdc661762bb2144973f431f5589ba72cc13fe152779c819404a32ac73c5"
+    },
+    "fab/pod/plots/pod-B_Paste.gbr": {
+      "license": "MIT",
+      "origin": "release/archive/fab/pod/plots/pod-B_Paste.gbr",
+      "sha256": "d9ae53f81e8d06f49c6d6b4e8aeeee7268b2701aa8a2ace99eed49c012c8d687"
+    },
+    "fab/pod/plots/pod-B_Silkscreen.gbr": {
+      "license": "MIT",
+      "origin": "release/archive/fab/pod/plots/pod-B_Silkscreen.gbr",
+      "sha256": "954bbd05bfc0e632cc992ee48da7a706e3187317f73bde03ffcec151ad8ba60b"
+    },
+    "fab/pod/plots/pod-Edge_Cuts.gbr": {
+      "license": "MIT",
+      "origin": "release/archive/fab/pod/plots/pod-Edge_Cuts.gbr",
+      "sha256": "b58f682dd058e950323cfbe208e96c5fb18ea2bbe61ea2892c6af48919e5e4bc"
+    },
+    "fab/pod/plots/pod-F_Cu.gbr": {
+      "license": "MIT",
+      "origin": "release/archive/fab/pod/plots/pod-F_Cu.gbr",
+      "sha256": "1a83a23affaeb5b69b35f1f96d51f063ba2dd1680df5a48be09507d1414f32fc"
+    },
+    "fab/pod/plots/pod-F_Mask.gbr": {
+      "license": "MIT",
+      "origin": "release/archive/fab/pod/plots/pod-F_Mask.gbr",
+      "sha256": "cc45d54947fdd5f4ce52c01861b2beadf4945d7d50d850126eab9dd2d1548b72"
+    },
+    "fab/pod/plots/pod-F_Paste.gbr": {
+      "license": "MIT",
+      "origin": "release/archive/fab/pod/plots/pod-F_Paste.gbr",
+      "sha256": "fa51e2ba4359b8172272756038b23d5ca6dfabcb2bc79b78735d2fa734e8fb93"
+    },
+    "fab/pod/plots/pod-F_Silkscreen.gbr": {
+      "license": "MIT",
+      "origin": "release/archive/fab/pod/plots/pod-F_Silkscreen.gbr",
+      "sha256": "d3f82d2d8f247e93c070009696def062ca6d924e89c6f27c9a3d0b63f6165f5a"
+    },
+    "fab/pod/plots/pod-In1_Cu.gbr": {
+      "license": "MIT",
+      "origin": "release/archive/fab/pod/plots/pod-In1_Cu.gbr",
+      "sha256": "82b6a5adb9a1bb47cfaac581ff6a42906833ca03c8c3eed00eb01e976f0a3bbf"
+    },
+    "fab/pod/plots/pod-In2_Cu.gbr": {
+      "license": "MIT",
+      "origin": "release/archive/fab/pod/plots/pod-In2_Cu.gbr",
+      "sha256": "a92d3e1f1f69cac2f86a1d348e266f20e2fb8a2f7c9e13d4422d6908cd9903b4"
+    },
+    "fab/pod/plots/pod-NPTH.drl": {
+      "license": "MIT",
+      "origin": "release/archive/fab/pod/plots/pod-NPTH.drl",
+      "sha256": "6fcabfc9347858f2f13c8337fa7a33f2ab0e7fb8fdb3dcd0eaf801746bd2e635"
+    },
+    "fab/pod/plots/pod-PTH.drl": {
+      "license": "MIT",
+      "origin": "release/archive/fab/pod/plots/pod-PTH.drl",
+      "sha256": "75de18d601b823c3c11721939e21c170e198e0d75a5a06430c611cab67b1f3e5"
+    },
+    "fab/pod/plots/pod-job.gbrjob": {
+      "license": "MIT",
+      "origin": "release/archive/fab/pod/plots/pod-job.gbrjob",
+      "sha256": "2e6a4cb054c4f89b31679499912c291e10dc57112132594afc472b4d693ded51"
+    },
+    "fab/pod/pod-gerbers.zip": {
+      "license": "MIT",
+      "origin": "release/archive/fab/pod/pod-gerbers.zip",
+      "sha256": "4e429cb5f7f21ab9927798d084e2be50e6525b395ab3f8059dbba714c7ffbb16"
+    },
+    "historical/HANDOFF.md": {
+      "license": "MIT",
+      "origin": "release/archive/HANDOFF.md",
+      "sha256": "189fee8e09bc00401cdfd43b22b9abe6a8eaeb19d9c036469d314a57334a551d"
+    },
+    "historical/ORDER-INSTRUCTIONS.md": {
+      "license": "MIT",
+      "origin": "release/archive/ORDER-INSTRUCTIONS.md",
+      "sha256": "4e63a83862b9d1984cde81fdb3e343afd47c649bbe2500213df3c20e1881b08e"
+    },
+    "historical/documentation/carrier/instructions/01-ASSEMBLY-PLAN.md": {
+      "license": "MIT",
+      "origin": "release/archive/documentation/carrier/instructions/01-ASSEMBLY-PLAN.md",
+      "sha256": "581fd2da97195293d7fe13053816db8835599509cfd177311d58c9de1ae5419c"
+    },
+    "historical/documentation/carrier/instructions/03-first-run-d3-staging-scope.md": {
+      "license": "MIT",
+      "origin": "release/archive/documentation/carrier/instructions/03-first-run-d3-staging-scope.md",
+      "sha256": "b3ea55552379fc470b756148a23742bffad9449d8181776b8dc7fe628a9a1e99"
+    },
+    "historical/documentation/carrier/instructions/04-first-run-staging-scope.md": {
+      "license": "MIT",
+      "origin": "release/archive/documentation/carrier/instructions/04-first-run-staging-scope.md",
+      "sha256": "ad8bfcb66a8c8f370173b9a57ba0eb175c65fa49977996cb9a3408216bf0f0bd"
+    },
+    "historical/documentation/carrier/instructions/05-JLC-PCBA-READINESS.md": {
+      "license": "MIT",
+      "origin": "release/archive/documentation/carrier/instructions/05-JLC-PCBA-READINESS.md",
+      "sha256": "19ee956f44cf8981697f311020b69211fc10c905c76f9417f7fdc86aae02b7a8"
+    },
+    "historical/documentation/carrier/instructions/06-SOURCES.md": {
+      "license": "MIT",
+      "origin": "release/archive/documentation/carrier/instructions/06-SOURCES.md",
+      "sha256": "09767fabd2f6723be7860c8cf55a633cbb3c1cfe7cf2f4a86a6dd1dc5dd14cbd"
+    },
+    "historical/documentation/carrier/instructions/28-consigned-mapping-basis.md": {
+      "license": "MIT",
+      "origin": "release/archive/documentation/carrier/instructions/28-consigned-mapping-basis.md",
+      "sha256": "9ee1a5cdff2cfd3b32969544385bf24dc159cefe683dbc700ca416e442c7126b"
+    },
+    "historical/documentation/carrier/instructions/30-REPORT.md": {
+      "license": "MIT",
+      "origin": "release/archive/documentation/carrier/instructions/30-REPORT.md",
+      "sha256": "b4f514db60bc41e19ffb90cd79330a7e9e92287490baa6ef40bb2803cdb1071e"
+    },
+    "historical/documentation/carrier/instructions/32-assembly-instructions.md": {
+      "license": "MIT",
+      "origin": "release/archive/documentation/carrier/instructions/32-assembly-instructions.md",
+      "sha256": "3177c4b57d07ad54bbdc020e5dcdd6e31ef17c93ba0a386d3d9ed89f9d58686b"
+    },
+    "historical/documentation/carrier/instructions/34-handoff.md": {
+      "license": "MIT",
+      "origin": "release/archive/documentation/carrier/instructions/34-handoff.md",
+      "sha256": "bc16f4abb394303eb523b1d553cb5016c70b8eb893acab536651b55fa8c3324b"
+    },
+    "historical/documentation/carrier/instructions/35-reference-index.md": {
+      "license": "MIT",
+      "origin": "release/archive/documentation/carrier/instructions/35-reference-index.md",
+      "sha256": "2e295bb3bd859503464ef66fad3ceb8f8d8d61e30c6602835e7ff1c266a1ccbc"
+    },
+    "historical/documentation/carrier/instructions/38-REPORT.md": {
+      "license": "MIT",
+      "origin": "release/archive/documentation/carrier/instructions/38-REPORT.md",
+      "sha256": "ad781d217e520a2094973d35da4e5b6496f2224fb03ca080aede7012771c382d"
+    },
+    "historical/documentation/carrier/instructions/40-module-controls.md": {
+      "license": "MIT",
+      "origin": "release/archive/documentation/carrier/instructions/40-module-controls.md",
+      "sha256": "82ab308061003d8025bce030936dfec8aca838371a3509e32bfaef05774e08c8"
+    },
+    "historical/documentation/carrier/instructions/41-corrections.md": {
+      "license": "MIT",
+      "origin": "release/archive/documentation/carrier/instructions/41-corrections.md",
+      "sha256": "38a70271732665268724f886eb6d824994a3e5b0fb3a743207c781588e2dd1d3"
+    },
+    "historical/documentation/carrier/instructions/42-controls.md": {
+      "license": "MIT",
+      "origin": "release/archive/documentation/carrier/instructions/42-controls.md",
+      "sha256": "275e474cd6d9299e2b9791ba002f12e9ab1acba53e0eb7b048b4c6257dc529c4"
+    },
+    "historical/documentation/carrier/instructions/51-2026-10-22-first-run-r3-qualification.md": {
+      "license": "MIT",
+      "origin": "release/archive/documentation/carrier/instructions/51-2026-10-22-first-run-r3-qualification.md",
+      "sha256": "f2ccafd4bca382817c6c31703f82e07d6947af9387b15081cf6b6c235ee8b401"
+    },
+    "historical/documentation/carrier/instructions/52-2026-10-23-first-run-d3-copper.md": {
+      "license": "MIT",
+      "origin": "release/archive/documentation/carrier/instructions/52-2026-10-23-first-run-d3-copper.md",
+      "sha256": "19d85d144dfb963a64fa81bb8bb6895cea631ff0749bfe65ff3bec3d4061a9e8"
+    },
+    "historical/documentation/carrier/instructions/53-2026-10-23-first-run-d3-layout.md": {
+      "license": "MIT",
+      "origin": "release/archive/documentation/carrier/instructions/53-2026-10-23-first-run-d3-layout.md",
+      "sha256": "2d55f054f6ddf6e77b9a5572978ff6649c6b78bd582393b87d5be0185240e35c"
+    },
+    "historical/documentation/carrier/instructions/54-2026-10-23-first-run-d3-routing.md": {
+      "license": "MIT",
+      "origin": "release/archive/documentation/carrier/instructions/54-2026-10-23-first-run-d3-routing.md",
+      "sha256": "527e90c91c975441abc2c5c5071591160c648790ee4754f88ffafed46a312699"
+    },
+    "historical/documentation/carrier/instructions/55-ls33-module-engineering.md": {
+      "license": "MIT",
+      "origin": "release/archive/documentation/carrier/instructions/55-ls33-module-engineering.md",
+      "sha256": "28413cfdf08ebd1a891899c5bc9a44799f9da8ae11f80ee4546d90c2e3166c03"
+    },
+    "historical/documentation/carrier/instructions/56-ls33-usb-engineering.md": {
+      "license": "MIT",
+      "origin": "release/archive/documentation/carrier/instructions/56-ls33-usb-engineering.md",
+      "sha256": "0d8a74d482b3d56210781a32b3c022880b55490cc0e7971b90422d3daf348be5"
+    },
+    "historical/documentation/carrier/process/02-first-run-d3-staging-scope.md": {
+      "license": "MIT",
+      "origin": "release/archive/documentation/carrier/process/02-first-run-d3-staging-scope.md",
+      "sha256": "b3ea55552379fc470b756148a23742bffad9449d8181776b8dc7fe628a9a1e99"
+    },
+    "historical/documentation/carrier/process/03-first-run-staging-scope.md": {
+      "license": "MIT",
+      "origin": "release/archive/documentation/carrier/process/03-first-run-staging-scope.md",
+      "sha256": "ad8bfcb66a8c8f370173b9a57ba0eb175c65fa49977996cb9a3408216bf0f0bd"
+    },
+    "historical/documentation/carrier/process/04-2026-10-08-ls20-engineering.md": {
+      "license": "MIT",
+      "origin": "release/archive/documentation/carrier/process/04-2026-10-08-ls20-engineering.md",
+      "sha256": "f16eebca233ae0ff599b3f2a0a452f3988d781d8211e94d8f3530b1b41ae8a4f"
+    },
+    "historical/documentation/carrier/process/05-JLC-PCBA-READINESS.md": {
+      "license": "MIT",
+      "origin": "release/archive/documentation/carrier/process/05-JLC-PCBA-READINESS.md",
+      "sha256": "19ee956f44cf8981697f311020b69211fc10c905c76f9417f7fdc86aae02b7a8"
+    },
+    "historical/documentation/carrier/process/06-SOURCES.md": {
+      "license": "MIT",
+      "origin": "release/archive/documentation/carrier/process/06-SOURCES.md",
+      "sha256": "09767fabd2f6723be7860c8cf55a633cbb3c1cfe7cf2f4a86a6dd1dc5dd14cbd"
+    },
+    "historical/documentation/carrier/process/29-REPORT.md": {
+      "license": "MIT",
+      "origin": "release/archive/documentation/carrier/process/29-REPORT.md",
+      "sha256": "b4f514db60bc41e19ffb90cd79330a7e9e92287490baa6ef40bb2803cdb1071e"
+    },
+    "historical/documentation/carrier/process/31-handoff.md": {
+      "license": "MIT",
+      "origin": "release/archive/documentation/carrier/process/31-handoff.md",
+      "sha256": "bc16f4abb394303eb523b1d553cb5016c70b8eb893acab536651b55fa8c3324b"
+    },
+    "historical/documentation/carrier/process/33-process.md": {
+      "license": "MIT",
+      "origin": "release/archive/documentation/carrier/process/33-process.md",
+      "sha256": "bc0032b92512eec9baa0454cfb473f596d1b32784cb66a9a7400eeb55932f429"
+    },
+    "historical/documentation/carrier/process/36-REPORT.md": {
+      "license": "MIT",
+      "origin": "release/archive/documentation/carrier/process/36-REPORT.md",
+      "sha256": "ad781d217e520a2094973d35da4e5b6496f2224fb03ca080aede7012771c382d"
+    },
+    "historical/documentation/carrier/process/38-module-controls.md": {
+      "license": "MIT",
+      "origin": "release/archive/documentation/carrier/process/38-module-controls.md",
+      "sha256": "82ab308061003d8025bce030936dfec8aca838371a3509e32bfaef05774e08c8"
+    },
+    "historical/documentation/carrier/process/39-controls.md": {
+      "license": "MIT",
+      "origin": "release/archive/documentation/carrier/process/39-controls.md",
+      "sha256": "275e474cd6d9299e2b9791ba002f12e9ab1acba53e0eb7b048b4c6257dc529c4"
+    },
+    "historical/documentation/carrier/process/51-2026-10-08-ls20-routing.md": {
+      "license": "MIT",
+      "origin": "release/archive/documentation/carrier/process/51-2026-10-08-ls20-routing.md",
+      "sha256": "443f1a2fc229ba12ce8fb61bb6b1efe98cc2310fa4c116c64eb323d75ff15200"
+    },
+    "historical/documentation/carrier/process/52-2026-10-10-ls43-mating.md": {
+      "license": "MIT",
+      "origin": "release/archive/documentation/carrier/process/52-2026-10-10-ls43-mating.md",
+      "sha256": "0b6292ab9f7ffa1e98955137a439e675627768d1cb17659be0143f5b1a8609d4"
+    },
+    "historical/documentation/carrier/process/53-2026-10-10-ls44-layout.md": {
+      "license": "MIT",
+      "origin": "release/archive/documentation/carrier/process/53-2026-10-10-ls44-layout.md",
+      "sha256": "46e02ce495e61ab6abcce2167d6afdc698b5bece9bb11c7c87b54f01d864bdff"
+    },
+    "historical/documentation/carrier/process/54-2026-10-22-first-run-layout.md": {
+      "license": "MIT",
+      "origin": "release/archive/documentation/carrier/process/54-2026-10-22-first-run-layout.md",
+      "sha256": "8287a6b62c6ffff8874582ec2c40adf18bdbdeda344a33a44cad59269fa26ccc"
+    },
+    "historical/documentation/carrier/process/55-2026-10-22-first-run-mating-complete.md": {
+      "license": "MIT",
+      "origin": "release/archive/documentation/carrier/process/55-2026-10-22-first-run-mating-complete.md",
+      "sha256": "fd1a67cd66e87eca209d21208933ca88415818dac3d01e23e70139b255f92106"
+    },
+    "historical/documentation/carrier/process/56-2026-10-22-first-run-r3-qualification.md": {
+      "license": "MIT",
+      "origin": "release/archive/documentation/carrier/process/56-2026-10-22-first-run-r3-qualification.md",
+      "sha256": "f2ccafd4bca382817c6c31703f82e07d6947af9387b15081cf6b6c235ee8b401"
+    },
+    "historical/documentation/carrier/process/57-2026-10-22-first-run-routing.md": {
+      "license": "MIT",
+      "origin": "release/archive/documentation/carrier/process/57-2026-10-22-first-run-routing.md",
+      "sha256": "b6b4d6f8a292ff9f308a9bc4385eb06cc96b4cc766285594fc25a2313221e7f0"
+    },
+    "historical/documentation/carrier/process/58-2026-10-23-first-run-d3-copper.md": {
+      "license": "MIT",
+      "origin": "release/archive/documentation/carrier/process/58-2026-10-23-first-run-d3-copper.md",
+      "sha256": "19d85d144dfb963a64fa81bb8bb6895cea631ff0749bfe65ff3bec3d4061a9e8"
+    },
+    "historical/documentation/carrier/process/59-2026-10-23-first-run-d3-layout.md": {
+      "license": "MIT",
+      "origin": "release/archive/documentation/carrier/process/59-2026-10-23-first-run-d3-layout.md",
+      "sha256": "2d55f054f6ddf6e77b9a5572978ff6649c6b78bd582393b87d5be0185240e35c"
+    },
+    "historical/documentation/carrier/process/60-2026-10-23-first-run-d3-routing.md": {
+      "license": "MIT",
+      "origin": "release/archive/documentation/carrier/process/60-2026-10-23-first-run-d3-routing.md",
+      "sha256": "527e90c91c975441abc2c5c5071591160c648790ee4754f88ffafed46a312699"
+    },
+    "historical/documentation/carrier/process/61-ls33-module-engineering.md": {
+      "license": "MIT",
+      "origin": "release/archive/documentation/carrier/process/61-ls33-module-engineering.md",
+      "sha256": "28413cfdf08ebd1a891899c5bc9a44799f9da8ae11f80ee4546d90c2e3166c03"
+    },
+    "historical/documentation/carrier/process/62-ls33-usb-engineering.md": {
+      "license": "MIT",
+      "origin": "release/archive/documentation/carrier/process/62-ls33-usb-engineering.md",
+      "sha256": "0d8a74d482b3d56210781a32b3c022880b55490cc0e7971b90422d3daf348be5"
+    },
+    "historical/documentation/pod/instructions/01-ASSEMBLY-PLAN.md": {
+      "license": "MIT",
+      "origin": "release/archive/documentation/pod/instructions/01-ASSEMBLY-PLAN.md",
+      "sha256": "581fd2da97195293d7fe13053816db8835599509cfd177311d58c9de1ae5419c"
+    },
+    "historical/documentation/pod/instructions/03-first-run-d3-staging-scope.md": {
+      "license": "MIT",
+      "origin": "release/archive/documentation/pod/instructions/03-first-run-d3-staging-scope.md",
+      "sha256": "b3ea55552379fc470b756148a23742bffad9449d8181776b8dc7fe628a9a1e99"
+    },
+    "historical/documentation/pod/instructions/04-first-run-staging-scope.md": {
+      "license": "MIT",
+      "origin": "release/archive/documentation/pod/instructions/04-first-run-staging-scope.md",
+      "sha256": "ad8bfcb66a8c8f370173b9a57ba0eb175c65fa49977996cb9a3408216bf0f0bd"
+    },
+    "historical/documentation/pod/instructions/05-JLC-PCBA-READINESS.md": {
+      "license": "MIT",
+      "origin": "release/archive/documentation/pod/instructions/05-JLC-PCBA-READINESS.md",
+      "sha256": "19ee956f44cf8981697f311020b69211fc10c905c76f9417f7fdc86aae02b7a8"
+    },
+    "historical/documentation/pod/instructions/06-SOURCES.md": {
+      "license": "MIT",
+      "origin": "release/archive/documentation/pod/instructions/06-SOURCES.md",
+      "sha256": "09767fabd2f6723be7860c8cf55a633cbb3c1cfe7cf2f4a86a6dd1dc5dd14cbd"
+    },
+    "historical/documentation/pod/instructions/28-consigned-mapping-basis.md": {
+      "license": "MIT",
+      "origin": "release/archive/documentation/pod/instructions/28-consigned-mapping-basis.md",
+      "sha256": "9ee1a5cdff2cfd3b32969544385bf24dc159cefe683dbc700ca416e442c7126b"
+    },
+    "historical/documentation/pod/instructions/30-REPORT.md": {
+      "license": "MIT",
+      "origin": "release/archive/documentation/pod/instructions/30-REPORT.md",
+      "sha256": "b4f514db60bc41e19ffb90cd79330a7e9e92287490baa6ef40bb2803cdb1071e"
+    },
+    "historical/documentation/pod/instructions/32-assembly-instructions.md": {
+      "license": "MIT",
+      "origin": "release/archive/documentation/pod/instructions/32-assembly-instructions.md",
+      "sha256": "3177c4b57d07ad54bbdc020e5dcdd6e31ef17c93ba0a386d3d9ed89f9d58686b"
+    },
+    "historical/documentation/pod/instructions/34-handoff.md": {
+      "license": "MIT",
+      "origin": "release/archive/documentation/pod/instructions/34-handoff.md",
+      "sha256": "bc16f4abb394303eb523b1d553cb5016c70b8eb893acab536651b55fa8c3324b"
+    },
+    "historical/documentation/pod/instructions/35-reference-index.md": {
+      "license": "MIT",
+      "origin": "release/archive/documentation/pod/instructions/35-reference-index.md",
+      "sha256": "2e295bb3bd859503464ef66fad3ceb8f8d8d61e30c6602835e7ff1c266a1ccbc"
+    },
+    "historical/documentation/pod/instructions/38-REPORT.md": {
+      "license": "MIT",
+      "origin": "release/archive/documentation/pod/instructions/38-REPORT.md",
+      "sha256": "ad781d217e520a2094973d35da4e5b6496f2224fb03ca080aede7012771c382d"
+    },
+    "historical/documentation/pod/instructions/40-module-controls.md": {
+      "license": "MIT",
+      "origin": "release/archive/documentation/pod/instructions/40-module-controls.md",
+      "sha256": "82ab308061003d8025bce030936dfec8aca838371a3509e32bfaef05774e08c8"
+    },
+    "historical/documentation/pod/instructions/41-corrections.md": {
+      "license": "MIT",
+      "origin": "release/archive/documentation/pod/instructions/41-corrections.md",
+      "sha256": "38a70271732665268724f886eb6d824994a3e5b0fb3a743207c781588e2dd1d3"
+    },
+    "historical/documentation/pod/instructions/42-controls.md": {
+      "license": "MIT",
+      "origin": "release/archive/documentation/pod/instructions/42-controls.md",
+      "sha256": "275e474cd6d9299e2b9791ba002f12e9ab1acba53e0eb7b048b4c6257dc529c4"
+    },
+    "historical/documentation/pod/instructions/51-2026-10-22-first-run-r3-qualification.md": {
+      "license": "MIT",
+      "origin": "release/archive/documentation/pod/instructions/51-2026-10-22-first-run-r3-qualification.md",
+      "sha256": "f2ccafd4bca382817c6c31703f82e07d6947af9387b15081cf6b6c235ee8b401"
+    },
+    "historical/documentation/pod/instructions/52-2026-10-23-first-run-d3-copper.md": {
+      "license": "MIT",
+      "origin": "release/archive/documentation/pod/instructions/52-2026-10-23-first-run-d3-copper.md",
+      "sha256": "19d85d144dfb963a64fa81bb8bb6895cea631ff0749bfe65ff3bec3d4061a9e8"
+    },
+    "historical/documentation/pod/instructions/53-2026-10-23-first-run-d3-layout.md": {
+      "license": "MIT",
+      "origin": "release/archive/documentation/pod/instructions/53-2026-10-23-first-run-d3-layout.md",
+      "sha256": "2d55f054f6ddf6e77b9a5572978ff6649c6b78bd582393b87d5be0185240e35c"
+    },
+    "historical/documentation/pod/instructions/54-2026-10-23-first-run-d3-routing.md": {
+      "license": "MIT",
+      "origin": "release/archive/documentation/pod/instructions/54-2026-10-23-first-run-d3-routing.md",
+      "sha256": "527e90c91c975441abc2c5c5071591160c648790ee4754f88ffafed46a312699"
+    },
+    "historical/documentation/pod/instructions/55-ls33-module-engineering.md": {
+      "license": "MIT",
+      "origin": "release/archive/documentation/pod/instructions/55-ls33-module-engineering.md",
+      "sha256": "28413cfdf08ebd1a891899c5bc9a44799f9da8ae11f80ee4546d90c2e3166c03"
+    },
+    "historical/documentation/pod/instructions/56-ls33-usb-engineering.md": {
+      "license": "MIT",
+      "origin": "release/archive/documentation/pod/instructions/56-ls33-usb-engineering.md",
+      "sha256": "0d8a74d482b3d56210781a32b3c022880b55490cc0e7971b90422d3daf348be5"
+    },
+    "historical/documentation/pod/process/02-first-run-d3-staging-scope.md": {
+      "license": "MIT",
+      "origin": "release/archive/documentation/pod/process/02-first-run-d3-staging-scope.md",
+      "sha256": "b3ea55552379fc470b756148a23742bffad9449d8181776b8dc7fe628a9a1e99"
+    },
+    "historical/documentation/pod/process/03-first-run-staging-scope.md": {
+      "license": "MIT",
+      "origin": "release/archive/documentation/pod/process/03-first-run-staging-scope.md",
+      "sha256": "ad8bfcb66a8c8f370173b9a57ba0eb175c65fa49977996cb9a3408216bf0f0bd"
+    },
+    "historical/documentation/pod/process/04-2026-10-08-ls20-engineering.md": {
+      "license": "MIT",
+      "origin": "release/archive/documentation/pod/process/04-2026-10-08-ls20-engineering.md",
+      "sha256": "f16eebca233ae0ff599b3f2a0a452f3988d781d8211e94d8f3530b1b41ae8a4f"
+    },
+    "historical/documentation/pod/process/05-JLC-PCBA-READINESS.md": {
+      "license": "MIT",
+      "origin": "release/archive/documentation/pod/process/05-JLC-PCBA-READINESS.md",
+      "sha256": "19ee956f44cf8981697f311020b69211fc10c905c76f9417f7fdc86aae02b7a8"
+    },
+    "historical/documentation/pod/process/06-SOURCES.md": {
+      "license": "MIT",
+      "origin": "release/archive/documentation/pod/process/06-SOURCES.md",
+      "sha256": "09767fabd2f6723be7860c8cf55a633cbb3c1cfe7cf2f4a86a6dd1dc5dd14cbd"
+    },
+    "historical/documentation/pod/process/29-REPORT.md": {
+      "license": "MIT",
+      "origin": "release/archive/documentation/pod/process/29-REPORT.md",
+      "sha256": "b4f514db60bc41e19ffb90cd79330a7e9e92287490baa6ef40bb2803cdb1071e"
+    },
+    "historical/documentation/pod/process/31-handoff.md": {
+      "license": "MIT",
+      "origin": "release/archive/documentation/pod/process/31-handoff.md",
+      "sha256": "bc16f4abb394303eb523b1d553cb5016c70b8eb893acab536651b55fa8c3324b"
+    },
+    "historical/documentation/pod/process/33-process.md": {
+      "license": "MIT",
+      "origin": "release/archive/documentation/pod/process/33-process.md",
+      "sha256": "bc0032b92512eec9baa0454cfb473f596d1b32784cb66a9a7400eeb55932f429"
+    },
+    "historical/documentation/pod/process/36-REPORT.md": {
+      "license": "MIT",
+      "origin": "release/archive/documentation/pod/process/36-REPORT.md",
+      "sha256": "ad781d217e520a2094973d35da4e5b6496f2224fb03ca080aede7012771c382d"
+    },
+    "historical/documentation/pod/process/38-module-controls.md": {
+      "license": "MIT",
+      "origin": "release/archive/documentation/pod/process/38-module-controls.md",
+      "sha256": "82ab308061003d8025bce030936dfec8aca838371a3509e32bfaef05774e08c8"
+    },
+    "historical/documentation/pod/process/39-controls.md": {
+      "license": "MIT",
+      "origin": "release/archive/documentation/pod/process/39-controls.md",
+      "sha256": "275e474cd6d9299e2b9791ba002f12e9ab1acba53e0eb7b048b4c6257dc529c4"
+    },
+    "historical/documentation/pod/process/51-2026-10-08-ls20-routing.md": {
+      "license": "MIT",
+      "origin": "release/archive/documentation/pod/process/51-2026-10-08-ls20-routing.md",
+      "sha256": "443f1a2fc229ba12ce8fb61bb6b1efe98cc2310fa4c116c64eb323d75ff15200"
+    },
+    "historical/documentation/pod/process/52-2026-10-10-ls43-mating.md": {
+      "license": "MIT",
+      "origin": "release/archive/documentation/pod/process/52-2026-10-10-ls43-mating.md",
+      "sha256": "0b6292ab9f7ffa1e98955137a439e675627768d1cb17659be0143f5b1a8609d4"
+    },
+    "historical/documentation/pod/process/53-2026-10-10-ls44-layout.md": {
+      "license": "MIT",
+      "origin": "release/archive/documentation/pod/process/53-2026-10-10-ls44-layout.md",
+      "sha256": "46e02ce495e61ab6abcce2167d6afdc698b5bece9bb11c7c87b54f01d864bdff"
+    },
+    "historical/documentation/pod/process/54-2026-10-22-first-run-layout.md": {
+      "license": "MIT",
+      "origin": "release/archive/documentation/pod/process/54-2026-10-22-first-run-layout.md",
+      "sha256": "8287a6b62c6ffff8874582ec2c40adf18bdbdeda344a33a44cad59269fa26ccc"
+    },
+    "historical/documentation/pod/process/55-2026-10-22-first-run-mating-complete.md": {
+      "license": "MIT",
+      "origin": "release/archive/documentation/pod/process/55-2026-10-22-first-run-mating-complete.md",
+      "sha256": "fd1a67cd66e87eca209d21208933ca88415818dac3d01e23e70139b255f92106"
+    },
+    "historical/documentation/pod/process/56-2026-10-22-first-run-r3-qualification.md": {
+      "license": "MIT",
+      "origin": "release/archive/documentation/pod/process/56-2026-10-22-first-run-r3-qualification.md",
+      "sha256": "f2ccafd4bca382817c6c31703f82e07d6947af9387b15081cf6b6c235ee8b401"
+    },
+    "historical/documentation/pod/process/57-2026-10-22-first-run-routing.md": {
+      "license": "MIT",
+      "origin": "release/archive/documentation/pod/process/57-2026-10-22-first-run-routing.md",
+      "sha256": "b6b4d6f8a292ff9f308a9bc4385eb06cc96b4cc766285594fc25a2313221e7f0"
+    },
+    "historical/documentation/pod/process/58-2026-10-23-first-run-d3-copper.md": {
+      "license": "MIT",
+      "origin": "release/archive/documentation/pod/process/58-2026-10-23-first-run-d3-copper.md",
+      "sha256": "19d85d144dfb963a64fa81bb8bb6895cea631ff0749bfe65ff3bec3d4061a9e8"
+    },
+    "historical/documentation/pod/process/59-2026-10-23-first-run-d3-layout.md": {
+      "license": "MIT",
+      "origin": "release/archive/documentation/pod/process/59-2026-10-23-first-run-d3-layout.md",
+      "sha256": "2d55f054f6ddf6e77b9a5572978ff6649c6b78bd582393b87d5be0185240e35c"
+    },
+    "historical/documentation/pod/process/60-2026-10-23-first-run-d3-routing.md": {
+      "license": "MIT",
+      "origin": "release/archive/documentation/pod/process/60-2026-10-23-first-run-d3-routing.md",
+      "sha256": "527e90c91c975441abc2c5c5071591160c648790ee4754f88ffafed46a312699"
+    },
+    "historical/documentation/pod/process/61-ls33-module-engineering.md": {
+      "license": "MIT",
+      "origin": "release/archive/documentation/pod/process/61-ls33-module-engineering.md",
+      "sha256": "28413cfdf08ebd1a891899c5bc9a44799f9da8ae11f80ee4546d90c2e3166c03"
+    },
+    "historical/documentation/pod/process/62-ls33-usb-engineering.md": {
+      "license": "MIT",
+      "origin": "release/archive/documentation/pod/process/62-ls33-usb-engineering.md",
+      "sha256": "0d8a74d482b3d56210781a32b3c022880b55490cc0e7971b90422d3daf348be5"
+    },
+    "native/design/03_src/recovery/first-run-r3-source/CrowCarrier.kicad_sym": {
+      "license": "MIT",
+      "origin": "release/archive/source/project/06_build/recovery/first-run-d3-staging/fabrication1/native/design/03_src/recovery/first-run-r3-source/CrowCarrier.kicad_sym",
+      "sha256": "0aee8832a7fe16d04ec13a3d848ca0cccd9a961d3597f2c49672641dfa6a618b"
+    },
+    "native/design/03_src/recovery/first-run-r3-source/CrowPhysical.pretty/ASFL1_5032.kicad_mod": {
+      "license": "MIT",
+      "origin": "release/archive/source/project/06_build/recovery/first-run-d3-staging/fabrication1/native/design/03_src/recovery/first-run-r3-source/CrowPhysical.pretty/ASFL1_5032.kicad_mod",
+      "sha256": "6b294905f129bdef46f33a61fbcf3eb7448523df9a74153f26101d5fcdc6398e"
+    },
+    "native/design/03_src/recovery/first-run-r3-source/CrowPhysical.pretty/CMA-4544PF-W.kicad_mod": {
+      "license": "MIT",
+      "origin": "release/archive/source/project/06_build/recovery/first-run-d3-staging/fabrication1/native/design/03_src/recovery/first-run-r3-source/CrowPhysical.pretty/CMA-4544PF-W.kicad_mod",
+      "sha256": "5ec6c226cbba3c0bd86af9199bcae469fac6fecf5588d29bc1299e5b8f0a6c9b"
+    },
+    "native/design/03_src/recovery/first-run-r3-source/CrowPhysical.pretty/CPE-203.kicad_mod": {
+      "license": "MIT",
+      "origin": "release/archive/source/project/06_build/recovery/first-run-d3-staging/fabrication1/native/design/03_src/recovery/first-run-r3-source/CrowPhysical.pretty/CPE-203.kicad_mod",
+      "sha256": "7fdbfe03eb3c373c2307b0b0c34b2786d30de67fba15bb7c9f9f19606c013eaa"
+    },
+    "native/design/03_src/recovery/first-run-r3-source/CrowPhysical.pretty/CTS_CB3LV_7050.kicad_mod": {
+      "license": "MIT",
+      "origin": "release/archive/source/project/06_build/recovery/first-run-d3-staging/fabrication1/native/design/03_src/recovery/first-run-r3-source/CrowPhysical.pretty/CTS_CB3LV_7050.kicad_mod",
+      "sha256": "ce164dcdd65f6a83665e0baf24b70311b7dcc17a570432bd1c8d8b4047ab30c9"
+    },
+    "native/design/03_src/recovery/first-run-r3-source/CrowPhysical.pretty/RJHSE-5080.kicad_mod": {
+      "license": "MIT",
+      "origin": "release/archive/source/project/06_build/recovery/first-run-d3-staging/fabrication1/native/design/03_src/recovery/first-run-r3-source/CrowPhysical.pretty/RJHSE-5080.kicad_mod",
+      "sha256": "2e488c20c58165738796c5e7cdf866b4a3c0bb65e5bd452294f86817562b60b2"
+    },
+    "native/design/03_src/recovery/first-run-r3-source/CrowPhysical.pretty/SP0504BAHTG.kicad_mod": {
+      "license": "MIT",
+      "origin": "release/archive/source/project/06_build/recovery/first-run-d3-staging/fabrication1/native/design/03_src/recovery/first-run-r3-source/CrowPhysical.pretty/SP0504BAHTG.kicad_mod",
+      "sha256": "cffc5244bae8ab8f2be816861aa3fc1c48c247ac4c3fa6e2eac73f311dfb5267"
+    },
+    "native/design/03_src/recovery/first-run-r3-source/CrowPod.kicad_sym": {
+      "license": "MIT",
+      "origin": "release/archive/source/project/06_build/recovery/first-run-d3-staging/fabrication1/native/design/03_src/recovery/first-run-r3-source/CrowPod.kicad_sym",
+      "sha256": "05f48d255cdc8e2a05b833bc7904fcecb5038859fe6a1737b5980014ee0bea24"
+    },
+    "native/design/03_src/recovery/first-run-r3-source/crow-carrier.kicad_pro": {
+      "license": "MIT",
+      "origin": "release/archive/source/project/06_build/recovery/first-run-d3-staging/fabrication1/native/design/03_src/recovery/first-run-r3-source/crow-carrier.kicad_pro",
+      "sha256": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356"
+    },
+    "native/design/03_src/recovery/first-run-r3-source/crow-carrier.kicad_sch": {
+      "license": "MIT",
+      "origin": "release/archive/source/project/06_build/recovery/first-run-d3-staging/fabrication1/native/design/03_src/recovery/first-run-r3-source/crow-carrier.kicad_sch",
+      "sha256": "d40d964423d4a02fe02c0e856e7e64e65e115f4b215f5c78f6f1333b9d32b414"
+    },
+    "native/design/03_src/recovery/first-run-r3-source/crow-pod.kicad_pro": {
+      "license": "MIT",
+      "origin": "release/archive/source/project/06_build/recovery/first-run-d3-staging/fabrication1/native/design/03_src/recovery/first-run-r3-source/crow-pod.kicad_pro",
+      "sha256": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356"
+    },
+    "native/design/03_src/recovery/first-run-r3-source/crow-pod.kicad_sch": {
+      "license": "MIT",
+      "origin": "release/archive/source/project/06_build/recovery/first-run-d3-staging/fabrication1/native/design/03_src/recovery/first-run-r3-source/crow-pod.kicad_sch",
+      "sha256": "da2857f3f806582406b4ebac83a1217584508861ce2c6cd26edde3037b879fbe"
+    },
+    "native/design/03_src/recovery/first-run-r3-source/fp-lib-table": {
+      "license": "MIT",
+      "origin": "release/archive/source/project/06_build/recovery/first-run-d3-staging/fabrication1/native/design/03_src/recovery/first-run-r3-source/fp-lib-table",
+      "sha256": "1f1d1683b7ff3242c5354c05df663ba41d8c30cc35b1aff9d0f92bf29d0407b4"
+    },
+    "native/design/03_src/recovery/first-run-r3-source/libraries/Capacitor_SMD.pretty/C_0805_2012Metric.kicad_mod": {
+      "license": "CC-BY-SA-4.0 WITH KiCad-design-exception",
+      "origin": "release/archive/source/project/06_build/recovery/first-run-d3-staging/fabrication1/native/design/03_src/recovery/first-run-r3-source/libraries/Capacitor_SMD.pretty/C_0805_2012Metric.kicad_mod",
+      "sha256": "62775a51fe74ba7f1b572de327bdbd3fc92582721b2abcaa47787865590d89cb"
+    },
+    "native/design/03_src/recovery/first-run-r3-source/libraries/Capacitor_SMD.pretty/C_1206_3216Metric.kicad_mod": {
+      "license": "CC-BY-SA-4.0 WITH KiCad-design-exception",
+      "origin": "release/archive/source/project/06_build/recovery/first-run-d3-staging/fabrication1/native/design/03_src/recovery/first-run-r3-source/libraries/Capacitor_SMD.pretty/C_1206_3216Metric.kicad_mod",
+      "sha256": "b2e4a08e3aaf40bc587090190c0e3969e962d7ae962c172cce0581ae8327651c"
+    },
+    "native/design/03_src/recovery/first-run-r3-source/libraries/Capacitor_SMD.pretty/C_1210_3225Metric.kicad_mod": {
+      "license": "CC-BY-SA-4.0 WITH KiCad-design-exception",
+      "origin": "release/archive/source/project/06_build/recovery/first-run-d3-staging/fabrication1/native/design/03_src/recovery/first-run-r3-source/libraries/Capacitor_SMD.pretty/C_1210_3225Metric.kicad_mod",
+      "sha256": "e1dae516e079b70c4736d001fb81bfb4ef5f9c2a37c8175223a44f83a04ff75f"
+    },
+    "native/design/03_src/recovery/first-run-r3-source/libraries/Connector_BarrelJack.pretty/BarrelJack_CUI_PJ-102AH_Horizontal.kicad_mod": {
+      "license": "CC-BY-SA-4.0 WITH KiCad-design-exception",
+      "origin": "release/archive/source/project/06_build/recovery/first-run-d3-staging/fabrication1/native/design/03_src/recovery/first-run-r3-source/libraries/Connector_BarrelJack.pretty/BarrelJack_CUI_PJ-102AH_Horizontal.kicad_mod",
+      "sha256": "3a786375b8c16b3685b313dc6c8500d14b64ce34aadb09fb2a7cacce76843f40"
+    },
+    "native/design/03_src/recovery/first-run-r3-source/libraries/Converter_DCDC.pretty/Converter_DCDC_RECOM_R-78E-0.5_THT.kicad_mod": {
+      "license": "CC-BY-SA-4.0 WITH KiCad-design-exception",
+      "origin": "release/archive/source/project/06_build/recovery/first-run-d3-staging/fabrication1/native/design/03_src/recovery/first-run-r3-source/libraries/Converter_DCDC.pretty/Converter_DCDC_RECOM_R-78E-0.5_THT.kicad_mod",
+      "sha256": "82f4b86f02388342c22b1b529c02a44aaf5ae6ec14c04b3f1b5368475d6e712a"
+    },
+    "native/design/03_src/recovery/first-run-r3-source/libraries/Diode_SMD.pretty/D_SMB.kicad_mod": {
+      "license": "CC-BY-SA-4.0 WITH KiCad-design-exception",
+      "origin": "release/archive/source/project/06_build/recovery/first-run-d3-staging/fabrication1/native/design/03_src/recovery/first-run-r3-source/libraries/Diode_SMD.pretty/D_SMB.kicad_mod",
+      "sha256": "e25e9f4acef5b55585afebc48c685e151fd0d2f33a5c3c61f9fdf0389e19ae67"
+    },
+    "native/design/03_src/recovery/first-run-r3-source/libraries/Diode_SMD.pretty/D_SMC.kicad_mod": {
+      "license": "CC-BY-SA-4.0 WITH KiCad-design-exception",
+      "origin": "release/archive/source/project/06_build/recovery/first-run-d3-staging/fabrication1/native/design/03_src/recovery/first-run-r3-source/libraries/Diode_SMD.pretty/D_SMC.kicad_mod",
+      "sha256": "f17a366cbe28020fc5f12a4a5cecd11590af4d96b61ad8d82c33dc2393a3b64b"
+    },
+    "native/design/03_src/recovery/first-run-r3-source/libraries/Diode_SMD.pretty/D_SOD-123.kicad_mod": {
+      "license": "CC-BY-SA-4.0 WITH KiCad-design-exception",
+      "origin": "release/archive/source/project/06_build/recovery/first-run-d3-staging/fabrication1/native/design/03_src/recovery/first-run-r3-source/libraries/Diode_SMD.pretty/D_SOD-123.kicad_mod",
+      "sha256": "fd16785935b01254e1076f490e12f0f096da73cf087adefce51225585c62557a"
+    },
+    "native/design/03_src/recovery/first-run-r3-source/libraries/Fuse.pretty/Fuse_1206_3216Metric.kicad_mod": {
+      "license": "CC-BY-SA-4.0 WITH KiCad-design-exception",
+      "origin": "release/archive/source/project/06_build/recovery/first-run-d3-staging/fabrication1/native/design/03_src/recovery/first-run-r3-source/libraries/Fuse.pretty/Fuse_1206_3216Metric.kicad_mod",
+      "sha256": "8f4307d8c771db71526ed8ccf7c762824636660adec3635905932cc5e1d02280"
+    },
+    "native/design/03_src/recovery/first-run-r3-source/libraries/Fuse.pretty/Fuse_Littelfuse-NANO2-451_453.kicad_mod": {
+      "license": "CC-BY-SA-4.0 WITH KiCad-design-exception",
+      "origin": "release/archive/source/project/06_build/recovery/first-run-d3-staging/fabrication1/native/design/03_src/recovery/first-run-r3-source/libraries/Fuse.pretty/Fuse_Littelfuse-NANO2-451_453.kicad_mod",
+      "sha256": "4d7971c5346420f32946d8f6f19189db0074a717fa4ad9566c72a60c7c21cb84"
+    },
+    "native/design/03_src/recovery/first-run-r3-source/libraries/Module.pretty/RaspberryPi_Pico_Common_Unspecified.kicad_mod": {
+      "license": "CC-BY-SA-4.0 WITH KiCad-design-exception",
+      "origin": "release/archive/source/project/06_build/recovery/first-run-d3-staging/fabrication1/native/design/03_src/recovery/first-run-r3-source/libraries/Module.pretty/RaspberryPi_Pico_Common_Unspecified.kicad_mod",
+      "sha256": "33791fb55439f47d12d8dd6c9925ebf18c24e50cb7e6d2e89d0606e97b44daf5"
+    },
+    "native/design/03_src/recovery/first-run-r3-source/libraries/Package_SO.pretty/SOIC-8_3.9x4.9mm_P1.27mm.kicad_mod": {
+      "license": "CC-BY-SA-4.0 WITH KiCad-design-exception",
+      "origin": "release/archive/source/project/06_build/recovery/first-run-d3-staging/fabrication1/native/design/03_src/recovery/first-run-r3-source/libraries/Package_SO.pretty/SOIC-8_3.9x4.9mm_P1.27mm.kicad_mod",
+      "sha256": "074ecb2092b24fa4b4b9cdd7c926fc587b0d7d6d21e7341e57935fd42d36894f"
+    },
+    "native/design/03_src/recovery/first-run-r3-source/libraries/Package_SO.pretty/TSSOP-30_4.4x7.8mm_P0.5mm.kicad_mod": {
+      "license": "CC-BY-SA-4.0 WITH KiCad-design-exception",
+      "origin": "release/archive/source/project/06_build/recovery/first-run-d3-staging/fabrication1/native/design/03_src/recovery/first-run-r3-source/libraries/Package_SO.pretty/TSSOP-30_4.4x7.8mm_P0.5mm.kicad_mod",
+      "sha256": "6acd828c91c1267bc0a0e00758acbde74375c79f643934f2805ee64ae96209d7"
+    },
+    "native/design/03_src/recovery/first-run-r3-source/libraries/Package_TO_SOT_SMD.pretty/SOT-23-5.kicad_mod": {
+      "license": "CC-BY-SA-4.0 WITH KiCad-design-exception",
+      "origin": "release/archive/source/project/06_build/recovery/first-run-d3-staging/fabrication1/native/design/03_src/recovery/first-run-r3-source/libraries/Package_TO_SOT_SMD.pretty/SOT-23-5.kicad_mod",
+      "sha256": "455a3f7c3e5eb5b8847eaa5df23e18651e78ab9f75afd09a0883758a0d901761"
+    },
+    "native/design/03_src/recovery/first-run-r3-source/libraries/Package_TO_SOT_SMD.pretty/SOT-23.kicad_mod": {
+      "license": "CC-BY-SA-4.0 WITH KiCad-design-exception",
+      "origin": "release/archive/source/project/06_build/recovery/first-run-d3-staging/fabrication1/native/design/03_src/recovery/first-run-r3-source/libraries/Package_TO_SOT_SMD.pretty/SOT-23.kicad_mod",
+      "sha256": "0d88c86c1b6d8c1aae4aa8c09386264c089d4451a128b6ccd63ed253f4300b15"
+    },
+    "native/design/03_src/recovery/first-run-r3-source/libraries/Resistor_SMD.pretty/R_0603_1608Metric.kicad_mod": {
+      "license": "CC-BY-SA-4.0 WITH KiCad-design-exception",
+      "origin": "release/archive/source/project/06_build/recovery/first-run-d3-staging/fabrication1/native/design/03_src/recovery/first-run-r3-source/libraries/Resistor_SMD.pretty/R_0603_1608Metric.kicad_mod",
+      "sha256": "7190ac4a00125b807e54129ef0d87d87f2a658eeb74d025a7028203419b09f23"
+    },
+    "native/design/03_src/recovery/first-run-r3-source/sym-lib-table": {
+      "license": "MIT",
+      "origin": "release/archive/source/project/06_build/recovery/first-run-d3-staging/fabrication1/native/design/03_src/recovery/first-run-r3-source/sym-lib-table",
+      "sha256": "68b26cfaeff583c302873af2e712bca644fb68a8657e74de99a3221bcef2a04b"
+    },
+    "native/design/06_build/recovery/first-run-r3-native/carrier/native.xml": {
+      "license": "MIT",
+      "origin": "release/archive/source/project/06_build/recovery/first-run-d3-staging/fabrication1/native/design/06_build/recovery/first-run-r3-native/carrier/native.xml",
+      "sha256": "2e6645f93d89c7574d41b404e0cac1042ce424be668e081df8a178f32794b048"
+    },
+    "native/design/06_build/recovery/first-run-r3-native/pod/native.xml": {
+      "license": "MIT",
+      "origin": "release/archive/source/project/06_build/recovery/first-run-d3-staging/fabrication1/native/design/06_build/recovery/first-run-r3-native/pod/native.xml",
+      "sha256": "ab67f00c18ec83052b0f038a8355436f8ec27ec6cecf2f49f964c726f1c82626"
+    },
+    "native/source/carrier/CrowPhysical.pretty/CMA-4544PF-W.kicad_mod": {
+      "license": "MIT",
+      "origin": "release/archive/source/project/06_build/recovery/first-run-d3-staging/fabrication1/native/source/carrier/CrowPhysical.pretty/CMA-4544PF-W.kicad_mod",
+      "sha256": "d6c8d3588b0caaf0acf8fd3e9eac9b5e3ef653a35984a4d6ed60b06be0a08a70"
+    },
+    "native/source/carrier/CrowPhysical.pretty/CPE-203.kicad_mod": {
+      "license": "MIT",
+      "origin": "release/archive/source/project/06_build/recovery/first-run-d3-staging/fabrication1/native/source/carrier/CrowPhysical.pretty/CPE-203.kicad_mod",
+      "sha256": "0d0ccea35c121d6f84891112ac614dd4333219e102e928f762a81e5138e4e54b"
+    },
+    "native/source/carrier/CrowPhysical.pretty/CTS_CB3LV_7050.kicad_mod": {
+      "license": "MIT",
+      "origin": "release/archive/source/project/06_build/recovery/first-run-d3-staging/fabrication1/native/source/carrier/CrowPhysical.pretty/CTS_CB3LV_7050.kicad_mod",
+      "sha256": "b915317b1e3b4daf6844fbd675b3d7ba006bb78363df4b23afcd11556ad43cf4"
+    },
+    "native/source/carrier/CrowPhysical.pretty/RJHSE-5080.kicad_mod": {
+      "license": "MIT",
+      "origin": "release/archive/source/project/06_build/recovery/first-run-d3-staging/fabrication1/native/source/carrier/CrowPhysical.pretty/RJHSE-5080.kicad_mod",
+      "sha256": "e1359d7f87f2ec38d779bc3a41d30526faa9f2d7fcff78f20c05f955e15a6498"
+    },
+    "native/source/carrier/CrowPhysical.pretty/SP0504BAHTG.kicad_mod": {
+      "license": "MIT",
+      "origin": "release/archive/source/project/06_build/recovery/first-run-d3-staging/fabrication1/native/source/carrier/CrowPhysical.pretty/SP0504BAHTG.kicad_mod",
+      "sha256": "078b620aef0afa61c868bf68737c470b0f12a3d70e11dac4ed1a1f8b9e178163"
+    },
+    "native/source/carrier/carrier.kicad_pcb": {
+      "license": "MIT",
+      "origin": "release/archive/source/project/06_build/recovery/first-run-d3-staging/fabrication1/native/source/carrier/carrier.kicad_pcb",
+      "sha256": "85d55d3782e4e040d44aedf4625f09204532ad9fe028e380c26612ebbe74a594"
+    },
+    "native/source/carrier/carrier.kicad_pro": {
+      "license": "MIT",
+      "origin": "release/archive/source/project/06_build/recovery/first-run-d3-staging/fabrication1/native/source/carrier/carrier.kicad_pro",
+      "sha256": "2f23ae4cac9d2a53237ce2fa53170226739aa8bc2e4164fbb0e2842c464f5d1b"
+    },
+    "native/source/carrier/fp-lib-table": {
+      "license": "MIT",
+      "origin": "release/archive/source/project/06_build/recovery/first-run-d3-staging/fabrication1/native/source/carrier/fp-lib-table",
+      "sha256": "1f1d1683b7ff3242c5354c05df663ba41d8c30cc35b1aff9d0f92bf29d0407b4"
+    },
+    "native/source/carrier/libraries/Capacitor_SMD.pretty/C_0805_2012Metric.kicad_mod": {
+      "license": "CC-BY-SA-4.0 WITH KiCad-design-exception",
+      "origin": "release/archive/source/project/06_build/recovery/first-run-d3-staging/fabrication1/native/source/carrier/libraries/Capacitor_SMD.pretty/C_0805_2012Metric.kicad_mod",
+      "sha256": "61d879c8d8ab7f9b1ebe569d3b7144fc6aeb932db613761d53f5691642140fd1"
+    },
+    "native/source/carrier/libraries/Capacitor_SMD.pretty/C_1206_3216Metric.kicad_mod": {
+      "license": "CC-BY-SA-4.0 WITH KiCad-design-exception",
+      "origin": "release/archive/source/project/06_build/recovery/first-run-d3-staging/fabrication1/native/source/carrier/libraries/Capacitor_SMD.pretty/C_1206_3216Metric.kicad_mod",
+      "sha256": "6f1337e14dc56e4b86c7b4dce590745a6c48ee2f44fe389e11d99a4530ec8147"
+    },
+    "native/source/carrier/libraries/Capacitor_SMD.pretty/C_1210_3225Metric.kicad_mod": {
+      "license": "CC-BY-SA-4.0 WITH KiCad-design-exception",
+      "origin": "release/archive/source/project/06_build/recovery/first-run-d3-staging/fabrication1/native/source/carrier/libraries/Capacitor_SMD.pretty/C_1210_3225Metric.kicad_mod",
+      "sha256": "a818f14229427b805608e7f1d04b19192b5c62d7d66699d67b0371698ced1a9d"
+    },
+    "native/source/carrier/libraries/Connector_BarrelJack.pretty/BarrelJack_CUI_PJ-102AH_Horizontal.kicad_mod": {
+      "license": "CC-BY-SA-4.0 WITH KiCad-design-exception",
+      "origin": "release/archive/source/project/06_build/recovery/first-run-d3-staging/fabrication1/native/source/carrier/libraries/Connector_BarrelJack.pretty/BarrelJack_CUI_PJ-102AH_Horizontal.kicad_mod",
+      "sha256": "ccf2d7defdee45e747e29ab03074464da2c4e00be0e23dc4a827f9de60378155"
+    },
+    "native/source/carrier/libraries/Converter_DCDC.pretty/Converter_DCDC_RECOM_R-78E-0.5_THT.kicad_mod": {
+      "license": "CC-BY-SA-4.0 WITH KiCad-design-exception",
+      "origin": "release/archive/source/project/06_build/recovery/first-run-d3-staging/fabrication1/native/source/carrier/libraries/Converter_DCDC.pretty/Converter_DCDC_RECOM_R-78E-0.5_THT.kicad_mod",
+      "sha256": "7d53d6f48868f8c5dd17952506adfaf1181b5a1952aa161c60e054140d679d83"
+    },
+    "native/source/carrier/libraries/Diode_SMD.pretty/D_SMB.kicad_mod": {
+      "license": "CC-BY-SA-4.0 WITH KiCad-design-exception",
+      "origin": "release/archive/source/project/06_build/recovery/first-run-d3-staging/fabrication1/native/source/carrier/libraries/Diode_SMD.pretty/D_SMB.kicad_mod",
+      "sha256": "183d75738af38196d423e69f67b0fb62067b1f1a8a9068768a885de9e2afd16e"
+    },
+    "native/source/carrier/libraries/Diode_SMD.pretty/D_SMC.kicad_mod": {
+      "license": "CC-BY-SA-4.0 WITH KiCad-design-exception",
+      "origin": "release/archive/source/project/06_build/recovery/first-run-d3-staging/fabrication1/native/source/carrier/libraries/Diode_SMD.pretty/D_SMC.kicad_mod",
+      "sha256": "1735a71e2531d9c89a4078a90f0be1a4714b8a4898fbca8b8c62437dd20ed240"
+    },
+    "native/source/carrier/libraries/Diode_SMD.pretty/D_SOD-123.kicad_mod": {
+      "license": "CC-BY-SA-4.0 WITH KiCad-design-exception",
+      "origin": "release/archive/source/project/06_build/recovery/first-run-d3-staging/fabrication1/native/source/carrier/libraries/Diode_SMD.pretty/D_SOD-123.kicad_mod",
+      "sha256": "e289c5d99ede408dcca0014dd9f24aa954d558d3a3816635804c0d99c6571627"
+    },
+    "native/source/carrier/libraries/Fuse.pretty/Fuse_1206_3216Metric.kicad_mod": {
+      "license": "CC-BY-SA-4.0 WITH KiCad-design-exception",
+      "origin": "release/archive/source/project/06_build/recovery/first-run-d3-staging/fabrication1/native/source/carrier/libraries/Fuse.pretty/Fuse_1206_3216Metric.kicad_mod",
+      "sha256": "0c8572c5179325975421ca5d4d965fe98e327536847f509bf2011422402b218a"
+    },
+    "native/source/carrier/libraries/Fuse.pretty/Fuse_Littelfuse-NANO2-451_453.kicad_mod": {
+      "license": "CC-BY-SA-4.0 WITH KiCad-design-exception",
+      "origin": "release/archive/source/project/06_build/recovery/first-run-d3-staging/fabrication1/native/source/carrier/libraries/Fuse.pretty/Fuse_Littelfuse-NANO2-451_453.kicad_mod",
+      "sha256": "bcf7b66955eb6855685be58df07c368525f3a5f675ed3304f47e9c53aed4f46d"
+    },
+    "native/source/carrier/libraries/Module.pretty/RaspberryPi_Pico_Common_Unspecified.kicad_mod": {
+      "license": "CC-BY-SA-4.0 WITH KiCad-design-exception",
+      "origin": "release/archive/source/project/06_build/recovery/first-run-d3-staging/fabrication1/native/source/carrier/libraries/Module.pretty/RaspberryPi_Pico_Common_Unspecified.kicad_mod",
+      "sha256": "1929b46b777757b660888aca1151c99552e6fe5e7f00f10537e12a4eb651475b"
+    },
+    "native/source/carrier/libraries/Package_SO.pretty/SOIC-8_3.9x4.9mm_P1.27mm.kicad_mod": {
+      "license": "CC-BY-SA-4.0 WITH KiCad-design-exception",
+      "origin": "release/archive/source/project/06_build/recovery/first-run-d3-staging/fabrication1/native/source/carrier/libraries/Package_SO.pretty/SOIC-8_3.9x4.9mm_P1.27mm.kicad_mod",
+      "sha256": "8a1cfd595dc450600792d78537dd0598076ee0b8f1fe2b68c4703bdac4542440"
+    },
+    "native/source/carrier/libraries/Package_SO.pretty/TSSOP-30_4.4x7.8mm_P0.5mm.kicad_mod": {
+      "license": "CC-BY-SA-4.0 WITH KiCad-design-exception",
+      "origin": "release/archive/source/project/06_build/recovery/first-run-d3-staging/fabrication1/native/source/carrier/libraries/Package_SO.pretty/TSSOP-30_4.4x7.8mm_P0.5mm.kicad_mod",
+      "sha256": "48e0e90dc5f8ccbeb9aff324ad127ba28d30d6e5eb3c5a5e48a19138a6c0d829"
+    },
+    "native/source/carrier/libraries/Package_TO_SOT_SMD.pretty/SOT-23-5.kicad_mod": {
+      "license": "CC-BY-SA-4.0 WITH KiCad-design-exception",
+      "origin": "release/archive/source/project/06_build/recovery/first-run-d3-staging/fabrication1/native/source/carrier/libraries/Package_TO_SOT_SMD.pretty/SOT-23-5.kicad_mod",
+      "sha256": "71186eafd244071851f9e9f43cdbff8aec24001f730355364bac1d195936fe48"
+    },
+    "native/source/carrier/libraries/Package_TO_SOT_SMD.pretty/SOT-23.kicad_mod": {
+      "license": "CC-BY-SA-4.0 WITH KiCad-design-exception",
+      "origin": "release/archive/source/project/06_build/recovery/first-run-d3-staging/fabrication1/native/source/carrier/libraries/Package_TO_SOT_SMD.pretty/SOT-23.kicad_mod",
+      "sha256": "27d35c7c1a03508b1409dc61e7da85891f9c6a8ac5bd63638621bb8314a46d1a"
+    },
+    "native/source/carrier/libraries/Resistor_SMD.pretty/R_0603_1608Metric.kicad_mod": {
+      "license": "CC-BY-SA-4.0 WITH KiCad-design-exception",
+      "origin": "release/archive/source/project/06_build/recovery/first-run-d3-staging/fabrication1/native/source/carrier/libraries/Resistor_SMD.pretty/R_0603_1608Metric.kicad_mod",
+      "sha256": "be2ff2455f5f0039881d7be0024a6fe27337d4e26a58ca3fd6804accdd553ef3"
+    },
+    "native/source/pod/CrowPhysical.pretty/CMA-4544PF-W.kicad_mod": {
+      "license": "MIT",
+      "origin": "release/archive/source/project/06_build/recovery/first-run-d3-staging/fabrication1/native/source/pod/CrowPhysical.pretty/CMA-4544PF-W.kicad_mod",
+      "sha256": "d6c8d3588b0caaf0acf8fd3e9eac9b5e3ef653a35984a4d6ed60b06be0a08a70"
+    },
+    "native/source/pod/CrowPhysical.pretty/CPE-203.kicad_mod": {
+      "license": "MIT",
+      "origin": "release/archive/source/project/06_build/recovery/first-run-d3-staging/fabrication1/native/source/pod/CrowPhysical.pretty/CPE-203.kicad_mod",
+      "sha256": "0d0ccea35c121d6f84891112ac614dd4333219e102e928f762a81e5138e4e54b"
+    },
+    "native/source/pod/CrowPhysical.pretty/CTS_CB3LV_7050.kicad_mod": {
+      "license": "MIT",
+      "origin": "release/archive/source/project/06_build/recovery/first-run-d3-staging/fabrication1/native/source/pod/CrowPhysical.pretty/CTS_CB3LV_7050.kicad_mod",
+      "sha256": "b915317b1e3b4daf6844fbd675b3d7ba006bb78363df4b23afcd11556ad43cf4"
+    },
+    "native/source/pod/CrowPhysical.pretty/RJHSE-5080.kicad_mod": {
+      "license": "MIT",
+      "origin": "release/archive/source/project/06_build/recovery/first-run-d3-staging/fabrication1/native/source/pod/CrowPhysical.pretty/RJHSE-5080.kicad_mod",
+      "sha256": "2ae2700d5538905003882731c91a3add84067a8751dc01873a9e62df0c8f2951"
+    },
+    "native/source/pod/CrowPhysical.pretty/SP0504BAHTG.kicad_mod": {
+      "license": "MIT",
+      "origin": "release/archive/source/project/06_build/recovery/first-run-d3-staging/fabrication1/native/source/pod/CrowPhysical.pretty/SP0504BAHTG.kicad_mod",
+      "sha256": "078b620aef0afa61c868bf68737c470b0f12a3d70e11dac4ed1a1f8b9e178163"
+    },
+    "native/source/pod/fp-lib-table": {
+      "license": "MIT",
+      "origin": "release/archive/source/project/06_build/recovery/first-run-d3-staging/fabrication1/native/source/pod/fp-lib-table",
+      "sha256": "1f1d1683b7ff3242c5354c05df663ba41d8c30cc35b1aff9d0f92bf29d0407b4"
+    },
+    "native/source/pod/libraries/Capacitor_SMD.pretty/C_0805_2012Metric.kicad_mod": {
+      "license": "CC-BY-SA-4.0 WITH KiCad-design-exception",
+      "origin": "release/archive/source/project/06_build/recovery/first-run-d3-staging/fabrication1/native/source/pod/libraries/Capacitor_SMD.pretty/C_0805_2012Metric.kicad_mod",
+      "sha256": "61d879c8d8ab7f9b1ebe569d3b7144fc6aeb932db613761d53f5691642140fd1"
+    },
+    "native/source/pod/libraries/Capacitor_SMD.pretty/C_1206_3216Metric.kicad_mod": {
+      "license": "CC-BY-SA-4.0 WITH KiCad-design-exception",
+      "origin": "release/archive/source/project/06_build/recovery/first-run-d3-staging/fabrication1/native/source/pod/libraries/Capacitor_SMD.pretty/C_1206_3216Metric.kicad_mod",
+      "sha256": "6f1337e14dc56e4b86c7b4dce590745a6c48ee2f44fe389e11d99a4530ec8147"
+    },
+    "native/source/pod/libraries/Capacitor_SMD.pretty/C_1210_3225Metric.kicad_mod": {
+      "license": "CC-BY-SA-4.0 WITH KiCad-design-exception",
+      "origin": "release/archive/source/project/06_build/recovery/first-run-d3-staging/fabrication1/native/source/pod/libraries/Capacitor_SMD.pretty/C_1210_3225Metric.kicad_mod",
+      "sha256": "a818f14229427b805608e7f1d04b19192b5c62d7d66699d67b0371698ced1a9d"
+    },
+    "native/source/pod/libraries/Connector_BarrelJack.pretty/BarrelJack_CUI_PJ-102AH_Horizontal.kicad_mod": {
+      "license": "CC-BY-SA-4.0 WITH KiCad-design-exception",
+      "origin": "release/archive/source/project/06_build/recovery/first-run-d3-staging/fabrication1/native/source/pod/libraries/Connector_BarrelJack.pretty/BarrelJack_CUI_PJ-102AH_Horizontal.kicad_mod",
+      "sha256": "ccf2d7defdee45e747e29ab03074464da2c4e00be0e23dc4a827f9de60378155"
+    },
+    "native/source/pod/libraries/Converter_DCDC.pretty/Converter_DCDC_RECOM_R-78E-0.5_THT.kicad_mod": {
+      "license": "CC-BY-SA-4.0 WITH KiCad-design-exception",
+      "origin": "release/archive/source/project/06_build/recovery/first-run-d3-staging/fabrication1/native/source/pod/libraries/Converter_DCDC.pretty/Converter_DCDC_RECOM_R-78E-0.5_THT.kicad_mod",
+      "sha256": "55e56a930f682450358a4fd9763ef505ab2c88b5f3441ae9dfc727656f92826b"
+    },
+    "native/source/pod/libraries/Diode_SMD.pretty/D_SMB.kicad_mod": {
+      "license": "CC-BY-SA-4.0 WITH KiCad-design-exception",
+      "origin": "release/archive/source/project/06_build/recovery/first-run-d3-staging/fabrication1/native/source/pod/libraries/Diode_SMD.pretty/D_SMB.kicad_mod",
+      "sha256": "183d75738af38196d423e69f67b0fb62067b1f1a8a9068768a885de9e2afd16e"
+    },
+    "native/source/pod/libraries/Diode_SMD.pretty/D_SMC.kicad_mod": {
+      "license": "CC-BY-SA-4.0 WITH KiCad-design-exception",
+      "origin": "release/archive/source/project/06_build/recovery/first-run-d3-staging/fabrication1/native/source/pod/libraries/Diode_SMD.pretty/D_SMC.kicad_mod",
+      "sha256": "1735a71e2531d9c89a4078a90f0be1a4714b8a4898fbca8b8c62437dd20ed240"
+    },
+    "native/source/pod/libraries/Diode_SMD.pretty/D_SOD-123.kicad_mod": {
+      "license": "CC-BY-SA-4.0 WITH KiCad-design-exception",
+      "origin": "release/archive/source/project/06_build/recovery/first-run-d3-staging/fabrication1/native/source/pod/libraries/Diode_SMD.pretty/D_SOD-123.kicad_mod",
+      "sha256": "e289c5d99ede408dcca0014dd9f24aa954d558d3a3816635804c0d99c6571627"
+    },
+    "native/source/pod/libraries/Fuse.pretty/Fuse_1206_3216Metric.kicad_mod": {
+      "license": "CC-BY-SA-4.0 WITH KiCad-design-exception",
+      "origin": "release/archive/source/project/06_build/recovery/first-run-d3-staging/fabrication1/native/source/pod/libraries/Fuse.pretty/Fuse_1206_3216Metric.kicad_mod",
+      "sha256": "0c8572c5179325975421ca5d4d965fe98e327536847f509bf2011422402b218a"
+    },
+    "native/source/pod/libraries/Fuse.pretty/Fuse_Littelfuse-NANO2-451_453.kicad_mod": {
+      "license": "CC-BY-SA-4.0 WITH KiCad-design-exception",
+      "origin": "release/archive/source/project/06_build/recovery/first-run-d3-staging/fabrication1/native/source/pod/libraries/Fuse.pretty/Fuse_Littelfuse-NANO2-451_453.kicad_mod",
+      "sha256": "bcf7b66955eb6855685be58df07c368525f3a5f675ed3304f47e9c53aed4f46d"
+    },
+    "native/source/pod/libraries/Module.pretty/RaspberryPi_Pico_Common_Unspecified.kicad_mod": {
+      "license": "CC-BY-SA-4.0 WITH KiCad-design-exception",
+      "origin": "release/archive/source/project/06_build/recovery/first-run-d3-staging/fabrication1/native/source/pod/libraries/Module.pretty/RaspberryPi_Pico_Common_Unspecified.kicad_mod",
+      "sha256": "47f5c2710ea158eacff0d3899d8ec8244bf60878ab01174ae40bdca5100f87dd"
+    },
+    "native/source/pod/libraries/Package_SO.pretty/SOIC-8_3.9x4.9mm_P1.27mm.kicad_mod": {
+      "license": "CC-BY-SA-4.0 WITH KiCad-design-exception",
+      "origin": "release/archive/source/project/06_build/recovery/first-run-d3-staging/fabrication1/native/source/pod/libraries/Package_SO.pretty/SOIC-8_3.9x4.9mm_P1.27mm.kicad_mod",
+      "sha256": "8a1cfd595dc450600792d78537dd0598076ee0b8f1fe2b68c4703bdac4542440"
+    },
+    "native/source/pod/libraries/Package_SO.pretty/TSSOP-30_4.4x7.8mm_P0.5mm.kicad_mod": {
+      "license": "CC-BY-SA-4.0 WITH KiCad-design-exception",
+      "origin": "release/archive/source/project/06_build/recovery/first-run-d3-staging/fabrication1/native/source/pod/libraries/Package_SO.pretty/TSSOP-30_4.4x7.8mm_P0.5mm.kicad_mod",
+      "sha256": "48e0e90dc5f8ccbeb9aff324ad127ba28d30d6e5eb3c5a5e48a19138a6c0d829"
+    },
+    "native/source/pod/libraries/Package_TO_SOT_SMD.pretty/SOT-23-5.kicad_mod": {
+      "license": "CC-BY-SA-4.0 WITH KiCad-design-exception",
+      "origin": "release/archive/source/project/06_build/recovery/first-run-d3-staging/fabrication1/native/source/pod/libraries/Package_TO_SOT_SMD.pretty/SOT-23-5.kicad_mod",
+      "sha256": "71186eafd244071851f9e9f43cdbff8aec24001f730355364bac1d195936fe48"
+    },
+    "native/source/pod/libraries/Package_TO_SOT_SMD.pretty/SOT-23.kicad_mod": {
+      "license": "CC-BY-SA-4.0 WITH KiCad-design-exception",
+      "origin": "release/archive/source/project/06_build/recovery/first-run-d3-staging/fabrication1/native/source/pod/libraries/Package_TO_SOT_SMD.pretty/SOT-23.kicad_mod",
+      "sha256": "27d35c7c1a03508b1409dc61e7da85891f9c6a8ac5bd63638621bb8314a46d1a"
+    },
+    "native/source/pod/libraries/Resistor_SMD.pretty/R_0603_1608Metric.kicad_mod": {
+      "license": "CC-BY-SA-4.0 WITH KiCad-design-exception",
+      "origin": "release/archive/source/project/06_build/recovery/first-run-d3-staging/fabrication1/native/source/pod/libraries/Resistor_SMD.pretty/R_0603_1608Metric.kicad_mod",
+      "sha256": "be2ff2455f5f0039881d7be0024a6fe27337d4e26a58ca3fd6804accdd553ef3"
+    },
+    "native/source/pod/pod.kicad_pcb": {
+      "license": "MIT",
+      "origin": "release/archive/source/project/06_build/recovery/first-run-d3-staging/fabrication1/native/source/pod/pod.kicad_pcb",
+      "sha256": "791814ab6baf3ff10da15ebcd2be4e424d2b6682987557886b7763292e89855e"
+    },
+    "native/source/pod/pod.kicad_pro": {
+      "license": "MIT",
+      "origin": "release/archive/source/project/06_build/recovery/first-run-d3-staging/fabrication1/native/source/pod/pod.kicad_pro",
+      "sha256": "7dbf4a82b026f04bb3bd29037c55106d50abb59c5f664f5a83fccc4fad6b6cbe"
+    },
+    "pdf/carrier/assembly-bottom.pdf": {
+      "license": "MIT",
+      "origin": "release/archive/pdf/carrier/assembly-bottom.pdf",
+      "sha256": "74f35c6bbe64ef76c4c515f6540c6785f3d83be4ec1a06003bf51f37ade32635"
+    },
+    "pdf/carrier/assembly-top.pdf": {
+      "license": "MIT",
+      "origin": "release/archive/pdf/carrier/assembly-top.pdf",
+      "sha256": "29e769bba2233474b3d729a882d21fba5451a03b52a842520d4d738d60e26901"
+    },
+    "pdf/carrier/pcb.pdf": {
+      "license": "MIT",
+      "origin": "release/archive/pdf/carrier/pcb.pdf",
+      "sha256": "c6586a166ad281cdb71c7600241c90bf5b06abdbae8e507ce33cae928a9d8ba3"
+    },
+    "pdf/carrier/schematic.pdf": {
+      "license": "MIT",
+      "origin": "release/archive/pdf/carrier/schematic.pdf",
+      "sha256": "470854c77a160597fb576dc6c63ae4824d1e6d3733755229bd21db2c5500f23c"
+    },
+    "pdf/pod/assembly-bottom.pdf": {
+      "license": "MIT",
+      "origin": "release/archive/pdf/pod/assembly-bottom.pdf",
+      "sha256": "d832cac71217e3bab96135d6f12d24c9f2442829f476e75ad971aad437d9ad8d"
+    },
+    "pdf/pod/assembly-top.pdf": {
+      "license": "MIT",
+      "origin": "release/archive/pdf/pod/assembly-top.pdf",
+      "sha256": "9a79e2c09b23c28399abb83764fe80a7b14f23a93fd4f443ce42d1d4980fbaab"
+    },
+    "pdf/pod/pcb.pdf": {
+      "license": "MIT",
+      "origin": "release/archive/pdf/pod/pcb.pdf",
+      "sha256": "d2613ac69bf4e8c987a9211838525fc90b3cce103aca7c490b411cc96de582f2"
+    },
+    "pdf/pod/schematic.pdf": {
+      "license": "MIT",
+      "origin": "release/archive/pdf/pod/schematic.pdf",
+      "sha256": "1517fb6b9b69bfad272822f196f77e118732137c80ac0f7c12039c31edc9aafd"
+    },
+    "verification/architecture_locked.json": {
+      "license": "MIT",
+      "origin": "release/archive/verification/architecture_locked.json",
+      "sha256": "70405a570034eba9aaf7168938bf6acdafa516b6116d1ba235ea09b9cb9729e6"
+    },
+    "verification/assembly_verified.json": {
+      "license": "MIT",
+      "origin": "release/archive/verification/assembly_verified.json",
+      "sha256": "c2330941978d717fbe2122ffb447e3df31fa9cb83e1415c0fae4d6bc3d44c008"
+    },
+    "verification/commissioned_brief.json": {
+      "license": "MIT",
+      "origin": "release/archive/verification/commissioned_brief.json",
+      "sha256": "9b15aa68c22cea943899926de013c84af57cbcd43fb3900d548b3b049d4ef4c5"
+    },
+    "verification/fabrication_staged.json": {
+      "license": "MIT",
+      "origin": "release/archive/verification/fabrication_staged.json",
+      "sha256": "8f6675cc57ae21525f1a16f47330200b2b5bfcb95dc101a1b3ffcb5c0367b59f"
+    },
+    "verification/layout_sealed.json": {
+      "license": "MIT",
+      "origin": "release/archive/verification/layout_sealed.json",
+      "sha256": "8de480d0644e1bad07971120bea29826e6156b6b55e43f5d6dbacd66a088768f"
+    },
+    "verification/mating_clearance.json": {
+      "license": "MIT",
+      "origin": "release/archive/verification/mating_clearance.json",
+      "sha256": "459fb6546d1d9f96e22720632ba58425fcef1e33643fa5f29bfe91cd8eb2417c"
+    },
+    "verification/order-policy.json": {
+      "license": "MIT",
+      "origin": "release/archive/verification/order-policy.json",
+      "sha256": "e48fb42d51dc1c0fddd22e6c2ebf1f50006f2cc5cbd6f4a3ca11865b262a77eb"
+    },
+    "verification/parts_locked.json": {
+      "license": "MIT",
+      "origin": "release/archive/verification/parts_locked.json",
+      "sha256": "9f683ee57f845e43236c22d993fc1644a1eaf33668baaa3f7713c74305bb2317"
+    },
+    "verification/placement_reviewed.json": {
+      "license": "MIT",
+      "origin": "release/archive/verification/placement_reviewed.json",
+      "sha256": "df208faf3707205bd9fedc17c4ff04f4cbb634b0de10b12f38477094cfcaaf77"
+    },
+    "verification/reviews/2026-10-05-commission.md": {
+      "license": "MIT",
+      "origin": "release/archive/verification/reviews/2026-10-05-commission.md",
+      "sha256": "955f21222ff881cb41c54bacaff10de6a33086240bd670a59ffb605285a9c43c"
+    },
+    "verification/reviews/2026-10-22-first-run-architecture.md": {
+      "license": "MIT",
+      "origin": "release/archive/verification/reviews/2026-10-22-first-run-architecture.md",
+      "sha256": "f85f994cdb6e248dc8feef41d4711b94d9e07bfd76571f76b745d83b99d7798a"
+    },
+    "verification/reviews/2026-10-22-first-run-mating-complete.md": {
+      "license": "MIT",
+      "origin": "release/archive/verification/reviews/2026-10-22-first-run-mating-complete.md",
+      "sha256": "fd1a67cd66e87eca209d21208933ca88415818dac3d01e23e70139b255f92106"
+    },
+    "verification/reviews/2026-10-22-first-run-placement.md": {
+      "license": "MIT",
+      "origin": "release/archive/verification/reviews/2026-10-22-first-run-placement.md",
+      "sha256": "897cfb02f3988eb1a73fe68892052c5acbd1ee1344db282df32b36cfbfed14e0"
+    },
+    "verification/reviews/2026-10-22-first-run-schematic-costscope.md": {
+      "license": "MIT",
+      "origin": "release/archive/verification/reviews/2026-10-22-first-run-schematic-costscope.md",
+      "sha256": "b1d4d24921f2a2db95d3600bfe327c1e2b59e77de556d7cef3cde4a9b818b768"
+    },
+    "verification/reviews/2026-10-22-first-run-sourcing-costscope.md": {
+      "license": "MIT",
+      "origin": "release/archive/verification/reviews/2026-10-22-first-run-sourcing-costscope.md",
+      "sha256": "9b38bc5f25d904b90ab047d895ff3c537dc9634c3996a2c030a8e63aacad865d"
+    },
+    "verification/reviews/2026-10-23-first-run-d3-assembly.md": {
+      "license": "MIT",
+      "origin": "release/archive/verification/reviews/2026-10-23-first-run-d3-assembly.md",
+      "sha256": "68b98a3f8f50d038701f29ca7e529b6c7b552add5e5ffea096f2be1adbece51b"
+    },
+    "verification/reviews/2026-10-23-first-run-d3-fabrication.md": {
+      "license": "MIT",
+      "origin": "release/archive/verification/reviews/2026-10-23-first-run-d3-fabrication.md",
+      "sha256": "06a30d05a0b18888d84a35b793f7d4e69414ed807541e6fbb3cb5efc813eb4bc"
+    },
+    "verification/reviews/2026-10-23-first-run-d3-layout.md": {
+      "license": "MIT",
+      "origin": "release/archive/verification/reviews/2026-10-23-first-run-d3-layout.md",
+      "sha256": "2d55f054f6ddf6e77b9a5572978ff6649c6b78bd582393b87d5be0185240e35c"
+    },
+    "verification/reviews/2026-10-23-first-run-d3-routing.md": {
+      "license": "MIT",
+      "origin": "release/archive/verification/reviews/2026-10-23-first-run-d3-routing.md",
+      "sha256": "527e90c91c975441abc2c5c5071591160c648790ee4754f88ffafed46a312699"
+    },
+    "verification/routed_board.json": {
+      "license": "MIT",
+      "origin": "release/archive/verification/routed_board.json",
+      "sha256": "03c25067756429ea773966917715d4eb284ceebfde75fdfa23a647d4c95d42f8"
+    },
+    "verification/schematic_reviewed.json": {
+      "license": "MIT",
+      "origin": "release/archive/verification/schematic_reviewed.json",
+      "sha256": "0d846cab2167ff2cde962b16606ae2ac49eb3fb404454da2fd935661306393af"
+    }
+  },
+  "kind": "public-derivative-not-sealed-replay",
+  "native": {
+    "carrier": {
+      "netlist": "native/design/06_build/recovery/first-run-r3-native/carrier/native.xml",
+      "pcb": "native/source/carrier/carrier.kicad_pcb",
+      "project": "native/source/carrier/carrier.kicad_pro",
+      "schematic": "native/design/03_src/recovery/first-run-r3-source/crow-carrier.kicad_sch"
+    },
+    "pod": {
+      "netlist": "native/design/06_build/recovery/first-run-r3-native/pod/native.xml",
+      "pcb": "native/source/pod/pod.kicad_pcb",
+      "project": "native/source/pod/pod.kicad_pro",
+      "schematic": "native/design/03_src/recovery/first-run-r3-source/crow-pod.kicad_sch"
+    }
+  },
+  "order_verdict": "DO-NOT-ORDER",
+  "original_design_verdict": "SOUND",
+  "package_id": "crow-prototype-v3-first-run-5c10p-public-v1",
+  "schema": 1,
+  "seal_sha256": "c2b89fdaf364b7538cd58bf0e52a150c8bde3b9cd1f2b52f2010adfafc398a50"
+}
