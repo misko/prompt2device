@@ -20,3 +20,5 @@ jobs:
         run: python3 -B projects/crow-array/publication.py verify
       - name: Negative controls against changed and self-rehashed packages
         run: python3 -B -m unittest discover -s projects/crow-array -p test_publication.py
+      - name: Exact sourcing evidence and assembly ownership regression checks
+        run: python3 -B -m unittest discover -s projects/crow-array/order-readiness -p 'test_*.py'

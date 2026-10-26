@@ -1,0 +1,1564 @@
+{
+  "boards": {
+    "carrier": {
+      "quantity": 5,
+      "version": "rev-a-first-run-r3-d3"
+    },
+    "pod": {
+      "quantity": 10,
+      "version": "rev-a-first-run"
+    }
+  },
+  "demand_sha256": "bb707f71c9c0cbdd4cc1e681b250c42b90c7122eb6ac3018c7cbe550aa482194",
+  "installed_need": 1000,
+  "lookup_tool_sha256": "26935f6dd63aa76e5276fb0c68f2db203615a1a14cd42f4b6fd694e6e0df1a09",
+  "results": [
+    {
+      "evidence": {
+        "authority": "LOOKUP_EVIDENCE_ONLY",
+        "build_need": 50,
+        "inventory_updated_at": null,
+        "lookup_state": "no_exact_match",
+        "matches": [],
+        "mpn": "RJHSE-5080",
+        "provenance": {
+          "http_age": null,
+          "http_date": "Mon, 26 Oct 2026 15:01:27 GMT",
+          "retrieved_at": "2026-10-26T15:01:27.613148+00:00",
+          "sha256": "26384b82025135bd8d9fad47c9d81c4f0f79c192774364d137298905ce71256f",
+          "url": "https://jlcsearch.tscircuit.com/api/search?q=RJHSE-5080&limit=5"
+        },
+        "raw_response": {
+          "components": [
+            {
+              "description": "-55\u2103~+200\u2103@(Tj) 1.5V 10uA 120V 150MHz 1A 1W 2000 NPN TO-92 Darlington Transistors ROHS",
+              "is_basic": false,
+              "is_preferred": false,
+              "lcsc": 443658,
+              "mfr": "ZTX605",
+              "package": "TO-92",
+              "price": 0.7663,
+              "stock": 505
+            }
+          ]
+        },
+        "request_url": "https://jlcsearch.tscircuit.com/api/search?q=RJHSE-5080&limit=5",
+        "returned_rows": 1,
+        "source_kind": "aggregate_snapshot",
+        "sourcing_guard": "provisional"
+      },
+      "subject": {
+        "manufacturer": "Amphenol",
+        "mpn": "RJHSE-5080",
+        "quantity": "50"
+      }
+    },
+    {
+      "evidence": {
+        "authority": "LOOKUP_EVIDENCE_ONLY",
+        "build_need": 5,
+        "inventory_updated_at": null,
+        "lookup_state": "no_exact_match",
+        "matches": [],
+        "mpn": "CB3LV-3I-12M288000",
+        "provenance": {
+          "http_age": null,
+          "http_date": "Mon, 26 Oct 2026 15:01:27 GMT",
+          "retrieved_at": "2026-10-26T15:01:27.634732+00:00",
+          "sha256": "ac46fd24bd501fa7297f0a2945bcc7f5d655b9bcf8bfbf16718a9d25c0c2c018",
+          "url": "https://jlcsearch.tscircuit.com/api/search?q=CB3LV-3I-12M288000&limit=5"
+        },
+        "raw_response": {
+          "components": []
+        },
+        "request_url": "https://jlcsearch.tscircuit.com/api/search?q=CB3LV-3I-12M288000&limit=5",
+        "returned_rows": 0,
+        "source_kind": "aggregate_snapshot",
+        "sourcing_guard": "provisional"
+      },
+      "subject": {
+        "manufacturer": "CTS-Frequency Controls",
+        "mpn": "CB3LV-3I-12M288000",
+        "quantity": "5"
+      }
+    },
+    {
+      "evidence": {
+        "authority": "LOOKUP_EVIDENCE_ONLY",
+        "build_need": 5,
+        "inventory_updated_at": null,
+        "lookup_state": "no_exact_match",
+        "matches": [],
+        "mpn": "1N5819HW-7-F",
+        "provenance": {
+          "http_age": null,
+          "http_date": "Mon, 26 Oct 2026 15:01:27 GMT",
+          "retrieved_at": "2026-10-26T15:01:27.544334+00:00",
+          "sha256": "2f540adced467b4fbd01c90b7e4e60a62e515234461158ee948c1c0ee904ba0a",
+          "url": "https://jlcsearch.tscircuit.com/api/search?q=1N5819HW-7-F&limit=5"
+        },
+        "raw_response": {
+          "components": [
+            {
+              "description": "-40\u2103~+85\u2103 1 1A 4.2V 4.35V~8V 70uA Charging IC Lithium Battery Support ESOP-8 Battery Management ROHS",
+              "is_basic": false,
+              "is_preferred": false,
+              "lcsc": 41413021,
+              "mfr": "TP4066L-4.2V-ESOP8",
+              "package": "ESOP-8",
+              "price": 0.0566,
+              "stock": 2952
+            },
+            {
+              "description": "",
+              "is_basic": false,
+              "is_preferred": false,
+              "lcsc": 7435431,
+              "mfr": "ES3GB",
+              "package": "SMB",
+              "price": 0.0381,
+              "stock": 1612
+            },
+            {
+              "description": "-40\u2103~+125\u2103 100\u03a9@100MHz 10m\u03a9 13m\u03a9 2 500V 50V 6A SMD-4P,5x4.8mm Common Mode Filters ROHS",
+              "is_basic": false,
+              "is_preferred": false,
+              "lcsc": 4945112,
+              "mfr": "YLM5025-101T",
+              "package": "SMD-4P,5x4.8mm",
+              "price": 0.6264,
+              "stock": 1128
+            },
+            {
+              "description": "6 Holder - Connector Accessories ROHS",
+              "is_basic": false,
+              "is_preferred": false,
+              "lcsc": 25168710,
+              "mfr": "42022-6G",
+              "package": "-",
+              "price": 0.3032,
+              "stock": 200
+            },
+            {
+              "description": "-30\u2103~+80\u2103 12V 2.6N 50mA 60,000 cycles 6mm 6mm 9.5mm Gull Wing Round Button SPST-NO Surface Mount,Vertical SMD-4P,6x6mm Tactile Switches ROHS",
+              "is_basic": false,
+              "is_preferred": false,
+              "lcsc": 4365135,
+              "mfr": "TS04-66-95-BK-260-SMT",
+              "package": "SMD-4P,6x6mm",
+              "price": 0.3742,
+              "stock": 92
+            }
+          ]
+        },
+        "request_url": "https://jlcsearch.tscircuit.com/api/search?q=1N5819HW-7-F&limit=5",
+        "returned_rows": 5,
+        "source_kind": "aggregate_snapshot",
+        "sourcing_guard": "provisional"
+      },
+      "subject": {
+        "manufacturer": "Diodes Incorporated",
+        "mpn": "1N5819HW-7-F",
+        "quantity": "5"
+      }
+    },
+    {
+      "evidence": {
+        "authority": "LOOKUP_EVIDENCE_ONLY",
+        "build_need": 20,
+        "inventory_updated_at": null,
+        "lookup_state": "no_exact_match",
+        "matches": [],
+        "mpn": "BAT54S-7-F",
+        "provenance": {
+          "http_age": null,
+          "http_date": "Mon, 26 Oct 2026 15:01:27 GMT",
+          "retrieved_at": "2026-10-26T15:01:27.349154+00:00",
+          "sha256": "7f91dfc05f7fc0a9c5856f4b222e080ba90a7fe805cc27562968cb5200725796",
+          "url": "https://jlcsearch.tscircuit.com/api/search?q=BAT54S-7-F&limit=5"
+        },
+        "raw_response": {
+          "components": [
+            {
+              "description": "-55\u2103~+125\u2103 1 2.2A 220\u03a9@100MHz 50m\u03a9 \u00b125% 0603 Ferrite Beads ROHS",
+              "is_basic": false,
+              "is_preferred": false,
+              "lcsc": 307771,
+              "mfr": "MPZ1608S221ATD25",
+              "package": "0603",
+              "price": 0.0261,
+              "stock": 90647
+            },
+            {
+              "description": "-55\u2103~+150\u2103 1 P-Channel 10pF 10\u03a9@5V 130mA 225mW 2V 30pF 50V 5pF SOT-23 MOSFETs ROHS",
+              "is_basic": false,
+              "is_preferred": false,
+              "lcsc": 3018484,
+              "mfr": "BSS84",
+              "package": "SOT-23",
+              "price": 0.0243,
+              "stock": 25654
+            },
+            {
+              "description": "",
+              "is_basic": false,
+              "is_preferred": false,
+              "lcsc": 6077530,
+              "mfr": "MUR420",
+              "package": "DO-27",
+              "price": 0.1543,
+              "stock": 23852
+            },
+            {
+              "description": "\u63d2\u4ef6,P=5.1mm Resettable Fuses ROHS",
+              "is_basic": false,
+              "is_preferred": false,
+              "lcsc": 49166720,
+              "mfr": "H60-160",
+              "package": "\u63d2\u4ef6,P=5.1mm",
+              "price": 0.0995,
+              "stock": 19441
+            },
+            {
+              "description": "-40\u2103~+85\u2103 1.8V~5.5V 10bit 16 256Byte 32MHz 384Byte 7KB 8 Bit Built-in FLASH PIC SSOP-20-208mil Microcontrollers (MCU/MPU/SOC) ROHS",
+              "is_basic": false,
+              "is_preferred": false,
+              "lcsc": 48242,
+              "mfr": "PIC16F1827T-I/SS",
+              "package": "SSOP-20-208mil",
+              "price": 2.6405,
+              "stock": 14674
+            }
+          ]
+        },
+        "request_url": "https://jlcsearch.tscircuit.com/api/search?q=BAT54S-7-F&limit=5",
+        "returned_rows": 5,
+        "source_kind": "aggregate_snapshot",
+        "sourcing_guard": "provisional"
+      },
+      "subject": {
+        "manufacturer": "Diodes Incorporated",
+        "mpn": "BAT54S-7-F",
+        "quantity": "20"
+      }
+    },
+    {
+      "evidence": {
+        "authority": "LOOKUP_EVIDENCE_ONLY",
+        "build_need": 80,
+        "inventory_updated_at": null,
+        "lookup_state": "no_exact_match",
+        "matches": [],
+        "mpn": "BZT52C3V9-7-F",
+        "provenance": {
+          "http_age": null,
+          "http_date": "Mon, 26 Oct 2026 15:01:27 GMT",
+          "retrieved_at": "2026-10-26T15:01:27.897317+00:00",
+          "sha256": "d0fcc87efae950c59088a1fa25a10e1247f0f08e7771fc29c1080e657f739a9f",
+          "url": "https://jlcsearch.tscircuit.com/api/search?q=BZT52C3V9-7-F&limit=5"
+        },
+        "raw_response": {
+          "components": [
+            {
+              "description": "-55\u2103~+150\u2103 1 P-Channel 12A 18m\u03a9@10V 2.5V 2.5W 2.8nF 220pF 40V 40nC@20V SOP-8 MOSFETs ROHS",
+              "is_basic": false,
+              "is_preferred": false,
+              "lcsc": 5197355,
+              "mfr": "DMP4015SSS",
+              "package": "SOP-8",
+              "price": 0.2516,
+              "stock": 6586
+            },
+            {
+              "description": "1 Independent 10.4V~11.6V 100nA@8V 11V 300mW 30\u03a9 SOD-323 Zener Diodes ROHS",
+              "is_basic": false,
+              "is_preferred": false,
+              "lcsc": 2832605,
+              "mfr": "MM3Z11",
+              "package": "SOD-323",
+              "price": 0.0153,
+              "stock": 3001
+            },
+            {
+              "description": "-55\u2103~+150\u2103 1 Independent 1.3V@1A 1A 200V 30A 50ns 5uA DO-214AD Fast Recovery / High Efficiency Diodes ROHS",
+              "is_basic": false,
+              "is_preferred": false,
+              "lcsc": 2923904,
+              "mfr": "US1DF",
+              "package": "DO-214AD",
+              "price": 0.0218,
+              "stock": 2860
+            },
+            {
+              "description": "1 Independent 130\u03a9 2uA@1V 300mW 4.4V~5V 4.7V SOD-323 Zener Diodes ROHS",
+              "is_basic": false,
+              "is_preferred": false,
+              "lcsc": 2832596,
+              "mfr": "MM3Z4V7",
+              "package": "SOD-323",
+              "price": 0.0192,
+              "stock": 2453
+            },
+            {
+              "description": "-40\u2103~+105\u2103 11mm 195mA@100kHz 22uF 2mm 400m\u03a9@100kHz 50V 5mm 6000hrs@105\u2103 \u00b120% \u63d2\u4ef6,D5xL11mm Aluminum Electrolytic Capacitors - Leaded ROHS",
+              "is_basic": false,
+              "is_preferred": false,
+              "lcsc": 359194,
+              "mfr": "NXH 50V22 5*11",
+              "package": "\u63d2\u4ef6,D5xL11mm",
+              "price": 0.0889,
+              "stock": 2225
+            }
+          ]
+        },
+        "request_url": "https://jlcsearch.tscircuit.com/api/search?q=BZT52C3V9-7-F&limit=5",
+        "returned_rows": 5,
+        "source_kind": "aggregate_snapshot",
+        "sourcing_guard": "provisional"
+      },
+      "subject": {
+        "manufacturer": "Diodes Incorporated",
+        "mpn": "BZT52C3V9-7-F",
+        "quantity": "80"
+      }
+    },
+    {
+      "evidence": {
+        "authority": "LOOKUP_EVIDENCE_ONLY",
+        "build_need": 50,
+        "inventory_updated_at": null,
+        "lookup_state": "no_exact_match",
+        "matches": [],
+        "mpn": "DMN3023L-7",
+        "provenance": {
+          "http_age": null,
+          "http_date": "Mon, 26 Oct 2026 15:01:28 GMT",
+          "retrieved_at": "2026-10-26T15:01:28.364880+00:00",
+          "sha256": "8e1d48fc00dad5f1d745955c754788339e05cbcbc3f4bd723a6f3e40a48f0e2e",
+          "url": "https://jlcsearch.tscircuit.com/api/search?q=DMN3023L-7&limit=5"
+        },
+        "raw_response": {
+          "components": [
+            {
+              "description": "\u63d2\u4ef6 Tactile Switches ROHS",
+              "is_basic": false,
+              "is_preferred": false,
+              "lcsc": 53224015,
+              "mfr": "FG-TC-06D-07-5H",
+              "package": "\u63d2\u4ef6",
+              "price": 0.1178,
+              "stock": 500
+            }
+          ]
+        },
+        "request_url": "https://jlcsearch.tscircuit.com/api/search?q=DMN3023L-7&limit=5",
+        "returned_rows": 1,
+        "source_kind": "aggregate_snapshot",
+        "sourcing_guard": "provisional"
+      },
+      "subject": {
+        "manufacturer": "Diodes Incorporated",
+        "mpn": "DMN3023L-7",
+        "quantity": "50"
+      }
+    },
+    {
+      "evidence": {
+        "authority": "LOOKUP_EVIDENCE_ONLY",
+        "build_need": 5,
+        "inventory_updated_at": null,
+        "lookup_state": "no_exact_match",
+        "matches": [],
+        "mpn": "0451001.MRL",
+        "provenance": {
+          "http_age": null,
+          "http_date": "Mon, 26 Oct 2026 15:01:28 GMT",
+          "retrieved_at": "2026-10-26T15:01:28.210010+00:00",
+          "sha256": "ac46fd24bd501fa7297f0a2945bcc7f5d655b9bcf8bfbf16718a9d25c0c2c018",
+          "url": "https://jlcsearch.tscircuit.com/api/search?q=0451001.MRL&limit=5"
+        },
+        "raw_response": {
+          "components": []
+        },
+        "request_url": "https://jlcsearch.tscircuit.com/api/search?q=0451001.MRL&limit=5",
+        "returned_rows": 0,
+        "source_kind": "aggregate_snapshot",
+        "sourcing_guard": "provisional"
+      },
+      "subject": {
+        "manufacturer": "Littelfuse",
+        "mpn": "0451001.MRL",
+        "quantity": "5"
+      }
+    },
+    {
+      "evidence": {
+        "authority": "LOOKUP_EVIDENCE_ONLY",
+        "build_need": 50,
+        "inventory_updated_at": null,
+        "lookup_state": "no_exact_match",
+        "matches": [],
+        "mpn": "1206L010/30WR",
+        "provenance": {
+          "http_age": null,
+          "http_date": "Mon, 26 Oct 2026 15:01:28 GMT",
+          "retrieved_at": "2026-10-26T15:01:28.362804+00:00",
+          "sha256": "ac46fd24bd501fa7297f0a2945bcc7f5d655b9bcf8bfbf16718a9d25c0c2c018",
+          "url": "https://jlcsearch.tscircuit.com/api/search?q=1206L010%2F30WR&limit=5"
+        },
+        "raw_response": {
+          "components": []
+        },
+        "request_url": "https://jlcsearch.tscircuit.com/api/search?q=1206L010%2F30WR&limit=5",
+        "returned_rows": 0,
+        "source_kind": "aggregate_snapshot",
+        "sourcing_guard": "provisional"
+      },
+      "subject": {
+        "manufacturer": "Littelfuse",
+        "mpn": "1206L010/30WR",
+        "quantity": "50"
+      }
+    },
+    {
+      "evidence": {
+        "authority": "LOOKUP_EVIDENCE_ONLY",
+        "build_need": 15,
+        "inventory_updated_at": null,
+        "lookup_state": "no_exact_match",
+        "matches": [],
+        "mpn": "SMBJ15A",
+        "provenance": {
+          "http_age": null,
+          "http_date": "Mon, 26 Oct 2026 15:01:28 GMT",
+          "retrieved_at": "2026-10-26T15:01:28.583041+00:00",
+          "sha256": "375c649d1b96a9918339e9f848a6a7126777f17b274675f4659b0f4ac27a5c07",
+          "url": "https://jlcsearch.tscircuit.com/api/search?q=SMBJ15A&limit=5"
+        },
+        "raw_response": {
+          "components": [
+            {
+              "description": "-40\u2103~+125\u2103@(Tj) 1 1.7V 100mA 20V 42uV 49dB@(120Hz) 5V Fixed Over Temperature Protection\u3001Short Circuit Protection Positive SOT-89-3 Voltage Regulators - Linear, Low Drop Out (LDO) Regulators ROHS",
+              "is_basic": false,
+              "is_preferred": false,
+              "lcsc": 507276,
+              "mfr": "UA78L05AIPK",
+              "package": "SOT-89-3",
+              "price": 0.2099,
+              "stock": 13843
+            },
+            {
+              "description": "-20\u2103~+85\u2103 2,000 cycles 2.54mm 24V 25mA 4 SPST \u63d2\u4ef6,P=2.54mm DIP Switches ROHS",
+              "is_basic": false,
+              "is_preferred": false,
+              "lcsc": 501551,
+              "mfr": "EI-04-Q",
+              "package": "\u63d2\u4ef6,P=2.54mm",
+              "price": 0.5873,
+              "stock": 10030
+            },
+            {
+              "description": "-40\u2103~+125\u2103 -8V~-1.35V\u30011.35V~8V 1 105mA 1pA 1pA 2.4V/us 2.7V~16V 2mV 2uV/\u2103 39nV/\u221aHz@1kHz 3MHz 550uA 68dB Enable/shutdown function Rail-to-Rail Input, Rail-to-Rail Output SOIC-8 Operational Amplifier ROHS",
+              "is_basic": false,
+              "is_preferred": false,
+              "lcsc": 2860324,
+              "mfr": "TLV2370IDR",
+              "package": "SOIC-8",
+              "price": 1.5862,
+              "stock": 5081
+            },
+            {
+              "description": "10@100MHz 200m\u03a9 4.7nH 500mA 6GHz 0603 Inductors (SMD) ROHS",
+              "is_basic": false,
+              "is_preferred": false,
+              "lcsc": 964024,
+              "mfr": "HBLS1608-4N7S",
+              "package": "0603",
+              "price": 0.0135,
+              "stock": 3801
+            },
+            {
+              "description": "",
+              "is_basic": false,
+              "is_preferred": false,
+              "lcsc": 48995602,
+              "mfr": "TS331ILT-TP",
+              "package": "SOT-23-5",
+              "price": 0.1136,
+              "stock": 2750
+            }
+          ]
+        },
+        "request_url": "https://jlcsearch.tscircuit.com/api/search?q=SMBJ15A&limit=5",
+        "returned_rows": 5,
+        "source_kind": "aggregate_snapshot",
+        "sourcing_guard": "provisional"
+      },
+      "subject": {
+        "manufacturer": "Littelfuse",
+        "mpn": "SMBJ15A",
+        "quantity": "15"
+      }
+    },
+    {
+      "evidence": {
+        "authority": "LOOKUP_EVIDENCE_ONLY",
+        "build_need": 50,
+        "inventory_updated_at": null,
+        "lookup_state": "no_exact_match",
+        "matches": [],
+        "mpn": "SP0504BAHTG",
+        "provenance": {
+          "http_age": null,
+          "http_date": "Mon, 26 Oct 2026 15:01:28 GMT",
+          "retrieved_at": "2026-10-26T15:01:28.760644+00:00",
+          "sha256": "57b0777d340eadd9d2cefdd6279944843a8961d034e86df295bae17da00afe32",
+          "url": "https://jlcsearch.tscircuit.com/api/search?q=SP0504BAHTG&limit=5"
+        },
+        "raw_response": {
+          "components": [
+            {
+              "description": "-55\u2103~+125\u2103 1 135ns 3V~18V 5.5MHz Asynchronous Divide-by-10 Rising Edge Synchronous Up Counter TSSOP-16 Counters, Dividers ROHS",
+              "is_basic": false,
+              "is_preferred": false,
+              "lcsc": 1499649,
+              "mfr": "CD4017BPW",
+              "package": "TSSOP-16",
+              "price": 0.5499,
+              "stock": 211
+            },
+            {
+              "description": "-40\u2103~+85\u2103\u3001-20\u2103~+70\u2103\u3001-20\u2103~+70\u2103 10000 times\u300110000 times\u300110000 times 12V\u300112V\u300112V 1A\u30011A\u30011A 2.5mm\u30013mm\u30014mm 2P\u30012P\u30012P 3mm\u30013mm\u300111.2mm 4mm\u30014mm\u300113mm 50m\u03a9\u300150m\u03a9\u300150m\u03a9 Brass\u3001Brass\u3001Brass Gold\u3001Gold\u3001Gold Pogo Pin\u3001Pogo Pin\u3001Pogo Pin - Pogo Pin Spring Probe Connector ROHS",
+              "is_basic": false,
+              "is_preferred": false,
+              "lcsc": 5280827,
+              "mfr": "YZ00415040R-02025-01",
+              "package": "-",
+              "price": 1.1047,
+              "stock": 103
+            }
+          ]
+        },
+        "request_url": "https://jlcsearch.tscircuit.com/api/search?q=SP0504BAHTG&limit=5",
+        "returned_rows": 2,
+        "source_kind": "aggregate_snapshot",
+        "sourcing_guard": "provisional"
+      },
+      "subject": {
+        "manufacturer": "Littelfuse",
+        "mpn": "SP0504BAHTG",
+        "quantity": "50"
+      }
+    },
+    {
+      "evidence": {
+        "authority": "LOOKUP_EVIDENCE_ONLY",
+        "build_need": 20,
+        "inventory_updated_at": null,
+        "lookup_state": "no_exact_match",
+        "matches": [],
+        "mpn": "GRM21BR71A105KA01L",
+        "provenance": {
+          "http_age": null,
+          "http_date": "Mon, 26 Oct 2026 15:01:29 GMT",
+          "retrieved_at": "2026-10-26T15:01:29.052957+00:00",
+          "sha256": "ac46fd24bd501fa7297f0a2945bcc7f5d655b9bcf8bfbf16718a9d25c0c2c018",
+          "url": "https://jlcsearch.tscircuit.com/api/search?q=GRM21BR71A105KA01L&limit=5"
+        },
+        "raw_response": {
+          "components": []
+        },
+        "request_url": "https://jlcsearch.tscircuit.com/api/search?q=GRM21BR71A105KA01L&limit=5",
+        "returned_rows": 0,
+        "source_kind": "aggregate_snapshot",
+        "sourcing_guard": "provisional"
+      },
+      "subject": {
+        "manufacturer": "Murata",
+        "mpn": "GRM21BR71A105KA01L",
+        "quantity": "20"
+      }
+    },
+    {
+      "evidence": {
+        "authority": "LOOKUP_EVIDENCE_ONLY",
+        "build_need": 40,
+        "inventory_updated_at": null,
+        "lookup_state": "no_exact_match",
+        "matches": [],
+        "mpn": "GRM21BR71A106MA73L",
+        "provenance": {
+          "http_age": null,
+          "http_date": "Mon, 26 Oct 2026 15:01:29 GMT",
+          "retrieved_at": "2026-10-26T15:01:29.092613+00:00",
+          "sha256": "469bc3bad962441c8b908b94274efdf7262f793d2cd5428bf569a06ad4bb6b3e",
+          "url": "https://jlcsearch.tscircuit.com/api/search?q=GRM21BR71A106MA73L&limit=5"
+        },
+        "raw_response": {
+          "components": [
+            {
+              "description": "-40\u2103~+85\u2103 0.8pF 100M\u03a9 200V 300A \u00b120% SMD,3.4x1.4mm Glass Discharge Tubes ROHS",
+              "is_basic": false,
+              "is_preferred": false,
+              "lcsc": 522981,
+              "mfr": "BK32001002-M",
+              "package": "SMD,3.4x1.4mm",
+              "price": 0.0606,
+              "stock": 850
+            }
+          ]
+        },
+        "request_url": "https://jlcsearch.tscircuit.com/api/search?q=GRM21BR71A106MA73L&limit=5",
+        "returned_rows": 1,
+        "source_kind": "aggregate_snapshot",
+        "sourcing_guard": "provisional"
+      },
+      "subject": {
+        "manufacturer": "Murata",
+        "mpn": "GRM21BR71A106MA73L",
+        "quantity": "40"
+      }
+    },
+    {
+      "evidence": {
+        "authority": "LOOKUP_EVIDENCE_ONLY",
+        "build_need": 80,
+        "inventory_updated_at": null,
+        "lookup_state": "no_exact_match",
+        "matches": [],
+        "mpn": "GRM31MR71E225KA93L",
+        "provenance": {
+          "http_age": null,
+          "http_date": "Mon, 26 Oct 2026 15:01:29 GMT",
+          "retrieved_at": "2026-10-26T15:01:29.670336+00:00",
+          "sha256": "e2fb96f44300ab510479e9ce249ab30bbed9c3dfe2a698de9a1939644c0b83e0",
+          "url": "https://jlcsearch.tscircuit.com/api/search?q=GRM31MR71E225KA93L&limit=5"
+        },
+        "raw_response": {
+          "components": [
+            {
+              "description": "",
+              "is_basic": false,
+              "is_preferred": false,
+              "lcsc": 7468906,
+              "mfr": "H0915S-1WR2",
+              "package": "SIP,19.5x9.8mm",
+              "price": 3.0504,
+              "stock": 25
+            }
+          ]
+        },
+        "request_url": "https://jlcsearch.tscircuit.com/api/search?q=GRM31MR71E225KA93L&limit=5",
+        "returned_rows": 1,
+        "source_kind": "aggregate_snapshot",
+        "sourcing_guard": "provisional"
+      },
+      "subject": {
+        "manufacturer": "Murata",
+        "mpn": "GRM31MR71E225KA93L",
+        "quantity": "80"
+      }
+    },
+    {
+      "evidence": {
+        "authority": "LOOKUP_EVIDENCE_ONLY",
+        "build_need": 10,
+        "inventory_updated_at": null,
+        "lookup_state": "no_exact_match",
+        "matches": [],
+        "mpn": "GRM32ER71A476KE15L",
+        "provenance": {
+          "http_age": null,
+          "http_date": "Mon, 26 Oct 2026 15:01:29 GMT",
+          "retrieved_at": "2026-10-26T15:01:29.428060+00:00",
+          "sha256": "ac46fd24bd501fa7297f0a2945bcc7f5d655b9bcf8bfbf16718a9d25c0c2c018",
+          "url": "https://jlcsearch.tscircuit.com/api/search?q=GRM32ER71A476KE15L&limit=5"
+        },
+        "raw_response": {
+          "components": []
+        },
+        "request_url": "https://jlcsearch.tscircuit.com/api/search?q=GRM32ER71A476KE15L&limit=5",
+        "returned_rows": 0,
+        "source_kind": "aggregate_snapshot",
+        "sourcing_guard": "provisional"
+      },
+      "subject": {
+        "manufacturer": "Murata",
+        "mpn": "GRM32ER71A476KE15L",
+        "quantity": "10"
+      }
+    },
+    {
+      "evidence": {
+        "authority": "LOOKUP_EVIDENCE_ONLY",
+        "build_need": 5,
+        "inventory_updated_at": null,
+        "lookup_state": "no_exact_match",
+        "matches": [],
+        "mpn": "ERJ-3EKF68R0V",
+        "provenance": {
+          "http_age": null,
+          "http_date": "Mon, 26 Oct 2026 15:01:29 GMT",
+          "retrieved_at": "2026-10-26T15:01:29.600856+00:00",
+          "sha256": "ac46fd24bd501fa7297f0a2945bcc7f5d655b9bcf8bfbf16718a9d25c0c2c018",
+          "url": "https://jlcsearch.tscircuit.com/api/search?q=ERJ-3EKF68R0V&limit=5"
+        },
+        "raw_response": {
+          "components": []
+        },
+        "request_url": "https://jlcsearch.tscircuit.com/api/search?q=ERJ-3EKF68R0V&limit=5",
+        "returned_rows": 0,
+        "source_kind": "aggregate_snapshot",
+        "sourcing_guard": "provisional"
+      },
+      "subject": {
+        "manufacturer": "Panasonic Industry",
+        "mpn": "ERJ-3EKF68R0V",
+        "quantity": "5"
+      }
+    },
+    {
+      "evidence": {
+        "authority": "LOOKUP_EVIDENCE_ONLY",
+        "build_need": 5,
+        "inventory_updated_at": null,
+        "lookup_state": "no_exact_match",
+        "matches": [],
+        "mpn": "R-78E5.0-0.5",
+        "provenance": {
+          "http_age": null,
+          "http_date": "Mon, 26 Oct 2026 15:01:29 GMT",
+          "retrieved_at": "2026-10-26T15:01:29.707076+00:00",
+          "sha256": "633515102e4d00ce0193e01eac76400f49234f2049ada510239bb08a7e282f2d",
+          "url": "https://jlcsearch.tscircuit.com/api/search?q=R-78E5.0-0.5&limit=5"
+        },
+        "raw_response": {
+          "components": [
+            {
+              "description": "120\u00b0 3.4V 30mA 840mcd White Yellow Lens SMD3528-4P LED Indication - Discrete ROHS",
+              "is_basic": false,
+              "is_preferred": false,
+              "lcsc": 2900066,
+              "mfr": "LW E67C-U2V2-5K8L-1-30-R18-Z",
+              "package": "SMD3528-4P",
+              "price": 0.41,
+              "stock": 89
+            },
+            {
+              "description": "-40\u2103~+85\u2103 1 1.5kV 100mVp-p 15V 200mA 300kHz 3W 470uF 84% 9V~36V Short Circuit Protection\u3001Over Current Protection\u3001Under Voltage Protection\u3001Automatic fault recovery\u3001Light-load high efficiency mode SIP,22x10mm Isolated Power Modules ROHS",
+              "is_basic": false,
+              "is_preferred": false,
+              "lcsc": 3033096,
+              "mfr": "TDK3-24S15WSL",
+              "package": "SIP,22x10mm",
+              "price": 2.2061,
+              "stock": 22
+            }
+          ]
+        },
+        "request_url": "https://jlcsearch.tscircuit.com/api/search?q=R-78E5.0-0.5&limit=5",
+        "returned_rows": 2,
+        "source_kind": "aggregate_snapshot",
+        "sourcing_guard": "provisional"
+      },
+      "subject": {
+        "manufacturer": "RECOM Power",
+        "mpn": "R-78E5.0-0.5",
+        "quantity": "5"
+      }
+    },
+    {
+      "evidence": {
+        "authority": "LOOKUP_EVIDENCE_ONLY",
+        "build_need": 5,
+        "inventory_updated_at": null,
+        "lookup_state": "no_exact_match",
+        "matches": [],
+        "mpn": "SC0915",
+        "provenance": {
+          "http_age": null,
+          "http_date": "Mon, 26 Oct 2026 15:01:32 GMT",
+          "retrieved_at": "2026-10-26T15:01:32.285624+00:00",
+          "sha256": "ac46fd24bd501fa7297f0a2945bcc7f5d655b9bcf8bfbf16718a9d25c0c2c018",
+          "url": "https://jlcsearch.tscircuit.com/api/search?q=SC0915&limit=5"
+        },
+        "raw_response": {
+          "components": []
+        },
+        "request_url": "https://jlcsearch.tscircuit.com/api/search?q=SC0915&limit=5",
+        "returned_rows": 0,
+        "source_kind": "aggregate_snapshot",
+        "sourcing_guard": "provisional"
+      },
+      "subject": {
+        "manufacturer": "Raspberry Pi",
+        "mpn": "SC0915",
+        "quantity": "5"
+      }
+    },
+    {
+      "evidence": {
+        "authority": "LOOKUP_EVIDENCE_ONLY",
+        "build_need": 10,
+        "inventory_updated_at": null,
+        "lookup_state": "no_exact_match",
+        "matches": [],
+        "mpn": "CMA-4544PF-W",
+        "provenance": {
+          "http_age": null,
+          "http_date": "Mon, 26 Oct 2026 15:01:30 GMT",
+          "retrieved_at": "2026-10-26T15:01:30.221164+00:00",
+          "sha256": "ac46fd24bd501fa7297f0a2945bcc7f5d655b9bcf8bfbf16718a9d25c0c2c018",
+          "url": "https://jlcsearch.tscircuit.com/api/search?q=CMA-4544PF-W&limit=5"
+        },
+        "raw_response": {
+          "components": []
+        },
+        "request_url": "https://jlcsearch.tscircuit.com/api/search?q=CMA-4544PF-W&limit=5",
+        "returned_rows": 0,
+        "source_kind": "aggregate_snapshot",
+        "sourcing_guard": "provisional"
+      },
+      "subject": {
+        "manufacturer": "Same Sky",
+        "mpn": "CMA-4544PF-W",
+        "quantity": "10"
+      }
+    },
+    {
+      "evidence": {
+        "authority": "LOOKUP_EVIDENCE_ONLY",
+        "build_need": 10,
+        "inventory_updated_at": null,
+        "lookup_state": "no_exact_match",
+        "matches": [],
+        "mpn": "CPE-203",
+        "provenance": {
+          "http_age": null,
+          "http_date": "Mon, 26 Oct 2026 15:01:30 GMT",
+          "retrieved_at": "2026-10-26T15:01:30.347821+00:00",
+          "sha256": "ac46fd24bd501fa7297f0a2945bcc7f5d655b9bcf8bfbf16718a9d25c0c2c018",
+          "url": "https://jlcsearch.tscircuit.com/api/search?q=CPE-203&limit=5"
+        },
+        "raw_response": {
+          "components": []
+        },
+        "request_url": "https://jlcsearch.tscircuit.com/api/search?q=CPE-203&limit=5",
+        "returned_rows": 0,
+        "source_kind": "aggregate_snapshot",
+        "sourcing_guard": "provisional"
+      },
+      "subject": {
+        "manufacturer": "Same Sky",
+        "mpn": "CPE-203",
+        "quantity": "10"
+      }
+    },
+    {
+      "evidence": {
+        "authority": "LOOKUP_EVIDENCE_ONLY",
+        "build_need": 5,
+        "inventory_updated_at": null,
+        "lookup_state": "no_exact_match",
+        "matches": [],
+        "mpn": "PJ-102AH",
+        "provenance": {
+          "http_age": null,
+          "http_date": "Mon, 26 Oct 2026 15:01:30 GMT",
+          "retrieved_at": "2026-10-26T15:01:30.450298+00:00",
+          "sha256": "23eadd12b40311d44d6e3aba3482f9f62c17788f4b577da43eb624664d04ff98",
+          "url": "https://jlcsearch.tscircuit.com/api/search?q=PJ-102AH&limit=5"
+        },
+        "raw_response": {
+          "components": [
+            {
+              "description": "1.8N 12V 2.5mm 4mm 50mA 6mm Black No Round Button SMD(SMT) Tab SPST Surface Mount,Vertical SMD,6x4mm Tactile Switches ROHS",
+              "is_basic": false,
+              "is_preferred": false,
+              "lcsc": 2888682,
+              "mfr": "TSB019A2518A03",
+              "package": "SMD,6x4mm",
+              "price": 0.098,
+              "stock": 549
+            }
+          ]
+        },
+        "request_url": "https://jlcsearch.tscircuit.com/api/search?q=PJ-102AH&limit=5",
+        "returned_rows": 1,
+        "source_kind": "aggregate_snapshot",
+        "sourcing_guard": "provisional"
+      },
+      "subject": {
+        "manufacturer": "Same Sky",
+        "mpn": "PJ-102AH",
+        "quantity": "5"
+      }
+    },
+    {
+      "evidence": {
+        "authority": "LOOKUP_EVIDENCE_ONLY",
+        "build_need": 55,
+        "inventory_updated_at": null,
+        "lookup_state": "no_exact_match",
+        "matches": [],
+        "mpn": "CL21B104KBCNNNC",
+        "provenance": {
+          "http_age": null,
+          "http_date": "Mon, 26 Oct 2026 15:01:31 GMT",
+          "retrieved_at": "2026-10-26T15:01:31.135929+00:00",
+          "sha256": "2fb0d26d843a117cbf9cefff600005c473392c9620a9b160b5ac075ef7fec520",
+          "url": "https://jlcsearch.tscircuit.com/api/search?q=CL21B104KBCNNNC&limit=5"
+        },
+        "raw_response": {
+          "components": [
+            {
+              "description": "\u63d2\u4ef6,P=3.81mm Connector Accessories ROHS",
+              "is_basic": false,
+              "is_preferred": false,
+              "lcsc": 6392891,
+              "mfr": "KF2EDGWC-3.81-8P",
+              "package": "\u63d2\u4ef6,P=3.81mm",
+              "price": 0.3544,
+              "stock": 65
+            }
+          ]
+        },
+        "request_url": "https://jlcsearch.tscircuit.com/api/search?q=CL21B104KBCNNNC&limit=5",
+        "returned_rows": 1,
+        "source_kind": "aggregate_snapshot",
+        "sourcing_guard": "provisional"
+      },
+      "subject": {
+        "manufacturer": "Samsung Electro-Mechanics",
+        "mpn": "CL21B104KBCNNNC",
+        "quantity": "55"
+      }
+    },
+    {
+      "evidence": {
+        "authority": "LOOKUP_EVIDENCE_ONLY",
+        "build_need": 80,
+        "inventory_updated_at": null,
+        "lookup_state": "no_exact_match",
+        "matches": [],
+        "mpn": "CL21C222JBFNNNE",
+        "provenance": {
+          "http_age": null,
+          "http_date": "Mon, 26 Oct 2026 15:01:31 GMT",
+          "retrieved_at": "2026-10-26T15:01:31.313357+00:00",
+          "sha256": "ac46fd24bd501fa7297f0a2945bcc7f5d655b9bcf8bfbf16718a9d25c0c2c018",
+          "url": "https://jlcsearch.tscircuit.com/api/search?q=CL21C222JBFNNNE&limit=5"
+        },
+        "raw_response": {
+          "components": []
+        },
+        "request_url": "https://jlcsearch.tscircuit.com/api/search?q=CL21C222JBFNNNE&limit=5",
+        "returned_rows": 0,
+        "source_kind": "aggregate_snapshot",
+        "sourcing_guard": "provisional"
+      },
+      "subject": {
+        "manufacturer": "Samsung Electro-Mechanics",
+        "mpn": "CL21C222JBFNNNE",
+        "quantity": "80"
+      }
+    },
+    {
+      "evidence": {
+        "authority": "LOOKUP_EVIDENCE_ONLY",
+        "build_need": 10,
+        "inventory_updated_at": null,
+        "lookup_state": "no_exact_match",
+        "matches": [],
+        "mpn": "C2012X7R1V225K125AE",
+        "provenance": {
+          "http_age": null,
+          "http_date": "Mon, 26 Oct 2026 15:01:31 GMT",
+          "retrieved_at": "2026-10-26T15:01:31.082569+00:00",
+          "sha256": "ac46fd24bd501fa7297f0a2945bcc7f5d655b9bcf8bfbf16718a9d25c0c2c018",
+          "url": "https://jlcsearch.tscircuit.com/api/search?q=C2012X7R1V225K125AE&limit=5"
+        },
+        "raw_response": {
+          "components": []
+        },
+        "request_url": "https://jlcsearch.tscircuit.com/api/search?q=C2012X7R1V225K125AE&limit=5",
+        "returned_rows": 0,
+        "source_kind": "aggregate_snapshot",
+        "sourcing_guard": "provisional"
+      },
+      "subject": {
+        "manufacturer": "TDK",
+        "mpn": "C2012X7R1V225K125AE",
+        "quantity": "10"
+      }
+    },
+    {
+      "evidence": {
+        "authority": "LOOKUP_EVIDENCE_ONLY",
+        "build_need": 10,
+        "inventory_updated_at": null,
+        "lookup_state": "no_exact_match",
+        "matches": [],
+        "mpn": "C3216X7R1V106K160AC",
+        "provenance": {
+          "http_age": null,
+          "http_date": "Mon, 26 Oct 2026 15:01:31 GMT",
+          "retrieved_at": "2026-10-26T15:01:31.755185+00:00",
+          "sha256": "ac46fd24bd501fa7297f0a2945bcc7f5d655b9bcf8bfbf16718a9d25c0c2c018",
+          "url": "https://jlcsearch.tscircuit.com/api/search?q=C3216X7R1V106K160AC&limit=5"
+        },
+        "raw_response": {
+          "components": []
+        },
+        "request_url": "https://jlcsearch.tscircuit.com/api/search?q=C3216X7R1V106K160AC&limit=5",
+        "returned_rows": 0,
+        "source_kind": "aggregate_snapshot",
+        "sourcing_guard": "provisional"
+      },
+      "subject": {
+        "manufacturer": "TDK",
+        "mpn": "C3216X7R1V106K160AC",
+        "quantity": "10"
+      }
+    },
+    {
+      "evidence": {
+        "authority": "LOOKUP_EVIDENCE_ONLY",
+        "build_need": 10,
+        "inventory_updated_at": null,
+        "lookup_state": "no_exact_match",
+        "matches": [],
+        "mpn": "PCM1864DBT",
+        "provenance": {
+          "http_age": null,
+          "http_date": "Mon, 26 Oct 2026 15:01:31 GMT",
+          "retrieved_at": "2026-10-26T15:01:31.944747+00:00",
+          "sha256": "ac46fd24bd501fa7297f0a2945bcc7f5d655b9bcf8bfbf16718a9d25c0c2c018",
+          "url": "https://jlcsearch.tscircuit.com/api/search?q=PCM1864DBT&limit=5"
+        },
+        "raw_response": {
+          "components": []
+        },
+        "request_url": "https://jlcsearch.tscircuit.com/api/search?q=PCM1864DBT&limit=5",
+        "returned_rows": 0,
+        "source_kind": "aggregate_snapshot",
+        "sourcing_guard": "provisional"
+      },
+      "subject": {
+        "manufacturer": "Texas Instruments",
+        "mpn": "PCM1864DBT",
+        "quantity": "10"
+      }
+    },
+    {
+      "evidence": {
+        "authority": "LOOKUP_EVIDENCE_ONLY",
+        "build_need": 10,
+        "inventory_updated_at": null,
+        "lookup_state": "no_exact_match",
+        "matches": [],
+        "mpn": "TLV9062IDR",
+        "provenance": {
+          "http_age": null,
+          "http_date": "Mon, 26 Oct 2026 15:01:31 GMT",
+          "retrieved_at": "2026-10-26T15:01:31.833823+00:00",
+          "sha256": "ac46fd24bd501fa7297f0a2945bcc7f5d655b9bcf8bfbf16718a9d25c0c2c018",
+          "url": "https://jlcsearch.tscircuit.com/api/search?q=TLV9062IDR&limit=5"
+        },
+        "raw_response": {
+          "components": []
+        },
+        "request_url": "https://jlcsearch.tscircuit.com/api/search?q=TLV9062IDR&limit=5",
+        "returned_rows": 0,
+        "source_kind": "aggregate_snapshot",
+        "sourcing_guard": "provisional"
+      },
+      "subject": {
+        "manufacturer": "Texas Instruments",
+        "mpn": "TLV9062IDR",
+        "quantity": "10"
+      }
+    },
+    {
+      "evidence": {
+        "authority": "LOOKUP_EVIDENCE_ONLY",
+        "build_need": 10,
+        "inventory_updated_at": null,
+        "lookup_state": "no_exact_match",
+        "matches": [],
+        "mpn": "TPS70933DBVR",
+        "provenance": {
+          "http_age": null,
+          "http_date": "Mon, 26 Oct 2026 15:01:32 GMT",
+          "retrieved_at": "2026-10-26T15:01:32.378012+00:00",
+          "sha256": "ac46fd24bd501fa7297f0a2945bcc7f5d655b9bcf8bfbf16718a9d25c0c2c018",
+          "url": "https://jlcsearch.tscircuit.com/api/search?q=TPS70933DBVR&limit=5"
+        },
+        "raw_response": {
+          "components": []
+        },
+        "request_url": "https://jlcsearch.tscircuit.com/api/search?q=TPS70933DBVR&limit=5",
+        "returned_rows": 0,
+        "source_kind": "aggregate_snapshot",
+        "sourcing_guard": "provisional"
+      },
+      "subject": {
+        "manufacturer": "Texas Instruments",
+        "mpn": "TPS70933DBVR",
+        "quantity": "10"
+      }
+    },
+    {
+      "evidence": {
+        "authority": "LOOKUP_EVIDENCE_ONLY",
+        "build_need": 60,
+        "inventory_updated_at": null,
+        "lookup_state": "no_exact_match",
+        "matches": [],
+        "mpn": "CRCW0603100KFKEA",
+        "provenance": {
+          "http_age": null,
+          "http_date": "Mon, 26 Oct 2026 15:01:32 GMT",
+          "retrieved_at": "2026-10-26T15:01:32.364167+00:00",
+          "sha256": "ac46fd24bd501fa7297f0a2945bcc7f5d655b9bcf8bfbf16718a9d25c0c2c018",
+          "url": "https://jlcsearch.tscircuit.com/api/search?q=CRCW0603100KFKEA&limit=5"
+        },
+        "raw_response": {
+          "components": []
+        },
+        "request_url": "https://jlcsearch.tscircuit.com/api/search?q=CRCW0603100KFKEA&limit=5",
+        "returned_rows": 0,
+        "source_kind": "aggregate_snapshot",
+        "sourcing_guard": "provisional"
+      },
+      "subject": {
+        "manufacturer": "Vishay",
+        "mpn": "CRCW0603100KFKEA",
+        "quantity": "60"
+      }
+    },
+    {
+      "evidence": {
+        "authority": "LOOKUP_EVIDENCE_ONLY",
+        "build_need": 60,
+        "inventory_updated_at": null,
+        "lookup_state": "no_exact_match",
+        "matches": [],
+        "mpn": "CRCW060310K0FKEA",
+        "provenance": {
+          "http_age": null,
+          "http_date": "Mon, 26 Oct 2026 15:01:32 GMT",
+          "retrieved_at": "2026-10-26T15:01:32.535838+00:00",
+          "sha256": "3ad34832674e36b429b011f3fcfa393b7c04d4c6dda179d0f82a1fad56b267ce",
+          "url": "https://jlcsearch.tscircuit.com/api/search?q=CRCW060310K0FKEA&limit=5"
+        },
+        "raw_response": {
+          "components": [
+            {
+              "description": "-25\u2103~+85\u2103 120mW 20mA 3.2V 30\u00b0 468nm 470nm 5mm round lamp head 9.3cd Blue Water Clear \u63d2\u4ef6,D=5mm LED Indication - Discrete ROHS",
+              "is_basic": false,
+              "is_preferred": false,
+              "lcsc": 559114,
+              "mfr": "MHL5013UBDWT",
+              "package": "\u63d2\u4ef6,D=5mm",
+              "price": 0.055,
+              "stock": 21491
+            },
+            {
+              "description": "-25\u2103~+85\u2103 1.82cd 120mW 20mA 3.2V 40\u00b0 5mm round lamp head Frosted White Lens White \u63d2\u4ef6,D=5mm LED Indication - Discrete ROHS",
+              "is_basic": false,
+              "is_preferred": false,
+              "lcsc": 559115,
+              "mfr": "MHL5013UWDT",
+              "package": "\u63d2\u4ef6,D=5mm",
+              "price": 0.0672,
+              "stock": 13348
+            }
+          ]
+        },
+        "request_url": "https://jlcsearch.tscircuit.com/api/search?q=CRCW060310K0FKEA&limit=5",
+        "returned_rows": 2,
+        "source_kind": "aggregate_snapshot",
+        "sourcing_guard": "provisional"
+      },
+      "subject": {
+        "manufacturer": "Vishay",
+        "mpn": "CRCW060310K0FKEA",
+        "quantity": "60"
+      }
+    },
+    {
+      "evidence": {
+        "authority": "LOOKUP_EVIDENCE_ONLY",
+        "build_need": 30,
+        "inventory_updated_at": null,
+        "lookup_state": "no_exact_match",
+        "matches": [],
+        "mpn": "CRCW06031K00FKEAHP",
+        "provenance": {
+          "http_age": null,
+          "http_date": "Mon, 26 Oct 2026 15:01:32 GMT",
+          "retrieved_at": "2026-10-26T15:01:32.890463+00:00",
+          "sha256": "02bcca5676b64f2bd4accac40a55459ec795218271a89cc83742b53bca0f2c81",
+          "url": "https://jlcsearch.tscircuit.com/api/search?q=CRCW06031K00FKEAHP&limit=5"
+        },
+        "raw_response": {
+          "components": [
+            {
+              "description": "2.54mm 24V 25mA 3,000 Cycles 8 Red SPST Slide, Rocked \u63d2\u4ef6,P=2.54mm DIP Switches ROHS",
+              "is_basic": false,
+              "is_preferred": false,
+              "lcsc": 559143,
+              "mfr": "TA-08",
+              "package": "\u63d2\u4ef6,P=2.54mm",
+              "price": 0.5483,
+              "stock": 3923
+            }
+          ]
+        },
+        "request_url": "https://jlcsearch.tscircuit.com/api/search?q=CRCW06031K00FKEAHP&limit=5",
+        "returned_rows": 1,
+        "source_kind": "aggregate_snapshot",
+        "sourcing_guard": "provisional"
+      },
+      "subject": {
+        "manufacturer": "Vishay",
+        "mpn": "CRCW06031K00FKEAHP",
+        "quantity": "30"
+      }
+    },
+    {
+      "evidence": {
+        "authority": "LOOKUP_EVIDENCE_ONLY",
+        "build_need": 10,
+        "inventory_updated_at": null,
+        "lookup_state": "no_exact_match",
+        "matches": [],
+        "mpn": "CRCW06032K20FKEA",
+        "provenance": {
+          "http_age": null,
+          "http_date": "Mon, 26 Oct 2026 15:01:32 GMT",
+          "retrieved_at": "2026-10-26T15:01:32.966420+00:00",
+          "sha256": "01607b8d04944ec947f03298f705f22970925a3e6e560d8eb55531183bb6abad",
+          "url": "https://jlcsearch.tscircuit.com/api/search?q=CRCW06032K20FKEA&limit=5"
+        },
+        "raw_response": {
+          "components": [
+            {
+              "description": "-55\u2103~+175\u2103 1 P-Channel 1.5nF 114pF 2.5V 334pF 43.4nC@10V 5W 60V 60m\u03a9@10V\u300163m\u03a9@4.5V 8A P-Channel SO-8 MOSFETs ROHS",
+              "is_basic": false,
+              "is_preferred": false,
+              "lcsc": 558200,
+              "mfr": "NCE55P05S-VB",
+              "package": "SO-8",
+              "price": 0.6589,
+              "stock": 1
+            }
+          ]
+        },
+        "request_url": "https://jlcsearch.tscircuit.com/api/search?q=CRCW06032K20FKEA&limit=5",
+        "returned_rows": 1,
+        "source_kind": "aggregate_snapshot",
+        "sourcing_guard": "provisional"
+      },
+      "subject": {
+        "manufacturer": "Vishay",
+        "mpn": "CRCW06032K20FKEA",
+        "quantity": "10"
+      }
+    },
+    {
+      "evidence": {
+        "authority": "LOOKUP_EVIDENCE_ONLY",
+        "build_need": 80,
+        "inventory_updated_at": null,
+        "lookup_state": "no_exact_match",
+        "matches": [],
+        "mpn": "CRCW06032K70FKEA",
+        "provenance": {
+          "http_age": null,
+          "http_date": "Mon, 26 Oct 2026 15:01:32 GMT",
+          "retrieved_at": "2026-10-26T15:01:32.896960+00:00",
+          "sha256": "1383b92946bca7e8730bafe6ab957b1b560b279e995e55c17e6832b4010cdd57",
+          "url": "https://jlcsearch.tscircuit.com/api/search?q=CRCW06032K70FKEA&limit=5"
+        },
+        "raw_response": {
+          "components": [
+            {
+              "description": "-40\u2103~+85\u2103 0.3 1 10.06mm 19mm 25mcd 2V 5.5mm 7 Segment Common Cathode Red \u63d2\u4ef6 LED Segment Displays ROHS",
+              "is_basic": false,
+              "is_preferred": false,
+              "lcsc": 2938349,
+              "mfr": "FJ3101CH",
+              "package": "\u63d2\u4ef6",
+              "price": 0.3062,
+              "stock": 251
+            }
+          ]
+        },
+        "request_url": "https://jlcsearch.tscircuit.com/api/search?q=CRCW06032K70FKEA&limit=5",
+        "returned_rows": 1,
+        "source_kind": "aggregate_snapshot",
+        "sourcing_guard": "provisional"
+      },
+      "subject": {
+        "manufacturer": "Vishay",
+        "mpn": "CRCW06032K70FKEA",
+        "quantity": "80"
+      }
+    },
+    {
+      "evidence": {
+        "authority": "LOOKUP_EVIDENCE_ONLY",
+        "build_need": 10,
+        "inventory_updated_at": null,
+        "lookup_state": "no_exact_match",
+        "matches": [],
+        "mpn": "CRCW0603330RFKEAHP",
+        "provenance": {
+          "http_age": null,
+          "http_date": "Mon, 26 Oct 2026 15:01:33 GMT",
+          "retrieved_at": "2026-10-26T15:01:33.083761+00:00",
+          "sha256": "6fb0931f8abf90aa8a34387131bc0a548f84d55bd6889c0e23a67cc2f19e2fcb",
+          "url": "https://jlcsearch.tscircuit.com/api/search?q=CRCW0603330RFKEAHP&limit=5"
+        },
+        "raw_response": {
+          "components": [
+            {
+              "description": "-55\u2103~+150\u2103 1 P-Channel 1.8V 120pF 35V 4.2W 40m\u03a9@10V\u300148m\u03a9@4.5V 6.2A 9.8nC@4.5V\u300123nC@10V 95pF 970pF P-Channel SOT-223 MOSFETs ROHS",
+              "is_basic": false,
+              "is_preferred": false,
+              "lcsc": 558204,
+              "mfr": "NDT452AP-NL-VB",
+              "package": "SOT-223",
+              "price": 0.423,
+              "stock": 251
+            }
+          ]
+        },
+        "request_url": "https://jlcsearch.tscircuit.com/api/search?q=CRCW0603330RFKEAHP&limit=5",
+        "returned_rows": 1,
+        "source_kind": "aggregate_snapshot",
+        "sourcing_guard": "provisional"
+      },
+      "subject": {
+        "manufacturer": "Vishay",
+        "mpn": "CRCW0603330RFKEAHP",
+        "quantity": "10"
+      }
+    },
+    {
+      "evidence": {
+        "authority": "LOOKUP_EVIDENCE_ONLY",
+        "build_need": 10,
+        "inventory_updated_at": null,
+        "lookup_state": "no_exact_match",
+        "matches": [],
+        "mpn": "CRCW060339K0FKEA",
+        "provenance": {
+          "http_age": null,
+          "http_date": "Mon, 26 Oct 2026 15:01:33 GMT",
+          "retrieved_at": "2026-10-26T15:01:33.449996+00:00",
+          "sha256": "7c03314aa52b8e2be21b920e3b827058e8c04b2b3a0aad0ef56637011829426b",
+          "url": "https://jlcsearch.tscircuit.com/api/search?q=CRCW060339K0FKEA&limit=5"
+        },
+        "raw_response": {
+          "components": [
+            {
+              "description": "-55\u2103~+150\u2103 1 NPN 150W 15A 230V 30MHz 400mV 55 5V 5uA NPN TO-3PL Bipolar (BJT) ROHS",
+              "is_basic": false,
+              "is_preferred": false,
+              "lcsc": 559174,
+              "mfr": "2SC5200-O(Q)",
+              "package": "TO-3PL",
+              "price": 2.2142,
+              "stock": 2318
+            }
+          ]
+        },
+        "request_url": "https://jlcsearch.tscircuit.com/api/search?q=CRCW060339K0FKEA&limit=5",
+        "returned_rows": 1,
+        "source_kind": "aggregate_snapshot",
+        "sourcing_guard": "provisional"
+      },
+      "subject": {
+        "manufacturer": "Vishay",
+        "mpn": "CRCW060339K0FKEA",
+        "quantity": "10"
+      }
+    },
+    {
+      "evidence": {
+        "authority": "LOOKUP_EVIDENCE_ONLY",
+        "build_need": 10,
+        "inventory_updated_at": null,
+        "lookup_state": "no_exact_match",
+        "matches": [],
+        "mpn": "CRCW06034K70FKEA",
+        "provenance": {
+          "http_age": null,
+          "http_date": "Mon, 26 Oct 2026 15:01:33 GMT",
+          "retrieved_at": "2026-10-26T15:01:33.643328+00:00",
+          "sha256": "51d44e9a622ff2371b3908e84319e9b9d11429ae06f9146bc1dd67b1b3b59ef3",
+          "url": "https://jlcsearch.tscircuit.com/api/search?q=CRCW06034K70FKEA&limit=5"
+        },
+        "raw_response": {
+          "components": [
+            {
+              "description": "-40\u2103~+125\u2103 1 1.1mA 10MHz 10V/us 15nV/\u221aHz@1kHz 1pA 2.7V~5.5V 200mA 3uV/\u2103 50pA 6V 70dB 8mV Rail-to-Rail Input, Rail-to-Rail Output SC-70-5 Operational Amplifier ROHS",
+              "is_basic": false,
+              "is_preferred": false,
+              "lcsc": 559509,
+              "mfr": "MAX4230AXK+T",
+              "package": "SC-70-5",
+              "price": 1.1909,
+              "stock": 2719
+            }
+          ]
+        },
+        "request_url": "https://jlcsearch.tscircuit.com/api/search?q=CRCW06034K70FKEA&limit=5",
+        "returned_rows": 1,
+        "source_kind": "aggregate_snapshot",
+        "sourcing_guard": "provisional"
+      },
+      "subject": {
+        "manufacturer": "Vishay",
+        "mpn": "CRCW06034K70FKEA",
+        "quantity": "10"
+      }
+    },
+    {
+      "evidence": {
+        "authority": "LOOKUP_EVIDENCE_ONLY",
+        "build_need": 5,
+        "inventory_updated_at": null,
+        "lookup_state": "no_exact_match",
+        "matches": [],
+        "mpn": "SS34-E3/57T",
+        "provenance": {
+          "http_age": null,
+          "http_date": "Mon, 26 Oct 2026 15:01:33 GMT",
+          "retrieved_at": "2026-10-26T15:01:33.573627+00:00",
+          "sha256": "f774877bd6c0a32342c00da8094ce374025bb564959d0ce0ff4838ec558ceb2f",
+          "url": "https://jlcsearch.tscircuit.com/api/search?q=SS34-E3%2F57T&limit=5"
+        },
+        "raw_response": {
+          "components": [
+            {
+              "description": "-40\u2103~+85\u2103@(TA) 1 1.1V~5.5V 140ms 30uA 4.63V Active Low No No Open Drain Voltage Monitor SOT-23R Supervisor and Reset ICs ROHS",
+              "is_basic": false,
+              "is_preferred": false,
+              "lcsc": 6746462,
+              "mfr": "APX803-46SRG-7",
+              "package": "SOT-23R",
+              "price": 0.1474,
+              "stock": 28
+            }
+          ]
+        },
+        "request_url": "https://jlcsearch.tscircuit.com/api/search?q=SS34-E3%2F57T&limit=5",
+        "returned_rows": 1,
+        "source_kind": "aggregate_snapshot",
+        "sourcing_guard": "provisional"
+      },
+      "subject": {
+        "manufacturer": "Vishay",
+        "mpn": "SS34-E3/57T",
+        "quantity": "5"
+      }
+    },
+    {
+      "evidence": {
+        "authority": "LOOKUP_EVIDENCE_ONLY",
+        "build_need": 10,
+        "inventory_updated_at": null,
+        "lookup_state": "no_exact_match",
+        "matches": [],
+        "mpn": "CRCW060356R0FKEA",
+        "provenance": {
+          "http_age": null,
+          "http_date": "Mon, 26 Oct 2026 15:01:33 GMT",
+          "retrieved_at": "2026-10-26T15:01:33.730668+00:00",
+          "sha256": "f4bbac3564e966ec1ae934b9ebe0074c7b3909f0ff92652cfa1fb8d057c81e11",
+          "url": "https://jlcsearch.tscircuit.com/api/search?q=CRCW060356R0FKEA&limit=5"
+        },
+        "raw_response": {
+          "components": [
+            {
+              "description": "-40\u2103~+85\u2103 100nA 20mA 30V 75mW 940nm NPN \u63d2\u4ef6,D=5mm Phototransistors ROHS",
+              "is_basic": false,
+              "is_preferred": false,
+              "lcsc": 841511,
+              "mfr": "DY-PT4133B-A2",
+              "package": "\u63d2\u4ef6,D=5mm",
+              "price": 0.0643,
+              "stock": 4859
+            },
+            {
+              "description": "-55\u2103~+150\u2103 1 N-Channel + 1 P-Channel 1V\u30013V 2.4W\u30013.1W 26m\u03a9@10V\u300129m\u03a9@4.5V\u300155m\u03a9@10V\u300160m\u03a9@4.5V 4.5A\u30014.7A\u30014.9A\u30015.3A 40pF\u300160pF 60V 650pF\u3001665pF 6nC@10V\u30018nC@10V 75pF\u300195pF N-Channel + P-Channel SO-8 MOSFETs ROHS",
+              "is_basic": false,
+              "is_preferred": false,
+              "lcsc": 557956,
+              "mfr": "AO4611-VB",
+              "package": "SO-8",
+              "price": 0.6654,
+              "stock": 15
+            }
+          ]
+        },
+        "request_url": "https://jlcsearch.tscircuit.com/api/search?q=CRCW060356R0FKEA&limit=5",
+        "returned_rows": 2,
+        "source_kind": "aggregate_snapshot",
+        "sourcing_guard": "provisional"
+      },
+      "subject": {
+        "manufacturer": "Vishay Dale",
+        "mpn": "CRCW060356R0FKEA",
+        "quantity": "10"
+      }
+    },
+    {
+      "evidence": {
+        "authority": "LOOKUP_EVIDENCE_ONLY",
+        "build_need": 10,
+        "inventory_updated_at": null,
+        "lookup_state": "no_exact_match",
+        "matches": [],
+        "mpn": "MMBT3906LT1G",
+        "provenance": {
+          "http_age": null,
+          "http_date": "Mon, 26 Oct 2026 15:01:33 GMT",
+          "retrieved_at": "2026-10-26T15:01:33.973294+00:00",
+          "sha256": "73c0a08a39331681dac43158619fe38e357d6551a355b7c9c83bbc7a00ea9092",
+          "url": "https://jlcsearch.tscircuit.com/api/search?q=MMBT3906LT1G&limit=5"
+        },
+        "raw_response": {
+          "components": [
+            {
+              "description": "-40\u2103~+150\u2103@(TJ) 1 2.25MHz 2.7V~6V 3A 600mV~5.5V Adjustable Buck Buck Built-in Yes SOT-583 DC-DC Converters ROHS",
+              "is_basic": false,
+              "is_preferred": false,
+              "lcsc": 7364829,
+              "mfr": "TPS628513DRLR",
+              "package": "SOT-583",
+              "price": 1.844,
+              "stock": 4
+            }
+          ]
+        },
+        "request_url": "https://jlcsearch.tscircuit.com/api/search?q=MMBT3906LT1G&limit=5",
+        "returned_rows": 1,
+        "source_kind": "aggregate_snapshot",
+        "sourcing_guard": "provisional"
+      },
+      "subject": {
+        "manufacturer": "onsemi",
+        "mpn": "MMBT3906LT1G",
+        "quantity": "10"
+      }
+    }
+  ],
+  "retrieved_at": "2026-10-26T15:01:33.974400+00:00",
+  "scope": "Aggregate discovery only; exact supplier confirmation and allocation OPEN",
+  "spares_authorized": 0
+}

@@ -1,0 +1,504 @@
+[
+  {
+    "mpn": "TPS70933DBVR",
+    "installed_need": 10,
+    "code": "C89347",
+    "authority": "OBSERVATIONS_ONLY",
+    "discovery": {
+      "provenance": {
+        "retrieved_at": "2026-10-26T15:27:09.743166+00:00",
+        "url": "https://jlcsearch.tscircuit.com/api/search?q=C89347&limit=20&full=true",
+        "sha256": "87d01b91b889ee4223967fb9922fb69cce017189e1c0063e7aa4a45b9347fca3",
+        "http_date": "Mon, 26 Oct 2026 15:27:09 GMT",
+        "http_age": null
+      },
+      "raw": {
+        "components": [
+          {
+            "lcsc": 89347,
+            "mfr": "TPS70933DBVR",
+            "package": "SOT-23-5",
+            "is_basic": false,
+            "is_preferred": false,
+            "description": "-40\u2103~+125\u2103@(Tj) 1 1.4uA 150mA 190uVrms 3.3V 30V 80dB@(10Hz) 960mV@(150mA) Fixed Positive Under Voltage Lockout\u3001Over Current Protection\u3001Over Temperature Protection\u3001Enable SOT-23-5 Voltage Regulators - Linear, Low Drop Out (LDO) Regulators ROHS",
+            "stock": 17277,
+            "price": 0.1777
+          }
+        ]
+      },
+      "lookup_state": "exact_matches",
+      "matches": [
+        {
+          "mpn": "TPS70933DBVR",
+          "lcsc": 89347,
+          "package": "SOT-23-5",
+          "manufacturer": null,
+          "stock_count": 17277,
+          "status": "reported_sufficient"
+        }
+      ],
+      "returned_rows": 1
+    },
+    "supplier": {
+      "provenance": {
+        "retrieved_at": "2026-10-26T15:27:10.482123+00:00",
+        "url": "https://jlcpcb.com/partdetail/TPS70933DBVR/C89347",
+        "sha256": "233e02e86ad1651af6e62a32177c6e747bf2e165287c2706561319d82ff6b2fe",
+        "http_date": "Mon, 26 Oct 2026 15:27:10 GMT",
+        "http_age": null
+      },
+      "exact_product_offers": [
+        {
+          "mpn": "TPS70933DBVR",
+          "sku": "C89347",
+          "brand": {
+            "@type": "Brand",
+            "name": "Texas Instruments"
+          },
+          "offers": {
+            "@type": "AggregateOffer",
+            "priceCurrency": "USD",
+            "lowPrice": 0.3389,
+            "highPrice": 0.1694,
+            "offerCount": 6,
+            "availability": "https://schema.org/InStock"
+          }
+        }
+      ],
+      "identity_fields": {
+        "lookup_state": "exact_identity_observed",
+        "observations": [
+          {
+            "componentModelEn": "TPS70933DBVR",
+            "componentBrandEn": "Texas Instruments",
+            "componentCode": "C89347",
+            "componentSpecificationEn": "SOT-23-5"
+          },
+          {
+            "componentModelEn": "TPS70933DBVR",
+            "componentBrandEn": "Texas Instruments",
+            "componentCode": "C89347",
+            "componentSpecificationEn": "SOT-23-5",
+            "overseasStockCount": 11146,
+            "canPresaleNumber": 10784,
+            "isBuyComponent": "1"
+          },
+          {
+            "componentModelEn": "TPS70933DBVR",
+            "componentBrandEn": "Texas Instruments",
+            "componentCode": "C89347",
+            "componentSpecificationEn": "SOT-23-5",
+            "overseasStockCount": 11146,
+            "canPresaleNumber": 10784,
+            "isBuyComponent": "1",
+            "noBuyReason": null
+          }
+        ],
+        "availability_verified": false,
+        "limit": "Identity/raw fields only; interpret inventory pool and freshness separately."
+      }
+    }
+  },
+  {
+    "mpn": "BZT52C3V9-7-F",
+    "installed_need": 80,
+    "code": "C154917",
+    "authority": "OBSERVATIONS_ONLY",
+    "discovery": {
+      "provenance": {
+        "retrieved_at": "2026-10-26T15:27:10.094150+00:00",
+        "url": "https://jlcsearch.tscircuit.com/api/search?q=C154917&limit=20&full=true",
+        "sha256": "b80f01f0c7812c303dd6a76896345b9e1a5a3744fa93f2961b3c7364f1cd1ff3",
+        "http_date": "Mon, 26 Oct 2026 15:27:10 GMT",
+        "http_age": null
+      },
+      "raw": {
+        "components": [
+          {
+            "lcsc": 154917,
+            "mfr": "BZT52C3V9-7-F",
+            "package": "SOD-123",
+            "is_basic": false,
+            "is_preferred": false,
+            "description": "1 Independent 3.7V~4.1V 3.9V 370mW 3uA@1V 600\u03a9 90\u03a9 SOD-123 Zener Diodes ROHS",
+            "stock": 11658,
+            "price": 0.0703
+          }
+        ]
+      },
+      "lookup_state": "exact_matches",
+      "matches": [
+        {
+          "mpn": "BZT52C3V9-7-F",
+          "lcsc": 154917,
+          "package": "SOD-123",
+          "manufacturer": null,
+          "stock_count": 11658,
+          "status": "reported_sufficient"
+        }
+      ],
+      "returned_rows": 1
+    },
+    "supplier": {
+      "provenance": {
+        "retrieved_at": "2026-10-26T15:27:10.719180+00:00",
+        "url": "https://jlcpcb.com/partdetail/DiodesIncorporated-BZT52C3V9_7F/C154917",
+        "sha256": "f8e4c0987bcdc59893fe8c673d04a3515da5c05c61f83209ee70028be6b8f042",
+        "http_date": "Mon, 26 Oct 2026 15:27:10 GMT",
+        "http_age": null
+      },
+      "exact_product_offers": [
+        {
+          "mpn": "BZT52C3V9-7-F",
+          "sku": "C154917",
+          "brand": {
+            "@type": "Brand",
+            "name": "Diodes Incorporated"
+          },
+          "offers": {
+            "@type": "AggregateOffer",
+            "priceCurrency": "USD",
+            "lowPrice": 0.0799,
+            "highPrice": 0.0536,
+            "offerCount": 6,
+            "availability": "https://schema.org/InStock"
+          }
+        }
+      ],
+      "identity_fields": {
+        "lookup_state": "exact_identity_observed",
+        "observations": [
+          {
+            "componentModelEn": "BZT52C3V9-7-F",
+            "componentBrandEn": "Diodes Incorporated",
+            "componentCode": "C154917",
+            "componentSpecificationEn": "SOD-123"
+          },
+          {
+            "componentModelEn": "BZT52C3V9-7-F",
+            "componentBrandEn": "Diodes Incorporated",
+            "componentCode": "C154917",
+            "componentSpecificationEn": "SOD-123",
+            "overseasStockCount": 11658,
+            "canPresaleNumber": 11578,
+            "isBuyComponent": "1"
+          },
+          {
+            "componentModelEn": "BZT52C3V9-7-F",
+            "componentBrandEn": "Diodes Incorporated",
+            "componentCode": "C154917",
+            "componentSpecificationEn": "SOD-123",
+            "overseasStockCount": 11658,
+            "canPresaleNumber": 11578,
+            "isBuyComponent": "1",
+            "noBuyReason": null
+          }
+        ],
+        "availability_verified": false,
+        "limit": "Identity/raw fields only; interpret inventory pool and freshness separately."
+      }
+    }
+  },
+  {
+    "mpn": "GRM32ER71A476KE15L",
+    "installed_need": 10,
+    "code": "C84494",
+    "authority": "OBSERVATIONS_ONLY",
+    "discovery": {
+      "provenance": {
+        "retrieved_at": "2026-10-26T15:27:10.197770+00:00",
+        "url": "https://jlcsearch.tscircuit.com/api/search?q=C84494&limit=20&full=true",
+        "sha256": "ac46fd24bd501fa7297f0a2945bcc7f5d655b9bcf8bfbf16718a9d25c0c2c018",
+        "http_date": "Mon, 26 Oct 2026 15:27:10 GMT",
+        "http_age": null
+      },
+      "raw": {
+        "components": []
+      },
+      "lookup_state": "no_exact_match",
+      "matches": [],
+      "returned_rows": 0
+    },
+    "supplier": {
+      "provenance": {
+        "retrieved_at": "2026-10-26T15:27:10.912777+00:00",
+        "url": "https://jlcpcb.com/partdetail/MurataElectronics-GRM32ER71A476KE15L/C84494",
+        "sha256": "0145515203124fdc0bd6c10d169227f1da6d133214177d8c4224861a7e2f3c03",
+        "http_date": "Mon, 26 Oct 2026 15:27:10 GMT",
+        "http_age": null
+      },
+      "exact_product_offers": [
+        {
+          "mpn": "GRM32ER71A476KE15L",
+          "sku": "C84494",
+          "brand": {
+            "@type": "Brand",
+            "name": "Murata Electronics"
+          },
+          "offers": {
+            "@type": "AggregateOffer",
+            "priceCurrency": "USD",
+            "lowPrice": 0.4862,
+            "highPrice": 0.2603,
+            "offerCount": 6,
+            "availability": "https://schema.org/InStock"
+          }
+        }
+      ],
+      "identity_fields": {
+        "lookup_state": "exact_identity_observed",
+        "observations": [
+          {
+            "componentModelEn": "GRM32ER71A476KE15L",
+            "componentBrandEn": "Murata Electronics",
+            "componentCode": "C84494",
+            "componentSpecificationEn": "1210"
+          },
+          {
+            "componentModelEn": "GRM32ER71A476KE15L",
+            "componentBrandEn": "Murata Electronics",
+            "componentCode": "C84494",
+            "componentSpecificationEn": "1210",
+            "overseasStockCount": 7910,
+            "canPresaleNumber": 2511,
+            "isBuyComponent": "1"
+          },
+          {
+            "componentModelEn": "GRM32ER71A476KE15L",
+            "componentBrandEn": "Murata Electronics",
+            "componentCode": "C84494",
+            "componentSpecificationEn": "1210",
+            "overseasStockCount": 7910,
+            "canPresaleNumber": 2511,
+            "isBuyComponent": "1",
+            "noBuyReason": null
+          }
+        ],
+        "availability_verified": false,
+        "limit": "Identity/raw fields only; interpret inventory pool and freshness separately."
+      }
+    }
+  },
+  {
+    "mpn": "GRM31MR71E225KA93L",
+    "installed_need": 80,
+    "code": "C97962",
+    "authority": "OBSERVATIONS_ONLY",
+    "discovery": {
+      "provenance": {
+        "retrieved_at": "2026-10-26T15:27:10.954638+00:00",
+        "url": "https://jlcsearch.tscircuit.com/api/search?q=C97962&limit=20&full=true",
+        "sha256": "ac46fd24bd501fa7297f0a2945bcc7f5d655b9bcf8bfbf16718a9d25c0c2c018",
+        "http_date": "Mon, 26 Oct 2026 15:27:10 GMT",
+        "http_age": null
+      },
+      "raw": {
+        "components": []
+      },
+      "lookup_state": "no_exact_match",
+      "matches": [],
+      "returned_rows": 0
+    },
+    "supplier": {
+      "provenance": {
+        "retrieved_at": "2026-10-26T15:27:11.524223+00:00",
+        "url": "https://www.lcsc.com/product-detail/C97962.html",
+        "sha256": "963f2da9616ff9b63fd2a0a81f54e8e7cb50ab957963f3d1e26635f75b3fad72",
+        "http_date": "Mon, 26 Oct 2026 15:27:11 GMT",
+        "http_age": null
+      },
+      "exact_product_offers": [
+        {
+          "mpn": "GRM31MR71E225KA93L",
+          "sku": "C97962",
+          "brand": {
+            "@type": "Brand",
+            "name": "muRata"
+          },
+          "offers": {
+            "@type": "Offer",
+            "url": "https://www.lcsc.com/product-detail/C97962.html",
+            "priceCurrency": "USD",
+            "price": 0.0442,
+            "itemCondition": "http://schema.org/NewCondition",
+            "availability": "http://schema.org/InStock",
+            "inventoryLevel": 1520,
+            "seller": {
+              "@type": "Organization",
+              "name": "LCSC Electronics",
+              "url": "https://www.lcsc.com/"
+            },
+            "description": ""
+          }
+        }
+      ],
+      "identity_fields": {
+        "lookup_state": "no_exact_evidence",
+        "observations": [],
+        "availability_verified": false,
+        "limit": "Identity/raw fields only; interpret inventory pool and freshness separately."
+      }
+    }
+  },
+  {
+    "mpn": "BAT54S-7-F",
+    "installed_need": 20,
+    "code": "C83574",
+    "authority": "OBSERVATIONS_ONLY",
+    "discovery": {
+      "provenance": {
+        "retrieved_at": "2026-10-26T15:27:11.200091+00:00",
+        "url": "https://jlcsearch.tscircuit.com/api/search?q=C83574&limit=20&full=true",
+        "sha256": "df40711a98251f4e2cd6de19bfc982a37930a61a4b0485d9f31517f20a1f008f",
+        "http_date": "Mon, 26 Oct 2026 15:27:11 GMT",
+        "http_age": null
+      },
+      "raw": {
+        "components": [
+          {
+            "lcsc": 83574,
+            "mfr": "BAT54S-7-F",
+            "package": "SOT-23",
+            "is_basic": false,
+            "is_preferred": false,
+            "description": "1 Pair Series Connection 200mA 2uA@25V 30V 600mA 800mV@100mA SOT-23 Schottky Diodes ROHS",
+            "stock": 24186,
+            "price": 0.0412
+          }
+        ]
+      },
+      "lookup_state": "exact_matches",
+      "matches": [
+        {
+          "mpn": "BAT54S-7-F",
+          "lcsc": 83574,
+          "package": "SOT-23",
+          "manufacturer": null,
+          "stock_count": 24186,
+          "status": "reported_sufficient"
+        }
+      ],
+      "returned_rows": 1
+    },
+    "supplier": {
+      "provenance": {
+        "retrieved_at": "2026-10-26T15:27:11.663436+00:00",
+        "url": "https://www.lcsc.com/product-detail/Schottky-Barrier-Diodes-SBD_Diodes-Incorporated-BAT54S-7-F_C83574.html",
+        "sha256": "5d0a57d7f812213945a1cc96d733bd750f40815328cf71c83fdb9867590d8e80",
+        "http_date": "Mon, 26 Oct 2026 15:27:11 GMT",
+        "http_age": null
+      },
+      "exact_product_offers": [
+        {
+          "mpn": "BAT54S-7-F",
+          "sku": "C83574",
+          "brand": {
+            "@type": "Brand",
+            "name": "DIODES"
+          },
+          "offers": {
+            "@type": "Offer",
+            "url": "https://www.lcsc.com/product-detail/Schottky-Barrier-Diodes-SBD_Diodes-Incorporated-BAT54S-7-F_C83574.html",
+            "priceCurrency": "USD",
+            "price": 0.092,
+            "itemCondition": "http://schema.org/NewCondition",
+            "availability": "http://schema.org/InStock",
+            "inventoryLevel": 19970,
+            "seller": {
+              "@type": "Organization",
+              "name": "LCSC Electronics",
+              "url": "https://www.lcsc.com/"
+            },
+            "description": ""
+          }
+        }
+      ],
+      "identity_fields": {
+        "lookup_state": "no_exact_evidence",
+        "observations": [],
+        "availability_verified": false,
+        "limit": "Identity/raw fields only; interpret inventory pool and freshness separately."
+      }
+    }
+  },
+  {
+    "mpn": "RJHSE-5080",
+    "installed_need": 50,
+    "code": "C599441",
+    "authority": "OBSERVATIONS_ONLY",
+    "discovery": {
+      "provenance": {
+        "retrieved_at": "2026-10-26T15:27:11.489629+00:00",
+        "url": "https://jlcsearch.tscircuit.com/api/search?q=C599441&limit=20&full=true",
+        "sha256": "ac46fd24bd501fa7297f0a2945bcc7f5d655b9bcf8bfbf16718a9d25c0c2c018",
+        "http_date": "Mon, 26 Oct 2026 15:27:11 GMT",
+        "http_age": null
+      },
+      "raw": {
+        "components": []
+      },
+      "lookup_state": "no_exact_match",
+      "matches": [],
+      "returned_rows": 0
+    },
+    "supplier": {
+      "provenance": {
+        "retrieved_at": "2026-10-26T15:27:12.070376+00:00",
+        "url": "https://jlcpcb.com/partdetail/AmphenolICC-RJHSE5080/C599441",
+        "sha256": "f4323846629a350918ace779992c7a0c015472a30edb0ab314b414e2c2fe7ce4",
+        "http_date": "Mon, 26 Oct 2026 15:27:12 GMT",
+        "http_age": null
+      },
+      "exact_product_offers": [
+        {
+          "mpn": "RJHSE-5080",
+          "sku": "C599441",
+          "brand": {
+            "@type": "Brand",
+            "name": "Amphenol ICC"
+          },
+          "offers": {
+            "@type": "AggregateOffer",
+            "priceCurrency": "USD",
+            "lowPrice": 0.9428,
+            "highPrice": 0.5418,
+            "offerCount": 6,
+            "availability": "https://schema.org/InStock"
+          }
+        }
+      ],
+      "identity_fields": {
+        "lookup_state": "exact_identity_observed",
+        "observations": [
+          {
+            "componentModelEn": "RJHSE-5080",
+            "componentBrandEn": "Amphenol ICC",
+            "componentCode": "C599441",
+            "componentSpecificationEn": "Plugin"
+          },
+          {
+            "componentModelEn": "RJHSE-5080",
+            "componentBrandEn": "Amphenol ICC",
+            "componentCode": "C599441",
+            "componentSpecificationEn": "Plugin",
+            "overseasStockCount": 1179,
+            "canPresaleNumber": 985,
+            "isBuyComponent": "1"
+          },
+          {
+            "componentModelEn": "RJHSE-5080",
+            "componentBrandEn": "Amphenol ICC",
+            "componentCode": "C599441",
+            "componentSpecificationEn": "Plugin",
+            "overseasStockCount": 1179,
+            "canPresaleNumber": 985,
+            "isBuyComponent": "1",
+            "noBuyReason": null
+          }
+        ],
+        "availability_verified": false,
+        "limit": "Identity/raw fields only; interpret inventory pool and freshness separately."
+      }
+    }
+  }
+]

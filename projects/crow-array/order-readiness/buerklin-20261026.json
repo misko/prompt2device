@@ -1,0 +1,109 @@
+{
+  "mpn": "C3216X7R1V106K160AC",
+  "installed_need": 10,
+  "provenance": {
+    "retrieved_at": "2026-10-26T15:30:56.273947+00:00",
+    "url": "https://www.buerklin.com/en/p/tdk/ceramic-capacitors/c3216x7r1v106k160ac/75D7535/",
+    "sha256": "1c50987721efadbff0698481befca4f026d15c05665f077dffd6b3a2d5a1e824",
+    "http_date": "Mon, 26 Oct 2026 15:30:56 GMT",
+    "http_age": null
+  },
+  "exact_product_offers": [
+    {
+      "mpn": "C3216X7R1V106K160AC",
+      "sku": "75D7535",
+      "brand": {
+        "@type": "Brand",
+        "name": "TDK"
+      },
+      "offers": [
+        {
+          "@type": "AggregateOffer",
+          "priceCurrency": "EUR",
+          "lowPrice": "0.2487",
+          "highPrice": "0.7616",
+          "offerCount": 5,
+          "availability": "https://schema.org/InStock",
+          "offers": [
+            [
+              {
+                "@type": "Offer",
+                "priceValidUntil": "2026-11-25",
+                "priceCurrency": "EUR",
+                "price": "0.7616",
+                "itemCondition": "http://schema.org/NewCondition",
+                "eligibleQuantity": {
+                  "@type": "QuantitativeValue",
+                  "minValue": 1,
+                  "maxValue": 9,
+                  "unitCode": "C62"
+                }
+              },
+              {
+                "@type": "Offer",
+                "priceValidUntil": "2026-11-25",
+                "priceCurrency": "EUR",
+                "price": "0.4879",
+                "itemCondition": "http://schema.org/NewCondition",
+                "eligibleQuantity": {
+                  "@type": "QuantitativeValue",
+                  "minValue": 10,
+                  "maxValue": 49,
+                  "unitCode": "C62"
+                }
+              },
+              {
+                "@type": "Offer",
+                "priceValidUntil": "2026-11-25",
+                "priceCurrency": "EUR",
+                "price": "0.3451",
+                "itemCondition": "http://schema.org/NewCondition",
+                "eligibleQuantity": {
+                  "@type": "QuantitativeValue",
+                  "minValue": 50,
+                  "maxValue": 249,
+                  "unitCode": "C62"
+                }
+              },
+              {
+                "@type": "Offer",
+                "priceValidUntil": "2026-11-25",
+                "priceCurrency": "EUR",
+                "price": "0.2904",
+                "itemCondition": "http://schema.org/NewCondition",
+                "eligibleQuantity": {
+                  "@type": "QuantitativeValue",
+                  "minValue": 250,
+                  "maxValue": 999,
+                  "unitCode": "C62"
+                }
+              },
+              {
+                "@type": "Offer",
+                "priceValidUntil": "2026-11-25",
+                "priceCurrency": "EUR",
+                "price": "0.2487",
+                "itemCondition": "http://schema.org/NewCondition",
+                "eligibleQuantity": {
+                  "@type": "QuantitativeValue",
+                  "minValue": 1000,
+                  "maxValue": 999999,
+                  "unitCode": "C62"
+                }
+              }
+            ]
+          ]
+        }
+      ]
+    }
+  ],
+  "bound_page_product": {
+    "id": "75D7535",
+    "name": "Ceramic capacitor, 10 \u00b5F, 35 V (DC), \u00b110 %, SMD 1206 (3216), X7R, C3216X7R1V106K160AC",
+    "brand": "TDK",
+    "stock": 1185.0,
+    "stock_info": "available",
+    "stock_unit": "STK"
+  },
+  "authority": "OBSERVATIONS_ONLY"
+}

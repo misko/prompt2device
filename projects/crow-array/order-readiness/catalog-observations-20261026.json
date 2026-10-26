@@ -1,0 +1,2346 @@
+[
+  {
+    "mpn": "0451001.MRL",
+    "installed_need": 5,
+    "code": "C3099",
+    "authority": "OBSERVATIONS_ONLY",
+    "discovery": {
+      "provenance": {
+        "retrieved_at": "2026-10-26T16:04:47.587627+00:00",
+        "url": "https://jlcsearch.tscircuit.com/api/search?q=C3099&limit=20&full=true",
+        "sha256": "eae9205ade272d8bc5e72bf89c535315729cdc9f0f0c2c7b407be75ea847eb2c",
+        "http_date": "Mon, 26 Oct 2026 16:04:47 GMT",
+        "http_age": null
+      },
+      "raw": {
+        "components": [
+          {
+            "lcsc": 3099,
+            "mfr": "0451001.MRL",
+            "package": "2410",
+            "is_basic": false,
+            "is_preferred": false,
+            "description": "-55\u2103~+125\u2103 0.6029 125V 125V 1A 2.5mm 50A 6.1mm Surface Mount Fuse 2410 Disposable fuses ROHS",
+            "stock": 6261,
+            "price": 0.3168
+          }
+        ]
+      },
+      "lookup_state": "exact_matches",
+      "matches": [
+        {
+          "mpn": "0451001.MRL",
+          "lcsc": 3099,
+          "package": "2410",
+          "manufacturer": null,
+          "stock_count": 6261,
+          "status": "reported_sufficient"
+        }
+      ],
+      "returned_rows": 1
+    },
+    "supplier": {
+      "provenance": {
+        "retrieved_at": "2026-10-26T16:04:48.358245+00:00",
+        "url": "https://jlcpcb.com/partdetail/Littelfuse-0451001MRL/C3099",
+        "sha256": "5b7eecd3ec5394787a2315d57b5ec64bece5e54da2502850f85335c4633e0a02",
+        "http_date": "Mon, 26 Oct 2026 16:04:48 GMT",
+        "http_age": null
+      },
+      "exact_product_offers": [
+        {
+          "mpn": "0451001.MRL",
+          "sku": "C3099",
+          "brand": {
+            "@type": "Brand",
+            "name": "Littelfuse"
+          },
+          "offers": {
+            "@type": "AggregateOffer",
+            "priceCurrency": "USD",
+            "lowPrice": 0.3174,
+            "highPrice": 0.1586,
+            "offerCount": 6,
+            "availability": "https://schema.org/InStock"
+          }
+        }
+      ],
+      "identity_fields": {
+        "lookup_state": "exact_identity_observed",
+        "observations": [
+          {
+            "componentModelEn": "0451001.MRL",
+            "componentBrandEn": "Littelfuse",
+            "componentCode": "C3099",
+            "componentSpecificationEn": "2410"
+          },
+          {
+            "componentModelEn": "0451001.MRL",
+            "componentBrandEn": "Littelfuse",
+            "componentCode": "C3099",
+            "componentSpecificationEn": "2410",
+            "overseasStockCount": 6169,
+            "canPresaleNumber": 5302,
+            "isBuyComponent": "1"
+          },
+          {
+            "componentModelEn": "0451001.MRL",
+            "componentBrandEn": "Littelfuse",
+            "componentCode": "C3099",
+            "componentSpecificationEn": "2410",
+            "overseasStockCount": 6169,
+            "canPresaleNumber": 5302,
+            "isBuyComponent": "1",
+            "noBuyReason": null
+          }
+        ],
+        "availability_verified": false,
+        "limit": "Identity/raw fields only; interpret inventory pool and freshness separately."
+      }
+    }
+  },
+  {
+    "mpn": "1206L010/30WR",
+    "installed_need": 50,
+    "code": "C2153988",
+    "authority": "OBSERVATIONS_ONLY",
+    "discovery": {
+      "provenance": {
+        "retrieved_at": "2026-10-26T16:04:47.591831+00:00",
+        "url": "https://jlcsearch.tscircuit.com/api/search?q=C2153988&limit=20&full=true",
+        "sha256": "2664e97f26a1299807aff21783846cf6e8e47bdfdd30f3dee1a3b2db8f2810ba",
+        "http_date": "Mon, 26 Oct 2026 16:04:47 GMT",
+        "http_age": null
+      },
+      "raw": {
+        "components": [
+          {
+            "lcsc": 2153988,
+            "mfr": "1206L010/30WR",
+            "package": "1206",
+            "is_basic": false,
+            "is_preferred": false,
+            "description": "-40\u2103~+85\u2103 1.5\u03a9 10\u03a9 1206 Resettable Fuses ROHS",
+            "stock": 13,
+            "price": 0.6931
+          }
+        ]
+      },
+      "lookup_state": "exact_matches",
+      "matches": [
+        {
+          "mpn": "1206L010/30WR",
+          "lcsc": 2153988,
+          "package": "1206",
+          "manufacturer": null,
+          "stock_count": 13,
+          "status": "reported_insufficient"
+        }
+      ],
+      "returned_rows": 1
+    },
+    "supplier": {
+      "provenance": {
+        "retrieved_at": "2026-10-26T16:04:48.059214+00:00",
+        "url": "https://www.lcsc.com/product-detail/Resettable-Fuses_Littelfuse-1206L010-30WR_C2153988.html",
+        "sha256": "a8f6fb1e6983062a7ac1afc4eeb941ff8f76e788a47262f4fd06bc84af6e387d",
+        "http_date": "Mon, 26 Oct 2026 16:04:47 GMT",
+        "http_age": null
+      },
+      "exact_product_offers": [
+        {
+          "mpn": "1206L010/30WR",
+          "sku": "C2153988",
+          "brand": {
+            "@type": "Brand",
+            "name": "Littelfuse"
+          },
+          "offers": {
+            "@type": "Offer",
+            "url": "https://www.lcsc.com/product-detail/Resettable-Fuses_Littelfuse-1206L010-30WR_C2153988.html",
+            "priceCurrency": "USD",
+            "price": 0.6621,
+            "itemCondition": "http://schema.org/NewCondition",
+            "availability": "http://schema.org/InStock",
+            "inventoryLevel": 13,
+            "seller": {
+              "@type": "Organization",
+              "name": "LCSC Electronics",
+              "url": "https://www.lcsc.com/"
+            },
+            "description": ""
+          }
+        }
+      ],
+      "identity_fields": {
+        "lookup_state": "no_exact_evidence",
+        "observations": [],
+        "availability_verified": false,
+        "limit": "Identity/raw fields only; interpret inventory pool and freshness separately."
+      }
+    }
+  },
+  {
+    "mpn": "1N5819HW-7-F",
+    "installed_need": 5,
+    "code": "C82544",
+    "authority": "OBSERVATIONS_ONLY",
+    "discovery": {
+      "provenance": {
+        "retrieved_at": "2026-10-26T16:04:47.575729+00:00",
+        "url": "https://jlcsearch.tscircuit.com/api/search?q=C82544&limit=20&full=true",
+        "sha256": "a2f51926c463baf8c21340ec16cea6b469d69ccbba91234e8fc69f71cf9dd6ed",
+        "http_date": "Mon, 26 Oct 2026 16:04:47 GMT",
+        "http_age": null
+      },
+      "raw": {
+        "components": [
+          {
+            "lcsc": 82544,
+            "mfr": "1N5819HW-7-F",
+            "package": "SOD-123",
+            "is_basic": false,
+            "is_preferred": false,
+            "description": "-65\u2103~+150\u2103 1 Independent 1A 1mA@40V 25A 40V 450mV@1A SOD-123 Schottky Diodes ROHS",
+            "stock": 443095,
+            "price": 0.0505
+          }
+        ]
+      },
+      "lookup_state": "exact_matches",
+      "matches": [
+        {
+          "mpn": "1N5819HW-7-F",
+          "lcsc": 82544,
+          "package": "SOD-123",
+          "manufacturer": null,
+          "stock_count": 443095,
+          "status": "reported_sufficient"
+        }
+      ],
+      "returned_rows": 1
+    },
+    "supplier": {
+      "provenance": {
+        "retrieved_at": "2026-10-26T16:04:48.019288+00:00",
+        "url": "https://www.lcsc.com/product-detail/Schottky-Barrier-Diodes-SBD_DIODES_1N5819HW-7-F_1N5819HW-7-F_C82544.html",
+        "sha256": "08bb6616b6bc6bdf25f09a50ba0914f6f51dc18343ed4276c48d404d619649ee",
+        "http_date": "Mon, 26 Oct 2026 16:04:47 GMT",
+        "http_age": null
+      },
+      "exact_product_offers": [
+        {
+          "mpn": "1N5819HW-7-F",
+          "sku": "C82544",
+          "brand": {
+            "@type": "Brand",
+            "name": "DIODES"
+          },
+          "offers": {
+            "@type": "Offer",
+            "url": "https://www.lcsc.com/product-detail/Schottky-Barrier-Diodes-SBD_DIODES_1N5819HW-7-F_1N5819HW-7-F_C82544.html",
+            "priceCurrency": "USD",
+            "price": 0.0363,
+            "itemCondition": "http://schema.org/NewCondition",
+            "availability": "http://schema.org/InStock",
+            "inventoryLevel": 393590,
+            "seller": {
+              "@type": "Organization",
+              "name": "LCSC Electronics",
+              "url": "https://www.lcsc.com/"
+            },
+            "description": ""
+          }
+        }
+      ],
+      "identity_fields": {
+        "lookup_state": "no_exact_evidence",
+        "observations": [],
+        "availability_verified": false,
+        "limit": "Identity/raw fields only; interpret inventory pool and freshness separately."
+      }
+    }
+  },
+  {
+    "mpn": "BAT54S-7-F",
+    "installed_need": 20,
+    "code": "C83574",
+    "authority": "OBSERVATIONS_ONLY",
+    "discovery": {
+      "provenance": {
+        "retrieved_at": "2026-10-26T15:27:11.200091+00:00",
+        "url": "https://jlcsearch.tscircuit.com/api/search?q=C83574&limit=20&full=true",
+        "sha256": "df40711a98251f4e2cd6de19bfc982a37930a61a4b0485d9f31517f20a1f008f",
+        "http_date": "Mon, 26 Oct 2026 15:27:11 GMT",
+        "http_age": null
+      },
+      "raw": {
+        "components": [
+          {
+            "lcsc": 83574,
+            "mfr": "BAT54S-7-F",
+            "package": "SOT-23",
+            "is_basic": false,
+            "is_preferred": false,
+            "description": "1 Pair Series Connection 200mA 2uA@25V 30V 600mA 800mV@100mA SOT-23 Schottky Diodes ROHS",
+            "stock": 24186,
+            "price": 0.0412
+          }
+        ]
+      },
+      "lookup_state": "exact_matches",
+      "matches": [
+        {
+          "mpn": "BAT54S-7-F",
+          "lcsc": 83574,
+          "package": "SOT-23",
+          "manufacturer": null,
+          "stock_count": 24186,
+          "status": "reported_sufficient"
+        }
+      ],
+      "returned_rows": 1
+    },
+    "supplier": {
+      "provenance": {
+        "retrieved_at": "2026-10-26T15:27:11.663436+00:00",
+        "url": "https://www.lcsc.com/product-detail/Schottky-Barrier-Diodes-SBD_Diodes-Incorporated-BAT54S-7-F_C83574.html",
+        "sha256": "5d0a57d7f812213945a1cc96d733bd750f40815328cf71c83fdb9867590d8e80",
+        "http_date": "Mon, 26 Oct 2026 15:27:11 GMT",
+        "http_age": null
+      },
+      "exact_product_offers": [
+        {
+          "mpn": "BAT54S-7-F",
+          "sku": "C83574",
+          "brand": {
+            "@type": "Brand",
+            "name": "DIODES"
+          },
+          "offers": {
+            "@type": "Offer",
+            "url": "https://www.lcsc.com/product-detail/Schottky-Barrier-Diodes-SBD_Diodes-Incorporated-BAT54S-7-F_C83574.html",
+            "priceCurrency": "USD",
+            "price": 0.092,
+            "itemCondition": "http://schema.org/NewCondition",
+            "availability": "http://schema.org/InStock",
+            "inventoryLevel": 19970,
+            "seller": {
+              "@type": "Organization",
+              "name": "LCSC Electronics",
+              "url": "https://www.lcsc.com/"
+            },
+            "description": ""
+          }
+        }
+      ],
+      "identity_fields": {
+        "lookup_state": "no_exact_evidence",
+        "observations": [],
+        "availability_verified": false,
+        "limit": "Identity/raw fields only; interpret inventory pool and freshness separately."
+      }
+    },
+    "reused_from": "code-stock-recovery-20261026.json"
+  },
+  {
+    "mpn": "BZT52C3V9-7-F",
+    "installed_need": 80,
+    "code": "C154917",
+    "authority": "OBSERVATIONS_ONLY",
+    "discovery": {
+      "provenance": {
+        "retrieved_at": "2026-10-26T15:27:10.094150+00:00",
+        "url": "https://jlcsearch.tscircuit.com/api/search?q=C154917&limit=20&full=true",
+        "sha256": "b80f01f0c7812c303dd6a76896345b9e1a5a3744fa93f2961b3c7364f1cd1ff3",
+        "http_date": "Mon, 26 Oct 2026 15:27:10 GMT",
+        "http_age": null
+      },
+      "raw": {
+        "components": [
+          {
+            "lcsc": 154917,
+            "mfr": "BZT52C3V9-7-F",
+            "package": "SOD-123",
+            "is_basic": false,
+            "is_preferred": false,
+            "description": "1 Independent 3.7V~4.1V 3.9V 370mW 3uA@1V 600\u03a9 90\u03a9 SOD-123 Zener Diodes ROHS",
+            "stock": 11658,
+            "price": 0.0703
+          }
+        ]
+      },
+      "lookup_state": "exact_matches",
+      "matches": [
+        {
+          "mpn": "BZT52C3V9-7-F",
+          "lcsc": 154917,
+          "package": "SOD-123",
+          "manufacturer": null,
+          "stock_count": 11658,
+          "status": "reported_sufficient"
+        }
+      ],
+      "returned_rows": 1
+    },
+    "supplier": {
+      "provenance": {
+        "retrieved_at": "2026-10-26T15:27:10.719180+00:00",
+        "url": "https://jlcpcb.com/partdetail/DiodesIncorporated-BZT52C3V9_7F/C154917",
+        "sha256": "f8e4c0987bcdc59893fe8c673d04a3515da5c05c61f83209ee70028be6b8f042",
+        "http_date": "Mon, 26 Oct 2026 15:27:10 GMT",
+        "http_age": null
+      },
+      "exact_product_offers": [
+        {
+          "mpn": "BZT52C3V9-7-F",
+          "sku": "C154917",
+          "brand": {
+            "@type": "Brand",
+            "name": "Diodes Incorporated"
+          },
+          "offers": {
+            "@type": "AggregateOffer",
+            "priceCurrency": "USD",
+            "lowPrice": 0.0799,
+            "highPrice": 0.0536,
+            "offerCount": 6,
+            "availability": "https://schema.org/InStock"
+          }
+        }
+      ],
+      "identity_fields": {
+        "lookup_state": "exact_identity_observed",
+        "observations": [
+          {
+            "componentModelEn": "BZT52C3V9-7-F",
+            "componentBrandEn": "Diodes Incorporated",
+            "componentCode": "C154917",
+            "componentSpecificationEn": "SOD-123"
+          },
+          {
+            "componentModelEn": "BZT52C3V9-7-F",
+            "componentBrandEn": "Diodes Incorporated",
+            "componentCode": "C154917",
+            "componentSpecificationEn": "SOD-123",
+            "overseasStockCount": 11658,
+            "canPresaleNumber": 11578,
+            "isBuyComponent": "1"
+          },
+          {
+            "componentModelEn": "BZT52C3V9-7-F",
+            "componentBrandEn": "Diodes Incorporated",
+            "componentCode": "C154917",
+            "componentSpecificationEn": "SOD-123",
+            "overseasStockCount": 11658,
+            "canPresaleNumber": 11578,
+            "isBuyComponent": "1",
+            "noBuyReason": null
+          }
+        ],
+        "availability_verified": false,
+        "limit": "Identity/raw fields only; interpret inventory pool and freshness separately."
+      }
+    },
+    "reused_from": "code-stock-recovery-20261026.json"
+  },
+  {
+    "mpn": "C3216X7R1V106K160AC",
+    "installed_need": 10,
+    "code": "C2182140",
+    "authority": "OBSERVATIONS_ONLY",
+    "discovery": {
+      "provenance": {
+        "retrieved_at": "2026-10-26T16:04:47.652276+00:00",
+        "url": "https://jlcsearch.tscircuit.com/api/search?q=C2182140&limit=20&full=true",
+        "sha256": "ac46fd24bd501fa7297f0a2945bcc7f5d655b9bcf8bfbf16718a9d25c0c2c018",
+        "http_date": "Mon, 26 Oct 2026 16:04:47 GMT",
+        "http_age": null
+      },
+      "raw": {
+        "components": []
+      },
+      "lookup_state": "no_exact_match",
+      "matches": [],
+      "returned_rows": 0
+    },
+    "supplier": {
+      "provenance": {
+        "retrieved_at": "2026-10-26T16:04:48.113390+00:00",
+        "url": "https://www.lcsc.com/it/product-detail/C2182140.html",
+        "sha256": "444e3b1ba05272e8c1611912f43c257a2b3f6d65acc218edcbfd2e1ca7c03a58",
+        "http_date": "Mon, 26 Oct 2026 16:04:48 GMT",
+        "http_age": null
+      },
+      "exact_product_offers": [
+        {
+          "mpn": "C3216X7R1V106K160AC",
+          "sku": "C2182140",
+          "brand": {
+            "@type": "Brand",
+            "name": "TDK"
+          },
+          "offers": {
+            "@type": "Offer",
+            "url": "https://www.lcsc.com/it/product-detail/C2182140.html",
+            "priceCurrency": "USD",
+            "price": 0.5839,
+            "itemCondition": "http://schema.org/NewCondition",
+            "availability": "http://schema.org/OutOfStock",
+            "inventoryLevel": 0,
+            "seller": {
+              "@type": "Organization",
+              "name": "LCSC Electronics",
+              "url": "https://www.lcsc.com/it/"
+            },
+            "description": ""
+          }
+        }
+      ],
+      "identity_fields": {
+        "lookup_state": "no_exact_evidence",
+        "observations": [],
+        "availability_verified": false,
+        "limit": "Identity/raw fields only; interpret inventory pool and freshness separately."
+      }
+    }
+  },
+  {
+    "mpn": "CL21B104KBCNNNC",
+    "installed_need": 55,
+    "code": "C1711",
+    "authority": "OBSERVATIONS_ONLY",
+    "discovery": {
+      "provenance": {
+        "retrieved_at": "2026-10-26T16:04:48.505237+00:00",
+        "url": "https://jlcsearch.tscircuit.com/api/search?q=C1711&limit=20&full=true",
+        "sha256": "ac46fd24bd501fa7297f0a2945bcc7f5d655b9bcf8bfbf16718a9d25c0c2c018",
+        "http_date": "Mon, 26 Oct 2026 16:04:48 GMT",
+        "http_age": null
+      },
+      "raw": {
+        "components": []
+      },
+      "lookup_state": "no_exact_match",
+      "matches": [],
+      "returned_rows": 0
+    },
+    "supplier": {
+      "provenance": {
+        "retrieved_at": "2026-10-26T16:04:49.155643+00:00",
+        "url": "https://jlcpcb.com/partdetail/CL21B104KBCNNNC/C1711",
+        "sha256": "b41ffeec65479da5109a388758f092b3115e7a7a0a09592922377a2f9ed6194d",
+        "http_date": "Mon, 26 Oct 2026 16:04:49 GMT",
+        "http_age": null
+      },
+      "exact_product_offers": [
+        {
+          "mpn": "CL21B104KBCNNNC",
+          "sku": "C1711",
+          "brand": {
+            "@type": "Brand",
+            "name": "Samsung Electro-Mechanics"
+          },
+          "offers": {
+            "@type": "AggregateOffer",
+            "priceCurrency": "USD",
+            "lowPrice": 0.0138,
+            "highPrice": 0.0064,
+            "offerCount": 6,
+            "availability": "https://schema.org/InStock"
+          }
+        }
+      ],
+      "identity_fields": {
+        "lookup_state": "exact_identity_observed",
+        "observations": [
+          {
+            "componentModelEn": "CL21B104KBCNNNC",
+            "componentBrandEn": "Samsung Electro-Mechanics",
+            "componentCode": "C1711",
+            "componentSpecificationEn": "0805"
+          },
+          {
+            "componentModelEn": "CL21B104KBCNNNC",
+            "componentBrandEn": "Samsung Electro-Mechanics",
+            "componentCode": "C1711",
+            "componentSpecificationEn": "0805",
+            "overseasStockCount": 2718096,
+            "canPresaleNumber": 2307138,
+            "isBuyComponent": "1"
+          },
+          {
+            "componentModelEn": "CL21B104KBCNNNC",
+            "componentBrandEn": "Samsung Electro-Mechanics",
+            "componentCode": "C1711",
+            "componentSpecificationEn": "0805",
+            "overseasStockCount": 2718096,
+            "canPresaleNumber": 2307138,
+            "isBuyComponent": "1",
+            "noBuyReason": null
+          }
+        ],
+        "availability_verified": false,
+        "limit": "Identity/raw fields only; interpret inventory pool and freshness separately."
+      }
+    }
+  },
+  {
+    "mpn": "CL21C222JBFNNNE",
+    "installed_need": 80,
+    "code": "C28260",
+    "authority": "OBSERVATIONS_ONLY",
+    "discovery": {
+      "provenance": {
+        "retrieved_at": "2026-10-26T16:04:48.555336+00:00",
+        "url": "https://jlcsearch.tscircuit.com/api/search?q=C28260&limit=20&full=true",
+        "sha256": "ac46fd24bd501fa7297f0a2945bcc7f5d655b9bcf8bfbf16718a9d25c0c2c018",
+        "http_date": "Mon, 26 Oct 2026 16:04:48 GMT",
+        "http_age": null
+      },
+      "raw": {
+        "components": []
+      },
+      "lookup_state": "no_exact_match",
+      "matches": [],
+      "returned_rows": 0
+    },
+    "supplier": {
+      "provenance": {
+        "retrieved_at": "2026-10-26T16:04:49.308055+00:00",
+        "url": "https://jlcpcb.com/partdetail/29010-CL21C222JBFNNNE/C28260",
+        "sha256": "8b140d93c218f500e05b4f01d8f546c38b1ef83b4acac073b5aba1d5f4458d92",
+        "http_date": "Mon, 26 Oct 2026 16:04:49 GMT",
+        "http_age": null
+      },
+      "exact_product_offers": [
+        {
+          "mpn": "CL21C222JBFNNNE",
+          "sku": "C28260",
+          "brand": {
+            "@type": "Brand",
+            "name": "Samsung Electro-Mechanics"
+          },
+          "offers": {
+            "@type": "AggregateOffer",
+            "priceCurrency": "USD",
+            "lowPrice": 0.0336,
+            "highPrice": 0.0182,
+            "offerCount": 6,
+            "availability": "https://schema.org/InStock"
+          }
+        }
+      ],
+      "identity_fields": {
+        "lookup_state": "exact_identity_observed",
+        "observations": [
+          {
+            "componentModelEn": "CL21C222JBFNNNE",
+            "componentBrandEn": "Samsung Electro-Mechanics",
+            "componentCode": "C28260",
+            "componentSpecificationEn": "0805"
+          },
+          {
+            "componentModelEn": "CL21C222JBFNNNE",
+            "componentBrandEn": "Samsung Electro-Mechanics",
+            "componentCode": "C28260",
+            "componentSpecificationEn": "0805",
+            "overseasStockCount": 222622,
+            "canPresaleNumber": 171766,
+            "isBuyComponent": "1"
+          },
+          {
+            "componentModelEn": "CL21C222JBFNNNE",
+            "componentBrandEn": "Samsung Electro-Mechanics",
+            "componentCode": "C28260",
+            "componentSpecificationEn": "0805",
+            "overseasStockCount": 222622,
+            "canPresaleNumber": 171766,
+            "isBuyComponent": "1",
+            "noBuyReason": null
+          }
+        ],
+        "availability_verified": false,
+        "limit": "Identity/raw fields only; interpret inventory pool and freshness separately."
+      }
+    }
+  },
+  {
+    "mpn": "CRCW0603100KFKEA",
+    "installed_need": 60,
+    "code": "C844916",
+    "authority": "OBSERVATIONS_ONLY",
+    "discovery": {
+      "provenance": {
+        "retrieved_at": "2026-10-26T16:04:48.608161+00:00",
+        "url": "https://jlcsearch.tscircuit.com/api/search?q=C844916&limit=20&full=true",
+        "sha256": "ac46fd24bd501fa7297f0a2945bcc7f5d655b9bcf8bfbf16718a9d25c0c2c018",
+        "http_date": "Mon, 26 Oct 2026 16:04:48 GMT",
+        "http_age": null
+      },
+      "raw": {
+        "components": []
+      },
+      "lookup_state": "no_exact_match",
+      "matches": [],
+      "returned_rows": 0
+    },
+    "supplier": {
+      "provenance": {
+        "retrieved_at": "2026-10-26T16:04:49.284648+00:00",
+        "url": "https://www.lcsc.com/product-detail/Chip-Resistor-Surface-Mount_Vishay-Intertech-CRCW0603100KFKEA_C844916.html",
+        "sha256": "9bcd81e193ce62fd078d4fdfffbcaeb580d7e835c0ff07231c77044cdc3ac8ef",
+        "http_date": "Mon, 26 Oct 2026 16:04:49 GMT",
+        "http_age": null
+      },
+      "exact_product_offers": [
+        {
+          "mpn": "CRCW0603100KFKEA",
+          "sku": "C844916",
+          "brand": {
+            "@type": "Brand",
+            "name": "VISHAY"
+          },
+          "offers": {
+            "@type": "Offer",
+            "url": "https://www.lcsc.com/product-detail/Chip-Resistor-Surface-Mount_Vishay-Intertech-CRCW0603100KFKEA_C844916.html",
+            "priceCurrency": "USD",
+            "price": 0.0022,
+            "itemCondition": "http://schema.org/NewCondition",
+            "availability": "http://schema.org/InStock",
+            "inventoryLevel": 199700,
+            "seller": {
+              "@type": "Organization",
+              "name": "LCSC Electronics",
+              "url": "https://www.lcsc.com/"
+            },
+            "description": ""
+          }
+        }
+      ],
+      "identity_fields": {
+        "lookup_state": "no_exact_evidence",
+        "observations": [],
+        "availability_verified": false,
+        "limit": "Identity/raw fields only; interpret inventory pool and freshness separately."
+      }
+    }
+  },
+  {
+    "mpn": "CRCW060310K0FKEA",
+    "installed_need": 60,
+    "code": "C844918",
+    "authority": "OBSERVATIONS_ONLY",
+    "discovery": {
+      "provenance": {
+        "retrieved_at": "2026-10-26T16:04:48.949410+00:00",
+        "url": "https://jlcsearch.tscircuit.com/api/search?q=C844918&limit=20&full=true",
+        "sha256": "ac46fd24bd501fa7297f0a2945bcc7f5d655b9bcf8bfbf16718a9d25c0c2c018",
+        "http_date": "Mon, 26 Oct 2026 16:04:48 GMT",
+        "http_age": null
+      },
+      "raw": {
+        "components": []
+      },
+      "lookup_state": "no_exact_match",
+      "matches": [],
+      "returned_rows": 0
+    },
+    "supplier": {
+      "provenance": {
+        "retrieved_at": "2026-10-26T16:04:49.666875+00:00",
+        "url": "https://www.lcsc.com/product-detail/Chip-Resistor-Surface-Mount_Vishay-Intertech-CRCW060310K0FKEA_C844918.html",
+        "sha256": "54eb8e9b910004173065bceb0f1c6330111fdf716301a85103122d1c13290b7f",
+        "http_date": "Mon, 26 Oct 2026 16:04:49 GMT",
+        "http_age": null
+      },
+      "exact_product_offers": [
+        {
+          "mpn": "CRCW060310K0FKEA",
+          "sku": "C844918",
+          "brand": {
+            "@type": "Brand",
+            "name": "VISHAY"
+          },
+          "offers": {
+            "@type": "Offer",
+            "url": "https://www.lcsc.com/product-detail/Chip-Resistor-Surface-Mount_Vishay-Intertech-CRCW060310K0FKEA_C844918.html",
+            "priceCurrency": "USD",
+            "price": 0.0017,
+            "itemCondition": "http://schema.org/NewCondition",
+            "availability": "http://schema.org/InStock",
+            "inventoryLevel": 499000,
+            "seller": {
+              "@type": "Organization",
+              "name": "LCSC Electronics",
+              "url": "https://www.lcsc.com/"
+            },
+            "description": ""
+          }
+        }
+      ],
+      "identity_fields": {
+        "lookup_state": "no_exact_evidence",
+        "observations": [],
+        "availability_verified": false,
+        "limit": "Identity/raw fields only; interpret inventory pool and freshness separately."
+      }
+    }
+  },
+  {
+    "mpn": "CRCW06031K00FKEAHP",
+    "installed_need": 30,
+    "code": "C844747",
+    "authority": "OBSERVATIONS_ONLY",
+    "discovery": {
+      "provenance": {
+        "retrieved_at": "2026-10-26T16:04:49.773376+00:00",
+        "url": "https://jlcsearch.tscircuit.com/api/search?q=C844747&limit=20&full=true",
+        "sha256": "ac46fd24bd501fa7297f0a2945bcc7f5d655b9bcf8bfbf16718a9d25c0c2c018",
+        "http_date": "Mon, 26 Oct 2026 16:04:49 GMT",
+        "http_age": null
+      },
+      "raw": {
+        "components": []
+      },
+      "lookup_state": "no_exact_match",
+      "matches": [],
+      "returned_rows": 0
+    },
+    "supplier": {
+      "provenance": {
+        "retrieved_at": "2026-10-26T16:04:50.225410+00:00",
+        "url": "https://www.lcsc.com/product-detail/C844747.html",
+        "sha256": "f978ecddae6f27ed40ac569c5fdcad13ba84a660a26206b7872d13c5a3a3e6f4",
+        "http_date": "Mon, 26 Oct 2026 16:04:50 GMT",
+        "http_age": null
+      },
+      "exact_product_offers": [
+        {
+          "mpn": "CRCW06031K00FKEAHP",
+          "sku": "C844747",
+          "brand": {
+            "@type": "Brand",
+            "name": "VISHAY"
+          },
+          "offers": {
+            "@type": "Offer",
+            "url": "https://www.lcsc.com/product-detail/C844747.html",
+            "priceCurrency": "USD",
+            "price": 0.0167,
+            "itemCondition": "http://schema.org/NewCondition",
+            "availability": "http://schema.org/InStock",
+            "inventoryLevel": 59800,
+            "seller": {
+              "@type": "Organization",
+              "name": "LCSC Electronics",
+              "url": "https://www.lcsc.com/"
+            },
+            "description": ""
+          }
+        }
+      ],
+      "identity_fields": {
+        "lookup_state": "no_exact_evidence",
+        "observations": [],
+        "availability_verified": false,
+        "limit": "Identity/raw fields only; interpret inventory pool and freshness separately."
+      }
+    }
+  },
+  {
+    "mpn": "CRCW06032K20FKEA",
+    "installed_need": 10,
+    "code": "C844925",
+    "authority": "OBSERVATIONS_ONLY",
+    "discovery": {
+      "provenance": {
+        "retrieved_at": "2026-10-26T16:04:49.956759+00:00",
+        "url": "https://jlcsearch.tscircuit.com/api/search?q=C844925&limit=20&full=true",
+        "sha256": "ac46fd24bd501fa7297f0a2945bcc7f5d655b9bcf8bfbf16718a9d25c0c2c018",
+        "http_date": "Mon, 26 Oct 2026 16:04:49 GMT",
+        "http_age": null
+      },
+      "raw": {
+        "components": []
+      },
+      "lookup_state": "no_exact_match",
+      "matches": [],
+      "returned_rows": 0
+    },
+    "supplier": {
+      "provenance": {
+        "retrieved_at": "2026-10-26T16:04:50.411589+00:00",
+        "url": "https://www.lcsc.com/it/product-detail/chip-resistor-surface-mount_vishay-intertech-crcw06032k20fkea_C844925.html",
+        "sha256": "e7d9e64a54b3d23e2e1c91b631b25592851c9d7530f95b84714448e6fe4d0312",
+        "http_date": "Mon, 26 Oct 2026 16:04:50 GMT",
+        "http_age": null
+      },
+      "exact_product_offers": [
+        {
+          "mpn": "CRCW06032K20FKEA",
+          "sku": "C844925",
+          "brand": {
+            "@type": "Brand",
+            "name": "VISHAY"
+          },
+          "offers": {
+            "@type": "Offer",
+            "url": "https://www.lcsc.com/it/product-detail/chip-resistor-surface-mount_vishay-intertech-crcw06032k20fkea_C844925.html",
+            "priceCurrency": "USD",
+            "price": 0.0023,
+            "itemCondition": "http://schema.org/NewCondition",
+            "availability": "http://schema.org/InStock",
+            "inventoryLevel": 88200,
+            "seller": {
+              "@type": "Organization",
+              "name": "LCSC Electronics",
+              "url": "https://www.lcsc.com/it/"
+            },
+            "description": ""
+          }
+        }
+      ],
+      "identity_fields": {
+        "lookup_state": "no_exact_evidence",
+        "observations": [],
+        "availability_verified": false,
+        "limit": "Identity/raw fields only; interpret inventory pool and freshness separately."
+      }
+    }
+  },
+  {
+    "mpn": "CRCW06032K70FKEA",
+    "installed_need": 80,
+    "code": "C844770",
+    "authority": "OBSERVATIONS_ONLY",
+    "discovery": {
+      "provenance": {
+        "retrieved_at": "2026-10-26T16:04:49.915882+00:00",
+        "url": "https://jlcsearch.tscircuit.com/api/search?q=C844770&limit=20&full=true",
+        "sha256": "ac46fd24bd501fa7297f0a2945bcc7f5d655b9bcf8bfbf16718a9d25c0c2c018",
+        "http_date": "Mon, 26 Oct 2026 16:04:49 GMT",
+        "http_age": null
+      },
+      "raw": {
+        "components": []
+      },
+      "lookup_state": "no_exact_match",
+      "matches": [],
+      "returned_rows": 0
+    },
+    "supplier": {
+      "provenance": {
+        "retrieved_at": "2026-10-26T16:04:50.340146+00:00",
+        "url": "https://www.lcsc.com/de/product-detail/chip-resistor-surface-mount_vishay-intertech-crcw06032k70fkea_C844770.html",
+        "sha256": "ac5d7886197bc44d6623df541ca64f5ac3c5d9413678b50bf438075ddfb9b125",
+        "http_date": "Mon, 26 Oct 2026 16:04:50 GMT",
+        "http_age": null
+      },
+      "exact_product_offers": [
+        {
+          "mpn": "CRCW06032K70FKEA",
+          "sku": "C844770",
+          "brand": {
+            "@type": "Brand",
+            "name": "VISHAY"
+          },
+          "offers": {
+            "@type": "Offer",
+            "url": "https://www.lcsc.com/de/product-detail/chip-resistor-surface-mount_vishay-intertech-crcw06032k70fkea_C844770.html",
+            "priceCurrency": "USD",
+            "price": 0.0093,
+            "itemCondition": "http://schema.org/NewCondition",
+            "availability": "http://schema.org/InStock",
+            "inventoryLevel": 9650,
+            "seller": {
+              "@type": "Organization",
+              "name": "LCSC Electronics",
+              "url": "https://www.lcsc.com/de/"
+            },
+            "description": ""
+          }
+        }
+      ],
+      "identity_fields": {
+        "lookup_state": "no_exact_evidence",
+        "observations": [],
+        "availability_verified": false,
+        "limit": "Identity/raw fields only; interpret inventory pool and freshness separately."
+      }
+    }
+  },
+  {
+    "mpn": "CRCW0603330RFKEAHP",
+    "installed_need": 10,
+    "code": "C844355",
+    "authority": "OBSERVATIONS_ONLY",
+    "discovery": {
+      "provenance": {
+        "retrieved_at": "2026-10-26T16:04:50.234625+00:00",
+        "url": "https://jlcsearch.tscircuit.com/api/search?q=C844355&limit=20&full=true",
+        "sha256": "ac46fd24bd501fa7297f0a2945bcc7f5d655b9bcf8bfbf16718a9d25c0c2c018",
+        "http_date": "Mon, 26 Oct 2026 16:04:50 GMT",
+        "http_age": null
+      },
+      "raw": {
+        "components": []
+      },
+      "lookup_state": "no_exact_match",
+      "matches": [],
+      "returned_rows": 0
+    },
+    "supplier": {
+      "provenance": {
+        "retrieved_at": "2026-10-26T16:04:50.671287+00:00",
+        "url": "https://www.lcsc.com/es/product-detail/C844355.html",
+        "sha256": "f203ea79a64ed7878730f667299eec9518f9c38a828b18a4b29f896d3687d045",
+        "http_date": "Mon, 26 Oct 2026 16:04:50 GMT",
+        "http_age": null
+      },
+      "exact_product_offers": [
+        {
+          "mpn": "CRCW0603330RFKEAHP",
+          "sku": "C844355",
+          "brand": {
+            "@type": "Brand",
+            "name": "VISHAY"
+          },
+          "offers": {
+            "@type": "Offer",
+            "url": "https://www.lcsc.com/es/product-detail/C844355.html",
+            "priceCurrency": "USD",
+            "price": 0.0312,
+            "itemCondition": "http://schema.org/NewCondition",
+            "availability": "http://schema.org/InStock",
+            "inventoryLevel": 450,
+            "seller": {
+              "@type": "Organization",
+              "name": "LCSC Electronics",
+              "url": "https://www.lcsc.com/es/"
+            },
+            "description": ""
+          }
+        }
+      ],
+      "identity_fields": {
+        "lookup_state": "no_exact_evidence",
+        "observations": [],
+        "availability_verified": false,
+        "limit": "Identity/raw fields only; interpret inventory pool and freshness separately."
+      }
+    }
+  },
+  {
+    "mpn": "CRCW060339K0FKEA",
+    "installed_need": 10,
+    "code": "C844779",
+    "authority": "OBSERVATIONS_ONLY",
+    "discovery": {
+      "provenance": {
+        "retrieved_at": "2026-10-26T16:04:50.714147+00:00",
+        "url": "https://jlcsearch.tscircuit.com/api/search?q=C844779&limit=20&full=true",
+        "sha256": "ac46fd24bd501fa7297f0a2945bcc7f5d655b9bcf8bfbf16718a9d25c0c2c018",
+        "http_date": "Mon, 26 Oct 2026 16:04:50 GMT",
+        "http_age": null
+      },
+      "raw": {
+        "components": []
+      },
+      "lookup_state": "no_exact_match",
+      "matches": [],
+      "returned_rows": 0
+    },
+    "supplier": {
+      "provenance": {
+        "retrieved_at": "2026-10-26T16:04:51.159799+00:00",
+        "url": "https://www.lcsc.com/product-detail/C844779.html",
+        "sha256": "8d92664ddaabd38a3df14eebf12f26e4b1039b1e3278848fd7c2e160ce8411aa",
+        "http_date": "Mon, 26 Oct 2026 16:04:51 GMT",
+        "http_age": null
+      },
+      "exact_product_offers": [
+        {
+          "mpn": "CRCW060339K0FKEA",
+          "sku": "C844779",
+          "brand": {
+            "@type": "Brand",
+            "name": "VISHAY"
+          },
+          "offers": {
+            "@type": "Offer",
+            "url": "https://www.lcsc.com/product-detail/C844779.html",
+            "priceCurrency": "USD",
+            "price": 0.002,
+            "itemCondition": "http://schema.org/NewCondition",
+            "availability": "http://schema.org/InStock",
+            "inventoryLevel": 50500,
+            "seller": {
+              "@type": "Organization",
+              "name": "LCSC Electronics",
+              "url": "https://www.lcsc.com/"
+            },
+            "description": ""
+          }
+        }
+      ],
+      "identity_fields": {
+        "lookup_state": "no_exact_evidence",
+        "observations": [],
+        "availability_verified": false,
+        "limit": "Identity/raw fields only; interpret inventory pool and freshness separately."
+      }
+    }
+  },
+  {
+    "mpn": "CRCW06034K70FKEA",
+    "installed_need": 10,
+    "code": "C844931",
+    "authority": "OBSERVATIONS_ONLY",
+    "discovery": {
+      "provenance": {
+        "retrieved_at": "2026-10-26T16:04:51.065986+00:00",
+        "url": "https://jlcsearch.tscircuit.com/api/search?q=C844931&limit=20&full=true",
+        "sha256": "ac46fd24bd501fa7297f0a2945bcc7f5d655b9bcf8bfbf16718a9d25c0c2c018",
+        "http_date": "Mon, 26 Oct 2026 16:04:51 GMT",
+        "http_age": null
+      },
+      "raw": {
+        "components": []
+      },
+      "lookup_state": "no_exact_match",
+      "matches": [],
+      "returned_rows": 0
+    },
+    "supplier": {
+      "provenance": {
+        "retrieved_at": "2026-10-26T16:04:51.520510+00:00",
+        "url": "https://www.lcsc.com/de/product-detail/chip-resistor-surface-mount_vishay-intertech-crcw06034k70fkea_C844931.html",
+        "sha256": "dde48dc707c9e7cc2e57a65c64979d07af9d4b8a319b5b8115f1839159377d29",
+        "http_date": "Mon, 26 Oct 2026 16:04:51 GMT",
+        "http_age": null
+      },
+      "exact_product_offers": [
+        {
+          "mpn": "CRCW06034K70FKEA",
+          "sku": "C844931",
+          "brand": {
+            "@type": "Brand",
+            "name": "VISHAY"
+          },
+          "offers": {
+            "@type": "Offer",
+            "url": "https://www.lcsc.com/de/product-detail/chip-resistor-surface-mount_vishay-intertech-crcw06034k70fkea_C844931.html",
+            "priceCurrency": "USD",
+            "price": 0.0023,
+            "itemCondition": "http://schema.org/NewCondition",
+            "availability": "http://schema.org/InStock",
+            "inventoryLevel": 30000,
+            "seller": {
+              "@type": "Organization",
+              "name": "LCSC Electronics",
+              "url": "https://www.lcsc.com/de/"
+            },
+            "description": ""
+          }
+        }
+      ],
+      "identity_fields": {
+        "lookup_state": "no_exact_evidence",
+        "observations": [],
+        "availability_verified": false,
+        "limit": "Identity/raw fields only; interpret inventory pool and freshness separately."
+      }
+    }
+  },
+  {
+    "mpn": "CRCW060356R0FKEA",
+    "installed_need": 10,
+    "code": "C844179",
+    "authority": "OBSERVATIONS_ONLY",
+    "discovery": {
+      "provenance": {
+        "retrieved_at": "2026-10-26T16:04:50.882696+00:00",
+        "url": "https://jlcsearch.tscircuit.com/api/search?q=C844179&limit=20&full=true",
+        "sha256": "ac46fd24bd501fa7297f0a2945bcc7f5d655b9bcf8bfbf16718a9d25c0c2c018",
+        "http_date": "Mon, 26 Oct 2026 16:04:50 GMT",
+        "http_age": null
+      },
+      "raw": {
+        "components": []
+      },
+      "lookup_state": "no_exact_match",
+      "matches": [],
+      "returned_rows": 0
+    },
+    "supplier": {
+      "provenance": {
+        "retrieved_at": "2026-10-26T16:04:51.530034+00:00",
+        "url": "https://jlcpcb.com/partdetail/VishayIntertech-CRCW060356R0FKEA/C844179",
+        "sha256": "46b33064217bb42cbfb0f4684775289f75e55ecf8c4a0473ad6636a9b4069dea",
+        "http_date": "Mon, 26 Oct 2026 16:04:51 GMT",
+        "http_age": null
+      },
+      "exact_product_offers": [
+        {
+          "mpn": "CRCW060356R0FKEA",
+          "sku": "C844179",
+          "brand": {
+            "@type": "Brand",
+            "name": "Vishay Intertech"
+          },
+          "offers": {
+            "@type": "AggregateOffer",
+            "priceCurrency": "USD",
+            "lowPrice": 0.0047,
+            "highPrice": 0.0026,
+            "offerCount": 6,
+            "availability": "https://schema.org/InStock"
+          }
+        }
+      ],
+      "identity_fields": {
+        "lookup_state": "exact_identity_observed",
+        "observations": [
+          {
+            "componentModelEn": "CRCW060356R0FKEA",
+            "componentBrandEn": "Vishay Intertech",
+            "componentCode": "C844179",
+            "componentSpecificationEn": "0603"
+          },
+          {
+            "componentModelEn": "CRCW060356R0FKEA",
+            "componentBrandEn": "Vishay Intertech",
+            "componentCode": "C844179",
+            "componentSpecificationEn": "0603",
+            "overseasStockCount": 36670,
+            "canPresaleNumber": 35788,
+            "isBuyComponent": "1"
+          },
+          {
+            "componentModelEn": "CRCW060356R0FKEA",
+            "componentBrandEn": "Vishay Intertech",
+            "componentCode": "C844179",
+            "componentSpecificationEn": "0603",
+            "overseasStockCount": 36670,
+            "canPresaleNumber": 35788,
+            "isBuyComponent": "1",
+            "noBuyReason": null
+          }
+        ],
+        "availability_verified": false,
+        "limit": "Identity/raw fields only; interpret inventory pool and freshness separately."
+      }
+    }
+  },
+  {
+    "mpn": "DMN3023L-7",
+    "installed_need": 50,
+    "code": "C443825",
+    "authority": "OBSERVATIONS_ONLY",
+    "discovery": {
+      "provenance": {
+        "retrieved_at": "2026-10-26T16:04:51.169282+00:00",
+        "url": "https://jlcsearch.tscircuit.com/api/search?q=C443825&limit=20&full=true",
+        "sha256": "60e5da5e0d5067ddaf4f0f27077d5b96ab868d53e8c56a688060622b51d7addd",
+        "http_date": "Mon, 26 Oct 2026 16:04:51 GMT",
+        "http_age": null
+      },
+      "raw": {
+        "components": [
+          {
+            "lcsc": 443825,
+            "mfr": "DMN3023L-7",
+            "package": "SOT-23",
+            "is_basic": false,
+            "is_preferred": false,
+            "description": "-55\u2103~+150\u2103 1 N-channel 1.3W 1.8V 18.4nC 25m\u03a9@10V 30V 6.2A 67pF 873pF SOT-23 MOSFETs ROHS",
+            "stock": 8526,
+            "price": 0.1755
+          }
+        ]
+      },
+      "lookup_state": "exact_matches",
+      "matches": [
+        {
+          "mpn": "DMN3023L-7",
+          "lcsc": 443825,
+          "package": "SOT-23",
+          "manufacturer": null,
+          "stock_count": 8526,
+          "status": "reported_sufficient"
+        }
+      ],
+      "returned_rows": 1
+    },
+    "supplier": {
+      "provenance": {
+        "retrieved_at": "2026-10-26T16:04:51.817003+00:00",
+        "url": "https://jlcpcb.com/partdetail/DiodesIncorporated-DMN3023L7/C443825",
+        "sha256": "ac1f29c8b84b575c9ae80f9349fb6abe1fe9c5a64c6492672c9a7f52386a403a",
+        "http_date": "Mon, 26 Oct 2026 16:04:51 GMT",
+        "http_age": null
+      },
+      "exact_product_offers": [
+        {
+          "mpn": "DMN3023L-7",
+          "sku": "C443825",
+          "brand": {
+            "@type": "Brand",
+            "name": "Diodes Incorporated"
+          },
+          "offers": {
+            "@type": "AggregateOffer",
+            "priceCurrency": "USD",
+            "lowPrice": 0.187,
+            "highPrice": 0.0929,
+            "offerCount": 6,
+            "availability": "https://schema.org/InStock"
+          }
+        }
+      ],
+      "identity_fields": {
+        "lookup_state": "exact_identity_observed",
+        "observations": [
+          {
+            "componentModelEn": "DMN3023L-7",
+            "componentBrandEn": "Diodes Incorporated",
+            "componentCode": "C443825",
+            "componentSpecificationEn": "SOT-23"
+          },
+          {
+            "componentModelEn": "DMN3023L-7",
+            "componentBrandEn": "Diodes Incorporated",
+            "componentCode": "C443825",
+            "componentSpecificationEn": "SOT-23",
+            "overseasStockCount": 8217,
+            "canPresaleNumber": 8008,
+            "isBuyComponent": "1"
+          },
+          {
+            "componentModelEn": "DMN3023L-7",
+            "componentBrandEn": "Diodes Incorporated",
+            "componentCode": "C443825",
+            "componentSpecificationEn": "SOT-23",
+            "overseasStockCount": 8217,
+            "canPresaleNumber": 8008,
+            "isBuyComponent": "1",
+            "noBuyReason": null
+          }
+        ],
+        "availability_verified": false,
+        "limit": "Identity/raw fields only; interpret inventory pool and freshness separately."
+      }
+    }
+  },
+  {
+    "mpn": "GRM21BR71A105KA01L",
+    "installed_need": 20,
+    "code": "C97917",
+    "authority": "OBSERVATIONS_ONLY",
+    "discovery": {
+      "provenance": {
+        "retrieved_at": "2026-10-26T16:04:51.684602+00:00",
+        "url": "https://jlcsearch.tscircuit.com/api/search?q=C97917&limit=20&full=true",
+        "sha256": "ac46fd24bd501fa7297f0a2945bcc7f5d655b9bcf8bfbf16718a9d25c0c2c018",
+        "http_date": "Mon, 26 Oct 2026 16:04:51 GMT",
+        "http_age": null
+      },
+      "raw": {
+        "components": []
+      },
+      "lookup_state": "no_exact_match",
+      "matches": [],
+      "returned_rows": 0
+    },
+    "supplier": {
+      "provenance": {
+        "retrieved_at": "2026-10-26T16:04:52.507518+00:00",
+        "url": "https://jlcpcb.com/partdetail/MurataElectronics-GRM21BR71A105KA01L/C97917",
+        "sha256": "49e3c7409dd02478b4bfca2b2a19041972294dcfd69727668429dcce481cd576",
+        "http_date": "Mon, 26 Oct 2026 16:04:52 GMT",
+        "http_age": null
+      },
+      "exact_product_offers": [
+        {
+          "mpn": "GRM21BR71A105KA01L",
+          "sku": "C97917",
+          "brand": {
+            "@type": "Brand",
+            "name": "Murata Electronics"
+          },
+          "offers": {
+            "@type": "AggregateOffer",
+            "priceCurrency": "USD",
+            "lowPrice": 0.0274,
+            "highPrice": 0.0148,
+            "offerCount": 8,
+            "availability": "https://schema.org/OutOfStock"
+          }
+        }
+      ],
+      "identity_fields": {
+        "lookup_state": "exact_identity_observed",
+        "observations": [
+          {
+            "componentModelEn": "GRM21BR71A105KA01L",
+            "componentBrandEn": "Murata Electronics",
+            "componentCode": "C97917",
+            "componentSpecificationEn": "0805"
+          },
+          {
+            "componentModelEn": "GRM21BR71A105KA01L",
+            "componentBrandEn": "Murata Electronics",
+            "componentCode": "C97917",
+            "componentSpecificationEn": "0805",
+            "overseasStockCount": 0,
+            "canPresaleNumber": 0,
+            "isBuyComponent": "1"
+          },
+          {
+            "componentModelEn": "GRM21BR71A105KA01L",
+            "componentBrandEn": "Murata Electronics",
+            "componentCode": "C97917",
+            "componentSpecificationEn": "0805",
+            "overseasStockCount": 0,
+            "canPresaleNumber": 0,
+            "isBuyComponent": "1",
+            "noBuyReason": null
+          }
+        ],
+        "availability_verified": false,
+        "limit": "Identity/raw fields only; interpret inventory pool and freshness separately."
+      }
+    }
+  },
+  {
+    "mpn": "GRM21BR71A106MA73L",
+    "installed_need": 40,
+    "code": "C710992",
+    "authority": "OBSERVATIONS_ONLY",
+    "discovery": {
+      "provenance": {
+        "retrieved_at": "2026-10-26T16:04:51.997318+00:00",
+        "url": "https://jlcsearch.tscircuit.com/api/search?q=C710992&limit=20&full=true",
+        "sha256": "ac46fd24bd501fa7297f0a2945bcc7f5d655b9bcf8bfbf16718a9d25c0c2c018",
+        "http_date": "Mon, 26 Oct 2026 16:04:51 GMT",
+        "http_age": null
+      },
+      "raw": {
+        "components": []
+      },
+      "lookup_state": "no_exact_match",
+      "matches": [],
+      "returned_rows": 0
+    },
+    "supplier": {
+      "provenance": {
+        "retrieved_at": "2026-10-26T16:04:52.423039+00:00",
+        "url": "https://www.lcsc.com/de/product-detail/multilayer-ceramic-capacitors-mlcc-smd-smt_murata-electronics-grm21br71a106ma73l_C710992.html",
+        "sha256": "0aa5a936aec28ee3625a4af87b37ed018987c2e8d2e851e3b9e9d6b23b9c1431",
+        "http_date": "Mon, 26 Oct 2026 16:04:52 GMT",
+        "http_age": null
+      },
+      "exact_product_offers": [
+        {
+          "mpn": "GRM21BR71A106MA73L",
+          "sku": "C710992",
+          "brand": {
+            "@type": "Brand",
+            "name": "muRata"
+          },
+          "offers": {
+            "@type": "Offer",
+            "url": "https://www.lcsc.com/de/product-detail/multilayer-ceramic-capacitors-mlcc-smd-smt_murata-electronics-grm21br71a106ma73l_C710992.html",
+            "priceCurrency": "USD",
+            "price": 0.0421,
+            "itemCondition": "http://schema.org/NewCondition",
+            "availability": "http://schema.org/InStock",
+            "inventoryLevel": 3910,
+            "seller": {
+              "@type": "Organization",
+              "name": "LCSC Electronics",
+              "url": "https://www.lcsc.com/de/"
+            },
+            "description": ""
+          }
+        }
+      ],
+      "identity_fields": {
+        "lookup_state": "no_exact_evidence",
+        "observations": [],
+        "availability_verified": false,
+        "limit": "Identity/raw fields only; interpret inventory pool and freshness separately."
+      }
+    }
+  },
+  {
+    "mpn": "GRM31MR71E225KA93L",
+    "installed_need": 80,
+    "code": "C97962",
+    "authority": "OBSERVATIONS_ONLY",
+    "discovery": {
+      "provenance": {
+        "retrieved_at": "2026-10-26T15:27:10.954638+00:00",
+        "url": "https://jlcsearch.tscircuit.com/api/search?q=C97962&limit=20&full=true",
+        "sha256": "ac46fd24bd501fa7297f0a2945bcc7f5d655b9bcf8bfbf16718a9d25c0c2c018",
+        "http_date": "Mon, 26 Oct 2026 15:27:10 GMT",
+        "http_age": null
+      },
+      "raw": {
+        "components": []
+      },
+      "lookup_state": "no_exact_match",
+      "matches": [],
+      "returned_rows": 0
+    },
+    "supplier": {
+      "provenance": {
+        "retrieved_at": "2026-10-26T15:27:11.524223+00:00",
+        "url": "https://www.lcsc.com/product-detail/C97962.html",
+        "sha256": "963f2da9616ff9b63fd2a0a81f54e8e7cb50ab957963f3d1e26635f75b3fad72",
+        "http_date": "Mon, 26 Oct 2026 15:27:11 GMT",
+        "http_age": null
+      },
+      "exact_product_offers": [
+        {
+          "mpn": "GRM31MR71E225KA93L",
+          "sku": "C97962",
+          "brand": {
+            "@type": "Brand",
+            "name": "muRata"
+          },
+          "offers": {
+            "@type": "Offer",
+            "url": "https://www.lcsc.com/product-detail/C97962.html",
+            "priceCurrency": "USD",
+            "price": 0.0442,
+            "itemCondition": "http://schema.org/NewCondition",
+            "availability": "http://schema.org/InStock",
+            "inventoryLevel": 1520,
+            "seller": {
+              "@type": "Organization",
+              "name": "LCSC Electronics",
+              "url": "https://www.lcsc.com/"
+            },
+            "description": ""
+          }
+        }
+      ],
+      "identity_fields": {
+        "lookup_state": "no_exact_evidence",
+        "observations": [],
+        "availability_verified": false,
+        "limit": "Identity/raw fields only; interpret inventory pool and freshness separately."
+      }
+    },
+    "reused_from": "code-stock-recovery-20261026.json"
+  },
+  {
+    "mpn": "GRM32ER71A476KE15L",
+    "installed_need": 10,
+    "code": "C84494",
+    "authority": "OBSERVATIONS_ONLY",
+    "discovery": {
+      "provenance": {
+        "retrieved_at": "2026-10-26T15:27:10.197770+00:00",
+        "url": "https://jlcsearch.tscircuit.com/api/search?q=C84494&limit=20&full=true",
+        "sha256": "ac46fd24bd501fa7297f0a2945bcc7f5d655b9bcf8bfbf16718a9d25c0c2c018",
+        "http_date": "Mon, 26 Oct 2026 15:27:10 GMT",
+        "http_age": null
+      },
+      "raw": {
+        "components": []
+      },
+      "lookup_state": "no_exact_match",
+      "matches": [],
+      "returned_rows": 0
+    },
+    "supplier": {
+      "provenance": {
+        "retrieved_at": "2026-10-26T15:27:10.912777+00:00",
+        "url": "https://jlcpcb.com/partdetail/MurataElectronics-GRM32ER71A476KE15L/C84494",
+        "sha256": "0145515203124fdc0bd6c10d169227f1da6d133214177d8c4224861a7e2f3c03",
+        "http_date": "Mon, 26 Oct 2026 15:27:10 GMT",
+        "http_age": null
+      },
+      "exact_product_offers": [
+        {
+          "mpn": "GRM32ER71A476KE15L",
+          "sku": "C84494",
+          "brand": {
+            "@type": "Brand",
+            "name": "Murata Electronics"
+          },
+          "offers": {
+            "@type": "AggregateOffer",
+            "priceCurrency": "USD",
+            "lowPrice": 0.4862,
+            "highPrice": 0.2603,
+            "offerCount": 6,
+            "availability": "https://schema.org/InStock"
+          }
+        }
+      ],
+      "identity_fields": {
+        "lookup_state": "exact_identity_observed",
+        "observations": [
+          {
+            "componentModelEn": "GRM32ER71A476KE15L",
+            "componentBrandEn": "Murata Electronics",
+            "componentCode": "C84494",
+            "componentSpecificationEn": "1210"
+          },
+          {
+            "componentModelEn": "GRM32ER71A476KE15L",
+            "componentBrandEn": "Murata Electronics",
+            "componentCode": "C84494",
+            "componentSpecificationEn": "1210",
+            "overseasStockCount": 7910,
+            "canPresaleNumber": 2511,
+            "isBuyComponent": "1"
+          },
+          {
+            "componentModelEn": "GRM32ER71A476KE15L",
+            "componentBrandEn": "Murata Electronics",
+            "componentCode": "C84494",
+            "componentSpecificationEn": "1210",
+            "overseasStockCount": 7910,
+            "canPresaleNumber": 2511,
+            "isBuyComponent": "1",
+            "noBuyReason": null
+          }
+        ],
+        "availability_verified": false,
+        "limit": "Identity/raw fields only; interpret inventory pool and freshness separately."
+      }
+    },
+    "reused_from": "code-stock-recovery-20261026.json"
+  },
+  {
+    "mpn": "MMBT3906LT1G",
+    "installed_need": 10,
+    "code": "C53444",
+    "authority": "OBSERVATIONS_ONLY",
+    "discovery": {
+      "provenance": {
+        "retrieved_at": "2026-10-26T16:04:52.010434+00:00",
+        "url": "https://jlcsearch.tscircuit.com/api/search?q=C53444&limit=20&full=true",
+        "sha256": "6ba9f153ccdb303de1767d388ad96f8791b8d6ceaf9ada5e714413b4ece1795b",
+        "http_date": "Mon, 26 Oct 2026 16:04:51 GMT",
+        "http_age": null
+      },
+      "raw": {
+        "components": [
+          {
+            "lcsc": 53444,
+            "mfr": "MMBT3906LT1G",
+            "package": "SOT-23",
+            "is_basic": false,
+            "is_preferred": false,
+            "description": "-55\u2103~+150\u2103 1 PNP 200mA 225mW 250MHz 250mV 40V 50nA 5V 60 PNP SOT-23 Bipolar (BJT) ROHS",
+            "stock": 941281,
+            "price": 0.0184
+          }
+        ]
+      },
+      "lookup_state": "exact_matches",
+      "matches": [
+        {
+          "mpn": "MMBT3906LT1G",
+          "lcsc": 53444,
+          "package": "SOT-23",
+          "manufacturer": null,
+          "stock_count": 941281,
+          "status": "reported_sufficient"
+        }
+      ],
+      "returned_rows": 1
+    },
+    "supplier": {
+      "provenance": {
+        "retrieved_at": "2026-10-26T16:04:52.196215+00:00",
+        "url": "https://www.lcsc.com/product-detail/C53444.html",
+        "sha256": "cfc1a35a0f323b854c81066d6f4d8f6c47c05db6d1b5c78ad1ad54c9de539cc4",
+        "http_date": "Mon, 26 Oct 2026 16:04:52 GMT",
+        "http_age": null
+      },
+      "exact_product_offers": [
+        {
+          "mpn": "MMBT3906LT1G",
+          "sku": "C53444",
+          "brand": {
+            "@type": "Brand",
+            "name": "onsemi"
+          },
+          "offers": {
+            "@type": "Offer",
+            "url": "https://www.lcsc.com/product-detail/C53444.html?s_z=n_q_C53444&globalKeyword=C53444",
+            "priceCurrency": "USD",
+            "price": 0.0086,
+            "itemCondition": "http://schema.org/NewCondition",
+            "availability": "http://schema.org/InStock",
+            "inventoryLevel": 927650,
+            "seller": {
+              "@type": "Organization",
+              "name": "LCSC Electronics",
+              "url": "https://www.lcsc.com/"
+            },
+            "description": ""
+          }
+        }
+      ],
+      "identity_fields": {
+        "lookup_state": "no_exact_evidence",
+        "observations": [],
+        "availability_verified": false,
+        "limit": "Identity/raw fields only; interpret inventory pool and freshness separately."
+      }
+    }
+  },
+  {
+    "mpn": "PJ-102AH",
+    "installed_need": 5,
+    "code": "C3096093",
+    "authority": "OBSERVATIONS_ONLY",
+    "discovery": {
+      "provenance": {
+        "retrieved_at": "2026-10-26T16:04:52.288279+00:00",
+        "url": "https://jlcsearch.tscircuit.com/api/search?q=C3096093&limit=20&full=true",
+        "sha256": "ac46fd24bd501fa7297f0a2945bcc7f5d655b9bcf8bfbf16718a9d25c0c2c018",
+        "http_date": "Mon, 26 Oct 2026 16:04:52 GMT",
+        "http_age": null
+      },
+      "raw": {
+        "components": []
+      },
+      "lookup_state": "no_exact_match",
+      "matches": [],
+      "returned_rows": 0
+    },
+    "supplier": {
+      "provenance": {
+        "retrieved_at": "2026-10-26T16:04:52.484377+00:00",
+        "url": "https://www.lcsc.com/product-detail/C3096093.html",
+        "sha256": "fe1a533572954f79293ea3e841d081401c8b4d4d8a61fdc0f36c185871db0632",
+        "http_date": "Mon, 26 Oct 2026 16:04:52 GMT",
+        "http_age": null
+      },
+      "exact_product_offers": [
+        {
+          "mpn": "PJ-102AH",
+          "sku": "C3096093",
+          "brand": {
+            "@type": "Brand",
+            "name": "CUI"
+          },
+          "offers": {
+            "@type": "Offer",
+            "url": "https://www.lcsc.com/product-detail/C3096093.html",
+            "priceCurrency": "USD",
+            "price": 0.569,
+            "itemCondition": "http://schema.org/NewCondition",
+            "availability": "http://schema.org/InStock",
+            "inventoryLevel": 1545,
+            "seller": {
+              "@type": "Organization",
+              "name": "LCSC Electronics",
+              "url": "https://www.lcsc.com/"
+            },
+            "description": ""
+          }
+        }
+      ],
+      "identity_fields": {
+        "lookup_state": "no_exact_evidence",
+        "observations": [],
+        "availability_verified": false,
+        "limit": "Identity/raw fields only; interpret inventory pool and freshness separately."
+      }
+    }
+  },
+  {
+    "mpn": "R-78E5.0-0.5",
+    "installed_need": 5,
+    "code": "C5199916",
+    "authority": "OBSERVATIONS_ONLY",
+    "discovery": {
+      "provenance": {
+        "retrieved_at": "2026-10-26T16:04:52.700023+00:00",
+        "url": "https://jlcsearch.tscircuit.com/api/search?q=C5199916&limit=20&full=true",
+        "sha256": "ac46fd24bd501fa7297f0a2945bcc7f5d655b9bcf8bfbf16718a9d25c0c2c018",
+        "http_date": "Mon, 26 Oct 2026 16:04:52 GMT",
+        "http_age": null
+      },
+      "raw": {
+        "components": []
+      },
+      "lookup_state": "no_exact_match",
+      "matches": [],
+      "returned_rows": 0
+    },
+    "supplier": {
+      "provenance": {
+        "retrieved_at": "2026-10-26T16:04:53.100950+00:00",
+        "url": "https://www.lcsc.com/product-detail/Isolated-Power-Modules_Recom-Power-R-78E5-0-0-5_C5199916.html",
+        "sha256": "8e2ba5ac5f5cfc95864147a78dca02ef8722da184b1dd5ff69680ec2c1de099d",
+        "http_date": "Mon, 26 Oct 2026 16:04:53 GMT",
+        "http_age": null
+      },
+      "exact_product_offers": [
+        {
+          "mpn": "R-78E5.0-0.5",
+          "sku": "C5199916",
+          "brand": {
+            "@type": "Brand",
+            "name": "Recom Power"
+          },
+          "offers": {
+            "@type": "Offer",
+            "url": "https://www.lcsc.com/product-detail/Isolated-Power-Modules_Recom-Power-R-78E5-0-0-5_C5199916.html",
+            "priceCurrency": "USD",
+            "price": "0.00",
+            "itemCondition": "http://schema.org/NewCondition",
+            "availability": "http://schema.org/OutOfStock",
+            "inventoryLevel": 0,
+            "seller": {
+              "@type": "Organization",
+              "name": "LCSC Electronics",
+              "url": "https://www.lcsc.com/"
+            },
+            "description": "Contact us for pricing information."
+          }
+        }
+      ],
+      "identity_fields": {
+        "lookup_state": "no_exact_evidence",
+        "observations": [],
+        "availability_verified": false,
+        "limit": "Identity/raw fields only; interpret inventory pool and freshness separately."
+      }
+    }
+  },
+  {
+    "mpn": "RJHSE-5080",
+    "installed_need": 50,
+    "code": "C599441",
+    "authority": "OBSERVATIONS_ONLY",
+    "discovery": {
+      "provenance": {
+        "retrieved_at": "2026-10-26T15:27:11.489629+00:00",
+        "url": "https://jlcsearch.tscircuit.com/api/search?q=C599441&limit=20&full=true",
+        "sha256": "ac46fd24bd501fa7297f0a2945bcc7f5d655b9bcf8bfbf16718a9d25c0c2c018",
+        "http_date": "Mon, 26 Oct 2026 15:27:11 GMT",
+        "http_age": null
+      },
+      "raw": {
+        "components": []
+      },
+      "lookup_state": "no_exact_match",
+      "matches": [],
+      "returned_rows": 0
+    },
+    "supplier": {
+      "provenance": {
+        "retrieved_at": "2026-10-26T15:27:12.070376+00:00",
+        "url": "https://jlcpcb.com/partdetail/AmphenolICC-RJHSE5080/C599441",
+        "sha256": "f4323846629a350918ace779992c7a0c015472a30edb0ab314b414e2c2fe7ce4",
+        "http_date": "Mon, 26 Oct 2026 15:27:12 GMT",
+        "http_age": null
+      },
+      "exact_product_offers": [
+        {
+          "mpn": "RJHSE-5080",
+          "sku": "C599441",
+          "brand": {
+            "@type": "Brand",
+            "name": "Amphenol ICC"
+          },
+          "offers": {
+            "@type": "AggregateOffer",
+            "priceCurrency": "USD",
+            "lowPrice": 0.9428,
+            "highPrice": 0.5418,
+            "offerCount": 6,
+            "availability": "https://schema.org/InStock"
+          }
+        }
+      ],
+      "identity_fields": {
+        "lookup_state": "exact_identity_observed",
+        "observations": [
+          {
+            "componentModelEn": "RJHSE-5080",
+            "componentBrandEn": "Amphenol ICC",
+            "componentCode": "C599441",
+            "componentSpecificationEn": "Plugin"
+          },
+          {
+            "componentModelEn": "RJHSE-5080",
+            "componentBrandEn": "Amphenol ICC",
+            "componentCode": "C599441",
+            "componentSpecificationEn": "Plugin",
+            "overseasStockCount": 1179,
+            "canPresaleNumber": 985,
+            "isBuyComponent": "1"
+          },
+          {
+            "componentModelEn": "RJHSE-5080",
+            "componentBrandEn": "Amphenol ICC",
+            "componentCode": "C599441",
+            "componentSpecificationEn": "Plugin",
+            "overseasStockCount": 1179,
+            "canPresaleNumber": 985,
+            "isBuyComponent": "1",
+            "noBuyReason": null
+          }
+        ],
+        "availability_verified": false,
+        "limit": "Identity/raw fields only; interpret inventory pool and freshness separately."
+      }
+    },
+    "reused_from": "code-stock-recovery-20261026.json"
+  },
+  {
+    "mpn": "SMBJ15A",
+    "installed_need": 15,
+    "code": "C83846",
+    "authority": "OBSERVATIONS_ONLY",
+    "discovery": {
+      "provenance": {
+        "retrieved_at": "2026-10-26T16:04:52.985980+00:00",
+        "url": "https://jlcsearch.tscircuit.com/api/search?q=C83846&limit=20&full=true",
+        "sha256": "ac46fd24bd501fa7297f0a2945bcc7f5d655b9bcf8bfbf16718a9d25c0c2c018",
+        "http_date": "Mon, 26 Oct 2026 16:04:52 GMT",
+        "http_age": null
+      },
+      "raw": {
+        "components": []
+      },
+      "lookup_state": "no_exact_match",
+      "matches": [],
+      "returned_rows": 0
+    },
+    "supplier": {
+      "provenance": {
+        "retrieved_at": "2026-10-26T16:04:53.790459+00:00",
+        "url": "https://jlcpcb.com/partdetail/Littelfuse-SMBJ15A/C83846",
+        "sha256": "e3b0ce4dfe2efbf8c04dd9fe731b973873512f34b1826f153cd504676a1c9482",
+        "http_date": "Mon, 26 Oct 2026 16:04:53 GMT",
+        "http_age": null
+      },
+      "exact_product_offers": [
+        {
+          "mpn": "SMBJ15A",
+          "sku": "C83846",
+          "brand": {
+            "@type": "Brand",
+            "name": "Littelfuse"
+          },
+          "offers": {
+            "@type": "AggregateOffer",
+            "priceCurrency": "USD",
+            "lowPrice": 0.1464,
+            "highPrice": 0.0716,
+            "offerCount": 6,
+            "availability": "https://schema.org/InStock"
+          }
+        }
+      ],
+      "identity_fields": {
+        "lookup_state": "exact_identity_observed",
+        "observations": [
+          {
+            "componentModelEn": "SMBJ15A",
+            "componentBrandEn": "Littelfuse",
+            "componentCode": "C83846",
+            "componentSpecificationEn": "DO-214AA"
+          },
+          {
+            "componentModelEn": "SMBJ15A",
+            "componentBrandEn": "Littelfuse",
+            "componentCode": "C83846",
+            "componentSpecificationEn": "DO-214AA",
+            "overseasStockCount": 15669,
+            "canPresaleNumber": 14917,
+            "isBuyComponent": "1"
+          },
+          {
+            "componentModelEn": "SMBJ15A",
+            "componentBrandEn": "Littelfuse",
+            "componentCode": "C83846",
+            "componentSpecificationEn": "DO-214AA",
+            "overseasStockCount": 15669,
+            "canPresaleNumber": 14917,
+            "isBuyComponent": "1",
+            "noBuyReason": null
+          }
+        ],
+        "availability_verified": false,
+        "limit": "Identity/raw fields only; interpret inventory pool and freshness separately."
+      }
+    }
+  },
+  {
+    "mpn": "SP0504BAHTG",
+    "installed_need": 50,
+    "code": "C10675",
+    "authority": "OBSERVATIONS_ONLY",
+    "discovery": {
+      "provenance": {
+        "retrieved_at": "2026-10-26T16:04:52.979113+00:00",
+        "url": "https://jlcsearch.tscircuit.com/api/search?q=C10675&limit=20&full=true",
+        "sha256": "ac46fd24bd501fa7297f0a2945bcc7f5d655b9bcf8bfbf16718a9d25c0c2c018",
+        "http_date": "Mon, 26 Oct 2026 16:04:52 GMT",
+        "http_age": null
+      },
+      "raw": {
+        "components": []
+      },
+      "lookup_state": "no_exact_match",
+      "matches": [],
+      "returned_rows": 0
+    },
+    "supplier": {
+      "provenance": {
+        "retrieved_at": "2026-10-26T16:04:53.852356+00:00",
+        "url": "https://jlcpcb.com/partdetail/Littelfuse-SP0504BAHTG/C10675",
+        "sha256": "8d96bec89c1b0b43deeae0ccdafb78d2a6a1a2a8cc2a9924ee939307cc75c2d8",
+        "http_date": "Mon, 26 Oct 2026 16:04:53 GMT",
+        "http_age": null
+      },
+      "exact_product_offers": [
+        {
+          "mpn": "SP0504BAHTG",
+          "sku": "C10675",
+          "brand": {
+            "@type": "Brand",
+            "name": "Littelfuse"
+          },
+          "offers": {
+            "@type": "AggregateOffer",
+            "priceCurrency": "USD",
+            "lowPrice": 0.4665,
+            "highPrice": 0.2287,
+            "offerCount": 6,
+            "availability": "https://schema.org/InStock"
+          }
+        }
+      ],
+      "identity_fields": {
+        "lookup_state": "exact_identity_observed",
+        "observations": [
+          {
+            "componentModelEn": "SP0504BAHTG",
+            "componentBrandEn": "Littelfuse",
+            "componentCode": "C10675",
+            "componentSpecificationEn": "SOT-23-5"
+          },
+          {
+            "componentModelEn": "SP0504BAHTG",
+            "componentBrandEn": "Littelfuse",
+            "componentCode": "C10675",
+            "componentSpecificationEn": "SOT-23-5",
+            "overseasStockCount": 3335,
+            "canPresaleNumber": 3020,
+            "isBuyComponent": "1"
+          },
+          {
+            "componentModelEn": "SP0504BAHTG",
+            "componentBrandEn": "Littelfuse",
+            "componentCode": "C10675",
+            "componentSpecificationEn": "SOT-23-5",
+            "overseasStockCount": 3335,
+            "canPresaleNumber": 3020,
+            "isBuyComponent": "1",
+            "noBuyReason": null
+          }
+        ],
+        "availability_verified": false,
+        "limit": "Identity/raw fields only; interpret inventory pool and freshness separately."
+      }
+    }
+  },
+  {
+    "mpn": "SS34-E3/57T",
+    "installed_need": 5,
+    "code": "C13354",
+    "authority": "OBSERVATIONS_ONLY",
+    "discovery": {
+      "provenance": {
+        "retrieved_at": "2026-10-26T16:04:52.990132+00:00",
+        "url": "https://jlcsearch.tscircuit.com/api/search?q=C13354&limit=20&full=true",
+        "sha256": "a2ca0ec67586ae678977b344a733fe6922fafd3cbc91479521048a179f84eb5b",
+        "http_date": "Mon, 26 Oct 2026 16:04:52 GMT",
+        "http_age": null
+      },
+      "raw": {
+        "components": [
+          {
+            "lcsc": 13354,
+            "mfr": "SS34-E3/57T",
+            "package": "SMC(DO-214AB)",
+            "is_basic": false,
+            "is_preferred": false,
+            "description": "-55\u2103~+125\u2103 1 Independent 100A 3A 40V 500mV@3A 500uA@40V SMC(DO-214AB) Schottky Diodes ROHS",
+            "stock": 1511,
+            "price": 0.2363
+          }
+        ]
+      },
+      "lookup_state": "exact_matches",
+      "matches": [
+        {
+          "mpn": "SS34-E3/57T",
+          "lcsc": 13354,
+          "package": "SMC(DO-214AB)",
+          "manufacturer": null,
+          "stock_count": 1511,
+          "status": "reported_sufficient"
+        }
+      ],
+      "returned_rows": 1
+    },
+    "supplier": {
+      "provenance": {
+        "retrieved_at": "2026-10-26T16:04:53.805276+00:00",
+        "url": "https://jlcpcb.com/partdetail/VishayIntertech-SS34_E357T/C13354",
+        "sha256": "b5adf4acbdf3b4c4087ee817df2135b8696731b8c8aa7d394a36ad04c2b53902",
+        "http_date": "Mon, 26 Oct 2026 16:04:53 GMT",
+        "http_age": null
+      },
+      "exact_product_offers": [
+        {
+          "mpn": "SS34-E3/57T",
+          "sku": "C13354",
+          "brand": {
+            "@type": "Brand",
+            "name": "Vishay Intertech"
+          },
+          "offers": {
+            "@type": "AggregateOffer",
+            "priceCurrency": "USD",
+            "lowPrice": 0.2794,
+            "highPrice": 0.1362,
+            "offerCount": 6,
+            "availability": "https://schema.org/InStock"
+          }
+        }
+      ],
+      "identity_fields": {
+        "lookup_state": "exact_identity_observed",
+        "observations": [
+          {
+            "componentModelEn": "SS34-E3/57T",
+            "componentBrandEn": "Vishay Intertech",
+            "componentCode": "C13354",
+            "componentSpecificationEn": "SMC(DO-214AB)"
+          },
+          {
+            "componentModelEn": "SS34-E3/57T",
+            "componentBrandEn": "Vishay Intertech",
+            "componentCode": "C13354",
+            "componentSpecificationEn": "SMC(DO-214AB)",
+            "overseasStockCount": 1506,
+            "canPresaleNumber": 1389,
+            "isBuyComponent": "1"
+          },
+          {
+            "componentModelEn": "SS34-E3/57T",
+            "componentBrandEn": "Vishay Intertech",
+            "componentCode": "C13354",
+            "componentSpecificationEn": "SMC(DO-214AB)",
+            "overseasStockCount": 1506,
+            "canPresaleNumber": 1389,
+            "isBuyComponent": "1",
+            "noBuyReason": null
+          }
+        ],
+        "availability_verified": false,
+        "limit": "Identity/raw fields only; interpret inventory pool and freshness separately."
+      }
+    }
+  },
+  {
+    "mpn": "TLV9062IDR",
+    "installed_need": 10,
+    "code": "C398355",
+    "authority": "OBSERVATIONS_ONLY",
+    "discovery": {
+      "provenance": {
+        "retrieved_at": "2026-10-26T16:04:53.601896+00:00",
+        "url": "https://jlcsearch.tscircuit.com/api/search?q=C398355&limit=20&full=true",
+        "sha256": "988f9c25d62afce2de2bfec07b7cb016af9fb7b866a7c9ddc3dd17f97b3ea59e",
+        "http_date": "Mon, 26 Oct 2026 16:04:53 GMT",
+        "http_age": null
+      },
+      "raw": {
+        "components": [
+          {
+            "lcsc": 398355,
+            "mfr": "TLV9062IDR",
+            "package": "SOIC-8",
+            "is_basic": false,
+            "is_preferred": false,
+            "description": "-40\u2103~+125\u2103 0.05pA 0.5pA 1.6mV 1.8V~5.5V 103dB 10MHz 10nV/\u221aHz@1kHz 2 5.5V 50mA 530nV/\u2103 538uA 6.5V/us Rail-to-Rail Input, Rail-to-Rail Output SOIC-8 Operational Amplifier ROHS",
+            "stock": 187449,
+            "price": 0.144
+          }
+        ]
+      },
+      "lookup_state": "exact_matches",
+      "matches": [
+        {
+          "mpn": "TLV9062IDR",
+          "lcsc": 398355,
+          "package": "SOIC-8",
+          "manufacturer": null,
+          "stock_count": 187449,
+          "status": "reported_sufficient"
+        }
+      ],
+      "returned_rows": 1
+    },
+    "supplier": {
+      "provenance": {
+        "retrieved_at": "2026-10-26T16:04:54.032771+00:00",
+        "url": "https://www.lcsc.com/product-detail/Operational-Amplifier_Texas-Instruments_C398355.html",
+        "sha256": "d09d5ad966e70f5fceaad95d47329e490a23a342f1ac7dcd5fa99b4b106fd47c",
+        "http_date": "Mon, 26 Oct 2026 16:04:53 GMT",
+        "http_age": null
+      },
+      "exact_product_offers": [
+        {
+          "mpn": "TLV9062IDR",
+          "sku": "C398355",
+          "brand": {
+            "@type": "Brand",
+            "name": "TI"
+          },
+          "offers": {
+            "@type": "Offer",
+            "url": "https://www.lcsc.com/product-detail/Operational-Amplifier_Texas-Instruments_C398355.html",
+            "priceCurrency": "USD",
+            "price": 0.0658,
+            "itemCondition": "http://schema.org/NewCondition",
+            "availability": "http://schema.org/InStock",
+            "inventoryLevel": 186585,
+            "seller": {
+              "@type": "Organization",
+              "name": "LCSC Electronics",
+              "url": "https://www.lcsc.com/"
+            },
+            "description": ""
+          }
+        }
+      ],
+      "identity_fields": {
+        "lookup_state": "no_exact_evidence",
+        "observations": [],
+        "availability_verified": false,
+        "limit": "Identity/raw fields only; interpret inventory pool and freshness separately."
+      }
+    }
+  },
+  {
+    "mpn": "TPS70933DBVR",
+    "installed_need": 10,
+    "code": "C89347",
+    "authority": "OBSERVATIONS_ONLY",
+    "discovery": {
+      "provenance": {
+        "retrieved_at": "2026-10-26T15:27:09.743166+00:00",
+        "url": "https://jlcsearch.tscircuit.com/api/search?q=C89347&limit=20&full=true",
+        "sha256": "87d01b91b889ee4223967fb9922fb69cce017189e1c0063e7aa4a45b9347fca3",
+        "http_date": "Mon, 26 Oct 2026 15:27:09 GMT",
+        "http_age": null
+      },
+      "raw": {
+        "components": [
+          {
+            "lcsc": 89347,
+            "mfr": "TPS70933DBVR",
+            "package": "SOT-23-5",
+            "is_basic": false,
+            "is_preferred": false,
+            "description": "-40\u2103~+125\u2103@(Tj) 1 1.4uA 150mA 190uVrms 3.3V 30V 80dB@(10Hz) 960mV@(150mA) Fixed Positive Under Voltage Lockout\u3001Over Current Protection\u3001Over Temperature Protection\u3001Enable SOT-23-5 Voltage Regulators - Linear, Low Drop Out (LDO) Regulators ROHS",
+            "stock": 17277,
+            "price": 0.1777
+          }
+        ]
+      },
+      "lookup_state": "exact_matches",
+      "matches": [
+        {
+          "mpn": "TPS70933DBVR",
+          "lcsc": 89347,
+          "package": "SOT-23-5",
+          "manufacturer": null,
+          "stock_count": 17277,
+          "status": "reported_sufficient"
+        }
+      ],
+      "returned_rows": 1
+    },
+    "supplier": {
+      "provenance": {
+        "retrieved_at": "2026-10-26T15:27:10.482123+00:00",
+        "url": "https://jlcpcb.com/partdetail/TPS70933DBVR/C89347",
+        "sha256": "233e02e86ad1651af6e62a32177c6e747bf2e165287c2706561319d82ff6b2fe",
+        "http_date": "Mon, 26 Oct 2026 15:27:10 GMT",
+        "http_age": null
+      },
+      "exact_product_offers": [
+        {
+          "mpn": "TPS70933DBVR",
+          "sku": "C89347",
+          "brand": {
+            "@type": "Brand",
+            "name": "Texas Instruments"
+          },
+          "offers": {
+            "@type": "AggregateOffer",
+            "priceCurrency": "USD",
+            "lowPrice": 0.3389,
+            "highPrice": 0.1694,
+            "offerCount": 6,
+            "availability": "https://schema.org/InStock"
+          }
+        }
+      ],
+      "identity_fields": {
+        "lookup_state": "exact_identity_observed",
+        "observations": [
+          {
+            "componentModelEn": "TPS70933DBVR",
+            "componentBrandEn": "Texas Instruments",
+            "componentCode": "C89347",
+            "componentSpecificationEn": "SOT-23-5"
+          },
+          {
+            "componentModelEn": "TPS70933DBVR",
+            "componentBrandEn": "Texas Instruments",
+            "componentCode": "C89347",
+            "componentSpecificationEn": "SOT-23-5",
+            "overseasStockCount": 11146,
+            "canPresaleNumber": 10784,
+            "isBuyComponent": "1"
+          },
+          {
+            "componentModelEn": "TPS70933DBVR",
+            "componentBrandEn": "Texas Instruments",
+            "componentCode": "C89347",
+            "componentSpecificationEn": "SOT-23-5",
+            "overseasStockCount": 11146,
+            "canPresaleNumber": 10784,
+            "isBuyComponent": "1",
+            "noBuyReason": null
+          }
+        ],
+        "availability_verified": false,
+        "limit": "Identity/raw fields only; interpret inventory pool and freshness separately."
+      }
+    },
+    "reused_from": "code-stock-recovery-20261026.json"
+  }
+]

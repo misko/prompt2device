@@ -12,3 +12,7 @@ may enter through recursive copying. The upstream local seal is read-only.
 
 Repository MIT covers original content; copied KiCad library collections retain
 their own license and notices. Publication does not close ordering holds.
+
+`order-readiness/**` is a mutable, separately scoped purchasing continuation.
+Its STATUS/journal owns current execution; no file there changes a sealed or
+public release receipt. Observations and draft inquiries are not vendor approval.

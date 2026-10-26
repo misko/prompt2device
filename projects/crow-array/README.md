@@ -9,6 +9,10 @@ replay. The original design verdict is SOUND; the ordering verdict remains
 **DO-NOT-ORDER**. No firmware or manufactured-hardware qualification is supplied.
 The package index exposes all nine exact-job holds and its excluded dependencies.
 
+For the current assembly split, sourcing worksheets and browser-based ordering
+continuation, start with the [MacBook handoff](order-readiness/MACBOOK-HANDOFF.md).
+These mutable preparation records do not change the immutable release verdict.
+
 `publication.py verify` checks the actual file census, trusted source hashes,
 both board roles, local native libraries, license/handoff policy and Gerber ZIPs.
 `test_publication.py` corrupts isolated copies to prove that the checker refuses
