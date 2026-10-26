@@ -25,7 +25,8 @@ Historical `context.py`, `checkpoints.py`, `coverage.py` and the
 by this standalone package. Use the active stage contract rather than those old
 schematic procedure wrappers. RF and hierarchical acceptance remain unsupported.
 
-Portable control tests use Python 3.11+ and the standard library. Native CAD tests
+Portable control tests use Python 3.11+ and
+[PyYAML](requirements-portable.txt) for source-snapshot handoff tests. Native CAD tests
 require KiCad 10.0.4 (`kicad-cli` and its system-Python `pcbnew`) and Poppler.
 Mechanical tests additionally require the versions in
 [mechanical-requirements.txt](tools/mechanical-requirements.txt). Runtime libraries,
@@ -38,6 +39,7 @@ portable CI is not evidence of full replay or engineering acceptance.
 From this directory:
 
 ```sh
+python3 -m pip install -r requirements-portable.txt
 sha256sum --check IMPORT-SHA256SUMS
 PYTHONDONTWRITEBYTECODE=1 python3 -B -m unittest discover -s tools -p 'test_exploration.py'
 PYTHONDONTWRITEBYTECODE=1 python3 -B -m unittest discover -s tools -p 'test_progress.py'

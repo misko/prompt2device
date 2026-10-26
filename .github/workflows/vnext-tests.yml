@@ -19,6 +19,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+      - name: Install portable test dependencies
+        run: python -m pip install -r vnext/requirements-portable.txt
       - name: Verify imported file identities
         working-directory: vnext
         run: sha256sum --check IMPORT-SHA256SUMS

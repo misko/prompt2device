@@ -1,5 +1,14 @@
 # Crow v3 publication checkpoint — 2026-10-25
 
+Merge preparation, 2026-10-26: the legacy review-coverage fixture now creates its
+required `04_kicad` directory alongside `03_src`. A clean positive control and
+negative controls for absent project authority and open DESIGN_CLEAN findings
+confirm that production gates remain unchanged. Both selected review-coverage
+tests pass. The hosted vNext job's missing PyYAML dependency is now declared in
+`vnext/requirements-portable.txt` and installed by CI; all 134 portable tests ran
+in a fresh isolated environment (118 passed, 16 optional retained-history skips).
+These address the previously recorded integration failures, not PCB design changes.
+
 Update: the user selected option 1. The [public derivative](../projects/crow-array/README.md)
 now contains both native designs, PDFs, fabrication/assembly data and selected
 verification records. Its dedicated verifier and 15 negative tests pass;

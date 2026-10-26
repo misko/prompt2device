@@ -2087,6 +2087,9 @@ def claims_release(*, plan=None, stock_c265111=5, verdict="FAIL",
     """
     root = tmpdir("relclaim_")
     proj = root
+    # Release admission locates a project through both source and CAD roots.
+    # Without this directory, the fixture fails before reaching review coverage.
+    (proj / "04_kicad").mkdir()
     rels = proj / "07_releases"
     d = rels / name
     (d / "fab").mkdir(parents=True)
@@ -2375,9 +2378,31 @@ def t_kb_order_plan_bad_status():
 
 
 # ------------------------------------------------- (g) M-REV known-bads
+@test("M-REV review coverage fixture preserves upstream project and selection holds",
+      kind="known_bad")
+def t_kb_review_fixture_upstream_holds():
+    d = claims_release(stock_c265111=90000, verdict="PASS", lenses=BOTH_SOUND)
+    must_pass(gate(d), "complete review fixture")
+    project = d.parent.parent
+    (project / "04_kicad").rmdir()
+    must_fail(gate(d), "missing project authority still blocks release",
+              expect="CRITICAL-SELECTION RELEASE HOLD")
+    (project / "04_kicad").mkdir()
+    docs = project / "01_docs"
+    docs.mkdir()
+    (docs / "findings.yaml").write_text(
+        "findings:\n  - id: synthetic-open-design\n    state: open\n"
+        "    blocks_at_or_above: DESIGN_CLEAN\n")
+    must_fail(gate(d), "complete reviews cannot bypass an upstream design hold",
+              expect="open DESIGN_CLEAN finding")
+
+
 @test("M-REV FAILS zero or partial contract-named review coverage — 0/2 is "
       "not a successful review", kind="known_bad")
 def t_kb_review_coverage_is_fail_closed():
+    must_pass(gate(claims_release(stock_c265111=90000, verdict="PASS",
+                                 lenses=BOTH_SOUND)),
+              "complete review coverage passes the same project fixture")
     for label, lenses in (
             ("zero", {}),
             ("partial", {"topology": _LENS_SOUND_ORDER})):
