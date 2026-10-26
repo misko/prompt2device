@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "title": "Synthetic native connectivity fixture - not Crow hardware",
+  "nets": ["A", "B"],
+  "components": [
+    {"ref": "R1", "value": "1k", "footprint": "Resistor_SMD:R_0603_1608Metric",
+     "expected_pins": ["1", "2"], "at": [50.8, 50.8], "pins": [
+       {"number": "1", "name": "1", "type": "passive", "at": [-5.08, 0], "direction": 180, "net": "A"},
+       {"number": "2", "name": "2", "type": "passive", "at": [5.08, 0], "direction": 0, "net": "B"}
+     ]},
+    {"ref": "R2", "value": "2k", "footprint": "Resistor_SMD:R_0603_1608Metric",
+     "expected_pins": ["1", "2"], "at": [50.8, 76.2], "pins": [
+       {"number": "1", "name": "1", "type": "passive", "at": [-5.08, 0], "direction": 180, "net": "A"},
+       {"number": "2", "name": "2", "type": "passive", "at": [5.08, 0], "direction": 0, "net": "B"}
+     ]}
+  ],
+  "wire_paths": [
+    {"net": "A", "points": [[45.72, 50.8], [30.48, 50.8], [30.48, 76.2], [45.72, 76.2]]},
+    {"net": "B", "points": [[55.88, 50.8], [71.12, 50.8], [71.12, 76.2], [55.88, 76.2]]}
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "schema": 1,
+  "publication_date": "2026-10-25",
+  "repository": "https://github.com/misko/prompt2device",
+  "base_main": "28d61c1897dd365d6e035c42381cefc20c804e98",
+  "frozen_baseline": {
+    "label": "crow-first-run-5c10p-20261022",
+    "seal_commit": "a74470eaee97effcfab69fb43fdf302f0cac1865",
+    "source": "skills/ and tools/ snapshot; original sealed toolchain remains unchanged"
+  },
+  "selected_development": {
+    "label": "pcb-vnext-replay-zWbkfr",
+    "git_commit": null,
+    "identity": "IMPORT-SHA256SUMS",
+    "changed_from_baseline": [
+      "skills/pcb-design/procedures/placement/tooling.md",
+      "skills/pcb-design/workflow/graph.json",
+      "skills/pcb-design/workflow/stages/placement.md",
+      "skills/pcb-design/workflow/stages/routing.md",
+      "skills/workflow-orchestrator/SKILL.md",
+      "skills/workflow-orchestrator/references/dispatch.md",
+      "skills/workflow-orchestrator/references/exploration.md",
+      "skills/workflow-orchestrator/references/recover.md",
+      "skills/workflow-orchestrator/references/resume.md",
+      "skills/workflow-orchestrator/references/task-interface.md",
+      "tools/exploration.py",
+      "tools/fab_replay.py",
+      "tools/placement.py",
+      "tools/test_exploration.py",
+      "tools/test_fab_replay.py",
+      "tools/test_npth_revision.py"
+    ],
+    "added": [
+      "tools/critical_routes.py",
+      "tools/progress.py",
+      "tools/test-fixtures/crow-progress.json",
+      "tools/test_critical_routes.py",
+      "tools/test_parent_lifecycle.py",
+      "tools/test_progress.py",
+      "tools/test_resume_window.py",
+      "tools/test_work_lifecycle.py"
+    ]
+  },
+  "deferred": [
+    {
+      "path": "skills/pcb-design/procedures/routing/tooling.md",
+      "selection": "Frozen baseline bytes retained",
+      "reason": "New paragraph requires the separately unadopted toolchains/native-authoring-v1 subtree; do not ship dangling optional-adoption instructions."
+    }
+  ],
+  "imported_file_count": 139,
+  "unchanged_from_baseline": 115,
+  "limitations": [
+    "Portable tests are not engineering acceptance or full sealed release replay.",
+    "Optional historical tests require separately retained VNEXT_CROW_HISTORY.",
+    "Legacy context/checkpoint compatibility route is retained but not configured; use the standalone project binding.",
+    "No board artifacts, runtime binaries or vendor documents included."
+  ]
+}
