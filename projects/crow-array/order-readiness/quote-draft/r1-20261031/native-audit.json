@@ -1,0 +1,172 @@
+{
+  "boards": [
+    {
+      "board": "carrier",
+      "footprints": 142,
+      "inherited_angle_offsets": [
+        {
+          "native_angle": 0.0,
+          "offset_mod360": 180.0,
+          "reference": "D501",
+          "retained_CPL_angle": 180.0
+        },
+        {
+          "native_angle": 0.0,
+          "offset_mod360": 180.0,
+          "reference": "D502",
+          "retained_CPL_angle": 180.0
+        },
+        {
+          "native_angle": 0.0,
+          "offset_mod360": 180.0,
+          "reference": "D503",
+          "retained_CPL_angle": 180.0
+        },
+        {
+          "native_angle": 0.0,
+          "offset_mod360": 180.0,
+          "reference": "D504",
+          "retained_CPL_angle": 180.0
+        },
+        {
+          "native_angle": 0.0,
+          "offset_mod360": 180.0,
+          "reference": "D505",
+          "retained_CPL_angle": 180.0
+        },
+        {
+          "native_angle": 0.0,
+          "offset_mod360": 180.0,
+          "reference": "D506",
+          "retained_CPL_angle": 180.0
+        },
+        {
+          "native_angle": 0.0,
+          "offset_mod360": 180.0,
+          "reference": "D507",
+          "retained_CPL_angle": 180.0
+        },
+        {
+          "native_angle": 0.0,
+          "offset_mod360": 180.0,
+          "reference": "D508",
+          "retained_CPL_angle": 180.0
+        },
+        {
+          "native_angle": 0.0,
+          "offset_mod360": 180.0,
+          "reference": "Q101",
+          "retained_CPL_angle": 180.0
+        },
+        {
+          "native_angle": 0.0,
+          "offset_mod360": 180.0,
+          "reference": "Q102",
+          "retained_CPL_angle": 180.0
+        },
+        {
+          "native_angle": 0.0,
+          "offset_mod360": 180.0,
+          "reference": "Q103",
+          "retained_CPL_angle": 180.0
+        },
+        {
+          "native_angle": 0.0,
+          "offset_mod360": 180.0,
+          "reference": "Q104",
+          "retained_CPL_angle": 180.0
+        },
+        {
+          "native_angle": 0.0,
+          "offset_mod360": 180.0,
+          "reference": "Q105",
+          "retained_CPL_angle": 180.0
+        },
+        {
+          "native_angle": 0.0,
+          "offset_mod360": 180.0,
+          "reference": "Q106",
+          "retained_CPL_angle": 180.0
+        },
+        {
+          "native_angle": 0.0,
+          "offset_mod360": 180.0,
+          "reference": "Q107",
+          "retained_CPL_angle": 180.0
+        },
+        {
+          "native_angle": 0.0,
+          "offset_mod360": 180.0,
+          "reference": "Q108",
+          "retained_CPL_angle": 180.0
+        },
+        {
+          "native_angle": 90.0,
+          "offset_mod360": 270.0,
+          "reference": "U1",
+          "retained_CPL_angle": 0.0
+        },
+        {
+          "native_angle": -90.0,
+          "offset_mod360": 270.0,
+          "reference": "U2",
+          "retained_CPL_angle": 180.0
+        }
+      ],
+      "smt": 127
+    },
+    {
+      "board": "pod",
+      "footprints": 35,
+      "inherited_angle_offsets": [
+        {
+          "native_angle": 0.0,
+          "offset_mod360": 180.0,
+          "reference": "D2",
+          "retained_CPL_angle": 180.0
+        },
+        {
+          "native_angle": 0.0,
+          "offset_mod360": 180.0,
+          "reference": "D3",
+          "retained_CPL_angle": 180.0
+        },
+        {
+          "native_angle": 0.0,
+          "offset_mod360": 180.0,
+          "reference": "D4",
+          "retained_CPL_angle": 180.0
+        },
+        {
+          "native_angle": 0.0,
+          "offset_mod360": 180.0,
+          "reference": "Q1",
+          "retained_CPL_angle": 180.0
+        },
+        {
+          "native_angle": 90.0,
+          "offset_mod360": 180.0,
+          "reference": "Q2",
+          "retained_CPL_angle": 270.0
+        },
+        {
+          "native_angle": 0.0,
+          "offset_mod360": 180.0,
+          "reference": "U1",
+          "retained_CPL_angle": 180.0
+        },
+        {
+          "native_angle": 0.0,
+          "offset_mod360": 270.0,
+          "reference": "U2",
+          "retained_CPL_angle": 270.0
+        }
+      ],
+      "smt": 28
+    }
+  ],
+  "manifest_sha256": "5644ff26d00a69268806b088090994c022923d773ecb4566e7ff644fa480d322",
+  "result": "PASS",
+  "scope": "native identity/pose/exclusion audit; inherited vendor angles preserved, not requalified",
+  "tool": "10.0.4"
+}

@@ -1,5 +1,14 @@
 # MacBook handoff — complete JLC quotation, no purchasing
 
+**OR12 update, 2026-10-31:** quote-only files are now prepared and locally
+validated at `quote-draft/r1-20261031/`. Start with that folder's README and run
+`python3 -B projects/crow-array/order-readiness/quote_files.py verify`.
+Do not rebuild the prepared packet or repeat stock research. Section 1 below
+describes its derivation/revision requirements; next action is section 2's
+manifest/permission boundary, then the non-binding quote flow. Full BOMs include
+manual operations not in SMT CPL; the packet README explains the SMT-only
+alternative and mandatory separate manual pricing. No JLC ingestion is claimed.
+
 Prepared 2026-10-31 PDT. This replaces the completed availability/pricing passes.
 Goal: one itemized, non-binding quote package for **five carriers and ten pods**,
 with explicit exceptions. Do not repeat broad stock research. No payments,
@@ -152,15 +161,15 @@ python3 -B -m unittest discover -s projects/crow-array/order-readiness -p 'test_
 git diff --check
 ```
 
-Baseline: 256 preserved payloads and 37 tests; DO-NOT-ORDER remains expected.
+OR12 baseline: 256 preserved payloads and 44 tests; DO-NOT-ORDER remains expected.
 On macOS, if `/var` symlink resolution breaks tests, use `TMPDIR=/private/tmp`
 for those test commands. Do not alter released files to pass.
 
 ## Suggested MacBook prompt
 
 > Read projects/crow-array/order-readiness/MACBOOK-QUOTE-HANDOFF.md on branch
-> codex/crow-jlc-source-review-20261030 and follow local vNext. Prepare and
-> validate quote-only files for five carriers and ten pods, preserving the
+> codex/crow-jlc-source-review-20261030 and follow local vNext. Verify the
+> prepared quote-draft/r1-20261031 files for five carriers and ten pods, preserving the
 > JLC/user installation split. Show me the exact upload manifest and ask for
 > scoped non-binding quote-session permission before any upload or submission.
 > Then collect one itemized JLC quote with quantities, fees, process exceptions

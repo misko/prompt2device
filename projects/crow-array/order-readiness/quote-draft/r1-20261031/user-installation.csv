@@ -1,0 +1,4 @@
+board,reference,manufacturer,mpn,footprint,owner,quantity_per_board,board_quantity,installed_batch,catalog_code,supply_route,native_x_mm,native_y_mm,native_angle_deg,note
+carrier,U3,Raspberry Pi,SC0915,Module:RaspberryPi_Pico_Common_Unspecified,user,1,5,5,,external_for_user_installation,165.0,27.55,0.0,"Native anchor only, NOT vendor centroid/CPL; manual installation scope"
+pod,BZ1,Same Sky,CPE-203,CrowPhysical:CPE-203,user,1,10,10,,external_for_user_installation,65.0,55.0,0.0,"Native anchor only, NOT vendor centroid/CPL; manual installation scope"
+pod,MIC1,Same Sky,CMA-4544PF-W,CrowPhysical:CMA-4544PF-W,user,1,10,10,,external_for_user_installation,23.0,40.0,0.0,"Native anchor only, NOT vendor centroid/CPL; manual installation scope"

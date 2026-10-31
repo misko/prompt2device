@@ -1,0 +1,54 @@
+{
+  "board_quantities": {
+    "carrier": 5,
+    "pod": 10
+  },
+  "coordinates": "Retained absolute native datum; CPL mm +X right/+Y up; exact retained vendor angles; no panel replication",
+  "exclusions": "Manual/user/mechanical references excluded from SMT CPL; 60 JLC manual operations separate",
+  "files": {
+    "carrier-bom.csv": "600fe3b19a84fea91a8c4cae23e6e8c5d596de7e2bedaf6fdcd5c15d7e7ea5cc",
+    "carrier-cpl.csv": "5ec2189b87b2d7e1e78fb4664c195c674405d136d1bab3f55ed1630b468a5f86",
+    "carrier-gerbers.zip": "ebbd44cb6ce3cc0e9c3226c17741308e3b07e9a1548ec66a1aeaa0a1fd81819d",
+    "carrier-smt-bom.csv": "0dce1abe16ac187479c9597181a9047c48a9ea5850fac0492158cfceac764d58",
+    "manual-assembly.csv": "26a170f60c99f76cba4bd6971d6c7477b99346641ad3eec273c13e88320b4d9e",
+    "pod-bom.csv": "98a40ad97b5cc68614aac7149051179e2d01fc0f7f0c7bd6c54fb7a91faeafff",
+    "pod-cpl.csv": "0cc90cfdfc4b3deb3e00662af3c33880f08b1e259f3c1f015fbb61abd56d52f8",
+    "pod-gerbers.zip": "4e429cb5f7f21ab9927798d084e2be50e6525b395ab3f8059dbba714c7ffbb16",
+    "pod-smt-bom.csv": "07e7d4e0d6fa6018254dd670cfcd8b0e39c3dd6de1a9c72604aa362f22bac8f3",
+    "scope.csv": "e97db739146fda78cedadeba843a4a62b6d0a24ae60fc820e6d59f4d7a925e83",
+    "user-installation.csv": "bea91c5d0a914e3dd4f546c7a2725646abd983dd07593a60a099bfcb94fad9f7"
+  },
+  "global_codes": "Blank in BOM; scope.csv public codes are locators only; exact private offer selection pending",
+  "pending": [
+    "JLC ingestion and exact matching",
+    "vendor rotation/polarity preview",
+    "manual/THT handling",
+    "stock/allocation/attrition",
+    "exact-job process agreement",
+    "full quote and user approval"
+  ],
+  "purpose": "QUOTE_ONLY_NOT_ORDER_APPROVAL",
+  "quantity_basis": "BOM/CPL per one board; set portal quantity carrier=5 pod=10; not purchase/attrition quantities",
+  "schema": 1,
+  "sources": {
+    "projects/crow-array/order-readiness/JLC-BROWSER-20261030.json": "35cfcde3fdf690ca3da167e9b319fb9dd826121f2c5fa471ab9487fd588fc84c",
+    "projects/crow-array/order-readiness/JLC-PRICING-20261030.json": "37ffe222f52d9f11fdef7a1413551a6a296bda58cadf75d3213dbd91521c4eba",
+    "projects/crow-array/order-readiness/SOURCING-DRAFT-20261030.md": "9bb5fd088b2026111ddbaf98488193bf3a70b5dd2d78f721fbc5fd0d2c2d3915",
+    "projects/crow-array/order-readiness/procurement-proposal-20261030.csv": "832e897c4a55daab754d4787cf5dd799906712420cbad77153e34a6e51560544",
+    "projects/crow-array/order-readiness/quote_files.py": "ee71dedbad7f5d66aa8aaf901c1bcbc9ce35073210cdf16a79052e4ad957e492",
+    "projects/crow-array/releases/crow-prototype-v3-first-run-5c10p-public-v1/README.md": "5302f461b27ac62d9c0f4d1815061a7c01b0d92e6ae65e5a7734d6f7d27a4289",
+    "projects/crow-array/releases/crow-prototype-v3-first-run-5c10p-public-v1/fab/assembly/carrier-consigned-bom.csv": "2ea7d9d48c968f1cfe5fb89e560aaf8e82f9bc1753119901c9d07d64fb0a5bed",
+    "projects/crow-array/releases/crow-prototype-v3-first-run-5c10p-public-v1/fab/assembly/carrier-consigned-cpl.csv": "5ec2189b87b2d7e1e78fb4664c195c674405d136d1bab3f55ed1630b468a5f86",
+    "projects/crow-array/releases/crow-prototype-v3-first-run-5c10p-public-v1/fab/assembly/demand.csv": "bb707f71c9c0cbdd4cc1e681b250c42b90c7122eb6ac3018c7cbe550aa482194",
+    "projects/crow-array/releases/crow-prototype-v3-first-run-5c10p-public-v1/fab/assembly/pod-consigned-bom.csv": "1fc16a98b0021600c07f243164629a1ef82829a61ed1813ab74a3bbaa2b9d750",
+    "projects/crow-array/releases/crow-prototype-v3-first-run-5c10p-public-v1/fab/assembly/pod-consigned-cpl.csv": "0cc90cfdfc4b3deb3e00662af3c33880f08b1e259f3c1f015fbb61abd56d52f8",
+    "projects/crow-array/releases/crow-prototype-v3-first-run-5c10p-public-v1/fab/assembly/population.csv": "9ec8d2ad097e15ab5cc3cce0d9929e3f61d97bcc5c57ffd78c5563d592657d5f",
+    "projects/crow-array/releases/crow-prototype-v3-first-run-5c10p-public-v1/fab/assembly/population.json": "ceaed6e2999de4db930d978fab79c62c9be20bb2369e67d9b9aea5ffad9dc685",
+    "projects/crow-array/releases/crow-prototype-v3-first-run-5c10p-public-v1/fab/assembly/positions.csv": "3992ebef5a76e3278510a39b00709ad9ed72732cd2076cc5db3b5a803d657b95",
+    "projects/crow-array/releases/crow-prototype-v3-first-run-5c10p-public-v1/fab/carrier/carrier-gerbers.zip": "ebbd44cb6ce3cc0e9c3226c17741308e3b07e9a1548ec66a1aeaa0a1fd81819d",
+    "projects/crow-array/releases/crow-prototype-v3-first-run-5c10p-public-v1/fab/pod/pod-gerbers.zip": "4e429cb5f7f21ab9927798d084e2be50e6525b395ab3f8059dbba714c7ffbb16",
+    "projects/crow-array/releases/crow-prototype-v3-first-run-5c10p-public-v1/historical/ORDER-INSTRUCTIONS.md": "4e63a83862b9d1984cde81fdb3e343afd47c649bbe2500213df3c20e1881b08e",
+    "projects/crow-array/releases/crow-prototype-v3-first-run-5c10p-public-v1/native/source/carrier/carrier.kicad_pcb": "85d55d3782e4e040d44aedf4625f09204532ad9fe028e380c26612ebbe74a594",
+    "projects/crow-array/releases/crow-prototype-v3-first-run-5c10p-public-v1/native/source/pod/pod.kicad_pcb": "791814ab6baf3ff10da15ebcd2be4e424d2b6682987557886b7763292e89855e"
+  }
+}

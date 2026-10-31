@@ -14,6 +14,18 @@ not vendor submissions or spending.
 
 ## Current action
 
+OR12: `quote-draft/r1-20261031/` contains source-bound quote-only full/SMT BOMs,
+byte-preserved CPL/Gerber files, manual/user schedules, complete scope and hash
+manifest. Native KiCad audit covers 142 carrier and 35 pod footprints, including
+all exclusions/identities/poses. Original mapped vendor angles are preserved;
+not requalified against JLC previews. Global part public codes are intentionally
+not advertised as usable private inventory in BOMs. `quote_files.py verify`
+checks deterministic source/output binding; no new engineering receipt or order
+acceptance. Current user authorizes publishing this packet, not uploading to JLC.
+Next: use the packet README and quote handoff's manifest/permission boundary;
+then collect an integrated quote, including all 60 manual operations. No stock
+research repeat or design regeneration. No purchases, payments or substitutions.
+
 OR11 publication/handoff, 2026-10-31 PDT: user authorizes pushing OR10's
 proposal and preparing Mac steps for a complete 5-carrier/10-pod JLC quote,
 explicitly no purchases. `MACBOOK-QUOTE-HANDOFF.md` supersedes both completed
@@ -158,6 +170,36 @@ assembly/manual work, fees, shipping and tax. Enclosures/roof hardware excluded.
 No spending limit or quote approval inferred from earlier per-array estimates.
 
 ## Journal
+
+- OR12 validation checkpoint, 2026-10-31 07:55 PDT: quote-only carrier BOM
+  has 137 refs (127 SMT + ten manual), pod 29 (28 SMT + one manual), all per
+  board. Batch 915 SMT + 60 JLC manual + 25 user = 1,000; eight mounting features
+  explicitly excluded. Full/SMT-only alternative BOMs retain exact identities;
+  global codes blank in upload BOM rather than misrepresent public stock as
+  private inventory. Released CPLs and Gerber ZIPs are byte-identical. KiCad
+  10.0.4 read-only audit passed native fields, exclusions and poses for all 177
+  footprints; 25 inherited vendor-angle offsets retained, not silently reset.
+  Initial probe used nonexistent GetProperties API; corrected to native field
+  access before audit. Nonfatal KiCad property-enum/image warnings disclosed.
+  Portable verify PASS; 29 order-readiness + 15 publication tests PASS, including
+  seven new quote regressions; 256 released files preserved. Native audit is a
+  coordinator source check, not new independent engineering/vendor acceptance.
+  Milestone advance is the reproducible quote-only artifact; ordering holds
+  remain. Next is actual JLC file ingestion/matching/process/quote after scoped
+  user authority. Publish only these drafts/tools/handoff/journal, no vendor
+  action or purchasing. No board/regeneration/backtrack needed.
+
+- OR12 dispatch, 2026-10-31 07:51 PDT: user authorizes preparing, validating
+  and publishing quote-only BOM/CPL files for 5 carriers/10 pods, no purchases.
+  Coordinator owns one deterministic source-bound draft and regression checks;
+  not new independent engineering admission. Scope: new quote-draft revision,
+  builder/checks, native read-only audit, handoff and journal. Preserve release,
+  exact identities, original CPL angles and 975/25 installation split. Stop by
+  08:15 PDT with verified draft or concrete blocker, including review/push; no
+  JLC upload, cart, contact, order or payment. No new stock-search cycle. Native
+  audit found intentional retained CPL angle offsets; preserve and disclose,
+  do not equate raw footprint angle to vendor angle. Inspect current JLC format
+  documentation, but do not claim vendor ingestion or matching acceptance.
 
 - OR11 pre-push validation, 2026-10-31 PDT: publication preservation PASS for
   256 files; 15 publication + 22 order-readiness tests PASS; diff whitespace

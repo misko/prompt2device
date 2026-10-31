@@ -1,0 +1,21 @@
+Comment,Designator,Footprint,JLCPCB Part #,Manufacturer,MPN,Quantity,Assembly route,Supply route
+100k 1%,"R13,R2",Resistor_SMD:R_0603_1608Metric,C844916,Vishay,CRCW0603100KFKEA,2,JLC_SMT_requested,JLC_catalog
+100nF 10V X7R,C5,Capacitor_SMD:C_0805_2012Metric,C1711,Samsung Electro-Mechanics,CL21B104KBCNNNC,1,JLC_SMT_requested,JLC_catalog
+10k 1%,"R11,R12,R3,R4,R7,R8",Resistor_SMD:R_0603_1608Metric,C844918,Vishay,CRCW060310K0FKEA,6,JLC_SMT_requested,JLC_catalog
+10uF 10V X7R 20%,C2,Capacitor_SMD:C_0805_2012Metric,C710992,Murata,GRM21BR71A106MA73L,1,JLC_SMT_requested,JLC_catalog
+1206L010/30WR,F1,Fuse:Fuse_1206_3216Metric,C2153988,Littelfuse,1206L010/30WR,1,JLC_SMT_requested,JLC_regular_replenishment
+1k 1%,R5,Resistor_SMD:R_0603_1608Metric,C844747,Vishay,CRCW06031K00FKEAHP,1,JLC_SMT_requested,JLC_catalog
+1k 1% 0.125W,"R10,R9",Resistor_SMD:R_0603_1608Metric,C844747,Vishay,CRCW06031K00FKEAHP,2,JLC_SMT_requested,JLC_catalog
+1uF 10V X7R,C3,Capacitor_SMD:C_0805_2012Metric,C97917,Murata,GRM21BR71A105KA01L,1,JLC_SMT_requested,JLC_regular_replenishment
+2.2k 1%,R1,Resistor_SMD:R_0603_1608Metric,C844925,Vishay,CRCW06032K20FKEA,1,JLC_SMT_requested,JLC_catalog
+2.2uF 35V X7R 20%,C1,Capacitor_SMD:C_0805_2012Metric,C2167593,TDK,C2012X7R1V225K125AE,1,JLC_SMT_requested,JLC_regular_replenishment
+330R 1% 0.125W,R14,Resistor_SMD:R_0603_1608Metric,C844355,Vishay,CRCW0603330RFKEAHP,1,JLC_SMT_requested,JLC_catalog
+39k 1%,R6,Resistor_SMD:R_0603_1608Metric,C844779,Vishay,CRCW060339K0FKEA,1,JLC_SMT_requested,JLC_catalog
+47uF 10V X7R 20%,C4,Capacitor_SMD:C_1210_3225Metric,C84494,Murata,GRM32ER71A476KE15L,1,JLC_SMT_requested,JLC_catalog
+BAT54S-7-F,"D2,D3",Package_TO_SOT_SMD:SOT-23,C83574,Diodes Incorporated,BAT54S-7-F,2,JLC_SMT_requested,JLC_catalog
+DMN3023L-7,Q1,Package_TO_SOT_SMD:SOT-23,C443825,Diodes Incorporated,DMN3023L-7,1,JLC_SMT_requested,JLC_catalog
+Littelfuse SMBJ15A,D1,Diode_SMD:D_SMB,C83846,Littelfuse,SMBJ15A,1,JLC_SMT_requested,JLC_catalog
+MMBT3906LT1G,Q2,Package_TO_SOT_SMD:SOT-23,C53444,onsemi,MMBT3906LT1G,1,JLC_SMT_requested,JLC_catalog
+SP0504BAHTG,D4,CrowPhysical:SP0504BAHTG,C10675,Littelfuse,SP0504BAHTG,1,JLC_SMT_requested,JLC_catalog
+TLV9062IDR,U2,Package_SO:SOIC-8_3.9x4.9mm_P1.27mm,C398355,Texas Instruments,TLV9062IDR,1,JLC_SMT_requested,JLC_catalog
+TPS70933DBVR,U1,Package_TO_SOT_SMD:SOT-23-5,C89347,Texas Instruments,TPS70933DBVR,1,JLC_SMT_requested,JLC_catalog
