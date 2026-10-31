@@ -1,5 +1,16 @@
 # Crow exact-job order readiness
 
+## Current update — 2026-10-31, sourcing report and backend handoff
+
+The signed-in JLC Global Sourcing screens showed exact-part indicative lines
+for all six shortages, totaling $87.58 at illustrative quantities, before
+fees. This is not a complete quote or confirmed purchase quantity. See the
+[sourcing report](JLC-ITEMIZED-SOURCING-20261031.md) and
+[backend handoff](BACKEND-HANDOFF-JLC-SOURCING-20261031.md). Assembly pricing,
+fees, usable-stock dates and combined shipping remain unconfirmed; JLC warns
+that completed pre-order quotations cannot be canceled. No purchase,
+reservation, substitution, vendor message or manufacturing commitment made.
+
 ## Current update — 2026-10-31, cost proposal
 
 The user accepts two assembled carriers and asks for a quote-only exact-parts
