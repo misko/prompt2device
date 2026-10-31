@@ -1,0 +1,85 @@
+{
+  "observed_at_utc": "2026-10-31T03:15:09.027537+00:00",
+  "observed_local_date": "2026-10-30",
+  "time_zone": "America/Los_Angeles",
+  "source": "Signed-in JLC Chrome catalog and Global Sourcing; manually transcribed fields, no screenshots or raw payload retained",
+  "global_url": "https://jlcpcb.com/user-center/smtPrivateLibrary/orderParts/?global=1",
+  "limitations": [
+    "Regular values are catalog estimates, not account orders or quotes. RECOM now explicitly unavailable for ordinary purchase.",
+    "Displayed global lead times are not confirmed usable JLC warehouse arrival dates.",
+    "Fees, tax, per-board attrition and final packaging acceptance unknown; no inventories combined.",
+    "Some global-result searches were initiated before previous results finished loading; only explicitly observed offers transcribed, not exhaustive."
+  ],
+  "rows": [
+    {
+      "mpn": "CB3LV-3I-12M288000",
+      "code": "C17275161",
+      "installed_need": 5,
+      "illustrative_quantity": 5,
+      "jlc_stock_minimum": "0; minimum 4",
+      "regular_unit_usd": "$2.6459",
+      "regular_extended_usd": "$13.23",
+      "global_observation": "DigiKey cut tape: 5 at $10.69; 8\u201314 business days; stock 1,449"
+    },
+    {
+      "mpn": "1206L010/30WR",
+      "code": "C2153988",
+      "installed_need": 50,
+      "illustrative_quantity": 50,
+      "jlc_stock_minimum": "2; minimum 14",
+      "regular_unit_usd": "$0.6841",
+      "regular_extended_usd": "$34.21",
+      "global_observation": "Mouser cut tape MOQ 27, stock 3,969; 10\u201320 business days; listed 10+ $0.8921; attrition 2/minimum assembly 2"
+    },
+    {
+      "mpn": "GRM21BR71A105KA01L",
+      "code": "C97917",
+      "installed_need": 20,
+      "illustrative_quantity": 407,
+      "jlc_stock_minimum": "0; minimum 407",
+      "regular_unit_usd": "$0.0222",
+      "regular_extended_usd": "$9.04",
+      "global_observation": "Questcomp MOQ 100, stock 44,328; 10\u201315 business days; displayed $73.00 at 100; attrition 8/minimum assembly 20"
+    },
+    {
+      "mpn": "R-78E5.0-0.5",
+      "code": "C5199916",
+      "installed_need": 5,
+      "illustrative_quantity": 5,
+      "jlc_stock_minimum": "0; minimum 3",
+      "regular_unit_usd": "$3.8861 estimate",
+      "regular_extended_usd": "Unavailable for purchase",
+      "global_observation": "Sager 10 at $48.05; stock 4,692; 10\u201316 business days"
+    },
+    {
+      "mpn": "C2012X7R1V225K125AE",
+      "code": "C2167593",
+      "installed_need": 10,
+      "illustrative_quantity": 62,
+      "jlc_stock_minimum": "0; minimum 62",
+      "regular_unit_usd": "$0.1474",
+      "regular_extended_usd": "$9.14",
+      "global_observation": "Mouser MouseReel 27 at $23.31; stock 8,039; 10\u201320 business days; attrition 2/minimum assembly 5"
+    },
+    {
+      "mpn": "C3216X7R1V106K160AC",
+      "code": "C2182140",
+      "installed_need": 10,
+      "illustrative_quantity": 14,
+      "jlc_stock_minimum": "0; minimum 14",
+      "regular_unit_usd": "$0.6546",
+      "regular_extended_usd": "$9.16",
+      "global_observation": "Questcomp MOQ 115 at $69.79; stock 896; 10\u201315 business days"
+    },
+    {
+      "mpn": "PCM1864DBT",
+      "code": "C2863172",
+      "installed_need": 10,
+      "illustrative_quantity": 10,
+      "jlc_stock_minimum": "0; minimum 2",
+      "regular_unit_usd": "not established",
+      "regular_extended_usd": "Unavailable for ordinary purchase",
+      "global_observation": "DigiKey tube 10 at $104.88; stock 673; 8\u201314 business days; TI direct 10 at $109.26; stock 39,750; 10\u201314 business days"
+    }
+  ]
+}

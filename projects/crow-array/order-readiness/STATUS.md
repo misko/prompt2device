@@ -141,6 +141,31 @@ No spending limit or quote approval inferred from earlier per-array estimates.
 
 ## Journal
 
+- OR9 checkpoint, 2026-10-30 20:15 PDT: after user completed login, signed-in
+  catalog/global results recorded in JLC-PRICING-20261030.md/.json. Five regular
+  indicative prices visible; exact RECOM now unavailable for purchase, and exact
+  PCM1864DBT global offers visible. Global results are selective, not exhaustive;
+  account fees and usable warehouse arrival dates remain unresolved. Some searches
+  returned late, so these are not claimed as fully assessed global offers. No cart
+  changes, quote requests, orders, supplier contact, substitutions or payments.
+  No ordering hold closed. Preferred mixed JLC path requires exact RECOM global
+  and ADC plus five regular lines; external exact consignment is fallback.
+  Publication preservation PASS 256; 15 + 18 tests PASS in isolated source snapshot.
+
+- OR9 dispatch, 2026-10-30 20:09 PDT (2026-10-31 03:09 UTC): user forwards
+  published seven-shortage pricing handoff at 916323c6. Coordinator resumes one
+  read-only account-offer pass; OR6 availability and OR7/OR8 history remain intact.
+  Allowed writes: new dated pricing evidence and STATUS in isolated local source
+  snapshot. No complete clean checkout claimed: snapshot contains vnext and Crow
+  project from the pinned commit; original damaged checkout/index untouched.
+  Browser controls confirmed, with initial stale-session/input recovery recorded.
+  Exact CTS page shows Sign In; user requested to complete login/MFA. Account
+  offers are pending login, not unavailable stock. No cart/order/submission action.
+  Stop after one seven-line pass or 30 minutes active browser work, with elapsed
+  fallback deadline 20:39 PDT excluding no work already performed. No repeated
+  35-line pass, substitute research, supplier contact, payment or manufacturing
+  upload. Coordinator is sole writer and evidence verifier, no stage acceptance.
+
 - OR8 publication dispatch, 2026-10-30 PDT: user authorizes remote publication
   for the MacBook pricing/lead-time pass, explicitly no purchases. Retain branch
   ancestry from browser evidence commit be16560f. Publish only scoped
