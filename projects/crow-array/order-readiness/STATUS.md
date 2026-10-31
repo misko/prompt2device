@@ -1,5 +1,57 @@
 # Crow exact-job order readiness
 
+## Current publication — OR16, 2026-10-31
+
+User authorizes publishing OR15's reconciliation, CSV, MacBook checklist and
+regression checks on the existing `codex/crow-jlc-source-review-20261030`
+branch. This supersedes OR15's local-only publication status, not its technical
+holds. Publish only these preparation artifacts and this journal; leave main,
+release payloads and existing quote packets unchanged. Verify remote commit
+and file identities after pushing. Next: the checklist's bounded signed-in
+quote pass for 2 carriers/8 pods, not purchases or manufacturing commitments.
+No JLC/browser/vendor actions are part of this publication.
+
+## Current preparation — OR15, 2026-10-31, 2+8 reconciliation
+
+User authorizes quantity/fee/assembly reconciliation and next MacBook steps,
+not purchases. Reopened remote `0b44f57d` in the clean review worktree. One
+bounded preparation pass under vNext resume/recover, part-recheck and assembly
+verification guidance; no new engineering acceptance or autonomous adapter.
+Prior browser attempts/history remain charged; this is not a fresh stock-search
+loop. New evidence to resolve: exact package/process facts and source-pool/fee
+effects on the already observed two-job quantities. Stop after this handoff,
+not another public catalog sweep. Preparation/validation deadline 17:35 UTC;
+coordinator is sole writer, order-readiness files only.
+
+See [reconciliation](JLC-2C8P-RECONCILIATION-20261031.md), its six-row CSV and
+[MacBook instructions](MACBOOK-2C8P-QUOTE-HANDOFF-20261031.md). Current quote
+scope is 2 SMT carriers/8 SMT pods on 5/10 bare, 478 factory placements; home
+kit completes one array (35 installed parts), second carrier SMT-only spare.
+Installed shortage demand 54; observed gross 88; historical global offers 96
+pieces/$87.58, not final buy quantities. Seven public fuses receive zero credit
+against the global candidate; regular 21-piece shortfall remains conditional.
+Potential $40 global fuse inspection/certification requires exact-job application.
+TI confirms DBT tube packaging; public TI availability conflicts with the
+account offer, so one exact account recheck/DigiKey-global fallback is specified.
+CTS maker/FAQ clarify SMD vs manual label, not factory acceptance.
+
+Milestone assessment: scope arithmetic and public package facts reconciled;
+complete quote, allocation, fees, usable arrival and factory process acceptance
+remain open. No production hold is promoted by these documents. Next owner is
+the signed-in MacBook session for one 30-minute targeted pass; if account facts
+need vendor contact or committing pre-order submission, stop with the unsent
+inquiry and request authority. Preserve the noncancelability warning; do not
+omit short components to obtain a false total. No browser/cart/vendor actions,
+purchase, substitution, release mutation or main merge in this preparation.
+
+OR15 validation checkpoint: 40 order-readiness tests (including five new
+quantity/pool/price/unknown-field regressions) and 15 publication tests PASS.
+R1 and r3 verification PASS; their historical scenario totals are not the new
+2+8 scope. All 256 release payloads preserved; `git diff --check` PASS.
+Deliverables are local and not pushed. No independent engineering/vendor
+acceptance is claimed. End this bounded preparation pass; continuation needs
+the targeted account results, not another identical server-side review.
+
 ## Current update — 2026-10-31, sourcing report and backend handoff
 
 The signed-in JLC Global Sourcing screens showed exact-part indicative lines
