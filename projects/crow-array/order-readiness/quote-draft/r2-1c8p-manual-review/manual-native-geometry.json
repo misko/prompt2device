@@ -1,0 +1,783 @@
+{
+  "tool": "KiCad pcbnew 10.0.4",
+  "purpose": "native geometric evidence; not manufacturer-verified body centroid or JLC rotation",
+  "coordinates": "KiCad board mm, +x right, +y down; JLC retained SMT CPL has +y up; not transformed output",
+  "rows": [
+    {
+      "board": "carrier",
+      "reference": "J1",
+      "footprint": "BarrelJack_CUI_PJ-102AH_Horizontal",
+      "board_sha256": "85d55d3782e4e040d44aedf4625f09204532ad9fe028e380c26612ebbe74a594",
+      "origin_native_mm": [
+        188.0,
+        2.2
+      ],
+      "native_angle_deg": 0.0,
+      "side": "F.Cu",
+      "pads": [
+        {
+          "number": "1",
+          "native_x_mm": 188.0,
+          "native_y_mm": 2.2
+        },
+        {
+          "number": "2",
+          "native_x_mm": 188.0,
+          "native_y_mm": 8.2
+        },
+        {
+          "number": "3",
+          "native_x_mm": 192.7,
+          "native_y_mm": 5.2
+        }
+      ],
+      "fab_shape_bounding_rectangles_mm": [
+        [
+          183.45,
+          1.45,
+          1.1,
+          1.1
+        ],
+        [
+          183.45,
+          12.35,
+          9.1,
+          0.1
+        ],
+        [
+          183.45,
+          2.45,
+          0.1,
+          13.5
+        ],
+        [
+          184.45,
+          1.45,
+          8.1,
+          0.1
+        ],
+        [
+          192.45,
+          1.45,
+          0.1,
+          14.5
+        ],
+        [
+          183.45,
+          15.85,
+          9.1,
+          0.1
+        ]
+      ]
+    },
+    {
+      "board": "carrier",
+      "reference": "U10",
+      "footprint": "Converter_DCDC_RECOM_R-78E-0.5_THT",
+      "board_sha256": "85d55d3782e4e040d44aedf4625f09204532ad9fe028e380c26612ebbe74a594",
+      "origin_native_mm": [
+        182.0,
+        38.0
+      ],
+      "native_angle_deg": 0.0,
+      "side": "F.Cu",
+      "pads": [
+        {
+          "number": "1",
+          "native_x_mm": 182.0,
+          "native_y_mm": 38.0
+        },
+        {
+          "number": "2",
+          "native_x_mm": 184.54,
+          "native_y_mm": 38.0
+        },
+        {
+          "number": "3",
+          "native_x_mm": 187.08,
+          "native_y_mm": 38.0
+        }
+      ],
+      "fab_shape_bounding_rectangles_mm": [
+        [
+          178.64,
+          31.45,
+          11.7,
+          0.1
+        ],
+        [
+          178.64,
+          31.45,
+          0.1,
+          7.6
+        ],
+        [
+          178.64,
+          38.95,
+          1.1,
+          1.1
+        ],
+        [
+          190.24,
+          31.45,
+          0.1,
+          8.6
+        ],
+        [
+          179.64,
+          39.95,
+          10.7,
+          0.1
+        ]
+      ]
+    },
+    {
+      "board": "carrier",
+      "reference": "J101",
+      "footprint": "RJHSE-5080",
+      "board_sha256": "85d55d3782e4e040d44aedf4625f09204532ad9fe028e380c26612ebbe74a594",
+      "origin_native_mm": [
+        8.0,
+        8.5
+      ],
+      "native_angle_deg": 0.0,
+      "side": "F.Cu",
+      "pads": [
+        {
+          "number": "",
+          "native_x_mm": 5.21,
+          "native_y_mm": 5.96
+        },
+        {
+          "number": "",
+          "native_x_mm": 17.91,
+          "native_y_mm": 5.96
+        },
+        {
+          "number": "1",
+          "native_x_mm": 8.0,
+          "native_y_mm": 8.5
+        },
+        {
+          "number": "2",
+          "native_x_mm": 9.016,
+          "native_y_mm": 10.28
+        },
+        {
+          "number": "3",
+          "native_x_mm": 10.032,
+          "native_y_mm": 8.5
+        },
+        {
+          "number": "4",
+          "native_x_mm": 11.048,
+          "native_y_mm": 10.28
+        },
+        {
+          "number": "5",
+          "native_x_mm": 12.064,
+          "native_y_mm": 8.5
+        },
+        {
+          "number": "6",
+          "native_x_mm": 13.08,
+          "native_y_mm": 10.28
+        },
+        {
+          "number": "7",
+          "native_x_mm": 14.096,
+          "native_y_mm": 8.5
+        },
+        {
+          "number": "8",
+          "native_x_mm": 15.112,
+          "native_y_mm": 10.28
+        }
+      ],
+      "fab_shape_bounding_rectangles_mm": [
+        [
+          3.355,
+          0.555,
+          16.41,
+          15.64
+        ]
+      ]
+    },
+    {
+      "board": "carrier",
+      "reference": "J102",
+      "footprint": "RJHSE-5080",
+      "board_sha256": "85d55d3782e4e040d44aedf4625f09204532ad9fe028e380c26612ebbe74a594",
+      "origin_native_mm": [
+        26.7,
+        8.5
+      ],
+      "native_angle_deg": 0.0,
+      "side": "F.Cu",
+      "pads": [
+        {
+          "number": "",
+          "native_x_mm": 23.91,
+          "native_y_mm": 5.96
+        },
+        {
+          "number": "",
+          "native_x_mm": 36.61,
+          "native_y_mm": 5.96
+        },
+        {
+          "number": "1",
+          "native_x_mm": 26.7,
+          "native_y_mm": 8.5
+        },
+        {
+          "number": "2",
+          "native_x_mm": 27.716,
+          "native_y_mm": 10.28
+        },
+        {
+          "number": "3",
+          "native_x_mm": 28.732,
+          "native_y_mm": 8.5
+        },
+        {
+          "number": "4",
+          "native_x_mm": 29.748,
+          "native_y_mm": 10.28
+        },
+        {
+          "number": "5",
+          "native_x_mm": 30.764,
+          "native_y_mm": 8.5
+        },
+        {
+          "number": "6",
+          "native_x_mm": 31.78,
+          "native_y_mm": 10.28
+        },
+        {
+          "number": "7",
+          "native_x_mm": 32.796,
+          "native_y_mm": 8.5
+        },
+        {
+          "number": "8",
+          "native_x_mm": 33.812,
+          "native_y_mm": 10.28
+        }
+      ],
+      "fab_shape_bounding_rectangles_mm": [
+        [
+          22.055,
+          0.555,
+          16.41,
+          15.64
+        ]
+      ]
+    },
+    {
+      "board": "carrier",
+      "reference": "J103",
+      "footprint": "RJHSE-5080",
+      "board_sha256": "85d55d3782e4e040d44aedf4625f09204532ad9fe028e380c26612ebbe74a594",
+      "origin_native_mm": [
+        45.4,
+        8.5
+      ],
+      "native_angle_deg": 0.0,
+      "side": "F.Cu",
+      "pads": [
+        {
+          "number": "",
+          "native_x_mm": 42.61,
+          "native_y_mm": 5.96
+        },
+        {
+          "number": "",
+          "native_x_mm": 55.31,
+          "native_y_mm": 5.96
+        },
+        {
+          "number": "1",
+          "native_x_mm": 45.4,
+          "native_y_mm": 8.5
+        },
+        {
+          "number": "2",
+          "native_x_mm": 46.416,
+          "native_y_mm": 10.28
+        },
+        {
+          "number": "3",
+          "native_x_mm": 47.432,
+          "native_y_mm": 8.5
+        },
+        {
+          "number": "4",
+          "native_x_mm": 48.448,
+          "native_y_mm": 10.28
+        },
+        {
+          "number": "5",
+          "native_x_mm": 49.464,
+          "native_y_mm": 8.5
+        },
+        {
+          "number": "6",
+          "native_x_mm": 50.48,
+          "native_y_mm": 10.28
+        },
+        {
+          "number": "7",
+          "native_x_mm": 51.496,
+          "native_y_mm": 8.5
+        },
+        {
+          "number": "8",
+          "native_x_mm": 52.512,
+          "native_y_mm": 10.28
+        }
+      ],
+      "fab_shape_bounding_rectangles_mm": [
+        [
+          40.755,
+          0.555,
+          16.41,
+          15.64
+        ]
+      ]
+    },
+    {
+      "board": "carrier",
+      "reference": "J104",
+      "footprint": "RJHSE-5080",
+      "board_sha256": "85d55d3782e4e040d44aedf4625f09204532ad9fe028e380c26612ebbe74a594",
+      "origin_native_mm": [
+        64.1,
+        8.5
+      ],
+      "native_angle_deg": 0.0,
+      "side": "F.Cu",
+      "pads": [
+        {
+          "number": "",
+          "native_x_mm": 61.31,
+          "native_y_mm": 5.96
+        },
+        {
+          "number": "",
+          "native_x_mm": 74.01,
+          "native_y_mm": 5.96
+        },
+        {
+          "number": "1",
+          "native_x_mm": 64.1,
+          "native_y_mm": 8.5
+        },
+        {
+          "number": "2",
+          "native_x_mm": 65.116,
+          "native_y_mm": 10.28
+        },
+        {
+          "number": "3",
+          "native_x_mm": 66.132,
+          "native_y_mm": 8.5
+        },
+        {
+          "number": "4",
+          "native_x_mm": 67.148,
+          "native_y_mm": 10.28
+        },
+        {
+          "number": "5",
+          "native_x_mm": 68.164,
+          "native_y_mm": 8.5
+        },
+        {
+          "number": "6",
+          "native_x_mm": 69.18,
+          "native_y_mm": 10.28
+        },
+        {
+          "number": "7",
+          "native_x_mm": 70.196,
+          "native_y_mm": 8.5
+        },
+        {
+          "number": "8",
+          "native_x_mm": 71.212,
+          "native_y_mm": 10.28
+        }
+      ],
+      "fab_shape_bounding_rectangles_mm": [
+        [
+          59.455,
+          0.555,
+          16.41,
+          15.64
+        ]
+      ]
+    },
+    {
+      "board": "carrier",
+      "reference": "J105",
+      "footprint": "RJHSE-5080",
+      "board_sha256": "85d55d3782e4e040d44aedf4625f09204532ad9fe028e380c26612ebbe74a594",
+      "origin_native_mm": [
+        82.8,
+        8.5
+      ],
+      "native_angle_deg": 0.0,
+      "side": "F.Cu",
+      "pads": [
+        {
+          "number": "",
+          "native_x_mm": 80.01,
+          "native_y_mm": 5.96
+        },
+        {
+          "number": "",
+          "native_x_mm": 92.71,
+          "native_y_mm": 5.96
+        },
+        {
+          "number": "1",
+          "native_x_mm": 82.8,
+          "native_y_mm": 8.5
+        },
+        {
+          "number": "2",
+          "native_x_mm": 83.816,
+          "native_y_mm": 10.28
+        },
+        {
+          "number": "3",
+          "native_x_mm": 84.832,
+          "native_y_mm": 8.5
+        },
+        {
+          "number": "4",
+          "native_x_mm": 85.848,
+          "native_y_mm": 10.28
+        },
+        {
+          "number": "5",
+          "native_x_mm": 86.864,
+          "native_y_mm": 8.5
+        },
+        {
+          "number": "6",
+          "native_x_mm": 87.88,
+          "native_y_mm": 10.28
+        },
+        {
+          "number": "7",
+          "native_x_mm": 88.896,
+          "native_y_mm": 8.5
+        },
+        {
+          "number": "8",
+          "native_x_mm": 89.912,
+          "native_y_mm": 10.28
+        }
+      ],
+      "fab_shape_bounding_rectangles_mm": [
+        [
+          78.155,
+          0.555,
+          16.41,
+          15.64
+        ]
+      ]
+    },
+    {
+      "board": "carrier",
+      "reference": "J106",
+      "footprint": "RJHSE-5080",
+      "board_sha256": "85d55d3782e4e040d44aedf4625f09204532ad9fe028e380c26612ebbe74a594",
+      "origin_native_mm": [
+        101.5,
+        8.5
+      ],
+      "native_angle_deg": 0.0,
+      "side": "F.Cu",
+      "pads": [
+        {
+          "number": "",
+          "native_x_mm": 98.71,
+          "native_y_mm": 5.96
+        },
+        {
+          "number": "",
+          "native_x_mm": 111.41,
+          "native_y_mm": 5.96
+        },
+        {
+          "number": "1",
+          "native_x_mm": 101.5,
+          "native_y_mm": 8.5
+        },
+        {
+          "number": "2",
+          "native_x_mm": 102.516,
+          "native_y_mm": 10.28
+        },
+        {
+          "number": "3",
+          "native_x_mm": 103.532,
+          "native_y_mm": 8.5
+        },
+        {
+          "number": "4",
+          "native_x_mm": 104.548,
+          "native_y_mm": 10.28
+        },
+        {
+          "number": "5",
+          "native_x_mm": 105.564,
+          "native_y_mm": 8.5
+        },
+        {
+          "number": "6",
+          "native_x_mm": 106.58,
+          "native_y_mm": 10.28
+        },
+        {
+          "number": "7",
+          "native_x_mm": 107.596,
+          "native_y_mm": 8.5
+        },
+        {
+          "number": "8",
+          "native_x_mm": 108.612,
+          "native_y_mm": 10.28
+        }
+      ],
+      "fab_shape_bounding_rectangles_mm": [
+        [
+          96.855,
+          0.555,
+          16.41,
+          15.64
+        ]
+      ]
+    },
+    {
+      "board": "carrier",
+      "reference": "J107",
+      "footprint": "RJHSE-5080",
+      "board_sha256": "85d55d3782e4e040d44aedf4625f09204532ad9fe028e380c26612ebbe74a594",
+      "origin_native_mm": [
+        120.2,
+        8.5
+      ],
+      "native_angle_deg": 0.0,
+      "side": "F.Cu",
+      "pads": [
+        {
+          "number": "",
+          "native_x_mm": 117.41,
+          "native_y_mm": 5.96
+        },
+        {
+          "number": "",
+          "native_x_mm": 130.11,
+          "native_y_mm": 5.96
+        },
+        {
+          "number": "1",
+          "native_x_mm": 120.2,
+          "native_y_mm": 8.5
+        },
+        {
+          "number": "2",
+          "native_x_mm": 121.216,
+          "native_y_mm": 10.28
+        },
+        {
+          "number": "3",
+          "native_x_mm": 122.232,
+          "native_y_mm": 8.5
+        },
+        {
+          "number": "4",
+          "native_x_mm": 123.248,
+          "native_y_mm": 10.28
+        },
+        {
+          "number": "5",
+          "native_x_mm": 124.264,
+          "native_y_mm": 8.5
+        },
+        {
+          "number": "6",
+          "native_x_mm": 125.28,
+          "native_y_mm": 10.28
+        },
+        {
+          "number": "7",
+          "native_x_mm": 126.296,
+          "native_y_mm": 8.5
+        },
+        {
+          "number": "8",
+          "native_x_mm": 127.312,
+          "native_y_mm": 10.28
+        }
+      ],
+      "fab_shape_bounding_rectangles_mm": [
+        [
+          115.555,
+          0.555,
+          16.41,
+          15.64
+        ]
+      ]
+    },
+    {
+      "board": "carrier",
+      "reference": "J108",
+      "footprint": "RJHSE-5080",
+      "board_sha256": "85d55d3782e4e040d44aedf4625f09204532ad9fe028e380c26612ebbe74a594",
+      "origin_native_mm": [
+        138.9,
+        8.5
+      ],
+      "native_angle_deg": 0.0,
+      "side": "F.Cu",
+      "pads": [
+        {
+          "number": "",
+          "native_x_mm": 136.11,
+          "native_y_mm": 5.96
+        },
+        {
+          "number": "",
+          "native_x_mm": 148.81,
+          "native_y_mm": 5.96
+        },
+        {
+          "number": "1",
+          "native_x_mm": 138.9,
+          "native_y_mm": 8.5
+        },
+        {
+          "number": "2",
+          "native_x_mm": 139.916,
+          "native_y_mm": 10.28
+        },
+        {
+          "number": "3",
+          "native_x_mm": 140.932,
+          "native_y_mm": 8.5
+        },
+        {
+          "number": "4",
+          "native_x_mm": 141.948,
+          "native_y_mm": 10.28
+        },
+        {
+          "number": "5",
+          "native_x_mm": 142.964,
+          "native_y_mm": 8.5
+        },
+        {
+          "number": "6",
+          "native_x_mm": 143.98,
+          "native_y_mm": 10.28
+        },
+        {
+          "number": "7",
+          "native_x_mm": 144.996,
+          "native_y_mm": 8.5
+        },
+        {
+          "number": "8",
+          "native_x_mm": 146.012,
+          "native_y_mm": 10.28
+        }
+      ],
+      "fab_shape_bounding_rectangles_mm": [
+        [
+          134.255,
+          0.555,
+          16.41,
+          15.64
+        ]
+      ]
+    },
+    {
+      "board": "pod",
+      "reference": "J1",
+      "footprint": "RJHSE-5080",
+      "board_sha256": "791814ab6baf3ff10da15ebcd2be4e424d2b6682987557886b7763292e89855e",
+      "origin_native_mm": [
+        7.0,
+        8.5
+      ],
+      "native_angle_deg": 0.0,
+      "side": "F.Cu",
+      "pads": [
+        {
+          "number": "",
+          "native_x_mm": 4.21,
+          "native_y_mm": 5.96
+        },
+        {
+          "number": "",
+          "native_x_mm": 16.91,
+          "native_y_mm": 5.96
+        },
+        {
+          "number": "1",
+          "native_x_mm": 7.0,
+          "native_y_mm": 8.5
+        },
+        {
+          "number": "2",
+          "native_x_mm": 8.016,
+          "native_y_mm": 10.28
+        },
+        {
+          "number": "3",
+          "native_x_mm": 9.032,
+          "native_y_mm": 8.5
+        },
+        {
+          "number": "4",
+          "native_x_mm": 10.048,
+          "native_y_mm": 10.28
+        },
+        {
+          "number": "5",
+          "native_x_mm": 11.064,
+          "native_y_mm": 8.5
+        },
+        {
+          "number": "6",
+          "native_x_mm": 12.08,
+          "native_y_mm": 10.28
+        },
+        {
+          "number": "7",
+          "native_x_mm": 13.096,
+          "native_y_mm": 8.5
+        },
+        {
+          "number": "8",
+          "native_x_mm": 14.112,
+          "native_y_mm": 10.28
+        }
+      ],
+      "fab_shape_bounding_rectangles_mm": [
+        [
+          2.355,
+          0.555,
+          16.41,
+          15.64
+        ]
+      ]
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "created_local": "2026-10-31T08:18:19.965478-07:00",
+  "source_commit": "a323f0fa16ea840eb2487ca8f0a8567fd0793194",
+  "manual_source_sha256": "26a170f60c99f76cba4bd6971d6c7477b99346641ad3eec273c13e88320b4d9e",
+  "native_audit_sha256": "f0a578a9dcbcc0478f7f5db15abfd924c9d5e9835cfd439560246013c24da7b0",
+  "scope": {
+    "carrier": 1,
+    "pod": 8,
+    "smt_placements": 351,
+    "jlc_manual": 18,
+    "user_installed": 17,
+    "installed_total": 386
+  },
+  "review": "Coordinator source consistency review only; centroid and vendor orientation unresolved; no independent review, no JLC acceptance",
+  "reference_count": 11,
+  "warning": "NOT an upload CPL; unknown vendor centroid and rotation intentionally blank"
+}

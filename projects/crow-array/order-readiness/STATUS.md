@@ -1,5 +1,19 @@
 # Crow exact-job order readiness
 
+## Current update — 2026-10-31
+
+The active target is one assembled carrier and eight pods; investigating extra
+boards for minimum quantities is acceptable. The user chose home installation
+of the 18 through-hole parts for the JLC route. JLC SMT-only drafts have five
+carrier and eight pod assemblies, but exact-part shortages block a complete
+quote. PCBWay has two submitted quote-only inquiries under audit using the
+earlier factory-installed through-hole scope. Neither is a complete price or
+manufacturing approval. See [the current session report](PCBA-SESSION-20261031.md)
+and [backend handoff draft](BACKEND-HANDOFF-PCBA-20261031.md). Earlier
+authorization and current-action statements below are historical where they
+conflict with that report. No substitutions, purchases, payments, reservations
+or manufacturing commitments are authorized.
+
 Goal authorized 2026-10-26: prepare **5 carriers / 10 pods** for ordering, not
 five complete arrays. State: OR10 consolidated procurement proposal prepared; exact-job process,
 allocation and quote approval remain open. Not order-approved. Authority: user's
