@@ -1,0 +1,66 @@
+{
+  "basis": "Per-board upload files; scenario totals are installed, NOT purchase/attrition/minima",
+  "files": {
+    "carrier-bom.csv": "0dce1abe16ac187479c9597181a9047c48a9ea5850fac0492158cfceac764d58",
+    "carrier-cpl.csv": "5ec2189b87b2d7e1e78fb4664c195c674405d136d1bab3f55ed1630b468a5f86",
+    "carrier-gerbers.zip": "ebbd44cb6ce3cc0e9c3226c17741308e3b07e9a1548ec66a1aeaa0a1fd81819d",
+    "home-install-parts.csv": "7730e572fef6280a7b2f198d0c3e56de236a8133e509e2999efbb11846ecaa2b",
+    "pod-bom.csv": "07e7d4e0d6fa6018254dd670cfcd8b0e39c3dd6de1a9c72604aa362f22bac8f3",
+    "pod-cpl.csv": "0cc90cfdfc4b3deb3e00662af3c33880f08b1e259f3c1f015fbb61abd56d52f8",
+    "pod-gerbers.zip": "4e429cb5f7f21ab9927798d084e2be50e6525b395ab3f8059dbba714c7ffbb16",
+    "procurement-plan.csv": "f6b1d6e6d731d5dfc5465ab5eaa3a739231b4a8a465ed427fe1f568211e2bbe8",
+    "scenarios.json": "023461e5b5d284207644d8820d2144d898ec98a3a84783bfc679dc7c5513904c",
+    "scope.csv": "e89f315e544f054d8d413e36569e954a0a2d6a42d52e1b377a9d8d3a87f74209",
+    "shortage-parts.csv": "a018e41e003859ed6de2284b7e88354f8a4072d22717047b45b88f8459ef4a1c"
+  },
+  "holds": [
+    "scenario/quantity selection",
+    "exact stock/attrition/allocation",
+    "vendor matches/placement preview",
+    "stack/stencil/mechanical/process acceptance",
+    "complete quote and purchase authority"
+  ],
+  "installed": {
+    "A": {
+      "HOME": 35,
+      "JLC_SMT": 351,
+      "total": 386
+    },
+    "B": {
+      "HOME": 79,
+      "JLC_SMT": 859,
+      "total": 938
+    }
+  },
+  "permitted_external_actions": "NONE by this local preparation",
+  "scenarios": {
+    "A_target_1c8p": {
+      "carrier_assembled": 1,
+      "carrier_bare_candidate": 5,
+      "pod_assembled": 8,
+      "pod_bare_candidate": 10,
+      "status": "Desired target; one carrier not supported by observed JLC controls"
+    },
+    "B_observed_5c8p": {
+      "carrier_assembled": 5,
+      "carrier_bare_candidate": 5,
+      "pod_assembled": 8,
+      "pod_bare_candidate": 10,
+      "status": "Observed portal scenario; not an adopted build or proven minimum"
+    }
+  },
+  "schema": 1,
+  "source_native_audit": "quote-draft/r1-20261031/native-audit.json; inherited unchanged geometry",
+  "sources": {
+    "projects/crow-array/order-readiness/JLC-PRICING-20261030.json": "37ffe222f52d9f11fdef7a1413551a6a296bda58cadf75d3213dbd91521c4eba",
+    "projects/crow-array/order-readiness/PCBA-SESSION-20261031.md": "2ab5ec81499783584caac05b38282668b2ee5d5f68feb17a0f07218c074ac202",
+    "projects/crow-array/order-readiness/home_assembly_plan.py": "348d2d3acc8ecb60f01016a391c808b7aaeb88bab28d8296358dd1937ced8d8f",
+    "projects/crow-array/order-readiness/procurement-map-20261026-v3.csv": "e872f1ef42c3fce11bc624fd8258b22e3c8ddc01d109f69db442f5d21fe0d408",
+    "projects/crow-array/order-readiness/procurement-proposal-20261030.csv": "832e897c4a55daab754d4787cf5dd799906712420cbad77153e34a6e51560544",
+    "projects/crow-array/order-readiness/quote-draft/r1-20261031/manifest.json": "5644ff26d00a69268806b088090994c022923d773ecb4566e7ff644fa480d322",
+    "projects/crow-array/order-readiness/quote-draft/r1-20261031/native-audit.json": "f0a578a9dcbcc0478f7f5db15abfd924c9d5e9835cfd439560246013c24da7b0",
+    "projects/crow-array/order-readiness/quote_files.py": "ee71dedbad7f5d66aa8aaf901c1bcbc9ce35073210cdf16a79052e4ad957e492",
+    "projects/crow-array/releases/crow-prototype-v3-first-run-5c10p-public-v1/fab/assembly/population.csv": "9ec8d2ad097e15ab5cc3cce0d9929e3f61d97bcc5c57ffd78c5563d592657d5f"
+  },
+  "status": "SUBMISSION_DRAFT_NOT_PRODUCTION_APPROVAL"
+}

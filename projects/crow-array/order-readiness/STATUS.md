@@ -1,5 +1,37 @@
 # Crow exact-job order readiness
 
+## Current publication — OR14, 2026-10-31
+
+User authorizes pushing the revised 1+8 plan and r3 submission draft to the
+existing remote branch for MacBook quantity/sourcing checks, explicitly no
+purchases. R3 README now has the current bounded Mac prompt: smallest supported
+carrier assembly lot, eight assembled pods, separate five-carrier comparison,
+six exact shortages and home installation. No new vendor action in this turn.
+Keep main and original release unchanged; verify remote commit after push.
+
+## Current preparation — OR13, 2026-10-31
+
+User now requests revised procurement for target 1 carrier/8 pods, separate
+5-carrier scenario, home-install list and a JLC submission preparation. No
+purchases. Prepare r3 SMT-only vendor draft outside the immutable release;
+do not submit it or represent unresolved stock/preview/process as production
+approval. The 5-carrier case is observed portal configuration, not a proven
+minimum (JLC public minimum is two assembled boards). Quote both scenarios
+without adopting extra builds. Home installation applies to all six manual
+identities; RECOM is no longer a JLC Global Sourcing requirement.
+
+Prepared locally: `quote-draft/r3-1c8p-home/README.md` is the revised plan,
+`JLC-SUBMISSION-NOTES.md` the unsent vendor brief. Six per-board vendor data
+files preserve r1 SMT-only BOMs/CPLs/Gerbers exactly; machine-readable demand,
+shortage/home lists, scenario quantities and source hashes accompany them.
+`home_assembly_plan.py verify` passes, with 50 tests and 256 release payloads
+preserved. Target 1+8 = 351 JLC SMT + 35 home; comparison 5+8 = 859 SMT + 79
+home if all five are completed. Four extra carriers may remain SMT-only spares,
+in which case home purchases still cover one array. No new total price or
+production approval established. Next is one scenario/quantity and exact supply/
+job review, not a stock-search repeat. OR13 prepared locally; publication is now
+authorized under OR14. No vendor submission or purchase is authorized here.
+
 ## Current update — 2026-10-31
 
 The active target is one assembled carrier and eight pods; investigating extra
@@ -184,6 +216,44 @@ assembly/manual work, fees, shipping and tax. Enclosures/roof hardware excluded.
 No spending limit or quote approval inferred from earlier per-array estimates.
 
 ## Journal
+
+- OR14 pre-push validation, 2026-10-31 PDT: r3 deterministic verification
+  PASS; all 35 order-readiness and 15 publication tests PASS; all 256 release
+  payloads preserved. No native design, prior quote revision or supplier
+  observation modified. Push contains the prepared plan/data/tools/tests and
+  handoff/journal only. Production and purchasing holds remain open.
+
+- OR14 publication dispatch, 2026-10-31 PDT: publish existing OR13 plan,
+  scenario generator/tests and r3 packet plus refreshed Mac instructions.
+  Source baseline 1caaa35d; preserve unchanged released payloads and r1/r2.
+  Validate scenario/source binding, all tests and whitespace, stage only named
+  order-readiness paths, normal push to existing branch, verify remote SHA.
+  This is publication/handoff, not sourcing acceptance or a vendor submission.
+
+- OR13 checkpoint, 2026-10-31 PDT: r3 data build/verification passes; 38 exact
+  identities partitioned into 32 JLC SMT and six home identities, all 177 native
+  refs accounted for. Six shortage demands: A CTS1/fuse16/Murata10/TDK0805-8/
+  TDK1206-2/ADC2; B CTS5/fuse48/Murata18/TDK0805-8/TDK1206-10/ADC10. No portal
+  attrition or shared stock silently credited; prices/purchase quantities unknown.
+  Home counts A 16RJ+1PJ+1RECOM+1Pico+8MIC+8BZ; B 48+5+5+5+8+8. Exact source
+  SMT/ZIP bytes and per-board counts unchanged. Seven prior quote checks plus
+  six new scenario regressions pass within 35 order-readiness + 15 publication
+  tests; original 256 payload preservation PASS. Read-only public JLC guidance
+  confirms minimum two, not five; actual supported job/exception remains open.
+  Milestone: reviewable revised packet prepared, not actual order admission.
+  Next discriminating step is supported quantity, exact usable sourcing/fees,
+  vendor previews/process and complete cost before purchase approval. No vendor
+  submission/contact, portal mutation, purchase, reservation, push or design change.
+
+- OR13 dispatch, 2026-10-31 09:27 PDT: user authorizes local revised plan and
+  submission preparation, not purchase or vendor action. Clean checkout was
+  fast-forwarded to 1caaa35d; session report treated as retained observation,
+  not fresh browser access. Coordinator prepares exact per-board SMT files,
+  scenario demand, home list, supplier notes and checks. Stop by 09:50 PDT
+  including validation with draft and named production blockers. Preserve
+  OR6–OR12 sources and old packet manifests; no regeneration/redesign or repeat
+  35-part research. Source changes invalidate batch availability/cost assumptions,
+  not retained board geometry. Explicitly no independent manufacturing admission.
 
 - OR12 validation checkpoint, 2026-10-31 07:55 PDT: quote-only carrier BOM
   has 137 refs (127 SMT + ten manual), pod 29 (28 SMT + one manual), all per

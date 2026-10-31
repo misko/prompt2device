@@ -1,5 +1,15 @@
 # MacBook handoff — complete JLC quotation, no purchasing
 
+**Current scope, OR13:** use `quote-draft/r3-1c8p-home/README.md` and its unsent
+`JLC-SUBMISSION-NOTES.md` on `codex/crow-jlc-source-review-20261030`. Target is 1 carrier
+and 8 pods; 5+8 is a separate unapproved comparison. All THT/Pico/acoustic parts
+are home-installed. The older 5/10 and JLC-manual instructions below are
+historical and must not be applied to the current job. No purchases or automatic
+submissions. R3 publication is authorized; its README contains the current
+MacBook continuation and copyable prompt. Verify with `home_assembly_plan.py verify`.
+
+## Historical OR12 handoff — do not execute for the current scope
+
 **OR12 update, 2026-10-31:** quote-only files are now prepared and locally
 validated at `quote-draft/r1-20261031/`. Start with that folder's README and run
 `python3 -B projects/crow-array/order-readiness/quote_files.py verify`.

@@ -1,0 +1,16 @@
+{
+  "A_target_1c8p": {
+    "carrier_assembled": 1,
+    "carrier_bare_candidate": 5,
+    "pod_assembled": 8,
+    "pod_bare_candidate": 10,
+    "status": "Desired target; one carrier not supported by observed JLC controls"
+  },
+  "B_observed_5c8p": {
+    "carrier_assembled": 5,
+    "carrier_bare_candidate": 5,
+    "pod_assembled": 8,
+    "pod_bare_candidate": 10,
+    "status": "Observed portal scenario; not an adopted build or proven minimum"
+  }
+}
