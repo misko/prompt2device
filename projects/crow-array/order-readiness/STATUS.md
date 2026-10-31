@@ -1,5 +1,15 @@
 # Crow exact-job order readiness
 
+## Current update — 2026-10-31, two-carrier quote check
+
+JLC's existing Economic form offered two assembled carriers on five bare
+boards; the draft was left at two, with eight assembled pods on ten bare.
+Six exact SMT identities remain short across the two jobs; no complete PCBA
+price or approved process exists. See [the dated observation](JLC-HOME-QUOTE-OBSERVATIONS-20261031.md)
+for per-job quantities, the shared-fuse caution, exact listing snapshots and
+ranked paths. The five-carrier case remains a comparison, not an adopted build.
+No purchases, reservations, substitutions or manufacturing are authorized.
+
 ## Current publication — OR14, 2026-10-31
 
 User authorizes pushing the revised 1+8 plan and r3 submission draft to the
