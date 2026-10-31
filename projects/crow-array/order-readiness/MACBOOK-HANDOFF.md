@@ -1,5 +1,9 @@
 # MacBook handoff — JLC availability and order preparation
 
+**Current continuation, 2026-10-31:** both availability and pricing passes are
+complete. Start at [MACBOOK-QUOTE-HANDOFF.md](MACBOOK-QUOTE-HANDOFF.md) for the
+complete quote workflow, with no purchasing authority.
+
 **Superseded next action, 2026-10-30:** the 35-identity pass below is complete.
 Use [MACBOOK-PRICING-HANDOFF.md](MACBOOK-PRICING-HANDOFF.md) on branch
 `codex/crow-jlc-source-review-20261030` for the seven-shortage price/lead-time

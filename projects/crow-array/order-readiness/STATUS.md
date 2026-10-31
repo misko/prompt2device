@@ -1,7 +1,7 @@
 # Crow exact-job order readiness
 
 Goal authorized 2026-10-26: prepare **5 carriers / 10 pods** for ordering, not
-five complete arrays. State: OR8 seven-shortage comparison complete; exact-job process,
+five complete arrays. State: OR10 consolidated procurement proposal prepared; exact-job process,
 allocation and quote approval remain open. Not order-approved. Authority: user's
 “great lets set that as a goal! and lets go!” after the stated next milestone.
 No purchase, vendor submission/contact or design change is authorized.
@@ -14,14 +14,32 @@ not vendor submissions or spending.
 
 ## Current action
 
-Publication authorized by user after OR8: publish the comparison, supporting
-review/checks and next-step instructions on remote branch
-`codex/crow-jlc-source-review-20261030`. `MACBOOK-PRICING-HANDOFF.md` is the
-current Mac task: one read-only seven-line account offer pass, stopping before
-cart changes, vendor submissions or payments. No purchases authorized. The old
-35-line handoff is explicitly superseded; no main merge is included in this task.
+OR11 publication/handoff, 2026-10-31 PDT: user authorizes pushing OR10's
+proposal and preparing Mac steps for a complete 5-carrier/10-pod JLC quote,
+explicitly no purchases. `MACBOOK-QUOTE-HANDOFF.md` supersedes both completed
+browser passes. Next: locally validated quote-only BOM/CPL/manual schedule,
+then one scoped non-binding quote session after presenting its upload/action
+manifest for approval. No ready-to-upload packet or full quote is claimed.
+Preserve original release and source observations; no vendor action in this turn.
 
-OR8: `SOURCING-COMPARISON-20261030.md` and its CSV compare seven exact external
+OR10: verified and fast-forwarded remote b39eb5a4, containing exactly OR9's
+pricing report, JSON and journal update. `PROCUREMENT-PROPOSAL-20261030.md`
+and its 38-row CSV now consolidate the complete 5/10 installation/supply split.
+Preferred: 28 catalog identities, five regular replenishment lines and exact
+Global Sourcing for RECOM plus ADC; three identities remain user-installed.
+Seven-line component benchmark $227.71 is not a whole-batch quote. Final job
+quantities/fees/usable-stock dates and vendor process/placement acceptance are
+unconfirmed. No holds are closed, orders authorized or independent acceptance
+claimed. Proposal publication is now authorized on
+`codex/crow-jlc-source-review-20261030` alongside earlier evidence, not main.
+
+The bounded Mac pricing pass is complete; do not rerun it or the 35-part pass.
+Next artifact is reviewed vendor drafts and one integrated exact-job quote/
+process review for both boards. Factory BOMs are still empty; no uploads or cart,
+submission, vendor-contact or payment authority is inferred. Preserve the
+release and obtain scoped authority at any required external-action boundary.
+
+Historical OR8 (route superseded by OR9/OR10): `SOURCING-COMPARISON-20261030.md` and its CSV compare seven exact external
 offers against JLC catalog minima/prices and procurement policies. External
 component benchmark is $138.96 + EUR4.88; six JLC catalog lines total $93.54,
 excluding ADC, attrition and all logistics/process extras. These are not quotes.
@@ -140,6 +158,52 @@ assembly/manual work, fees, shipping and tax. Enclosures/roof hardware excluded.
 No spending limit or quote approval inferred from earlier per-array estimates.
 
 ## Journal
+
+- OR11 pre-push validation, 2026-10-31 PDT: publication preservation PASS for
+  256 files; 15 publication + 22 order-readiness tests PASS; diff whitespace
+  check clean. Remote and local starting commit both b39eb5a4. Seven scoped
+  order-readiness paths selected for publication; no release, design, original
+  stock/pricing observations or vNext instructions modified. This is a handoff
+  verification, not independent manufacturing acceptance or a completed quote.
+
+- OR11 publication dispatch, 2026-10-31 PDT: publish OR10 proposal, full
+  38-row worksheet, its four regression tests, and next Mac quote handoff.
+  Existing worktree changes are exactly the prior coordinator's artifacts.
+  No board engineering, vendor upload, cart/order action or purchase. Validate
+  payload preservation/tests/diff, stage only named order-readiness files,
+  normal push on existing branch, then verify exact remote commit. Updated
+  handoff exposes empty factory BOMs as a local draft prerequisite and carries
+  forward one integrated job quote task, not another inventory-research cycle.
+
+- OR10 checkpoint, 2026-10-30 20:27 PDT: complete 38-identity proposal and
+  draft CSV account for all 1,000 installed parts (975 JLC requested, 25 user).
+  Five regular estimates $74.78 plus two global observations $152.93 yield
+  $227.71 for seven shortage lines only. Nominal 558 query pieces cover 110
+  installed positions; minima surplus is not silently called free/user-delivered
+  spares. RECOM ordinary purchase is excluded. Review binds exact codes/needs
+  and retains OR9 transcription/arrival/attrition limitations. Publication
+  preservation PASS for 256 payloads; 15 publication + 22 order-readiness tests
+  PASS, including four new proposal-accounting regressions. OR6/OR9 evidence
+  files remain byte-identical to b39eb5a4. No order hold closed or manufactured
+  quote claimed. Milestone reassessment: useful plan/pricing evidence advanced,
+  but actual order admission did not. Stop routine inventory research; next
+  discriminating work is reviewed vendor drafts and integrated job quote/process
+  evidence, subject to scoped external-action authority. No automatic dispatch,
+  purchase, substitution, upload, contact, commit or push in this task.
+
+- OR10 dispatch, 2026-10-30 20:24 PDT: user requests verification/review of
+  pushed OR9 and one consolidated procurement proposal, explicitly no purchases.
+  Fetched remote b39eb5a45cad93410c6e01a9b09eaf7d69e39a83; its only delta is the
+  pricing report, observations JSON and STATUS. Clean branch fast-forwarded.
+  Coordinator owns proposal and deterministic checks; no independent engineering
+  admission claimed. New input changes RECOM to Global Sourcing; do not repeat
+  the seven/35-part lookup. Scope: all 38 identities and exact 5/10 ownership,
+  with seven priced recovery lines separated from unquoted remainder. Stop by
+  20:40 PDT with a decision-ready plan and explicit unknowns, not an order.
+  Preserve OR6–OR9 observations and cumulative history; no cart, uploads,
+  contacts, purchases, substitutions or manufacturing changes. Missing account
+  quote/arrival/allocation cannot be closed by report writing. Proposal remains
+  local unless publication is separately requested.
 
 - OR9 checkpoint, 2026-10-30 20:15 PDT: after user completed login, signed-in
   catalog/global results recorded in JLC-PRICING-20261030.md/.json. Five regular

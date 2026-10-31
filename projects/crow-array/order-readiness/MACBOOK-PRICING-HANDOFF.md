@@ -1,5 +1,9 @@
 # MacBook handoff — seven exact JLC procurement offers
 
+**Completed; next action updated 2026-10-31:** use
+[MACBOOK-QUOTE-HANDOFF.md](MACBOOK-QUOTE-HANDOFF.md). OR9's pricing results are
+published and OR10 consolidates procurement. Do not repeat the pass below.
+
 Current task: check JLC replenishment and Global Sourcing **prices and arrival
 times**, using the signed-in MacBook browser. User explicitly requests no
 purchases. The previous 35-identity availability pass is complete; do not repeat
