@@ -1,5 +1,13 @@
 # Draft exact-parts cost proposal — two carriers and eight pods
 
+**Historical cost basis, superseded assembly split — OR21:** see
+[r5 complete quote-upload package](quote-draft/r5-2c8p-complete/README.md).
+JLC scope is now 506 parts (478 SMT + 28 THT), with only 18 home parts.
+The old SMT-only totals/home kit below omit restored JLC THT sourcing/labor and
+cannot be used as the complete price. No new price or purchasing approval implied.
+Complete local BOM/CPL coverage is now verified; JLC matching/preview and
+the complete mixed-assembly quote are still pending.
+
 **31 October 2026. Not a complete vendor quotation or an order.** The user
 accepts two assembled carriers and requests a proposal only: no substitutions,
 purchases, reservations or manufacturing commitments. Amounts are USD and

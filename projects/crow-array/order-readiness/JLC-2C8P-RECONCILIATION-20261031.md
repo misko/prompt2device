@@ -1,5 +1,14 @@
 # Quote reconciliation — 2 carriers / 8 pods
 
+**Ownership/files update — OR21:** [r5](quote-draft/r5-2c8p-complete/README.md) supersedes
+the SMT-only/home-THT split below. JLC now requested to install all 24 Ethernet
+jacks, two power jacks and two RECOM modules in addition to 478 SMT parts.
+Home list is two Picos/eight microphones/eight buzzers. RECOM sourcing, THT labor,
+and allowances remain to be quoted. Complete local placement data is now
+prepared/verified; JLC matching and final placement preview remain pending.
+Historical prices below are not a current mixed-assembly quote. Older
+observations remain unchanged.
+
 2026-10-31 PDT. **Preparation only; not a complete quote or purchase approval.**
 Inputs: remote `0b44f57dd7289db691768c4ecdbc671937cf68ed`, its two-carrier
 browser observations and sourcing report, and the unchanged r3 per-board files.

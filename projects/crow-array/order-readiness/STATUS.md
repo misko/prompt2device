@@ -1,5 +1,99 @@
 # Crow exact-job order readiness
 
+## Quote-package publication checkpoint — OR22, 2026-10-31
+
+User requests pushing complete r5 and MacBook instructions to the existing
+`codex/crow-jlc-source-review-20261030` branch; no purchases. Publication scope:
+r5 plus its required r4 inputs, both generators/tests, drawing-derived review,
+current handoff/ownership banners and OR20–OR22 records. Unrelated local stock
+CLI/research changes are not part of this publication. Earlier records marked
+local/unpushed remain preparation history; the current remote commit and
+post-push verification are reported in the handoff response.
+
+Use [current MacBook instructions](MACBOOK-2C8P-QUOTE-HANDOFF-20261031.md).
+The package is for two assembled carriers and eight assembled pods, with full
+JLC SMT/THT scope and only Picos/microphones/buzzers at home. Source manifests,
+coverage and release-preservation checks must pass on the exact publication
+snapshot, not just the dirty working tree. No board/release bytes changed.
+Exact staged-tree replay PASS: quote validation, 256-file release preservation
+and **59 published order-readiness tests**. Five additional local public-stock
+tests are intentionally outside this commit (OR21's 64 includes those).
+Initial temporary export omitted the already-tracked `vnext/tools` test
+dependency; exporting it from the same staged tree resolved both import errors.
+No repository code repair was needed. Staged whitespace check PASS.
+No JLC uploads, purchases, reservations or manufacturing approvals authorized
+by Git publication. Exact matching/stock, final placement preview, process
+agreement and a complete quote remain pending.
+
+## Complete quote-upload files — OR21, 2026-10-31
+
+User authorizes finishing THT placement verification and complete BOM/CPL files
+for **2 carriers / 8 pods**, no purchases. Prepared
+[r5 package and MacBook steps](quote-draft/r5-2c8p-complete/README.md).
+137 carrier and 29 pod references have complete per-board BOM/CPL coverage:
+478 SMT + 28 THT = 506 JLC installations; 18 home parts. r4 remains unchanged
+as the incomplete historical candidate. Gerbers, BOMs and every SMT CPL byte
+remain identical to r1/released sources. No board/release edits.
+
+Three manufacturer drawings visually reviewed; all 11 unique THT pin/peg
+constellations, top-side zero-angle physical poses and power-pin functions
+checked against read-only native KiCad sources. CPL uses nominal body centers,
+not pad-1 anchors. RECOM center incorporates the drawing's 3.21-mm edge-to-pin
+dimension, 0.10 mm different from the F.Fab-box center; copper stays unchanged.
+Source revisions/hashes, formulas and physical orientation instructions retained.
+This is local coordinator verification, not independent adversarial review or
+new vNext assembly acceptance. The sealed historical acceptance is inherited.
+
+Milestone progress: missing THT coordinates are resolved; complete quote files
+now exist. Separate **quote_upload_ready=true** from **production_ready=false**:
+JLC library zero/center and final preview must be reviewed after matching, not
+invented before upload. Previous r4 pre-upload gap is closed locally without
+waiving that vendor hold. vNext assembly-verify/resume contracts guided the
+source preservation, coverage checks and explicit ordering boundary; no new
+domain receipt, autonomous execution or supplier agreement is claimed.
+
+Verification: **64 order-readiness tests PASS** (11 new completeness, physical
+pose, missing/duplicate/home-reference and tamper regressions). Fresh KiCad
+10.0.4 native audit and portable hash-bound replay PASS; 25 inherited SMT angle
+offsets preserved. KiCad property/image-handler warnings retained; exit 0.
+Publication preservation PASS for all 256 release files; engineering acceptance
+not reassessed and order gate still DO-NOT-ORDER. `git diff --check` PASS.
+
+Next: publish this local revision when requested, then authorized MacBook
+quote upload/matching and full placement-preview check using r5. Confirm all
+THT operations, exact source eligibility/gross demand, fees and dates; no
+repeated public stock sweep needed. If pricing requires buying shortage parts,
+report the boundary rather than omit them. No uploads, supplier contact,
+purchases, reservations or commitments; this work remains local/unpushed.
+
+## Current assembly ownership — OR20, 2026-10-31
+
+User selects JLC Ethernet/power-jack/RECOM installation for **2 carriers/8 pods**;
+only Pico/microphone/buzzer remain home work. Prepared [r4 mixed-assembly draft](quote-draft/r4-2c8p-jlc-tht/README.md):
+478 SMT + 28 THT = 506 JLC placements; home 18; total 524. THT is 24 RJHSE-5080,
+two PJ-102AH and two R-78E5.0-0.5. Home is two SC0915, eight CMA-4544PF-W and eight
+CPE-203. RECOM returns to JLC sourcing. Supersedes r3 and older 2c8p home-THT/
+SMT-only-spare instructions, not historical evidence or sealed release bytes.
+
+vNext assembly-verify/resume/part-recheck guidance applied. Full BOMs cover
+137 refs/carrier and 29/pod; SMT CPL and Gerber bytes unchanged. Native THT
+pad-1 origins are not verified vendor centroids; preserve the inherited gap.
+SMT-only CPLs marked INCOMPLETE; THT worksheets NOT-UPLOAD; manifest readiness
+false. Strict upload gate must fail until complete CPL mapping/review.
+
+Next bounded task: resolve three part-type mappings across 11 per-board THT
+positions, preserve SMT rows, then verify 137/29 CPL coverage and vendor preview.
+Fallback is a separately accepted quote/review for all 28 manual installations,
+not silent omission/home transfer. Stock/gross demand, fees/dates, exact process
+acceptance and purchase authority remain open. No repetitive stock sweep needed.
+Local/unpushed; no browser changes, uploads, contact, purchases or commitments.
+
+OR20 verification: 53 order-readiness tests PASS, including eight new split/
+coverage/tamper/readiness checks; all 256 release files preserved. Read-only
+KiCad 10.0.4 native audit PASS, retaining 25 SMT angle offsets; 11 THT geometry
+records match native board hashes. KiCad emitted property/image-handler warnings
+but exited successfully. Strict upload-readiness check correctly returned exit 2.
+
 ## Current publication — OR16, 2026-10-31
 
 User authorizes publishing OR15's reconciliation, CSV, MacBook checklist and

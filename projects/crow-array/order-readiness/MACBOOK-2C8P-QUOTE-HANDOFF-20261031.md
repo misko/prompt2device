@@ -1,5 +1,54 @@
 # MacBook handoff — complete 2-carrier / 8-pod quote, no purchases
 
+**CURRENT PUBLICATION — OR22:** follow the full
+[r5 instructions and placement guide](quote-draft/r5-2c8p-complete/README.md).
+Complete per-board BOM/CPL pairs now cover 137 carrier / 29 pod parts. JLC batch:
+478 SMT + 28 THT; home: two Picos, eight microphones/eight buzzers. Use
+`python3 -B projects/crow-array/order-readiness/complete_tht_quote.py verify`.
+This publication includes r5 and all its verification dependencies. The sealed
+r5 README's local/unpushed wording describes its OR21 preparation snapshot;
+this handoff supersedes that publication status, not its engineering holds.
+Local THT body centers/pin geometry are verified; selected
+JLC library orientations/centers and the full preview remain pending. Quote
+upload readiness is not production approval. No purchases or submissions.
+
+### MacBook: sync, verify, then use r5
+
+Use `codex/crow-jlc-source-review-20261030`, not `main`. First check
+`git status --short --branch`. If dirty or on another branch, preserve that
+checkout and use a separate checkout; do not reset or automatically stash it.
+In a clean checkout on the existing branch:
+
+```sh
+git fetch origin
+git merge --ff-only origin/codex/crow-jlc-source-review-20261030
+python3 -B projects/crow-array/order-readiness/complete_tht_quote.py verify
+python3 -B projects/crow-array/publication.py verify
+python3 -B -m unittest discover -s projects/crow-array/order-readiness -p 'test_*.py'
+```
+
+Record HEAD. The quote verifier must report `quote_upload_ready: true`,
+`production_ready: false`, 137 carrier refs, 29 pod refs, 506 JLC batch parts,
+18 home parts. Publication preservation must pass; DO-NOT-ORDER is expected.
+If the known macOS temporary-directory symlink issue recurs in tests, retain
+the original error and rerun with `TMPDIR=/private/tmp`.
+
+For the authorized quote-only browser pass, use the complete r5 per-board
+Gerber ZIP/BOM/CPL pairs. Set **2 assembled carriers / 8 assembled pods**;
+candidate bare counts are 5/10 pending service-minimum confirmation. Follow
+r5's matching, physical-orientation and full-preview checklist. Do not use r4
+worksheets or old SMT-only CPLs. Keep all requested THT parts in scope.
+No parts purchases, reservations, substitutions, paid/noncancelable quote
+requests or production approval. If shortage procurement prevents a complete
+price, capture the remaining costs and stop at that commitment boundary.
+
+## Historical handoff below — superseded, not current instructions
+
+Use r5's next-MacBook section instead. The historical r3 instructions below
+must not restore home THT, omit JLC RECOM sourcing, or use SMT-only CPLs for
+the current mixed population. Historical stock/fee observations remain evidence,
+not current allocation or a complete mixed-assembly price.
+
 Read `JLC-2C8P-RECONCILIATION-20261031.md` first. This handoff replaces older
 1+8/5+8 instructions **for quote scope**, not the unchanged r3 upload data.
 No complete quote is promised: the previous session could not advance with all
