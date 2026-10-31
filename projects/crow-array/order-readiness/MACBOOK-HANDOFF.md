@@ -1,5 +1,10 @@
 # MacBook handoff — JLC availability and order preparation
 
+**Superseded next action, 2026-10-30:** the 35-identity pass below is complete.
+Use [MACBOOK-PRICING-HANDOFF.md](MACBOOK-PRICING-HANDOFF.md) on branch
+`codex/crow-jlc-source-review-20261030` for the seven-shortage price/lead-time
+check. Do not repeat this historical task or assume the new files are on main.
+
 Start here after pulling remote main. This is a browser/sourcing continuation,
 not a board redesign or permission to order. Use only local `vnext/` instructions.
 The published files suffice for this stock-check task; they are not the complete

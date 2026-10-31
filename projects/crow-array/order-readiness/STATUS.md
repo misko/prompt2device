@@ -1,7 +1,7 @@
 # Crow exact-job order readiness
 
 Goal authorized 2026-10-26: prepare **5 carriers / 10 pods** for ordering, not
-five complete arrays. State: OR5 mapping and user assembly-route selection complete; exact-job process,
+five complete arrays. State: OR8 seven-shortage comparison complete; exact-job process,
 allocation and quote approval remain open. Not order-approved. Authority: user's
 “great lets set that as a goal! and lets go!” after the stated next milestone.
 No purchase, vendor submission/contact or design change is authorized.
@@ -13,6 +13,37 @@ new receipt. Publication authorization already covers the separate public subset
 not vendor submissions or spending.
 
 ## Current action
+
+Publication authorized by user after OR8: publish the comparison, supporting
+review/checks and next-step instructions on remote branch
+`codex/crow-jlc-source-review-20261030`. `MACBOOK-PRICING-HANDOFF.md` is the
+current Mac task: one read-only seven-line account offer pass, stopping before
+cart changes, vendor submissions or payments. No purchases authorized. The old
+35-line handoff is explicitly superseded; no main merge is included in this task.
+
+OR8: `SOURCING-COMPARISON-20261030.md` and its CSV compare seven exact external
+offers against JLC catalog minima/prices and procurement policies. External
+component benchmark is $138.96 + EUR4.88; six JLC catalog lines total $93.54,
+excluding ADC, attrition and all logistics/process extras. These are not quotes.
+Preferred next approach is JLC-managed replenishment plus Global Sourcing of
+exact PCM1864DBT, conditional on account offer/date; external consignment is the
+fallback. Perform one bounded account offer comparison, not another broad stock
+search. Applicable consignment fees and actual receipt dates remain unquoted.
+JLC FAQ clarifies the Wave Soldering label means manual assembly, not proof of
+literal wave exposure; retain a compatible CTS SMD process check, not redesign.
+No hold is closed and no purchase/submission is authorized by this comparison.
+
+OR7 review: `SOURCING-DRAFT-20261030.md` records source-supported Panasonic
+spelling and CUI/Same Sky history reconciliations for the draft only. Original
+OR6 classifications remain immutable. CTS is a manufacturer-specified SMD
+reflow part; JLC's label needs compatible matching/process verification, not a board
+redesign. TI confirms DBT is TSSOP-30 and offers DBTR as a packaging variant;
+no variant is adopted. Next recommendation is one seven-line exact external
+sourcing/consignment comparison against JLC replenishment, not another full
+browser pass. Browser commit be16560f is present on the local review branch
+`codex/crow-jlc-source-review-20261030`; this review is not merged/pushed to main.
+No ordering hold is claimed closed. Mac checkout damage and TMPDIR test handling
+are documented separately from design correctness.
 
 OR6 MacBook browser pass complete, 2026-10-30 PDT:
 `JLC-BROWSER-20261030.md` and `.json` contain one complete 35-identity pass.
@@ -109,6 +140,77 @@ assembly/manual work, fees, shipping and tax. Enclosures/roof hardware excluded.
 No spending limit or quote approval inferred from earlier per-array estimates.
 
 ## Journal
+
+- OR8 publication dispatch, 2026-10-30 PDT: user authorizes remote publication
+  for the MacBook pricing/lead-time pass, explicitly no purchases. Retain branch
+  ancestry from browser evidence commit be16560f. Publish only scoped
+  order-readiness comparison/review/evidence tests, handoff and STATUS. Verify
+  payload preservation, tests, staged paths and remote commit identity. Updated
+  handoff carries forward missing account prices, fees and usable-stock dates,
+  with a single bounded pass and no cart/order/submission authority.
+
+- OR8 verification, 2026-10-30 18:30 PDT: 256 public payloads preserved;
+  15 publication and 18 order-readiness tests pass. Additional read-only checks
+  bind all seven comparison rows to OR6 exact identities, quantities, minima and
+  source URLs, verify USD/EUR arithmetic independently, and confirm both browser
+  evidence files exactly match be16560f. Engineering acceptance remains
+  NOT_REASSESSED and order remains DO-NOT-ORDER. Comparison and journal are local
+  on `codex/crow-jlc-source-review-20261030`; no commit/push or vendor action.
+
+- OR8 research checkpoint, 2026-10-30 PDT: all seven exact external listings
+  show sufficient installed-quantity stock; six are cached DigiKey snapshots,
+  one is a direct Bürklin fetch. JLC catalog tiers fetched directly and bound
+  to exact codes; no account replenishment quotation inferred. Three capacitor
+  minimum-order illustrations total $27.32, changing the preferred logistics
+  recommendation toward JLC-managed procurement. Published global purchasing
+  timing is 9–20 business days after a separately described 1–3-day review;
+  actual part receipt dates remain unknown. Conflicting consignment fee
+  publications are disclosed rather than summed. No source/BOM geometry changed,
+  vendor action taken, or sourcing/assembly acceptance claimed. OR8 artifact is
+  a bounded comparison; missing account quotes are the next discriminating input.
+
+- OR8 dispatch, 2026-10-30 18:23 PDT: user explicitly requests seven-shortage
+  exact external/consignment versus JLC replenishment comparison, including cost
+  and time. New deliverable is a combined sourcing decision, not another full
+  catalog pass or attempt to infer vendor agreement. Reuse OR6 observed minima
+  and OR7 reconciliation; refresh only external offers and relevant JLC policy/
+  prices. Coordinator owns authoring and checks; no independent admission claim.
+  Allowed writes: order-readiness comparison/evidence and journal only. Deadline
+  18:38 PDT including validation; preserve OR1–OR7 history/spend. No substitutions,
+  supplier messages, uploads, cart/library changes, reservations or purchases.
+  Missing account-specific quotations remain explicit unknowns, never estimates
+  invented to close a hold. Stop with ranked complete routes and exact missing
+  inputs rather than repeat requests for each passive component.
+
+- OR7 checkpoint, 2026-10-30 18:06 PDT: fetched and reviewed exact user commit be16560f
+  (only browser report, observations JSON and STATUS delta). Preserved both
+  browser evidence files byte-for-byte. Source-supported identity explanations
+  and CTS/TI process/package facts now inform a draft, not an independent
+  approval. Original 26/7/2 classifications and supplier timestamp semantics
+  remain unchanged. Manufacturer PDF/press access failures are disclosed; maker
+  originals hosted by distributors support the limited identity-history review.
+  Seven exact-part routes compared without repeating stock lookup. New browser
+  binding tests cover worksheet hash, subjects/references, 975-unit scope,
+  separate-pool arithmetic, manual ownership and unknown lead times.
+  Eighteen sourcing tests plus fifteen publication tests PASS; all 256 payloads
+  preserved. This is useful preparation, not supplier agreement/allocation,
+  order admission or restored goal completion. Stop at the draft; no further
+  supplier-agreement retry, external write or purchasing action. Prior OR1–OR6
+  budget/history retained; this bounded review used approximately three elapsed
+  minutes after dispatch, within the 18:13 PDT deadline.
+
+- OR7 dispatch, 2026-10-30 18:03 PDT (2026-10-31 01:03 UTC): consume user-published
+  browser commit be16560f0fe14c102ea048fbad64d362366efc51. OR6 establishes a new
+  complete browser matching result, not order acceptance; no repeated catalog
+  polling. Next discriminating work: manufacturer reconciliation of the two
+  identity exceptions and CTS/package process facts, then one exact-part sourcing
+  draft. Coordinator is sole writer/checker; no independent admission claimed.
+  Allowed writes: order-readiness only, outside sealed payloads. Deadline 18:13
+  PDT including tests/checkpoint. Preserve prior OR1–OR6 history/budgets; this is
+  the returned-evidence review, not a reset of the supplier-agreement plateau.
+  Stop at a reviewed draft; no upload, supplier contact, substitution or purchase.
+  Loaded both vNext entrypoints, sourcing, part-recheck, task-interface, dispatch,
+  recover and resume. Ordering adapter remains procedural, not an automatic gate.
 
 - OR6 checkpoint, 2026-10-30 17:39 PDT (2026-10-31 00:39 UTC): complete
   browser matching pass recorded in JLC-BROWSER-20261030.md/.json. All 35 exact
