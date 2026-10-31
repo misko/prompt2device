@@ -1,5 +1,13 @@
 # Crow exact-job order readiness
 
+## Current update — 2026-10-31, cost proposal
+
+The user accepts two assembled carriers and asks for a quote-only exact-parts
+proposal. [The 2+8 cost proposal](JLC-2C8P-COST-PROPOSAL-20261031.md) records
+the six SMT sourcing lines and a separately priced home-install kit. The full
+JLC PCBA amount, allocation and production acceptance remain unknown. No
+substitutions, purchases, reservations or manufacturing commitments authorized.
+
 ## Current update — 2026-10-31, two-carrier quote check
 
 JLC's existing Economic form offered two assembled carriers on five bare
