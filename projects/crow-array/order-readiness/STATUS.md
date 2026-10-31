@@ -14,12 +14,16 @@ not vendor submissions or spending.
 
 ## Current action
 
-MacBook browser handoff: `MACBOOK-HANDOFF.md` is the entrypoint for the next
-local task after pulling main. User authorized publishing this continuation to
-remote main, not purchasing or uploading it to JLC. Start with JLC's normal
-catalog/matching workflow; the unsent inquiry is a contingency for concrete
-exceptions, not a blanket prerequisite. A complete browser matching result is
-the next desired evidence. This server session has no interactive browser tools.
+OR6 MacBook browser pass complete, 2026-10-30 PDT:
+`JLC-BROWSER-20261030.md` and `.json` contain one complete 35-identity pass.
+26 exact identities show sufficient available-to-order stock; seven show
+insufficient/zero stock; two stocked candidates need identity reconciliation.
+Four missing catalog leads are recovered (Panasonic spelling still pending).
+No failed lookup is being treated as zero stock. No stock pools are added.
+Next recommended route is a reviewed exact-part JLC matching/sourcing draft,
+with exact external consignment as fallback; no upload/contact/order authority
+is inferred. Exact process, allocation, lead times and quote remain open.
+The handoff and v3 worksheet retain their source instructions and identities.
 
 OR5 mapping checkpoint complete: `ASSEMBLY-MAPPING-20261026.md` and current
 `procurement-map-20261026-v3.csv`. Thirty-eight exact identities and all 1,000
@@ -105,6 +109,40 @@ assembly/manual work, fees, shipping and tax. Enclosures/roof hardware excluded.
 No spending limit or quote approval inferred from earlier per-array estimates.
 
 ## Journal
+
+- OR6 checkpoint, 2026-10-30 17:39 PDT (2026-10-31 00:39 UTC): complete
+  browser matching pass recorded in JLC-BROWSER-20261030.md/.json. All 35 exact
+  requested subjects and 975 JLC-requested installed parts joined to v3 demand;
+  26 sufficient, seven insufficient/zero, two stocked identity-review candidates.
+  Exact CTS/TDK/TI codes recovered, Panasonic hyphenless candidate explicit;
+  PCM1864DBTR excluded. JLC public eligibility is separate from job acceptance.
+  No current global-sourcing offer/lead time or allocation established. This
+  advances the requested browser evidence deliverable, not any order-hold closure.
+  Coordinator checks PASS; preservation PASS (256); 15 publication and 14 sourcing
+  tests PASS with /private/tmp and isolated local-HEAD stock_lookup.py import.
+  Initial environment failures and corrected preliminary tally retained in report.
+  No substitutions/uploads/cart additions/vendor contacts/orders/design changes.
+  Approximately nine elapsed minutes for OR6 plus earlier interrupted setup;
+  prior approximately 35 OR1–OR5 author minutes retained. No independent acceptance
+  claimed. Stop after this complete pass. Preferred next path: reviewed exact JLC
+  sourcing/matching draft; fallback: exact Western-source consignment preparation.
+  Upload/contact, supply allocation, exact-job process and quote approval stay open.
+
+- OR6 browser dispatch, 2026-10-30 17:30 PDT (2026-10-31 00:30 UTC):
+  user requests the MacBook handoff exact-JLC availability pass, with no
+  substitutions or orders. New discriminating evidence is the functioning Mac
+  Chrome catalog UI, unavailable to the previous server attempts. Scope is one
+  complete pass over 35 JLC-requested identities, preserving the 60/20/5 split.
+  Coordinator is sole writer/verifier of observations, not independent sourcing
+  acceptance. Allowed writes: new dated evidence and this STATUS/journal only.
+  Stop after the pass or by 18:15 PDT, including checkpoint and portable checks;
+  no repeat stock cycles, uploads, vendor contact, purchases or release changes.
+  Prior OR1–OR5 history and approximately 35 author minutes remain retained.
+  vNext entrypoints, sourcing, part-recheck, task-interface, dispatch and recover
+  read from local HEAD because vnext is absent from the working tree; no checkout
+  or index repair attempted. Browser setup succeeded: exact C599441 page shows
+  available order quantity 569 vs 50 need. This is a public stock observation,
+  not allocation or agreement to the released manual assembly process.
 
 - Publication handoff, 2026-10-26: user requests all inputs needed for MacBook
   continuation on remote main. Scope: current order-readiness records, exact
