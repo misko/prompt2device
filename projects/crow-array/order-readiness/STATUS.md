@@ -1,5 +1,15 @@
 # Crow exact-job order readiness
 
+## Current update — shortage identity review, 2026-10-31
+
+The carrier draft's Part Info identifies its unstocked ADC candidate C2863172
+as TI PCM1864DBT and oscillator candidate C17275161 as CTS Electronic
+Components CB3LV-3I-12M288000. The TI-linked PCM1865-named datasheet covers
+PCM1864 too. These are manufacturer/MPN checks only; package reconciliation,
+CTS handling, supply and factory approval remain open. See the updated
+[exact-match report](JLC-R5-EXACT-MATCH-20261031.md). The support inquiry remains
+unsent; no purchase, reservation, substitution or manufacturing commitment.
+
 ## Current update — exact match review, 2026-10-31
 
 The JLC r5 carrier auto-match for RECOM U10 is a YLPTEC part, C18212367,

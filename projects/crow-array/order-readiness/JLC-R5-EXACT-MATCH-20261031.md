@@ -18,6 +18,18 @@ In the carrier draft, eight previously unchecked available rows were selected af
 
 JLC's [C599441 page](https://jlcpcb.com/partdetail/AmphenolICC-RJHSE5080/C599441) identifies Amphenol ICC RJHSE-5080, matching the r5 manufacturer and MPN. The [C3096093 LCSC listing](https://www.lcsc.com/product-detail/C3096093.html) identifies CUI PJ-102AH, and the [Same Sky manufacturer datasheet](https://jp.sameskydevices.com/product/resource/pj-102ah.pdf) records the CUI Devices rebrand to Same Sky in 2024. Its 2024 drawing's displayed 14.4 mm length, 10.7/3.0 mm longitudinal and 4.7 mm lateral geometry agrees with the dimensions used in the r5 legacy-drawing center derivation. The manufacturer also records a 2023 reengineering; the actual supplied revision, detailed dimensional tolerance, factory installation method and complete preview still need confirmation. These are identity and dimension checks, not final factory or mechanical acceptance.
 
+The carrier draft's expanded Part Info was also checked directly for its two
+unavailable IC/oscillator matches. C2863172 explicitly identifies **Texas
+Instruments PCM1864DBT**, package labeled `TFSOP-30-175mil`, and SMT assembly;
+this establishes the portal's manufacturer/MPN text, not stock or placement.
+Although its linked TI datasheet URL ends in `pcm1865`, the [TI document](https://www.ti.com/lit/ds/symlink/pcm1865.pdf)
+explicitly covers the PCM1864 family member as well. C17275161 identifies
+**CTS Electronic Components CB3LV-3I-12M288000**, package SMD7050-4P; the portal
+still labels its assembly type Wave Soldering. These observations do not settle
+TI packing and package-label reconciliation, oscillator handling, actual stock,
+or factory acceptance. Both remain shortage rows; no selections or purchases
+were made in this check.
+
 ## Draft support inquiry — UNSENT
 
 > Please provide an informational, non-binding assessment only for our existing PCBA drafts: two assembled carriers and eight assembled pods, including all 478 SMT placements and 28 through-hole placements. Please do not reserve or purchase stock, substitute parts, create a noncancelable procurement quotation, charge us, or start production. If a requested answer requires one of these actions, identify that boundary first.
