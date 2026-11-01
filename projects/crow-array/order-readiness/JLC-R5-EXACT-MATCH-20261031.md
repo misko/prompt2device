@@ -85,6 +85,22 @@ a nominal-dimension reconciliation, not verification of land pattern, pin-1
 orientation, lot packaging or assembly preview. The exact `PCM1864DBT` suffix
 remains required; JLC's source and handling must still be confirmed.
 
+#### ADC land-pattern comparison
+
+Read-only inspection of the released carrier's native U1 and U2 footprints
+found 30 pads each, arranged as 15 per side at 0.5 mm pitch, with pad numbers
+1/15/16/30 at the same four corners as TI's DBT0030A example when viewed in
+footprint-local coordinates. Both use 1.475 × 0.300 mm copper pads and
+5.725 mm between pad-column centers; TI's example shows 1.500 × 0.300 mm and
+5.800 mm. Thus pad length is 0.025 mm shorter and column spacing 0.075 mm
+narrower than TI's example. TI calls its pattern an example and notes that
+alternate designs exist; these differences are not by themselves a failure
+or an engineering acceptance. No stencil, solder-mask, tolerance-stack or
+assembled-board inspection is implied. Native U1 and U2 are rotated 180°
+relative to each other; r5 CPL lists 0° and 180° respectively. JLC library
+rotation convention is not established, so verify each pin-1 position in the
+actual factory preview and do not change rotations on this evidence alone.
+
 ### Inventory pooling and preview constraints
 
 JLC's [own-parts instructions](https://jlcpcb.com/help/article/how-to-use-my-own-parts-for-pcb-assembly-order)

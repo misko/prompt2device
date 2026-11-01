@@ -1,5 +1,14 @@
 # Crow exact-job order readiness
 
+## Current update — ADC land-pattern comparison, 2026-10-31
+
+Released carrier U1/U2 each have 30 pads with the same corner numbering and
+0.5 mm pitch as TI's example. Their pads are 1.475 × 0.300 mm at 5.725 mm
+column spacing, versus TI's example 1.500 × 0.300 mm and 5.800 mm. This is a
+documented comparison, not acceptance of the difference or of the JLC preview.
+See [the exact-match report](JLC-R5-EXACT-MATCH-20261031.md). No release files
+were modified.
+
 ## Current update — JLC sourcing and oscillator process, 2026-10-31
 
 JLC's FAQ says library items labeled wave soldering are assembled manually;
