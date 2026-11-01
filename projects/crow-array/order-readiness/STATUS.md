@@ -1,5 +1,15 @@
 # Crow exact-job order readiness
 
+## Current update — smaller RECOM sourcing candidate, 2026-10-31
+
+JLC Global Sourcing also displayed exact RECOM R-78E5.0-0.5 from DigiKey with
+MOQ one: two at $9.69, 8–14 business days, tube. This is an unreserved
+search-screen candidate, not a final quantity or full quote. Confirm JLC's
+actual allowances, acceptance, fees and warehouse-ready date before use; see
+[the exact-match report](JLC-R5-EXACT-MATCH-20261031.md). The ten-for-$48.05
+Sager listing remains an alternative, not a minimum proven across all sources.
+No purchase, reservation, substitution or manufacturing commitment.
+
 ## Current update — r5 home-part estimate, 2026-10-31
 
 Public DigiKey listings show an indicative **$49.14** for the r5 home kit:

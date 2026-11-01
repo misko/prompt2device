@@ -8,6 +8,18 @@ JLC's [C5199916 listing](https://jlcpcb.com/partdetail/RecomPower-R_78E5_0_05/C5
 
 JLC Global Sourcing search displayed the exact `R-78E5.0-0.5 RECOM POWER GMBH`, Sager stock 4,692, MOQ 10, 10 units extended price **$48.05**, and **10–16 business days**. This is an unreserved search-screen estimate, not a committed quote, usable-stock date, final purchase quantity or confirmation of assembly acceptance. No part was added to a cart. Some alternate distributor rows show different minima and lead times, not substitutions; packaging/charges must be verified before choosing a route.
 
+Further inspection of the same Global Sourcing results found a smaller exact
+RECOM offer via **DigiKey 945-1648-5-ND**: displayed supplier MOQ **1**, tube
+packaging, 32,691 stock, estimated attrition 0, minimum assembly quantity 0,
+and **8–14 business days**. Entering the two installed pieces in the quantity
+field displayed **$9.69 extended** (1+ $4.8447/unit). This is $38.36 less in
+component line cost than the ten-piece Sager candidate, with eight fewer
+surplus pieces. It does **not** prove two are the final required purchase
+quantity, confirm assembly/handling acceptance, include any applicable fees,
+or establish a warehouse-ready date; the two suppliers' terms and pricing can
+change. This exact RECOM DigiKey offer is a candidate to ask JLC about first,
+not an order. No Add/cart/checkout action was taken.
+
 ## Remaining boundary
 
 In addition to the six previously identified SMT shortages, the correct RECOM makes seven exact sourcing identities to resolve for the current r5 build. No safe full-preview/quote path was established: the prior pod NEXT warning says unselected parts would not be placed; no omission was accepted. Global Sourcing parts are usable only once they reach JLC's warehouse, and the existing account warning says pre-order parts cannot be canceled once quotation is finished. Do not initiate a paid or noncancelable workflow under the user’s no-purchase/no-reservation instruction. This is an observed portal limitation, not proof that JLC cannot give an independent informational estimate.
@@ -36,7 +48,7 @@ were made in this check.
 
 > Please provide an informational, non-binding assessment only for our existing PCBA drafts: two assembled carriers and eight assembled pods, including all 478 SMT placements and 28 through-hole placements. Please do not reserve or purchase stock, substitute parts, create a noncancelable procurement quotation, charge us, or start production. If a requested answer requires one of these actions, identify that boundary first.
 >
-> Our carrier U10 requires **RECOM Power R-78E5.0-0.5**. Your automatic match C18212367 lists manufacturer YLPTEC and has been deselected. Exact RECOM C5199916 shows no available stock in our account. Can you quote the exact RECOM part through Global Sourcing or consignment and confirm packaging, quantity including allowances, fees, usable warehouse date, and compatible through-hole assembly method?
+> Our carrier U10 requires **RECOM Power R-78E5.0-0.5**. Your automatic match C18212367 lists manufacturer YLPTEC and has been deselected. Exact RECOM C5199916 shows no available stock in our account. Your Global Sourcing screen showed a DigiKey 945-1648-5-ND tube offer with MOQ one and an illustrative two-piece line of $9.69. Can you confirm whether this exact offer is eligible, the required quantity including allowances, packaging and handling fees, usable warehouse date, and compatible through-hole assembly method? Please compare consignment if it cannot be used.
 >
 > Please also confirm exact sources and per-job required quantities for CB3LV-3I-12M288000, 1206L010/30WR, GRM21BR71A105KA01L, C2012X7R1V225K125AE, C3216X7R1V106K160AC and PCM1864DBT. Are the seven fuses shown in both jobs one shared pool, and can each job use its proposed source without mixing prohibited pools? Please include attrition, inspection/3C fees if applicable, packaging and warehouse arrival estimates.
 >
