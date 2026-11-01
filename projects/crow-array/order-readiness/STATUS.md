@@ -1,5 +1,16 @@
 # Crow exact-job order readiness
 
+## Current update — corrected quote finish and review settings, 2026-10-31
+
+Changed both JLC drafts from leaded HASL to the planned ENIG; chose pod
+precision outline. Carrier precision outline was disabled, leaving regular
+±0.2 mm selected and an unresolved exact-job fabrication question. Requested
+production-file and placement confirmation on both drafts and selected “Do
+not confirm automatically” in each warning. Indicative incomplete board-screen
+prices are $57.35 carrier and $42.24 pod, replacing earlier $37.40/$14.00.
+Exact stackup, production data, sourcing and placement remain unconfirmed.
+See [the exact-match report](JLC-R5-EXACT-MATCH-20261031.md); no order action.
+
 ## Current update — pod edge rails, 2026-10-31
 
 The saved pod quote explains its 85 × 88 mm size: JLC proposes two 5 mm edge

@@ -2,6 +2,34 @@
 
 ## Saved fabrication settings and incomplete price
 
+**Superseded price/settings observation:** On a later check both drafts had
+leaded HASL selected, contrary to the release's planned ENIG finish. Changed
+both quote drafts to ENIG. Selected pod ±0.1 mm precision outline; the same
+option was disabled for the carrier and its ±0.2 mm regular outline remained
+selected. The reason and an acceptable exact-job carrier route remain open.
+Neither a portal selection nor precision nominal tolerance proves the other
+coupled hole, edge and seating controls. JLC showed preliminary web prices
+**$57.35 carrier** and **$42.24 pod**, including each $1.05 production-file
+review fee, before component/assembly charges, shipping and other unknowns.
+These prices replace the older $37.40/$14.00 observations below; they are not
+complete PCBA quotes.
+
+Selected “Confirm Production file” and “Confirm Parts Placement” for both
+drafts. Each dialog warned of automatic confirmation and production if a
+deadline expires; checked **Do not confirm automatically** in each dialog
+before confirming the preference. Reopened BOM matching: pod still shows 21
+rows, three shortage rows and the two C844747 resistor rows checked; carrier
+still shows 30 rows, five shortage rows, and YLPTEC U10 unchecked. Summary
+counters remain inconsistent with row counts. The exact automatic-confirmation
+preferences should be rechecked at the final order stage; no production file
+or placement has been reviewed or approved. No cart, payment or order action.
+
+The quote screens also showed “Specify Stackup: No”; exact carrier 7628A and
+pod 7628 stackups remain unconfirmed. The pod precision option displayed
+alignment-hole requirements; factory applicability and rail interaction need
+review. Finish and outline changes alone do not establish the intended stack,
+paste/stencil, hole or mechanical requirements.
+
 Reopened the saved PCB settings on 2026-10-31: carrier shows 5 fabricated,
 2 assembled, Economic and top-side assembly; pod shows 10 fabricated, 8
 assembled, Standard and top-side assembly. The carrier screen displayed
@@ -141,6 +169,8 @@ ordered or reserved.
 > Your FAQ says library parts marked wave soldering are assembled manually, whereas CTS specifies reflow for CB3LV. Does that FAQ apply to C17275161, and can you reflow it within the CTS datasheet limits? If manual assembly is proposed instead, please state its process, thermal controls, charge and timing for review before any commitment.
 
 > The saved pod setting adds two 5 mm edge rails to its 85 × 78 mm outline and currently says no depaneling before delivery. Please provide the proposed rails, breakaway and fiducial layout, finished dimensions and edge treatment, delivery configuration and any associated fees for review. Please also review the supplied full first-run controls: the specified carrier 7628A and pod 7628 stackups, shaped contours and datums, exact solder-mask and paste exclusions, production-stencil data, hole/position/seat inspection and the RJ, PJ and RECOM manual installation requirements. Identify any requirement you cannot accept before changes are made; no production-data modification is authorized by this inquiry.
+
+> Carrier precision outline ±0.1 mm is disabled in the current quote screen; pod precision is selectable with alignment-hole prerequisites. Please explain carrier eligibility, propose an exact-job route and quote its cost, and confirm whether the pod's holes and proposed rail layout meet the routing requirements. Please also confirm how we request and review the specified stackups and prevent automatic approval of both production files and placements.
 >
 > Is there a way to review complete component placement previews and obtain an itemized, non-binding 2-carrier/8-pod estimate with all required parts before paying for any shortage inventory? Please itemize boards, components, SMT/THT labor, setup/stencil, sourcing/handling, shipping and taxes, and note all unknowns and assumptions. Identify any process controls you cannot support; no preview or production approval is implied.
 
