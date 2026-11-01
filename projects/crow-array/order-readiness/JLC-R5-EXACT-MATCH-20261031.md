@@ -2,6 +2,24 @@
 
 ## Saved fabrication settings and incomplete price
 
+**Latest carrier routing update:** After reopening the stackup controls, the
+carrier's ±0.1 mm precision outline option became selectable. Selected it and
+returned to the BOM page; the carrier screen showed **$67.93**, including
+$9.18 for the outline option and $1.05 for production-file review. This
+supersedes the $57.35 regular-outline carrier figure below. It is still an
+incomplete, uncommitted quote; JLC's alignment-hole prerequisites and the
+full coupled mechanical controls remain unverified. Five carrier shortage
+rows remain and the YLPTEC U10 was still unchecked after returning to matching.
+
+When attempting to select the exact carrier JLC04161H-7628A stackup, JLC warned
+that its actual nominal thickness is **1.5542 mm, ±10%**, rather than 1.6 mm,
+and asked whether to accept the difference. Answered No and restored “Specify
+Stackup: No”; the exact stackup is not selected in the saved draft. Do not
+interpret the warning, nominal stackup listing, or this quote exercise as
+engineering acceptance of the thickness or its tolerance. Reconcile the
+warning with all released stack/mechanical conditions and obtain explicit
+factory agreement before accepting it or proceeding to manufacturing.
+
 **Superseded price/settings observation:** On a later check both drafts had
 leaded HASL selected, contrary to the release's planned ENIG finish. Changed
 both quote drafts to ENIG. Selected pod ±0.1 mm precision outline; the same

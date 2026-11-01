@@ -1,5 +1,14 @@
 # Crow exact-job order readiness
 
+## Current update — carrier precision and stackup warning, 2026-10-31
+
+Carrier ±0.1 mm precision outline became selectable and was chosen; the
+incomplete carrier screen price is now $67.93. JLC warned that the specified
+7628A stackup has nominal 1.5542 mm thickness ±10%, versus 1.6 mm. The warning
+was not accepted; the carrier stackup remains unspecified pending mechanical
+and factory review. Routing eligibility and all design-owned controls also
+remain open. See [the exact-match report](JLC-R5-EXACT-MATCH-20261031.md).
+
 ## Current update — corrected quote finish and review settings, 2026-10-31
 
 Changed both JLC drafts from leaded HASL to the planned ENIG; chose pod
