@@ -2,6 +2,21 @@
 
 ## Saved fabrication settings and incomplete price
 
+**Stackup follow-up:** The released D3 layout record already identifies the
+carrier 7628A published sum as **1.5542 mm**, rather than forcing it to 1.6 mm
+([source](../releases/crow-prototype-v3-first-run-5c10p-public-v1/historical/documentation/carrier/process/59-2026-10-23-first-run-d3-layout.md)).
+Thus the nominal number in JLC's warning is not a newly discovered deviation
+from that design basis. The release does not claim delivered-lot thickness,
+per-ply tolerances or acceptance of all mechanical controls. The portal asks
+for an explicit decision on its stated ±10% tolerance; the warning remains
+unaccepted and the carrier stackup is not yet selected in the draft.
+
+For the pod, selected **JLC04161H-7628**, saved via NEXT, and reopened the
+specification page: “Specify Stackup: Yes” and JLC04161H-7628 remained
+selected. The screen still showed the preliminary $42.24; component and
+assembly costs are absent. This is a quote configuration, not supplier
+acceptance or verification of delivered material or other mechanical limits.
+
 **Latest carrier routing update:** After reopening the stackup controls, the
 carrier's ±0.1 mm precision outline option became selectable. Selected it and
 returned to the BOM page; the carrier screen showed **$67.93**, including

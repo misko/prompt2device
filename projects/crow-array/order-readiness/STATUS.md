@@ -1,5 +1,14 @@
 # Crow exact-job order readiness
 
+## Current update — stackup follow-up, 2026-10-31
+
+Selected and verified the specified pod JLC04161H-7628 in its saved quote.
+The release's carrier design basis already states the 7628A layer sum is
+1.5542 mm; JLC's displayed nominal is not a new discrepancy. Its explicit
+±10% warning remains unaccepted and carrier stackup remains unspecified.
+Actual-lot, factory and mechanical controls still need agreement. See
+[the exact-match report](JLC-R5-EXACT-MATCH-20261031.md).
+
 ## Current update — carrier precision and stackup warning, 2026-10-31
 
 Carrier ±0.1 mm precision outline became selectable and was chosen; the
