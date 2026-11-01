@@ -1,5 +1,17 @@
 # Crow exact-job order readiness
 
+## Current update — r6 quote-only browser session, 2026-10-31 Pacific
+
+At the user's request, processed both r6 BOM/CPL pairs with the four reviewed
+replacement identities. JLC selected the replacement rows, but reprocessing
+reset grouped selections and reselected the wrong-manufacturer regulator;
+restored ten required grouped rows and deselected YLPTEC U10. Exact fuse,
+oscillator and RECOM remain sourcing blockers. Illustrative Global Sourcing
+lines total $35.69 before fees and with unconfirmed required quantities.
+No complete placement preview or itemized PCBA quote; no purchases,
+reservations, vendor messages or manufacturing commitments. See the
+[session report](substitutions-20261101/JLC-MACBOOK-SESSION-20261031.md).
+
 ## Publication handoff — r6, 2026-11-01
 
 User authorized publishing the r6 package/checklist to the existing
