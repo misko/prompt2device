@@ -1,0 +1,2522 @@
+{
+  "status": "POST_LAYOUT_MODEL_SCREEN_NOT_ADOPTION",
+  "geometry_sha256": "7c5e24ae21adf0db3f022318639f6bbed9ed01cb1508954a1435e8d81d22c0d2",
+  "geometry": {
+    "source": "projects/crow-array/order-readiness/substitutions-20261101/lmk6c-engineering/draft7/native/pcb/carrier/carrier.kicad_pcb",
+    "sha256": "ddc5f5b1c3cba999db77b1e2a0a8dd24f004579ec825ccec991169a0af3aa099",
+    "nets": {
+      "MCLK_SRC": {
+        "segments": [
+          {
+            "start_mm": [
+              86.825,
+              84.75
+            ],
+            "end_mm": [
+              88.4,
+              82.8
+            ],
+            "width_mm": 0.15,
+            "length_mm": 2.5066162450602603,
+            "layer": "F.Cu"
+          },
+          {
+            "start_mm": [
+              88.4,
+              82.8
+            ],
+            "end_mm": [
+              88.4,
+              80.975
+            ],
+            "width_mm": 0.15,
+            "length_mm": 1.825,
+            "layer": "F.Cu"
+          }
+        ],
+        "pads": [
+          {
+            "ref": "X1",
+            "pin": "3",
+            "at_mm": [
+              86.825,
+              84.75
+            ],
+            "size_mm": [
+              0.9,
+              0.65
+            ]
+          },
+          {
+            "ref": "R3",
+            "pin": "1",
+            "at_mm": [
+              88.4,
+              80.975
+            ],
+            "size_mm": [
+              0.8,
+              0.95
+            ]
+          }
+        ],
+        "vias": []
+      },
+      "MCLK_FAN": {
+        "segments": [
+          {
+            "start_mm": [
+              85.2,
+              81.55
+            ],
+            "end_mm": [
+              85.2,
+              80.975
+            ],
+            "width_mm": 0.15,
+            "length_mm": 0.575,
+            "layer": "F.Cu"
+          },
+          {
+            "start_mm": [
+              88.4,
+              79.325
+            ],
+            "end_mm": [
+              87.6,
+              79.325
+            ],
+            "width_mm": 0.15,
+            "length_mm": 0.8,
+            "layer": "F.Cu"
+          },
+          {
+            "start_mm": [
+              87.6,
+              79.325
+            ],
+            "end_mm": [
+              87.6,
+              81.55
+            ],
+            "width_mm": 0.15,
+            "length_mm": 2.225,
+            "layer": "F.Cu"
+          },
+          {
+            "start_mm": [
+              86.8,
+              81.55
+            ],
+            "end_mm": [
+              86.8,
+              80.975
+            ],
+            "width_mm": 0.15,
+            "length_mm": 0.575,
+            "layer": "F.Cu"
+          },
+          {
+            "start_mm": [
+              87.6,
+              81.55
+            ],
+            "end_mm": [
+              85.2,
+              81.55
+            ],
+            "width_mm": 0.15,
+            "length_mm": 2.4,
+            "layer": "F.Cu"
+          }
+        ],
+        "pads": [
+          {
+            "ref": "R4",
+            "pin": "1",
+            "at_mm": [
+              85.2,
+              80.975
+            ],
+            "size_mm": [
+              0.8,
+              0.95
+            ]
+          },
+          {
+            "ref": "R5",
+            "pin": "1",
+            "at_mm": [
+              86.8,
+              80.975
+            ],
+            "size_mm": [
+              0.8,
+              0.95
+            ]
+          },
+          {
+            "ref": "R3",
+            "pin": "2",
+            "at_mm": [
+              88.4,
+              79.325
+            ],
+            "size_mm": [
+              0.8,
+              0.95
+            ]
+          }
+        ],
+        "vias": []
+      },
+      "MCLK_ADC1": {
+        "segments": [
+          {
+            "start_mm": [
+              80.1,
+              75.6
+            ],
+            "end_mm": [
+              79.4,
+              75.6
+            ],
+            "width_mm": 0.15,
+            "length_mm": 0.7,
+            "layer": "F.Cu"
+          },
+          {
+            "start_mm": [
+              80.6,
+              75.9
+            ],
+            "end_mm": [
+              80.5,
+              75.8
+            ],
+            "width_mm": 0.15,
+            "length_mm": 0.14142135623730953,
+            "layer": "F.Cu"
+          },
+          {
+            "start_mm": [
+              78.6,
+              75.0
+            ],
+            "end_mm": [
+              78.5,
+              74.9
+            ],
+            "width_mm": 0.15,
+            "length_mm": 0.14142135623730953,
+            "layer": "F.Cu"
+          },
+          {
+            "start_mm": [
+              79.4,
+              75.6
+            ],
+            "end_mm": [
+              78.8,
+              75.0
+            ],
+            "width_mm": 0.15,
+            "length_mm": 0.8485281374238571,
+            "layer": "F.Cu"
+          },
+          {
+            "start_mm": [
+              78.8,
+              75.0
+            ],
+            "end_mm": [
+              78.6,
+              75.0
+            ],
+            "width_mm": 0.15,
+            "length_mm": 0.2,
+            "layer": "F.Cu"
+          },
+          {
+            "start_mm": [
+              80.3,
+              75.7
+            ],
+            "end_mm": [
+              80.2,
+              75.7
+            ],
+            "width_mm": 0.15,
+            "length_mm": 0.1,
+            "layer": "F.Cu"
+          },
+          {
+            "start_mm": [
+              80.2,
+              75.7
+            ],
+            "end_mm": [
+              80.1,
+              75.6
+            ],
+            "width_mm": 0.15,
+            "length_mm": 0.14142135623730953,
+            "layer": "F.Cu"
+          },
+          {
+            "start_mm": [
+              78.5,
+              74.9
+            ],
+            "end_mm": [
+              78.5,
+              74.8625
+            ],
+            "width_mm": 0.15,
+            "length_mm": 0.0375,
+            "layer": "F.Cu"
+          },
+          {
+            "start_mm": [
+              80.4,
+              75.8
+            ],
+            "end_mm": [
+              80.3,
+              75.7
+            ],
+            "width_mm": 0.15,
+            "length_mm": 0.14142135623730953,
+            "layer": "F.Cu"
+          },
+          {
+            "start_mm": [
+              85.2,
+              76.6
+            ],
+            "end_mm": [
+              85.9,
+              75.9
+            ],
+            "width_mm": 0.15,
+            "length_mm": 0.9899494936611666,
+            "layer": "F.Cu"
+          },
+          {
+            "start_mm": [
+              85.2,
+              79.325
+            ],
+            "end_mm": [
+              85.2,
+              76.6
+            ],
+            "width_mm": 0.15,
+            "length_mm": 2.725,
+            "layer": "F.Cu"
+          },
+          {
+            "start_mm": [
+              85.9,
+              75.9
+            ],
+            "end_mm": [
+              80.6,
+              75.9
+            ],
+            "width_mm": 0.15,
+            "length_mm": 5.3,
+            "layer": "F.Cu"
+          },
+          {
+            "start_mm": [
+              80.5,
+              75.8
+            ],
+            "end_mm": [
+              80.4,
+              75.8
+            ],
+            "width_mm": 0.15,
+            "length_mm": 0.1,
+            "layer": "F.Cu"
+          }
+        ],
+        "pads": [
+          {
+            "ref": "U1",
+            "pin": "15",
+            "at_mm": [
+              78.5,
+              74.8625
+            ],
+            "size_mm": [
+              1.475,
+              0.3
+            ]
+          },
+          {
+            "ref": "R4",
+            "pin": "2",
+            "at_mm": [
+              85.2,
+              79.325
+            ],
+            "size_mm": [
+              0.8,
+              0.95
+            ]
+          }
+        ],
+        "vias": []
+      },
+      "MCLK_ADC2": {
+        "segments": [
+          {
+            "start_mm": [
+              92.6,
+              74.1
+            ],
+            "end_mm": [
+              93.1,
+              74.6
+            ],
+            "width_mm": 0.15,
+            "length_mm": 0.7071067811865476,
+            "layer": "F.Cu"
+          },
+          {
+            "start_mm": [
+              87.3,
+              75.5
+            ],
+            "end_mm": [
+              87.3,
+              74.9
+            ],
+            "width_mm": 0.15,
+            "length_mm": 0.6,
+            "layer": "F.Cu"
+          },
+          {
+            "start_mm": [
+              86.8,
+              76.0
+            ],
+            "end_mm": [
+              87.3,
+              75.5
+            ],
+            "width_mm": 0.15,
+            "length_mm": 0.7071067811865476,
+            "layer": "F.Cu"
+          },
+          {
+            "start_mm": [
+              88.1,
+              74.7
+            ],
+            "end_mm": [
+              88.8,
+              74.7
+            ],
+            "width_mm": 0.15,
+            "length_mm": 0.7,
+            "layer": "F.Cu"
+          },
+          {
+            "start_mm": [
+              88.9,
+              74.6
+            ],
+            "end_mm": [
+              89.9,
+              74.6
+            ],
+            "width_mm": 0.15,
+            "length_mm": 1.0,
+            "layer": "F.Cu"
+          },
+          {
+            "start_mm": [
+              93.1,
+              74.6
+            ],
+            "end_mm": [
+              93.2,
+              74.6
+            ],
+            "width_mm": 0.15,
+            "length_mm": 0.1,
+            "layer": "F.Cu"
+          },
+          {
+            "start_mm": [
+              93.2,
+              74.6
+            ],
+            "end_mm": [
+              93.5,
+              74.9
+            ],
+            "width_mm": 0.15,
+            "length_mm": 0.42426406871192857,
+            "layer": "F.Cu"
+          },
+          {
+            "start_mm": [
+              90.4,
+              74.1
+            ],
+            "end_mm": [
+              92.6,
+              74.1
+            ],
+            "width_mm": 0.15,
+            "length_mm": 2.2,
+            "layer": "F.Cu"
+          },
+          {
+            "start_mm": [
+              89.9,
+              74.6
+            ],
+            "end_mm": [
+              90.4,
+              74.1
+            ],
+            "width_mm": 0.15,
+            "length_mm": 0.7071067811865476,
+            "layer": "F.Cu"
+          },
+          {
+            "start_mm": [
+              88.8,
+              74.7
+            ],
+            "end_mm": [
+              88.9,
+              74.6
+            ],
+            "width_mm": 0.15,
+            "length_mm": 0.14142135623730953,
+            "layer": "F.Cu"
+          },
+          {
+            "start_mm": [
+              93.5,
+              74.9
+            ],
+            "end_mm": [
+              93.5,
+              74.8625
+            ],
+            "width_mm": 0.15,
+            "length_mm": 0.0375,
+            "layer": "F.Cu"
+          },
+          {
+            "start_mm": [
+              87.9,
+              74.9
+            ],
+            "end_mm": [
+              88.1,
+              74.7
+            ],
+            "width_mm": 0.15,
+            "length_mm": 0.28284271247461906,
+            "layer": "F.Cu"
+          },
+          {
+            "start_mm": [
+              86.8,
+              79.325
+            ],
+            "end_mm": [
+              86.8,
+              76.0
+            ],
+            "width_mm": 0.15,
+            "length_mm": 3.325,
+            "layer": "F.Cu"
+          },
+          {
+            "start_mm": [
+              87.3,
+              74.9
+            ],
+            "end_mm": [
+              87.9,
+              74.9
+            ],
+            "width_mm": 0.15,
+            "length_mm": 0.6,
+            "layer": "F.Cu"
+          }
+        ],
+        "pads": [
+          {
+            "ref": "U2",
+            "pin": "15",
+            "at_mm": [
+              93.5,
+              74.8625
+            ],
+            "size_mm": [
+              1.475,
+              0.3
+            ]
+          },
+          {
+            "ref": "R5",
+            "pin": "2",
+            "at_mm": [
+              86.8,
+              79.325
+            ],
+            "size_mm": [
+              0.8,
+              0.95
+            ]
+          }
+        ],
+        "vias": []
+      }
+    }
+  },
+  "model_inputs": {
+    "/home/mouse9911/gits/circuits-crow-stock-substitutions-20261101/projects/crow-array/order-readiness/substitutions-20261101/lmk6c_clock_screen.py": "5d6abef9a2a722e397d86e65ba31f529458d488631587cedfe1308bcc31b2b51",
+    "/home/mouse9911/gits/crow-first-run-5c10p-20261022/project/03_src/recovery/ls12-analysis/native_model.py": "9284cd4a0c9f6005a71c2dd1b920bf5fa767416e06443a0c53f6426a214b2988",
+    "/home/mouse9911/gits/crow-first-run-5c10p-20261022/project/03_src/recovery/ls12-analysis/model.py": "b39f53d4d1ef20d9cfbcd908ea5b9575d33ab853677d6b0aed03292c6d669fb4"
+  },
+  "summary": {
+    "fast_cases": 12,
+    "slow_cases": 48,
+    "load_max_pf": 26.352553281388378,
+    "physical_overshoot_max_v": 1.3537753511094763e-05,
+    "min_high_ns": 28.80831828222393,
+    "min_low_ns": 28.80831828222389
+  },
+  "limitations": [
+    "New native geometry is extracted when --board is supplied; otherwise retained CTS geometry.",
+    "3.135..3.465 V is a proposed sensitivity, not established actual supply bounds.",
+    "80/20% output envelope at non-nominal rails is an engineering model, not a TI guarantee.",
+    "Fast step model uses 3.6 V conservatively for excursion only; TI operation at 3.6 V is NOT allowed.",
+    "Ideal-reference RLC; single 100mV residual allowance remains unverified.",
+    "Positive threshold dwell is a feasibility screen, NOT an invented ADC timing requirement.",
+    "Finite source edge shape, jitter, new layout, power, process and actual waveform checks remain."
+  ],
+  "fast_cases": [
+    {
+      "parameters": {
+        "h": 0.23552,
+        "er": 5.4,
+        "receiver_factor": [
+          0.5,
+          1.5
+        ],
+        "source_r": 40.0,
+        "common_ohm": 68,
+        "branch_ohm": 56,
+        "resistor_factor": [
+          0.94,
+          0.96,
+          0.96
+        ]
+      },
+      "ramp_ns": 0,
+      "total_cap_pf": 20.749973281388375,
+      "nodes": 48,
+      "edges": 48,
+      "fast": {
+        "max_overshoot_v": 2.811233503763333e-07,
+        "max_undershoot_v": 1.2878587085651816e-14,
+        "observed_nodes": [
+          "U1.pad",
+          "U2.pad",
+          "U1.die",
+          "U2.die"
+        ],
+        "individual_peak_v": [
+          3.60000001204439,
+          3.6000002811233505,
+          3.6000000000223182,
+          3.6000000002272694
+        ],
+        "source_pad_peak_v": 3.600847581431675
+      }
+    },
+    {
+      "parameters": {
+        "h": 0.23552,
+        "er": 5.4,
+        "receiver_factor": [
+          0.5,
+          1.5
+        ],
+        "source_r": 60.0,
+        "common_ohm": 68,
+        "branch_ohm": 56,
+        "resistor_factor": [
+          0.94,
+          0.96,
+          0.96
+        ]
+      },
+      "ramp_ns": 0,
+      "total_cap_pf": 20.749973281388375,
+      "nodes": 48,
+      "edges": 48,
+      "fast": {
+        "max_overshoot_v": 2.261166147654592e-07,
+        "max_undershoot_v": 1.2878587085651816e-14,
+        "observed_nodes": [
+          "U1.pad",
+          "U2.pad",
+          "U1.die",
+          "U2.die"
+        ],
+        "individual_peak_v": [
+          3.6000000082236467,
+          3.600000226116615,
+          3.6000000000144694,
+          3.6000000001919616
+        ],
+        "source_pad_peak_v": 3.6006669067473576
+      }
+    },
+    {
+      "parameters": {
+        "h": 0.23552,
+        "er": 5.4,
+        "receiver_factor": [
+          1.5,
+          0.5
+        ],
+        "source_r": 40.0,
+        "common_ohm": 68,
+        "branch_ohm": 56,
+        "resistor_factor": [
+          0.94,
+          0.96,
+          0.96
+        ]
+      },
+      "ramp_ns": 0,
+      "total_cap_pf": 20.749973281388375,
+      "nodes": 48,
+      "edges": 48,
+      "fast": {
+        "max_overshoot_v": 5.321652620793316e-07,
+        "max_undershoot_v": 8.881784197001252e-15,
+        "observed_nodes": [
+          "U1.pad",
+          "U2.pad",
+          "U1.die",
+          "U2.die"
+        ],
+        "individual_peak_v": [
+          3.600000007620809,
+          3.600000532165262,
+          3.600000000004796,
+          3.60000000139029
+        ],
+        "source_pad_peak_v": 3.600847360612166
+      }
+    },
+    {
+      "parameters": {
+        "h": 0.23552,
+        "er": 5.4,
+        "receiver_factor": [
+          1.5,
+          0.5
+        ],
+        "source_r": 60.0,
+        "common_ohm": 68,
+        "branch_ohm": 56,
+        "resistor_factor": [
+          0.94,
+          0.96,
+          0.96
+        ]
+      },
+      "ramp_ns": 0,
+      "total_cap_pf": 20.749973281388375,
+      "nodes": 48,
+      "edges": 48,
+      "fast": {
+        "max_overshoot_v": 4.2997160676350177e-07,
+        "max_undershoot_v": 8.881784197001252e-15,
+        "observed_nodes": [
+          "U1.pad",
+          "U2.pad",
+          "U1.die",
+          "U2.die"
+        ],
+        "individual_peak_v": [
+          3.6000000058917645,
+          3.600000429971607,
+          3.6000000000023764,
+          3.6000000011568147
+        ],
+        "source_pad_peak_v": 3.6006676052315334
+      }
+    },
+    {
+      "parameters": {
+        "h": 0.23552,
+        "er": 5.4,
+        "receiver_factor": [
+          1.5,
+          1.5
+        ],
+        "source_r": 40.0,
+        "common_ohm": 68,
+        "branch_ohm": 56,
+        "resistor_factor": [
+          0.94,
+          0.96,
+          0.96
+        ]
+      },
+      "ramp_ns": 0,
+      "total_cap_pf": 26.352553281388378,
+      "nodes": 48,
+      "edges": 48,
+      "fast": {
+        "max_overshoot_v": 2.009192128227255e-07,
+        "max_undershoot_v": 1.2878587085651816e-14,
+        "observed_nodes": [
+          "U1.pad",
+          "U2.pad",
+          "U1.die",
+          "U2.die"
+        ],
+        "individual_peak_v": [
+          3.6000000054261307,
+          3.600000200919213,
+          3.599999999990899,
+          3.6000000001700503
+        ],
+        "source_pad_peak_v": 3.6006411967438186
+      }
+    },
+    {
+      "parameters": {
+        "h": 0.23552,
+        "er": 5.4,
+        "receiver_factor": [
+          1.5,
+          1.5
+        ],
+        "source_r": 60.0,
+        "common_ohm": 68,
+        "branch_ohm": 56,
+        "resistor_factor": [
+          0.94,
+          0.96,
+          0.96
+        ]
+      },
+      "ramp_ns": 0,
+      "total_cap_pf": 26.352553281388378,
+      "nodes": 48,
+      "edges": 48,
+      "fast": {
+        "max_overshoot_v": 1.6856345919080695e-07,
+        "max_undershoot_v": 1.2878587085651816e-14,
+        "observed_nodes": [
+          "U1.pad",
+          "U2.pad",
+          "U1.die",
+          "U2.die"
+        ],
+        "individual_peak_v": [
+          3.600000003463521,
+          3.6000001685634593,
+          3.5999999993777125,
+          3.5999999995151444
+        ],
+        "source_pad_peak_v": 3.6004651088106803
+      }
+    },
+    {
+      "parameters": {
+        "h": 0.35328,
+        "er": 5.4,
+        "receiver_factor": [
+          0.5,
+          1.5
+        ],
+        "source_r": 40.0,
+        "common_ohm": 68,
+        "branch_ohm": 56,
+        "resistor_factor": [
+          0.94,
+          0.96,
+          0.96
+        ]
+      },
+      "ramp_ns": 0,
+      "total_cap_pf": 19.58081612216289,
+      "nodes": 48,
+      "edges": 48,
+      "fast": {
+        "max_overshoot_v": 2.572099155884189e-07,
+        "max_undershoot_v": 1.509903313490213e-14,
+        "observed_nodes": [
+          "U1.pad",
+          "U2.pad",
+          "U1.die",
+          "U2.die"
+        ],
+        "individual_peak_v": [
+          3.6000000779802885,
+          3.6000002572099157,
+          3.6000000000260033,
+          3.600000000228606
+        ],
+        "source_pad_peak_v": 3.600783750167323
+      }
+    },
+    {
+      "parameters": {
+        "h": 0.35328,
+        "er": 5.4,
+        "receiver_factor": [
+          0.5,
+          1.5
+        ],
+        "source_r": 60.0,
+        "common_ohm": 68,
+        "branch_ohm": 56,
+        "resistor_factor": [
+          0.94,
+          0.96,
+          0.96
+        ]
+      },
+      "ramp_ns": 0,
+      "total_cap_pf": 19.58081612216289,
+      "nodes": 48,
+      "edges": 48,
+      "fast": {
+        "max_overshoot_v": 2.1296865648778862e-07,
+        "max_undershoot_v": 1.509903313490213e-14,
+        "observed_nodes": [
+          "U1.pad",
+          "U2.pad",
+          "U1.die",
+          "U2.die"
+        ],
+        "individual_peak_v": [
+          3.6000000064716886,
+          3.6000002129686566,
+          3.600000000011426,
+          3.6000000001887607
+        ],
+        "source_pad_peak_v": 3.6006165459776427
+      }
+    },
+    {
+      "parameters": {
+        "h": 0.35328,
+        "er": 5.4,
+        "receiver_factor": [
+          1.5,
+          0.5
+        ],
+        "source_r": 40.0,
+        "common_ohm": 68,
+        "branch_ohm": 56,
+        "resistor_factor": [
+          0.94,
+          0.96,
+          0.96
+        ]
+      },
+      "ramp_ns": 0,
+      "total_cap_pf": 19.58081612216289,
+      "nodes": 48,
+      "edges": 48,
+      "fast": {
+        "max_overshoot_v": 1.3537753511094763e-05,
+        "max_undershoot_v": 2.042810365310288e-14,
+        "observed_nodes": [
+          "U1.pad",
+          "U2.pad",
+          "U1.die",
+          "U2.die"
+        ],
+        "individual_peak_v": [
+          3.6000009458405664,
+          3.600013537753511,
+          3.600000000099311,
+          3.6000000176241085
+        ],
+        "source_pad_peak_v": 3.6008301494337616
+      }
+    },
+    {
+      "parameters": {
+        "h": 0.35328,
+        "er": 5.4,
+        "receiver_factor": [
+          1.5,
+          0.5
+        ],
+        "source_r": 60.0,
+        "common_ohm": 68,
+        "branch_ohm": 56,
+        "resistor_factor": [
+          0.94,
+          0.96,
+          0.96
+        ]
+      },
+      "ramp_ns": 0,
+      "total_cap_pf": 19.58081612216289,
+      "nodes": 48,
+      "edges": 48,
+      "fast": {
+        "max_overshoot_v": 7.617591983866134e-07,
+        "max_undershoot_v": 2.042810365310288e-14,
+        "observed_nodes": [
+          "U1.pad",
+          "U2.pad",
+          "U1.die",
+          "U2.die"
+        ],
+        "individual_peak_v": [
+          3.6000000160216876,
+          3.6000007617591985,
+          3.600000000003944,
+          3.60000000124892
+        ],
+        "source_pad_peak_v": 3.600618556672561
+      }
+    },
+    {
+      "parameters": {
+        "h": 0.35328,
+        "er": 5.4,
+        "receiver_factor": [
+          1.5,
+          1.5
+        ],
+        "source_r": 40.0,
+        "common_ohm": 68,
+        "branch_ohm": 56,
+        "resistor_factor": [
+          0.94,
+          0.96,
+          0.96
+        ]
+      },
+      "ramp_ns": 0,
+      "total_cap_pf": 25.18339612216289,
+      "nodes": 48,
+      "edges": 48,
+      "fast": {
+        "max_overshoot_v": 1.9181823862624015e-07,
+        "max_undershoot_v": 1.7763568394002505e-15,
+        "observed_nodes": [
+          "U1.pad",
+          "U2.pad",
+          "U1.die",
+          "U2.die"
+        ],
+        "individual_peak_v": [
+          3.600000005634855,
+          3.6000001918182387,
+          3.5999999999995773,
+          3.6000000001701586
+        ],
+        "source_pad_peak_v": 3.600582997357997
+      }
+    },
+    {
+      "parameters": {
+        "h": 0.35328,
+        "er": 5.4,
+        "receiver_factor": [
+          1.5,
+          1.5
+        ],
+        "source_r": 60.0,
+        "common_ohm": 68,
+        "branch_ohm": 56,
+        "resistor_factor": [
+          0.94,
+          0.96,
+          0.96
+        ]
+      },
+      "ramp_ns": 0,
+      "total_cap_pf": 25.18339612216289,
+      "nodes": 48,
+      "edges": 48,
+      "fast": {
+        "max_overshoot_v": 1.598358831955693e-07,
+        "max_undershoot_v": 1.7763568394002505e-15,
+        "observed_nodes": [
+          "U1.pad",
+          "U2.pad",
+          "U1.die",
+          "U2.die"
+        ],
+        "individual_peak_v": [
+          3.6000000047887903,
+          3.6000001598358833,
+          3.599999999774023,
+          3.599999999925181
+        ],
+        "source_pad_peak_v": 3.600420370398004
+      }
+    }
+  ],
+  "slow_cases": [
+    {
+      "rail": 3.135,
+      "duty": 0.45,
+      "parameters": {
+        "h": 0.23552,
+        "er": 5.4,
+        "receiver_factor": [
+          0.5,
+          1.5
+        ],
+        "source_r": 40.0,
+        "common_ohm": 68,
+        "branch_ohm": 56,
+        "resistor_factor": [
+          1.06,
+          1.04,
+          1.04
+        ]
+      },
+      "receivers": [
+        {
+          "high_ns": 31.636300882568836,
+          "low_ns": 39.774326531058676
+        },
+        {
+          "high_ns": 31.4035522929831,
+          "low_ns": 39.54158895837301
+        }
+      ]
+    },
+    {
+      "rail": 3.135,
+      "duty": 0.55,
+      "parameters": {
+        "h": 0.23552,
+        "er": 5.4,
+        "receiver_factor": [
+          0.5,
+          1.5
+        ],
+        "source_r": 40.0,
+        "common_ohm": 68,
+        "branch_ohm": 56,
+        "resistor_factor": [
+          1.06,
+          1.04,
+          1.04
+        ]
+      },
+      "receivers": [
+        {
+          "high_ns": 39.77432653105869,
+          "low_ns": 31.63630088256873
+        },
+        {
+          "high_ns": 39.541588958373,
+          "low_ns": 31.403552292983022
+        }
+      ]
+    },
+    {
+      "rail": 3.465,
+      "duty": 0.45,
+      "parameters": {
+        "h": 0.23552,
+        "er": 5.4,
+        "receiver_factor": [
+          0.5,
+          1.5
+        ],
+        "source_r": 40.0,
+        "common_ohm": 68,
+        "branch_ohm": 56,
+        "resistor_factor": [
+          1.06,
+          1.04,
+          1.04
+        ]
+      },
+      "receivers": [
+        {
+          "high_ns": 31.745021959960003,
+          "low_ns": 39.883046286873174
+        },
+        {
+          "high_ns": 31.522228616207876,
+          "low_ns": 39.66024727277628
+        }
+      ]
+    },
+    {
+      "rail": 3.465,
+      "duty": 0.55,
+      "parameters": {
+        "h": 0.23552,
+        "er": 5.4,
+        "receiver_factor": [
+          0.5,
+          1.5
+        ],
+        "source_r": 40.0,
+        "common_ohm": 68,
+        "branch_ohm": 56,
+        "resistor_factor": [
+          1.06,
+          1.04,
+          1.04
+        ]
+      },
+      "receivers": [
+        {
+          "high_ns": 39.8830462868732,
+          "low_ns": 31.74502195995989
+        },
+        {
+          "high_ns": 39.66024727277628,
+          "low_ns": 31.52222861620779
+        }
+      ]
+    },
+    {
+      "rail": 3.135,
+      "duty": 0.45,
+      "parameters": {
+        "h": 0.23552,
+        "er": 5.4,
+        "receiver_factor": [
+          0.5,
+          1.5
+        ],
+        "source_r": 60.0,
+        "common_ohm": 68,
+        "branch_ohm": 56,
+        "resistor_factor": [
+          1.06,
+          1.04,
+          1.04
+        ]
+      },
+      "receivers": [
+        {
+          "high_ns": 30.74563276272757,
+          "low_ns": 38.8836667306821
+        },
+        {
+          "high_ns": 30.533205129744893,
+          "low_ns": 38.67124661850264
+        }
+      ]
+    },
+    {
+      "rail": 3.135,
+      "duty": 0.55,
+      "parameters": {
+        "h": 0.23552,
+        "er": 5.4,
+        "receiver_factor": [
+          0.5,
+          1.5
+        ],
+        "source_r": 60.0,
+        "common_ohm": 68,
+        "branch_ohm": 56,
+        "resistor_factor": [
+          1.06,
+          1.04,
+          1.04
+        ]
+      },
+      "receivers": [
+        {
+          "high_ns": 38.88366673068212,
+          "low_ns": 30.74563276272742
+        },
+        {
+          "high_ns": 38.671246618502636,
+          "low_ns": 30.533205129744786
+        }
+      ]
+    },
+    {
+      "rail": 3.465,
+      "duty": 0.45,
+      "parameters": {
+        "h": 0.23552,
+        "er": 5.4,
+        "receiver_factor": [
+          0.5,
+          1.5
+        ],
+        "source_r": 60.0,
+        "common_ohm": 68,
+        "branch_ohm": 56,
+        "resistor_factor": [
+          1.06,
+          1.04,
+          1.04
+        ]
+      },
+      "receivers": [
+        {
+          "high_ns": 30.877397418806417,
+          "low_ns": 39.01542876547945
+        },
+        {
+          "high_ns": 30.672738716299612,
+          "low_ns": 38.81077445077712
+        }
+      ]
+    },
+    {
+      "rail": 3.465,
+      "duty": 0.55,
+      "parameters": {
+        "h": 0.23552,
+        "er": 5.4,
+        "receiver_factor": [
+          0.5,
+          1.5
+        ],
+        "source_r": 60.0,
+        "common_ohm": 68,
+        "branch_ohm": 56,
+        "resistor_factor": [
+          1.06,
+          1.04,
+          1.04
+        ]
+      },
+      "receivers": [
+        {
+          "high_ns": 39.01542876547948,
+          "low_ns": 30.877397418806254
+        },
+        {
+          "high_ns": 38.81077445077712,
+          "low_ns": 30.6727387162995
+        }
+      ]
+    },
+    {
+      "rail": 3.135,
+      "duty": 0.45,
+      "parameters": {
+        "h": 0.23552,
+        "er": 5.4,
+        "receiver_factor": [
+          1.5,
+          0.5
+        ],
+        "source_r": 40.0,
+        "common_ohm": 68,
+        "branch_ohm": 56,
+        "resistor_factor": [
+          1.06,
+          1.04,
+          1.04
+        ]
+      },
+      "receivers": [
+        {
+          "high_ns": 31.415773741104303,
+          "low_ns": 39.55378109904822
+        },
+        {
+          "high_ns": 31.62501072003048,
+          "low_ns": 39.763046891897474
+        }
+      ]
+    },
+    {
+      "rail": 3.135,
+      "duty": 0.55,
+      "parameters": {
+        "h": 0.23552,
+        "er": 5.4,
+        "receiver_factor": [
+          1.5,
+          0.5
+        ],
+        "source_r": 40.0,
+        "common_ohm": 68,
+        "branch_ohm": 56,
+        "resistor_factor": [
+          1.06,
+          1.04,
+          1.04
+        ]
+      },
+      "receivers": [
+        {
+          "high_ns": 39.55378109904824,
+          "low_ns": 31.415773741104264
+        },
+        {
+          "high_ns": 39.76304689189746,
+          "low_ns": 31.625010720030463
+        }
+      ]
+    },
+    {
+      "rail": 3.465,
+      "duty": 0.45,
+      "parameters": {
+        "h": 0.23552,
+        "er": 5.4,
+        "receiver_factor": [
+          1.5,
+          0.5
+        ],
+        "source_r": 40.0,
+        "common_ohm": 68,
+        "branch_ohm": 56,
+        "resistor_factor": [
+          1.06,
+          1.04,
+          1.04
+        ]
+      },
+      "receivers": [
+        {
+          "high_ns": 31.53447234023375,
+          "low_ns": 39.67249668683585
+        },
+        {
+          "high_ns": 31.73082981123703,
+          "low_ns": 39.86885199081148
+        }
+      ]
+    },
+    {
+      "rail": 3.465,
+      "duty": 0.55,
+      "parameters": {
+        "h": 0.23552,
+        "er": 5.4,
+        "receiver_factor": [
+          1.5,
+          0.5
+        ],
+        "source_r": 40.0,
+        "common_ohm": 68,
+        "branch_ohm": 56,
+        "resistor_factor": [
+          1.06,
+          1.04,
+          1.04
+        ]
+      },
+      "receivers": [
+        {
+          "high_ns": 39.67249668683586,
+          "low_ns": 31.534472340233705
+        },
+        {
+          "high_ns": 39.86885199081148,
+          "low_ns": 31.730829811236998
+        }
+      ]
+    },
+    {
+      "rail": 3.135,
+      "duty": 0.45,
+      "parameters": {
+        "h": 0.23552,
+        "er": 5.4,
+        "receiver_factor": [
+          1.5,
+          0.5
+        ],
+        "source_r": 60.0,
+        "common_ohm": 68,
+        "branch_ohm": 56,
+        "resistor_factor": [
+          1.06,
+          1.04,
+          1.04
+        ]
+      },
+      "receivers": [
+        {
+          "high_ns": 30.543653060015124,
+          "low_ns": 38.681708822893974
+        },
+        {
+          "high_ns": 30.73504278314511,
+          "low_ns": 38.87309615724882
+        }
+      ]
+    },
+    {
+      "rail": 3.135,
+      "duty": 0.55,
+      "parameters": {
+        "h": 0.23552,
+        "er": 5.4,
+        "receiver_factor": [
+          1.5,
+          0.5
+        ],
+        "source_r": 60.0,
+        "common_ohm": 68,
+        "branch_ohm": 56,
+        "resistor_factor": [
+          1.06,
+          1.04,
+          1.04
+        ]
+      },
+      "receivers": [
+        {
+          "high_ns": 38.68170882289399,
+          "low_ns": 30.543653060015068
+        },
+        {
+          "high_ns": 38.8730961572488,
+          "low_ns": 30.73504278314508
+        }
+      ]
+    },
+    {
+      "rail": 3.465,
+      "duty": 0.45,
+      "parameters": {
+        "h": 0.23552,
+        "er": 5.4,
+        "receiver_factor": [
+          1.5,
+          0.5
+        ],
+        "source_r": 60.0,
+        "common_ohm": 68,
+        "branch_ohm": 56,
+        "resistor_factor": [
+          1.06,
+          1.04,
+          1.04
+        ]
+      },
+      "receivers": [
+        {
+          "high_ns": 30.683138177437314,
+          "low_ns": 38.82117181787407
+        },
+        {
+          "high_ns": 30.865953531701546,
+          "low_ns": 39.003983206057185
+        }
+      ]
+    },
+    {
+      "rail": 3.465,
+      "duty": 0.55,
+      "parameters": {
+        "h": 0.23552,
+        "er": 5.4,
+        "receiver_factor": [
+          1.5,
+          0.5
+        ],
+        "source_r": 60.0,
+        "common_ohm": 68,
+        "branch_ohm": 56,
+        "resistor_factor": [
+          1.06,
+          1.04,
+          1.04
+        ]
+      },
+      "receivers": [
+        {
+          "high_ns": 38.82117181787408,
+          "low_ns": 30.683138177437254
+        },
+        {
+          "high_ns": 39.003983206057185,
+          "low_ns": 30.865953531701503
+        }
+      ]
+    },
+    {
+      "rail": 3.135,
+      "duty": 0.45,
+      "parameters": {
+        "h": 0.23552,
+        "er": 5.4,
+        "receiver_factor": [
+          1.5,
+          1.5
+        ],
+        "source_r": 40.0,
+        "common_ohm": 68,
+        "branch_ohm": 56,
+        "resistor_factor": [
+          1.06,
+          1.04,
+          1.04
+        ]
+      },
+      "receivers": [
+        {
+          "high_ns": 29.9395790388824,
+          "low_ns": 38.077644602577976
+        },
+        {
+          "high_ns": 29.928346712935024,
+          "low_ns": 38.06640608094635
+        }
+      ]
+    },
+    {
+      "rail": 3.135,
+      "duty": 0.55,
+      "parameters": {
+        "h": 0.23552,
+        "er": 5.4,
+        "receiver_factor": [
+          1.5,
+          1.5
+        ],
+        "source_r": 40.0,
+        "common_ohm": 68,
+        "branch_ohm": 56,
+        "resistor_factor": [
+          1.06,
+          1.04,
+          1.04
+        ]
+      },
+      "receivers": [
+        {
+          "high_ns": 38.07764460257799,
+          "low_ns": 29.93957903888235
+        },
+        {
+          "high_ns": 38.06640608094634,
+          "low_ns": 29.928346712934996
+        }
+      ]
+    },
+    {
+      "rail": 3.465,
+      "duty": 0.45,
+      "parameters": {
+        "h": 0.23552,
+        "er": 5.4,
+        "receiver_factor": [
+          1.5,
+          1.5
+        ],
+        "source_r": 40.0,
+        "common_ohm": 68,
+        "branch_ohm": 56,
+        "resistor_factor": [
+          1.06,
+          1.04,
+          1.04
+        ]
+      },
+      "receivers": [
+        {
+          "high_ns": 30.080811514152458,
+          "low_ns": 38.21889324316494
+        },
+        {
+          "high_ns": 30.069694331301235,
+          "low_ns": 38.20777703712373
+        }
+      ]
+    },
+    {
+      "rail": 3.465,
+      "duty": 0.55,
+      "parameters": {
+        "h": 0.23552,
+        "er": 5.4,
+        "receiver_factor": [
+          1.5,
+          1.5
+        ],
+        "source_r": 40.0,
+        "common_ohm": 68,
+        "branch_ohm": 56,
+        "resistor_factor": [
+          1.06,
+          1.04,
+          1.04
+        ]
+      },
+      "receivers": [
+        {
+          "high_ns": 38.21889324316496,
+          "low_ns": 30.080811514152394
+        },
+        {
+          "high_ns": 38.207777037123726,
+          "low_ns": 30.069694331301196
+        }
+      ]
+    },
+    {
+      "rail": 3.135,
+      "duty": 0.45,
+      "parameters": {
+        "h": 0.23552,
+        "er": 5.4,
+        "receiver_factor": [
+          1.5,
+          1.5
+        ],
+        "source_r": 60.0,
+        "common_ohm": 68,
+        "branch_ohm": 56,
+        "resistor_factor": [
+          1.06,
+          1.04,
+          1.04
+        ]
+      },
+      "receivers": [
+        {
+          "high_ns": 28.81828664715597,
+          "low_ns": 36.95664509468391
+        },
+        {
+          "high_ns": 28.80831828222393,
+          "low_ns": 36.946659824872405
+        }
+      ]
+    },
+    {
+      "rail": 3.135,
+      "duty": 0.55,
+      "parameters": {
+        "h": 0.23552,
+        "er": 5.4,
+        "receiver_factor": [
+          1.5,
+          1.5
+        ],
+        "source_r": 60.0,
+        "common_ohm": 68,
+        "branch_ohm": 56,
+        "resistor_factor": [
+          1.06,
+          1.04,
+          1.04
+        ]
+      },
+      "receivers": [
+        {
+          "high_ns": 36.95664509468392,
+          "low_ns": 28.818286647155894
+        },
+        {
+          "high_ns": 36.94665982487239,
+          "low_ns": 28.80831828222389
+        }
+      ]
+    },
+    {
+      "rail": 3.465,
+      "duty": 0.45,
+      "parameters": {
+        "h": 0.23552,
+        "er": 5.4,
+        "receiver_factor": [
+          1.5,
+          1.5
+        ],
+        "source_r": 60.0,
+        "common_ohm": 68,
+        "branch_ohm": 56,
+        "resistor_factor": [
+          1.06,
+          1.04,
+          1.04
+        ]
+      },
+      "receivers": [
+        {
+          "high_ns": 28.993562650168542,
+          "low_ns": 37.1319146330187
+        },
+        {
+          "high_ns": 28.983712857310117,
+          "low_ns": 37.12206736006982
+        }
+      ]
+    },
+    {
+      "rail": 3.465,
+      "duty": 0.55,
+      "parameters": {
+        "h": 0.23552,
+        "er": 5.4,
+        "receiver_factor": [
+          1.5,
+          1.5
+        ],
+        "source_r": 60.0,
+        "common_ohm": 68,
+        "branch_ohm": 56,
+        "resistor_factor": [
+          1.06,
+          1.04,
+          1.04
+        ]
+      },
+      "receivers": [
+        {
+          "high_ns": 37.131914633018724,
+          "low_ns": 28.99356265016846
+        },
+        {
+          "high_ns": 37.12206736006982,
+          "low_ns": 28.983712857310056
+        }
+      ]
+    },
+    {
+      "rail": 3.135,
+      "duty": 0.45,
+      "parameters": {
+        "h": 0.35328,
+        "er": 5.4,
+        "receiver_factor": [
+          0.5,
+          1.5
+        ],
+        "source_r": 40.0,
+        "common_ohm": 68,
+        "branch_ohm": 56,
+        "resistor_factor": [
+          1.06,
+          1.04,
+          1.04
+        ]
+      },
+      "receivers": [
+        {
+          "high_ns": 31.922805097556463,
+          "low_ns": 40.060821769673915
+        },
+        {
+          "high_ns": 31.687908865561035,
+          "low_ns": 39.825932401688775
+        }
+      ]
+    },
+    {
+      "rail": 3.135,
+      "duty": 0.55,
+      "parameters": {
+        "h": 0.35328,
+        "er": 5.4,
+        "receiver_factor": [
+          0.5,
+          1.5
+        ],
+        "source_r": 40.0,
+        "common_ohm": 68,
+        "branch_ohm": 56,
+        "resistor_factor": [
+          1.06,
+          1.04,
+          1.04
+        ]
+      },
+      "receivers": [
+        {
+          "high_ns": 40.060821769673886,
+          "low_ns": 31.92280509755651
+        },
+        {
+          "high_ns": 39.825932401688775,
+          "low_ns": 31.687908865561052
+        }
+      ]
+    },
+    {
+      "rail": 3.465,
+      "duty": 0.45,
+      "parameters": {
+        "h": 0.35328,
+        "er": 5.4,
+        "receiver_factor": [
+          0.5,
+          1.5
+        ],
+        "source_r": 40.0,
+        "common_ohm": 68,
+        "branch_ohm": 56,
+        "resistor_factor": [
+          1.06,
+          1.04,
+          1.04
+        ]
+      },
+      "receivers": [
+        {
+          "high_ns": 32.05524819468617,
+          "low_ns": 40.19330023699276
+        },
+        {
+          "high_ns": 31.7973847069941,
+          "low_ns": 39.935407027456606
+        }
+      ]
+    },
+    {
+      "rail": 3.465,
+      "duty": 0.55,
+      "parameters": {
+        "h": 0.35328,
+        "er": 5.4,
+        "receiver_factor": [
+          0.5,
+          1.5
+        ],
+        "source_r": 40.0,
+        "common_ohm": 68,
+        "branch_ohm": 56,
+        "resistor_factor": [
+          1.06,
+          1.04,
+          1.04
+        ]
+      },
+      "receivers": [
+        {
+          "high_ns": 40.193300236992734,
+          "low_ns": 32.055248194686214
+        },
+        {
+          "high_ns": 39.9354070274566,
+          "low_ns": 31.79738470699411
+        }
+      ]
+    },
+    {
+      "rail": 3.135,
+      "duty": 0.45,
+      "parameters": {
+        "h": 0.35328,
+        "er": 5.4,
+        "receiver_factor": [
+          0.5,
+          1.5
+        ],
+        "source_r": 60.0,
+        "common_ohm": 68,
+        "branch_ohm": 56,
+        "resistor_factor": [
+          1.06,
+          1.04,
+          1.04
+        ]
+      },
+      "receivers": [
+        {
+          "high_ns": 31.083371790803067,
+          "low_ns": 39.221386346475086
+        },
+        {
+          "high_ns": 30.864142892103892,
+          "low_ns": 39.002157776103225
+        }
+      ]
+    },
+    {
+      "rail": 3.135,
+      "duty": 0.55,
+      "parameters": {
+        "h": 0.35328,
+        "er": 5.4,
+        "receiver_factor": [
+          0.5,
+          1.5
+        ],
+        "source_r": 60.0,
+        "common_ohm": 68,
+        "branch_ohm": 56,
+        "resistor_factor": [
+          1.06,
+          1.04,
+          1.04
+        ]
+      },
+      "receivers": [
+        {
+          "high_ns": 39.22138634647505,
+          "low_ns": 31.083371790803128
+        },
+        {
+          "high_ns": 39.0021577761032,
+          "low_ns": 30.86414289210393
+        }
+      ]
+    },
+    {
+      "rail": 3.465,
+      "duty": 0.45,
+      "parameters": {
+        "h": 0.35328,
+        "er": 5.4,
+        "receiver_factor": [
+          0.5,
+          1.5
+        ],
+        "source_r": 60.0,
+        "common_ohm": 68,
+        "branch_ohm": 56,
+        "resistor_factor": [
+          1.06,
+          1.04,
+          1.04
+        ]
+      },
+      "receivers": [
+        {
+          "high_ns": 31.214491762148114,
+          "low_ns": 39.352522151104736
+        },
+        {
+          "high_ns": 30.99540002787077,
+          "low_ns": 39.13342556601287
+        }
+      ]
+    },
+    {
+      "rail": 3.465,
+      "duty": 0.55,
+      "parameters": {
+        "h": 0.35328,
+        "er": 5.4,
+        "receiver_factor": [
+          0.5,
+          1.5
+        ],
+        "source_r": 60.0,
+        "common_ohm": 68,
+        "branch_ohm": 56,
+        "resistor_factor": [
+          1.06,
+          1.04,
+          1.04
+        ]
+      },
+      "receivers": [
+        {
+          "high_ns": 39.35252215110471,
+          "low_ns": 31.214491762148178
+        },
+        {
+          "high_ns": 39.13342556601285,
+          "low_ns": 30.99540002787079
+        }
+      ]
+    },
+    {
+      "rail": 3.135,
+      "duty": 0.45,
+      "parameters": {
+        "h": 0.35328,
+        "er": 5.4,
+        "receiver_factor": [
+          1.5,
+          0.5
+        ],
+        "source_r": 40.0,
+        "common_ohm": 68,
+        "branch_ohm": 56,
+        "resistor_factor": [
+          1.06,
+          1.04,
+          1.04
+        ]
+      },
+      "receivers": [
+        {
+          "high_ns": 31.703194080318564,
+          "low_ns": 39.84120102450882
+        },
+        {
+          "high_ns": 31.898213154985903,
+          "low_ns": 40.03620719313763
+        }
+      ]
+    },
+    {
+      "rail": 3.135,
+      "duty": 0.55,
+      "parameters": {
+        "h": 0.35328,
+        "er": 5.4,
+        "receiver_factor": [
+          1.5,
+          0.5
+        ],
+        "source_r": 40.0,
+        "common_ohm": 68,
+        "branch_ohm": 56,
+        "resistor_factor": [
+          1.06,
+          1.04,
+          1.04
+        ]
+      },
+      "receivers": [
+        {
+          "high_ns": 39.84120102450879,
+          "low_ns": 31.703194080318575
+        },
+        {
+          "high_ns": 40.036207193137614,
+          "low_ns": 31.898213154985896
+        }
+      ]
+    },
+    {
+      "rail": 3.465,
+      "duty": 0.45,
+      "parameters": {
+        "h": 0.35328,
+        "er": 5.4,
+        "receiver_factor": [
+          1.5,
+          0.5
+        ],
+        "source_r": 40.0,
+        "common_ohm": 68,
+        "branch_ohm": 56,
+        "resistor_factor": [
+          1.06,
+          1.04,
+          1.04
+        ]
+      },
+      "receivers": [
+        {
+          "high_ns": 31.811339746911546,
+          "low_ns": 39.949362624689044
+        },
+        {
+          "high_ns": 32.03139080424872,
+          "low_ns": 40.16941222854171
+        }
+      ]
+    },
+    {
+      "rail": 3.465,
+      "duty": 0.55,
+      "parameters": {
+        "h": 0.35328,
+        "er": 5.4,
+        "receiver_factor": [
+          1.5,
+          0.5
+        ],
+        "source_r": 40.0,
+        "common_ohm": 68,
+        "branch_ohm": 56,
+        "resistor_factor": [
+          1.06,
+          1.04,
+          1.04
+        ]
+      },
+      "receivers": [
+        {
+          "high_ns": 39.949362624689016,
+          "low_ns": 31.811339746911553
+        },
+        {
+          "high_ns": 40.1694122285417,
+          "low_ns": 32.03139080424871
+        }
+      ]
+    },
+    {
+      "rail": 3.135,
+      "duty": 0.45,
+      "parameters": {
+        "h": 0.35328,
+        "er": 5.4,
+        "receiver_factor": [
+          1.5,
+          0.5
+        ],
+        "source_r": 60.0,
+        "common_ohm": 68,
+        "branch_ohm": 56,
+        "resistor_factor": [
+          1.06,
+          1.04,
+          1.04
+        ]
+      },
+      "receivers": [
+        {
+          "high_ns": 30.87675436745447,
+          "low_ns": 39.01478515162697
+        },
+        {
+          "high_ns": 31.066388523728847,
+          "low_ns": 39.20443288724682
+        }
+      ]
+    },
+    {
+      "rail": 3.135,
+      "duty": 0.55,
+      "parameters": {
+        "h": 0.35328,
+        "er": 5.4,
+        "receiver_factor": [
+          1.5,
+          0.5
+        ],
+        "source_r": 60.0,
+        "common_ohm": 68,
+        "branch_ohm": 56,
+        "resistor_factor": [
+          1.06,
+          1.04,
+          1.04
+        ]
+      },
+      "receivers": [
+        {
+          "high_ns": 39.01478515162694,
+          "low_ns": 30.876754367454485
+        },
+        {
+          "high_ns": 39.20443288724681,
+          "low_ns": 31.066388523728843
+        }
+      ]
+    },
+    {
+      "rail": 3.465,
+      "duty": 0.45,
+      "parameters": {
+        "h": 0.35328,
+        "er": 5.4,
+        "receiver_factor": [
+          1.5,
+          0.5
+        ],
+        "source_r": 60.0,
+        "common_ohm": 68,
+        "branch_ohm": 56,
+        "resistor_factor": [
+          1.06,
+          1.04,
+          1.04
+        ]
+      },
+      "receivers": [
+        {
+          "high_ns": 31.00725593900465,
+          "low_ns": 39.145278901360626
+        },
+        {
+          "high_ns": 31.200208826626053,
+          "low_ns": 39.33820245774657
+        }
+      ]
+    },
+    {
+      "rail": 3.465,
+      "duty": 0.55,
+      "parameters": {
+        "h": 0.35328,
+        "er": 5.4,
+        "receiver_factor": [
+          1.5,
+          0.5
+        ],
+        "source_r": 60.0,
+        "common_ohm": 68,
+        "branch_ohm": 56,
+        "resistor_factor": [
+          1.06,
+          1.04,
+          1.04
+        ]
+      },
+      "receivers": [
+        {
+          "high_ns": 39.1452789013606,
+          "low_ns": 31.00725593900466
+        },
+        {
+          "high_ns": 39.33820245774656,
+          "low_ns": 31.20020882662604
+        }
+      ]
+    },
+    {
+      "rail": 3.135,
+      "duty": 0.45,
+      "parameters": {
+        "h": 0.35328,
+        "er": 5.4,
+        "receiver_factor": [
+          1.5,
+          1.5
+        ],
+        "source_r": 40.0,
+        "common_ohm": 68,
+        "branch_ohm": 56,
+        "resistor_factor": [
+          1.06,
+          1.04,
+          1.04
+        ]
+      },
+      "receivers": [
+        {
+          "high_ns": 30.21677421768756,
+          "low_ns": 38.354825293101314
+        },
+        {
+          "high_ns": 30.20361023329658,
+          "low_ns": 38.341664764863815
+        }
+      ]
+    },
+    {
+      "rail": 3.135,
+      "duty": 0.55,
+      "parameters": {
+        "h": 0.35328,
+        "er": 5.4,
+        "receiver_factor": [
+          1.5,
+          1.5
+        ],
+        "source_r": 40.0,
+        "common_ohm": 68,
+        "branch_ohm": 56,
+        "resistor_factor": [
+          1.06,
+          1.04,
+          1.04
+        ]
+      },
+      "receivers": [
+        {
+          "high_ns": 38.35482529310127,
+          "low_ns": 30.216774217687597
+        },
+        {
+          "high_ns": 38.34166476486379,
+          "low_ns": 30.203610233296587
+        }
+      ]
+    },
+    {
+      "rail": 3.465,
+      "duty": 0.45,
+      "parameters": {
+        "h": 0.35328,
+        "er": 5.4,
+        "receiver_factor": [
+          1.5,
+          1.5
+        ],
+        "source_r": 40.0,
+        "common_ohm": 68,
+        "branch_ohm": 56,
+        "resistor_factor": [
+          1.06,
+          1.04,
+          1.04
+        ]
+      },
+      "receivers": [
+        {
+          "high_ns": 30.35663291064894,
+          "low_ns": 38.49468914787404
+        },
+        {
+          "high_ns": 30.343172349448576,
+          "low_ns": 38.481232355639804
+        }
+      ]
+    },
+    {
+      "rail": 3.465,
+      "duty": 0.55,
+      "parameters": {
+        "h": 0.35328,
+        "er": 5.4,
+        "receiver_factor": [
+          1.5,
+          1.5
+        ],
+        "source_r": 40.0,
+        "common_ohm": 68,
+        "branch_ohm": 56,
+        "resistor_factor": [
+          1.06,
+          1.04,
+          1.04
+        ]
+      },
+      "receivers": [
+        {
+          "high_ns": 38.49468914787401,
+          "low_ns": 30.356632910648976
+        },
+        {
+          "high_ns": 38.481232355639804,
+          "low_ns": 30.343172349448583
+        }
+      ]
+    },
+    {
+      "rail": 3.135,
+      "duty": 0.45,
+      "parameters": {
+        "h": 0.35328,
+        "er": 5.4,
+        "receiver_factor": [
+          1.5,
+          1.5
+        ],
+        "source_r": 60.0,
+        "common_ohm": 68,
+        "branch_ohm": 56,
+        "resistor_factor": [
+          1.06,
+          1.04,
+          1.04
+        ]
+      },
+      "receivers": [
+        {
+          "high_ns": 29.14920698189274,
+          "low_ns": 37.28743012249881
+        },
+        {
+          "high_ns": 29.137702882969947,
+          "low_ns": 37.27592947935612
+        }
+      ]
+    },
+    {
+      "rail": 3.135,
+      "duty": 0.55,
+      "parameters": {
+        "h": 0.35328,
+        "er": 5.4,
+        "receiver_factor": [
+          1.5,
+          1.5
+        ],
+        "source_r": 60.0,
+        "common_ohm": 68,
+        "branch_ohm": 56,
+        "resistor_factor": [
+          1.06,
+          1.04,
+          1.04
+        ]
+      },
+      "receivers": [
+        {
+          "high_ns": 37.28743012249876,
+          "low_ns": 29.149206981892785
+        },
+        {
+          "high_ns": 37.275929479356094,
+          "low_ns": 29.13770288296996
+        }
+      ]
+    },
+    {
+      "rail": 3.465,
+      "duty": 0.45,
+      "parameters": {
+        "h": 0.35328,
+        "er": 5.4,
+        "receiver_factor": [
+          1.5,
+          1.5
+        ],
+        "source_r": 60.0,
+        "common_ohm": 68,
+        "branch_ohm": 56,
+        "resistor_factor": [
+          1.06,
+          1.04,
+          1.04
+        ]
+      },
+      "receivers": [
+        {
+          "high_ns": 29.315387920487776,
+          "low_ns": 37.45360382489177
+        },
+        {
+          "high_ns": 29.304188845081235,
+          "low_ns": 37.44241876375328
+        }
+      ]
+    },
+    {
+      "rail": 3.465,
+      "duty": 0.55,
+      "parameters": {
+        "h": 0.35328,
+        "er": 5.4,
+        "receiver_factor": [
+          1.5,
+          1.5
+        ],
+        "source_r": 60.0,
+        "common_ohm": 68,
+        "branch_ohm": 56,
+        "resistor_factor": [
+          1.06,
+          1.04,
+          1.04
+        ]
+      },
+      "receivers": [
+        {
+          "high_ns": 37.45360382489173,
+          "low_ns": 29.315387920487815
+        },
+        {
+          "high_ns": 37.442418763753274,
+          "low_ns": 29.304188845081235
+        }
+      ]
+    }
+  ]
+}

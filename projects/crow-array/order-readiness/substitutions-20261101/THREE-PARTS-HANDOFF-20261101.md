@@ -363,3 +363,107 @@ No browser changes, purchases, reservations, messages or pushes in this turn.
 > itemized fabrication, parts, SMT/THT labor, setup, sourcing, shipping and
 > tax information before any later order decision. Quote-file integrity is
 > not production approval.
+
+## Taitien C5382655 qualification attempt — 2026-11-01
+
+**Disposition: NOT QUALIFIED as a direct replacement; r7 retained.** User
+authorized qualification and a quote derivative only on a passing result.
+Subject is TAITIEN OVETDLJANF-12.288MHZ, one X1 per carrier: 1 x 2 + 0 x 8 =
+two installed. Fabrication remains 5 carriers/10 pods, assembly 2 carriers/8
+pods. Spares/attrition are separate and unconfirmed. Classification is a
+redesign candidate, not a same-footprint or packaging-only substitute.
+
+### Evidence and actual circuit
+
+The [manufacturer OV drawing, XO-0041 Rev(21) 01/2024](https://www.taitien.com/wp-content/uploads/2016/01/XO-0041-OV-Type.pdf)
+was downloaded and visually inspected, SHA256
+`b9754ef11c99c066786b9a408f4b2edc89d98f1ca9366daea54b70f0021ad501`.
+Its 15 pF maximum output drive is the decisive limit. It specifies 3.3 V +/-10%,
+tri-state pin 1, GND pin 2, output pin 3 and VDD pin 4; 5 ns maximum edge time
+at the stated 15 pF test load, 5 ms startup and 1 ps maximum integrated RMS
+phase jitter. Do not extrapolate these guarantees to the present larger load.
+No direct comparison of jitter numbers with different integration bandwidths
+is accepted. Exact lifecycle/process/thermal acceptance was not completed after
+the electrical screen failed.
+
+r7 circuit: 3V3 supplies X1 pins 1/4; output 3 feeds R3 68 ohms and then two
+56-ohm branches R4/R5 into U1/U2 PCM1864 SCKI pin 15. Both receivers are required
+for eight audio channels. Branch series resistors are not fanout buffers and do
+not remove the downstream capacitance from the settled clock load.
+
+Fresh KiCad read-only extraction compared all four clock nets' segment
+coordinates, widths, layers and lengths, plus pad identities, positions, sizes
+and absence of vias, against retained `v2-native-clock-geometry.json`. They
+match. Actual r7 carrier SHA256 is
+`481f857c0ea682e537a0b08dd0218dea0afc397e906f927c4dcaeba5f32f7bda`.
+Clock copper totals 32.115128409 mm, no vias. KiCad printed three inherited
+property-enum assertions but loaded and completed the comparison; this is not
+a new DRC run or a simulation of changed copper.
+
+The retained source evidence under the first-run project is:
+
+- `03_src/recovery/first-run-r3-engineering/v2-native-clock-geometry.json`, SHA256
+  `39a3b60246075751e8f5367036e9468e7825009084a2060d445fbf444b8cc4f1`.
+- `03_src/recovery/first-run-r3-engineering/v2-clock-sensitivity.json`, SHA256
+  `d958a3c69eaea669fa06d74a12db04d092a9a36b67e1a22ee891f1150d500209`.
+- Published owning review: historical carrier process
+  `59-2026-10-23-first-run-d3-layout.md`, `complete_clock_loading` disposition;
+  this review, not the author's JSON accepted=false field, records acceptance
+  of the retained CTS application.
+
+The 128 retained fast cases span 12.3988686–27.3230495 pF total load. Candidate
+headroom at the upper modeled case is 15 - 27.3230495 = **-12.3230495 pF**.
+The model's nominal receiver contribution is 0.50358 pF package plus 5.099 pF
+die per ADC; its retained 1.5x upper sensitivity totals
+2 x (0.50358 + 5.099) x 1.5 = **16.80774 pF before PCB load**. Thus merely
+shrinking X1 pads or shortening its source trace cannot clear that retained
+upper case. These allocations are not measured values or guaranteed TI maxima;
+they may be revisited with evidence, not discarded to obtain a passing result.
+The retained reduced-model clock acceptance belongs to CTS and cannot be reused
+for a new driver outside its stated load capability.
+
+### Footprint delta, not implemented
+
+| Property | Current CTS native | Taitien OV manufacturer drawing |
+| --- | --- | --- |
+| Nominal body | 7.0 x 5.0 mm | 5.0 x 3.2 mm |
+| Recommended/native pad size | 1.80 x 2.00 mm | 1.50 x 1.20 mm |
+| Pad-center pitch X/Y | 5.08 / 4.20 mm | 2.54 / 2.20 mm |
+| Pin functions 1/2/3/4 | Enable/GND/output/VDD | Same functions |
+
+At the same center, each pad moves 1.27 mm in X and 1.00 mm in Y toward the
+center. All four connections need local reconstruction; a smaller body is not
+a drop-in land match. Any successful successor needs a new bound footprint,
+source/netlist/clock/DRC review, fabrication regeneration, CPL preview and
+affected assembly evidence. The pod need not change for this carrier-only issue.
+
+### Sourcing is sufficient for investigation, not electrical acceptance
+
+[JLC C5382655](https://jlcpcb.com/partdetail/TAITIENElec-12_288MHz_33V/C5382655)
+was checked in preceding read-only
+[browser run](https://agent.tinyfish.ai/runs/9305ddbd-448f-4da9-b195-ff70627902f6):
+1,032 shown in stock, available order quantity 966, minimum 1, $0.7546 each.
+Exact-code jlcsearch also reported 1,032 (stock_checked_at 15:27:24 UTC on
+2026-11-01). Public raw fields used overseasStockCount/canPresaleNumber; do not
+add pools or infer an arrival date. The browser's claim that Extended itself
+means overseas inventory is unsupported and rejected. Catalog SMT support is
+not a job-specific assembly allocation, quote or confirmed schedule.
+
+### Stop and recovery
+
+This first qualification attempt found a causal electrical incompatibility
+with the retained design envelope, not a reason for another stock poll or
+whole-board restart. Under the substitute skill and vNext recovery rules, do
+not create an upload package for the failed direct replacement. Preferred next
+route is preserve the reviewed drive capability (resolve exact CTS sourcing or
+qualify an adequately rated stocked oscillator). Alternative is an explicitly
+scoped Taitien-plus-buffer clock redesign with load, skew, jitter, sequencing,
+power, routing and affected-output verification. Neither is adopted here.
+
+Installed skill's relative part-recheck link was absent; used the repository's
+`vnext/skills/pcb-design/procedures/part-recheck.md` instead. This was manual
+coordinator execution, not a claimed automatic adapter admission. Fresh
+`r7_quote.py verify` PASS for 97 files, production_ready=false. No r8 generated,
+no BOM/CPL/native/Gerber changes, no JLC draft edits or purchases. This does not
+resolve the remaining manufacturing questions or constitute an independent
+acceptance review. Findings are local and unpublished.

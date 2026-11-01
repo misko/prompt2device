@@ -1,0 +1,61 @@
+{
+  "authority": "LOOKUP_EVIDENCE_ONLY",
+  "build_need": 2,
+  "inventory_updated_at": null,
+  "lookup_state": "no_exact_match",
+  "matches": [],
+  "mpn": "LMK6CE012288CDLFR",
+  "provenance": {
+    "http_age": null,
+    "http_date": "Sun, 01 Nov 2026 17:35:22 GMT",
+    "retrieved_at": "2026-11-01T17:35:22.373120+00:00",
+    "sha256": "ac46fd24bd501fa7297f0a2945bcc7f5d655b9bcf8bfbf16718a9d25c0c2c018",
+    "url": "https://jlcsearch.tscircuit.com/api/search?q=LMK6CE012288CDLFR&limit=5"
+  },
+  "public_jlcpcb": {
+    "availability_verified": false,
+    "limit": "Identity/raw fields only; interpret inventory pool and freshness separately.",
+    "lookup_state": "exact_identity_observed",
+    "observations": [
+      {
+        "componentBrandEn": "Texas Instruments",
+        "componentCode": "C36974742",
+        "componentModelEn": "LMK6CE012288CDLFR",
+        "componentSpecificationEn": "VSON-4(2x2.5)"
+      },
+      {
+        "canPresaleNumber": 10,
+        "componentBrandEn": "Texas Instruments",
+        "componentCode": "C36974742",
+        "componentModelEn": "LMK6CE012288CDLFR",
+        "componentSpecificationEn": "VSON-4(2x2.5)",
+        "isBuyComponent": "1",
+        "overseasStockCount": 10
+      },
+      {
+        "canPresaleNumber": 10,
+        "componentBrandEn": "Texas Instruments",
+        "componentCode": "C36974742",
+        "componentModelEn": "LMK6CE012288CDLFR",
+        "componentSpecificationEn": "VSON-4(2x2.5)",
+        "isBuyComponent": "1",
+        "noBuyReason": null,
+        "overseasStockCount": 10
+      }
+    ],
+    "provenance": {
+      "http_age": null,
+      "http_date": "Sun, 01 Nov 2026 17:35:23 GMT",
+      "retrieved_at": "2026-11-01T17:35:24.261872+00:00",
+      "sha256": "6d66be76b0e7eee86593778e5cc880976de3b6345c7bf930523056aed3d012ec",
+      "url": "https://jlcpcb.com/partdetail/38699451-LMK6CE012288CDLFR/C36974742"
+    }
+  },
+  "raw_response": {
+    "components": []
+  },
+  "request_url": "https://jlcsearch.tscircuit.com/api/search?q=LMK6CE012288CDLFR&limit=5",
+  "returned_rows": 0,
+  "source_kind": "aggregate_snapshot",
+  "sourcing_guard": "provisional"
+}

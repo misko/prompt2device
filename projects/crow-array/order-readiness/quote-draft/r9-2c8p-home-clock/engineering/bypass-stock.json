@@ -1,0 +1,61 @@
+{
+  "authority": "LOOKUP_EVIDENCE_ONLY",
+  "build_need": 14,
+  "inventory_updated_at": null,
+  "lookup_state": "no_exact_match",
+  "matches": [],
+  "mpn": "CL21B105KBFNNNE",
+  "provenance": {
+    "http_age": null,
+    "http_date": "Sun, 01 Nov 2026 18:02:01 GMT",
+    "retrieved_at": "2026-11-01T18:02:01.567027+00:00",
+    "sha256": "ac46fd24bd501fa7297f0a2945bcc7f5d655b9bcf8bfbf16718a9d25c0c2c018",
+    "url": "https://jlcsearch.tscircuit.com/api/search?q=CL21B105KBFNNNE&limit=5"
+  },
+  "public_jlcpcb": {
+    "availability_verified": false,
+    "limit": "Identity/raw fields only; interpret inventory pool and freshness separately.",
+    "lookup_state": "exact_identity_observed",
+    "observations": [
+      {
+        "componentBrandEn": "Samsung Electro-Mechanics",
+        "componentCode": "C28323",
+        "componentModelEn": "CL21B105KBFNNNE",
+        "componentSpecificationEn": "0805"
+      },
+      {
+        "canPresaleNumber": 1404891,
+        "componentBrandEn": "Samsung Electro-Mechanics",
+        "componentCode": "C28323",
+        "componentModelEn": "CL21B105KBFNNNE",
+        "componentSpecificationEn": "0805",
+        "isBuyComponent": "1",
+        "overseasStockCount": 2349545
+      },
+      {
+        "canPresaleNumber": 1404891,
+        "componentBrandEn": "Samsung Electro-Mechanics",
+        "componentCode": "C28323",
+        "componentModelEn": "CL21B105KBFNNNE",
+        "componentSpecificationEn": "0805",
+        "isBuyComponent": "1",
+        "noBuyReason": null,
+        "overseasStockCount": 2349545
+      }
+    ],
+    "provenance": {
+      "http_age": null,
+      "http_date": "Sun, 01 Nov 2026 18:02:02 GMT",
+      "retrieved_at": "2026-11-01T18:02:02.564385+00:00",
+      "sha256": "c581c4e1e1d4de7c84df7b930f140a484e9c468144d1393a997e8995848ddb2e",
+      "url": "https://jlcpcb.com/partdetail/SamsungElectroMechanics-CL21B105KBFNNNE/C28323"
+    }
+  },
+  "raw_response": {
+    "components": []
+  },
+  "request_url": "https://jlcsearch.tscircuit.com/api/search?q=CL21B105KBFNNNE&limit=5",
+  "returned_rows": 0,
+  "source_kind": "aggregate_snapshot",
+  "sourcing_guard": "provisional"
+}

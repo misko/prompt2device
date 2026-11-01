@@ -1,0 +1,16 @@
+{
+  "status": "UNACCEPTED_ENGINEERING_DRAFT_DO_NOT_UPLOAD",
+  "production_ready": false,
+  "purchase_authorized": false,
+  "base_manifest_sha256": "765b066dacf03d34d038cc2e29ef78abf749b91de29a678113f6661d265ce835",
+  "author_sha256": "46e6cc58f484aae9de583920d21b71a809e3e8ec7a12789b034fcb738a3c91b9",
+  "footprint_sha256": "e2dbe0e05eb5a3cd6f20e715949dc2b784ecc6ddea5537a40875198fcc84a275",
+  "scope": "X1 replacement and C4 bypass relocation/value; pod unchanged; no quote files generated",
+  "missing": [
+    "native/ERC/DRC/parity/refill",
+    "changed geometry clock analysis",
+    "source/ramp and thermal model review",
+    "affected upstream acceptance",
+    "complete derivative exports"
+  ]
+}

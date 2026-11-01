@@ -1,5 +1,226 @@
 # Crow exact-job order readiness
 
+## Current update — r9 publication and MacBook handoff, 2026-11-01
+
+User authorized pushing the validated r9 package to the existing shared branch
+`codex/crow-jlc-source-review-20261030` for MacBook quote uploads; no purchases.
+[MacBook handoff](MACBOOK-R9-HANDOFF-20261101.md) specifies an isolated checkout,
+portable r9 verification, exact matched files/hashes, 5/2 carrier and 10/8 pod
+quantities, home/factory split, preview checks and all remaining stop conditions.
+This publication includes the r8 baseline required for r9 validation and retained
+TI qualification history. No new part adoption, CAD change or release acceptance.
+All eleven regression tests passed again. The reviewed draft7 is included;
+earlier failed drafts remain local. Full staged whitespace checks report existing
+formatting in preserved CAD/CSV/research bytes; scoped new handoff/r9 code checks
+pass. Do not reformat hash-bound artifacts to suppress these diagnostics.
+Actual publication commit and remote verification will be reported after push;
+JLC drafts remain unchanged by repository publication.
+
+## Current update — TinyFish login works; r9 transfer blocked, 2026-11-01
+
+User authorized resuming the existing TinyFish session for r9 quotation only.
+[Session report](JLC-R9-TINYFISH-20261101.md): both existing drafts loaded with
+authenticated access. Carrier remains r7 with the CTS shortage and old C4;
+no r9 file was uploaded. Local r9 verification passed, but the remote browser
+cannot access the local package and its exposed tool has no file-transfer input.
+Do not remove CTS from the old carrier draft as a substitute for uploading r9.
+
+Pod confirmed counters are not stock acceptance: the run also reported an R5
+inventory warning. No new placement preview or complete quote was obtained.
+Next recommended step is authorized publication to the existing shared branch
+and a MacBook upload of the matched r9 files, then TinyFish draft inspection.
+Alternative is a supported TinyFish file-transfer path. No new board redesign
+or stock-search loop is warranted. No draft edits, purchases, reservations,
+vendor messages, manufacturing commitments or remote push were made.
+
+## Current update — r9 home-installed TI clock, 2026-11-01
+
+User explicitly chose home SMT installation of TI LMK6CE012288CDLFR X1.
+Created [r9 quote package / home-work and browser instructions](quote-draft/r9-2c8p-home-clock/README.md).
+Scope remains 5 fabricated / 2 assembled carriers and 10 fabricated / 8 assembled
+pods. X1 is removed from carrier factory BOM/CPL and assigned HOME, not circuit
+DNP. C4 remains factory installed, with 14 CL21B105KBFNNNE across the build.
+New totals: **476 factory SMT + 28 factory THT + 20 home = 524 installed parts**.
+Home scope is 2 Picos, 2 TI oscillators, 8 microphones and 8 buzzers.
+
+`r9_quote.py build` passed: 113 payload files, 105 r8 payloads preserved byte for
+byte. Both boards' native sources and fabrication files are unchanged; r8 itself
+is preserved. Population checks account for every factory/home reference exactly
+once. The retained r8 engineering review is not a new r9 assembly or release
+acceptance. No independent r9 assembly acceptance or production approval claimed.
+All five r9 regression tests and six retained r8 regression tests passed;
+`r9_quote.py verify` and `git diff --check` passed. KiCad emitted property/image
+handler diagnostics during the retained r8 tests; no test failed.
+
+DigiKey browser observation for exact TI MPN: 2,884 in stock, MOQ1, USD3.34 each;
+two installed USD6.68 before spares/shipping/tax. Purchase quantity and delivery
+remain unconfirmed and no purchase is authorized. JLC oscillator warehouse date
+is no longer required for this factory assembly split. All other factory stock,
+placement preview, process, mechanical, stack and first-article holds remain.
+
+Next: upload matched r9 quote files, confirm intentional X1 exclusion with C4
+still included, inspect previews and obtain the complete itemized quote. Keep
+"Do not confirm automatically". Confirm empty X1 pads are suitable for home
+reflow. No browser changes, uploads, orders, reservations, vendor messages or
+remote push were made in this step. This bounded assembly-split task advances
+quote preparation without another component search or circuit backtrack.
+
+## Current update — r8 TI quotation package passed, 2026-11-01
+
+**TI LMK6CE012288CDLFR qualified for prototype quotation**, not production.
+[r8 package and browser instructions](quote-draft/r8-2c8p-ti-clock/README.md)
+are ready locally for 5 fabricated / 2 assembled carriers and 10 fabricated /
+8 assembled pods. Replace the carrier's Gerbers, BOM and CPL as a matched set;
+do not mix r7 carrier files with r8. Pod and home/THT files remain unchanged.
+
+Independent review passed the exact changed native clock/power implementation;
+a separate follow-up audit passed all 111 payload files, 38 procurement
+identities and 524 installed parts. Need **2 TI oscillators** and **14 total
+CL21B105KBFNNNE capacitors** after C4's change. All six regression tests pass,
+including native/CPL/net checks, fabrication-file replay and tamper rejection.
+`r8_quote.py verify` passes; r7 preservation also passes all 97 files.
+Manifest SHA256: `ee01e3f63a993af9a6088c352bc260bf9451293311b2e2aeee4dde3ee35b25a5`.
+
+JLC's ten TI units are overseas/presale, $4.9424 each; two installed cost
+$9.8848 before allowances/fees/tax. **Usable warehouse date and exact gross
+demand remain unconfirmed**. No allocation, immediate assembly or zero-day
+lead claim. Current browser drafts were NOT changed. Next: deliberately upload
+the matched r8 carrier set, verify exact matches and previews, obtain gross
+demand/date/itemized quote, and retain all process/stack/mechanical holds.
+No purchases, reservations, vendor messages, manufacturing commitments or push.
+
+Engineering uses revised 192 mA / 350 mA / 680 mA prototype power allocations,
+not inherited old limits. Narrow thermal/supply sensitivities and first-article
+falsifiers remain explicit. No new workflow stage receipt or release approval
+is issued by this quotation work. [Assessment](substitutions-20261101/LMK6C-QUALIFICATION-20261101.md)
+and [independent package audit](substitutions-20261101/lmk6c-engineering/r8-audit.json).
+
+## Current update — TI local implementation under review, 2026-11-01
+
+User authorized qualifying TI LMK6CE012288CDLFR and changing the 2-carrier /
+8-pod quote only if it passes; no purchases. Independent feasibility review
+found no architecture contradiction. Created isolated native candidate
+`substitutions-20261101/lmk6c-engineering/draft7/`: new DLF oscillator lands,
+nearby1uF C4, local ground spreading and vias. **Not an upload package.**
+Strict carrier DRC/refill/native schematic parity has zero findings, opens,
+parity differences and ignored DRC checks; routing geometry has zero via/SMD
+overlaps and zero .15mm annulus-gap findings. Same schematic as draft5, whose
+ERC reports zero findings with four unchanged inherited disabled checks.
+Expanded actual-layout clock model:26.35255pF load,1.621mV overshoot,
+28.808ns minimum modeled high/low dwell. Models are not measured guarantees.
+
+Power proposal explicitly reopens allocations:192mA external3V3,350mA5V,
+680mAwhole-array12V, with source-voltage/ramp and D2/D3/LMK thermal review.
+The old3.6V model is not silently transferred to the TI3.5V operating ceiling.
+Independent exact-draft review is pending, bounded to18:25UTC. Feasible-path
+decision completed within the earlier18:12 engineering-screen timebox; actual
+new native implementation now exists. No new component search or board restart.
+Generator/API failures and one repaired local via/track short are retained in
+the [implementation packet](substitutions-20261101/lmk6c-engineering/IMPLEMENTATION-REVIEW.md).
+
+JLC read-only browser still shows10 at$4.9424/unit, but raw evidence identifies
+overseas stock; **usable warehouse date remains unconfirmed**. Reject browser
+inferences of0-day lead time and5installed clocks. Need2installed; generic
+attrition defaults are not exact-job gross demand. C4's existing1uF MPN would
+rise from12to14 installed acrossbothboardtypes; fresh public pools retained.
+
+All97r7files reverified unchanged. No r8, BOM/CPL/Gerber or JLC draft changes,
+purchases, reservations, vendor messages, manufacturing commitments or push.
+See [qualification assessment](substitutions-20261101/LMK6C-QUALIFICATION-20261101.md).
+
+## Current update — stocked high-drive alternative found, 2026-11-01
+
+Deeper user-requested search found TI LMK6CE012288CDLFR / C36974742 with
+manufacturer-confirmed 30 pF drive below 50 MHz and a JLC offer for ten units,
+MOQ one, browser price $4.9424 each. Raw exact-part JLC fields show **overseas
+stock/presale**, not confirmed factory inventory. Two installed units required;
+warehouse date, fees and attrition remain unconfirmed. jlcsearch has no exact
+result; direct JLC identity and overseas fields are retained separately.
+
+This is a promising **redesign candidate**, not an accepted substitute. New
+2.5 x 2 mm footprint, power budget and bypass, 3.5 V supply ceiling/ramp and
+clock waveform/timing/jitter checks must pass before any r8 package. Recommend
+that bounded local qualification as the next engineering task; retain r7 intact.
+See the latest section of [high-drive review](substitutions-20261101/HIGH-DRIVE-CLOCK-SEARCH-20261101.md)
+and [raw lookup](substitutions-20261101/LMK6C-STOCK-20261101.json).
+TXC AU and CTS commercial variants have zero/pre-order JLC offers; external
+stock does not establish JLC readiness. No purchases, messages, reservations,
+JLC draft changes, release changes or publication in this search.
+
+## Current update — high-drive clock search, 2026-11-01
+
+User authorized a stocked, adequately rated replacement and quote-package update
+only if it qualifies. Completed public JLC browser search and manufacturer drive
+screens: three stocked YXC leads have published 15 pF family drive ratings, not
+enough for the retained 27.32305 pF model. No qualifying immediate-JLC-stock
+replacement established. CTS CB3LV-3C-12M288000 is a same-footprint 30 pF
+distributor-stock lead with a narrower temperature rating; TI
+CDC6CE012288ADLYR is a 30 pF distributor-stock lead needing a new footprint,
+routing and dynamic checks. Neither has a confirmed usable JLC assembly route.
+See [high-drive review](substitutions-20261101/HIGH-DRIVE-CLOCK-SEARCH-20261101.md)
+for exact identities, dated evidence, sourcing caveats and the bounded decision.
+
+Recommendation: resolve the original CTS exact-part JLC eligibility/consignment
+route before spending on a redesign that may retain the same sourcing delay.
+Fallback: qualify the TI local redesign only after establishing a practical JLC
+offer. The user's prior permission for the non-binding JLC inquiry is recorded;
+the historical request for that permission below is superseded. No inquiry was
+sent in this search. r7 preservation PASS (97 files), production_ready=false;
+no r8, CAD/BOM/CPL/Gerber or JLC draft changes, purchases, reservations or
+manufacturing commitments. Review and status are local, not pushed.
+
+## Current update — Taitien oscillator qualification, 2026-11-01
+
+User authorized qualifying OVETDLJANF-12.288MHZ / C5382655 and updating the
+2-carrier/8-pod quote package only if it passes. Result: NOT QUALIFIED for the
+retained direct-drive clock network. Fresh read-only native extraction confirms
+r7 clock segments/pads/vias match the reviewed clock geometry. Retained load
+sensitivity reaches 27.32305 pF versus candidate 15 pF drive capability; the
+retained high receiver allocation alone is 16.80774 pF. These are engineering
+model allocations, not measured capacitance or TI guaranteed maximum values.
+Do not reduce them silently or transfer CTS waveform acceptance to Taitien.
+
+Footprint changes are understood: 5.0 x 3.2 mm body, 1.50 x 1.20 mm lands on
+2.54 x 2.20 mm centers instead of current 1.80 x 2.00 mm lands on 5.08 x 4.20
+mm centers. New routing and generated fabrication outputs would be required,
+but are not produced for a candidate that failed its electrical screen.
+See the appended qualification in
+[three-part handoff](substitutions-20261101/THREE-PARTS-HANDOFF-20261101.md).
+
+All 97 r7 package files reverified PASS and remain unchanged; no r8, upload,
+purchase, reservation, vendor message or manufacturing commitment. Recovery:
+prefer preserving the reviewed drive capability through CTS sourcing or a
+properly rated alternative; alternatively authorize a bounded buffered-clock
+redesign for Taitien. The latter is not a BOM-only substitution. Existing factory
+and release holds remain. Findings are local, not pushed.
+
+## Current update — bounded r7 TinyFish follow-up, 2026-11-01
+
+Read-only checks completed against the new drafts and exact CTS Global Sourcing
+offers. TinyFish reports the DigiKey cut-tape offer for unchanged CTS
+CB3LV-3I-12M288000 has 1,449 distributor units, MOQ 1, $2.1389/unit and
+8–14 business days procurement-to-JLC-warehouse excluding 1–2 business days
+review. However, it also reports a visible disabled-Add tooltip stating the
+part does not support PCB assembly. This is NOT an actionable sourcing offer,
+confirmed JLC inventory, or a complete quote. Two installed clocks are required;
+purchase quantity including attrition and eligibility remain unresolved.
+
+Pod audit reports all 21 groups selected with expected MPNs/codes. Manufacturer
+and placement verification remain incomplete; this session could not access
+the preview/quote previously reached on the MacBook. Do not discard the earlier
+provisional $161.98 observation or infer a new confirmed price. Reject the
+browser's quantity-mismatch classification: per-board BOM and batch/sourcing
+quantities are different bases. See the appended review and UNSENT inquiry in
+[session report](JLC-R7-MACBOOK-SESSION-20261101.md).
+
+Fresh r7 package verification PASS, 97 files, production_ready=false. No package
+changes, substitutions, purchases, reservations, vendor messages or approvals.
+Stop repeated sourcing checks at this external eligibility dependency. Preferred
+next action: obtain permission for one non-binding exact-job JLC inquiry covering
+CTS eligibility and retained process controls. Alternative: request permission
+to qualify a stocked clock substitute; do not adopt it or omit X1. Findings are
+local until a subsequent explicit publication step.
+
 ## Current update — r7 JLC draft continuation, 2026-11-01
 
 After explicit assembly-terms authorization, both new drafts were saved by JLC

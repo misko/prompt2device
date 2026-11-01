@@ -1,0 +1,162 @@
+(footprint "CMA-4544PF-W"
+	(version 20260206)
+	(generator "pcbnew")
+	(generator_version "10.0")
+	(layer "F.Cu")
+	(descr "Same Sky CMA-4544PF-W component-side view: body center offset +2mm from lead line. Pad2 case/GND; verify green underside marking. Hand solder only.")
+	(property "Reference" "MIC1"
+		(at 0 -1.7 0)
+		(layer "F.SilkS")
+		(uuid "2856d989-5ada-4a1f-90ea-9030127bb986")
+		(effects
+			(font
+				(size 0.75 0.75)
+				(thickness 0.1)
+			)
+		)
+	)
+	(property "Value" "CMA-4544PF-W electret capsule"
+		(at 2 6.5 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "4954778c-3d80-41f2-b05a-2942ab1bd97e")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "017e4bd0-f34f-4d1d-a904-706cffad6fdc")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "40661c54-f402-4dc1-b8cb-fa8239359900")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(property "Manufacturer" "Same Sky"
+		(at 0 0 0)
+		(layer "F.SilkS")
+		(hide yes)
+		(uuid "2431f616-8a3f-5412-927e-0f1448ed4c26")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "MPN" "CMA-4544PF-W"
+		(at 0 0 0)
+		(layer "F.SilkS")
+		(hide yes)
+		(uuid "731d6dc9-a519-5093-9b31-03f34422c639")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Assembly" "Hand solder only; case/green marking to ground"
+		(at 0 0 0)
+		(layer "F.SilkS")
+		(hide yes)
+		(uuid "73185ca5-d2bb-54eb-9db4-84bf37b2915e")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr through_hole)
+	(duplicate_pad_numbers_are_jumpers no)
+	(fp_circle
+		(center 2 0)
+		(end 7.05 0)
+		(stroke
+			(width 0.12)
+			(type default)
+		)
+		(fill no)
+		(layer "F.SilkS")
+		(uuid "94bef023-8c3d-5bf9-9a3b-e9833c88bc76")
+	)
+	(fp_circle
+		(center 2 0)
+		(end 7.25 0)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(fill no)
+		(layer "F.CrtYd")
+		(uuid "cce1ee8c-49fe-5c66-9af6-de96ca73c9d5")
+	)
+	(fp_circle
+		(center 2 0)
+		(end 6.85 0)
+		(stroke
+			(width 0.1)
+			(type default)
+		)
+		(fill no)
+		(layer "F.Fab")
+		(uuid "1313b9fc-dc31-52fc-9932-05aca634ebc4")
+	)
+	(fp_text user "+"
+		(at -1.9 -1.27 0)
+		(layer "F.SilkS")
+		(uuid "57f6b305-87a1-5abc-b67f-2a85316b603d")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(fp_text user "GND"
+		(at 0 3 0)
+		(layer "F.Fab")
+		(uuid "890eeee3-39c8-5b0f-8fa4-5c90f08acf66")
+		(effects
+			(font
+				(size 0.8 0.8)
+				(thickness 0.12)
+			)
+		)
+	)
+	(pad "1" thru_hole rect
+		(at 0 -1.27)
+		(size 1.8 1.8)
+		(drill 0.9)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "83a3fa55-904b-5a73-ae77-4848fcc38742")
+	)
+	(pad "2" thru_hole circle
+		(at 0 1.27)
+		(size 1.8 1.8)
+		(drill 0.9)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "fb007721-b2db-5792-a904-5ee9ab161981")
+	)
+	(embedded_fonts no)
+)
