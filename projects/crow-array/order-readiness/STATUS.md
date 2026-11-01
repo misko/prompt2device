@@ -1,5 +1,19 @@
 # Crow exact-job order readiness
 
+## Current update — r9 JLC selection blockers, 2026-11-01
+
+The r9 carrier Gerber/BOM/CPL were uploaded to a new JLC quote-only draft;
+the retained pod draft uses byte-identical r9 files. Both portals report
+“Project has unselected parts” despite checked rows, and the carrier displays
+38 confirmed for 29 detected. No part was intentionally omitted to bypass
+the warnings. The earlier $161.98 pod price is not a verified complete quote;
+carrier and pod full placement audits and itemized quotes remain open.
+[MacBook session report](JLC-R9-MACBOOK-SESSION-20261101.md) records draft
+URLs, selections and observations. [Backend handoff](BACKEND-R9-JLC-SELECTION-HANDOFF-20261101.md)
+requests diagnosis and a validated population-preserving remedy. Stack, rail,
+process and first-article holds remain. No purchases, reservations, vendor
+messages or manufacturing commitments were made.
+
 ## Current update — r9 publication and MacBook handoff, 2026-11-01
 
 User authorized pushing the validated r9 package to the existing shared branch
