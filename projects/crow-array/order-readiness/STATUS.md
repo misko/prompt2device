@@ -1,5 +1,19 @@
 # Crow exact-job order readiness
 
+## Current update — r5 JLC browser session, 2026-10-31
+
+The carrier and pod r5 BOM/CPL pairs were processed in existing JLC drafts for
+two Economic carrier assemblies and eight Standard pod assemblies. JLC showed
+30 carrier rows (25 confirmed, five short) and 21 pod rows (18 confirmed, three
+short). These are BOM-row counts, not acceptance of all 506 placements. The
+pod's NEXT warning offered to leave unselected parts unplaced; **Select parts**
+was chosen. Carrier placement did not advance from BOM matching. No complete
+preview, PCBA quotation, sourcing fees, combined freight or delivery date was
+obtained. Exact RECOM variant, sourcing and all process holds remain open.
+See [the MacBook session report](JLC-R5-MACBOOK-20261031.md) and
+[backend handoff](BACKEND-HANDOFF-R5-QUOTE-20261031.md). No purchases,
+reservations, substitutions, vendor contact or manufacturing commitments.
+
 ## Quote-package publication checkpoint — OR22, 2026-10-31
 
 User requests pushing complete r5 and MacBook instructions to the existing
