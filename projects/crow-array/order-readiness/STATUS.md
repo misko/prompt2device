@@ -1,5 +1,14 @@
 # Crow exact-job order readiness
 
+## Current update — r5 home-part estimate, 2026-10-31
+
+Public DigiKey listings show an indicative **$49.14** for the r5 home kit:
+two SC0915 Picos, ten CMA-4544PF-W microphones and ten CPE-203 buzzers (two
+spare of each acoustic part), before delivery, tax and potential tariffs.
+See [the r5 home cost](R5-HOME-PARTS-COST-20261031.md). This replaces the
+home-THT-scope $68.07 benchmark for the current kit; it is not a quote or
+part of JLC's unfinished PCBA price. No purchases or reservations made.
+
 ## Current update — shortage identity review, 2026-10-31
 
 The carrier draft's Part Info identifies its unstocked ADC candidate C2863172
