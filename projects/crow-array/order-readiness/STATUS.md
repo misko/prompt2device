@@ -1,5 +1,14 @@
 # Crow exact-job order readiness
 
+## Current update — RJ45 connector orientation hold, 2026-11-01
+
+JLC's angled 3D previews show pod J1 and all eight carrier J101–J108
+connector mouths facing inward, contrary to the documented edge-facing
+intent. Both drafts are on orientation hold; determine model convention,
+pin/peg alignment and any corrected placement before approval. See
+[follow-up report](JLC-R9-SELECTION-QUOTE-FOLLOWUP-20261101.md). No
+rotations or production approvals were applied.
+
 ## Current update — r9 selection and draft quote follow-up, 2026-11-01
 
 Both drafts reached PCBA quote screens after population-preserving BOM row

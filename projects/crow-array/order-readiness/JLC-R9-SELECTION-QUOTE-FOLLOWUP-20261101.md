@@ -31,6 +31,10 @@ Combined displayed total: **$391.09** before shipping, tax, HOME parts or furthe
 
 Panel and large-size charges were zero. Rounded lines may not independently sum exactly to JLC totals.
 
+## Connector orientation discrepancy — 2026-11-01
+
+User flagged the pod J1 and carrier J101–J108. In the JLC 3D preview, tilting the boards shows the modeled RJHSE-5080 openings facing toward the interior of each board. The native-derived `tht-placement-verification.csv` specifies the connector mouths toward native -Y / CPL +Y, i.e. the board-edge side. This is a visible discrepancy affecting both drafts, not a signed-off placement. The r9 CPL has 0-degree rotations for these parts. It is not yet established whether the fault is the JLC model's orientation convention, the uploaded placement rotation/centroid, or the underlying geometry; do not simply rotate by 180 degrees without validating hole and pin alignment. Compare JLC pin 1 and both locator pegs to the exact Amphenol drawing and the native footprints, and independently confirm the corrected preview and production placement instructions. No connector rotations, production approvals, or purchases were made in this check.
+
 ## Remaining holds
 
 - The preview lists are populated; full independent per-part position, rotation, polarity, package and first-article review has not been completed. The pod 3D preview was visually opened; that is not signoff. Confirm all factory THT/manual operations and the physical orientation of critical parts with JLC before any production approval.
