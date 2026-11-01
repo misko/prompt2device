@@ -1,5 +1,18 @@
 # Crow exact-job order readiness
 
+## Current update — exact match review, 2026-10-31
+
+The JLC r5 carrier auto-match for RECOM U10 is a YLPTEC part, C18212367,
+and was deselected. Exact RECOM C5199916 showed zero available stock; an exact
+RECOM Sager Global Sourcing offer remains an unreserved estimate. Eight exact
+carrier capacitor rows and two exact pod resistor rows previously unchecked
+were selected; portal summary counters are internally inconsistent. Manufacturer
+identity evidence supports Amphenol RJHSE-5080 and the CUI/Same Sky PJ-102AH
+rebrand; final geometry/process and supplier acceptance remain open. See
+[exact-match observations and unsent inquiry](JLC-R5-EXACT-MATCH-20261031.md).
+Seven exact sourcing identities, full previews and a complete non-binding quote
+remain open. No purchase, reservation, substitution or manufacturing commitment.
+
 ## Current update — r5 JLC browser session, 2026-10-31
 
 The carrier and pod r5 BOM/CPL pairs were processed in existing JLC drafts for
