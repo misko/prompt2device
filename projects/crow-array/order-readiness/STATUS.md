@@ -1,5 +1,13 @@
 # Crow exact-job order readiness
 
+## Current update — three-part visual handoff, 2026-11-01 Pacific
+
+Added [images, dated sourcing observations and a ready-to-paste backend
+handoff](substitutions-20261101/THREE-PARTS-HANDOFF-20261101.md) for the fuse,
+oscillator and RECOM regulator. The $35.69 illustrative subtotal is neither a
+purchase quantity nor a complete quote. The quote, previews and factory
+acceptance remain open; no vendor action or purchase was made for this report.
+
 ## Current update — r6 quote-only browser session, 2026-10-31 Pacific
 
 At the user's request, processed both r6 BOM/CPL pairs with the four reviewed
