@@ -1,5 +1,13 @@
 # Crow exact-job order readiness
 
+## Current update — pod edge rails, 2026-10-31
+
+The saved pod quote explains its 85 × 88 mm size: JLC proposes two 5 mm edge
+rails on the 85 × 78 mm board, and the displayed depanel-before-delivery
+option is No. Rail attachment, finished edges, geometry, handling and delivery
+configuration remain subject to review against the released controls. See
+[the exact-match report](JLC-R5-EXACT-MATCH-20261031.md); no setting changed.
+
 ## Current update — ADC land-pattern comparison, 2026-10-31
 
 Released carrier U1/U2 each have 30 pads with the same corner numbering and

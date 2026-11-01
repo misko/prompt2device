@@ -13,6 +13,16 @@ estimate; neither combined freight nor applicability to a complete assembly
 order is confirmed. The displayed times are not arrival dates. No settings
 were changed and no placement preview was obtained.
 
+The pod's saved Standard PCBA settings explicitly say JLC will add two 5 mm
+edge rails on the shorter sides, making the quote dimension **85 × 88 mm**.
+The released pod board bounds are **85 × 78 mm**; the extra 10 mm therefore
+reflects the portal's stated rails, not evidence of a changed board outline.
+The same page displays “Depanel boards & edge rail before delivery: No”. This
+does not establish the actual rail attachment, breakaway geometry, resulting
+finished edge or acceptance of those features. Review JLC's production data
+and disposition of rails, datums, access and reliefs before accepting this
+configuration. No rail or depanel setting was changed in this check.
+
 ## RECOM mismatch found and contained
 
 In the existing carrier draft, JLC auto-matched U10 to `R-78E5.0-0.5`, JLC `C18212367`. The expanded **Part Info** panel identifies its manufacturer as **YLPTEC**, not the specified **RECOM Power**. This is a different-manufacturer component despite matching MPN text. The row had been selected by automatic BOM processing; it was **deselected** in the saved carrier draft. Its quantity is now zero and the row still shows the YLPTEC match: this is an unresolved required part, not an instruction to omit U10. Do not proceed via “Do not place”. The prior report's apparent $7.1126 line is the YLPTEC selection and is not a valid RECOM quotation.
@@ -129,6 +139,8 @@ ordered or reserved.
 > Please also confirm exact sources and per-job required quantities for CB3LV-3I-12M288000, 1206L010/30WR, GRM21BR71A105KA01L, C2012X7R1V225K125AE, C3216X7R1V106K160AC and PCM1864DBT. Are the seven fuses shown in both jobs one shared pool, and can each job use its proposed source without mixing prohibited pools? Please include attrition, inspection/3C fees if applicable, packaging and warehouse arrival estimates.
 
 > Your FAQ says library parts marked wave soldering are assembled manually, whereas CTS specifies reflow for CB3LV. Does that FAQ apply to C17275161, and can you reflow it within the CTS datasheet limits? If manual assembly is proposed instead, please state its process, thermal controls, charge and timing for review before any commitment.
+
+> The saved pod setting adds two 5 mm edge rails to its 85 × 78 mm outline and currently says no depaneling before delivery. Please provide the proposed rails, breakaway and fiducial layout, finished dimensions and edge treatment, delivery configuration and any associated fees for review. Please also review the supplied full first-run controls: the specified carrier 7628A and pod 7628 stackups, shaped contours and datums, exact solder-mask and paste exclusions, production-stencil data, hole/position/seat inspection and the RJ, PJ and RECOM manual installation requirements. Identify any requirement you cannot accept before changes are made; no production-data modification is authorized by this inquiry.
 >
 > Is there a way to review complete component placement previews and obtain an itemized, non-binding 2-carrier/8-pod estimate with all required parts before paying for any shortage inventory? Please itemize boards, components, SMT/THT labor, setup/stencil, sourcing/handling, shipping and taxes, and note all unknowns and assumptions. Identify any process controls you cannot support; no preview or production approval is implied.
 
