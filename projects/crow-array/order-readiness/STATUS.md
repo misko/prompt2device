@@ -1,5 +1,16 @@
 # Crow exact-job order readiness
 
+## Current update — r7 MacBook forms, 2026-11-01
+
+Two new unsaved JLC forms have the r7 Gerbers and requested 5/2 carrier and
+10/8 pod quantities. The session stopped before NEXT because the assembly
+service terms are preselected and the handoff prohibits approving disclaimers.
+No BOM/CPL uploads, component matches, previews, complete quotes or durable
+draft URLs exist yet. See [session report](JLC-R7-MACBOOK-SESSION-20261101.md)
+for observed settings, preliminary board-only prices and remaining holds.
+Earlier drafts were untouched; no purchases, reservations or production
+commitments were made.
+
 ## Publication handoff — r7 new drafts, 2026-11-01
 
 User authorized publishing r7 and instructions to the existing shared review
