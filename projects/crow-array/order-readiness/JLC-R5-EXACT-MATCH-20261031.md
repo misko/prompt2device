@@ -67,6 +67,15 @@ process for the specified series, despite JLC's Wave Soldering label; it does
 not establish why JLC uses that label or that JLC will apply an acceptable
 profile. Obtain JLC's confirmation and retain all other process controls.
 
+JLC's own [assembly FAQ](https://jlcpcb.com/help/article/pcb-assembly-faqs)
+says parts marked “wave soldering” in its library are assembled manually,
+and describes a manual-soldering charge and added assembly day. This makes the
+CTS label a substantive process and cost question, not evidence that its SMD
+oscillator will be reflowed. Ask JLC whether its general description applies
+to C17275161, whether it can use the CTS-specified reflow process, and what
+temperature/time controls, price and schedule it would apply if manual. No
+manual process or added charge has been accepted or verified for this job.
+
 The [TI PCM1864 datasheet](https://www.ti.com/lit/ds/symlink/pcm1864.pdf)
 identifies PCM1864DBT as a 30-pin DBT TSSOP in tubes. Its DBT0030A drawing
 specifies a 4.3–4.5 mm body width, 7.75–7.85 mm length and 0.5 mm lead
@@ -76,6 +85,25 @@ a nominal-dimension reconciliation, not verification of land pattern, pin-1
 orientation, lot packaging or assembly preview. The exact `PCM1864DBT` suffix
 remains required; JLC's source and handling must still be confirmed.
 
+### Inventory pooling and preview constraints
+
+JLC's [own-parts instructions](https://jlcpcb.com/help/article/how-to-use-my-own-parts-for-pcb-assembly-order)
+say public plus pre-order stock may be combined for the same component, and
+Global Sourcing plus consigned stock may be combined; other combinations for
+the same component are unsupported. For global/consigned stock below a job's
+needs, the page says the system uses sufficient public stock instead, not a
+mixed pool. Therefore do not add the fuse's seven public units to a global
+shortage quantity unless JLC confirms an exception, and do not count that
+seven independently for both jobs. This is per-order guidance: allocation
+between the two jobs and actual attrition remain to be confirmed.
+
+JLC's [component matching guidance](https://jlcpcb.com/help/article/component-matching-guidelines-for-pcba-orders)
+says private sourced or consigned components must be received, stored and
+selected to proceed, and unselected parts are treated as unplaced. This
+supports the observed portal blocker; it does not rule out an informational
+estimate or preview provided outside the self-service flow. No inventory was
+ordered or reserved.
+
 ## Draft support inquiry — UNSENT
 
 > Please provide an informational, non-binding assessment only for our existing PCBA drafts: two assembled carriers and eight assembled pods, including all 478 SMT placements and 28 through-hole placements. Please do not reserve or purchase stock, substitute parts, create a noncancelable procurement quotation, charge us, or start production. If a requested answer requires one of these actions, identify that boundary first.
@@ -83,6 +111,8 @@ remains required; JLC's source and handling must still be confirmed.
 > Our carrier U10 requires **RECOM Power R-78E5.0-0.5**. Your automatic match C18212367 lists manufacturer YLPTEC and has been deselected. Exact RECOM C5199916 shows no available stock in our account. Your Global Sourcing screen showed a DigiKey 945-1648-5-ND tube offer with MOQ one and an illustrative two-piece line of $9.69. Can you confirm whether this exact offer is eligible, the required quantity including allowances, packaging and handling fees, usable warehouse date, and compatible through-hole assembly method? Please compare consignment if it cannot be used.
 >
 > Please also confirm exact sources and per-job required quantities for CB3LV-3I-12M288000, 1206L010/30WR, GRM21BR71A105KA01L, C2012X7R1V225K125AE, C3216X7R1V106K160AC and PCM1864DBT. Are the seven fuses shown in both jobs one shared pool, and can each job use its proposed source without mixing prohibited pools? Please include attrition, inspection/3C fees if applicable, packaging and warehouse arrival estimates.
+
+> Your FAQ says library parts marked wave soldering are assembled manually, whereas CTS specifies reflow for CB3LV. Does that FAQ apply to C17275161, and can you reflow it within the CTS datasheet limits? If manual assembly is proposed instead, please state its process, thermal controls, charge and timing for review before any commitment.
 >
 > Is there a way to review complete component placement previews and obtain an itemized, non-binding 2-carrier/8-pod estimate with all required parts before paying for any shortage inventory? Please itemize boards, components, SMT/THT labor, setup/stencil, sourcing/handling, shipping and taxes, and note all unknowns and assumptions. Identify any process controls you cannot support; no preview or production approval is implied.
 

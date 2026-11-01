@@ -1,5 +1,16 @@
 # Crow exact-job order readiness
 
+## Current update — JLC sourcing and oscillator process, 2026-10-31
+
+JLC's FAQ says library items labeled wave soldering are assembled manually;
+the CTS oscillator's label therefore needs factory clarification against the
+manufacturer's reflow specification. JLC's same-part stock guidance also
+prohibits mixing public/pre-order with global/consigned inventory; the fuse's
+seven public pieces cannot simply be added to a global quantity. Its matching
+guidance says sourced private stock must arrive and be selected before use.
+See [the exact-match report](JLC-R5-EXACT-MATCH-20261031.md). No inventory was
+ordered or reserved, and no factory process was accepted.
+
 ## Current update — CTS and ADC manufacturer checks, 2026-10-31
 
 The CTS CB3LV series datasheet documents reflow up to 260°C for 20 seconds,
