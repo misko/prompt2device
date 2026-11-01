@@ -1,0 +1,115 @@
+{
+  "schema": 1,
+  "authority": "User: use find-substitute-part to resolve inventory and replace parts. No purchasing authority.",
+  "assembled": {
+    "carrier": 2,
+    "pod": 8
+  },
+  "base_quote_manifest_sha256": "bc2a0de4e7331e512d0c8781bc3e5986fdf893fac99e03b8d1ecb28cf7ccd7dd",
+  "release_publication_sha256": "cda4e4da019cba206f0cbf4e477f2ce9b5629c024e9a8c9af78aeb994bd8316f",
+  "replacements": [
+    {
+      "old_mpn": "PCM1864DBT",
+      "old_manufacturer": "Texas Instruments",
+      "mpn": "PCM1864DBTR",
+      "manufacturer": "Texas Instruments",
+      "code": "C544855",
+      "refs": {
+        "carrier": [
+          "U1",
+          "U2"
+        ]
+      },
+      "installed_need": 4,
+      "footprint": "Package_SO:TSSOP-30_4.4x7.8mm_P0.5mm",
+      "values": {
+        "PCM1864DBT": "PCM1864DBTR"
+      },
+      "engineering": "PASS",
+      "review": "substitutions-20261101/adc-review.md"
+    },
+    {
+      "old_mpn": "GRM21BR71A105KA01L",
+      "old_manufacturer": "Murata",
+      "mpn": "CL21B105KBFNNNE",
+      "manufacturer": "Samsung Electro-Mechanics",
+      "code": "C28323",
+      "refs": {
+        "carrier": [
+          "C11",
+          "C21"
+        ],
+        "pod": [
+          "C3"
+        ]
+      },
+      "installed_need": 12,
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "values": {
+        "1uF 10V X7R": "1uF 50V X7R 10%",
+        "1uF 10V X7R VREF": "1uF 50V X7R 10% VREF"
+      },
+      "engineering": "PASS",
+      "review": "substitutions-20261101/capacitor-review.md"
+    },
+    {
+      "old_mpn": "C2012X7R1V225K125AE",
+      "old_manufacturer": "TDK",
+      "mpn": "CL21B225KBYVPNE",
+      "manufacturer": "Samsung Electro-Mechanics",
+      "code": "C5362585",
+      "refs": {
+        "pod": [
+          "C1"
+        ]
+      },
+      "installed_need": 8,
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "values": {
+        "2.2uF 35V X7R 20%": "2.2uF 50V X7R 10%"
+      },
+      "engineering": "PASS",
+      "review": "substitutions-20261101/capacitor-review.md"
+    },
+    {
+      "old_mpn": "C3216X7R1V106K160AC",
+      "old_manufacturer": "TDK",
+      "mpn": "CL31B106KBHNNNE",
+      "manufacturer": "Samsung Electro-Mechanics",
+      "code": "C89632",
+      "refs": {
+        "carrier": [
+          "C1",
+          "C2"
+        ]
+      },
+      "installed_need": 4,
+      "footprint": "Capacitor_SMD:C_1206_3216Metric",
+      "values": {
+        "10uF 35V X7R 20%": "10uF 50V X7R 10%"
+      },
+      "engineering": "PASS",
+      "review": "substitutions-20261101/capacitor-review.md"
+    }
+  ],
+  "instructions": "substitutions-20261101/HANDOFF.md",
+  "retained_sources": [
+    {"mpn": "1206L010/30WR", "manufacturer": "Littelfuse", "url": "https://www.digikey.com/en/products/detail/littelfuse-inc/1206L010-30WR/6346986"},
+    {"mpn": "CB3LV-3I-12M288000", "manufacturer": "CTS-Frequency Controls", "url": "https://www.digikey.com/en/products/detail/cts-frequency-controls/CB3LV-3I-12M288000/4308709"},
+    {"mpn": "R-78E5.0-0.5", "manufacturer": "RECOM Power", "url": "https://www.digikey.com/en/products/detail/recom-power/R-78E5-0-0-5/2834904"}
+  ],
+  "evidence": {
+    "substitutions-20261101/HANDOFF.md": "ae0df28cd3f950424040ab1fba886d8316e1ddcda44e37d5ea95c305b1d03f74",
+    "substitutions-20261101/remaining-review.md": "c7e1cf319bac0348db2144bfe84feb9711efd71bc618fe0638d4044eed49ffe9",
+    "substitutions-20261101/evidence/external-offers.json": "294cfef6631685203a617e76ae7fa58b825ff1d1cb19ad22c9f3537703ef32f2",
+    "substitutions-20261101/adc-review.md": "0b5d07a2d0c428ef32c1c7c2fe2727dc694d36b831c7db4f59ff329974147118",
+    "substitutions-20261101/capacitor-review.md": "8281cf1c895a3ecfadad08b462eedced450c9fdbdb96171a852d9d67f334707f",
+    "substitutions-20261101/evidence/adc-stock.json": "068e0f088aee2be0e4da8ba91358572ecd12351282b8349c3df983c291000fb1",
+    "substitutions-20261101/evidence/cap-1u-stock.json": "d80231ff4206dc07e3f2a5cb11ef1422b4d4e87c090d388f87a03715b2527fd0",
+    "substitutions-20261101/evidence/cap-2u2-stock.json": "8bb729ad8f55d1a53f851e5ea176d0241763a19550d2d7cd63eb0738b829a695",
+    "substitutions-20261101/evidence/cap-10u-stock.json": "d4f67ab4c3674cbc8c0782e225b3f076ff3587b4920c4bcdd1521c314a970682",
+    "substitutions-20261101/evidence/capacitor-analysis.json": "ef2ea8d50cb77449455581efb8a870847507aaae64e8d3eff2036c47056e74fe",
+    "substitutions-20261101/evidence/capacitor-primary-research.tar.gz": "d0b2a12652fc57ccf6097d03e10a6899576b1d7e92c194d7c692a84e4ac6f921",
+    "substitutions-20261101/evidence/pcm1864.pdf": "c42b9dfac5d8a4f684edc45edc8a3b2b82d3e26ea352f1e019044ed8aad4ab50"
+  }
+}

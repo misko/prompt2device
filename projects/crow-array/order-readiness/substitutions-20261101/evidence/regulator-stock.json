@@ -1,0 +1,77 @@
+{
+  "schema": "jlc-stock-v1",
+  "command": "part",
+  "input": "R-78E5.0-0.5",
+  "created_at": "2026-11-01T03:45:36.060983+00:00",
+  "notice": "Reported public snapshots, not reserved PCBA inventory. Unknown is not zero. Overseas/presale pools are separate and never added. No purchasing actions.",
+  "results": [
+    {
+      "mpn": "R-78E5.0-0.5",
+      "code": "C5199916",
+      "needed": 2,
+      "manufacturer": "Recom Power",
+      "package": "SIP-3",
+      "description": "-40℃~+85℃ 1 1.5mA 10.4mm 11.6mm 220uF 28V 3W 500mA 50mVp-p 570kHz 5V 8.5mm 92% Regulated type Short Circuit Protection、Automatic fault recovery SIP-3 Isolated Power Modules ROHS",
+      "jlcsearch_stock": null,
+      "jlcsearch_stock_checked_at": "2026-10-31T20:33:30.000Z",
+      "jlcpcb": {
+        "state": "observed",
+        "mpn": "R-78E5.0-0.5",
+        "manufacturer": "Recom Power",
+        "package": "SIP-3",
+        "availability": "OutOfStock",
+        "conflicting_availability": false,
+        "stock": null,
+        "overseas_stock": 0,
+        "presale": 0,
+        "buy_enabled": "0",
+        "reason": "This product is no longer manufactured.",
+        "raw_fields": [
+          {
+            "componentModelEn": "R-78E5.0-0.5",
+            "componentBrandEn": "Recom Power",
+            "componentCode": "C5199916",
+            "componentSpecificationEn": "SIP-3"
+          },
+          {
+            "componentModelEn": "R-78E5.0-0.5",
+            "componentBrandEn": "Recom Power",
+            "componentCode": "C5199916",
+            "componentSpecificationEn": "SIP-3",
+            "overseasStockCount": 0,
+            "canPresaleNumber": 0,
+            "isBuyComponent": "0"
+          },
+          {
+            "componentModelEn": "R-78E5.0-0.5",
+            "componentBrandEn": "Recom Power",
+            "componentCode": "C5199916",
+            "componentSpecificationEn": "SIP-3",
+            "overseasStockCount": 0,
+            "canPresaleNumber": 0,
+            "isBuyComponent": "0",
+            "noBuyReason": "This product is no longer manufactured."
+          }
+        ],
+        "provenance": {
+          "url": "https://jlcpcb.com/partdetail/C5199916",
+          "retrieved_at": "2026-11-01T03:45:36.773069+00:00",
+          "http_date": "Sun, 01 Nov 2026 03:45:36 GMT",
+          "http_age": null,
+          "sha256": "27f7c3096bb00fe64214a25b0003f05614e51e1cb100a6b488cf89f23daa9ee4"
+        }
+      },
+      "status": "NOT_ORDERABLE",
+      "query": "R-78E5.0-0.5",
+      "jlcsearch_query": {
+        "url": "https://jlcsearch.tscircuit.com/api/search?q=C5199916&limit=100&full=true",
+        "retrieved_at": "2026-11-01T03:45:36.200953+00:00",
+        "http_date": "Sun, 01 Nov 2026 03:45:36 GMT",
+        "http_age": null,
+        "sha256": "0a112de193c9da72d0e6e99f004c05c478ccaf8745a209da9db79f8c1aa91274",
+        "state": "observed",
+        "returned_rows": 1
+      }
+    }
+  ]
+}

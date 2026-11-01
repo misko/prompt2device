@@ -1,0 +1,77 @@
+{
+  "schema": "jlc-stock-v1",
+  "command": "part",
+  "input": "PCM1864DBTR",
+  "created_at": "2026-11-01T03:45:33.012452+00:00",
+  "notice": "Reported public snapshots, not reserved PCBA inventory. Unknown is not zero. Overseas/presale pools are separate and never added. No purchasing actions.",
+  "results": [
+    {
+      "mpn": "PCM1864DBTR",
+      "code": "C544855",
+      "needed": 4,
+      "manufacturer": "Texas Instruments",
+      "package": "TSSOP-30",
+      "description": "-40℃~+125℃ 1.65V 103dB 192kHz 24 3V~3.6V SPI、I2C TSSOP-30 Analog Front End (AFE) ROHS",
+      "jlcsearch_stock": 70,
+      "jlcsearch_stock_checked_at": null,
+      "jlcpcb": {
+        "state": "observed",
+        "mpn": "PCM1864DBTR",
+        "manufacturer": "Texas Instruments",
+        "package": "TSSOP-30",
+        "availability": "InStock",
+        "conflicting_availability": false,
+        "stock": null,
+        "overseas_stock": 70,
+        "presale": 63,
+        "buy_enabled": "1",
+        "reason": null,
+        "raw_fields": [
+          {
+            "componentModelEn": "PCM1864DBTR",
+            "componentBrandEn": "Texas Instruments",
+            "componentCode": "C544855",
+            "componentSpecificationEn": "TSSOP-30"
+          },
+          {
+            "componentModelEn": "PCM1864DBTR",
+            "componentBrandEn": "Texas Instruments",
+            "componentCode": "C544855",
+            "componentSpecificationEn": "TSSOP-30",
+            "overseasStockCount": 70,
+            "canPresaleNumber": 63,
+            "isBuyComponent": "1"
+          },
+          {
+            "componentModelEn": "PCM1864DBTR",
+            "componentBrandEn": "Texas Instruments",
+            "componentCode": "C544855",
+            "componentSpecificationEn": "TSSOP-30",
+            "overseasStockCount": 70,
+            "canPresaleNumber": 63,
+            "isBuyComponent": "1",
+            "noBuyReason": null
+          }
+        ],
+        "provenance": {
+          "url": "https://jlcpcb.com/partdetail/C544855",
+          "retrieved_at": "2026-11-01T03:45:33.918668+00:00",
+          "http_date": "Sun, 01 Nov 2026 03:45:33 GMT",
+          "http_age": null,
+          "sha256": "dd43deffa7363a9a0e242080ff3ca1f877758333680a722e3a8aecb2d902f158"
+        }
+      },
+      "status": "SUFFICIENT_REPORTED",
+      "query": "PCM1864DBTR",
+      "jlcsearch_query": {
+        "url": "https://jlcsearch.tscircuit.com/api/search?q=C544855&limit=100&full=true",
+        "retrieved_at": "2026-11-01T03:45:33.257012+00:00",
+        "http_date": "Sun, 01 Nov 2026 03:45:33 GMT",
+        "http_age": null,
+        "sha256": "e64edf3ac9bdf188f7d66c33a2e982b49b46259cc0cb8d37ecf7d39d15209497",
+        "state": "observed",
+        "returned_rows": 1
+      }
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "checked_on": "2026-10-31",
+  "timezone": "America/Los_Angeles",
+  "utc_session_date": "2026-11-01",
+  "evidence_kind": "supplier_product_page",
+  "method": "Independent browsing-tool open/find of exact supplier product pages; not search snippets. Tool reported crawl today on refreshed opens. Underlying inventory update time unknown.",
+  "offers": [
+    {
+      "manufacturer": "Littelfuse Inc.",
+      "mpn": "1206L010/30WR",
+      "package": "1206 (3216 Metric)",
+      "supplier_code": "18-1206L010/30WRCT-ND",
+      "supplier_url": "https://www.digikey.com/en/products/detail/littelfuse-inc/1206L010-30WR/6346986",
+      "in_stock": true,
+      "stock_count": 45522,
+      "pool": "DigiKey present stock, not JLC allocation",
+      "need": 24,
+      "packaging": "Cut tape",
+      "minimum_price_tier": 1,
+      "applicable_unit_price_usd": 0.562,
+      "catalog_attribute_conflict": "Product attributes say maximum current10A/AEC-Q200; linked Littelfuse 2024-02-26 primary datasheet says40A for /30 and identifies automotive suffix-A separately. Exact stock identity retained; catalog attributes not used as electrical authority."
+    },
+    {
+      "manufacturer": "CTS-Frequency Controls",
+      "mpn": "CB3LV-3I-12M288000",
+      "package": "4-SMD (7x5)",
+      "supplier_code": "110-CB3LV-3I-12M288000CT-ND",
+      "supplier_url": "https://www.digikey.com/en/products/detail/cts-frequency-controls/CB3LV-3I-12M288000/4308709",
+      "in_stock": true,
+      "stock_count": 1449,
+      "pool": "DigiKey present stock, not JLC allocation",
+      "need": 2,
+      "packaging": "Cut tape",
+      "minimum_price_tier": 1,
+      "applicable_unit_price_usd": 1.66
+    },
+    {
+      "manufacturer": "Recom Power",
+      "mpn": "R-78E5.0-0.5",
+      "package": "3-SIP Module",
+      "supplier_code": "945-1648-5-ND",
+      "supplier_url": "https://www.digikey.com/en/products/detail/recom-power/R-78E5-0-0-5/2834904",
+      "in_stock": true,
+      "stock_count": 32674,
+      "separate_factory_stock_not_added": 966,
+      "pool": "DigiKey present stock, not JLC allocation",
+      "need": 2,
+      "packaging": "Tube; below-standard-pack value-added packaging may change",
+      "minimum_price_tier": 1,
+      "applicable_unit_price_usd": 3.76
+    }
+  ],
+  "conditions": "No purchase/reservation. Published prices exclude shipping, possible tariff and factory handling; inventory pools not additive. Manufacturer standard lead time is not lead time for present-stock offers."
+}

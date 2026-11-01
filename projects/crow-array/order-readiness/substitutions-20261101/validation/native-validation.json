@@ -1,0 +1,93 @@
+{
+  "boards": {
+    "carrier": {
+      "changed_refs": [
+        "C1",
+        "C11",
+        "C2",
+        "C21",
+        "U1",
+        "U2"
+      ],
+      "connectivity": "UNCHANGED",
+      "drc_violations": 0,
+      "erc_inherited_ignored_checks": [
+        {
+          "description": "Global label only appears once in the schematic",
+          "key": "single_global_label"
+        },
+        {
+          "description": "Four connection points are joined together",
+          "key": "four_way_junction"
+        },
+        {
+          "description": "SPICE model issue",
+          "key": "simulation_model_issue"
+        },
+        {
+          "description": "Assigned footprint doesn't match footprint filters",
+          "key": "footprint_filter"
+        }
+      ],
+      "erc_violations": 0,
+      "jlc_placements": 137,
+      "unconnected_items": 0
+    },
+    "pod": {
+      "changed_refs": [
+        "C1",
+        "C3"
+      ],
+      "connectivity": "UNCHANGED",
+      "drc_violations": 0,
+      "erc_inherited_ignored_checks": [
+        {
+          "description": "Global label only appears once in the schematic",
+          "key": "single_global_label"
+        },
+        {
+          "description": "Four connection points are joined together",
+          "key": "four_way_junction"
+        },
+        {
+          "description": "SPICE model issue",
+          "key": "simulation_model_issue"
+        },
+        {
+          "description": "Assigned footprint doesn't match footprint filters",
+          "key": "footprint_filter"
+        }
+      ],
+      "erc_violations": 0,
+      "jlc_placements": 29,
+      "unconnected_items": 0
+    }
+  },
+  "inputs": {
+    "quote-draft/r6-2c8p-substitutions/native/pcb/carrier/carrier.kicad_pcb": "a72e25d43ae5ca7a948856d72274e6d3f3e921c8d66b1310b9c88501075723b7",
+    "quote-draft/r6-2c8p-substitutions/native/pcb/pod/pod.kicad_pcb": "9fae5f2cd10bbf2b6f82fc1f103181c19764fbe93eabed0a78c7d7eb354dc021",
+    "quote-draft/r6-2c8p-substitutions/native/schematic/crow-carrier.kicad_sch": "ef213e6f30fbfeaccd8c60780c25593da6cb766542ae51b634b02c3e634f62cc",
+    "quote-draft/r6-2c8p-substitutions/native/schematic/crow-pod.kicad_sch": "5b60170766c2a882a181d89e8a7cf44cc10abe183aa90828e34e0a39873172b6",
+    "substitutions-20261101/validation/carrier-after.xml": "9eb1538fa825cff63b70b31c32dfd49b1e19226529b7fe93fa91a76dfbe25764",
+    "substitutions-20261101/validation/carrier-before.xml": "d4d14e03812fb21c802d90003cb7454c469a78242a19d278fe1329be5b4800d4",
+    "substitutions-20261101/validation/carrier-drc.json": "9698bf41d8b2e1a0ae66c085824eb85385c808fd124c7ed1ae88f73e9fcbd5c2",
+    "substitutions-20261101/validation/carrier-erc.json": "355604514eac3f14d2161b051757b1310d5b2c480c7db14e8705df0a38a290ba",
+    "substitutions-20261101/validation/carrier-schematic.pdf": "adfd5c56e4c874eb93633609b0d97a33e0b7f9baf1c297cad76a115d51832419",
+    "substitutions-20261101/validation/pod-after.xml": "ee3f85749bfe13ba27bcd917e2a809ec3c4b214eaa4372e1f0265bffd397bb4a",
+    "substitutions-20261101/validation/pod-before.xml": "9e15847fb01856f06abcbeaf59577cc89a71d93bc3e446a8826dc4074cfea4b8",
+    "substitutions-20261101/validation/pod-drc.json": "9473588d1273f08c49c98af00fec40e8eae0a09a93558e0e176df417ae7b6936",
+    "substitutions-20261101/validation/pod-erc.json": "146ab879a2e37abb82c935bf3075b22851260e4f698fdd38175289b67aa33275",
+    "substitutions-20261101/validation/pod-schematic.pdf": "0906af90289f74cde4ed100705c5eb127f7301a9641e35a01f824a49051b6869"
+  },
+  "kicad": "10.0.4",
+  "package_manifest_sha256": "c01cb5e90b31738b6afd0102aca1b22ae3322c1e82f17fbe5492c8f198f19099",
+  "population": {
+    "HOME": 18,
+    "JLC_SMT": 478,
+    "JLC_THT": 28,
+    "MECHANICAL": 0
+  },
+  "result": "PASS",
+  "scope": "Metadata/source/BOM/connectivity preservation and recorded raw ERC/DRC; no production or physical acceptance",
+  "validator_sha256": "8dfc97e63847c74716388a75dee65fff8daacb721a1742dfd869c15601cc6429"
+}

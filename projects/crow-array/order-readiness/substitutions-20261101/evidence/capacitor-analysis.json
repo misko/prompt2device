@@ -1,0 +1,503 @@
+{
+  "generated_at": "2026-11-01T03:48:22.800Z",
+  "model_warning": "Manufacturer typical curves; interpolation and tolerance/temperature sensitivity are engineering screens, not guaranteed combined-bias minima.",
+  "capacitors": [
+    {
+      "part_family": "CL21B105KBFNNN",
+      "nominal_uF": 1,
+      "bias_conditions": {
+        "frequency_Hz": 1000,
+        "signal_Vrms": 1,
+        "temperature_C": 25
+      },
+      "points": [
+        {
+          "Vdc": 1.5,
+          "delta_percent": 0.8849340971021618,
+          "typical_uF": 1.0088493409710215,
+          "tolerance_minus10_temp_minus15_screen_uF": 0.7717697458428315
+        },
+        {
+          "Vdc": 1.65,
+          "delta_percent": 0.8997095532498043,
+          "typical_uF": 1.008997095532498,
+          "tolerance_minus10_temp_minus15_screen_uF": 0.771882778082361
+        },
+        {
+          "Vdc": 1.8,
+          "delta_percent": 0.894560301240189,
+          "typical_uF": 1.008945603012402,
+          "tolerance_minus10_temp_minus15_screen_uF": 0.7718433863044875
+        },
+        {
+          "Vdc": 3.6,
+          "delta_percent": -0.5471402251692534,
+          "typical_uF": 0.9945285977483075,
+          "tolerance_minus10_temp_minus15_screen_uF": 0.7608143772774552
+        },
+        {
+          "Vdc": 7.75,
+          "delta_percent": -6.954569763207665,
+          "typical_uF": 0.9304543023679234,
+          "tolerance_minus10_temp_minus15_screen_uF": 0.7117975413114613
+        },
+        {
+          "Vdc": 12,
+          "delta_percent": -14.703240086113404,
+          "typical_uF": 0.852967599138866,
+          "tolerance_minus10_temp_minus15_screen_uF": 0.6525202133412324
+        },
+        {
+          "Vdc": 13.2,
+          "delta_percent": -16.97188325461305,
+          "typical_uF": 0.8302811674538695,
+          "tolerance_minus10_temp_minus15_screen_uF": 0.6351650931022101
+        },
+        {
+          "Vdc": 24.4,
+          "delta_percent": -38.31301043610384,
+          "typical_uF": 0.6168698956389616,
+          "tolerance_minus10_temp_minus15_screen_uF": 0.4719054701638056
+        }
+      ],
+      "impedance_graph_keys": [
+        {
+          "first": {
+            "x": "0.0001",
+            "y": "1733.1947410320781"
+          },
+          "last": {
+            "x": "6000.000000000003",
+            "y": "4.676968181508335"
+          }
+        },
+        {
+          "first": {
+            "x": "0.0001",
+            "y": "24.147111689365868"
+          },
+          "last": {
+            "x": "6000.000000000003",
+            "y": "2.380766402846273"
+          }
+        }
+      ]
+    },
+    {
+      "part_family": "CL21B225KBYVPN",
+      "nominal_uF": 2.2,
+      "bias_conditions": {
+        "frequency_Hz": 1000,
+        "signal_Vrms": 1,
+        "temperature_C": 25
+      },
+      "points": [
+        {
+          "Vdc": 1.5,
+          "delta_percent": 1.9878811655347657,
+          "typical_uF": 2.243733385641765,
+          "tolerance_minus10_temp_minus15_screen_uF": 1.71645604001595
+        },
+        {
+          "Vdc": 1.65,
+          "delta_percent": 2.101983647183937,
+          "typical_uF": 2.2462436402380472,
+          "tolerance_minus10_temp_minus15_screen_uF": 1.718376384782106
+        },
+        {
+          "Vdc": 1.8,
+          "delta_percent": 2.182040200315581,
+          "typical_uF": 2.248004884406943,
+          "tolerance_minus10_temp_minus15_screen_uF": 1.7197237365713116
+        },
+        {
+          "Vdc": 3.6,
+          "delta_percent": 0.2054469369554957,
+          "typical_uF": 2.204519832613021,
+          "tolerance_minus10_temp_minus15_screen_uF": 1.686457671948961
+        },
+        {
+          "Vdc": 7.75,
+          "delta_percent": -9.32786917195756,
+          "typical_uF": 1.9947868782169338,
+          "tolerance_minus10_temp_minus15_screen_uF": 1.5260119618359542
+        },
+        {
+          "Vdc": 12,
+          "delta_percent": -20.983712149552588,
+          "typical_uF": 1.738358332709843,
+          "tolerance_minus10_temp_minus15_screen_uF": 1.3298441245230301
+        },
+        {
+          "Vdc": 13.2,
+          "delta_percent": -24.660425638575667,
+          "typical_uF": 1.6574706359513354,
+          "tolerance_minus10_temp_minus15_screen_uF": 1.2679650365027715
+        },
+        {
+          "Vdc": 24.4,
+          "delta_percent": -52.304982279988735,
+          "typical_uF": 1.049290389840248,
+          "tolerance_minus10_temp_minus15_screen_uF": 0.8027071482277897
+        }
+      ],
+      "impedance_graph_keys": [
+        {
+          "first": {
+            "x": "0.0001",
+            "y": "736.2585419374906"
+          },
+          "last": {
+            "x": "6000.000000000003",
+            "y": "5.4461318854433"
+          }
+        },
+        {
+          "first": {
+            "x": "0.0001",
+            "y": "7.774356330227882"
+          },
+          "last": {
+            "x": "6000.000000000003",
+            "y": "3.772105196176625"
+          }
+        }
+      ]
+    },
+    {
+      "part_family": "CL31B106KBHNNN",
+      "nominal_uF": 10,
+      "bias_conditions": {
+        "frequency_Hz": 1000,
+        "signal_Vrms": 1,
+        "temperature_C": 25
+      },
+      "points": [
+        {
+          "Vdc": 1.5,
+          "delta_percent": 2.331512886656414,
+          "typical_uF": 10.23315128866564,
+          "tolerance_minus10_temp_minus15_screen_uF": 7.828360735829214
+        },
+        {
+          "Vdc": 1.65,
+          "delta_percent": 2.291845863775823,
+          "typical_uF": 10.229184586377581,
+          "tolerance_minus10_temp_minus15_screen_uF": 7.82532620857885
+        },
+        {
+          "Vdc": 1.8,
+          "delta_percent": 2.1643806951868774,
+          "typical_uF": 10.216438069518688,
+          "tolerance_minus10_temp_minus15_screen_uF": 7.815575123181796
+        },
+        {
+          "Vdc": 3.6,
+          "delta_percent": -5.527811125400013,
+          "typical_uF": 9.447218887459998,
+          "tolerance_minus10_temp_minus15_screen_uF": 7.227122448906899
+        },
+        {
+          "Vdc": 7.75,
+          "delta_percent": -33.33201747180753,
+          "typical_uF": 6.666798252819246,
+          "tolerance_minus10_temp_minus15_screen_uF": 5.100100663406724
+        },
+        {
+          "Vdc": 12,
+          "delta_percent": -53.53630275024237,
+          "typical_uF": 4.646369724975763,
+          "tolerance_minus10_temp_minus15_screen_uF": 3.5544728396064587
+        },
+        {
+          "Vdc": 13.2,
+          "delta_percent": -57.93990250392262,
+          "typical_uF": 4.206009749607738,
+          "tolerance_minus10_temp_minus15_screen_uF": 3.21759745844992
+        },
+        {
+          "Vdc": 24.4,
+          "delta_percent": -79.37226495053605,
+          "typical_uF": 2.062773504946395,
+          "tolerance_minus10_temp_minus15_screen_uF": 1.5780217312839921
+        }
+      ],
+      "impedance_graph_keys": [
+        {
+          "first": {
+            "x": "0.0001",
+            "y": "173.785795168918"
+          },
+          "last": {
+            "x": "6000.000000000003",
+            "y": "7.695702083078348"
+          }
+        },
+        {
+          "first": {
+            "x": "0.0001",
+            "y": "2.634028544414764"
+          },
+          "last": {
+            "x": "6000.000000000003",
+            "y": "2.7467022334720217"
+          }
+        }
+      ]
+    }
+  ],
+  "native_pads": [
+    {
+      "board": "carrier",
+      "ref": "C1",
+      "footprint": "Capacitor_SMD:C_1206_3216Metric",
+      "position": [
+        "182",
+        "23"
+      ],
+      "pads": [
+        {
+          "number": "1",
+          "type": "smd",
+          "position": [
+            "-1.475",
+            "0"
+          ],
+          "size": [
+            "1.15",
+            "1.8"
+          ],
+          "net": [
+            "/12V"
+          ]
+        },
+        {
+          "number": "2",
+          "type": "smd",
+          "position": [
+            "1.475",
+            "0"
+          ],
+          "size": [
+            "1.15",
+            "1.8"
+          ],
+          "net": [
+            "/GND"
+          ]
+        }
+      ]
+    },
+    {
+      "board": "carrier",
+      "ref": "C11",
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "position": [
+        "74",
+        "77.86",
+        "90"
+      ],
+      "pads": [
+        {
+          "number": "1",
+          "type": "smd",
+          "position": [
+            "-0.95",
+            "0",
+            "90"
+          ],
+          "size": [
+            "1",
+            "1.45"
+          ],
+          "net": [
+            "/REF1"
+          ]
+        },
+        {
+          "number": "2",
+          "type": "smd",
+          "position": [
+            "0.95",
+            "0",
+            "90"
+          ],
+          "size": [
+            "1",
+            "1.45"
+          ],
+          "net": [
+            "/GND"
+          ]
+        }
+      ]
+    },
+    {
+      "board": "carrier",
+      "ref": "C21",
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "position": [
+        "98",
+        "71.865",
+        "-90"
+      ],
+      "pads": [
+        {
+          "number": "1",
+          "type": "smd",
+          "position": [
+            "-0.95",
+            "0",
+            "270"
+          ],
+          "size": [
+            "1",
+            "1.45"
+          ],
+          "net": [
+            "/REF2"
+          ]
+        },
+        {
+          "number": "2",
+          "type": "smd",
+          "position": [
+            "0.95",
+            "0",
+            "270"
+          ],
+          "size": [
+            "1",
+            "1.45"
+          ],
+          "net": [
+            "/GND"
+          ]
+        }
+      ]
+    },
+    {
+      "board": "carrier",
+      "ref": "C2",
+      "footprint": "Capacitor_SMD:C_1206_3216Metric",
+      "position": [
+        "182",
+        "51"
+      ],
+      "pads": [
+        {
+          "number": "1",
+          "type": "smd",
+          "position": [
+            "-1.475",
+            "0"
+          ],
+          "size": [
+            "1.15",
+            "1.8"
+          ],
+          "net": [
+            "/12V"
+          ]
+        },
+        {
+          "number": "2",
+          "type": "smd",
+          "position": [
+            "1.475",
+            "0"
+          ],
+          "size": [
+            "1.15",
+            "1.8"
+          ],
+          "net": [
+            "/GND"
+          ]
+        }
+      ]
+    },
+    {
+      "board": "pod",
+      "ref": "C3",
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "position": [
+        "35",
+        "44"
+      ],
+      "pads": [
+        {
+          "number": "1",
+          "type": "smd",
+          "position": [
+            "-0.95",
+            "0"
+          ],
+          "size": [
+            "1",
+            "1.45"
+          ],
+          "net": [
+            "/MIC_NODE"
+          ]
+        },
+        {
+          "number": "2",
+          "type": "smd",
+          "position": [
+            "0.95",
+            "0"
+          ],
+          "size": [
+            "1",
+            "1.45"
+          ],
+          "net": [
+            "/MIC_AC"
+          ]
+        }
+      ]
+    },
+    {
+      "board": "pod",
+      "ref": "C1",
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "position": [
+        "25.86",
+        "22.05"
+      ],
+      "pads": [
+        {
+          "number": "1",
+          "type": "smd",
+          "position": [
+            "-0.95",
+            "0"
+          ],
+          "size": [
+            "1",
+            "1.45"
+          ],
+          "net": [
+            "/12V"
+          ]
+        },
+        {
+          "number": "2",
+          "type": "smd",
+          "position": [
+            "0.95",
+            "0"
+          ],
+          "size": [
+            "1",
+            "1.45"
+          ],
+          "net": [
+            "/GND"
+          ]
+        }
+      ]
+    }
+  ]
+}

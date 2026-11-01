@@ -1,5 +1,39 @@
 # Crow exact-job order readiness
 
+## Publication handoff — r6, 2026-11-01
+
+User authorized publishing the r6 package/checklist to the existing
+`codex/crow-jlc-source-review-20261030` branch, with no purchases. Start with
+[MacBook instructions](substitutions-20261101/MACBOOK-START.md) and its portable
+payload check. The reviewed 94-file r6 is unchanged; raw manufacturer downloads
+and incidental KiCad preferences remain local. The public integrity check is not
+full engineering replay; external replay dependencies are explicitly documented.
+Earlier statements below describing uncommitted/local work are historical.
+
+## Current update — r6 reviewed substitutions, 2026-11-01 UTC / 2026-10-31 PDT
+
+User authorized replacements using find-substitute-part. Four identities are now
+changed in the separate working native sources and complete quote derivative:
+PCM1864DBTR/C544855 and Samsung CL21B105KBFNNNE/C28323,
+CL21B225KBYVPNE/C5362585, CL31B106KBHNNNE/C89632. Independent SOL 6.1 high
+reviews support the specific unchanged circuit roles and package integration.
+Exact fuse, CTS clock and RECOM module are retained with adequate dated DigiKey
+offers; use exact Global Sourcing candidates/approved consignment, not risky
+electrical substitutions. Their factory allocation remains unresolved.
+
+Scope stays 2 assembled carriers + 8 assembled pods on 5/10 fabricated boards;
+factory 478 SMT + 28 THT, home 18. [r6 package](quote-draft/r6-2c8p-substitutions/README.md)
+and [MacBook checklist](substitutions-20261101/HANDOFF.md) supersede r5 part
+identities/routes only. Existing stack/rail/stencil/process and quote holds remain.
+No saved vendor drafts were changed. Original release and r5 are preserved.
+
+[Validation](substitutions-20261101/VALIDATION.md): local engineering/integration
+reviews PASS; deterministic native/quote replay PASS; nine regression tests PASS;
+zero reported ERC, zero DRC and unconnected items on both boards; connectivity,
+Gerber and CPL preservation PASS. ERC uses unchanged inherited settings.
+This is not a new sealed release or complete stock/allocation/production approval.
+No purchases, reservations, vendor contacts, commit or push in this run.
+
 ## Current update — stackup follow-up, 2026-10-31
 
 Selected and verified the specified pod JLC04161H-7628 in its saved quote.
