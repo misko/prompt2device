@@ -1,5 +1,18 @@
 # JLC r5 exact-match check — 31 October 2026
 
+## Saved fabrication settings and incomplete price
+
+Reopened the saved PCB settings on 2026-10-31: carrier shows 5 fabricated,
+2 assembled, Economic and top-side assembly; pod shows 10 fabricated, 8
+assembled, Standard and top-side assembly. The carrier screen displayed
+$37.40 (including $25 engineering and $12.40 board); the pod displayed
+$14.00. Both screens showed dashes for components, SMT, hand-soldering and
+manual assembly, so these are incomplete preliminary figures, not PCBA
+quotes. Each separately displayed a $26.94 UPS Express Saver (DDP) shipping
+estimate; neither combined freight nor applicability to a complete assembly
+order is confirmed. The displayed times are not arrival dates. No settings
+were changed and no placement preview was obtained.
+
 ## RECOM mismatch found and contained
 
 In the existing carrier draft, JLC auto-matched U10 to `R-78E5.0-0.5`, JLC `C18212367`. The expanded **Part Info** panel identifies its manufacturer as **YLPTEC**, not the specified **RECOM Power**. This is a different-manufacturer component despite matching MPN text. The row had been selected by automatic BOM processing; it was **deselected** in the saved carrier draft. Its quantity is now zero and the row still shows the YLPTEC match: this is an unresolved required part, not an instruction to omit U10. Do not proceed via “Do not place”. The prior report's apparent $7.1126 line is the YLPTEC selection and is not a valid RECOM quotation.

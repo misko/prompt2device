@@ -1,5 +1,14 @@
 # Crow exact-job order readiness
 
+## Current update — saved PCB quantities and incomplete pricing, 2026-10-31
+
+The saved JLC drafts show 5 fabricated/2 assembled carriers and 10
+fabricated/8 assembled pods. Preliminary screens display $37.40 and $14.00
+respectively, with component and assembly charges still blank. Shipping is a
+separate estimate, and combined freight and arrival dates remain unknown.
+These figures are not complete PCBA quotes. See the
+[exact-match report](JLC-R5-EXACT-MATCH-20261031.md) for details and blockers.
+
 ## Current update — smaller RECOM sourcing candidate, 2026-10-31
 
 JLC Global Sourcing also displayed exact RECOM R-78E5.0-0.5 from DigiKey with
