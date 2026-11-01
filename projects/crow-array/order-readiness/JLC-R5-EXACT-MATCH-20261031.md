@@ -57,6 +57,25 @@ TI packing and package-label reconciliation, oscillator handling, actual stock,
 or factory acceptance. Both remain shortage rows; no selections or purchases
 were made in this check.
 
+### Manufacturer evidence for oscillator and ADC package
+
+The [CTS CB3/CB3LV datasheet, revision K](https://www.ctscorp.com/Files/DataSheets/Passives/FCP/Clock-Oscillators/clock-ocillators-CB3_CB3LV-datasheet.pdf),
+page 4, identifies a surface-mount package and specifies reflow per J-STD-020,
+with a maximum of 260°C for 20 seconds; it lists MSL 1. Page 6 includes the
+12.288 MHz frequency. This supports reflow as a manufacturer-documented
+process for the specified series, despite JLC's Wave Soldering label; it does
+not establish why JLC uses that label or that JLC will apply an acceptable
+profile. Obtain JLC's confirmation and retain all other process controls.
+
+The [TI PCM1864 datasheet](https://www.ti.com/lit/ds/symlink/pcm1864.pdf)
+identifies PCM1864DBT as a 30-pin DBT TSSOP in tubes. Its DBT0030A drawing
+specifies a 4.3–4.5 mm body width, 7.75–7.85 mm length and 0.5 mm lead
+pitch, consistent with the r5 BOM's `TSSOP-30_4.4x7.8mm_P0.5mm` footprint
+description and the 175-mil (4.445 mm) width in JLC's package label. This is
+a nominal-dimension reconciliation, not verification of land pattern, pin-1
+orientation, lot packaging or assembly preview. The exact `PCM1864DBT` suffix
+remains required; JLC's source and handling must still be confirmed.
+
 ## Draft support inquiry — UNSENT
 
 > Please provide an informational, non-binding assessment only for our existing PCBA drafts: two assembled carriers and eight assembled pods, including all 478 SMT placements and 28 through-hole placements. Please do not reserve or purchase stock, substitute parts, create a noncancelable procurement quotation, charge us, or start production. If a requested answer requires one of these actions, identify that boundary first.

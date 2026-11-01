@@ -1,5 +1,15 @@
 # Crow exact-job order readiness
 
+## Current update — CTS and ADC manufacturer checks, 2026-10-31
+
+The CTS CB3LV series datasheet documents reflow up to 260°C for 20 seconds,
+which supports reflow for this oscillator despite JLC's wave-soldering label;
+JLC's actual process remains unconfirmed. TI's PCM1864DBT package drawing is
+nominally consistent with the r5 footprint dimensions and JLC's 175-mil label;
+land pattern and orientation still require review. See the
+[exact-match report](JLC-R5-EXACT-MATCH-20261031.md). No sourcing, preview or
+factory-acceptance hold is closed by these checks.
+
 ## Current update — saved PCB quantities and incomplete pricing, 2026-10-31
 
 The saved JLC drafts show 5 fabricated/2 assembled carriers and 10
