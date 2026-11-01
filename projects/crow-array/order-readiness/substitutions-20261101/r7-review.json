@@ -1,0 +1,60 @@
+{
+  "date": "2026-11-01",
+  "decision": "PASS_FOR_QUOTE_REVISION",
+  "scope": "Engineering desk qualification for controlled prototype quotation, not physical qualification, factory acceptance or production release",
+  "reviewer": "Primary agent; no independent adversarial review claimed",
+  "authority": "User requested qualification and, if passing, quote-package update for 2 carriers and 8 pods. No purchases.",
+  "production_ready": false,
+  "cts_unchanged": true,
+  "bound_inputs": {
+    "substitutions-20261101/quote-reconciliation-20261101/candidate-observations.json": "bee7080d6572a236e352346a2a7b8296bab222d766152ee3b562e4ebd9029b8d"
+  },
+  "sources": {
+    "lute": "https://atta.szlcsc.com/upload/public/pdf/source/20240318/5A22D9BB0BD0A87D0C930C7F021BC012.pdf",
+    "traco": "https://datasheet.lcsc.com/datasheet/pdf/b086eec99820b18ef472dfe38fa17d0f.pdf?productCode=C5966845",
+    "traco_current_official_index": "https://www.tracopower.com/tsr1-datasheet",
+    "lute_current_family_listing": "https://www.lutefuse.com/product/page/2",
+    "jlc_process_policy": "https://jlcpcb.com/help/article/pcb-assembly-faqs-part-2"
+  },
+  "retained_source_hashes": {
+    "first-run-r3-source/INTERFACE-DESIGN.md": "da08b04da596410ba3ea16ab806a8568eaeb629135150124202b365babec16f5",
+    "ls43-mating/controls.md": "275e474cd6d9299e2b9791ba002f12e9ab1acba53e0eb7b048b4c6257dc529c4",
+    "lute_datasheet": "c0ee36cc49cd915959d144cfc5571e3c9e1ab15da32038b2898cd2345db9e132",
+    "traco_datasheet": "66fc2418b101215106c7d60f1dd1f4ffeabaf644ba00babd2bff864ec8ae7e6a"
+  },
+  "lifecycle": "Manufacturer family listings remain current; no EOL evidence found in bounded check. Exact manufacturer lifecycle declarations were not obtained; do not label unknown exact status as confirmed active.",
+  "lute": {
+    "classification": "same-footprint candidate",
+    "result": "PASS for prototype quote under explicit process and validation controls",
+    "need": 24,
+    "electrical": "30 V / 40 A / 0.10 A hold / 0.25 A trip preserve required protection class. Maximum stated trip time at 0.5 A becomes 1.0 s; this does not establish cold-temperature trip timing or unlimited repeated faults.",
+    "power": "At 60 C, table hold 70 mA exceeds planned 50 mA including calibration buzzer. Non-buzzer load approximately 20 mA has additional margin. The table is a one-hour/one-reflow test basis, not a continuous-life guarantee. Retain hot steady-load, startup and recovery tests.",
+    "voltage": "R1max increases 10 -> 15 ohms. Applying the prior 2x hot resistance sensitivity factor yields 30 ohms each: 9.8 - .05*(30+30+1) = 6.75 V at pod, above the regulator and buzzer requirements. This is an engineering allowance to validate, not a hot resistance maximum from the manufacturer.",
+    "land": "Existing 2.8-mm center spacing matches recommended spacing. Existing 1.25 x 1.75-mm pads differ from recommended 1.0 x 1.8; terminal overlap remains for 3.0..3.6-mm length, 1.5..1.9-mm width and minimum 0.1-mm terminal. Preserve paste; inspect solder rather than claim maker-identical lands.",
+    "body": "Use 3.6 x 1.9 x 1.2-mm maximum, not old 3.4 x 1.8 envelope. Expanded planar screen +/-2.0 x +/-1.15 mm clears neighboring footprint bounds: minimum 1.675 mm carrier and 0.575 mm pod before additional neighbor pose allowance. These exceed the retained 0.1-mm neighbor translation and small 1-degree body rotation allowances.",
+    "process": "Require one qualified reflow within maker curve, no whole-board wave exposure, no solvent wash or coating without compatibility evidence. No routine hot-air/hand rework on the PTC. Record and quarantine a process deviation. Do not interpret general solvent test as blanket cleaning permission. Factory process confirmation remains a production gate."
+  },
+  "traco": {
+    "classification": "same-footprint candidate with corrected body graphics and CPL center",
+    "result": "PASS for prototype quote under existing controlled free-lead and explicit new process/bench controls",
+    "need": 2,
+    "electrical": "6.5..36 V input covers protected 9.8-V low line and existing pulse model. 5-V/1-A output supports 300-mA allocation; at 85 C derated 400 mA still exceeds allocation, without expanding the 60-C enclosure requirement. Existing <=220-uF converter load bound is below 470-uF maximum; no minimum load required.",
+    "dynamics": "Maintain 1-A input fuse and 630-mA full-array planning; 1.6-A slow-blow maker recommendation is for the module application/full output, not an instruction to enlarge this board fuse. Startup/inrush is not bounded by the datasheet; verify actual current-time waveform and fuse survival on first articles. Typical 250% output limiting is not a guaranteed fault-current ceiling. Automatic recovery may brown out the array; uninterrupted recording during faults was never promised.",
+    "voltage_model": "At -20..60 C, add set/line/load/temp terms conservatively: 5*(1+.02+.002+.004+.00015*45)=5.16375 V. Add .05 V startup, .2 V specified load-step excursion and .05 V engineering ripple-peak allowance -> 5.46375 V before D2, below Pico VSYS 5.5 V. Not an all-state guaranteed bound: ripple is typical and specified test conditions apply. Reject excessive measured VSYS peaks, repeated resets or audio noise. D2 retains USB/backfeed isolation topology; power-off behavior remains an actual waveform test.",
+    "pins": "Actual pads 1=/12V, 2=/GND, 3=/5V at 2.54-mm pitch. Maximum pin section .55 x .30 mm fits existing finished-hole minimum .92 mm with combined prepared-center error <=.10 mm: .92/2 - hypot(.55,.30)/2 - .10 = .04675 mm radial clearance. Do not add pitch tolerance again after measured combined preparation; do not assume rigid worst-pitch insertion.",
+    "mechanical": "Retain 1-mm drills, 1.5 x 2.3 pads, finished holes .92..1.13 mm, actual annulus >=.13 mm, supported free-lead preparation away from case and force-free insertion. No unvalidated forming or pin thinning. Nominal body center from bottom-view drawing is anchor+(2.53,-1.75); native (184.53,36.25), CPL (184.53,-36.25), rotation zero. Control measured body center radial error <=.10 mm and total tilt/rotation <=1 degree; maximum body 12.2 x 8.0 x 10.6 mm. Conservative body/pose box relative anchor [-4.05,-6.25]..[9.1,2.75] clears nearest other footprint bounds by >1.3 mm. Inspect seated height and tails under inherited underside controls. Original RECOM 3D model is removed, not silently reused as TRACO.",
+    "process": "Manufacturer specifies lead-free wave at <=265 C and <=10 s. Request a localized compatible THT process without exposing other parts to wave/reflow or washing. If JLC proposes hand solder under its Wave label, obtain process-specific compatibility evidence before production; a wave limit is not an iron-tip limit. This quote does not preapprove that method."
+  },
+  "before_production": [
+    "JLC exact matching, replacement-specific gross demand, allocation, fees and usable dates",
+    "JLC acceptance of reflow/no-wash/PTC handling and exact TRACO THT process",
+    "Placement previews including revised U10 center and pin orientation",
+    "All retained carrier stackup, pod rails, mechanical, stencil and inspection controls",
+    "Affected independent engineering/release review; no old release acceptance transfer"
+  ],
+  "after_first_article_before_deployment": [
+    "Full 8-pod hot load and calibration startup; PTC heating, voltage drop and fault recovery",
+    "12-V ramp/removal/restart, USB-only/both/unplug and converter short-recovery waveforms",
+    "Input-fuse inrush survival, VSYS peak <5.5 V, thermal and acquisition noise checks"
+  ]
+}

@@ -1,0 +1,83 @@
+{
+  "boards": {
+    "carrier": {
+      "connectivity": "UNCHANGED",
+      "drc_violations": 0,
+      "erc_violations": 0,
+      "exact_changed_refs": [
+        "F101",
+        "F102",
+        "F103",
+        "F104",
+        "F105",
+        "F106",
+        "F107",
+        "F108",
+        "U10"
+      ],
+      "inherited_erc_disabled_checks": [
+        {
+          "description": "Global label only appears once in the schematic",
+          "key": "single_global_label"
+        },
+        {
+          "description": "Four connection points are joined together",
+          "key": "four_way_junction"
+        },
+        {
+          "description": "SPICE model issue",
+          "key": "simulation_model_issue"
+        },
+        {
+          "description": "Assigned footprint doesn't match footprint filters",
+          "key": "footprint_filter"
+        }
+      ],
+      "unconnected": 0
+    },
+    "pod": {
+      "connectivity": "UNCHANGED",
+      "drc_violations": 0,
+      "erc_violations": 0,
+      "exact_changed_refs": [
+        "F1"
+      ],
+      "inherited_erc_disabled_checks": [
+        {
+          "description": "Global label only appears once in the schematic",
+          "key": "single_global_label"
+        },
+        {
+          "description": "Four connection points are joined together",
+          "key": "four_way_junction"
+        },
+        {
+          "description": "SPICE model issue",
+          "key": "simulation_model_issue"
+        },
+        {
+          "description": "Assigned footprint doesn't match footprint filters",
+          "key": "footprint_filter"
+        }
+      ],
+      "unconnected": 0
+    }
+  },
+  "kicad": "10.0.4",
+  "manifest_sha256": "765b066dacf03d34d038cc2e29ef78abf749b91de29a678113f6661d265ce835",
+  "production_ready": false,
+  "raw_reports": {
+    "carrier-drc.json": "03dfff0f9d2b9066a74b1afb221f9c9c156b98bd3b5eb0bb2e840e9244b54bef",
+    "carrier-erc.json": "1795db865e0964e1d1465dea307466f095677f922c6dbba4539ae596b3b09da2",
+    "carrier-r6.xml": "ace410d7029e667dcd17a4317232bbc443dc46826032690b1c9574375d2504f7",
+    "carrier-r7.xml": "3f7876a356cc74f6240ecd547196c148bc3bca4f29d678886426e9ddf7e54ea6",
+    "carrier-schematic.pdf": "d3427cf0d7ef924b0e64f2f428a7c3f9de632aa654901af2244d21250ba19fbf",
+    "pod-drc.json": "85d9bc6de0b5f45381c884c54082b5123659061cd62b9bdfd2cacc75d4cbe8c8",
+    "pod-erc.json": "519703d33fd15734a712b5bf5c2fec4b64f2f6de2f734138f21807defb592938",
+    "pod-r6.xml": "730506d9c4bac27a0de30fc0f280937d9b0edb79ca3cfce8a1edc3aea9f2f788",
+    "pod-r7.xml": "1f3f66a4f76bd5a264b382392fede2bf8982f71bef80672634f0afe0e8deaaf6",
+    "pod-schematic.pdf": "d78d3ed7beb6bd6cfa6db64a8cedb66e59c4882c4a747a2c85f3ca356739d892"
+  },
+  "result": "PASS",
+  "validator_sha256": "1ca9fb00060ffd24dcd8194a4dcb967be7e3535ecc35de3ef2619b2f1925bcdb"
+}

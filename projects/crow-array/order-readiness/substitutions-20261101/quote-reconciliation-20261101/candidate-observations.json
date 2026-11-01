@@ -1,0 +1,40 @@
+{
+  "observed_date": "2026-11-01",
+  "timezone": "America/Los_Angeles",
+  "method": "signed-in browser, read-only ordinary JLC catalog and order-parts screen",
+  "browser_run_ids": ["4f987133-79b2-4f68-b7ee-5f655af642ab", "bc7205e6-7282-45b7-a9cc-eee31ac19789"],
+  "evidence_limit": "Browser-agent observations; no returned screenshots, stock allocation or usable warehouse date. Do not treat active Add as production acceptance.",
+  "parts": [
+    {
+      "manufacturer": "LUTE", "mpn": "1206L010/30NR", "jlc_code": "C7542926",
+      "url": "https://jlcpcb.com/partdetail/C7542926",
+      "installed_need": 24, "carrier_installed": 16, "pod_installed": 8,
+      "stock_shown": 33902, "available_order_qty": 33897,
+      "source_shown": "JLCPCB", "moq": 1, "unit_price_usd_at_1_plus": 0.0393,
+      "preorder_indicator_seen": false, "assembly_label": "SMT Assembly", "category": "Extended",
+      "gross_job_need": null, "warehouse_ready_date": null,
+      "classification": "same-footprint candidate", "fully_qualified": false,
+      "disposition": "recommend conditional quote review; land/process checks and prototype validation retained"
+    },
+    {
+      "manufacturer": "TRACO POWER", "mpn": "TSR 1-2450", "jlc_code": "C6886877",
+      "url": "https://jlcpcb.com/partdetail/C6886877",
+      "installed_need": 2, "carrier_installed": 2, "pod_installed": 0,
+      "stock_shown": 267, "available_order_qty": 167,
+      "source_shown": "JLCPCB", "moq": 1, "unit_price_usd_at_1_plus": 6.4959,
+      "preorder_indicator_seen": false, "assembly_label": "Wave Soldering", "category": "Extended",
+      "gross_job_need": null, "warehouse_ready_date": null,
+      "classification": "same-footprint candidate", "fully_qualified": false,
+      "disposition": "recommend conditional quote review; footprint/process and startup/fault checks retained"
+    }
+  ],
+  "rejected_browser_inferences": ["stock plus active Add guarantees immediate exact-job assembly", "TRACO is SMT"],
+  "cts_clock_unchanged": true,
+  "adopted": false,
+  "draft_changes": false,
+  "purchases_reservations_or_vendor_messages": false,
+  "datasheet_sha256": {
+    "LUTE_2020": "c0ee36cc49cd915959d144cfc5571e3c9e1ab15da32038b2898cd2345db9e132",
+    "TRACO_2023_09_20": "66fc2418b101215106c7d60f1dd1f4ffeabaf644ba00babd2bff864ec8ae7e6a"
+  }
+}

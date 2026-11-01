@@ -1,0 +1,122 @@
+Crow r7: create TWO NEW JLCPCB quote-only drafts from scratch
+
+Repository: https://github.com/misko/prompt2device
+Shared branch: codex/crow-jlc-source-review-20261030
+Use the commit supplied with this handoff; do not use an older cached r6 package.
+Preserve all existing checkout changes. Fetch the branch and prefer a fresh,
+isolated worktree. Do not reset, clean, force-push or merge into main.
+
+AUTHORITY
+Create new non-binding drafts, upload the exact files, inspect/select exact
+component matches when this does not reserve stock, and inspect quote/placement
+information. No purchases, payment, stock reservations, noncancelable pre-orders,
+vendor messages, substitutions, production approval or manufacturing commitment.
+Do not place an unpaid order: JLC says order placement occupies stock.
+Stop at any control that crosses these boundaries; report what it requires.
+Keep existing Crow drafts untouched. Do not clone their component selections.
+
+START
+Read projects/crow-array/order-readiness/STATUS.md and:
+  quote-draft/r7-2c8p-stocked-power/README.md
+  quote-draft/r7-2c8p-stocked-power/qualification.json
+Paths below are relative to projects/crow-array/order-readiness/.
+From repository root, run:
+  python3 projects/crow-array/order-readiness/r7_quote.py verify
+Expected: PASS, 97 files, production_ready false. This portable integrity/replay
+check needs Python, not KiCad. It does NOT refresh stock or approve production.
+Optional tests:
+  python3 -B -m unittest discover -s projects/crow-array/order-readiness -p 'test_*quote.py'
+
+NEW DRAFTS / EXACT UPLOADS
+Use quote-draft/r7-2c8p-stocked-power/ as the authoritative directory.
+
+1. New carrier draft, suggested name Crow-r7-carrier-2assembled:
+   carrier-gerbers.zip + carrier-bom.csv + carrier-cpl.csv
+   Fabricate FIVE bare boards; assemble TWO. Top-side Standard PCBA.
+   Expected nominal board: 200 x 100 mm, four layers; verify Gerber-derived data.
+2. New pod draft, suggested name Crow-r7-pod-8assembled:
+   pod-gerbers.zip + pod-bom.csv + pod-cpl.csv
+   Fabricate TEN bare boards; assemble EIGHT. Top-side Standard PCBA.
+   Expected nominal board: 85 x 78 mm, four layers; verify Gerber-derived data.
+
+BOM/CPL rows are per ONE board. Set fabricated/assembled quantities separately
+in the portal. Do not multiply CSV quantities. A convenience subset is
+quote-draft/crow-r7-new-drafts-upload-only.zip; extract it first. Do not upload
+that OUTER ZIP as Gerbers. It contains the two correct inner Gerber ZIPs,
+four CSV upload files and four supporting files, not the full native package.
+Outer kit SHA256:
+3e8f761dbb7a1d3b2c3af4c0781062a20c5f479789a209a28f21312fba106ae6
+
+IDENTITY AND COVERAGE AUDIT
+Read every BOM row, not just shortage counters. Carrier has 30 grouped BOM rows,
+137 required factory placements per board; pod has 21 rows, 29 placements.
+Check each designator group's exact manufacturer, full MPN, package, code and
+quantity against its CSV. Keep all required parts in scope. An unavailable part
+is a HOLD, never permission for Do not place/DNP. Do not approve a wrong-maker
+match even when the MPN text looks identical.
+
+Explicit current replacements (already reviewed; no new substitutions):
+  LUTE 1206L010/30NR / C7542926: carrier F101..F108 and pod F1; 24 installed.
+  TRACO POWER TSR 1-2450 / C6886877: carrier U10; two installed.
+  TI PCM1864DBTR / C544855: carrier U1/U2; four installed.
+  Samsung CL21B105KBFNNNE / C28323: carrier C11/C21 and pod C3; 12 installed.
+  Samsung CL21B225KBYVPNE / C5362585: pod C1; eight installed.
+  Samsung CL31B106KBHNNNE / C89632: carrier C1/C2; four installed.
+Retain CTS CB3LV-3I-12M288000, carrier X1; two installed. Exact sourcing is still
+open. Its public code may be blank in the BOM for exact Global/consignment
+matching; blank code does NOT mean omit the part. Do not acquire it yet.
+Reject the old YLPTEC C18212367 regulator; r7 requires TRACO, not RECOM/YLPTEC.
+All other identities come from the r7 CSVs; this list is NOT the whole BOM.
+
+Factory totals: 478 SMT + 28 THT = 506 placements across the batch.
+Factory THT: 24 RJ jacks + two power jacks + two TRACO modules.
+Home: two original SC0915 Picos, eight CMA-4544PF-W microphones, eight CPE-203
+buzzers. These 18 are intentionally excluded from JLC upload BOMs; preserve the
+home-install list and controlled Pico D1-only removal instructions. No other
+part may be moved home to bypass a shortage. Full procurement list: 38 identities.
+
+PLACEMENT AND PROCESS
+Carrier U10 has a NEW body-center coordinate: X184.530, Y-36.250 mm, rotation 0,
+Top. Actual PCB anchor remains (182,38). Pins 1 VIN, 2 GND, 3 VOUT left-to-right;
+body mostly native -Y. Use r7 carrier CPL, never r6. Inspect the physical preview
+against numbered pins/pads, not only the red dot. All other CPL rows and both
+Gerber ZIPs are unchanged. LUTE is nonpolar; still verify both lands and centers.
+Do not auto-approve any placement or production preview.
+
+Read and preserve ALL README/qualification process requirements. In particular:
+  LUTE: controlled reflow, no unqualified wash/coating or routine PTC rework.
+  TRACO: process must be compatible with its maker limit (wave 265 C / 10 s).
+  JLC's Wave label does not approve generic hand soldering. Record actual method
+  and whether acceptance is explicit; do not convert a library category into
+  engineering approval. Do not send a vendor inquiry without user authority.
+  Retain controlled free-lead preparation, hole/annulus/pose/seat inspection.
+
+FABRICATION SETTINGS / OPEN HOLDS
+Preserve ENIG and precision-outline intent, carrier JLC04161H-7628A and pod
+JLC04161H-7628, retained stencil/mask and full mechanical controls. Do not
+silently replace them with defaults. The carrier 1.5542-mm +/-10% stackup
+acknowledgement remains unresolved: capture the warning and stop that action
+rather than accepting it. If quote progression is blocked, save the available
+draft state and report the exact boundary.
+Review proposed pod rails, finished edges and depaneling; old drafts had two
+5-mm rails retained at delivery. Do not treat that old selection as accepted.
+Keep production-file and placement reviews set to Do not confirm automatically
+where offered. Do not approve manufacturing data, disclaimers or waived tolerances.
+
+QUOTE AND EVIDENCE
+Record installed demand separately from JLC gross/loading/attrition quantities,
+MOQ/order multiples, stock pool, sourcing fees, currency and usable warehouse
+dates. Prior observed stock is not allocation. CTS may still set lead time.
+Do not combine potentially overlapping public/account/Global pools.
+Obtain itemized PCB fabrication, components, SMT/THT labor, setup/stencil,
+sourcing, shipping and tax, where non-binding controls permit. A board-screen
+price excluding parts/assembly is not a complete PCBA quote.
+
+Return both NEW draft names and exact navigable URLs; fabricated/assembled
+counts; row-by-row identity exceptions; current shortages; actual placement
+preview status; process/mechanical holds; itemized prices/dates and unknowns.
+Save a dated session report and update STATUS, distinguishing observed evidence
+from inferred eligibility. Do not store cookies, credentials or unrelated account
+data. State every draft mutation. Do not claim completion just because uploads
+parsed. A file upload, matched BOM, full quote and production approval are
+different states. Leave the drafts unsubmitted and report back; no purchases.

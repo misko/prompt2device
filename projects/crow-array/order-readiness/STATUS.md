@@ -1,5 +1,134 @@
 # Crow exact-job order readiness
 
+## Publication handoff — r7 new drafts, 2026-11-01
+
+User authorized publishing r7 and instructions to the existing shared review
+branch `codex/crow-jlc-source-review-20261030`, not main. Start with
+[MacBook agent instructions](MACBOOK-R7-NEW-DRAFTS.txt). The next action is
+creation of TWO NEW JLC quote-only drafts with exact r7 files, leaving earlier
+drafts untouched. This publication carries the package, upload kit, bounded
+qualification, sourcing observations, validation, generator/tests and history.
+Earlier local-only notes are historical once this commit is verified remotely;
+publication itself does not upload anything to JLC or approve production.
+Publication check retains the exact hash-bound native payload, including blank-
+line whitespace in inherited/generated KiCad files; staged whitespace checking
+reports those lines. The check passes outside that native payload. This cosmetic
+finding does not alter package identities, copper or validation receipts.
+
+## Current update — fresh-draft request and upload kit, 2026-11-01
+
+User now requests NEW JLC drafts from scratch, not modification of the saved
+r6 drafts. No new JLC draft was created: TinyFish's confirmed file-transfer
+limitation prevents uploading exact Gerbers/BOM/CPL. Do not reuse old component
+selections or claim an empty draft contains r7. Existing drafts are untouched.
+
+Prepared [upload-only kit](quote-draft/crow-r7-new-drafts-upload-only.zip): six
+exact r7 Gerber/BOM/CPL files plus README, qualification, procurement and home
+installation lists. This is a ten-file upload subset, not the full native/replay
+package. Extract the outer ZIP; upload each board's inner Gerber ZIP and matching
+BOM/CPL separately. CRC/byte checks passed against r7; full 97-file r7 replay
+also passed. Kit SHA256:
+`3e8f761dbb7a1d3b2c3af4c0781062a20c5f479789a209a28f21312fba106ae6`.
+
+Factory coverage verified: 137 placements/carrier and 29/pod; full batch 478
+SMT + 28 THT + 18 home, 38 procurement identities. Zero-population mechanical
+scope rows remain, not extra installed components. Final fuse/regulator and
+unchanged CTS identities are retained. Scope is still 5/2 carriers and 10/8 pods
+(fabricated/assembled). A browser/file-transfer handoff is needed to create
+the two new jobs, after which TinyFish can inspect the exact draft URLs. No
+purchases, reservations, vendor messages, approvals or remote push.
+
+## Current update — TinyFish access checked, 2026-11-01
+
+User prefers TinyFish over MacBook operation. Signed-in TinyFish reached both
+saved PCBA drafts. Read-only access run `98140db6-9e69-4263-87c6-984813a725cf`
+mixed carrier/pod quantities and row counts; do not use its carrier quantity.
+Single-carrier verification `9ea05ff7-fe85-46f9-b90c-77f77e98a51f` reported
+PCBA quantity 2, CTS X1 shortage 2 and the old C18212367 regulator match still
+deselected. It did not verify fabrication counts, dimensions or stack settings.
+The first pass reported pod assembly quantity 8, but its duplicated BOM summary
+is untrusted. Neither run supplied screenshot evidence.
+
+TinyFish can navigate/inspect these drafts but explicitly reported that this
+automation session lacks CSV/file-upload transfer tools (including from supplied
+content or HTTPS URLs). A visible Upload BOM/CPL button does not establish tool
+upload support. r7 is NOT uploaded; drafts unchanged. A manual upload of the
+matching r7 BOM/CPL pairs from a browser with file access remains the narrow
+handoff; MacBook specifically is not required. TinyFish can then inspect matches,
+stock, placement availability and quote information within existing authority.
+No purchases, reservations, vendor messages, acknowledgements or approvals.
+
+## Current update — r7 qualified quote derivative, 2026-11-01
+
+User authorized completing qualification and adopting passing parts into a
+2-carrier/8-pod quote, with CTS unchanged and no purchases. LUTE 1206L010/30NR
+and TRACO TSR 1-2450 passed engineering desk review for controlled prototype
+quotation, with explicit factory-process and first-article gates. They are now
+in [r7](quote-draft/r7-2c8p-stocked-power/README.md): 24 fuses and two regulators.
+Fabrication remains five carriers/ten pods; assembly two/eight. CTS, home scope
+and all four r6 substitutions are retained. The existing JLC drafts remain r6.
+
+Both Gerber ZIPs, all copper/drills/mask/paste/silkscreen and connectivity remain
+unchanged. U10 gets corrected non-fabricated body/courtyard graphics, a new
+footprint ID and CPL body center (184.530,-36.250) mm; the old RECOM 3D model
+is removed rather than reused. The pod CPL and all other carrier rows are unchanged.
+Quote-owned native metadata, scope/procurement/THT tables are reconciled.
+
+Validation: 35 quote regression tests pass (including seven r7 tests), fresh
+KiCad ERC/DRC reports show zero violations and zero unconnected items under
+retained ERC settings; netlists unchanged and source/PCB/BOM identities agree.
+Deterministic replay passes 97 r7 files; all 94 r6 files still verify. See
+[qualification](substitutions-20261101/r7-review.json) and
+[validation receipt](substitutions-20261101/r7-validation/result.json).
+
+No independent adversarial review, hardware tests or factory-process acceptance
+is claimed. Exact stock allocation, CTS sourcing, previews, stackup/rails,
+mechanical/stencil controls and complete price remain open. No account changes,
+purchases, reservations, vendor messages or manufacturing commitments. Local
+only: r7 has not been committed or pushed.
+
+## Current update — LUTE/TRACO candidate qualification, 2026-11-01 Pacific
+
+Read-only signed-in regular-catalog checks reported 33,897 available-to-order
+LUTE C7542926 fuses and 167 TRACO C6886877 regulators, both ordinary in-stock
+assembly-library items with no pre-order indicator. Installed need is 24 / 2.
+These are not allocated stock or confirmed job dates. Retain CTS unchanged.
+Bounded electrical/layout review recommends both for a subsequent quote
+revision, with explicit process, footprint and prototype-validation conditions;
+neither is fully accepted/adopted. See the
+[candidate review](substitutions-20261101/THREE-PARTS-HANDOFF-20261101.md#lutetraco-stock-and-qualification--2026-11-01-pacific)
+and normalized evidence. No BOM/CPL/CAD/draft changes, purchases, reservations,
+vendor messages or manufacturing approval. Current continuation is local only.
+
+## Current update — signed-in sourcing follow-up, 2026-11-01 Pacific
+
+Secure sign-in worked. The direct Global Sourcing search still lists the exact
+DigiKey fuse, CTS and RECOM offers with reported supplier quantities
+45,522 / 1,449 / 32,691 and 8–14-business-day ranges; none establishes usable
+JLC inventory. Clock/regulator unit-price arithmetic supports the old $4.28
+and $9.69 illustrations; fuse quantity-specific pricing remains unverified.
+Rejected the browser agent's inconsistent assembly-warning interpretation:
+hidden tooltip text and zero attrition do not prove rejection or acceptance.
+The existing Crow drafts were not reached; fees, eligibility, dates, previews,
+full quote and mechanical/process holds remain open. See the
+[signed-in follow-up](substitutions-20261101/THREE-PARTS-HANDOFF-20261101.md#signed-in-follow-up--2026-11-01-pacific).
+No account/draft changes, purchases, reservations, substitutions or vendor
+messages. Reports are local; not committed or pushed in this continuation.
+
+## Current update — r6 quantity/policy reconciliation, 2026-11-01
+
+Continued from `75447f43`; retained the r6 package unchanged. Public checks
+do not establish enough usable stock for the exact fuse, CTS clock or RECOM.
+Reconciled 24 installed fuses versus 28 last-displayed gross and 30 in the
+historical price illustration; the extra two are not an approved requirement.
+Recorded source-pool restrictions, conditional sourcing fees and the explicit
+no-unpaid-order workaround: JLC says assembly order placement occupies stock.
+See [reconciliation and read-only checklist](substitutions-20261101/THREE-PARTS-HANDOFF-20261101.md#backend-reconciliation--2026-11-01).
+Current account quantities, charges, usable dates, exact assembly eligibility,
+previews and full quote remain open. Secure browser sign-in setup was authorized
+and offered; session save is pending. No purchases, reservations, vendor
+messages, substitutions, draft changes or manufacturing commitments.
+
 ## Current update — three-part visual handoff, 2026-11-01 Pacific
 
 Added [images, dated sourcing observations and a ready-to-paste backend

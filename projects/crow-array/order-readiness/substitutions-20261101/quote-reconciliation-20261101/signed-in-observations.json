@@ -1,0 +1,69 @@
+{
+  "observed_date": "2026-11-01",
+  "timezone": "America/Los_Angeles",
+  "method": "TinyFish signed-in read-only browser reports; screenshots not returned",
+  "source_url": "https://jlcpcb.com/user-center/smtPrivateLibrary/orderParts/?global=1",
+  "runs": {
+    "inventory": "233d40f4-6daf-4ac9-a08f-d5e17bc58af8",
+    "offers": "c050a093-73ea-4aba-ab2a-f81b2e08b7ca",
+    "warning_verification": "5307f0cb-1104-4c04-80d0-6a631b60f4d5"
+  },
+  "signed_in_access_confirmed": true,
+  "existing_crow_drafts_reached": false,
+  "target_parts_found_in_visible_private_inventory": false,
+  "offers": [
+    {
+      "manufacturer": "Littelfuse",
+      "mpn": "1206L010/30WR",
+      "supplier": "DigiKey",
+      "supplier_sku": "18-1206L010/30WRCT-ND",
+      "packing": "Cut Tape",
+      "supplier_stock_reported": 45522,
+      "moq": 1,
+      "estimated_attrition_field": 2,
+      "minimum_assembly_quantity_field": 2,
+      "lead_time_business_days": [8, 14],
+      "reported_visible_unit_price_tiers_usd": {"1": 0.9535, "5": 0.7859},
+      "price_tiers_complete": false,
+      "confirmed_28_or_30_piece_total_usd": null
+    },
+    {
+      "manufacturer": "CTS",
+      "mpn": "CB3LV-3I-12M288000",
+      "supplier": "DigiKey",
+      "supplier_sku": "110-CB3LV-3I-12M288000CT-ND",
+      "packing": "Cut Tape",
+      "supplier_stock_reported": 1449,
+      "moq": 1,
+      "estimated_attrition_field": 0,
+      "minimum_assembly_quantity_field": 0,
+      "lead_time_business_days": [8, 14],
+      "reported_visible_unit_price_tiers_usd": {"1": 2.1389, "10": 1.8541},
+      "two_piece_arithmetic_usd_rounded": 4.28
+    },
+    {
+      "manufacturer": "RECOM",
+      "mpn": "R-78E5.0-0.5",
+      "supplier": "DigiKey",
+      "supplier_sku": "945-1648-5-ND",
+      "packing": "Tube",
+      "supplier_stock_reported": 32691,
+      "moq": 1,
+      "estimated_attrition_field": 0,
+      "minimum_assembly_quantity_field": 0,
+      "lead_time_business_days": [8, 14],
+      "reported_visible_unit_price_tiers_usd": {"1": 4.8447, "5": 4.6695},
+      "two_piece_arithmetic_usd_rounded": 9.69
+    }
+  ],
+  "assembly_eligibility": "unverified for all three exact offers",
+  "warning_evidence": "Reports contradicted themselves about hovering and visibility. Final caveat says no hover-trigger occurred and warning text was in hidden display:none popovers; no screenshots returned. Do not treat this as a visible rejection or infer eligibility from attrition fields.",
+  "fees_confirmed": false,
+  "usable_warehouse_dates_confirmed": false,
+  "per_job_gross_quantities_refreshed": false,
+  "source_pool_allocation_confirmed": false,
+  "complete_placement_previews_obtained": false,
+  "complete_pcba_quote_obtained": false,
+  "account_changes_reported": false,
+  "purchases_reservations_vendor_messages": false
+}
