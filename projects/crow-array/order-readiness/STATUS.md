@@ -1,5 +1,17 @@
 # Crow exact-job order readiness
 
+## Current update — r7 JLC draft continuation, 2026-11-01
+
+After explicit assembly-terms authorization, both new drafts were saved by JLC
+and the r7 BOM/CPL uploads processed. Pod has a rendered preview and a
+provisional $161.98 PCB + PCBA figure before shipping/tax; placement, identity
+and process review remain open. Carrier is blocked at the unchanged CTS X1
+clock (2 shortfall); do not proceed by selecting Do not place. Seven carrier
+capacitor and two pod resistor grouped rows were selected using their specified
+identities. Portal confirmed counters became inconsistent; do not infer coverage
+from those counters. See [session report](JLC-R7-MACBOOK-SESSION-20261101.md)
+for draft URLs, prices, evidence and open holds. No reservation or order.
+
 ## Current update — r7 MacBook forms, 2026-11-01
 
 Two new unsaved JLC forms have the r7 Gerbers and requested 5/2 carrier and
