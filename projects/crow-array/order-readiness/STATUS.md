@@ -1,5 +1,17 @@
 # Crow exact-job order readiness
 
+## Current update — r9 selection and draft quote follow-up, 2026-11-01
+
+Both drafts reached PCBA quote screens after population-preserving BOM row
+merging and per-reference checks. JLC initially hid a required row in each
+first candidate despite its confirmed counter; the v2 candidates display all
+expected groups in BOM and placement lists. Carrier $229.11 plus pod $161.98
+= $391.09 before shipping, tax and HOME parts. Carrier stackup is still No
+Requirement, and placement and assembly acceptance are not signed off.
+[Follow-up report](JLC-R9-SELECTION-QUOTE-FOLLOWUP-20261101.md) records
+itemization, draft links, caveats and candidate hashes. No purchases,
+reservations, vendor messages or manufacturing commitments.
+
 ## Current update — r9 JLC selection blockers, 2026-11-01
 
 The r9 carrier Gerber/BOM/CPL were uploaded to a new JLC quote-only draft;
