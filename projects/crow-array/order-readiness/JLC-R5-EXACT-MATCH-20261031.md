@@ -18,6 +18,8 @@ In the carrier draft, eight previously unchecked available rows were selected af
 
 JLC's [C599441 page](https://jlcpcb.com/partdetail/AmphenolICC-RJHSE5080/C599441) identifies Amphenol ICC RJHSE-5080, matching the r5 manufacturer and MPN. The [C3096093 LCSC listing](https://www.lcsc.com/product-detail/C3096093.html) identifies CUI PJ-102AH, and the [Same Sky manufacturer datasheet](https://jp.sameskydevices.com/product/resource/pj-102ah.pdf) records the CUI Devices rebrand to Same Sky in 2024. Its 2024 drawing's displayed 14.4 mm length, 10.7/3.0 mm longitudinal and 4.7 mm lateral geometry agrees with the dimensions used in the r5 legacy-drawing center derivation. The manufacturer also records a 2023 reengineering; the actual supplied revision, detailed dimensional tolerance, factory installation method and complete preview still need confirmation. These are identity and dimension checks, not final factory or mechanical acceptance.
 
+The [manufacturer's PCN index](https://jp.sameskydevices.com/quality/pcn-notifications) associates `PCN-0450722R-01` with PJ-102AH, but its linked PDF returned HTTP 403 in this review. A separately indexed PDF that contains the same PCN number names **PJ-090BH**, not PJ-102AH; do not treat that different-product notice as evidence for the jack's 2023 change. The 2024 PJ-102AH datasheet and the selected lot's details remain the appropriate evidence pending the correct PCN or manufacturer clarification. No mechanical hold is closed by this observation.
+
 The carrier draft's expanded Part Info was also checked directly for its two
 unavailable IC/oscillator matches. C2863172 explicitly identifies **Texas
 Instruments PCM1864DBT**, package labeled `TFSOP-30-175mil`, and SMT assembly;
