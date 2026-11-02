@@ -102,6 +102,18 @@ actual native checks and independent affected-engineering review, keeping
 production/release and vendor holds explicit. Next advancement requires actual
 corrected native copper and verified access, not another report alone.
 
+## Current update — r10 JLC quote and placement holds, 2026-11-01
+
+The r10 carrier Gerbers, grouped BOM and r10 CPL were uploaded and processed.
+JLC shows 23 selected carrier groups and the retained pod preview lists 20.
+The displayed carrier/pod estimates total **$390.97** before shipping, tax and
+home parts; they are not complete or production-ready. The required carrier
+7628A stack triggered an unaccepted thickness warning, and connector model/pin
+registration remains on hold. [Session report](JLC-R10-MACBOOK-SESSION-20261101.md)
+records the draft links, hashes, charges and limits; [backend handoff](BACKEND-R10-JLC-BLOCKERS-HANDOFF-20261101.md)
+requests source-bound stackup and connector diagnosis. No purchase, reservation
+or manufacturing commitment.
+
 ## Current update — local multi-angle rendering finds power-jack direction conflict
 
 Added generic `vnext/skills/render-board`: six cardinal and sixteen45-degree
