@@ -1,5 +1,17 @@
 # Crow exact-job order readiness
 
+## Current next step: read-only JLC scene capture, before test C
+
+Public viewer-code review found model recentering/offset paths and separate
+effective-placement/panel transforms. The catalog-origin assumption behind C
+is therefore still unverified. Follow the [bounded MacBook capture handoff](quote-tests/r10-pod-j1-origin/SCENE-CAPTURE.md)
+to obtain actual J1 pose and loaded footprint/model metadata while A remains
+restored. This supersedes the immediate B/C upload recommendation below.
+The read-only console procedure is source-reviewed but not live-browser tested.
+No signed-in draft was accessed or changed during this code review. No native,
+r10 or test-CPL changes; all ten factory connector instances remain on HOLD.
+No purchases, reservations, substitutions, vendor messages or approvals.
+
 ## Current next step is the pod reference point test
 
 The A/B review identified a possible origin mismatch: native pod J1's electrical

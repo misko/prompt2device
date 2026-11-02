@@ -55,6 +55,11 @@ These integrity checks do not perform a browser or manufacturing review.
 
 ## Next MacBook session
 
+**Updated priority:** perform the [read-only scene capture](SCENE-CAPTURE.md)
+first, leaving A restored. Public viewer-code review found model recentering
+and effective/panel transforms that must be resolved before testing C's origin
+hypothesis. The B/C sequence below remains conditional, not the next upload.
+
 Use only the existing [POD J1 AB TEST NOT FOR ORDER diagnostic draft](https://cart.jlcpcb.com/smt-order/?pcbFileNo=1f8dfa850b474dc9b4ac3860b26bbd59).
 It was last restored to A. Preserve 10 fabricated / 8 assembled, exact
 RJHSE-5080 / C599441 matching, all 29 required references, and both
