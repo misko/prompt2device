@@ -1,5 +1,23 @@
 # Crow exact-job order readiness
 
+## Current next step is the pod reference point test
+
+The A/B review identified a possible origin mismatch: native pod J1's electrical
+pin centroid is 1.017 mm from the body centre used by the CPL. A new
+[diagnostic test C and MacBook procedure](quote-tests/r10-pod-j1-origin/README.md)
+changes only J1 Y relative to B, from −8.373 to −9.390 mm, retaining 180° rotation.
+The source-bound generator and ten tests verify its derivation and isolation;
+this does not verify the active JLC draft's coordinate convention.
+
+Next: use the existing diagnostic draft for one B/C comparison with a 2D
+pin-pattern or actual underside view, then restore A. If those features remain
+hidden, capture sanitized loaded scene geometry instead of repeating roof views.
+No C upload has occurred. All ten factory connector instances remain on HOLD;
+carrier RJ and power-jack transformations need separate downstream verification.
+Native boards, original r10 and existing A/B files remain unchanged. No purchases,
+reservations, vendor messages or manufacturing approvals. Entries below retain
+the history; this section identifies the current next action.
+
 ## 2 November 2026 MacBook pod A/B experiment
 
 The separate [pod diagnostic draft](r10-pod-ab-session-20261102/REPORT.md) was tested with baseline A and J1-180 test B. JLC's selected model visibly turned, and B's appearance persisted after reopening. The eight solder tails, two pegs and opening could not all be verified, so the result is **inconclusive** and A was re-uploaded and visually restored. The diagnostic draft remains NOT FOR ORDER; the original drafts were not edited. Pod J1, carrier J101–J108 and carrier power J1 remain on placement HOLD. No purchase, reservation or manufacturing approval occurred.

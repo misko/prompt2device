@@ -1,0 +1,120 @@
+{
+  "status": "QUOTE_ONLY_UNACCEPTED_ORIGIN_EXPERIMENT",
+  "hypothesis": "The JLC draft uses the retained catalog footprint origin without recentering; not established by public CAD alone.",
+  "source_session_commit": "a8e2cf84aad458ec2edd5894391503e943dde6e9",
+  "source_hashes": {
+    "r10-registration-review/native-audit.json": "8e1d84de40b6075c138971aec8decbb9632643fc0aafc27d187c3c375536a742",
+    "r10-orientation-images/catalog/C599441/jlc.pretty/RJ45-TH_RJHSE-5080.kicad_mod": "ffd7f2a6381989e7a569e3ed018aee047d8964952351082be7318de1a83caf7d",
+    "quote-tests/r10-pod-j1-180/pod-cpl-J1-180-TEST-ONLY.csv": "2f2324a2689641f1d649655309f95030b3031bfbbfadd5b278e5a2c5fa7813d0",
+    "quote-tests/r10-pod-j1-180/test_cpl.py": "041cd246abdb2ad7bfa13a91c29869a7783744b8d4ec838ca1935abdf4a9f68f"
+  },
+  "generator_sha256": "f557b7bdce4f1e5c9b64db388c4464561d6b641f9b7ed44e57e642832341df3d",
+  "geometry": {
+    "conditional_catalog_insertion_native_mm": [
+      10.556,
+      9.39
+    ],
+    "predicted_pins_native_mm": {
+      "1": [
+        6.985999999999999,
+        8.5
+      ],
+      "2": [
+        8.006,
+        10.280000000000001
+      ],
+      "3": [
+        9.026,
+        8.5
+      ],
+      "4": [
+        10.046,
+        10.280000000000001
+      ],
+      "5": [
+        11.065999999999999,
+        8.5
+      ],
+      "6": [
+        12.085999999999999,
+        10.280000000000001
+      ],
+      "7": [
+        13.105999999999998,
+        8.5
+      ],
+      "8": [
+        14.126,
+        10.280000000000001
+      ]
+    },
+    "predicted_pegs_native_mm": [
+      [
+        16.906,
+        5.960000000000001
+      ],
+      [
+        4.2059999999999995,
+        5.960000000000001
+      ]
+    ],
+    "max_pin_error_mm": 0.014000000000001123,
+    "max_peg_error_mm": 0.004000000000001336,
+    "native_witnesses": {
+      "1": [
+        7.0,
+        8.5
+      ],
+      "2": [
+        8.016,
+        10.28
+      ],
+      "3": [
+        9.032,
+        8.5
+      ],
+      "4": [
+        10.048,
+        10.28
+      ],
+      "5": [
+        11.064,
+        8.5
+      ],
+      "6": [
+        12.08,
+        10.28
+      ],
+      "7": [
+        13.096,
+        8.5
+      ],
+      "8": [
+        14.112,
+        10.28
+      ]
+    },
+    "native_locator_holes": [
+      [
+        4.21,
+        5.96
+      ],
+      [
+        16.91,
+        5.96
+      ]
+    ]
+  },
+  "references": 29,
+  "change_from_B": {
+    "reference": "J1",
+    "field": "Mid Y",
+    "before": "-8.373000mm",
+    "after": "-9.390000mm"
+  },
+  "file_sha256": "eef7d7cb2029a0f8f75eb1fbc9a9fa1b2d76430c377893c146dd8c14f9199710",
+  "file": "pod-cpl-J1-180-Y9390-TEST-ONLY.csv",
+  "browser_test_performed": false,
+  "alignment_verified": false,
+  "production_ready": false
+}
