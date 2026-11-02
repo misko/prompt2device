@@ -4,6 +4,23 @@
 and takes priority over the B/C upload sequence in the original handoff.
 **Leave the diagnostic draft at restored A. Do not upload C yet.**
 
+### Server-browser attempt: capability unavailable
+
+A [bounded read-only TinyFish run](https://agent.tinyfish.ai/runs/4173370e-bfa5-4a4c-8656-19b49a2e6122)
+completed after 190 seconds / 14 steps. Its [returned report](scene-capture-attempt.json)
+contains BOM observations, but no scene data or screenshot artifacts. It reports
+that JavaScript runtime/console and network-response inspection are unavailable
+to that browser tool. Do not repeat this capture through TinyFish.
+
+It also reports the placement tab disabled with an upload prompt. This is not
+proof the saved MacBook placement was lost: the earlier MacBook A/B evidence
+shows that preview working, and no response/scene evidence explains the
+discrepancy. Check the exact diagnostic draft on the MacBook before any upload;
+if it too is disabled, preserve a screenshot and stop without recreating it.
+The run reports no writes. Its expansions of `oc`/`ec` as “orientation code” /
+“element code” are unsupported; the inspected UI code uses those objects for
+original/effective coordinates. No numerical pose or pin alignment was verified.
+
 ## Finding and limits
 
 The publicly served JLC viewer has a model-transform path that recenters a

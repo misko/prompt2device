@@ -1,0 +1,16 @@
+{
+  "run_id": "4173370e-bfa5-4a4c-8656-19b49a2e6122",
+  "status": "completed",
+  "result": {
+    "result": "## Read-Only Diagnostic Data Capture: J1 (RJHSE-5080 / C599441)\n\n**Project:** POD J1 AB TEST NOT FOR ORDER\n**URL:** https://cart.jlcpcb.com/smt-order/?pcbFileNo=1f8dfa850b474dc9b4ac3860b26bbd59\n**Last Updated:** 2 November, 09:13 (automatically saved)\n\n### J1 BOM Row Data (from Bill of Materials table)\n\n| Field | Value |\n|-------|-------|\n| **des (designator)** | J1 |\n| **lc_code** | C599441 |\n| **comment** | RJHSE-5080 |\n| **footprint** | CrowPhysical:RJHSE-5080 |\n| **quantity** | 8 |\n| **source** | JLCPCB |\n| **library type** | Extended |\n| **total cost** | $7.56 |\n| **matched part detail** | RJHSE-5080 -55℃~+85℃ 1 Gold Non-LED Phosphor bronze Right Angle Unshielded 插件 Ethernet Connectors / Modular Connectors (RJ45 RJ11) ROHS |\n\n### Fields Not Extractable from BOM Table\n\nThe following fields requested could NOT be obtained from the visible BOM table:\n- **pick_index:** Not present in BOM data structure\n- **oc (orientation code):** Not present in BOM data structure\n- **ec (element code):** Not present in BOM data structure\n- **is_mount:** Not present in BOM data structure\n- **ft_name:** Not present in BOM data structure\n- **ft_pins:** Not present in BOM data structure\n\n### Component Placements Tab\nThe **Component Placements tab is DISABLED** on this page. It cannot be accessed without completing the file upload requirements. A \"Complete File / Upload BOM/CPL\" button is present, but no placement data (ang, x_offset, y_offset, parent name/set records, designator_info) is loadable because the tab is disabled.\n\n### Script Versions\n- **smt-gl-engine / smt-foreign-trade:** These scripts are loaded dynamically by the Nuxt.js SPA at runtime. They are not visible in the static HTML source. Their src URLs and version numbers could NOT be determined from the DOM inspection provided by the browser tool.\n\n### Runtime Console Access\n- **JavaScript console / runtime access:** The browser tool does NOT provide access to inspect the JavaScript console, runtime data (window._MSG_BUS_, loadMerge() logs, designator_info, comp_info), or network response bodies. This capability is **unavailable**.\n- **window._MSG_BUS_.rpcCall:** Cannot be invoked or inspected.\n- **Footprint catalog / pad UUIDs / model transforms:** Cannot be accessed because console/runtime inspection is not available.\n\n### Summary\nOnly the BOM table data for J1 (designator=J1, lc_code=C599441, comment=RJHSE-5080, footprint=CrowPhysical:RJHSE-5080, qty=8, source=JLCPCB, lib_type=Extended, cost=$7.56) was extractable. The placement data fields (pick_index, oc, ec, is_mount, ft_name, ft_pins, ang, x_offset, y_offset) and all runtime engine data are **unavailable** due to the disabled Component Placements tab and the lack of JavaScript console/runtime inspection capability in the browser tool.\n\n**Draft status:** Left completely unchanged. No writes performed."
+  },
+  "error": null,
+  "step": null,
+  "stepCount": 14,
+  "duration": 190,
+  "runUrl": "https://agent.tinyfish.ai/runs/4173370e-bfa5-4a4c-8656-19b49a2e6122",
+  "upsell_enabled": true,
+  "profile": {
+    "profile_id": "prof_0e467c36207a4bff"
+  }
+}

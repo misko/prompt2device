@@ -2,6 +2,14 @@
 
 ## Current next step: read-only JLC scene capture, before test C
 
+The server's bounded read-only attempt has now terminated: TinyFish reports no
+runtime/console or network-body inspection capability and returned no geometry.
+See the [attempt assessment and raw result](quote-tests/r10-pod-j1-origin/SCENE-CAPTURE.md#server-browser-attempt-capability-unavailable).
+It also reported a disabled placement tab, inconsistent with the earlier
+MacBook preview; this remains an observation to reconcile, not permission to
+re-upload. Use the MacBook's existing diagnostic session for the read-only
+capture. No further equivalent TinyFish retries; all placement holds remain.
+
 Public viewer-code review found model recentering/offset paths and separate
 effective-placement/panel transforms. The catalog-origin assumption behind C
 is therefore still unverified. Follow the [bounded MacBook capture handoff](quote-tests/r10-pod-j1-origin/SCENE-CAPTURE.md)
