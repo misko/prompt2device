@@ -1,5 +1,19 @@
 # Crow exact-job order readiness
 
+## Current next step after original skill comparison
+
+The [legacy-tool connector mapping experiment](quote-tests/r10-connector-mapping/README.md)
+now measures and replays all ten connectors against retained catalog geometry.
+It preserves exact native/r10 bytes and prepares isolated carrier J101 and power
+J1 trials. The pod output reproduces test C exactly. Nominal catalog registration
+passes; live JLC placement and independent acceptance remain open. The old
+generic pad-datum rule includes RJ locator holes and differs from the exact
+catalog origin, so it is not adopted blindly. No global rotation rows or vNext
+acceptance gates were changed. Follow the linked bounded pod test only when
+pin/peg registration is observable; otherwise use the existing read-only capture
+or seek authorization for a JLC inquiry. No equivalent TinyFish retries.
+All connector manufacturing holds remain; no purchases or vendor actions.
+
 ## Current next step: read-only JLC scene capture, before test C
 
 The server's bounded read-only attempt has now terminated: TinyFish reports no

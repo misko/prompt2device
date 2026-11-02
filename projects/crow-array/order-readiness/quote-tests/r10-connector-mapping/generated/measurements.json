@@ -1,0 +1,1456 @@
+{
+  "connectors": [
+    {
+      "baseline_raw_origin_replay": {
+        "max_peg_mm": 5.843001369159517,
+        "max_pin_mm": 7.655265181559684
+      },
+      "before": {
+        "Designator": "J1",
+        "Layer": "Top",
+        "Mid X": "10.556000mm",
+        "Mid Y": "-8.373000mm",
+        "Rotation": "0.000000"
+      },
+      "board": "pod",
+      "candidate": {
+        "Designator": "J1",
+        "Layer": "Top",
+        "Mid X": "10.556000mm",
+        "Mid Y": "-9.390000mm",
+        "Rotation": "180.000000"
+      },
+      "candidate_mouth_direction_native": [
+        0,
+        -1
+      ],
+      "candidate_raw_origin_replay": {
+        "max_peg_mm": 0.004000000000001336,
+        "max_pin_mm": 0.014000000000001123
+      },
+      "catalog_pegs": [
+        [
+          -6.35,
+          3.43
+        ],
+        [
+          6.35,
+          3.43
+        ]
+      ],
+      "catalog_pins": {
+        "1": [
+          3.57,
+          0.89
+        ],
+        "2": [
+          2.55,
+          -0.89
+        ],
+        "3": [
+          1.53,
+          0.89
+        ],
+        "4": [
+          0.51,
+          -0.89
+        ],
+        "5": [
+          -0.51,
+          0.89
+        ],
+        "6": [
+          -1.53,
+          -0.89
+        ],
+        "7": [
+          -2.55,
+          0.89
+        ],
+        "8": [
+          -3.57,
+          -0.89
+        ]
+      },
+      "code": "C599441",
+      "legacy_catalog_datum_mm": [
+        0.0,
+        1.27
+      ],
+      "legacy_native_datum_mm": [
+        10.56,
+        8.12
+      ],
+      "local_correction_deg": 180,
+      "local_rotation_fits": {
+        "0": [
+          4.993115660587085,
+          8
+        ],
+        "90": [
+          3.5301677013989012,
+          8
+        ],
+        "180": [
+          0.00916515138991159,
+          8
+        ],
+        "270": [
+          3.5311760080743637,
+          8
+        ]
+      },
+      "mouth_basis": "Inherited manufacturer-bound native inspection; no live JLC model proof",
+      "mpn": "RJHSE-5080",
+      "native_pegs": [
+        [
+          4.21,
+          5.96
+        ],
+        [
+          16.91,
+          5.96
+        ]
+      ],
+      "native_pins": {
+        "1": [
+          7.0,
+          8.5
+        ],
+        "2": [
+          8.016,
+          10.28
+        ],
+        "3": [
+          9.032,
+          8.5
+        ],
+        "4": [
+          10.048,
+          10.28
+        ],
+        "5": [
+          11.064,
+          8.5
+        ],
+        "6": [
+          12.08,
+          10.28
+        ],
+        "7": [
+          13.096,
+          8.5
+        ],
+        "8": [
+          14.112,
+          10.28
+        ]
+      },
+      "native_rotation_deg": 0.0,
+      "reference": "J1"
+    },
+    {
+      "baseline_raw_origin_replay": {
+        "max_peg_mm": 0,
+        "max_pin_mm": 9.786342524150683
+      },
+      "before": {
+        "Designator": "J1",
+        "Layer": "Top",
+        "Mid X": "188.000000mm",
+        "Mid Y": "-8.200000mm",
+        "Rotation": "180.000000"
+      },
+      "board": "carrier",
+      "candidate": {
+        "Designator": "J1",
+        "Layer": "Top",
+        "Mid X": "185.650000mm",
+        "Mid Y": "-11.700000mm",
+        "Rotation": "0.000000"
+      },
+      "candidate_mouth_direction_native": [
+        0,
+        -1
+      ],
+      "candidate_raw_origin_replay": {
+        "max_peg_mm": 0,
+        "max_pin_mm": 0.0
+      },
+      "catalog_pegs": [],
+      "catalog_pins": {
+        "1": [
+          2.35,
+          3.0
+        ],
+        "2": [
+          2.35,
+          -3.0
+        ],
+        "3": [
+          -2.35,
+          0.0
+        ]
+      },
+      "code": "C3096093",
+      "legacy_catalog_datum_mm": [
+        0.0,
+        0.0
+      ],
+      "legacy_native_datum_mm": [
+        185.65,
+        11.7
+      ],
+      "local_correction_deg": 180,
+      "local_rotation_fits": {
+        "0": [
+          6.605721425821373,
+          3
+        ],
+        "90": [
+          4.670950414827562,
+          3
+        ],
+        "180": [
+          5.733167046599011e-16,
+          3
+        ],
+        "270": [
+          4.670950414827562,
+          3
+        ]
+      },
+      "mouth_basis": "Inherited manufacturer-bound native inspection; no live JLC model proof",
+      "mpn": "PJ-102AH",
+      "native_pegs": [],
+      "native_pins": {
+        "1": [
+          188.0,
+          14.7
+        ],
+        "2": [
+          188.0,
+          8.7
+        ],
+        "3": [
+          183.3,
+          11.7
+        ]
+      },
+      "native_rotation_deg": 180.0,
+      "reference": "J1"
+    },
+    {
+      "baseline_raw_origin_replay": {
+        "max_peg_mm": 5.843001369159517,
+        "max_pin_mm": 7.655265181559684
+      },
+      "before": {
+        "Designator": "J101",
+        "Layer": "Top",
+        "Mid X": "11.556000mm",
+        "Mid Y": "-8.373000mm",
+        "Rotation": "0.000000"
+      },
+      "board": "carrier",
+      "candidate": {
+        "Designator": "J101",
+        "Layer": "Top",
+        "Mid X": "11.556000mm",
+        "Mid Y": "-9.390000mm",
+        "Rotation": "180.000000"
+      },
+      "candidate_mouth_direction_native": [
+        0,
+        -1
+      ],
+      "candidate_raw_origin_replay": {
+        "max_peg_mm": 0.004000000000001336,
+        "max_pin_mm": 0.014000000000001123
+      },
+      "catalog_pegs": [
+        [
+          -6.35,
+          3.43
+        ],
+        [
+          6.35,
+          3.43
+        ]
+      ],
+      "catalog_pins": {
+        "1": [
+          3.57,
+          0.89
+        ],
+        "2": [
+          2.55,
+          -0.89
+        ],
+        "3": [
+          1.53,
+          0.89
+        ],
+        "4": [
+          0.51,
+          -0.89
+        ],
+        "5": [
+          -0.51,
+          0.89
+        ],
+        "6": [
+          -1.53,
+          -0.89
+        ],
+        "7": [
+          -2.55,
+          0.89
+        ],
+        "8": [
+          -3.57,
+          -0.89
+        ]
+      },
+      "code": "C599441",
+      "legacy_catalog_datum_mm": [
+        0.0,
+        1.27
+      ],
+      "legacy_native_datum_mm": [
+        11.56,
+        8.12
+      ],
+      "local_correction_deg": 180,
+      "local_rotation_fits": {
+        "0": [
+          4.993115660587085,
+          8
+        ],
+        "90": [
+          3.5301677013989012,
+          8
+        ],
+        "180": [
+          0.00916515138991159,
+          8
+        ],
+        "270": [
+          3.5311760080743637,
+          8
+        ]
+      },
+      "mouth_basis": "Inherited manufacturer-bound native inspection; no live JLC model proof",
+      "mpn": "RJHSE-5080",
+      "native_pegs": [
+        [
+          5.21,
+          5.96
+        ],
+        [
+          17.91,
+          5.96
+        ]
+      ],
+      "native_pins": {
+        "1": [
+          8.0,
+          8.5
+        ],
+        "2": [
+          9.016,
+          10.28
+        ],
+        "3": [
+          10.032,
+          8.5
+        ],
+        "4": [
+          11.048,
+          10.28
+        ],
+        "5": [
+          12.064,
+          8.5
+        ],
+        "6": [
+          13.08,
+          10.28
+        ],
+        "7": [
+          14.096,
+          8.5
+        ],
+        "8": [
+          15.112,
+          10.28
+        ]
+      },
+      "native_rotation_deg": 0.0,
+      "reference": "J101"
+    },
+    {
+      "baseline_raw_origin_replay": {
+        "max_peg_mm": 5.843001369159517,
+        "max_pin_mm": 7.65526518155968
+      },
+      "before": {
+        "Designator": "J102",
+        "Layer": "Top",
+        "Mid X": "30.256000mm",
+        "Mid Y": "-8.373000mm",
+        "Rotation": "0.000000"
+      },
+      "board": "carrier",
+      "candidate": {
+        "Designator": "J102",
+        "Layer": "Top",
+        "Mid X": "30.256000mm",
+        "Mid Y": "-9.390000mm",
+        "Rotation": "180.000000"
+      },
+      "candidate_mouth_direction_native": [
+        0,
+        -1
+      ],
+      "candidate_raw_origin_replay": {
+        "max_peg_mm": 0.004000000000001336,
+        "max_pin_mm": 0.014000000000002899
+      },
+      "catalog_pegs": [
+        [
+          -6.35,
+          3.43
+        ],
+        [
+          6.35,
+          3.43
+        ]
+      ],
+      "catalog_pins": {
+        "1": [
+          3.57,
+          0.89
+        ],
+        "2": [
+          2.55,
+          -0.89
+        ],
+        "3": [
+          1.53,
+          0.89
+        ],
+        "4": [
+          0.51,
+          -0.89
+        ],
+        "5": [
+          -0.51,
+          0.89
+        ],
+        "6": [
+          -1.53,
+          -0.89
+        ],
+        "7": [
+          -2.55,
+          0.89
+        ],
+        "8": [
+          -3.57,
+          -0.89
+        ]
+      },
+      "code": "C599441",
+      "legacy_catalog_datum_mm": [
+        0.0,
+        1.27
+      ],
+      "legacy_native_datum_mm": [
+        30.26,
+        8.12
+      ],
+      "local_correction_deg": 180,
+      "local_rotation_fits": {
+        "0": [
+          4.993115660587085,
+          8
+        ],
+        "90": [
+          3.5301677013989012,
+          8
+        ],
+        "180": [
+          0.00916515138991159,
+          8
+        ],
+        "270": [
+          3.5311760080743637,
+          8
+        ]
+      },
+      "mouth_basis": "Inherited manufacturer-bound native inspection; no live JLC model proof",
+      "mpn": "RJHSE-5080",
+      "native_pegs": [
+        [
+          23.91,
+          5.96
+        ],
+        [
+          36.61,
+          5.96
+        ]
+      ],
+      "native_pins": {
+        "1": [
+          26.7,
+          8.5
+        ],
+        "2": [
+          27.716,
+          10.28
+        ],
+        "3": [
+          28.732,
+          8.5
+        ],
+        "4": [
+          29.748,
+          10.28
+        ],
+        "5": [
+          30.764,
+          8.5
+        ],
+        "6": [
+          31.78,
+          10.28
+        ],
+        "7": [
+          32.796,
+          8.5
+        ],
+        "8": [
+          33.812,
+          10.28
+        ]
+      },
+      "native_rotation_deg": 0.0,
+      "reference": "J102"
+    },
+    {
+      "baseline_raw_origin_replay": {
+        "max_peg_mm": 5.843001369159517,
+        "max_pin_mm": 7.65526518155968
+      },
+      "before": {
+        "Designator": "J103",
+        "Layer": "Top",
+        "Mid X": "48.956000mm",
+        "Mid Y": "-8.373000mm",
+        "Rotation": "0.000000"
+      },
+      "board": "carrier",
+      "candidate": {
+        "Designator": "J103",
+        "Layer": "Top",
+        "Mid X": "48.956000mm",
+        "Mid Y": "-9.390000mm",
+        "Rotation": "180.000000"
+      },
+      "candidate_mouth_direction_native": [
+        0,
+        -1
+      ],
+      "candidate_raw_origin_replay": {
+        "max_peg_mm": 0.003999999999997783,
+        "max_pin_mm": 0.014000000000002899
+      },
+      "catalog_pegs": [
+        [
+          -6.35,
+          3.43
+        ],
+        [
+          6.35,
+          3.43
+        ]
+      ],
+      "catalog_pins": {
+        "1": [
+          3.57,
+          0.89
+        ],
+        "2": [
+          2.55,
+          -0.89
+        ],
+        "3": [
+          1.53,
+          0.89
+        ],
+        "4": [
+          0.51,
+          -0.89
+        ],
+        "5": [
+          -0.51,
+          0.89
+        ],
+        "6": [
+          -1.53,
+          -0.89
+        ],
+        "7": [
+          -2.55,
+          0.89
+        ],
+        "8": [
+          -3.57,
+          -0.89
+        ]
+      },
+      "code": "C599441",
+      "legacy_catalog_datum_mm": [
+        0.0,
+        1.27
+      ],
+      "legacy_native_datum_mm": [
+        48.96,
+        8.12
+      ],
+      "local_correction_deg": 180,
+      "local_rotation_fits": {
+        "0": [
+          4.993115660587085,
+          8
+        ],
+        "90": [
+          3.5301677013989012,
+          8
+        ],
+        "180": [
+          0.00916515138991159,
+          8
+        ],
+        "270": [
+          3.5311760080743637,
+          8
+        ]
+      },
+      "mouth_basis": "Inherited manufacturer-bound native inspection; no live JLC model proof",
+      "mpn": "RJHSE-5080",
+      "native_pegs": [
+        [
+          42.61,
+          5.96
+        ],
+        [
+          55.31,
+          5.96
+        ]
+      ],
+      "native_pins": {
+        "1": [
+          45.4,
+          8.5
+        ],
+        "2": [
+          46.416,
+          10.28
+        ],
+        "3": [
+          47.432,
+          8.5
+        ],
+        "4": [
+          48.448,
+          10.28
+        ],
+        "5": [
+          49.464,
+          8.5
+        ],
+        "6": [
+          50.48,
+          10.28
+        ],
+        "7": [
+          51.496,
+          8.5
+        ],
+        "8": [
+          52.512,
+          10.28
+        ]
+      },
+      "native_rotation_deg": 0.0,
+      "reference": "J103"
+    },
+    {
+      "baseline_raw_origin_replay": {
+        "max_peg_mm": 5.843001369159517,
+        "max_pin_mm": 7.655265181559674
+      },
+      "before": {
+        "Designator": "J104",
+        "Layer": "Top",
+        "Mid X": "67.656000mm",
+        "Mid Y": "-8.373000mm",
+        "Rotation": "0.000000"
+      },
+      "board": "carrier",
+      "candidate": {
+        "Designator": "J104",
+        "Layer": "Top",
+        "Mid X": "67.656000mm",
+        "Mid Y": "-9.390000mm",
+        "Rotation": "180.000000"
+      },
+      "candidate_mouth_direction_native": [
+        0,
+        -1
+      ],
+      "candidate_raw_origin_replay": {
+        "max_peg_mm": 0.0040000000000048885,
+        "max_pin_mm": 0.013999999999995794
+      },
+      "catalog_pegs": [
+        [
+          -6.35,
+          3.43
+        ],
+        [
+          6.35,
+          3.43
+        ]
+      ],
+      "catalog_pins": {
+        "1": [
+          3.57,
+          0.89
+        ],
+        "2": [
+          2.55,
+          -0.89
+        ],
+        "3": [
+          1.53,
+          0.89
+        ],
+        "4": [
+          0.51,
+          -0.89
+        ],
+        "5": [
+          -0.51,
+          0.89
+        ],
+        "6": [
+          -1.53,
+          -0.89
+        ],
+        "7": [
+          -2.55,
+          0.89
+        ],
+        "8": [
+          -3.57,
+          -0.89
+        ]
+      },
+      "code": "C599441",
+      "legacy_catalog_datum_mm": [
+        0.0,
+        1.27
+      ],
+      "legacy_native_datum_mm": [
+        67.66,
+        8.12
+      ],
+      "local_correction_deg": 180,
+      "local_rotation_fits": {
+        "0": [
+          4.993115660587085,
+          8
+        ],
+        "90": [
+          3.5301677013989012,
+          8
+        ],
+        "180": [
+          0.00916515138991159,
+          8
+        ],
+        "270": [
+          3.5311760080743637,
+          8
+        ]
+      },
+      "mouth_basis": "Inherited manufacturer-bound native inspection; no live JLC model proof",
+      "mpn": "RJHSE-5080",
+      "native_pegs": [
+        [
+          61.31,
+          5.96
+        ],
+        [
+          74.01,
+          5.96
+        ]
+      ],
+      "native_pins": {
+        "1": [
+          64.1,
+          8.5
+        ],
+        "2": [
+          65.116,
+          10.28
+        ],
+        "3": [
+          66.132,
+          8.5
+        ],
+        "4": [
+          67.148,
+          10.28
+        ],
+        "5": [
+          68.164,
+          8.5
+        ],
+        "6": [
+          69.18,
+          10.28
+        ],
+        "7": [
+          70.196,
+          8.5
+        ],
+        "8": [
+          71.212,
+          10.28
+        ]
+      },
+      "native_rotation_deg": 0.0,
+      "reference": "J104"
+    },
+    {
+      "baseline_raw_origin_replay": {
+        "max_peg_mm": 5.843001369159517,
+        "max_pin_mm": 7.655265181559687
+      },
+      "before": {
+        "Designator": "J105",
+        "Layer": "Top",
+        "Mid X": "86.356000mm",
+        "Mid Y": "-8.373000mm",
+        "Rotation": "0.000000"
+      },
+      "board": "carrier",
+      "candidate": {
+        "Designator": "J105",
+        "Layer": "Top",
+        "Mid X": "86.356000mm",
+        "Mid Y": "-9.390000mm",
+        "Rotation": "180.000000"
+      },
+      "candidate_mouth_direction_native": [
+        0,
+        -1
+      ],
+      "candidate_raw_origin_replay": {
+        "max_peg_mm": 0.0040000000000048885,
+        "max_pin_mm": 0.013999999999995794
+      },
+      "catalog_pegs": [
+        [
+          -6.35,
+          3.43
+        ],
+        [
+          6.35,
+          3.43
+        ]
+      ],
+      "catalog_pins": {
+        "1": [
+          3.57,
+          0.89
+        ],
+        "2": [
+          2.55,
+          -0.89
+        ],
+        "3": [
+          1.53,
+          0.89
+        ],
+        "4": [
+          0.51,
+          -0.89
+        ],
+        "5": [
+          -0.51,
+          0.89
+        ],
+        "6": [
+          -1.53,
+          -0.89
+        ],
+        "7": [
+          -2.55,
+          0.89
+        ],
+        "8": [
+          -3.57,
+          -0.89
+        ]
+      },
+      "code": "C599441",
+      "legacy_catalog_datum_mm": [
+        0.0,
+        1.27
+      ],
+      "legacy_native_datum_mm": [
+        86.36,
+        8.12
+      ],
+      "local_correction_deg": 180,
+      "local_rotation_fits": {
+        "0": [
+          4.993115660587085,
+          8
+        ],
+        "90": [
+          3.5301677013989012,
+          8
+        ],
+        "180": [
+          0.00916515138991159,
+          8
+        ],
+        "270": [
+          3.5311760080743637,
+          8
+        ]
+      },
+      "mouth_basis": "Inherited manufacturer-bound native inspection; no live JLC model proof",
+      "mpn": "RJHSE-5080",
+      "native_pegs": [
+        [
+          80.01,
+          5.96
+        ],
+        [
+          92.71,
+          5.96
+        ]
+      ],
+      "native_pins": {
+        "1": [
+          82.8,
+          8.5
+        ],
+        "2": [
+          83.816,
+          10.28
+        ],
+        "3": [
+          84.832,
+          8.5
+        ],
+        "4": [
+          85.848,
+          10.28
+        ],
+        "5": [
+          86.864,
+          8.5
+        ],
+        "6": [
+          87.88,
+          10.28
+        ],
+        "7": [
+          88.896,
+          8.5
+        ],
+        "8": [
+          89.912,
+          10.28
+        ]
+      },
+      "native_rotation_deg": 0.0,
+      "reference": "J105"
+    },
+    {
+      "baseline_raw_origin_replay": {
+        "max_peg_mm": 5.843001369159517,
+        "max_pin_mm": 7.655265181559674
+      },
+      "before": {
+        "Designator": "J106",
+        "Layer": "Top",
+        "Mid X": "105.056000mm",
+        "Mid Y": "-8.373000mm",
+        "Rotation": "0.000000"
+      },
+      "board": "carrier",
+      "candidate": {
+        "Designator": "J106",
+        "Layer": "Top",
+        "Mid X": "105.056000mm",
+        "Mid Y": "-9.390000mm",
+        "Rotation": "180.000000"
+      },
+      "candidate_mouth_direction_native": [
+        0,
+        -1
+      ],
+      "candidate_raw_origin_replay": {
+        "max_peg_mm": 0.0040000000000048885,
+        "max_pin_mm": 0.013999999999995794
+      },
+      "catalog_pegs": [
+        [
+          -6.35,
+          3.43
+        ],
+        [
+          6.35,
+          3.43
+        ]
+      ],
+      "catalog_pins": {
+        "1": [
+          3.57,
+          0.89
+        ],
+        "2": [
+          2.55,
+          -0.89
+        ],
+        "3": [
+          1.53,
+          0.89
+        ],
+        "4": [
+          0.51,
+          -0.89
+        ],
+        "5": [
+          -0.51,
+          0.89
+        ],
+        "6": [
+          -1.53,
+          -0.89
+        ],
+        "7": [
+          -2.55,
+          0.89
+        ],
+        "8": [
+          -3.57,
+          -0.89
+        ]
+      },
+      "code": "C599441",
+      "legacy_catalog_datum_mm": [
+        0.0,
+        1.27
+      ],
+      "legacy_native_datum_mm": [
+        105.06,
+        8.12
+      ],
+      "local_correction_deg": 180,
+      "local_rotation_fits": {
+        "0": [
+          4.993115660587085,
+          8
+        ],
+        "90": [
+          3.5301677013989012,
+          8
+        ],
+        "180": [
+          0.00916515138991159,
+          8
+        ],
+        "270": [
+          3.5311760080743637,
+          8
+        ]
+      },
+      "mouth_basis": "Inherited manufacturer-bound native inspection; no live JLC model proof",
+      "mpn": "RJHSE-5080",
+      "native_pegs": [
+        [
+          98.71,
+          5.96
+        ],
+        [
+          111.41,
+          5.96
+        ]
+      ],
+      "native_pins": {
+        "1": [
+          101.5,
+          8.5
+        ],
+        "2": [
+          102.516,
+          10.28
+        ],
+        "3": [
+          103.532,
+          8.5
+        ],
+        "4": [
+          104.548,
+          10.28
+        ],
+        "5": [
+          105.564,
+          8.5
+        ],
+        "6": [
+          106.58,
+          10.28
+        ],
+        "7": [
+          107.596,
+          8.5
+        ],
+        "8": [
+          108.612,
+          10.28
+        ]
+      },
+      "native_rotation_deg": 0.0,
+      "reference": "J106"
+    },
+    {
+      "baseline_raw_origin_replay": {
+        "max_peg_mm": 5.843001369159517,
+        "max_pin_mm": 7.655265181559674
+      },
+      "before": {
+        "Designator": "J107",
+        "Layer": "Top",
+        "Mid X": "123.756000mm",
+        "Mid Y": "-8.373000mm",
+        "Rotation": "0.000000"
+      },
+      "board": "carrier",
+      "candidate": {
+        "Designator": "J107",
+        "Layer": "Top",
+        "Mid X": "123.756000mm",
+        "Mid Y": "-9.390000mm",
+        "Rotation": "180.000000"
+      },
+      "candidate_mouth_direction_native": [
+        0,
+        -1
+      ],
+      "candidate_raw_origin_replay": {
+        "max_peg_mm": 0.004000000000019099,
+        "max_pin_mm": 0.013999999999995794
+      },
+      "catalog_pegs": [
+        [
+          -6.35,
+          3.43
+        ],
+        [
+          6.35,
+          3.43
+        ]
+      ],
+      "catalog_pins": {
+        "1": [
+          3.57,
+          0.89
+        ],
+        "2": [
+          2.55,
+          -0.89
+        ],
+        "3": [
+          1.53,
+          0.89
+        ],
+        "4": [
+          0.51,
+          -0.89
+        ],
+        "5": [
+          -0.51,
+          0.89
+        ],
+        "6": [
+          -1.53,
+          -0.89
+        ],
+        "7": [
+          -2.55,
+          0.89
+        ],
+        "8": [
+          -3.57,
+          -0.89
+        ]
+      },
+      "code": "C599441",
+      "legacy_catalog_datum_mm": [
+        0.0,
+        1.27
+      ],
+      "legacy_native_datum_mm": [
+        123.76,
+        8.12
+      ],
+      "local_correction_deg": 180,
+      "local_rotation_fits": {
+        "0": [
+          4.993115660587085,
+          8
+        ],
+        "90": [
+          3.5301677013989012,
+          8
+        ],
+        "180": [
+          0.00916515138991159,
+          8
+        ],
+        "270": [
+          3.5311760080743637,
+          8
+        ]
+      },
+      "mouth_basis": "Inherited manufacturer-bound native inspection; no live JLC model proof",
+      "mpn": "RJHSE-5080",
+      "native_pegs": [
+        [
+          117.41,
+          5.96
+        ],
+        [
+          130.11,
+          5.96
+        ]
+      ],
+      "native_pins": {
+        "1": [
+          120.2,
+          8.5
+        ],
+        "2": [
+          121.216,
+          10.28
+        ],
+        "3": [
+          122.232,
+          8.5
+        ],
+        "4": [
+          123.248,
+          10.28
+        ],
+        "5": [
+          124.264,
+          8.5
+        ],
+        "6": [
+          125.28,
+          10.28
+        ],
+        "7": [
+          126.296,
+          8.5
+        ],
+        "8": [
+          127.312,
+          10.28
+        ]
+      },
+      "native_rotation_deg": 0.0,
+      "reference": "J107"
+    },
+    {
+      "baseline_raw_origin_replay": {
+        "max_peg_mm": 5.843001369159517,
+        "max_pin_mm": 7.655265181559687
+      },
+      "before": {
+        "Designator": "J108",
+        "Layer": "Top",
+        "Mid X": "142.456000mm",
+        "Mid Y": "-8.373000mm",
+        "Rotation": "0.000000"
+      },
+      "board": "carrier",
+      "candidate": {
+        "Designator": "J108",
+        "Layer": "Top",
+        "Mid X": "142.456000mm",
+        "Mid Y": "-9.390000mm",
+        "Rotation": "180.000000"
+      },
+      "candidate_mouth_direction_native": [
+        0,
+        -1
+      ],
+      "candidate_raw_origin_replay": {
+        "max_peg_mm": 0.004000000000019099,
+        "max_pin_mm": 0.014000000000010004
+      },
+      "catalog_pegs": [
+        [
+          -6.35,
+          3.43
+        ],
+        [
+          6.35,
+          3.43
+        ]
+      ],
+      "catalog_pins": {
+        "1": [
+          3.57,
+          0.89
+        ],
+        "2": [
+          2.55,
+          -0.89
+        ],
+        "3": [
+          1.53,
+          0.89
+        ],
+        "4": [
+          0.51,
+          -0.89
+        ],
+        "5": [
+          -0.51,
+          0.89
+        ],
+        "6": [
+          -1.53,
+          -0.89
+        ],
+        "7": [
+          -2.55,
+          0.89
+        ],
+        "8": [
+          -3.57,
+          -0.89
+        ]
+      },
+      "code": "C599441",
+      "legacy_catalog_datum_mm": [
+        0.0,
+        1.27
+      ],
+      "legacy_native_datum_mm": [
+        142.46,
+        8.12
+      ],
+      "local_correction_deg": 180,
+      "local_rotation_fits": {
+        "0": [
+          4.993115660587085,
+          8
+        ],
+        "90": [
+          3.5301677013989012,
+          8
+        ],
+        "180": [
+          0.00916515138991159,
+          8
+        ],
+        "270": [
+          3.5311760080743637,
+          8
+        ]
+      },
+      "mouth_basis": "Inherited manufacturer-bound native inspection; no live JLC model proof",
+      "mpn": "RJHSE-5080",
+      "native_pegs": [
+        [
+          136.11,
+          5.96
+        ],
+        [
+          148.81,
+          5.96
+        ]
+      ],
+      "native_pins": {
+        "1": [
+          138.9,
+          8.5
+        ],
+        "2": [
+          139.916,
+          10.28
+        ],
+        "3": [
+          140.932,
+          8.5
+        ],
+        "4": [
+          141.948,
+          10.28
+        ],
+        "5": [
+          142.964,
+          8.5
+        ],
+        "6": [
+          143.98,
+          10.28
+        ],
+        "7": [
+          144.996,
+          8.5
+        ],
+        "8": [
+          146.012,
+          10.28
+        ]
+      },
+      "native_rotation_deg": 0.0,
+      "reference": "J108"
+    }
+  ],
+  "convention": "CPL XY is raw retained catalog origin; NOT established for live JLC draft",
+  "independent_acceptance": false,
+  "live_vendor_verified": false,
+  "production_ready": false,
+  "sources": {
+    "projects/crow-array/order-readiness/power-jack-r10-review/source-evidence/2-P028-manufacturer.pdf": "56a30d312d4f2bfed8b2845cfb376438b24763cab6313966d9e5183ae9bdde59",
+    "projects/crow-array/order-readiness/quote-draft/r10-2c8p-outward-power/carrier-cpl.csv": "ea748566517886a3dee50eaaa176c173f5fde86f45fc48a42e24c97d68e5855d",
+    "projects/crow-array/order-readiness/quote-draft/r10-2c8p-outward-power/native/pcb/carrier/carrier.kicad_pcb": "1fc774524ef57efdd3a644de338328837e42ba648d3a4dd6bb78bad44e8852a1",
+    "projects/crow-array/order-readiness/quote-draft/r10-2c8p-outward-power/native/pcb/pod/pod.kicad_pcb": "d67134d2361f32f25a1f8841134f21f84791d3d36ede1acb74b383d5b007ceb9",
+    "projects/crow-array/order-readiness/quote-draft/r10-2c8p-outward-power/pod-cpl.csv": "6d1884eae3369d239da8d7f6214e27d8296df49d61daed141d9a126b4b2df9ae",
+    "projects/crow-array/order-readiness/quote-tests/r10-connector-mapping/mapping.py": "cebbb45527f1278fb7253c752db2f36335370ce58bf6353d84d0a67779a93555",
+    "projects/crow-array/order-readiness/r10-orientation-images/catalog/C3096093/jlc.pretty/DC-IN-TH_PJ-102AH.kicad_mod": "d5b85f89e8809fd7e2bf60360277b3f3bb5281b57a5fab3fb5c5289eda7f9af6",
+    "projects/crow-array/order-readiness/r10-orientation-images/catalog/C599441/jlc.pretty/RJ45-TH_RJHSE-5080.kicad_mod": "ffd7f2a6381989e7a569e3ed018aee047d8964952351082be7318de1a83caf7d",
+    "projects/crow-array/order-readiness/r10-orientation-images/sources/rjhsex080.pdf": "e96d3f6cde115981be470e0edd3159dfda3ebe1a453db0c45d525e629668a756",
+    "projects/crow-array/order-readiness/render-review-r10/carrier-inspection.json": "ba7c3b3a0326f73d6004db8c632f8a75a382d2587b129963bcf768e943f81580",
+    "projects/crow-array/order-readiness/render-review-r10/pod-inspection.json": "918bca793b4c38e15d0afe4f6d1c9857f61c4ee8a101adc967171272632089b6",
+    "skills/jlcpcb-fab/scripts/export_jlc_package.py": "4a21677677911081d057933ae86fe57236131650c6085d61a739c1b75507bb33",
+    "skills/jlcpcb-fab/scripts/jlc_rotation_measure.py": "9d07964eeb0384c5b6e9da7dda43d3b766e5f6319b1e0a0db0656fd1e1f62057"
+  },
+  "status": "CATALOG_REGISTRATION_DIAGNOSTIC_ONLY"
+}
