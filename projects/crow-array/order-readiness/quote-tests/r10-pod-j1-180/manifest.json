@@ -1,0 +1,23 @@
+{
+  "status": "QUOTE_ONLY_UNACCEPTED_ROTATION_EXPERIMENT",
+  "source": "quote-draft/r10-2c8p-outward-power/pod-cpl.csv",
+  "source_sha256": "6d1884eae3369d239da8d7f6214e27d8296df49d61daed141d9a126b4b2df9ae",
+  "pod_native_sha256": "d67134d2361f32f25a1f8841134f21f84791d3d36ede1acb74b383d5b007ceb9",
+  "references": 29,
+  "changes": [
+    {
+      "reference": "J1",
+      "field": "Rotation",
+      "before": "0.000000",
+      "after": "180.000000"
+    }
+  ],
+  "files": {
+    "pod-cpl-J1-000-BASELINE.csv": "6d1884eae3369d239da8d7f6214e27d8296df49d61daed141d9a126b4b2df9ae",
+    "pod-cpl-J1-180-TEST-ONLY.csv": "2f2324a2689641f1d649655309f95030b3031bfbbfadd5b278e5a2c5fa7813d0"
+  },
+  "generator_sha256": "041cd246abdb2ad7bfa13a91c29869a7783744b8d4ec838ca1935abdf4a9f68f",
+  "jlc_upload_performed": false,
+  "alignment_verified": false,
+  "production_ready": false
+}

@@ -1,5 +1,22 @@
 # Crow exact-job order readiness
 
+## Current next step is the pod J1 controlled CPL comparison
+
+The user authorized a separate pod J1 180° test CPL and publication of the
+[MacBook comparison instructions](quote-tests/r10-pod-j1-180/README.md). A is
+byte-identical to the r10 pod CPL; B changes only J1 Rotation from0 to180deg.
+All29 references, XY, sides and other rotations remain unchanged. Neither file
+grants alignment or production acceptance. The original213-file r10 package and
+native boards remain unchanged. No browser upload has been performed by this task.
+
+The shared MacBook report at `c8b70522` confirms the toolbar90deg is an increment,
+not saved-angle evidence, and contains actual screenshots. Use a separate
+quote-only comparison draft, explicitly upload A then B, capture same-camera
+pin/peg/mouth views and reopen to verify the observed state persists. This
+replaces the previously blocking saved-angle-readout prerequisite for this
+known-input trial only. Retain physical registration and manufacturing HOLD;
+do not change original pod/carrier drafts, purchase or send vendor messages.
+
 ## MacBook handoff for connector rotation tests
 
 The user authorized publishing the latest findings and a direct-browser handoff

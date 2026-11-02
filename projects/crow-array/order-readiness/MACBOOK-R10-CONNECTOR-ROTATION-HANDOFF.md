@@ -1,5 +1,11 @@
 # Crow r10 JLC connector rotation handoff
 
+**Current pod next step:** use the separately authorized
+[known-input 0° versus 180° CPL comparison](quote-tests/r10-pod-j1-180/README.md)
+in a separate quote-only draft. This supersedes the saved-angle readout prerequisite
+below for that pod trial; it does not waive physical alignment or change the
+original drafts. Carrier work remains pending the pod result.
+
 Use the MacBook's directly controlled, signed-in browser to capture JLC placement
 data and test connector rotations. Start with pod J1, then carrier J101 and
 power J1. Keep the native boards and existing r10 upload package unchanged.
