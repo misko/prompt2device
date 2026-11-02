@@ -1,0 +1,46 @@
+{
+  "status": "BLOCKED_ON_EXECUTABLE_VENDOR_COMPARISON",
+  "source_commit": "f3ba5d39d259e5ff29012ef1db0dca3f22226b0b",
+  "attempts": [
+    {
+      "file": "browser-attempt-1.json",
+      "run_id": "af57c581-737d-41a2-b043-fce8d6b113ca",
+      "terminal_status": "completed",
+      "task_completed": false,
+      "findings": "Reported access to original draft and CPL downloads, but no new draft, uploads, or retrievable images. Mistakenly treated expressly permitted fresh creation as forbidden. Do not infer duplication is globally unsupported."
+    },
+    {
+      "file": "browser-attempt-2.json",
+      "run_id": "c3656a0f-fee0-424e-bb84-bd7fee17ad8e",
+      "terminal_status": "completed",
+      "task_completed": false,
+      "findings": "Fresh-quote-only attempt reports inability to supply files through picker. No uploaded Gerbers/BOM/CPL, no saved draft ID or placement evidence. Partial quote form settings are not an assembly draft."
+    }
+  ],
+  "rejected_inferences": [
+    "These attempts do not prove JLC cannot automate upload or create fresh drafts.",
+    "JLC04161H-7628 stack choice does not itself specify ENIG finish.",
+    "A grouped-row confirmation counter does not prove coverage of 29 factory references.",
+    "Automation prose without inspectable artifacts is not physical pin/peg alignment evidence."
+  ],
+  "changes": {
+    "native_boards": false,
+    "original_r10_package": false,
+    "original_jlc_drafts": "unchanged according to automation reports; no independent saved-state export",
+    "test_cpl_uploaded": false,
+    "connector_rotation_applied": false
+  },
+  "verification": {
+    "r10_upload_integrity": "PASS, 213 files",
+    "test_cpl_unit_tests": "9 PASS",
+    "jlc_pin_peg_alignment": "NOT VERIFIED",
+    "jlc_mouth_orientation_correction": "NOT VERIFIED"
+  },
+  "next_action": "Use existing README MacBook procedure to upload A then B in a separate pod diagnostic draft, return top/underside/oblique actual images. Do not repeat these TinyFish approaches without a demonstrated upload path. After pod evidence is reviewed, test carrier RJ and power jack independently; do not propagate on appearance alone.",
+  "connector_scope": {
+    "pod_J1": "HOLD",
+    "carrier_J101_through_J108": "HOLD",
+    "carrier_power_J1": "HOLD"
+  },
+  "production_ready": false
+}

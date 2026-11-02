@@ -10,6 +10,22 @@ saved-angle field. It supersedes that prerequisite in the previous MacBook
 handoff **for this separate pod experiment only**. Uploaded angle is a known
 input; JLC's effective model/production pose still requires physical verification.
 
+## MacBook handoff updated 2 November 2026
+
+Run this test in the MacBook browser using local files from the shared repository.
+Two further TinyFish attempts ended without a test draft, CPL upload or alignment
+images. The first failed to create a separate draft; the second reported inability
+to operate the file picker. They reported leaving existing drafts unchanged.
+See the [assessment](browser-assessment.json) and retained
+[first](browser-attempt-1.json) and [second](browser-attempt-2.json) reports.
+These are automation limitations observed in those runs, not proof that JLC
+prohibits new drafts or file uploads. Do not repeat the duplication search.
+
+Create a fresh diagnostic draft using the exact files below. A separate copy is
+also acceptable if immediately available. Uploading existing files to a new draft
+does not change those files. Leave the original pod and carrier drafts untouched.
+The target is a documented comparison, not an order or placement approval.
+
 ## Files and verification
 
 | Upload | File | J1 rotation |
@@ -28,6 +44,16 @@ From the repository root, after safely pulling
 `codex/crow-jlc-source-review-20261030` without discarding local work:
 
 ```sh
+git status --short
+git fetch origin codex/crow-jlc-source-review-20261030
+```
+
+Only in a clean checkout already on that branch, fast-forward with
+`git merge --ff-only origin/codex/crow-jlc-source-review-20261030`.
+If the checkout is dirty or on another branch, use an isolated worktree rather
+than resetting or overwriting it. Record `git rev-parse HEAD`, then run:
+
+```sh
 python3 projects/crow-array/order-readiness/r10_upload_check.py
 python3 projects/crow-array/order-readiness/quote-tests/r10-pod-j1-180/test_cpl.py verify
 python3 -B -m unittest discover -s projects/crow-array/order-readiness/quote-tests/r10-pod-j1-180 -p test_test_cpl.py
@@ -39,14 +65,16 @@ to overwrite differing artifacts. No KiCad is required for these checks.
 ## MacBook comparison procedure
 
 1. **Preserve the existing drafts.** The [current pod draft](https://cart.jlcpcb.com/smt-order/?pcbFileNo=71c384e886a94642a54e0c804cea3a97)
-   and carrier draft are not test targets for this pass. Prefer a separate
-   quote-only copy of the pod draft, clearly named `POD J1 AB TEST NOT FOR ORDER`.
-   If duplication is unavailable, create a separate quote-only pod draft using
+   and carrier draft are not test targets for this pass. Create a fresh
+   quote-only pod draft, clearly named `POD J1 AB TEST NOT FOR ORDER`, using
    the unchanged [pod Gerbers](../../quote-draft/r10-2c8p-outward-power/pod-gerbers.zip)
    and [reviewed grouped pod BOM](../../quote-draft/r9-merged-bom-candidates/pod-bom-merged-v2.csv).
-   Use 10 fabricated / 8 assembled, four layers, JLC04161H-7628 and the existing
-   finish/mechanical settings from the [r10 handoff](../../MACBOOK-R10-HANDOFF.md).
-   Keep automatic production confirmation disabled. Record the new draft URL;
+   Use 10 fabricated / 8 assembled, four layers, JLC04161H-7628, ENIG,
+   precision outline ±0.1 mm, top assembly and the remaining mechanical settings
+   from the [r10 handoff](../../MACBOOK-R10-HANDOFF.md). Stackup and finish are
+   separate selections. Record any rail or finished-edge uncertainty; it remains
+   a manufacturing hold. Keep both production-file and placement-review options
+   at **Do not confirm automatically**. Record the new draft URL;
    stop if creating it requires an order, payment, reservation or new commitment.
 2. **Load A explicitly.** Upload `pod-cpl-J1-000-BASELINE.csv` to the comparison
    draft even if duplication carried a CPL. Wait for processing and capture
@@ -89,6 +117,12 @@ opening must face **native −Y**, away from the component area.
 | Feature | Native position |
 | --- | --- |
 | Pin 1 | (7.000, 8.500) |
+| Pin 2 | (8.016, 10.280) |
+| Pin 3 | (9.032, 8.500) |
+| Pin 4 | (10.048, 10.280) |
+| Pin 5 | (11.064, 8.500) |
+| Pin 6 | (12.080, 10.280) |
+| Pin 7 | (13.096, 8.500) |
 | Pin 8 | (14.112, 10.280) |
 | Left and right locator holes | (4.210, 5.960), (16.910, 5.960) |
 | Nominal mouth plane | Y = 0.880, facing −Y |
@@ -96,6 +130,16 @@ opening must face **native −Y**, away from the component area.
 Pin n has X = 7 + (n−1)×1.016; odd pins have Y8.5 and even pins Y10.28.
 The pegs lie toward the opening, ahead of the signal-tail rows. JLC view axes
 may differ; do not infer a reflection or offset from screen direction alone.
+The underside view reverses apparent handedness relative to the top. Establish
+pin 1 from the drawing and asymmetric tail pattern, not from leftmost position
+on screen. Check the model's PCB solder tails, not the spring contacts inside
+the socket. These coordinates are reference geometry, not permission to move XY.
+
+For A and B, report each of pins 1–8 and both pegs as **aligned**, **misaligned**
+or **not visible**, with its screenshot filename. Use an underside close-up for
+tails and an oblique/transparent view for pegs if needed. If any feature is hidden,
+the visual alignment verdict remains incomplete; do not fill it from the local
+CAD render. Save originals alongside annotated copies identifying the witnesses.
 
 - [Manufacturer drawing](../../r10-orientation-images/sources/rjhsex080.pdf)
   and [numbered-hole comparison](../../r10-orientation-images/numbered-holes.png).
@@ -109,12 +153,21 @@ may differ; do not infer a reflection or offset from screen direction alone.
 ## Return for review
 
 Save actual A/B/reopened/restored PNGs and a short report under a new session
-folder in `projects/crow-array/order-readiness/`. Include draft URL, source Git
+folder in `projects/crow-array/order-readiness/`, for example
+`r10-pod-ab-session-20261102/`. Use distinct names such as `A-top.png`,
+`A-underside.png`, `A-oblique.png`, the equivalent `B-*` views and
+`B-reopened.png` (or `A-restored.png`). Include draft URL, source Git
 commit, exact input hashes, upload completion evidence, coordinate-frame mapping,
 pin/peg observations, opening direction, other-reference coverage and final
 saved/restored state. Mark saved numeric fields unknown unless actually observed.
 Report every incidental reset or change. Do not publish account tokens, cookies,
 signed private URLs or unredacted HAR files.
+
+Return a short conclusion: **B visually aligned**, **B failed**, or
+**inconclusive**, plus the final saved state and any remaining manufacturing
+holds. Commit and push only the new session evidence and STATUS update to the
+shared branch, then provide the commit and test-draft URL. Do not edit the
+immutable test manifest to turn its original preparation status into approval.
 
 Rerun the two integrity checks above. Keep native files and r10 immutable.
 Carrier J101–J108 and power J1 remain unresolved and are **not changed by this

@@ -1,5 +1,24 @@
 # Crow exact-job order readiness
 
+## 2 November 2026 MacBook pod comparison handoff
+
+Next action: run the [updated pod A/B handoff](quote-tests/r10-pod-j1-180/README.md)
+on the MacBook. Create a fresh diagnostic pod draft from the unchanged files,
+upload A (0°) then B (180°), and return actual views identifying all eight solder
+tails, both locator pegs and the outward opening. Reopen to check persistence;
+restore A if B fails or remains inconclusive. Leave the original drafts unchanged.
+
+The two latest TinyFish runs both terminated without a new test draft, any CPL
+upload or alignment images. The second reported a file-picker limitation; this
+does not establish a JLC platform limitation. The [assessment and raw reports](quote-tests/r10-pod-j1-180/browser-assessment.json)
+preserve those outcomes. No further identical browser retries are planned.
+
+Pod J1, carrier J101–J108 and carrier power J1 remain on placement HOLD. This
+handoff tests only pod J1 and does not approve a carrier-wide correction. Native
+boards, the original r10 package and both test CPLs remain unchanged. No purchases,
+reservations, vendor messages or manufacturing approvals. Earlier checkpoints
+below are historical; this handoff is the current next action.
+
 ## Current next step is the pod J1 controlled CPL comparison
 
 The user authorized a separate pod J1 180° test CPL and publication of the
