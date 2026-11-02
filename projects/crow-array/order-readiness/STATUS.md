@@ -1,5 +1,27 @@
 # Crow exact-job order readiness
 
+## Current authorization — quote-only 7628A selection and preview evidence
+
+Following the assessment of MacBook commit278309e0, the user explicitly authorized
+**quote-only selection of JLC04161H-7628A**, including the reported1.5542mm ±10%
+warning, and pushing the assessment/checklist to the shared branch. It remains
+unperformed by this backend. The allowed range to record is1.39878..1.70962mm;
+no manufacturing tolerance waiver or production/placement approval follows.
+
+[Current MacBook checklist](r10-registration-review/MACBOOK-CHECKLIST.md) directs
+selection/persistence verification, unchanged5 fabricated/2 assembled carriers
+and10 fabricated/8 assembled pods, and a bounded numbered-pin/peg evidence pass
+on podJ1, carrierJ101 and carrier powerJ1 before any correction. Preserve all
+136/29 factory references and20 HOME installations. [Assessment](r10-registration-review/REVIEW-AND-NEXT-STEPS.md)
+and hash-bound native audit distinguish matching native/CPL geometry from the
+still-unknown JLC model/production transform. Earlier requests for authorization
+to select this exact stack for quotation are superseded only to that extent.
+
+No new board/package revision, CPL rotation, vendor message, purchase, payment,
+reservation, substitution, noncancelable sourcing or manufacturing commitment
+is authorized. The prior$390.97 excludes shipping/tax/HOME and must be refreshed
+after confirmed stack selection. Other manufacturing/first-article holds remain.
+
 ## Publication handoff — r10 quote-only successor
 
 User authorized publishing the verified r10 package and MacBook instructions

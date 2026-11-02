@@ -1,0 +1,1036 @@
+{
+  "status": "DIAGNOSTIC_ONLY_NO_VENDOR_REGISTRATION_OR_STACK_ACCEPTANCE",
+  "source_commit": "278309e057c10f46d7c3d638931a495737699169",
+  "sources": {
+    "quote-draft/r10-2c8p-outward-power/native/pcb/carrier/carrier.kicad_pcb": "1fc774524ef57efdd3a644de338328837e42ba648d3a4dd6bb78bad44e8852a1",
+    "quote-draft/r10-2c8p-outward-power/carrier-cpl.csv": "ea748566517886a3dee50eaaa176c173f5fde86f45fc48a42e24c97d68e5855d",
+    "quote-draft/r10-2c8p-outward-power/native/pcb/pod/pod.kicad_pcb": "d67134d2361f32f25a1f8841134f21f84791d3d36ede1acb74b383d5b007ceb9",
+    "quote-draft/r10-2c8p-outward-power/pod-cpl.csv": "6d1884eae3369d239da8d7f6214e27d8296df49d61daed141d9a126b4b2df9ae",
+    "quote-draft/r10-2c8p-outward-power/engineering/clock-model.json": "889ad6da11257a3bc9ff72d6a2b151ea0cd20afd71ebac87d8907823abcd4aef",
+    "JLC-R10-MACBOOK-SESSION-20261101.md": "167adad7dfffe3dd1841671ad7326fb1dcee9aa5cae59517c3bf750e6cfd4eb7",
+    "BACKEND-R10-JLC-BLOCKERS-HANDOFF-20261101.md": "a9d0bd81bbaeeed0524b88464b044aae63f9ff2718a5f3dc8dbe3fc385f786fc",
+    "R10-INSTRUCTIONS.md": "d4e9be9f529b4053a90b8e266fa3e6129479b1e590dc646071852ffc9fb4e0e1",
+    "R9-RJ45-ORIENTATION-REVIEW-20261101.md": "eb0f7cefb50b302150ffdd2b0a978279579c716d835c6da3d975521671148a18",
+    "power-jack-r10-review/REVIEW.md": "c318649dc00ef4ee7a186d6fee433353c33e9e9c56c333062ea31b18a2230bd5",
+    "power-jack-r10-review/review.json": "760de6ec8111d6e2d95f122f7d7228938be18424ce9ec6a6ecd72cbc33331756",
+    "r10-registration-review/audit.py": "4bc0c8c4c75df9aea7f3477084879bc929a36b7ba57b285a24e791c073cfa954",
+    "../releases/crow-prototype-v3-first-run-5c10p-public-v1/historical/documentation/carrier/process/04-2026-10-08-ls20-engineering.md": "f16eebca233ae0ff599b3f2a0a452f3988d781d8211e94d8f3530b1b41ae8a4f",
+    "../releases/crow-prototype-v3-first-run-5c10p-public-v1/historical/documentation/carrier/process/33-process.md": "bc0032b92512eec9baa0454cfb473f596d1b32784cb66a9a7400eeb55932f429",
+    "../releases/crow-prototype-v3-first-run-5c10p-public-v1/historical/documentation/carrier/instructions/40-module-controls.md": "82ab308061003d8025bce030936dfec8aca838371a3509e32bfaef05774e08c8",
+    "../releases/crow-prototype-v3-first-run-5c10p-public-v1/historical/documentation/carrier/instructions/42-controls.md": "275e474cd6d9299e2b9791ba002f12e9ab1acba53e0eb7b048b4c6257dc529c4"
+  },
+  "stack": {
+    "native_plies_mm": [
+      0.035,
+      0.218,
+      0.0764,
+      0.0152,
+      0.865,
+      0.0152,
+      0.0764,
+      0.218,
+      0.035
+    ],
+    "nominal_sum_mm": 1.5542,
+    "portal_nominal_mm": 1.5542,
+    "portal_tolerance_fraction": 0.1,
+    "portal_range_mm": [
+      1.39878,
+      1.70962
+    ],
+    "difference_from_CAD_1_6_mm": [
+      -0.20122,
+      0.10962
+    ],
+    "clock_screen_outer_gap_cases_mm": [
+      0.23552,
+      0.35328
+    ],
+    "total_tolerance_is_not_per_ply_tolerance": true
+  },
+  "connector_witnesses": [
+    {
+      "board": "carrier",
+      "reference": "J1",
+      "mpn": "PJ-102AH",
+      "native_pads": {
+        "1": [
+          188.0,
+          14.7
+        ],
+        "2": [
+          188.0,
+          8.7
+        ],
+        "3": [
+          183.3,
+          11.7
+        ]
+      },
+      "native_locator_holes": [],
+      "body_center_native": [
+        188.0,
+        8.2
+      ],
+      "cpl": {
+        "Designator": "J1",
+        "Mid X": "188.000000mm",
+        "Mid Y": "-8.200000mm",
+        "Rotation": "180.000000",
+        "Layer": "Top"
+      },
+      "actual_physical_180_counterfactual_pads": {
+        "1": [
+          188.0,
+          1.7
+        ],
+        "2": [
+          188.0,
+          7.7
+        ],
+        "3": [
+          192.7,
+          4.7
+        ]
+      },
+      "actual_physical_180_counterfactual_pegs": []
+    },
+    {
+      "board": "carrier",
+      "reference": "J101",
+      "mpn": "RJHSE-5080",
+      "native_pads": {
+        "1": [
+          8.0,
+          8.5
+        ],
+        "2": [
+          9.016,
+          10.28
+        ],
+        "3": [
+          10.032,
+          8.5
+        ],
+        "4": [
+          11.048,
+          10.28
+        ],
+        "5": [
+          12.064,
+          8.5
+        ],
+        "6": [
+          13.08,
+          10.28
+        ],
+        "7": [
+          14.096,
+          8.5
+        ],
+        "8": [
+          15.112,
+          10.28
+        ]
+      },
+      "native_locator_holes": [
+        [
+          5.21,
+          5.96
+        ],
+        [
+          17.91,
+          5.96
+        ]
+      ],
+      "body_center_native": [
+        11.556,
+        8.373
+      ],
+      "cpl": {
+        "Designator": "J101",
+        "Mid X": "11.556000mm",
+        "Mid Y": "-8.373000mm",
+        "Rotation": "0.000000",
+        "Layer": "Top"
+      },
+      "actual_physical_180_counterfactual_pads": {
+        "1": [
+          15.112,
+          8.246
+        ],
+        "2": [
+          14.096,
+          6.466
+        ],
+        "3": [
+          13.08,
+          8.246
+        ],
+        "4": [
+          12.064,
+          6.466
+        ],
+        "5": [
+          11.048,
+          8.246
+        ],
+        "6": [
+          10.032,
+          6.466
+        ],
+        "7": [
+          9.016,
+          8.246
+        ],
+        "8": [
+          8.0,
+          6.466
+        ]
+      },
+      "actual_physical_180_counterfactual_pegs": [
+        [
+          17.902,
+          10.786
+        ],
+        [
+          5.202,
+          10.786
+        ]
+      ]
+    },
+    {
+      "board": "carrier",
+      "reference": "J102",
+      "mpn": "RJHSE-5080",
+      "native_pads": {
+        "1": [
+          26.7,
+          8.5
+        ],
+        "2": [
+          27.716,
+          10.28
+        ],
+        "3": [
+          28.732,
+          8.5
+        ],
+        "4": [
+          29.748,
+          10.28
+        ],
+        "5": [
+          30.764,
+          8.5
+        ],
+        "6": [
+          31.78,
+          10.28
+        ],
+        "7": [
+          32.796,
+          8.5
+        ],
+        "8": [
+          33.812,
+          10.28
+        ]
+      },
+      "native_locator_holes": [
+        [
+          23.91,
+          5.96
+        ],
+        [
+          36.61,
+          5.96
+        ]
+      ],
+      "body_center_native": [
+        30.256,
+        8.373
+      ],
+      "cpl": {
+        "Designator": "J102",
+        "Mid X": "30.256000mm",
+        "Mid Y": "-8.373000mm",
+        "Rotation": "0.000000",
+        "Layer": "Top"
+      },
+      "actual_physical_180_counterfactual_pads": {
+        "1": [
+          33.812,
+          8.246
+        ],
+        "2": [
+          32.796,
+          6.466
+        ],
+        "3": [
+          31.78,
+          8.246
+        ],
+        "4": [
+          30.764,
+          6.466
+        ],
+        "5": [
+          29.748,
+          8.246
+        ],
+        "6": [
+          28.732,
+          6.466
+        ],
+        "7": [
+          27.716,
+          8.246
+        ],
+        "8": [
+          26.7,
+          6.466
+        ]
+      },
+      "actual_physical_180_counterfactual_pegs": [
+        [
+          36.602,
+          10.786
+        ],
+        [
+          23.902,
+          10.786
+        ]
+      ]
+    },
+    {
+      "board": "carrier",
+      "reference": "J103",
+      "mpn": "RJHSE-5080",
+      "native_pads": {
+        "1": [
+          45.4,
+          8.5
+        ],
+        "2": [
+          46.416,
+          10.28
+        ],
+        "3": [
+          47.432,
+          8.5
+        ],
+        "4": [
+          48.448,
+          10.28
+        ],
+        "5": [
+          49.464,
+          8.5
+        ],
+        "6": [
+          50.48,
+          10.28
+        ],
+        "7": [
+          51.496,
+          8.5
+        ],
+        "8": [
+          52.512,
+          10.28
+        ]
+      },
+      "native_locator_holes": [
+        [
+          42.61,
+          5.96
+        ],
+        [
+          55.31,
+          5.96
+        ]
+      ],
+      "body_center_native": [
+        48.956,
+        8.373
+      ],
+      "cpl": {
+        "Designator": "J103",
+        "Mid X": "48.956000mm",
+        "Mid Y": "-8.373000mm",
+        "Rotation": "0.000000",
+        "Layer": "Top"
+      },
+      "actual_physical_180_counterfactual_pads": {
+        "1": [
+          52.512,
+          8.246
+        ],
+        "2": [
+          51.496,
+          6.466
+        ],
+        "3": [
+          50.48,
+          8.246
+        ],
+        "4": [
+          49.464,
+          6.466
+        ],
+        "5": [
+          48.448,
+          8.246
+        ],
+        "6": [
+          47.432,
+          6.466
+        ],
+        "7": [
+          46.416,
+          8.246
+        ],
+        "8": [
+          45.4,
+          6.466
+        ]
+      },
+      "actual_physical_180_counterfactual_pegs": [
+        [
+          55.302,
+          10.786
+        ],
+        [
+          42.602,
+          10.786
+        ]
+      ]
+    },
+    {
+      "board": "carrier",
+      "reference": "J104",
+      "mpn": "RJHSE-5080",
+      "native_pads": {
+        "1": [
+          64.1,
+          8.5
+        ],
+        "2": [
+          65.116,
+          10.28
+        ],
+        "3": [
+          66.132,
+          8.5
+        ],
+        "4": [
+          67.148,
+          10.28
+        ],
+        "5": [
+          68.164,
+          8.5
+        ],
+        "6": [
+          69.18,
+          10.28
+        ],
+        "7": [
+          70.196,
+          8.5
+        ],
+        "8": [
+          71.212,
+          10.28
+        ]
+      },
+      "native_locator_holes": [
+        [
+          61.31,
+          5.96
+        ],
+        [
+          74.01,
+          5.96
+        ]
+      ],
+      "body_center_native": [
+        67.656,
+        8.373
+      ],
+      "cpl": {
+        "Designator": "J104",
+        "Mid X": "67.656000mm",
+        "Mid Y": "-8.373000mm",
+        "Rotation": "0.000000",
+        "Layer": "Top"
+      },
+      "actual_physical_180_counterfactual_pads": {
+        "1": [
+          71.212,
+          8.246
+        ],
+        "2": [
+          70.196,
+          6.466
+        ],
+        "3": [
+          69.18,
+          8.246
+        ],
+        "4": [
+          68.164,
+          6.466
+        ],
+        "5": [
+          67.148,
+          8.246
+        ],
+        "6": [
+          66.132,
+          6.466
+        ],
+        "7": [
+          65.116,
+          8.246
+        ],
+        "8": [
+          64.1,
+          6.466
+        ]
+      },
+      "actual_physical_180_counterfactual_pegs": [
+        [
+          74.002,
+          10.786
+        ],
+        [
+          61.302,
+          10.786
+        ]
+      ]
+    },
+    {
+      "board": "carrier",
+      "reference": "J105",
+      "mpn": "RJHSE-5080",
+      "native_pads": {
+        "1": [
+          82.8,
+          8.5
+        ],
+        "2": [
+          83.816,
+          10.28
+        ],
+        "3": [
+          84.832,
+          8.5
+        ],
+        "4": [
+          85.848,
+          10.28
+        ],
+        "5": [
+          86.864,
+          8.5
+        ],
+        "6": [
+          87.88,
+          10.28
+        ],
+        "7": [
+          88.896,
+          8.5
+        ],
+        "8": [
+          89.912,
+          10.28
+        ]
+      },
+      "native_locator_holes": [
+        [
+          80.01,
+          5.96
+        ],
+        [
+          92.71,
+          5.96
+        ]
+      ],
+      "body_center_native": [
+        86.356,
+        8.373
+      ],
+      "cpl": {
+        "Designator": "J105",
+        "Mid X": "86.356000mm",
+        "Mid Y": "-8.373000mm",
+        "Rotation": "0.000000",
+        "Layer": "Top"
+      },
+      "actual_physical_180_counterfactual_pads": {
+        "1": [
+          89.912,
+          8.246
+        ],
+        "2": [
+          88.896,
+          6.466
+        ],
+        "3": [
+          87.88,
+          8.246
+        ],
+        "4": [
+          86.864,
+          6.466
+        ],
+        "5": [
+          85.848,
+          8.246
+        ],
+        "6": [
+          84.832,
+          6.466
+        ],
+        "7": [
+          83.816,
+          8.246
+        ],
+        "8": [
+          82.8,
+          6.466
+        ]
+      },
+      "actual_physical_180_counterfactual_pegs": [
+        [
+          92.702,
+          10.786
+        ],
+        [
+          80.002,
+          10.786
+        ]
+      ]
+    },
+    {
+      "board": "carrier",
+      "reference": "J106",
+      "mpn": "RJHSE-5080",
+      "native_pads": {
+        "1": [
+          101.5,
+          8.5
+        ],
+        "2": [
+          102.516,
+          10.28
+        ],
+        "3": [
+          103.532,
+          8.5
+        ],
+        "4": [
+          104.548,
+          10.28
+        ],
+        "5": [
+          105.564,
+          8.5
+        ],
+        "6": [
+          106.58,
+          10.28
+        ],
+        "7": [
+          107.596,
+          8.5
+        ],
+        "8": [
+          108.612,
+          10.28
+        ]
+      },
+      "native_locator_holes": [
+        [
+          98.71,
+          5.96
+        ],
+        [
+          111.41,
+          5.96
+        ]
+      ],
+      "body_center_native": [
+        105.056,
+        8.373
+      ],
+      "cpl": {
+        "Designator": "J106",
+        "Mid X": "105.056000mm",
+        "Mid Y": "-8.373000mm",
+        "Rotation": "0.000000",
+        "Layer": "Top"
+      },
+      "actual_physical_180_counterfactual_pads": {
+        "1": [
+          108.612,
+          8.246
+        ],
+        "2": [
+          107.596,
+          6.466
+        ],
+        "3": [
+          106.58,
+          8.246
+        ],
+        "4": [
+          105.564,
+          6.466
+        ],
+        "5": [
+          104.548,
+          8.246
+        ],
+        "6": [
+          103.532,
+          6.466
+        ],
+        "7": [
+          102.516,
+          8.246
+        ],
+        "8": [
+          101.5,
+          6.466
+        ]
+      },
+      "actual_physical_180_counterfactual_pegs": [
+        [
+          111.402,
+          10.786
+        ],
+        [
+          98.702,
+          10.786
+        ]
+      ]
+    },
+    {
+      "board": "carrier",
+      "reference": "J107",
+      "mpn": "RJHSE-5080",
+      "native_pads": {
+        "1": [
+          120.2,
+          8.5
+        ],
+        "2": [
+          121.216,
+          10.28
+        ],
+        "3": [
+          122.232,
+          8.5
+        ],
+        "4": [
+          123.248,
+          10.28
+        ],
+        "5": [
+          124.264,
+          8.5
+        ],
+        "6": [
+          125.28,
+          10.28
+        ],
+        "7": [
+          126.296,
+          8.5
+        ],
+        "8": [
+          127.312,
+          10.28
+        ]
+      },
+      "native_locator_holes": [
+        [
+          117.41,
+          5.96
+        ],
+        [
+          130.11,
+          5.96
+        ]
+      ],
+      "body_center_native": [
+        123.756,
+        8.373
+      ],
+      "cpl": {
+        "Designator": "J107",
+        "Mid X": "123.756000mm",
+        "Mid Y": "-8.373000mm",
+        "Rotation": "0.000000",
+        "Layer": "Top"
+      },
+      "actual_physical_180_counterfactual_pads": {
+        "1": [
+          127.312,
+          8.246
+        ],
+        "2": [
+          126.296,
+          6.466
+        ],
+        "3": [
+          125.28,
+          8.246
+        ],
+        "4": [
+          124.264,
+          6.466
+        ],
+        "5": [
+          123.248,
+          8.246
+        ],
+        "6": [
+          122.232,
+          6.466
+        ],
+        "7": [
+          121.216,
+          8.246
+        ],
+        "8": [
+          120.2,
+          6.466
+        ]
+      },
+      "actual_physical_180_counterfactual_pegs": [
+        [
+          130.102,
+          10.786
+        ],
+        [
+          117.402,
+          10.786
+        ]
+      ]
+    },
+    {
+      "board": "carrier",
+      "reference": "J108",
+      "mpn": "RJHSE-5080",
+      "native_pads": {
+        "1": [
+          138.9,
+          8.5
+        ],
+        "2": [
+          139.916,
+          10.28
+        ],
+        "3": [
+          140.932,
+          8.5
+        ],
+        "4": [
+          141.948,
+          10.28
+        ],
+        "5": [
+          142.964,
+          8.5
+        ],
+        "6": [
+          143.98,
+          10.28
+        ],
+        "7": [
+          144.996,
+          8.5
+        ],
+        "8": [
+          146.012,
+          10.28
+        ]
+      },
+      "native_locator_holes": [
+        [
+          136.11,
+          5.96
+        ],
+        [
+          148.81,
+          5.96
+        ]
+      ],
+      "body_center_native": [
+        142.456,
+        8.373
+      ],
+      "cpl": {
+        "Designator": "J108",
+        "Mid X": "142.456000mm",
+        "Mid Y": "-8.373000mm",
+        "Rotation": "0.000000",
+        "Layer": "Top"
+      },
+      "actual_physical_180_counterfactual_pads": {
+        "1": [
+          146.012,
+          8.246
+        ],
+        "2": [
+          144.996,
+          6.466
+        ],
+        "3": [
+          143.98,
+          8.246
+        ],
+        "4": [
+          142.964,
+          6.466
+        ],
+        "5": [
+          141.948,
+          8.246
+        ],
+        "6": [
+          140.932,
+          6.466
+        ],
+        "7": [
+          139.916,
+          8.246
+        ],
+        "8": [
+          138.9,
+          6.466
+        ]
+      },
+      "actual_physical_180_counterfactual_pegs": [
+        [
+          148.802,
+          10.786
+        ],
+        [
+          136.102,
+          10.786
+        ]
+      ]
+    },
+    {
+      "board": "pod",
+      "reference": "J1",
+      "mpn": "RJHSE-5080",
+      "native_pads": {
+        "1": [
+          7.0,
+          8.5
+        ],
+        "2": [
+          8.016,
+          10.28
+        ],
+        "3": [
+          9.032,
+          8.5
+        ],
+        "4": [
+          10.048,
+          10.28
+        ],
+        "5": [
+          11.064,
+          8.5
+        ],
+        "6": [
+          12.08,
+          10.28
+        ],
+        "7": [
+          13.096,
+          8.5
+        ],
+        "8": [
+          14.112,
+          10.28
+        ]
+      },
+      "native_locator_holes": [
+        [
+          4.21,
+          5.96
+        ],
+        [
+          16.91,
+          5.96
+        ]
+      ],
+      "body_center_native": [
+        10.556,
+        8.373
+      ],
+      "cpl": {
+        "Designator": "J1",
+        "Mid X": "10.556000mm",
+        "Mid Y": "-8.373000mm",
+        "Rotation": "0.000000",
+        "Layer": "Top"
+      },
+      "actual_physical_180_counterfactual_pads": {
+        "1": [
+          14.112,
+          8.246
+        ],
+        "2": [
+          13.096,
+          6.466
+        ],
+        "3": [
+          12.08,
+          8.246
+        ],
+        "4": [
+          11.064,
+          6.466
+        ],
+        "5": [
+          10.048,
+          8.246
+        ],
+        "6": [
+          9.032,
+          6.466
+        ],
+        "7": [
+          8.016,
+          8.246
+        ],
+        "8": [
+          7.0,
+          6.466
+        ]
+      },
+      "actual_physical_180_counterfactual_pegs": [
+        [
+          16.902,
+          10.786
+        ],
+        [
+          4.202,
+          10.786
+        ]
+      ]
+    }
+  ],
+  "vendor_witnesses_available": false
+}
